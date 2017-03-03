@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
 ms.openlocfilehash: ca8f3ac0dd5301e1fd06abaf3a292872eb631f47
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -186,10 +187,5 @@ REST API 的要求必須使用 **基本驗證**，因此請使用 HDInsight 叢�
 現在，您已經了解如何使用 Storm 儀表板來部署和監視拓撲、了解如何 [使用 Maven 來開發以 Java 為基礎的拓撲](hdinsight-storm-develop-java-topology.md)。
 
 若需更多範例拓撲的清單，請參閱 [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

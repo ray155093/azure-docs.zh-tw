@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
 ms.openlocfilehash: c29f539d25df3f7b005eb0fa98009d26549fa32b
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -218,9 +219,4 @@ Ambari REST API 可透過網際網路提供，而且公用閘道器會處理路�
 [preview-portal]: https://portal.azure.com/
 [azure-powershell]: /powershell/azureps-cmdlets-docs
 [azure-cli]: ../xplat-cli-install.md
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

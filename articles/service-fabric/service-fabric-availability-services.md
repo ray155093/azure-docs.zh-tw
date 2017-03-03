@@ -17,6 +17,7 @@ ms.author: masnider
 translationtype: Human Translation
 ms.sourcegitcommit: dafaf29b6827a6f1c043af3d6bfe62d480d31ad5
 ms.openlocfilehash: 1db7b4bcfa4b7c474a4b0eb4ef469a6cb1fe54a0
+ms.lasthandoff: 01/07/2017
 
 
 ---
@@ -54,9 +55,4 @@ Azure Service Fabric 服務可能是具狀態或無狀態。 無狀態服務是�
 * [分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
 * [定義和管理狀態](service-fabric-concepts-state.md)
 * [Reliable Services](service-fabric-reliable-services-introduction.md)
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

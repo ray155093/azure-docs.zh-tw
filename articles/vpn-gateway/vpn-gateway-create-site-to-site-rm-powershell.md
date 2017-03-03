@@ -18,6 +18,7 @@ ms.author: cherylmc
 translationtype: Human Translation
 ms.sourcegitcommit: eea00841708212789e14fa8717d83dd81d472bac
 ms.openlocfilehash: dad78df8d841dd1d5e014a902fa541044743f7e4
+ms.lasthandoff: 01/27/2017
 
 
 ---
@@ -202,9 +203,4 @@ VPN 連線有幾種不同的驗證方式。
 ## <a name="next-steps"></a>後續步驟
 *  一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱[虛擬機器](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。
 * 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

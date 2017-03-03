@@ -17,6 +17,7 @@ ms.author: dineshm
 translationtype: Human Translation
 ms.sourcegitcommit: c5fedb8c4a6e3722e2f37dd432cec60513c73e0d
 ms.openlocfilehash: f14ed08473ba9c424acf39d3fe98d4a11adf9948
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -202,10 +203,5 @@ for (auto it = container.list_blobs(); it != end_of_results; ++it)
 * [Azure Storage Client Library for C++ API 文件。](http://azure.github.io/azure-storage-cpp/)
 * [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)
 * [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

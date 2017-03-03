@@ -18,6 +18,7 @@ ms.tgt_pltfrm: NA
 translationtype: Human Translation
 ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
 ms.openlocfilehash: 9fa8c7d06675c3a7481e64c8f5390f1b5470a280
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -118,9 +119,4 @@ SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的�
 * [建立彈性集區](sql-database-elastic-pool-manage-portal.md)
 * [監視、管理和估算彈性集區大小](sql-database-elastic-pool-manage-portal.md)
 * [SQL Database 選項和效能：了解每個服務層中可用的項目](sql-database-service-tiers.md)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

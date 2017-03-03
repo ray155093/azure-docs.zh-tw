@@ -1,7 +1,7 @@
 ---
-title: "詢問您可以使用資料回答的問題 - 制訂問題 | Microsoft Docs"
-description: "了解如何在「適用於初學者的資料科學」影片 3 中制訂資料科學問題。 包含分類和迴歸問題的比較。"
-keywords: "資料科學問題, 制訂問題, 迴歸問題, 分類問題, 明確的問題"
+title: "詢問問題資料可以回答 - 資料科學問題 - Azure | Microsoft Docs"
+description: "了解如何在「適用於初學者的資料科學」影片 3 中制訂明確的資料科學問題。 包含分類和迴歸問題的比較。"
+keywords: "資料科學問題, 資料科學問題, 制訂問題, 迴歸問題, 分類問題, 明確的問題"
 services: machine-learning
 documentationcenter: na
 author: cjgronlund
@@ -13,23 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/20/2016
+ms.date: 02/09/2017
 ms.author: cgronlun;garye
 translationtype: Human Translation
-ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
-ms.openlocfilehash: 4e6a7a47f83b0db4380fe3bbf26efd292e4c8054
+ms.sourcegitcommit: b167b88d227bf239fd5d3676e48e04436f140c34
+ms.openlocfilehash: 3c476cf99ebfe78f5681019fc055d1a07b61ef02
+ms.lasthandoff: 02/10/2017
 
 
 ---
 # <a name="ask-a-question-you-can-answer-with-data"></a>詢問您可以使用資料回答的問題
 ## <a name="video-3-data-science-for-beginners-series"></a>影片 3：適用於初學者的資料科學系列
-了解如何在「適用於初學者的資料科學」影片 3 中制訂資料科學問題。 這個影片包含適用於分類和迴歸演算法的問題比較。
+了解如何將在資料科學問題制訂至「適用於初學者的資料科學」影片 3 中的問題。 這個影片包含適用於分類和迴歸演算法的問題比較。
 
 若要充分運用這系列影片，請觀賞所有影片。 [瀏覽影片清單](#other-videos-in-this-series)
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Data-science-for-beginners-Ask-a-question-you-can-answer-with-data/player]
-> 
-> 
+>
+>
 
 ## <a name="other-videos-in-this-series"></a>系列中的其他影片
  是一個資料科學的快速簡介，包含五個簡短影片。
@@ -97,10 +98,4 @@ ms.openlocfilehash: 4e6a7a47f83b0db4380fe3bbf26efd292e4c8054
 ## <a name="next-steps"></a>後續步驟
 * [嘗試使用 Machine Learning Studio 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
 * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

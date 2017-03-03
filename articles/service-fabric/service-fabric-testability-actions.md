@@ -17,6 +17,7 @@ ms.author: motanv;heeldin
 translationtype: Human Translation
 ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
 ms.openlocfilehash: 4de9967b41c37bbfacf63caf0f993f625bf3c779
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -231,10 +232,5 @@ ReplicaSelector secondaryReplicaSelector = ReplicaSelector.RandomSecondaryOf(par
 * 如何測試您的服務
   * [模擬服務工作負載期間的失敗案例](service-fabric-testability-workload-tests.md)
   * [服務對服務間通訊的失敗案例](service-fabric-testability-scenarios-service-communication.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

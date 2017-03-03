@@ -17,6 +17,7 @@ ms.author: brjohnst
 translationtype: Human Translation
 ms.sourcegitcommit: 7d45759915f38ba4337b745eb2b28dcbc72dbbe0
 ms.openlocfilehash: a14131455ad94cbc4b729077568b12043401c08e
+ms.lasthandoff: 01/14/2017
 
 ---
 
@@ -63,9 +64,4 @@ Azure 搜尋服務一律會先透過 REST API 預先推出實驗性功能，然�
 如需程式碼移轉的 .NET SDK：指南，請參閱 [升級 .NET SDK](search-dotnet-sdk-migration.md)。
 
 正式推出意指 Azure 搜尋服務已受到服務等級協定 (SLA) 約束。 SLA 可以在 [Azure 搜尋服務等級協定](https://azure.microsoft.com/support/legal/sla/search/v1_0/)中找到。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

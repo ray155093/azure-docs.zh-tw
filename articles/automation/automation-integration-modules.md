@@ -17,6 +17,7 @@ ms.author: magoedte
 translationtype: Human Translation
 ms.sourcegitcommit: ea2ad80f348c80856c525218aad45a8fcf47bcb8
 ms.openlocfilehash: aeb06276a52e5472667ae0a741fb3007a91910fe
+ms.lasthandoff: 01/14/2017
 
 ---
 
@@ -211,10 +212,5 @@ PowerShell 模組是一組 PowerShell Cmdlet (例如 **Get-Date** 或 **Copy-Ite
 
 * 若要開始使用 PowerShell 工作流程 Runbook，請參閱 [我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 * 若要深入了解如何建立 PowerShell 模組，請參閱 [撰寫 Windows PowerShell 模組](https://msdn.microsoft.com/library/dd878310%28v=vs.85%29.aspx)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

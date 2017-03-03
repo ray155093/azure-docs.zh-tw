@@ -3,7 +3,7 @@ title: "在 DocumentDB 中使用多個區域進行開發 | Microsoft Docs"
 description: "了解如何從 Azure DocumentDB (可完全管理的 NoSQL 資料庫服務) 存取多個區域中的資料。"
 services: documentdb
 documentationcenter: 
-author: kiratp
+author: mimig1
 manager: jhubbard
 editor: 
 ms.assetid: d4579378-0b3a-44a5-9f5b-630f1fa4c66d
@@ -12,19 +12,22 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/09/2016
-ms.author: kipandya
+ms.date: 02/09/2017
+ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: ed44ca2076860128b175888748cdaa8794c2310d
-ms.openlocfilehash: d7ed490157eff98e31c824daf1f9af98ae1afeaa
+ms.sourcegitcommit: 240f45383639f1eb8a4a9b7c4e4489591be23dba
+ms.openlocfilehash: aac8c26cd9af94659abc80b2ae260dc380cf38c9
+ms.lasthandoff: 02/10/2017
 
 
 ---
 # <a name="developing-with-multi-region-documentdb-accounts"></a>使用多個區域 DocumentDB 帳戶進行開發
-> [!NOTE]
-> 對於任何新建的 DocumentDB 帳戶，通常可以使用 DocumentDB 資料庫的全球發佈，而且會自動啟用。 我們正致力於啟用所有現有帳戶的全球發佈，但如果您想在這過渡時期啟用您帳戶的全球發佈，請 [連絡客戶支援](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) ，我們將立即為您啟用。
->
->
+
+在這段 Azure Friday 影片中，和 Scott Hanselman 與工程總經理 Karthik Raman 一起了解多個區域 DocumentDB 帳戶。
+
+>[!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Planet-Scale-NoSQL-with-DocumentDB/player]  
+
+## <a name="introduction"></a>簡介
 
 為了充分運用 [全球發佈](documentdb-distribute-data-globally.md)，用戶端應用程式可以指定已排序的區域喜好設定清單，以用來執行文件作業。 這可透過設定連接原則來完成。 根據 Azure DocumentDB 帳戶組態、目前區域可用性和指定的喜好設定清單，SDK 將會選擇最適合的端點來執行寫入和讀取作業。
 
@@ -155,9 +158,4 @@ SDK 會自動將所有寫入傳送至目前的寫入區域。
 * [使用 Azure 入口網站新增區域](documentdb-portal-global-replication.md)
 
 [regions]: https://azure.microsoft.com/regions/
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

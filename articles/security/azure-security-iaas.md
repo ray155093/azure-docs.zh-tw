@@ -17,6 +17,7 @@ ms.author: barclayn
 translationtype: Human Translation
 ms.sourcegitcommit: 3451bdde3be60df0f1e1ed977f23db65d39f535f
 ms.openlocfilehash: 8416de09a4a3c2cdf9c73b9f79e8df9e292514ca
+ms.lasthandoff: 01/10/2017
 
 
 
@@ -243,9 +244,4 @@ OMS 中的安全性和法規遵循功能可讓您檢視您的資源相關資訊 
 * [Azure 安全性小組部落格](https://blogs.msdn.microsoft.com/azuresecurity/)
 * [Microsoft 安全性回應中心](https://technet.microsoft.com/library/dn440717.aspx)
 * [Azure 安全性最佳作法與模式](security-best-practices-and-patterns.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

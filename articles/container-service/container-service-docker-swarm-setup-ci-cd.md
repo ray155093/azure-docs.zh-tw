@@ -17,6 +17,7 @@ ms.author: jucoriol
 translationtype: Human Translation
 ms.sourcegitcommit: c5e05a8693bd000010013922ed6f2a127e998efe
 ms.openlocfilehash: db58703f573c09ba45abed87547c5e80ef58638b
+ms.lasthandoff: 12/14/2016
 
 
 ---
@@ -151,7 +152,7 @@ Microsoft 提供 VSTS 擴充以在建置與發行程序中搭配 Docker 使用�
 
     ![Visual Studio Team Services - Docker 建置](./media/container-service-docker-swarm-setup-ci-cd/vsts-docker-build.png)
 
-    針對建置作業，選取您的 Azure 容器登錄，選取 [Build an image] (建置映像) 動作，以及定義每個映像的 Dockerfile。 將 [Build context] (組件內容) 設為 Dockerfile 根目錄，並定義 [Image Name] (映像名稱)。 
+    針對建置作業，選取您的 Azure 容器登錄，選取 [Build an image] \(建置映像) 動作，以及定義每個映像的 Dockerfile。 將 [Build context] \(組件內容) 設為 Dockerfile 根目錄，並定義 [Image Name] \(映像名稱)。 
     
     如上一個畫面顯示，使用您 Azure 容器登錄的 URI 做為映像名稱的開頭。 (您也可以使用組建變數將映像的標籤參數化，就像此範例中的組建識別碼一樣。)
 
@@ -159,7 +160,7 @@ Microsoft 提供 VSTS 擴充以在建置與發行程序中搭配 Docker 使用�
 
     ![Visual Studio Team Services - Docker 推送](./media/container-service-docker-swarm-setup-ci-cd/vsts-docker-push.png)
 
-    針對推送作業，選取您的 Azure 容器登錄，選取 [Push an image] (推送映像) 動作，並輸入在上一個步驟中建置的 [Image Name] (映像名稱)。
+    針對推送作業，選取您的 Azure 容器登錄，選取 [Push an image] \(推送映像) 動作，並輸入在上一個步驟中建置的 [Image Name] \(映像名稱)。
 
 4. 針對這五個映像個別設定好建置和推送步驟之後，請在建置工作流程中再新增兩個步驟。
 
@@ -227,8 +228,3 @@ Visual Studio Team Services 可讓您[跨環境管理發行 (英文)](https://ww
 ## <a name="next-steps"></a>後續步驟
 
 * 如需 CI/CD 與 Visual Studio Team Services 的相關詳細資訊，請參閱 [VSTS 建置概觀](https://www.visualstudio.com/docs/build/overview)。
-
-
-<!--HONumber=Dec16_HO2-->
-
-

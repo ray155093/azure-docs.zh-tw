@@ -17,6 +17,7 @@ ms.author: magoedte; bwren
 translationtype: Human Translation
 ms.sourcegitcommit: c86ec1d328d3cbf62c1a563766574a006299b232
 ms.openlocfilehash: 8bbd077108ba6ca6df67b64ab3fa24c81bf0ab00
+ms.lasthandoff: 01/14/2017
 
 ---
 
@@ -107,8 +108,3 @@ ms.openlocfilehash: 8bbd077108ba6ca6df67b64ab3fa24c81bf0ab00
 - 閱讀[圖形化編寫中的連結](automation-graphical-authoring-intro.md#links-and-workflow)，以了解如何引導和控制您的 Runbook 中的邏輯流程。  
 
 - 若要進一步了解 Azure 自動化如何使用 PowerShell 模組，以及建立自有 PowerShell 模組來做為 Azure 自動化內整合模組的最佳做法，請參閱[整合模組](automation-integration-modules.md)。  
-
-
-<!--HONumber=Jan17_HO2-->
-
-

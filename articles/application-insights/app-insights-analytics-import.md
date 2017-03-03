@@ -10,11 +10,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 02/09/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 47c3491b067d5e112db589672b68e7cfc7cbe921
-ms.openlocfilehash: eb89c6f485f2321f729dcfe650af4355de84a9ac
+ms.sourcegitcommit: 938f325e2cd4dfc1a192256e033aabfc39b85dac
+ms.openlocfilehash: 6bb1f31407f9af67e699bd110ee528dddee1a70f
+ms.lasthandoff: 02/14/2017
 
 
 ---
@@ -24,7 +25,7 @@ ms.openlocfilehash: eb89c6f485f2321f729dcfe650af4355de84a9ac
 
 您可以使用自己的結構描述將資料匯入分析。 它不需要使用標準 Application Insights 結構描述，例如要求或追蹤。
 
-目前，您可以匯入 CSV (逗點分隔值) 檔案，或使用 tab 或分號分隔符號的類似格式。
+您可以匯入 JSON 或 DSV (以分隔符號分隔值 - 逗號、分號或定位字元) 檔案。
 
 有三種情況下，匯入至分析會很實用︰
 
@@ -72,12 +73,15 @@ ms.openlocfilehash: eb89c6f485f2321f729dcfe650af4355de84a9ac
 
     ![新增資料來源](./media/app-insights-analytics-import/add-new-data-source.png)
 
-2. 依照指示上傳範例資料檔案。
+2. 上傳範例資料檔案。 (如果您上傳結構描述定義則為選擇性。)
 
- * 此範例的第一列可以是資料行標頭。 (您可以在下一個步驟中變更欄位名稱。)
- * 範例應該包含至少 10 個資料列的資料。
+    此範例的第一列可以是資料行標頭。 (您可以在下一個步驟中變更欄位名稱。)
 
-3. 檢閱精靈已經從您的範例推斷之結構描述。 如有必要，您可以調整資料行的推斷類型。
+    範例應該包含至少 10 個資料列的資料。
+
+3. 檢閱精靈已經得到的結構描述。 如果它是從範例推斷出類型，您可能需要調整推斷的資料行類型。
+
+   (選擇性。)上傳結構描述定義。 請看以下的格式。
 
 4. 選取時間戳記。 分析中的所有資料都必須都有時間戳記欄位。 必須有 `datetime` 類型，但不必命名為 'timestamp'。 如果您的資料具有包含以 ISO 格式表示之日期和時間的資料行，選擇此選項為時間戳記資料行。 否則，請選擇「資料抵達時」，匯入程序將會新增時間戳記欄位。
 
@@ -85,6 +89,37 @@ ms.openlocfilehash: eb89c6f485f2321f729dcfe650af4355de84a9ac
 
 5. 建立資料來源。
 
+### <a name="schema-definition-file-format"></a>結構描述定義檔案格式
+
+不要在 UI 中編輯結構描述，而是從檔案載入結構描述定義。 結構描述定義格式如下︰ 
+
+以符號分隔的格式 
+```
+[ 
+    {"location": "0", "name": "RequestName", "type": "string"}, 
+    {"location": "1", "name": "timestamp", "type": "datetime"}, 
+    {"location": "2", "name": "IPAddress", "type": "string"} 
+] 
+```
+
+JSON 格式 
+```
+[ 
+    {"location": "$.name", "name": "name", "type": "string"}, 
+    {"location": "$.alias", "name": "alias", "type": "string"}, 
+    {"location": "$.room", "name": "room", "type": "long"} 
+]
+```
+ 
+以每個資料行的位置、名稱、類型識別它。 
+
+* 位置 - 若為以符號分隔的檔案格式，則是對應值的位置。 若為 JSON 格式，則是對應索引鍵的 jpath。
+* 名稱 - 資料行的顯示名稱。
+* 類型 - 資料行的類型。
+ 
+在使用範例資料、而且檔案格式是符號分隔的情況下，結構描述定義必須對應所有資料行，並在結尾加入新的資料行。 
+
+JSON 允許資料部分對應，因此 JSON 格式的結構描述定義不需要對應範例資料中找到的每個索引鍵。 它也可以對應不屬於範例資料的資料行。 
 
 ## <a name="import-data"></a>匯入資料
 
@@ -271,7 +306,6 @@ namespace IngestionClient
             requestStream.Write(notificationBytes, 0, notificationBytes.Length); 
             requestStream.Close(); 
 
-            HttpWebResponse response; 
             try 
             { 
                 using (var response = (HttpWebResponse)await request.GetResponseAsync())
@@ -331,9 +365,4 @@ namespace IngestionClient
 
 * [分析查詢語言導覽](app-insights-analytics-tour.md)
 * [使用 Logstash 將資料傳送至 Application Insights](https://github.com/Microsoft/logstash-output-application-insights)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

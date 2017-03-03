@@ -17,6 +17,7 @@ ms.author: robinsh
 translationtype: Human Translation
 ms.sourcegitcommit: 9e75c5af6cb6d2f2a25f18269ec6822aa86459fc
 ms.openlocfilehash: 95ea1a9bc8fe80c39ca9f0683855cc3a4e7a77c4
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -533,8 +534,3 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每
 * [Windows XP 和 Windows 的更新版本中「系統密碼編譯︰使用 FIPS 相容演算法於加密，雜湊，以及簽章」安全性設定的效果](https://support.microsoft.com/kb/811833)
   
   本文討論如何在較舊的 Windows 電腦中使用 FIPS 模式。
-
-
-<!--HONumber=Feb17_HO1-->
-
-

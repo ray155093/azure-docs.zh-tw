@@ -17,6 +17,7 @@ ms.author: terrylan
 translationtype: Human Translation
 ms.sourcegitcommit: b5edb42f7fac6943a72e02a85a4cbc32300b9f38
 ms.openlocfilehash: 8b0266a86221b379a105b87f130cd0a4f97385f7
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -267,9 +268,4 @@ Azure 資訊安全中心藉由下列方式來協助您最佳化和監視網路�
 深入了解：
 
 * [Azure 資訊安全中心簡介](../security-center/security-center-intro.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

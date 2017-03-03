@@ -18,6 +18,7 @@ ms.author: saurinsh
 translationtype: Human Translation
 ms.sourcegitcommit: cd57f3a43142b3af3546eafd9749123fadd333c2
 ms.openlocfilehash: 27cb0cda5d836e042e9eca3c053577db0bd8c148
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -55,9 +56,4 @@ ms.openlocfilehash: 27cb0cda5d836e042e9eca3c053577db0bd8c148
 * 如需管理已加入網域的 HDInsight 叢集，請參閱[管理已加入網域的 HDInisight 叢集](hdinsight-domain-joined-manage.md)。
 * 如需設定 Hive 原則和執行 Hive 查詢，請參閱[針對已加入網域的 HDInisight 叢集設定 Hive 原則](hdinsight-domain-joined-run-hive.md)。
 * 如需使用 SSH 在已加入網域的 HDInsight 叢集上執行 Hive 查詢，請參閱 [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined)。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

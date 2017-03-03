@@ -16,6 +16,7 @@ ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: e24bd626cd950f6e6d9474d1bd5f97c3ea4fb925
 ms.openlocfilehash: 626bdc99702b38c127beba54979add9b1cbd633f
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -155,10 +156,5 @@ Picturepark 需以手動的方式佈建。
    ![是](./media/active-directory-saas-picturepark-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

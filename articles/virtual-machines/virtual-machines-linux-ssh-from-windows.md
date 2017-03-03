@@ -18,6 +18,7 @@ ms.author: rasquill
 translationtype: Human Translation
 ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
 ms.openlocfilehash: d991801d6e22a4bc541c1a6c4766ff36a381585b
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -138,7 +139,7 @@ PuTTY 是適用於 Windows 的常見 SSH 用戶端。 您可以免費使用任�
     ```
 2. 從下列位置下載並執行 PuTTYgen：[http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 3. 按一下功能表：[檔案] > [載入私密金鑰]
-4. 找出您的私密金鑰 (先前範例中的 `myPrivateKey_rsa`)。 當您啟動 **Git Bash** 時的預設目錄是 `C:\Users\%username%`。 變更檔案篩選以顯示 [所有檔案] (\*.\*)：
+4. 找出您的私密金鑰 (先前範例中的 `myPrivateKey_rsa`)。 當您啟動 **Git Bash** 時的預設目錄是 `C:\Users\%username%`。 變更檔案篩選以顯示 所有檔案 \(\*.\*)：
    
     ![將現有的私密金鑰載入 PuTTYgen 中](./media/virtual-machines-linux-ssh-from-windows/load-private-key.png)
 5. 按一下 [開啟] 。 以下提示表示已成功匯入金鑰︰
@@ -182,10 +183,5 @@ PuTTY 是適用於 Windows 的常見 SSH 用戶端。 您可以免費使用任�
 如需 Bash for Windows 的詳細資訊以及在 Windows 電腦上備妥 OSS 工具的優點，請參閱 [Bash on Ubuntu on Windows](https://msdn.microsoft.com/commandline/wsl/about)。
 
 如果您無法使用 SSH 連接至 Linux VM，請參閱[針對 Azure Linux VM 的 SSH 連線進行疑難排解](virtual-machines-linux-troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

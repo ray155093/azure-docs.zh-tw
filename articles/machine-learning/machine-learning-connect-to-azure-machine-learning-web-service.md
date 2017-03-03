@@ -17,6 +17,7 @@ ms.author: garye
 translationtype: Human Translation
 ms.sourcegitcommit: 52153526fb5b127823316b86fa05c0528151e18f
 ms.openlocfilehash: 2dfcdf2207d1437a917c493075e3245bd58381ac
+ms.lasthandoff: 01/10/2017
 
 
 ---
@@ -123,10 +124,5 @@ Azure Machine Learning 有兩種類型的服務：
 1. 部署機器學習服務範例集合中的 "Sample 1: Download dataset from UCI: Adult 2 class dataset" 實驗。
 2. 使用來自 Web 服務的金鑰指派 apiKey。 請參閱本文章接近開始處的**取得 Azure Machine Learning 授權金鑰**。
 3. 使用要求 URI 指派 serviceUri。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

@@ -17,6 +17,7 @@ ms.author: masnider
 translationtype: Human Translation
 ms.sourcegitcommit: dafaf29b6827a6f1c043af3d6bfe62d480d31ad5
 ms.openlocfilehash: 8a8419497bda3f1df523d6aff28028548abc155a
+ms.lasthandoff: 01/07/2017
 
 
 ---
@@ -76,9 +77,4 @@ Service Fabric 小組從經驗上發現節流的預設值都沒問題。 如果�
 ## <a name="next-steps"></a>後續步驟
 * 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於 [平衡負載](service-fabric-cluster-resource-manager-balancing.md)
 * 叢集資源管理員有許多描述叢集的選項。 若要深入了解這些選項，請參閱關於[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)一文
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

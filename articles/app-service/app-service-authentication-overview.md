@@ -17,6 +17,7 @@ ms.author: mahender
 translationtype: Human Translation
 ms.sourcegitcommit: b75f7aa757679a29a42cdfc04799873ee30bab2e
 ms.openlocfilehash: e89ba5613c615c41af93e8f63b3703da8395095c
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -180,9 +181,4 @@ App Service 會使用特殊標頭，將某些使用者資訊傳遞至您的應�
 [ADAL-Android]: ../app-service-mobile/app-service-mobile-android-how-to-use-client-library.md#adal
 [ADAL-iOS]: ../app-service-mobile/app-service-mobile-ios-how-to-use-client-library.md#adal
 [ADAL-dotnet]: ../app-service-mobile/app-service-mobile-dotnet-how-to-use-client-library.md#adal
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

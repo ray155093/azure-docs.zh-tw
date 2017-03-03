@@ -18,6 +18,7 @@ ms.author: torsteng
 translationtype: Human Translation
 ms.sourcegitcommit: 873df52da976597ddfaa8f777b90382bfa7723fc
 ms.openlocfilehash: aa54ec3d982ea4422422bd4e520d2211aad57159
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -75,10 +76,5 @@ ms.openlocfilehash: aa54ec3d982ea4422422bd4e520d2211aad57159
 **[System.Data.SqlClient](http://msdn.microsoft.com/library/System.Data.SqlClient.aspx)** 類別和方法。
 
 使用 [彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)來管理分區。 包含稱為 [Microsoft.Azure.SqlDatabase.ElasticScale.Query](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.query.aspx) 的命名空間，提供使用單一查詢和結果來查詢多個分區的功能。 它提供一組分區的查詢抽象方法。 它也提供替代執行原則，特別是部分結果，以處理查詢許多分區時的失敗。  
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

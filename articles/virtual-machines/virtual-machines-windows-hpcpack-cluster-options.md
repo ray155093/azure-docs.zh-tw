@@ -18,6 +18,7 @@ ms.author: danlep
 translationtype: Human Translation
 ms.sourcegitcommit: a0e80acad4e8db2177e699f90f7296c64b38e718
 ms.openlocfilehash: 5124f9253950b032fa39c805cb355cc8bfb718c5
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -71,10 +72,5 @@ ms.openlocfilehash: 5124f9253950b032fa39c805cb355cc8bfb718c5
 
 ## <a name="create-rdma-clusters-for-mpi-workloads"></a>建立 MPI 工作負載的 RDMA 叢集
 * [使用 HPC Pack 設定 Windows RDMA 叢集以執行 MPI 應用程式](virtual-machines-windows-classic-hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

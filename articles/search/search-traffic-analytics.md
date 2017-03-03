@@ -17,6 +17,7 @@ ms.author: betorres
 translationtype: Human Translation
 ms.sourcegitcommit: cdcf121e52eaf6a1fc45194b7a4f5a02e9e5c001
 ms.openlocfilehash: f6b354caf37f94906865b5a2f334e2b7a02f9d5b
+ms.lasthandoff: 01/23/2017
 
 ---
 
@@ -238,9 +239,4 @@ Set-AzureRmDiagnosticSetting -ResourceId $SearchServiceResourceId StorageAccount
 [5]: ./media/search-traffic-analytics/GetData.png
 [6]: ./media/search-traffic-analytics/BlobStorage.png
 [7]: ./media/search-traffic-analytics/QueryEditor.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

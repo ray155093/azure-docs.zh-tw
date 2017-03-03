@@ -18,6 +18,7 @@ ms.author: adegeo
 translationtype: Human Translation
 ms.sourcegitcommit: 3c00742d9686b986841d676872cc93b58827a8e8
 ms.openlocfilehash: b87b507118244f0f275f54cd65cea13a92cdaec6
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -591,10 +592,5 @@ azure group delete vmsstestrg1
 * 若要深入了解通知功能，請參閱[使用自動調整動作在 Azure 監視器中傳送電子郵件和 Webhook 警示通知](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)
 * 深入了解如何[使用稽核記錄，在 Azure 監視器中傳送電子郵件和 Webhook 警示通知](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
 * 請參閱 [自動調整執行 Ubuntu/Apache/PHP 應用程式範本以設定 LAMP 堆疊的 VM 擴展集](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-lapstack-autoscale) ，以執行虛擬機器擴展集的自動調整功能。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

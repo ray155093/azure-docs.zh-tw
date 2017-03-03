@@ -17,6 +17,7 @@ ms.author: spelluru
 translationtype: Human Translation
 ms.sourcegitcommit: 7c9f14503a7cf5c0808e26884a73cd2918ff1c74
 ms.openlocfilehash: 7a26b44f1c2c97174fb98ffdf0cb74a71d27710a
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -299,10 +300,5 @@ ADF 會使用 ‘parameters’ 區段來動態傳遞 U-SQL 指令碼中 **@in** 
 ```
 
 在此例中，系統仍然會從 /datalake/input 資料夾挑選輸入檔，並在 /datalake/output 資料夾中產生輸出檔。 檔案名稱則是根據配量開始時間動態產生。  
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

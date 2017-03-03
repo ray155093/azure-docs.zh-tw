@@ -17,6 +17,7 @@ ms.author: masnider
 translationtype: Human Translation
 ms.sourcegitcommit: dafaf29b6827a6f1c043af3d6bfe62d480d31ad5
 ms.openlocfilehash: ec470466f006265af5c4ccfddeeba975e6e648b5
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -65,9 +66,4 @@ Orchestrator (不是人類) 是當電腦失敗或工作負載基於某些意外�
 * 度量是 Service Fabric 叢集資源管理員管理叢集中的耗用量和容量的方式。 若要深入了解度量及其設定方式，請查看 [這篇文章](service-fabric-cluster-resource-manager-metrics.md)
 * 叢集資源管理員會搭配 Service Fabric 的管理功能使用。 若要深入了解該整合，請閱讀 [這篇文章](service-fabric-cluster-resource-manager-management-integration.md)
 * 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於 [平衡負載](service-fabric-cluster-resource-manager-balancing.md)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

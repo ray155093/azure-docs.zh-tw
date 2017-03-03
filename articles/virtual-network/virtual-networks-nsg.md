@@ -17,6 +17,7 @@ ms.author: jdial
 translationtype: Human Translation
 ms.sourcegitcommit: 2165cdc87a505e94fab2fc73c30a5764348c6dc1
 ms.openlocfilehash: b382cf65ae172e0037f2bc668a4f5862b29d1700
+ms.lasthandoff: 01/30/2017
 
 
 ---
@@ -258,9 +259,4 @@ NSG 包含兩組規則：輸入和輸出。 規則的優先順序在每一個集
 * [在傳統部署模型中部署 NSG](virtual-networks-create-nsg-classic-ps.md)。
 * [在資源管理員中部署 NSG](virtual-networks-create-nsg-arm-pportal.md)。
 * [管理 NSG 記錄檔](virtual-network-nsg-manage-log.md)。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

@@ -17,6 +17,7 @@ ms.author: richrund
 translationtype: Human Translation
 ms.sourcegitcommit: abea89ceab4c606a574ad739e9feca5b5dafacf0
 ms.openlocfilehash: bc87bafd1ce6926d787915fae2f72727940bb90e
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -150,10 +151,5 @@ Azure 金鑰保存庫解決方案會分析從 Azure 診斷的 [AuditEvent 記錄
 
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄搜尋](log-analytics-log-searches.md)來檢視詳細的 Azure 金鑰保存庫資料。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

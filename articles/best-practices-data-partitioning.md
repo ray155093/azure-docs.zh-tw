@@ -18,6 +18,7 @@ ms.author: masashin
 translationtype: Human Translation
 ms.sourcegitcommit: 5f62eef58c8a334013b000176f74cc8f7652f688
 ms.openlocfilehash: 312d1f417df612eee46bb078d784576a438ba0ab
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -573,9 +574,4 @@ Redis 網站上的 [Partitioning: how to split data among multiple Redis instanc
 [交易]: http://redis.io/topics/transactions
 [何謂 Azure 搜尋服務？]: search/search-what-is-azure-search.md
 [什麼是 Azure SQL Database？]: sql-database/sql-database-technical-overview.md
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

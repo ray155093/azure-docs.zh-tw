@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
 ms.openlocfilehash: 6eb692f7c3374f9073944b8c4c0f34af2ed35b3c
+ms.lasthandoff: 01/19/2017
 
 
 ---
@@ -371,10 +372,5 @@ Microsoft 提供了在 HDInsight 叢集上安裝元件的範例指令碼。 您�
 * 深入了解 [使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)
 * 使用 [HDInsight.NET SDK 參考](https://msdn.microsoft.com/library/mt271028.aspx) ，深入了解如何建立 .NET 應用程式來管理 HDInsight
 * 使用 [HDInsight REST API](https://msdn.microsoft.com/library/azure/mt622197.aspx) ，以了解如何使用 REST 在 HDInsight 叢集上執行管理動作。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

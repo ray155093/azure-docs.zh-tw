@@ -13,11 +13,12 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/18/2016
+ms.date: 02/13/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 94e09583ef8070a7e98fd2b30648996648ce3c41
-ms.openlocfilehash: 1389d9e3ff9adde814782ed5ac9a2145ee8bc010
+ms.sourcegitcommit: 50a9c3929a4d3194c3786a3d4f6cdd1b73fb5867
+ms.openlocfilehash: 8da7631d2dfc51e21269d05ace737760e3be61b8
+ms.lasthandoff: 02/14/2017
 
 
 ---
@@ -28,7 +29,9 @@ Storm Dashboard 可讓您使用網頁瀏覽器輕鬆地部署和執行 Apache St
 HDInsight Tools 的 Storm Dashboard 和 Storm 功能依賴 Storm REST API，此 API 可用來建立您專屬的監視和管理方案。
 
 > [!IMPORTANT]
-> 本文件中的步驟需要 HDInsight 叢集上以 Windows 為基礎的 Storm。 如需使用 Linux 叢集的相關資訊，請參閱 [部署和管理以 Linux 為基礎之 HDInsight 上的 Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
+> 這份文件中的步驟需要使用 Windows 做為作業系統的 Storm on HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+>
+> 如需透過使用 Linux 的 HDInsight 叢集來部署和管理 Storm 拓撲的詳細資訊，請參閱[部署和管理以 Linux 為基礎的 HDInsight 上的 Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -144,7 +147,7 @@ HDInsight Tools 可以用來將 C# 或混合式拓撲提交至 Storm 叢集。 �
    > [!NOTE]
    > 您也可以透過展開 [Azure]  >  [HDInsight]，並在 Storm on HDInsight 叢集上按一下滑鼠右鍵，然後選取 [檢視 Storm 拓撲] 以從**伺服器總管**中檢視 [Storm 拓撲]。
 
-    選取 Spout 或 Bolt 的圖形以檢視這些元件的資訊。 將會針對每個選取的項目開啟新的視窗。
+    選取 Spout 或 Bolt 的圖形以檢視這些元件的資訊。 隨即會針對每個選取的項目開啟新的視窗。
 
    > [!NOTE]
    > 拓撲的名稱是拓撲的類別名稱 (在此案例中為 `HelloWord`) 加上時間戳記。
@@ -189,9 +192,4 @@ REST API 的要求必須使用 **基本驗證**，因此請使用 HDInsight 叢�
 [hdinsight-dashboard]: ./media/hdinsight-storm-deploy-monitor-topology/dashboard-link.png
 [storm-dashboard-submit]: ./media/hdinsight-storm-deploy-monitor-topology/submit.png
 [storm-dashboard-ui]: ./media/hdinsight-storm-deploy-monitor-topology/storm-ui-summary.png
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

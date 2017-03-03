@@ -20,8 +20,10 @@
 ### [網路基礎結構的注意事項](site-recovery-network-design.md)
 ### [使用 Site Recovery Capacity Planner](site-recovery-capacity-planner.md)
 ### [規劃容量並調整 Azure 中的 VMware 複寫](site-recovery-plan-capacity-vmware.md)
+### [執行部署規劃工具，將 VMware 複寫至 Azure](site-recovery-deployment-planner.md)
 ## 設定
-### [設定來源複寫環境](site-recovery-set-up-vmware-to-azure.md)
+### [設定來源環境](site-recovery-set-up-vmware-to-azure.md)
+### [設定目標環境](site-recovery-prepare-target-vmware-to-azure.md)
 ### [設定複寫設定](site-recovery-setup-replication-settings-vmware.md)
 ### [部署 VMware 複寫的行動服務](site-recovery-vmware-to-azure-install-mob-svc.md)
 #### [使用 System Center Configuration Manager 部署行動服務](site-recovery-install-mobility-service-using-sccm.md)
@@ -32,7 +34,8 @@
 #### [將 Runbook 新增至復原方案](site-recovery-runbook-automation.md)
 ### [執行測試容錯移轉至 Azure](site-recovery-test-failover-to-azure.md)
 ### [在兩個 VMM 站台間執行測試容錯移轉](site-recovery-test-failover-vmm-to-vmm.md)
-### [容錯回復 VMware VM 和實體伺服器](site-recovery-failback-azure-to-vmware.md)
+### [從 Azure 容錯回復 VMware VM/實體伺服器](site-recovery-how-to-failback-azure-to-vmware.md)
+### [從 Azure 容錯回復 Hyper-V VM](site-recovery-failback-from-azure-to-hyper-v.md)
 
 ## 移轉
 ### [移轉至 Azure](site-recovery-migrate-to-azure.md)
@@ -53,8 +56,8 @@
 ### [自動將 Hyper-V 複寫至 Azure (透過 VMM)](site-recovery-vmm-to-vmm-powershell-resource-manager.md)
 ## 管理
 ### [移除伺服器並停用保護](site-recovery-manage-registration-and-protection.md)
-### [編輯複寫設定](site-recovery-setup-replication-settings-vmware.md#edit-replication-policy)
-## [監視及疑難排解](site-recovery-monitoring-and-troubleshooting.md)
+### [擴充處理序伺服器](site-recovery-vmware-to-azure-manage-scaleout-process-server.md)
+### [監視及疑難排解](site-recovery-monitoring-and-troubleshooting.md)
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.siterecovery/v3.2.0/azurerm.siterecovery)
@@ -70,8 +73,3 @@
 ## [部落格](http://azure.microsoft.com/blog/tag/azure-site-recovery/)
 ## [價格](https://azure.microsoft.com/pricing/details/site-recovery/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=site-recovery)
-
-
-<!--HONumber=Feb17_HO4-->
-
-

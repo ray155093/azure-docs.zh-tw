@@ -17,6 +17,7 @@ ms.author: seanmck
 translationtype: Human Translation
 ms.sourcegitcommit: d7aa8568dd6fdd806d8ad70e408f108c722ec1ce
 ms.openlocfilehash: b56d75d49e0b95025dd1a0bae532f677958eac8d
+ms.lasthandoff: 01/10/2017
 
 
 ---
@@ -45,10 +46,5 @@ Reliable Actors 本身是建置在 Reliable Services 上的應用程式架構，
 ## <a name="next-steps"></a>後續步驟
 [深入了解 Reliable Actors](service-fabric-reliable-actors-introduction.md) 或從[撰寫您的第一個 Reliable Actor 服務](service-fabric-reliable-actors-get-started.md)開始著手
 [深入了解如何在 Windows 或 Linux 中將服務容器化](service-fabric-deploy-container.md)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

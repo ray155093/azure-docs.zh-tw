@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/08/2016
+ms.date: 02/08/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
-ms.openlocfilehash: 477c766afbfaccd70313e73e5d2ec5873c12d105
+ms.sourcegitcommit: 2ecc141c9afa46f23d31de4356068ef4f98a92aa
+ms.openlocfilehash: 79e04b1569f6e3ca221b673ebe4eb9825d89abe1
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -25,14 +26,14 @@ ms.openlocfilehash: 477c766afbfaccd70313e73e5d2ec5873c12d105
 
 [!INCLUDE [mapreduce-selector](../../includes/hdinsight-selector-use-mapreduce.md)]
 
-在本文中，您將學習如何使用安全殼層 (SSH) 連線至 HDInsight 叢集上的 Hadoop，然後使用 Hadoop 命令提交 MapReduce 工作。
+在本文中，您會學習如何使用安全殼層 (SSH) 連線至 HDInsight 叢集上的 Hadoop，然後使用 Hadoop 命令提交 MapReduce 作業。
 
 > [!NOTE]
 > 如果您已熟悉使用以 Linux 為基礎的 Hadoop 伺服器，但剛接觸 HDInsight，請參閱 [以 Linux 為基礎的 HDInsight 秘訣](hdinsight-hadoop-linux-information.md)。
 
 ## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
 
-若要完成本文中的步驟，您需要下列項目。
+若要完成這篇文章中的步驟，您需要下列項目︰
 
 * Linux 型 HDInsight (HDInsight 上的 Hadoop) 叢集
 
@@ -43,7 +44,7 @@ ms.openlocfilehash: 477c766afbfaccd70313e73e5d2ec5873c12d105
 
 ## <a name="a-idsshaconnect-with-ssh"></a><a id="ssh"></a>使用 SSH 連線
 
-使用 SSH 命令，連線至 HDInsight 叢集的完整網域名稱 (FQDN)。 FQDN 將是您提供給叢集的名稱，後接 **.azurehdinsight.net**。 例如，下列命令會連線至名為 **myhdinsight**的叢集：
+使用 SSH 命令，連線至 HDInsight 叢集的完整網域名稱 (FQDN)。 FQDN 是您提供給叢集的名稱，後接 **.azurehdinsight.net**。 例如，下列命令會連線至名為 **myhdinsight**的叢集：
 
     ssh admin@myhdinsight-ssh.azurehdinsight.net
 
@@ -53,21 +54,23 @@ ms.openlocfilehash: 477c766afbfaccd70313e73e5d2ec5873c12d105
 
 **如果您提供密碼進行 SSH 驗證** (在建立 HDInsight 叢集時)，則需要在出現提示時提供密碼。
 
-如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱 [從 Linux、Unix 和 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)。
+如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱[從 Linux、OS X、Unix 和 Bash on Windows 10 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 ### <a name="putty-windows-clients"></a>PuTTY (Windows 用戶端)
 
-Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從下列位置下載： [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
+舊版 Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從下列位置下載： [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
-如需使用 PuTTY 的詳細資訊，請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop ](hdinsight-hadoop-linux-use-ssh-windows.md)。
+如需使用 PuTTY 的詳細資訊，請參閱[從 Windows 在 HDInsight 上搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)。
 
 ## <a name="a-idhadoopause-hadoop-commands"></a><a id="hadoop"></a>使用 Hadoop 命令
 
 1. 連線到 HDInsight 叢集之後，請使用下列 **Hadoop** 命令來啟動 MapReduce 工作：
    
-        yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount wasb:///example/data/gutenberg/davinci.txt wasb:///example/data/WordCountOutput
-   
-    這樣會啟動 **wordcount** 類別 (內含於 **hadoop-mapreduce-examples.jar** 檔案中)。 做為輸入，它會使用 **wasbs://example/data/gutenberg/davinci.txt** 文件，而且輸出會儲存在 **wasbs:///example/data/WordCountOutput**。
+    ```
+    yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/davinci.txt /example/data/WordCountOutput
+    ```
+
+    這樣會啟動 **wordcount** 類別 (內含於 **hadoop-mapreduce-examples.jar** 檔案中)。 做為輸入，它會使用 **/example/data/gutenberg/davinci.txt** 文件，而且輸出會儲存在 **/example/data/WordCountOutput**。
    
     > [!NOTE]
     > 如需關於此 MapReduce 工作和範例資料的詳細資訊，請參閱 [在 HDInsight 上的 Hadoop 中使用 MapReduce](hdinsight-use-mapreduce.md)。
@@ -81,7 +84,9 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
 
 3. 工作完成之後，請使用下列命令來列出儲存在 **wasbs://example/data/WordCountOutput** 的輸出檔：
    
-        hdfs dfs -ls wasbs:///example/data/WordCountOutput
+    ```
+    hdfs dfs -ls /example/data/WordCountOutput
+    ```
    
     這應該會顯示兩個檔案：**_SUCCESS** 和 **part-r-00000**。 **part-r-00000** 檔案包含這項工作的輸出。
    
@@ -90,7 +95,9 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
 
 4. 若要檢視輸出，請使用下列命令：
    
-        hdfs dfs -cat wasbs:///example/data/WordCountOutput/part-r-00000
+    ```
+    hdfs dfs -cat /example/data/WordCountOutput/part-r-00000
+    ```
    
     這會顯示 **wasbs://example/data/gutenberg/davinci.txt** 檔案中所含的單字清單和每個單字的出現次數。 以下是要包含在檔案中之資料的範例：
    
@@ -116,10 +123,5 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

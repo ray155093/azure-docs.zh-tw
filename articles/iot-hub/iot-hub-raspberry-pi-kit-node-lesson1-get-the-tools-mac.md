@@ -18,6 +18,7 @@ ms.author: xshi
 translationtype: Human Translation
 ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
 ms.openlocfilehash: f157a68f502f018bab83a377367f92ce20f89adf
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -82,10 +83,5 @@ npm install -g device-discovery-cli gulp
 
 ## <a name="next-steps"></a>後續步驟
 [建立並部署閃爍範例應用程式](iot-hub-raspberry-pi-kit-node-lesson1-deploy-blink-app.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -18,6 +18,7 @@ ms.author: xshi
 translationtype: Human Translation
 ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
 ms.openlocfilehash: 53e709c5134eec29d71be1d75353d606aa651273
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -135,9 +136,4 @@ cd /usr/share/azureiotgatewaysdk/samples/hello_world/
 
 ## <a name="next-steps"></a>後續步驟
 [準備好您的主機電腦和 Azure IoT 中樞](iot-hub-gateway-kit-c-lesson2-get-the-tools-win32.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

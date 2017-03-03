@@ -17,6 +17,7 @@ ms.author: robmcm;asirveda
 translationtype: Human Translation
 ms.sourcegitcommit: 0933eabf99ef94f2c4b425f1435530edfde65e3f
 ms.openlocfilehash: 9e55eb52797f1363cbb65050574e549c575ca5d8
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -131,9 +132,4 @@ ms.openlocfilehash: 9e55eb52797f1363cbb65050574e549c575ca5d8
 [Java 組建路徑]: http://help.eclipse.org/luna/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fref-properties-build-path.htm
 [license]: http://www.apache.org/licenses/LICENSE-2.0.html
 [maven-getting-started]: http://go.microsoft.com/fwlink/?LinkID=622998
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

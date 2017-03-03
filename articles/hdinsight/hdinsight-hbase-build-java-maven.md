@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: b829f21dbc212cd951f5e417ad56f7eb724a9d56
 ms.openlocfilehash: 51a9ebdee38c14eb3dc1148070004e6792369b39
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -616,10 +617,5 @@ ms.openlocfilehash: 51a9ebdee38c14eb3dc1148070004e6792369b39
 ## <a name="troubleshooting"></a>疑難排解
 ### <a name="no-results-or-unexpected-results-when-using-start-hbaseexample"></a>使用 Start-HBaseExample 時沒有結果或傳回非預期的結果
 請使用 `-showErr` 參數，以檢視執行工作時所產生的標準錯誤 (STDERR)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

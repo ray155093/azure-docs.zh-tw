@@ -18,6 +18,7 @@ ms.author: danlep
 translationtype: Human Translation
 ms.sourcegitcommit: 26c58ae4c509cb768807875ecdf96e9a24d6a472
 ms.openlocfilehash: 263b3a1edc94a60e756850b2d917840be87e7a5a
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -163,9 +164,4 @@ ms.openlocfilehash: 263b3a1edc94a60e756850b2d917840be87e7a5a
 [針對在 Azure 中建立新 Windows 虛擬機器的傳統部署問題進行疑難排解](virtual-machines-windows-classic-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 [針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器大小的傳統部署問題進行疑難排解](windows/classic/virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

@@ -18,6 +18,7 @@ ms.author: nepeters
 translationtype: Human Translation
 ms.sourcegitcommit: 251d7b973426afb50206c428873021144b8bffdf
 ms.openlocfilehash: 2d7592680289d9f222f5e0aa36aa66d12f4fa517
+ms.lasthandoff: 01/11/2017
 
 
 ---
@@ -119,9 +120,4 @@ azure vm extension get myResourceGroup myVM
 ### <a name="support"></a>支援
 
 如果您在本文中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/en-us/support/forums/)上的 Azure 專家。 或者，您可以提出 Azure 支援事件。 請移至 [Azure 支援網站](https://azure.microsoft.com/en-us/support/options/)，然後選取 [取得支援]。 如需使用 Azure 支援的資訊，請參閱 [Microsoft Azure 支援常見問題集](https://azure.microsoft.com/en-us/support/faq/)。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

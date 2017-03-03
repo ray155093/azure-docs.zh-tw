@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 10/24/2016
 ms.author: kdotchko
 translationtype: Human Translation
-ms.sourcegitcommit: 0fc92fd63118dd1b3c9bad5cf7d5d8397bc3a0b6
-ms.openlocfilehash: 2f952b85a99300d0a52a59f639675d6f02fafe08
+ms.sourcegitcommit: 47e1d5172dabac18c1b355d8514ae492cd973d32
+ms.openlocfilehash: 5c362af149afd4a204c2705ae3d7f67361d8d528
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -63,7 +64,7 @@ ms.openlocfilehash: 2f952b85a99300d0a52a59f639675d6f02fafe08
     測試時，您也可以使用[裝置總管][lnk-device-explorer]工具來快速產生 SAS 權杖，方便您複製並貼到您的程式碼中︰
 
   1. 移至 [裝置總管] 中的 [管理] 索引標籤。
-  2. 按一下 [SAS 權杖]  (右上角)。
+  2. 按一下 [SAS 權杖]  \(右上角)。
   3. 在 [SASTokenForm] 的 [DeviceID] 下拉式清單中，選取您的裝置。 設定您的 **TTL**。
   4. 按一下 [產生]  來建立您的權杖。
 
@@ -87,8 +88,9 @@ RFC 2396-encoded(<PropertyName1>)=RFC 2396-encoded(<PropertyValue1>)&RFC 2396-en
 
 裝置應用程式也可以使用 `devices/{device_id}/messages/events/{property_bag}` 作為 **Will 主題名稱**，以定義要當作遙測訊息轉送的「Will 訊息」。
 
-「IoT 中樞」不支援 QoS 2 訊息。 如果裝置應用程式發佈 **QoS 2** 的訊息，IoT 中樞會關閉網路連接。
-「IoT 中樞」不會保存「保留」訊息。 如果裝置傳送 **RETAIN** 旗標設定為 1 的訊息，「IoT 中樞」會在訊息中加入 **x-opt-retain** 應用程式屬性。 在此情況下，「IoT 中樞」不會保存保留訊息，而是會傳遞給後端應用程式。
+- 「IoT 中樞」不支援 QoS 2 訊息。 如果裝置應用程式發佈 **QoS 2** 的訊息，IoT 中樞會關閉網路連接。
+- 「IoT 中樞」不會保存「保留」訊息。 如果裝置傳送 **RETAIN** 旗標設定為 1 的訊息，「IoT 中樞」會在訊息中加入 **x-opt-retain** 應用程式屬性。 在此情況下，「IoT 中樞」不會保存保留訊息，而是會傳遞給後端應用程式。
+- IoT 中樞僅支援每個裝置有一個作用中 MQTT 連接。 代表相同裝置識別碼的任何新的 MQTT 連接都會導致 IoT 中樞卸除現有的連接。
 
 如需詳細資訊，請參閱[傳訊開發人員指南][lnk-messaging]。
 
@@ -136,10 +138,16 @@ IoT 中樞會附上**主題名稱** `devices/{device_id}/messages/devicebound/` 
 
 ### <a name="update-device-twins-reported-properties"></a>更新裝置對應項的報告屬性
 
-首先，裝置必須訂閱 `$iothub/twin/res/#`，以接收作業的回應。 接著，它會傳送包含裝置對應項更新的訊息至 `$iothub/twin/PATCH/properties/reported/?$rid={request id}`，其中已填入**要求識別碼**的值。 服務接著會使用和要求相同的**要求識別碼**，傳送內含關於 `$iothub/twin/res/{status}/?$rid={request id}` 主題之裝置對應項資料的回應訊息。
+下列順序說明在 IoT 中樞的裝置對應項中，裝置如何更新報告的屬性︰
+
+1. 裝置必須訂閱 `$iothub/twin/res/#` 主題，才能從 IoT 中樞接收作業的回應。
+
+1. 裝置會將包含裝置對應項新的訊息傳送至 `$iothub/twin/PATCH/properties/reported/?$rid={request id}` 主題。 此訊息包含 **request id** 值。
+
+1. 服務接著會傳送回應訊息，其中包含`$iothub/twin/res/{status}/?$rid={request id}` 主題上報告之屬性集合的新 ETag 值。 這個回應訊息使用和要求相同的 **request id**。
 
 要求訊息本文包含可提供報告屬性新值 (其他屬性或中繼資料則不可修改) 的 JSON 文件。
-JSON 文件中的每個成員會在裝置對應項的文件中更新或新增對應的成員。 設定為 `null` 的成員會從包含的物件中刪除成員。 例如
+JSON 文件中的每個成員會在裝置對應項的文件中更新或新增對應的成員。 設定為 `null` 的成員會從包含的物件中刪除成員。 例如：
 
         {
             "telemetrySendFrequency": "35m",
@@ -159,7 +167,7 @@ JSON 文件中的每個成員會在裝置對應項的文件中更新或新增對
 
 ### <a name="receiving-desired-properties-update-notifications"></a>接收所需屬性更新通知
 
-當連接裝置時，IoT 中樞傳送通知給主題 `$iothub/twin/PATCH/properties/desired/?$version={new version}`，其中包含解決方案後端所執行的更新內容。 例如，
+當連接裝置時，IoT 中樞傳送通知給主題 `$iothub/twin/PATCH/properties/desired/?$version={new version}`，其中包含解決方案後端所執行的更新內容。 例如：
 
         {
             "telemetrySendFrequency": "5m",
@@ -228,9 +236,4 @@ JSON 文件中的每個成員會在裝置對應項的文件中更新或新增對
 [lnk-quotas]: iot-hub-devguide-quotas-throttling.md
 [lnk-devguide-twin-reconnection]: iot-hub-devguide-device-twins.md#device-reconnection-flow
 [lnk-devguide-twin]: iot-hub-devguide-device-twins.md
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

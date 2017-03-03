@@ -19,6 +19,7 @@ ms.author: sstein
 translationtype: Human Translation
 ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
 ms.openlocfilehash: 317193c178c4da283de7d61204aa7b824170d72a
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -77,10 +78,5 @@ ms.openlocfilehash: 317193c178c4da283de7d61204aa7b824170d72a
 ## <a name="next-steps"></a>後續步驟
 * 在 Visual Studio 中開啟 SQL Database 以使用 SQL Server Data Tools。 如需詳細資訊，請參閱 [SQL Server Data Tools](https://msdn.microsoft.com/library/hh272686.aspx)。
 * 若要使用程式碼連接到 SQL Database，請參閱 [使用 .NET (C#) 連接到 SQL Database](sql-database-develop-dotnet-simple.md)。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

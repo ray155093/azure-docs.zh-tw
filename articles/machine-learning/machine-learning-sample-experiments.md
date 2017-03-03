@@ -17,6 +17,7 @@ ms.author: cgronlun;olgali
 translationtype: Human Translation
 ms.sourcegitcommit: 25e1def880dbb8431e1a0cae9d8b84c6f5906315
 ms.openlocfilehash: 7b2bca108770a79a693a408a628ccc6370c36b7c
+ms.lasthandoff: 02/13/2017
 
 
 ---
@@ -41,7 +42,7 @@ ms.openlocfilehash: 7b2bca108770a79a693a408a628ccc6370c36b7c
 1. 按一下頁面頂端的 [全部瀏覽]  。
 2. 在 [類別] 區段的 [精簡依據] 之下，選取 [實驗] 以查看資源庫中的所有實驗。
 3. 有幾種不同方式可以找到符合您需求的實驗︰
-   * **選取左邊的篩選。** 例如，若要瀏覽使用 PCA 型異常偵測演算法的實驗，請選取 [類別] 之下的 [實驗]，以及 [使用的演算法] 之下的 [PCA 型異常偵測]  (如果您沒有看到該演算法，請按一下清單底部的 [全部顯示])。<br></br>
+   * **選取左邊的篩選。** 例如，若要瀏覽使用 PCA 型異常偵測演算法的實驗，請選取 [類別] 之下的 [實驗]，以及 [使用的演算法] 之下的 [PCA 型異常偵測]  \(如果您沒有看到該演算法，請按一下清單底部的 [全部顯示])。<br></br>
      ![選取篩選器](./media/machine-learning-sample-experiments/refine-the-view.png)
    * **使用 [搜尋] 方塊。** 例如，若要尋找 Microsoft 所提出並使用二級支援向量機器演算法的數字辨識相關實驗，請在 [搜尋] 方塊中輸入「數字辨識」。 然後選取篩選器 [實驗]、[僅包含 Microsoft 內容] 和 [二級支援向量機器]：<br></br>
      ![使用搜尋方塊](./media/machine-learning-sample-experiments/search-for-experiments.png)
@@ -67,9 +68,4 @@ ms.openlocfilehash: 7b2bca108770a79a693a408a628ccc6370c36b7c
 * [從各種資源匯入資料](machine-learning-data-science-import-data.md)
 * [Machine Learning 中的 R 語言所適用的快速入門教學課程](machine-learning-r-quickstart.md)
 * [部署 Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

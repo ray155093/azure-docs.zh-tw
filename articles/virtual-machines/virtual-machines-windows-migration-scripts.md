@@ -18,6 +18,7 @@ ms.author: kasing
 translationtype: Human Translation
 ms.sourcegitcommit: 2deaf44de51a989463826d6e4815f9ce9f0bbee5
 ms.openlocfilehash: 4b1fd3527140bc40299c008071753a91d264d567
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -44,10 +45,5 @@ ms.openlocfilehash: 4b1fd3527140bc40299c008071753a91d264d567
 migAz 是可將一整組傳統 IaaS 資源移轉至 Azure Resource Manager IaaS 資源的額外選項。 移轉可能會發生在相同的訂用帳戶內或不同的訂用帳戶與訂用帳戶類型之間 (例如 CSP 訂用帳戶)。
 
 [連結至工具文件](https://github.com/Azure/classic-iaas-resourcemanager-migration/tree/master/migaz)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

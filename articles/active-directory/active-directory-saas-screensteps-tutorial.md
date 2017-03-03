@@ -16,6 +16,7 @@ ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: dd50971e16da2cec046dd6dbe2f94dd58d01fb09
 ms.openlocfilehash: c2f0e5b1348a25f4cb4c92b2a837fd22207e5dad
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -175,10 +176,5 @@ ScreenSteps 需以手動的方式佈建。
    
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

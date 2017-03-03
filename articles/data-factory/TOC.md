@@ -63,6 +63,7 @@
 ### [HDInsight MapReduce 活動](data-factory-map-reduce.md)
 ### [HDInsight 串流活動](data-factory-hadoop-streaming-activity.md)
 ### [Machine Learning Batch 執行活動](data-factory-azure-ml-batch-execution-activity.md)
+### [Machine Learning 更新資源活動](data-factory-azure-ml-update-resource-activity.md)
 ### [預存程序活動](data-factory-stored-proc-activity.md)
 ### [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md)
 ### [.NET 自訂活動](data-factory-use-custom-activities.md)
@@ -99,8 +100,3 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-data-factory)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=data-factory)
 ## [要求功能](https://feedback.azure.com/forums/270578-azure-data-factory)
-
-
-<!--HONumber=Jan17_HO3-->
-
-

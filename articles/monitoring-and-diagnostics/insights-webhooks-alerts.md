@@ -17,6 +17,7 @@ ms.author: ashwink
 translationtype: Human Translation
 ms.sourcegitcommit: c0d101266fecf04a84b5717c1b81cefed90cab40
 ms.openlocfilehash: 440bd939f0c7d235d7be210c7fee9f2bc122718c
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -112,9 +113,4 @@ POST 作業對於所有以計量為基礎的警示會包含下列 JSON 承載和
 * [使用邏輯應用程式透過 Twilio 從 Azure 警示傳送簡訊](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)
 * [使用邏輯應用程式從 Azure 警示傳送 Slack 訊息](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)
 * [使用邏輯應用程式從 Azure 警示傳送訊息到 Azure 佇列](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

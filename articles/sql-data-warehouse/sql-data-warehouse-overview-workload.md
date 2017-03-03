@@ -17,6 +17,7 @@ ms.author: barbkess;mausher
 translationtype: Human Translation
 ms.sourcegitcommit: 43ab6a2f71ab51c50847b1ba5249f51c48e03fea
 ms.openlocfilehash: 79fedaabc438bc4cd884af6b494e43d32361950a
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -76,9 +77,4 @@ ms.openlocfilehash: 79fedaabc438bc4cd884af6b494e43d32361950a
 <!--MSDN references-->
 
 <!--Other web references-->
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
 ms.openlocfilehash: f6bc08230384b637f6b7b83fe32915ab09647d37
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -183,10 +184,5 @@ Java 在這裡叫用 Python，並執行含有實際 blot 邏輯的指令碼。 J
 
 * [如何使用 Python 串流處理 MapReduce 工作](hdinsight-hadoop-streaming-python.md)
 * [如何在 Pig 和 Hive 中使用 Python 使用者定義函數 (UDF)](hdinsight-python.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: mimig
 translationtype: Human Translation
 ms.sourcegitcommit: ed44ca2076860128b175888748cdaa8794c2310d
 ms.openlocfilehash: aabca8fd228b1fc7c60d295a9502dece29db1b68
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -123,10 +124,5 @@ Azure 入口網站可讓您建立並排度量圖表。
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解 DocumentDB 容量規劃，請參閱 [DocumentDB 容量規劃工具計算機](https://www.documentdb.com/capacityplanner)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

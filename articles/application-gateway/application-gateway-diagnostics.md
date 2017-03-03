@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 01/17/2017
 ms.author: amitsriva
 translationtype: Human Translation
-ms.sourcegitcommit: ca5291e00fcf4fbd9927fe3cadad01f62b235d10
-ms.openlocfilehash: c6829c94bb8e5de3bec155bf326ac61c300477cb
+ms.sourcegitcommit: d65b354bc972c8268f1b4f072843b5bf4977a7c4
+ms.openlocfilehash: 2b37bf92ce8945996eb64477c28bea845b7df516
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -210,6 +211,9 @@ Get-AzureRmApplicationGatewayBackendHealth -Name ApplicationGateway1 -ResourceGr
 }
 ```
 
+> [!NOTE]
+> 延遲的計算是從收到 HTTP 要求的第一個位元組時算起，到送出 HTTP 回應的最後一個位元組時結束。 此時間是應用程式閘道處理時間以及後端網路成本，再加上後端處理要求所花時間的總和。
+
 ### <a name="firewall-log"></a>防火牆記錄檔
 
 如果您已如上述步驟所述，對每個應用程式閘道進行啟用，才會產生此記錄檔。 此記錄也需要在應用程式閘道上設定該 Web 應用程式防火牆。 資料會儲存在您啟用記錄時所指定的儲存體帳戶中。 會記錄下列資料：
@@ -312,8 +316,3 @@ Azure [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.
 [8]: ./media/application-gateway-diagnostics/figure8.png
 [9]: ./media/application-gateway-diagnostics/figure9.png
 [10]: ./media/application-gateway-diagnostics/figure10.png
-
-
-<!--HONumber=Jan17_HO4-->
-
-

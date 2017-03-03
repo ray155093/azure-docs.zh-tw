@@ -17,6 +17,7 @@ ms.author: hascipio
 translationtype: Human Translation
 ms.sourcegitcommit: 125d4d4bc916883e3bb53b9b3b4bf46bbb4bf139
 ms.openlocfilehash: 642e4a2d11ef5a92f5ab46bc4872414966b04c0d
+ms.lasthandoff: 01/06/2017
 
 
 ---
@@ -258,9 +259,4 @@ Microsoft 開發人員中心用於註冊一次公司資訊。 註冊者必須是
 [link-devsvc]:marketplace-publishing-dev-service-creation.md
 [link-devsvc-prereq]:marketplace-publishing-dev-service-creation-prerequisites.md
 [link-pushstaging]:marketplace-publishing-push-to-staging.md
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

@@ -17,6 +17,7 @@ ms.author: dhanyahk;markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 47594d1d435ee92d57150a01a99765bab0e87846
 ms.openlocfilehash: 2ac62c2c04975167b243b49bf2c536900e77df73
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -57,10 +58,5 @@ ms.openlocfilehash: 2ac62c2c04975167b243b49bf2c536900e77df73
 | :--    | :--           | :--                | :--                |
 | 有風險的登入 | 7 天 | 30 天 | 90 天 |
 
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

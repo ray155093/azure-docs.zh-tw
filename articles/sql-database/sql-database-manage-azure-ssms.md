@@ -18,6 +18,7 @@ ms.author: sstein
 translationtype: Human Translation
 ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
 ms.openlocfilehash: c5f1ab504bcb639260b2500d462a56ea30cab9aa
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -136,10 +137,5 @@ SQL Database 支援數種動態管理檢視，您可用他們來監視個別資�
            CROSS APPLY sys.dm_exec_sql_text(QS.sql_handle) as ST) as query_stats
       GROUP BY query_stats.query_hash
       ORDER BY 2 DESC;
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

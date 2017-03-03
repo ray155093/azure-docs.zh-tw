@@ -12,11 +12,12 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/09/2016
+ms.date: 02/10/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
-ms.openlocfilehash: c6171ad4077e833162bfad31b01abbc9947f8e45
+ms.sourcegitcommit: fb2fe0efe00a7ef7fd1c22ca94c76b2d5f4c5510
+ms.openlocfilehash: 0ab556f074700b7e26be002bc894914a1d429e79
+ms.lasthandoff: 02/11/2017
 
 ---
 # <a name="use-apache-kafka-preview-with-storm-on-hdinsight"></a>使用 Apache Kafka (預覽) 搭配 Storm on HDInsight
@@ -41,9 +42,9 @@ Apache Kafka 是適用於 HDInsight 的發佈-訂閱訊息解決方案。 Apache
 
 * SSH 用戶端 (您需要 `ssh` 和 `scp` 命令) - 如需使用 SSH 搭配 HDInsight 的詳細資訊，請參閱下列文件：
   
-  * [從 Linux、Unix 及 Mac 作業系統搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+  * [從 Linux、Unix、Mac OS 和 Bash on Windows 10 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
 
-  * [從 Windows 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+  * [從 Windows 搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
 
 ## <a name="create-the-clusters"></a>建立叢集
 
@@ -134,9 +135,9 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
    
     如需使用 SSH 搭配 HDInsight 的詳細資訊，請參閱下列文件：
    
-    * [從 Linux、Unix 及 Mac 作業系統搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+    * [從 Linux、Unix、Mac OS 和 Windows 10 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
 
-    * [從 Windows 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+    * [從 Windows 搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
 
 2. 在連往 Kafka 叢集的 SSH 連線中，使用下列命令從 Ambari 取得 Zookeeper 節點：
 
@@ -206,9 +207,9 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
    
     如需使用 SSH 搭配 HDInsight 的詳細資訊，請參閱下列文件：
    
-    * [從 Linux、Unix 及 Mac 作業系統搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+    * [從 Linux、Unix、Mac OS 和 Bash on Windows 10 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
 
-    * [從 Windows 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+    * [從 Windows 搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
 
 2. 在連往 Storm 叢集的 SSH 連線中，使用下列命令來執行 `set-env-variables.sh` 指令碼：
 
@@ -318,10 +319,5 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
 如需更多可搭配 Storm on HDInsight 使用的拓撲範例，請參閱 [Storm 拓撲和元件範例](hdinsight-storm-example-topology.md)。
 
 如需部署和監視以 Linux 為基礎的 HDInsight 上的拓撲相關資訊，請參閱[部署和管理以 Linux 為基礎的 HDInsight 上的 Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: sethm
 translationtype: Human Translation
 ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
 ms.openlocfilehash: 91b138ee9590a66c63e2055eaeace82b4e719ae5
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -101,9 +102,4 @@ Azure 服務匯流排中的 AMQP 1.0 支援代表您現在能夠從一組平台�
 [搭配使用 PHP 的服務匯流排與 AMQP]: service-bus-amqp-php.md
 [在 Azure Linux VM 上安裝 Apache Qpid Proton-C]: service-bus-amqp-apache.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

@@ -18,6 +18,7 @@ ms.author: mimig
 translationtype: Human Translation
 ms.sourcegitcommit: 988c887d2d26ab3ab5b287f803c7d598bd6620e3
 ms.openlocfilehash: 23b1780df8ec01c0692e3afd408ea44fc9773b28
+ms.lasthandoff: 02/04/2017
 
 
 ---
@@ -107,10 +108,5 @@ DocumentDB 可讓您將應用程式邏輯撰寫成完全以 JavaScript 撰寫的
 然後，當您準備好深入了解時，請前往我們的 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/) 來瀏覽所有您可用的學習資源。 
 
 [1]: ./media/documentdb-introduction/json-database-resources1.png
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

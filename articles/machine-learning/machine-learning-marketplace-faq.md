@@ -18,6 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
 ms.sourcegitcommit: 85a58e09e05fdb50984055ab25c4c2fe520dab4d
 ms.openlocfilehash: 9e2d4a2d46bd461a71217cd2b2d75f5a50e8b617
+ms.lasthandoff: 01/10/2017
 
 
 ---
@@ -76,10 +77,5 @@ Marketplace Web 服務目前不支援批次輸入模式。
 **6.如果我有關於成為資料發行者的問題，或在發佈過程中發生問題，我應該與誰連絡以取得協助？**
 
 如需詳細資訊，請連絡 Azure Marketplace 小組 (<mailto:datamarketbd@microsoft.com>)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

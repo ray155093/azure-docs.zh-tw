@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
+ms.date: 02/08/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: e4343cfece7286e0a4035239967ab2e0a928b188
-ms.openlocfilehash: cc284c0cd445bbfe2f4424d3251ca07da0538192
+ms.sourcegitcommit: c4330dd4b32119c1950f402c5c589d403960c80f
+ms.openlocfilehash: 49c7506b35f661509346dfd8305f10c0d63422eb
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -45,7 +46,7 @@ ms.openlocfilehash: cc284c0cd445bbfe2f4424d3251ca07da0538192
 2. 在方案總管中，於專案上按一下滑鼠右鍵，然後按一下 [管理 NuGet 封裝] 。
 3. 在「NuGet 套件管理員」中，勾選 [包含發行前版本]，然後搜尋 **Microsoft.Azure.Management.ResourceManager**。 按一下 [安裝]，在 [檢閱變更] 中按一下 [確定]，然後按一下 [我接受] 來接受授權。
 4. 在 NuGet 套件管理員中，搜尋 **Microsoft.IdentityModel.Clients.ActiveDirectory**。  按一下 [安裝]，在 [檢閱變更] 中按一下 [確定]，然後按一下 [我接受] 來接受授權。
-5. 在 Program.cs 中，以下列項目取代現有的 **using** 陳述式：
+5. 在 Program.cs 中，以下列程式碼取代現有的 **using** 陳述式：
    
     ```
     using System;
@@ -193,7 +194,7 @@ ms.openlocfilehash: cc284c0cd445bbfe2f4424d3251ca07da0538192
 * 閱讀 [IoT 中樞資源提供者 REST API][lnk-rest-api] 功能的相關資訊。
 * 如需 Azure Resource Manager 功能的詳細資訊，請參閱 [Azure Resource Manager 概觀][lnk-azure-rm-overview]。
 
-若要深入了解如何開發 IoT 中樞，請參閱以下內容︰
+若要深入了解如何開發 IoT 中樞，請參閱以下文章︰
 
 * [C SDK 簡介][lnk-c-sdk]
 * [Azure IoT SDK][lnk-sdks]
@@ -215,9 +216,4 @@ ms.openlocfilehash: cc284c0cd445bbfe2f4424d3251ca07da0538192
 [lnk-sdks]: iot-hub-devguide-sdks.md
 
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

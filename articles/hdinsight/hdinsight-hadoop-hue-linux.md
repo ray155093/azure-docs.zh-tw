@@ -12,11 +12,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/30/2017
+ms.date: 02/09/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 9096b87dc93e261c2810a069a95d954121822cf5
-ms.openlocfilehash: 903a8b7f143ac08b69d94aa2bc442a43ca041b64
+ms.sourcegitcommit: 7af856e32064f16e7cb1083432d4d5715cef6e3a
+ms.openlocfilehash: dbffb88020cf53eb59b98eb80e12a47bc17c5708
+ms.lasthandoff: 02/14/2017
 
 
 ---
@@ -46,8 +47,7 @@ Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。 您可以使�
 
 ## <a name="install-hue-using-script-actions"></a>使用指令碼動作安裝 Hue
 
-下列指令碼動作可以用來在 Linux 型的 HDInsight 叢集上安裝 Hue。
-https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh
+用來在以 Linux 為基礎的 HDInsight 叢集上安裝色調的指令碼，可於 https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh 取得。 您可以使用這個指令碼在叢集上安裝色調，並以 Azure 儲存體 Blob (WASB) 或 Azure Data Lake Store 做為預設儲存體。
 
 本節提供如何在使用 Azure 入口網站佈建叢集時使用指令碼的指示。
 
@@ -138,7 +138,7 @@ https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-h
 2. 在安裝期間，會重新啟動多個 Hadoop 服務 (HDFS、YARN、MR2、Oozie) 以更新與設定。 指令碼完成安裝 Hue 之後，可能需要一些時間讓其他 Hadoop 服務啟動。 一開始可能會影響 Hue 的效能。 所有服務啟動之後，Hue 就可以完全正常運作。
 3. Hue 不了解 Tez 作業，這是 Hive 目前的預設值。 如果您想要使用 MapReduce 做為 Hive 執行引擎，請更新指令碼以在您的指令碼中使用下列命令：
 
-        set hive.execution.engine=mr;
+         set hive.execution.engine=mr;
 
 4. 使用 Linux 叢集，您就可以擁有在主要前端節點上執行服務，在次要前端節點上執行 Resource Manager 的案例。 使用 Hue 以檢視叢集上「執行中」工作的詳細資料時，此類案例可能會導致錯誤 (如下所示)。 不過，您可以在工作完成時檢視工作詳細資料。
 
@@ -155,9 +155,4 @@ https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-h
 [powershell-install-configure]: install-configure-powershell-linux.md
 [hdinsight-provision]: hdinsight-provision-clusters-linux.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster-linux.md
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

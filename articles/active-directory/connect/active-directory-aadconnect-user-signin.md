@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/06/2016
+ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: bddd581b5164b03ccba75370cd89a7831101cf37
-ms.openlocfilehash: 5b77d16c4a373936dfa5fbba35bc3dc4c9a37e78
+ms.sourcegitcommit: 4fbe7bd802e9cc32d43f019980650c4723b75d5f
+ms.openlocfilehash: 7e821117e62eda286cefb59a5ded85b2f99f3ef7
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -97,7 +98,7 @@ Azure AD Connect 可讓使用者使用同一組密碼登入雲端和內部部署
 ### <a name="understanding-user-principal-name"></a>了解使用者主體名稱
 在 Active Directory 中，預設的 UPN 尾碼是在其中建立使用者帳戶之網域的 DNS 名稱。 大部分情況下，這是註冊為網際網路上的企業網域的網域名稱。 不過，您可以使用 Active Directory 網域及信任新增其他 UPN 尾碼。
 
-使用者的 UPN 格式是 username@domain. 例如，對於名為 'contoso.com' 的 Active Directory 網域，名為使用者 John 可能有 UPN 'john@contoso.com'. 使用者的 UPN 是以 RFC 822 為基礎。 雖然 UPN 和電子郵件共用相同的格式，但使用者的 UPN 值不一定等於使用者的電子郵件地址。
+使用者的 UPN 格式是 username@domain。 例如，在 Active Directory 的 'contoso.com' 網域中，使用者 John 可能有 UPN 'john@contoso.com'。 使用者的 UPN 是以 RFC 822 為基礎。 雖然 UPN 和電子郵件共用相同的格式，但使用者的 UPN 值不一定等於使用者的電子郵件地址。
 
 ### <a name="user-principal-name-in-azure-ad"></a>Azure AD 中的使用者主體名稱
 Azure AD Connect 精靈將會使用 userPrincipalName 屬性，或讓您指定內部部署中要用來做為 Azure AD 中的使用者主體名稱的屬性 (在自訂安裝中)。 這是要用於登入 Azure AD 的值。 如果使用者主體名稱屬性的值未對應到 Azure AD 中已驗證的網域，則 Azure AD 會將該值替換為預設的 .onmicrosoft.com 值。
@@ -148,7 +149,7 @@ UserPrincipalName - 屬性 userPrincipalName 是使用者登入 Azure AD 和 Off
 
 | State | 對使用者的 Azure 登入體驗的影響 |
 |:---:|:--- |
-| 未新增 |在此案例中，Azure AD Connect 無法在 Azure AD 目錄中找到 UPN 尾碼 contoso.com 的匹配自訂網域。 如果您需要讓使用者使用 AD FS 搭配其內部部署 UPN (例如 user@contoso.com) 來進行登入，您就必須新增自訂網域 contoso.com |
+| 未新增 |在此案例中，Azure AD Connect 無法在 Azure AD 目錄中找到 UPN 尾碼 contoso.com 的匹配自訂網域。 如果您需要讓使用者使用 AD FS 搭配其內部部署 UPN (例如 user@contoso.com) 來進行登入，您就必須新增自訂網域 contoso.com。 |
 | 未驗證 |在此案例中，Azure AD Connect 會提示您適當的詳細資料，指導您如何在稍後的階段驗證網域 |
 | Verified |在此案例中，您可以繼續進行設定而不需要採取任何進一步的動作 |
 
@@ -174,10 +175,5 @@ UserPrincipalName - 屬性 userPrincipalName 是使用者登入 Azure AD 和 Off
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
 深入了解 [Azure AD Connect：設計概念](active-directory-aadconnect-design-concepts.md)
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

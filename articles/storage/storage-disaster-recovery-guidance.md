@@ -17,6 +17,7 @@ ms.author: robinsh
 translationtype: Human Translation
 ms.sourcegitcommit: 64650bf7baf46b0f5473deb1a9b4ec329979d153
 ms.openlocfilehash: 0fc78521abb0fce2a38b14d1411dad42b3580df2
+ms.lasthandoff: 01/21/2017
 
 
 ---
@@ -70,10 +71,5 @@ ms.openlocfilehash: 0fc78521abb0fce2a38b14d1411dad42b3580df2
 * 檔案 – 使用 [AzCopy](storage-use-azcopy.md) 或 [Azure PowerShell](storage-powershell-guide-full.md) 將您的檔案複製到位於其他區域的其他儲存體帳戶。
 
 如需建立應用程式以充分利用 RA-GRS 功能的相關資訊，請造訪[使用 RA-GRS 儲存體設計高可用性的應用程式 (英文)](storage-designing-ha-apps-with-ragrs.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

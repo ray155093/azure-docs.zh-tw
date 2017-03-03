@@ -12,18 +12,17 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 02/14/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 52a5dc6b832fb1314ef5994e932b1fe2b5e5de0b
+ms.sourcegitcommit: 8929a1697bf88da82fc027520d0126eaef872840
+ms.openlocfilehash: ec7bdf6b27cc073324d0d3a79b268e9730a6016b
+ms.lasthandoff: 02/09/2017
 
 
 ---
 # <a name="how-to-configure-redis-clustering-for-a-premium-azure-redis-cache"></a>如何設定進階 Azure Redis 快取的 Redis 叢集
-Azure Redis 快取有不同的快取服務，在快取大小和功能 (包括新的進階層) 的選擇上提供了彈性。
-
-Azure Redis 快取進階層包括叢集、永續性及虛擬網路支援之類的功能。 本文說明如何在進階 Azure Redis 快取執行個體中設定叢集。
+Azure Redis 快取有不同的快取供應項目，可讓您彈性選擇快取大小和功能，包括叢集、持續性和虛擬網路支援等進階層功能。 本文說明如何在進階 Azure Redis 快取執行個體中設定叢集。
 
 如需其他進階快取功能的相關資訊，請參閱 [Azure Redis 快取進階層簡介](cache-premium-tier-intro.md)。
 
@@ -56,12 +55,18 @@ Azure Redis 快取提供 Redis 叢集的方式，就像 [實作於 Redis](http:/
 
 建立快取後，您可以連接並使用它，就像非叢集化快取一樣，而且 Redis 將會在整個快取分區散發資料。 如果[已啟用](cache-how-to-monitor.md#enable-cache-diagnostics)診斷，則會針對每個分區個別擷取度量，而且可以在 [Redis 快取] 刀鋒視窗中[檢視](cache-how-to-monitor.md)。 
 
+> [!NOTE]
+> 
+> 在設定叢集時，用戶端應用程式中的必要設定有些微差異。 如需詳細資訊，請參閱 [我需要對用戶端應用程式進行任何變更才能使用叢集嗎？](#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
+> 
+> 
+
 如需搭配 StackExchange.Redis 用戶端使用叢集的範例程式碼，請參閱 [Hello World](https://github.com/rustd/RedisSamples/tree/master/HelloWorld) 範例的 [clustering.cs](https://github.com/rustd/RedisSamples/blob/master/HelloWorld/Clustering.cs) 部分。
 
 <a name="cluster-size"></a>
 
 ## <a name="change-the-cluster-size-on-a-running-premium-cache"></a>在執行中的進階快取上變更叢集大小
-若要從已啟用叢集的執行中進階快取變更叢集大小，可從 [設定] 刀鋒視窗中按一下 [(預覽) Redis 叢集大小]。
+若要從已啟用叢集的執行中進階快取變更叢集大小，可從 [資源] 功能表中按一下 [(預覽) Redis 叢集大小]。
 
 > [!NOTE]
 > 請注意，雖然 Azure Redis 快取進階層已發行正式上市版，但 Redis 叢集大小功能目前為預覽狀態。
@@ -120,7 +125,7 @@ Azure Redis 快取提供 Redis 叢集的方式，就像 [實作於 Redis](http:/
 > 
 
 ### <a name="how-do-i-connect-to-my-cache-when-clustering-is-enabled"></a>啟用叢集後，要如何連接到我的快取？
-您可以使用與連接未啟用叢集的快取時所用的相同 [端點、連接埠和金鑰](cache-configure.md#properties) 來連接快取。 Redis 會管理後端上的叢集，因此您不需從用戶端進行管理。
+您可以使用與連接未啟用叢集的快取時所用的相同 [端點](cache-configure.md#properties)、[連接埠](cache-configure.md#properties)和[金鑰](cache-configure.md#access-keys)來連接快取。 Redis 會管理後端上的叢集，因此您不需從用戶端進行管理。
 
 ### <a name="can-i-directly-connect-to-the-individual-shards-of-my-cache"></a>我可以直接連接到我的快取的個別分區嗎？
 目前官方尚未提供支援。 如前所述，每個分區都包含一個主要/複本快取組，統稱為快取執行個體。 您可以使用 GitHub 中 Redis 存放庫 [不穩定](http://redis.io/download) 分支內的 redis-cli 公用程式，連接到這些快取執行個體。 使用 `-c` 參數啟用這個版本時，會實作基本支援。 如需詳細資訊，請參閱 [Redis 叢集教學課程](http://redis.io/topics/cluster-tutorial)中 [http://redis.io](http://redis.io) 上的[試用叢集](http://redis.io/topics/cluster-tutorial#playing-with-the-cluster)。
@@ -168,10 +173,5 @@ Azure Redis 快取提供 Redis 叢集的方式，就像 [實作於 Redis](http:/
 
 
 
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

@@ -17,6 +17,7 @@ ms.author: terrylan
 translationtype: Human Translation
 ms.sourcegitcommit: b5edb42f7fac6943a72e02a85a4cbc32300b9f38
 ms.openlocfilehash: 2db6effdaf2e23d00eefdde82d074dd5d47857d7
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -98,9 +99,4 @@ Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應�
 
 * [什麼是 Azure 金鑰保存庫？](../key-vault/key-vault-whatis.md)
 * [開始使用 Azure 金鑰保存庫](../key-vault/key-vault-get-started.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

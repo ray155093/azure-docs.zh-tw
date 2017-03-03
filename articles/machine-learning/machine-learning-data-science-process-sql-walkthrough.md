@@ -17,6 +17,7 @@ ms.author: fashah;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: e899487e9445955cea3a9387c73ea7c5dca37ddc
 ms.openlocfilehash: a5e0a76a29a82d5364ee1adb5c912e76064dd1f9
+ms.lasthandoff: 01/30/2017
 
 
 ---
@@ -653,9 +654,4 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。 �
 [edit-metadata]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
 [select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

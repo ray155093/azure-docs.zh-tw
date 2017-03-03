@@ -19,6 +19,7 @@ ms.author: saudas
 translationtype: Human Translation
 ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
 ms.openlocfilehash: b432755bdae235228a9b677783a8cad94142b6ca
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -87,10 +88,5 @@ ACS [公用代理程式集區](container-service-mesos-marathon-ui.md#deploy-a-d
 了解 [公用和私用 DC/OS 代理程式](container-service-dcos-agents.md)之間的差異。
 
 深入了解 [管理 DC/OS 容器](container-service-mesos-marathon-ui.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

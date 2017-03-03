@@ -17,6 +17,7 @@ ms.author: bwren
 translationtype: Human Translation
 ms.sourcegitcommit: 4d6ea516717077ffb4b832caa9e8a064905fce09
 ms.openlocfilehash: 07edc26f62fada8b5e32693a172cb23b48d36e1f
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -342,10 +343,5 @@ Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂�
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解[記錄檔搜尋](log-analytics-log-searches.md)以支援在視覺效果組件中查詢。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

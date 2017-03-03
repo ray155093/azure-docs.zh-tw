@@ -18,6 +18,7 @@ ms.author: heidist
 translationtype: Human Translation
 ms.sourcegitcommit: 4bcd31a200024a182ee3d5a21bcbcb621fed595f
 ms.openlocfilehash: fd46641709d260f8b468556972aae14205fdb515
+ms.lasthandoff: 01/19/2017
 
 ---
 
@@ -74,9 +75,4 @@ Azure 搜尋服務中的 **索引子** 是一種編目程式，其可從外部�
 * [Azure 資料表儲存體](search-howto-indexing-azure-tables.md)
 * [使用 Azure 搜尋服務 Blob 索引子編製索引 CSV Blob (預覽)](search-howto-index-csv-blobs.md)
 * [使用 Azure 搜尋服務 Blob 索引子編製索引 JSON Blob (預覽)](search-howto-index-json-blobs.md)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

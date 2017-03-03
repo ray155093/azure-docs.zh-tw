@@ -17,6 +17,7 @@ ms.author: bwren
 translationtype: Human Translation
 ms.sourcegitcommit: 2b5899ba43f651ae6f5fdf84d7aa5ee35d81b738
 ms.openlocfilehash: be27695cd1d998eedff0ca76f6ae9d4ff69bb97b
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -456,9 +457,4 @@ post_data(customer_id, shared_key, body, log_type)
 
 ## <a name="next-steps"></a>後續步驟
 - 使用[記錄搜尋 API](log-analytics-log-search-api.md) 從 Log Analytics 儲存機制擷取資料。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

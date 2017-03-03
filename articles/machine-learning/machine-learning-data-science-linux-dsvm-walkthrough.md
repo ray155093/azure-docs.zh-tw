@@ -17,6 +17,7 @@ ms.author: bradsev;paulsh
 translationtype: Human Translation
 ms.sourcegitcommit: d0075eec26c2131f2019e7aca4c00d2d63cc976b
 ms.openlocfilehash: 80051996b0c39c53da63dc6b7bc75c869f692575
+ms.lasthandoff: 01/06/2017
 
 
 ---
@@ -530,9 +531,4 @@ Azure SQL 資料倉儲是一種雲端架構、相應放大的資料庫，可處�
 如需能引導您完成在 Azure 中構成資料科學程序之工作的主題概觀，請參閱 [Team Data Science Process](http://aka.ms/datascienceprocess)。
 
 如需會示範 Team Data Science Process 中適用於特定案例之步驟的其他端對端逐步解說的說明，請參閱 [Team Data Science Process 逐步解說](data-science-process-walkthroughs.md)。 這些逐步解說也示範如何將雲端和內部部署工具與服務組合成工作流程或管線，以建立智慧型應用程式。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

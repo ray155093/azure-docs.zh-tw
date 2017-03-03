@@ -18,6 +18,7 @@ ms.author: guybo
 translationtype: Human Translation
 ms.sourcegitcommit: f13545d753690534e0e645af67efcf1b524837eb
 ms.openlocfilehash: dad27b11b5f02ed41826b82882cc5089eb69cb04
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -57,10 +58,5 @@ Packer 和 Terraform 也支援 Azure Resource Manager，因此您也可以「以
 
 ## <a name="how-do-you-roll-out-an-os-update-across-update-domains"></a>如何在各個更新網域推出 OS 更新？
 假設您想要在更新 OS 映像的同時，又讓「VM 擴展集」持續執行。 若要這麼做，有一個方法，就是一次更新一個 VM 的 VM 映像。 您可以使用 PowerShell 或 Azure CLI 來達到此目的。 有個別的命令可在個別 VM 上更新「VM 擴展集」模型 (其組態的定義方式)，以及發出「手動升級」呼叫。 [升級虛擬機器擴展集](./virtual-machine-scale-sets-upgrade-scale-set.md) Azure 文件也提供進一步的資訊，說明 VM 擴展集內執行 OS 升級的可用選項。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

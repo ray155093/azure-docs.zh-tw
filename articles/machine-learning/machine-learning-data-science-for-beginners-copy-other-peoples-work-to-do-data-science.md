@@ -1,6 +1,6 @@
 ---
-title: "複製其他人的資料科學工作 - 機器學習範例 | Microsoft Docs"
-description: "資料科學的商業秘密：讓其他人為您工作。 請參閱 Cortana Analytics 資源庫中的範例，例如叢集演算法範例。"
+title: "複製其他人的資料科學範例 - 機器學習 - Azure | Microsoft Docs"
+description: "資料科學的商業秘密：讓其他人為您工作。 從 Cortana Analytics 資源庫取得機器學習服務範例。"
 keywords: "資料科學範例, 機器學習範例, 叢集演算法, 叢集演算法範例"
 services: machine-learning
 documentationcenter: na
@@ -13,23 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/20/2016
+ms.date: 02/09/2017
 ms.author: cgronlun;garye
 translationtype: Human Translation
-ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
-ms.openlocfilehash: f0efc0b10d843c6105446b3960821609e10fd400
+ms.sourcegitcommit: 1e941778c194462b311e6347c56670d3e0193e90
+ms.openlocfilehash: ebc44a4190bac697697e0b651039a0e8ee8e4a95
+ms.lasthandoff: 02/10/2017
 
 
 ---
 # <a name="copy-other-peoples-work-to-do-data-science"></a>複製其他人的工作進行資料科學
 ## <a name="video-5-data-science-for-beginners-series"></a>影片 5：適用於初學者的資料科學系列
-有一個資料科學的商業機密是讓其他人為您工作。 找一個適合您自己的機器學習實驗使用的叢集演算法範例。
+有一個資料科學的商業機密是讓其他人為您工作。 在 Cortana Analytics 資源庫中找一個適合您自己的機器學習實驗使用的叢集演算法範例。
 
 若要充分運用這系列影片，請觀賞所有影片。 [瀏覽影片清單](#other-videos-in-this-series)
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/data-science-for-beginners-series-copy-other-peoples-work-to-do-data-science/player]
-> 
-> 
+>
+>
 
 ## <a name="other-videos-in-this-series"></a>系列中的其他影片
  是一個資料科學的快速簡介，包含五個簡短影片。
@@ -93,10 +94,4 @@ Microsoft 提供一個稱為 [Azure Machine Learning](https://azure.microsoft.co
 ## <a name="next-steps"></a>後續步驟
 * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
 * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

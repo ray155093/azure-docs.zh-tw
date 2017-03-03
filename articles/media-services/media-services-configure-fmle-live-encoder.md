@@ -17,6 +17,7 @@ ms.author: juliako;cenkdin;anilmur
 translationtype: Human Translation
 ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
 ms.openlocfilehash: b94b2f867d30fe2c121904821404b8228ee1e899
+ms.lasthandoff: 01/11/2017
 
 
 ---
@@ -168,9 +169,4 @@ ms.openlocfilehash: b94b2f867d30fe2c121904821404b8228ee1e899
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

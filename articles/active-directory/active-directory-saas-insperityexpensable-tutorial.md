@@ -17,6 +17,7 @@ ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: bf5588885de9c280eb70712dbf800efe509ee912
 ms.openlocfilehash: b009b203edadae92907aecd2a4eb626815492749
+ms.lasthandoff: 02/14/2017
 
 
 ---
@@ -233,9 +234,4 @@ Insperity ExpensAble 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-insperityexpensable-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-insperityexpensable-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-insperityexpensable-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

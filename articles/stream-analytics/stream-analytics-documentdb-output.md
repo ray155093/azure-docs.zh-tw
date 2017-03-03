@@ -18,6 +18,7 @@ ms.author: jeffstok
 translationtype: Human Translation
 ms.sourcegitcommit: 20880eccbf28cabfb594bb8129cb0a5a3beeb224
 ms.openlocfilehash: e62e4f6c208f5506108b2ef5f6c1aabe43f086a2
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -70,9 +71,4 @@ DocumentDB 集合可在 3 個不同的效能層級 (S1、S2 或 S3) 建立，以
   2\) MyCollection{partition} – 這些集合必須存在 – "MyCollection0”、“MyCollection1”、“MyCollection2” 等，依此類推。  
 * **資料分割索引鍵** - 選擇性。 只有當您在集合名稱模式中使用 {parition} 語彙基元時，才需要此索引鍵。 輸出事件中的欄位名稱會用來為跨集合的資料分割輸出指定索引鍵。 若為單一集合輸出，則可使用任何任意的輸出欄，例如 PartitionId。  
 * **文件識別碼** ：可省略。 輸出事件中的欄位名稱會用來指定主索引鍵，此為插入或更新作業的依據。  
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

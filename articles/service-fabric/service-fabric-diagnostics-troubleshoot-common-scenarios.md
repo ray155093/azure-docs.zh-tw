@@ -17,6 +17,7 @@ ms.author: mattrow
 translationtype: Human Translation
 ms.sourcegitcommit: c9730b553e59d12b8720bbf3a06cc956912e27de
 ms.openlocfilehash: c920a206d6f3288f6cba0d2658d556749fc4d574
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -51,10 +52,5 @@ System.IO.FileNotFoundException
 
 * [Reliable Actors 項目診斷](service-fabric-reliable-actors-diagnostics.md)
 * [Reliable Services 診斷](service-fabric-reliable-services-diagnostics.md)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

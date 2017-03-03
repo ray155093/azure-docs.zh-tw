@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 10/28/2016
 ms.author: rachelap
 translationtype: Human Translation
-ms.sourcegitcommit: 148ab898194fc1ab8a10d49dbb2f125f68cc2b1e
-ms.openlocfilehash: c30a69350136273bdaf010cb033dcbb7a26cd39e
+ms.sourcegitcommit: 3c18b1929a78137ff3b53b8e084dc35e0c8dcaac
+ms.openlocfilehash: 478db825a269beeaa9fbb0afef3488fc7d49d024
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -133,10 +134,5 @@ Azure Functions 可讓您藉由設定每日花費配額，以可預測的方式�
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [Getting Started Note](../../includes/functions-get-help.md)]
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

@@ -17,6 +17,7 @@ ms.author: abnarain
 translationtype: Human Translation
 ms.sourcegitcommit: 3d66640481d8e1f96d3061077f0c97da5fa6bf4e
 ms.openlocfilehash: a0ccdffa5347c4f3cda16ec75b75da3eb3199539
+ms.lasthandoff: 02/02/2017
 
 
 ---
@@ -448,9 +449,4 @@ Remove-AzureRmDataFactoryGateway -Name JasonHDMG_byPSRemote -ResourceGroupName A
 
 ## <a name="next-steps"></a>後續步驟
 * 請參閱 [在內部部署和雲端資料存放區之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 一文。 在該逐步解說中，您會建立一個使用閘道將資料從內部部署 SQL Server 資料庫移到 Azure Blob 的管線。  
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

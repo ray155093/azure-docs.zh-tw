@@ -12,24 +12,26 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
+ms.date: 12/13/2016
 ms.author: nberdy
 translationtype: Human Translation
-ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
-ms.openlocfilehash: f6f894157a31641b1d0294e84795563c727caaac
+ms.sourcegitcommit: 8f72f2ca66a5d1394e87c7c0f8d8dff9da73732f
+ms.openlocfilehash: 612ef94efb9776ae0ce768de1b59fb208824da93
+ms.lasthandoff: 02/08/2017
 
 
 ---
-# <a name="operations-monitoring"></a>作業監視
+# <a name="iot-hub-operations-monitoring"></a>IoT 中樞作業監視
 IoT 中樞的作業監視可讓您即時監視其 IoT 中樞上的作業狀態。 IoT 中樞可追蹤橫跨數個作業類別的事件。 您可以選擇將一或多個類別的事件傳送至 IoT 中樞的端點進行處理。 您可以監視資料中是否有錯誤，或根據資料模式設定更複雜的處理行為。
 
-IoT 中樞會監視五個類別的事件：
+IoT 中樞會監視六個類別的事件：
 
 * 裝置身分識別作業
 * 裝置遙測
 * 雲端到裝置的訊息
 * 連線
 * 檔案上傳
+* 訊息路由
 
 ## <a name="how-to-enable-operations-monitoring"></a>如何啟用作業監視
 1. 建立 IoT 中樞。 您可以在[開始使用][lnk-get-started]指南中找到如何建立 IoT 中樞的指示。
@@ -39,6 +41,9 @@ IoT 中樞會監視五個類別的事件：
 3. 選取您要監視的監視類別，然後按一下 [儲存] 。 您可以從 [監視設定] 中所列出的事件中樞相容端點讀取事件。 IoT 中樞端點稱為 `messages/operationsmonitoringevents`。
    
     ![][2]
+
+> [!NOTE]
+> [連線] 類別若選取 [Verbose] 監視，會導致 IoT 中樞產生額外的診斷訊息。 對於所有其他類別，[Verbose] 設定會變更 IoT 中樞在每個錯誤訊息中包含的資訊量。
 
 ## <a name="event-categories-and-how-to-use-them"></a>事件類別和其使用方式
 每個作業監視類別會各自追蹤與 IoT 中樞所進行的不同類型的互動，而每一個監視類別都有結構描述來定義該類別的事件要如何構成。
@@ -144,6 +149,22 @@ IoT 中樞會監視五個類別的事件：
          "durationMs": 1234
     }
 
+### <a name="message-routing"></a>訊息路由
+訊息路由類別會在訊息路由評估期間追蹤發生的錯誤以及 IoT 中樞所認知的端點健全狀況。 此類別包含的事件像是：當規則評估為「未定義」、當 IoT 中樞將端點標示為無效、及其他任何從端點收到錯誤。 請注意，此類別不包含有關訊息本身的特定錯誤 (例如裝置節流錯誤)，這些是在「裝置遙測」類別下報告。
+        
+    {
+        "messageSizeInBytes": 1234,
+        "time": "UTC timestamp",
+        "operationName": "ingress",
+        "category": "routes",
+        "level": "Error",
+        "deviceId": "device-ID",
+        "messageId": "ID of message",
+        "routeName": "myroute",
+        "endpointName": "myendpoint",
+        "details": "ExternalEndpointDisabled"
+    }
+
 ## <a name="next-steps"></a>後續步驟
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
@@ -161,9 +182,4 @@ IoT 中樞會監視五個類別的事件：
 
 [lnk-devguide]: iot-hub-devguide.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

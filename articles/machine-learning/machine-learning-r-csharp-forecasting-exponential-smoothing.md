@@ -18,6 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
 ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
 ms.openlocfilehash: c3fc7b8d7ba9faf79d80b55514ef09570e0d1655
+ms.lasthandoff: 01/11/2017
 
 
 ---
@@ -146,10 +147,5 @@ Azure Machine Learning 中已建立新的空白實驗， 並已使用預先定�
 
 <!-- Module References -->
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

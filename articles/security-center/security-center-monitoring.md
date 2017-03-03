@@ -17,6 +17,7 @@ ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: 3cba38d95535ff5ed3cd62aac5c0aa04a310f48c
 ms.openlocfilehash: ae263615d5fa262eb8a8ed2e5461d92bec503f1d
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -214,9 +215,4 @@ ms.openlocfilehash: ae263615d5fa262eb8a8ed2e5461d92bec503f1d
 * [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md)：了解如何監視合作夥伴解決方案的健全狀況。
 * [Azure 資訊安全中心常見問題集](security-center-faq.md)：尋找有關使用服務的常見問題。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)：尋找有關 Azure 安全性與相容性的部落格文章。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 
