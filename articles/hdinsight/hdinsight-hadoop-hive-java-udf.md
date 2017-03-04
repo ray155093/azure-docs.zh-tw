@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
 ms.openlocfilehash: ec7e5d3229d623ce08a72439317a6a515ee3e373
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -211,10 +212,5 @@ Hive 很適合在 HDInsight 中處理資料，但您有時需要更通用的語�
 如需 Hive 的其他操作方法，請參閱 [搭配 HDInsight 使用 Hive](hdinsight-use-hive.md)。
 
 如需 Hive 使用者定義函式的詳細資訊，請造訪 apache.org 並參閱 Hive wiki 的 [Hive 運算子和使用者定義函式](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) 一節。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

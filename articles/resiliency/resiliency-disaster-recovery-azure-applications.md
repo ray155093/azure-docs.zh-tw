@@ -17,6 +17,7 @@ ms.author: aglick
 translationtype: Human Translation
 ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
 ms.openlocfilehash: d0ea8137dcdd72cf09806006bdca4c24d6f1c1de
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -284,10 +285,5 @@ IaaS 解決方案也為內部部署應用程式提供比較簡單的路徑，以
 
 ## <a name="next-steps"></a>後續步驟
 本文屬於著重 [在 Microsoft Azure 上建置的應用程式的災害復原和高可用性](resiliency-disaster-recovery-high-availability-azure-applications.md)的系列文章。 這一系列中的前一篇文章是 [在 Microsoft Azure 上建置的應用程式的高可用性](resiliency-high-availability-azure-applications.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

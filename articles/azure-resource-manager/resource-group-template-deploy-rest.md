@@ -17,6 +17,7 @@ ms.author: tomfitz
 translationtype: Human Translation
 ms.sourcegitcommit: 593f2d35730bcc03fb9d925be36c4c1423a31a49
 ms.openlocfilehash: 23b634a6acde9837308815d9973e5da80fcde767
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -97,10 +98,5 @@ ms.openlocfilehash: 23b634a6acde9837308815d9973e5da80fcde767
 * 如需將您的方案部署到不同環境的指引，請參閱 [Microsoft Azure 中的開發和測試環境](solution-dev-test-environments.md)。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
 * 如需關於自動化部署的四部分系列，請參閱[自動化應用程式部署至 Azure 虛擬機器](../virtual-machines/virtual-machines-windows-dotnet-core-1-landing.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 這個系列涵蓋應用程式架構、存取與安全性、可用性與級別，以及應用程式部署。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

@@ -16,6 +16,7 @@ ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: b621a1716b731c99f9ad54d2e29006fb7bddadbb
 ms.openlocfilehash: 8fb880a03548540059ad896925adb57577d1aed2
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -95,10 +96,5 @@ Windows 7 和 Windows 8.1 裝置會藉由結合使用者帳戶名稱與知名裝
 * [為加入網域的 Windows 7 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows7.md)
 * [為加入網域的 Windows 8.1 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)
 * [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-azureadjoin-devices-group-policy.md)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

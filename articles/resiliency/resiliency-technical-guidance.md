@@ -17,6 +17,7 @@ ms.author: aglick
 translationtype: Human Translation
 ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
 ms.openlocfilehash: 7618f94574fd02d29a55ccbe8723a0228ad64f7f
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -62,10 +63,5 @@ ms.openlocfilehash: 7618f94574fd02d29a55ccbe8723a0228ad64f7f
 
 ## <a name="next-steps"></a>後續步驟
 這篇文章是一系列文章的一部分，著重在 Azure 復原的技術指導。 如果您有興趣閱讀本系列的其他文章，您可以從 [從本機失敗中復原](resiliency-technical-guidance-recovery-local-failures.md)開始。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

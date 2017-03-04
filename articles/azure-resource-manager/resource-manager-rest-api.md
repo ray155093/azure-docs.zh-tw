@@ -17,6 +17,7 @@ ms.author: navale;tomfitz;
 translationtype: Human Translation
 ms.sourcegitcommit: 76864bfc1b59cfc4e6f39094c08394fe32482d17
 ms.openlocfilehash: b7957c52877b262506013a422cd1511dd0ee79a4
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -252,9 +253,4 @@ Content-Type: application/json
 ## <a name="next-steps"></a>後續步驟
 
 - 若要了解處理非同步 REST 作業，請參閱[追蹤非同步 Azure 作業](resource-manager-async-operations.md)。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

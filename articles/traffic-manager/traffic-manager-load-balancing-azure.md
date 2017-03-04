@@ -17,6 +17,7 @@ ms.author: limichel
 translationtype: Human Translation
 ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
 ms.openlocfilehash: ae9bd30b76786f94f0d836a39137da696fdb94a2
+ms.lasthandoff: 02/16/2017
 
 ---
 
@@ -210,9 +211,4 @@ Microsoft Azure 提供多個服務，可管理分配網路流量和負載平衡�
 * [流量管理員概觀](traffic-manager-overview.md)
 * [應用程式閘道概觀](../application-gateway/application-gateway-introduction.md)
 * [Azure 負載平衡器概觀](../load-balancer/load-balancer-overview.md)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 
