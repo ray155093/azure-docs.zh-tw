@@ -18,6 +18,7 @@ ms.author: maroche
 translationtype: Human Translation
 ms.sourcegitcommit: cd3184059a0970bb7c9b59803cf37125abbbd879
 ms.openlocfilehash: 19d4c3990c88f82f60cd253ffdcbd2005d00ad79
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -72,9 +73,4 @@ Azure 資料目錄是完全受管理的雲端服務，可讓使用者探索所�
 * [如何管理資料資產](data-catalog-how-to-manage.md)
 * [如何設定商務詞彙](data-catalog-how-to-business-glossary.md)
 * [常見問題集](data-catalog-frequently-asked-questions.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

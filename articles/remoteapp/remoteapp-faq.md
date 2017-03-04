@@ -17,6 +17,7 @@ ms.author: mbaldwin
 translationtype: Human Translation
 ms.sourcegitcommit: 9d80640a58171e94440ca02f44a73866f6412997
 ms.openlocfilehash: 296dfaaa05b89cae265a9926fad08495ea02a647
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -124,10 +125,5 @@ ms.openlocfilehash: 296dfaaa05b89cae265a9926fad08495ea02a647
 
 ### <a name="help-us-help-you"></a>幫我們來協助您
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯]  以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 
