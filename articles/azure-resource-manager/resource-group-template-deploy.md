@@ -56,7 +56,7 @@ New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName Ex
 1. 登入您的 Azure 帳戶。
 
    ```powershell
-   Add-AzureRmAccount
+   Login-AzureRmAccount
    ```
 
     系統會傳回您帳戶的摘要。
