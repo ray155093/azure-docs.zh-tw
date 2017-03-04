@@ -4,6 +4,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
 ms.sourcegitcommit: d59ebef3cda36ba048b844f0cd2326fff66b4aa5
 ms.openlocfilehash: 4c7b8965b7fe5de7a8ff839be2b9e555bd8d502c
+ms.lasthandoff: 01/21/2017
 
 
 
@@ -56,10 +57,5 @@ DocumentDB 的索引編製功能是針對儲存效率而設計，並可處理多
 * 下載 ["Schema-Agnostic Indexing with Azure DocumentDB"](http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf)文章 (此文章將會在 2015 年 8 月 31 日至 9 月 4 日舉辦的第 41 屆超大型資料庫內部會議中發表)。
 * [使用 DocumentDB SQL 進行查詢](documentdb-sql-query.md)
 * 在 [這裡](documentdb-indexing-policies.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

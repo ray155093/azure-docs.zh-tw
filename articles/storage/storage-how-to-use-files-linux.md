@@ -64,7 +64,7 @@ sudo apt-get install cifs-utils
 接下來，您必須建立掛接點 (mkdir mymountpoint)，然後發出如下所示的掛接命令：
 
 ```
-sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename ./mymountpoint -o vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
+sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename ./mymountpoint -o vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777,serverino
 ```
 
 您也可以在 /etc/fstab 中加入設定，以便掛接共用。
@@ -74,7 +74,7 @@ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename ./mymountpo
 此外，若要在重新開機後繼續掛接檔案共用，您可以在 /etc/fstab 中加入類似下方的設定：
 
 ```
-//myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
+//myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777,serverino
 ```
 
 例如，如果您使用 Linux 映像 Ubuntu Server 15.04 (可從 Azure 映像庫取得) 建立 Azure VM，則可以如下所示掛接檔案：
@@ -82,7 +82,7 @@ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename ./mymountpo
 ```
 azureuser@azureconubuntu:~$ sudo apt-get install cifs-utils
 azureuser@azureconubuntu:~$ sudo mkdir /mnt/mountpoint
-azureuser@azureconubuntu:~$ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mnt/mountpoint -o vers=3.0,user=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
+azureuser@azureconubuntu:~$ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mnt/mountpoint -o vers=3.0,user=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777,serverino
 azureuser@azureconubuntu:~$ df -h /mnt/mountpoint
 Filesystem  Size  Used Avail Use% Mounted on
 //myaccountname.file.core.windows.net/mysharename  5.0T   64K  5.0T   1% /mnt/mountpoint
@@ -92,7 +92,7 @@ Filesystem  Size  Used Avail Use% Mounted on
 
 ```
 [azureuser@AzureconCent ~]$ sudo yum install samba-client samba-common cifs-utils
-[azureuser@AzureconCent ~]$ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mnt/mountpoint -o vers=3.0,user=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
+[azureuser@AzureconCent ~]$ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mnt/mountpoint -o vers=3.0,user=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777,serverino
 [azureuser@AzureconCent ~]$ df -h /mnt/mountpoint
 Filesystem  Size  Used Avail Use% Mounted on
 //myaccountname.file.core.windows.net/mysharename  5.0T   64K  5.0T   1% /mnt/mountpoint
@@ -103,7 +103,7 @@ Filesystem  Size  Used Avail Use% Mounted on
 ```
 azureuser@AzureconSuse:~> sudo zypper install samba*  
 azureuser@AzureconSuse:~> sudo mkdir /mnt/mountpoint
-azureuser@AzureconSuse:~> sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mnt/mountpoint -o vers=3.0,user=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
+azureuser@AzureconSuse:~> sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mnt/mountpoint -o vers=3.0,user=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777,serverino
 azureuser@AzureconSuse:~> df -h /mnt/mountpoint
 Filesystem  Size  Used Avail Use% Mounted on
 //myaccountname.file.core.windows.net/mysharename  5.0T   64K  5.0T   1% /mnt/mountpoint
@@ -114,7 +114,7 @@ Filesystem  Size  Used Avail Use% Mounted on
 ```
 azureuser@AzureconRedhat:~> sudo yum install cifs-utils
 azureuser@AzureconRedhat:~> sudo mkdir /mnt/mountpoint
-azureuser@AzureconRedhat:~> sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mnt/mountpoint -o vers=3.0,user=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
+azureuser@AzureconRedhat:~> sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mnt/mountpoint -o vers=3.0,user=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777,serverino
 azureuser@AzureconRedhat:~> df -h /mnt/mountpoint
 Filesystem  Size  Used Avail Use% Mounted on
 //myaccountname.file.core.windows.net/mysharename  5.0T   64K  5.0T   1% /mnt/mountpoint

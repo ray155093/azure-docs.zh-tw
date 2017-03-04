@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/14/2016
+ms.date: 03/02/2017
 ms.author: subramar
 translationtype: Human Translation
 ms.sourcegitcommit: cf8f717d5343ae27faefdc10f81b4feaccaa53b9
 ms.openlocfilehash: a8f077168dbc8660625371a2b988926c69491337
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -113,7 +114,7 @@ java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path 
             using (StreamWriter Out = new StreamWriter( new FileStream("/tmp/MyServiceLog.txt", FileMode.Append)))           
         {  
                  // report all event information               
-         Out.Write(" {0} ",  Write(eventData.Task.ToString(), eventData.EventName, eventData.EventId.ToString(), eventData.Level,""));
+          Out.Write(" {0} ",  Write(eventData.Task.ToString(), eventData.EventName, eventData.EventId.ToString(), eventData.Level,""));
                 if (eventData.Message != null)              
             Out.WriteLine(eventData.Message, eventData.Payload.ToArray());              
             else             
@@ -140,9 +141,4 @@ public static TextWriter Out = Console.Out;
 ## <a name="next-steps"></a>後續步驟
 新增至應用程式的相同追蹤程式碼，也可以用來配合診斷 Azure 叢集上的應用程式。 請參閱下列文章，其中討論各種適用於工具的選項，並說明如何設定它們。
 * [如何利用 Azure 診斷收集記錄檔](service-fabric-diagnostics-how-to-setup-lad.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 
