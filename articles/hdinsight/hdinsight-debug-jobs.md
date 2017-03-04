@@ -18,6 +18,7 @@ ms.author: jgao
 translationtype: Human Translation
 ms.sourcegitcommit: a2b32f23381ed1f9912edf6432f029e51bdf1be4
 ms.openlocfilehash: bcf2791f0e1788d7d18a4efc123066aaf633d549
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -327,10 +328,5 @@ Azure HDInsight 中的每個 Hadoop 叢集都有一個 Azure 儲存體帳戶作�
 * [在 HDInsight 上使用 Ambari 檢視來為 Tez 作業偵錯](hdinsight-debug-ambari-tez-view.md)
 * [在 Linux 型 HDInsight 上啟用 Hadoop 服務的堆積傾印](hdinsight-hadoop-collect-debug-heap-dump-linux.md)
 * [使用 Ambari Web UI 管理 HDInsight 叢集](hdinsight-hadoop-manage-ambari.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

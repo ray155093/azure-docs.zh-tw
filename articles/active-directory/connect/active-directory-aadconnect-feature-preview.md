@@ -17,6 +17,7 @@ ms.author: billmath
 translationtype: Human Translation
 ms.sourcegitcommit: b110b2e3041cf7839d1bf1c4d384b28b243efbd8
 ms.openlocfilehash: c1653c769a6b42d18ffb0da71220ce06c6556587
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -52,9 +53,4 @@ Office 365 群組將會在內部部署 AD DS 中顯示為通訊群組。 您的�
 繼續[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

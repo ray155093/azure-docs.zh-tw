@@ -18,6 +18,7 @@ ms.author: andrela
 translationtype: Human Translation
 ms.sourcegitcommit: 1f1c6c89c492d18e0678fa4650b6c5744dc9f7d1
 ms.openlocfilehash: cbd13711911b67ace7ef43676b4c52aa93744bcb
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -45,10 +46,5 @@ ms.openlocfilehash: cbd13711911b67ace7ef43676b4c52aa93744bcb
 ## <a name="additional-resources"></a>其他資源
 * [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
 * 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

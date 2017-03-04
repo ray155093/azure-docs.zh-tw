@@ -19,6 +19,7 @@ ms.author: danlep
 translationtype: Human Translation
 ms.sourcegitcommit: b2b969500d20d0c840f201ed2cf13a6f2ab38ee5
 ms.openlocfilehash: 719f1ea6a6f51d4a787f0465a4bbadb1a6057a8b
+ms.lasthandoff: 02/02/2017
 
 
 ---
@@ -177,10 +178,5 @@ Invoke-WebRequest -Method Put -Uri http://localhost/marathon/v2/apps/nginx -Cont
 ## <a name="next-steps"></a>後續步驟
 * [深入了解 Mesos HTTP 端點](http://mesos.apache.org/documentation/latest/endpoints/)
 * [深入了解 Marathon REST API](https://mesosphere.github.io/marathon/docs/rest-api.html)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

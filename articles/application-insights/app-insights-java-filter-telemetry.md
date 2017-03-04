@@ -15,6 +15,7 @@ ms.author: awills
 translationtype: Human Translation
 ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
 ms.openlocfilehash: cd09b7c5d45d07a3fbcc5d6f0c02400dcd36d61b
+ms.lasthandoff: 02/02/2017
 
 
 ---
@@ -263,9 +264,4 @@ ms.openlocfilehash: cd09b7c5d45d07a3fbcc5d6f0c02400dcd36d61b
 ## <a name="next-steps"></a>後續步驟
 
 * [取樣](app-insights-sampling.md) - 請考慮以取樣做為替代方式，因為它不會扭曲計量。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

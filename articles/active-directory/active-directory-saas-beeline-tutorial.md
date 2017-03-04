@@ -17,6 +17,7 @@ ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: 49a8d812924a421d131497b9f275525202f94a43
 ms.openlocfilehash: ef40a9ddd33434299e9a603751fa75ef6d61742b
+ms.lasthandoff: 12/29/2016
 
 
 ---
@@ -82,7 +83,7 @@ ms.openlocfilehash: ef40a9ddd33434299e9a603751fa75ef6d61742b
 在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Beeline 搭配運作的 Azure AD 單一登入。
 
 若要讓單一登入能夠運作，Azure AD 必須知道 Beeline 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 Beeline 中的相關使用者之間建立連結關聯性。
-建立此連結關聯性的方法，就是指派 Azure AD 中 [使用者名稱] 的值做為 Beeline 中 [Username] (使用者名稱) 的值。
+建立此連結關聯性的方法，就是指派 Azure AD 中 [使用者名稱] 的值做為 Beeline 中 [Username] \(使用者名稱) 的值。
 
 若要設定及測試與 Beeline 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
@@ -180,7 +181,7 @@ ms.openlocfilehash: ef40a9ddd33434299e9a603751fa75ef6d61742b
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] 。   
+    b. 按一下 [完成]。   
 
 ### <a name="creating-an-beeline-test-user"></a>建立 Beeline 測試使用者
 在本節中，您會在 Beeline 中建立名為 Britta Simon 的使用者。 必須先在 Beeline 應用程式中佈建所有使用者，Beeline 應用程式才能執行單一登入。 因此，請與 Beeline 客戶支援夥伴合作，以將所有這些使用者佈建到應用程式中。 
@@ -236,9 +237,4 @@ ms.openlocfilehash: ef40a9ddd33434299e9a603751fa75ef6d61742b
 [203]: ./media/active-directory-saas-beeline-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-beeline-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-beeline-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 
