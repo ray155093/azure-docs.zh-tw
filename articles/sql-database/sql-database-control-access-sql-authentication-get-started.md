@@ -14,40 +14,45 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 01/17/2017
+ms.date: 02/17/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 356cc4c6d8e25d36880e4b12bf471326e61990c3
-ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
+ms.sourcegitcommit: c70b3b23fa95af6614c34bd951943f0559409220
+ms.openlocfilehash: cf43790c329ef156ae17579d2281c861533ec201
+ms.lasthandoff: 02/21/2017
 
 
 ---
-# <a name="sql-database-tutorial-sql-server-authentication-logins-and-user-accounts-database-roles-permissions-server-level-firewall-rules-and-database-level-firewall-rules"></a>SQL Database 教學課程︰SQL Server 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則
-在本入門教學課程中，您會學習到如何使用 SQL Server Management Studio 來處理 SQL Server 驗證、登入、使用者和資料庫角色，以授與 Azure SQL Database 伺服器和資料庫的存取權和權利。 您會學習：
+# <a name="sql-server-authentication-access-and-database-level-firewall-rules"></a>SQL Server 驗證、存取和資料庫層級防火牆規則
 
-- 檢視使用者在主要資料庫和使用者資料庫中的權限
+在本教學課程中，您會學習到如何使用 SQL Server Management Studio 來處理授予 Azure SQL Database 伺服器和資料庫的 SQL Server 驗證、登入、使用者及資料庫角色。 完成本教學課程之後，您將了解如何：
+
 - 根據 SQL Server 驗證建立登入和使用者
-- 對使用者授與全伺服器權限和資料庫特有權限
-- 以非系統管理使用者的身分登入使用者資料庫
-- 為資料庫使用者建立資料庫層級的防火牆規則
-- 為伺服器管理員建立伺服器層級的防火牆規則
+- 將使用者新增至角色並授與權限給角色
+- 使用 T-SQL 建立資料庫層級和伺服器層級防火牆規則 
+- 使用 SSMS 以使用者身分連接至特定資料庫
+- 檢視使用者在主要資料庫和使用者資料庫中的權限
 
 **時間估計**︰完成本教學課程將需要大約 45 分鐘 (前提是您已符合必要條件)。
 
-## <a name="prerequisites"></a>必要條件
-
-* 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 
-
-* 您必須能夠使用屬於訂用帳戶擁有者或參與者角色之成員的帳戶來連線 Azure 入口網站。 如需角色型存取控制 (RBAC) 的詳細資訊，請參閱[開始使用 Azure 入口網站中的存取管理](../active-directory/role-based-access-control-what-is.md)。
-
-* 您已完成[藉由使用 Azure 入口網站和 SQL Server Management Studio 或相同的 [PowerShell 版本](sql-database-get-started-powershell.md)來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started.md)。 如果沒有，請完成本必要的教學課程或執行 [PowerShell 版本](sql-database-get-started-powershell.md)結尾的 PowerShell 指令碼再繼續本教學課程。
-
 > [!NOTE]
-> 本教學課程會協助您了解下列學習主題的內容︰[SQL Database 的存取權和控制權](sql-database-control-access.md)、[登入、使用者和資料庫角色](sql-database-manage-logins.md)、[主體](https://msdn.microsoft.com/library/ms181127.aspx)、[資料庫角色](https://msdn.microsoft.com/library/ms189121.aspx)和 [SQL Database 防火牆規則](sql-database-firewall-configure.md)。
+> 本教學課程會協助您了解下列學習主題的內容︰[SQL Database 的存取權和控制權](sql-database-control-access.md)、[登入、使用者和資料庫角色](sql-database-manage-logins.md)、[主體](https://msdn.microsoft.com/library/ms181127.aspx)、[資料庫角色](https://msdn.microsoft.com/library/ms189121.aspx)和 [SQL Database 防火牆規則](sql-database-firewall-configure.md)。 如需 Azure Active Directory 驗證的教學課程，請參閱[開始使用 Azure AD 驗證](sql-database-control-access-aad-authentication-get-started.md)。
 >  
 
+## <a name="prerequisites"></a>必要條件
+
+* **Azure 帳戶**。 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](https://azure.microsoft.com/free/)或[啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits/)。 
+
+* **Azure 建立權限**。 您必須能夠使用屬於訂用帳戶擁有者或參與者角色之成員的帳戶來連線 Azure 入口網站。 如需角色型存取控制 (RBAC) 的詳細資訊，請參閱[開始使用 Azure 入口網站中的存取管理](../active-directory/role-based-access-control-what-is.md)。
+
+* **SQL Server Management Studio**。 您可以從[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) 下載和安裝最新版的 SQL Server Management Studio (SSMS)。 因為新的功能會持續不斷地推出，當您連接到 Azure SQL Database，務必使用最新版的 SSMS。
+
+* **完成基本教學課程**。 您已完成[藉由使用 Azure 入口網站和 SQL Server Management Studio 或相同的 [PowerShell 版本](sql-database-get-started-powershell.md)來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started.md)。 如果沒有，請完成本必要的教學課程或執行 [PowerShell 版本](sql-database-get-started-powershell.md)結尾的 PowerShell 指令碼再繼續本教學課程。
+
+
+
 ## <a name="sign-in-to-the-azure-portal-using-your-azure-account"></a>使用 Azure 帳戶登入 Azure 入口網站
-使用 [現有的訂用帳戶](https://account.windowsazure.com/Home/Index)，遵循下列步驟來連接到 Azure 入口網站。
+此程序中的步驟示範如何使用您的 Azure 帳戶連接到 Azure 入口網站 (https://account.windowsazure.com/Home/Index)。
 
 1. 開啟您選擇的瀏覽器並連接到 [Azure 入口網站](https://portal.azure.com/)。
 2. 登入 [Azure 入口網站](https://portal.azure.com/)。
@@ -58,53 +63,46 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
 
 <a name="create-logical-server-bk"></a>
 
-## <a name="view-information-about-the-security-configuration-for-your-logical-server"></a>檢視邏輯伺服器安全性組態的相關資訊
+## <a name="view-logical-server-security-information-in-the-azure-portal"></a>在 Azure 入口網站中檢視邏輯伺服器的安全性資訊
 
-在這一節的教學課程中，您會在 Azure 入口網站中檢視邏輯伺服器安全性組態的相關資訊。
+此程序中的步驟示範如何在 Azure 入口網站中，檢視邏輯伺服器安全性組態的相關資訊。
 
-1. 開啟邏輯伺服器的 [SQL Server] 刀鋒視窗，然後檢視 [概觀] 頁面中的資訊。
+1. 開啟伺服器的 [SQL Server] 刀鋒視窗，然後檢視 [概觀] 頁面中的資訊。
 
    ![Azure 入口網站中的伺服器管理帳戶](./media/sql-database-control-access-sql-authentication-get-started/sql_admin_portal.png)
 
-2. 記下邏輯伺服器之伺服器管理帳戶的名稱。 如果您不記得密碼，請按一下 [重設密碼] 來設定新的密碼。
+2. 記下邏輯伺服器上的伺服器管理員名稱。 
 
-> [!NOTE]
-> 若要檢閱此伺服器的連線資訊，請移至[檢視或更新伺服器設定](sql-database-view-update-server-settings.md)。 在本教學課程系列中，完整伺服器名稱為「sqldbtutorialserver.database.windows.net」。
->
+3. 如果您不記得密碼，請按一下 [重設密碼] 來設定新的密碼。
 
-## <a name="connect-to-sql-server-using-sql-server-management-studio-ssms"></a>使用 SQL Server Management Studio (SSMS) 連接到 SQL Server
+4. 如果您需要取得此伺服器的連線資訊，請按一下 [屬性]。
 
-1. 如果您尚未這麼做，請下載並安裝最新版的 SSMS，位置是[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。 為了保持最新狀態，最新版的 SSMS 會在有新版本可供下載時提示您。
+## <a name="view-server-admin-permissions-using-ssms"></a>使用 SSMS 檢視伺服器管理員權限
 
-2. 安裝之後，在 Windows 搜尋方塊中輸入 **Microsoft SQL Server Management Studio**，然後按一下 **Enter** 來開啟 SSMS。
+此程序中的步驟示範如何在主要資料庫和使用者資料庫中，檢視伺服器管理帳戶和其權限的相關資訊。
 
-   ![SQL Server Management Studio](./media/sql-database-get-started/ssms.png)
-
-3. 在 [連線到伺服器] 對話方塊中，輸入使用 SQL Server 驗證和伺服器管理帳戶連線到 SQL Server 所需的資訊。
+1. 開啟 SQL Server Management Studio，並使用 SQL Server 驗證和伺服器管理帳戶，以伺服器管理員身分連接到您的伺服器。
 
    ![連接到伺服器](./media/sql-database-get-started/connect-to-server.png)
 
-4. 按一下 [ **連接**]。
+2. 按一下 [ **連接**]。
 
    ![已連接到伺服器](./media/sql-database-get-started/connected-to-server.png)
 
-## <a name="view-the-server-admin-account-and-its-permissions"></a>檢視伺服器管理帳戶和其權限 
-在這一節的教學課程中，您會檢視主要資料庫和使用者資料庫中有關伺服器管理帳戶和其權限的資訊。
-
-1. 在 [物件總管] 中，展開 [安全性]，然後展開 [登入] 來檢視 Azure SQL Database 伺服器的現有登入。 請注意，此時會顯示佈建期間所指定之伺服器管理帳戶的登入，在本教學課程系列中，所顯示的會是 sqladmin 登入。
+3. 在 [物件總管] 中，展開 [安全性]，然後展開 [登入]，檢視伺服器的現有登入 - 新伺服器上的唯一登入是伺服器管理帳戶的登入。
 
    ![伺服器管理員登入](./media/sql-database-control-access-sql-authentication-get-started/server_admin_login.png)
 
-2. 在 [物件總管] 中，依序展開 [資料庫]、[系統資料庫]、[主要]、[安全性]和 [使用者]。 請注意，主要資料庫中已建立伺服器管理員登入的使用者帳戶，其名稱和登入的使用者帳戶相同 (名稱不一定要相符，但最好相符以免產生混淆)。
+4. 在 [物件總管] 中，依序展開 [資料庫]、[系統資料庫]、[master]、[安全性] 和 [使用者]，以檢視此資料庫中為伺服器管理登入建立的使用者帳戶。
 
    ![伺服器管理員的主要資料庫使用者帳戶](./media/sql-database-control-access-sql-authentication-get-started/master_database_user_account_for_server_admin.png)
 
    > [!NOTE]
-   > 如需所顯示之其他使用者帳戶的相關資訊，請參閱[主體](https://msdn.microsoft.com/library/ms181127.aspx)。
+   > 如需 [使用者] 節點中顯示之其他使用者帳戶的相關資訊，請參閱[主體](https://msdn.microsoft.com/library/ms181127.aspx)。
    >
 
-3. 在 [物件總管] 中，以滑鼠右鍵按一下 [主要]，然後按一下 [新增查詢] 以開啟連線到主要資料庫的查詢視窗。
-4. 在查詢視窗中，執行下列查詢來傳回執行查詢之使用者的相關資訊。 請注意，執行此查詢的使用者帳戶會傳回 sqladmin (稍後以此程序查詢使用者資料庫時，我們會看到不同的結果)。
+5. 在 [物件總管] 中，以滑鼠右鍵按一下 [主要]，然後按一下 [新增查詢] 以開啟連線到主要資料庫的查詢視窗。
+6. 在查詢視窗中，執行下列查詢來傳回執行查詢之使用者的相關資訊。 
 
    ```
    SELECT USER;
@@ -112,7 +110,7 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
 
    ![在主要資料庫中選取使用者查詢](./media/sql-database-control-access-sql-authentication-get-started/select_user_query_in_master_database.png)
 
-5. 在查詢視窗中，執行下列查詢來傳回 sqladmin 使用者權限的相關資訊。 請注意，sqladmin 擁有連線到主要資料庫、建立登入和使用者、從 sys.sql_logins 資料表選取資訊，以及將使用者新增至 dbmanager 和 dbcreator 資料庫角色的權限。 除了這些權限，也會有所有使用者都會從中繼承權限之公用角色所能獲得的權限 (例如，從特定資料表中選取資訊的權限)。 如需詳細資訊，請參閱[權限](https://msdn.microsoft.com/library/ms191291.aspx)。
+7. 在查詢視窗中，執行下列查詢，以傳回 **master**資料庫中有關 sqladmin 使用者權限的相關資訊。 
 
    ```
    SELECT prm.permission_name
@@ -134,13 +132,17 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
 
    ![主要資料庫中的伺服器管理員權限](./media/sql-database-control-access-sql-authentication-get-started/server_admin_permissions_in_master_database.png)
 
-6. 在 [物件總管] 中，依序展開 [blankdb]、[安全性] 和 [使用者]。 請注意，在此資料庫中，沒有名稱為 sqladmin 的使用者帳戶。
+   >[!NOTE]
+   > 伺服器管理員有權限連接到 master 資料庫、建立登入和使用者、從 sys.sql_logins 資料表選取資訊，以及將使用者新增至 dbmanager 和 dbcreator 資料庫角色。 除了這些權限，也會有所有使用者都會從中繼承權限之公用角色所能獲得的權限 (例如，從特定資料表中選取資訊的權限)。 如需詳細資訊，請參閱[權限](https://msdn.microsoft.com/library/ms191291.aspx)。
+   >
+
+8. 在 [物件總管] 中，依序展開 [blankdb]、[安全性] 和 [使用者]，以檢視此資料庫中 (以及每個使用者資料庫中) 為伺服器管理登入建立的使用者帳戶。
 
    ![blankdb 中的使用者帳戶](./media/sql-database-control-access-sql-authentication-get-started/user_accounts_in_blankdb.png)
 
-7. 在 [物件總管] 中，以滑鼠右鍵按一下 [blankdb]，然後按一下 [新增查詢]。
+9. 在 [物件總管] 中，以滑鼠右鍵按一下 [blankdb]，然後按一下 [新增查詢]。
 
-8. 在查詢視窗中，執行下列查詢來傳回執行查詢之使用者的相關資訊。 請注意，執行此查詢的使用者帳戶會傳回 dbo (依預設，伺服器管理員登入會對應到每個使用者資料庫的 dbo 使用者帳戶)。
+10. 在查詢視窗中，執行下列查詢來傳回執行查詢之使用者的相關資訊。
 
    ```
    SELECT USER;
@@ -148,7 +150,7 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
 
    ![在 blankdb 資料庫中選取使用者查詢](./media/sql-database-control-access-sql-authentication-get-started/select_user_query_in_blankdb_database.png)
 
-9. 在查詢視窗中，執行下列查詢來傳回 dbo 使用者權限的相關資訊。 請注意，dbo 既是公用角色的成員，也是 db_owner 固定資料庫角色的成員。 如需詳細資訊，請參閱[資料庫層級角色](https://msdn.microsoft.com/library/ms189121.aspx)。
+11. 在查詢視窗中，執行下列查詢來傳回 dbo 使用者權限的相關資訊。 
 
    ```
    SELECT prm.permission_name
@@ -170,26 +172,28 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
 
    ![blankdb 資料庫中的伺服器管理員權限](./media/sql-database-control-access-sql-authentication-get-started/server_admin_permissions_in_blankdb_database.png)
 
-10. (選擇性) 針對 AdventureWorksLT 使用者資料庫重複前面的三個步驟。
+   > [!NOTE]
+   > dbo 使用者是 public 角色的成員，也是 db_owner 固定資料庫角色的成員。 如需詳細資訊，請參閱[資料庫層級角色](https://msdn.microsoft.com/library/ms189121.aspx)。
+   >
 
-## <a name="create-a-new-user-in-the-adventureworkslt-database-with-select-permissions"></a>在 AdventureWorksLT 資料庫中建立具有 SELECT 權限的新使用者
+## <a name="create-a-new-user-with-select-permissions"></a>建立具有 SELECT 權限的新使用者
 
-在這一節的教學課程中，您會在 AdventureWorksLT 資料庫中建立使用者帳戶、以公用角色成員的身分測試這位使用者的權限、對這位使用者授與 SELECT 權限，然後再測試一次這位使用者的權限。
+此程序中的步驟示範如何建立資料庫層級使用者、測試新使用者的預設權限 (透過 public 角色)、將 **SELECT** 權限授與使用者，然後檢視這些已修改的權限。
 
 > [!NOTE]
-> 資料庫層級使用者 ([自主使用者](https://msdn.microsoft.com/library/ff929188.aspx)) 可增加資料庫的可攜性，我們會在稍後的教學課程中探究此功能。
+> 資料庫層級使用者也稱為[自主使用者](https://msdn.microsoft.com/library/ff929188.aspx)，可提高資料庫的可攜性。 如需可攜性優點的相關資訊，請參閱[針對異地還原或容錯移轉至次要伺服器，設定和管理 Azure SQL Database 安全性](sql-database-geo-replication-security-config.md)。
 >
 
-1. 在 [物件總管] 中，以滑鼠右鍵按一下 [AdventureWorksLT]，然後按一下 [新增查詢] 以開啟連線到 AdventureWorksLT 資料庫的查詢視窗。
-2. 執行下列陳述式，以在 AdventureWorksLT 資料庫中建立名為 user1 的使用者。
+1. 在 [物件總管] 中，以滑鼠右鍵按一下 [sqldbtutorialdb]，然後按一下 [新增查詢]。
+2. 在查詢視窗中執行下列陳述式，以在 sqldbtutorialdb 資料庫中建立名為 **user1** 的使用者。
 
    ```
    CREATE USER user1
    WITH PASSWORD = 'p@ssw0rd';
    ```
-   ![新增使用者 user1 AdventureWorksLT](./media/sql-database-control-access-sql-authentication-get-started/new_user_user1_aw.png)
+   ![新使用者 user1 sqldbtutorialdb](./media/sql-database-control-access-sql-authentication-get-started/new_user_user1_aw.png)
 
-3. 在查詢視窗中，執行下列查詢來傳回 user1 權限的相關資訊。 請注意，user1 唯一具有的權限是繼承自公用角色的權限。
+3. 在查詢視窗中，執行下列查詢來傳回 user1 權限的相關資訊。
 
    ```
    SELECT prm.permission_name
@@ -211,7 +215,11 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
 
    ![使用者資料庫中的新使用者權限](./media/sql-database-control-access-sql-authentication-get-started/new_user_permissions_in_user_database.png)
 
-4. 執行下列查詢，嘗試以 user1 身分查詢 AdventureWorksLT 資料庫中的資料表。
+   > [!NOTE]
+   > 資料庫中的新使用者只有繼承自 public 角色的權限。
+   >
+
+4. 使用 **EXECUTE AS USER** 陳述式，以 **user1** 身分 (只具有繼承自 public 角色的權限) 執行下列查詢，嘗試查詢 sqldbtutorialdb 資料庫中的 SalesLT.ProductCategory 資料表。
 
    ```
    EXECUTE AS USER = 'user1';  
@@ -221,7 +229,11 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
 
    ![沒有 select 權限](./media/sql-database-control-access-sql-authentication-get-started/no_select_permissions.png)
 
-5. 執行下列陳述式，對 user1 授與 SalesLT 結構描述中 ProductCategory 資料表的 SELECT 權限。
+   > [!NOTE]
+   > 根據預設，public 角色不會授與使用者物件的 **SELECT** 權限。
+   >
+
+5. 執行下列陳述式，將 SalesLT.ProductCategory 資料表的 **SELECT** 權限授與 **user1**。
 
    ```
    GRANT SELECT ON OBJECT::[SalesLT].[ProductCategory] to user1;
@@ -229,7 +241,7 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
 
    ![授與 select 權限](./media/sql-database-control-access-sql-authentication-get-started/grant_select_permissions.png)
 
-6. 執行下列查詢，嘗試以 user1 身分查詢 AdventureWorksLT 資料庫中的資料表。
+6. 執行下列查詢，以 **user1** 身分成功查詢 sqldbtutorialdb 資料庫中的 SalesLT.ProductCategory 資料表。
 
    ```
    EXECUTE AS USER = 'user1';  
@@ -239,70 +251,67 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
 
    ![select 權限](./media/sql-database-control-access-sql-authentication-get-started/select_permissions.png)
 
-## <a name="create-a-database-level-firewall-rule-for-an-adventureworkslt-database-user"></a>為 AdventureWorksLT 資料庫使用者建立資料庫層級的防火牆規則
+## <a name="create-a-database-level-firewall-rule-using-t-sql"></a>使用 T-SQL 建立資料庫層級防火牆規則
 
-在這一節的教學課程中，您會嘗試從電腦使用不同的 IP 位址進行登入、以伺服器管理員身分建立資料庫層級的防火牆規則，然後使用這個新的資料庫層級防火牆規則進行登入。 
+此程序中的步驟示範如何使用 [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) 系統預存程序，建立資料庫層級防火牆規則。 資料庫層級防火牆規則可讓伺服器管理員只針對特定的資料庫，才允許使用者通過 Azure SQL Database 防火牆。
 
 > [!NOTE]
-> [資料庫層級防火牆規則](sql-database-firewall-configure.md)可增加資料庫的可攜性，我們會在稍後的教學課程中探究此功能。
+> [資料庫層級防火牆規則](sql-database-firewall-configure.md)可提高資料庫的可攜性。 如需可攜性優點的相關資訊，請參閱[針對異地還原或容錯移轉至次要伺服器，設定和管理 Azure SQL Database 安全性](sql-database-geo-replication-security-config.md)。
 >
 
-1. 在另一部尚未建立伺服器層級防火牆規則的電腦上，開啟 SQL Server Management Studio。
+> [!IMPORTANT]
+> 若要測試資料庫層級防火牆規則，從另一部電腦連接 (或在 Azure 入口網站中刪除伺服器層級防火牆規則)。
+>
 
-   > [!IMPORTANT]
-   > 請一律使用[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) 上的最新版 SSMS。 
-   >
+1. 在沒有伺服器層級防火牆規則的電腦上，開啟 SQL Server Management Studio。
 
-2. 在 [連線到伺服器] 視窗中輸入伺服器名稱和驗證資訊，以使用 SQL Server 驗證和 user1 帳戶進行連線。 
+2. 在 [連接到伺服器] 視窗中，輸入伺服器名稱和驗證資訊，以使用 SQL Server 驗證和 **user1** 帳戶進行連線。 
     
    ![以 user1 身分連線，沒有防火牆規則&1;](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_no_rule1.png)
 
-3. 按一下 [選項] 來指定所要連線到的資料庫，然後在 [連接屬性] 索引標籤的 [連線到資料庫] 下拉式方塊中輸入 **AdventureWorksLT**。
+3. 按一下 [選項] 指定您要連線的資料庫，然後在 [連線屬性] 索引標籤的 [連線到資料庫] 下拉式方塊中，輸入 **sqldbtutorialdb**。
    
    ![以 user1 身分連線，沒有防火牆規則&2;](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_no_rule2.png)
 
-4. 按一下 [ **連接**]。 隨即會出現對話方塊，通知您嘗試用來連線到 SQL Database 的電腦沒有可存取資料庫的防火牆規則。 視您先前對防火牆採取的步驟而定，您可能收到兩種對話方塊，但所顯示的通常是第一種對話方塊。
+4. 按一下 [ **連接**]。 
 
-   ![以 user1 身分連線，沒有防火牆規則&3;](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_no_rule3.png)
+   隨即會出現對話方塊，通知您嘗試用來連線到 SQL Database 的電腦沒有可存取資料庫的防火牆規則。 
 
    ![以 user1 身分連線，沒有防火牆規則&4;](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_no_rule4.png)
 
-   > [!NOTE]
-   > 最新版 SSMS 包括可讓訂用帳戶擁有者和參與者登入 Microsoft Azure，並建立伺服器層級防火牆規則的功能。
-   > 
 
-4. 複製此對話方塊中的用戶端 IP 位址，以在步驟 7 中使用。
-5. 按一下 [取消]，但不要關閉 [連線到伺服器] 對話方塊。
-6. 切換回到您已建立伺服器層級防火牆規則的電腦，然後使用伺服器管理帳戶連線到伺服器。
-7. 在以伺服器管理員身分連線到 AdventureWorksLT 資料庫的新查詢視窗中，執行下列陳述式來建立資料庫層級的防火牆，方法是使用步驟 4 中的 IP 位址執行 [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx)︰
+5. 複製此對話方塊中的用戶端 IP 位址，以在步驟 8 中使用。
+6. 按一下 [確定] 關閉錯誤對話方塊，但不要關閉 [連接到伺服器] 對話方塊。
+7. 切換回到您已建立伺服器層級防火牆規則的電腦。 
+8. 在 SSMS 中，以伺服器管理員身分連接到 sqldbtutorialdb 資料庫，然後執行下列陳述式，使用步驟 5 中的 IP 位址 (或位址範圍) 建立資料庫層級防火牆。  
 
    ```
-   EXEC sp_set_database_firewall_rule @name = N'AdventureWorksLTFirewallRule', 
+   EXEC sp_set_database_firewall_rule @name = N'sqldbtutorialdbFirewallRule', 
      @start_ip_address = 'x.x.x.x', @end_ip_address = 'x.x.x.x';
    ```
 
    ![新增防火牆規則](./media/sql-database-control-access-sql-authentication-get-started/user1_add_rule_aw.png)
 
-8. 再次切換電腦，然後按一下 [連線到伺服器] 對話方塊中的 [連線]，以 user1 身分連線到 AdventureWorksLT。 
+9. 再次切換電腦，然後按一下 [連接到伺服器] 對話方塊中的 [連接]，以 user1 身分連接到 sqldbtutorialdb。 
+
+   > [!NOTE]
+   > 建立資料庫層級防火牆規則之後，可能需要經過將近 5 分鐘才會生效。
+   >
+
+10. 成功連接之後，展開 [物件總管] 中的 [資料庫]。 請注意，**user1** 只能檢視 **sqldbtutorialdb** 資料庫。
 
    ![以 user1 身分連線，有防火牆規則&1;](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_rule1.png)
 
-9. 在 [物件總管] 中，依序展開 [資料庫]、[AdventureWorksLT]和 [資料表]。 請注意，user1 只擁有檢視單一資料表 (**SalesLT.ProductCategory** 資料表) 的權限。 
+11. 展開 [sqldbtutorialdb]，然後展開 [資料表]。 請注意，user1 只擁有檢視單一資料表 (**SalesLT.ProductCategory** 資料表) 的權限。 
 
    ![以 user1 身分連線，並檢視 objects1](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_view_objects1.png)
 
-10. 在 [物件總管] 中，以滑鼠右鍵按一下 [SalesLT.ProductCategory]，然後按一下 [選取前 1000 個資料列]。   
+## <a name="create-a-new-user-as-dbowner-and-a-database-level-firewall-rule"></a>建立新的使用者做為 db_owner 和資料庫層級防火牆規則
 
-   ![user1 query1](./media/sql-database-control-access-sql-authentication-get-started/user1_query1.png)
+此程序中的步驟示範如何在另一個資料庫中，建立具有 db_owner 資料庫角色權限的使用者，並為這個另外的資料庫建立資料庫層級防火牆。 這個具有 **db_owner** 角色成員資格的新使用者，只能連接和管理這單一資料庫。
 
-   ![user1 query1 結果](./media/sql-database-control-access-sql-authentication-get-started/user1_query1_results.png)
-
-## <a name="create-a-new-user-in-the-blankdb-database-with-dbowner-database-role-permissions-and-a-database-level-firewall-rule"></a>在 blankdb 資料庫中建立具有 db_owner 資料庫角色權限的新使用者和資料庫層級的防火牆規則
-
-在這一節的教學課程中，您會在 blankdb 資料庫中建立具有 db_owner 資料庫角色權限的使用者，並使用伺服器管理帳戶為這個資料庫建立資料庫層級的防火牆。 
-
-1. 切換到使用伺服器管理帳戶連線到 SQL Database 的電腦。
-2. 開啟連線到 blankdb 資料庫的查詢視窗，然後執行下列陳述式，在 blankdb 資料庫中建立名為 blankdbadmin 的使用者。
+1. 切換到使用伺服器管理帳戶連線 SQL Database 的電腦。
+2. 開啟已連接到 **blankdb** 資料庫的查詢視窗，然後執行下列陳述式，在 blankdb 資料庫中建立名為 blankdbadmin 的使用者。
 
    ```
    CREATE USER blankdbadmin
@@ -330,17 +339,21 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
    WITH PASSWORD = 'p@ssw0rd';
    ```
  
-7. 視學習環境的需要，針對這位使用者建立其他的資料庫層級防火牆規則。 
+7. 視學習環境的需要，針對這位使用者建立其他的資料庫層級防火牆規則。 不過，如果您使用 IP 位址範圍建立資料庫層級防火牆規則，可能就不需要這樣做。
 
-## <a name="create-a-new-login-and-user-in-the-master-database-with-dbmanager-permissions-and-create-a-server-level-firewall-rule"></a>在主要資料庫中建立具有 dbmanager 權限的新登入和使用者，然後建立伺服器層級的防火牆規則
+## <a name="grant-dbmanager-permissions-and-create-a-server-level-firewall-rule"></a>將權限授與 dbmanager 和建立伺服器層級防火牆規則
 
-在這一節的教學課程中，您會在主要資料庫中建立具有權限來建立和管理新使用者資料庫的登入和使用者。 您也會使用 Transact-SQL 與 [sp_set_firewall_rule](https://msdn.microsoft.com/library/dn270017.aspx) 建立其他的伺服器層級防火牆規則。
+此程序中的步驟示範如何在 master 資料庫中建立登入和使用者，而且該使用者有權限建立和管理新的使用者資料庫。 這些步驟也示範如何使用 Transact-SQL 和 [sp_set_firewall_rule](https://msdn.microsoft.com/library/dn270017.aspx)，建立另一個伺服器層級防火牆規則。 
 
-> [!NOTE]
-> 必須在主要資料庫中建立登入並透過該登入建立使用者帳戶，才能讓伺服器管理帳戶持有者對其他使用者委派建立資料庫的權限。 不過，建立登入並透過登入建立使用者會降低環境的可攜性，我們會在稍後的教學課程中探究其後果，包括如何在規劃災害復原時加以預測及處理。
+> [!IMPORTANT]
+>第一個伺服器層級防火牆規則一定要在 Azure 中建立 (在 Azure 入口網站中、使用 PowerShell 或 REST API)。
 >
 
-1. 切換到使用伺服器管理帳戶連線到 SQL Database 的電腦。
+> [!IMPORTANT]
+> 必須在 master 資料庫中建立登入，再從登入建立使用者帳戶，伺服器管理員才能將建立資料庫的權限，委派給其他使用者。 不過，如果建立登入，再從登入建立使用者，這樣會降低環境的可攜性。
+>
+
+1. 切換到使用伺服器管理帳戶連線 SQL Database 的電腦。
 2. 開啟連線到主要資料庫的查詢視窗，然後執行下列陳述式，在主要資料庫中建立名為 dbcreator 的登入。
 
    ```
@@ -361,7 +374,7 @@ ms.openlocfilehash: 275a33567fa1472573bc8abc87948ad306e853f0
    ALTER ROLE dbmanager ADD MEMBER dbcreator; 
    ```
 
-4. 在相同的查詢視窗中，執行下列查詢來建立伺服器層級的防火牆，方法是使用適合您環境的 IP 位址執行 [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx)︰
+4. 在相同的查詢視窗中，執行下列查詢，使用適合環境的 IP 位址執行 [sp_set_firewall_rule](https://msdn.microsoft.com/library/dn270017.aspx)，以建立伺服器層級防火牆︰
 
    ```
    EXEC sp_set_firewall_rule @name = N'dbcreatorFirewallRule', 
@@ -395,13 +408,13 @@ EXEC sp_set_firewall_rule @name = N'dbcreatorFirewallRule',
      @start_ip_address = 'x.x.x.x', @end_ip_address = 'x.x.x.x';
 ```
 
-### <a name="adventureworkslt-database"></a>AdventureWorksLT 資料庫
-使用伺服器管理帳戶，並新增適當的 IP 位址或範圍，以在 AdventureWorksLT 資料庫中執行這些陳述式。
+### <a name="sqldbtutorialdb-database"></a>sqldbtutorialdb 資料庫
+使用伺服器管理帳戶，並新增適當的 IP 位址或範圍，以在 sqldbtutorialdb 資料庫中執行這些陳述式。
 
 ```
 CREATE USER user1 WITH PASSWORD = 'p@ssw0rd';
 GRANT SELECT ON OBJECT::[SalesLT].[ProductCategory] to user1;
-EXEC sp_set_database_firewall_rule @name = N'AdventureWorksLTFirewallRule', 
+EXEC sp_set_database_firewall_rule @name = N'sqldbtutorialdbFirewallRule', 
      @start_ip_address = 'x.x.x.x', @end_ip_address = 'x.x.x.x';
 ```
 
@@ -424,11 +437,6 @@ CREATE USER blankdbuser1
 - 如需資料庫主體的詳細資訊，請參閱[主體](https://msdn.microsoft.com/library/ms181127.aspx)。
 - 如需資料庫角色的詳細資訊，請參閱[資料庫角色](https://msdn.microsoft.com/library/ms189121.aspx)。
 - 如需 SQL Database 中防火牆規則的詳細資訊，請參閱 [SQL Database 防火牆規則](sql-database-firewall-configure.md)。
-- 如需使用 Azure Active Directory 驗證的教學課程，請參閱 [SQL Database 教學課程︰AAD 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
+- 如需使用 Azure Active Directory 驗證的教學課程，請參閱 [Azure AD 驗證和授權](sql-database-control-access-aad-authentication-get-started.md)。
 
 
