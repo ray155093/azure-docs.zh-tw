@@ -17,6 +17,7 @@ ms.author: robinsh
 translationtype: Human Translation
 ms.sourcegitcommit: 3203358dce9cba95d325ec786e7ba12dd45f5ca1
 ms.openlocfilehash: eb9e9ca5082559ee0e30ea67bf53229d38f81589
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -158,10 +159,5 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 * [設定 Azure 儲存體連接字串](storage-configure-connection-string.md)
 * [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 * 造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)(英文)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

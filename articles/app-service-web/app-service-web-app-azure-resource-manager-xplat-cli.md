@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 09/29/2016
 ms.author: aelnably
 translationtype: Human Translation
-ms.sourcegitcommit: f595be46983bf07783b529de885d889c18fdb61a
-ms.openlocfilehash: 6f75781af24d1ad4cb6460f0dfd528684aaad57f
+ms.sourcegitcommit: 5ea7095e12b6194556d3cd0baa43ccfed1e087ee
+ms.openlocfilehash: 7a03e1417617453c43edcc3787da10d171359757
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: 6f75781af24d1ad4cb6460f0dfd528684aaad57f
 若要了解如何管理資源群組，請參閱[使用 Azure CLI 管理 Azure 資源和資源群組](../azure-resource-manager/xplat-cli-azure-resource-manager.md)。 
 
 > [!NOTE] 
-> 此外，嘗試 [Azure CLI 2.0 (預覽)](https://github.com/Azure/azure-cli)，以 Python 撰寫，是新一代的 CLI，可供資源管理部署模型使用。
+> 此外，請試用以 Python 所撰寫、可供資源管理部署模型使用的新一代 CLI [Azure CLI 2.0](https://github.com/Azure/azure-cli)。
 >
 >
 
@@ -178,9 +179,4 @@ ms.openlocfilehash: 6f75781af24d1ad4cb6460f0dfd528684aaad57f
 * 若要了解 Azure Resource Manager 支援，請參閱[使用 Azure CLI 管理 Azure 資源和資源群組](../azure-resource-manager/xplat-cli-azure-resource-manager.md)。
 * 若要了解如何使用 PowerShell 管理 App Service，請參閱[使用 Azure Resource Manager 架構 PowerShell 來管理 Azure Web Apps。](app-service-web-app-azure-resource-manager-powershell.md)
 * 若要了解 Linux 上的 Azure App Service，請參閱 [Linux 上的 App Service 簡介](app-service-linux-intro.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

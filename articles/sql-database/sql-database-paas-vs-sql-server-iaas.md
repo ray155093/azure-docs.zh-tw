@@ -17,8 +17,9 @@ ms.topic: get-started-article
 ms.date: 02/01/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 7402249aa87ffe985ae13f28a701e22af3afd450
-ms.openlocfilehash: a2e65de2ec77da9005cea18876fd86fd2928b9da
+ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
+ms.openlocfilehash: bdcf28703f007d32144278c7f0956fe4c27c3b27
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -142,14 +143,8 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 * 您有現有的 IT 資源，且最終可以擁有修補、備份和資料庫高可用性。 請注意，某些自動化功能大幅簡化了這些作業。 
 
 ## <a name="next-steps"></a>後續步驟
-* 請參閱 [SQL Database 教學課程：使用 Azure 入口網站在幾分鐘內建立 SQL Database](sql-database-get-started.md) 以開始使用 SQL Database。
+* 若要開始使用 SQL Database，請參閱[您的第一個 Azure SQL Database](sql-database-get-started.md)。
 * 請參閱 [SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)。
 * 請參閱 [在 Azure 中佈建 SQL Server 虛擬機器](../virtual-machines/windows/sql/virtual-machines-windows-portal-sql-server-provision.md) 以開始使用 Azure VM 上的 SQL Server。
-* 請參閱 [Azure 虛擬機器上的 SQL Server：學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

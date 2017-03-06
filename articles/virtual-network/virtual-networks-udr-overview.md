@@ -1,10 +1,10 @@
 ---
-title: "什麼是使用者定義路由和 IP 轉送？"
-description: "了解如何使用使用者定義路由 (UDR) 和 IP 轉送以將流量轉送至 Azure 中的網路虛擬應用裝置。"
+title: "Azure 中的使用者定義路由和 IP 轉送 | Microsoft Docs"
+description: "了解如何在 Azure 中設定使用者定義的路由 (UDR) 和 IP 轉送，以將流量轉送至網路虛擬應用裝置。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: c39076c4-11b7-4b46-a904-817503c4b486
 ms.service: virtual-network
@@ -14,13 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: d0b8e8ec88c39ce18ddfd6405faa7c11ab73f878
-ms.openlocfilehash: 673ce33f0f0836c3df3854b0e6368a6215ee6f5f
+ms.sourcegitcommit: c9996d2160c4082c18e9022835725c4c7270a248
+ms.openlocfilehash: 555939d6181d43d89a2d355744b74887d41df6ff
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="what-are-user-defined-routes-and-ip-forwarding"></a>什麼是使用者定義路由和 IP 轉送？
+# <a name="user-defined-routes-and-ip-forwarding"></a>使用者定義的路由和 IP 轉送
+
 當您在 Azure 中將虛擬機器 (VM) 新增到虛擬網路 (VNet) 時，您會發現 VM 能自動透過網路彼此通訊。 您不需要指定閘道，即使 VM 位於不同子網路。 VM 到公開網際網路的通訊同樣適用，甚至當存在 Azure 到您的資料中心的混合連線時，也適用於您的內部網路。
 
 這個通訊流程是可能的，因為 Azure 會使用一連串系統路由來定義 IP 流量流動的方式。 系統路由控制下列案例的通訊流程：
@@ -32,7 +35,7 @@ ms.openlocfilehash: 673ce33f0f0836c3df3854b0e6368a6215ee6f5f
 * 透過 VNet 對等互連 (服務鏈結)，從 VNet 到另一個 VNet。
 * 透過 VPN 閘道從 VNet 到您的內部網路。
 
-下圖顯示 1 個 Vnet、2 個子網路和一些 VM，以及允許 IP 流量流動的系統路由的簡易安裝。
+下圖顯示&1; 個 Vnet、2 個子網路和一些 VM，以及允許 IP 流量流動的系統路由的簡易安裝。
 
 ![Azure 中的系統路由](./media/virtual-networks-udr-overview/Figure1.png)
 
@@ -53,8 +56,8 @@ ms.openlocfilehash: 673ce33f0f0836c3df3854b0e6368a6215ee6f5f
 | 屬性 | 說明 | 條件約束 | 考量 |
 | --- | --- | --- | --- |
 | 位址首碼 |路由所套用的目的地 CIDR，例如 10.1.0.0/16。 |必須為代表公用網際網路、Azure 虛擬網路或內部部署資料中心上之位址的有效 CIDR 範圍。 |請確定 [位址首碼] 未包含 [下一個躍點位址] 的位址，否則您的封包將會進入來源與下一個躍點所形成的迴圈，而永遠不會抵達目的地。 |
-| 下一個躍點類型 |要接收封包的 Azure 躍點的類型。 |必須為下列其中一個值： <br/> **虛擬網路**。 代表本機虛擬網路。 例如，如果您在相同的虛擬網路中有兩個子網路 (分別是 10.1.0.0/16 和 10.2.0.0/16)，則路由表中每個子網路的路由的下一個躍點值為「虛擬網路」 。 <br/> **虛擬網路閘道**。 代表 Azure S2S VPN 閘道。 <br/> **網際網路**。 代表 Azure 基礎結構所提供的預設網際網路閘道。 <br/> **虛擬應用裝置**。 代表您新增至 Azure 虛擬網路的虛擬應用裝置。 <br/> **無**。 代表黑洞。 轉送至黑洞的封包將完全不會被轉送。 |請考慮使用 [無]  類型來阻止封包流向指定目的地。 |
-| 下一個躍點位址 |下一個躍點位址包含應該要將封包轉送到哪個 IP 位址。 只有在下一個躍點類型為虛擬應用裝置 所在的路由中，才允許下一個躍點值。 |必須為當中套用使用者定義路由的虛擬網路內可連線的 IP 位址。 |如果 IP 位址代表 VM，請確定您已在 Azure 中啟用 VM 的 [IP 轉送](#IP-forwarding) 。 |
+| 下一個躍點類型 |要接收封包的 Azure 躍點的類型。 |必須為下列其中一個值： <br/> **虛擬網路**。 代表本機虛擬網路。 例如，如果您在相同的虛擬網路中有兩個子網路 (分別是 10.1.0.0/16 和 10.2.0.0/16)，則路由表中每個子網路的路由的下一個躍點值為「虛擬網路」 。 <br/> **虛擬網路閘道**。 代表 Azure S2S VPN 閘道。 <br/> **網際網路**。 代表 Azure 基礎結構所提供的預設網際網路閘道。 <br/> **虛擬應用裝置**。 代表您新增至 Azure 虛擬網路的虛擬應用裝置。 <br/> **無**。 代表黑洞。 轉送至黑洞的封包將完全不會被轉送。 |請考慮使用「虛擬應用裝置」將流量導向 VM 或 Azure Load Balancer 內部 IP 位址。  此類型允許使用如以下所述的 IP 位址規格。 請考慮使用 [無]  類型來阻止封包流向指定目的地。 |
+| 下一個躍點位址 |下一個躍點位址包含應該要將封包轉送到哪個 IP 位址。 只有在下一個躍點類型為虛擬應用裝置 所在的路由中，才允許下一個躍點值。 |必須為當中套用使用者定義路由的虛擬網路內可連線的 IP 位址。 |如果 IP 位址代表 VM，請確定您已在 Azure 中啟用 VM 的 [IP 轉送](#IP-forwarding) 。 如果 IP 位址代表 Azure Load Balancer 的內部 IP 位址，請確定您想要負載平衡的每個連接埠都有對應的負載平衡規則。|
 
 在 Azure PowerShell 中，有些 "NextHopType" 值有不同的名稱︰
 
@@ -108,10 +111,5 @@ ms.openlocfilehash: 673ce33f0f0836c3df3854b0e6368a6215ee6f5f
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [在資源管理員部署模型中建立路由](virtual-network-create-udr-arm-template.md) 並將其關聯至子網路。 
 * 了解如何 [在傳統部署模型中建立路由](virtual-network-create-udr-classic-ps.md) 並將其關聯至子網路。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

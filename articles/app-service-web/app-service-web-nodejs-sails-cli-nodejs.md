@@ -4,7 +4,7 @@ description: "了解如何將 Node.js 應用程式部署到 Azure App Service。
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 8877ddc8-1476-45ae-9e7f-3c75917b4564
 ms.service: app-service-web
@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 08b4cd3fe4a246bc62fb4a6cc596630968d7f9d7
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: 9d43405539ced1dadcaa0cb11bb0c3dd42dee2b9
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -39,7 +40,7 @@ ms.openlocfilehash: 08b4cd3fe4a246bc62fb4a6cc596630968d7f9d7
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 - [Azure CLI 1.0](app-service-web-nodejs-sails-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0 (預覽)](app-service-web-nodejs-sails.md) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](app-service-web-nodejs-sails.md) - 適用於資源管理部署模型的新一代 CLI
 
 ## <a name="prerequisites"></a>必要條件
 * [Node.js](https://nodejs.org/)
@@ -258,9 +259,4 @@ ms.openlocfilehash: 08b4cd3fe4a246bc62fb4a6cc596630968d7f9d7
 ## <a name="more-resources"></a>其他資源
 * [在 Azure App Service 中開始使用 Node.js Web 應用程式](app-service-web-nodejs-get-started.md)
 * [使用 Node.js 模組與 Azure 應用程式搭配](../nodejs-use-node-modules-azure-apps.md)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

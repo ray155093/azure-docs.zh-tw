@@ -10,14 +10,15 @@ tags: azure-resource-manager
 ms.assetid: f38f8a44-6c88-4490-a84a-46388212d24c
 ms.service: virtual-machines-linux
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: 
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 01/19/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 1cbc3534aa0415a14d8b955dbcd291d2200c276e
-ms.openlocfilehash: 2ffc8d1f8ec924914c624f882bf35a08f0dd5888
+ms.sourcegitcommit: 67d4fee2fc59651903d4c02d1fce84c7b81e5da1
+ms.openlocfilehash: e038515302acc4871687ad592c44fcf9a352bfe6
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -27,8 +28,8 @@ ms.openlocfilehash: 2ffc8d1f8ec924914c624f882bf35a08f0dd5888
 ## <a name="azure-cli"></a>Azure CLI
 您可以在 Azure 中使用下列其中一個 CLI 版本建立 VM︰
 
-- Azure CLI 1.0 – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0 (預覽)](virtual-machines-linux-creation-choices.md) - 適用於資源管理部署模型的新一代 CLI
+- Azure CLI 1.0 - 適用於傳統和資源管理部署模型 (本文) 的 CLI
+- [Azure CLI 2.0](virtual-machines-linux-creation-choices.md) - 適用於資源管理部署模型的新一代 CLI
 
 Azure CLI 1.0 可透過 npm 套件、散發版本提供的套件或 Docker 容器，跨平台適用。 您可以深入了解 [如何安裝和設定 Azure CLI](../xplat-cli-install.md)。 下列教學課程提供有關使用 Azure CLI 1.0 的範例。 如需以下 CLI 快速入門命令的詳細資訊，請閱讀每篇文章：
 
@@ -130,10 +131,5 @@ azure vm image list --location WestUS --publisher Canonical --offer UbuntuServer
 * 透過[入口網站](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、[CLI](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Azure Resource Manager 範本](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)建立 Linux VM。
 * 在建立 Linux VM 後， [新增資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 * [重設密碼或 SSH 金鑰及管理使用者](virtual-machines-linux-using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

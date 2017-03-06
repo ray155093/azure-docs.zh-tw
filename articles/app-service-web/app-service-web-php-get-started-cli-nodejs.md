@@ -4,7 +4,7 @@ description: "示範如何在 Azure App Service 中執行 PHP (Laravel) Web 應�
 services: app-service\web
 documentationcenter: php
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 tags: mysql
 ms.assetid: cb73859d-48aa-470a-b486-d984746d6d26
@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 4e1c3e8fa45f4ef4ee7df7e6bc9ea4aa4fe1b1aa
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: 7877662f43b83d6d60c3ef836d14b291245d8d42
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -43,7 +44,7 @@ ms.openlocfilehash: 4e1c3e8fa45f4ef4ee7df7e6bc9ea4aa4fe1b1aa
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 - [Azure CLI 1.0](app-service-web-php-get-started-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0 (預覽)](app-service-web-php-get-started.md) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](app-service-web-php-get-started.md) - 適用於資源管理部署模型的新一代 CLI
 
 ## <a name="prerequisites"></a>必要條件
 * [PHP 5.6.29](http://php.net/downloads.php)
@@ -250,10 +251,5 @@ ms.openlocfilehash: 4e1c3e8fa45f4ef4ee7df7e6bc9ea4aa4fe1b1aa
 * [在 Azure App Service Web Apps 中設定 PHP](web-sites-php-configure.md)
 * [在 Azure App Service 中將 WordPress 轉換成多站台](web-sites-php-convert-wordpress-multisite.md)
 * [Azure App Service 上的企業級 WordPress](web-sites-php-enterprise-wordpress.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

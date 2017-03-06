@@ -17,6 +17,7 @@ ms.author: jodehavi;stgriffi
 translationtype: Human Translation
 ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
 ms.openlocfilehash: cc872e8d9bc0662f46d5f394f9c98885e34fe67a
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -437,9 +438,4 @@ static string GetContainerSasUri(CloudBlockBlob blob)
 針對動作選擇 [Office 365 - 傳送電子郵件] 。 填寫欄位，以建立定義的條件傳回 **false** 時要傳送的電子郵件。 如果您沒有 Office 365，您可以查看能夠達到相同結果的替代方案。
 
 此時，您已擁有端對端管線，它會每分鐘尋找是否有新的金鑰保存庫稽核記錄檔一次。 它會將找到的新記錄檔推送至服務匯流排佇列。 新訊息放入佇列時就會觸發邏輯應用程式。 如果事件中的 *appid* 不符合呼叫端應用程式的應用程式識別碼，則會傳送電子郵件。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

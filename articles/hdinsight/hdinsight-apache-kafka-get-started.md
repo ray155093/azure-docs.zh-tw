@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: f592dc23938c436e803c7a0d8f7fd2dd5b4185c8
 ms.openlocfilehash: 3b645725b88b33e7283ce2bf89383b285d75cddc
+ms.lasthandoff: 02/15/2017
 
 ---
 # <a name="get-started-with-apache-kafka-preview-on-hdinsight"></a>開始使用 Apache Kafka (預覽) on HDInsight
@@ -350,10 +351,5 @@ Kafka 中儲存的記錄會依照其在資料分割內接收的順序儲存。 �
 * [使用 MirrorMaker 建立 Apache Kafka on HDInsight 複本](hdinsight-apache-kafka-mirroring.md)
 * [使用 Apache Storm 搭配 HDInsight 上的 Kafka](hdinsight-apache-storm-with-kafka.md)
 * [使用 Apache Spark 搭配 HDInsight 上的 Kafka](hdinsight-apache-spark-with-kafka.md)
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

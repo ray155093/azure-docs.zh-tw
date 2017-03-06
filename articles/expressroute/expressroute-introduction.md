@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/09/2017
+ms.date: 02/28/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 6aed200529f8f21f15d9b77a403f9ef07582d449
-ms.openlocfilehash: 975c8fbc9afdc7b01da85f56a075aa44dade9dde
+ms.sourcegitcommit: 280a17677714a522ca978a6eb6baf3e70f853d7a
+ms.openlocfilehash: 5b0865310076557c8f7ce6f9d9b553950854407c
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -35,7 +36,7 @@ Microsoft Azure ExpressRoute 可讓您透過連線提供者所提供的專用私
 * 網路與 Microsoft 之間透過業界標準通訊協定 (BGP) 的動態路由。
 * 每個對等位置有內建的備援性，可靠性更高。
 * 連線執行時間 [SLA](https://azure.microsoft.com/support/legal/sla/)。
-* QoS 且支援特殊應用程式的多種服務類別，例如商務用 Skype。
+* 商務用 Skype 的 QoS 支援。
 
 如需詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
@@ -108,8 +109,4 @@ Microsoft 為特殊的地理政治地區和客戶群提供隔離的雲端環境�
   * [建立 ExpressRoute 線路](expressroute-howto-circuit-portal-resource-manager.md)
   * [設定路由](expressroute-howto-routing-portal-resource-manager.md)
   * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-portal-resource-manager.md)
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/30/2017
+ms.date: 02/21/2017
 ms.author: rogardle
 translationtype: Human Translation
-ms.sourcegitcommit: 2464c91b99d985d7e626f57b2d77a334ee595f43
-ms.openlocfilehash: 813517a26ccbbd9df7e7fb7de36811cdebb84284
+ms.sourcegitcommit: 320285d97b3ef723ec2b5715fd02580d058cbbcf
+ms.openlocfilehash: 2304c85177cefa6505d92679ec7f791cb87e69e4
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -29,14 +30,11 @@ Kubernetes、DC/OS 和 Docker Swarm 叢集都會在本機提供 HTTP 端點。 �
 
 針對 DC/OS 和 Docker Swarm，您必須建立連接到內部系統的安全殼層 (SSH) 通道。 建立通道後，您可以執行使用 HTTP 端點的命令，並從您的本機系統檢視叢集的 web 介面。 
 
-> [!NOTE]
-> Azure Container Service 中的 Kubernetes 支援目前為預覽狀態。
->
 
 ## <a name="prerequisites"></a>必要條件
 
 * [在 Azure Container Service 中部署的](container-service-deployment.md) Kubernetes、DC/OS 或 Swarm 叢集
-* SSH 私密金鑰檔案，其對應至在部署期間新增至叢集的公開金鑰。 這些命令假設 SSH 私密金鑰在您電腦上的 `$HOME/.ssh/id_rsa` 中。 如需詳細資訊，請參閱 [OS X 及 Linux](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md) 或 [Windows](../virtual-machines/virtual-machines-linux-ssh-from-windows.md) 的相關指示。 如果 SSH 連線無法運作，您可能需要[重設 SSH 金鑰](../virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md)。
+* SSH RSA 私密金鑰檔案，其對應至在部署期間新增至叢集的公開金鑰。 這些命令假設 SSH 私密金鑰在您電腦上的 `$HOME/.ssh/id_rsa` 中。 如需詳細資訊，請參閱 [OS X 及 Linux](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md) 或 [Windows](../virtual-machines/virtual-machines-linux-ssh-from-windows.md) 的相關指示。 如果 SSH 連線無法運作，您可能需要[重設 SSH 金鑰](../virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md)。
 
 ## <a name="connect-to-a-kubernetes-cluster"></a>連接到 Kubernetes 叢集
 
@@ -47,7 +45,7 @@ Kubernetes、DC/OS 和 Docker Swarm 叢集都會在本機提供 HTTP 端點。 �
 > 
 
 ### <a name="install-kubectl"></a>安裝 kubectl
-安裝此工具的方法之一是使用 `az acs kubernetes install-cli` Azure CLI 2.0 (預覽) 命令。 若要執行此命令，請確定您[已安裝](/cli/azure/install-az-cli2)最新的 Azure CLI 2.0 (預覽) 並登入 Azure 帳戶 (`az login`)。
+安裝此工具的方法之一是使用 `az acs kubernetes install-cli` Azure CLI 2.0 命令。 若要執行此命令，請確定您[已安裝](/cli/azure/install-az-cli2)最新的 Azure CLI 2.0 並登入 Azure 帳戶 (`az login`)。
 
 ```azurecli
 # Linux or OS X
@@ -57,7 +55,7 @@ az acs kubernetes install-cli [--install-location=/some/directory/kubectl]
 az acs kubernetes install-cli [--install-location=C:\some\directory\kubectl.exe]
 ```
 
-或者，您可以直接從[發行頁面](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md#downloads-for-v146)下載用戶端。
+或者，您可以直接從 [Kubernetes 發行頁面](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md)下載最新的用戶端。 如需詳細資訊，請參閱[安裝和設定 kubectl](https://kubernetes.io/docs/user-guide/prereqs/)。
 
 ### <a name="download-cluster-credentials"></a>下載叢集認證
 安裝 `kubectl` 之後，您必須將叢集認證複製到您的電腦。 取得認證的方法之一是使用 `az acs kubernetes get-credentials` 命令。 傳遞資源群組的名稱和容器服務資源的名稱︰
@@ -128,7 +126,7 @@ Kubernetes UI 現在已可供使用：`http://localhost:8001/ui`。
     **PATH_TO_PRIVATE_KEY** [選用] 是與您建立叢集時所提供的公開金鑰對應的私密金鑰之路徑。 搭配使用此選項與 `-i` 旗標。
 
     ```bash
-    ssh -fNL PORT:localhost:PORT -p 2200 [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.azure.com 
+    ssh -fNL LOCAL_PORT:localhost:REMOTE_PORT -p 2200 [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.azure.com 
     ```
     > [!NOTE]
     > SSH 連線連接埠是 2200，而非標準連接埠 22。 在具有一個以上主要 VM 的叢集中，這是第一個主要 VM 的連接通訊埠。
@@ -217,10 +215,5 @@ export DOCKER_HOST=:2375
 * [使用 Azure Container Service 和 Kubernetes](container-service-kubernetes-ui.md)
 * [使用 Azure 容器服務和 DC/OS](container-service-mesos-marathon-rest.md)
 * [使用 Azure 容器服務和 Docker Swarm](container-service-docker-swarm.md)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

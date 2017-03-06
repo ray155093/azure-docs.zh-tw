@@ -18,6 +18,7 @@ ms.author: garye;raymondl
 translationtype: Human Translation
 ms.sourcegitcommit: 52153526fb5b127823316b86fa05c0528151e18f
 ms.openlocfilehash: 971edaa8a4aeb20f740e723c32d0b74315aa4c00
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -125,9 +126,4 @@ Web 應用程式將會顯示具有工作狀態的頁面。
 [image5]: media/machine-learning-consume-web-service-with-web-app-template/create-web-app.png
 [image6]: media/machine-learning-consume-web-service-with-web-app-template/web-service-info.png
 [image7]: media/machine-learning-consume-web-service-with-web-app-template/storage.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -18,6 +18,7 @@ ms.author: masashin
 translationtype: Human Translation
 ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
 ms.openlocfilehash: 0eb72af5c0f904655fc4a0d8fd44d6e481c73645
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -706,10 +707,5 @@ SLA 通常依據下列項目定義：
 * [Azure 虛擬機器中的 SQL Server Business Intelligence](virtual-machines/windows/sqlclassic/virtual-machines-windows-classic-ps-sql-bi.md)
 * [接收警示通知](monitoring-and-diagnostics/insights-receive-alert-notifications.md)和[追蹤服務健全狀況](monitoring-and-diagnostics/insights-service-health.md)
 * [Application Insights](application-insights/app-insights-overview.md)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

@@ -15,8 +15,9 @@ ms.topic: hero-article
 /ms.date: 1/18/2017
 ms.author: renash
 translationtype: Human Translation
-ms.sourcegitcommit: 6c93e5363767cb6860d4a365eba178dd940bd41d
-ms.openlocfilehash: e0800b7c7aba64fa7429fc3ced8c194cd9fbf0d1
+ms.sourcegitcommit: 4e81088857c0e9cacaf91342227ae63080fc90c5
+ms.openlocfilehash: 780066b1e71d967c64da0a1c1a284ffd5d1b7481
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -215,10 +216,10 @@ Start-AzureStorageFileCopy -SrcContainerName srcctn -SrcBlobName hello2.txt -Des
 3. 在虛擬機器上開啟 PowerShell 視窗。
 
 ### <a name="persist-your-storage-account-credentials-for-the-virtual-machine"></a>在虛擬機器中保留您的儲存體帳戶認證
-在掛接到檔案共用之前，請先將儲存體帳戶認證保留在虛擬機器上。 此步驟可讓 Windows 在虛擬機器重新開機時自動重新連線到檔案共用。 若要保留您的帳戶認證，請從虛擬機器的 PowerShell 視窗內執行 `cmdkey` 命令。 使用您的儲存體帳戶名稱來取代 `<storage-account-name>`，並使用您的儲存體帳戶金鑰來取代 `<storage-account-key>`。
+在掛接到檔案共用之前，請先將儲存體帳戶認證保留在虛擬機器上。 此步驟可讓 Windows 在虛擬機器重新開機時自動重新連線到檔案共用。 若要保留您的帳戶認證，請從虛擬機器的 PowerShell 視窗內執行 `cmdkey` 命令。 使用您的儲存體帳戶名稱來取代 `<storage-account-name>`，並使用您的儲存體帳戶金鑰來取代 `<storage-account-key>`。 您必須明確地指定網域 "AZURE"，如下列範例所示。 
 
 ```
-cmdkey /add:<storage-account-name>.file.core.windows.net /user:<storage-account-name> /pass:<storage-account-key>
+cmdkey /add:<storage-account-name>.file.core.windows.net /user:AZURE\<storage-account-name> /pass:<storage-account-key>
 ```
 
 Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。 您可以驗證是否已重新連線共用，方法是從 PowerShell 視窗執行 `net use` 命令。
@@ -238,10 +239,10 @@ net use z: \\samples.file.core.windows.net\logs
 由於您已在上一個步驟中保留儲存體帳戶認證，因此您無需使用 `net use` 命令提供這些認證。 如果您尚未保存認證，請將它們納入傳送到 `net use` 命令的參數，如下列範例所示。
 
 ```
-net use <drive-letter>: \\<storage-account-name>.file.core.windows.net\<share-name> /u:<storage-account-name> <storage-account-key>
+net use <drive-letter>: \\<storage-account-name>.file.core.windows.net\<share-name> /u:AZURE\<storage-account-name> <storage-account-key>
 
 example :
-net use z: \\samples.file.core.windows.net\logs /u:samples <storage-account-key>
+net use z: \\samples.file.core.windows.net\logs /u:AZURE\samples <storage-account-key>
 ```
 
 您現在可以從虛擬機器使用檔案儲存體共用，就好像操作任何其他磁碟機一樣。 您可以從命令提示字元中發佈標準檔案命令，或從 [檔案總管] 中檢視掛接的共用及其內容。 您也可以使用標準 Windows 檔案 I/O API (例如 .NET Framework 中 [System.IO namespaces](http://msdn.microsoft.com/library/gg145019.aspx) 所提供的那些 API)，在可存取檔案共用的虛擬機器內執行程式碼。
@@ -680,9 +681,4 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
 * [Azure 檔案儲存體內部](https://azure.microsoft.com/blog/inside-azure-file-storage/)
 * [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 * [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

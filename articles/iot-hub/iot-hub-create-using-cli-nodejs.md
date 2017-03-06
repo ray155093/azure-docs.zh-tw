@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 01/04/2017
 ms.author: boltean
 translationtype: Human Translation
-ms.sourcegitcommit: 9ded95283b52f0fc21ca5b99df8e72e1e152fe1c
-ms.openlocfilehash: 44291ed86775312a894f6acf92260cde76982f27
+ms.sourcegitcommit: 5ea7095e12b6194556d3cd0baa43ccfed1e087ee
+ms.openlocfilehash: 1be7dc038f1bc864e7c6461b616449d75ecda439
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: 44291ed86775312a894f6acf92260cde76982f27
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 * Azure CLI (azure.js) – 適用於傳統和資源管理部署模型的 CLI (如本文中所述)。
-* [Azure CLI 2.0 (預覽) (az.py)](iot-hub-create-using-cli.md) - 適用於資源管理部署模型的新一代 CLI。
+* [Azure CLI 2.0 (az.py)](iot-hub-create-using-cli.md) - 適用於資源管理部署模型的新一代 CLI。
 
 若要完成此教學課程，您需要下列項目：
 
@@ -130,9 +131,4 @@ ms.openlocfilehash: 44291ed86775312a894f6acf92260cde76982f27
 
 [lnk-sdks]: iot-hub-devguide-sdks.md
 [lnk-portal]: iot-hub-create-through-portal.md 
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

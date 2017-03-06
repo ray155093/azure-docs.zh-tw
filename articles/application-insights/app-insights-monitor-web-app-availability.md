@@ -11,11 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/16/2016
+ms.date: 02/13/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 003db6e1479be1007dd292555ce5997f1c138809
-ms.openlocfilehash: c5c2742065536805cd032f2d814ad668b8ad3b6e
+ms.sourcegitcommit: c800f6e7b6bd1e17165146f981e32a8cbb251e3c
+ms.openlocfilehash: af4343dbe23f314a85c98d7337f42c4b60b03c6a
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: c5c2742065536805cd032f2d814ad668b8ad3b6e
 Web 測試可分為兩種：
 
 * [URL Ping 測試](#create)：您可以在 Azure 入口網站中建立的簡單測試。
-* [多步驟 Web 測試](#multi-step-web-tests)：您可以在 Visual Studio Ultimate 或 Visual Studio Enterprise 中建立並上傳至入口網站的測試。
+* [多步驟 Web 測試](#multi-step-web-tests)：您可以在 Visual Studio Enterprise 中建立並上傳至入口網站的測試。
 
 每個應用程式資源最多可以建立 10 個 Web 測試。
 
@@ -50,7 +51,7 @@ Web 測試可分為兩種：
 * **URL** 必須可在公用網際網路上顯示。 它可以包含查詢字串 - 例如，您可以訓練一下您的資料庫。 如果 URL 解析為重新導向，我們會跟隨它，最多 10 個重新導向。
 * **剖析相依要求**：測試時會要求映像、指令碼、樣式檔和頁面的其他資源，而記錄的回應時間包含這些時間。 如果無法在逾時內為整個測試成功下載所有這些資源，則測試將會失敗。
 * **啟用重試**：當測試失敗時，就會在短時間內進行重試。 只有在連續三次重試失敗後，才會回報失敗。 後續測試則會以一般測試頻率執行。 重試會暫時停止，直到下次成功為止。 此規則可個別套用在每個測試位置。 (我們建議使用這個設定。 平均來說，大約 80%的失敗會在重試後消失。)
-* **測試頻率**：設定從每個測試位置執行測試的頻率。 頻率為 5 分鐘且有五個測試位置，則您的網站平均每一分鐘會執行測試。
+* **測試頻率**：設定從每個測試位置執行測試的頻率。 頻率為&5; 分鐘且有五個測試位置，則您的網站平均每一分鐘會執行測試。
 * **測試位置** 是我們的伺服器將 Web 要求傳送至您的 URL 的位置。 請選擇多個位置，以便區分網站問題與網路問題。 您最多可以選取 16 個位置。
 * **成功準則**：
 
@@ -78,37 +79,20 @@ Web 測試可分為兩種：
 ## <a name="a-namefailuresaif-you-see-failures"></a><a name="failures"></a>如果您看到失敗
 按一下一個紅點。
 
-![按一下一個紅點](./media/app-insights-monitor-web-app-availability/14-availRedDot.png)
+![按一下一個紅點](./media/app-insights-monitor-web-app-availability/open-instance.png)
 
-或者，向下捲動並按一下您看到少於 100% 成功的測試。
 
-![Click a specific webtest](./media/app-insights-monitor-web-app-availability/15-webTestList.png)
+從 Web 測試結果，您可以：
 
-該測試的結果會開啟。
+* 檢查從伺服器收到的回應。
+* 在處理失敗的要求執行個體時，開啟應用程式伺服器所傳送的遙測。
+* 在 Git 或 VSTS 中記錄問題或工作項目來追蹤問題。 Bug 將包含此事件的連結。
+* 在 Visual Studio 中開啟 Web 測試結果。
 
-![Click a specific webtest](./media/app-insights-monitor-web-app-availability/16-1test.png)
 
-若是從數個位置執行測試，請挑選其中一個結果小於 100% 的位置。
+*看起來正常，但回報為失敗？* 請檢查所有映像、指令碼、樣式表和頁面載入的任何其他檔案。 如果其中有任何一個失敗，即使主要的 html 頁面載入正常，測試皆會回報為失敗。
 
-![Click a specific webtest](./media/app-insights-monitor-web-app-availability/17-availViewDetails.png)
-
-向下捲動至 [失敗的測試]  並挑選結果。
-
-按一下結果以在入口網站中評估，並查看失敗的原因。
-
-![Webtest run result](./media/app-insights-monitor-web-app-availability/18-availDetails.png)
-
-或者，您可以下載結果檔案，然後在 Visual Studio 中檢查。
-
-*看起來正常，但回報為失敗？*  請檢查所有映像、指令碼、樣式表和頁面載入的任何其他檔案。 如果其中有任何一個失敗，即使主要的 html 頁面載入正常，測試皆會回報為失敗。
-
-### <a name="open-the-server-request-and-exceptions"></a>開啟伺服器要求和例外狀況
-
-您可以在特定測試的詳細屬性中，開啟要求以及任何其他事件 (例如例外狀況) 的伺服器端報告。
-
-![Webtest run result](./media/app-insights-monitor-web-app-availability/web-test-linked-to-server-telemetry.png)
-
-如果看不到相關的項目，可能是因為正在進行[取樣](app-insights-sampling.md)。
+沒有相關項目？ 這可能是因為正在進行[取樣](app-insights-sampling.md)。
 
 ## <a name="multi-step-web-tests"></a>多重步驟 Web 測試
 您可以監視涉及一連串 URL 的案例。 例如，如果您正在監視銷售網站，您可以測試將項目加入購物車正確運作。
@@ -122,7 +106,7 @@ Web 測試可分為兩種：
 請注意，您無法在測試中使用編碼的函式：做為 .webtest 檔案中的指令碼必須包含案例步驟。
 
 #### <a name="1-record-a-scenario"></a>1.記錄案例
-使用 Visual Studio Enterprise 或 Ultimate 來記錄 Web 工作階段。
+使用 Visual Studio Enterprise 來記錄 Web 工作階段。
 
 1. 建立 Web 效能測試專案。
 
@@ -239,7 +223,7 @@ Web 測試外掛程式提供將時間參數化的方法。
 測試完成時，會為您顯示回應時間和成功率。
 
 ## <a name="automation"></a>自動化
-* [使用 PowerShell 指令碼自動設定 Web 測試](https://azure.microsoft.com/blog/creating-a-web-test-alert-programmatically-with-application-insights/) 。
+* [使用 PowerShell 指令碼自動設定 Web 測試](app-insights-powershell.md#add-an-availability-test) 。
 * 設定會在產生警示時呼叫的 [webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md)。
 
 ## <a name="questions-problems"></a>有疑問嗎？ 有問題嗎？
@@ -291,9 +275,4 @@ Web 測試外掛程式提供將時間參數化的方法。
 [diagnostic]: app-insights-diagnostic-search.md
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

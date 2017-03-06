@@ -1,12 +1,78 @@
 
 
-## <a name="azure-cli"></a>Azure CLI
+## <a name="azure-cli-20"></a>Azure CLI 2.0
+
+當您[安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2) 之後，請使用 `az vm image list` 命令來查看已快取的常用 VM 映像清單。 例如，以下的 `az vm image list -o table` 命令範例會顯示：
+
+```
+You are viewing an offline list of images, use --all to retrieve an up-to-date list
+Offer          Publisher               Sku                 Urn                                                             UrnAlias             Version
+-------------  ----------------------  ------------------  --------------------------------------------------------------  -------------------  ---------
+WindowsServer  MicrosoftWindowsServer  2012-R2-Datacenter  MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:latest  Win2012R2Datacenter  latest
+WindowsServer  MicrosoftWindowsServer  2008-R2-SP1         MicrosoftWindowsServer:WindowsServer:2008-R2-SP1:latest         Win2008R2SP1         latest
+WindowsServer  MicrosoftWindowsServer  2012-Datacenter     MicrosoftWindowsServer:WindowsServer:2012-Datacenter:latest     Win2012Datacenter    latest
+UbuntuServer   Canonical               14.04.4-LTS         Canonical:UbuntuServer:14.04.4-LTS:latest                       UbuntuLTS            latest
+CentOS         OpenLogic               7.2                 OpenLogic:CentOS:7.2:latest                                     CentOS               latest
+openSUSE       SUSE                    13.2                SUSE:openSUSE:13.2:latest                                       openSUSE             latest
+RHEL           RedHat                  7.2                 RedHat:RHEL:7.2:latest                                          RHEL                 latest
+SLES           SUSE                    12-SP1              SUSE:SLES:12-SP1:latest                                         SLES                 latest
+Debian         credativ                8                   credativ:Debian:8:latest                                        Debian               latest
+CoreOS         CoreOS                  Stable              CoreOS:CoreOS:Stable:latest                                     CoreOS               latest
+```
+
+### <a name="finding-all-current-images"></a>尋找所有目前的映像
+
+若要取得目前的所有映像清單，請使用 `az vm image list` 命令搭配 `--all` 選項。 與 Azure CLI 1.0 命令不同，`az vm image list --all` 命令預設會傳回 **westus** 中所有的映像 (除非您指定特定的 `--location` 引數)，因此 `--all` 命令需要一些時間才能完成。 如果您打算以互動方式進行調查，請使用 `az vm image list --all > allImages.json`，這會傳回 Azure 上所有目前可用的映像清單，並將它儲存成檔案以供在本機使用。 
+
+如果您心中已經有一或多個映像，您可以指定數個選項之一來僅限搜尋特定的位置、方案、發行者或 SKU。 如果未指定位置，則會傳回適用於 **westus** 的值。
+
+### <a name="find-specific-images"></a>尋找特定映像
+
+使用 `az vm image list` 搭配 [JMESPATH 查詢篩選](https://docs.microsoft.com/cli/azure/query-az-cli2)來尋找特定資訊。 例如，以下顯示 **Debian** 的可用 **sku** (請記住，如果沒有 `--all` 參數，則只會搜尋通用映像的本機快取)：
+
+```azurecli
+az vm image list --query '[?contains(offer,`Debian`)]' -o table --all
+```
+
+輸出會像這樣： 
+```
+You are viewing an offline list of images, use --all to retrieve an up-to-date list
+  Sku  Publisher    Offer    Urn                       Version    UrnAlias
+-----  -----------  -------  ------------------------  ---------  ----------
+    8  credativ     Debian   credativ:Debian:8:latest  latest     Debian
+
+<list shortened for the example>
+```
+
+如果您知道您要部署的位置，您便可以使用一般映像搜尋結果連同 `az vm image list-skus`、`az vm image list-offers` 和 `az vm image list-publishers` 命令，來尋找您確切想要的項目及可部署的位置。 例如，如果您從上述範例中得知 `credativ` 有 Debian 方案，您便可以使用 `--location` 和其他選項來尋找您所要的確切項目。 下列範例會在 **westeurope** 中尋找 Debian 8 映像：
+
+```azurecli 
+az vm image show -l westeurope -f debian -p credativ --skus 8 --version 8.0.201701180
+```
+
+而輸出如下：
+
+```json
+{
+  "dataDiskImages": [],
+  "id": "/Subscriptions/<guid>/Providers/Microsoft.Compute/Locations/westeurope/Publishers/credativ/ArtifactTypes/VMImage/Offers/debian/Skus/8/Versions/8.0.201701180",
+  "location": "westeurope",
+  "name": "8.0.201701180",
+  "osDiskImage": {
+    "operatingSystem": "Linux"
+  },
+  "plan": null,
+  "tags": null
+}
+```
+
+## <a name="azure-cli-10"></a>Azure CLI 1.0 
+
 > [!NOTE]
-> 本文說明如何使用最近安裝的 Azure CLI 或 Azure PowerShell，來瀏覽並選取虛擬機器映像。 有一個必要條件是您必須變更為資源管理員模式。 搭配 Azure CLI 時，請輸入 `azure config mode arm` 來進入該模式。 
-> 
+> 本文說明如何使用支援 Azure Resource Manager 部署模型的 Azure CLI 1.0 或 Azure PowerShell 安裝，來瀏覽並選取虛擬機器映像。 請變更為 Resource Manager 模式，這是一個必要條件。 搭配 Azure CLI 時，請輸入 `azure config mode arm` 來進入該模式。 
 > 
 
-尋找要與 `azure vm quick-create` 搭配使用之映像或建立資源群組範本檔案的最簡單且最快速方式是呼叫 `azure vm image list` 命令，並傳遞位置、發佈者名稱 (不區分大小寫！) 和提供項目 (如果您知道提供項目)。 例如，如果您知道 "Canonical" 是 "UbuntuServer" 提供項目的發佈者，則下列清單只是簡短範例 (許多清單相當長)。
+尋找映像的最快方式就是呼叫 `azure vm image list` 命令並傳遞位置、發行者名稱 (不區分大小寫！) 及方案 (如果您知道該方案)。 例如，如果您知道 "Canonical" 是 "UbuntuServer" 提供項目的發佈者，則下列清單只是簡短範例 (許多清單相當長)。
 
 ```azurecli
 azure vm image list westus canonical ubuntuserver
@@ -28,7 +94,7 @@ data:    canonical  ubuntuserver  16.10-DAILY        Linux  16.10.201607240  wes
 
 **Urn** 資料行將是您傳遞給 `azure vm quick-create` 的表單。
 
-不過，您通常還不知道什麼可用。 在這種情況下，您可以巡覽映像，方法是先使用 `azure vm image list-publishers` 探索發行者，並以您預期用於資源群組的資料中心位置來回應位置提示字元。 例如，下列清單是美國西部位置的所有映像發佈者 (將位置設為小寫並移除標準位置中的空格，來傳遞 location 引數)。
+不過，您通常還不知道什麼可用。 在此情況下，您可以瀏覽映像，方法是使用 `azure vm image list-publishers` 命令，然後在出現提示時指定資料中心位置。 例如，下列清單是美國西部位置的所有映像發佈者 (將位置設為小寫並移除標準位置中的空格，來傳遞 location 引數)。
 
 ```azurecli
 azure vm image list-publishers
@@ -62,7 +128,7 @@ data:    canonical  Ubuntu_Snappy_Core_Docker  westus
 info:    vm image list-offers command OK
 ```
 
-現在，我們知道在美國西部區域中，Canonical 在 Azure 上發佈 **UbuntuServer** 提供項目。 但是，是什麼 SKU？ 若要取得那些項目，請呼叫 `azure vm image list-skus` ，並使用您探索到的位置、發行者和提供項目來回應提示。
+現在，我們知道在美國西部區域中，Canonical 在 Azure 上發佈 **UbuntuServer** 提供項目。 但是，是什麼 SKU？ 若要取得這些值，您需呼叫 `azure vm image list-skus`，然後使用您探索到的位置、發行者和方案來回應提示。
 
 ```azurecli
 azure vm image list-skus
@@ -228,7 +294,3 @@ Windows-Server-Technical-Preview
 [gog]: http://google.com/
 [yah]: http://search.yahoo.com/  
 [msn]: http://search.msn.com/
-
-<!--HONumber=Dec16_HO1-->
-
-

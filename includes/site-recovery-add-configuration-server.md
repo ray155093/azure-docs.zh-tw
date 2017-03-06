@@ -3,7 +3,7 @@
     ![開始之前](./media/site-recovery-add-configuration-server/combined-wiz1.png)
 3. 在 [協力廠商軟體授權] 中，按一下 [我接受] 來下載並安裝 MySQL。
 
-    ![第三方=廠商軟體](./media/site-recovery-add-configuration-server/combined-wiz105.PNG)
+    ![協力廠商軟體](./media/site-recovery-add-configuration-server/combined-wiz2.png)
 4. 在 [註冊] 中，選取您從保存庫下載的註冊金鑰。
 
     ![註冊](./media/site-recovery-add-configuration-server/combined-wiz3.png)
@@ -14,7 +14,7 @@
    * 如果現有的 Proxy 需要驗證，或是您想要讓 Provider 使用自訂 Proxy 來連線，請選取 [以自訂 Proxy 設定連線]。
 
      * 如果您使用自訂 Proxy，您必須指定位址、連接埠以及認證。
-     * 如果您使用 Proxy，您應該已經允許[必要條件](#configuration-server-prerequisites)中所述的 URL。
+     * 如果您使用 Proxy，您應該已經允許[必要條件](#prerequisites)中所述的 URL。
 
      ![防火牆](./media/site-recovery-add-configuration-server/combined-wiz4.png)
 6. 在 [必要條件檢查] 中，安裝程式會執行檢查來確定可以執行安裝。 如果出現有關「通用時間同步處理檢查」的警告，請確認系統時鐘上的時間 ([日期和時間] 設定) 與時區相同。
@@ -40,8 +40,3 @@
     ![摘要](./media/site-recovery-add-configuration-server/combined-wiz10.png)
 
 註冊完成後，伺服器會顯示在保存庫的 [設定]  >  刀鋒視窗上。
-
-
-<!--HONumber=Feb17_HO2-->
-
-

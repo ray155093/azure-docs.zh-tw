@@ -1,71 +1,91 @@
-Azure 客戶每月可以解除鎖定 25,000 封免費電子郵件。 這些每月 25,000 封的免費電子郵件可讓您存取進階報告與分析及[所有 API][所有 API] (Web、SMTP、Event、Parse 及更多)。 如需有關 SendGrid 所提供其他服務的資訊，請參閱 [SendGrid 功能][SendGrid 功能]頁面。
+Azure 客戶每月可以解除鎖定 25,000 封免費電子郵件。 這些每月 25,000 封的免費電子郵件可讓您存取進階報告與分析及 [所有 API][all APIs] (Web、SMTP、Event、Parse 及更多)。 如需 SendGrid 所提供其他服務的相關資訊，請參閱 [SendGrid 解決方案 (英文)][SendGrid Solutions] 頁面。
 
 ### <a name="to-sign-up-for-a-sendgrid-account"></a>註冊 SendGrid 帳戶
-1. 登入 [Azure 管理入口網站][Azure 管理入口網站]。
-2. 在管理入口網站的下方窗格中，按一下 [新增] 。
-   
+1. 登入 [Azure 管理入口網站][Azure Management Portal]。
+2. 在左側功能表中，按一下 [新增]。
+
     ![command-bar-new][command-bar-new]
-3. 按一下 [Marketplace] 。
-   
+3. 依序按一下 [附加元件] 和 [SendGrid 電子郵件傳遞]。
+
     ![sendgrid-store][sendgrid-store]
-4. 在 [選擇應用程式和服務] 對話方塊中，選取 [SendGrid] 並按一下向右鍵。
-5. 在 [個人化應用程式和服務] 對話方塊中，選取您想要註冊的 [SendGrid] 方案。
-6. 在 Azure 設定中，輸入名稱來識別您的 **SendGrid** 服務，或使用預設值 [SendGridEmailDelivery.Simplified.SMTPWebAPI]。 名稱的長度必須介於 1 到 100 個字元之間，而且只能包含英數字元、連字號、句點和底線。 此名稱在已訂用的 Azure 市集項目清單中必須是唯一的。
-   
-    ![store-screen-2][store-screen-2]
-7. 選擇地區值，例如美國西部。
-8. 按一下向右箭頭。
-9. 在 [檢閱購買項目]  索引標籤中，檢閱方案和價格資訊，並檢閱法律條款。 如果您同意接受這些條款，請按一下核取記號。 按一下核取記號之後，您的 SendGrid 帳戶將會開始 [SendGrid 佈建程序]。
-   
-    ![store-screen-3][store-screen-3]
-10. 確認購買項目之後，系統會將您重新導向至附加元件儀表板，您將會看到 **[正在購買 SendGrid]**的訊息。
-    
-    ![sendgrid-purchasing-message][sendgrid-purchasing-message]
-    
-    系統會立即佈建您的 SendGrid 帳戶，您將會看到 **[已成功購買附加元件 SendGrid]**的訊息。 現在已建立您的帳戶和認證。 您現在可以開始傳送電子郵件。 
-    
-    若要修改您的訂用計畫或查看 SendGrid 連絡人設定，請按一下您的 SendGrid 服務名稱，以開啟 SendGrid Marketplace 儀表板。 
-    
-    ![sendgrid-add-on-dashboard][sendgrid-add-on-dashboard]
-    
-    若要使用 SendGrid 傳送電子郵件，您必須提供帳戶認證 (使用者名稱和密碼)。
+4. 完成註冊表單，然後選取 [建立]。
+
+    ![sendgrid-create][sendgrid-create]
+5. 在您的 Azure 設定中輸入可識別 SendGrid 服務的**名稱**。 名稱的長度必須介於 1 到 100 個字元之間，而且只能包含英數字元、連字號、句點和底線。 此名稱在已訂用的 Azure 市集項目清單中必須是唯一的。
+6. 輸入並確認您的**密碼**。
+7. 選擇您的**訂用帳戶**。
+8. 建立新的**資源群組**或使用現有的資源群組。
+9. 在 [定價層] 區段中，選取您想要註冊的 SendGrid 方案。
+
+    ![sendgrid-pricing][sendgrid-pricing]
+10. 輸入**促銷代碼** (如果有的話)。
+11. 輸入**連絡人資訊**。
+12. 檢閱並接受**法律條款**。
+13. 確認購買之後，您將會看到 [部署成功] 快顯視窗，並看到您的帳戶列於 [所有資源] 區段中。
+
+    ![all-resources][all-resources]
+
+    當您完成購買，並按下 [管理] 按鈕以起始電子郵件驗證程序之後，將收到一封來自 SendGrid 的電子郵件，詢問您是否要驗證您的帳戶。 如果您未收到這封電子郵件，或者無法驗證您的帳戶，請參閱本常見問題集。
+
+    ![manage][manage]
+
+    **在您驗證帳戶之前，您每天最多只能傳送 100 封電子郵件**
+
+    若要修改您的訂用計畫或查看 SendGrid 連絡人設定，請按一下您的 SendGrid 服務名稱，以開啟 SendGrid Marketplace 儀表板。
+
+    ![settings][settings]
+
+    若要使用 SendGrid 傳送電子郵件，您必須提供您的 API 金鑰。
+
+### <a name="to-find-your-sendgrid-api-key"></a>尋找您的 SendGrid API 金鑰
+1. 按一下 [管理] 。
+
+    ![manage][manage]
+2. 在 SendGrid 儀表板的左側功能表中，依序選取 [設定] 和 [API 金鑰]。
+
+    ![api-keys][api-keys]
+
+3. 按一下 [建立 API 金鑰] 下拉式清單，然後選取 [一般 API 金鑰]。
+
+    ![general-api-key][general-api-key]
+4. 至少需要提供**這個金鑰的名稱**，並提供**郵件傳送**的完整存取權，然後選取 [儲存]。
+
+    ![access][access]
+5. 您的 API 將會在此時顯示一次。 請務必安全地儲存它。
 
 ### <a name="to-find-your-sendgrid-credentials"></a>尋找您的 SendGrid 認證
-1. 按一下 [連線資訊] 。
-   
-    ![sendgrid-connection-info-button][sendgrid-connection-info-button]
-2. 複製 [連線資訊] 對話方塊中的 [密碼] 和 [使用者名稱]，以供稍後在本教學課程中使用。
-   
-    ![sendgrid-connection-info][sendgrid-connection-info]
-   
-    若要進行電子郵件傳遞能力設定，請按一下 [管理]  按鈕。 此將重新導向至您的 SendGrid 控制台。 
-   
-    ![sendgrid-control-panel][sendgrid-control-panel]
-   
-    如需有關開始使用 SendGrid 的詳細資訊，請參閱 [SendGrid 開始使用][SendGrid 開始使用]。
+1. 按一下金鑰圖示來尋找您的**使用者名稱**。
+
+    ![索引鍵][key]
+2. 密碼是您在安裝期間所選擇的密碼。 您可以選取 [變更密碼] 或 [重設密碼] 來進行任何變更。
+
+若要管理電子郵件傳遞能力設定，按一下 [管理] 按鈕。 這將會重新導向至您的 [SendGrid 儀表板][SendGrid dashboard]。
+
+    ![manage][manage]
+
+    For more information on sending email through SendGrid, visit the [Email API Overview][Email API Overview].
 
 <!--images-->
 
-[command-bar-new]: ./media/sendgrid-sign-up/sendgrid_BAR_NEW.PNG
-[sendgrid-store]: ./media/sendgrid-sign-up/sendgrid_offerings_store.png
-[store-screen-2]: ./media/sendgrid-sign-up/sendgrid_store_scrn2.png
-[store-screen-3]: ./media/sendgrid-sign-up/sendgrid_store_scrn3.png
-[sendgrid-purchasing-message]: ./media/sendgrid-sign-up/sendgrid_purchasing_message.png
-[sendgrid-add-on-dashboard]: ./media/sendgrid-sign-up/sendgrid_add-on_dashboard.png
-[sendgrid-connection-info]: ./media/sendgrid-sign-up/sendgrid_connection_info.png
-[sendgrid-connection-info-button]: ./media/sendgrid-sign-up/sendgrid_connection_info_button.png
-[sendgrid-control-panel]: ./media/sendgrid-sign-up/sendgrid_control_panel.png
+[command-bar-new]: ./media/sendgrid-sign-up/new-addon.png
+[sendgrid-store]: ./media/sendgrid-sign-up/sendgrid-store.png
+[sendgrid-create]: ./media/sendgrid-sign-up/sendgrid-create.png
+[sendgrid-pricing]: ./media/sendgrid-sign-up/sendgrid-pricing.png
+[all-resources]: ./media/sendgrid-sign-up/all-resources.png
+[manage]: ./media/sendgrid-sign-up/manage.png
+[settings]: ./media/sendgrid-sign-up/settings.png
+[api-keys]: ./media/sendgrid-sign-up/api-keys.png
+[general-api-key]: ./media/sendgrid-sign-up/general-api-key.png
+[access]: ./media/sendgrid-sign-up/access.png
+[key]: ./media/sendgrid-sign-up/key.png
+[SendGrid dashboard]: ./media/sendgrid-sign-up/dashboard.png
 
 <!--Links-->
 
-[SendGrid 功能]: http://sendgrid.com/features
-[Azure 管理入口網站]: https://manage.windowsazure.com
-[SendGrid 開始使用]: http://sendgrid.com/docs
+[SendGrid Solutions]: https://sendgrid.com/solutions
+[Azure Management Portal]: https://manage.windowsazure.com
+[SendGrid Getting Started]: http://sendgrid.com/docs
 [SendGrid Provisioning Process]: https://support.sendgrid.com/hc/articles/200181628-Why-is-my-account-being-provisioned-
-[所有 API]: https://sendgrid.com/docs/API_Reference/index.html
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[all APIs]: https://sendgrid.com/docs/API_Reference/index.html
+[Email API Overview]: https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html
 

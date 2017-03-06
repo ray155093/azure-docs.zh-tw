@@ -17,6 +17,7 @@ ms.author: tomfitz
 translationtype: Human Translation
 ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
 ms.openlocfilehash: 31495f402b810c524bd7b906498774302500b732
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -78,7 +79,7 @@ New-AzureRmRoleAssignment -RoleDefinitionName Reader -ServicePrincipalName $app.
 1. 登入您的帳戶。
    
    ```powershell
-   Add-AzureRmAccount
+   Login-AzureRmAccount
    ```
 
 2. 建立新的 Active Directory 應用程式，方法是提供顯示名稱、描述應用程式的 URI、識別應用程式的 URI，以及應用程式身分識別的密碼。
@@ -152,7 +153,7 @@ New-AzureRmRoleAssignment -RoleDefinitionName Reader -ServicePrincipalName $app.
 4. 登入為服務主體，方法是指定此帳戶為服務主體，以及提供認證物件。 
    
    ```powershell
-   Add-AzureRmAccount -Credential $creds -ServicePrincipal -TenantId $tenant
+   Login-AzureRmAccount -Credential $creds -ServicePrincipal -TenantId $tenant
    ```
    
      您現在驗證為您所建立之 Active Directory 應用程式的服務主體。
@@ -234,7 +235,7 @@ Windows 10 和 Windows Server 2016 Technical Preview 提供的 PowerShell 版本
 2. 登入您的 Azure 帳戶。
    
    ```powershell
-   Add-AzureRmAccount
+   Login-AzureRmAccount
    ```
 3. 建立新的 Active Directory 應用程式，方法是提供顯示名稱、描述應用程式的 URI、識別應用程式的 URI，以及應用程式身分識別的密碼。
    
@@ -304,7 +305,7 @@ $tenant = (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
 若要在指令碼中進行驗證，請指定帳戶為服務主體，並且提供憑證指紋、應用程式識別碼和租用戶識別碼。 若要讓指令碼自動執行，您可以將這些值儲存為環境變數，並在執行期間擷取它們，或者您可以將它們包含在指令碼中。
 
 ```powershell
-Add-AzureRmAccount -ServicePrincipal -CertificateThumbprint $cert.Thumbprint -ApplicationId $app.ApplicationId -TenantId $tenant
+Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint $cert.Thumbprint -ApplicationId $app.ApplicationId -TenantId $tenant
 ```
 
 您現在驗證為您所建立之 Active Directory 應用程式的服務主體。
@@ -363,10 +364,5 @@ New-AzureRmADAppCredential -ApplicationId 8bc80782-a916-47c8-a47e-4d76ed755275 -
 * 如需有關將應用程式整合至 Azure 來管理資源的詳細步驟，請參閱 [利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
 * 如需應用程式和服務主體的詳細說明，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。 
 * 如需 Active Directory 驗證的詳細資訊，請參閱 [Azure AD 的驗證案例](../active-directory/active-directory-authentication-scenarios.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

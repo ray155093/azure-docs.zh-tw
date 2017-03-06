@@ -13,31 +13,26 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 01/03/2016
+ms.date: 01/03/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 42ee74ac250e6594616652157fe85a9088f4021a
-ms.openlocfilehash: 23862762fcf0939ce84859fdae0274421c0bb5fe
+ms.sourcegitcommit: d4cff286de1abd492ce7276c300b50d71f06345b
+ms.openlocfilehash: 1287a028122080c0d9745502a4a98a957894a0de
+ms.lasthandoff: 02/27/2017
 
 
 ---
-# <a name="different-ways-to-create-a-linux-vm-including-the-azure-cli-20-preview"></a>建立 Linux VM 的不同方式，包括 Azure CLI 2.0 (預覽)
-您在 Azure 中可選擇使用您習慣的工具和工作流程來建立 Linux 虛擬機器 (VM)。 本文摘要說明這些差異以及建立 Linux VM 的範例。
+# <a name="different-ways-to-create-a-linux-vm"></a>建立 Linux VM 的不同方式
+您在 Azure 中可選擇使用您習慣的工具和工作流程來建立 Linux 虛擬機器 (VM)。 本文摘要說明這些差異以及建立 Linux VM 的範例，包括 Azure CLI 2.0。 您也可以檢視建立選項，包括 [Azure CLI 1.0](virtual-machines-linux-creation-choices-nodejs.md)。
 
-## <a name="azure-cli"></a>Azure CLI
-您可以在 Azure 中使用下列其中一個 CLI 版本建立 VM︰
+[Azure CLI 2.0](/cli/azure/install-az-cli2) 可透過 npm 套件、散發版本提供的套件或 Docker 容器，在各個平台上提供使用。 安裝最適合環境的組建，並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶
 
-- [Azure CLI 1.0](virtual-machines-linux-creation-choices-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
-- Azure CLI 2.0 (預覽) - 適用於資源管理部署模型的新一代 CLI (本文章)
+下列範例使用 Azure CLI 2.0。 如需以下命令的詳細資訊，請閱讀每篇文章。 有關 Linux 建立選項方面，您也可以找到使用 [Azure CLI 1.0](virtual-machines-linux-creation-choices-nodejs.md) 的範例。
 
-[Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2) 可透過 npm 套件、散發版本提供的套件或 Docker 容器，跨平台適用。 安裝最適合環境的組建，並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶
-
-下列範例使用 Azure CLI 2.0 (預覽)。 如需以下命令的詳細資訊，請閱讀每篇文章。 有關 Linux 建立選項方面，您也可以找到使用 [Azure CLI 1.0](virtual-machines-linux-creation-choices-nodejs.md) 的範例。
-
-* [使用 Azure CLI 2.0 建立 Linux VM (預覽)](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [使用 Azure CLI 2.0 來建立 Linux VM](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
   
   * 這個範例使用 [az group create](/cli/azure/group#create) 建立資源群組 `myResourceGroup`： 
-    
+-    
     ```azurecli
     az group create --name myResourceGroup --location westus
     ```
@@ -47,9 +42,9 @@ ms.openlocfilehash: 23862762fcf0939ce84859fdae0274421c0bb5fe
     ```azurecli
     az vm create \
     --image credativ:Debian:8:latest \
-    --admin-username azureuser \
+     --admin-username azureuser \
     --ssh-key-value ~/.ssh/id_rsa.pub \
-    --public-ip-address-dns-name myPublicDNS \
+az vm disk attach –g myResourceGroup –-vm-name myVM –-disk myDataDisk  –-new --size-gb 5    --public-ip-address-dns-name myPublicDNS \
     --resource-group myResourceGroup \
     --location westus \
     --name myVM
@@ -73,11 +68,11 @@ ms.openlocfilehash: 23862762fcf0939ce84859fdae0274421c0bb5fe
 
 * [在 Linux VM 中新增磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
   
-  * 下列範例使用 [az vm disk attach-new](/cli/azure/vm/disk#attach-new)，將 5Gb 非受控磁碟 `myDataDisk.vhd` 新增至現有的 VM `myVM`：
+  * 下列範例會使用 [az vm disk attach-new](/cli/azure/vm/disk#attach-new)，將 50 Gb 受控磁碟新增至名為 `myVM` 的現有 VM：
   
     ```azurecli
-    az vm disk attach-new --resource-group myResourceGroup --vm-name myVM \
-      --disk-size 5 --vhd https://mystorageaccount.blob.core.windows.net/vhds/myDataDisk.vhd
+    az vm disk attach –g myResourceGroup –-vm-name myVM –-disk myDataDisk  \
+    –-new --size-gb 50
     ```
 
 ## <a name="azure-portal"></a>Azure 入口網站
@@ -101,13 +96,13 @@ az vm image list-publishers --location WestUS
 列出特定發佈者的可用產品 (提供項目)︰
 
 ```azurecli
-az vm image list-offers --publisher-name Canonical --location WestUS
+az vm image list-offers --publisher Canonical --location WestUS
 ```
 
 清單特定提供項目的可用 SKU (散發版本)︰
 
 ```azurecli
-az vm image list-skus --publisher-name Canonical --offer UbuntuServer --location WestUS
+az vm image list-skus --publisher Canonical --offer UbuntuServer --location WestUS
 ```
 
 列出特定版本的所有可用映像︰
@@ -149,9 +144,4 @@ az vm image list --publisher Canonical --offer UbuntuServer --sku 16.04.0-LTS --
 * 透過[入口網站](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、[CLI](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Azure Resource Manager 範本](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)建立 Linux VM。
 * 在建立 Linux VM 後， [新增資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 * [重設密碼或 SSH 金鑰及管理使用者](virtual-machines-linux-using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

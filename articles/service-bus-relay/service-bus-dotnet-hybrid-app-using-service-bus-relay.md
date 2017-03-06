@@ -1,5 +1,5 @@
 ---
-title: "混合式內部部署/雲端應用程式 (.NET) | Microsoft Docs"
+title: "Azure WCF 轉送混合式內部部署/雲端應用程式 (.NET) | Microsoft Docs"
 description: "了解如何建立使用 Azure WCF 轉送的 .NET 內部部署/雲端混合式應用程式。"
 services: service-bus-relay
 documentationcenter: .net
@@ -12,17 +12,18 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 09/16/2016
+ms.date: 02/16/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 385eb87ec32f5f605b28cc8c76b1c89c7e90bfec
-ms.openlocfilehash: 0288b0dda9139c28da28fedfe39c4e9156c6c938
+ms.sourcegitcommit: f92909e0098a543f99baf3df3197a799bc9f1edc
+ms.openlocfilehash: 6c59c98a400da0616762b2bd0c4217d97e22ab86
+ms.lasthandoff: 03/01/2017
 
 
 ---
 # <a name="net-on-premisescloud-hybrid-application-using-azure-wcf-relay"></a>使用 Azure WCF 轉送的 .NET 內部部署/雲端混合式應用程式
 ## <a name="introduction"></a>簡介
-本文說明如何使用 Microsoft Azure 和 Visual Studio 建置混合式雲端應用程式。 本教學課程假設您先前沒有使用 Azure 的經驗。 不用 30 分鐘，您就會獲得一個使用多個 Azure 資源，於雲端上啟動並執行的應用程式。
+本文示範如何使用 Microsoft Azure 和 Visual Studio 建置混合式雲端應用程式。 本教學課程假設您先前沒有使用 Azure 的經驗。 不用 30 分鐘，您就會獲得一個使用多個 Azure 資源，於雲端上啟動並執行的應用程式。
 
 您將了解：
 
@@ -36,7 +37,7 @@ ms.openlocfilehash: 0288b0dda9139c28da28fedfe39c4e9156c6c938
 
 眾多方案架構爭相開始使用雲端，以期能夠更輕鬆地處理擴充需求並降低操作成本。 在這麼做之後，它們發現想要運用作為其方案建置組塊的現有服務資產是在公司防火牆內，無法供雲端方案輕易存取。 許多內部服務並不是以可輕易在公司網路邊緣公開的方式建置或主控。
 
-Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服務，並使那些服務可供公司周邊外之解決方案安全存取的使用案例而設計的，不需要進行會干擾公司網路基礎結構的變更。 此類轉送服務仍然裝載在其現有環境，但它們會將接聽連入工作階段和要求的工作委派給雲端裝載的轉送服務。 Azure 轉送也可使用[共用存取簽章](../service-bus-messaging/service-bus-sas-overview.md) (SAS) 驗證，保護那些服務免受未經授權的存取。
+[Azure 轉送](https://azure.microsoft.com/services/service-bus/)是針對採取現有 Windows Communication Foundation (WCF) Web 服務，並使那些服務可供公司周邊外之解決方案安全存取的使用案例而設計，不需要進行會干擾公司網路基礎結構的變更。 此類轉送服務仍然裝載在其現有環境，但它們會將接聽連入工作階段和要求的工作委派給雲端裝載的轉送服務。 Azure 轉送也可使用[共用存取簽章 (SAS)](../service-bus-messaging/service-bus-sas.md) 驗證，保護那些服務免受未經授權的存取。
 
 ## <a name="solution-scenario"></a>解決方案案例
 在本教學課程中，您將建立 ASP.NET 網站，讓您可在產品庫存頁面上看到產品清單。
@@ -50,18 +51,16 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 ![][1]
 
 ## <a name="set-up-the-development-environment"></a>設定開發環境
-在開始開發 Azure 應用程式之前，請取得工具，並設定開發環境：
+開始開發 Azure 應用程式之前，請先下載工具並設定開發環境：
 
-1. 從[取得工具和 SDK][Get Tools and SDK] 頁面安裝 Azure SDK for .NET。
-2. 按一下您所使用 Visual Studio 版本的 [安裝 SDK]。 本教學課程中的步驟使用 Visual Studio 2015。
+1. 從 SDK [下載頁面](https://azure.microsoft.com/downloads/)安裝 Azure SDK for .NET。
+2. 在 **.NET** 資料行中，按一下您所使用的 [Visual Studio](http://www.visualstudio.com) 版本。 本教學課程中的步驟使用 Visual Studio 2015。
 3. 當系統提示您執行或儲存安裝程式時，按一下 [執行]。
 4. 在 **Web Platform Installer** 中，按一下 [安裝] 並繼續進行安裝。
-5. 完成安裝後，您將具有開始進行開發所需的一切。 SDK 包含可讓您在 Visual Studio 輕易開發 Azure 應用程式的工具。 如果您未安裝 Visual Studio，則 SDK 也會安裝免費的 Visual Studio Express。
+5. 完成安裝後，您將具有開始進行開發所需的一切。 SDK 包含可讓您在 Visual Studio 輕易開發 Azure 應用程式的工具。
 
 ## <a name="create-a-namespace"></a>建立命名空間
-若要開始在 Azure 中使用轉送功能，首先必須建立服務命名空間。 命名空間提供範圍容器，可在應用程式內進行 Azure 資源定址。
-
-[!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
+若要開始在 Azure 中使用轉送功能，首先必須建立服務命名空間。 命名空間提供範圍容器，可在應用程式內進行 Azure 資源定址。 請依照[此處的指示](relay-create-namespace-portal.md)來建立轉送命名空間。
 
 ## <a name="create-an-on-premises-server"></a>建立內部部署伺服器
 首先，您將建置 (模擬) 內部部署產品目錄系統。 此作業相當簡單；您可將它看成是呈現實際內部部署產品目錄系統，此系統具有我們正在嘗試整合的完整服務面。
@@ -69,7 +68,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 此專案是 Visual Studio 主控台應用程式，會使用 [Azure 服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus/)來納入服務匯流排程式庫和組態設定。
 
 ### <a name="create-the-project"></a>建立專案
-1. 使用系統管理員權限，啟動 Microsoft Visual Studio。 若要以系統管理員權限啟動 Visual Studio，請在 **Visual Studio** 程式圖示上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。
+1. 使用系統管理員權限，啟動 Microsoft Visual Studio。 若要這樣做，請以滑鼠右鍵按一下 Visual Studio 程式圖示，然後按一下 [以系統管理員身分執行]。
 2. 在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
 3. 從 [已安裝的範本] 的 [Visual C#] 下，按一下 [主控台應用程式]。 在 [名稱] 方塊中，鍵入名稱 **ProductsServer**：
 
@@ -86,7 +85,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 9. 在 [名稱] 方塊中，鍵入名稱 **ProductsContract.cs**。 然後按一下 [ **新增**]。
 10. 在 **ProductsContract.cs** 中，將命名空間定義取代為下列程式碼，以定義服務的連絡人。
 
-    ```
+    ```csharp
     namespace ProductsServer
     {
         using System.Collections.Generic;
@@ -122,7 +121,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
     ```
 11. 在 Program.cs 中，將命名空間定義取代為下列程式碼，為它新增設定檔服務和主機。
 
-    ```
+    ```csharp
     namespace ProductsServer
     {
         using System;
@@ -174,9 +173,9 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
         }
     }
     ```
-12. 在 [方案總管] 中，按兩下 **App.config** 檔案，以在 Visual Studio 編輯器中開啟它。 在 **&lt;system.ServiceModel&gt;** 元素的底部 (但仍在 &lt;system.ServiceModel&gt; 內)，新增下列 XML 程式碼。 請務必以您的命名空間名稱取代 yourServiceNamespace，並以您先前從入口網站擷取到的 SAS 金鑰取代 yourKey：
+12. 在 [方案總管] 中，按兩下 **App.config** 檔案，以在 Visual Studio 編輯器中開啟它。 在 `<system.ServiceModel>` 元素底部 (但仍在 `<system.ServiceModel>` 內)，新增以下 XML 程式碼。 請務必以您的命名空間名稱取代 yourServiceNamespace，並以您先前從入口網站擷取到的 SAS 金鑰取代 yourKey：
 
-    ```
+    ```xml
     <system.serviceModel>
     ...
       <services>
@@ -197,9 +196,9 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
       </behaviors>
     </system.serviceModel>
     ```
-13. 仍是在 App.config 中，請以您先前從入口網站取得的連接字串取代 **&lt;appSettings&gt;** 元素中的連接字串值。
+13. 仍是在 App.config 中，請以您先前從入口網站取得的連接字串來取代 `<appSettings>` 元素中的連接字串值。
 
-    ```
+    ```xml
     <appSettings>
        <!-- Service Bus specific app settings for messaging connections -->
        <add key="Microsoft.ServiceBus.ConnectionString"
@@ -236,22 +235,22 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 ### <a name="modify-the-web-application"></a>修改 Web 應用程式
 1. 在 Visual Studio 的 Product.cs 檔案中，將現有的命名空間定義取代為下列程式碼。
 
-   ```
-   // Declare properties for the products inventory.
+   ```csharp
+    // Declare properties for the products inventory.
     namespace ProductsWeb.Models
-   {
+    {
        public class Product
        {
            public string Id { get; set; }
            public string Name { get; set; }
            public string Quantity { get; set; }
        }
-   }
-   ```
+    }
+    ```
 2. 在 [方案總管] 中展開 **Controllers** 資料夾，然後按兩下 **HomeController.cs** 檔案以在 Visual Studio 中開啟。
 3. 在 **HomeController.cs** 檔案中，以下列程式碼取代現有的命名空間定義。
 
-    ```
+    ```csharp
     namespace ProductsWeb.Controllers
     {
         using System.Collections.Generic;
@@ -278,7 +277,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 7. 在 [方案總管] 中，展開 Views\Home 資料夾，然後按兩下 **Index.cshtml** 以在 Visual Studio 編輯器中開啟。
    將檔案的整個內容取代為下列程式碼。
 
-   ```
+   ```html
    @model IEnumerable<ProductsWeb.Models.Product>
 
    @{
@@ -334,7 +333,7 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
    ![][24]
 6. 現在會在 Visual Studio 編輯器中開啟 **HomeController.cs** 檔案，並將命名空間定義取代為下列程式碼。 請務必以服務命名空間名稱取代 *yourServiceNamespace*，並以 SAS 金鑰取代 *yourKey*。 這可讓用戶端呼叫內部部署服務，並傳回呼叫結果。
 
-   ```
+   ```csharp
    namespace ProductsWeb.Controllers
    {
        using System.Linq;
@@ -441,7 +440,6 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 
 [0]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hybrid.png
 [1]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/App2.png
-[Get Tools and SDK]: http://go.microsoft.com/fwlink/?LinkId=271920
 [NuGet]: http://nuget.org
 
 [11]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hy-con-1.png
@@ -465,9 +463,4 @@ Azure 轉送是針對採取現有 Windows Communication Foundation (WCF) Web 服
 [38]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hy-service2.png
 [41]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/getting-started-multi-tier-40.png
 [43]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/getting-started-hybrid-43.png
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

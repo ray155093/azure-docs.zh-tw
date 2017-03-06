@@ -18,6 +18,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: 2dd64398fce3a85f92492b01951008eab31a2c3f
 ms.openlocfilehash: a566fe935da98d303f1260cbc2a2009e5702530a
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -187,10 +188,5 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azur
 * [Spark 和 BI：搭配 BI 工具來使用 HDInsight 中的 Spark 以執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
 * [Spark 和機器學習：使用 HDInsight 中的 Spark 來預測食物檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

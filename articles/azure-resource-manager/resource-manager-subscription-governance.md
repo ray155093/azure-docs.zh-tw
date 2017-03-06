@@ -17,6 +17,7 @@ ms.author: rodend;karlku;tomfitz
 translationtype: Human Translation
 ms.sourcegitcommit: adae9827bbdb5f72b9e0fb4a1792fe54b9324706
 ms.openlocfilehash: 9f4f0ce9e389fa560345c77502db8e225827f054
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -250,10 +251,5 @@ Azure 最初發行時，訂用帳戶的存取控制是基本的︰系統管理�
 
 ## <a name="next-steps"></a>後續步驟
 * 既然您已了解訂用帳戶治理，現在就可以參閱這些實務建議。 請參閱[實作 Azure 訂用帳戶治理的範例](resource-manager-subscription-examples.md)。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

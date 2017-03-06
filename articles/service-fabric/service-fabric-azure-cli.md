@@ -12,11 +12,12 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/24/2016
+ms.date: 03/02/2017
 ms.author: subramar
 translationtype: Human Translation
 ms.sourcegitcommit: 615e7ea84aae45f384edb671a28e4ff98b4ade3a
 ms.openlocfilehash: d61b7a9c8199b15c8bb24e7146ea93a2f67fb0a7
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -200,10 +201,5 @@ openssl pkcs12 -in certificate.pfx -out mycert.pem -nodes
 
 ## <a name="next-steps"></a>後續步驟
 設定開發環境，並將 Service Fabric 應用程式部署到 Linux 叢集。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

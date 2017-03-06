@@ -1,6 +1,6 @@
 ---
 title: "部署 Docker 容器叢集 - Azure CLI | Microsoft Docs"
-description: "使用 Azure CLI 2.0 Preview 部署 Azure Container Service"
+description: "使用 Azure CLI 2.0 部署 Azure Container Service 叢集"
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -17,23 +17,24 @@ ms.workload: na
 ms.date: 02/03/2017
 ms.author: saudas
 translationtype: Human Translation
-ms.sourcegitcommit: df916670743158d6a22b3f17343630114584fa08
-ms.openlocfilehash: 65f1c812472f4a3b6d4a4e6fb7666a2c022af102
+ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
+ms.openlocfilehash: 792150afa1c4f91c4bf6175037c7708d8f7bfabe
+ms.lasthandoff: 02/22/2017
 
 
 ---
-# <a name="using-the-azure-cli-20-preview-to-create-an-azure-container-service-cluster"></a>使用 Azure CLI 2.0 (Preview) 建立 Azure Container Service 叢集
+# <a name="use-the-azure-cli-20-to-create-an-azure-container-service-cluster"></a>使用 Azure CLI 2.0 建立 Azure Container Service 叢集
 
-在 Azure CLI 2.0 (Preview) 中使用 `az acs` 命令建立及管理 Azure Container Service 中的叢集。 您也可以使用 [Azure 入口網站](container-service-deployment.md) 或 Azure Container Service API 來部署 Azure Container Service 叢集。
+在 Azure CLI 2.0 中使用 `az acs` 命令建立及管理 Azure Container Service 中的叢集。 您也可以使用 [Azure 入口網站](container-service-deployment.md) 或 Azure Container Service API 來部署 Azure Container Service 叢集。
 
 如需 `az acs` 命令的說明，請將 `-h` 參數傳遞至任何命令。 例如， `az acs create -h`。
 
 
 
 ## <a name="prerequisites"></a>必要條件
-若要使用 Azure CLI 2.0 (預覽) 建立 Azure Container Service 叢集，您必須︰
+若要使用 Azure CLI 2.0 建立 Azure Container Service 叢集，您必須︰
 * 有一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))
-* 已安裝及設定 [Azure CLI v.2.0 (Preview)](/cli/azure/install-az-cli2)
+* 已安裝及設定 [Azure CLI 2.0](/cli/azure/install-az-cli2)
 
 ## <a name="get-started"></a>開始使用 
 ### <a name="log-in-to-your-account"></a>登入您的帳戶
@@ -41,7 +42,7 @@ ms.openlocfilehash: 65f1c812472f4a3b6d4a4e6fb7666a2c022af102
 az login 
 ```
 
-依照提示以互動方式進行登入。 如需其他登入方法，請參閱[開始使用 Azure CLI 2.0 (Preview)](/cli/azure/get-started-with-az-cli2)。
+依照提示以互動方式進行登入。 如需其他登入方法，請參閱[開始使用 Azure CLI 2.0](/cli/azure/get-started-with-az-cli2)。
 
 ### <a name="set-your-azure-subscription"></a>設定您的 Azure 訂用帳戶
 
@@ -74,7 +75,7 @@ az group create -n acsrg1 -l "westus"
 
 
 ### <a name="quick-acs-create-using-defaults"></a>使用預設值的快速 `acs create`
-如果您在預設位置有 SSH 公用金鑰檔案 `id_rsa.pub` (或已針對 [OS X 和 Linux](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md) 或 [Windows](../virtual-machines/virtual-machines-linux-ssh-from-windows.md) 建立一個 SSH 公用金鑰)，請使用類似下列的命令︰
+如果您在預設位置有 SSH RSA 公用金鑰檔案 `id_rsa.pub` (或已針對 [OS X 和 Linux](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md) 或 [Windows](../virtual-machines/virtual-machines-linux-ssh-from-windows.md) 建立一個 SSH 公用金鑰)，請使用類似下列的命令︰
 
 ```azurecli
 az acs create -n acs-cluster -g acsrg1 -d applink789
@@ -143,8 +144,3 @@ az acs delete -g acsrg1 -n acs-cluster
 * [使用 Azure Container Service 和 DC/OS](container-service-mesos-marathon-rest.md)
 * [使用 Azure Container Service 和 Docker Swarm](container-service-docker-swarm.md)
 * [使用 Azure Container Service 和 Kubernetes](container-service-kubernetes-walkthrough.md)
-
-
-<!--HONumber=Feb17_HO1-->
-
-

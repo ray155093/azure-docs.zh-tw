@@ -12,15 +12,16 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/14/2017
+ms.date: 02/24/2017
 ms.author: kgremban
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 4572913c2bc732c31f38021f9d3ccc34417de875
-ms.openlocfilehash: 035ec56b638797d650f73e1112b77991555d5194
-
+ms.sourcegitcommit: e4ef137656c12cf6495a00450eed308ac6a8a872
+ms.openlocfilehash: ea0853929cd8670b6458a546e7fb1b3a229c09d7
+ms.lasthandoff: 02/28/2017
 
 ---
-# <a name="secure-cloud-and-on-premises-resources-using-azure-multi-factor-authentication-server-with-ad-fs-20"></a>搭配 AD FS 2.0 使用 Azure Multi-Factor Authentication Server 保護雲端和內部部署資源
+# <a name="configure-azure-multi-factor-authentication-server-to-work-with-ad-fs-20"></a>設定 Azure Multi-Factor Authentication Server 以與 AD FS 2.0 搭配運作
 本文適用對象為使用 Azure Active Directory 進行同盟，並想要保護內部部署資源或雲端資源的組織。 請使用 Azure Multi-factor Authentication Server 保護您的資源，並將其設定為可與 AD FS 搭配運作，以便觸發雙步驟驗證來獲得高價值的端點。
 
 這份文件將說明如何搭配 AD FS 2.0 使用 Azure Multi-Factor Authentication Server。 如需 AD FS 的相關資訊，請參閱[搭配 Windows Server 2012 R2 AD FS 使用 Azure Multi-Factor Authentication Server 保護雲端和內部部署資源](multi-factor-authentication-get-started-adfs-w2k12.md)。
@@ -115,9 +116,4 @@ Azure Multi-Factor Authentication 現已保護 AD FS。
 4. 輸入應列入白名單中的 IP 位址、IP 位址範圍或子網路。 如果輸入子網路，請選取適當的網路遮罩，然後按一下 [確定] 按鈕。 現在已加入信任的 IP。
 
 <center>![設定](./media/multi-factor-authentication-get-started-adfs-adfs2/trusted.png)</center>
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

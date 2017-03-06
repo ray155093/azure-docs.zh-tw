@@ -16,6 +16,7 @@ ms.author: mbaldwin
 translationtype: Human Translation
 ms.sourcegitcommit: 9af9f95e9638eda71fbc4508bea8e35ce5191734
 ms.openlocfilehash: 3caabe366db4def4f8332c64d08f86f271c31bb2
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -44,10 +45,5 @@ ms.openlocfilehash: 3caabe366db4def4f8332c64d08f86f271c31bb2
   * 將共用資料儲存在服務的外部儲存體位置，例如內部部署的檔案共用或 OneDrive。
   * 在範本映像中設定任何全系統的設定，而不是在服務的個別虛擬機器上設定。
   * 停用發佈之應用程式的自動軟體更新 - 改為手動套用至範本映像，並從範本部署之前測試它們。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

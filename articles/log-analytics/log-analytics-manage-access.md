@@ -1,6 +1,6 @@
 ---
 title: "管理工作區 | Microsoft Docs"
-description: "使用使用者、帳戶、工作區和 Azure 帳戶的各種系統管理工作，在 Log Analytics 中管理工作區。"
+description: "在 Azure Log Analytics 中使用有關使用者、帳戶、工作區及 Azure 帳戶的各種系統管理工作來管理工作區。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/03/2017
+ms.date: 02/17/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 96a971c31f9088b3aa409a85f0679fd3bd5945d1
-ms.openlocfilehash: 4dc1bfa1e385e945c47bbfc5faa776e577ee84b2
+ms.sourcegitcommit: 9ee8f4aafcc35e43c4fcba5a3a72b043dd9fc32c
+ms.openlocfilehash: 1d330362389ee690dc2942c9bb1bc32e1f10e08a
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -97,10 +98,13 @@ ms.openlocfilehash: 4dc1bfa1e385e945c47bbfc5faa776e577ee84b2
 
   URL 看起來像這樣：`https://eus.mms.microsoft.com/?tenant=contoso.com&resource=%2fsubscriptions%2faaa5159e-dcf6-890a-a702-2d2fee51c102%2fresourcegroups%2fdb-resgroup%2fproviders%2fmicrosoft.operationalinsights%2fworkspaces%2fmydemo12`
 
+例如，若要新增或移除管理解決方案，使用者在使用 Azure 入口網站時，必須是系統管理員或是 Azure 訂用帳戶的參與者。 此外，使用者必須是 OMS 入口網站中 OMS 工作區參與者或系統管理員角色的成員。
+
 ### <a name="managing-users-in-the-oms-portal"></a>在 OMS 入口網站中管理使用者
 您可以在 [設定] 頁面中 [帳戶] 索引標籤之下的 [管理使用者] 索引標籤上管理使用者與群組。   
 
 ![管理使用者](./media/log-analytics-manage-access/setup-workspace-manage-users.png)
+
 
 #### <a name="add-a-user-to-an-existing-workspace"></a>新增使用者到現有的工作區
 使用下列步驟，將使用者或群組新增至工作區。
@@ -295,9 +299,4 @@ OMS 有三種工作區方案類型：[免費]、[獨立] 和 [OMS]。  如果您
 * 請參閱 [將 Windows 電腦連接到 Log Analytics](log-analytics-windows-agents.md) ，以加入代理程式和收集資料。
 * [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md) ，以加入功能和收集資料。
 * [在 Log Analytics 中設定 Proxy 和防火牆設定](log-analytics-proxy-firewall.md) ，讓代理程式可與 Log Analytics 服務通訊。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

@@ -18,6 +18,7 @@ ms.author: mandia
 translationtype: Human Translation
 ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
 ms.openlocfilehash: 92c0892128655141f29380890c31451e62ca8853
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -735,10 +736,5 @@ ContactList︰連絡人清單
 
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

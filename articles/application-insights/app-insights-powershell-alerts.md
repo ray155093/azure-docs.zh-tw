@@ -16,6 +16,7 @@ ms.author: awills
 translationtype: Human Translation
 ms.sourcegitcommit: 80e2ac4235492d727e2034f37f9a85eb2873625c
 ms.openlocfilehash: f479ae38e446c3404592901c416990ab6e39126b
+ms.lasthandoff: 02/04/2017
 
 
 ---
@@ -139,9 +140,4 @@ GUID 是該訂用帳戶的 ID (而非應用程式的檢測金鑰)。
 * [從範本建立 Application Insights 和 Web 測試資源](app-insights-powershell.md)
 * [自動化 Microsoft Azure 診斷與 Application Insights 的耦合](app-insights-powershell-azure-diagnostics.md)
 * [自動回應至警示](../monitoring-and-diagnostics/insights-webhooks-alerts.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

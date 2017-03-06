@@ -17,6 +17,7 @@ ms.author: ruturajd
 translationtype: Human Translation
 ms.sourcegitcommit: 7688df2aac74d10de7c188ad46f8ab2ec38bbe86
 ms.openlocfilehash: 34c335d17641e9df9b64a7882448afc268e4da7c
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -243,9 +244,4 @@ ms.openlocfilehash: 34c335d17641e9df9b64a7882448afc268e4da7c
 
 * ExpressRoute 連線應該設定在來源機器所要容錯移轉到的 Azure 虛擬網路上，以及容錯移轉發生時 Azure VM 所位於的 Azure 虛擬網路上。
 * 資料會複寫至公用端點上的 Azure 儲存體帳戶。 若要使用 ExpressRoute 連線，請在 ExpressRoute 中設定與目標資料中心的公用對等互連以進行 Site Recovery 複寫才。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

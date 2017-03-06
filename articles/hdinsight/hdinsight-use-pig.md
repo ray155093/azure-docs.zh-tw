@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
 ms.openlocfilehash: 8b924f29594a9f0c8c161661b216a12ff65b42a9
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -142,10 +143,5 @@ HDInsight 可以使用各種方法執行 Pig Latin 工作。 請使用下表決�
 
 
 [image-hdi-pig-data-transformation]: ./media/hdinsight-use-pig/HDI.DataTransformation.gif
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

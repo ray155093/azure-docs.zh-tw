@@ -15,13 +15,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 1/25/2017
 ms.author: guybo
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 868d65642ab9ca3e1c35d33a7cb9e9dd8c31c430
-ms.openlocfilehash: f945ac0357c11c70780dea8e62f094457a213d96
+ms.sourcegitcommit: 54673cbc69e418bdbe7cb5791dfb5d20e7ebcb9f
+ms.openlocfilehash: 2294587fd3f978a3f8383112ece329b47307db7a
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="virtual-machine-scale-sets-overview"></a>虛擬機器擴展集概觀
+# <a name="what-are-virtual-machine-scale-sets-in-azure"></a>什麼是 Azure 中的虛擬機器擴展集？
 虛擬機器擴展集是一個您可以用來部署和管理一組相同 VM 的 Azure 計算資源。 藉由將所有的 VM 進行相同設定，設計 VM 擴展集以支援真正的自動調整 (不需要預先佈建 VM)，因而能夠更輕鬆地建置以大型計算、巨量資料和容器化工作負載為目標的大規模服務。
 
 對於需要相應放大計算資源的應用程式，調整作業會隱含地平衡分散到容錯網域和更新網域。 如需 VM 擴展集的簡介，請參閱 [Azure 部落格通知](https://azure.microsoft.com/blog/azure-virtual-machine-scale-sets-ga/)。
@@ -127,9 +129,4 @@ VM 擴展集也可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com
 **問：** VM 擴展集是否可與 Azure 可用性設定組組搭配使用？
 
 **答：** 是。 VM 擴展集是隱含的可用性設定組，具有 5 個 FD 和 5 個 UD。 您不需要在 virtualMachineProfile 下進行任何設定。 超過 100 個 VM 的 VM 擴展集橫跨多個「放置群組」，這相當於多個可用性設定組。 VM 的可用性設定組可以存在於與 VM 擴展集相同的 VNET 中。 常見組態是在可用性設定組中放入通常需要唯一組態的控制節點 VM，以及在擴展集中放入資料節點。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

@@ -14,13 +14,16 @@ ms.tgt_pltfrm: multiple
 ms.workload: big-compute
 ms.date: 01/23/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: bf22cd3426e936c8d74377f59443e5e1a6834286
-ms.openlocfilehash: a2efffa5e250e02fec1a1834c9256ffef79b9be3
+ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
+ms.openlocfilehash: e4a3f3f3bca06e66f39f5acd8b4571b4a498ed83
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="get-started-with-azure-batch-cli"></a>開始使用 Azure Batch CLI
+# <a name="manage-batch-resources-with-azure-cli"></a>使用 Azure CLI 管理 Batch 資源
+
 跨平台 Azure 命令列介面 (Azure CLI) 可讓您管理 Batch 帳戶和資源，例如 Linux、Mac 和 Windows 命令殼層中的集區、作業和工作。 許多使用 Batch API、Azure 入口網站和 Batch PowerShell Cmdlet 來執行的工作，也都可以使用 Azure CLI 來執行或撰寫指令碼。
 
 本文章是根據 Azure CLI 0.10.5 版所撰寫。
@@ -270,9 +273,4 @@ Batch CLI 支援 Batch 服務所支援的全部三個子句︰
 [github_readme]: https://github.com/Azure/azure-xplat-cli/blob/dev/README.md
 [rest_api]: https://msdn.microsoft.com/library/azure/dn820158.aspx
 [rest_add_pool]: https://msdn.microsoft.com/library/azure/dn820174.aspx
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

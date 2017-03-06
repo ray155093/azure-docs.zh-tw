@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 02/06/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: bdd7d3d6e532efe7c3ed8225dd29a895725f2ff9
+ms.sourcegitcommit: 5d51a5ef3387b4c00079547b0f44ffe1f96bd77c
+ms.openlocfilehash: 9ee2d2ef7b21fab8cfc4a70561d612be7367d366
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -182,7 +183,7 @@ Windows 仰賴動態連結程式庫 (DLL) 來允許軟體使用通用 Windows �
 ![連出 DOS](./media/security-center-alerts-type/security-center-alerts-type-fig10-new.png)
 
 ## <a name="resource-analysis"></a>資源分析
-資訊安全中心資源分析會著重於 PaaS 服務，例如與 [Azure SQL Db 威脅偵測](../sql-database/sql-database-threat-detection-get-started.md) 功能整合。 根據來自這些區域的分析結果，資訊安全中心會觸發資源相關警示。
+資訊安全中心資源分析會著重於 PaaS 服務，例如與 [Azure SQL Database 威脅偵測](../sql-database/sql-database-threat-detection.md)功能整合。 根據來自這些區域的分析結果，資訊安全中心會觸發資源相關警示。
 
 ### <a name="potential-sql-injection"></a>潛在的 SQL 插入式攻擊
 SQL 插入式攻擊會將惡意程式碼插入字串，而此字串稍後會傳遞至 SQL Server 執行個體以進行剖析和執行。 建構 SQL 陳述式的任何程序皆應檢閱其中是否有插入式攻擊弱點，因為 SQL Server 會執行所有它收到的語法上有效的查詢。 SQL 威脅偵測會使用機器學習、行為分析和異常偵測，判斷 Azure SQL Database 中可能會發生的可疑事件。 例如：
@@ -213,9 +214,4 @@ SQL 插入式攻擊會將惡意程式碼插入字串，而此字串稍後會傳�
 * [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md)
 * [Azure 資訊安全中心常見問題集](security-center-faq.md) – 尋找使用服務的常見問題。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

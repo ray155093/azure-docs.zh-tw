@@ -1,5 +1,5 @@
 ---
-title: "開始使用服務匯流排佇列 | Microsoft Docs"
+title: "撰寫使用 Azure 服務匯流排佇列的程式 | Microsoft Docs"
 description: "如何撰寫用於服務匯流排訊息的 C# 主控台應用程式"
 services: service-bus-messaging
 documentationcenter: .net
@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 11/30/2016
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 560e73eb7129e665d254c3e93b08f29cfb6b1aa9
-ms.openlocfilehash: d80bedba1909de671ef96ac5372d9ff15a90764e
+ms.sourcegitcommit: f92909e0098a543f99baf3df3197a799bc9f1edc
+ms.openlocfilehash: 83649bdad1d369cdfe4edf3c2bdaa67180db8668
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -32,7 +33,7 @@ ms.openlocfilehash: d80bedba1909de671ef96ac5372d9ff15a90764e
 4. 撰寫主控台應用程式來接收訊息。
 
 ## <a name="prerequisites"></a>必要條件
-1. [Visual Studio 2013 或 Visual Studio 2015](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2015。
+1. [Visual Studio 2015 或更新版本](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2015。
 2. Azure 訂用帳戶。
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
@@ -175,9 +176,4 @@ ms.openlocfilehash: d80bedba1909de671ef96ac5372d9ff15a90764e
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
 
 [github-samples]: https://github.com/Azure-Samples/azure-servicebus-messaging-samples
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

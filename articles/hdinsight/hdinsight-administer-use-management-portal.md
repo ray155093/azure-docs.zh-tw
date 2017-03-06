@@ -18,6 +18,7 @@ ms.author: jgao
 translationtype: Human Translation
 ms.sourcegitcommit: 58011fe25a96edfe2744990180b2f2866537bd37
 ms.openlocfilehash: ec35e177d1bb94671b1703020c9aa863a3805af1
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -376,9 +377,4 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 
 [azure-portal]: https://portal.azure.com
 [image-hadoopcommandline]: ./media/hdinsight-administer-use-management-portal/hdinsight-hadoop-command-line.png "Hadoop 命令列"
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

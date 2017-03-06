@@ -17,6 +17,7 @@ ms.author: tomfitz
 translationtype: Human Translation
 ms.sourcegitcommit: 0782000e87bed0d881be5238c1b91f89a970682c
 ms.openlocfilehash: 7fcf16ac835089a1c4127fd34264f2cf7cb098ac
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -151,10 +152,5 @@ Azure 命令列介面 (Azure CLI) 是您可以使用 Resource Manager 來部署�
 * 若要取得部署作業的詳細資料，並使用 Azure CLI 進行部署錯誤疑難排解，請參閱[檢視部署作業](resource-manager-deployment-operations.md)。
 * 如果您想要使用 CLI 來設定應用程式或指令碼以存取資源，請參閱[使用 Azure CLI 來建立服務主體以存取資源](resource-group-authenticate-service-principal-cli.md)。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

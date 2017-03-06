@@ -17,6 +17,7 @@ ms.author: anandy
 translationtype: Human Translation
 ms.sourcegitcommit: fd3699e4ce423ae9490d5bf788729c43eaa623eb
 ms.openlocfilehash: 19ebfae5de8576402348e3163f99a54b9308a078
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -47,9 +48,4 @@ Azure AD Connect 可讓您設定與內部部署 AD FS 和 Azure AD 同盟。 使
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 * [Azure 中的 AD FS 部署](active-directory-aadconnect-azure-adfs.md)
 * [使用 Azure 流量管理員在 Azure 中部署高可用性跨地區 AD FS](../active-directory-adfs-in-azure-with-azure-traffic-manager.md)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

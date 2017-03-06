@@ -18,6 +18,7 @@ ms.author: carlrab
 translationtype: Human Translation
 ms.sourcegitcommit: 187954f3ddafdbc17e341ce41f5b109cb95f8a24
 ms.openlocfilehash: 0c37a035cfc782e05dd72da7323fe244eadc4ce9
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -107,10 +108,5 @@ SnelStart 當前的目標是繼續拓展其滿意的客戶群。 如 Been 所述
 * 若要深入了解 Web 角色和背景工作角色，請參閱 [背景工作角色](../fundamentals-introduction-to-azure.md#compute)。    
 * 若要深入了解「Azure SQL 資料倉儲」，請參閱 [SQL 資料倉儲](https://azure.microsoft.com/documentation/services/sql-data-warehouse/)
 * 若要深入了解 SnelStart，請參閱 [SnelStart](http://www.snelstart.nl)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

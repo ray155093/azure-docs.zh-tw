@@ -12,17 +12,18 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 12/15/2016
+ms.date: 02/27/2017
 ms.author: mihauss
 translationtype: Human Translation
-ms.sourcegitcommit: c75658d173bcb3438d6f2725ec9ef2c4127013d7
-ms.openlocfilehash: 0d0ca29a4733c681e044884697030ccd2916b6cb
+ms.sourcegitcommit: c004285f3b3052ed9361fc7165702aff8f5e835d
+ms.openlocfilehash: e0df34dbb4278d759ee412000d6dafd64276d926
+ms.lasthandoff: 03/01/2017
 
 
 ---
 # <a name="azure-blob-storage-hot-and-cool-storage-tiers"></a>Azure Blob 儲存體︰經常性存取與非經常性存取儲存層
 ## <a name="overview"></a>概觀
-Azure 儲存體現在為 Blob 物件儲存體提供兩個儲存層，所以您可根據您的資料使用方式，以最符合成本效益的方式進行儲存。 Azure **經常性存取儲存層** 已最佳化，可用於儲存經常存取的資料。 Azure **非經常性存取儲存層** 已最佳化，可用於儲存不常存取且長期存留的資料。 非經常性存取儲存層中的資料可容忍稍微較低的可用性，但仍要求高持久性以及與經常性存取資料類似的存取時間和輸送量特性。 對於非經常性存取資料而言，稍微較低的可用性 SLA 和更高的存取成本是可接受的取捨，可讓儲存體成本降低許多。
+Azure 儲存體會為 Blob 物件儲存體提供兩個儲存層，所以您可根據您的資料使用方式，以最符合成本效益的方式進行儲存。 Azure **經常性存取儲存層** 已最佳化，可用於儲存經常存取的資料。 Azure **非經常性存取儲存層** 已最佳化，可用於儲存不常存取且長期存留的資料。 非經常性存取儲存層中的資料可容忍稍微較低的可用性，但仍要求高持久性以及與經常性存取資料類似的存取時間和輸送量特性。 對於非經常性存取資料而言，稍微較低的可用性 SLA 和更高的存取成本是可接受的取捨，可讓儲存體成本降低許多。
 
 現今，儲存在雲端的資料迅速成長。 若要管理您不斷擴充的儲存體需求的成本，根據存取頻率和計劃性保留期來組織您的資料很有幫助。 就資料在存留期內的產生、處理和存取方式而言，儲存在雲端的資料可能不同。 有些資料在其存留期內會積極地存取及修改。 有些資料在其存留期的早期存取頻率很高，但存取頻率隨著資料老化而大幅下滑。 有些資料在雲端維持閒置，而且儲存後就很少存取。
 
@@ -84,12 +85,12 @@ Blob 儲存體帳戶會公開 [存取層] 屬性，以便您根據儲存在帳�
     <td><strong><center>非經常性存取儲存層</center></strong></td
 </tr>
 <tr>
-    <td><strong><center>Availability</center></strong></td>
+    <td><strong><center>可用性</center></strong></td>
     <td><center>99.9%</center></td>
     <td><center>99%</center></td>
 </tr>
 <tr>
-    <td><strong><center>Availability<br>(RA-GRS 讀取)</center></strong></td>
+    <td><strong><center>可用性<br>(RA-GRS 讀取)</center></strong></td>
     <td><center>99.99%</center></td>
     <td><center>99.9%</center></td>
 </tr>
@@ -111,7 +112,7 @@ Blob 儲存體帳戶會公開 [存取層] 屬性，以便您根據儲存在帳�
     <td colspan="2"><center>毫秒</center></td>
 </tr>
 <tr>
-    <td><strong><center>擴充和效能目標<center></strong></td>
+    <td><strong><center>延展性和效能目標<center></strong></td>
     <td colspan="2"><center>與一般用途儲存體帳戶相同</center></td>
 </tr>
 </tbody>
@@ -341,10 +342,5 @@ AzCopy 為 Windows 命令列公用程式，可以極高效能將資料複製到 
 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
 [瀏覽及探索您的儲存體帳戶](http://storageexplorer.com/)
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 23c49393a115d9cd0ac3a1b0f146e9dcc780347e
 ms.openlocfilehash: 42be5d71d8f22a2eb06f7ca0ebd4c33fb3d8bebe
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -202,9 +203,4 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 **問︰是否可以設定與 Azure AD 之間的安全 LDAP 連線？**
 
 **答：**否。  Azure AD 不支援 LDAP 通訊協定。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

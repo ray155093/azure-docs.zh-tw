@@ -14,16 +14,17 @@ ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: powershell
 ms.workload: data-management
-ms.date: 12/09/2016
+ms.date: 02/23/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 2a85b3dc1078bad9e5e2fc0ce0bec7e994b29150
-ms.openlocfilehash: e3a9ba798639a9939d8c3d5330b21715ac4be53d
+ms.sourcegitcommit: 78d9194f50bcdc4b0db7871f2480f59b26cfa8f6
+ms.openlocfilehash: 7b7273edfa33f297cb5dc30ef380b6a737787b33
+ms.lasthandoff: 02/27/2017
 
 
 ---
 
-# <a name="sql-database-tutorial-get-started-with-azure-sql-database-servers-databases-and-firewall-rules-using-powershell"></a>SQL Database 教學課程：使用 PowerShell 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則
+# <a name="tutorial-provision-and-access-an-azure-sql-database-using-powershell"></a>教學課程：使用 PowerShell 佈建及存取 Azure SQL Database
 
 在本入門教學課程裡，您將學習如何使用 PowerShell 來：
 
@@ -42,7 +43,7 @@ ms.openlocfilehash: e3a9ba798639a9939d8c3d5330b21715ac4be53d
 * 連接到範例資料庫
 * 檢視使用者資料庫屬性
 
-當完成本教學課程時，您將會有在 Azure 資源群組中執行並連接到邏輯伺服器的範例資料庫和空白資料庫。 您也會有伺服器層級防火牆規則，設定為可啟用伺服器層級主體以從指定的 IP 位址 (或 IP 位址範圍) 登入伺服器。 
+當完成本教學課程時，您將會有在 Azure 資源群組中執行並已附加至邏輯伺服器的範例資料庫和空白資料庫。 您也會有伺服器層級防火牆規則，設定為可啟用伺服器層級主體以從指定的 IP 位址 (或 IP 位址範圍) 登入伺服器。 
 
 **時間估計**︰本教學課程將需要大約 30 分鐘 (假設您已符合先決條件)。
 
@@ -54,24 +55,9 @@ ms.openlocfilehash: e3a9ba798639a9939d8c3d5330b21715ac4be53d
 
 ## <a name="prerequisites"></a>必要條件
 
-* 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 
+* 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](https://azure.microsoft.com/free/)或[啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits/)。 
 
 * 您必須能夠使用屬於訂用帳戶擁有者或參與者角色之成員的帳戶來登入。 如需角色型存取控制 (RBAC) 的詳細資訊，請參閱[開始使用 Azure 入口網站中的存取管理](../active-directory/role-based-access-control-what-is.md)。
-
-* 您需要 Azure blob 儲存體中的 AdventureWorksLT 範例資料庫 .bacpac 檔案
-
-### <a name="download-the-adventureworkslt-sample-database-bacpac-file-and-save-it-in-azure-blob-storage"></a>下載並儲存 Azure blob 儲存體中的 AdventureWorksLT 範例資料庫 .bacpac 檔案
-
-本教學課程會建立新的 AdventureWorksLT 資料庫，方法是從 Azure 儲存體匯入 .bacpac 檔案。 第一個步驟是取得一份 AdventureWorksLT.bacpac，並將它上傳至 blob 儲存體。
-下列步驟準備開始將範例資料庫匯入︰
-
-1. [下載 AdventureWorksLT.bacpac](https://sqldbbacpacs.blob.core.windows.net/bacpacs/AdventureWorksLT.bacpac) 並使用副檔名 .bacpac 檔案將它儲存。
-2. [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account) - 您可以使用預設設定建立儲存體帳戶。
-3. 瀏覽至儲存體帳戶來建立新的**容器**、選取 **Blob**，然後按一下 [+ 容器]。
-4. 將 .bacpac 檔案上傳至儲存體帳戶中的 blob 容器。 您可以使用 [容器] 頁面頂端的 [上傳] 按鈕或[使用 AzCopy](../storage/storage-use-azcopy.md#blob-upload)。 
-5. 在儲存 AdventureWorksLT.bacpac 之後，您稍後在本教學課程中需要匯入程式碼片段的 URL 和儲存體帳戶金鑰。 
-   * 選取 bacpac 檔案並複製 URL。 它將會類似於 https://{storage-account-name}.blob.core.windows.net/{container-name}/AdventureWorksLT.bacpac。 在 [儲存體帳戶] 頁面上，按一下 [存取金鑰]，並複製 **key1**。
-
 
 [!INCLUDE [Start your PowerShell session](../../includes/sql-database-powershell.md)]
 
@@ -79,6 +65,8 @@ ms.openlocfilehash: e3a9ba798639a9939d8c3d5330b21715ac4be53d
 ## <a name="create-a-new-logical-sql-server-using-azure-powershell"></a>使用 Azure PowerShell 建立新的邏輯 SQL Server
 
 您需要資源群組以包含伺服器，因此第一個步驟是建立新的資源群組和伺服器 ([New-AzureRmResourceGroup](https://docs.microsoft.com/powershell/resourcemanager/azurerm.resources/v3.3.0/new-azurermresourcegroup)、[New-AzureRmSqlServer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.sql/v2.3.0/new-azurermsqlserver))，或取得現有資源群組和伺服器的參考 ([Get-AzureRmResourceGroup](https://docs.microsoft.com/powershell/resourcemanager/azurerm.resources/v3.3.0/get-azurermresourcegroup)、[Get-AzureRmSqlServer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.sql/v2.3.0/get-azurermsqlserver))。
+
+
 如果下列程式碼片段不存在，則它們會建立資源群組和 Azure SQL Server：
 
 如需有效 Azure 位置和字串格式的清單，請參閱下列[協助程式程式碼片段](#helper-snippets)一節。
@@ -178,6 +166,25 @@ else
    Write-host "Server firewall rule $serverFirewallRuleName already exists:"
 }
 $myFirewallRule
+
+# Allow Azure services to access the server
+$serverFirewallRuleName2 = "allowAzureServices"
+$serverFirewallStartIp2 = "0.0.0.0"
+$serverFirewallEndIp2 = "0.0.0.0"
+
+$myFirewallRule2 = Get-AzureRmSqlServerFirewallRule -FirewallRuleName $serverFirewallRuleName2 -ServerName $serverName -ResourceGroupName $serverResourceGroupName -ea SilentlyContinue
+
+if(!$myFirewallRule2)
+{
+   Write-host "Creating server firewall rule: $serverFirewallRuleName2"
+   $myFirewallRule2 = New-AzureRmSqlServerFirewallRule -ResourceGroupName $serverResourceGroupName -ServerName $serverName -FirewallRuleName $serverFirewallRuleName2 -StartIpAddress $serverFirewallStartIp2 -EndIpAddress $serverFirewallEndIp2
+}
+else
+{
+   Write-host "Server firewall rule $serverFirewallRuleName2 already exists:"
+}
+$myFirewallRule2
+
 ```
 
 
@@ -217,8 +224,8 @@ $connection.Close()
 
 ## <a name="create-new-adventureworkslt-sample-database-using-azure-powershell"></a>使用 Azure PowerShell 建立新的 AdventureWorksLT 範例資料庫
 
-下列程式碼片段會使用 [New-AzureRmSqlDatabaseImport](https://docs.microsoft.com/powershell/resourcemanager/azurerm.sql/v2.3.0/new-azurermsqldatabaseimport) cmdlet 匯入 AdventureWorksLT 範例資料庫的 bacpac。 Bacpac 位於 Azure blob 儲存體。 執行匯入 cmdlet 之後，您可以使用 [Get-AzureRmSqlDatabaseImportExportStatus](https://docs.microsoft.com/powershell/resourcemanager/azurerm.sql/v2.3.0/get-azurermsqldatabaseimportexportstatus) cmdlet 監視匯入作業的進度。
-$storageUri 是您先前上傳至入口網站之 bacpac 檔案的 URL 屬性，且應會類似於：https://{storage-account}.blob.core.windows.net/{container}/AdventureWorksLT.bacpac
+下列程式碼片段會使用 [New-AzureRmSqlDatabaseImport](https://docs.microsoft.com/powershell/resourcemanager/azurerm.sql/v2.3.0/new-azurermsqldatabaseimport) cmdlet 匯入 AdventureWorksLT 範例資料庫的 bacpac。 Bacpac 位於公用且唯讀的 Azure Blob 儲存體帳戶中。 執行匯入 cmdlet 之後，您可以使用 [Get-AzureRmSqlDatabaseImportExportStatus](https://docs.microsoft.com/powershell/resourcemanager/azurerm.sql/v2.3.0/get-azurermsqldatabaseimportexportstatus) cmdlet 監視匯入作業的進度。
+
 
 ```
 #$resourceGroupName = "{resource-group-name}"
@@ -228,9 +235,9 @@ $databaseName = "AdventureWorksLT"
 $databaseEdition = "Basic"
 $databaseServiceLevel = "Basic"
 
-$storageKeyType = "StorageAccessKey"
-$storageUri = "{storage-uri}" # URL of bacpac file you uploaded to your storage account
-$storageKey = "{storage-key}" # key1 in the Access keys setting of your storage account
+$storageKeyType = "SharedAccessKey"
+$storageUri = "https://sqldbtutorial.blob.core.windows.net/bacpacs/AdventureWorksLT.bacpac"
+$storageKey = "?"
 
 $importRequest = New-AzureRmSqlDatabaseImport -ResourceGroupName $resourceGroupName -ServerName $serverName -DatabaseName $databaseName -StorageKeytype $storageKeyType -StorageKey $storageKey -StorageUri $storageUri -AdministratorLogin $serverAdmin -AdministratorLoginPassword $securePassword -Edition $databaseEdition -ServiceObjectiveName $databaseServiceLevel -DatabaseMaxSizeBytes 5000000
 
@@ -348,10 +355,14 @@ $myDatabaseName = "AdventureWorksLT"
 $myDatabaseEdition = "Basic"
 $myDatabaseServiceLevel = "Basic"
 
-$myStorageKeyType = "StorageAccessKey"
-# Get these values from your Azure storage account:
-$myStorageUri = "{http://your-storage-account.blob.core.windows.net/your-container/AdventureWorksLT.bacpac}"
-$myStorageKey = "{your-storage-key}"
+
+# Storage account details for locating
+# and accessing the sample .bacpac 
+# Do Not Edit for this tutorial
+$myStorageKeyType = "SharedAccessKey"
+$myStorageUri = "https://sqldbtutorial.blob.core.windows.net/bacpacs/AdventureWorksLT.bacpac"
+$myStorageKey = "?"
+
 
 
 # Create new, or get existing resource group
@@ -415,9 +426,8 @@ Write-Host "Server location: " $myServer.Location
 Write-Host "Server version: " $myServer.ServerVersion
 Write-Host "Server administrator login: " $myServer.SqlAdministratorLogin
 
-
-# Create or update server firewall rule
-#######################################
+# Create or update server firewall rules
+########################################
 
 $serverFirewallRuleName = $myServerFirewallRuleName
 $serverFirewallStartIp = $myServerFirewallStartIp
@@ -435,6 +445,24 @@ else
    Write-host "Server firewall rule $serverFirewallRuleName already exists:"
 }
 $myFirewallRule
+
+# Allows Azure services to access the server
+$serverFirewallRuleName2 = "allowAzureServices"
+$serverFirewallStartIp2 = "0.0.0.0"
+$serverFirewallEndIp2 = "0.0.0.0"
+
+$myFirewallRule2 = Get-AzureRmSqlServerFirewallRule -FirewallRuleName $serverFirewallRuleName2 -ServerName $serverName -ResourceGroupName $serverResourceGroupName -ea SilentlyContinue
+
+if(!$myFirewallRule2)
+{
+   Write-host "Creating server firewall rule: $serverFirewallRuleName2"
+   $myFirewallRule2 = New-AzureRmSqlServerFirewallRule -ResourceGroupName $serverResourceGroupName -ServerName $serverName -FirewallRuleName $serverFirewallRuleName2 -StartIpAddress $serverFirewallStartIp2 -EndIpAddress $serverFirewallEndIp2
+}
+else
+{
+   Write-host "Server firewall rule $serverFirewallRuleName2 already exists:"
+}
+$myFirewallRule2
 
 
 # Connect to the server and master database
@@ -566,7 +594,9 @@ Remove-AzureRmResourceGroup -Name {resource-group-name}
 ## <a name="next-steps"></a>後續步驟
 現在您已經完成本第一個快速入門教學課程並使用一些範例資料建立資料庫，您或許有興趣探索其他教學課程，來建置在本教學課程中已學習到的內容。 
 
-* 如果您想要探索 Azure SQL Database 安全性，請參閱 [安全性入門](sql-database-control-access-sql-authentication-get-started.md)。
+- 如需 SQL Server 驗證的入門教學課程，請參閱 [SQL 驗證和授權](sql-database-control-access-sql-authentication-get-started.md)
+- 如需 Azure Active Directory 驗證入門教學課程，請參閱 [ Azure AD 驗證和授權](sql-database-control-access-aad-authentication-get-started.md)
+* 如果您想要查詢 Azure 入口網站中的範例資料庫，請參閱[公用預覽︰適用於 SQL 資料庫的互動式查詢經驗](https://azure.microsoft.com/en-us/updates/azure-sql-database-public-preview-t-sql-editor/)
 * 如果您熟悉 Excel，請了解如何 [在 Azure 中使用 Excel 連接至 SQL Database](sql-database-connect-excel.md)。
 * 如果您準備好開始撰寫程式碼，請在 [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)選擇您的程式語言。
 * 如果您想要將內部部署的 SQL Server 資料庫移動至 Azure，請參閱 [將資料庫移轉至 SQL Database](sql-database-cloud-migrate.md)。
@@ -575,9 +605,4 @@ Remove-AzureRmResourceGroup -Name {resource-group-name}
 
 ## <a name="additional-resources"></a>其他資源
 [什麼是 SQL Database？](sql-database-technical-overview.md)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

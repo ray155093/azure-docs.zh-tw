@@ -17,6 +17,7 @@ ms.author: aglick
 translationtype: Human Translation
 ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
 ms.openlocfilehash: ee3e7103bd647c2d8651ec912fbb764a342781e2
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -120,10 +121,5 @@ Azure 會偵測及處理許多失敗，但有許多類型的失敗需要應用�
 
 ## <a name="next-steps"></a>後續步驟
 本文屬於著重在 Azure 應用程式的災害復原和高可用性的系列文章。 這一系列中的下一篇文章是 [建置在 Microsoft Azure 上之應用程式的高可用性](resiliency-high-availability-azure-applications.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 入口網站中使用角色型存取控制 | Microsoft Docs"
+title: "Azure 傳統入口網站中的角色型存取控制 | Microsoft Docs"
 description: "在 Azure 入口網站中使用角色型存取控制開始進行存取管理。 使用角色指派將權限指派給您的資源。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 10/10/2016
+ms.date: 02/17/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b930fe0a4a47cffebb579be43a77e87548549cfd
+ms.sourcegitcommit: bb894c38de63d0eac4066eeabaed7ba791021cc4
+ms.openlocfilehash: 05da6cd034a387b54eff0790996662223e4b8bab
+ms.lasthandoff: 02/18/2017
 
 
 ---
@@ -24,8 +25,6 @@ ms.openlocfilehash: b930fe0a4a47cffebb579be43a77e87548549cfd
 > [!div class="op_single_selector"]
 > * [使用者或群組管理存取](role-based-access-control-manage-assignments.md)
 > * [資源管理存取](role-based-access-control-configure.md)
-> 
-> 
 
 Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權管理。 使用 RBAC，您可以僅授與使用者執行其作業所需的存取權。 本文將協助您在 Azure 入口網站中啟動並執行 RBAC。 如果您需要有關 RBAC 如何協助您管理存取權的詳細資訊，請參閱 [什麼是角色型存取控制](role-based-access-control-what-is.md)。
 
@@ -44,8 +43,6 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 
 > [!NOTE]
 > 傳統訂用帳戶管理員和共同管理員可被視為新 RBAC 模型中訂用帳戶的擁有者。
-> 
-> 
 
 ## <a name="add-access"></a>新增存取權
 您可從角色指派範圍內的資源、資源群組或訂用帳戶授與存取權。
@@ -61,12 +58,11 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 成功新增角色指派之後，該指派會出現在 [使用者]  刀鋒視窗上。
 
 ## <a name="remove-access"></a>移除存取權
-1. 在 [存取控制] 刀鋒視窗上選取角色指派。
-2. 在 [指派詳細資料] 刀鋒視窗中選取 [移除]  。  
-3. 選取 [是]  以確認移除。  
-    ![使用者刀鋒視窗 - 從角色中移除螢幕擷取畫面](./media/role-based-access-control-configure/remove-access1.png)
+1. 使用 [存取控制] 刀鋒視窗上的核取方塊來選取一或多個角色指派。
+2. 選取 [移除]。  
+3. 將會顯示一個要求您確認動作的方塊。 選取 [是]  即可移除角色指派。
 
-無法移除已繼承的指派。 請注意，在下圖中，[移除] 按鈕呈現灰色。 請改為查看 [指派處]  詳細資料。 移至該處所列的資源來移除角色指派。
+無法移除已繼承的指派。 如果您需要移除繼承的指派，將需要在建立角色指派的範圍進行移除。 在 [範圍] 資料行中 [繼承] 的旁邊有一個連結，會將您帶往已指派該角色的資源。 移至該處所列的資源來移除角色指派。
 
 ![使用者刀鋒視窗 - 繼承的存取存停用 [移除] 按鈕螢幕擷取畫面](./media/role-based-access-control-configure/remove-access2.png)
 
@@ -81,10 +77,5 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 * [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)
 * 請參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
 * 定義您自己的 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
-
-
-
-
-<!--HONumber=Nov16_HO2-->
 
 

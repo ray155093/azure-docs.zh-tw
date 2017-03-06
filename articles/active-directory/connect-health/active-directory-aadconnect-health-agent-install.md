@@ -17,6 +17,7 @@ ms.author: vakarand
 translationtype: Human Translation
 ms.sourcegitcommit: 7c320a043322fefea1f58301492d4c5a0567320c
 ms.openlocfilehash: 9569a850c6fadd86c408f9e9d4ec6d7d519744e8
+ms.lasthandoff: 02/13/2017
 
 
 ---
@@ -301,8 +302,3 @@ ms.openlocfilehash: 9569a850c6fadd86c408f9e9d4ec6d7d519744e8
 * [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
-
-
-<!--HONumber=Feb17_HO2-->
-
-

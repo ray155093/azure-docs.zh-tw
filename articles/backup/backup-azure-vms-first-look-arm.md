@@ -13,11 +13,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 02/06/2017
-ms.author: markgal; jimpark
+ms.date: 02/15/2017
+ms.author: markgal;jimpark
 translationtype: Human Translation
-ms.sourcegitcommit: b73d5bb1f4f9e7adc65bf38a3c98db846a341cb3
-ms.openlocfilehash: 2d8bedcf51cf55e13cc22d5a2d258218f0a786bb
+ms.sourcegitcommit: dca042ce1684b35e6a874075e0de28b9d8766331
+ms.openlocfilehash: 7aa9305bf8a32bb7e911dfda3d331adcf1c70383
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -33,11 +34,11 @@ ms.openlocfilehash: 2d8bedcf51cf55e13cc22d5a2d258218f0a786bb
 * Azure Resource Manager 部署的 VM
 * 傳統 VM
 * 標準儲存體 VM
-* 進階儲存體 VM 
+* 進階儲存體 VM
 * 在受控磁碟上執行的 VM
 * 使用 Azure 磁碟加密，搭配 BEK 與 KEK 來加密的 VM
 
-如需保護進階儲存體 VM 的詳細資訊，請參閱[備份和還原進階儲存體 VM](backup-introduction-to-azure-backup.md#using-premium-storage-vms-with-azure-backup)。 如需受控磁碟 VM 支援的詳細資訊，請參閱[備份及還原受控磁碟上的 VM](backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)
+如需保護進階儲存體 VM 的詳細資訊，請參閱[備份和還原進階儲存體 VM](backup-introduction-to-azure-backup.md#using-premium-storage-vms-with-azure-backup)一文。 如需受控磁碟 VM 支援的詳細資訊，請參閱[備份及還原受控磁碟上的 VM](backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)。
 
 > [!NOTE]
 > 本教學課程假設您的 Azure 訂用帳戶中已有 VM，且您已採取措施以允許備份服務存取 VM。
@@ -46,37 +47,74 @@ ms.openlocfilehash: 2d8bedcf51cf55e13cc22d5a2d258218f0a786bb
 
 [!INCLUDE [learn-about-Azure-Backup-deployment-models](../../includes/backup-deployment-models.md)]
 
-根據您想要保護的 VM 數，您可以從不同的起點開始 - 如果您想要用單一作業備份多個虛擬機器，請移至復原服務保存庫，並從保存庫儀表板開始備份。 如果您想要備份您的單一 VM，您可以直接從 VM 管理刀鋒視窗進行備份。
+根據您想要保護的虛擬機器數目，您可以從不同的起始點開始。 如果您想要以單一作業備份多個虛擬機器，請移至復原服務保存庫，然後[從保存庫儀表板起始備份工作](backup-azure-vms-first-look-arm.md#configure-the-backup-job-from-the-recovery-services-vault)。 如果您想要備份單一虛擬機器，您可以從 VM 管理刀鋒視窗上起始備份工作。
 
-## <a name="configure-backup-from-vm-management-blade"></a>從 VM 管理刀鋒視窗中設定備份
+## <a name="configure-the-backup-job-from-the-vm-management-blade"></a>從 VM 管理刀鋒視窗設定備份工作
+
+下列步驟將引導您從 Azure 入口網站中的虛擬機器管理刀鋒視窗，完成設定備份工作。 這些步驟不適用於傳統入口網站中的虛擬機器。
+
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在 [中樞] 功能表上按一下 [更多服務]，然後在資源清單中輸入**虛擬機器**。  虛擬機器的清單隨即出現。 在虛擬機器清單中，選取您要備份的虛擬機器。 這會開啟虛擬機器管理刀鋒視窗。
+2. 在 [中樞] 功能表上按一下 [更多服務]，然後在 [篩選] 對話方塊中輸入**虛擬機器**。 當您輸入時，會一邊篩選資源清單。 當您看到虛擬機器時，請選取它。
+
+  ![在 [中樞] 功能表上，按一下 [更多服務]，以開啟 [文字] 對話方塊中，然後輸入虛擬機器](./media/backup-azure-vms-first-look-arm/open-vm-from-hub.png)
+
+  訂用帳戶中的虛擬機器 (VM) 清單隨即出現。
+
+  ![訂用帳戶中的 VM 清單隨即出現。](./media/backup-azure-vms-first-look-arm/list-of-vms.png)
+
+3. 從清單中選取要備份的 VM。
+
+  ![訂用帳戶中的 VM 清單隨即出現。](./media/backup-azure-vms-first-look-arm/list-of-vms-selected.png)
+
+  當您選取 VM 時，虛擬機器清單便會轉移至左邊，並開啟虛擬機器管理刀鋒視窗和虛擬機器儀表板。
  ![VM 管理刀鋒視窗](./media/backup-azure-vms-first-look-arm/vm-management-blade.png)
 
-3. 在 VM 管理刀鋒視窗中，按一下左手邊 [設定] 下方的 [備份] 選項。
+4. 在 VM 管理刀鋒視窗的 [設定] 區段中，按一下 [備份]。
 ![VM 管理刀鋒視窗中的備份選項](./media/backup-azure-vms-first-look-arm/backup-option-vm-management-blade.png)
+   [啟用備份] 刀鋒視窗隨即開啟。
 
-4. 這會開啟 [啟用備份] 刀鋒視窗。 此刀鋒視窗中必須要有兩個輸入︰復原服務保存庫和備份原則，前者為 Azure 備份資源，用來儲存 VM 的備份；後者則指定備份排程，以及備份複本要保留多久。 此刀鋒視窗中提供預設選項。 您可以根據備份的需求自訂選項。
+  ![VM 管理刀鋒視窗中的備份選項](./media/backup-azure-vms-first-look-arm/vm-blade-enable-backup.png)
 
-  ![啟用備份精靈](./media/backup-azure-vms-first-look-arm/vm-blade-enable-backup.png)
+5. 對於復原服務保存庫，按一下 [選取現有]，然後從下拉式清單中選擇保存庫。
 
-5. 針對復原服務保存庫，您可以選取現有的保存庫，或建立新的保存庫。 如果您建立新的保存庫，它會建立在與虛擬機器相同的資源群組中，位置和虛擬機器相同。 如果您想要建立具有不同值的復原服務保存庫，請先[建立復原服務保存庫](backup-azure-vms-first-look-arm.md#create-a-recovery-services-vault-for-a-vm)，按一下步驟&#3; 中的備份選項，然後在此刀鋒視窗中選取它。
+    ![啟用備份精靈](./media/backup-azure-vms-first-look-arm/vm-blade-enable-backup.png)
 
-6. 在 [備份原則] 刀鋒視窗中選取您要套用至保存庫的備份原則，然後按一下 [確定] 。
-    ![選取備份原則](./media/backup-azure-vms-first-look-arm/setting-rs-backup-policy-new.png)
+    如果沒有復原服務保存庫，或您想要使用新的保存庫，請按一下 [新建]，並提供新保存庫的名稱。 新保存庫已在與虛擬機器相同的資源群組和相同位置中建立。 如果您想要使用不同的值建立復原服務保存庫，請參閱如何[建立復原服務保存庫](backup-azure-vms-first-look-arm.md#create-a-recovery-services-vault-for-a-vm)一節。
 
-    預設原則的詳細資料便會列在詳細資料中。 如果您想要建立原則，請在下拉式功能表中選取 [新建]。 下拉式功能表也提供選項，可讓您將時間切換為擷取快照的時間。 如需定義備份原則的指示，請參閱 [定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。 一旦您按下 [確定]，備份原則便會與虛擬機器建立關聯。
+6. 若要檢視備份原則的詳細資料，請按一下 [備份原則]。
 
-7. 按一下 [啟用備份] 來設定虛擬機器的備份。 這會觸發部署。
-![啟用備份按鈕](./media/backup-azure-vms-first-look-arm/vm-management-blade-enable-backup-button.png)
+    [備份原則] 刀鋒視窗隨即開啟，並提供所選原則的詳細資料。 如果有其他原則存在，請使用下拉式功能表來選擇不同的備份原則。 如果您想要建立新原則，請在下拉式功能表中選取 [建立新的]  。 如需定義備份原則的指示，請參閱 [定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。 若要將變更儲存至備份原則，並返回 [啟用備份] 刀鋒視窗，請按一下 [確定]。
 
-8. 您可以透過通知追蹤設定的進度。
+    ![選取備份原則](./media/backup-azure-vms-first-look-arm/setting-rs-backup-policy-new-2.png)
+
+7. 在 [啟用備份原則] 刀鋒視窗中，按一下 [啟用備份] 以觸發原則部署，使原則與保存庫和虛擬機器產生關聯。
+
+  ![啟用備份按鈕](./media/backup-azure-vms-first-look-arm/vm-management-blade-enable-backup-button.png)
+
+8. 您可以透過出現在入口網站的通知來追蹤組態進度。 下列範例顯示部署已經開始。
 ![啟用備份通知](./media/backup-azure-vms-first-look-arm/vm-management-blade-enable-backup-notification.png)
 
-9. 設定備份的部署完成後，按一下 VM 管理刀鋒視窗上的 [備份] 選項，您會看到對應至備份之 VM 的備份項目刀鋒視窗。
-![VM 備份項目檢視](./media/backup-azure-vms-first-look-arm/backup-item-view.png)
+9. 組態進度完成之後，在 VM 管理刀鋒視窗上，按一下 [備份] 以開啟 [備份項目] 刀鋒視窗並檢視詳細資料。
 
-## <a name="configure-backup-from-recovery-services-vault-view"></a>在復原服務保存庫中設定備份
+  ![VM 備份項目檢視](./media/backup-azure-vms-first-look-arm/backup-item-view.png)
+
+  在完成初始備份之前，[上次備份狀態] 會顯示為 [警告 (待執行初始備份)]。 若要查看下一個排定的備份工作何時發生，請在 [備份原則] 下按一下原則的名稱。 [備份原則] 刀鋒視窗隨即開啟，並顯示已排定備份的時間。
+
+10. 若要執行備份工作，並建立初始復原點，請在 [備份保存庫] 刀鋒視窗中，按一下 [立即備份]。
+
+  ![按一下 [立即備份] 以執行初始備份](./media/backup-azure-vms-first-look-arm/backup-now.png)
+
+  [立即備份] 刀鋒視窗隨即開啟。
+
+  ![顯示 [立即備份] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
+
+11. 在 [立即備份] 刀鋒視窗上，按一下日曆圖示，使用日曆控制項選取此復原點保留的最後一天，然後按一下 [備份]。
+
+  ![設定 [立即備份] 復原點保留的最後一天](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
+
+  部署通知可讓您知道已觸發備份工作，而且您可以在 [備份工作] 頁面上監視作業的進度。
+
+## <a name="configure-the-backup-job-from-the-recovery-services-vault"></a>設定復原服務保存庫中的備份工作
 概括而言，您會完成以下這些步驟。  
 
 1. 建立 VM 的復原服務保存庫。
@@ -93,31 +131,47 @@ ms.openlocfilehash: 2d8bedcf51cf55e13cc22d5a2d258218f0a786bb
 
 若要建立復原服務保存庫：
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在 [中樞] 功能表上按一下 [瀏覽]，然後在資源清單中輸入**復原服務**。 當您開始輸入時，清單會根據您輸入的文字進行篩選。 按一下 [復原服務保存庫] 。
+1. 如果您尚未這麼做，請使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 在 [中樞] 功能表上按一下 [更多服務]，然後在 [篩選] 對話方塊中輸入**復原服務**。 當您輸入時，會一邊篩選資源清單。 當您在清單中看到 [復原服務保存庫] 時，請按一下它。
 
-    ![建立復原服務保存庫的步驟 1](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
+    ![建立復原服務保存庫的步驟 1](./media/backup-try-azure-backup-in-10-mins/open-rs-vault-list.png) <br/>
 
-    隨即會顯示復原服務保存庫清單。
+    如果訂用帳戶中有復原服務保存庫，則會列出保存庫。
+
+    ![建立復原服務保存庫的步驟 2](./media/backup-azure-vms-first-look-arm/list-of-rs-vault.png)
 3. 在 [復原服務保存庫] 功能表上，按一下 [新增]。
 
-    ![建立復原服務保存庫的步驟 2](./media/backup-azure-vms-first-look-arm/rs-vault-menu.png)
+    ![建立復原服務保存庫的步驟 2](./media/backup-try-azure-backup-in-10-mins/rs-vault-menu.png)
 
     [復原服務保存庫] 刀鋒視窗隨即開啟，並提示您提供 [名稱]、[訂用帳戶]、[資源群組] 和 [位置]。
 
-    ![建立復原服務保存庫的步驟 5](./media/backup-azure-vms-first-look-arm/rs-vault-attributes.png)
+    ![建立復原服務保存庫的步驟 3](./media/backup-try-azure-backup-in-10-mins/rs-vault-step-3.png)
+
 4. 在 [名稱] 中，輸入易記名稱來識別保存庫。 必須是 Azure 訂用帳戶中唯一的名稱。 輸入包含 2 到 50 個字元的名稱。 該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。
-5. 按一下 [訂用帳戶]  以查看可用的訂用帳戶清單。 如果您不確定要使用哪個訂用帳戶，請使用預設 (或建議) 的訂用帳戶。 只有在您的組織帳戶與多個 Azure 訂用帳戶相關聯時，才會有多個選擇。
-6. 按一下 [資源群組] 以查看可用的資源群組清單，或按一下 [新增] 以建立資源群組。 如需資源群組的完整資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)
-7. 按一下 [位置]  以選取保存庫的地理區域。 保存庫**必須**與您想要保護的虛擬機器位於相同區域。
 
-   > [!IMPORTANT]
-   > 如果您不確定 VM 的所在位置，請關閉保存庫建立對話方塊，並移至入口網站的虛擬機器清單。 如果您在多個區域中有虛擬機器，請在每個區域中建立復原服務保存庫。 請先在第一個位置建立保存庫，再進入下一個位置。 儲存備份資料時，不需要指定儲存體帳戶，復原服務保存庫和「Azure 備份」服務會自動處理此作業。
-   >
-   >
-8. 按一下 [建立] 。 要等復原服務保存庫建立好，可能需要一些時間。 請監視入口網站右上方區域中的狀態通知。 保存庫一旦建立好，就會出現在復原服務保存庫清單中。
+5. 在 [訂用帳戶] 區段中，使用下拉式功能表來選擇 Azure 訂用帳戶。 如果您只使用一個訂用帳戶，該訂用帳戶會出現，您可以跳到下一個步驟。 如果您不確定要使用哪個訂用帳戶，請使用預設 (或建議) 的訂用帳戶。 只有在您的組織帳戶與多個 Azure 訂用帳戶相關聯時，才會有多個選擇。
 
-    ![備份保存庫的清單](./media/backup-azure-vms-first-look-arm/rs-list-of-vaults.png)
+6. 在 [資源群組] 區段中︰
+
+    * 如果您想建立新的資源群組，請選取 [新建]。
+    或
+    * 選取 [使用現有的]﹐然後按一下下拉式功能表，以查看可用的資源群組清單。
+
+  如需資源群組的完整資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
+
+7. 按一下 [位置]  以選取保存庫的地理區域。 此選項會決定您的備份資料要傳送到哪個地理區域。
+
+  > [!IMPORTANT]
+  > 如果您不確定 VM 的所在位置，請關閉保存庫建立對話方塊，並移至入口網站的虛擬機器清單。 如果您在多個區域中有虛擬機器，請在每個區域中建立復原服務保存庫。 請先在第一個位置建立保存庫，再進入下一個位置。 儲存備份資料時，不需要指定儲存體帳戶，復原服務保存庫和「Azure 備份」服務會自動處理此作業。
+  >
+
+8. 按一下 [復原服務保存庫] 刀鋒視窗底部的 [建立]。
+
+    建立復原服務保存庫可能需要一些時間。 請監視入口網站右上方區域中的狀態通知。 保存庫一旦建立好，就會出現在 [復原服務保存庫] 的清單中。 在數分鐘之後﹐如果您沒有看到您的保存庫，請按一下 [重新整理]。
+
+    ![按一下 [重新整理] 按鈕。](./media/backup-try-azure-backup-in-10-mins/refresh-button.png)</br>
+
+    一旦在復原服務保存庫清單中看到您的保存庫，您即可開始設定儲存體備援。
 
 現在您已建立好保存庫，接下來要了解如何設定儲存體複寫。
 
@@ -126,59 +180,72 @@ ms.openlocfilehash: 2d8bedcf51cf55e13cc22d5a2d258218f0a786bb
 
 若要編輯儲存體複寫設定︰
 
-1. 選取保存庫以開啟保存庫儀表板和 [設定] 刀鋒視窗。 如果 [設定] 刀鋒視窗未開啟，請按一下保存庫儀表板中的 [所有設定]。
-2. 在 [設定] 刀鋒視窗上按一下 [備份基礎結構]  >  [備份設定]，開啟 [備份設定] 刀鋒視窗。 在 [備份設定]  刀鋒視窗上，選擇保存庫的儲存體複寫選項。
+1. 從 [復原服務保存庫] 刀鋒視窗，按一下 [新增保存庫]。
 
-    ![備份保存庫的清單](./media/backup-azure-vms-first-look-arm/choose-storage-configuration-rs-vault.png)
+  ![從復原服務保存庫清單中選取新的保存庫](./media/backup-try-azure-backup-in-10-mins/rs-vault-list.png)
 
-    選擇好保存庫的儲存體選項後，就可以開始建立 VM 與保存庫的關聯。 若要開始關聯，請探索及註冊 Azure 虛擬機器。
+  當您選取保存庫時，[復原服務保存庫] 刀鋒視窗會縮小﹐而 [設定] 刀鋒視窗 (頂端有保存庫名稱) 和 [保存庫詳細資料] 刀鋒視窗隨即開啟。
+
+    ![檢視新保存庫的儲存體組態](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration-2.png)
+2. 在新保存庫的 [設定] 刀鋒視窗中，使用垂直滑桿捲動至 [管理] 區段，然後按一下 [備份基礎結構]。
+    [備份基礎結構] 刀鋒視窗隨即開啟。
+3. 在 [備份基礎結構] 刀鋒視窗中，按一下 [備份設定]開啟 [備份設定] 刀鋒視窗。
+
+    ![為新保存庫設定儲存體組態](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration.png)
+4. 為保存庫選擇適當的儲存體複寫選項。
+
+    ![儲存體組態選項](./media/backup-try-azure-backup-in-10-mins/choose-storage-configuration.png)
+
+    根據預設，保存庫具有異地備援儲存體。 如果您使用 Azure 做為主要的備份儲存體端點，請繼續使用 [異地備援]。 如果您未使用 Azure 做為主要的備份儲存體端點，則選擇 [本地備援]，以減少 Azure 儲存體成本。 在此[儲存體備援概觀](../storage/storage-redundancy.md)中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)和[本地備援](../storage/storage-redundancy.md#locally-redundant-storage)儲存體選項。
+
 
 ## <a name="select-a-backup-goal-set-policy-and-define-items-to-protect"></a>選取備份目標、設定原則及定義要保護的項目
 在向保存庫註冊 VM 前，請先執行探索程序，以確保能夠識別任何新增至訂用帳戶的新虛擬機器。 此程序會在 Azure 中查詢訂用帳戶中的虛擬機器清單，以及其他資訊，例如雲端服務名稱、區域等。 在 Azure 入口網站中，案例是指您要放入復原服務保存庫中的項目。 原則是復原點擷取頻率和時間的排程。 原則也會包含復原點的保留範圍。
 
-1. 如果您已開啟復原服務保存庫，請繼續步驟 2。 如果您並未開啟復原服務保存庫，但位於 Azure 入口網站中，請在 [中樞] 功能表上按一下 [瀏覽] 。
+1. 如果您已開啟復原服務保存庫，請繼續步驟 2。 否則，請在 [中樞] 功能表上按一下 [更多服務]，在資源清單中輸入**復原服務**，然後按一下 [復原服務保存庫]。
 
-   * 在資源清單中輸入 **復原服務**。
-   * 當您開始輸入時，清單會根據您輸入的文字進行篩選。 當您看到 [復原服務保存庫] 時，請按一下它。
+    ![建立復原服務保存庫的步驟 1](./media/backup-try-azure-backup-in-10-mins/open-rs-vault-list.png) <br/>
 
-     ![建立復原服務保存庫的步驟 1](./media/backup-azure-vms-first-look-arm/browse-to-rs-vaults.png) <br/>
+    復原服務保存庫清單隨即出現。
 
-     復原服務保存庫清單隨即出現。
-   * 在復原服務保存庫清單中選取保存庫。
+    ![復原服務保存庫清單檢視](./media/backup-azure-arm-vms-prepare/rs-list-of-vaults.png)
 
-     選取的保存庫儀表板隨即開啟。
+    在復原服務保存庫清單中，選取保存庫以開啟其儀表板。
 
-     ![開啟 [保存庫] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/vault-settings.png)
-2. 在 [保存庫儀表板] 功能表中，按一下 [備份]  以開啟 [備份] 刀鋒視窗。
+     ![開啟 [保存庫] 刀鋒視窗](./media/backup-azure-arm-vms-prepare/new-vault-settings-blade.png)
 
-    ![開啟 [備份] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/backup-button.png)
+2. 在 [保存庫儀表板] 功能表中，按一下 [備份] 以開啟 [備份] 刀鋒視窗。
 
-    刀鋒視窗開啟時，備份服務會搜尋訂用帳戶中的任何新 VM。
+    ![開啟 [備份] 刀鋒視窗](./media/backup-azure-arm-vms-prepare/backup-button.png)
 
-    ![探索 VM](./media/backup-azure-vms-first-look-arm/discovering-new-vms.png)
-3. 在 [備份] 刀鋒視窗中，按一下 [備份目標]  以開啟 [備份目標] 刀鋒視窗。
+    [備份] 和 [備份目標] 刀鋒視窗隨即開啟。
 
-    ![開啟 [案例] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/select-backup-goal-one.png)
-4. 在 [備份目標] 刀鋒視窗中，將 [工作負載的執行位置] 設定為 [Azure]，並將 [欲備份的項目] 設定為 [虛擬機器]，然後按一下 [確定]。
+    ![開啟 [案例] 刀鋒視窗](./media/backup-azure-arm-vms-prepare/select-backup-goal-1.png)
+3. 在 [備份目標] 刀鋒視窗中，從 [您的工作負載在何處執行] 下拉式功能表中，選取 [Azure]。 從 [欲備份的項目] 下拉式清單，選擇 [虛擬機器]，然後按一下 [確定]。
 
-    [備份目標] 刀鋒視窗隨即關閉，然後開啟 [備份原則] 刀鋒視窗。
+    這會向保存庫註冊 VM 擴充功能。 [備份目標] 刀鋒視窗隨即關閉，然後開啟 [備份原則] 刀鋒視窗。
 
-    ![開啟 [案例] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/select-backup-goal-two.png)
-5. 在 [備份原則] 刀鋒視窗中選取您要套用至保存庫的備份原則，然後按一下 [確定] 。
+    ![開啟 [案例] 刀鋒視窗](./media/backup-azure-arm-vms-prepare/select-backup-goal-2.png)
 
-    ![選取備份原則](./media/backup-azure-vms-first-look-arm/setting-rs-backup-policy-new.png)
+4. 在 [備份原則] 刀鋒視窗中，選取您要套用至保存庫的備份原則。
 
-    預設原則的詳細資料便會列在詳細資料中。 如果您想要建立原則，請在下拉式功能表中選取 [新建]。 下拉式功能表也提供選項，可讓您將快照的擷取時間切換為晚上 7 點。 如需定義備份原則的指示，請參閱 [定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。 一旦您按下 [確定] ，備份原則便會與保存庫建立關聯。
+    ![選取備份原則](./media/backup-azure-arm-vms-prepare/setting-rs-backup-policy-new.png)
 
-    接下來選擇要與保存庫建立關聯的 VM。
-6. 選擇要與指定原則建立關聯的虛擬機器，然後按一下 [選取] 。
+    預設原則的詳細資料便會列在下拉式功能表之下。 如果您想要建立新原則，請在下拉式功能表中選取 [建立新的]  。 如需定義備份原則的指示，請參閱 [定義備份原則](backup-azure-vms-first-look-arm.md#defining-a-backup-policy)。
+    按一下 [確定] 讓備份原則與保存庫建立關聯。
 
-    ![選取工作負載](./media/backup-azure-vms-first-look-arm/select-vms-to-backup-new.png)
+    [備份原則] 刀鋒視窗隨即關閉，然後開啟 [選取虛擬機器] 刀鋒視窗。
+5. 在 [選取虛擬機器] 刀鋒視窗中，選擇要與指定原則建立關聯的虛擬機器，然後按一下 [確定]。
 
-    如果沒看到所需 VM，請確認它是否已存在於相同 Azure 位置中做為復原服務保存庫。
-7. 現在您已定義保存庫的所有設定，接下來在 [備份] 刀鋒視窗中按一下頁面底部的 [啟用備份]  。 這會將原則部署到保存庫和 VM。
+    ![選取工作負載](./media/backup-azure-arm-vms-prepare/select-vms-to-backup.png)
 
-    ![啟用備份](./media/backup-azure-vms-first-look-arm/enable-backup-settings-new.png)
+    選取的虛擬機器便會接受驗證。 如果沒看到應該要有的虛擬機器，請確認其是否位於和復原服務保存庫相同的 Azure 位置。 復原服務保存庫的位置會顯示在保存庫儀表板上。
+
+6. 現在您已定義保存庫的所有設定，接下來在 [備份] 刀鋒視窗中按一下 [啟用備份] 。 這會將原則部署到保存庫和 VM。 這不會建立虛擬機器的初始復原點。
+
+    ![啟用備份](./media/backup-azure-arm-vms-prepare/vm-validated-click-enable.png)
+
+成功啟用備份後，備份原則就會依排程執行。 不過，請繼續初始化第一個備份工作。
 
 ## <a name="initial-backup"></a>初始備份
 在虛擬機器上部署好備份原則後，並不表示您已備份好資料。 根據預設，第一個排定的備份 (如備份原則中所定義) 即為初始備份。 在執行初始備份之前，[備份作業] 刀鋒視窗上的 [上次備份狀態] 會顯示為 [警告 (待執行初始備份)]。
@@ -187,34 +254,60 @@ ms.openlocfilehash: 2d8bedcf51cf55e13cc22d5a2d258218f0a786bb
 
 除非您的初始備份預計會馬上開始，否則建議您執行 [立即備份] 。
 
-若要執行 [立即備份] ：
+若要執行初始備份作業：
 
-1. 在保存庫儀表板的 [備份] 圖格上，按一下 [Azure 虛擬機器] <br/>
-    ![設定圖示](./media/backup-azure-vms-first-look-arm/rs-vault-in-dashboard-backup-vms.png)
+1. 在保存庫儀表板中，按一下 [備份項目] 下的數字，或按一下 [備份項目] 圖格。 <br/>
+  ![設定圖示](./media/backup-azure-vms-first-look-arm/rs-vault-config-vm-back-up-now-1.png)
 
-    [備份項目]  刀鋒視窗隨即開啟。
-2. 在 [備份項目] 刀鋒視窗中，以滑鼠右鍵按一下您要備份的保存庫，然後按一下 [立即備份]。
+  [備份項目]  刀鋒視窗隨即開啟。
 
-    ![設定圖示](./media/backup-azure-vms-first-look-arm/back-up-now.png)
+  ![備份項目](./media/backup-azure-vms-first-look-arm/back-up-items-list.png)
 
-    備份作業便會觸發。 <br/>
+2. 在 [備份項目] 刀鋒視窗中，選取該項目。
 
-    ![備份作業已觸發](./media/backup-azure-vms-first-look-arm/backup-triggered.png)
-3. 若要檢視初始備份是否已完成，請在保存庫儀表板的 [備份作業] 圖格上按一下 [Azure 虛擬機器]。
+  ![設定圖示](./media/backup-azure-vms-first-look-arm/back-up-items-list-selected.png)
 
-    ![備份工作圖格](./media/backup-azure-vms-first-look-arm/open-backup-jobs.png)
+  [備份項目] 清單隨即開啟。 <br/>
 
-    [備份工作] 刀鋒視窗隨即開啟。
-4. 在 [備份工作] 刀鋒視窗中，您可以看到所有工作的狀態。
+  ![備份作業已觸發](./media/backup-azure-vms-first-look-arm/backup-items-not-run.png)
 
-    ![備份工作圖格](./media/backup-azure-vms-first-look-arm/backup-jobs-in-jobs-view.png)
+3. 在 [備份項目] 清單上，按一下省略符號 **...** 以開啟操作功能表。
 
-   > [!NOTE]
-   > 在備份工作進行時，Azure 備份服務會對每個 VM 中的備份擴充功能發出命令，以排清所有寫入並取得一致的快照。
-   >
-   >
+  ![內容功能表](./media/backup-azure-vms-first-look-arm/context-menu.png)
 
-    當備份作業完成時，狀態會是「完成」 。
+  操作功能表隨即出現。
+
+  ![內容功能表](./media/backup-azure-vms-first-look-arm/context-menu-small.png)
+
+4. 在操作功能表上，按一下 [立即備份]。
+
+  ![內容功能表](./media/backup-azure-vms-first-look-arm/context-menu-small-backup-now.png)
+
+  [立即備份] 刀鋒視窗隨即開啟。
+
+  ![顯示 [立即備份] 刀鋒視窗](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
+
+5. 在 [立即備份] 刀鋒視窗上，按一下日曆圖示，使用日曆控制項選取此復原點保留的最後一天，然後按一下 [備份]。
+
+  ![設定 [立即備份] 復原點保留的最後一天](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
+
+  部署通知可讓您知道已觸發備份工作，而且您可以在 [備份工作] 頁面上監視作業的進度。 根據您的 VM 大小，建立初始備份可能需要花一點時間。
+
+6. 若要在保存庫儀表板上檢視或追蹤初始備份的狀態，請在 [備份工作] 圖格上，按一下 [進行中]。
+
+  ![備份工作圖格](./media/backup-azure-vms-first-look-arm/open-backup-jobs-1.png)
+
+  [備份工作] 刀鋒視窗隨即開啟。
+
+  ![備份工作圖格](./media/backup-azure-vms-first-look-arm/backup-jobs-in-jobs-view-1.png)
+
+  在 [備份作業]  刀鋒視窗中，您可以看到所有作業的狀態。 檢查您 VM 的備份作業是否仍在進行中或已經完成。 當備份工作完成時，狀態會是「完成」 。
+
+  > [!NOTE]
+  > 在備份工作進行時，Azure 備份服務會對每個 VM 中的備份擴充功能發出命令，以排清所有寫入並取得一致的快照。
+  >
+  >
+
 
 [!INCLUDE [backup-create-backup-policy-for-vm](../../includes/backup-create-backup-policy-for-vm.md)]
 
@@ -244,9 +337,4 @@ Azure VM 備份將會根據受保護的執行個體模型收費。 深入了解[
 
 ## <a name="questions"></a>有疑問嗎？
 如果您有問題，或希望我們加入任何功能，請 [傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

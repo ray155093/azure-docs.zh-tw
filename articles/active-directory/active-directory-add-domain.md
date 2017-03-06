@@ -3,7 +3,7 @@ title: "將您的自訂網域名稱新增至 Azure Active Directory | Microsoft 
 description: "如何在 Azure Active Directory 中新增您公司的網域名稱，以及如何確認網域名稱。"
 services: active-directory
 documentationcenter: 
-author: jeffsta
+author: curtand
 manager: femila
 editor: 
 ms.assetid: 35a6e20a-9907-432b-9d36-16b916a5c249
@@ -15,8 +15,9 @@ ms.topic: get-started-article
 ms.date: 09/30/2016
 ms.author: curtand;jeffsta
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 7bd889847f07ebbadc5e427f2b1ff3f9f869e69a
+ms.sourcegitcommit: f1f3d6fa1ba29b0d43d29c7d9cccfc430fdd6f1e
+ms.openlocfilehash: 9803b4e41223bc979e4c0b0a4f22586a441c28df
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.openlocfilehash: 7bd889847f07ebbadc5e427f2b1ff3f9f869e69a
 > 
 > 
 
-您已有一或多個您的組織用來經營業務的網域名稱，而且您的使用者使用您公司的網域名稱來登入公司網路。 既然您將要使用 Azure Active Directory (Azure AD)，您也可以將您的公司網域名稱加入 Azure AD。 這可讓您在目錄中指派您的使用者熟悉的使用者名稱，例如 ‘alice@contoso.com.’ 程序很簡單：
+您已有一或多個您的組織用來經營業務的網域名稱，而且您的使用者使用您公司的網域名稱來登入公司網路。 既然您將要使用 Azure Active Directory (Azure AD)，您也可以將您的公司網域名稱加入 Azure AD。 這可讓您在目錄中指派您的使用者熟悉的使用者名稱，例如 ‘alice@contoso.com’。 程序佷簡單：
 
 1. 在目錄中新增自訂網域名稱
 2. 在網域名稱註冊機構中新增網域名稱的 DNS 項目
@@ -85,10 +86,5 @@ ms.openlocfilehash: 7bd889847f07ebbadc5e427f2b1ff3f9f869e69a
 * [了解 Azure AD 中的網域管理概念](active-directory-add-domain-concepts.md)
 * [在您的使用者登入時顯示公司的商標](active-directory-add-company-branding.md)
 * [使用 PowerShell 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

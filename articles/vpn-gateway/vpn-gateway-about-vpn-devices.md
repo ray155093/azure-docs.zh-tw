@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 12/12/2016
 ms.author: yushwang;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: bf262073b46daa8b7dcf50fabf5f455d7d5850e7
-ms.openlocfilehash: b8e65f6c314457b76bd062ea09bda53099fb79d9
+ms.sourcegitcommit: ba659fe42fa2264708833f5674711334845defcc
+ms.openlocfilehash: 283e71f03f3907fd1e72283059ba7acbdac054d4
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -30,6 +31,9 @@ ms.openlocfilehash: b8e65f6c314457b76bd062ea09bda53099fb79d9
 >
 
 如果您的裝置未出現在[已經驗證的 VPN 裝置](#devicetable)表格中，請參閱本文的[未經驗證的 VPN 裝置](#additionaldevices)一節。 您的裝置可能仍然可以與 Azure 搭配使用。 如需 VPN 裝置的支援，請連絡裝置製造商。
+
+> [!IMPORTANT]
+> 如果您的內部部署 VPN 裝置與 Azure VPN 閘道之間發生連線問題，請參考[已知的裝置相容性問題](#known)。
 
 **檢視表格時應注意的項目：**
 
@@ -49,14 +53,14 @@ ms.openlocfilehash: b8e65f6c314457b76bd062ea09bda53099fb79d9
 | Barracuda Networks, Inc. |Barracuda NextGen Firewall F-series |原則式︰5.4.3<br>路由式︰6.2.0 |[設定指示](https://techlib.barracuda.com/NGF/AzurePolicyBasedVPNGW) |[設定指示](https://techlib.barracuda.com/NGF/AzureRouteBasedVPNGW) |
 | Barracuda Networks, Inc. |Barracuda NextGen Firewall X-series |Barracuda Firewall 6.5 |[Barracuda Firewall](https://techlib.barracuda.com/BFW/ConfigAzureVPNGateway) |不相容 |
 | Brocade |Vyatta 5400 vRouter |Virtual Router 6.6R3 GA |[設定指示](http://www1.brocade.com/downloads/documents/html_product_manuals/vyatta/vyatta_5400_manual/wwhelp/wwhimpl/js/html/wwhelp.htm#href=VPN_Site-to-Site%20IPsec%20VPN/Preface.1.1.html) |不相容 |
-| Check Point |Security Gateway |R75.40<br>R75.40VS |[設定指示](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk101275) |[設定指示](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk101275) |
+| Check Point |Security Gateway |R77.30 |[設定指示](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk101275) |[設定指示](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk101275) |
 | Cisco |ASA |8.3 |[Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASA) |不相容 |
 | Cisco |ASR |原則式：IOS 15.1<br>路由式：IOS 15.2 |[Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASR) |[Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASR) |
 | Cisco |ISR |原則式：IOS 15.0<br>路由式*：IOS 15.1 |[Cisco 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |[Cisco 範例*](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |
 | Citrix |NetScaler MPX、SDX、VPX |10.1 和更新版本 |[整合指示](https://docs.citrix.com/en-us/netscaler/11-1/system/cloudbridge-connector-introduction/cloudbridge-connector-azure.html) |不相容 |
 | Dell SonicWALL |TZ 系列、NSA 系列<br>SuperMassive 系列<br>E-Class NSA 系列 |SonicOS 5.8.x<br>[SonicOS 5.9.x](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide/supported-platforms?ParentProduct=850)<br>[SonicOS 6.x](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide/supported-platforms?ParentProduct=646) |[SonicOS 6.2 設定指南](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646)<br>[SonicOS 5.9 設定指南](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |[SonicOS 6.2 設定指南](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646)<br>[SonicOS 5.9 設定指南](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |
 | F5 |BIG-IP 系列 |12.0 |[設定指示](https://devcentral.f5.com/articles/connecting-to-windows-azure-with-the-big-ip) |[設定指示](https://devcentral.f5.com/articles/big-ip-to-azure-dynamic-ipsec-tunneling) |
-| Fortinet |FortiGate |FortiOS 5.4.x |[設定指示](http://cookbook.fortinet.com/ipsec-vpn-microsoft-azure-54) |[設定指示](http://cookbook.fortinet.com/ipsec-vpn-microsoft-azure-54) |
+| Fortinet |FortiGate |FortiOS 5.4.2 |[設定指示](http://cookbook.fortinet.com/ipsec-vpn-microsoft-azure-54) |[設定指示](http://cookbook.fortinet.com/ipsec-vpn-microsoft-azure-54) |
 | Internet Initiative Japan (IIJ) |SEIL 系列 |SEIL/X 4.60<br>SEIL/B1 4.60<br>SEIL/x86 3.20 |[設定指示](http://www.iij.ad.jp/biz/seil/ConfigAzureSEILVPN.pdf) |不相容 |
 | Juniper |SRX |原則式：JunOS 10.2<br>路由式：JunOS 11.4 |[Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SRX) |[Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/SRX) |
 | Juniper |J 系列 |原則式：JunOS 10.4r9<br>路由式：JunOS 11.4 |[Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/JSeries) |[Juniper 範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Juniper/Current/JSeries) |
@@ -65,7 +69,7 @@ ms.openlocfilehash: b8e65f6c314457b76bd062ea09bda53099fb79d9
 | Microsoft |路由及遠端存取服務 |Windows Server 2012 |不相容 |[Microsoft 範例](http://go.microsoft.com/fwlink/p/?LinkId=717761) |
 | 開啟系統 AG |任務控制安全性閘道 |N/A |[安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |[安裝指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |
 | Openswan |Openswan |2.6.32 |(敬請期待) |不相容 |
-| Palo Alto Networks |所有執行 PAN-OS 的裝置 |PAN-OS<br>原則式：6.1.5 或更新版本<br>路由式：7.0.5 或更新版本 |[設定指示](https://live.paloaltonetworks.com/t5/Configuration-Articles/How-to-Configure-VPN-Tunnel-Between-a-Palo-Alto-Networks/ta-p/59065) |[設定指示](https://live.paloaltonetworks.com/t5/Integration-Articles/Configuring-IKEv2-VPN-for-Microsoft-Azure-Environment/ta-p/60340) |
+| Palo Alto Networks |所有執行 PAN-OS 的裝置 |PAN-OS<br>原則式：6.1.5 或更新版本<br>路由式：7.1.4 |[設定指示](https://live.paloaltonetworks.com/t5/Configuration-Articles/How-to-Configure-VPN-Tunnel-Between-a-Palo-Alto-Networks/ta-p/59065) |[設定指示](https://live.paloaltonetworks.com/t5/Integration-Articles/Configuring-IKEv2-VPN-for-Microsoft-Azure-Environment/ta-p/60340) |
 | WatchGuard |全部 |Fireware XTM<br> 原則式：v11.11.x<br>路由式：v11.12.x |[設定指示](http://watchguardsupport.force.com/publicKB?type=KBArticle&SFDCID=kA2F00000000LI7KAM&lang=en_US) |[設定指示](http://watchguardsupport.force.com/publicKB?type=KBArticle&SFDCID=kA22A000000XZogSAG&lang=en_US)|
 
 (*) ISR 7200 系列路由器僅支援原則式 VPN。
@@ -151,8 +155,16 @@ ms.openlocfilehash: b8e65f6c314457b76bd062ea09bda53099fb79d9
 * 您可以使用路由式和高效能 VPN 閘道指定 IPsec ESP NULL 加密。 以 Null 為基礎的加密不提供傳輸中資料的保護，應該只用於時需要最大輸送量和最小延遲時。  用戶端可能會選擇在 VNet 對 VNet 通訊案例中，或當加密套用至解決方案中的其他地方時，使用此功能。
 * 透過網際網路的跨單位連線，請使用含有加密和雜湊演算法的預設 Azure VPN 閘道設定 (如上表所列)，以確保重要通訊的安全性。
 
+## <a name="a-nameknownaknown-device-compatibility-issues"></a><a name="known"></a>已知的裝置相容性問題
 
+> [!IMPORTANT]
+> 協力廠商 VPN 裝置與 Azure VPN 閘道之間有已知的相容性問題。 Azure 小組正積極與廠商合作來解決這裡所列出的問題。 解決這些問題之後，就會更新此頁面來提供最新資訊。 請定期回來查看。
 
-<!--HONumber=Jan17_HO4-->
+###<a name="feb-16-2017"></a>2017 年 2 月 16 日
 
+適用於 Azure 路由式 VPN 但**版本比 7.1.4 舊的 Palo Alto Networks 裝置**：如果您使用來自 Palo Alto Networks、PAN-OS 版本比 7.1.4 舊的 VPN 裝置，而在連線到 Azure 路由式 VPN 閘道時發生問題，請執行下列步驟：
+
+1. 檢查您 Palo Alto Networks 裝置的韌體版本。 如果您的 PAN-OS 版本比 7.1.4 舊，請升級至 7.1.4
+2. 在 Palo Alto Networks 裝置上，於連接到 Azure VPN 閘道時，將 [Phase 2 SA (第 2 階段 SA)] (或 [Quick Mode SA (快速模式 SA)]) 存留期變更為 28,800 秒 (8 小時)
+3. 如果您仍然遇到連線問題，請從 Azure 入口網站開啟支援要求 
 

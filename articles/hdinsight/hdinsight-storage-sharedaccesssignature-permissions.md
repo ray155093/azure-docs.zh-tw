@@ -17,6 +17,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
 ms.openlocfilehash: 6187106a9aa98107d89e65fe4c7a0e8a27befa87
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -254,9 +255,4 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。 HDInsight 必須具�
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
 [powershell]: /powershell/azureps-cmdlets-docs
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

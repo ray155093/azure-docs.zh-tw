@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/15/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 786ffe97c794aa44dc5d2b8e1a9597387752409c
+ms.sourcegitcommit: 0837cb33bf438fb7fd9665d21d411f0170cdd393
+ms.openlocfilehash: d5171cdc9048837385bfb99d553e496a9f56846e
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -64,16 +65,16 @@ ClickTime 與 Azure AD 整合提供下列優點：
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-   ![應用程式](./media/active-directory-saas-clicktime-tutorial/tic700994.png "Applications")
+   ![應用程式](./media/active-directory-saas-clicktime-tutorial/tic700994.png "應用程式")
 4. 按一下頁面底部的 [新增]  。
    
-   ![新增應用程式](./media/active-directory-saas-clicktime-tutorial/tic749321.png "Add application")
+   ![新增應用程式](./media/active-directory-saas-clicktime-tutorial/tic749321.png "新增應用程式")
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-   ![從組件庫新增應用程式](./media/active-directory-saas-clicktime-tutorial/tic749322.png "Add an application from gallerry")
+   ![從資源庫新增應用程式](./media/active-directory-saas-clicktime-tutorial/tic749322.png "從資源庫新增應用程式")
 6. 在**搜尋方塊**中，輸入 **ClickTime**。
    
-   ![應用程式庫](./media/active-directory-saas-clicktime-tutorial/tic777275.png "Application gallery")
+   ![應用程式資源庫](./media/active-directory-saas-clicktime-tutorial/tic777275.png "應用程式資源庫")
 7. 在結果窗格中，選取 [ClickTime]，然後按一下 [完成] 以加入應用程式。
    
    ![ClickTime](./media/active-directory-saas-clicktime-tutorial/tic777276.png "ClickTime")
@@ -105,11 +106,11 @@ ClickTime 與 Azure AD 整合提供下列優點：
 
 1. 在 Azure 傳統入口網站的 [ClickTime] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
-   ![啟用單一登入](./media/active-directory-saas-clicktime-tutorial/tic777277.png "Enable single sign-on")
+   ![啟用單一登入](./media/active-directory-saas-clicktime-tutorial/tic777277.png "啟用單一登入")
 2. 在 [要如何讓使用者登入 ClickTime] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
-   ![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777278.png "Configure single sign-on")
-3. 在 [設定應用程式設定]  對話方塊頁面上，執行下列步驟：
+   ![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777278.png "設定單一登入")
+3. 在 [設定 App 設定]  對話方塊頁面執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777286.png) 
    
@@ -120,12 +121,12 @@ ClickTime 與 Azure AD 整合提供下列優點：
     c. 按一下 [下一步] 
 4. 於 [在 ClickTime 設定單一登入] 頁面上，按 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦中。
    
-   ![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777279.png "Configure single sign-on")
+   ![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777279.png "設定單一登入")
 5. 在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 ClickTime 公司網站。
 6. 在頂端工具列中，按一下 [喜好設定]，然後按一下 [安全性設定]。
 7. 在 [單一登入喜好設定]  組態區段中，執行下列步驟：
    
-   ![安全性設定](./media/active-directory-saas-clicktime-tutorial/tic777280.png "Security Settings")
+   ![安全性設定](./media/active-directory-saas-clicktime-tutorial/tic777280.png "安全性設定")
    
    a.  選取 [允許]，以搭配 **Azure AD** 使用單一登入 (SSO) 進行登入。
    
@@ -136,7 +137,7 @@ ClickTime 與 Azure AD 整合提供下列優點：
    d.  按一下 [儲存] 。
 8. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
-   ![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777281.png "Configure single sign-on")
+   ![設定單一登入](./media/active-directory-saas-clicktime-tutorial/tic777281.png "設定單一登入")
 
 ## <a name="configuring-user-provisioning"></a>設定使用者佈建
 若要讓 Azure AD 使用者可以登入 ClickTime，必須將他們佈建到 ClickTime。  
@@ -146,13 +147,13 @@ ClickTime 需以手動方式佈建。
 1. 登入您的 **ClickTime** 租用戶。
 2. 在頂端工具列中，按一下 [公司]，然後按一下 [人員]。
    
-   ![人員](./media/active-directory-saas-clicktime-tutorial/tic777282.png "People")
+   ![人員](./media/active-directory-saas-clicktime-tutorial/tic777282.png "人員")
 3. 按一下 [新增人員] 。
    
-   ![新增人員](./media/active-directory-saas-clicktime-tutorial/tic777283.png "Add Person")
+   ![新增人員](./media/active-directory-saas-clicktime-tutorial/tic777283.png "新增人員")
 4. 在 [新人員] 區段中，執行下列步驟：
    
-   ![人員](./media/active-directory-saas-clicktime-tutorial/tic777284.png "People")
+   ![人員](./media/active-directory-saas-clicktime-tutorial/tic777284.png "人員")
    
    a.  在 [電子郵件地址] 文字方塊中，輸入您的 Azure AD 帳戶的電子郵件地址。
    
@@ -208,9 +209,4 @@ ClickTime 需以手動方式佈建。
 [201]: ./media/active-directory-saas-clicktime-tutorial/tutorial_general_201.png
 [203]: ./media/active-directory-saas-clicktime-tutorial/tutorial_general_203.png
 [205]: ./media/active-directory-saas-clicktime-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
