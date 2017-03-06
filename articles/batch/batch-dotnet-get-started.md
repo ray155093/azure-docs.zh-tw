@@ -1,6 +1,6 @@
 ---
 title: "教學課程 - 使用適用於 .NET 的 Azure Batch 用戶端程式庫 | Microsoft Docs"
-description: "了解 Azure Batch 的基本概念，以及利用範例案例了解如何開發 Batch 服務。"
+description: "了解 Azure Batch 的基本概念和使用 .NET 建置簡單的解決方案。"
 services: batch
 documentationcenter: .net
 author: tamram
@@ -12,15 +12,18 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 01/23/2017
+ms.date: 02/27/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: bf22cd3426e936c8d74377f59443e5e1a6834286
-ms.openlocfilehash: 5af894b60180d32593ed19c13aecf2732645120a
+ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
+ms.openlocfilehash: edda9dc389d670b463d518edf8c4703062ba169d
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="get-started-with-the-azure-batch-library-for-net"></a>開始使用適用於 .NET 的 Azure Batch 程式庫
+# <a name="get-started-building-solutions-with-the-batch-client-library-for-net"></a>開始使用適用於.NET 的 Batch 用戶端程式庫來建置解決方案
+
 > [!div class="op_single_selector"]
 > * [.NET](batch-dotnet-get-started.md)
 > * [Python](batch-python-tutorial.md)
@@ -802,9 +805,4 @@ Sample complete, hit ENTER to exit...
 [9]: ./media/batch-dotnet-get-started/credentials_batch_sm.png "入口網站中的 Batch 認證"
 [10]: ./media/batch-dotnet-get-started/credentials_storage_sm.png "入口網站中的儲存體認證"
 [11]: ./media/batch-dotnet-get-started/batch_workflow_minimal_sm.png "Batch 方案工作流程 (最小圖表)"
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

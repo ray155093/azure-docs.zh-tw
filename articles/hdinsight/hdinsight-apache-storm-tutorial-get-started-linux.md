@@ -15,13 +15,14 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
-ms.openlocfilehash: 9b38cd0aa542c0fd73b73edefce230e5a463e608
-
+ms.sourcegitcommit: cfaade8249a643b77f3d7fdf466eb5ba38143f18
+ms.openlocfilehash: 4950dbe528290c7d839c97cc8770db4ae0ec08c6
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="apache-storm-tutorial-get-started-with-the-storm-starter-samples-for-big-data-analytics-on-hdinsight"></a>Apache Storm 教學課程：在 HDInsight 上使用 Storm Starter 範例開始分析巨量資料
+#<a name="get-started-with-the-storm-starter-samples-for-big-data-analytics-on-linux-based-hdinsight"></a>在 Linux 型 HDInsight 上使用 Storm Starter 範例開始分析巨量資料
 
 Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運算系統。 在 Storm on Azure HDInsight 中，您可以建立雲端式 Storm 叢集，以執行即時的巨量資料分析。
 
@@ -32,15 +33,13 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-您必須具備下列先決條件，才能順利完成本 Apache Storm 教學課程：
+* **Azure 訂用帳戶**。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
-* **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-
-* **熟悉 SSH 和 SCP**。 如需搭配 HDInsight 使用 SSH 和 SCP 的詳細資訊，請參閱下列文章：
+* **熟悉 SSH 和 SCP**。 如需使用 SSH 和 SCP 搭配 HDInsight 的詳細資訊，請參閱下列文件：
   
-    * **Linux、Unix 或 OS X 用戶端**：請參閱[在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
+    * [從 Bash on Windows 10、Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
     
-    * **Windows 用戶端**：請參閱[從 Windows 在 HDInsight 上搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+    * [從 Windows 在 HDInsight 上搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
 
 ### <a name="access-control-requirements"></a>存取控制需求
 
@@ -48,55 +47,61 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
 
 ## <a name="create-a-storm-cluster"></a>建立 Storm 叢集
 
-在本節中，您將使用 Azure Resource Manager 範本建立 HDInsight 3.5 版叢集 (Storm 1.0.1 版)。 如需不同 HDInsight 版本及其 SLA 的相關資訊，請參閱〈 [HDInsight 元件版本設定](hdinsight-component-versioning.md)〉。 如需其他叢集建立方法，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+請使用下列步驟建立 Storm on HDInsight 叢集：
 
-1. 按一下以下影像，在 Azure 入口網站中開啟範本。         
+1. 從 [Azure 入口網站](https://portal.azure.com)選取 [+ 新增]、[情報 + 分析] 及 [HDInsight]，然後選取 [HDInsight]。
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-storm-cluster-in-hdinsight-35.json" target="_blank"><img src="./media/hdinsight-apache-storm-tutorial-get-started-linux/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    ![建立 HDInsight 叢集](./media/hdinsight-apache-storm-tutorial-get-started-linux/create-hdinsight.png)
+
+2. 在 [基本概念] 刀鋒視窗中，輸入下列資訊：
+
+    * **叢集名稱**︰HDInsight 叢集的名稱。
+    * **訂用帳戶**：選取要使用的訂用帳戶。
+    * **叢集登入使用者名稱**和**叢集登入密碼**：透過 HTTPS 存取叢集時使用的登入資訊。 您會使用這些認證來存取例如 Ambari Web UI 或 REST API 等服務。
+    * **安全殼層 (SSH) 使用者名稱**：透過 SSH 存取叢集時使用的登入資訊。 依預設，密碼要與叢集登入密碼相同。
+    * **資源群組**：在其中建立叢集的資源群組。
+    * **位置**：在其中建立叢集的 Azure 區域。
    
-    此範本位於公用 Blob 容器中，*https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-storm-cluster-in-hdinsight.json*。 
+    ![選取訂用帳戶](./media/hdinsight-apache-storm-tutorial-get-started-linux/hdinsight-basic-configuration.png)
 
-2. 從 [自訂部署] 刀鋒視窗，輸入下列項目：
+3. 選取 [叢集類型]，並且在 [叢集組態] 刀鋒視窗中設定下列值︰
    
-    * __資源群組__：在其中建立叢集的資源群組。
+    * **叢集類型**：Storm
 
-    * **叢集名稱**：Hadoop 叢集的名稱。
+    * **作業系統**：Linux
 
-    * __叢集登入名稱__和__密碼__：預設的登入名稱是 admin。
-    
-    * __SSH 使用者名稱__和__密碼__：使用 SSH 連線到叢集時所需的使用者和密碼。
+    * **版本**：Storm 1.0.1 (HDI 3.5)
 
-    * __位置__：叢集的地理位置。
+    * **叢集層**：標準
      
-     請記下這些值。  稍後在教學課程中需要這些資訊。
+    最後，使用 [選取] 按鈕來儲存設定。
      
-     > [!NOTE]
-     > SSH 可透過命令列遠端存取 HDInsight 叢集。 您在此使用的使用者名稱和密碼會在透過 SSH 連接到叢集時使用。 此外，SSH 使用者名稱必須是唯一的，因為該名稱會在所有 HDInsight 叢集節點上建立使用者帳戶。 以下是一些保留給叢集上的服務使用的帳戶名稱，不能做為 SSH 使用者名稱︰
-     > 
-     > root、hdiuser、storm、hbase、ubuntu、zookeeper、hdfs、yarn、mapred、hbase、hive、oozie、falcon、sqoop、admin、tez、hcat、hdinsight-zookeeper。
-     > 
-     > 如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列文章：
-     > 
-     > * [在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
-     > * [從 Windows 在 HDInsight 上搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+    ![選取叢集類型](./media/hdinsight-apache-storm-tutorial-get-started-linux/set-hdinsight-cluster-type.png)
 
-3. 選取 [我同意上方所述的條款及條件]，按一下 [確定]，然後選取 [釘選到儀表板]
+4. 選取叢集類型之後，請使用 [選取] 按鈕來設定叢集類型。 接下來，使用 [下一步] 按鈕來完成基本組態。
 
-6. 按一下 [購買]。 您將會看到新的圖格，標題為「提交範本部署的部署」。 大約需要 20 分鐘的時間來建立叢集。
+5. 從 [儲存體] 刀鋒視窗中，選取或建立儲存體帳戶。 本文件的步驟是，將此刀鋒視窗中的其他欄位保留為預設值。 使用 [下一步] 按鈕以儲存儲存體組態。
+
+    ![設定 HDInsight 的儲存體帳戶](./media/hdinsight-apache-storm-tutorial-get-started-linux/set-hdinsight-storage-account.png)
+
+6. 從 [摘要] 刀鋒視窗中，檢閱叢集組態。 使用 [編輯] 連結來變更所有不正確的設定。 最後，使用 [建立] 按鈕來建立叢集。
+   
+    ![叢集組態摘要](./media/hdinsight-apache-storm-tutorial-get-started-linux/hdinsight-configuration-summary.png)
+   
+    > [!NOTE]
+    > 建立叢集可能需要花費 20 分鐘的時間。
 
 ## <a name="run-a-storm-starter-sample-on-hdinsight"></a>在 HDInsight 上執行 Storm Starter 範例
-
-HDInsight 叢集已包含 [storm-starter](https://github.com/apache/storm/tree/master/examples/storm-starter) 範例。 在下列步驟中，您將執行 WordCount 範例。
 
 1. 使用 SSH 連線到 HDInsight 叢集
    
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
    
-    如果您已經使用密碼保護您 SSH 使用者帳戶的安全，系統會提示您輸入密碼。 如果您使用的是公開金鑰，您可能必須使用 `-i` 參數來指定對應的私密金鑰。 例如， `ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`。
+    如果您已經使用密碼保護您 SSH 使用者帳戶的安全，系統會提示您輸入密碼。 如果您使用的是公開金鑰，您需要使用 `-i` 參數來指定對應的私密金鑰。 例如， `ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`。
    
     如需搭配使用 SSH 與以 Linux 為基礎的 HDInsight 的詳細資訊，請參閱下列文章：
    
-    * [在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
+    * [從 Bash on Windows 10、Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
 
     * [從 Windows 在 HDInsight 上搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
 
@@ -107,10 +112,10 @@ HDInsight 叢集已包含 [storm-starter](https://github.com/apache/storm/tree/m
     > [!NOTE]
     > 在舊版 HDInsight 上，拓撲的類別名稱是 `storm.starter.WordCountTopology` 而不是 `org.apache.storm.starter.WordCountTopology`。
    
-    這會在叢集上使用 'wordcount' 的易記名稱，啟動範例 WordCount 拓撲。 命令會隨機產生句子，並計算句子中每個字詞的出現次數。
+    此命令會在叢集上使用 'wordcount' 的易記名稱，啟動範例 WordCount 拓撲。 命令會隨機產生句子，並計算句子中每個字詞的出現次數。
    
     > [!NOTE]
-    > 將您自己的拓撲提交至叢集時，必須先複製包含叢集的 jar 檔案，再使用 `storm` 命令。 而您可以從檔案所在的用戶端使用 `scp` 命令來完成這個動作。 例如， `scp FILENAME.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:FILENAME.jar`
+    > 將您自己的拓撲提交至叢集時，必須先複製包含叢集的 jar 檔案，再使用 `storm` 命令。 使用 `scp` 命令來複製檔案。 例如， `scp FILENAME.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:FILENAME.jar`
     > 
     > WordCount 範例和其他 Storm 入門範例都已經包含在叢集中，位置是 `/usr/hdp/current/storm-client/contrib/storm-starter/`。
 
@@ -122,12 +127,12 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
 
 使用下列步驟以 Storm UI 監視拓撲。
 
-1. 開啟網頁瀏覽器並瀏覽至 https://CLUSTERNAME.azurehdinsight.net/stormui，其中 **CLUSTERNAME** 是叢集的名稱。 這會開啟 Storm UI。
+1. 若要顯示 Storm UI，請開啟網頁瀏覽器並前往 https://CLUSTERNAME.azurehdinsight.net/stormui。 將 **CLUSTERNAME** 取代為您叢集的名稱。
     
     > [!NOTE]
     > 如果要求您提供使用者名稱和密碼，請輸入叢集系統管理員 (admin) 和建立叢集時使用的密碼。
 
-2. 在 [拓撲摘要] 下，選取 [名稱] 欄中的 [wordcount] 項目。 這麼做會顯示拓撲的詳細資訊。
+2. 在 [拓撲摘要] 下，選取 [名稱] 欄中的 [wordcount] 項目。 關於拓撲的詳細資訊隨即顯示。
     
     ![包含 Storm Starter WordCount 拓樸資訊的 Storm 儀表板。](./media/hdinsight-apache-storm-tutorial-get-started-linux/topology-summary.png)
     
@@ -150,11 +155,11 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
     
     * **停用** ：暫停執行中拓撲。
     
-    * **重新平衡** ：調整拓撲的平行處理原則。 變更叢集中的節點數目之後，您應該重新平衡執行中拓撲。 這可讓拓撲調整平行處理原則，以彌補叢集中增加/減少的節點數目。 如需詳細資訊，請參閱 [了解 Storm 拓撲的平行處理原則](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)。
+    * **重新平衡** ：調整拓撲的平行處理原則。 變更叢集中的節點數目之後，您應該重新平衡執行中拓撲。 重新平衡調整平行處理原則，以彌補叢集中增加/減少的節點數目。 如需詳細資訊，請參閱[了解 Storm 拓撲的平行處理原則](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)。
     
     * **終止 (Kill)** ：在指定的逾時之後終止 Storm 拓撲。
 
-3. 在此頁面中，選取 [Spouts] 或 [Bolts] 區段中的一個項目。 如此會顯示所選元件的相關資訊。
+3. 在此頁面中，選取 [Spouts] 或 [Bolts] 區段中的一個項目。 關於所選元件的詳細資訊隨即顯示。
    
     ![包含所選元件相關資訊的 Storm 儀表板。](./media/hdinsight-apache-storm-tutorial-get-started-linux/component-summary.png)
    
@@ -184,11 +189,11 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
         2015-01-27 14:18:02 b.s.d.executor [INFO] Processing received message source: split:21, stream: default, id: {}, [seven]
         2015-01-27 14:18:02 b.s.d.task [INFO] Emitting: count default [seven, 1493957]
    
-    您可以在此資料中看到 **seven** 一字已出現 1,493,957 次。 這就是啟動拓撲後，該字所出現的次數。
+    在此範例中，「七」這個字出現 1493957 次。 此計數就是啟動拓撲後，該字所出現的次數。
 
 ## <a name="stop-the-topology"></a>停止拓撲
 
-返回 word-count 拓撲的 [拓撲摘要] 頁面，然後選取 [拓撲動作] 區段中的 [終止] 按鈕。 出現提示時，請先輸入要等候 10 秒，再停止拓撲。 逾時期限過後，當您瀏覽儀表板的 [Storm UI]  區段時，便不會再顯示拓撲。
+返回 word-count 拓撲的 [拓撲摘要] 頁面，然後選取 [拓撲動作] 區段中的 [終止] 按鈕。 出現提示時，請先輸入要等候 10 秒，再停止拓撲。 逾時期限過後，當您瀏覽儀表板的 [Storm UI]  區段時，就不會再看到拓撲。
 
 ## <a name="delete-the-cluster"></a>刪除叢集
 
@@ -196,7 +201,7 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
 
 ## <a name="a-idnextanext-steps"></a><a id="next"></a>接續步驟
 
-您已在本 Apache Storm 教學課程中藉由 Storm Starter 了解如何建立 Storm on HDInsight 叢集，以及如何使用 Storm 儀表板部署、監視和管理 Storm 拓撲。 接下來，了解如何 [使用 Maven 開發 Java 型拓撲](hdinsight-storm-develop-java-topology.md)。
+在本 Apache Storm 教學課程中，您已了解使用 Storm on HDInsight 的基本概念。 接下來，了解如何 [使用 Maven 開發 Java 型拓撲](hdinsight-storm-develop-java-topology.md)。
 
 如果您已熟悉開發 Java 型拓撲，而且想要將現有的拓撲部署至 HDInsight，請參閱 [部署和管理 HDInsight 上的 Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)。
 
@@ -213,9 +218,4 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
 [azureportal]: https://manage.windowsazure.com/
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [preview-portal]: https://portal.azure.com/
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

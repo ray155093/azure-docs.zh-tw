@@ -11,16 +11,18 @@ ms.service: application-gateway
 ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
+ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 12/12/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: e20f7349f30c309059c2867d7473fa6fdefa9b61
-ms.openlocfilehash: b78d8167ec5aacee34ed235637bc396f9b869a39
+ms.sourcegitcommit: 119275f335344858cd20b6a17ef87e3ef32b6e12
+ms.openlocfilehash: 8b72a3f26e356af588e9f5c2039bcc525366ce11
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="create-start-or-delete-an-application-gateway"></a>建立、啟動或刪除應用程式閘道
+# <a name="create-start-or-delete-an-application-gateway-with-powershell"></a>使用 PowerShell 建立、啟動或刪除應用程式閘道 
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](application-gateway-create-gateway-portal.md)
@@ -29,7 +31,7 @@ ms.openlocfilehash: b78d8167ec5aacee34ed235637bc396f9b869a39
 > * [Azure Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
 > * [Azure CLI](application-gateway-create-gateway-cli.md)
 
-Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。 若要尋找完整的支援功能清單，請瀏覽 [應用程式閘道概觀](application-gateway-introduction.md)
+Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。 若要尋找完整的支援功能清單，請瀏覽 [應用程式閘道概觀](application-gateway-introduction.md)
 
 本文將逐步引導您完成建立、設定、啟動及刪除應用程式閘道的步驟。
 
@@ -444,9 +446,4 @@ Get-AzureApplicationGateway : ResourceNotFound: The gateway does not exist.
 * [Azure 流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
 
 [scenario]: ./media/application-gateway-create-gateway/scenario.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

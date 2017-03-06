@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 建立虛擬機器擴展集 | Microsoft Docs"
-description: "使用 Powershell 建立虛擬機器擴展集"
+title: "使用 PowerShell 建立 Azure 虛擬機器擴展集 | Microsoft Docs"
+description: "使用 PowerShell 建立 Azure 虛擬機器擴展集"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: Thraka
@@ -13,11 +13,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/18/2016
+ms.date: 02/21/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 550db52c2b77ad651b4edad2922faf0f951df617
-ms.openlocfilehash: 5abaa31828e624f77b6a9efb4496327977b483e4
+ms.sourcegitcommit: 1f8e66fac5b82698525794f0486dd0432c7421a7
+ms.openlocfilehash: 7286fed39839675eb960b749f3235f83e36c5e9a
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -55,46 +56,6 @@ ms.openlocfilehash: 5abaa31828e624f77b6a9efb4496327977b483e4
         ProvisioningState : Succeeded
         Tags              :
         ResourceId        : /subscriptions/########-####-####-####-############/resourceGroups/myrg1
-
-### <a name="storage-account"></a>儲存體帳戶
-虛擬機器會使用儲存體帳戶來儲存用於調整的作業系統磁碟和診斷資料。 可能的話，在擴展集中建立的每部虛擬機器最好有一個儲存體帳戶。 如不可行，請勿為每個儲存體帳戶規劃超過 20 個 VM。 本文中的範例顯示針對三部虛擬機器建立三個儲存體帳戶。
-
-1. 使用儲存體帳戶的名稱取代 **$saName** 的值。 測試名稱的唯一性。 
-   
-        $saName = "storage account name"
-        Get-AzureRmStorageAccountNameAvailability $saName
-   
-    如果答案是 **True**，表示您設定的名稱是唯一的。
-2. 以儲存體帳戶的類型取代 **$saType** 的值，然後建立變數︰  
-   
-        $saType = "storage account type"
-   
-    可能的值為︰Standard_LRS、Standard_GRS、Standard_RAGRS 或 Premium_LRS。
-3. 建立帳戶：
-   
-        New-AzureRmStorageAccount -Name $saName -ResourceGroupName $rgName –Type $saType -Location $locName
-   
-    您應該會看到如下列範例的結果：
-   
-        ResourceGroupName   : myrg1
-        StorageAccountName  : myst1
-        Id                  : /subscriptions/########-####-####-####-############/resourceGroups/myrg1/providers/Microsoft
-                              .Storage/storageAccounts/myst1
-        Location            : centralus
-        AccountType         : StandardLRS
-        CreationTime        : 3/15/2016 4:51:52 PM
-        CustomDomain        :
-        LastGeoFailoverTime :
-        PrimaryEndpoints    : Microsoft.Azure.Management.Storage.Models.Endpoints
-        PrimaryLocation     : centralus
-        ProvisioningState   : Succeeded
-        SecondaryEndpoints  :
-        SecondaryLocation   :
-        StatusOfPrimary     : Available
-        StatusOfSecondary   :
-        Tags                : {}
-        Context             : Microsoft.WindowsAzure.Commands.Common.Storage.AzureStorageContext
-4. 重複步驟 1 到 4，以建立三個儲存體帳戶，例如 myst1、myst2 和 myst3。
 
 ### <a name="virtual-network"></a>虛擬網路
 擴展集中的虛擬機器需要虛擬網路。
@@ -173,12 +134,10 @@ ms.openlocfilehash: 5abaa31828e624f77b6a9efb4496327977b483e4
         $imageSku = "2012-R2-Datacenter"
    
     若要尋找要使用的其他映像的資訊，請參閱[使用 Windows PowerShell 和 Azure CLI 巡覽和選取 Azure 虛擬機器映像](../virtual-machines/virtual-machines-windows-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-3. 以包含儲存虛擬硬碟所在路徑的清單取代 **$vhdContainers** 的值，例如 "https://mystorage.blob.core.windows.net/vhds"，然後建立變數：
+
+3. 建立儲存體設定檔：
    
-        $vhdContainers = @("https://myst1.blob.core.windows.net/vhds","https://myst2.blob.core.windows.net/vhds","https://myst3.blob.core.windows.net/vhds")
-4. 建立儲存體設定檔：
-   
-        Set-AzureRmVmssStorageProfile -VirtualMachineScaleSet $vmss -ImageReferencePublisher $imagePublisher -ImageReferenceOffer $imageOffer -ImageReferenceSku $imageSku -ImageReferenceVersion "latest" -Name $storageProfile -VhdContainer $vhdContainers -OsDiskCreateOption "FromImage" -OsDiskCaching "None"  
+        Set-AzureRmVmssStorageProfile -VirtualMachineScaleSet $vmss -ImageReferencePublisher $imagePublisher -ImageReferenceOffer $imageOffer -ImageReferenceSku $imageSku -ImageReferenceVersion "latest" -OsDiskCreateOption "FromImage" -OsDiskCaching "None"  
 
 ### <a name="virtual-machine-scale-set"></a>虛擬機器擴展集
 最後，您可以建立擴展集。
@@ -221,10 +180,5 @@ ms.openlocfilehash: 5abaa31828e624f77b6a9efb4496327977b483e4
 * 使用 [管理虛擬機器擴展集中的虛擬機器](virtual-machine-scale-sets-windows-manage.md)
 * 請考慮使用 [自動調整與虛擬機器擴展集](virtual-machine-scale-sets-autoscale-overview.md)
 * 檢閱 [使用虛擬機器擴展集垂直自動調整](virtual-machine-scale-sets-vertical-scale-reprovision.md)
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

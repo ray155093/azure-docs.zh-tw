@@ -15,8 +15,9 @@ ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: cabailey
 translationtype: Human Translation
-ms.sourcegitcommit: c40545833da86426d3e71955b8eb8627db3c1e4b
-ms.openlocfilehash: 50a85747a3414e180bcd9129899fef7ffdaebc8d
+ms.sourcegitcommit: 30b30513d5563cf64679e29c4858bf15f65d3a44
+ms.openlocfilehash: 015c997135eae9c936af1a1ec0b0064912baaa04
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -39,8 +40,6 @@ ms.openlocfilehash: 50a85747a3414e180bcd9129899fef7ffdaebc8d
 > 目前，您無法在 Azure 入口網站中設定 Azure 金鑰保存庫。 請改用這些 Azure PowerShell 指示。
 > 
 > 
-
-使用 Operations Management Suite 中的 Log Analytics 可以視覺化您收集的記錄檔。 如需詳細資訊，請參閱 [Log Analytics 中的 Azure 金鑰保存庫 (預覽) 解決方案](../log-analytics/log-analytics-azure-key-vault.md)。
 
 如需 Azure 金鑰保存庫的概觀資訊，請參閱 [什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)
 
@@ -254,7 +253,11 @@ ms.openlocfilehash: 50a85747a3414e180bcd9129899fef7ffdaebc8d
 | SecretList |[列出保存庫中的密碼](https://msdn.microsoft.com/en-us/library/azure/dn903614.aspx) |
 | SecretListVersions |[列出密碼的版本](https://msdn.microsoft.com/en-us/library/azure/dn986824.aspx) |
 
-## <a name="a-idnextanext-steps"></a><a id="next"></a>接續步驟
+## <a name="a-idloganalyticsause-log-analytics"></a><a id="loganalytics"></a>使用 Log Analytics
+
+您可以使用 Log Analytics 中的 Azure 金鑰保存庫解決方案來檢閱 Azure 金鑰保存庫 AuditEvent 記錄檔。 如需詳細資訊 (包括如何進行此設定)，請參閱 [Log Analytics 中的 Azure Key Vault 解決方案](../log-analytics/log-analytics-azure-key-vault.md)。 如果您需要從 Log Analytics 預覽版時期所提供的舊 Key Vault 解決方案 (其中您是先將記錄檔路由遞送至「Azure 儲存體」帳戶，然後將 Log Analytics 設定成從該處讀取) 移轉，本文也包含相關指示。
+
+## <a name="a-idnextanext-steps"></a><a id="next"></a>後續步驟
 如需在 Web 應用程式中使用 Azure 金鑰保存庫的教學課程，請參閱 [從 Web 應用程式使用 Azure 金鑰保存庫](key-vault-use-from-web-application.md)。
 
 如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。
@@ -262,10 +265,5 @@ ms.openlocfilehash: 50a85747a3414e180bcd9129899fef7ffdaebc8d
 如需 Azure 金鑰保存庫的 Azure PowerShell 1.0 Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/azure/dn868052.aspx)。
 
 如需有關 Azure 金鑰保存庫的金鑰輪替和記錄檔稽核的教學課程，請參閱 [如何使用端對端金鑰輪替和稽核設定金鑰保存庫](key-vault-key-rotation-log-monitoring.md)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

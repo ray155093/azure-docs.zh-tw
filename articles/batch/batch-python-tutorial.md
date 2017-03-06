@@ -1,6 +1,6 @@
 ---
 title: "教學課程 - 使用適用於 Python 的 Azure Batch SDK | Microsoft Docs"
-description: "了解 Azure Batch 的基本概念，以及利用簡單的案例了解如何開發 Batch 服務"
+description: "了解 Azure Batch 的基本概念和使用 Python 建置簡單的解決方案。"
 services: batch
 documentationcenter: python
 author: tamram
@@ -12,15 +12,18 @@ ms.devlang: python
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 02/01/2017
+ms.date: 02/27/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 02f68c743f18fa691afdd5ff02f427b89d28c663
-ms.openlocfilehash: 146eaea2bf523ff6e7d9024205e47965fa2e0413
+ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
+ms.openlocfilehash: 4dc9491f3645b071640262af3f1ffcb480cfabef
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="get-started-with-the-azure-batch-python-client"></a>開始使用 Azure Batch Python 用戶端
+# <a name="get-started-with-the-batch-sdk-for-python"></a>開始使用適用於 Python 的 Batch SDK
+
 > [!div class="op_single_selector"]
 > * [.NET](batch-dotnet-get-started.md)
 > * [Python](batch-python-tutorial.md)
@@ -705,9 +708,4 @@ Press ENTER to exit...
 [9]: ./media/batch-python-tutorial/credentials_batch_sm.png "入口網站中的 Batch 認證"
 [10]: ./media/batch-python-tutorial/credentials_storage_sm.png "入口網站中的儲存體認證"
 [11]: ./media/batch-python-tutorial/batch_workflow_minimal_sm.png "Batch 方案工作流程 (最小圖表)"
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

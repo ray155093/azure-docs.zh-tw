@@ -1,5 +1,5 @@
 ---
-title: "在 Visual Studio 中建立第一個 Service Fabric 應用程式 | Microsoft Docs"
+title: "建立您的第一個 Azure 微服務應用程式 | Microsoft Docs"
 description: "使用 Visual Studio 建立、部署和偵錯 Service Fabric 應用程式"
 services: service-fabric
 documentationcenter: .net
@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 12/14/2016
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: eea184fecef089d14d2c13e4528baea30037b638
-ms.openlocfilehash: 2e5e37b4d009cade5f0a919fa64ec2ec48348571
+ms.sourcegitcommit: 45411dcfd2dc221de9566b382a1b1c62da914208
+ms.openlocfilehash: 21f2e6e9b422d497882a2414fd24974d60ea685e
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -36,7 +37,7 @@ Service Fabric SDK 包含的 Visual Studio 增益集提供用來建立、部署�
 ## <a name="video-walkthrough"></a>影片逐步解說
 下列影片逐步解說本教學課程中的步驟：
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Creating-your-first-Service-Fabric-application-in-Visual-Studio/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Creating-your-first-Service-Fabric-application-in-Visual-Studio/player]
 > 
 > 
 
@@ -116,11 +117,24 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
     ![容錯移轉之後的診斷事件檢視器][diagnostic-events-viewer-detail-post-failover]
 
 ## <a name="switch-cluster-mode"></a>切換叢集模式
-根據預設，本機開發叢集已設定為以 5 個節點的叢集方式執行，這很適合用於偵錯跨多個節點部署的服務。 不過，將應用程式部署到 5 個節點的開發叢集可能需要一些時間。 如果您想要快速反覆執行程式碼變更，但不要在 5 個節點上執行您的應用程式，將開發叢集切換到 1 個節點的模式。 若要在具有一個節點的叢集上執行您的程式碼，請以滑鼠右鍵按一下系統匣中的 [本機叢集管理員] 並選取 [交換器叢集模式] -> [1 個節點]。  
+根據預設，本機開發叢集已設定為以&5; 個節點的叢集方式執行，這很適合用於偵錯跨多個節點部署的服務。 不過，將應用程式部署到&5; 個節點的開發叢集可能需要一些時間。 如果您想要快速反覆執行程式碼變更，但不要在&5; 個節點上執行您的應用程式，將開發叢集切換到&1; 個節點的模式。 若要在具有一個節點的叢集上執行您的程式碼，請以滑鼠右鍵按一下系統匣中的 [本機叢集管理員] 並選取 [交換器叢集模式] -> [1 個節點]。  
 
 ![切換叢集模式][switch-cluster-mode]
 
 當您變更叢集模式且移除此叢集上佈建或執行的所有應用程式時，開發叢集會重設。
+
+您也可以使用 PowerShell 來變更叢集模式：
+
+1. 以系統管理員身分啟動新的 PowerShell 視窗。
+2. 從 SDK 資料夾執行叢集設定指令碼：
+   
+    ```powershell
+    & "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1" -CreateOneNodeCluster
+    ```
+   
+    叢集設定需要一些時間。 設定完成後，您應該會看到輸出類似於：
+   
+    ![叢集設定輸出][cluster-setup-success-1-node]
 
 ## <a name="cleaning-up"></a>清除
 在我們做結論之前，請務必記得本機叢集是真實的。 停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。 但叢集會繼續在背景中執行。 您有數個選項可管理叢集：
@@ -150,9 +164,5 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 [diagnostic-events-viewer-detail-post-failover]: ./media/service-fabric-create-your-first-application-in-visual-studio/diagnostic-events-viewer-detail-post-failover.png
 [sfe-delete-application]: ./media/service-fabric-create-your-first-application-in-visual-studio/sfe-delete-application.png
 [switch-cluster-mode]: ./media/service-fabric-create-your-first-application-in-visual-studio/switch-cluster-mode.png
-
-
-
-<!--HONumber=Jan17_HO1-->
-
+[cluster-setup-success-1-node]: ./media/service-fabric-get-started-with-a-local-cluster/cluster-setup-success-1-node.png
 

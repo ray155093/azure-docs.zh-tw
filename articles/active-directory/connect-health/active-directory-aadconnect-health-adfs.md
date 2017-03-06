@@ -1,124 +1,129 @@
 ---
-title: "使用 Azure AD Connect Health 進行同步處理 | Microsoft Docs"
-description: "這是 Azure AD Connect Health 頁面，其中討論如何監視 Azure AD Connect 同步處理。"
+title: "使用 Azure AD Connect Health 搭配 AD FS | Microsoft Docs"
+description: "這是如何監視內部部署 AD FS 基礎結構的 Azure AD Connect Health 頁面。"
 services: active-directory
 documentationcenter: 
 author: karavar
 manager: samueld
 editor: curtand
-ms.assetid: 1dfbeaba-bda2-4f68-ac89-1dbfaf5b4015
+ms.assetid: dc0e53d8-403e-462a-9543-164eaa7dd8b3
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/12/2017
+ms.date: 2/27/2017
 ms.author: vakarand
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 7c320a043322fefea1f58301492d4c5a0567320c
-ms.openlocfilehash: fcea61a09654f41af57969a79fab3aabdba4e19c
-
+ms.sourcegitcommit: b9a3b64d9de48f17a295ca7a9ea58cf26e8f83ed
+ms.openlocfilehash: 0ae3f2ddfa37d617c02df2628411a877381412d5
+ms.lasthandoff: 02/28/2017
 
 ---
-# <a name="using-azure-ad-connect-health-for-sync"></a>使用適用於同步處理的 Azure AD Connect Health
-下列文件適用於使用 Azure AD Connect Health 來監視 Azure AD Connect (同步處理)。  如需使用 Azure AD Connect Health 來監視 AD FS 的詳細資訊，請參閱 [在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)。 此外，如需使用 Azure AD Connect Health 來監視 Active Directory 網域服務的詳細資訊，請參閱 [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)。
+# <a name="monitor-ad-fs-using-azure-ad-connect-health"></a>使用 Azure AD Connect Health 監視 AD FS
+下列文件適用於使用 Azure AD Connect Health 來監視 AD FS 基礎結構。 如需使用 Azure AD Connect Health 來監視 Azure AD Connect (同步處理) 的詳細資訊，請參閱 [使用適用於同步處理的 Azure AD Connect Health](active-directory-aadconnect-health-sync.md)。 此外，如需使用 Azure AD Connect Health 來監視 Active Directory 網域服務的詳細資訊，請參閱 [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)。
 
-![適用於同步處理的 Azure AD Connect Health](./media/active-directory-aadconnect-health-sync/sync-blade.png)
+## <a name="alerts-for-ad-fs"></a>AD FS 的警示
+[Azure AD Connect Health 警示] 區段將為您提供作用中警示的清單。 每個警示都包含相關資訊、解決步驟，以及相關文件的連結。
 
-## <a name="alerts-for-azure-ad-connect-health-for-sync"></a>適用於同步處理的 Azure AD Connect Health 警示
-＜適用於同步處理的 Azure AD Connect Health 警示＞小節將為您提供作用中警示的清單。 每個警示都包含相關資訊、解決步驟，以及相關文件的連結。 選取作用中或已解決的警示，您將會看到一個包含額外資訊的新刀鋒視窗，以及解決警示可以採取的步驟，和其他文件的連結。 您也可以檢視過去已解決的警示的歷史資料。
+您可以連按兩下作用中或已解決的警示，以開啟新的刀鋒視窗，其中含有額外資訊、解決警示可以採取的步驟，以及相關文件的連結。 您也可以檢視過去已解決的警示的歷史資料。
 
-選取警示，將會為您提供其他資訊，以及解決警示可以採取的步驟，和其他文件的連結。
+![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health/alert2.png)
 
-![Azure AD Connect 同步處理錯誤](./media/active-directory-aadconnect-health-sync/alert.png)
+## <a name="usage-analytics-for-ad-fs"></a>AD FS 的使用情況分析
+Azure AD Connect Health 使用情況分析會分析您的同盟伺服器的驗證流量。 您可連按兩下使用情況分析方塊來開啟使用情況分析刀鋒視窗，以顯示數個度量和群組。
 
-### <a name="limited-evaluation-of-alerts"></a>有限的警示評估
-如果 Azure AD Connect 不使用預設組態 (比方說，如果 [屬性篩選] 從預設組態變更為自訂組態)，則 Azure AD Connect Health 代理程式不會上傳 Azure AD Connect 相關的錯誤事件。
+> [!NOTE]
+> 若要搭配 AD FS 使用使用情況分析，您必須確定已啟用 AD FS 稽核。 如需詳細資訊，請參閱 [啟用 AD FS 的稽核](active-directory-aadconnect-health-agent-install.md#enable-auditing-for-ad-fs)。
+>
+>
 
-這會限制服務的警示評估。 您會在 Azure 入口網站中您的服務之下，看到指出這種情況的橫幅。
+![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health/report1.png)
 
-![適用於同步處理的 Azure AD Connect Health](./media/active-directory-aadconnect-health-sync/banner.png)
+若要選取其他度量，請指定時間範圍；若要變更群組，請在使用情況分析圖表上按一下滑鼠右鍵，並選取 [編輯圖表]。 接著，您可以指定時間範圍、選取不同的度量，以及變更群組。 您可以根據不同的「度量」檢視驗證流量的分佈，並使用下列各節所述的相關「分組依據」參數來為每個度量分組：
 
-您可以按一下 [設定] 並允許 Azure AD Connect Health 代理程式上傳所有的錯誤記錄檔，加以變更。
+**計量：要求總數** - AD FS 服務所處理的要求總數。
 
-![適用於同步處理的 Azure AD Connect Health](./media/active-directory-aadconnect-health-sync/banner2.png)
-
-## <a name="sync-insight"></a>同步處理深入了解
-系統管理員通常想要了解將變更同步至 Azure AD 所花的時間，以及所發生的變更數量。 此功能使用下列圖形，輕鬆地呈現這項資訊：   
-
-* 同步處理作業的延遲
-* 物件變更趨勢
-
-### <a name="sync-latency"></a>同步處理延遲
-這項功能提供連接器同步處理作業 (匯入、匯出等) 延遲的圖形化趨勢。  這提供快速且輕鬆的方式，讓您了解不僅僅作業的延遲 (如果您會發生大量變更也很好)，還提供一個方式來偵測延遲中可能需要進一步調查的異常行為。
-
-![同步處理延遲](./media/active-directory-aadconnect-health-sync/synclatency02.png)
-
-根據預設，只會顯示 Azure AD 連接器「匯出」作業的延遲。  若要查看連接器上的更多作業，或檢視其他連接器的作業，請以滑鼠右鍵按一下圖表，然後選取 [編輯圖表]，或按一下 [編輯延遲圖表] 按鈕，然後選擇特定作業和連接器。
-
-### <a name="sync-object-changes"></a>同步處理物件的變更
-這項功能提供正在評估並匯出至 Azure AD 的變更數的圖形化趨勢。  現在，嘗試從同步處理記錄檔收集此資訊並不容易。  圖表不僅可讓您以更簡單的方式監視您的環境中發生的變更數，同時提供正在發生的失敗的視覺化檢視。
-
-![同步處理延遲](./media/active-directory-aadconnect-health-sync/syncobjectchanges02.png)
-
-## <a name="object-level-synchronization-error-report-preview"></a>物件層級同步處理錯誤報告 (預覽)
-在 Windows Server AD 與 Azure AD 之間使用 Azure AD Connect 同步處理身分識別資料時，針對可能發生的同步處理錯誤，這項功能提供相關的報告。
-
-* 此報告涵蓋同步處理用戶端所記錄的錯誤 (Azure AD Connect 1.1.281.0 版或更高版本)
-* 它包含同步處理引擎上執行的最後一個同步處理作業所發生的錯誤 (Azure AD Connector 上的「匯出」)。
-* 用於同步處理的 Azure AD Connect Health 代理程式必須有指向所需端點的輸出連線，此報告才會包含最新的資料。
-* 此報告**每隔 30 分鐘更新一次**，使用的是用於同步處理的 Azure AD Connect Health 代理程式所上傳的資料。
-  它提供下列重要功能
-
-  * 錯誤分類
-  * 依各類別之錯誤列出物件
-  * 集中記錄有關錯誤的所有資料
-  * 並排比較由於衝突而發生錯誤的物件
-  * 將錯誤報告下載為 CVS (即將推出)
-
-### <a name="categorization-of-errors"></a>錯誤分類
-此報告將現有的同步處理錯誤分成下列類別︰
-
-| 類別 | 說明 |
+|分組依據 | 分組是什麼意思，為什麼分組很有用？ |
 | --- | --- |
-| 重複的屬性 |當 Azure AD Connect 嘗試在 Azure AD 中以一或多個重複的屬性值建立或更新物件時發生錯誤，這些屬性在租用戶中必須是唯一的，例如 proxyAddresses、UserPrincipalName。 |
-| 資料不符 |當大致相符無法比對物件時發生錯誤，導致同步處理錯誤。 |
-| 資料驗證失敗 |由於無效資料而導致錯誤，例如重要屬性 (例如 UserPrincipalName) 中有不支援的字元；在寫入 Azure AD 之前未能通過驗證的格式錯誤。 |
-| 大型屬性 |當一或多個屬性大於允許的大小、長度或計數時發生錯誤。 |
-| 其他 |無法歸入上述類別的其他所有錯誤。 根據意見，此類別將會進一步分成子類別。 |
+| 全部 | 顯示所有 AD FS 伺服器所處理要求總數的計數。|
+| 應用程式 | 根據目標信賴憑證者，為要求總數分組。 這個分組對於了解哪個應用程式收到多少百分比的總流量非常有幫助。 |
+|  伺服器 |根據處理要求的伺服器，為要求總數分組。 這個分組對於了解總流量的負載分佈非常有幫助。
+| 加入工作場所 |根據要求是否來自已加入工作場所的裝置 (已知)，為要求總數分組。 這個分組對於了解是否使用識別基礎結構未知的裝置存取您的資源非常有幫助。 |
+|  驗證方法 | 根據用於驗證的驗證方法，為要求總數分組。 這個分組對於了解用於驗證的常見驗證方法非常有幫助。 以下是可能的驗證方法 <ol> <li>Windows 整合式驗證 (Windows)</li> <li>表單型驗證 (表單)</li> <li>SSO (單一登入)</li> <li>X509 憑證驗證 (憑證)</li> <br>如果同盟伺服器收到的要求含有 SSO Cookie，該要求就視為 SSO (單一登入)。 在這種情況下，如果 Cookie 有效，則不會要求使用者提供認證，並不間斷地存取應用程式。 如果您有多個同盟伺服器所保護的信賴憑證者，此行為非常常見。 |
+| 網路位置 | 根據使用者的網路位置，為要求總數分組。 它可以是內部網路或外部網路。 這個分組對於了解流量百分比是來自內部網路還是外部網路非常有幫助。 |
 
-![同步處理錯誤報告摘要](./media/active-directory-aadconnect-health-sync/errorreport01.png)
-![同步處理錯誤報告類別](./media/active-directory-aadconnect-health-sync/errorreport02.png)
 
-### <a name="list-of-objects-with-error-per-category"></a>依各類別之錯誤列出物件
-深入每個類別將可找到所發生的錯誤歸入該類別的物件清單。
-![同步處理錯誤報告清單](./media/active-directory-aadconnect-health-sync/errorreport03.png)
+**度量：失敗要求總數** - 同盟服務所處理的失敗要求總數。 (此度量僅能在適用於 Windows Server 2012 R2 的 AD FS 上使用)
 
-### <a name="error-details"></a>錯誤詳細資料
-每個錯誤的詳細檢視中提供下列資料
+|分組依據 | 分組是什麼意思，為什麼分組很有用？ |
+| --- | --- |
+| 錯誤類型 | 根據預先定義的錯誤類型，顯示錯誤數目。 這個分組對於了解常見的錯誤類型非常有幫助。 <ul><li>不正確的使用者名稱或密碼：由於不正確的使用者名稱或密碼而導致錯誤。</li> <li>「外部網路鎖定」：由於從外部網路收到已鎖定的使用者送來的要求而導致失敗 </li><li> 「已過期的密碼」：由於使用者以過期密碼登入而導致失敗。</li><li>「已停用的帳戶」：由於使用者以停用的帳戶登入而導致失敗。</li><li>「裝置驗證」：由於使用者無法使用裝置驗證來驗證而導致失敗。</li><li>「使用者憑證驗證」：由於憑證無效，使用者無法通過驗證而導致失敗。</li><li>"MFA"：由於使用者無法使用 Multi-Factor Authentication 通過驗證而導致失敗。</li><li>「其他認證」：「發行授權」：由於授權失敗而導致失敗。</li><li>「發行委派」：由於發行委派錯誤而導致失敗。</li><li>「權杖接受」：由於 ADFS 拒絕來自協力廠商識別提供者的權杖而導致失敗。</li><li>「通訊協定」：由於通訊協定錯誤而導致失敗。</li><li>「未知」：全部攔截。 無法歸入已定義的類別內的其他任何失敗。</li> |
+| 伺服器 | 依伺服器為錯誤分組。 此分組對於了解跨伺服器的錯誤分佈非常有幫助。 分佈不平均可能是伺服器處於錯誤狀態的指標。 |
+| 網路位置 | 根據要求的網路位置 (內部網路與外部網路)，為錯誤分組。 此分組對於了解失敗的要求類型非常有幫助。 |
+|  應用程式 | 根據目標應用程式 (信賴憑證者)，為失敗分組。 此分組對於了解哪個目標應用程式將看到最多錯誤數目非常有幫助。 |
 
-* 所涉及之「AD 物件」的識別項
-* 所涉及之「Azure AD 物件」的識別項 (視情況)
-* 錯誤描述及如何修正
-* 相關文章
+**度量︰使用者計數** - 使用 AD FS 主動驗證的唯一使用者平均數目
 
-![同步處理錯誤報告詳細資料](./media/active-directory-aadconnect-health-sync/errorreport04.png)
+|分組依據 | 分組是什麼意思，為什麼分組很有用？ |
+| --- | --- |
+|全部 |此度量會提供在所選時間配量內，使用同盟服務的使用者平均數目計數。 系統不會為使用者分組。 <br>平均值取決於選取的時間配量。 |
+| 應用程式 |根據目標應用程式 (信賴憑證者)，為使用者的平均數目分組。 此分組對於了解有多少使用者正在使用哪一個應用程式非常有幫助。 |
 
-### <a name="download-the-error-report-as-csv"></a>將錯誤報告下載為 CVS
-選取 [匯出] 按鈕，即可下載包含所有錯誤詳細資料的 CSV 檔案。
+## <a name="performance-monitoring-for-ad-fs"></a>AD FS 的效能監視
+Azure AD Connect Health 效能監視會提供關於度量的監視資訊。 選取 [監視] 方塊，以開啟內含度量詳細資訊的新刀鋒視窗。
+
+![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health/perf1.png)
+
+選取刀鋒視窗頂端的 [篩選] 選項，您可以依伺服器篩選以查看個別伺服器的度量。 若要變更度量，請在監視刀鋒視窗底下的監視圖表上按一下滑鼠右鍵，然後選取 [編輯圖表] (或選取 [編輯圖表] 按鈕)。 在開啟的新刀鋒視窗中，您可以從下拉式清單中選取其他計量，並指定檢視效能資料的時間範圍。
+
+## <a name="reports-for-ad-fs"></a>AD FS 報告
+Azure AD Connect Health 提供有關 AD FS 活動與效能的報告。 這些報告可協助系統管理員深入了解 AD FS 伺服器上的活動。
+
+### <a name="top-50-users-with-failed-usernamepassword-logins"></a>使用者名稱/密碼登入失敗的前 50 個使用者
+AD FS 伺服器上驗證要求失敗的常見原因之一就是要求所提供的認證無效，也就是錯誤的使用者名稱或密碼。 使用者通常是因為密碼太複雜、忘記密碼或打錯字，才會發生這種情況。
+
+但還是有其他原因會導致 AD FS 伺服器所處理的要求數量超出預期，例如：可快取使用者認證的應用程式和到期的認證，或嘗試以一系列的常見密碼登入帳戶的惡意使用者。 這兩個範例都是可能導致要求激增的正當理由。
+
+Azure AD Connect Health for ADFS 會提供一份報告，內容有關因為使用者名稱或密碼無效而登入嘗試失敗的前 50 個使用者。 處理伺服器陣列中所有 AD FS 伺服器所產生的稽核事件，即可達成此報告
+
+![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health-adfs/report1a.png)
+
+您可以在這份報告中輕鬆取得下列資訊︰
+
+* 過去 30 天內使用者名稱/密碼錯誤的失敗要求總數
+* 每天由於使用者名稱/密碼不正確而登入失敗的平均使用者人數。
+
+按一下此組件即可前往可提供其他詳細資料的主要報告刀鋒視窗。 此刀鋒視窗包含一個提供趨勢資訊的圖形，以便建立有關使用者名稱或密碼錯誤之要求的基準。 此外，還提供前 50 個使用者清單及其嘗試失敗次數。
+
+此圖形可提供以下資訊：
+
+* 每天由於使用者名稱/密碼不正確而登入失敗的總數。
+* 每天登入失敗的唯一使用者總數。
+* 最後一個要求的用戶端 IP 位址
+
+![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health-adfs/report3a.png)
+
+此報告可提供以下資訊：
+
+| 報告項目 | 說明 |
+| --- | --- |
+| 使用者識別碼 |顯示所使用的使用者識別碼。 這個值是使用者所輸入的內容，在某些情況下是所使用的錯誤使用者識別碼。 |
+| 嘗試失敗 |顯示該特定使用者識別碼的嘗試失敗總數。 此資料表是依據最多失敗嘗試次數以遞減順序排序。 |
+| 上次失敗 |顯示上次發生失敗時的時間戳記。 |
+| 上次失敗 IP |顯示最後一個不正確要求的用戶端 IP 位址。 |
+
+> [!NOTE]
+> 此報告會每隔&2; 小時以該段時間內收集的新資訊自動進行更新。 因此，報告中不包含過去&2; 小時內的登入嘗試。
+>
+>
 
 ## <a name="related-links"></a>相關連結
-* [針對同步處理期間的錯誤進行疑難排解](../connect/active-directory-aadconnect-troubleshoot-sync-errors.md)
-* [重複屬性恢復功能](../connect/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md)
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)
 * [Azure AD Connect Health 代理程式安裝](active-directory-aadconnect-health-agent-install.md)
 * [Azure AD Connect Health 操作](active-directory-aadconnect-health-operations.md)
-* [使用 Azure AD Connect Health 來搭配 AD FS](active-directory-aadconnect-health-adfs.md)
+* [使用 Azure AD Connect Health 進行同步處理](active-directory-aadconnect-health-sync.md)
 * [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
-
-
-<!--HONumber=Feb17_HO2-->
-
-

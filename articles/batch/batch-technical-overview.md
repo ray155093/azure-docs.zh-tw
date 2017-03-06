@@ -1,5 +1,5 @@
 ---
-title: "Azure Batch 服務概觀 | Microsoft Docs"
+title: "Azure Batch 在雲端執行大規模的平行運算解決方案 | Microsoft Docs"
 description: "了解如何將 Azure Batch 服務用於大規模的平行工作負載和 HPC 工作負載 "
 services: batch
 documentationcenter: 
@@ -12,15 +12,18 @@ ms.workload: big-compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/23/2017
+ms.date: 02/27/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: bf22cd3426e936c8d74377f59443e5e1a6834286
-ms.openlocfilehash: 3a01764b6a0e777e947cf8648606cdd568d118ff
+ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
+ms.openlocfilehash: e204a3c79768ddbd433f3b00a3db456ef3258173
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="basics-of-azure-batch"></a>Azure Batch 的基本概念
+# <a name="run-intrinsically-parallel-workloads-with-batch"></a>使用 Batch 執行本質平行的工作負載
+
 Azure Batch 是一項平台服務，可用於在雲端有效地執行大規模的平行和高效能運算 (HPC) 應用程式。 Azure Batch 可排程要在一組受管理的虛擬機器上執行的計算密集型工作，而且可以調整計算資源以符合工作的需求。
 
 使用 Batch 時，您可以輕鬆定義用來大規模平行執行應用程式的 Azure 計算資源。 不需要手動建立、設定和管理 HPC 叢集、個別的虛擬機器、虛擬網路或複雜的作業和工作排程基礎結構。 Azure Batch 會為您自動執行或簡化這些工作。
@@ -156,9 +159,4 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行其�
 
 [1]: ./media/batch-technical-overview/tech_overview_01.png
 [2]: ./media/batch-technical-overview/tech_overview_02.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

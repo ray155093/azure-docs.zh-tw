@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 建立 Linux VM | Microsoft Docs"
-description: "使用 適用於 NodeJ 的 CLI在 Azure 上建立 Linux VM。"
+title: "使用 Azure CLI 1.0 來建立 Linux VM | Microsoft Docs"
+description: "使用 Azure CLI 1.0 在 Azure 上建立 Linux VM"
 services: virtual-machines-linux
 documentationcenter: 
 author: vlivech
@@ -9,23 +9,24 @@ editor:
 ms.assetid: facb1115-2b4e-4ef3-9905-330e42beb686
 ms.service: virtual-machines-linux
 ms.devlang: NA
-ms.topic: hero-article
+ms.topic: 
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 12/15/2016
 ms.author: v-livech
 translationtype: Human Translation
-ms.sourcegitcommit: 2c37d5186e169789881a4b29597cb37cd6f7ede9
-ms.openlocfilehash: dc5c575873ceb2acc8321b949031276d9a8f8cc8
+ms.sourcegitcommit: a0d80ae5a4fe5af6f46e97a8f5d9a0c0715361b8
+ms.openlocfilehash: 5643a7f792cdfd1a445e69ac18b149a736951991
+ms.lasthandoff: 02/27/2017
 
 
 ---
-# <a name="create-a-linux-vm-using-the-azure-cli"></a>使用 CLI 建立 Linux VM
+# <a name="create-a-linux-vm-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 來建立 Linux VM
 
 本文示範如何使用 Azure 命令列介面 (CLI) 中的 `azure vm quick-create` 命令，在 Azure 上快速部署 Linux 虛擬機器 (VM)。 `quick-create` 命令會將 VM 部署在基本且安全的基礎結構內，可讓您快速地建立原型或測試概念。
 
 > [!NOTE]
-若要使用 Azure CLI 2.0 (預覽版) 建立 VM，請參閱[使用 Azure CLI 建立 VM](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+若要使用 Azure CLI 2.0 來建立 VM，請參閱[使用 Azure CLI 來建立 VM](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 本文需要：
 
@@ -211,9 +212,4 @@ myAdminUser@myVM:~$
 * [使用範本在 Azure 上建立 SSH 保護的 Linux VM](virtual-machines-linux-create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 您也可以[搭配使用 `docker-machine` Azure 驅動程式與各種命令以快速建立當作 Docker 主機的 Linux VM](virtual-machines-linux-docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

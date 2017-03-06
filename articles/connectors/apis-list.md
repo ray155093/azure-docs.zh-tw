@@ -1,10 +1,10 @@
 ---
-title: "要用於 Microsoft Azure Logic Apps 中的 Microsoft 管理的連接器清單 | Microsoft Docs"
-description: "取得受 Microsoft 管理的連接器完整清單，讓您可用來在 Azure App Service 中建置邏輯應用程式"
+title: "適用於 Azure Logic Apps 的連接器 | Microsoft Docs"
+description: "選擇受 Microsoft 管理的連接器，以建置和建立邏輯應用程式"
 services: logic-apps
 documentationcenter: 
-author: MSFTMAN
-manager: erikre
+author: MandiOhlinger
+manager: anneta
 editor: 
 tags: connectors
 ms.assetid: f1f1fd50-b7f9-4d13-824a-39678619aa7a
@@ -13,15 +13,16 @@ ms.workload: integration
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 12/07/2016
-ms.author: deonhe
+ms.date: 01/27/2017
+ms.author: mandia
 translationtype: Human Translation
-ms.sourcegitcommit: d2eefb6b99955f9b9a1bd5b5c94617d538f079ec
-ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
+ms.sourcegitcommit: 671eed117f5577f3fdec2e03b1ba814e0e1a439b
+ms.openlocfilehash: 094d7a9ca2d14e506371488ee880fe8a2ab36707
+ms.lasthandoff: 02/17/2017
 
 
 ---
-# <a name="list-of-connectors"></a>連接器清單
+# <a name="connectors-list"></a>連接器清單
 選取連接器，以了解如何快速建置工作流程。
 
 ## <a name="standard-connectors"></a>標準連接器
@@ -32,20 +33,21 @@ ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
 |![API 圖示][Bitlyicon]<br/>**Bitly**|![API 圖示][BizTalk-Servericon]<br/>**BizTalk Server**|![API 圖示][Bloggericon]<br/>**部落客**|[![API 圖示][Boxicon]<br/>**Box**][boxDoc]|
 |![API 圖示][Campfireicon]<br/>**Campfire**|![API 圖示][Cognitive-Services-Text-Analyticsicon]<br/>**辨識服務<br/>文字分析**|![API 圖示][Common-Data-Serviceicon]<br/>**一般資料<br/>服務**|[![API 圖示][DB2icon]<br/>**DB2**][db2doc]|
 |[![API 圖示][Delayicon]<br/>**Delay**][Delaydoc]|[![API 圖示][Dropboxicon]<br/>**Dropbox**][dropboxdoc]|[![API 圖示][Dynamics-365icon]<br/>**Dynamics 365**][Dynamics-365doc]|![API 圖示][Dynamics-365-for-Financialsicon]<br/>**Dynamics 365<br/>for Financials**|
-|![API 圖示][Dynamics-365-for-Operationsicon]<br/>**Dynamics 365<br/>for Operations**|![API 圖示][Easy-Redmineicon]<br/>**Easy Redmine**|[![API 圖示][Facebookicon]<br/>**Facebook**][Facebookdoc]|[![API 圖示][FTPicon]<br/>**FTP**][FTPdoc]|
-|![API 圖示][GitHubicon]<br/>**GitHub**|![API 圖示][Google-Calendaricon]<br/>**Google 行事曆**|[![API 圖示][Google-Driveicon]<br/>**Google Drive**][Google-Drivedoc]|![API 圖示][Google-Sheetsicon]<br/>**Google 試算表**|
-|![API 圖示][Google-Tasksicon]<br/>**Google 工作**|![API 圖示][HideKeyicon]<br/>**HideKey**|![API 圖示][HipChaticon]<br/>**HipChat**|[![API 圖示][HTTPicon]<br/>**HTTP**][HTTPdoc]|
-|[![API 圖示][HTTP-Swaggericon]<br/>**HTTP Swagger**][http-swaggerdoc]|[![API 圖示][HTTP-Requesticon]<br/>**HTTP<br/>要求**][HTTP-Requestdoc]|[![API 圖示][HTTP-Responseicon]<br/>**HTTP<br/>回應**][HTTP-Responsedoc]|[![API 圖示][Informixicon]<br/>**Informix**][Informixdoc]|
-|![API 圖示][Insightlyicon]<br/>**Insightly**|![API 圖示][Instagramicon]<br/>**Instagram**|![API 圖示][Instapapericon]<br/>**Instapaper**|![API 圖示][JIRAicon]<br/>**JIRA**|
-|[![API 圖示][MailChimpicon]<br/>**MailChimp**][MailChimpdoc]|![API 圖示][Mandrillicon]<br/>**Mandrill**|[![API 圖示][Microsoft-Translatoricon]<br/>**Microsoft<br/>轉譯器**][Microsoft-Translatordoc]|[![API 圖示][Nested-Logic-Appicon]<br/>**Nested<br/>邏輯應用程式**][Nested-Logic-Appdoc]|
-[![API 圖示][Office-365-Outlookicon]<br/>**Office 365<br/>Outlook**][office365-outlookdoc]|[![API 圖示][Office-365-Usersicon]][office365-usersdoc]<br/>**Office 365<br/>使用者**|[![API 圖示][Office-365-Videoicon]<br/>**Office 365<br/>影片**][office365-videodoc]|[![API 圖示][OneDriveicon]<br/>**OneDrive**][OneDrivedoc]|[![API 圖示][OneDrive-for-Businessicon]<br/>**商務用 <br/>OneDrive**][OneDrive-for-Businessdoc]|
-[![API 圖示][Outlook.comicon]<br/>**Outlook.com**][Outlook.comdoc]|![API 圖示][PagerDutyicon]<br/>**PagerDuty**|![API 圖示][Pinteresticon]<br/>**Pinterest**|[![API 圖示][Project-Onlineicon]<br/>**Project Online**][Project-Onlinedoc]|
-[![API 圖示][Queryicon]<br/>**查詢**][Querydoc]|[![API 圖示][Recurrenceicon]<br/>**週期性**][Recurrencedoc]|![API 圖示][Redmineicon]<br/>**Redmine**|[![API 圖示][RSSicon]<br/>**RSS**][RSSdoc]|
-[![API 圖示][Salesforceicon]<br/>**Salesforce**][Salesforcedoc]|[![API 圖示][SendGridicon]<br/>**SendGrid**][SendGriddoc]|[![API 圖示][Service-Busicon]<br/>**服務匯流排**][Service-Busdoc]|[![API 圖示][SFTPicon]<br/>**SFTP**][SFTPdoc]|
-[![API 圖示][SharePointicon]<br/>**SharePoint**][SharePointdoc]|[![API 圖示][Slackicon]<br/>**Slack**][Slackdoc]|![API 圖示][Smartsheeticon]<br/>**Smartsheet**|[![API 圖示][SMTPicon]<br/>**SMTP**][SMTPdoc]|![API 圖示][SparkPosticon]<br/>**SparkPost**|[![API 圖示][SQL-Servericon]<br/>**SQL Server**][SQL-Serverdoc]|
+|![API 圖示][Dynamics-365-for-Operationsicon]<br/>**Dynamics 365<br/>for Operations**|![API 圖示][Easy-Redmineicon]<br/>**Easy Redmine**|[![API 圖示][Facebookicon]<br/>**Facebook**][Facebookdoc]|[![API 圖示][FileSystemIcon]<br/>**檔案系統**][FileSystemdoc]|
+|[![API 圖示][FTPicon]<br/>**FTP**][FTPdoc]|![API 圖示][GitHubicon]<br/>**GitHub**|![API 圖示][Google-Calendaricon]<br/>**Google 行事曆**|[![API 圖示][Google-Driveicon]<br/>**Google Drive**][Google-Drivedoc]|
+|![API 圖示][Google-Sheetsicon]<br/>**Google 試算表**|![API 圖示][Google-Tasksicon]<br/>**Google 工作**|![API 圖示][HideKeyicon]<br/>**HideKey**|![API 圖示][HipChaticon]<br/>**HipChat**|
+|[![API 圖示][HTTPicon]<br/>**HTTP**][HTTPdoc]|[![API 圖示][HTTP-Swaggericon]<br/>**HTTP Swagger**][http-swaggerdoc]|[![API 圖示][HTTP-Requesticon]<br/>**HTTP<br/>要求**][HTTP-Requestdoc]|[![API 圖示][HTTP-Responseicon]<br/>**HTTP<br/>回應**][HTTP-Responsedoc]|
+|[![API 圖示][Informixicon]<br/>**Informix**][Informixdoc]|![API 圖示][Insightlyicon]<br/>**Insightly**|![API 圖示][Instagramicon]<br/>**Instagram**|![API 圖示][Instapapericon]<br/>**Instapaper**|
+|![API 圖示][JIRAicon]<br/>**JIRA**|[![API 圖示][MailChimpicon]<br/>**MailChimp**][MailChimpdoc]|![API 圖示][Mandrillicon]<br/>**Mandrill**|[![API 圖示][Microsoft-Translatoricon]<br/>**Microsoft<br/>轉譯器**][Microsoft-Translatordoc]|
+|[![API 圖示][Nested-Logic-Appicon]<br/>**Nested<br/>邏輯應用程式**][Nested-Logic-Appdoc]|[![API 圖示][Office-365-Outlookicon]<br/>**Office 365<br/>Outlook**][office365-outlookdoc]|[![API 圖示][Office-365-Usersicon]][office365-usersdoc]<br/>**Office 365<br/>使用者**|[![API 圖示][Office-365-Videoicon]<br/>**Office 365<br/>影片**][office365-videodoc]|
+|[![API 圖示][OneDriveicon]<br/>**OneDrive**][OneDrivedoc]|[![API 圖示][OneDrive-for-Businessicon]<br/>**商務用 <br/>OneDrive**][OneDrive-for-Businessdoc]|[![API 圖示][Outlook.comicon]<br/>**Outlook.com**][Outlook.comdoc]|![API 圖示][PagerDutyicon]<br/>**PagerDuty**|
+|![API 圖示][Pinteresticon]<br/>**Pinterest**|[![API 圖示][Project-Onlineicon]<br/>**Project Online**][Project-Onlinedoc]|[![API 圖示][Queryicon]<br/>**查詢**][Querydoc]|[![API 圖示][Recurrenceicon]<br/>**週期性**][Recurrencedoc]|
+|![API 圖示][Redmineicon]<br/>**Redmine**|[![API 圖示][RSSicon]<br/>**RSS**][RSSdoc]|[![API 圖示][Salesforceicon]<br/>**Salesforce**][Salesforcedoc]|[![API 圖示][SendGridicon]<br/>**SendGrid**][SendGriddoc]|
+|[![API 圖示][Service-Busicon]<br/>**服務匯流排**][Service-Busdoc]|[![API 圖示][SFTPicon]<br/>**SFTP**][SFTPdoc]|[![API 圖示][SharePointicon]<br/>**SharePoint**][SharePointdoc]|[![API 圖示][Slackicon]<br/>**Slack**][Slackdoc]|
+|![API 圖示][Smartsheeticon]<br/>**Smartsheet**|[![API 圖示][SMTPicon]<br/>**SMTP**][SMTPdoc]|![API 圖示][SparkPosticon]<br/>**SparkPost**|[![API 圖示][SQL-Servericon]<br/>**SQL Server**][SQL-Serverdoc]|
 |![API 圖示][Todoisticon]<br/>**Todoist**|[![API 圖示][Trelloicon]<br/>**Trello**][Trellodoc]|[![API 圖示][Twilioicon]<br/>**Twilio**][Twiliodoc]|[![API 圖示][Twittericon]<br/>**Twitter**][Twitterdoc]|
 |![API 圖示][Vimeoicon]<br/>**Vimeo**|![API 圖示][Visual-Studio-Team-Servicesicon]<br/>**Visual Studio<br/>Team Services**|[![API 圖示][Webhookicon]<br/>**Webhook**][Webhookdoc]|![API 圖示][WordPressicon]<br/>**WordPress**|
-|[![API 圖示][Wunderlisticon]<br/>**Wunderlist**][Wunderlistdoc]|[![API 圖示][Yammericon]<br/>**Yammer**][Yammerdoc]|![API 圖示][YouTubeicon]<br/>**YouTube**|[![API 圖示][FileSystemIcon]<br/>**檔案系統**][FileSystemdoc]
+|[![API 圖示][Wunderlisticon]<br/>**Wunderlist**][Wunderlistdoc]|[![API 圖示][Yammericon]<br/>**Yammer**][Yammerdoc]|![API 圖示][YouTubeicon]<br/>**YouTube**|
 
 ### <a name="integration-account-connectors"></a>整合帳戶連接器 
 
@@ -56,9 +58,7 @@ ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
 | [![API 圖示][x12icon]<br/>**EDIFACT</br>解碼**][EDIFACTdecode] |[![API 圖示][x12icon]<br/>**EDIFACT</br>編碼**][EDIFACTencode] | | |
 
 > [!NOTE]
-> 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure 邏輯應用程式，請移至 [試用邏輯應用程式](https://tryappservice.azure.com/?appservice=logic)。 您可以在 App Service 中立即建立短期的入門邏輯應用程式。 不需要信用卡；沒有承諾。
-> 
-> 
+> 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請移至[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)。 您可以在 App Service 中立即建立短期的入門邏輯應用程式。 不需要信用卡，無需承諾。
 
 ## <a name="enterprise-connectors"></a>企業連接器
 使用企業連接器，針對包含 EAI 和 EDI 的 B2B 案例建立邏輯應用程式。  
@@ -71,7 +71,7 @@ ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
 
 <!-- TODO: Add Functions, App Service, and Nested Workflow Icons -->
 ### <a name="connectors-can-be-triggers"></a>連接器可以是觸發程序
-多個連接器提供觸發程序，可在發生特定事件時通知您的 app。 例如，FTP 連接器具有 OnUpdatedFile 觸發程序。 您可以建置邏輯應用程式、PowerApp 或流程來接聽此觸發程序，並且在每次引發觸發程序時採取動作。
+多個連接器提供觸發程序，可在發生特定事件時通知您的 app。 例如，FTP 連接器具有 OnUpdatedFile 觸發程序。 您可以建置邏輯應用程式、PowerApp 或流程來接聽此觸發程序，並且在每次引發觸發程序時執行動作。
 
 觸發程序可分為兩種：  
 
@@ -79,12 +79,12 @@ ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
 * 推送觸發程序：這些觸發程序會接聽端點上的資料或發生的事件，然後觸發您的應用程式的新執行個體。 Twitter 連接器是其中一個範例。
 
 ### <a name="connectors-can-be-actions"></a>連接器可以是動作
-連接器也可做為 app 內的動作。 動作很適合用來查閱可在執行 app 時使用的資料。 例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。 或者，您可能需要寫入、更新或刪除目的地資料表中的資料。 您可以使用連接器所提供的動作來這樣做。 動作會對應至 Swagger 中繼資料中定義的作業。
+您也可以使用連接器做為應用程式中的動作。 動作很適合用來查閱接著可在執行應用程式時使用的資料。 例如，在處理訂單時，您可能需要查閱 SQL 資料庫中的客戶資料。 或者，您可能需要寫入、更新或刪除目的地資料表中的資料。 您可以使用連接器所提供的動作來執行這些工作。 動作會對應至 Swagger 中繼資料中定義的作業。
 
 ## <a name="next-steps"></a>後續步驟
-* [立即建置邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)  
-* [建立自訂連接器](../app-service-logic/app-service-logic-create-api-app.md)
-* [監視邏輯應用程式](../app-service-logic/app-service-logic-monitor-your-logic-apps.md)
+* [建立第一個邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
+* [建立邏輯應用程式的自訂 API](../logic-apps/logic-apps-create-api-app.md)
+* [監視邏輯應用程式](../logic-apps/logic-apps-monitor-your-logic-apps.md)
 
 <!--Connectors Documentation-->
 [azureblobstoragedoc]: ./connectors-create-api-azureblobstorage.md "連接到 Azure Blob 以管理 Blob 容器中的檔案。"
@@ -104,7 +104,7 @@ ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
 [onedrive-for-businessdoc]: ./connectors-create-api-onedriveforbusiness.md "連接到您企業的 Microsoft OneDrive 並上傳、刪除、列出您的檔案等等。"
 [outlook.comdoc]: ./connectors-create-api-outlook.md "連接到您的 Outlook 信箱，並存取您的電子郵件和執行其他作業。"
 [project-onlinedoc]: ./connectors-create-api-projectonline.md "連接到 Microsoft Project Online。"
-[rssdoc]: ./connectors-create-api-rss.md "RSS 連接器可讓使用者發佈和擷取摘要項目。它也可讓使用者在新項目發佈到摘要中時觸發作業。"
+[rssdoc]: ./connectors-create-api-rss.md "RSS 連接器可讓您發佈和擷取摘要項目。它也可讓您在將新項目發佈到摘要時觸發作業。"
 [salesforcedoc]: ./connectors-create-api-salesforce.md "連接到您的 Salesforce 帳戶，並且管理客戶、潛在客戶、機會等等。"
 [sendgriddoc]: ./connectors-create-api-sendgrid.md "連接到 Microsoft Project Online。"
 [service-busdoc]: ./connectors-create-api-servicebus.md "可以從「服務匯流排佇列和主題」傳送訊息，並接收來自「服務匯流排佇列和訂用帳戶」的訊息。"
@@ -120,18 +120,18 @@ ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
 [twitterdoc]: ./connectors-create-api-twitter.md "連接到 Twitter，取得時間軸、張貼推文等等。"
 [wunderlistdoc]: ./connectors-create-api-wunderlist.md "讓您的生活保持同步。"
 [yammerdoc]: ./connectors-create-api-yammer.md "連接到 Yammer 張貼訊息並取得新的訊息。"
-[as2doc]: ../app-service-logic/app-service-logic-enterprise-integration-as2.md "深入了解企業整合 AS2。"
-[x12doc]: ../app-service-logic/app-service-logic-enterprise-integration-x12.md "深入了解企業整合 X12"
-[flatfiledoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
-[flatfiledecodedoc]: ../app-service-logic/app-service-logic-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
-[xmlvalidatedoc]: ../app-service-logic/app-service-logic-enterprise-integration-xml-validation.md "深入了解企業整合 XML 驗證。"
-[xmltransformdoc]: ../app-service-logic/app-service-logic-enterprise-integration-transform.md "深入了解企業整合轉換。"
-[as2decode]: ..//app-service-logic/app-service-logic-enterprise-integration-as2-decode.md "深入了解企業整合 AS2 解碼"
-[as2encode]: ..//app-service-logic/app-service-logic-enterprise-integration-as2-encode.md "深入了解企業整合 AS2 編碼"
-[X12decode]: ..//app-service-logic/app-service-logic-enterprise-integration-X12-decode.md "深入了解企業整合 X12 解碼"
-[X12encode]: ..//app-service-logic/app-service-logic-enterprise-integration-X12-encode.md "深入了解企業整合 X12 編碼"
-[EDIFACTdecode]: ..//app-service-logic/app-service-logic-enterprise-integration-EDIFACT-decode.md "深入了解企業整合 EDIFACT 解碼"
-[EDIFACTencode]: ..//app-service-logic/app-service-logic-enterprise-integration-EDIFACT-encode.md "深入了解企業整合 EDIFACT 編碼"
+[as2doc]: ../logic-apps/logic-apps-enterprise-integration-as2.md "深入了解企業整合 AS2。"
+[x12doc]: ../logic-apps/logic-apps-enterprise-integration-x12.md "深入了解企業整合 X12"
+[flatfiledoc]:../logic-apps/logic-apps-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
+[flatfiledecodedoc]:../logic-apps/logic-apps-enterprise-integration-flatfile.md "深入了解企業整合一般檔案。"
+[xmlvalidatedoc]: ../logic-apps/logic-apps-enterprise-integration-xml-validation.md "深入了解企業整合 XML 驗證。"
+[xmltransformdoc]: ../logic-apps/logic-apps-enterprise-integration-transform.md "深入了解企業整合轉換。"
+[as2decode]: ..//logic-apps/logic-apps-enterprise-integration-as2-decode.md "深入了解企業整合 AS2 解碼"
+[as2encode]:../logic-apps/logic-apps-enterprise-integration-as2-encode.md "深入了解企業整合 AS2 編碼"
+[X12decode]: ..//logic-apps/logic-apps-enterprise-integration-X12-decode.md "深入了解企業整合 X12 解碼"
+[X12encode]: ..//logic-apps/logic-apps-enterprise-integration-X12-encode.md "深入了解企業整合 X12 編碼"
+[EDIFACTdecode]: ..//logic-apps/logic-apps-enterprise-integration-EDIFACT-decode.md "深入了解企業整合 EDIFACT 解碼"
+[EDIFACTencode]: ..//logic-apps/logic-apps-enterprise-integration-EDIFACT-encode.md "深入了解企業整合 EDIFACT 編碼"
 [httpdoc]: ./connectors-native-http.md "HTTP 連接器以進行 HTTP 呼叫。"
 [http-requestdoc]: ./connectors-native-reqres.md "要求和回應動作。"
 [http-responsedoc]: ./connectors-native-reqres.md "要求和回應動作。"
@@ -139,9 +139,9 @@ ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
 [http-swaggerdoc]: ./connectors-native-http-swagger.md "HTTP + Swagger 連接器以進行 HTTP 呼叫。"
 [querydoc]: ./connectors-native-query.md "查詢動作以選取和篩選陣列。"
 [webhookdoc]: ./connectors-native-webhook.md "邏輯應用程式的 Webhook 動作和觸發程序。"
-[azure-functionsdoc]: ../app-service-logic/app-service-logic-azure-functions.md "整合邏輯應用程式與 Azure Functions。"
-[api/web-appdoc]: ../app-service-logic/app-service-logic-custom-hosted-api.md "整合邏輯應用程式與 App Service API Apps。"
-[nested-logic-appdoc]: ../app-service-logic/app-service-logic-http-endpoint.md "整合邏輯應用程式與巢狀工作流程。"
+[azure-functionsdoc]: ../logic-apps/logic-apps-azure-functions.md "整合邏輯應用程式與 Azure Functions。"
+[api/web-appdoc]: ../logic-apps/logic-apps-custom-hosted-api.md "整合邏輯應用程式與 App Service API Apps。"
+[nested-logic-appdoc]: ../logic-apps/logic-apps-http-endpoint.md "整合邏輯應用程式與巢狀工作流程。"
 [recurrencedoc]:  ./connectors-native-recurrence.md "邏輯應用程式的循環觸發程序。"
 [google-sheetsdoc]: ./connectors-create-api-googlesheet.md "連接到 Google Sheets 並可修改試算表。"
 [google-tasksdoc]: ./connectors-create-api-googletasks.md "連接到 Google Tasks 並可管理工作。"
@@ -150,8 +150,8 @@ ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
 [mandrilldoc]: ./connectors-create-api-mandrill.md "連接到 Mandrill 並可用來通訊。"
 [youtubedoc]: ./connectors-create-api-youtube.md "連接到 YouTube 並可進行影片和頻道互動。"
 [sparkpostdoc]: ./connectors-create-api-sparkpost.md "連接到 SparkPost 並可用來通訊。"
-[filesystemdoc]: ..//app-service-logic/app-service-logic-use-file-connector.md "使用檔案系統連接器來與內部部署檔案系統通訊。"
-[sapconnector]: ..//app-service-logic/app-service-logic-enterprise-connector-sap-connector.md "臉解 SAP 連接器"
+[filesystemdoc]: ..//logic-apps/logic-apps-using-file-connector.md "使用檔案系統連接器來與內部部署檔案系統通訊。"
+[sapconnector]: ..//logic-apps/logic-apps-using-sap-connector.md "臉解 SAP 連接器"
 
 <!--Icon references-->
 [appFiguresicon]: ./media/apis-list/appfigures.png
@@ -246,9 +246,4 @@ ms.openlocfilehash: 8e1b8cee12406628dae1deff15406beb13778b40
 [flatfiledecodeicon]: ./media/apis-list/flatfiledecoding.png
 [xmlvalidateicon]: ./media/apis-list/xmlvalidation.png
 [xmltransformicon]: ./media/apis-list/xsltransform.png
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

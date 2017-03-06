@@ -11,16 +11,18 @@ ms.service: application-gateway
 ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
+ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 12/12/2016
 ms.author: amsriva
 translationtype: Human Translation
-ms.sourcegitcommit: cb2b7bc626294e12c6e19647c1e787e1f671595b
-ms.openlocfilehash: a49a93b11ab3e965ac1ddaec919bfcbf43381dee
+ms.sourcegitcommit: 5009b13cec57e6974f71610c84fdaad837085df0
+ms.openlocfilehash: 5f81d8146f8000e73a2eb578ff2371a62c8875e9
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="enabling-ssl-policy-and-end-to-end-ssl-on-application-gateway"></a>在應用程式閘道上啟用 SSL 原則和端對端 SSL
+# <a name="overview-of-end-to-end-ssl-and-ssl-policy-on-application-gateway"></a>應用程式閘道上端對端 SSL 和 SSL 原則的概觀
 
 應用程式閘道支援在閘道上終止 SSL，之後流量通常會以未加密狀態流至後端伺服器。 這項功能可讓 Web 伺服器不必再負擔昂貴的加密/解密成本。 但對某些客戶來說，對後端伺服器進行未加密的通訊並非可接受的選項。 此未加密的通訊可能是有安全性/法務遵循方面的需求，或應用程式可能只接受安全連線。 對於這類應用程式，應用程式閘道現在可支援端對端 SSL 加密。
 
@@ -43,7 +45,7 @@ ms.openlocfilehash: a49a93b11ab3e965ac1ddaec919bfcbf43381dee
 應用程式閘道支援使用者可設定的 SSL 交涉原則，這可讓客戶進一步控制應用程式閘道上的 SSL 連線。
 
 1. 依預設，所有應用程式閘道都停用 SSL 2.0 和 3.0。 您無法對其進行任何設定。
-2. SSL 原則定義可讓您選擇停用下列 3 個通訊協定中的任一個：**TLSv1\_0**、**TLSv1\_1**、**TLSv1\_2**。
+2. SSL 原則定義可讓您選擇停用下列&3; 個通訊協定中的任一個：**TLSv1\_0**、**TLSv1\_1**、**TLSv1\_2**。
 3. 如果未定義任何 SSL 原則，則這三個 (TLSv1\_0、TLSv1\_1、TLSv1_2) 皆會啟用。
 
 ## <a name="next-steps"></a>後續步驟
@@ -53,9 +55,4 @@ ms.openlocfilehash: a49a93b11ab3e965ac1ddaec919bfcbf43381dee
 <!--Image references-->
 
 [1]: ./media/application-gateway-backend-ssl/scenario.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

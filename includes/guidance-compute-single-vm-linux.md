@@ -136,7 +136,7 @@ azure vm deallocate <resource-group> <vm-name>
 
 使用者可以被指派多個角色，且您可以針對更詳細的權限建立角色。
 
-> [!NOTE]
+d> [!NOTE]
 > RBAC 不會限制使用者登入 VM 可執行的動作。 這些權限是由客體 OS上的帳戶類型來決定。   
 > 
 > 
@@ -146,7 +146,6 @@ azure vm deallocate <resource-group> <vm-name>
 如果您要加密作業系統和資料磁碟，請考慮使用 [Azure 磁碟加密][disk-encryption]。 
 
 ## <a name="solution-deployment"></a>解決方案部署
-
 此參考架構的部署可在 [GitHub][github-folder] 上取得。 它包含 VNet、NSG 及單一 VM。 若要部署架構，請依照下列步驟執行： 
 
 1. 以滑鼠右鍵按一下下方的按鈕，然後選取 [在新索引標籤中開啟連結] 或 [在新視窗開啟連結]。
@@ -156,7 +155,7 @@ azure vm deallocate <resource-group> <vm-name>
    * **資源群組**名稱已在參數檔案中定義，因此請在文字方塊中選取 [新建] 並輸入 `ra-single-vm-rg`。
    * 從 [位置] 下拉式方塊選取區域。
    * 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
-   * 選取 [作業系統類型] 下拉式方塊中的 [linux]。
+。   * 選取 [作業系統類型]* 下拉式方塊中的 [linux]*。
    * 檢閱條款和條件，然後按一下 [我同意上方所述的條款及條件] 核取方塊。
    * 按一下 [購買] 按鈕。
 3. 等待部署完成。
@@ -176,7 +175,7 @@ azure vm deallocate <resource-group> <vm-name>
 [blob-storage]: ../articles/storage/storage-introduction.md
 [boot-diagnostics]: https://azure.microsoft.com/en-us/blog/boot-diagnostics-for-virtual-machines-v2/
 [cname-record]: https://en.wikipedia.org/wiki/CNAME_record
-[data-disk]: ../articles/virtual-machines/virtual-machines-linux-about-disks-vhds.md
+[data-disk]: ../articles/storage/storage-about-disks-and-vhds-linux.md
 [disk-encryption]: ../articles/security/azure-security-disk-encryption.md
 [enable-monitoring]: ../articles/monitoring-and-diagnostics/insights-how-to-use-diagnostics.md
 [fqdn]: ../articles/virtual-machines/virtual-machines-linux-portal-create-fqdn.md
@@ -215,9 +214,4 @@ azure vm deallocate <resource-group> <vm-name>
 [components]: #Solution-components
 [blocks]: https://github.com/mspnp/template-building-blocks
 [0]: ./media/guidance-blueprints/compute-single-vm.png "Azure 中的單一 Linux VM 架構"
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

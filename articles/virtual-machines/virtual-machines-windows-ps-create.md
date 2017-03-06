@@ -13,18 +13,26 @@ ms.topic: get-started-article
 ms.date: 02/14/2017
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: c1262b7708918cbdc8ce35f3e65a47a04797f195
-ms.openlocfilehash: 8a67352a65e755f2177fb4870f34c41440bf90a2
+ms.sourcegitcommit: 8d8dfb9b165d82e8567f6b5577d46d562f9f8db3
+ms.openlocfilehash: 89e306d3e3312531878da088575c7429a941d34f
+ms.lasthandoff: 02/23/2017
 
 ---
 
 # <a name="create-a-windows-vm-using-resource-manager-and-powershell"></a>使用 Resource Manager 和 PowerShell 建立 Windows VM
 
-本文將說明如何使用 [Resource Manager](../azure-resource-manager/resource-group-overview.md) 和 PowerShell 快速建立執行 Windows Server 的 Azure 虛擬機器及其所需的資源。 必須執行本文中的所有步驟才能建立虛擬機器，而且應該需要約 30 分鐘的時間才能完成步驟。 將命令中的範例參數值取代為對您環境有意義的名稱。
+本文說明如何使用 [Resource Manager](../azure-resource-manager/resource-group-overview.md) 和 Azure PowerShell 來快速建立執行 Windows Server 的 Azure 虛擬機器及其所需的資源。  
+
+必須執行本文中的所有步驟才能建立虛擬機器，而且應該需要約 30 分鐘的時間才能完成步驟。 將命令中的範例參數值取代為對您環境有意義的名稱。
 
 ## <a name="step-1-install-azure-powershell"></a>步驟 1：安裝 Azure PowerShell
 
 如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+
+> [!NOTE]
+> 您可能需要重新安裝 Azure PowerShell，才能使用本文中的功能。 「受控磁碟」功能是在 3.5 版和更新版本中。
+> 
+> 
 
 ## <a name="step-2-create-a-resource-group"></a>步驟 2：建立資源群組
 
@@ -175,10 +183,5 @@ ms.openlocfilehash: 8a67352a65e755f2177fb4870f34c41440bf90a2
 * 如果部署有問題，下一個步驟就是查看[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解 (Troubleshoot common Azure deployment errors with Azure Resource Manager)](../azure-resource-manager/resource-manager-common-deployment-errors.md)
 * 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以了解如何管理您建立的虛擬機器。
 * 使用 [利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

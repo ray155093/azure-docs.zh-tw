@@ -13,20 +13,21 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/16/2016
+ms.date: 02/17/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: ed44ca2076860128b175888748cdaa8794c2310d
-ms.openlocfilehash: b922127076a8cb29ffb89c7fd184d4b8fa2d7e13
+ms.sourcegitcommit: 655f501f920e3169450831f501f7183ae46a4a60
+ms.openlocfilehash: 086c87c52adf972307003ff78fd0c07f3035321c
+ms.lasthandoff: 02/27/2017
 
 
 ---
 # <a name="how-to-create-a-documentdb-nosql-account-using-the-azure-portal"></a>如何使用 Azure 入口網站建立 DocumentDB NoSQL 帳戶
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](documentdb-create-account.md)
-> * [Azure CLI 和 Azure Resource Manager](documentdb-automation-resource-manager-cli.md)
->
->
+> * [Azure CLI 1.0](documentdb-automation-resource-manager-cli-nodejs.md)
+> * [Azure CLI 2.0](documentdb-automation-resource-manager-cli.md)
+> * [Azure PowerShell](documentdb-manage-account-with-powershell.md)
 
 若要使用 Microsoft Azure DocumentDB 建立資料庫，您必須：
 
@@ -38,9 +39,9 @@ ms.openlocfilehash: b922127076a8cb29ffb89c7fd184d4b8fa2d7e13
 您是 DocumentDB 的新手嗎？ 觀看 Scott Hanselman 製作的 [這部](https://azure.microsoft.com/documentation/videos/create-documentdb-on-azure/) 四分鐘的影片，以了解如何在線上入口網站中完成最常見工作。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在 Jumpbar 中，按一下 [新增]，按一下 [資料庫]，然後按一下 [DocumentDB (NoSQL)]。
+2. 在左側導覽中，按一下 [新增]，按一下 [資料庫]，然後按一下 [NoSQL (DocumentDB)]。
 
-   ![Azure 入口網站的螢幕擷取畫面，其中反白顯示 [其他服務] 和 DocumentDB (NoSQL)](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-1.png)  
+   ![Azure 入口網站的螢幕擷取畫面，其中反白顯示 [其他服務] 和 NoSQL (DocumentDB)](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-1.png)  
 3. 在 [新增帳戶]  刀鋒視窗中，指定想要的 DocumentDB 帳戶組態。
 
     ![[新增 DocumentDB] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-create-account/create-nosql-db-databases-json-tutorial-2.png)
@@ -80,16 +81,11 @@ ms.openlocfilehash: b922127076a8cb29ffb89c7fd184d4b8fa2d7e13
 
 建立資料庫和集合之後, 您必須[新增文件](documentdb-view-json-document-explorer.md)至集合。
 
-當您在集合中具有文件之後，您可以使用 [DocumentDB SQL](documentdb-sql-query.md) 來針對文件[執行查詢](documentdb-sql-query.md#executing-sql-queries)。 您可以使用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx)，或是這些 [SDK](documentdb-sdk-dotnet.md) 的其中之一來執行查詢。
+當您在集合中具有文件之後，您可以使用 [DocumentDB SQL](documentdb-sql-query.md) 來針對文件[執行查詢](documentdb-sql-query.md#ExecutingSqlQueries)。 您可以使用入口網站中的[查詢總管](documentdb-query-collections-query-explorer.md)、[REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx)，或是這些 [SDK](documentdb-sdk-dotnet.md) 的其中之一來執行查詢。
 
 ### <a name="learn-more"></a>詳細資訊
 若要深入了解 DocumentDB，請探索以下資源：
 
 * [DocumentDB 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 * [DocumentDB 階層式資源模型和概念](documentdb-resources.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

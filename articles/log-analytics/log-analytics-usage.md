@@ -15,8 +15,9 @@ ms.topic: get-started-article
 ms.date: 01/02/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 668cde23cb717fcad52fd7823561d10735e6df1b
+ms.sourcegitcommit: 7e3d4b83fefdc70f292cf85b682cf8ed756bf4c5
+ms.openlocfilehash: e7f04df679604f274c8ad9bf4daddc63c8b5418a
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -47,6 +48,12 @@ Log Analytics 會收集資料，並定期傳送給 OMS 服務。  您可以使�
     - 收集資料和編制索引所花費的時間
 - 查詢清單
 
+## <a name="understanding-nodes-for-oms-offers"></a>了解 OMS 供應項目的節點
+
+如果您是在「每節點 (OMS)」定價層上，系統便會根據您已啟用的節點和解決方案數目來向您收費。 您可以在使用量儀表板的 [供應項目] 區段中，查看每個供應項目目前使用的節點數。
+
+![使用量儀表板](./media/log-analytics-usage/log-analytics-usage-offerings.png)
+
 ## <a name="to-work-with-usage-data"></a>處理使用量資料
 1. 如果您尚未這麼做，請使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在 [中樞] 功能表上按一下 [更多服務]，然後在資源清單中輸入 **Log Analytics**。 當您開始輸入時，清單會根據您輸入的文字進行篩選。 按一下 [Log Analytics]。  
@@ -63,9 +70,4 @@ Log Analytics 會收集資料，並定期傳送給 OMS 服務。  您可以使�
 
 ## <a name="next-steps"></a>後續步驟
 * 查閱 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)，以檢視功能和方案收集和傳送給 OMS 的詳細資訊。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

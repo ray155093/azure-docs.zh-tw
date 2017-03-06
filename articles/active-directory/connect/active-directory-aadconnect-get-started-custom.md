@@ -15,8 +15,9 @@ ms.topic: get-started-article
 ms.date: 02/07/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: c0c33506d134db9fc49bd873e9c95063dd2ab845
-ms.openlocfilehash: d5dcdc94490ff46e39ff5894f6d70d5dcb5dd527
+ms.sourcegitcommit: 6c26fdd11031ab482d12611ca338df5c90a14193
+ms.openlocfilehash: a482e20bdbf60889f93f4532ed042b41ec51b81e
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -95,7 +96,10 @@ ms.openlocfilehash: d5dcdc94490ff46e39ff5894f6d70d5dcb5dd527
 
 ### <a name="domain-and-ou-filtering"></a>網域和 OU 篩選
 預設會同步所有網域和 OU。 如果您不想將部分網域或 OU 同步處理至 Azure AD，您可以取消選取這些網域和 OU。  
-![DomainOU 篩選](./media/active-directory-aadconnect-get-started-custom/domainoufiltering.png) 精靈的這個頁面會設定網域型和 OU 型篩選。 如需詳細資訊，請參閱[網域型篩選](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)和 [OU 型篩選](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering)。 如果您使用 OU 型篩選，預設稍後會同步處理新增的 OU。 如果您希望不要同步處理新的 OU，則可以在精靈完成 [OU 型篩選](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering)後加以設定。
+![DomainOU 篩選](./media/active-directory-aadconnect-get-started-custom/domainoufiltering.png)  
+精靈的這個頁面會設定網域型和 OU 型篩選。 如果您打算進行變更，那麼在進行這些變更之前，請參閱[網域型篩選](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)和 [OU 型篩選](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering)。 某些 OU 對此功能而言是必要的，因此必須加以選取。
+
+如果您使用 OU 型篩選，預設稍後會同步處理新增的 OU。 如果您希望不要同步處理新的 OU，則可以在精靈完成 [OU 型篩選](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering)後加以設定。
 
 如果您打算使用[群組型篩選](#sync-filtering-based-on-groups)，則確定已包含具有群組的 OU 包含且不會使用 OU 篩選進行篩選。 OU 篩選會在群組型篩選之前評估。
 
@@ -174,8 +178,8 @@ ms.openlocfilehash: d5dcdc94490ff46e39ff5894f6d70d5dcb5dd527
 ### <a name="enabling-single-sign-on-sso"></a>啟用單一登入 (SSO)
 設定單一登入以用於密碼同步處理或傳遞驗證是一道簡單的程序，您只需要對每個要同步至 Azure AD 的樹系完成一次即可。 設定程序包含兩個步驟，如下所示︰
 
-1.  在內部部署 Active Directory 中建立所需的電腦帳戶。
-2.  設定用戶端機器的內部網路區域，以支援單一登入。
+1.    在內部部署 Active Directory 中建立所需的電腦帳戶。
+2.    設定用戶端機器的內部網路區域，以支援單一登入。
 
 #### <a name="create-the-computer-account-in-active-directory"></a>在 Active Directory 中建立電腦帳戶
 對於在 Azure AD Connect 中新增的每個樹系，您必須提供網域系統管理員認證，才能在每個樹系中建立電腦帳戶。 認證只會用來建立帳戶，不會存放或用於其他任何作業。 只需在 Azure AD Connect 精靈的 [啟用單一登入] 頁面上新增認證，如下所示︰
@@ -189,20 +193,20 @@ ms.openlocfilehash: d5dcdc94490ff46e39ff5894f6d70d5dcb5dd527
 若要確保用戶端會自動登入內部網路區域，您必須確定兩個 URL 屬於內部網路區域。 這可確保加入網域的電腦會在連接到公司網路時自動將 Kerberos 票證傳送至 Azure AD。
 在具有群組原則管理工具的電腦上。
 
-1.  開啟 [群組原則管理工具]
-2.  編輯會套用至所有使用者的群組原則。 例如，預設網域原則。
-3.  瀏覽至 **User Configuration\Administrative Templates\Windows Components\Internet Explorer\Internet Control Panel\Security Page**，並根據下圖選取 [指派網站到區域清單]。
-4.  啟用原則，並在對話方塊中輸入下列兩個項目。
+1.    開啟 [群組原則管理工具]
+2.    編輯會套用至所有使用者的群組原則。 例如，預設網域原則。
+3.    瀏覽至 **User Configuration\Administrative Templates\Windows Components\Internet Explorer\Internet Control Panel\Security Page**，並根據下圖選取 [指派網站到區域清單]。
+4.    啟用原則，並在對話方塊中輸入下列兩個項目。
 
-        Value: `https://autologon.microsoftazuread-sso.com`  
-        Data: 1  
-        Value: `https://aadg.windows.net.nsatc.net`  
-        Data: 1
+        值: `https://autologon.microsoftazuread-sso.com`  
+        Data 1  
+        值: `https://aadg.windows.net.nsatc.net`  
+        Data 1
 
-5.  看起來應該會像下面這樣：  
+5.    看起來應該會像下面這樣：  
 ![內部網路區域](./media/active-directory-aadconnect-get-started-custom/sitezone.png)
 
-6.  按兩次 [確定]。
+6.    按兩次 [確定]。
 
 ## <a name="configuring-federation-with-ad-fs"></a>設定與 AD FS 同盟
 只要簡單按幾下，即可使用 Azure AD Connect 設定 AD FS。 進行設定之前必須先具備下列項目。
@@ -313,9 +317,4 @@ AD FS 服務需要網域服務帳戶來驗證使用者，以及在 Active Direct
 深入了解這些常見主題︰[排程器和如何觸發同步處理](active-directory-aadconnectsync-feature-scheduler.md)。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

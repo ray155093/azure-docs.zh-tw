@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 83f9a2716086730f22527a9321b6b111f6e69907
-ms.openlocfilehash: 9e794e89e5ecf4633c2e6312c69487bfa0c7795c
+ms.sourcegitcommit: 75c5b8d3d8c8f389b8cee7d5d304b6e9704252fc
+ms.openlocfilehash: a57805510d5e84fcdc6c4521ae9443ec72de59e1
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -55,7 +56,7 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。  它是專屬�
 子網路是 VNet 中某個範圍的 IP 位址，您可以將 VNet 分割成多個子網路以便進行組織和獲得安全性。 部署至 VNet 內 (相同或不同) 子網路的 VM 和 PaaS 角色執行個體不需要進行額外設定就可以彼此通訊。 您也可以設定子網路的路由表和 NSG。
 
 ## <a name="ip-addresses"></a>IP 位址
-有兩種類型的 IP 位址可指派給 Azure 中的資源：*公用*和*私人*。 Azure 資源可透過公用 IP 位址來與網際網路和 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)、[Azure 事件中樞](https://azure.microsoft.com/documentation/services/event-hubs/)等其他 Azure 公用端服務進行通訊。 私人 IP 位址可讓虛擬網路中的資源以及透過 VPN 連線的資源彼此通訊，而不必使用可路由的 IP 位址。
+有兩種類型的 IP 位址可指派給 Azure 中的資源：*公用*和*私人*。 「公用 IP 位址」可讓 Azure 資源與網際網路及其他 Azure 公開服務 (例如 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)、[Azure 事件中樞](https://azure.microsoft.com/documentation/services/event-hubs/)) 進行通訊。 「私人 IP 位址」可讓虛擬網路中的資源以及透過 VPN 連線的資源彼此通訊，而不必使用可路由的網際網路 IP 位址。
 
 若要深入了解 Azure 中的 IP 位址，請瀏覽 [虛擬網路中的 IP 位址](virtual-network-ip-addresses-overview-arm.md)
 
@@ -88,9 +89,4 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。  它是專屬�
 * [在 VNet 中建立 VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md)。
 * 了解 [NSG](virtual-networks-nsg.md)。
 * 了解 [使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

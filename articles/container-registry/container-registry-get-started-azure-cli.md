@@ -1,6 +1,6 @@
 ---
 title: "建立 Azure 容器登錄 - CLI | Microsoft Docs"
-description: "使用 Azure CLI 2.0 預覽版開始建立及管理 Azure 容器登錄庫"
+description: "使用 Azure CLI 2.0 開始建立及管理 Azure 容器登錄"
 services: container-registry
 documentationcenter: 
 author: stevelas
@@ -17,12 +17,13 @@ ms.workload: na
 ms.date: 11/14/2016
 ms.author: stevelas
 translationtype: Human Translation
-ms.sourcegitcommit: f299cff22d00a1c765a32838647818d18f3df85d
-ms.openlocfilehash: bd2f3f5331eb83f09f5d187699a39c74be6282d5
+ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
+ms.openlocfilehash: 1d5e16952cbc56a381ead23843515cf6ed1d74a9
+ms.lasthandoff: 02/22/2017
 
 ---
 # <a name="create-a-container-registry-using-the-azure-cli"></a>使用 Azure CLI 建立容器登錄庫
-在 Linux、Mac 或 Windows 電腦上，使用 [Azure CLI 2.0 預覽版](https://github.com/Azure/azure-cli)中的命令建立容器登錄庫及管理其設定。 您也可以使用 [Azure 入口網站](container-registry-get-started-portal.md)或以程式設計方式用容器登錄 [REST API](https://go.microsoft.com/fwlink/p/?linkid=834376) 來建立及管理容器登錄。
+在 Linux、Mac 或 Windows 電腦上，使用 [Azure CLI 2.0](https://github.com/Azure/azure-cli) 中的命令建立容器登錄及管理其設定。 您也可以使用 [Azure 入口網站](container-registry-get-started-portal.md)或以程式設計方式用容器登錄 [REST API](https://go.microsoft.com/fwlink/p/?linkid=834376) 來建立及管理容器登錄。
 
 
 * 如需背景和概念，請參閱[什麼是 Azure 容器登錄庫？](container-registry-intro.md)
@@ -34,9 +35,9 @@ ms.openlocfilehash: bd2f3f5331eb83f09f5d187699a39c74be6282d5
 > 
 
 ## <a name="prerequisites"></a>必要條件
-* **Azure CLI 2.0 預覽版** - 若要安裝並開始使用 CLI 2.0 預覽版，請參閱[安裝指示](https://github.com/Azure/azure-cli/blob/master/README.rst)。 執行 `az login`登入您的 Azure 訂用帳戶。
-* **資源群組** - 先建立[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)再建立容器登錄庫，或使用現有的資源群組。 請確定資源群組是位於[可使用](https://azure.microsoft.com/regions/services/)容器登錄庫服務的位置。 若要使用 CLI 2.0 預覽版建立資源群組，請參閱 [CLI 2.0 預覽版範例](https://github.com/Azure/azure-cli-samples/tree/master/arm)。 
-* **儲存體帳戶** (選用) - 建立標準 Azure [儲存體帳戶](../storage/storage-introduction.md)以支援相同位置中的容器登錄庫。 如果您以 `az acr create` 建立登錄庫時沒有指定儲存體帳戶，此命令會為您建立一個儲存體帳戶。 若要使用 CLI 2.0 預覽版建立儲存體帳戶，請參閱 [CLI 2.0 預覽版範例](https://github.com/Azure/azure-cli-samples/tree/master/storage)。
+* **Azure CLI 2.0** - 若要安裝並開始使用 CLI 2.0，請參閱[安裝指示](https://github.com/Azure/azure-cli/blob/master/README.rst)。 執行 `az login`登入您的 Azure 訂用帳戶。
+* **資源群組** - 先建立[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)再建立容器登錄庫，或使用現有的資源群組。 請確定資源群組是位於[可使用](https://azure.microsoft.com/regions/services/)容器登錄庫服務的位置。 若要使用 CLI 2.0 建立資源群組，請參閱 [CLI 2.0 範例](https://github.com/Azure/azure-cli-samples/tree/master/arm)。 
+* **儲存體帳戶** (選用) - 建立標準 Azure [儲存體帳戶](../storage/storage-introduction.md)以支援相同位置中的容器登錄庫。 如果您以 `az acr create` 建立登錄庫時沒有指定儲存體帳戶，此命令會為您建立一個儲存體帳戶。 若要使用 CLI 2.0 建立儲存體帳戶，請參閱 [CLI 2.0 範例](https://github.com/Azure/azure-cli-samples/tree/master/storage)。
 * **服務主體** (選用) - 當您使用 CLI建立登錄，依預設不會做存取設定。 您可以將現有的 Azure Active Directory 服務主體指派至登錄庫 (或建立並指派新的)，或是啟用登錄庫的管理員使用者帳戶，根據您的需求而定。 請參閱本文稍後的章節。 如需登錄庫存取權的詳細資訊，請參閱[驗證容器登錄庫](container-registry-authentication.md)。 
 
 ## <a name="create-a-container-registry"></a>建立容器登錄庫
@@ -66,7 +67,7 @@ az acr create -n myRegistry -g myResourceGroup -l southcentralus
 * `loginServer` - 您指定用來[登入登錄庫](container-registry-authentication.md)的完整名稱。 在此範例中，此名稱為 `myregistry-contoso.exp.azurecr.io` (全部小寫)。
 
 ## <a name="assign-a-service-principal"></a>指派服務主體
-使用 CLI 2.0 預覽版的命令將 Azure Active Directory 服務主體指派到登錄庫。 這些範例中的服務主體是指派至擁有者角色，但如果您想要，可以指派至[其他角色](../active-directory/role-based-access-control-configure.md)。
+使用 CLI 2.0 的命令將 Azure Active Directory 服務主體指派到登錄。 這些範例中的服務主體是指派至擁有者角色，但如果您想要，可以指派至[其他角色](../active-directory/role-based-access-control-configure.md)。
 
 ### <a name="create-a-service-principal-and-assign-access-to-the-registry"></a>建立服務主體並指派對登錄庫的存取權
 在下列命令中，將「對登錄庫的擁有者角色存取權」指派給新服務主體；此處登錄庫的識別碼是以 `--scopes` 參數傳遞。 以 `--password` 參數指定強式密碼。
@@ -127,10 +128,5 @@ az acr repository show-tags -n myRegistry --repository samples/nginx -o json
 
 ## <a name="next-steps"></a>後續步驟
 * [使用 Docker CLI 推送您的第一個映像](container-registry-get-started-docker-cli.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

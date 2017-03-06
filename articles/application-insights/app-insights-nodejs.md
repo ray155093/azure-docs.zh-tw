@@ -1,21 +1,22 @@
 ---
-title: "新增 Application Insights SDK 以監視 Node.js 應用程式 | Microsoft Docs"
-description: "使用 Application Insights 分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。"
+title: "使用 Azure Application Insights SDK 監視 Node.js 應用程式 | Microsoft Docs"
+description: "使用 Application Insights，分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 2ec7f809-5e1a-41cf-9fcd-d0ed4bebd08c
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/30/2016
+ms.date: 02/23/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: d84ab993b1d9489ca9d2edaa1cb9672d9bced899
-ms.openlocfilehash: fd089f0cc5c23dcddb392df55c65907519f59248
+ms.sourcegitcommit: 46b829ce52994a5112494145a02e78859c5fae2d
+ms.openlocfilehash: d4c7fa2058b1c07671329304c37630d2e6e8e8a7
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -31,15 +32,14 @@ SDK 可自動收集內送 HTTP 要求率和回應、效能計數器 (CPU、記�
 #### <a name="before-you-start"></a>開始之前
 您需要：
 
-* Visual Studio 2013 或更新版本。 越新版越好。
 * [Microsoft Azure](http://azure.com)訂用帳戶。 如果您的小組或組織擁有 Azure 訂用帳戶，擁有者就可以使用您的 [Microsoft 帳戶](http://live.com)將您加入。
 
 ## <a name="a-nameaddacreate-an-application-insights-resource"></a><a name="add"></a>建立 Application Insights 資源
-登入 [Azure 入口網站][]，並建立新的 Application Insights 資源。 Azure 中的[資源][roles]是服務的執行個體。 此資源是來自您應用程式的遙測將經過分析並呈現的地方。
+登入 [Azure 入口網站][portal]，並建立新的 Application Insights 資源。 Azure 中的[資源][roles]是服務的執行個體。 此資源是來自您應用程式的遙測將經過分析並呈現的地方。
 
 ![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-nodejs/01-new-asp.png)
 
-選擇 [其他] 做為應用程式類型。 應用程式類型的選擇會設定[計量瀏覽器][metrics]中可見的資源刀鋒視窗和屬性的預設內容。
+選擇 [一般] 做為應用程式類型。 應用程式類型的選擇會設定[計量瀏覽器][metrics]中可見的資源刀鋒視窗和屬性的預設內容。
 
 #### <a name="copy-the-instrumentation-key"></a>複製檢測金鑰
 該金鑰識別資源，您很快就會將它安裝在 SDK 中，以將資源導向資料。
@@ -74,7 +74,7 @@ appInsights.setup("<instrumentation_key>").start();
 
 ![Click through to more data](./media/app-insights-nodejs/12-first-perf.png)
 
-按一下任何圖表以查看詳細度量。 [深入了解度量。][]
+逐一點選任何圖表以查看更詳細的度量。 [深入了解度量。][perf]
 
 #### <a name="no-data"></a>沒有資料？
 * 使用應用程式、開啟不同頁面，以產生一些遙測。
@@ -187,7 +187,7 @@ server.on("listening", () => {
 
 ## <a name="next-steps"></a>後續步驟
 * [在入口網站中監視遙測](app-insights-dashboards.md)
-* [[寫您的遙測的分析查詢](app-insights-analytics-tour.md)
+* [寫您的遙測的分析查詢](app-insights-analytics-tour.md)
 
 <!--Link references-->
 
@@ -197,9 +197,4 @@ server.on("listening", () => {
 [portal]: http://portal.azure.com/
 [qna]: app-insights-troubleshoot-faq.md
 [roles]: app-insights-resources-roles-access-control.md
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

@@ -13,11 +13,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/05/2017
+ms.date: 02/24/2017
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: aec8fd057bd31fc933d19996567437b2a897623b
-ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
+ms.sourcegitcommit: 6966befa56dc6a0feff4b8a821bde4e423a2b53a
+ms.openlocfilehash: 97853ce9f78078cc6bbccdfb5c5a06cae49e218c
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -38,16 +39,15 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
 
 > [!NOTE]
 > 若要搭配自動化全域 Runbook 使用 Azure [警示整合功能](../monitoring-and-diagnostics/insights-receive-alert-notifications.md)，您需要具備使用執行身分和傳統執行身分帳戶所設定的自動化帳戶。 您可以選取已定義執行身分和傳統執行身分帳戶的自動化帳戶，或選擇建立新的自動化帳戶。
-> 
-> 
+>  
 
-我們將示範如何從 Azure 入口網站建立自動化帳戶、如何使用 PowerShell 更新自動化帳戶，以及如何在 Runbook 中進行驗證。
+我們將示範如何從 Azure 入口網站建立自動化帳戶、如何使用 PowerShell 更新自動化帳戶、如何管理帳戶設定，以及如何在 Runbook 中進行驗證。
 
 在我們這麼做之前，您應該先了解並考量一些事項，然後再繼續。
 
 1. 這不會影響傳統或 Resource Manager 部署模型中已建立的現有自動化帳戶。  
 2. 這只適用於透過 Azure 入口網站建立的自動化帳戶。  嘗試從傳統入口網站建立帳戶，並不會複寫執行身分帳戶組態。
-3. 如果您目前以先前建立的 Runbook 和資產 (也就是排程、變數等等) 來管理傳統資源，而且您希望這些 Runbook 使用新的傳統執行身分帳戶進行驗證，您必須將它們移轉到新的自動化帳戶，或使用下面的 PowerShell 指令碼更新您現有的帳戶。  
+3. 如果您目前以先前建立的 Runbook 和資產 (也就是排程、變數等等) 來管理傳統資源，而且您希望這些 Runbook 使用新的傳統執行身分帳戶進行驗證，您必須使用 [管理執行身分帳戶] 來建立傳統執行身分帳戶，或使用下面的 PowerShell 指令碼來更新您現有的帳戶。  
 4. 若要使用新的執行身分帳戶和傳統執行身分自動化帳戶進行驗證，您必須以下列範例程式碼修改現有的 Runbook。  **請注意** ，執行身分帳戶適用於使用以憑證為基礎的服務主體驗證 Resource Manager 資源，而傳統執行身分帳戶適用於使用管理憑證驗證服務管理資源。     
 
 ## <a name="create-a-new-automation-account-from-the-azure-portal"></a>從 Azure 入口網站建立新的自動化帳戶
@@ -56,9 +56,8 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
 > [!NOTE]
 > 執行這些步驟的使用者必須是服務管理員角色的成員，或是授與使用者存取訂用帳戶權限的共同管理員。 此使用者也必須加入為該訂用帳戶預設 Active Directory 的使用者；此帳戶不需要指派給特殊權限的角色。 不是訂用帳戶之 Active Directory 成員的使用者，在新增至訂用帳戶的共同管理員角色之前，將會以 [來賓] 身分新增至 Active Directory 並且會在 [新增自動化帳戶] 刀鋒視窗中看到「您沒有權限建立...」警告。 新增至共同管理員角色的使用者可以先從訂用帳戶的 Active Directory 中移除並重新新增，使其成為 Active Directory 中的完整使用者。 從 Azure 入口網站的 [Azure Active Directory] 窗格，選取 [使用者和群組]、選取 [所有使用者]，然後在選取特定使用者之後選取 [設定檔]，即可驗證這種情況。  使用者設定檔之下 [使用者類型] 屬性的值不得等於 [來賓]。  
 > 
-> 
 
-1. 您必須以訂用帳戶管理員角色成員和訂用帳戶共同管理員的帳戶登入 Azure 入口網站。
+1. 以訂用帳戶管理員角色成員和訂用帳戶共同管理員的帳戶登入 Azure 入口網站。
 2. 選取 [自動化帳戶] 。
 3. 在 [自動化帳戶] 刀鋒視窗中，按一下 [新增]。<br>![加入自動化帳戶](media/automation-sec-configure-azure-runas-account/create-automation-account-properties-b.png)
    
@@ -74,9 +73,9 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
    > 如果您選取選項 [否] 以選擇不要建立執行身分帳戶，則會在 [新增自動化帳戶] 刀鋒視窗中看到一則警告訊息。  雖然此帳戶建立於 Azure 入口網站中，但在傳統或 Resource Manager 訂用帳戶目錄服務內不會有對應的驗證身分識別，因此無法存取您訂用帳戶中的資源。  這將導致參考此帳戶的任何 Runbook 無法進行驗證並對這些部署模型中的資源執行工作。
    > 
    > ![加入自動化帳戶警告](media/automation-sec-configure-azure-runas-account/create-account-decline-create-runas-msg.png)<br>
-   >  若未建立服務主體，將不會指派參與者角色。
+   > 若未建立服務主體，將不會指派參與者角色。
    > 
-   > 
+
 7. 在 Azure 建立自動化帳戶時，您可以在功能表的 [通知]  底下追蹤進度。
 
 ### <a name="resources-included"></a>包含的資源
@@ -84,7 +83,7 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
 
 | 資源 | 說明 |
 | --- | --- |
-| AzureAutomationTutorial Runbook |此為 PowerShell Runbook 範例，示範如何使用執行身分帳戶進行驗證以及取得 Resource Manager 資源。 |
+| AzureAutomationTutorial Runbook |此為圖形化 Runbook 範例，示範如何使用執行身分帳戶進行驗證以及取得所有 Resource Manager 資源。 |
 | AzureAutomationTutorialScript Runbook |此為 PowerShell Runbook 範例，示範如何使用執行身分帳戶進行驗證以及取得 Resource Manager 資源。 |
 | AzureRunAsCertificate |在建立自動化帳戶期間自動建立，或使用下列適用於現有帳戶的 PowerShell 指令碼建立的憑證資產。  它可讓您向 Azure 進行驗證，以便從 Runbook 管理 Azure Resource Manager 資源。  此憑證有一年的有效期。 |
 | AzureRunAsConnection |在建立自動化帳戶期間自動建立，或使用下列適用於現有帳戶的 PowerShell 指令碼建立的連線資產。 |
@@ -93,8 +92,8 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
 
 | 資源 | 說明 |
 | --- | --- |
-| AzureClassicAutomationTutorial Runbook |此範例 Runbook 可使用傳統執行身分帳戶 (憑證) 取得訂用帳戶中的所有傳統 VM，然後輸出 VM 名稱和狀態。 |
-| AzureClassicAutomationTutorial 指令碼 Runbook |此範例 Runbook 可使用傳統執行身分帳戶 (憑證) 取得訂用帳戶中的所有傳統 VM，然後輸出 VM 名稱和狀態。 |
+| AzureClassicAutomationTutorial Runbook |此為圖形化 Runbook 範例，可使用傳統執行身分帳戶 (憑證) 取得訂用帳戶中的所有傳統 VM，然後輸出 VM 名稱和狀態。 |
+| AzureClassicAutomationTutorial 指令碼 Runbook |此為 PowerShell Runbook 範例，可使用傳統執行身分帳戶 (憑證) 取得訂用帳戶中的所有傳統 VM，然後輸出 VM 名稱和狀態。 |
 | AzureClassicRunAsCertificate |自動建立的憑證資產，其用來向 Azure 進行驗證，以便從 Runbook 管理 Azure 傳統資源。  此憑證有一年的有效期。 |
 | AzureClassicRunAsConnection |自動建立的連線資產，其用來向 Azure 進行驗證，以便從 Runbook 管理 Azure 傳統資源。 |
 
@@ -126,21 +125,51 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
 9. 關閉 [輸出] 刀鋒視窗以返回 [作業摘要] 刀鋒視窗。
 10. 關閉 [作業摘要] 和對應的 **AzureClassicAutomationTutorialScript** Runbook 刀鋒視窗。
 
+## <a name="managing-azure-run-as-account"></a>管理 Azure 執行身分帳戶
+在您的自動化帳戶存留期內，您必須在憑證到期之前加以更新，或者，如果您認為帳戶已被盜用，則可刪除該執行身分帳戶，然後重新建立它。  本節將提供如何執行這些作業的步驟。  
+
+### <a name="certificate-renewal"></a>憑證更新
+針對 Azure 執行身分帳戶建立的憑證在過期之前隨時都能更新，有效期是從建立日期起算的一年。  當您更新憑證時，將會保留舊的有效憑證，以確保已排入佇列或正在執行的任何 Runbook (使用該執行身分帳戶進行驗證) 不會受到影響。  憑證在到期之前將持續存在。     
+
+1. 在 Azure 入口網站中，開啟自動化帳戶。  
+2. 在 [自動化帳戶] 刀鋒視窗的帳戶屬性窗格中，選取 [帳戶設定] 區段下的 [執行身分帳戶]。<br><br> ![自動化帳戶的屬性窗格](media/automation-sec-configure-azure-runas-account/automation-account-properties-pane.png)<br><br>
+3. 在 [執行身分帳戶] 的屬性刀鋒視窗中，選取您想要更新憑證的執行身分帳戶或傳統執行身分帳戶，然後在選取帳戶的屬性刀鋒視窗上，按一下 [更新憑證]。<br><br> ![更新執行身分帳戶的憑證](media/automation-sec-configure-azure-runas-account/automation-account-renew-runas-certificate.png)<br><br> 您會收到提示，確認您想要繼續。  
+4. 更新憑證時，您可以在功能表的 [通知] 底下追蹤進度。
+
+### <a name="delete-run-as-account"></a>刪除執行身分帳戶
+下列步驟說明如何刪除並重新建立您的 Azure 執行身分或傳統執行身分帳戶。  當您執行此動作時，不會保留自動化帳戶。  刪除執行身分或傳統執行身分帳戶之後，您可以在入口網站中重新建立它。  
+
+1. 在 Azure 入口網站中，開啟自動化帳戶。  
+2. 在 [自動化帳戶] 刀鋒視窗的帳戶屬性窗格中，選取 [帳戶設定] 區段下的 [執行身分帳戶]。
+3. 在 [執行身分帳戶] 的屬性刀鋒視窗中，選取您想要刪除的執行身分帳戶或傳統執行身分帳戶，然後在選取帳戶的屬性刀鋒視窗上，按一下 [刪除]。<br><br> ![刪除執行身分帳戶](media/automation-sec-configure-azure-runas-account/automation-account-delete-runas.png)<br><br>  您會收到提示，確認您想要繼續。
+4. 刪除帳戶時，您可以在功能表的 [通知] 底下追蹤進度。  刪除作業完成之後，您可以從 [執行身分帳戶] 的屬性刀鋒視窗中，選取建立選項 [Azure 執行身分帳戶]，重新建立它。<br><br> ![重新建立自動化執行身分帳戶](media/automation-sec-configure-azure-runas-account/automation-account-create-runas.png)<br> 
+
+### <a name="misconfiguration"></a>設定錯誤
+如果執行身分或傳統執行身分帳戶正常運作所需的任何設定項目遭到刪除，或在初始設定期間以不正確的方式建立，例如：
+
+* 憑證資產 
+* 連線資產 
+* 已從參與者角色移除了執行身分帳戶
+* Azure AD 中的服務主體或應用程式
+
+自動化將會偵測這些變更，並在帳戶的 [執行身分帳戶] 屬性刀鋒視窗中顯示[不完整] 狀態來通知您。<br><br> ![不完整的執行身分設定狀態訊息](media/automation-sec-configure-azure-runas-account/automation-account-runas-incomplete-config.png)<br><br>當您選取執行身分帳戶時，將會在帳戶的屬性窗格中看到下列警告：<br><br> ![不完整的執行身分設定警告訊息](media/automation-sec-configure-azure-runas-account/automation-account-runas-incomplete-config-msg.png)。<br>  
+如果您的執行身分帳戶設定不正確，可藉由刪除並重新建立執行身分帳戶，快速解決此問題。   
+
 ## <a name="update-an-automation-account-using-powershell"></a>使用 PowerShell 更新自動化帳戶
 我們在此為您提供使用 PowerShell 來更新現有自動化帳戶的選項，但前提是︰
 
 1. 您已建立一個自動化帳戶，但拒絕建立執行身分帳戶
-2. 您已經有自動化帳戶可管理 Resource Manager 資源，而且您想要加以更新以包含可供 Runbook 驗證的執行身分帳戶
-3. 您已經有自動化帳戶可管理傳統資源，而且您想要加以更新以使用傳統執行身分，而不是建立新的帳戶並將 Runbook 和資產移轉至該帳戶   
+2. 您需要在 Azure Government 雲端中建立自動化帳戶
+3. 您已經有自動化帳戶可管理 Resource Manager 資源，而且您想要加以更新以包含可供 Runbook 驗證的執行身分帳戶
+4. 您已經有自動化帳戶可管理傳統資源，而且您想要加以更新以使用傳統執行身分，而不是建立新的帳戶並將 Runbook 和資產移轉至該帳戶   
 
 在繼續之前，請確認下列事項︰
 
-1. 您已下載並安裝 [Windows Management Framework (WMF) 4.0](https://www.microsoft.com/download/details.aspx?id=40855) (如果您執行 Windows 7)。   
-    如果您執行的是 Windows Server 2012 R2、Windows Server 2012、Windows 2008 R2、Windows 8.1 和 Windows 7 SP1，則 [Windows Management Framework 5.0](https://www.microsoft.com/download/details.aspx?id=50395) 可供安裝。
-2. Azure PowerShell 1.0。 如需有關此版本以及如何安裝的資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+1. 此指令碼只支援在已安裝 Azure Resource Manager 模組 2.01 及更新版本的 Windows 10 及 Windows Server 2016 上執行。  不支援在舊版 Windows 上執行。  
+2. Azure PowerShell 1.0 及更新版本。 如需有關此版本以及如何安裝的資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 3. 您已建立自動化帳戶。  此帳戶會被參照做為以下兩個指令碼所含參數 (–AutomationAccountName 和 -ApplicationDisplayName) 的值。
 
-若要在 Azure 入口網站中取得 SubscriptionID、ResourceGroup 和 AutomationAccountName 的值 (這些都是指令碼的必要參數)，請從 [自動化帳戶] 刀鋒視窗選取您的自動化帳戶，然後選取 [所有設定]。  在 [所有設定] 刀鋒視窗中，選取 [帳戶設定] 之下的 [屬性]。  在 [屬性] 刀鋒視窗中，您可以記下這些值。<br> ![自動化帳戶屬性](media/automation-sec-configure-azure-runas-account/automation-account-properties.png)  
+若要在 Azure 入口網站中取得 SubscriptionID、ResourceGroup 和 AutomationAccountName 的值 (這些都是指令碼的必要參數)，請從 [自動化帳戶] 刀鋒視窗選取您的自動化帳戶，然後選取 [所有設定]。  在 [所有設定] 刀鋒視窗中，選取 [帳戶設定] 之下的 [屬性]。  在 [屬性] 刀鋒視窗中，您可以記下這些值。<br><br> ![自動化帳戶屬性](media/automation-sec-configure-azure-runas-account/automation-account-properties.png)  
 
 ### <a name="create-run-as-account-powershell-script"></a>建立執行身分帳戶 PowerShell 指令碼
 下面的 PowerShell 指令碼會設定下列項目︰
@@ -172,9 +201,18 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
    
         [Parameter(Mandatory=$false)]
         [int] $NoOfMonthsUntilExpired = 12
+
+        [Parameter(Mandatory=$True)]
+        [ValidateSet("AzureCloud","AzureUSGovernment")]
+        [string]$Environment="AzureCloud"
         )
    
-        Login-AzureRmAccount
+        #Check to see which cloud environment to sign into.
+        Switch ($Environment)
+        {
+          "AzureCloud" {Login-AzureRmAccount}
+          "AzureUSGovernment" {Login-AzureRmAccount -EnvironmentName AzureUSGovernment} 
+        }
         Import-Module AzureRM.Resources
         Select-AzureRmSubscription -SubscriptionId $SubscriptionId
    
@@ -195,9 +233,9 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
         $KeyCredential.StartDate = $CurrentDate
         $KeyCredential.EndDate= $EndDate
         $KeyCredential.KeyId = $KeyId
-        $KeyCredential.Type = "AsymmetricX509Cert"
-        $KeyCredential.Usage = "Verify"
-        $KeyCredential.Value = $KeyValue
+        #$KeyCredential.Type = "AsymmetricX509Cert"
+        #$KeyCredential.Usage = "Verify"
+        $KeyCredential.CertValue = $KeyValue
    
         # Use Key credentials
         $Application = New-AzureRmADApplication -DisplayName $ApplicationDisplayName -HomePage ("http://" + $ApplicationDisplayName) -IdentifierUris ("http://" + $KeyId) -KeyCredentials $keyCredential
@@ -229,8 +267,9 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
         Remove-AzureRmAutomationConnection -ResourceGroupName $ResourceGroup -AutomationAccountName $AutomationAccountName -Name $ConnectionAssetName -Force -ErrorAction SilentlyContinue
         $ConnectionFieldValues = @{"ApplicationId" = $Application.ApplicationId; "TenantId" = $TenantID.TenantId; "CertificateThumbprint" = $Cert.Thumbprint; "SubscriptionId" = $SubscriptionId}
         New-AzureRmAutomationConnection -ResourceGroupName $ResourceGroup -AutomationAccountName $AutomationAccountName -Name $ConnectionAssetName -ConnectionTypeName AzureServicePrincipal -ConnectionFieldValues $ConnectionFieldValues
+
 2. 在電腦上以提高的使用者權限從 [開始] 畫面啟動 **Windows PowerShell**。
-3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更 –ResourceGroup、-AutomationAccountName、-ApplicationDisplayName、-SubscriptionId 和 -CertPlainPassword 參數的值。<br>
+3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更 –ResourceGroup、-AutomationAccountName、-ApplicationDisplayName、-SubscriptionId、-CertPlainPassword 及 -Environment 參數的值。<br>
    
    > [!NOTE]
    > 執行指令碼之後，您會收到向 Azure 進行驗證的提示。 您必須以訂用帳戶管理員角色成員和訂用帳戶共同管理員的帳戶登入。
@@ -241,7 +280,7 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
         -AutomationAccountName <NameofAutomationAccount> `
         -ApplicationDisplayName <DisplayNameofAutomationAccount> `
         -SubscriptionId <SubscriptionId> `
-        -CertPlainPassword "<StrongPassword>"  
+        -CertPlainPassword "<StrongPassword>" -Environment <valid values are AzureCloud or AzureUSGovernment>  
    <br>
 
 順利完成指令碼之後，請參考下面的 [範例程式碼](#sample-code-to-authenticate-with-resource-manager-resources) 使用 Resource Manager 資源進行驗證並驗證認證組態。
@@ -307,6 +346,7 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
         Write-Host -ForegroundColor red "Please upload the cert $CertPathCer to the Management store by following the steps below."
         Write-Host -ForegroundColor red "Log in to the Microsoft Azure Management portal (https://manage.windowsazure.com) and select Settings -> Management Certificates."
         Write-Host -ForegroundColor red "Then click Upload and upload the certificate $CertPathCer"
+
 2. 在電腦上以提高的使用者權限從 [開始] 畫面啟動 **Windows PowerShell**。  
 3. 從提高權限的 PowerShell 命令列殼層，瀏覽至包含步驟 1 所建立指令碼的資料夾，並執行指令碼變更 –ResourceGroup、-AutomationAccountName、-ApplicationDisplayName、-SubscriptionId 和 -CertPlainPassword 參數的值。<br>
    
@@ -333,7 +373,7 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
        # Get the connection "AzureRunAsConnection "
        $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
 
-       "Logging in to Azure..."
+       "Signing in to Azure..."
        Add-AzureRmAccount `
          -ServicePrincipal `
          -TenantId $servicePrincipalConnection.TenantId `
@@ -354,7 +394,7 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
     }
 
 
-指令碼中包含兩行額外的程式碼以支援參考訂用帳戶內容，以便您可以輕鬆地在多個訂用帳戶之間進行工作。 名為 SubscriptionId 的變數資產包含訂用帳戶識別碼，而且在 Add-AzureRmAccount Cmdlet 陳述式之後，[Set-AzureRmContext Cmdlet](https://msdn.microsoft.com/library/mt619263.aspx) 會以參數集 -SubscriptionId 開頭。 如果變數名稱太過一般，您可以修改變數名稱使其包含前置詞或其他命名慣例，以便讓名稱能夠更容易地指出您的目的。 或者，您可以使用參數集 -SubscriptionName (而非 -SubscriptionId) 與對應的變數資產。  
+指令碼中包含兩行額外的程式碼以支援參考訂用帳戶內容，以便您可以輕鬆地在多個訂用帳戶之間進行工作。 名為 SubscriptionId 的變數資產包含訂用帳戶識別碼，而且在 Add-AzureRmAccount Cmdlet 陳述式之後，[Set-AzureRmContext Cmdlet](https://msdn.microsoft.com/library/mt619263.aspx) 會以參數集 -SubscriptionId 開頭。 如果變數名稱太過一般，您可以修改變數名稱使其包含前置詞或其他命名慣例，以便讓名稱能夠更容易地指出您的目的。 或者，您可以使用參數集 -SubscriptionName (而非 -SubscriptionId) 與對應的變數資產。    
 
 請注意，Runbook 中用來驗證的 Cmdlet (**Add-AzureRmAccount**) 會使用 ServicePrincipalCertificate 參數集。  它藉由使用服務主體憑證 (而非認證) 進行驗證。  
 
@@ -390,10 +430,5 @@ ms.openlocfilehash: 889c9a53e3ce454ee9ac9fc0f24b2ff8244e87c6
 * 如需服務主體的詳細資訊，請參閱 [應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。
 * 如需 Azure 自動化中角色型存取控制的詳細資訊，請參閱 [Azure 自動化中的角色型存取控制](automation-role-based-access-control.md)。
 * 如需有關憑證和 Azure 服務的詳細資訊，請參考 [Azure 雲端服務的憑證概觀](../cloud-services/cloud-services-certs-create.md)
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

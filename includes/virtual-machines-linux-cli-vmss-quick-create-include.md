@@ -1,69 +1,33 @@
-如果您還沒有這麼做，可以取得 [Azure 訂用帳戶免費試用版](https://azure.microsoft.com/pricing/free-trial/) 和 [Azure CLI](../articles/xplat-cli-install.md) [連線到您的 Azure 帳戶](../articles/xplat-cli-connect.md)。 請確定 Azure CLI 是處於 Resource Manager 模式，如下所示：
+## <a name="prerequisites"></a>必要條件
+
+如果尚未安裝，請取得 [Azure 訂用帳戶免費試用](https://azure.microsoft.com/pricing/free-trial/)，然後安裝 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)。
+
+## <a name="create-the-scale-set"></a>建立擴展集
+
+首先，建立要部署擴展集的資源群組：
 
 ```azurecli
-azure config mode arm
+az group create --location westus --name myResourceGroup
 ```
 
-現在，使用 `azure vmss quick-create` 命令建立您的擴展集。 下列範例會建立名為 `myVMSS` 的 Linux 擴展集與資源群組中名為 `myResourceGroup` 的 5 個 VM 執行個體：
+現在，使用 `az vmss create` 命令建立您的擴展集。 下列範例會建立名為 `myvmss` 的 Linux 擴展集以及名為 `myrg` 資源群組：
 
 ```azurecli
-azure vmss quick-create -n myVMSS -g myResourceGroup -l westus \
-    -u ops -p P@ssw0rd! \
-    -C 5 -Q Canonical:UbuntuServer:16.04.0-LTS:latest
+az vmss create --resource-group myResourceGroup --name myVmss \
+    --image UbuntuLTS --admin-username azureuser \
+    --authentication-type password --admin-password P4$$w0rd
 ```
 
 下列範例會使用相同組態建立 Windows 擴展集：
 
 ```azurecli
-azure vmss quick-create -n myVMSS -g myResourceGroup -l westus \
-    -u ops -p P@ssw0rd! \
-    -C 5 -Q MicrosoftWindowsServer:WindowsServer:2016-Datacenter:latest
+az vmss create --resource-group myResourceGroup --name myVmss \
+    --image Win2016Datacenter --admin-username azureuser \
+    --authentication-type password --admin-password P4$$w0rd
 ```
 
-如果您想要自訂位置或 image-urn，請查看 `azure location list` 和 `azure vm image {list-publishers|list-offers|list-skus|list|show}` 命令。
+如果您想要選擇不同的 OS 映像，您可以使用命令 `az vm image list` 或 `az vm image list --all` 來查看可用的映像。 若要在擴展集中查看適用於 VM 的連接資訊，請使用 `az vmss list_instance_connection_info` 命令：
 
-傳回此命令之後，即已建立擴展集。 此擴展集的負載平衡器具有 NAT 規則，可將負載平衡器上的連接埠 50,000+i 對應至 VM i 上的連接埠 22。 因此，找出負載平衡器的 FQDN 之後，即可透過 SSH 連接到 VM：
-
-```bash
-# (if you decide to run this as a script, please invoke using bash)
-
-# list load balancers in the resource group we created
-#
-# generic syntax:
-# azure network lb list -g RESOURCE-GROUP-NAME
-#
-# example with some quick-and-dirty grep-fu to store the result in a variable:
-line=$(azure network lb list -g negatvmssrg | grep negatvmssrg)
-split_line=( $line )
-lb_name=${split_line[1]}
-
-# now that we have the name of the load balancer, we can show the details to find which Public IP (PIP) is 
-# associated to it
-#
-# generic syntax:
-# azure network lb show -g RESOURCE-GROUP-NAME -n LOAD-BALANCER-NAME
-#
-# example with some quick-and-dirty grep-fu to store the result in a variable:
-line=$(azure network lb show -g negatvmssrg -n $lb_name | grep loadBalancerFrontEnd)
-split_line=( $line )
-pip_name=${split_line[4]}
-
-# now that we have the name of the public IP address, we can show the details to find the FQDN
-#
-# generic syntax:
-# azure network public-ip show -g RESOURCE-GROUP-NAME -n PIP-NAME
-#
-# example with some quick-and-dirty grep-fu to store the result in a variable:
-line=$(azure network public-ip show -g negatvmssrg -n $pip_name | grep FQDN)
-split_line=( $line )
-FQDN=${split_line[3]}
-
-# now that we have the FQDN, we can use ssh on port 50,000+i to connect to VM i (where i is 0-indexed)
-#
-# example to connct via ssh into VM "0":
-ssh -p 50000 negat@$FQDN
+```azurecli
+az vmss list_instance_connection_info --resource-group myResourceGroup --name myVmss
 ```
-
-<!--HONumber=Feb17_HO2-->
-
-
