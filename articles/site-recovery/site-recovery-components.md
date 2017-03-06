@@ -12,11 +12,12 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/02/2017
+ms.date: 02/21/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: bd8082c46ee36c70e372208d1bd15337acc558a1
-ms.openlocfilehash: eb97f66901efa336942dee56d9a8a62ade1f6842
+ms.sourcegitcommit: 080dce21c2c803fc05c945cdadb1edd55bd7fe1c
+ms.openlocfilehash: 4993a873742db5ca2bd8c31eaab098beb0a0a030
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -24,13 +25,11 @@ ms.openlocfilehash: eb97f66901efa336942dee56d9a8a62ade1f6842
 
 閱讀本文，了解 Azure Site Recovery 服務的基礎架構以及讓它運作的元件。
 
-組織需要 BCDR 策略，以決定應用程式、工作負載和資料如何在規劃與未規劃停機期間維持運作，並儘速復原到正常運作的情況。 BCDR 策略應保護商務資料安全且可復原，並確保發生災害時工作負載仍持續可用。
-
 Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器和虛擬機器的複寫協調至雲端 (Azure) 或次要資料中心，協助您的 BCDR 策略。 當您的主要位置發生故障時，您容錯移轉至次要位置，讓應用程式和工作負載保持可用。 當它恢復正常作業時，容錯回復至您的主要位置。 深入了解 [什麼是 Site Recovery？](site-recovery-overview.md)
 
 本文說明 [Azure 入口網站](https://portal.azure.com)中的部署作業。 [Azure 傳統入口網站](https://manage.windowsazure.com/)可用來維護現有的 Site Recovery 保存庫，但無法建立新的保存庫。
 
-若有任何意見，請張貼於文末。 請在 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)提出技術問題。
+如有任何意見，請張貼於這篇文章下方或 [Azure 復原服務論壇 (英文)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 中。
 
 
 ## <a name="deployment-scenarios"></a>部署案例
@@ -84,7 +83,7 @@ Site Recovery 可複寫在受支援 VM 和實體伺服器上執行的應用程�
 
 1. 您要執行從內部部署 VMware VM 與實體伺服器至 Azure 的非計劃性容錯移轉。 不支援有計劃的容錯移轉。
 2. 您可以容錯移轉單一機器，或建立[復原計劃](site-recovery-create-recovery-plans.md)來協調多部機器的容錯移轉。
-3. 當您執行容錯移轉時，Azure 中會建立複本 VM。 您要認可讓容錯移轉開始存取來自複本 Azure VM 的工作負載。
+3. 當您執行容錯移轉時，會在 Azure 中建立複本 VM。 您要認可讓容錯移轉開始存取來自複本 Azure VM 的工作負載。
 4. 當主要的內部部署網站恢復可用狀態時，您就可以容錯回復。 您要設定容錯回復基礎結構、開始將機器從次要網站複寫到主要網站，以及從次要網站執行非計劃性容錯移轉。 在認可此容錯移轉後，資料會回到內部部署網站，而您必須再次啟用複寫至 Azure 的功能。 [深入了解](site-recovery-failback-azure-to-vmware.md)
 
 容錯回復有以下幾項需求︰
@@ -133,9 +132,10 @@ Site Recovery 可複寫在受支援 VM 和實體伺服器上執行的應用程�
 
 **元件** | **詳細資料**
 --- | ---
+
 **Azure** | 在 Azure 中，您需要 Microsoft Azure 帳戶、Azure 儲存體帳戶和 Azure 網路。<br/><br/> 儲存體和網路可以是 Resource Manager 型帳戶或傳統帳戶。<br/><br/> 所複寫的資料會儲存在儲存體帳戶中，而在從內部部署網站進行容錯移轉時，便會以複寫的資料建立 Azure VM。<br/><br/> Azure VM 在建立後會連線到 Azure 虛擬網路。
-**VMM 伺服器** | 如果您的 Hyper-V 主機位於 VMM 雲端中，則需要設定邏輯和 VM 網路以設定[網路對應](site-recovery-network-mapping.md)。 VM 網路應該連結到與雲端相關聯的邏輯網路。
-**Hyper-V 主機** | 您需要一或多個 Hyper-V 主機伺服器。
+**VMM 伺服器** | 如果您的 Hyper-V 主機位於 VMM 雲端中，則需要設定邏輯和 VM 網路以設定網路對應。 VM 網路應該連結到與雲端相關聯的邏輯網路。
+**Hyper-V 主機** | 您需要一或多部 Hyper-V 主機伺服器。
 **Hyper-V VM** | 您必須在 Hyper-V 主機伺服器上擁有一或多個 VM。 在 Hyper-V 主機上執行的提供者會透過網際網路協調使用 Site Recovery 服務的複寫。 此代理程式會透過 HTTPS 443 來處理資料複寫。 來自提供者和代理程式的通訊都是安全且加密的。 Azure 儲存體中的複寫的資料也會加密。
 
 
@@ -200,7 +200,7 @@ Site Recovery 可複寫在受支援 VM 和實體伺服器上執行的應用程�
 
 1. 您可以在內部部署網站間執行計劃性或非計劃性的[容錯移轉](site-recovery-failover.md)。 如果您執行計劃性容錯移轉，則來源 VM 會關閉以確保不會遺失資料。
 2. 您可以容錯移轉單一機器，或建立[復原計劃](site-recovery-create-recovery-plans.md)來協調多部機器的容錯移轉。
-4. 如果您執行非計劃性容錯移轉到次要網站，則在容錯移轉之後，次要位置中的容錯移轉機器不會啟用保護或複寫。 如果您執行計劃性容錯移轉，則在容錯移轉之後，次要位置中的容錯移轉機器會受到保護。
+4. 如果您執行非計劃性容錯移轉到次要網站，則在容錯移轉之後，次要位置中的容錯移轉機器不會啟用保護或複寫。 如果您執行了計劃性容錯移轉，則在容錯移轉之後，次要位置中的容錯移轉機器會受到保護。
 5. 然後，您要認可讓容錯移轉開始存取來自複本 VM 的工作負載。
 6. 當主要網站恢復可用狀態時，您就可以起始從次要網站到主要網站的反向複寫作業。 反向複寫會讓虛擬機器進入受保護的狀態，但是次要資料中心仍是使用中位置。
 7. 若要讓主要網站再次成為使用中位置，您需要起始從次要網站到主要網站的計劃性容錯移轉，然後再進行另一個反向複寫。
@@ -223,10 +223,5 @@ Site Recovery 可複寫在受支援 VM 和實體伺服器上執行的應用程�
 
 ## <a name="next-steps"></a>後續步驟
 
-[準備部署](site-recovery-best-practices.md)
-
-
-
-<!--HONumber=Jan17_HO1-->
-
+[檢查必要條件](site-recovery-prereq.md)
 

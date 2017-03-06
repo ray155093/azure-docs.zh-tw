@@ -1,6 +1,6 @@
 ---
 title: "Azure 中的網路介面 | Microsoft Docs"
-description: "了解 Azure Resource Manager 部署模型中的 Azure 網路介面。"
+description: "了解 Azure 網路介面及如何將它們與虛擬機器搭配使用。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -13,15 +13,18 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/23/2016
+ms.date: 02/24/2016
 ms.author: jdial
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 3244d5b52785d820698bf26f9bf189de93ef64e4
-ms.openlocfilehash: 691b79d7739246dad7191195fa049fd58340c8ff
+ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
+ms.openlocfilehash: 395cff80b3f97b6340e15f370c13f783e2f5dde3
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="network-interfaces-in-azure"></a>Azure 中的網路介面
+# <a name="what-are-network-interfaces"></a>什麼是網路介面？
+
 網路介面 (NIC) 是虛擬機器 (VM) 與基礎軟體網路之間互相連線的橋樑。 本文說明什麼是網路介面，以及在 Azure Resource Manager 部署模型中如何加以使用。
 
 Microsoft 建議您使用 Resource Manager 部署模型來部署新的資源，但您也可以在 [傳統](virtual-network-ip-addresses-overview-classic.md) 部署模型中部署有網路連線的 VM。 如果您熟悉傳統模式，在 VM 網路與在 Resource Manager 部署模型中有很重要的差異。 請閱讀 [虛擬機器網路功能 - 傳統](virtual-network-ip-addresses-overview-classic.md#differences-between-resource-manager-and-classic-deployments) 文章深入了解差異。
@@ -34,7 +37,7 @@ Microsoft 建議您使用 Resource Manager 部署模型來部署新的資源，�
 4. 可以附加至 VM，但只能附加至與 NIC 位於相同位置的單一 VM。
 5. 有 MAC 位址，只要 NIC 與 VM 維持連線，MAC 位址就會和 NIC 一起保留。 無論 VM (從作業系統內) 重新啟動或停止 (取消配置) 並使用 Azure 入口網站、Azure PowerShell 或 Azure 命令列介面啟動，MAC 位址都會保留下來。 如果 NIC 已從 VM 卸離又附加至不同的 VM，就會收到不同的 MAC 位址。 如果刪除 NIC，MAC 位址就會指派至其他 NIC。
 6. 必須指派一個主要的 **私人** *IPv4* 靜態或動態 IP 位址。
-7. 可以有一個關聯的公用 IP 位址資源。
+7. 可能有一或多個相關的公用 IP 位址，請參閱[每一 NIC 多個 IP 位址](virtual-network-multiple-ip-addresses-portal.md)文件，以了解詳細資訊。
 8. 執行特定 Microsoft Windows Server 作業系統版本的特定 VM 大小，支援有 Single-Root I/O Virtualization (SR-IOV) 的加速網路功能。 若要深入了解這項「預覽版」功能，請閱讀 [虛擬機器的加速網路](virtual-network-accelerated-networking-powershell.md) 文章。
 9. 可以接收不是要傳送到被指派之私人 IP 位址的流量 (如果 NIC 已啟用 IP 轉送)。 例如，如果 VM 正在執行防火牆軟體，則會路由不是要傳送它自己 IP 位址的封包。 VM 仍然必須執行能夠路由或轉送流量的軟體，但是如果要達到這個目的，NIC 必須啟用 IP 轉送。
 10. 通常會在與附加的 VM 位於相同的資源群組或與所連線的 VNet 中建立，但不是必要。
@@ -52,10 +55,5 @@ Microsoft 建議您使用 Resource Manager 部署模型來部署新的資源，�
 * 閱讀 [建立 VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md) 文章了解如何建立只有單一 NIC 的 VM。
 * 閱讀 [部署具有多個 NIC 的 VM](virtual-network-deploy-multinic-arm-ps.md) 文章了解如何建立具有多個 NIC 的 VM。
 * 閱讀 [Azure 虛擬機器的多個 IP 位址](virtual-network-multiple-ip-addresses-powershell.md) 文章了解如何建立具有多個 IP 組態的 NIC。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "設定開發環境 | Microsoft Docs"
+title: "設定 Azure 微服務的開發環境 | Microsoft Docs"
 description: "安裝執行階段、SDK 和工具，並建立本機開發叢集。 完成此設定之後，您就可以開始建置應用程式。"
 services: service-fabric
 documentationcenter: .net
@@ -12,11 +12,12 @@ ms.devlang: dotNet
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 12/13/2016
-ms.author: ryanwi
+ms.date: 02/14/2017
+ms.author: ryanwi, mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: 04092b735fa77c72ffe6c492a3fc975eac2e99fd
-ms.openlocfilehash: a71b77a320e9321eaa857acfcfae8822de0ac9e5
+ms.sourcegitcommit: a3367bc4eb66a97263abc2e057eda41770e3face
+ms.openlocfilehash: c461706167728361576f42f8ac7f9b4a2d120609
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -37,6 +38,7 @@ ms.openlocfilehash: a71b77a320e9321eaa857acfcfae8822de0ac9e5
 * Windows 7
 * Windows 8/Windows 8.1
 * Windows Server 2012 R2
+* Windows Server 2016
 * Windows 10
 
 > [!NOTE]
@@ -44,29 +46,33 @@ ms.openlocfilehash: a71b77a320e9321eaa857acfcfae8822de0ac9e5
 > 
 > 
 
-## <a name="install-the-runtime-sdk-and-tools"></a>安裝執行階段、SDK 和工具
-Web Platform Installer 針對 Service Fabric 開發提供兩個組態。
+## <a name="install-the-sdk-and-tools"></a>安裝 SDK 和工具
+### <a name="to-use-visual-studio-2017-rc"></a>若要使用 Visual Studio 2017 RC
+Service Fabric 工具屬於 Visual Studio 2017 RC 中的 Azure 開發和管理工作負載。 啟用此工作負載作為 Visual Studio 安裝的一部分。
+此外，您必須使用 Web Platform Installer 來安裝 Microsoft Azure Service Fabric SDK。
 
-Visual Studio 2017 (需安裝 Azure 開發和管理工作負載)：
+* [安裝 Microsoft Azure Service Fabric SDK][core-sdk]
 
-* [安裝 Service Fabric 執行階段和 SDK (不安裝 Visual Studio 工具)][core-sdk]
+### <a name="to-use-visual-studio-2015-requires-visual-studio-2015-update-2-or-later"></a>若要使用 Visual Studio 2015 (需要 Visual Studio 2015 Update 2 或更新版本)
+在 Visual Studio 2015 中，使用 Web Platform Installer，Service Fabric 工具會與 SDK 一起安裝︰
 
-Visual Studio 2015 (需要 Visual Studio 2015 Update 2 或更新版本)：
+* [安裝 Microsoft Azure Service Fabric SDK 和工具][full-bundle-vs2015]
 
-* [安裝 Service Fabric 執行階段、SDK 和工具)][full-bundle-vs2015]
-* [僅安裝 Service Fabric 執行階段和 SDK (不安裝 Visual Studio 工具)][core-sdk]
+### <a name="sdk-installation-only"></a>僅限 SDK 安裝
+如果您只需要 SDK，您可以安裝此套件︰
+* [安裝 Microsoft Azure Service Fabric SDK][core-sdk]
 
 > [!WARNING]
-> 客戶使用這些啟動連結或在 Chrome 瀏覽器中使用這些連結時，在安裝期間回報錯誤。 這些在 Web Platform Installer 是已知問題並已特別處理。  請嘗試下列動作做為因應措施︰
+> 客戶使用這些啟動連結或在 Chrome 瀏覽器中使用這些連結時，在安裝期間回報錯誤。 這些錯誤是 Web Platform Installer 中的已知問題，並已特別處理。  請嘗試下列解決方法：
 >- 在 Internet Explorer 或 Edge 瀏覽器中啟動上述連結，或
 >- 從 [開始] 功能表啟動 Web Platform Installer、搜尋「Service Fabric」及安裝 SDK
 > 
 > 很抱歉造成您的不便。 
 
 目前的版本如下︰
-* Service Fabric SDK 2.4.145
-* Service Fabric 執行階段 5.4.145
-* Visual Studio 2015 工具 1.4.41209
+* Service Fabric SDK 2.4.164
+* Service Fabric 執行階段 5.4.164
+* Visual Studio 2015 工具 1.4.50124
 
 如需支援版本的清單，請參閱[Service Fabric 支援](service-fabric-support.md)
 
@@ -94,9 +100,4 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
 [full-bundle-dev15]:http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-Dev15 "Dev15 WebPI 連結"
 [core-sdk]:http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-CoreSDK "Core SDK WebPI 連結"
 [powershell5-download]:https://www.microsoft.com/en-us/download/details.aspx?id=50395
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

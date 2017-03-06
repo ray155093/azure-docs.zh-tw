@@ -17,13 +17,14 @@ ms.topic: hero-article
 ms.date: 01/17/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 4ef415b7c0e7079da9930ecc6d8375dfc5a3c0a9
-ms.openlocfilehash: f3c8b487f23b5d1642de90d795eb2b41bfdb674d
+ms.sourcegitcommit: 7d061c083b23de823d373c30f93cccfe1c856ba3
+ms.openlocfilehash: 8a6dc7d3dca80782a55e13b53180b1542b61544b
+ms.lasthandoff: 02/18/2017
 
 
 ---
-# <a name="sql-database-tutorial-aad-authentication-logins-and-user-accounts-database-roles-permissions-server-level-firewall-rules-and-database-level-firewall-rules"></a>SQL Database 教學課程︰AAD 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則
-在本入門教學課程中，您會學習到如何使用 SQL Server Management Studio 來處理 Azure Active Directory 驗證、登入、使用者和資料庫角色，以授與 Azure SQL Database 伺服器和資料庫的存取權和權利。 您會學習：
+# <a name="azure-ad-authentication-access-and-database-level-firewall-rules"></a>Azure AD 驗證、存取，以及資料庫層級的防火牆規則
+在本教學課程中，您會學習到如何使用 SQL Server Management Studio 來處理 Azure Active Directory 驗證、登入、使用者和資料庫角色，以授與 Azure SQL Database 伺服器和資料庫的存取權和權利。 您會學習：
 
 - 檢視使用者在主要資料庫和使用者資料庫中的權限
 - 根據 Azure Active Directory 驗證建立登入和使用者
@@ -36,14 +37,14 @@ ms.openlocfilehash: f3c8b487f23b5d1642de90d795eb2b41bfdb674d
 
 ## <a name="prerequisites"></a>必要條件
 
-* 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)或[啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 
+* 您需要 Azure 帳戶。 您可以[申請免費 Azure 帳戶](https://azure.microsoft.com/free/)或[啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits/)。 
 
 * 您必須能夠使用屬於訂用帳戶擁有者或參與者角色之成員的帳戶來連線 Azure 入口網站。 如需角色型存取控制 (RBAC) 的詳細資訊，請參閱[開始使用 Azure 入口網站中的存取管理](../active-directory/role-based-access-control-what-is.md)。
 
 * 您已完成[藉由使用 Azure 入口網站和 SQL Server Management Studio 或相同的 [PowerShell 版本](sql-database-get-started-powershell.md)來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started.md)。 如果沒有，請完成本必要的教學課程或執行 [PowerShell 版本](sql-database-get-started-powershell.md)結尾的 PowerShell 指令碼再繼續本教學課程。
 
    > [!NOTE]
-   > 您可以選擇是否完成相關的 SQL Server 驗證教學課程 [SQL Database 教學課程︰SQL 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)，不過，該教學課程所涵蓋的某些概念將不會在本教學課程中重複。 如果您已在相同的電腦 (具有相同 IP 位址) 上完成這個相關教學課程，則不必進行本教學課程中與伺服器和資料庫層級防火牆相關的程序，而本教學課程也會因此標示為選擇性教學課程。 此外，本教學課程中的螢幕擷取畫面會假設您已完成這個相關教學課程。 
+   > 您可以選擇是否完成相關的 SQL Server 驗證教學課程 [SQL 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)，不過，該教學課程所涵蓋的某些概念將不會在本教學課程中重複。 如果您已在同一部電腦 (具有相同 IP 位址) 上完成這個相關教學課程，則不必進行本教學課程中與伺服器和資料庫層級防火牆相關的程序，而本教學課程也會因此將它們標示為選擇性程序。 此外，本教學課程中的螢幕擷取畫面會假設您已完成這個相關教學課程。 
    >
 
 * 您已建立和填入 Azure Active Directory。 如需詳細資訊，請參閱[整合內部部署身分識別與 Azure Active Directory](../active-directory/active-directory-aadconnect.md)、[將您自己的網域名稱新增至 Azure AD](../active-directory/active-directory-add-domain.md)、[Microsoft Azure 現在支援與 Windows Server Active Directory 同盟](https://azure.microsoft.com/blog/2012/11/28/windows-azure-now-supports-federation-with-windows-server-active-directory/)、[管理您的 Azure AD 目錄](https://msdn.microsoft.com/library/azure/hh967611.aspx)、[使用 Windows PowerShell 管理 Azure AD](https://msdn.microsoft.com/library/azure/jj151815.aspx) 和[混合式身分識別所需的連接埠和通訊協定](../active-directory/active-directory-aadconnect-ports.md)。
@@ -85,7 +86,7 @@ ms.openlocfilehash: f3c8b487f23b5d1642de90d795eb2b41bfdb674d
    ![儲存選取的 AAD 管理帳戶](./media/sql-database-control-access-aad-authentication-get-started/aad_admin_save.png)
 
 > [!NOTE]
-> 若要檢閱此伺服器的連線資訊，請移至[檢視或更新伺服器設定](sql-database-view-update-server-settings.md)。 在本教學課程系列中，完整伺服器名稱為「sqldbtutorialserver.database.windows.net」。
+> 若要檢閱此伺服器的連線資訊，請移至[管理伺服器](sql-database-manage-servers-portal.md)。 在本教學課程系列中，完整伺服器名稱為「sqldbtutorialserver.database.windows.net」。
 >
 
 ## <a name="connect-to-sql-server-using-sql-server-management-studio-ssms"></a>使用 SQL Server Management Studio (SSMS) 連接到 SQL Server
@@ -256,7 +257,7 @@ ms.openlocfilehash: f3c8b487f23b5d1642de90d795eb2b41bfdb674d
 ## <a name="create-a-database-level-firewall-rule-for-adventureworkslt-database-users"></a>為 AdventureWorksLT 資料庫使用者建立資料庫層級的防火牆規則
 
 > [!NOTE]
-> 如果您已完成相關的 SQL Server 驗證教學課程 [SQL Database 教學課程︰SQL 驗證、登入和使用者帳戶、資料庫角色、權限、伺服器層級防火牆規則和資料庫層級防火牆規則](sql-database-control-access-sql-authentication-get-started.md)中的同等程序，並且正在同一部電腦上使用相同的 IP 位址進行學習，則不需要完成此程序。
+> 如果您已在相關的 SQL Server 驗證教學課程 [SQL 驗證和授權](sql-database-control-access-sql-authentication-get-started.md)中完成對等的程序，並且正使用具相同 IP 位址的同一部電腦進行學習，則您不需要完成此程序。
 >
 
 在這一節的教學課程中，您會嘗試從電腦使用新的使用者帳戶和不同的 IP 位址進行登入、以伺服器管理員身分建立資料庫層級的防火牆規則，然後使用這個新的資料庫層級防火牆規則成功進行登入。 
@@ -313,10 +314,5 @@ ms.openlocfilehash: f3c8b487f23b5d1642de90d795eb2b41bfdb674d
 - 如需資料庫主體的詳細資訊，請參閱[主體](https://msdn.microsoft.com/library/ms181127.aspx)。
 - 如需資料庫角色的詳細資訊，請參閱[資料庫角色](https://msdn.microsoft.com/library/ms189121.aspx)。
 - 如需 SQL Database 中防火牆規則的詳細資訊，請參閱 [SQL Database 防火牆規則](sql-database-firewall-configure.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

@@ -4,7 +4,7 @@ description: "本文旨在協助您了解，如何使用這個方案管理 Windo
 services: operations-management-suite
 documentationcenter: 
 author: MGoedtel
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: e33ce6f9-d9b0-4a03-b94e-8ddedcc595d2
 ms.service: operations-management-suite
@@ -12,11 +12,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 12/06/2016
+ms.date: 02/28/2017
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 705bbd78970c6e3c20ef7214704194f722da09a6
-ms.openlocfilehash: 0f00d5a3b8116864d9e66c18d535f319b31b9f9c
+ms.sourcegitcommit: fa9b427afff2c12babde30aa354e59d31c8f5b2c
+ms.openlocfilehash: 219fe64481df2c5c5cbfe622afdab11dcc1b7100
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -24,6 +25,8 @@ ms.openlocfilehash: 0f00d5a3b8116864d9e66c18d535f319b31b9f9c
 OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。  您可以快速評估所有代理程式電腦上可用更新的狀態，並起始為伺服器安裝必要更新的程序。 
 
 ## <a name="prerequisites"></a>必要條件
+* 此解決方案只支援針對 Windows Server 2008 和更新版本執行更新評估，以及針對 Windows Server 2012 和更新版本執行更新部署。  不支援「伺服器核心」和「Nano 伺服器」安裝選項。
+* 不支援 Windows 用戶端作業系統。  
 * Windows 代理程式必須設定為可與 Windows Server Update Services (WSUS) 伺服器通訊，或必須能夠存取 Microsoft Update。  
   
   > [!NOTE]
@@ -36,7 +39,7 @@ OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。
 請執行下列步驟，在 OMS 工作區新增更新管理方案，並新增 Linux 代理程式。 Windows 代理程式則會自動新增，不需要另外進行設定。
 
 > [!NOTE]
-> 如果您目前啟用此解決方案，則任何連接到 OMS 工作區的 Windows 電腦都會自動設定為混合式 Runbook 背景工作，以支援屬於此解決方案的 Runbook。  不過，它不會向您在自動化帳戶中建立的任何混合式背景工作群組註冊，而且您無法將它新增至混合式背景工作群組來執行自己的 Runbook。  如果 Windows 電腦已指定為混合式 Runbook 背景工作並連接至 OMS 工作區，您必須先從 OMS 工作區中將它移除，再新增解決方案，以避免 Runbook 無法如預期般運作。  
+> 如果您啟用此解決方案，則任何連接到 OMS 工作區的 Windows 電腦都會自動設定為 Hybrid Runbook Worker，以支援此解決方案所包含的 Runbook。  不過，它不會向您已在「自動化」帳戶中定義的任何 Hybrid Worker 群組註冊。  您可以將它新增到您「自動化」帳戶中的 Hybrid Runbook Worker 群組來支援「自動化」Runbook，只要解決方案和 Hybrid Runbook Worker 群組成員資格兩者所用的帳戶相同即可。  此功能已新增至 Hybrid Runbook Worker 7.2.12024.0 版。   
 
 1. 使用從方案庫[新增 OMS 方案](../log-analytics/log-analytics-add-solutions.md)所述的程序，在 OMS 工作區新增更新管理方案。  
 2. 在 OMS 入口網站中，依序選取 [設定] 和 [連接的來源]。  記下 [工作區識別碼] 和 [主要金鑰] 或 [次要金鑰]。
@@ -104,7 +107,9 @@ OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。
 ## <a name="installing-updates"></a>安裝更新
 環境中的所有 Windows 電腦皆進行過更新評估後，您可以建立「更新部署」來安裝必要的更新。  更新部署會排定為一或多部 Windows 電腦安裝必要的更新。  除了應該包含的電腦或電腦群組外，您還要指定部署的日期和時間。  
 
-在 Azure 自動化中，會由 Runbook 安裝更新。  您目前無法檢視這些 Runbook，而且它們也不需要進行任何設定。  更新部署在建立後便會建立排程，以在指定時間為所包含的電腦啟動主要更新 Runbook。  這個主要 Runbook 會在每個 Windows 代理程式上啟動子 Runbook，以安裝必要的更新。  
+在 Azure 自動化中，會由 Runbook 安裝更新。  您無法檢視這些 Runbook，而它們也不需要任何設定。  更新部署在建立後便會建立排程，以在指定時間為所包含的電腦啟動主要更新 Runbook。  這個主要 Runbook 會在每個 Windows 代理程式上啟動子 Runbook，以安裝必要的更新。  
+
+針對從 Azure Marketplace 所提供之隨選 Red Hat Enterprise Linux (RHEL) 映像建立的虛擬機器，系統會將其註冊以存取部署在 Azure 中的 [Red Hat Update Infrastructure (RHUI)](../virtual-machines/virtual-machines-linux-update-infrastructure-redhat.md)。  針對任何其他 Linux 發行版本，則必須從發行版本線上檔案儲存機制，依照其支援的方法來更新這些發行版本。  
 
 ### <a name="viewing-update-deployments"></a>檢視更新部署
 按一下 [更新部署] 圖格可檢視現有更新部署的清單。  其分組依據為狀態 – **已排程**、**執行中**和**已完成**。<br><br> ![更新部署排程頁面](./media/oms-solution-update-management/update-updatedeployment-schedule-page.png)<br>  
@@ -243,10 +248,5 @@ OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。
 * 使用 [Log Analytics](../log-analytics/log-analytics-log-searches.md) 中的記錄檔搜尋，檢視詳細的更新資料。
 * [建立您自己的儀表板](../log-analytics/log-analytics-dashboards.md)，其中會顯示受管理電腦的更新相容性。
 * 在偵測到電腦遺漏重大更新或電腦已停用自動更新時[建立警示](../log-analytics/log-analytics-alerts.md)。  
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 
