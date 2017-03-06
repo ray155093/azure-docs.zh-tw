@@ -17,6 +17,7 @@ ms.author: harikm
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 012bfc7d8431e2edb2b1056fb465421fad58193a
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -397,10 +398,5 @@ Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式�
 
 ## <a name="next-steps"></a>後續步驟
 我們所建議的 [MyDriving 參考指南](http://aka.ms/mydrivingdocs)完整說明系統及其元件的設計。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
