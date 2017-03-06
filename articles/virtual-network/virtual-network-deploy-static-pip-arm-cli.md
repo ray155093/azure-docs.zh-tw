@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 建立具有靜態公用 IP 的 VM | Microsoft Docs"
-description: "了解如何使用 Azure CLI 建立具有靜態公用 IP 位址的 VM | Resource Manager。"
+title: "建立具有靜態公用 IP 位址的 VM - Azure CLI 2.0 | Microsoft Docs"
+description: "了解如何使用 Azure 命令列介面 (CLI) 2.0 建立具有靜態公用 IP 位址的 VM。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,243 +15,141 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 75dbe164bf0fb4b3aff95954ce619781bbafaa5c
-ms.openlocfilehash: 7395e8596dced14208ac257f9b1f33567a030bd7
+ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
+ms.openlocfilehash: e7874e7d86f75846c452d9863d5604982e9ce50b
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="create-a-vm-with-a-static-public-ip-using-the-azure-cli"></a>使用 Azure CLI 建立具有靜態公用 IP 的 VM
+# <a name="create-a-vm-with-a-static-public-ip-address-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立具有靜態公用 IP 位址的 VM
 
 > [!div class="op_single_selector"]
 - [Azure 入口網站](virtual-network-deploy-static-pip-arm-portal.md)
 - [PowerShell](virtual-network-deploy-static-pip-arm-ps.md)
-- [Azure CLI](virtual-network-deploy-static-pip-arm-cli.md)
+- [Azure CLI 2.0](virtual-network-deploy-static-pip-arm-cli.md)
+- [Azure CLI 1.0](virtual-network-deploy-static-pip-cli-nodejs.md)
 - [範本](virtual-network-deploy-static-pip-arm-template.md)
 - [PowerShell (傳統)](virtual-networks-reserved-public-ip.md)
 
 [!INCLUDE [virtual-network-deploy-static-pip-intro-include.md](../../includes/virtual-network-deploy-static-pip-intro-include.md)]
 
 > [!NOTE]
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是傳統部署模型。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。 本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是傳統部署模型。
 
 [!INCLUDE [virtual-network-deploy-static-pip-scenario-include.md](../../includes/virtual-network-deploy-static-pip-scenario-include.md)]
 
-[!INCLUDE [azure-cli-prerequisites-include.md](../../includes/azure-cli-prerequisites-include.md)]
+## <a name="a-name--createacreate-the-vm"></a><a name = "create"></a>建立 VM
 
-## <a name="step-1---start-your-script"></a>步驟 1：啟動指令碼
-[這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/virtual-network-deploy-static-pip-arm-cli.sh)可以下載所使用的完整 Bash 指令碼。 請完成下列步驟來變更指令碼，讓指令碼可在您的環境中運作：
+您可以使用 Azure CLI 2.0 (本文) 或 [Azure CLI 1.0](virtual-network-deploy-static-pip-cli-nodejs.md) 完成這項工作。 後續步驟所含變數之 "" 中的值，會使用案例中的設定建立資源。 請針對您的環境適當地變更值。
 
-根據要用於部署的值來變更下列變數的值。 下列值對應至本文中使用的案例：
-
-```azurecli
-# Set variables for the new resource group
-rgName="IaaSStory"
-location="westus"
-
-# Set variables for VNet
-vnetName="TestVNet"
-vnetPrefix="192.168.0.0/16"
-subnetName="FrontEnd"
-subnetPrefix="192.168.1.0/24"
-
-# Set variables for storage
-stdStorageAccountName="iaasstorystorage"
-
-# Set variables for VM
-vmSize="Standard_A1"
-diskSize=127
-publisher="Canonical"
-offer="UbuntuServer"
-sku="14.04.2-LTS"
-version="latest"
-vmName="WEB1"
-osDiskName="osdisk"
-nicName="NICWEB1"
-privateIPAddress="192.168.1.101"
-username='adminuser'
-password='adminP@ssw0rd'
-pipName="PIPWEB1"
-dnsName="iaasstoryws1"
-```
-
-## <a name="step-2---create-the-necessary-resources-for-your-vm"></a>步驟 2：為 VM 建立必要的資源
-建立 VM 之前，您需要供 VM 使用的資源群組、VNet、公用 IP 及 NIC。
-
-1. 建立新的資源群組。
+1. 如果尚未安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，請先安裝此軟體。
+2. 完成[建立 Linux VM 的 SSH 公用和私用金鑰組](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json)中的步驟，為 Linux VM 建立 SSH 公用和私用金鑰組。
+3. 從命令殼層使用命令 `az login` 進行登入。
+4. 在 Linux 或 Mac 電腦上執行後續的指令碼以建立 VM。 Azure 公用 IP 位址、虛擬網路、網路介面和 VM 資源必須全都位於相同的位置。 雖然資源不需要全都位於相同的資源群組中，但在下列指令碼中，它們卻是如此。
 
     ```azurecli
-    azure group create $rgName $location
+    #!/bin/sh
+
+    RgName="IaaSStory"
+    Location="westus"
+    az group create --name $RgName --location $Location
+
+    # Create a public IP address resource with a static IP address
+    PipName="PIPWEB1"
+    # Note: The value below must be unique within the azure location it's created in.
+    DnsName="iaasstoryws1"
+
+    az network public-ip create \
+    --name $PipName \
+    --resource-group $RgName \
+    --location $Location \
+
+    # The following option allocates a static public IP address to the resource. If you do not specify it, the address is
+    # allocated dynamically. The address is assigigned to the resource from a pool of IP adresses unique to each Azure regions.
+    # Download and view the file from https://www.microsoft.com/en-us/download/details.aspx?id=41653 to see the ranges for each region.
+    --allocation-method Static \
+
+    --dns-name $DnsName \
+
+    # Create a virtual network with one subnet
+
+    VnetName="TestVNet"
+    VnetPrefix="192.168.0.0/16"
+    SubnetName="FrontEnd"
+    SubnetPrefix="192.168.1.0/24"
+
+    az network vnet create \
+    --name $VnetName \
+    --resource-group $RgName \
+    --location $Location \
+    --address-prefix $VnetPrefix \
+    --subnet-name $SubnetName \
+    --subnet-prefix $SubnetPrefix
+
+    # Create a network interface connected to the VNet with a static private IP address and associate the public IP address
+    # resource to the NIC.
+    NicName="NICWEB1"
+    PrivateIpAddress="192.168.1.101"
+
+    az network nic create \
+    --name $NicName \
+    --resource-group $RgName \
+    --location $Location \
+    --subnet $SubnetName \
+    --vnet-name $VnetName \
+    --private-ip-address $PrivateIpAddress \
+    --public-ip-address $PipName
+
+    # Create a new VM with the NIC
+    VmName="WEB1"
+    
+    # Replace the value for the VmSize variable with a value from the
+    # https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes article.
+    VmSize="Standard_DS1"
+
+    # Replace the value for the OsImage variable value with a value for *urn* from the output returned by entering the
+    # `az vm image list` command. 
+    OsImage="credativ:Debian:8:latest"
+    
+    Username='adminuser'
+    
+    # Replace the following value with the path to your public key file.
+    SshKeyValue="~/.ssh/id_rsa.pub"
+
+    az vm create \
+    --name $VmName \
+    --resource-group $RgName \
+    --image $OsImage \
+    --location $Location \
+    --size $VmSize \
+    --nics $NicName \
+    --admin-username $Username \
+
+    # If creating a Windows VM, remove the next line and you'll be prompted for the password you want to configure for the VM.
+    --ssh-key-value $SshKeyValue
     ```
 
-2. 建立 VNet 和子網路。
+    除了建立 VM 外，該指令碼還會建立︰
+    - 單一的進階受控磁碟 (預設)，但有其他選項可讓您選擇可以建立的磁碟類型。 如需詳細資料，請閱讀[使用 Azure CLI 2.0 建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 一文。
+    - 虛擬網路、子網路、NIC 和公用 IP 位址資源。 或者，您可以使用「現有」虛擬網路、子網路、NIC 或公用 IP 位址資源。 若要了解如何使用現有網路資源，而不是另外建立資源，請輸入 `az vm create -h`。
 
-    ```azurecli
-    azure network vnet create --resource-group $rgName \
-        --name $vnetName \
-        --address-prefixes $vnetPrefix \
-        --location $location
-    azure network vnet subnet create --resource-group $rgName \
-        --vnet-name $vnetName \
-        --name $subnetName \
-        --address-prefix $subnetPrefix
-    ```
+## <a name="a-name--validateavalidate-vm-creation-and-public-ip-address"></a><a name = "validate"></a>驗證 VM 建立和公用 IP 位址
 
-3. 建立公用 IP 資源。
+1. 輸入命令 `az resource list --resouce-group IaaSStory --output table` 以查看指令碼所建立的資源清單。 所傳回的輸出中應該會有五個資源︰網路介面、磁碟、公用 IP 位址、虛擬網路及虛擬機器。
+2. 輸入命令 `az network public-ip show --name PIPWEB1 --resource-group IaaSStory --output table`。 請注意，在傳回的輸出中，**IpAddress** 的值和 **PublicIpAllocationMethod** 的值是 Static。
+3. 在執行下列命令之前，請移除 <>，以指令碼中的 **Username** 變數所用之名稱取代 *Username*，並以上一個步驟中的 **ipAddress** 取代 *ipAddress*。 執行下列命令以連線至 VM：`ssh -i ~/.ssh/azure_id_rsa <Username>@<ipAddress>`。 
 
-    ```azurecli
-    azure network public-ip create --resource-group $rgName \
-        --name $pipName \
-        --location $location \
-        --allocation-method Static \
-        --domain-name-label $dnsName
-    ```
+## <a name="a-name-clean-uparemove-the-vm-and-associated-resources"></a><a name= "clean-up"></a>移除 VM 和相關聯的資源
 
-4. 使用公用 IP 為上述建立之子網路中的 VM 建立網路介面 (NIC)。 請注意第一組命令是用來擷取上述建立的子網路的「識別碼」  。
+如果您建立資源群組只是為了完成本文中的步驟，您可以使用 `az group delete -n IaaSStory` 命令刪除資源群組以移除所有資源。
 
-    ```azurecli
-    subnetId="$(azure network vnet subnet show --resource-group $rgName \
-        --vnet-name $vnetName \
-        --name $subnetName|grep Id)"
+>[!WARNING]
+>請先確認資源群組中除了本文指令碼所建立的資源外，再也沒有其他資源，然後才刪除資源群組。 執行 `az resource list --resouce-group IaaSStory` 命令來檢視資源群組中的資源。
 
-    subnetId=${subnetId#*/}
+如果您不會在生產環境用到 VM，建議您刪除資源。 VM、公用 IP 位址和磁碟資源在佈建後就會產生費用。 
 
-    azure network nic create --name $nicName \
-        --resource-group $rgName \
-        --location $location \
-        --private-ip-address $privateIPAddress \
-        --subnet-id $subnetId \
-        --public-ip-name $pipName
-    ```
+## <a name="next-steps"></a>後續步驟
 
-   > [!TIP]
-   > 上述第一個命令使用 [grep](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_02.html) 和[字串操作](http://tldp.org/LDP/abs/html/string-manipulation.html) (更具體來說是移除子字串)。
-   >
-
-5. 建立裝載 VM 作業系統磁碟機的儲存體帳戶。
-
-    ```azurecli
-    azure storage account create $stdStorageAccountName \
-        --resource-group $rgName \
-        --location $location --type LRS
-    ```
-
-## <a name="step-3---create-the-vm"></a>步驟 3：建立 VM
-現在所有必要的資源已準備就緒，您可以建立新的 VM。
-
-1. 建立 VM。
-
-    ```azurecli
-    azure vm create --resource-group $rgName \
-        --name $vmName \
-        --location $location \
-        --vm-size $vmSize \
-        --subnet-id $subnetId \
-        --nic-names $nicName \
-        --os-type linux \
-        --image-urn $publisher:$offer:$sku:$version \
-        --storage-account-name $stdStorageAccountName \
-        --storage-account-container-name vhds \
-        --os-disk-vhd $osDiskName.vhd \
-        --admin-username $username \
-        --admin-password $password
-    ```
-2. 儲存指令碼檔案。
-
-## <a name="step-4---run-the-script"></a>步驟 4：執行指令碼
-在進行任何必要的變更並了解上述指令碼後，請執行指令碼。
-
-1. 從 bash 主控台執行上述指令碼。
-
-    ```azurecli
-    sh myscript.sh
-    ```
-
-2. 幾分鐘後，應該會顯示以下輸出。
-
-        info:    Executing command group create
-        info:    Getting resource group IaaSStory
-        info:    Creating resource group IaaSStory
-        info:    Created resource group IaaSStory
-        data:    Id:                  /subscriptions/[Subscription ID]/resourceGroups/IaaSStory
-        data:    Name:                IaaSStory
-        data:    Location:            westus
-        data:    Provisioning State:  Succeeded
-        data:    Tags: null
-        data:
-        info:    group create command OK
-        info:    Executing command network vnet create
-        info:    Looking up virtual network "TestVNet"
-        info:    Creating virtual network "TestVNet"
-        info:    Loading virtual network state
-        data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory/providers/Microsoft.Network/virtualNetworks/TestVNet
-        data:    Name                            : TestVNet
-        data:    Type                            : Microsoft.Network/virtualNetworks
-        data:    Location                        : westus
-        data:    ProvisioningState               : Succeeded
-        data:    Address prefixes:
-        data:      192.168.0.0/16
-        info:    network vnet create command OK
-        info:    Executing command network vnet subnet create
-        info:    Looking up the subnet "FrontEnd"
-        info:    Creating subnet "FrontEnd"
-        info:    Looking up the subnet "FrontEnd"
-        data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd
-        data:    Type                            : Microsoft.Network/virtualNetworks/subnets
-        data:    ProvisioningState               : Succeeded
-        data:    Name                            : FrontEnd
-        data:    Address prefix                  : 192.168.1.0/24
-        data:
-        info:    network vnet subnet create command OK
-        info:    Executing command network public-ip create
-        info:    Looking up the public ip "PIPWEB1"
-        info:    Creating public ip address "PIPWEB1"
-        info:    Looking up the public ip "PIPWEB1"
-        data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory/providers/Microsoft.Network/publicIPAddresses/PIPWEB1
-        data:    Name                            : PIPWEB1
-        data:    Type                            : Microsoft.Network/publicIPAddresses
-        data:    Location                        : westus
-        data:    Provisioning state              : Succeeded
-        data:    Allocation method               : Static
-        data:    Idle timeout                    : 4
-        data:    IP Address                      : 40.78.63.253
-        data:    Domain name label               : iaasstoryws1
-        data:    FQDN                            : iaasstoryws1.westus.cloudapp.azure.com
-        info:    network public-ip create command OK
-        info:    Executing command network nic create
-        info:    Looking up the network interface "NICWEB1"
-        info:    Looking up the public ip "PIPWEB1"
-        info:    Creating network interface "NICWEB1"
-        info:    Looking up the network interface "NICWEB1"
-        data:    Id                              : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory/providers/Microsoft.Network/networkInterfaces/NICWEB1
-        data:    Name                            : NICWEB1
-        data:    Type                            : Microsoft.Network/networkInterfaces
-        data:    Location                        : westus
-        data:    Provisioning state              : Succeeded
-        data:    Enable IP forwarding            : false
-        data:    IP configurations:
-        data:      Name                          : NIC-config
-        data:      Provisioning state            : Succeeded
-        data:      Public IP address             : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory/providers/Microsoft.Network/publicIPAddresses/PIPWEB1
-        data:      Private IP address            : 192.168.1.101
-        data:      Private IP Allocation Method  : Static
-        data:      Subnet                        : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory2/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd
-        data:
-        info:    network nic create command OK
-        info:    Executing command storage account create
-        info:    Creating storage account
-        info:    storage account create command OK
-        info:    Executing command vm create
-        info:    Looking up the VM "WEB1"
-        info:    Using the VM Size "Standard_A1"
-        info:    The [OS, Data] Disk or image configuration requires storage account
-        info:    Looking up the storage account iaasstorystorage
-        info:    Looking up the NIC "NICWEB1"
-        info:    Creating VM "WEB1"
-        info:    vm create command OK
-
-
-
-<!--HONumber=Nov16_HO5-->
-
-
+任何網路流量均可流入和流出本文所建立的 VM。 您可以在 NSG 內定義輸入和輸出規則，以限制網路介面和 (或) 子網路可以流入和流出的流量。 若要深入了解 NSG，請閱讀 [NSG 概觀](virtual-networks-nsg.md)一文。
