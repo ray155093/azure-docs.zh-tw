@@ -13,15 +13,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/12/2017
+ms.date: 02/27/2017
 ms.author: larryfr
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
-ms.openlocfilehash: 37409ad3f50cdd4a7a384c96a57a35ef8c83fb8f
-
+ms.sourcegitcommit: cfaade8249a643b77f3d7fdf466eb5ba38143f18
+ms.openlocfilehash: 4cde035f75bfa3c448f12e9ebf2896b9a54a6873
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="use-ssh-with-hdinsight-hadoop-from-windows-linux-unix-or-os-x"></a>從 Windows、Linux、Unix 或 OS X 搭配使用 SSH 與 HDInsight (Hadoop)
+# <a name="use-ssh-with-hdinsight-hadoop-from-bash-on-windows-10-linux-unix-or-os-x"></a>從 Bash on Windows 10、Linux、Unix 或 OS X 搭配使用 SSH 與 HDInsight (Hadoop)
 
 > [!div class="op_single_selector"]
 > * [PuTTY (Windows)](hdinsight-hadoop-linux-use-ssh-windows.md)
@@ -42,13 +43,11 @@ SSH 是一種密碼編譯網路通訊協定，它能讓您透過不安全的網�
 * __ssh__︰一般的 SSH 用戶端，可用來建立遠端命令列工作階段及建立通道。
 * __scp__︰一種公用程式，可使用 SSH 通訊協定在本機或遠端系統之間複製檔案。
 
-根據記錄，Windows 要等到 Windows 10 Anniversary Edition 才提供 SSH 用戶端。 這個版本的 Windows 包含 Bash on Windows 10 開發人員功能，其提供 `ssh`、`scp` 和其他 Linux 命令。 如需使用 Bash on Windows 10 的詳細資訊，請參閱 [Bash on Ubuntu on Windows](https://msdn.microsoft.com/commandline/wsl/about)。
+Windows 10 Anniversary Edition 提供 Bash 做為開發人員功能。 它提供 `ssh`、`scp` 及其他 Linux 命令。 如需使用 Bash on Windows 10 的詳細資訊，請參閱 [Bash on Ubuntu on Windows](https://msdn.microsoft.com/commandline/wsl/about)。
 
 如果您使用 Windows 但沒有 Bash on Windows 10 的存取權限，我們推薦下列 SSH 用戶端︰
 
 * [Git For Windows](https://git-for-windows.github.io/)︰提供 `ssh` 和 `scp` 命令列公用程式。
-* [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/)︰提供圖形化的 SSH 用戶端。
-* [MobaXterm](http://mobaxterm.mobatek.net/)︰提供圖形化的 SSH 用戶端。
 * [Cygwin](https://cygwin.com/)︰提供 `ssh` 和 `scp` 命令列公用程式。
 
 > [!NOTE]
@@ -64,7 +63,7 @@ SSH 連線可以透過密碼或[公開金鑰加密 (https://en.wikipedia.org/wik
 
 * **私密金鑰**是使用 SSH 用戶端登入時提供給 HDInsight 叢集，藉以驗證身分的資訊。 保護此私密金鑰。 不要共用它。
 
-    您可以為私密金鑰建立複雜密碼來增加安全性。 在使用金鑰之前，您必須先提供此複雜密碼。
+    您可以為私密金鑰建立複雜密碼來增加安全性。 如果您使用複雜密碼，您必須在使用 SSH 驗證時輸入它。
 
 ### <a name="create-a-public-and-private-key"></a>建立公用和私密金鑰
 
@@ -91,7 +90,7 @@ SSH 連線可以透過密碼或[公開金鑰加密 (https://en.wikipedia.org/wik
 * __id\_rsa__：該檔案含有私密金鑰。
 
     > [!WARNING]
-    > 您必須限制該檔案的存取權限，以防止他人在未經授權的情況下存取公用金鑰保護的服務。
+    > 限制該檔案的存取權限，以防止他人在未經授權的情況下存取公用金鑰保護的服務。
 
 * __id\_rsa.pub__：該檔案含有公開金鑰。 在建立 HDInsght 叢集時，您會使用這個檔案。
 
@@ -115,13 +114,13 @@ SSH 連線可以透過密碼或[公開金鑰加密 (https://en.wikipedia.org/wik
 
 雖然您可以在叢集建立後將其他 SSH 使用者加入叢集，不過我們不建議這種做法。
 
-* 您必須手動將新的 SSH 使用者加入叢集中的每個節點。
+* 新的 SSH 使用者需要加入至叢集中的每個節點。
 
 * 新 SSH 使用者的 HDInsight 存取權限與預設使用者相同。 您無法在 HDInsight 中根據 SSH 使用者帳戶限制資料或作業的存取權限。
 
 若要限制每位使用者的存取權限，您必須使用已加入網域的 HDInsight 叢集。 已加入網域的 HDInsight 叢集使用 Active Directory 來控制叢集資源的存取權限。
 
-透過已加入網域的 HDInsight 叢集，您可以在使用 SSH 連線後使用 Active Directory 進行驗證。 多位使用者可以使用 SSH 連線，然後在連線後驗證其 Active Directory 帳戶。 如需詳細資訊，請參閱[已加入網域的 HDInsight 叢集](#domainjoined)。
+透過已加入網域的 HDInsight 叢集，您可以在使用 SSH 連線後使用 Active Directory 進行驗證。 多位使用者可以使用 SSH 連線，然後在連線後驗證其 Active Directory 帳戶。 如需詳細資訊，請參閱[已加入網域的 HDInsight](#domainjoined) 一節。
 
 ##<a name="a-idconnecta-connect-to-hdinsight"></a><a id="connect"></a> 連接 HDInsight
 
@@ -147,7 +146,7 @@ SSH 連線可以透過密碼或[公開金鑰加密 (https://en.wikipedia.org/wik
 
 ### <a name="connect-to-other-nodes"></a>連接其他節點
 
-背景工作角色節點和 Zookeeper 節點無法直接從叢集外部存取，不過可以從叢集前端節點或邊緣節點存取。 以下是完成這項作業的一般步驟：
+背景工作角色節點和 Zookeeper 節點無法直接從叢集外部存取，不過可以從叢集前端節點或邊緣節點存取。 以下是連接至其他節點的一般步驟：
 
 1. 使用 SSH 連接前端或邊緣節點：
 
@@ -196,7 +195,7 @@ SSH 連線可以透過密碼或[公開金鑰加密 (https://en.wikipedia.org/wik
 
 [已加入網域的 HDInsight](hdinsight-domain-joined-introduction.md) 會整合 Kerberos 與 HDInsight 中的 Hadoop。 由於 SSH 使用者不是 Active Directory 網域使用者，因此除非您通過 Active Directory 驗證，否則將無法執行 Hadoop 命令。 請使用以下步驟來向 Active Directory 驗證 SSH 工作階段：
 
-1. 使用 SSH 連接加入網域的 HDInsight 叢集，如[連接 HDInsight](#connect) 一節所述。 例如，以下命令會使用名為 __sshuser__ 的 SSH 帳戶連接名為 __myhdi__ 的 HDInsight 叢集。
+1. 使用 SSH 連線至已加入網域的 HDInsight 叢集。 例如，以下命令會使用名為 __sshuser__ 的 SSH 帳戶連接名為 __myhdi__ 的 HDInsight 叢集。
 
         ssh sshuser@myhdi-ssh.azurehdinsight.net
 
@@ -212,7 +211,7 @@ SSH 連線可以透過密碼或[公開金鑰加密 (https://en.wikipedia.org/wik
 
 ## <a name="a-idtunnelassh-tunneling"></a><a id="tunnel"></a>SSH 通道
 
-SSH 可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDInsight 叢集。 要求便會路由至要求的資源，彷彿要求是在 HDInsight 叢集前端節點上產生。
+SSH 可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDInsight 叢集。 要求是轉送到叢集，然後在叢集內解析。
 
 > [!IMPORTANT]
 > SSH 通道是存取某些 Hadoop 服務之 Web UI 的必要項目。 例如，[作業記錄] UI 或 [資源管理員] UI 都只能使用 SSH 通道存取。
@@ -228,9 +227,4 @@ SSH 可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDInsi
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
 
 [preview-portal]: https://portal.azure.com/
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

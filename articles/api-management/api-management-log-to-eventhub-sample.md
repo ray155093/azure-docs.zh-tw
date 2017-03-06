@@ -17,6 +17,7 @@ ms.author: apimpm
 translationtype: Human Translation
 ms.sourcegitcommit: 30855c86780e13144dbe0e507397a719d1a1f95d
 ms.openlocfilehash: 588425fdc4a076d4d7ad65e634849f4f77bb9fdd
+ms.lasthandoff: 02/03/2017
 
 ---
 # <a name="monitor-your-apis-with-azure-api-management-event-hubs-and-runscope"></a>利用 Azure API 管理、事件中樞及 Runscope 監視您的 API
@@ -281,9 +282,4 @@ Azure API 管理服務提供了一個理想位置，可供擷取您的 API 的�
   * [如何將事件記錄到 Azure API 管理中的 Azure 事件中樞](api-management-howto-log-event-hubs.md)
   * [記錄器實體參考](https://msdn.microsoft.com/library/azure/mt592020.aspx)
   * [log-to-eventhub 原則參考](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

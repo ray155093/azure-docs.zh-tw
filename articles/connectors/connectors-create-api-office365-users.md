@@ -18,6 +18,7 @@ ms.author: deonhe
 translationtype: Human Translation
 ms.sourcegitcommit: b92f954680603891ced503a1134791312b5214f0
 ms.openlocfilehash: 2e4af1c9369a97d518d027dc4679b9f01ca53d4c
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -184,9 +185,4 @@ Office 365 使用者連接器提供下列動作。 但不包含觸發程序。
 [9]: ./media/connectors-create-api-office365-users/aad-tenant-applications-add-app-properties.PNG
 [10]: ./media/connectors-create-api-office365-users/contoso-aad-app.PNG
 [11]: ./media/connectors-create-api-office365-users/contoso-aad-app-configure.PNG
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

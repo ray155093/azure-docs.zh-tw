@@ -1,3 +1,14 @@
+### <a name="disk-persistence"></a>磁碟持續性 
+
+下表說明 Azure VM 中不同磁碟的各種狀態，以及在每種狀態中是否會保存資料。
+
+| 磁碟 | Start | 停止/<br>解除配置 | 暫停 | 重新<br>boot | 關<br>機 | 刪除 | 失敗 | 調整大小 | 
+| ---- | ----- | ---- | ---- | ---- | ----  | ------ | ------- | ------ | 
+| OS 磁碟 | 是 | 是  | 是 | 是 | 是  | 否 | 否  | 是 | 
+| RAM  | 是 | 是 | 是 | 是 | 否   | 否 | 否 | 否 | 
+| 本機暫存磁碟 | 是 | 否 | 是 | 否 | 否  | 否 | 否 | 否 | 
+| 連接的資料磁碟 | 是 | 是 | 是 | 是 | 是  | 是 | 是 | 是 | 
+
 ## <a name="about-vhds"></a>關於 VHD
 
 Azure 中使用的 VHD 是以分頁 Blob 儲存在 Azure 標準或進階儲存體帳戶中的 .vhd 檔案。 如需分頁 Blob 的詳細資訊，請參閱 [了解區塊 Blob 和分頁 Blob](/rest/api/storageservices/fileservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs/)。 如需進階儲存體的詳細資訊，請參閱[高效能的進階儲存體和 Azure VM](../articles/storage/storage-premium-storage.md)。
@@ -52,9 +63,3 @@ Azure 中所有您想要做為來源以建立磁碟或映像的 .vhd 檔案，�
 | 磁碟大小 | P10：128 GB<br>P20：512 GB<br>P30：1024 GB | 非受控磁碟：1 GB – 1 TB <br><br>受控磁碟：<br> S4：32 GB <br>S6：64 GB <br>S10：128 GB <br>S20：512 GB <br>S30：1024 GB |
 | 每一磁碟的輸送量上限 | 200 MB/秒 | 60 MB/秒 |
 | 每一磁碟的 IOPS 上限 | 5000 IOPS | 500 IOPS |
-
-
-
-<!--HONumber=Feb17_HO2-->
-
-

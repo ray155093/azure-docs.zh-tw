@@ -18,6 +18,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
 ms.openlocfilehash: 2cb69f253e1a6d01b412775bbfc37de3423bde0b
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -113,9 +114,4 @@ HDInsight 中的 Spark 也提供 [ODBC 驅動程式](http://go.microsoft.com/fwl
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 
 [hdinsight-storage]: hdinsight-hadoop-use-blob-storage.md
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

@@ -17,13 +17,14 @@ ms.author: jingwang
 translationtype: Human Translation
 ms.sourcegitcommit: 9e70638af1ecdd0bf89244b2a83cd7a51d527037
 ms.openlocfilehash: 98b841e300d5b704d134bcfab0968523f3b9c3f0
+ms.lasthandoff: 01/05/2017
 
 
 ---
 # <a name="move-data-from-salesforce-by-using-azure-data-factory"></a>使用 Azure Data Factory 從 Salesforce 移動資料
 本文概述如何在 Azure Data Factory 使用複製活動，將資料從 Salesforce 複製到 [支援的來源與接收](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 資料表的 [接收] 欄底下列出的任何資料存放區。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
-Azure Data Factory 目前只支援將資料從 Salesforce 移動到 [支援的接收資料存放區][](data-factory-data-movement-activities.md#supported-data-stores-and-formats)，但不支援將資料從其他資料存放區移動到 Salesforce。
+Azure Data Factory 目前只支援將資料從 Salesforce 移動到 [支援的接收資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)，但不支援將資料從其他資料存放區移動到 Salesforce。
 
 ## <a name="supported-versions"></a>支援的版本
 此連接器使用下列其中一個 Salesforce 版本︰Developer Edition、Professional Edition、Enterprise Edition 或 Unlimited Edition。 並且支援從 Salesforce 生產、沙箱和自訂網域複製。
@@ -293,9 +294,4 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 如需詳�
 
 ## <a name="performance-and-tuning"></a>效能和微調
 若要了解 Azure Data Factory 中影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法，請參閱 [複製活動的效能及微調指南](data-factory-copy-activity-performance.md) 。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

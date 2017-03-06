@@ -17,6 +17,7 @@ ms.author: BernardoAMunoz
 translationtype: Human Translation
 ms.sourcegitcommit: d777bc6bd477c5b6645fc8bd7b6d57a5d2f89e22
 ms.openlocfilehash: e465e2c1503add186a4b134e85bd9aab61d5c0ad
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -106,10 +107,5 @@ Azure 入口網站中的 [資源健康狀態] 刀鋒視窗，可提供資源健�
 
 ## <a name="feedback"></a>意見反應
 我們歡迎意見反應和建議！ 請將您的 [建議](https://feedback.azure.com/forums/266794-support-feedback)傳送給我們。 此外，您可以透過 [Twitter](https://twitter.com/azuresupport) 或 [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure)與我們連絡。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

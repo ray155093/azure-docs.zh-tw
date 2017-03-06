@@ -17,6 +17,7 @@ ms.author: robinsh
 translationtype: Human Translation
 ms.sourcegitcommit: c5fedb8c4a6e3722e2f37dd432cec60513c73e0d
 ms.openlocfilehash: 599d509d00e8366a5095cac7503b11cf818e6a34
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -171,10 +172,5 @@ Azure 儲存體帳戶可讓您存取 Azure 儲存體中的 Azure Blob、佇列�
 * 若要深入了解 Azure 儲存體，請參閱 [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)。
 * 造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)(英文)。
 * [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

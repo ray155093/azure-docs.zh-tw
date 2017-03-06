@@ -17,6 +17,7 @@ ms.author: terrylan
 translationtype: Human Translation
 ms.sourcegitcommit: 78daa5a75b3414e2761333ea6ad91945596553c8
 ms.openlocfilehash: 35e3f4ee07414927cd93e3fbe54d7c96f4681ba4
+ms.lasthandoff: 01/30/2017
 
 
 ---
@@ -78,9 +79,4 @@ Azure Active Directory (AD) Privileged Identity Management 是高階功能，可
 [Azure 金鑰保存庫 (Amit Bapat)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Key-Vault-with-Amit-Bapat)
 
 Amit Bapat 向 Scott 介紹 Azure 金鑰保存庫。 有了 Azure 金鑰保存庫，您即可加密金鑰和小型密碼，例如存放在硬體安全性模組 (HSM) 中且使用金鑰的密碼。 它是 Microsoft Azure 的雲端型、硬體型密碼管理！
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

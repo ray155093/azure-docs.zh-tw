@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure CLI (az.py) 建立 IoT 中樞 | Microsoft Docs"
-description: "如何使用跨平台 Azure CLI 2.0 (預覽) (az.py) 建立 Azure IoT 中樞。"
+description: "如何使用跨平台 Azure CLI 2.0 (az.py) 建立 Azure IoT 中樞。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -12,31 +12,32 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/02/2016
+ms.date: 12/15/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 39c8c4944ef19379dc04e04a717ab60d305593c4
-ms.openlocfilehash: c52d9a5fadf494cc066bee773543c9d67bb8334b
+ms.sourcegitcommit: 5ea7095e12b6194556d3cd0baa43ccfed1e087ee
+ms.openlocfilehash: 4f512601cebcfce7bfac47ed440c96fcb2c91b5f
+ms.lasthandoff: 02/27/2017
 
 
 ---
-# <a name="create-an-iot-hub-using-the-azure-cli-20-preview"></a>使用 Azure CLI 2.0 (預覽) 建立 IoT 中樞
+# <a name="create-an-iot-hub-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立 IoT 中樞
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 ## <a name="introduction"></a>簡介
 
-您可以使用 Azure CLI 2.0 (預覽) (az.py)，以程式設計方式建立和管理 Azure IoT 中樞。 本文將說明如何使用 Azure CLI 2.0 (預覽) (az.py) 建立 IoT 中樞。
+您可以使用 Azure CLI 2.0 (az.py)，以程式設計方式建立和管理 Azure IoT 中樞。 本文將說明如何使用 Azure CLI 2.0 (az.py) 建立 IoT 中樞。
 
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 * [Azure CLI (azure.js)](iot-hub-create-using-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI。
-* Azure CLI 2.0 (預覽) (az.py) - 適用於資源管理部署模型的新一代 CLI (如本文中所述)。
+* Azure CLI 2.0 (az.py) - 適用於資源管理部署模型的新一代 CLI (如本文中所述)。
 
 若要完成此教學課程，您需要下列項目：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
-* [Azure CLI 2.0 (預覽)][lnk-CLI-install]。
+* [Azure CLI 2.0][lnk-CLI-install]。
 
 ## <a name="sign-in-and-set-your-azure-account"></a>登入並設定 Azure 帳戶
 
@@ -62,16 +63,16 @@ ms.openlocfilehash: c52d9a5fadf494cc066bee773543c9d67bb8334b
     az account set --subscription {your subscription name or id}
     ```
 
-3. 您必須先註冊 IoT 提供者，然後才能部署 IoT 資源。 執行下列[命令以註冊 IoT 提供者][lnk-az-register-command]：
-    
-    ```azurecli
-    az provider register -namespace "Microsoft.Devices"
-    ```
-
-4. 您可能需要安裝 Azure CLI _iot 元件_。 執行下列[命令來新增 iot 元件][lnk-az-addcomponent-command]：
+3. 安裝 Azure CLI _iot 元件_。 執行下列[命令來新增 iot 元件][lnk-az-addcomponent-command]：
     
     ```azurecli
     az component update --add iot
+    ```
+
+4. 先註冊 IoT 提供者，然後才能部署 IoT 資源。 執行下列[命令以註冊 IoT 提供者][lnk-az-register-command]：
+    
+    ```azurecli
+    az provider register -namespace Microsoft.Devices
     ```
 
 ## <a name="create-an-iot-hub"></a>建立 IoT 中樞
@@ -81,7 +82,7 @@ ms.openlocfilehash: c52d9a5fadf494cc066bee773543c9d67bb8334b
 1. 在建立 IoT 中樞時，必須將其建立在資源群組內。 使用現有的資源群組，或執行下列[命令來建立資源群組][lnk-az-resource-command]：
     
     ```azurecli
-     az resource group create --name {your resource group name} --location westus
+     az group create --name {your resource group name} --location westus
     ```
 
     > [!TIP]
@@ -113,11 +114,11 @@ az resource delete --name {your iot hub name} --resource-group {your resource gr
 若要刪除資源群組和其所有資源，請執行下列命令︰
 
 ```azurecli
-az resource group delete --name {your resource group name}
+az group delete --name {your resource group name}
 ```
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解如何開發 IoT 中樞，請參閱以下內容︰
+若要深入了解如何開發 IoT 中樞，請參閱以下文章︰
 
 * [IoT 中樞開發人員指南][lnk-devguide]
 
@@ -137,9 +138,4 @@ az resource group delete --name {your resource group name}
 [lnk-iot-pricing]: https://azure.microsoft.com/pricing/details/iot-hub/
 [lnk-devguide]: iot-hub-devguide.md
 [lnk-portal]: iot-hub-create-through-portal.md 
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

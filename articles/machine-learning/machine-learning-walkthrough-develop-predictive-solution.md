@@ -13,57 +13,50 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 12/16/2016
+ms.date: 02/15/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 07cb3fe0d5688d5b63fe3312cad14c2274a58a09
-ms.openlocfilehash: e98a64910f28da0a8a9b4a58c717c40d791ccf00
+ms.sourcegitcommit: b652c0f817e5e56d4ff50701345b03db634f616c
+ms.openlocfilehash: 043c54094f53ae539c833eb8f167201781c677a6
+ms.lasthandoff: 02/17/2017
 
 
 ---
 # <a name="walkthrough-develop-a-predictive-analytics-solution-for-credit-risk-assessment-in-azure-machine-learning"></a>逐步解說：在 Azure Machine Learning 中為信用風險評估開發預測分析解決方案
 
-在本逐步解說中，我們將探討在 Machine Learning Studio 中開發解決方案的程序。 我們將在 Machine Learning Studio 中開發預測性分析模型，然後將其部署為 Azure Machine Learning Web 服務，以便模型使用新資料進行預測。 
+在本逐步解說中，我們將進一步了解在 Machine Learning Studio 中開發預測性分析解決方案的程序。 我們會在 Machine Learning Studio 中開發一個簡單的模型，然後將它部署為 Azure Machine Learning Web 服務，其中模型將可使用新資料來進行預測。 
 
-> [!TIP]
-> 本逐步解說假設您之前已使用 Machine Learning Studio 至少一次，而且您有些了解機器學習服務的概念 (雖然也會假設您不是專家)。
-> 
->如果您未曾使用過 **Azure Machine Learning Studio**，您可以從[在 Azure Machine Learning Studio 中建立您的第一個資料科學實驗](machine-learning-create-experiment.md)教學課程著手。 本教學課程會引導您第一次使用 Machine Learning Studio，並說明如何拖放模組到您的實驗、將它們連接在一起、執行實驗及檢視結果的基本概念。
->
->如果您是機器學習服務的新手，[初學者資料科學](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)影片系列可能是不錯的起點。 此影片系列使用日常用語和概念，是絕佳的機器學習服務介紹。
-> 
+本逐步解說會假設您之前已至少使用過一次 Machine Learning Studio，而且對機器學習服務概念有一些了解。 但不會假設您對上述任一方面有所專精。
+
+如果您未曾使用過 **Azure Machine Learning Studio**，您可以從[在 Azure Machine Learning Studio 中建立您的第一個資料科學實驗](machine-learning-create-experiment.md)教學課程著手。 該教學課程會引導您完成第一次使用 Machine Learning Studio 的程序。 它會說明基本概念，讓您了解如何將模組拖放到您的實驗、將它們連接在一起、執行實驗及檢視結果。 另一個可協助您開始使用的工具是一張圖，此圖提供 Machine Learning Studio 的功能概觀。 您可以從這裡下載並列印它：[Azure Machine Learning Studio 功能的概觀圖](machine-learning-studio-overview-diagram.md)。
+ 
+如果您大致上算是機器學習服務的新手，有一系列影片可為您提供協助。 此系列稱為[適用於初學者的資料科學](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)，它可透過使用日常語言和概念，為您提供機器學習服務的絕佳簡介。
+
+
+[!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
+ 
 
 ## <a name="the-problem"></a>問題
 
-假設您必須根據某人在信用申請書上提供的資訊預測其信用風險。  
+假設您必須根據某個人在信用申請書上提供的資訊預測其信用風險。  
 
-當然，信用風險評估是一個複雜的問題，但是我們會稍微簡化問題的參數。 然後，我們會將其做為範例，讓您據以搭配 Machine Learning Studio 與 Machine Learning Web 服務使用 Microsoft Azure Machine Learning，以建立此類的預測分析解決方案。  
+信用風險評估是一個複雜的問題，但是我們可以針對這個逐步解說將它稍微簡化。 我們將使用它作為一個範例，以說明您如何使用 Microsoft Azure Machine Learning 來建立預測性分析解決方案。 為了這麼做，我們將使用 Azure Machine Learning Studio 和 Machine Learning Web 服務。  
 
 ## <a name="the-solution"></a>解決方案
 
-在此詳細的逐步解說中，我們將從公開的信用風險資料開始，根據這項資料開發並訓練預測性模型，然後將模型部署為可供其他人用於信用風險評估的 Web 服務。
+在這個詳細的逐步解說中，我們將從可公開取得的信用風險資料開始著手，然後根據該資料來開發並訓練預測性模型。 接著，我們會將該模型部署為 Web 服務，以便供其他人用來評估信用風險。
 
-[!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
-
-我們將依照以下步驟建立信用風險評估解決方案：  
+為了建立此信用風險評估解決方案，我們將依照下列步驟操作：  
 
 1. [建立機器學習服務工作區](machine-learning-walkthrough-1-create-ml-workspace.md)
 2. [上傳現有資料](machine-learning-walkthrough-2-upload-data.md)
-3. [建立新實驗](machine-learning-walkthrough-3-create-new-experiment.md)
+3. [建立實驗](machine-learning-walkthrough-3-create-new-experiment.md)
 4. [訓練及評估模型](machine-learning-walkthrough-4-train-and-evaluate-models.md)
 5. [部署 Web 服務](machine-learning-walkthrough-5-publish-web-service.md)
 6. [存取 Web 服務](machine-learning-walkthrough-6-access-web-service.md)
 
-此逐步解說以 [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/) 中的簡化版[二進位分類：信用風險預測](http://go.microsoft.com/fwlink/?LinkID=525270)範例實驗為基礎。
-
-
-> [!TIP]
-> 若要下載並列印提供 Machine Learning Studio 功能概觀的圖表，請參閱 [Azure Machine Learning Studio 功能的概觀圖](machine-learning-studio-overview-diagram.md)。
+> [!TIP] 
+> 您可以在 [Cortana Intelligence 資源庫 (英文)](https://gallery.cortanaintelligence.com) 中，找到我們在這個逐步解說中所開發實驗的工作複本。 移至 **[逐步解說 - 信用風險預測 (英文)](https://gallery.cortanaintelligence.com/Experiment/Walkthrough-Credit-risk-prediction-1)**，然後按一下 [Open in Studio] (在 Studio 中開啟)，以將實驗的複本下載到您的 Machine Learning Studio 工作區。
 > 
-> 
-
-
-
-<!--HONumber=Dec16_HO3-->
-
+> 此逐步解說是以簡化版的[二進位分類：信用風險預測 (英文)](http://go.microsoft.com/fwlink/?LinkID=525270) 範例實驗為基礎，[資源庫](http://gallery.cortanaintelligence.com/)中也有提供此實驗。
 

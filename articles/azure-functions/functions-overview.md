@@ -7,23 +7,25 @@ author: mattchenderson
 manager: erikre
 editor: 
 tags: 
-keywords: "azure functions, 函數, 事件處理, webhook, 動態計算, 無伺服器架構"
+keywords: "azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構"
 ms.assetid: 01d6ca9f-ca3f-44fa-b0b9-7ffee115acd4
 ms.service: functions
 ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 01/17/2017
+ms.date: 02/27/2017
 ms.author: cfowler;mahender;glenga
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 30cc3b8749d5b36b89b242e2691003cc6f67f7d2
-ms.openlocfilehash: 00359057d702c556cd8beb91cf17ccf41c96f601
+ms.sourcegitcommit: 2fd12dd32ed3c8479c7460cbc0a1cac3330ff4f4
+ms.openlocfilehash: 045ec40811468eeffb25ed28ec5bfc84f074c19d
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="azure-functions-overview"></a>Azure Functions 概觀
-Azure Functions 是可在雲端輕鬆執行程式碼片段或「函數」的解決方案。 您可以只撰寫處理手邊問題所需的程式碼，而不需擔心要執行它的整個應用程式或基礎結構。 Functions 可讓開發更有生產力，而且您可以使用您選擇的開發語言，例如 C#、F#、Node.js、Python 或 PHP。 只需對您的程式碼執行的時間付費，並信任 Azure 視需要調整。
+# <a name="an-introduction-to-azure-functions"></a>Azure Functions 簡介  
+Azure Functions 是可在雲端輕鬆執行程式碼片段或「函數」的解決方案。 您可以只撰寫處理手邊問題所需的程式碼，而不需擔心要執行它的整個應用程式或基礎結構。 Functions 可讓開發更有生產力，而且您可以使用您選擇的開發語言，例如 C#、F#、Node.js、Python 或 PHP。 只需對您的程式碼執行的時間付費，並信任 Azure 視需要調整。 Azure Functions 可讓您在 Microsoft Azure 上開發無伺服器應用程式。
 
 本主題提供 Azure Functions 的高階概觀。 如果您想要直接進入正題並開始使用 Azure Functions，請從 [建立您的第一個Azure Functions](functions-create-first-azure-function.md)著手。 如果您要尋找更多有關 Functions 的技術資訊，請參閱 [開發人員參考](functions-reference.md)。
 
@@ -39,7 +41,7 @@ Azure Functions 是可在雲端輕鬆執行程式碼片段或「函數」的解�
 * **開放原始碼** - Functions 執行階段是開放原始碼的平台並 [可在 GitHub 上取得](https://github.com/azure/azure-webjobs-sdk-script)。  
 
 ## <a name="what-can-i-do-with-functions"></a>我可以用 Functions 來做什麼？
-Azure Functions 是處理資料、整合系統、使用物聯網 (IoT)，以及建置簡單 API 和微服務的絕佳解決方案。 將 Functions 視為如下的工作：映像或訂單處理、檔案維護、您要在背景執行緒中執行的長期執行工作，或者您要排程執行的任何工作。 
+Azure Functions 是處理資料、整合系統、使用物聯網 (IoT)，以及建置簡單 API 和微服務的絕佳解決方案。 考慮將 Functions 用於如下的工作：映像或訂單處理、檔案維護，或者您要排程執行的任何工作。 
 
 Functions 提供範本，可讓您開始使用重要的案例，包括下列案例︰
 
@@ -66,6 +68,7 @@ Azure Functions 可以與各種 Azure 和協力廠商服務整合。 這些服�
 * Azure 儲存體 (Blob、佇列和資料表) 
 * GitHub (webhook)
 * 內部部署 (使用服務匯流排)
+* Twilio (SMS 訊息)
 
 ## <a name="a-namepricingahow-much-does-functions-cost"></a><a name="pricing"></a>Functions 的計費方式
 Azure Functions 有兩種價格方案，選擇一個最適合您的需求的方案︰ 
@@ -77,19 +80,14 @@ Azure Functions 有兩種價格方案，選擇一個最適合您的需求的方�
 
 ## <a name="next-steps"></a>後續步驟
 * [建立您的第一個Azure Functions](functions-create-first-azure-function.md)  
-   直接進入正題並使用 Azure Functions 快速入門建立您的第一個函數。 
+  直接進入正題並使用 Azure Functions 快速入門建立您的第一個函數。 
 * [Azure Functions 開發人員參考](functions-reference.md)  
-   提供更多有關 Azure Functions 執行階段的技術資訊，以及可供撰寫函數程式碼及定義觸發程序和繫結時參考。
+  提供更多有關 Azure Functions 執行階段的技術資訊，以及可供撰寫函數程式碼及定義觸發程序和繫結時參考。
 * [測試 Azure Functions](functions-test-a-function.md)  
-   說明可用於測試函式的各種工具和技巧。
+  說明可用於測試函式的各種工具和技巧。
 * [如何調整 Azure 函式](functions-scale.md)  
   討論 Azure Functions 可用的服務方案，包括使用情況主控方案，以及如何選擇正確的方案。 
 * [深入了解 Azure App Service](../app-service/app-service-value-prop-what-is.md)  
-   Azure Functions 會利用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。 
-
-
-
-
-<!--HONumber=Dec16_HO1-->
+  Azure Functions 會利用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。 
 
 

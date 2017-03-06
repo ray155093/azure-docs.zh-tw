@@ -18,6 +18,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: 756d51e41c43be2e80f8fce1c3965e1723f7cec8
 ms.openlocfilehash: 7cd0c60b3eaaf6c2fd702d4e4b580299cb71c5fc
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -339,9 +340,4 @@ ACL 中的項目會儲存為對應於 Azure AD 中使用者的 GUID。 API 會�
 ## <a name="see-also"></a>另請參閱
 
 * [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

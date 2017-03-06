@@ -17,6 +17,7 @@ ms.author: kumud
 translationtype: Human Translation
 ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
 ms.openlocfilehash: 29d0fb3160b43d1733d843b4cf103ad821b46018
+ms.lasthandoff: 01/24/2017
 
 ---
 
@@ -82,9 +83,4 @@ ms.openlocfilehash: 29d0fb3160b43d1733d843b4cf103ad821b46018
 [設定負載平衡器分配模式](load-balancer-distribution-mode.md)
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

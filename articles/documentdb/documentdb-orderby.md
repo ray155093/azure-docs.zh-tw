@@ -4,6 +4,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
 ms.sourcegitcommit: d59ebef3cda36ba048b844f0cd2326fff66b4aa5
 ms.openlocfilehash: c5fc68fb25a4cb2166e0c0a72871d16c71397852
+ms.lasthandoff: 01/21/2017
 
 
 ---
@@ -130,10 +131,5 @@ DocumentDB 支援對於每一個查詢使用單一數值、字串或布林值屬
 * [DocumentDB 索引編製原則參考](documentdb-indexing-policies.md)
 * [DocumentDB SQL 參考](https://msdn.microsoft.com/library/azure/dn782250.aspx)
 * [DocumentDB Order By 範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/Queries)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

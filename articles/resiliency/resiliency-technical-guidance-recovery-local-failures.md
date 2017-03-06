@@ -17,6 +17,7 @@ ms.author: aglick
 translationtype: Human Translation
 ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
 ms.openlocfilehash: 6df92e3c43a9e7ae2e13f21b05cbb94088c46516
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -193,10 +194,5 @@ Azure SQL Database 針對節點層級失敗提供內建的復原功能。 所有
 
 ## <a name="next-steps"></a>後續步驟
 這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](resiliency-technical-guidance.md)。 系列文章的下一篇是 [從全區域服務中斷復原](resiliency-technical-guidance-recovery-loss-azure-region.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

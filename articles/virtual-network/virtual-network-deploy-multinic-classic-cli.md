@@ -1,10 +1,10 @@
 ---
-title: "使用 Azure CLI 建立具有多個 NIC 的 VM (傳統) | Microsoft Docs"
-description: "了解如何使用 Azure CLI 透過傳統部署模型建立具有多個 NIC 的 VM。"
+title: "建立具有多個 NIC 的 VM (傳統) - Azure CLI 1.0 | Microsoft Docs"
+description: "了解如何使用 Azure 命令列介面 (CLI) 1.0 建立具有多個 NIC 的 VM (傳統)。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-service-management
 ms.assetid: b436e41e-866c-439f-a7c7-7b4b041725ef
@@ -15,13 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: f1a4dc135721a1c2a134806fbae031ee60e23074
-ms.openlocfilehash: 4d9f5f918e8f06dedcce14a880e436f807a5a7b0
+ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
+ms.openlocfilehash: b62421b7289650818748d0016dccfdf42ef0a768
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="create-a-vm-classic-with-multiple-nics-using-the-azure-cli"></a>使用 Azure CLI 建立具有多個 NIC 的 VM (傳統)
+# <a name="create-a-vm-classic-with-multiple-nics-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立具有多個 NIC 的 VM (傳統)
+
 [!INCLUDE [virtual-network-deploy-multinic-classic-selectors-include.md](../../includes/virtual-network-deploy-multinic-classic-selectors-include.md)]
 
 您可以在 Azure 中建立虛擬機器 (VM) 並將多個網路介面 (NIC) 連接至每個 VM。 有多個 NIC 時，可透過各個 NIC 分隔不同的流量類型。 例如，一個 NIC 可能與網際網路進行通訊，而另一個 NIC 則只與未連線到網際網路的內部資源進行通訊。 透過多個 NIC 分隔網路流量是許多網路虛擬設備 (例如應用程式交付和 WAN 最佳化解決方案) 所需的功能。
@@ -186,9 +189,4 @@ ms.openlocfilehash: 4d9f5f918e8f06dedcce14a880e436f807a5a7b0
         info:    Getting virtual machines
         info:    Adding Data-Disk
         info:    vm disk attach-new command OK
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

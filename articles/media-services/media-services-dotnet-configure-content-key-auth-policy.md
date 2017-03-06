@@ -17,6 +17,7 @@ ms.author: juliako;mingfeiy
 translationtype: Human Translation
 ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
 ms.openlocfilehash: 3dcd45307716b7343fbac00e083e8f26c9eb967f
+ms.lasthandoff: 01/11/2017
 
 
 ---
@@ -425,10 +426,5 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
 ## <a name="next-step"></a>後續步驟
 現在，您已設定內容金鑰授權原則，請移至 [如何設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md) 主題。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

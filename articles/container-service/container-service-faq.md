@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/10/2017
+ms.date: 02/21/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 3bb83f231d16819e5f5da7edbc9fc3f38baff011
-ms.openlocfilehash: b0c5efa595b0377d7ae2d936d0394667356d18c9
+ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
+ms.openlocfilehash: c28391b752c071161796421aee63402899d2a0a4
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -29,15 +30,15 @@ ms.openlocfilehash: b0c5efa595b0377d7ae2d936d0394667356d18c9
 
 ### <a name="which-container-orchestrators-do-you-support-on-azure-container-service"></a>Azure Container Service 上支援哪些容器 Orchestrator？ 
 
-支援開放原始碼的 DC/OS、Docker Swarm 和 Kubernetes。 對於 DC/OS 和 Docker Swarm 的支援已正式推出，但 Kubernetes 的支援目前仍屬預覽狀態。 如需詳細資訊，請參閱[概觀](container-service-intro.md)。
+支援開放原始碼的 DC/OS、Docker Swarm 和 Kubernetes。 如需詳細資訊，請參閱[概觀](container-service-intro.md)。
  
-### <a name="do-you-support-swarm-mode"></a>是否支援 Swarm 模式？ 
+### <a name="do-you-support-docker-swarm-mode"></a>是否支援 Docker Swarm 模式？ 
 
 目前不支援 Swarm 模式，但已排入服務的規劃藍圖之中。 
 
 ### <a name="does-azure-container-service-support-windows-containers"></a>Azure Container Service 是否支援 Windows 容器？  
 
-目前支援 Linux 容器。 至於 DC/OS、Docker Swarm 和 Kubernetes Orchestrator 的 Windows 容器支援則已排入服務的規劃藍圖之中。 
+目前支援 Linux 容器使用所有 Orchestrator 。 支援 Windows 容器使用 Kubernetes 處於預覽階段。
 
 ### <a name="do-you-recommend-a-specific-orchestrator-in-azure-container-service"></a>是否建議在 Azure Container Service 中使用特定 Orchestrator？ 
 我們一般不建議使用特定 Orchestrator。 如果您有使用其中一種受支援 Orchestrator 的經驗，則可以在 Azure Container Service 中套用該經驗。 不過，資料趨勢表明，DC/OS 已在生產環境中證明適用於巨量資料和 IoT 工作負載，Kubernetes 適合用於雲端原生的工作負載，而 Docker Swarm 則眾所皆知可與 Docker 工具整合且容易上手。
@@ -55,29 +56,23 @@ Azure Container Service 是具有 SLA 保證的 Azure 服務，其功能可在 A
 
 您可以在作業系統上使用標準工具來建立 SSH RSA 公用和私用金鑰組，以針對叢集的 Linux 虛擬機器進行驗證。 如需相關步驟，請參閱 [OS X 及 Linux](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md) 或 [Windows](../virtual-machines/virtual-machines-linux-ssh-from-windows.md) 指引。 
 
-如果您使用 [Azure CLI 2.0 (預覽) 命令](container-service-create-acs-cluster-cli.md)部署容器服務叢集，系統會自動為叢集產生 SSH 金鑰。
+如果您使用 [Azure CLI 2.0 命令](container-service-create-acs-cluster-cli.md)部署容器服務叢集，系統會自動為叢集產生 SSH 金鑰。
 
 ### <a name="how-do-i-create-a-service-principal-for-my-kubernetes-cluster"></a>如何為 Kubernetes 叢集建立服務主體？
 
-另外需要 Azure Active Directory 服務主體識別碼和密碼，才能在 Azure Container Service 中建立 Kubernetes 叢集。 如需詳細資訊，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)
+另外需要 Azure Active Directory 服務主體識別碼和密碼，才能在 Azure Container Service 中建立 Kubernetes 叢集。 如需詳細資訊，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)。
 
 
-如果您使用 [Azure CLI 2.0 (預覽) 命令](container-service-create-acs-cluster-cli.md)部署 Kubernetes 叢集，系統會自動為叢集產生服務主體認證。
+如果您使用 [Azure CLI 2.0 命令](container-service-create-acs-cluster-cli.md)部署 Kubernetes 叢集，系統會自動為叢集產生服務主體認證。
 
 
 ### <a name="how-do-i-increase-the-number-of-masters-after-a-cluster-is-created"></a>如何在建立叢集後增加主要主機的數目？ 
-叢集建立之後，主要主機的數目就已固定，且無法變更。 在建立叢集時，您最好選取三個或五個主要主機，以便享有高可用性。
+叢集建立之後，主要主機的數目就已固定，且無法變更。 在建立叢集時，您最好選取多個主要節點，以便享有高可用性。
 
-> [!NOTE]
-> 在預覽版中，Azure Container Service 的 Kubernetes 叢集只能有一個主要主機。
->
 
 ### <a name="how-do-i-increase-the-number-of-agents-after-a-cluster-is-created"></a>如何在建立叢集後增加代理程式的數目？ 
 您可以使用 Azure 入口網站或命令列工具來調整叢集中的代理程式數目。 請參閱[調整 Azure Container Service 叢集](container-service-scale.md)。
 
-> [!NOTE]
-> 在預覽版中，Azure Container Service 的 Kubernetes 叢集有固定數目的代理程式。 
->
 
 ### <a name="what-are-the-urls-of-my-masters-and-agents"></a>主要主機和代理程式的 URL 為何？ 
 Azure Container Service 中的叢集資源 URL 是根據您所提供的 DNS 名稱前置詞和您為部署選擇的 Azure 區域名稱來產生。 例如，主要節點的完整網域名稱 (FQDN) 形式如下︰
@@ -114,9 +109,4 @@ ssh userName@masterFQDN –A –p 22
 ## <a name="next-steps"></a>後續步驟
 
 * [深入了解](container-service-intro.md) Azure Container Service。
-* 使用[入口網站](container-service-deployment.md)或 [Azure CLI 2.0 (預覽)](container-service-create-acs-cluster-cli.md) 部署容器服務叢集。
-
-
-<!--HONumber=Feb17_HO3-->
-
-
+* 使用[入口網站](container-service-deployment.md)或 [Azure CLI 2.0](container-service-create-acs-cluster-cli.md) 部署容器服務叢集。

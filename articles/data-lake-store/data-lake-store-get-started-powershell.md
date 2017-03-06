@@ -17,6 +17,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
 ms.openlocfilehash: ebe8724d73769eb55e40b8af2056880a5a4007ce
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -201,10 +202,5 @@ ms.openlocfilehash: ebe8724d73769eb55e40b8af2056880a5a4007ce
 * [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
 * [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 * [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

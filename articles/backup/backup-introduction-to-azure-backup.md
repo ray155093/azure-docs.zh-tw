@@ -1,6 +1,6 @@
 ---
 title: "何謂 Azure 備份？ | Microsoft Docs"
-description: "您可以使用 Azure 備份和復原服務，從 Windows Server、Windows 電腦、System Center DPM 伺服器和 Azure 虛擬機器備份和還原資料與應用程式。"
+description: "您可以使用 Azure 備份和復原服務，從 Windows Server 與工作站、System Center DPM 伺服器和工作負載及 Azure 虛擬機器備份和還原資料與應用程式。"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -13,11 +13,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 2/6/2017
+ms.date: 2/23/2017
 ms.author: markgal;trinadhk
 translationtype: Human Translation
-ms.sourcegitcommit: bda71281617fa37f7f2a08e238c706dd2a4f5576
-ms.openlocfilehash: 99246e97f096b872e225e8818def059bdc2211c6
+ms.sourcegitcommit: 39ad8e07659a228e4a4b861cc98e9f3e830aaab0
+ms.openlocfilehash: 63d3d95300f3d2353471b8ca4923f3bf682464bb
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -45,7 +46,7 @@ Azure 備份是您可用來備份 (或保護) 和還原 Microsoft Cloud 資料�
 
 **應用程式一致備份** - 無論是備份檔案伺服器、虛擬機器或 SQL Database，您都需要知道復原點具有所有必要的資料來還原備份的複本。 Azure 備份提供應用程式一致備份，確保資料還原不需要其他修正程式。 還原應用程式一致的資料會減少還原時間，讓您能夠快速回到執行狀態。
 
-**長期保留** -  您可以使用 Azure 短期與長期保留，取代將備份複本從磁碟切換到磁帶，然後再將磁帶移至長期儲存的離站位置。 Azure 不會限制您在備份或復原服務保存庫中保留資料的時間長度。 只要您喜歡，就可以將資料保留在保存庫中。 Azure 備份的每個受保護執行個體上限為 9999 個復原點。 請參閱本文的[備份和保留](backup-introduction-to-azure-backup.md#backup-and-retention)一節，以了解這項限制對您的備份需求有何影響。  
+**長期保留** - 您可以使用 Azure 短期與長期保留，取代將備份複本從磁碟切換到磁帶，再將磁帶移至離站位置。 Azure 不會限制您在備份或復原服務保存庫中保留資料的時間長度。 只要您喜歡，就可以將資料保留在保存庫中。 Azure 備份的每個受保護執行個體上限為 9999 個復原點。 請參閱本文的[備份和保留](backup-introduction-to-azure-backup.md#backup-and-retention)一節，以了解這項限制對您的備份需求有何影響。  
 
 ## <a name="which-azure-backup-components-should-i-use"></a>我該使用哪一個 Azure 備份元件？
 如果您不確定哪一個 Azure 備份元件適用於您的需求，請參閱下表以了解每個元件的防護相關資訊。 Azure 入口網站提供內建的精靈，可引導您選擇要下載和部署的元件。 精靈是建立復原服務保存庫的一部分，可引導您逐步選取備份目標，以及選擇要防護的資料或應用程式。
@@ -96,7 +97,7 @@ Azure 備份是您可用來備份 (或保護) 和還原 Microsoft Cloud 資料�
 Azure 備份可保護進階儲存體 VM。 Azure 進階儲存體是一個以固態硬碟 (SSD) 為基礎的儲存體產品，專門設計用來支援需大量 I/O 的工作負載。 進階儲存體非常適合用於虛擬機器 (VM) 工作負載。 如需有關進階儲存體的詳細資訊，請參閱此文章：[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)
 
 ### <a name="back-up-premium-storage-vms"></a>備份進階儲存體 VM
-在備份進階儲存體 VM 時，備份服務會在進階儲存體帳戶中建立臨時預備位置。 名為「AzureBackup-」的預備位置等於連接至 VM 之進階磁碟的資料大小總計。 檢查儲存體帳戶中是否有足夠的臨時預備位置可用空間。 如需詳細資訊，請參閱文章[進階儲存體限制](../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets)。
+在備份進階儲存體 VM 時，備份服務會在進階儲存體帳戶中建立臨時預備位置。 名為「AzureBackup-」的預備位置等於連接至 VM 之進階磁碟的資料大小總計。 檢查儲存體帳戶中是否有足夠的臨時預備位置可用空間。 如需詳細資訊，請參閱[進階儲存體限制](../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets)一文。
 
 > [!NOTE]
 > 請勿修改或編輯預備位置。
@@ -112,10 +113,10 @@ Azure 備份可保護進階儲存體 VM。 Azure 進階儲存體是一個以固�
 Azure 備份可保護受控磁碟 VM。 受控磁碟可讓您免於管理虛擬機器的儲存體帳戶，並可大幅簡化 VM 佈建。
 
 ### <a name="back-up-managed-disk-vms"></a>備份受控磁碟 VM
-受控磁碟上的 VM 備份與 Resource Manager VM 備份沒有任何差異。 您可以直接從 VM 檢視或從復原服務保存庫檢視進行備份。 受控磁碟上的 VM 備份是透過以受控磁碟為基礎的 RestorePoint 集合支援。 Azure 備份目前不支援使用 Azure 磁碟加密 (ADE) 加密之受控磁碟 VM 的備份。
+受控磁碟上的 VM 備份與 Resource Manager VM 備份沒有任何差異。 在 Azure 入口網站中，您可以直接從 [虛擬機器] 檢視或 [復原服務保存庫] 檢視來設定備份工作。 您可以透過以受控磁碟為基礎的 RestorePoint 集合來備份受控磁碟上的 VM。 Azure 備份目前不支援備份使用 Azure 磁碟加密 (ADE) 來加密的受控磁碟 VM。
 
 ### <a name="restore-managed-disk-vms"></a>還原受控磁碟 VM
-Azure 備份可讓您還原具有受控磁碟的完整 VM﹐或將受控磁碟還原到 Resource Manager 儲存體帳戶。 在還原過程中建立的磁碟會由 Azure 管理，而在還原過程中建立的儲存體帳戶類似於其他任何 Resource Manager 儲存體帳戶並且應由客戶進行管理。
+Azure 備份可讓您還原具有受控磁碟的完整 VM﹐或將受控磁碟還原到 Resource Manager 儲存體帳戶。 Azure 會在還原程序期間管理受控磁碟。 您 (客戶) 管理在還原程序期間建立的儲存體帳戶。
 
 ## <a name="what-are-the-features-of-each-backup-component"></a>每個備份元件的功能為何？
 下列各節提供每個 Azure 備份元件的可用性，或各種其所支援功能的彙總資料表。 請參閱下列各個資料表，以了解額外支援或詳細資料。
@@ -137,8 +138,6 @@ Azure 備份可讓您還原具有受控磁碟的完整 VM﹐或將受控磁碟�
 #### <a name="compression"></a>壓縮
 備份會經過壓縮以減少所需的儲存空間。 唯一不進行壓縮的元件為 VM 延伸模組。 VM 延伸模組會將所有備份資料從您的儲存體帳戶複製到相同區域中的備份保存庫。 傳輸資料時，不使用任何壓縮。 傳輸資料而不壓縮會需要稍微多一點儲存體空間。 不過，儲存未經壓縮的資料可讓還原時間加快，您需要該復原點。
 
-#### <a name="incremental-backup"></a>增量備份
-不論目標儲存體 (磁碟、磁帶、備份保存庫) 為何，每個元件都支援增量備份。 增量備份可確保備份符合儲存和時間效率，因為它只會傳輸自上次備份後所做的變更。
 
 #### <a name="disk-deduplication"></a>磁碟重複資料刪除
 當您在 [HYPER-V 虛擬機器上](http://blogs.technet.com/b/dpm/archive/2015/01/06/deduplication-of-dpm-storage-reduce-dpm-storage-consumption.aspx)部署 System Center DPM 或 Azure 備份伺服器時，可以充分利用重複資料刪除。 Windows Server 重複資料刪除會在當作備份儲存體連接至虛擬機器的虛擬硬碟 (VHD) 上，執行重複資料刪除 (主機層級)。
@@ -147,6 +146,21 @@ Azure 備份可讓您還原具有受控磁碟的完整 VM﹐或將受控磁碟�
 > 重複資料刪除不適用於任何在 Azure 中的備份元件。 當 System Center DPM 和備份伺服器部署在 Azure 中，連接至 VM 的儲存體磁碟不能進行重複資料刪除。
 >
 >
+
+### <a name="incremental-backup-explained"></a>增量備份的說明
+不論目標儲存體 (磁碟、磁帶、備份保存庫) 為何，每個 Azure 備份元件都支援增量備份。 增量備份可確保備份符合儲存和時間效率，因為它只會傳輸自上次備份後所做的變更。
+
+#### <a name="comparing-full-differential-and-incremental-backup"></a>比較完整、差異和增量備份
+
+每一種備份方法的儲存體耗用量、復原時間目標 (RTO) 以及網路耗用量都有所不同。 若要降低備份的擁有權總成本 (TCO)，您需要了解如何選擇最佳的備份解決方案。 下圖比較完整備份、差異備份和增量備份。 在影像中，資料來源 A 由 A1-A10 的 10 個儲存體區塊所組成，每月備份一次。 區塊 A2、A3、A4 和 A9 在第一個月有所變更，而 A5 則在下個月有所變更。
+
+![圖中顯示備份方法的比較](./media/backup-introduction-to-azure-backup/backup-method-comparison.png)
+
+使用「完整備份」，每個備份複本都包含整個資料來源。 完整備份會在每次傳輸備份複本時，耗用大量網路頻寬和儲存體。
+
+「差異備份」只儲存自從初始完整備份以來有所變更的區塊，這樣會使網路和儲存體耗用量較少。 差異備份不會保留未變更資料的備援複本。 不過，由於會傳輸並儲存後續備份之間保持不變的資料區塊，使得差異備份效率不佳。 在第二個月會備份有所變更的區塊 A2、A3、A4 和 A9。 在第三個月會再次備份這一些相同區塊，以及有所變更的區塊 A5。 在執行下次完整備份之前，都會繼續備份有所變更的區塊。
+
+「增量備份」藉由只儲存自從上次備份後有所變更的資料區塊，達到高儲存體和網路效率。 使用增量備份，就不需要定期執行完整備份。 在範例中，於第一個月執行完整備份之後，有所變更的區塊 A2、A3、A4、和 A9 會標示為已變更，並在第二個月傳輸。 在第三個月，只標示區塊 A5 有所變更，而加以傳輸。 移動較少的資料可節省儲存體和網路資源，進而降低 TCO。   
 
 ### <a name="security"></a>安全性
 | 功能 | Azure 備份代理程式 | System Center DPM | Azure 備份伺服器 | Azure IaaS VM 備份 |
@@ -179,14 +193,14 @@ Azure 備份可讓您還原具有受控磁碟的完整 VM﹐或將受控磁碟�
 
 VM 延伸模組 (在 IaaS VM 上) 會透過儲存體網路直接從 Azure 儲存體帳戶讀取資料，所以不需要壓縮此流量。
 
-如果您要將資料備份到 System Center DPM 或 Azure 備份伺服器，請壓縮從主要伺服器到備份伺服器的資料。 將資料備份到 DPM 或 Azure 備份伺服器之前壓縮資料以節省頻寬。
+如果您要將資料備份到 System Center DPM 或 Azure 備份伺服器，請壓縮要從主要伺服器送往備份伺服器的資料。 將資料備份到 DPM 或 Azure 備份伺服器之前，壓縮資料可以節省頻寬。
 
 #### <a name="network-throttling"></a>網路節流
 Azure 備份代理程式提供網路節流，可讓您控制在資料傳輸期間使用網路頻寬的方式。 如果您需要在上班時間內備份資料，但不希望備份程序干擾其他網際網路流量，節流會很有幫助。 資料傳輸的節流適用於備份和還原活動。
 
 ## <a name="backup-and-retention"></a>備份和保留
 
-Azure 備份每個*受保護的執行個體*上限為 9999 個復原點 (也稱為備份複本或快照集)。 受保護的執行個體可以是電腦、(實體或虛擬) 伺服器，或設定為將資料備份至 Azure 的工作負載。 如需詳細資訊，請參閱〈[什麼是受保護的執行個體](backup-introduction-to-azure-backup.md#what-is-a-protected-instance)〉。 儲存資料的備份複本之後，執行個體就會受到保護。 資料的備份複本就是保護。 如果來源資料已遺失或損毀，備份可以還原來源資料。 下表顯示每個元件的最大備份頻率。 備份原則設定決定您多快會用完復原點。 比方說，如果您每天建立復原點，則在用完之前可以保留復原點 27 年。 如果您採取每月建立復原點，則在用完之前可以保留復原點 833 年。 備份服務不會對復原點設定到期時間限制。
+Azure 備份每個*受保護的執行個體*上限為 9999 個復原點 (也稱為備份複本或快照集)。 受保護的執行個體可以是電腦、(實體或虛擬) 伺服器，或設定為將資料備份至 Azure 的工作負載。 如需詳細資訊，請參閱[什麼是受保護的執行個體](backup-introduction-to-azure-backup.md#what-is-a-protected-instance)一節。 儲存資料的備份複本之後，執行個體就會受到保護。 資料的備份複本就是保護。 如果來源資料已遺失或損毀，備份可以還原來源資料。 下表顯示每個元件的最大備份頻率。 備份原則設定決定您多快會用完復原點。 比方說，如果您每天建立復原點，則在用完之前可以保留復原點 27 年。 如果您採取每月建立復原點，則在用完之前可以保留復原點 833 年。 備份服務不會對復原點設定到期時間限制。
 
 |  | Azure 備份代理程式 | System Center DPM | Azure 備份伺服器 | Azure IaaS VM 備份 |
 | --- | --- | --- | --- | --- |
@@ -203,8 +217,8 @@ Azure 備份每個*受保護的執行個體*上限為 9999 個復原點 (也稱�
 受保護執行個體的常見範例是虛擬機器、應用程式伺服器、資料庫，以及執行 Windows 作業系統的個人電腦。 例如：
 
 * 執行 Hyper-V 或 Azure IaaS Hypervisor 網狀架構的虛擬機器。 虛擬機器的客體作業系統可以是 Windows Server 或 Linux。
-* 應用程式伺服器︰應用程式伺服器可以是需要備份其資料，且執行 Windows Server 和工作負載的實體或虛擬機器。 一般工作負載為 Microsoft SQL Server、Microsoft Exchange Server、Microsoft SharePoint Server、Microsoft Dynamics 及 Windows Server 的檔案伺服器角色。 若要備份這些工作負載，您需要 System Center Data Protection Manager (DPM) 或 Azure 備份伺服器。
-* 執行 Windows 作業系統的個人電腦或膝上型電腦。
+* 應用程式伺服器︰應用程式伺服器可以是需要備份其資料，且執行 Windows Server 和工作負載的實體或虛擬機器。 一般工作負載為 Microsoft SQL Server、Microsoft Exchange Server、Microsoft SharePoint Server 及 Windows Server 的檔案伺服器角色。 若要備份這些工作負載，您需要 System Center Data Protection Manager (DPM) 或 Azure 備份伺服器。
+* 執行 Windows 作業系統的個人電腦、工作站或膝上型電腦。
 
 
 ## <a name="what-is-the-vault-credential-file"></a>什麼是保存庫認證檔？
@@ -213,7 +227,7 @@ Azure 備份每個*受保護的執行個體*上限為 9999 個復原點 (也稱�
 您只需使用保存庫認證來註冊伺服器或電腦。 不過，請妥善保存庫認證，如果遺失或遭他人取得，則可用來針對相同的保存庫註冊其他電腦。 因為備份資料使用了只有您能存取的複雜密碼進行加密，所以現有的備份資料不會遭到洩漏。 保存庫認證將於 48 小時後過期。 雖然您可以頻繁地多次下載備份保存庫的保存庫認證，但只有最新的認證可用於註冊。
 
 ## <a name="how-does-azure-backup-differ-from-azure-site-recovery"></a>Azure 備份與 Azure Site Recovery 有何不同？
-Azure 備份與 Azure Site Recovery 類似，這兩個服務皆可備份資料及還原資料，但其核心價值定位不同。
+Azure 備份與 Azure Site Recovery 類似，這兩個服務皆可備份資料及還原資料。 但這些服務的核心價值定位不同。
 
 Azure 備份會在內部部署和雲端保護資料。 Azure Site Recovery 可協調虛擬機器和實體伺服器的複寫、容錯移轉及容錯回復。 這兩項服務都很重要，因為您的災害復原解決方案必須讓資料保持安全且可復原 (備份)，「並且」  在服務中斷時讓您的工作負載可供使用 (Site Recovery)。
 
@@ -240,9 +254,4 @@ Azure 備份會在內部部署和雲端保護資料。 Azure Site Recovery 可�
 [green]: ./media/backup-introduction-to-azure-backup/green.png
 [yellow]: ./media/backup-introduction-to-azure-backup/yellow.png
 [red]: ./media/backup-introduction-to-azure-backup/red.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

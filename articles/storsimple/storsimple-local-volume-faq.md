@@ -17,6 +17,7 @@ ms.author: manuaery
 translationtype: Human Translation
 ms.sourcegitcommit: a437ef2ba20970e2dd9a06fbc9e39fff2bb82da7
 ms.openlocfilehash: 22eb95bf0e3a20893acbb860ad10cfe6a3bcf088
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -214,10 +215,5 @@ ms.openlocfilehash: 22eb95bf0e3a20893acbb860ad10cfe6a3bcf088
 **問：** 是否可以將具有本機固定磁碟區的磁碟區容器容錯移轉到雲端應用裝置？
 
 **答：** 是，您可以這麼做。 本機固定磁碟區會容錯移轉為階層式磁碟區。 [跨越版本的本機固定磁碟區容錯移轉和 DR](storsimple-device-failover-disaster-recovery.md#considerations-for-device-failover)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

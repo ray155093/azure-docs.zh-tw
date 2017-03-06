@@ -18,6 +18,7 @@ ms.author: robmcm;cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: b5f828f90c73f5fd0356fde4e71c11d4d27ec794
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -36,7 +37,7 @@ ms.openlocfilehash: b5f828f90c73f5fd0356fde4e71c11d4d27ec794
 2. 從左側功能表中，按一下 [新增] > [資料 + 儲存體] > [MySQL 資料庫]。
    
     ![在 Azure 中建立 MySQL 資料庫 - 開始](./media/store-php-create-mysql-database/create-db-1-start.png)
-3. 在 [新增 MySQL 資料庫][](azure-portal-overview.md) 刀鋒視窗中，依下列方式設定新的 MySQL 資料庫 (刀鋒視窗︰以水平方式開啟的入口網站頁面)：
+3. 在新增 MySQL 資料庫 [刀鋒視窗](azure-portal-overview.md) 中，依下列方式設定新的 MySQL 資料庫 (刀鋒視窗︰以水平方式開啟的入口網站頁面)：
    
    * **資料庫名稱**︰輸入可唯一識別的名稱
    * **訂用帳戶**：選擇要使用的訂用帳戶
@@ -101,7 +102,7 @@ ms.openlocfilehash: b5f828f90c73f5fd0356fde4e71c11d4d27ec794
 3. 現在，執行開發伺服器：
    
         php artisan serve
-4. 在瀏覽器中，瀏覽至 http://localhost:8000，然後依照所示的方式註冊新使用者︰
+4. 在瀏覽器中，瀏覽至 http://localhost:8000 ，然後依照所示的方式註冊新使用者︰
    
     ![連接到 Azure 中的 MySQL 資料庫 - 註冊使用者](./media/store-php-create-mysql-database/connect-db-2-development-server.png)
    
@@ -140,10 +141,5 @@ ms.openlocfilehash: b5f828f90c73f5fd0356fde4e71c11d4d27ec794
 
 ## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱 [PHP 開發人員中心](/develop/php/)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

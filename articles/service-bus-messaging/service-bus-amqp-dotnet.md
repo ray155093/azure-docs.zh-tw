@@ -17,6 +17,7 @@ ms.author: sethm
 translationtype: Human Translation
 ms.sourcegitcommit: 220b0f6212268a44226edefa4afc5671306ff295
 ms.openlocfilehash: 9d2ff3ff50aebc3e25f553a86ca13d8a9fe7400c
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -129,9 +130,4 @@ ms.openlocfilehash: 9d2ff3ff50aebc3e25f553a86ca13d8a9fe7400c
 [服務匯流排 AMQP 概觀]: service-bus-amqp-overview.md
 [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

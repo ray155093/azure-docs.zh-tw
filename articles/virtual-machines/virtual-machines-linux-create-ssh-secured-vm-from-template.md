@@ -15,13 +15,15 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 10/24/2016
 ms.author: v-livech
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: ea1274dd53a93f00fa251ed03684b17b58b009c2
+ms.sourcegitcommit: fa842efd99718be7fa9eaf8aac8030c32cbceeec
+ms.openlocfilehash: bd0c9fd0044ce8a5de9004c68b1267b8b66df80a
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="create-a-linux-vm-using-an-azure-template"></a>使用 Azure 範本建立 Linux VM
+# <a name="how-to-create-a-linux-vm-using-an-azure-resourec-manager-template"></a>如何使用 Azure Resource Manager 範本建立 Linux VM
 本文示範如何使用 Azure 範本，在 Azure 上快速部署 Linux 虛擬機器。  本文需要：
 
 * 一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))。
@@ -78,10 +80,5 @@ info:    group create command OK
 
 ## <a name="next-steps"></a>後續步驟
 請搜尋 [範本庫](https://azure.microsoft.com/documentation/templates/) 以探索接下來要部署哪些應用程式架構。
-
-
-
-
-<!--HONumber=Nov16_HO2-->
 
 

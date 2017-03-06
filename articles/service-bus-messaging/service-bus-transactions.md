@@ -17,6 +17,7 @@ ms.author: clemensv;sethm
 translationtype: Human Translation
 ms.sourcegitcommit: c39abad6c5e2a9e2ae7add9ecda48783f61bc736
 ms.openlocfilehash: 8d0f3818831a22550fb0eea9bcbc1f62b133003a
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -80,10 +81,5 @@ using (scope = new TransactionScope())
 * [使用服務匯流排的不可部分完成交易範例](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions)
 * [比較 Azure 佇列和服務匯流排佇列](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
 * [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

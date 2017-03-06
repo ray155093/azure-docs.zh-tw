@@ -17,6 +17,7 @@ ms.author: clemensv;jotaub;hillaryc;sethm
 translationtype: Human Translation
 ms.sourcegitcommit: 994a379129bffd7457912bc349f240a970aed253
 ms.openlocfilehash: 72bfbc4c3cc4a3941d842f4fc688df5d6fb46ba8
+ms.lasthandoff: 01/12/2017
 
 
 ---
@@ -310,9 +311,4 @@ CBS 會定義由傳訊基礎結構所提供的虛擬管理節點 (名為 *$cbs*)
 [服務匯流排 AMQP 概觀]: service-bus-amqp-overview.md
 [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

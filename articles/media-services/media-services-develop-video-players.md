@@ -17,6 +17,7 @@ ms.author: juliako
 translationtype: Human Translation
 ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
 ms.openlocfilehash: b13861ce404b8c4215248a2498c5969fc19ad536
+ms.lasthandoff: 01/11/2017
 
 
 ---
@@ -74,10 +75,5 @@ Azure 媒體服務允許透過 Windows Media 平台插入廣告：Player Framewo
 [透過 DASH.js 將 MPEG-DASH 彈性資料流視訊嵌入到 HTML5 應用程式](media-services-embed-mpeg-dash-in-html5.md)
 
 [GitHub dash.js 存放庫](https://github.com/Dash-Industry-Forum/dash.js)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

@@ -15,8 +15,9 @@ ms.topic: hero-article
 ms.date: 02/06/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 27df1166a23e3ed89fdc86f861353c80a4a467ad
-ms.openlocfilehash: 28c41f08bf8eaf7e6679040bb8fbab2e134d08fb
+ms.sourcegitcommit: 67b4861ac564565b2a36932ae15141a1e1f56035
+ms.openlocfilehash: d315c5ed186c24236c860df1ad1b79d55c9a4d57
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: 28c41f08bf8eaf7e6679040bb8fbab2e134d08fb
 >
 >
 
-Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫、容錯移轉及復原 (BCDR) 策略，為您的商務持續性與災害復原做出貢獻。 機器可以複寫至 Azure，或次要的內部部署資料中心。 如需快速概觀，請參閱 [什麼是 Azure Site Recovery？](site-recovery-overview.md)。
+Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫、容錯移轉及復原 (BCDR) 策略，為您的商務持續性與災害復原做出貢獻。 機器可以複寫至 Azure，或次要的內部部署資料中心。 如需快速概觀，請參閱 [什麼是 Azure Site Recovery？](site-recovery-overview.md)
 
 ## <a name="overview"></a>概觀
 本文說明如何部署 Site Recovery，將位於 VMM 私人雲端中的 Hyper-V 主機伺服器上的 Hyper-V 虛擬機器複寫至 Azure。
@@ -60,7 +61,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 | --- | --- |
 | **VMM** |您需要至少一部部署為實體或虛擬獨立伺服器，或是部署為虛擬叢集的 VMM 伺服器。 <br/><br/>VMM 伺服器應執行附帶最新累計更新的 System Center 2012 R2。<br/><br/>您至少必須在 VMM 伺服器上設定一個雲端。<br/><br/>您想要保護的來源雲端必須包含一或多個 VMM 主機群組。<br/><br/>若要深入了解如何設定 VMM 雲端，請參閱 Keith Mayer 部落格上的[逐步解說：使用 System Center 2012 SP1 VMM 建立私人雲端](http://blogs.technet.com/b/keithmayer/archive/2013/04/18/walkthrough-creating-private-clouds-with-system-center-2012-sp1-virtual-machine-manager-build-your-private-cloud-in-a-month.aspx)。 |
 | **Hyper-V** |您在 VMM 雲端中需要一或多個 Hyper-V 主機伺服器或叢集。 主機伺服器應該有一或多個 VM。 <br/><br/>Hyper-V 伺服器必須執行於至少 **Windows Server 2012 R2** (具有 Hyper-V 角色) 或 **Microsoft Hyper-V Server 2012 R2** 且已安裝最新的更新。<br/><br/>任何包含您想要保護之 VM 的 Hyper-V 伺服器必須位於 VMM 雲端。<br/><br/>如果您在叢集中執行 Hyper-V，請注意，如果您具有靜態 IP 位址叢集，並不會自動建立叢集代理。 您必須手動設定叢集代理。 在 Aidan Finn 的部落格項目中[深入了解](https://www.petri.com/use-hyper-v-replica-broker-prepare-host-clusters)。 |
-| **受保護的機器** |您想要保護的 VM 應該符合 [Azure 需求](site-recovery-best-practices.md#azure-virtual-machine-requirements)。 |
+| **受保護的機器** | 您想要保護的 VM 應該符合 [Azure 需求](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。 |
 
 ## <a name="network-mapping-prerequisites"></a>網路對應的必要條件
 當您在 Azure 網路對應中保護虛擬機器，請對應來源 VMM 伺服器上的 VM 網路和目標 Azure 網路，以啟用下列項目：
@@ -74,13 +75,12 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 * 您想要在來源 VMM 伺服器上保護的虛擬機器應該連線到 VM 網路。 該網路應該連結到與雲端相關聯的邏輯網路。
 * 複寫的虛擬機器可在容錯移轉之後連線的 Azure 網路。 您將在容錯移轉時選取此網路。 此網路應該和您的 Azure Site Recovery 訂用帳戶在相同的區域中。
 
-準備網路對應，如下所示：
 
-1. [閱讀](site-recovery-network-mapping.md) 網路對應需求。
-2. 在 VMM 中準備 VM 網路：
+在 VMM 中準備網路：
 
    * [設定邏輯網路](https://technet.microsoft.com/library/jj721568.aspx)。
    * [設定 VM 網路](https://technet.microsoft.com/library/jj721575.aspx)。
+
 
 ## <a name="step-1-create-a-site-recovery-vault"></a>步驟 1：建立 Site Recovery 保存庫
 1. 從您想要註冊的 VMM 伺服器登入 [管理入口網站](https://portal.azure.com) 。
@@ -146,7 +146,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 12. 在 [同步處理雲端中繼資料]  中，選取您是否要將 VMM 伺服器上所有雲端的中繼資料與保存庫同步。 這個動作只需要在每個伺服器上進行一次。 如果不要同步所有雲端，您可以取消核取這項設定，再於 VMM 主控台的雲端屬性中個別同步每個雲端。
 13. 按 [下一步]  ，完成此程序。 註冊後，Azure Site Recovery 即可從 VMM 伺服器擷取中繼資料。 此伺服器會顯示於保存庫中 [伺服器] 頁面的 [VMM 伺服器] 索引標籤上。
 
-    ![Lastpage](./media/site-recovery-vmm-to-azure-classic/provider13.PNG)
+    ![最後一頁](./media/site-recovery-vmm-to-azure-classic/provider13.PNG)
 
 註冊後，Azure Site Recovery 即可從 VMM 伺服器擷取中繼資料。 此伺服器會顯示於保存庫中 [伺服器] 頁面的 [VMM 伺服器] 索引標籤上。
 
@@ -215,11 +215,11 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 1. 在 [快速啟動] 頁面上，按一下 [設定 VMM 雲端的保護] 。
 2. 在 [受保護項目] 索引標籤上，按一下要設定的雲端，並移至 [設定] 索引標籤。
-3. 在 [  select 。
+3. 在   select 。
 4. 在 [儲存體帳戶]  中，選取您想要用來複寫的 Azure 儲存體帳戶。
-5. 將 [加密儲存的資料] 設為 [關閉]。 此設定指定應該將內部部署與 Azure 之間複寫的資料加密。
+5. 將 [加密儲存的資料] 設為 [關閉]。 這個設定指定在內部部署站台與 Azure 之間進行複寫期間，應該將資料加密。
 6. 在 [複製頻率]  中保留預設設定。 這個值指定應在來源與目標位置之間同步處理資料的頻率。
-7. 在 [Retain recovery points for] 中保留預設設定。 使用預設值 0 時，只會在複本主機伺服器上儲存主要虛擬機器的最新復原點。
+7. 在 [Retain recovery points for] 中保留預設設定。 使用預設值&0; 時，只會在複本主機伺服器上儲存主要虛擬機器的最新復原點。
 8. 在 [應用程式一致快照的頻率] 中保留預設設定。 這個值指定建立快照的頻率。 快照會使用「磁碟區陰影複製服務」(VSS) 來確保建立快照時，應用程式是處於一致狀態。  如果您設定一個值，請確定此值小於您設定的其他復原點數目。
 9. 在 [Replication start time] 中，指定初次將資料複寫至 Azure 的開始時間。 將會使用 Hyper-V 主機伺服器的時區。 建議您將初次複寫排定在離峰時段進行。
 
@@ -253,7 +253,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 ## <a name="step-8-enable-protection-for-virtual-machines"></a>步驟 8：對虛擬機器啟用保護
 正確設定伺服器、雲端和網路後，您就可以對雲端中的虛擬機器啟用保護。 請注意：
 
-* 虛擬機器必須符合 [Azure 需求](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
+* 虛擬機器必須符合 [Azure 需求](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。
 * 若要啟用保護功能，您必須為虛擬機器設定作業系統和作業系統磁碟屬性。 當您使用虛擬機器範本在 VMM 中建立虛擬機器時，您可以設定屬性。 您也可以在虛擬機器屬性的 [一般] 及 [硬體設定] 索引標籤上，為現有的虛擬機器設定這些屬性。 若未在 VMM 中設定這些屬性，您將可在 Azure 站台復原入口網站中加以設定。
 
     ![Create virtual machine](./media/site-recovery-vmm-to-azure-classic/enable-new.png)
@@ -274,7 +274,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
     ![Verify virtual machines](./media/site-recovery-vmm-to-azure-classic/vm-properties.png)
 2. 在虛擬機器屬性的 [設定]  索引標籤上可以修改下列網路屬性。
 
-*  - 網路介面卡的數目取決於您針對目標虛擬機器所指定的大小。 查看 [虛擬機器大小規格](../virtual-machines/virtual-machines-linux-sizes.md#size-tables) ，了解虛擬機器大小所支援的介面卡數目。 在修改虛擬機器的大小並儲存設定之後，當您下次開啟 [設定]  頁面時，網路介面卡的數量將會改變。 目標虛擬機器的網路介面卡數目，是來源虛擬機器上的網路介面卡數目下限，以及所選虛擬機器大小支援的網路介面卡數目上限，如下所示：
+*  - 網路介面卡的數目取決於您針對目標虛擬機器所指定的大小。 查看 [虛擬機器大小規格](../virtual-machines/virtual-machines-linux-sizes.md#size-tables) ，了解虛擬機器大小所支援的介面卡數目。 在修改虛擬機器的大小並儲存設定之後，當您下次開啟 [設定] 頁面時，網路介面卡的數量將會改變。 目標虛擬機器的網路介面卡數目，是來源虛擬機器上的網路介面卡數目下限，以及所選虛擬機器大小支援的網路介面卡數目上限，如下所示：
 
   * 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。
   * 如果來源虛擬機器的介面卡數目超過針對目標大小所允許的數目，則將使用目標大小的最大值。
@@ -296,15 +296,15 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 測試容錯移轉會在隔離的網路中模擬您的容錯移轉與復原機制。 請注意：
 
 * 如果您在容錯移轉之後要使用遠端桌面連接到 Azure 中的虛擬機器，請先在虛擬機器上啟用遠端桌面連線，再執行測試容錯移轉。
-* 容錯移轉之後，您將透過遠端桌面使用公用 IP 位址連接到 Azure 中的虛擬機器。 如果想要這樣做，請確定沒有任何網域原則禁止您使用公用位址連接到虛擬機器。
+* 容錯移轉之後，您會透過遠端桌面，使用公用 IP 位址連接到 Azure VM。 如果想要這樣做，請確定沒有任何網域原則禁止您使用公用位址連接到虛擬機器。
 
 > [!NOTE]
-> 若要在執行容錯移轉至 Azure 時獲得最佳效能，請確保您已經在受保護的機器上安裝 Azure 代理程式。 這有助於更快速開機，也有助於診斷發生的問題。 您可以在[這裡](https://github.com/Azure/WALinuxAgent)找到 Linux 代理程式，而 Windows 代理程式則可在[這裡](http://go.microsoft.com/fwlink/?LinkID=394789)找到
+> 若要在容錯移轉至 Azure 時獲得最佳效能，請確定您已在 VM 上安裝 Azure 代理程式。 這會提供更快速的開機，並協助進行疑難排解。 下載 [Linux 代理程式](https://github.com/Azure/WALinuxAgent)或 [Windows 代理程式](http://go.microsoft.com/fwlink/?LinkID=394789)。
 >
 >
 
 ### <a name="create-a-recovery-plan"></a>建立復原計畫
-1. 在 [復原方案]  索引標籤上，增加一個新方案。 指定一個名稱、在 [來源類型] 中指定 [VMM]、在 [來源] 中指定來源 VMM 伺服器，則目標將會是 Azure。
+1. 在 [復原方案]  索引標籤上，增加一個新方案。 指定名稱、在 [來源類型] 中指定 [VMM]，以及在 [來源] 中指定來源 VMM 伺服器。 目標將會是 Azure。
 
     ![建立復原計畫](./media/site-recovery-vmm-to-azure-classic/recovery-plan1.png)
 2. 在 [選取虛擬機器]  頁面上，選取要新增到復原方案的虛擬機器。 這些虛擬機器將新增到復原計畫的預設群組—群組 1。 最多 100 部虛擬機器已在單一復原計畫中經過測試。
@@ -322,7 +322,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 * **在沒有 Azure 網路的情況下測試容錯移轉**—這種測試容錯移轉可以檢查虛擬機器是否正確地出現在 Azure 中。 在容錯移轉之後，虛擬機器不會連線到任何 Azure 網路。
 * **利用 Azure 網路測試容錯移轉**- 這種測試容錯移轉可以檢查整個復寫環境是否如預期般出現並進行容錯移轉，虛擬機器會連線到只訂的目標 Azure 網路。 針對子網路處理的測試容錯移轉，可根據複本虛擬機器的子網路得知測試虛擬機器的子網路。 這和一般的複寫不同，一般複寫的複本虛擬機器子網路是根據來源虛擬機器的子網路得知。
 
-如果您想要針對啟用保護的虛擬機器執行測試容錯轉移至 Azure ，卻不想指定 Azure 目標網路，您不需要作任何準備。 若要以目標 Azure 網路執行測試容錯移轉，您必須建立與您的 Azure 正式作業網路 (當您在 Azure 中建立新網路時的預設行為) 分隔的新的 Azure 網路。 如需詳細資訊，請參考如何 [執行測試容錯移轉](site-recovery-failover.md#run-a-test-failover) 。
+如果您想要針對啟用保護的虛擬機器執行測試容錯轉移至 Azure ，卻不想指定 Azure 目標網路，您不需要作任何準備。 若要以目標 Azure 網路執行測試容錯移轉，您必須建立與您的 Azure 正式作業網路 (當您在 Azure 中建立新網路時的預設行為) 分隔的新的 Azure 網路。 如需詳細資訊，請參考如何 [執行測試容錯移轉](site-recovery-failover.md) 。
 
 您也必須針對複寫虛擬機器設定基礎結構，以如預期般運作。 例如，具有網域控制站和 DNS 的虛擬機器可以使用 Azure Site Recovery 複寫到 Azure，而且可以使用測試容錯移轉，在測試網路中加以建立。 如需詳細資訊，請參閱 [Active Directory 測試容錯移轉考量](site-recovery-active-directory.md#test-failover-considerations) 一節。
 
@@ -334,12 +334,12 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
     ![沒有網路](./media/site-recovery-vmm-to-azure-classic/test-no-network.png)
 3. 如果已啟用雲端的資料加密，當您開啟選項以啟用雲端的資料加密時，請在 [ **加密金鑰** ] 中選取在 VMM 伺服器上安裝提供者時發出的憑證。
 4. 在 [工作]  索引標籤上，您可以追蹤容錯移轉進度。 您應該可以在 Azure 入口網站中看到該虛擬機器測試複本。 如果您設定從內部部署網路存取虛擬機器，您可以初始化虛擬機器的「遠端桌面」連線。
-5. 當容錯移轉到達 [完成測試] 階段時，請按一下 [完成測試] 以完成測試容錯移轉。 您可以向下切入到 [工作]  索引標籤，來追蹤容錯移轉進度和狀態，並執行任何所需的動作。
-6. 在容錯移轉之後，您將可以在 Azure 入口網站中看到該虛擬機器測試複本。 如果您設定從內部部署網路存取虛擬機器，您可以初始化虛擬機器的「遠端桌面」連線。 執行下列動作：
+5. 當容錯移轉到達 [完成測試] 階段時，按一下 [完成測試] 來完成它。 您可以向下切入到 [工作]  索引標籤，來追蹤容錯移轉進度和狀態，並執行任何所需的動作。
+6. 容錯移轉之後，您就能在 Azure 入口網站中看到虛擬機器測試複本。 如果您設定從內部部署網路存取虛擬機器，您可以初始化虛擬機器的「遠端桌面」連線。 執行下列動作：
 
    1. 確認虛擬機器成功啟動。
    2. 如果您在容錯移轉之後要使用遠端桌面連接到 Azure 中的虛擬機器，請先在虛擬機器上啟用遠端桌面連線，再執行測試容錯移轉。 您也必須在虛擬機器上新增 RDP 端點。 您可以利用 [Azure 自動化 Runbook](site-recovery-runbook-automation.md) 來執行這個動作。
-   3. 容錯移轉之後，如果您使用公用 IP 位址，利用 [遠端桌面] 連接到 Azure 中的虛擬機器，請確定您沒有任何網域原則會阻止您使用公用位址連接到虛擬機器。
+   3. 容錯移轉之後，如果您使用公用 IP 位址，請利用 [遠端桌面] 連接到 Azure 中的虛擬機器，以確定您沒有任何網域原則會阻止您使用公用位址連接到虛擬機器。
 7. 測試完成之後，請執行下列動作：
 
    * 按一下 [測試容錯移轉完成] 。 清除測試環境，以自動關閉電源及刪除測試虛擬機器。
@@ -348,9 +348,4 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 ## <a name="next-steps"></a>後續步驟
 深入了解[設定復原方案](site-recovery-create-recovery-plans.md)和[容錯移轉](site-recovery-failover.md)。
-
-
-
-<!--HONumber=Dec16_HO4-->
-
 

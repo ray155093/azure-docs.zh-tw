@@ -18,6 +18,7 @@ ms.author: anhoh
 translationtype: Human Translation
 ms.sourcegitcommit: ed44ca2076860128b175888748cdaa8794c2310d
 ms.openlocfilehash: fd3ebcaa82952815ad31decd1b44cf6d41365d2f
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -522,10 +523,5 @@ DocumentDB JSON 匯出工具可讓您將任何可用的來源選項匯出至包�
 
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解 DocumentDB，請參閱 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

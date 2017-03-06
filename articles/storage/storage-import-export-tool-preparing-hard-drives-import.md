@@ -17,6 +17,7 @@ ms.author: muralikk
 translationtype: Human Translation
 ms.sourcegitcommit: 48ee2a2bd2ecd2f487748588ef2ad3138dd9983b
 ms.openlocfilehash: a113120381c4e83bd64a41fd30beb138cb1dd5fa
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -407,9 +408,4 @@ WAImportExport 工具會以批次方式讀取和寫入檔案，一個批次最�
 **.xml** - 對於您使用 WAImportExport 工具準備的每個硬碟，此工具會建立一個名為 "&lt;DriveID&gt;.xml" 的單一日誌檔案，其中的磁碟機識別碼是與工具從磁碟讀取的磁碟機相關聯的序號。 所有磁碟機都將需要日誌檔案，才能在 Azure 入口網站中建立匯入工作。 如果工具中斷，此日誌檔案也可用來繼續磁碟機準備。
 
 **.jrn** - 後置詞為 .jrn 的日誌檔案包含硬碟所有的複製工作階段的狀態。 它也包含建立匯入工作所需的資訊。 執行 WAImportExport 工具時，永遠必須指定日誌檔案，以及複製工作階段識別碼。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

@@ -13,15 +13,16 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/03/2016
+ms.date: 02/27/2017
 ms.author: anandy;billmath
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 28b5da6098316f8fbe84966e0dac88f5b7d2cb1d
-ms.openlocfilehash: 6cf809dd6d3c74d1459179f9b16ae9dbfec99757
-
+ms.sourcegitcommit: b9a3b64d9de48f17a295ca7a9ea58cf26e8f83ed
+ms.openlocfilehash: 7a7ac3f34860cedb05e9e4423ca7878b2ed5913a
+ms.lasthandoff: 02/28/2017
 
 ---
-# <a name="ad-fs-deployment-in-azure"></a>Azure 中的 AD FS 部署
+# <a name="deloying-active-directory-federation-services-in-azure"></a>在 Azure 中部署 Active Directory 同盟服務
 AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功能。 與 Azure AD 或 O365 同盟可讓使用者使用內部部署認證進行驗證，並存取雲端中的所有資源。 如此一來，就一定要有高可用性的 AD FS 基礎結構，以確保能夠存取內部部署和雲端中的資源。 在 Azure 中部署 AD FS 有助於達成執行最低限度的工作所需要的高可用性。
 在 Azure 中部署 AD FS 有幾項優點，以下列出其中幾點︰
 
@@ -209,7 +210,7 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 ### <a name="7----configuring-the-web-application-proxy-server"></a>7.  設定 Web 應用程式 Proxy 伺服器
 **7.1.  設定 Web 應用程式 Proxy 伺服器以連線到 AD FS 伺服器**
 
-為了確保 Web 應用程式 Proxy 伺服器能夠連線到 ILB 背後的 AD FS 伺服器，請在 %systemroot%\system32\drivers\etc\hosts 建立 ILB 的記錄。 請注意，辨別名稱 (DN) 應該是同盟服務名稱，例如 fs.contoso.com。 而且 IP 項目應該是 ILB 的 IP 位址 (如範例中的 10.3.0.8) 的項目。
+為了確保 Web 應用程式 Proxy 伺服器能夠連線到 ILB 背後的 AD FS 伺服器，請在 %systemroot%\system32\drivers\etc\hosts 建立 ILB 的記錄。 請注意，辨別名稱 (DN) 應該是同盟服務名稱，例如 fs.contoso.com。 而且 IP 項目應該是 ILB 的 IP 位址 (如範例中的&10;.3.0.8) 的項目。
 
 **7.2.  安裝 Web 應用程式 Proxy 角色**
 
@@ -353,10 +354,5 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 * [使用 Azure AD Connect 設定和管理 AD FS](active-directory-aadconnectfed-whatis.md)
 * [使用 Azure 流量管理員在 Azure 中部署高可用性跨地區 AD FS](../active-directory-adfs-in-azure-with-azure-traffic-manager.md)
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

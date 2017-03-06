@@ -18,6 +18,7 @@ ms.author: mimig
 translationtype: Human Translation
 ms.sourcegitcommit: 82ac3feb64c688a372d2b6d41a259d7126df44c1
 ms.openlocfilehash: 68968f3300ff783a526469274d07ba524b7d3569
+ms.lasthandoff: 02/04/2017
 
 
 ---
@@ -42,10 +43,5 @@ DocumentDB 支援使用 [SQL](documentdb-sql-query.md) 的關聯式、階層式�
 
 ## <a name="release-notes"></a>版本資訊
 2016 年 7 月 29 日更新以納入 TOP。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

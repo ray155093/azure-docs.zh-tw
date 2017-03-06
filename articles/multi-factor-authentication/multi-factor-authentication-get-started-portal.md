@@ -17,6 +17,7 @@ ms.author: kgremban
 translationtype: Human Translation
 ms.sourcegitcommit: 1222223f8c45249402bfdd04c8754074f877e132
 ms.openlocfilehash: 1236489212b2a9c421972599a12511d5bc42efdf
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -175,10 +176,5 @@ Azure Multi-Factor Authentication 伺服器為使用者入口網站提供數個�
 ![使用者入口網站安全性問題](./media/multi-factor-authentication-get-started-portal/secq.png)  
 
 使用者自助式註冊現已完成，使用者也已登入使用者入口網站。  只要系統管理員許可，使用者以後可隨時重新登入使用者入口網站來變更電話號碼、PIN、驗證方法和安全性問題。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

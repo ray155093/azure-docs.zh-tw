@@ -18,6 +18,7 @@ ms.author: spelluru
 translationtype: Human Translation
 ms.sourcegitcommit: 2b128e2771ea89d1c0d6b8d52357d1bcc993115a
 ms.openlocfilehash: a9629d0a4bfc44f5d035a29f8e97d76922cc0060
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -362,10 +363,5 @@ Azure 資料目錄支援支援群眾外包 (crowd-sourcing) 的註解作法。 A
 * [如何記載資料資產](data-catalog-how-to-documentation.md)
 * [如何連線到資料資產](data-catalog-how-to-connect.md)
 * [如何管理資料資產](data-catalog-how-to-manage.md)
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

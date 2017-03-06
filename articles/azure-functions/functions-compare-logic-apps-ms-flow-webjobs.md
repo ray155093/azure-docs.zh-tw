@@ -18,6 +18,7 @@ ms.author: chrande; glenga
 translationtype: Human Translation
 ms.sourcegitcommit: ee94e074c574bc2e6e1a52dbfd6bd0ae102cb342
 ms.openlocfilehash: 0d007bf2a0f5a40fcb7ac6dfe5beff05a4310701
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -118,10 +119,5 @@ Functions 是 WebJobs 的自然進化，因為它採用有關 WebJobs 的最佳�
 * [Logic Apps 即時網路廣播](http://aka.ms/logicappslive)
 * [Microsoft Flow 常見問題集](https://flow.microsoft.com/documentation/frequently-asked-questions/)
 * [Azure WebJobs 文件資源](../app-service-web/websites-webjobs-resources.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

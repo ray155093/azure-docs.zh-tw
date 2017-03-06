@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: 84d52dccef4e2d9a1ae253831b5d8f86b6fb50a6
-ms.openlocfilehash: bc90832422a8643afda292d6897a275280cfe690
+ms.sourcegitcommit: 36fa9cd757b27347c08f80657bab8a06789a3c2f
+ms.openlocfilehash: 289bf7ab1ba91bd9edc6288af93e06170d8f2def
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -182,10 +183,10 @@ azure storage blob delete mycontainer myBlockBlob2
 ```
 
 ## <a name="create-and-manage-file-shares"></a>建立和管理檔案共用
-Azure 檔案儲存體為使用標準 SMB 通訊協定的應用程式提供共用儲存體。 Microsoft Azure 虛擬機器和雲端服務，以及內部部署應用程式，可以透過掛接共用，共用檔案資料。 您可以透過 Azure CLI 管理檔案共用和檔案資料。 如需 Azure 檔案儲存體的詳細資訊，請參閱[在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)或 [如何搭配 Linux 使用 Azure 檔案儲存體](storage-how-to-use-files-linux.md)。
+Azure 檔案儲存體為使用標準 SMB 通訊協定的應用程式提供共用儲存體。 Microsoft Azure 虛擬機器和雲端服務，以及內部部署應用程式，可以透過掛接共用，共用檔案資料。 您可以透過 Azure CLI 管理檔案共用和檔案資料。 如需 Azure 檔案儲存體的詳細資訊，請參閱[在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)或[如何搭配 Linux 使用 Azure 檔案儲存體](storage-how-to-use-files-linux.md)。
 
 ### <a name="create-a-file-share"></a>建立檔案共用
-Azure 檔案共用是 Azure 中的 SMB 檔案共用。 所有目錄和檔案都必須在檔案共用中建立。 帳戶可包含無限制數目的共用，而共用可儲存無限制數目的檔案，最多可達儲存體帳戶的容量限制。 下列範例會建立名為 **myshare**的檔案共用。
+Azure 檔案共用是 Azure 中的 SMB 檔案共用。 所有目錄和檔案都必須在檔案共用中建立。 帳戶可包含無限制數目的共用，而共用可儲存無限制數目的檔案，最多可達儲存體帳戶的容量限制。 下列範例會建立名為 **myshare** 的檔案共用。
 
 ```azurecli
 azure storage share create myshare
@@ -198,7 +199,7 @@ azure storage share create myshare
 azure storage directory create myshare myDir
 ```
 
-請注意，目錄路徑可包含多個層級， *例如*， **a/b**。 不過，您必須確定所有父目錄都存在。 例如，如果路徑是 **a/b**，您必須先建立目錄 **a**，然後再建立目錄 **b**。
+請注意，目錄路徑可包含多個層級，例如 **a/b**。 不過，您必須確定所有父目錄都存在。 例如，如果路徑是 **a/b**，您必須先建立目錄 **a**，然後再建立目錄 **b**。
 
 ### <a name="upload-a-local-file-to-directory"></a>上傳本機檔案至目錄
 下列範例將從 **~/temp/samplefile.txt** 上傳檔案至 **myDir** 目錄。 編輯檔案路徑，以指向本機機器上的有效檔案：
@@ -240,12 +241,7 @@ azure storage file copy start --source-container srcctn --source-blob hello2.txt
 * [Resource Manager 模式中的 Azure CLI 命令](../virtual-machines/azure-cli-arm-commands.md#azure-storage-commands-to-manage-your-storage-objects)
 * [Azure 服務管理模式中的 Azure CLI 命令](../xplat-cli-install.md)
 
-您也可以試試以 Python 撰寫的新一代 CLI [Azure CLI 2.0 (預覽)](storage-azure-cli.md)，此 CLI 可與資源管理部署模型搭配使用。
+您或許也會想要試試以 Python 撰寫的新一代 CLI [Azure CLI 2.0](storage-azure-cli.md)，此 CLI 可與 Resource Manager 部署模型搭配使用。
 
 [Image1]: ./media/storage-azure-cli/azure_command.png
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

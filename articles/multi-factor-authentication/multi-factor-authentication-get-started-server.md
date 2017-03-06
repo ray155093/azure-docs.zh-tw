@@ -13,11 +13,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/03/2017
+ms.date: 02/16/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 0fec7a18e098891374b3b0d7313a72918b630918
-ms.openlocfilehash: 7fb107922af9d2316fb7490670002f4255572458
+ms.sourcegitcommit: eccd394a29376a20371732023bfbf9b53435f0ae
+ms.openlocfilehash: 51c994a37ebaca472c360e0c5f7b4a7fab5f55fc
+ms.lasthandoff: 02/17/2017
 
 ---
 
@@ -30,7 +31,7 @@ ms.openlocfilehash: 7fb107922af9d2316fb7490670002f4255572458
 下載 Azure Multi-Factor Authentication Server 的方法有兩種。 兩者都是透過 Azure 入口網站來完成。 第一個是藉由直接管理 Multi-Factor Auth Provider。 第二個是透過服務設定。 第二個選項需要 Multi-Factor Auth Provider 或 Azure MFA、Azure AD Premium 或 Enterprise Mobility Suite 授權。
 
 > [!Important]
-> 這兩個選項看似雷同，但請務必知道要使用哪一個。 如果使用者的授權隨附 MFA，請勿建立 Multi-Factor Auth Provider 來到達伺服器下載。 相反地，請使用選項 2，從 [服務設定] 頁面下載伺服器。 
+> 這兩個選項看似雷同，但請務必知道要使用哪一個。 如果使用者擁有 MFA (Azure MFA、Azure AD Premium 或 Enterprise Mobility + Security) 隨附的授權，請勿建立 Multi-Factor Auth Provider 來到達伺服器下載。 相反地，請使用選項 2，從 [服務設定] 頁面下載伺服器。 
 
 ### <a name="option-1-download-azure-multi-factor-authentication-server-from-the-azure-classic-portal"></a>選項 1：從 Azure 傳統入口網站下載 Azure Multi-Factor Authentication Server
 
@@ -53,11 +54,11 @@ ms.openlocfilehash: 7fb107922af9d2316fb7490670002f4255572458
 1. 以系統管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 選取左邊的 [Active Directory] 。
 3. 按兩下您的 Azure AD 執行個體。
-4. 在頂端按一下 [ **設定**
+4. 在頂端按一下  **設定**
 5. 向下選動至 [Multi-Factor Authentication] 區段，然後選取 [管理服務設定]
 6. 在 [服務設定] 頁面上，於畫面底部按一下 [ **移至入口網站**]。 新的頁面隨即開啟。
    ![下載](./media/multi-factor-authentication-get-started-server/servicesettings.png)
-7. 按一下 [ **下載**
+7. 按一下  **下載**
 8. 在 [產生啟用認證] 上方，按一下 [下載]。
     ![下載](./media/multi-factor-authentication-get-started-server/download4.png)
 9. 儲存下載內容。
@@ -163,9 +164,4 @@ ms.openlocfilehash: 7fb107922af9d2316fb7490670002f4255572458
 | [與 Windows Server Active Directory 同步處理](multi-factor-authentication-get-started-server-dirint.md) |有關設定 Active Directory 與 Azure MFA Server 之間同步處理的資訊。 |
 | [部署 Azure Multi-Factor Authentication Server 行動應用程式 Web 服務](multi-factor-authentication-get-started-server-webservice.md) |有關設定 Azure MFA 伺服器 Web 服務的資訊。 |
 | [使用 Azure Multi-Factor Authentication 與協力廠商 VPN 的進階案例](multi-factor-authentication-advanced-vpn-configurations.md) | Cisco、Citrix 和 Juniper VPN 應用裝置的逐步設定指南。 |
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

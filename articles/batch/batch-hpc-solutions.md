@@ -1,5 +1,5 @@
 ---
-title: "雲端中的 Batch 和 HPC 解決方案 | Microsoft Docs"
+title: "雲端中的 Batch 和 HPC 解決方案 - Azure | Microsoft Docs"
 description: "了解批次和高效能計算 (HPC 和 Big Compute) 案例，以及在 Azure 中的解決方案選項"
 services: batch, virtual-machines, cloud-services
 documentationcenter: 
@@ -12,15 +12,18 @@ ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: big-compute
-ms.date: 01/23/2017
+ms.date: 02/27/2017
 ms.author: danlep
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ffba988bd8cd3896816118afde979c7067fced79
-ms.openlocfilehash: c3e80bc18e4d1007146d9d3c80c2618400480046
+ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
+ms.openlocfilehash: 288bd4dc0bde4cb610efc4a6d015e5b9499eb0ee
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="batch-and-hpc-solutions-in-the-azure-cloud"></a>Azure 雲端中的 Batch 和 HPC 解決方案
+# <a name="batch-and-hpc-solutions-for-large-scale-computing-workloads"></a>大規模運算工作負載的 Batch 和 HPC 解決方案
+
 Azure 針對批次和高效能運算 (HPC) 提供有效、可調整的雲端解決方案 - 又稱為「Big Compute」 。 在這裡了解 Big Compute 工作負載和支援它們的 Azure 的服務，或是直接跳至本文稍後的 [解決方案案例](#scenarios) 。 本文主要適用於技術決策者、IT 經理和獨立軟體廠商，但其他 IT 專業人員和開發人員也可以使用它來熟悉這些解決方案。
 
 組織有大規模的運算問題：工程設計和分析、影像轉譯、複雜模型、Monte Carlo 模擬和財務風險計算等等。 Azure 可使用組織所需的資源、級別和排程來協助組織解決這些問題。 有了 Azure，組織就可以：
@@ -134,9 +137,4 @@ Big Compute 解決方案可能需要其他 Azure 服務，才能連線至內部�
 [iaas_cluster]: ./media/batch-hpc-solutions/iaas_cluster.png
 [burst_cluster]: ./media/batch-hpc-solutions/burst_cluster.png
 [batch_proc]: ./media/batch-hpc-solutions/batch_proc.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

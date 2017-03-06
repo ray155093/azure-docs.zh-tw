@@ -12,15 +12,18 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 01/23/2017
+ms.date: 02/27/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 182e28e37eb56c547e28524f2a3e13f042238cb4
-ms.openlocfilehash: 984d1afe93b19ebea7add524091ed64aa276da0c
+ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
+ms.openlocfilehash: 9a17b749a50c0f75890fa71b4ae00391aa63876a
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="batch-feature-overview-for-developers"></a>適用於開發人員的 Batch 功能概觀
+# <a name="develop-large-scale-parallel-compute-solutions-with-batch"></a>使用 Batch 開發大規模的平行運算解決方案
+
 在 Azure Batch 服務的核心元件概觀中，我們會討論 Batch 開發人員可用來建置大規模平行計算解決方案的主要服務功能和資源。
 
 不論您正在開發可發出直接 [REST API][batch_rest_api] 呼叫的分散式計算應用程式或服務，或是正在使用其中一個 [Batch SDK](batch-technical-overview.md#batch-development-apis)，您都會使用本文所討論的眾多資源和功能。
@@ -486,9 +489,4 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 [rest_online]: https://msdn.microsoft.com/library/azure/mt637907.aspx
 
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

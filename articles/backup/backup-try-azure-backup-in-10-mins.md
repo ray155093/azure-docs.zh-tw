@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 備份與 Resource Manager 部署模型將檔案和資料夾從 Windows 備份到 Azure | Microsoft Docs"
+title: "將 Windows 檔案和資料夾備份至 Azure (Resource Manager) | Microsoft Docs"
 description: "了解如何在 Resource Manager 部署中將 Windows 檔案和資料夾備份至 Azure 。"
 services: backup
 documentationcenter: 
@@ -13,11 +13,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 2/10/2017
+ms.date: 2/23/2017
 ms.author: markgal;
 translationtype: Human Translation
-ms.sourcegitcommit: cdccfe1215bb8f62381c73becdc9d90f45800966
-ms.openlocfilehash: 337e1101fe044f22d6389b83b79794560b84f273
+ms.sourcegitcommit: b188affca609dd5ff3aa0d2cba3ec81c1c91888f
+ms.openlocfilehash: 916a4e837d003a73a1801dd25b8ebfbfdcd86312
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -26,17 +27,6 @@ ms.openlocfilehash: 337e1101fe044f22d6389b83b79794560b84f273
 
 如果您想要深入了解 Azure 備份，請閱讀此 [概觀](backup-introduction-to-azure-backup.md)。
 
-將檔案和資料夾備份至 Azure 需要進行下列活動︰
-
-![步驟 1](./media/backup-try-azure-backup-in-10-mins/step-1.png) 取得 Azure 訂用帳戶 (如果您還沒有的話)。<br>
-![步驟 2](./media/backup-try-azure-backup-in-10-mins/step-2.png) 建立復原服務保存庫。<br>
-![步驟 3](./media/backup-try-azure-backup-in-10-mins/step-3.png) 下載必要檔案。<br>
-![步驟 4](./media/backup-try-azure-backup-in-10-mins/step-4.png) 安裝並註冊復原服務代理程式。<br>
-![步驟 5](./media/backup-try-azure-backup-in-10-mins/step-5.png) 備份檔案和資料夾。
-
-![如何使用 Azure 備份來備份 Windows 電腦](./media/backup-try-azure-backup-in-10-mins/backup-process.png)
-
-## <a name="get-an-azure-subscription"></a>取得 Azure 訂用帳戶
 如果您沒有 Azure 訂用帳戶，請建立 [免費帳戶](https://azure.microsoft.com/free/) ，以便存取任何 Azure 服務。
 
 ## <a name="create-a-recovery-services-vault"></a>建立復原服務保存庫
@@ -70,6 +60,7 @@ ms.openlocfilehash: 337e1101fe044f22d6389b83b79794560b84f273
   如需資源群組的完整資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
 
 7. 按一下 [位置]  以選取保存庫的地理區域。 此選項會決定您的備份資料要傳送到哪個地理區域。
+
 8. 按一下 [復原服務保存庫] 刀鋒視窗底部的 [建立]。
 
     建立復原服務保存庫可能需要一些時間。 請監視入口網站右上方區域中的狀態通知。 保存庫一旦建立好，就會出現在 [復原服務保存庫] 的清單中。 在數分鐘之後﹐如果您沒有看到您的保存庫，請按一下 [重新整理]。
@@ -229,9 +220,4 @@ ms.openlocfilehash: 337e1101fe044f22d6389b83b79794560b84f273
 * 詳細了解如何 [備份 Windows 電腦](backup-configure-vault.md)。
 * 現在您已備份好檔案和資料夾，接下來您可以 [管理您的保存庫和伺服器](backup-azure-manage-windows-server.md)。
 * 如果您需要還原備份，請使用本文來 [還原檔案到 Windows 電腦](backup-azure-restore-windows-server.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -17,8 +17,9 @@ ms.workload: na
 ms.date: 11/14/2016
 ms.author: stevelas
 translationtype: Human Translation
-ms.sourcegitcommit: f299cff22d00a1c765a32838647818d18f3df85d
-ms.openlocfilehash: df15eebf0052aa4713263a810df605fa1016c306
+ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
+ms.openlocfilehash: 1e70f41dd15b0243fb8edd137710ac555821434e
+ms.lasthandoff: 02/22/2017
 
 ---
 # <a name="push-your-first-image-to-a-container-registry-using-the-docker-cli"></a>使用 Docker CLI 推送您的第一個映像至容器登錄庫
@@ -33,7 +34,7 @@ Azure 容器登錄庫儲存和管理私人 [Docker](http://hub.docker.com) 容�
 > 
 
 ## <a name="prerequisites"></a>必要條件
-* **Azure 容器登錄庫** - 在 Azure 訂用帳戶中建立容器登錄庫。 例如，使用 [Azure 入口網站](container-registry-get-started-portal.md)或 [Azure CLI 2.0 預覽版](container-registry-get-started-azure-cli.md)。
+* **Azure 容器登錄庫** - 在 Azure 訂用帳戶中建立容器登錄庫。 例如，使用 [Azure 入口網站](container-registry-get-started-portal.md)或 [Azure CLI 2.0](container-registry-get-started-azure-cli.md)。
 * **Docker CLI** - 若要將您的本機電腦設定為 Docker 主機並存取 Docker CLI 命令，安裝 [Docker 引擎](https://docs.docker.com/engine/installation/)。
 
 ## <a name="log-in-to-a-registry"></a>登入登錄庫
@@ -114,10 +115,5 @@ docker rmi myregistry-contoso.azurecr.io/samples/nginx
 現在您瞭解基本概念了，可以開始使用您的登錄庫！ 例如，開始將容器映像部署到 [Azure Container Service](https://azure.microsoft.com/documentation/services/container-service/) 叢集。
 
 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

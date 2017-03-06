@@ -1,10 +1,10 @@
 ---
-title: "使用 Azure CLI 2.0 來建立虛擬網路 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 2.0 來建立虛擬網路 | Resource Manager。"
+title: "建立虛擬網路 - Azure CLI 2.0 | Microsoft Docs"
+description: "了解如何使用 Azure CLI 2.0 建立虛擬網路。"
 services: virtual-network
 documentationcenter: 
 author: jimdial
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: 75966bcc-0056-4667-8482-6f08ca38e77a
@@ -15,14 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 617ac4672b24d339c5d4c0b671de7fb19cd9af91
-ms.openlocfilehash: 3cbb679048a0cc1121b221bda8fc1e3df0e307c3
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
+ms.openlocfilehash: 4f59512d83e6d000dd60b3fba46e483be8466292
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="create-a-virtual-network-using-the-azure-cli"></a>使用 Azure CLI 建立虛擬網路
+# <a name="create-a-virtual-network-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立虛擬網路
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
@@ -31,8 +32,8 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 ## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
-- [Azure CLI 1.0](virtual-networks-create-vnet-arm-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0 (預覽)](#create-a-virtual-network) - 適用於資源管理部署模型的新一代 CLI (本文章)
+- [Azure CLI 1.0](virtual-networks-create-vnet-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
+- [Azure CLI 2.0](#create-a-virtual-network) - 適用於資源管理部署模型的新一代 CLI (本文章)
  
     您也可以使用其他工具透過 Resource Manager 建立 VNet，或從下列清單中選取不同選項以透過傳統部署模型建立 VNet︰
 
@@ -52,12 +53,12 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 若要使用 Azure CLI 2.0 來建立虛擬網路，請完成下列步驟︰
 
-1. 安裝及設定最新的 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
+1. 安裝及設定最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
 
 2. 使用 [az group create](/cli/azure/group#create) 命令搭配 `--name` 和 `--location` 引數來為您的 VNet 建立資源群組：
 
     ```azurecli
-    az group create --name myVNet --location centralus
+    az group create --name TestRG --location centralus
     ```
 
 3. 建立 VNet 和子網路：
@@ -65,7 +66,7 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
     ```azurecli
     az network vnet create \
         --name TestVNet \
-        --resource-group myVNet \
+        --resource-group TestRG \
         --location centralus \
         --address-prefix 192.168.0.0/16 \
         --subnet-name FrontEnd \
@@ -90,13 +91,13 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
             "subnets": [
             {
                 "etag": "W/\"<guid>\"",
-                "id": "/subscriptions/<guid>/resourceGroups/myVNet/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd",
+                "id": "/subscriptions/<guid>/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd",
                 "name": "FrontEnd",
                 "properties": {
                 "addressPrefix": "192.168.1.0/24",
                 "provisioningState": "Succeeded"
                 },
-                "resourceGroup": "myVNet"
+                "resourceGroup": "TestRG"
             }
             ]
         }
@@ -106,7 +107,7 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
     使用的參數：
 
     - `--name TestVNet`：要建立的 VNet 名稱。
-    - `--resource-group myVNet`：控制資源的資源群組名稱。 
+    - `--resource-group TestRG`：控制資源的資源群組名稱。 
     - `--location centralus`：要在其中進行部署的位置。
     - `--address-prefix 192.168.0.0/16`：位址首碼和區塊。  
     - `--subnet-name FrontEnd`：子網路的名稱。
@@ -120,9 +121,9 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
     這會產生下列輸出：
 
-        Where      Name      Group
-        ---------  --------  -------
-        centralus  TestVNet  myVNet
+            Where      Name      Group
+            ---------  --------  -------
+            centralus  TestVNet  TestRG
 
 4. 建立子網路：
 
@@ -130,7 +131,7 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
     az network vnet subnet create \
         --address-prefix 192.168.2.0/24 \
         --name BackEnd \
-        --resource-group myVNet \
+        --resource-group TestRG \
         --vnet-name TestVNet
     ```
    
@@ -140,12 +141,12 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
     {
     "addressPrefix": "192.168.2.0/24",
     "etag": "W/\"<guid> \"",
-    "id": "/subscriptions/<guid>/resourceGroups/myVNet/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/BackEnd",
+    "id": "/subscriptions/<guid>/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/BackEnd",
     "ipConfigurations": null,
     "name": "BackEnd",
     "networkSecurityGroup": null,
     "provisioningState": "Succeeded",
-    "resourceGroup": "myVNet",
+    "resourceGroup": "TestRG",
     "resourceNavigationLinks": null,
     "routeTable": null
     }
@@ -155,14 +156,14 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
     - `--address-prefix 192.168.2.0/24`：子網路 CIDR 區塊。
     - `--name BackEnd`：新子網路的名稱。
-    - `--resource-group myVNet`：資源群組。
+    - `--resource-group TestRG`：資源群組。
     - `--vnet-name TestVNet`：上層 VNet 的名稱。
 
 5. 查詢新 VNet 的屬性：
 
     ```azurecli
     az network vnet show \
-    -g myVNET \
+    -g TestRG \
     -n TestVNet \
     --query '{Name:name,Where:location,Group:resourceGroup,Status:provisioningState,SubnetCount:subnets | length(@)}' \
     -o table
@@ -172,13 +173,13 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
    
         Name      Where      Group    Status       SubnetCount
         --------  ---------  -------  ---------  -------------
-        TestVNet  centralus  myVNet   Succeeded              2
+        TestVNet  centralus  TestRG   Succeeded              2
 
 6. 查詢子網路的屬性：
 
     ```azurecli
     az network vnet subnet list \
-    -g myvnet \
+    -g TestRG \
     --vnet-name testvnet \
     --query '[].{Name:name,CIDR:addressPrefix,Status:provisioningState}' \
     -o table

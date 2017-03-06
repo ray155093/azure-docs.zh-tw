@@ -4,7 +4,7 @@ description: "藉由部署範例 App，了解在 App Service 中執行 Web 應�
 services: app-service\web
 documentationcenter: 
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 65c9bdd9-8763-4c56-8e15-f790992e951e
 ms.service: app-service-web
@@ -15,8 +15,9 @@ ms.topic: hero-article
 ms.date: 01/04/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 9ea90a7e2f69344fa86e20bc869f5b8af629a226
-ms.openlocfilehash: 77de5a58dc792ff2d65855e726dd35d9824276cb
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: 7cf4f7c5e0d3e4b51c98fb7a98bbf9de95c9fd7b
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -38,7 +39,7 @@ ms.openlocfilehash: 77de5a58dc792ff2d65855e726dd35d9824276cb
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 - [Azure CLI 1.0](app-service-web-get-started-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0 (預覽)](app-service-web-get-started.md) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](app-service-web-get-started.md) - 適用於資源管理部署模型的新一代 CLI
 
 ## <a name="prerequisites"></a>必要條件
 * [Git](http://www.git-scm.com/downloads)。
@@ -157,10 +158,5 @@ ms.openlocfilehash: 77de5a58dc792ff2d65855e726dd35d9824276cb
 
 * 嘗試 [將程式碼部署至 Azure 的其他方法](web-sites-deploy.md)。 例如，若要從您的其中一個 GitHub 儲存機制中部署，只需在 [部署選項] 中改為選取 [GitHub] 而不是 [本機 Git 儲存機制] 即可。
 * 加強您 Azure App 的功能。 驗證您的使用者。 根據需求加以調整。 設定一些效能警示。 都只要點幾下滑鼠就能完成。 請參閱 [在您的第一個 Web 應用程式中新增功能](app-service-web-get-started-2.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

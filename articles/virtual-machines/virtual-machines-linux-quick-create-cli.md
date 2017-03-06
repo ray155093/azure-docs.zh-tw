@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 2.0 建立 Linux VM (預覽) | Microsoft Azure"
-description: "使用 Azure CLI 2.0 建立 Linux VM (預覽)。"
+title: "使用 Azure CLI 2.0 來建立 Linux VM | Microsoft Azure"
+description: "使用 Azure CLI 2.0 來建立 Linux VM。"
 services: virtual-machines-linux
 documentationcenter: 
 author: squillace
@@ -12,28 +12,24 @@ ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 01/13/2016
+ms.date: 01/13/2017
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 42ee74ac250e6594616652157fe85a9088f4021a
-ms.openlocfilehash: 0fd7aa8f941adaeb9961fd0e4724161b9fe2eeee
+ms.sourcegitcommit: 892e3c62a2ad4dc4fd0691874d46bb296e379524
+ms.openlocfilehash: cc51b04c31c02aabf25c9efb1e9cd975077811a4
+ms.lasthandoff: 02/27/2017
 
 
 ---
 
-# <a name="create-a-linux-vm-using-the-azure-cli-20-preview-azpy"></a>使用 Azure CLI 2.0 建立 Linux VM 預覽 (az.py)
-本文示範如何使用 [az vm create](/cli/azure/vm#create) 命令、使用 Azure CLI 2.0 (預覽) 磁碟，在 Azure 上快速部署 Linux 虛擬機器 (VM)。
-
-> [!NOTE] 
-> Azure CLI 2.0 預覽是我們新一代的多重平台 CLI。 [立即試用。](https://docs.microsoft.com/cli/azure/install-az-cli2)
->
-> 若要使用現有的 Azure CLI 1.0 (而不是 Azure CLI 2.0 預覽) 建立 VM，請參閱[使用 Azure CLI 建立 VM](virtual-machines-linux-quick-create-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+# <a name="create-a-linux-vm-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 來建立 Linux VM
+本文說明如何使用 Azure CLI 2.0，在同時使用受控磁碟及原生儲存體帳戶中磁碟的情況下，以 [az vm create](/cli/azure/vm#create) 命令在 Azure 上快速部署 Linux 虛擬機器 (VM)。 您也可以使用 [Azure CLI 1.0](virtual-machines-linux-quick-create-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
 
 若要建立 VM，您需要： 
 
 * 一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))
-* 安裝 [Azure CLI v.2.0 (預覽)](/cli/azure/install-az-cli2)
-* 以登入您的 Azure 帳戶 (類型 [az login](/cli/azure/#login))
+* 安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)
+* 登入您的 Azure 帳戶 (輸入 [az login](/cli/azure/#login))
 
 (您也可以使用 [Azure 入口網站](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)部署 Linux VM。)
 
@@ -119,7 +115,7 @@ ops@myVM:~$
 
 ## <a name="using-unmanaged-disks"></a>使用非受控磁碟 
 
-使用非受控儲存體磁碟的 VM 具有非受控儲存體帳戶﹐首先，請輸入 [az group create](/cli/azure/group#create) 建立資源群組﹐以包含所有已部署的資源︰
+使用未受管理儲存體磁碟的 VM 會具有未受管理的儲存體帳戶。 首先，請輸入 [az group create](/cli/azure/group#create) 來建立資源群組，以包含所有已部署的資源︰
 
 ```azurecli
 az group create --name nativedisks --location westus
@@ -142,7 +138,7 @@ az group create --name nativedisks --location westus
 
 ### <a name="create-your-vm"></a>建立您的 VM 
 
-現在您可以建立您的 VM 和其環境。 請務必將 `--public-ip-address-dns-name` 值取代為唯一的值，以下的值可能已被採用。
+現在您可以建立您的 VM 和其環境。 使用 `--use-unmanaged-disk` 旗標來建立具有未受管理磁碟的 VM。 這也會建立一個未受管理的儲存體帳戶。 請務必將 `--public-ip-address-dns-name` 值取代為唯一的值，以下的值可能已被採用。
 
 ```azurecli
 az vm create \
@@ -153,7 +149,7 @@ az vm create \
 --resource-group nativedisks \
 --location westus \
 --name myVM \
---use-native-disk
+--use-unmanaged-disk
 ```
 
 輸出顯示如下。 請注意 `publicIpAddress` 或 `fqdn` 值到 **ssh** 至您的 VM。
@@ -202,10 +198,5 @@ bin  boot  dev  etc  home  initrd.img  lib  lib64  lost+found  media  mnt  opt  
 * [使用範本在 Azure 上建立 SSH 保護的 Linux VM](virtual-machines-linux-create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 您也可以[搭配使用`docker-machine` Azure 驅動程式與各種命令以快速建立當作 Docker 主機的 Linux VM](virtual-machines-linux-docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，如果您使用 Java，則嘗試 [create()](/java/api/com.microsoft.azure.management.compute._virtual_machine) 方法。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

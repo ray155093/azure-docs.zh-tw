@@ -18,6 +18,7 @@ ms.author: larryfr
 translationtype: Human Translation
 ms.sourcegitcommit: 93990e342f6bd8fcfe9781bcb021aabfd33e8572
 ms.openlocfilehash: 271a15d258177c98ad72be007c20ae278df6236b
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -149,10 +150,5 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

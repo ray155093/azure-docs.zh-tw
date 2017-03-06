@@ -17,6 +17,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: af11866fc812cd8a375557b7bf9df5cdc9bba610
 ms.openlocfilehash: f0d0c05c08ce198e2702c76ad35b348107c664c7
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -94,9 +95,4 @@ Azure Data Lake Store 在有更多並行數目的情況下將能取得最佳化�
 ## <a name="see-also"></a>另請參閱
 * [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
 * [開始使用 Azure 資料湖分析](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

@@ -17,6 +17,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: ab9c4bc6e2e68a3522bbc3fe23ea33760f03b620
 ms.openlocfilehash: 10926263ee2657dc96fb1873733d349cf0956e92
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -49,10 +50,5 @@ ms.openlocfilehash: 10926263ee2657dc96fb1873733d349cf0956e92
 ### <a name="next-steps"></a>後續步驟
 * [Azure Data Lake Store 概觀](data-lake-store-overview.md)
 * [開始使用 Data Lake Store](data-lake-store-get-started-portal.md)
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

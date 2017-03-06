@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/15/2016
+ms.date: 03/02/2017
 ms.author: subramar
 translationtype: Human Translation
 ms.sourcegitcommit: 5e4aebee48754f1f6762898d9571a4fff7d7283e
 ms.openlocfilehash: 2149bcf588b019a0c0f3c64a4e39fec9b9bc5925
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -223,10 +224,5 @@ Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複
 參考 [進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
 
 參考 [疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

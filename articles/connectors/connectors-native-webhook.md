@@ -18,6 +18,7 @@ ms.author: jehollan
 translationtype: Human Translation
 ms.sourcegitcommit: c0edbe421050ad46f6d31fd6416df4b344b233ad
 ms.openlocfilehash: 2c24699f6253fc7952b331ebcce4b937f1c83603
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -151,9 +152,4 @@ Webhook 要求
 
 ## <a name="create-a-logic-app"></a>建立邏輯應用程式
 立即試用平台和 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md) 。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

@@ -1,6 +1,6 @@
 ---
-title: "在 HDInsight 上安裝 Hadoop 應用程式 | Microsoft Docs"
-description: "了解如何在 HDInsight 應用程式上安裝 HDInsight 應用程式。"
+title: "在 Azure HDInsight 上安裝協力廠商 Hadoop 應用程式 | Microsoft Docs"
+description: "了解如何在 Azure HDInsight 上安裝協力廠商 Hadoop 應用程式。"
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -13,22 +13,27 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/23/2016
+ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 71aef298af187cd4c370edf9fedc42e75ec10c41
-ms.openlocfilehash: 57fbf532c64621ef7d171fc5092708737cd36c33
+ms.sourcegitcommit: 8e7911a3a8080ef8fa125779aa1f6778b9655cde
+ms.openlocfilehash: 8780c193c6aa4b6b183723f88d67ac0990347d1e
+ms.lasthandoff: 02/15/2017
 
 
 ---
-# <a name="install-hdinsight-applications"></a>安裝 HDInsight 應用程式
-HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢集上安裝的應用程式。 Microsoft 獨立軟體廠商 (ISV) 或您可以自己開發這些應用程式。 在本文章中，您將學習到如何安裝已發佈的應用程式。 如需安裝自己的應用程式，請參閱 [安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)。 
+# <a name="install-third-party-hadoop-applications-on-azure-hdinsight"></a>在 Azure HDInsight 上安裝協力廠商 Hadoop 應用程式
 
-目前有三個已發佈的應用程式：
+在本文中，您將學習如何在 Azure HDInsight 上安裝已發佈的協力廠商 Hadoop 應用程式。 如需您自己的應用程式的安裝指示，請參閱[安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)。
 
+HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢集上安裝的應用程式。 Microsoft 獨立軟體廠商 (ISV) 或您可以自己開發這些應用程式。  
+
+目前有四個已發佈的應用程式：
+
+* **HDInsight 上的 DATAIKU DDS**：Dataiku DSS (Data Science Studio) 是一套軟體，可讓資料專業人員 (資料科學家、商業分析師、開發人員...) 製作原型、建置及部署非常特定的服務，以將未經處理資料轉換成有影響力的商務預測。
 * **Datameer**： [Datameer](http://www.datameer.com/documentation/display/DAS50/Home?ls=Partners&lsd=Microsoft&c=Partners&cd=Microsoft) 會提供互動方式，讓分析師探索、分析和視覺化巨量資料的結果。 輕鬆拉進其他資料來源，以探索新的關聯性並迅速取得您所需的答案。
 * **適用於 HDInsight 的 Streamsets 資料收集器**提供功能完整的整合式開發環境 (IDE)，可讓您設計、測試、部署和管理任意至任意內嵌管線 (它會協調資料流與批次資料)，並包括各種資料流內轉換，而完全不必撰寫自訂程式碼。 
-* **適用於 HDInsight 的 Cask CDAP 3.5** 提供第一個巨量資料統一整合平台，可減少資料應用程式與資料湖 80% 的產出時間。 此應用程式僅支援 Standard HBase 3.4 叢集。
+* **適用於 HDInsight 的 Cask CDAP 3.5** 提供第一個巨量資料統一整合平台，可減少資料應用程式與 Data Lake 80% 的產出時間。 此應用程式僅支援 Standard HBase 3.4 叢集。
 
 
 本文提供的指示將使用 Azure 入口網站。 您也可以從入口網站匯出 Azure Resource Manager 範本或從廠商取得 Resource Manage 範本的複本，然後使用 Azure PowerShell 和 Azure CLI 來部署範本。  請參閱 [使用 Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
@@ -42,18 +47,18 @@ HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢�
 **安裝 HDInsight 應用程式**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下左側功能表中的 [HDInsight 叢集]  。  如果沒有看到該功能表，請按一下 [瀏覽]，然後按一下 [HDInsight 叢集]。
+2. 按一下左側功能表中的 [HDInsight 叢集]  。  如果沒看到該功能表，請按一下 [更多服務]，然後按一下 [HDInsight 叢集]。
 3. 按一下 HDInsight 叢集。  如果您沒有叢集，則必須先建立一個。  請參閱 [建立叢集](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster)。
-4. 按一下 [設定] 類別下的 [應用程式]。 您可以看見已安裝應用程式的清單 (如果有的話)。
+4. 按一下 [設定] 類別下的 [應用程式]。 您可以看見已安裝應用程式的清單 (如果有的話)。 如果您無法找到 [應用程式]，就表示沒有任何應用程式適用於這個版本的 HDInsight 叢集。
    
-    ![Hdinsight 應用程式入口網站功能表](./media/hdinsight-apps-install-applications/hdinsight-apps-portal-menu.png)
+    ![HDInsight 應用程式入口網站功能表](./media/hdinsight-apps-install-applications/hdinsight-apps-portal-menu.png)
 5. 按一下刀鋒視窗功能表中的 [新增]  。 
    
-    ![Hdinsight 應用程式安裝的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-installed-apps.png)
+    ![HDinsight 應用程式安裝的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-installed-apps.png)
    
     您可以看到現有 HDInsight 應用程式的清單。
    
-    ![Hdinsight 應用程式可用的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-list.png)
+    ![HDinsight 應用程式可用的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-list.png)
 6. 按一下其中一個應用程式，接受法律條款，然後按一下 [選取] 。
 
 您可以從入口網站通知看到安裝狀態 (按一下入口網站頂端的鈴鐺圖示)。 安裝應用程式之後，應用程式會出現在 [已安裝的應用程式] 刀鋒視窗上。
@@ -89,7 +94,7 @@ HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢�
 3. 按一下 HDInsight 叢集。
 4. 在 [設定] 刀鋒視窗中，按一下 [一般] 類別之下的 [應用程式]。 [已安裝的應用程式] 刀鋒視窗會列出所有已安裝的應用程式。 
    
-    ![Hdinsight 應用程式安裝的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-installed-apps-with-apps.png)
+    ![HDinsight 應用程式安裝的應用程式](./media/hdinsight-apps-install-applications/hdinsight-apps-installed-apps-with-apps.png)
 5. 按一下其中一個已安裝的應用程式，以顯示屬性。 屬性刀鋒視窗會列出︰
    
    * 應用程式名稱：應用程式名稱。
@@ -105,7 +110,7 @@ HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢�
 HTTP 端點認證是您已針對 HDInsight 叢集設定的 HTTP 使用者認證；SSH 端點認證就是您已針對 HDInsight 叢集設定的 SSH 認證。
 
 ## <a name="troubleshoot"></a>疑難排解
-請參閱 [安裝問題疑難排解](hdinsight-apps-install-custom-applications.md#troubleshoot-the-installation)。
+請參閱[針對安裝問題進行疑難排解](hdinsight-apps-install-custom-applications.md#troubleshoot-the-installation)。
 
 ## <a name="next-steps"></a>後續步驟
 * [安裝自訂 HDInsight 應用程式](hdinsight-apps-install-custom-applications.md)︰了解如何將未發佈的 HDInsight 應用程式部署到 HDInsight。
@@ -114,10 +119,5 @@ HTTP 端點認證是您已針對 HDInsight 叢集設定的 HTTP 使用者認證�
 * [使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)：了解如何使用指令碼動作來安裝其他應用程式。
 * [使用 Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)︰了解如何呼叫 Resource Manager 範本來建立 HDInsight 叢集。
 * [在 HDInsight 中使用空白邊緣節點](hdinsight-apps-use-edge-node.md)︰了解如何使用空白邊緣節點來存取 HDInsight 叢集、測試 HDInsight 應用程式，以及裝載 HDInsight 應用程式。
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

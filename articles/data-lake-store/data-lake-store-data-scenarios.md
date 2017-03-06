@@ -17,6 +17,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: 2969e6063d7bc59a6c8ca733912904abeeb7e7e8
 ms.openlocfilehash: c79826afe9af20dd46db46ab6c73f3196a71fc46
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -132,9 +133,4 @@ ms.openlocfilehash: c79826afe9af20dd46db46ab6c73f3196a71fc46
 
 * 您可以從使用 [Azure Data Factory 將資料從 Data Lake Store 移到 Azure SQL 資料倉儲](../data-factory/data-factory-data-movement-activities.md#supported-data-stores-and-formats)
 * 之後，您可以 [將 Power BI 與 Azure SQL 資料倉儲整合](../sql-data-warehouse/sql-data-warehouse-integrate-power-bi.md) ，以視覺化方式呈現資料。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

@@ -16,8 +16,9 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 86f339b1a8f8c18fd898dc06b87245b265b3adb1
-ms.openlocfilehash: 1cf85c16847aad632d52fe72cd827f0ef8e66e91
+ms.sourcegitcommit: c08b568642e88da1aeddd36cb25a9f5c94b083e2
+ms.openlocfilehash: f283f103804d8e6d4a3c2037c8d38daafcb3f3e8
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -26,7 +27,6 @@ ms.openlocfilehash: 1cf85c16847aad632d52fe72cd827f0ef8e66e91
 了解如何在 HDInsight 中建立 [Hadoop](http://hadoop.apache.org/) 叢集，以及如何在 HDInsight 中執行 Hive 作業。 [Apache Hive](https://hive.apache.org/) 是 Hadoop 生態系統中最受歡迎的元件。 HDInsight 目前隨附&6; 種叢集類型︰[Hadoop](hdinsight-hadoop-introduction.md)、[Spark](hdinsight-apache-spark-overview.md)、[HBase](hdinsight-hbase-overview.md)、[Storm](hdinsight-storm-overview.md)、[互動式 Hive (預覽)](hdinsight-hadoop-use-interactive-hive.md) 和 [R 伺服器](hdinsight-hadoop-r-server-overview.md)。  每種叢集類型都支援一組不同的元件。 這&6; 種叢集類型都支援 Hive。 如需 HDInsight 中支援的元件清單，請參閱 [HDInsight 在 Hadoop 叢集版本中提供的新功能](hdinsight-component-versioning.md)  
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
-
 ## <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備：
 
@@ -59,11 +59,13 @@ ms.openlocfilehash: 1cf85c16847aad632d52fe72cd827f0ef8e66e91
     某些屬性已硬式編碼在範本中。  您可以從範本設定這些值。
 
     * **位置**︰叢集和相依儲存體帳戶的位置會使用相同的位置做為資源群組。
-    * **叢集版本**：3.4
+    * **叢集版本**：3.5
     * **OS 類型**：Linux
     * **背景工作節點數目**：2
 
-     每個叢集都具備 Azure Blob 儲存體帳戶相依性。 通常稱為預設儲存體帳戶。 HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 區域。 刪除叢集並不會刪除儲存體帳戶。 在範本中，預設儲存體帳戶名稱已定義為附加 "store" 的叢集名稱。 
+     每個叢集都具備 Azure Blob 儲存體帳戶相依性。 通常稱為預設儲存體帳戶。 HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 區域。 刪除叢集並不會刪除儲存體帳戶。 
+     
+     如需這些屬性的詳細說明，請參閱[在 HDInsight 中建立Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 
 3. 選取 [我同意上方所述的條款及條件] 和 [釘選到儀表板]，然後按一下 [購買]。 您會在入口網站儀表板上看到標題為 [進行範本部署] 的新圖格。 大約需要 20 分鐘的時間來建立叢集。 建立叢集後，此圖格的標題會變更為您指定的資源群組名稱。 而入口網站會自動在新的刀鋒視窗中開啟資源群組。 您可以看到列出的叢集和預設儲存體。
    
@@ -148,28 +150,11 @@ ms.openlocfilehash: 1cf85c16847aad632d52fe72cd827f0ef8e66e91
 
 [1]: ../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md
 
-[hdinsight-provision]: hdinsight-provision-clusters.md
-[hdinsight-admin-powershell]: hdinsight-administer-use-powershell.md
+[hdinsight-provision]: hdinsight-provision-linux-clusters.md
 [hdinsight-upload-data]: hdinsight-upload-data.md
 [hdinsight-use-mapreduce]: hdinsight-use-mapreduce.md
 [hdinsight-use-hive]: hdinsight-use-hive.md
 [hdinsight-use-pig]: hdinsight-use-pig.md
 
-[powershell-download]: http://go.microsoft.com/fwlink/p/?linkid=320376&clcid=0x409
-[powershell-install-configure]: /powershell/azureps-cmdlets-docs
-[powershell-open]: /powershell/azureps-cmdlets-docs#Install
-
-[img-hdi-dashboard]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.dashboard.png
-[img-hdi-dashboard-query-select]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.dashboard.query.select.png
-[img-hdi-dashboard-query-select-result]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.dashboard.query.select.result.png
-[img-hdi-dashboard-query-select-result-output]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.dashboard.query.select.result.output.png
-[img-hdi-dashboard-query-browse-output]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.dashboard.query.browse.output.png
-[image-hdi-clusterstatus]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.ClusterStatus.png
-[image-hdi-gettingstarted-powerquery-importdata]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.GettingStarted.PowerQuery.ImportData.png
-[image-hdi-gettingstarted-powerquery-importdata2]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.GettingStarted.PowerQuery.ImportData2.png
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

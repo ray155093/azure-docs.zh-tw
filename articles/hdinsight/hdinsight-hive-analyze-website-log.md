@@ -43,7 +43,7 @@ ms.lasthandoff: 01/19/2017
 * 您必須有 [Microsoft Hive ODBC 驅動程式](http://www.microsoft.com/download/details.aspx?id=40886) ，才能從 Hive 將資料匯入 Excel 中。
 
 ## <a name="to-run-the-sample"></a>執行範例
-1. 從 [Azure 入口網站](https://portal.azure.com/)的 [「開始面板」] (若您已在該處釘選叢集)，按一下您要在其中執行範例的叢集磚。
+1. 從 [Azure 入口網站](https://portal.azure.com/)的 開始面板 (若您已在該處釘選叢集)，按一下您要在其中執行範例的叢集磚。
 2. 在叢集刀鋒視窗的 [快速連結] 之下，按一下 [叢集儀表板]，然後從 [叢集儀表板] 刀鋒視窗按一下 [HDInsight 叢集儀表板]。 或者，您也可以使用下列 URL 直接開啟儀表板：
    
          https://<clustername>.azurehdinsight.net
