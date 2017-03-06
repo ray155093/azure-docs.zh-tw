@@ -17,6 +17,7 @@ ms.author: hascipio; avikova
 translationtype: Human Translation
 ms.sourcegitcommit: f8b0917b6eb0295641360c4e0a80e81100809f6e
 ms.openlocfilehash: e3ce01d20f6b47c6fe68fdbfe31679cc2c92f2e7
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -102,7 +103,7 @@ FunctionImport 節點內的其他子節點 (未被 CSDL 文件涵蓋) 如下：
         ]]>
         </d:RequestBody>`
 
-**d:Namespaces** 和 **d:Namespace** - 此節點描述函式匯入 (URI 端點) 所傳回之 XML 中定義的命名空間。 後端服務所傳回的 XML 可能包含任意數目的命名空間，以區別所傳回的內容。 **所有這些命名空間，若用於 d:Map 或 d:Match XPath 查詢中，則需要列出。**  d:Namespaces 節點包含 d:Namespace 節點集/清單。 其中每一個列出一個用於後端服務回應的命名空間。 以下是 d:Namespace 節點的屬性：
+**d:Namespaces** 和 **d:Namespace** - 此節點描述函式匯入 (URI 端點) 所傳回之 XML 中定義的命名空間。 後端服務所傳回的 XML 可能包含任意數目的命名空間，以區別所傳回的內容。 **所有這些命名空間，若用於 d:Map 或 d:Match XPath 查詢中，則需要列出。** d:Namespaces 節點包含 d:Namespace 節點集/清單。 其中每一個列出一個用於後端服務回應的命名空間。 以下是 d:Namespace 節點的屬性：
 
 * **d:Prefix：** 命名空間的前置詞，如服務所傳回的 XML 結果中看到的，例如 f:FirstName、f:LastName，其中 f 是前置詞。
 * **d:Uri：** 用於結果文件之命名空間的完整 URI。 前置詞會在執行階段解析為其代表的值。
@@ -118,17 +119,17 @@ FunctionImport 節點內的其他子節點 (未被 CSDL 文件涵蓋) 如下：
 **d:Title** *(選用)* - 允許描述函數的標題。 標題的值來自
 
 * 選用的對應屬性 (xpath)，其會指定是否要在服務要求傳回的回應中尋找標題。
-* - 或者 - 指定為節點值的標題。
+* -或者 - 指定為節點值的標題。
 
 **d:Rights** *(選用)* - 與函數相關聯的權限 (例如著作權)。 權限的值來自
 
 * 選用的對應屬性 (xpath)，其會指定是否要在服務要求傳回的回應中尋找權限。
-* - 或者 - 指定為節點值的權限。
+* -或者 - 指定為節點值的權限。
 
 **d:Description** *(選用)* - 函數的簡短說明。 說明的值來自
 
 * 選用的對應屬性 (xpath)，其會指定是否要在服務要求傳回的回應中尋找說明。
-* - 或者 - 指定為節點值的說明。
+* -或者 - 指定為節點值的說明。
 
 **d:EmitSelfLink** - *請參閱上述範例「透過傳回之資料「分頁」的 FunctionImport」*
 
@@ -274,9 +275,4 @@ XPath 運算式將是 /foo/bar，因為每一個列節點就是輸出中的重�
 * 如果您有興趣全面了解 OData 對應程序和用途，請閱讀 [資料服務 OData 對應](marketplace-publishing-data-service-creation-odata-mapping.md) 一文來檢閱定義、結構和指示。
 * 如果您有興趣檢閱範例，請閱讀 [資料服務 OData 對應範例](marketplace-publishing-data-service-creation-odata-mapping-examples.md) 一文，來查看範例程式碼，並了解程式碼語法與內容。
 * 若要返回用於將資料服務發佈至 Azure Marketplace 的指定路徑，請閱讀 [資料服務發佈指南](marketplace-publishing-data-service-creation.md)一文。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
