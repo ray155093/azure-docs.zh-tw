@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
 ms.sourcegitcommit: 6e0da01df8ac5fd3cdb6b4e42dfbc08fab7d9615
@@ -41,27 +41,27 @@ Azure AD 網域服務的受管理網域包含兩個內建的容器，分別稱�
 
 > [!NOTE]
 > 只有「AAD DC 管理員」群組的成員具有建立自訂 OU 的必要權限。 請確保以這個群組成員的使用者身分執行下列步驟。
-> 
-> 
+>
+>
 
 1. 從 [開始] 畫面中，按一下 [系統管理工具] 。 您應該會看到安裝在虛擬機器上的 AD 系統管理工具。
-   
+
     ![安裝在伺服器上的系統管理工具](./media/active-directory-domain-services-admin-guide/install-rsat-admin-tools-installed.png)
 2. 按一下 [Active Directory 管理中心] 。
-   
+
     ![Active Directory 管理中心](./media/active-directory-domain-services-admin-guide/adac-overview.png)
 3. 若要檢視網域，請按一下左窗格中的網域名稱 (例如，'contoso100.com')。
-   
+
     ![ADAC - 檢視網域](./media/active-directory-domain-services-admin-guide/create-ou-adac-overview.png)
 4. 在右側的 [工作] 窗格中，按一下網域名稱節點下的 [新增]。 在此範例中，會在右側的 [工作] 窗格中，按一下 'contoso100(local)' 節點下的 [新增]。
-   
+
     ![ADAC - 新的 OU](./media/active-directory-domain-services-admin-guide/create-ou-adac-new-ou.png)
 5. 您應該會看到建立組織單位的選項。 按一下 [組織單位] 啟動 [建立組織單位] 對話方塊。
 6. 在 [建立組織單位] 對話方塊中，指定新 OU 的 [名稱]。 提供 OU 的簡短描述。 您也可以設定 OU 的 [Managed By] \(管理者)  欄位。 若要建立自訂映像，請按一下 [確定] 。
-   
+
     ![ADAC - 建立 OU 對話方塊](./media/active-directory-domain-services-admin-guide/create-ou-dialog.png)
 7. 新建立的 OU 現在應該會出現在 AD 管理中心 (ADAC) 中。
-   
+
     ![ADAC - OU 已建立](./media/active-directory-domain-services-admin-guide/create-ou-done.png)
 
 ## <a name="permissionssecurity-for-newly-created-ous"></a>新建 OU 的權限/安全性
@@ -74,13 +74,12 @@ Azure AD 網域服務的受管理網域包含兩個內建的容器，分別稱�
 
 > [!WARNING]
 > 您在自訂 OU 下建立的使用者帳戶、群組、服務帳戶和電腦物件無法在 Azure AD 租用戶中使用。 換句話說，使用 Azure AD Graph API 或 Azure AD UI 中都不會顯示這些物件。 這些物件只可用於 Azure AD 網域服務受管理的網域中。
-> 
-> 
+>
+>
 
 ## <a name="related-content"></a>相關內容
 * [Administer an Azure AD Domain Services managed domain (管理 Azure AD 網域服務受管理的網域)](active-directory-ds-admin-guide-administer-domain.md)
 * [設定受管理網域的群組原則](active-directory-ds-admin-guide-administer-group-policy.md)
 * [Active Directory 管理中心：入門](https://technet.microsoft.com/library/dd560651.aspx)
 * [服務帳戶的逐步指南](https://technet.microsoft.com/library/dd548356.aspx)
-
 

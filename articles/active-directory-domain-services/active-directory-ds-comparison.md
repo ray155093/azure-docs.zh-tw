@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
 ms.sourcegitcommit: 1c4045bd9b705ab3e909a06035f27b85635fdf36
@@ -110,8 +110,8 @@ Azure AD 網域服務受管理網域可以在Azure 的單一虛擬網路中使�
 
 > [!NOTE]
 > 您可能認為 DIY 選項比較適合您的部署使用案例。 請考慮 [分享意見反應](active-directory-ds-contact-us.md) ，幫助我們了解哪些功能可協助您在未來選擇 Azure AD 網域服務。 此意見反應協助我們提升服務，使其更符合您的部署需求和使用案例。
-> 
-> 
+>
+>
 
 我們已發行 [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx) ，讓 DIY 安裝變得更容易。
 
@@ -119,5 +119,4 @@ Azure AD 網域服務受管理網域可以在Azure 的單一虛擬網路中使�
 * [功能 - Azure AD 網域服務](active-directory-ds-features.md)
 * [部署案例 - Azure AD 網域服務](active-directory-ds-scenarios.md)
 * [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)
-
 

@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/13/2016
+ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
 ms.sourcegitcommit: 5e6bab265b2b6eabd1a878492588c4eb39d1b332
 ms.openlocfilehash: 89dfabb8feafffee2ed8143c372b53d02033d582
+ms.lasthandoff: 01/14/2017
 
 
 ---
@@ -79,9 +80,4 @@ ms.openlocfilehash: 89dfabb8feafffee2ed8143c372b53d02033d582
 
 #### <a name="what-azure-regions-is-the-service-available-in"></a>哪些 Azure 區域提供此服務？
 請參閱[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services/)頁面，以查看可使用 Azure AD 網域服務的 Azure 區域清單。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

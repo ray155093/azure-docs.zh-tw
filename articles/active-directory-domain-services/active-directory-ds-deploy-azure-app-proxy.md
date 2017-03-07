@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
+ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
 ms.sourcegitcommit: 5121a810badcaa9c66a9f5d85bd83b9f522b9665
 ms.openlocfilehash: 449499ebed1b455af012ec97976d04604a320941
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -104,7 +105,7 @@ Azure Active Directory (AD) 應用程式 Proxy 可藉由發佈要透過網際網
 
 
 ### <a name="enable-resource-based-kerberos-constrained-delegation-for-the-azure-ad-application-proxy-connector"></a>針對 Azure AD 應用程式 Proxy 連接器啟用資源型 Kerberos 限制委派
-應設定 Kerberos 限制委派 (KCD) 的 Azure 應用程式 Proxy 連接器，以便它可以在受管理的網域上模擬使用者。 在 Azure AD 網域服務受管理的網域上，您沒有網域系統管理員權限。 因此，**無法在受管理的網域上設定傳統帳戶層級 KCD**。 
+應設定 Kerberos 限制委派 (KCD) 的 Azure 應用程式 Proxy 連接器，以便它可以在受管理的網域上模擬使用者。 在 Azure AD 網域服務受管理的網域上，您沒有網域系統管理員權限。 因此，**無法在受管理的網域上設定傳統帳戶層級 KCD**。
 
 使用本[文章](active-directory-ds-enable-kcd.md)中所述的資源型 KCD。
 
@@ -130,9 +131,4 @@ Set-ADComputer contoso100-resource.contoso100.com -PrincipalsAllowedToDelegateTo
 * [Azure AD Domain Services - 入門指南](active-directory-ds-getting-started.md)
 * [在受管理的網域上設定 Kerberos 限制委派](active-directory-ds-enable-kcd.md)
 * [Kerberos 限制委派概觀](https://technet.microsoft.com/library/jj553400.aspx)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

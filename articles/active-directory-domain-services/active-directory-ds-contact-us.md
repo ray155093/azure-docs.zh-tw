@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/21/2016
+ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: dddcd8baea7694d957820870b2f991a35200d0ca
+ms.lasthandoff: 12/29/2016
 
 
 ---
@@ -35,10 +36,4 @@ ms.openlocfilehash: dddcd8baea7694d957820870b2f991a35200d0ca
 我們非常歡迎您透過 **[Azure Active Directory User Voice 通道](https://feedback.azure.com/forums/169401-azure-active-directory/)**提供對於 Azure AD 網域服務的意見反應。
 
 請務必在問題或意見反應前加上 **'AADDS'**字樣，它才可送達我們。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

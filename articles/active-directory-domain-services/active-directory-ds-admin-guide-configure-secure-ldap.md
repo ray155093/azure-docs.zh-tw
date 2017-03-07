@@ -12,7 +12,7 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/27/2017
+ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
 ms.sourcegitcommit: 44be67cd5c59a57cafd244ce0a49a6fadf44bdda
@@ -31,7 +31,7 @@ ms.lasthandoff: 01/25/2017
 2. **Azure AD 目錄** - 與內部部署目錄或僅限雲端的目錄同步處理。
 3. **Azure AD 網域服務** 必須已針對 Azure AD 目錄啟用。 如果還沒有啟用，請按照 [入門指南](active-directory-ds-getting-started.md)所述的所有工作來進行。
 4. **用來啟用安全 LDAP 的憑證**。
-   
+
    * **建議** - 從受信任的公共憑證授權單位取得憑證。 這是更安全的組態選項。
    * 或者，您也可以選擇 [建立自我簽署憑證](#task-1---obtain-a-certificate-for-secure-ldap) ，如本文稍後所示。
 
@@ -48,8 +48,8 @@ ms.lasthandoff: 01/25/2017
 
 > [!NOTE]
 > **企業憑證授權單位︰**Azure AD Domain Services 目前不支援使用您組織的企業憑證授權單位所簽發的安全 LDAP 憑證。 這項限制是因為服務不信任您企業 CA 做為根憑證授權單位。 我們預計在未來會新增對企業 CA 的支援。 如果您一定要使用您企業 CA 所簽發的憑證，請[與我們連絡](active-directory-ds-contact-us.md)以取得協助。
-> 
-> 
+>
+>
 
 <br>
 
@@ -66,8 +66,8 @@ ms.lasthandoff: 01/25/2017
 
 > [!NOTE]
 > 需要使用安全的 LDAP 連線到受管理網域的用戶端電腦必須信任安全 LDAPS 憑證的簽發者。
-> 
-> 
+>
+>
 
 ### <a name="option-b---create-a-self-signed-certificate-for-secure-ldap"></a>選項 B - 為安全的 LDAP 建立自我簽署的憑證
 如果您不希望使用公開憑證授權單位的憑證，可以選擇建立安全 LDAP 的自我簽署憑證。
@@ -177,8 +177,8 @@ ms.lasthandoff: 01/25/2017
 
    > [!NOTE]
    > 為受管理的網域啟用安全 LDAP 需要約 10 到 15 分鐘的時間。 如果提供的安全 LDAP 憑證不符合所需的準則，則不會為您的目錄啟用安全 LDAP，而且您會看到失敗。 例如，網域名稱不正確、憑證已到期或即將到期等。
-   > 
-   > 
+   >
+   >
 
 9. 在為受管理的網域成功啟用安全 LDAP 後，[擱置...]  訊息應該會消失。 您應該會看到已顯示憑證的指紋。
 

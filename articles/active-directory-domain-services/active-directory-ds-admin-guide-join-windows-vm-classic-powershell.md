@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/01/2016
+ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
 ms.sourcegitcommit: fdc53ee24c623218e218cdda1c24dffbbec50bc5
 ms.openlocfilehash: e7c7e9504985fa98185286ee9a28cec80fb87df6
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -24,15 +25,15 @@ ms.openlocfilehash: e7c7e9504985fa98185286ee9a28cec80fb87df6
 > [!div class="op_single_selector"]
 > * [Azure 傳統入口網站 - Windows](active-directory-ds-admin-guide-join-windows-vm.md)
 > * [PowerShell - Windows](active-directory-ds-admin-guide-join-windows-vm-classic-powershell.md)
-> 
-> 
+>
+>
 
 <br>
 
 > [!IMPORTANT]
 > Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Azure AD 網域服務目前不支援 Resource Manager 模型。
-> 
-> 
+>
+>
 
 下列步驟將示範如何使用建置組塊自訂一組 Azure PowerShell 命令，建立和預先設定以 Windows 為基礎的 Azure 虛擬機器。 這些步驟可協助您建置 Windows 型 Azure 虛擬機器，並將它加入 Azure AD 網域服務受管理的網域。
 
@@ -156,10 +157,4 @@ ms.openlocfilehash: e7c7e9504985fa98185286ee9a28cec80fb87df6
 ## <a name="related-content"></a>相關內容
 * [Azure AD Domain Services - 入門指南](active-directory-ds-getting-started.md)
 * [Administer an Azure AD Domain Services managed domain (管理 Azure AD 網域服務受管理的網域)](active-directory-ds-admin-guide-administer-domain.md)
-
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 
