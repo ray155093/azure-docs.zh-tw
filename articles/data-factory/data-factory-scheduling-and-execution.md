@@ -17,6 +17,7 @@ ms.author: spelluru
 translationtype: Human Translation
 ms.sourcegitcommit: febc8fef864f88fa07accf91efc9b87727a48b32
 ms.openlocfilehash: 8b1029075178fbc591645a5fd6a112ad0a7f8b86
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -756,7 +757,7 @@ Hive 活動接受 2 個輸入，並且每日產生輸出配量。 您可以針�
 
 ```
 DatasetSlice = [start, end]
-DependecyPeriod = [f(start, end), g(start, end)]
+DependencyPeriod = [f(start, end), g(start, end)]
 ```
 
 **F** 和 **g** 是對應函式，計算每個活動輸入的相依性期間的開始和結束。
@@ -855,10 +856,5 @@ DependecyPeriod = [f(start, end), g(start, end)]
 * 有指定輸入和輸出資料集的**可用性** (**頻率**和**間隔**)，即使 Data Factory 未使用這些值也是一樣。  
 * 圖表檢視不會顯示一次性管線。 這是設計的行為。
 * 一次性管線無法更新。 您可以複製一次性管線、將其重新命名、更新屬性，以及加以部署來建立另一個管線。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

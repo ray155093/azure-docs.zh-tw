@@ -221,7 +221,8 @@ Windows 10 和 Windows Server 2016 Technical Preview 提供的 PowerShell 版本
      然後產生憑證。
   
   ```powershell
-  $cert = New-SelfSignedCertificateEx -Subject "CN=exampleapp" -KeySpec "Exchange" -FriendlyName "exampleapp"
+  New-SelfSignedCertificateEx  -StoreLocation CurrentUser -StoreName My -Subject "CN=exampleapp" -KeySpec "Exchange" -FriendlyName "exampleapp"
+  $cert = Get-ChildItem -path Cert:\CurrentUser\my | where {$PSitem.Subject -eq 'CN=exampleapp' }
   ```
 
 您已擁有憑證，接下來可以繼續建立 AD 應用程式。
