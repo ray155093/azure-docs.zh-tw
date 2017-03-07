@@ -160,7 +160,7 @@ Microsoft 提供 VSTS 擴充以在建置與發行程序中搭配 Docker 使用�
 
     ![Visual Studio Team Services - Docker 推送](./media/container-service-docker-swarm-setup-ci-cd/vsts-docker-push.png)
 
-    針對推送作業，選取您的 Azure 容器登錄，選取 [Push an image] \(推送映像) 動作，並輸入在上一個步驟中建置的 [Image Name] \(映像名稱)。
+    針對推送作業，選取您的 Azure 容器登錄，選取 **[Push an image]**  \(推送映像) 動作，並輸入在上一個步驟中建置的 **[Image Name]**  \(映像名稱)。
 
 4. 針對這五個映像個別設定好建置和推送步驟之後，請在建置工作流程中再新增兩個步驟。
 
