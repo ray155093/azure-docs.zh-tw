@@ -31,6 +31,8 @@ ms.lasthandoff: 02/23/2017
 
 網路監看員提供了許多功能，因為它的作用就是為了讓您了解您在 Azure 中的網路資源。 這些功能的其中之一便是資源疑難排解。 資源疑難排解可透過 PowerShell、CLI 或 REST API 來呼叫。 一經呼叫，網路監看員就會檢查虛擬網路閘道或連線的健康狀態，並傳回其調查結果。
 
+[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
+
 ## <a name="before-you-begin"></a>開始之前
 
 此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。
