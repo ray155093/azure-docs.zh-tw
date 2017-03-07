@@ -58,8 +58,3 @@
 ## [Redis 快取範例](cache-redis-samples.md)
 ## [價格](https://azure.microsoft.com/pricing/details/cache/)
 
-
-
-<!--HONumber=Jan17_HO3-->
-
-

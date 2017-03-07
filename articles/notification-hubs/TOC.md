@@ -69,8 +69,3 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-notificationhub)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=notification-hubs)
 ## [服務更新](https://azure.microsoft.com/updates/?product=notification-hubs)
-
-
-<!--HONumber=Jan17_HO3-->
-
-

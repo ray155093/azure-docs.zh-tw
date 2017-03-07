@@ -27,7 +27,7 @@ Azure Analysis Services 中的資料模型連線至某些資料來源時，可�
 
 例如，當您有 In-Memory 或 DirectQuery 資料模型與雲端資料來源 (如 Azure SQL Database) 連線時，如果您使用 SQLOLEDB 以外的原生提供者，可能會看見以下的錯誤訊息：**“The provider 'SQLNCLI11.1' is not registered”** (尚未註冊提供者 'SQLNCLI11.1')。
 
-或者，當您有 DirectQuery 模型與內部部署資料來源連線時，如果您使用原生提供者，可能會看見錯誤訊息：**“Error creating OLE DB row set.Incorrect syntax near 'LIMIT'”** (建立 OLE DB 列集時發生錯誤.。'LIMIT' 附近的語法錯誤)。
+或者，當您有 DirectQuery 模型與內部部署資料來源連線時，如果您使用原生提供者，可能會看見錯誤訊息：**“Error creating OLE DB row set.Incorrect syntax near 'LIMIT'”** (建立 OLE DB 列集時發生錯誤。'LIMIT' 附近的語法錯誤)。
 
 ## <a name="data-source-providers"></a>資料來源提供者
 與雲端或內部部署中的資料來源連線時，In-Memory 或 DirectQuery 資料模型支援下列資料來源提供者：
