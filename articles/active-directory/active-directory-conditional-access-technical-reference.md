@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/15/2017
+ms.date: 03/01/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 00124aa9d0729880bf2314f5c35c1797b7a6827f
-ms.openlocfilehash: 79d844f8fa3d3d0898b642f561df34588e044f9a
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 4296bbc7123f6571ad564351612864a6315d8abf
+ms.openlocfilehash: 450f3e001a0bc4a45fea4c4f0a81e676e9a80cc4
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -24,16 +24,19 @@ ms.lasthandoff: 02/17/2017
 ## <a name="services-enabled-with-conditional-access"></a>已啟用條件式存取功能的服務
 各種 Azure AD 應用程式類型都支援「條件式存取」規則。 此清單包括：
 
-* 來自 Azure AD 應用程式庫的同盟應用程式
-* 來自 Azure AD 應用程式庫的密碼 SSO 應用程式
+
 * 已向 Azure 應用程式 Proxy 註冊的應用程式
-* 已開發並已向 Azure AD 註冊的企業營運及多租用戶應用程式
-* Visual Studio Online
 * Azure 遠端應用程式
+* 已開發並已向 Azure AD 註冊的企業營運及多租用戶應用程式
 * Dynamics CRM
+* 來自 Azure AD 應用程式庫的同盟應用程式
 * Microsoft Office 365 Yammer
 * Microsoft Office 365 Exchange Online
 * Microsoft Office 365 SharePoint Online (包括商務用 OneDrive)
+* Microsoft Power BI 
+* 來自 Azure AD 應用程式庫的密碼 SSO 應用程式
+* Visual Studio Online
+
 
 ## <a name="enable-access-rules"></a>啟用存取規則
 您可以依據個別應用程式來啟用或停用每個規則。 當規則為 **ON** 時，系統將會針對存取應用程式的使用者啟用並強制執行這些規則。 當規則為 **OFF** 時，系統就不會使用這些規則，也就不會影響使用者的登入體驗。

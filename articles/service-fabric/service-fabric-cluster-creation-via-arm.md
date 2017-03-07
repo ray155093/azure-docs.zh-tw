@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 12/08/2016
+ms.date: 02/22/2017
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: eddca02c4fba88aee667216568beecc76ea65d7c
-ms.openlocfilehash: 22e2e2ff15daa390a952b465f937e890169b95a8
+ms.sourcegitcommit: b80ee30379e9aac207cfe420cae17da57ea123a5
+ms.openlocfilehash: 9159f40fed17e52e6576efa1ea7e8a2dee98728e
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -339,7 +340,7 @@ Service Fabric 叢集提供其管理功能的各種進入點 (包括 Web 型 [Se
 您可以從 [GitHub 上的 Azure 快速啟動範本資源庫][azure-quickstart-templates]取得範例 Resource Manager 範本。 這些範本可以用作叢集範本的起點。
 
 ### <a name="create-the-resource-manager-template"></a>建立 Resource Manager 範本
-本指南使用[五節點安全叢集][service-fabric-secure-cluster-5-node-1-nodetype-wad]範例範本和範本參數。 下載 `azuredeploy.json` 和 `azuredeploy.parameters.json` 到您的電腦並在您最愛的文字編輯器中開啟這兩個檔案。
+本指南使用[五節點安全叢集][service-fabric-secure-cluster-5-node-1-nodetype]範例範本和範本參數。 下載 `azuredeploy.json` 和 `azuredeploy.parameters.json` 到您的電腦並在您最愛的文字編輯器中開啟這兩個檔案。
 
 ### <a name="add-certificates"></a>新增憑證
 您可以藉由參考包含憑證金鑰的 Key Vault，將憑證新增到叢集 Resource Manager 範本。 建議您將 Key Vault 值置於 Resource Manager 範本參數檔案中。 這麼做會讓 Resource Manager 範本檔案保持可重複使用，而不會含有某項部署特定的值。
@@ -667,7 +668,7 @@ FabricClient 和 FabricGateway 會執行相互驗證。 在 Azure AD 驗證期�
 [service-fabric-manage-application-in-visual-studio]: service-fabric-manage-application-in-visual-studio.md
 [sf-aad-ps-script-download]:http://servicefabricsdkstorage.blob.core.windows.net/publicrelease/MicrosoftAzureServiceFabric-AADHelpers.zip
 [azure-quickstart-templates]: https://github.com/Azure/azure-quickstart-templates
-[service-fabric-secure-cluster-5-node-1-nodetype-wad]: https://github.com/Azure/azure-quickstart-templates/blob/master/service-fabric-secure-cluster-5-node-1-nodetype-wad/
+[service-fabric-secure-cluster-5-node-1-nodetype]: https://github.com/Azure/azure-quickstart-templates/blob/master/service-fabric-secure-cluster-5-node-1-nodetype/
 [resource-group-template-deploy]: https://azure.microsoft.com/documentation/articles/resource-group-template-deploy/
 [x509-certificates-and-service-fabric]: service-fabric-cluster-security.md#x509-certificates-and-service-fabric
 
@@ -679,9 +680,4 @@ FabricClient 和 FabricGateway 會執行相互驗證。 在 Azure AD 驗證期�
 [sfx-select-certificate-dialog]: ./media/service-fabric-cluster-creation-via-arm/sfx-select-certificate-dialog.png
 [sfx-reply-address-not-match]: ./media/service-fabric-cluster-creation-via-arm/sfx-reply-address-not-match.png
 [web-application-reply-url]: ./media/service-fabric-cluster-creation-via-arm/web-application-reply-url.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 
