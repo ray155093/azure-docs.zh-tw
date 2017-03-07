@@ -18,6 +18,7 @@ ms.author: denlee
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: d8abb90b19fd3b79324209a2418c414e3b6bb301
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -761,9 +762,4 @@ ms.openlocfilehash: d8abb90b19fd3b79324209a2418c414e3b6bb301
 22. 若要將您的專案部署至 Azure 網站，請參閱[步驟 6：將應用程式部署至 Azure 網站](#Deploy)。
 
 [1]: media/documentdb-java-application/keys.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 
