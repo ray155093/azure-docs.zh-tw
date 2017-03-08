@@ -13,11 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
+ms.date: 02/22/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: a2b32f23381ed1f9912edf6432f029e51bdf1be4
-ms.openlocfilehash: 0bb7af25211ef728055ddb5a6fb826411986dd4e
+ms.sourcegitcommit: c8abf308c20968f184a80b20dc40185b1631105d
+ms.openlocfilehash: 903004ae83d86ddcda13c6f2fce708e71ffa729b
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -40,20 +41,17 @@ ms.openlocfilehash: 0bb7af25211ef728055ddb5a6fb826411986dd4e
 * webhcat-site.xml
 * yarn-site.xml
 
-叢集無法保留重新製作映像所造成的變更。 如需重新製作映像的詳細資訊，請參閱 [Role Instance Restarts Due to OS Upgrades (角色執行個體因作業系統升級而重新啟動)](http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx)。 若要在叢集存留期間保留變更，您可以在建立程序期間使用 HDInsight 叢集自訂。 我們建議您用這個方法來變更叢集的組態，並讓組態在這些 Azure 重新安裝映像、重新啟動、重新開始事件的過程中，都能保持不變。 這些組態變更會在服務啟動之前套用，因此服務不需要重新啟動。 
-
-有 3 個方法可以使用 Bootstrap：
+有三個方法可以使用 Bootstrap：
 
 * 使用 Azure PowerShell
-  
-    [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 * 使用 .NET SDK
 * 使用 Azure Resource Manager 範本
+
+[!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 如需於建立期間在 HDInsight 叢集上安裝其他元件的相關資訊，請參閱：
 
 * [使用指令碼動作來自訂 HDInsight 叢集| Azure (Linux)](hdinsight-hadoop-customize-cluster-linux.md)
-* [使用指令碼動作來自訂 HDInsight 叢集 (Windows)](hdinsight-hadoop-customize-cluster.md)
 
 ## <a name="use-azure-powershell"></a>使用 Azure PowerShell
 下列 PowerShell 程式碼會自訂 Hive 組態：
@@ -74,8 +72,8 @@ ms.openlocfilehash: 0bb7af25211ef728055ddb5a6fb826411986dd4e
         -Location $location `
         -ClusterSizeInNodes $clusterSizeInNodes `
         -ClusterType Hadoop `
-        -OSType Windows `
-        -Version "3.2" `
+        -OSType Linux `
+        -Version "3.5" `
         -HttpCredential $httpCredential `
         -Config $config 
 
@@ -84,7 +82,7 @@ ms.openlocfilehash: 0bb7af25211ef728055ddb5a6fb826411986dd4e
 **若要確認變更：**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在左窗格上按一下 [瀏覽]，然後按一下 [HDInsight 叢集]。
+2. 從左功能表中按一下 [HDInsight 叢集]。 如果您沒有看到，可先按一下 [更多服務]。
 3. 按一下您剛才使用 PowerShell 指令碼建立的叢集。
 4. 在刀鋒視窗頂端按一下 [儀表板]  ，以開啟 Ambari UI。
 5. 按一下左側功能表中的 [Hive]  。
@@ -244,7 +242,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
         -ClusterSizeInNodes 1 `
         -ClusterType Hadoop `
         -OSType Linux `
-        -Version "3.2" `
+        -Version "3.5" `
         -HttpCredential $httpCredential `
         -SshCredential $sshCredential `
         -Config $config
@@ -255,9 +253,4 @@ Resource Manager 範本中，您可以使用啟動程序︰
     Get-AzureRmHDInsightCluster -ClusterName $hdinsightClusterName
 
     #endregion
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

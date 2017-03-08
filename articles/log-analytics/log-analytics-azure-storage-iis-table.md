@@ -1,5 +1,5 @@
 ---
-title: "對 IIS 使用 Blob 儲存體，對事件使用表格儲存體 | Microsoft Docs"
+title: "對 IIS 使用 Blob 儲存體，對 Azure Log Analytics 中的事件使用表格儲存體 | Microsoft Docs"
 description: "Log Analytics 可以讀取 Azure 服務 (將診斷寫入表格儲存體) 的記錄，或讀取寫入 Blob 儲存體的 IIS 記錄。"
 services: log-analytics
 documentationcenter: 
@@ -12,15 +12,18 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/01/2017
+ms.date: 02/27/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 79f5bad314b230df27c73fb7e60e173778c96865
-ms.openlocfilehash: da31e1ceebfecf766828fa761b01f4e346cd13aa
+ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
+ms.openlocfilehash: b40d7c0acd8cc6a672f25489b745561c24501482
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="using-blob-storage-for-iis-and-table-storage-for-events"></a>對 IIS 使用 Blob 儲存體，對事件使用表格儲存體
+# <a name="use-azure-blob-storage-for-iis-and-azure-table-storage-for-events-with-log-analytics"></a>針對 Log Analytics 的事件，使用 IIS 和 Azure 表格儲存體的 Azure blob 儲存體
+
 Log Analytics 可以讀取下列服務 (將診斷寫入表格儲存體) 的記錄，或讀取寫入 Blob 儲存體的 IIS 記錄：
 
 * Service Fabric 叢集 (預覽)
@@ -193,9 +196,4 @@ Azure 診斷是 Azure 的擴充功能，可讓您從背景工作角色、Web 角
 * 針對支援的 Azure 服務[收集 Azure 服務的記錄檔與計量](log-analytics-azure-storage.md)。
 * [啟用解決方案](log-analytics-add-solutions.md) 以提供資料的深入見解。
 * [使用搜尋查詢](log-analytics-log-searches.md) 以分析資料。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

@@ -1,5 +1,5 @@
 ---
-title: "Log Analytics 中的記錄檔搜尋 | Microsoft Docs"
+title: "使用 Azure Log Analytics 中的記錄檔搜尋來尋找資料 | Microsoft Docs"
 description: "記錄檔搜尋可讓您結合和相互關聯您環境內多個來源的任何電腦資料。"
 services: log-analytics
 documentationcenter: 
@@ -12,15 +12,18 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 02/27/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 3e1810850651cff4680ea558178ebf92aeac4faa
+ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
+ms.openlocfilehash: d4935af0647f0629cca327a7e87c29f1252af382
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="log-searches-in-log-analytics"></a>Log Analytics 中的記錄檔搜尋
+# <a name="find-data-using-log-searches"></a>使用記錄搜尋尋找資料
+
 Log Analytics 的核心是記錄檔搜尋功能，可讓您結合和相互關聯您環境內多個來源的任何電腦資料。 解決方案也是由記錄搜尋發動，可讓您針對特定問題領域進行度量。
 
 在 [搜尋] 頁面上，您可以建立查詢，然後在搜尋時，您可以使用 Facet 控制篩選結果。 您也可以建立進階查詢來轉換、篩選和報告結果。
@@ -48,7 +51,7 @@ Log Analytics 的核心是記錄檔搜尋功能，可讓您結合和相互關聯
 
 這些篩選器不一定是物件類型/類別。  只是附加到資料片段的標記或屬性，或字串/名稱/類別。 系統中的某些文件會標記為 **Type:ConfigurationAlert**，而某些會標記為 **Type:Perf** 或 **Type:Event** 等等。 每個搜尋結果、文件、記錄或項目都會顯示所有未經處理的屬性及它們針對每個資料片段的値，當您只想擷取欄位在其中具有指定値的記錄時，您可以在篩選器中使用那些欄位名稱來指定。
 
- 其實只是所有記錄都有的欄位，與任何其他欄位並沒有不同。 這是根據 [類型] 欄位的值所建立的。 該記錄會有不同的圖形或形式。 順帶一提，**Type=Perf** 或 **Type=Event** 也是您需要了解以查詢效能資料或事件的語法。
+「類型」其實只是所有記錄都有的欄位，與任何其他欄位並沒有不同。 這是根據 [類型] 欄位的值所建立的。 該記錄會有不同的圖形或形式。 順帶一提，**Type=Perf** 或 **Type=Event** 也是您需要了解以查詢效能資料或事件的語法。
 
 您可以在欄位名稱之後和值之前使用冒號 (:) 或等號 (=)。 **Type:Event** and **Type=Event** 在意義上是相等的，您可以選擇您偏好的樣式。
 
@@ -257,7 +260,7 @@ MEASURE 是 Log Analytics 搜尋中最具彈性的命令之一。 它可讓您�
 
 ![搜尋 measure count](./media/log-analytics-log-searches/oms-search-measure-count01.png)
 
-例如，在上圖中，您會看到 **Computer** 欄位，它指出在結果中將近 73 萬 9 千個事件內，那些記錄中的 **Computer** 欄位有 68 個唯一且不同的值。 磚只會顯示前 5 個値 (也就是最常寫入 **Computer** 欄位中的 5 個值)，依據在該欄位中含有該特定値的文件數目來排序。 在圖中，您可以看到 – 在將近 36 萬 9 千個事件之中 - 9 萬個事件來自 OpsInsights04.contoso.com 電腦，8 萬 3 千個事件來自 DB03.contoso.com 電腦，諸如此類。
+例如，在上面的影像中，您會看到 **Computer** 欄位，它指出在結果中將近 739,000 個事件內，那些記錄中的 **Computer** 欄位有 68 個唯一且不同的值。 磚只會顯示前 5 個値 (也就是最常寫入 **Computer** 欄位中的 5 個值)，依據在該欄位中含有該特定値的文件數目來排序。 在圖中，您可以看到 – 在將近 36 萬 9 千個事件之中 - 9 萬個事件來自 OpsInsights04.contoso.com 電腦，8 萬 3 千個事件來自 DB03.contoso.com 電腦，諸如此類。
 
 由於磚只會顯示前 5 個値，如果要查看所有的值怎麼辦？
 
@@ -574,9 +577,4 @@ Type=WireData | measure avg(ReceivedBytes), avg(SentBytes) by Direction interval
 
 * 使用 [Log Analytics 中的自訂欄位](log-analytics-custom-fields.md) 來延伸記錄檔搜尋。
 * 檢閱 [Log Analytics 記錄檔搜尋參考資料](log-analytics-search-reference.md) ，以檢視 Log Analytics 中提供的所有搜尋欄位和 Facet。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

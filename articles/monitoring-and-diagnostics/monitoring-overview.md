@@ -1,6 +1,6 @@
 ---
-title: "Azure 監視概觀 | Microsoft Docs"
-description: "Microsoft Azure 中 Azure 監視器的最高層級概觀，包括警示、webhook、自動調整等等。"
+title: "Azure 監視器概觀 | Microsoft Docs"
+description: "Azure 監視器會收集用於警示、webhook、自動調整，以及自動化的統計資料。 文章也會列出其他 Microsoft 監視選項。"
 author: rboucher
 manager: carmonm
 editor: 
@@ -12,20 +12,21 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/05/2016
+ms.date: 02/01/2017
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 2f8ff117966b11e7415abaa5e7a0735742d7ef99
+ms.sourcegitcommit: 3693b90509646fd7292861979cd7c2d1c0100d68
+ms.openlocfilehash: 30e92d17a99a0c751397e448108d488aefdd557a
+ms.lasthandoff: 02/22/2017
 
 
 ---
 
-# <a name="overview-of-monitoring-in-microsoft-azure"></a>Microsoft Azure 中的監視概觀
+# <a name="overview-of-azure-monitor"></a>Azure 監視器的概觀
 本文提供監視 Azure 資源的概念性概觀， 以及特定資源類型詳細資訊的指標。  如需從非 Azure 角度監視應用程式的高層級資訊，請參閱 [監視和診斷指引](../best-practices-monitoring.md)。
 
 Azure 監視器的影片逐步解說位於  
-[探索 Microsoft Azure 監視和診斷](https://channel9.msdn.com/Blogs/Azure-Monitoring/Get-Started-with-Azure-Monitor)。 在[探索 Microsoft Azure 監視和診斷](https://channel9.msdn.com/events/Ignite/2016/BRK2234)可取得額外影片，該影片說明您可以使用 Azure 監視器的案例。  
+[開始使用 Azure 監視器](https://channel9.msdn.com/Blogs/Azure-Monitoring/Get-Started-with-Azure-Monitor)。 在[探索 Microsoft Azure 監視和診斷](https://channel9.msdn.com/events/Ignite/2016/BRK2234)可取得額外影片，該影片說明您可以使用 Azure 監視器的案例。  
 
 雲端應用程式相當複雜，且具有許多移動組件。 監視會提供資料，以確保應用程式持續運作並以健全的狀態執行。 它也可協助您預防潛在問題，或是針對過去所發生的問題進行疑難排解。 除此之外，您還可以使用監視資料來取得應用程式的深入解析。 這些知識可協助您提升應用程式效能或維護性，或是將原本需要手動介入的動作自動化。
 
@@ -113,7 +114,7 @@ Azure 監視器的影片逐步解說位於
 * 傳送到事件中樞，讓您可以路由到協力廠商工具以執行即時分析。
 
 ### <a name="automate"></a>自動化
-您可以使用監視資料來觸發事件或甚至觸發整個程序，範例包括：
+您可以使用監視資料來觸發警示或甚至觸發整個程序。 範例包括：
 
 * 使用資料來根據應用程式負載，自動向上或向下調整計算執行個體。
 * 在某個計量超過預先定義的臨界值時傳送電子郵件。
@@ -134,7 +135,7 @@ Azure 有提供監視您服務 (從裸機基礎結構到應用程式遙測) 的�
 
 * [Azure 監視器](http://aka.ms/azmondocs) - 針對來自 Azure 基礎結構 (活動記錄檔) 及每個個別的 Azure 資源 (診斷記錄檔) 的資料，提供視覺化、查詢、路由、警示、自動調整及自動化功能。 此文章為 Azure 監視器文件的一部分。 「Azure 監視器」這個名稱於 2016 年 9 月 25 日在 Ignite 發表。  先前的名稱是「Azure Insights」。  
 * [Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) - 針對您服務的應用程式層問題提供豐富的偵測和診斷，並完美整合在來自 Azure 監視的資料之上。 它是 App Service Web Apps 的預設診斷平台。  您可以將其他服務資料路由至此。  
-* [Operations Management Suite](https://www.microsoft.com/cloud-platform/operations-management-suite) 中的 [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) - 為內部部署和協力廠商雲端式基礎結構 (如 AWS) 提供 Azure 資源之外的全面性 IT 管理解決方案。  Azure 監視器中的資料可以直接路由至 Log Analytics，以便您可以在同一個地方看到整個環境的度量與記錄。     
+* [Operations Management Suite](https://www.microsoft.com/oms/) 中的 [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) - 為內部部署和協力廠商雲端式基礎結構 (如 AWS) 提供 Azure 資源之外的全面性 IT 管理解決方案。  Azure 監視器中的資料可以直接路由至 Log Analytics，以便您可以在同一個地方看到整個環境的度量與記錄。     
 
 ## <a name="next-steps"></a>後續步驟
 深入了解
@@ -144,10 +145,5 @@ Azure 有提供監視您服務 (從裸機基礎結構到應用程式遙測) 的�
 * [Azure 診斷](../azure-diagnostics.md) ，如果您正在嘗試診斷您的雲端服務、虛擬機器或 Service Fabric 應用程式中的問題。
 * [Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) ，如果您正在嘗試診斷 App Service Web 應用程式中的問題。
 * [疑難排解 Azure 儲存體](../storage/storage-e2e-troubleshooting.md) 
-* [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) 及 [Operations Management Suite](https://www.microsoft.com/cloud-platform/operations-management-suite)
-
-
-
-<!--HONumber=Dec16_HO2-->
-
+* [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) 及 [Operations Management Suite](https://www.microsoft.com/oms/)
 
