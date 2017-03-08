@@ -4,7 +4,7 @@ description: "與錯誤相關的 Azure 備份失敗的徵狀、原因及解決�
 services: backup
 documentationcenter: 
 author: genlin
-manager: cfreeman
+manager: cshepard
 editor: 
 ms.assetid: 4b02ffa4-c48e-45f6-8363-73d536be4639
 ms.service: backup
@@ -13,10 +13,11 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/07/2017
-ms.author: jimpark; markgal; genli
+ms.author: genli;markgal;
 translationtype: Human Translation
 ms.sourcegitcommit: 26ea5c6f867165a25dd5aecb01d0a0ce3b213a51
 ms.openlocfilehash: 707d666eb6c23fb926c31711daddfb22979513bc
+ms.lasthandoff: 01/25/2017
 
 ---
 
@@ -118,9 +119,4 @@ VM 備份仰賴發給底層儲存體帳戶的快照命令。 備份可能會失�
 | 相同的雲端服務中的許多 VM 都設定為同時備份。 | 最佳做法是向外分配相同雲端服務中 VM 的備份排程。 |
 | VM 正在以高 CPU 或記憶體使用量執行。 | 如果 VM 正在以高 CPU 使用量 (超過 90%) 或高記憶體使用量執行，即會將快照工作排入佇列並延遲，而其最終會逾時。 在此情況下，請嘗試隨選備份。 |
 | VM 無法從 DHCP 取得主機/網狀架構位址。 | 必須在來賓內啟用 DHCP，IaaS VM 備份才能運作。  如果 VM 無法從 DHCP 回應 245 取得主機/網狀架構位址，則無法下載或執行任何擴充功能。 如果您需要靜態私人 IP 位址，您應該透過平台來進行設定。 VM 內的 DHCP 選項應保持啟用。 如需詳細資訊，請參閱[設定靜態內部私人 IP 位址](../virtual-network/virtual-networks-reserved-private-ip.md)。 |
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

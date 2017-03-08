@@ -2,6 +2,7 @@
 # 概觀
 ## [什麼是辨識服務？](https://azure.microsoft.com/services/cognitive-services/)
 # 開始使用
+## [建立帳戶](cognitive-services-apis-create-account.md)
 ## [文字分析快速入門](cognitive-services-text-analytics-quick-start.md)
 ## [議快速入門](cognitive-services-recommendations-quick-start.md)
 
