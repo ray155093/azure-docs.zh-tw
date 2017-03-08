@@ -17,6 +17,7 @@ ms.author: anoopkv
 translationtype: Human Translation
 ms.sourcegitcommit: eccc927550aef4c9cd71ffad64d2eddedb74326e
 ms.openlocfilehash: 18627223bdb4f0986f07f17233ce7daf29cb7dd9
+ms.lasthandoff: 02/13/2017
 
 ---
 
@@ -34,7 +35,7 @@ ms.openlocfilehash: 18627223bdb4f0986f07f17233ce7daf29cb7dd9
 - 您 VMware vCenter 中可用來進行[自動探索](./site-recovery-vmware-to-azure.md#vmware-account-permissions)的專用帳戶。
 - 可供安裝組態伺服器的虛擬機器。
 
-### <a name="configuration-server-minimum-requirements"></a>組態伺服器最低需求
+## <a name="configuration-server-minimum-requirements"></a>組態伺服器最低需求
 組態伺服器軟體應該部署在具有高可用性的 VMware 虛擬機器上。 下表列出組態伺服器的最低硬體、軟體與網路需求。
 [!INCLUDE [site-recovery-configuration-server-requirements](../../includes/site-recovery-configuration-and-scaleout-process-server-requirements.md)]
 
@@ -97,9 +98,4 @@ ms.openlocfilehash: 18627223bdb4f0986f07f17233ce7daf29cb7dd9
 
 ## <a name="next-steps"></a>後續步驟
 在 Azure 中[設定您的目標環境](./site-recovery-prepare-target-vmware-to-azure.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

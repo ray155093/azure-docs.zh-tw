@@ -13,19 +13,20 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/18/2016
+ms.date: 02/13/2017
 ms.author: larryfr
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 94e09583ef8070a7e98fd2b30648996648ce3c41
-ms.openlocfilehash: 87d3b5ef8989984420f1d0fe7d4188698a68dd0d
-
+ms.sourcegitcommit: d391c5c6289aa63e969f63f189eb5db680883f0a
+ms.openlocfilehash: 2f2792c409b579ba721195e5749a38c6396f339d
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="correlate-events-over-time-with-storm-and-hbase-on-hdinsight"></a>使用 HDInsight 上的 Storm 和 HBase 讓事件隨著時間而相互關聯
+# <a name="correlate-events-that-arrive-at-differnet-times-using-storm-and-hbase"></a>在不同時間使用 Storm 和 HBase 抵達的事件相互關聯
 
 搭配 Apache Store 使用永續性資料存放區，可以讓在不同時間抵達的資料項目相互關聯。 例如，連結使用者工作階段的登入和登出事件，可計算工作階段的持續時間長度。
 
-在本文件中，您將學習如何建立基本的 C# Storm 拓撲，以便追蹤使用者工作階段的登入和登出事件，並計算工作階段的持續時間。 此拓撲會使用 HBase 做為永續性資料存放區。 HBase 也可讓您對歷程記錄資料執行批次查詢來產生額外的見解，例如在特定時間週期內已開始或結束多少個使用者工作階段。
+在本文件中，您會學習如何建立基本的 C# Storm 拓撲，以便追蹤使用者工作階段的登入和登出事件，並計算工作階段的持續時間。 此拓撲會使用 HBase 做為永續性資料存放區。 HBase 也可讓您對歷程記錄資料執行批次查詢來產生額外的見解，例如在特定時間週期內已開始或結束多少個使用者工作階段。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -37,6 +38,9 @@ ms.openlocfilehash: 87d3b5ef8989984420f1d0fe7d4188698a68dd0d
   > 雖然在 2016/10/28 之後建立的 Linux 架構 Storm 叢集可支援 SCP.NET 拓撲，但 2016/10/28 起提供的 HBase SDK for .NET 套件無法在 Linux 上正確運作。
 
 * Apache HBase on HDInsight 叢集 (Linux 或 Windows 型)。 這是此範例的資料來源。
+
+  > [!IMPORTANT]
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 * 開發環境為 [Java](https://java.com) 1.7 或更新版本。 當拓撲提交到 HDInsight 叢集時，會使用 Java 來封裝它。
 
@@ -165,22 +169,22 @@ ms.openlocfilehash: 87d3b5ef8989984420f1d0fe7d4188698a68dd0d
    
    ![提交至 Storm 功能表項目的影像](./media/hdinsight-storm-correlation-topology/submittostorm.png)
 
-6. 在 [ **提交拓樸** ] 對話方塊中，選取將執行此拓樸的 Storm 叢集。
+6. 在 [提交拓撲] 對話方塊中，選取要將此拓撲部署到的 Storm 叢集。
    
    > [!NOTE]
    > 第一次提交拓撲時，可能需要幾秒鐘的時間來擷取您的 HDInsight 叢集名稱。
 
-7. 拓撲上傳並提交至叢集後，[ **Storm 拓撲檢視** ] 將會開啟並顯示執行中的拓撲。 選取 **CorrelationTopology** ，並使用頁面右上方的 [重新整理] 按鈕來重新整理拓撲資訊。
+7. 拓撲上傳並提交至叢集後，[Storm 拓撲檢視] 會開啟並顯示執行中的拓撲。 選取 **CorrelationTopology** ，並使用頁面右上方的 [重新整理] 按鈕來重新整理拓撲資訊。
    
    ![拓撲檢視的影像](./media/hdinsight-storm-correlation-topology/topologyview.png)
    
-   拓撲開始產生資料時，[ **已發出** ] 中的值將會遞增。
+   拓撲開始產生資料時，[已發出] 中的值會遞增。
    
    > [!NOTE]
    > 如果 [ **Storm 拓撲檢視** ] 並未自動開啟，請使用下列步驟來開啟：
    > 
    > 1. 在 [方案總管] 中，展開 **Azure**，然後展開 **HDInsight**。
-   > 2. 以滑鼠右鍵按一下正在執行拓撲的 Storm 叢集，然後選取 [ **檢視 Storm 拓撲**
+   > 2. 以滑鼠右鍵按一下正在執行拓撲的 Storm 叢集，然後選取  **檢視 Storm 拓撲**
 
 ## <a name="query-the-data"></a>查詢資料
 
@@ -188,7 +192,7 @@ ms.openlocfilehash: 87d3b5ef8989984420f1d0fe7d4188698a68dd0d
 
 1. 回到 **SessionInfo** 專案。 如果不在執行中，請啟動它的新執行個體。
 
-2. 出現提示時，選取 **s** 以搜尋 START 事件。 系統會提示您輸入開始和結束時間來定義時間範圍 - 只會傳回這兩個時間之間的事件。
+2. 出現提示時，選取 **s** 以搜尋 START 事件。 系統會提示您輸入開始和結束時間來定義時間範圍，發生於這兩個時間之間的事件才會傳回。
    
     輸入開始和結束時間時，請使用下列格式：HH:MM 和 'am' 或 'pm'。 例如，11:20pm。
    
@@ -196,7 +200,7 @@ ms.openlocfilehash: 87d3b5ef8989984420f1d0fe7d4188698a68dd0d
    
         Session e6992b3e-79be-4991-afcf-5cb47dd1c81c started at 6/5/2015 6:10:15 PM. Timestamp = 1433527820737
 
-搜尋 END 事件和 START 事件的方式相同。 不過，END 事件會在 START 事件之後的 1 到 5 分鐘之間隨機產生。 因此，您可能必須嘗試幾個時間範圍，以便找出 END 事件。 END 事件也會包含工作階段的持續時間 - START 事件時間和 END 事件時間之間的差異。 以下是 END 事件的資料範例：
+搜尋 END 事件和 START 事件的方式相同。 不過，END 事件會在 START 事件之後的 1 到 5 分鐘之間隨機產生。 因此，您可能必須嘗試幾個時間範圍，以便找出 END 事件。 END 事件也會包含工作階段的持續時間，也就是 START 事件時間和 END 事件時間之間的差異。 以下是 END 事件的資料範例：
 
     Session fc9fa8e6-6892-4073-93b3-a587040d892e lasted 2 minutes, and ended at 6/5/2015 6:12:15 PM
 
@@ -214,10 +218,5 @@ ms.openlocfilehash: 87d3b5ef8989984420f1d0fe7d4188698a68dd0d
 ## <a name="next-steps"></a>後續步驟
 
 如需更多 Storm 範例，請參閱 [Storm on HDInsight 上的範例拓撲](hdinsight-storm-example-topology.md)。
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

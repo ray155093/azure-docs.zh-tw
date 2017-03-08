@@ -4,7 +4,7 @@ description: "App Service 環境網路拓撲的架構概觀。"
 services: app-service
 documentationcenter: 
 author: stefsch
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 13d03a37-1fe2-4e3e-9d57-46dfb330ba52
 ms.service: app-service
@@ -15,14 +15,15 @@ ms.topic: article
 ms.date: 10/04/2016
 ms.author: stefsch
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4a5fdbc73f5d30c8dacfb8f7039bf70a450ea251
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: b2afe86d8774b449a257312d4e60b5f6125336ca
+ms.lasthandoff: 03/01/2017
 
 
 ---
 # <a name="network-architecture-overview-of-app-service-environments"></a>App Service 環境的網路架構概觀
 ## <a name="introduction"></a>簡介
-App Service 環境一律建立於[虛擬網路][virtualnetwork]的子網路內，而在 App Service 環境中執行的應用程式可以與相同虛擬網路拓撲內的私人端點通訊。  因為客戶可能會鎖定其虛擬網路基礎結構的組件，所以請務必了解與 App Service 環境發生的網路通訊流程類型。
+App Service 環境一律建立於[虛擬網路][virtualnetwork] - 的子網路內，而在 App Service 環境中執行的應用程式可以與相同虛擬網路拓撲內的私用端點通訊。  因為客戶可能會鎖定其虛擬網路基礎結構的組件，所以請務必了解與 App Service 環境發生的網路通訊流程類型。
 
 ## <a name="general-network-flow"></a>一般網路流程
 當 App Service 環境 (ASE) 針對應用程式使用公開虛擬 IP 位址 (VIP) 時，所有傳入的流量都會到達該公用 VIP。  這包括應用程式的 HTTP 和 HTTPS 流量，以及 FTP 的其他流量、遠端偵錯功能和 Azure 管理作業。  如需公用 VIP 上可用特定連接埠 (必要和選擇性) 的完整清單，請參閱有關[控制輸入流量][controllinginboundtraffic]至 App Service 環境的文章。 
@@ -96,10 +97,5 @@ App Service 環境進行輸出呼叫時，IP 位址一律會與輸出呼叫相�
 [OutboundIPAddress]: ./media/app-service-app-service-environment-network-architecture-overview/OutboundIPAddress-1.png
 [OutboundNetworkAddresses]: ./media/app-service-app-service-environment-network-architecture-overview/OutboundNetworkAddresses-1.png
 [CallsBetweenAppServiceEnvironments]: ./media/app-service-app-service-environment-network-architecture-overview/CallsBetweenEnvironments-1.png
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

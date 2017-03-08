@@ -14,8 +14,9 @@ ms.workload: integration
 ms.date: 02/24/2017
 ms.author: juliako;mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: b0bbde6828ed556eef8063a56a35b325fee1865c
-ms.openlocfilehash: 4ba7d6c43a5e0893366669e7511d8e1cfe149b81
+ms.sourcegitcommit: 71c5a4f1b816fdcfe7ef267c20e6ed42e6cc51e6
+ms.openlocfilehash: 3c3fb275a7c980f71a3a30e6875b9515321bad99
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -42,6 +43,10 @@ Azure SDK 2.9 在此版本中沒有重大變更。 在現有的雲端服務專�
 ### <a name="windows-server-2016-virtual-machines"></a>Windows Server 2016 虛擬機器
 
 - Visual Studio 現在支援將雲端服務部署到作業系統系列 5 (Windows Server 2016) 虛擬機器。 對於現有的雲端服務，您可以變更設定，以新的作業系統系列為目標。 建立新的雲端服務時，如果您選擇使用 .net 4.6 或更高版本建立服務，服務會預設為使用作業系統系列 5。  如需詳細資訊，您可以檢閱[客體 OS 系列支援資料表](https://azure.microsoft.com/en-us/documentation/articles/cloud-services-guestos-update-matrix/)。
+
+#### <a name="known-issues"></a>已知問題
+
+- Azure.NET SDK 2.9.6 引進了一項限制，會使用不支援的 .NET Framework (例如 .NET 4.6) 至任何 < 5 的作業系統系列封鎖專案的部署。 因應措施提供於[這裡](https://github.com/MicrosoftDocs/azure-cloud-services-files/tree/master/Azure%20Targets%20SDK%202.9)。
 
  
 ### <a name="azure-in-role-cache"></a>Azure In-Role Cache 
@@ -86,10 +91,5 @@ Azure SDK 2.9 在此版本中沒有重大變更。 在現有的雲端服務專�
 
 ## <a name="see-also"></a>另請參閱
 [Azure SDK 2.9 公告文章](https://azure.microsoft.com/blog/announcing-visual-studio-azure-tools-and-sdk-2-9/)
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

@@ -1,5 +1,5 @@
 ---
-title: "在 Log Analytics 中建立自訂的儀表板 | Microsoft Docs"
+title: "在 Azure Log Analytics 中建立自訂的儀表板 | Microsoft Docs"
 description: "本指南可幫助您了解 Log Analytics 儀表板如何以視覺效果顯示所有儲存的記錄搜尋，讓您以單一方式檢視您的環境。"
 services: log-analytics
 documentationcenter: 
@@ -12,15 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 02/27/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: afd1e5359edbdfdbd4a8afaac139f5877b306c2b
+ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
+ms.openlocfilehash: a8c9766bf066a7f0dfd28ebb4e41bf0eaf3f05bd
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="create-a-custom-dashboard-in-log-analytics"></a>在 Log Analytics 中建立自訂的儀表板
+# <a name="create-a-custom-dashboard-for-use-in-log-analytics"></a>建立用於 Log Analytics 中的自訂儀表板
 本指南可幫助您了解 Log Analytics 儀表板如何以視覺效果顯示所有儲存的記錄搜尋，讓您以單一方式檢視您的環境。
 
 ![範例儀表板](./media/log-analytics-dashboards/oms-dashboards-example-dash.png)
@@ -83,9 +85,4 @@ ms.openlocfilehash: afd1e5359edbdfdbd4a8afaac139f5877b306c2b
 
 ## <a name="next-steps"></a>後續步驟
 * 在 Log Analytics 中建立[警示](log-analytics-alerts.md)，以產生通知並修復問題。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

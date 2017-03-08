@@ -15,8 +15,9 @@ ms.workload: identity
 ms.date: 01/07/2017
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 0e4eb184e353700f945f0da93aeca2187d710415
-ms.openlocfilehash: 01133742302c366e283b6fac8b1e9436fc98901f
+ms.sourcegitcommit: 28712a9898bf2449de53d21fd87f1ce53da71ff8
+ms.openlocfilehash: df60c4737954e79ff860601412dffa58d4dbb471
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -48,7 +49,7 @@ ms.openlocfilehash: 01133742302c366e283b6fac8b1e9436fc98901f
 > 
 > 應用程式技術支援網站或連絡資訊：
 > 
-> 應用程式的用戶端識別碼 (如 https://manage.windowsazure.com 中的應用程式詳細資料所示)：
+> 應用程式的應用程式識別碼 (如 https://portal.azure.com 中的應用程式詳細資料所示)：
 > 
 > 客戶前往註冊和 (或) 購買應用程式的應用程式註冊 URL：
 > 
@@ -93,10 +94,5 @@ ms.openlocfilehash: 01133742302c366e283b6fac8b1e9436fc98901f
 > 附加應用程式標誌 (PNG 檔案、150px x 122px、透明背景色彩)：
 > 
 > 
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

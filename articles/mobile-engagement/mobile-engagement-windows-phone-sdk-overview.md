@@ -1,22 +1,23 @@
 ---
-title: "Windows Phone Silverlight SDK 概觀"
+title: "Azure Mobile Engagement Windows Phone Silverlight SDK 概觀 | Microsoft Docs"
 description: "適用於 Azure Mobile Engagement 的 Windows Phone Silverlight SDK 概觀"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 0e3d2420-0509-4952-8891-392e3dad9aaf
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows-phone
-ms.devlang: na
+ms.devlang: dotnet
 ms.topic: article
-ms.date: 08/19/2016
+ms.date: 11/03/2016
 ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 105335b3c4c6e805f9398fbc002d5c4051acd147
+ms.sourcegitcommit: 51858d6daca27a75e7f87af507600c7a193c874f
+ms.openlocfilehash: c4e8ceee4104c3d3a6c3e6b79322ba1cf8463b22
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -31,10 +32,10 @@ ms.openlocfilehash: 105335b3c4c6e805f9398fbc002d5c4051acd147
 3. 標記計劃實作： [如何在 Windows Phone Silverlight 應用程式中使用進階的 Mobile Engagement 標記 API](mobile-engagement-windows-phone-use-engagement-api.md)
 
 ## <a name="release-notes"></a>版本資訊
-### <a name="330-04192016"></a>3.3.0 (04/19/2016)
- *MicrosoftAzure.MobileEngagement* Nuget 封裝 **v3.4.0**
+###<a name="331-11032016"></a>3.3.1 (11/03/2016)
+*MicrosoftAzure.MobileEngagement* Nuget 封裝 **v3.4.1**
 
-* 已加入 "TestLogLevel" API 來啟用/停用/篩選 SDK 所發出的主控台記錄檔。
+* 穩定性改進。
 
 如需較早版本，請參閱 [完整版本資訊](mobile-engagement-windows-phone-release-notes.md)
 
@@ -52,10 +53,5 @@ SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。 若要自�
 
 ### <a name="upgrade-from-older-versions"></a>從舊版升級
 請參閱 [升級程序](mobile-engagement-windows-phone-upgrade-procedure.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

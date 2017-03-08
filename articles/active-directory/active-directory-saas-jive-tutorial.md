@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 02/14/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 91f8a95bdab98f079b748b5391e9b611378c6e79
-ms.openlocfilehash: 8e5af99c6c0a8ce4d1b239b3271846f39bc387be
+ms.sourcegitcommit: 6a01f53ce05aa8084f0a18e56714b1790cfce912
+ms.openlocfilehash: 304ee87e82ce5acc4479fd16d3ac1aa340e42815
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -207,7 +208,7 @@ Jive 與 Azure AD 整合提供下列優點：
 
 下列螢幕擷取畫面顯示 Azure AD 中相關的對話方塊範例：
 
-![設定使用者佈建](./media/active-directory-saas-jive-tutorial/IC698794.png "Configure User Provisioning")
+![設定使用者佈建](./media/active-directory-saas-jive-tutorial/IC698794.png "設定使用者佈建")
 
 #### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>若要設定使用者佈建，請執行下列步驟：
 1. 在 Azure 管理入口網站中的 [Jive] 應用程式整合頁面上，按一下 [設定使用者佈建] 以開啟 [設定使用者佈建] 對話方塊。
@@ -280,9 +281,4 @@ Jive 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-jive-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-jive-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-jive-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

@@ -13,27 +13,27 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/18/2016
+ms.date: 02/13/2017
 ms.author: larryfr
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 94e09583ef8070a7e98fd2b30648996648ce3c41
-ms.openlocfilehash: 8b026d31a1bfa3d9793b703a4edc4e0b8b4e9a67
-
+ms.sourcegitcommit: cfaade8249a643b77f3d7fdf466eb5ba38143f18
+ms.openlocfilehash: 3b9dfffe17272296ef10a78b3cf25570109679c7
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="develop-java-based-topologies-for-a-basic-word-count-application-with-apache-storm-and-maven-on-hdinsight"></a>使用 HDInsight 上的 Apache Storm 和 Maven 開發基本字數統計應用程式的 Java 型拓撲
+# <a name="use-maven-to-develop-a-java-based-word-count-topology-for-storm-on-hdinsight"></a>使用 Maven 開發 Storm on HDInsight 的以 Java 為基礎字數統計拓撲
 
-了解如何使用 Maven 為 Apache Storm on HDInsight 建立 Java 型拓撲。 您將逐步進行使用 Maven 和 Java 建立基本字數統計應用程式的程序，其中拓撲是以 Java 定義。 然後，您將了解如何使用 Flux 架構定義拓撲。
+了解如何使用 Maven 為 Apache Storm on HDInsight 建立 Java 型拓撲。 您會使用 Maven 和 Java 建立基本的字數統計應用程式，其中拓撲是以 Java 定義。 然後，您會了解如何使用 Flux 架構定義拓撲。
 
 > [!NOTE]
 > Flux 架構可在 Storm 0.10.0 或更新版本中使用。 Storm 0.10.0 則可在 HDInsight 3.3 及 3.4 中使用。
 
 
-完成這份文件中的步驟之後，就會有可部署到 Apache Storm on HDInsight 的基本拓撲。
+完成這份文件中的步驟之後，您就可以將拓撲部署到 Apache Storm on HDInsight。
 
 > [!NOTE]
 > [https://github.com/Azure-Samples/hdinsight-java-storm-wordcount](https://github.com/Azure-Samples/hdinsight-java-storm-wordcount)有提供本文件中建立之拓撲的完整版本。
-
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -50,37 +50,42 @@ ms.openlocfilehash: 8b026d31a1bfa3d9793b703a4edc4e0b8b4e9a67
 * **JAVA_HOME** - 應該指向已安裝 Java 執行階段環境 (JRE) 的目錄。 例如，在 Unix 或 Linux 散發套件上，它的值應該類似 `/usr/lib/jvm/java-7-oracle` 在 Windows 中，它的值應該類似 `c:\Program Files (x86)\Java\jre1.7`
 
 * **PATH** - 應該包含下列路徑：
-  
+
   * **JAVA_HOME** (或對等的路徑)
 
   * **JAVA_HOME\bin** (或對等的路徑)
 
   * 已安裝 Maven 的目錄
 
-## <a name="create-a-new-maven-project"></a>建立新的 Maven 專案
+## <a name="create-a-maven-project"></a>建立 Maven 專案
 
-從命令列中，使用下列命令建立名為 **WordCount**的新 Maven 專案：
+從命令列中，使用下列命令建立名為 **WordCount**的 Maven 專案：
 
     mvn archetype:generate -DarchetypeArtifactId=maven-archetype-quickstart -DgroupId=com.microsoft.example -DartifactId=WordCount -DinteractiveMode=false
 
-這會在目前的位置中建立名為 **WordCount** 的新目錄，其內含基本 Maven 專案。
+> [!NOTE]
+> 如果您使用 PowerShell，則必須將 `-D` 參數放置在雙引號內。
+>
+> `mvn archetype:generate "-DarchetypeArtifactId=maven-archetype-quickstart" "-DgroupId=com.microsoft.example" "-DartifactId=WordCount" "-DinteractiveMode=false"`
 
-**WordCount** 目錄將會包含下列項目：
+此命令會在目前的位置中建立名為 `WordCount` 的目錄，其內含基本 Maven 專案。
 
-* **pom.xml**：內含 Maven 專案的設定。
-* **src\main\java\com\microsoft\example**：內含應用程式碼。
-* **src\test\java\com\microsoft\example**：內含您應用程式的測試。 在此範例中，我們不會建立測試。
+`WordCount` 目錄包含下列項目：
+
+* `pom.xml`：包含 Maven 專案的設定。
+* `src\main\java\com\microsoft\example`︰包含應用程式的程式碼。
+* `src\test\java\com\microsoft\example`︰包含應用程式的測試。 
 
 ### <a name="remove-the-example-code"></a>移除範例程式碼
 
-因為我們要建立應用程式，所以請刪除產生的測試和應用程式檔案：
+刪除所產生的測試和應用程式檔案︰
 
 * **src\test\java\com\microsoft\example\AppTest.java**
 * **src\main\java\com\microsoft\example\App.java**
 
 ## <a name="add-properties"></a>加入屬性
 
-Maven 可讓您定義稱為屬性的專案層級值。 將以下內容加到 `<url>http://maven.apache.org</url>` 行之後：
+Maven 可讓您定義稱為屬性的專案層級值。 將以下文字加到 `<url>http://maven.apache.org</url>` 行之後：
 
 ```xml
 <properties>
@@ -94,11 +99,11 @@ Maven 可讓您定義稱為屬性的專案層級值。 將以下內容加到 `<u
 </properties>
 ```
 
-現在，我們可以在其他區段中使用這些值。 例如，在指定 Storm 元件的版本時，我們可以使用 `${storm.version}` 而不是將值硬式編碼。
+現在，您可以在 `pom.xml` 的其他區段中使用這些值。 例如，在指定 Storm 元件的版本時，您可以使用 `${storm.version}` 而不是將值硬式編碼。
 
 ## <a name="add-dependencies"></a>新增相依性
 
-因為這是 Storm 拓撲，所以您必須新增 Storm 元件的相依性。 開啟 **pom.xml** 檔案並在 **&lt;dependencies>** 區段中加入下列程式碼：
+您必須新增 Storm 元件的相依性。 開啟 `pom.xml` 檔案並在 `<dependencies>` 區段新增下列程式碼：
 
 ```xml
 <dependency>
@@ -110,14 +115,14 @@ Maven 可讓您定義稱為屬性的專案層級值。 將以下內容加到 `<u
 </dependency>
 ```
 
-在編譯期間，Maven 會使用此資訊來查閱 Maven 儲存機制中的 **storm-core** 。 它會先查看本機電腦上的儲存機制。 如果檔案不存在，則會從公用 Maven 儲存機制進行下載，並將它們儲存在本機儲存機制中。
+在編譯期間，Maven 會使用此資訊來查閱 Maven 儲存機制中的 **storm-core** 。 它會先查看本機電腦上的儲存機制。 如果檔案不存在，Maven 會從公用 Maven 儲存機制進行下載，並將它們儲存在本機儲存機制中。
 
 > [!NOTE]
-> 請注意在我們加入之區段中的 `<scope>provided</scope>` 行。 此行要求 Maven 從我們建立的任何 JAR 檔案中排除 **storm-core** ，因為其將由系統提供。 這可讓您建立的封裝變得較小，並確保它們將使用 Storm on HDInsight 叢集上所含的 **storm-core** 位元。
+> 請注意此區段中的 `<scope>provided</scope>` 行。 這項設定會指示 Maven 從所建立的任何 JAR 檔案中排除 **storm-core**，因為它是由系統所提供。
 
 ## <a name="build-configuration"></a>建置組態
 
-Maven 外掛程式可讓您自訂專案的建置階段 (例如，如何編譯專案或如何將它封裝成 JAR 檔案)。 開啟 **pom.xml** 檔案，並直接在 `</project>` 行上方加入下列程式碼。
+Maven 外掛程式可讓您自訂專案的建置階段 (例如，如何編譯專案或如何將它封裝成 JAR 檔案)。 開啟 `pom.xml` 檔案，並直接在 `</project>` 行上方加入下列程式碼。
 
 ```xml
 <build>
@@ -128,11 +133,11 @@ Maven 外掛程式可讓您自訂專案的建置階段 (例如，如何編譯專
 </build>
 ```
 
-此區段將用來新增外掛程式、資源，和其他組建組態選項。 如需 **pom.xml** 檔案的完整參考，請參閱 [http://maven.apache.org/pom.html](http://maven.apache.org/pom.html)(英文)。
+此區段會用來新增外掛程式、資源，和其他組建組態選項。 如需 **pom.xml** 檔案的完整參考，請參閱 [http://maven.apache.org/pom.html](http://maven.apache.org/pom.html)(英文)。
 
 ### <a name="add-plug-ins"></a>加入外掛程式
 
-在 Storm 拓撲中，[Exec Maven 外掛程式](http://mojo.codehaus.org/exec-maven-plugin/)十分有用，因為它可讓您輕鬆地在開發環境上以本機執行拓撲。 將下列內容加入 **pom.xml** 檔案的 `<plugins>` 區段，以包括 Exec Maven 外掛程式：
+在 Storm 拓撲中，[Exec Maven 外掛程式](http://mojo.codehaus.org/exec-maven-plugin/)十分有用，因為它可讓您輕鬆地在開發環境上以本機執行拓撲。 將下列內容加入 `pom.xml` 檔案的 `<plugins>` 區段，以包括 Exec Maven 外掛程式：
 
 ```xml
 <plugin>
@@ -156,16 +161,13 @@ Maven 外掛程式可讓您自訂專案的建置階段 (例如，如何編譯專
 </plugin>
 ```
 
-> [!NOTE]
-> 請注意，`<mainClass>` 項目會使用 `${storm.topology}`。 我們先前並未在 [屬性] 區段中定義此屬性 (但我們可以定義)。相反地，我們會在稍後的步驟中，於開發環境執行拓撲時從命令列設定此值。
-
-另一個有用的外掛程式是 [Apache Maven 編譯器外掛程式](http://maven.apache.org/plugins/maven-compiler-plugin/)，其可用來變更編譯選項。 我們需要此外掛程式的主要原因是要變更 Maven 用於您應用程式之來源和目標的 Java 版本。
+另一個有用的外掛程式是 [Apache Maven 編譯器外掛程式](http://maven.apache.org/plugins/maven-compiler-plugin/)，其可用來變更編譯選項。 變更 Maven 用於您應用程式之來源和目標的 Java 版本。
 
 * 針對 HDInsight __3.4 或更早版本__，請將資源和目標 Java 版本設為 __1.7__。
 
 * 針對 HDInsight __3.5__，請將來源和目標 Java 版本設為 __1.8__。
 
-在 **pom.xml** 的 `<plugins>` 區段中加入下列內容，以包括 Apache Maven 編譯器外掛程式。 這樣會指定 1.8，使得目標 HDInsight 版本為 3.5。
+在 `pom.xml` 檔案的 `<plugins>` 區段中新增下列文件，以包括 Apache Maven 編譯器外掛程式。 這個範例會指定 1.8，使得目標 HDInsight 版本為 3.5。
 
 ```xml
 <plugin>
@@ -181,7 +183,7 @@ Maven 外掛程式可讓您自訂專案的建置階段 (例如，如何編譯專
 
 ### <a name="configure-resources"></a>Configure resources
 
-resources 區段可讓您包含非程式碼資源，例如拓撲中元件所需的組態檔。 對於此範例，在 **pom.xml** 檔案的 `<resources>` 區段中新增下列內容。
+resources 區段可讓您包含非程式碼資源，例如拓撲中元件所需的組態檔。 對於此範例，在 pom.xml 檔案的 `<resources>` 區段中新增下列文字。
 
 ```xml
 <resource>
@@ -193,7 +195,7 @@ resources 區段可讓您包含非程式碼資源，例如拓撲中元件所需�
 </resource>
 ```
 
-這會將專案根目錄 (`${basedir}`) 中的 resources 目錄新增為包含資源的位置，並且包含稱為 **log4j2.xml** 的檔案。 這個檔案是用來設定拓撲要記錄哪些資訊。
+這個範例會將專案根目錄 (`${basedir}`) 中的 resources 目錄新增為包含資源的位置，並且包含稱為 `log4j2.xml` 的檔案。 這個檔案是用來設定拓撲要記錄哪些資訊。
 
 ## <a name="create-the-topology"></a>建立拓撲
 
@@ -215,7 +217,7 @@ Java 型 Storm 拓撲包含三個您必須編寫 (或參考) 為相依性的元�
 > * [TwitterSampleSPout](https://github.com/apache/storm/blob/0.10.x-branch/examples/storm-starter/src/jvm/storm/starter/spout/TwitterSampleSpout.java)：從 Twitter 讀取的 Spout 範例
 > * [Storm-Kafka](https://github.com/apache/storm/tree/0.10.x-branch/external/storm-kafka)：從 Kafka 讀取的 Spout
 
-針對 Spout，在 **src\main\java\com\microsoft\example** 目錄中建立名為 **RandomSentenceSpout.java** 的新檔案，並使用下列項目做為內容：
+針對 Spout，在 `src\main\java\com\microsoft\example` 目錄中建立名為 `RandomSentenceSpout.java` 的檔案，並使用下列文字做為內容：
 
 ```java
 package com.microsoft.example;
@@ -252,7 +254,7 @@ public class RandomSentenceSpout extends BaseRichSpout {
   public void nextTuple() {
   //Sleep for a bit
     Utils.sleep(100);
-    //The sentences that will be randomly emitted
+    //The sentences that are randomly emitted
     String[] sentences = new String[]{ "the cow jumped over the moon", "an apple a day keeps the doctor away",
         "four score and seven years ago", "snow white and the seven dwarfs", "i am at two with nature" };
     //Randomly pick a sentence
@@ -286,7 +288,7 @@ public class RandomSentenceSpout extends BaseRichSpout {
 
 ### <a name="create-the-bolts"></a>建立 Bolt
 
-Bolt 會處理資料的處理。 針對此拓撲，我們有兩個 Bolt：
+Bolt 會處理資料的處理。 此拓撲會使用兩個 Bolt：
 
 * **SplitSentence**會將 **RandomSentenceSpout** 所發出的句子分割成個別單字。
 
@@ -295,7 +297,7 @@ Bolt 會處理資料的處理。 針對此拓撲，我們有兩個 Bolt：
 > [!NOTE]
 > Bolt 幾乎可以包辦任何作業，例如計算、持續性或與外部元件交談。
 
-在 **src\main\java\com\microsoft\example** 目錄中，建立兩個新的檔案：**SplitSentence.java** 和 **WordCount.Java**。 使用下列項目做為檔案的內容：
+在 `src\main\java\com\microsoft\example` 目錄中建立兩個新檔案 `SplitSentence.java` 和 `WordCount.Java`。 使用下列文字做為檔案的內容：
 
 **SplitSentence**
 
@@ -311,7 +313,7 @@ import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 
-//There are a variety of bolt types. In this case, we use BaseBasicBolt
+//There are a variety of bolt types. In this case, use BaseBasicBolt
 public class SplitSentence extends BaseBasicBolt {
 
   //Execute is called to process tuples
@@ -338,7 +340,7 @@ public class SplitSentence extends BaseBasicBolt {
     }
   }
 
-  //Declare that emitted tuples will contain a word field
+  //Declare that emitted tuples contain a word field
   @Override
   public void declareOutputFields(OutputFieldsDeclarer declarer) {
     declarer.declare(new Fields("word"));
@@ -347,6 +349,7 @@ public class SplitSentence extends BaseBasicBolt {
 ```
 
 **WordCount**
+
 ```java
 package com.microsoft.example;
 
@@ -367,13 +370,13 @@ import org.apache.storm.Config;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-//There are a variety of bolt types. In this case, we use BaseBasicBolt
+//There are a variety of bolt types. In this case, use BaseBasicBolt
 public class WordCount extends BaseBasicBolt {
   //Create logger for this class
   private static final Logger logger = LogManager.getLogger(WordCount.class);
   //For holding words and counts
   Map<String, Integer> counts = new HashMap<String, Integer>();
-  //How often we emit a count of words
+  //How often to emit a count of words
   private Integer emitFrequency;
 
   // Default constructor
@@ -420,7 +423,7 @@ public class WordCount extends BaseBasicBolt {
     }
   }
 
-  //Declare that we will emit a tuple containing two fields; word and count
+  //Declare that this emits a tuple containing two fields; word and count
   @Override
   public void declareOutputFields(OutputFieldsDeclarer declarer) {
     declarer.declare(new Fields("word", "count"));
@@ -434,11 +437,11 @@ public class WordCount extends BaseBasicBolt {
 
 拓撲會將 Spout 和 Bolt 一起繫結至圖形，其中定義元件之間的資料流動方式。 它也會提供 Storm 在叢集內建立元件的執行個體時所使用的平行處理原則提示。
 
-以下是此拓撲之元件圖的基本圖。
+以下映像是此拓撲之元件圖的基本圖。
 
 ![顯示 Spout 和 Bolt 排列的圖表](./media/hdinsight-storm-develop-java-topology/wordcount-topology.png)
 
-若要實作拓撲，請在 **src\main\java\com\microsoft\example** 目錄中建立名為 **WordCountTopology.java** 的新檔案。 使用下列項目做為檔案的內容：
+若要實作拓撲，請在 `src\main\java\com\microsoft\example` 目錄中建立名為 `WordCountTopology.java` 的檔案。 使用下列文字做為檔案的文字內容：
 
 ```java
 package com.microsoft.example;
@@ -506,7 +509,7 @@ public class WordCountTopology {
 
 ### <a name="configure-logging"></a>設定記錄
 
-Storm 使用 Apache Log4j 來記錄資訊。 如果未設定記錄，拓撲就會發出許多難以讀取的診斷資訊。 若要控制記錄哪些資訊，請在 **resources** 目錄中建立名為 **log4j2.xml** 的檔案。 使用下列內容做為檔案的內容。
+Storm 使用 Apache Log4j 來記錄資訊。 如果您未設定記錄，拓撲會發出診斷資訊。 若要控制記錄哪些資訊，請在 `resources` 目錄中建立名為 `log4j2.xml` 的檔案。 使用下列文字做為檔案的內容。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -527,12 +530,9 @@ Storm 使用 Apache Log4j 來記錄資訊。 如果未設定記錄，拓撲就�
 </Configuration>
 ```
 
-這會設定 **com.microsoft.example** 類別的新記錄器，而該類別中會包含此範例拓撲的元件。 此記錄器的層級是設為 trace，這樣會擷取此拓撲中元件發出的任何記錄資訊。 如果您回顧此專案中的程式碼，您會發現只有 WordCount.java 檔案實作記錄，它會記錄每個單字的字數。
+這會設定 `com.microsoft.example` 類別的新記錄器，而該類別中會包含此範例拓撲的元件。 此記錄器的層級是設為 trace，這樣會擷取此拓撲中元件發出的任何記錄資訊。
 
-`<Root level="error">` 區段會設定記錄的根層級 (不在 **com.microsoft.example** 中的所有項目)，只記錄錯誤資訊。
-
-> [!IMPORTANT]
-> 雖然這樣可以大幅減少在開發環境中測試拓撲時所記錄的資訊，但不會移除所有在生產環境叢集執行時產生的偵錯資訊。 若要減少這類資訊，您也必須在提交到叢集的組態中，將偵錯設為 false。 如需範例，請參閱本文件中的 WordCountTopology.java 程式碼。 
+`<Root level="error">` 區段會設定記錄的根層級 (不在 `com.microsoft.example` 中的所有項目)，只記錄錯誤資訊。
 
 如需針對 Log4j 設定記錄的詳細資訊，請參閱 [http://logging.apache.org/log4j/2.x/manual/configuration.html](http://logging.apache.org/log4j/2.x/manual/configuration.html)(英文)。
 
@@ -545,7 +545,7 @@ Storm 使用 Apache Log4j 來記錄資訊。 如果未設定記錄，拓撲就�
 
     mvn compile exec:java -Dstorm.topology=com.microsoft.example.WordCountTopology
 
-它執行時，拓撲將顯示啟動資訊。 然後在從 Spout 發出句子並由 Bolt 處理時，開始顯示類似如下的內容。
+它執行時，拓撲將顯示啟動資訊。 以下文字是字數輸出的範例：
 
     17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 56 for word snow
     17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 56 for word white
@@ -555,25 +555,25 @@ Storm 使用 Apache Log4j 來記錄資訊。 如果未設定記錄，拓撲就�
     17:33:27 [Thread-30-count] INFO  com.microsoft.example.WordCount - Emitting a count of 57 for word dwarfs
     17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 57 for word snow
 
-查看 WordCount Bolt 所發出的記錄，我們可以得知 'and' 已發出 113 次。 只要拓撲還在執行，次數就會繼續增加，因為 Spout 會持續發出相同的句子。
+查看 WordCount Bolt 所發出的記錄，您就可以得知 'and' 已發出 113 次。 只要拓撲還在執行，次數就會繼續增加，因為 Spout 會持續發出相同的句子。
 
-另外，在發出單字和計算次數之間有 5 秒的間隔。 這是因為 **WordCount** 元件設定為只在計時 Tuple 抵達時發出資訊，而且它預設會要求這類 Tuple 每隔 5 秒才傳送。
+在發出單字和計算次數之間有 5 秒的間隔。 **WordCount** 元件設定為只在計時 Tuple 抵達時發出資訊，而且它預設會要求這類 Tuple 每隔五秒才傳送。
 
 ## <a name="convert-the-topology-to-flux"></a>將拓撲轉換為 Flux
 
 Flux 是可在 Storm 0.10.0 和更新版本中使用的新架構，可讓您區隔組態與實作。 您的元件 (Bolt 和 Spout) 仍會以 Java 定義，但拓撲則會使用 YAML 檔案來定義。
 
-YAML 檔案會定義要用於拓撲的元件、兩者間的資料流動方式，以及在初始化元件時要使用的值。 您可以在部署 YAML 檔案時將它包含在含有專案的 jar 檔案中成為其一部分，或是在啟動拓撲時使用外部 YAML 檔案。
+YAML 檔案會定義要用於拓撲的元件、兩者間的資料流動方式，以及在初始化元件時要使用的值。 您可以包含 YAML 檔案作為 jar 檔案的一部分，或者您可以使用外部 YAML 檔案。
 
-1. 將 **WordCountTopology.java** 檔案移出專案。 先前是以此檔案定義拓撲，但在 Flux 中我們不使用它。
+1. 將 `WordCountTopology.java` 檔案移出專案。 以前，此檔案會定義拓撲，但在 Flux 中則不需要此檔案。
 
-2. 在 **resources** 目錄中，建立名為 **topology.yaml** 的新檔案。 使用下列程式碼做為此檔案的內容。
+2. 在 `resources` 目錄中，建立名稱為 `topology.yaml` 的檔案。 使用下列文字做為此檔案的內容。
     
     ```yaml
     # topology definition
 
     # name to be used when submitting. This is what shows up...
-    # in the Storm UI/storm command-line tool as the topology name
+    # in the Storm UI/storm command line tool as the topology name
     # when submitted to Storm
     name: "wordcount"
 
@@ -623,7 +623,7 @@ YAML 檔案會定義要用於拓撲的元件、兩者間的資料流動方式，
 
     請花一點時間看過並了解每個區段的用途，以及它與 **WordCountTopology.java** 檔案中的 Java 型定義的關係。
 
-3. 對 **pom.xml** 檔案進行下列變更。
+3. 對 `pom.xml`檔案進行下列變更。
    
    * 在 `<dependencies>` 區段新增下列新的相依性︰
      
@@ -676,7 +676,7 @@ YAML 檔案會定義要用於拓撲的元件、兩者間的資料流動方式，
         </plugin>
         ```
 
-   * 在 **exec-maven-plugin** `<configuration>` 區段中，將 `<mainClass>` 的值變更為 `org.apache.storm.flux.Flux`。 這可讓 Flux 負責執行我們在開發時於本機執行的拓撲。
+   * 在 **exec-maven-plugin** `<configuration>` 區段中，將 `<mainClass>` 的值變更為 `org.apache.storm.flux.Flux`。 此設定可讓 Flux 負責執行在開發時於本機執行的拓撲。
 
    * 在 `<resources>` 區段中，對 `<includes>` 新增下列內容。 這包括會將拓撲定義為專案一部分的 YAML 檔案。
      
@@ -686,7 +686,7 @@ YAML 檔案會定義要用於拓撲的元件、兩者間的資料流動方式，
 
 ## <a name="test-the-flux-topology-locally"></a>在本機測試 Flux 拓撲
 
-1. 請使用下列命令，以 Maven 編譯和執行 Flux 拓撲。
+1. 請使用下列命令，以 Maven 編譯和執行 Flux 拓撲：
    
         mvn compile exec:java -Dexec.args="--local -R /topology.yaml"
    
@@ -701,7 +701,7 @@ YAML 檔案會定義要用於拓撲的元件、兩者間的資料流動方式，
    
     `--local` 參數會在開發環境上以本機模式執行拓撲。 `-R /topology.yaml` 參數會使用 jar 檔案中的 `topology.yaml` 檔案資源來定義拓撲。
    
-    它執行時，拓撲將顯示啟動資訊。 然後在從 Spout 發出句子並由 Bolt 處理時，開始顯示類似如下的內容。
+    它執行時，拓撲將顯示啟動資訊。 以下文字是輸出的範例：
    
         17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 56 for word snow
         17:33:27 [Thread-12-count] INFO  com.microsoft.example.WordCount - Emitting a count of 56 for word white
@@ -710,15 +710,15 @@ YAML 檔案會定義要用於拓撲的元件、兩者間的資料流動方式，
         17:33:27 [Thread-30-count] INFO  com.microsoft.example.WordCount - Emitting a count of 113 for word and
         17:33:27 [Thread-30-count] INFO  com.microsoft.example.WordCount - Emitting a count of 57 for word dwarfs
    
-    每一批記錄資訊之間會有 10 秒的延遲，因為 `topology.yaml` 檔案會在 WordCount 元件建立時傳遞 `10` 的值。 這會將計時 Tuple 的延遲間隔設定為 10 秒。
+    記錄資訊的批次之間有 10 秒的延遲時間。
 
-2. 從專案複製 `topology.yaml` 檔案。 將它命名為 `newtopology.yaml`之類的名稱。 在檔案中找到下列區段，然後將 `10` 的值變更為 `5`。 這會將發出單字計算的批次之間的間隔從 10 秒變更為 5 秒。
+2. 從專案複製 `topology.yaml` 檔案。 將新檔案命名為 `newtopology.yaml`。 在 `newtopology.yaml`檔案中找到下列區段，然後將 `10` 的值變更為 `5`。 這會將發出單字計算的批次之間的間隔從 10 秒變更為 5 秒。
    
-         - id: "counter-bolt"
-           className: "com.microsoft.example.WordCount"
-           constructorArgs:
-           - 5
-           parallelism: 1
+        - id: "counter-bolt"
+        className: "com.microsoft.example.WordCount"
+        constructorArgs:
+        - 5
+        parallelism: 1
 
 3. 若要執行拓撲，請使用下列命令：
    
@@ -732,11 +732,11 @@ YAML 檔案會定義要用於拓撲的元件、兩者間的資料流動方式，
    
     拓撲啟動後，您應該會注意到批次發出間隔時間已變更，反映了 newtopology.yaml 中的值。 因此您可以看到，您可以透過 YAML 檔案變更組態，而不需要重新編譯拓撲。
 
-Flux 還提供其他許多未在本文中討論到的功能，例如根據執行階段所傳遞的參數替代 YAML 檔案中的變數，或從環境變數來替代。 如需Flux 架構的這些功能和其他功能的詳細資訊，請參閱 [Flux (https://storm.apache.org/releases/0.10.0/flux.html)](https://storm.apache.org/releases/0.10.0/flux.html)。
+如需Flux 架構的這些功能和其他功能的詳細資訊，請參閱 [Flux (https://storm.apache.org/releases/0.10.0/flux.html)](https://storm.apache.org/releases/0.10.0/flux.html)。
 
 ## <a name="trident"></a>Trident
 
-Trident 是 Storm 提供的高層級抽象。 它支援具狀態的處理。 Trident 的主要優點是它可以保證進入拓撲的每則訊息都只處理一次。 這在原始 Java 拓撲中很難達到，而原始 Java 拓撲保證訊息將至少處理一次。 還有其他差異，例如可供使用的內建元件，而不是建立 Bolt。 事實上，較不一般的元件 (例如篩選、投影和函數) 會完全取代 Bolt。
+Trident 是 Storm 提供的高層級抽象。 它支援具狀態的處理。 Trident 的主要優點是它可以保證進入拓撲的每則訊息都只處理一次。 這在 Java 拓撲中很難達到，而原始 Java 拓撲保證訊息將至少處理一次。 還有其他差異，例如可供使用的內建元件，而不是建立 Bolt。 事實上，較不一般的元件 (例如篩選、投影和函數) 會取代 Bolt。
 
 可以使用 Maven 專案來建立 Trident 應用程式。 您使用與本文稍早所呈現的相同基本步驟—只有程式碼不同。 Trident (目前) 也無法與 Flux 架構搭配使用。
 
@@ -753,10 +753,5 @@ Trident 是 Storm 提供的高層級抽象。 它支援具狀態的處理。 Tri
 * [使用 Visual Studio 開發 Apache Storm on HDInsight 的 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)
 
 您可透過瀏覽 [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)找到更多範例 Storm 拓撲。
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

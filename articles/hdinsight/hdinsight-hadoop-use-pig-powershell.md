@@ -15,24 +15,23 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 01/19/2017
 ms.author: larryfr
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 8b88db5bb2c8153953109fcd0511c22042bcf931
-ms.openlocfilehash: bef30df14f6d00c4a7f5f5b3d59ec85b2e4fbe10
-
+ms.sourcegitcommit: cfaade8249a643b77f3d7fdf466eb5ba38143f18
+ms.openlocfilehash: a795f7a8dbb02ad29c517dca6ab06575a8d48bf9
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="run-pig-jobs-using-powershell"></a>使用 PowerShell 執行 Pig 工作
+# <a name="use-azure-powershell-to-run-pig-jobs-with-hdinsight"></a>使用 Azure PowerShell 執行 Pig 工作與 HDInsight
+
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
 本文件提供使用 Azure PowerShell 將 Pig 工作提交至 HDInsight 叢集上的 Hadoop 的範例。 Pig 可讓您使用可建立資料轉換模型的語言 (Pig Latin) 撰寫 MapReduce 工作，而不是撰寫對應和歸納函數。
 
 > [!NOTE]
 > 本文件不提供範例中使用的 Pig Latin 陳述式所執行的工作詳細的描述。 如需此範例中使用的 Pig Latin 相關資訊，請參閱 [在 HDInsight 上搭配 Hadoop 使用 Pig](hdinsight-use-pig.md)。
-> 
-> 
 
-## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
-若要完成本文中的步驟，您需要下列項目。
+## <a id="prereq"></a>必要條件
 
 * **Azure HDInsight 叢集**
 
@@ -43,15 +42,16 @@ ms.openlocfilehash: bef30df14f6d00c4a7f5f5b3d59ec85b2e4fbe10
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-## <a name="a-idpowershellarun-pig-jobs-using-powershell"></a><a id="powershell"></a>使用 PowerShell 執行 Pig 工作
-Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Pig 工作。 在內部，您可以使用在 HDInsight 叢集上執行的 [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) (先前稱為 Templeton) 的 REST 呼叫來達到此目的。
+## <a id="powershell"></a>使用 PowerShell 執行 Pig 工作
+
+Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Pig 工作。 就內部而言，PowerShell 會使用 REST 呼叫 HDInsight 叢集上執行的 [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat)。
 
 在遠端 HDInsight 叢集上執行 Pig 工作時，會使用下列 Cmdlet：
 
 * **Login-AzureRmAccount**：向您的 Azure 訂用帳戶驗證 Azure PowerShell
-* **New-AzureRmHDInsightPigJobDefinition**：使用指定的 Pig Latin 陳述式建立新的 *工作定義*
+* **New-AzureRmHDInsightPigJobDefinition**：使用指定的 Pig Latin 陳述式建立*作業定義*
 * **Start-AzureRmHDInsightJob**：將工作定義傳送至 HDInsight、啟動工作，然後傳回可用來檢查工作狀態的 *工作* 物件
-* **Wait-AzureRmHDInsightJob**：使用工作物件來檢查工作的狀態。 它會等到工作完成，或等到等候時間超過。
+* **Wait-AzureRmHDInsightJob**：使用工作物件來檢查工作的狀態。 它會等到作業完成，或超過等候時間。
 * **Get-AzureRmHDInsightJobOutput**：用來擷取工作的輸出
 
 下列步驟示範如何使用這些 Cmdlet，在您的 HDInsight 叢集上執行工作。
@@ -112,7 +112,7 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Pi
    
     系統會先提示您登入 Azure 訂用帳戶。 接著，您還必須提供 HDInsight 叢集的 HTTPs/系統管理帳戶名稱和密碼。
 
-2. 工作完成時，應該會傳回與下面類似的資訊：
+2. 作業完成時，應該會傳回與下面文字類似的資訊：
    
         Start the Pig job ...
         Wait for the Pig job to complete ...
@@ -124,7 +124,7 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Pi
         (ERROR,6)
         (FATAL,2)
 
-## <a name="a-idtroubleshootingatroubleshooting"></a><a id="troubleshooting"></a>疑難排解
+## <a id="troubleshooting"></a>疑難排解
 
 如果在工作完成時未傳回任何資訊，則可能是處理期間發生錯誤。 若要檢視這項工作的錯誤資訊，請將下列命令新增至 **pigjob.ps1** 檔案的結尾，並儲存它，然後重新予以執行。
 
@@ -138,10 +138,10 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Pi
 
 這會傳回執行工作時寫入至伺服器上之 STDERR 的資訊，而且可能有助於判斷工作的失敗原因。
 
-## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
+## <a id="summary"></a>摘要
 如您所見，Azure PowerShell 提供簡單的方法，在 HDInsight 叢集上執行 Pig 工作、監視工作狀態，以及擷取輸出。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 如需 HDInsight 中 Pig 的一般資訊：
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
@@ -150,10 +150,5 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Pi
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

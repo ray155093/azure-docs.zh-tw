@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/19/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 67b4861ac564565b2a36932ae15141a1e1f56035
-ms.openlocfilehash: 501e5e8501c6106ba2e51b3523332fd224a5a142
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: c33b69dbdccd2a894b494175dec2bd423af478b1
+ms.openlocfilehash: 0019b64ba545d91cf32ed2945c5c0d4844e264e1
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -28,14 +28,14 @@ ms.lasthandoff: 02/23/2017
 * Azure 建立和處理資源的部署模型有二種：Azure Resource Manager 和傳統。 Azure 也有兩個入口網站 – 支援傳統部署模型的 Azure 傳統入口網站，以及支援兩種部署模型的 Azure 入口網站。 無論您是在 Resource Manager 還是傳統中設定 Site Recovery，基本的移轉步驟都是相同的。 不過本文中的 UI 指示和螢幕擷取畫面都是和 Azure 入口網站相關。
 * **目前您只能從一個區域移轉到另一個區域。您可以將 VM 從一個 Azure 區域容錯移轉至另一個，但是無法將它們容錯移轉回來。**
 * 本文中的移轉指示是以將實體機器複寫到 Azure 的指示為基礎。 它包含了 [將 VMware VM 或實體伺服器複寫至 Azure](site-recovery-vmware-to-azure.md)中步驟的連結，其內容描述如何在 Azure 入口網站中複寫實體伺服器。
-* 如果您是在傳統入口網站中設定 Site Recovery，請遵循 [這篇文章](site-recovery-vmware-to-azure-classic.md)中的詳細指示。 
+* 如果您是在傳統入口網站中設定 Site Recovery，請遵循 [這篇文章](site-recovery-vmware-to-azure-classic.md)中的詳細指示。
 
 在這篇文章下方或 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中張貼意見或問題。
 
 ## <a name="prerequisites"></a>必要條件
 以下是您針對此部署所需要的項目︰
 
-* **組態伺服器**︰執行 Windows Server 2012 R2 並做為組態伺服器的內部部署 VM。 您也可在此 VM 上安裝其他 Site Recovery 元件 (包括處理序伺服器和主要目標伺服器)。 請參閱[案例架構](site-recovery-components.md#replicate-vmware-vmsphysical-servers-to-azure)和[組態伺服器必要條件](site-recovery-vmware-to-azure.md#prerequisites)以深入了解。
+* **組態伺服器**︰執行 Windows Server 2012 R2 並做為組態伺服器的內部部署 VM。 您也可在此 VM 上安裝其他 Site Recovery 元件 (包括處理序伺服器和主要目標伺服器)。 請參閱[案例架構](site-recovery-components.md#vmware-replication-to-azure)和[組態伺服器必要條件](site-recovery-vmware-to-azure.md#prerequisites)以深入了解。
 * **IaaS 虛擬機器**：您想要移轉的 VM。 您可以將那些 VM 視為實體機器來移轉它們。
 
 ## <a name="deployment-steps"></a>部署步驟

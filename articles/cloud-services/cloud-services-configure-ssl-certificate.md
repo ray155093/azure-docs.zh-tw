@@ -17,6 +17,7 @@ ms.author: adegeo
 translationtype: Human Translation
 ms.sourcegitcommit: cca4d126a5c5f012af6afb9a31d0aedc0f7eb155
 ms.openlocfilehash: edb9aaf6dae11c9b8a171b22bc8a17003f80d86b
+ms.lasthandoff: 12/16/2016
 
 
 ---
@@ -156,7 +157,7 @@ ms.openlocfilehash: edb9aaf6dae11c9b8a171b22bc8a17003f80d86b
    
     ![上傳](./media/cloud-services-configure-ssl-certificate/upload-button.png)
     
-6. 提供 [檔案]、[密碼]，然後按一下 [完成] (核取記號)。
+6. 提供 **[檔案]** 、**[密碼]** ，然後按一下 **[完成]**  \(核取記號)。
 
 ## <a name="step-4-connect-to-the-role-instance-by-using-https"></a>步驟 4：使用 HTTPS 來連線至角色執行個體
 您的部署已在 Azure 啟動並執行，現在您可以使用 HTTPS 來與其連線。
@@ -187,9 +188,4 @@ ms.openlocfilehash: edb9aaf6dae11c9b8a171b22bc8a17003f80d86b
 [2]: ./media/cloud-services-configure-ssl-certificate/CopyURL.png
 [3]: ./media/cloud-services-configure-ssl-certificate/SSLCloudService.png
 [4]: ./media/cloud-services-configure-ssl-certificate/AddCertificateComplete.png  
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
+ms.date: 02/13/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 1fcec43ad50b9c78443ada116b9ca444605c4730
-ms.openlocfilehash: dc30e18b92e492137e016e7a7372bfdf3285e5fe
+ms.sourcegitcommit: 5acfbfbe7327fc28fa909e6ef7e0f9b6ce8b0e54
+ms.openlocfilehash: e0be8f4617c2fdbe1cb6fe2f904bf9ea7056c55e
+ms.lasthandoff: 02/14/2017
 
 ---
 
@@ -45,17 +46,13 @@ Azure Active Directory (AD) 應用程式 Proxy 可藉由發佈要透過網際網
 
   ![新增企業應用程式](./media/application-proxy-publish-azure-portal/add-app.png)
 
-3. 在 [類別] 頁面上，選取 [或新增您自己的]。  
+3. 在 [類別] 頁面上，選取 [內部部署應用程式]。  
 
   ![新增您自己的應用程式](./media/application-proxy-publish-azure-portal/add-your-own.png)
 
-4. 從下拉式功能表中選擇 [部署現有的應用程式]。
-5. 提供應用程式的名稱，再選取 [新增]。 載入視窗出現，您的應用程式一旦新增，[快速啟動] 刀鋒視窗便會開啟。
-6. 在 [快速啟動] 刀鋒視窗中，選取 [啟用內部部署應用程式的遠端存取]。
+4. 提供您的應用程式的下列資訊：
 
-  ![為內部部署應用程式啟用遠端存取](./media/application-proxy-publish-azure-portal/enable-remote-access.png)
-
-7. 提供您的應用程式的下列資訊：
+   - **名稱**︰會出現在存取面板上的應用程式名稱。 
 
    - **內部 URL**：應用程式 Proxy 連接器用來從您的私人網路存取應用程式的位址。 您可以提供後端伺服器上要發佈的特定路徑，而伺服器的其餘部分則不發佈。 如此一來，您可以在相同的伺服器上將不同網站發佈為不同應用程式，並給予各自的名稱和存取規則。
 
@@ -72,9 +69,8 @@ Azure Active Directory (AD) 應用程式 Proxy 可藉由發佈要透過網際網
 
    ![設定您的應用程式](./media/application-proxy-publish-azure-portal/configure-app.png)
 
-8. 選取 [ **儲存**]。
+8. 選取 [新增] 。
 
-   ![儲存您的應用程式 Proxy 設定](./media/application-proxy-publish-azure-portal/save-app-proxy.png)
 
 ## <a name="add-a-test-user"></a>新增測試使用者 
 
@@ -102,9 +98,4 @@ Azure Active Directory (AD) 應用程式 Proxy 可藉由發佈要透過網際網
 - [下載連接器](active-directory-application-proxy-enable.md)和[建立連接器群組](active-directory-application-proxy-connectors-azure-portal.md)，在不同的網路和位置上發佈應用程式。
 
 - 為您新發行的應用程式[設定單一登入](application-proxy-sso-azure-portal.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

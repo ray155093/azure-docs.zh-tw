@@ -14,14 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2017
 ms.author: padmavc
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: d090ce5a912a2079d2e47d13caf60ca701f0e548
-ms.openlocfilehash: a3bb9851d0f7e6f40f456f7989ae949fb38549e0
+ms.sourcegitcommit: 5913c81088724ef946ae147f4f3154fa6aefd22e
+ms.openlocfilehash: 9a663a4e79c30b97e6390b7ff7f83deec131384a
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="custom-tracking-schemas"></a>自訂追蹤結構描述
-您可以在 Azure 整合帳戶中使用自訂追蹤結構描述，協助您監視企業對企業 (B2B) 交易。
+# <a name="enable-tracking-to-monitor-your-complete-workflow-end-to-end"></a>啟用追蹤來監視您的完整工作流程，端對端
+有內建的追蹤可供您啟用您不同部分的企業對企業工作流程，例如追蹤 AS2 或 X12 訊息。 當您建立包含邏輯應用程式、BizTalk Server、SQL Server 或任何其他層級的工作流程時，您可以啟用自訂追蹤，記錄從您工作流程開始到結尾的事件。 
+
+本主題提供您可以在邏輯應用程式外部層級中使用的自訂程式碼。 
 
 ## <a name="custom-tracking-schema"></a>自訂追蹤結構描述
 ````java
@@ -84,9 +88,4 @@ ms.openlocfilehash: a3bb9851d0f7e6f40f456f7989ae949fb38549e0
 * [深入了解監視 B2B 訊息](logic-apps-monitor-b2b-message.md)。   
 * 了解[在 Operations Management Suite 入口網站中追蹤 B2B 訊息](../logic-apps/logic-apps-track-b2b-messages-omsportal.md)。
 * [深入了解企業整合套件](../logic-apps/logic-apps-enterprise-integration-overview.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

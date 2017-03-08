@@ -16,9 +16,9 @@ ms.workload: infrastructure
 ms.date: 02/23/2017
 ms.author: rclaus
 translationtype: Human Translation
-ms.sourcegitcommit: 777baeb2a6a281343da8bea2de957ee9883a5ba2
-ms.openlocfilehash: 4cc559956cf49d002124b6035eca874996c730f9
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 82d40c30c92f5da090e7ec4e2f25ead3908cc603
+ms.openlocfilehash: b1af197b425b0f8951e011f24609b9bf4769f931
+ms.lasthandoff: 03/02/2017
 
 ---
 
@@ -30,7 +30,7 @@ ms.lasthandoff: 03/01/2017
 
 這個範例適用於 Bash 殼層。 如需在 Windows 上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../virtual-machines-windows-cli-options.md)。
 
-## <a name="create-vm-sample"></a>建立 VM 範例
+## <a name="sample-script"></a>範例指令碼
 
 [!code-azurecli[主要](../../../cli_scripts/virtual-machine/create-vm-detailed/create-windows-vm-detailed.sh "快速建立 VM")]
 

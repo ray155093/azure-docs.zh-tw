@@ -14,13 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2017
 ms.author: padmavc
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: d090ce5a912a2079d2e47d13caf60ca701f0e548
-ms.openlocfilehash: 2470a8e7d82c6c01e9f32b062bc09f5a2f6ed1cd
+ms.sourcegitcommit: 5913c81088724ef946ae147f4f3154fa6aefd22e
+ms.openlocfilehash: c8c7642a28f1dc386a73d014abe13ec36c6cbe69
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="x12-tracking-schemas"></a>X12 追蹤結構描述
+# <a name="start-or-enable-tracking-of-x12-messages-to-monitor-success-errors-and-message-properties"></a>啟動或啟用追蹤 X12 訊息，以監視成功、錯誤和訊息屬性
 您可以在 Azure 整合帳戶中使用這些 X12 追蹤結構描述，協助您監視企業對企業 (B2B) 交易︰
 
 * X12 交易集追蹤結構描述
@@ -355,9 +357,4 @@ ms.openlocfilehash: 2470a8e7d82c6c01e9f32b062bc09f5a2f6ed1cd
 * [深入了解 B2B 自訂追蹤結構描述](../logic-apps/logic-apps-track-integration-account-custom-tracking-schema.md)。
 * 了解[在 Operations Management Suite 入口網站中追蹤 B2B 訊息](../logic-apps/logic-apps-track-b2b-messages-omsportal.md)。
 * [深入了解企業整合套件](../logic-apps/logic-apps-enterprise-integration-overview.md)。  
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

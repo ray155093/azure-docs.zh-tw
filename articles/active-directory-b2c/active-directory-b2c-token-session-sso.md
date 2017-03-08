@@ -17,6 +17,7 @@ ms.author: swkrish
 translationtype: Human Translation
 ms.sourcegitcommit: 351149296a6d7dfa801b295ec21fc04215c7b051
 ms.openlocfilehash: 766ba894ba2643dec06757a133f8e716aa856161
+ms.lasthandoff: 01/28/2017
 
 
 ---
@@ -85,7 +86,7 @@ Azure AD B2C 支援以 [OpenID Connect 驗證通訊協定](active-directory-b2c-
   * 預設值 = 1440 分鐘。
   * 最小值 (含) = 15 分鐘。
   * 最大值 (含) = 1440 分鐘。
-* **Web 應用程式工作階段逾時**︰如果將此參數設定為 [絕對]，使用者必須在 [Web 應用程式工作階段存留期 (分鐘)] 指定的期間結束後重新驗證。 如果將此參數設定為 [循環]  (預設設定)，只要使用者在 Web 應用程式中持續保持作用狀態，他們便能維持登入狀態。
+* **Web 應用程式工作階段逾時**︰如果將此參數設定為 [絕對]，使用者必須在 [Web 應用程式工作階段存留期 (分鐘)] 指定的期間結束後重新驗證。 如果將此參數設定為 **[循環]** \(預設設定)，只要使用者在 Web 應用程式中持續保持作用狀態，他們便能維持登入狀態。
 
 以下是幾個可以透過這些屬性實現的使用案例︰
 
@@ -109,10 +110,5 @@ Azure AD B2C 支援以 [OpenID Connect 驗證通訊協定](active-directory-b2c-
     > 這些設定不適用於密碼重設原則。
     > 
     > 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

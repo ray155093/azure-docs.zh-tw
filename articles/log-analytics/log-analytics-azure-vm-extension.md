@@ -14,13 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: richrund
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
-ms.openlocfilehash: cab40991e5b0628f422b9eb91130d8135c1434f1
+ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
+ms.openlocfilehash: 3bb103a8def2e1c56695169568c2d3c64b7f291f
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="connect-azure-virtual-machines-to-log-analytics"></a>將 Azure 虛擬機器連接到 Log Analytics
+# <a name="connect-azure-virtual-machines-to-log-analytics-with-a-log-analytics-agent"></a>使用 Log Analytics 代理程式將 Azure 虛擬機器連接到 Log Analytics
+
 針對 Windows 和 Linux 電腦，收集記錄和度量的建議方式是安裝 Log Analytics 代理程式。
 
 在 Azure 虛擬機器上安裝 Log Analytics 代理程式最簡單的方式是透過 Log Analytics VM 擴充。  使用擴充可以簡化安裝程序，並自動設定代理程式將資料傳送到您指定的 Log Analytics 工作區。 代理程式也會自動升級，以確保您擁有最新的功能和修正程式。
@@ -34,8 +37,8 @@ ms.openlocfilehash: cab40991e5b0628f422b9eb91130d8135c1434f1
 
 > [!IMPORTANT]
 > 如果您已將 Log Analytics 設為使用 [Azure 診斷](log-analytics-azure-storage.md)來編製記錄資料的索引，並設定代理程式來收集相同的記錄，則記錄會收集兩次。 您需支付這兩個資料來源的費用。 如果您已安裝代理程式，則應該只使用代理程式來收集記錄資料 - 不要設定 Log Analytics 從 Azure 診斷收集記錄資料。
-> 
-> 
+>
+>
 
 有三個簡單的方法可啟用 Log Analytics 虛擬機器擴充功能︰
 
@@ -400,10 +403,4 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Templa
 
 * [將 Windows 電腦連接到 Log Analytics](log-analytics-windows-agents.md)
 * [將 Linux 電腦連接到 Log Analytics](log-analytics-linux-agents.md)
-
-
-
-
-<!--HONumber=Dec16_HO4-->
-
 

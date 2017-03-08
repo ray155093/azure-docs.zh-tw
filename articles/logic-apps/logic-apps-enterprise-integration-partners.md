@@ -1,11 +1,11 @@
 ---
-title: "了解夥伴與企業整合套件 | Microsoft Docs"
-description: "了解如何使用夥伴搭配企業整合套件與 Logic Apps"
+title: "建立企業對企業 (B2B) 訊息的夥伴 - Azure Logic Apps | Microsoft Docs"
+description: "了解如何新增夥伴至您的整合帳戶，以搭配企業整合套件與 Logic Apps"
 services: logic-apps
 documentationcenter: .net,nodejs,java
-author: msftman
+author: MandiOhlinger
 manager: anneta
-editor: cgronlun
+editor: 
 ms.assetid: b179325c-a511-4c1b-9796-f7484b4f6873
 ms.service: logic-apps
 ms.workload: integration
@@ -14,13 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: estfan
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2549531d21c8e15e5bbb4321c4119e6aaac53e96
-ms.openlocfilehash: de12b83c811dcdd93ed691ddade9d748383110df
+ms.sourcegitcommit: 5913c81088724ef946ae147f4f3154fa6aefd22e
+ms.openlocfilehash: 2a886d1eaf1253b55d8c95786139a2bbdc6f145e
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="partners-in-b2b-scenarios"></a>B2B 案例中的合作夥伴
+# <a name="add-or-update-partners-in-business-to-business-agreements-in-your-workflow"></a>新增或更新工作流程中企業對企業協議中的夥伴
 
 合作夥伴是參與企業對企業 (B2B) 交易及在彼此之間交換訊息的實體。 在您可以建立這些交易中代表您與其他組織的合作夥伴之前，你們雙方必須先共用可識別及驗證彼此所傳送訊息的資訊。 在您討論這些詳細資料並準備開始您的商業關係之後，您可以在您的整合帳戶中建立代表你們雙方的合作夥伴。
 
@@ -89,10 +91,5 @@ ms.openlocfilehash: de12b83c811dcdd93ed691ddade9d748383110df
 
 ## <a name="next-steps"></a>後續步驟
 * [深入了解合約](../logic-apps/logic-apps-enterprise-integration-agreements.md "了解企業整合合約")  
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

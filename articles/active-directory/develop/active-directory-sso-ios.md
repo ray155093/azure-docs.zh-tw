@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
-ms.openlocfilehash: d76491683d08bf9afd505eebfdede5812e87f458
+ms.sourcegitcommit: a63996ad3661b43bea83870c1fa88fa6d64c6c6a
+ms.openlocfilehash: bc2bb9916baa08b14dc5cfeb0e6d712b1c0522ef
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -277,10 +278,10 @@ Microsoft 身分識別平台會使用 URL 叫用訊息代理程式，然後將�
 
 例如︰x-msauth-mytestiosapp://com.myapp.mytestapp 
 
-此重新導向 URI 必須在使用 [Azure 傳統入口網站](https://manage.windowsazure.com/)的應用程式註冊中指定。 如需 Azure AD 應用程式註冊的詳細資訊，請參閱 [與 Azure Active Directory 整合](active-directory-how-to-integrate.md)。
+此重新導向 URI 必須使用 [Azure 入口網站](https://portal.azure.com/)在應用程式註冊中指定。 如需 Azure AD 應用程式註冊的詳細資訊，請參閱 [與 Azure Active Directory 整合](active-directory-how-to-integrate.md)。
 
 ##### <a name="step-3a-add-a-redirect-uri-in-your-app-and-dev-portal-to-support-certificate-based-authentication"></a>步驟 3a︰在應用程式與開發人員入口網站中新增重新導向 URI 以支援以憑證為基礎的驗證
-若要支援以憑證為基礎的驗證，必須在您的應用程式與 [Azure 傳統入口網站](https://manage.windowsazure.com/) 中註冊第二個 "msauth"，才能在應用程式中新增該支援。
+若要支援以憑證為基礎的驗證，必須在您的應用程式與 [Azure 入口網站](https://portal.azure.com/) 中註冊第二個 "msauth"，才能在應用程式中新增該支援。
 
 `msauth://code/<broker-redirect-uri-in-url-encoded-form>`
 
@@ -297,10 +298,5 @@ ADAL 會使用 –canOpenURL: 檢查裝置上是否已安裝訊息代理程式�
 
 ### <a name="youve-configured-sso"></a>您已設定 SSO！
 現在 Microsoft Identity SDK 會自動跨應用程式共用認證，並在訊息代理程式出現在其裝置上時叫用它。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

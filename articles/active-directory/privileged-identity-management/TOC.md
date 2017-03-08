@@ -25,8 +25,3 @@
 # 相關參考
 ## [Azure Active Directory](/azure/active-directory/)
 ## [角色型存取控制](../role-based-access-control-what-is.md)
-
-
-<!--HONumber=Jan17_HO3-->
-
-

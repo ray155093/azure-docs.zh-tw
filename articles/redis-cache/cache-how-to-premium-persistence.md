@@ -12,18 +12,17 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 02/09/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 65385aa918222837468f88246d0527c22c677ba7
-ms.openlocfilehash: 628dfc48c00e61fe5c4883f6237a44e0f1309f0e
+ms.sourcegitcommit: 50d8db29ccce1244387f1fe0e3e42e610575e483
+ms.openlocfilehash: bc8c54b51f9eee653fbe84351081dcef562e62d4
+ms.lasthandoff: 02/09/2017
 
 
 ---
 # <a name="how-to-configure-data-persistence-for-a-premium-azure-redis-cache"></a>如何設定進階 Azure Redis 快取的資料永續性
-Azure Redis 快取有不同的快取服務，在快取大小和功能 (包括新的進階層) 的選擇上提供了彈性。
-
-Azure Redis 快取進階層包括叢集、永續性及虛擬網路支援之類的功能。 本文說明如何在進階 Azure Redis 快取執行個體中設定永續性。
+Azure Redis 快取有不同的快取供應項目，可讓您彈性選擇快取大小和功能，包括叢集、持續性和虛擬網路支援等進階層功能。 本文說明如何在進階 Azure Redis 快取執行個體中設定永續性。
 
 如需其他進階快取功能的相關資訊，請參閱 [Azure Redis 快取進階層簡介](cache-premium-tier-intro.md)。
 
@@ -32,16 +31,9 @@ Redis 永續性可讓您保存儲存在 Redis 中的資料。 您也可以擷取
 
 Azure Redis 快取使用 [RDB 模型](http://redis.io/topics/persistence)(其資料儲存在 Azure 儲存體帳戶中) 提供 Redis 永續性。 設定永續性後，Azure Redis 快取會依據可設定的備份頻率，在磁碟中保存一份 Redis 二進位格式的 Redis 快取快照。 如果發生同時停用主要和複本快取的災難性事件，即可使用最新的快照重新建構快取。
 
-若要設定永續性，可在建立快取期間從 [新的 Redis 快取] 刀鋒視窗設定，也可在現有進階快取的 [設定] 刀鋒視窗中設定。
+若要設定永續性，可在建立快取期間從 [新的 Redis 快取] 刀鋒視窗設定，也可在現有進階快取的 [資源] 功能表中設定。
 
-## <a name="create-a-premium-cache"></a>建立進階快取
-若要建立快取並設定永續性，請登入 [Azure 入口網站](https://portal.azure.com)，然後按一下 [新增] -> [資料 + 儲存體] > [Redis 快取]。
-
-![建立 Redis 快取][redis-cache-new-cache-menu]
-
-若要設定永續性，請先在 [選擇您的定價層] 刀鋒視窗中選取其中一個 [進階] 快取。
-
-![進階][redis-cache-premium-pricing-tier]
+[!INCLUDE [redis-cache-create](../../includes/redis-cache-premium-create.md)]
 
 選取進階定價層後，按一下 [Redis 永續性] 。
 
@@ -50,7 +42,7 @@ Azure Redis 快取使用 [RDB 模型](http://redis.io/topics/persistence)(其資
 下節的步驟說明如何在您的新進階快取上設定 Redis 永續性。 Redis 永續性設定後，按一下 [ **建立** ] 以建立具有 Redis 永續性的新進階快取。
 
 ## <a name="configure-redis-persistence"></a>設定 Redis 永續性
-Redis 永續性是在 [ **Redis 資料永續性** ] 刀鋒視窗中所設定。 若為新的快取，則在快取建立程序期間存取此刀鋒視窗，如上節所述。 若為現有快取，則從快取的 [設定] 刀鋒視窗存取 [Redis 資料永續性] 刀鋒視窗。
+Redis 永續性是在 [ **Redis 資料永續性** ] 刀鋒視窗中所設定。 若為新的快取，則在快取建立程序期間存取此刀鋒視窗，如上節所述。 若為現有快取，則從快取的 [資源] 功能表存取 [Redis 資料永續性] 刀鋒視窗。
 
 ![Redis 設定][redis-cache-settings]
 
@@ -61,7 +53,7 @@ Redis 永續性是在 [ **Redis 資料永續性** ] 刀鋒視窗中所設定。 
 按一下 [儲存體帳戶] 選取要使用的儲存體帳戶，然後從 [儲存體金鑰] 下拉式清單中選擇 [主要金鑰] 或 [次要金鑰]。 您必須選擇與快取相同區域的儲存體帳戶，建議選取 [進階儲存體]  帳戶，因為進儲存體的輸送量較高。 
 
 > [!IMPORTANT]
-> 如果重新產生了永續性帳戶的儲存體金鑰，您必須從 [儲存體金鑰] 下拉式清單中重新選擇所需的金鑰。
+> 如果重新產生了永續性帳戶的儲存體金鑰，您必須從 [儲存體金鑰] 下拉式清單中重新設定所需的金鑰。
 > 
 > 
 
@@ -113,9 +105,4 @@ Redis 永續性是在 [ **Redis 資料永續性** ] 刀鋒視窗中所設定。 
 [redis-cache-persistence-selected]: ./media/cache-how-to-premium-persistence/redis-cache-persistence-selected.png
 
 [redis-cache-settings]: ./media/cache-how-to-premium-persistence/redis-cache-settings.png
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

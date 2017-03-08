@@ -12,16 +12,17 @@ ms.devlang:
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/28/2016
+ms.date: 02/23/2017
 ms.author: larryfr
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 8c07f0da21eab0c90ad9608dfaeb29dd4a01a6b7
-ms.openlocfilehash: 18545981a21736d9673ce19ae2325ba5e4a67ff6
-
+ms.sourcegitcommit: d391c5c6289aa63e969f63f189eb5db680883f0a
+ms.openlocfilehash: b8c5e53ed5fe86ed099e37644d405080477f8c27
+ms.lasthandoff: 03/01/2017
 
 ---
 
-# <a name="add-additional-azure-storage-accounts-to-hdinsight"></a>將其他 Azure 儲存體帳戶新增至 HDInsight
+# <a name="add-additional-storage-accounts-to-hdinsight"></a>將其他儲存體帳戶新增至 HDInsight
 
 了解如何使用指令碼動作，將其他 Azure 儲存體帳戶新增至使用 Linux 當成作業系統的現有 HDInsight 叢集。
 
@@ -32,7 +33,7 @@ ms.openlocfilehash: 18545981a21736d9673ce19ae2325ba5e4a67ff6
 
 此指令碼採用下列參數︰
 
-* __Azure 儲存體帳戶名稱__：要新增至 HDInsight 叢集的儲存體帳戶名稱。 執行指令碼之後，HDInsight 將能夠讀取和寫入此儲存體帳戶中儲存的資料。
+* __Azure 儲存體帳戶名稱__：要新增至 HDInsight 叢集的儲存體帳戶名稱。 執行指令碼之後，HDInsight 可以讀取和寫入此儲存體帳戶中儲存的資料。
 
 * __Azure 儲存體帳戶金鑰__︰授與存取權給儲存體帳戶的金鑰。
 
@@ -44,7 +45,7 @@ ms.openlocfilehash: 18545981a21736d9673ce19ae2325ba5e4a67ff6
 
 * 確認儲存體帳戶存在並可使用金鑰來存取。
 
-* 使用叢集認證加密金鑰。 這可防止 HDInsight 使用者能夠輕鬆地從 Ambari 擷取並使用儲存體帳戶金鑰。
+* 使用叢集認證加密金鑰。
 
 * 將儲存體帳戶新增至 core-site.xml 檔案。
 
@@ -74,9 +75,9 @@ __需求__：
 
 ### <a name="storage-accounts-not-displayed-in-azure-portal-or-tools"></a>儲存體帳戶未顯示在 Azure 入口網站或工具中
 
-在 Azure 入口網站中檢視 HDInsight 叢集時，選取 [屬性] 之下的 [儲存體帳戶] 項目，將不會顯示透過此指令碼動作新增的儲存體帳戶。 Azure PowerShell 和 Azure CLI 也不會顯示其他儲存體帳戶。
+在 Azure 入口網站中檢視 HDInsight 叢集時，選取 [屬性] 之下的 [儲存體帳戶] 項目，並不會顯示透過此指令碼動作新增的儲存體帳戶。 Azure PowerShell 和 Azure CLI 也不會顯示其他儲存體帳戶。
 
-這是因為指令碼只修改叢集的 core-site.xml 組態。 目前在使用 Azure 管理 API 擷取叢集資訊時，不會使用這項資訊。
+沒有顯示儲存體資訊是因為指令碼只修改叢集的 core-site.xml 組態。 使用 Azure 管理 API 擷取叢集資訊時，不會使用這項資訊。
 
 若要檢視使用此指令碼新增至叢集的儲存體帳戶資訊，請使用 Ambari REST API。 下列命令示範如何使用 [cURL (http://curl.haxx.se/)](http://curl.haxx.se/) 和 [jq (https://stedolan.github.io/jq/)](https://stedolan.github.io/jq/) 從 Ambari 擷取及剖析 JSON 資料：
 
@@ -96,13 +97,11 @@ __需求__：
 
 ### <a name="unable-to-access-storage-after-changing-key"></a>無法在變更金鑰之後存取儲存體
 
-如果您變更儲存體帳戶的金鑰，HDInsight 再也無法存取儲存體帳戶。
+如果您變更儲存體帳戶的金鑰，HDInsight 就無法再存取儲存體帳戶。 HDInsight 在叢集的 core-site.xml 中使用金鑰的快取複本。 此快取副本必須更新以符合新的金鑰。
 
-這是因為叢集的 core-site.xml 中儲存的金鑰是舊金鑰。
+再次執行指令碼動作並__不會__更新金鑰，因為指令碼會查看儲存體帳戶的項目是否已經存在。 如果項目已經存在，就不會進行任何變更。
 
-重新執行指令碼動作將__不會__更新金鑰，因為指令碼會查看儲存體帳戶的項目是否已經存在。 若是如此，它不會進行任何變更。
-
-若要解決這個問題，您必須移除儲存體帳戶的現有項目。 您可以使用下列步驟來達成目的︰
+若要解決這個問題，您必須移除儲存體帳戶的現有項目。 執行下列步驟以移除現有項目：
 
 1. 在 Web 瀏覽器中，對您的 HDInsight 叢集開啟 Ambari Web UI。 URI 是 https://CLUSTERNAME.azurehdinsight.net。 將 __CLUSTERNAME__ 取代為您叢集的名稱。
 
@@ -131,9 +130,4 @@ __需求__：
 
 ## <a name="next-steps"></a>後續步驟
 
-在本文件中，您已了解如何將其他儲存體帳戶新增至現有的 HDInsight 叢集。 如需指令碼動作的詳細資訊，請參閱[使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)
-
-
-<!--HONumber=Jan17_HO3-->
-
-
+您已了解如何將其他儲存體帳戶新增至現有的 HDInsight 叢集。 如需指令碼動作的詳細資訊，請參閱[使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)

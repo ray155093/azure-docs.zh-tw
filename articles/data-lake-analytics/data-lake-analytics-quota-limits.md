@@ -17,6 +17,7 @@ ms.author: omidm
 translationtype: Human Translation
 ms.sourcegitcommit: ce76fb1feaa38ff20ccc873114541a015126a1ad
 ms.openlocfilehash: cffafbc20294c235060b03a75f6d1bee712115d1
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -60,7 +61,7 @@ ms.openlocfilehash: cffafbc20294c235060b03a75f6d1bee712115d1
 
     ![Azure 資料湖分析入口網站刀鋒視窗](./media/data-lake-analytics-quota-limits/data-lake-analytics-quota-support-request.png)
 2. 將 [問題類型] 設為 [配額]
-3. 選取您的 [訂用帳戶] (請確定它不是「試用」的訂用帳戶)。
+3. 選取您的 **[訂用帳戶]** \(請確定它不是「試用」的訂用帳戶)。
 4. 選取 [Data Lake Analytics] 作為配額類型
 
     ![Azure 資料湖分析入口網站刀鋒視窗](./media/data-lake-analytics-quota-limits/data-lake-analytics-quota-support-request-basics.png)
@@ -78,9 +79,4 @@ ms.openlocfilehash: cffafbc20294c235060b03a75f6d1bee712115d1
 * [使用 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
 * [使用 Azure PowerShell 管理 Azure 資料湖分析](data-lake-analytics-manage-use-powershell.md)
 * [使用 Azure 入口網站監視和疑難排解 Azure Data Lake Analytics 作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

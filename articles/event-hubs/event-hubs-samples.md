@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 02/01/2017
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 5b02054546ebf25766be6bb2837aebc502b67a67
-ms.openlocfilehash: 9c50b7caefe06bceac8035a0d274e13a96547fea
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 32b57664fcf15daed75fe7050b672383e79c50cf
+ms.lasthandoff: 03/03/2017
 
 ---
 
@@ -43,9 +44,9 @@ ms.openlocfilehash: 9c50b7caefe06bceac8035a0d274e13a96547fea
 
 ### <a name="receive-events"></a>接收事件 
 
-[開始使用 Event Processor Host 接收](https://github.com/Azure/azure-event-hubs-dotnet/tree/master/samples/SampleEphReceiver)範例是一個 .NET Core 主控台應用程式，可使用 [Event Processor Host](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/) 從事件中樞接收訊息。 
+[開始使用 Event Processor Host 接收](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleEphReceiver)範例是一個 .NET Core 主控台應用程式，可使用 [Event Processor Host](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/) 從事件中樞接收訊息。 
 
-## <a name="net-framework"></a>.NET Framework   
+## <a name="net-framework"></a>.NET Framework    
 
 這些範例會示範 Azure 事件中樞的各種其他功能，以 [.NET Framework 程式庫](https://msdn.microsoft.com/library/w0x726c2.aspx)為目標。
  
@@ -81,8 +82,3 @@ ms.openlocfilehash: 9c50b7caefe06bceac8035a0d274e13a96547fea
 - [事件中樞概觀](event-hubs-what-is-event-hubs.md)
 - [建立事件中樞](event-hubs-create.md)
 - [事件中樞常見問題集](event-hubs-faq.md)
-
-
-<!--HONumber=Feb17_HO1-->
-
-

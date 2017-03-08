@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: bb500d4705c3b67de6b9b31fa5311967beffffc2
-ms.openlocfilehash: df5c0475245c6ad1f632b08e5fdbf64374893d67
-ms.lasthandoff: 01/27/2017
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 902c6ae45e7809e2847c9e45a35803f40c0b0ff3
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -39,8 +39,8 @@ ms.lasthandoff: 01/27/2017
 
 > [!IMPORTANT]
 > 當您開啟安裝精靈時，同步處理引擎中的所有作業都會暫停。 請確定您有在完成組態變更後，就馬上關閉安裝精靈。
-> 
-> 
+>
+>
 
 ## <a name="view-current-configuration"></a>檢視目前的組態
 此選項可讓您快速檢視目前設定的選項。
@@ -82,7 +82,7 @@ ms.lasthandoff: 01/27/2017
 ## <a name="change-user-sign-in"></a>變更使用者登入
 此選項可讓您從密碼同步處理變更為同盟，反之亦然。 您無法變更為 [不設定] 。
 
-如需此選項的詳細資訊，請參閱 [使用者登入](active-directory-aadconnect-user-signin.md#changing-user-sign-in-method)。
+如需此選項的詳細資訊，請參閱 [使用者登入](active-directory-aadconnect-user-signin.md#changing-the-user-sign-in-method)。
 
 ## <a name="next-steps"></a>後續步驟
 * 如需 Azure AD Connect 同步處理所用的組態模型的詳細資訊，請參閱 [了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
@@ -91,5 +91,4 @@ ms.lasthandoff: 01/27/2017
 
 * [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
 

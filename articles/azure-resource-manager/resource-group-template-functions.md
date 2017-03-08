@@ -17,6 +17,7 @@ ms.author: tomfitz
 translationtype: Human Translation
 ms.sourcegitcommit: 33e6b9ba880f56d967b49d0b89e61d1b531e8376
 ms.openlocfilehash: 1d8cb6894399a7863392a7f11bde69d75d4685c3
+ms.lasthandoff: 11/23/2016
 
 
 ---
@@ -721,7 +722,7 @@ ms.openlocfilehash: 1d8cb6894399a7863392a7f11bde69d75d4685c3
         }
      },
      "variables": {
-         "combinedarray": "[concat(parameters('firstarray'), parameters('secondarray'))]
+         "combinedarray": "[concat(parameters('firstarray'), parameters('secondarray'))]"
      }
 
 
@@ -1217,10 +1218,5 @@ ms.openlocfilehash: 1d8cb6894399a7863392a7f11bde69d75d4685c3
 * 若要合併多個範本，請參閱 [透過 Azure 資源管理員使用連結的範本](resource-group-linked-templates.md)
 * 建立資源類型時若要逐一查看指定的次數，請參閱 [在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)
 * 若要了解如何部署已建立的範本，請參閱 [使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

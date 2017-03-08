@@ -1,7 +1,7 @@
 ---
-title: "Log Analytics 中的變更追蹤解決方案 | Microsoft Docs"
-description: "您可以在 Log Analytics 中使用組態變更追蹤方案，幫助您輕鬆地識別軟體，以及您環境中發生的 Windows 服務變更 — 識別這些組態變更可以協助您找出操作問題。"
-services: operations-management-suite
+title: "使用 Azure Log Analytics 追蹤變更 | Microsoft Docs"
+description: "Log Analytics 中的變更追蹤解決方案可協助您識別您環境中發生的軟體及 Windows 服務變更。"
+services: log-analytics
 documentationcenter: 
 author: bandersmsft
 manager: carmonm
@@ -12,15 +12,18 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/18/2017
+ms.date: 02/27/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2a66cdb9825cfc3935d534afaf3f6f0cf5d5fb5a
-ms.openlocfilehash: d4226882ded34a79f7e227886a396db0e927bad2
+ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
+ms.openlocfilehash: 3953a83b20ee2d1ca0035b31824ca167e92f4864
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="change-tracking-solution-in-log-analytics"></a>Log Analytics 中的變更追蹤方案
+# <a name="track-software-changes-in-your-environment-with-the-change-tracking-solution"></a>使用變更追蹤解決方案來追蹤環境中的軟體變更
+
 本文將協助您使用 Log Analytics 中的變更追蹤解決方案，輕鬆地找出您環境中的變更。 這個解決方案會追蹤 Windows 與 Linux 軟體、Windows 檔案、Windows 服務及 Linux 精靈的變更。 識別組態變更可協助您找出操作問題。
 
 您需要安裝此方案以更新您已安裝的代理程式類型。 系統會讀取受監視伺服器上安裝的軟體、Windows 服務和 Linux 精靈，然後將資料傳送至雲端中的 Log Analytics 服務進行處理。 會將邏輯套用至接收的資料，且雲端服務會記錄資料。 使用 [變更追蹤] 儀表板上的資訊，您可以輕鬆地看到您的伺服器基礎結構中所做的變更。
@@ -34,8 +37,8 @@ ms.openlocfilehash: d4226882ded34a79f7e227886a396db0e927bad2
 ### <a name="configure-windows-files-to-track"></a>設定要追蹤的 Windows 檔案
 使用下列步驟，設定要在 Windows 電腦上追蹤的檔案。
 
-1. 在 OMS 入口網站中，按一下 [設定] (齒輪符號)。
-2. 在 [設定] 頁面上，按一下 [資料]，然後按一下 [Windows 檔案追蹤]。
+1. 在 OMS 入口網站中，按一下 **[設定]** \(齒輪符號)。
+2. 在 **[設定]** 頁面上，按一下 **[資料]**，然後按一下 **[Windows 檔案追蹤]**。
 3. 在 [Windows 檔案變更追蹤] 下，輸入整個路徑 (包含您要追蹤之檔案的檔案名稱)，然後按一下 [新增] 符號。 例如：C:\Program Files (x86)\Internet Explorer\iexplore.exe 或 C:\Windows\System32\drivers\etc\hosts。
 4. 按一下 [儲存] 。  
    ![Windows 檔案變更追蹤](./media/log-analytics-change-tracking/windows-file-change-tracking.png)
@@ -90,9 +93,4 @@ ms.openlocfilehash: d4226882ded34a79f7e227886a396db0e927bad2
 
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md) ，檢視詳細的變更追蹤資料。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

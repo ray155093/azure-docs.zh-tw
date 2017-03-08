@@ -1,10 +1,10 @@
 ---
-title: "在 Log Analytics 中使用 System Center Operations Manager 評定解決方案進行環境最佳化 | Microsoft Docs"
+title: "使用 Azure Log Analytics 最佳化 System Center Operations Manager 環境 | Microsoft Docs"
 description: "您可以使用 System Center Operations Manager 評定解決方案，定期評估伺服器環境的風險和健康狀態。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
-manager: jwhit
+manager: carmonm
 editor: tysonn
 ms.assetid: 49aad8b1-3e05-4588-956c-6fdd7715cda1
 ms.service: log-analytics
@@ -12,16 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/18/2016
+ms.date: 02/27/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 04eebbe19354ab1e927ee2bb41f25dc6676a7c93
-ms.openlocfilehash: c28e73f0a6833793561d8702eb6c6480b9fbc0a4
+ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
+ms.openlocfilehash: f812ff8fb2b32f89e24d640e0eae8f2da9858a18
+ms.lasthandoff: 02/28/2017
 
 
 ---
 
-# <a name="optimize-your-environment-with-the-system-center-operations-manager-assessment-preview-solution-in-log-analytics"></a>在 Log Analytics 中使用 System Center Operations Manager 評定 (預覽) 解決方案進行環境最佳化
+# <a name="optimize-your-environment-with-the-system-center-operations-manager-assessment-preview-solution"></a>使用 System Center Operations Manager 評定 (預覽) 解決方案進行環境最佳化
 
 您可以使用 System Center Operations Manager 評定解決方案，定期評估 System Center Operations Manager 伺服器環境的風險和健康狀態。 本文協助您安裝、設定和使用此解決方案，讓您可以針對潛在問題採取修正動作。
 
@@ -43,12 +45,17 @@ ms.openlocfilehash: c28e73f0a6833793561d8702eb6c6480b9fbc0a4
 
 請使用下列資訊來安裝和設定方案。
 
-- 管理群組中的一個 Operations Manager 管理伺服器應該設定為連接至 OMS。 若要將 Operations Manager 管理伺服器連接至 OMS，請參閱[將 Operations Manager 連接至 Log Analytics](log-analytics-om-agents.md#connecting-operations-manager-to-oms)。
-    - 如果您使用 OMS 管理的電腦群組來監視管理群組中的多個管理伺服器，請確定已設定在一個管理伺服器上執行評估。 如需詳細資訊，請參閱[設定評估規則](#configure-the-assessment-rule)。
-- 在使用 OMS 中的評估方案之前，您必須先安裝方案。 如需閱讀安裝方案的更多資訊，請參閱 [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)。
-- 搭配使用 Operations Manager 代理程式和 System Center Operations Manager 評定時，您必須使用 Operations Manager 執行身分帳戶。 如需詳細資訊，請參閱 [OMS 的 Operations Manager 執行身分帳戶](#operations-manager-run-as-accounts-for-oms)。
-    >[!NOTE]
-    新增解決方案之後，AdvisorAssessment.exe 檔案會新增至 COM 伺服器。 組態資料會先讀取後再傳送至雲端中的 OMS 服務，以便進行處理。 會將邏輯套用至接收的資料，且雲端服務會記錄資料。
+ - 在使用 OMS 中的評估方案之前，您必須先安裝方案。 如需閱讀安裝方案的更多資訊，請參閱 [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)。
+
+ - 將解決方案新增至工作區之後，儀表板上的 System Center Operations Manager 評定圖格會顯示額外設定必要的訊息。 按一下圖格，然後遵循頁面中所述的設定步驟
+
+ ![System Center Operations Manager 儀表板圖格](./media/log-analytics-scom-assessment/scom-configrequired-tile.png)
+
+ System Center Operations Manager 的組態可以透過指令碼完成，方法為遵循 OMS 中解決方案組態頁面中所述的步驟。
+
+ 相反地，若要透過 SCOM 主控台設定評估，請以相同的順序遵循下列步驟
+1. [設定 System Center Operations Manager 評定的執行身分帳戶](#operations-manager-run-as-accounts-for-oms)  
+2. [設定 System Center Operations Manager 評定規則](#configure-the-assessment-rule)
 
 # <a name="system-center-operations-manager-assessment-data-collection-details"></a>收集 System Center Operations Manager 評定資料的詳細資料
 
@@ -58,7 +65,7 @@ System Center Operations Manager 評定會使用您已啟用的伺服器，透�
 
 | 平台 | 直接代理程式 | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
 | --- | --- | --- | --- | --- | --- | --- |
-| Windows |  ![否](./media/log-analytics-scom-assessment/oms-bullet-red.png) | ![是](./media/log-analytics-scom-assessment/oms-bullet-green.png)  | ![否](./media/log-analytics-scom-assessment/oms-bullet-red.png)  |  ![是](./media/log-analytics-scom-assessment/oms-bullet-green.png) | ![否](./media/log-analytics-scom-assessment/oms-bullet-red.png)  | 7 天 |
+| Windows |  ![否](./media/log-analytics-scom-assessment/oms-bullet-red.png) | ![否](./media/log-analytics-scom-assessment/oms-bullet-red.png)  | ![否](./media/log-analytics-scom-assessment/oms-bullet-red.png)  |  ![是](./media/log-analytics-scom-assessment/oms-bullet-green.png) | ![否](./media/log-analytics-scom-assessment/oms-bullet-red.png)  | 7 天 |
 
 ## <a name="operations-manager-run-as-accounts-for-oms"></a>OMS 的 Operations Manager 執行身分帳戶
 
@@ -73,7 +80,11 @@ OMS 以工作負載的管理套件為基礎來提供加值服務。 每個工作
 3. 建立執行身分帳戶，經由精靈建立 Windows 帳戶。 要使用的帳戶是已識別且符合下列所有必要條件的帳戶︰
 
     >[!NOTE]
-    執行身分帳戶必須符合下列需求：- 在環境中的所有伺服器上是本機 Administrators 群組的網域帳戶成員 (所有 Operations Manager 角色 - 管理伺服器、OpsMgr 資料庫、資料倉儲、報告、Web 主控台、閘道) - 要評估的管理群組的 Operation Manager 系統管理員角色 - 在 Operations Manager 使用的所有 SQL 伺服器或執行個體上是 SysAdmin 角色
+    執行身分帳戶必須符合下列需求︰
+    - 環境中所有伺服器上本機 Administrators 群組的網域帳戶成員 (所有 Operations Manager 角色 - 管理伺服器、OpsMgr 資料庫、資料倉儲、報告、Web 主控台、閘道)
+    - 要評估的管理群組之 Operation Manager 系統管理員角色
+    - 執行[指令碼](#sql-script-to-grant-granular-permissions-to-the-run-as-account)，將細微權限授與 Operations Manager 所使用的 SQL 執行個體上的帳戶。
+      注意︰如果此帳戶已有系統管理員權限，請略過指令碼執行。
 
 4. 在 [散發安全性] 下，選取 [較安全]。
 5. 指定散發帳戶的管理伺服器。
@@ -82,7 +93,7 @@ OMS 以工作負載的管理套件為基礎來提供加值服務。 每個工作
 5. 設定檔名稱應該是︰「Microsoft System Center Advisor SCOM 評定執行身分設定檔」。
 6. 以滑鼠右鍵按一下其屬性並更新，然後新增您最近在步驟 3 中建立的執行身分帳戶。
 
-### <a name="sql-script-granting-permissions-to-the-run-as-account"></a>授與權限給執行身分帳戶的 SQL 指令碼
+### <a name="sql-script-to-grant-granular-permissions-to-the-run-as-account"></a>授與細微權限給執行身分帳戶的 SQL 指令碼
 
 執行下列 SQL 指令碼，將必要權限授與 Operations Manager 所使用的 SQL 執行個體上的執行身分帳戶。
 
@@ -144,8 +155,8 @@ System Center Operations Manager 評定解決方案的管理套件包含名為�
 1. 在 Operations Manager 主控台的 [撰寫] 工作區中，在 [規則] 窗格中搜尋規則「Microsoft System Center Advisor SCOM 評定執行評定規則」。
 2. 在搜尋結果中，選取包含文字「類型︰管理伺服器」的規則。
 3. 以滑鼠右鍵按一下規則，然後按一下 [覆寫] > [針對以下類別的特定物件: 管理伺服器]。
-4.  在可用的管理伺服器清單中，選取應該執行此規則的管理伺服器。
-5.  針對 [已啟用] 參數值，務必將覆寫值變更為 [True]。  
+4.    在可用的管理伺服器清單中，選取應該執行此規則的管理伺服器。
+5.    針對 [已啟用] 參數值，務必將覆寫值變更為 [True]。  
     ![override parameter](./media/log-analytics-scom-assessment/rule.png)
 
 仍在此視窗中，使用下一個程序來設定執行頻率。
@@ -232,7 +243,7 @@ System Center Operations Manager 評定解決方案的管理套件包含名為�
 
 ### <a name="to-verify-that-recommendations-are-ignored"></a>驗證已忽略建議
 
-1. 在執行下一個排定的評估之後 (依預設是每隔 7 天)，指定的建議會標示為 [已略過]，且不會出現在評定儀表板中。
+1. 在執行下一個排定的評估之後 (依預設是每隔&7; 天)，指定的建議會標示為 [已略過]，且不會出現在評定儀表板中。
 2. 您可以使用下列記錄搜尋查詢列出所有已忽略的建議。
 
     ```
@@ -243,15 +254,21 @@ System Center Operations Manager 評定解決方案的管理套件包含名為�
 
 ## <a name="system-center-operations-manager-assessment-solution-faq"></a>System Center Operations Manager 評定解決方案常見問題集
 
+*我已將評定解決方案新增至 OMS 工作區。但沒看到建議。為什麼？* 新增解決方案之後，請使用下列步驟在 OMS 儀表板上檢視建議。  
+
+- [設定 System Center Operations Manager 評定的執行身分帳戶](#operations-manager-run-as-accounts-for-oms)  
+- [設定 System Center Operations Manager 評定規則](#configure-the-assessment-rule)
+
+
 *是否有設定評估執行頻率的方法？* 是。 請參閱[設定執行頻率](#configure-the-run-frequency)。
 
-如果在我新增 System Center Operations Manager 評定解決方案之後探索到另一部伺服器，也會評估這部伺服器嗎？ 是，在探索之後，從那時起也會評估它 -- 預設是每隔 7 天。
+如果在我新增 System Center Operations Manager 評定解決方案之後探索到另一部伺服器，也會評估這部伺服器嗎？ 是，在探索之後，從那時起也會評估它 -- 預設是每隔&7; 天。
 
 *負責收集資料之處理序的名稱為何？* AdvisorAssessment.exe
 
 AdvisorAssessment.exe 程序在哪裡執行？ AdvisorAssessment.exe 會在啟用評定規則的管理伺服器的 HealthService 之下執行。 使用這個程序時，將會透過遠端資料收集來探索您的整個環境。
 
-收集資料需要花費多少時間？ 在伺服器上資料收集需要花費約 1 小時。 在有許多 Operations Manager 執行個體或資料庫的環境中可能更久。
+收集資料需要花費多少時間？ 在伺服器上資料收集需要花費約&1; 小時。 在有許多 Operations Manager 執行個體或資料庫的環境中可能更久。
 
 如果我將評定間隔設為少於 1440 分鐘會怎樣？ 評定已預先設定為最多一天執行一次。 如果您將間隔值覆寫為少於 1440 分鐘的值，則評定會使用 1440 分鐘做為間隔值。
 
@@ -271,9 +288,4 @@ AdvisorAssessment.exe 程序在哪裡執行？ AdvisorAssessment.exe 會在啟�
 ## <a name="next-steps"></a>後續步驟
 
 - [搜尋記錄檔](log-analytics-log-searches.md)，以檢視詳細的 System Center Operations Manager 評定資料和建議。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

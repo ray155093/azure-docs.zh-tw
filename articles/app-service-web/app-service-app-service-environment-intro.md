@@ -4,7 +4,7 @@ description: "了解可提供安全、VNet 聯結、專用延展單位的 App Se
 services: app-service
 documentationcenter: 
 author: stefsch
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 78e6d4f5-da46-4eb5-a632-b5fdc17d2394
 ms.service: app-service
@@ -15,14 +15,15 @@ ms.topic: article
 ms.date: 10/04/2016
 ms.author: stefsch
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 465710ca02b8f905b11980e0023d7feceabf34f1
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: 91b1d6315a9414789b28442f3f19d14c2aed8f00
+ms.lasthandoff: 03/01/2017
 
 
 ---
 # <a name="introduction-to-app-service-environment"></a>App Service Environment 簡介
 ## <a name="overview"></a>概觀
-App Service 環境是 Azure App Service 的[進階][PremiumTier]服務方案選項，可提供完全隔離的專用環境，以便安全地以高延展性執行 Azure App Service 應用程式，包括 [Web Apps][WebApps]、[Mobile Apps][MobileApps]和 [API Apps][APIApps]。  
+App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選項，提供完全隔離的專用環境，能夠極為安全地執行 Azure App Service 應用程式，包括 [Web Apps][WebApps]、[Mobile Apps][MobileApps]和 [API Apps][APIApps]。  
 
 適合應用程式工作負載的 App Service 環境需要：
 
@@ -58,10 +59,10 @@ App Service Environment 是由前端計算資源集區，以及一到三個背�
 
 如需前端和背景工作集區可用計算資源數量的詳細資訊，請參閱[如何設定 App Service Environment][HowToConfigureanAppServiceEnvironment]。  
 
-如需 App Service Environment 中支援的可用計算資源大小的詳細資訊，請參閱 [App Service 價格][AppServicePricing]頁面，並檢閱 Premium 定價層中 App Service Environment可用的選項。
+如需 App Service Environment 中支援的可用計算資源大小的詳細資訊，請參閱 [App Service 定價][AppServicePricing]頁面，並檢閱 Premium 定價層中 App Service Environment可用的選項。
 
 ## <a name="virtual-network-support"></a>虛擬網路支援
-App Service Environment 可以在 Azure Resource Manager 虛擬網路**或者**傳統式部署模型虛擬網路中建立 ([更多有關虛擬網路的資訊][MoreInfoOnVirtualNetworks])。  因為 App Service Environment 一律存在於虛擬網路中，而且更精確來說是在虛擬網路的子網路內，所以您可以運用虛擬網路的安全性功能來控制傳入和傳出網路通訊。  
+App Service Environment 可以在 Azure Resource Manager 虛擬網路或者傳統式部署模型虛擬網路其中之一中建立 ([更多有關虛擬網路的資訊][MoreInfoOnVirtualNetworks])。  因為 App Service Environment 一律存在於虛擬網路中，而且更精確來說是在虛擬網路的子網路內，所以您可以運用虛擬網路的安全性功能來控制傳入和傳出網路通訊。  
 
 App Service Environment 可以是具有公用 IP 位址的網際網路對向，或只具有 Azure 內部負載平衡器 (ILB) 位址的內部對向。
 
@@ -80,7 +81,7 @@ App Service Environment 可以是具有公用 IP 位址的網際網路對向，�
 
 如需 App Service Environment 網路架構的概觀，請參閱[網路架構概觀][NetworkArchitectureOverview]一文。
 
-如需搭配 ExpressRoute 使用 App Service Environment 的詳細資訊，請參閱 [Express Route 與 App Service Environment][NetworkConfigDetailsForExpressRoute] 一文。
+如需搭配 ExpressRoute 使用 App Service Environment 的詳細資訊，請參閱 [Express Route 與 App Service Environment][NetworkConfigDetailsForExpressRoute]一文。
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 
@@ -110,10 +111,5 @@ App Service Environment 可以是具有公用 IP 位址的網際網路對向，�
 
 <!-- IMAGES -->
 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

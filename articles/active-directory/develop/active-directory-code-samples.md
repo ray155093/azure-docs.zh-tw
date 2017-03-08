@@ -12,22 +12,23 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/07/2017
+ms.date: 02/08/2017
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
-ms.openlocfilehash: 5acff25cca5d549541a8cd68f76e1736c1ed0cb0
+ms.sourcegitcommit: 06d8cb3ce2fe4419a79a63b76d67cc476d205e08
+ms.openlocfilehash: 4e8c8539fdcab348aa91644baafae217bd5e863a
+ms.lasthandoff: 02/13/2017
 
 
 ---
 # <a name="azure-active-directory-code-samples"></a>Azure Active Directory 程式碼範例
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-您可以使用 Microsoft Azure Active Directory (Azure AD)，將驗證和授權加入 Web 應用程式及 Web API。 本節連結的程式碼範例將告訴您如何進行以及您可以在應用程式中使用的程式碼片段。 在程式碼範例頁面上，您可以找到詳細的讀我主題，可協助您瞭解需求並進行安裝及設定。 而程式碼加上的註解可協助您了解重要區段。
+您可以使用 Microsoft Azure Active Directory (Azure AD)，將驗證和授權加入 Web 應用程式及 Web API。 本節連結的範例將告訴您如何進行以及您可以在應用程式中使用的程式碼片段。 在程式碼範例頁面上，您可以找到詳細的讀我主題，可協助您瞭解需求並進行安裝及設定。 而程式碼加上的註解可協助您了解重要區段。
 
 若要了解每個範例類型的基本案例，請參閱「Azure AD 的驗證案例」。
 
-歡迎對我們在 GitHub 的範例做出貢獻： [Microsoft Azure Active Directory 範例與文件](https://github.com/Azure-Samples?query=active-directory)。
+歡迎對我們在 GitHub 的範例做出貢獻： [Microsoft Azure Active Directory 範例與文件](https://github.com/Azure-Samples?page=3&query=active-directory)。
 
 ## <a name="web-browser-to-web-application"></a>Web 瀏覽器到 Web 應用程式
 這些範例示範如何撰寫將使用者的瀏覽器導向至 Azure AD 以進行登入的 Web 應用程式。
@@ -130,10 +131,4 @@ ms.openlocfilehash: 5acff25cca5d549541a8cd68f76e1736c1ed0cb0
 [Azure AD 圖形 API 的概念和參考](https://msdn.microsoft.com/library/azure/hh974476.aspx)
 
 [Azure AD Graph API 協助程式程式庫](https://www.nuget.org/packages/Microsoft.Azure.ActiveDirectory.GraphClient)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

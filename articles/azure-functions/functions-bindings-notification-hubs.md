@@ -3,7 +3,7 @@ title: "Azure Functions 通知中樞繫結 | Microsoft Docs"
 description: "了解如何在 Azure Functions 中使用「Azure 通知中樞」繫結。"
 services: functions
 documentationcenter: na
-author: wesmc7777
+author: ggailey777
 manager: erikre
 editor: 
 tags: 
@@ -15,10 +15,11 @@ ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/27/2016
-ms.author: wesmc
+ms.author: glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 7e9534afa8ecd224b4e3c1df2f4465b70d961d2c
-ms.openlocfilehash: 1e03a54956a9fd035cf40aa953a2c368d91b766b
+ms.sourcegitcommit: a64af1a9f969c5ce5a7e2f18ca23451ac96f1a13
+ms.openlocfilehash: 7abd7b0921c029ff159935d89905d3c502aba643
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -76,8 +77,8 @@ function.json 範例：
 
 1. 在 Azure 入口網站的 [函數應用程式] 刀鋒視窗上，按一下 [函數應用程式設定] > [前往 App Service 設定]。
 2. 在 [設定] 刀鋒視窗中，按一下 [應用程式設定]。
-3. 向下捲動至 [連接字串]區段，為通知中樞的 *DefaultFullSharedAccessSignature* 值新增具名項目。 將類型變更為 [自訂] 。
-4. 參考輸出繫結中的連接字串名稱。 與上述範例中使用的 **MyHubConnectionString** 類似。
+3. 向下捲動至 [應用程式設定] 區段，為通知中樞的 *DefaultFullSharedAccessSignature* 值新增具名項目。
+4. 參考輸出繫結中的應用程式設定字串名稱。 與上述範例中使用的 **MyHubConnectionString** 類似。
 
 ## <a name="apns-native-notifications-with-c-queue-triggers"></a>含 C# 佇列觸發程序的 APNS 原生通知
 這個範例示範如何使用 [Microsoft Azure 通知中樞程式庫](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)中定義的類型來傳送原生 APNS 通知。 
@@ -294,10 +295,5 @@ private static TemplateNotification GetTemplateNotification(string message)
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
