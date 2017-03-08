@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/01/2017
+ms.date: 02/08/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 714c71e42593a6a038e77bfaaf2f6d7380c4f3ab
-ms.openlocfilehash: 52b75df326c1756f7bbacfc5453515c848a23870
+ms.sourcegitcommit: 5ea7095e12b6194556d3cd0baa43ccfed1e087ee
+ms.openlocfilehash: b28eec9a01c45468e0cc323514d9c2e91ec88bf5
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -25,14 +26,14 @@ Azure 虛擬網路可讓您延伸 Hadoop 解決方案以合併內部部署資源
 
 ## <a name="prerequisites"></a>必要條件
 
-* Azure CLI 2.0 (預覽)：如需詳細資訊，請參閱[安裝及設定 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)。
+* Azure CLI 2.0：如需詳細資訊，請參閱[安裝及設定 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)。
 
 * Azure PowerShell 資訊：如需詳細資訊，請參閱[安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 > [!NOTE]
 > 需要有最新版的 Azure CLI 和 Azure PowerShell，才能執行本文件中的步驟。 如果您使用較舊的版本，命令可能會不同。 為了獲得最佳結果，請使用先前的連結來安裝最新版本。
 
-## <a name="a-idwhatisawhat-is-azure-virtual-network"></a><a id="whatis"></a>什麼是 Azure 虛擬網路？
+## <a id="whatis"></a>什麼是 Azure 虛擬網路？
 
 [Azure 虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/) 可讓您建立安全、持續的網路，上面有您的解決方案所需的資源。 虛擬網路可讓您：
 
@@ -77,7 +78,7 @@ Azure HDInsight 僅支援以位置為基礎的虛擬網路，目前無法使用�
 
 ### <a name="classic-or-v2-virtual-network"></a>傳統或 v2 虛擬網路
 
-以 Windows 為基礎的叢集需要傳統虛擬網路，而以 Linux 為基礎的叢集需要 Azure Resource Manager 虛擬網路。 如果您沒有正確的網路類型，當您建立叢集時就無法使用。
+以 Linux 為基礎的叢集需要 Azure Resource Manager 虛擬網路 (以 Windows 為基礎的叢集需要傳統虛擬網路)。 如果您沒有正確的網路類型，當您建立叢集時就無法使用。
 
 如果虛擬網路上的資源不能為您計劃要建立的叢集所用，您可以建立可為叢集使用的新虛擬網路，並連接到不相容的虛擬網路。 然後在叢集需要的網路版本中建立叢集，因為兩個網路聯結在一起，所以它就可以存取其他網路中的資源。 如需連接傳統和新虛擬網路的詳細資訊，請參閱 [連接傳統 VNet 和新的 VNet](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md)。
 
@@ -135,7 +136,7 @@ __所有其他區域__：
 
 下列範例示範如何建立新的「網路安全性群組」，此群組可允許必要的位址，並將安全性群組套用至「虛擬網路」內的子網路。 此範例中使用的位址是來自上面的「所有其他區域」清單。 如果您位於其中一個具體列出的區域 (例如「美國中西部」)，請修改指令碼以使用您區域的 IP 位址。
 
-這些步驟假設您已建立虛擬網路和要安裝 HDInsight 的子網路。
+這些步驟假設您已建立虛擬網路和要安裝 HDInsight 的子網路。 請參閱[使用 Azure 入口網站建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。
 
 > [!IMPORTANT]
 > 請注意這些範例中使用的 `priority` 值；系統會以 priority 的順序對網路流量測試規則。 有規則符合測試條件並進而套用時，就不會再測試其他規則。
@@ -226,10 +227,10 @@ __所有其他區域__：
 
 2. 使用下列將規則加入新的網路安全性群組，這些規則允許從 Azure HDInsight 健全狀況和管理服務透過連接埠 443 的輸入通訊。 將 **RESOURCEGROUPNAME** 取代為包含 Azure 虛擬網路的資源群組名稱。
     
-        az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule1 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "168.61.49.99" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 300 --direction "Inbound"
-        az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule2 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "23.99.5.239" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 301 --direction "Inbound"
-        az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule3 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "168.61.48.131" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 302 --direction "Inbound"
-        az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule4 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "138.91.141.162" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 303 --direction "Inbound"
+        az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule1 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "168.61.49.99/24" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 300 --direction "Inbound"
+        az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule2 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "23.99.5.239/24" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 301 --direction "Inbound"
+        az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule3 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "168.61.48.131/24" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 302 --direction "Inbound"
+        az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule4 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "138.91.141.162/24" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 303 --direction "Inbound"
 
 3. 建立規則之後，請使用下列命令，以擷取此網路安全性群組的唯一識別碼：
 
@@ -237,7 +238,9 @@ __所有其他區域__：
 
     此命令會傳回類似下列文字的值：
 
-        "/subscriptions/55b1016c-0f27-43d2-b908-b8c373d6d52e/resourceGroups/mygroup/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
+        "/subscriptions/SUBSCRIPTIONID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
+
+    如果未獲得預期的結果，請在命令中使用雙引號括住識別碼。
 
 4. 使用下列命令將網路安全性群組套用至子網路。 使用上一個步驟傳回的值取代 __GUID__ 和 __RESOURCEGROUPNAME__ 的值。 使用您建立 HDInsight 叢集時想要使用的虛擬網路名稱和子網路名稱，取代 __VNETNAME__ 和 __SUBNETNAME__。
    
@@ -251,11 +254,11 @@ __所有其他區域__：
 > 例如，若要允許來自網際網路的 SSH 存取權，您需要加入與下列類似的規則︰ 
 > 
 > * Azure PowerShell - ```Add-AzureRmNetworkSecurityRuleConfig -Name "SSSH" -Description "SSH" -Protocol "*" -SourcePortRange "*" -DestinationPortRange "22" -SourceAddressPrefix "*" -DestinationAddressPrefix "VirtualNetwork" -Access Allow -Priority 304 -Direction Inbound```
-> * Azure CLI - ```az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule4 --protocol "*" --source-port-range "*" --destination-port-range "22" --source-address-prefix "*" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 304 --direction "Inbound"```
+> * Azure CLI - ```az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule5 --protocol "*" --source-port-range "*" --destination-port-range "22" --source-address-prefix "*" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 304 --direction "Inbound"```
 
 如需有關「網路安全性群組」的詳細資訊，請參閱 [網路安全性群組概觀](../virtual-network/virtual-networks-nsg.md)。 如需有關在「Azure 虛擬網路」中控制路由的資訊，請參閱 [使用者定義的路由和 IP 轉送](../virtual-network/virtual-networks-udr-overview.md)。
 
-## <a name="a-idtasksatasks-and-information"></a><a id="tasks"></a>工作和資訊
+## <a id="tasks"></a>工作和資訊
 
 本節包含一般工作資訊和搭配使用 HDInsight 與虛擬網路時可能需要的資訊。
 
@@ -352,7 +355,7 @@ HDInsight 叢集會被指派特定的虛擬網路介面完整網域名稱 (FQDN)
 
 如果您在從 HDInsight 存取服務時遇到問題，請參閱相關服務文件，以確定您已啟用網路存取功能。 您也可以藉由在相同虛擬網路上建立 Azure 虛擬機器來驗證網路存取功能，並使用用戶端公用程式來驗證虛擬機器可以透過虛擬網路連接服務。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 
 下列範例示範如何搭配使用 HDInsight 與 Azure 虛擬網路：
 
@@ -361,10 +364,5 @@ HDInsight 叢集會被指派特定的虛擬網路介面完整網域名稱 (FQDN)
 * [在 HDInsight 中搭配使用 Sqoop 和 Hadoop](hdinsight-use-sqoop-mac-linux.md) - 提供搭配使用 Sqoop 與 SQL Server 透過虛擬網路傳輸資料的相關資訊。
 
 若要深入了解 Azure 虛擬網路，請參閱 [Azure 虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

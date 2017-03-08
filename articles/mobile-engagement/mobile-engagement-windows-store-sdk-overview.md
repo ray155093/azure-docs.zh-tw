@@ -1,10 +1,10 @@
 ---
-title: "Windows 通用 SDK 整合"
+title: "Azure Mobile Engagement Windows 通用 app SDK 整合 | Microsoft Docs"
 description: "適用於 Azure Mobile Engagement 的 Windows 通用 SDK 整合"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 9ded187d-5c07-4377-a41c-ce205dd38b50
 ms.service: mobile-engagement
@@ -12,11 +12,12 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows-store
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 08/12/2016
-ms.author: piyushjo;ricksal
+ms.date: 11/03/2016
+ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: acf599588de4dac04d51a66348ea9336fe6ce2f7
+ms.sourcegitcommit: 51858d6daca27a75e7f87af507600c7a193c874f
+ms.openlocfilehash: d616ad58156a19e89b3e106639a38df67cbd0abb
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -40,10 +41,9 @@ ms.openlocfilehash: acf599588de4dac04d51a66348ea9336fe6ce2f7
 [如何在您的 Windows 通用 App 使用進階的 Mobile Engagement 標記 API](mobile-engagement-windows-store-use-engagement-api.md)
 
 ## <a name="release-notes"></a>版本資訊
-### <a name="340-04192016"></a>3.4.0 (04/19/2016)
-* Reach 重疊增強功能。
-* 已加入 "TestLogLevel" API 來啟用/停用/篩選 SDK 所發出的主控台記錄檔。
-* 已修正活動中通知目標設定為應用程式啟動時未顯示的第一個活動。
+### <a name="341-11032016"></a>3.4.1 (11/03/2016)
+
+* 穩定性改進。
 
 如需較早版本，請參閱 [完整版本資訊](mobile-engagement-windows-store-release-notes.md)
 
@@ -74,10 +74,5 @@ SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。 若要自�
 
 ### <a name="upgrade-from-older-versions"></a>從舊版升級
 請參閱 [升級程序](mobile-engagement-windows-store-upgrade-procedure.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

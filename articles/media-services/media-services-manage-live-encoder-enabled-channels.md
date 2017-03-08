@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/05/2017
 ms.author: juliako;anilmur
 translationtype: Human Translation
-ms.sourcegitcommit: ef9c1d5511889cf78421d24f9c5902bf188890c7
-ms.openlocfilehash: 35db86988cf3d62401d6caecc7214411ddc2c498
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 138598ce20459b7d4975c6640b28e9a999de30cd
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -161,19 +162,8 @@ ms.openlocfilehash: 35db86988cf3d62401d6caecc7214411ddc2c498
     * 單聲道、立體聲
 * 建議的廣播編碼器包含：
   
-  * Ateme AM2102
-  * Ericsson AVP2000
-  * eVertz 3480
-  * Ericsson RX8200
   * Imagine Communications Selenio ENC 1
   * Imagine Communications Selenio ENC 2
-  * AdTec EN-30
-  * AdTec EN-91P
-  * AdTec EN-100
-  * Harmonic ProStream 1000
-  * Thor H-2 4HD-EM
-  * eVertz 7880 SLKE
-  * Cisco Spinnaker
   * Elemental Live
 
 #### <a name="a-idsinglebitratertmpasingle-bitrate-rtmp"></a><a id="single_bitrate_RTMP"></a>單一位元速率 RTMP
@@ -194,7 +184,6 @@ ms.openlocfilehash: 35db86988cf3d62401d6caecc7214411ddc2c498
 * 建議的編碼器包括：
 * Telestream Wirecast
 * Flash Media Live Encoder
-* Tricaster
 
 #### <a name="single-bitrate-fragmented-mp4-smooth-streaming"></a>單一位元速率的分散 MP4 (Smooth Streaming)
 典型的使用案例：
@@ -346,7 +335,7 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 
 設定 **封存時間範圍** 長度，即可指定您想要保留程式之錄製內容的時數。 此值可以設為最少 5 分鐘到最多 25 個小時。 封存時間範圍長度也會指出用戶端可以從目前即時位置及時往回搜尋的最大時間量。 程式在超過指定的時間量後還是可以執行，但是會持續捨棄落後時間範圍長度的內容。 此屬性的這個值也會決定用戶端資訊清單可以成長為多長的時間。
 
-每個程式都與儲存串流內容的資產相關聯。 資產會對應到 Azure 儲存體帳戶中的區塊 Blob 容器，且資產中的檔案會儲存為該容器中的 Blob。 若要發行程式讓您的客戶檢視串流，您必須建立相關聯資產的隨選定位器。 擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
+每個程式都與儲存串流內容的資產相關聯。 資產會對應到「Azure 儲存體」帳戶中的區塊 Blob 容器，而資產中的檔案則會儲存為該容器中的 Blob。 若要發行程式讓您的客戶檢視串流，您必須建立相關聯資產的隨選定位器。 擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
 
 通道可支援最多三個同時執行的程式，因此您可以建立相同連入串流的多個封存。 這可讓您視需要發行和封存事件的不同部分。 例如，您的商務需求是封存 6 小時的程式，但只廣播最後 10 分鐘。 為了達成此目的，您必須建立兩個同時執行的程式。 其中一個程式設定為封存 6 小時的事件，但是未發行該程式。 另一個程式則設定為封存 10 分鐘，並發行程式。
 
@@ -428,10 +417,5 @@ slate 的持續時間，以秒為單位。 必須為非零的正整數值才能�
 [Azure 媒體服務的分散 MP4 即時內嵌規格](media-services-fmp4-live-ingest-overview.md)
 
 [live-overview]: ./media/media-services-manage-live-encoder-enabled-channels/media-services-live-streaming-new.png
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

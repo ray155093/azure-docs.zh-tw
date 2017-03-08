@@ -1,10 +1,10 @@
 ---
-title: "Windows 通用 app SDK 版本資訊"
+title: "Azure Mobile Engagement Windows 通用 app SDK 版本資訊 | Microsoft Docs"
 description: "Azure Mobile Engagement - Windows 通用 app SDK 版本資訊"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: de938ce5-93d5-4218-9e33-10eef102bd61
 ms.service: mobile-engagement
@@ -12,15 +12,20 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows-store
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 08/19/2016
+ms.date: 11/03/2016
 ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 388dab02f09aa306d92f61d47ab5a8e2478a2b9d
+ms.sourcegitcommit: 51858d6daca27a75e7f87af507600c7a193c874f
+ms.openlocfilehash: dc5529a9e8f4eba867732f719ca8fff718c00d5a
+ms.lasthandoff: 02/09/2017
 
 
 ---
 # <a name="windows-universal-apps-sdk-release-notes"></a>Windows 通用 app SDK 版本資訊
+## <a name="341-11032016"></a>3.4.1 (11/03/2016)
+
+* 穩定性改進。
+
 ## <a name="340-04192016"></a>3.4.0 (04/19/2016)
 * Reach 重疊增強功能。
 * 已加入 "TestLogLevel" API 來啟用/停用/篩選 SDK 所發出的主控台記錄檔。
@@ -59,10 +64,5 @@ ms.openlocfilehash: 388dab02f09aa306d92f61d47ab5a8e2478a2b9d
 * Azure Mobile Engagement 的最初發行版本
 * 以連接字串組態取代 appId/sdkKey 組態。
 * 增強安全性。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

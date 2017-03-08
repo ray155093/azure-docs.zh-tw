@@ -12,35 +12,41 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/04/2017
+ms.date: 02/27/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 0b404af5b638ec2d543ce98b562b7df538652f70
-ms.openlocfilehash: 1f6fd5b4e10e2f94256f5a3dac7609265b1f2cc4
-
+ms.sourcegitcommit: 51338924f5c8eff4234c7d57f7efc0619316bb38
+ms.openlocfilehash: 157a5130755f2092d044f3361e4fb5bc3a7a1053
+ms.lasthandoff: 02/28/2017
 
 ---
-# <a name="how-to-auto-scale-a-cloud-service"></a>如何自動調整雲端服務
+
+# <a name="how-to-configure-auto-scaling-for-a-cloud-service-in-the-portal"></a>如何在入口網站中設定雲端服務的自動調整
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](cloud-services-how-to-scale-portal.md)
 > * [Azure 傳統入口網站](cloud-services-how-to-scale.md)
-> 
-> 
 
 針對雲端服務背景工作角色設定條件，以觸發相應縮小或相應放大作業。 適用於角色的條件可以 CPU、磁碟或角色的網路負載為根據。 您也可以根據訊息佇列或一些與您訂用帳戶相關聯的其他 Azure 資源的計量來設定條件。
 
 > [!NOTE]
 > 本文著重於雲端服務 web 和背景工作角色。 當您直接建立虛擬機器 (傳統) 時，它會裝載於雲端服務中。 如果要調整標準虛擬機器，您可以將它與[可用性設定組](../virtual-machines/virtual-machines-windows-classic-configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)產生關聯，還可以手動開啟或關閉它們。
-> 
-> 
 
 ## <a name="considerations"></a>考量
 在設定應用程式的調整之前，您應該先考量下列資訊：
 
-* 調整受到核心使用量影響。 較大型的角色執行個體會使用較多核心。 您只能在訂用帳戶的核心限制內調整應用程式。 例如，如果您的訂用帳戶設有二十個核心的限制，而您使用兩個中型大小的雲端服務來執行應用程式 (總計四個核心)，則您最多只能在訂用帳戶中相應增加十六個核心的其他雲端服務部署。 如需關於大小的詳細資訊，請參閱 [雲端服務的大小](cloud-services-sizes-specs.md) 。
+* 調整受到核心使用量影響。
+
+    較大型的角色執行個體會使用較多核心。 您只能在訂用帳戶的核心限制內調整應用程式。 例如，假設您的訂用帳戶有 20 個核心的限制。 如果您使用兩個中型大小的雲端服務來執行應用程式 (總計 4 個核心)，則您最多只能在訂用帳戶中相應增加所剩餘的 16 個核心的其他雲端服務部署。 如需關於大小的詳細資訊，請參閱[雲端服務的大小](cloud-services-sizes-specs.md)。
+
 * 您可以依據佇列訊息臨界值來調整。 如需如何使用佇列的詳細資訊，請參閱 [如何使用佇列儲存體服務](../storage/storage-dotnet-how-to-use-queues.md)。
+
 * 您也可以調整與您訂用帳戶相關聯的其他資源。
+
 * 若要對應用程式啟用高可用性，您應該確定應用程式是以兩個以上的角色執行個體來部署。 如需詳細資訊，請參閱 [服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
+
+> [!WARNING]
+> 自動縮放功能僅適用於傳統的 Azure 儲存體帳戶。 它不適用於 Azure Resource Manager 儲存體帳戶。
+
 
 ## <a name="where-scale-is-located"></a>調整所在之處
 當您選取雲端服務之後，應該會看見雲端服務刀鋒視窗。
@@ -103,17 +109,12 @@ ms.openlocfilehash: 1f6fd5b4e10e2f94256f5a3dac7609265b1f2cc4
 
 ![具有設定檔與規則的雲端服務調整規模設定](./media/cloud-services-how-to-scale-portal/manual-basics.png)
 
-這會移除該角色的自動調整，然後您可以直接設定執行個體計數。 
+這個設定會移除該角色的自動調整，然後您可以直接設定執行個體計數。 
 
 1. 調整 (手動或自動) 選項。
 2. 角色執行個體滑桿，可用來設定要調整的執行個體。
 3. 要調整之角色的執行個體。
 
 當您設定調整規模設定之後，請選取頂端的 [儲存]  圖示。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

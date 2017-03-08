@@ -17,6 +17,7 @@ ms.author: apimpm
 translationtype: Human Translation
 ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
 ms.openlocfilehash: 0be893406c6a20193b10b728fff2cec06f562069
+ms.lasthandoff: 12/20/2016
 
 
 ---
@@ -64,7 +65,7 @@ ms.openlocfilehash: 0be893406c6a20193b10b728fff2cec06f562069
    * 比較以上計算的雜湊和 **sig** 查詢參數的值。 如果兩個雜湊相符，則繼續下一步，否則拒絕要求。
 3. 確認您收到的是登入/註冊要求：**operation** 查詢參數會設為 "**SignIn**"。
 4. 顯示 UI 讓使用者登入或註冊
-5. 如果使用者要註冊，您必須在 API 管理中為他們建立對應的帳戶。 [建立使用者] 。 這樣做時，請確定您所設定的使用者識別碼與使用者存放區中的識別碼相同，或與您可追蹤的識別碼相同。
+5. 如果使用者要註冊，您必須在 API 管理中為他們建立對應的帳戶。 使用 API Management REST API [建立使用者]。 這樣做時，請確定您所設定的使用者識別碼與使用者存放區中的識別碼相同，或與您可追蹤的識別碼相同。
 6. 成功驗證使用者之後：
    
    * [要求單一登入 (SSO) 權杖] 
@@ -173,15 +174,10 @@ var signature = digest.toString('base64');
 [Delegating developer sign-in and sign-up]: #delegate-signin-up
 [Delegating product subscription]: #delegate-product-subscription
 [要求單一登入 (SSO) 權杖]: http://go.microsoft.com/fwlink/?LinkId=507409
-[create a user]: http://go.microsoft.com/fwlink/?LinkId=507655#CreateUser
+[建立使用者]: http://go.microsoft.com/fwlink/?LinkId=507655#CreateUser
 [呼叫 REST API 來訂閱產品]: http://go.microsoft.com/fwlink/?LinkId=507655#SSO
 [Next steps]: #next-steps
 [以下提供範例程式碼]: #delegate-example-code
 
 [api-management-delegation-signin-up]: ./media/api-management-howto-setup-delegation/api-management-delegation-signin-up.png 
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

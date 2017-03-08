@@ -12,18 +12,19 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 02/25/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: d94b3c59ba23220f7cb377ada8fa2231eaa9838b
+ms.sourcegitcommit: 672d1518e22c5ab5595fb5c7c708f584e80b68e9
+ms.openlocfilehash: c6117296c8bd12e3bb8f276709bc4d4c2aa81719
+ms.lasthandoff: 02/27/2017
 
 
 ---
 # <a name="azure-media-services-concepts"></a>Azure 媒體服務概念
 本主題提供媒體服務概念的最重要概觀。
 
-## <a name="a-idassetsaassets-and-storage"></a><a id="assets"></a>資產和儲存體
+## <a id="assets"></a>資產和儲存體
 ### <a name="assets"></a>Assets
 [資產](https://docs.microsoft.com/rest/api/media/operations/asset) 包含數位檔案 (包括視訊、音訊、影像、縮圖集合、文字播放軌和隱藏式輔助字幕檔案)，以及這些檔案的相關中繼資料。 將數位檔案上傳到資產之後，可以用於媒體服務編碼和串流工作流程。
 
@@ -67,7 +68,7 @@ Blob 容器提供一組 blob。 Blob 容器在媒體服務中是做為存取控�
 > 
 > 
 
-### <a name="a-idlocatorsalocators"></a><a id="locators"></a>定位器
+### <a id="locators"></a>定位器
 [定位器](https://docs.microsoft.com/rest/api/media/operations/locator)提供一個進入點，可供存取資產中包含的檔案。 存取原則用來定義用戶端可存取特定資產的權限與持續時間。 定位器對存取原則可以有多對一關聯性，以便在所有用戶端都使用相同的權限與持續時間設定時，可以讓不同定位器對不同的用戶端提供不同的開始時間和連線類型；不過，由於 Azure 儲存體服務所設定的共用存取原則限制，特定資產一次不能有超過五個唯一定位器與之相關聯。 
 
 媒體服務支援兩種類型的定位器：一個是 OnDemandOrigin 定位器，用於串流媒體 (例如 MPEG DASH、HLS 或 Smooth Streaming)，或漸進式下載媒體；另一個則是 SAS URL 定位器，用於上傳媒體檔案至 Azure 儲存體或從 Azure 儲存體下載媒體檔案。 
@@ -82,7 +83,7 @@ Blob 容器提供一組 blob。 Blob 容器在媒體服務中是做為存取控�
 
 工作包含要進行之處理的相關中繼資料。 每個工作 (Job) 包含一或多個 [工作 (Task)](https://docs.microsoft.com/rest/api/media/operations/task)，該工作 (Task) 指定不可部分完成的處理工作、該處理工作的輸入資產、輸出資產、媒體處理器和其相關設定。 工作 (Job) 中的工作 (Task) 可以鏈結在一起，其中一項工作 (Task) 的輸出資產指定為下一個工作 (Task) 的輸入資產。 透過這種方式，一項工作 (Job) 可以包含一個媒體簡報所需的所有處理。
 
-## <a name="a-idencodingaencoding"></a><a id="encoding"></a>編碼
+## <a id="encoding"></a>編碼
 Azure 媒體服務提供多個用於將雲端中之媒體編碼的選項。
 
 開始使用媒體服務時，請務必了解轉碼器和檔案格式之間的差異。
@@ -112,13 +113,13 @@ Azure 媒體服務提供多個用於將雲端中之媒體編碼的選項。
 
 每個媒體服務帳戶可以包含多個通道、多個程式和多個 StreamingEndpoints。 根據頻寬和安全性需求，StreamingEndpoint 服務可以專屬於一或多個通道。 任何 StreamingEndpoint 可以從任何通道中提取。
 
-### <a name="program"></a>程式
-[程式](https://docs.microsoft.com/rest/api/media/operations/program) 可讓您控制即時資料流區段的發佈和儲存體。 通道會管理程式。 通道和程式的關聯性非常類似於傳統媒體，此處的通道有常數內容資料流，而程式的範圍是該通道上的某些計時事件。
+### <a name="program-event"></a>程式 (事件)
+[程式 (事件)](https://docs.microsoft.com/rest/api/media/operations/program) 可讓您控制即時資料流區段的發佈和儲存體。 通道會管理程式 (事件)。 「通道」與「程式」的關係與傳統媒體十分類似，其中，通道具有固定的內容串流，而且程式的範圍是該通道上的某個計時事件。
 您可以透過設定 **ArchiveWindowLength** 屬性，指定您想要保留已記錄程式內容的時數。 此值最小可以設定為 5 分鐘，最大可以設定為 25 個小時。
 
-ArchiveWindowLength 也指定用戶端可從目前即時位置往回搜尋的最大時間量。 程式可以執行超過指定的時間量，但是超過此時間長度的內容會被持續捨棄。 此屬性的這個值也會決定用戶端資訊清單可以成長多長的時間。
+ArchiveWindowLength 也指定用戶端可從目前即時位置往回搜尋的最大時間量。 程式可以執行超過指定的時間量，但是超過此時間長度的內容會被持續捨棄。 此屬性的這個值也會決定用戶端資訊清單可以成長為多長的時間。
 
-每個程式都是與「資產」相關聯。 若要發佈程式，您必須建立相關資產的定位器。 擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
+每個程式 (事件) 都是與「資產」相關聯。 若要發佈程式，您必須建立相關資產的定位器。 擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
 
 通道支援最多三個同時執行的程式，因此您可以建立相同內送串流的多個封存。 這可讓您視需要發行和封存事件的不同部分。 例如，您的商務需求是封存 6 小時的程式，但只廣播最後 10 分鐘。 為了達成此目的，您必須建立兩個同時執行的程式。 其中一個程式設定為封存 6 小時的事件，但是未發行該程式。 另一個程式則設定為封存 10 分鐘，並發佈程式。
 
@@ -152,7 +153,7 @@ Azure 媒體服務可讓您保護媒體從離開電腦到進行儲存、處理�
 [使用 DRM 保護](media-services-protect-with-drm.md)
 
 ## <a name="delivering"></a>傳遞
-### <a name="a-iddynamicpackagingadynamic-packaging"></a><a id="dynamic_packaging"></a>動態封裝
+### <a id="dynamic_packaging"></a>動態封裝
 使用媒體服務時，建議您將夾層檔案的編碼設為調適性位元速率 MP4 集，然後使用 [動態封裝](media-services-dynamic-packaging-overview.md)將該 MP4 集轉換為需要的格式。
 
 ### <a name="streaming-endpoint"></a>串流端點
@@ -223,10 +224,5 @@ http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

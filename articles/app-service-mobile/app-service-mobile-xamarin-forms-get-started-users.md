@@ -4,7 +4,7 @@ description: "了解如何使用 Mobile Apps 透過眾多識別提供者驗證 X
 services: app-service\mobile
 documentationcenter: xamarin
 author: adrianhall
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 9c55e192-c761-4ff2-8d88-72260e9f6179
 ms.service: app-service-mobile
@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 10/01/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 65c8ff42c9c34eb51cb26153eff9b45aa0926838
+ms.sourcegitcommit: 06e16033435ed0a37d5688055743875827d3aec2
+ms.openlocfilehash: 30fac48cbacb26b03ce430987997c38c68368385
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -27,9 +28,9 @@ ms.openlocfilehash: 65c8ff42c9c34eb51cb26153eff9b45aa0926838
 本主題說明如何從用戶端應用程式驗證 App Service 行動應用程式的使用者。 在本教學課程中，您將使用 App Service 支援的識別提供者，將驗證新增至 Xamarin.Forms 快速入門專案。 由行動應用程式成功驗證並授權之後，就會顯示使用者識別碼值，而您也將可以存取受限制的資料庫資料。
 
 ## <a name="prerequisites"></a>必要條件
-為了讓本教學課程產生最佳結果，建議您先完成 [建立 Xamarin.Forms 應用程式][1] 教學課程。 完成本教學課程之後，您將會有一個多平台 TodoList 應用程式的 Xamarin.Forms 專案。
+為了讓本教學課程產生最佳結果，建議您先完成 [建立 Xamarin.Forms 應用程式][1]教學課程。 完成本教學課程之後，您將會有一個多平台 TodoList 應用程式的 Xamarin.Forms 專案。
 
-如果您不要使用下載的快速入門伺服器專案，必須將驗證擴充套件新增至您的專案。 如需伺服器擴充套件的詳細資訊，請參閱[使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK]2[]。
+如果您不要使用下載的快速入門伺服器專案，必須將驗證擴充套件新增至您的專案。 如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK][2]。
 
 ## <a name="register-your-app-for-authentication-and-configure-app-services"></a>註冊應用程式進行驗證，並設定應用程式服務
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
@@ -322,9 +323,4 @@ Mobile Apps 會使用 [MobileServiceClient][4] 的 [LoginAsync][3] 擴充方法�
 [5]: app-service-mobile-dotnet-how-to-use-client-library.md#serverflow
 [6]: app-service-mobile-dotnet-how-to-use-client-library.md#clientflow
 [7]: https://msdn.microsoft.com/library/azure/jj730936(v=azure.10).aspx
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

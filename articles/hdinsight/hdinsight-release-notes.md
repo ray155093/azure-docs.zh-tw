@@ -13,19 +13,27 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 1/18/2017
+ms.date: 2/28/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: e6167db5f9b6c8b2520b1f3c2d443c7497d44552
-ms.openlocfilehash: b3e625852648e15ccde427ec8c5bb8fe0393cb74
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: de252e1d2945f236a4192c5737ed8ec88a6f7444
+ms.openlocfilehash: da5929df1e5db0acae41d757a7e7272014bf9dee
+ms.lasthandoff: 03/01/2017
 
 
 ---
 # <a name="release-notes-for-hadoop-components-on-azure-hdinsight"></a>Azure HDInsight 上 Hadoop 元件的版本資訊
 
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 版本控制文件](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+
+##<a name="notes-for-02282017-release-of-spark-21-on-hdinsight-36-preview"></a>HDInsight 3.6 預覽上 Spark 2.1 之 2017/02/28 版本的相關資訊
+* [Spark 2.1](http://spark.apache.org/releases/spark-release-2-1-0.html) 會改善舊版的許多穩定性和可用性問題。 它也會有跨所有 Spark 工作負載的新功能，例如 Spark Core、SQL、ML 和串流處理。
+* 結構化串流會利用事件時間的浮水印和 Kafka 0.10 連接器支援改良延展性。
+* Spark SQL 分割現在會使用新的可調整資料分割處理機制來處理。 在[這裡](http://spark.apache.org/releases/spark-release-2-1-0.html)查看如何升級的其他詳細資料。
+* Spark 2.1 on Azure HDInsight 3.6 預覽目前不支援使用 ODBC 驅動程式的 BI 工具連線。
+* 此預覽版本不支援從 Spark 2.1 叢集的 Azure Data Lake Store 存取。
+
 
 ##<a name="notes-for-11182016-release-of-spark-201-on-hdinsight-35"></a>HDInsight 3.5 上 Spark 2.0.1 之 2016/11/18 版本的相關資訊
 Spark 2.0.1 現已可在 Spark 叢集上取得 (HDInsight 3.5 版)。

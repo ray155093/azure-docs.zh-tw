@@ -53,8 +53,3 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-data-lake)
 ## [在 UserVoice 上提供意見反應](https://feedback.azure.com/forums/327234-data-lake)
 ## [Azure Data Lake 部落格](https://blogs.msdn.microsoft.com/azuredatalake/)
-
-
-<!--HONumber=Feb17_HO3-->
-
-

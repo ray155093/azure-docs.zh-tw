@@ -12,11 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 10/31/2016
+ms.date: 03/03/2017
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 5d3bcc3c1434b16279778573ccf3034f9ac28a4d
-ms.openlocfilehash: ecc008469ba754af12583d350706f626ec6690b5
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 73f10984b7fe2636f5b9f664b831adc910e7ac7a
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -57,7 +58,6 @@ ms.openlocfilehash: ecc008469ba754af12583d350706f626ec6690b5
 ## <a name="polybase"></a>Polybase
 | 問題 | 解決方案 |
 |:--- |:--- |
-| UTF-8 錯誤 |目前，PolyBase 僅支援載入以 UTF-8 編碼的資料檔案。  如需有關如何克服這項限制的指引，請參閱[解決 PolyBase UTF-8 需求][Working around the PolyBase UTF-8 requirement]。 |
 | 因為資料列太大而載入失敗 |目前，Polybase 不支援大型的資料列。  這表示如果資料表包含 VARCHAR(MAX)、NVARCHAR(MAX) 或 VARBINARY(MAX)，則無法使用外部資料表來載入您的資料。  目前，只有透過 Azure Data Factory (含 BCP) Azure 串流分析、SSIS、BCP 或 .NET SQLBulkCopy 類別，才支援載入大型資料列。 未來版本將增加讓 PolyBase 支援大型資料列。 |
 | 使用 bcp 載入含有 MAX 資料類型的資料表失敗 |已知的問題是在某些情況下，VARCHAR(MAX)、NVARCHAR(MAX) 或 VARBINARY(MAX) 必須放在資料表結尾。  請嘗試將您的 MAX 資料行移到資料表的結尾。 |
 
@@ -93,7 +93,7 @@ ms.openlocfilehash: ecc008469ba754af12583d350706f626ec6690b5
 [Connect to Azure SQL Data Warehouse]: ./sql-data-warehouse-connect-overview.md
 [建立支援票證]: ./sql-data-warehouse-get-started-create-support-ticket.md
 [Scaling your SQL Data Warehouse]: ./sql-data-warehouse-manage-compute-overview.md
-[DWU]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
+[DWU]: ./sql-data-warehouse-overview-what-is.md
 [request a quota increase]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
 [Learning how to monitor your queries]: ./sql-data-warehouse-manage-monitor.md
 [Provisioning instructions]: ./sql-data-warehouse-get-started-provision.md
@@ -133,9 +133,4 @@ ms.openlocfilehash: ecc008469ba754af12583d350706f626ec6690b5
 [Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
 [Twitter]: https://twitter.com/hashtag/SQLDW
 [影片]: https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

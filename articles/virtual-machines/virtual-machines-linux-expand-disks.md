@@ -12,17 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 11/22/2016
+ms.date: 02/10/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: c89ce056cb0fa84b2169df161660916d083bec3f
-ms.openlocfilehash: bcef9de167fa31001ee4086d7e5b85c2d8bc4613
+ms.sourcegitcommit: 2826f825b2d34005ce6e7142dd4371285a452ca8
+ms.openlocfilehash: bd1952281dde6f262848d1520995efdb131a3b38
+ms.lasthandoff: 02/11/2017
 
 
 ---
 
 # <a name="expand-os-disk-on-a-linux-vm-using-the-azure-cli"></a>使用 Azure CLI 擴充 Linux VM 上的 OS 磁碟
-在 Azure 中，Linux 虛擬機器 (VM) 上作業系統 (OS) 的預設虛擬硬碟大小通常是 30 GB。 您可以[新增資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，以提供更多儲存空間，但您也可能想要擴充 OS 磁碟。 本文將詳細說明如何使用 Azure CLI，以擴充 Linux VM 的 OS 磁碟。
+在 Azure 中，Linux 虛擬機器 (VM) 上作業系統 (OS) 的預設虛擬硬碟大小通常是 30 GB。 您可以[新增資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，以提供更多儲存空間，但您也可能想要擴充 OS 磁碟。 本文將詳細說明如何搭配使用受控磁碟與 Azure CLI，以擴充 Linux VM 的 OS 磁碟。
 
 
 ## <a name="prerequisites"></a>必要條件
@@ -46,7 +47,7 @@ azure config mode arm
     > [!NOTE]
     > `azure vm stop` 不會釋放計算資源。 若要釋放計算資源，請使用 `azure vm deallocate`。 必須解除配置 VM，才能擴充虛擬硬碟。
 
-2. 使用 `azure vm set` 命令來更新 OS 磁碟的大小。 下列範例會將資源群組 `myResourceGroup` 中的 VM `myVM` 更新為 `50`GB：
+2. 使用 `azure vm set` 命令來更新 OS 非受控磁碟的大小。 下列範例會將資源群組 `myResourceGroup` 中的 VM `myVM` 更新為 `50`GB：
 
     ```azurecli
     azure vm set --resource-group myResourceGroup --name myVM --new-os-disk-size 50
@@ -69,9 +70,4 @@ azure config mode arm
 
 ## <a name="next-steps"></a>後續步驟
 如果您需要更多儲存空間，您也可以[將資料磁碟新增至 Linux VM](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 如需磁碟加密的詳細資訊，請參閱[使用 Azure CLI 將 Linux VM 上的磁碟加密](virtual-machines-linux-encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

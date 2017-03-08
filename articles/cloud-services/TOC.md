@@ -115,8 +115,3 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=cloud-services)
 ## [服務更新](https://azure.microsoft.com/updates/?product=cloud-services&updatetype=&platform=)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/cloud-services/)
-
-
-<!--HONumber=Jan17_HO3-->
-
-

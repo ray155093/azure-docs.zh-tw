@@ -12,11 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 10/24/2016
+ms.date: 03/02/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 9cfa3ecf3788dfd90a7e1d6c79827961d3dbeb54
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 38c7ea11091bb65432589df4d72e5efef3cb7ea3
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -31,7 +32,7 @@ ms.openlocfilehash: 9cfa3ecf3788dfd90a7e1d6c79827961d3dbeb54
 * 新的或現有 Azure 訂用帳戶中的媒體服務帳戶。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。
 * 作業系統：Windows 10、Windows 7、Windows 2008 R2 或 Windows 8。
 * .NET Framework 4.5。
-* Visual Studio 2015、Visual Studio 2013、Visual Studio 2012 或 Visual Studio 2010 SP1 (Professional、Premium、Ultimate 或 Express)。
+* Visual Studio。
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 本節說明如何在 Visual Studio 中建立專案並設定來進行媒體服務開發。  在此案例中，專案是 C# Windows 主控台應用程式，但這裡顯示的設定步驟也適用於可以為媒體服務應用程式建立的其他專案類型 (例如，Windows Forms 應用程式或 ASP.NET Web 應用程式)。
@@ -40,7 +41,7 @@ ms.openlocfilehash: 9cfa3ecf3788dfd90a7e1d6c79827961d3dbeb54
 
 或者，您可以從 GitHub 取得最新 Media Services .NET SDK 位元 ([github.com/Azure/azure-sdk-for-media-services](https://github.com/Azure/azure-sdk-for-media-services) 和 [github.com/Azure/azure-sdk-for-media-services-extensions](https://github.com/Azure/azure-sdk-for-media-services-extensions))、建置方案，並新增至用戶端專案的參考。 請注意，會下載並自動解壓縮所有必要相依性。
 
-1. 在 Visual Studio 2010 SP1 或更新的 VS 版本中建立新的 C# 主控台應用程式。 輸入 [名稱]、[位置] 和 [方案名稱]，然後按一下 [確定]。
+1. 在 Visual Studio 中，建立新的 C# 主控台應用程式。 輸入 [名稱]、[位置] 和 [方案名稱]，然後按一下 [確定]。
 2. 建置方案。
 3. 使用 **NuGet** 來安裝和新增 **Azure Media Services .NET SDK 延伸模組**。 安裝這個封裝，也會安裝 **Media Services .NET SDK** ，並新增所有其他必要相依性。
    
@@ -91,10 +92,5 @@ ms.openlocfilehash: 9cfa3ecf3788dfd90a7e1d6c79827961d3dbeb54
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

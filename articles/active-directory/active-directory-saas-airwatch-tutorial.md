@@ -77,7 +77,7 @@ ms.lasthandoff: 02/17/2017
 2. 在 [要如何讓使用者登入 AirWatch] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
    ![設定單一登入](./media/active-directory-saas-airwatch-tutorial/IC791917.png "設定單一登入")
-3. 在 [設定應用程式 URL] 頁面的 [AirWatch 登入 URL] 文字方塊中，輸入使用者用來登入 AirWatch 應用程式的 URL (例如："*https://companycode.awmdm.com/AirWatch/Login?gid=companycode*")，然後按 [下一步]。
+3. 在 [設定應用程式 URL] 頁面的 [AirWatch 登入 URL] 文字方塊中，輸入使用者用來登入 AirWatch 應用程式的 URL (例如:"*https:// companycode.awmdm.com/AirWatch/Login?gid=companycode*")，然後按 [下一步]。
    
    ![設定應用程式 URL](./media/active-directory-saas-airwatch-tutorial/IC791918.png "設定應用程式 URL")
 4. 在 [設定在 AirWatch 單一登入] 頁面上，按一下 [下載憑證]，然後將憑證檔案儲存在您的電腦中。

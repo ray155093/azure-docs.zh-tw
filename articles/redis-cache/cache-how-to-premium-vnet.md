@@ -12,18 +12,17 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 02/09/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: c885edd7064f7ee3c9907e6b938d826e181dcae5
-ms.openlocfilehash: 2cc95618b2edcb8d0f7c172a18156871887b8f69
+ms.sourcegitcommit: 50d8db29ccce1244387f1fe0e3e42e610575e483
+ms.openlocfilehash: 057affeccd955245ac07fc5e174447562e81b959
+ms.lasthandoff: 02/09/2017
 
 
 ---
 # <a name="how-to-configure-virtual-network-support-for-a-premium-azure-redis-cache"></a>如何設定高階 Azure Redis 快取的虛擬網路支援
-Azure Redis 快取有不同的快取服務，在快取大小和功能 (包括新的進階層) 的選擇上提供了彈性。
-
-Azure Redis 快取進階層功能包括叢集、永續性及虛擬網路 (VNet) 支援。 VNet 是雲端中的私人網路。 當 Azure Redis 快取執行個體是以 VNet 設定時，它不是公開定址，只能從 VNet 中的虛擬機器和應用程式存取。 本文說明如何設定進階 Azure Redis 快取執行個體的虛擬網路支援。
+Azure Redis 快取有不同的快取供應項目，可讓您彈性選擇快取大小和功能，包括叢集、持續性和虛擬網路支援等進階層功能。 VNet 是雲端中的私人網路。 當 Azure Redis 快取執行個體是以 VNet 設定時，它不是公開定址，只能從 VNet 中的虛擬機器和應用程式存取。 本文說明如何設定進階 Azure Redis 快取執行個體的虛擬網路支援。
 
 > [!NOTE]
 > Azure Redis 快取支援傳統和 ARM VNet。
@@ -60,7 +59,7 @@ Azure Redis 快取進階層功能包括叢集、永續性及虛擬網路 (VNet) 
 > 
 > 
 
-建立快取之後，您可以從 [設定] 刀鋒視窗中按一下 [虛擬網路]，以檢視 VNet 的設定。
+建立快取之後，您可以從 [資源] 功能表中按一下 [虛擬網路]，以檢視 VNet 的設定。
 
 ![虛擬網路][redis-cache-vnet-info]
 
@@ -164,10 +163,5 @@ VNet 僅適用於進階快取。
 [redis-cache-vnet-ip]: ./media/cache-how-to-premium-vnet/redis-cache-vnet-ip.png
 
 [redis-cache-vnet-info]: ./media/cache-how-to-premium-vnet/redis-cache-vnet-info.png
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -5,7 +5,7 @@ tags: azure-classic-portal
 services: app-service\web
 documentationcenter: Java
 author: donntrenton
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: 8954c456-1275-4d57-aff4-ca7d6374b71e
 ms.service: multiple
@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 02/25/2016
 ms.author: v-donntr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e7e2c6ef375b860ad79f0cc0c385dec2e5de2660
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: 19ddcc3e8e1bb3b52eeb06d81e27793c25c1e230
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -32,7 +33,7 @@ ms.openlocfilehash: e7e2c6ef375b860ad79f0cc0c385dec2e5de2660
 
 ## <a name="prerequisites"></a>必要條件
 ### <a name="software-installations"></a>軟體安裝
-本文中的 AzureWebDemo 應用程式程式碼是使用 Azure Java SDK 0.7.0 撰寫，您可使用 [Web Platform Installer (WebPI) (WebPI)][Web Platform Installer (WebPI) (WebPI)] (WebPI) 進行安裝。 此外，務必使用最新版的[適用於 Eclipse 的 Azure 工具組][Azure Toolkit for Eclipse]。 安裝 SDK 之後，在 **Maven 儲存機制**中執行**更新索引**以在 Eclipse 專案中更新相依性，然後在 [相依性] 視窗中重新新增各封裝的最新版本。 按一下 [說明] > [安裝詳細資料]，可以驗證 Eclipse 中安裝的軟體版本；您至少要有下列版本：
+本文中的 AzureWebDemo 應用程式程式碼是使用 Azure Java SDK 0.7.0 撰寫，您可使用 [Web Platform Installer][Web Platform Installer] (WebPI) 進行安裝。 此外，務必使用最新版的 [Azure Toolkit for Eclipse][Azure Toolkit for Eclipse]。 安裝 SDK 之後，在 **Maven 儲存機制**中執行**更新索引**以在 Eclipse 專案中更新相依性，然後在 [相依性] 視窗中重新新增各封裝的最新版本。 按一下 [說明] > [安裝詳細資料]，可以驗證 Eclipse 中安裝的軟體版本；您至少要有下列版本：
 
 * Package for Microsoft Azure Libraries for Java 0.7.0.20150309
 * Eclipse IDE for Java EE Developers 4.4.2.20150219
@@ -41,7 +42,7 @@ ms.openlocfilehash: e7e2c6ef375b860ad79f0cc0c385dec2e5de2660
 開始此程序前，Azure 上必須有使用中 Azure 訂用帳戶並設定預設 Active Directory (AD)。
 
 ### <a name="create-an-active-directory-ad-in-azure"></a>在 Azure 中建立 Active Directory (AD)
-如果您的 Azure 訂用帳戶上還沒有 Active Directory (AD)，請使用您的 Microsoft 帳戶登入 [Azure 傳統入口網站][Azure 傳統入口網站]。 如果您有多個訂用帳戶，請按一下 [ **訂用帳戶** ] 並針對您要用於此專案的訂用帳戶選取預設目錄。 接著按一下 [ **套用** ] 切換至該訂用帳戶檢視。
+如果您的 Azure 訂用帳戶上還沒有 Active Directory (AD)，請使用您的 Microsoft 帳戶登入 [Azure 傳統入口網站][Azure classic portal]。 如果您有多個訂用帳戶，請按一下 [ **訂用帳戶** ] 並針對您要用於此專案的訂用帳戶選取預設目錄。 接著按一下 [ **套用** ] 切換至該訂用帳戶檢視。
 
 1. 從左側功能表中選取 [ **Active Directory** ]。 按一下 [新增] > [目錄] > [自訂建立]。
 2. 在 [新增目錄] 中，選取 [建立新目錄]。
@@ -49,12 +50,12 @@ ms.openlocfilehash: e7e2c6ef375b860ad79f0cc0c385dec2e5de2660
 4. 在 [網域] 中，輸入網域名稱。 這是您的目錄預設包含的基本網域名稱；其格式為 `<domain_name>.onmicrosoft.com` 您可以根據此目錄名稱或您擁有的其他網域名稱予以命名。 之後，您可以新增貴組織已使用的其他網域名稱。
 5. 在 [ **國家或地區**] 中，選取您的地區設定。
 
-如需 AD 詳細資訊，請參閱[什麼是 Azure Active Directory][什麼是 Azure Active Directory]？
+如需 AD 詳細資訊，請參閱 [什麼是 Azure Active Directory][What is an Azure AD directory]？
 
 ### <a name="create-a-management-certificate-for-azure"></a>建立 Azure 的管理憑證
 Azure SDK for Java 使用管理憑證來向 Azure 訂用帳戶進行驗證。 這些是用來驗證下列用戶端應用程式的 X.509 v3 憑證：利用服務管理 API 代表訂用帳戶擁有者管理訂用資源的用戶端應用程式。
 
-此程序中的程式碼使用自我簽署的憑證來向 Azure 進行驗證。 在此程序中，您需要事先建立憑證並將其上傳至 [Azure 傳統入口網站][Azure 傳統入口網站]。 請執行下列步驟：
+此程序中的程式碼使用自我簽署的憑證來向 Azure 進行驗證。 在此程序中，您需要事先建立憑證並將其上傳至 [Azure 傳統入口網站][Azure classic portal]。 請執行下列步驟：
 
 * 產生代表您的用戶端憑證的 PFX 檔案，並將其儲存於本機。
 * 從 PFX 檔案產生管理憑證 (CER 檔案)。
@@ -62,12 +63,12 @@ Azure SDK for Java 使用管理憑證來向 Azure 訂用帳戶進行驗證。 �
 * 將 PFX 檔案轉換為 JKS，因為 Java 使用該格式來驗證憑證的使用。
 * 撰寫應用程式的驗證碼，以便參照本機 JKS 檔案。
 
-當您完成這個程序時，CER 憑證會位於 Azure 訂用帳戶，而 JKS 憑證會位於本機磁碟機。 如需管理憑證的詳細資訊，請參閱[建立和上傳 Azure 的管理憑證][建立和上傳 Azure 的管理憑證]。
+當您完成這個程序時，CER 憑證會位於 Azure 訂用帳戶，而 JKS 憑證會位於本機磁碟機。 如需管理憑證的詳細資訊，請參閱 [建立和上傳 Azure 的管理憑證][Create and Upload a Management Certificate for Azure]。
 
 #### <a name="create-a-certificate"></a>建立憑證
 若要建立自己的自我簽署憑證，請開啟作業系統上的命令主控台並執行下列命令。
 
-> **注意：** 您用來執行此命令的電腦必須已安裝 JDK。 此外，keytool 的路徑取決於您安裝 JDK 的位置。 如需詳細資訊，請參閱 Java 線上文件中的[金鑰和憑證管理工具 (keytool)][金鑰和憑證管理工具 (keytool)]。
+> **注意：** 您用來執行此命令的電腦必須已安裝 JDK。 此外，keytool 的路徑取決於您安裝 JDK 的位置。 如需詳細資訊，請參閱 Java 線上文件中的 [金鑰和憑證管理工具 (keytool)][Key and Certificate Management Tool (keytool)]。
 > 
 > 
 
@@ -93,7 +94,7 @@ Azure SDK for Java 使用管理憑證來向 Azure 訂用帳戶進行驗證。 �
 * `<password>` 是您選擇用來保護憑證的密碼；長度必須至少 6 個字元。 您可以不輸入密碼，但不建議這麼做。
 * `<dname>` 是要與別名相關聯的 X.500 辨別名稱，並作為自我簽署憑證中的簽發者和主旨欄位。
 
-如需詳細資訊，請參閱[建立和上傳 Azure 的管理憑證][建立和上傳 Azure 的管理憑證]。
+如需詳細資訊，請參閱 [建立和上傳 Azure 的管理憑證][Create and Upload a Management Certificate for Azure]。
 
 #### <a name="upload-the-certificate"></a>上傳憑證
 若要將自我簽署憑證上傳至 Azure，請移至傳統入口網站中的 [設定] 頁面，然後按一下 [管理憑證] 索引標籤。 按一下頁面底部的 [ **上傳** ] 並導覽至您建立之 CER 檔案的位置。
@@ -397,7 +398,7 @@ Azure SDK for Java 使用管理憑證來向 Azure 訂用帳戶進行驗證。 �
 #### <a name="get-ftp-connection-information"></a>取得 FTP 連線資訊
 若要使用 FTP 將應用程式檔案部署至新建立的 Web 應用程式，您需要取得連線資訊。 取得連線資訊的方法有兩種。 造訪 Web 應用程式的 [ **儀表板** ] 頁面是一種方法；另一種方法則是下載 Web 應用程式的發行設定檔。 發行設定檔是可提供下列資訊的 XML 檔案：Azure App Service 中 Web 應用程式的 FTP 主機名稱和登入認證。 您可以使用此使用者名稱和密碼來部署至與 Azure 帳戶相關聯的所有訂用帳戶中的任何 Web 應用程式 (不限於這一個)。
 
-若要從 [Azure 入口網站][Azure 入口網站]中 Web 應用程式的刀鋒視窗取得 FTP 連線資訊：
+若要從 [Azure 入口網站][Azure Portal]中的 Web 應用程式刀鋒視窗中獲得 FTP 連線資訊：
 
 1. 在 [基本功能] 之下，尋找並複製 [FTP 主機名稱]。 這是類似於 `ftp://waws-prod-bay-NNN.ftp.azurewebsites.windows.net`的 URI。
 2. 在 [基本功能] 之下，尋找並複製 [FTP/部署使用者名稱]。 其格式為 *webappname\deployment-username*；例如 `WebDemoWebApp\deployer77`。
@@ -515,18 +516,13 @@ FileZilla 是另一項可用來發佈應用程式的工具 ，這是具有便利
 
 
 [Azure App Service]: http://go.microsoft.com/fwlink/?LinkId=529714
-[Web Platform Installer (WebPI) (WebPI)]: http://go.microsoft.com/fwlink/?LinkID=252838
+[Web Platform Installer]: http://go.microsoft.com/fwlink/?LinkID=252838
 [Azure Toolkit for Eclipse]: https://msdn.microsoft.com/library/azure/hh690946.aspx
-[Azure 傳統入口網站]: https://manage.windowsazure.com
-[什麼是 Azure Active Directory]: http://technet.microsoft.com/library/jj573650.aspx
-[建立和上傳 Azure 的管理憑證]: ../cloud-services/cloud-services-certs-create.md
-[金鑰和憑證管理工具 (keytool)]: http://docs.oracle.com/javase/6/docs/technotes/tools/windows/keytool.html
+[Azure classic portal]: https://manage.windowsazure.com
+[What is an Azure AD directory]: http://technet.microsoft.com/library/jj573650.aspx
+[Create and Upload a Management Certificate for Azure]: ../cloud-services/cloud-services-certs-create.md
+[Key and Certificate Management Tool (keytool)]: http://docs.oracle.com/javase/6/docs/technotes/tools/windows/keytool.html
 [WebSiteManagementClient]: http://azure.github.io/azure-sdk-for-java/com/microsoft/azure/management/websites/WebSiteManagementClient.html
 [WebSpaceNames]: http://dl.windowsazure.com/javadoc/com/microsoft/windowsazure/management/websites/models/WebSpaceNames.html
-[Azure 入口網站]: https://portal.azure.com
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[Azure Portal]: https://portal.azure.com
 

@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中監視 Logic Apps | Microsoft Docs"
-description: "如何查看邏輯應用程式的完成項目"
+title: "啟用記錄與警示，請檢查執行歷程記錄，追蹤輸入和輸出 - Azure Logic Apps | Microsoft Docs"
+description: "使用記錄、追蹤並檢視歷程記錄和診斷資訊以監視邏輯應用程式工作流程的狀態"
 author: jeffhollan
 manager: anneta
 editor: 
@@ -14,13 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: jehollan
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 9c74b25a2ac5e2088a841d97920035376b7f3f11
-ms.openlocfilehash: db3684fc5cc4ae7933454a02d8440d1eb4948828
+ms.sourcegitcommit: 5913c81088724ef946ae147f4f3154fa6aefd22e
+ms.openlocfilehash: d6840be7afc05d8d563215e370c59cf41a206e4f
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="monitor-your-logic-apps"></a>監視邏輯應用程式
+# <a name="check-the-performance-and-start-diagnostic-logging-and-alerts-of-your-workflows-in-logic-apps"></a>檢查效能，並在邏輯應用程式中啟動診斷記錄和工作流程的警示
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)之後，您可以在 Azure 入口網站中查看其執行的完整記錄。  您也可以設定 Azure 診斷和 Azure 警示等服務來即時監視事件，並針對「當一小時內發生超過 5 次執行失敗時」之類的事件對您發出警示。
 
 ## <a name="monitor-in-the-azure-portal"></a>在 Azure 入口網站中進行監視
@@ -137,10 +139,5 @@ ms.openlocfilehash: db3684fc5cc4ae7933454a02d8440d1eb4948828
 * [Logic Apps 範例和常見案例](../logic-apps/logic-apps-examples-and-scenarios.md)
 * [建立邏輯應用程式部署範本](../logic-apps/logic-apps-create-deploy-template.md)
 * [企業整合功能](../logic-apps/logic-apps-enterprise-integration-overview.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

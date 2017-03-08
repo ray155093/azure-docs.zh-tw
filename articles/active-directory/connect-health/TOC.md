@@ -22,8 +22,3 @@
 # 資源
 ##[Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 
-
-
-<!--HONumber=Jan17_HO3-->
-
-

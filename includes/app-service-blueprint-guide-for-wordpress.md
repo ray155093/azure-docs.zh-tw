@@ -18,15 +18,10 @@
 
 ## <a name="performance"></a>效能
 * [如何提升 WordPress Web 應用程式的速度](https://sunithamk.wordpress.com/2014/08/01/10-ways-to-speed-up-your-wordpress-site-on-azure-websites/)
-* [如何使用 [Redis 快取外掛程式](https://wordpress.org/plugins/wp-redis/)來啟用 Redis 快取](../articles/redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md)
-* [如何使用 [Memcached 外掛程式](https://wordpress.org/plugins/memcached/)來啟用 WordPress 的 Memcached 物件快取](../articles/app-service-web/web-sites-connect-to-redis-using-memcache-protocol.md)
+* [如何使用 Redis 快取](../articles/redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md) 外掛程式 [來啟用 Redis 快取](https://wordpress.org/plugins/wp-redis/)
+* [如何使用 Memcached 外掛程式 來啟用 WordPress](../articles/app-service-web/web-sites-connect-to-redis-using-memcache-protocol.md) 的 [Memcached 物件快取](https://wordpress.org/plugins/memcached/)
 * [使用 W3 Total Cache 外掛程式啟用 Wincache](https://wordpress.org/plugins/w3-total-cache/)
 * [如何使用 Supercache 外掛程式提升 WordPress 應用程式的速度](http://ruslany.net/2008/12/speed-up-wordpress-on-iis-70/)
 * [如何使用 IIS 輸出快取進行伺服器快取](http://blogs.msdn.com/b/brian_swan/archive/2011/06/08/performance-tuning-php-apps-on-windows-iis-with-output-caching.aspx)
 * [如何針對靜態內容啟用瀏覽器快取](http://www.iis.net/configreference/system.webserver/staticcontent)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

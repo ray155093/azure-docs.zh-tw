@@ -4,7 +4,7 @@ description: "實作具有 App Service 環境的多層式安全性架構。"
 services: app-service
 documentationcenter: 
 author: stefsch
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: 73ce0213-bd3e-4876-b1ed-5ecad4ad5601
 ms.service: app-service
@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 08/30/2016
 ms.author: stefsch
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 35f87789bd374a6170e38dfb462fd928babd55a3
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: 0fb02c13f99a8f4a46e0142c20da3b152c809b6b
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -40,7 +41,7 @@ ms.openlocfilehash: 35f87789bd374a6170e38dfb462fd928babd55a3
 由於[網路安全性群組 (NSG)][NetworkSecurityGroups] 會套用至子網路，而 App Service 環境部署在子網路中，因此 NSG 中包含的規則將會套用至**所有**在 App Service 環境上執行的應用程式。  舊本文的範例架構而言，一旦將網路安全性群組套用至包含 "apiase" 的子網路後，所有在 "apiase" App Service 環境上執行的應用程式都將受到相同安全性規則集的保護。 
 
 * **判斷上游呼叫端的輸出 IP 位址：**上游呼叫端的 IP 位址為何？  這些位址在 NSG 中必須明確地允許存取。  由於 App Service 環境之間的呼叫會被視為「網際網路」呼叫，因此這表示指派給這三個上游 App Service 環境的輸出 IP 位址，在 "apiase" 子網路的 NSG 中必須是允許存取的。   若想進一步了解如何判斷在 App Service 環境中執行之應用程式的輸出 IP 位址，請參閱[網路架構][NetworkArchitecture]概觀文章。
-* **後端 API 應用程式是否需要呼叫本身？**   後端應用程式有時候需要呼叫本身，這是常會被忽略而難以察覺的情況。  如果 App Service 環境上的後端 API 應用程式需要呼叫本身，我們也會將其視為「網際網路」呼叫。  在範例架構中，這必須允許 "apiase" App Service 環境的輸出 IP 位址進行存取。
+* **後端 API 應用程式是否需要呼叫本身？**  後端應用程式有時候需要呼叫本身，這是常會被忽略而難以察覺的情況。  如果 App Service 環境上的後端 API 應用程式需要呼叫本身，我們也會將其視為「網際網路」呼叫。  在範例架構中，這必須允許 "apiase" App Service 環境的輸出 IP 位址進行存取。
 
 ## <a name="setting-up-the-network-security-group"></a>設定網路安全性群組
 得知輸出 IP 位址集後，下一步是要建構網路安全群組。  您可以針對以 Resource Manager 為基礎的虛擬網路以及傳統虛擬網路建立網路安全性群組。  下列範例說明如何在傳統虛擬網路上使用 Powershell 建立和設定 NSG。
@@ -110,9 +111,4 @@ App Service 環境所使用的[網路連接埠][InboundTraffic]。
 <!-- IMAGES -->
 [ConceptualArchitecture]: ./media/app-service-app-service-environment-layered-security/ConceptualArchitecture-1.png
 [NSGConfiguration]:  ./media/app-service-app-service-environment-layered-security/NSGConfiguration-1.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

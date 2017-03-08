@@ -12,11 +12,12 @@ ms.devlang: rest-api
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: search
-ms.date: 01/17/2017
+ms.date: 02/08/2017
 ms.author: eugenesh
 translationtype: Human Translation
-ms.sourcegitcommit: efa4a720a306aaedcd2d5857d30d34394a76f5f6
-ms.openlocfilehash: b2f8537aa58e6dc78051752a13f555331042972a
+ms.sourcegitcommit: d19a85e127b548e5f8979358879e8b9354934904
+ms.openlocfilehash: ca09ac90dfcf125291bc0b312b16e28160a18527
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -28,7 +29,10 @@ ms.openlocfilehash: b2f8537aa58e6dc78051752a13f555331042972a
 
 如果您選擇使用入口網站，[匯入資料精靈](search-import-data-portal.md)會引導您建立所有這些物件。 通常會為您產生預設索引。
 
-## <a name="a-idconceptsaazure-search-indexer-concepts"></a><a id="Concepts"></a>Azure 搜尋服務索引子概念
+> [!NOTE]
+> 您可以從 DocumentDB 儀表板啟動**匯入資料**精靈，以簡化該資料來源的索引建立作業。 在左側導覽中，移至 [集合] > [新增 Azure 搜尋服務] 以便開始使用。
+
+## <a id="Concepts"></a>Azure 搜尋服務索引子概念
 Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操作這些資料來源的索引子。
 
 **資料來源**指定要編製索引的資料、認證，以及可識別資料是否變更 (例如修改或刪除集合內的文件) 的原則。 資料來源會被定義為獨立的資源，因此可供多個索引子使用。
@@ -39,7 +43,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 * 依照排程將索引與資料來源中的變更同步。 排程是索引子定義的一部分。
 * 視需要叫用索引的隨選更新。
 
-## <a name="a-idcreatedatasourceastep-1-create-a-data-source"></a><a id="CreateDataSource"></a>步驟 1：建立資料來源
+## <a id="CreateDataSource"></a>步驟 1：建立資料來源
 發出 HTTP POST 要求，在您的 Azure 搜尋服務中建立新的資料來源，需包含下列要求標頭。
 
     POST https://[Search service name].search.windows.net/datasources?api-version=[api-version]
@@ -64,7 +68,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
 請參閱下面的 [要求本文範例](#CreateDataSourceExample)。
 
-### <a name="a-iddatachangedetectionpolicyacapturing-changed-documents"></a><a id="DataChangeDetectionPolicy"></a>擷取已變更的文件
+### <a id="DataChangeDetectionPolicy"></a>擷取已變更的文件
 資料變更偵測原則是用來有效識別已變更的資料項目。 目前，唯一支援的原則是使用 DocumentDB 所提供之 `_ts` 上次修改時間戳記屬性的 `High Water Mark` 原則，指定方式如下：
 
     {
@@ -76,7 +80,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
     SELECT s.id, s.Title, s.Abstract, s._ts FROM Sessions s WHERE s._ts >= @HighWaterMark
 
-### <a name="a-iddatadeletiondetectionpolicyacapturing-deleted-documents"></a><a id="DataDeletionDetectionPolicy"></a>擷取已刪除的文件
+### <a id="DataDeletionDetectionPolicy"></a>擷取已刪除的文件
 當從來源資料表中刪除資料列時，您也應該在搜尋索引中刪除這些資料列。 資料刪除偵測原則可用來有效識別刪除的資料項目。 目前，唯一支援的原則是「 `Soft Delete` 」原則 (刪除會標示為某種形式的旗標)，指定方式如下：
 
     {
@@ -90,8 +94,8 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 > 
 > 
 
-### <a name="a-idleveagingqueriesaleveraging-queries"></a><a id="LeveagingQueries"></a>利用查詢
-除了擷取已變更和刪除的文件，指定 DocumentDB 查詢也可以簡維巢狀屬性、回溯陣列、投影 json 屬性，以及篩選要編製索引的資料。 處理要編製索引的資料可以改善 Azure 搜尋服務索引子的效能。
+### <a id="LeveagingQueries"></a>利用查詢
+除了擷取已變更和刪除的文件之外，指定 DocumentDB 查詢也可用來簡維巢狀屬性、回溯陣列、投影 JSON 屬性，以及篩選要編製索引的資料。 處理要編製索引的資料可以改善「Azure 搜尋服務」索引子的效能。
 
 範例文件︰
 
@@ -126,7 +130,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
     SELECT * FROM c WHERE c.company = "microsoft" and c._ts >= @HighWaterMark
 
 
-### <a name="a-idcreatedatasourceexamplearequest-body-example"></a><a id="CreateDataSourceExample"></a>要求本文範例
+### <a id="CreateDataSourceExample"></a>要求本文範例
 下列範例會建立包含自訂查詢和原則提示的資料來源：
 
     {
@@ -153,7 +157,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 ### <a name="response"></a>Response
 如果已成功建立該資料來源，您將會收到一則 HTTP 201 已建立的回應。
 
-## <a name="a-idcreateindexastep-2-create-an-index"></a><a id="CreateIndex"></a>步驟 2：建立索引
+## <a id="CreateIndex"></a>步驟 2：建立索引
 建立目標 Azure 搜尋服務索引 (如果您尚未建立)。 在做法上可以從 [Azure 入口網站 UI](search-create-index-portal.md)，或使用[建立索引 REST API](/rest/api/searchservice/create-index) 或[索引類別](/dotnet/api/microsoft.azure.search.models.index)。
 
     POST https://[Search service name].search.windows.net/indexes?api-version=[api-version]
@@ -180,7 +184,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 | GeoJSON 物件，例如 { "type": "Point"、"coordinates": [ long, lat ] } |Edm.GeographyPoint |
 | 其他 JSON 物件 |N/A |
 
-### <a name="a-idcreateindexexamplearequest-body-example"></a><a id="CreateIndexExample"></a>要求本文範例
+### <a id="CreateIndexExample"></a>要求本文範例
 下列範例會建立包含識別碼和描述欄位的索引：
 
     {
@@ -203,7 +207,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 ### <a name="response"></a>Response
 如果已成功建立該索引，您將會收到一則 [HTTP 201 已建立] 的回應。
 
-## <a name="a-idcreateindexerastep-3-create-an-indexer"></a><a id="CreateIndexer"></a>步驟 3：建立索引子
+## <a id="CreateIndexer"></a>步驟 3：建立索引子
 您可以使用包含下列標頭的 HTTP POST 要求，在 Azure 搜尋服務內建立新的索引子。
 
     POST https://[Search service name].search.windows.net/indexers?api-version=[api-version]
@@ -217,13 +221,13 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 * **targetIndexName**：必要。 現有索引的名稱。
 * **排程**：選擇性。 請參閱以下的 [索引排程](#IndexingSchedule) 。
 
-### <a name="a-idindexingschedulearunning-indexers-on-a-schedule"></a><a id="IndexingSchedule"></a>依照排程執行索引子
+### <a id="IndexingSchedule"></a>依照排程執行索引子
 索引子可以選擇性地指定排程。 如有排程，索引子將會依照排程定期執行。 排程具有下列屬性：
 
 * **間隔**：必要。 可用以指定索引子執行間隔或期間的持續時間值。 允許的最小間隔為 5 分鐘；最長間隔為一天。 其必須格式化為 XSD "dayTimeDuration" 值 ( [ISO 8601 持續時間](http://www.w3.org/TR/xmlschema11-2/#dayTimeDuration) 值的受限子集)。 間隔的模式為： `P(nD)(T(nH)(nM))`。 範例：`PT15M` 代表每隔 15 分鐘，`PT2H` 代表每隔 2 個小時。
 * **startTime**：必要。 指定索引子應該開始執行的 UTC 日期時間。
 
-### <a name="a-idcreateindexerexamplearequest-body-example"></a><a id="CreateIndexerExample"></a>要求本文範例
+### <a id="CreateIndexerExample"></a>要求本文範例
 下列範例會建立索引子，可將資料從 `myDocDbDataSource` 資料來源所參考的集合，依照排程 (從 2015 年 1 月 1 日 UTC 開始，每小時執行一次) 複製到 `mySearchIndex` 索引。
 
     {
@@ -236,7 +240,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 ### <a name="response"></a>Response
 如果已成功建立該索引子，您將會收到一則 [HTTP 201 已建立] 的回應。
 
-## <a name="a-idrunindexerastep-4-run-an-indexer"></a><a id="RunIndexer"></a>步驟 4：執行索引子
+## <a id="RunIndexer"></a>步驟 4：執行索引子
 為了依照排程定期執行，您也可以發出下列 HTTP POST 要求，視需要叫用索引子：
 
     POST https://[Search service name].search.windows.net/indexers/[indexer name]/run?api-version=[api-version]
@@ -245,7 +249,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 ### <a name="response"></a>Response
 如果已成功叫用該索引子，您將會收到一則 [HTTP 202 已接受] 的回應。
 
-## <a name="a-namegetindexerstatusastep-5-get-indexer-status"></a><a name="GetIndexerStatus"></a>步驟 5：取得索引子狀態
+## <a name="GetIndexerStatus"></a>步驟 5：取得索引子狀態
 您可以發出 HTTP GET 要求來擷取索引子的目前狀態和執行記錄：
 
     GET https://[Search service name].search.windows.net/indexers/[indexer name]/status?api-version=[api-version]
@@ -284,13 +288,8 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
 執行歷程記錄包含多達 50 個最近完成的執行，以倒序的方式進行儲存 (因此最新的執行會排在回應中的第一位)。
 
-## <a name="a-namenextstepsanext-steps"></a><a name="NextSteps"></a>接續步驟
+## <a name="NextSteps"></a>接續步驟
 恭喜！ 您剛剛了解如何使用 DocumentDB 的索引子來整合 Azure DocumentDB 與 Azure 搜尋服務。
 
 * 若要深入了解 Azure DocumentDB，請參閱 [DocumentDB 服務頁面](https://azure.microsoft.com/services/documentdb/)。
 * 若要深入了解 Azure 搜尋服務，請參閱 [搜尋服務頁面](https://azure.microsoft.com/services/search/)。
-
-
-<!--HONumber=Jan17_HO3-->
-
-

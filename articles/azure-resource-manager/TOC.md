@@ -36,8 +36,6 @@
 ### [REST API](resource-manager-rest-api.md)
 ### [使用標籤來整理資源](resource-group-using-tags.md)
 ### [將資源移至新群組或訂用帳戶](resource-group-move-resources.md)
-### [連結相關資源](resource-group-link-resources.md)
-### [Azure 資源總管](resource-manager-resource-explorer.md)
 ## 控制存取權
 ### [使用 PowerShell 建立服務主體](resource-group-authenticate-service-principal.md)
 ### [使用 Azure CLI 建立服務主體](resource-group-authenticate-service-principal-cli.md)

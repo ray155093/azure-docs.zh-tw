@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 12/13/2016
 ms.author: ganesr
 translationtype: Human Translation
-ms.sourcegitcommit: ec5e547b88bedd50f451997616c7d72b0b1b4bd4
-ms.openlocfilehash: 2a1215b5065fc690e539000aa1e89049617f8902
+ms.sourcegitcommit: ec79ec654505f3e082f9ff106ce24801eae66faf
+ms.openlocfilehash: c33270d17cd32e32fac926f62441f0787c056a3e
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -123,17 +124,17 @@ ms.openlocfilehash: 2a1215b5065fc690e539000aa1e89049617f8902
    * 對等的 AS 編號。 您可以使用 2 位元組和 4 位元組 AS 編號。 您可以將私用 AS 編號用於此對等。 請確定您不是使用 65515。
    * MD5 雜湊 (如果選擇使用)。 **這是選擇性的**。
      
-     您可以執行下列 Cmdlet 來為線路設定 Azure 私用對等。
+    您可以執行下列 Cmdlet 來為線路設定 Azure 私用對等。
      
-       Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200
+         Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200
      
-       Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+         Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
      
-     如果您選擇使用 MD5 雜湊，您可以使用下列 Cmdlet。
+    如果您選擇使用 MD5 雜湊，您可以使用下列 Cmdlet。
      
-       Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200  -SharedKey "A1B2C3D4"
+         Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200  -SharedKey "A1B2C3D4"
      
-       Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+         Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
      
      > [!IMPORTANT]
      > 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
@@ -388,10 +389,5 @@ ms.openlocfilehash: 2a1215b5065fc690e539000aa1e89049617f8902
 * 如需 ExpressRoute 工作流程的詳細資訊，請參閱 [ExpressRoute 工作流程](expressroute-workflows.md)。
 * 如需線路對等的詳細資訊，請參閱 [ExpressRoute 線路和路由網域](expressroute-circuit-peerings.md)。
 * 如需使用虛擬網路的詳細資訊，請參閱 [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

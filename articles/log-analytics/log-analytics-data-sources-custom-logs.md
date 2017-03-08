@@ -43,7 +43,7 @@ Log Analytics 中的「自訂記錄檔」資料來源可讓您從 Windows 和 Li
 
 1. 在 OMS 入口網站中，移至 [設定] 。
 2. 按一下 [資料]，然後按一下 [自訂記錄檔]。
-3. 根據預設，所有設定變更都會自動發送給所有代理程式。  若是 Linux 代理程式，組態檔會傳送給 Fluentd 資料收集器。  如果您想以手動方式在每個 Linux 代理程式上修改這個檔案，只要取消核取 [Apply below configuration to my Linux machines] (將下列設定套用至我的 Linux 機器) 方塊即可。
+3. 根據預設，所有設定變更都會自動發送給所有代理程式。  若是 Linux 代理程式，組態檔會傳送給 Fluentd 資料收集器。  如果您想以手動方式在每個 Linux 代理程式上修改這個檔案，只要取消核取 *[Apply below configuration to my Linux machines]* \(將下列設定套用至我的 Linux 機器) 方塊即可。
 4. 按一下 [新增+]  開啟自訂記錄檔精靈。
 
 ### <a name="step-2-upload-and-parse-a-sample-log"></a>步驟 2. 上傳和剖析範例記錄檔

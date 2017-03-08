@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: priyamo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e14e2227d95b396d7d281edfd367f0a24ac54f7a
+ms.sourcegitcommit: f48df694e6ac20a11f92faebeeec273745fbfaed
+ms.openlocfilehash: 53e9fd58e72d83db32fa1fab937b4618cd4cd159
+ms.lasthandoff: 02/09/2017
 
 
 ---
@@ -25,9 +26,7 @@ Azure Active Directory (Azure AD) 會使用 SAML 2.0 通訊協定，讓應用程
 
 SAML 通訊協定需要識別提供者 (Azure AD) 和服務提供者 (應用程式)，才能交換本身的相關資訊。
 
-向 Azure AD 註冊應用程式時，應用程式開發人員會向 Azure AD 註冊同盟的相關資訊。 這包括應用程式的「重新導向 URI」和「中繼資料 URI」。
-
-Azure AD 會使用雲端服務的 **中繼資料 URI** 來擷取雲端服務的簽署金鑰和登出 URI。 如果應用程式不支援中繼資料 URI，開發人員必須連絡 Microsoft 支援服務以提供登出 URI 和簽署金鑰。
+向 Azure AD 註冊應用程式時，應用程式開發人員會向 Azure AD 註冊同盟的相關資訊。 這包括應用程式的**重新導向 URI**。
 
 Azure Active Directory 會公開租用戶專屬和一般 (租用戶獨立) 單一登入和單一登出端點。 這些 URL 代表可定址的位置 -- 它們不只是識別碼 -- 因此您可以前往端點來讀取中繼資料。
 
@@ -36,10 +35,4 @@ Azure Active Directory 會公開租用戶專屬和一般 (租用戶獨立) 單�
 * 租用戶獨立端點位於 `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`。在此端點位址中，會出現 **common**，而不是租用戶網域名稱或識別碼。
 
 如需 Azure AD 發佈的同盟中繼資料文件的相關資訊，請參閱 [同盟中繼資料](active-directory-federation-metadata.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

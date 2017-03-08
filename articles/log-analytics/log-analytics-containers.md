@@ -1,6 +1,6 @@
 ---
-title: "Log Analytics 中的容器方案 | Microsoft Docs"
-description: "Log Analytics 中的容器方案可協助您在單一位置檢視及管理 Docker 容器主機。"
+title: "Azure Log Analytics 中的容器解決方案 | Microsoft Docs"
+description: "Log Analytics 中的容器方案可協助您在單一位置檢視及管理 Docker 和 Windows 容器主機。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -12,30 +12,39 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 02/22/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 6cdc0730d7632e41b393c4abb17badc255e21a8d
-ms.openlocfilehash: 0bc5366417f08c63f5fd5588c94381faf6a2397d
+ms.sourcegitcommit: 503cf4afba4575492984891a681c187a8683a553
+ms.openlocfilehash: dc76f22214ab8467705b6420e8362a419a468bd6
+ms.lasthandoff: 02/23/2017
 
 
 ---
 # <a name="containers-preview-solution-log-analytics"></a>Log Analytics 中的容器 (預覽) 方案
-本文說明如何設定及使用 Log Analytics 中的容器方案，協助您在單一位置檢視及管理 Docker 容器主機。 Docker 是用來建立容器的軟體虛擬化系統，自動將軟體部署至其 IT 基礎結構。
+本文說明如何設定及使用 Log Analytics 中的容器方案，協助您在單一位置檢視及管理 Docker 和 Windows 容器主機。 Docker 是用來建立容器的軟體虛擬化系統，自動將軟體部署至其 IT 基礎結構。
 
-利用此解決方案，您可以查看容器主機上有哪些正在執行的容器，以及容器中有哪些正在執行的映像。 您可以檢視詳細的稽核資訊，其中顯示搭配容器使用的命令。 而且，藉由檢視及搜尋集中式記錄檔，而不需從遠端檢視 Docker 主機，即可針對容器進行疑難排解。 您可能會找到有雜訊且耗用過多主機資源的容器。 而且，您可以檢視容器的集中式 CPU、記憶體、儲存體以及網路使用量和效能資訊。
+利用此解決方案，您可以查看容器主機上有哪些正在執行的容器，以及容器中有哪些正在執行的映像。 您可以檢視詳細的稽核資訊，其中顯示搭配容器使用的命令。 而且，藉由檢視及搜尋集中式記錄檔，而不需從遠端檢視 Docker 或 Windows 主機，即可針對容器進行疑難排解。 您可能會找到有雜訊且耗用過多主機資源的容器。 而且，您可以檢視容器的集中式 CPU、記憶體、儲存體以及網路使用量和效能資訊。 您可以在執行 Windows 的電腦上集中管理，並從 Windows Server、HYPER-V 和 Docker 容器比較記錄檔。
+
+下圖顯示各種容器主機和代理程式與 OMS 之間的關聯性。
+
+![容器圖表](./media/log-analytics-containers/containers-diagram.png)
 
 ## <a name="installing-and-configuring-the-solution"></a>安裝和設定方案
 請使用下列資訊來安裝和設定方案。
 
 使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，將容器方案新增至 OMS 工作區。
 
-安裝和搭配 OMS 使用 Docker 的方式有兩種：
+安裝和搭配 OMS 使用 Docker 的方式有幾種：
 
-* 在支援的 Linux 作業系統上，安裝和執行 Docker，然後安裝並設定 OMS Agent for Linux
+* 在支援的 Linux 作業系統上，安裝和執行 Docker，然後安裝並設定 OMS Agent for Linux。
 * 在 CoreOS 上，您無法執行 OMS Agent for Linux。 相反地，您可以執行 OMS Agent for Linux 的容器化版本。
+* 在 Windows Server 2016 和 Windows 10 上，安裝 Docker 引擎及用戶端，然後連接代理程式以收集資訊，並將它傳送至 Log Analytics。
 
-在 [GitHub](https://github.com/Microsoft/OMS-docker) 上檢閱容器主機支援的 Docker 和 Linux 作業系統版本。
+
+您可以在 [GitHub](https://github.com/Microsoft/OMS-docker) 上檢閱容器主機支援的 Docker 和 Linux 作業系統版本。
+
+檢閱 [Windows 上的 Docker 引擎](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon)文章，以取得有關如何在執行 Windows 的電腦上安裝和設定您 Docker 引擎的資訊。
 
 > [!IMPORTANT]
 > 在容器主機上安裝 [OMS Agent for Linux](log-analytics-linux-agents.md)**之前**，Docker 必須已在執行中。 如果您已在安裝 Docker 前安裝此代理程式，您必須重新安裝 OMS Agent for Linux。 如需 Docker 的詳細資訊，請參閱 [Docker 網站](https://www.docker.com)。
@@ -44,13 +53,13 @@ ms.openlocfilehash: 0bc5366417f08c63f5fd5588c94381faf6a2397d
 
 您必須先在容器主機上進行下列設定，才可以監視容器。
 
-## <a name="configure-settings-for-the-linux-container-host"></a>進行 Linux 容器主機設定
+## <a name="configure-settings-for-a-linux-container-host"></a>進行 Linux 容器主機設定
 
 下列 x64 Linux 散發套件可支援做為容器主機︰
 
 - Ubuntu 14.04 LTS、16.04 LTS
 - CoreOS (穩定版)
-- Amazon Linux 2016.03
+- Amazon Linux 2016.09.0
 - openSUSE 13.2
 - CentOS 7
 - SLES 12
@@ -58,11 +67,12 @@ ms.openlocfilehash: 0bc5366417f08c63f5fd5588c94381faf6a2397d
 
 在您安裝 Docker 之後，使用容器主機的下列設定來設定可搭配 Docker 使用的代理程式。 您需要有 [OMS 工作區識別碼和金鑰](log-analytics-linux-agents.md)。
 
-### <a name="for-all-container-hosts-except-coreos"></a>適用於 CoreOS 以外的所有容器主機
+
+### <a name="for-all-linux-container-hosts-except-coreos"></a>適用於 CoreOS 以外的所有 Linux 容器主機
 
 - 請遵循 [OMS Agent for Linux 安裝步驟](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md)中的指示。
 
-### <a name="for-all-container-hosts-including-coreos"></a>適用於包括 CoreOS 在內的所有容器主機
+### <a name="for-all-linux-container-hosts-including-coreos"></a>適用於包含 CoreOS 的所有 Linux 容器主機
 
 啟動您要監視的 OMS 容器。 修改並使用下列範例。
 
@@ -70,19 +80,83 @@ ms.openlocfilehash: 0bc5366417f08c63f5fd5588c94381faf6a2397d
 sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -e WSID="your workspace id" -e KEY="your key" -h=`hostname` -p 127.0.0.1:25225:25225 --name="omsagent" --restart=always microsoft/oms
 ```
 
-### <a name="switching-from-using-an-installed-agent-to-one-in-a-container"></a>從使用已安裝的代理程式切換為使用容器中的代理程式
+### <a name="switching-from-using-an-installed-linux-agent-to-one-in-a-container"></a>從使用已安裝的代理程式切換為使用容器中的 Linux 代理程式
 如果您先前使用了直接安裝的代理程式，而且想要改為使用在容器中執行的代理程式，您必須先移除 OMSAgent。 請參閱[安裝 OMS Agent for Linux 的步驟](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md)。
 
+## <a name="supported-windows-versions"></a>支援的 Windows 版本
+
+- Windows Server 2016
+- Windows 10 年度版 (Professional 或 Enterprise)
+
+### <a name="docker-versions-supported-on-windows"></a>在 Windows 上支援 Docker 版本
+
+- Docker 1.12 – 1.13
+
+### <a name="preparation-before-installing-agents"></a>安裝代理程式之前的準備
+
+在執行 Windows 的電腦上安裝代理程式之前，您需要設定 Docker 服務。 組態可讓 Windows 代理程式或 Log Analytics 虛擬機器擴充功能使用 Docker TCP 通訊端，讓代理程式可以從遠端存取的 Docker 精靈並擷取監視資料。
+
+在執行 Windows 的電腦上不支援效能資料。
+
+如需使用 Windows 設定 Docker 精靈的詳細資訊，請參閱 [Windows 上的 Docker 引擎](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon)。
+
+#### <a name="to-start-docker-and-verify-its-configuration"></a>若要啟動 Docker 並確認其組態
+
+1.    在 Windows PowerShell 中啟用 TCP 管道和具名的管道。
+
+    ```
+    Stop-Service docker
+    dockerd --unregister-service
+    dockerd -H npipe:// -H 0.0.0.0:2375 --register-service
+    Start-Service docker
+    ```
+
+2.    使用 netstat 確認組態。 您應該會看到連接埠 2375。
+
+    ```
+    PS C:\Users\User1> netstat -a | sls 2375
+
+    TCP    127.0.0.1:2375         Win2016TP5:0           LISTENING
+    TCP    127.0.0.1:2375         Win2016TP5:49705       ESTABLISHED
+    TCP    127.0.0.1:2375         Win2016TP5:49706       ESTABLISHED
+    TCP    127.0.0.1:2375         Win2016TP5:49707       ESTABLISHED
+    TCP    127.0.0.1:2375         Win2016TP5:49708       ESTABLISHED
+    TCP    127.0.0.1:49705        Win2016TP5:2375        ESTABLISHED
+    TCP    127.0.0.1:49706        Win2016TP5:2375        ESTABLISHED
+    TCP    127.0.0.1:49707        Win2016TP5:2375        ESTABLISHED
+    TCP    127.0.0.1:49708        Win2016TP5:2375        ESTABLISHED
+    ```
+
+### <a name="install-windows-agents"></a>安裝 Windows 代理程式
+
+若要啟用 Windows 和 Hyper-V 容器監視，請在容器主機的 Windows 電腦上安裝代理程式。 若需要在內部部署環境中執行 Windows 的電腦，請參閱[連接 Windows 電腦至 Log Analytics](log-analytics-windows-agents.md)。 若需要在 Azure 中執行的虛擬機器，可使用[虛擬機器擴充功能](log-analytics-azure-vm-extension.md)將它們連接至 Log Analytics。
+
+若要確認已正確設定容器解決方案︰
+
+- 檢查管理組件是否正確下載，請找出 ContainerManagement.xxx。
+    - 這些檔案應在 C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs 資料夾。
+- 確認 OMS 工作區識別碼是否正確，可前往 [控制台] > [系統及安全性]。
+    - 開啟 [Microsoft 監視代理程式] 並確認工作區資訊是否正確。
+
+
 ## <a name="containers-data-collection-details"></a>容器資料收集詳細資料
-容器方案會從使用您已啟用之 OMS Agents for Linux 的容器主機和容器，以及從在容器中執行的 OMSAgent，收集各種效能計量和記錄檔資料。
+容器解決方案會從使用您已啟用之代理程式的容器主機和容器收集各種效能計量和記錄檔資料。
 
 下表顯示容器的資料收集方法及如何收集資料的其他詳細資料。
 
-| 平台 | OMS Agent for Linux | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
+| 平台 | [OMS Agent for Linux](log-analytics-linux-agents.md) | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
 | --- | --- | --- | --- | --- | --- | --- |
-|  Linux |![是](./media/log-analytics-containers/oms-bullet-green.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |每隔 3 分鐘 |
+| Linux |![是](./media/log-analytics-containers/oms-bullet-green.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |每隔 3 分鐘 |
 
-下表顯示容器解決方案所收集之資料類型以及記錄檔搜尋和結果中所使用之資料類型的範例︰
+| 平台 | [Windows 代理程式](log-analytics-windows-agents.md) | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Windows |![是](./media/log-analytics-containers/oms-bullet-green.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |每隔 3 分鐘 |
+
+| 平台 | [Log Analytics VM 延伸模組](log-analytics-azure-vm-extension.md) | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Azure |![是](./media/log-analytics-containers/oms-bullet-green.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |每隔 3 分鐘 |
+
+下表顯示容器解決方案所收集之資料類型以及記錄檔搜尋和結果中所使用之資料類型的範例。 但是，在執行 Windows 的電腦上尚未支援效能資料。
 
 | 資料類型 | 記錄檔搜尋中的資料類型 | 欄位 |
 | --- | --- | --- |
@@ -190,9 +264,4 @@ Type=Perf <containerName>
 
 ## <a name="next-steps"></a>後續步驟
 * [搜尋記錄檔](log-analytics-log-searches.md)以檢視詳細的容器資料記錄。
-
-
-
-<!--HONumber=Nov16_HO5-->
-
 

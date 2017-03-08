@@ -16,6 +16,7 @@ ms.author: jgao
 translationtype: Human Translation
 ms.sourcegitcommit: 5618650671badfc54860c3ad8af5d1e727d3d8c9
 ms.openlocfilehash: 40ccfc59cccd86a7634ec89656571b3cd23566b4
+ms.lasthandoff: 11/23/2016
 
 
 ---
@@ -65,8 +66,8 @@ azure-mgmt-datalake-store 模組包括 Azure Data Lake Store 帳戶管理作業�
         from azure.mgmt.resource.resources.models import ResourceGroup
 
         ## Required for Azure Data Lake Store account management
-        from azure.mgmt.datalake.store.account import DataLakeStoreAccountManagementClient
-        from azure.mgmt.datalake.store.account.models import DataLakeStoreAccount
+        from azure.mgmt.datalake.store import DataLakeStoreAccountManagementClient
+        from azure.mgmt.datalake.store.models import DataLakeStoreAccount
 
         ## Required for Azure Data Lake Store filesystem management
         from azure.datalake.store import core, lib, multithread
@@ -205,10 +206,5 @@ azure-mgmt-datalake-store 模組包括 Azure Data Lake Store 帳戶管理作業�
 - 若要了解 U-SQL，請參閱 [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
 - 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
 - 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

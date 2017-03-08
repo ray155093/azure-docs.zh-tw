@@ -16,6 +16,7 @@ ms.author: awills
 translationtype: Human Translation
 ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
 ms.openlocfilehash: 9e54ee2d67a8dfb5b480db01219e128607e26f51
+ms.lasthandoff: 02/02/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.openlocfilehash: 9e54ee2d67a8dfb5b480db01219e128607e26f51
 設定 [可用性 Web 測試](app-insights-monitor-web-app-availability.md)。
 
 ### <a name="email-if-my-site-is-overloaded"></a>我的網站多載時寄送電子郵件
-針對 [伺服器回應時間](app-insights-alerts.md) 設定 **警示**。 介於 1 到 2 秒之間的閾值應該會運作。
+針對 **伺服器回應時間** 設定 [警示](app-insights-alerts.md)。 介於 1 到 2 秒之間的閾值應該會運作。
 
 ![](./media/app-insights-how-do-i/030-server.png)
 
@@ -205,9 +206,4 @@ ms.openlocfilehash: 9e54ee2d67a8dfb5b480db01219e128607e26f51
 ### <a name="to-display-more-performance-counters"></a>顯示更多效能計數器
 * 首先， [新增圖表](app-insights-metrics-explorer.md) ，並查看計數器是否位於我們提供的基本組合中。
 * 如果沒有，請[將計數器加入效能計數器模組所收集的組合中](app-insights-performance-counters.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

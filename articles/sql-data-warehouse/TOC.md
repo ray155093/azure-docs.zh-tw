@@ -3,6 +3,7 @@
 ## [什麼是 SQL 資料倉儲？](sql-data-warehouse-overview-what-is.md)
 ## [資料倉儲工作負載](sql-data-warehouse-overview-workload.md)
 ## [分散式資料](sql-data-warehouse-distributed-data.md)
+## [常見問題集](sql-data-warehouse-overview-faq.md)
 
 # 開始使用
 
@@ -10,6 +11,7 @@
 ## [最佳做法](sql-data-warehouse-best-practices.md)
 ## [管理](sql-data-warehouse-overview-manage.md)
 ## [取得支援](sql-data-warehouse-get-started-create-support-ticket.md)
+## [疑難排解](sql-data-warehouse-troubleshoot.md)
 
 # 作法
 
@@ -114,7 +116,6 @@
 ### [資料行存放區壓縮](sql-data-warehouse-memory-optimizations-for-columnstore-compression.md)
 ### [查詢](sql-data-warehouse-manage-monitor.md)
 ### [工作負載](sql-data-warehouse-develop-concurrency.md)
-### [疑難排解](sql-data-warehouse-troubleshoot.md)
 
 ## 安全性
 

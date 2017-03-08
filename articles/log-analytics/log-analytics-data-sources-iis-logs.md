@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/18/2016
+ms.date: 02/24/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 920b5feee8e94af5b98e8dffc127da4085bac597
+ms.sourcegitcommit: c6e2ecebf6cd1b246c155c158d12d4d83bd1feda
+ms.openlocfilehash: bda2da933accb769bae4c9b420ae330014fc2ba0
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -70,8 +71,8 @@ IIS 記錄檔記錄都具有 **W3CIISLog** 類型以及下表中的屬性：
 
 | 查詢 | 說明 |
 |:--- |:--- |
-| Type=IISLog |所有 IIS 記錄檔記錄。 |
-| Type=IISLog EventLevelName=error |所有 Windows 事件與錯誤的嚴重性。 |
+| Type=W3CIISLog |所有 IIS 記錄檔記錄。 |
+| Type=W3CIISLog scStatus=500 |具有傳回狀態 500 的所有 IIS 記錄。 |
 | Type=W3CIISLog &#124; Measure count() by cIP |依據用戶端 IP 位址的 IIS 記錄項目計數。 |
 | Type=W3CIISLog csHost="www.contoso.com" &#124; Measure count() by csUriStem |依據主機 www.contoso.com 之 URL 的 IIS 記錄項目計數。 |
 | Type=W3CIISLog &#124; Measure Sum(csBytes) by Computer &#124; top 500000 |每部 IIS 電腦所接收的位元組總數。 |
@@ -80,10 +81,5 @@ IIS 記錄檔記錄都具有 **W3CIISLog** 類型以及下表中的屬性：
 * 設定 Log Analytics 以收集其他 [資料來源](log-analytics-data-sources.md) 進行分析。
 * 了解 [記錄檔搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。
 * 設定 Log Analytics 中的警示，以主動通知您在 IIS 記錄檔中找到的重要狀況。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

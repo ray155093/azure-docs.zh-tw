@@ -15,9 +15,9 @@ ms.workload: integration
 ms.date: 10/18/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: d7144208fc3e6eb1f8d3c43d8b4a5e2bcb225e58
-ms.openlocfilehash: ac0c200abd110262badd04212c82be45cb0f8bfc
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 6964ff18532ccf4b67eecfe12122bc16819a7b4b
+ms.openlocfilehash: 9b2e0797317c6e0268e8ae90f4091fea96c78726
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -33,7 +33,7 @@ Logic Apps 原本就能公開同步的 HTTP 端點做為觸發程序。  您也�
 本文的其餘部分會以 **request** 為例，但所有的原則同樣適用於其他 2 個類型的觸發程序。
 
 ## <a name="adding-a-trigger-to-your-definition"></a>將觸發程序加入您的定義
-第一個步驟是將觸發程序加入您的邏輯應用程式定義，如此您就能收到連入要求。  您可以搜尋設計工具中的「HTTP 要求」，以新增觸發程序卡片。 您可以定義要求主體 JSON Schema，設計工具會產生權杖，協助您透過工作流程，從手動觸發程序剖析並傳送資料。  我建議使用類似 [jsonschema.net](http://jsonschema.net) 的工具，以從範例主體承載產生 JSON 結構描述。
+第一個步驟是將觸發程序加入您的邏輯應用程式定義，如此您就能收到連入要求。  您可以搜尋設計工具中的「HTTP 要求」，以新增觸發程序卡片。 您可以定義要求主體 JSON Schema，設計工具會產生權杖，協助您透過工作流程，從手動觸發程序剖析並傳送資料。 如果您尚未準備好結構描述，請選取 `Use sample payload to generate schema` 以從範例承載中產生 JSON 結構描述。
 
 ![要求觸發程序卡片][2]
 
@@ -174,7 +174,7 @@ POST https://management.azure.com/{resourceID of your logic app}/triggers/myendp
 | 設定基本或 OAuth 驗證 |透過 API 管理 |
 | 設定 HTTP 方法 |透過 API 管理 |
 | 設定相對路徑 |透過 API 管理 |
-| 透過 `@triggerOutputs().body.Content` 參考連入主體 |透過 `@triggerOutputs().body` |
+| 透過 `@triggerOutputs().body.Content` |透過 `@triggerOutputs().body` |
 | **傳送 HTTP 回應** 動作 |按一下 [回應 HTTP 要求]  (不需要 API 應用程式) |
 
 [1]: ./media/logic-apps-http-endpoint/manualtriggerurl.png

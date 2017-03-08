@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/02/2016
+ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: d215fd31ca4652437783ad630aee532a17cda611
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -65,28 +66,28 @@ ms.openlocfilehash: d215fd31ca4652437783ad630aee532a17cda611
 請執行下列步驟，以在已加入網域的虛擬機器上安裝 Active Directory 系統管理工具。 如需有關[安裝和使用遠端伺服器管理工具的詳細資訊](https://technet.microsoft.com/library/hh831501.aspx)，請參閱 TechNet。
 
 1. 在 Azure 傳統入口網站中瀏覽至 [虛擬機器]  節點。 選取您在工作 1 建立的虛擬機器，然後按一下視窗底部命令列上的 [連線]  。
-   
+
     ![連線至 Windows 虛擬機器](./media/active-directory-domain-services-admin-guide/connect-windows-vm.png)
 2. 傳統入口網站會提示您開啟或儲存副檔名為 '.rdp' 的檔案，其可供用來連線到虛擬機器。 在檔案下載完成時按一下加以開啟。
 3. 在登入提示中，使用屬於「AAD DC 系統管理員」群組之使用者的認證。 例如，在我們的案例中，我們會使用 'bob@domainservicespreview.onmicrosoft.com'。
 4. 在 [開始] 畫面中開啟 [伺服器管理員] 。 按一下 [伺服器管理員] 視窗中央窗格內的 [新增角色及功能]  。
-   
+
     ![啟動虛擬機器上的伺服器管理員](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager.png)
 5. 在 [新增角色及功能精靈] 的 [開始之前] 頁面上，按 [下一步]。
-   
+
     ![[開始之前] 頁面](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-begin.png)
 6. 在 [安裝類型] 頁面上，保持勾選 [角色型或功能型安裝] 選項，然後按 [下一步]。
-   
+
     ![[安裝類型] 頁面](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-type.png)
 7. 在 [伺服器選擇] 頁面上，從伺服器集區中選取目前的虛擬機器，然後按 [下一步]。
-   
+
     ![[伺服器選擇] 頁面](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-server.png)
 8. 在 [伺服器角色] 頁面上，按 [下一步]。 我們會略過此頁面，因為我們沒有要在伺服器上安裝任何角色。
 9. 在 [功能] 頁面上，按一下以展開 [遠端伺服器管理工具] 節點，然後按一下以展開 [角色管理工具] 節點。 從角色管理工具的清單中選取 [AD DS 及 AD LDS 工具]  功能。
-   
+
     ![[功能] 頁面](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-ad-tools.png)
 10. 在 [確認] 頁面上，按一下 [安裝] 以在虛擬機器上安裝 AD 與 AD LDS 工具功能。 順利完成功能安裝時，按一下 [關閉] 以結束 [新增角色及功能] 精靈。
-    
+
     ![確認電子郵件](./media/active-directory-domain-services-admin-guide/install-rsat-server-manager-add-roles-confirmation.png)
 
 ## <a name="task-3---connect-to-and-explore-the-managed-domain"></a>工作 3 - 連線到受管理網域並進行瀏覽
@@ -94,23 +95,23 @@ ms.openlocfilehash: d215fd31ca4652437783ad630aee532a17cda611
 
 > [!NOTE]
 > 您必須是「AAD DC 系統管理員」群組的成員，才能管理受管理的網域。
-> 
-> 
+>
+>
 
 1. 從 [開始] 畫面中，按一下 [系統管理工具] 。 您應該會看到安裝在虛擬機器上的 AD 系統管理工具。
-   
+
     ![安裝在伺服器上的系統管理工具](./media/active-directory-domain-services-admin-guide/install-rsat-admin-tools-installed.png)
 2. 按一下 [Active Directory 管理中心] 。
-   
+
     ![Active Directory 管理中心](./media/active-directory-domain-services-admin-guide/adac-overview.png)
 3. 若要探索網域，請按一下左窗格中的網域名稱 (例如，'contoso100.com')。 請注意分別稱為「AADDC 電腦」和「AADDC 使用者」的兩個容器。
-   
+
     ![ADAC - 檢視網域](./media/active-directory-domain-services-admin-guide/adac-domain-view.png)
 4. 在稱為 [AADDC 使用者]  的容器上按一下，以查看所有屬於受管理網域的使用者和群組。 在此容器中，您應該會看到您的 Azure AD 租用戶中的使用者帳戶和群組顯示出來。 在這個範例中，請注意此容器中有 'bob' 使用者的使用者帳戶和稱為「AAD DC 系統管理員」的群組。
-   
+
     ![ADAC - 網域使用者](./media/active-directory-domain-services-admin-guide/adac-aaddc-users.png)
 5. 在稱為 [AADDC 電腦]  的容器上按一下，以查看已新增此受管理網域的電腦。 您應該會看到已加入網域之目前虛擬機器的項目。 已新增 Azure AD 網域服務受管理網域之所有電腦的電腦帳戶會儲存在此「AADDC 電腦」容器中。
-   
+
     ![ADAC - 已加入網域的電腦](./media/active-directory-domain-services-admin-guide/adac-aaddc-computers.png)
 
 <br>
@@ -119,10 +120,4 @@ ms.openlocfilehash: d215fd31ca4652437783ad630aee532a17cda611
 * [Azure AD Domain Services - 入門指南](active-directory-ds-getting-started.md)
 * [將 Windows Server 虛擬機器加入 Azure AD 網域服務受管理的網域](active-directory-ds-admin-guide-join-windows-vm.md)
 * [部署遠端伺服器管理工具](https://technet.microsoft.com/library/hh831501.aspx)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

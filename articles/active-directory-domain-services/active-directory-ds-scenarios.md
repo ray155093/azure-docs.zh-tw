@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/21/2016
+ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: 359653f29adc538a4fe2f2143e8132bdd9a9d15b
+ms.lasthandoff: 12/29/2016
 
 
 ---
@@ -82,10 +83,4 @@ Azure RemoteApp 可讓 Contoso 的系統管理員建立加入網域的集合。 
 ![Azure RemoteApp](./media/active-directory-domain-services-scenarios/azure-remoteapp.png)
 
 如需此部署案例的詳細資訊，請參閱標題為 [使用 Azure RemoteApp 和 Azure AD 網域服務隨即轉移您的工作負載](http://blogs.msdn.com/b/rds/archive/2016/01/19/lift-and-shift-your-workloads-with-azure-remoteapp-and-azure-ad-domain-services.aspx)的遠端桌面服務部落格文章。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

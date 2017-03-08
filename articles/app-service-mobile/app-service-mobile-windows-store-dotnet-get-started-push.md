@@ -4,7 +4,7 @@ description: "了解如何使用 Azure App Service Mobile Apps 與 Azure 通知�
 services: app-service\mobile,notification-hubs
 documentationcenter: windows
 author: ysxu
-manager: dwrede
+manager: erikre
 editor: 
 ms.assetid: 6de1b9d4-bd28-43e4-8db4-94cd3b187aa3
 ms.service: app-service-mobile
@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 10/12/2016
 ms.author: yuaxu
 translationtype: Human Translation
-ms.sourcegitcommit: 78976e591d2eaacb286465b1ad0926a04143cecc
-ms.openlocfilehash: 6cb3033b302e2506252707856e4ce676bf576c77
+ms.sourcegitcommit: 06e16033435ed0a37d5688055743875827d3aec2
+ms.openlocfilehash: 5e71ecc6539179efdcfa6bfc4567bddaa96a59d9
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.openlocfilehash: 6cb3033b302e2506252707856e4ce676bf576c77
 
 如果您不要使用下載的快速入門伺服器專案，將需要推播通知擴充套件。 如需詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
-## <a name="a-nameconfigure-hubaconfigure-a-notification-hub"></a><a name="configure-hub"></a>設定通知中樞
+## <a name="configure-hub"></a>設定通知中樞
 [!INCLUDE [app-service-mobile-configure-notification-hub](../../includes/app-service-mobile-configure-notification-hub.md)]
 
 ## <a name="register-your-app-for-push-notifications"></a>針對推播通知註冊應用程式
@@ -53,10 +54,10 @@ ms.openlocfilehash: 6cb3033b302e2506252707856e4ce676bf576c77
 ## <a name="configure-the-backend-to-send-push-notifications"></a>設定後端來傳送推播通知
 [!INCLUDE [app-service-mobile-configure-wns](../../includes/app-service-mobile-configure-wns.md)]
 
-## <a name="a-idupdate-serviceaupdate-the-server-to-send-push-notifications"></a><a id="update-service"></a>更新伺服器以傳送推播通知
-使用下列符合您後端專案類型的程序&mdash; [.NET 後端](#dotnet)或 [Node.js 後端](#nodejs)。
+## <a id="update-service"></a>更新伺服器以傳送推播通知
+使用下列符合您後端專案類型的程序 &mdash;[.NET 後端](#dotnet)或 [Node.js 後端](#nodejs)。
 
-### <a name="a-namedotnetanet-backend-project"></a><a name="dotnet"></a>.NET 後端專案
+### <a name="dotnet"></a>.NET 後端專案
 1. 在 Visual Studio 中，以滑鼠右鍵按一下伺服器專案並按一下 [管理 NuGet 套件]，搜尋 Microsoft.Azure.NotificationHubs，然後按一下 [安裝]。 這會安裝通知中樞用戶端程式庫。
 2. 展開 [Controllers] ，開啟 [TodoItemController.cs]，然後新增下列 using 陳述式：
 
@@ -100,7 +101,7 @@ ms.openlocfilehash: 6cb3033b302e2506252707856e4ce676bf576c77
     此程式碼會告訴通知中樞在插入新項目之後傳送推播通知。
 4. 發佈伺服器專案。
 
-### <a name="a-namenodejsanodejs-backend-project"></a><a name="nodejs"></a>Node.js 後端專案
+### <a name="nodejs"></a>Node.js 後端專案
 1. 如果您還沒這麼做，請[下載快速入門專案](app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart)或使用 [Azure 入口網站中的線上編輯器](app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor)。
 2. 在 todoitem.js 檔案中，以下列程式碼取代現有的程式碼：
 
@@ -147,7 +148,7 @@ ms.openlocfilehash: 6cb3033b302e2506252707856e4ce676bf576c77
     插入新的 todo 項目時，這會傳送包含 item.text 的 WNS 快顯通知。
 3. 當您在本機電腦上編輯檔案時，請重新發佈伺服器專案。
 
-## <a name="a-idupdate-appaadd-push-notifications-to-your-app"></a><a id="update-app"></a>將推播通知新增至應用程式
+## <a id="update-app"></a>將推播通知新增至應用程式
 接下來，您的應用程式必須在啟動時註冊推播通知。 當您已啟用驗證時，請確定使用者在嘗試註冊推播通知之前已登入。
 
 1. 開啟 **App.xaml.cs** 專案檔案，並新增下列 `using` 陳述式：
@@ -179,16 +180,16 @@ ms.openlocfilehash: 6cb3033b302e2506252707856e4ce676bf576c77
     這樣可保證在每次啟動應用程式時都會註冊存留期較短的 ChannelURI。
 4. 重建 UWP 應用程式專案。 您的應用程式現在已能夠接收快顯通知。
 
-## <a name="a-idtestatest-push-notifications-in-your-app"></a><a id="test"></a>在應用程式中測試推播通知
+## <a id="test"></a>在應用程式中測試推播通知
 [!INCLUDE [app-service-mobile-windows-universal-test-push](../../includes/app-service-mobile-windows-universal-test-push.md)]
 
-## <a name="a-idmoreanext-steps"></a><a id="more"></a>接續步驟
+## <a id="more"></a>接續步驟
 進一步了解推播通知︰
 
 * [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md#pushnotifications)  
   ：範本可讓您彈性地傳送跨平台推播和當地語系化推播。 了解如何註冊範本。
 * [診斷推播通知問題](../notification-hubs/notification-hubs-push-notification-fixer.md)  
-   通知遭到捨棄或未抵達裝置有各種原因。 本主題說明如何分析及找出推播通知失敗的根本原因。
+  通知遭到捨棄或未抵達裝置有各種原因。 本主題說明如何分析及找出推播通知失敗的根本原因。
 
 請考慮繼續進行下列其中一個教學課程：
 
@@ -200,12 +201,7 @@ ms.openlocfilehash: 6cb3033b302e2506252707856e4ce676bf576c77
 <!-- Anchors. -->
 
 <!-- URLs. -->
-[在 Azure App Service 中建立 Web 應用程式]: https://portal.azure.com/
+[Azure Portal]: https://portal.azure.com/
 
 <!-- Images. -->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

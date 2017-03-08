@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 2/21/2017
 ms.author: nisoneji
 translationtype: Human Translation
-ms.sourcegitcommit: f438db1d0129dfb0e2eaa00146147084cd8c11b6
-ms.openlocfilehash: 179e8cf928d83a3a66ed3489173e4c28a2bc9d4f
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 4e444deaa84c7f02608f4910e31f7033df51a73b
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -309,7 +309,7 @@ ASRDeploymentPlanner.exe **-Operation** GetThroughput **-Directory**  E:\vCenter
 
 **符合當時的 RPO 90%**︰如果由於寬頻價格或任何其他原因，您無法佈建符合當時所需 RPO 100% 所需的頻寬，您可以選擇佈建較低的頻寬量，以符合當時所需的 RPO 90%。 若要了解佈建此低頻寬的含意，報告提供了可預期之 RPO 違規次數和持續時間的假設分析。
 
-**達成的輸送量**︰此輸送量來自您已對 Azure 儲存體帳戶所在的 Microsoft Azure 區域執行 GetThroughput 命令的伺服器。 它會指出當您使用 Azure Site Recovery 保護相容虛擬機器時可達成的大概輸送量，前提是您的組態伺服器 / 處理序伺服器儲存體和網路特性仍與您執行此工具的伺服器相同。 [達成的輸送量] 來自您已對 Azure 儲存體帳戶所在的 Microsoft Azure 區域執行 GetThroughput 命令的伺服器。 它會指出當您使用 Azure Site Recovery 保護相容虛擬機器時可達成的大概輸送量，前提是您的組態伺服器 / 處理序伺服器儲存體和網路特性仍與您執行此工具的伺服器相同。
+**達成的輸送量**︰此輸送量來自您已對 Azure 儲存體帳戶所在的 Microsoft Azure 區域執行 GetThroughput 命令的伺服器。 它會指出當您使用 Azure Site Recovery 保護相容虛擬機器時可達成的大概輸送量，前提是您的組態伺服器 / 處理序伺服器儲存體和網路特性仍與您執行此工具的伺服器相同。    
 
 如需複寫，您應該佈建建議的頻寬，以符合當時的 RPO 100%。 即使在佈建適當頻寬之後，如果您未看到此工具所報告的達成輸送量有任何增加，請檢查下列各項︰
 

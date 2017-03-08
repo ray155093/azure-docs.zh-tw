@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/22/2016
 ms.author: robmcm;asirveda
 translationtype: Human Translation
-ms.sourcegitcommit: 304247b5ed897f39e2db29ca8a5ae9d797e27327
-ms.openlocfilehash: 473688e6610ede44e939b0b384bd8a1604bc5526
+ms.sourcegitcommit: 2687011c449715d2ce5f491c3da501f38035d631
+ms.openlocfilehash: 9c7b708c2bd923733cd034116453fcca2ada949b
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -83,7 +84,7 @@ ms.openlocfilehash: 473688e6610ede44e939b0b384bd8a1604bc5526
 2. 如果尚未從 IntelliJ 登入 Azure，系統會提示您登入 Azure 帳戶。 (如果您有多個 Azure 帳戶，登入程序期間的某些提示即使內容相同也可能會出現多次。 發生此情況時，請遵循登入指示繼續。)
    
     ![Azure 登入對話方塊][07]
-3. 在您成功登入 Azure 帳戶後，[管理訂用帳戶]  對話方塊將會顯示與您的認證相關聯的訂用帳戶清單。 (如果列出多個訂用帳戶，而您只想使用其中幾個帳戶，您可以選擇取消選取要使用的訂用帳戶。)當您選取訂用帳戶之後，按一下 [關閉] 。
+3. 在您成功登入 Azure 帳戶後，[管理訂用帳戶]  對話方塊將會顯示與您的認證相關聯的訂用帳戶清單。 (如果列出多個訂用帳戶，而您只想使用其中幾個帳戶，您可以選擇取消選取不想要使用的訂用帳戶。)當您選取訂用帳戶之後，按一下 [關閉] 。
    
     ![管理訂用帳戶][08]
 4. 當 [部署至 Azure Web 應用程式容器]  對話方塊出現時，它會顯示您先前建立的所有 Web 應用程式容器；如果您尚未建立任何容器，清單將會是空白的。
@@ -254,9 +255,4 @@ ms.openlocfilehash: 473688e6610ede44e939b0b384bd8a1604bc5526
 [16]: ./media/app-service-web-intellij-create-hello-world-web-app/16-Progress-Indicator.png
 [17]: ./media/app-service-web-intellij-create-hello-world-web-app/17-Browse-Web-App.png
 [18]: ./media/app-service-web-intellij-create-hello-world-web-app/18-Stop-Web-App.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

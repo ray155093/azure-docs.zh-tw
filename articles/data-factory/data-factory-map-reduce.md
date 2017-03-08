@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/05/2016
+ms.date: 2/24/2017
 ms.author: shlo
 translationtype: Human Translation
 ms.sourcegitcommit: 7fc30c4283a96f3202e7010828e178895d3613b6
 ms.openlocfilehash: 08245a850e3c78ce893ef18030ee09e701241d1b
+ms.lasthandoff: 12/07/2016
 
 
 ---
@@ -243,10 +244,5 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 * [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
 * [叫用 Spark 程式](data-factory-spark.md)
 * [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

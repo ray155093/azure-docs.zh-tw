@@ -16,9 +16,9 @@ ms.workload: infrastructure
 ms.date: 02/23/2017
 ms.author: rclaus
 translationtype: Human Translation
-ms.sourcegitcommit: 941e6885ac26184ee011a34968aec29b120ed7dd
-ms.openlocfilehash: 98339ecadfdd31754e422a3c42c5d9f3842b16cb
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 82d40c30c92f5da090e7ec4e2f25ead3908cc603
+ms.openlocfilehash: 4437ed8a1d32b1d56a48b88051189daab35f02ac
+ms.lasthandoff: 03/02/2017
 
 ---
 
@@ -30,7 +30,7 @@ ms.lasthandoff: 03/01/2017
 
 這個範例適用於 Bash 殼層。 如需在 Windows 上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../virtual-machines-windows-cli-options.md)。
 
-## <a name="create-vm-with-network-load-balancer"></a>建立具有網路負載平衡器的 VM
+## <a name="sample-script"></a>範例指令碼
 
 [!code-azurecli[主要](../../../cli_scripts/virtual-machine/create-vm-nlb/create-windows-vm-nlb.sh "快速建立 VM")]
 

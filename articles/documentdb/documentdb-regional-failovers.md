@@ -12,11 +12,12 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/10/2017
+ms.date: 02/09/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 888e88c3e8ede6b67b9cf26b426d73b86b2aff62
-ms.openlocfilehash: 17e9d5d8afe3b11ca5d3944158dcd6c9126ceeda
+ms.sourcegitcommit: 0921464c10d5ca3d426a535d434eab6cf02013e6
+ms.openlocfilehash: c234958f5fc1ba0dbcb727e18e733d13ad0c7e71
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -29,7 +30,11 @@ Azure DocumentDB 支援明確和原則導向的容錯移轉，可讓您控制在
 * DocumentDB 的自動容錯移轉如何運作？
 * 如何在應用程式架構中使用手動容錯移轉？
 
-## <a name="a-idconfiguremultiregionapplicationsaconfiguring-multi-region-applications"></a><a id="ConfigureMultiRegionApplications"></a>設定多區域應用程式
+您也可以在這段 Azure Friday 影片中，和 Scott Hanselman 與工程總經理 Karthik Raman 一起了解區域容錯移轉。
+
+>[!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Planet-Scale-NoSQL-with-DocumentDB/player]  
+
+## <a id="ConfigureMultiRegionApplications"></a>設定多區域應用程式
 在深入探討容錯移轉模式之前，我們會探討如何設定應用程式以發揮多區域可用性，並在區域性容錯移轉中兼具彈性。
 
 * 首先，在多個區域中部署您的應用程式
@@ -65,7 +70,7 @@ Azure DocumentDB 支援明確和原則導向的容錯移轉，可讓您控制在
 
 現在，我們來看一下 DocumentDB 服務如何透過自動容錯移轉處理區域失敗。 
 
-## <a name="a-idautomaticfailoversaautomatic-failovers"></a><a id="AutomaticFailovers"></a>自動容錯移轉
+## <a id="AutomaticFailovers"></a>自動容錯移轉
 發生 Azure 區域中斷這類罕見事件時，DocumentDB 會自動觸發受影響區域中出現的所有 DocumentDB 帳戶的容錯移轉。 
 
 **如果讀取區域中斷會發生什麼事？**
@@ -92,7 +97,7 @@ DocumentDB 帳戶的讀取區域若在其中一個受影響區域中，會自動
 * 在中斷期間，您可以與目前寫入區域中的可用資料比較，藉此查詢此區域來計算任何未複寫的寫入。 根據您的應用程式需求，您可以執行合併和/或衝突解決，並將最後一組變更寫回目前的寫入區域。 
 * 完成合併變更後，您可以在 DocumentDB 帳戶中移除再重新新增區域，將受影響的區域帶回線上。 一旦將區域新增回來，您就可以透過 Azure 入口網站或[以程式設計方式](https://docs.microsoft.com/rest/api/documentdbresourceprovider/databaseaccounts#DatabaseAccounts_CreateOrUpdate)執行手動容錯移轉，將它設回寫入區域。
 
-## <a name="a-idmanualfailoversamanual-failovers"></a><a id="ManualFailovers"></a>手動容錯移轉
+## <a id="ManualFailovers"></a>手動容錯移轉
 
 除了自動容錯移轉，可以手動將 DocumentDB 帳戶的目前寫入區域動態變更為現有讀取區域之一。 手動容錯移轉可透過 Azure 入口網站或[以程式設計方式](https://docs.microsoft.com/rest/api/documentdbresourceprovider/databaseaccounts#DatabaseAccounts_CreateOrUpdate)起始。 
 
@@ -110,15 +115,10 @@ DocumentDB 帳戶的讀取區域若在其中一個受影響區域中，會自動
 
 在本文中，我們看了在 Azure DocumentDB 中手動和自動容錯移轉如何運作，以及如何將 DocumentDB 帳戶和應用程式設定為可全域使用。 使用 Azure DocumentDB 的全域複寫支援，可以改善端對端延遲，並確保其即使是在區域失敗時仍有高可用性。 
 
-## <a name="a-idnextstepsanext-steps"></a><a id="NextSteps"></a>後續步驟
+## <a id="NextSteps"></a>後續步驟
 * 了解 DocumentDB 如何支援[全域發佈](documentdb-distribute-data-globally.md)
 * 了解 [DocumentDB 的全域一致性](documentdb-consistency-levels.md)
 * 使用 [Azure DocumentDB SDK](documentdb-developing-with-multiple-regions.md) 進行多區域開發
 * 了解如何使用 Azure DocumentDB 建置[多區域寫入器架構](documentdb-multi-region-writers.md)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

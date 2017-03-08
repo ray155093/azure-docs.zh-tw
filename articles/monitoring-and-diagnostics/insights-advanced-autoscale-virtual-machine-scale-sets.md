@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/30/2016
+ms.date: 02/22/2016
 ms.author: ashwink
 translationtype: Human Translation
-ms.sourcegitcommit: 8c9c9dea1248205aa6303e11e1166d5d38786c1b
-ms.openlocfilehash: 0e0fe444ef6eab96b134ad042d41a54b436f3aec
+ms.sourcegitcommit: b521c3bb99c9a6980df46eacec4e1ebe72fb01a1
+ms.openlocfilehash: 00f6a7af021029d1795071c930e05f200578fa14
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -243,6 +244,8 @@ ms.openlocfilehash: 0e0fe444ef6eab96b134ad042d41a54b436f3aec
 ## <a name="next-steps"></a>後續步驟
 請使用下列連結來深入了解自動調整。
 
+[針對使用虛擬機器擴展集的自動調整進行疑難排解](../virtual-machine-scale-sets/virtual-machine-scale-sets-troubleshoot.md)
+
 [自動調整的常用計量](insights-autoscale-common-metrics.md)
 
 [Azure 自動調整的最佳作法](insights-autoscale-best-practices.md)
@@ -252,9 +255,4 @@ ms.openlocfilehash: 0e0fe444ef6eab96b134ad042d41a54b436f3aec
 [使用 CLI 管理自動調整](insights-cli-samples.md#autoscale)
 
 [針對自動調整設定 Webhook 與電子郵件通知](insights-autoscale-to-webhook-email.md)
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 
