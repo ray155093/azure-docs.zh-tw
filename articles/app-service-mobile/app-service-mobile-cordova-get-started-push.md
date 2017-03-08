@@ -17,6 +17,7 @@ ms.author: yuaxu
 translationtype: Human Translation
 ms.sourcegitcommit: 47063276d7bb6bb3b3aac0cca4290dfbea5488f7
 ms.openlocfilehash: 99b23de962f7ba338fcf3f9b2e96d58c3dcbe7bc
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.openlocfilehash: 99b23de962f7ba338fcf3f9b2e96d58c3dcbe7bc
 
 如果您不要使用下載的快速入門伺服器專案，則需要推播通知擴充套件。 如需詳細資訊，請參閱[使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK][1]。
 
-## <a name="a-nameprerequisitesaprerequisites"></a><a name="prerequisites"></a>必要條件
+## <a name="prerequisites"></a>必要條件
 本教學課程涵蓋使用 Visual Studio 2015 開發且在 Google Android 模擬器、Android 裝置、Windows 裝置和 iOS 裝置上執行的 Apache Cordova 應用程式。
 
 若要完成本教學課程，您需要：
@@ -41,7 +42,7 @@ ms.openlocfilehash: 99b23de962f7ba338fcf3f9b2e96d58c3dcbe7bc
 * (iOS) [Apple Developer Program 成員資格][7]和 iOS 裝置 (iOS 模擬器不支援推播)。
 * (Windows) [Windows 市集開發人員帳戶][8]和 Windows 10 裝置。
 
-## <a name="a-nameconfigure-hubaconfigure-a-notification-hub"></a><a name="configure-hub"></a>設定通知中樞
+## <a name="configure-hub"></a>設定通知中樞
 [!INCLUDE [app-service-mobile-configure-notification-hub](../../includes/app-service-mobile-configure-notification-hub.md)]
 
 [觀看示範本節步驟的視訊][9]
@@ -49,7 +50,7 @@ ms.openlocfilehash: 99b23de962f7ba338fcf3f9b2e96d58c3dcbe7bc
 ## <a name="update-the-server-project"></a>更新伺服器專案
 [!INCLUDE [app-service-mobile-update-server-project-for-push-template](../../includes/app-service-mobile-update-server-project-for-push-template.md)]
 
-## <a name="a-nameadd-push-to-appamodify-your-cordova-app"></a><a name="add-push-to-app"></a>修改您的 Cordova 應用程式
+## <a name="add-push-to-app"></a>修改您的 Cordova 應用程式
 安裝 Cordova 推播外掛程式，還有平台特定的任何推播服務，確保您的 Apache Cordova 應用程式專案能夠處理推播通知。
 
 #### <a name="update-the-cordova-version-in-your-project"></a>更新您的專案中的 Cordova 版本。
@@ -160,12 +161,12 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。  這些
 ## <a name="optional-configure-and-run-the-app-on-android"></a>(選擇性) 在 Android 上設定和執行應用程式
 完成本節可以為 Android 啟用推播通知。
 
-#### <a name="a-nameenable-gcmaenable-firebase-cloud-messaging"></a><a name="enable-gcm"></a>啟用 Firebase 雲端傳訊
+#### <a name="enable-gcm"></a>啟用 Firebase 雲端傳訊
 因為我們一開始是以 Google Android 平台為目標，所以您必須啟用 Firebase 雲端通訊。
 
 [!INCLUDE [notification-hubs-enable-firebase-cloud-messaging](../../includes/notification-hubs-enable-firebase-cloud-messaging.md)]
 
-#### <a name="a-nameconfigure-backendaconfigure-the-mobile-app-backend-to-send-push-requests-using-fcm"></a><a name="configure-backend"></a>設定行動應用程式後端以使用 FCM 傳送推送要求
+#### <a name="configure-backend"></a>設定行動應用程式後端以使用 FCM 傳送推送要求
 [!INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push.md)]
 
 #### <a name="configure-your-cordova-app-for-android"></a>針對 Android 設定您的 Cordova 應用程式
@@ -183,7 +184,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。  這些
             wns: {}
         });
 
-#### <a name="a-nameconfigure-deviceaconfigure-your-android-device-for-usb-debugging"></a><a name="configure-device"></a>設定 Android 裝置進行 USB 偵錯
+#### <a name="configure-device"></a>設定 Android 裝置進行 USB 偵錯
 在您可以將應用程式部署到您的 Android 裝置之前，您需要啟用 USB 偵錯。  在您的 Android 手機上執行下列步驟：
 
 1. 移至 [設定] > [關於手機]，然後點選 [版本號碼]，直到啟用開發人員模式為止 (大約七次)。
@@ -265,7 +266,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。  這些
 5. 重建您的專案。
 
 ##### <a name="test-push-notifications-in-your-ios-app"></a>在 iOS 應用程式中測試推播通知
-1. 在 Visual Studio 中，確定已選取 **iOS** 作為部署目標，然後選擇 [裝置]****
+1. 在 Visual Studio 中，確定已選取 **iOS** 作為部署目標，然後選擇 [裝置]
    ，以便在連接的 iOS 裝置上執行。
 
     您可以在使用 iTunes 連線至您的 PC 的 iOS 裝置上執行。 iOS 模擬器不支援推播通知。
@@ -327,7 +328,7 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。  這些
 
 確認在加入項目時收到通知。
 
-## <a name="a-namenext-stepsanext-steps"></a><a name="next-steps"></a>後續步驟
+## <a name="next-steps"></a>後續步驟
 * 請參閱[通知中樞][17]，以了解推播通知的相關資訊。
 * 繼續教學課程，在 Apache Cordova 應用程式中[新增驗證][14] (如果尚未這麼做)。
 
@@ -362,9 +363,4 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。  這些
 [19]: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/INSTALLATION.md
 [20]: https://www.mobizen.com/
 [21]: http://taco.visualstudio.com/en-us/docs/build_ios_cloud/
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
