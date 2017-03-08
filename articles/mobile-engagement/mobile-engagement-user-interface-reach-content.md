@@ -76,7 +76,7 @@ ms.lasthandoff: 03/01/2017
   * 範例：geo:0,0?q=starbucks,paris
 * **僅限 iOS 的動作**
   * 下載 App Store 上的應用程式
-  * http://itunes.apple.com/[國家/地區]/app/[應用程式名稱]/id[應用程式識別碼]?mt=8 
+  * http://itunes.apple.com/[country]/app/[app name]/id[app id]?mt=8 
   * 範例︰http://itunes.apple.com/fr/app/briquet-virtuel/id430154748?mt=8
   * Windows 動作
   * 開啟網頁
