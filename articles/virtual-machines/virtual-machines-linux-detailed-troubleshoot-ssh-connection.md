@@ -14,11 +14,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: support-article
-ms.date: 11/28/2016
+ms.date: 03/07/2017
 ms.author: iainfou
 translationtype: Human Translation
 ms.sourcegitcommit: 2df9b83132711e199b58fa92841a3dca74c7282a
 ms.openlocfilehash: 0164ad801b11a6c6124df8106bd7b71b737f81f1
+ms.lasthandoff: 11/30/2016
 
 
 ---
@@ -143,10 +144,5 @@ SSH 用戶端無法連線至 VM 上的 SSH 服務，可能涉及許多原因。 
 
 ## <a name="additional-resources"></a>其他資源
 如需疑難排解應用程式存取的詳細資訊，請參閱[針對存取在 Azure 虛擬機器上執行的應用程式進行疑難排解](virtual-machines-linux-troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-
-<!--HONumber=Nov16_HO5-->
 
 

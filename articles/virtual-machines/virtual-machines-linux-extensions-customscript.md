@@ -18,6 +18,7 @@ ms.author: nepeters
 translationtype: Human Translation
 ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
 ms.openlocfilehash: 09c1ace33461eff30fbd4b277e1397934fe5a98a
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -207,7 +208,7 @@ azure vm extension set myResourceGroup myVM CustomScript Microsoft.Azure.Extensi
 「Azure 指令碼擴充功能」會產生一個記錄檔，位置如下。
 
 ```bash
-/var/log/azure/customscript/handler.log
+/var/log/azure/custom-script/handler.log
 ```
 
 您也可以使用 Azure CLI 來擷取「自訂指令碼擴充功能」的執行狀態。
@@ -230,10 +231,5 @@ info:    vm extension get command OK
 
 ## <a name="next-steps"></a>後續步驟
 如需有關其他「VM 指令碼擴充功能」的資訊，請參閱 [適用於 Linux 的 Azure 指令碼擴充功能概觀](virtual-machines-linux-extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

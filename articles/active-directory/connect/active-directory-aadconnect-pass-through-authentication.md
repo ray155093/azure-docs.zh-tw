@@ -17,6 +17,7 @@ ms.author: billmath
 translationtype: Human Translation
 ms.sourcegitcommit: 67b832253619afe789a4dfdb95893e8c0ae62bee
 ms.openlocfilehash: 17890fddf948ddc0e89a9107ac5fe65223cd05e1
+ms.lasthandoff: 01/30/2017
 
 ---
 
@@ -40,6 +41,7 @@ Azure AD 傳遞驗證能為這些客戶提供簡易的解決方案。 它能確�
 >如果樹系之間彼此信任且名稱尾碼路由已正確設定，就能支援多樹系環境。
 
 ## <a name="supported-clients-in-the-preview"></a>預覽版本中支援的用戶端
+
 對傳遞驗證的支援，是透過支援[新式驗證](https://aka.ms/modernauthga)的網頁瀏覽器型用戶端和 Office 用戶端來提供。 對於像是舊版 Office 用戶端和 Exchange Active Sync (也就是行動裝置上的原生電子郵件用戶端) 這種不支援的用戶端，建議客戶使用和新式驗證對等的功能。 這些用戶端不只能夠允許使用傳遞驗證，也允許套用條件式存取，例如 Multi-Factor Authentication。
 
 對於使用 Windows 10 並已加入 Azure AD 的客戶，目前不支援傳遞驗證。 但是除了舊版用戶端之外，客戶也可以利用密碼同步處理做為 Windows 10 的自動遞補。
@@ -154,9 +156,4 @@ Azure AD 登入畫面上報告的其他錯誤會在下面和適當的解決步�
 |AADSTS80004|傳遞給連接器的使用者名稱無效|請確定使用者嘗試用來登入的使用者名稱正確無誤。
 |AADSTS80005|驗證發生無法預期的 WebException|此錯誤為暫時性問題。 重試要求。 如果持續發生失敗，請連絡 Microsoft 支援服務。
 |AADSTS80007|和 Active Directory 通訊時發生錯誤|請檢查連接器記錄檔以了解詳細資訊，並確認 Active Directory 如預期般運作。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 
