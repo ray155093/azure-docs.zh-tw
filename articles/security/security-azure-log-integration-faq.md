@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 01/07/2017
 ms.author: TomSh
 translationtype: Human Translation
-ms.sourcegitcommit: f7589fa62dcfedc6f99439f453a40f999ff8d845
-ms.openlocfilehash: aa1e59a38b37c5e78b61ad7fe10f7c8461b7fe1d
+ms.sourcegitcommit: d31d4c390d5e03c8b206284c3ae75defed2a38af
+ms.openlocfilehash: 83bedb42e8e685f5ea65e160ab7bfe128236ef82
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -49,7 +50,6 @@ ms.openlocfilehash: aa1e59a38b37c5e78b61ad7fe10f7c8461b7fe1d
 在新增來源時將 **subscriptionid** 附加到易記名稱的後面。
 
     Azlog source add <sourcefriendlyname>.<subscription id> <StorageName> <StorageKey>  
-
 事件 XML 具有如下所示的中繼資料，包括訂用帳戶識別碼。
 
 ![事件 XML][1]
@@ -104,13 +104,9 @@ Error:
 
 完成變更之後，請檢查儲存體帳戶，以確保會收集正確的事件。
 
-如果您有關於「Azure 記錄整合」的問題，請傳送電子郵件給 [AzSIEMteam@microsoft.com](mailto:AzSIEMteam@microsoft.com)
+如果您在安裝和設定期間遇到任何問題，請開啟[支援要求](https://docs.microsoft.com/en-us/azure/azure-supportability/how-to-create-azure-support-request)，選取「記錄整合」作為您要求支援的服務。
+
 
 <!--Image references-->
 [1]: ./media/security-azure-log-integration-faq/event-xml.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

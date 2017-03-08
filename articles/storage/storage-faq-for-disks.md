@@ -3,8 +3,8 @@ title: "關於 Azure IaaS VM 磁碟的常見問題集 (FAQ) | Microsoft Docs"
 description: "關於 Azure IaaS VM 磁碟和進階磁碟 (受控和非受控) 的常見問題集"
 services: storage
 documentationcenter: 
-author: ramankumarlive
-manager: aungoo-msft
+author: robinsh
+manager: timlt
 editor: tysonn
 ms.assetid: e2a20625-6224-4187-8401-abadc8f1de91
 ms.service: storage
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
-ms.author: ramankum
+ms.date: 02/23/2017
+ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 0746c954e669bd739b8ecfcddaf287cb5172877f
-ms.openlocfilehash: 95b627738726f3c108fff38bfeda413303b2c718
+ms.sourcegitcommit: 61610078ad5cefd513fdb758aec45d7489704817
+ms.openlocfilehash: b4cb40d81613c16558be1e0e2c10dbfa0265a6b7
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -120,6 +121,48 @@ ms.openlocfilehash: 95b627738726f3c108fff38bfeda413303b2c718
 
 Azure 受控磁碟目前僅支援本地備援儲存體 (LRS)。
 
+## <a name="managed-disks-and-port-8443"></a>受控磁碟和通訊埠 8443
+
+**為什麼對於使用 Azure 受控磁碟的 VM 客戶必須解鎖通訊埠 8443 上的輸出流量？**
+
+Azure VM 代理程式會使用通訊埠 8443 向 Azure 平台報告每個 VM 擴充的狀態。 若是此通訊埠沒有解鎖，VM 代理程式就無法報告任何 VM 擴充的狀態。 如需有關 VM 代理程式的詳細資訊，請參閱 [Azure 虛擬機器代理程式概觀](../virtual-machines/virtual-machines-windows-agent-user-guide.md)。
+
+**若 VM 部署了擴充功能而通訊埠並未解除封鎖，會發生什麼事？**
+
+部署會發生錯誤。 
+
+**若 VM 沒有部署擴充功能且通訊埠沒有解除封鎖，會發生什麼事？**
+
+部署不會有影響。 
+
+**若擴充功能安裝在已佈建且正在執行的 VM 上，且該 VM 沒有解鎖通訊埠 8443，會發生什麼事？**
+
+擴充功能將無法成功部署。 擴充功能會狀態不明。 
+
+**若使用 ARM 範本來佈建多個 VM 且通訊埠 8443 為封鎖 (一部 VM 具有擴充功能且第二部 VM 相依於第一部 VM)，會發生什麼事？**
+
+第一部 VM 會顯示為部署失敗，因為擴充功能並未成功部署。 第二部 VM 將不會部署。 
+
+**通訊埠需解除封鎖的此項需求會套用到所有的 VM 擴充嗎？**
+
+是。
+
+**通訊埠 8443 上輸入和輸出的連線都需要解除封鎖嗎？**
+
+不可以。 只有通訊埠 8443 上的輸出連線必須解除封鎖。 
+
+**整個 VM 存留期都必須解除通訊埠 8443 上輸出連線的封鎖嗎？**
+
+是。
+
+**解除此通訊埠的封鎖會影響 VM 效能嗎？**
+
+不可以。
+
+**是否預計何時可修正此問題，之後就不再需要解鎖通訊埠 8443？**
+
+是，預計在 2017 年 5 月底。
+
 ## <a name="premium-disks--both-managed-and-unmanaged"></a>進階磁碟 – 受控和非受控
 
 **如果 VM 使用的大小系列支援進階儲存體，例如 DSv2，我可以同時附加進階和標準資料磁碟嗎？** 
@@ -151,8 +194,3 @@ DS 系列的快取和本機 SSD 合併限制是每個核心 4000 IOPS，以及�
 如果這裡未列出您的問題，請告訴我們，我們將協助您找到答案。 您可以在本文結尾處的意見欄，或在 MSDN [Azure 儲存體論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)，張貼有關本文的問題，與 Azure 儲存體小組和其他社群成員一起討論。
 
 若要提出功能要求，請將要求和想法提交到 [Azure 儲存體意見反應論壇](https://feedback.azure.com/forums/217298-storage)。
-
-
-<!--HONumber=Feb17_HO2-->
-
-

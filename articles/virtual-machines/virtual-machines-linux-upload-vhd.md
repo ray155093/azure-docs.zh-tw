@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 2.0 (預覽) 上傳自訂 Linux 磁碟 | Microsoft Docs"
-description: "使用 Resource Manager 部署模型與 Azure CLI 2.0 (預覽) 來建立虛擬硬碟 (VHD) 並上傳至 Azure"
+title: "使用 Azure CLI 2.0 上傳自訂 Linux 磁碟 | Microsoft Docs"
+description: "使用 Resource Manager 部署模型和 Azure CLI 2.0 來建立虛擬硬碟 (VHD) 並上傳至 Azure"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -16,26 +16,19 @@ ms.topic: article
 ms.date: 02/02/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 25ca54a6514b281417ac71a89dac167c94137b18
-ms.openlocfilehash: bbb9a2cd2123a29507f21c11b536ae81368cf8a7
+ms.sourcegitcommit: 374b2601857b3983bcd7b2f2e11d22b187fe7105
+ms.openlocfilehash: 732ebaaf5bf16c02cfc2185d9e7138daf74c71dd
+ms.lasthandoff: 02/27/2017
 
 
 ---
-# <a name="upload-and-create-a-linux-vm-from-custom-disk-by-using-the-azure-cli-20-preview"></a>使用 Azure CLI 2.0 (預覽) 從自訂磁碟上傳並建立 Linux VM
-本文說明如何使用 Resource Manager 部署模型，將虛擬硬碟 (VHD) 上傳至 Azure，並從這個自訂磁碟建立 Linux VM。 這項功能可讓您安裝和設定 Linux 散發版本以符合您的需求，然後使用該 VHD 快速建立 Azure 虛擬機器 (VM)。
-
-
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
-您可以使用下列其中一個 CLI 版本來完成工作︰
-
-- [Azure CLI 1.0](virtual-machines-linux-upload-vhd-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0 (預覽)](#quick-commands) - 適用於資源管理部署模型的新一代 CLI (本文章)
-
+# <a name="upload-and-create-a-linux-vm-from-custom-disk-with-the-azure-cli-20"></a>使用 Azure CLI 2.0 從自訂磁碟上傳並建立 Linux VM
+本文說明如何使用 Azure CLI 2.0，將虛擬硬碟 (VHD) 上傳至 Azure，並從這個自訂磁碟建立 Linux VM。 您也可以使用 [Azure CLI 1.0](virtual-machines-linux-upload-vhd-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。 這項功能可讓您安裝和設定 Linux 散發版本以符合您的需求，然後使用該 VHD 快速建立 Azure 虛擬機器 (VM)。
 
 ## <a name="quick-commands"></a>快速命令
 如果您需要快速完成作業，下列章節詳細說明將 VHD 上傳至 Azure 的基本命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](#requirements)。
 
-請確定您已安裝最新的 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
+請確定您已安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`mystorageaccount` 和 `mydisks`。
 
@@ -100,9 +93,9 @@ myUMDiskFromVHD    https://vhdstoragezw9.blob.core.windows.net/system/Microsoft.
 
 ```azurecli
 az vm create --resource-group myResourceGroup --location westus \
-    --name myVM --storage-account mystorageaccount --os-type linux \
+    --name myVM --os-type linux \
     --admin-username azureuser --ssh-key-value ~/.ssh/id_rsa.pub \
-    --image https://vhdstoragezw9.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/my_image-osDisk.vhd
+    --attach-os-disk https://vhdstoragezw9.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/my_image-osDisk.vhd
 ```
 
 ### <a name="unmanaged-disks"></a>非受控磁碟
@@ -112,7 +105,8 @@ az vm create --resource-group myResourceGroup --location westus \
 az vm create --resource-group myResourceGroup --location westus \
     --name myVM --storage-account mystorageaccount --os-type linux \
     --admin-username azureuser --ssh-key-value ~/.ssh/id_rsa.pub \
-    --image https://mystorageaccount.blob.core.windows.net/mydisk/myDisks.vhd
+    --image https://mystorageaccount.blob.core.windows.net/mydisk/myDisks.vhd \
+    --use-unmanaged-disk
 ```
 
 目的地儲存體帳戶必須與您上傳虛擬磁碟的目的地帳戶相同。 您也需要指定或依據提示回答 **az vm create** 命令所需的所有其他參數，例如虛擬網路、公用 IP 位址、使用者名稱及 SSH 金鑰。 您可以深入了解[可用的 CLI Resource Manager 參數](azure-cli-arm-commands.md#azure-vm-commands-to-manage-your-azure-virtual-machines)。
@@ -133,7 +127,7 @@ az vm create --resource-group myResourceGroup --location westus \
   * 建立儲存體帳戶和容器來存放您的自訂磁碟和所建立的 VM
   * 建立所有 VM 之後，您即可放心地刪除您的磁碟
 
-請確定您已安裝最新的 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
+請確定您已安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`mystorageaccount` 和 `mydisks`。
 
@@ -221,9 +215,9 @@ az storage blob upload --account-name mystorageaccount \
 ```
 
 ## <a name="create-vm-from-custom-disk"></a>從自訂映像建立磁碟
-同樣地，您可以使用 Azure 受控磁碟或非受控磁碟來建立 VM。 針對這兩種類型，建立 VM 時，請指定受控或未受控磁碟的 URI。 對於非受控磁碟，請確保目的地儲存體帳戶與儲存您自訂磁碟的儲存體帳戶相符。 您可以使用 Azure 2.0 (預覽) 或 Resource Manager JSON 範本來建立 VM。
+同樣地，您可以使用 Azure 受控磁碟或非受控磁碟來建立 VM。 針對這兩種類型，建立 VM 時，請指定受控或未受控磁碟的 URI。 對於非受控磁碟，請確保目的地儲存體帳戶與儲存您自訂磁碟的儲存體帳戶相符。 您可以使用 Azure 2.0 或 Resource Manager JSON 範本來建立 VM。
 
-### <a name="azure-cli-20-preview---azure-managed-disks"></a>Azure CLI 2.0 (預覽) - Azure 受控磁碟
+### <a name="azure-cli-20---azure-managed-disks"></a>Azure CLI 2.0 - Azure 受控磁碟
 若要從 VHD 建立 VM，請先使用 [az disk create](/cli/azure/disk/create) 將 VHD 轉換為受控磁碟。 下列範例會從您上傳至具名儲存體帳戶和容器的 VHD 建立名為 `myManagedDisk` 的受控磁碟：
 
 ```azurecli
@@ -250,12 +244,12 @@ myUMDiskFromVHD    https://vhdstoragezw9.blob.core.windows.net/system/Microsoft.
 
 ```azurecli
 az vm create --resource-group myResourceGroup --location westus \
-    --name myVM --storage-account mystorageaccount --os-type linux \
+    --name myVM --os-type linux \
     --admin-username azureuser --ssh-key-value ~/.ssh/id_rsa.pub \
-    --image https://vhdstoragezw9.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/my_image-osDisk.vhd
+    --attach-os-disk https://vhdstoragezw9.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/my_image-osDisk.vhd
 ```
 
-### <a name="azure-20-preview---unmanaged-disks"></a>Azure 2.0 (預覽) - 未受控磁碟
+### <a name="azure-20---unmanaged-disks"></a>Azure 2.0 - 非受控磁碟
 若要使用未受控磁碟來建立 VM，請使用 [az vm create](/cli/azure/vm#create) 指定磁碟的 URI (`--image`)。 下列範例會使用先前上傳的虛擬磁碟來建立名為 `myVM` 的 VM：
 
 您需搭配 [az vm create](/cli/azure/vm#create) 指定 `--image` 參數，以指向您的自訂磁碟。 請確保 `--storage-account` 與儲存您自訂磁碟的儲存體帳戶相符。 您不需使用與自訂磁碟相同的容器來儲存您的 VM。 上傳您的自訂磁碟之前，請確定會使用與先前步驟中相同的方式來建立任何額外的容器。
@@ -266,7 +260,8 @@ az vm create --resource-group myResourceGroup --location westus \
 az vm create --resource-group myResourceGroup --location westus \
     --name myVM --storage-account mystorageaccount --os-type linux \
     --admin-username azureuser --ssh-key-value ~/.ssh/id_rsa.pub \
-    --image https://mystorageaccount.blob.core.windows.net/mydisks/myDisk.vhd
+    --image https://mystorageaccount.blob.core.windows.net/mydisks/myDisk.vhd \
+    --use-unmanaged-disk
 ```
 
 您仍需指定或依據提示回答 **az vm create** 命令所需的所有其他參數，例如使用者名稱及 SSH 金鑰。
@@ -312,10 +307,5 @@ az group deployment create --resource-group myNewResourceGroup \
 
 ## <a name="next-steps"></a>後續步驟
 在您備妥並上傳自訂虛擬磁碟之後，您可以深入了解如何 [使用 Resource Manager 和範本](../azure-resource-manager/resource-group-overview.md)。 您也可以 [將資料磁碟新增](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 至您的新 VM。 如果您需要存取在您的 VM 上執行的應用程式，請務必 [開啟連接埠和端點](virtual-machines-linux-nsg-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

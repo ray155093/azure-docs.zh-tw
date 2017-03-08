@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 02/28/2017
 ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: bc97472a07ac4c27c60fbe2cb803f2360a3362c4
-ms.openlocfilehash: 7faa219c7c21c768419f6c5e98712a0f0f471924
+ms.sourcegitcommit: af3ba5a4d1bd457f19038b9917ce55920e5e882b
+ms.openlocfilehash: 7d97e0f8be183c8858520d795ac28b7ad63a6dae
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -50,12 +51,12 @@ Install-Package wastorage
 在您要使用 Azure 儲存體 API 來存取檔案的 C++ 檔案頂端，新增下列 include 陳述式：
 
 ```cpp
-#include "was/storage_account.h"
-#include "was/file.h"
+#include <was/storage_account.h>
+#include <was/file.h>
 ```
 
 ## <a name="set-up-an-azure-storage-connection-string"></a>設定 Azure 儲存體連接字串
-若要使用檔案儲存體，您必須連接到您的 Azure 儲存體帳戶。 第一個步驟是設定連接字串，我們會用來連接到您的儲存體帳戶。 讓我們定義靜態變數以便進行。
+若要使用檔案儲存體，您必須連接到您的 Azure 儲存體帳戶。 第一個步驟是設定連接字串，我們將用來連線至您的儲存體帳戶。 讓我們定義靜態變數以便進行。
 
 ```cpp
 // Define the connection-string with your values.
@@ -176,7 +177,7 @@ for (auto it = directory.list_files_and_directories(); it != end_of_results; ++i
 ## <a name="how-to-download-a-file"></a>如何：下載檔案
 若要下載檔案，請先擷取檔案參考，然後呼叫 **download_to_stream** 方法將檔案內容傳輸到您可接著保留在本機檔案的串流物件。 或者，您可以使用 **download_to_file** 方法，將檔案內容下載到本機檔案。 您可以使用 **download_text** 方法，將檔案內容當成文字字串下載。
 
-下列範例使用 **download_to_stream** 和 **download_text** 方法，示範如何下載先前幾節所建立的檔案。
+下列範例使用 **download_to_stream** 和 **download_text** 方法，示範如何下載前幾節中所建立的檔案。
 
 ```cpp
 // Download as text
@@ -354,12 +355,8 @@ if (share.exists())
 如需深入了解 Azure 儲存體，請探索這些資源：
 
 * [Storage Client Library for C++](https://github.com/Azure/azure-storage-cpp)
+* [Azure 儲存體檔案服務的 C++ 範例] (https://github.com/Azure-Samples/storage-file-cpp-getting-started)
 * [Azure 儲存體總管](http://go.microsoft.com/fwlink/?LinkID=822673&clcid=0x409)
 * [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

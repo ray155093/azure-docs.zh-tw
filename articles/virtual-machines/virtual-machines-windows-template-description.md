@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 01/04/2017
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 26c58ae4c509cb768807875ecdf96e9a24d6a472
-ms.openlocfilehash: 5c43e6c646928ef17e1bf2e5b9bce90f9038d5d0
+ms.sourcegitcommit: debdb8a16c8cfd6a137bd2a7c3b82cfdbedb0d8c
+ms.openlocfilehash: 9f3923092e0731b6bc75e9f28d152b1f50ca0848
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -173,7 +174,7 @@ ms.openlocfilehash: 5c43e6c646928ef17e1bf2e5b9bce90f9038d5d0
 
 - REST API - [列出所有資源提供者](https://docs.microsoft.com/rest/api/resources/providers#Providers_List)
 - PowerShell - [Get-AzureRmResourceProvider](https://docs.microsoft.com/powershell/resourcemanager/Azurerm.Resources/v3.1.0/Get-AzureRmResourceProvider?redirectedfrom=msdn)
-- Azure CLI 2.0 (預覽) - [az 提供者顯示](https://docs.microsoft.com/cli/azure/provider#show)
+- Azure CLI 2.0 - [az 提供者顯示](https://docs.microsoft.com/cli/azure/provider#show)
 
 ## <a name="parameters-and-variables"></a>參數和變數
 
@@ -481,7 +482,7 @@ Start.ps1 指令碼可以完成許多組態工作。 例如，範例中新增至
 
 ![取得擴充功能狀態](./media/virtual-machines-windows-template-description/virtual-machines-show-extensions.png)
 
-您也可以使用 **Get-AzureRmVMExtension** PowerShell 命令、**vm extension get** Azure CLI 2.0 (預覽) 命令或 **Get extension information** REST API 取得擴充功能資訊。
+您也可以使用 **Get-AzureRmVMExtension** PowerShell 命令、**vm extension get** Azure CLI 2.0 命令或 **Get extension information** REST API 取得擴充功能資訊。
 
 ## <a name="deployments"></a>部署
 
@@ -498,8 +499,3 @@ Start.ps1 指令碼可以完成許多組態工作。 例如，範例中新增至
 - 使用[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)來建立專屬範本。
 - 部署您使用[利用 Resource Manager 範本搭配 Azure PowerShell 建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md)建立的範本。
 - 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md)，以了解如何管理您建立的 VM。
-
-
-<!--HONumber=Feb17_HO3-->
-
-

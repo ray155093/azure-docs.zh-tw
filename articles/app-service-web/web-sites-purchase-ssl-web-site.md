@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 09/19/2016
 ms.author: apurvajo
 translationtype: Human Translation
-ms.sourcegitcommit: a1b492b7884deb2d0d4f255af0737e1633606384
-ms.openlocfilehash: 0a016d88b8d7a800bf726e4f582deeaaf3bc6ad6
+ms.sourcegitcommit: 3629280101a6c8c53dacf9f80c09becf1db53f03
+ms.openlocfilehash: e4331c6d5a07e6450c1fdde43d4c226e9a06de54
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -36,7 +37,7 @@ ms.openlocfilehash: 0a016d88b8d7a800bf726e4f582deeaaf3bc6ad6
 > 
 > 
 
-## <a name="a-namebkmkoverviewaoverview"></a><a name="bkmk_Overview"></a>概觀
+## <a name="bkmk_Overview"></a>概觀
 > [!NOTE]
 > 請不要嘗試使用沒有與作用中信用卡相關聯的訂用帳戶購買 SSL 憑證。 這可能會導致您的訂用帳戶被停用。 
 > 
@@ -47,7 +48,7 @@ ms.openlocfilehash: 0a016d88b8d7a800bf726e4f582deeaaf3bc6ad6
 
 在要求 SSL 憑證之前，您必須先決定有哪些網域名稱要由該憑證保護。 這將決定您必須取得的憑證類型。 如果您只需要保護單一網域名稱 (如 contoso.com 或 www.contoso.com)，則標準 (基本) 憑證就已足夠。 如果您需要保護多個網域名稱 (如 contoso.com、www.contoso.com 與 mail.contoso.com)，則您可以取得**[萬用字元憑證](http://en.wikipedia.org/wiki/Wildcard_certificate)**
 
-## <a name="a-namebkmkpurchasecertastep-0-place-an-ssl-certificate-order"></a><a name="bkmk_purchasecert"></a>步驟 0：訂購 SSL 憑證
+## <a name="bkmk_purchasecert"></a>步驟 0：訂購 SSL 憑證
 在此步驟中，您將學習如何訂購您選擇的 SSL 憑證。
 
 1. 在 **[Azure 入口網站](https://portal.azure.com/)**中按一下 [瀏覽]、在搜尋列中輸入「App Service 憑證」、從結果中選取 [App Service 憑證]，然後按一下 [新增]。 
@@ -83,7 +84,7 @@ ms.openlocfilehash: 0a016d88b8d7a800bf726e4f582deeaaf3bc6ad6
 > 
 > 
 
-## <a name="a-namebkmkstorekeyvaultastep-1-store-the-certificate-in-azure-key-vault"></a><a name="bkmk_StoreKeyVault"></a>步驟 1：將憑證儲存至 Azure 金鑰保存庫
+## <a name="bkmk_StoreKeyVault"></a>步驟 1：將憑證儲存至 Azure 金鑰保存庫
 在此步驟中，您將學習如何訂購 SSL 憑證，並將其儲存至您選擇的 Azure 金鑰保存庫。
 
 1. 完成 SSL 憑證購買程序之後，您必須手動開啟 [App Service 憑證]  資源刀鋒視窗，方法是再瀏覽一次 (請參閱上述「步驟 1」)   
@@ -104,7 +105,7 @@ ms.openlocfilehash: 0a016d88b8d7a800bf726e4f582deeaaf3bc6ad6
    
     這樣應該就完成使用您選擇的 Azure 金鑰保存庫儲存您購買的憑證的步驟。 在重新整理刀鋒視窗時，您應該會看到此步驟也標示綠色勾號。
 
-## <a name="a-namebkmkverifyownershipastep-2-verify-the-domain-ownership"></a><a name="bkmk_VerifyOwnership"></a>步驟 2︰確認網域擁有權
+## <a name="bkmk_VerifyOwnership"></a>步驟 2︰確認網域擁有權
 在此步驟中，您將學習如何對您剛剛訂購的 SSL 憑證執行網域擁有權驗證。 
 
 1. 從 [憑證設定] 刀鋒視窗按一下 [步驟 2：驗證] 步驟。 App Service 憑證支援 3 種類型的網域驗證。
@@ -121,14 +122,23 @@ ms.openlocfilehash: 0a016d88b8d7a800bf726e4f582deeaaf3bc6ad6
      * 如果您需要重新傳送驗證電子郵件，請按一下 [重新傳送電子郵件]  按鈕。
    * **手動驗證**    
      
-      **DNS TXT 記錄驗證**
-        
-        * 使用 DNS 管理員，在具有與 [網域驗證權杖]** 相同值的 [DZC] 子網域上建立 TXT 記錄。**
+      **HTML 網頁驗證 (僅適用於標準憑證 SKU)**
+
+        * 建立名為 **"starfield.html"** 的 HTML 檔案
+        * 此檔案的名稱應該與網域驗證權杖的名稱完全相同。 (您可以從網域驗證狀態刀鋒視窗複製權杖)
+        * 在主控您網域的 Web 伺服器的根目錄上傳此檔案 **/.well-known/pki-validation/starfield.html**
         * 按一下 [重新整理]  ，在完成驗證之後更新憑證狀態。 驗證可能需要數分鐘才能完成。
           
-          例如，若要對具有主機名稱 **\*.contosocertdemo.com** 或 **\*.subdomain.contosocertdemo.com** 且網域驗證權杖為 **cAGgQrKc** 的萬用字元憑證執行驗證，您必須在值為 **cAGgQrKc.** 的 dzc.contosocertdemo.com 上建立 TXT 記錄。     
+          例如，如果您為具有網域驗證權杖 **tgjgthq8d11ttaeah97s3fr2sh** 的 **contosocertdemo.com** 購買標準憑證，則對 **http://contosocertdemo.com/.well-known/pki-validation/starfield.html** 所做的 Web 要求應該會傳回 **tgjgthq8d11ttaeah97s3fr2sh**。
 
-## <a name="a-namebkmkassigncertificateastep-3-assign-certificate-to-app-service-app"></a><a name="bkmk_AssignCertificate"></a>步驟 3︰將憑證指派給 App Service 應用程式
+      **DNS TXT 記錄驗證**
+        
+        * 使用 DNS 管理員，在具有與**網域驗證權杖**相同值的 **‘@’** 子網域上建立 TXT 記錄。
+        * 按一下 [重新整理]  ，在完成驗證之後更新憑證狀態。 驗證可能需要數分鐘才能完成。
+          
+          例如，若要對具有主機名稱 **\*.contosocertdemo.com** 或 **\*.subdomain.contosocertdemo.com** 且網域驗證權杖為 **tgjgthq8d11ttaeah97s3fr2sh** 的萬用字元憑證執行驗證，您必須在值為 **tgjgthq8d11ttaeah97s3fr2sh** 的 **contosocertdemo.com** 上建立 TXT 記錄     
+
+## <a name="bkmk_AssignCertificate"></a>步驟 3︰將憑證指派給 App Service 應用程式
 在此步驟中，您將學習如何將這個新購買的憑證指派給您的 App Service 應用程式。 
 
 > [!NOTE]
@@ -163,7 +173,7 @@ ms.openlocfilehash: 0a016d88b8d7a800bf726e4f582deeaaf3bc6ad6
 1. 使用網域名稱註冊機構所提供的工具，修改自訂網域名稱的 A 記錄，使其指向上一個步驟的 IP 位址。
    現在，您應該可以使用 HTTPS:// 而非 HTTP:// 造訪您的應用程式，確認已正確設定憑證。
 
-## <a name="a-namebkmkrekeyarekey-and-sync-the-certificate"></a><a name="bkmk_Rekey"></a>重設金鑰和同步處理憑證
+## <a name="bkmk_Rekey"></a>重設金鑰和同步處理憑證
 1. 基於安全性理由，如果您需要重設憑證的金鑰，只要選取 [憑證內容] 刀鋒視窗的 [重設金鑰和同步處理] 選項。 
 2. 按一下 [重設金鑰]  按鈕來啟動處理程序。 此程序需要 1 - 10 分鐘才能完成。 
    
@@ -185,10 +195,5 @@ ms.openlocfilehash: 0a016d88b8d7a800bf726e4f582deeaaf3bc6ad6
 > 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 > 
 > 
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

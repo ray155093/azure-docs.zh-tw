@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/07/2016
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: cedc76bc46137a5d53fd76c0fdb6ff2db79566a4
-ms.openlocfilehash: 05e999d62d3ffdde708c9898807e79fabcff992e
+ms.sourcegitcommit: a8b570cfbab594e1a21417e081eaf6d34a4659d0
+ms.openlocfilehash: 40f10b1cb860ca0c018cc3589417c54588269b0c
+ms.lasthandoff: 02/28/2017
 
 
 ---
@@ -36,6 +37,10 @@ Blob 可包含任意數目的快照集。 系統會保存快照集，直到您�
 當您建立 Blob 的快照集時，Blob 的系統屬性都會使用相同值複製到快照集中。 基底 blob 的中繼資料也會複製到快照集，除非您在建立快照集時為其指定個別的中繼資料。
 
 任何與基底 Blob 相關聯的租用不會影響快照集。 您無法取得快照集上的租用。
+
+VHD 檔案是用來儲存 VM 磁碟目前的資訊和狀態。 您可以從 VM 內卸離磁碟或關閉 VM，然後製作其 VHD 檔案的快照集。 稍後您可以使用快照集檔案來擷取該時間點的 VHD 檔案，並重新建立 VM。
+
+如果 blob 所在的儲存體帳戶啟用儲存體服務加密 (SSE) 時，任何該 blob 製作的快照集將會在待用時加密。
 
 ## <a name="create-a-snapshot"></a>建立快照集
 下列程式碼範例顯示如何在 .NET 中建立快照集。 此範例會在建立快照集時為其指定個別的中繼資料。
@@ -163,10 +168,5 @@ Console.WriteLine(blobSnapshot.SnapshotQualifiedStorageUri.PrimaryUri);
 
 ## <a name="next-steps"></a>後續步驟
 如需使用 Blob 儲存體的其他範例，請參閱 [Azure 程式碼範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob)。 您可以下載範例應用程式並加以執行，或瀏覽 GitHub 上的程式碼。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

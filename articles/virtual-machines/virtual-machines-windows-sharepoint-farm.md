@@ -1,6 +1,6 @@
 ---
-title: "建立 SharePoint 伺服器陣列 | Microsoft Docs"
-description: "在 Azure 中快速建立新的 SharePoint 2013 或 SharePoint 2016 伺服器陣列。"
+title: "在 Azure 中建立 SharePoint 伺服器陣列 | Microsoft Docs"
+description: "使用 Azure 入口網站 Marketplace 在 Azure 中快速建立新的 SharePoint 2013 或 SharePoint 2016 陣列。"
 services: virtual-machines-windows
 documentationcenter: 
 author: JoeDavies-MSFT
@@ -15,13 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/30/2016
 ms.author: josephd
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 0f8bc125855bc5a5b67fde5b0b742c73b5da7610
-ms.openlocfilehash: 7c0746840dd45229dac491b03925349e6d9a44de
+ms.sourcegitcommit: 32e30b44c2f7cfa9c1069190fdc53dbe6e9f4cd5
+ms.openlocfilehash: b668e32bf00ec32c7ffa77594bd1fb07440cf1ac
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="create-sharepoint-server-farms"></a>建立 SharePoint 伺服器陣列
+# <a name="create-sharepoint-server-farms-using-the-azure-portal-marketplace"></a>使用 Azure 入口網站 Marketplace 建立 SharePoint 伺服器陣列
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
@@ -83,9 +85,4 @@ Azure 入口網站會在具有網際網路對向網站空間的純雲端虛擬�
 
 ## <a name="next-steps"></a>後續步驟
 * 探索 Azure 基礎結構服務中的其他 [SharePoint 組態](https://technet.microsoft.com/library/dn635309.aspx) 。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

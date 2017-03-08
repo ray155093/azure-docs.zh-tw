@@ -4,7 +4,7 @@ description: "指導您如何使用 ASP.NET MVC 5 Web 應用程式的行動功�
 services: app-service
 documentationcenter: .net
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: 0752c802-8609-4956-a755-686116913645
 ms.service: app-service
@@ -15,22 +15,23 @@ ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin;riande
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 68764f29fde48631727371de05372a47e336a919
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: b23dfdcf99cab46bb4cedc690e00d29d37b3a044
+ms.lasthandoff: 03/01/2017
 
 
 ---
 # <a name="deploy-an-aspnet-mvc-5-mobile-web-app-in-azure-app-service"></a>在 Azure App Service 中部署 ASP.NET MVC 5 行動 Web 應用程式
-本教學課程指導您如何建置行動便利的 ASP.NET MVC 5 Web 應用程式，並將其部署至 Azure App Service 的基本做法。 在本教學課程中，您需要[Visual Studio Express 2013 for Web][Visual Studio Express 2013] 或 Visual Studio 專業版 (如果您已經有的話)。 您可以使用 [Visual Studio 2015] ，但螢幕擷取畫面將會不同，且您必須使用 ASP.NET 4.x 範本。
+本教學課程指導您如何建置行動便利的 ASP.NET MVC 5 Web 應用程式，並將其部署至 Azure App Service 的基本做法。 在本教學課程中，您需要 [Visual Studio Express 2013 for Web][Visual Studio Express 2013] 或 Professional Edition 的 Visual Studio (如果您已具備此版本)。 您可以使用 [Visual Studio 2015] ，但螢幕擷取畫面將會不同，且您必須使用 ASP.NET 4.x 範本。
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 ## <a name="what-youll-build"></a>您要建置的內容
-在本教學課程中，您要將行動功能新增至入門專案 [starter project][StarterProject]中提供的簡單會議清單應用程式。 如同在 Internet Explorer 11 F12 開發人員工具的瀏覽器模擬器中所見，以下螢幕擷取畫面示範完成的應用程式中的 ASP.NET 工作階段。
+在本教學課程中，您將把行動功能新增至[入門專案][StarterProject]裡提供的簡單會議清單應用程式。 如同在 Internet Explorer 11 F12 開發人員工具的瀏覽器模擬器中所見，以下螢幕擷取畫面示範完成的應用程式中的 ASP.NET 工作階段。
 
 ![][FixedSessionsByTag]
 
-您可以使用 Internet Explorer 11 F12 開發人員工具和 [Fiddler 工具][Fiddler]，協助偵錯應用程式。 
+您可以利用 Internet Explorer 11 F12 開發人員工具和 [Fiddler 工具][Fiddler]來偵錯應用程式。 
 
 ## <a name="skills-youll-learn"></a>您要學習的技術
 以下是您要學習的內容：
@@ -49,16 +50,16 @@ ms.openlocfilehash: 68764f29fde48631727371de05372a47e336a919
 您還需要一個行動瀏覽器模擬器。 下列任一項目都可使用：
 
 * [Internet Explorer 11 F12 開發人員工具][EmulatorIE11]中的瀏覽器模擬器 (使用於所有行動瀏覽器螢幕擷取畫面中)。 它具有 Windows Phone 8、Windows Phone 7 和 Apple iPad 的使用者代理程式字串預設項目。
-* [Google Chrome DevTools][EmulatorChrome] 中的瀏覽器模擬器。 它包含許多 Android 裝置，以及 Apple iPhone、Apple iPad 和 Amazon Kindle Fire 的預設項目。 它也會模擬觸控事件。
+* [Google Chrome DevTools][EmulatorChrome] (英文) 中的瀏覽器模擬器。 它包含許多 Android 裝置，以及 Apple iPhone、Apple iPad 和 Amazon Kindle Fire 的預設項目。 它也會模擬觸控事件。
 * [Opera Mobile 模擬器][EmulatorOpera]
 
 此處提供具有 C\# 原始程式碼的 Visual Studio 專案來幫助您完成本主題：
 
-* [下載入門專案][StarterProject]
-* [下載完成的專案][CompletedProject]
+* [入門專案下載][StarterProject]
+* [完成專案下載][CompletedProject]
 
-## <a name="a-namebkmkdeploystarterprojectadeploy-the-starter-project-to-an-azure-web-app"></a><a name="bkmk_DeployStarterProject"></a>將入門專案部署至 Azure Web 應用程式
-1. 下載會議清單應用程式[入門專案][StarterProject]。
+## <a name="bkmk_DeployStarterProject"></a>將入門專案部署至 Azure Web 應用程式
+1. 下載會議清單應用程式[入門專案][StarterProject] (英文)。
 2. 接著在 Windows 檔案總管中，以滑鼠右鍵按一下以下載的 ZIP 檔案並選擇 [內容] 。
 3. 在 [內容] 對話方塊中，選擇 [解除封鎖] 按鈕。 (取消封鎖後，當您嘗試使用從網路下載的 .zip 檔案時，就不會出現安全性警告。)
 4. 以滑鼠右鍵按一下 ZIP 檔案並選取 [全部解壓縮]  來解壓縮檔案。 
@@ -106,7 +107,7 @@ ms.openlocfilehash: 68764f29fde48631727371de05372a47e336a919
 
 ASP.NET 標籤檢視會縮放至適合螢幕的大小，而這是 Bootstrap 自動為您執行的效果。 但您可以改善此檢視，使其更適合行動瀏覽器。 例如，[ **日期** ] 欄非常難以閱讀。 您將在稍後的教學課程中變更 *AllTags* 檢視，使其更適合行動用途。
 
-## <a name="a-namebkmkbootstrapa-bootstrap-css-framework"></a><a name="bkmk_bootstrap"></a> Bootstrap CSS 架構
+## <a name="bkmk_bootstrap"></a> Bootstrap CSS 架構
 MVC 5 範本中的新功能是內建的 Bootstrap 支援。 您已經看到它是如何即時改善應用程式中的不同檢視。 例如，頂端的導覽列會在瀏覽器寬度較小時自動摺疊。 嘗試在桌面瀏覽器上重新調整瀏覽器視窗的大小，並觀察導覽列如何改變它的外觀與風格。 這就是內建於 Bootstrap 中回應靈敏的 Web 設計。
 
 若要查看 Web 應用程式沒有 Bootstrap 時的外觀，請開啟 App\_Start\\BundleConfig.cs，並註解化包含 bootstrap.js 和 bootstrap.css 的行。 以下程式碼顯示在執行這些變更之後， `RegisterBundles` 方法的最後兩個陳述式：
@@ -134,7 +135,7 @@ Bootstrap 並非專屬於 ASP.NET MVC 5，您也可以在所有 Web 應用程式
 
 您將在下一節看到如何提供行動瀏覽器專用的檢視。
 
-## <a name="a-namebkmkoverrideviewsa-override-the-views-layouts-and-partial-views"></a><a name="bkmk_overrideviews"></a> 覆寫檢視、配置與部分檢視
+## <a name="bkmk_overrideviews"></a> 覆寫檢視、配置與部分檢視
 您可以覆寫大多數的行動瀏覽器、個別行動瀏覽器或任何特定瀏覽器的所有檢視，包含配置及部分檢視。 若要提供行動裝置專屬的檢視，您可以複製檢視檔案並將 *.Mobile* 新增至檔案名稱。 例如，若要建立行動 [索引] 檢視，您可以將 Views\\Home\\Index.cshtml 複製到 Views\\Home\\Index.Mobile.cshtml。
 
 本節將建立行動裝置專屬的配置檔案。
@@ -162,7 +163,7 @@ Bootstrap 並非專屬於 ASP.NET MVC 5，您也可以在所有 Web 應用程式
 
 ![][AllTagsMobile_LayoutMobileDesktop]
 
-## <a name="a-namebkmkbrowserviewsa-create-browser-specific-views"></a><a name="bkmk_browserviews"></a> 建立瀏覽器專用的檢視
+## <a name="bkmk_browserviews"></a> 建立瀏覽器專用的檢視
 除了行動與桌面專用的檢視之外，您還可以為個別瀏覽器建立檢視。 例如，您可以為 iPhone 或 Android 瀏覽器建立專用的檢視。 在本節中，您要建立 iPhone 瀏覽器的配置，以及 iPhone 版的 *AllTags* 檢視。
 
 開啟 Global.asax 檔案，並將以下程式碼加入 `Application_Start` 方法的底部。
@@ -176,7 +177,7 @@ Bootstrap 並非專屬於 ASP.NET MVC 5，您也可以在所有 Web 應用程式
 此程式碼會定義要比對每個連入要求且名為 "iPhone" 的新顯示模式。 若連入的要求符合您定義的條件 (亦即使用者代理程式包含 "iPhone" 字串)，則 ASP.NET MVC 會尋找名稱包含 "iPhone" 字尾的檢視。
 
 > [!NOTE]
->  新增行動瀏覽器專用的顯示模式時，例如 iPhone 和 Android，請務必將第一個引數設為 `0` (插入於清單的頂端)，才能確保瀏覽器的專用模式會優先於行動範本 (*.Mobile.cshtml)。 若位於清單頂端的是行動範本，則會優先選取該行動範本，而不是您想要的顯示模式 (第一個相符的會成功，而行動範本符合所有行動瀏覽器)。 
+> 新增行動瀏覽器專用的顯示模式時，例如 iPhone 和 Android，請務必將第一個引數設為 `0` (插入於清單的頂端)，才能確保瀏覽器的專用模式會優先於行動範本 (*.Mobile.cshtml)。 若位於清單頂端的是行動範本，則會優先選取該行動範本，而不是您想要的顯示模式 (第一個相符的會成功，而行動範本符合所有行動瀏覽器)。 
 > 
 > 
 
@@ -229,10 +230,10 @@ Bootstrap 並非專屬於 ASP.NET MVC 5，您也可以在所有 Web 應用程式
 在本節中，我們已了解如何建立行動配置和檢視，以及如何為特定裝置 (例如 iPhone) 建立配置和檢視。
 不過，Bootstrap CSS 架構的主要優點是回應靈敏的配置，這表示單一樣式表可以套用到桌面、電話和平板電腦瀏覽器中，並建立一致的外觀及操作。 您將在下一節看到如何利用 Bootstrap 建立適合行動裝置的檢視。
 
-## <a name="a-namebkmkimprovespeakerslista-improve-the-speakers-list"></a><a name="bkmk_Improvespeakerslist"></a> 改善演講者清單
+## <a name="bkmk_Improvespeakerslist"></a> 改善演講者清單
 如您適才所見，行動裝置上的 [ *演講者* ] 檢視已可讀取，但是連結卻非常微小而不容易點選。 在本節中，您要使 *AllSpeakers* 檢視適合行動用途，以顯示大尺寸又容易點選的連結，並包含可快速找到演講者的搜尋方塊。
 
-您可以使用 Bootstrap [連結清單群組][連結清單群組] 樣式改善 [演講者] 檢視。 在 Views\\Home\\AllSpeakers.cshtml 中，使用以下程式碼取代 Razor 檔案的內容。
+您可以使用 Bootstrap [連結清單群組][linked list group]樣式改善 [演講者] 檢視。 在 Views\\Home\\AllSpeakers.cshtml 中，使用以下程式碼取代 Razor 檔案的內容。
 
      @model IEnumerable<string>
 
@@ -255,7 +256,7 @@ Bootstrap 並非專屬於 ASP.NET MVC 5，您也可以在所有 Web 應用程式
 
 ![][AllSpeakersFixed]
 
-Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連結的整個方塊都可以點選，以提供更好的使用者體驗。 切換成桌面檢視，會發現此檢視也有一致的外觀與風格。
+Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個方塊都可以點選，以提供更好的使用者體驗。 切換成桌面檢視，會發現此檢視也有一致的外觀與風格。
 
 ![][AllSpeakersFixedDesktop]
 
@@ -284,7 +285,7 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
         }
     </div>
 
-請注意，`<form>` 和 `<input>` 標籤都已套用 Bootstrap 樣式。 `<span>` 元素會將 Bootstrap [[glyphicon][glyphicon]] 新增至搜尋方塊。
+請注意，`<form>` 和 `<input>` 標籤都已套用 Bootstrap 樣式。 `<span>` 元素會將 Bootstrap [glyphicon][glyphicon] 新增至搜尋方塊。
 
 在 Scripts 資料夾中，加入名為 filter.js 的 JavaScript 檔案。 開啟該檔案，並將以下程式碼貼入其中：
 
@@ -326,7 +327,7 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
 
 ![][AllSpeakersFixedSearchBySC]
 
-## <a name="a-namebkmkimprovetagsa-improve-the-tags-list"></a><a name="bkmk_improvetags"></a> 改善標籤清單
+## <a name="bkmk_improvetags"></a> 改善標籤清單
 就像 [演講者] 檢視，您可以在行動裝置上閱讀 [標籤] 檢視，但連結卻非常微小而不容易點選。 若您使用先前描述的程式碼變更 (但在 Views\\Home\\AllTags.cshtml 中要包含以下 `Html.ActionLink` 方法語法)，就可以像修正 [演講者] 檢視一樣修正[標籤] 檢視：
 
     @Html.ActionLink(tag, 
@@ -347,7 +348,7 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
 > 
 > 
 
-## <a name="a-namebkmkimprovedatesa-improve-the-dates-list"></a><a name="bkmk_improvedates"></a> 改善日期清單
+## <a name="bkmk_improvedates"></a> 改善日期清單
 若您使用先前描述的程式碼變更 (但在 Views\\Home\\AllDates.cshtml 中要包含以下 `Html.ActionLink` 方法語法)，就可以像改善 [演講者] 和 [標籤] 檢視一樣改善 [日期] 檢視：
 
     @Html.ActionLink(date.ToString("ddd, MMM dd, h:mm tt"), 
@@ -359,7 +360,7 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
 
 ![][AllDatesFixed]
 
-您可以依照日期，組織時間日期值，以進一步改善 [ *日期* ] 檢視。 這可以透過 Bootstrap [面板][面板] (英文) 樣式來完成。 以下列程式碼取代 Views\\Home\\AllDates.cshtml 檔案的內容：
+您可以依照日期，組織時間日期值，以進一步改善 [ *日期* ] 檢視。 這可以透過 Bootstrap [面板][panels]樣式來完成。 以下列程式碼取代 Views\\Home\\AllDates.cshtml 檔案的內容：
 
     @model IEnumerable<DateTime>
 
@@ -387,7 +388,7 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
         </div>
     }
 
-此程式碼會為清單中每個不同的日期建立個別 `<div class="panel panel-primary">` 標籤，並分別為連結使用如上所述的 [連結清單群組][連結清單群組] (英文)。 以下是此程式碼執行時行動瀏覽器的樣貌：
+此程式碼會為清單中每個不同的日期建立個別 `<div class="panel panel-primary">` 標籤，並分別為連結使用如上所述的[連結清單群組][linked list group]。 以下是此程式碼執行時行動瀏覽器的樣貌：
 
 ![][AllDatesFixed2]
 
@@ -395,7 +396,7 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
 
 ![][AllDatesFixed2Desktop]
 
-## <a name="a-namebkmkimprovesessionstablea-improve-the-sessionstable-view"></a><a name="bkmk_improvesessionstable"></a> 改善 SessionsTable 檢視
+## <a name="bkmk_improvesessionstable"></a> 改善 SessionsTable 檢視
 您要在本節中使 *SessionsTable* 檢視更適合行動用途。 這項變更比先前的變更更加廣泛。
 
 在行動瀏覽器中，點選 [標籤] 按鈕，然後在搜尋方塊中輸入 `asp`。
@@ -441,9 +442,9 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
 
 此程式碼會執行 3 個動作：
 
-* 使用 Bootstrap [自訂連結清單群組][自訂連結清單群組] (英文)，以垂直方式格式化工作階段資訊，使您可以在行動瀏覽器上閱讀所有資訊 (使用 list-group-item-text 之類的類別)
-* 將[方格系統][方格系統] (英文) 套用至配置，讓工作階段項目能在桌面瀏覽器中水平流動，並在行動瀏覽器中垂直流動 (使用 col-md-4 類別)
-* 使用[回應靈敏的公用程式][回應靈敏的公用程式]，於行動瀏覽器中檢視時，隱藏工作階段標籤 (使用 hidden-xs 類別)
+* 使用 Bootstrap [自訂連結清單群組][custom linked list group]，以垂直方式格式化工作階段資訊，使您可以在行動瀏覽器上閱讀所有資訊 (使用 list-group-item-text 之類的類別)
+* 將[方格系統][grid system]套用至配置，讓工作階段項目能在桌面瀏覽器中水平流動，並在行動瀏覽器中垂直流動 (使用 col-md-4 類別)
+* 使用[回應靈敏的公用程式][responsive utilities]，於行動瀏覽器中檢視時，隱藏工作階段標籤 (使用 hidden-xs 類別)
 
 您也可以點選標題連結，以進入個別工作階段。 下圖反映了程式碼變更。
 
@@ -455,7 +456,7 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
 
 在桌面瀏覽器，您會發現有顯示標籤。 而且您還會看到套用的 Bootstrap 方格系統以兩欄方式排列工作階段項目。 若您放大瀏覽器，會發現排列變更為三欄式。
 
-## <a name="a-namebkmkimprovesessionbycodea-improve-the-sessionbycode-view"></a><a name="bkmk_improvesessionbycode"></a> 改善 SessionByCode 檢視
+## <a name="bkmk_improvesessionbycode"></a> 改善 SessionByCode 檢視
 最後，您要修正 *SessionByCode* 檢視，使其適合行動用途。
 
 在行動瀏覽器中，點選 [標籤] 按鈕，然後在搜尋方塊中輸入 `asp`。
@@ -529,27 +530,27 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
 * 在 Razor 程式碼中套用 Boostrap 樣式
 
 ## <a name="see-also"></a>另請參閱
-* [回應性 Web 設計的 9 個基本原則](http://blog.froont.com/9-basic-principles-of-responsive-web-design/)
+* [回應性 Web 設計的&9; 個基本原則](http://blog.froont.com/9-basic-principles-of-responsive-web-design/)
 * [Bootstrap][BootstrapSite]
-* [官方 Bootstrap 部落格][官方 Bootstrap 部落格]
-* [Tutorial Republic 的 Twitter Bootstrap 教學課程][Tutorial Republic 的 Twitter Bootstrap 教學課程]
-* [Bootstrap 練習場][Bootstrap 練習場]
-* [W3C 推薦的行動 Web 應用程式最佳做法][W3C 推薦的行動 Web 應用程式最佳做法]
-* [W3C 針對媒體查詢的候選推薦做法][W3C 針對媒體查詢的候選推薦做法]
+* [官方 Bootstrap 部落格][Official Bootstrap Blog]
+* [Tutorial Republic 的 Twitter Bootstrap 教學課程][Twitter Bootstrap Tutorial from Tutorial Republic]
+* [Bootstrap 練習場][The Bootstrap Playground]
+* [W3C 推薦的行動 Web 應用程式最佳做法][W3C Recommendation Mobile Web Application Best Practices]
+* [W3C 針對媒體查詢的候選推薦做法][W3C Candidate Recommendation for media queries]
 
 ## <a name="whats-changed"></a>變更的項目
 * 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- Internal Links -->
-[將入門專案部署至 Azure Web 應用程式]: #bkmk_DeployStarterProject
-[Bootstrap CSS 架構]: #bkmk_bootstrap
-[覆寫檢視、配置與部分檢視]: #bkmk_overrideviews
-[建立瀏覽器專用的檢視]:#bkmk_browserviews
-[改善演講者清單]: #bkmk_Improvespeakerslist
-[改善標籤清單]: #bkmk_improvetags
-[改善日期清單]: #bkmk_improvedates
-[改善 SessionsTable 檢視]: #bkmk_improvesessionstable
-[改善 SessionByCode 檢視]: #bkmk_improvesessionbycode
+[Deploy the starter project to an Azure web app]: #bkmk_DeployStarterProject
+[Bootstrap CSS Framework]: #bkmk_bootstrap
+[Override the Views, Layouts, and Partial Views]: #bkmk_overrideviews
+[Create Browser-Specific Views]:#bkmk_browserviews
+[Improve the Speakers List]: #bkmk_Improvespeakerslist
+[Improve the Tags List]: #bkmk_improvetags
+[Improve the Dates List]: #bkmk_improvedates
+[Improve the SessionsTable View]: #bkmk_improvesessionstable
+[Improve the SessionByCode View]: #bkmk_improvesessionbycode
 
 <!-- External Links -->
 [Visual Studio Express 2013]: http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-web
@@ -563,17 +564,17 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
 [CompletedProject]: http://go.microsoft.com/fwlink/?LinkID=398781&clcid=0x409
 [BootstrapSite]: http://getbootstrap.com/
 [WebPIAzureSdk23NetVS13]: ./media/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/WebPIAzureSdk23NetVS13.png
-[連結清單群組]: http://getbootstrap.com/components/#list-group-linked
+[linked list group]: http://getbootstrap.com/components/#list-group-linked
 [glyphicon]: http://getbootstrap.com/components/#glyphicons
-[面板]: http://getbootstrap.com/components/#面板
-[自訂連結清單群組]: http://getbootstrap.com/components/#list-group-custom-content
-[方格系統]: http://getbootstrap.com/css/#grid
-[回應靈敏的公用程式]: http://getbootstrap.com/css/#responsive-utilities
-[官方 Bootstrap 部落格]: http://blog.getbootstrap.com/
-[Tutorial Republic 的 Twitter Bootstrap 教學課程]: http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/
-[Bootstrap 練習場]: http://www.bootply.com/
-[W3C 推薦的行動 Web 應用程式最佳做法]: http://www.w3.org/TR/mwabp/
-[W3C 針對媒體查詢的候選推薦做法]: http://www.w3.org/TR/css3-mediaqueries/
+[panels]: http://getbootstrap.com/components/#panels
+[custom linked list group]: http://getbootstrap.com/components/#list-group-custom-content
+[grid system]: http://getbootstrap.com/css/#grid
+[responsive utilities]: http://getbootstrap.com/css/#responsive-utilities
+[Official Bootstrap Blog]: http://blog.getbootstrap.com/
+[Twitter Bootstrap Tutorial from Tutorial Republic]: http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/
+[The Bootstrap Playground]: http://www.bootply.com/
+[W3C Recommendation Mobile Web Application Best Practices]: http://www.w3.org/TR/mwabp/
+[W3C Candidate Recommendation for media queries]: http://www.w3.org/TR/css3-mediaqueries/
 
 <!-- Images -->
 [DeployClickPublish]: ./media/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/deploy-to-azure-website-1.png
@@ -608,10 +609,5 @@ Bootstrap [連結清單群組][連結清單群組] (英文) 樣式讓每個連�
 [SessionsTableFixedTagASP.NETDesktop]: ./media/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/SessionsTable-Fixed-Tag-ASP.NET-Desktop.png
 [SessionByCode3-644]: ./media/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/SessionByCode-3-644.png
 [SessionByCodeFixed3-644]: ./media/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/SessionByCode-Fixed-3-644.png
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
