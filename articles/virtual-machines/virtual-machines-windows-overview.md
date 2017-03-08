@@ -13,12 +13,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/20/2016
+ms.date: 03/01/2017
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 26c58ae4c509cb768807875ecdf96e9a24d6a472
-ms.openlocfilehash: dd8009e8fb012a4271a0f110351ee3e74a706af6
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 9841096da2d16e35878a1c0013a33e9f051e5932
+ms.openlocfilehash: 37a966d15caba073dcfda77d4d0aaf32be0199ac
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -59,8 +59,8 @@ Azure 中所建立的所有資源分散在世界各地的多個[地理區域](ht
 | 方法 | 說明 |
 | --- | --- |
 | Azure 入口網站 |當您建立 VM 時，請從清單中選取位置。 |
-| Azure PowerShell |使用 [Get-AzureRmLocation](https://msdn.microsoft.com/library/mt619449.aspx) 命令。 |
-| REST API |使用[列出位置](https://msdn.microsoft.com/library/dn790540.aspx)作業。 |
+| Azure PowerShell |使用 [Get-AzureRmLocation](https://docs.microsoft.com/powershell/resourcemanager/azurerm.resources/v3.5.0/get-azurermlocation) 命令。 |
+| REST API |使用[列出位置](https://docs.microsoft.com/rest/api/resources/subscriptions#Subscriptions_ListLocations)作業。 |
 
 ### <a name="vm-size"></a>VM 大小
 您使用的 VM [大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)是由所您要執行的工作負載所決定。 您所選的大小會決定例如處理電源、記憶體和儲存體容量等因素。 Azure 提供了各種不同的大小，以支援許多類型的用法。
@@ -80,8 +80,8 @@ Azure 提供許多 [Marketplace 映像](https://azure.microsoft.com/marketplace/
 | 方法 | 說明 |
 | --- | --- |
 | Azure 入口網站 |當您選取要使用的影像時，會自動為您指定值。 |
-| Azure PowerShell |[Get-AzureRMVMImagePublisher](https://msdn.microsoft.com/library/mt603484.aspx) -Location "location"<BR>[Get-AzureRMVMImageOffer](https://msdn.microsoft.com/library/mt603824.aspx) -Location "location" -Publisher "publisherName"<BR>[Get-AzureRMVMImageSku](https://msdn.microsoft.com/library/mt619458.aspx) -Location "location" -Publisher "publisherName" -Offer "offerName" |
-| REST API |[列出映像發行者](https://msdn.microsoft.com/library/mt743702.aspx)<BR>[列出映像優惠](https://msdn.microsoft.com/library/mt743700.aspx)<BR>[列出映像 SKU](https://msdn.microsoft.com/library/mt743701.aspx) |
+| Azure PowerShell |[Get-AzureRMVMImagePublisher](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.5.0/get-azurermvmimagepublisher) -Location "location"<BR>[Get-AzureRMVMImageOffer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.5.0/get-azurermvmimageoffer) -Location "location" -Publisher "publisherName"<BR>[Get-AzureRMVMImageSku](https://docs.microsoft.com/powershell/resourcemanager/azurerm.compute/v2.5.0/get-azurermvmimagesku) -Location "location" -Publisher "publisherName" -Offer "offerName" |
+| REST API |[列出映像發行者](https://docs.microsoft.com/rest/api/compute/platformimages/platformimages-list-publishers)<BR>[列出映像優惠](https://docs.microsoft.com/rest/api/compute/platformimages/platformimages-list-publisher-offers)<BR>[列出映像 SKU](https://docs.microsoft.com/rest/api/compute/platformimages/platformimages-list-publisher-offer-skus) |
 
 您可以選擇[上傳並使用您自己的映像](virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，當您這麼做時，不會使用發行者名稱、優惠和 SKU。
 
@@ -92,7 +92,7 @@ VM [擴充](virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtu
 
 * **執行自訂指令碼** – [自訂指令碼延伸模組](virtual-machines-windows-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)可藉由當佈建 VM 時執行您的指令碼來協助您在 VM 上設定工作負載。
 * **部署和管理組態** – [PowerShell 期望狀態組態 (DSC) 延伸模組](virtual-machines-windows-extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)可協助您設定 VM 上的 DSC 來管理組態和環境。
-* **收集診斷資料** – [Azure 診斷擴充功能](https://azure.microsoft.com/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/)可協助您設定 VM 來收集診斷資料，用來監視您應用程式的健全狀況。
+* **收集診斷資料** – [Azure 診斷擴充功能](virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)可協助您設定 VM 來收集診斷資料，用來監視您應用程式的健全狀況。
 
 ### <a name="related-resources"></a>相關資源
 此資料表中的資源可供 VM 使用，且建立 VM 時必須存在或建立。
@@ -117,7 +117,7 @@ VM [擴充](virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtu
 | 範本 |[利用 Resource Manager 範本建立 Windows 虛擬機器](virtual-machines-windows-ps-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
 | Azure PowerShell |[使用 PowerShell 建立 Windows VM](virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
 | 用戶端 SDK |[使用 C# 部署 Azure 資源](virtual-machines-windows-csharp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
-| REST API |[建立或更新 VM](https://msdn.microsoft.com/library/mt163591.aspx) |
+| REST API |[建立或更新 VM](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-create-or-update) |
 
 您希望它絕對不會發生，但偶爾會發生錯誤。 如果您發生這種情況，請查看[疑難排解在 Azure 中建立 Windows 虛擬機器時發生的 Resource Manager 部署問題](virtual-machines-windows-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的資訊。
 
@@ -131,7 +131,7 @@ VM [擴充](virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtu
 | --- | --- |
 | Azure 入口網站 |在 [中樞] 功能表中，按一下 [虛擬機器]，然後從清單中選取 VM。 在 VM 的刀鋒視窗上，您可存取概觀資訊、設定值，並監視度量。 |
 | Azure PowerShell |如需使用 PowerShell 來管理 VM 的相關資訊，請參閱[使用 Resource Manager 和 PowerShell 來管理 Azure 虛擬機器](virtual-machines-windows-ps-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 |
-| REST API |使用[取得 VM 資訊](https://msdn.microsoft.com/library/mt163682.aspx)作業來取得 VM 的相關資訊。 |
+| REST API |使用[取得 VM 資訊](https://docs.microsoft.com/rest/api/compute/virtualmachines/virtualmachines-get)作業來取得 VM 的相關資訊。 |
 | 用戶端 SDK |如需使用 C# 來管理 VM 的相關資訊，請參閱[使用 Azure Resource Manager 和 C# 來管理 Azure 虛擬機器](virtual-machines-windows-csharp-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 |
 
 ### <a name="log-on-to-the-vm"></a>登入 VM

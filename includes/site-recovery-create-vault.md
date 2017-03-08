@@ -1,4 +1,4 @@
-## <a name="create-a-recovery-services-vault"></a>建立復原服務保存庫
+
 1. 登入 [Azure 入口網站](https://portal.azure.com) > **Site Recovery**
 2. 按一下 [新增] > **管理** >
 3. 在 [名稱] 中，指定保存庫的易記識別名稱。 如果您有多個訂用帳戶，請選取其中一個。

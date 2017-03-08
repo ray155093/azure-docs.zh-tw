@@ -15,9 +15,9 @@ ms.workload: big-data
 ms.date: 12/23/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 091fadce064086d82b833f8e44edfbba125d3e6b
-ms.openlocfilehash: cb5babdd8fea3615d8aa27f05a07c3b489f3faa4
-ms.lasthandoff: 01/30/2017
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 3e4302e7c5b54a46994eccaa8cf9ecbb0a84446d
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -51,7 +51,7 @@ ms.lasthandoff: 01/30/2017
 2. 擷取 Azure AD Web 應用程式的用戶端識別碼、用戶端密碼和權杖端點。
 3. 針對您想要從您所建立之 Java 應用程式存取的 Data Lake Store 檔案/資料夾上的 Azure AD Web 應用程式，設定存取權。
 
-如需有關如何執行這些步驟的指示，請參閱[建立 Active Directory 應用程式](data-lake-store-authenticate-using-active-directory.md#create-an-active-directory-application)。
+如需有關如何執行這些步驟的指示，請參閱[建立 Active Directory 應用程式](data-lake-store-authenticate-using-active-directory.md)。
 
 Azure Active Directory 還提供其他選項來擷取權杖。 您可以從數個不同的驗證機制中挑選符合您案例的驗證機制，例如，在瀏覽器中執行的應用程式、以桌面應用程式形式散發的應用程式，或在內部部署或 Azure 虛擬機器中執行的伺服器應用程式。 您也可以從不同類型的認證進行挑選，例如密碼、憑證、雙因子驗證等。此外，Azure Active Directory 可讓您同步處理您的內部部署 Active Directory 使用者與雲端。 如需詳細資訊，請參閱 [Azure Active Directory 的驗證案例](../active-directory/active-directory-authentication-scenarios.md)。 
 
@@ -158,6 +158,6 @@ Data Lake Store SDK 提供簡便的方法，讓您管理與 Data Lake Store 帳�
 * [瀏覽 Java SDK 的 JavaDoc](https://azure.github.io/azure-data-lake-store-java/javadoc/)
 * [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
 * [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
-* [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
+* [搭配 Data Lake Store 使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
 
