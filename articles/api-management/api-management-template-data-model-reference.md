@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 77fd7b5b339a8ede8a297bec96f91f0a243cc18d
-ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
+ms.sourcegitcommit: 080ac72246e62948c3defe329028f27751e8c78d
+ms.openlocfilehash: 5f8dd5c6a106e5dc523624d8930e6297dbdc368f
+ms.lasthandoff: 02/10/2017
 
 ---
 # <a name="azure-api-management-template-data-model-reference"></a>Azure API 管理範本資料模型參考
@@ -49,7 +50,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 -   [使用者登入](#UseSignIn)  
 -   [使用者註冊](#UserSignUp)  
   
-##  <a name="a-nameapia-api"></a><a name="API"></a>API  
+##  <a name="API"></a>API  
  `API` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -63,7 +64,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |authenticationSettings|[授權伺服器驗證設定](https://docs.microsoft.com/rest/api/apimanagement/apimanagementrest/azure-api-management-rest-api-contract-reference#AuthenticationSettings)|此 API 中所包含之驗證設定的集合。|  
 |subscriptionKeyParameterNames|物件|選擇性屬性，可用來指定包含訂用帳戶金鑰之查詢和/或標頭參數的自訂名稱。 此屬性若存在，其中就至少必須包含下列兩個屬性的其中一個。<br /><br /> `{   "subscriptionKeyParameterNames":   {     "query": “customQueryParameterName",     "header": “customHeaderParameterName"   } }`|  
   
-##  <a name="a-nameapisummarya-api-summary"></a><a name="APISummary"></a>API 摘要  
+##  <a name="APISummary"></a>API 摘要  
  `API summary` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -72,7 +73,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |名稱|字串|API 的名稱。 不能空白。 長度上限是 100 個字元。|  
 |說明|字串|API 的描述。 不能空白。 可包含 HTML 格式標籤。 長度上限是 1000 個字元。|  
   
-##  <a name="a-nameapplicationa-application"></a><a name="Application"></a>應用程式  
+##  <a name="Application"></a>應用程式  
  `application` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -90,7 +91,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |附件|[附件](#Attachment)實體的集合。|應用程式的任何附件，例如螢幕擷取畫面或圖示。|  
 |圖示|[附件](#Attachment)|應用程式的圖示。|  
   
-##  <a name="a-nameattachmenta-attachment"></a><a name="Attachment"></a>附件  
+##  <a name="Attachment"></a>附件  
  `attachment` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -100,7 +101,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |類型|字串|附件的類型。|  
 |ContentType|字串|附件的媒體類型。|  
   
-##  <a name="a-namesamplea-code-sample"></a><a name="Sample"></a>程式碼範例  
+##  <a name="Sample"></a>程式碼範例  
   
 |屬性|類型|說明|  
 |--------------|----------|-----------------|  
@@ -117,7 +118,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |標頭|[標頭](#Header)實體的集合。|此作業的標頭。|  
 |參數|[參數](#Parameter)實體的集合。|針對這項作業所定義的參數。|  
   
-##  <a name="a-namecommenta-comment"></a><a name="Comment"></a>註解  
+##  <a name="Comment"></a>註解  
  `API` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -127,7 +128,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |DeveloperCompany|字串|開發人員的公司名稱。|  
 |PostedOn|DateTime|註解的公佈日期和時間。|  
   
-##  <a name="a-nameissuea-issue"></a><a name="Issue"></a>問題  
+##  <a name="Issue"></a>問題  
  `issue` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -143,7 +144,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |附件|[附件](api-management-template-data-model-reference.md#Attachment)實體的集合。|問題的任何附件。|  
 |服務|[API](#API) 實體的集合。|提出問題之使用者所訂閱的 API。|  
   
-##  <a name="a-namefilteringa-filtering"></a><a name="Filtering"></a>篩選  
+##  <a name="Filtering"></a>篩選  
  `filtering` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -151,7 +152,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |模式|字串|目前的搜尋詞彙；或者，如果沒有搜尋詞彙，則為 `null`。|  
 |Placeholder|字串|未指定搜尋詞彙時要在搜尋方塊中顯示的文字。|  
   
-##  <a name="a-nameheadera-header"></a><a name="Header"></a>標頭  
+##  <a name="Header"></a>標頭  
  本區段描述 `parameter` 表示法。  
   
 |屬性|說明|類型|  
@@ -164,7 +165,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |必要|布林值|標頭是否為必要。|  
 |readOnly|布林值|標頭是否為唯讀。|  
   
-##  <a name="a-namehttprequesta-http-request"></a><a name="HTTPRequest"></a>HTTP 要求  
+##  <a name="HTTPRequest"></a>HTTP 要求  
  本區段描述 `request` 表示法。  
   
 |屬性|類型|說明|  
@@ -174,7 +175,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |參數|[參數](#Parameter)的陣列|作業要求參數的集合。|  
 |representations|[表示法](#Representation)的陣列|作業要求表示法的集合。|  
   
-##  <a name="a-namehttpresponsea-http-response"></a><a name="HTTPResponse"></a>HTTP 回應  
+##  <a name="HTTPResponse"></a>HTTP 回應  
  本區段描述 `response` 表示法。  
   
 |屬性|類型|說明|  
@@ -183,7 +184,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |說明|字串|作業回應描述。|  
 |representations|[表示法](#Representation)的陣列|作業回應表示法的集合。|  
   
-##  <a name="a-nameoperationa-operation"></a><a name="Operation"></a>作業  
+##  <a name="Operation"></a>作業  
  `operation` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -198,7 +199,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |要求|[HTTP 要求](#HTTPRequest)|包含要求詳細資料的實體。|  
 |responses|[HTTP 回應](#HTTPResponse)的陣列|作業 [HTTP 回應](#HTTPResponse)實體的陣列。|  
   
-##  <a name="a-namemenua-operation-menu"></a><a name="Menu"></a>作業功能表  
+##  <a name="Menu"></a>作業功能表  
  `operation menu` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -208,7 +209,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |動作|字串|功能表類型。|  
 |MenuItems|[作業功能表項目](#MenuItem)實體的集合。|目前 API 的作業。|  
   
-##  <a name="a-namemenuitema-operation-menu-item"></a><a name="MenuItem"></a>作業功能表項目  
+##  <a name="MenuItem"></a>作業功能表項目  
  `operation menu item` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -217,7 +218,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |課程名稱|字串|作業的描述。|  
 |HttpMethod|字串|作業的 HTTP 方法。|  
   
-##  <a name="a-namepaginga-paging"></a><a name="Paging"></a>分頁  
+##  <a name="Paging"></a>分頁  
  `paging` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -228,7 +229,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |ShowAll|布林值|是否要在單一頁面中顯示所有結果。|  
 |PageCount|number|結果的頁數。|  
   
-##  <a name="a-nameparametera-parameter"></a><a name="Parameter"></a>參數  
+##  <a name="Parameter"></a>參數  
  本區段描述 `parameter` 表示法。  
   
 |屬性|說明|類型|  
@@ -241,7 +242,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |kind|number|此參數為路徑參數 (1) 還是查詢字串參數 (2)。|  
 |typeName|字串|參數類型。|  
   
-##  <a name="a-nameproducta-product"></a><a name="Product"></a>產品  
+##  <a name="Product"></a>產品  
  `product` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -254,7 +255,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |AllowMultipleSubscriptions|布林值|指定使用者是否可以同時對此產品擁有多個訂閱。|  
 |MultipleSubscriptionsCount|number|目前的使用者對此產品的訂閱數。|  
   
-##  <a name="a-nameprovidera-provider"></a><a name="Provider"></a>提供者  
+##  <a name="Provider"></a>提供者  
  `provider` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -263,7 +264,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |AuthenticationType|字串|提供者類型  (Azure Active Directory、Facebook 登入、Google 帳戶、Microsoft 帳戶、Twitter)。|  
 |Caption|字串|提供者的顯示名稱。|  
   
-##  <a name="a-namerepresentationa-representation"></a><a name="Representation"></a>表示法  
+##  <a name="Representation"></a>表示法  
  本區段描述 `representation`。  
   
 |屬性|類型|說明|  
@@ -271,7 +272,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |contentType|字串|指定此表示法的已註冊或自訂內容類型，例如 `application/xml`。|  
 |sample|字串|表示法的範例。|  
   
-##  <a name="a-namesubscriptiona-subscription"></a><a name="Subscription"></a>訂用帳戶  
+##  <a name="Subscription"></a>訂用帳戶  
  `subscription` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -297,7 +298,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |CancelUrl|字串|要取消訂用帳戶的相對 Url。|  
 |RenewUrl|字串|要更新訂用帳戶的相對 Url。|  
   
-##  <a name="a-namesubscriptionsummarya-subscription-summary"></a><a name="SubscriptionSummary"></a>訂用帳戶摘要  
+##  <a name="SubscriptionSummary"></a>訂用帳戶摘要  
  `subscription summary` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -305,7 +306,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |識別碼|字串|資源識別碼。 可唯一識別目前 API 管理服務執行個體內的訂用帳戶。 其值為 `subscriptions/{sid}` 格式的有效相對 URL，其中 `{sid}` 是訂用帳戶識別碼。 這個屬性是唯讀的。|  
 |DisplayName|字串|訂用帳戶的顯示名稱|  
   
-##  <a name="a-nameuseraccountinfoa-user-account-info"></a><a name="UserAccountInfo"></a>使用者帳戶資訊  
+##  <a name="UserAccountInfo"></a>使用者帳戶資訊  
  `user account info` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -318,7 +319,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |ProviderName|字串|驗證提供者名稱。|  
 |IsBasicAccount|布林值|如果此帳戶是使用電子郵件和密碼進行註冊，則為 true；如果帳戶是使用提供者進行註冊，則為 false。|  
   
-##  <a name="a-nameusesignina-user-sign-in"></a><a name="UseSignIn"></a>使用者登入  
+##  <a name="UseSignIn"></a>使用者登入  
  `user sign in` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -336,7 +337,7 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |UserRegistrationTerms|字串|使用者必須先同意才能登入的條款。|  
 |UserRegistrationTermsEnabled|布林值|是否啟用條款。|  
   
-##  <a name="a-nameusersignupa-user-sign-up"></a><a name="UserSignUp"></a>使用者註冊  
+##  <a name="UserSignUp"></a>使用者註冊  
  `user sign up` 實體具有下列屬性。  
   
 |屬性|類型|說明|  
@@ -350,14 +351,10 @@ ms.openlocfilehash: 5df4ff1e0d68a62f5e470c7b05e1507ff019d0dc
 |電子郵件|字串|電子郵件地址。 不能空白，且在服務執行個體內必須是唯一的。 長度上限是 254 個字元。|  
 |名字|字串|名字。 不能空白。 長度上限是 100 個字元。|  
 |姓氏|字串|姓氏。 不能空白。 長度上限是 100 個字元。|  
-|UserData|字串|[註冊](api-management-page-controls.md#sign-up)註冊控制項所使用的值。|  
+|UserData|string|[註冊](api-management-page-controls.md#sign-up)控制項所使用的值。|  
 |NameIdentifier|字串|[註冊](api-management-page-controls.md#sign-up)註冊控制項所使用的值。|  
 |ProviderName|字串|驗證提供者名稱。|
 
 ## <a name="next-steps"></a>後續步驟
 如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](api-management-developer-portal-templates.md)。
-
-
-<!--HONumber=Jan17_HO2-->
-
 

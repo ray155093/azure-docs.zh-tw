@@ -12,18 +12,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/07/2017
+ms.date: 02/08/2017
 ms.author: priyamo
 translationtype: Human Translation
-ms.sourcegitcommit: 312aff4d85b2ec8f1ef78704950311c19cb21cdf
-ms.openlocfilehash: b96b0770179b7317af1e9fcf8798eb9cc1b7e3bb
+ms.sourcegitcommit: 06d8cb3ce2fe4419a79a63b76d67cc476d205e08
+ms.openlocfilehash: a3e21d5af43562afde927bb623b910c96ad48158
+ms.lasthandoff: 02/13/2017
 
 
 ---
 # <a name="authorize-access-to-web-applications-using-oauth-20-and-azure-active-directory"></a>使用 OAuth 2.0 和 Azure Active Directory 授權存取 Web 應用程式
 Azure Active Directory (Azure AD) 使用 OAuth 2.0 讓您授權存取 Azure AD 租用戶中的 Web 應用程式和 Web API。 本指南與語言無關，描述在不使用我們的任何開放原始碼程式庫的情況下，如何傳送和接收 HTTP 訊息。
 
-如需 OAuth 2.0 授權碼流程的說明，請參閱 [OAuth 2.0 規格的 4.1 節](https://tools.ietf.org/html/rfc6749#section-4.1) 。 在大部分的應用程式類型中，其用於執行驗證與授權，包括 Web Apps 和原始安裝的應用程式。
+如需 OAuth 2.0 授權碼流程的說明，請參閱 [OAuth 2.0 規格的 4.1 節](https://tools.ietf.org/html/rfc6749#section-4.1)。 在大多數的應用程式類型中，其用於執行驗證與授權，包括 Web Apps 和原始安裝的應用程式。
 
 [!INCLUDE [active-directory-protocols-getting-started](../../../includes/active-directory-protocols-getting-started.md)]
 
@@ -50,20 +51,20 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | 參數 |  | 說明 |
 | --- | --- | --- |
 | tenant |必要 |要求路徑中的 `{tenant}` 值可用來控制可登入應用程式的人員。  租用戶獨立權杖允許的值為租用戶識別碼，例如 `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` 或 `contoso.onmicrosoft.com` 或 `common` |
-| client_id |必要 |向 Azure AD 註冊應用程式時，指派給您的應用程式的識別碼。 您可在 Azure 管理入口網站中找到此值。 按一下 [Active Directory]，按一下目錄，按一下應用程式，然後按一下 [設定] |
+| client_id |必要 |向 Azure AD 註冊應用程式時，指派給您的應用程式的識別碼。 您可以在 Azure 入口網站中找到這個值。 按一下 [Active Directory]，按一下目錄，選擇應用程式，然後按一下 [設定] |
 | response_type |必要 |授權碼流程必須包含 `code`。 |
 | redirect_uri |建議使用 |應用程式的 redirect_uri，您的應用程式可在此傳送及接收驗證回應。  其必須完全符合您在入口網站中註冊的其中一個 redirect_uris，不然就必須得是編碼的 url。  對於原生和行動應用程式，請使用 `urn:ietf:wg:oauth:2.0:oob` 的預設值。 |
 | response_mode |建議使用 |指定將產生的權杖送回到應用程式所應該使用的方法。  可以是 `query` 或 `form_post`。 |
-| state |建議使用 |同樣會隨權杖回應傳回之要求中所包含的值。 隨機產生的唯一值通常用於 [防止跨站台偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。  此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
-| resource |選用 |Web API (受保護的資源) 應用程式識別碼 URI。 若要尋找 Web API 的應用程式識別碼 URI，請在 Azure 管理入口網站中，依序按一下 [Active Directory]、目錄、應用程式及 [設定]。 |
+| state |建議使用 |要求中包含的值，也會隨權杖回應傳回。 隨機產生的唯一值通常用於 [防止跨站台偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。  此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
+| resource |選用 |Web API (受保護的資源) 應用程式識別碼 URI。 若要尋找 Web API 的應用程式識別碼 URI，請在 Azure 入口網站中，依序按一下 [Active Directory]、目錄、應用程式及 [設定]。 |
 | prompt |選用 |表示需要的使用者互動類型。<p> 有效值為： <p> *login*：應提示使用者重新驗證。 <p> *consent*：已授與使用者同意，但需要更新。 應提示使用者同意。 <p> *admin_consent*：應提示管理員代表其組織內的所有使用者同意 |
-| login_hint |選用 |如果您事先知道其使用者名稱，可用來預先填入使用者登入頁面的使用者名稱/電子郵件地址欄位。  通常應用程式會在重新驗證期間使用此參數，已經使用 `preferred_username` 宣告從上一個登入擷取使用者名稱。 |
+| login_hint |選用 |如果您事先知道其使用者名稱，可用來預先填入使用者登入頁面的使用者名稱/電子郵件地址欄位。  通常應用程式會在重新驗證期間使用此參數，並已經使用 `preferred_username` 宣告從上一個登入擷取使用者名稱。 |
 | domain_hint |選用 |提供有關使用者應該用來登入之租用戶或網域的提示。 domain_hint 的值是租用戶的註冊網域。 如果租用戶與內部部署目錄結成同盟，AAD 會重新導向至指定的租用戶同盟伺服器。 |
 
 > [!NOTE]
 > 如果使用者隸屬於組織，組織的系統管理員可以代表使用者同意或拒絕，或允許使用者自行同意。 只有當系統管理員允許時，使用者才會獲得同意的選項。
-> 
-> 
+>
+>
 
 此時，會要求使用者輸入其認證，並同意 `scope` 查詢參數所指出的權限。 一旦使用者驗證並授與同意，Azure AD 便會在要求的 `redirect_uri` 位址中傳送回應給應用程式。
 
@@ -106,8 +107,8 @@ error=access_denied
 | unauthorized_client |不允許用戶端應用程式要求授權碼。 |這通常會在用戶端應用程式未在 Azure AD 中註冊，或未加入至使用者的 Azure AD 租用戶時發生。 應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
 | access_denied |資源擁有者拒絕同意 |用戶端應用程式可以通知使用者，除非使用者同意，否則無法繼續進行。 |
 | unsupported_response_type |授權伺服器不支援要求中的回應類型。 |修正並重新提交要求。 這是通常會在初始測試期間擷取到的開發錯誤。 |
-| server_error |伺服器發生非預期的錯誤。 |重試要求。 這些錯誤可能是由暫時性狀況所引起。 用戶端應用程式可能會向使用者解釋，其回應因為暫時性錯誤而延遲。 |
-| temporarily_unavailable |伺服器暫時過於忙碌而無法處理要求。 |重試要求。 用戶端應用程式可能會向使用者解釋，其回應因為暫時性狀況而延遲。 |
+| server_error |伺服器發生非預期的錯誤。 |重試要求。 這些錯誤可能是由暫時性狀況所引起。 用戶端應用程式可能會向使用者解釋，說明其回應因暫時性錯誤而延遲。 |
+| temporarily_unavailable |伺服器暫時過於忙碌而無法處理要求。 |重試要求。 用戶端應用程式可能會向使用者解釋，說明其回應因暫時性狀況而延遲。 |
 | invalid_resource |目標資源無效，因為它不存在、Azure AD 無法找到它，或是它並未正確設定。 |這表示尚未在租用戶中設定資源 (如果存在)。 應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
 
 ## <a name="use-the-authorization-code-to-request-an-access-token"></a>使用授權碼來要求存取權杖
@@ -132,7 +133,7 @@ grant_type=authorization_code
 | 參數 |  | 說明 |
 | --- | --- | --- |
 | tenant |必要 |要求路徑中的 `{tenant}` 值可用來控制可登入應用程式的人員。  租用戶獨立權杖允許的值為租用戶識別碼，例如 `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` 或 `contoso.onmicrosoft.com` 或 `common` |
-| client_id |必要 |向 Azure AD 註冊應用程式時，指派給您的應用程式的識別碼。 您可在 Azure 傳統入口網站中找到此資訊。 按一下 [Active Directory]，按一下目錄，按一下應用程式，然後按一下 [設定] |
+| client_id |必要 |向 Azure AD 註冊應用程式時，指派給您的應用程式的識別碼。 您可在 Azure 傳統入口網站中找到此資訊。 按一下 [Active Directory]，按一下目錄，選擇應用程式，然後按一下 [設定] |
 | grant_type |必要 |必須是授權碼流程的 `authorization_code` 。 |
 | code |必要 |您在上一節中取得的 `authorization_code` |
 | redirect_uri |必要 |用來取得 `authorization_code` 的相同 `redirect_uri` 值。 |
@@ -198,7 +199,9 @@ Azure AD 在成功回應時會傳回存取權杖。 為了減少來自用戶端�
 }.
 ```
 
-`id_token` 參數包含下列宣告類型。 如需 JSON Web 權杖的詳細資訊，請參閱 [JWT IETF 草稿規格](http://go.microsoft.com/fwlink/?LinkId=392344)。 如需有關權杖類型及宣告的詳細資訊，請參閱 [支援的權杖和宣告類型](active-directory-token-and-claims.md)
+如需 JSON Web 權杖的詳細資訊，請參閱 [JWT IETF 草稿規格](http://go.microsoft.com/fwlink/?LinkId=392344)。 如需有關權杖類型及宣告的詳細資訊，請參閱[支援的權杖和宣告類型](active-directory-token-and-claims.md)
+
+`id_token` 參數包含下列宣告類型：
 
 | 宣告類型 | 說明 |
 | --- | --- |
@@ -263,7 +266,7 @@ Azure AD 在成功回應時會傳回存取權杖。 為了減少來自用戶端�
 | unsupported_grant_type |授權伺服器不支援授權授與類型。 |變更要求中的授與類型。 這種類型的錯誤應該只會在開發期間發生，並且會在初始測試期間偵測出來。 |
 | invalid_resource |目標資源無效，因為它不存在、Azure AD 無法找到它，或是它並未正確設定。 |這表示尚未在租用戶中設定資源 (如果存在)。 應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
 | interaction_required |要求需要使用者互動。 例如，必須進行其他驗證步驟。 |以相同資源重試要求。 |
-| temporarily_unavailable |伺服器暫時過於忙碌而無法處理要求。 |重試要求。 用戶端應用程式可能會向使用者解釋，其回應因為暫時性狀況而延遲。 |
+| temporarily_unavailable |伺服器暫時過於忙碌而無法處理要求。 |重試要求。 用戶端應用程式可能會向使用者解釋，說明其回應因暫時性狀況而延遲。 |
 
 ## <a name="use-the-access-token-to-access-the-resource"></a>使用存取權杖來存取資源
 既然您已經成功取得 `access_token`，您就可以透過在 `Authorization` 標頭中包含權杖，在 Web API 的要求中使用權杖。 [RFC 6750](http://www.rfc-editor.org/rfc/rfc6750.txt) 規格會說明如何在 HTTP 要求中使用持有人權杖來存取受保護的資源。
@@ -374,11 +377,4 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | trace_id |有助於診斷的要求唯一識別碼。 |
 | correlation_id |有助於跨元件診斷的要求唯一識別碼。 |
 
-如需錯誤碼及建議的用戶端動作的說明，請參閱 [權杖端點錯誤的錯誤碼](#error-codes-for-token-endpoint-errors)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
-
-
+如需錯誤碼及建議的用戶端動作的說明，請參閱[權杖端點錯誤的錯誤碼](#error-codes-for-token-endpoint-errors)。

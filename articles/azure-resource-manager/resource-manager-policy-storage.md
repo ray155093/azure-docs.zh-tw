@@ -1,5 +1,5 @@
 ---
-title: "儲存體的 Azure Resource Manager 原則 | Microsoft Docs"
+title: "儲存體帳戶的 Azure 資源原則 | Microsoft Docs"
 description: "描述 Azure Resource Manager 管理儲存體帳戶部署的的原則。"
 services: azure-resource-manager
 documentationcenter: na
@@ -12,18 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/19/2017
+ms.date: 02/09/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: ce31bbcb96a6afe19cf6c25dd9a68d6c2d4d080c
-ms.openlocfilehash: f2141304f6db6d137065e06558e10c721b11f892
+ms.sourcegitcommit: 5ea75843bf671ad4d879c01cdd20d5bbc5e889c2
+ms.openlocfilehash: 08c991e9f217c49828889d0b806888e193b245a8
+ms.lasthandoff: 02/15/2017
 
 
 ---
-# <a name="apply-azure-resource-policies-to-storage-accounts"></a>將 Azure 資源原則套用至儲存體帳戶
-透過 Azure Resource Manager 原則，您可以為組織如何部署資源定義一致的規則。 您可以建立自訂的原則，確保組織中的使用者不會違反管理組織資源所需的慣例。 本主題說明定義 Azure 儲存體帳戶規則的幾個原則。 如需有關原則的詳細資訊，請參閱[使用資源原則來管理資源](resource-manager-policy.md)。
-
-本主題中的範例說明原則規則中的硬式編碼值。 不過，您可以在指派原則時使用參數來傳入所使用的值。 如需詳細資訊，請參閱[原則參數](resource-manager-policy.md#parameters)。
+# <a name="apply-resource-policies-to-storage-accounts"></a>將資源原則套用至儲存體帳戶
+本主題將示範數個您可以套用到 Azure 儲存體帳戶的[資源原則](resource-manager-policy.md)。 這些原則可確保您組織中所部署之儲存體帳戶的一致性。 
 
 ## <a name="define-permitted-storage-account-types"></a>定義允許的儲存體帳戶類型
 
@@ -53,6 +52,8 @@ ms.openlocfilehash: f2141304f6db6d137065e06558e10c721b11f892
   }
 }
 ```
+
+包含接受允許 SKU 參數的類似原則規則可做為內建的原則定義。 內建的原則具有 `/providers/Microsoft.Authorization/policyDefinitions/7433c107-6db4-4ad1-b57a-a76dce0154a1` 的資源識別碼。 
 
 ## <a name="define-permitted-access-tier"></a>定義允許的存取層
 
@@ -110,16 +111,10 @@ ms.openlocfilehash: f2141304f6db6d137065e06558e10c721b11f892
 }
 ```
 
-## <a name="create-and-assign-policies"></a>建立並指派原則
-
-定義原則規則 (如上述範例所示) 之後，您必須建立原則，並將它指派到某個範圍。 範圍可以是訂用帳戶、資源群組或資源。 如需建立和指派原則的範例，請參閱[建立並指派原則](resource-manager-policy.md#create-and-assign-a-policy)。 
+此原則規則也可做為具有資源識別碼 `/providers/Microsoft.Authorization/policyDefinitions/7c5a74bf-ae94-4a74-8fcf-644d1e0e6e6f` 的內建原則定義。
 
 ## <a name="next-steps"></a>後續步驟
+* 定義原則規則 (如上述範例所示) 之後，您必須建立原則定義，並將它指派到某個範圍。 範圍可以是訂用帳戶、資源群組或資源。 如需建立和指派原則的範例，請參閱[指派和管理原則](resource-manager-policy-create-assign.md)。 
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

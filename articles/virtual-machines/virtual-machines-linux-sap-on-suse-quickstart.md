@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 09/15/2016
+ms.date: 02/14/2017
 ms.author: hermannd
 translationtype: Human Translation
-ms.sourcegitcommit: d4fa4187b25dcbb7cf3b75cb9186b5d245c89227
-ms.openlocfilehash: fe07622d3a3e60c6d3520b6983195b410c3edc6a
+ms.sourcegitcommit: 046f58eba906980f23ce1177794b28930e3314a1
+ms.openlocfilehash: e7255c4123849f8f3fb29767308b433b5c0e511b
+ms.lasthandoff: 02/14/2017
 
 
 ---
@@ -33,6 +34,9 @@ ms.openlocfilehash: fe07622d3a3e60c6d3520b6983195b410c3edc6a
 
 針對 Azure 上的所有新測試和安裝，您應該使用 Azure Resource Manager。 若要尋找 SUSE SLES 映像和使用 Azure Powershell 或 Azure 命令列介面 (CLI) 的版本，請使用下列命令。 然後可以使用輸出，例如，在 json 範本中定義作業系統映像，以部署新的 SUSE Linux VM。
 下列 PowerShell 命令適用於 Azure Powershell 版本 1.0.1 或更新版本。
+
+雖然仍可使用標準 SLES 映像進行 SAP 安裝，但是建議利用可在 Azure 映像庫上取得的新 SLES for SAP 映像。 您可以在對應的 [Azure Marketplace 頁面]( https://azuremarketplace.microsoft.com/en-us/marketplace/apps/SUSE.SLES-SAP )或 [有關 SLES for SAP 的 SUSE 常見問題集網頁]( https://www.suse.com/products/sles-for-sap/frequently-asked-questions/ )上找到這些映像的詳細資訊。
+
 
 * 尋找現有的發佈者，包括 SUSE：
   
@@ -50,13 +54,17 @@ ms.openlocfilehash: fe07622d3a3e60c6d3520b6983195b410c3edc6a
   
    ```
    PS  : Get-AzureRmVMImageSku -Location "West Europe" -Publisher "SUSE" -Offer "SLES"
+   PS  : Get-AzureRmVMImageSku -Location "West Europe" -Publisher "SUSE" -Offer "SLES-SAP"
    CLI : azure vm image list-skus westeurope SUSE SLES
+   CLI : azure vm image list-skus westeurope SUSE SLES-SAP
    ```
 * 尋找 SLES SKU 的特定版本：
   
    ```
-   PS  : Get-AzureRmVMImage -Location "West Europe" -Publisher "SUSE" -Offer "SLES" -skus "12"
-   CLI : azure vm image list westeurope SUSE SLES 12
+   PS  : Get-AzureRmVMImage -Location "West Europe" -Publisher "SUSE" -Offer "SLES" -skus "12-SP2"
+   PS  : Get-AzureRmVMImage -Location "West Europe" -Publisher "SUSE" -Offer "SLES-SAP" -skus "12-SP2"
+   CLI : azure vm image list westeurope SUSE SLES 12-SP2
+   CLI : azure vm image list westeurope SUSE SLES-SAP 12-SP2
    ```
 
 ## <a name="installing-walinuxagent-in-a-suse-vm"></a>在 SUSE VM 中安裝 WALinuxAgent
@@ -98,7 +106,7 @@ SAP「增強型監視」是在 Azure 上執行 SAP 的必要先決條件。 請�
 
 除了文章中說明的以外，建議您一併移除下列項目：
 
-   # sudo mv /lib/udev/rules.d/75-persistent-net-generator.rules /var/lib/waagent/
+   /lib/udev/rules.d/75-persistent-net-generator.rules
 
 只要沒有多個 NIC，您還可以安裝 Azure Linux 代理程式 (waagent) 來避免潛在問題。
 
@@ -155,10 +163,5 @@ SUSE 提供稱為 "sapconf" 的封裝，這組封裝負責管理一組 SAP 特�
 
 ## <a name="sap-support-for-oracle-on-linux-in-the-cloud"></a>雲端中 Linux 上針對 Oracle 的 SAP 支援
 在虛擬環境中，Oracle 對 Linux 的支援有所限制。 雖然這不是 Azure 專屬的主題，不過仍請務必了解。 SAP 不支援 SUSE 上的 Oracle 或類似 Azure 之公用雲端中的 Red Hat。 若要討論這個主題，請直接連絡 Oracle。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

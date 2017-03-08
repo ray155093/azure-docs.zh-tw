@@ -15,8 +15,9 @@ ms.workload: identity
 ms.date: 11/15/2016
 ms.author: bryanla
 translationtype: Human Translation
-ms.sourcegitcommit: 0b035ad1505e45c8c0820c825ff609df6e6100f0
-ms.openlocfilehash: bcbd421e4e8a4643695011b27482722029611a3d
+ms.sourcegitcommit: 186541bee40ada7fc9e6be31d6b989e9bd34e0d1
+ms.openlocfilehash: acc585d139e91b4954658fb061587a69e701bbe2
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -34,10 +35,10 @@ ms.openlocfilehash: bcbd421e4e8a4643695011b27482722029611a3d
 如需詳細資訊，請參閱 [Azure AD 權杖參考][AAD-Tokens-Claims]。
 
 ## <a name="application-manifest"></a>應用程式資訊清單
-[Azure 傳統入口網站][AZURE-classic-portal]所提供的功能，這會產生以 JSON 表示的應用程式身分識別組態，以做為其相關聯[應用程式][AAD-Graph-App-Entity]實體和 [ServicePrincipal][AAD-Graph-Sp-Entity] 實體的更新機制。 如需詳細資訊，請參閱[了解 Azure Active Directory 應用程式資訊清單][AAD-App-Manifest]。
+[Azure 入口網站][AZURE-portal]所提供的功能，這會產生以 JSON 表示的應用程式身分識別組態，以做為其相關聯[應用程式][AAD-Graph-App-Entity]實體和 [ServicePrincipal][AAD-Graph-Sp-Entity] 實體的更新機制。 如需詳細資訊，請參閱[了解 Azure Active Directory 應用程式資訊清單][AAD-App-Manifest]。
 
 ## <a name="application-object"></a>應用程式物件
-當您在 [Azure 傳統入口網站][AZURE-classic-portal]註冊/更新應用程式時，入口網站會為租用戶同時建立/更新應用程式物件和對應的[服務主體物件](#service-principal-object)。 應用程式物件可全域 (在其能夠存取的所有租用戶中)「定義」應用程式的身分識別組態，並提供範本來「衍生」出其對應的服務主體物件，以在執行階段於本機 (在特定租用戶) 使用。
+當您在 [Azure 入口網站][AZURE-portal]註冊/更新應用程式時，入口網站會為租用戶同時建立/更新應用程式物件和對應的[服務主體物件](#service-principal-object)。 應用程式物件可全域 (在其能夠存取的所有租用戶中)「定義」應用程式的身分識別組態，並提供範本來「衍生」出其對應的服務主體物件，以在執行階段於本機 (在特定租用戶) 使用。
 
 如需詳細資訊，請參閱[應用程式物件和服務主體物件][AAD-App-SP-Objects]。
 
@@ -109,7 +110,7 @@ ms.openlocfilehash: bcbd421e4e8a4643695011b27482722029611a3d
 
 權限也會在 [同意](#consent) 程序期間出現，讓系統管理員或資源擁有者有機會允許/拒絕用戶端對其租用戶中的資源進行存取。
 
-在 [Azure 傳統入口網站][AZURE-classic-portal]的 [應用程式]/[設定] 索引標籤中，於 [其他應用程式的權限] 底下按照需要選取 [委派的權限] 和 [應用程式權限] (後者需要全域管理員角色的成員資格)，即可設定權限要求。 [公用用戶端](#client-application)無法維護認證，因此它只能要求委派的權限，而[機密用戶端](#client-application)則能夠要求委派的權限和應用程式權限。 用戶端的[應用程式物件](#application-object)會將宣告的權限儲存在其 [requiredResourceAccess 屬性][AAD-Graph-App-Entity]中。
+在 [Azure 入口網站][AZURE-portal]的 [應用程式]/[設定] 索引標籤中，於 [必要的權限] 底下按照需要選取 [委派的權限] 和 [應用程式權限] (後者需要全域管理員角色的成員資格)，即可設定權限要求。 [公用用戶端](#client-application)無法維護認證，因此它只能要求委派的權限，而[機密用戶端](#client-application)則能夠要求委派的權限和應用程式權限。 用戶端的[應用程式物件](#application-object)會將宣告的權限儲存在其 [requiredResourceAccess 屬性][AAD-Graph-App-Entity]中。
 
 ## <a name="resource-owner"></a>資源擁有者
 如 [OAuth2 授權架構][OAuth2-Role-Def]所定義，這是能夠授與受保護資源存取權的實體。 個人資源擁有者就是指使用者。 例如，當[用戶端應用程式](#client-application)想要透過 [Microsoft 圖形 API][Microsoft-Graph] 存取使用者的信箱時，它需要從信箱的資源擁有者取得權限。
@@ -124,14 +125,14 @@ ms.openlocfilehash: bcbd421e4e8a4643695011b27482722029611a3d
 ## <a name="roles"></a>角色
 和[範圍](#scopes)一樣，角色會提供方法讓[資源伺服器](#resource-server)控管其受保護資源的存取權。 角色有兩種類型：「使用者」角色會為需要資源存取權的使用者/群組實作角色型存取控制，「應用程式」角色則會為需要存取權的 [用戶端應用程式](#client-application) 實作相同的存取控制。
 
-角色是資源所定義的字串 (例如「經費支出核准者」、"Directory.ReadWrite.All")，可在 [Azure 傳統入口網站][AZURE-classic-portal]中透過資源的[應用程式資訊清單](#application-manifest)進行管理，並且會儲存在資源的 [appRoles 屬性][AAD-Graph-Sp-Entity]。 Azure 傳統入口網站也可用來將使用者指派給「使用者」角色，並設定用戶端 [應用程式權限](#permissions) 以存取「應用程式」角色。
+角色是資源所定義的字串 (例如「經費支出核准者」、"Directory.ReadWrite.All")，可在 [Azure 入口網站][AZURE-portal]中透過資源的[應用程式資訊清單](#application-manifest)進行管理，並且會儲存在資源的 [appRoles 屬性][AAD-Graph-Sp-Entity]。 Azure 入口網站也可用來將使用者指派給「使用者」角色，並設定用戶端[應用程式權限](#permissions)以存取「應用程式」角色。
 
 如需 Azure AD 圖形 API 所公開之應用程式角色的詳細討論，請參閱[圖形 API 權限範圍][AAD-Graph-Perm-Scopes]。 如需逐步實作範例，請參閱[雲端應用程式中使用 Azure AD 的角色型存取控制][Duyshant-Role-Blog]。
 
 ## <a name="scopes"></a>範圍
 和[角色](#roles)一樣，範圍會提供方法讓[資源伺服器](#resource-server)控管其受保護資源的存取權。 針對已獲得資源擁有者委派資源存取權的[用戶端應用程式](#client-application)，範圍可用來實作[範圍型][OAuth2-Access-Token-Scopes]存取控制。
 
-範圍是資源所定義的字串 (例如 "Mail.Read"、"Directory.ReadWrite.All")，可在 [Azure 傳統入口網站][AZURE-classic-portal]中透過資源的[應用程式資訊清單](#application-manifest)進行管理，並且會儲存在資源的 [oauth2Permissions 屬性][AAD-Graph-Sp-Entity]。 Azure 傳統入口網站也可用來設定用戶端應用程式 [委派的權限](#permissions) 以存取某個範圍。
+範圍是資源所定義的字串 (例如 "Mail.Read"、"Directory.ReadWrite.All")，可在 [Azure 入口網站][AZURE-portal]中透過資源的[應用程式資訊清單](#application-manifest)進行管理，並且會儲存在資源的 [oauth2Permissions 屬性][AAD-Graph-Sp-Entity]。 Azure 入口網站也可用來將用戶端應用程式[委派的權限](#permissions)設定為存取某個範圍。
 
 命名慣例的最佳作法是使用「resource.operation.constraint」格式。 如需 Azure AD 圖形 API 所公開之範圍的詳細討論，請參閱[圖形 API 權限範圍][AAD-Graph-Perm-Scopes]。 如需 Office 365 服務所公開的範圍，請參閱 [Office 365 API 權限參考][O365-Perm-Ref]。
 
@@ -139,7 +140,7 @@ ms.openlocfilehash: bcbd421e4e8a4643695011b27482722029611a3d
 包含 OAuth2 權杖或 SAML 2.0 判斷提示等宣告的已簽署文件。 對於 OAuth2 [授權授與](#authorization-grant)而言，[存取權杖](#access-token) (OAuth2) 和[識別碼權杖](http://openid.net/specs/openid-connect-core-1_0.html#IDToken)皆為安全性權杖類型，而且這兩種類型都會實作為 [JSON Web 權杖 (JWT)][JWT]。
 
 ## <a name="service-principal-object"></a>服務主體物件
-當您在 [Azure 傳統入口網站][AZURE-classic-portal]註冊/更新應用程式時，入口網站會為租用戶同時建立/更新[應用程式物件](#application-object)和對應的服務主體物件。 應用程式物件可全域 (在相關聯的應用程式已獲授與存取權的所有租用戶中)「定義」應用程式的身分識別組態，並可做為範本來「衍生」出其對應的服務主體物件，以在執行階段於本機 (在特定租用戶) 使用。
+當您在 [Azure 入口網站][AZURE-portal]註冊/更新應用程式時，入口網站會為租用戶同時建立/更新[應用程式物件](#application-object)和對應的服務主體物件。 應用程式物件可全域 (在相關聯的應用程式已獲授與存取權的所有租用戶中)「定義」應用程式的身分識別組態，並可做為範本來「衍生」出其對應的服務主體物件，以在執行階段於本機 (在特定租用戶) 使用。
 
 如需詳細資訊，請參閱[應用程式物件和服務主體物件][AAD-App-SP-Objects]。
 
@@ -195,7 +196,7 @@ Azure AD 目錄的執行個體會稱為 Azure AD 租用戶。 它可提供各種
 [AAD-Multi-Tenant-Overview]: active-directory-devhowto-multi-tenant-overview.md
 [AAD-Security-Token-Claims]: ./active-directory-authentication-scenarios/#claims-in-azure-ad-security-tokens
 [AAD-Tokens-Claims]: ./active-directory-token-and-claims.md
-[AZURE-classic-portal]: https://manage.windowsazure.com
+[AZURE-portal]: https://portal.azure.com
 [Duyshant-Role-Blog]: http://www.dushyantgill.com/blog/2014/12/10/roles-based-access-control-in-cloud-applications-using-azure-ad/
 [JWT]: https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32
 [Microsoft-Graph]: https://graph.microsoft.io
@@ -208,9 +209,4 @@ Azure AD 目錄的執行個體會稱為 Azure AD 租用戶。 它可提供各種
 [OpenIDConnect]: http://openid.net/specs/openid-connect-core-1_0.html
 [OpenIDConnect-AuthZ-Endpoint]: http://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint
 [OpenIDConnect-ID-Token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

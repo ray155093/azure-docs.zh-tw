@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
-ms.openlocfilehash: 4d436776069bd950dd9ab240aeefd986822ee869
+ms.sourcegitcommit: 7e53a249e6a7ea87d7d5855d041db97b5df7053c
+ms.openlocfilehash: 1276506d77695f284c49d0e2f7d57a9162b38bd6
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -229,7 +230,7 @@ AuthenticationSettings.Instance.setUseBroker(true);
 
 例如：msauth://com.example.userapp/IcB5PxIyvbLkbFVtBI%2FitkW%2Fejk%3D
 
-此重新導向 URI 必須在使用 [Azure 傳統入口網站](https://manage.windowsazure.com/)的應用程式註冊中指定。 如需 Azure AD 應用程式註冊的詳細資訊，請參閱 [與 Azure Active Directory 整合](active-directory-how-to-integrate.md)。
+此重新導向 URI 必須使用 [Azure 入口網站](https://portal.azure.com/)在應用程式註冊中指定。 如需 Azure AD 應用程式註冊的詳細資訊，請參閱 [與 Azure Active Directory 整合](active-directory-how-to-integrate.md)。
 
 #### <a name="step-3-set-up-the-correct-permissions-in-your-application"></a>步驟 3：在您的應用程式中設定正確的權限
 我們的 Android 訊息代理程式應用程式會使用 Android 作業系統的 Accounts Manager 功能來管理所有應用程式的認證。 若要在 Android 中使用此訊息代理程式，您的應用程式資訊清單必須有使用 AccountManager 帳戶的權限。 在 [此處適用於帳戶管理員的 Google 文件](http://developer.android.com/reference/android/accounts/AccountManager.html)
@@ -244,10 +245,5 @@ MANAGE_ACCOUNTS
 
 ### <a name="youve-configured-sso"></a>您已設定 SSO！
 現在 Microsoft Identity SDK 會自動跨應用程式共用認證，並在訊息代理程式出現在其裝置上時叫用它。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

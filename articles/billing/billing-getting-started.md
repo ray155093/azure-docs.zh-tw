@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/20/2016
+ms.date: 02/03/2017
 ms.author: jlian
 translationtype: Human Translation
-ms.sourcegitcommit: 249d08341311e48a93db8031439f0bc35162f823
-ms.openlocfilehash: 28c70685cfa3da94cc0648cebae7ec296af60986
+ms.sourcegitcommit: 1b738d952685fe71e5a1eecd809afae1c9904267
+ms.openlocfilehash: 8f32c2c85d2f6c2265048e58d5c2b0256fa020bd
+ms.lasthandoff: 02/14/2017
 
 
 ---
@@ -41,17 +42,17 @@ ms.openlocfilehash: 28c70685cfa3da94cc0648cebae7ec296af60986
 
 ### <a name="check-your-subscription-and-access"></a>檢查訂用帳戶和存取權
 
-檢視成本需要[訂用帳戶層級存取權](../active-directory/role-based-access-control-configure.md)，但只有帳戶管理員可以存取[帳戶中心](https://account.windowsazure.com/Home/Index)、變更計費資訊，以及管理訂用帳戶。 帳戶管理員是完成註冊程序的人員。 如需詳細資訊，請參閱[如何新增或變更 Azure 管理員角色](../billing-add-change-azure-subscription-administrator.md)。
+檢視成本需要[訂用帳戶層級存取權](../active-directory/role-based-access-control-configure.md)，但只有帳戶管理員可以存取[帳戶中心](https://account.windowsazure.com/Home/Index)、變更計費資訊，以及管理訂用帳戶。 帳戶管理員是完成註冊程序的人員。 如需詳細資訊，請參閱[如何新增或變更 Azure 管理員角色](billing-add-change-azure-subscription-administrator.md)。
 
 若要查看您是否為帳戶管理員，請前往 [Azure 入口網站中的訂用帳戶刀鋒視窗](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade)並查看您具有存取權的訂用帳戶清單。 查看 [我的角色] 底下。 如果它顯示*帳戶管理員*，那麼您就是帳戶管理員。 如果它顯示諸如*擁有者*之類的其他角色，則表示您沒有完整權限。
 
 ![Azure 入口網站的訂用帳戶檢視中您的角色的螢幕擷取畫面](./media/billing-getting-started/sub-blade-view.PNG)
 
-如果您不是帳戶管理員，則表示有人可能透過 [Azure Active Directory 角色型存取控制](../active-directory/role-based-access-control-configure.md) (RBAC) 授與您部分存取權。 若要管理訂用帳戶及變更帳單資訊，請[找到帳戶管理員](../billing-subscription-transfer.md#whoisaa)，並要求他們執行工作或[將訂用帳戶轉移給您](../billing-subscription-transfer.md)。
+如果您不是帳戶管理員，則表示有人可能透過 [Azure Active Directory 角色型存取控制](../active-directory/role-based-access-control-configure.md) (RBAC) 授與您部分存取權。 若要管理訂用帳戶及變更帳單資訊，請[找到帳戶管理員](billing-subscription-transfer.md#whoisaa)，並要求他們執行工作或[將訂用帳戶轉移給您](billing-subscription-transfer.md)。
 
 如果您的帳戶系統管理員已不在您組織，而您需要管理帳單，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。 
 
-### <a name="a-namespending-limita-check-if-you-have-a-spending-limit-on"></a><a name="spending-limit"></a> 檢查您是否開啟消費限制
+### <a name="spending-limit"></a> 檢查您是否開啟消費限制
 
 如果您有使用信用額度的訂用帳戶，那麼您的消費限制依預設是開啟的。 如此一來，當您花光您的信用額度時，就不會針對您的信用卡收費。 請參閱 [Azure 優惠完整清單及消費限制可用性](https://azure.microsoft.com/support/legal/offer-details/)。
 
@@ -65,7 +66,7 @@ ms.openlocfilehash: 28c70685cfa3da94cc0648cebae7ec296af60986
 
 ### <a name="set-up-billing-alerts"></a>設定帳務警示
 
-設定帳務警示，以便在使用成本超過您指定的金額時，收到電子郵件通知。 如果您有每月信用額度，請依照您設定指定金額時的額度設定警示。 如需詳細資訊，請參閱[為您的 Microsoft Azure 訂用帳戶設定帳單通知](../billing-set-up-alerts.md)。
+設定帳務警示，以便在使用成本超過您指定的金額時，收到電子郵件通知。 如果您有每月信用額度，請依照您設定指定金額時的額度設定警示。 如需詳細資訊，請參閱[為您的 Microsoft Azure 訂用帳戶設定帳單通知](billing-set-up-alerts.md)。
 
 ![帳務警示電子郵件的螢幕擷取畫面](./media/billing-getting-started/billing-alert.png)
 
@@ -86,7 +87,7 @@ ms.openlocfilehash: 28c70685cfa3da94cc0648cebae7ec296af60986
 
 ![範例︰A1 Windows VM 預估每月成本為 $66.96 美元](./media/billing-getting-started/vm-size-cost.PNG)
 
-### <a name="a-nametagsa-add-tags-to-your-resources-to-group-your-billing-data"></a><a name="tags"></a> 將標記新增至您的資源以便將計費資料分組
+### <a name="tags"></a> 將標記新增至您的資源以便將計費資料分組
 
 針對支援的服務，您可以使用標記來將您的計費資料分組。 例如，如果您有不同小組執行數個 VM，您可以使用標記，依照成本中心 (HR、行銷、財務) 或環境 (生產環境、預先生產環境、測試) 來將成本分類。 
 
@@ -106,9 +107,9 @@ ms.openlocfilehash: 28c70685cfa3da94cc0648cebae7ec296af60986
 
 如需研測環境的更多成本削減功能，請參閱 [Azure DevTest Labs](https://azure.microsoft.com/services/devtest-lab/)。
 
-## <a name="a-namecost-reportinga-after-using-services-view-usage"></a><a name="cost-reporting"></a> 使用服務之後，檢視使用量
+## <a name="cost-reporting"></a> 使用服務之後，檢視使用量
 
-### <a name="a-namecostsa-regularly-check-the-portal-for-cost-breakdown-and-burn-rate"></a><a name="costs"></a>定期查看入口網站以了解成本細分和完工速率
+### <a name="costs"></a>定期查看入口網站以了解成本細分和完工速率
 
 在您的服務開始執行之後，請定期檢查它們花了您多少錢。 您可以在 Azure 入口網站中看到目前的花費和完工速率。 
 
@@ -154,9 +155,9 @@ ms.openlocfilehash: 28c70685cfa3da94cc0648cebae7ec296af60986
 
 如需詳細資訊，請參閱[建議程式成本建議](../advisor/advisor-cost-recommendations.md)。
 
-### <a name="a-nameinvoice-and-usagea-download-invoice-and-detail-usage-after-your-first-billing-period"></a><a name="invoice-and-usage"></a> 在您第一次計費期間之後下載發票和詳細使用量
+### <a name="invoice-and-usage"></a>在您第一次計費期間之後取發票和詳細使用量
 
-在第一次計費期間之後，您可以下載您的可攜式文件格式 (.pdf) 發票和逗號分隔值 (.csv) 使用量詳細資料。 這些檔案可協助了解您在稅金、折扣和信用額度之後的最終計費是多少。 如果您的訂用帳戶沒有連結付款方法，則您可能無法使用這些檔案。 如需詳細資訊，請參閱[如何下載您的 Azure 帳單寄送發票和每日使用量資料](../billing-download-azure-invoice-daily-usage-date.md)和[了解 Microsoft Azure 帳單](/billing-understand-your-bill.md)。
+在第一次計費期間之後，您可以下載您的可攜式文件格式 (.pdf) 發票和逗號分隔值 (.csv) 使用量詳細資料。 您也可以選擇加入以便透過電子郵件收取發票。 這些檔案可協助了解您在稅金、折扣和信用額度之後的最終計費是多少。 如果您的訂用帳戶沒有連結付款方法，則您可能無法使用這些檔案。 如需詳細資訊，請參閱[如何取得您的 Azure 帳單寄送發票和每日使用量資料](billing-download-azure-invoice-daily-usage-date.md)和[了解 Microsoft Azure 帳單](billing-understand-your-bill.md)。
 
 ![.pdf 發票的螢幕擷取畫面](./media/billing-getting-started/invoice.png)
 
@@ -166,22 +167,17 @@ ms.openlocfilehash: 28c70685cfa3da94cc0648cebae7ec296af60986
 
 ### <a name="billing-api"></a>計費 API
 
-使用我們的計費 API 可以用程式設計方式取得使用量資料。 RateCard API 與使用情況 API 一起使用即可取得您的計費使用量。 如需詳細資訊，請參閱[深入瞭解 Microsoft Azure 資源耗用量](../billing-usage-rate-card-overview.md)。
+使用我們的計費 API 可以用程式設計方式取得使用量資料。 RateCard API 與使用情況 API 一起使用即可取得您的計費使用量。 如需詳細資訊，請參閱[深入瞭解 Microsoft Azure 資源耗用量](billing-usage-rate-card-overview.md)。
 
-## <a name="a-nameother-offersa-additional-resources-for-ea-csp-and-sponsorship"></a><a name="other-offers"></a> 適用於 EA、CSP 和贊助的其他資源
+## <a name="other-offers"></a> 適用於 EA、CSP 和贊助的其他資源
 
 若要開始使用，請連絡帳戶管理員或 Azure 。
 
 | 提供項目 | 資源 |
 |-------------------------------|-----------------------------------------------------------------------------------|
-| Enterprise 合約 (EA) | [EA 入口網站](https://ea.azure.com/)和[協助文件](https://ea.azure.com/helpdocs) |
+| Enterprise 合約 (EA) | [EA 入口網站](https://ea.azure.com/)、[協助文件](https://ea.azure.com/helpdocs)和 [Power BI 報告](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-enterprise/) |
 | 雲端解決方案提供者 (CSP) | 與您的提供者討論 |
 | Azure 贊助 | [贊助入口網站 (英文)](https://www.microsoftazuresponsorships.com/) |
 
 如果您管理的是大型組織的 IT，我們建議您閱讀 [Azure 企業 Scaffold](../azure-resource-manager/resource-manager-subscription-governance.md) 和[企業 IT 技術白皮書](http://download.microsoft.com/download/F/F/F/FFF60E6C-DBA1-4214-BEFD-3130C340B138/Azure_Onboarding_Guide_for_IT_Organizations_EN_US.pdf) (.pdf 下載，僅提供英文版)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

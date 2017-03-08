@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/15/2016
+ms.date: 03/02/2017
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: 5e4aebee48754f1f6762898d9571a4fff7d7283e
-ms.openlocfilehash: ab167a74ddab1e38369ce9fa466022365ca08bee
+ms.sourcegitcommit: b4637922e7b280b0e9954c9e51788202e784b4f9
+ms.openlocfilehash: 743223f78f279fedf33f73ff52b56f4a7358cd51
+ms.lasthandoff: 02/13/2017
 
 
 ---
@@ -44,6 +45,18 @@ Service Fabric 在升級期間進行的健康狀態原則以及檢查不限於�
 
 不受監控手動模式在每次於更新網域上升級之後都需要手動介入，以開始進行下一個更新網域上的升級。 系統不會執行任何 Service Fabric 健康狀態檢查。 系統管理員在開始下一個更新網域中的升級之前，會執行健康狀態或狀態檢查。
 
+## <a name="upgrade-default-services"></a>升級預設服務
+您可以在應用程式的升級程序期間升級 Service Fabric 應用程式內的預設服務。 預設服務會在[應用程式資訊清單](service-fabric-application-model.md#describe-an-application)中定義。 升級預設服務的標準規則如下︰
+
+1. 會建立不存在於叢集中的新[應用程式資訊清單](service-fabric-application-model.md#describe-an-application)中的預設服務。
+> [!TIP]
+> [EnableDefaultServicesUpgrade](service-fabric-cluster-fabric-settings.md#fabric-settings-that-you-can-customize) 必須設為 true，以啟用下列規則。 從 v5.5 可支援此功能。
+
+2. 會更新在上一個[應用程式資訊清單](service-fabric-application-model.md#describe-an-application)及新版本中的預設服務。 在新版本中的服務描述將會覆寫已在叢集中的部分。 在更新預設服務失敗時，應用程式升級會自動回復。
+3. 會刪除上一個[應用程式資訊清單](service-fabric-application-model.md#describe-an-application)中的預設服務，但不會刪除新版中的預設服務。 **請注意，無法還原此刪除預設服務。**
+
+如果應用程式升級已回復，預設服務會還原為開始升級前的狀態。 但永遠無法建立已刪除的服務。
+
 ## <a name="application-upgrade-flowchart"></a>應用程式升級流程圖
 本段落下面的流程圖可以協助您了解 Service Fabric 應用程式的升級程序。 特別是，此流程會說明逾時 (包括 HealthCheckStableDuration、HealthCheckRetryTimeout 和 UpgradeHealthCheckInterval) 如何協助控制一個更新網域中的升級被視為成功或失敗的時機。
 
@@ -62,10 +75,5 @@ Service Fabric 在升級期間進行的健康狀態原則以及檢查不限於�
 
 參考 [疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
 
-[映像]: media/service-fabric-application-upgrade/service-fabric-application-upgrade-flowchart.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[image]: media/service-fabric-application-upgrade/service-fabric-application-upgrade-flowchart.png
 

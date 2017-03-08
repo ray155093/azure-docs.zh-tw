@@ -15,8 +15,9 @@ ms.workload: identity
 ms.date: 11/29/2016
 ms.author: bryanla;mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 146d1377a017becdcdcd7fed7b97f07c2cb2bb39
-ms.openlocfilehash: 6d2b0d0c28963693f8fa5607200e73572ea748a0
+ms.sourcegitcommit: 8f70d9aeb0a407cdb76a5ce25eb620be58bb2659
+ms.openlocfilehash: f453dcafe629c871dc29742208e4864454f4c57e
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.openlocfilehash: 6d2b0d0c28963693f8fa5607200e73572ea748a0
 Azure AD 應用程式遠遠不只是一套軟體。 它是一個概念性詞彙，指的不只是應用程式軟體，還包括它與 Azure AD 的註冊關係 (也稱為︰身分識別組態)，這可讓它在執行階段參與驗證和授權「對話」。 根據定義，應用程式的運作身分可以是[用戶端](active-directory-dev-glossary.md#client-application)角色 (取用資源)、[資源伺服器](active-directory-dev-glossary.md#resource-server)角色 (對用戶端公開 API)，或甚至身兼兩者。 對話通訊協定是由 [OAuth 2.0 授權授與流程](active-directory-dev-glossary.md#authorization-grant)所定義，目標是要讓用戶端/資源能夠各自存取/保護資源的資料。 現在讓我們再深入一點，看看 Azure AD 應用程式模型在內部是如何代表應用程式。 
 
 ## <a name="application-registration"></a>應用程式註冊
-當您在 [Azure 傳統入口網站][AZURE-Classic-Portal]註冊應用程式，Azure AD 租用戶中會建立兩個物件︰應用程式物件和服務主體物件。
+當您在 [Azure 入口網站][AZURE-Portal]註冊應用程式，Azure AD 租用戶中會建立兩個物件︰應用程式物件和服務主體物件。
 
 #### <a name="application-object"></a>應用程式物件
 Azure AD 應用程式是由其唯一一個應用程式物件所「定義」，該物件位於應用程式註冊所在的 Azure AD 租用戶，也稱為應用程式的「主要」租用戶。 應用程式物件能夠為應用程式提供身分識別相關資訊，並可做為其對應服務主體物件的「衍生」  範本，以在執行階段使用。 
@@ -69,10 +70,5 @@ Azure AD 應用程式是由其唯一一個應用程式物件所「定義」，�
 <!--Reference style links -->
 [AAD-Graph-App-Entity]: https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#application-entity
 [AAD-Graph-Sp-Entity]: https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#serviceprincipal-entity
-[AZURE-Classic-Portal]: https://manage.windowsazure.com
-
-
-
-<!--HONumber=Dec16_HO5-->
-
+[AZURE-Portal]: https://portal.azure.com
 

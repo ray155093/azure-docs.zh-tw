@@ -1,6 +1,6 @@
 ---
 title: "在 Azure 中設定資料科學環境 | Microsoft Docs"
-description: "設定用於 Team Data Science Process 中的資料科學環境"
+description: "在 Azure 上設定用於 Team Data Science Process 中的資料科學環境。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 02/08/2017
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: f497366f8e66ba79b0e5978fde54d0b33048aa8d
-ms.openlocfilehash: f5f54741615eedfe7909ed02d2a37dc4dd40526e
+ms.sourcegitcommit: 1796f7a7cd174d7ed6582878d72c59995aac41cb
+ms.openlocfilehash: 4f2f66288428aa0aa41abb40ce0e43c4848543ff
+ms.lasthandoff: 02/08/2017
 
 
 ---
@@ -31,10 +32,5 @@ Team Data Science Process 使用各種資料科學環境來儲存、處理和分
 [!INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
 **Microsoft 資料科學虛擬機器 (DSVM)** 也以 Azure 虛擬機器 (VM) 映像形式提供。 此 VM 會預先安裝並且以數個常用於資料分析和機器學習服務的熱門工具進行設定。 DSVM 可用於 Windows 和 Linux。 如需進一步資訊，請參閱[適用於 Linux 和 Windows 的雲端型資料科學虛擬機器簡介](machine-learning-data-science-virtual-machine-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 
