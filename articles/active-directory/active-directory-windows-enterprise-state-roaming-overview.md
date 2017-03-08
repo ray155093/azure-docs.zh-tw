@@ -4,7 +4,7 @@ description: "提供 Windows 裝置中企業狀態漫遊設定的相關資訊。
 services: active-directory
 keywords: "什麼是企業狀態漫遊, 企業同步處理, windows 雲端"
 documentationcenter: 
-author: markvi
+author: MarkusVi
 manager: femila
 editor: curtand
 ms.assetid: 83b3b58f-94c1-4ab0-be05-20e01f5ae3f0
@@ -18,6 +18,7 @@ ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: ce78b996a5f45b0b074563bc50af5aaab85f2667
 ms.openlocfilehash: 56eacc48102302961132bba6d14838327a899c59
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -37,10 +38,5 @@ ms.openlocfilehash: 56eacc48102302961132bba6d14838327a899c59
 | [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md) |Windows 10 提供群組原則和行動裝置管理 (MDM) 原則設定，以限制設定同步處理。 |
 | [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md) |以下是在 Windows 10 中進行漫遊及/或備份的所有設定的完整清單。 |
 | [疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md) |本主題會執行一些疑難排解基本步驟，並且包含一份已知問題清單。 |
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

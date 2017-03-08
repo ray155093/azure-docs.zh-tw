@@ -5,7 +5,7 @@ description: "提供應該在公司所擁有的裝置上使用的群組原則和
 services: active-directory
 keywords: "什麼是企業狀態漫遊的群組原則和 MDM 設定, 企業狀態漫遊, windows 雲端"
 documentationcenter: 
-author: markvi
+author: MarkusVi
 manager: femila
 editor: curtand
 ms.assetid: 6471a9b3-8dd4-4237-89d1-bfbeca9f8252
@@ -19,6 +19,7 @@ ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 6bdec7bf35bb4a233200def36c0e697baaf15fec
 ms.openlocfilehash: 5ca48cf3cc4b2f4d86463e36c73de47e386cff25
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -59,10 +60,5 @@ MDM 原則設定會套用至 Windows 10 及 Windows 10 行動裝置版。  Windo
 * [設定和資料漫遊常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
 * [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 * [疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md)
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 
