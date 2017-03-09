@@ -58,33 +58,37 @@
 ## 移轉和移動資料
 ### 學習
 #### [移轉資料庫](sql-database-cloud-migrate.md)
-#### [異動複寫](sql-database-cloud-migrate-compatible-using-transactional-replication.md)
+#### [匯出資料庫](sql-database-export.md)
 #### [資料同步](sql-database-get-started-sql-data-sync.md)
 #### [複製 SQL Database](sql-database-copy.md)
 ## 防火牆規則、驗證和授權
 ### 學習
 #### [存取控制](sql-database-control-access.md)
-#### [防火牆](sql-database-firewall-configure.md)
+#### [防火牆規則](sql-database-firewall-configure.md)
 #### [管理登入](sql-database-manage-logins.md)
+#### [Azure AD 驗證](sql-database-aad-authentication.md)
+#### [Multi-Factor Authentication](sql-database-ssms-mfa-authentication.md)
 ### 建議事項
 #### [SQL 驗證和授權](sql-database-control-access-sql-authentication-get-started.md)
 #### [Azure AD 驗證和授權](sql-database-control-access-aad-authentication-get-started.md)
 ## 防全和保護資料
 ### 學習
 #### 稽核
-##### [稽核](sql-database-auditing-get-started.md)
+##### [稽核](sql-database-auditing.md)
 ##### [下層用戶端支援與稽核適用的 IP 端點變更](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)
-#### [威脅偵測](sql-database-threat-detection-get-started.md)
+#### [威脅偵測](sql-database-threat-detection.md)
 #### 加密資料
-##### [Azure 金鑰保存庫](sql-database-always-encrypted-azure-key-vault.md)
 ##### [透明資料加密](https://msdn.microsoft.com/library/azure/dn948096)
 ##### [資料行加密](https://msdn.microsoft.com/library/azure/ms179331)
 #### 將資料加上遮罩
-##### 動態資料遮罩
-###### [Azure 入口網站](sql-database-dynamic-data-masking-get-started.md)
+##### [動態資料遮罩](sql-database-dynamic-data-masking-get-started.md)
 ### 建議事項
-#### [使用 Azure 入口網站進行動態資料遮罩](sql-database-dynamic-data-masking-get-started.md)
-##### [一律使用 Windows 憑證存放區加密](sql-database-always-encrypted.md)
+#### [使用 Azure 入口網站進行動態資料遮罩](sql-database-dynamic-data-masking-get-started-portal.md)
+#### [使用 Azure 入口網站設定稽核](sql-database-auditing-portal.md)
+#### [使用 PowerShell 設定稽核](sql-database-auditing-powershell.md)
+#### [使用 REST API 設定稽核](sql-database-auditing-rest.md)
+#### [一律使用 Windows 憑證加密](sql-database-always-encrypted.md)
+#### [一律使用 Azure Key Vault 進行加密](sql-database-always-encrypted-azure-key-vault.md)
 ## 業務持續性
 ### 學習
 #### [概觀](sql-database-business-continuity.md)
@@ -100,7 +104,7 @@
 #### [執行災害復原鑽研](sql-database-disaster-recovery-drills.md)
 #### [主動式異地複寫概觀](sql-database-geo-replication-overview.md)
 ### 建議事項
-#### [Azure 入口網站：備份與還原](sql-database-get-started-backup-recovery.md)
+#### [Azure 入口網站：備份與還原](sql-database-get-started-backup-recovery-portal.md)
 #### [PowerShell：庫備份與還原](sql-database-get-started-backup-recovery-powershell.md)
 ## 應用程式開發
 ### 學習
@@ -140,7 +144,7 @@
 ### 建議事項
 #### [SQL Server 開發](https://msdn.microsoft.com/library/ms179422.aspx)
 #### [採用記憶體內部 OLTP](sql-database-in-memory-oltp-migration.md)
-## 監視和微調
+## 監視與微調
 ### 學習
 #### [單一資料庫](sql-database-single-database-monitor.md)
 #### [SQL Database 建議程式概觀](sql-database-advisor.md)
@@ -157,69 +161,57 @@
 #### [使用 Powershell 升級](sql-database-upgrade-server-powershell.md)
 # 作法
 ## 建立和管理
-### [使用 Azure 入口網站管理 SQL Database](sql-database-manage-portal.md)
-### [使用 PowerShell 管理 SQL Database](sql-database-manage-powershell.md)
-### [使用 SSMS 管理 SQL Database](sql-database-manage-azure-ssms.md)
+### [使用 Azure 入口網站管理](sql-database-manage-portal.md)
+### [使用 Powershell 管理](sql-database-manage-powershell.md)
+### [使用 SSMS 管理](sql-database-manage-azure-ssms.md)
 ### 伺服器
-#### [建立伺服器](sql-database-create-servers.md)
-#### [檢視或更新伺服器設定](sql-database-view-update-server-settings.md)
+#### [使用 Azure 入口網站管理](sql-database-manage-servers-portal.md)
+#### [使用 Powershell 管理](sql-database-manage-servers-powershell.md)
 ### 單一資料庫
-#### [建立單一資料庫](sql-database-create-databases.md)
-#### [檢視或更新資料庫設定](sql-database-view-update-database-settings.md)
+#### [使用 Azure 入口網站管理](sql-database-manage-single-databases-portal.md)
+#### [使用 Powershell 管理](sql-database-manage-single-databases-powershell.md)
+#### [使用 Transact-SQL 管理](sql-database-manage-single-databases-tsql.md)
 ### 防火牆規則
-#### [使用 Azure 入口網站建立防火牆規則](sql-database-configure-firewall-settings.md)
-#### [使用 PowerShell 建立防火牆規則](sql-database-configure-firewall-settings-powershell.md)
-#### [使用 REST API 建立防火牆規則](sql-database-configure-firewall-settings-rest.md)
-#### [使用 T-SQL 建立防火牆規則](sql-database-configure-firewall-settings-tsql.md)
+#### [使用 Azure 入口網站建立](sql-database-configure-firewall-settings.md)
+#### [使用 PowerShell 建立](sql-database-configure-firewall-settings-powershell.md)
+#### [使用 REST API 建立](sql-database-configure-firewall-settings-rest.md)
+#### [使用 T-SQL 建立](sql-database-configure-firewall-settings-tsql.md)
 ### 多個資料庫
 #### [在用戶端應用程式中升級用戶端程式庫](sql-database-elastic-scale-upgrade-client-library.md)
 #### 分區化資料庫
 ##### [安全性組態](sql-database-elastic-scale-split-merge-security-configuration.md)
 ##### [新增分區](sql-database-elastic-scale-add-a-shard.md)
 ##### [修正分區對應問題](sql-database-elastic-database-recovery-manager.md)
-##### [將現有的相應放大資料庫移轉至分區化資料庫](sql-database-elastic-convert-to-use-elastic-tools.md)
+##### [移轉至分區化資料庫](sql-database-elastic-convert-to-use-elastic-tools.md)
 ##### [為分區對應管理員建立效能計數器](sql-database-elastic-database-perf-counters.md)
 #### 彈性工作
-##### [如何安裝彈性作業服務？](sql-database-elastic-jobs-service-installation.md)
-##### [使用 PowerShell 建立及管理彈性作業](sql-database-elastic-jobs-powershell.md) 
-##### [使用 Azure 入口網站建立及管理彈性作業](sql-database-elastic-jobs-create-and-manage.md)
-##### [如何將彈性作業解除安裝？](sql-database-elastic-jobs-uninstall.md)
+##### [如何安裝？](sql-database-elastic-jobs-service-installation.md)
+##### [使用 Powershell 管理](sql-database-elastic-jobs-powershell.md) 
+##### [使用 Azure 入口網站管理](sql-database-elastic-jobs-create-and-manage.md)
+##### [如何解除安裝？](sql-database-elastic-jobs-uninstall.md)
 #### 彈性集區
-##### [使用 Azure 入口網站建立](sql-database-elastic-pool-create-portal.md)
-##### [使用 PowerShell 建立](sql-database-elastic-pool-create-powershell.md)
-##### [用 C# 建立](sql-database-elastic-pool-create-csharp.md)
 ##### [使用 Azure 入口網站管理](sql-database-elastic-pool-manage-portal.md)
 ##### [使用 Powershell 管理](sql-database-elastic-pool-manage-powershell.md)
 ##### [使用 C# 管理](sql-database-elastic-pool-manage-csharp.md)
 ##### [使用 T-SQL 管理](sql-database-elastic-pool-manage-tsql.md)
-##  驗證和授權
-### [Azure AD 驗證](sql-database-aad-authentication.md)
-### [Multi-Factor Authentication](sql-database-ssms-mfa-authentication.md)
+## 驗證和授權
+### [設定 Azure AD 驗證](sql-database-aad-authentication-configure.md)
+### [設定 Multi-Factor Authentication](sql-database-ssms-mfa-authentication-configure.md)
+## 設定威脅偵測
+### [使用 Azure 入口網站設定威脅偵測](sql-database-threat-detection-portal.md)
 ## 加密資料
 ### [透明資料加密](https://msdn.microsoft.com/library/azure/dn948096)
 ### [資料行加密](https://msdn.microsoft.com/library/azure/ms179331)
-## 移轉資料庫
-### 判斷相容性
-#### [使用 SQL 套件公用程式判斷相容性](sql-database-cloud-migrate-determine-compatibility-sqlpackage.md)
-#### [使用 SSMS 判斷相容性](sql-database-cloud-migrate-determine-compatibility-ssms.md)
-### 修正相容性問題
-#### [使用 SSDT 修正相容性問題](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)
-#### [使用 SSMS 修正相容性問題](sql-database-cloud-migrate-fix-compatibility-issues-ssms.md)
-#### [使用 SMW 修正相容性問題](sql-database-cloud-migrate-fix-compatibility-issues.md)
-### [使用 SSMS 移轉精靈進行移轉](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md)
 ## 監視與微調
 ### [查詢效能深入解析](sql-database-query-performance.md)
 ### [SQL Database 建議程式](sql-database-advisor-portal.md)
 ### [DMV](sql-database-monitoring-with-dmvs.md)
 ### [相容性層級](sql-database-compatibility-level-query-performance-130.md)
 ### [效能微調秘訣](sql-database-troubleshoot-performance.md)
-### 變更服務層和效能層級
-#### [使用 Azure 入口網站變更服務層](sql-database-scale-up.md)
-#### [使用 PowerShell 變更服務層](sql-database-scale-up-powershell.md)
 ### [建立警示](sql-database-insights-alerts-portal.md)
-#### [監視記憶體內部 OLTP 儲存體](sql-database-in-memory-oltp-monitoring.md)
+### [監視記憶體內部 OLTP 儲存體](sql-database-in-memory-oltp-monitoring.md)
 ### 查詢存放區
-#### [使用查詢存放區來監視效能](https://msdn.microsoft.com/library/dn817826.aspx)
+#### [使用查詢存放區監視效能](https://msdn.microsoft.com/library/dn817826.aspx)
 #### [查詢存放區使用案例](https://msdn.microsoft.com/library/mt614796.aspx)
 #### [操作查詢存放區](sql-database-operate-query-store.md)
 ### 擴充事件
@@ -231,31 +223,30 @@
 #### [使用 PowerShell 複製](sql-database-copy-powershell.md)
 #### [用 T-SQL 複製](sql-database-copy-transact-sql.md)
 ### 將資料庫匯出至 BACPAC 檔案
-#### [使用 Azure 入口網站進行匯出](sql-database-export.md)
-#### [使用 SSMS 進行匯出](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md)
-#### [使用 SQL 套件公用程式進行匯出](sql-database-cloud-migrate-compatible-export-bacpac-sqlpackage.md)
+#### [使用 Azure 入口網站進行匯出](sql-database-export-portal.md)
+#### [使用 SQL 套件公用程式進行匯出](sql-database-export-sqlpackage.md)
 #### [使用 Powershell 進行匯出](sql-database-export-powershell.md)
-### 從 BACPAC 檔案匯入資料庫
-#### [使用 Azure 入口網站進行匯入](sql-database-import.md)
-#### [使用 Powershell 進行匯入](sql-database-import-powershell.md)
-#### [使用 SSMS 進行匯入](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
-#### [使用 SQL 套件公用程式進行匯入](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md)
+#### [使用 SSMS 進行匯出](sql-database-export-ssms.md)
+## 匯入資料
+### [使用 Azure 入口網站進行匯入](sql-database-import-portal.md)
+### [使用 Powershell 進行匯入](sql-database-import-powershell.md)
+### [使用 SQLPackage 匯入](sql-database-import-sqlpackage.md)
 ### [使用 BCP 從 CSV 檔案載入](sql-database-load-from-csv-with-bcp.md)
 ## 查詢
 ### [使用 SSMS 進行查詢](sql-database-connect-query-ssms.md)
 ## 備份與還原
 ### 長期備份保留期
-#### [設定長期備份保留期](sql-database-configure-long-term-retention.md)
-#### [檢視復原服務保存庫中的備份](sql-database-view-backups-in-vault.md)
-#### [從長期備份保留期還原](sql-database-restore-from-long-term-retention.md)
-#### [除長期備份保留期](sql-database-long-term-retention-delete.md)
+#### [使用 Azure 入口網站管理長期備份保留](sql-database-manage-long-term-backup-retention-portal.md)
+#### [使用 PowerShell 管理長期備份保留](sql-database-manage-long-term-backup-retention-powershell.md)
 ### 還原已刪除的資料庫
 #### [使用 Azure 入口網站還原已刪除的資料庫](sql-database-restore-deleted-database-portal.md)
 #### [使用 PowerShell 還原已刪除的資料庫](sql-database-restore-deleted-database-powershell.md)
-### 還原時間點
-#### [還原至某個時間點](sql-database-point-in-time-restore.md)
-#### [檢視最早的還原點](sql-database-view-oldest-restore-point.md)
-### [從異地備援備份還原](sql-database-geo-restore.md)
+### 資料庫還原時間點
+#### [使用 Azure 入口網站還原時間點](sql-database-point-in-time-restore-portal.md)
+#### [使用 PowerShell 還原資料庫時間點](sql-database-point-in-time-restore-powershell.md)
+### 從異地備援備份還原
+### [使用 Azure 入口網站進行異地還原](sql-database-geo-restore-portal.md)
+### [使用 PowerShell 進行異地還原](sql-database-geo-restore-powershell.md)
 ## 主動式異地複寫
 ### [使用 Azure 入口網站進行設定](sql-database-geo-replication-portal.md)
 ### [使用 PowerShell 進行設定](sql-database-geo-replication-powershell.md)

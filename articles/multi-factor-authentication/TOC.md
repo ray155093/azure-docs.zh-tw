@@ -1,6 +1,7 @@
 # 概觀
 ## [什麼是 Azure Multi-Factor Authentication？](multi-factor-authentication.md)
 ## [運作方式](multi-factor-authentication-how-it-works.md)
+## [如何取得 Azure MFA](multi-factor-authentication-versions-plans.md)
 
 # 開始使用
 ## [選擇部署位置](multi-factor-authentication-get-started.md)
@@ -20,6 +21,7 @@
 #### [進階 VPN 設定](multi-factor-authentication-advanced-vpn-configurations.md)
 #### [Mobile App Web 服務](multi-factor-authentication-get-started-server-webservice.md)
 #### [Windows 驗證](multi-factor-authentication-get-started-server-windows.md)
+#### [升級 MFA 伺服器](multi-factor-authentication-server-upgrade.md)
 #### [從 PhoneFactor 升級](multi-factor-authentication-get-started-server-upgrade.md)
 
 ## 管理使用者
@@ -45,8 +47,3 @@
 ## 疑難排解
 ### [常見問題集](multi-factor-authentication-faq.md)
 ### [詢問問題](https://social.msdn.microsoft.com/Forums/newthread?category=windowsazureplatform&forum=windowsazureactiveauthentication&prof=required)
-
-
-<!--HONumber=Feb17_HO1-->
-
-

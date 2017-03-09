@@ -1,6 +1,7 @@
 
 # 概觀
 ## [什麼是 DocumentDB？](documentdb-introduction.md)
+## [什麼是 DocumentDB：適用於 MongoDB 的 API？](documentdb-protocol-mongodb.md)
 ## [核心概念](documentdb-resources.md)
 ## [全球發佈](documentdb-distribute-data-globally.md)
 ## [NoSQL TCO 分析](https://aka.ms/documentdb-tco-paper)
@@ -14,9 +15,11 @@
 ### [.NET 核心主控台應用程式](documentdb-dotnetcore-get-started.md)
 ### [Java 主控台應用程式](documentdb-java-get-started.md)
 ### [控台應用程式](documentdb-nodejs-get-started.md)
+### [適用於 MongoDB API 的 Node.js 主控台應用程式](documentdb-mongodb-samples.md)
 ### [C++ 主控台應用程式](documentdb-cpp-get-started.md)
 ## 建置 Web 應用程式
 ### [.NET Web 應用程式](documentdb-dotnet-application.md)
+### [適用於 MongoDB API 的 .NET Web 應用程式](documentdb-mongodb-application.md)
 ### [Node.js Web 應用程式](documentdb-nodejs-application.md)
 ### [Java Web 應用程式](documentdb-java-application.md)
 ### [Python Flask Web 應用程式](documentdb-python-application.md)
@@ -34,6 +37,10 @@
 
 ## 管理
 ### [匯入資料](documentdb-import-data.md)
+### [匯入適用於 MongoDB 的 API](documentdb-mongodb-migrate.md)
+### [連線至您的 MongoDB 帳戶](documentdb-connect-mongodb-account.md)
+### [使用 MongoChef](documentdb-mongodb-mongochef.md)
+### [使用 Robomongo](documentdb-mongodb-robomongo.md)
 ### [模型化資料](documentdb-modeling-data.md)
 ### [使用地理空間資料](documentdb-geospatial.md)
 ### [多重區域開發](documentdb-developing-with-multiple-regions.md)
@@ -60,15 +67,6 @@
 ### 最佳作法
 #### [部主機設定](documentdb-multi-region-writers.md)
 #### [日期時間](documentdb-working-with-dates.md)
-
-## 使用 MongoDB 的 DocumentDB 支援
-### [MongoDB 的通訊協定支援](documentdb-protocol-mongodb.md)
-### [建立帳戶](documentdb-create-mongodb-account.md)
-### [連接至您的帳戶](documentdb-connect-mongodb-account.md)
-### [移轉資料](documentdb-mongodb-migrate.md)
-### [使用 Robomongo](documentdb-mongodb-robomongo.md)
-### [使用 MongoChef](documentdb-mongodb-mongochef.md)
-### [通訊協定支援範本](documentdb-mongodb-samples.md)
 
 ## 使用入口網站
 ### [建立資料庫帳戶](documentdb-create-account.md)
