@@ -4,7 +4,7 @@ description: "了解如何使用 Mobile Apps 透過眾多識別提供者驗證 X
 services: app-service\mobile
 documentationcenter: xamarin
 author: adrianhall
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: 9c55e192-c761-4ff2-8d88-72260e9f6179
 ms.service: app-service-mobile

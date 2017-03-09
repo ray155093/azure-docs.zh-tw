@@ -4,7 +4,7 @@ description: "回答 IT 系統管理員可能會遇到的設定和應用程式�
 services: active-directory
 keywords: "企業狀態漫遊設定, windows 雲端, 企業狀態漫遊常見問題集"
 documentationcenter: 
-author: femila
+author: ningtan
 manager: swadhwa
 editor: 
 ms.assetid: f45d0515-99f7-42ad-94d8-307bc0d07be5
@@ -13,11 +13,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/09/2017
-ms.author: femila
+ms.date: 03/08/2017
+ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 58a583a761a400d8fa0488fbc4fbfec35ec62c41
 ms.openlocfilehash: ebdf73ad8a7a2f2690a404676e0c81ee01e77357
+ms.lasthandoff: 01/10/2017
 
 
 ---
@@ -59,9 +60,9 @@ ms.openlocfilehash: ebdf73ad8a7a2f2690a404676e0c81ee01e77357
 ### <a name="verify-the-device-registration-status"></a>確認裝置註冊狀態
 企業狀態漫遊需要在 Azure AD 註冊裝置。 雖然並非針對企業狀態漫遊，但遵循下列指示有助於確認 Windows 10 用戶端是否已經註冊，以及確認憑證指紋、Azure AD 設定 URL、NGC 狀態及其他資訊。
 
-1.  在未提高權限的情況下開啟命令提示字元。 若要在 Windows 中執行此操作，請開啟「執行」啟動程式 (Win + R) 並輸入 "cmd" 來開啟。
-2.  命令提示字元開啟後，輸入 *dsregcmd.exe /status*。
-3.  若要獲得預期的輸出，[AzureAdJoined] 欄位值應該是 [YES]、[WamDefaultSet] 欄位值應該是 [YES]，而 [WamDefaultGUID] 欄位值則應該是一個結尾為 “(AzureAd)” 的 GUID。
+1.    在未提高權限的情況下開啟命令提示字元。 若要在 Windows 中執行此操作，請開啟「執行」啟動程式 (Win + R) 並輸入 "cmd" 來開啟。
+2.    命令提示字元開啟後，輸入 *dsregcmd.exe /status*。
+3.    若要獲得預期的輸出，[AzureAdJoined] 欄位值應該是 [YES]、[WamDefaultSet] 欄位值應該是 [YES]，而 [WamDefaultGUID] 欄位值則應該是一個結尾為 “(AzureAd)” 的 GUID。
 
 **可能的原因**：**WamDefaultSet** 和 **AzureAdJoined** 的欄位值都是 [NO]，裝置已經加入網域且已經在 Azure AD 註冊，以及裝置沒有同步處理。 如果顯示此問題，表示裝置可能需要等待套用原則，或裝置在連線至 Azure AD 時驗證失敗。 使用者可能需等待幾個小時來等待原則套用。 其他疑難排解步驟可能包括透過登出並重新登入來重試自動註冊，或在工作排程器中啟動工作。 在某些情況下，於已提升權限的命令提示字元視窗中執行 *dsregcmd.exe /leave*、重新開機，然後再試一次註冊，可能有助於解決此問題。
 
@@ -144,7 +145,7 @@ ms.openlocfilehash: ebdf73ad8a7a2f2690a404676e0c81ee01e77357
 
 ---
 
-### <a name="event-id-6065-80070533-this-user-cant-sign-in-because-this-account-is-currently-disabled"></a>事件識別碼 6065：80070533 此使用者無法登入，因為此帳戶目前已停用  
+### <a name="event-id-6065-80070533-this-user-cant-sign-in-because-this-account-is-currently-disabled"></a>事件識別碼 6065：80070533 此使用者無法登入，因為此帳戶目前已停用    
 在「事件檢視器」中的 SettingSync/偵錯記錄檔底下，當租用戶沒有自動佈建 AzureRMS 時，可以看到此錯誤。 
 
 **建議的動作**  
@@ -152,8 +153,8 @@ ms.openlocfilehash: ebdf73ad8a7a2f2690a404676e0c81ee01e77357
 
 ---
 
-### <a name="event-id-1098-error-0xcaa5001c-token-broker-operation-failed"></a>事件識別碼 1098：錯誤：0xCAA5001C 權杖代理人操作失敗  
-在「事件檢視器」中的 AAD/作業記錄底下，可能會在事件 1104：AAD 雲端 AP 外掛程式呼叫 Get token 但傳回錯誤：0xC000005F 時看到此錯誤。 如果缺少權限或擁有權屬性，就會發生這個問題。  
+### <a name="event-id-1098-error-0xcaa5001c-token-broker-operation-failed"></a>事件識別碼 1098：錯誤：0xCAA5001C 權杖代理人操作失敗    
+在「事件檢視器」中的 AAD/作業記錄底下，可能會在事件 1104：AAD 雲端 AP 外掛程式呼叫 Get token 但傳回錯誤：0xC000005F 時看到此錯誤。 如果缺少權限或擁有權屬性，就會發生這個問題。     
 
 **建議的動作**  
 請繼續執行 [KB3196528](https://support.microsoft.com/kb/3196528) 中列出的步驟。  
@@ -172,9 +173,4 @@ ms.openlocfilehash: ebdf73ad8a7a2f2690a404676e0c81ee01e77357
 * [設定和資料漫遊常見問題集](active-directory-windows-enterprise-state-roaming-faqs.md)
 * [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 * [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

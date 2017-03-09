@@ -4,7 +4,7 @@ description: "如何使用適用於 Azure Mobile Apps 的 v"
 services: app-service\mobile
 documentationcenter: javascript
 author: adrianhall
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: 53b78965-caa3-4b22-bb67-5bd5c19d03c4
 ms.service: app-service-mobile
@@ -17,6 +17,7 @@ ms.author: adrianha
 translationtype: Human Translation
 ms.sourcegitcommit: 013956232d1fdfdc1f35741c25294a37b7e9bd92
 ms.openlocfilehash: 3914d5bdc8feff7d7de5c6f7255396acade341b9
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: 3914d5bdc8feff7d7de5c6f7255396acade341b9
 
 套件會以通用 JavaScript 模組的形式來散發，因此能夠支援全域、AMD 和 CommonJS 格式。
 
-## <a name="a-namesetupasetup-and-prerequisites"></a><a name="Setup"></a>設定和必要條件
+## <a name="Setup"></a>設定和必要條件
 本指南假設您已建立包含資料表的後端。 本指南假設資料表的結構描述與這些教學課程中的資料表相同。
 
 安裝 Azure Mobile Apps JavaScript SDK 可透過 `npm` 命令完成︰
@@ -56,14 +57,14 @@ import * as WindowsAzure from 'azure-mobile-apps-client';
 
 [!INCLUDE [app-service-mobile-html-js-library](../../includes/app-service-mobile-html-js-library.md)]
 
-## <a name="a-nameauthahow-to-authenticate-users"></a><a name="auth"></a>作法：驗證使用者
+## <a name="auth"></a>作法：驗證使用者
 Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、Microsoft 帳戶及 Twitter) 來驗證與授權應用程式使用者。 您可以在資料表上設定權限，以限制僅有通過驗證使用者可以存取特定操作。 您也可以在伺服器指令碼中，使用驗證的使用者的身分識別來實作授權規則。 如需詳細資訊，請參閱 [開始使用驗證] 教學課程。
 
 支援兩個驗證流程：伺服器流程和用戶端流程。  由於伺服器流程採用提供者的 Web 驗證介面，因此所提供的驗證體驗也最為簡單。 用戶端流程依賴提供者專屬的 SDK，可以與裝置特有的功能深入整合，例如單一登入。
 
 [!INCLUDE [app-service-mobile-html-js-auth-library](../../includes/app-service-mobile-html-js-auth-library.md)]
 
-### <a name="a-nameconfigure-external-redirect-urlsahow-to-configure-your-mobile-app-service-for-external-redirect-urls"></a><a name="configure-external-redirect-urls"></a>做法︰設定行動 App Service 以使用外部重新導向 URL。
+### <a name="configure-external-redirect-urls"></a>做法︰設定行動 App Service 以使用外部重新導向 URL。
 有數種類型的 JavaScript 應用程式會使用回送功能來處理 OAuth UI 流程。  這些功能包括：
 
 * 在本機執行服務
@@ -106,10 +107,5 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 [Azure 入口網站]: https://portal.azure.com/
 [適用於 Azure Mobile Apps 的 JavaScript SDK]: https://www.npmjs.com/package/azure-mobile-apps-client
 [Query object documentation]: https://msdn.microsoft.com/en-us/library/azure/jj613353.aspx
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

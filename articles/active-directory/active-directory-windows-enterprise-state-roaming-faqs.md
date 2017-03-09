@@ -4,7 +4,7 @@ description: "回答 IT 系統管理員可能會遇到的設定和應用程式�
 services: active-directory
 keywords: "企業狀態漫遊設定, windows 雲端, 企業狀態漫遊常見問題集"
 documentationcenter: 
-author: femila
+author: ningtan
 manager: swadhwa
 editor: curtand
 ms.assetid: c0824f5c-129b-4240-969f-921f6a64eae7
@@ -13,11 +13,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 03/08/2017
 ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 7d472733e80ae03294ba1ac9e97d1afd3aa0fa91
 ms.openlocfilehash: c7d8eefe560a361690cc4daf6550b2a8c894f318
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -128,9 +129,4 @@ Windows 10 用戶端 SKU 支援「企業狀態漫遊」，但伺服器 SKU 則�
 * [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 * [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 * [疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md)
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

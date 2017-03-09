@@ -4,7 +4,7 @@ description: "Azure Mobile Apps 驗證 / 授權功能的概念性參考與概觀
 services: app-service\mobile
 documentationcenter: 
 author: mattchenderson
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: a46dbf70-867d-48f6-8885-7f5207ad102e
 ms.service: app-service-mobile
@@ -17,6 +17,7 @@ ms.author: mahender
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 8b676aee5353d0e5d85224950a537b3fe31f2f29
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -106,9 +107,4 @@ App Service 驗證 / 授權會公開 **未驗證要求時要採取的動作**的
 [如何設定 App 以使用 Google 登入]: app-service-mobile-how-to-configure-google-authentication.md
 [如何設定 App 以使用 Microsoft 帳戶登入]: app-service-mobile-how-to-configure-microsoft-authentication.md
 [如何設定 App 以使用 Twitter 登入]: app-service-mobile-how-to-configure-twitter-authentication.md
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

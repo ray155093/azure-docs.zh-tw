@@ -3,7 +3,7 @@ title: "連接至 Xamarin.Forms 應用程式中的 Azure 儲存體"
 description: "將映像新增至 todo 清單 Xamarin.Forms 行動應用程式，方法是連接到 Azure Blob 儲存體"
 documentationcenter: xamarin
 author: adrianhall
-manager: erikre
+manager: adrianha
 editor: 
 services: app-service\mobile
 ms.assetid: bb1a1437-0a31-46bb-9237-1b692b0ede21
@@ -17,6 +17,7 @@ ms.author: adrianha
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: c8568846837f404eee0293be284c70bd27f06380
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -53,7 +54,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 * [由儲存體控制器註冊的路由](#routes-registered)
 * [用戶端和伺服器通訊](#client-communication)
 
-### <a name="a-nameadd-controller-codeaadd-a-storage-controller-to-your-server-project"></a><a name="add-controller-code"></a>將儲存體控制器新增至您的伺服器專案
+### <a name="add-controller-code"></a>將儲存體控制器新增至您的伺服器專案
 1. 在 Visual Studio 中，開啟您的 .NET 伺服器專案。 新增 Nuget 封裝 [Microsoft.Azure.Mobile.Server.Files]。 請務必選取 [包括發行前版本] 。
 2. 在 Visual Studio 中，開啟您的 .NET 伺服器專案。 以滑鼠右鍵按一下 [控制器] 資料夾，然後選取 [新增] -> [控制器] -> [Web API 2 控制器 - 空白]。 將控制器命名為 `TodoItemStorageController`。
 3. 加入下列 using 陳述式：
@@ -95,7 +96,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
         config.MapHttpAttributeRoutes();
 7. 將您的伺服器專案發佈至行動應用程式後端。
 
-### <a name="a-nameroutes-registeredaroutes-registered-by-the-storage-controller"></a><a name="routes-registered"></a>由儲存體控制器註冊的路由
+### <a name="routes-registered"></a>由儲存體控制器註冊的路由
 新的 `TodoItemStorageController` 會在它管理的記錄下公開兩個子資源：
 
 * StorageToken
@@ -112,7 +113,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
     
       `/tables/TodoItem/{id}/MobileServiceFiles/{fileid}`
 
-### <a name="a-nameclient-communicationaclient-and-server-communication"></a><a name="client-communication"></a>用戶端和伺服器通訊
+### <a name="client-communication"></a>用戶端和伺服器通訊
 請注意， `TodoItemStorageController`*沒有* 用於上傳或下載 blob 的路由。 這是因為行動用戶端在一開始取得 SAS 權杖 (共用存取簽章) 以安全地存取特定 blob 或容器之後，就會 *直接* 與 Blob 儲存體互動來執行這些作業。 這是很重要的架構設計，否則對於儲存體的存取會受到行動後端的延展性和可用性限制。 相反地，透過直接連線到 Azure 儲存體，行動用戶端可以利用其功能，例如自動分割和地理散發。
 
 共用存取簽章可提供您儲存體帳戶中資源的委派存取。 這表示您可以在無需分享您帳戶存取金鑰的情況下，將您儲存體帳戶中的物件有限權限授與用戶端，該用戶端便可在指定的時間期間內及使用指定的權限集來進行存取。 若要深入了解，請參閱 [了解共用存取簽章]。
@@ -138,7 +139,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 > 
 > 
 
-### <a name="a-nameadd-nugetaadd-nuget-packages"></a><a name="add-nuget"></a>新增 Nuget 封裝
+### <a name="add-nuget"></a>新增 Nuget 封裝
 以滑鼠右鍵按一下方案，然後選取 [管理方案的 Nuget 套件]。 將下列 Nuget 封裝新增至方案中的**所有**專案。 請務必選取 [包括發行前版本]。
 
 * [Microsoft.Azure.Mobile.Client.Files]
@@ -149,7 +150,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
 
 [PCLStorage]: https://www.nuget.org/packages/PCLStorage/
 
-### <a name="a-nameadd-iplatformaadd-iplatform-interface"></a><a name="add-iplatform"></a>新增 IPlatform 介面
+### <a name="add-iplatform"></a>新增 IPlatform 介面
 在主要可攜式程式庫專案中建立新的介面 `IPlatform` 。 這會遵循 [Xamarin.Forms DependencyService] 模式，在執行階段載入正確的平台特定類別。 您稍後將在每個用戶端專案中新增平台特定實作。
 
 1. 加入下列 using 陳述式：
@@ -170,7 +171,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
             Task DownloadFileAsync<T>(IMobileServiceSyncTable<T> table, MobileServiceFile file, string filename);
         }
 
-### <a name="a-nameadd-filehelperaadd-filehelper-class"></a><a name="add-filehelper"></a>新增 FileHelper 類別
+### <a name="add-filehelper"></a>新增 FileHelper 類別
 1. 在主要可攜式程式庫專案中建立新的類別 `FileHelper` 。 加入下列 using 陳述式：
    
         using System.IO;
@@ -226,7 +227,7 @@ Azure Mobile Apps 用戶端與伺服器 SDK 支援離線同步處理結構化資
             }
         }
 
-### <a name="a-namefile-sync-handlera-add-a-file-sync-handler"></a><a name="file-sync-handler"></a> 新增檔案同步處理常式
+### <a name="file-sync-handler"></a> 新增檔案同步處理常式
 在主要可攜式程式庫專案中建立新的類別 `TodoItemFileSyncHandler` 。 這個類別包含 Azure SDK 的回呼，以在新增或移除檔案時，通知您的程式碼。
 
 Azure 行動用戶端 SDK 實際上不會儲存任何檔案資料：此用戶端 SDK 會叫用您的 `IFileSyncHandler` 實作，進而決定是否在本機裝置上儲存檔案及如何儲存。
@@ -266,7 +267,7 @@ Azure 行動用戶端 SDK 實際上不會儲存任何檔案資料：此用戶端
             }
         }
 
-### <a name="a-nameupdate-todoitemmanageraupdate-todoitemmanager"></a><a name="update-todoitemmanager"></a>更新 TodoItemManager
+### <a name="update-todoitemmanager"></a>更新 TodoItemManager
 1. 在 **TodoItemManager.cs** 中，將 `#define OFFLINE_SYNC_ENABLED` 這行取消註解。
 2. 在 **TodoItemManager.cs**中，新增下列 using 陳述式：
    
@@ -312,7 +313,7 @@ Azure 行動用戶端 SDK 實際上不會儲存任何檔案資料：此用戶端
             return await this.todoTable.GetFilesAsync(todoItem);
         }
 
-### <a name="a-nameadd-details-viewaadd-a-details-view"></a><a name="add-details-view"></a>新增詳細資料檢視
+### <a name="add-details-view"></a>新增詳細資料檢視
 在本節中，您將新增 todo 項目的新的詳細資料檢視。 當使用者選取 todo 項目，並可讓新的映像新增至項目時，會建立檢視。
 
 1. 使用下列實作將新類別 **TodoItemImage** 新增至可攜式程式庫專案：
@@ -438,7 +439,7 @@ Azure 行動用戶端 SDK 實際上不會儲存任何檔案資料：此用戶端
             }
         }
 
-### <a name="a-nameupdate-main-viewaupdate-the-main-view"></a><a name="update-main-view"></a>更新主要檢視
+### <a name="update-main-view"></a>更新主要檢視
 更新主要的檢視，以在選取 todo 項目時，開啟詳細資料檢視。
 
 在 **TodoList.xaml.cs** 中，以下列內容取代 `OnSelected` 的實作：
@@ -456,7 +457,7 @@ Azure 行動用戶端 SDK 實際上不會儲存任何檔案資料：此用戶端
         todoList.SelectedItem = null;
     }
 
-### <a name="a-nameupdate-androidaupdate-the-android-project"></a><a name="update-android"></a>更新 Android 專案
+### <a name="update-android"></a>更新 Android 專案
 將平台特定程式碼新增至 Android 專案，包括下載檔案的程式碼，然後使用相機擷取新的映像。 
 
 此程式碼會使用 Xamarin.Forms [DependencyService](https://developer.xamarin.com/guides/xamarin-forms/dependency-service/) ，在執行階段載入正確的平台特定類別。
@@ -525,7 +526,7 @@ Azure 行動用戶端 SDK 實際上不會儲存任何檔案資料：此用戶端
    
         App.UIContext = this;
 
-### <a name="a-nameupdate-iosaupdate-the-ios-project"></a><a name="update-ios"></a>更新 iOS 專案
+### <a name="update-ios"></a>更新 iOS 專案
 將平台特定程式碼新增至 iOS 專案。
 
 1. 將元件 **Xamarin.Mobile** 加入 iOS 專案中。
@@ -585,7 +586,7 @@ Azure 行動用戶端 SDK 實際上不會儲存任何檔案資料：此用戶端
         }
 3. 編輯 **AppDelegate.cs** 並將 `SQLitePCL.CurrentPlatform.Init()` 的呼叫取消註解。
 
-### <a name="a-nameupdate-windowsaupdate-the-windows-project"></a><a name="update-windows"></a>更新 Windows 專案
+### <a name="update-windows"></a>更新 Windows 專案
 1. 安裝 Visual Studio 擴充功能 [SQLite for Windows 8.1](http://go.microsoft.com/fwlink/?LinkID=716919)。 
    如需詳細資訊，請參閱 [啟用 Windows 應用程式離線同步處理](app-service-mobile-windows-store-dotnet-get-started-offline-data.md)教學課程。 
 2. 編輯 **Package.appxmanifest** 並檢查**網路攝影機**功能。
@@ -688,9 +689,4 @@ Azure 行動用戶端 SDK 實際上不會儲存任何檔案資料：此用戶端
 [Microsoft.Azure.Mobile.Server.Files]: https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Files/
 [了解共用存取簽章]: ../storage/storage-dotnet-shared-access-signature-part-1.md
 [建立 Azure 儲存體帳戶]:  ../storage/storage-create-storage-account.md#create-a-storage-account
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

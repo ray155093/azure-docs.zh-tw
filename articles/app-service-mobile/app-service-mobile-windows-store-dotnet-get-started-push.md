@@ -4,7 +4,7 @@ description: "了解如何使用 Azure App Service Mobile Apps 與 Azure 通知�
 services: app-service\mobile,notification-hubs
 documentationcenter: windows
 author: ysxu
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: 6de1b9d4-bd28-43e4-8db4-94cd3b187aa3
 ms.service: app-service-mobile

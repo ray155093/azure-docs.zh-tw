@@ -3,7 +3,7 @@ title: "使用 Mobile Apps 將推播通知新增至 Android 應用程式 | Micro
 description: "了解如何使用 Mobile Apps 將推播通知傳送至 Android 應用程式。"
 services: app-service\mobile
 documentationcenter: android
-manager: erikre
+manager: adrianha
 editor: 
 author: ysxu
 ms.assetid: 9058ed6d-e871-4179-86af-0092d0ca09d3
@@ -17,6 +17,7 @@ ms.author: yuaxu
 translationtype: Human Translation
 ms.sourcegitcommit: ef43d1df2a64d85f256b28cd7db5a4f4356a7ec0
 ms.openlocfilehash: 055f55966de1e5c1bb41a6e0bf1c0da1758a3ed0
+ms.lasthandoff: 12/13/2016
 
 
 ---
@@ -81,9 +82,4 @@ ms.openlocfilehash: 055f55966de1e5c1bb41a6e0bf1c0da1758a3ed0
 [Android 快速入門]: app-service-mobile-android-get-started.md
 
 [設定 Google Play 服務 SDK]:https://developers.google.com/android/guides/setup
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 
