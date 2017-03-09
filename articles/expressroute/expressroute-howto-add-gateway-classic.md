@@ -16,15 +16,17 @@ ms.workload: infrastructure-services
 ms.date: 10/03/2016
 ms.author: charwen
 translationtype: Human Translation
-ms.sourcegitcommit: 4acb64838288d36f0dc1b1eb9736b00faef21a0c
-ms.openlocfilehash: 4b05e12c2b30f1e8aa3efc7cd47cb79c4958dc1e
+ms.sourcegitcommit: 2a0db85dc5699b362aa6a920cc26c40bdfdfc28d
+ms.openlocfilehash: 1679bc2f2344ce3dd78599a1e6a8e2cc974ee905
+ms.lasthandoff: 12/14/2016
 
 
 ---
 # <a name="configure-a-virtual-network-gateway-for-expressroute-using-the-classic-deployment-model-and-powershell"></a>使用傳統部署模型和 PowerShell 設定 ExpressRoute 的虛擬網路閘道
 > [!div class="op_single_selector"]
-> * [PowerShell - 資源管理員](expressroute-howto-add-gateway-resource-manager.md)
-> * [PowerShell - 傳統](expressroute-howto-add-gateway-classic.md)
+> * [Resource Manager - PowerShell](expressroute-howto-add-gateway-resource-manager.md)
+> * [傳統 - PowerShell](expressroute-howto-add-gateway-classic.md)
+> * [視訊 - Azure 入口網站](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-vpn-gateway-for-your-virtual-network)
 > 
 > 
 
@@ -41,10 +43,5 @@ ms.openlocfilehash: 4b05e12c2b30f1e8aa3efc7cd47cb79c4958dc1e
 
 ## <a name="next-steps"></a>後續步驟
 建立 VNet 閘道之後，您可以將 VNet 連結至 ExpressRoute 循環。 請參閱 [將虛擬網路連結到 ExpressRoute 循環](expressroute-howto-linkvnet-classic.md)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 
