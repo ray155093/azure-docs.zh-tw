@@ -1,5 +1,5 @@
 ---
-title: "使用 Socket.io 的 ode.js 應用程式 | Microsoft Docs"
+title: "使用 Socket.io 的 Node.js 應用程式 | Microsoft Docs"
 description: "學習如何在裝載於 Azure 的 node.js 應用程式中使用 socket.io。"
 services: cloud-services
 documentationcenter: nodejs
@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
-ms.openlocfilehash: ba6129382b6ec367428aa451ee74d5bceaa4ad35
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: e9607d2426192eca990261e5ef3b4e06b25b1dec
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -30,7 +31,7 @@ Socket.IO 提供 node.js 伺服器和用戶端之間的即時通訊。 本教學
 ## <a name="prerequisites"></a>必要條件
 請確定已安裝下列產品及版本，以順利完成本文中的範例：
 
-* 安裝 [Visual Studio 2013](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx)
+* 安裝 [Visual Studio](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx)
 * 安裝 [Node.js](https://nodejs.org/download/)
 * 安裝 [Python 版本 2.7.10](https://www.python.org/)
 
@@ -163,10 +164,5 @@ Socket.IO 提供 node.js 伺服器和用戶端之間的即時通訊。 本教學
 [The-output-of-the-npm-install-command]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-7.png
 [The output of the Publish-AzureService command]: ./media/cloud-services-nodejs-chat-app-socketio/socketio-9.png
 
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

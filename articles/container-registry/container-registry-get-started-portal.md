@@ -1,28 +1,7 @@
 ---
-title: "建立 Azure 容器登錄 - 入口網站 | Microsoft Docs"
-description: "使用 Azure 入口網站開始建立及管理 Azure 容器登錄庫"
-services: container-registry
-documentationcenter: 
-author: stevelas
-manager: balans
-editor: dlepow
-tags: 
-keywords: 
-ms.assetid: 53a3b3cb-ab4b-4560-bc00-366e2759f1a1
-ms.service: container-registry
-ms.devlang: na
-ms.topic: get-started-article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 11/14/2016
-ms.author: stevelas
-translationtype: Human Translation
-ms.sourcegitcommit: d3047cd4cddb23c4daeb9265afc4d7b3fe30d46c
-ms.openlocfilehash: bec138da39696cd93bdc9bf0307108b8ca6eb149
+標題︰建立 Azure 容器登錄庫 - 入口網站 | Microsoft Docs 說明：使用 Azure 入口網站開始建立及管理 Azure 容器登錄庫 服務：容器登錄庫 documentationcenter：'' 作者：stevelas 管理員：balans 編輯：dlepow 標籤：''關鍵字：''
 
----
-# <a name="create-a-container-registry-using-the-azure-portal"></a>使用 Azure 入口網站建立容器登錄庫
-使用 Azure 入口網站來建立容器登錄庫及管理其設定。 您也可以使用 [Azure CLI 2.0 預覽版命令](container-registry-get-started-azure-cli.md)或以程式設計方式用容器登錄 [REST API](https://go.microsoft.com/fwlink/p/?linkid=834376) 來建立及管理容器登錄庫。
+ms.assetid: 53a3b3cb-ab4b-4560-bc00-366e2759f1a1 ms.service: container-registry ms.devlang: na ms.topic: get-started-article ms.tgt_pltfrm: na ms.workload: na ms.date: 11/14/2016 ms.author: stevelas ---# 使用 Azure 入口網站建立容器登錄庫 使用 Azure 入口網站來建立容器登錄庫及管理其設定。 您也可以使用 [Azure CLI 2.0 命令](container-registry-get-started-azure-cli.md)或以程式設計方式用容器登錄庫 [REST API](https://go.microsoft.com/fwlink/p/?linkid=834376) 來建立及管理容器登錄庫。
 
 如需背景和概念，請參閱[什麼是 Azure 容器登錄庫？](container-registry-intro.md)
 
@@ -52,7 +31,9 @@ ms.openlocfilehash: bec138da39696cd93bdc9bf0307108b8ca6eb149
    > [!IMPORTANT]
    > 除了透過管理員使用者帳戶存取，容器登錄庫還支援 Azure Active Directory 服務主體所支援的驗證。 如需詳細資訊和考量事項，請參閱[驗證容器登錄庫](container-registry-authentication.md)。
    
-    e. **儲存體帳戶** - 使用預設設定建立[儲存體帳戶](../storage/storage-introduction.md)，或選取相同位置中的現有儲存體帳戶。 請注意，不支援進階和傳統儲存體帳戶。
+
+    e. **儲存體帳戶** - 使用預設設定建立[儲存體帳戶](../storage/storage-introduction.md)，或選取相同位置中的現有儲存體帳戶。 目前不支援進階儲存體。
+
 
 ## <a name="manage-registry-settings"></a>管理登錄庫設定
 建立登錄庫之後，在入口網站中啟動 [容器登錄庫] 刀鋒視窗，以尋找登錄庫的設定。 例如，您可能需要用這些設定來登入您的登錄庫，或者您可能想要啟用或停用管理員使用者。
@@ -72,11 +53,5 @@ ms.openlocfilehash: bec138da39696cd93bdc9bf0307108b8ca6eb149
 ## <a name="next-steps"></a>後續步驟
 * [使用 Docker CLI 推送您的第一個映像](container-registry-get-started-docker-cli.md)
 
-
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

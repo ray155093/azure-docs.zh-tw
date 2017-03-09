@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/16/2017
+ms.date: 03/07/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 0c07c842ba8c6214d6746b0361af7b416069a6f5
-ms.openlocfilehash: 3e92da61128a18c42726f4c3c85cd6e5024a697f
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 0abe257f3c1c2f35c92fa5f382e9778217f01159
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -41,9 +41,6 @@ ms.lasthandoff: 02/17/2017
 
 ### <a name="can-the-invited-external-user-leave-the-organization-to-which-he-was-invited"></a>受邀的外部使用者是否可以離開他已受邀的組織？
 這在此公開預覽版重新整理中目前不提供。
-
-### <a name="can-i-use-my-microsoft-account-johncontosomicrosoftacctcom-to-sign-in-to-resources"></a>我可以使用 Microsoft 帳戶 (John@contosomicrosoftacct.com) 登入資源嗎？
-在此公開預覽版重新整理期間不可使用您的 Microsoft 帳戶。 如果您使用非標準的 Microsoft 帳戶後置字元 (可能適用於公司郵件，例如 @contoso.com),，Azure Active Directory 租用戶將會建立以供您使用。
 
 ### <a name="now-that-multi-factor-authentication-mfa-is-available-for-guest-users-can-they-also-reset-their-mfa-method"></a>現在，Multi-Factor Authentication (MFA) 可供來賓使用者使用，他們是否也可以重設其 MFA 方法？
 是的，一般使用者可以的相同方式。

@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 02/14/2017
 ms.author: dennisg
 translationtype: Human Translation
-ms.sourcegitcommit: 2de3e6d205dd126e1c3d9606ea1419669056d7f1
-ms.openlocfilehash: 51c6801fe99060b3f1f36dbf675b55b56d465e59
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: e6aedc1fae5d05d841e5af2f250fe17061ed6f0a
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -38,7 +38,7 @@ ms.lasthandoff: 02/22/2017
 
 ### <a name="internet-connectivity"></a>網際網路連線
 
-網路監看員代理程式的某些功能需要目標虛擬機器連線到網際網路。 若沒有建立傳出的連線，網路監看員代理程式的某些功能可能會有問題或者無法使用。 如需詳細資訊，請參閱[網路監看員文件](https://review.docs.microsoft.com/en-us/azure/network-watcher/)。
+網路監看員代理程式的某些功能需要目標虛擬機器連線到網際網路。 若沒有建立傳出的連線，網路監看員代理程式的某些功能可能會有問題或者無法使用。 如需詳細資訊，請參閱[網路監看員文件](../network-watcher/network-watcher-monitoring-overview.md)。
 
 ## <a name="extension-schema"></a>擴充功能結構描述
 
