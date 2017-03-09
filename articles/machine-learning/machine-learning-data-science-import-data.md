@@ -18,6 +18,7 @@ ms.author: garye;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
 ms.openlocfilehash: a35bc89044ebe8ea8e4a0e4a883c30fb8e8d879a
+ms.lasthandoff: 12/20/2016
 
 
 ---
@@ -73,7 +74,7 @@ Machine Learning Studio 是專為與矩形或表格式資料搭配使用而設�
 
 如果您以 TSV 或 CSV 格式匯入不包含此中繼資料的資料，Machine Learning Studio 會透過取樣資料來推斷每個資料行的資料類型。 如果資料也沒有資料行標題，Machine Learning Studio 會提供預設名稱。
 
-您可以使用 [編輯中繼資料][][edit-metadata]，明確指定或變更資料行的標題和資料類型。
+您可以使用 [編輯中繼資料][edit-metadata]，明確指定或變更資料行的標題和資料類型。
 
 Machine Learning Studio 可辨識下列 **資料類型** ：
 
@@ -95,9 +96,4 @@ Machine Learning Studio 使用名為***資料表格***的內部資料類型以�
 [convert-to-dataset]: https://msdn.microsoft.com/library/azure/72bf58e0-fc87-4bb1-9704-f1805003b975/
 [edit-metadata]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 
