@@ -75,7 +75,7 @@ ms.lasthandoff: 01/11/2017
 >
 >
 
-### <a name="a-idconfigureelementalrtpaconfigure-the-elemental-live-encoder"></a><a id=configure_elemental_rtp></a>設定 Elemental Live 編碼器
+### <a id=configure_elemental_rtp></a>設定 Elemental Live 編碼器
 在本教學課程中會使用下列輸出設定。 本章節的其餘部分將詳細說明組態步驟。
 
 **視訊**：
@@ -130,7 +130,7 @@ ms.lasthandoff: 01/11/2017
     ![Elemental](./media/media-services-elemental-live-encoder/media-services-elemental14.png)
 
     如需額外的備援，請對次要輸入 URL 重複這些步驟，方法是為 UDP/TS 串流建立個別的「輸出」索引標籤。
-3. 按一下 [建立] (如果已建立新事件) 或 [更新] (如果是編輯原有的事件)，然後繼續啟動編碼器。
+3. 按一下 建立 \(如果已建立新事件) 或 更新 \(如果是編輯原有的事件)，然後繼續啟動編碼器。
 
 > [!IMPORTANT]
 > 按一下 Elemental Live Web 介面上的 [開始] 之前，您**必須**確保頻道已就緒。
