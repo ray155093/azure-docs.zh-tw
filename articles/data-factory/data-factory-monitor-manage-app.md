@@ -17,6 +17,7 @@ ms.author: spelluru
 translationtype: Human Translation
 ms.sourcegitcommit: 1d35fbbe14d1597c23d8521bc21c683b520f0ea6
 ms.openlocfilehash: 34141bb2c3c6e159e4ce3d567b830451c59ed84c
+ms.lasthandoff: 02/01/2017
 
 
 ---
@@ -118,7 +119,7 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 您可以在三個地方看到活動時段：
 
-* [圖表檢視] (中間窗格) 中的 [活動時段] 快顯視窗。
+* [圖表檢視] \(中間窗格) 中的 [活動時段] 快顯視窗。
 * 右窗格中的 [活動時段總管]。
 * 底部窗格中的 [活動時段] 清單。
 
@@ -316,9 +317,4 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 使用下列按鈕 (以紅色反白顯示) 來編輯、刪除或停用警示。
 
 ![警示按鈕](./media/data-factory-monitor-manage-app/AlertButtons.png)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 
