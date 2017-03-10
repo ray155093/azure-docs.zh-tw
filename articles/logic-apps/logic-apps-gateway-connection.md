@@ -17,6 +17,7 @@ ms.author: jehollan
 translationtype: Human Translation
 ms.sourcegitcommit: dc8c9eac941f133bcb3a9807334075bfba15de46
 ms.openlocfilehash: 0a16f22b6e3bb60091409c64b631afcba3d6db10
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.openlocfilehash: 0a16f22b6e3bb60091409c64b631afcba3d6db10
 
 ## <a name="prerequisites"></a>必要條件
   * 必須在 Azure 中使用工作或學校電子郵件地址將內部部署資料閘道與您的帳戶 (Azure Active Directory 帳戶) 相關聯
-  * 如果您使用 Microsoft 帳戶 (例如 @outlook.com, @live.com))，可以[依照這裡的步驟](../virtual-machines/virtual-machines-windows-create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal)，使用您的 Azure 帳戶建立一個工作或學校的電子郵件地址 
+  * 如果您使用 Microsoft 帳戶 (例如 @outlook.com, @live.com))，可以 [依照這裡的步驟](../virtual-machines/virtual-machines-windows-create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal) ，使用您的 Azure 帳戶建立一個工作或學校的電子郵件地址 
   * 必須 [在本機電腦上安裝](logic-apps-gateway-install.md)內部部署資料閘道。
   * 閘道必須未被另一個 Azure 內部部署資料閘道宣告 ([宣告會在下面建立步驟 2 時進行](#2-create-an-azure-on-premises-data-gateway-resource)) - 一個安裝只能與一個閘道資源相關聯。
 
@@ -64,9 +65,4 @@ ms.openlocfilehash: 0a16f22b6e3bb60091409c64b631afcba3d6db10
 [1]: ./media/logic-apps-gateway-connection/createblade.png
 [2]: ./media/logic-apps-gateway-connection/blankconnection.png
 [3]: ./media/logic-apps-logic-gateway-connection/checkbox.png
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

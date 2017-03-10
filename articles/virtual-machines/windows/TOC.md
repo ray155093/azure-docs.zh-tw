@@ -43,6 +43,7 @@
 ### [將 VM 轉換成受控磁碟概觀](../virtual-machines-windows-migrate-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 #### [使用 Azure PowerShell](../virtual-machines-windows-convert-unmanaged-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [延伸 OS 磁碟](../virtual-machines-windows-expand-os-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [展開資料磁碟](../virtual-machines-windows-expand-data-disks.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [使用 D: 作為資料磁碟](../virtual-machines-windows-classic-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ### [磁碟加密](../../security/azure-security-disk-encryption.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 

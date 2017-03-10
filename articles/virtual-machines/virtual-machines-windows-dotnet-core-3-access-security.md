@@ -15,13 +15,15 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 11/21/2016
 ms.author: nepeters
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
-ms.openlocfilehash: 62d1a275252b17ae2b9870b281e1dd91239cae5f
-
+ms.sourcegitcommit: 8eeeef0bb33b5b8ed265532d160829c076190fc4
+ms.openlocfilehash: 91c4550f9caadc790d1b6aea8f037e2089ebec3c
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="access-and-security-in-azure-resource-manager-templates"></a>Azure Resource Manager 範本中的存取和安全性
+# <a name="access-and-security-in-azure-resource-manager-templates-for-windows-vms"></a>適用於 Windows VM 之 Azure Resource Manager 範本中的存取和安全性
+
 存取裝載在 Azure 中的應用程式時，可能需要透過網際網路或與 Azure 的 VPN/Express Route 連線才能存取。 在「音樂市集」應用程式範例中，是透過公用 IP 位址讓網站在網際網路上可供使用。 建立存取方式之後，應該保護對應用程式的連線，以及對虛擬機器資源本身的存取。 這項存取安全性是透過「網路安全性群組」來提供。 
 
 本文件詳細說明範例 Azure Resource Manager 範本中如何保護「音樂市集」應用程式。 所有相依項目和獨特的設定都會以醒目提示的方式標示。 為了獲得最佳體驗，請將一個解決方案執行個體預先部署到您的 Azure 訂用帳戶，然後與 Azure Resource Manager 範本搭配運作。 您可以在下列連結找到完整的範本 – [Windows 上的音樂市集部署](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-windows)。
@@ -139,10 +141,5 @@ Azure 入口網站中所示的公用 IP 位址樣子。 請注意，公用 IP �
 <hr>
 
 [步驟 3 - Azure Resource Manager 範本中的可用性和規模](virtual-machines-windows-dotnet-core-4-availability-scale.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

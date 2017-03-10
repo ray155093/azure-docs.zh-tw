@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/21/2017
+ms.date: 03/06/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: e3d01fadc5597efa7beb5ee690470f428ee12b62
-ms.openlocfilehash: 216146ffaa0f2732b2f2369107e80de0bbc4e466
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 1cc0d2d1e9a62ff8531f963413ff573713d508ad
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -29,7 +29,6 @@ ms.lasthandoff: 02/22/2017
 * [身分識別管理和存取控制安全性最佳作法](azure-security-identity-management-best-practices.md)
 * [物聯網安全性最佳做法](azure-security-iot-best-practices.md)
 * [Azure IaaS 安全性最佳做法] (azure-security-iaas.md)
-* [Microsoft Azure IaaS 上軟體更新的最佳作法](azure-security-best-practices-software-updates-iaas.md)
 * [Azure 界限安全性最佳作法](../best-practices-network-security.md)
 * [在 Azure 中實作安全的混合式網路架構](../guidance/guidance-iaas-ra-secure-vnet-hybrid.md)
 * [Azure PaaS 最佳作法] (https://docs.microsoft.com/en-us/azure/security/security-paas-deployments)

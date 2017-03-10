@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 01/11/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 43197f7402795c37fa7ed43658bc3b8858a41080
-ms.openlocfilehash: 8568978a558b09220eff14a13ccefb3e60c18e87
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 9780fa4461e32a4518c1b6ef019161a01fffecb3
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -191,10 +191,10 @@ catch (Exception e) {
 ## <a name="next-steps"></a>後續步驟
 既然您已了解「服務匯流排」佇列的基本概念，請參閱[佇列、主題和訂用帳戶][Queues, topics, and subscriptions]來取得詳細資訊。
 
-如需詳細資訊，請參閱 [Java 開發人員中心](/develop/java/)。
+如需詳細資訊，請參閱 [Java 開發人員中心](https://azure.microsoft.com/develop/java/)。
 
 [Azure SDK for Java]: http://azure.microsoft.com/develop/java/
 [Azure Toolkit for Eclipse]: https://msdn.microsoft.com/library/azure/hh694271.aspx
 [Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
-[BrokeredMessage]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage
+[BrokeredMessage]: /dotnet/api/microsoft.servicebus.messaging.brokeredmessage
 

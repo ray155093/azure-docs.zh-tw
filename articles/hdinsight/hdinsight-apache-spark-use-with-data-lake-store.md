@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 11/18/2016
+ms.date: 02/23/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a3bdeb6fea306babc9358134c37044843b9bdd1c
-ms.openlocfilehash: e9780d487043a86df5a627b92579b67154c59279
+ms.sourcegitcommit: d9efecfaf0b9e461182328b052252b114d78ce39
+ms.openlocfilehash: 840db75456e8383cf4343e2170a55dc50cbb68dd
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -32,6 +33,11 @@ ms.openlocfilehash: e9780d487043a86df5a627b92579b67154c59279
 * Azure Data Lake Store 帳戶。 遵循 [使用 Azure 入口網站開始使用 Azure 資料湖存放區](../data-lake-store/data-lake-store-get-started-portal.md)的指示。
 
 * 以 Data Lake Store 做為儲存體的 Azure HDInsight Spark 叢集。 如需相關指示，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+
+    > [!IMPORTANT]
+       > 如果您使用 Data Lake Store 做為叢集的主要儲存體，請確定您建立了 Spark 1.6 版叢集。
+      >
+       >
 
 ## <a name="prepare-the-data"></a>準備資料
 
@@ -89,35 +95,39 @@ ms.openlocfilehash: e9780d487043a86df5a627b92579b67154c59279
 
 5. 使用您複製到 Data Lake Store 帳戶的 **HVAC.csv** 檔案，將範例資料載入到暫存資料表中。 您可以使用下列 URL 模式，存取 Data Lake Store 帳戶中的資料。
 
-    如果您以 Data Lake Store 做為預設儲存體，HVAC.csv 會位於類似下列 URL 的路徑︰
+    * 如果您以 Data Lake Store 做為預設儲存體，HVAC.csv 會位於類似下列 URL 的路徑︰
 
-         adl://<data_lake_store_name>.azuredatalakestore.net/<cluster_root>/HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv
+            adl://<data_lake_store_name>.azuredatalakestore.net/<cluster_root>/HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv
+    
+        或者，您也可以使用縮短的格式如下︰
 
-    如果您以 Data Lake Store 做為額外儲存體，HVAC.csv 會位於您複製它的位置，例如︰
+            adl:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv
 
-        adl://<data_lake_store_name>.azuredatalakestore.net/<path_to_file>
+    * 如果您以 Data Lake Store 做為額外儲存體，HVAC.csv 會位於您複製它的位置，例如︰
+
+            adl://<data_lake_store_name>.azuredatalakestore.net/<path_to_file>
 
      在空白儲存格中，貼上下列程式碼範例、使用您的 Data Lake Store 帳戶名稱取代 **MYDATALAKESTORE**，然後按 **SHIFT + ENTER**。 此程式碼範例會將資料註冊到名為 **hvac**的暫存資料表。
 
-         # Load the data. The path below assumes Data Lake Store is default storage for the Spark cluster
-         hvacText = sc.textFile("adl://MYDATALAKESTORE.azuredatalakestore.net/cluster/mysparkcluster/HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
-
-         # Create the schema
-         hvacSchema = StructType([StructField("date", StringType(), False),StructField("time", StringType(), False),StructField("targettemp", IntegerType(), False),StructField("actualtemp", IntegerType(), False),StructField("buildingID", StringType(), False)])
-
-         # Parse the data in hvacText
-         hvac = hvacText.map(lambda s: s.split(",")).filter(lambda s: s[0] != "Date").map(lambda s:(str(s[0]), str(s[1]), int(s[2]), int(s[3]), str(s[6]) ))
-
-         # Create a data frame
-         hvacdf = sqlContext.createDataFrame(hvac,hvacSchema)
-
-         # Register the data fram as a table to run queries against
-         hvacdf.registerTempTable("hvac")
+            # Load the data. The path below assumes Data Lake Store is default storage for the Spark cluster
+            hvacText = sc.textFile("adl://MYDATALAKESTORE.azuredatalakestore.net/cluster/mysparkcluster/HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
+            
+            # Create the schema
+            hvacSchema = StructType([StructField("date", StringType(), False),StructField("time", StringType(), False),StructField("targettemp", IntegerType(), False),StructField("actualtemp", IntegerType(), False),StructField("buildingID", StringType(), False)])
+            
+            # Parse the data in hvacText
+            hvac = hvacText.map(lambda s: s.split(",")).filter(lambda s: s[0] != "Date").map(lambda s:(str(s[0]), str(s[1]), int(s[2]), int(s[3]), str(s[6]) ))
+            
+            # Create a data frame
+            hvacdf = sqlContext.createDataFrame(hvac,hvacSchema)
+            
+            # Register the data fram as a table to run queries against
+            hvacdf.registerTempTable("hvac")
 
 6. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#choose-between-the-kernels)。
 
-         %%sql
-         SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = \"6/1/13\"
+        %%sql
+        SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = \"6/1/13\"
 
 7. 一旦工作順利完成後，預設會顯示下列表格式輸出。
 
@@ -135,9 +145,4 @@ ms.openlocfilehash: e9780d487043a86df5a627b92579b67154c59279
 * [建立獨立 Scala 應用程式以在 Apache Spark 叢集上執行](hdinsight-apache-spark-create-standalone-application.md)
 * [使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具建立 HDInsight Spark Linux 叢集的 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
 * [使用適用於 Eclipse 的 Azure 工具組中的 HDInsight 工具建立 HDInsight Spark Linux 叢集的 Spark 應用程式](hdinsight-apache-spark-eclipse-tool-plugin.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

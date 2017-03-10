@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: eb56cae77722268f42e5126c45ad2878af7db94a
 ms.openlocfilehash: 309ceba2d65c0745ba1acac698acb62526ab8078
+ms.lasthandoff: 01/26/2017
 
 
 ---
@@ -103,7 +104,7 @@ ms.openlocfilehash: 309ceba2d65c0745ba1acac698acb62526ab8078
 提供一組掛接滑軌以用於 19 英吋機櫃。 滑軌已經過測試可以處理最大機箱重量。 這些滑軌也可以進行多個機箱的安裝，而不會損失機櫃內的空間。 先安裝 EBOD 機箱。
 
 #### <a name="to-install-the-ebod-enclosure-on-the-rails"></a>在滑軌上安裝 EBOD 機箱
-1. 只有在內部滑軌未安裝在您的裝置上時才執行此步驟。 通常，內部滑軌會在工廠安裝。 如果滑軌沒有安裝的話，則在機箱底座側邊安裝左邊和右邊滑軌。 它們是在每一邊使用六個公制螺絲來連接。 為了協助辨識方向，滑軌標示為 [LH – Front] (左邊 – 前) 和 [RH – Front] (右邊 – 前)，接至機箱後端的尾端有錐型結尾。
+1. 只有在內部滑軌未安裝在您的裝置上時才執行此步驟。 通常，內部滑軌會在工廠安裝。 如果滑軌沒有安裝的話，則在機箱底座側邊安裝左邊和右邊滑軌。 它們是在每一邊使用六個公制螺絲來連接。 為了協助辨識方向，滑軌標示為 [LH – Front] \(左邊 – 前) 和 [RH – Front] \(右邊 – 前)，接至機箱後端的尾端有錐型結尾。
    
     ![將滑軌連接至機箱底座](./media/storsimple-8600-hardware-installation/HCSAttachingRailSlidestoEnclosureChassis.png)
    
@@ -113,7 +114,7 @@ ms.openlocfilehash: 309ceba2d65c0745ba1acac698acb62526ab8078
    | --- | --- |
    |  1 |M 3x4 圓頭螺釘 |
    |  2 |底座滑軌 |
-2. 將左邊滑軌和右邊滑軌組件連接至機櫃垂直面。 托架會標示 [LH] (左邊)，[RH] (右邊) 和 [This side up] (此面向上)，引導您正確的方向。
+2. 將左邊滑軌和右邊滑軌組件連接至機櫃垂直面。 托架會標示 [LH] \(左邊)，[RH] \(右邊) 和 [This side up] \(此面向上)，引導您正確的方向。
 3. 找出滑軌組件前後方的滑軌插梢。 延伸滑軌以適合機架柱，並且將插梢插入前後端機架柱垂直面的孔洞。 請確定滑軌組件是水平的。
 4. 使用兩個提供的公制螺絲將滑軌組件鎖固至機架垂直面。 在前端和後端各使用一個螺絲。
 5. 對其他滑軌組件重複這些步驟。
@@ -267,10 +268,5 @@ ms.openlocfilehash: 309ceba2d65c0745ba1acac698acb62526ab8078
 
 ## <a name="next-steps"></a>後續步驟
 您現在已準備好[部署和設定您的內部部署 StorSimple 裝置](storsimple-deployment-walkthrough-u2.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

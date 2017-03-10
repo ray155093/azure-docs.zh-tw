@@ -4,7 +4,7 @@ description: "了解如何使用 Azure 服務將多平台推播通知傳送至 X
 services: app-service\mobile
 documentationcenter: xamarin
 author: ysxu
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: d9b1ba9a-b3f2-4d12-affc-2ee34311538b
 ms.service: app-service-mobile
@@ -32,7 +32,7 @@ ms.lasthandoff: 12/13/2016
 ## <a name="prerequisites"></a>必要條件
 若為 iOS，您需要 [Apple Developer Program 成員資格](https://developer.apple.com/programs/ios/)和實體 iOS 裝置。 [iOS 模擬器不支援推播通知](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator.html)。
 
-## <a name="a-nameconfigure-hubaconfigure-a-notification-hub"></a><a name="configure-hub"></a>設定通知中樞
+## <a name="configure-hub"></a>設定通知中樞
 [!INCLUDE [app-service-mobile-configure-notification-hub](../../includes/app-service-mobile-configure-notification-hub.md)]
 
 ## <a name="update-the-server-project-to-send-push-notifications"></a>更新伺服器專案以傳送推播通知

@@ -13,13 +13,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 12/01/2016
 ms.author: rclaus
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 3827e74433a859e65071a1041c5ed6c8253db8df
-ms.openlocfilehash: be17b2de227ef6d93f8d326ff060c3c4788eb622
+ms.sourcegitcommit: fa842efd99718be7fa9eaf8aac8030c32cbceeec
+ms.openlocfilehash: 0d998b5347a9da6dd209b0ba106792ab5c34164d
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="install-sap-hana-on-sap-hana-on-azure-large-instances"></a>在 SAP HANA on Azure (大型執行個體) 上安裝 SAP HANA
+# <a name="how-to-install-and-configure-sap-hana-large-instances-on-azure"></a>如何安裝和設定 Azure 上的 SAP HANA (大型執行個體)
 
 安裝 SAP HANA 是您的責任，您可以在遞交新的 SAP HANA on Azure (大型執行個體) 伺服器之後立即執行這項操作。 請注意，依據 SAP 原則，SAP HANA 的安裝必須由經過驗證的 SAP HANA 安裝者 (也就是已經通過認證 SAP 技術協會驗證的使用者 – SAP HANA 安裝認證測驗)，或 SAP 認證系統整合者 (SI) 執行。
 
@@ -80,10 +82,5 @@ SAP 對於組成 SAP 系統的各種元件的時間差異非常敏感。 具有�
 
 針對 SAP HANA on Azure (大型執行個體)，在 Azure 中完成的時間同步處理不適用於大型執行個體戳記中的計算單位。 這並不適用於在 Azure 中原生執行 SAP 應用程式 (在 VM 上)，因為 Azure 可確保正確同步處理系統時間。 如此一來，必須設定不同時間伺服器，可供 Azure VM 上執行的 SAP 應用程式伺服器與 HANA 大型執行個體上執行的 SAP HANA 資料庫執行個體使用。 大型執行個體戳記中的儲存體基礎結構與 NTP 伺服器進行時間同步處理。
 
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

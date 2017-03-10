@@ -13,32 +13,33 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/24/2015
-ms.author: devinr
+ms.author: MicrosoftHelp@twilio.com
 translationtype: Human Translation
 ms.sourcegitcommit: 6b77e338e1c7f0f79ea3c25b0b073296f7de0dcf
 ms.openlocfilehash: 8d22a1ed9a0f93d8cab2fe5567d94075f5384382
+ms.lasthandoff: 12/14/2016
 
 
 ---
 # <a name="how-to-use-twilio-for-voice-and-sms-capabilities-from-azure"></a>如何透過 Twilio 來使用 Azure 的語音和簡訊功能
 本指南示範如何在 Azure 上透過 Twilio API 服務執行常見的程式設計工作。 涵蓋的案例包括打電話和傳送簡訊 (SMS)。 如需有關如何在應用程式中使用 Twilio 語音和 SMS 的詳細資訊，請參閱[後續步驟](#NextSteps)一節。
 
-## <a name="a-idwhatisawhat-is-twilio"></a><a id="WhatIs"></a>什麼是 Twilio？
+## <a id="WhatIs"></a>什麼是 Twilio？
 Twilio 正在形塑商業環境的未來，可讓開發人員將語音、VoIP 和訊息傳送內嵌到應用程式中。 它們將雲端、全球化環境中所需的整個基礎結構虛擬化，透過 Twilio 通訊 API 平台來揭露基礎結構。 輕鬆就可建立和擴充應用程式。 享受隨收隨付定價的彈性和雲端可靠性的好處。
 
 **Twilio 語音**可讓應用程式撥打和接聽電話。 **Twilio 簡訊**可讓應用程式收發簡訊。 **Twilio 用戶端**可讓您從任何電話、平板電腦或瀏覽器撥打 VoIP 電話，且支援 WebRTC。
 
-## <a name="a-idpricingatwilio-pricing-and-special-offers"></a><a id="Pricing"></a>Twilio 定價和特別優惠
+## <a id="Pricing"></a>Twilio 定價和特別優惠
 升級 Twilio 帳戶的 Azure 客戶，可[特別獲贈](http://www.twilio.com/azure)價值 $10 的 Twilio 點數。 此 Twilio 點數可用來折抵任何 Twilio 使用量 ($10 點數相當於最多傳送 1,000 則簡訊，或最多接收 1000 分鐘的撥入語音，視電話號碼所在地點或通話目的地而定)。 請至 [ahoy.twilio.com/azure](http://ahoy.twilio.com/azure) 兌換 Twilio 點數來開始使用。
 
 Twilio 是隨收隨付的服務。 不需要設定費，隨時都可結清帳戶。 如需詳細資訊，請參閱 [Twilio 價格](http://www.twilio.com/voice/pricing)。  
 
-## <a name="a-idconceptsaconcepts"></a><a id="Concepts"></a>概念
+## <a id="Concepts"></a>概念
 Twilio API 是一套為應用程式提供語音和簡訊功能的 RESTful API。 用戶端程式庫有多種語言版本，相關清單請參閱 [Twilio API 程式庫][twilio_libraries]。
 
 Twilio API 的兩大重點是 Twilio 動詞和 Twilio 標記語言 (TwiML)。
 
-### <a name="a-idverbsatwilio-verbs"></a><a id="Verbs"></a>Twilio 動詞
+### <a id="Verbs"></a>Twilio 動詞
 API 採用 Twilio 動詞。例如，**&lt;Say&gt;** 動詞指示 Twilio 在通話中用語音傳遞訊息。
 
 以下是 Twilio 動詞清單。  如需了解其他動詞和功能，請參閱 [Twilio 標記語言文件](http://www.twilio.com/docs/api/twiml)。
@@ -54,7 +55,7 @@ API 採用 Twilio 動詞。例如，**&lt;Say&gt;** 動詞指示 Twilio 在通�
 * **&lt;說出&gt;**：將來電的文字轉換成語音。
 * **&lt;Sms&gt;**：傳送簡訊。
 
-### <a name="a-idtwimlatwiml"></a><a id="TwiML"></a>TwiML
+### <a id="TwiML"></a>TwiML
 TwiML 是以 Twilio 動詞為基礎的一組 XML 指令，可指示 Twilio 如何處理來電或簡訊。
 
 例如，下列 TwiML 會將 **Hello World** 文字轉換成語音。
@@ -68,16 +69,16 @@ TwiML 是以 Twilio 動詞為基礎的一組 XML 指令，可指示 Twilio 如�
 
 如需 Twilio 動詞、屬性和 TwiML 的詳細資訊，請參閱 [TwiML][twiml]。 如需 Twilio API 的詳細資訊，請參閱 [Twilio API][twilio_api]。
 
-## <a name="a-idcreateaccountacreate-a-twilio-account"></a><a id="CreateAccount"></a>建立 Twilio 帳戶
+## <a id="CreateAccount"></a>建立 Twilio 帳戶
 準備取得 Twilio 帳戶時，請至[試用 Twilio][try_twilio] 註冊。 您可以先使用免費帳戶，稍後再升級帳戶。
 
 註冊 Twilio 帳戶時，您會收到帳戶識別碼和驗證權杖。 兩者皆為呼叫 Twilio API 所需。 為了防止未經授權存取您的帳戶，您妥善保管驗證權杖。 在 [Twilio 帳戶頁面][twilio_account] 的 **ACCOUNT SID** 和 **AUTH TOKEN** 欄位中，分別可檢視您的帳戶識別碼和驗證權杖。
 
-## <a name="a-idcreateappacreate-an-azure-application"></a><a id="create_app"></a>建立 Azure 應用程式
+## <a id="create_app"></a>建立 Azure 應用程式
 裝載已啟用 Twilio 功能之應用程式的 Azure 應用程式，與其他任何 Azure 應用程式並無不同。 您可以新增 Twilio .NET 程式庫並設定角色使用 Twilio .NET 程式庫。
 如需有關建立初始 Azure 專案的詳細資訊，請參閱[使用 Visual Studio 建立 Azure 專案][vs_project]。
 
-## <a name="a-idconfigureappaconfigure-your-application-to-use-twilio-libraries"></a><a id="configure_app"></a>設定應用程式使用 Twilio 程式庫
+## <a id="configure_app"></a>設定應用程式使用 Twilio 程式庫
 Twilio 提供一套 .NET 協助程式庫，內已封裝 Twilio 的各種組件，讓您簡單又輕鬆地與 Twilio REST API 和 Twilio 用戶端互動，以產生 TwiML 回應。
 
 Twilio 為 .NET 開發人員提供五套程式庫：
@@ -102,7 +103,7 @@ Twilio.Client.Capability|包含適用於 Twilio 用戶端 JavaScript SDK 的功�
 > 
 > 
 
-### <a name="a-idusenugetato-add-the-twilio-libraries-to-your-visual-studio-project"></a><a id="use_nuget"></a>將 Twilio 程式庫新增至 Visual Studio 專案：
+### <a id="use_nuget"></a>將 Twilio 程式庫新增至 Visual Studio 專案：
 1. 在 Visual Studio 中開啟方案。
 2. 以滑鼠右鍵按一下 [參考]。
 3. 按一下 [管理 NuGet 套件...]
@@ -110,7 +111,7 @@ Twilio.Client.Capability|包含適用於 Twilio 用戶端 JavaScript SDK 的功�
 5. 在搜尋線上方塊中，輸入 twilio。
 6. 在 Twilio 套件上按一下 [安裝]。
 
-## <a name="a-idhowtomakecallahow-to-make-an-outgoing-call"></a><a id="howto_make_call"></a>作法：撥出電話
+## <a id="howto_make_call"></a>作法：撥出電話
 以下顯示如何使用 **TwilioRestClient** 類別來撥出電話。 此程式碼也使用 Twilio 提供的網站來傳回 Twilio 標記語言 (TwiML) 回應。 請將 **From** 和 **To** 電話號碼換成您的值，在執行程式碼之前，請記得先驗證 Twilio 帳戶的 **From** 電話號碼。
 
     // Use your account SID and authentication token instead
@@ -144,7 +145,7 @@ Twilio.Client.Capability|包含適用於 Twilio 用戶端 JavaScript SDK 的功�
 
 如前所述，此程式碼使用 Twilio 提供的網站來傳回 TwiML 回應。 您可以改用您自己的網站來提供 TwiML 回應。 如需詳細資訊，請參閱[作法：從您自己的網站提供 TwiML 回應](#howto_provide_twiml_responses)。
 
-## <a name="a-idhowtosendsmsahow-to-send-an-sms-message"></a><a id="howto_send_sms"></a>作法：傳送簡訊
+## <a id="howto_send_sms"></a>作法：傳送簡訊
 下列螢幕擷取畫面顯示如何使用 **TwilioRestClient** 類別來傳送簡訊。 **From** 號碼由 Twilio 提供給試用帳戶來傳送簡訊。 執行程式碼之前，必須驗證 Twilio 帳戶的 **To** 號碼。
 
         // Use your account SID and authentication token instead
@@ -166,7 +167,7 @@ Twilio.Client.Capability|包含適用於 Twilio 用戶端 JavaScript SDK 的功�
             string message = result.RestException.Message;
         }
 
-## <a name="a-idhowtoprovidetwimlresponsesahow-to-provide-twiml-responses-from-your-own-website"></a><a id="howto_provide_twiml_responses"></a>作法：從您自己的網站提供 TwiML 回應
+## <a id="howto_provide_twiml_responses"></a>作法：從您自己的網站提供 TwiML 回應
 當應用程式開始呼叫 Twilio API 時 (例如，透過 **client.InitiateOutboundCall** 方法)，Twilio 會傳送要求至 URL，然後應該會傳回 TwiML 回應。 [作法：撥出電話](#howto_make_call)中的範例使用 Twilio 提供的 URL [http://twimlets.com/message][twimlet_message_url] 傳回回應。
 
 > [!NOTE]
@@ -285,9 +286,4 @@ Twilio.Client.Capability|包含適用於 Twilio 用戶端 JavaScript SDK 的功�
 [try_twilio]: https://www.twilio.com/try-twilio
 [twilio_account]:  https://www.twilio.com/user/account
 [verify_phone]: https://www.twilio.com/user/account/phone-numbers/verified#
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

@@ -15,14 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/07/2017
 ms.author: cynthn
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ccde5cf9a45c79cfd441633722960007aad46088
-ms.openlocfilehash: fe00166c443d8db678ec46cfd8b66c327176ddcf
+ms.sourcegitcommit: 32e30b44c2f7cfa9c1069190fdc53dbe6e9f4cd5
+ms.openlocfilehash: bc2a8803bdc875e9f62d9263b16cdbb5cc70ecbf
+ms.lasthandoff: 03/01/2017
 
 
 ---
 
-# <a name="migrate-from-aws-and-other-platforms-to-managed-disks-in-azure"></a>從 AWS 和其他平台移轉至 Azure 中的受控磁碟
+# <a name="migrate-from-amazon-web-services-aws-and-other-platforms-to-managed-disks-in-azure"></a>從 Amazon Web Services (AWS) 和其他平台移轉至 Azure 中的受控磁碟
 
 您可以將 VHD 檔案從 AWS 或內部部署虛擬化解決方案上傳至 Azure，以建立利用受控磁碟的 VM。 使用 Azure 受控磁碟就不需要為 Azure IaaS VM 管理儲存體帳戶。 您只需要指定類型 (進階或標準)，還有您需要的磁碟大小，Azure 就會替您建立及管理磁碟。 
 
@@ -101,9 +103,4 @@ Azure 受控磁碟可免除管理儲存體帳戶的需求，進而簡化 VM 管�
 ## <a name="next-steps"></a>後續步驟
 
 - 將任何 VHD 上傳至 Azure 之前，您應該遵循[準備 Windows VHD 或 VHDX 以上傳至 Azure](virtual-machines-windows-prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

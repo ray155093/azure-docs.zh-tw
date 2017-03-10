@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 95a79ccb83d5a3ba386d5db2fd47f3887a03fa8a
-ms.openlocfilehash: 4abb2fa6591c0e014e8d9563f69f9586e081e7b2
+ms.sourcegitcommit: 1aeb983730f732a021b828c658cc741f8659c487
+ms.openlocfilehash: 01a19f1070c1096b41599705bba246bd0cc45d09
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -27,10 +28,10 @@ ms.openlocfilehash: 4abb2fa6591c0e014e8d9563f69f9586e081e7b2
 ## <a name="prerequisites"></a>必要條件
 這篇文章需要在 Azure 中有現有的 Linux VM。 如果您需要建立 VM，請使用下列其中一個方法︰
 
-- [Azure CLI 1.0](virtual-machines-linux-quick-create-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Azure CLI 2.0 (預覽)](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [Azure CLI 2.0](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Azure CLI 1.0](virtual-machines-linux-quick-create-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 - [Azure 入口網站](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-您也需要安裝最新的 [Azure CLI 1.0](../xplat-cli-install.md) 或 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且記錄至[作用中 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+您也需要安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) 或 [Azure CLI 1.0](../xplat-cli-install.md)，並且記錄至[作用中 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
 
 ## <a name="quick-commands"></a>快速命令
@@ -69,16 +70,7 @@ sudo service xrdp restart
 sudo passwd ops
 ```
 
-結束 Linux VM 的 SSH 工作階段。 使用本機電腦上的 Azure CLI 建立網路安全性群組規則，以允許遠端桌面流量。 下列範例會使用 Azure CLI 1.0 在 `myNetworkSecurityGroup`內建立名為 `myNetworkSecurityGroupRule` 的規則，允許 tcp 連接埠 3389 上的流量︰
-
-```azurecli
-azure network nsg rule create --resource-group myResourceGroup \
-    --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRule \
-    --protocol tcp --direction inbound --priority 1010 \
-    --destination-port-range 3389 --access allow
-```
-
-或者，使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 與 Azure CLI 2.0 (預覽)︰
+結束 Linux VM 的 SSH 工作階段。 使用本機電腦上的 Azure CLI 建立網路安全性群組規則，以允許遠端桌面流量。 透過 Azure CLI 2.0 使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create)。 下列範例會在 `myNetworkSecurityGroup` 中建立名為 `myNetworkSecurityGroupRule` 的規則以允許 TCP 通訊埠 3389 上的流量︰
     
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup \
@@ -87,6 +79,15 @@ az network nsg rule create --resource-group myResourceGroup \
     --source-address-prefix '*' --source-port-range '*' \
     --destination-address-prefix '*' --destination-port-range 3389 \
     --access allow
+```
+
+或使用 Azure CLI 1.0：
+
+```azurecli
+azure network nsg rule create --resource-group myResourceGroup \
+    --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRule \
+    --protocol tcp --direction inbound --priority 1010 \
+    --destination-port-range 3389 --access allow
 ```
 
 使用您所選擇的遠端桌面用戶端連接至 Linux VM。
@@ -149,16 +150,7 @@ sudo passwd ops
 
 下列範例會對 `tcp` 連接埠 `3389` 上的流量，將名為 `myNetworkSecurityGroupRule` 的網路安全性群組規則建立為 `allow`。
 
-- 使用 Azure CLI 1.0：
-
-    ```azurecli
-    azure network nsg rule create --resource-group myResourceGroup \
-        --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRule \
-        --protocol tcp --direction inbound --priority 1010 \
-        --destination-port-range 3389 --access allow
-    ```
-
-- 或者，使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 與 Azure CLI 2.0 (預覽)︰
+- 透過 Azure CLI 2.0 使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create)：
     
     ```azurecli
     az network nsg rule create --resource-group myResourceGroup \
@@ -169,6 +161,14 @@ sudo passwd ops
         --access allow
     ```
 
+- 或使用 Azure CLI 1.0：
+
+    ```azurecli
+    azure network nsg rule create --resource-group myResourceGroup \
+        --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRule \
+        --protocol tcp --direction inbound --priority 1010 \
+        --destination-port-range 3389 --access allow
+    ```
 
 ## <a name="connect-your-linux-vm-with-a-remote-desktop-client"></a>連接 Linux VM 與遠端桌面用戶端
 開啟您的本機遠端桌面用戶端，並連接至 Linux VM 的 IP 位址或 DNS 名稱。 在您的 VM 上輸入使用者帳戶的使用者名稱和密碼，如下所示︰
@@ -215,10 +215,5 @@ Red Hat Enterprise Linux 和 SUSE 等其他 Linux 散發重新啟動服務的方
 如需有關建立和使用 SSH 金鑰與 Linux VM 的詳細資訊，請參閱[在 Azure 中為 Linux VM 建立 SSH 金鑰](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 如需從 Windows 使用 SSH 的詳細資訊，請參閱[如何以 Windows 使用 SSH 金鑰](virtual-machines-linux-ssh-from-windows.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

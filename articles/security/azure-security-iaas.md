@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/09/2017
+ms.date: 03/06/2017
 ms.author: barclayn
 translationtype: Human Translation
-ms.sourcegitcommit: 3451bdde3be60df0f1e1ed977f23db65d39f535f
-ms.openlocfilehash: 8416de09a4a3c2cdf9c73b9f79e8df9e292514ca
-ms.lasthandoff: 01/10/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 774feff39bee6f34b1fb292f130d8240ec070c81
+ms.lasthandoff: 03/07/2017
 
 
 
@@ -194,8 +194,6 @@ SCM 已準備好部署原則和經過測試的 DCM 設定套件。 這些基準�
 ![Azure Antimalware](./media/azure-security-iaas/azantimalware.png)
 
 **安裝最新的安全性更新**：我們看到客戶移至 Azure 的第一批工作負載中包括實驗室和對外系統。 如果您裝載於 Azure 中的虛擬機器會裝載需要存取網際網路的應用程式或服務，您就必須對修補作業保持警戒。 請記住，這不只是修補作業系統而已。 協力廠商應用程式上未修補的弱點也可能造成一些問題，但只要能夠妥善管理修補程式，即可輕易避免這類問題。
-
-如需有關管理 Azure IaaS 修補的詳細資訊，請參閱 [Microsoft Azure IaaS 上軟體更新的最佳作法](azure-security-best-practices-software-updates-iaas.md)。
 
 **部署和測試備份解決方案**
 

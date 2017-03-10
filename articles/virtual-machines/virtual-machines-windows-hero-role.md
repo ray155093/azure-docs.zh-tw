@@ -19,6 +19,7 @@ ms.author: cynthn
 translationtype: Human Translation
 ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
 ms.openlocfilehash: 63a3ffb0e0c52643994f95dbf588f3534c8de06f
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -52,7 +53,7 @@ ms.openlocfilehash: 63a3ffb0e0c52643994f95dbf588f3534c8de06f
 ## <a name="install-iis-on-your-vm"></a>在您的 VM 上安裝 IIS
 您現在已登入 VM，我們將安裝一個伺服器角色，以便您進行更多試驗。
 
-1. 開啟 [伺服器管理員]  (如果尚未開啟)。 按一下 [啟動] 功能表，然後按一下 [伺服器管理員]。
+1. 開啟 [伺服器管理員]  \(如果尚未開啟)。 按一下 [啟動] 功能表，然後按一下 [伺服器管理員]。
 2. 在 [伺服器管理員] 中，選取左窗格中的 [本機伺服器]。 
 3. 在功能表中，選取 [管理] > [新增角色及功能]。
 4. 在「新增角色及功能精靈」的 [安裝類型] 頁面上，選擇 [角色型或功能型安裝]，然後按 [下一步]。
@@ -106,10 +107,5 @@ ms.openlocfilehash: 63a3ffb0e0c52643994f95dbf588f3534c8de06f
 
 ## <a name="next-steps"></a>後續步驟
 * 您也可以體驗 [附加資料磁碟](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 至虛擬機器。 資料磁碟可為虛擬機器提供更多的儲存空間。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

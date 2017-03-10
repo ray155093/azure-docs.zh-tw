@@ -18,6 +18,7 @@ ms.author: guybo
 translationtype: Human Translation
 ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
 ms.openlocfilehash: 4533b446f661568d0e70a23bb64880022038bb9a
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -124,11 +125,6 @@ Add-AzureRmMetricAlertRule  -Name  $alertName `
 ## <a name="summary"></a>摘要
 這篇文章示範簡單的垂直調整範例。 藉助這些建置組塊 (自動化帳戶、Runbook、Webhook、警示)，您可以連接各式各樣的事件與一組自訂的動作。
 
-[Runbook]: ./media/virtual-machine-scale-sets-vertical-scale-reprovision/runbooks.png
-[資源庫]: ./media/virtual-machine-scale-sets-vertical-scale-reprovision/runbooks-gallery.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[runbooks]: ./media/virtual-machine-scale-sets-vertical-scale-reprovision/runbooks.png
+[gallery]: ./media/virtual-machine-scale-sets-vertical-scale-reprovision/runbooks-gallery.png
 

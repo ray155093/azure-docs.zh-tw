@@ -13,11 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/28/2016
+ms.date: 03/07/2017
 ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: 9019a4115e81a7d8f1960098b1138cd437a0460b
 ms.openlocfilehash: b0d6e509c5bacd828e9a9938edb860bbf0c0a8f3
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -84,7 +85,7 @@ ms.openlocfilehash: b0d6e509c5bacd828e9a9938edb860bbf0c0a8f3
 
 
 
-## <a name="a-nameseealsoasee-also"></a><a name="seealso"></a>另請參閱
+## <a name="seealso"></a>另請參閱
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
 
 ### <a name="scenarios"></a>案例
@@ -109,9 +110,4 @@ ms.openlocfilehash: b0d6e509c5bacd828e9a9938edb860bbf0c0a8f3
 ### <a name="manage-resources"></a>管理資源
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

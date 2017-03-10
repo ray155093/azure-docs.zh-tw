@@ -4,7 +4,7 @@ description: "了解如何輕鬆地將您的行動服務應用程式升級為 Ap
 services: app-service\mobile
 documentationcenter: 
 author: adrianhall
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: 9c0ac353-afb6-462b-ab94-d91b8247322f
 ms.service: app-service-mobile
@@ -44,7 +44,7 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 * 支援其他 ASP.NET 專案類型和路由。 您現在可以在與行動後端專案相同的專案中裝載 MVC 和 Web API 控制器。
 * 支援新的 App Service 驗證功能，可讓您跨 Web 和行動應用程式使用常見的驗證設定。
 
-## <a name="a-nameoverviewabasic-upgrade-overview"></a><a name="overview"></a>基本升級概觀
+## <a name="overview"></a>基本升級概觀
 在許多情況下，只需切換到新的 Mobile Apps 伺服器 SDK 並將程式碼重新發佈至新的行動 App 執行個體，即可完成升級。 但在某些情況下則需要一些額外的設定，例如進階驗證案例和使用排程工作。 後續各節將逐一加以討論。
 
 > [!TIP]
@@ -63,7 +63,7 @@ App Service Mobile 是一種使用 Microsoft Azure 建置行動應用程式的�
 3. 發行新版的用戶端應用程式
 4. (選擇性) 刪除原始已移轉的執行個體
 
-## <a name="a-namemobile-app-versionacreating-a-second-application-instance"></a><a name="mobile-app-version"></a>建立第二個應用程式執行個體
+## <a name="mobile-app-version"></a>建立第二個應用程式執行個體
 升級的第一個步驟是建立將主控新版應用程式的行動 App 資源。 如果您已經移轉現有的行動服務，則您會想要在同一個主控方案中建立這個版本。 請開啟 [Azure 入口網站] ，並瀏覽到您已移轉的應用程式。 請記下其正在其上執行的 App Service 方案。
 
 接下來，依照 [.NET 後端建立指示](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#create-app)建立第二個應用程式執行個體。 當系統提示選取您的 App Service 方案或「主控方案」時，請選擇已移轉之應用程式的方案。
@@ -215,7 +215,7 @@ Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任�
     ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
     traceWriter.Info("Hello, World");  
 
-## <a name="a-nameauthenticationaauthentication-considerations"></a><a name="authentication"></a>驗證考量
+## <a name="authentication"></a>驗證考量
 行動服務的驗證元件現在已移到 App Service 驗證/授權功能中。 您可以閱讀 [將驗證新增至您行動應用程式](app-service-mobile-ios-get-started-users.md) 一文，以了解如何為網站啟用此功能。
 
 對於某些提供者 (例如 AAD、Facebook 及 Google)，您應該能夠運用來自您複製應用程式的現有註冊。 您只需瀏覽至身分識別提供者的入口網站，並將新的重新導向 URL 新增至註冊即可。 接著，利用用戶端識別碼和密碼來設定 App Service 驗證/授權。
@@ -238,7 +238,7 @@ Mobile Apps 中並未內建排程的工作，因此您在 .NET 後端中的任�
 ### <a name="custom-authentication"></a>自訂驗證
 如果您的應用程式使用自訂的驗證解決方案，您會想要確定已升級的網站具備系統的存取權。 請依照 [.NET 伺服器 SDK 概觀] 中適用於自訂驗證的新指示來整合您的解決方案。 請注意，自訂驗證元件仍處於預覽狀態。
 
-## <a name="a-nameupdating-clientsaupdating-clients"></a><a name="updating-clients"></a>更新用戶端
+## <a name="updating-clients"></a>更新用戶端
 在您擁有可運作的行動 App 後端之後，就能在取用它的新版用戶端應用程式上運作。 Mobile Apps 也會包含新版的用戶端 SDK，而且與上述的伺服器升級類似，您必須先移除所有對行動服務 SDK 的參考，然後安裝 Mobile Apps 版本。
 
 版本間的其中一個主要變更是建構函式不再需要應用程式金鑰。 您現在只需傳入行動 App 的 URL。 例如，在 .NET 用戶端上， `MobileServiceClient` 建構函式現在是：

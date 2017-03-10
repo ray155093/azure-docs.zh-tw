@@ -13,13 +13,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 12/01/2016
 ms.author: rclaus
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 1a133d7710b1790241c0ff774c2fd40e86b64268
-ms.openlocfilehash: f0248ce46991d23c2f5bb0f1c8bf212207b7ad5f
+ms.sourcegitcommit: fa842efd99718be7fa9eaf8aac8030c32cbceeec
+ms.openlocfilehash: 661733edbabd61b42bfb44b4ed107b1e757c2e28
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="high-availability-and-disaster-recovery-of-sap-hana-on-azure-large-instances"></a>SAP HANA on Azure (大型執行個體) 的高可用性和災害復原
+# <a name="sap-hana-large-instances-high-availability-and-disaster-recovery-on-azure"></a>SAP Hana (大型執行個體) 在 Azure 上的高可用性和災害復原 
 
 高可用性和災害復原對執行具任務關鍵性的 SAP HANA on Azure (大型執行個體) 伺服器來說，是相當重要的層面。 請務必與 SAP、您的系統整合者或 Microsoft 合作，以便正確建構及實作正確的高可用性/災害復原策略。 也務必考量您環境特有的復原點目標和復原時間目標。
 
@@ -593,9 +595,4 @@ Deleting the HANA snapshot with command: "./hdbsql -n localhost -i 01 -U SCADMIN
 HANA snapshot deletion successfully.
 ```
 您可以從此範例看到指令碼如何記錄 HANA 快照的建立。 在相應放大案例中，是在主要節點上起始此程序。 主要節點會在每個背景工作角色節點上起始同步建立快照集。 然後建立儲存體快照。 順利執行儲存體快照之後，就會刪除 HANA 快照。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

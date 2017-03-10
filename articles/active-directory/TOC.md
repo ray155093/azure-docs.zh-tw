@@ -34,15 +34,13 @@
 ##### [採用策略](active-directory-hybrid-identity-design-considerations-identity-adoption-strategy.md)
 #### [後續步驟](active-directory-hybrid-identity-design-considerations-nextsteps.md)
 #### [工具比較](active-directory-hybrid-identity-design-considerations-tools-comparison.md)
+
 ## 管理使用者
 ### 新增使用者
 #### [Azure 入口網站](active-directory-users-create-azure-portal.md)
 #### [傳統入口網站](active-directory-create-users.md)
 
-### 新增其他目錄中的使用者
-#### [Azure 入口網站](active-directory-users-create-external-azure-portal.md)
-#### [傳統入口網站](active-directory-create-users-external.md)
-
+### [從其他目錄中新增使用者 (傳統入口網站)](active-directory-create-users-external.md)
 ### [刪除使用者](active-directory-users-delete-user-azure-portal.md)
 ### [管理使用者設定檔](active-directory-users-profile-azure-portal.md)
 ### [重設密碼](active-directory-users-reset-password-azure-portal.md)
@@ -68,33 +66,34 @@
 #### [傳統入口網站](active-directory-accessmanagement-groups-with-advanced-rules.md)
 ### [群組型授權](active-directory-licensing-whatis-azure-portal.md)
 #### [將授權指派給群組](active-directory-licensing-group-assignment-azure-portal.md)
-#### [識別及解決群組的授權問題](active-directory-licensing-group-problem-resolution-azure-portal.md)
-#### [如何將個別授權使用者移轉至群組型的授權](active-directory-licensing-group-migration-azure-portal.md)
+#### [識別並解決群組的授權問題](active-directory-licensing-group-problem-resolution-azure-portal.md)
+#### [將個別授權使用者移轉至群組型的授權](active-directory-licensing-group-migration-azure-portal.md)
 #### [群組型授權的其他案例](active-directory-licensing-group-advanced.md)
 ### [設定自助式群組](active-directory-accessmanagement-self-service-group-management.md)
 ### [疑難排解](active-directory-accessmanagement-troubleshooting.md)
 
-## [檢視活動報告](active-directory-view-access-usage-reports.md)
-### [登入](active-directory-reporting-activity-sign-ins.md)
-### [稽核記錄檔](active-directory-reporting-activity-audit-logs.md)
+## [管理報告](active-directory-reporting-azure-portal.md)
+### [登入活動](active-directory-reporting-activity-sign-ins.md)
+### [稽核活動](active-directory-reporting-activity-audit-logs.md)
 ### [有風險的使用者](active-directory-reporting-security-user-at-risk.md)
 ### [有風險的登入](active-directory-reporting-security-risky-sign-ins.md)
+### [風險事件](active-directory-reporting-risk-events.md)
+### [具名網路](active-directory-known-networks-azure-portal.md)
 ### [常見問題集](active-directory-reporting-faq.md)
 ### [報告移轉](active-directory-reporting-migration.md)
-### [已知的網路](active-directory-known-networks.md)
-
-### 傳統入口網站
+### [保留](active-directory-reporting-retention.md)
+###    程式設計存取
+#### [稽核參考](active-directory-reporting-api-audit-reference.md)
+#### [稽核範例](active-directory-reporting-api-audit-samples.md)
+#### [必要條件](active-directory-reporting-api-prerequisites.md)
+#### [登入參考](active-directory-reporting-api-sign-in-activity-reference.md)
+#### [登入範例](active-directory-reporting-api-sign-in-activity-samples.md)
+### [傳統入口網站](active-directory-view-access-usage-reports.md)
 #### [Azure AD 報告](active-directory-reporting-getting-started.md)
 #### [報告指南](active-directory-reporting-guide.md)
-#### [預覽](active-directory-reporting-azure-portal.md)
+#### [已知的網路](active-directory-known-networks.md)
 #### [API](active-directory-reporting-api-getting-started.md)
-##### [稽核參考](active-directory-reporting-api-audit-reference.md)
-##### [稽核範例](active-directory-reporting-api-audit-samples.md)
-##### [必要條件](active-directory-reporting-api-prerequisites.md)
-##### [登入參考](active-directory-reporting-api-sign-in-activity-reference.md)
-##### [登入範例](active-directory-reporting-api-sign-in-activity-samples.md)
 #### [稽核事件](active-directory-reporting-audit-events.md)
-#### [保留](active-directory-reporting-retention.md)
 #### [延遲](active-directory-reporting-latencies.md)
 #### [Notifications](active-directory-reporting-notifications.md)
 #### 了解報告
@@ -108,6 +107,7 @@
 
 ## [管理密碼](active-directory-manage-passwords.md)
 ### [更新自己的密碼](active-directory-passwords-update-your-own-password.md)
+### [設定自助密碼重設](active-directory-passwords.md)
 ### [了解密碼管理](active-directory-passwords-how-it-works.md)
 ### [了解原則和限制](active-directory-passwords-policy.md)
 ### 重設密碼
@@ -117,7 +117,6 @@
 ### 啟用密碼管理
 #### [開始使用](active-directory-passwords-getting-started.md)
 #### [部署](active-directory-passwords-best-practices.md)
-#### [設定自助密碼重設](active-directory-passwords.md)
 #### [自訂](active-directory-passwords-customize.md)
 #### [檢視報告](active-directory-passwords-get-insights.md)
 #### [深入了解](active-directory-passwords-learn-more.md)
@@ -128,22 +127,19 @@
 ### [註冊裝置](active-directory-conditional-access-device-registration-overview.md)
 #### [管理自動註冊](active-directory-conditional-access-automatic-device-registration.md)
 #### [設定](active-directory-conditional-access-automatic-device-registration-setup.md)
-### [登記裝置](active-directory-azureadjoin-personal-device.md)
-### [註冊 Windows 10 裝置](active-directory-azureadjoin-user-upgrade.md)
+#### [常見問題集](active-directory-conditional-access-automatic-device-registration-faq.md)
+#### 疑難排解
+##### [針對 Windows 10 與 Windows Server 2016 進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows.md)
+##### [針對 Windows 下層用戶端進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows-legacy.md)
 ### [Azure AD Join](active-directory-azureadjoin-overview.md)
 #### [規劃](active-directory-azureadjoin-deployment-aadjoindirect.md)
 #### [設定裝置註冊](active-directory-azureadjoin-setup.md)
 #### [註冊新裝置](active-directory-azureadjoin-user-frx.md)
 #### [部署](active-directory-azureadjoin-devices-group-policy.md)
-#### [無需密碼驗證](active-directory-azureadjoin-passport.md)
-#### [啟用 Windows Hello 企業版](active-directory-azureadjoin-passport-deployment.md)
-
 #### [了解 Windows 10 整合](active-directory-azureadjoin-windows10-devices-overview.md)
 #### [使用 Windows 10 裝置](active-directory-azureadjoin-windows10-devices.md)
-#### [常見問題集](active-directory-conditional-access-automatic-device-registration-faq.md)
-#### 疑難排解
-##### [針對 Windows 10 與 Windows Server 2016 進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows.md)
-##### [針對 Windows 下層用戶端進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows-legacy.md)
+#### [加入裝置](active-directory-azureadjoin-personal-device.md)
+#### [加入 Windows 10 裝置](active-directory-azureadjoin-user-upgrade.md)
 
 ## 管理應用程式
 ### [概觀](active-directory-enable-sso-scenario.md)
@@ -237,6 +233,7 @@
 #### [兌換邀請](active-directory-b2b-redemption-experience.md)
 #### [B2B 使用者屬性](active-directory-b2b-user-properties.md)
 #### [將來賓使用者新增至角色](active-directory-b2b-add-guest-to-role.md)
+#### [稽核與報告](active-directory-b2b-auditing-and-reporting.md)
 #### [API 與自訂](active-directory-b2b-api.md)
 #### [委派邀請](active-directory-b2b-delegate-invitations.md)
 #### [動態群組與 B2B](active-directory-b2b-dynamic-groups.md)
@@ -284,6 +281,9 @@
 #### [常見問題集](active-directory-conditional-faqs.md)
 #### [疑難排解](active-directory-conditional-access-device-remediation.md)
 #### [參考](active-directory-conditional-access-technical-reference.md)
+### Windows Hello
+#### [無需密碼驗證](active-directory-azureadjoin-passport.md)
+#### [啟用 Windows Hello 企業版](active-directory-azureadjoin-passport-deployment.md)
 ### 憑證式驗證
 #### [Android](active-directory-certificate-based-authentication-android.md)
 #### [iOS](active-directory-certificate-based-authentication-ios.md)

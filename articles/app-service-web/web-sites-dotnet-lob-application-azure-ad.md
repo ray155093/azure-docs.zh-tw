@@ -4,7 +4,7 @@ description: "了解如何在 Azure App Service 中建立使用 Azure Active Dir
 services: app-service\web, active-directory
 documentationcenter: .net
 author: cephalin
-manager: wpickett
+manager: erikre
 editor: 
 ms.assetid: ad947bdb-4463-43ff-a5e3-91d9b2169b60
 ms.service: app-service-web
@@ -15,8 +15,9 @@ ms.workload: web
 ms.date: 09/01/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 85fcb08be0f1443232919ddfe5e69ff0ef1a47a2
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: a00e3c5ed41aff48a6845c2f07ea3e43580045ee
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -221,7 +222,7 @@ ms.openlocfilehash: 85fcb08be0f1443232919ddfe5e69ff0ef1a47a2
    }
    
    &lt;div&gt;
-    @Html.ActionLink(&quot;回到清單&quot;, &quot;索引&quot;) &lt;/div&gt;
+    @Html.ActionLink(&quot;回到清單&quot;、&quot;索引&quot;) &lt;/div&gt;
    
    @section 指令碼 {  @Scripts.Render(&quot;~/bundles/jqueryval&quot;)  <mark>&lt;script&gt;
         // People/Group Picker Code      var maxResultsPerPage = 14;      var input = document.getElementById(&quot;AssignedToName&quot;);
@@ -328,10 +329,5 @@ ms.openlocfilehash: 85fcb08be0f1443232919ddfe5e69ff0ef1a47a2
 * [Microsoft Azure Active Directory 範例與文件](https://github.com/AzureADSamples)
 * [Azure Active Directory 支援的權杖和宣告類型](http://msdn.microsoft.com/library/azure/dn195587.aspx)
 
-[使用 SSL 和 Authorize 屬性保護應用程式]: web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md#protect-the-application-with-ssl-and-the-authorize-attribute
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[Protect the Application with SSL and the Authorize Attribute]: web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md#protect-the-application-with-ssl-and-the-authorize-attribute
 

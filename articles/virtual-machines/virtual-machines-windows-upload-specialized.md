@@ -15,14 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/05/2017
 ms.author: cynthn
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 204fa369dd6db618ec5340317188681b0a2988e3
-ms.openlocfilehash: fc8cb82e952a05b161f00ef9ebfbd4852d3987d4
+ms.sourcegitcommit: c859b789b564ee79022823e8d796775f58eeeccd
+ms.openlocfilehash: 7acd58989da14ea49374e86edb0dba5762557d79
+ms.lasthandoff: 03/01/2017
 
 
 ---
 
-# <a name="upload-a-specialized-vhd-to-azure-to-use-for-creating-a-new-vm"></a>將特製化 VHD 上傳至 Azure 以用來建立新的 VM
+# <a name="how-to-upload-a-specialized-vhd-to-create-a-vm-in-azure"></a>如何在 Azure 中上傳特製化 VHD 以建立 VM
 
 特製化的 VHD 會從原始的 VM 維護使用者帳戶、應用程式和其他狀態資料。 您可以將特製化的 VHD 上傳至 Azure，並用來建立使用受控磁碟或未受管理儲存體帳戶的 VM。 我們建議您改用[受控磁碟](../storage/storage-managed-disks-overview.md)，以簡化管理及利用受控磁碟提供的其他功能。
 
@@ -321,9 +323,4 @@ $vmList.Name
 
 ## <a name="next-steps"></a>後續步驟
 若要登入新的虛擬機器，請瀏覽至[入口網站](https://portal.azure.com)中的 VM，按一下 [連接] 並開啟遠端桌面 RDP 檔案。 使用原始虛擬機器的帳戶認證來登入新的虛擬機器。 如需詳細資訊，請參閱 [如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

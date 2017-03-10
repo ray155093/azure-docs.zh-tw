@@ -12,11 +12,12 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 12/06/2016
+ms.date: 03/08/2017
 ms.author: chackdan
 translationtype: Human Translation
 ms.sourcegitcommit: 6d8f489ac053db4898741671df73b6abfabeb0dd
 ms.openlocfilehash: 140bee520dd8de0d9303a7d80e10cae407c8b10d
+ms.lasthandoff: 12/14/2016
 
 
 ---
@@ -71,10 +72,5 @@ Service Fabric 提供安裝套件，讓您在內部部署或任何雲端提供�
 * 在執行 Windows Server 的 VM 或電腦上建立叢集： [建立適用於 Windows Server 的 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)
 * 在執行 Linux 的 VM 或電腦上建立叢集︰ [Linux 上的 Service Fabric](service-fabric-linux-overview.md)
 * 了解 [Service Fabric 支援選項](service-fabric-support.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

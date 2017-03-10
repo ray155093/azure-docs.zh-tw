@@ -4,7 +4,7 @@ description: "了解如何輕鬆地將您的行動服務應用程式移轉至應
 services: app-service\mobile
 documentationcenter: 
 author: adrianhall
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: 07507ea2-690f-4f79-8776-3375e2adeb9e
 ms.service: app-service-mobile
@@ -21,15 +21,15 @@ ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="a-namearticle-topamigrate-your-existing-azure-mobile-service-to-azure-app-service"></a><a name="article-top"></a>將您現有的 Azure 行動服務移轉至 Azure App Service
+# <a name="article-top"></a>將您現有的 Azure 行動服務移轉至 Azure App Service
 透過 [Azure App Service 的公開上市版]，Azure 行動服務網站將可輕易地就地移轉，以使用 Azure App Service 的所有功能。  本文件說明將您的網站從 Azure 行動服務移轉至 Azure App Service 時的情形。
 
-## <a name="a-namewhat-does-migration-doawhat-does-migration-do-to-your-site"></a><a name="what-does-migration-do"></a>移轉對您的網站有何作用
+## <a name="what-does-migration-do"></a>移轉對您的網站有何作用
 移轉 Azure 行動服務，會使您的行動服務變成 [Azure App Service] 應用程式，而不會對程式碼造成任何影響。  您通知中樞、SQL 資料連接、驗證設定、排定的作業和網域名稱都會保持不變。  使用您的 Azure 行動服務的行動用戶端仍可正常運作。  移轉會在您的服務轉換為 Azure App Service 後加以重新啟動。
 
 [!INCLUDE [app-service-mobile-migrate-vs-upgrade](../../includes/app-service-mobile-migrate-vs-upgrade.md)]
 
-## <a name="a-namewhy-migrateawhy-you-should-migrate-your-site"></a><a name="why-migrate"></a>為何您應移轉網站
+## <a name="why-migrate"></a>為何您應移轉網站
 Microsoft 建議您移轉 Azure 行動服務，以使用 Azure App Service 的各項功能，其中包括：
 
 * 新的主機功能，包括 [WebJobs] 和[自訂網域名稱]。
@@ -40,10 +40,10 @@ Microsoft 建議您移轉 Azure 行動服務，以使用 Azure App Service 的�
 
 若想進一步了解 Azure App Service 的優點，請參閱[比較行動服務與App Service] 主題。
 
-## <a name="a-namebefore-you-beginabefore-you-begin"></a><a name="before-you-begin"></a>開始之前
+## <a name="before-you-begin"></a>開始之前
 網站開始任何主要工作之前，您應該先備份您的行動服務指令碼和 SQL Database。
 
-## <a name="a-namemigrating-siteamigrating-your-sites"></a><a name="migrating-site"></a>移轉您的網站
+## <a name="migrating-site"></a>移轉您的網站
 移轉程序會移轉單一 Azure 區域內的所有網站。
 
 若要移轉您的網站：
@@ -64,10 +64,10 @@ Microsoft 建議您移轉 Azure 行動服務，以使用 Azure App Service 的�
 每個移轉的行動服務在每次移轉時可能需要 3 到 15 分鐘不等。  移轉期間仍可使用您的網站。
 您的網站會在移轉程序結束時重新啟動。  在重新啟動程序期間無法使用網站，此狀況可能會持續幾秒鐘。
 
-## <a name="a-namefinalizing-migrationafinalizing-the-migration"></a><a name="finalizing-migration"></a>完成移轉
+## <a name="finalizing-migration"></a>完成移轉
 規劃在移轉程序結束後從行動用戶端測試您的網站。  請確定您可以執行所有的一般用戶端動作，而不會變更行動用戶端。  
 
-### <a name="a-nameupdate-app-service-tieraselect-an-appropriate-app-service-pricing-tier"></a><a name="update-app-service-tier"></a>選取適當的 App Service 定價層
+### <a name="update-app-service-tier"></a>選取適當的 App Service 定價層
 在移轉至 Azure App Service 之後，您在價格方面將會有更多彈性。
 
 1. 登入 [Azure 入口網站]。
@@ -92,7 +92,7 @@ Microsoft 建議您移轉 Azure 行動服務，以使用 Azure App Service 的�
 > 
 > 
 
-### <a name="a-namereview-migration-scheduler-jobsareview-the-migrated-scheduler-jobs"></a><a name="review-migration-scheduler-jobs"></a>檢閱已移轉的排程器作業
+### <a name="review-migration-scheduler-jobs"></a>檢閱已移轉的排程器作業
 排程器作業在移轉後約 30 分鐘內將不會顯示。  排程的作業會持續在背景中執行。
 若要在排程的作業再度顯現後加以檢視︰
 
@@ -101,7 +101,7 @@ Microsoft 建議您移轉 Azure 行動服務，以使用 Azure App Service 的�
 
 移轉後可用的排程器作業數量將有所限制。  檢閱您的使用量和 [Azure 排程器方案]。
 
-### <a name="a-nameconfigure-corsaconfigure-cors-if-needed"></a><a name="configure-cors"></a>視需要設定 CORS
+### <a name="configure-cors"></a>視需要設定 CORS
 跨原始資源共用是一項可讓網站存取不同網域之 Web API 的技術。  如果您使用的 Azure 行動服務具有相關聯的網站，您就必須在移轉中設定 CORS。  如果您從行動裝置以獨佔方式存取 Azure 行動服務，則在絕大多數的情況下都不需要設定 CORS。
 
 已移轉的 CORS 設定可做為 **MS_CrossDomainWhitelist** 應用程式設定。  若要將您的網站移轉至 App Service CORS 工具：
@@ -118,7 +118,7 @@ Microsoft 建議您移轉 Azure 行動服務，以使用 Azure App Service 的�
 > 
 > 
 
-### <a name="a-namedownload-publish-profileadownload-a-new-publishing-profile"></a><a name="download-publish-profile"></a>下載新的發行設定檔
+### <a name="download-publish-profile"></a>下載新的發行設定檔
 網站的發行設定檔移轉至 Azure App Service 後，會進行變更。  如果您想要從 Visual Studio 發佈您的網站，您需要新的發行設定檔。  若要下載新的發行設定檔：
 
 1. 登入 [Azure 入口網站]。
@@ -134,10 +134,10 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 5. 按一下 [驗證連接]，確保發佈設定可運作。
 6. 選擇 [發佈] 來發佈您的網站。
 
-## <a name="a-nameworking-with-your-siteaworking-with-your-site-post-migration"></a><a name="working-with-your-site"></a>在移轉後使用您的網站
+## <a name="working-with-your-site"></a>在移轉後使用您的網站
 移轉之後，在 [Azure 入口網站]中開始使用新的 App Service。  以下是您過去在 [Azure 傳統入口網站]中執行之特定作業的某些注意事項，及其 App Service 的對等項目。
 
-### <a name="a-namepublishing-your-siteadownloading-and-publishing-your-migrated-site"></a><a name="publishing-your-site"></a>下載和發佈您已移轉的網站
+### <a name="publishing-your-site"></a>下載和發佈您已移轉的網站
 您的網站可透過 git 或 ftp 來使用，而且可透過各種不同的機制重新發佈，包括 WebDeploy、TFS、Mercurial、GitHub 及 FTP。  部署認證會隨著網站的其餘部分移轉。  如果您未設定部署認證，或您不記得，您可以將其重設：
 
 1. 登入 [Azure 入口網站]。
@@ -148,7 +148,7 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 
 您可以使用這些認證透過 git 複製網站，或從 GitHub、TFS 或 Mercurial 設定自動化部署。  如需詳細資訊，請參閱 [Azure App Service 部署文件]。
 
-### <a name="a-nameappsettingsaapplication-settings"></a><a name="appsettings"></a>應用程式設定
+### <a name="appsettings"></a>應用程式設定
 已移轉的行動服務大部分的設定都可透過 [應用程式設定] 來使用。  您可以從 [Azure 入口網站]取得應用程式設定清單。
 若要檢視或變更您的應用程式設定：
 
@@ -166,7 +166,7 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 > 
 > 
 
-### <a name="a-nameauthenticationaauthentication"></a><a name="authentication"></a>驗證
+### <a name="authentication"></a>驗證
 所有的驗證設定都可做為已移轉之網站中的 [應用程式設定]。  若要更新您的驗證設定，您必須變更適當的應用程式設定。  下表列出您的驗證提供者所適用的應用程式設定：
 
 | 提供者 | 用戶端識別碼 | 用戶端密碼 | 其他設定 |
@@ -186,7 +186,7 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 > 
 > 
 
-### <a name="a-nameeasytablesadata"></a><a name="easytables"></a>資料
+### <a name="easytables"></a>資料
 行動服務中的 [資料] 索引標籤在 Azure 入口網站中已替換為 [簡單資料表]。  若要存取簡單資料表：
 
 1. 登入 [Azure 入口網站]。
@@ -203,7 +203,7 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 * 清除資料表內容
 * 刪除資料表的特定資料列
 
-### <a name="a-nameeasyapisaapi"></a><a name="easyapis"></a>API
+### <a name="easyapis"></a>API
 行動服務中的 [API] 索引標籤在 Azure 入口網站中已替換為 [簡單 API]。  若要存取簡單 API：
 
 1. 登入 [Azure 入口網站]。
@@ -214,7 +214,7 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 移轉的 API 已經列在刀鋒視窗中。  您也可以在此刀鋒視窗中新增 API。  若要管理特定 API，請按一下該 API。
 從新的刀鋒視窗中，您可以調整權限，以及編輯 API 的指令碼。
 
-### <a name="a-nameon-demand-jobsascheduler-jobs"></a><a name="on-demand-jobs"></a>排程器作業
+### <a name="on-demand-jobs"></a>排程器作業
 所有的排程器作業都可透過 [排程器作業集合] 區段來使用。  若要存取您的排程器作業：
 
 1. 登入 [Azure 入口網站]。
@@ -232,7 +232,7 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 
 您的隨需作業會位於 `App_Data/config/scripts/scheduler post-migration`。  建議您將所有隨選作業轉換為 [WebJobs] 或 [Functions]。  撰寫新的排程器作業，做為 [WebJobs] 或 [Functions]。
 
-### <a name="a-namenotification-hubsanotification-hubs"></a><a name="notification-hubs"></a>通知中樞
+### <a name="notification-hubs"></a>通知中樞
 行動服務會使用通知中樞進行推播通知作業。  在移轉之後，會使用下列應用程式設定將通知中樞連結至您的行動服務：
 
 | 應用程式設定 | 說明 |
@@ -260,12 +260,12 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 > 
 > 
 
-### <a name="a-namelegacy-pushalegacy-push-settings"></a><a name="legacy-push"></a>舊版推播設定
+### <a name="legacy-push"></a>舊版推播設定
 如果您在通知中樞引入前，即已設定行動服務的推播，您使用的就是「舊版推播」。  如果您使用推播，組態中卻沒有列出通知中樞，您很可能使用的是「舊版推播」。  這項功能會和所有其他功能一起移轉。  不過，建議您完成移轉後盡快升級至通知中樞。
 
 在過渡時期，所有舊版推播設定 (APNS 憑證除外) 都可以在應用程式設定中取得。  將檔案系統上適當的檔案替換掉，以更新 APNS 憑證。
 
-### <a name="a-nameapp-settingsaother-app-settings"></a><a name="app-settings"></a>其他應用程式設定
+### <a name="app-settings"></a>其他應用程式設定
 以下是從您的行動服務移轉的其他應用程式設定，可從 [設定] > [應用程式設定]：
 
 | 應用程式設定 | 說明 |
@@ -277,7 +277,7 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 
 應用程式金鑰和主要金鑰會與原始行動服務中的應用程式金鑰完全相同。  特別是，行動用戶端會傳送應用程式金鑰，以驗證他們對行動 API 的使用。
 
-### <a name="a-namecliequivalentsacommand-line-equivalents"></a><a name="cliequivalents"></a>命令列對等項目
+### <a name="cliequivalents"></a>命令列對等項目
 您將無法再使用 *azure mobile* 命令來管理您的 Azure 行動服務網站。  有許多函式已替換為 *azure site* 命令。  使用下表來尋找常用命令的對等項目：
 
 | *Azure Mobile* 命令 | 對等的 *Azure site* 命令 |
@@ -304,7 +304,7 @@ PublishSettings 檔案會下載至您的電腦。  此檔案通常名為 *sitena
 藉由更新適當的應用程式設定，可更新驗證或推播通知設定。
 請編輯檔案，並透過 ftp 或 git 發佈您的網站。
 
-### <a name="a-namediagnosticsadiagnostics-and-logging"></a><a name="diagnostics"></a>診斷和記錄
+### <a name="diagnostics"></a>診斷和記錄
 Azure App Service 通常會停用 [診斷記錄]。  若要啟用診斷記錄：
 
 1. 登入 [Azure 入口網站]。
@@ -324,7 +324,7 @@ Azure App Service 通常會停用 [診斷記錄]。  若要啟用診斷記錄：
 
 產生的記錄檔會顯示在視窗中。  您也可以下載的記錄檔，以便後續使用您的部署認證加以分析。 如需詳細資訊，請參閱[記錄]文件。
 
-## <a name="a-nameknown-issuesaknown-issues"></a><a name="known-issues"></a>已知問題
+## <a name="known-issues"></a>已知問題
 ### <a name="deleting-a-migrated-mobile-app-clone-causes-a-site-outage"></a>刪除移轉的行動應用程式複製會導致網站服務中斷
 如果您使用 Azure PowerShell 複製移轉的行動服務，然後又刪除此複製，則會移除生產服務的 DNS 項目。  無法再從網際網路存取您的網站。  
 
@@ -355,7 +355,7 @@ Azure App Service 通常會停用 [診斷記錄]。  若要啟用診斷記錄：
 ### <a name="migrated-mobile-services-cannot-be-added-to-traffic-manager"></a>移轉的行動服務無法新增至流量管理員
 當您建立流量管理員設定檔時，無法直接選擇設定檔的移轉行動服務。  使用「外部端點」。  外部端點只能透過 PowerShell 來新增。  如需詳細資訊，請參閱[流量管理員教學課程](https://azure.microsoft.com/blog/azure-traffic-manager-external-endpoints-and-weighted-round-robin-via-powershell/)。
 
-## <a name="a-namenext-stepsanext-steps"></a><a name="next-steps"></a>後續步驟
+## <a name="next-steps"></a>後續步驟
 您的應用程式現在已移轉至 App Service，有更多功能可供您使用：
 
 * 部署 [預備位置] 可讓您預備網站的變更，並執行 A/B 測試。
@@ -364,7 +364,7 @@ Azure App Service 通常會停用 [診斷記錄]。  若要啟用診斷記錄：
 * 您可以使用 [Application Insights] 監視您的網站。
 * 以相同的程式碼為網站和行動 API 提供服務。
 
-### <a name="a-nameupgrading-your-siteaupgrading-your-mobile-services-site-to-azure-mobile-apps-sdk"></a><a name="upgrading-your-site"></a>將您的行動服務網站升級至 Azure Mobile Apps SDK
+### <a name="upgrading-your-site"></a>將您的行動服務網站升級至 Azure Mobile Apps SDK
 * 對於以 Node.js 為基礎的伺服器專案，新的 [Mobile Apps Node.js SDK] 提供多項新功能。 例如，您現在可以執行本機開發和偵錯、使用 0.10 以上的任何 Node.js 版本，以及使用任何 Express.js 中介軟體自訂。
 * 對於以 .NET 為基礎的伺服器專案，新的 [Mobile Apps SDK NuGet 套件](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server/)對 NuGet 相依性有更多彈性。  這些套件支援新的 App Service 驗證，並以任何 ASP.NET 專案撰寫。 若要深入了解升級，請參閱 [將您現有的 .NET 行動服務升級為 App Service](app-service-mobile-net-upgrading-from-mobile-services.md)。
 

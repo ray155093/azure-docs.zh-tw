@@ -73,7 +73,7 @@ ms.lasthandoff: 01/13/2017
 4. 按一下 [啟動] 圖示。
 5. 按一下 [儲存] 按鈕以儲存您的變更。
 
-## <a name="a-idconnectaconnect-to-the-media-services-account-with-rest-api"></a><a id="connect"></a>使用 REST API 連接到媒體服務帳戶
+## <a id="connect"></a>使用 REST API 連接到媒體服務帳戶
 存取 Azure 媒體服務時需要兩件事：由 Azure 存取控制服務 (ACS) 提供的存取權杖，以及媒體服務本身的 URI。 建立這些要求時可以使用任何方式，前提是您指定正確的標頭值，並在呼叫媒體服務時正確傳入存取權杖。
 
 當您使用媒體服務 REST API 連接到媒體服務時，下列步驟將說明最常見的工作流程：
@@ -216,7 +216,7 @@ ms.lasthandoff: 01/13/2017
 >
 >
 
-## <a name="a-iduploadacreate-a-new-asset-and-upload-a-video-file-with-rest-api"></a><a id="upload"></a>使用 REST API 建立新資產並上傳視訊檔案
+## <a id="upload"></a>使用 REST API 建立新資產並上傳視訊檔案
 
 在媒體服務中，您會將數位檔案上傳到到資產。 **資產**實體可以包含視訊、音訊、影像、縮圖集合、文字播放軌及隱藏式輔助字幕檔案 (以及這些檔案的相關中繼資料)。一旦檔案會上傳到資產，您的內容會安全地儲存在雲端，以便進行進一步的處理和串流。
 
@@ -394,7 +394,7 @@ ms.lasthandoff: 01/13/2017
 
 ### <a name="get-the-upload-url"></a>取得上傳 URL
 
-若要接收實際的上傳 URL，請建立 SAS 定位器。 定位器為想要存取資產中之檔案的用戶端定義連線端點的開始時間和類型。 您可以為指定的 AccessPolicy 與 Asset 配對建立多個 Locator 實體，以處理不同的用戶端要求與需求。 這些 Locator 每個都會使用 StartTime 值加上 AccessPolicy 的 DurationInMinutes 值，以判斷可以使用 URL 的時間長度。 如需詳細資訊，請參閱＜定位器＞ [](https://docs.microsoft.com/rest/api/media/operations/locator)。
+若要接收實際的上傳 URL，請建立 SAS 定位器。 定位器為想要存取資產中之檔案的用戶端定義連線端點的開始時間和類型。 您可以為指定的 AccessPolicy 與 Asset 配對建立多個 Locator 實體，以處理不同的用戶端要求與需求。 這些 Locator 每個都會使用 StartTime 值加上 AccessPolicy 的 DurationInMinutes 值，以判斷可以使用 URL 的時間長度。 如需詳細資訊，請參閱 [定位器](https://docs.microsoft.com/rest/api/media/operations/locator)。
 
 SAS URL 具有下列格式：
 
@@ -540,7 +540,7 @@ SAS URL 具有下列格式：
     HTTP/1.1 204 No Content
     ...
 
-## <a name="a-idencodeaencode-the-source-file-into-a-set-of-adaptive-bitrate-mp4-files"></a><a id="encode"></a>將來源檔案編碼為一組調適性位元速率 MP4 檔案
+## <a id="encode"></a>將來源檔案編碼為一組調適性位元速率 MP4 檔案
 
 將資產內嵌到媒體服務之後，可以先將媒體編碼、轉碼多工處理、加上浮水印等，再傳遞給用戶端。 這些活動會針對多個背景角色執行個體排定和執行，以確保高效能與可用性。 這些活動稱為作業，每個作業包含對資產檔案執行實際工作的不可部分完成的工作 (如需詳細資訊，請參閱[作業](/rest/api/media/services/job)、[工作](/rest/api/media/services/task)說明)。
 
@@ -829,7 +829,7 @@ SAS URL 具有下列格式：
 
 
 
-## <a name="a-idpublishgeturlsapublish-the-asset-and-get-streaming-and-progressive-download-urls-with-rest-api"></a><a id="publish_get_urls"></a>使用 REST API 發行資產及取得串流和漸進式下載 URL
+## <a id="publish_get_urls"></a>使用 REST API 發行資產及取得串流和漸進式下載 URL
 
 若要串流處理或下載資產，您必須先建立定位器來「發佈」它。 定位器提供對於資產中包含之檔案的存取。 媒體服務支援兩種類型的定位器：OnDemandOrigin 定位器，用於串流媒體 (例如，MPEG DASH、HLS 或 Smooth Streaming) 和存取簽章 (SAS) 定位器，用來下載媒體檔案。 如需 SAS 定位器的詳細資訊，請參閱[這個](http://southworks.com/blog/2015/05/27/reusing-azure-media-services-locators-to-avoid-facing-the-5-shared-access-policy-limitation/)部落格。
 
@@ -1052,7 +1052,7 @@ MPEG DASH 的串流 URL 具有下列格式：
     http://amstestaccount001.streaming.mediaservices.windows.net/ebf733c4-3e2e-4a68-b67b-cc5159d1d7f2/BigBuckBunny.ism/manifest(format=mpd-time-csf)
 
 
-## <a name="a-idplayaplay-your-content"></a><a id="play"></a>播放您的內容
+## <a id="play"></a>播放您的內容
 若要串流您的視訊，請使用 [Azure 媒體服務播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
 
 若要測試漸進式下載，請將 URL 貼入瀏覽器 (例如，IE、Chrome、Safari)。

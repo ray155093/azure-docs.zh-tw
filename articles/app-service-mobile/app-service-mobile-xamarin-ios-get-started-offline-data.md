@@ -3,7 +3,7 @@ title: "啟用 Azure 行動應用程式 (Xamarin iOS) 的離線同步處理"
 description: "了解如何在 Xamarin iOS 應用程式中使用應用程式服務行動應用程式快取和同步離線資料"
 documentationcenter: xamarin
 author: adrianhall
-manager: erikre
+manager: adrianha
 editor: 
 services: app-service\mobile
 ms.assetid: 828a287c-5d58-4540-9527-1309ebb0f32b
@@ -38,7 +38,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 2. 開啟 QSTodoService.cs 檔案，並取消註解 `#define OFFLINE_SYNC_ENABLED` 定義。
 3. 重建並執行用戶端應用程式。 應用程式的運作方式和啟用離線同步處理之前的方式相同。 不過，本機資料庫現在會填入可在離線案例下使用的資料。
 
-## <a name="a-nameupdate-syncaupdate-the-app-to-disconnect-from-the-backend"></a><a name="update-sync"></a>更新應用程式以使其與後端中斷連線
+## <a name="update-sync"></a>更新應用程式以使其與後端中斷連線
 在本節中，您將中斷與行動應用程式後端的連線，以模擬離線狀態。 當您新增資料項目時，您的例外狀況處理常式會指出應用程式處於離線模式。 處於此狀態時，新項目會新增到本機存放區，並且會在推送接下來於連線狀態執行時，同步處理至行動應用程式後端。
 
 1. 編輯共用專案中的 QSToDoService.cs。 變更 **applicationURL** 以指向無效的 URL：
@@ -52,7 +52,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 5. (選擇性) 如果您已在電腦上安裝 Visual Studio，請開啟 [伺服器總管]。 瀏覽至 [Azure]-> [SQL Database 中您的資料庫]。 在資料庫上按一下滑鼠右鍵，並選取 [在 SQL Server 物件總管中開啟] 。 現在您可以瀏覽至您的 SQL Database 資料表和其內容。 確認後端資料庫中的資料沒有變更。
 6. (選擇性) 使用 REST 工具 (例如 Fiddler 或 Postman) 來查詢您的行動後端 (使用表單 `https://<your-mobile-app-backend-name>.azurewebsites.net/tables/TodoItem`中的 GET 查詢)。
 
-## <a name="a-nameupdate-online-appaupdate-the-app-to-reconnect-your-mobile-app-backend"></a><a name="update-online-app"></a>更新應用程式以重新連線您的行動應用程式後端
+## <a name="update-online-app"></a>更新應用程式以重新連線您的行動應用程式後端
 在本節中，您會將應用程式重新連接至行動應用程式後端。 您將藉此模擬應用程式在行動應用程式後端中，從離線狀態恢復為線上狀態的情境。   如果您關閉網路連線來模擬網路中斷情況，則不需要變更任何程式碼。
 重新開啟網路。  第一次執行應用程式時會呼叫 `RefreshDataAsync` 方法。 這會進而呼叫 `SyncAsync` 來同步處理您的本機存放區與後端資料庫。
 

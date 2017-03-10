@@ -17,6 +17,7 @@ ms.author: terrylan
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: caa4f001871beeb83cc0406bd2f89c5aa026cd97
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -82,7 +83,7 @@ ms.openlocfilehash: caa4f001871beeb83cc0406bd2f89c5aa026cd97
 >
 >
 
-選取 [防止原則] (見上文) 以開啟 [防止原則] 刀鋒視窗。  可讓您選擇想要監視的安全性控制項，並根據訂用帳戶內的資源安全性需求提出建議。
+選取 [防止原則] \(見上文) 以開啟 [防止原則] 刀鋒視窗。  可讓您選擇想要監視的安全性控制項，並根據訂用帳戶內的資源安全性需求提出建議。
 
 接下來，選取要加以檢視原則詳細資訊的資源群組。
 
@@ -169,9 +170,4 @@ ms.openlocfilehash: caa4f001871beeb83cc0406bd2f89c5aa026cd97
 [7]: ./media/security-center-intro/security-alert.png
 [8]: ./media/security-center-intro/security-alert-detail.png
 [9]: ./media/security-center-intro/partner-solutions.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

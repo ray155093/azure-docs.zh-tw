@@ -4,7 +4,7 @@ description: "了解如何使用行動應用程式透過眾多識別提供者驗
 services: app-service\mobile
 documentationcenter: xamarin
 author: adrianhall
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: 570fc12b-46a9-4722-b2e0-0d1c45fb2152
 ms.service: app-service-mobile
@@ -28,17 +28,17 @@ ms.lasthandoff: 11/17/2016
 
 本教學課程以行動應用程式快速入門為基礎。 您也必須先完成 [建立 Xamarin.Android 應用程式教學課程]。 如果您不要使用下載的快速入門伺服器專案，必須將驗證擴充套件新增至您的專案。 如需伺服器擴充套件的詳細資訊，請參閱 [使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
-## <a name="a-nameregisteraregister-your-app-for-authentication-and-configure-app-services"></a><a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
+## <a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <a name="a-namepermissionsarestrict-permissions-to-authenticated-users"></a><a name="permissions"></a>限制只有通過驗證的使用者具有權限
+## <a name="permissions"></a>限制只有通過驗證的使用者具有權限
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
 在 Visual Studio 或 Xamarin Studio 中，在裝置或模擬器上執行用戶端專案。 確認在應用程式啟動後，發生狀態代碼 401 (未經授權) 的未處理例外狀況。 這是因為應用程式嘗試以未驗證的使用者身分存取您的行動應用程式程式碼。 *TodoItem* 資料表現在需要驗證。
 
 接下來，您將會更新用戶端應用程式，利用已驗證的使用者身分來要求行動應用程式後端的資源。
 
-## <a name="a-nameadd-authenticationaadd-authentication-to-the-app"></a><a name="add-authentication"></a>將驗證新增至應用程式
+## <a name="add-authentication"></a>將驗證新增至應用程式
 應用程式已更新，要求使用者在資料顯示前點選 [登入]  按鈕並驗證。
 
 1. 將下列程式碼加入 **TodoActivity** 類別：

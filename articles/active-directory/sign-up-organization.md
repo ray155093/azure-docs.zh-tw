@@ -1,9 +1,9 @@
 ---
-title: "以組織身分註冊 Azure"
+title: "以組織方式註冊 Azure"
 description: "了解如何使用工作或學校帳戶，來運用您已有的現有使用者帳戶、原則、設定或內部部署伺服器部署，而提升您的組織在內部部署身分識別基礎結構與 Azure AD 之間的效率。"
 services: active-directory
 documentationcenter: 
-author: MarkusVi
+author: curtand
 manager: femila
 ms.assetid: 1b7f6dc2-bbdb-4aee-a615-db2f991f46ed
 ms.service: active-directory
@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
-ms.author: markvi
+ms.date: 03/09/2017
+ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 52316e90cd2207ee20033cd96f981692b20b5ece
-ms.openlocfilehash: a711f3aa3a50f54974eeecdbb16658b8176e4f6a
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: bdbe25307b8b5e811dad374583d9ba3b96e212a5
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -34,10 +35,5 @@ ms.openlocfilehash: a711f3aa3a50f54974eeecdbb16658b8176e4f6a
 * [Microsoft Azure 部落格](https://azure.microsoft.com/blog/)
 * [什麼是 Azure AD？](active-directory-whatis.md)
 * [在雲端中使用內部部署身分識別基礎結構](active-directory-aadconnect.md)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

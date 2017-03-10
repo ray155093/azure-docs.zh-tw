@@ -3,7 +3,7 @@ title: "Azure Mobile Apps 中的離線資料同步處理 | Microsoft Docs"
 description: "Azure 行動應用程式離線資料同步處理功能的概念參考與概觀"
 documentationcenter: windows
 author: adrianhall
-manager: erikre
+manager: adrianha
 editor: 
 services: app-service\mobile
 ms.assetid: 982fb683-8884-40da-96e6-77eeca2500e3
@@ -62,7 +62,7 @@ ms.lasthandoff: 02/11/2017
 
 本機存放區會使用初始化方法 (例如 [.NET 用戶端 SDK] 中的 `IMobileServicesSyncContext.InitializeAsync(localstore)`)，來與同步處理內容相關聯。
 
-## <a name="a-namehow-sync-worksahow-offline-synchronization-works"></a><a name="how-sync-works"></a>離線同步處理如何運作
+## <a name="how-sync-works"></a>離線同步處理如何運作
 使用同步處理資料表時，您的用戶端程式碼需要控制本機變更與 Azure 行動應用程式後端同步處理的時機。 在有呼叫要「推送」( *push* ) 變更之前不會傳送任何項目到後端。 同樣地，只當有呼叫要「提取」( *pull* ) 時才會將新資料填入本機存放區。
 
 * **推送**：推送是同步處理內容的作業，會傳送自上一次推送之後的所有 CUD 變更。 請注意，您無法只傳送個別資料表的變更，因為這樣作業傳送順序可能會發生錯誤。 推送會對 Azure 行動應用程式後端執行一系列的 REST 呼叫，再由後端修改伺服器資料庫。

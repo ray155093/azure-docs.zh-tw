@@ -1,6 +1,6 @@
 ---
-title: "建立 VM 可用性設定組 | Microsoft Docs"
-description: "了解如何針對您使用 Azure 入口網站的虛擬機器或使用 Resource Manager 部署模型的 PowerShell 建立可用性設定組。"
+title: "在 Azure 中建立 VM 可用性設定組 | Microsoft Docs"
+description: "了解如何針對使用 Azure PowerShell 或入口網站的虛擬機器，在 Resource Manager 部署模型中建立受控可用性設定組或非受控可用性設定組。"
 keywords: "可用性設定組"
 services: virtual-machines-windows
 documentationcenter: 
@@ -14,16 +14,23 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 02/06/2017
 ms.author: cynthn
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 19f22b9e38e472b56fc9abecc6c14b63b521a58b
-
+ms.sourcegitcommit: 652c4c51d67b8914885406e631e7233694a8a1d8
+ms.openlocfilehash: a221f3bc9e058a46e46edf8f7177d21151ae3595
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="create-an-availability-set"></a>建立可用性設定組
-使用入口網站時，如果您希望您的 VM 是可用性設定組的一部分，您必須先建立可用性設定組。
+# <a name="increase-vm-availability-by-creating-an-azure-availability-set"></a>建立 Azure 可用性設定組以增加 VM 可用性 
+可用性設定組可為您的應用程式提供備援。 建議您在可用性設定組中，將兩部以上的虛擬機器組成群組。 這項組態可以確保在規劃或未規劃的維護事件發生期間，至少有一部虛擬機器可以使用，且符合 99.95% 的 Azure SLA。 如需相關資訊，請參閱 [虛擬機器的 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。
+
+> [!IMPORTANT]
+> VM 必須建立於與可用性設定組相同的資源群組中。
+> 
+
+如果您希望 VM 成為可用性設定組的一部分，您必須在建立第一個 VM 時先建立可用性設定組。 如果您的 VM 將使用受控磁碟，則必須將此可用性設定組建立為受控可用性設定組。
 
 如需建立和使用可用性設定組的詳細資訊，請參閱 [管理虛擬機器可用性](virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
@@ -42,34 +49,51 @@ ms.openlocfilehash: 19f22b9e38e472b56fc9abecc6c14b63b521a58b
    * **訂用帳戶** - 如果您有多個訂用帳戶，請選取要使用的訂用帳戶。
    * **資源群組** - 按一下箭號並從下拉式清單中選取一個資源群組，以選取現有的資源群組。 您也可以輸入名稱，來建立新的資源群組。 名稱可以包含任何下列字元：字母、數字、句號、連字號、底線和左或右括弧。 名稱不能以句號結束。 可用性群組中的所有 VM 必須建立在與可用性設定組相同的資源群組中。
    * **位置** - 從下拉式清單中選取 [位置]。
-4. 當您完成輸入資訊時，請按一下 [建立] 。 一旦建立可用性群組，您就可以在重新整理入口網站後於清單中看到它。
+   * **受控** - 選取 [是] 來建立受控可用性設定組，以搭配使用受控磁碟進行儲存的 VM 使用。 如果將位於可用性設定組中的 VM 使用儲存體帳戶中的非受控磁碟，請選取 [否]。
+   
+4. 當您完成輸入資訊時，請按一下 [建立] 。 
 
 ## <a name="use-the-portal-to-create-a-virtual-machine-and-an-availability-set-at-the-same-time"></a>使用入口網站同時建立虛擬機器和可用性設定組
-如果您使用入口網站建立新的 VM，您也可以在您於設定組中建立第一個 VM 的同時，也針對 VM 建立一個新的可用性設定組。
+如果您使用入口網站建立新的 VM，您也可以在您於設定組中建立第一個 VM 的同時，也針對 VM 建立一個新的可用性設定組。 如果您選擇將受控磁碟使用於您的 VM，就會建立受控可用性設定組。
 
 ![顯示在您建立 VM 時，同時建立新的可用性設定組之程序的螢幕擷取畫面。](./media/virtual-machines-windows-create-availability-set/new-vm-avail-set.png)
 
-## <a name="add-a-new-vm-to-an-existing-availability-set"></a>將新的 VM 新增至現有的可用性設定組
+## <a name="add-a-new-vm-to-an-existing-availability-set-in-the-portal"></a>在入口網站中將新的 VM 新增至現有的可用性設定組
 針對設定組中您所建立的每一個其他 VM，請確定您是在相同的 **資源群組** 中建立，然後選取步驟 3 中現有的可用性設定組。 
 
 ![顯示如何選取現有的可用性設定組以用於您的 VM 的螢幕擷取畫面。](./media/virtual-machines-windows-create-availability-set/add-vm-to-set.png)
 
 ## <a name="use-powershell-to-create-an-availability-set"></a>使用 PowerShell 建立可用性設定組
-這個範例會在**美國西部**位置的 **RMResGroup** 資源群組中建立一個可用性設定組。 這需要在您建立設定組中的第一個 VM 之前完成。
+這個範例會在位於 [美國西部] 的 **myResourceGroup** 資源群組中建立名為 **myAvailabilitySet** 的可用性設定組。 這需要在您建立設定組中的第一個 VM 之前完成。
 
-    New-AzureRmAvailabilitySet -ResourceGroupName "RMResGroup" -Name "AvailabilitySet03" -Location "West US"
+開始之前，請確定您擁有最新版的 AzureRM.Compute PowerShell 模組。 執行下列命令來安裝它。
 
-如需詳細資訊，請參閱 [New-AzureRmAvailabilitySet](https://msdn.microsoft.com/library/mt619453.aspx)。
+```powershell
+Install-Module AzureRM.Compute -RequiredVersion 2.6.0
+```
+如需詳細資訊，請參閱 [Azure PowerShell 版本控制](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/#azure-powershell-versioning)。
+
+
+如果您將受控磁碟使用於您的 VM，請輸入︰
+
+```powershell
+    New-AzureRmAvailabilitySet -ResourceGroupName "myResourceGroup" '
+    -Name "myAvailabilitySet" -Location "West US" -managed
+```
+
+如果您將自己的儲存體帳戶使用於您的 VM，請輸入︰
+
+```powershell
+    New-AzureRmAvailabilitySet -ResourceGroupName "myResourceGroup" '
+    -Name "myAvailabilitySet" -Location "West US" 
+```
+
+如需詳細資訊，請參閱 [New-AzureRmAvailabilitySet](/powershell/new-azurermavailabilityset)。
 
 ## <a name="troubleshooting"></a>疑難排解
 * 當您建立 VM 時，如果您想要的可用性設定組不在入口網站的下拉式清單中，您有可能將它建立在另一個資源群組中。 如果您不清楚您的可用性設定組的資源群組， 請移至 [中樞] 功能表，並按一下 [瀏覽] > [可用性設定組]，以查看可用性設定組清單及其所屬的資源群組。
 
 ## <a name="next-steps"></a>後續步驟
 透過新增額外 [資料磁碟](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，將額外的存放裝置新增到您的 VM。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

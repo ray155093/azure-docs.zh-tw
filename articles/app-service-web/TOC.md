@@ -264,6 +264,7 @@
 
 # 相關參考
 ## [Azure SDK for .NET 版本資訊](azure-sdk-dotnet-release-notes.md)
+### [3.0 版](azure-sdk-dotnet-release-notes-3-0.md)
 ### [2.9 版](azure-sdk-dotnet-release-notes-2-9.md)
 ### [2.8.X 版](azure-sdk-dotnet-release-notes-2-8.md)
 ### [2.7.X 版](azure-sdk-dotnet-release-notes-2-7.md)

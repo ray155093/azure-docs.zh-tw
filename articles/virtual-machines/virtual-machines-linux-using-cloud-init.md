@@ -1,9 +1,9 @@
 ---
-title: "在建立期間使用 cloud-init 自訂 Linux VM | Microsoft Docs"
-description: "在建立期間使用 cloud-init 自訂 Linux VM。"
+title: "使用 cloud-init 自訂 Linux VM | Microsoft Docs"
+description: "如何透過 Azure CLI 2.0 預覽在建立期間使用 cloud-init 自訂 Linux VM"
 services: virtual-machines-linux
 documentationcenter: 
-author: vlivech
+author: iainfoulds
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -13,20 +13,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 10/26/2016
-ms.author: v-livech
+ms.date: 02/10/2017
+ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 6d57841cfb62015a8eac0afb8408e9df961bb0b0
+ms.sourcegitcommit: 7d804c93933fd53b0a74696391e3ade228e66560
+ms.openlocfilehash: f1c44718685cd522dcd79ac7e334e52a9488d123
+ms.lasthandoff: 02/27/2017
 
 
 ---
-# <a name="using-cloud-init-to-customize-a-linux-vm-during-creation"></a>在建立期間使用 cloud-init 自訂 Linux VM
-本文中示範如何製作 cloud-init 指令碼來設定主機名稱、更新已安裝的封裝及管理使用者帳戶。  在 VM 建立期間，會從 Azure CLI 呼叫 cloud-init 指令碼。  本文需要：
-
-* 一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))。
-* 使用 `azure login` 登入的 [Azure CLI](../xplat-cli-install.md)。
-* Azure CLI *必須處於* Azure Resource Manager 模式 `azure config mode arm`。
+# <a name="use-cloud-init-to-customize-a-linux-vm-during-creation"></a>在建立期間使用 cloud-init 自訂 Linux VM
+本文會示範如何透過 Azure CLI 2.0 製作 cloud-init 指令碼來設定主機名稱、更新已安裝的封裝及管理使用者帳戶。  當您從 Azure CLI 建立 VM 時，會呼叫 cloud-init 指令碼。  您也可以使用 [Azure CLI 1.0](virtual-machines-linux-using-cloud-init-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
 
 ## <a name="quick-commands"></a>快速命令
 建立一個設定主機名稱、更新所有封裝、並將 sudo 使用者新增至 Linux 的 cloud-init.txt 指令碼。
@@ -43,29 +40,23 @@ users:
     ssh-authorized-keys:
       - ssh-rsa AAAAB3<snip>==myAdminUser@myVM
 ```
-建立資源群組，以將 VM 啟動至其中。
+
+使用 [az group create] 建立資源群組以將 VM 啟動至 (/cli/azure/group#create。 下列範例會建立名為 `myResourceGroup` 的資源群組：
 
 ```azurecli
-azure group create myResourceGroup westus
+az group create --name myResourceGroup --location westus
 ```
 
-使用 cloud-init 建立一個 Linux VM 以在開機時進行設定。
+透過 [az vm create](/cli/azure/vm#create) 建立 Linux VM 並使用 cloud-init 在開機期間進行設定。
 
 ```azurecli
-azure vm create \
-  -g myResourceGroup \
-  -n myVM \
-  -l westus \
-  -y Linux \
-  -f myVMnic \
-  -F myVNet \
-  -P 10.0.0.0/22 \
-  -j mySubnet \
-  -k 10.0.0.0/24 \
-  -Q canonical:ubuntuserver:14.04.2-LTS:latest \
-  -M ~/.ssh/id_rsa.pub \
-  -u myAdminUser \
-  -C cloud-init.txt
+az vm create \
+    --resource-group myResourceGroup \
+    --name myVM \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --ssh-key-value ~/.ssh/id_rsa.pub \
+    --custom-data cloud-init.txt
 ```
 
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
@@ -102,35 +93,30 @@ Azure 有三種不同的方法可在 Linux VM 部署或啟動時進行變更。
 
 Microsoft 正與我們的合作夥伴合作，以期在他們提供給 Azure 的映像中包含和使用 cloud-init。
 
-## <a name="adding-a-cloud-init-script-to-the-vm-creation-with-the-azure-cli"></a>將 cloud-init 指令碼加入使用 Azure CLI 建立 VM 的作業中
+## <a name="add-a-cloud-init-script-to-the-vm-creation-with-the-azure-cli"></a>將 cloud-init 指令碼新增至使用 Azure CLI 建立 VM 的作業中
 在 Azure 中建立 VM 時，若要啟動 cloud-init 指令碼，請使用 Azure CLI `--custom-data` 參數來指定 cloud-init 檔案。
 
 建立資源群組，以將 VM 啟動至其中。
 
-```azurecli
-azure group create myResourceGroup westus
-```
-
-使用 cloud-init 建立一個 Linux VM 以在開機時進行設定。
+使用 [az group create] 建立資源群組以將 VM 啟動至 (/cli/azure/group#create。 下列範例會建立名為 `myResourceGroup` 的資源群組：
 
 ```azurecli
-azure vm create \
-  --resource-group myResourceGroup \
-  --name myVM \
-  --location westus \
-  --os-type Linux \
-  --nic-name myVMnic \
-  --vnet-name myVNet \
-  --vnet-address-prefix 10.0.0.0/22 \
-  --vnet-subnet-name mySubnet \
-  --vnet-subnet-address-prefix 10.0.0.0/24 \
-  --image-urn canonical:ubuntuserver:14.04.2-LTS:latest \
-  --ssh-publickey-file ~/.ssh/id_rsa.pub \
-  --admin-username myAdminUser \
-  --custom-data cloud-init.txt
+az group create --name myResourceGroup --location westus
 ```
 
-## <a name="creating-a-cloud-init-script-to-set-the-hostname-of-a-linux-vm"></a>建立 cloud-init 指令碼設定 Linux VM 的主機名稱
+透過 [az vm create](/cli/azure/vm#create) 建立 Linux VM 並使用 cloud-init 在開機期間進行設定。
+
+```azurecli
+az vm create \
+    --resource-group myResourceGroup \
+    --name myVM \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --ssh-key-value ~/.ssh/id_rsa.pub \
+    --custom-data cloud-init.txt
+```
+
+## <a name="create-a-cloud-init-script-to-set-the-hostname-of-a-linux-vm"></a>建立 cloud-init 指令碼以設定 Linux VM 的主機名稱
 對任何 Linux VM 而言，其中一個最簡單且最重要的設定就是主機名稱。 使用 cloud-init 和這個指令碼就可以輕鬆地設定這個項目。  
 
 ### <a name="example-cloud-init-script-named-cloudconfighostnametxt"></a>名為 `cloud_config_hostname.txt`的範例 cloud-init 指令碼。
@@ -139,23 +125,16 @@ azure vm create \
 hostname: myservername
 ```
 
-在 VM 首次啟動期間，這個 cloud-init 指令碼會將主機名稱設定為 `myservername`。
+在 VM 首次啟動期間，這個 cloud-init 指令碼會將主機名稱設定為 `myservername`。 透過 [az vm create](/cli/azure/vm#create) 建立 Linux VM 並使用 cloud-init 在開機期間進行設定。
 
 ```azurecli
-azure vm create \
-  --resource-group myResourceGroup \
-  --name myVM \
-  --location westus \
-  --os-type Linux \
-  --nic-name myVMnic \
-  --vnet-name myVNet \
-  --vnet-address-prefix 10.0.0.0/22 \
-  --vnet-subnet-name mySubNet \
-  --vnet-subnet-address-prefix 10.0.0.0/24 \
-  --image-urn canonical:ubuntuserver:14.04.2-LTS:latest \
-  --ssh-publickey-file ~/.ssh/id_rsa.pub \
-  --admin-username myAdminUser \
-  --custom-data cloud_config_hostname.txt
+az vm create \
+    --resource-group myResourceGroup \
+    --name myVM \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --ssh-key-value ~/.ssh/id_rsa.pub \
+    --custom-data cloud-init.txt
 ```
 
 登入並驗證新 VM 的主機名稱。
@@ -166,7 +145,7 @@ hostname
 myservername
 ```
 
-## <a name="creating-a-cloud-init-script-to-update-linux"></a>建立 cloud-init 指令碼以更新 Linux 
+## <a name="create-a-cloud-init-script-to-update-linux"></a>建立 cloud-init 指令碼以更新 Linux
 基於安全性，您希望您的 Ubuntu VM 能在第一次開機時進行更新。  我們可以使用 cloud-init 和下列指令碼執行這個作業，視您使用的 Linux 散發套件而定。
 
 ### <a name="example-cloud-init-script-cloudconfigaptupgradetxt-for-the-debian-family"></a>適用於 Debian 系列的範例 cloud-init 指令碼 `cloud_config_apt_upgrade.txt`
@@ -175,23 +154,16 @@ myservername
 apt_upgrade: true
 ```
 
-在 Linux 開機後，所有已安裝的封裝都會透過 `apt-get`更新。
+在 Linux 開機後，所有已安裝的封裝都會透過 `apt-get`更新。 透過 [az vm create](/cli/azure/vm#create) 建立 Linux VM 並使用 cloud-init 在開機期間進行設定。
 
 ```azurecli
-azure vm create \
-  --resource-group myResourceGroup \
-  --name myVM \
-  --location westus \
-  --os-type Linux \
-  --nic-name myVMnic \
-  --vnet-name myVNet \
-  --vnet-address-prefix 10.0.0.0/22 \
-  --vnet-subnet-name mySubNet \
-  --vnet-subnet-address-prefix 10.0.0.0/24 \
-  --image-urn canonical:ubuntuserver:14.04.2-LTS:latest \
-  --ssh-publickey-file ~/.ssh/id_rsa.pub \
-  --admin-username myAdminUser \
-  --custom-data cloud_config_apt_upgrade.txt
+az vm create \
+    --resource-group myResourceGroup \
+    --name myVM \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --ssh-key-value ~/.ssh/id_rsa.pub \
+    --custom-data cloud_config_apt_upgrade.txt
 ```
 
 登入並驗證所有封裝是否皆已更新。
@@ -208,7 +180,7 @@ The following packages have been kept back:
 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
 ```
 
-## <a name="creating-a-cloud-init-script-to-add-a-user-to-linux"></a>建立 cloud-init 指令碼將使用者加入 Linux 中
+## <a name="create-a-cloud-init-script-to-add-a-user-to-linux"></a>建立 cloud-init 指令碼以將使用者新增至 Linux 中
 針對任何新的 Linux VM，首要工作之一就是為您自己新增一位使用者，或是避免使用 `root`。 SSH 金鑰是基於安全性和可用性的最佳作法，它們會隨此 cloud-init 指令碼新增至 `~/.ssh/authorized_keys` 檔案。
 
 ### <a name="example-cloud-init-script-cloudconfigadduserstxt-for-debian-family"></a>適用於 Debian 系列的範例 cloud-init 指令碼 `cloud_config_add_users.txt`
@@ -223,23 +195,16 @@ users:
       - ssh-rsa AAAAB3<snip>==myAdminUser@myUbuntuVM
 ```
 
-Linux 開機之後，所有列出的使用者就會建立並加入 sudo 群組。
+Linux 開機之後，所有列出的使用者就會建立並加入 sudo 群組。 透過 [az vm create](/cli/azure/vm#create) 建立 Linux VM 並使用 cloud-init 在開機期間進行設定。
 
 ```azurecli
-azure vm create \
-  --resource-group myResourceGroup \
-  --name myVM \
-  --location westus \
-  --os-type Linux \
-  --nic-name myVMnic \
-  --vnet-name myVNet \
-  --vnet-address-prefix 10.0.0.0/22 \
-  --vnet-subnet-name mySubNet \
-  --vnet-subnet-address-prefix 10.0.0.0/24 \
-  --image-urn canonical:ubuntuserver:14.04.2-LTS:latest \
-  --ssh-publickey-file ~/.ssh/id_rsa.pub \
-  --admin-username myAdminUser \
-  --custom-data cloud_config_add_users.txt
+az vm create \
+    --resource-group myResourceGroup \
+    --name myVM \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --ssh-key-value ~/.ssh/id_rsa.pub \
+    --custom-data cloud_config_add_users.txt
 ```
 
 登入並驗證新建立的使用者。
@@ -265,10 +230,5 @@ Cloud-init 已成為在開機時修改 Linux VM 的一種標準方式。 Azure �
 [有關虛擬機器擴充功能和功能](virtual-machines-linux-extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [管理使用者、SSH，並使用 VMAccess 擴充功能檢查或修復 Azure Linux VM 上的磁碟](virtual-machines-linux-using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
