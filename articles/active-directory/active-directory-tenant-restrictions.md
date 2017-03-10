@@ -17,6 +17,7 @@ ms.author: kgremban
 translationtype: Human Translation
 ms.sourcegitcommit: c579c0866387a5eff17b4dbfe25a6cb7d1d47700
 ms.openlocfilehash: 4adf15e4767344d450b7411733a5d2f09cb9f06b
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -125,7 +126,7 @@ Fiddler 是一個免費的 Web 偵錯 Proxy，可用來擷取和修改 HTTP/HTTP
 1.  [下載並安裝 Fiddler](http://www.telerik.com/fiddler)。
 2.  依照 [Fiddler 的說明文件 (英文)](http://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS) 操作，設定 Fiddler 以將 HTTPS 流量解密。
 3.  設定 Fiddler 以使用自訂規則來插入 *Restrict-Access-To-Tenants* 和 *Restrict-Access-Context* 標頭：
-  1. 在「Fiddler Web 偵錯工具」中，選取 [Rules] (規則) 功能表，然後選取 [Customize Rules] (自訂規則) 以開啟 CustomRules 檔案。
+  1. 在「Fiddler Web 偵錯工具」中，選取 [Rules] \(規則) 功能表，然後選取 [Customize Rules] \(自訂規則) 以開啟 CustomRules 檔案。
   2. 在 *OnBeforeRequest* 函式開頭新增下列幾行。 使用與您租用戶一起註冊的網域來取代 \<tenant domain\>，例如 contoso.onmicrosoft.com。 使用您租用戶的 Azure AD GUID 識別碼來取代 \<directory ID\>。
 
   ```
@@ -145,7 +146,7 @@ Fiddler 是一個免費的 Web 偵錯 Proxy，可用來擷取和修改 HTTP/HTTP
 
 4. 儲存並關閉 CustomRules 檔案。
 
-設定 Fiddler 之後，您可以移至 [File] (檔案) 功能表並選取 [Capture Traffic] (擷取流量)，來擷取流量。
+設定 Fiddler 之後，您可以移至 [File] \(檔案) 功能表並選取 [Capture Traffic] \(擷取流量)，來擷取流量。
 
 ### <a name="staged-rollout-of-proxy-settings"></a>分段推出 Proxy 設定
 
@@ -161,9 +162,4 @@ Fiddler 是一個免費的 Web 偵錯 Proxy，可用來擷取和修改 HTTP/HTTP
 - 閱讀[更新的 Office 365 新式驗證 (英文)](https://blogs.office.com/2015/11/19/updated-office-365-modern-authentication-public-preview/)
 
 - 檢閱 [Office 365 URL 與 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

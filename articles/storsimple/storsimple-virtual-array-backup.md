@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: 5c31ac5284f3ba8fecc1e9f33838a778254658e5
 ms.openlocfilehash: 2e49565f2696e345d83fcff4d60a4f9a2b9ff39e
+ms.lasthandoff: 11/28/2016
 
 ---
 # <a name="back-up-your-storsimple-virtual-array"></a>備份 StorSimple Virtual Array
@@ -101,7 +102,7 @@ StorSimple Virtual Array 有預設的備份原則會在每日特定時間 (22:30
     
     - **裝置** – 從已向 StorSimple 裝置管理員服務註冊的檔案伺服器或 iSCSI 伺服器清單中選擇。
    
-    - **已起始** – 可以自動地 [已排程] (依備份原則) 或 [手動] 起始 (由您執行)。
+    - **已起始** – 可以自動地 [已排程] \(依備份原則) 或 [手動] 起始 (由您執行)。
    
     ![篩選備份](./media/storsimple-virtual-array-backup/viewbackups2.png)
 
@@ -112,10 +113,5 @@ StorSimple Virtual Array 有預設的備份原則會在每日特定時間 (22:30
 ## <a name="next-steps"></a>後續步驟
 
 深入了解 [administering your StorSimple Virtual Array (管理 StorSimple Virtual Array)](storsimple-ova-web-ui-admin.md)。
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 
