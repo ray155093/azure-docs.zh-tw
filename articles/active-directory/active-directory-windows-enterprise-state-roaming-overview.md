@@ -4,7 +4,7 @@ description: "提供 Windows 裝置中企業狀態漫遊設定的相關資訊。
 services: active-directory
 keywords: "什麼是企業狀態漫遊, 企業同步處理, windows 雲端"
 documentationcenter: 
-author: ningtan
+author: tanning
 manager: femila
 editor: curtand
 ms.assetid: 83b3b58f-94c1-4ab0-be05-20e01f5ae3f0

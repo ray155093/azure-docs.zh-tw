@@ -5,7 +5,7 @@ description: "提供應該在公司所擁有的裝置上使用的群組原則和
 services: active-directory
 keywords: "什麼是企業狀態漫遊的群組原則和 MDM 設定, 企業狀態漫遊, windows 雲端"
 documentationcenter: 
-author: ningtan
+author: tanning
 manager: femila
 editor: curtand
 ms.assetid: 6471a9b3-8dd4-4237-89d1-bfbeca9f8252

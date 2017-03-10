@@ -4,7 +4,7 @@ description: "在 Windows 10 中進行漫遊或備份的所有設定的完整清
 services: active-directory
 keywords: "企業狀態漫遊, windows 雲端"
 documentationcenter: 
-author: ningtan
+author: tanning
 manager: femila
 editor: curtand
 ms.assetid: 17cffc3e-2928-4235-91f7-a685bd6bdcbf

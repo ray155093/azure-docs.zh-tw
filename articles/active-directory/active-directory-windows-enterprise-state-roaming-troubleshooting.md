@@ -4,7 +4,7 @@ description: "回答 IT 系統管理員可能會遇到的設定和應用程式�
 services: active-directory
 keywords: "企業狀態漫遊設定, windows 雲端, 企業狀態漫遊常見問題集"
 documentationcenter: 
-author: ningtan
+author: tanning
 manager: swadhwa
 editor: 
 ms.assetid: f45d0515-99f7-42ad-94d8-307bc0d07be5

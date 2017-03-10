@@ -5,7 +5,7 @@ description: "Windows 裝置中企業狀態漫遊設定的常見問題集。 企
 services: active-directory
 keywords: "企業狀態漫遊, windows 雲端, 如何啟用企業狀態漫遊"
 documentationcenter: 
-author: ningtan
+author: tanning
 manager: femila
 editor: curtand
 ms.assetid: f71d66fd-7f9e-45eb-9cfe-5d989870f8a4
