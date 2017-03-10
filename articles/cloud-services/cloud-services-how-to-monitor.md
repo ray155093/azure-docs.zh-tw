@@ -17,6 +17,7 @@ ms.author: adegeo
 translationtype: Human Translation
 ms.sourcegitcommit: ab97962175f4498200db428736a1cbd124fac285
 ms.openlocfilehash: aab8f3233191c9b3f839e3358902f72499d93ee5
+ms.lasthandoff: 12/08/2016
 
 ---
 # <a name="how-to-monitor-cloud-services"></a>如何監視雲端服務
@@ -97,12 +98,12 @@ Azure 傳統入口網站的監視顯示本身的可設定度相當高。 您可�
         > 
         
         ![加入度量搜尋](./media/cloud-services-how-to-monitor/CloudServices_AddMetrics_Search.png)
-3. 完成選取度量後，按一下 [確定] (核取記號)。
+3. 完成選取度量後，按一下 [確定] \(核取記號)。
    
     選取的度量隨即新增到度量表，如下所示。
    
     ![監視度量](./media/cloud-services-how-to-monitor/CloudServices_Monitor_UpdatedMetrics.png)
-4. 若要從度量表刪除度量，請按一下度量加以選取，然後按一下 [Delete Metric] **Delete Metric**]。 (只有在您選取度量時，才會看見 [刪除度量]。)
+4. 若要從度量表刪除度量，請按一下度量加以選取，然後按一下 Delete Metric **Delete Metric**。 (只有在您選取度量時，才會看見 [刪除度量]。)
 
 ### <a name="to-add-custom-metrics-to-the-metrics-table"></a>若要將自訂量度新增至量度資料表
 **詳細資訊** 監視層級提供一份清單，其中包含您可在入口網站上監視的預設計量。 除此之外，您可以監視任何自訂計量，或透過入口網站監視應用程式定義的效能計數器。
@@ -153,7 +154,7 @@ Azure 傳統入口網站的監視顯示本身的可設定度相當高。 您可�
 4. 選擇要顯示的 1 小時、24 小時或 7 天資料。
 
 ## <a name="how-to-access-verbose-monitoring-data-outside-the-azure-classic-portal"></a>做法：從 Azure 傳統入口網站外部存取詳細資訊監視資料
-詳細資訊監視資料儲存在您對於各個角色指定的儲存體帳戶內的表格中。 對於各個雲端服務部署，將為角色建立 6 個表格。 個別 (5 分鐘、1 小時和 12 小時) 建立 2 個表格。 其中一個表格儲存角色層級彙總，另一個表格儲存角色執行個體的彙總。 
+詳細資訊監視資料儲存在您對於各個角色指定的儲存體帳戶內的表格中。 對於各個雲端服務部署，將為角色建立&6; 個表格。 個別 (5 分鐘、1 小時和 12 小時) 建立 2 個表格。 其中一個表格儲存角色層級彙總，另一個表格儲存角色執行個體的彙總。 
 
 表格名稱的格式如下：
 
@@ -175,9 +176,4 @@ WAD8b7c4233802442b494d0cc9eb9d8dd9fPT1HRTable (hourly aggregations for the role)
 
 WAD8b7c4233802442b494d0cc9eb9d8dd9fPT1HRITable (hourly aggregations for role instances)
 ```
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 
