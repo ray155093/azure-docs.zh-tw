@@ -3,7 +3,7 @@ title: "使用 Azure Mobile Apps 將推播通知新增至 Apache Cordova 應用�
 description: "了解如何使用 Azure Mobile Apps 將推播通知傳送至 Apache Cordova 應用程式。"
 services: app-service\mobile
 documentationcenter: javascript
-manager: erikre
+manager: adrianha
 editor: 
 author: ysxu
 ms.assetid: 92c596a9-875c-4840-b0e1-69198817576f

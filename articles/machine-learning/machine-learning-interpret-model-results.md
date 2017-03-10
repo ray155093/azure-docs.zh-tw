@@ -17,6 +17,7 @@ ms.author: bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: e9e8dfa79ac0b902b8ecbcf9911e38ef49f754ec
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -83,7 +84,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類，但
 
 圖 3. 鳶尾花雙類別分類問題實驗評分
 
-您現在必須設定 Web 服務的輸入和輸出。 輸入是[評分模型][score-model]的右側輸入連接埠，這是鳶尾花的特徵輸入。 輸出的選擇取決於您是對於預測類別 (評分標籤)、評分機率或兩者感到興趣。 此範例假設您對兩者都感到興趣。 若要選取想要的輸出資料行，請使用[選取資料集中的資料行][select-columns]模組。 依序按一下 [選取資料集中的資料行][][select-columns] 和 [啟動資料行選取器]，然後選取 [評分標籤] 和 [評分機率]。 設定 [選取資料集中的資料行][][select-columns] 的輸出連接埠並再次執行之後，您應該就可以按一下 [發佈 WEB 服務]，將評分實驗發佈為 Web 服務。 最終實驗如「圖 4」所示。
+您現在必須設定 Web 服務的輸入和輸出。 輸入是[評分模型][score-model]的右側輸入連接埠，這是鳶尾花的特徵輸入。 輸出的選擇取決於您是對於預測類別 (評分標籤)、評分機率或兩者感到興趣。 此範例假設您對兩者都感到興趣。 若要選取想要的輸出資料行，請使用[選取資料集中的資料行][select-columns]模組。 依序按一下 [選取資料集中的資料行][select-columns] 和 **啟動資料行選取器**，然後選取 [評分標籤] 和 [評分機率]。 設定 [選取資料集中的資料行][select-columns] 的輸出連接埠並再次執行之後，您應該就可以按一下 [發佈 WEB 服務]，將評分實驗發佈為 Web 服務。 最終實驗如「圖 4」所示。
 
 ![鳶尾花雙類別分類實驗](./media/machine-learning-interpret-model-results/4.png)
 
@@ -180,7 +181,7 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類，但
 ## <a name="clustering"></a>叢集
 **範例實驗**
 
-讓我們再次使用鳶尾花資料集來建立叢集實驗。 您可以在這裡篩選資料集中的類別標籤，使其僅具有特徵並可用於叢集。 在此鳶尾花使用案例中，將訓練處理期間的叢集數指定為 2，表示您想要將花卉叢集為兩個類別。 實驗如「圖 15」所示。
+讓我們再次使用鳶尾花資料集來建立叢集實驗。 您可以在這裡篩選資料集中的類別標籤，使其僅具有特徵並可用於叢集。 在此鳶尾花使用案例中，將訓練處理期間的叢集數指定為&2;，表示您想要將花卉叢集為兩個類別。 實驗如「圖 15」所示。
 
 ![鳶尾花叢集問題實驗](./media/machine-learning-interpret-model-results/15.png)
 
@@ -314,9 +315,4 @@ Azure Machine Learning 有不同的模組可以處理各種類型的分類，但
 [score-model]: https://msdn.microsoft.com/library/azure/401b4f92-e724-4d5a-be81-d5b0ff9bdb33/
 [train-clustering-model]: https://msdn.microsoft.com/library/azure/bb43c744-f7fa-41d0-ae67-74ae75da3ffd/
 [train-matchbox-recommender]: https://msdn.microsoft.com/library/azure/fa4aa69d-2f1c-4ba4-ad5f-90ea3a515b4c/
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

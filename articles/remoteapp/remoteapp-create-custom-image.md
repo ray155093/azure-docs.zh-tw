@@ -17,6 +17,7 @@ ms.author: mbaldwin
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: e28f4004e3cafcfa09309ff0143c83af5fa5493a
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -85,7 +86,7 @@ Azure RemoteApp 會使用 Windows Server 2012 R2 範本映像來主控您要與�
       
       此作業會執行數秒。 VHD 建立完成後，您會在 [磁碟管理] 主控台中看見不具任何磁碟機代號、狀態為「未初始化」的新磁碟。
       
-      * 以滑鼠右鍵按一下磁碟 (不是未配置的空間)，然後按一下 [初始化磁碟] 。 選取 [MBR] (主開機記錄) 做為磁碟分割樣式，然後按一下 [確定]。
+      * 以滑鼠右鍵按一下磁碟 (不是未配置的空間)，然後按一下 [初始化磁碟] 。 選取 [MBR] \(主開機記錄) 做為磁碟分割樣式，然後按一下 [確定]。
       * 建立新的磁碟區： 以滑鼠右鍵按一下未配置的空間，然後按一下 [新增簡單磁碟區] 。 您可以接受精靈中的預設值，但請務必指派磁碟機代號，以避免在上傳範本映像時發生問題。
       * 以滑鼠右鍵按一下磁碟，然後按一下 [Detach VHD] 。
 3. 安裝 Windows Server 2012 R2：
@@ -142,10 +143,5 @@ Azure RemoteApp 會使用 Windows Server 2012 R2 範本映像來主控您要與�
 
 * [如何建立 RemoteApp 的混合式收藏](remoteapp-create-hybrid-deployment.md)
 * [如何建立 RemoteApp 的雲端收藏](remoteapp-create-cloud-deployment.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

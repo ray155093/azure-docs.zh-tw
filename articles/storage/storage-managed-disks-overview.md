@@ -3,8 +3,8 @@ title: "Azure 進階和標準受控磁碟概觀 | Microsoft Docs"
 description: "使用 Azure VM 時為您處理儲存體帳戶的 Azure 受控磁碟概觀"
 services: storage
 documentationcenter: na
-author: ramankumarlive
-manager: tadb
+author: robinsh
+manager: timlt
 editor: tysonn
 ms.assetid: 272250b3-fd4e-41d2-8e34-fd8cc341ec87
 ms.service: storage
@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
-ms.author: ramankum
+ms.date: 02/23/2017
+ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 58c395a45115c9db0027cffe96d20863c928a63d
-ms.openlocfilehash: 74ec73388af06dbf5682c5aa1c84b153dfc4a744
+ms.sourcegitcommit: 388e4c8f46662200a0e05db06d417f086ad41b11
+ms.openlocfilehash: b53feeb08d469363a52303cad4577b752a570900
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -26,7 +27,8 @@ ms.openlocfilehash: 74ec73388af06dbf5682c5aa1c84b153dfc4a744
 Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduction.md)，簡化 Azure IaaS VM 的磁碟管理。 您只需要指定類型 ([進階](storage-premium-storage.md)或[標準](storage-standard-storage.md))，還有您需要的磁碟大小，Azure 就會替您建立並管理磁碟。
 
 >[!NOTE]
-> 受控磁碟需要使用連接埠 8443。如果您想要封鎖該連接埠，則必須使用非受控磁碟。
+>具有受控磁碟的 VM 需要通訊埠 8443 上的輸出流量來向 Azure 平台報告已安裝的 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md)之狀態。 若此通訊埠無法使用，則具有擴充功能的 VM 將會佈建失敗。 此外，如果擴充功能安裝在執行中的 VM 上，擴充功能的部署狀態將會不明。 若您無法解鎖通訊埠 8443，則必須使用非受控磁碟。 我們正著手解決這個問題。 如需詳細資訊，請參閱 [IaaS VM 磁碟的常見問題集](storage-faq-for-disks.md#managed-disks-and-port-8443)。 
+>
 >
 
 ## <a name="benefits-of-managed-disks"></a>受控磁碟的好處
@@ -102,7 +104,7 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 
 如需建立映像的相關資訊，請參閱下列文章︰
 * [在 Azure 中如何擷取一般化 VM 的受管理映像](../virtual-machines/virtual-machines-windows-capture-image-resource.md)
-* [如何使用 Azure CLI 2.0 (預覽) 來一般化和擷取 Linux 虛擬機器](../virtual-machines/virtual-machines-linux-capture-image.md)
+* [如何使用 Azure CLI 2.0 來一般化和擷取 Linux 虛擬機器](../virtual-machines/virtual-machines-linux-capture-image.md)
 
 ## <a name="images-versus-snapshots"></a>映像與快照集的比較
 
@@ -134,7 +136,7 @@ SSE 會將寫入儲存體帳戶的資料加密。 如果您有曾經使用 SSE �
 
 * [使用 Resource Manager 和 PowerShell 建立 VM](../virtual-machines/virtual-machines-windows-ps-create.md)
 
-* [使用 Azure CLI 2.0 建立 Linux VM (預覽)](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
+* [使用 Azure CLI 2.0 來建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
 
 * [使用 PowerShell 將受控資料磁碟附加至 Windows VM](../virtual-machines/virtual-machines-windows-attach-disk-ps.md)
 
@@ -151,9 +153,4 @@ SSE 會將寫入儲存體帳戶的資料加密。 如果您有曾經使用 SSE �
 * [從 AWS 和其他平台移轉至 Azure 中的受控磁碟](../virtual-machines/virtual-machines-windows-on-prem-to-azure.md)
 
 * [將 Azure VM 轉換成 Azure 中的受控磁碟](../virtual-machines/virtual-machines-windows-migrate-to-managed-disks.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

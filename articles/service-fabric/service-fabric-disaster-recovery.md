@@ -12,11 +12,12 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/29/2016
+ms.date: 03/01/2017
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: 6dc2a6dbf4b26363f1ad714baec8d48045aa97b6
-ms.openlocfilehash: 81d818afb1a15db646a20b4001493d9df7e24d27
+ms.sourcegitcommit: 6d8f489ac053db4898741671df73b6abfabeb0dd
+ms.openlocfilehash: 73f5413fb7dd0ca179bf5012478a453963e996a1
+ms.lasthandoff: 12/14/2016
 
 
 ---
@@ -41,7 +42,7 @@ ms.openlocfilehash: 81d818afb1a15db646a20b4001493d9df7e24d27
 > 
 
 ### <a name="geographic-distribution"></a>地理分佈
-目前[全世界有 30 個 Azure 區域][azure-regions]，已宣佈更多個。 視需求和適當位置的可用性 (還有其他因素) 而定，個別區域可以包含一或多個實體資料中心。 但請注意，即使在包含多個實體資料中心的區域中，也不能保證您叢集的 VM 會平均分散於這些實體位置。 事實上，指定叢集的所有 VM 目前都佈建在單一實體站台內。
+目前[全世界有&30; 個 Azure 區域][azure-regions]，已宣佈更多個。 視需求和適當位置的可用性 (還有其他因素) 而定，個別區域可以包含一或多個實體資料中心。 但請注意，即使在包含多個實體資料中心的區域中，也不能保證您叢集的 VM 會平均分散於這些實體位置。 事實上，指定叢集的所有 VM 目前都佈建在單一實體站台內。
 
 ## <a name="dealing-with-failures"></a>處理失敗
 有數種類型的失敗可能會影響您的叢集，而每種類型都有其自己的緩和方式。 我們將依照其發生的可能性順序進行探討。
@@ -67,7 +68,7 @@ ms.openlocfilehash: 81d818afb1a15db646a20b4001493d9df7e24d27
 #### <a name="minimizing-the-risk-of-quorum-loss"></a>將仲裁遺失的風險降至最低
 您可以增加您服務的目標複本集大小，進而將仲裁遺失的風險降至最低。 依據您一次可容忍的無法使用節點數目 (仍可用於寫入) 來思考您需要的複本數目將有所幫助，但請記住除了硬體故障以外，應用程式或叢集升級也可能讓節點暫時無法使用。
 
-請考慮下列範例，其假設您已設定您服務的 MinReplicaSetSize 為 3，也就是實際執行服務的建議最小數目。 TargetReplicaSetSize 若為 3 (一個主要複本和兩個次要複本)，升級期間的硬體失敗 (兩個複本關閉) 將會導致仲裁遺失，而且您的服務會變成唯讀狀態。 或者，如果您有 5 個複本，您就能夠在升級期間承受兩次失敗 (三個複本關閉)，因為剩餘的兩個複本仍可在最小的複本集中構成仲裁。
+請考慮下列範例，其假設您已設定您服務的 MinReplicaSetSize 為&3;，也就是實際執行服務的建議最小數目。 TargetReplicaSetSize 若為&3; (一個主要複本和兩個次要複本)，升級期間的硬體失敗 (兩個複本關閉) 將會導致仲裁遺失，而且您的服務會變成唯讀狀態。 或者，如果您有&5; 個複本，您就能夠在升級期間承受兩次失敗 (三個複本關閉)，因為剩餘的兩個複本仍可在最小的複本集中構成仲裁。
 
 ### <a name="data-center-outages-or-destruction"></a>資料中心中斷服務或毀損
 在少數情況下，實體資料中心可能會因為電源或網路連線中斷而暫時無法使用。 在這些情況下，Service Fabric 叢集和應用程式同樣會無法使用，但會保留您的資料。 對於在 Azure 中執行的叢集，您可以在 [Azure 狀態頁面][azure-status-dashboard]上檢視中斷的更新。
@@ -94,6 +95,7 @@ protected virtual Task<bool> OnDataLoss(CancellationToken cancellationToken)
   * [可用性檢查清單](../best-practices-availability-checklist.md)
   * [執行災害復原演練](../sql-database/sql-database-disaster-recovery-drills.md)
   * [Azure 應用程式的災害復原和高可用性][dr-ha-guide]
+* 了解 [Service Fabric 支援選項](service-fabric-support.md)
 
 <!-- External links -->
 
@@ -106,9 +108,4 @@ protected virtual Task<bool> OnDataLoss(CancellationToken cancellationToken)
 <!-- Images -->
 
 [sfx-cluster-map]: ./media/service-fabric-disaster-recovery/sfx-clustermap.png
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

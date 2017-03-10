@@ -17,6 +17,7 @@ ms.author: yuaxu
 translationtype: Human Translation
 ms.sourcegitcommit: dc5f98fd548512801c705f942e30df5e6b95d542
 ms.openlocfilehash: 3271db005133bd7849b8a33dd7fa8f11bf5a29c2
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: 3271db005133bd7849b8a33dd7fa8f11bf5a29c2
 
 若要深入了解離線同步處理功能，請參閱 [Mobile Apps 中的離線資料同步處理]。
 
-## <a name="a-namereview-syncareview-the-client-sync-code"></a><a name="review-sync"></a>檢閱用戶端同步程式碼
+## <a name="review-sync"></a>檢閱用戶端同步程式碼
 您針對[建立 iOS 應用程式]教學課程下載的用戶端專案，已經包含了使用本機核心資料式資料庫支援離線同步處理的程式碼。 本節將摘要說明已包含在教學課程程式碼中的內容。 如需此功能的概念性概觀，請參閱 [Mobile Apps 中的離線資料同步處理]。
 
 Mobile Apps 的離線資料同步處理功能可讓終端使用者在無法存取網路時，仍可與本機資料庫互動。 若要在您的應用程式中使用這些功能，您可初始化 `MSClient` 的同步處理內容以及參考本機存放區。 然後透過 **MSSyncTable** 介面參考您的資料表。
@@ -48,6 +49,7 @@ Mobile Apps 的離線資料同步處理功能可讓終端使用者在無法存�
    self.client.syncContext = [[MSSyncContext alloc] initWithDelegate:nil dataSource:store callback:nil];
    ```    
 * **Swift**。 在 **ToDoTableViewController.viewDidLoad** 方法中︰
+
    ```swift
    let client = MSClient(applicationURLString: "http:// ...") // URI of the Mobile App
    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
@@ -135,7 +137,7 @@ Mobile Apps 的離線資料同步處理功能可讓終端使用者在無法存�
 
 因為每當資料修改 (Objective-C) 或 App 啟動 (Objective-C 和 Swift) 時，App 就會同步處理，故 App 假設使用者在線上。 在後續章節中，您將會更新 App，讓使用者即使是離線狀態也能進行編輯。
 
-## <a name="a-namereview-core-dataareview-the-core-data-model"></a><a name="review-core-data"></a>檢閱核心資料模型
+## <a name="review-core-data"></a>檢閱核心資料模型
 在使用「核心資料離線」存放區時，您必須在資料模型中定義特定資料表和欄位。 範例應用程式已經包含具有正確格式的資料模型。 在這一節中，我們會逐步介紹這些資料表並示範其使用方式。
 
 開啟 **QSDataModel.xcdatamodeld**。 已定義四個資料表--其中三個由 SDK 使用，而一個是用於 To-do 項目本身：
@@ -202,7 +204,7 @@ Mobile Apps 的離線資料同步處理功能可讓終端使用者在無法存�
 | 更新時間 | 日期 | (選擇性) 對應至 **updatedAt** 系統屬性 |
 | 版本 | String | (選擇性) 用來偵測衝突，對應至版本 |
 
-## <a name="a-namesetup-syncachange-the-sync-behavior-of-the-app"></a><a name="setup-sync"></a>變更應用程式的同步處理行為
+## <a name="setup-sync"></a>變更應用程式的同步處理行為
 在本節中，您將修改 App，使它在啟動或有使用者插入並更新項目時不會同步處理。 只有在執行重新整理動作按鈕時，它才會同步。
 
 **Objective-C**：
@@ -231,7 +233,7 @@ Mobile Apps 的離線資料同步處理功能可讓終端使用者在無法存�
   self.onRefresh(self.refreshControl)
 ```
 
-## <a name="a-nametest-appatest-the-app"></a><a name="test-app"></a>測試應用程式
+## <a name="test-app"></a>測試應用程式
 在本節中，您將連接至無效的 URL，以模擬離線情況。 當您新增資料項目時，這些項目會存放在本機核心資料存放區，但不會同步到行動裝置 App 後端。
 
 1. 將 **QSTodoService.m** 中的行動裝置 App URL 變更為無效的 URL，然後再次執行該 App：
@@ -285,9 +287,4 @@ Mobile Apps 的離線資料同步處理功能可讓終端使用者在無法存�
 
 [雲端報導：Azure Mobile Services 中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 [Azure Friday: Offline-enabled apps in Azure Mobile Services]: http://azure.microsoft.com/en-us/documentation/videos/azure-mobile-services-offline-enabled-apps-with-donna-malayeri/
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

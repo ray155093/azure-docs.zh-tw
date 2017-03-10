@@ -1,10 +1,11 @@
 # 概觀
 ## [什麼是 Site Recovery？](site-recovery-overview.md)
 ## [Site Recovery 如何運作？](site-recovery-components.md)
+## [將 Hyper-V 複寫至 Azure 如何運作？](site-recovery-hyper-v-azure-architecture.md)
 ## [哪些工作負載可以受到保護？](site-recovery-workload.md)
 ## [Site Recovery 支援矩陣](site-recovery-support-matrix-to-azure.md)
 ## [常見問題集](site-recovery-faq.md)
-## [觀看簡介](https://www.youtube.com/watch?v=eOOwMQPBKfM)
+## [觀看簡介](https://azure.microsoft.com/resources/videos/index/?services=recovery-manager)
 
 # 開始使用
 ## [將 VMware VM 複寫至 Azure](site-recovery-vmware-to-azure.md)
@@ -18,7 +19,7 @@
 ## 規劃
 ### [部署必要條件](site-recovery-prereq.md)
 ### [網路基礎結構的注意事項](site-recovery-network-design.md)
-### [使用 Site Recovery Capacity Planner](site-recovery-capacity-planner.md)
+### [針對 Hyper-V 複寫執行 Site Recovery Capacity Planner](site-recovery-capacity-planner.md)
 ### [規劃容量並調整 Azure 中的 VMware 複寫](site-recovery-plan-capacity-vmware.md)
 ### [執行部署規劃工具，將 VMware 複寫至 Azure](site-recovery-deployment-planner.md)
 ## 設定

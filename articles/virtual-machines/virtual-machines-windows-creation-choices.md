@@ -1,5 +1,5 @@
 ---
-title: "建立 Windows VM 的不同方式 | Microsoft Docs"
+title: "在 Azure 中建立 Windows VM 的不同方式 | Microsoft Docs"
 description: "列出使用資源管理員建立 Windows 虛擬機器的不同方式。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -13,15 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 09/27/2016
+ms.date: 03/02/2017
 ms.author: cynthn
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: bc3921003bf3b91de88e70ff18b5c397687c288c
-ms.openlocfilehash: 6f4a825faac413652b1dc3880d899e0e40caedbc
+ms.sourcegitcommit: 32e30b44c2f7cfa9c1069190fdc53dbe6e9f4cd5
+ms.openlocfilehash: d01b71257a4a95294aebcde8c1d056e3fc3ed1be
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="different-ways-to-create-a-windows-vm"></a>建立 Windows VM 的不同方式
+# <a name="different-ways-to-create-a-windows-virtual-machine"></a>建立 Windows 虛擬機器的不同方式
+
 Azure 提供建立虛擬機器的不同方式，因為虛擬機器適用於不同的使用者和用途。 這表示您需要針對虛擬機器以及建立方式進行一些選擇。 本文提供這些選項及指示連結的摘要說明。
 
 ## <a name="azure-portal"></a>Azure 入口網站
@@ -43,10 +46,5 @@ Azure 提供建立虛擬機器的不同方式，因為虛擬機器適用於不�
 使用 Visual Studio 搭配 Azure Tools for Visual Studio 和 Azure SDK 來建置、管理與部署 VM。
 
 [Azure Tools for Visual Studio](https://www.visualstudio.com/features/azure-tools-vs)
-
-
-
-
-<!--HONumber=Nov16_HO5-->
 
 

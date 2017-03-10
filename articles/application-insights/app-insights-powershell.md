@@ -16,6 +16,7 @@ ms.author: awills
 translationtype: Human Translation
 ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
 ms.openlocfilehash: 9fc886d9ce69c1ca3d7a981d5eeb276c09cc245e
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -191,9 +192,8 @@ ms.openlocfilehash: 9fc886d9ce69c1ca3d7a981d5eeb276c09cc245e
 若要與您的應用程式資源同時設定度量警示，請將類似的程式碼合併至範本檔案︰
 
 ```JSON
-
+{
     parameters: { ... // existing parameters ...
-       ,       
             "responseTime": {
               "type": "int",
               "defaultValue": 3,
@@ -203,12 +203,10 @@ ms.openlocfilehash: 9fc886d9ce69c1ca3d7a981d5eeb276c09cc245e
               }
     },
     variables: { ... // existing variables ...
-      ,
       // Alert names must be unique within resource group.
       "responseAlertName": "[concat('ResponseTime-', toLower(parameters('appName')))]"
     }, 
     resources: { ... // existing resources ...
-     ,
      {
       //
       // Metric alert on response time
@@ -250,7 +248,7 @@ ms.openlocfilehash: 9fc886d9ce69c1ca3d7a981d5eeb276c09cc245e
         ]
       }
     }
-
+}
 ```
 
 當您叫用範本時，您可以選擇性地新增此參數︰
@@ -271,19 +269,16 @@ ms.openlocfilehash: 9fc886d9ce69c1ca3d7a981d5eeb276c09cc245e
 將下列程式碼合併至建立應用程式的範本檔案。
 
 ```JSON
-
+{
     parameters: { ... // existing parameters here ...
-      ,
       "pingURL": { "type": "string" },
       "pingText": { "type": "string" , defaultValue: ""}
     },
     variables: { ... // existing variables here ...
-      ,
       "pingTestName":"[concat('PingTest-', toLower(parameters('appName')))]",
       "pingAlertRuleName": "[concat('PingAlert-', toLower(parameters('appName')), '-', subscription().subscriptionId)]"
     },
     resources: { ... // existing resources here ...
-    ,  
     { //
       // Availability test: part 1 configures the test
       //
@@ -365,7 +360,7 @@ ms.openlocfilehash: 9fc886d9ce69c1ca3d7a981d5eeb276c09cc245e
         ]
       }
     }
-
+}
 ```
 
 若要探索其他測試位置的程式碼，或自動建立更複雜的 web 測試，請手動建立範例，然後從 [Azure Resource Manager](https://resources.azure.com/) 參數化程式碼。
@@ -434,10 +429,5 @@ Azure 應以嚴格的順序設定資源。 為確保一項設定完成後再開�
 * [將 Azure 診斷傳送至 Application Insights](app-insights-powershell-azure-diagnostics.md)
 * [從 Github 部署至 Azure](http://blogs.msdn.com/b/webdev/archive/2015/09/16/deploy-to-azure-from-github-with-application-insights.aspx)
 * [建立版本附註](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/API/CreateReleaseAnnotation.ps1)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

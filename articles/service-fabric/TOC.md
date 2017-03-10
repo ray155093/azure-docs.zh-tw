@@ -81,9 +81,10 @@
 #### [計時器和提醒](service-fabric-reliable-actors-timers-reminders.md)
 #### [事件](service-fabric-reliable-actors-events.md)
 #### [狀態管理](service-fabric-reliable-actors-state-management.md)
-#### [設定狀態供應器](service-fabric-reliable-actors-kvsactorstateprovider-configuration.md)
+#### [設定 KvsActorStateProvider](service-fabric-reliable-actors-kvsactorstateprovider-configuration.md)
 #### [類型序列化](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)
 #### [設定通訊設定](service-fabric-reliable-actors-fabrictransportsettings.md) 
+#### [設定 ReliableDictionaryActorStateProvider](service-fabric-reliable-actors-reliabledictionarystateprovider-configuration.md)
 
 ## 從雲端服務移轉
 ### [比較雲端服務與 Service Fabric](service-fabric-cloud-services-migration-differences.md)
@@ -106,6 +107,7 @@
 ##### [Azure 入口網站](service-fabric-cluster-creation-via-portal.md)
 ##### [Azure Resource Manager](service-fabric-cluster-creation-via-arm.md)
 ##### [Visual Stuido 與 Azure Resource Manager](service-fabric-cluster-creation-via-visual-studio.md)
+#### [叢集網路模式](service-fabric-patterns-networking.md)
 #### [節點類型與 VM 擴展集](service-fabric-cluster-nodetypes.md)
 #### [調整叢集](service-fabric-cluster-scale-up-down.md)
 #### [升級叢集](service-fabric-cluster-upgrade.md)

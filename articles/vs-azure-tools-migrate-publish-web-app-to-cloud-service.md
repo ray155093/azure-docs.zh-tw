@@ -17,6 +17,7 @@ ms.author: tarcher
 translationtype: Human Translation
 ms.sourcegitcommit: 01623fa76175091439d5a571fb8b8f96aee01c4c
 ms.openlocfilehash: a30859610aed55c1ffa22e821de3702d265a7fa7
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -117,7 +118,7 @@ ms.openlocfilehash: a30859610aed55c1ffa22e821de3702d265a7fa7
 
 ## <a name="publish-a-web-application-to-azure"></a>將 Web 應用程式發佈至 Azure
 ### <a name="to-publish-a-web-application-to-azure"></a>將 Web 應用程式發佈至 Azure
-1. 若要在本機開發環境中使用 Azure 計算模擬器測試應用程式，請開啟 Web 角色的 Azure 專案捷徑功能表，然後選擇 [設定為啟始專案]。 接下來選擇 [偵錯]、[開始偵錯] (鍵盤：**F5**)。
+1. 若要在本機開發環境中使用 Azure 計算模擬器測試應用程式，請開啟 Web 角色的 Azure 專案捷徑功能表，然後選擇 [設定為啟始專案]。 接下來選擇 [偵錯]、[開始偵錯] \(鍵盤：**F5**)。
 
     [啟動 Azure 偵錯環境]  對話方塊隨即開啟，並且會在瀏覽器中啟動應用程式。 如需關於如何在計算模擬器中啟動每一種 Web 應用程式的特定詳細資訊，請參閱本節資料表。
 2. 若要設定將您的應用程式發佈至 Azure 的服務，您必須擁有 Microsoft 帳戶和 Azure 訂用帳戶。 使用下列主題中的步驟來設定服務： [準備從 Visual Studio 發佈或部署 Azure 應用程式](vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio.md)。
@@ -149,18 +150,18 @@ ms.openlocfilehash: a30859610aed55c1ffa22e821de3702d265a7fa7
 
    | Web 應用程式類型 | 使用計算模擬器在本機執行/偵錯 | 在 Azure 中執行 |
    | --- | --- | --- |
-   | ASP.NET Web 應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |選擇 [Azure 活動記錄檔] 的 [部署] 索引標籤中顯示的 URL 超連結，以在瀏覽器中載入起始頁。 |
-   | ASP.NET MVC 2 Web 應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |選擇 [Azure 活動記錄檔] 的 [部署] 索引標籤中顯示的 URL 超連結，以在瀏覽器中載入起始頁。 |
-   | ASP.NET MVC 3 Web 應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |選擇 [Azure 活動記錄檔] 的 [部署] 索引標籤中顯示的 URL 超連結，以在瀏覽器中載入起始頁。 |
-   | ASP.NET MVC 4 Web 應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |選擇 [Azure 活動記錄檔] 的 [部署] 索引標籤中顯示的 URL 超連結，以在瀏覽器中載入起始頁。 |
-   | ASP.NET 空白 Web 應用程式 |您必須在應用程式中加入設定做為 Web 專案起始頁的 .aspx 網頁。 然後在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |如果應用程式中有預設的 .aspx 網頁，請選擇 [Azure 活動記錄檔] 的 [部署] 索引標籤中顯示的 URL 超連結，瀏覽器就會載入此網頁。 如果您有不同的 .aspx 網頁，則必須使用下列格式的 URL 來瀏覽到此特定網頁： `<url for deployment>/<name of page>.aspx` |
-   | Silverlight 應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |您必須使用下列格式的 URL 來瀏覽到應用程式的特定網頁： `<url for deployment>/<name of page>.aspx` |
-   | Silverlight 商務應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |您必須使用下列格式的 URL 來瀏覽到應用程式的特定網頁： `<url for deployment>/<name of page>.aspx` |
-   | Silverlight 瀏覽應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |您必須使用下列格式的 URL 來瀏覽到應用程式的特定網頁：`<url for deployment>/<name of page>.aspx` |
-   | WCF 服務應用程式 |您必須將 .svc 檔案設定做為 WCF 服務專案的起始頁。 然後在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |您必須使用下列格式的 URL 來瀏覽到應用程式的 svc 檔案： `<url for deployment>/<name of service file>.svc` |
-   | WCF 工作流程服務應用程式 |您必須將 .svc 檔案設定做為 WCF 服務專案的起始頁。 然後在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |您必須使用下列格式的 URL 來瀏覽到應用程式的 svc 檔案： `<url for deployment>/<name of service file>.svc` |
-   | ASP.NET 動態實體 |在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |您必須更新連接字串 (請參閱下一節)。 您還必須使用下列格式的 URL 來瀏覽到應用程式的特定網頁： `<url for deployment>/<name of page>.aspx` |
-   | ASP.NET 動態資料 Linq to SQL |在功能表列上，選擇 [偵錯]、[開始偵錯] (鍵盤：選擇 **F5** 鍵)。 |您必須遵循以下程序中的步驟：將 SQL Azure 資料庫用於應用程式 (請參閱本主題前面的章節)。 您還必須使用下列格式的 URL 來瀏覽到應用程式的特定網頁： `<url for deployment>/<name of page>.aspx` |
+   | ASP.NET Web 應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |選擇 [Azure 活動記錄檔] 的 [部署] 索引標籤中顯示的 URL 超連結，以在瀏覽器中載入起始頁。 |
+   | ASP.NET MVC 2 Web 應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |選擇 [Azure 活動記錄檔] 的 [部署] 索引標籤中顯示的 URL 超連結，以在瀏覽器中載入起始頁。 |
+   | ASP.NET MVC 3 Web 應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |選擇 [Azure 活動記錄檔] 的 [部署] 索引標籤中顯示的 URL 超連結，以在瀏覽器中載入起始頁。 |
+   | ASP.NET MVC 4 Web 應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |選擇 [Azure 活動記錄檔] 的 [部署] 索引標籤中顯示的 URL 超連結，以在瀏覽器中載入起始頁。 |
+   | ASP.NET 空白 Web 應用程式 |您必須在應用程式中加入設定做為 Web 專案起始頁的 .aspx 網頁。 然後在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |如果應用程式中有預設的 .aspx 網頁，請選擇 [Azure 活動記錄檔] 的 [部署] 索引標籤中顯示的 URL 超連結，瀏覽器就會載入此網頁。 如果您有不同的 .aspx 網頁，則必須使用下列格式的 URL 來瀏覽到此特定網頁： `<url for deployment>/<name of page>.aspx` |
+   | Silverlight 應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |您必須使用下列格式的 URL 來瀏覽到應用程式的特定網頁： `<url for deployment>/<name of page>.aspx` |
+   | Silverlight 商務應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |您必須使用下列格式的 URL 來瀏覽到應用程式的特定網頁： `<url for deployment>/<name of page>.aspx` |
+   | Silverlight 瀏覽應用程式 |在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |您必須使用下列格式的 URL 來瀏覽到應用程式的特定網頁：`<url for deployment>/<name of page>.aspx` |
+   | WCF 服務應用程式 |您必須將 .svc 檔案設定做為 WCF 服務專案的起始頁。 然後在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |您必須使用下列格式的 URL 來瀏覽到應用程式的 svc 檔案： `<url for deployment>/<name of service file>.svc` |
+   | WCF 工作流程服務應用程式 |您必須將 .svc 檔案設定做為 WCF 服務專案的起始頁。 然後在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |您必須使用下列格式的 URL 來瀏覽到應用程式的 svc 檔案： `<url for deployment>/<name of service file>.svc` |
+   | ASP.NET 動態實體 |在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |您必須更新連接字串 (請參閱下一節)。 您還必須使用下列格式的 URL 來瀏覽到應用程式的特定網頁： `<url for deployment>/<name of page>.aspx` |
+   | ASP.NET 動態資料 Linq to SQL |在功能表列上，選擇 [偵錯]、[開始偵錯] \(鍵盤：選擇 **F5** 鍵)。 |您必須遵循以下程序中的步驟：將 SQL Azure 資料庫用於應用程式 (請參閱本主題前面的章節)。 您還必須使用下列格式的 URL 來瀏覽到應用程式的特定網頁： `<url for deployment>/<name of page>.aspx` |
 
 ## <a name="update-a-connection-string-for-aspnet-dynamic-entities"></a>更新 ASP.NET 動態實體的連接字串
 ### <a name="to-update-a-connection-string-for-aspnet-dynamic-entities"></a>更新 ASP.NET 動態實體的連接字串
@@ -201,9 +202,4 @@ ms.openlocfilehash: a30859610aed55c1ffa22e821de3702d265a7fa7
 
 ## <a name="next-steps"></a>後續步驟
 如需有關發佈的詳細資訊，請參閱 [準備從 Visual Studio 發佈或部署 Azure 應用程式](vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio.md)。 另請參閱 [設定具名的驗證認證](vs-azure-tools-setting-up-named-authentication-credentials.md)。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

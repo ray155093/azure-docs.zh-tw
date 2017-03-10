@@ -13,11 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 02/27/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a3bdeb6fea306babc9358134c37044843b9bdd1c
-ms.openlocfilehash: e31c947ee275d34b1f59909fb009ce5a73b42785
+ms.sourcegitcommit: de252e1d2945f236a4192c5737ed8ec88a6f7444
+ms.openlocfilehash: 9ec5d45a38aefe24454f8673d5754d65b3800c17
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -30,6 +31,10 @@ ms.openlocfilehash: e31c947ee275d34b1f59909fb009ce5a73b42785
 
 本教學課程也適用於您在 HDInsight 中所建立 Spark (Linux) 叢集上的 Jupyter Notebook。 Notebook 的體驗能讓您從 Notebook 本身執行 Python 程式碼片段。 如要從 Notebook 中執行本教學課程，請建立 Spark 叢集、啟動 Jupyter Notebook (`https://CLUSTERNAME.azurehdinsight.net/jupyter`)，然後執行 **Python** 資料夾中的 Notebook [搭配 HDInsight.ipynb 上的 Apache Spark 來使用 BI 工具]。
 
+> [!NOTE]
+> Azure HDInsight 3.6 預覽版的 Spark 2.1 不支援本文所述的 BI 工具連接性。 僅支援 Spark 1.6 版和 2.0 版 (分別是 HDInsight 3.4 版和 3.5 版)。
+>
+
 **必要條件：**
 
 您必須滿足以下條件：
@@ -39,7 +44,7 @@ ms.openlocfilehash: e31c947ee275d34b1f59909fb009ce5a73b42785
 * 一台已安裝 Microsoft Spark ODBC 驅動程式的電腦 (HDInsight 上的 Spark 需要此電腦才能使用 Tableau)。 您可以前往 [這裡](http://go.microsoft.com/fwlink/?LinkId=616229)來安裝驅動程式。
 * BI 工具，例如 [Power BI](http://www.powerbi.com/) 或 [Tableau Desktop](http://www.tableau.com/products/desktop)。 您可以從 [http://www.powerbi.com/](http://www.powerbi.com/)取得 Power BI 的免費預覽版訂用帳戶。
 
-## <a name="a-namehivetableasave-raw-data-as-a-hive-table"></a><a name="hivetable"></a>將原始資料儲存成 Hive 資料表
+## <a name="hivetable"></a>將原始資料儲存成 Hive 資料表
 在本節中，我們會使用與 HDInsight 中的 Apache Spark 叢集相關聯的 [Jupyter](https://jupyter.org) Notebook，來執行會處理原始範例資料，並將這些資料儲存成 Hive 資料表的工作。 範例資料是所有叢集在預設情況下均有的 .csv 檔案 (hvac.csv)。
 
 一旦將資料儲存成 Hive 資料表之後，下一節我們將使用 Power BI 和 Tableau 等 BI 工具連接 Hive 資料表。
@@ -105,7 +110,7 @@ ms.openlocfilehash: e31c947ee275d34b1f59909fb009ce5a73b42785
         SELECT * FROM hvac LIMIT 10
 2. 現在，您可以關閉 Notebook 來釋放資源。 若要這樣做，請從 Notebook 的 [檔案] 功能表中，按一下 [關閉並停止]。 這樣就能夠結束並關閉 Notebook。
 
-## <a name="a-namepowerbiause-power-bi-to-analyze-data-in-the-hive-table"></a><a name="powerbi"></a>使用 Power BI 分析 Hive 資料表中的資料
+## <a name="powerbi"></a>使用 Power BI 分析 Hive 資料表中的資料
 將資料儲存成 Hive 資料表後，您可以使用 Power BI 來連接資料並以視覺化方式呈現，以便建立報表、儀表板等。
 
 1. 登入 [Power BI](http://www.powerbi.com/)。
@@ -134,7 +139,7 @@ ms.openlocfilehash: e31c947ee275d34b1f59909fb009ce5a73b42785
 
    您可以針對同一個資料集加入滿足需求數量的視覺效果，並將它們釘選在儀表板上以取得資料快照。 此外，HDInsight 上的 Spark 叢集已透過直接連線連接 Power BI。 這表示 Power BI 隨時能取得叢集的最新資訊，因此您不需要排程資料集重新整理。
 
-## <a name="a-nametableauause-tableau-desktop-to-analyze-data-in-the-hive-table"></a><a name="tableau"></a>使用 Tableau Desktop 來分析 Hive 資料表中的資料
+## <a name="tableau"></a>使用 Tableau Desktop 來分析 Hive 資料表中的資料
 
 > [!NOTE]
 > 本節只適用於在 Azure HDInsight 中建立的 Spark 1.5.2 叢集。
@@ -171,7 +176,7 @@ ms.openlocfilehash: e31c947ee275d34b1f59909fb009ce5a73b42785
     ![視覺效果](./media/hdinsight-apache-spark-use-bi-tools/hdispark.tableau.final.visual.png "視覺效果")
 9. 按一下 [儲存]  以儲存工作表。 您可以建立儀表板，並在儀表板中加入一個或多個工作表。
 
-## <a name="a-nameseealsoasee-also"></a><a name="seealso"></a>另請參閱
+## <a name="seealso"></a>另請參閱
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
 
 ### <a name="scenarios"></a>案例
@@ -206,9 +211,4 @@ ms.openlocfilehash: e31c947ee275d34b1f59909fb009ce5a73b42785
 [azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

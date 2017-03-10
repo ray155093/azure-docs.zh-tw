@@ -15,8 +15,9 @@ ums.workload: na
 ms.date: 01/07/2017
 ms.author: TomSh
 translationtype: Human Translation
-ms.sourcegitcommit: aaa69e2e4fed314e8bc363f60e7538b12bb3a56d
-ms.openlocfilehash: ca7f05534113752f3607268c15a9fe3e0e2982e0
+ms.sourcegitcommit: 9c27ea02ae341197a70d2b399cf8d534d79c9e4c
+ms.openlocfilehash: 001cc873960733bfe3e37fad95dbac29872ba00a
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -62,11 +63,9 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 
        Replace the Cloud with any of the following
        AzureCloud
-       AzureChinaCloud
        AzureUSGovernment
-       AzureGermanCloud
 
-       Note that at this time, an Azlog integrator only supports integrating logs from one cloud that you choose to integrate.
+       Note that at this time, an Azlog integrator only supports integrating logs from a cloud that you choose to integrate.
 
 ## <a name="integrate-azure-vm-logs-from-your-azure-diagnostics-storage-accounts"></a>整合來自您 Azure 診斷儲存體帳戶的 Azure VM 記錄檔
 1. 檢查上面所列的必要條件以確保您的 WAD 儲存體帳戶會收集記錄檔，然後再繼續您的 Azure 記錄整合。 如果您的 WAD 儲存體帳戶不會收集記錄檔，請不要執行下列步驟。
@@ -99,7 +98,7 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 2. 連線到 **azlog source add**命令中新增的儲存體帳戶。
 3. 在 Microsoft Azure 儲存體總管中，瀏覽至 **WADWindowsEventLogsTable** 資料表以查看是否有任何資料。 如果沒有，則在 VM 中的診斷設定不正確。
 
-## <a name="integrate-azure-audit-logs-and-security-center-alerts"></a>整合 Azure 稽核記錄檔和資訊安全中心警示
+## <a name="integrate-azure-activity-logs-and-security-center-alerts"></a>整合 Azure 活動記錄和資訊安全中心警示
 1. 開啟命令提示字元，並使用 **cd** 命令前往 **c:\Program Files\Microsoft Azure Log Integration**。
 2. 執行命令
 
@@ -128,7 +127,19 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
    * **c:\Users\azlog\AzureSecurityCenterJsonLD**
 6. 將標準的 SIEM 檔案轉寄站連接器指向適當資料夾，以透過管線將資料傳送至 SIEM 執行個體。 您可能需要根據所使用的 SIEM 產品進行某些欄位對應。
 
-如果您有關於「Azure 記錄整合」的問題，請傳送電子郵件給 [AzSIEMteam@microsoft.com](mailto:AzSIEMteam@microsoft.com)
+## <a name="integrate-azure-active-directory-audit-logs"></a>整合 Azure Active Directory 稽核記錄
+1. 開啟命令提示字元，並使用 **cd** 命令前往 **c:\Program Files\Microsoft Azure Log Integration**
+2. 執行命令 .\AZLOG.exe authorizedirectoryreader <TenantID> 範例 - 
+
+.\AZLOG.exe authorizedirectoryreader ba2c0023-d24b-4f4e-92b1-48c4469999
+
+3. 檢查下列資料夾以確認 JSON 檔案建立在 Azure Active Directory 稽核記錄中 
+* **C:\Users\azlog\AzureActiveDirectoryJson**   
+* **C:\Users\azlog\AzureActiveDirectoryJsonLD**
+
+4. 將標準的 SIEM 檔案轉寄站連接器指向適當資料夾，以透過管線將資料傳送至 SIEM 執行個體。 您可能需要根據所使用的 SIEM 產品進行某些欄位對應。
+
+如果您在安裝和設定期間遇到任何問題，請開啟[支援要求](https://docs.microsoft.com/en-us/azure/azure-supportability/how-to-create-azure-support-request)，選取「記錄整合」作為您要求支援的服務。
 
 ## <a name="next-steps"></a>後續步驟
 在本教學課程中，您已了解如何安裝 Azure 記錄整合，並整合來自 Azure 儲存體的記錄檔。 若要深入了解，請參閱下列文章：
@@ -139,9 +150,4 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 * [Azure 記錄整合常見問題集 (FAQ)](security-azure-log-integration-faq.md) - 此常見問題集會回答有關 Azure 記錄整合的問題。
 * [以 Azure 記錄整合來整合資訊安全中心警示](../security-center/security-center-integrating-alerts-with-log-integration.md) - 這份文件說明如何將資訊安全中心警示以及 Azure 診斷和 Azure 稽核記錄檔所收集的虛擬機器安全性事件，與您的 Log Analytics 或 SIEM 方案進行同步處理。
 * [Azure 診斷和 Azure 稽核記錄檔的新功能](https://azure.microsoft.com/blog/new-features-for-azure-diagnostics-and-azure-audit-logs/) – 此部落格文章為您介紹 Azure 稽核記錄檔和其他功能，協助您深入了解您的 Azure 資源的作業。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

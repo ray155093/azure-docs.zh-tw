@@ -4,6 +4,7 @@
 # 開始使用
 ## [在入口網站中建立擴展集](virtual-machine-scale-sets-portal-create.md)
 ## [使用 Azure CLI 建立擴展集](virtual-machine-scale-sets-linux-create-cli.md)
+## [使用 Resource Manager 範本建立擴展集](virtual-machine-scale-sets-mvss-start.md)
 
 # 作法
 ## 規劃和設計
@@ -46,8 +47,3 @@
 ### [Linux](https://azure.microsoft.com/pricing/details/virtual-machine-scale-sets/linux/)
 ### [Windows](https://azure.microsoft.com/pricing/details/virtual-machine-scale-sets/windows/)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-vm-scale-set)
-
-
-<!--HONumber=Feb17_HO3-->
-
-

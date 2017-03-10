@@ -13,13 +13,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 12/01/2016
 ms.author: rclaus
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a3e99cf86cbe6ae18366b13047d8c2994ff398f4
-ms.openlocfilehash: 9adf67b706f866fbb41c2b82970eb0e44aada5c6
+ms.sourcegitcommit: fa842efd99718be7fa9eaf8aac8030c32cbceeec
+ms.openlocfilehash: 4b01305ea1fc033de64ed2e4fb7e4c9f3d16d394
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="infrastructure-and-connectivity-to-sap-hana-on-azure-large-instances"></a>SAP HANA on Azure (大型執行個體) 的基礎結構和連線
+# <a name="sap-hana-large-instances-infrastructure-and-connectivity-on-azure"></a>Azure 上 SAP HANA (大型執行個體) 的基礎結構和連接 
 
 在您與 Microsoft 企業帳戶小組之間的 SAP HANA on Azure (大型執行個體) 購買程序完成之後，將需要下列資訊：
 
@@ -193,10 +195,5 @@ New-AzureRmVirtualNetworkGatewayConnection -Name $myConnectionName `
 
 如果您也想要移除 VNet，請依照上面＜刪除 VNet＞一節中的指導方針操作。
 
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

@@ -4,7 +4,7 @@ description: "了解如何在 Azure Web 應用程式中執行背景工作。"
 services: app-service
 documentationcenter: 
 author: tdykstra
-manager: wpickett
+manager: erikre
 editor: jimbe
 ms.assetid: af01771e-54eb-4aea-af5f-f883ff39572b
 ms.service: app-service
@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 11/27/2016
 ms.author: tdykstra
 translationtype: Human Translation
-ms.sourcegitcommit: 10320f338d902ffefd8a98fd59f3e8fb22682b00
-ms.openlocfilehash: 578575877fc706076ac2fdf034cb1ac0e92b16ef
+ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
+ms.openlocfilehash: 5d0d46447c3e0a3a1047e2bbedd44bbd46dd7f1b
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -32,7 +33,7 @@ Azure WebJobs SDK 能簡化許多 WebJobs 程式設計工作。 如需詳細資�
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-## <a name="a-nameacceptablefilesaacceptable-file-types-for-scripts-or-programs"></a><a name="acceptablefiles"></a>指令碼或程式可接受的檔案類型
+## <a name="acceptablefiles"></a>指令碼或程式可接受的檔案類型
 以下是可接受的檔案類型：
 
 * .cmd、.bat、.exe (使用 Windows 命令提示字元)
@@ -43,7 +44,7 @@ Azure WebJobs SDK 能簡化許多 WebJobs 程式設計工作。 如需詳細資�
 * .js (使用 Node)
 * .jar (使用 java)
 
-## <a name="a-namecreateondemandacreate-an-on-demand-webjob-in-the-portal"></a><a name="CreateOnDemand"></a>在入口網站中建立依需求執行的 WebJob
+## <a name="CreateOnDemand"></a>在入口網站中建立依需求執行的 WebJob
 1. 在 [Azure 入口網站](https://portal.azure.com)的 [Web 應用程式] 刀鋒視窗中，按一下 [所有設定] > [WebJob] 以顯示 [WebJob] 刀鋒視窗。
    
     ![WebJob 刀鋒視窗](./media/web-sites-create-web-jobs/wjblade.png)
@@ -60,7 +61,7 @@ Azure WebJobs SDK 能簡化許多 WebJobs 程式設計工作。 如需詳細資�
    
     ![執行 WebJob](./media/web-sites-create-web-jobs/runondemand.png)
 
-## <a name="a-namecreatecontinuousacreate-a-continuously-running-webjob"></a><a name="CreateContinuous"></a>建立連續執行的 WebJob
+## <a name="CreateContinuous"></a>建立連續執行的 WebJob
 1. 若要建立連續執行的 WebJob，請依照建立執行一次之 WebJob 的相同步驟，但在 [如何執行] 方塊中選取 [連續]。
 2. 若要開始或停止連續執行的 WebJob，可在清單中使用滑鼠右鍵按一下該 WebJob，然後按一下 [開始] 或 [停止]。
 
@@ -71,7 +72,7 @@ Azure WebJobs SDK 能簡化許多 WebJobs 程式設計工作。 如需詳細資�
 > 
 > 
 
-## <a name="a-namecreatescheduledcronacreate-a-scheduled-webjob-using-a-cron-expression"></a><a name="CreateScheduledCRON"></a>使用 CRON 運算式建立排定的 WebJob
+## <a name="CreateScheduledCRON"></a>使用 CRON 運算式建立排定的 WebJob
 在基本、標準或高階模式中執行的 Web Apps 可使用這項技術，前提是 App 上的 [永遠開啟]  設定需啟用。
 
 若要將依需求 WebJob 設成排定的 WebJob，只要在 WebJob zip 檔案的根目錄加入 `settings.job` 檔案。 此 JSON 檔案應該包含 `schedule` 屬性與 [CRON 運算式](https://en.wikipedia.org/wiki/Cron)，如以下範例所示。
@@ -95,7 +96,7 @@ CRON 運算式由 6 個欄位組成: `{second} {minute} {hour} {day} {month} {da
 
 **注意**：從 Visual Studio 部署 WebJob 時，請務必將您的 `settings.job` 檔案屬性標示為 [有更新時才複製 ]。
 
-## <a name="a-namecreatescheduledacreate-a-scheduled-webjob-using-the-azure-scheduler"></a><a name="CreateScheduled"></a>使用 Azure 排程器建立排定的 WebJob
+## <a name="CreateScheduled"></a>使用 Azure 排程器建立排定的 WebJob
 以下的替代技術會使用 Azure 排程器。 在此情況下，您的 WebJob 對排程一無所知。 反而是 Azure 排程器會被設定為依排程觸發 WebJob。 
 
 Azure 入口網站尚未具備建立排程 WebJob 的能力，但在加入該功能之前，您可以使用 [傳統入口網站](http://manage.windowsazure.com)來執行這個動作。
@@ -133,7 +134,7 @@ Azure 入口網站尚未具備建立排程 WebJob 的能力，但在加入該功
     
     ![工作清單][WebJobsListWithSeveralJobs]
 
-### <a name="a-nameschedulerascheduled-jobs-and-azure-scheduler"></a><a name="Scheduler"></a>排程工作和 Azure 排程器
+### <a name="Scheduler"></a>排程工作和 Azure 排程器
 您可以在 [傳統入口網站](http://manage.windowsazure.com)的 Azure 排程器頁面中，進一步設定排程工作。
 
 1. 在 [WebJobs] 頁面中，按一下工作的 [排程]  連結以瀏覽至 Azure 排程器入口網站頁面。 
@@ -146,7 +147,7 @@ Azure 入口網站尚未具備建立排程 WebJob 的能力，但在加入該功
    
     ![工作動作 PageInScheduler][JobActionPageInScheduler]
 
-## <a name="a-nameviewjobhistoryaview-the-job-history"></a><a name="ViewJobHistory"></a>檢視工作歷程記錄
+## <a name="ViewJobHistory"></a>檢視工作歷程記錄
 1. 若要檢視工作的執行歷程記錄 (包括使用 WebJobs SDK 建立的工作)，請在 WebJob 刀鋒視窗的 [記錄] 資料欄下方按一下對應的連結。 (如果需要，您可以使用剪貼簿圖示將記錄檔頁面的 URL 複製到剪貼簿。)
    
     ![記錄連結](./media/web-sites-create-web-jobs/wjbladelogslink.png)
@@ -167,14 +168,14 @@ Azure 入口網站尚未具備建立排程 WebJob 的能力，但在加入該功
    
     按一下這些連結中的任一連結可帶您前往選取之工作的 [WebJob 詳細資料] 頁面。
 
-## <a name="a-namewhpnotesanotes"></a><a name="WHPNotes"></a>注意
+## <a name="WHPNotes"></a>注意
 * 如果沒有對 scm (部署) 網站提出任何要求，則免費模式的 Web 應用程式可能會在 20 分鐘之後逾時，且 Web 應用程式在 Azure 中的入口網站也不會開啟。 對實際網站的要求將不會重設此項目。
 * 連續工作的程式碼需經過撰寫，才能以無限迴圈的形式執行。
 * 唯有當 Web 應用程式處於運作狀態時，連續工作才能連續執行。
 * [基本] 和 [標準] 模式能提供「永遠開啟」功能，此功能在啟用後能預防 Web 應用程式進入閒置狀態。
 * 您僅可偵錯連續執行的 WebJobs。 不支援偵錯排程或隨選的 WebJobs。
 
-## <a name="a-namenextstepsanext-steps"></a><a name="NextSteps"></a>後續步驟
+## <a name="NextSteps"></a>後續步驟
 如需詳細資訊，請參閱 [Azure WebJobs 建議資源][WebJobsRecommendedResources]。
 
 [PSonWebJobs]:http://blogs.msdn.com/b/nicktrog/archive/2014/01/22/running-powershell-web-jobs-on-azure-websites.aspx
@@ -203,10 +204,5 @@ Azure 入口網站尚未具備建立排程 WebJob 的能力，但在加入該功
 [LinkToScheduler]: ./media/web-sites-create-web-jobs/31LinkToScheduler.png
 [SchedulerPortal]: ./media/web-sites-create-web-jobs/32SchedulerPortal.png
 [JobActionPageInScheduler]: ./media/web-sites-create-web-jobs/33JobActionPageInScheduler.png
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

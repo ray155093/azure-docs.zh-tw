@@ -18,6 +18,7 @@ ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: 5001cd47b6ee51967d1286414ccefedd8e7e7813
 ms.openlocfilehash: 888b9786de8302ccd2e11f271aa417bcbcc2620b
+ms.lasthandoff: 12/02/2016
 
 
 ---
@@ -70,7 +71,7 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 
 ![一段時間的安全性記錄](./media/oms-security-getting-started/oms-getting-started-fig2.JPG)
 
-當您按一下此圖格時，[搜尋] 刀鋒視窗會開啟，並根據過去七天的資料顯示 [安全性事件] (類型=SecurityEvents) 的查詢結果，如下所示︰
+當您按一下此圖格時，[搜尋] 刀鋒視窗會開啟，並根據過去七天的資料顯示 [安全性事件] \(類型=SecurityEvents) 的查詢結果，如下所示︰
 
 ![一段時間的安全性記錄](./media/oms-security-getting-started/oms-getting-started-fig3.JPG)
 
@@ -183,10 +184,5 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 * [Operations Management Suite (OMS) 概觀](operations-management-suite-overview.md)
 * [在 Operations Management Suite 安全性和稽核內監視及回應安全性警示](oms-security-responding-alerts.md)
 * [在 Operations Management Suite 安全性和稽核解決方案內監視資源](oms-security-monitoring-resources.md)
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

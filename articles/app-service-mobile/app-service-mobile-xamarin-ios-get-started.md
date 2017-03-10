@@ -4,7 +4,7 @@ description: "遵循本教學課程，開始使用 Mobile Apps 進行 Xamarin.iO
 services: app-service\mobile
 documentationcenter: xamarin
 author: adrianhall
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: 14428794-52ad-4b51-956c-deb296cafa34
 ms.service: app-service-mobile

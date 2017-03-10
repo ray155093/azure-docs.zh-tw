@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 7c75fd870efb93bcf6c69ccf8a8ea9b56288c749
-ms.openlocfilehash: 0744b317f595786b91afce3c9e9d59f64ceef25d
+ms.sourcegitcommit: 801eef31e4a06fd1b89ddf504d643d9dcfcdcbdc
+ms.openlocfilehash: 99e6f4c1be6fa73db05fc4635fa5c34a579af588
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -61,6 +62,21 @@ ms.openlocfilehash: 0744b317f595786b91afce3c9e9d59f64ceef25d
 ### <a name="citrix-service-provider-program"></a>**Citrix 服務提供者方案**
 「Citrix 服務提供者方案」讓服務提供者能輕鬆提供簡單的虛擬雲端運算功能給中小企業，並以簡單、隨收隨付的模式提供他們想要的服務。 Citrix 服務提供者可利用任何裝置、隨處存取、最廣泛的應用程式支援、豐富的經驗、提升的安全性和延展性，使其 Microsoft SPLA 業務成長茁壯，並擴充其 RDS 平台投資。 接著，Citrix 服務提供者可吸引更多訂閱者、提高客戶滿意度並降低其營運成本。 [深入了解](http://www.citrix.com/products/service-providers.html)或[尋找合作夥伴](https://www.citrix.com/buy/partnerlocator.html)。
 
+### <a name="frame"></a>Frame
+
+企業和政府中的 IT 組織、受管理的服務提供者和主要軟體供應商都選擇 Frame 來建立和管理其雲端中的安全、軟體定義程式的工作區。 從小型到大型組織，Frame 讓使用者可以非常輕鬆地從任何裝置及任何瀏覽器上存取 Windows 應用程式。 Frame 平台包含系統管理員需要的所有項目以從雲端部署應用程式，包括 Azure 基礎結構和 RDS 授權 (可選擇性使用自己的 Azure 帳戶和授權)。 
+
+深入了解 [Azure 上的 Frame](https://www.fra.me/ara)。 
+
+主要位置︰美國加州的聖馬刁
+
+營運區域︰全球
+
+Microsoft 合作夥伴：是
+
+1-480-269-4668
+
+
 ### <a name="microsoft-hosted-service-provider"></a>**Microsoft 託管服務提供者**
 託管協力廠商通常會依照協力廠商與 Microsoft 和其他軟體提供者簽訂的授權合約，以及允許轉售訂戶存取授權 (SAL) 的服務提供者授權合約，提供完全受管理的託管 Windows 桌面和應用程式服務，可能包括管理 Azure 資源、作業系統、應用程式和技術服務。 下列資訊針對某些專門協助客戶處理其 Azure RemoteApp 移轉的主機服務提供者，提供詳細資料和連絡資訊。 查看目前已完成 RDS on IaaS 學習路徑和評估的[託管服務提供者清單](http://aka.ms/rdsonazurecertified)。  
 
@@ -86,7 +102,7 @@ Azure RemoteApp 移轉解決方案︰是，[深入了解](https://www.aspex.be/e
 * Web：[http://cloud.aspex.be/contact-ara-0](http://cloud.aspex.be/contact-ara-0)
 
 #### <a name="conexlink-platform-name-mycloudit"></a>**Conexlink (平台名稱︰MyCloudIT)**
-[MyCloudIT](http://www.mycloudit.com) 是一個自動化平台，可供 IT 公司簡化、最佳化和調整移轉，以及在 Microsoft Azure 雲端中提供遠端桌面、遠端應用程式和基礎結構。 
+[MyCloudIT](https://mycloudit.com) 是一個自動化平台，可供 IT 公司簡化、最佳化和調整移轉，以及在 Microsoft Azure 雲端中提供遠端桌面、遠端應用程式和基礎結構。 
 
 MyCloudIT 平台可減少 95% 的部署時間、30% 的 Azure 成本，而且只要按幾個按鍵，即可將其用戶端的整個 IT 基礎結構移到雲端。 協力廠商現在可以從通用儀表板管理客戶、以前所未有的方式服務世界各地的使用者，並且讓營收成長，但不會增加額外的負荷或廣泛 Azure 訓練。  
 
@@ -208,10 +224,5 @@ Microsoft Cloud 服務提供者：是
 1. 請透過下列電子郵件地址連絡我們：[arainfo@microsoft.com](mailto:arainfo@microsoft.com)。
 2. 連絡 [Azure 支援](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。 從開啟 [Azure 支援案例](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)著手。
 3. 致電給我們。 [尋找當地的銷售代表電話](https://azure.microsoft.com/overview/sales-number/)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

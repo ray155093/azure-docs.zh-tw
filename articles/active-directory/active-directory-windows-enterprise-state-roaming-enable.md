@@ -5,7 +5,7 @@ description: "Windows 裝置中企業狀態漫遊設定的常見問題集。 企
 services: active-directory
 keywords: "企業狀態漫遊, windows 雲端, 如何啟用企業狀態漫遊"
 documentationcenter: 
-author: femila
+author: tanning
 manager: femila
 editor: curtand
 ms.assetid: f71d66fd-7f9e-45eb-9cfe-5d989870f8a4
@@ -14,11 +14,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 03/08/2017
 ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 0628dafc9cc4cb05e678f741d913e00116013459
 ms.openlocfilehash: 435f801b254a6c423a6ec3e96037ade62e14af29
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -76,9 +77,4 @@ Azure AD 全域管理員可以在 Azure 傳統入口網站中啟用和停用企�
 * [設定同步處理的群組原則和 MDM 設定](active-directory-windows-enterprise-state-roaming-group-policy-settings.md)
 * [Windows 10 漫遊設定參考](active-directory-windows-enterprise-state-roaming-windows-settings-reference.md)
 * [疑難排解](active-directory-windows-enterprise-state-roaming-troubleshooting.md)
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

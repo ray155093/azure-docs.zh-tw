@@ -17,6 +17,7 @@ ms.author: mandia
 translationtype: Human Translation
 ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
 ms.openlocfilehash: 589b95fdd05478305fa8ef629fc6758bdd716da6
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -50,7 +51,7 @@ Azure BizTalk 服務包含備份與還原功能。 本主題說明如何使用 A
 
 [排定備份](#backupschedule)
 
-#### <a name="a-namebackupnowaon-demand-backup"></a><a name="backupnow"></a>隨選備份
+#### <a name="backupnow"></a>隨選備份
 1. 在 Azure 傳統入口網站上，選取 [BizTalk 服務] ，然後選取要備份的 BizTalk 服務。
 2. 在 [儀表板] 索引標籤中，選取頁面底部的 [備份]。
 3. 輸入備份名稱。 例如，輸入 *myBizTalkService*BU*Date*。
@@ -58,7 +59,7 @@ Azure BizTalk 服務包含備份與還原功能。 本主題說明如何使用 A
 
 備份完成時，儲存體帳戶內會以您輸入的備份名稱建立一個容器。 此容器包含 BizTalk 服務備份組態。
 
-#### <a name="a-namebackupscheduleaschedule-a-backup"></a><a name="backupschedule"></a>排定備份
+#### <a name="backupschedule"></a>排定備份
 1. 在 Azure 傳統入口網站上，選取 [BizTalk 服務]，選取您要排定備份的 BizTalk 服務名稱，然後選取 [設定] 索引標籤。
 2. 將 [備份狀態] 設為 [自動]。 
 3. 選取要儲存備份的 [儲存體帳戶]，輸入建立備份的 [頻率] 以及備份的保留時間 ([保留天數])：
@@ -79,7 +80,7 @@ Azure BizTalk 服務包含備份與還原功能。 本主題說明如何使用 A
 
 該連結可開啟 [管理服務作業記錄] 以協助進行疑難排解。 請參閱 [BizTalk 服務：使用作業記錄進行疑難排解](http://go.microsoft.com/fwlink/p/?LinkId=391211)。
 
-## <a name="restore"></a>還原
+## <a name="restore"></a>Restore
 您可以從 Azure 傳統入口網站或從 [還原 BizTalk 服務 REST API](http://go.microsoft.com/fwlink/p/?LinkID=325582)來還原備份。 本節列出使用傳統入口網站進行還原的步驟。
 
 #### <a name="before-restoring-a-backup"></a>還原備份之前
@@ -93,7 +94,7 @@ Azure BizTalk 服務包含備份與還原功能。 本主題說明如何使用 A
 2. 在 [ **備份 URL**] 中，選取資料夾圖示並展開儲存 BizTalk 服務設定備份的 Azure 儲存體帳戶。 展開容器，然後在右窗格中，選取對應的 .txt 備份檔案。 
    <br/><br/>
    選取 [開啟] 。
-3. 在 [還原 BizTalk 服務] 頁面上，輸入一個 **BizTalk 服務名稱**，然後驗證要還原的 BizTalk 服務的**網域 URL**、**版本**和**區域**。 **建立新的 SQL 資料庫執行個體** ]：
+3. 在 [還原 BizTalk 服務] 頁面上，輸入一個 **BizTalk 服務名稱**，然後驗證要還原的 BizTalk 服務的**網域 URL**、**版本**和**區域**。 **建立新的 SQL 資料庫執行個體** ：
    
     ![][RestoreBizTalkService]
    
@@ -109,7 +110,7 @@ Azure BizTalk 服務包含備份與還原功能。 本主題說明如何使用 A
 
 順利完成還原時，在 Azure 傳統入口網站的 BizTalk 伺服器頁面上，新的 BizTalk 服務將以暫止狀態列出。
 
-### <a name="a-namepostrestoreaafter-restoring-a-backup"></a><a name="postrestore"></a>還原備份之後
+### <a name="postrestore"></a>還原備份之後
 BizTalk 服務永遠還原成 **暫止** 狀態。 在此狀態下，您可以在新環境開始運作前進行任何設定變更，包括：
 
 * 若您使用 Azure BizTalk 服務 SDK 來建立 BizTalk 服務應用程式，您可能需要在這些應用程式中更新存取控制 (ACS) 認證，才能使用還原後的環境。
@@ -206,13 +207,8 @@ BizTalk 服務永遠還原成 **暫止** 狀態。 在此狀態下，您可以�
 * [如何開始使用 Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 
 [BackupStatus]: ./media/biztalk-backup-restore/status-last-backup.png
-[還原]: ./media/biztalk-backup-restore/restore-ui.png
+[Restore]: ./media/biztalk-backup-restore/restore-ui.png
 [AutomaticBU]: ./media/biztalk-backup-restore/AutomaticBU.png
 [RestoreBizTalkService]: ./media/biztalk-backup-restore/RestoreBizTalkServiceWindow.png
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

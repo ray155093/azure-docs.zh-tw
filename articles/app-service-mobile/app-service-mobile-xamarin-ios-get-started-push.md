@@ -4,7 +4,7 @@ description: "了解如何使用 Azure App Service 將推播通知傳送至 Xama
 services: app-service\mobile
 documentationcenter: xamarin
 author: ysxu
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: 2921214a-49f8-45e1-a306-a85ce21defca
 ms.service: app-service-mobile
@@ -120,7 +120,7 @@ ms.lasthandoff: 11/17/2016
 
 您的應用程式現在已更新為支援推播通知。
 
-## <a name="a-nametestatest-push-notifications-in-your-app"></a><a name="test"></a>在應用程式中測試推播通知
+## <a name="test"></a>在應用程式中測試推播通知
 1. 按 [執行] 按鈕以建置專案並在可執行 iOS 的裝置上啟動應用程式，然後按一下 [確定] 以接受推播通知。
    
    > [!NOTE]

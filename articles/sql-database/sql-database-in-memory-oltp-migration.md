@@ -18,6 +18,7 @@ ms.author: jodebrui
 translationtype: Human Translation
 ms.sourcegitcommit: 42f3f6a24e423f54ad7bb282404ddc6ff2450cb7
 ms.openlocfilehash: 5b6fdbfa983cd5bb27ddd13860dfe89c5a3681b6
+ms.lasthandoff: 11/23/2016
 
 
 ---
@@ -80,7 +81,7 @@ SSMS 包含您可以對具有作用中工作負載的資料庫執行的 [交易�
 2. 在 [物件總管] 中，以滑鼠右鍵按一下資料表，然後按一下 [記憶體最佳化建議程式]。
    
    * [資料表記憶體最佳化建議程式]  精靈隨即顯示。
-3. 在此精靈中按一下 [移轉驗證] (或 [下一步] 按鈕)，以查看資料表是否有任何在記憶體最佳化資料表中不受支援的功能。 如需詳細資訊，請參閱：
+3. 在此精靈中按一下 [移轉驗證] \(或 [下一步] 按鈕)，以查看資料表是否有任何在記憶體最佳化資料表中不受支援的功能。 如需詳細資訊，請參閱：
    
    * *記憶體最佳化建議程式* 中的 [記憶體最佳化檢查清單](http://msdn.microsoft.com/library/dn284308.aspx)。
    * [In-Memory OLTP 不支援的 Transact-SQL 建構](http://msdn.microsoft.com/library/dn246937.aspx)。
@@ -173,10 +174,5 @@ CREATE PROCEDURE schemaname.procedurename
 * [In-Memory OLTP (In-Memory Optimization)](http://msdn.microsoft.com/library/dn133186.aspx)
 * [原生編譯預存程序簡介](http://msdn.microsoft.com/library/dn133184.aspx)
 * [記憶體最佳化建議程式](http://msdn.microsoft.com/library/dn284308.aspx)
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

@@ -69,7 +69,7 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：**
 1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [新增]>[計算]>[雲端服務]>[快速建立]。
    
     ![CloudServices_QuickCreate](./media/cloud-services-how-to-create-deploy/CloudServices_QuickCreate.png)
-2. 在 [URL] 中，輸入要在公用 URI 中使用的子網域名稱，以存取生產部署中的雲端服務。 生產部署的 URL 格式是：http://myURL.cloudapp.net。
+2. 在 [URL] 中，輸入要在公用 URI 中使用的子網域名稱，以存取生產部署中的雲端服務。 生產部署的 URL 格式是：http://*myURL*.cloudapp.net。
 3. 在 [區域] 或 [同質群組] 中，選取要將雲端服務部署到其中的地理區域或同質群組。 如果您要將雲端服務部署到區域中其他 Azure 服務所在的同一個位置，請選取同質群組。
 4. 按一下 [建立雲端服務] 。
    
