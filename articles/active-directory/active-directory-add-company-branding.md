@@ -12,11 +12,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/13/2017
+ms.date: 03/03/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: e4896c1a3adf76477899336f1ff1ee215cc7c9aa
-ms.openlocfilehash: 6a20f75dbb2c914b1239adb5ba10189a7193584c
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 1ec1a20dec318153923afd6a0875545d1e102f29
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -133,6 +134,10 @@ ms.openlocfilehash: 6a20f75dbb2c914b1239adb5ba10189a7193584c
 
 技術上，雖然您可以針對 Azure AD 所支援的每種語言設定不同的一組，但是基於維護和效能考量，建議您保持低變化數目。
 
+> [!IMPORTANT]
+> Yammer 不會顯示 Azure AD 品牌化登入頁面，直到使用者登入之後。 使用者會先看到一般 Office 365 登入頁面，然後再看到該頁面之後的品牌化頁面。   
+ 
+ 
 **若要將公司商標新增至您的目錄，請執行下列步驟：**
 
 1. 以想要自訂之目錄的管理員身分，登入 [Azure 傳統入口網站](https://manage.windowsazure.com) 。
@@ -148,7 +153,7 @@ ms.openlocfilehash: 6a20f75dbb2c914b1239adb5ba10189a7193584c
 
 1. 以想要自訂之目錄的管理員身分，登入 [Azure 傳統入口網站](https://manage.windowsazure.com) 。
 2. 選取您想要自訂的目錄。
-3. 在頂端的工具列中，按一下 [設定] 。
+fs3。 在頂端的工具列中，按一下 [設定] 。
 4. 按一下 [自訂商標] 。
 5. 按一下 [新增特定語言的商標] 。
 6. 選取您要自訂標誌的語言，然後按 [下一步] 。
@@ -221,9 +226,4 @@ Azure AD 中的部分可自訂元素有多個使用案例。 您可以在每個�
 [7]: ./media/active-directory-add-company-branding/SignInPage_aftercustomization_croppedtop.png
 [8]: ./media/active-directory-add-company-branding/APBranding.png
 [9]: ./media/active-directory-add-company-branding/hidekmsi.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -1,6 +1,6 @@
 ---
-title: "管理工作區 | Microsoft Docs"
-description: "在 Azure Log Analytics 中使用有關使用者、帳戶、工作區及 Azure 帳戶的各種系統管理工作來管理工作區。"
+title: "在 Azure Log Analytics 和 OMS 入口網站中管理工作區 | Microsoft Docs"
+description: "您可以在 Azure Log Analytics 和 OMS 入口網站中使用有關使用者、帳戶、工作區及 Azure 帳戶的各種系統管理工作來管理工作區。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -12,12 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/17/2017
+ms.date: 03/01/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 9ee8f4aafcc35e43c4fcba5a3a72b043dd9fc32c
-ms.openlocfilehash: 1d330362389ee690dc2942c9bb1bc32e1f10e08a
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: dd09c109594e0ba86fe2f40625e765494bfc06eb
+ms.openlocfilehash: 1221de9ae16022f7300510b2db67ed0849b61397
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -163,25 +163,16 @@ ms.lasthandoff: 02/21/2017
 ## <a name="link-an-existing-workspace-to-an-azure-subscription"></a>將現有的工作區連結到 Azure 訂用帳戶
 建立時，所有在 2016 年 9 月 26 日之後建立的工作區都必須連結到 Azure 訂用帳戶。 下次登入時，在這個日期之前建立的工作區必須連結到工作區。 如果您從 Azure 入口網站建立工作區，或將工作區連結到 Azure 訂用帳戶，則會連結 Azure Active Directory 作為您的組織帳戶。
 
-![連結 Azure 訂用帳戶](./media/log-analytics-manage-access/required-link.png)
-
-> [!IMPORTANT]
-> 若要連結工作區，您的 Azure 帳戶必須已經能夠存取您想要連結的工作區。  換句話說，您用來存取 Azure 入口網站的帳戶必須與用來存取工作區的帳戶**相同**。 否則，請參閱[將使用者新增至現有工作區](#add-a-user-to-an-existing-workspace)。
->
->
-
 ### <a name="to-link-a-workspace-to-an-azure-subscription-in-the-oms-portal"></a>在 OMS 入口網站中將工作區連結到 Azure 訂用帳戶
-若要在 OMS 入口網站中將工作區連結到 Azure 訂用帳戶，登入的使用者必須已有付費的 Azure 帳戶。
 
-1. 在 OMS 入口網站中，按一下 [設定] 圖格。
-2. 按一下 [帳戶] 索引標籤，然後按一下 [Azure 訂用帳戶和行動數據方案] 索引標籤。
-3. 按一下您要使用的行動數據方案。
-4. 按一下 [儲存] 。  
-   ![訂用帳戶和行動數據方案](./media/log-analytics-manage-access/subscription-tab.png)
+- 當您登入 OMS 入口網站時，系統會提示您選取 Azure 訂用帳戶。 選取您想要連結至工作區的訂用帳戶，然後按一下 [連結]。  
+    ![連結 Azure 訂用帳戶](./media/log-analytics-manage-access/required-link.png)
 
-新的行動數據方案會顯示在網頁頂端的 OMS 入口網站功能區中。
+    > [!IMPORTANT]
+    > 若要連結工作區，您的 Azure 帳戶必須已經能夠存取您想要連結的工作區。  換句話說，您用來存取 Azure 入口網站的帳戶必須與用來存取工作區的帳戶**相同**。 否則，請參閱[將使用者新增至現有工作區](#add-a-user-to-an-existing-workspace)。
 
-![OMS 功能區](./media/log-analytics-manage-access/data-plan-changed.png)
+
+
 
 ### <a name="to-link-a-workspace-to-an-azure-subscription-in-the-azure-portal"></a>在 Azure 入口網站中將工作區連結到 Azure 訂用帳戶
 1. 登入 [Azure 入口網站](http://portal.azure.com)。
@@ -236,7 +227,7 @@ OMS 有三種工作區方案類型：[免費]、[獨立] 和 [OMS]。  如果您
 
 如果需要變更工作區所連結的 Azure 訂用帳戶，則可以使用 Azure PowerShell [Move-AzureRmResource](https://msdn.microsoft.com/library/mt652516.aspx) Cmdlet。  
 
-### <a name="change-a-workspace-to-a-paid-pricing-tier"></a>將工作區變更為付費定價層
+### <a name="change-a-workspace-to-a-paid-pricing-tier-in-the-azure-portal"></a>在 Azure 入口網站中將工作區變更為付費定價層
 1. 登入 [Azure 入口網站](http://portal.azure.com)。
 2. 瀏覽 **Log Analytics**，然後加以選取。
 3. 您會看到現有工作區清單。 選取工作區。  
@@ -250,6 +241,21 @@ OMS 有三種工作區方案類型：[免費]、[獨立] 和 [OMS]。  如果您
 > 如果您的工作區連結到自動化帳戶，必須先刪除任何**自動化和控制**解決方案以及取消連結自動化帳戶，才可以選取 [獨立 (每 GB)] 定價層。 在 [工作區] 刀鋒視窗的 [一般] 之下，按一下 [解決方案] 以查看和刪除解決方案。 若要取消連結自動化帳戶，請按一下 [定價層] 刀鋒視窗上的自動化帳戶名稱。
 >
 >
+
+## <a name="change-your-data-plan-in-the-oms-portal"></a>在 OMS 入口網站中變更行動數據方案
+
+若要使用 OMS 入口網站變更行動數據方案，登入的使用者必須有 Azure 帳戶。
+
+1. 在 OMS 入口網站中，按一下 [設定] 圖格。
+2. 按一下 [帳戶] 索引標籤，然後按一下 [Azure 訂用帳戶和行動數據方案] 索引標籤。
+3. 按一下您要使用的行動數據方案。
+4. 按一下 [儲存] 。  
+   ![訂用帳戶和行動數據方案](./media/log-analytics-manage-access/subscription-tab.png)
+
+新的行動數據方案會顯示在網頁頂端的 OMS 入口網站功能區中。
+
+![OMS 功能區](./media/log-analytics-manage-access/data-plan-changed.png)
+
 
 ## <a name="change-how-long-log-analytics-stores-data"></a>變更 Log Analytics 儲存資料的時間長度
 
@@ -266,8 +272,8 @@ OMS 有三種工作區方案類型：[免費]、[獨立] 和 [OMS]。  如果您
 2. 瀏覽 **Log Analytics**，然後加以選取。
 3. 您會看到現有工作區清單。 選取工作區。  
 4. 在 [工作區] 刀鋒視窗的 [一般] 下方，按一下 [保留]。  
-5. 使用滑桿來增加或減少保留天數，然後按一下 [儲存]****
-![變更保留](./media/log-analytics-manage-access/manage-access-change-retention01.png)
+5. 使用滑桿來增加或減少保留天數，然後按一下 [儲存]。  
+    ![變更保留](./media/log-analytics-manage-access/manage-access-change-retention01.png)
 
 ## <a name="change-an-azure-active-directory-organization-for-a-workspace"></a>變更工作區的 Azure Active Directory 組織
 

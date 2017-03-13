@@ -12,12 +12,12 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/06/2017
+ms.date: 03/06/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 9852981e530cd147c2d34ac2ede251b58a167a0a
-ms.openlocfilehash: 0093beda6af6d3b2400185fcd63bc73b2c8c9ba9
-ms.lasthandoff: 02/07/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: bf3aa51b4b1224840ae6897ff7df86cf3d2b3477
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 02/07/2017
 本文件可協助您使用 Azure 資訊安全中心來管理及回應安全性警示。
 
 > [!NOTE]
-> 若要啟用進階偵測，請升級至 Azure 資訊安全中心標準。 提供 90 天的免費試用。 若要升級，請選取[安全性原則](security-center-policies.md)中的 [定價層]。 若要深入了解，請參閱 [Azure 資訊安全中心價格](security-center-pricing.md)。
+> 若要啟用進階偵測，請升級至 Azure 資訊安全中心標準。 提供 60 天的免費試用。 若要升級，請選取[安全性原則](security-center-policies.md)中的 [定價層]。 若要深入了解，請參閱 [Azure 資訊安全中心價格](security-center-pricing.md)。
 >
 >
 

@@ -16,9 +16,9 @@ ms.topic: get-started-article
 ms.date: 02/28/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: d391aeacd5a755c3d344a359cae130788d1a5402
-ms.openlocfilehash: 02c7cd73951b7af83760ee10be4bb8f2da142283
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: c40fca54b02f2673194ab16c41314f1e50be12be
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -80,13 +80,10 @@ ms.lasthandoff: 02/24/2017
 
    ![][003]
 
-5. 在 [設定] 索引標籤底下，向下捲動至 [使用者密碼重設原則] 區段。  這是您設定指定目錄的使用者密碼重設原則各個層面的位置。 *如果看不到 [設定] 索引標籤，請確定您已註冊 Azure Active Directory Premium 或 Basic，並且**指派授權**給設定此功能的系統管理員帳戶。*  
+5. 在 [設定] 索引標籤底下，向下捲動至 [使用者密碼重設原則] 區段。  這是您設定指定目錄的使用者密碼重設原則各個層面的位置。 *如果看不到 [設定] 索引標籤，請確定您已註冊 Azure Active Directory Premium 或 Basic，並且__指派授權__給設定此功能的系統管理員帳戶。*  
 
    > [!NOTE]
    > **您設定的原則只適用於您組織中的使用者，不適用於系統管理員**。 基於安全性理由，Microsoft 會為系統管理員控制密碼重設原則。 目前適用於系統管理員的原則需要進行兩項挑戰 - 行動電話和電子郵件地址。
-
-   >
-   >
 
    ![][004]
 6. 若要設定使用者密碼重設原則，滑動 [使用者啟用密碼重設] 以切換至 [是] 設定。  這會顯示更多控制項，讓您設定這項功能如何在您的目錄中運作。  放心地自訂您覺得適合的密碼重設。  如果您想要深入了解關於每一項密碼重設原則控制項所執行的項目，請參閱 [自訂：Azure AD 密碼管理](active-directory-passwords-customize.md)。
@@ -264,13 +261,19 @@ ms.lasthandoff: 02/24/2017
   ![][023]
 
 ### <a name="step-3-configure-your-firewall"></a>步驟 3：設定您的防火牆
-啟用密碼回寫之後，您需要確定執行 Azure AD Connect 的電腦可以連線到 Microsoft 雲端服務以接收密碼回寫要求。 這個步驟包含在您的網路應用裝置 (proxy 伺服器、防火牆等) 中更新連線規則，以允許透過特定網路連接埠的輸出連線到特定 Microsoft 擁有之 URL 和 IP 位址。 這些變更可能會根據 Azure AD Connect 工具的版本而有所不同。 如需詳細內容，您可以深入了解[密碼回寫的運作方式](active-directory-passwords-learn-more.md#how-password-writeback-works)和[密碼回寫的安全性模型](active-directory-passwords-learn-more.md#password-writeback-security-model)。
+啟用密碼回寫之後，您需要確定執行 Azure AD Connect 的電腦可以連線到 Microsoft 雲端服務以接收密碼回寫要求。 這個步驟包含在您的網路應用裝置 (proxy 伺服器、防火牆等) 中更新連線規則，以允許透過特定網路連接埠的輸出連線到特定 [Microsoft 擁有之 URL 和 IP 位址](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2?ui=en-US&rs=en-US&ad=US)。 這些變更可能會根據 Azure AD Connect 工具的版本而有所不同。 如需詳細內容，您可以深入了解[密碼回寫的運作方式](active-directory-passwords-learn-more.md#how-password-writeback-works)和[密碼回寫的安全性模型](active-directory-passwords-learn-more.md#password-writeback-security-model)。
 
 #### <a name="why-do-i-need-to-do-this"></a>我為何需要這麼做？
 
 為了使密碼回寫正確運作，執行 Azure AD Connect 的電腦必須能夠建立 **.servicebus.windows.net*和 Azure 所使用之特定 IP 位址的輸出 HTTPS 連線，如 [Microsoft Azure 資料中心 IP 範圍清單](https://www.microsoft.com/download/details.aspx?id=41653)中所定義。
 
-針對 Azure AD Connect 工具版本 1.0.8667.0 和更新版本︰
+針對 Azure AD Connect 工具 **1.1.439.0** (最新) 和更新版本︰
+
+- 最新版本的 Azure AD Connect 工具需要**輸出 HTTPS** 存取至：
+    - *passwordreset.microsoftonline.com*
+    - *servicbus.windows.net*
+
+針對 Azure AD Connect 工具版本 **1.0.8667.0** 至 **1.1.380.0**︰
 
 - **選項 1：**允許所有透過連接埠 443 (使用 URL 或 IP 位址) 的輸出 HTTPS 連線。
     - 使用此選項的時機︰
@@ -298,6 +301,9 @@ ms.lasthandoff: 02/24/2017
 > 如果您是 Azure AD Connect 1.0.8667.0 之前的版本，Microsoft 強烈建議您升級至[最新版的 Azure AD Connect](https://www.microsoft.com/download/details.aspx?id=47594)，其中包含數項回寫網路增強功能來簡化設定。
 
 一旦已設定網路應用裝置後，請重新開機執行 Azure AD Connect 工具的電腦。
+
+#### <a name="idle-connections-on-azure-ad-connect-114390-and-up"></a>Azure AD Connect 上的閒置連線 (1.1.439.0 和更高版本)
+Azure AD Connect 工具會傳送定期 ping/keepalives 至服務匯流排端點，以確保連線保持作用中。 工具偵測到太多的連線應該被終止時，它就會自動增加 ping 至端點的頻率。 將放置的最低「ping 間隔」是每隔 60 秒 1 ping，不過，**我們強烈建議讓 proxy/防火牆允許保存閒置連線至少 2-3 分鐘。** \*針對較舊版本，建議 4 分鐘以上。
 
 ### <a name="step-4-set-up-the-appropriate-active-directory-permissions"></a>步驟 4：設定適當的 Active Directory 權限
 對於包含使用者 (其密碼將會重設) 的每個樹系，如果 X 為組態精靈 (初始組態期間) 中針對該樹系指定的帳戶，則必須為 X 指定**重設密碼**、**變更密碼**、`lockoutTime` 的**寫入權限**和 `pwdLastSet` 的**寫入權限**、該樹系中每個網域之根物件的擴充權限。 權限應該標示為由所有使用者物件繼承。  

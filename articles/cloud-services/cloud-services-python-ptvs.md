@@ -15,8 +15,9 @@ ms.topic: hero-article
 ms.date: 11/16/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 9ad2f55c7db53459c17299ba5015783781c7cd63
-ms.openlocfilehash: 6ec7c5ac984476e3645b45f5e8cf98cf0aa18e5d
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: c03122972228f30d56a8e0636b1c35ac92b42977
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -25,15 +26,17 @@ ms.openlocfilehash: 6ec7c5ac984476e3645b45f5e8cf98cf0aa18e5d
 本文提供在 [Python Tools for Visual Studio][Python Tools for Visual Studio] 中使用 Python Web 和背景工作角色的概觀。 您將學習如何使用 Visual Studio 來建立和部署使用 Python 的基本雲端服務。
 
 ## <a name="prerequisites"></a>必要條件
-* Visual Studio 2013 或 2015
+* [Visual Studio 2013、2015 或 2017](https://www.visualstudio.com/)
 * [Python Tools for Visual Studio][Python Tools for Visual Studio] (PTVS)
-* [Azure SDK Tools for VS 2013][Azure SDK Tools for VS 2013] 或 [Azure SDK Tools for VS 2015][Azure SDK Tools for VS 2015]
-* [Python 2.7 32 位元][Python 2.7 32 位元]或 [Python 3.5 32 位元][Python 3.5 32 位元]
+* [Azure SDK Tools for VS 2013][Azure SDK Tools for VS 2013] 或  
+[Azure SDK Tools for VS 2015][Azure SDK Tools for VS 2015] 或  
+[Azure SDK Tools for VS 2017][Azure SDK Tools for VS 2017]
+* [Python 2.7 32 位元][Python 2.7 32-bit]或 [Python 3.5 32 位元][Python 3.5 32-bit]
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 ## <a name="what-are-python-web-and-worker-roles"></a>什麼是 Python Web 和背景工作角色？
-Azure 提供三種運算模型來執行應用程式：[Azure App Service 中的 Web Apps 功能][execution model-web sites]、[Azure 虛擬機器][execution model-vms] 和 [Azure 雲端服務][execution model-cloud services]。 這三種模型都支援 Python。 雲端服務 (包含 Web 和背景工作角色) 可提供*平台即服務 (PaaS)*。 在雲端服務中，Web 角色應用程式會提供專用的 Internet Information Services (IIS) Web 伺服器，用以代管前端 Web 應用程式，而背景工作角色則可執行獨立於使用者互動或輸入以外的非同步、長時間執行或持續性工作。
+Azure 提供三種運算模型來執行應用程式：[Azure App Service 中的 Web Apps 功能][execution model-web sites]、[Azure 虛擬機器][execution model-vms]和 [Azure 雲端服務][execution model-cloud services]。 這三種模型都支援 Python。 雲端服務 (包含 Web 和背景工作角色) 可提供*平台即服務 (PaaS)*。 在雲端服務中，Web 角色應用程式會提供專用的 Internet Information Services (IIS) Web 伺服器，用以代管前端 Web 應用程式，而背景工作角色則可執行獨立於使用者互動或輸入以外的非同步、長時間執行或持續性工作。
 
 如需詳細資訊，請參閱[什麼是雲端服務？] (英文)。
 
@@ -329,15 +332,15 @@ if not exist "%DiagnosticStore%\LogFiles" mkdir "%DiagnosticStore%\LogFiles"
 ## <a name="next-steps"></a>後續步驟
 如需在 Python Tools for Visual Studio 中使用 Web 和背景工作角色的相關詳細資訊，請參閱 PTVS 文件：
 
-* [雲端服務專案][雲端服務專案]
+* [雲端服務專案][Cloud Service Projects]
 
 如需有關從 Web 和背景工作角色使用 Azure 服務的詳細資訊，例如使用 Azure 儲存體或服務匯流排，請參閱下列文章。
 
-* [Blob 服務][Blob 服務]
-* [表格服務][表格服務]
-* [佇列服務][佇列服務]
-* [服務匯流排佇列][服務匯流排佇列]
-* [服務匯流排主題][服務匯流排主題]
+* [Blob 服務][Blob Service]
+* [表格服務][Table Service]
+* [佇列服務][Queue Service]
+* [服務匯流排佇列][Service Bus Queues]
+* [服務匯流排主題][Service Bus Topics]
 
 <!--Link references-->
 
@@ -345,27 +348,23 @@ if not exist "%DiagnosticStore%\LogFiles" mkdir "%DiagnosticStore%\LogFiles"
 [execution model-web sites]: ../app-service-web/app-service-web-overview.md
 [execution model-vms]: ../virtual-machines/virtual-machines-windows-about.md
 [execution model-cloud services]: cloud-services-choose-me.md
-[Python 開發人員中心]: /develop/python/
+[Python Developer Center]: /develop/python/
 
-[Blob 服務]: ../storage/storage-python-how-to-use-blob-storage.md
-[佇列服務]: ../storage/storage-python-how-to-use-queue-storage.md
-[表格服務]: ../storage/storage-python-how-to-use-table-storage.md
-[服務匯流排佇列]: ../service-bus-messaging/service-bus-python-how-to-use-queues.md
-[服務匯流排主題]: ../service-bus-messaging/service-bus-python-how-to-use-topics-subscriptions.md
+[Blob Service]: ../storage/storage-python-how-to-use-blob-storage.md
+[Queue Service]: ../storage/storage-python-how-to-use-queue-storage.md
+[Table Service]: ../storage/storage-python-how-to-use-table-storage.md
+[Service Bus Queues]: ../service-bus-messaging/service-bus-python-how-to-use-queues.md
+[Service Bus Topics]: ../service-bus-messaging/service-bus-python-how-to-use-topics-subscriptions.md
 
 
 <!--External Link references-->
 
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
-[Python Tools for Visual Studio 說明文件]: http://aka.ms/ptvsdocs
-[雲端服務專案]: http://go.microsoft.com/fwlink/?LinkId=624028
-[Azure SDK Tools for VS 2013]: http://go.microsoft.com/fwlink/?LinkId=323510
-[Azure SDK Tools for VS 2015]: http://go.microsoft.com/fwlink/?LinkId=518003
-[Python 2.7 32 位元]: https://www.python.org/downloads/
-[Python 3.5 32 位元]: https://www.python.org/downloads/
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[Python Tools for Visual Studio Documentation]: http://aka.ms/ptvsdocs
+[Cloud Service Projects]: http://go.microsoft.com/fwlink/?LinkId=624028
+[Azure SDK Tools for VS 2013]: http://go.microsoft.com/fwlink/?LinkId=746482
+[Azure SDK Tools for VS 2015]: http://go.microsoft.com/fwlink/?LinkId=746481
+[Azure SDK Tools for VS 2017]: http://go.microsoft.com/fwlink/?LinkId=746483
+[Python 2.7 32-bit]: https://www.python.org/downloads/
+[Python 3.5 32-bit]: https://www.python.org/downloads/
 

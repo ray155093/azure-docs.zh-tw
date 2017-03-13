@@ -16,9 +16,9 @@ ms.tgt_pltfrm: na
 ms.date: 02/22/2017
 ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: 3f608b8ae7a7812b939e0d9ab1cb8e19853220fd
-ms.openlocfilehash: 6ed23693c95ce9025576d59fa6df9d640950ada3
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 7945ee77be8a09dcac9ddd6b338bdd542ec18540
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -35,11 +35,13 @@ ms.lasthandoff: 02/24/2017
 
 **估計時間︰**大約 15 分鐘，但如果還需要註冊帳戶或服務，則時間較長。 
 
-或者，您可以觀看本教學課程中 6 分鐘的步驟示範 (大約在此 [Azure 搜尋服務概觀影片](https://channel9.msdn.com/Events/Connect/2016/138)中的三分鐘處)。
+另外，加強使用 [.NET 中程式設計 Azure 搜尋服務的程式碼型簡介](search-howto-dotnet-sdk.md)。
 
 ## <a name="prerequisites"></a>必要條件
 
 本教學課程會採用 [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)和 [Azure 搜尋服務](search-create-service-portal.md)。 
+
+如果您不想要立即佈建服務，您可以觀看本教學課程中 6 分鐘的步驟示範 (大約在此 [Azure 搜尋服務概觀影片](https://channel9.msdn.com/Events/Connect/2016/138)中開始的三分鐘處)。
 
 ## <a name="find-your-service"></a>尋找您的服務
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
@@ -57,7 +59,7 @@ ms.lasthandoff: 02/24/2017
 > ![索引子和資料來源的圖格][1]
 >
 
-## <a name="a-namecreate-indexa-create-an-index-and-load-data"></a><a name="create-index"></a> 建立索引和載入資料
+## <a name="create-index"></a> 建立索引和載入資料
 搜尋查詢會逐一查看索引  ，其中包含用來最佳化特定搜尋行為的可搜尋資料、中繼資料及建構。
 
 為了讓這項工作以入口網站為基礎，我們使用可以透過 [匯入資料] 精靈使用索引子搜耙的內建範例資料集。 
@@ -100,7 +102,7 @@ ms.lasthandoff: 02/24/2017
 
    ![索引子進度訊息][4]
 
-## <a name="a-namequery-indexa-query-the-index"></a><a name="query-index"></a> 查詢索引
+## <a name="query-index"></a> 查詢索引
 您現在有準備好要查詢的搜尋索引。  是入口網站內建的查詢工具。 它會提供搜尋方塊，以便確認搜尋結果是否如您所預期。 
 
 > [!TIP]

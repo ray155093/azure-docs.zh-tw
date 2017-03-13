@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/17/2017
+ms.date: 03/02/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: cf72197aba2c6e6c7a51f96d1161cf1fbe88a0c5
-ms.openlocfilehash: 149f3daf1f61f459b0a0834c0f112574510d5259
-ms.lasthandoff: 02/18/2017
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 3ff2dcba568ed7ff83154cb6e1f1861ffb32a0d2
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -56,7 +56,7 @@ ms.lasthandoff: 02/18/2017
 * **區段 3：** 匯出並安裝用戶端憑證。
 * **區段 4：** 設定 VPN 用戶端。
 
-## <a name="a-namevnetvpnasection-1---create-a-virtual-network-and-a-vpn-gateway"></a><a name="vnetvpn"></a>區段 1 - 建立虛擬網路和 VPN 閘道
+## <a name="vnetvpn"></a>區段 1 - 建立虛擬網路和 VPN 閘道
 ### <a name="part-1-create-a-virtual-network"></a>第 1 部份 - 建立虛擬網路
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。 這些步驟使用傳統入口網站，而非 Azure 入口網站。 目前您無法使用 Azure 入口網站建立 P2S 連線。
 2. 按一下螢幕左下角的 [新增]。 在導覽窗格中依序按一下 [網絡服務] 和 [虛擬網路]。 按一下 [Custom Create]  開始組態精靈。
@@ -87,7 +87,7 @@ ms.lasthandoff: 02/18/2017
 1. 在 Azure 傳統入口網站的 [網路] 頁面上，按一下您建立的虛擬網路，然後瀏覽到 [儀表板] 頁面。
 2. 在 [儀表板] 頁面底部，按一下 [建立閘道]。 畫面上將會出現一則訊息，詢問**您是否想要為虛擬網路 "VNet1" 建立閘道**。 按一下 [是] 即可開始建立閘道。 閘道建立作業可能最多需要花費 45 分鐘的時間。
 
-## <a name="a-namegenerateasection-2---generate-and-upload-certificates"></a><a name="generate"></a>區段 2 - 產生並上傳憑證
+## <a name="generate"></a>區段 2 - 產生並上傳憑證
 憑證是用於點對站 VPN 的 VPN 用戶端驗證。 您可以使用由企業憑證解決方案或自我簽署憑證所產生的憑證。 您最多可將 20 個根憑證上傳至 Azure。 一旦 .cer 檔案已上傳，Azure 就可以使用內含的資訊來驗證已安裝用戶端憑證的用戶端。 用戶端憑證必須由 .cer 檔案所代表的相同憑證產生。
 
 您將在本區段中進行下列工作：
@@ -96,35 +96,48 @@ ms.lasthandoff: 02/18/2017
 * 將 .cer 檔案上傳至 Azure。
 * 產生用戶端憑證。
 
-### <a name="a-namerootapart-1-obtain-the-cer-file-for-the-root-certificate"></a><a name="root"></a>第 1 部分︰取得根憑證的 .cer 檔案
-如果您使用企業憑證系統，請取得您想要使用的根憑證的 .cer 檔案。 在 [第 3 部分](#createclientcert)中，您會從根憑證產生用戶端憑證。
+### <a name="root"></a>第 1 部分︰取得根憑證的 .cer 檔案
+如果您是使用企業解決方案，則可以使用現有的憑證鏈結。 取得您想要使用的根憑證 .cer 檔案。
 
-如果您未使用企業憑證解決方案，您必須產生自我簽署的根憑證。 如需 Windows 10 的步驟，請參閱 [使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)。 本文會引導您完成使用 makecert 以產生自我簽署的憑證，然後匯出 .cer 檔案。
+如果您未使用企業憑證解決方案，則必須建立自我簽署的根憑證。 若要建立自我簽署的憑證，其中包含 P2S 驗證的必要欄位，請使用 makecert。 [針對 P2S 連線建立自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)將逐步引導您完成建立自我簽署根憑證的步驟。 我們都知道，makecert 已被取代，但在目前來說，它是支援的解決方案。
 
-### <a name="a-nameuploadapart-2-upload-the-root-certificate-cer-file-to-the-azure-classic-portal"></a><a name="upload"></a>第 2 部份︰將根憑證 .cer 檔案上傳至 Azure 傳統入口網站
+>[!NOTE]
+>雖然可以使用 PowerShell 來建立自我簽署的憑證，但使用 PowerShell 產生的憑證不包含點對站驗證的必要欄位。
+>
+
+
+#### <a name="to-obtain-the-cer-file-from-a-self-signed-root-certificate"></a>若要從自我簽署根憑證取得 .cer 檔案
+
+1. 若要從自我簽署根憑證取得 .cer 檔案，請開啟 **certmgr.msc** 並找出您建立的根憑證。 憑證通常位於 'Certificates-Current User/ Personal/Certificates'，且名稱為您建立時選擇的任何名稱。 在自我簽署的根憑證上按一下滑鼠右鍵，按一下 [所有工作]，然後按一下 [匯出]。 這會開啟 [憑證匯出精靈] 。
+2. 在精靈中，按 [下一步]，接著選取 [否，不要匯出私密金鑰]，然後按 [下一步]。
+3. 在 [匯出檔案格式] 頁面上，選取 [Base-64 編碼 X.509 (.CER)]。 然後按 [下一步] 。
+4. 在 [要匯出的檔案] 中，[瀏覽] 到您要匯出憑證的位置。 針對 [檔案名稱] ，請為憑證檔案命名。 然後按 [下一步] 。
+5. 按一下 [完成]  以匯出憑證。
+
+### <a name="upload"></a>第 2 部份︰將根憑證 .cer 檔案上傳至 Azure 傳統入口網站
 將受信任的憑證新增至 Azure。 當您將 Base64 編碼 X.509 (.cer) 檔案新增至 Azure 時，便是告訴 Azure 信任該檔案所代表的根憑證。
 
 1. 在 Azure 傳統入口網站中，於虛擬網路的 [憑證] 頁面上，按一下 [上傳根憑證]。
 2. 在 [上傳憑證]  頁面上，瀏覽到 .cer 根憑證，然後按一下勾號。
 
-### <a name="a-namecreateclientcertapart-3-generate-a-client-certificate"></a><a name="createclientcert"></a>第 3 部份︰產生用戶端憑證
+### <a name="createclientcert"></a>第 3 部份︰產生用戶端憑證
 接下來，產生用戶端憑證。 您可以為每個會進行連線的用戶端產生唯一的憑證，您也可以在多個用戶端上使用相同的憑證。 產生唯一的用戶端憑證的優點是能夠視需要撤銷單一憑證。 否則，如果每個人都使用相同的用戶端憑證，而您發現需要撤銷某一個用戶端的憑證時，則必須為所有使用該憑證進行驗證的用戶端產生並安裝新的憑證。
 
 ####<a name="enterprise-certificate"></a>企業憑證
-- 如果您使用企業憑證解決方案，請以一般的名稱值格式 'name@yourdomain.com', 產生用戶端憑證，而不要使用 'domain name\username' 格式。
+- 如果您使用企業憑證解決方案，請以一般的名稱值格式 'name@yourdomain.com' 產生用戶端憑證，而不要使用 'domain name\username' 格式。
 - 請確定您簽發的用戶端憑證所根據的憑證範本，是以「用戶端驗證」(而不是「智慧卡登入」等) 作為使用清單中第一個項目的「使用者」憑證範本。您可以按兩下用戶端憑證，然後檢視 [詳細資料] > [增強金鑰使用方法]，來檢查憑證。
 
 ####<a name="self-signed-certificate"></a>自我簽署憑證 
 如果您使用自我簽署的憑證解決方案，請參閱 [使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md) ，以產生用戶端憑證。
 
-## <a name="a-nameinstallclientcertasection-3---export-and-install-the-client-certificate"></a><a name="installclientcert"></a>第 3 部分 - 匯出及安裝用戶端憑證
+## <a name="installclientcert"></a>第 3 部分 - 匯出及安裝用戶端憑證
 在您想要連線至虛擬網路的每部電腦上安裝用戶端憑證。 驗證會需要用戶端憑證。 您可以自動安裝用戶端憑證，您也可以手動安裝。 下列步驟將逐步引導您手動匯出並安裝用戶端憑證。
 
 1. 若要匯出用戶端憑證，請使用 *certmgr.msc*。 以滑鼠右鍵按一下要匯出的用戶端憑證，然後依序按一下 [所有工作] 和 [匯出]。
 2. 匯出具有私密金鑰的用戶端憑證。 這會是 *.pfx* 檔案。 請務必記下或牢記您為這個憑證設定的密碼 (金鑰)。
 3. 將 *.pfx* 檔案複製到用戶端電腦。 在用戶端電腦上按兩下 *.pfx* 檔案以安裝。 在系統要求時輸入密碼。 請勿修改安裝位置。
 
-## <a name="a-namevpnclientconfigasection-4---configure-your-vpn-client"></a><a name="vpnclientconfig"></a>第 4 部分 - 設定 VPN 用戶端
+## <a name="vpnclientconfig"></a>第 4 部分 - 設定 VPN 用戶端
 若要連接到虛擬網路，您還需要設定 VPN 用戶端。 用戶端需要具備用戶端憑證及適當的 VPN 用戶端組態，才能順利連接。 若要設定 VPN 用戶端，請依序執行下列步驟：
 
 ### <a name="part-1-create-the-vpn-client-configuration-package"></a>第 1 部份 - 建立 VPN 用戶端組態套件
@@ -173,7 +186,7 @@ ms.lasthandoff: 02/18/2017
         Default Gateway.................:
         NetBIOS over Tcpip..............: Enabled
 
-## <a name="a-namefaqapoint-to-site-faq"></a><a name="faq"></a>點對站常見問題集
+## <a name="faq"></a>點對站常見問題集
 
 [!INCLUDE [Point-to-Site FAQ](../../includes/vpn-gateway-point-to-site-faq-include.md)]
 

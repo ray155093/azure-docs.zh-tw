@@ -1,7 +1,7 @@
 ---
-title: "使用 DocumentDB 進行 Python Flask Web 應用程式開發 | Microsoft Docs"
+title: "Azure DocumentDB 的 Python Flask Web 應用程式教學課程 | Microsoft Docs"
 description: "檢閱有關如何使用 DocumentDB 來儲存和存取 Azure 上主控之 Python Flask Web 應用程式資料的資訊。 尋找應用程式開發解決方案。"
-keywords: "應用程式開發, 資料庫教學課程, python flask, python Web 應用程式, python Web 開發, documentdb, azure, Microsoft azure"
+keywords: "應用程式部署、python flask、python Web 應用程式、python Web 開發"
 services: documentdb
 documentationcenter: python
 author: syamkmsft
@@ -15,15 +15,18 @@ ms.devlang: python
 ms.topic: hero-article
 ms.date: 11/16/2016
 ms.author: syamk
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 8dc246755c90686f890d2ac9df05b3a8b2a9341f
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 4f05075efea0f0fd8ca4424f771d3991a65c6d67
+ms.lasthandoff: 03/08/2017
 
 
 ---
-# <a name="python-flask-web-application-development-with-documentdb"></a>使用 DocumentDB 進行 Python Flask Web 應用程式開發
+# <a name="build-a-python-flask-web-application-using-documentdb"></a>使用 DocumentDB 建置 Python Flask Web 應用程式
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-dotnet-application.md)
+> * [.NET for MongoDB](documentdb-mongodb-application.md)
 > * [Node.js](documentdb-nodejs-application.md)
 > * [Java](documentdb-java-application.md)
 > * [Python](documentdb-python-application.md)
@@ -410,9 +413,4 @@ def vote():
 [3]: https://www.microsoft.com/download/details.aspx?id=44266
 [Microsoft Web Platform Installer]: http://www.microsoft.com/web/downloads/platform.aspx
 [Azure portal]: http://portal.azure.com
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

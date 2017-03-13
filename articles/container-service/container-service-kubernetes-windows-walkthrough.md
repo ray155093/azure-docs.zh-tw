@@ -14,17 +14,18 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/21/2017
-ms.author: dlepow
+ms.date: 03/03/2017
+ms.author: danlep
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 31aaa122bfca5140dcd22d2a2233c46cd28f27b9
-ms.openlocfilehash: c139fc34d15545ce6a7a91842a3ebdff7c029a01
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: ef1e790edc4cd329245331bf1178ed1f610e914c
+ms.lasthandoff: 03/06/2017
 
 
 ---
 
-# <a name="get-started-with-windows-containers-in-a-kubernetes-cluster"></a>開始使用 Kubernetes 叢集中的 Windows 容器
+# <a name="get-started-with-kubernetes-and-windows-containers-in-container-service"></a>在 Container Service 中開始使用 Kubernetes 和 Windows 容器
 
 
 本文說明如何在包含 Windows 節點的 Azure Container Service 中建立 Kubernetes 叢集。以執行 Windows 容器。 
@@ -59,8 +60,14 @@ ms.lasthandoff: 02/23/2017
 您可以使用 Azure 入口網站以[建立 Kubernetes 叢集](container-service-deployment.md#create-a-cluster-by-using-the-azure-portal)搭配使用 Windows 代理程式節點。 建立叢集時，請注意下列設定︰
 
 * 在 [基本] 刀鋒視窗的 [Orchestrator] 中，選取 [Kubernetes]。 
-* 在 [主要組態] 刀鋒視窗中，輸入 Linux 的主要節點的使用者認證和服務主體認證。
+
+  ![選取 Kubernetes Orchestrator](media/container-service-kubernetes-windows-walkthrough/portal-select-kubernetes.png)
+
+* 在 [主要組態] 刀鋒視窗中，輸入 Linux 的主要節點的使用者認證和服務主體認證。 選擇 1、3 或 5 個 master。
+
 * 在 [代理程式組態] 刀鋒視窗的 [作業系統] 中，選取 [Windows (預覽)]。 輸 Windows 代理程式節點的系統管理員認證。
+
+  ![選取 Windows 代理程式](media/container-service-kubernetes-windows-walkthrough/portal-select-windows.png)
 
 如需詳細資料，請參閱[部署 Azure Container Service 叢集](container-service-deployment.md)。
 

@@ -16,8 +16,9 @@ ms.topic: get-started-article
 ms.date: 01/23/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 31157645006b24e9ed6ee9187c355310356615a7
-ms.openlocfilehash: 7d9dbf3af8e7d84d470bf6f42e2d2be01c5cb27d
+ms.sourcegitcommit: 21d2c20a3ac8dc4fee0680028d6c004c80a3ae38
+ms.openlocfilehash: 2835e4e8be2a11b659118f836d53c84a2c021263
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -83,7 +84,7 @@ Azure Machine Learning 有兩種 Web 服務類型：
 
 若要深入了解支援的檔案格式，請參閱 [將訓練資料匯入 Azure Machine Learning Studio](machine-learning-data-science-import-data.md)。
 
-#### <a name="a-idmodulelimitahow-large-can-the-data-set-be-for-my-modules"></a><a id="ModuleLimit"></a>我的模組適用多大的資料集？
+#### <a id="ModuleLimit"></a>我的模組適用多大的資料集？
 Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的密集數值資料的資料集。 如果模組接受一個以上的輸入，10 GB 值是所有輸入的大小總計。 您也可以使用 Hive 或 Azure SQL Database 查詢來取樣較大型資料集，或者在擷取前使用「以計數學習」前置處理。  
 
 下列資料類型可以在功能正規化期間擴充為較大型資料集，並限制在小於 10 GB：
@@ -101,7 +102,7 @@ Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的�
 * 輸出資料大小可以大於輸入資料大小的模組，例如聯結或功能雜湊
 * 當反覆運算數目非常大時的交叉驗證、微調模型超參數、序數迴歸和一對多的多類別
 
-#### <a name="a-iduploadlimitawhat-are-the-limits-for-data-upload"></a><a id="UploadLimit"></a>資料上傳的限制為何？
+#### <a id="UploadLimit"></a>資料上傳的限制為何？
 針對大於&2; GB 的資料集，請將資料上傳至 Azure 儲存體或 Azure SQL Database，或是使用 Azure HDInsight，而不要直接從本機檔案上傳。
 
 **可以從 Amazon S3 讀取資料嗎？**
@@ -429,7 +430,11 @@ Machine Learning 服務是多租用戶服務。 後端實際使用的計算資�
 
 **哪些區域有提供新的方案？**
 
-如需區域可用性的詳細資訊，請參閱[依區域提供的產品](https://azure.microsoft.com/regions/services/)。
+支援新的 Web 服務的三個生產區域中有提供新的計費方案︰
+
+* 美國中南部
+* 西歐
+* 東南亞
 
 **我在多個區域擁有 Web 服務。是否每個區域都需要一個方案？**
 
@@ -464,7 +469,13 @@ BES 工作負載採用相同的計費方式。 不過，API 交易費用代表�
 ### <a name="azure-machine-learning-free-and-standard-tier"></a>Azure Machine Learning 的免費層和標準層
 **Azure Machine Learning 免費層包含什麼？**
 
-Azure Machine Learning 免費層主要是用來提供 Azure Machine Learning Studio 的深入介紹。 您只需要 Microsoft 帳戶即可註冊。 免費層可讓每個 [Microsoft 帳戶](https://www.microsoft.com/account/default.aspx)免費存取一個 Azure Machine Learning Studio 工作區。 在此層中，您可以使用最多 10 GB 的儲存體，以及讓模型能以預備 API 運作。 免費層工作負載不包含在 SLA 內，且僅供開發與個人使用。 免費層工作負載無法藉由連接到執行 SQL Server 之內部部署伺服器來存取資料。
+Azure Machine Learning 免費層主要是用來提供 Azure Machine Learning Studio 的深入介紹。 您只需要 Microsoft 帳戶即可註冊。 免費層可讓每個 [Microsoft 帳戶](https://www.microsoft.com/account/default.aspx)免費存取一個 Azure Machine Learning Studio 工作區。 在此層中，您可以使用最多 10 GB 的儲存體，以及讓模型能以預備 API 運作。 免費層工作負載不包含在 SLA 內，且僅供開發與個人使用。 
+
+免費層工作區有下列限制：
+
+* 工作負載無法藉由連線至執行 SQL Server 之內部部署伺服器來存取資料。
+* 您無法部署新的 Resource Manager 基底 Web 服務。
+
 
 **Azure Machine Learning 的標準層和方案包含什麼？**
 
@@ -546,9 +557,4 @@ Machine Learning 服務是多租用戶服務。 後端實際使用的計算資�
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
 [python]: https://msdn.microsoft.com/library/azure/CDB56F95-7F4C-404D-BDE7-5BB972E6F232
 [counts]: https://msdn.microsoft.com/library/azure/dn913056.aspx
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

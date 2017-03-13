@@ -16,19 +16,20 @@ ms.topic: hero-article
 ms.date: 12/25/2016
 ms.author: syamk
 translationtype: Human Translation
-ms.sourcegitcommit: 16bff1b5708652a75ea603f596c864901b12a88d
-ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 44307f258ea05635addf85bf9c59cd78b2ac0f1e
+ms.lasthandoff: 03/08/2017
 
 
 ---
-# <a name="a-nametoc395809351aaspnet-mvc-tutorial-web-application-development-with-documentdb"></a><a name="_Toc395809351"></a>ASP.NET MVC 教學課程：使用 DocumentDB 開發 Web 應用程式
+# <a name="_Toc395809351"></a>ASP.NET MVC 教學課程：使用 DocumentDB 開發 Web 應用程式
 > [!div class="op_single_selector"]
-> * [.NET](documentdb-get-started.md)
-> * [.NET Core](documentdb-dotnetcore-get-started.md)
-> * [Java](documentdb-java-get-started.md)
-> * [Node.js](documentdb-nodejs-get-started.md)
-> * [C++](documentdb-cpp-get-started.md)
->  
+> * [.NET](documentdb-dotnet-application.md)
+> * [.NET for MongoDB](documentdb-mongodb-application.md)
+> * [Node.js](documentdb-nodejs-application.md)
+> * [Java](documentdb-java-application.md)
+> * [Python](documentdb-python-application.md)
+> 
 > 
 
 為了特別說明您可以如何有效率地利用 Azure DocumentDB 來儲存和查詢 JSON 文件，本文提供如何使用 Azure DocumentDB 建置待辦事項應用程式的完整逐步解說。 在 Azure DocumentDB 中，這些工作將會儲存為 JSON 文件。
@@ -42,7 +43,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
 > 
 > 
 
-## <a name="a-nametoc395637760aprerequisites-for-this-database-tutorial"></a><a name="_Toc395637760"></a>此資料庫教學課程的必要條件
+## <a name="_Toc395637760"></a>此資料庫教學課程的必要條件
 在依照本文中的指示進行之前，您應先確定備妥下列項目：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/) 
@@ -55,7 +56,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
 
 本文中的所有螢幕擷取畫面都是使用已套用 Update 4 的 Visual Studio 2013 以及 Azure SDK for .NET 2.5.1 版所取得。 如果您的系統是設定使用不同的版本，則您的畫面和選項可能不會完全相符，但只要您符合上述必要條件，本方案應該還是有效。
 
-## <a name="a-nametoc395637761astep-1-create-a-documentdb-database-account"></a><a name="_Toc395637761"></a>步驟 1：建立 DocumentDB 資料庫帳戶
+## <a name="_Toc395637761"></a>步驟 1：建立 DocumentDB 資料庫帳戶
 現在就開始建立 DocumentDB 帳戶。 如果您已經擁有帳戶，或如果您正在使用 DocumentDB 模擬器來進行本教學課程，可以跳到[建立新的 ASP.NET MVC 應用程式](#_Toc395637762)。
 
 [!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
@@ -65,7 +66,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
 <br/>
 我們現在將從頭開始逐步解說如何建立新的 ASP.NET MVC 應用程式。 
 
-## <a name="a-nametoc395637762astep-2-create-a-new-aspnet-mvc-application"></a><a name="_Toc395637762"></a>步驟 2：建立新的 ASP.NET MVC 應用程式
+## <a name="_Toc395637762"></a>步驟 2：建立新的 ASP.NET MVC 應用程式
 既然您已有帳戶，我們可以開始建立新的 ASP.NET 專案。
 
 1. 在 Visual Studio 的 [檔案] 功能表中，指向 [新增]，然後按一下 [專案]。
@@ -97,7 +98,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
    
     我們會跳過在本機執行專案，因為我確定我們都已看過 ASP.NET "Hello World" 應用程式。 讓我們直接跳到將 DocumentDB 新增至此專案並建置應用程式的步驟。
 
-## <a name="a-nametoc395637767astep-3-add-documentdb-to-your-mvc-web-application-project"></a><a name="_Toc395637767"></a>步驟 3：將 DocumentDB 加入至 MVC Web 應用程式專案
+## <a name="_Toc395637767"></a>步驟 3：將 DocumentDB 加入至 MVC Web 應用程式專案
 既然我們已經完成了此方案的大部分 ASP.NET MVC 瑣事，我們現在可以開始本教學課程的真正目的，也就是將 Azure DocumentDB 加入至 MVC Web 應用程式。
 
 1. DocumentDB .NET SDK 會隨 NuGet 封裝而分散。 若要在 Visual Studio 中取得 NuGet 封裝，請使用 Visual Studio 中的 NuGet 封裝管理員，方法是以滑鼠右鍵按一下 [方案總管] 中的專案，然後按一下 [管理 NuGet 封裝]。
@@ -118,14 +119,14 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
    
       ![[方案總管] 中 JSON 資料專案新增兩個參考的螢幕擷取畫面](./media/documentdb-dotnet-application/image22.png)
 
-## <a name="a-nametoc395637763astep-4-set-up-the-aspnet-mvc-application"></a><a name="_Toc395637763"></a>步驟 4：設定 ASP.NET MVC 應用程式
+## <a name="_Toc395637763"></a>步驟 4：設定 ASP.NET MVC 應用程式
 現在我們可以開始將模型、檢視和控制站新增至此 MVC 應用程式：
 
 * [新增模型](#_Toc395637764)。
 * [新增控制器](#_Toc395637765)。
 * [新增檢視](#_Toc395637766)。
 
-### <a name="a-nametoc395637764aadd-a-json-data-model"></a><a name="_Toc395637764"></a>新增 JSON 資料模型
+### <a name="_Toc395637764"></a>新增 JSON 資料模型
 首先，讓我們在 MVC 中建立 **M** (模型)。 
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下 **Models** 資料夾，再按一下 [新增]，然後按一下 [類別]。
@@ -162,7 +163,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
    
     使用 JSON 時，您不但可以控管屬性名稱格式，也可以跟我命名 **Description** 屬性一樣重新命名您的 .NET 屬性。 
 
-### <a name="a-nametoc395637765aadd-a-controller"></a><a name="_Toc395637765"></a>新增控制器
+### <a name="_Toc395637765"></a>新增控制器
 我們已經建立了 **M**，現在讓我們建立 MVC 中的 **C** (控制器類別)。
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下 **Controllers** 資料夾，按一下 [新增]，然後按一下 [控制器]。
@@ -181,14 +182,14 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
    
     您可以先將 ItemController.cs 關閉，我們稍後會回頭使用此檔案。 
 
-### <a name="a-nametoc395637766aadd-views"></a><a name="_Toc395637766"></a>新增檢視
+### <a name="_Toc395637766"></a>新增檢視
 現在，我們可以開始建立 MVC 中的 **V** (檢視)：
 
 * [新增項目索引檢視](#AddItemIndexView)。
 * [新增項目檢視](#AddNewIndexView)。
 * [新增編輯項目檢視](#_Toc395888515)。
 
-#### <a name="a-nameadditemindexviewaadd-an-item-index-view"></a><a name="AddItemIndexView"></a>新增項目索引檢視
+#### <a name="AddItemIndexView"></a>新增項目索引檢視
 1. 在 [方案總管] 中，展開 **Views** 資料夾，以滑鼠右鍵按一下稍早您在建立 **ItemController** 時，Visual Studio 為您建立的空白 **Item** 資料夾，按一下 [新增]，然後按一下 [檢視]。
    
     ![顯示 Visual Studio 方案建立之 Item 資料夾的 [方案總管] 螢幕擷取畫面，內含反白顯示的 [新增檢視] 命令](./media/documentdb-dotnet-application/image17.png)
@@ -203,7 +204,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
      ![顯示 [新增檢視] 對話方塊的螢幕擷取畫面](./media/documentdb-dotnet-application/image18.png)
 3. 設定所有這些值之後，按一下 [新增]  ，並讓 Visual Studio 建立新的範本檢視。 完成之後，系統便會開啟剛建立的 cshtml 檔案。 我們稍後會回頭使用此檔案，您可以先在 Visual Studio 中將該檔案關閉。
 
-#### <a name="a-nameaddnewindexviewaadd-a-new-item-view"></a><a name="AddNewIndexView"></a>新增項目檢視
+#### <a name="AddNewIndexView"></a>新增項目檢視
 與建立 [項目索引] 檢視的方式類似，現在我們現在可以開始建立新的檢視，以供建立新的**項目**使用。
 
 1. 在 [方案總管] 中，再次以滑鼠右鍵按一下 **Item** 資料夾，按一下 [新增]，然後按一下 [檢視]。
@@ -216,7 +217,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
    * 在 [版面配置頁面] 方塊中，輸入 ***~/Views/Shared/_Layout.cshtml***。
    * 按一下 [新增] 。
 
-#### <a name="a-nametoc395888515aadd-an-edit-item-view"></a><a name="_Toc395888515"></a>新增編輯項目檢視
+#### <a name="_Toc395888515"></a>新增編輯項目檢視
 最後，使用與之前相同的方式新增最後一個檢視，以供編輯 **項目** 使用；
 
 1. 在 [方案總管] 中，再次以滑鼠右鍵按一下 **Item** 資料夾，按一下 [新增]，然後按一下 [檢視]。
@@ -231,7 +232,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
 
 完成這項作業之後，請將 Visual Studio 中的所有 cshtml 文件關閉，我們稍後會回頭使用這些檢視。
 
-## <a name="a-nametoc395637769astep-5-wiring-up-documentdb"></a><a name="_Toc395637769"></a>步驟 5：組建 DocumentDB
+## <a name="_Toc395637769"></a>步驟 5：組建 DocumentDB
 我們已經建立了標準的 MVC 項目，現在我們可以開始新增 DocumentDB 的程式碼。 
 
 在本節中，我們將新增程式碼來處理下列作業：
@@ -240,7 +241,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
 * [新增項目](#_Toc395637771)。
 * [編輯項目](#_Toc395637772)。
 
-### <a name="a-nametoc395637770alisting-incomplete-items-in-your-mvc-web-application"></a><a name="_Toc395637770"></a>列出 MVC Web 應用程式中的未完成項目
+### <a name="_Toc395637770"></a>列出 MVC Web 應用程式中的未完成項目
 首先要執行的作業是新增類別，其中包含連線至及使用 DocumentDB 的所有邏輯。 在本教學課程中，我們會將所有邏輯封裝到名為 DocumentDBRepository 的儲存機制類別中。 
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下專案，按一下 [新增]，然後按一下 [類別]。 將新類別命名為 **DocumentDBRepository**，然後按一下 [新增]。
@@ -391,7 +392,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
 
 ![本資料庫教學課程所建立的待辦事項清單 Web 應用程式的螢幕擷取畫面](./media/documentdb-dotnet-application/image23.png)
 
-### <a name="a-nametoc395637771aadding-items"></a><a name="_Toc395637771"></a>新增項目
+### <a name="_Toc395637771"></a>新增項目
 我們可以開始將一些項目放入資料庫中，所以除了空白方格以外，我們還可以看到其他項目。
 
 讓我們將一些程式碼新增至 DocumentDBRepository 和 ItemController，以在 DocumentDB 中保留記錄。
@@ -437,7 +438,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
 
 這包括將新項目新增至資料庫所需的程式碼。
 
-### <a name="a-nametoc395637772aediting-items"></a><a name="_Toc395637772"></a>編輯項目
+### <a name="_Toc395637772"></a>編輯項目
 我們最後還要做一件事，那就是新增在資料庫中編輯 **項目** ，以及將它們標示為已完成的功能。 編輯的檢視已經新增至專案，因此，我們只需重新將某些程式碼新增至控制器及 **DocumentDBRepository** 類別即可。
 
 1. 將下列程式碼新增至 **DocumentDBRepository** 類別。
@@ -511,7 +512,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
 
 這樣便大功告成了，這些就是我們必須執行應用程式的所有作業：列出未完成**項目**、新增**項目**，最後是編輯**項目**。
 
-## <a name="a-nametoc395637773astep-6-run-the-application-locally"></a><a name="_Toc395637773"></a>步驟 6：在本機執行應用程式
+## <a name="_Toc395637773"></a>步驟 6：在本機執行應用程式
 若要在本機電腦測試應用程式，請執行下列動作：
 
 1. 在 Visual Studio 中按 F5，即可在偵錯模式下建置應用程式。 這樣應該可以建置應用程式，並啟動含有先前所看過之空白方格頁面的瀏覽器：
@@ -532,7 +533,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
     ![[索引] 檢視的螢幕擷取畫面，內含勾選的 [已完成] 方塊](./media/documentdb-dotnet-application/image27.png)
 5. 完成測試應用程式後，按 Ctrl + F5 停止偵錯應用程式。 您現在可以開始進行部署。
 
-## <a name="a-nametoc395637774astep-7-deploy-the-application-to-azure-websites"></a><a name="_Toc395637774"></a>步驟 7：將應用程式部署至 Azure 網站
+## <a name="_Toc395637774"></a>步驟 7：將應用程式部署至 Azure 網站
 您已經擁有可在 DocumentDB 正常運作的完整應用程式，我們現在要將此 Web 應用程式部署至 Azure 網站。 如果您在建立空白 ASP.NET MVC 專案時選取了 [在雲端託管]  ，則 Visual Studio 可讓這項作業變得十分簡單，並為您完成大部分的工作。 
 
 1. 若要發佈此應用程式，您只需要以滑鼠右鍵按一下 [方案總管] 上的專案，然後按一下 [發佈] 即可。
@@ -544,7 +545,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
 
 幾秒後，Visual Studio 便會發佈 Web 應用程式並啟動瀏覽器，您可以在瀏覽器中看到您方便好用的應用程式已在 Azure 中執行！
 
-## <a name="a-nametroubleshootingatroubleshooting"></a><a name="Troubleshooting"></a>疑難排解
+## <a name="Troubleshooting"></a>疑難排解
 
 如果您在嘗試部署 Web 應用程式時收到「處理您的要求時發生錯誤」，請執行下列作業︰ 
 
@@ -563,7 +564,7 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
     應用程式隨即會顯示在瀏覽器中。
 
 
-## <a name="a-nametoc395637775anext-steps"></a><a name="_Toc395637775"></a>接續步驟
+## <a name="_Toc395637775"></a>接續步驟
 恭喜！ 您剛剛使用 Azure DocumentDB 建置您的第一個 ASP.NET MVC Web 應用程式，並將它發佈至 Azure 網站。 您可以從 [GitHub][GitHub]下載或複製完整應用程式 (包括不包含在本教學課程中的詳細資料和刪除功能) 的原始程式碼。 所以如果您想要將程式碼加入您的應用程式，請抓取程式碼，並將它加入這個應用程式。
 
 若要將其他功能新增至您的應用程式，請檢閱 [DocumentDB .NET 程式庫](https://msdn.microsoft.com/library/azure/dn948556.aspx)中提供的 API，並歡迎您貢獻到 [GitHub][GitHub] 上的 DocumentDB .NET 程式庫。 
@@ -574,9 +575,4 @@ ms.openlocfilehash: 9b24fe8139d50b7c37a380fcc52b7ac302f5ee5d
 [Preventing Cross-Site Request Forgery]: http://go.microsoft.com/fwlink/?LinkID=517254
 [Basic CRUD Operations in ASP.NET MVC]: http://go.microsoft.com/fwlink/?LinkId=317598
 [GitHub]: https://github.com/Azure-Samples/documentdb-net-todo-app
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 
