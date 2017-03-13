@@ -16,15 +16,16 @@ ms.workload: data-services
 ms.date: 11/16/2016
 ms.author: denlee
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: d8abb90b19fd3b79324209a2418c414e3b6bb301
-ms.lasthandoff: 12/08/2016
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 6e315ea33fe4a493f1ab349482f9af3a732b3127
+ms.lasthandoff: 03/08/2017
 
 
 ---
 # <a name="build-a-java-web-application-using-documentdb"></a>使用 DocumentDB 來建置 Java Web 應用程式
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-dotnet-application.md)
+> * [.NET for MongoDB](documentdb-mongodb-application.md)
 > * [Node.js](documentdb-nodejs-application.md)
 > * [Java](documentdb-java-application.md)
 > * [Python](documentdb-python-application.md)
@@ -45,7 +46,7 @@ ms.lasthandoff: 12/08/2016
 > 
 > 
 
-## <a name="a-idprerequisitesaprerequisites-for-this-java-web-application-tutorial"></a><a id="Prerequisites"></a>針對此 Java Web 應用程式教學課程的必要條件
+## <a id="Prerequisites"></a>針對此 Java Web 應用程式教學課程的必要條件
 開始進行本應用程式開發教學課程之前，您必須具備下列條件：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)
@@ -59,14 +60,14 @@ ms.lasthandoff: 12/08/2016
 
 如果您是第一次安裝這些工具，coreservlets.com 提供了安裝程序的的逐步解說，請參閱其 [教學課程：安裝 TomCat7 並與 Eclipse 搭配使用](http://www.coreservlets.com/Apache-Tomcat-Tutorial/tomcat-7-with-eclipse.html) 一文中的 [快速入門] 區段。
 
-## <a name="a-idcreatedbastep-1-create-a-documentdb-database-account"></a><a id="CreateDB"></a>步驟 1：建立 DocumentDB 資料庫帳戶
+## <a id="CreateDB"></a>步驟 1：建立 DocumentDB 資料庫帳戶
 現在就開始建立 DocumentDB 帳戶。 如果您已經擁有帳戶，或如果您正在使用 DocumentDB 模擬器來進行本教學課程，可以跳到[步驟 2：建立 Java JSP 應用程式](#CreateJSP)。
 
 [!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
 [!INCLUDE [documentdb-keys](../../includes/documentdb-keys.md)]
 
-## <a name="a-idcreatejspastep-2-create-the-java-jsp-application"></a><a id="CreateJSP"></a>步驟 2：建立 Java JSP 應用程式
+## <a id="CreateJSP"></a>步驟 2：建立 Java JSP 應用程式
 建立 JSP 應用程式：
 
 1. 首先，我們將從建立 Java 專案開始。 啟動 Eclipse，依序按一下 [檔案]、[新增] 和 [動態 Web 專案]。 如果您在可用專案中沒有看到 [動態 Web 專案]，請執行下列動作：依序按一下 [檔案]、[新增]、[專案]，展開 [Web]，按一下 [動態 Web 專案]，然後按 [下一步]。
@@ -88,7 +89,7 @@ ms.lasthandoff: 12/08/2016
    
     ![Hello World – Java 應用程式教學課程](./media/documentdb-java-application/image12.png)
 
-## <a name="a-idinstallsdkastep-3-install-the-documentdb-java-sdk"></a><a id="InstallSDK"></a>步驟 3：安裝 DocumentDB Java SDK
+## <a id="InstallSDK"></a>步驟 3：安裝 DocumentDB Java SDK
 導入 DocumentDB Java SDK 及其相依性的最簡單方式就是透過 [Apache Maven](http://maven.apache.org/)。
 
 若要這樣做，您必須完成下列步驟以將專案轉換成 maven 專案：
@@ -115,7 +116,7 @@ ms.lasthandoff: 12/08/2016
 6. 按一下 [確定]  ，Maven 便會開始安裝 DocumentDB Java SDK。
 7. 儲存 pom.xml 檔案。
 
-## <a name="a-iduseserviceastep-4-using-the-documentdb-service-in-a-java-application"></a><a id="UseService"></a>步驟 4：在 Java 應用程式中使用 DocumentDB 服務
+## <a id="UseService"></a>步驟 4：在 Java 應用程式中使用 DocumentDB 服務
 1. 首先，讓我們先定義 TodoItem 物件：
    
         @Data
@@ -349,7 +350,7 @@ ms.lasthandoff: 12/08/2016
             return true;
         }
 
-## <a name="a-idwireastep-5-wiring-the-rest-of-the-of-java-application-development-project-together"></a><a id="Wire"></a>步驟 5：將 Java 應用程式開發專案的其他部分串接在一起
+## <a id="Wire"></a>步驟 5：將 Java 應用程式開發專案的其他部分串接在一起
 既然我們已經完成主要的部分，剩下的就是建置一個快速的使用者介面，然後將其串接到我們的 DAO。
 
 1. 首先，讓我們著手建置一個控制器來呼叫我們的 DAO：
@@ -721,7 +722,7 @@ ms.lasthandoff: 12/08/2016
 5. 好極了！ 現在只剩下測試應用程式。 在本機執行應用程式，並填入項目名稱和類別，然後按一下 [ **新增工作**] 來新增一些待辦事項。
 6. 當項目出現時，您可以切換勾選核取方塊，然後按一下 [更新工作] ，來更新其完成狀態。
 
-## <a name="a-iddeployastep-6-deploy-your-java-application-to-azure-websites"></a><a id="Deploy"></a>步驟 6：將 Java 應用程式部署至 Azure 網站
+## <a id="Deploy"></a>步驟 6：將 Java 應用程式部署至 Azure 網站
 「Azure 網站」讓部署「Java 應用程式」變得相當簡單，您只需將應用程式匯出成 WAR 檔案，然後透過原始檔控制 (例如 GIT) 或 FTP 上傳它即可。
 
 1. 若要將應用程式匯出成 WAR，以滑鼠右鍵按一下您在 [專案總管] 中的專案，按一下 [匯出]，然後按一下 [WAR 檔案]。
@@ -735,7 +736,7 @@ ms.lasthandoff: 12/08/2016
     將 WAR 檔案上傳至 webapps 目錄之後，執行階段環境便會偵測到您已新增它，並自動將其載入。
 4. 若要檢視您已完成的產品，請瀏覽至 http://YOUR\_SITE\_NAME.azurewebsites.net/azure-documentdb-java-sample/，並開始加入您的工作！
 
-## <a name="a-idgetprojectaget-the-project-from-github"></a><a id="GetProject"></a>從 GitHub 取得的專案
+## <a id="GetProject"></a>從 GitHub 取得的專案
 本教學課程中的所有範例都包含在 GitHub 上的 [待辦事項](https://github.com/Azure-Samples/documentdb-java-todo-app) 專案中。 若要將 todo 專案匯入 Eclipse，請確認您擁有 [必要條件] [](#Prerequisites) 區段中所列出的軟體和資源，然後執行下列動作：
 
 1. 安裝 [專案 Lombok](http://projectlombok.org/)。 Lombok 可用來在專案中產生建構函式、getter、setter。 下載 lombok.jar 檔案之後，請連按兩下進行安裝，或從命令列進行安裝。

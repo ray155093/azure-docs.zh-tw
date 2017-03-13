@@ -1,28 +1,30 @@
 ---
-title: "Azure 自動化安全性 | Microsoft Docs"
+title: "Azure 自動化中的驗證簡介 | Microsoft Docs"
 description: "本文概述 Azure 自動化中的自動化安全性和自動化帳戶可用的不同驗證方法。"
 services: automation
 documentationcenter: 
 author: MGoedtel
 manager: jwhit
 editor: tysonn
-keywords: "自動化安全性, 安全的自動化"
+keywords: "自動化安全性、安全的自動化、自動化驗證"
 ms.assetid: 4a6bc2f5-c5a2-4dfb-b10d-7950d750dee8
 ms.service: automation
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/11/2016
+ms.date: 03/01/2017
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: dd6b2fa2a1ca003578eaee82ef42741b9b1bf2a4
-ms.openlocfilehash: 432321c66fc991136b0b473abd0880876c31887e
+ms.sourcegitcommit: 7224da31e71f3f6c912cd486198135945f90a8a4
+ms.openlocfilehash: aa639886ba3379ef30f9abef8f3dff4acb5b1181
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="azure-automation-security"></a>Azure 自動化安全性
-Azure 自動化可讓您針對 Azure、內部部署以及其他雲端提供者 (例如 Amazon Web Services (AWS)) 的資源自動執行工作。  為了讓 Runbook 執行其必要動作，其必須有權能以訂用帳戶內的最少必要權限，安全地存取資源。  
+# <a name="introduction-to-authentication-in-azure-automation"></a>Azure 自動化中的驗證簡介  
+Azure 自動化可讓您針對 Azure、內部部署以及其他雲端提供者 (例如 Amazon Web Services (AWS)) 的資源自動執行工作。  為了讓 Runbook 執行其必要動作，其必須有權能以訂用帳戶內的最少必要權限，安全地存取資源。 
+ 
 本文將介紹 Azure 自動化支援的各種驗證案例，並說明如何根據您要管理的一或多個環境來開始使用。  
 
 ## <a name="automation-account-overview"></a>自動化帳戶概觀
@@ -32,7 +34,6 @@ Azure 自動化可讓您針對 Azure、內部部署以及其他雲端提供者 (
 
 > [!NOTE]
 > 使用 Azure 入口網站所建立的自動化帳戶以及其所包含的資源，無法在 Azure 傳統入口網站中存取。 如果您想使用 Windows PowerShell 來管理這些帳戶或它們的資源，您必須使用 「Azure 資源管理員」模組。
-> 
 > 
 
 在 Azure 自動化中使用 Azure Resource Manager 和 Azure Cmdlet 針對資源所執行的工作，皆必須使用 Azure Active Directory 組織身分識別的認證型驗證向 Azure 進行驗證。  憑證型驗證是 Azure 服務管理模式的原始驗證方法，但其設定步驟很複雜。  我們在 2014 年重新引進使用 Azure AD 使用者向 Azure 進行驗證的方法，不僅是為了簡化驗證帳戶的設定程序，也是為了能夠以同時適用於 Azure Resource Manager 和傳統資源的單一使用者帳戶向 Azure 進行非互動式驗證。   
@@ -56,10 +57,5 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 | Azure 傳統執行身分帳戶 |Azure 服務管理 |[使用 Azure 執行身分帳戶驗證 Runbook](automation-sec-configure-azure-runas-account.md) |
 | Windows 驗證 |內部部署資料中心 |[驗證混合式 Runbook 背景工作角色的 Runbook](automation-hybrid-runbook-worker.md) |
 | AWS 認證 |Amazon Web Services |[使用 Amazon Web Services (AWS) 驗證 Runbook](automation-sec-configure-aws-account.md) |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

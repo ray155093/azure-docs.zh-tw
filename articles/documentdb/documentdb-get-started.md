@@ -16,9 +16,9 @@ ms.topic: hero-article
 ms.date: 12/16/2016
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: fba82c5c826da7d1912814b61c5065ca7f726011
-ms.openlocfilehash: 1622566c34c1ff9c8e83f0356e04743f8a890e96
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 2ca704e3ef14589b5a0c44c9b6857445e3e62dd7
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -26,7 +26,9 @@ ms.lasthandoff: 02/23/2017
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [.NET Core](documentdb-dotnetcore-get-started.md)
+> * [Node.js for MongoDB](documentdb-mongodb-samples.md)
 > * [Node.js](documentdb-nodejs-get-started.md)
+> * [Java](documentdb-java-get-started.md)
 > * [C++](documentdb-cpp-get-started.md)
 >  
 > 
@@ -64,7 +66,7 @@ ms.lasthandoff: 02/23/2017
 
 [!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
-## <a name="a-idsetupvsastep-2-setup-your-visual-studio-solution"></a><a id="SetupVS"></a>步驟 2：設定您的 Visual Studio 方案
+## <a id="SetupVS"></a>步驟 2：設定您的 Visual Studio 方案
 1. 在電腦上開啟 **Visual Studio 2015** 。
 2. 從 [檔案] 功能表中，選取 [新增]，然後選擇 [專案]。
 3. 在 [新增專案]  對話方塊中，依序選取 [範本] / [Visual C#] / [主控台應用程式]、為專案命名，然後按一下 [確定]。
@@ -81,7 +83,7 @@ ms.lasthandoff: 02/23/2017
 
 太棒了！ 現在已完成安裝程式，讓我們開始撰寫一些程式碼。 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-getting-started/blob/master/src/Program.cs)找到本教學課程的完整程式碼專案。
 
-## <a name="a-idconnectastep-3-connect-to-a-documentdb-account"></a><a id="Connect"></a>步驟 3：連接到 DocumentDB 帳戶
+## <a id="Connect"></a>步驟 3：連接到 DocumentDB 帳戶
 首先，在 Program.cs 檔案中，將這些參考新增到 C# 應用程式的開頭：
 
     using System;
@@ -214,7 +216,7 @@ ms.lasthandoff: 02/23/2017
 
 恭喜！ 您已成功建立 DocumentDB 資料庫。  
 
-## <a name="a-idcreatecollastep-5-create-a-collection"></a><a id="CreateColl"></a>步驟 5：建立集合
+## <a id="CreateColl"></a>步驟 5：建立集合
 > [!WARNING]
 > **CreateDocumentCollectionAsync** 會建立含有保留輸送量且具有價格含意的新集合。 如需詳細資訊，請造訪 [定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
 > 
@@ -271,7 +273,7 @@ ms.lasthandoff: 02/23/2017
 
 恭喜！ 您已成功建立 DocumentDB 文件集合。  
 
-## <a name="a-idcreatedocastep-6-create-json-documents"></a><a id="CreateDoc"></a>步驟 6：建立 JSON 文件
+## <a id="CreateDoc"></a>步驟 6：建立 JSON 文件
 您可以使用 **DocumentClient** 類別的 [CreateDocumentAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) 方法來建立[文件](documentdb-resources.md#documents)。 文件會是使用者定義的 (任意) JSON 內容。 現在可插入一或多份文件。 如果您已經有想要儲存於資料庫中的資料，就可以使用 DocumentDB 的 [資料移轉工具](documentdb-import-data.md)，將資料匯入資料庫中。
 
 首先，我們需要建立 **Family** 類別以代表此範例中儲存在 DocumentDB 內的物件。 我們也會建立 **Family** 內使用的 **Parent**、**Child**、**Pet**、**Address** 子類別。 請注意，文件必須將 **Id** 屬性序列化為 JSON 中的**識別碼**。 藉由在 **GetStartedDemo** 方法之後加入下列內部子類別來建立這些類別。
@@ -432,7 +434,7 @@ ms.lasthandoff: 02/23/2017
 
 ![說明 NoSQL 教學課程用來建立 C# 主控台應用程式之帳戶、線上資料庫、集合和文件之間階層式關聯性的圖表](./media/documentdb-get-started/nosql-tutorial-account-database.png)
 
-## <a name="a-idqueryastep-7-query-documentdb-resources"></a><a id="Query"></a>步驟 7：查詢 DocumentDB 資源
+## <a id="Query"></a>步驟 7：查詢 DocumentDB 資源
 DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富 [查詢](documentdb-sql-query.md) 。  下列範例程式碼示範可在我們於前一個步驟中插入的文件上執行的各種查詢 (同時使用 DocumentDB SQL 語法和 LINQ)。
 
 複製 **ExecuteSimpleQuery** 方法並貼到 **CreateFamilyDocumentIfNotExists** 方法之後。
@@ -490,7 +492,7 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行豐富 [查詢](do
 
 因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#FromClause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
 
-## <a name="a-idreplacedocumentastep-8-replace-json-document"></a><a id="ReplaceDocument"></a>步驟 8︰取代 JSON 文件
+## <a id="ReplaceDocument"></a>步驟 8︰取代 JSON 文件
 DocumentDB 支援取代 JSON 文件。  
 
 複製 **ReplaceFamilyDocument** 方法並貼到 **ExecuteSimpleQuery** 方法之後。
@@ -527,7 +529,7 @@ DocumentDB 支援取代 JSON 文件。
 
 恭喜！ 您已成功取代 DocumentDB 文件。
 
-## <a name="a-iddeletedocumentastep-9-delete-json-document"></a><a id="DeleteDocument"></a>步驟 9︰刪除 JSON 文件
+## <a id="DeleteDocument"></a>步驟 9︰刪除 JSON 文件
 DocumentDB 支援刪除 JSON 文件。  
 
 複製 **DeleteFamilyDocument** 方法並貼到 **ReplaceFamilyDocument** 方法之後。
@@ -559,7 +561,7 @@ DocumentDB 支援刪除 JSON 文件。
 
 恭喜！ 您已成功刪除 DocumentDB 文件。
 
-## <a name="a-iddeletedatabaseastep-10-delete-the-database"></a><a id="DeleteDatabase"></a>步驟 10：刪除資料庫
+## <a id="DeleteDatabase"></a>步驟 10：刪除資料庫
 刪除已建立的資料庫將會移除資料庫和所有子系資源 (集合、文件等)。
 
 複製下列程式碼並貼到 **GetStartedDemo** 方法的文件刪除之後，以刪除整個資料庫和所有子系資源。
@@ -576,7 +578,7 @@ DocumentDB 支援刪除 JSON 文件。
 
 恭喜！ 您已成功刪除 DocumentDB 資料庫。
 
-## <a name="a-idrunastep-11-run-your-c-console-application-all-together"></a><a id="Run"></a>步驟 11：一起執行您的 C# 主控台應用程式！
+## <a id="Run"></a>步驟 11：一起執行您的 C# 主控台應用程式！
 在 Visual Studio 中按 F5，即可在偵錯模式下建置應用程式。
 
 您應該可以看到入門應用程式的輸出。 輸出將會顯示新增的查詢結果，而且應該符合以下的範例文字。
@@ -604,7 +606,7 @@ DocumentDB 支援刪除 JSON 文件。
 
 恭喜！ 您已經完成本 NoSQL 教學課程，並擁有運作中的 C# 主控台應用程式！
 
-## <a name="a-idgetsolutiona-get-the-complete-nosql-tutorial-solution"></a><a id="GetSolution"></a> 取得完整的 NoSQL 教學課程方案
+## <a id="GetSolution"></a> 取得完整的 NoSQL 教學課程方案
 如果您沒有時間完成本教學課程中的步驟，或只想要下載程式碼範例，您可以從 [Github](https://github.com/Azure-Samples/documentdb-dotnet-getting-started) 取得程式碼。 
 
 若要建置 GetStarted 方案，您將需要下列項目：

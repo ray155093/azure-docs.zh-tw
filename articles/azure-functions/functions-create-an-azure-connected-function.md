@@ -14,12 +14,12 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 01/23/2017
-ms.author: rachelap@microsoft.com
+ms.date: 03/01/2017
+ms.author: rachelap; glenga
 translationtype: Human Translation
-ms.sourcegitcommit: a8f6d111a010666bf4aaaf05e061381cc8fffed0
-ms.openlocfilehash: 634781189459f26e2ffa42b25a2ffb229d3371d4
-ms.lasthandoff: 02/06/2017
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 4bea7f73871f8bfc755f30b9ef41a1960893152e
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -126,7 +126,7 @@ ms.lasthandoff: 02/06/2017
 
     ![將繫結新增至 Azure 儲存體資料表](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab.png) 
 
-2. 輸入 `TableItem` 做為 [資料表名稱] 以及輸入 `functionbindings` 做為 [資料表參數名稱]，選擇 [儲存體帳戶連線] 或建立新的連線，然後按一下 [儲存]。
+2. 輸入 `functionbindings` 做為 [資料表名稱] 以及輸入 `myTable` 做為 [資料表參數名稱]，選擇 [儲存體帳戶連線] 或建立新的連線，然後按一下 [儲存]。
 
     ![設定儲存體資料表繫結](./media/functions-create-an-azure-connected-function/functionsbindingsdemo2-integrate-tab2.png)
    
@@ -181,7 +181,7 @@ ms.lasthandoff: 02/06/2017
 [!INCLUDE [More binding information](../../includes/functions-bindings-next-steps.md)]
 
 ## <a name="next-steps"></a>後續步驟
-如需 Azure Functions 的詳細資訊，請參閱下列主題。
+如需 Azure Functions 的詳細資訊，請參閱下列主題：
 
 * [Azure Functions 開發人員參考](functions-reference.md)  
   可供程式設計人員撰寫函數程式碼及定義觸發程序和繫結時參考。

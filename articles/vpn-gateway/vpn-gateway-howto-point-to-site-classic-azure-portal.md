@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/17/2017
+ms.date: 03/02/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: cf72197aba2c6e6c7a51f96d1161cf1fbe88a0c5
-ms.openlocfilehash: eb56c702224ab4503051cbee0c3678a7e8833d2b
-ms.lasthandoff: 02/18/2017
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 0e55e0a3d7be1ceadf4f58517b3e2f996661791d
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -59,7 +59,7 @@ ms.lasthandoff: 02/18/2017
 您可以使用下列範例設定：
 
 * **名稱：VNet1**
-* **位址空間：192.168.0.0/16**
+* **位址空間：192.168.0.0/16**<br>在此範例中，我們只使用一個位址空間。 您可以針對 VNet 使用一個以上的位址空間。
 * **子網路名稱：FrontEnd**
 * **子網路位址範圍：192.168.1.0/24**
 * **訂用帳戶：**如果您有一個以上的訂用帳戶，請確認您使用正確的訂用帳戶。
@@ -71,8 +71,8 @@ ms.lasthandoff: 02/18/2017
 * **大小**：選取您想要使用的閘道 SKU。
 * **路由類型：動態**
 
-## <a name="a-namevnetvpnasection-1---create-a-virtual-network-and-a-vpn-gateway"></a><a name="vnetvpn"></a>區段 1 - 建立虛擬網路和 VPN 閘道
-### <a name="a-namecreatevnetapart-1-create-a-virtual-network"></a><a name="createvnet"></a>第 1 部分：建立虛擬網路
+## <a name="vnetvpn"></a>區段 1 - 建立虛擬網路和 VPN 閘道
+### <a name="createvnet"></a>第 1 部分：建立虛擬網路
 如果您還沒有虛擬網路，請建立一個。 已提供螢幕擷取畫面做為範例。 請務必將值取代為您自己的值。 若要使用 Azure 入口網站建立 VNet，請使用下列步驟：
 
 1. 透過瀏覽器瀏覽至 [Azure 入口網站](http://portal.azure.com) ，並視需要使用您的 Azure 帳戶登入。
@@ -98,7 +98,7 @@ ms.lasthandoff: 02/18/2017
 
 一旦建立虛擬網路之後，您將在 Azure 傳統入口網站的網路頁面上看見 [狀態] 下列出 [已建立]。
 
-### <a name="a-namegatewayapart-2-create-gateway-subnet-and-a-dynamic-routing-gateway"></a><a name="gateway"></a>第 2 部分：建立閘道子網路和動態路由閘道
+### <a name="gateway"></a>第 2 部分：建立閘道子網路和動態路由閘道
 在此步驟中，您將建立一個閘道子網路和一個動態路由閘道。 在傳統部署模型的 Azure 入口網站中，建立閘道子網路和閘道可以透過相同的組態刀鋒視窗完成。
 
 1. 在入口網站中，瀏覽至要建立閘道的虛擬網路。
@@ -133,39 +133,45 @@ ms.lasthandoff: 02/18/2017
     ![設定路由類型](./media/vpn-gateway-howto-point-to-site-classic-azure-portal/routingtype125.png)
 10. 在 [新增 VPN 連線] 刀鋒視窗中，按一下刀鋒視窗底部的 [確定]，來開始建立虛擬網路閘道。 這項作業可能需要 45 分鐘的時間才能完成。
 
-## <a name="a-namegeneratecertsasection-2---generate-certificates"></a><a name="generatecerts"></a>第 2 節 - 產生憑證
+## <a name="generatecerts"></a>第 2 節 - 產生憑證
 憑證是 Azure 用於點對站 VPN 的 VPN 用戶端驗證。 然後您可以透過來自企業憑證解決方案所產生的根憑證或自我簽署的根憑證，以 Base-64 編碼 X.509 .cer 檔案形式匯出公開憑證資料 (不是私密金鑰)。 接著將來自根憑證的公開憑證資料匯入到 Azure。 此外，您需要從用戶端的根憑證產生用戶端憑證。 要使用 P2S 連線來連接至虛擬網路的每個用戶端，這些用戶端都必須安裝從根憑證所產生的用戶端憑證。
 
-### <a name="a-namecerapart-1-obtain-the-cer-file-for-the-root-certificate"></a><a name="cer"></a>第 1 部分︰取得根憑證的 .cer 檔案
-如果您是使用企業解決方案，則可以使用現有的憑證鏈結。 如果您不是使用企業 CA 解決方案，則可以建立自我簽署的根憑證。 若要建立適用於 P2S 連線的自我簽署憑證，建議使用 [makecert](vpn-gateway-certificates-point-to-site.md)。 雖然可以使用 PowerShell 來建立自我簽署的憑證，但透過 PowerShell 產生的憑證不包含 P2S 連接的必要欄位。
+### <a name="cer"></a>第 1 部分︰取得根憑證的 .cer 檔案
+ 
+如果您是使用企業解決方案，則可以使用現有的憑證鏈結。 取得您想要使用的根憑證 .cer 檔案。
 
-* 如果您使用的是企業憑證解決方案，請取得您想要使用之根憑證的 .cer 檔案。
-* 如果您不是使用企業憑證解決方案，則必須[使用 makecert 來產生自我簽署的根憑證](vpn-gateway-certificates-point-to-site.md)。
+如果您未使用企業憑證解決方案，則必須建立自我簽署的根憑證。 若要建立自我簽署的憑證，其中包含 P2S 驗證的必要欄位，請使用 makecert。 [針對 P2S 連線建立自我簽署根憑證](vpn-gateway-certificates-point-to-site.md)將逐步引導您完成建立自我簽署根憑證的步驟。 我們都知道，makecert 已被取代，但在目前來說，它是支援的解決方案。
 
+>[!NOTE]
+>雖然可以使用 PowerShell 來建立自我簽署的憑證，但使用 PowerShell 產生的憑證不包含點對站驗證的必要欄位。
+>
+>
 
-1. 若要取得憑證的 .cer 檔案，請開啟 **certmgr.msc** 並找出根憑證。 在自我簽署的根憑證上按一下滑鼠右鍵，按一下 [所有工作]，然後按一下 [匯出]。 這會開啟 [憑證匯出精靈] 。
+#### <a name="to-obtain-the-cer-file-from-a-self-signed-root-certificate"></a>若要從自我簽署根憑證取得 .cer 檔案
+
+1. 若要從自我簽署根憑證取得 .cer 檔案，請開啟 **certmgr.msc** 並找出您建立的根憑證。 憑證通常位於 'Certificates-Current User/ Personal/Certificates'，且名稱為您建立時選擇的任何名稱。 在自我簽署的根憑證上按一下滑鼠右鍵，按一下 [所有工作]，然後按一下 [匯出]。 這會開啟 [憑證匯出精靈] 。
 2. 在精靈中，按 [下一步]，接著選取 [否，不要匯出私密金鑰]，然後按 [下一步]。
 3. 在 [匯出檔案格式] 頁面上，選取 [Base-64 編碼 X.509 (.CER)]。 然後按 [下一步] 。
 4. 在 [要匯出的檔案] 中，[瀏覽] 到您要匯出憑證的位置。 針對 [檔案名稱] ，請為憑證檔案命名。 然後按 [下一步] 。
 5. 按一下 [完成]  以匯出憑證。
 
-### <a name="a-namegenclientcertapart-2-generate-a-client-certificate"></a><a name="genclientcert"></a>第 2 部分：產生用戶端憑證
+### <a name="genclientcert"></a>第 2 部分：產生用戶端憑證
 您可以為每個會進行連線的用戶端產生唯一的憑證，您也可以在多個用戶端上使用相同的憑證。 產生唯一的用戶端憑證的優點是能夠視需要撤銷單一憑證。 否則，如果每個人都使用相同的用戶端憑證，而您發現需要撤銷某一個用戶端的憑證時，則必須為所有使用該憑證進行驗證的用戶端產生並安裝新的憑證。
 
 ####<a name="enterprise-certificate"></a>企業憑證
-- 如果您使用企業憑證解決方案，請以一般的名稱值格式 'name@yourdomain.com', 產生用戶端憑證，而不要使用 'domain name\username' 格式。
+- 如果您使用企業憑證解決方案，請以一般的名稱值格式 'name@yourdomain.com' 產生用戶端憑證，而不要使用 'domain name\username' 格式。
 - 請確定您簽發的用戶端憑證所根據的憑證範本，是以「用戶端驗證」(而不是「智慧卡登入」等) 作為使用清單中第一個項目的「使用者」憑證範本。您可以按兩下用戶端憑證，然後檢視 [詳細資料] > [增強金鑰使用方法]，來檢查憑證。
 
 ####<a name="self-signed-certificate"></a>自我簽署憑證 
 如果您使用自我簽署的憑證解決方案，請參閱 [使用點對站設定的自我簽署根憑證](vpn-gateway-certificates-point-to-site.md) ，以產生用戶端憑證。
 
-### <a name="a-nameexportclientcertapart-3-export-the-client-certificate"></a><a name="exportclientcert"></a>第 3 部分：匯出用戶端憑證
+### <a name="exportclientcert"></a>第 3 部分：匯出用戶端憑證
 在您想要連線至虛擬網路的每部電腦上安裝用戶端憑證。 驗證會需要用戶端憑證。 您可以自動安裝用戶端憑證，您也可以手動安裝。 下列步驟將逐步引導您手動匯出並安裝用戶端憑證。
 
 1. 若要匯出用戶端憑證，請使用 *certmgr.msc*。 以滑鼠右鍵按一下要匯出的用戶端憑證，然後依序按一下 [所有工作] 和 [匯出]。
 2. 匯出具有私密金鑰的用戶端憑證。 這會是 *.pfx* 檔案。 請務必記下或牢記您為這個憑證設定的密碼 (金鑰)。
 
-## <a name="a-nameuploadasection-3---upload-the-root-certificate-cer-file"></a><a name="upload"></a>第 3 節 - 上傳根憑證 .cer 檔案
+## <a name="upload"></a>第 3 節 - 上傳根憑證 .cer 檔案
 建立閘道之後，您可以將信任的根憑證的 .cer 檔案上傳至 Azure。 您最多可上傳 20 個根憑證。 您並未將根憑證的私密金鑰上傳至 Azure。 一旦上傳 .cer 檔案，Azure 會使用它來驗證連接至虛擬網路的用戶端。
 
 1. 在 VNet 刀鋒視窗的 [VPN 連線] 區段中，按一下**用戶端**圖形以開啟 [點對站 VPN 連線] 刀鋒視窗。
@@ -181,7 +187,7 @@ ms.lasthandoff: 02/18/2017
 
     ![Upload certificate](./media/vpn-gateway-howto-point-to-site-classic-azure-portal/upload.png)<br>
 
-## <a name="a-namevpnclientconfigasection-4---generate-the-vpn-client-configuration-package"></a><a name="vpnclientconfig"></a>第 4 節 - 產生 VPN 用戶端組態封裝
+## <a name="vpnclientconfig"></a>第 4 節 - 產生 VPN 用戶端組態封裝
 若要連接到虛擬網路，您還需要設定 VPN 用戶端。 用戶端電腦需要具備用戶端憑證及適當的 VPN 用戶端組態封裝，才能順利連接。
 
 VPN 用戶端套件包含的組態資訊可設定 Windows 內建的 VPN 用戶端軟體。 此套件不會安裝其他軟體。 這些是您所要連接之虛擬網路的專屬設定。 如需支援的用戶端作業系統清單，請參閱本文結尾的[點對站連線常見問題集](#faq)。
@@ -196,7 +202,7 @@ VPN 用戶端套件包含的組態資訊可設定 Windows 內建的 VPN 用戶�
      ![下載 VPN 用戶端組態封裝](./media/vpn-gateway-howto-point-to-site-classic-azure-portal/dlclient.png)<br>
 3. 您會看到一則訊息，說明 Azure 正在產生虛擬網路的 VPN 用戶端組態封裝。 在幾分鐘之後，封裝會產生，而您會在本機電腦看到一則訊息，說明已下載封裝。 儲存組態封裝檔案。 您會在將使用 P2S 連線至虛擬網路的每個用戶端電腦上安裝它。
 
-## <a name="a-nameclientconfigurationasection-5---configure-the-client-computer"></a><a name="clientconfiguration"></a>第 5 節 - 設定用戶端電腦
+## <a name="clientconfiguration"></a>第 5 節 - 設定用戶端電腦
 ### <a name="part-1-install-the-client-certificate"></a>第 1 部分：安裝用戶端憑證
 每個用戶端電腦必須具有用戶端憑證才能驗證。 安裝用戶端憑證時，您需要匯出用戶端憑證時所建立的密碼。
 
@@ -206,13 +212,13 @@ VPN 用戶端套件包含的組態資訊可設定 Windows 內建的 VPN 用戶�
 ### <a name="part-2-install-the-vpn-client-configuration-package"></a>第 2 部分：安裝 VPN 用戶端組態套件
 您可以在每個用戶端電腦上使用相同的 VPN 用戶端組態封裝，前提是版本符合用戶端的架構。
 
-1. 在本機將設定檔複製到您要連接到虛擬網路的電腦上，然後按兩下 .exe 檔案。
-2. 套件安裝完成後，您就可以啟動 VPN 連線。 設定套件並非由 Microsoft 所簽署。 建議您使用組織的簽署服務來簽署套件，或是自行使用 [SignTool](http://go.microsoft.com/fwlink/p/?LinkId=699327) 來簽署。 即使沒有簽署，還是可以使用套件。 不過，如果套件未簽署，當您安裝套件時將會出現警告。
+1. 在本機將組態檔複製到您要連線至虛擬網路的電腦上。 
+2. 在用戶端電腦上按兩下 .exe 檔案以安裝套件。 組態套件尚未簽署，因為是由您建立。 這表示您可能會看到警告。 如果您看到 Windows SmartScreen 快顯視窗，請按一下 [更多資訊] (左側)，然後按一下 [仍要執行] 來安裝套件。
 3. 在用戶端電腦上，瀏覽至 [網路設定]，然後按一下 [VPN]。 您會看到列出的連線。 它會顯示將要連接的虛擬網路名稱，如下所示：
 
     ![VPN 用戶端](./media/vpn-gateway-howto-point-to-site-classic-azure-portal/vpn.png)
 
-## <a name="a-nameconnectasection-6---connect-to-azure"></a><a name="connect"></a>第 6 節 - 連接到 Azure
+## <a name="connect"></a>第 6 節 - 連接到 Azure
 ### <a name="connect-to-your-vnet"></a>連接到您的 VNet
 1. 若要連接至您的 VNet，在用戶端電腦上瀏覽到 VPN 連線，然後找出所建立的 VPN 連線。 其名稱會與虛擬網路相同。 按一下 [ **連接**]。 可能會出現與使用憑證有關的快顯訊息。 如果出現，按一下 [繼續]  以使用較高的權限。
 2. 在 [連線] 狀態頁面上，按一下 [連線] 以便開始連線。 如果出現 [選取憑證]  畫面，請確認顯示的用戶端憑證是要用來連接的憑證。 如果沒有，請使用下拉箭頭來選取正確的憑證，然後按一下 [確定] 。
@@ -244,7 +250,46 @@ VPN 用戶端套件包含的組態資訊可設定 Windows 內建的 VPN 用戶�
         Default Gateway.................:
         NetBIOS over Tcpip..............: Enabled
 
-## <a name="a-namefaqapoint-to-site-faq"></a><a name="faq"></a>點對站常見問題集
+## <a name="add"></a>新增或移除受信任的根憑證
+
+您可以從 Azure 新增和移除受信任的根憑證。 當您移除受信任的憑證時，從根憑證所產生的用戶端憑證將不再能夠透過點對站連線到 Azure。 若您希望用可以戶端連線，他們需要安裝在 Azure 中受信任的憑證所產生的新用戶端憑證。
+
+### <a name="to-add-a-trusted-root-certificate"></a>若要新增受信任的根憑證
+
+您最多可新增 20 個受信任的根憑證 .cer 檔案至 Azure。 如需指示，請參閱[第 3 節 - 上傳根憑證 .cer 檔案](#upload)。
+
+### <a name="to-remove-a-trusted-root-certificate"></a>移除受信任的根憑證
+
+
+1. 在 VNet 刀鋒視窗的 [VPN 連線] 區段中，按一下**用戶端**圖形以開啟 [點對站 VPN 連線] 刀鋒視窗。
+
+    ![用戶端](./media/vpn-gateway-howto-point-to-site-classic-azure-portal/clients125.png)
+2. 在 [點對站連線] 刀鋒視窗中，按一下 [管理憑證] 來開啟 [憑證] 刀鋒視窗。<br>
+
+    ![憑證刀鋒視窗](./media/vpn-gateway-howto-point-to-site-classic-azure-portal/ptsmanage.png)<br><br>
+3. 在 [憑證] 刀鋒視窗中，按一下您想要移除之憑證旁邊的省略符號，然後按一下 [刪除]。
+
+     ![刪除根憑證](./media/vpn-gateway-howto-point-to-site-classic-azure-portal/deleteroot.png)<br>
+
+
+## <a name="revokeclient"></a>撤銷用戶端憑證
+您可以撤銷用戶端憑證。 憑證撤銷清單可讓您選擇性地拒絕以個別的用戶端憑證為基礎的點對站連線。 這不同於移除受信任的根憑證。 若您從 Azure 移除受信任的根憑證 .cer，就會撤銷所有由撤銷的根憑證所產生/簽署的用戶端憑證之存取權。 撤銷用戶端憑證，而不是根憑證，可以讓從根憑證產生的憑證繼續用於點對站連線的驗證。
+
+常見的做法是使用根憑證管理小組或組織層級的存取權，然後使用撤銷的用戶端憑證針對個別使用者進行細部的存取控制。
+
+### <a name="to-revoke-a-client-certificate"></a>若要撤銷用戶端憑證
+
+您可以藉由將指紋新增至撤銷清單來撤銷用戶端憑證。
+
+1. 擷取用戶端憑證指紋。 如需詳細資訊，請參閱[做法：擷取憑證的指紋](https://msdn.microsoft.com/library/ms734695.aspx)。
+2. 將資訊複製到文字編輯器，並移除所有的空格，讓它是連續字串。
+3. 瀏覽至 [「傳統虛擬網路名稱」> 點對站 VPN 連線 > 憑證] 刀鋒視窗，然後按一下 [撤銷清單] 以開啟 [撤銷清單] 刀鋒視窗。 
+4. 在 [撤銷清單] 刀鋒視窗中，按一下 [+新增憑證] 以開啟 [將憑證加入撤銷清單] 刀鋒視窗。
+5. 在 [將憑證加入撤銷清單] 刀鋒視窗中，貼上連續一行文字且不含空格的憑證指紋。 按一下刀鋒視窗底部的 [確定]。
+6. 更新完成之後，憑證無法再用於連線。 嘗試使用此憑證進行連線的用戶端會收到訊息，指出憑證不再有效。
+
+
+## <a name="faq"></a>點對站常見問題集
 
 [!INCLUDE [Point-to-Site FAQ](../../includes/vpn-gateway-point-to-site-faq-include.md)]
 

@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure Powershell 建立 Azure VM | Microsoft Docs"
-description: "使用 Azure PowerShell 和 Azure Resource Manager，輕鬆建立執行 Windows Server 的 VM。"
+description: "使用 Azure PowerShell 和 Azure Resource Manager，輕鬆建立 Windows Server VM。"
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -10,20 +10,20 @@ tags: azure-resource-manager
 ms.assetid: 14fe9ca9-e228-4d3b-a5d8-3101e9478f6e
 ms.service: virtual-machines-windows
 ms.topic: get-started-article
-ms.date: 02/14/2017
+ms.date: 03/07/2017
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 8d8dfb9b165d82e8567f6b5577d46d562f9f8db3
-ms.openlocfilehash: 89e306d3e3312531878da088575c7429a941d34f
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 3de1e04c3ce1d6d465c5a54bc9db676639709371
+ms.lasthandoff: 03/08/2017
 
 ---
 
-# <a name="create-a-windows-vm-using-resource-manager-and-powershell"></a>使用 Resource Manager 和 PowerShell 建立 Windows VM
+# <a name="create-a-windows-vm-using-azure-resource-manager-and-powershell"></a>使用 Azure Resource Manager 和 PowerShell 建立 Windows VM
 
-本文說明如何使用 [Resource Manager](../azure-resource-manager/resource-group-overview.md) 和 Azure PowerShell 來快速建立執行 Windows Server 的 Azure 虛擬機器及其所需的資源。  
+本文說明如何使用 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 和 Azure PowerShell 來快速建立執行 Windows Server 的 Azure 虛擬機器，及其所需的資源。  
 
-必須執行本文中的所有步驟才能建立虛擬機器，而且應該需要約 30 分鐘的時間才能完成步驟。 將命令中的範例參數值取代為對您環境有意義的名稱。
+必須執行本文中的所有步驟才能建立虛擬機器，而且應該需要約 10 分鐘的時間才能複製、貼上及執行命令。
 
 ## <a name="step-1-install-azure-powershell"></a>步驟 1：安裝 Azure PowerShell
 
@@ -79,7 +79,7 @@ ms.lasthandoff: 02/23/2017
 
 ## <a name="step-4-create-a-virtual-network"></a>步驟 4：建立虛擬網路
 
-所有虛擬機器都屬於 [虛擬網路](../virtual-network/virtual-networks-overview.md)的一部分。
+所有虛擬機器都屬於 [虛擬網路](virtual-machines-windows-network-overview.md)的一部分。
 
 1. 建立虛擬網路的子網路。 此命令會建立名為 **mySubnet** 且具有位址首碼 10.0.0.0/24 的子網路。
    

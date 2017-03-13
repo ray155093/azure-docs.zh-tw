@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/06/2017
+ms.date: 03/07/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 1fd0451809c8afca5c330229390ec691f4a25eb5
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 8bea5c13b8657be737cdc135b2d46bd0068b6b88
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -31,17 +32,11 @@ Data Lake Tools for Visual Studio 可用來存取 Data Lake Analytics 和 HDInsi
 
 若要完成本教學課程並使用 Visual Studio 中的 Data Lake Tools，您需要下列項目：
 
-* Azure HDInsight 叢集：以 Linux 或 Windows 為基礎的叢集將適用這份文件中的步驟。 如需建立叢集的詳細資訊，請參閱下列其中一項：
-  
-  * [開始使用以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)
-  * [開始使用以 Windows 為基礎的 HDInsight](hdinsight-hadoop-tutorial-get-started-windows.md)
+* Azure HDInsight 叢集︰若要建立叢集，請參閱[開始使用以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)
 * 已安裝下列軟體的工作站：
   
-  * Windows 8.1、Windows 8 或 Windows 7。
-  * Visual Studio (下列其中一個版本)：
-    
-    * Visual Studio 2013 Community/Professional/Premium/Ultimate，含 [Update 4](https://www.microsoft.com/download/details.aspx?id=44921)
-    * Visual Studio 2015 (Community/Enterprise)
+  * Windows 10、Windows 8.1、Windows 8 或 Windows 7。
+  * Visual Studio 2013/2015/2017。
     
     > [!NOTE]
     > Data Lake Tools for Visual Studio 目前只有英文版。
@@ -49,7 +44,8 @@ Data Lake Tools for Visual Studio 可用來存取 Data Lake Analytics 和 HDInsi
     > 
 
 ## <a name="install-data-lake-tools-for-visual-studio"></a>安裝 Data Lake Tools for Visual Studio
-您可以使用 [Web Platform Installer](https://www.microsoft.com/web/downloads/) 來安裝 Data Lake Tools。 您必須選擇與 Visual Studio 版本相符的封裝。 如果您沒有安裝 Visual Studio，可以使用 [Web Platform Installer](https://www.microsoft.com/web/downloads/)，來安裝最新的 Visual Studio Community 和 Azure SDK：
+
+預設會針對 Visual Studio 2017 安裝 Data Lake Tools。 對於較舊版本，您可以使用 [Web Platform Installer](https://www.microsoft.com/web/downloads/) 來安裝。 您必須選擇與 Visual Studio 版本相符的封裝。 如果您沒有安裝 Visual Studio，可以使用 [Web Platform Installer](https://www.microsoft.com/web/downloads/)，來安裝最新的 Visual Studio Community 和 Azure SDK：
 
 ![Data Lake Tools for Visual Studio Web Platform Installer。][1]
 
@@ -128,7 +124,7 @@ Data Lake Tools for Visual Studio 也可讓使用者透過收集和呈現特定 
    
     ![Data Lake Tools：HDInsight Visual Studio 工具會建立 Hive 資料表][7]
 
-### <a name="a-namerunqueriesavalidate-and-run-hive-queries"></a><a name="run.queries"></a>驗證和執行 Hive 查詢
+### <a name="run.queries"></a>驗證和執行 Hive 查詢
 有兩種方式可建立和執行 Hive 查詢：
 
 * 建立特定查詢
@@ -278,9 +274,4 @@ Data Lake Tools for Visual Studio 支援建立 Pig 指令碼並提交至 HDInsig
 [hdinsight.access.application.logs]: hdinsight-hadoop-access-yarn-app-logs.md
 
 [apache.hive]: http://hive.apache.org
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 
