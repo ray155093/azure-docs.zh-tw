@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/27/2016
-ms.author: magoedte;tomfitz
+ms.date: 03/06/2017
+ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 53e57807e97671bd279c03ada4c147fc1e7f1e45
-ms.openlocfilehash: c7bfc5584c11a7e69aedeb93f143a78d97c9369a
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: c645a8aa317b12d52f0246d0f9205294d56b6a0d
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -92,8 +93,8 @@ Azure 資源管理員提供一種新方式來部署和管理組成應用程式�
 | 辨識服務 |是 | [辨識服務 REST](/rest/api/cognitiveservices) |[辨識服務結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2016-02-01-preview/Microsoft.CognitiveServices.json) | |
 | 資料目錄 |是 |[資料目錄 REST](/rest/api/datacatalog) |[資料目錄結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2016-03-30/Microsoft.DataCatalog.json) | |
 | Data Factory |是 |[Data Factory REST](/rest/api/datafactory) | |[Microsoft.DataFactory](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.DataFactory%22&type=Code) |
-| 資料湖分析 |是 | [Data Lake REST](/rest/api/datalakeanalytics) |[Data Lake Analytics 結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2015-10-01-preview/Microsoft.DataLakeAnalytics.json) |[Microsoft.DataLakeAnalytics](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.DataLakeAnalytics%22&type=Code) |
-| 資料湖存放區 |是 |[Data Lake Store REST](/rest/api/datalakestore) |[Data Lake Store 結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2015-10-01-preview/Microsoft.DataLakeStore.json) |[Microsoft.DataLakeStore](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.DataLakeStore%22&type=Code) |
+| Data Lake Analytics |是 | [Data Lake REST](/rest/api/datalakeanalytics) |[Data Lake Analytics 結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2015-10-01-preview/Microsoft.DataLakeAnalytics.json) |[Microsoft.DataLakeAnalytics](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.DataLakeAnalytics%22&type=Code) |
+| Data Lake Store |是 |[Data Lake Store REST](/rest/api/datalakestore) |[Data Lake Store 結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2015-10-01-preview/Microsoft.DataLakeStore.json) |[Microsoft.DataLakeStore](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.DataLakeStore%22&type=Code) |
 | HDInsights |是 |[HDInsights REST](/rest/api/hdinsight) | |[Microsoft.HDInsight](https://github.com/Azure/azure-quickstart-templates/search?utf8=%E2%9C%93&q=%22Microsoft.HDInsight%22&type=Code) |
 | 機器學習服務 |是 |[Machine Learning REST](/rest/api/machinelearning) |[機器學習服務結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2016-05-01-preview/Microsoft.MachineLearning.json) | |
 | 串流分析 |是 |[串流分析 REST](/rest/api/streamanalytics) | | |
@@ -162,48 +163,41 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 ### <a name="powershell"></a>PowerShell
 下列範例示範如何取得所有可用的資源提供者。
 
-    Get-AzureRmResourceProvider -ListAvailable
+```powershell
+Get-AzureRmResourceProvider -ListAvailable
+```
 
 
 下一個範例示範如何取得特定資源提供者的資源類型。
 
-    (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes
-
-輸出如下：
-
-    ResourceTypeName                Locations                                         
-    ----------------                ---------                                         
-    sites/extensions                {Brazil South, East Asia, East US, Japan East...} 
-    sites/slots/extensions          {Brazil South, East Asia, East US, Japan East...} .
-    ...
+```powershell
+(Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes
+```
 
 若要註冊資源提供者，請提供命名空間：
 
-    Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ApiManagement
+```powershell
+Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ApiManagement
+```
 
 ### <a name="azure-cli"></a>Azure CLI
 下列範例示範如何取得所有可用的資源提供者。
 
-    azure provider list
+```azurecli
+az provider list
+```
 
-輸出如下：
+您可以使用下列命令，檢視特定資源提供者的資訊：
 
-    info:    Executing command provider list
-    + Getting registered providers
-    data:    Namespace                        Registered
-    data:    -------------------------------  -------------
-    data:    Microsoft.ApiManagement          Unregistered
-    data:    Microsoft.AppService             Registered
-    data:    Microsoft.Authorization          Registered
-    ...
-
-您可以使用下列命令，將特定資源提供者的資訊儲存至檔案：
-
-    azure provider show Microsoft.Web -vv --json > c:\temp.json
+```azurecli
+az provider show --namespace Microsoft.Web
+```
 
 若要註冊資源提供者，請提供命名空間：
 
-    azure provider register -n Microsoft.ServiceBus
+```azurecli
+az provider register --namespace Microsoft.ServiceBus
+```
 
 ## <a name="supported-regions"></a>支援區域
 部署資源時，通常需要指定資源的區域。 所有區域都支援資源管理員，但您部署的資源可能無法在所有區域中受到支援。 此外，您的訂用帳戶上可能會有一些限制，以防止您使用某些支援該資源的區域。 這些限制可能與您所在國家/地區的稅務問題有關，或者與由您的訂用帳戶管理員所放置，只能使用特定區域的原則結果有關。 
@@ -229,40 +223,17 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 ### <a name="powershell"></a>PowerShell
 下列範例示範如何取得支援網站的區域。
 
-    ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
-
-輸出如下：
-
-    Brazil South
-    East Asia
-    East US
-    Japan East
-    Japan West
-    North Central US
-    North Europe
-    South Central US
-    West Europe
-    West US
-    Southeast Asia
-    Central US
-    East US 2
+```powershell
+((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
+```
 
 ### <a name="azure-cli"></a>Azure CLI
-下列範例會針對每個資源類型傳回所有支援的位置。
+下列範例說明如何取得網站的支援區域。
 
-    azure location list
+```azurecli
+az provider show --namespace Microsoft.Web --query "resourceTypes[?resourceType=='sites'].locations"
+```
 
-您也可以使用 [jq](https://stedolan.github.io/jq/)這類 JSON 公用程式來篩選位置結果。
-
-    azure location list --json | jq '.[] | select(.name == "Microsoft.Web/sites")'
-
-它會傳回：
-
-    {
-      "name": "Microsoft.Web/sites",
-      "location": "Brazil South,East Asia,East US,Japan East,Japan West,North Central US,
-            North Europe,South Central US,West Europe,West US,Southeast Asia,Central US,East US 2"
-    }
 
 ## <a name="supported-api-versions"></a>支援的 API 版本
 當您部署範本時，您必須指定要用來建立每個資源的 API 版本。 API 版本會對應至資源提供者所發行的 REST API 作業版本。 當資源提供者啟用新功能時，它會發行新版本的 REST API。 因此，您在範本中指定的 API 版本會影響您可以在範本中指定的屬性。 一般而言，您會想要在建立範本時選取最新的 API 版本。 對於現有的範本，您可以決定是否繼續使用舊的 API 版本，或更新您的範本以便最新版本利用新功能。
@@ -276,35 +247,34 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 ### <a name="powershell"></a>PowerShell
 下列範例示範如何取得特定資源類型可用的 API 版本。
 
+```powershell
     ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).ApiVersions
+```
 
 輸出如下：
 
-    2015-08-01
-    2015-07-01
-    2015-06-01
-    2015-05-01
-    2015-04-01
-    2015-02-01
-    2014-11-01
-    2014-06-01
-    2014-04-01-preview
-    2014-04-01
+```powershell
+2015-08-01
+2015-07-01
+2015-06-01
+2015-05-01
+2015-04-01
+2015-02-01
+2014-11-01
+2014-06-01
+2014-04-01-preview
+2014-04-01
+```
 
 ### <a name="azure-cli"></a>Azure CLI
-您可以使用下列命令，將資源提供者的資訊 (包括可用的 API 版本) 儲存至檔案：
+您可以透過下列命令，取得資源提供者可用的 API 版本：
 
-    azure provider show Microsoft.Web -vv --json > c:\temp.json
-
-您可以開啟該檔案，然後尋找 **apiVersions** 元素
+```azurecli
+az provider show --namespace Microsoft.Web --query "resourceTypes[?resourceType=='sites'].apiVersions"
+```
 
 ## <a name="next-steps"></a>後續步驟
 * 若要了解如何建立資源管理員範本，請參閱 [編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 * 若要了解如何部署資源，請參閱 [使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 
