@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/14/2016
+ms.date: 02/24/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 4572913c2bc732c31f38021f9d3ccc34417de875
-ms.openlocfilehash: be4361af8f3f3024ab7f12114760f6f58e77deaf
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: b0c3c5dfd695b28b75bf44c9f835b34966413a9a
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: be4361af8f3f3024ab7f12114760f6f58e77deaf
 下載 SDK 需要 Azure Multi-Factor Auth Provider。
 
 > [!IMPORTANT]
-> 若要下載 SDK，即使您有 Azure MFA、AAD Premium 或 EMS 授權，還是必須建立 Azure Multi-Factor Auth Provider。  如果您針對此用途建立 Azure Multi-Factor Auth Provider，且已有授權，請務必使用**每個啟用的使用者**模型建立提供者。 然後，將提供者連結至包含 Azure MFA、Azure AD Premium 或 EMS 授權的目錄。  這可確保您只會在使用 SDK 的唯一使用者超過您所擁有的授權數目時收到帳單。
+> 若要下載 SDK，即使您有 Azure MFA、AAD Premium 或 EMS 授權，還是必須建立 Azure Multi-Factor Auth Provider。  如果您針對此用途建立 Azure Multi-Factor Auth Provider，且已有授權，請務必使用**每個啟用的使用者**模型建立提供者。 然後，將提供者連結至包含 Azure MFA、Azure AD Premium 或 EMS 授權的目錄。  這個組態可確保您只會在執行雙步驟驗證的唯一使用者超過您所擁有的授權數目時收到帳單。
 
 ## <a name="create-a-multi-factor-auth-provider"></a>建立 Multi-Factor Auth Provider
 使用下列步驟，建立 Azure Multi-Factor Auth Provider。
@@ -46,7 +47,7 @@ ms.openlocfilehash: be4361af8f3f3024ab7f12114760f6f58e77deaf
    ![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider4.png)
 7. 填寫下列欄位並選取 [建立] 。
    1. **名稱** – Multi-Factor Auth Provider 的名稱。
-   2. **使用模式** – 您要啟用個別使用者，或依驗證付費。 選擇其中一個選項：
+   2. **使用量模型** – 選擇兩個選項其中之一：
       * 每次驗證 – 購買依每次驗證付費的模式。 通常用於在取用者導向應用程式中使用 Azure Multi-factor Authentication 的案例。
       * 每個啟用的使用者 – 購買依每個啟用使用者付費的模式。 通常用於員工存取 Office 365 之類的應用程式。 如果某些使用者已擁有 Azure MFA 的授權，請選擇這個選項。
    3. **目錄** – 與 Multi-Factor Authentication Provider 相關聯的 Azure Active Directory 租用戶。 請注意以下事項：
@@ -56,10 +57,5 @@ ms.openlocfilehash: be4361af8f3f3024ab7f12114760f6f58e77deaf
         ![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider5.png)
 8. 一旦按一下建立，系統便會建立 Multi-Factor Authentication Provider，而且您應該會看到一則指出「已成功建立 Multi-Factor Authentication Provider」 的訊息。 按一下 [確定] 。
    ![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider6.png)
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

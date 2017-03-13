@@ -1,9 +1,33 @@
 ---
-標題︰建立 Azure 容器登錄庫 - 入口網站 | Microsoft Docs 說明：使用 Azure 入口網站開始建立及管理 Azure 容器登錄庫 服務：容器登錄庫 documentationcenter：'' 作者：stevelas 管理員：balans 編輯：dlepow 標籤：''關鍵字：''
+title: "建立私人 Docker 登錄 - Azure 入口網站 | Microsoft Docs"
+description: "使用 Azure 入口網站開始建立及管理私人 Docker 容器登錄"
+services: container-registry
+documentationcenter: 
+author: stevelas
+manager: balans
+editor: dlepow
+tags: 
+keywords: 
+ms.assetid: 53a3b3cb-ab4b-4560-bc00-366e2759f1a1
+ms.service: container-registry
+ms.devlang: na
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 11/14/2016
+ms.author: stevelas
+ms.custom: H1Hack27Feb2017
+translationtype: Human Translation
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 33944d34ce695e1729b761a7f762e24a6dce70a2
+ms.lasthandoff: 03/06/2017
 
-ms.assetid: 53a3b3cb-ab4b-4560-bc00-366e2759f1a1 ms.service: container-registry ms.devlang: na ms.topic: get-started-article ms.tgt_pltfrm: na ms.workload: na ms.date: 11/14/2016 ms.author: stevelas ---# 使用 Azure 入口網站建立容器登錄庫 使用 Azure 入口網站來建立容器登錄庫及管理其設定。 您也可以使用 [Azure CLI 2.0 命令](container-registry-get-started-azure-cli.md)或以程式設計方式用容器登錄庫 [REST API](https://go.microsoft.com/fwlink/p/?linkid=834376) 來建立及管理容器登錄庫。
+---
 
-如需背景和概念，請參閱[什麼是 Azure 容器登錄庫？](container-registry-intro.md)
+# <a name="create-a-private-docker-container-registry-using-the-azure-portal"></a>使用 Azure 入口網站建立私人 Docker 容器登錄
+使用 Azure 入口網站來建立容器登錄庫及管理其設定。 您也可以使用 [Azure CLI 2.0 命令](container-registry-get-started-azure-cli.md)或以程式設計方式用容器登錄庫 [REST API](https://go.microsoft.com/fwlink/p/?linkid=834376) 來建立及管理容器登錄庫。
+
+如需相關背景和概念，請參閱[概觀](container-registry-intro.md)
 
 
 > [!NOTE]
@@ -20,19 +44,19 @@ ms.assetid: 53a3b3cb-ab4b-4560-bc00-366e2759f1a1 ms.service: container-registry 
     ![容器登錄庫設定](./media/container-registry-get-started-portal/container-registry-settings.png)
 5. 在 [容器登錄庫] 刀鋒視窗中，輸入下列資訊。 完成後按一下 [建立]。
    
-    a. **登錄庫名稱** - 登錄庫的全域唯一最上層網域名稱。 此範例中的登錄庫名稱是 *myRegistry01*，請換成您自己的唯一名稱。 此名稱只能包含字母和數字。
+    a. **登錄名稱**：指定登錄的全域唯一最上層網域名稱。 此範例中的登錄庫名稱是 *myRegistry01*，請換成您自己的唯一名稱。 此名稱只能包含字母和數字。
    
-    b.這是另一個 C# 主控台應用程式。 **資源群組** - 選取現有的[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)，或輸入新群組的名稱。 
+    b. **資源群組**：選取現有的[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)，或輸入新群組的名稱。 
    
-    c. **位置** -選取[可使用](https://azure.microsoft.com/regions/services/)此服務的 Azure 資料中心位置，例如 [美國中南部]。 
+    c. **位置**：選取[可使用](https://azure.microsoft.com/regions/services/)此服務的 Azure 資料中心位置，例如 [美國中南部]。 
    
-    d. **管理員使用者** - 如果您想要，可啟用管理員使用者存取登錄庫。 您可以在建立登錄庫後變更此設定。
+    d. **管理員使用者**：如果您想，可啟用管理員使用者存取登錄。 您可以在建立登錄庫後變更此設定。
    
-   > [!IMPORTANT]
-   > 除了透過管理員使用者帳戶存取，容器登錄庫還支援 Azure Active Directory 服務主體所支援的驗證。 如需詳細資訊和考量事項，請參閱[驗證容器登錄庫](container-registry-authentication.md)。
-   
-
-    e. **儲存體帳戶** - 使用預設設定建立[儲存體帳戶](../storage/storage-introduction.md)，或選取相同位置中的現有儲存體帳戶。 目前不支援進階儲存體。
+    > [!IMPORTANT]
+    > 除了透過管理員使用者帳戶存取，容器登錄庫還支援 Azure Active Directory 服務主體所支援的驗證。 如需詳細資訊和考量事項，請參閱[驗證容器登錄庫](container-registry-authentication.md)。
+    >
+    
+    e. **儲存體帳戶**：使用預設設定建立[儲存體帳戶](../storage/storage-introduction.md)，或選取相同位置中的現有儲存體帳戶。 目前不支援進階儲存體。
 
 
 ## <a name="manage-registry-settings"></a>管理登錄庫設定
@@ -52,6 +76,7 @@ ms.assetid: 53a3b3cb-ab4b-4560-bc00-366e2759f1a1 ms.service: container-registry 
 
 ## <a name="next-steps"></a>後續步驟
 * [使用 Docker CLI 推送您的第一個映像](container-registry-get-started-docker-cli.md)
+
 
 
 

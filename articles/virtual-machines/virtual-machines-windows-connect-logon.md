@@ -13,16 +13,19 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/28/2016
+ms.date: 03/01/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 9077746d8ffe968504f1dde90ed5f76dd1facc19
+ms.sourcegitcommit: 00f6b2e60c20eb27771d9d54df63f930ee88a55a
+ms.openlocfilehash: 7427c8126ab73a851bc696d4925366b3b714616d
+ms.lasthandoff: 03/02/2017
 
 
 ---
 # <a name="how-to-connect-and-log-on-to-an-azure-virtual-machine-running-windows"></a>如何連接和登入執行 Windows 的 Azure 虛擬機器
-您會使用 Azure 入口網站中的 [連線]  按鈕啟動遠端桌面 (RDP) 工作階段。 首先您要連接至虛擬機器，然後登入。
+您會使用 Azure 入口網站中的 [連線] 按鈕，從 Windows 桌面啟動遠端桌面 (RDP) 工作階段。 首先您要連接至虛擬機器，然後登入。
+
+如果您嘗試從 Mac 連線至 Windows VM，您需要安裝適用於 Mac 的 RDP 用戶端，例如 [Microsoft 遠端桌面](https://itunes.apple.com/app/microsoft-remote-desktop/id715768417)。
 
 ## <a name="connect-to-the-virtual-machine"></a>連接至虛擬機器
 1. 如果您尚未登入 [Azure 入口網站](https://portal.azure.com/)，請先登入。
@@ -42,10 +45,5 @@ ms.openlocfilehash: 9077746d8ffe968504f1dde90ed5f76dd1facc19
 
 ## <a name="next-steps"></a>後續步驟
 如果嘗試連線時遇到問題，請參閱 [遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 本文會逐步帶領您診斷及解決常見的問題。
-
-
-
-
-<!--HONumber=Nov16_HO2-->
 
 

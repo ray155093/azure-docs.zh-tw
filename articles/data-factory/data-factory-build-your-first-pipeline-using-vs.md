@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 12/15/2016
+ms.date: 03/06/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 0a4eb02e50c90f41bdc4f2db2af87e2b194da25a
-ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 23927acae12f0db13fe6dd24a4e1fde8ced25d40
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -34,7 +35,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
 在本文中，您會使用 Microsoft Visual Studio 來建立您的第一個 Azure Data Factory。 若要使用其他工具/SDK 進行本教學課程，請選取下拉式清單的其中一個選項。
 
 > [!NOTE]
-> 本教學課程中的資料管線會轉換輸入資料來產生輸出資料。 它不會將資料從來源資料存放區複製到目的地資料存放區。 如需說明如何使用 Azure Data Factory 複製資料的教學課程，請參閱[教學課程：將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+> 本教學課程中的資料管線會轉換輸入資料來產生輸出資料。 它不是將資料從來源資料存放區，複製到目的地資料存放區。 如需說明如何使用 Azure Data Factory 複製資料的教學課程，請參閱[教學課程：將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 > 
 > 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱[在 Data Factory 中排程和執行](data-factory-scheduling-and-execution.md)。 
 
@@ -78,7 +79,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
 
 1. 以滑鼠右鍵按一下 [方案總管] 中的 [連結服務]，指向 [新增]，然後按一下 [新增項目]。
 2. 選取 [HDInsight 隨選連結服務]，然後按一下 [新增]。
-3. 使用下列程式碼來取代 **JSON** ：
+3. 使用下列 JSON 來取代 **JSON**：
 
     ```JSON
     {
@@ -98,19 +99,19 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
     下表提供程式碼片段中所使用之 JSON 屬性的描述：
 
    | 屬性 | 說明 |
-   | --- | --- |
-   |  版本 |指定所建立的 HDInsight 版本為 3.2。 |
-   |  ClusterSize |指定 HDInsight 叢集的大小。 |
-   |  TimeToLive |指定 HDInsight 叢集在被刪除之前的閒置時間。 |
-   |  linkedServiceName |指定用來儲存 HDInsight 產生之記錄檔的儲存體帳戶 |
+   | -------- | ----------- |
+   | 版本 | 指定所建立的 HDInsight 版本為 3.2。 |
+   | ClusterSize |指定 HDInsight 叢集的大小。 |
+   | TimeToLive |指定 HDInsight 叢集在被刪除之前的閒置時間。 |
+   | linkedServiceName |指定用來儲存 HDInsight 產生之記錄檔的儲存體帳戶 |
 
-    請注意：
+    請注意下列幾點：
 
    * Data Factory 會使用先前的 JSON 為您建立**以 Windows 為基礎的** HDInsight 叢集。 您也可以讓它建立**以 Linux 為基礎的** HDInsight 叢集。 如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) 。
    * 您可以使用 **自己的 HDInsight 叢集** ，不必使用隨選的 HDInsight 叢集。 如需詳細資訊，請參閱 [HDInsight 連結服務](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) 。
    * HDInsight 叢集會在您於 JSON 中指定的 Blob 儲存體 (**linkedServiceName**) 建立**預設容器**。 HDInsight 不會在刪除叢集時刪除此容器。 這是設計的行為。 在使用 HDInsight 隨選連結服務時，除非有現有的即時叢集 (**timeToLive**)，否則每次處理配量時，就會建立 HDInsight 叢集。 此叢集會在處理完成時自動刪除。
 
-       隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。 如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。 這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。 請使用 [Microsoft 儲存體總管](http://storageexplorer.com/) 之類的工具刪除 Azure Blob 儲存體中的容器。
+       隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。 如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。 這些容器的名稱會遵循模式︰`adf**yourdatafactoryname**-**linkedservicename**-datetimestamp`。 請使用 [Microsoft 儲存體總管](http://storageexplorer.com/) 之類的工具刪除 Azure Blob 儲存體中的容器。
 
      如需詳細資訊，請參閱 [HDInsight 隨選連結服務](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) 。
 4. 儲存 **HDInsightOnDemandLinkedService1.json** 檔案。
@@ -121,9 +122,9 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
 #### <a name="create-input-dataset"></a>建立輸入資料集
 1. 以滑鼠右鍵按一下 [方案總管] 中的 [資料表]，指向 [新增]，然後按一下 [新增項目]。
 2. 從清單中選取 [Azure Blob]，將檔案名稱變更為 **InputDataSet.json**，再按一下 [新增]。
-3. 使用下列文字取代編輯器中的 **JSON** ：
+3. 使用下列 JSON 程式碼片段取代編輯器中的 **JSON**：
 
-    在 JSON 程式碼片段中，您會建立名為 **AzureBlobInput** 的資料集，代表管線中活動的輸入資料。 此外，您指定將輸入資料放在名為 **adfgetstarted** 的 Blob 容器及名為 **inputdata** 的資料夾中。
+    在 JSON 程式碼片段中，您會建立名為 **AzureBlobInput** 的資料集，代表管線中活動的輸入資料。 此外，您指定將輸入資料放在名為 `adfgetstarted` 的 Blob 容器及名為 `inputdata` 的資料夾中。
 
     ```JSON
     {
@@ -151,7 +152,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
     下表提供程式碼片段中所使用之 JSON 屬性的描述：
 
    | 屬性 | 說明 |
-   |:--- |:--- |
+   | -------- | ----------- |
    | 類型 |類型屬性設為 AzureBlob，因為資料位於 Azure Blob 儲存體。 |
    | linkedServiceName |表示您稍早建立的 AzureStorageLinkedService1。 |
    | fileName |這是選用屬性。 如果您省略此屬性，會挑選位於 folderPath 的所有檔案。 在這種情況下，只會處理 input.log。 |
@@ -166,9 +167,9 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
 
 1. 以滑鼠右鍵按一下 [方案總管] 中的 [資料表]，指向 [新增]，然後按一下 [新增項目]。
 2. 從清單中選取 [Azure Blob]，將檔案名稱變更為 **OutputDataset.json**，再按一下 [新增]。
-3. 使用下列文字取代編輯器中的 **JSON** ：
+3. 使用下列 JSON 取代編輯器中的 **JSON**：
 
-    在 JSON 程式碼片段中，建立名為 **AzureBlobOutput**的資料集，並指定由 Hive 指令碼產生的資料結構。 此外，指定將結果儲存在名為 **adfgetstarted** 的 Blob 容器及名為 **partitioneddata** 的資料夾中。 **availability** 區段指定每個月產生一次輸出資料集。
+    在 JSON 程式碼片段中，建立名為 **AzureBlobOutput**的資料集，並指定由 Hive 指令碼產生的資料結構。 此外，指定將結果儲存在名為 `adfgetstarted` 的 Blob 容器及名為 `partitioneddata` 的資料夾中。 **availability** 區段指定每個月產生一次輸出資料集。
 
     ```JSON
     {
@@ -252,7 +253,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
     ```
      您會在 JSON 程式碼片段中建立一個管線，其中包括在 HDInsight 叢集上使用 Hive 處理「資料」的單一活動。
 
-    Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (透過 scriptLinkedService，名為 **AzureStorageLinkedService1**)，且位於 **adfgetstarted**容器的 **script** 資料夾中。
+    Hive 指令碼檔案 (**partitionweblogs.hql**) 儲存於 Azure 儲存體帳戶 (透過名為 **AzureStorageLinkedService1** 的scriptLinkedService 來指定) 以及在容器 `adfgetstarted` 的 `script`資料夾中。
 
     **defines** 區段可用來指定執行階段設定，該設定將傳遞到 Hive 指令碼做為 Hive 設定值 (例如 ${hiveconf:inputtable}、${hiveconf:partitionedtable})。
 
@@ -269,7 +270,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
 1. 以滑鼠右鍵按一下 [方案總管] 視窗中的 [相依性]，指向 [新增]，按一下 [現有項目]。  
 2. 瀏覽至 **C:\ADFGettingStarted**、選取 **partitionweblogs.hql** 及 **input.log** 檔案，然後按一下 [新增]。 您已建立兩個檔案，做為一部分的 [教學課程概觀](data-factory-build-your-first-pipeline.md)必要條件。
 
-當您在下一個步驟中發佈方案時，已將 **partitionweblogs.hql** 檔案上傳到 Blob 儲存體容器 **adfgetstarted** 中的指令碼資料夾。   
+當您在下一個步驟中發佈方案時，已將 **partitionweblogs.hql** 檔案上傳到 `adfgetstarted` Blob 容器中的指令碼資料夾。   
 
 ### <a name="publishdeploy-data-factory-entities"></a>發佈/部署 Data Factory 實體
 1. 在 [方案總管] 中，以滑鼠右鍵按一下專案，再按一下 [發佈] 。
@@ -277,7 +278,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
 3. 您應該會看到下列對話方塊：
 
    ![發佈對話方塊](./media/data-factory-build-your-first-pipeline-using-vs/publish.png)
-4. 在 [設定 Data Factory]  頁面中，執行下列操作：
+4. 在 [設定 Data Factory] 頁面中，執行下列步驟：
 
    1. 選取 [建立新的 Data Factory]  選項。
    2. 輸入 Data Factory 的唯一**名稱**。 例如：**FirstDataFactoryUsingVS09152016**。 此名稱必須是全域唯一的。
@@ -310,7 +311,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
 
 ## <a name="monitor-pipeline"></a>監視管線
 ### <a name="monitor-pipeline-using-diagram-view"></a>使用圖表檢視監視管線
-1. 登入 [Azure 入口網站](https://portal.azure.com/)，執行下列動作。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)，執行下列步驟：
    1. 按一下 [更多服務]，然後按一下 [Data Factory]。
        
         ![瀏覽 Data Factory](./media/data-factory-build-your-first-pipeline-using-vs/browse-datafactories.png)
@@ -331,7 +332,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
     ![開啟管線檢視](./media/data-factory-build-your-first-pipeline-using-vs/open-pipeline-view.png)
 
     若要瀏覽回上一個檢視，請按一下上方麵包屑導航功能表中的 [Data Factory]  。
-6. 在 [圖表檢視] 中，按兩下 [AzureBlobInput] 資料集。 確認配量為 [就緒] 狀態。 可能需要數分鐘的時間，配量才會顯示為「就緒」狀態。 如果一段時間之後還未顯示，請查看輸入檔案 (input.log) 是否放置在正確的容器 (adfgetstarted) 和資料夾 (inputdata) 中。
+6. 在 [圖表檢視] 中，按兩下 [AzureBlobInput] 資料集。 確認配量為 [就緒] 狀態。 可能需要數分鐘的時間，配量才會顯示為「就緒」狀態。 如果一段時間之後還未顯示，請查看輸入檔案 (input.log) 是否放置在正確的容器 (`adfgetstarted`) 和資料夾 (`inputdata`) 中。
 
    ![輸入配量處於就緒狀態](./media/data-factory-build-your-first-pipeline-using-vs/input-slice-ready.png)
 7. 按一下 **X** 關閉 **AzureBlobInput** 刀鋒視窗。
@@ -346,7 +347,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
    >
 
     ![Dataset](./media/data-factory-build-your-first-pipeline-using-vs/dataset-slice-ready.png)    
-10. 當配量處於 [就緒] 狀態時，檢查您 Blob 儲存體中 **adfgetstarted** 容器內 **partitioneddata** 資料夾的輸出資料。  
+10. 當配量處於**就緒**狀態時，檢查您 blob 儲存體中 `adfgetstarted` 容器內 `partitioneddata` 資料夾的輸出資料。  
 
     ![輸出資料](./media/data-factory-build-your-first-pipeline-using-vs/three-ouptut-files.png)
 11. 按一下配量，以在 [資料配量]  刀鋒視窗中查看其詳細資料。
@@ -373,7 +374,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
     ![活動時段詳細資料](./media/data-factory-build-your-first-pipeline-using-vs/activity-window-details.png)
 
 > [!IMPORTANT]
-> 配量處理成功時就會刪除輸入檔案。 因此，如果您想要重新執行配量或再次進行本教學課程，請將輸入檔案 (input.log) 上傳至 adfgetstarted 容器的 inputdata 資料夾。
+> 配量處理成功時就會刪除輸入檔案。 因此，如果您想要重新執行配量或再次進行本教學課程，請將輸入檔案 (input.log) 上傳至 `adfgetstarted` 容器的 `inputdata` 資料夾。
 >
 >
 
@@ -387,7 +388,7 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
     ![匯出 Data Factory](./media/data-factory-build-your-first-pipeline-using-vs/export-data-factory-menu.png)
 
 ## <a name="update-data-factory-tools-for-visual-studio"></a>更新 Visual studio 的 Data Factory 工具
-若要更新 Visual Studio 的 Azure Data Factory 工具，請執行下列作業：
+若要更新 Visual Studio 的 Azure Data Factory 工具，請執行下列步驟：
 
 1. 按一下功能表上的 [工具]，然後選取 [擴充功能和更新]。
 2. 選取左窗格中的 [更新]，然後選取 [Visual Studio 組件庫]。
@@ -523,9 +524,4 @@ ms.openlocfilehash: cf9a0e3d763efc7d944ebe3688bfef9ae6711520
 | [資料轉換活動](data-factory-data-transformation-activities.md) |本文提供 Azure Data Factory 所支援的資料轉換活動清單 (例如您在本教學課程中使用的 HDInsight Hive 轉換)。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) |本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 |
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

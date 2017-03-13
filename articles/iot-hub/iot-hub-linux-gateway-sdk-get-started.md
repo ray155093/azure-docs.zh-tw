@@ -14,14 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/23/2016
 ms.author: andbuc
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: e1cf5ed3f2434a9e98027afd0225207ad5d2f1b1
-ms.openlocfilehash: 28984e14f5afc27b608ab37daf19d454eb7c3201
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 37b2a82d7f6043224e68219fde753eef73078ffd
+ms.openlocfilehash: b3cc8e53b0c8bb7ea40b6ebcebe1f97d4a3e1180
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="get-started-with-the-azure-iot-gateway-sdk-linux"></a>開始使用 Azure IoT 閘道 SDK (Linux)
+# <a name="explore-the-iot-gateway-sdk-architecture-on-linux"></a>在 Linux 上探索 IoT 閘道 SDK 架構
 [!INCLUDE [iot-hub-gateway-sdk-getstarted-selector](../../includes/iot-hub-gateway-sdk-getstarted-selector.md)]
 
 ## <a name="how-to-build-the-sample"></a>如何建置範例

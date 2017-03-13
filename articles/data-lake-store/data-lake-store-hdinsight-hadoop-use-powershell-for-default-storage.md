@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/14/2017
+ms.date: 03/02/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 307070c755cff059b4b82494d28e06cf490a6f7a
-ms.openlocfilehash: 6c5badbbea7385cac1407e4af148d5b647af04ac
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 01c75f20909c7334981bf407e775656476972276
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -38,14 +38,16 @@ ms.lasthandoff: 02/16/2017
 
 * HDInsight 3.5 版提供建立可存取 Data Lake Store 做為預設儲存體之 HDInsight 叢集的選項。
 
+* HDInsight Premium 叢集不提供建立可存取 Data Lake Store 做為預設儲存體之 HDInsight 叢集的選項。
+
 * 對於 HBase 叢集 (Windows 和 Linux)，**不支援**使用 Data Lake Store 做為儲存體選項，無論是預設儲存體或額外儲存體。
 
 
-使用 PowerShell 以設定 HDInsight 來搭配資料湖存放區使用，包含下列步驟：
+使用 PowerShell 以設定 HDInsight 來搭配 Data Lake Store 使用，包含下列步驟：
 
-* 建立 Azure 資料湖存放區
-* 設定資料湖存放區以角色為基礎的存取的驗證
-* 建立具有資料湖存放區驗證的 HDInsight 叢集
+* 建立 Azure Data Lake Store
+* 設定 Data Lake Store 以角色為基礎的存取的驗證
+* 建立具有 Data Lake Store 驗證的 HDInsight 叢集
 * 在叢集上執行測試工作
 
 ## <a name="prerequisites"></a>必要條件
@@ -58,8 +60,8 @@ ms.lasthandoff: 02/16/2017
 
     **如果您不是 Azure AD 系統管理員**，您將無法執行建立服務主體所需的步驟。 在這樣的情況下，您的 Azure AD 系統管理員必須先建立服務主體，您才能建立搭配 Data Lake Store 的 HDInsight 叢集。 此外，必須使用憑證來建立服務主體，如[使用憑證來建立服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)所述。
 
-## <a name="create-an-azure-data-lake-store"></a>建立 Azure 資料湖存放區
-依照這些步驟建立資料湖存放區。
+## <a name="create-an-azure-data-lake-store"></a>建立 Azure Data Lake Store
+依照這些步驟建立 Data Lake Store。
 
 1. 從您的桌面開啟新的 Azure PowerShell 視窗，並輸入下列程式碼片段。 系統提示您登入時，請確定您會使用其中一個訂用帳戶管理員/擁有者身分登入：
 
@@ -79,13 +81,13 @@ ms.lasthandoff: 02/16/2017
    > 如果您在註冊 Data Lake Store 的資源提供者時收到類似 `Register-AzureRmResourceProvider : InvalidResourceNamespace: The resource namespace 'Microsoft.DataLakeStore' is invalid` 的錯誤，可能表示您的訂用帳戶不在 Azure Data Lake Store 的允許清單中。 請遵循這些 [指示](data-lake-store-get-started-portal.md)，確保您會啟用 Azure 訂用帳戶來使用 Data Lake Store 公開預覽版。
    >
    >
-2. Azure 資料湖存放區帳戶與 Azure 資源群組相關聯。 從建立 Azure 資源群組開始。
+2. Azure Data Lake Store 帳戶與 Azure 資源群組相關聯。 從建立 Azure 資源群組開始。
 
         $resourceGroupName = "<your new resource group name>"
         New-AzureRmResourceGroup -Name $resourceGroupName -Location "East US 2"
 
     ![建立 Azure 資源群組](./media/data-lake-store-hdinsight-hadoop-use-powershell/ADL.PS.CreateResourceGroup.png "建立 Azure 資源群組")
-3. 建立 Azure 資料湖存放區帳戶。 您指定的帳戶名稱必須只包含小寫字母和數字。
+3. 建立 Azure Data Lake Store 帳戶。 您指定的帳戶名稱必須只包含小寫字母和數字。
 
         $dataLakeStoreName = "<your new Data Lake Store name>"
         New-AzureRmDataLakeStoreAccount -ResourceGroupName $resourceGroupName -Name $dataLakeStoreName -Location "East US 2"
@@ -103,10 +105,10 @@ ms.lasthandoff: 02/16/2017
         New-AzureRmDataLakeStoreItem -Folder -AccountName $dataLakeStoreName -Path $myrootdir/clusters/hdiadlcluster
 
 
-## <a name="set-up-authentication-for-role-based-access-to-data-lake-store"></a>設定資料湖存放區以角色為基礎的存取的驗證
-每一個 Azure 訂用帳戶都與 Azure Active Directory 相關聯。 透過 Azure 傳統入口網站或 Azure Resource Manager API 來存取訂用帳戶資源的使用者與服務，都必須先向 Azure Active Directory 進行驗證。 您可以在 Azure 資源上為 Azure 訂用帳戶和服務指派適當的角色，以授與其存取權限。  對於服務，服務主體會識別 Azure Active Directory (AAD) 中的服務。 本章節將說明如何將 Azure 資源 (您稍早建立的 Azure 資料湖存放區帳戶) 的存取權授與像是 HDInsight 的應用程式服務，方法是建立應用程式的服務主體，並透過 Azure PowerShell 將角色指派給它。
+## <a name="set-up-authentication-for-role-based-access-to-data-lake-store"></a>設定 Data Lake Store 以角色為基礎的存取的驗證
+每一個 Azure 訂用帳戶都與 Azure Active Directory 相關聯。 透過 Azure 傳統入口網站或 Azure Resource Manager API 來存取訂用帳戶資源的使用者與服務，都必須先向 Azure Active Directory 進行驗證。 您可以在 Azure 資源上為 Azure 訂用帳戶和服務指派適當的角色，以授與其存取權限。  對於服務，服務主體會識別 Azure Active Directory (AAD) 中的服務。 本章節將說明如何將 Azure 資源 (您稍早建立的 Azure Data Lake Store 帳戶) 的存取權授與像是 HDInsight 的應用程式服務，方法是建立應用程式的服務主體，並透過 Azure PowerShell 將角色指派給它。
 
-若要設定 Azure 資料湖的 Active Directory 驗證，您必須執行下列工作。
+若要設定 Azure Data Lake 的 Active Directory 驗證，您必須執行下列工作。
 
 * 建立自我簽署憑證
 * 在 Azure Active Directory 和服務主體中建立應用程式
@@ -204,8 +206,8 @@ ms.lasthandoff: 02/16/2017
     Cmdlet 成功完成後，您應該會看到列出叢集詳細資料的輸出。
 
         
-## <a name="run-test-jobs-on-the-hdinsight-cluster-to-use-the-data-lake-store"></a>在 HDInsight 叢集上執行測試工作以使用資料湖存放區
-設定 HDInsight 叢集之後，您可以在叢集上執行測試工作，以測試 HDInsight 叢集是否可以存取資料湖存放區。 若要這麼做，我們將執行範例 Hive 作業，該作業會使用已在 Data Lake Store 中於 **<cluster root>/example/data/sample.log**提供使用的範例資料建立資料表。
+## <a name="run-test-jobs-on-the-hdinsight-cluster-to-use-the-data-lake-store"></a>在 HDInsight 叢集上執行測試工作以使用 Data Lake Store
+設定 HDInsight 叢集之後，您可以在叢集上執行測試工作，以測試 HDInsight 叢集是否可以存取 Data Lake Store。 若要這麼做，我們將執行範例 Hive 作業，該作業會使用已在 Data Lake Store 中於 **<cluster root>/example/data/sample.log**提供使用的範例資料建立資料表。
 
 在這一節中，您將透過 SSH 連線到您所建立的 HDInsight Linux 叢集並執行範例 Hive 查詢。
 
@@ -232,22 +234,22 @@ ms.lasthandoff: 02/16/2017
 
 
 
-## <a name="access-data-lake-store-using-hdfs-commands"></a>使用 HDFS 命令存取資料湖存放區
-一旦您已設定 HDInsight 叢集使用資料湖存放區，您可以使用 HDFS 殼層命令來存取存放區。
+## <a name="access-data-lake-store-using-hdfs-commands"></a>使用 HDFS 命令存取 Data Lake Store
+一旦您已設定 HDInsight 叢集使用 Data Lake Store，您可以使用 HDFS 殼層命令來存取存放區。
 
 在這一節中，您將透過 SSH 連線到您所建立的 HDInsight Linux 叢集並執行 HDFS 命令。 
 
 * 如果您使用 Windows 用戶端來透過 SSH 連線到叢集，請參閱[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](../hdinsight/hdinsight-hadoop-linux-use-ssh-windows.md)。
 * 如果您使用 Linux 用戶端來透過 SSH 連線到叢集，請參閱[從 Linux 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md)
 
-連接之後，使用下列 HDFS 檔案系統命令列出資料湖存放區中的檔案。
+連接之後，使用下列 HDFS 檔案系統命令列出 Data Lake Store 中的檔案。
 
     hdfs dfs -ls adl:///
 
-您也可以使用 `hdfs dfs -put` 命令來將一些檔案上傳至資料湖存放區，然後使用 `hdfs dfs -ls` 以確認是否成功上傳檔案。
+您也可以使用 `hdfs dfs -put` 命令來將一些檔案上傳至 Data Lake Store，然後使用 `hdfs dfs -ls` 以確認是否成功上傳檔案。
 
 ## <a name="see-also"></a>另請參閱
-* [入口網站：建立 HDInsight 叢集以使用資料湖存放區](data-lake-store-hdinsight-hadoop-use-portal.md)
+* [入口網站：建立 HDInsight 叢集以使用 Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
 
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx

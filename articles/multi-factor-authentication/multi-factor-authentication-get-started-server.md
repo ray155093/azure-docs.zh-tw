@@ -13,19 +13,21 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/16/2017
+ms.date: 02/26/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: eccd394a29376a20371732023bfbf9b53435f0ae
-ms.openlocfilehash: 51c994a37ebaca472c360e0c5f7b4a7fab5f55fc
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: c5a26a17ab50993f8b57c8868b02541251de1cb1
+ms.lasthandoff: 03/06/2017
 
 ---
 
 # <a name="getting-started-with-the-azure-multi-factor-authentication-server"></a>開始使用 Azure Multi-Factor Authentication Server
+
 <center>![MFA 內部部署](./media/multi-factor-authentication-get-started-server/server2.png)</center>
 
-既然我們已經決定要使用內部部署 Multi-Factor Authentication Server，那麼我們就開始著手進行吧。 本頁面探討新伺服器安裝，以及透過內部部署 Active Directory 予以設定。 如果您已安裝 Phonefactor Server 並且正在尋求升級，請參閱[升級為 Azure Mult-Factor Authentication Server](multi-factor-authentication-get-started-server-upgrade.md)；如果您正在尋找只安裝 Web 服務的相關資訊，請參閱[部署 Azure Multi-Factor Authentication Server Mobile App Web 服務](multi-factor-authentication-get-started-server-webservice.md)。
+既然我們已經決定要使用內部部署 Multi-Factor Authentication Server，那麼我們就開始著手進行吧。 本頁面探討新伺服器安裝，以及透過內部部署 Active Directory 予以設定。 如果您已經安裝 MFA 伺服器，且想要升級，請參閱[升級至最新的 Azure Multi-factor Authentication Server](multi-factor-authentication-server-upgrade.md)。 如果您想要尋找僅是安裝 Web 服務的資訊，請參閱[部署 Azure Multi-Factor Authentication Server 行動應用程式 Web 服務](multi-factor-authentication-get-started-server-webservice.md)。
+ 
 
 ## <a name="download-the-azure-multi-factor-authentication-server"></a>下載 Azure Multi-Factor Authentication Server
 下載 Azure Multi-Factor Authentication Server 的方法有兩種。 兩者都是透過 Azure 入口網站來完成。 第一個是藉由直接管理 Multi-Factor Auth Provider。 第二個是透過服務設定。 第二個選項需要 Multi-Factor Auth Provider 或 Azure MFA、Azure AD Premium 或 Enterprise Mobility Suite 授權。
@@ -87,7 +89,7 @@ ms.lasthandoff: 02/17/2017
 | 134.170.165.0/25 |255.255.255.128 |134.170.165.1 – 134.170.165.126 |
 | 70.37.154.128/25 |255.255.255.128 |70.37.154.129 – 70.37.154.254 |
 
-如果您不會使用事件確認功能，而且使用者不會使用行動應用程式從公司網路上的裝置進行驗證，則可將 IP 位址縮小為下列範圍︰
+如果您不會使用事件確認功能，而且使用者不會使用行動應用程式從公司網路上的裝置進行驗證，您只需要下列範圍︰
 
 | IP 子網路 | 網路遮罩 | IP 範圍 |
 |:--- |:--- |:--- |
@@ -97,14 +99,14 @@ ms.lasthandoff: 02/17/2017
 
 ### <a name="to-install-and-configure-the-azure-multi-factor-authentication-server"></a>安裝及設定 Azure Multi-Factor Authentication Server
 
-1. 按兩下可執行檔。 這樣就會開始安裝。
+這些步驟緊接在使用組態精靈進行快速安裝之後。 如果您沒有看到精靈或想要重新執行，您可以從伺服器上的 [工具] 功能表選取它。
+
+1. 按兩下可執行檔。 
 2. 在 [選取安裝資料夾] 畫面中，請確認資料夾正確，然後按一下 [下一步]。
 3. 當安裝完成時，請按一下 [完成]。  組態精靈就會啟動。
-4. 在組態精靈歡迎畫面上，核取 [略過使用驗證設定精靈]，然後按 [下一步]。  這樣就會關閉精靈，並啟動伺服器。
+4. 在組態精靈歡迎畫面上，核取 [略過使用驗證設定精靈]，然後按 [下一步]。  精靈關閉然後伺服器啟動。
     ![雲端](./media/multi-factor-authentication-get-started-server/skip2.png)
 5. 回到下載伺服器的頁面，按一下 [ **產生啟用認證** ] 按鈕。 將此資訊複製到 Azure MFA Server 提供的方塊中，然後按一下 [ **啟用**]。
-
-上述步驟說明使用組態精靈進行快速安裝。  您可以從伺服器的 [工具] 功能表選取驗證精靈，以便重新執行。
 
 ## <a name="import-users-from-active-directory"></a>從 Active Directory 匯入使用者
 既然您已安裝及設定伺服器，現在快速地將使用者匯入 Azure MFA Server。
@@ -117,9 +119,9 @@ ms.lasthandoff: 02/17/2017
 ![雲端](./media/multi-factor-authentication-get-started-server/import2.png)
 
 ## <a name="send-users-an-email"></a>傳送電子郵件給使用者
-現在您已將使用者匯入 MFA Server，接下來我們建議您傳送電子郵件，以通知他們已為其註冊雙步驟驗證。
+現在您已將使用者匯入 MFA Server，傳送電子郵件，以通知他們已為其註冊雙步驟驗證。
 
-要傳送什麼電子郵件應取決於您是如何為使用者設定雙步驟驗證。 比方說，假設您可以從公司目錄匯入使用者的電話號碼，則電子郵件中應該包含預設電話號碼，讓使用者知道應該會有什麼。 同樣地，如果未匯入使用者的電話號碼，或將使用者設定為使用行動應用程式，請對他們傳送可引導他們透過 Azure Multi-factor Authentication 使用者入口網站的超連結來完成帳戶註冊的電子郵件。
+要傳送什麼電子郵件應取決於您是如何為使用者設定雙步驟驗證。 比方說，假設您可以從公司目錄匯入電話號碼，則電子郵件中應該包含預設電話號碼，讓使用者知道應該會有什麼。 如果您未匯入電話號碼，或使用者將使用行動應用程式，請對他們傳送可引導他們透過 Azure Multi-factor Authentication 使用者入口網站的超連結來完成帳戶註冊的電子郵件。
 
 電子郵件的內容也會隨著已為使用者設定的驗證方法而不同 (電話、簡訊或行動應用程式)。  例如，如果使用者驗證時需要使用 PIN，電子郵件會告訴他們已設定的初始 PIN。  使用者必須在第一次驗證時變更他們的 PIN。
 
@@ -150,18 +152,18 @@ ms.lasthandoff: 02/17/2017
 除了上述欄位，驗證結果 (成功/拒絕) 和任何拒絕的原因也與驗證資料一起儲存，可透過驗證/使用情況報告取得。
 
 ## <a name="next-steps"></a>後續步驟
-如需進階設定的詳細資訊和組態資訊，請使用下表中的連結：
 
-| 方法 | 說明 |
-|:--- |:--- |
-| [使用者入口網站](multi-factor-authentication-get-started-portal.md) |有關設定使用者入口網站的資訊，包括部署和使用者自助。 |
-| [Active Directory Federation Service](multi-factor-authentication-get-started-adfs.md) |有關搭配 AD FS 設定 Azure Multi-Factor Authentication 的資訊。 |
-| [RADIUS 驗證](multi-factor-authentication-get-started-server-radius.md) |有關搭配 RADIUS 設定 Azure MFA Server 的資訊。 使用 RADIUS 可讓您整合各種協力廠商系統與 Azure MFA Server。 |
-| [IIS 驗證](multi-factor-authentication-get-started-server-iis.md) |有關搭配 IIS 設定 Azure MFA Server 的資訊。 使用 IIS 可讓您整合各種協力廠商系統與 Azure MFA Server。 |
-| [Windows 驗證](multi-factor-authentication-get-started-server-windows.md) |有關搭配 Windows 驗證設定 Azure MFA Server 的資訊。 |
-| [LDAP 驗證](multi-factor-authentication-get-started-server-ldap.md) |有關搭配 LDAP 驗證設定 Azure MFA Server 的資訊。 使用 LDAP 可讓您整合各種協力廠商系統與 Azure MFA Server。 |
-| [使用 RADIUS 的遠端桌面閘道和 Azure Multi-Factor Authentication Server](multi-factor-authentication-get-started-server-rdg.md) |有關使用 RADIUS 搭配遠端桌面閘道器設定 Azure MFA Server 的資訊。 |
-| [與 Windows Server Active Directory 同步處理](multi-factor-authentication-get-started-server-dirint.md) |有關設定 Active Directory 與 Azure MFA Server 之間同步處理的資訊。 |
-| [部署 Azure Multi-Factor Authentication Server 行動應用程式 Web 服務](multi-factor-authentication-get-started-server-webservice.md) |有關設定 Azure MFA 伺服器 Web 服務的資訊。 |
-| [使用 Azure Multi-Factor Authentication 與協力廠商 VPN 的進階案例](multi-factor-authentication-advanced-vpn-configurations.md) | Cisco、Citrix 和 Juniper VPN 應用裝置的逐步設定指南。 |
+- 針對使用者自助安裝及設定[使用者入口網站](multi-factor-authentication-get-started-portal.md)。
+
+- 搭配 [Active Directory Federation Service](multi-factor-authentication-get-started-adfs.md) 來設定 Multi-Factor Authentication。
+
+- 搭配 [RADIUS 驗證](multi-factor-authentication-get-started-server-radius.md)來安裝和設定 Azure MFA Server。 使用 RADIUS 可讓您整合各種協力廠商系統與 Azure MFA Server。 
+
+- 搭配 [Windows 驗證](multi-factor-authentication-get-started-server-windows.md)來安裝和設定 Azure MFA Server。
+
+- 安裝和設定[使用 RADIUS 的遠端桌面閘道和 Azure Multi-Factor Authentication Server](multi-factor-authentication-get-started-server-rdg.md)。 
+
+- [部署 Azure Multi-Factor Authentication Server 行動裝置應用程式 Web 服務](multi-factor-authentication-get-started-server-webservice.md)。
+
+- [使用 Azure Multi-Factor Authentication 與協力廠商 VPN 的進階案例](multi-factor-authentication-advanced-vpn-configurations.md)。
 

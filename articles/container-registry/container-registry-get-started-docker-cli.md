@@ -1,6 +1,6 @@
 ---
-title: "Azure 容器登錄中的 Docker 映像 | Microsoft Docs"
-description: "使用 Docker CLI 推送和提取 Docker 映像至 Azure 容器登錄庫"
+title: "將 Docker 映像推送至私人 Azure 登錄 |Microsoft Docs"
+description: "使用 Docker CLI 推送和提取 Docker 映像至 Azure 中的私人容器登錄"
 services: container-registry
 documentationcenter: 
 author: stevelas
@@ -16,16 +16,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/14/2016
 ms.author: stevelas
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
-ms.openlocfilehash: 1e70f41dd15b0243fb8edd137710ac555821434e
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 0433e22dc7722ef9c8edfaf949dbd9a9d8645e67
+ms.openlocfilehash: e778c09991da73cd5064532119d92bff36f0a00e
+ms.lasthandoff: 03/02/2017
 
 ---
-# <a name="push-your-first-image-to-a-container-registry-using-the-docker-cli"></a>使用 Docker CLI 推送您的第一個映像至容器登錄庫
+# <a name="push-your-first-image-to-a-private-docker-container-registry-using-the-docker-cli"></a>使用 Docker CLI 將您的第一個映像推送至私人 Docker 容器登錄
 Azure 容器登錄庫儲存和管理私人 [Docker](http://hub.docker.com) 容器映像，其方式類似於 [Docker 中樞](https://hub.docker.com/)儲存公用 Docker 映像。 使用 [Docker 命令列介面](https://docs.docker.com/engine/reference/commandline/cli/) (Docker CLI) 進行[登入](https://docs.docker.com/engine/reference/commandline/login/)、[推送](https://docs.docker.com/engine/reference/commandline/push/)、[提取](https://docs.docker.com/engine/reference/commandline/pull/)和其他容器登錄庫作業。 
 
-如需詳細背景和概念，請參閱[什麼是 Azure 容器登錄庫？](container-registry-intro.md)
+如需相關背景和概念，請參閱[概觀](container-registry-intro.md)
 
 
 > [!NOTE]

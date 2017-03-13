@@ -15,13 +15,13 @@ ms.workload: big-data
 ms.date: 02/16/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 9e480c13f48e93da32ff5a3c8d3064e98fed0265
-ms.openlocfilehash: 0ec19832d395547e8ebd3eee0d44dcf466a2ace7
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 8876a37b78fa8a80eba7af133d661c3d7ed425d7
+ms.openlocfilehash: 76e098525951d122799f11bdcd9ee5451c9a3777
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="create-an-hdinsight-cluster-with-data-lake-store-using-azure-portal"></a>使用 Azure 入口網站建立 HDInsight 叢集與資料湖存放區
+# <a name="create-an-hdinsight-cluster-with-data-lake-store-using-azure-portal"></a>使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store
 > [!div class="op_single_selector"]
 > * [使用入口網站](data-lake-store-hdinsight-hadoop-use-portal.md)
 > * [使用 PowerShell (針對預設儲存體)](data-lake-store-hdinsight-hadoop-use-powershell-for-default-storage.md)
@@ -42,7 +42,7 @@ ms.lasthandoff: 02/17/2017
 
 * 對於 HBase 叢集 (Windows 和 Linux)，**不支援**使用 Data Lake Store 做為儲存體選項，無論是預設儲存體或額外儲存體。
 
-* 對於 Storm 叢集 (Windows 和 Linux)，Data Lake Store 可用來從 Storm 拓撲寫入資料。 資料湖存放區也可以用來儲存參考資料，該資料稍後可以由 Storm 拓撲讀取。 如需詳細資訊，請參閱 [在 Storm 拓撲中使用 Data Lake Store](#use-data-lake-store-in-a-storm-topology)。
+* 對於 Storm 叢集 (Windows 和 Linux)，Data Lake Store 可用來從 Storm 拓撲寫入資料。 Data Lake Store 也可以用來儲存參考資料，該資料稍後可以由 Storm 拓撲讀取。 如需詳細資訊，請參閱 [在 Storm 拓撲中使用 Data Lake Store](#use-data-lake-store-in-a-storm-topology)。
 
 
 ## <a name="prerequisites"></a>必要條件
@@ -50,14 +50,14 @@ ms.lasthandoff: 02/17/2017
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-* **Azure Data Lake Store 帳戶**。 遵循 [使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。
+* **Azure Data Lake Store 帳戶**。 遵循 [使用 Azure 入口網站開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md) 的指示。
 
 * **Azure Active Directory 服務主體**。 本教學課程中的步驟提供有關如何在 Azure AD 中建立服務主體的指示。 不過，您必須是 Azure AD 系統管理員，才能建立服務主體。 如果您是 Azure AD 系統管理員，您就可以略過這項先決條件並繼續進行本教學課程。
 
     **如果您不是 Azure AD 系統管理員**，您將無法執行建立服務主體所需的步驟。 在這樣的情況下，您的 Azure AD 系統管理員必須先建立服務主體，您才能建立搭配 Data Lake Store 的 HDInsight 叢集。 此外，必須使用憑證來建立服務主體，如[使用憑證來建立服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)所述。
 
-## <a name="create-an-hdinsight-cluster-with-access-to-azure-data-lake-store"></a>建立可存取 Azure 資料湖存放區的 HDInsight 叢集
-在本節中，您會建立 HDInsight Hadoop 叢集，它使用資料湖存放區做為額外的儲存體。 在此版本中，對於 Hadoop 叢集，資料湖存放區只能做為叢集的額外儲存體。 預設儲存體仍是 Azure 儲存體 Blob (WASB)。 所以，我們要先建立叢集所需的儲存體帳戶和儲存體容器。
+## <a name="create-an-hdinsight-cluster-with-access-to-azure-data-lake-store"></a>建立可存取 Azure Data Lake Store 的 HDInsight 叢集
+在本節中，您會建立 HDInsight Hadoop 叢集，它使用 Data Lake Store 做為額外的儲存體。 在此版本中，對於 Hadoop 叢集，Data Lake Store 只能做為叢集的額外儲存體。 預設儲存體仍是 Azure 儲存體 Blob (WASB)。 所以，我們要先建立叢集所需的儲存體帳戶和儲存體容器。
 
 1. 登入新的 [Azure 入口網站](https://portal.azure.com)。
 
@@ -65,7 +65,7 @@ ms.lasthandoff: 02/17/2017
 
 3. 在 [儲存體] 刀鋒視窗中，指定您要 Azure 儲存體 (WASB) 或 Data Lake Store 做為您的預設儲存體。 如果您要使用 Azure Data Lake Store 做為預設儲存體，請跳至下一個步驟。
 
-    如果您想要 Azure 儲存體 Blob 做為預設儲存體，對於 [主要儲存體類型]，請按一下 [Azure 儲存體]。 接下來，針對 [選取方法]，如果您想要指定屬於您 Azure 訂用帳戶一部分的儲存體帳戶，您可以選擇 [我的訂閱]，然後選取該儲存體帳戶。 否則，按一下 [存取金鑰] 並提供您希望從您的 Azure 訂用帳戶以外選擇之儲存體帳戶的資訊。 針對 [預設容器]，您可以選擇使用入口網站建議的預設容器名稱，或者自行指定名稱。 
+    如果您想要 Azure 儲存體 Blob 做為預設儲存體，對於 [主要儲存體類型]，請按一下 [Azure 儲存體]。 接下來，針對 [選取方法]，如果您想要指定屬於您 Azure 訂用帳戶一部分的儲存體帳戶，您可以選擇 [我的訂閱]，然後選取該儲存體帳戶。 否則，按一下 [存取金鑰]，然後提供您希望從您的 Azure 訂用帳戶以外選擇之儲存體帳戶的資訊。 針對 [預設容器]，您可以選擇使用入口網站建議的預設容器名稱，或者自行指定名稱。 
 
     當您使用 Azure 儲存體 Blob 做為預設儲存體時，您仍然可以使用 Azure Data Lake Store 做為叢集的額外儲存體。 若要這樣做，請按一下 [Data Lake Store 存取權]，然後跳至步驟 5。
 
@@ -151,10 +151,10 @@ ms.lasthandoff: 02/17/2017
 
 
 ### <a name="use-data-lake-store-in-a-storm-topology"></a>在 Storm 拓撲中使用 Data Lake Store
-您可以使用資料湖存放區從 Storm 拓撲寫入資料。 如需有關如何達到這種情況的指示，請參閱 [搭配使用 Azure Data Lake Store 與 HDInsight 上的 Apache Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md)。
+您可以使用 Data Lake Store 從 Storm 拓撲寫入資料。 如需有關如何達到這種情況的指示，請參閱 [搭配使用 Azure Data Lake Store 與 HDInsight 上的 Apache Storm](../hdinsight/hdinsight-storm-write-data-lake-store.md)。
 
 ## <a name="see-also"></a>另請參閱
-* [PowerShell：建立 HDInsight 叢集以使用資料湖存放區](data-lake-store-hdinsight-hadoop-use-powershell.md)
+* [PowerShell：建立 HDInsight 叢集以使用 Data Lake Store](data-lake-store-hdinsight-hadoop-use-powershell.md)
 
 [makecert]: https://msdn.microsoft.com/library/windows/desktop/ff548309(v=vs.85).aspx
 [pvk2pfx]: https://msdn.microsoft.com/library/windows/desktop/ff550672(v=vs.85).aspx

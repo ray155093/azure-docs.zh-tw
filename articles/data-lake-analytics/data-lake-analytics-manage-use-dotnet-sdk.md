@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure .NET SDK 管理 Azure Data Lake Analytics | Microsoft Docs"
-description: "了解如何管理資料湖分析工作、資料來源、使用者。 "
+description: "了解如何管理 Data Lake Analytics 工作、資料來源、使用者。 "
 services: data-lake-analytics
 documentationcenter: 
 author: mumian
@@ -15,8 +15,9 @@ ms.workload: big-data
 ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 3ed1b4121e8e64b07abaeb1117f2b8a0cfd75406
-ms.openlocfilehash: 7b2380e45c62684ed29fe819db7e254b968d55d0
+ms.sourcegitcommit: cf8873a3cc5067717edf586da209b05cef3092ff
+ms.openlocfilehash: fc921785e5e4aae84982a348814c1760ddd6bb8c
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -51,7 +52,7 @@ ms.openlocfilehash: 7b2380e45c62684ed29fe819db7e254b968d55d0
 如需詳細資訊，請參閱 [Azure 資源群組和 Data Lake Analytics](## Azure Resource Groups and Data Lake Analytics)。
 
 
-## <a name="connect-to-azure-data-lake"></a>連接到 Azure Data Lake
+## <a name="connect-to-azure-data-lake"></a>連線到 Azure Data Lake
 您需要下列 Nuget 套件：
 
     Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Pre
@@ -65,7 +66,7 @@ ms.openlocfilehash: 7b2380e45c62684ed29fe819db7e254b968d55d0
     Install-Package Microsoft.WindowsAzure.Common.Dependencies
 
 
-下列程式碼範例的主要方法顯示如何連接到 Azure，並初始化 Analytics 帳戶和 Store 帳戶的 Data Lake 用戶端管理物件。
+下列程式碼範例的主要方法顯示如何連線到 Azure，並初始化 Analytics 帳戶和 Store 帳戶的 Data Lake 用戶端管理物件。
 
     using System;
     using System.Collections.Generic;
@@ -162,7 +163,7 @@ Azure Data Lake SDK 包含您從中執行大部分程式設計中，且在這兩
 * DataLakeAnalyticsJobManagementClient - 用來建立及管理 U-SQL 作業。
 
 ## <a name="create-accounts"></a>建立帳戶
-您必須擁有資料湖分析帳戶，才能執行任何資料湖分析工作。 與 Azure HDInsight 不同的是，分析帳戶未執行工作時，您無需支付該帳戶的費用。  您只需支付執行作業時的費用。  如需詳細資訊，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
+您必須擁有 Data Lake Analytics 帳戶，才能執行任何 Data Lake Analytics 工作。 與 Azure HDInsight 不同的是，分析帳戶未執行工作時，您無需支付該帳戶的費用。  您只需支付執行作業時的費用。  如需詳細資訊，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 
 此外，Data Lake Analytics 帳戶都必須至少擁有一個 Data Lake Store 帳戶。
   
@@ -283,12 +284,12 @@ Azure Data Lake SDK 包含您從中執行大部分程式設計中，且在這兩
     }
 
 ## <a name="manage-data-sources"></a>管理資料來源
-資料湖分析目前支援下列資料來源：
+Data Lake Analytics 目前支援下列資料來源：
 
-* [Azure 資料湖儲存體](../data-lake-store/data-lake-store-overview.md)
+* [Azure Data Lake 儲存體](../data-lake-store/data-lake-store-overview.md)
 * [Azure 儲存體](../storage/storage-introduction.md)
 
-當您建立分析帳戶時，必須指定 Azure 資料湖儲存體帳戶作為預設的儲存體帳戶。 預設的資料湖存放區帳戶是用來儲存工作中繼資料與工作稽核記錄。 建立分析帳戶後，就可以新增其他 Data Lake 儲存體帳戶和 Azure 儲存體帳戶的連結。 
+當您建立分析帳戶時，必須指定 Azure Data Lake 儲存體帳戶作為預設的儲存體帳戶。 預設的 Data Lake Store 帳戶是用來儲存工作中繼資料與工作稽核記錄。 建立分析帳戶後，就可以新增其他 Data Lake 儲存體帳戶和 Azure 儲存體帳戶的連結。 
 
 ### <a name="include-a-link-to-azure-storage-in-data-lake"></a>在 Data Lake 中包含 Azure 儲存體的連結
 您可以在 Data Lake 環境中建立 Azure 儲存體部落格的連結。 
@@ -500,17 +501,17 @@ DataLakeAnalyticsCatalogManagementClient 物件會提供方法來管理每個為
 
     wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/<path to source>
 
-例如，如果原始程式檔 (SearchLog.tsv) 儲存在 "contso_33" 儲存體帳戶中名為「範例」的 blob 容器中，則 FROM 陳述式的路徑為︰
+例如，如果原始程式檔 (SearchLog.tsv) 儲存在 "contoso_33" 儲存體帳戶中名為「範例」的 blob 容器中，則 FROM 陳述式的路徑為︰
 
     FROM: "wasb://samples@constoso_33.blob.core.windows.net/SearchLog.tsv"
 
 ## <a name="azure-resource-groups-and-data-lake-analytics"></a>Azure 資源群組和 Data Lake Analytics
 應用程式通常由許多元件組成，例如 Web 應用程式、資料庫、資料庫伺服器、儲存體及協力廠商服務。 Azure Resource Manager 可讓您將應用程式中的資源做為群組使用，稱為 Azure 資源群組。 您可以透過單一、協調的作業，來部署、更新、監視或刪除應用程式的所有資源。 您會使用部署的範本，且該範本可以用於不同的環境，例如測試、預備和生產環境。 您可以檢視整個群組的彙總成本，為您的組織釐清計費。 如需詳細資訊，請參閱 [Azure 資源管理員概觀](../azure-resource-manager/resource-group-overview.md)。 
 
-資料湖分析服務可包含下列元件：
+Data Lake Analytics 服務可包含下列元件：
 
-* Azure 資料湖分析帳戶
-* 必要的預設 Azure 資料湖儲存體帳戶
+* Azure Data Lake Analytics 帳戶
+* 必要的預設 Azure Data Lake 儲存體帳戶
 * 一或多個 Azure Data Lake Analytics 帳戶
 * 一或多個 Azure Data Lake Analytics 帳戶，至少需要一個
 * 其他連結 Azure Data Lake 儲存體帳戶
@@ -518,19 +519,14 @@ DataLakeAnalyticsCatalogManagementClient 物件會提供方法來管理每個為
 
 您可以在某個資源管理群組下建立上述所有元件，這樣更容易管理。
 
-![Azure 資料湖分析帳戶與儲存體](./media/data-lake-analytics-manage-use-portal/data-lake-analytics-arm-structure.png)
+![Azure Data Lake Analytics 帳戶與儲存體](./media/data-lake-analytics-manage-use-portal/data-lake-analytics-arm-structure.png)
 
-資料湖分析帳戶和相依的儲存體帳戶必須位於相同的 Azure 資料中心。
+Data Lake Analytics 帳戶和相依的儲存體帳戶必須位於相同的 Azure 資料中心。
 但資源管理群組可位在不同的資料中心內。  
 
 ## <a name="see-also"></a>另請參閱
-* [Microsoft Azure 資料湖分析概觀](data-lake-analytics-overview.md)
+* [Microsoft Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)
 * [使用 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
 * [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)
 * [使用 Azure 入口網站監視和疑難排解 Azure Data Lake Analytics 作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

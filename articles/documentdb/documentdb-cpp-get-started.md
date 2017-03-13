@@ -15,8 +15,9 @@ ms.topic: hero-article
 ms.date: 12/25/2016
 ms.author: aasthan
 translationtype: Human Translation
-ms.sourcegitcommit: 16bff1b5708652a75ea603f596c864901b12a88d
-ms.openlocfilehash: f622b9a35c370148a3472fa6924a50933d59601e
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 78c3da6fd83a6fca0351a90846d10acd82924be3
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -24,8 +25,9 @@ ms.openlocfilehash: f622b9a35c370148a3472fa6924a50933d59601e
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [.NET Core](documentdb-dotnetcore-get-started.md)
-> * [Java](documentdb-java-get-started.md)
+> * [Node.js for MongoDB](documentdb-mongodb-samples.md)
 > * [Node.js](documentdb-nodejs-get-started.md)
+> * [Java](documentdb-java-get-started.md)
 > * [C++](documentdb-cpp-get-started.md)
 >  
 > 
@@ -64,7 +66,7 @@ ms.openlocfilehash: f622b9a35c370148a3472fa6924a50933d59601e
 
 [!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
-## <a name="a-idsetupcastep-2-set-up-your-c-application"></a><a id="SetupC++"></a>步驟 2︰設定您的 C++ 應用程式
+## <a id="SetupC++"></a>步驟 2︰設定您的 C++ 應用程式
 1. 開啟 Visual Studio，在 [檔案] 功能表上，按一下 [新增]，然後按一下 [專案]。 
 2. 在 [新增專案] 視窗中，於 [已安裝] 窗格中展開 [Visual C++]，按一下 [Win32]，然後按一下 [Win32 主控台應用程式]。 將專案命名為 hellodocumentdb，然後按一下 [確定]。 
    
@@ -79,12 +81,12 @@ ms.openlocfilehash: f622b9a35c370148a3472fa6924a50933d59601e
    
     套件新增至您的專案後，一切便已準備就緒，可以開始撰寫一些程式碼。   
 
-## <a name="a-idconfigastep-3-copy-connection-details-from-azure-portal-for-your-documentdb-database"></a><a id="Config"></a>步驟 3︰從 Azure 入口網站為您的 DocumentDB 資料庫複製連線詳細資料
+## <a id="Config"></a>步驟 3︰從 Azure 入口網站為您的 DocumentDB 資料庫複製連線詳細資料
 讓 [Azure 入口網站](https://portal.azure.com)出現，並周遊至您所建立的 NoSQL (DocumentDB) 資料庫帳戶。 在下一個步驟中，我們需要從 Azure 入口網站取得的 URI 和主要金鑰，以便從我們的 C++ 程式碼片段建立連線。 
 
 ![Azure 入口網站中的 DocumentDB URI 和金鑰](media/documentdb-cpp-get-started/nosql-tutorial-keys.png)
 
-## <a name="a-idconnectastep-4-connect-to-a-documentdb-account"></a><a id="Connect"></a>步驟 4：連線至 DocumentDB 帳戶
+## <a id="Connect"></a>步驟 4：連線至 DocumentDB 帳戶
 1. 在原始程式碼的 `#include "stdafx.h"` 之後新增下列標頭和命名空間。
    
         #include <cpprest/json.h>
@@ -102,7 +104,7 @@ ms.openlocfilehash: f622b9a35c370148a3472fa6924a50933d59601e
    
     您現在有程式碼可初始化 documentdb，讓我們看看如何使用 DocumentDB 資源。
 
-## <a name="a-idcreatedbcollastep-5-create-a-c-database-and-collection"></a><a id="CreateDBColl"></a>步驟 5︰建立 C++ 資料庫和集合
+## <a id="CreateDBColl"></a>步驟 5︰建立 C++ 資料庫和集合
 在執行此步驟之前，因為有人可能不熟悉 DocumentDB，我們先了解一下資料庫、集合和文件的互動方式。 [資料庫](documentdb-resources.md#databases)是分配到多個集合之文件儲存體的邏輯容器。 [集合](documentdb-resources.md#collections)是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。 您可以在 [DocumentDB 階層式資源模型和概念](documentdb-resources.md)中深入了解 DocumentDB 階層式資源模型和概念。
 
 為了建立資料庫和對應的集合，請在 main 函式結尾新增下列程式碼。 這會使用您在上一個步驟中宣告的用戶端組態，建立名為「FamilyRegistry」的資料庫和名為「FamilyCollection」的集合。
@@ -115,7 +117,7 @@ ms.openlocfilehash: f622b9a35c370148a3472fa6924a50933d59601e
     }
 
 
-## <a name="a-idcreatedocastep-6-create-a-document"></a><a id="CreateDoc"></a>步驟 6：建立文件
+## <a id="CreateDoc"></a>步驟 6：建立文件
 [文件](documentdb-resources.md#documents)是使用者定義的 (任意) JSON 內容。 您現在可以將文件插入至 DocumentDB。 您可以將下列程式碼複製到 main 函式結尾，以建立文件。 
 
     try {
@@ -137,7 +139,7 @@ ms.openlocfilehash: f622b9a35c370148a3472fa6924a50933d59601e
 
 ![C++ 教學課程 - 說明帳戶、資料庫、集合和文件之間階層式關聯性的圖表](media/documentdb-cpp-get-started/documentdbdocs.png)
 
-## <a name="a-idquerydbastep-7-query-documentdb-resources"></a><a id="QueryDB"></a>步驟 7：查詢 DocumentDB 資源
+## <a id="QueryDB"></a>步驟 7：查詢 DocumentDB 資源
 DocumentDB 支援對儲存於每個集合的 JSON 文件進行 [豐富查詢](documentdb-sql-query.md) 。 下列範例程式碼示範使用 DocumentDB SQL 語法所建立的查詢，您可以針對我們在上一個步驟中建立的文件執行該查詢。
 
 函式會採用資料庫和集合以及文件用戶端的唯一識別碼或資源識別碼來做為引數。 請在 main 函式之前新增此程式碼。
@@ -168,7 +170,7 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行 [豐富查詢](do
       }
     }
 
-## <a name="a-idreplaceastep-8-replace-a-document"></a><a id="Replace"></a>步驟 8：取代文件
+## <a id="Replace"></a>步驟 8：取代文件
 DocumentDB 支援取代 JSON 文件，如下列程式碼的示範。 請在 executesimplequery 函式之後新增此程式碼。
 
     void replacedocument(const DocumentClient &client, const wstring dbresourceid,
@@ -188,7 +190,7 @@ DocumentDB 支援取代 JSON 文件，如下列程式碼的示範。 請在 exec
       }
     }
 
-## <a name="a-iddeleteastep-9-delete-a-document"></a><a id="Delete"></a>步驟 9︰刪除文件
+## <a id="Delete"></a>步驟 9︰刪除文件
 DocumentDB 支援刪除 JSON 文件，只要在 replacedocument 函式之後複製並貼上下列程式碼即可。 
 
     void deletedocument(const DocumentClient &client, const wstring dbresourceid,
@@ -203,7 +205,7 @@ DocumentDB 支援刪除 JSON 文件，只要在 replacedocument 函式之後複�
       }
     }
 
-## <a name="a-iddeletedbastep-10-delete-a-database"></a><a id="DeleteDB"></a>步驟 10︰刪除資料庫
+## <a id="DeleteDB"></a>步驟 10︰刪除資料庫
 刪除已建立的資料庫會移除資料庫和所有子系資源 (集合、文件等)。
 
 在 deletedocument 函式之後複製並貼上下列程式碼片段 (cleanup 函式)，即可移除資料庫和所有子系資源。
@@ -216,7 +218,7 @@ DocumentDB 支援刪除 JSON 文件，只要在 replacedocument 函式之後複�
       }
     }
 
-## <a name="a-idrunastep-11-run-your-c-application-all-together"></a><a id="Run"></a>步驟 11：一起執行您的 C++ 應用程式！
+## <a id="Run"></a>步驟 11：一起執行您的 C++ 應用程式！
 我們現已新增程式碼來建立、查詢、修改和刪除不同的 DocumentDB 資源。  現在讓我們將這一切連接起來，方法是從 hellodocumentdb.cpp 中的 main 函式對這些不同的函式新增呼叫以及一些診斷訊息。
 
 若要這麼做，您可以使用下列程式碼取代應用程式的 main 函式。 這會覆寫您在步驟 3 中複製到程式碼的 account_configuration_uri 和 primary_key，因此請儲存該行，或從入口網站將這些值再次複製進來。 
@@ -276,7 +278,7 @@ DocumentDB 支援刪除 JSON 文件，只要在 replacedocument 函式之後複�
 
 恭喜！ 您已完成 C++ 教學課程，並擁有您的第一個 DocumentDB 主控台應用程式！
 
-## <a name="a-idgetsolutionaget-the-complete-c-tutorial-solution"></a><a id="GetSolution"></a>取得完整的 C++ 教學課程方案
+## <a id="GetSolution"></a>取得完整的 C++ 教學課程方案
 若要建置包含本文中所有範例的 GetStarted 方案，您需要下列項目：
 
 * [DocumentDB 帳戶][documentdb-create-account]。
@@ -289,10 +291,5 @@ DocumentDB 支援刪除 JSON 文件，只要在 replacedocument 函式之後複�
 
 [documentdb-create-account]: documentdb-create-account.md
 
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 
