@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 02/17/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 0cb121d54310c518795269dee68f24ab21f7d31b
+ms.sourcegitcommit: 2d8d925f80830a0d7047e9567fdd413af2e8c5c3
+ms.openlocfilehash: 0e443928a683a45d763b11d76c369890b1fb80ab
+ms.lasthandoff: 02/28/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 0cb121d54310c518795269dee68f24ab21f7d31b
 HireVue 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制可存取 HireVue 的人員
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 HireVue (單一登入)
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 HireVue 單一登入 (SSO)
 * 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -35,27 +36,26 @@ HireVue 與 Azure AD 整合提供下列優點：
 若要設定與 HireVue 的 Azure AD 整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 啟用 HireVue 單一登入的訂用帳戶
+* 啟用 HireVue 單一登入 (SSO) 的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
-在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。
+在本教學課程中，您會在測試環境中測試 Azure AD SSO。
 
 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 HireVue
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Azure AD SSO
 
-## <a name="adding-hirevue-from-the-gallery"></a>從資源庫新增 HireVue
+## <a name="add-hirevue-from-the-gallery"></a>從資源庫新增 HireVue
 若要設定 HireVue 與 Azure AD 整合，您需要從資源庫將 HireVue 加入受管理的 SaaS 應用程式清單中。
 
 **若要從資源庫新增 HireVue，請執行下列步驟：**
@@ -80,10 +80,10 @@ HireVue 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-hirevue-tutorial/tutorial_hirevue_06.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 HireVue 設定及測試 Azure AD 單一登入。
+## <a name="configure-and-test-azure-ad-sso"></a>設定並測試 Azure AD SSO
+在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 HireVue 設定及測試 Azure AD SSO。
 
-若要讓單一登入運作，Azure AD 必須知道 HireVue 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 HireVue 中相關使用者之間的連結關聯性。
+若要讓 SSO 運作，Azure AD 必須知道 HireVue 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 HireVue 中相關使用者之間的連結關聯性。
 
 建立此連結關聯性的方法，是將 Azure AD 中**使用者名稱**的值，指派為 HireVue 中 **Username** 的值。
 
@@ -95,10 +95,10 @@ HireVue 與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 HireVue 應用程式中設定單一登入。
+### <a name="configure-azure-ad-sso"></a>設定 Azure AD SSO
+在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，然後在您的 HireVue 應用程式中設定 SSO。
 
-**若要設定與 HireVue 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
+**若要設定與 HireVue 搭配運作的 Azure AD SSO，請執行下列步驟：**
 
 1. 在傳統入口網站的 **HireVue** 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
@@ -109,51 +109,39 @@ HireVue 與 Azure AD 整合提供下列優點：
 3. 在 [設定 App 設定]  對話方塊頁面執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-hirevue-tutorial/tutorial_hirevue_04.png) 
-   
-    a. 在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 HireVue 應用程式時所使用的 URL： 
+  1. 在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 HireVue 應用程式時所使用的 URL： 
 
     | Environment | URL |
     |---|---|
     | Production | `https://<company name>.hirevue.com` |
     | 預備| `https://<company name>.stghv.com` |
-
-
-    b. 在 [識別碼] 文字方塊中，以下列模式輸入 URN：
-
-
+  2. 在 [識別碼] 文字方塊中，以下列模式輸入 URN：
+  
     | Environment | URN |
     |---|---|
     |Production | `urn:federation:hirevue.com:saml:sp:prod` |
     |預備 | `urn:federation:hirevue.com:saml:sp:staging` |
+  3. 按一下 [下一步]。
 
+4. 在 [設定在 HireVue 單一登入]  頁面上，執行下列步驟：
+   
+    ![設定單一登入](./media/active-directory-saas-hirevue-tutorial/tutorial_hirevue_05.png)  
+  1. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+  2. 按 [下一步] 。
+5. 若要取得為您的應用程式設定的 SSO，請透過 [samlsupport@hirevue.com](mailTo:samlsupport@hirevue.com) 連絡 HireVue 支援小組並提供下列資訊：
 
-
-    c. click 
-
-1. 在 [設定在 HireVue 單一登入]  頁面上，執行下列步驟：
-   
-    ![設定單一登入](./media/active-directory-saas-hirevue-tutorial/tutorial_hirevue_05.png)
-   
-    a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
-   
-    b. 按 [下一步] 。
-2. 若要取得為您的應用程式設定的 SSO，請透過 [samlsupport@hirevue.com](mailTo:samlsupport@hirevue.com) 連絡 HireVue 支援小組並提供下列資訊：
-   
-    • 下載的 **憑證**
-   
-    • **實體識別碼**
-   
-    • **SAML SSO URL**
-   
-    • **單一登出服務 URL**
-3. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
+  * 下載的**憑證**  
+  * **實體識別碼**
+  * **SAML SSO URL**   
+  * **單一登出服務 URL**
+6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
-4. 在 [單一登入確認] 頁面上，按一下 [完成]。  
+7. 在 [單一登入確認] 頁面上，按一下 [完成]。  
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
@@ -170,40 +158,34 @@ HireVue 與 Azure AD 整合提供下列優點：
 4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-hirevue-tutorial/create_aaduser_04.png) 
-5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟： ![建立 Azure AD 測試使用者](./media/active-directory-saas-hirevue-tutorial/create_aaduser_05.png) 
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
-6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-hirevue-tutorial/create_aaduser_06.png) 
-   
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
+
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-hirevue-tutorial/create_aaduser_05.png) 
+  1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+  2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+  3. 按 [下一步] 。
+6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
+
+   ![建立 Azure AD 測試使用者](./media/active-directory-saas-hirevue-tutorial/create_aaduser_06.png) 
+  1. 在 [名字] 文字方塊中，輸入 **Britta**。  
+  2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+  3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+  4. 在 [角色] 清單中選取 [使用者]。
+  5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-hirevue-tutorial/create_aaduser_07.png) 
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-hirevue-tutorial/create_aaduser_08.png) 
-   
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下 [完成]。   
+  1. 記下 [新密碼] 的值。 
+  2. 按一下頁面底部的 [新增] 。   
 
-### <a name="creating-an-hirevue-test-user"></a>建立 HireVue 測試使用者
+### <a name="create-an-hirevue-test-user"></a>建立 HireVue 測試使用者
 在本節中，您要在 HireVue 中建立名為 Britta Simon 的使用者。 請與 HireVue 支援小組合作，在 HireVue 平台中加入使用者。
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-在本節中，您會把 HireVue 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+在本節中，您會將 HireVue 的存取權授與 Britta Simon，讓她能夠使用 Azure SSO。
 
 ![指派使用者][200] 
 
@@ -223,7 +205,7 @@ HireVue 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
+### <a name="test-single-sign-on"></a>測試單一登入
 在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
 
 當您在存取面板中按一下 [HireVue] 圖格時，應該會自動登入您的 HireVue 應用程式。
@@ -249,9 +231,4 @@ HireVue 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-hirevue-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-hirevue-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-hirevue-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 
