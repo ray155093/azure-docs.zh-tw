@@ -37,7 +37,7 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
 
 * **[Maven](http://maven.apache.org/)**
 
-* **Java platform JDK[](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 7 或更新版本**
+* **[Java platform JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 7 或更新版本**
 
 ## <a name="create-and-build-the-project"></a>建立和建置專案。
 
