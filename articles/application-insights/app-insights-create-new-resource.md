@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 12/02/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 75b651bd3e77ac19e22dcc3442870469fe2aaca1
-ms.openlocfilehash: 60a94a333ffb4bf674e370972abd6fa0caf37d91
+ms.sourcegitcommit: 003db6e1479be1007dd292555ce5997f1c138809
+ms.openlocfilehash: f73a24993fdeaced422b2f7a1283722a82c2be77
+ms.lasthandoff: 12/13/2016
 
 
 ---
@@ -36,11 +37,11 @@ Azure Application Insights 會在 Microsoft Azure「資源」中顯示您應用�
 
 ![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-create-new-resource/01-new.png)
 
-* **應用程式類型**會影響您在 [概觀] 刀鋒視窗中看到的內容，以及[計量瀏覽器][metrics]中提供的屬性。 如果沒有看到您的應用程式類型，請選擇 ASP.NET。
-* **資源群組** 可讓您輕鬆管理屬性，例如存取控制。 如果您已經建立其他 Azure 資源，可以選擇將這個新的資源放到同一個群組。
+* **應用程式類型**會影響您在 [概觀] 刀鋒視窗中看到的內容，以及[計量瀏覽器][metrics]中提供的屬性。 如果沒有看到您的應用程式類型，請選擇 [一般]。
 * **訂用帳戶** 是您在 Azure 中的付款帳戶。
+* **資源群組** 可讓您輕鬆管理屬性，例如存取控制。 如果您已經建立其他 Azure 資源，可以選擇將這個新的資源放到同一個群組。
 * **位置** 是我們保留您資料的地方。
-* **新增至開始面板** 可將 Azure 首頁上的資源放到快速存取磚。 建議使用。
+* **釘選到儀表板板** 可在 Azure 首頁上放置資源的快速存取圖格。 建議使用。
 
 建立您的應用程式後，會開啟新的刀鋒視窗。 您會在其中看到應用程式的效能和使用情況資料。 
 
@@ -58,7 +59,7 @@ Azure Application Insights 會在 Microsoft Azure「資源」中顯示您應用�
 
 SDK 包含不需撰寫任何程式碼，即可傳送遙測資料的標準模組。 若要更詳細追蹤使用者動作或診斷問題，請[使用 API][api] 來傳送您自己的遙測。
 
-## <a name="a-namemonitorasee-telemetry-data"></a><a name="monitor"></a>查看遙測資料
+## <a name="monitor"></a>查看遙測資料
 關閉 [快速入門] 刀鋒視窗，返回 Azure 入口網站中的應用程式刀鋒視窗。
 
 按一下 [搜尋] 圖格以查看[診斷搜尋][diagnostic]，其中會顯示前幾個事件。 
@@ -66,7 +67,7 @@ SDK 包含不需撰寫任何程式碼，即可傳送遙測資料的標準模組�
 如果您預期有更多資料，請在幾秒之後按一下 [重新整理]。
 
 ## <a name="creating-a-resource-automatically"></a>自動建立資源
-您可以撰寫 [PowerShell 指令碼](app-insights-powershell-script-create-resource.md) 來自動建立資源。
+您可以撰寫 [PowerShell 指令碼](app-insights-powershell.md) 來自動建立資源。
 
 ## <a name="next-steps"></a>後續步驟
 * [建立儀表板](app-insights-dashboards.md)
@@ -80,10 +81,5 @@ SDK 包含不需撰寫任何程式碼，即可傳送遙測資料的標準模組�
 [diagnostic]: app-insights-diagnostic-search.md
 [metrics]: app-insights-metrics-explorer.md
 [start]: app-insights-overview.md
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

@@ -12,23 +12,24 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/20/2016
+ms.date: 12/13/2016
 ms.author: jeannt
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: cfaa14eb1dd8d958c210f95997d291aba79c5da7
+ms.sourcegitcommit: 80bede0dc3ad3934d63feabb946744aeb45f334d
+ms.openlocfilehash: f239a2a270df00cecbe263fa61b84af06af817db
+ms.lasthandoff: 12/15/2016
 
 
 ---
 # <a name="analyzing-customer-churn-by-using-azure-machine-learning"></a>使用 Azure Machine Learning 分析客戶流失
-## <a name="overview"></a>Overview
-本主題提供使用 Azure Machine Learning Studio 建置客戶流失分析專案的參考實作。 其中將討論關聯的一般模型，可全面性地解決產業客戶流失的問題。 對於以機器學習建立的模型，我們也衡量其正確性，同時評估進一步開發的方向。  
+## <a name="overview"></a>概觀
+本文提供使用 Azure Machine Learning 建置客戶流失分析專案的參考實作。 在本文中將討論關聯的一般模型，可全面性地解決產業客戶流失的問題。 對於以機器學習建立的模型，我們也衡量其正確性，同時評估進一步開發的方向。  
 
 ### <a name="acknowledgements"></a>通知
 這項實驗是由 Microsoft 的首席資料科學家 Serge Berger 和 Microsoft Azure Machine Learning 的前產品經理 Roger Barga 共同開發和測試。 Azure 文件小組高度認可其專業知識，並感謝他們分享這份白皮書。
 
 > [!NOTE]
-> 這項實驗中使用的資料無法公開使用。 如需如何建置客戶流失分析的機器學習模型範例，請參閱︰[Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的[電信公司客戶流失模型範本](http://gallery.cortanaintelligence.com/Experiment/Telco-Customer-Churn-5)
+> 這項實驗中使用的資料無法公開使用。 如需如何建置客戶流失分析的機器學習模型範例，請參閱︰[Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的[售業客戶流失模型範本](https://gallery.cortanaintelligence.com/Collection/Retail-Customer-Churn-Prediction-Template-1)
 > 
 > 
 
@@ -93,7 +94,7 @@ ms.openlocfilehash: cfaa14eb1dd8d958c210f95997d291aba79c5da7
 
 模型的特徵選擇取決於預測變數組的初步顯著計分，包含在利用隨機森林模組的程序中。 在 Machine Learning Studio 中實作時，我們計算代表性特徵的平均值、中位數和範圍。 舉例來說，我們加上定性資料的總合，例如使用者活動的最小值和最大值。    
 
-我們也取得最近 6 個月的暫時資訊。 我們分析一年的資料後，發現即使存在統計顯著趨勢，對客戶流失的效應也會在六個月後遞減。  
+我們也取得最近&6; 個月的暫時資訊。 我們分析一年的資料後，發現即使存在統計顯著趨勢，對客戶流失的效應也會在六個月後遞減。  
 
 最重要的一點是整個過程 (包括 ETL、特徵選擇和模型化) 都在 Machine Learning Studio 中實作，並採用 Microsoft Azure 中的資料來源。   
 
@@ -250,9 +251,4 @@ Azure Machine Learning 中另一項吸引人的功能是可以將自訂模組加
 [8]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-8.png
 [9]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-9.png
 [10]: ./media/machine-learning-azure-ml-customer-churn-scenario/churn-10.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 
