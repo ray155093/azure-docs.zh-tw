@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
-ms.author: tdykstra
+ms.author: glenga
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 4d5205b1c693b8c1f199235784263f3f7b6189ff
@@ -44,7 +44,7 @@ public class Program
 
 [完整的服務匯流排程式碼範例](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Program.cs) 可在 GitHub.com 的 azure-webjobs-sdk-samples 存放庫中找到。
 
-## <a name="a-idprerequisitesa-prerequisites"></a><a id="prerequisites"></a> 必要條件
+## <a id="prerequisites"></a> 必要條件
 若要使用服務匯流排，除了其他的 WebJobs SDK 封裝之外，您還必須安裝 [Microsoft.Azure.WebJobs.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.ServiceBus/) NuGet 封裝。 
 
 除了儲存體連接字串之外，您也必須設定 AzureWebJobsServiceBus 連接字串。  您可以在 App.config 檔案的 `connectionStrings` 區段中執行這個動作，如下列範例所示：
@@ -59,7 +59,7 @@ public class Program
 
 連接字串也可以在 Azure 執行階段環境中設定，然後會在 Azure 中執行 WebJob 時覆寫 App.config。如需詳細資訊，請參閱[開始使用 WebJobs SDK](websites-dotnet-webjobs-sdk-get-started.md#configure-the-web-app-to-use-your-azure-sql-database-and-storage-account)。
 
-## <a name="a-idtriggera-how-to-trigger-a-function-when-a-service-bus-queue-message-is-received"></a><a id="trigger"></a> 如何在收到服務匯流排佇列訊息時觸發函數
+## <a id="trigger"></a> 如何在收到服務匯流排佇列訊息時觸發函數
 若要撰寫 WebJobs SDK 在收到佇列訊息時所呼叫的函數，請使用 `ServiceBusTrigger` 屬性。 屬性建構函式會接受一個參數，以指定要輪詢的佇列名稱。
 
 ### <a name="how-servicebustrigger-works"></a>ServiceBusTrigger 的運作方式
@@ -99,7 +99,7 @@ SDK 會針對 POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_
 ### <a name="types-servicebustrigger-works-with"></a>ServiceBusTrigger 使用的類型
 除了 `string` 和 POCO 類型之外，您可以使用 `ServiceBusTrigger` 屬性搭配位元組陣列或 `BrokeredMessage` 物件。
 
-## <a name="a-idcreatea-how-to-create-service-bus-queue-messages"></a><a id="create"></a> 如何建立服務匯流排佇列訊息
+## <a id="create"></a> 如何建立服務匯流排佇列訊息
 若要撰寫建立新佇列訊息的函數，請使用 `ServiceBus` 屬性，並在佇列名稱中傳遞至屬性建構函式。 
 
 ### <a name="create-a-single-queue-message-in-a-non-async-function"></a>在同步函數中建立單一佇列訊息
@@ -136,7 +136,7 @@ SDK 會針對 POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_
 
 呼叫 `Add` 方法時，就會立即建立每個佇列訊息。
 
-## <a name="a-idtopicsahow-to-work-with-service-bus-topics"></a><a id="topics"></a>如何使用服務匯流排主題
+## <a id="topics"></a>如何使用服務匯流排主題
 若要撰寫 SDK 在服務匯流排主題上收到訊息時所呼叫的函數，請使用 `ServiceBusTrigger` 屬性搭配採用主題名稱和訂用帳戶名稱的建構函式，如下列程式碼範例所示：
 
         public static void WriteLog([ServiceBusTrigger("outputtopic","subscription1")] string message,
@@ -157,7 +157,7 @@ SDK 會針對 POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_
 * 透過 `ServiceBusConfiguration.MessageOptions` 輕鬆自訂 `OnMessageOptions`。
 * 允許在 `ServiceBusTriggerAttribute`/`ServiceBusAttribute` 上指定 [AccessRights](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Functions.cs#L71) (針對您可能沒有管理權限的情況)。 
 
-## <a name="a-idqueuesarelated-topics-covered-by-the-storage-queues-how-to-article"></a><a id="queues"></a>儲存體佇列做法文章所涵蓋的相關主題
+## <a id="queues"></a>儲存體佇列做法文章所涵蓋的相關主題
 如需與特定服務匯流排無關的 WebJobs SDK 案例的相關資訊，請參閱 [如何透過 WebJobs SDK 使用 Azure 佇列儲存體](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)。 
 
 該文章涵蓋下列主題：
@@ -171,7 +171,7 @@ SDK 會針對 POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_
 * 手動觸發函式
 * 寫入記錄檔
 
-## <a name="a-idnextstepsa-next-steps"></a><a id="nextsteps"></a> 後續步驟
+## <a id="nextsteps"></a> 後續步驟
 本指南提供了程式碼範例，示範如何處理使用 Azure Service Bus 的常見案例。 如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱 [Azure WebJobs 建議使用的資源](http://go.microsoft.com/fwlink/?linkid=390226)。
 
 

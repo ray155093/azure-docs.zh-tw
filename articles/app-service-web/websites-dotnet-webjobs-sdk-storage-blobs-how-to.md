@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
-ms.author: tdykstra
+ms.author: glenga
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 968df0fde8b042cdea369e566ecdb62937a3b8ee
@@ -29,7 +29,7 @@ ms.lasthandoff: 11/17/2016
 
 本指南假設您知道[如何使用指向您儲存體帳戶的連接字串，在 Visual Studio 中建立 WebJob 專案](websites-dotnet-webjobs-sdk-get-started.md)，或是使用指向[多個儲存體帳戶](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/MultipleStorageAccountsEndToEndTests.cs)的連接字串來建立該專案。
 
-## <a name="a-idtriggera-how-to-trigger-a-function-when-a-blob-is-created-or-updated"></a><a id="trigger"></a> 如何在建立或更新 Blob 時觸發函數
+## <a id="trigger"></a> 如何在建立或更新 Blob 時觸發函數
 本節示範如何使用 `BlobTrigger` 屬性。 
 
 > [!NOTE]
@@ -82,7 +82,7 @@ ms.lasthandoff: 11/17/2016
             output = input.ReadToEnd();
         }
 
-## <a name="a-idtypesa-types-that-you-can-bind-to-blobs"></a><a id="types"></a> 您可以繫結至 Blob 的型別
+## <a id="types"></a> 您可以繫結至 Blob 的型別
 您可將 `BlobTrigger` 屬性用於下列型別：
 
 * `string`
@@ -101,7 +101,7 @@ ms.lasthandoff: 11/17/2016
 
 如需範例，請參閱 [GitHub.com 中 azure-webjobs-sdk-samples 存放庫中的 blob 繫結程式碼](https://github.com/Azure/azure-webjobs-sdk/blob/master/test/Microsoft.Azure.WebJobs.Host.EndToEndTests/BlobBindingEndToEndTests.cs)。
 
-## <a name="a-idstringa-getting-text-blob-content-by-binding-to-string"></a><a id="string"></a> 繫結至字串來取得文字 Blob 內容
+## <a id="string"></a> 繫結至字串來取得文字 Blob 內容
 如果預期會取得文字 Blob，`BlobTrigger` 就可以將 套用至 `string` 參數。 下列程式碼範例會將文字 Blob 繫結至名為 `logMessage` 的 `string` 參數。 此函數會使用該參數，將 Blob 的內容寫入 WebJobs SDK 儀表板。 
 
         public static void WriteLog([BlobTrigger("input/{name}")] string logMessage,
@@ -113,7 +113,7 @@ ms.lasthandoff: 11/17/2016
              logger.WriteLine(logMessage);
         }
 
-## <a name="a-idicbsba-getting-serialized-blob-content-by-using-icloudblobstreambinder"></a><a id="icbsb"></a> 使用 ICloudBlobStreamBinder 來取得序列化的 Blob 內容
+## <a id="icbsb"></a> 使用 ICloudBlobStreamBinder 來取得序列化的 Blob 內容
 下列程式碼範例會使用一個類別，實作 `ICloudBlobStreamBinder` 來啟用 `BlobTrigger` 屬性，以便將 Blob 繫結至 `WebImage` 型別。
 
         public static void WaterMark(
@@ -164,7 +164,7 @@ ms.lasthandoff: 11/17/2016
         }
 
 
-## <a name="a-idpoisona-how-to-handle-poison-blobs"></a><a id="poison"></a> 如何處理有害的 Blob
+## <a id="poison"></a> 如何處理有害的 Blob
 當 `BlobTrigger` 函數失敗時，SDK 會再次呼叫它，以防失敗是因暫時性錯誤所造成。 如果失敗是因為 Blob 的內容所造成，則此函數會在其每次嘗試處理該 Blob 時失敗。 根據預設，SDK 最多會針對指定的 Blob 呼叫函數 5 次。 如果第五次嘗試失敗，則 SDK 會在名為 *webjobs-blobtrigger-poison*的佇列中新增一則訊息。
 
 您可以設定重試次數上限。 相同的 [MaxDequeueCount](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#configqueue) 設定可用於處理有害的 Blob 和處理有害的佇列訊息。 
@@ -208,14 +208,14 @@ SDK 會自動將該 JSON 訊息還原序列化。 以下是 `PoisonBlobMessage` 
             public string ETag { get; set; }
         }
 
-### <a name="a-idpollinga-blob-polling-algorithm"></a><a id="polling"></a> Blob 輪詢演算法
+### <a id="polling"></a> Blob 輪詢演算法
 WebJobs SDK 會在應用程式啟動時，掃描 `BlobTrigger` 屬性所指定的所有容器。 在大型儲存體帳戶中，這個掃描需要花費一些時間，因此，可能需要一段時間才能找到新的 Blob 以及執行 `BlobTrigger` 函數。
 
 為了在應用程式啟動之後偵測新的或已變更的 Blob，SDK 會定期讀取 Blob 儲存體記錄檔。 Blob 記錄檔會進行緩衝處理，只會大約每隔 10 分鐘才進行實際寫入，因此，在建立或更新 Blob 之後且在執行相對應的 `BlobTrigger` 函數之前可能會有明顯的延遲。 
 
 您使用 `Blob` 屬性建立的 Blob 會有一個例外狀況。 當 WebJobs SDK 建立新的 Blob 時，會立即將新的 Blob 傳遞到任何相符的 `BlobTrigger` 函數。 因此，如果您具有 Blob 輸入和輸出的鏈結，就能有效率地處理它們。 但是，如果您想要降低在針對透過其他方法建立或更新的 Blob 執行 Blob 處理函數時的延遲，建議使用 `QueueTrigger` 而非 `BlobTrigger`。
 
-### <a name="a-idreceiptsa-blob-receipts"></a><a id="receipts"></a> Blob 回條
+### <a id="receipts"></a> Blob 回條
 WebJobs SDK 可確保不會有任何 `BlobTrigger` 函數會針對相同的新或更新的 Blob 呼叫一次以上。 它的運作方式是藉由維護 *Blob 回條* 來判斷指定的 Blob 版本是否已處理過。
 
 Blob 回條儲存於 AzureWebJobsStorage 連接字串所指定之 Azure 儲存體帳戶中名為 *azure-webjobs-hosts* 的容器中。 Blob 回條具有下列資訊：
@@ -228,7 +228,7 @@ Blob 回條儲存於 AzureWebJobsStorage 連接字串所指定之 Azure 儲存�
 
 如果您想要強制重新處理某個 Blob，可以從 *azure-webjobs-hosts* 容器中手動刪除該 Blob 的 Blob 回條。
 
-## <a name="a-idqueuesarelated-topics-covered-by-the-queues-article"></a><a id="queues"></a>佇列文章所涵蓋的相關主題
+## <a id="queues"></a>佇列文章所涵蓋的相關主題
 如需如何處理佇列訊息所觸發的 Blob 處理的相關資訊，或是非 Blob 處理特有的 WebJobs SDK 案例，請參閱 [如何透過 WebJobs SDK 使用 Azure 佇列儲存體](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)。 
 
 該文章中涵蓋的相關主題如下：
@@ -243,7 +243,7 @@ Blob 回條儲存於 AzureWebJobsStorage 連接字串所指定之 Azure 儲存�
 * 手動觸發函式
 * 寫入記錄檔
 
-## <a name="a-idnextstepsa-next-steps"></a><a id="nextsteps"></a> 後續步驟
+## <a id="nextsteps"></a> 後續步驟
 本指南提供了程式碼範例，示範如何處理使用 Azure Blob 的常見案例。 如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱 [Azure WebJobs 建議使用的資源](http://go.microsoft.com/fwlink/?linkid=390226)。
 
 

@@ -32,8 +32,8 @@ ms.lasthandoff: 02/21/2017
 若要使用受控磁碟：
 
 ```azurecli
-az vm disk attach –g myResourceGroup –-vm-name myVM –-disk myDataDisk \
-  –-new --size-gb 50
+az vm disk attach -g myResourceGroup --vm-name myVM --disk myDataDisk \
+  --new --size-gb 50
 ```
 
 若要使用非受控磁碟：
@@ -53,8 +53,8 @@ az vm unmanaged-disk attach -g myResourceGroup -n myUnmanagedDisk --vm-name myVM
 如果您的 VM 上只需要新磁碟，您可以使用 `az vm disk attach` 命令。
 
 ```azurecli
-az vm disk attach –g myResourceGroup –-vm-name myVM –-disk myDataDisk \
-  –-new --size-gb 50
+az vm disk attach -g myResourceGroup --vm-name myVM --disk myDataDisk \
+  --new --size-gb 50
 ```
 
 ### <a name="attach-an-existing-disk"></a>連接現有磁碟 
