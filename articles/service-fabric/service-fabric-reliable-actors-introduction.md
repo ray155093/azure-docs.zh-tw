@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 02/10/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: 56220f357cbb44946d601167234636a1bce03bfa
-ms.openlocfilehash: bf69d2fdfb80395f9af58d113e4f8838c6bb93be
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 9b6668bf4b3f826a1d41527ce4a7ae8d05936731
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -86,9 +87,21 @@ IMyActor myActor = ActorProxy.Create<IMyActor>(actorId, new Uri("fabric:/MyApp/M
 await myActor.DoWorkAsync();
 ```
 
+```java
+// Create actor ID with some name
+ActorId actorId = new ActorId("Actor1");
+
+// This only creates a proxy object, it does not activate an actor or invoke any methods yet.
+MyActor myActor = ActorProxyBase.create(actorId, new URI("fabric:/MyApp/MyActorService"), MyActor.class);
+
+// This will invoke a method on the actor. If an actor with the given ID does not exist, it will be activated by this method call.
+myActor.DoWorkAsync().get();
+```
+
+
 請注意，有兩段資訊用於建立動作項目 Proxy 物件：動作項目 ID 與應用程式名稱。 動作項目識別碼可唯一識別動作項目，而應用程式名稱可識別動作項目部署所在的 [Service Fabric 應用程式](service-fabric-reliable-actors-platform.md#application-model) 。
 
-用戶端上的 `ActorProxy` 類别會執行必要的解決方案，以便依識別碼找到動作項目並開啟與該動作項目通訊的管道。 `ActorProxy` 也會在通訊失敗和容錯移轉的情況下重新試著尋找動作項目。 因此，訊息傳遞具有下列特性︰
+用戶端上的 `ActorProxy`(C#) / `ActorProxyBase`(Java) 類别會執行必要的解決方案，以便依識別碼找到動作項目並開啟與該動作項目通訊的管道。 它也會在通訊失敗和容錯移轉的情況下重新試著尋找動作項目。 因此，訊息傳遞具有下列特性︰
 
 * 最好進行訊息傳遞。
 * 動作項目可能收到來自相同用戶端的重複訊息。
@@ -122,7 +135,7 @@ Reliable Actors 執行階段會提供簡單的回合式存取模型來存取動�
 * 當 Method1 代表 ActorId2 執行以回應用戶端要求 xyz789 時，另一個抵達的用戶端要求 (abc123) 也需要 Method1 由 ActorId2 執行。 不過， *Method1* 的第二次執行會在前一次執行完成後才開始。 同樣的，由 ActorId2 註冊的提醒會在 Method1 正在執行時引發，以回應用戶端要求 xyz789。 提醒回撥只會在 *Method1* 的這兩個執行都完成後才執行。 所有的一切都是因為對 *ActorId2*強制執行回合式並行。
 * 同樣地，也會對 ActorId1 強制執行回合式並行，如代表依序發生的 ActorId1 執行 Method1、Method2 和計時器回呼所示。
 * 代表 ActorId1 執行 Method1 與代表 ActorId2 執行重疊。 這是因為回合式並行只會在動作項目內強制執行，不會在動作項目間強制執行。
-* 在某些方法/回呼執行中，方法/回呼傳回的 `Task` 會在方法傳回後完成。 在某些其他執行中，已在方法/回呼傳回的時間前完成 `Task` 。 在這兩種情況下，只有在方法/回呼傳回且 `Task` 完成後，才會釋放各個動作項目鎖定。
+* 在某些方法/回呼執行中，方法/回呼傳回的 `Task`(C#)/`CompletableFuture`(Java) 會在方法傳回後完成。 在某些其他執行中，已在方法/回呼傳回的時間前完成非同步作業。 在這兩種情況下，只有在方法/回呼傳回且完成非同步作業後，才會釋放各個動作項目鎖定。
 
 #### <a name="reentrancy"></a>重新進入
 動作項目執行階段依預設允許重新進入。 這表示如果 Actor A 的動作項目方法在 Actor B 上呼叫某一個方法，然後反過來在 Actor A 上呼叫另一個方法，則允許執行該方法。 這是因為該方法是同一個邏輯呼叫鏈結內容的一部分。 所有的計時器與提醒呼叫的開頭都是新的邏輯呼叫內容。 如需詳細資訊，請參閱 [Reliable Actors 重新進入](service-fabric-reliable-actors-reentrancy.md) 。
@@ -145,9 +158,4 @@ Reliable Actors 執行階段會提供簡單的回合式存取模型來存取動�
 [1]: ./media/service-fabric-reliable-actors-introduction/concurrency.png
 [2]: ./media/service-fabric-reliable-actors-introduction/distribution.png
 [3]: ./media/service-fabric-reliable-actors-introduction/actor-communication.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

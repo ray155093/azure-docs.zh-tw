@@ -13,12 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 03/02/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 1ddfbd3b8d9ca695b08739c7f0716a8e8de82725
-ms.openlocfilehash: cb94febf8f58eda3c56755d60fd49e3dd265d3c3
-ms.lasthandoff: 01/19/2017
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 257138fddc75b39985ba974b1314e978a554b1e2
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -43,13 +43,18 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
   * Visual Studio 2015
 
+  * Visual Studio 2017
+
 * HDInsight 叢集上的 Hadoop - 如需建立叢集的步驟，請參閱 [佈建 HDInsight 叢集](hdinsight-provision-clusters.md)
 
-* 適用於 Visual Studio 的 Hadoop 工具。 如需安裝和設定工具的步驟，請參閱 [開始使用 HDInsight Hadoop Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) 。
+* Hadoop Tools for Visual Studio 或 Data Lake tools for Visual Studio。 如需安裝和設定工具的步驟，請參閱 [開始使用 HDInsight Hadoop Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) 。
+
+    > [!NOTE]
+    > Data Lake 工具是透過在安裝期間選取 [Azure 開發] 工作負載安裝在 Visual Studio 2017。
 
 ## <a name="net-on-hdinsight"></a>HDInsight 上的 .NET
 
-依預設，會在以 Windows 為基礎的 HDInsight 叢集上安裝 .NET common language runtime (CLR) 和架構。 這可讓您搭配使用 C# 應用程式與 Hive 和 Pig 串流處理 (資料會在 Hive/Pig 和 C# 應用程式之間透過 stdout/stdin 進行傳遞)。
+依預設，會在以 Windows 為基礎的 HDInsight 叢集上安裝 .NET common language runtime (CLR) 和架構。 .NET CLR 可讓您搭配使用 C# 應用程式與 Hive 和 Pig 串流處理 (資料會在 Hive/Pig 和 C# 應用程式之間透過 stdout/stdin 進行傳遞)。
 
 > [!NOTE]
 > 目前不支援在以 Linux 為基礎的 HDInsight 叢集上執行 .NET Framework UDF。
@@ -57,15 +62,15 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 ## <a name="net-and-streaming"></a>.NET 和串流處理
 
-串流處理包括 Hive 和 Pig 透過 stdout 傳遞資料到外部應用程式，以及透過 stdin 接收結果。 若是 C# 應用程式，透過 `Console.ReadLine()` 和 `Console.WriteLine()` 是完成此作業最簡單的方式。
+串流處理包括 Hive 和 Pig 透過 stdout 傳遞資料到外部應用程式，以及透過 stdin 接收結果。 對於 C# 應用程式，使用 `Console.ReadLine()` 和 `Console.WriteLine()`。
 
-因為 Hive 和 Pig 必須在執行階段叫用應用程式，因此應在您的 C# 專案中使用 **主控台應用程式** 範本。
+因為 Hive 和 Pig 必須在執行階段叫用應用程式，因此應在您的 C# 專案中使用**主控台應用程式 (.NET Framework)** 範本。
 
 ## <a name="hive-and-c35"></a>Hive 和 C&#35;
 
 ### <a name="create-the-c-project"></a>建立 C# 專案
 
-1. 開啟 Visual Studio 並建立新的解決方案。 在專案類型中選取 [主控台應用程式]，然後將新專案命名為 **HiveCSharp**。
+1. 開啟 Visual Studio 並建立解決方案。 在專案類型中選取 [主控台應用程式 (.NET Framework)]，然後將新專案命名為 **HiveCSharp**。
 
 2. 使用下列程式碼取代 **Program.cs** 的內容：
 
@@ -132,12 +137,12 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
     ![伺服器總管顯示此叢集的儲存體帳戶](./media/hdinsight-hadoop-hive-pig-udf-dotnet-csharp/storage.png)
 
-5. 連按兩下此叢集的 [ **預設容器** ]。 這會開啟顯示預設容器內容的新視窗。
+5. 按兩下叢集的 [預設容器]，以檢視預設容器的內容。
 6. 按一下 [上傳] 圖示，然後瀏覽至 **HiveCSharp** 專案的 **bin\debug** 資料夾。 最後，選取 **HiveCSharp.exe** 檔案並按一下 [確定]。
 
     ![上傳圖示](./media/hdinsight-hadoop-hive-pig-udf-dotnet-csharp/upload.png)
 
-7. 上傳結束後，您便能夠在 Hive 查詢中使用此應用程式。
+7. 上傳完成後，您可以透過 Hive 查詢使用此應用程式。
 
 ### <a name="hive-query"></a>Hive 查詢
 
@@ -147,7 +152,7 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 3. 以滑鼠右鍵按一下部署 **HiveCSharp** 應用程式的叢集，然後選取 [撰寫 Hive 查詢]。
 
-4. 在 Hive 查詢中使用下列設定：
+4. 在 Hive 查詢中使用下列文字：
 
     ```hiveql
     add file wasbs:///HiveCSharp.exe;
@@ -159,9 +164,9 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
     ORDER BY clientid LIMIT 50;
     ```
 
-    這會從 `hivesampletable` 中選取 `clientid`、`devicemake` 和 `devicemodel` 欄位，然後將這些欄位傳遞給 HiveCSharp.exe 應用程式。 此查詢預期應用程式會傳回儲存為 `clientid`、`phoneLabel` 和 `phoneHash` 的三個欄位。 此查詢還預期在預設儲存體容器的根目錄中找到 HiveCSharp.exe (`add file wasbs:///HiveCSharp.exe`)。
+    此查詢會從 `hivesampletable` 中選取 `clientid`、`devicemake` 和 `devicemodel` 欄位，然後將這些欄位傳遞給 HiveCSharp.exe 應用程式。 此查詢預期應用程式會傳回儲存為 `clientid`、`phoneLabel` 和 `phoneHash` 的三個欄位。 此查詢還預期在預設儲存體容器的根目錄中找到 HiveCSharp.exe (`add file wasbs:///HiveCSharp.exe`)。
 
-5. 按一下 [ **提交** ]，將工作提交至 HDInsight 叢集。 [ **Hive 工作摘要** ] 視窗會隨即開啟。
+5. 按一下 [ **提交** ]，將工作提交至 HDInsight 叢集。 [Hive 作業摘要] 視窗隨即開啟。
 
 6. 按一下 [重新整理] 以重新整理摘要，直到 [工作狀態] 變更為 [已完成] 為止。 若要檢視工作輸出，請按一下 [ **工作輸出**]。
 
@@ -169,7 +174,7 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 ### <a name="create-the-c-project"></a>建立 C# 專案
 
-1. 開啟 Visual Studio 並建立新的解決方案。 在專案類型中選取 [主控台應用程式]，然後將新專案命名為 **PigUDF**。
+1. 開啟 Visual Studio 並建立解決方案。 在專案類型中選取 [主控台應用程式]，然後將新專案命名為 **PigUDF**。
 
 2. 使用下列程式碼取代 **Program.cs** 檔案的內容：
 
@@ -202,7 +207,7 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
     }
     ```
 
-    此應用程式將剖析 Pig 送出的程式碼行，並將其重新格式化為以 `java.lang.Exception`開頭的程式碼行。
+    此應用程式將剖析 Pig 送出的程式碼行，並將其重新格式化為以 `java.lang.Exception` 開頭的程式碼行。
 
 3. 儲存 **Program.cs**，然後建置專案。
 
@@ -214,16 +219,16 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 ### <a name="use-the-application-from-pig-latin"></a>從 Pig Latin 使用應用程式
 
-1. 在遠端桌面工作階段中，使用桌面上的 [ **Hadoop 命令列** ] 圖示來啟動 Hadoop 命令列。
+1. 在遠端桌面工作階段中，使用桌面上的 [Hadoop 命令列] 圖示來啟動 Hadoop 命令列。
 
 2. 使用下列命令來啟動 Pig 命令列：
 
         cd %PIG_HOME%
         bin\pig
 
-    您會看到 `grunt>` 提示字元。
+    `grunt>` 提示隨即顯示。
     
-3. 輸入下列命令，透過使用 .NET Framework 應用程式執行簡單的 Pig 工作：
+3. 輸入下列命令，透過使用 .NET Framework 應用程式執行 Pig 作業：
 
         DEFINE streamer `pigudf.exe` SHIP('pigudf.exe');
         LOGS = LOAD 'wasbs:///example/data/sample.log' as (LINE:chararray);
@@ -236,7 +241,7 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
     > [!NOTE]
     > 建立別名時，用於串流處理的應用程式名稱的兩邊必須加上 \` (反引號) 字元，與 `SHIP` 搭配使用時，必須加上 ' (單引號) 字元。
 
-4. 輸入最後一行後，工作應該就會開始。 最後，它會傳回類似如下的輸出：
+4. 輸入最後一行後，工作應該就會開始。 它會傳回類似下列文字的輸出：
 
         (2012-02-03 20:11:56 SampleClass5 [WARN] problem finding id 1358451042 - java.lang.Exception)
         (2012-02-03 20:11:56 SampleClass5 [DEBUG] detail for id 1976092771)
@@ -248,9 +253,9 @@ Hive 與 Pig 很適合在 Azure HDInsight 中處理資料，但您有時需要�
 
 在本文中，您已學會如何從 HDInsight 上的 Hive 和 Pig 使用 .NET Framework 應用程式。 如果您想要了解如何搭配使用 Python 與 Hive 和 Pig，請參閱 [搭配使用 Python 與 HDInsight 中的 Hive 和 Pig](hdinsight-python.md)。
 
-如需使用 Pig 和 Hive 的其他方式，以及若要了解如何使用 MapReduce，請參閱下列內容：
+若要了解Pig 和 Hive 的其他使用方式，以及了解使用 MapReduce，請參閱下列文件：
 
-* [搭配 HDInsight 使用 Hivet](hdinsight-use-hive.md)
+* [〈搭配 HDInsight 使用 Hivet〉](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 

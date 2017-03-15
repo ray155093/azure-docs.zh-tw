@@ -1,6 +1,6 @@
 ---
-title: "如何使用 Twilio for Voice and SMS (PHP) | Microsoft Docs"
-description: "了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。 程式碼範例以 PHP 撰寫。"
+title: "如何使用 Twilio for Voice and SMS (Python) | Microsoft Docs"
+description: "了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。 程式碼範例以 Python 撰寫。"
 services: 
 documentationcenter: python
 author: devinrader
@@ -15,237 +15,232 @@ ms.topic: article
 ms.date: 02/19/2015
 ms.author: MicrosoftHelp@twilio.com
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 90bef40f3759293ef3b3d935c8e8060518077e1f
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: f4a02bb7a7c46e7a0e3c75b870c522eae8294339
+ms.lasthandoff: 03/07/2017
 
 
 ---
-# <a name="how-to-use-twilio-for-voice-and-sms-capabilities-in-php"></a>如何在 PHP 中透過 Twilio 使用語音和簡訊功能
+# <a name="how-to-use-twilio-for-voice-and-sms-capabilities-in-python"></a>如何在 Python 中透過 Twilio 使用語音和簡訊功能
 本指南示範如何在 Azure 上透過 Twilio API 服務執行常見的程式設計工作。 涵蓋的案例包括打電話和傳送簡訊 (SMS)。 如需有關如何在應用程式中使用 Twilio 語音和 SMS 的詳細資訊，請參閱 [後續步驟](#NextSteps) 一節。
 
-## <a name="a-idwhatisawhat-is-twilio"></a><a id="WhatIs"></a>什麼是 Twilio？
+## <a id="WhatIs"></a>什麼是 Twilio？
 Twilio 正在形塑商業環境的未來，可讓開發人員將語音、VoIP 和訊息傳送內嵌到應用程式中。 它們將雲端、全球化環境中所需的整個基礎結構虛擬化，透過 Twilio 通訊 API 平台來揭露基礎結構。 輕鬆就可建立和擴充應用程式。 享受隨收隨付定價的彈性和雲端可靠性的好處。
 
-**Twilio 語音** 可讓應用程式撥打和接聽電話。 **Twilio 簡訊** 可讓應用程式收發簡訊。 **Twilio 用戶端** 可讓您從任何電話、平板電腦或瀏覽器撥打 VoIP 電話，且支援 WebRTC。
+**Twilio 語音** 可讓應用程式撥打和接聽電話。
+**Twilio 簡訊** 可讓應用程式收發簡訊。
+**Twilio 用戶端** 可讓您從任何電話、平板電腦或瀏覽器撥打 VoIP 電話，且支援 WebRTC。
 
-## <a name="a-idpricingatwilio-pricing-and-special-offers"></a><a id="Pricing"></a>Twilio 定價和特別優惠
-升級 Twilio 帳戶的 Azure 客戶，可特別獲贈價值 $10 的 Twilio 點數。 此 Twilio 點數可用來折抵任何 Twilio 使用量 ($10 點數相當於最多傳送 1,000 則簡訊，或最多接收 1000 分鐘的撥入語音，視電話號碼所在地點或通話目的地而定)。 請至 [ahoy.twilio.com/azure] 兌換 Twilio 點數來開始使用。
+## <a id="Pricing"></a>Twilio 定價和特別優惠
+Azure 客戶可在升級 Twilio 帳戶時獲得價值&10; 元美金的 Twilio 點數[特殊優惠][special_offer]。 此 Twilio 點數可用來折抵任何 Twilio 使用量 ($10 點數相當於最多傳送 1,000 則簡訊，或最多接收 1000 分鐘的撥入語音，視電話號碼所在地點或通話目的地而定)。 請兌換此 [Twilio 點數][special_offer]，並開始使用。
 
-Twilio 是隨收隨付的服務。 不需要設定費，隨時都可結清帳戶。 如需詳細資訊，請參閱 [Twilio 定價][twilio_pricing]。
+Twilio 是隨收隨付的服務。 不需要設定費，隨時都可結清帳戶。 如需詳細資訊，請參閱 [Twilio 價格][twilio_pricing]。
 
-## <a name="a-idconceptsaconcepts"></a><a id="Concepts"></a>概念
+## <a id="Concepts"></a>概念
 Twilio API 是一套為應用程式提供語音和簡訊功能的 RESTful API。 用戶端程式庫有多種語言版本，相關清單請參閱 [Twilio API 程式庫][twilio_libraries]。
 
 Twilio API 的兩大重點是 Twilio 動詞和 Twilio 標記語言 (TwiML)。
 
-### <a name="a-idverbsatwilio-verbs"></a><a id="Verbs"></a>Twilio 動詞
+### <a id="Verbs"></a>Twilio 動詞
 API 採用 Twilio 動詞。例如，**&lt;Say&gt;** 動詞指示 Twilio 在通話中用語音傳遞訊息。
 
-以下是 Twilio 動詞清單。 請透過 [Twilio Markup Language documentation][http://www.twilio.com/docs/api/twiml] 了解其他動詞和功能。
+以下是 Twilio 動詞清單。 如需了解其他動詞和功能，請參閱 [Twilio 標記語言文件][twiml]。
 
 * **&lt;撥號&gt;**：使撥號者接通另一支電話。
 * **&lt;收集&gt;**：收集電話按鍵上輸入的號碼。
 * **&lt;掛斷&gt;**：結束通話。
-* **&lt;播放&gt;**：播放音訊檔案。
 * **&lt;暫停&gt;**：靜候一段指定的秒數。
+* **&lt;播放&gt;**：播放音訊檔案。
+* **&lt;佇列&gt;**︰新增至呼叫端佇列。
 * **&lt;錄音&gt;**：錄製來電者的語音並傳回含有錄音的檔案 URL。
 * **&lt;重新導向&gt;**：將通話或簡訊的控制權移轉至不同 URL 的 TwiML。
-* **&lt;拒絕&gt;**：拒絕 Twilio 號碼的來電而不計費
+* **&lt;拒絕&gt;**：拒絕 Twilio 號碼的來電而不計費。
 * **&lt;說出&gt;**：將來電的文字轉換成語音。
 * **&lt;Sms&gt;**：傳送簡訊。
 
-### <a name="a-idtwimlatwiml"></a><a id="TwiML"></a>TwiML
+### <a id="TwiML"></a>TwiML
 TwiML 是以 Twilio 動詞為基礎的一組 XML 指令，可指示 Twilio 如何處理來電或簡訊。
 
 例如，下列 TwiML 會將 **Hello World** 文字轉換成語音。
 
     <?xml version="1.0" encoding="UTF-8" ?>
     <Response>
-       <Say>Hello World</Say>
+      <Say>Hello World</Say>
     </Response>
 
-當應用程式呼叫 Twilio API 時，其中一個 API 參數是傳回 TwiML 回應的 URL。 在開發用途上，您可以使用 Twilio 提供的 URL 來提供應用程式所使用的 TwiML 回應。 您也可以裝載您自己的 URL 來產生 TwiML 回應，另一種選擇是使用 **TwiMLResponse** 物件。
+當應用程式呼叫 Twilio API 時，其中一個 API 參數是傳回 TwiML 回應的 URL。 在開發用途上，您可以使用 Twilio 提供的 URL 來提供應用程式所使用的 TwiML 回應。 您也可以裝載您自己的 URL 來產生 TwiML 回應，另一種選擇是使用 `TwiMLResponse` 物件。
 
-如需 Twilio 動詞、屬性和 TwiML 的詳細資訊，請參閱 [TwiML][twiml]兌換 Twilio 點數來開始使用。 如需 Twilio API 的其他資訊，請參閱 [Twilio API][twilio_api]。
+如需 Twilio 動詞、屬性和 TwiML 的詳細資訊，請參閱 [TwiML][twiml]。 如需 Twilio API 的詳細資訊，請參閱 [Twilio API][twilio_api]。
 
-## <a name="a-idcreateaccountacreate-a-twilio-account"></a><a id="CreateAccount"></a>建立 Twilio 帳戶
-準備取得 Twilio 帳戶時，請在試用 [Try Twilio][try_twilio] 註冊。 您可以先使用免費帳戶，稍後再升級帳戶。
+## <a id="CreateAccount"></a>建立 Twilio 帳戶
+準備取得 Twilio 帳戶時，請至[試用 Twilio 註冊][try_twilio]。 您可以先使用免費帳戶，稍後再升級帳戶。
 
-註冊 Twilio 帳戶時，您會收到帳戶識別碼和驗證權杖。 兩者皆為呼叫 Twilio API 所需。 為了防止未經授權存取您的帳戶，您妥善保管驗證權杖。 在 [Twilio 帳戶頁面][twilio_account] 的 [ACCOUNT SID] 和 [AUTH TOKEN] 欄位中，分別可檢視您的帳戶識別碼和驗證權杖。
+註冊 Twilio 帳戶時，您會收到帳戶 SID 和驗證權杖。 兩者皆為呼叫 Twilio API 所需。 為了防止未經授權存取您的帳戶，您妥善保管驗證權杖。 在 [Twilio 主控台][twilio_console]標示為 **ACCOUNT SID** 和 **AUTH TOKEN** 的欄位中，分別可檢視您的帳戶 SID 和驗證權杖。
 
-## <a name="a-idcreateappacreate-a-php-application"></a><a id="create_app"></a>建立 PHP 應用程式
-使用 Twilio 服務且執行於 Azure 的 PHP 應用程式，與其他使用 Twilio 服務的 PHP 應用程式並無不同。 雖然 Twilio 服務是以 REST 為基礎，並且可透過數種方式從 PHP 撥打，但本文的重點是要說明如何搭配使用 Twilio 服務與[適用於 PHP 的 Twilio 程式庫 (由 Github 提供)][twilio_php]。 如需使用 PHP 的 Twilio 程式庫相關詳細資訊，請參閱 [http://readthedocs.org/docs/twilio-php/en/latest/index.html][twilio_lib_docs]。
+## <a id="create_app"></a>建立 Python 應用程式
+使用 Twilio 服務且執行於 Azure 的 Python 應用程式，與其他使用 Twilio 服務的 Python 應用程式並無不同。 雖然 Twilio 服務是以 REST 為基礎，並且可透過數種方式從 Python 撥打，但本文的重點是要說明如何搭配使用 Twilio 服務與[適用於 Python 的 Twiliofor 程式庫 (由 GitHub 提供)][twilio_python]。 若想進一步了解如何使用適用於 Python 的 Twilio 程式庫，請參閱 [http://readthedocs.org/docs/twilio-python/en/latest/index.html][twilio_lib_docs]。
 
-如需建置 Twilio/PHP 應用程式以及將其部署至 Azure 的詳細指示，請參閱[如何在 Azure 上的 PHP 應用程式中使用 Twilio 撥打電話][howto_phonecall_php]。
+首先，[set-up a new Azure Linux VM][azure_vm_setup]，以作為新的 Python Web 應用程式主機。 當虛擬機器執行時，您必須在公用連接埠上公開應用程式，如下所述。
 
-## <a name="a-idconfigureappaconfigure-your-application-to-use-twilio-libraries"></a><a id="configure_app"></a>設定應用程式以使用 Twilio 程式庫
-您可以透過兩種方式設定應用程式，以使用適用於 PHP 的 Twilio 程式庫：
+### <a name="add-an-incoming-rule"></a>新增傳入規則
+  1. 移至 [Network Security Group][azure_nsg] 頁面。
+  2. 選取與您的虛擬機器對應的網路安全性群組。
+  3. 新增**連接埠 80** 的**傳出規則**。 務必允許來自任何位址的傳入。
 
-1. 從 Github 下載適用於 PHP 的 Twilio 程式庫 ([https://github.com/twilio/twilio-php][twilio_php])，然後將 **Services** 目錄新增至您的應用程式。
+### <a name="set-the-dns-name-label"></a>設定 DNS 名稱標籤
+  1. 移至 [公用 IP 位址] [azure_ips] 頁面。
+  2. 選取與您的虛擬機器對應的公用 IP 位址。
+  3. 在 [組態] 區段中設定 [DNS 名稱標籤]。 在此範例的情況下，它看起來類似 *your-domain-label*.centralus.cloudapp.azure.com
+
+可透過 SSH 連線到虛擬機器連線之後，就可以安裝您所選擇的 Web 架構 (Python 中最廣為人知的兩個為 [Flask](http://flask.pocoo.org/) 和 [Django](https://www.djangoproject.com))。 只要執行 `pip install` 命令即可安裝其中一項。
+
+請記住，我們已將虛擬機器設定為僅允許連接埠 80 的流量。 因此請務必將應用程式設定為使用此連接埠。
+
+## <a id="configure_app"></a>設定應用程式以使用 Twilio 程式庫
+您可以透過兩種方式設定應用程式，以使用適用於 Python 的 Twilio 程式庫：
+
+* 以 Pip 封裝的形式，安裝適用於 Python 的 Twilio 程式庫。 您可以使用下列命令進行此安裝：
    
+        $ pip install twilio
+
     -或-
-2. 以 PEAR 封裝的形式，安裝適用於 PHP 的 Twilio 程式庫。 您可以使用下列命令進行此安裝：
-   
-        $ pear channel-discover twilio.github.com/pear
-        $ pear install twilio/Services_Twilio
 
-在適用於 PHP 的 Twilio 程式庫安裝完成後，您可以在 PHP 檔案頂端新增 **require_once** 陳述式，以參考該程式庫：
+* 從 GitHub 下載適用於 Python 的 Twilio 程式庫 ([https://github.com/twilio/twilio-python][twilio_python])，並以與此類似的方式安裝它：
 
-        require_once 'Services/Twilio.php';
+        $ python setup.py install
 
-如需詳細資訊，請參閱 [https://github.com/twilio/twilio-php/blob/master/README.md][twilio_github_readme]。
+安裝了適用於 Python 的 Twilio 程式庫之後，您可以在 Python 檔案中對它進行 `import`︰
 
-## <a name="a-idhowtomakecallahow-to-make-an-outgoing-call"></a><a id="howto_make_call"></a>作法：撥出電話
-以下說明如何使用 **Services_Twilio** 類別來撥出電話。 此程式碼也使用 Twilio 提供的網站來傳回 Twilio 標記語言 (TwiML) 回應。 請將 **From** 和 **To** 電話號碼換成您的值，在執行程式碼之前，請記得先驗證 Twilio 帳戶的 **From** 電話號碼。
+        import twilio
 
-    // Include the Twilio PHP library.
-    require_once 'Services/Twilio.php';
+如需詳細資訊，請參閱 [https://github.com/twilio/twilio-python/blob/master/README.md][twilio_github_readme]。
 
-    // Library version.
-    $version = "2010-04-01";
+## <a id="howto_make_call"></a>作法：撥出電話
+下列程式碼將說明如何向外撥打電話。 此程式碼也使用 Twilio 提供的網站來傳回 Twilio 標記語言 (TwiML) 回應。 請將 **from_number** 和 **to_number** 電話號碼的值換成您的值，並在執行程式碼之前，已驗證 Twilio 帳戶的 **from_number** 電話號碼。
 
-    // Set your account ID and authentication token.
-    $sid = "your_twilio_account_sid";
-    $token = "your_twilio_authentication_token";
+    from urllib.parse import urlencode
 
-    // The number of the phone initiating the the call.
-    // (Must be previously validated with Twilio.)
-    $from_number = "NNNNNNNNNNN";
+    # Import the Twilio Python Client.
+    from twilio.rest import TwilioRestClient
 
-    // The number of the phone receiving call.
-    $to_number = "NNNNNNNNNNN";
+    # Set your account ID and authentication token.
+    account_sid = "your_twilio_account_sid"
+    auth_token = "your_twilio_authentication_token"
 
-    // Use the Twilio-provided site for the TwiML response.
-    $url = "http://twimlets.com/message";
+    # The number of the phone initiating the the call.
+    # This should either be a Twilio number or a number that you've verified
+    from_number = "NNNNNNNNNNN"
 
-    // The phone message text.
-    $message = "Hello world.";
+    # The number of the phone receiving call.
+    to_number = "NNNNNNNNNNN"
 
-    // Create the call client.
-    $client = new Services_Twilio($sid, $token, $version);
+    # Use the Twilio-provided site for the TwiML response.
+    url = "http://twimlets.com/message?"
 
-    //Make the call.
-    try
-    {
-        $call = $client->account->calls->create(
-            $from_number,
-            $to_number,
-              $url.'?Message='.urlencode($message)
-        );
-    }
-    catch (Exception $e)
-    {
-        echo 'Error: ' . $e->getMessage();
-    }
+    # The phone message text.
+    message = "Hello world."
+
+    # Initialize the Twilio client.
+    client = TwilioRestClient(account_sid, auth_token)
+
+    # Make the call.
+    call = client.calls.create(to=to_number,
+                               from_=from_number,
+                               url=url + urlencode({'Message': message}))
+    print(call.sid)
 
 如前所述，此程式碼使用 Twilio 提供的網站來傳回 TwiML 回應。 您可以改用自己的網站來提供 TwiML 回應；如需詳細資訊，請參閱 [如何從您自己的網站提供 TwiML 回應](#howto_provide_twiml_responses)。
 
-* **注意**：若要對 SSL 憑證驗證錯誤進行疑難排解，請參閱 [http://readthedocs.org/docs/twilio-php/en/latest/usage/rest.html][ssl_validation]
+## <a id="howto_send_sms"></a>作法：傳送簡訊
+以下顯示如何使用 `TwilioRestClient` 類別傳送 SMS 訊息。 **from_number** 號碼由 Twilio 提供給試用帳戶來傳送簡訊。 執行程式碼之前，必須驗證您 Twilio 帳戶的 **to_number** 號碼。
 
-## <a name="a-idhowtosendsmsahow-to-send-an-sms-message"></a><a id="howto_send_sms"></a>作法：傳送簡訊
-以下說明如何使用 **Services_Twilio** 類別來傳送簡訊。 **From** 號碼由 Twilio 提供給試用帳戶來傳送簡訊。 執行程式碼之前，必須驗證您 Twilio 帳戶的 **To** 號碼。
+    # Import the Twilio Python Client.
+    from twilio.rest import TwilioRestClient
 
-    // Include the Twilio PHP library.
-    require_once 'Services/Twilio.php';
+    # Set your account ID and authentication token.
+    account_sid = "your_twilio_account_sid"
+    auth_token = "your_twilio_authentication_token"
 
-    // Library version.
-    $version = "2010-04-01";
+    from_number = "NNNNNNNNNNN"  # With trial account, texts can only be sent from your Twilio number.
+    to_number = "NNNNNNNNNNN"
+    message = "Hello world."
 
-    // Set your account ID and authentication token.
-    $sid = "your_twilio_account_sid";
-    $token = "your_twilio_authentication_token";
+    # Initialize the Twilio client.
+    client = TwilioRestClient(account_sid, auth_token)
 
+    # Send the SMS message.
+    message = client.messages.create(to=to_number,
+                                     from_=from_number,
+                                     body=message)
 
-    $from_number = "NNNNNNNNNNN"; // With trial account, texts can only be sent from your Twilio number.
-    $to_number = "NNNNNNNNNNN";
-    $message = "Hello world.";
+## <a id="howto_provide_twiml_responses"></a>作法：從您自己的網站提供 TwiML 回應
+當您的應用程式開始呼叫 Twilio API 時，Twilio 會將要求傳送至 URL，然後應該會傳回 TwiML 回應。 前述範例使用 Twilio 提供的 URL [http://twimlets.com/message][twimlet_message_url]。 (雖然 TwiML 是設計給 Twilio 使用的，但您也可以在瀏覽器中檢視 TwiML。 例如，按一下 [http://twimlets.com/message][twimlet_message_url] 可查看空白的 `<Response>` 元素，又例如，按一下 [http://twimlets.com/message?Message%5B0%5D=Hello%20World][twimlet_message_url_hello_world] 可查看包含 `<Say>` 元素的 `<Response>` 元素。)
 
-    // Create the call client.
-    $client = new Services_Twilio($sid, $token, $version);
+除了使用 Twilio 提供的 URL 以外，您也可以建立自己的網站來傳回 HTTP 回應。 您可以使用任何語言建立會傳回 XML 回應的網站；本主題假設您將使用 Python 建立 TwiML。
 
-    // Send the SMS message.
-    try
-    {
-        $client->account->sms_messages->create($from_number, $to_number, $message);
-    }
-    catch (Exception $e)
-    {
-        echo 'Error: ' . $e->getMessage();
-    }
+下列範例將輸出 TwiML 回應，其會在通話中說出 **Hello World**。
 
-## <a name="a-idhowtoprovidetwimlresponsesahow-to-provide-twiml-responses-from-your-own-website"></a><a id="howto_provide_twiml_responses"></a>作法：從您自己的網站提供 TwiML 回應
-當您的應用程式開始呼叫 Twilio API 時，Twilio 會將要求傳送至 URL，然後應該會傳回 TwiML 回應。 前述範例使用 Twilio 提供的 URL [http://twimlets.com/message][twimlet_message_url]。 (雖然 TwiML 是設計給 Twilio 使用的，但您也可以在瀏覽器中檢視 TwiML。 例如，按一下 [http://twimlets.com/message][twimlet_message_url] 可查看空白 `<Response>` 元素。另一個範例中，按一下 [http://twimlets.com/message?Message%5B0%5D=Hello%20World][twimlet_message_url_hello_world] 可查看包含 `<Say>` 元素的 `<Response>` 元素。)
+使用 Flask：
 
-除了使用 Twilio 提供的 URL 以外，您也可以建立自己的網站來傳回 HTTP 回應。 您可以使用任何語言建立會傳回 XML 回應的網站；本主題假設您將使用 PHP 建立 TwiML。
+    from flask import Response
+    @app.route("/")
+    def hello():
+        xml = '<Response><Say>Hello world.</Say></Response>'
+        return Response(xml, mimetype='text/xml')
 
-下列 PHP 頁面會產生一個在來電中顯示 **Hello World** 的 TwiML 回應。
+使用 Django：
 
-    <?php
-        header("content-type: text/xml");
-        echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-    ?>
-    <Response>
-        <Say>Hello world.</Say>
-    </Response>
+    from django.http import HttpResponse
+    def hello(request):
+        xml = '<Response><Say>Hello world.</Say></Response>'
+        return HttpResponse(xml, content_type='text/xml')
 
-從以上範例中可知，TwiML 回應只是一份 XML 文件。 適用於 PHP 的 Twilio 程式庫包含可為您產生 TwiML 的類別。 下列範例會產生同上的回應，但改用適用於 PHP 的 Twilio 程式庫中的 **Services\_Twilio\_Twiml** 類別：
+從以上範例中可知，TwiML 回應只是一份 XML 文件。 適用於 Python 的 Twilio 程式庫包含可為您產生 TwiML 的類別。 下列範例會產生同上的回應，但改用適用於 Python 的 Twilio 程式庫中的 `twiml` 模組：
 
-    require_once('Services/Twilio.php');
+    from twilio import twiml
 
-    $response = new Services_Twilio_Twiml();
-    $response->say("Hello world.");
-    print $response;
+    response = twiml.Response()
+    response.say("Hello world.")
+    print(str(response))
 
 如需 TwiML 的詳細資訊，請參閱 [https://www.twilio.com/docs/api/twiml][twiml_reference]。
 
-設定 PHP 頁面來提供 TwiML 回應之後，請使用 PHP 頁面的 URL 作為傳遞到 `Services_Twilio->account->calls->create` 方法的 URL。 例如，如果您已將名為 **MyTwiML** 的 Web 應用程式部署至 Azure 託管服務，而 PHP 頁面的名稱為 **mytwiml.php**，則可將其 URL 傳至 **Services_Twilio->account->calls->create**，如下列範例所示：
+將 Python 應用程式設定來提供 TwiML 回應之後，請使用應用程式的 URL 作為傳遞到 `client.calls.create` 方法的 URL。 例如，如果您有部署到 Azure 託管服務、名為**MyTwiML** 的 Web 應用程式，您可以使用其 URL 作為 webhook，如下列範例所示︰
 
-    require_once 'Services/Twilio.php';
+    from twilio.rest import TwilioRestClient
 
-    $sid = "your_twilio_account_sid";
-    $token = "your_twilio_authentication_token";
-    $from_number = "NNNNNNNNNNN";
-    $to_number = "NNNNNNNNNNN";
-    $url = "http://<your_hosted_service>.cloudapp.net/MyTwiML/mytwiml.php";
+    account_sid = "your_twilio_account_sid"
+    auth_token = "your_twilio_authentication_token"
+    from_number = "NNNNNNNNNNN"
+    to_number = "NNNNNNNNNNN"
+    url = "http://your-domain-label.centralus.cloudapp.azure.com/MyTwiML/"
 
-    // The phone message text.
-    $message = "Hello world.";
+    # Initialize the Twilio client.
+    client = TwilioRestClient(account_sid, auth_token)
 
-    $client = new Services_Twilio($sid, $token, "2010-04-01");
+    # Make the call.
+    call = client.calls.create(to=to_number,
+                               from_=from_number,
+                               url=url)
+    print(call.sid)
 
-    try
-    {
-        $call = $client->account->calls->create(
-            $from_number,
-            $to_number,
-              $url.'?Message='.urlencode($message)
-        );
-    }
-    catch (Exception $e)
-    {
-        echo 'Error: ' . $e->getMessage();
-    }
+## <a id="AdditionalServices"></a>如何：使用其他 Twilio 服務
+除了此處所示的範例以外，Twilio 還提供網頁式 API，方便您從 Azure 應用程式中充份利用其他 Twilio 功能。 如需完整詳細資料，請參閱 [Twilio API 文件][twilio_api]。
 
-如需關於在 Azure 中利用 PHP 使用 Twilio 的其他資訊，請參閱[如何在 Azure 上的 PHP 應用程式中使用 Twilio 撥打電話][howto_phonecall_php]。
-
-## <a name="a-idadditionalservicesahow-to-use-additional-twilio-services"></a><a id="AdditionalServices"></a>如何：使用其他 Twilio 服務
-除了此處所示的範例以外，Twilio 還提供網頁式 API，方便您從 Azure 應用程式中充份利用其他 Twilio 功能。 如需完整詳細資料，請參閱 [Twilio API 文件][twilio_api_documentation]。
-
-## <a name="a-idnextstepsanext-steps"></a><a id="NextSteps"></a>後續步驟
+## <a id="NextSteps"></a>後續步驟
 了解基本的 Twilio 服務之後，請參考下列連結以取得更多資訊：
 
 * [Twilio 安全性方針][twilio_security_guidelines]
-* [Twilio 做法與範例程式碼][twilio_howtos]
+* [Twilio 作法指南與範例程式碼][twilio_howtos]
 * [Twilio 快速入門教學課程][twilio_quickstarts]
 * [GitHub 上的 Twilio][twilio_on_github]
 * [洽詢 Twilio 支援][twilio_support]
 
-[twilio_php]: https://github.com/twilio/twilio-php
-[twilio_lib_docs]: http://readthedocs.org/docs/twilio-php/en/latest/index.html
-[twilio_github_readme]: https://github.com/twilio/twilio-php/blob/master/README.md
-[ssl_validation]: http://readthedocs.org/docs/twilio-php/en/latest/usage/rest.html
+[special_offer]: http://ahoy.twilio.com/azure
+[twilio_python]: https://github.com/twilio/twilio-python
+[twilio_lib_docs]: http://readthedocs.org/docs/twilio-python/en/latest/index.html
+[twilio_github_readme]: https://github.com/twilio/twilio-python/blob/master/README.md
 
-[howto_phonecall_php]: http://windowsazure.com/documentation/articles/partner-twilio-php-make-phone-call
 [twimlet_message_url]: http://twimlets.com/message
 [twimlet_message_url_hello_world]: http://twimlets.com/message?Message%5B0%5D=Hello%20World
 [twiml_reference]: https://www.twilio.com/docs/api/twiml
@@ -255,17 +250,10 @@ TwiML 是以 Twilio 動詞為基礎的一組 XML 指令，可指示 Twilio 如�
 [twiml]: http://www.twilio.com/docs/api/twiml
 [twilio_api]: http://www.twilio.com/api
 [try_twilio]: https://www.twilio.com/try-twilio
-[twilio_account]:  https://www.twilio.com/user/account
-[verify_phone]: https://www.twilio.com/user/account/phone-numbers/verified#
-[twilio_api_documentation]: http://www.twilio.com/api
+[twilio_console]:  https://www.twilio.com/console
 [twilio_security_guidelines]: http://www.twilio.com/docs/security
 [twilio_howtos]: http://www.twilio.com/docs/howto
 [twilio_on_github]: https://github.com/twilio
 [twilio_support]: http://www.twilio.com/help/contact
 [twilio_quickstarts]: http://www.twilio.com/docs/quickstart
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

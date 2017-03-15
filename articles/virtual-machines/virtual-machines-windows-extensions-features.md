@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 12/08/2016
+ms.date: 03/06/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 32e30b44c2f7cfa9c1069190fdc53dbe6e9f4cd5
-ms.openlocfilehash: 88ccd06cf3098c3df014422e5f4dc54ceb955d3c
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: d7cb13d751bc9153669ce0d96b42fcda3024f6f0
+ms.lasthandoff: 03/08/2017
 
 
 ---
-# <a name="virtual-machine-extensions-and-features-for-windows"></a>適用於 Windows 的虛擬機器擴充功能和功能 
+# <a name="virtual-machine-extensions-and-features-for-windows"></a>適用於 Windows 的虛擬機器擴充功能和功能
 
 「Azure 虛擬機器」擴充功能是小型的應用程式，可在「Azure 虛擬機器」上提供部署後設定及自動化工作。 例如，如果「虛擬機器」要求安裝軟體、防毒保護或 Docker 組態，便可使用 VM 擴充功能來完成這些工作。 您可以使用 Azure CLI、PowerShell、Azure Resource Manager 範本及 Azure 入口網站來執行 Azure VM 擴充功能。 擴充功能可以與新的虛擬機器部署搭配，或是在任何現有的系統上執行。
 
@@ -121,7 +121,7 @@ VM 擴充功能可以透過 Azure 入口網站套用至現有的虛擬機器。 
 
 下列影像顯示從 Azure 入口網站安裝 Microsoft 反惡意程式碼擴充功能。
 
-![反惡意程式碼擴充功能](./media/virtual-machines-windows-extensions-features/anti-virus-extension.png)
+![安裝反惡意程式碼延伸模組](./media/virtual-machines-windows-extensions-features/installantimalwareextension.png)
 
 ### <a name="azure-resource-manager-templates"></a>Azure 資源管理員範本
 

@@ -1,5 +1,5 @@
 ---
-title: "適用於 Azure AD 中之群組管理的 Azure Active Directory PowerShell Preview Cmdlet |Microsoft Azure"
+title: "適用於 Azure AD 中之群組管理的 Azure Active Directory PowerShell Cmdlet |Microsoft Azure"
 description: "此頁面會提供 PowerShell 範例以協助您管理 Azure Active Directory 中的群組"
 keywords: "Azure AD, Azure Active Directory, PowerShell, 群組, 群組管理"
 services: active-directory
@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 02/10/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 4f12fdf6732d44903fb1e971f05d0233d7aff08e
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: f4aeeaf13604443e0902112b4cc998ae1dcce4c2
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -29,12 +30,12 @@ ms.openlocfilehash: 4f12fdf6732d44903fb1e971f05d0233d7aff08e
 >
 >
 
-下列文件將提供範例，說明如何使用 PowerShell 管理 Azure Active Directory (Azure AD) 中的群組。  其中也提供有關如何使用 Azure AD PowerShell Preview 模組完成設定的資訊。 首先，您必須 [下載 Azure AD PowerShell 模組](http://go.microsoft.com/fwlink/p/?LinkId=828627)。
+下列文件將提供範例，說明如何使用 PowerShell 管理 Azure Active Directory (Azure AD) 中的群組。  其中也提供有關如何使用 Azure AD PowerShell Preview 模組完成設定的資訊。 首先，您必須 [下載 Azure AD PowerShell 模組](https://www.powershellgallery.com/packages/AzureAD/)。
 
 ## <a name="installing-the-azure-ad-powershell-module"></a>安裝 Azure AD PowerShell 模組
-若要安裝 AzureAD PowerShell Preview 模組，請使用下列命令︰
+若要安裝 AzureAD PowerShell 模組，請使用下列命令︰
 
-    PS C:\Windows\system32> install-module azureadpreview
+    PS C:\Windows\system32> install-module azuread
 
 若要確認已安裝 Preview 模組，請使用下列命令︰
 
@@ -44,10 +45,10 @@ ms.openlocfilehash: 4f12fdf6732d44903fb1e971f05d0233d7aff08e
     ---------- -------    ----                                ----------------
     Binary     1.1.146.0  azureadpreview                      {Add-AzureADAdministrati...}
 
-現在您可以開始在模組中使用 Cmdlet。 如需有關 AzureAD Preview 模組中各式 Cmdlet 的完整描述，請參閱 [線上參考文件](https://msdn.microsoft.com/library/azure/mt757216.aspx)。
+現在您可以開始在模組中使用 Cmdlet。 如需有關 Azure AD 模組中各式 Cmdlet 的完整描述，請參閱[線上參考文件](https://docs.microsoft.com/en-us/powershell/azuread/)。
 
 ## <a name="connecting-to-the-directory"></a>連線到目錄
-使用 Azure AD PowerShell Preview Cmdlet 開始管理群組之前，您必須先將 PowerShell 工作階段連接至想要管理的目錄。 若要這樣做，請使用下列命令：
+使用 Azure AD PowerShell Cmdlet 開始管理群組之前，您必須先將 PowerShell 工作階段連線至想要管理的目錄。 若要這樣做，請使用下列命令：
 
     PS C:\Windows\system32> Connect-AzureAD
 
@@ -57,7 +58,7 @@ Cmdlet 會提示您輸入要用以存取目錄的認證。 在此範例中，我
     -------                       ----------- ------
     Karen@drumkit.onmicrosoft.com AzureCloud  85b5ff1e-0402-400c-9e3c-0f…
 
-現在您可以開始使用 AzureAD Preview Cmdlet 來管理您目錄中的群組。
+現在您可以開始使用 AzureAD Cmdlet 來管理您目錄中的群組。
 
 ## <a name="retrieving-groups"></a>擷取群組
 若要從目錄中擷取現有的群組，您可以使用 Get-AzureADGroups Cmdlet。 若要擷取目錄中的所有群組，請在使用 Cmdlet 時不要使用參數：
@@ -225,13 +226,8 @@ Cmdlet 將會傳回所指定群組的擁有者清單︰
     PS C:\Windows\system32> remove-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -OwnerId e831b3fd-77c9-49c7-9fca-de43e109ef67
 
 ## <a name="next-steps"></a>後續步驟
-您可以在 [Azure Active Directory Cmdlet](http://go.microsoft.com/fwlink/p/?LinkId=808260)中找到更多 Azure Active Directory PowerShell 文件。
+您可以在 [Azure Active Directory Cmdlet](https://docs.microsoft.com/en-us/powershell/azuread/)中找到更多 Azure Active Directory PowerShell 文件。
 
 * [使用 Azure Active Directory 群組來管理資源的存取權](active-directory-manage-groups.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

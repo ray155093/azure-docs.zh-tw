@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/13/2016
+ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: f5143bc817215d075129170adcabf3dd53b5e15a
-ms.openlocfilehash: 1f6abf9bf123534f29b7976ecadbcf8cb49ce040
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 0c9a9a56e1489ee91fcc332beeef36cdc9c93dc1
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -67,7 +68,7 @@ ms.openlocfilehash: 1f6abf9bf123534f29b7976ecadbcf8cb49ce040
 | 使用者和群組的 SID 歷程記錄 |內部部署主要使用者和群組 SID |您受管理網域中使用者和群組的 SidHistory 屬性會設定為與內部部署網域中對應的主要使用者或群組 SID 相符。 此功能可協助以更簡單的方式將內部部署應用程式原封不動地轉移到受管理網域，因為您不需要重新設定資源的 ACL。 |
 
 > [!NOTE]
-> **使用 UPN 格式來登入受管理網域：**系統可能會針對受管理網域中的某些使用者帳戶自動產生 SAMAccountName 屬性。 如果有多個使用者具有相同的 mailNickname 屬性，或使用者的 UPN 前置詞太長，可能就會自動為這些使用者產生 SAMAccountName。 因此，SAMAccountName 格式 (例如 'CONTOSO100\joeuser') 並不一定是登入網域的可靠方法。 使用者的自動產生 SAMAccountName 可能會與其 UPN 前置詞不同。 請使用 UPN 格式 (例如 'joeuser@contoso100.com')) 來可靠地登入受管理網域。
+> **使用 UPN 格式來登入受管理網域：**系統可能會針對受管理網域中的某些使用者帳戶自動產生 SAMAccountName 屬性。 如果有多個使用者具有相同的 mailNickname 屬性，或使用者的 UPN 前置詞太長，可能就會自動為這些使用者產生 SAMAccountName。 因此，SAMAccountName 格式 (例如 'CONTOSO100\joeuser') 並不一定是登入網域的可靠方法。 使用者的自動產生 SAMAccountName 可能會與其 UPN 前置詞不同。 請使用 UPN 格式 (例如 'joeuser@contoso100.com') 可靠地登入受管理的網域。
 >
 >
 
@@ -121,9 +122,4 @@ ms.openlocfilehash: 1f6abf9bf123534f29b7976ecadbcf8cb49ce040
 * [部署案例 - Azure AD 網域服務](active-directory-ds-scenarios.md)
 * [Azure AD Domain Services 的網路考量](active-directory-ds-networking.md)
 * [開始使用 Azure AD Domain Services](active-directory-ds-getting-started.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 01/05/2017
 ms.author: masnider;
 translationtype: Human Translation
-ms.sourcegitcommit: dafaf29b6827a6f1c043af3d6bfe62d480d31ad5
-ms.openlocfilehash: 0bf0755d1c3155ce0203e8070995c298f50bd4db
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 8ecde1ba2c7a18d0237b92a404eeb1e2d7348378
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -64,7 +64,7 @@ Service Fabric 中的可靠的服務與您之前撰寫的服務不同。 Service
 無論您的服務是具狀態還是無狀態，Reliable Services 會提供簡單的生命週期，可讓您快速插入您的程式碼，並開始著手。  您只需要實作一個或兩個方法，即可讓您的服務啟動並執行。
 
 * **CreateServiceReplicaListeners/CreateServiceInstanceListeners** - 服務在此方法中定義它想要使用的通訊堆疊。 通訊堆疊 (例如 [Web API](service-fabric-reliable-services-communication-webapi.md)) 定義服務的一或多個接聽端點 (用戶端如何存取服務)。 它也定義出現的訊息如何與服務程式碼的其餘部分互動。
-* **RunAsync** - 服務在此方法中執行其商務邏輯，也在此處啟動應該在服務存留期執行的任何背景工作。 所提供的取消語彙基元是針對該工作何時應該停止的訊號。 比方說，如果服務需要從可靠的佇列提取訊息並加以處理，`RunAsync()`就是執行這項工作的地方。
+* **RunAsync** - 服務在此方法中執行其商務邏輯，也在此處啟動應該在服務存留期執行的任何背景工作。 所提供的取消語彙基元是針對該工作何時應該停止的訊號。 比方說，如果服務需要從可靠的佇列提取訊息並加以處理，這就是執行這項工作的地方。
 
 如果您是第一次來了解 Reliable Services，請繼續閱讀！ 如果想要尋找 Reliable Services 留存期的詳細逐步解說，您可以閱讀[這篇文章](service-fabric-reliable-services-lifecycle.md)。
 
@@ -76,18 +76,22 @@ Service Fabric 中的可靠的服務與您之前撰寫的服務不同。 Service
 
 例如，想想沒有記憶體且會接收要一次執行之所有項和作業的計算機。
 
-在此情況下，服務的 `RunAsync()` 可以是空的，因為沒有服務需要進行的背景工作處理。 建立計算機服務時，它會傳回 `ICommunicationListener` (例如 [Web API](service-fabric-reliable-services-communication-webapi.md))，而這會在某個連接埠上開啟接聽端點。 此接聽端點會連結到不同的計算方法 (範例："Add(n1, n2)")，這些方法定義計算機的公用 API。
+在此情況下，服務的 `RunAsync()` (C#) 或 `runAsync()` (Java) 可以是空的，因為沒有服務需要進行的背景工作處理。 建立計算機服務時，它會傳回 `ICommunicationListener` (C#) 或 `CommunicationListener` (Java) (例如 [Web API](service-fabric-reliable-services-communication-webapi.md))，而這會在某個連接埠上開啟接聽端點。 此接聽端點會連結到不同的計算方法 (範例："Add(n1, n2)")，這些方法定義計算機的公用 API。
 
 從用戶端進行呼叫時，會叫用適當的方法，且計算機服務會在所提供的資料上執行作業，並傳回結果。 它不會儲存任何狀態。
 
 不儲存任何內部狀態會讓此範例計算機變得較簡單。 不過大多數服務並不是真正無狀態。 相反地，它們是將狀態外部化到其他某些存放區  (例如，任何依賴在備份存放區或快取中保留工作階段狀態的 Web 應用程式便不是無狀態)。
 
-Service Fabric 中常見的無狀態服務使用範例是做為前端，其公開 Web 應用程式的公用 API。 前端服務接著和具狀態服務交談，以完成使用者的要求。 在此情況下，用戶端的呼叫會導向至無狀態服務接聽的已知連接埠 (例如 80)。 這個無狀態服務收到呼叫，並判斷呼叫是否來自受信任的合作對象，以及其預定為哪些服務。  然後，無狀態服務將呼叫轉送至正確的具狀態服務分割，並等候回應。 當無狀態服務收到回應時，它會回覆原始用戶端。 我們在[這裡](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/Services/WordCount/WordCount.WebService)的範例中有這類服務的例子。 這只是範例中這種模式的其中一個例子，其他範例中還有其他例子。
+Service Fabric 中常見的無狀態服務使用範例是做為前端，其公開 Web 應用程式的公用 API。 前端服務接著和具狀態服務交談，以完成使用者的要求。 在此情況下，用戶端的呼叫會導向至無狀態服務接聽的已知連接埠 (例如 80)。 這個無狀態服務收到呼叫，並判斷呼叫是否來自受信任的合作對象，以及其預定為哪些服務。  然後，無狀態服務將呼叫轉送至正確的具狀態服務分割，並等候回應。 當無狀態服務收到回應時，它會回覆原始用戶端。 我們的 [C#](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/Services/WordCount/WordCount.WebService) / [Java](https://github.com/Azure-Samples/service-fabric-java-getting-started/tree/master/Actors/VisualObjectActor/VisualObjectWebService) 範例中有這類服務的例子。 這只是範例中這種模式的其中一個例子，其他範例中還有其他例子。
 
 ### <a name="stateful-reliable-services"></a>具狀態可靠的服務
 具狀態服務必須有某部分的狀態保持一致且存在，服務才能運作。 假設有一個服務不斷地根據某個值收到的更新，計算它的滾動平均。 若要這樣做，它必須擁有目前需要處理的連入要求集，以及目前的平均。 擷取、處理並將資訊儲存在外部存放區 (例如現在的 Azure Blob 或資料表存放區) 的任何服務都是具狀態。 它只將狀態保留在外部狀態存放區中。
 
 現在的大部分服務會在外部儲存其狀態，因為外部存放區為該狀態提供可靠性、可用性、延展性和一致性。 在 Service Fabric 中，服務不需要將狀態儲存在外部。 Service Fabric 會為服務程式碼和服務狀態來處理這些需求。
+
+> [!NOTE]
+> Linux 上尚不支援 Stateful Reliable Services (針對 C# 或 Java)。
+>
 
 假設我們想要撰寫一個處理映像的服務。 在做法上，這個服務需要取得映像和要在該映像上執行的一系列轉換。 此服務會傳回一個通訊接聽程式 (假設是 WebAPI)，其中公開一個像 `ConvertImage(Image i, IList<Conversion> conversions)` 的 API。 當它收到要求時，服務會將它儲存在 `IReliableQueue` 中，並將某個識別碼傳回給用戶端，讓它能夠追蹤要求。
 

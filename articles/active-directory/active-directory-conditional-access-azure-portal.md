@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/19/2017
+ms.date: 03/06/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 4dad4bd824f199562cb972c98cfcb452f2823828
-ms.openlocfilehash: b85b10b9504c5efa7ec05b92b544ad777e3abacc
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 62804019a8c2c5e719c36021ee04cbd20e03dd05
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -36,9 +36,10 @@ ms.lasthandoff: 02/16/2017
 - 讓使用者隨時隨地都具有生產力
 - 隨時保護公司資產
 
-為了改善生產力，Azure Active Directory 為使用者提供廣泛的選項，以便存取您的公司資產。 透過應用程式存取管理，Azure Active Directory 可讓您確保只有「適當人員」可以存取您的應用程式。 如果您想要更充分掌控適當人員在某些情況下如何存取您的資源，該怎麼辦？ 如果您甚至有想要封鎖「適當人員」存取某些應用程式的條件，該怎麼辦？ 例如，您同意適當的人員從信任的網路存取某些應用程式；不過，您可能不希望他們從您不信任的網路存取這些應用程式。 您可以使用條件式存取解決這些問題。 
+為了改善生產力，Azure Active Directory 為使用者提供廣泛的選項，以便存取您的公司資產。 透過應用程式存取管理，Azure Active Directory 可讓您確保只有「適當人員」可以存取您的應用程式。 如果您想要更充分掌控適當人員在某些情況下如何存取您的資源，該怎麼辦？ 如果您甚至有想要封鎖「適當人員」存取某些應用程式的條件，該怎麼辦？ 例如，您同意適當的人員從信任的網路存取某些應用程式；不過，您可能不希望他們從您不信任的網路存取這些應用程式。 您可以使用條件式存取解決這些問題。
 
 條件式存取是 Azure Active Directory 的功能，可讓您根據特定條件，強制控制您環境中的應用程式存取。 利用控制項，您可以將額外需求繫結到存取，也可以封鎖存取。 條件式存取的實作是以原則為基礎。 以原則為基礎的方法可簡化您的設定經驗，因為它會依循您對於存取需求的想法。  
+
 您通常會使用以下列模式為基礎的陳述式，定義您的存取需求︰
 
 ![控制](./media/active-directory-conditional-access-azure-portal/10.png)
@@ -47,9 +48,9 @@ ms.lasthandoff: 02/16/2017
 
 *When contractors are trying to access our cloud apps from networks that are not trusted, then block access.*
 
-上述的原則陳述式凸顯了條件式存取的功效。 您雖然可以讓約聘人員基本上存取您的雲端應用程式 (**誰**)，但利用條件式存取，您也可以定義在哪些條件下可能存取 (**如何**)。 
+上述的原則陳述式凸顯了條件式存取的功效。 您雖然可以讓約聘人員基本上存取您的雲端應用程式 (**誰**)，但利用條件式存取，您也可以定義在哪些條件下可能存取 (**如何**)。
 
-在 Azure Active Directory 條件式存取的內容中： 
+在 Azure Active Directory 條件式存取的內容中：
 
 - "**When this happens**" 稱為**條件陳述式**
 - "**Then do this**" 成為**控制項**
@@ -67,7 +68,8 @@ ms.lasthandoff: 02/16/2017
 利用控制項，您可以封鎖存取，或允許有額外需求的存取。
 當您設定可允許存取的原則時，您必須選取至少一個需求。   
 
-目前的 Azure Active Directory 實作可讓您設定下列需求︰ 
+### <a name="grant-controls"></a>授與控制
+目前的 Azure Active Directory 實作可讓您設定下列授與控制權需求︰
 
 ![控制](./media/active-directory-conditional-access-azure-portal/05.png)
 
@@ -81,13 +83,21 @@ ms.lasthandoff: 02/16/2017
 
 ![控制](./media/active-directory-conditional-access-azure-portal/06.png)
 
+### <a name="session-controls"></a>工作階段控制項
+工作階段控制項可限制雲端應用程式中的體驗。 工作階段控制項是由雲端應用程式強制執行，並依賴 Azure AD 對應用程式提供有關工作階段的其他資訊。
+
+![控制](./media/active-directory-conditional-access-azure-portal/session-control-pic.png)
+
+#### <a name="use-app-enforced-restrictions"></a>使用應用程式強制執行限制
+您可以使用這個控制項，要求 Azure AD 將裝置資訊傳遞至雲端應用程式。 這有助於雲端應用程式了解使用者是否來自符合規範的裝置或加入網域的裝置。 此控制項目前僅支援使用 SharePoint 作為雲端應用程式。 視裝置狀態而定，SharePoint 會使用裝置資訊來提供使用者有限或完整的經驗。
+若要深入了解如何要求 SharePoint 的有限存取，請移至[這裡](https://aka.ms/spolimitedaccessdocs)。
 
 ## <a name="condition-statement"></a>條件陳述式
 
 上一節介紹了以控制項形式封鎖或限制資源存取的支援選項。 在條件式存取原則中，您可以定義必須符合才能以條件陳述式的形式套用您的控制項的準則。  
 
 您可以將下列指派包含在您的條件陳述式中︰
-    
+
 ![控制](./media/active-directory-conditional-access-azure-portal/07.png)
 
 
@@ -98,7 +108,8 @@ ms.lasthandoff: 02/16/2017
 
 
 
-- **什麼** - 從保護的觀點而言，有些在您的環境中執行的應用程式通常需要更多關注 (相較於其他應用程式)。 例如，這會影響有權存取敏感性資料的應用程式。 選取雲端應用程式，您可以定義您的原則套用至的雲端應用程式範圍。 如有必要，您也可以從您的原則中明確排除一組應用程式。 
+- **什麼** - 從保護的觀點而言，有些在您的環境中執行的應用程式通常需要更多關注 (相較於其他應用程式)。 例如，這會影響有權存取敏感性資料的應用程式。
+選取雲端應用程式，您可以定義您的原則套用至的雲端應用程式範圍。 如有必要，您也可以從您的原則中明確排除一組應用程式。
 
     ![控制](./media/active-directory-conditional-access-azure-portal/09.png)
 
@@ -114,7 +125,7 @@ ms.lasthandoff: 02/16/2017
 
 
 - **裝置平台** – 裝置平台的特點是您裝置執行的作業系統 (Android、iOS、Windows Phone、Windows)。 您可以定義包含的裝置平台以及從原則中豁免的裝置平台。  
-若要使用原則中的裝置平台，請先將 [設定] 切換為 [是]，然後選取原則套用至的所有或個別裝置平台。 如果您選取個別的裝置平台，原則就只會影響這些平台。 在此情況下，其他支援平台的登入不受此原則影響。 
+若要使用原則中的裝置平台，請先將 [設定] 切換為 [是]，然後選取原則套用至的所有或個別裝置平台。 如果您選取個別的裝置平台，原則就只會影響這些平台。 在此情況下，其他支援平台的登入不受此原則影響。
 
     ![條件](./media/active-directory-conditional-access-azure-portal/02.png)
 
@@ -146,20 +157,20 @@ ms.lasthandoff: 02/16/2017
 如果您需要設定一個位置條件，以套用至從您的組織網路外部進行的所有連線，您可以藉由下列方式達成︰
 
 - 包含**所有位置**
-- 排除**所有信任的 IP** 
+- 排除**所有信任的 IP**
 
 ### <a name="what-happens-if-you-have-policies-in-the-azure-classic-portal-and-azure-portal-configured"></a>如果您已在 Azure 傳統入口網站和 Azure 入口網站中設定一些原則，則會發生什麼情況？  
 Azure Active Directory 會強制執行這兩個原則，而且只有在符合所有需求時，使用者才可取得存取權。
 
 ### <a name="what-happens-if-you-have-policies-in-the-intune-silverlight-portal-and-the-azure-portal"></a>如果您已在 Intune Silverlight 入口網站和 Azure 入口網站中設定一些原則，則會發生什麼情況？
-Azure Active Directory 會強制執行這兩個原則，而且只有在符合所有需求時，使用者才可取得存取權。 
+Azure Active Directory 會強制執行這兩個原則，而且只有在符合所有需求時，使用者才可取得存取權。
 
 ### <a name="what-happens-if-i-have-multiple-policies-for-the-same-user-configured"></a>如果我已針對同一個使用者設定多個原則，則會發生什麼情況？  
 針對每次登入，Azure Active Directory 會評估所有的原則，並確保在授與使用者存取權之前已符合所有的需求。
 
 
 ### <a name="does-conditional-access-work-with-exchange-activesync"></a>條件式存取是否適用於 Exchange ActiveSync？
- 
+
 否，您目前無法在條件式存取原則中使用 Exchange ActiveSync。
 
 
@@ -182,9 +193,9 @@ Azure Active Directory 會強制執行這兩個原則，而且只有在符合所
 - **需要符合規範的裝置** - 針對尚未註冊其裝置的使用者，此原則會封鎖所有存取，包括對 Intune 入口網站的存取。 如果您是沒有已註冊裝置的系統管理員，此原則會阻擋您回到 Azure 入口網站來變更此原則。
 
 - **需要加入網域** - 如果您還沒有已加入網域的裝置，此原則也可能封鎖您組織中所有使用者的存取。
- 
 
-**針對所有使用者、所有雲端應用程式、所有裝置平台：** 
+
+**針對所有使用者、所有雲端應用程式、所有裝置平台：**
 
 - **封鎖存取** - 此組態會封鎖您整個組織，這絕對不是一個好方法。
 
@@ -194,7 +205,8 @@ Azure Active Directory 會強制執行這兩個原則，而且只有在符合所
 ### <a name="requiring-multi-factor-authentication-for-apps"></a>應用程式需要 Multi-Factor Authentication
 
 許多環境中的應用程式需要比其他應用程式更高層級的保護。
-例如，有權存取敏感性資料的應用程式。 如果您想要對這些應用程式新增另一層的保護，您可以設定當使用者存取這些應用程式時需要 Multi-Factor Authentication 的條件式存取原則。
+例如，有權存取敏感性資料的應用程式。
+如果您想要對這些應用程式新增另一層的保護，您可以設定當使用者存取這些應用程式時需要 Multi-Factor Authentication 的條件式存取原則。
 
 
 ### <a name="requiring-multi-factor-authentication-for-access-from-networks-that-are-not-trusted"></a>從不受信任的網路存取時需要 Multi-Factor Authentication
@@ -202,14 +214,14 @@ Azure Active Directory 會強制執行這兩個原則，而且只有在符合所
 此案例類似於前一個案例，因為這會新增 Multi-Factor Authentication 的需求。
 不過，主要差異在於這項需求的條件。  
 雖然前一個案例的焦點在於有權存取敏感性資料的應用程式，而此案例的焦點則在於信任的位置。  
-換句話說，如果使用者從您不信任的網路存取應用程式，您可能需要 Multi-Factor Authentication。 
+換句話說，如果使用者從您不信任的網路存取應用程式，您可能需要 Multi-Factor Authentication。
 
 
 ### <a name="only-trusted-devices-can-access-office-365-services"></a>只有受信任的裝置可以存取 Office 365 服務
 
 如果您在自己的環境中使用 Intune，您可以在 Azure 主控台中立即開始使用條件式存取原則介面。
 
-許多 Intune 客戶都使用條件式存取來確保只有受信任的裝置可以存取 Office 365 服務。 這表示行動裝置已向 Intune 進行註冊並符合合規性原則需求，而且 Windows 電腦已加入內部部署網域。 您不需要為每項 Office 365 服務設定相同的原則，是一項重大改進。  當您建立新原則時，請設定雲端應用程式包含您想要使用條件式存取保護的每個 O365 應用程式。 
+許多 Intune 客戶都使用條件式存取來確保只有受信任的裝置可以存取 Office 365 服務。 這表示行動裝置已向 Intune 進行註冊並符合合規性原則需求，而且 Windows 電腦已加入內部部署網域。 您不需要為每項 Office 365 服務設定相同的原則，是一項重大改進。  當您建立新原則時，請設定雲端應用程式包含您想要使用條件式存取保護的每個 O365 應用程式。
 
 ## <a name="next-steps"></a>後續步驟
 

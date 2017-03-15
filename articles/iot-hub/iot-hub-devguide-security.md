@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/04/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: c93d0d47721546f25e72d97f4e019886ef801eba
-ms.openlocfilehash: a7ffc5e2547ca7ac52a56ec82b493b14acd7aaaa
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 0644efd8753c33c0404b45f567759c0be666bcef
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -42,10 +42,10 @@ ms.lasthandoff: 02/15/2017
 * **IoT 中樞層級的共用存取原則**。 共用存取原則可以授與上面所列[權限](#iot-hub-permissions)的任意組合。 您可以在 [Azure 入口網站][lnk-management-portal]中定義原則，或使用 [IoT 中樞資源提供者 REST API][lnk-resource-provider-apis] 以程式設計方式定義原則。 新建立的 IoT 中樞有下列預設原則︰
   
   * **iothubowner**︰具備所有權限的原則。
-  * **service**︰具備 ServiceConnect 權限的原則。
-  * **device**︰具備 DeviceConnect 權限的原則。
-  * **registryRead**︰具備 RegistryRead 權限的原則。
-  * **registryReadWrite**︰具備 RegistryRead 和 RegistryWrite 權限的原則。
+  * **service**︰具備 **ServiceConnect** 權限的原則。
+  * **device**︰具備 **DeviceConnect** 權限的原則。
+  * **registryRead**︰具備 **RegistryRead** 權限的原則。
+  * **registryReadWrite**︰具備 **RegistryRead** 和 RegistryWrite 權限的原則。
   * **各裝置的安全性認證**。 每個 IoT 中樞都包含[身分識別登錄][lnk-identity-registry]。 對於此身分識別登錄中的每個裝置，您可以設定安全性認證，以對應的裝置端點為範圍來授與 **DeviceConnect** 權限。
 
 例如，在典型的 IoT 解決方案中︰
@@ -54,6 +54,9 @@ ms.lasthandoff: 02/15/2017
 * 事件處理器元件使用 service  原則。
 * 執行階段裝置商務邏輯元件使用 service 原則。
 * 個別裝置會使用 IoT 中樞身分識別登錄內儲存的認證進行連接。
+
+> [!NOTE]
+> 如需詳細資訊，請參閱[權限](#iot-hub-permissions)。
 
 ## <a name="authentication"></a>驗證
 Azure IoT 中樞可根據共用存取原則和身分識別登錄安全性認證驗證權杖，以授與端點的存取權。
@@ -370,10 +373,10 @@ var deviceClient = DeviceClient.Create("<IotHub DNS HostName>", authMethod);
 
 | 權限 | 注意事項 |
 | --- | --- |
-| **RegistryRead** |為身分識別登錄授與讀取權限。 如需詳細資訊，請參閱[身分識別登錄][lnk-identity-registry]。 |
-| **RegistryReadWrite** |為身分識別登錄授與讀取和寫入權限。 如需詳細資訊，請參閱[身分識別登錄][lnk-identity-registry]。 |
-| **ServiceConnect** |授與雲端服務面向通訊和監視端點的存取權。 例如，它授權後端雲端服務接收裝置到雲端的訊息、傳送雲端到裝置的訊息，以及擷取相對應的傳遞通知。 |
-| **DeviceConnect** |授與裝置面向端點的存取權。 例如，它會授與傳送裝置到雲端的訊息和接收雲端到裝置的訊息的權限。 裝置會使用此權限。 |
+| **RegistryRead** |為身分識別登錄授與讀取權限。 如需詳細資訊，請參閱[身分識別登錄][lnk-identity-registry]。 <br/>後端雲端服務會使用此權限。 |
+| **RegistryReadWrite** |為身分識別登錄授與讀取和寫入權限。 如需詳細資訊，請參閱[身分識別登錄][lnk-identity-registry]。 <br/>後端雲端服務會使用此權限。 |
+| **ServiceConnect** |授與雲端服務面向通訊和監視端點的存取權。 <br/>授與權限以接收裝置到雲端的訊息、傳送雲端到裝置的訊息，以及擷取對應的傳遞通知。 <br/>授與權限以擷取檔案上傳的傳遞認可。 <br/>授與權限以存取裝置對應項，以便更新標籤及所需的內容、擷取報告的屬性，以及執行查詢。 <br/>後端雲端服務會使用此權限。 |
+| **DeviceConnect** |授與裝置面向端點的存取權。 <br/>授與權限以傳送裝置到雲端的訊息和接收雲端到裝置的訊息。 <br/>授與權限以從裝置執行檔案上傳。 <br/>授與權限以接收裝置對應項所需的屬性通知，並更新裝置對應項報告的屬性。 <br/>授與權限以執行檔案上傳。 <br/>裝置會使用此權限。 |
 
 ## <a name="additional-reference-material"></a>其他參考資料
 IoT 中樞開發人員指南中的其他參考主題包括︰

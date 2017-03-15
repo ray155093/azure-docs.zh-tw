@@ -1,5 +1,5 @@
 ---
-title: "在 Azure VM 中使用 PowerShell 設定 Always On 可用性群組"
+title: "在 Azure VM 中使用 PowerShell 設定 Always On 可用性群組 | Microsoft Docs"
 description: "本教學課程使用透過傳統部署模型建立的資源，並在 Azure 中使用 PowerShell 建立 Always On 可用性群組。"
 services: virtual-machines-windows
 documentationcenter: na
@@ -16,8 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 09/22/2016
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: 9504b2f74fa0161b6c4dfb6a510913256b99629a
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 4d14b4f54957ae31e736211671cba816f8dea629
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -563,10 +564,5 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
 現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server Always On。 若要為此可用性群組設定接聽程式，請參閱 [設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](../sql/virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

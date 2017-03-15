@@ -15,18 +15,18 @@ ms.topic: article
 ms.date: 10/28/2016
 ms.author: dariagrigoriu
 translationtype: Human Translation
-ms.sourcegitcommit: 071e8056382128f7c5070b46591b2a66ba5b7e41
-ms.openlocfilehash: 57c38c3d19810fd8c2789a27983c521517f2303b
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 904a2251328ec7b2a6ed6f3c91e2aaba33076860
+ms.lasthandoff: 03/07/2017
 
 
 ---
 # <a name="continuous-deployment-to-azure-app-service"></a>持續部署至 Azure App Service
-本教學課程將示範如何為您的 [Azure App Service] 應用程式設定連續部署工作流程。 App Service 與 BitBucket、GitHub 及 Visual Studio Team Services (VSTS) 整合，可啟用持續部署工作流程，其中 Azure 會從您已發佈至這其中一個服務的專案中提取最新更新。 持續部署對於整合了多個經常參與的專案而言是一個絕佳選項。
+本教學課程將示範如何為您的 [Azure App Service] 應用程式設定連續部署工作流程。 App Service 與 BitBucket、GitHub 及 [Visual Studio Team Services (VSTS)](https://www.visualstudio.com/team-services/) 整合，可啟用持續部署工作流程，其中 Azure 會從您已發佈至這其中一個服務的專案中提取最新更新。 持續部署對於整合了多個經常參與的專案而言是一個絕佳選項。
 
 若要了解如何從 Azure 入口網站未列出的雲端存放庫中手動設定連續部署 (例如 [GitLab](https://gitlab.com/))，請參閱[使用手動步驟設定連續部署](https://github.com/projectkudu/kudu/wiki/Continuous-deployment#setting-up-continuous-deployment-using-manual-steps)。
 
-## <a name="a-nameoverviewaenable-continuous-deployment"></a><a name="overview"></a>啟用持續部署
+## <a name="overview"></a>啟用持續部署
 若要啟用持續部署，
 
 1. 將您的應用程式內容發佈至將用於持續部署的儲存機制。  
@@ -53,7 +53,7 @@ ms.lasthandoff: 02/17/2017
 5. 若要確認已成功部署應用程式，請按一下 Azure 入口網站中應用程式刀鋒視窗頂端的 [URL]。
 6. 若要確認從您選擇的儲存機制進行連續部署，將變更推送至儲存機制。 在推送至儲存機制完成後不久，您的應用程式應該會更新以反映變更。 您可以在應用程式的 [部署選項] 刀鋒視窗上確認它是否已提取更新。
 
-## <a name="a-namevssolutionacontinuous-deployment-of-a-visual-studio-solution"></a><a name="VSsolution"></a>Visual Studio 方案的持續部署
+## <a name="VSsolution"></a>Visual Studio 方案的持續部署
 將 Visual Studio 方案推送至 Azure App Service，就像推送簡單的 index.html 檔案一樣容易。 App Service 部署程序會簡化所有細節，包含還原 NuGet 相依性，以及建置應用程式二進位檔。 您可以只在 Git 儲存機制中遵循維護程式碼的原始檔控制最佳做法，然後讓 App Service 部署負責執行剩餘的部分。
 
 將您的 Visual Studio 方案推送至 App Service 的步驟和 [上一節](#overview)的一樣，可提供您設定方案和儲存機制的步驟，如下：
@@ -65,7 +65,7 @@ ms.lasthandoff: 02/17/2017
 
 一旦您設定儲存機制 (如前所述) 並在 Azure 中設定應用程式，以便從其中一個線上 Git 儲存機制持續發佈之後，就能夠在 Visual Studio 中本機開發 ASP.NET 應用程式，並且只需將變更推送至線上 Git 儲存機制，就能持續部署您的程式碼。
 
-## <a name="a-namedisablecdadisable-continuous-deployment"></a><a name="disableCD"></a>停用連續部署
+## <a name="disableCD"></a>停用連續部署
 若要停用持續部署，
 
 1. 在 [Azure 入口網站]中您應用程式的功能表刀鋒視窗中，按一下 [應用程式部署] > [部署選項]。 然後按一下 [部署選項] 刀鋒視窗中的 [中斷連線]。
@@ -79,6 +79,7 @@ ms.lasthandoff: 02/17/2017
 * [如何使用適用於 Mac 和 Linux 的 Azure 命令列工具]
 * [Git 文件]
 * [專案 Kudu](https://github.com/projectkudu/kudu/wiki)
+* [使用 Azure 自動產生 CI/CD 管線，以部署 ASP.NET 4 應用程式](https://www.visualstudio.com/docs/build/get-started/aspnet-4-ci-cd-azure-automatic)
 
 > [!NOTE]
 > 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡，無需承諾。

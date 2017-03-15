@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/12/2016
+ms.date: 03/06/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: ec522d843b2827c12ff04afac15d89d525d88676
-ms.openlocfilehash: 90bd5b4b6fb58c044b5edaba2c5f3a4bf7346e7d
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: a42dbefe6805cff5fb2df604265f0e62e2c25f69
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -29,15 +30,15 @@ ms.openlocfilehash: 90bd5b4b6fb58c044b5edaba2c5f3a4bf7346e7d
 > * [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
 > * [機器學習服務](data-factory-azure-ml-batch-execution-activity.md)
 > * [預存程序](data-factory-stored-proc-activity.md)
-> * [資料湖分析 U-SQL](data-factory-usql-activity.md)
+> * [Data Lake Analytics U-SQL](data-factory-usql-activity.md)
 > * [.NET 自訂](data-factory-use-custom-activities.md)
 >
 
 您在 Data Factory [管線](data-factory-create-pipelines.md)中使用資料轉換活動，以轉換和處理您的原始資料以進行預測和深入了解。 預存程序活動是 Data Factory 支援的其中一個轉換活動。 本文是根據 [資料轉換活動](data-factory-data-transformation-activities.md) 一文，它呈現資料轉換和支援的轉換活動的一般概觀。
 
-您可以使用預存程序活動，以叫用下列其中一個資料存放區中的預存程序：您的企業或 Azure 虛擬機器 (VM) 中的 Azure SQL Database、Azure SQL 資料倉儲、SQL Server 資料庫。  如果您使用 SQL Server，您必須在位於裝載資料庫的同一部電腦上或個別電腦上安裝資料管理閘道，以避免與資料庫競用資源。 資料管理閘道是一套透過安全且可管理的方式，將內部部署/Azure VM 上的資料來源連結至雲端服務的軟體。 如需詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)文章。
+您可以使用預存程序活動，以叫用下列其中一個資料存放區中的預存程序：您的企業或 Azure 虛擬機器 (VM) 中的 Azure SQL Database、Azure SQL 資料倉儲、SQL Server 資料庫。  如果您使用 SQL Server，請在裝載資料庫的同一部電腦上或可存取資料庫的個別電腦上安裝資料管理閘道。 資料管理閘道是一套透過安全且可管理的方式，將內部部署/Azure VM 上的資料來源連結至雲端服務的元件。 如需詳細資訊，請參閱[資料管理閘道](data-factory-data-management-gateway.md)文章。
 
-下列逐步解說提供使用預存程序活動，從 Data Factory 管線叫用 Azure SQL Database 中的預存程序的逐步指示。 
+下列逐步解說會在管線中使用預存程序活動，來叫用 Azure SQL Database 中的預存程序。 
 
 ## <a name="walkthrough"></a>逐步介紹
 ### <a name="sample-table-and-stored-procedure"></a>範例資料表與預存程序
@@ -58,7 +59,7 @@ ms.openlocfilehash: 90bd5b4b6fb58c044b5edaba2c5f3a4bf7346e7d
     
     ![範例資料](./media/data-factory-stored-proc-activity/sample-data.png)
 
-    這個範例雖使用 Azure SQL Database，但對於 Azure SQL 資料倉儲和 SQL Server 資料庫也同樣適用。對於 SQL Server 資料庫，您必須安裝[資料管理閘道](data-factory-data-management-gateway.md)。
+    在此範例中，預存程序在 Azure SQL Database 中。 如果預存程序是在 Azure SQL 資料倉儲和 SQL Server Database 中，此方式是類似的。 對於 SQL Server 資料庫中，您必須安裝[資料管理閘道](data-factory-data-management-gateway.md)。
 2. 建立下列**預存程序**，將資料插入 **sampletable**。
 
     ```SQL
@@ -102,18 +103,18 @@ ms.openlocfilehash: 90bd5b4b6fb58c044b5edaba2c5f3a4bf7346e7d
    ![新增資料存放區](media/data-factory-stored-proc-activity/new-data-store.png)
 3. 在 JSON 指令碼中，進行下列變更：
 
-   1. 以 Azure SQL Database 伺服器的名稱取代 **&lt;servername&gt;**。
-   2. 以建立資料表和預存程序的資料庫取代 **&lt;databasename&gt;**。
-   3. 以具有資料庫存取權的使用者帳戶取代 **&lt;username@servername&gt;**。
-   4. 以使用者帳戶的密碼取代 **&lt;password&gt;**。
+   1. 以 Azure SQL Database 伺服器的名稱取代 `<servername>`。
+   2. 以建立資料表和預存程序的資料庫取代 `<databasename>`。
+   3. 以具有資料庫存取權的使用者帳戶取代 `<username@servername>`。
+   4. 以使用者帳戶的密碼取代 `<password>`。
 
       ![新增資料存放區](media/data-factory-stored-proc-activity/azure-sql-linked-service.png)
-4. 按一下命令列的 [部署]  ，部署連結服務。 在左側的樹狀檢視中確認您已看到 AzureSqlLinkedService。
+4. 若要部署連結服務，請按一下命令列的 [部署]。 在左側的樹狀檢視中確認您已看到 AzureSqlLinkedService。
 
     ![含連結服務的樹狀檢視](media/data-factory-stored-proc-activity/tree-view.png)
 
 ### <a name="create-an-output-dataset"></a>建立輸出資料表
-1. 按一下 **...更多]** (工具列上)，按一下 [新增資料集]，然後按一下 [Azure SQL]。 命令列的 [新資料集]，然後選取 [Azure SQL]。
+1. 按一下 **...更多** (工具列上)，按一下 新增資料集，然後按一下 Azure SQL。 命令列的 [新資料集]，然後選取 [Azure SQL]。
 
     ![含連結服務的樹狀檢視](media/data-factory-stored-proc-activity/new-dataset.png)
 2. 將下列 JSON 指令碼複製/貼到 JSON 編輯器。
@@ -134,7 +135,7 @@ ms.openlocfilehash: 90bd5b4b6fb58c044b5edaba2c5f3a4bf7346e7d
         }
     }
     ```
-3. 按一下命令列上的 [部署]  來部署資料集。 確認您已在樹狀檢視中看到該資料集。
+3. 若要部署資料集，請按一下命令列上的 [部署]。 確認您已在樹狀檢視中看到該資料集。
 
     ![含連結服務的樹狀檢視](media/data-factory-stored-proc-activity/tree-view-2.png)
 
@@ -142,7 +143,7 @@ ms.openlocfilehash: 90bd5b4b6fb58c044b5edaba2c5f3a4bf7346e7d
 現在，讓我們使用 SqlServerStoredProcedure 活動來建立管線。
 
 1. 如果沒看到此按鈕，請按一下工具列 **...命令列上的 [更多]**，然後按一下 [新增管線]。
-2. 複製/貼上下列 JSON 程式碼片段。 將 **storedProcedureName** 設定為 **sp_sample**。 **DateTime** 參數的名稱和大小寫必須符合預存程序定義中參數的名稱和大小寫。  
+2. 複製/貼上下列 JSON 程式碼片段：   
 
     ```JSON
     {
@@ -176,8 +177,10 @@ ms.openlocfilehash: 90bd5b4b6fb58c044b5edaba2c5f3a4bf7346e7d
     }
     ```
 
+    將 **storedProcedureName** 設定為 **sp_sample**。 **DateTime** 參數的名稱和大小寫必須符合預存程序定義中參數的名稱和大小寫。
+
     如果您要為參數傳遞 null，請使用語法："param1": null (全部小寫)。
-3. 按一下工具列上的 [部署]  來部署管線。  
+3. 若要部署管線，請按一下工具列上的 [部署]。  
 
 ### <a name="monitor-the-pipeline"></a>監視管線
 1. 按一下 **X** 以關閉 [Data Factory 編輯器] 刀鋒視窗、瀏覽回 [Data Factory] 刀鋒視窗，然後按一下 [圖表]。
@@ -186,10 +189,10 @@ ms.openlocfilehash: 90bd5b4b6fb58c044b5edaba2c5f3a4bf7346e7d
 2. 在 [圖表檢視] 中，您會看到管線的概觀，以及在本教學課程中使用的資料集。
 
     ![圖表圖格](media/data-factory-stored-proc-activity/data-factory-diagram-view.png)
-3. 在 [圖表檢視] 中，按兩下 **sprocsampleout**資料集。 您會看到就緒狀態的配量。 由於配量是針對 JSON 的開始時間和結束時間之間的每一個小時所產生，因此，應該會有 5 個配量。
+3. 在 [圖表檢視] 中，按兩下 `sprocsampleout` 資料集。 您會看到就緒狀態的配量。 由於配量是針對 JSON 的開始時間和結束時間之間的每一個小時所產生，因此，應該會有&5; 個配量。
 
     ![圖表圖格](media/data-factory-stored-proc-activity/data-factory-slices.png)
-4. 當配量處於**就緒**狀態時，請對 Azure SQL Database 執行 **select * from sampletable** 查詢，以驗證預存程序已將資料插入資料表。
+4. 當配量處於**就緒**狀態時，請對 Azure SQL Database 執行 `select * from sampletable` 查詢，以驗證預存程序已將資料插入資料表。
 
    ![輸出資料](./media/data-factory-stored-proc-activity/output.png)
 
@@ -229,7 +232,7 @@ ms.openlocfilehash: 90bd5b4b6fb58c044b5edaba2c5f3a4bf7346e7d
 | 說明 |說明活動用途的文字 |否 |
 | 類型 | 必須設定為：**SqlServerStoredProcedure** | 是 |
 | 輸入 | 選用。 如果您有指定輸入資料集，它必須可供使用 (「就緒」狀態)，預存程序活動才能執行。 在預存程序中輸入資料集無法做為參數取用。 它只會用來在啟動預存程序活動之前檢查相依性。 |否 |
-| 輸出 |您必須指定預存程序活動的輸出資料集。 輸出資料集會指定預存程序活動的 **排程** (每小時、每週、每月等)。 <br/><br/>輸出資料集必須使用參考了想在其中執行預存程序之 Azure SQL Database、Azure SQL 資料倉儲或 SQL Server Database 的 **連結服務** 。 <br/><br/>輸出資料集可以做為傳遞預存程序結果，以供管線中的另一個活動 ([鏈結活動](data-factory-scheduling-and-execution.md#run-activities-in-a-sequence)) 進行後續處理的方式。 不過，Data Factory 不會自動將預存程序的輸出寫入至此資料集。 它是會寫入至輸出資料集所指向之 SQL 資料表的預存程序。 <br/><br/>在某些情況下，輸出資料集可以是 **虛擬資料集**，只會用來指定用於執行預存程序活動的排程。 |是 |
+| 輸出 | 您必須指定預存程序活動的輸出資料集。 輸出資料集會指定預存程序活動的 **排程** (每小時、每週、每月等)。 <br/><br/>輸出資料集必須使用參考了想在其中執行預存程序之 Azure SQL Database、Azure SQL 資料倉儲或 SQL Server Database 的 **連結服務** 。 <br/><br/>輸出資料集可以做為傳遞預存程序結果，以供管線中的另一個活動 ([鏈結活動](data-factory-scheduling-and-execution.md#run-activities-in-a-sequence)) 進行後續處理的方式。 不過，Data Factory 不會自動將預存程序的輸出寫入至此資料集。 它是會寫入至輸出資料集所指向之 SQL 資料表的預存程序。 <br/><br/>在某些情況下，輸出資料集可以是 **虛擬資料集**，只會用來指定用於執行預存程序活動的排程。 |是 |
 | storedProcedureName |指定 Azure SQL Database 或 Azure SQL 資料倉儲中預存程序的名稱，由輸出資料表使用的連結的服務代表。 |是 |
 | storedProcedureParameters |指定預存程序參數的值。 如果您要為參數傳遞 null，請使用語法："param1": null (全部小寫)。 請參閱下列範例以了解如何使用這個屬性。 |否 |
 
@@ -332,8 +335,3 @@ END
     }
 }
 ```
-
-
-<!--HONumber=Dec16_HO3-->
-
-

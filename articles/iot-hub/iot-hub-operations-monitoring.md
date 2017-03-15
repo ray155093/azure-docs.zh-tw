@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 12/13/2016
 ms.author: nberdy
 translationtype: Human Translation
-ms.sourcegitcommit: 8f72f2ca66a5d1394e87c7c0f8d8dff9da73732f
-ms.openlocfilehash: 612ef94efb9776ae0ce768de1b59fb208824da93
-ms.lasthandoff: 02/08/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 796bf9b1219b7f0e2c68688c5f5b51163ef4b49b
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -165,6 +165,26 @@ IoT 中樞會監視六個類別的事件：
         "details": "ExternalEndpointDisabled"
     }
 
+## <a name="view-events"></a>檢視事件
+
+您可以使用 *iothub-explorer* 工具來快速測試 IoT 中樞正在產生監視事件。 若要安裝此工具，請參閱 [iothub-explorer][ lnk-iothub-explorer] GitHub 儲存機制中的指示。
+
+1. 請確定入口網站中的 [連線] 監視類別設定為 [詳細資訊]。
+
+1. 在命令提示字元中，執行下列命令來從監視端點讀取︰
+
+    ```
+    iothub-explorer monitor-ops --login {your iothubowner connection string}
+    ```
+
+1. 在另一個命令提示字元中，執行下列命令，以模擬傳送裝置至雲端訊息的裝置︰
+
+    ```
+    iothub-explorer simulate-device {your device name} --send "My test message" --login {your iothubowner connection string}
+    ```
+
+1. 第一個命令提示字元會將監視的事件顯示為連線至您的 IoT 中樞的模擬裝置。
+
 ## <a name="next-steps"></a>後續步驟
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
@@ -182,4 +202,5 @@ IoT 中樞會監視六個類別的事件：
 
 [lnk-devguide]: iot-hub-devguide.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-iothub-explorer]: https://github.com/azure/iothub-explorer
 

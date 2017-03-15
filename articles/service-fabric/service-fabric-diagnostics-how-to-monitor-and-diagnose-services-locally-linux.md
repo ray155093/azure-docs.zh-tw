@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 03/02/2017
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: cf8f717d5343ae27faefdc10f81b4feaccaa53b9
-ms.openlocfilehash: a8f077168dbc8660625371a2b988926c69491337
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 86ed3f25f0bdd6bb5d8a93f124a0d2bcd7e2b07a
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -36,15 +36,15 @@ ms.lasthandoff: 01/24/2017
 
 ## <a name="debugging-service-fabric-java-applications"></a>針對 Service Fabric Java 應用程式進行偵錯
 
-對於 Java 應用程式，有 [多個記錄架構](http://en.wikipedia.org/wiki/Java_logging_framework) 可用。 由於 `java.util.logging` 是 JRE 的預設選項，它也會用於 [github 中的程式碼範例](http://github.com/Azure-Samples/service-fabric-java-getting-started)。  下列討論說明如何設定 `java.util.logging` 架構。 
- 
-您可以使用 java.util.logging 將應用程式記錄檔重新導向至記憶體、輸出串流、主控台檔案或通訊端。 對於其中每個選項，架構中已經提供預設處理常式。 您可以建立 `app.properties` 檔案來設定應用程式的檔案處理常式，將所有記錄檔重新導向至本機檔案。 
+對於 Java 應用程式，有 [多個記錄架構](http://en.wikipedia.org/wiki/Java_logging_framework) 可用。 由於 `java.util.logging` 是 JRE 的預設選項，它也會用於 [github 中的程式碼範例](http://github.com/Azure-Samples/service-fabric-java-getting-started)。  下列討論說明如何設定 `java.util.logging` 架構。
 
-下列程式碼片段包含範例組態︰ 
+您可以使用 java.util.logging 將應用程式記錄檔重新導向至記憶體、輸出串流、主控台檔案或通訊端。 對於其中每個選項，架構中已經提供預設處理常式。 您可以建立 `app.properties` 檔案來設定應用程式的檔案處理常式，將所有記錄檔重新導向至本機檔案。
 
-```java 
+下列程式碼片段包含範例組態︰
+
+```java
 handlers = java.util.logging.FileHandler
- 
+
 java.util.logging.FileHandler.level = ALL
 java.util.logging.FileHandler.formatter = java.util.logging.SimpleFormatter
 java.util.logging.FileHandler.limit = 1024000
@@ -54,13 +54,17 @@ java.util.logging.FileHandler.pattern = /tmp/servicefabric/logs/mysfapp%u.%g.log
 
 `app.properties` 檔案所指向的資料夾必須存在。 建立 `app.properties` 檔案之後，您還必須修改 `<applicationfolder>/<servicePkg>/Code/` 資料夾中的進入點指令碼 `entrypoint.sh`，以將屬性 `java.util.logging.config.file` 設定為 `app.propertes` 檔案。 輸入如下列片段所示：
 
-```sh 
+```sh
 java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path to app.properties> -jar <service name>.jar
 ```
- 
- 
-此設定會導致在 `/tmp/servicefabric/logs/`中以輪替方式收集記錄檔。 **%u** 和 **%g** 可讓您建立檔案，檔名為 mysfapp0.log、mysfapp1.log 等等，依此類推。 依預設，如果未明確設定任何處理常式，則會註冊主控台處理常式。 使用者可以在 /var/log/syslog 下檢視 syslog 中的記錄檔。
- 
+
+
+此設定會導致在 `/tmp/servicefabric/logs/`中以輪替方式收集記錄檔。 在此情況下，記錄檔的名稱為 mysfapp%u.%g.log，其中︰
+* **%u** 是解決同時 Java 處理序之間衝突的唯一號碼。
+* **%g** 是區分輪替記錄的產生號碼。
+
+依預設，如果未明確設定任何處理常式，則會註冊主控台處理常式。 使用者可以在 /var/log/syslog 下檢視 syslog 中的記錄檔。
+
 如需詳細資訊，請參閱 [github 中的程式碼範例](http://github.com/Azure-Samples/service-fabric-java-getting-started)。  
 
 
@@ -78,7 +82,7 @@ java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path 
 您可以使用自訂 EventListener 接聽服務事件，然後適當地將其重新導向至追蹤檔案。 下列程式碼片段顯示使用 EventSource 和自訂 EventListener 來進行記錄的範例實作︰
 
 
-```c#
+```csharp
 
  public class ServiceEventSource : EventSource
  {
@@ -93,7 +97,7 @@ java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path 
                 this.Message(finalMessage);
             }
         }
-        
+
         // TBD: Need to add method for sample event.
 
 }
@@ -101,7 +105,7 @@ java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path 
 ```
 
 
-```
+```csharp
    internal class ServiceEventListener : EventListener
    {
 
@@ -112,7 +116,7 @@ java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path 
         protected override void OnEventWritten(EventWrittenEventArgs eventData)
         {
             using (StreamWriter Out = new StreamWriter( new FileStream("/tmp/MyServiceLog.txt", FileMode.Append)))           
-        {  
+        { 
                  // report all event information               
           Out.Write(" {0} ",  Write(eventData.Task.ToString(), eventData.EventName, eventData.EventId.ToString(), eventData.Level,""));
                 if (eventData.Message != null)              
@@ -130,11 +134,11 @@ java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path 
 
 上述程式碼片段會將記錄輸出到 `/tmp/MyServiceLog.txt` 中的檔案。 此檔案名稱必須適當地更新。 如果您想要將記錄重新導向至主控台，在您的自訂 EventListener 類別中使用下列程式碼片︰
 
-```
+```csharp
 public static TextWriter Out = Console.Out;
 ```
 
-[C# Samples](https://github.com/Azure-Samples/service-fabric-dotnet-core-getting-started) 中的範例使用 EventSource 和自訂 EventListener 事件將事件記錄到檔案中。 
+[C# Samples](https://github.com/Azure-Samples/service-fabric-dotnet-core-getting-started) 中的範例使用 EventSource 和自訂 EventListener 事件將事件記錄到檔案中。
 
 
 

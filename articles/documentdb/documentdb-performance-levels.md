@@ -14,14 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/08/2017
 ms.author: mimig
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: b9902de45477bb7970da6c8f2234775bdb6edba8
-ms.openlocfilehash: 65f19191bbb736d3b7fbdd94d73f2308ee6dea83
-ms.lasthandoff: 02/08/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 659d6bd63ea996af7b7b172f998884354e5d5858
+ms.lasthandoff: 03/07/2017
 
 
 ---
-# <a name="performance-levels-in-documentdb"></a>DocumentDB 中的效能等級
+# <a name="retiring-the-s1-s2-and-s3-performance-levels-in-documentdb"></a>在 DocumentDB 中淘汰 S1、S2 和 S3 效能層級
 
 > [!IMPORTANT] 
 > 本文所討論的 S1、S2 和 S3 效能層級將會淘汰，而且也無法再供新的 DocumentDB 集合使用。
@@ -175,7 +176,7 @@ EA 客戶將會受保護的價格，直到其目前合約結束。
 ## <a name="next-steps"></a>後續步驟
 若要深入了解 Azure DocumentDB 的價格和管理資料，請探索這些資源：
 
-1.  [在 DocumentDB 中分割資料](documentdb-partition-data.md)。 了解單一分割區集合和資料分割集合的差異，以及實作資料分割策略以順暢地調整的秘訣。
-2.  [DocumentDB 價格](https://azure.microsoft.com/pricing/details/documentdb/)。 深入了解佈建輸送量和使用儲存體的成本。
-3.  [要求單位](documentdb-request-units.md)。 了解不同作業類型，例如讀取、寫入、查詢的輸送量耗用量。
-4.  [在 DocumentDB 中模型化資料](documentdb-modeling-data.md)。 了解如何建立您 DocumentDB 資料的模型。
+1.    [在 DocumentDB 中分割資料](documentdb-partition-data.md)。 了解單一分割區集合和資料分割集合的差異，以及實作資料分割策略以順暢地調整的秘訣。
+2.    [DocumentDB 價格](https://azure.microsoft.com/pricing/details/documentdb/)。 深入了解佈建輸送量和使用儲存體的成本。
+3.    [要求單位](documentdb-request-units.md)。 了解不同作業類型，例如讀取、寫入、查詢的輸送量耗用量。
+4.    [在 DocumentDB 中模型化資料](documentdb-modeling-data.md)。 了解如何建立您 DocumentDB 資料的模型。

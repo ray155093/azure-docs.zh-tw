@@ -12,12 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/12/2017
+ms.date: 03/01/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: c9a5091973395dd888939432292fbd06dcbf0680
-ms.openlocfilehash: c0349b5890a75c6ffaa6b7eca93baa3101912cf6
-ms.lasthandoff: 01/18/2017
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 23bdde763de6f437a0dec74c51722cbcfc19b141
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -47,7 +47,7 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 > [!IMPORTANT]
 > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
-HDInsight 3.4 和更高版本使用單聲道來執行 C# 拓撲。 這些元件大多能搭配使用單聲道，不過您應該查看 [Mono 相容性](http://www.mono-project.com/docs/about-mono/compatibility/)文件，以了解是否可能有不相容之處。
+HDInsight 3.4 和更高版本使用單聲道來執行 C# 拓撲。 大多能搭配 Mono 正常運作。 不過您應該查看 [Mono 相容性](http://www.mono-project.com/docs/about-mono/compatibility/)文件，以了解是否可能有不相容之處。
 
 C# 拓撲也必須以 .NET 4.5 為目標。
 
@@ -58,17 +58,17 @@ Microsoft 提供一組可用來從 Storm 拓撲與 Azure 事件中樞通訊的 J
 > [!IMPORTANT]
 > 雖然元件是以 Java 所撰寫，您可以輕鬆地從 C# 拓撲使用它們。
 
-您主要使用的元件如下︰
+在此範例中會用到下列元件︰
 
 * __EventHubSpout__：從事件中樞讀取資料。
 * __EventHubBolt__：將資料寫入事件中樞。
 * __EventHubSpoutConfig__：用來設定 EventHubSpout。
 * __EventHubBoltConfig__：用來設定 EventHubBolt。
-* __UnicodeEventDataScheme__：用來設定從事件中樞讀取時使用 UTF-8 編碼的 Spout。 如果未使用這個，則 Spout 會預設為編碼字串。
+* __UnicodeEventDataScheme__：用來設定從事件中樞讀取時使用 UTF-8 編碼的 Spout。 預設的編碼方式為字串。
 
 ### <a name="example-spout-usage"></a>範例 Spout 使用方式
 
-SCP.NET 會提供將 EventHubSpout 新增至您拓撲的特定方法。 這些方法比使用泛型方法新增 Java 元件更容易新增 Spout。 下列範例示範如何使用 SCP.NET 所提供的 __SetEventHubSpout__ 和 EventHubSpoutConfig 方法建立新的 Spout︰
+SCP.NET 會提供將 EventHubSpout 新增至您拓撲的方法。 這些方法比使用泛型方法新增 Java 元件更容易新增 Spout。 下列範例示範如何使用 SCP.NET 所提供的 __SetEventHubSpout__ 和 EventHubSpoutConfig 方法建立 Spout︰
 
 ```csharp
 topologyBuilder.SetEventHubSpout(
@@ -87,12 +87,12 @@ topologyBuilder.SetEventHubSpout(
     eventHubPartitions);
 ```
 
-前一個範例會建立名為 __EventHubSpout__ 的新 Spout 元件，並設定它與事件中樞通訊。 請注意，元件的平行處理原則提示設定為事件中樞的資料分割數目。 這可讓 Storm 針對每個資料分割建立元件執行個體。
+前一個範例會建立名為 __EventHubSpout__ 的新 Spout 元件，並設定它與事件中樞通訊。 元件的平行處理原則提示設定為事件中樞的資料分割數目。 此設定可讓 Storm 針對每個資料分割建立元件執行個體。
 
 > [!WARNING]
-> 至 2017 年 1 月 1 日止，從事件中樞讀取資料時，使用 SetEventHubSpout 和 EventHubSpoutConfig 方法建立使用字串編碼之 Spout。 如果您需要使用 UTF-8 編碼，請參閱下列範例。
+> 至 2017 年 1 月 1 日止，從事件中樞讀取資料時，使用 SetEventHubSpout 和 EventHubSpoutConfig 方法建立使用字串編碼之 Spout。
 
-建立 Spout 時，您也可以使用泛型 JavaCompoentConstructor 方法。 下列範例示範如何使用 JavaComponentConstructor 方法建立新的 Spout。 它也會示範如何將 Spout 設定為讀取使用 UTF-8 編碼而非字串的資料︰
+建立 Spout 時，您也可以使用泛型 JavaComponentConstructor 方法。 下列範例示範如何使用 JavaComponentConstructor 方法建立 Spout。 它也會示範如何將 Spout 設定為讀取使用 UTF-8 編碼而非字串的資料。
 
 ```csharp
 // Create an instance of UnicodeEventDataScheme
@@ -132,7 +132,7 @@ topologyBuilder.SetJavaSpout("EventHubSpout", eventHubSpout, eventHubPartitions)
 
 ### <a name="example-bolt-usage"></a>範例 Bolt 使用方式
 
-您必須使用 JavaComponmentConstructor 方法來建立 bolt 的執行個體。 下列範例示範如何建立及設定 EventHubBolt 的新執行個體︰
+使用 JavaComponmentConstructor 方法來建立 bolt 的執行個體。 下列範例示範如何建立及設定 EventHubBolt 的新執行個體︰
 
 ```csharp
 //Create constructor for the Java bolt
@@ -160,7 +160,7 @@ topologyBuilder.SetJavaBolt(
 ```
 
 > [!NOTE]
-> 這個範例會使用以字串傳遞的 Clojure 運算式，而不是如 Spout 範例一樣使用 JavaComponentConstructor 來建立個別的 EventHubBoltConfig。 其中任何一個方法皆可運作；請使用您認為最適合的方法。
+> 這個範例會使用以字串傳遞的 Clojure 運算式，而不是如 Spout 範例一樣使用 JavaComponentConstructor 來建立個別的 EventHubBoltConfig。 兩種方法均可。 使用覺得較適合您的方法。
 
 ## <a name="download-the-completed-project"></a>下載完成的專案
 
@@ -171,7 +171,7 @@ topologyBuilder.SetJavaBolt(
 * [Apache Storm on HDInsight cluster 3.5 版](hdinsight-apache-storm-tutorial-get-started.md)
 
     > [!WARNING]
-    > 此文件中所使用的範例需要 Storm on HDInsight version 3.5 版。 舊版叢集上的 Storm 與包含在 HDInsight 3.5 的版本，兩者用於核心 Storm 元件的類別名稱有所變更。 如需可搭配舊版叢集使用的此範例，請參閱 [https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub/releases](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub/releases)。
+    > 此文件中所使用的範例需要 Storm on HDInsight version 3.5 版。 由於重大類別名稱變更，這不適用舊版的 HDInsight。 如需可搭配舊版叢集使用的此範例，請參閱 [https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub/releases](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub/releases)。
 
 * [Azure 事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
 
@@ -188,15 +188,15 @@ topologyBuilder.SetJavaBolt(
 
 Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.jar** 的單一 Java 封存 (.jar) 檔案形式散發，其中 #.# 是檔案的版本。
 
-可與 HDInsight 3.5 版上的 Storm 搭配使用之 jar 檔案版本可從 [https://github.com/hdinsight/hdinsight-storm-examples/blob/master/lib/eventhubs/](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/lib/eventhubs/) 取得。
+若要使用此解決方案搭配 HDInsight 3.5，請使用 [https://github.com/hdinsight/hdinsight-storm-examples/blob/master/lib/eventhubs/](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/lib/eventhubs/) 提供的版本 0.9.5 jar 檔案。
 
-建立名為 `eventhubspout` 的新目錄並將檔案儲存到該目錄。
+建立名為 `eventhubspout` 的目錄並將檔案儲存到該目錄。
 
 ## <a name="configure-event-hubs"></a>設定事件中樞
 
 事件中樞是此範例的資料來源。 請使用[開始使用事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)文件之**建立事件中樞**區段中的資訊。
 
-1. 在建立事件中樞之後，檢視 Azure 入口網站中的 [事件中樞] 刀鋒視窗，然後選取 [共用存取原則]。 使用 [+新增] 項目新增下列原則︰
+1. 在建立事件中樞之後，檢視 Azure 入口網站中的 [事件中樞] 刀鋒視窗，然後選取 [共用存取原則]。 選取 [+ 新增] 連結來新增下列原則︰
    
    | 名稱 | 權限 |
    | --- | --- |
@@ -205,13 +205,13 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
    
     ![原則](./media/hdinsight-storm-develop-csharp-event-hub-topology/sas.png)
 
-2. 選取 [讀取器] 和 [寫入器] 原則。 複製並儲存這兩個原則的 [主索引鍵] 值，以供稍後使用。
+2. 選取 [讀取器] 和 [寫入器] 原則。 複製並儲存這兩個原則的 [主索引鍵] 值，因為稍後將使用這些值。
 
 ## <a name="configure-the-eventhubwriter"></a>設定 EventHubWriter
 
 1. 如果您尚未安裝最新版本的 HDInsight Tools for Visual Studio，請參閱[開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md)。
 
-2. 從 [eventhub-storm-hybrid](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub) 下載方案。 開啟方案，花點時間看過 **EventHubWriter** 專案的程式碼。
+2. 從 [eventhub-storm-hybrid](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub) 下載方案。
 
 3. 在 **EventHubWriter** 專案中，開啟 **App.config** 檔案。 使用您稍早設定之事件中樞的資訊填入下列索引鍵的值︰
    
@@ -227,9 +227,9 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
 
 ## <a name="configure-the-eventhubreader"></a>設定 EventHubReader
 
-1. 開啟 **EventHubReader** 專案，花點時間看過程式碼。
+1. 開啟 **EventHubReader** 專案。
 
-2. 開啟 **EventHubWriter** 的 **App.config**。 使用您稍早設定之事件中樞的資訊填入下列索引鍵的值︰
+2. 開啟 **EventHubReader** 的 **App.config**。 使用您稍早設定之事件中樞的資訊填入下列索引鍵的值︰
    
    | 索引鍵 | 值 |
    | --- | --- |
@@ -251,7 +251,7 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
    
     ![提交對話方塊的影像](./media/hdinsight-storm-develop-csharp-event-hub-topology/submit.png)
 
-3. 提交拓撲之後，[Storm 拓撲檢視器]  便會隨即出現。 選取左窗格的 [EventHubReader]  拓撲，以檢視拓撲的統計資料。 目前，因為事件中樞尚未有事件寫入，所以應該什麼都不會發生。
+3. 提交拓撲之後，[Storm 拓撲檢視器] 便會隨即出現。 若要檢視拓撲的相關資訊，請選取左窗格中的 **EventHubReader** 拓撲。
    
     ![範例儲存體檢視](./media/hdinsight-storm-develop-csharp-event-hub-topology/topologyviewer.png)
 
@@ -263,14 +263,13 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
 
 7. 在 [Storm 拓撲檢視器] 中，選取 [EventHubReader] 拓撲。
 
-8. 在圖形檢視中，按兩下 [LogBolt] 元件。 這會開啟 Bolt 的 [元件摘要] 頁面。
+8. 若要開啟 Bolt 的**元件摘要**，請按兩下圖表中的 **LogBolt** 元件。
 
-9. 在 [執行程式] 區段中，選取 [連接埠] 資料行內的其中一個連結。 這會顯示該元件記錄的資訊。 所記錄的資訊如下︰
+9. 在 [執行程式] 區段中，選取 [連接埠] 資料行內的其中一個連結。 這會顯示該元件記錄的資訊。 所記錄的資訊類似下列文字︰
    
-        2016-10-20 13:26:44.186 m.s.s.b.ScpNetBolt [INFO] Processing tuple: source: com.microsoft.eventhubs.spout.EventHubSpout:7, stream: default, id: {5769732396213255808=520853934697489134}, [{"deviceId":3,"deviceValue":1379915540}]
-        2016-10-20 13:26:44.234 m.s.s.b.ScpNetBolt [INFO] Processing tuple: source: com.microsoft.eventhubs.spout.EventHubSpout:7, stream: default, id: {7154038361491319965=4543766486572976404}, [{"deviceId":3,"deviceValue":459399321}]
-        2016-10-20 13:26:44.335 m.s.s.b.ScpNetBolt [INFO] Processing tuple: source: com.microsoft.eventhubs.spout.EventHubSpout:6, stream: default, id: {513308780877039680=-7571211415704099042}, [{"deviceId":5,"deviceValue":845561159}]
-        2016-10-20 13:26:44.445 m.s.s.b.ScpNetBolt [INFO] Processing tuple: source: com.microsoft.eventhubs.spout.EventHubSpout:7, stream: default, id: {-2409895457033895206=5479027861202203517}, [{"deviceId":8,"deviceValue":2105860655}]
+        2017-03-02 14:51:29.255 m.s.p.TaskHost [INFO] Received C# STDOUT: 2017-03-02 14:51:29,255 [1] INFO  EventHubReader_LogBolt [(null)] - Received data: {"deviceValue":1830978598,"deviceId":"8566ccbc-034d-45db-883d-d8a31f34068e"}
+        2017-03-02 14:51:29.283 m.s.p.TaskHost [INFO] Received C# STDOUT: 2017-03-02 14:51:29,283 [1] INFO  EventHubReader_LogBolt [(null)] - Received data: {"deviceValue":1756413275,"deviceId":"647a5eff-823d-482f-a8b4-b95b35ae570b"}
+        2017-03-02 14:51:29.313 m.s.p.TaskHost [INFO] Received C# STDOUT: 2017-03-02 14:51:29,312 [1] INFO  EventHubReader_LogBolt [(null)] - Received data: {"deviceValue":1108478910,"deviceId":"206a68fa-8264-4d61-9100-bfdb68ee8f0a"}
 
 ## <a name="stop-the-topologies"></a>停止拓撲
 
@@ -284,7 +283,7 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
 
 ## <a name="next-steps"></a>後續步驟
 
-在本文件中，您已經了解如何使用 Java 事件中樞 Spout 和 Bolt，以利用 C# 拓撲來使用 Azure 事件中樞的資料。 若要深入了解如何建立 C# 拓撲，請參閱下列內容。
+在本文件中，您已經了解如何使用 Java 事件中樞 Spout 和 Bolt，以利用 C# 拓撲來使用 Azure 事件中樞的資料。 若要深入了解如何建立 C# 拓撲，請參閱下列文件：
 
 * [使用 Visual Studio 開發 Apache Storm on HDInsight 的 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)
 * [SCP 程式設計指南](hdinsight-storm-scp-programming-guide.md)
