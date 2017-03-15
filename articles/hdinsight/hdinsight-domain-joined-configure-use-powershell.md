@@ -16,12 +16,13 @@ ms.workload: big-data
 ms.date: 11/02/2016
 ms.author: saurinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 86a0f6f2bc27f1411652b273325e73144582eee0
-ms.openlocfilehash: 73a2dded23cc91b4574db7734cf79ddb366d6147
+ms.sourcegitcommit: 4f8d2956e9f0240392ba839b076d632ccc45d728
+ms.openlocfilehash: 3217399ee868707309e96234d4954548b063534a
+ms.lasthandoff: 12/17/2016
 
 
 ---
-# <a name="configure-domain-joined-hdinsight-clusters-preview-use-azure-powershell"></a>使用 Azure PowerShell 設定已加入網域的 HDInsight 叢集 (預覽)
+# <a name="configure-domain-joined-hdinsight-clusters-preview-using-azure-powershell"></a>使用 Azure PowerShell 設定已加入網域的 HDInsight 叢集 (預覽)
 了解如何使用 Azure PowerShell 設定具有 Azure Active Directory (Azure AD) 和 [Apache Ranger](http://hortonworks.com/apache/ranger/) 的 Azure HDInsight 叢集。 Azure PowerShell 指令碼可供用來加快設定速度並減少出錯機會。 您可以只在 Linux 架構的叢集上設定已加入網域的 HDInsight。 如需詳細資訊，請參閱[已加入網域的 HDInsight 叢集簡介](hdinsight-domain-joined-introduction.md)。
 
 已加入網域之 HDInsight 叢集的典型設定步驟如下︰
@@ -39,7 +40,7 @@ ms.openlocfilehash: 73a2dded23cc91b4574db7734cf79ddb366d6147
 
 最終的拓樸範例如下：
 
-![已加入網域的 HDInsight 拓樸](.\\media\\hdinsight-domain-joined-configure\\hdinsight-domain-joined-topology.png)
+![已加入網域的 HDInsight 拓樸](./media/hdinsight-domain-joined-configure/hdinsight-domain-joined-topology.png)
 
 因為 Azure AD 目前只支援傳統虛擬網路 (VNet)，而 Linux 架構的 HDInsight 叢集僅支援 Azure Resource Manager 架構的 VNet，HDInsight Azure AD 整合需要兩個 VNet 以及在兩者之間的對等互連。 如需兩種部署模型的比較資訊，請參閱 [Azure Resource Manager 與傳統部署比較：了解資源的部署模型和狀態](../azure-resource-manager/resource-manager-deployment-model.md)。 這兩個 VNet 必須位於與 Azure AD DS 相同的區域中。
 
@@ -54,7 +55,7 @@ ms.openlocfilehash: 73a2dded23cc91b4574db7734cf79ddb366d6147
 * 您熟悉 [Azure AD 網域服務](https://azure.microsoft.com/services/active-directory-ds/)及其 [價格](https://azure.microsoft.com/pricing/details/active-directory-ds/)結構。
 * 確定您的訂用帳戶已列入此公開預覽版本的允許清單中。 您可以傳送電子郵件與您的訂用帳戶識別碼給 hdipreview@microsoft.com 要求列入。
 * SSL 憑證，需由您的網域的簽章授權單位簽署。 設定安全的 LDAP 需有此憑證。 不可使用自我簽署憑證。
-* Azure PowerShell。  請參閱[安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+* Azure PowerShell。  請參閱[安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 ## <a name="create-an-azure-classic-vnet-for-your-azure-ad"></a>為您的 Azure AD 建立 Azure 傳統 VNet。
 如需指示，請參閱[這裡](hdinsight-domain-joined-configure.md#create-an-azure-classic-vnet)。
@@ -156,7 +157,7 @@ ms.openlocfilehash: 73a2dded23cc91b4574db7734cf79ddb366d6147
 
 1. 在 Azure 入口網站中，按一下以下影像以開啟 Resource Manager 範本。 Resource Manager 範本位於公用 Blob 容器中。 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-domain-joined-hdinsight-cluster.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-domain-joined-hdinsight-cluster.json" target="_blank"><img src="./media/hdinsight-domain-joined-configure-use-powershell/deploy-to-azure.png" alt="Deploy to Azure"></a>
 2. 在 [參數] 刀鋒視窗中輸入下列值：
    
    * **訂用帳戶**：(選取您的 Azure 訂用帳戶。)
@@ -186,10 +187,5 @@ ms.openlocfilehash: 73a2dded23cc91b4574db7734cf79ddb366d6147
 
 * 如需設定 Hive 原則和執行 Hive 查詢，請參閱[針對已加入網域的 HDInisight 叢集設定 Hive 原則](hdinsight-domain-joined-run-hive.md)。
 * 如需使用 SSH 連線到已加入網域的 HDInsight 叢集，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined)。
-
-
-
-
-<!--HONumber=Nov16_HO5-->
 
 

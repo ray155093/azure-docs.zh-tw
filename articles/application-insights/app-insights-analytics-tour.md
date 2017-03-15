@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 02/07/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 13c524cdc5ef0d9e70820cc3dac8d747e5bb5845
-ms.openlocfilehash: 12e832b8e0d0509f5b59d588b43f062fb07ddcde
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: ca96cd4ddf1be5ab70475d40fa65e73d248fd67b
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -101,8 +101,8 @@ ms.lasthandoff: 02/11/2017
 `where` 運算子會採用布林運算式。 以下是其相關的一些重點︰
 
 * `and`、`or`：布林運算子
-* `==`、`<>`︰等於和不等於
-* `=~`、`!=`︰不區分大小寫的字串等於和不等於。 有更多的字串比較運算子。
+* `==`、`<>`、`!=`︰等於和不等於
+* `=~`、`!~`︰不區分大小寫的字串等於和不等於。 有更多的字串比較運算子。
 
 深入了解 [純量運算式](app-insights-analytics-reference.md#scalars)。
 

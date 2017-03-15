@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2016
-ms.author: tdykstra
+ms.author: glenga
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 2d21cd34427921ad789b4c95212c07caddd5a966
@@ -22,7 +22,7 @@ ms.lasthandoff: 11/17/2016
 
 ---
 # <a name="what-is-the-azure-webjobs-sdk"></a>什麼是 Azure WebJobs SDK
-## <a name="a-idoverviewaoverview"></a><a id="overview"></a>概觀
+## <a id="overview"></a>概觀
 本文說明 WebJobs SDK 是什麼、檢閱部分適用的典型案例，以及提供在程式碼中的使用方式概觀。
 
 [WebJobs](websites-webjobs-resources.md) 是一項 Azure App Service 功能，可讓您在與 Web 應用程式、API 應用程式或行動應用程式相同的內容中執行程式或指令碼。 [WebJobs SDK](websites-webjobs-resources.md) 的目的是為了簡化您為 WebJob 可執行的一般工作 (例如影像處理、佇列處理、RSS 彙總、檔案維護及傳送電子郵件) 撰寫的程式碼。 WebJobs SDK 具有內建功能，用於處理 Azure 儲存體和服務匯流排、工作排程和處理錯誤，以及許多其他常見案例。 此外，它已被設計成可延伸。 [WebJobs SDK 是開放原始碼](https://github.com/Azure/azure-webjobs-sdk/)，並且有[擴充功能的開放原始碼儲存機制](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview)。
@@ -32,7 +32,7 @@ WebJobs SDK 包含下列元件：
 * **NuGet 封裝**。 您新增至 Visual Studio 主控台應用程式專案的 NuGet 封裝，會利用 WebJobs SDK 屬性修飾您的方法，提供一個供您程式碼使用的架構。
 * **儀表板**。 Azure App Service 中包含部分的 WebJobs SDK，該部份項目可針對使用 NuGet 封裝的程式提供豐富的監控和診斷功能。 您無需撰寫程式碼就可以使用這些監視和診斷功能。
 
-## <a name="a-idscenariosascenarios"></a><a id="scenarios"></a>案例
+## <a id="scenarios"></a>案例
 下列是 Azure WebJobs SDK 可協助您輕鬆處理的部分典型案例：
 
 * 影像處理或其他需要大量 CPU 的工作。 網站的一項常見功能是上傳影像或影片的能力。 在許多時候，您想要在內容上傳後處理該內容，但又不想在您執行此作業時讓使用者等候。
@@ -47,7 +47,7 @@ WebJobs SDK 包含下列元件：
 
 WebJobs SDK 也可讓您輕鬆地處理常見的錯誤處理案例。 您可以設定警示以在函式失敗時傳送通知，還可以設定逾時，讓函式未在指定的時間限制內完成時自動取消。
 
-## <a name="a-idcodea-code-samples"></a><a id="code"></a> 程式碼範例
+## <a id="code"></a> 程式碼範例
 使用 Azure 儲存體的處理傳統工作程式碼十分簡單。 在您「主控台應用程式」的 `Main` 方法中，您會建立一個 `JobHost` 物件來協調對您所撰寫之方法的呼叫。 WebJobs SDK 架構會根據您在方法中使用的 WebJobs SDK 屬性，知道何時要呼叫方法及要使用哪些參數值。 SDK 提供可指定造成呼叫函式之條件的「觸發程序」，以及可指定如何將資訊傳入方法參數及從方法參數傳出的「繫結器」。
 
 例如， [QueueTrigger](websites-dotnet-webjobs-sdk-storage-queues-how-to.md) 屬性會導致在佇列上收到訊息時呼叫函式，並且如果位元組陣列或自訂類型的訊息格式為 JSON，就會將該訊息自動還原序列化。 每當 Azure 儲存體帳戶中有新的 Blob 建立時， [BlobTrigger](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md) 屬性就會觸發程序。
@@ -130,7 +130,7 @@ WebJobs SDK 的觸發程序和繫結器功能可大幅簡化您所必須撰寫�
     }
 ```
 
-## <a name="a-idschedulea-scheduling"></a><a id="schedule"></a> 排程
+## <a id="schedule"></a> 排程
 `TimerTrigger` 屬性可讓您依排程觸發函式執行。 您可以透過 Azure 來進行 WebJob 的整體排程，或是使用 WebJobs SDK `TimerTrigger`來排定 WebJob 的個別函式。 以下是程式碼範例。
 
 ```
@@ -149,12 +149,12 @@ public class Functions
 ## <a name="extensibility"></a>擴充性
 您並不受限於使用內建功能 -- WebJobs SDK 可讓您撰寫自訂的觸發程序和繫結器。  例如，您可以撰寫用於快取事件和定期排程的觸發程序。 [開放原始碼存放庫](https://github.com/Azure/azure-webjobs-sdk-extensions)包含[關於 WebJobs SDK 擴充性的詳細指南](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview)和範例程式碼，可幫助您開始撰寫自己的觸發程序和繫結器。
 
-## <a name="a-idworkerroleausing-the-webjobs-sdk-outside-of-webjobs"></a><a id="workerrole"></a>在 WebJobs 外部使用 WebJobs SDK
+## <a id="workerrole"></a>在 WebJobs 外部使用 WebJobs SDK
 使用 WebJobs SDK 的程式是指可在任意位置執行的標準主控台應用程式 -- 它不一定要以 WebJob 的形式執行。 您可以在開發電腦上本機測試程式，並在實際執行環境中，以雲端服務背景工作角色或 Windows 服務的身分執行此程式 (如果您慣用其中一個環境)。 
 
 不過，對於 Azure App Service Web 應用程式，儀表板只能做為延伸模組來使用。 如果您想要在 WebJob 外部執行但仍然使用儀表板，則您可以設定 Web 應用程式使用 WebJobs SDK 儀表板連接字串所參考的相同儲存體帳戶，接著該 Web 應用程式的 WebJobs 儀表板便會顯示有關這個異地執行程式中的執行函數資料。 您可以使用 URL https://*{webappname}*.scm.azurewebsites.net/azurejobs/#/functions 進入儀表板。 如需詳細資訊，請參閱 [使用 WebJobs SDK 來取得本機開發的儀表板](http://blogs.msdn.com/b/jmstall/archive/2014/01/27/getting-a-dashboard-for-local-development-with-the-webjobs-sdk.aspx)(英文)，但請注意，此部落格文章顯示舊的連接字串名稱。 
 
-## <a name="a-idnostorageadashboard-features"></a><a id="nostorage"></a>儀表板功能
+## <a id="nostorage"></a>儀表板功能
 即使您不使用 WebJobs SDK 觸發程序或繫結器，WebJobs SDK 仍可提供數個好處：
 
 * 您可以從儀表板叫用函數。
@@ -163,7 +163,7 @@ public class Functions
 
 如需詳細資訊，請參閱[如何手動叫用函數](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#manual)和[如何寫入記錄](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#logs) 
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 如需 WebJobs SDK 的詳細資訊，請參閱 [Azure WebJobs 建議使用的資源](http://go.microsoft.com/fwlink/?linkid=390226)。
 
 如需有關 WebJobs SDK 最新增強功能的資訊，請參閱 [版本資訊](https://github.com/Azure/azure-webjobs-sdk/wiki/Release-Notes)。

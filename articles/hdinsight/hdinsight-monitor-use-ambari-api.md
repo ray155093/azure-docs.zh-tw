@@ -13,11 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/15/2016
+ms.date: 02/22/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 82e359621b18f6fd2f90b34799212006426cbc94
-ms.openlocfilehash: acd226c2eee8216843b68e322f6880de45a26b9a
+ms.sourcegitcommit: 0587dfcd6079fc8df91bad5a5f902391d3657a6b
+ms.openlocfilehash: 6d36976712ba1ea5d51f203fc532d7f89c3b0871
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: acd226c2eee8216843b68e322f6880de45a26b9a
 > 
 
 ## <a name="what-is-ambari"></a>什麼是 Ambari？
-[Apache Ambari][ambari-home] 可用來佈建、管理及監視 Apache Hadoop 叢集。 其中包含一組直接易懂的操作員工具和健全的 API 集，可消除 Hadoop 的複雜性，並簡化叢集作業。 如需這些 API 的詳細資訊，請參閱 [Ambari API 參考資料][ambari-api-reference]。 
+[Apache Ambari][ambari-home] 用來佈建、管理和監視 Apache Hadoop 叢集。 其中包含一組直接易懂的操作員工具和健全的 API 集，可消除 Hadoop 的複雜性，並簡化叢集作業。 如需關於 API 的詳細資訊，請參閱 [Ambari API 參考資料][ambari-api-reference]。 
 
 HDInsight 目前僅支援 Ambari 監視功能。 HDInsight  3.0 及 2.1 版叢集可支援 Ambari API 1.0。 本文涵蓋於 HDInsight 3.1 和 2.1 版叢集上存取 Ambari API。 兩者的主要差別在於某些元件已隨著新功能引進而變更 (例如工作歷程伺服器)。 
 
@@ -159,7 +160,7 @@ HDInsight 目前僅支援 Ambari 監視功能。 HDInsight  3.0 及 2.1 版叢�
 
 [microsoft-hadoop-SDK]: http://hadoopsdk.codeplex.com/wikipage?title=Ambari%20Monitoring%20Client
 
-[powershell-install]: powershell-install-configure.md
+[powershell-install]: /powershell/azureps-cmdlets-docs
 [powershell-script]: http://technet.microsoft.com/library/ee176949.aspx
 
 [hdinsight-admin-powershell]: hdinsight-administer-use-powershell.md
@@ -170,9 +171,4 @@ HDInsight 目前僅支援 Ambari 監視功能。 HDInsight  3.0 及 2.1 版叢�
 [hdinsight-provision]: hdinsight-provision-clusters.md
 
 [img-jobtracker-output]: ./media/hdinsight-monitor-use-ambari-api/hdi.ambari.monitor.jobtracker.output.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

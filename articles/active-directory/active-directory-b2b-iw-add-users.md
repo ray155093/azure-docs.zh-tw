@@ -37,7 +37,7 @@ ms.lasthandoff: 02/17/2017
 
 資訊工作者能以類似方式將 B2B 共同作業使用者新增到已啟用自助式群組管理的受指派群組。
 > [!NOTE]
-您可以將 B2B 共同作業使用者新增到動態群組或已與內部部署 Active Directory 同步的群組。
+> 您可以將 B2B 共同作業使用者新增到動態群組或已與內部部署 Active Directory 同步的群組。
 
 
 ## <a name="next-steps"></a>後續步驟

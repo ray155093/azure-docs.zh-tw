@@ -13,31 +13,31 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/13/2017
+ms.date: 03/01/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: d391c5c6289aa63e969f63f189eb5db680883f0a
-ms.openlocfilehash: 2f2792c409b579ba721195e5749a38c6396f339d
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: a16b3eee9ed52a197b5407dc7ebe71c0710d6fa1
+ms.lasthandoff: 03/07/2017
 
 ---
-# <a name="correlate-events-that-arrive-at-differnet-times-using-storm-and-hbase"></a>在不同時間使用 Storm 和 HBase 抵達的事件相互關聯
+# <a name="correlate-events-that-arrive-at-different-times-using-storm-and-hbase"></a>在不同時間使用 Storm 和 HBase 抵達的事件相互關聯
 
 搭配 Apache Store 使用永續性資料存放區，可以讓在不同時間抵達的資料項目相互關聯。 例如，連結使用者工作階段的登入和登出事件，可計算工作階段的持續時間長度。
 
-在本文件中，您會學習如何建立基本的 C# Storm 拓撲，以便追蹤使用者工作階段的登入和登出事件，並計算工作階段的持續時間。 此拓撲會使用 HBase 做為永續性資料存放區。 HBase 也可讓您對歷程記錄資料執行批次查詢來產生額外的見解，例如在特定時間週期內已開始或結束多少個使用者工作階段。
+在本文件中，您會學習如何建立基本的 C# Storm 拓撲，以便追蹤使用者工作階段的登入和登出事件，並計算工作階段的持續時間。 此拓撲會使用 HBase 做為永續性資料存放區。 HBase 也可讓您對歷程記錄資料執行批次查詢來產生額外的見解。 例如，在特定時間週期內已開始或結束多少個使用者工作階段。
 
 ## <a name="prerequisites"></a>必要條件
 
-* Visual Studio 和 HDInsight Tools for Visual Studio：如需安裝的相關資訊，請參閱 [開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) 。
+* Visual Studio 和 HDInsight tools for Visual Studio。 如需詳細資訊，請參閱[開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md)。
 
-* Apache Storm on HDInsight 叢集 (Windows)。 這會執行 Storm 拓撲，其會處理內送資料並儲存至 HBase。
+* Apache Storm on HDInsight 叢集 (Windows)。
   
   > [!IMPORTANT]
   > 雖然在 2016/10/28 之後建立的 Linux 架構 Storm 叢集可支援 SCP.NET 拓撲，但 2016/10/28 起提供的 HBase SDK for .NET 套件無法在 Linux 上正確運作。
 
-* Apache HBase on HDInsight 叢集 (Linux 或 Windows 型)。 這是此範例的資料來源。
+* Apache HBase on HDInsight 叢集 (Linux 或 Windows 型)。
 
   > [!IMPORTANT]
   > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
@@ -106,7 +106,7 @@ ms.lasthandoff: 03/01/2017
 * 版本：'cf' 系列會設定為每個資料列保留 5 個版本。
   
   > [!NOTE]
-  > 版本是針對特定資料列索引鍵儲存的先前值的記錄檔。 根據預設，HBase 只會針對資料列的最新版本傳回此值。 在此情況下，相同的資料列使用於所有事件 (START、END)，而資料列的每個版本都是以時間戳記值識別。 這提供針對特定識別碼記錄之事件的歷程記錄檢視。
+  > 版本是針對特定資料列索引鍵儲存的先前值的記錄檔。 根據預設，HBase 只會針對資料列的最新版本傳回此值。 在此情況下，相同的資料列使用於所有事件 (START、END)，而資料列的每個版本都是以時間戳記值識別。 版本可提供針對特定識別碼記錄之事件的歷程記錄檢視。
 
 ## <a name="download-the-project"></a>下載專案
 
@@ -148,7 +148,7 @@ ms.lasthandoff: 03/01/2017
 
 2. 在 [方案總管] 中，於 **CorrelationTopology** 專案上按一下滑鼠右鍵，然後選取 [屬性]。
 
-3. 在 [屬性] 視窗中，選取 [ **設定** ] 並提供下列資訊。 前 5 項應該是 **SessionInfo** 專案使用的相同值：
+3. 在 [屬性] 視窗中，選取 [設定] 並輸入此專案的組態值。 前 5 項是 **SessionInfo** 專案使用的相同值：
    
    * HBaseClusterURL：HBase 叢集的 URL。 例如，https://myhbasecluster.azurehdinsight.net。
 
@@ -156,9 +156,9 @@ ms.lasthandoff: 03/01/2017
 
    * HBaseClusterPassword：admin/HTTP 使用者帳戶的密碼。
 
-   * HBaseTableName：要用於此範例的資料表名稱。 此項應該包含 SessionInfo 專案中使用的相同資料表名稱。
+   * HBaseTableName：要用於此範例的資料表名稱。 這個值與 SessionInfo 專案中使用的資料表名稱相同。
 
-   * HBaseTableColumnFamily：資料行系列名稱。 此項應該包含 SessionInfo 專案中使用的相同資料行系列名稱。
+   * HBaseTableColumnFamily：資料行系列名稱。 這個值與 SessionInfo 專案中使用的資料行系列名稱相同。
    
    > [!IMPORTANT]
    > 請勿變更 HBaseTableColumnNames，因為預設值是 **SessionInfo** 用來擷取資料的名稱。
@@ -174,7 +174,7 @@ ms.lasthandoff: 03/01/2017
    > [!NOTE]
    > 第一次提交拓撲時，可能需要幾秒鐘的時間來擷取您的 HDInsight 叢集名稱。
 
-7. 拓撲上傳並提交至叢集後，[Storm 拓撲檢視] 會開啟並顯示執行中的拓撲。 選取 **CorrelationTopology** ，並使用頁面右上方的 [重新整理] 按鈕來重新整理拓撲資訊。
+7. 拓撲上傳並提交至叢集後，[Storm 拓撲檢視] 會開啟並顯示執行中的拓撲。 若要重新整理資料，請選取 **CorrelationTopology**，並使用頁面右上方的 [重新整理] 按鈕。
    
    ![拓撲檢視的影像](./media/hdinsight-storm-correlation-topology/topologyview.png)
    
@@ -184,7 +184,7 @@ ms.lasthandoff: 03/01/2017
    > 如果 [ **Storm 拓撲檢視** ] 並未自動開啟，請使用下列步驟來開啟：
    > 
    > 1. 在 [方案總管] 中，展開 **Azure**，然後展開 **HDInsight**。
-   > 2. 以滑鼠右鍵按一下正在執行拓撲的 Storm 叢集，然後選取  **檢視 Storm 拓撲**
+   > 2. 以滑鼠右鍵按一下正在執行拓撲的 Storm 叢集，然後選取 [檢視 Storm 拓撲]
 
 ## <a name="query-the-data"></a>查詢資料
 
@@ -196,11 +196,11 @@ ms.lasthandoff: 03/01/2017
    
     輸入開始和結束時間時，請使用下列格式：HH:MM 和 'am' 或 'pm'。 例如，11:20pm。
    
-    由於拓撲才剛啟動，請使用部署以前的開始時間，並以現在時間做為結束時間。 這麼做應會擷取在啟動時所產生的大多數 START 事件。 查詢執行時，您應會看到類似下列的項目清單：
+    若要傳回記錄的事件，請使用早於 Storm 拓撲部署的開始時間，以及現在的結束時間。 傳回的資料包含類似下列文字的項目︰
    
         Session e6992b3e-79be-4991-afcf-5cb47dd1c81c started at 6/5/2015 6:10:15 PM. Timestamp = 1433527820737
 
-搜尋 END 事件和 START 事件的方式相同。 不過，END 事件會在 START 事件之後的 1 到 5 分鐘之間隨機產生。 因此，您可能必須嘗試幾個時間範圍，以便找出 END 事件。 END 事件也會包含工作階段的持續時間，也就是 START 事件時間和 END 事件時間之間的差異。 以下是 END 事件的資料範例：
+搜尋 END 事件和 START 事件的方式相同。 不過，END 事件會在 START 事件之後的 1 到 5 分鐘之間隨機產生。 您可能必須嘗試幾個時間範圍，以便找出 END 事件。 END 事件也會包含工作階段的持續時間，也就是 START 事件時間和 END 事件時間之間的差異。 以下是 END 事件的資料範例：
 
     Session fc9fa8e6-6892-4073-93b3-a587040d892e lasted 2 minutes, and ended at 6/5/2015 6:12:15 PM
 

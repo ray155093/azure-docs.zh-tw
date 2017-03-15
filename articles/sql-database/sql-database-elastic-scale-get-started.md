@@ -13,12 +13,12 @@ ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/24/2016
+ms.date: 03/06/2017
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
-ms.openlocfilehash: 86391212e70a0f0a8ec0e53dce26b11218a5780c
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: a1e45a1ea15f76bcc7c0cd3bceca703818b3a9ff
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -34,20 +34,11 @@ ms.lasthandoff: 01/13/2017
 ## <a name="download-and-run-the-sample-app"></a>下載及執行範例應用程式
 [ **Azure SQL 與彈性資料庫 - 開始使用** ] 範例應用程式會解說使用 Azure SQL 彈性資料庫工具開發分區化應用程式時最重要的開發經驗層面。 範例應用程式著重在[分區對應管理](sql-database-elastic-scale-shard-map-management.md)、[資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)和[多分區查詢](sql-database-elastic-scale-multishard-querying.md)的主要使用案例。 若要下載及執行範例，請遵循下列步驟： 
 
-1. 開啟 Visual Studio，然後選取 [檔案] -> [新增] -> [專案]。
-2. 在對話方塊中，按一下 [線上] 。
-   
-    ![New Project>Online][2]
-3. 然後，按一下 [範例] 下的 [Visual C#]。
-   
-    ![按一下 Visual C#][3]
-4. 在 [搜尋] 方塊中，輸入 **elastic db** 以搜尋範例。 標題 **Elastic DB Tools for Azure SQL - 開始使用**隨即出現。
-   
-    ![Search Box][1]
-5. 選取範例、選擇新專案的名稱和位置，然後按 [確定]  以建立專案。
-6. 在範例專案的解決方案中開啟 **app.config** 檔案，然後依照檔案中的指示新增您的 Azure SQL 資料庫伺服器名稱和您的登入資訊 (使用者名稱和密碼)。
-7. 建置並執行應用程式。 當系統要求時，請允許 Visual Studio 還原解決方案的 NuGet 套件。 這將會從 NuGet 下載最新版的彈性資料庫用戶端程式庫。
-8. 以不同的選項執行，以深入了解用戶端程式庫功能。 請記下應用程式在主控台輸出中採用的步驟，並盡情探索其後的程式碼。
+1. 從 MSDN 下載 [Azure SQL 的彈性 DB 工具：開始使用範例](https://code.msdn.microsoft.com/windowsapps/Elastic-Scale-with-Azure-a80d8dc6)。 將範例解壓縮至您選擇的位置。
+2. 從 **C#** 目錄開啟 **ElasticScaleStarterKit.sln**方案以建立專案。
+3. 在範例專案的解決方案中開啟 **app.config** 檔案，然後依照檔案中的指示新增您的 Azure SQL 資料庫伺服器名稱和您的登入資訊 (使用者名稱和密碼)。
+4. 建置並執行應用程式。 當系統要求時，請允許 Visual Studio 還原解決方案的 NuGet 套件。 這將會從 NuGet 下載最新版的彈性資料庫用戶端程式庫。
+5. 以不同的選項執行，以深入了解用戶端程式庫功能。 請記下應用程式在主控台輸出中採用的步驟，並盡情探索其後的程式碼。
    
     ![progress][4]
 
@@ -59,10 +50,10 @@ ms.lasthandoff: 01/13/2017
 > 
 
 ### <a name="key-pieces-of-the-code-sample"></a>程式碼範例的主要部分
-1. **管理分區和分區對應**：此程式碼會解說如何使用 **ShardMapManagerSample.cs** 檔案中的分區、範圍和對應。 您可以在下列連結中找到更多關於此主題的資訊： [分區對應管理](http://go.microsoft.com/?linkid=9862595)。  
+1. **管理分區和分區對應**：此程式碼會解說如何使用 **ShardManagementUtils.cs** 檔案中的分區、範圍和對應。 您可以在下列連結中找到更多關於此主題的資訊： [分區對應管理](http://go.microsoft.com/?linkid=9862595)。  
 2. **資料相依路由**：**DataDependentRoutingSample.cs** 中說明如何將交易路由至正確的分區。 如需詳細資訊，請參閱 [資料相依路由](http://go.microsoft.com/?linkid=9862596)。 
 3. **查詢多個分區**：**MultiShardQuerySample.cs** 檔案中說明如何在各個分區間進行查詢。 如需詳細資訊，請參閱 [多分區查詢](http://go.microsoft.com/?linkid=9862597)。
-4. **新增空的分區**：反覆新增空分區的作業，由 **AddNewShardsSample.cs** 檔案中的程式碼所執行。 此主題的詳細資料請見： [分區對應管理](http://go.microsoft.com/?linkid=9862595)。
+4. **新增空的分區**：反覆新增空分區的作業，由 **CreateShardSample.cs** 檔案中的程式碼所執行。 此主題的詳細資料請見： [分區對應管理](http://go.microsoft.com/?linkid=9862595)。
 
 ### <a name="other-elastic-scale-operations"></a>其他 Elastic Scale 作業
 1. **分割現有的分區**：分割分區的功能是透過 [分割合併工具] 來提供。 您可以在這裡找到有關此工具的詳細資訊： [分割合併工具概觀](sql-database-elastic-scale-overview-split-and-merge.md)。

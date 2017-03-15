@@ -13,12 +13,12 @@ ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/27/2016
+ms.date: 03/06/2017
 ms.author: torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
-ms.openlocfilehash: 91fe35cb57775c1ab9c30fdfe5cf82cd1afafd14
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 2a7229c9658cbbab676801f5c532a50bc0adedce
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -29,13 +29,10 @@ ms.lasthandoff: 02/17/2017
 若要下載本文的程式碼：
 
 * 需要 visual Studio 2012 或更新版本。 
+* 從 MSDN 下載 [Elastic DB Tools for Azure SQL - Entity Framework 整合範例](https://code.msdn.microsoft.com/windowsapps/Elastic-Scale-with-Azure-bae904ba)。 將範例解壓縮至您選擇的位置。
 * 啟動 Visual Studio。 
-* 在 Visual Studio 中，選取 [檔案] -> [新增專案]。 
-* 在 [新增專案] 對話方塊中，瀏覽至 [Visual C#] 的 [線上範例]，然後在右上方的搜尋方塊中輸入 "elastic db"。
-  
-    ![Entity Framework 和彈性資料庫範例應用程式][1] 
-  
-    選取名為 [Elastic DB Tools for Azure SQL - Entity Framework Integration] 的範例。 接受授權之後，就會載入範例。 
+* 在 Visual Studio 中，選取 [檔案] -> [開啟專案/方案]。 
+* 在 [開啟專案] 對話方塊中，瀏覽至您下載的範例，然後選取 **EntityFrameworkCodeFirst.sln** 以開啟範例。 
 
 若要執行範例，您在 Azure SQL Database 中需要建立三個空的資料庫：
 

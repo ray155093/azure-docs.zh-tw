@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 11/17/2016
+ms.date: 03/06/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 31c6cb19827279995502c68ed6d86d23ef9eacd0
-ms.openlocfilehash: 5d98f086b4ccee300b18c8271f940272f618e93e
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: c6c92f0d357909921a9f3ee2f484ff355ddde0be
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -36,7 +37,7 @@ ms.openlocfilehash: 5d98f086b4ccee300b18c8271f940272f618e93e
 - 使用 Datadog 副檔名設定 Azure 基礎結構的監視。 如需詳細資訊，請參閱 [Datadog 部落格](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/)。
 - 使用 Docker VM 擴充功能設定 Azure 虛擬機器上的 Docker 主機。 如需詳細資訊，請參閱 [Docker VM 擴充功能](virtual-machines-linux-dockerextension.md)。
 
-除了處理序特定擴充功能，自訂指令碼延伸模組適用於 Windows 和 Linux 虛擬機器。 適用於 Linux 的自訂指令碼延伸模組可讓任何 Bash 指令碼在虛擬機器上執行。 這對於設計需要超過原生 Azure 工具可提供之設定的 Azure 部署很有用。 如需詳細資訊，請參閱 [Linux VM 自訂指令碼延伸模組](virtual-machines-linux-extensions-customscript.md)。
+除了處理序特定擴充功能，自訂指令碼延伸模組適用於 Windows 和 Linux 虛擬機器。 適用於 Linux 的自訂指令碼延伸模組可讓任何 Bash 指令碼在虛擬機器上執行。 自訂指令碼對於設計需要超過原生 Azure 工具可提供之設定的 Azure 部署很有用。 如需詳細資訊，請參閱 [Linux VM 自訂指令碼延伸模組](virtual-machines-linux-extensions-customscript.md)。
 
 若要逐步解說其中 VM 擴充功能用於端對端應用程式部署中的範例，請參閱[將應用程式自動部署到 Azure 虛擬機器](virtual-machines-linux-dotnet-core-1-landing.md)。
 
@@ -60,7 +61,7 @@ azure vm extension-image list westus
 
 ## <a name="run-vm-extensions"></a>執行 VM 延伸模組
 
-Azure 虛擬機器擴充功能可以在現有的虛擬機器上執行，這在需要進行組態變更或復原已部署之 VM 上的連線時很有用。 VM 擴充功能也可以搭配 Azure Resource Manager 範本部署。 使用具有 Resource Manager 範本中的擴充功能，可以部署及設定 Azure 虛擬機器而不需要部署後介入。
+Azure 虛擬機器延伸模組可以在現有的虛擬機器上執行，這在需要進行組態變更或復原已部署之 VM 上的連線時很有用。 VM 擴充功能也可以搭配 Azure Resource Manager 範本部署。 使用具有 Resource Manager 範本中的擴充功能，可以部署及設定 Azure 虛擬機器而不需要部署後介入。
 
 下列方法可用來針對現有的虛擬機器執行擴充功能。
 
@@ -74,7 +75,7 @@ azure vm extension set myResourceGroup myVM CustomScript Microsoft.Azure.Extensi
   --public-config '{"fileUris": ["https://gist.github.com/ahmetalpbalkan/b5d4a856fe15464015ae87d5587a4439/raw/466f5c30507c990a4d5a2f5c79f901fa89a80841/hello.sh"],"commandToExecute": "./hello.sh"}'
 ```
 
-這會提供看起來像下列文字的輸出：
+指令碼會產生類似下列文字的輸出：
 
 ```azurecli
 info:    Executing command vm extension set
@@ -85,15 +86,15 @@ info:    vm extension set command OK
 
 ### <a name="azure-portal"></a>Azure 入口網站
 
-VM 擴充功能可以透過 Azure 入口網站套用至現有的虛擬機器。 若要這樣做，請選取虛擬機器，選擇 [擴充功能]，然後按一下 [新增]。 這會提供可用的擴充功能清單。 選取您想要的並遵循精靈中的指示。
+VM 擴充功能可以透過 Azure 入口網站套用至現有的虛擬機器。 若要這樣做，請選取虛擬機器，選擇 [擴充功能]，然後按一下 [新增]。 從可用延伸模組清單選取您想要的延伸模組，並遵循精靈中的指示。
 
 下圖顯示從 Azure 入口網站安裝 Linux 自訂指令碼擴充功能。
 
-![自訂指令碼擴充功能](./media/virtual-machines-linux-extensions-features/script-extension-linux.jpg)
+![安裝自訂指令碼延伸模組](./media/virtual-machines-linux-extensions-features/installscriptextensionlinux.png)
 
 ### <a name="azure-resource-manager-templates"></a>Azure 資源管理員範本
 
-VM 擴充功能可以新增至 Azure Resource Manager 範本，並使用範本的部署執行。 當您使用範本部署擴充功能時，可以建立完全設定的 Azure 部署。 例如，下列 JSON 是取自部署一組負載平衡虛擬機器和 Azure SQL Database 的 Resource Manager 範本，並在每個 VM 上安裝 .NET 核心應用程式。 VM 擴充功能會處理軟體安裝。
+VM 擴充功能可以新增至 Azure Resource Manager 範本，並使用範本的部署執行。 當您使用範本部署擴充功能時，可以建立完全設定的 Azure 部署。 例如，下列 JSON 取自 Resource Manager 範本。 此範本會部署一組負載平衡虛擬機器和 Azure SQL Database，並在每個 VM 上安裝 .NET 核心應用程式。 VM 擴充功能會處理軟體安裝。
 
 如需詳細資訊，請參閱完整的 [Resource Manager 範本](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)。
 
@@ -222,7 +223,7 @@ info:    vm extension get command OK         :
 
 ### <a name="rerun-a-vm-extension"></a>重新執行 VM 擴充功能
 
-可能會發生必須重新執行虛擬機器擴充功能的情況。 您可以藉由移除擴充功能，然後使用您所選的執行方法重新執行擴充功能來執行這項操作。 若要移除擴充功能，請使用 Azure CLI 執行下列命令。 請以您自己的值取代範例參數名稱。
+可能會發生必須重新執行虛擬機器擴充功能的情況。 您可以藉由移除延伸模組，然後使用您所選的執行方法重新執行延伸模組，來重新執行延伸模組。 若要移除擴充功能，請使用 Azure CLI 執行下列命令。 請以您自己的值取代範例參數名稱。
 
 ```azurecli
 azure vm extension set myResourceGroup myVM --uninstall CustomScript Microsoft.Azure.Extensions 2.0
@@ -243,9 +244,4 @@ azure vm extension set myResourceGroup myVM --uninstall CustomScript Microsoft.A
 | VM 存取擴充功能 |重新取得對「Azure 虛擬機器」的存取權 |[VM 存取擴充功能](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) |
 | Azure 診斷擴充功能 |管理「Azure 診斷」 |[Azure 診斷擴充功能](https://azure.microsoft.com/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/) |
 | Azure VM 存取擴充功能 |管理使用者和認證 |[適用於 Linux 的 VM 存取擴充功能](https://azure.microsoft.com/en-us/blog/using-vmaccess-extension-to-reset-login-credentials-for-linux-vm/) |
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

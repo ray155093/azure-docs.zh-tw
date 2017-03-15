@@ -12,11 +12,12 @@ ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/24/2016
+ms.date: 03/06/2017
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 44c2c181b1ca463c5d2bd92b77e4b92604964ba2
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 0bbbc4f61c37fe4d296221c372bfdf6dd429a32b
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -30,11 +31,12 @@ ms.openlocfilehash: 44c2c181b1ca463c5d2bd92b77e4b92604964ba2
 依照順序執行步驟可確保在更新中繼資料物件時，舊版用戶端程式庫不會再於您的環境中出現，這表示升級之後將不會再建立舊版中繼資料物件。   
 
 ## <a name="upgrade-steps"></a>升級步驟
-**1.升級您的應用程式。**  在 Visual Studio 中，將最新的用戶端程式庫版本下載到您所有使用程式庫的開發專案中，並加以參照；然後重新建置及部署。 
+**1.升級您的應用程式。** 在 Visual Studio 中，將最新的用戶端程式庫版本下載到您所有使用程式庫的開發專案中，並加以參照；然後重新建置及部署。 
 
 * 在您的 Visual Studio 解決方案中，依序選取 [工具] -->  [NuGet 套件管理員]  -->  [管理解決方案的 NuGet 套件]。 
 * (Visual Studio 2013) 在左邊面板中，選取 [更新]，然後在視窗中顯示的 [Azure SQL Database Elastic Scale 用戶端程式庫]套件上選取 [更新]按鈕。
 * (Visual Studio 2015) 設定篩選方塊為 [可升級] 。 選取要更新的套件，然後按一下 [更新]  按鈕。
+* (Visual Studio 2017) 在對話方塊頂端，選取 [更新]。 選取要更新的套件，然後按一下 [更新]  按鈕。
 * 建置並部署。 
 
 **2.升級您的指令碼。** 如果您是使用 **PowerShell** 指令碼來管理分區，請[下載新的程式庫版本](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)並將它複製到您從中執行指令碼的目錄。 
@@ -77,10 +79,5 @@ ms.openlocfilehash: 44c2c181b1ca463c5d2bd92b77e4b92604964ba2
 
 <!--Image references-->
 [1]:./media/sql-database-elastic-scale-upgrade-client-library/nuget-upgrade.png
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

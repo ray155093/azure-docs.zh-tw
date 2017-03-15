@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/20/2016
+ms.date: 03/08/2017
 ms.author: jingwang
 translationtype: Human Translation
 ms.sourcegitcommit: 55c988bf74ff0f2e519e895a735dc68f3dc99855
 ms.openlocfilehash: e2deed13106db9467eef181f25a0a226034df5a2
+ms.lasthandoff: 12/21/2016
 
 ---
 
@@ -37,11 +38,11 @@ ms.openlocfilehash: e2deed13106db9467eef181f25a0a226034df5a2
 
 下列範例顯示︰
 
-1.  [AzureSearch](#azure-search-linked-service-properties) 類型的連結服務。
-2.  [OnPremisesSqlServer](data-factory-sqlserver-connector.md#sql-server-linked-service-properties)類型的連結服務。
-3.  [SqlServerTable](data-factory-sqlserver-connector.md#sql-server-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
-4.  [AzureSearchIndex](#azure-search-index-dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
-4.  具有使用 [SqlSource](data-factory-sqlserver-connector.md#sql-server-copy-activity-type-properties) 和 [AzureSearchIndexSink](#azure-search-index-sink-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
+1.    [AzureSearch](#azure-search-linked-service-properties) 類型的連結服務。
+2.    [OnPremisesSqlServer](data-factory-sqlserver-connector.md#sql-server-linked-service-properties)類型的連結服務。
+3.    [SqlServerTable](data-factory-sqlserver-connector.md#sql-server-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
+4.    [AzureSearchIndex](#azure-search-index-dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
+4.    具有使用 [SqlSource](data-factory-sqlserver-connector.md#sql-server-copy-activity-type-properties) 和 [AzureSearchIndexSink](#azure-search-index-sink-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
 這個範例每小時都會將時間序列的資料從內部部署 SQL Server 資料庫複製到 Azure 搜尋服務索引。 範例後面的各節將會說明此範例中使用的 JSON 屬性。
 
@@ -52,13 +53,13 @@ ms.openlocfilehash: e2deed13106db9467eef181f25a0a226034df5a2
 ```JSON
 {
     "name": "AzureSearchLinkedService",
-    "properties": {
+       "properties": {
         "type": "AzureSearch",
-        "typeProperties": {
+           "typeProperties": {
             "url": "https://<service>.search.windows.net",
             "key": "<AdminKey>"
         }
-    }
+       }
 }
 ```
 
@@ -118,7 +119,7 @@ ms.openlocfilehash: e2deed13106db9467eef181f25a0a226034df5a2
     "properties": {
         "type": "AzureSearchIndex",
         "linkedServiceName": "AzureSearchLinkedService",
-        "typeProperties" : {
+         "typeProperties" : {
             "indexName": "products",
         },
         "availability": {
@@ -327,9 +328,4 @@ Data Factory 支援下列符合 CLS 標準的 .NET 型類型值，以利針對�
 請參閱下列文章：
 
 * [複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得使用「複製活動」來建立管線的逐步指示。
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

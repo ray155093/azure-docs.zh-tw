@@ -13,12 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/09/2016
+ms.date: 03/06/2017
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: 218d41ac352f01a7e03b5b8a1c45e1bf6d5ace28
-ms.openlocfilehash: a3b1289d52207448cebc628466492371d1bf6519
-ms.lasthandoff: 01/11/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: fc917c9c9a92bf944d922a9418e065fa661c69df
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -36,18 +36,18 @@ ms.lasthandoff: 01/11/2017
 - 一個 Azure 帳戶。 如果您沒有 Azure 帳戶，可以立即建立一個[免費的 Azure 帳戶](https://azure.microsoft.com/free/)。 
 - 一個 DocumentDB 帳戶。 如需指示，請參閱[建立用於 MongoDB 應用程式的 DocumentDB 帳戶](documentdb-create-mongodb-account.md)。
 
-## <a name="a-idquickstartconnectionaget-the-mongodb-connection-string-using-the-quick-start"></a><a id="QuickStartConnection"></a>使用快速啟動取得 MongoDB 連接字串
+## <a id="QuickStartConnection"></a>使用快速啟動取得 MongoDB 連接字串
 1. 在網際網路瀏覽器中，登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在 [NoSQL (DocumentDB)] 刀鋒視窗中，選取 [具有 MongoDB 通訊協定支援的 DocumentDB 帳戶]。 
+2. 在 [NoSQL (DocumentDB)] 刀鋒視窗中，選取 [DocumentDB：適用於 MongoDB 的 API] 帳戶。 
 3. 在帳戶刀鋒視窗的 [左導覽] 列中，按一下 [快速啟動]。 
 4. 選擇您的平台 (*.NET 驅動程式*、*Node.js 驅動程式*、*MongoDB 殼層*、*Java 驅動程式*、*Python 驅動程式*)。 如果您沒有看到您的驅動程式或工具被列出，別擔心，我們會持續加入更多連線程式碼片段。 請在下面加入您想要看到何種內容的意見，並且閱讀[取得帳戶的連接字串資訊](#GetCustomConnection)以了解如何製作您自己的連線。
 5. 將程式碼片段複製和貼上您的 MongoDB 應用程式，如此就準備就緒。
 
     ![快速啟動刀鋒視窗的螢幕擷取畫面](./media/documentdb-connect-mongodb-account/QuickStartBlade.png)
 
-## <a name="a-idgetcustomconnectiona-get-the-mongodb-connection-string-to-customize"></a><a id="GetCustomConnection"></a> 取得 MongoDB 連接字串以自訂
+## <a id="GetCustomConnection"></a> 取得 MongoDB 連接字串以自訂
 1. 在網際網路瀏覽器中，登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在 [NoSQL (DocumentDB)] 刀鋒視窗中，選取 [具有 MongoDB 通訊協定支援的 DocumentDB 帳戶]。 
+2. 在 [NoSQL (DocumentDB)] 刀鋒視窗中，選取 [DocumentDB：適用於 MongoDB 的 API] 帳戶。 
 3. 在帳戶刀鋒視窗的 [左導覽] 列中，按一下 [連接字串]。 
 4. [連接字串資訊]  刀鋒視窗隨即開啟，並且顯示使用 MongoDB 的驅動程式連接至帳戶所需的所有資訊，包括預先建構的連接字串。
 
@@ -82,6 +82,6 @@ ms.lasthandoff: 01/11/2017
     mongodb://contoso123:0Fc3IolnL12312asdfawejunASDF@asdfYXX2t8a97kghVcUzcDv98hawelufhawefafnoQRGwNj2nMPL1Y9qsIr9Srdw==@anhohmongo.documents.azure.com:10250/mydatabase?ssl=true
 
 ## <a name="next-steps"></a>後續步驟
-* 了解如何 [使用 MongoChef](documentdb-mongodb-mongochef.md) 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶。
-* 探索具有 MongoDB 通訊協定支援的 DocumentDB 的 [範例](documentdb-mongodb-samples.md)。
+* 了解如何[使用 MongoChef](documentdb-mongodb-mongochef.md) 搭配 DocumentDB：適用於 MongoDB 的 API 帳戶。
+* 瀏覽 DocumentDB：適用於 MongoDB 的 API [範例](documentdb-mongodb-samples.md)。
 

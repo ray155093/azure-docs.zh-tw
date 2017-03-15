@@ -4,7 +4,7 @@ description: "了解如何使用適用於 Visual Studio 的 Azure Data Lake 工�
 services: hdinsight
 documentationcenter: 
 author: Blackmist
-manager: paulettm
+manager: jhubbard
 editor: cgronlun
 ms.assetid: e3434c45-95d1-4b96-ad4c-fb59870e2ff0
 ms.service: hdinsight
@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/10/2017
+ms.date: 02/28/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
-ms.openlocfilehash: a1e6216647b7401183ab2f47f72aaee1f80ccee0
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 599aeb1f38c804c2edf6590140e739c9705ab1ab
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 01/24/2017
 
 * 在您的開發環境上的虛擬機器中執行的 Hortonworks 沙箱。 本文件是針對在 Oracle VirtualBox 中執行的沙箱進行撰寫和測試，而該沙箱是使用 [在 Hadoop 生態系統中開始使用](hdinsight-hadoop-emulator-get-started.md) 文件中的資訊進行設定。
 
-* Visual Studio 2013 或 2015，或任何版本。
+* Visual Studio 2013、2015 或 2017 或任何版本。
 
 * [Azure SDK for.NET](https://azure.microsoft.com/downloads/) 2.7.1 或更新版本。
 
@@ -39,13 +39,13 @@ ms.lasthandoff: 01/24/2017
 
 ## <a name="configure-passwords-for-the-sandbox"></a>設定沙箱的密碼
 
-請確定 Hortonworks 沙箱執行中，然後依照[在 Hadoop 生態系統中開始使用](hdinsight-hadoop-emulator-get-started.md#set-sandbox-passwords)中的步驟來設定 SSH `root` 帳戶及 Ambari `admin` 帳戶的密碼。 從 Visual Studio 連接至沙箱時，將使用這些密碼。
+請確定 Hortonworks 沙箱執行中，然後依照[在 Hadoop 生態系統中開始使用](hdinsight-hadoop-emulator-get-started.md#set-sandbox-passwords)的步驟。 這些步驟會設定 SSH `root` 帳戶以及 Ambari `admin` 帳戶的密碼。 從 Visual Studio 連線至沙箱時會使用這些密碼。
 
 ## <a name="connect-the-tools-to-the-sandbox"></a>將工具連接至沙箱
 
 1. 開啟 Visual Studio，然後依序選取 [檢視] 和 [伺服器總管]。
 
-2. 在 [伺服器總管] 中，以滑鼠右鍵按一下 [HDInsight] 項目，然後選取 [連接到 HDInsight Emulator]。
+2. 在 [伺服器總管] 中，以滑鼠右鍵按一下 [HDInsight] 項目，然後選取 [連線至 HDInsight Emulator]。
 
     ![連接到 HDInsight Emulator](./media/hdinsight-hadoop-emulator-visual-studio/connect-emulator.png)
 
@@ -61,7 +61,7 @@ ms.lasthandoff: 01/24/2017
 
     選取 [下一步] 以繼續操作。
 
-5. 等候服務的驗證完成。 在某些情況下，驗證可能會失敗並提示您更新組態。 發生這種情況時，選取 [更新] 按鈕並等候服務的設定和驗證完成。
+5. 等候服務的驗證完成。 在某些情況下，驗證可能會失敗並提示您更新組態。 如果驗證失敗，請選取 [更新] 按鈕並等候服務的設定和驗證完成。
 
     ![錯誤和更新按鈕](./media/hdinsight-hadoop-emulator-visual-studio/fail-and-update.png)
 
@@ -87,7 +87,7 @@ Hive 會提供類似 SQL 的查詢語言 (HiveQL)，以便處理結構化資料�
 
     這會開啟新的查詢視窗，讓您快速輸入查詢並提交到本機叢集。
 
-2. 在新的查詢視窗中，輸入以下資訊︰
+2. 在新的查詢視窗中，輸入以下命令︰
 
         select count(*) from sample_08;
 
@@ -95,11 +95,11 @@ Hive 會提供類似 SQL 的查詢語言 (HiveQL)，以便處理結構化資料�
 
     ![查詢視窗和提交按鈕](./media/hdinsight-hadoop-emulator-visual-studio/submit-hive.png)
 
-    請注意，您也可以使用 [提交] 旁邊的下拉式功能表來選取 [進階]。 這會開啟一個對話方塊，讓您在提交作業時提供其他選項。
+    您也可以使用 [提交] 旁邊的下拉式功能表來選取 [進階]。 進階選項可讓您在提交作業時提供其他選項。
 
     ![進階提交](./media/hdinsight-hadoop-emulator-visual-studio/advanced-hive.png)
 
-3. 提交查詢後，將會顯示作業狀態。 這可提供 Hadoop 處理作業時的相關資訊。 [作業狀態] 項目會提供作業的目前狀態。 系統會定期更新此狀態，您也可以使用重新整理圖示來手動重新整理此狀態。
+3. 提交查詢後，將會顯示作業狀態。 作業狀態可提供 Hadoop 處理作業時的相關資訊。 [作業狀態] 項目會提供作業的狀態。 狀態會定期更新，您也可以使用重新整理圖示來手動重新整理此狀態。
 
     ![作業狀態](./media/hdinsight-hadoop-emulator-visual-studio/job-state.png)
 
@@ -114,7 +114,7 @@ Hive 會提供類似 SQL 的查詢語言 (HiveQL)，以便處理結構化資料�
 
     ![互動式查詢](./media/hdinsight-hadoop-emulator-visual-studio/interactive-query.png)
 
-    這可串流處理至 [HiveServer2 輸出] 視窗期間所產生的輸出記錄檔。
+    互動式查詢會串流處理至 [HiveServer2 輸出] 視窗期間所產生的輸出記錄檔。
 
     > [!NOTE]
     > 這是作業完成後 [作業記錄檔] 連結中可用的相同資訊。
@@ -123,7 +123,7 @@ Hive 會提供類似 SQL 的查詢語言 (HiveQL)，以便處理結構化資料�
 
 ## <a name="create-a-hive-project"></a>建立 Hive 專案
 
-您也可以建立包含多個 Hive 指令碼的專案。 當您有需要留在一起或使用版本控制系統維護的相關指令碼時，這非常有用。
+您也可以建立包含多個 Hive 指令碼的專案。 當您有需要留在一起或使用版本控制系統維護的相關指令碼時，專案非常有用。
 
 1. 在 Visual Studio 中，依序選取 [檔案]、[新增] 和 [專案]。
 
@@ -135,13 +135,13 @@ Hive 會提供類似 SQL 的查詢語言 (HiveQL)，以便處理結構化資料�
 
 ## <a name="create-a-pig-project"></a>建立 Pig 專案
 
-當 Hive 提供類似 SQL 的語言來處理結構化資料時，Pig 會提供語言 (Pig Latin)，讓您為套用至您的資料的轉換開發管線。 使用下列步驟來搭配使用 Pig 與本機叢集。
+Hive 提供類似 SQL 的語言來處理結構化的資料，Pig 的運作方式是藉由對資料執行轉換。 Pig 提供可讓您開發轉換管線的語言 (Pig Latin)。 使用下列步驟來搭配使用 Pig 與本機叢集：
 
 1. 開啟 Visual Studio，並依序選取 [檔案] > [新增] 和 [專案]。 從專案清單，展開 [範本]、[Azure Data Lake]，然後選取 [Pig (HDInsight)]。 從範本清單中，選取 [Pig 應用程式]。 輸入名稱、位置，然後選取 [確定]。
 
     ![Pig (HDInsight) 專案](./media/hdinsight-hadoop-emulator-visual-studio/new-pig.png)
 
-2. 輸入下列內容做為與此專案一起建立的檔案 **script.pig** 的內容。
+2. 輸入下列文字做為與此專案一起建立的檔案 **script.pig** 的內容。
 
         a = LOAD '/demo/data/Website/Website-Logs' AS (
             log_id:int,
@@ -166,7 +166,7 @@ Hive 會提供類似 SQL 的查詢語言 (HiveQL)，以便處理結構化資料�
 
 Azure Data Lake 工具也可讓您輕鬆地檢視已在 Hadoop 上執行的作業相關資訊。 使用下列步驟來查看已在本機叢集上執行的作業。
 
-1. 從 [伺服器總管] 中，於本機叢集上按一下滑鼠右鍵，然後選取 [檢視作業]。 這會顯示已提交至叢集的作業清單。
+1. 從 [伺服器總管] 中，於本機叢集上按一下滑鼠右鍵，然後選取 [檢視作業]。 已提交至叢集的作業清單隨即顯示。
 
     ![檢視作業](./media/hdinsight-hadoop-emulator-visual-studio/view-jobs.png)
 
@@ -180,7 +180,7 @@ Azure Data Lake 工具也可讓您輕鬆地檢視已在 Hadoop 上執行的作�
 
 ## <a name="view-hive-databases"></a>檢視 Hive 資料庫
 
-1. 在 [伺服器總管] 中，展開 [HDInsight 本機叢集] 項目，然後展開 [Hive 資料庫]。 這將顯示本機叢集上的 [預設] 和 [xademo] 資料庫。 展開資料庫即可顯示資料庫內的資料表。
+1. 在 [伺服器總管] 中，展開 [HDInsight 本機叢集] 項目，然後展開 [Hive 資料庫]。 本機叢集上的 [預設] 和 [xademo] 資料庫隨即顯示。 展開資料庫即可顯示資料庫內的資料表。
 
     ![擴充的資料庫](./media/hdinsight-hadoop-emulator-visual-studio/expanded-databases.png)
 
@@ -190,9 +190,9 @@ Azure Data Lake 工具也可讓您輕鬆地檢視已在 Hadoop 上執行的作�
 
 ### <a name="database-and-table-properties"></a>資料庫和資料表屬性
 
-您可能已注意到，您可以選擇檢視資料庫或資料表的 [屬性]。 這會在 [屬性] 視窗中顯示所選項目的詳細資料。
+您可能已注意到，您可以選擇檢視資料庫或資料表的 [屬性]。 選取 [屬性] 會顯示 [屬性] 視窗中所選取項目的詳細資料。
 
-![properties](./media/hdinsight-hadoop-emulator-visual-studio/properties.png)
+![屬性](./media/hdinsight-hadoop-emulator-visual-studio/properties.png)
 
 ### <a name="create-a-table"></a>建立資料表
 

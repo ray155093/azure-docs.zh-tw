@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
-ms.author: tdykstra
+ms.author: glenga
 translationtype: Human Translation
 ms.sourcegitcommit: fcbd9e10e4cc336dc6ea37f84201249e14b1af91
 ms.openlocfilehash: 5110a86c3cc25ada27ddba9b0caef68e4509aa73
@@ -69,7 +69,7 @@ ms.lasthandoff: 12/08/2016
 * [如何處理錯誤及設定逾時](#errors)
 * [後續步驟](#nextsteps)
 
-## <a name="a-idtriggera-how-to-trigger-a-function-when-a-queue-message-is-received"></a><a id="trigger"></a> 如何在接收到佇列訊息時觸發函數
+## <a id="trigger"></a> 如何在接收到佇列訊息時觸發函數
 若要撰寫 WebJobs SDK 在收到佇列訊息時所呼叫的函數，請使用 `QueueTrigger` 屬性。 屬性建構函式採用字串參數，來指定要輪詢的佇列名稱。 您也可以 [動態設定佇列名稱](#config)。
 
 ### <a name="string-queue-messages"></a>字串佇列訊息
@@ -115,7 +115,7 @@ Async 函數可能需要取 [消語彙基元](http://www.asp.net/mvc/overview/pe
             await blobInput.CopyToAsync(blobOutput, 4096, token);
         }
 
-### <a name="a-idqtattributetypesa-types-the-queuetrigger-attribute-works-with"></a><a id="qtattributetypes"></a> 適用於 QueueTrigger 屬性的型別
+### <a id="qtattributetypes"></a> 適用於 QueueTrigger 屬性的型別
 您可以將 `QueueTrigger` 與下列型別搭配使用：
 
 * `string`
@@ -123,20 +123,20 @@ Async 函數可能需要取 [消語彙基元](http://www.asp.net/mvc/overview/pe
 * `byte[]`
 * `CloudQueueMessage`
 
-### <a name="a-idpollinga-polling-algorithm"></a><a id="polling"></a> 輪詢演算法
+### <a id="polling"></a> 輪詢演算法
 SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲存體交易成本的影響。  找到訊息時，SDK 會等待兩秒，然後檢查的另一個訊息；當找不到任何訊息時，它會等候大約四秒，然後再試一次。 連續嘗試取得佇列訊息失敗後，等候時間會持續增加，直到它到達等待時間上限 (預設值為一分鐘)。 [您可以設定等待時間上限](#config)。
 
-### <a name="a-idinstancesa-multiple-instances"></a><a id="instances"></a> 多個執行個體
+### <a id="instances"></a> 多個執行個體
 如果您的 Web 應用程式是在多個執行個體上執行，則會有一個連續的 WebJob 在每部機器上執行，而每部機器將會等待觸發程序，才嘗試執行函式。 WebJobs SDK 佇列觸發程序會自動防止函式處理佇列訊息多次；不需將函式撰寫成等冪函式。 不過，如果您想要確保在即使有多個主 Web 應用程式執行個體的情況下，仍然只有一個函式執行個體會執行，則您可以使用 `Singleton` 屬性。
 
-### <a name="a-idparallela-parallel-execution"></a><a id="parallel"></a> 平行執行
+### <a id="parallel"></a> 平行執行
 如果您有多個函數在不同的佇列上接聽，則同時接收到訊息時，SDK 會以平行方式呼叫它們。
 
 收到單一佇列的多個訊息時也是如此。 根據預設，SDK 會一次取得一批 (16 個) 佇列訊息，並執行以平行方式處理它們的函數。 [您可以設定批次大小](#config)。 當要處理的訊息數目減少到批次大小 (該批訊息數目) 的一半時，SDK 就會取得另一批訊息並開始處理那些訊息。 因此，每個函數並行處理之訊息的上限數目為批次大小 (該批訊息數目) 的 1.5 倍。 這項限制個別套用至具有 `QueueTrigger` 屬性的每個函式。
 
 如果您不想要平行執行在單一佇列上收到的訊息，您可以將批次大小設定為 1。 另請參閱 **Azure WebJobs SDK 1.1.0 RTM** 中的 [更充分掌控佇列處理](https://azure.microsoft.com/blog/azure-webjobs-sdk-1-1-0-rtm/)。
 
-### <a name="a-idqueuemetadataaget-queue-or-queue-message-metadata"></a><a id="queuemetadata"></a>取得佇列或佇列訊息中繼資料
+### <a id="queuemetadata"></a>取得佇列或佇列訊息中繼資料
 您可以透過新增參數至方法簽章來取得下列訊息屬性：
 
 * `DateTimeOffset` expirationTime
@@ -188,7 +188,7 @@ SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲�
         queue endpoint=https://contosoads.queue.core.windows.net/
         queueTrigger=Hello world!
 
-### <a name="a-idgracefulagraceful-shutdown"></a><a id="graceful"></a>順利關機
+### <a id="graceful"></a>順利關機
 在連續 WebJob 中執行的函數可以接受 `CancellationToken` 參數，該參數可讓作業系統在 WebJob 即將終止時通知函數。 您可以使用此通知來確保函數不會在讓資料維持不一致狀態的情況下意外終止。
 
 下列範例示範如何透過函數檢查即將終止的 WebJob。
@@ -214,7 +214,7 @@ SDK 會實作隨機指數型倒退演算法，以降低閒置佇列輪詢對儲�
 
 如需詳細資訊，請參閱 [WebJobs 正常關機](http://blog.amitapple.com/post/2014/05/webjobs-graceful-shutdown/#.VCt1GXl0wpR)。   
 
-## <a name="a-idcreatequeuea-how-to-create-a-queue-message-while-processing-a-queue-message"></a><a id="createqueue"></a> 如何在處理佇列訊息時建立佇列訊息
+## <a id="createqueue"></a> 如何在處理佇列訊息時建立佇列訊息
 若要編寫會建立新佇列訊息的函數，請使用 `Queue` 屬性。 就像 `QueueTrigger`一樣，您可以用字串的方式傳入佇列名稱，或者您可以 [動態設定佇列名稱](#config)。
 
 ### <a name="string-queue-messages"></a>字串佇列訊息
@@ -265,7 +265,7 @@ SDK 會自動將物件序列化為 JSON。 即使物件是空值，也一律會�
 * `IAsyncCollector`
 * `CloudQueue` (用於直接使用 Azure 儲存體 API 手動建立訊息)
 
-### <a name="a-idibinderause-webjobs-sdk-attributes-in-the-body-of-a-function"></a><a id="ibinder"></a>在函式主體中使用 WebJobs SDK 屬性
+### <a id="ibinder"></a>在函式主體中使用 WebJobs SDK 屬性
 如果您需要先在函式中執行部分工作，然後再使用 WebJobs SDK 屬性，例如 `Queue`、`Blob`  或 `Table`，您可以使用 `IBinder` 介面。
 
 下列範例會使用輸入佇列訊息，並在輸出佇列中建立含有相同內容的新訊息。 輸出佇列名稱會由函數主體中的程式碼設定。
@@ -282,7 +282,7 @@ SDK 會自動將物件序列化為 JSON。 即使物件是空值，也一律會�
 
 `IBinder` 介面也能與 `Table` 和 `Blob` 屬性搭配使用。
 
-## <a name="a-idblobsa-how-to-read-and-write-blobs-and-tables-while-processing-a-queue-message"></a><a id="blobs"></a> 如何在處理佇列訊息時讀取及寫入 Blob 與表格
+## <a id="blobs"></a> 如何在處理佇列訊息時讀取及寫入 Blob 與表格
 `Blob` 與 `Table` 屬性可讓您讀取和寫入 Blob 與資料表。 本節中的範例適用於 Blob。 如需示範如何在建立或更新 Blob 時觸發程序的程式碼範例，請參閱[如何透過 WebJobs SDK 使用 Azure Blob 儲存體](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)，若需讀取和撰寫資料表的程式碼範例，請參閱[如何透過 WebJobs SDK 使用 Azure 資料表儲存體](websites-dotnet-webjobs-sdk-storage-tables-how-to.md)。
 
 ### <a name="string-queue-messages-triggering-blob-operations"></a>觸發 Blob 作業的字串佇列訊息
@@ -311,7 +311,7 @@ SDK 會自動將物件序列化為 JSON。 即使物件是空值，也一律會�
             blobToDelete.Delete();
         }
 
-### <a name="a-idpocoblobsa-poco-plain-old-clr-objecthttpenwikipediaorgwikiplainoldclrobject-queue-messages"></a><a id="pocoblobs"></a> POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) 佇列訊息
+### <a id="pocoblobs"></a> POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) 佇列訊息
 對於在佇列訊息中儲存為 JSON 的 POCO 物件，您可以在 `Queue` 屬性的 `blobPath` 參數中使用指定物件屬性的預留位置。 您也可以使用 [佇列中繼資料屬性名稱](#queuemetadata) 做為預留位置。
 
 下列範例會將 Blob 複製到具有不同副檔名的新 Blob。 佇列訊息就是包含 `BlobName` 與 `BlobNameWithoutExtension` 屬性的 `BlobInformation` 物件。 在 `Blob` 屬性的 Blob 路徑中使用屬性名稱做為預留位置。
@@ -332,7 +332,7 @@ SDK 會使用 [Newtonsoft.Json NuGet](http://www.nuget.org/packages/Newtonsoft.J
 
 如果您需要先在函數中執行部分工作，然後再將 Blob 繫結至物件，您可以在函數主體中使用屬性， [如之前所示的佇列屬性](#ibinder)。
 
-### <a name="a-idblobattributetypesa-types-you-can-use-the-blob-attribute-with"></a><a id="blobattributetypes"></a> 可以與 Blob 屬性搭配使用的型別
+### <a id="blobattributetypes"></a> 可以與 Blob 屬性搭配使用的型別
 `Blob` 屬性能與下列型別搭配使用：
 
 * `Stream` (讀取或寫入，可使用 FileAccess 建構函式參數指定)
@@ -347,7 +347,7 @@ SDK 會使用 [Newtonsoft.Json NuGet](http://www.nuget.org/packages/Newtonsoft.J
 * `CloudBlockBlob` (讀取或寫入)
 * `CloudPageBlob` (讀取或寫入)
 
-## <a name="a-idpoisona-how-to-handle-poison-messages"></a><a id="poison"></a> 如何處理有害訊息
+## <a id="poison"></a> 如何處理有害訊息
 內容會導致函數失敗的訊息稱為「有害訊息」 。 當函數失敗時不會刪除佇列訊息，最後會再度挑選到該訊息，造成重複循環。 SDK 可在有限的反覆次數之後自動中斷循環，或者您可以手動中斷循環。
 
 ### <a name="automatic-poison-message-handling"></a>自動處理有害訊息
@@ -394,14 +394,14 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             }
         }
 
-## <a name="a-idconfiga-how-to-set-configuration-options"></a><a id="config"></a> 如何設定組態選項
+## <a id="config"></a> 如何設定組態選項
 您可以使用 `JobHostConfiguration` 型別來設定下列組態選項：
 
 * 在程式碼中設定 SDK 連接字串。
 * 設定 `QueueTrigger` 設定，例如清除佇列計數上限。
 * 從組態取得佇列名稱。
 
-### <a name="a-idsetconnstraset-sdk-connection-strings-in-code"></a><a id="setconnstr"></a>在程式碼中設定 SDK 連接字串
+### <a id="setconnstr"></a>在程式碼中設定 SDK 連接字串
 在程式碼中設定 SDK 連接字串可讓您在組態檔或環境變數中使用您自己的連接字串名稱，如下面範例所示。
 
         static void Main(string[] args)
@@ -423,7 +423,7 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             host.RunAndBlock();
         }
 
-### <a name="a-idconfigqueueaconfigure-queuetrigger--settings"></a><a id="configqueue"></a>設定 QueueTrigger 設定
+### <a id="configqueue"></a>設定 QueueTrigger 設定
 您可以配置會套用至佇列訊息處理的下列設定：
 
 * 挑選以同時平行執行的佇列訊息數目上限 (預設值為 16)。
@@ -442,7 +442,7 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             host.RunAndBlock();
         }
 
-### <a name="a-idsetnamesincodeaset-values-for-webjobs-sdk-constructor-parameters-in-code"></a><a id="setnamesincode"></a>在程式碼中設定 WebJobs SDK 建構函式參數的值
+### <a id="setnamesincode"></a>在程式碼中設定 WebJobs SDK 建構函式參數的值
 有時候您不想要採取硬式編碼的方式，而是在程式碼中指定佇列名稱、Blob 名稱或容器或資料表名稱。 例如，您可能想要在組態檔或環境變數中指定 `QueueTrigger` 的佇列名稱。
 
 方法是將 `NameResolver` 物件傳入 `JobHostConfiguration` 型別。 在 WebJobs SDK 屬性建構函式參數中包含以百分比 (%) 符號括住的特殊預留位置，然後 `NameResolver` 程式碼會指定實際要用以取代那些預留位置的值。
@@ -476,7 +476,7 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
 
 **注意：** 每次呼叫函式時，都會解析佇列、資料表及 Blob 名稱，但只有在應用程式啟動時才會解析 Blob 容器名稱。 您無法在執行工作時，變更 Blob 容器名稱。
 
-## <a name="a-idmanualahow-to-trigger-a-function-manually"></a><a id="manual"></a>如何手動觸發函數
+## <a id="manual"></a>如何手動觸發函數
 若要手動觸發函式，請在函式的 `JobHost` 物件與 `NoAutomaticTrigger` 屬性上使用 `Call` 或 `CallAsync` 方法，如下列範例所示。
 
         public class Program
@@ -498,7 +498,7 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
             }
         }
 
-## <a name="a-idlogsahow-to-write-logs"></a><a id="logs"></a>如何寫入記錄檔
+## <a id="logs"></a>如何寫入記錄檔
 儀表板會在兩個地方顯示記錄檔：WebJob 的頁面與特定 WebJob 引動過程的頁面。
 
 ![WebJob 頁面中的記錄檔](./media/websites-dotnet-webjobs-sdk-storage-queues-how-to/dashboardapplogs.png)
@@ -558,7 +558,7 @@ SDK 將會呼叫函數最多 5 次以處理佇列訊息。 如果第五次嘗試
 
 如果您想要插入自己的記錄器，請參閱 [這個範例](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Program.cs)。
 
-## <a name="a-iderrorsahow-to-handle-errors-and-configure-timeouts"></a><a id="errors"></a>如何處理錯誤及設定逾時
+## <a id="errors"></a>如何處理錯誤及設定逾時
 WebJobs SDK 也包含 [Timeout](http://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs) 屬性，您可以使用此屬性讓函式在未於指定的時間長度內完成時取消執行。 而如果您想要在於一段指定的時間內有太多錯誤發生時引發警示，則可以使用 `ErrorTrigger` 屬性。 以下是一個 [ErrorTrigger 範例](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Error-Monitoring)。
 
 ```
@@ -577,6 +577,6 @@ public static void ErrorMonitor(
 
 您也可以藉由使用組態參數 (可以是應用程式設定或環境變數名稱)，動態停用和啟用函式來控制是否可以觸發這些函式。 如需範例程式碼，請參閱 [WebJobs SDK 範例儲存機制](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/MiscOperations/Functions.cs)中的 `Disable` 屬性。
 
-## <a name="a-idnextstepsa-next-steps"></a><a id="nextsteps"></a> 後續步驟
+## <a id="nextsteps"></a> 後續步驟
 本指南提供的程式碼範例示範如何處理使用 Azure 佇列的常見案例。 如需 Azure WebJobs 和 WebJobs SDK 的詳細資訊，請參閱 [Azure WebJobs 建議使用的資源](http://go.microsoft.com/fwlink/?linkid=390226)。
 

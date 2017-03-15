@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/30/2016
+ms.date: 03/07/2017
 ms.author: sethm;clemensv
 translationtype: Human Translation
-ms.sourcegitcommit: 05ca343cfdfc602759eb3ea30a7186a0bb47bd74
-ms.openlocfilehash: 3f20a19c212c082aa766cc2bd67e938aaabf715e
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 930b3da630b88eecdec56e86d621daee53070257
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -28,7 +29,7 @@ Azure 事件中樞安全性模型符合下列需求：
 * 可封鎖惡意裝置，避免該裝置將資料傳送到事件中樞。
 
 ## <a name="device-authentication"></a>裝置驗證
-事件中樞安全性模型是以 [共用存取簽章 (SAS)](../service-bus-messaging/service-bus-shared-access-signature-authentication.md) 權杖和「事件發行者」的組合為基礎。 事件發佈者能定義事件中樞的虛擬端點。 發佈者只能用來將訊息傳送到事件中樞。 您無法接收來自發佈者的訊息。
+事件中樞安全性模型是以 [共用存取簽章 (SAS)](../service-bus-messaging/service-bus-sas.md) 權杖和「事件發行者」的組合為基礎。 事件發佈者能定義事件中樞的虛擬端點。 發佈者只能用來將訊息傳送到事件中樞。 您無法接收來自發佈者的訊息。
 
 一般而言，事件中樞會針對每個裝置採用一個發佈者。 系統會將所有傳送到事件中樞之任何發佈行者的訊息排入該事件中樞內的佇列。 發行者會啟用更細緻的存取控制和節流。
 
@@ -103,16 +104,11 @@ SharedAccessSignature sr=contoso&sig=nPzdNN%2Gli0ifrfJwaK4mkK0RqAB%2byJUlt%2bGFm
 若要深入了解事件中樞，請造訪下列主題：
 
 * [事件中樞概觀]
-* [SAS 概觀]
-* [使用事件中樞的完整範例應用程式]
+* [共用存取簽章的概觀]
+* [使用事件中樞的範例應用程式]
 
-[事件中樞概觀]: event-hubs-overview.md
-[使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
-[SAS 概觀]: ../service-bus-messaging/service-bus-sas-overview.md
-
-
-
-
-<!--HONumber=Dec16_HO1-->
+[事件中樞概觀]: event-hubs-what-is-event-hubs.md
+[使用事件中樞的範例應用程式]: https://github.com/Azure/azure-event-hubs/tree/master/samples
+[共用存取簽章的概觀]: ../service-bus-messaging/service-bus-sas.md
 
 

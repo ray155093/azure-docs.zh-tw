@@ -1,23 +1,11 @@
 ---
-title: "建立用於 MongoDB 應用程式的 DocumentDB 帳戶 | Microsoft Docs"
-description: "使用此教學課程來了解如何建立具有 MongoDB 通訊協定支援的 DocumentDB 帳戶，現在可供預覽。"
-keywords: "mongodb 應用程式, mongodb 應用程式"
-services: documentdb
-author: AndrewHoh
-manager: jhubbard
-editor: 
-documentationcenter: 
-ms.assetid: 413f3ae1-a68e-43be-b0d7-fa2987644f3e
-ms.service: documentdb
-ms.workload: data-services
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: article
-ms.date: 11/24/2016
-ms.author: anhoh
+redirect_url: https://docs.microsoft.com/azure/documentdb/documentdb-create-account
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 9b83a0878f45bf3a79d00ad77965308d95f33d28
-ms.openlocfilehash: 797ee3b1209e5abf545f0614c408d94391a29c8b
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: dbd15e0d2b1bc3b5f559d19961e3c45b5079e1c4
+ms.lasthandoff: 03/08/2017
+
 
 
 ---
@@ -25,9 +13,9 @@ ms.openlocfilehash: 797ee3b1209e5abf545f0614c408d94391a29c8b
 # <a name="create-a-documentdb-account-for-use-with-mongodb-apps"></a>建立用於 MongoDB 應用程式的 DocumentDB 帳戶
 DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之應用程式的資料存放區。 若要使用這項功能，您需要 Azure 帳戶和 DocumentDB 帳戶。 本教學課程將逐步引導您完成建立用於 MongoDB 應用程式之 DocumentDB 帳戶的程序。 
 
-您可以使用 Azure 入口網站或使用 Azure CLI 搭配 Azure Resource Manager 範本，來建立支援 MongoDB 的 DocumentDB 帳戶。 本文說明如何使用 Azure 入口網站來建立支援 MongoDB 的 DocumentDB 帳戶。 若要使用 Azure CLI 搭配 Azure Resource Manager 來建立帳戶，請參閱[自動建立支援 MongoDB 的 DocumentDB 帳戶](documentdb-automation-resource-manager-cli.md#quick-create-documentdb-with-mongodb-api-account)。
+您可以使用 Azure 入口網站或使用 Azure CLI 搭配 Azure Resource Manager 範本，來建立支援 MongoDB 的 DocumentDB 帳戶。 本文說明如何使用 Azure 入口網站來建立支援 MongoDB 的 DocumentDB 帳戶。 若要使用 Azure CLI 搭配 Azure Resource Manager 來建立帳戶，請參閱[使用 Azure CLI 2.0 自動進行 Azure DocumentDB 帳戶管理](documentdb-automation-resource-manager-cli.md)。
 
-## <a name="prerequisite"></a>必要條件
+## <a name="prerequisite"></a>先決條件
 一個 Azure 帳戶。 如果您沒有 Azure 帳戶，可以立即建立一個[免費的 Azure 帳戶](https://azure.microsoft.com/free/)。
 ## <a name="create-a-documentdb-account"></a>建立 DocumentDB 帳戶
 
@@ -71,9 +59,4 @@ DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之應用程式的資
 
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [連接](documentdb-connect-mongodb-account.md) 到具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

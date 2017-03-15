@@ -14,13 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 11/16/2016
 ms.author: arramac
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2d833a559b72569983340972ba3b905b9e42e61d
-ms.openlocfilehash: f78c0fc1959f72164508af9d8945744b67fac68b
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 60219a9c78884e01fcf46e18ac03e2a955787bc5
+ms.lasthandoff: 03/07/2017
 
 
 ---
-# <a name="working-with-geospatial-data-in-azure-documentdb"></a>使用 Azure DocumentDB 中的地理空間資料
+# <a name="working-with-geospatial-and-geojson-location-data-in-documentdb"></a>使用 DocumentDB 中的地理空間和 GeoJSON 位置資料
 本文將介紹 [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/)中的地理空間功能。 閱讀本文後，您將能夠回答下列問題：
 
 * 如何儲存 Azure DocumentDB 中的空間資料？
@@ -148,7 +150,7 @@ DocumentDB 支援下列開放地理空間協會 (OGC) 的內建函數，以用�
 
 <table>
 <tr>
-  <td><strong>使用量</strong></td>
+  <td><strong>用法</strong></td>
   <td><strong>說明</strong></td>
 </tr>
 <tr>
@@ -387,10 +389,5 @@ DocumentDB.NET SDK 也是虛設常式方法 `Distance()` 和 `Within()` 的提�
 * 在 [DocumentDB 查詢遊樂場](http://www.documentdb.com/sql/demo#geospatial)
 * 深入了解 [DocumentDB 查詢](documentdb-sql-query.md)
 * 深入了解 [DocumentDB 索引編製原則](documentdb-indexing-policies.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

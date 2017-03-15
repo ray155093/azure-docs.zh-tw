@@ -12,13 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2017
+ms.date: 03/06/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
-ms.openlocfilehash: ecee44194c32569f1d50001543ef4b37ecdb5eb3
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 0868eb2269b3675a132e106cd66740b0ce52b00a
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -72,11 +72,11 @@ ms.lasthandoff: 02/28/2017
         ![管理群組設定](./media/log-analytics-windows-agents/oms-mma-om-setup01.png)![代理程式動作帳戶](./media/log-analytics-windows-agents/oms-mma-om-setup02.png)
 
 6. 在 [準備好安裝] 頁面上，檢閱您的選擇，然後按一下 [安裝] 。
-7. 在 [設定成功] 頁面中，按一下 [完成] 。
+7. 在 [組態完成] 頁面中，按一下 [完成] 。
 8. 完成時，[Microsoft 監視代理程式] 會出現在 [控制台] 中。 您可以檢閱您的設定，並確認代理程式已連接到 Operational Insights (OMS)。 當連接到 OMS，代理程式會顯示訊息︰**Microsoft Monitoring Agent 已成功連接到 Microsoft Operations Management Suite 服務。**
 
 ## <a name="install-the-agent-using-the-command-line"></a>使用命令列安裝代理程式
-- 修改，然後搭配使用下列範例與命令列來安裝代理程式。
+- 修改，然後搭配使用下列範例與命令列來安裝代理程式。 這個範例會執行完全無訊息安裝。
 
     >[!NOTE]
     如果您想要升級代理程式，您需要使用 Log Analytics 指令碼 API。 請參閱下一節來升級代理程式。
@@ -84,6 +84,8 @@ ms.lasthandoff: 02/28/2017
     ```
     MMASetup-AMD64.exe /Q:A /R:N /C:"setup.exe /qn ADD_OPINSIGHTS_WORKSPACE=1 OPINSIGHTS_WORKSPACE_ID=<your workspace id> OPINSIGHTS_WORKSPACE_KEY=<your workspace key> AcceptEndUserLicenseAgreement=1"
     ```
+
+代理程式使用 `/c` 命令將 IExpress 用作其自我解壓縮程式。 您可以在 [IExpress 的命令列參數](https://support.microsoft.com/help/197147/command-line-switches-for-iexpress-software-update-packages)中查看命令列參數，然後更新範例以符合您的需求。
 
 ## <a name="upgrade-the-agent-and-add-a-workspace-using-a-script"></a>使用指令碼升級代理程式和加入工作區
 您可以參考下列 PowerShell 範例，使用 Log Analytics 指令碼 API 來升級代理程式和加入工作區。

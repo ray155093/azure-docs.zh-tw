@@ -12,12 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 02/19/2017
+ms.date: 03/06/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: a13850cf09424f7e4402204d97d1f6755d691550
-ms.openlocfilehash: 0d3f6dc80141d26cace60f177b35d527fd294261
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: c0cf8a3d4e257f88f81fca9a6a1161c158b335b8
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -30,8 +30,8 @@ ms.lasthandoff: 02/22/2017
 
 * 一個 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * 媒體服務帳戶。 若要建立媒體服務帳戶，請參閱[如何建立媒體服務帳戶](media-services-portal-create-account.md)。
-* .NET Framework 4.0 或更新版本
-* Visual Studio 2010 SP1 (Professional、Premium、Ultimate 或 Express) 或較新版本。
+* .NET Framework 4.0 或更新版本。
+* Visual Studio。
 * 了解[如何使用 Azure Functions](../azure-functions/functions-overview.md)。 另請檢閱 [Azure Functions HTTP 和 Webhook 繫結](../azure-functions/functions-bindings-http-webhook.md)。
 
 本主題說明如何
@@ -46,7 +46,7 @@ ms.lasthandoff: 02/22/2017
     
 * 將 Webhook 新增至您的編碼工作，並指定這個 Webhook 所回應的 Webhook URL 和秘密金鑰。 在如下所示的範例中，建立編碼工作的程式碼是主控台應用程式。
 
-## <a name="getting-webhook-notifications"></a>取得 Webhook 通知
+## <a name="setting-up-webhook-notification-azure-functions"></a>設定「webhook 通知」Azure 函式
 
 本節的程式碼示範如何實作做為 Webhook 的 Azure Function。 在此範例中，此函式會接聽來自媒體服務通知的 Webhook 回呼，並在作業完成之後發佈輸出資產。
 
@@ -56,7 +56,20 @@ Webhook 預期簽署金鑰 (認證) 會符合您在設定通知端點時所傳�
 
 您可以在[這裡](https://github.com/Azure-Samples/media-services-dotnet-functions-integration/tree/master/Notification_Webhook_Function)找到下列媒體服務 .NET Azure Function 的定義。
 
-下列程式碼清單會顯示三個與 Azure Function 相關聯的檔案定義︰function.json、project.json 和 run.csx。
+下列程式碼清單會顯示 Azure 函式參數的定義以及與 Azure 函式相關聯的三個檔案︰function.json、project.json 和 run.csx。
+
+### <a name="application-settings"></a>應用程式設定 
+
+下表顯示本節所定義的 Azure 函式所使用的參數。 
+
+|名稱|定義|範例| 
+|---|---|---|
+|AMSAccount|AMS 帳戶的名稱。 |juliakomediaservices|
+|AMSKey |AMS 帳戶的金鑰。 | JUWJdDaOHQQqsZeiXZuE76eDt2SO+YMJk25Lghgy2nY=|
+|MediaServicesStorageAccountName |與 AMS 帳戶相關聯的儲存體帳戶名稱。| storagepkeewmg5c3peq|
+|MediaServicesStorageAccountKey |與 AMS 帳戶相關聯的儲存體帳戶金鑰。|
+|SigningKey |簽署金鑰。| j0txf1f8msjytzvpe40nxbpxdcxtqcgxy0nt|
+|WebHookEndpoint | 一個 webhook 端點位址。 | https://juliakofuncapp.azurewebsites.net/api/Notification_Webhook_Function?code=iN2phdrTnCxmvaKExFWOTulfnm4C71mMLIy8tzLr7Zvf6Z22HHIK5g==。|
 
 ### <a name="functionjson"></a>function.json
 
@@ -410,7 +423,6 @@ project.json 檔案包含相依性。
                 processor,
                 "Adaptive Streaming",
                 TaskOptions.None);
-
 
                 // Specify the input asset to be encoded.
                 task.InputAssets.Add(newAsset);

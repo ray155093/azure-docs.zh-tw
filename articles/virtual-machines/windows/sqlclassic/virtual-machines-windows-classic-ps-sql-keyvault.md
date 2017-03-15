@@ -1,5 +1,5 @@
 ---
-title: "在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)"
+title: "SQL VM 適用的 Azure Key Vault 的自動組態 (傳統) | Microsoft 文件"
 description: "了解如何自動化 SQL Server 加密的組態，以用於 Azure 金鑰保存庫。 本主題說明如何將「Azure 金鑰保存庫整合」與在傳統部署模型中建立的 SQL Server 虛擬機器搭配使用。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,13 +15,14 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 02/17/2017
 ms.author: jroth
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6a5724d4291a0b1878d528a59f693c046ba960f9
-ms.openlocfilehash: d7133180f4fc9263894c522fcaacaeea4a985847
-
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 763b8b57c5914e7be39256d58de1b6769dbbaf9d
+ms.lasthandoff: 03/07/2017
 
 ---
-# <a name="configure-azure-key-vault-integration-for-sql-server-on-azure-vms-classic"></a>在 Azure VM 上設定 SQL Server 的 Azure 金鑰保存庫整合 (傳統)
+# <a name="configure-azure-key-vault-integration-for-sql-server-on-azure-virtual-machines-classic"></a>在 Azure 虛擬機器上設定 SQL Server 的 Azure Key Vault 整合 (傳統)
 > [!div class="op_single_selector"]
 > * [資源管理員](../sql/virtual-machines-windows-ps-sql-keyvault.md)
 > * [傳統](virtual-machines-windows-classic-ps-sql-keyvault.md)
@@ -78,10 +79,5 @@ ms.openlocfilehash: d7133180f4fc9263894c522fcaacaeea4a985847
 SQL IaaS 代理程式延伸會使用這個新的組態更新 SQL VM。
 
 [!INCLUDE [AKV Integration Next Steps](../../../../includes/virtual-machines-sql-server-akv-next-steps.md)]
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

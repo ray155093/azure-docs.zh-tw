@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 03/08/2017
 ms.author: jingwang
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 9e61eeb9ec7895b4f436534a1fd8b2cb608cf613
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -32,50 +33,50 @@ ms.openlocfilehash: 9e61eeb9ec7895b4f436534a1fd8b2cb608cf613
 
 本文示範如何使用 Data Factory 複製精靈在 15 分鐘內將 1 TB 資料從 Azure Blob 儲存體載入至 Azure SQL 資料倉儲，而且輸送量超過 1.2 GBps。
 
-本文提供使用複製精靈將資料移到 Azure SQL 資料倉儲的逐步指示。 
+本文提供使用複製精靈將資料移到 Azure SQL 資料倉儲的逐步指示。
 
 > [!NOTE]
-> 如需從 Azure SQL 資料倉儲來回移動資料之 Data Factory 功能的一般資訊，請參閱[使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料](data-factory-azure-sql-data-warehouse-connector.md)一文。 
-> 
+> 如需從 Azure SQL 資料倉儲來回移動資料之 Data Factory 功能的一般資訊，請參閱[使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料](data-factory-azure-sql-data-warehouse-connector.md)一文。
+>
 > 您也可以使用 Azure 入口網站、Visual Studio、PowerShell 等來建置管線。請參閱 [教學課程：將資料從 Azure Blob 複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得快速逐步解說，其中包含如何使用 Azure Data Factory 中複製活動的逐步指示。  
-> 
-> 
+>
+>
 
 ## <a name="prerequisites"></a>必要條件
 * Azure Blob 儲存體︰這項實驗使用 Azure Blob 儲存體 (GRS) 來儲存 TPC-H 測試資料集。  如果您沒有 Azure 儲存體帳戶，請參閱[如何建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。
 * [TPC-H](http://www.tpc.org/tpch/) 資料︰我們將使用 TPC-H 作為測試資料集。  若要這麼做，您必須使用 TPC-H 工具組中的 `dbgen`，以協助您產生資料集。  您可以從 [TPC Tools](http://www.tpc.org/tpc_documents_current_versions/current_specifications.asp) 下載 `dbgen` 的原始程式碼並自行進行編譯，或者從 [GitHub](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/TPCHTools) 下載編譯過的二進位檔。  使用下列命令執行 dbgen.exe，以針對分散到 10 個檔案的 `lineitem` 資料表產生 1 TB 一般檔案：
-  
+
   * `Dbgen -s 1000 -S **1** -C 10 -T L -v`
   * `Dbgen -s 1000 -S **2** -C 10 -T L -v`
   * …
-  * `Dbgen -s 1000 -S **10** -C 10 -T L -v` 
-    
+  * `Dbgen -s 1000 -S **10** -C 10 -T L -v`
+
     現在，將產生的檔案複製到 Azure Blob。  請參閱[使用 Azure Data Factory 將資料移進和移出內部部署檔案系統](data-factory-onprem-file-system-connector.md)，以了解如何使用 ADF 複製執行這樣作業。    
 * Azure SQL 資料倉儲︰這項實驗會將資料載入至使用 6,000 個 DWU 所建立的 Azure SQL 資料倉儲
-  
+
     如需如何建立 SQL 資料倉儲資料庫的詳細指示，請參閱[建立 Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-get-started-provision.md)。  若要使用 Polybase 讓 SQL 資料倉儲具有最佳可能載入效能，請選擇 [效能] 設定中允許的最大資料倉儲單位 (DWU) 數目，即 6,000 個 DWU。
-  
+
   > [!NOTE]
   > 從 Azure Blob 載入時，資料載入效能直接與您在 SQL 資料倉儲上設定的 DWU 數目成正比︰
-  > 
-  > 將 1 TB 載入至 1,000 個 DWU SQL 資料倉儲需要 87 分鐘 (~200MBps 輸送量) 將 1 TB 載入至 2,000 個 DWU SQL 資料倉儲需要 46 分鐘 (~380MBps 輸送量) 將 1 TB 載入至 6,000 個 DWU SQL 資料倉儲需要 14 分鐘 (~1.2GBps 輸送量) 
-  > 
-  > 
-  
+  >
+  > 將 1 TB 載入至 1,000 個 DWU SQL 資料倉儲需要 87 分鐘 (~200MBps 輸送量) 將 1 TB 載入至 2,000 個 DWU SQL 資料倉儲需要 46 分鐘 (~380MBps 輸送量) 將 1 TB 載入至 6,000 個 DWU SQL 資料倉儲需要 14 分鐘 (~1.2GBps 輸送量)
+  >
+  >
+
     若要建立具有 6,000 個 DWU 的 SQL 資料倉儲，請將 [效能] 滑桿移到最右邊︰
-  
+
     ![效能滑桿](media/data-factory-load-sql-data-warehouse/performance-slider.png)
-  
+
     針對未設定 6,000 個 DWU 的現有資料庫，您可以使用 Azure 入口網站相應進行增加。  瀏覽至 Azure 入口網站中的資料庫，而且下圖所顯示的 [概觀] 面板中會有 [調整] 按鈕：
-  
+
     ![[調整] 按鈕](media/data-factory-load-sql-data-warehouse/scale-button.png)    
-  
+
     按一下 [調整] 按鈕開啟下列面板，並將滑桿移到最大值，然後按一下 [儲存] 按鈕。
-  
+
     ![[調整] 對話方塊](media/data-factory-load-sql-data-warehouse/scale-dialog.png)
-  
+
     這項實驗會將資料載入至使用 `xlargerc` 資源類別的 Azure SQL 資料倉儲。
-  
+
     若要達到最佳可能輸送量，則需要使用屬於 `xlargerc` 資源類別的 SQL 資料倉儲使用者來執行複製。  遵循[變更使用者資源類別範例](../sql-data-warehouse/sql-data-warehouse-develop-concurrency.md#change-a-user-resource-class-example)，了解如何執行這項作業。  
 * 執行下列 DDL 陳述式，以在 Azure SQL 資料倉儲資料庫中建立目的地資料表結構描述︰
 
@@ -109,27 +110,27 @@ ms.openlocfilehash: 9e61eeb9ec7895b4f436534a1fd8b2cb608cf613
 
 ## <a name="launch-copy-wizard"></a>啟動複製精靈
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下左上角的 [+ 新增]，並按一下 [智慧 + 分析]，然後按一下 [Data Factory]。 
+2. 按一下左上角的 [+ 新增]，並按一下 [智慧 + 分析]，然後按一下 [Data Factory]。
 3. 在 [ **新增 Data Factory** ] 刀鋒視窗中：
-   
+
    1. 輸入 **LoadIntoSQLDWDataFactory** 作為 [名稱]。
        Azure Data Factory 的名稱在全域必須是唯一的。 如果您收到錯誤： **Data Factory 名稱 “LoadIntoSQLDWDataFactory” 無法使用**，請變更 Data Factory 名稱 (例如 yournameLoadIntoSQLDWDataFactory)，然後試著重新建立。 請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md) 主題，以了解 Data Factory 成品的命名規則。  
    2. 選取您的 Azure **訂用帳戶**。
-   3. 針對資源群組，請執行下列其中一個步驟︰ 
+   3. 針對資源群組，請執行下列其中一個步驟︰
       1. 選取 [使用現有的] 以選取現有的資源群組。
       2. 選取 [建立新的] 以輸入資源群組的名稱。
    4. 選取 Data Factory 的 [位置]。
    5. 選取刀鋒視窗底部的 [釘選到儀表板] 核取方塊。  
    6. 按一下 [建立] 。
 4. 建立完成之後，您會看到 [Data Factory] 刀鋒視窗，如下圖所示：
-   
+
    ![Data Factory 首頁](media/data-factory-load-sql-data-warehouse/data-factory-home-page-copy-data.png)
-5. 在 Data Factory 首頁，按一下 [資料複製] 圖格以啟動 [複製精靈]。 
-   
+5. 在 Data Factory 首頁，按一下 [資料複製] 圖格以啟動 [複製精靈]。
+
    > [!NOTE]
    > 如果您看到網頁瀏覽器停留在「授權中...」，請停用/取消核取 [封鎖第三方 Cookie 和站台資料] 設定 (或) 將它保持啟用並為 **login.microsoftonline.com** 建立例外狀況，然後再次嘗試啟動精靈。
-   > 
-   > 
+   >
+   >
 
 ## <a name="step-1-configure-data-loading-schedule"></a>步驟 1︰設定資料載入排程
 第一個步驟是設定資料載入排程。  
@@ -168,7 +169,7 @@ ms.openlocfilehash: 9e61eeb9ec7895b4f436534a1fd8b2cb608cf613
 
     ![複製精靈 - 選取目的地資料存放區](media/data-factory-load-sql-data-warehouse/select-destination-data-store.png)
 
-2. 填寫 Azure SQL 資料倉儲的連接資訊。  請務必指定本身為 `xlargerc` 角色成員的使用者 (如需詳細指示，請參閱**必要條件**一節)，然後按 [下一步]。 
+2. 填寫 Azure SQL 資料倉儲的連接資訊。  請務必指定本身為 `xlargerc` 角色成員的使用者 (如需詳細指示，請參閱**必要條件**一節)，然後按 [下一步]。
 
     ![複製精靈 - 目的地連接資訊](media/data-factory-load-sql-data-warehouse/destination-connection-info.png)
 
@@ -187,7 +188,7 @@ ms.openlocfilehash: 9e61eeb9ec7895b4f436534a1fd8b2cb608cf613
 ![複製精靈 - 結構描述對應頁面](media/data-factory-load-sql-data-warehouse/performance-settings-page.png)
 
 ## <a name="step-5-deploy-and-monitor-load-results"></a>步驟 5︰部署和監視載入結果
-1. 按一下 [完成] 按鈕進行部署。 
+1. 按一下 [完成] 按鈕進行部署。
 
     ![複製精靈 - 摘要頁面](media/data-factory-load-sql-data-warehouse/summary-page.png)
 
@@ -209,15 +210,9 @@ ms.openlocfilehash: 9e61eeb9ec7895b4f436534a1fd8b2cb608cf613
 * 若要更快的載入速度，請考慮使用暫時性資料的堆積。
 * 在您完成載入 Azure SQL 資料倉儲之後，請建立統計資料。
 
-如需詳細資料，請參閱 [Azure SQL 資料倉儲最佳作法](../sql-data-warehouse/sql-data-warehouse-best-practices.md)。 
+如需詳細資料，請參閱 [Azure SQL 資料倉儲最佳作法](../sql-data-warehouse/sql-data-warehouse-best-practices.md)。
 
 ## <a name="next-steps"></a>後續步驟
-* [Data Factory 複製精靈](data-factory-copy-wizard.md) - 本文提供複製精靈的詳細資料。 
+* [Data Factory 複製精靈](data-factory-copy-wizard.md) - 本文提供複製精靈的詳細資料。
 * [複製活動效能和微調指南](data-factory-copy-activity-performance.md) - 本文包含參考效能測量和微調指南。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
