@@ -18,6 +18,7 @@ ms.author: kasing
 translationtype: Human Translation
 ms.sourcegitcommit: e64449991bc28427d8f559ed13c3bdf9160488db
 ms.openlocfilehash: 92211cc98b6d8394ff04bc7c2fe33f7bd710713b
+ms.lasthandoff: 01/26/2017
 
 
 ---
@@ -100,7 +101,7 @@ azure vm list-usage -l "<Your VNET or Deployment's Azure region"
 
 如果您想要移轉至 Resource Manager 部署模型中的現有虛擬網路，請使用下列命令。
 
-    azure service deployment prepare-migration <serviceName> <deploymentName> existing <destinationVNETResourceGroupName> subnetName <vnetName>
+    azure service deployment prepare-migration <serviceName> <deploymentName> existing <destinationVNETResourceGroupName> <subnetName> <vnetName>
 
 準備作業成功之後，您可以瀏覽詳細資訊輸出，以取得 VM 的移轉狀態並確保 VM 處於 `Prepared` 狀態。
 
@@ -159,10 +160,5 @@ azure vm list-usage -l "<Your VNET or Deployment's Azure region"
 ## <a name="next-steps"></a>後續步驟
 * [平台支援的 IaaS 資源移轉 (從傳統移轉至 Resource Manager)](virtual-machines-windows-migration-classic-resource-manager.md)
 * [平台支援的從傳統移轉至 Resource Manager 的技術深入探討](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

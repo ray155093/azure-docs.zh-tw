@@ -75,9 +75,9 @@ ms.lasthandoff: 02/22/2017
    
     ![儀表板的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s314_office-365-tenant-appear-in-azure.png)
 
-### <a name="a-namestep2astep-2-change-the-directory-associated-with-the-azure-subscription"></a><a name="Step2"></a>步驟 2：變更與 Azure 訂用帳戶相關聯的目錄
+### <a name="Step2"></a>步驟 2：變更與 Azure 訂用帳戶相關聯的目錄
    
-1. 選取 [Settings] (設定) 。
+1. 選取 [Settings] \(設定) 。
    
     ![Azure 傳統入口網站設定圖示的螢幕擷取畫面](./media/billing-add-office-365-tenant-to-azure-subscription/s315_azure-classic-portal-settings-icon.png)
    

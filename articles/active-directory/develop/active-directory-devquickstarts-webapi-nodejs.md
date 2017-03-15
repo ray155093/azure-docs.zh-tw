@@ -1,5 +1,5 @@
 ---
-title: "Azure AD NodeJS 入門 | Microsoft Docs"
+title: "Azure AD Node.js 入門 | Microsoft Docs"
 description: "如何建立可整合 Azure AD 以進行驗證的 Node.js REST Web API。"
 services: active-directory
 documentationcenter: nodejs
@@ -15,90 +15,101 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: 3e0bb32a6c60011d71606c896cc506f430bc3c27
-ms.openlocfilehash: 8096a0f8c3797d7945a274e79ed253896a0fdab2
+ms.sourcegitcommit: 682f6d0919df20cd3643abf04e1d5192be116399
+ms.openlocfilehash: f20c2c2c37692d439ca8e023cf9d5a48cd42c973
+ms.lasthandoff: 02/24/2017
 
 
 ---
-# <a name="getting-started-with-web-api-for-node"></a>開始使用節點的 WEB API
+# <a name="get-started-with-web-apis-for-nodejs"></a>開始使用適用於 Node.js 的 Web API
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-**Passport** 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且模組化的 Passport 放入任何 Express 或 Resitify Web 應用程式。 一組完整的策略可支援使用使用者名稱和密碼、Facebook、Twitter 及其他等驗證。 我們已為 Microsoft Azure Active Directory 開發一項策略。 我們將安裝此模組，然後加入 Microsoft Azure Active Directory `passport-azure-ad` 外掛程式。
+*Passport* 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且模組化的 Passport 放入任何 Express 架構或 Restify Web 應用程式。 一組完整的策略可支援使用使用者名稱和密碼、Facebook、Twitter 及其他等驗證。 我們已為 Microsoft Azure Active Directory (Azure AD) 開發一項策略。 我們將安裝此模組，然後加入 Microsoft Azure Active Directory `passport-azure-ad` 外掛程式。
 
-若要執行此作業，您需要執行下列動作：
+若要這樣做，您需要：
 
-1. 向 Azure AD 註冊應用程式
-2. 設定您的 App 來使用 Passport 的 azure-ad-passport 外掛程式。
-3. 設定用戶端應用程式呼叫待辦事項清單 Web API
+1. 向 Azure AD 註冊應用程式。
+2. 設定您的應用程式來使用 Passport 的 `passport-azure-ad` 外掛程式。
+3. 設定用戶端應用程式呼叫待辦事項清單 Web API。
 
 本教學課程的程式碼保留在 [GitHub](https://github.com/Azure-Samples/active-directory-node-webapi)。
 
 > [!NOTE]
-> 本文不涵蓋如何使用 Azure AD B2C 實作登入、註冊和管理設定檔。  而會著重在如何在使用者已通過驗證後呼叫 Web API。  如果您還沒進行，您應該從[如何與 Azure Active Directory 整合文件](active-directory-how-to-integrate.md)著手，以了解 Azure Active Directory 的基本概念。
-> 
-> 
+> 本文不涵蓋如何使用 Azure AD B2C 實作登入、註冊或管理設定檔。 而會著重在如何在使用者已通過驗證後呼叫 Web API。  我們建議您從[如何與 Azure Active Directory 整合文件](active-directory-how-to-integrate.md)著手，以了解 Azure Active Directory 的基本概念。
+>
+>
 
-我們已在 MIT 授權底下的 GitHub 中發行這個執行範例的原始程式碼，因此您可以隨意複製 (或更棒的是您可以分散出去！) 和提供意見反應及提取要求。
+我們已在 MIT 授權底下的 GitHub 中發行這個執行範例的所有原始程式碼，因此您可以隨意複製 (或更棒的是您可以分散出去) 和提供意見反應及提取要求。
 
 ## <a name="about-nodejs-modules"></a>關於 Node.js 模組
-我們將在本逐步解說中使用 Node.js 模組。 模組是指可載入的 JavaScript 封裝，可為您的應用程式提供特定功能。 您通常可以使用 NPM 安裝目錄中的 Node.js NPM 命令列工具來安裝模組，但核心 Node.js 封裝中已隨附了一些模組 (例如 HTTP 模組)。
-已安裝的模組會儲存在 Node.js 安裝目錄的根目錄下的 node_modules 目錄。 node_modules 目錄下的每個模組都會維護它自己的 node_modules 目錄 (其中包含它所依賴的任何模組)，且每個必要模組都會有一個 node_modules 目錄。 這個遞迴目錄結構表示相依性鏈結。
+我們會在本逐步解說中使用 Node.js 模組。 模組是指可載入的 JavaScript 封裝，可為您的應用程式提供特定功能。 您通常可以使用 NPM 安裝目錄中的 Node.js NPM 命令列工具來安裝模組。 但是，核心 Node.js 封裝中已包含一些模組 (例如 HTTP 模組)。
 
-此相依性鏈結結構會導致較高的應用程式使用量，但它可以保證已符合所有相依性，而且用於開發的模組版本也會用於生產環境中。 這可讓實際執行的應用程式行為更容易預測，並防止可能會影響使用者的版本控制問題。
+已安裝的模組會儲存在 Node.js 安裝目錄的根目錄下的 **node_modules** 目錄。 **node_modules** 目錄下的每個模組都會維護它自己的 **node_modules** 目錄，其中包含它所依賴的任何模組。 此外，每個必要模組都有**node_modules** 目錄。 這個遞迴目錄結構表示相依性鏈結。
 
-## <a name="1-register-a-azure-ad-tenant"></a>1.註冊 Azure AD 租用戶
-若要使用此範例，您需要 Azure Active Directory 租用戶。 如果您不確定什麼是租用戶或如何取得租用戶，請參閱[如何取得 Azure AD 租用戶](active-directory-howto-tenant.md)。
+此相依性鏈結結構會導致較高的應用程式使用量。 但它也會保證已符合所有相依性，而且用於開發的模組版本也會用於生產環境中。 這可讓實際執行的應用程式行為更容易預測，並防止可能會影響使用者的版本控制問題。
 
-## <a name="2-create-an-application"></a>2.建立應用程式
-您現在需要在您的目錄中建立應用程式，以提供一些必要資訊給 Azure AD，讓它與應用程式安全地通訊。  在此案例中，因為用戶端應用程式和 Web API 會組成一個邏輯應用程式，所以將由單一 **應用程式識別碼** 表示。  如果要建立應用程式，請遵循 [這些指示](active-directory-how-applications-are-added.md)。 如果您想建置企業營運應用程式， [這些額外的指示可能很實用](../active-directory-applications-guiding-developers-for-lob-applications.md)。
+## <a name="step-1-register-an-azure-ad-tenant"></a>步驟 1：註冊 Azure AD 租用戶
+若要使用這個範例，您需要 Azure Active Directory 租用戶。 如果您不確定什麼是租用戶或如何取得租用戶，請參閱[如何取得 Azure AD 租用戶](active-directory-howto-tenant.md)。
 
-請務必：
+## <a name="step-2-create-an-application"></a>步驟 2：建立應用程式
+接下來，在您的目錄中建立應用程式，以提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。  在此案例中，因為用戶端應用程式和 Web API 會組成一個邏輯應用程式，所以由單一**應用程式識別碼**表示。  如果要建立應用程式，請遵循 [這些指示](active-directory-how-applications-are-added.md)。 如果您要建置企業營運應用程式，[這些額外的指示可能很實用](../active-directory-applications-guiding-developers-for-lob-applications.md)。
+
+若要建立應用程式：
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 在頂端列上按一下您的帳戶，然後在 [目錄] 清單底下，選擇您要註冊應用程式的 Active Directory 租用戶。
-3. 按一下左側瀏覽區中的 [更多服務]，然後選擇 [Azure Active Directory]。
-4. 按一下 [應用程式註冊]，然後選擇 [新增]。
-5. 遵照提示進行，並建立新的 **Web 應用程式和/或 WebAPI**。
-  * 應用程式的 [ **名稱** ] 將對使用者說明您的應用程式
-  * [ **登入 URL** ] 是指應用程式的基底 URL。  範例程式碼的預設值是 `https://localhost:8080`。
-  * [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。  慣例會使用 `https://<tenant-domain>/<app-name>`，例如：`https://contoso.onmicrosoft.com/my-first-aad-app`
-6. 完成註冊後，AAD 會為您的應用程式指派唯一的應用程式識別碼。  您會在後續章節中用到這個值，所以請從應用程式頁面中複製此值。
-7. 從 [設定] 頁面建立應用程式的 [金鑰]，然後複製下來。  稍後您將會用到此資訊。
 
-## <a name="3-download-nodejs-for-your-platform"></a>3.下載適用於您平台的 node.js
+2. 在頂端功能表上，選取您的帳戶。 然後，在 [目錄] 清單下，選擇您要註冊應用程式的 Active Directory 租用戶。
+
+3. 在左側功能表中選取 [更多服務]，然後選取 [Azure Active Directory]。
+
+4. 選取 [應用程式註冊]，然後選取 [新增]。
+
+5. 遵照提示建立 **Web 應用程式和/或 Web API**。
+
+      * 應用程式的 [名稱] 對使用者說明您的應用程式。
+
+      * [ **登入 URL** ] 是指應用程式的基底 URL。  範例程式碼的預設 URL 是 `https://localhost:8080`。
+
+      * [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。 慣例是使用 `https://<tenant-domain>/<app-name>`，例如：`https://contoso.onmicrosoft.com/my-first-aad-app`。
+
+6. 註冊之後，Azure AD 會指派唯一的應用程式識別碼給您的應用程式。 您會在後續章節中用到這個值，所以請從應用程式頁面中複製此值。
+
+7. 從 [設定] 頁面建立應用程式的 [金鑰]，然後複製在某處。 稍後您將會用到此資訊。
+
+## <a name="step-3-download-nodejs-for-your-platform"></a>步驟 3：下載您的平台適用的 Node.js
 若要成功使用此範例，您必須具備已成功安裝的 Node.js。
 
 從 [http://nodejs.org](http://nodejs.org)安裝 Node.js。
 
-## <a name="4-install-mongodb-on-to-your-platform"></a>4.在您的平台上安裝 MongoDB
-若要成功使用此範例，您必須具備已成功安裝的 MongoDB。 我們將會使用 MongoDB 讓 REST API 得以在不同伺服器執行個體之間持續使用。
+## <a name="step-4-install-mongodb-on-your-platform"></a>步驟 4：在您的平台上安裝 MongoDB
+若要成功使用此範例，您必須具備已成功安裝的 MongoDB。 您可使用 MongoDB，讓 REST API 得以在不同伺服器執行個體之間持續使用。
 
 從 [http://mongodb.org](http://www.mongodb.org)安裝 MongoDB。
 
 > [!NOTE]
-> 本逐步解說假設您會使用 MongoDB 的預設安裝和伺服器端點，在撰寫本文時為：mongodb://localhost
-> 
-> 
+> 本逐步解說假設您會使用 MongoDB 的預設安裝和伺服器端點，在撰寫本文時為 mongodb://localhost。
+>
+>
 
-## <a name="5-install-the-restify-modules-in-to-your-web-api"></a>5.在您的 Web API 上安裝 Restify 模組
-我們將會使用 Resitfy 來建置 REST API。 Restify 是衍生自 Express 的最小且具彈性的 Node.js 應用程式架構，其中包含一組強大功能除了可用來建立連線外，還可以用來建置 REST API。
+## <a name="step-5-install-the-restify-modules-in-your-web-api"></a>步驟 5：在您的 Web API 中安裝 Restify 模組
+我們會使用 Resitfy 來建置 REST API。 Restify 是衍生自 Express 的最小且具彈性的 Node.js 應用程式架構。 它有一組強大的功能，可在 Connect 之上建置 REST API。
 
 ### <a name="install-restify"></a>安裝 Restify
-從命令列將目錄變更至 azuread 目錄。 如果 **azuread** 目錄不存在，請予以建立。
+1. 從命令列將目錄變更至 **azuread** 目錄。 如果 **azuread** 目錄不存在，請予以建立。
 
-`cd azuread - or- mkdir azuread; cd azuread`
+        `cd azuread - or- mkdir azuread; cd azuread`
 
-輸入以下命令：
+2. 輸入以下命令：
 
-`npm install restify`
+    `npm install restify`
 
-此命令會安裝 Restify。
+    此命令會安裝 Restify。
 
 #### <a name="did-you-get-an-error"></a>您有收到錯誤訊息嗎？
-在某些作業系統上使用 npm 時，您可能會收到錯誤 Error: EPERM, chmod '/usr/local/bin/..' ，並要求您嘗試以管理員身分執行該帳戶。 若發生這個情況，使用 sudo 命令以更高的權限層級執行 npm。
+當您在某些作業系統上使用 NPM 時，可能會收到以下錯誤：**Error: EPERM, chmod '/usr/local/bin/..'** ，且建議您嘗試以管理員身分執行該帳戶。 若發生這個情況，使用 sudo 命令以更高的權限層級執行 NPM。
 
 #### <a name="did-you-get-an-error-regarding-dtrace"></a>您有收到有關 DTRACE 的錯誤訊息嗎？
-安裝 Restify 時，您可能會看到類似下面的內容：
+安裝 Restify 時，您可能會看到如下的錯誤：
 
 ```Shell
 clang: error: no such file or directory: 'HD/azuread/node_modules/restify/node_modules/dtrace-provider/libusdt'
@@ -116,11 +127,9 @@ gyp ERR! node-gyp -v v0.10.0
 gyp ERR! not ok
 npm WARN optional dep failed, continuing dtrace-provider@0.2.8
 ```
+Restify 提供強大機制來使用 DTrace 追蹤 REST 呼叫。 不過，許多作業系統沒有 DTrace。 您可以放心地忽略這些錯誤。
 
-
-Restify 提供使用 DTrace 追蹤 REST 呼叫的強大機制。 不過，許多作業系統沒有 DTrace 可以使用。 您可以放心地忽略這些錯誤。
-
-此命令的輸出應類似這樣：
+此命令的輸出應類似下列輸出：
 
     restify@2.6.1 node_modules/restify
     ├── assert-plus@0.1.4
@@ -144,38 +153,42 @@ Restify 提供使用 DTrace 追蹤 REST 呼叫的強大機制。 不過，許多
     └── bunyan@0.22.0 (mv@0.0.5)
 
 
-## <a name="6-install-passportjs-in-to-your-web-api"></a>6.在您的 Web API 上安裝 Passport.js
-[Passport](http://passportjs.org/) 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且模組化的 Passport 放入任何 Express 或 Resitify Web 應用程式。 一組完整的策略可支援使用使用者名稱和密碼、Facebook、Twitter 及其他等驗證。 我們已為 Azure Active Directory 開發一個策略。 我們將會安裝此模組，然後加入 Azure Active Directory 的策略外掛程式。
+## <a name="step-6-install-passportjs-in-your-web-api"></a>步驟 6：在您的 Web API 中安裝 Passport.js
+[Passport](http://passportjs.org/) 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且模組化的 Passport 放入任何 Express 架構或 Restify Web 應用程式。 一組完整的策略可支援使用使用者名稱和密碼、Facebook、Twitter 及其他等驗證。
 
-從命令列將目錄變更至 azuread 目錄。
+我們已為 Azure Active Directory 開發一個策略。 我們會安裝此模組，然後加入 Azure Active Directory 的策略外掛程式。
 
-輸入以下命令以安裝 passport.js
+1. 從命令列將目錄變更至 **azuread** 目錄。
 
-`npm install passport`
+2. 若要安裝 passport.js，請輸入以下命令：
 
-此命令的輸出應類似這樣：
+    `npm install passport`
 
-    passport@0.1.17 node_modules\passport
-    ├── pause@0.0.1
-    └── pkginfo@0.2.3
+    此命令的輸出應類似這樣：
 
-## <a name="7-add-passport-azure-ad-to-your-web-api"></a>7.將 Passport-Azure-AD 加入您的 Web API
-接下來，我們將使用 passport-azuread 來新增 OAuth 策略，這是一套將 Azure Active Directory 連接到 Passport 的策略。 在這個 Rest API 範例中，我們將針對 Bearer Tokens 使用此策略。
+``
+        passport@0.1.17 node_modules\passport
+        ├── pause@0.0.1
+        └── pkginfo@0.2.3
+``
+
+## <a name="step-7-add-passport-azure-ad-to-your-web-api"></a>步驟 7：將 Passport-Azure-AD 新增至您的 Web API
+接下來，我們會使用 `passport-azure-ad` 來新增 OAuth 策略，這是一套將 Azure Active Directory 連線到 Passport 的策略。 在這個 Rest API 範例中，我們會對持有人權杖使用此策略。
 
 > [!NOTE]
-> 雖然 OAuth2 提供可發行任何已知權杖類型的架構，但只會普遍使用特定的權杖類型。 在保護端點中，這會是持有者權杖。 持有者權杖是在 OAuth2 中最普遍發行的權杖類型，而且許多實作假設持有者權杖會是唯一發行的權杖類型。
-> 
-> 
+> 雖然 OAuth2 提供可發行任何已知權杖類型的架構，但只有某些權杖類型經常使用。 持有人權杖是最常用於保護端點的權杖。 這是 OAuth2 中最普遍發行的權杖類型。 許多實作假設持有人權杖是唯一發行的權杖類型。
+>
+>
 
-從命令列中，將目錄變更到 azuread 目錄
+從命令列將目錄變更至 **azuread** 目錄。
 
-輸入下列命令來安裝 Passport.js passport-azure-ad 模組：
+輸入下列命令以安裝 Passport.js `passport-azure-ad module`：
 
 `npm install passport-azure-ad`
 
-此命令的輸出應類似這樣：
+此命令的輸出應類似下列輸出：
 
-    ``
+
     passport-azure-ad@1.0.0 node_modules/passport-azure-ad
     ├── xtend@4.0.0
     ├── xmldom@0.1.19
@@ -191,241 +204,239 @@ Restify 提供使用 DTrace 追蹤 REST 呼叫的強大機制。 不過，許多
 
 
 
-## <a name="8-add-mongodb-modules-to-your-web-api"></a>8.將 MongoDB 模組加入您的 Web API
-我們將使用 MongoDB 作為資料存放區。基於這個理由，我們必須安裝兩個廣泛使用的外掛程式才能管理名為 Mongoose 的模型與結構描述，以及同樣稱為 MongoDB 的 MongoDB 的資料庫驅動程式。
+## <a name="step-8-add-mongodb-modules-to-your-web-api"></a>步驟 8：將 MongoDB 模組新增至 Web API
+我們使用 MongoDB 做為資料存放區。 基於這個理由，我們必須安裝廣泛使用的外掛程式 Mongoose 來管理模型與結構描述。 我們也必須安裝 MongoDB 的資料庫驅動程式 (同樣也稱為 MongoDB)。
 
-* `npm install mongoose`
+ `npm install mongoose`
 
-## <a name="9--install-additional-modules"></a>9.安裝其他模組
-接下來，我們將會安裝其餘所需的模組。
+## <a name="step-9-install-additional-modules"></a>步驟 9：安裝其他模組
+接下來，我們會安裝其餘所需的模組。
 
-從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄下)：
+1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
 
-`cd azuread`
+    `cd azuread`
 
-請輸入下列命令，在您的 node_modules 目錄中安裝下列模組：
+2. 輸入下列命令，在您的 **node_modules** 目錄中安裝下列模組：
 
-* `npm install assert-plus`
-* `npm install bunyan`
-* `npm update`
+    * `npm install assert-plus`
+    * `npm install bunyan`
+    * `npm update`
 
-## <a name="10-create-a-serverjs-with-your-dependencies"></a>10.使用您的相依性建立 server.js
-server.js 檔案可提供我們 Web API 伺服器的大部分功能。 我們將在此檔案中加入大部分的程式碼。 基於生產目的，您會將功能重整成較小的檔案，例如單獨分開的路徑和控制器。 基於此示範的目的，我們將在這項功能中使用 server.js。
+## <a name="step-10-create-a-serverjs-with-your-dependencies"></a>步驟 10：使用您的相依性建立 server.js
+server.js 檔案會提供 Web API 伺服器的大部分功能。 我們會將大部分的程式碼新增至此檔案。 基於生產目的，我們建議您將功能重整成較小的檔案，例如單獨分開的路由和控制器。 在此示範中，我們會在這項功能中使用 server.js。
 
-從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄下)：
+1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
 
-`cd azuread`
+    `cd azuread`
 
-在偏好的編輯器中建立 `server.js` 檔案，並加入下列資訊：
+2. 在喜愛的編輯器中建立 `server.js` 檔案，然後新增下列資訊：
 
-```Javascript
-    'use strict';
+    ```Javascript
+        'use strict';
 
-    /**
-     * Module dependencies.
-     */
+        /**
+         * Module dependencies.
+         */
 
-    var fs = require('fs');
-    var path = require('path');
-    var util = require('util');
-    var assert = require('assert-plus');
-    var bunyan = require('bunyan');
-    var getopt = require('posix-getopt');
-    var mongoose = require('mongoose/');
-    var restify = require('restify');
-    var passport = require('passport');
-  var BearerStrategy = require('passport-azure-ad').BearerStrategy;
-```
+        var fs = require('fs');
+        var path = require('path');
+        var util = require('util');
+        var assert = require('assert-plus');
+        var bunyan = require('bunyan');
+        var getopt = require('posix-getopt');
+        var mongoose = require('mongoose/');
+        var restify = require('restify');
+        var passport = require('passport');
+      var BearerStrategy = require('passport-azure-ad').BearerStrategy;
+    ```
 
-儲存檔案。 我們稍後會再回到此檔案。
+3. 儲存檔案。 我們稍後會再回到此檔案。
 
-## <a name="11-create-a-config-file-to-store-your-azure-ad-settings"></a>11. 建立可儲存 Azure AD 設定的組態檔
-這個程式碼檔會將設定參數從您的 Azure Active Directory 入口網站傳遞到 Passport.js。 您會在將 Web API 加入入口網站 (本逐步解說的第一個部分) 時建立這些設定值。 在您完成複製程式碼之後，我們將說明要放入這些參數值的內容。
+## <a name="step-11-create-a-config-file-to-store-your-azure-ad-settings"></a>步驟 11：建立可儲存您的 Azure AD 設定的組態檔
+這個程式碼檔會將設定參數從您的 Azure Active Directory 入口網站傳遞到 Passport.js。 您會在將 Web API 新增至入口網站 (本逐步解說的第一個部分) 時建立這些設定值。 在您複製程式碼之後，我們會說明要放入這些參數值的內容。
 
-從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄下)：
+1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
 
-`cd azuread`
+    `cd azuread`
 
-在偏好的編輯器中建立 `config.js` 檔案，並加入下列資訊：
+2. 在喜愛的編輯器中建立 `config.js` 檔案，然後新增下列資訊：
 
-```Javascript
- exports.creds = {
-     mongoose_auth_local: 'mongodb://localhost/tasklist', // Your mongo auth uri goes here
-     clientID: 'your client ID',
-     audience: 'your application URL',
-    // you cannot have users from multiple tenants sign in to your server unless you use the common endpoint
-  // example: https://login.microsoftonline.com/common/.well-known/openid-configuration
-     identityMetadata: 'https://login.microsoftonline.com/<your tenant id>/.well-known/openid-configuration',
-     validateIssuer: true, // if you have validation on, you cannot have users from multiple tenants sign in to your server
-     passReqToCallback: false,
-     loggingLevel: 'info' // valid are 'info', 'warn', 'error'. Error always goes to stderr in Unix.
+    ```Javascript
+         exports.creds = {
+             mongoose_auth_local: 'mongodb://localhost/tasklist', // Your mongo auth uri goes here
+             clientID: 'your client ID',
+             audience: 'your application URL',
+            // you cannot have users from multiple tenants sign in to your server unless you use the common endpoint
+          // example: https://login.microsoftonline.com/common/.well-known/openid-configuration
+             identityMetadata: 'https://login.microsoftonline.com/<your tenant id>/.well-known/openid-configuration',
+             validateIssuer: true, // if you have validation on, you cannot have users from multiple tenants sign in to your server
+             passReqToCallback: false,
+             loggingLevel: 'info' // valid are 'info', 'warn', 'error'. Error always goes to stderr in Unix.
 
- };
+         };
+    ```
+3. 儲存檔案。
 
+## <a name="step-12-add-configuration-values-to-your-serverjs-file"></a>步驟 12：將組態值新增至 server.js 檔案
+我們必須從您跨應用程式建立的 .config 檔案中讀取這些值。 若要這樣做，我們會將 .config 檔案新增為我們的應用程式中的必要資源。 然後，我們會設定全域變數，以符合 config.js 文件中的變數。
 
-```
-儲存檔案。
+1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
 
-## <a name="12-add-configuration-to-your-serverjs-file"></a>12.將設定加入 server.js 檔案
-我們必須從您剛才跨應用程式建立的組態檔中讀取這些值。 若要這樣做，我們只需在應用程式中將 .config 檔案作為必要資源加入，然後將全域變數設定為 config.js 文件中的那些值即可
+    `cd azuread`
 
-從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄下)：
+2. 在喜愛的編輯器中開啟 `server.js` 檔案，然後新增下列資訊：
 
-`cd azuread`
+    ```Javascript
+    var config = require('./config');
+    ```
+3. 然後，使用下列程式碼在 `server.js` 中加入新的區段：
 
-在偏好的編輯器中開啟 `server.js` 檔案，並加入下列資訊：
+    ```Javascript
+    var options = {
+        // The URL of the metadata document for your app. We will put the keys for token validation from the URL found in the jwks_uri tag of the in the metadata.
+        identityMetadata: config.creds.identityMetadata,
+        clientID: config.creds.clientID,
+        validateIssuer: config.creds.validateIssuer,
+        audience: config.creds.audience,
+        passReqToCallback: config.creds.passReqToCallback,
+        loggingLevel: config.creds.loggingLevel
 
-```Javascript
-var config = require('./config');
-```
-然後，使用下列程式碼在 `server.js` 中加入新的區段：
+    };
 
-```Javascript
-var options = {
-    // The URL of the metadata document for your app. We will put the keys for token validation from the URL found in the jwks_uri tag of the in the metadata.
-    identityMetadata: config.creds.identityMetadata,
-    clientID: config.creds.clientID,
-    validateIssuer: config.creds.validateIssuer,
-    audience: config.creds.audience,
-    passReqToCallback: config.creds.passReqToCallback,
-    loggingLevel: config.creds.loggingLevel
+    // Array to hold logged in users and the current logged in user (owner).
+    var users = [];
+    var owner = null;
 
-};
+    // Our logger.
+    var log = bunyan.createLogger({
+        name: 'Azure Active Directory Bearer Sample',
+             streams: [
+            {
+                stream: process.stderr,
+                level: "error",
+                name: "error"
+            },
+            {
+                stream: process.stdout,
+                level: "warn",
+                name: "console"
+            }, ]
+    });
 
-// array to hold logged in users and the current logged in user (owner)
-var users = [];
-var owner = null;
+      // If the logging level is specified, switch to it.
+      if (config.creds.loggingLevel) { log.levels("console", config.creds.loggingLevel); }
 
-// Our logger
-var log = bunyan.createLogger({
-    name: 'Azure Active Directory Bearer Sample',
-         streams: [
-        {
-            stream: process.stderr,
-            level: "error",
-            name: "error"
-        },
-        {
-            stream: process.stdout,
-            level: "warn",
-            name: "console"
-        }, ]
-});
+    // MongoDB setup.
+    // Set up some configuration.
+    var serverPort = process.env.PORT || 8080;
+    var serverURI = (process.env.PORT) ? config.creds.mongoose_auth_mongohq : config.creds.mongoose_auth_local;
+    ```
 
-  // if logging level specified, switch to it.
-  if (config.creds.loggingLevel) { log.levels("console", config.creds.loggingLevel); }
+4. 儲存檔案。
 
-// MongoDB setup
-// Setup some configuration
-var serverPort = process.env.PORT || 8080;
-var serverURI = (process.env.PORT) ? config.creds.mongoose_auth_mongohq : config.creds.mongoose_auth_local;
-```
+## <a name="step-13-add-the-mongodb-model-and-schema-information-by-using-mongoose"></a>步驟 13：使用 Moongoose 新增 MongoDB 模型和結構描述資訊
+現在，當我們將這三個檔案組合成 REST API 服務時，您便會開始看到所有準備工作的成效。
 
-儲存檔案。
+在此逐步解說中，我們使用 MongoDB 來儲存工作，如步驟 4 所述。
 
-## <a name="13-add-the-mongodb-model-and-schema-information-using-moongoose"></a>13.使用 Moongoose 新增 MongoDB 模型和結構描述資訊
-現在，當我們將這三個檔案整合一起提供給 REST API 服務時，您便會開始看到所有準備工作的成效。
-
-在此逐步解說中，我們將使用 MongoDB 來儲存工作，如步驟 4 中所述。
-
-如果您還記得我們在步驟 11 中建立的 `config.js` 檔案，我們會呼叫資料庫 `tasklist`，因為那是我們放在 mogoose_auth_local 連線 URL 結尾處的內容。 您不需要在 MongoDB 中事先建立此資料庫，它會在您第一次執行伺服器應用程式時為您建立 (假設此資料庫不存在)。
+在步驟 11 中建立的 `config.js` 檔案中，我們會呼叫資料庫 **，因為那是我們放在 `tasklist`mogoose_auth_local** 連線 URL 結尾處的內容。 您不需要在 MongoDB 中事先建立此資料庫。 相反地，MongoDB 會在第一次執行我們的伺服器應用程式時為我們建立此資料庫 (假設此資料庫尚未存在)。
 
 既然我們已經告訴伺服器想要使用哪個 MongoDB 資料庫，我們必須撰寫一些額外程式碼，以建立伺服器工作的模型和結構描述。
 
-#### <a name="discussion-of-the-model"></a>模型的討論
-我們的結構描述模型十分簡單，而且您可以視需要加以開發。
+### <a name="discussion-of-the-model"></a>模型的討論
+我們的結構描述模型很簡單。 您可視需要加以擴充。
 
-名稱 - 指派給工作的人員名稱。 字串
+名稱：指派給工作的人員名稱。 **字串**。
 
-工作 - 工作本身。 字串
+工作：工作本身。 **字串**。
 
-日期 - 工作到期的日期。 DATETIME
+日期：工作到期的日期。 **DATETIME**。
 
-已完成 - 工作是否已完成。 布林值
+已完成：工作是否已完成。 **布林值**。
 
-#### <a name="creating-the-schema-in-the-code"></a>在程式碼中建立結構描述
-從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄下)：
+### <a name="creating-the-schema-in-the-code"></a>在程式碼中建立結構描述
+1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
 
-`cd azuread`
+    `cd azuread`
 
-在偏好的編輯器中開啟 `server.js` 檔案，並在組態項目下方加入下列資訊：
+2. 在喜愛的編輯器中開啟 `server.js` 檔案，然後在組態項目下方新增下列資訊：
 
-```Javascript
-// Connect to MongoDB
-global.db = mongoose.connect(serverURI);
-var Schema = mongoose.Schema;
-log.info('MongoDB Schema loaded');
+    ```Javascript
+    // Connect to MongoDB.
+    global.db = mongoose.connect(serverURI);
+    var Schema = mongoose.Schema;
+    log.info('MongoDB Schema loaded');
 
-// Here we create a schema to store our tasks and users. Pretty simple schema for now.
-var TaskSchema = new Schema({
-    owner: String,
-    task: String,
-    completed: Boolean,
-    date: Date
-});
+    // Here we create a schema to store our tasks and users. It's a fairly simple schema for now.
+    var TaskSchema = new Schema({
+        owner: String,
+        task: String,
+        completed: Boolean,
+        date: Date
+    });
 
-// Use the schema to register a model
-mongoose.model('Task', TaskSchema);
-var Task = mongoose.model('Task');
-```
-從程式碼可以得知，當我們在定義「路由」時，我們會建立結構描述，然後建立將用來儲存整個程式碼資料的模型物件。
+    // Use the schema to register a model.
+    mongoose.model('Task', TaskSchema);
+    var Task = mongoose.model('Task');
+    ```
+您可以從程式碼得知，我們先建立我們的結構描述。 然後我們會建立模型物件，以在定義**路由**時用來儲存整個程式碼中的資料。
 
-## <a name="14-add-our-routes-for-our-task-rest-api-server"></a>14.在工作 REST API 伺服器中新增路由
-既然我們已經擁有可以使用的資料庫模型，讓我們新增將用於 REST API 伺服器的路由。
+## <a name="step-14-add-our-routes-for-our-task-rest-api-server"></a>步驟 14：新增工作 REST API 伺服器的路由
+既然我們已經擁有可以使用的資料庫模型，讓我們新增即將用於 REST API 伺服器的路由。
 
 ### <a name="about-routes-in-restify"></a>關於 Restify 中的路由
-在 Restify 中的路由工作與使用 Express 堆疊的路由工作方式完全相同。 您可以使用您預期用戶端應用程式呼叫的 URI 來定義路由。 通常，您會在個別的檔案中定義您的路由。 基於本文的目的，我們會將路由放在 server.js 檔案中。 在實際執行環境中，我們建議您將這些路由分到他們自己的檔案。
+Restify 與 Express 堆疊中的路由運作方式完全相同。 您可以使用您預期用戶端應用程式呼叫的 URI 來定義路由。 通常，您會在個別的檔案中定義您的路由。 基於本文的目的，我們會將路由放在 server.js 檔案中。 在生產環境中，建議您將這些路由分散到其各自的檔案。
 
-Restify 路由的典型模式是：
+Restify 路由的典型模式如下：
 
 ```Javascript
 function createObject(req, res, next) {
 
-// do work on Object
+// Do work on object.
 
  _object.name = req.params.object; // passed value is in req.params under object
 
  ///...
 
-return next(); // keep the server going
+return next(); // Keep the server going.
 }
 
 ....
 
-server.post('/service/:add/:object', createObject); // calls createObject on routes that match this.
+server.post('/service/:add/:object', createObject); // Calls createObject on routes that match this.
 
 ```
 
 
-這是最基本層級的模式。 Resitfy (及 Express) 提供更深入的功能，例如定義應用程式類型和執行不同端點之間的複雜路由。 基於本文的目的，我們會將這些路由儘可能的保持簡單。
+這是最基本層級的模式。 Resitfy (及 Express) 可提供更深入的功能，例如定義應用程式類型和提供不同端點之間的複雜路由。 基於本文的目的，我們會讓這些路由保持簡單。
 
-### <a name="1-add-default-routes-to-our-server"></a>1.將預設路由加入伺服器
-我們現在可以新增建立、擷取、更新和刪除的基本 CRUD 路由。
+### <a name="add-default-routes-to-our-server"></a>將預設路由加入伺服器
+我們現在會新增建立、擷取、更新和刪除的基本 CRUD 路由。
 
-從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄下)：
+1. 從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)：
 
-`cd azuread`
+    `cd azuread`
 
-在偏好的編輯器中開啟 `server.js` 檔案，並在您先前製作的資料庫項目底下加入下列資訊：
+2. 在喜愛的編輯器中開啟 `server.js` 檔案，然後在您先前製作的資料庫項目底下新增下列資訊：
 
 ```Javascript
 
 /**
  *
- * APIs for our REST Task server
+ * APIs for our REST Task server.
  */
 
-// Create a task
+// Create a task.
 
 function createTask(req, res, next) {
 
-    // Resitify currently has a bug which doesn't allow you to set default headers
-    // This headers comply with CORS and allow us to mongodbServer our response to any origin
+    // Restify currently has a bug which doesn't allow you to set default headers.
+    // These headers comply with CORS and allow us to mongodbServer our response to any origin.
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-    // Create a new task model, fill it up and save it to Mongodb
+    // Create a new task model, fill it, and save it to Mongodb.
     var _task = new Task();
 
     if (!req.params.task) {
@@ -453,7 +464,7 @@ function createTask(req, res, next) {
 }
 
 
-// Delete a task by name
+// Delete a task by name.
 
 function removeTask(req, res, next) {
 
@@ -474,7 +485,7 @@ function removeTask(req, res, next) {
     });
 }
 
-// Delete all tasks
+// Delete all tasks.
 
 function removeAll(req, res, next) {
     Task.remove();
@@ -483,7 +494,7 @@ function removeAll(req, res, next) {
 }
 
 
-// Get a specific task based on name
+// Get a specific task based on name.
 
 function getTask(req, res, next) {
 
@@ -506,8 +517,8 @@ function getTask(req, res, next) {
 /// Simple returns the list of TODOs that were loaded.
 
 function listTasks(req, res, next) {
-    // Resitify currently has a bug which doesn't allow you to set default headers
-    // This headers comply with CORS and allow us to mongodbServer our response to any origin
+    // Restify currently has a bug which doesn't allow you to set default headers.
+    // These headers comply with CORS and allow us to mongodbServer our response to any origin.
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -527,7 +538,7 @@ function listTasks(req, res, next) {
         }
 
         if (!data.length) {
-            log.warn(err, "There is no tasks in the database. Did you initalize the database as stated in the README?");
+            log.warn(err, "There is no tasks in the database. Did you initialize the database as stated in the README?");
         }
 
         if (!owner) {
@@ -544,10 +555,10 @@ function listTasks(req, res, next) {
 
 ```
 
-### <a name="2-next-lets-add-some-error-handling-in-our-apis"></a>2.接下來，讓我們在 API 中加入一些錯誤處理方式：
+### <a name="add-error-handling-in-our-apis"></a>在我們的 API 中新增錯誤處理
 ```
 
-///--- Errors for communicating something interesting back to the client
+///--- Errors for communicating something interesting back to the client.
 
 function MissingTaskError() {
     restify.RestError.call(this, {
@@ -594,14 +605,14 @@ util.inherits(TaskNotFoundError, restify.RestError);
 ```
 
 
-## <a name="15-create-your-server"></a>15.建立伺服器！
-我們已經定義好資料庫，也準備好路由，要做的最後一件事是加入將會管理呼叫的伺服器執行個體。
+## <a name="step-15-create-your-server"></a>步驟 15：建立伺服器
+我們已定義資料庫並已備妥路由。 最後一件事是新增伺服器執行個體，以管理我們的呼叫。
 
-Restify (及 Express) 有很多進階自訂項目可讓您在 REST API 伺服器上執行，但再重申一次，基於本文的目的，我們將使用最基本的設定。
+在 Restify (及 Express) 中，您可以為 REST API 伺服器進行多項自訂，但再重申一次，基於本文的目的，我們即將使用最基本的設定。
 
 ```Javascript
 /**
- * Our Server
+ * Our server.
  */
 
 
@@ -610,44 +621,44 @@ var server = restify.createServer({
     version: "2.0.1"
 });
 
-// Ensure we don't drop data on uploads
+// Ensure we don't drop data on uploads.
 server.pre(restify.pre.pause());
 
-// Clean up sloppy paths like //todo//////1//
+// Clean up sloppy paths like //todo//////1//.
 server.pre(restify.pre.sanitizePath());
 
-// Handles annoying user agents (curl)
+// Handle annoying user agents (curl).
 server.pre(restify.pre.userAgentConnection());
 
-// Set a per request bunyan logger (with requestid filled in)
+// Set a per request bunyan logger (with requestid filled in).
 server.use(restify.requestLogger());
 
-// Allow 5 requests/second by IP, and burst to 10
+// Allow five requests per second by IP, and burst to 10.
 server.use(restify.throttle({
     burst: 10,
     rate: 5,
     ip: true,
 }));
 
-// Use the common stuff you probably want
+// Use the common stuff you probably want.
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.dateParser());
 server.use(restify.queryParser());
 server.use(restify.gzipResponse());
 server.use(restify.bodyParser({
     mapParams: true
-})); // Allows for JSON mapping to REST
+})); // Allow for JSON mapping to REST.
 ```
 
-## <a name="16-adding-the-routes-to-the-server-without-authentication-for-now"></a>16.將路由加入伺服器 (目前不含驗證)
+## <a name="step-16-add-the-routes-to-the-server-without-authentication-for-now"></a>步驟 16：將路由新增至伺服器 (目前不需驗證)
 ```Javascript
-/// Now the real handlers. Here we just CRUD
+/// Now the real handlers. Here we just CRUD.
 /**
 /*
-/* Each of these handlers are protected by our OIDCBearerStrategy by invoking 'oidc-bearer'
-/* in the pasport.authenticate() method. We set 'session: false' as REST is stateless and
-/* we don't need to maintain session state. You can experiement removing API protection
-/* by removing the passport.authenticate() method like so:
+/* Each of these handlers is protected by our OIDCBearerStrategy by invoking 'oidc-bearer'.
+/* In the pasport.authenticate() method. We set 'session: false' because REST is stateless and
+/* we don't need to maintain session state. You can experiment with removing API protection
+/* by removing the passport.authenticate() method as follows:
 /*
 /* server.get('/tasks', listTasks);
 /*
@@ -665,7 +676,7 @@ server.del('/tasks', removeAll, function respond(req, res, next) {
 res.send(204);
 next();
 });
-// Register a default '/' handler
+// Register a default '/' handler.
 server.get('/', function root(req, res, next) {
 var routes = [
 'GET /',
@@ -690,151 +701,150 @@ consoleMessage += '+++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n';
 });
 ```
 
-## <a name="17-before-we-add-oauth-support-lets-run-the-server"></a>17.加入 OAuth 支援之前，請先執行伺服器。
-加入驗證之前，請先測試您的伺服器
+## <a name="step-17-run-the-server-before-adding-oauth-support"></a>步驟 17：執行伺服器 (在新增 OAuth 支援之前)
+新增驗證之前，請先測試您的伺服器。
 
-這樣做的最簡單方式是在命令列中使用 curl。 在執行此動作之前，我們需要一個可讓我們將輸出剖析為 JSON 的簡單公用程式。 若要這樣做，請安裝 json 工具，以供下面所有範例使用。
+測試伺服器的最簡單方式是在命令列中使用 curl。 在執行此動作之前，我們需要一個可讓我們將輸出剖析為 JSON 的公用程式。
 
-`$npm install -g jsontool`
+1. 安裝下列 JSON 工具 (下列所有範例都會使用此工具)︰
 
-這會全域安裝 JSON 工具。 現在已完成此動作，讓我們開始使用伺服器：
+    `$npm install -g jsontool`
 
-首先，請確定 monogoDB 執行個體正在執行中...
+    這會全域安裝 JSON 工具。 現在已完成此動作，讓我們開始使用伺服器：
 
-`$sudo mongod`
+2. 首先，確定您的 MongoDB 執行個體正在執行：
 
-然後，變更目錄並啟動 curling...
+    `$sudo mongod`
 
-`$ cd azuread`
-`$ node server.js`
+3. 然後，變更目錄並啟動 curling：
 
-`$ curl -isS http://127.0.0.1:8080 | json`
+    `$ cd azuread`
+    `$ node server.js`
 
-```Shell
-HTTP/1.1 200 OK
-Connection: close
-Content-Type: application/json
-Content-Length: 171
-Date: Tue, 14 Jul 2015 05:43:38 GMT
-[
-"GET /",
-"POST /tasks/:owner/:task",
-"POST /tasks (for JSON body)",
-"GET /tasks",
-"PUT /tasks/:owner",
-"GET /tasks/:owner",
-"DELETE /tasks/:owner/:task"
-]
-```
+    `$ curl -isS http://127.0.0.1:8080 | json`
 
-接著，我們可以透過以下方式新增工作：
+    ```Shell
+    HTTP/1.1 200 OK
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 171
+    Date: Tue, 14 Jul 2015 05:43:38 GMT
+    [
+    "GET /",
+    "POST /tasks/:owner/:task",
+    "POST /tasks (for JSON body)",
+    "GET /tasks",
+    "PUT /tasks/:owner",
+    "GET /tasks/:owner",
+    "DELETE /tasks/:owner/:task"
+    ]
+    ```
 
-`$ curl -isS -X POST http://127.0.0.1:8080/tasks/brandon/Hello`
+4. 接著，我們可以透過以下方式新增工作：
 
-回應應為：
+    `$ curl -isS -X POST http://127.0.0.1:8080/tasks/brandon/Hello`
 
-```Shell
-HTTP/1.1 201 Created
-Connection: close
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Headers: X-Requested-With
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 5
-Date: Tue, 04 Feb 2014 01:02:26 GMT
-Hello
-```
-而且我們可以透過以下方式列出 Brandon 的工作：
+    回應應為：
 
-`$ curl -isS http://127.0.0.1:8080/tasks/brandon/`
+        ```Shell
+        HTTP/1.1 201 Created
+        Connection: close
+        Access-Control-Allow-Origin: *
+        Access-Control-Allow-Headers: X-Requested-With
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 5
+        Date: Tue, 04 Feb 2014 01:02:26 GMT
+        Hello
+        ```
+    而且我們可以透過以下方式列出 Brandon 的工作：
 
-如果所有項目都沒問題，我們便可以開始將 OAuth 加入 REST API 伺服器。
+        `$ curl -isS http://127.0.0.1:8080/tasks/brandon/`
 
-**您必須將 REST API 伺服器搭配 MongoDB 使用！**
+如果都沒問題，我們便可以開始將 OAuth 新增至 REST API 伺服器。
 
-## <a name="18-add-authentication-to-our-rest-api-server"></a>18.將驗證加入 REST API 伺服器
-既然我們已經擁有執行中的 REST API (順道恭喜您！)，我們可以開始讓它在 Azure AD 中發揮其價值。
+您必須將 REST API 伺服器搭配 MongoDB 使用！
 
-從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄下)：
+## <a name="step-18-add-authentication-to-our-rest-api-server"></a>步驟 18：將驗證新增至 REST API 伺服器
+既然我們已有執行中的 REST API，我們就可以讓它在 Azure AD 中發揮其價值。
+
+從命令列將目錄變更至 **azuread** 資料夾 (如果您尚未在此目錄中)。
 
 `cd azuread`
 
-### <a name="1-use-the-oidcbearerstrategy-that-is-included-with-passport-azure-ad"></a>1：使用 passport-azure-ad 所含的 OIDCBearerStrategy
+### <a name="use-the-oidcbearerstrategy-that-is-included-with-passport-azure-ad"></a>使用 passport-azure-ad 隨附的 OIDCBearerStrategy
 到目前為止，我們已經建置典型的 REST TODO 伺服器，且其中不含任何授權種類。 這是我們將其結合在一起的起點。
 
-首先，需指出要使用 Passport。 在其他伺服器設定之後緊接著執行此動作：
+1. 首先，需指出要使用 Passport。 在其他伺服器設定之後緊接著執行此動作：
+
+    ```Javascript
+            // Let's start using Passport.js.
+
+            server.use(passport.initialize()); // Starts passport.
+            server.use(passport.session()); // Provides session support.
+    ```
+    > [!TIP]
+    > 撰寫 API 時，我們建議您一律將資料連結到使用者無法欺騙之權杖中唯一的項目。 此伺服器儲存 TODO 項目時，會根據我們放在 [擁有者] 欄位的權杖 (透過 token.sub 呼叫) 中使用者的物件識別碼來儲存這些項目。 這可確保只有該使用者可以存取自己的 TODO。 不會在「擁有者」API 中公開，因此，外部使用者可以要求其他人的 TODO，即使它們已經過驗證也一樣。                    
+
+2. 接下來，使用 `passport-azure-ad` 隨附的持有人策略。 目前查看一下此程式碼，我們很快就會說明其他部分。 將這段程式碼放在您上面所貼內容的後面：
 
 ```Javascript
-// Let's start using Passport.js
+    /**
+    /*
+    /* Calling the OIDCBearerStrategy and managing users.
+    /*
+    /* Passport pattern provides the need to manage users and info tokens
+    /* with a FindorCreate() method that must be provided by the implementor.
+    /* Here we just auto-register any user and implement a FindById().
+    /* You'll want to do something smarter.
+    **/
 
-server.use(passport.initialize()); // Starts passport
-server.use(passport.session()); // Provides session support
-```
-
-> [!TIP]
-> 撰寫 API 時，您應一律將資料連結到使用者無法證明其在權杖中是唯一的項目。 此伺服器儲存 TODO 項目時，會根據我們放在 [擁有者] 欄位的權杖 (透過 token.sub 呼叫) 中使用者的物件識別碼來儲存這些項目。 這確保只有該使用者可以存取他的 TODO，而且沒有其他人可存取輸入的 TODO。 不會在「擁有者」API 中公開，因此，外部使用者可以要求其他的 TODO，即使它們已經過驗證也一樣。
-> 
-> 
-
-接下來，我們將使用隨附於 passport-azure-ad 的 Bearer 策略。 目前只需看一下此程式碼，我很快就會討論到它。 將這段程式碼放在您貼上上述內容的後方：
-
-```Javascript
-/**
-/*
-/* Calling the OIDCBearerStrategy and managing users
-/*
-/* Passport pattern provides the need to manage users and info tokens
-/* with a FindorCreate() method that must be provided by the implementor.
-/* Here we just autoregister any user and implement a FindById().
-/* You'll want to do something smarter.
-**/
-
-var findById = function(id, fn) {
-    for (var i = 0, len = users.length; i < len; i++) {
-        var user = users[i];
-        if (user.sub === id) {
-            log.info('Found user: ', user);
-            return fn(null, user);
+    var findById = function(id, fn) {
+        for (var i = 0, len = users.length; i < len; i++) {
+            var user = users[i];
+            if (user.sub === id) {
+                log.info('Found user: ', user);
+                return fn(null, user);
+            }
         }
-    }
-    return fn(null, null);
-};
+        return fn(null, null);
+    };
 
 
-var bearerStrategy = new BearerStrategy(options,
-    function(token, done) {
-        log.info('verifying the user');
-        log.info(token, 'was the token retreived');
-        findById(token.sub, function(err, user) {
-            if (err) {
-                return done(err);
-            }
-            if (!user) {
-                // "Auto-registration"
-                log.info('User was added automatically as they were new. Their sub is: ', token.sub);
-                users.push(token);
+    var bearerStrategy = new BearerStrategy(options,
+        function(token, done) {
+            log.info('verifying the user');
+            log.info(token, 'was the token retreived');
+            findById(token.sub, function(err, user) {
+                if (err) {
+                    return done(err);
+                }
+                if (!user) {
+                    // "Auto-registration"
+                    log.info('User was added automatically as they were new. Their sub is: ', token.sub);
+                    users.push(token);
+                    owner = token.sub;
+                    return done(null, token);
+                }
                 owner = token.sub;
-                return done(null, token);
-            }
-            owner = token.sub;
-            return done(null, user, token);
-        });
-    }
-);
+                return done(null, user, token);
+            });
+        }
+    );
 
-passport.use(bearerStrategy);
+    passport.use(bearerStrategy);
 ```
 
-Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有策略寫入器都依循的類似模式。 查看此策略，您會看見我們將它當成 function() 來傳遞，其中含有一個 token 和一個 done 做為參數。 一旦策略完成所有工作之後，便會盡責地返回。 當它完成之後，我們會想要儲存使用者並隱藏權杖，因此我們不需再次要求它。
+Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有策略寫入器都依循的類似模式。 查看此策略，您會看見我們將它當成函式來傳遞，其有一個 token 和一個 done 做為參數。 策略完成所有工作之後會回到我們這邊。 當它完成之後，我們會儲存使用者並存放權杖，因此不需要再次要求它。
 
 > [!IMPORTANT]
-> 上述程式碼會讓所有使用者經歷伺服器的驗證。 這就是所謂的自動註冊。 在生產伺服器中，您想要讓所有人都必須先經歷您所決定的註冊過程。 這通常是您在取用者 App 中看到的模式，可讓您向 Facebook 註冊，但接著會要求您填寫其他資訊。 如果這不是命令列程式，我們就只能從傳回的權杖物件中擷取電子郵件，然後要求他們填寫其他資訊。 由於這是測試伺服器，因此，我們只會將它們直接加入記憶體中的資料庫。
-> 
-> 
+> 先前程式碼會讓所有使用者經歷伺服器的驗證。 這就是所謂的自動註冊。 在生產伺服器中，我們建議您要讓所有人都必須先經歷您所決定的註冊過程。 這通常是您在取用者應用程式中看到的模式，可讓您向 Facebook 註冊，但接著會要求您填寫其他資訊。 如果這不是命令列程式，我們可以從傳回的權杖物件中擷取電子郵件，然後要求使用者填寫其他資訊。 由於這是測試伺服器，因此，我們直接將它們加入記憶體中的資料庫。
+>
+>
 
-### <a name="2-finally-protect-some-endpoints"></a>2.最後，保護某些端點
-您可以保護端點，方法是透過您想要使用的通訊協定來指定 `passport.authenticate()` 呼叫。
+### <a name="protect-some-endpoints"></a>保護某些端點
+透過您想要使用的通訊協定來指定 `passport.authenticate()` 呼叫，即可保護端點。
 
-讓我們在伺服器程式碼中編輯路由，以執行更有趣的作業：
+若要讓我們的伺服器程式碼執行更有趣的作業，請編輯路由。
 
 ```Javascript
 server.get('/tasks', passport.authenticate('oauth-bearer', {
@@ -872,49 +882,44 @@ next();
 });
 ```
 
-## <a name="19-run-your-server-application-again-and-ensure-it-rejects-you"></a>19.再次執行伺服器應用程式，並確保它會拒絕您的要求
-讓我們再次使用 `curl`，以查看我們現在是否有針對端點的 OAuth2 保護。 我們會在針對這個端點執行任何用戶端 SDK 之前，執行此動作。 傳回的標頭應該足以說明我們執行的作業步驟正確無誤。
+## <a name="step-19-run-your-server-application-again-and-ensure-it-rejects-you"></a>步驟 19：再次執行應用程式伺服器，並確保它會拒絕您的要求
+讓我們再次使用 `curl`，以查看我們現在是否有針對端點的 OAuth2 保護。 我們會在對此端點執行任何用戶端 SDK 之前，執行此動作。 傳回的標頭應該足以說明我們朝著正確的路徑前進。
 
-首先，請確定 monogoDB 執行個體正在執行中：
+1. 首先，確定您的 MongoDB 執行個體正在執行：
 
-  $sudo mongod
+    `$sudo mongod`
 
-然後，變更目錄並啟動 curling...
+2. 然後，變更目錄並啟動 curling。
 
-  $ cd azuread $ node server.js
+      `$ cd azuread`
+      `$ node server.js`
 
-嘗試基本的 POST 方法：
+3. 嘗試基本 POST。
 
-`$ curl -isS -X POST http://127.0.0.1:8080/tasks/brandon/Hello`
+    `$ curl -isS -X POST http://127.0.0.1:8080/tasks/brandon/Hello`
 
-```Shell
-HTTP/1.1 401 Unauthorized
-Connection: close
-WWW-Authenticate: Bearer realm="Users"
-Date: Tue, 14 Jul 2015 05:45:03 GMT
-Transfer-Encoding: chunked
-```
+    ```Shell
+    HTTP/1.1 401 Unauthorized
+    Connection: close
+    WWW-Authenticate: Bearer realm="Users"
+    Date: Tue, 14 Jul 2015 05:45:03 GMT
+    Transfer-Encoding: chunked
+    ```
 
-此時 401 是您期待的回應，其會指出 Passport 層正嘗試重新導向到授權端點，這也正是您想要的結果。
+此時 401 是您期待的回應。 此回應指出 Passport 層正嘗試重新導向至已授權的端點，這正是您想要的結果。
 
-## <a name="congratulations-you-have-a-rest-api-service-using-oauth2"></a>恭喜！ 您現在擁有一項使用 OAuth2 的 REST API 服務！
+## <a name="next-steps"></a>後續步驟
 在未使用 OAuth2 相容用戶端的情況下，您已經儘可能地使用此伺服器的所有功能。 您還必須完成其他逐步解說。
 
-如果您只需有關如何使用 Restify 和 OAuth2 實作 REST API 的相關資訊，則您已經有足夠的程式碼可以繼續開發服務，並學習如何以此範例為基礎進行建置。
+您現在已了解如何使用 Restify 和 OAuth2 實作 REST API。 您也已經有足夠的程式碼可以繼續開發服務，並學習如何以此範例為基礎進行建置。
 
-如果您對執行 ADAL 的後續步驟感興趣，以下是一些我們建議的支援 ADAL 用戶端，可供您繼續處理：
+如果您對執行 ADAL 的後續步驟感興趣，以下是一些我們建議的支援 ADAL 用戶端，可供您繼續使用。
 
-您只需複製到您的開發人員機器，並如本逐步解說所述進行設定即可。
+複製到您的開發人員機器，並如本逐步解說所述進行設定即可。
 
 [ADAL for iOS](https://github.com/MSOpenTech/azure-activedirectory-library-for-ios)
 
 [ADAL for Android](https://github.com/MSOpenTech/azure-activedirectory-library-for-android)
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]
-
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

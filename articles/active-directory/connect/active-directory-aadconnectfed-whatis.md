@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: anandy
 translationtype: Human Translation
-ms.sourcegitcommit: fd3699e4ce423ae9490d5bf788729c43eaa623eb
-ms.openlocfilehash: 19ebfae5de8576402348e3163f99a54b9308a078
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 39b0b15dba098c0ddc59e39a81bfb6809f8cb2eb
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -39,6 +39,7 @@ Azure AD Connect 可讓您設定與內部部署 AD FS 和 Azure AD 同盟。 使
 | [新增新的 AD FS 伺服器](active-directory-aadconnect-federation-management.md#addadfsserver) |初始安裝後增加 AD FS 伺服器來擴充 AD FS 伺服器陣列 |
 | [新增新的 AD FS WAP 伺服器](active-directory-aadconnect-federation-management.md#addwapserver) |初始安裝後增加 WAP 伺服器來擴充 AD FS 伺服器陣列 |
 | [新增新的同盟網域](active-directory-aadconnect-federation-management.md#addfeddomain) |新增要與 Azure AD 同盟的其他網域 |
+| [更新 SSL 憑證](active-directory-aadconnectfed-ssl-update.md)| 更新 Active Directory Federation Services (AD FS) 伺服器陣列的 SSL 憑證|
 | **後續安裝工作** | |
 | [新增自訂公司標誌/圖例](active-directory-aadconnect-federation-management.md#customlogo) |指定將顯示在 AD FS 登入頁面的自訂標誌來修改登入體驗 |
 | [新增登入說明](active-directory-aadconnect-federation-management.md#addsignindescription) |變更 AD FS 登入頁面上的登入說明 |

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 1/31/2017
 ms.author: vakarand
 translationtype: Human Translation
-ms.sourcegitcommit: 55ee9f685427168c02865d204fda34066c6779c5
-ms.openlocfilehash: a8533926bbb26770d8e665436e38172aeffbb035
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 6a466937358932a28604cddf7f32cdfd02a5b88d
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -193,7 +194,7 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 4. Bob 的 userPrincipalName 並不會更新並導致 "DataValidationFailed" 同步處理錯誤。
 
 #### <a name="how-to-fix"></a>修正方式
-如果使用者的 PrincipalName suffix 尾碼從 bob@**contoso.com** 更新為 bob@**fabrikam.com**，其中 **contoso.com** 與 **fabrikam.com** 都是**同盟網域**，則遵循這些步驟來修正同步處理錯誤
+如果使用者的 UserPrincipalName 尾碼從 bob@**contoso.com** 更新為 bob@**fabrikam.com**，其中 **contoso.com** 與 **fabrikam.com** 都是**同盟網域**，則遵循這些步驟來修正同步處理錯誤
 
 1. 將 Azure AD 中使用者的 UserPrincipalName 從 bob@contoso.com 更新為 bob@contoso.onmicrosoft.com。 您可以使用以下 PowerShell 命令搭配 Azure AD PowerShell 模組：`Set-MsolUserPrincipalName -UserPrincipalName bob@contoso.com -NewUserPrincipalName bob@contoso.onmicrosoft.com`
 2. 允許下一個同步處理週期嘗試進行同步處理。 這次同步處理將會成功，而且 Bob 的 UserPrincipalName 會如預期般更新為 bob@fabrikam.com。
@@ -206,13 +207,15 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 當屬性超過 Azure Active Directory 結構描述所設定的允許大小限制、長度限制或計數限制時，同步處理作業會導致 **LargeObject** 或 **ExceededAllowedLength** 同步處理錯誤。 此錯誤通常會發生於下列屬性
 
 * userCertificate
+* userSMIMECertificate
 * thumbnailPhoto
 * proxyAddresses
 
 ### <a name="possible-scenarios"></a>可能的案例
-1. Bob 的 userCertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。 固定限制是 50 個憑證，但建議值是 25 個以下的憑證。
-2. Bob 在 Active Directory 中設定的 thumbnailPhoto 太大，以致於無法在 Azure AD 中進行同步處理。
-3. 在 Active Directory 中 ProxyAddresses 屬性的自動母體擴展期間，一個物件被指派超過&500; 個 ProxyAddresses。
+1. Bob 的 userCertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。 固定限制為 15 個憑證。
+2. Bob 的 userSMIMECertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。 固定限制為 15 個憑證。
+3. Bob 在 Active Directory 中設定的 thumbnailPhoto 太大，以致於無法在 Azure AD 中進行同步處理。
+4. 在 Active Directory 中 ProxyAddresses 屬性的自動母體擴展期間，一個物件被指派超過&500; 個 ProxyAddresses。
 
 ### <a name="how-to-fix"></a>修正方式
 1. 確定造成錯誤的屬性在允許的限制內。
@@ -220,9 +223,4 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 ## <a name="related-links"></a>相關連結
 * [在 Active Directory 管理中心找出 Active Directory 物件](https://technet.microsoft.com/library/dd560661.aspx)
 * [如何使用 Azure Active Directory PowerShell 查詢 Azure Active Directory 中的物件](https://msdn.microsoft.com/library/azure/jj151815.aspx)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

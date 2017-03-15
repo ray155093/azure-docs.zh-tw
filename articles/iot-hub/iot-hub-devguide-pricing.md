@@ -12,16 +12,17 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/30/2016
+ms.date: 12/12/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
-ms.openlocfilehash: 05122f59de5a1c888fd6aa90e1f3466badef4fe9
+ms.sourcegitcommit: 3598f490752fa275d7c9c5a7d924c315e92f5b33
+ms.openlocfilehash: e1f1dc43af2096fb9affc1d12433f091dd28c69c
+ms.lasthandoff: 12/13/2016
 
 
 ---
 
-# <a name="pricing-information"></a>定價資訊
+# <a name="azure-iot-hub-pricing-information"></a>Azure IoT 中樞定價資訊
 
 [Azure IoT 中樞定價][lnk-pricing]提供關於 IoT 中樞之不同 SKU 和定價的一般資訊。 本文包含 IoT 中樞如何以訊息的形式來針對各種 IoT 中樞功能進行計量的其他詳細資料。
 
@@ -30,7 +31,7 @@ ms.openlocfilehash: 05122f59de5a1c888fd6aa90e1f3466badef4fe9
 | 作業 | 帳單資訊 | 
 | --------- | ------------------- |
 | 身分識別登錄作業 <br/> (建立、擷取、列出、更新、刪除) | 不收費。 |
-| 裝置到雲端的訊息 | 成功傳送的訊息會以 4 KB 區塊為單位來收費，例如，6 KB 的訊息會收取 2 則訊息的費用。 |
+| 裝置到雲端的訊息 | 成功傳送的訊息會以輸入至 IoT 中樞的 4 KB 區塊為單位來收費，例如，6 KB 的訊息會收取 2 則訊息的費用。 |
 | 雲端到裝置的訊息 | 成功傳送的訊息會以 4 KB 區塊為單位來收費，例如，6 KB 的訊息會收取 2 則訊息的費用。 |
 | 檔案上傳 | IoT 中樞不會針對傳輸至 Azure 儲存體的檔案進計量。 檔案傳輸的啟始和完成訊息會以每 4 KB 的增量方式來就訊息計量。 比方說，傳輸 10 MB 的檔案，除了 Azure 儲存體的費用外，還會收取兩則訊息的費用。 |
 | 直接方法 | 成功的方法要求會以 4 KB 區塊為單位來收費，具有非空白內文的回應會視為額外的訊息以 4 KB 為單位收費。 針對已中斷連線之裝置所提出的要求會視為訊息以 4 KB 區塊為單位收費。 比方說，具有 6 KB 內文的方法若導致裝置傳回沒有內文的回應，將會視為兩則訊息來收費；具有 6 KB 內文的方法若導致裝置傳回 1 KB 的回應，則會以要求視為兩則訊息外加回應視為另一則訊息的方式來收費。 |
@@ -38,9 +39,10 @@ ms.openlocfilehash: 05122f59de5a1c888fd6aa90e1f3466badef4fe9
 | 裝置對應項更新 (標籤和屬性) | 來自裝置和裝置的裝置對應項更新會視為訊息以 512 位元組的區塊為單位來收費。 比方說，讀取 6 KB 的裝置對應項會收取 12 則訊息的費用。 |
 | 裝置對應項查詢 | 查詢會依結果大小以 512 位元組的區塊為單位來收費。 |
 | 作業的操作 <br/> (建立、更新、列出、刪除) | 不收費。 |
-| 作業的每一裝置操作 | 作業的操作 (例如裝置對應項更新和方法) 會按正常方式收費。 比方說，產生 1000 個含 1 KB 要求和空白內文回應之方法呼叫的作業，將會收取 1000 則訊息的費用。 |
+| 作業的每一裝置操作 | 作業的操作 (例如裝置對應項更新和方法) 會按正常方式收費。 比方說，產生 1000 個含 1 KB 要求和空白內文回應之方法呼叫的作業，會收取 1000 則訊息的費用。 |
 
-> AZURE.NOTE 所有大小在計算時都會考量到承載大小 (以位元組為單位) (通訊協定框架則會忽略)。 若為訊息 (具有屬性和內文) 時，則會以不限通訊協定的方式計算大小，如 [IoT 中樞傳訊開發人員指南][lnk-message-size]所述。
+> [!NOTE]
+> 所有大小在計算時都會考量到以位元組為單位的承載大小 (通訊協定框架則會忽略)。 若為訊息 (具有屬性和內文) 時，則會以不限通訊協定的方式計算大小，如 [IoT 中樞傳訊開發人員指南][lnk-message-size]所述。
 
 ## <a name="example-1"></a>範例 #1
 
@@ -60,8 +62,4 @@ ms.openlocfilehash: 05122f59de5a1c888fd6aa90e1f3466badef4fe9
 
 [lnk-pricing]: https://azure.microsoft.com/pricing/details/iot-hub
 [lnk-message-size]: iot-hub-devguide-messaging.md#message-size
-
-
-<!--HONumber=Dec16_HO1-->
-
 

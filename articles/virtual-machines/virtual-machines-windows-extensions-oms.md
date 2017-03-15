@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 01/08/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 251d7b973426afb50206c428873021144b8bffdf
-ms.openlocfilehash: 63e2509b92b4d97bfdc98629cc356816839b03b5
-ms.lasthandoff: 01/11/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 140dd5f165b88a1b0d0771b0360769a340d082cf
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -36,7 +36,7 @@ Operations Management Suite (OMS) 可提供雲端和內部部署資產的監視�
 
 ## <a name="extension-schema"></a>擴充功能結構描述
 
-下列 JSON 顯示 OMS 代理程式擴充功能的結構描述。 此擴充功能需要來自目標 OMS 工作區的工作區識別碼和工作區金鑰，這些在 OMS 入口網站上皆有提供。 由於工作區金鑰應視為敏感性資料，因此應儲存在受保護的設定組態中。 Azure VM 擴充功能的受保護設定資料會經過加密，而只有在目標虛擬機器上才會解密。
+下列 JSON 顯示 OMS 代理程式擴充功能的結構描述。 此擴充功能需要來自目標 OMS 工作區的工作區識別碼和工作區金鑰，這些在 OMS 入口網站上皆有提供。 由於工作區金鑰應視為敏感性資料，因此應儲存在受保護的設定組態中。 Azure VM 擴充功能保護的設定資料會經過加密，只會在目標虛擬機器上解密。 請注意，**workspaceId** 和 **workspaceKey** 區分大小寫。
 
 ```json
 {

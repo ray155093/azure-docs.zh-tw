@@ -12,16 +12,17 @@ ms.devlang: tbd
 ms.topic: article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 11/21/2016
+ms.date: 03/07/2017
 ms.author: shvija;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: aa7244849f6286e8ef9f9785c133b4c326193c12
-ms.openlocfilehash: fffa437acabc2f26cbe285be9aec47c89232948c
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: cab8a4de9d8d98d77094da5d73f29237829e743a
+ms.lasthandoff: 03/08/2017
 
 
 ---
 # <a name="create-an-event-hubs-namespace-with-event-hub-and-enable-archive-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立含有事件中樞的事件中樞命名空間並啟用封存
-本文說明如何使用 Azure Resource Manager 範本，建立含有事件中樞的事件中樞命名空間，並在您的事件中樞啟用封存。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
+本文說明如何使用 Azure Resource Manager 範本，該範本會建立類型為事件中樞的命名空間、含有一個事件中樞，並且也會啟用事件中樞上的封存功能。 此文章說明如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
 
 如需關於建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][Authoring Azure Resource Manager templates]。
 
@@ -73,7 +74,7 @@ ms.openlocfilehash: fffa437acabc2f26cbe285be9aec47c89232948c
 ```
 
 ### <a name="messageretentionindays"></a>messageRetentionInDays
-您想要在事件中樞中保留訊息的天數。 
+在事件中樞中保留訊息的天數。 
 
 ```json
 "messageRetentionInDays":{
@@ -88,7 +89,7 @@ ms.openlocfilehash: fffa437acabc2f26cbe285be9aec47c89232948c
 ```
 
 ### <a name="partitioncount"></a>partitionCount
-您在事件中樞中所需的資料分割數目。
+要在事件中樞中建立的資料分割數目。
 
 ```json
 "partitionCount":{
@@ -133,7 +134,7 @@ ms.openlocfilehash: fffa437acabc2f26cbe285be9aec47c89232948c
 ```
 
 ### <a name="archivetime"></a>archiveTime
-封存開始在 Azure Blob 儲存體中封存資料的時間間隔。
+事件中樞封存開始在 Azure Blob 儲存體中封存資料的時間間隔。
 
 ```json
 "archiveTime":{
@@ -175,7 +176,7 @@ ms.openlocfilehash: fffa437acabc2f26cbe285be9aec47c89232948c
 ```
 
 ### <a name="blobcontainername"></a>blobContainerName
-您想要封存事件資料的 Blob 容器。
+用來封保存事件資料的 blob 容器。
 
 ```json
  "blobContainerName":{
@@ -201,7 +202,7 @@ ms.openlocfilehash: fffa437acabc2f26cbe285be9aec47c89232948c
 ```
 
 ## <a name="resources-to-deploy"></a>要部署的資源
-建立 **EventHubs** 類型且含有事件中樞的命名空間，並啟用封存。
+建立 **EventHubs** 類型且含有一個事件中樞的命名空間，並啟用封存。
 
 ```json
 "resources":[  
@@ -257,7 +258,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName \<resource-group-name\> -T
 ```
 
 ## <a name="azure-cli"></a>Azure CLI
-```
+```cli
 azure config mode arm
 
 azure group deployment create \<my-resource-group\> \<my-deployment-name\> --template-uri [https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-eventhubs-create-namespace-and-enable-archive/azuredeploy.json][]
@@ -276,9 +277,4 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 [Event Hub and consumer group template]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-eventhubs-create-namespace-and-enable-archive/
 [Azure Resources Naming Conventions]: https://azure.microsoft.com/documentation/articles/guidance-naming-conventions/
 [Event Hub and enable Archive template]:https://github.com/Azure/azure-quickstart-templates/tree/master/201-eventhubs-create-namespace-and-enable-archive
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/24/2016
+ms.date: 02/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 583141e7543cb5e824204a49ff4400fe462ff28b
+ms.sourcegitcommit: 4a07f946d396a9263d5b00202cd5229ddc86d1be
+ms.openlocfilehash: 257c1032ed8f1347c17be7e51021b9284b73f4a2
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 583141e7543cb5e824204a49ff4400fe462ff28b
 Asana 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制可存取 Asana 的人員
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Asana (單一登入)
+* 您可以讓使用者使用其 Azure AD 帳戶自動登入 Asana 單一登入 (SSO)
 * 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -35,23 +36,22 @@ Asana 與 Azure AD 整合提供下列優點：
 若要設定與 Asana 的 Azure AD 整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 已啟用 **Asana** 單一登入功能的訂用帳戶
+* 已啟用 **Asana** 單一登入 (SSO) 的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 Asana
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Azure AD SSO
 
 ## <a name="adding-asana-from-the-gallery"></a>從資源庫新增 Asana
 若要設定 Asana 與 Azure AD 整合，您需要從資源庫將 Asana 加入受管理的 SaaS 應用程式清單中。
@@ -78,22 +78,23 @@ Asana 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-asana-tutorial/tutorial_asana_02.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Asana 設定及測試 Azure AD 單一登入。
+## <a name="configure-and-test-azure-ad-sso"></a>設定並測試 Azure AD SSO
+在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Asana 設定及測試 Azure AD SSO。
 
-若要讓單一登入運作，Azure AD 必須知道 Asana 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 Asana 中相關使用者之間的連結關聯性。
+若要讓 SSO 運作，Azure AD 必須知道 Asana 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 Asana 中相關使用者之間的連結關聯性。
+
 建立此連結關聯性的方法，就是將 Azure AD 中**使用者名稱**的值指派為 Asana 中 **Username** 的值。
 
 若要設定及測試與 Asana 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
 3. **[建立 Asana 測試使用者](#creating-an-Asana-test-user)** - 讓 Britta Simon 在 Asana 中有一個對應身分連結到她的 Azure AD 代表身分。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
+5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-本節的目標是在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Asana 應用程式中設定單一登入。
+### <a name="configure-azure-ad-sso"></a>設定 Azure AD SSO
+本節的目標是要在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Asana 應用程式中設定 SSO。
 
 **若要使用 Asana 設定 Azure AD 單一登入，請執行下列步驟：**
 
@@ -109,34 +110,29 @@ Asana 與 Azure AD 整合提供下列優點：
 4. 在 [設定 App 設定]  對話方塊頁面執行下列步驟： 
    
     ![設定單一登入](./media/active-directory-saas-asana-tutorial/tutorial_asana_07.png)
-
-    a. 在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://app.asana.com`
-
-    c. 按 [下一步] 。
-
-1. 於 [在 Asana 設定單一登入] 頁面上，按 [下載憑證]，然後將檔案儲存在您的電腦中。 此外，複製 SAML SSO URL 的值。
+  1. 在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://app.asana.com`
+  2. 按 [下一步] 。
+5. 於 [在 Asana 設定單一登入] 頁面上，按 [下載憑證]，然後將檔案儲存在您的電腦中。 此外，複製 SAML SSO URL 的值。
    
     ![設定單一登入](./media/active-directory-saas-asana-tutorial/tutorial_asana_08.png)
-2. 以滑鼠右鍵按一下憑證，然後使用記事本或您慣用的文字編輯器開啟憑證檔案。 複製開始和結束憑證標題之間的內容。 這是將在 Asana 中用來設定 SSO 的 X.509 憑證。
-3. 在不同的瀏覽器視窗中，登入您的 Asana 應用程式。 若要在 Asana 中設定 SSO，請按一下螢幕右上角的工作區名稱來存取工作區設定。 然後，按一下 [\<您的工作區名稱\> 設定]。 
+6. 以滑鼠右鍵按一下憑證，然後使用記事本或您慣用的文字編輯器開啟憑證檔案。 複製開始和結束憑證標題之間的內容。 這是將在 Asana 中用來設定 SSO 的 X.509 憑證。
+7. 在不同的瀏覽器視窗中，登入您的 Asana 應用程式。 若要在 Asana 中設定 SSO，請按一下螢幕右上角的工作區名稱來存取工作區設定。 然後，按一下 [\<您的工作區名稱\> 設定]。 
    
     ![設定單一登入](./media/active-directory-saas-asana-tutorial/tutorial_asana_09.png)
-4. 在 [組織設定] 視窗中，按一下 [管理]。 然後按一下 [成員必須透過 SAML 登入]  以啟用 SSO 組態。 執行下列步驟：
+8. 在 [組織設定] 視窗中，按一下 [管理]。 然後按一下 [成員必須透過 SAML 登入]  以啟用 SSO 組態。 執行下列步驟：
    
-    ![設定單一登入](./media/active-directory-saas-asana-tutorial/tutorial_asana_10.png)
-   
-    a. 在 [登入頁面 URL] 文字方塊中，貼上取自 Azure AD 的 SAML 登入 URL。
-   
-    b. 在 [X.509 憑證] 文字方塊中，貼上從 Azure AD 複製而來的 X.509 憑證。
-5. 按一下 [儲存] 。 如需進一步協助，請移至 [用於設定 SSO 的 Asana 指南](https://asana.com/guide/help/premium/authentication#gl-saml) 。
-6. 在 Azure AD 中，移至 [設定在 Asana 單一登入] 頁面，選取單一登入設定確認，然後按 [下一步]。
+    ![設定單一登入](./media/active-directory-saas-asana-tutorial/tutorial_asana_10.png)  
+  1. 在 [登入頁面 URL] 文字方塊中，貼上取自 Azure AD 的 SAML 登入 URL。
+  2. 在 [X.509 憑證] 文字方塊中，貼上從 Azure AD 複製而來的 X.509 憑證。
+9. 按一下 [儲存] 。 如需進一步協助，請移至 [用於設定 SSO 的 Asana 指南](https://asana.com/guide/help/premium/authentication#gl-saml) 。
+10. 在 Azure AD 中，移至 [設定在 Asana 單一登入] 頁面，選取 SSO 設定確認，然後按 [下一步]。
    
     ![Azure AD 單一登入][10]
-7. 在 [單一登入確認] 頁面上，按一下 [完成]。  
+11. 在 [單一登入確認] 頁面上，按一下 [完成]。  
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
@@ -156,37 +152,27 @@ Asana 與 Azure AD 整合提供下列優點：
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-asana-tutorial/create_aaduser_05.png) 
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+  1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+  2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+  3. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-asana-tutorial/create_aaduser_06.png) 
-   
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+  1. 在 [名字] 文字方塊中，輸入 **Britta**。   
+  2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+  3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+  4. 在 [角色] 清單中選取 [使用者]。
+  5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-asana-tutorial/create_aaduser_07.png) 
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-asana-tutorial/create_aaduser_08.png) 
-   
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+  1. 記下 [新密碼] 的值。 
+  2. 按一下頁面底部的 [新增] 。   
 
-### <a name="creating-an-asana-test-user"></a>建立 Asana 測試使用者
+### <a name="create-an-asana-test-user"></a>建立 Asana 測試使用者
 在本節中，您要在 Asana 中建立名為 Britta Simon 的使用者。
 
 1. 在 [Asana] 移至左面板上的 [小組] 區段。 按一下加號按鈕。 
@@ -195,8 +181,8 @@ Asana 與 Azure AD 整合提供下列優點：
 2. 在文字方塊中輸入電子郵件 britta.simon@contoso.com，然後選取 [邀請]。
 3. 按一下 [傳送邀請] 。 新的使用者會在她的電子郵件帳戶收到一封電子郵件。 她將需要建立並驗證帳戶。
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-在本節中，您會把 Asana 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+在本節中，您會將 Asana 的存取權授與 Britta Simon，讓她能夠使用 Azure SSO。
 
 ![指派使用者][200] 
 
@@ -216,7 +202,7 @@ Asana 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
+### <a name="test-single-sign-on"></a>測試單一登入
 本節的目標是要測試您的 Azure AD 單一登入。
 
 移至 Asana 登入頁面。 在 [電子郵件地址] 文字方塊中插入電子郵件地址 britta.simon@contoso.com。 讓 [密碼] 文字方塊保持空白，然後按一下 [登入]。 系統會將您重新導向至 Azure AD 登入頁面。 完成您的 Azure AD 認證。 現在，您已在 Asana 上登入。
@@ -245,9 +231,4 @@ Asana 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-asana-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-asana-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-asana-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

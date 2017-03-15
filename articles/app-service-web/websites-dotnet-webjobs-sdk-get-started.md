@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 10/28/2016
-ms.author: tdykstra
+ms.author: glenga
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: b4a64bbccabf0e7b0e7aec659d066883139c8207
@@ -32,7 +32,7 @@ ms.lasthandoff: 01/20/2017
 
 此範例應用程式能夠與 [Azure 佇列](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern) 和 [Azure Blob](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/unstructured-blob-storage) 搭配使用。 本教學課程顯示如何將應用程式部署至 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 和 [Azure SQL Database](http://msdn.microsoft.com/library/azure/ee336279)。
 
-## <a name="a-idprerequisitesaprerequisites"></a><a id="prerequisites"></a>必要條件
+## <a id="prerequisites"></a>必要條件
 本教學課程假設您知道如何在 Visual Studio 中使用 [ASP.NET MVC 5](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started) 專案。
 
 本教學課程是針對 Visual Studio 2013 所撰寫。 如果您尚未有 Visual Studio，則在安裝 Azure SDK for .NET 時，將自動為您安裝它。
@@ -49,7 +49,7 @@ ms.lasthandoff: 01/20/2017
 >
 >
 
-## <a name="a-idlearnawhat-youll-learn"></a><a id="learn"></a>您將學到什麼
+## <a id="learn"></a>您將學到什麼
 本教學課程說明如何執行下列工作：
 
 * 安裝 Azure SDK 好讓電腦適合用於進行 Azure 開發。
@@ -59,7 +59,7 @@ ms.lasthandoff: 01/20/2017
 * 上傳檔案，並將檔案儲存在 Azure Blob 服務。
 * 運用 Azure WebJobs SDK 來使用 Azure 儲存體佇列和 Blob。
 
-## <a name="a-idcontosoadsaapplication-architecture"></a><a id="contosoads"></a>應用程式架構
+## <a id="contosoads"></a>應用程式架構
 此範例應用程式會使用 [以佇列為中心的工作模式](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern) ，將建立縮圖這個需要大量 CPU 的工作轉變為後端程序。
 
 本應用程式會將廣告儲存在 SQL 資料庫中，使用 Entity Framework Code First 來建立表格和存取資料。 針對每個廣告，資料庫會儲存兩個 URL：一個用於完整大小的影像，而另一個用於縮圖。
@@ -74,7 +74,7 @@ ms.lasthandoff: 01/20/2017
 
 本教學課程的指示適用於 Azure SDK for.NET 2.7.1 或更新版本。
 
-## <a name="a-idstorageacreate-an-azure-storage-account"></a><a id="storage"></a>建立 Azure 儲存體帳戶
+## <a id="storage"></a>建立 Azure 儲存體帳戶
 Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源。 WebJobs SDK 也會使用該帳戶來儲存儀表板的記錄資料。
 
 在真實世界應用程式中，您通常會為應用程式資料與記錄資料建立不同的帳戶，並為測試資料與生產資料建立不同的帳戶。 針對本教學課程，您將只會使用一個帳戶。
@@ -100,7 +100,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 
     ![New storage account](./media/websites-dotnet-webjobs-sdk-get-started/newstorage.png)
 
-## <a name="a-iddownloadadownload-the-application"></a><a id="download"></a>下載應用程式
+## <a id="download"></a>下載應用程式
 1. 下載並解壓縮 [已完成的方案](http://code.msdn.microsoft.com/Simple-Azure-Website-with-b4391eeb)(英文)。
 2. 啟動 Visual Studio。
 3. 從 [檔案] 功能表中，依序選擇 [開啟] > [專案/方案]，並導覽至您下載方案的位置，然後開啟方案檔案。
@@ -109,7 +109,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
     根據預設，Visual Studio 會自動還原未包含在 *.zip* 檔案中的 NuGet 封裝內容。 如果封裝未還原，請移至 [管理方案的 NuGet 套件] 對話方塊，然後按一下右上方的 [還原] 按鈕來手動安裝。
 5. 在 [方案總管] 中，確定已選取 **ContosoAdsWeb** 作為啟始專案。
 
-## <a name="a-idconfigurestorageaconfigure-the-application-to-use-your-storage-account"></a><a id="configurestorage"></a>設定應用程式以使用儲存體帳戶
+## <a id="configurestorage"></a>設定應用程式以使用儲存體帳戶
 1. 開啟 ContosoAdsWeb 專案中的應用程式 *Web.config* 檔案。
 
     此檔案包含 SQL 連接字串和用來使用 Blob 和佇列的 Azure 儲存體連接字串。
@@ -153,7 +153,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 7. 使用您先前複製的連接字串來取代這兩個儲存體連接字串。
 8. 儲存您的變更。
 
-## <a name="a-idrunarun-the-application-locally"></a><a id="run"></a>在本機執行應用程式
+## <a id="run"></a>在本機執行應用程式
 1. 若要啟動應用程式的 Web 前端，請按 CTRL+F5。
 
     預設瀏覽器便會開啟到首頁。 (系統即會執行 Web 專案，這是因為您已將它設定為啟始專案。)
@@ -183,7 +183,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 
 您一直在本機電腦上執行應用程式，並使用位於電腦上的 SQL Server 資料庫，但它會使用雲端中的佇列和 Blob。 在下一節中，您將會使用雲端資料庫以及雲端 Blob 和佇列，在雲端中執行應用程式。  
 
-## <a name="a-idrunincloudarun-the-application-in-the-cloud"></a><a id="runincloud"></a>在雲端中執行應用程式
+## <a id="runincloud"></a>在雲端中執行應用程式
 您將執行下列步驟，在雲端中執行應用程式：
 
 * 部署至 Web Apps。 Visual Studio 會在 App Service 和 SQL 資料庫執行個體中自動建立新的 Web 應用程式。
@@ -308,7 +308,7 @@ Azure 儲存體帳戶可提供在雲端中儲存佇列和 Blob 資料的資源�
 >
 >
 
-## <a name="a-idcreateacreate-the-application-from-scratch"></a><a id="create"></a>從頭開始建立應用程式
+## <a id="create"></a>從頭開始建立應用程式
 您將在本節執行下列工作：
 
 * 使用 Web 專案建立 Visual Studio 方案。
@@ -407,7 +407,7 @@ Web 和 WebJob 專案都將使用 SQL Database，因此兩者都會需要 Contos
 
 您現在可以如本教學課程中稍早所指示般建置、執行及部署應用程式。 不過，在您開始執行此動作之前，請先將仍在您部署的第一個 Web 應用程式中執行的 WebJob 停止。 否則，WebJob 將會處理在本機建立或由在新 Web 應用程式中執行之應用程式所建立的佇列訊息，因為它們全都使用相同的儲存體帳戶。
 
-## <a name="a-idcodeareview-the-application-code"></a><a id="code"></a>檢閱應用程式程式碼
+## <a id="code"></a>檢閱應用程式程式碼
 以下小節將說明 WebJobs SDK、Azure 儲存體 Blob 和佇列相關的程式碼。
 
 > [!NOTE]
@@ -636,7 +636,7 @@ Create.cshtml 和 Edit.cshtml 檔案可指定表單編碼，供控制器取得 `
 
         <input type="file" name="imageFile" accept="image/*" class="form-control fileupload" />
 
-### <a name="a-idprogramcsacontosoadswebjob---programcs"></a><a id="programcs"></a>ContosoAdsWebJob - Program.cs
+### <a id="programcs"></a>ContosoAdsWebJob - Program.cs
 當 WebJob 啟動時，`Main` 方法會呼叫 WebJobs SDK `JobHost.RunAndBlock` 方法，開始執行目前執行緒上所觸發的函數。
 
         static void Main(string[] args)
@@ -645,7 +645,7 @@ Create.cshtml 和 Edit.cshtml 檔案可指定表單編碼，供控制器取得 `
             host.RunAndBlock();
         }
 
-### <a name="a-idgeneratethumbnailacontosoadswebjob---functionscs---generatethumbnail-method"></a><a id="generatethumbnail"></a>ContosoAdsWebJob - Functions.cs - GenerateThumbnail 方法
+### <a id="generatethumbnail"></a>ContosoAdsWebJob - Functions.cs - GenerateThumbnail 方法
 WebJobs SDK 會在收到佇列訊息時呼叫此方法。 此方法會建立縮圖，並將縮圖 URL 放入資料庫。
 
         public static void GenerateThumbnail(

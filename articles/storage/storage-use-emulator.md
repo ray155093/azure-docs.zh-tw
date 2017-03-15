@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: e207c221a7294d1288e38c377d64327d889b29de
-ms.openlocfilehash: 7a635fa0f63e851f63f56dc7eb3bca405603dec0
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: fe1d7abf3585efab67a7dbc10afa7bf3c4d466e5
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.openlocfilehash: 7a635fa0f63e851f63f56dc7eb3bca405603dec0
 Microsoft Azure 儲存體模擬器提供了模擬 Azure Blob、佇列和資料表服務的本機環境，以供進行開發。 您可以使用儲存體模擬器，針對儲存體服務在本機測試您的應用程式，而不需建立 Azure 訂用帳戶，也不會產生任何費用。 如果您滿意應用程式在模擬器中的運作方式，就可以切換成使用雲端的 Azure 儲存體帳戶。
 
 > [!NOTE]
-> 儲存體模擬器隨 [Microsoft Azure SDK](https://azure.microsoft.com/downloads/)提供。 您也可以使用 [獨立安裝程式](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)來安裝儲存體模擬器。 若要設定儲存體模擬器，您必須在電腦上具有系統管理權限。
+> 儲存體模擬器隨 [Microsoft Azure SDK](https://azure.microsoft.com/downloads/)提供。 您也可以使用 [獨立安裝程式](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)來安裝儲存體模擬器。 若要安裝儲存體模擬器，您必須在電腦上具有系統管理權限。
 >
 > 儲存體模擬器目前只能在 Windows 上執行。
 >
@@ -88,10 +89,10 @@ New-AzureStorageContainerSASToken -Name CONTAINER_NAME -Permission rwdl -ExpiryT
 儲存體模擬器預設會安裝至 C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator 目錄。
 
 ### <a name="initialize-the-storage-emulator-to-use-a-different-sql-database"></a>初始化儲存體模擬器以使用不同的 SQL 資料庫
-您可以使用儲存體模擬器命令列工具來初始化儲存體模擬器，以指向預設 LocalDB 執行個體以外的 SQL 資料庫執行個體。 您必須以系統管理權限執行命令列工具，才能初始化儲存體模擬器的後端資料庫：
+您可以使用儲存體模擬器命令列工具來初始化儲存體模擬器，以指向預設 LocalDB 執行個體以外的 SQL 資料庫執行個體：
 
 1. 按一下 [開始] 按鈕或按下 [Windows] 鍵。 先輸入 `Azure Storage Emulator` ，並在開始帶出儲存體模擬器命令列工具時加以選取。
-2. 在命令提示字元視窗中，輸入下列命令，其中 `<SQLServerInstance>` 是 SQL Server 執行個體的名稱。 若要使用 LocalDb，請指定 `(localdb)\v11.0` 做為 SQL Server 執行個體。
+2. 在命令提示字元視窗中，輸入下列命令，其中 `<SQLServerInstance>` 是 SQL Server 執行個體的名稱。 若要使用 LocalDb，請指定 `(localdb)\MSSQLLocalDb` 做為 SQL Server 執行個體。
 
         AzureStorageEmulator init /server <SQLServerInstance>
 
@@ -160,7 +161,7 @@ New-AzureStorageContainerSASToken -Name CONTAINER_NAME -Permission rwdl -ExpiryT
 | **停止** |停止儲存體模擬器。 |`AzureStorageEmulator stop` | |
 | **狀態** |列印儲存體模擬器的狀態。 |`AzureStorageEmulator status` | |
 | **Clear** |清除命令列上指定的所有服務中的資料。 |`AzureStorageEmulator clear [blob] [table] [queue] [all]                                                    ` |*blob*：清除 blob 資料。 <br/>*queue*：清除佇列資料。 <br/>*table*：清除資料表資料。 <br/>*all*：清除所有服務中的所有資料。 |
-| **Init** |執行一次初始化以設定模擬器。 |`AzureStorageEmulator.exe init [-server serverName] [-sqlinstance instanceName] [-forcecreate] [-inprocess]` |*-server serverName\instanceName*︰指定裝載 SQL 執行個體的伺服器。 <br/>*-sqlinstance instanceName*：指定在預設伺服器執行個體中使用之 SQL 執行個體的名稱。 <br/>*-forcecreate*：強制建立 SQL 資料庫，即使它已經存在。 <br/>*-inprocess*：在目前的處理序中執行初始化，而不是繁衍新的處理序。 必須以更高權限啟動目前的處理序，才能執行初始化。 |
+| **Init** |執行一次初始化以設定模擬器。 |<code>AzureStorageEmulator.exe init [-server serverName] [-sqlinstance instanceName] [-forcecreate&#124;-skipcreate] [-reserveports&#124;-unreserveports] [-inprocess]</code> |*-server serverName\instanceName*︰指定裝載 SQL 執行個體的伺服器。 <br/>*-sqlinstance instanceName*：指定在預設伺服器執行個體中使用之 SQL 執行個體的名稱。 <br/>*-forcecreate*：強制建立 SQL 資料庫，即使它已經存在。 <br/>*-skipcreate*︰略過建立 SQL 資料庫。 其優先順序高於 -forcecreate。<br/>*-reserveports*︰嘗試保留與服務相關聯的 HTTP 連接埠。<br/>*-unreserveports*︰嘗試移除服務相關聯 HTTP 連接埠的保留。 其優先順序高於 -reserveports。<br/>*-inprocess*：在目前的處理序中執行初始化，而不是繁衍新的處理序。 如果變更連接埠保留，必須以提高權限啟動目前的處理程序。 |
 
 ## <a name="differences-between-the-storage-emulator-and-azure-storage"></a>儲存體模擬器和 Azure 儲存體之間的差異
 因為儲存體模擬器是在本機 SQL 執行個體中執行的模擬環境，所以模擬器和雲端 Azure 儲存體帳戶之間會有功能上的差異：
@@ -195,6 +196,18 @@ New-AzureStorageContainerSASToken -Name CONTAINER_NAME -Permission rwdl -ExpiryT
 模擬器中的佇列儲存體沒有特定差異。
 
 ## <a name="storage-emulator-release-notes"></a>儲存體模擬器版本資訊
+### <a name="version-51"></a>版本 5.1
+* 修正了儲存體模擬器在某些回應中傳回 `DataServiceVersion` 標頭 (但服務未傳回) 的問題。
+
+### <a name="version-50"></a>版本 5.0
+* 儲存體模擬器安裝程式不再會檢查現有的 MSSQL 和 .NET Framework 安裝。
+* 儲存體模擬器安裝程式不再會隨著安裝建立資料庫。  必要時仍會隨著啟動建立資料庫。
+* 建立資料庫不再需要提高權限。
+* 啟動不再需要保留連接埠。
+* 新增下列選項至 *init*：-reserveports (需要提高權限)、-unreserveports (需要提高權限)、-skipcreate。
+* 系統匣圖示上的儲存體模擬器 UI 上選項現在會啟動命令列介面。  已不再使用舊 GUI。
+* 某些 DLL 已移除或重新命名。
+
 ### <a name="version-46"></a>版本 4.6
 * 儲存體模擬器現在支援 Blob、佇列和資料表服務端點上的 2016-05-31 版儲存體服務。
 
@@ -231,9 +244,4 @@ New-AzureStorageContainerSASToken -Name CONTAINER_NAME -Permission rwdl -ExpiryT
 * Azure 儲存體模擬器不再隨附於計算模擬器封裝。
 * 儲存體模擬器圖形化使用者介面已由可編寫指令碼的命令列介面取代。 如需有關命令列介面的詳細資訊，請參閱儲存體模擬器命令列工具參考。 3.0 版仍將提供圖形化介面，除非在系統匣圖示按一下滑鼠右鍵並選取 [顯示儲存體模擬器 UI] 的方式安裝計算模擬器，否則無法存取圖形化介面。
 * 現在完全支援 2013-08-15 版的 Azure 儲存體服務。 (先前只有儲存體模擬器 2.2.1 版預覽才支援此版本)。
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

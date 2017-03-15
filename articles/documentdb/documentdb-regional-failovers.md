@@ -14,14 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/09/2017
 ms.author: arramac
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 0921464c10d5ca3d426a535d434eab6cf02013e6
-ms.openlocfilehash: c234958f5fc1ba0dbcb727e18e733d13ad0c7e71
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 4af4d30a3378e1aea66309a1d757be1c1da2ea0d
+ms.lasthandoff: 03/07/2017
 
 
 ---
-# <a name="regional-failovers-in-azure-documentdb"></a>Azure DocumentDB 的區域性容錯移轉
+# <a name="automatic-regional-failovers-for-business-continuity-in-documentdb"></a>DocumentDB 中商務持續性的自動區域容錯移轉
 Azure DocumentDB 會簡化資料的全球發佈作業，方法是提供多個可完全管理的[多區域資料庫帳戶](documentdb-distribute-data-globally.md)，在一致性、可用性和效能之間進行明確取捨，這一切全都倚靠相對應的保證來完成。 DocumentDB 帳戶具備下列優點：高可用性、個位數的毫秒延遲、[定義完善的一致性層級](documentdb-consistency-levels.md)、利用多首頁 API 透明進行的區域性容錯移轉，以及全球輸送量及儲存體的彈性調整能力。 
 
 Azure DocumentDB 支援明確和原則導向的容錯移轉，可讓您控制在失敗發生時的端對端系統行為。 我們將在本文中說明：

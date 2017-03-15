@@ -15,14 +15,15 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: juanpere
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: e1bb89ba369818d7ba0e92a54a4712033f648187
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: ecc6f4a1a8cbb07d9f610e8f6fb5ca66b7532513
+ms.lasthandoff: 03/07/2017
 
 
 ---
 # <a name="get-started-with-device-management-node"></a>開始使用裝置管理 (Node)
 ## <a name="introduction"></a>簡介
-IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是裝置對應項和直接方法) 來遠端啟動並監視裝置上的裝置管理動作。  本文提供 IoT 雲端應用程式和裝置如何共同運作，以使用 IoT 中樞初始化並監視遠端裝置重新啟動的指導方針和程式碼。
+IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是裝置對應項和直接方法) 來遠端啟動並監視裝置上的裝置管理動作。 本文提供 IoT 雲端應用程式和裝置如何共同運作，以使用 IoT 中樞初始化並監視遠端裝置重新啟動的指導方針和程式碼。
 
 若要從雲端式的後端 App 遠端啟動並監視您裝置上的裝置管理行動，請使用[裝置對應項][lnk-devtwin]和[直接方法][lnk-c2dmethod]等 Azure IoT 中樞基本類型。 本教學課程會示範後端 App 和裝置如何共同運作，以讓您從 IoT 中樞初始化並監視遠端裝置重新啟動。
 
@@ -37,8 +38,8 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 本教學課程說明如何：
 
 * 使用 Azure 入口網站來建立 IoT 中樞，並且在 IoT 中樞建立裝置識別。
-* 建立模擬的裝置應用程式，其具有可以由雲端呼叫以進行重新啟動的直接方法。
-* 建立 Node.js 主控台應用程式，可透過您的 IoT 中樞在模擬的裝置應用程式中呼叫重新啟動直接方法。
+* 建立模擬裝置應用程式，其包含可將該裝置重新開機的直接方法。 直接方法是從雲端叫用。
+* 建立 .NET 主控台應用程式，可透過您的 IoT 中樞在模擬的裝置應用程式中呼叫重新啟動直接方法。
 
 在本教學課程結尾處，您會有兩個 Node.js 主控台應用程式：
 
@@ -62,7 +63,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 * 觸發模擬裝置重新啟動
 * 使用報告屬性來啟用裝置對應項查詢，以識別裝置及其上次重新啟動時間
 
-1. 建立稱為 **manageddevice**的新的空資料夾。  在 **manageddevice** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。  接受所有預設值：
+1. 建立稱為 **manageddevice** 的空資料夾。  在 **manageddevice** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。  接受所有預設值：
    
     ```
     npm init
@@ -72,7 +73,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. 使用文字編輯器，在 [manageddevice] 資料夾中建立新的 **dmpatterns_getstarted_device.js** 檔案。
+3. 使用文字編輯器，在 **manageddevice** 資料夾中建立 **dmpatterns_getstarted_device.js** 檔案。
 4. 在 **dmpatterns_getstarted_device.js** 檔案開頭新增下列 'require' 陳述式：
    
     ```
@@ -141,13 +142,14 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
     });
     ```
 8. 儲存並關閉 **dmpatterns_getstarted_device.js**檔案。
-   
-   [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
+
+> [!NOTE]
+> 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
 
 ## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>使用直接方法在裝置上觸發遠端重新啟動
-在本節中，您會建立一個 Node.js 主控台 App，此 App 會使用直接方法在裝置上初始化遠端重新啟動，並使用裝置對應項 (twin) 查詢來尋找該裝置的上次重新啟動時間。
+在此節中，您會建立 .NET 主控台應用程式 (使用 C#)，此應用程式會使用直接方法起始遠端重新開機。 應用程式使用裝置對應項查詢來探索該裝置的上次重新開機時間。
 
-1. 建立名為 **triggerrebootondevice** 的新空白資料夾。  在命令提示字元中，於 **triggerrebootondevice** 資料夾中使用下列命令來建立 package.json 檔案。  接受所有預設值：
+1. 建立名為 **triggerrebootondevice** 的空白資料夾。  在命令提示字元中，於 **triggerrebootondevice** 資料夾中使用下列命令來建立 package.json 檔案。  接受所有預設值：
    
     ```
     npm init
@@ -157,7 +159,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
     ```
     npm install azure-iothub --save
     ```
-3. 使用文字編輯器，在 [triggerrebootondevice] 資料夾中建立新的 **dmpatterns_getstarted_service.js** 檔案。
+3. 使用文字編輯器，在 **triggerrebootondevice** 資料夾中建立 **dmpatterns_getstarted_service.js** 檔案。
 4. 在 **dmpatterns_getstarted_service.js** 檔案開頭新增下列 'require' 陳述式：
    
     ```
@@ -216,7 +218,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
         });
     };
     ```
-8. 新增下列函式來呼叫將觸發重新啟動直接方法並查詢上次重新啟動時間的函式︰
+8. 新增下列函式來呼叫可觸發重新啟動直接方法，並查詢上次重新啟動時間的函式︰
    
     ```
     startRebootDevice();
@@ -240,13 +242,13 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 3. 您會在主控台中看到直接方法的裝置回應。
 
 ## <a name="customize-and-extend-the-device-management-actions"></a>自訂及延伸裝置管理動作
-您的 IoT 解決方案可以透過使用裝置對應項 (twin) 和直接方法基本類型，擴充一組已定義的裝置管理模式或啟用自訂模式。 其他裝置管理動作範例還包括恢復出廠預設值、韌體更新、軟體更新、電源管理、網路和連線管理，以及資料加密。
+您的 IoT 解決方案可以透過使用裝置對應項和雲端到裝置方法基元，擴充一組已定義的裝置管理模式或啟用自訂模式。 其他裝置管理動作範例還包括恢復出廠預設值、韌體更新、軟體更新、電源管理、網路和連線管理，以及資料加密。
 
 ## <a name="device-maintenance-windows"></a>裝置維護期間
 一般而言，您會設定讓裝置在產生最短中斷和停機時間的時機執行動作。  裝置維護期間是用來定義裝置組態更新時機的常用模式。 您的後端解決方案可以使用所需的裝置對應項 (twin) 屬性，在您的裝置上定義可啟用維護期間的原則並啟用該原則。 當裝置收到維護期間原則時，它可以使用回報的裝置對應項 (twin) 屬性來回報原則的狀態。 接著，後端 App 便可使用裝置對應項 (twin) 查詢來證明是否符合裝置及每個原則的規定。
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已使用直接方法來觸發裝置上的遠端重新啟動、使用報告屬性來從裝置回報上次重新啟動時間，以及查詢裝置對應項來從雲端探索裝置的上次重新啟動時間。
+在本教學課程中，您已使用直接方法在裝置上觸發遠端重新開機。 您已使用報告屬性來從裝置回報上次重新開機時間，以及查詢裝置對應項來從雲端探索裝置的上次重新開機時間。
 
 若要繼續開始使用「IoT 中樞」和裝置管理模式 (例如遠端無線韌體更新)，請參閱︰
 
@@ -273,9 +275,4 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 [lnk-devtwin]: iot-hub-devguide-device-twins.md
 [lnk-c2dmethod]: iot-hub-devguide-direct-methods.md
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

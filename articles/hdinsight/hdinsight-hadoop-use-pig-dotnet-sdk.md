@@ -13,12 +13,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/08/2017
+ms.date: 03/03/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: e80bf82df28fbce8a1019c6eb07cfcae4cbba930
-ms.openlocfilehash: e32d21ca410d4107f68f8b72353ca400a26c4523
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: db01dd7ff7590c6cb43b5f8bc39674f585160856
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -38,7 +38,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
   > [!IMPORTANT]
   > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
-* Visual Studio 2012、2013 或 2015。
+* Visual Studio 2012、2013、2015 或 2017。
 
 ## <a name="create-the-application"></a>建立應用程式
 
@@ -46,32 +46,19 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 
 1. 從 Visual Studio 的 [檔案] 功能表中，選取 [新增]，然後選取 [專案]。
 
-2. 對於新的專案，輸入或選取下列值。
+2. 對於新的專案，輸入或選取下列值：
    
-    <table>
-    <tr>
-    <th>屬性</th>
-    <th>值</th>
-    </tr>
-    <tr>
-    <th>類別</th>
-    <th>範本/Visual C#/Windows</th>
-    </tr>
-    <tr>
-    <th>範本</th>
-    <th>主控台應用程式</th>
-    </tr>
-    <tr>
-    <th>名稱</th>
-    <th>SubmitPigJob</th>
-    </tr>
-    </table>
+   | 屬性 | 值 |
+   | ------ | ------ |
+   | 類別 | 範本/Visual C#/Windows |
+   | 範本 | 主控台應用程式 |
+   | 名稱 | SubmitPigJob |
 
 3. 按一下 [確定]  以建立專案。
 
 4. 從 [工具] 功能表中，選取 [程式庫封裝管理員] 或 [Nuget 封裝管理員]，然後選取 [封裝管理員主控台]。
 
-5. 在主控台中執行下列命令，以安裝 .NET SDK 封裝。
+5. 若要安裝 .NET SDK 封裝，請使用下列命令︰
    
         Install-Package Microsoft.Azure.Management.HDInsight.Job
 
@@ -130,9 +117,9 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
     }
     ```
     
-7. 按 **F5** 啟動應用程式。
+7. 若要啟動應用程式，請按 **F5**。
 
-8. 按 **ENTER** 結束應用程式。
+8. 若要結束應用程式，請按 **ENTER**。
 
 ## <a name="summary"></a>摘要
 
@@ -140,11 +127,9 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 
 ## <a name="next-steps"></a>後續步驟
 
-如需 HDInsight 中 Pig 的一般資訊。
+如需 HDInsight 中 Pig 的詳細資訊，請參閱[搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)。
 
-* [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
-
-如需您可以在 HDInsight 上使用 Hadoop 之其他方式的詳細資訊。
+如需在 HDInsight 上使用 Hadoop 的詳細資訊，請參閱下列文件：
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)

@@ -1,5 +1,6 @@
 ---
-title: "在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則 | Microsoft Docs"
+
+title: "Azure Active Directory 預覽版中以屬性為基礎的動態群組成員資格 | Microsoft Docs"
 description: "如何建立動態群組成員資格的進階規則，包括支援的運算式規則運算子和參數。"
 services: active-directory
 documentationcenter: 
@@ -12,16 +13,20 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/10/2017
+ms.date: 03/07/2017
 ms.author: curtand
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: da120b0ea1bfa7a0afcb6eed864c4eadbd2bbec0
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: aa6ab3d2133019203a75b07853908059684bbaae
+ms.lasthandoff: 03/08/2017
 
 
 ---
-# <a name="using-attributes-to-create-advanced-rules-for-group-membership-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則
-Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (Azure AD) 預覽版群組啟用更複雜的屬性型動態成員資格。 [預覽版有何功能？](active-directory-preview-explainer.md)  本文將詳細說明用以建立這些進階規則的規則屬性和語法。
+# <a name="create-attribute-based-rules-for-dynamic-group-membership-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中針對動態群組成員資格建立以屬性為基礎的規則
+Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (Azure AD) 預覽版群組啟用更複雜的屬性型動態成員資格。 [預覽版有何功能？](active-directory-preview-explainer.md) 
+
+本文將詳細說明用以建立動態成員資格規則的屬性和語法。
 
 ## <a name="to-create-the-advanced-rule"></a>建立進階規則
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
@@ -84,8 +89,8 @@ Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (A
 | 查詢剖析錯誤 | 錯誤的使用方式 | 更正的使用方式 |
 | --- | --- | --- |
 | 錯誤：不支援屬性。 |(user.invalidProperty -eq "Value") |(user.department -eq "value")<br/>屬性應該符合 [支援的屬性清單](#supported-properties)。 |
-| 錯誤：屬性不支援運算子。 |(user.accountEnabled -contains true) |(user.accountEnabled -eq true)<br/> 屬性屬於布林類型。 使用上述清單中的布林型別支援的運算子 (-eq 或-ne)。 |
-| 錯誤：查詢編譯錯誤。 |(user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") |(user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".*@domain.ext")or(user.userPrincipalName -match "@domain.ext$")Error 規則運算式中發生錯誤。 |
+| 錯誤：屬性不支援運算子。 |(user.accountEnabled -contains true) |(user.accountEnabled -eq true)<br/>屬性屬於布林類型。 使用上述清單中的布林型別支援的運算子 (-eq 或-ne)。 |
+| 錯誤：查詢編譯錯誤。 |(user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") |(user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".*@domain.ext") 或 (user.userPrincipalName -match "@domain.ext$") 規則運算式發生錯誤。 |
 | 錯誤：二進位運算式不是正確的格式。 |(user.department –eq “Sales”) (user.department -eq "Sales")(user.department-eq"Sales") |(user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。 括號不在正確的位置。 |
 | 錯誤：設定動態成員資格時發生未知的錯誤。 |(user.accountEnabled -eq "True" AND user.userPrincipalName -contains "alias@domain") |(user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。 括號不在正確的位置。 |
 
@@ -119,6 +124,7 @@ Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (A
 | --- | --- | --- |
 | city |任何字串值或 $null |(user.city -eq "value") |
 | country |任何字串值或 $null |(user.country -eq "value") |
+| CompanyName | 任何字串值或 $null | (user.CompanyName -eq "value") |
 | department |任何字串值或 $null |(user.department -eq "value") |
 | displayName |任何字串值 |(user.displayName -eq "value") |
 | facsimileTelephoneNumber |任何字串值或 $null |(user.facsimileTelephoneNumber -eq "value") |
@@ -185,16 +191,29 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 ## <a name="using-attributes-to-create-rules-for-device-objects"></a>使用屬性來建立裝置物件的規則
 您也可以建立規則以在群組中選取成員資格的裝置物件。 可以使用下列裝置屬性︰
 
-| 屬性 | 允許的值 | 使用量 |
-| --- | --- | --- |
-| displayName |任何字串值 |(device.displayName -eq "Rob Iphone”) |
-| deviceOSType |任何字串值 |(device.deviceOSType -eq "IOS") |
-| deviceOSVersion |任何字串值 |(device.OSVersion -eq "9.1") |
-| isDirSynced |true false null |(device.isDirSynced -eq "true") |
-| isManaged |true false null |(device.isManaged -eq "false") |
-| isCompliant |true false null |(device.isCompliant -eq "true") |
+| 屬性              | 允許的值                  | 使用量                                                       |
+|-------------------------|---------------------------------|-------------------------------------------------------------|
+| displayName             | 任何字串值                | (device.displayName -eq "Rob Iphone”)                       |
+| deviceOSType            | 任何字串值                | (device.deviceOSType -eq "IOS")                             |
+| deviceOSVersion         | 任何字串值                | (device.OSVersion -eq "9.1")                                |
+| isDirSynced             | true false null                 | (device.isDirSynced -eq "true")                             |
+| isManaged               | true false null                 | (device.isManaged -eq "false")                              |
+| isCompliant             | true false null                 | (device.isCompliant -eq "true")                             |
+| deviceCategory          | 任何字串值                | (device.deviceCategory -eq "")                              |
+| deviceManufacturer      | 任何字串值                | (device.deviceManufacturer -eq "Microsoft")                 |
+| deviceModel             | 任何字串值                | (device.deviceModel -eq "IPhone 7+")                        |
+| deviceOwnership         | 任何字串值                | (device.deviceOwnership -eq "")                             |
+| domainName              | 任何字串值                | (device.domainName -eq "contoso.com")                       |
+| enrollmentProfileName   | 任何字串值                | (device.enrollmentProfileName -eq "")                       |
+| isRooted                | true false null                 | (device.deviceOSType -eq "true")                            |
+| managementType          | 任何字串值                | (device.managementType -eq "")                              |
+| organizationalUnit      | 任何字串值                | (device.organizationalUnit -eq "")                          |
+| deviceId                | 有效的 deviceId                | (device.deviceId -eq "d4fe7726-5966-431c-b3b8-cddc8fdb717d" |
 
-## <a name="additional-information"></a>其他資訊
+
+
+
+## <a name="next-steps"></a>後續步驟
 這些文章提供有關 Azure Active Directory 中群組的其他資訊。
 
 * [查看現有的群組](active-directory-groups-view-azure-portal.md)
@@ -202,9 +221,4 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 * [管理群組的設定](active-directory-groups-settings-azure-portal.md)
 * [管理群組的成員資格](active-directory-groups-membership-azure-portal.md)
 * [管理群組中使用者的動態規則](active-directory-groups-dynamic-membership-azure-portal.md)
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

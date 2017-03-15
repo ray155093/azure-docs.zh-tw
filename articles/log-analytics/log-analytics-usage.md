@@ -62,7 +62,7 @@ Log Analytics 會收集資料，並定期傳送給 OMS 服務。  您可以使�
 4. 在 [工作區] 儀表板中，按一下 [Log Analytics 使用量]。
 5. 在 [Log Analytics 使用量] 儀表板中，按一下 [時間︰過去 24 小時] 以變更時間間隔。  
     ![時間間隔](./media/log-analytics-usage/time.png)
-6. 檢視顯示您感興趣之領域的使用量類別刀鋒視窗。 選擇刀鋒視窗，然後在其中按一下某個項目以在 [記錄檔搜尋][](log-analytics-log-searches.md) 中檢視詳細資料。  
+6. 檢視顯示您感興趣之領域的使用量類別刀鋒視窗。 選擇刀鋒視窗，然後在其中按一下某個項目以在 [記錄檔搜尋](log-analytics-log-searches.md) 中檢視詳細資料。  
     ![範例資料使用量刀鋒視窗](./media/log-analytics-usage/blade.png)
 7. 在 [記錄檔搜尋] 儀表板中，檢閱搜尋傳回的結果。  
     ![範例使用量記錄檔搜尋](./media/log-analytics-usage/usage-log-search.png)

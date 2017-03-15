@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/09/2016
+ms.date: 12/12/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 5e773168480bcb2b011e5539555391c06e970047
+ms.sourcegitcommit: 9e738c4e5f43ae6c939f7c6da90c258498943e73
+ms.openlocfilehash: b4740816ac61ffad032b86367fef99be7581f4c6
+ms.lasthandoff: 12/14/2016
 
 
 ---
@@ -26,9 +27,7 @@ ms.openlocfilehash: 5e773168480bcb2b011e5539555391c06e970047
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="workspace-owner"></a>工作區擁有者
-當您建立新的機器學習服務工作區時，您在 [工作區擁有者] 欄位中輸入的識別碼必須是有效的 Microsoft 帳戶 (先前稱為 Windows Live ID)，例如 john-contoso@live.com 或 john-contoso@hotmail.com.。不可以使用非 Microsoft 帳戶，例如您的公司電子郵件帳戶。 若要建立免費 Microsoft 帳戶，請前往 [www.live.com](http://www.live.com)。
-
-請注意，您用來登入 Azure 入口網站來建立工作區的帳戶，不會自動具備可 *開啟* 該工作區的權限，除非您將該帳戶指定為擁有者。 若要在 Machine Learning Studio 中開啟工作區，您必須使用定義為工作區擁有者的 Microsoft 帳戶登入，或者您需要收到來自擁有者的邀請，才能加入工作區。 不過，您可以從 Azure 傳統入口網站 *管理* 工作區，其中包括變更擁有者和設定存取的能力。
+若要在 Machine Learning Studio 中開啟工作區，您必須使用建立工作區的 Microsoft 帳戶登入，或需要收到來自擁有者的邀請，才能加入工作區。 您可以從 Azure 入口網站管理工作區，其中包括設定存取的能力。
 
 如需管理工作區的詳細資訊，請參閱 [管理 Azure Machine Learning 工作區]。
 
@@ -37,38 +36,32 @@ ms.openlocfilehash: 5e773168480bcb2b011e5539555391c06e970047
 ## <a name="allowed-regions"></a>允許區域
 機器學習服務目前可用於數量有限的區域。 如果您的訂用帳戶並未包含這其中一個區域，您可能會看見錯誤訊息「您在允許的區域中沒有任何訂用帳戶」。
 
-為了要求將允許區域新增至您的訂用帳戶，請從 Azure 傳統入口網站中選取 [連絡 Microsoft 支援服務]，將問題類型選擇為 [計費]，並遵照提示來提交您的要求。
-
-![連絡 Microsoft 支援][screen1]
+為了要求將區域新增至您的訂用帳戶，請從 Azure 入口網站中建立新的 Microsoft 支援要求，選取 [計費] 做為問題類型，並遵照提示來提交您的要求。
 
 ## <a name="storage-account"></a>儲存體帳戶
 機器學習服務需要儲存體帳戶來儲存資料。 您可以使用現有的儲存體帳戶，或是在建立新的機器學習服務工作區時建立新的儲存體帳戶 (如果您有建立新儲存體帳戶的配額)。
 
-<!-- These instructions no longer work, but I'm not sure what to replace them with
-To see if you can create a new storage account, in the Classic Portal, go to **Settings** and then click **Usage**.
--->
-
-![建立工作區][screen2]
-
-新的機器學習服務工作區建立完成後，您可以使用指定作為工作區擁有者的 Microsoft 帳戶登入 Machine Learning Studio。 如果您遇到錯誤訊息「找不到工作區」(類似於下列螢幕擷取畫面)，請使用下列步驟來刪除您的瀏覽器 Cookie。
+新的 Machine Learning 工作區建立完成後，您可以使用建立工作區的 Microsoft 帳戶登入 Machine Learning Studio。 如果您遇到錯誤訊息「找不到工作區」(類似於下列螢幕擷取畫面)，請使用下列步驟來刪除您的瀏覽器 Cookie。
 
 ![找不到工作區][screen3]
 
 **刪除瀏覽器 Cookie**
 
-如果您是使用 Internet Explorer，請按一下右上角的 [工具] 按鈕，然後選取 [網際網路選項]。  
+1. 如果您是使用 Internet Explorer，請按一下右上角的 [工具] 按鈕，然後選取 [網際網路選項]。  
 
 ![網際網路選項][screen4]
 
-在 [一般] 索引標籤下，按一下 [刪除...]
+2. 在 [一般] 索引標籤下，按一下 [刪除...]
 
 ![[一般] 索引標籤][screen5]
 
-在 [刪除瀏覽歷程記錄] 對話方塊中，確定已選取 [Cookie 與網站資料]，然後按一下 [刪除]。
+3. 在 [刪除瀏覽歷程記錄] 對話方塊中，確定已選取 [Cookie 與網站資料]，然後按一下 [刪除]。
 
 ![刪除 cookie][screen6]
 
-刪除 Cookie 之後，請重新啟動瀏覽器，然後前往 [Microsoft Azure Machine Learning](https://studio.azureml.net) 頁面。 出現輸入使用者名稱和密碼的提示時，請輸入指定作為工作區擁有者的同一個 Microsoft 帳戶。
+刪除 Cookie 之後，請重新啟動瀏覽器，然後前往 [Microsoft Azure Machine Learning](https://studio.azureml.net) 頁面。 出現輸入使用者名稱和密碼的提示時，請輸入建立工作區所使用的同一個 Microsoft 帳戶。
+
+## <a name="comments"></a>註解
 
 我們的目標是讓機器學習服務經驗盡可能完美。 請將任何建議或問題貼在 [Azure Machine Learning 論壇](http://social.msdn.microsoft.com/Forums/windowsazure/home?forum=MachineLearning) 中，以協助我們為您提供更好的服務。
 
@@ -78,9 +71,4 @@ To see if you can create a new storage account, in the Classic Portal, go to **S
 [screen4]:media/machine-learning-troubleshooting-creating-ml-workspace/screen4.png
 [screen5]:media/machine-learning-troubleshooting-creating-ml-workspace/screen5.png
 [screen6]:media/machine-learning-troubleshooting-creating-ml-workspace/screen6.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

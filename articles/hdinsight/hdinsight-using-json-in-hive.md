@@ -15,8 +15,9 @@ ms.workload: big-data
 ms.date: 06/22/2015
 ms.author: rashimg
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 89618f7549d8589d5ac684772832748ab9765d1a
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: c292772cb21c90bf4373803bfcaa47787c3980b5
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -58,7 +59,7 @@ ms.openlocfilehash: 89618f7549d8589d5ac684772832748ab9765d1a
         ]
     }
 
-檔案位於 wasbs://processjson@hditutorialdata.blob.core.windows.net/. 如需關於搭配 HDInsight 使用 Azure Blob 儲存體的詳細資訊，請參閱 [在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)。 如果您想要的話，可以將檔案複製到叢集的預設容器。
+檔案位於 wasbs://processjson@hditutorialdata.blob.core.windows.net/。 如需關於搭配 HDInsight 使用 Azure Blob 儲存體的詳細資訊，請參閱[在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)。 如果您想要的話，可以將檔案複製到叢集的預設容器。
 
 在本教學課程中，您將使用 Hive 主控台。  如需開啟 Hive 主控台的指示，請參閱 [利用遠端桌面搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-hadoop-use-hive-remote-desktop.md)。
 
@@ -173,7 +174,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 
     add jar json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar;
 
-    ![Adding JAR to your project][image-hdi-hivejson-addjar]
+   ![將 JAR 新增至您的專案][image-hdi-hivejson-addjar]
 
 現在，您已準備好使用 SerDe 對 JSON 文件執行查詢。
 
@@ -257,9 +258,4 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 [image-hdi-hivejson-serde_query2]: ./media/hdinsight-using-json-in-hive/serde_query2.png
 [image-hdi-hivejson-serde_query3]: ./media/hdinsight-using-json-in-hive/serde_query3.png
 [image-hdi-hivejson-serde_result]: ./media/hdinsight-using-json-in-hive/serde_result.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

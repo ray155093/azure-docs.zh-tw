@@ -215,7 +215,7 @@ Batch 包含與 Azure 儲存體進行互動的內建支援。 儲存體帳戶內
 
 使用清單理解功能，針對集合中的每個檔案呼叫 `upload_file_to_container` 函式並填入兩個 [ResourceFile][py_resource_file] 集合。 `upload_file_to_container` 函式會如下所示：
 
-```
+```python
 def upload_file_to_container(block_blob_client, container_name, file_path):
     """
     Uploads a local file to an Azure Blob storage container.
@@ -572,7 +572,7 @@ def download_blobs_from_container(block_blob_client,
 ## <a name="step-8-delete-containers"></a>步驟 8：刪除容器
 因為您需對位於 Azure 儲存體中的資料付費，所以建議您移除您的 Batch 作業不再需要的所有 Blob。 在 python_tutorial_client.py 中，做法是對 [BlockBlobService.delete_container][py_delete_container] 進行三次呼叫：
 
-```
+```python
 # Clean up storage resources
 print('Deleting containers...')
 blob_client.delete_container(app_container_name)

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: 5e531c6c23c510936fe7e4e844db2ec3afb170dc
-ms.openlocfilehash: 32d79cf050968738764c2239cbd79c73734ee855
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 41be26b5dc3b7333521f02053ecb4b6ae1b17f73
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -31,7 +32,7 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
 [!INCLUDE [storage-mobile-authentication-guidance](../../includes/storage-mobile-authentication-guidance.md)]
 
 ## <a name="create-a-new-xamarin-application"></a>建立新的 Xamarin 應用程式
-針對此快速入門，我們將建立以 Android、iOS 和 Windows 為目標的應用程式。 此應用程式只會建立容器，並將 blob 上傳到此容器。 針對此快速入門，我們將在 Windows 上使用 Visual Studio，但是在 Mac OS 上建立使用 Xamarin Studio 的應用程式時，可以套用相同的做法。
+針對此教學課程，我們將建立以 Android、iOS 和 Windows 為目標的應用程式。 此應用程式只會建立容器，並將 blob 上傳到此容器。 我們將在 Windows 上使用 Visual Studio，但是在 Mac OS 上建立使用 Xamarin Studio 的應用程式時，可以套用相同的做法。
 
 請遵循下列步驟來建立應用程式：
 
@@ -241,7 +242,7 @@ namespace XamarinApp.WinPhone
 一旦您執行應用程式，它會在您的儲存體帳戶中建立 `mycontainer` 容器。 它應該包含 blob `myblob`，其具有文字 `Hello, world!`。 您可以使用 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)來驗證。
 
 ## <a name="next-steps"></a>後續步驟
-在此快速入門中，您已學會如何在使用 Azure 儲存體的 Xamarin 中建立跨平台的應用程式。 此快速入門具體的重點是 Blob 儲存體中的一個案例。 不過，除了 Blob 儲存體以外，您還可以處理更多，例如資料表、檔案和佇列儲存體。 若要深入了解，請參閱下列文章：
+在本教學課程中，您已學會如何在使用 Azure 儲存體的 Xamarin 中建立跨平台的應用程式，尤其將焦點放在 Blob 儲存體中的一個案例中。 不過，除了 Blob 儲存體以外，您還可以處理更多，例如資料表、檔案和佇列儲存體。 若要深入了解，請參閱下列文章：
 
 * [以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)
 * [以 .NET 開始使用 Azure 資料表儲存體](storage-dotnet-how-to-use-tables.md)
@@ -249,10 +250,5 @@ namespace XamarinApp.WinPhone
 * [在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)
 
 [!INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

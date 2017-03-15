@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/28/2016
+ms.date: 12/09/2016
 ms.author: johnkem
 translationtype: Human Translation
-ms.sourcegitcommit: 65f89e775b61ff1ac1c859262634812641efb84d
-ms.openlocfilehash: 434e34dbd045391fc771cff013dada612156cf80
+ms.sourcegitcommit: c9063fcc59d83cb2a6a159cf3a69234417138a5c
+ms.openlocfilehash: 5cadc3ea77ba13d40876c7bc11d2aa1d6abe6b87
+ms.lasthandoff: 12/10/2016
 
 
 ---
@@ -53,6 +54,8 @@ CROSS APPLY GetArrayElements(e.records) AS records
 > 啟用和串流來自計算資源 (例如，VM 或 Service Fabric) 的診斷記錄 [需要一組不同的步驟](../event-hubs/event-hubs-streaming-azure-diags-data.md)。
 > 
 > 
+
+服務匯流排或事件中樞命名空間不一定要和資源發出記錄檔屬於相同的訂用帳戶，只要使用者有適當的設定可 RBAC 存取這兩個訂用帳戶即可。
 
 ### <a name="via-powershell-cmdlets"></a>透過 PowerShell Cmdlet
 若要透過 [Azure PowerShell Cmdlet](insights-powershell-samples.md) 啟用串流功能，您可以使用 `Set-AzureRmDiagnosticSetting` Cmdlet 搭配下列參數︰
@@ -155,13 +158,11 @@ azure insights diagnostic set --resourceId <resourceId> --serviceBusRuleId <serv
 
 您可以在 [這裡](monitoring-overview-of-diagnostic-logs.md)檢視支援串流至事件中樞的所有資源提供者清單。
 
+## <a name="stream-data-from-compute-resources"></a>從計算資源中串流資料
+您也可以使用 Microsoft Azure 診斷代理程式，從計算資源中串流診斷記錄。 [請參閱本文章](../event-hubs/event-hubs-streaming-azure-diags-data.md)了解如何設定。
+
 ## <a name="next-steps"></a>後續步驟
 * [深入了解 Azure 診斷記錄檔](monitoring-overview-of-diagnostic-logs.md)
 * [開始使用事件中心](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
-
-
-
-
-<!--HONumber=Nov16_HO5-->
 
 

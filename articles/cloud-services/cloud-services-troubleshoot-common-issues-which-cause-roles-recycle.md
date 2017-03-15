@@ -16,8 +16,9 @@ ms.workload: tbd
 ms.date: 11/30/2016
 ms.author: v-six
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 00b09be636a01872070a1bec5f0f19885496bbcc
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 47a9736fd6498d15305fb2296446c61e709ad0b8
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -39,7 +40,7 @@ ms.openlocfilehash: 00b09be636a01872070a1bec5f0f19885496bbcc
 Azure 是 64 位元環境。 因此，針對 32 位元目標編譯的 .NET 組件無法在 Azure 上運作。
 
 ## <a name="role-throws-unhandled-exceptions-while-initializing-or-stopping"></a>角色在初始化或停止時會擲回未處理的例外狀況
-RoleEntryPoint []類別的方法 (包括 [OnStart]、[OnStop] 和 [Run]) 方法所擲回的任何例外狀況，都是未處理的例外狀況。 如果其中有一個方法發生未處理的例外狀況，角色就會進行回收。 如果角色重複回收，它可能會在每次嘗試啟動時擲回未處理的例外狀況。
+[RoleEntryPoint] 類別的方法 (包括 [OnStart]、[OnStop] 和 [Run]) 方法所擲回的任何例外狀況，都是未處理的例外狀況。 如果其中有一個方法發生未處理的例外狀況，角色就會進行回收。 如果角色重複回收，它可能會在每次嘗試啟動時擲回未處理的例外狀況。
 
 ## <a name="role-returns-from-run-method"></a>角色因 Run 方法而回收
 [Run] 方法應該無限期地執行。 如果您的程式碼覆寫 [Run] 方法，此方法應無限期地停用。 如果 [Run] 方法回復，角色即會回收。
@@ -55,7 +56,7 @@ RoleEntryPoint []類別的方法 (包括 [OnStart]、[OnStop] 和 [Run]) 方法�
 
         DefaultEndpointsProtocol=https;AccountName=MyAccountName;AccountKey=MyAccountKey
 
-  如果您使用 Azure Tools for Microsoft Visual Studio 開發應用程式，您可以使用 [屬性頁面](https://msdn.microsoft.com/library/ee405486) 來設定此值。
+  如果您使用 Azure Tools for Microsoft Visual Studio 開發應用程式，您可以使用屬性頁面來設定此值。
 
 ## <a name="exported-certificate-does-not-include-private-key"></a>匯出的憑證未包含私密金鑰
 若要在 SSL 下執行 Web 角色，您必須確保匯出的管理憑證包含私密金鑰。 如果您使用「Windows 憑證管理員」匯出憑證，請務必針對 [匯出私密金鑰] 選項選取 [是]。 憑證必須匯出為 PFX 格式，這是目前唯一支援的格式。
@@ -69,9 +70,4 @@ RoleEntryPoint []類別的方法 (包括 [OnStart]、[OnStop] 和 [Run]) 方法�
 [OnStart]: https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx
 [OnStop]: https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleentrypoint.onstop.aspx
 [Run]: https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

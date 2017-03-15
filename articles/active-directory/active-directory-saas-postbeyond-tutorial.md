@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/24/2016
+ms.date: 02/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f5da80077f198c90f2a4b37da52935e72cc5cbe8
+ms.sourcegitcommit: 6a635e6b767d976ad8b52df36c42ca4056c297e1
+ms.openlocfilehash: 2424e3f8f43d4c5a1fe4c05913c6d80cda15a5d7
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: f5da80077f198c90f2a4b37da52935e72cc5cbe8
 PostBeyond 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制可存取 PostBeyond 的人員
-* 您可以讓使用者利用自己的 Azure AD 帳戶，來自動登入 PostBeyond (單一登入)
+* 您可以讓使用者利用自己的 Azure AD 帳戶，來自動登入 PostBeyond 單一登入 (SSO)
 * 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -35,25 +36,24 @@ PostBeyond 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 PostBeyond 的整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 已啟用 **PostBeyond** 單一登入功能的訂用帳戶
+* 已啟用 **PostBeyond** 單一登入 (SSO) 功能的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 PostBeyond
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Azure AD SSO
 
-## <a name="adding-postbeyond-from-the-gallery"></a>從資源庫新增 PostBeyond
+## <a name="add-postbeyond-from-the-gallery"></a>從資源庫新增 PostBeyond
 若要設定將 PostBeyond 整合到 Azure AD 中，您需要從資源庫將 PostBeyond 新增到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫新增 PostBeyond，請執行下列步驟：**
@@ -78,24 +78,25 @@ PostBeyond 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-postbeyond-tutorial/tutorial_postbeyond_02.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
+## <a name="configure-and-test-azure-ad-sso"></a>設定並測試 Azure AD SSO
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 PostBeyond 設定及測試 Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道 PostBeyond 與 Azure AD 中互相對應的使用者。 換句話說，必須建立某位 Azure AD 使用者與 PostBeyond 中相關使用者之間的連結關聯性。
+
 建立此連結關聯性的方法，就是將 Azure AD 中**使用者名稱**的值指派為 PostBeyond 中 **Username** 的值。
 
 若要設定及測試與 PostBeyond 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
 3. **[建立 PostBeyond 測試使用者](#creating-a-PostBeyond-test-user)** - 在 PostBeyond 中建立一個 Britta Simon 對應項目，其要與 Azure AD 中代表她的項目連結。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
+5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-本節的目標是在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 PostBeyond 應用程式中設定單一登入。
+### <a name="configure-azure-ad-sso"></a>設定 Azure AD SSO
+本節目標是在 Azure 傳統入口網站啟用 Azure AD SSO 功能，並在您的 PostBeyond 應用程式中設定單一登入功能。
 
-**若要設定與 PostBeyond 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
+**若要設定透過 PostBeyond 使用 Azure AD SSO 功能，請執行下列步驟：**
 
 1. 按一下頂端功能表中的 [快速啟動] 。
    
@@ -109,28 +110,26 @@ PostBeyond 與 Azure AD 整合提供下列優點：
 4. 在 [設定 App 設定]  對話方塊頁面執行下列步驟： 
    
     ![設定單一登入](./media/active-directory-saas-postbeyond-tutorial/tutorial_postbeyond_07.png)
+ 1. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL︰`https://app.postbeyond.com`。 
+ 2. 按 [下一步] 。
 
-    a. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL︰`https://app.postbeyond.com`。 
-
-    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
-
-1. 於 [在 PostBeyond 設定單一登入] 頁面上，按 [下載憑證]，然後將檔案儲存在您的電腦中。 另外，複製 [簽發者 URL]、[單一登入服務 URL] 及 [單一登出服務 URL] 值。 您必須將此資訊分享給 PostBeyond 支援，以便設定 SSO。
+5. 於 [在 PostBeyond 設定單一登入] 頁面上，按 [下載憑證]，然後將檔案儲存在您的電腦中。 另外，複製 [簽發者 URL]、[單一登入服務 URL] 及 [單一登出服務 URL] 值。 您必須將此資訊分享給 PostBeyond 支援，以便設定 SSO。
    
     ![設定單一登入](./media/active-directory-saas-postbeyond-tutorial/tutorial_postbeyond_08.png)
-2. 若要為您的應用程式設定 SSO，請透過 <mailto:sso@postbeyond.com>連絡 PostBeyond 支援小組。 他們會以適當管道提供協助來設定 SSO，並提供他們下列資訊： 
+6. 若要為您的應用程式設定 SSO，請透過 <mailto:sso@postbeyond.com>連絡 PostBeyond 支援小組。 他們會以適當管道提供協助來設定 SSO，並提供他們下列資訊： 
    
    * 下載的憑證
    * **簽發者 URL**
    * **SAML SSO URL**
    * **單一登出服務 URL**
-3. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
+7. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
-4. 在 [單一登入確認] 頁面上，按一下 [完成]。  
+8. 在 [單一登入確認] 頁面上，按一下 [完成]。  
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
@@ -150,41 +149,31 @@ PostBeyond 與 Azure AD 整合提供下列優點：
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-postbeyond-tutorial/create_aaduser_05.png) 
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+ 1. 針對 [使用者類型]，選取 [您組織中的新使用者]。 
+ 2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。 
+ 3. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
-   ![建立 Azure AD 測試使用者](./media/active-directory-saas-postbeyond-tutorial/create_aaduser_06.png) 
-   
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+   ![建立 Azure AD 測試使用者](./media/active-directory-saas-postbeyond-tutorial/create_aaduser_06.png)  
+ 1. 在 [名字] 文字方塊中，輸入 **Britta**。   
+ 2. 在 [姓氏] 文字方塊中，輸入 **Simon**。 
+ 3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。 
+ 4. 在 [角色] 清單中選取 [使用者]。 
+ 5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-postbeyond-tutorial/create_aaduser_07.png) 
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-postbeyond-tutorial/create_aaduser_08.png) 
-   
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-postbeyond-tutorial/create_aaduser_08.png)  
+ 1. 記下 [新密碼] 的值。 
+ 2. 按一下頁面底部的 [新增] 。   
 
-### <a name="creating-a-postbeyond-test-user"></a>建立 PostBeyond 測試使用者
+### <a name="create-a-postbeyond-test-user"></a>建立 PostBeyond 測試使用者
 在本節中，您會在 PostBeyond 中建立名為 Britta Simon 的使用者。 如果您不知道如何在 PostBeyond 新增 Britta Simon，請與 PostBeyond 支援小組合作，以新增測試使用者並啟用 SSO。 請透過 <mailto:sso@postbeyond.com>與他們連絡。
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-在本節中，您會把 PostBeyond 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+在本節中，您會將 PostBeyond 的存取權授與 Britta Simon，讓她能夠使用 Azure SSO。
 
 ![指派使用者][200] 
 
@@ -204,8 +193,8 @@ PostBeyond 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
-本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。
+### <a name="test-single-sign-on"></a>測試單一登入
+本節的目標是要使用「存取面板」來測試您的 Azure AD SSO 組態。
 
 當您在存取面板中按一下 [PostBeyond] 圖格時，您應該會前往 PostBeyond 登入頁面。 按一下 [使用 Office 365 登入] ，輸入您的 Azure AD 認證。 然後，您應該就會登入 PostBeyond。
 
@@ -233,9 +222,4 @@ PostBeyond 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-postbeyond-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-postbeyond-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-postbeyond-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

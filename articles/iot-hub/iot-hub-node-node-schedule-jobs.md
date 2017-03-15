@@ -1,6 +1,6 @@
 ---
-title: "如何排定作業 | Microsoft 文件"
-description: "本教學課程說明如何排定作業"
+title: "使用 Azure IoT 中樞 (Node) 排定作業 | Microsoft Docs"
+description: "如何排定 Azure IoT 中樞作業在多個裝置上叫用直接方法。 您可以使用適用於 Node.js 的 Azure IoT SDK，實作模擬裝置應用程式和服務應用程式來執行作業。"
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -15,31 +15,32 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: juanpere
 translationtype: Human Translation
-ms.sourcegitcommit: c18a1b16cb561edabd69f17ecebedf686732ac34
-ms.openlocfilehash: 197414101ea86a68db901744c11a3de110a1eba3
+ms.sourcegitcommit: 48c444bfebf46131503dfeefbcd7365b6979215d
+ms.openlocfilehash: 2f59157f47eb211bc7f7d6542f1a7f77ffb90b41
+ms.lasthandoff: 12/16/2016
 
 
 ---
-# <a name="tutorial-schedule-and-broadcast-jobs"></a>教學課程：排定及廣播作業
+# <a name="schedule-and-broadcast-jobs-node"></a>排定及廣播作業 (Node)
 
 ## <a name="introduction"></a>簡介
-「Azure IoT 中樞」是一項完全受管理的服務，可讓應用程式後端建立及追蹤可排定和更新數百萬個裝置的作業。  作業可用於下列動作：
+Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建立作業來排定和更新數百萬個裝置，並追蹤作業。  作業可用於下列動作：
 
 * 更新所需屬性
 * 更新標籤
 * 叫用直接方法
 
-就概念而言，作業會包裝上述其中一個動作，然後針對由裝置對應項 (twin) 查詢所定義的一組裝置，追蹤執行進度。  例如，透過使用作業，應用程式後端便可在 10,000 個裝置上叫用重新啟動方法，這是由裝置對應項 (twin) 查詢所指定並排定在未來的時間執行。  接著，該應用程式可以追蹤每個這些裝置接收和執行重新啟動方法的進度。
+就概念而言，作業會包裝上述其中一個動作，然後針對由裝置對應項 (twin) 查詢所定義的一組裝置，追蹤執行進度。  例如，後端應用程式可以在 10,000 個裝置上使用作業叫用重新啟動方法，此方法由裝置對應項查詢指定並排定在未來執行。  接著，該應用程式可以追蹤每個這些裝置接收和執行重新啟動方法的進度。
 
 從下列文章深入了解這當中的每一項功能：
 
 * 裝置對應項和屬性：[開始使用裝置對應項][lnk-get-started-twin]和[教學課程：如何使用裝置對應項屬性][lnk-twin-props]
-* 直接裝置方法：[開發人員指南 - 直接方法][lnk-dev-methods]和[教學課程：直接方法][lnk-c2d-methods]
+* 直接方法：[IoT 中樞開發人員指南 - 直接方法][lnk-dev-methods]和[教學課程：直接方法][lnk-c2d-methods]
 
 本教學課程說明如何：
 
-* 建立具有直接方法的模擬裝置應用程式，此直接方法可啟用應用程式後端能夠呼叫的 **lockDoor**。
-* 建立主控台應用程式，此應用程式會使用作業在模擬裝置應用程式中呼叫 **lockDoor** 直接方法，並使用裝置作業來更新所需屬性。
+* 建立具有直接方法的模擬裝置應用程式，此直接方法會啟用 **lockDoor** 供解決方案後端呼叫。
+* 建立 Node.js 主控台應用程式，此應用程式會使用作業在模擬裝置應用程式中呼叫 **lockDoor** 直接方法，並使用裝置作業來更新所需屬性。
 
 在本教學課程結尾處，您會有兩個 Node.js 主控台應用程式：
 
@@ -59,12 +60,12 @@ ms.openlocfilehash: 197414101ea86a68db901744c11a3de110a1eba3
 ## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您會建立 Node.js 主控台應用程式，它會回應雲端所呼叫的直接方法，這會讓模擬的裝置重新啟動，並使用報告屬性來啟用裝置對應項查詢，以識別裝置以及上次重新啟動的時機。
 
-1. 建立名為 **simDevice** 的新空白資料夾。  在命令提示字元中，於 [simDevice] 資料夾中使用下列命令來建立 package.json 檔案。  接受所有預設值：
+1. 建立名為 **simDevice** 的新空白資料夾。  在命令提示字元中，使用下列命令在 **simDevice** 資料夾中建立 package.json 檔案。  接受所有預設值：
    
     ```
     npm init
     ```
-2. 在命令提示字元中，於 [simDevice] 資料夾中執行下列命令來安裝 **azure-iot-device** 裝置 SDK 套件和 **azure-iot-device-mqtt** 套件：
+2. 在命令提示字元中，於 **simDevice** 資料夾中執行下列命令來安裝 **azure-iot-device** 裝置 SDK 套件和 **azure-iot-device-mqtt** 套件：
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
@@ -78,7 +79,7 @@ ms.openlocfilehash: 197414101ea86a68db901744c11a3de110a1eba3
     var Client = require('azure-iot-device').Client;
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
-5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。  
+5. 新增 **connectionString** 變數，並用它來建立**用戶端**執行個體。  
    
     ```
     var connectionString = 'HostName={youriothostname};DeviceId={yourdeviceid};SharedAccessKey={yourdevicekey}';
@@ -108,7 +109,7 @@ ms.openlocfilehash: 197414101ea86a68db901744c11a3de110a1eba3
         if (err) {
             console.error('Could not connect to IotHub client.');
         }  else {
-            console.log('Client connected to IoT Hub.  Waiting for reboot direct method.');
+            console.log('Client connected to IoT Hub. Register handler for lockDoor direct method.');
             client.onDeviceMethod('lockDoor', onLockDoor);
         }
     });
@@ -123,12 +124,12 @@ ms.openlocfilehash: 197414101ea86a68db901744c11a3de110a1eba3
 ## <a name="schedule-jobs-for-calling-a-direct-method-and-updating-a-device-twins-properties"></a>排定用於呼叫直接方法及更新裝置對應項 (twin) 屬性的作業
 在本節中，您會建立一個 Node.js 主控台 App，此 App 會使用直接方法在裝置上初始化遠端 **lockDoor**，並更新裝置對應項 (twin) 的屬性。
 
-1. 建立名為 **scheduleJobService** 的新空白資料夾。  在命令提示字元中，於 [scheduleJobService] 資料夾中使用下列命令來建立 package.json 檔案。  接受所有預設值：
+1. 建立名為 **scheduleJobService** 的新空白資料夾。  在命令提示字元中，使用下列命令在 **scheduleJobService** 資料夾中建立 package.json 檔案。  接受所有預設值：
    
     ```
     npm init
     ```
-2. 在命令提示字元中，於 [scheduleJobService] 資料夾中執行下列命令來安裝 **azure-iothub** 裝置 SDK 套件和 **azure-iot-device-mqtt** 套件：
+2. 在命令提示字元中，於 **scheduleJobService** 資料夾中執行下列命令來安裝 **azure-iothub** 裝置 SDK 套件和 **azure-iot-device-mqtt** 套件：
    
     ```
     npm install azure-iothub uuid --save
@@ -146,7 +147,7 @@ ms.openlocfilehash: 197414101ea86a68db901744c11a3de110a1eba3
    
     ```
     var connectionString = '{iothubconnectionstring}';
-    var deviceArray = ['myDeviceId'];
+    var queryCondition = "deviceId IN ['myDeviceId']";
     var startTime = new Date();
     var maxExecutionTimeInSeconds =  3600;
     var jobClient = JobClient.fromConnectionString(connectionString);
@@ -176,13 +177,13 @@ ms.openlocfilehash: 197414101ea86a68db901744c11a3de110a1eba3
     var methodParams = {
         methodName: 'lockDoor',
         payload: null,
-        timeoutInSeconds: 45
+        responseTimeoutInSeconds: 15 // Timeout after 15 seconds if device is unable to process method
     };
    
     var methodJobId = uuid.v4();
     console.log('scheduling Device Method job with id: ' + methodJobId);
     jobClient.scheduleDeviceMethod(methodJobId,
-                                deviceArray,
+                                queryCondition,
                                 methodParams,
                                 startTime,
                                 maxExecutionTimeInSeconds,
@@ -215,7 +216,7 @@ ms.openlocfilehash: 197414101ea86a68db901744c11a3de110a1eba3
    
     console.log('scheduling Twin Update job with id: ' + twinJobId);
     jobClient.scheduleTwinUpdate(twinJobId,
-                                deviceArray,
+                                queryCondition,
                                 twinPatch,
                                 startTime,
                                 maxExecutionTimeInSeconds,
@@ -238,12 +239,12 @@ ms.openlocfilehash: 197414101ea86a68db901744c11a3de110a1eba3
 ## <a name="run-the-applications"></a>執行應用程式
 現在您已經準備好執行應用程式。
 
-1. 在命令提示字元中，於 [simDevice] 資料夾中執行下列命令來開始接聽重新啟動直接方法。
+1. 在命令提示字元中，於 **simDevice** 資料夾中執行下列命令來開始接聽重新啟動直接方法。
    
     ```
     node simDevice.js
     ```
-2. 在命令提示字元中，於 [scheduleJobService] 資料夾中執行下列命令來觸發遠端重新啟動，以及查詢裝置對應項 (twin) 來尋找上次重新啟動時間。
+2. 在 **scheduleJobService** 資料夾的命令提示字元中，執行下列命令以觸發鎖門作業並更新對應項
    
     ```
     node scheduleJobService.js
@@ -265,12 +266,7 @@ ms.openlocfilehash: 197414101ea86a68db901744c11a3de110a1eba3
 [lnk-dev-methods]: iot-hub-devguide-direct-methods.md
 [lnk-fwupdate]: iot-hub-node-node-firmware-update.md
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/tree/master/doc/node-devbox-setup.md
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
-
-
-
-<!--HONumber=Nov16_HO5-->
-
 

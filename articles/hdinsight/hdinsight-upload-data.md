@@ -13,11 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/15/2016
+ms.date: 02/22/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 4f52049cb946b0ed7e721389de8f9d086b856e00
-ms.openlocfilehash: af20126e1a2ab5d468bd3883d5ece8e1ecdc3a5f
+ms.sourcegitcommit: f9b191a68fe19f30aa157fd01f33afb0a4f1e279
+ms.openlocfilehash: 6e6f7793e03930cc002183172ccfbed6305378bd
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -28,7 +29,7 @@ Azure HDInsight 在 Azure Blob 儲存體上提供了全功能的 Hadoop 分散�
 
 開始進行之前，請注意下列需求：
 
-* Azure HDInsight 叢集。 如需指示，請參閱[開始使用 Azure HDInsight][hdinsight-get-started] 或[佈建 HDInsight 叢集][hdinsight-provision]。
+* Azure HDInsight 叢集。 如需指示，請參閱 [Azure HDInsight 使用者入門][hdinsight-get-started]或[佈建 HDInsight 叢集][hdinsight-provision]。
 
 ## <a name="why-blob-storage"></a>為什麼要使用 Blob 儲存體？
 部署 Azure HDInsight 叢集通常是為了執行 MapReduce 工作，並在這些工作完成後卸除叢集。 將計算完成後的資料保留在 HDFS 叢集是成本較高的資料儲存方式。 對於使用 HDInsight 來處理的資料，Azure Blob 儲存體是一種高可用性、高延展性、大容量、低成本且可共用的儲存方案。 將資料儲存在 Blob 中，可安全地釋放做為計算用途的 HDInsight 叢集，而且不會遺失資料。
@@ -58,7 +59,7 @@ Microsoft 提供下列公用程式來使用 Azure Blob 儲存體：
 >
 >
 
-### <a name="a-idxplatcliaazure-cli"></a><a id="xplatcli"></a>Azure CLI
+### <a id="xplatcli"></a>Azure CLI
 Azure CLI 是可讓您管理 Azure 服務的跨平台工具。 使用以下步驟將資料上傳至 Azure Blob 儲存體：
 
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
@@ -97,14 +98,14 @@ Azure CLI 是可讓您管理 Azure 服務的跨平台工具。 使用以下步�
 >
 >
 
-### <a name="a-idpowershellaazure-powershell"></a><a id="powershell"></a>Azure PowerShell
-Azure PowerShell 是一種指令碼環境，可讓您在 Azure 中用來控制和自動化工作負載的部署及管理。 如需關於設定工作站以執行 Azure PowerShell 的資訊，請參閱 [安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+### <a id="powershell"></a>Azure PowerShell
+Azure PowerShell 是一種指令碼環境，可讓您在 Azure 中用來控制和自動化工作負載的部署及管理。 如需關於設定工作站以執行 Azure PowerShell 的資訊，請參閱 [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell.md)]
 
 **將本機檔案上傳至 Azure Blob 儲存體**
 
-1. 依照 [安裝和設定 Azure PowerShell](../powershell-install-configure.md)的指示，開啟 Azure PowerShell 主控台。
+1. 依照 [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)的指示，開啟 Azure PowerShell 主控台。
 2. 在下列指令碼中設定前五個變數的值：
 
         $resourceGroupName = "<AzureResourceGroupName>"
@@ -125,7 +126,7 @@ Azure PowerShell 是一種指令碼環境，可讓您在 Azure 中用來控制�
 
 如需建立來使用 HDInsight 的 PowerShell 指令碼範例，請參閱 [HDInsight 工具](https://github.com/blackmist/hdinsight-tools)。
 
-### <a name="a-idazcopyaazcopy"></a><a id="azcopy"></a>AzCopy
+### <a id="azcopy"></a>AzCopy
 AzCopy 是一套命令列工具，此工具設計目的在於簡化將資料移入及移出 Azure 儲存體帳戶的傳輸工作。 您可以將它當做獨立工具來使用，也可以將此工具納入現有的應用程式中。 [下載 AzCopy][azure-azcopy-download]。
 
 AzCopy 語法如下：
@@ -134,13 +135,13 @@ AzCopy 語法如下：
 
 如需詳細資訊，請參閱 [AzCopy - 上傳/下載 Azure Blob 的檔案][azure-azcopy]。
 
-### <a name="a-idcommandlineahadoop-command-line"></a><a id="commandline"></a>Hadoop 命令列
+### <a id="commandline"></a>Hadoop 命令列
 Hadoop 命令列僅適用於當資料已存在於叢集前端節點時，將資料儲存到 Blob 儲存體。
 
 若要使用 Hadoop 命令，您必須先使用下列其中一個方法連線到前端節點：
 
 * **Windows 架構的 HDInsight**： [使用遠端桌面連線](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)
-* **Linux 架構的 HDInsight**：使用 SSH ([SSH 命令](hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-linux-based-hdinsight-cluster) 或 [PuTTY](hdinsight-hadoop-linux-use-ssh-windows.md#connect-to-a-linux-based-hdinsight-cluster)) 來連線
+* **Linux 架構的 HDInsight**：使用 SSH ([SSH 命令](hdinsight-hadoop-linux-use-ssh-unix.md) 或 [PuTTY](hdinsight-hadoop-linux-use-ssh-windows.md)) 來連線
 
 連線之後，您就可以使用下列語法來將檔案上傳到儲存體。
 
@@ -178,10 +179,10 @@ Hadoop 命令列僅適用於當資料已存在於叢集前端節點時，將資�
 ### <a name="visual-studio-tools-for-hdinsight"></a>Visual Studio Tools for HDInsight
 如需詳細資訊，請參閱 [瀏覽連結的資源](hdinsight-hadoop-visual-studio-tools-get-started.md#navigate-the-linked-resources)。
 
-### <a name="a-idstorageexploreraazure-storage-explorer"></a><a id="storageexplorer"></a>Azure 儲存體總管
+### <a id="storageexplorer"></a>Azure 儲存體總管
 *Azure 儲存體總管* 是一種可在 Blob 中檢查和變更資料的實用工具。 它是免費開放原始碼工具，可從 [http://storageexplorer.com/](http://storageexplorer.com/)下載。 原始碼亦可從此連結取得。
 
-使用此工具之前，必須先知道您的 Azure 儲存體帳戶名稱和帳戶金鑰。 如需關於取得此資訊的指示，請參閱[建立、管理或刪除儲存體帳戶][azure-create-storage-account]的＜如何：檢視、複製及重新產生儲存體存取金鑰＞一節。  
+使用此工具之前，必須先知道您的 Azure 儲存體帳戶名稱和帳戶金鑰。 如需關於取得此資訊的指示，請參閱[建立、管理或刪除儲存體帳戶][azure-create-storage-account]的＜如何：檢視、複製及重新產生儲存體存取金鑰＞一節。
 
 1. 執行 Azure 儲存體總管。 如果這是您第一次執行 [儲存體總管]，系統將會提示您輸入 [儲存體帳戶名稱] 和 [儲存體帳戶金鑰]。 如果您之前曾執行過，請使用 [新增] 按鈕加入新的儲存體帳戶名稱和金鑰。
 
@@ -209,7 +210,7 @@ Azure Data Factory 可用來將資料移至 Azure Blob 儲存體，或建立資�
 
 如需詳細資訊，請參閱 [Azure Data Factory 文件](https://azure.microsoft.com/documentation/services/data-factory/)。
 
-### <a name="a-idsqoopaapache-sqoop"></a><a id="sqoop"></a>Apache Sqoop
+### <a id="sqoop"></a>Apache Sqoop
 Sqoop 是一種專門在 Hadoop 和關聯式資料庫之間傳送資料的工具。 此工具可讓您從 SQL Server、MySQL 或 Oracle 等關聯式資料庫管理系統 (RDBMS)，將資料匯入 Hadoop 分散式檔案系統 (HDFS)，使用 MapReduce 或 Hive 轉換 Hadoop 中的資料，然後將資料匯回 RDBMS。
 
 如需詳細資訊，請參閱[搭配 HDInsight 使用 Sqoop][hdinsight-use-sqoop]。
@@ -227,7 +228,7 @@ Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言�
 如需安裝 Azure SDK 的詳細資訊，請參閱 [Azure 下載](https://azure.microsoft.com/downloads/)
 
 ## <a name="troubleshooting"></a>疑難排解
-### <a name="a-idstorageexceptionastorage-exception-for-write-on-blob"></a><a id="storageexception"></a>在 Blob 上寫入時的儲存體例外狀況
+### <a id="storageexception"></a>在 Blob 上寫入時的儲存體例外狀況
 **徵兆**︰使用 `hadoop` 或 `hdfs dfs` 命令在 HBase 叢集上寫入 ~12 GB 或更大的檔案時，您可能會遇到下列錯誤︰
 
     ERROR azure.NativeAzureFileSystem: Encountered Storage Exception for write on Blob : example/test_large_file.bin._COPYING_ Exception details: null Error Code : RequestBodyTooLarge
@@ -274,7 +275,7 @@ Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言�
 
 * [開始使用 Azure HDInsight][hdinsight-get-started]
 * [以程式設計方式提交 Hadoop 工作][hdinsight-submit-jobs]
-* [搭配 HDInsight 使用 Hive][hdinsight-use-hive]
+* [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
 * [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
 
 [azure-management-portal]: https://porta.azure.com
@@ -299,7 +300,7 @@ Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言�
 
 [apache-sqoop-guide]: http://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html
 
-[Powershell-install-configure]: ../powershell-install-configure.md
+[Powershell-install-configure]: /powershell/azureps-cmdlets-docs
 
 [azurecli]: ../xplat-cli-install.md
 
@@ -307,9 +308,4 @@ Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言�
 [image-azure-storage-explorer]: ./media/hdinsight-upload-data/HDI.AzureStorageExplorer.png
 [image-ase-addaccount]: ./media/hdinsight-upload-data/HDI.ASEAddAccount.png
 [image-ase-blob]: ./media/hdinsight-upload-data/HDI.ASEBlob.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

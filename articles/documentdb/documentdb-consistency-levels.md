@@ -1,5 +1,5 @@
 ---
-title: "DocumentDB 中的一致性層級 | Microsoft Docs"
+title: "Azure DocumentDB 中的一致性層級 | Microsoft Docs"
 description: "DocumentDB 具有四個一致性層級，有助於在最終一致性、可用性和延遲的取捨之間取得平衡。"
 keywords: "最終一致性, eventual consistency, documentdb, azure, Microsoft azure"
 services: documentdb
@@ -15,13 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/16/2016
 ms.author: syamk
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2d833a559b72569983340972ba3b905b9e42e61d
-ms.openlocfilehash: dc5ddeaaa865260c58422ed00c015689946b63f5
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 839f8c8669c06e22635b68018d816a669aec895b
+ms.lasthandoff: 03/07/2017
 
 
 ---
-# <a name="consistency-levels-in-documentdb"></a>DocumentDB 中的一致性層級
+# <a name="tunable-data-consistency-levels-in-documentdb"></a>DocumentDB 中的 Tunable 一致性層級
 Azure DocumentDB 是考量到全球發佈的全新設計。 它的設計目的是提供可預測的低延遲保證、99.99% 的可用性 SLA，以及多個定義完善且寬鬆的一致性層級模型。 DocumentDB 目前提供四種一致性層級：強式、限定過期、工作階段和最終。 除了**強式**和**最終一致性**模型通常是由其他 NoSQL 資料庫所提供，DocumentDB 也提供兩個已仔細編碼且可運作的一致性模型 (**限定過期**和**執行階段**)，並已根據真實世界的使用案例驗證過它們的實用性。 總言之，這些四個一致性層級可讓您在一致性、可用性與延遲三者間做出合理取捨。 
 
 ## <a name="scope-of-consistency"></a>一致性的範圍
@@ -116,9 +118,4 @@ Azure DocumentDB 是考量到全球發佈的全新設計。 它的設計目的�
   [http://allthingsdistributed.com/2008/12/eventually_consistent.html](http://allthingsdistributed.com/2008/12/eventually_consistent.html)
 
 [1]: ./media/documentdb-consistency-levels/consistency-tradeoffs.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

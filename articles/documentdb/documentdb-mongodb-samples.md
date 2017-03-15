@@ -1,6 +1,6 @@
 ---
-title: "適用於 MongoDB 的 DocumentDB 範例 | Microsoft Docs"
-description: "尋找 DocumentDB 的 MongoDB 通訊協定支援的範例。"
+title: "使用 MongoDB API 來建立 DocumentDB 應用程式 | Microsoft 文件"
+description: "NoSQL 教學課程，使用 MongoDB 適用的 DocumentDB API 來建立線上資料庫。"
 keywords: "mongodb 範例"
 services: documentdb
 author: AndrewHoh
@@ -13,254 +13,124 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/28/2016
+ms.date: 03/06/2017
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: 8d4c3aaefee502e79dd1ea3e074937bb9a1d4593
-ms.openlocfilehash: 703373c2c0090a2c6ffef3433aee3a05f0f41475
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 867ec5d0b27e790f3b00c94a4e5d14e4b2b17f73
+ms.lasthandoff: 03/08/2017
 
 
 ---
-# <a name="documentdb-protocol-support-for-mongodb-examples"></a>MongoDB 的 DocumentDB 通訊協定支援範例
-若要使用這些範例，您必須︰
+# <a name="build-a-documentdb-api-for-mongodb-app-using-nodejs"></a>使用 Node.js API 建置 DocumentDB：適用於 MongoDB 的 API
+> [!div class="op_single_selector"]
+> * [.NET](documentdb-get-started.md)
+> * [.NET Core](documentdb-dotnetcore-get-started.md)
+> * [Java](documentdb-java-get-started.md)
+> * [Node.js for MongoDB](documentdb-mongodb-samples.md)
+> * [Node.js](documentdb-nodejs-get-started.md)
+> * [C++](documentdb-cpp-get-started.md)
+>  
+>
 
-* [建立](documentdb-create-mongodb-account.md) 具有 MongoDB 的通訊協定支援的 Azure DocumentDB 帳戶。
-* 擷取具有 MongoDB 通訊協定支援的 DocumentDB 帳戶的 [連接字串](documentdb-connect-mongodb-account.md) 資訊。
+此範例將示範如何使用 Node.js 來建立 DocumentDB：適用於 MongoDB 的 API 主控台應用程式。
 
-## <a name="get-started-with-a-sample-nodejs-getting-started-app"></a>以範例 Node.js 開始使用應用程式開始
+若要使用此範例，您必須︰
+
+* [建立](documentdb-create-mongodb-account.md) Azure DocumentDB：適用於 MongoDB 的 API 帳戶。
+* 擷取 MongoDB [連接字串](documentdb-connect-mongodb-account.md)資訊。
+
+## <a name="create-the-app"></a>建立應用程式
 
 1. 建立 *app.js* 檔案，複製並貼上下列程式碼。
 
-         var MongoClient = require('mongodb').MongoClient;
-         var assert = require('assert');
-         var ObjectId = require('mongodb').ObjectID;
-         var url = 'mongodb://<endpoint>:<password>@<endpoint>.documents.azure.com:10250/?ssl=true';
+    ```nodejs
+    var MongoClient = require('mongodb').MongoClient;
+    var assert = require('assert');
+    var ObjectId = require('mongodb').ObjectID;
+    var url = 'mongodb://<endpoint>:<password>@<endpoint>.documents.azure.com:10250/?ssl=true';
 
-         var insertDocument = function(db, callback) {
-            db.collection('families').insertOne( {
-                 "id": "AndersenFamily",
-                 "lastName": "Andersen",
-                 "parents": [
-                     { "firstName": "Thomas" },
-                     { "firstName": "Mary Kay" }
-                 ],
-                 "children": [
-                     { "firstName": "John", "gender": "male", "grade": 7 }
-                 ],
-                 "pets": [
-                     { "givenName": "Fluffy" }
-                 ],
-                 "address": { "country": "USA", "state": "WA", "city": "Seattle" }
-             }, function(err, result) {
-             assert.equal(err, null);
-             console.log("Inserted a document into the families collection.");
-             callback();
-           });
-         };
-
-         var findFamilies = function(db, callback) {
-            var cursor =db.collection('families').find( );
-            cursor.each(function(err, doc) {
-               assert.equal(err, null);
-               if (doc != null) {
-                  console.dir(doc);
-               } else {
-                  callback();
-               }
+    var insertDocument = function(db, callback) {
+    db.collection('families').insertOne( {
+            "id": "AndersenFamily",
+            "lastName": "Andersen",
+            "parents": [
+                { "firstName": "Thomas" },
+                { "firstName": "Mary Kay" }
+            ],
+            "children": [
+                { "firstName": "John", "gender": "male", "grade": 7 }
+            ],
+            "pets": [
+                { "givenName": "Fluffy" }
+            ],
+            "address": { "country": "USA", "state": "WA", "city": "Seattle" }
+        }, function(err, result) {
+        assert.equal(err, null);
+        console.log("Inserted a document into the families collection.");
+        callback();
+    });
+    };
+    
+    var findFamilies = function(db, callback) {
+    var cursor =db.collection('families').find( );
+    cursor.each(function(err, doc) {
+        assert.equal(err, null);
+        if (doc != null) {
+            console.dir(doc);
+        } else {
+            callback();
+        }
+    });
+    };
+    
+    var updateFamilies = function(db, callback) {
+    db.collection('families').updateOne(
+        { "lastName" : "Andersen" },
+        {
+            $set: { "pets": [
+                { "givenName": "Fluffy" },
+                { "givenName": "Rocky"}
+            ] },
+            $currentDate: { "lastModified": true }
+        }, function(err, results) {
+        console.log(results);
+        callback();
+    });
+    };
+    
+    var removeFamilies = function(db, callback) {
+    db.collection('families').deleteMany(
+        { "lastName": "Andersen" },
+        function(err, results) {
+            console.log(results);
+            callback();
+        }
+    );
+    };
+    
+    MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    insertDocument(db, function() {
+        findFamilies(db, function() {
+        updateFamilies(db, function() {
+            removeFamilies(db, function() {
+                db.close();
             });
-         };
-
-         var updateFamilies = function(db, callback) {
-            db.collection('families').updateOne(
-               { "lastName" : "Andersen" },
-               {
-                 $set: { "pets": [
-                     { "givenName": "Fluffy" },
-                     { "givenName": "Rocky"}
-                 ] },
-                 $currentDate: { "lastModified": true }
-               }, function(err, results) {
-               console.log(results);
-               callback();
-            });
-         };
-
-         var removeFamilies = function(db, callback) {
-            db.collection('families').deleteMany(
-               { "lastName": "Andersen" },
-               function(err, results) {
-                  console.log(results);
-                  callback();
-               }
-            );
-         };
-
-         MongoClient.connect(url, function(err, db) {
-           assert.equal(null, err);
-           insertDocument(db, function() {
-             findFamilies(db, function() {
-               updateFamilies(db, function() {
-                 removeFamilies(db, function() {
-                     db.close();
-                 });
-               });
-             });
-           });
-         });
+        });
+        });
+    });
+    });
+    ```
 
 2. 在 *app.js* 中根據每個帳戶設定 (了解如何尋找您的[連接字串](documentdb-connect-mongodb-account.md)) 修改下列變數：
    
-         var url = 'mongodb://<endpoint>:<password>@<endpoint>.documents.azure.com:10250/?ssl=true';
+    ```nodejs
+    var url = 'mongodb://<endpoint>:<password>@<endpoint>.documents.azure.com:10250/?ssl=true';
+    ```
      
 3. 開啟您最愛的終端機，執行 **npm install mongodb --save**，然後使用 **node app.js** 執行您的應用程式
 
-## <a name="get-started-with-a-sample-aspnet-mvc-task-list-application"></a>開始使用範例 ASP.NET MVC 工作清單應用程式
-您可以使用 [在連接至在虛擬機器上執行之 MongoDB 的 Azure 中建立 Web 應用程式](../app-service-web/web-sites-dotnet-store-data-mongodb-vm.md) 教學課程，以最少的修改快速設定 MongoDB 應用程式 (在本機或發佈至 Azure Web 應用程式)，連接到具有 MongoDB 通訊協定支援的 DocumentDB 帳戶。  
-
-1. 請遵循教學課程，只有一項修改。  使用下列項目取代 Dal.cs 程式碼：
-   
-        using System;
-        using System.Collections.Generic;
-        using System.Linq;
-        using System.Web;
-        using MyTaskListApp.Models;
-        using MongoDB.Driver;
-        using MongoDB.Bson;
-        using System.Configuration;
-        using System.Security.Authentication;
-   
-        namespace MyTaskListApp
-        {
-            public class Dal : IDisposable
-            {
-                //private MongoServer mongoServer = null;
-                private bool disposed = false;
-   
-                // To do: update the connection string with the DNS name
-                // or IP address of your server. 
-                //For example, "mongodb://testlinux.cloudapp.net
-                private string connectionString = "mongodb://localhost:27017";
-                private string userName = "<your user name>";
-                private string host = "<your host>";
-                private string password = "<your password>";
-   
-                // This sample uses a database named "Tasks" and a 
-                //collection named "TasksList".  The database and collection 
-                //will be automatically created if they don't already exist.
-                private string dbName = "Tasks";
-                private string collectionName = "TasksList";
-   
-                // Default constructor.        
-                public Dal()
-                {
-                }
-   
-                // Gets all Task items from the MongoDB server.        
-                public List<MyTask> GetAllTasks()
-                {
-                    try
-                    {
-                        var collection = GetTasksCollection();
-                        return collection.Find(new BsonDocument()).ToList();
-                    }
-                    catch (MongoConnectionException)
-                    {
-                        return new List<MyTask>();
-                    }
-                }
-   
-                // Creates a Task and inserts it into the collection in MongoDB.
-                public void CreateTask(MyTask task)
-                {
-                    var collection = GetTasksCollectionForEdit();
-                    try
-                    {
-                        collection.InsertOne(task);
-                    }
-                    catch (MongoCommandException ex)
-                    {
-                        string msg = ex.Message;
-                    }
-                }
-   
-                private IMongoCollection<MyTask> GetTasksCollection()
-                {
-                    MongoClientSettings settings = new MongoClientSettings();
-                    settings.Server = new MongoServerAddress(host, 10250);
-                    settings.UseSsl = true;
-                    settings.SslSettings = new SslSettings();
-                    settings.SslSettings.EnabledSslProtocols = SslProtocols.Tls12;
-   
-                    MongoIdentity identity = new MongoInternalIdentity(dbName, userName);
-                    MongoIdentityEvidence evidence = new PasswordEvidence(password);
-   
-                    settings.Credentials = new List<MongoCredential>()
-                    {
-                        new MongoCredential("SCRAM-SHA-1", identity, evidence)
-                    };
-   
-                    MongoClient client = new MongoClient(settings);
-                    var database = client.GetDatabase(dbName);
-                    var todoTaskCollection = database.GetCollection<MyTask>(collectionName);
-                    return todoTaskCollection;
-                }
-   
-                private IMongoCollection<MyTask> GetTasksCollectionForEdit()
-                {
-                    MongoClientSettings settings = new MongoClientSettings();
-                    settings.Server = new MongoServerAddress(host, 10250);
-                    settings.UseSsl = true;
-                    settings.SslSettings = new SslSettings();
-                    settings.SslSettings.EnabledSslProtocols = SslProtocols.Tls12;
-   
-                    MongoIdentity identity = new MongoInternalIdentity(dbName, userName);
-                    MongoIdentityEvidence evidence = new PasswordEvidence(password);
-   
-                    settings.Credentials = new List<MongoCredential>()
-                    {
-                        new MongoCredential("SCRAM-SHA-1", identity, evidence)
-                    };
-                    MongoClient client = new MongoClient(settings);
-                    var database = client.GetDatabase(dbName);
-                    var todoTaskCollection = database.GetCollection<MyTask>(collectionName);
-                    return todoTaskCollection;
-                }
-   
-                # region IDisposable
-   
-                public void Dispose()
-                {
-                    this.Dispose(true);
-                    GC.SuppressFinalize(this);
-                }
-   
-                protected virtual void Dispose(bool disposing)
-                {
-                    if (!this.disposed)
-                    {
-                        if (disposing)
-                        {
-                        }
-                    }
-   
-                    this.disposed = true;
-                }
-   
-                # endregion
-            }
-        }
-2. 在您的每個帳戶設定中修改 Dal.cs 檔案中的下列變數：
-   
-         private string userName = "<your user name>";
-         private string host = "<your host>";
-         private string password = "<your password>";
-3. 使用應用程式！
-
 ## <a name="next-steps"></a>後續步驟
-* 了解如何 [使用 MongoChef](documentdb-mongodb-mongochef.md) 和具有 MongoDB 通訊協定支援的 DocumentDB 帳戶。
-
-
-
-<!--HONumber=Nov16_HO4-->
-
+* 了解如何[使用 MongoChef](documentdb-mongodb-mongochef.md) 搭配 DocumentDB：適用於 MongoDB 的 API 帳戶。
 

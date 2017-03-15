@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.date: 03/03/2017
 ms.author: carlrab; jognanay
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 3f8ad9bf72555b9ab19af4c7a15f66b982fe66fe
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: e052109ff10f21c3a737f336479fe43fb54e500e
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -60,7 +60,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 | 應用程式角色 | [支援](https://msdn.microsoft.com/library/ms190998.aspx) | [支援](https://msdn.microsoft.com/library/ms190998.aspx) |
 | 自動調整 | 不支援 | [支援](sql-database-service-tiers.md) |
 | Azure Active Directory | 不支援 | [支援](sql-database-aad-authentication.md) |
-| Azure Data Factory | 不支援 - 請參閱 [SQL Server Integration Services (SSIS)](https://msdn.microsoft.com/library/ms141026.aspx) | [支援](https://azure.microsoft.com/services/data-factory/) |
+| Azure Data Factory | [支援](../data-factory/data-factory-introduction.md) | [支援](../data-factory/data-factory-introduction.md) |
 | 稽核 | [支援](https://msdn.microsoft.com/library/cc280386.aspx) | [支援](sql-database-auditing.md) |
 | BACPAC 檔案 (匯出) | [支援](https://msdn.microsoft.com/library/hh213241.aspx) | [支援](sql-database-export.md) |
 | BACPAC 檔案 (匯入) | [支援](https://msdn.microsoft.com/library/hh710052.aspx) | [支援](sql-database-import-portal.md) |

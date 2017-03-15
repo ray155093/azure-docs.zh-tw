@@ -13,18 +13,16 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/19/2016
+ms.date: 12/19/2016
 ms.author: bradsev;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 701c54bac16cbf208fd655fd72f2d4acfc0ba891
-ms.openlocfilehash: 89856f6509d0d2e2e472a61db70b9b04dc1ac7b7
+ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
+ms.openlocfilehash: afecdde0cbc0bcbe0932b23dc1a8e067d02ded12
+ms.lasthandoff: 12/20/2016
 
 
 ---
 # <a name="import-data-into-azure-machine-learning-studio-from-various-online-data-sources-with-the-import-data-module"></a>使用「匯入資料」模組從各種線上資料來源將資料匯入 Azure Machine Learning Studio 中
-
-[!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
-
 本文說明對從不同來源匯入線上資料的支援，以及將資料從這些來源移至 Azure 機器學習服務實驗所需的資訊。
 
 > [!NOTE]
@@ -34,8 +32,10 @@ ms.openlocfilehash: 89856f6509d0d2e2e472a61db70b9b04dc1ac7b7
 
 <!-- -->
 
+[!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
+
 ## <a name="introduction"></a>簡介
-您可以使用[匯入資料][import-data]模組，在實驗進行時，從 Azure Machine Learning Studio 內，自數個線上資料來源之一存取資料：
+使用[匯入資料][import-data]模組，您可以在 [Azure Machine Learning Studio](https://studio.azureml.net/Home) 中進行實驗時，從其中一個線上資料來源存取資料：
 
 * 使用 HTTP 的 Web URL
 * 使用 HiveQL 的 Hadoop
@@ -45,15 +45,15 @@ ms.openlocfilehash: 89856f6509d0d2e2e472a61db70b9b04dc1ac7b7
 * 內部部署 SQL Server 資料庫
 * 資料摘要提供者，目前為 OData
 
-在 Azure Machine Learning Studio 中執行實驗的工作流程，包含將元件拖放到畫布上的動作。 若要存取線上資料來源，請將[匯入資料][import-data]模組新增至您的實驗、選取 [資料來源]，然後提供存取資料所需的參數。 下表列舉支援的線上資料來源。 此表格也會摘錄支援的檔案格式和用來存取資料的參數。
+若要在您的 Studio 實驗中存取線上資料來源，請將[匯入資料][import-data]模組新增至您的實驗、選取 [資料來源]，然後提供存取資料所需的參數。 下表列舉支援的線上資料來源。 此表格也會摘錄支援的檔案格式和用來存取資料的參數。
 
-請注意，這項訓練資料會在您的實驗執行時存取，因此只有在該實驗中才可供使用。 相較之下，已儲存在資料集模組中的資料則可供工作區中的任何實驗使用。
+請注意，這項訓練資料會在您的實驗執行時存取，因此只有在該實驗中才可使用。 相較之下，已儲存在資料集模組中的資料則可供工作區中的任何實驗使用。
 
 > [!IMPORTANT]
 > [匯入資料][import-data]和[匯出資料][export-data]模組目前只能從使用傳統部署模型所建立的 Azure 儲存體讀取和寫入資料。 換句話說，目前尚未支援可提供經常性儲存體存取層或非經常性儲存體存取層的新 Azure Blob 儲存體帳戶類型。 
 > 
 > 一般而言，任何您可能已在這個服務選項變成可供使用之前建立的 Azure 儲存體帳戶應該不會受到影響。 
-> 如果您需要建立新的帳戶，請選取針對部署模型選取 [傳統] 或使用資源管理員，然後針對 [帳戶種類] 選取 [一般用途] 而不是 [Blob 儲存體]。 
+> 如果您需要建立新的帳戶，請將部署模型選取為 [傳統] 或使用資源管理員，然後將 [帳戶種類] 選取為 [一般用途] 而不是 [Blob 儲存體]。 
 > 
 > 如需詳細資訊，請參閱 [Azure Blob 儲存體︰經常性存取與非經常性存取儲存層](../storage/storage-blob-storage-tiers.md)。
 > 
@@ -80,9 +80,4 @@ Azure 機器學習服務的 **匯入資料** 模組支援下列資料來源：
 <!-- Module References -->
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 [export-data]: https://msdn.microsoft.com/library/azure/7A391181-B6A7-4AD4-B82D-E419C0D6522C/
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

@@ -1,5 +1,5 @@
 ---
-title: "適用於 SQL Server VM 的 SQL Server Agent 擴充功能 (傳統) | Microsoft Docs"
+title: "SQL VM 上的自動化管理工作 (傳統) | Microsoft 文件"
 description: "本主題說明如何管理 SQL Server 代理程式擴充功能，此擴充功能可將特定 SQL Server 管理工作自動化。 其中包括自動備份、自動修補和 Azure 金鑰保存庫整合。 本主題使用傳統部署模式。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,19 +15,20 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 01/18/2017
 ms.author: jroth
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6494f8bd610c26ceda718a38faf32d0346a063d7
-ms.openlocfilehash: 73187757207eef345f262dfc16780e7a6dbfb739
-
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: ca346405590d7caa63a888aa139ab1a6f21e365b
+ms.lasthandoff: 03/07/2017
 
 ---
-# <a name="sql-server-agent-extension-for-sql-server-vms-classic"></a>適用於 SQL Server VM 的 SQL Server Agent 擴充功能 (傳統)
+# <a name="automate-management-tasks-on-azure-virtual-machines-with-the-sql-server-agent-extension-classic"></a>使用 SQL Server 代理程式延伸模組 (傳統) 自動化 Azure 虛擬機器上的管理工作
 > [!div class="op_single_selector"]
 > * [資源管理員](../sql/virtual-machines-windows-sql-server-agent-extension.md)
 > * [傳統](virtual-machines-windows-classic-sql-server-agent-extension.md)
 > 
-> 
-
+>
+ 
 Azure 虛擬機器會執行 SQL Server IaaS Agent 擴充功能 (SQLIaaSAgent) 以自動化系統管理工作。 本主題概述擴充功能所支援的服務，以及與安裝、狀態及移除相關的指示。
 
 > [!IMPORTANT] 
@@ -103,10 +104,5 @@ SQL Server IaaS 代理程式擴充功能支援下列管理工作︰
 開始使用擴充功能所支援的其中一項服務。 如需詳細資訊，請參閱本文 [支援的服務](#supported-services) 一節中參考的主題。
 
 如需在 Azure 虛擬機器上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](../sql/virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

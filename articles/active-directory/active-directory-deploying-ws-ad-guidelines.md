@@ -15,8 +15,9 @@ ms.workload: identity
 ms.date: 02/22/2017
 ms.author: femila
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 5172ce4edbea0f5587075308c97d07aac98e9699
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: c6d26aca309597cf9552e97a22e84b6c122fe58b
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -74,7 +75,7 @@ ms.openlocfilehash: 5172ce4edbea0f5587075308c97d07aac98e9699
 ### <a name="static-ip-addresses-must-be-configured-with-azure-powershell"></a>必須使用 Azure PowerShell 設定靜態 IP 位址。
 預設會配置動態位址，但是請改為使用 Set-AzureStaticVNetIP Cmdlet 以指派靜態 IP 位址。 這樣會設定靜態 IP 位址，在服務修復和 VM 關機/重新啟動期間是持續性的。 如需詳細資訊，請參閱 [虛擬機器的靜態內部 IP 位址](http://azure.microsoft.com/blog/static-internal-ip-address-for-virtual-machines/)。
 
-## <a name="a-namebkmkglossaryaterms-and-definitions"></a><a name="BKMK_Glossary"></a>詞彙和定義
+## <a name="BKMK_Glossary"></a>詞彙和定義
 以下是各種 Azure 技術詞彙的非詳盡清單，您將在本文中參考。
 
 * Azure 虛擬機器︰Azure 中的 IaaS 方案，可讓客戶部署 VM，執行幾乎任何傳統式內部部署伺服器工作負載。
@@ -107,7 +108,7 @@ Hypervisor 提供或忽略技術，可能會造成許多分散式系統的問題
 從 Windows Server 2012 開始， [額外的保護措施已內建至 AD DS](https://technet.microsoft.com/library/hh831734.aspx)。 只要基礎 hypervisor 平台支援 VM-GenerationID，這些保護措施就能協助保護虛擬化網域控制站避免上述問題。 Azure 支援 VM-GenerationID，這表示在 Azure 虛擬機器上執行 Windows Server 2012 或更新版本的的網域控制站具有額外的保護措施。
 
 > [!NOTE]
-> 您應該關閉並重新啟動 VM (在客體作業系統內的 Azure 中執行網域控制站角色)，而不是使用 Azure 傳統入口網站的 [關機] 選項。 目前，使用傳統入口網站關閉 VM 會造成 VM 無法解除配置。 解除配置的 VM 的優點是不會產生費用，但它也會重設 VM-GenerationID，這對於 DC 不是預期的結果。 當 VM-GenerationID 重設時，也會重設 AD DS 資料庫的 invocationID、捨棄 RID 集區，且 SYSVOL 會標示為非授權。 如需詳細資訊，請參閱 [Active Directory Domain Services (AD DS) 虛擬化的簡介](https://technet.microsoft.com/library/hh831734.aspx)和[安全的虛擬化 DFSR](http://blogs.technet.com/b/filecab/archive/2013/04/05/safely-virtualizing-dfsr.aspx)。
+> 您應該關閉並重新啟動 VM (在客體作業系統內的 Azure 中執行網域控制站角色)，而不是使用 Azure 入口網站或傳統入口網站的 [關機] 選項。 目前，使用入口網站關閉 VM 會造成 VM 無法解除配置。 解除配置的 VM 的優點是不會產生費用，但它也會重設 VM-GenerationID，這對於 DC 不是預期的結果。 當 VM-GenerationID 重設時，也會重設 AD DS 資料庫的 invocationID、捨棄 RID 集區，且 SYSVOL 會標示為非授權。 如需詳細資訊，請參閱 [Active Directory Domain Services (AD DS) 虛擬化的簡介](https://technet.microsoft.com/library/hh831734.aspx)和[安全的虛擬化 DFSR](http://blogs.technet.com/b/filecab/archive/2013/04/05/safely-virtualizing-dfsr.aspx)。
 > 
 > 
 
@@ -254,7 +255,7 @@ Azure 也非常適合替代耗費成本的災害復原 (DR) 網站。 託管少�
    
     例如，支援 Windows 整合式驗證並使用 Windows Server AD DS 做為組態和使用者設定檔資料儲存機制的 LDAP 感知應用程式，會部署在 Azure 虛擬機器上。 應用程式最好能夠運用現有的公司 Windows Server AD DS，並提供單一登入。 應用程式不是宣告感知。
 
-### <a name="a-namebkmkcloudonlya1-ad-ds-deploy-an-ad-ds-aware-application-with-no-requirement-for-corporate-network-connectivity"></a><a name="BKMK_CloudOnly"></a>1.AD DS︰部署 AD DS 感知應用程式，不需要公司網路連接
+### <a name="BKMK_CloudOnly"></a>1.AD DS︰部署 AD DS 感知應用程式，不需要公司網路連接
 ![僅限雲端的 AD DS 部署](media/active-directory-deploying-ws-ad-guidelines/ADDS_cloud.png)
 **圖 1**
 
@@ -274,7 +275,7 @@ SharePoint 是部署在 Azure 虛擬機器上，且應用程式與公司網路�
 * [Windows Server AD DS 資料庫和 SYSVOL 的位置](#BKMK_PlaceDB)︰將資料磁碟新增至 DC 做為 Azure VM 執行，以便儲存 Windows Server Active Directory 資料庫、記錄和 SYSVOL。
 * [備份和還原](#BKMK_BUR)︰決定您要儲存系統狀態備份的位置。 如有需要，將另一個資料磁碟加入至 DC VM 以儲存備份。
 
-### <a name="a-namebkmkcloudonlyfeda2-ad-fs-extend-a-claims-aware-on-premises-front-end-application-to-the-internet"></a><a name="BKMK_CloudOnlyFed"></a>2 AD FS：將宣告感知內部部署前端應用程式擴充到網際網路
+### <a name="BKMK_CloudOnlyFed"></a>2 AD FS：將宣告感知內部部署前端應用程式擴充到網際網路
 ![具有跨單位連線的同盟](media/active-directory-deploying-ws-ad-guidelines/Federation_xprem.png)
 **圖 2**
 
@@ -298,7 +299,7 @@ SharePoint 是部署在 Azure 虛擬機器上，且應用程式與公司網路�
 
 如需詳細資訊，請參閱 [AD DS 部署指南](https://technet.microsoft.com/library/cc753963)。
 
-### <a name="a-namebkmkhybridexta3-ad-ds-deploy-a-windows-server-ad-ds-aware-application-that-requires-connectivity-to-the-corporate-network"></a><a name="BKMK_HybridExt"></a>3.AD DS：部署 Windows Server AD DS 感知應用程式，它需要連接公司網路
+### <a name="BKMK_HybridExt"></a>3.AD DS：部署 Windows Server AD DS 感知應用程式，它需要連接公司網路
 ![跨單位 AD DS 部署](media/active-directory-deploying-ws-ad-guidelines/ADDS_xprem.png)
 **圖 3**
 
@@ -344,12 +345,12 @@ LDAP 感知應用程式會部署在 Azure 虛擬機器上。 支援 Windows 整�
 | [公用和私人 IP 位址 (動態 IP 與虛擬 IP) 的同盟伺服器需求](#BKMK_FedReqVIPDIP) |<li>Windows Server AD FS 執行個體是否需要直接從網際網路觸達？</li> <li>在雲端中部署的應用程式是否需要它自己的網際網路對應 IP 位址和連接埠？</li> |針對您的部署所需的每個虛擬 IP 位址建立一個雲端服務 |
 | [Windows Server AD FS 高可用性組態](#BKMK_ADFSHighAvail) |<li>在我的 Windows Server AD FS 伺服器陣列中有多少節點？</li> <li>在我的 Windows Server AD FS Proxy 伺服器陣列中要部署多少節點？</li> |恢復功能和容錯 |
 
-### <a name="a-namebkmknetworktopologyanetwork-topology"></a><a name="BKMK_NetworkTopology"></a>網路拓撲
+### <a name="BKMK_NetworkTopology"></a>網路拓撲
 若要符合 Windows Server AD DS 的 IP 位址一致性和 DNS 需求，就必須先建立 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md) 並且附加虛擬機器。 在建立期間，您必須決定是否要選擇性地將連接擴充到內部部署公司網路，以透明方式將 Azure 虛擬機器連接到內部部署機器 — 利用傳統 VPN 技術來達成，而且需要 VPN 端點在公司網路邊緣上公開。 也就是說，VPN 是從 Azure 起始到公司網路，反之則不成立。
 
 請注意，將虛擬網路擴充到內部部署網路時所產生的費用會超出每個 VM 的標準費用。 具體而言，有 Azure 虛擬網路閘道的 CPU 時間的費用，和跨 VPN 與內部部署機器通訊的每個 VM 所產生的輸出流量的費用。 如需網路流量費用的詳細資訊，請參閱 [Azure 價格一覽](http://azure.microsoft.com/pricing/)。
 
-### <a name="a-namebkmkdeploymentconfigadc-deployment-configuration"></a><a name="BKMK_DeploymentConfig"></a>DC 部署組態
+### <a name="BKMK_DeploymentConfig"></a>DC 部署組態
 您設定 DC 的方式取決於想要在 Azure 上執行之服務的需求。 例如，您可以部署新樹系，與自己的公司樹系隔離，以測試概念證明、新的應用程式或需要目錄服務但不是特定存取內部公司資源的某些其他短期專案。
 
 優點是隔離的樹系 DC 不會以內部部署 DC 複寫，導致系統本身產生較少的輸出網路流量而直接降低成本。 如需網路流量費用的詳細資訊，請參閱 [Azure 價格一覽](http://azure.microsoft.com/pricing/)。
@@ -360,7 +361,7 @@ LDAP 感知應用程式會部署在 Azure 虛擬機器上。 支援 Windows 整�
 
 可用性和容錯的需求也會影響您的選擇。 例如，如果連結中斷，利用 Kerberos 信任或同盟信任的應用程式可能都會完全中斷，除非您已經在 Azure 上部署足夠的基礎結構。 替代部署組態，例如複本 DC (可寫入或 RODC)，會增加能夠容忍連結中斷的可能性。
 
-### <a name="a-namebkmkadsitetopologyawindows-server-active-directory-site-topology"></a><a name="BKMK_ADSiteTopology"></a>Windows Server Active Directory 網站拓撲
+### <a name="BKMK_ADSiteTopology"></a>Windows Server Active Directory 網站拓撲
 您必須正確定義網站與網站連結，才能最佳化流量並且讓成本降至最低。 網站、網站連結和子網路會影響 DC 與驗證流量的流程之間的複寫拓撲。 請考慮下列流量費用，然後根據您的部署案例的需求部署及設定 DC︰
 
 * 閘道器本身每小時會有少許費用：
@@ -376,7 +377,7 @@ LDAP 感知應用程式會部署在 Azure 虛擬機器上。 支援 Windows 整�
 * 如果將成本降至最低是優先事項，請確定已排程複寫且變更通知未啟用。 這是在網站之間複寫時的預設組態。 如果您要在虛擬網路上部署 RODC，這並不重要，因為 RODC 不會複寫任何輸出變更。 但是，如果您部署可寫入 DC，應該確定網站連結未設定為以不必要的頻率複寫更新。 如果您部署通用類別目錄伺服器 (GC)，請確定每一個包含 GC 的網站，從與具有比 Azure 網站中的 GC 成本還要低的網站連結連接的網站中的來源 DC 複寫網域分割區。
 * 還可以進一步減少在網站之間複寫所產生的網路流量，方法是變更複寫壓縮演算法。 壓縮演算法是由 REG_DWORD 登錄項目 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters\Replicator 壓縮演算法所控制。 預設值為 3，這與 Xpress Compress 演算法相互關聯。 您可以將值變更為 2，如此會將演算法變更為 MSZip。 在大部分情況下，這樣會增加壓縮，但是也增加 CPU 使用量。 如需詳細資訊，請參閱 [Active Directory 複寫拓撲如何運作](https://technet.microsoft.com/library/cc755994)。
 
-### <a name="a-namebkmkipaddressdnsaip-addressing-and-dns"></a><a name="BKMK_IPAddressDNS"></a>IP 位址和 DNS
+### <a name="BKMK_IPAddressDNS"></a>IP 位址和 DNS
 Azure 虛擬機器預設會配置「DHCP 租用位址」。 因為 Azure 虛擬網路動態位址在虛擬機器的存留期是持續存在於虛擬機器，所以符合 Windows Server AD DS 的需求。
 
 因此，當您在 Azure 上使用動態位址，實際上是使用靜態 IP 位址，因為它在租用期間可路由，而且租用期間就等於雲端服務的存留期。
@@ -395,7 +396,7 @@ VM 會在啟動或有名稱變更時自動註冊其 DNS 名稱。
 
 如需此範例和示範如何佈建第一個 VM 並在其上安裝 AD DS 的另一個範例的詳細資訊，請參閱 [在 Microsoft Azure 上安裝新的 Active Directory 樹系](active-directory-new-forest-virtual-machine.md)。 如需使用 Windows PowerShell 的詳細資訊，請參閱[安裝 Azure PowerShell](/powershell/azureps-cmdlets-docs) 和 [Azure 管理 Cmdlet](https://msdn.microsoft.com/library/azure/jj152841)。
 
-### <a name="a-namebkmkdistributeddcsageo-distributed-dcs"></a><a name="BKMK_DistributedDCs"></a>地理位置分散 DC
+### <a name="BKMK_DistributedDCs"></a>地理位置分散 DC
 在不同的虛擬網路上裝載多個 DC 時，Azure 提供一些優點︰
 
 * 多網站容錯
@@ -403,7 +404,7 @@ VM 會在啟動或有名稱變更時自動註冊其 DNS 名稱。
 
 如需設定虛擬網路之間直接通訊的詳細資訊，請參閱 [設定虛擬網路至虛擬網路連接](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md)。
 
-### <a name="a-namebkmkrodcaread-only-dcs"></a><a name="BKMK_RODC"></a>唯讀 DC
+### <a name="BKMK_RODC"></a>唯讀 DC
 您必須選擇要部署唯讀或可寫入 DC。 您可能比較傾向於部署 RODC，因為您不會實際控制它們，但是 RODC 是設計用來在其實體安全性有風險的位置 (例如分公司辦公室) 部署。
 
 Azure 沒有分公司辦公室的實體安全性風險，但是 RODC 經過證明可能更符合成本效益，因為它們所提供的功能非常適合這些環境，儘管原因非常不同。 例如，RODC 沒有輸出複寫，並可選擇性地填入機密資訊 (密碼)。 而其缺點是缺少這些密碼可能需要隨選輸出流量，以在使用者或電腦驗證時對其進行驗證。 但是，密碼可以選擇性地預先填入及快取。
@@ -412,14 +413,14 @@ RODC 提供 HBI 和 PII 考量的額外優點，因為您可以將包含機密�
 
 請確定應用程式與您打算使用的 RODC 相容。 許多已啟用 Windows Server Active Directory 功能的應用程式適用於 RODC，但是有些應用程式如果沒有可寫入 DC 的存取權，就會無效率地執行或失敗。 如需詳細資訊，請參閱 [唯讀 DC 應用程式相容性指南](https://technet.microsoft.com/library/cc755190)。
 
-### <a name="a-namebkmkgcaglobal-catalog"></a><a name="BKMK_GC"></a>通用類別目錄
+### <a name="BKMK_GC"></a>通用類別目錄
 您必須選擇是否要安裝通用類別目錄 (GC)。 在單一網域樹系中，您應該將所有 DC 設為通用類別目錄伺服器。 這樣不會增加成本，因為沒有任何額外複寫流量。
 
 在多網域樹系中，在驗證程序期間，需要 GC 以擴充萬用群組成員資格。 如果您未部署 GC，在虛擬網路上根據 Azure 的 DC 進行驗證的工作負載將會間接產生輸出驗證流量，在每次驗證嘗試期間查詢 GC 內部部署。
 
 與 GC 相關聯的成本比較無法預期，因為它們裝載每個網域 (部分)。 如果工作負載裝載網際網路對應的服務，並且根據 Windows Server AD DS 驗證使用者，則成本可能完全無法預測。 若要協助減少驗證期間的雲端網站外的 GC 查詢，您可以 [啟用萬用群組成員資格快取](https://technet.microsoft.com/library/cc816928)。
 
-### <a name="a-namebkmkinstallmethodainstallation-method"></a><a name="BKMK_InstallMethod"></a>安裝方法
+### <a name="BKMK_InstallMethod"></a>安裝方法
 您必須選擇如何在虛擬網路上安裝 DC︰
 
 * 升級新的 DC。 如需詳細資訊，請參閱 [在 Azure 虛擬網路上安裝新的 Active Directory 樹系](active-directory-new-forest-virtual-machine.md)。
@@ -429,7 +430,7 @@ RODC 提供 HBI 和 PII 考量的額外優點，因為您可以將包含機密�
 
 請勿使用 SYSPREP 來部署或複製 DC。 複製 DC 的能力是從 Windows Server 2012 開始。 複製功能需要支援基礎 hypervisor 中的 VMGenerationID。 Windows Server 2012 和 Azure 虛擬網路中的 Hyper-V 都支援 VMGenerationID，如同協力廠商虛擬化軟體廠商一樣。
 
-### <a name="a-namebkmkplacedbaplacement-of-the-windows-server-ad-ds-database-and-sysvol"></a><a name="BKMK_PlaceDB"></a>Windows Server AD DS 資料庫和 SYSVOL 的位置
+### <a name="BKMK_PlaceDB"></a>Windows Server AD DS 資料庫和 SYSVOL 的位置
 選取 Windows Server AD DS 資料庫、記錄和 SYSVOL 的儲存位置。 必須部署在 Azure 資料磁碟上。
 
 > [!NOTE]
@@ -446,14 +447,14 @@ RODC 提供 HBI 和 PII 考量的額外優點，因為您可以將包含機密�
 * 在 Azure 資料磁碟上將 [主機快取偏好設定] 設為 [無]。 這可避免 AD DS 作業的寫入快取問題。
 * 將資料庫、記錄及 SYSVOL 儲存在相同的資料磁碟或不同的資料磁碟。 一般而言，這是與用於作業系統本身的磁碟不同的磁碟。 重點是，Windows Server AD DS 資料庫和 SYSVOL 不能儲存在 Azure 作業系統磁碟類型上。 根據預設，AD DS 安裝程序會在 %systemroot% 資料夾中安裝這些元件，對於 Azure 並非建議選項。
 
-### <a name="a-namebkmkburabackup-and-restore"></a><a name="BKMK_BUR"></a>備份與還原
+### <a name="BKMK_BUR"></a>備份與還原
 請注意通常對於 DC 的備份與還原支援和不支援的項目，具體而言，就是在 VM 中執行的項目。 請參閱 [虛擬化 DC 的備份與還原考量](https://technet.microsoft.com/library/virtual_active_directory_domain_controller_virtualization_hyperv#backup_and_restore_considerations_for_virtualized_domain_controllers)。
 
 建立系統狀態備份，方法是只使用特別知道 Windows Server AD DS 的備份需求的備份軟體，例如 Windows Server Backup。
 
 請勿複製 (copy) 或複製 (clone) DC 的 VHD 檔案，而是執行定期備份。 如果需要還原，使用複製的 VHD 而未使用 Windows Server 2012 和支援的 hypervisor 會產生 USN 泡沫。
 
-### <a name="a-namebkmkfedsrvconfigafederation-server-configuration"></a><a name="BKMK_FedSrvConfig"></a>同盟伺服器組態
+### <a name="BKMK_FedSrvConfig"></a>同盟伺服器組態
 Windows Server AD FS 同盟伺服器 (STS) 的組態一部分取決於您想要在 Azure 上部署的應用程式是否需要存取內部部署網路上的資源。
 
 如果應用程式符合下列準則，您可以部署應用程式，與內部部署網路隔離。
@@ -479,15 +480,15 @@ Windows Server AD FS 同盟伺服器 (STS) 的組態一部分取決於您想要�
 
 請注意，在任一案例中，如果需要企業對企業共同作業，您可以建立具有多個識別提供者的信任關係。
 
-### <a name="a-namebkmkcloudsvcconfigacloud-services-configuration"></a><a name="BKMK_CloudSvcConfig"></a>雲端服務組態
+### <a name="BKMK_CloudSvcConfig"></a>雲端服務組態
 如果您想要將 VM 直接公開至網際網路，或者公開網際網路對應負載平衡應用程式，則需要雲端服務。 這是可行的，因為每個雲端服務提供一個可設定虛擬 IP 位址。
 
-### <a name="a-namebkmkfedreqvipdipafederation-server-requirements-for-public-and-private-ip-addressing-dynamic-ip-vs-virtual-ip"></a><a name="BKMK_FedReqVIPDIP"></a>公用和私人 IP 位址 (動態 IP 與虛擬 IP) 的同盟伺服器需求
+### <a name="BKMK_FedReqVIPDIP"></a>公用和私人 IP 位址 (動態 IP 與虛擬 IP) 的同盟伺服器需求
 每個 Azure 虛擬機器會接收動態 IP 位址。 動態 IP 位址是只能在 Azure 中存取的私人位址。 不過，在大部分情況下，必須為您的 Windows Server AD FS 部署設定虛擬 IP 位址。 需要虛擬 IP 以將 Windows Server AD FS 端點公開到網際網路，並且由同盟夥伴和用戶端用於驗證和持續管理。 虛擬 IP 位址是雲端服務的屬性，該雲端服務包含一或多個 Azure 虛擬機器。 如果在 Azure 和 Windows Server AD FS 上部署的宣告感知應用程式都是網際網路對應並且共用共同的連接埠，都需要自己的虛擬 IP 位址，因此必須為應用程式建立一個雲端服務，為 Windows Server AD FS 建立第二個雲端服務。
 
 如需詞彙虛擬 IP 位址和動態 IP 位址的定義，請參閱 [詞彙和定義](#BKMK_Glossary)。
 
-### <a name="a-namebkmkadfshighavailawindows-server-ad-fs-high-availability-configuration"></a><a name="BKMK_ADFSHighAvail"></a>Windows Server AD FS 高可用性組態
+### <a name="BKMK_ADFSHighAvail"></a>Windows Server AD FS 高可用性組態
 雖然您可以部署獨立的 Windows Server AD FS 同盟服務，建議針對 AD FS STS 和生產環境中的 Proxy 部署具有至少兩個節點的伺服器陣列。
 
 請參閱 [AD FS 2.0 設計指南](https://technet.microsoft.com/library/dd807036)中的 [AD FS 2.0 部署拓撲考量](https://technet.microsoft.com/library/gg982489)，以決定哪個部署組態選項最適合您的特定需求。
@@ -497,10 +498,5 @@ Windows Server AD FS 同盟伺服器 (STS) 的組態一部分取決於您想要�
 > Azure 不支援 Windows Server 網路負載平衡 (NLB)。
 > 
 > 
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

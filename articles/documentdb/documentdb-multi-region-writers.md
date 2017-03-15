@@ -14,18 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/25/2017
 ms.author: arramac
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 788a1b9ef6a470c8f696228fd8fe51052c4f7007
-ms.openlocfilehash: 15c5a8be1097253e88af3a9f36b9067f0e2fbba3
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: d6292567bbf7afd71b21be3b236537c609c63644
+ms.lasthandoff: 03/07/2017
 
 
 ---
-# <a name="multi-master-database-architectures-with-azure-documentdb"></a>使用 Azure DocumentDB 的多重主機資料庫架構
+# <a name="multi-master-globally-replicated-database-architectures-with-documentdb"></a>使用 DocumentDB 的多重主機全域複寫資料庫架構
 DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)，可讓您以低延遲存取工作負載中的任何位置，將資料散發到多個區域。 此模型通常用於發行者/取用者工作負載，寫入器在單一地理區域中，而讀取器 (讀取) 分散在世界各地的其他區域。 
 
 您也可以使用 DocumentDB 的全域複寫支援，建置其寫入器和讀取器遍布全球的應用程式。 本文概述的模式可讓使用 Azure DocumentDB 的分散式寫入器達成本機寫入及本機讀取存取。
 
-## <a name="a-idexamplescenarioacontent-publishing---an-example-scenario"></a><a id="ExampleScenario"></a>內容發佈 - 範例案例
+## <a id="ExampleScenario"></a>內容發佈 - 範例案例
 讓我們看看真實世界的案例，說明如何利用 DocumentDB 使用分散在世界各地多重區域/多重主機讀寫模式。 以建置在 DocumentDB 上的內容發佈平台為例。 這個平台必須符合以下一些需求，才能獲得絕佳發行者和取用者使用者體驗。
 
 * 作者與訂閱者都分散在世界各地 
@@ -39,7 +41,7 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
 
 如果您想要深入了解資料分割和資料分割索引鍵，請參閱 [Azure DocumentDB 的資料分割與調整規模](documentdb-partition-data.md)。
 
-## <a name="a-idmodelingnotificationsamodeling-notifications"></a><a id="ModelingNotifications"></a>建立模型通知
+## <a id="ModelingNotifications"></a>建立模型通知
 通知是使用者特有的資料輸入。 因此，通知文件的存取模式都是以單一使用者而言。 例如，您可以「發佈給使用者的通知」或「擷取指定使用者的所有通知」。 因此，這類資料分割索引鍵的最佳選擇會是 `UserId`。
 
     class Notification 
@@ -66,7 +68,7 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
         public string ArticleId { get; set; } 
     }
 
-## <a name="a-idmodelingsubscriptionsamodeling-subscriptions"></a><a id="ModelingSubscriptions"></a>建立模型訂閱
+## <a id="ModelingSubscriptions"></a>建立模型訂閱
 針對感興趣的特定文章類別或特定發行者的各種準則來建立訂閱。 因此 `SubscriptionFilter` 會是不錯的資料分割索引鍵選擇。
 
     class Subscriptions 
@@ -89,7 +91,7 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
         } 
     }
 
-## <a name="a-idmodelingarticlesamodeling-articles"></a><a id="ModelingArticles"></a>建立模型文件
+## <a id="ModelingArticles"></a>建立模型文件
 一旦透過通知來識別文章，後續查詢通常會以 `ArticleId` 為基礎。 因此選擇 `ArticleID` 當成資料分割索引鍵，可提供在 DocumentDB 集合內儲存文章最佳的發佈方式。 
 
     class Article 
@@ -118,7 +120,7 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
         //... 
     }
 
-## <a name="a-idmodelingreviewsamodeling-reviews"></a><a id="ModelingReviews"></a>建立模型評論
+## <a id="ModelingReviews"></a>建立模型評論
 和文章一樣，評論大部分可在文章內容中撰寫和讀取。 選擇 `ArticleId` 當成資料分割索引鍵，可提供和文章相關聯的評論最佳的發佈方式並有效存取。 
 
     class Review 
@@ -144,7 +146,7 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
         public int Rating { get; set; } }
     }
 
-## <a name="a-iddataaccessmethodsadata-access-layer-methods"></a><a id="DataAccessMethods"></a>資料存取層方法
+## <a id="DataAccessMethods"></a>資料存取層方法
 現在來看看我們必須實作的主要資料存取方法。 以下是 `ContentPublishDatabase` 需要的方法清單︰
 
     class ContentPublishDatabase 
@@ -160,7 +162,7 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
         public async Task<IEnumerable<Review>> ReadReviewsAsync(string articleId); 
     }
 
-## <a name="a-idarchitectureadocumentdb-account-configuration"></a><a id="Architecture"></a>DocumentDB 帳戶組態
+## <a id="Architecture"></a>DocumentDB 帳戶組態
 若要保證本機讀取和寫入，不只要針對資料分割索引鍵，也要根據區域的地理存取模式來分割資料。 模型依存於每個區域的異地複寫 Azure DocumentDB 資料庫帳戶。 以兩個區域為例，多重區域寫入設定如下︰
 
 | 帳戶名稱 | 寫入區域 | 讀取區域 |
@@ -200,7 +202,7 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
 | `contentpubdatabase-europe.documents.azure.com` | `North Europe` |`West US` |`Southeast Asia` |
 | `contentpubdatabase-asia.documents.azure.com` | `Southeast Asia` |`North Europe` |`West US` |
 
-## <a name="a-iddataaccessimplementationadata-access-layer-implementation"></a><a id="DataAccessImplementation"></a>資料存取層實作
+## <a id="DataAccessImplementation"></a>資料存取層實作
 現在讓我們來對有兩個可寫入區域的應用程式實作資料存取層 (DAL)。 DAL 必須實作下列步驟︰
 
 * 為每個帳戶建立 `DocumentClient` 的多個執行個體。 使用兩個區域，每個 DAL 執行個體會有一個 `writeClient` 和一個 `readClient`。 
@@ -309,15 +311,10 @@ DocumentDB 支援周全的[全域複寫](documentdb-distribute-data-globally.md)
 
 因此，選擇良好的分割索引鍵和靜態帳戶型的資料分割，您就可以使用 Azure DocumentDB 達到多重區域本機寫入和讀取。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="NextSteps"></a>接續步驟
+## <a id="NextSteps"></a>接續步驟
 我們會在本文說明如何使用發佈為範例案例的內容，利用 DocumentDB 使用分散在世界各地的多重區域讀取和寫入模式。
 
 * 了解 DocumentDB 如何支援[全域散發](documentdb-distribute-data-globally.md)功能
 * 了解 [Azure DocumentDB 中的自動化和手動容錯移轉](documentdb-regional-failovers.md)
 * 了解[使用 DocumentDB 的全域一致性](documentdb-consistency-levels.md)
 * 使用 [Azure DocumentDB SDK](documentdb-developing-with-multiple-regions.md) 進行多重區域開發
-
-
-<!--HONumber=Jan17_HO4-->
-
-

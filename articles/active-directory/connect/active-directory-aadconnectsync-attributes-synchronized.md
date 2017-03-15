@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: markvi;andkjell
 translationtype: Human Translation
-ms.sourcegitcommit: bb500d4705c3b67de6b9b31fa5311967beffffc2
-ms.openlocfilehash: ff5a7091e985629763dde416b17e060236f8f7ad
-ms.lasthandoff: 01/27/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 9238141fc56abcb618d71e4bfd1eccb77f282c71
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -33,8 +33,8 @@ ms.lasthandoff: 01/27/2017
 
 > [!WARNING]
 > 將屬性取消選取時，您應該小心，只將絕對不可能進行同步處理的屬性取消選取。 取消選取其他屬性可能對功能造成負面的影響。
-> 
-> 
+>
+>
 
 ## <a name="office-365-proplus"></a>Office 365 ProPlus
 | 屬性名稱 | 使用者 | 註解 |
@@ -422,7 +422,7 @@ ms.lasthandoff: 01/27/2017
 
 | 屬性名稱 | 使用者 | 連絡人 | 群組 | 註解 |
 | --- |:---:|:---:|:---:| --- |
-| msDS-ExternalDirectoryObjectID |X | | |衍生自 Azure AD 中的 cloudAnchor。 此屬性是 Exchange 2016 中的新屬性。 |
+| msDS-ExternalDirectoryObjectID |X | | |衍生自 Azure AD 中的 cloudAnchor。 這個屬性是 Exchange 2016 和 Windows Server 2016 AD 中的新屬性。 |
 | msExchArchiveStatus |X | | |線上封存：可讓客戶封存郵件。 |
 | msExchBlockedSendersHash |X | | |篩選：從用戶端回寫內部部署篩選及線上安全和已封鎖的寄件者資料。 |
 | msExchSafeRecipientsHash |X | | |篩選：從用戶端回寫內部部署篩選及線上安全和已封鎖的寄件者資料。 |
@@ -459,5 +459,4 @@ ms.lasthandoff: 01/27/2017
 深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
 

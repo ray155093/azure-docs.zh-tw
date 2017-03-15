@@ -12,11 +12,12 @@ ms.devlang: javascript
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/23/2016
+ms.date: 12/15/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: 05ccc7f419a420cb80f9fd71d5c59912468eb8f8
+ms.sourcegitcommit: 2e4220bedcb0091342fd9386669d523d4da04d1c
+ms.openlocfilehash: 312e9081c8597f59c32e99d594f2e729410986d8
+ms.lasthandoff: 12/16/2016
 
 
 ---
@@ -53,7 +54,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 在本節中，您會修改在[IoT 中樞入門]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端對裝置訊息。
 
 1. 使用文字編輯器開啟 SimulatedDevice.js 檔案。
-2. 修改 **connectCallback** 函式來處理從 IoT 中樞傳送的訊息。 在此範例中，裝置永遠會叫用 **完整** 函式，目的是通知 IoT 中樞訊息已處理完畢。 新版的 **connectCallback** 函式會看起來像這樣︰
+2. 修改 **connectCallback** 函式來處理從 IoT 中樞傳送的訊息。 在此範例中，裝置永遠會叫用 **完整** 函式，目的是通知 IoT 中樞訊息已處理完畢。 新版的 **connectCallback** 函式看起來會像下列程式碼片段︰
    
     ```
     var connectCallback = function (err) {
@@ -95,7 +96,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
     ```
     npm install azure-iothub --save
     ```
-3. 使用文字編輯器，在 **sendcloudtodevicemessage** 資料夾中建立新的 **SendCloudToDeviceMessage.js** 檔案。
+3. 使用文字編輯器，在 **sendcloudtodevicemessage** 資料夾中建立 **SendCloudToDeviceMessage.js** 檔案。
 4. 在 **SendCloudToDeviceMessage.js** 檔案開頭新增下列 `require` 陳述式：
    
     ```
@@ -167,7 +168,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
     node SendCloudToDeviceMessage.js 
     ```
    
-    ![執行應用程式以傳送 c2d 命令][img-send-command]
+    ![執行應用程式以傳送雲端到裝置命令][img-send-command]
    
    > [!NOTE]
    > 為了簡單起見，本教學課程不會實作任何重試原則。 在生產環境程式碼中，您應該如 MSDN 文章 [暫時性錯誤處理]所建議，實作重試原則 (例如指數型輪詢)。
@@ -192,13 +193,8 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 [IoT 中樞開發人員指南]: iot-hub-devguide.md
 [Azure IoT 開發人員中樞]: http://www.azure.com/develop/iot
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
-[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdks/blob/master/doc/get_started/node-devbox-setup.md
+[lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/tree/master/doc/node-devbox-setup.md
 [暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [Azure 入口網站]: https://portal.azure.com
 [Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

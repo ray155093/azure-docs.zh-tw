@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/07/2016
+ms.date: 03/13/2017
 ms.author: garye;krishnan
 translationtype: Human Translation
 ms.sourcegitcommit: 66fb3dc316ce25aea4dff4add5c25b7f0f56ad7a
 ms.openlocfilehash: 62917bfb2124a2b8beb57e0ee38be93e8ca1c655
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -148,9 +149,4 @@ ms.openlocfilehash: 62917bfb2124a2b8beb57e0ee38be93e8ca1c655
 實驗完成執行之後，就可以將您從資料庫匯入的資料視覺化，方法是按一下 [匯入資料] 模組的輸出連接埠，然後選取 [視覺化]。
 
 當實驗完成開發之後，您就能部署和操作您的模型。 使用批次執行服務時，將會讀取來自 **匯入資料** 模組中所設定之內部部署 SQL Server 資料庫的資料並用於計分。 雖然您可以使用要求回應服務來對內部部署資料進行評分，但是 Microsoft 建議改用 [Excel 增益集](machine-learning-excel-add-in-for-web-services.md) 。 目前不論是在您的實驗或是已發行的 Web 服務中，都不支援透過 **匯出資料** 寫入內部部署 SQL Server 資料庫。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 
