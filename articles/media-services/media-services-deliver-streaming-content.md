@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 08/30/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: cd9a73d1830be132a1176fcb6cdeadedcdc96d04
-ms.openlocfilehash: 98bfdc49524edd5cedc85b5f94a74ca8c29ae2e9
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 5598a16511713a76193c13c4521e4884d8f5b75d
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -49,6 +50,10 @@ ms.openlocfilehash: 98bfdc49524edd5cedc85b5f94a74ca8c29ae2e9
    
    如果您想要漸進式地下載，請取得資產中的 MP4 檔案名稱。  
 4. 建置資訊清單檔或 MP4 檔案的 URL。 
+
+
+>[!NOTE]
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
 ### <a name="use-media-services-net-sdk"></a>使用 Media Services .NET SDK
 建置串流 URL 
@@ -173,10 +178,5 @@ ms.openlocfilehash: 98bfdc49524edd5cedc85b5f94a74ca8c29ae2e9
 ## <a name="see-also"></a>另請參閱
 [下載資產](media-services-deliver-asset-download.md)
 [設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 
