@@ -1,5 +1,5 @@
 ---
-title: "使用儲存體分析收集記錄檔和度量資料 | Microsoft Docs"
+title: "使用 Azure 儲存體分析收集記錄檔和計量資料 | Microsoft Docs"
 description: "儲存體分析可讓您追蹤所有儲存體服務的度量資料，以及收集 Blob、佇列和資料表儲存體的記錄檔。"
 services: storage
 documentationcenter: 
@@ -12,16 +12,17 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 12/08/2016
+ms.date: 03/03/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: af5fae5c5153c91fe78bdfb310c407a2c4462e04
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 4680985e5c66444ca8a356cc92d45dc0f1838f55
+ms.lasthandoff: 03/06/2017
 
 
 ---
 # <a name="storage-analytics"></a>儲存體分析
-## <a name="overview"></a>Overview
+
 Azure 儲存體分析會執行記錄，並提供儲存體帳戶的度量資料。 您可以使用此資料來追蹤要求、分析使用量趨勢，以及診斷儲存體帳戶的問題。
 
 若要使用儲存體分析，您必須針對想要監視的每個服務個別啟用它。 您可以從 [Azure 入口網站](https://portal.azure.com)加以啟用。 如需詳細資訊，請參閱 [在 Azure 入口網站中監視儲存體帳戶](storage-monitor-storage-account.md)。 您也可以利用程式設計方式，透過 REST API 或用戶端程式庫來啟用儲存體分析。 針對每個服務，使用[取得 Blob 服務屬性](https://msdn.microsoft.com/library/hh452239.aspx)、[取得佇列服務屬性](https://msdn.microsoft.com/library/hh452243.aspx)、[取得表格服務屬性](https://msdn.microsoft.com/library/hh452238.aspx)，以及[取得檔案服務屬性](https://msdn.microsoft.com/library/mt427369.aspx)作業來啟用儲存體分析。
@@ -150,7 +151,7 @@ Azure 儲存體分析會執行記錄，並提供儲存體帳戶的度量資料�
 
 | 度量層級 | 資料表名稱 | 支援的版本 |
 | --- | --- | --- |
-| 每小時度量，主要位置 |$MetricsTransactionsBlob  <br/>$MetricsTransactionsTable <br/>  $MetricsTransactionsQueue |僅適用於 2013-08-15 之前的版本。 儘管目前仍支援這些名稱，但還是建議您改用下列資料表。 |
+| 每小時度量，主要位置 |$MetricsTransactionsBlob  <br/>$MetricsTransactionsTable <br/> $MetricsTransactionsQueue |僅適用於 2013-08-15 之前的版本。 儘管目前仍支援這些名稱，但還是建議您改用下列資料表。 |
 | 每小時度量，主要位置 |$MetricsHourPrimaryTransactionsBlob <br/>$MetricsHourPrimaryTransactionsTable <br/>$MetricsHourPrimaryTransactionsQueue |所有版本 (包含 2013-08-15)。 |
 | 每分鐘度量，主要位置 |$MetricsMinutePrimaryTransactionsBlob <br/>$MetricsMinutePrimaryTransactionsTable <br/>$MetricsMinutePrimaryTransactionsQueue |所有版本 (包含 2013-08-15)。 |
 | 每小時度量，次要位置 |$MetricsHourSecondaryTransactionsBlob  <br/>$MetricsHourSecondaryTransactionsTable <br/>$MetricsHourSecondaryTransactionsQueue |所有版本 (包含 2013-08-15)。 必須啟用讀取存取異地備援複寫。 |
@@ -163,7 +164,7 @@ Azure 儲存體分析會執行記錄，並提供儲存體帳戶的度量資料�
 度量資料表中的所有資料都可使用資料表服務 API 來存取，包括由 Azure 管理的程式庫所提供的 .NET API。 儲存體帳戶管理員可以讀取和刪除資料表實體，但無法建立或更新它們。
 
 ## <a name="billing-for-storage-analytics"></a>儲存體分析計費
-儲存體分析是由儲存體帳戶擁有者所啟用；它不是預設啟用的。 所有的度量資料都是由儲存體帳戶的服務所寫入。 因此，儲存體分析所執行的每個寫入作業都會列入計費。 此外，度量資料所使用的儲存體數量也會列入計費。
+所有的度量資料都是由儲存體帳戶的服務所寫入。 因此，儲存體分析所執行的每個寫入作業都會列入計費。 此外，度量資料所使用的儲存體數量也會列入計費。
 
 儲存體分析所執行的下列動作會列入計費：
 
@@ -191,10 +192,5 @@ Azure 儲存體分析會執行記錄，並提供儲存體帳戶的度量資料�
 * [關於儲存體分析度量](https://msdn.microsoft.com/library/hh343258.aspx)
 * [儲存體分析度量資料表結構描述](https://msdn.microsoft.com/library/hh343264.aspx)
 * [儲存體分析記錄作業和狀態訊息](https://msdn.microsoft.com/library/hh343260.aspx)  
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

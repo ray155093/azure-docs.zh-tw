@@ -14,13 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: pajosh
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 0c5b2969ddc943b2b15826003f5a9e686e84e1c4
+ms.sourcegitcommit: 82b7541ab1434179353247ffc50546812346bda9
+ms.openlocfilehash: ddb9e7909eb4ab97204059d21690795ceb6ff9e8
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="restore-key-vault-key-and-secret-for-encrypted-vms-using-azure-backup"></a>使用 Azure 備份還原已加密 VM 的金鑰保存庫金鑰與密碼
+# <a name="restore-an-encrypted-virtual-machine-from-an-azure-backup-recovery-point"></a>從 Azure 備份復原點還原已加密的虛擬機器
 本文將討論如果您的金鑰和密碼不存在於金鑰保存庫中時，如何使用 Azure VM 備份還原已加密的 Azure VM。 這些步驟也可用於您想要為已還原的 VM 另外維護一份金鑰 (金鑰加密金鑰) 與密碼 (BitLocker 加密金鑰) 時。
 
 ## <a name="pre-requisites"></a>必要條件
@@ -89,10 +91,10 @@ PS C:\> $rp1 = Get-AzureRmRecoveryServicesBackupRecoveryPoint -RecoveryPointId $
 
 > [!NOTE]
 > 此 Cmdlet 成功執行後，系統便會在 blob 檔案執行的機器內的指定資料夾中產生該檔案。 此 blob 檔案以加密形式表示金鑰加密金鑰。
-> 
-> 
+>
+>
 
-使用下列 Cmdlet 將金鑰還原回金鑰保存庫。 
+使用下列 Cmdlet 將金鑰還原回金鑰保存庫。
 
 ```
 PS C:\> Restore-AzureKeyVaultKey -VaultName "contosokeyvault" -InputFile "C:\Users\downloads\key.blob"
@@ -108,11 +110,11 @@ https://contosokeyvault.vault.azure.net/secrets/B3284AAA-DAAA-4AAA-B393-60CAA848
 ```
 
 > [!NOTE]
-> vault.azure.net 之前的文字代表原始金鑰保存庫名稱。 secrets/ 後的文字代表密碼名稱。 
-> 
-> 
+> vault.azure.net 之前的文字代表原始金鑰保存庫名稱。 secrets/ 後的文字代表密碼名稱。
+>
+>
 
-如果您想要使用相同的密碼名稱，請從上述的 Cmdlet 執行結果輸出中取得密碼名稱與值。 否則，應更新下述的 $secretname，以使用新的密碼名稱。 
+如果您想要使用相同的密碼名稱，請從上述的 Cmdlet 執行結果輸出中取得密碼名稱與值。 否則，應更新下述的 $secretname，以使用新的密碼名稱。
 
 ```
 PS C:\> $secretname = "B3284AAA-DAAA-4AAA-B393-60CAA848AAAA"
@@ -120,7 +122,7 @@ PS C:\> $secretdata = $rp1.KeyAndSecretDetails.SecretData
 PS C:\> $Secret = ConvertTo-SecureString -String $secretdata -AsPlainText -Force
 ```
 
-如果也需要還原 VM，請為密碼設定標籤。 對於標籤 DiskEncryptionKeyFileName，值應該包含您打算使用之密碼的名稱。 
+如果也需要還原 VM，請為密碼設定標籤。 對於標籤 DiskEncryptionKeyFileName，值應該包含您打算使用之密碼的名稱。
 
 ```
 PS C:\> $Tags = @{'DiskEncryptionKeyEncryptionAlgorithm' = 'RSA-OAEP';'DiskEncryptionKeyFileName' = 'B3284AAA-DAAA-4AAA-B393-60CAA848AAAA.BEK';'DiskEncryptionKeyEncryptionKeyURL' = 'https://contosokeyvault.vault.azure.net:443/keys/KeyName/84daaac999949999030bf99aaa5a9f9';'MachineName' = 'vm-name'}
@@ -128,8 +130,8 @@ PS C:\> $Tags = @{'DiskEncryptionKeyEncryptionAlgorithm' = 'RSA-OAEP';'DiskEncry
 
 > [!NOTE]
 > DiskEncryptionKeyFileName 的值與上述取得的密碼名稱相同。 還原回金鑰並使用 [Get-AzureKeyVaultKey](https://msdn.microsoft.com/library/dn868053.aspx) Cmdlet 後，便可從金鑰保存庫取得 DiskEncryptionKeyEncryptionKeyURL 的值    
-> 
-> 
+>
+>
 
 將密碼設定回到金鑰保存庫
 
@@ -139,10 +141,4 @@ PS C:\> Set-AzureKeyVaultSecret -VaultName "contosokeyvault" -Name $secretname -
 
 ### <a name="restore-virtual-machine"></a>還原虛擬機器
 如果您已使用 Azure VM 備份將已加密的 VM 備份，上述的 PowerShell Cmdlet 可幫助您將金鑰與密碼還原回金鑰保存庫。 還原金鑰與密碼後，請參閱[使用 PowerShell 部署和管理 Resource Manager 部署之 VM 的備份](backup-azure-vms-automation.md)一文還原已加密的 VM。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
