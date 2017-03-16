@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 10/10/2016
+ms.date: 3/01/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 87fa4373e5496a91d4e808ceb45095a6aea9e884
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 55baaf0984e01f3cbca7b2296f0b24661e70e7b5
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -24,8 +25,6 @@ ms.openlocfilehash: 87fa4373e5496a91d4e808ceb45095a6aea9e884
 > [!div class="op_single_selector"]
 > * [使用者或群組管理存取](role-based-access-control-manage-assignments.md)
 > * [資源管理存取](role-based-access-control-configure.md)
-> 
-> 
 
 您可以使用 Azure Active Directory 預覽版本中的角色型存取控制 (RBAC) 來管理 Azure 資源的存取權。 [預覽版有何功能？](active-directory-preview-explainer.md)
 
@@ -48,7 +47,7 @@ ms.openlocfilehash: 87fa4373e5496a91d4e808ceb45095a6aea9e884
 4. 在使用者刀鋒視窗上選取 [Azure 資源]  。 隨即出現該使用者的所有存取權指派。
 
 ### <a name="read-permissions-to-view-assignments"></a>檢視指派的讀取權限
-此頁面只會顯示您擁有讀取權限的存取權指派。 例如，您擁有訂用帳戶 A 的讀取權限，並移至 Azure 資源刀鋒視窗檢查使用者的指派。 您可以看到她的訂用帳戶 A 存取權指派，但不會看到她在訂用帳戶 B 上也擁有存取權指派。
+此頁面只會顯示您擁有讀取權限的存取權指派。 例如，您擁有訂用帳戶 A 的讀取權限，並移至 Azure 資源刀鋒視窗檢查使用者的指派。 您可以看到她的訂用帳戶 A 存取權指派，但無法看到她在訂用帳戶 B 上也擁有存取權指派。
 
 ## <a name="delete-access-assignments"></a>刪除存取權指派
 從這個刀鋒視窗中，您可以刪除已直接指派給使用者或群組的存取權指派。 如果從父群組繼承存取權指派，您需要移至資源或訂用帳戶，並在那裡管理指派。
@@ -57,13 +56,9 @@ ms.openlocfilehash: 87fa4373e5496a91d4e808ceb45095a6aea9e884
 2. 選取 [移除]然後選取 [是] 以確認。
     ![移除存取權指派 - 螢幕擷取畫面](./media/role-based-access-control-manage-assignments/delete_assignment.png)
 
-## <a name="related-topics"></a>相關主題
+## <a name="next-steps"></a>後續步驟
+
 * 取得 [使用角色指派來管理 Azure 訂用帳戶資源的存取權](role-based-access-control-configure.md)
 * 參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

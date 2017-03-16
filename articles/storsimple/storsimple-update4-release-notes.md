@@ -12,12 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 02/16/2017
+ms.date: 03/03/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: a87a4a8b290318bb9fdd1ae0b5fdce00085f59df
-ms.openlocfilehash: 3fe19196ce6af2aeb52bf941ced1892a9a172d87
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: c682f9eac1a6ff5e3771aa9e4dfa5b5ffefc1223
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -75,6 +75,7 @@ Update 4 包含以下重要的改良功能和錯誤修正。
 | 3 |支援封裝 |在舊版中，支援套件方面有問題，造成 System.OutOfMemory 例外狀況或其他錯誤，導致建立支套件失敗。 此版本已經修正這些錯誤。 |是 |是 |
 | 4 |監視 |在舊版中，本機固定磁碟區的監視圖表有問題，顯示的耗用量是以 EB 為單位。 此版本已經解決這個錯誤。 |是 |是 |
 | 5 |移轉 |在舊版中，從 5000-7000 系列移轉至 8000 系列裝置的可靠性有幾個問題。 此版本已經解決這些問題。 |是 |是 |
+| 6 |更新 |在舊版中，如果發生更新失敗，控制器會進入復原模式，造成使用者無法繼續更新，並且需要連絡 Microsoft 支援服務。 <br> 這個行為在此版本中已變更。 如果使用者在兩個控制器執行相同版本 (Update 4) 之後發生更新失敗，控制器不會進入復原模式。 如果使用者遇到此失敗，我們建議他們先稍候一陣子，再重試更新。 重試應該能成功。 如果重試失敗，他們便應該連絡 Microsoft 支援服務。 |是 |是 |
 
 
 ## <a name="known-issues-in-update-4-from-previous-releases"></a>Update 4 中舊版的已知問題

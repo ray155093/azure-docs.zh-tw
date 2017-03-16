@@ -1,5 +1,5 @@
 ---
-title: "角色型存取控制疑難排解 | Microsoft Docs"
+title: "針對 Azure RBAC 進行疑難排解 | Microsoft Docs"
 description: "取得有關角色型存取控制資源問題或疑問的協助。"
 services: azure-portal
 documentationcenter: na
@@ -12,19 +12,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/12/2016
+ms.date: 03/02/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a6fd242b89e6a7cd61be6ceadf15852e9ef61a8a
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 32b335d8a1f84348ab28bcc081cc42fd79fb08fc
+ms.lasthandoff: 03/04/2017
 
 
 ---
 # <a name="role-based-access-control-troubleshooting"></a>角色型存取控制疑難排解
-## <a name="introduction"></a>簡介
-[角色型存取控制](role-based-access-control-configure.md) 是一項強大的功能，能讓您將精細的存取權限委派給 Azure 中的資源。 亦即您可以放心且精確地授予特定個人所需的權限。 然而，Azure 資源的資源模型有時可能很複雜，且不容易完全了解您所授予的權限內容。
 
-本文說明在 Azure 入口網站中使用一些角色時，會有哪些情況。 這三種角色涵蓋了所有資源類型︰
+本文將回答關於授與角色之特定存取權限的常見問題，讓您知道在 Azure 入口網站中使用角色時預期能夠使用哪些項目，以及如何針對存取問題進行疑難排解。 這三種角色涵蓋了所有資源類型︰
 
 * 擁有者  
 * 參與者  
@@ -34,9 +33,9 @@ ms.openlocfilehash: a6fd242b89e6a7cd61be6ceadf15852e9ef61a8a
 
 ## <a name="app-service-workloads"></a>應用程式服務工作負載
 ### <a name="write-access-capabilities"></a>寫入存取功能
-如果您授與對單一 Web 應用程式授與使用者唯讀存取權限，部分功能可能會在未預期的情況下停用。 以下管理功能需要 Web 應用程式的 **寫入** 存取權限 (參與者或擁有者角色)，而且無法在任何唯讀情況中使用。
+如果您授與對單一 Web 應用程式授與使用者唯讀存取權限，部分功能可能會在未預期的情況下停用。 以下管理功能需要 Web 應用程式的**寫入**存取權限 (參與者或擁有者)，而且無法在任何唯讀情況中使用。
 
-* 命令 (例如，開始、停止等)
+* 命令 (像是開始、停止等)
 * 變更像是一般組態的設定、調整設定、備份設定與監視設定
 * 存取發佈認證與其他機密，像是應用程式設定與連接字串
 * 串流記錄
@@ -88,17 +87,12 @@ Web 應用程式因為幾個互有關聯的資源而顯得複雜。 以下是具
 * 負載平衡集合  
 * 警示規則  
 
-如果您無法存取上述任何一個磚，請洽詢您的系統管理員，取得資源群組的參與者存取權限。
+如果您無法存取上述任何一個圖格，則需洽詢您的系統管理員，以取得資源群組的參與者存取權限。
 
 ## <a name="see-more"></a>更多資訊
 * [角色型存取控制](role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
 * [內建角色](role-based-access-built-in-roles.md)︰取得有關 RBAC 中標準角色的詳細資訊。
 * [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)︰了解如何建立自訂角色，以符合您的存取需求。
 * [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰追蹤 RBAC 中的角色指派變更。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
