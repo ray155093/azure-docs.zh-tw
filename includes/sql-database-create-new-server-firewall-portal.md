@@ -35,8 +35,3 @@ articles/sql-data-warehouse-get-started-provision.md
 > [!Tip]
 > 如需教學課程，請參閱 [SQL Database 教學課程︰建立伺服器、伺服器層級防火牆規則、範例資料庫、資料庫層級防火牆規則，以及與 SQL Server 連接](../articles/sql-database/sql-database-get-started.md)。    
 >
-
-
-<!--HONumber=Jan17_HO1-->
-
-
