@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: af5a8b4dd87d041282d6a857a505ad6c167caac0
-ms.openlocfilehash: ab1879cc1ef998f889a86ea7e2d4e7143e6c1cc4
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: a439f421d726f58b2d21fb4a0e883e16db719364
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -39,7 +40,6 @@ Azure AD connect 同步處理功能有兩個元件：
 
 | DirSyncFeature | 註解 |
 | --- | --- |
-| [DuplicateProxyAddressResiliency<br/>DuplicateUPNResiliency](#duplicate-attribute-resiliency) |如果屬性是另一個物件的複本，即會將該屬性隔離，而不會在匯出期間導致整個物件失敗。 |
 | [EnableSoftMatchOnUpn](#userprincipalname-soft-match) |不只主要 SMTP 位址，還允許物件聯結 userPrincipalName。 |
 | [SynchronizeUpnForManagedUsers](#synchronize-userprincipalname-updates) |可讓同步處理引擎更新受管理/授權 (非同盟) 使用者的 userPrincipalName 屬性。 |
 
@@ -56,12 +56,13 @@ Azure AD connect 同步處理功能有兩個元件：
 | --- | --- |
 | DeviceWriteback |[Azure AD Connect：啟用裝置回寫](active-directory-aadconnect-feature-device-writeback.md) |
 | DirectoryExtensions |[Azure AD Connect 同步處理：目錄擴充](active-directory-aadconnectsync-feature-directory-extensions.md) |
+| [DuplicateProxyAddressResiliency<br/>DuplicateUPNResiliency](#duplicate-attribute-resiliency) |如果屬性是另一個物件的複本，即會將該屬性隔離，而不會在匯出期間導致整個物件失敗。 |
 | PasswordSync |[使用 Azure AD Connect 同步處理實作密碼同步處理](active-directory-aadconnectsync-implement-password-synchronization.md) |
 | UnifiedGroupWriteback |[預覽：群組回寫](active-directory-aadconnect-feature-preview.md#group-writeback) |
 | UserWriteback |目前不支援。 |
 
 ## <a name="duplicate-attribute-resiliency"></a>重複屬性恢復功能
-含重複 UPNs / proxyAddresses 的物件，會將該屬性「隔離」，並指派暫時的值，而不會讓佈建物件失敗。 解決衝突時，會自動將暫時 UPN 變更為適當的值。 您可以分別啟用 UPN 和 proxyAddress 的這項行為。 如需詳細資訊，請參閱 [身分識別同步處理和重複屬性恢復功能](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md)。
+含重複 UPNs / proxyAddresses 的物件，會將該屬性「隔離」，並指派暫時的值，而不會讓佈建物件失敗。 解決衝突時，會自動將暫時 UPN 變更為適當的值。 如需詳細資訊，請參閱 [身分識別同步處理和重複屬性恢復功能](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md)。
 
 ## <a name="userprincipalname-soft-match"></a>UserPrincipalName 大致比對
 啟用這項功能後，除了一律啟用的 [主要 SMTP 位址](https://support.microsoft.com/kb/2641663)以外，還會對 UPN 套用大致比對。 大致比對功能是用來針對 Azure AD 中現有的雲端使用者與內部部署使用者進行比對。
@@ -107,10 +108,5 @@ Set-MsolDirSyncFeature -Feature SynchronizeUpnForManagedUsers -Enable $true
 ## <a name="see-also"></a>另請參閱
 * [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

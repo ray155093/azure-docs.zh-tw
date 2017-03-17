@@ -19,6 +19,7 @@ ms.author: masaran;trinadhk;pullabhk;markgal
 translationtype: Human Translation
 ms.sourcegitcommit: d8289128414bc67a7c064c827a9bec047f6f22bc
 ms.openlocfilehash: 1462ee0e247fb5d590a70d23ece5723a065b4140
+ms.lasthandoff: 01/28/2017
 
 
 ---
@@ -275,9 +276,4 @@ Azure 備份伺服器需要連線至 Azure 備份服務，產品才能順利運�
 * [SQL Server 備份](backup-azure-backup-sql.md)
 * [SharePoint 伺服器備份](backup-azure-backup-sharepoint.md)
 * [替代伺服器備份](backup-azure-alternate-dpm-server.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

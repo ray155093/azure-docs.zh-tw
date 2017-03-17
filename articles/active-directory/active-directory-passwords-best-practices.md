@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: 0035aa17e661a52db371b533b547c88dcb0f0148
-ms.openlocfilehash: f7dd06f1fc789a74ec7ce2182824ff759dcf7a9f
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 6c711fd3a843604d62d6589d0a742f03a049bc5c
+ms.lasthandoff: 03/10/2017
 
 
 ---
 # <a name="deploying-password-management-and-training-users-to-use-it"></a>部署密碼管理並訓練使用者使用它
 > [!IMPORTANT]
-> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
 >
 >
 
@@ -74,8 +74,8 @@ ms.lasthandoff: 02/24/2017
 2. 移至 [Azure 管理入口網站](https://manage.windowsazure.com)中的 [授權] 索引標籤，將適當的授權指派給您想要提供密碼重設的每位使用者。
 3. (選擇性) 透過將 [限制密碼重設的存取] 切換至 [是]，並選取要啟用密碼重設功能的安全性群組，將密碼重設限制在一組使用者來隨時間緩慢推行這項功能 (請注意這些使用者必須都已被指派授權)。
 4. 指示使用者使用密碼重設的方式包括：傳送電子郵件指示使用者註冊、在存取面板上啟用強制註冊，或是透過 DirSync、PowerShell 或 [Azure 管理入口網站](https://manage.windowsazure.com)自行將這些使用者的適當驗證資料上傳。  下方提供此作業的詳細說明。
-5. 在一段時間過後，瀏覽至 [報告] 索引標籤並檢視[**密碼重設登錄活動**](active-directory-passwords-get-insights.md#view-password-reset-registration-activity)報告，以查閱使用者的註冊情形。
-6. 在有許多使用者註冊之後，瀏覽至 [報告] 索引標籤，並檢視[**密碼重設活動**](active-directory-passwords-get-insights.md#view-password-reset-activity)報告，以觀察他們使用密碼重設的情形。
+5. 在一段時間過後，瀏覽至 [報告] 索引標籤並檢視[**密碼重設登錄活動**](active-directory-passwords-get-insights.md#view-password-reset-registration-activity-in-the-classic-portal)報告，以查閱使用者的註冊情形。
+6. 在有許多使用者註冊之後，瀏覽至 [報告] 索引標籤，並檢視[**密碼重設活動**](active-directory-passwords-get-insights.md#view-password-reset-activity-in-the-classic-portal)報告，以觀察他們使用密碼重設的情形。
 
 有幾種方式可以通知使用者，讓他們知道註冊後就能使用組織的密碼重設。  這些方式詳述如下。
 
@@ -84,7 +84,7 @@ ms.lasthandoff: 02/24/2017
 
   ![][001]
 
-您可以 [在這裡下載電子郵件範本](http://1drv.ms/1xWFtQM)。
+您可以 [在這裡下載電子郵件範本](https://1drv.ms/f/s!AharQMeRmrWggcNnPlk_7xHInYJzow)。
 
 ### <a name="creating-your-own-password-portal"></a>建立您自己的密碼入口網站
 針對部署密碼管理功能的大型客戶，其中一種策略就是建立一個使用者可以在單一位置管理所有與其密碼相關之項目的單一「密碼入口網站」。  
@@ -144,7 +144,7 @@ ms.lasthandoff: 02/24/2017
 ## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為

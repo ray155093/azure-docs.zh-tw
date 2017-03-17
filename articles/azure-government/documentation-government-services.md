@@ -15,9 +15,9 @@ ms.workload: azure-government
 ms.date: 02/13/2017
 ms.author: stemi
 translationtype: Human Translation
-ms.sourcegitcommit: ffe3991f68bbd255ff6f4ffedbd6638f32897d1a
-ms.openlocfilehash: 914870f59b488716bb283162078535849f732018
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 21c2a0faad87b84058093f02c831b374a644b4b6
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -25,13 +25,13 @@ ms.lasthandoff: 02/21/2017
 Azure Government 持續擴充可用的服務。  這些服務是使用 Azure 公用中所使用之相同程式碼進行部署。  本節說明 Azure Government 上目前可用的服務，包括兩種主要類型的資訊：
 
 * **變化︰**因尚未部署之功能或政府環境特有之屬性 (例如，URL) 的變化。  
-* **考量︰**政府特定實作詳細資料，確保資料保持在相容性界限內。
+* **考量︰**政府特定實作詳細資料，以確保資料能夠符合合規性的要求。
 
 在這些服務的一般文件中，可以找到您對這些服務的所有其他必要知識。
 
 如需最新的服務清單，請參閱[依區域的產品](https://azure.microsoft.com/regions/services/)。 
 
-在下列表格中，啟用 Resource Manager 時所指定的服務會具備資源提供者，而且可以使用 PowerShell 來管理。 如需 Resource Manager 提供者、API 版本和結構描述的詳細資訊，請參閱[這裡](../azure-resource-manager/resource-manager-supported-services.md)。 在入口網站中指定為可用的服務可在 [Azure Government 入口網站](https://portal.azure.us/)中加以管理。 
+在下表中，啟用 Resource Manager 時所指定的服務會具備資源提供者，而且可以使用 PowerShell 來管理。 如需 Resource Manager 提供者、API 版本和結構描述的詳細資訊，請參閱[這裡](../azure-resource-manager/resource-manager-supported-services.md)。 在入口網站中指定為可用的服務可在 [Azure Government 入口網站](https://portal.azure.us/)中加以管理。 
 
 
 ## <a name="computedocumentation-government-computemd"></a>[計算](documentation-government-compute.md)
@@ -95,6 +95,12 @@ Azure Government 持續擴充可用的服務。  這些服務是使用 Azure 公
 | [Redis 快取](documentation-government-services-database.md#azure-redis-cache) | 是 | 是 |
 
 
+## <a name="intelligence--analyticsdocumentation-government-services-intelligenceandanalyticsmd"></a>[智慧 + 分析](documentation-government-services-intelligenceandanalytics.md)
+
+| 服務 | 已啟用資源管理員 | 入口網站 |
+| --- | --- | --- |
+| [HDInsights](documentation-government-services-intelligenceandanalytics.md#hdinsight) | 是 | 是 |
+| [Power BI Pro](documentation-government-services-intelligenceandanalytics.md#power-bi) | 否 | 否 (Office 365 管理入口網站) |
 
 
 ## <a name="internet-of-things-iot"></a>物聯網 (IoT)
@@ -122,7 +128,6 @@ Azure Government 持續擴充可用的服務。  這些服務是使用 Azure 公
 | Azure Active Directory | 是 | 是 |
 | [金鑰保存庫](documentation-government-services-securityandidentity.md#key-vault) | 是 | 否 (敬請期待) |
 | Multi-Factor Authentication | 是 | 是 |
-| InTune | 是 | 否 |
 
 
 ## <a name="intelligence--analytics"></a>智慧 + 分析

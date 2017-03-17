@@ -1,6 +1,6 @@
 ---
 title: "協助進行身分識別管理的 Azure 安全性功能 | Microsoft Docs"
-description: " 本文對協助進行身分識別管理的 Azure 安全性功能提供核心的概觀。 Microsoft 身分識別與存取管理解決方案會協助 IT 保護應用程式和跨公司資料中心和到雲端的存取，啟用其他層級的驗證，例如多重要素驗證和條件式存取原則. "
+description: " 本文對協助進行身分識別管理的 Azure 安全性功能提供核心的概觀。 Microsoft 身分識別與存取管理解決方案會協助 IT 保護應用程式和跨公司資料中心和到雲端的存取，啟用其他層級的驗證，例如 Multi-Factor Authentication 和條件式存取原則。 "
 services: security
 documentationcenter: na
 author: TerryLanfear
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/23/2017
+ms.date: 03/09/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: af191f7eed529c7d4541b28eb62979f25da89892
-ms.openlocfilehash: 9c5af888ec0130ec8506602ab805221f0a83ea47
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: bb9d08d6164ec01ce1d76fc4a23e782213ecfcd9
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -109,15 +110,15 @@ Azure Active Directory B2C 是高可用性全域身分識別管理服務，可�
 * [Azure Active Directory B2C 預覽：應用程式類型](../active-directory-b2c/active-directory-b2c-apps.md)
 
 ## <a name="device-registration"></a>裝置註冊
-Azure AD 裝置註冊是裝置型 [條件式存取](../active-directory/active-directory-conditional-access-on-premises-setup.md) 案例的基礎。 當裝置已註冊時，Azure Active Directory 裝置註冊會在使用者登入時對裝置提供用來驗證裝置的身分識別。 然後已驗證的裝置和裝置的屬性即可用來對裝載於雲端和內部部署的應用程式，強制執行條件式存取原則。
+Azure AD 裝置註冊是裝置型 [條件式存取](../active-directory/active-directory-conditional-access-device-registration-overview.md) 案例的基礎。 當裝置已註冊時，Azure Active Directory 裝置註冊會在使用者登入時對裝置提供用來驗證裝置的身分識別。 然後已驗證的裝置和裝置的屬性即可用來對裝載於雲端和內部部署的應用程式，強制執行條件式存取原則。
 
 與 Intune 這類的行動裝置管理 (MDM) 解決方案結合時，將會以裝置的其他相關資訊更新 Azure Active Directory 中的裝置屬性。 這可讓您建立條件式存取規則，強制讓裝置的存取符合您的安全性和相容性標準。
 
 深入了解：
 
 * [開始使用 Azure Active Directory 裝置註冊](../active-directory/active-directory-conditional-access-device-registration-overview.md)
-* [使用 Azure Active Directory 裝置註冊設定內部部署條件式存取](../active-directory/active-directory-conditional-access-on-premises-setup.md)
 * [自動向 Azure Active Directory 註冊加入網域的 Windows 裝置](../active-directory/active-directory-conditional-access-automatic-device-registration.md)
+* [設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](../active-directory/active-directory-conditional-access-automatic-device-registration-setup.md)
 
 ## <a name="privileged-identity-management"></a>Privileged Identity Management
 Azure Active Directory (AD) Privileged Identity Management 可讓您管理、控制和監視特殊權限身分識別，以及存取 Azure AD 和 Office 365 或 Microsoft Intune 等其他 Microsoft Online 服務的資源。
@@ -153,9 +154,4 @@ Microsoft 的身分識別方法可跨越內部部署和雲端架構功能，建�
 * [混合式身分識別白皮書](http://download.microsoft.com/download/D/B/A/DBA9E313-B833-48EE-998A-240AA799A8AB/Hybrid_Identity_White_Paper.pdf)
 * [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)
 * [Active Directory 小組部落格](https://blogs.technet.microsoft.com/ad/)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

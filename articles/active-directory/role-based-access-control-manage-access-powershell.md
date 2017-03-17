@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 07/22/2016
+ms.date: 03/02/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 45f1716d7520981845fbfb96cfaf24cde9dd5c5d
-ms.openlocfilehash: 8b906c402dde8d2bbaa2354a370a775058c146a7
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 32c6224b36c73394c6bbd2aa5f6439f54f39f306
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -26,14 +26,12 @@ ms.lasthandoff: 02/15/2017
 > * [PowerShell](role-based-access-control-manage-access-powershell.md)
 > * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 > * [REST API](role-based-access-control-manage-access-rest.md)
-> 
-> 
 
 您可以使用 Azure 入口網站和「Azure 資源管理」API 中的「角色型存取控制」(RBAC) 來精確地管理對訂用帳戶的存取。 透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
 
-在使用 PowerShell 來管理 RBAC 之前，您必須具備下列項目：
+使用 PowerShell 來管理 RBAC 之前，您需要具備下列必要條件：
 
-* Azure PowerShell 0.8.8 或更新版本。 若要安裝最新版本，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+* Azure PowerShell 0.8.8 或更新版本。 若要安裝最新版本，並將它與您的 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 * Azure Resource Manager Cmdlet。 在 PowerShell 中，安裝 [Azure Resource Manager Cmdlet](https://msdn.microsoft.com/library/mt125356.aspx) 。
 
 ## <a name="list-roles"></a>列出角色
@@ -131,14 +129,16 @@ Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com -ExpandPrincipalGroups
 若要建立自訂角色，請使用 ```New-AzureRmRoleDefinition``` 命令。 建構角色有兩種方法：使用 PSRoleDefinitionObject 或 JSON 範本。 
 
 ## <a name="get-actions-from-particular-resource-provider"></a>從特定的資源提供者取得動作
-當您從頭建立自訂角色時，務必知道來自資源提供者所有可能的作業。
-這可以利用 ```Get-AzureRMProviderOperation``` 命令來達成。 例如，如果您想要檢查虛擬機器的所有可用作業，則命令會如下所述︰
+當您從頭建立自訂角色時，務必知道所有可能來自資源提供者的作業。
+使用 ```Get-AzureRMProviderOperation``` 命令來取得此資訊。
+例如，如果您想要檢查虛擬機器的所有可用作業，請使用此命令：
 
-```Get-AzureRMProviderOperation "Microsoft.Compute/virtualMachines/*" | FT OperationName, Operation , Description -AutoSize```
-
+```
+Get-AzureRMProviderOperation "Microsoft.Compute/virtualMachines/*" | FT OperationName, Operation , Description -AutoSize
+```
 
 ### <a name="create-role-with-psroledefinitionobject"></a>使用 PSRoleDefinitionObject 建立角色
-使用 PowerShell 建立自訂角色時，您可以從頭開始，或使用其中一個[內建角色](role-based-access-built-in-roles.md)當作起點，此範例採用後者。 請編輯屬性來新增您想要的 *Actions*、*notActions* 或 *scopes*，然後將變更儲存為新角色。
+使用 PowerShell 建立自訂角色時，您可以從頭開始，或使用其中一個[內建角色](role-based-access-built-in-roles.md)當作起點。 本節中的範例是以內建角色當作起點，然後使用較高權限來自訂它。 請編輯屬性來新增您想要的 *Actions*、*notActions* 或 *scopes*，然後將變更儲存為新角色。
 
 下列範例會從「虛擬機器參與者」角色來開始，並使用它來建立稱為「虛擬機器操作者」的自訂角色。 新角色會授與對 *Microsoft.Compute*、*Microsoft.Storage* 和 *Microsoft.Network* 資源提供者之所有讀取作業的存取權，以及授與對啟動、重新啟動和監視虛擬機器的存取權。 自訂角色可用於兩個訂用帳戶中。
 
@@ -166,7 +166,7 @@ New-AzureRmRoleDefinition -Role $role
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/2-new-azurermroledefinition.png)
 
 ### <a name="create-role-with-json-template"></a>使用 JSON 範本建立角色
-JSON 範本可作為自訂角色的來源定義。 下列範例會建立自訂角色來允許讀取儲存體和計算資源及存取支援，然後將該角色新增至兩個訂用帳戶。 建立含有下列內容的新檔案 `C:\CustomRoles\customrole1.json`。 請注意，最初建立角色時，識別碼應該設定為 `null`，因為將會產生新的識別碼。 
+JSON 範本可作為自訂角色的來源定義。 下列範例會建立自訂角色來允許讀取儲存體和計算資源及存取支援，然後將該角色新增至兩個訂用帳戶。 建立含有下列內容的新檔案 `C:\CustomRoles\customrole1.json`。 最初建立角色時，應該將 Id 設為 `null`，因為會自動產生新的識別碼。 
 
 ```
 {
@@ -221,7 +221,7 @@ Set-AzureRmRoleDefinition -Role $role
 ![RBAC PowerShell - Set-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-2.png)
 
 ### <a name="modify-role-with-json-template"></a>使用 JSON 範本修改角色
-您可以利用先前的 JSON 範本，輕鬆修改現有的自訂角色來新增或移除 Actions。 更新 JSON 範本，並新增網路的讀取動作，如下所示。 請注意，範本中所列的定義不會累積套用至現有的定義，這表示角色會完全依照您在範本中指定的樣子出現。 另請注意，您也需要以角色的識別碼來更新 Id。 如果不確定此值，您可以使用 `Get-AzureRmRoleDefinition` Cmdlet 來取得這項資訊。
+您可以利用先前的 JSON 範本，輕鬆修改現有的自訂角色來新增或移除 Actions。 更新 JSON 範本，並新增網路的讀取動作，如下範例所示。 範本中所列的定義不會累積套用至現有的定義，這表示角色會完全依照您在範本中指定的樣子出現。 您也需要以角色的識別碼來更新 Id 欄位。 如果不確定此值，您可以使用 `Get-AzureRmRoleDefinition` Cmdlet 來取得這項資訊。
 
 ```
 {

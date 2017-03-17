@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: bdf41edfa6260749a91bc52ec0a2b62fcae99fb0
-ms.openlocfilehash: 61ac849c20fa21181bd41289da896b4d53e0b9c3
-ms.lasthandoff: 01/27/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: a6f9e1ceb7dfbb13f2f365acf49e09f1c015f4e3
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -166,6 +166,9 @@ Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時�
         </configuration>
 7. 以本章節中所顯示的程式碼覆寫 Program.cs 檔案中的程式碼。
 
+    >[!NOTE]
+    >對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+
         using System;
         using System.Collections.Generic;
         using System.Configuration;
@@ -277,20 +280,10 @@ Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時�
 
                     Console.WriteLine("Created assetFile {0}", assetFile.Name);
 
-                    var policy = _context.AccessPolicies.Create(
-                                            assetName,
-                                            TimeSpan.FromDays(30),
-                                            AccessPermissions.Write | AccessPermissions.List);
-
-                    var locator = _context.Locators.CreateLocator(LocatorType.Sas, inputAsset, policy);
-
                     Console.WriteLine("Upload {0}", assetFile.Name);
 
                     assetFile.Upload(singleFilePath);
                     Console.WriteLine("Done uploading {0}", assetFile.Name);
-
-                    locator.Delete();
-                    policy.Delete();
 
                     return inputAsset;
                 }

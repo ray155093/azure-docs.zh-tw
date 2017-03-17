@@ -54,7 +54,6 @@
 #### 開始使用
 ##### [Windows 上的 C# ](service-fabric-reliable-services-quick-start.md)
 ##### [在 Linux 上使用 Java](service-fabric-reliable-services-quick-start-java.md)
-#### [架構](service-fabric-reliable-services-platform-architecture.md)
 #### [Reliable Services lifecycle](service-fabric-reliable-services-lifecycle.md)
 #### [可靠集合](service-fabric-reliable-services-reliable-collections.md)
 #### [使用 Reliable Collections](service-fabric-work-with-reliable-collections.md)
@@ -78,8 +77,8 @@
 #### [生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
 #### [Polymorphism](service-fabric-reliable-actors-polymorphism.md)
 #### [重新進入](service-fabric-reliable-actors-reentrancy.md)
+#### [事件](service-fabric-reliable-actors-events.md) 
 #### [計時器和提醒](service-fabric-reliable-actors-timers-reminders.md)
-#### [事件](service-fabric-reliable-actors-events.md)
 #### [狀態管理](service-fabric-reliable-actors-state-management.md)
 #### [設定 KvsActorStateProvider](service-fabric-reliable-actors-kvsactorstateprovider-configuration.md)
 #### [類型序列化](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)
@@ -166,7 +165,6 @@
 ### [可設定狀態 Reliable Services 中的診斷](service-fabric-reliable-services-diagnostics.md)
 ### [Reliable Actors 中的診斷](service-fabric-reliable-actors-diagnostics.md)
 ### [針對本機叢集進行疑難排解](service-fabric-troubleshoot-local-cluster-setup.md)
-### [針對常見問題進行疑難排解](service-fabric-diagnostics-troubleshoot-common-scenarios.md)
 
 ## 調整應用程式
 ### [磁碟分割 Reliable Services](service-fabric-concepts-partitioning.md)
@@ -181,7 +179,6 @@
 #### [使用受控的混亂](service-fabric-controlled-chaos.md)
 #### [使用測試動作](service-fabric-testability-actions.md)
 #### [工作負載期間](service-fabric-testability-workload-tests.md)
-#### [藉由叫用資料遺失](service-fabric-use-data-loss-api.md)
 #### [使用測試案例](service-fabric-testability-scenarios.md)
 #### [使用節點轉換 API](service-fabric-node-transition-apis.md)
 ### [進行應用程式負載測試](service-fabric-vso-load-test.md)

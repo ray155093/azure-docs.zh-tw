@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/21/2016
+ms.date: 02/27/2017
 ms.author: garye;bradsev;ahgyger
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 647398c1a0994da04845672e89d9f82d5e8b6d21
+ms.sourcegitcommit: 613cf7e34d69afa21b1808ffe57af9a8b64944f5
+ms.openlocfilehash: 182a34822e71d63f4d7229548ae3f59d9f195337
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -29,86 +30,77 @@ ms.openlocfilehash: 647398c1a0994da04845672e89d9f82d5e8b6d21
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="to-create-a-workspace"></a>建立工作區
-1. 登入 [Microsoft Azure 傳統入口網站]。
+### <a name="to-create-a-workspace"></a>建立工作區
+1. 登入 [Azure 入口網站](https://portal.azure.com/)
 
-> [!NOTE]
-> 若要登入，您必須是 Azure 訂用帳戶管理員。 成為機器學習服務工作區的擁有者，並不會讓您存取 [Microsoft Azure 傳統入口網站]。 如需詳細資訊，請參閱 [Azure 訂用帳戶管理員與工作區擁有者的權限](#subscriptionvsworkspace) 。
-> 
-> 
+    > [!NOTE]
+    > 若要登入並建立工作區，您必須是 Azure 訂用帳戶管理員。 
+    >
+    > 
 
-1. 在 Microsoft Azure 服務面板中，按一下 [機器學習] 。
-   
-    ![機器學習服務][1]
-2. 按一下視窗底部的 [ **+新增** ]。
-3. 按一下 [資料服務]，然後 [機器學習服務]，然後按一下 [快速建立]。
-   
-    ![快速建立新工作區][3]
-4. 輸入工作區的 **工作區名稱** 。
-5. 指定 Azure **位置**，然後輸入現有的 Azure **儲存體帳戶**或選取 [建立新的儲存體帳戶] 來新建一個。
-6. 按一下 [建立 ML 工作區] 。
+2. 按一下 [+ 新增]
 
-機器學習服務工作區建立後，您會看見它列在 **機器學習服務** 頁面上。
+3. 選取 [智慧 + 分析]按一下 [Machine Learning 工作區]，然後按一下 [建立]
+
+4. 輸入您的工作區資訊
+
+    - 工作區名稱可能最多 260 個字元，結尾不可為空格。 名稱不能包含下列字元︰`< > * % & : \ ? + /`
+    - 會使用您選擇 (或建立) 的 Web 服務方案，以及您選取的相關聯定價層，如果您從此工作區中部署 web 服務。
+
+    ![建立新的工作區](media/machine-learning-create-workspace/create-new-workspace.png)
+
+5. 按一下 [建立] 
+
+一旦部署工作區之後，您可以在 Machine Learning Studio 中開啟它。
+
+1. 瀏覽 Machine Learning Studio ([https://studio.azureml.net](https://studio.azureml.net/))。
+
+2. 選取您右上角的工作區。
+
+    ![選取工作區](media/machine-learning-create-workspace/open-workspace.png)
+
+3. 按一下 [我的實驗]。
+
+    ![開啟實驗](media/machine-learning-create-workspace/my-experiments.png)
+
+如需管理您的工作區的詳細資訊，請參閱 [管理 Azure Machine Learning 工作區](machine-learning-manage-workspace.md)。
+如果您對於建立您的工作區遇到問題，請參閱 [疑難排解指南：建立及連線至 Machine Learning 工作區](machine-learning-troubleshooting-creating-ml-workspace.md)。
+
 
 ## <a name="sharing-an-azure-machine-learning-workspace"></a>共用 Azure 機器學習服務工作區
-建立機器學習服務工作區之後，您就可以邀請使用者加入您的工作區，並與您的工作區和其所有實驗共用存取權。 我們支援兩個使用者角色：
+建立 Machine Learning 工作區 之後，您就可以邀請使用者加入您的工作區，並與您的工作區和其所有實驗、資料集、筆記型電腦等共用存取權。您可以將使用者新增至兩個角色之一︰
 
-* **使用者** - 工作區使用者可以在工作區中建立、開啟、修改和刪除資料集、實驗和 Web 服務。
-* **擁有者** - 除了使用者可以執行的動作以外，擁有者可以邀請、移除和列出可存取工作區的使用者。 他也可以存取筆記本。
-
-### <a name="to-share-a-workspace"></a>共用工作區
-1. 登入 [Machine Learning Studio]
-2. 在 Machine Learning Studio 面板中，按一下 [設定] 
-3. 按一下 [使用者] 
-4. 按一下 [邀請更多使用者] 
-   
-    ![邀請更多使用者][4]
-5. 輸入一或多個電子郵件地址。 使用者只需要有效的 Microsoft 帳戶 (例如 name@outlook.com)) 或組織帳戶 (來自 Azure Active Directory)。
-6. 按一下核取按鈕。
-
-您加入的每個使用者會收到一封電子郵件，其中含有登入共用工作區的指示。
-
-如需管理您的工作區的詳細資訊，請參閱 [管理 Azure Machine Learning 工作區]。
-如果您對於建立您的工作區遇到問題，請參閱 [疑難排解指南：建立及連接至機器學習服務工作區]。
-
-## <a name="a-namesubscriptionvsworkspaceaprivileges-of-azure-subscription-administrator-and-of-workspace-owner"></a><a name="subscriptionvsworkspace"></a>Azure 訂用帳戶管理員與工作區擁有者的權限
-下表釐清 Azure 訂用帳戶管理員和工作區擁有者之間差異。
-
-| 動作 | Azure 訂用帳戶管理員 | 工作區擁有者 |
-| --- |:---:|:---:|
-| 存取 [Microsoft Azure 傳統入口網站] |是 |否 |
-| 建立新的工作區 |是 |否 |
-| 刪除工作區 |是 |否 |
-| 將端點加入至 Web 服務 |是 |否 |
-| 從 Web 服務刪除端點 |是 |否 |
-| 變更 Web 服務的並行存取 |是 |否 |
-| 存取 [Machine Learning Studio] |否 * |yes |
+* **使用者** - 工作區使用者可以在工作區中建立、開啟、修改和刪除實驗、資料集等。
+* **擁有者** - 除了使用者可以執行的動作以外，擁有者可以邀請和移除工作區中的使用者。
 
 > [!NOTE]
-> * Azure 訂用帳戶管理員會自動新增至其以工作區擁有者身分建立的工作區中。 不過，僅成為 Azure 訂用帳戶管理員，將不會為其授與存取該訂用帳戶下方任何工作區的權限。
+> 建立工作區的系統管理員帳戶會自動以工作區擁有者身分新增至工作區。 不過，其他的系統管理員或該訂用帳戶中的使用者不會自動授與工作區的存取權 - 您必須先明確邀請他們。
 > 
 > 
 
-<!-- ![List of Machine Learning workspaces][2] -->
+### <a name="to-share-a-workspace"></a>共用工作區
 
-<!--Anchors-->
-[建立工作區]: #createworkspace
+1. 登入 Machine Learning Studio ([https://studio.azureml.net/Home](https://studio.azureml.net/Home))
 
-<!--Image references-->
-[1]: media/machine-learning-create-workspace/cw1.png
-[2]: media/machine-learning-create-workspace/cw2.png
-[3]: media/machine-learning-create-workspace/cw4.png
-[4]: media/machine-learning-create-workspace/cw5.png
+2. 按一下左面板中的 [設定]
+
+3. 按一下 [使用者] 索引標籤
+
+4. 按一下頁面底部的 [邀請更多使用者]
+
+    ![Studio 設定](media/machine-learning-create-workspace/settings.png)
+
+5. 輸入一或多個電子郵件地址。 使用者需要有效的 Microsoft 帳戶或組織帳戶 (來自 Azure Active Directory)。
+
+6. 選取您是否想要將使用者新增為擁有者或使用者。
+
+7. 按一下 [確定] 核取記號按鈕。
+
+您新增的每個使用者會收到一封電子郵件，其中含有如何登入共用工作區的指示。
+
+> [!NOTE]
+> 若要讓使用者能夠部署或管理此工作區中的 web 服務，它們必須為參與者或 Azure 訂用帳戶中的系統管理員。 
 
 
-<!--Link references-->
-[管理 Azure Machine Learning 工作區]: machine-learning-manage-workspace.md
-[疑難排解指南：建立及連接至機器學習服務工作區]: machine-learning-troubleshooting-creating-ml-workspace.md
-[Machine Learning Studio]: https://studio.azureml.net/  
-[Microsoft Azure 傳統入口網站]: https://manage.windowsazure.com/
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

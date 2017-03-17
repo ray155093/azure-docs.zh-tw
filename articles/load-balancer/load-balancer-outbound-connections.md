@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 10/31/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: bec4f89556a2daa41e19b0ecb2ab9bbbed849107
-ms.openlocfilehash: 0bf40c5b44ea87c88d4464baf958e8afb7a59c38
+ms.sourcegitcommit: 273598a6eecb358c0b308c481193323e67dd475c
+ms.openlocfilehash: 24c3fdd8124ff3cc43feacb6f25dda84be9f46d9
+ms.lasthandoff: 02/28/2017
 
 ---
 
@@ -36,7 +37,7 @@ Azure 提供三種不同的方法來達成輸出連線。 每個方法都有自�
 
 ## <a name="standalone-vm-with-no-instance-level-public-ip-address"></a>無執行個體層級公用 IP 位址的獨立 VM
 
-在此案例中，VM 不是 Azure Load Balancer 集區的一部分，而且沒有指派給它的執行個體層級公用 IP (ILPIP) 位址。 當 VM 建立輸出流程時，Azure 會將輸出流量的公用來源 IP 位址轉譯為私用來源 IP 位址。 未設定用於這個輸出流程的公用 IP 位址。 Azure 會使用來源網路位址轉譯 (SNAT) 執行這項功能。 公用 IP 位址的暫時連接埠用來區分源自 VM 的個別流程。 建立流程時，SNAT 會動態配置暫時連接埠。 在此情況下，用於 SNAT 的暫時連接埠稱為 SNAT 連接埠。
+在此案例中，VM 不是 Azure Load Balancer 集區的一部分，而且沒有指派給它的執行個體層級公用 IP (ILPIP) 位址。 當 VM 建立輸出流程時，Azure 會將輸出流量的公用來源 IP 位址轉譯為私用來源 IP 位址。 此輸出流量所用的公用 IP 位址無法進行設定，而且不利於訂用帳戶的公用 IP 資源限制。 Azure 會使用來源網路位址轉譯 (SNAT) 執行這項功能。 公用 IP 位址的暫時連接埠用來區分源自 VM 的個別流程。 建立流程時，SNAT 會動態配置暫時連接埠。 在此情況下，用於 SNAT 的暫時連接埠稱為 SNAT 連接埠。
 
 SNAT 連接埠是可能會耗盡的有限資源。 請務必了解取用的方式。 每個流程會取用一個 SNAT 連接埠至單一目的地 IP 位址。 針對相同目的地 IP 位址的多個流程，每個流程取用單一 SNAT 連接埠。 這可確保自相同公用 IP 位址至相同目的地 IP 位址時，流程是唯一的。 每個前往不同目的地 IP 位址的多個流程，每個目的地會取用單一 SNAT 連接埠。 目的地 IP 位址會使流程唯一。
 
@@ -65,9 +66,4 @@ SNAT 連接埠是可能會耗盡的有限資源。 請務必了解取用的方�
 有時並不想允許 VM 建立輸出流程，或可能需要管理可以使用輸出流程到達的目的地。 在此情況下，您使用[網路安全性群組 (NSG)](../virtual-network/virtual-networks-nsg.md) 來管理 VM 可到達的目的地。 當您將 NSG 套用到負載平衡的 VM 時，需要注意[預設標籤](../virtual-network/virtual-networks-nsg.md#default-tags)和[預設規則](../virtual-network/virtual-networks-nsg.md#default-rules)。
 
 您必須確定 VM 可以從 Azure Load Balancer 接收健康情況探查要求。 如果 NSG 封鎖來自 AZURE_LOADBALANCER 預設標籤的健全狀況探查要求，您的 VM 健全狀況探查會失敗，且會將 VM 標示為離線。 負載平衡器會停止將新的流程傳送到該 VM。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

@@ -15,12 +15,13 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: adigan;giridham;jimpark;markgal;trinadhk
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 39dcc11dfae33fe85cfbd11dec402e23289103fc
+ms.sourcegitcommit: 82b7541ab1434179353247ffc50546812346bda9
+ms.openlocfilehash: c9edc066ea2edc9cd4b8453047d5584a588174dc
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="azure-backup-for-sql-server-workloads-using-dpm"></a>使用 DPM 進行 SQL Server 工作負載的 Azure 備份
+# <a name="back-up-sql-server-to-azure-as-a-dpm-workload"></a>將 SQL Server 備份至 Azure 做為 DPM 工作負載
 本文將引導您完成使用 Azure 備份來備份 SQL Server 資料庫的設定步驟。
 
 若要將 SQL Server 資料庫備份至 Azure，您需要 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
@@ -51,7 +52,7 @@ ms.openlocfilehash: 39dcc11dfae33fe85cfbd11dec402e23289103fc
     ![資料保護方式 - 短期磁碟和線上 Azure](./media/backup-azure-backup-sql/pg-name.png)
 7. 在 [指定短期目標]  畫面中，包含建立磁碟備份點所需的輸入。
 
-    我們在此看到 [保留範圍] 設定為 [5 天]，[同步處理頻率] 設定為每隔 [15 分鐘]，這就是執行備份的頻率。 [快速完整備份] 設定為 [下午 8:00]。
+    我們在此看到 [保留範圍] 設定為 [5 天]，[同步處理頻率] 設定為每隔 [15 分鐘]，這就是執行備份的頻率。 [快速完整備份] 設定為 [下午&8;:00]。
 
     ![短期目標](./media/backup-azure-backup-sql/pg-shortterm.png)
 
@@ -158,9 +159,4 @@ ms.openlocfilehash: 39dcc11dfae33fe85cfbd11dec402e23289103fc
 
 ### <a name="next-steps"></a>後續步驟：
 •    [Azure 備份常見問題集](backup-azure-backup-faq.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

@@ -1,10 +1,10 @@
 ---
-title: "如何將 VM 或角色執行個體移至不同的子網路"
-description: "了解如何將 VM 和角色執行個體移至不同的子網路"
+title: "將 VM (傳統) 或雲端服務角色執行個體移至不同的子網路 - Azure PowerShell | Microsoft Docs"
+description: "了解如何使用 PowerShell 將 VM (傳統) 和雲端服務角色執行個體移至不同的子網路。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: de4135c7-dc5b-4ffa-84cc-1b8364b7b427
 ms.service: virtual-network
@@ -14,17 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/22/2016
 ms.author: jdial
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 264e02fa48486acd7a9701c497c4e1fa95a1ce4e
+ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
+ms.openlocfilehash: b094f8338394ef2e84cad3070936d715411326a4
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="how-to-move-a-vm-or-role-instance-to-a-different-subnet"></a>如何將 VM 或角色執行個體移至不同的子網路
-您可以使用 PowerShell 將 VM 從一個子網路移至相同虛擬網路 (VNet) 中的另一個子網路。 您可以藉由編輯 CSCFG，而非使用 PowerShell 來移動角色執行個體。
+# <a name="move-a-vm-classic-or-cloud-services-role-instance-to-a-different-subnet-using-powershell"></a>使用 PowerShell 將 VM (傳統) 或雲端服務角色執行個體移至不同的子網路
+您可以使用 PowerShell 將 VM (傳統) 從一個子網路移至相同虛擬網路 (VNet) 中的另一個子網路。 您可以藉由編輯 CSCFG 檔案，而非使用 PowerShell 來移動角色執行個體。
 
 > [!NOTE]
-> 本文包含僅與 Azure 傳統部署相關的資訊。
+> 本文說明如何移動只透過傳統部署模型部署的 VM。
 > 
 > 
 
@@ -57,9 +59,4 @@ ms.openlocfilehash: 264e02fa48486acd7a9701c497c4e1fa95a1ce4e
            </InstanceAddress>
         </AddressAssignments>
     </NetworkConfiguration> 
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

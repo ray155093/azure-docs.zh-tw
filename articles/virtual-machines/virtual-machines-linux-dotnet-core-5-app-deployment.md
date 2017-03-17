@@ -15,13 +15,16 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 11/21/2016
 ms.author: nepeters
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: b4ddeb091c2c6d2fdfd32d0094567f9e9d8914a7
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 031943c4d7b7736d249b507e2e59f0cc9896a54e
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="application-deployment-with-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本進行應用程式部署
+# <a name="application-deployment-with-azure-resource-manager-templates-for-linux-vms"></a>使用適用於 Linux VM 的 Azure Resource Manager 範本進行應用程式部署
+
 識別出所有 Azure 基礎結構需求並轉譯成部署範本之後，就必須處理實際的應用程式部署需求。 這裡的應用程式部署係指將實際的應用程式二進位檔安裝到 Azure 資源上。 以「音樂市集」範例來說，必須在每一部虛擬機器上安裝並設定 .Net 核心、NGINX 及監督員。 必須將「音樂市集」二進位檔安裝到虛擬機器上，並且必須預先建立「音樂市集」資料庫。
 
 本文件詳細說明「虛擬機器」擴充功能如何將 Azure 虛擬機器的應用程式部署和設定自動化。 所有相依項目和獨特的設定都會以醒目提示的方式標示。 為了獲得最佳體驗，請將一個解決方案執行個體預先部署到您的 Azure 訂用帳戶，然後與 Azure Resource Manager 範本搭配運作。 您可以在下列連結找到完整的範本 – [Ubuntu 上的音樂市集部署](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)。
@@ -119,10 +122,5 @@ sudo service supervisor start
 <hr>
 
 [探索其他 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

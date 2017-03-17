@@ -1,10 +1,10 @@
 ---
-title: "管理虛擬網路 (VNet) 所使用的 DNS 伺服器"
-description: "了解如何新增和移除虛擬網路 (VNet) 中的 DNS 伺服器"
+title: "管理虛擬網路 (傳統) 使用的 DNS 伺服器 - Azure 入口網站 (傳統) | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站 (傳統) 新增和移除虛擬網路 (傳統) 中的 DNS 伺服器。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: b582be7d-dc78-4cfe-a766-185bd7e5dc68
 ms.service: virtual-network
@@ -14,22 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 3416cf13180e124dab1c74b9c7254390ac5e49c4
+ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
+ms.openlocfilehash: b765fb94f881453ae6a90ec0ae6b6f06843b3aa2
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="manage-dns-servers-used-by-a-virtual-network-vnet"></a>管理虛擬網路 (VNet) 所使用的 DNS 伺服器
-您可以在管理入口網站或網路組態檔中，管理用於 VNet 的 DNS 伺服器清單。 您可以為每個 VNet 新增最多 12 部 DNS 伺服器。 指定 DNS 伺服器時，請務必確認您針對環境以正確的順序列出您的 DNS 伺服器。 DNS 伺服器清單不會使用循環配置資源， 而會依其指定的順序來使用。 如果可以連接至清單上的第一部 DNS 伺服器，則用戶端將使用該 DNS 伺服器，無論 DNS 伺服器是否運作正常。 若要變更虛擬網路的 DNS 伺服器順序，請從清單中移除 DNS 伺服器，然後以您想要的順序將其重新加入。
+# <a name="manage-dns-servers-used-by-a-virtual-network-classic-using-the-azure-portal-classic"></a>使用 Azure 入口網站 (傳統) 管理虛擬網路 (傳統) 使用的 DNS 伺服器
+
+您可以在 Azure 入口網站 (傳統) 或網路組態檔中，管理虛擬網路 (VNet) 中使用的 DNS 伺服器清單。 您可以為每個 VNet 新增最多 12 部 DNS 伺服器。 指定 DNS 伺服器時，請務必確認您針對環境以正確的順序列出您的 DNS 伺服器。 DNS 伺服器清單不會使用循環配置資源， 而會依其指定的順序來使用。 如果可以連接至清單上的第一部 DNS 伺服器，則用戶端將使用該 DNS 伺服器，無論 DNS 伺服器是否運作正常。 若要變更虛擬網路的 DNS 伺服器順序，請從清單中移除 DNS 伺服器，然後以您想要的順序將其重新加入。
 
 > [!WARNING]
 > 更新 DNS 清單之後，您必須重新啟動位於虛擬網路的虛擬機器，以便讓其挑選新的 DNS 伺服器設定。 虛擬機器將繼續使用其目前的組態，直到重新啟動為止。
 > 
 > 
 
-## <a name="edit-a-dns-server-list-for-a-virtual-network-using-the-management-portal"></a>使用管理入口網站編輯虛擬網路的 DNS 伺服器清單
-1. 登入 **管理入口網站**。
+## <a name="edit-a-dns-server-list-for-a-virtual-network-using-the-azure-portal-classic"></a>使用 Azure 入口網站 (傳統) 編輯虛擬網路的 DNS 伺服器清單
+1. 登入 [Azure 入口網站 (傳統)](https://manage.windowsazure.com)。
 2. 在瀏覽窗格中按一下 [網路]，然後按一下 [名稱] 資料行中的虛擬網路名稱。
 3. 按一下 [TestLab] 。
 4. 在 **DNS 伺服器**中，您可以設定下列項目：
@@ -43,16 +46,11 @@ ms.openlocfilehash: 3416cf13180e124dab1c74b9c7254390ac5e49c4
 6. 重新啟動位於虛擬網路的虛擬機器，以便取得新的 DNS 設定。
 
 ## <a name="edit-a-dns-server-list-using-a-network-configuration-file"></a>編輯使用網路組態檔的 DNS 伺服器清單
-若要使用網路組態檔來編輯 DNS 伺服器清單，您需要先從管理入口網站匯出您的組態設定。 接下來，您需要編輯網路組態檔，並透過管理入口網站將它匯入回來。 下方是完成此程序的高階步驟清單。
+若要使用網路組態檔來編輯 DNS 伺服器清單，您需要先從管理入口網站匯出您的組態設定。 接下來，您需要編輯網路組態檔，並透過 Azure 入口網站 (傳統) 將它匯入回來。 下方是完成此程序的高階步驟清單。
 
 1. 將您的虛擬網路設定匯出至網路組態檔。 如需匯出網路組態設定的詳細資訊，請參閱＜ [將虛擬網路設定匯出至網路組態檔](virtual-networks-using-network-configuration-file.md)＞。
 2. 指定您虛擬網路的 DNS 伺服器資訊。 如需有關指定 DNS 伺服器的詳細資訊，請參閱＜ [在虛擬網路組態檔中指定 DNS 伺服器](virtual-networks-specifying-a-dns-settings-in-a-virtual-network-configuration-file.md)＞。 如需有關網路組態檔的詳細資訊，請參閱 [Azure 虛擬網路組態結構描述](https://msdn.microsoft.com/library/azure/jj157100.aspx)和[使用網路組態檔設定虛擬網路](virtual-networks-using-network-configuration-file.md)。
 3. 匯入網路組態檔。 如需匯入網路組態檔的詳細資訊，請參閱＜ [匯入網路組態檔](virtual-networks-using-network-configuration-file.md)＞。
 4. 重新啟動位於虛擬網路的虛擬機器，以便取得新的 DNS 設定。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

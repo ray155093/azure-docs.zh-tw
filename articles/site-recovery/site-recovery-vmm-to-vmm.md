@@ -12,11 +12,12 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/12/2017
+ms.date: 03/05/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 7ff27bb866bd9b1f2a24b5c0ff5d83dea2227f49
-ms.openlocfilehash: 70a71bae81d4e499041c140b1d61b621e168ec43
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: a2bc32193ad539053984794a411ae7307b8d8532
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.openlocfilehash: 70a71bae81d4e499041c140b1d61b621e168ec43
 >
 >
 
-本文說明如何在 Azure 入口網站中使用 [Azure Site Recovery](site-recovery-overview.md)，將 System Center Virtual Machine Manager (VMM) 雲端中管理的內部部署 Hyper-V 虛擬機器複寫至次要網站。 深入了解此[案例架構](site-recovery-components.md#replicate-hyper-v-vms-to-a-secondary-site)。
+本文說明如何在 Azure 入口網站中使用 [Azure Site Recovery](site-recovery-overview.md)，將 System Center Virtual Machine Manager (VMM) 雲端中管理的內部部署 Hyper-V 虛擬機器複寫至次要網站。 深入了解此[案例架構](site-recovery-components.md#hyper-v-to-a-secondary-site)。
 
 在閱讀本文之後，請在下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中張貼任何意見。
 
@@ -43,7 +44,7 @@ ms.openlocfilehash: 70a71bae81d4e499041c140b1d61b621e168ec43
 **Hyper-V** | Hyper-V 伺服器必須至少執行具備 Hyper-V 角色並已安裝最新更新的 Windows Server 2012。<br/><br/> Hyper-V 伺服器應該包含一或多部 VM。<br/><br/>  Hyper-V 主機伺服器應該位於主要和次要 VMM 雲端的主機群組中。<br/><br/> 如果您在 Windows Server 2012 R2 上的叢集中執行 Hyper-V，請安裝[更新 2961977](https://support.microsoft.com/kb/2961977)<br/><br/> 如果您在 Windows Server 2012 上的叢集中執行 Hyper-V，當您的叢集是靜態 IP 位址型叢集時，並不會自動建立叢集訊息代理程式。 您必須手動設定叢集訊息代理程式。 [閱讀更多資訊](http://social.technet.microsoft.com/wiki/contents/articles/18792.configure-replica-broker-role-cluster-to-cluster-replication.aspx)。<br/><br/> Hyper-V 伺服器需要網際網路存取。
 **URL** | VMM 伺服器和 Hyper-V 主機必須能夠觸達這些 URL：<br/><br/> [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
 
-## <a name="steps"></a>步驟
+## <a name="deployment-steps"></a>部署步驟
 
 以下是您要執行的動作：
 
@@ -64,7 +65,7 @@ ms.openlocfilehash: 70a71bae81d4e499041c140b1d61b621e168ec43
 
     - 確認來源 Hyper-V 主機伺服器上的 VM 已連接到 VMM VM 網路。 該網路應該連結到與雲端相關聯的邏輯網路。
     確認您用於復原的次要雲端已設定相對應的 VM 網路。 該 VM 網路應該連結到與次要雲端相關聯的邏輯網路。
-    
+
 3. 如果您想要在相同 VMM 伺服器上的雲端之間複寫 VM，請準備[單一伺服器部署](#single-vmm-server-deployment)。
 
 ## <a name="create-a-recovery-services-vault"></a>建立復原服務保存庫
@@ -173,7 +174,7 @@ ms.openlocfilehash: 70a71bae81d4e499041c140b1d61b621e168ec43
 10. 在 [初始複寫方法] 中，如果您要透過網路進行複寫，請指定是否要啟動初始複寫，或將它排程。 若要節省網路頻寬，您可能要將它排程在離峰時間執行。 然後按一下 [確定] 。
 
      ![複寫原則](./media/site-recovery-vmm-to-vmm/gs-replication2.png)
-11. 當您建立新的原則時，該原則會自動與 VMM 雲端產生關聯。 在 [複寫原則] 中，按一下 [確定]。 您可以在 [設定] > [複寫] > 原則名稱 > [關聯 VMM 雲端] 中，將其他 VMM 雲端 (及其中的 VM) 與此複寫原則產生關聯。
+11. 當您建立新的原則時，該原則會自動與 VMM 雲端產生關聯。 在 [複寫原則] 中，按一下 [確定]。 您可以在 [複寫] > 原則名稱 > [關聯 VMM 雲端] 中，將其他 VMM 雲端 (及其中的 VM) 與此複寫原則產生關聯。
 
      ![複寫原則](./media/site-recovery-vmm-to-vmm/policy-associate.png)
 
@@ -184,7 +185,7 @@ ms.openlocfilehash: 70a71bae81d4e499041c140b1d61b621e168ec43
 - 確認 VMM 伺服器上的虛擬機器已連線到 VM 網路。
 
 
-1. 在 [設定] > [Site Recovery 基礎結構] > [網路對應] > [網路對應] 中，按一下 [+網路對應]。
+1. 在 [Site Recovery 基礎結構] > [網路對應] > [網路對應]，按一下 [+網路對應]。
 
     ![網路對應](./media/site-recovery-vmm-to-azure/network-mapping1.png)
 2. 在 [新增網路對應] 索引標籤中，選取來源和目標 VMM 伺服器。 隨即會擷取與 VMM 伺服器相關聯的 VM 網路。
@@ -224,12 +225,12 @@ ms.openlocfilehash: 70a71bae81d4e499041c140b1d61b621e168ec43
 
     ![啟用虛擬機器保護](./media/site-recovery-vmm-to-vmm/enable-replication5.png)
 
-您可以在 [設定] > [作業] > [Site Recovery 作業] 中，追蹤 [啟用保護] 動作的進度。 在**完成保護**作業完成之後，虛擬機器即可進行容錯移轉。
+您可以在 [作業] > [Site Recovery 作業] 中，追蹤 [啟用保護] 動作的進度。 在**完成保護**作業完成之後，虛擬機器即可進行容錯移轉。
 
 請注意：
 
 - 您也可以在 VMM 主控台中啟用虛擬機器的保護。 在虛擬機器屬性 > [Azure Site Recovery] 索引標籤中的工具列上按一下 [啟用保護]。
-- 啟用複寫之後，您就可以在 [設定] > [複寫的項目] 中檢視 VM 的屬性。 在 [基本資訊] 儀表板中，您可以看到關於 VM 的複寫原則及其狀態的資訊。 如需詳細資訊，請按一下 [屬性]  。
+- 啟用複寫之後，您就可以在 [複寫的項目] 中檢視 VM 的屬性。 在 [基本資訊] 儀表板中，您可以看到關於 VM 的複寫原則及其狀態的資訊。 如需詳細資訊，請按一下 [屬性]  。
 
 ### <a name="onboard-existing-virtual-machines"></a>建立現有的虛擬機器
 如果 VMM 中目前已經有使用 Hyper-V 複本複寫的虛擬機器，您可以使用下列方式加入它們以提供 Azure Site Recovery 複寫：
@@ -242,10 +243,6 @@ ms.openlocfilehash: 70a71bae81d4e499041c140b1d61b621e168ec43
 
 若要測試部署，您可以針對單一虛擬機器執行[測試容錯移轉](site-recovery-test-failover-vmm-to-vmm.md)，或建立[復原計劃](site-recovery-create-recovery-plans.md)來包含一或多部虛擬機器。
 
-
-## <a name="next-steps"></a>後續步驟
-
-測試部署之後，接著可深入了解其他類型的[容錯移轉](site-recovery-failover.md)
 
 
 ## <a name="prepare-for-offline-initial-replication"></a>準備進行離線初始複寫
@@ -444,8 +441,7 @@ ms.openlocfilehash: 70a71bae81d4e499041c140b1d61b621e168ec43
 | **網路對應** | 將網路資訊從主要資料中心對應至復原資料中心。 在復原站台上復原 VM 時，網路對應可協助建立網路連線。 |Site Recovery 會為各站台 (主要與資料中心) 收集、處理並傳輸其邏輯網路的中繼資料。 |中繼資料可用來填入網路設定，讓您能夠對應網路資訊。 | 此功能是服務不可或缺的一部分，而且無法關閉。 如果您不想將此資訊傳送到 Site Recovery，請勿使用網路對應。 |
 | **容錯移轉 (計劃性/非計劃性/測試)** | 容錯移轉會將 VM 從某一個 VMM 管理的資料中心容錯移轉到另一個。 容錯移轉動作在 Azure 入口網站中是手動觸發的。 |VMM 伺服器上的 Provider 會收到來自 Site Recovery 有關容錯移轉事件的通知，並在 Hyper-V 主機上透過 VMM 介面執行容錯移轉動作。 VM 的實際容錯移轉是從某一部 Hyper-V 主機到另一部，並透過 Windows Server 2012 或 Windows Server 2012 R2 Hyper-V 複本來處理。 Site Recovery 會使用傳送的資訊，在 Azure 入口網站上填入容錯移轉動作資訊的狀態。 | 此功能是服務不可或缺的一部分，而且無法關閉。 如果您不想將此資訊傳送到 Site Recovery，請勿使用容錯移轉。 |
 
+## <a name="next-steps"></a>後續步驟
 
-
-<!--HONumber=Feb17_HO2-->
-
+測試部署之後，接著可深入了解其他類型的[容錯移轉](site-recovery-failover.md)
 

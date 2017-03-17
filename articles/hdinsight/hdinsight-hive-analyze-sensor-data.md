@@ -15,6 +15,7 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/17/2017
 ms.author: larryfr
+ROBOTS: NOINDEX
 translationtype: Human Translation
 ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
 ms.openlocfilehash: 58881fd4608deddd8390cf4905b31a57f526e492

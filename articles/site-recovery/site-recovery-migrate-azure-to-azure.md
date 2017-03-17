@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/19/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: c33b69dbdccd2a894b494175dec2bd423af478b1
-ms.openlocfilehash: 0019b64ba545d91cf32ed2945c5c0d4844e264e1
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: b0fb6e2b86aa0a47b7250face90be8ab2d06b78e
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -35,7 +35,7 @@ ms.lasthandoff: 03/02/2017
 ## <a name="prerequisites"></a>必要條件
 以下是您針對此部署所需要的項目︰
 
-* **組態伺服器**︰執行 Windows Server 2012 R2 並做為組態伺服器的內部部署 VM。 您也可在此 VM 上安裝其他 Site Recovery 元件 (包括處理序伺服器和主要目標伺服器)。 請參閱[案例架構](site-recovery-components.md#vmware-replication-to-azure)和[組態伺服器必要條件](site-recovery-vmware-to-azure.md#prerequisites)以深入了解。
+* **組態伺服器**︰執行 Windows Server 2012 R2 並做為組態伺服器的內部部署 VM。 您也可在此 VM 上安裝其他 Site Recovery 元件 (包括處理序伺服器和主要目標伺服器)。 請參閱[案例架構](site-recovery-components.md#vmware-to-azure)和[組態伺服器必要條件](site-recovery-vmware-to-azure.md#prerequisites)以深入了解。
 * **IaaS 虛擬機器**：您想要移轉的 VM。 您可以將那些 VM 視為實體機器來移轉它們。
 
 ## <a name="deployment-steps"></a>部署步驟

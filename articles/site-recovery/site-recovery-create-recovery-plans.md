@@ -76,7 +76,7 @@ ms.lasthandoff: 02/15/2017
 * 確認您的 VMM 部署中至少有一部程式庫伺服器。 根據預設，VMM 伺服器的程式庫共用路徑位於本機的 VMM 伺服器上，資料夾名稱為 MSCVMMLibrary。
     * 如果您的程式庫共用路徑位於遠端 (或是位於本機上，但未與 MSCVMMLibrary 共用)，請依以下所示設為共用 (以 \\libserver2.contoso.com\share\ 為例)：
       * 開啟登錄編輯程式，並瀏覽至 **HKEY_LOCAL_MACHINE\SOFTWARE\MICROSOFT\Azure Site Recovery\Registration**。
-      * 編輯值 **ScriptLibraryPath**，並將其設為 \\libserver2.contoso.com\share\.。指定完整 FQDN。 提供共用位置的權限。
+      * 編輯值 **ScriptLibraryPath**，並將其設為 \\libserver2.contoso.com\share\. 指定完整 FQDN。 提供共用位置的權限。
       * 請確定您使用與 VMM 服務帳戶具有相同權限的使用者帳戶來測試指令碼。 這會檢查該獨立測試指令碼以它們在復原計畫中的相同方式執行。 在 VMM 伺服器上，設定要略過的執行原則，如下所示：
         * 以較高的權限開啟 64 位元 Windows PowerShell 主控台。
         * 類型： **Set-executionpolicy bypass**。 [深入了解](https://technet.microsoft.com/library/ee176961.aspx)。

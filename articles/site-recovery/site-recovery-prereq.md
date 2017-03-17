@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 12/11/2016
 ms.author: rajanaki
 translationtype: Human Translation
-ms.sourcegitcommit: 080dce21c2c803fc05c945cdadb1edd55bd7fe1c
-ms.openlocfilehash: a8e374c247be49d4b1390fb4061b4c9b1311f58a
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: b20d1a20119e8bffa3ece7105c38b3ee51c942d5
+ms.lasthandoff: 03/15/2017
 
 ---
 
@@ -104,6 +104,20 @@ Azure Site Recovery 服務可藉由將內部部署實體伺服器和虛擬機器
 | --- | --- |
 | **Virtual Machine Manager** |  我們建議您在主要網站中部署 Virtual Machine Manager 伺服器，以及在次要網站中部署 Virtual Machine Manager 伺服器。<br/><br/> 您可以[在單一 VMM 伺服器上的雲端之間進行複寫](site-recovery-vmm-to-vmm.md#prepare-for-single-server-deployment)。 若要這樣做，您必須在 Virtual Machine Manager 伺服器上至少設定兩個雲端。<br/><br/> Virtual Machine Manager 伺服器至少應執行含有最新更新的 System Center 2012 SP1。<br/><br/> 每個 Virtual Machine Manager 伺服器至少必須有一或多個雲端。 所有的雲端都必須設定 Hyper-V 容量設定檔。 <br/><br/>雲端必須包含一或多個 Virtual Machine Manager 主機群組。 如需設定 Virtual Machine Manager 雲端的詳細資訊，請參閱 [Azure Site Recovery 部署的準備](https://msdn.microsoft.com/library/azure/dn469075.aspx#BKMK_Fabric)。 |
 | **Hyper-V** | Hyper-V 伺服器必須至少執行具備 Hyper-V 角色並已安裝最新更新的 Windows Server 2012。<br/><br/> Hyper-V 伺服器應該包含一或多部 VM。<br/><br/>  Hyper-V 主機伺服器應該位於主要和次要 VMM 雲端的主機群組中。<br/><br/> 如果您在 Windows Server 2012 R2 上的叢集中執行 Hyper-V，我們建議安裝[更新 2961977](https://support.microsoft.com/kb/2961977)。<br/><br/> 如果您是在 Windows Server 2012 上的叢集中執行 Hyper-V，且您的叢集是靜態 IP 位址型叢集，則不會自動建立叢集代理。 您必須手動設定叢集代理。 如需叢集代理的詳細資訊，請參閱[設定複本代理角色叢集對叢集複寫](http://social.technet.microsoft.com/wiki/contents/articles/18792.configure-replica-broker-role-cluster-to-cluster-replication.aspx)。 |
+| **提供者** | 在 Site Recovery 部署期間，請在 Virtual Machine Manager 伺服器上安裝 Azure Site Recovery Provider。 Provider 會透過 HTTPS 443 與 Site Recovery 通訊來協調複寫。 資料複寫是透過 LAN 或 VPN 連線在主要和次要 Hyper-V 伺服器之間進行。<br/><br/> Virtual Machine Manager 伺服器上執行的提供者需要存取這些 URL：<br/><br/>[!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)] <br/><br/>提供者必須允許從 Virtual Machine Manager 伺服器至 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)的防火牆通訊，並允許 HTTPS (443) 通訊協定。 |
 
-| **Provider** | 在 Site Recovery 部署期間，請在 Virtual Machine Manager 伺服器上安裝 Azure Site Recovery Provider。 Provider 會透過 HTTPS 443 與 Site Recovery 通訊來協調複寫。 資料複寫是透過 LAN 或 VPN 連線在主要和次要 Hyper-V 伺服器之間進行。<br/><br/> Virtual Machine Manager 伺服器上執行的提供者需要存取這些 URL：<br/><br/>[!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)] <br/><br/>提供者必須允許從 Virtual Machine Manager 伺服器至 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)的防火牆通訊，並允許 HTTPS (443) 通訊協定。 |
+
+## <a name="url-access"></a>URL 存取
+這些 URL 應可透過 VMware、VMM 和 Hyper-V 主機伺服器提供。
+
+|**URL** | **VMM 至 VMM** | **VMM 至 Azure** | **Hyper-V 至 Azure** | **VMware 至 Azure** |
+|--- | --- | --- | --- | --- |
+|``*.accesscontrol.windows.net`` | 允許 | 允許 | 允許 | 允許 |
+|``*.backup.windowsazure.com`` | 不需要 | 允許 | 允許 | 允許 |
+|``*.hypervrecoverymanager.windowsazure.com`` | 允許 | 允許 | 允許 | 允許 |
+|``*.store.core.windows.net`` | 允許 | 允許 | 允許 | 允許 |
+|``*.blob.core.windows.net`` | 不需要 | 允許 | 允許 | 允許 |
+|``https://dev.mysql.com/get/archives/mysql-5.5/mysql-5.5.37-win32.msi`` | 不需要 | 不需要 | 不需要 | 允許 SQL 下載 |
+|``time.windows.com`` | 允許 | 允許 | 允許 | 允許|
+|``time.nist.gov`` | 允許 | 允許 | 允許 | 允許 |
 

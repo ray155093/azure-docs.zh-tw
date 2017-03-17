@@ -15,14 +15,14 @@ ms.workload: big-data
 ms.date: 01/13/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 0d5b68d26d708a28edee13ff3d9a57588ce83e12
-ms.openlocfilehash: 856d75c58cd911c641ec74b78f5c6133e605b2ec
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: a4d30ffc0a5c5ef9fe7bb892d17f0859ff27f569
+ms.openlocfilehash: bf6ef38ba28d11d7894a30115174582903f84580
+ms.lasthandoff: 03/02/2017
 
 
 ---
 # <a name="migrate-from-a-windows-based-hdinsight-cluster-to-a-linux-based-cluster"></a>從以 Windows 為基礎的 HDInsight 叢集移轉至以 Linux 為基礎的叢集
-雖然以 Windows 為基礎的 HDInsight 能提供在雲端中輕鬆使用 Hadoop 的方法，您可能會發現您需要以 Linux 為基礎的叢集，以運用解決方案所需的工具和技術。 Hadoop 生態系統的許多內容都是在以 Linux 為基礎的系統上開發的，因此部分內容可能無法在以 Windows 為基礎的 HDInsight 上使用。 除此之外，許多針對 Hadoop 的書籍、影片及其他訓練材料，都會假設您正在使用 Linux 系統。
+儘管以 Windows 為基礎的 HDInsight 提供一種簡單方式來使用雲端中的 Hadoop，但您可能需要移轉到以 Linux 為基礎的叢集。 例如，充分利用您解決方案所需且以 Linux 為基礎的工具和技術。 Hadoop 生態系統的許多內容都是在以 Linux 為基礎的系統上開發，因此可能無法與以 Windows 為基礎的 HDInsight 搭配使用。 除此之外，許多針對 Hadoop 的書籍、影片及其他訓練材料，都會假設您正在使用 Linux 系統。
 
 本文件提供 Windows 和 Linux 上 HDInsight 差異的詳細資料，以及如何將現有工作負載移轉至以 Linux 為基礎之叢集的指導方針。
 
@@ -36,14 +36,14 @@ ms.lasthandoff: 02/17/2017
 
 1. 閱讀本文件的每個區段，來了解在將現有工作負載及工作等項目移轉至以 Linux 為基礎的叢集時，可能需要進行的變更。
 2. 建立以 Linux 為基礎的叢集做為測試/品質保證環境。 如需建立以 Linux 為基礎之叢集的詳細資訊，請參閱 [在 HDInsight 中建立以 Linux 為基礎的叢集](hdinsight-hadoop-provision-linux-clusters.md)。
-3. 將現有的工作、資料來源及接收複製到新的環境。 請參閱＜將資料複製到測試環境＞一節以取得詳細資料。
+3. 將現有的作業、資料來源與接收複製到新的環境。
 4. 執行驗證測試以確保您的工作在新叢集上會如預期般運作。
 
 當您已驗證一切都會如預期般運作之後，請為移轉排定停機時間。 在停機期間，請執行下列動作。
 
 1. 備份所有儲存在本機叢集節點上的暫時性資料。 例如，如果您的資料是直接儲存在前端節點上。
 2. 刪除以 Windows 為基礎的叢集。
-3. 使用和以 Windows 為基礎之叢集所使用的相同預設資料存放區，建立以 Linux 為基礎的叢集。 這將能允許新叢集針對現有的生產資料繼續運作。
+3. 使用和以 Windows 為基礎之叢集所使用的相同預設資料存放區，建立以 Linux 為基礎的叢集。 新叢集可以針對現有的生產資料繼續運作。
 4. 匯入任何已備份的暫時性資料。
 5. 使用新叢集啟動工作/繼續處理。
 
@@ -51,9 +51,10 @@ ms.lasthandoff: 02/17/2017
 雖然複製資料和工作的方法有很多，但是本區段所討論的兩個方法，是將檔案直接移至測試叢集最簡單的方法。
 
 #### <a name="hdfs-dfs-copy"></a>HDFS DFS 複製
-您可以透過下列步驟使用 Hadoop HDFS 命令，來直接將資料從現有生產叢集的儲存體複製到新測試叢集的儲存體。
 
-1. 尋找現有叢集的儲存體帳戶和預設容器資訊。 您可以使用下列 Azure PowerShell 指令碼來執行此動作。
+使用下列步驟，將資料從生產環境叢集複製到測試叢集。 這些步驟使用 HDInsight 隨附的 `hdfs dfs` 公用程式。
+
+1. 尋找現有叢集的儲存體帳戶和預設容器資訊。 下列範例使用 PowerShell 來擷取此資訊：
 
     ```powershell
     $clusterName="Your existing HDInsight cluster name"
@@ -62,19 +63,20 @@ ms.lasthandoff: 02/17/2017
     write-host "Default container: $clusterInfo.DefaultStorageContainer"
     ```
 
-2. 依照＜在 HDInsight 中建立以 Linux 為基礎的叢集＞文件中的步驟建立新的測試環境。 於建立叢集之前停止遵循步驟，並改為選取 [選擇性組態] 。
+2. 若要建立測試環境，請依照＜在 HDInsight 中建立以 Linux 為基礎的叢集＞文件中的步驟執行。 於建立叢集之前停止遵循步驟，並改為選取 [選擇性組態] 。
 3. 從 [選擇性組態] 刀鋒視窗中，選取 [連結的儲存體帳戶] 。
-4. 選取 [新增儲存體金鑰] ，並在出現提示時，選取步驟 1 中由 PowerShell 指令碼傳回的儲存體帳戶。 在每個刀鋒視窗上按一下 [選取]  來關閉它們。 最後，建立叢集。
-5. 建立叢集之後，使用 **SSH** 來連線至該叢集。 如果您不熟悉搭配 HDInsight 使用 SSH 的方式，請參閱下列文章。
+4. 選取 [新增儲存體金鑰] ，並在出現提示時，選取步驟 1 中由 PowerShell 指令碼傳回的儲存體帳戶。 在每個刀鋒視窗上按一下 [選取]。 最後，建立叢集。
+5. 建立叢集之後，使用 **SSH** 來連線至該叢集。 如果您不熟悉搭配 HDInsight 使用 SSH 的方式，請參閱下列其中一份文件：
 
-   * [從 Windows 用戶端搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
-   * [從 Linux、Unix 及 Mac 用戶端搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
-6. 從 SSH 工作階段中，使用下列命令來將檔案從已連結的儲存體帳戶複製到新的預設儲存體帳戶。 將 CONTAINER 和 ACCOUNT 取代為步驟 1 中由 PowerShell 指令碼傳回的容器和帳戶資訊。 將資料路徑取代為資料檔案路徑。
+   * [從 Windows 用戶端搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+   * [從 Linux、Unix、OS X 和 Bash on Windows 10 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+
+6. 從 SSH 工作階段中，使用下列命令來將檔案從已連結的儲存體帳戶複製到新的預設儲存體帳戶。 使用 PowerShell 傳回的容器資訊來取代 CONTAINER。 使用帳戶名稱來取代 __ACCOUNT__。 將資料路徑取代為資料檔案路徑。
 
         hdfs dfs -cp wasbs://CONTAINER@ACCOUNT.blob.core.windows.net/path/to/old/data /path/to/new/location
 
     > [!NOTE]
-    > 如果包含資料的目錄結構並不存在於測試環境上，您可以使用下列命令建立它。
+    > 如果包含資料的目錄結構不存在於測試環境，您可以使用下列命令建立它：
 
         hdfs dfs -mkdir -p /new/path/to/create
 
@@ -84,7 +86,7 @@ ms.lasthandoff: 02/17/2017
 此外，您也可能會想要使用 `Start-AzureStorageBlobCopy` Azure PowerShell Cmdlet 在 HDInsight 之外的儲存體帳戶之間複製 Blob。 如需詳細資訊，請參閱＜搭配使用 Azure PowerShell 與 Azure 儲存體＞一文中的＜如何管理 Azure Blob＞一節。
 
 ## <a name="client-side-technologies"></a>用戶端技術
-一般來說，用戶端技術 (例如 [Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)、[Azure CLI](../xplat-cli-install.md) 或是 [.NET SDK for Hadoop](https://hadoopsdk.codeplex.com/)) 在以 Linux 為基礎的叢集上都會以相同的方式運作，因為在這兩個叢集作業系統類型中，它們所仰賴的 REST API 皆相同。
+一般來說，用戶端技術 (例如 [Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)、[Azure CLI](../xplat-cli-install.md) 或 [.NET SDK for Hadoop](https://hadoopsdk.codeplex.com/)) 在以 Linux 為基礎的叢集上會以相同方式持續運作，因為在這兩個叢集作業系統類型中，它們仰賴相同的 REST API。
 
 ## <a name="server-side-technologies"></a>伺服器端技術
 下列表格提供移轉 Windows 特定之伺服器端元件的指導方針。
@@ -94,13 +96,13 @@ ms.lasthandoff: 02/17/2017
 | **PowerShell** (伺服器端指令碼，包含於叢集建立期間使用的指令碼動作) |重寫為 Bash 指令碼。 針對指令碼動作，請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)和[以 Linux 為基礎之 HDInsight 的指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。 |
 | **Azure CLI** (伺服器端指令碼) |雖然 Azure CLI 可在 Linux 上使用，它並沒有預先安裝在 HDInsight 叢集前端節點上。 如果您需要搭配伺服器端指令碼來使用，請參閱 [安裝 Azure CLI](../xplat-cli-install.md) 了解在以 Linux 為基礎之平台上進行安裝的資訊。 |
 | **.NET 元件** |.NET 並未在所有 Linux 型 HDInsight 叢集類型上都受到完全支援。 在 2016/10/28 之後建立的 Linux 型 Storm on HDInsight 叢集支援使用 SCP.NET 架構的 C# Storm 拓撲。 .NET 的其他支援將在未來的更新中新增。 |
-| **Win32 元件或其他僅限 Windows 的技術** |指導方針將視元件或技術而有所不同。您可能可以找到與 Linux 相容的版本，也可能會需要尋找替代的解決方案，或是重寫此元件。 |
+| **Win32 元件或其他僅限 Windows 的技術** |指導方針將視元件或技術而有所不同。 您或許能夠找到與 Linux 相容的版本，也可能需要尋找替代的解決方案，或是重寫此元件。 |
 
 ## <a name="cluster-creation"></a>叢集建立
 本節將提供叢集建立之差異的資訊。
 
 ### <a name="ssh-user"></a>SSH 使用者
-以 Linux 為基礎的 HDInsight 是使用 **安全殼層 (SSH)** 通訊協定來為叢集節點提供遠端存取功能。 大部分的 SSH 用戶端和以 Windows 為基礎之叢集的遠端桌面不同，它們並不會提供圖形化的使用者經驗，而是提供允許您在叢集上執行命令的命令列。 某些用戶端 (例如 [MobaXterm](http://mobaxterm.mobatek.net/)) 除了提供遠端命令列之外，也提供圖形化的檔案系統瀏覽器。
+以 Linux 為基礎的 HDInsight 是使用 **安全殼層 (SSH)** 通訊協定來為叢集節點提供遠端存取功能。 大部分的 SSH 用戶端和以 Windows 為基礎之叢集的遠端桌面不同，它們不會提供圖形化使用者體驗，而是提供允許您在叢集上執行命令的命令列。 某些用戶端 (例如 [MobaXterm](http://mobaxterm.mobatek.net/)) 除了提供遠端命令列之外，也提供圖形化檔案系統瀏覽器。
 
 在叢集建立期間，您必須提供 SSH 使用者，以及**密碼**或**公開金鑰憑證**以進行驗證。
 
@@ -114,9 +116,9 @@ ms.lasthandoff: 02/17/2017
 ### <a name="cluster-customization"></a>叢集自訂
 **指令碼動作** 必須以 Bash 指令碼撰寫。 雖然指令碼動作可在叢集建立期間使用，它們也可以用來在以 Linux 為基礎之叢集已啟動並開始執行之後進行自訂。 如需詳細資訊，請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)和[以 Linux 為基礎之 HDInsight 的指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。
 
-另一個自訂功能是 **bootstrap**。 針對 Windows 叢集，這可讓您指定其他搭配 Hive 使用之程式庫的位置。 在叢集建立之後，這些程式庫將可自動搭配 Hive 查詢使用，而不需使用 `ADD JAR`。
+另一個自訂功能是 **bootstrap**。 針對 Windows 叢集，此功能可讓您指定其他搭配 Hive 使用之程式庫的位置。 在叢集建立之後，這些程式庫將可自動搭配 Hive 查詢使用，而不需使用 `ADD JAR`。
 
-針對以 Linux 為基礎的叢集，bootstrap 並不提供此功能。 請改為使用 [在叢集建立期間新增 Hive 程式庫](hdinsight-hadoop-add-hive-libraries.md)中所記錄的指令碼動作。
+針對以 Linux 為基礎的叢集，Bootstrap 功能不提供此功能。 請改為使用 [在叢集建立期間新增 Hive 程式庫](hdinsight-hadoop-add-hive-libraries.md)中所記錄的指令碼動作。
 
 ### <a name="virtual-networks"></a>虛擬網路
 以 Windows 為基礎的 HDInsight 僅支援傳統虛擬網路，而以 Linux 為基礎的 HDInsight 則需要資源管理員虛擬網路。 如果資源位於傳統虛擬網路中，且以 Linux 為基礎的 HDInsight 叢集必須連接到這類資源時，請參閱 [將傳統虛擬網路連接到 Resource Manager 虛擬網路](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md)。
@@ -139,7 +141,7 @@ Ambari 擁有能通知您叢集潛在問題的警示系統。 警示將會以紅
 >
 > 許多警示都是針對某項服務實作為以間隔為基礎的查詢，並會預期在特定的時間範圍內收到回應。 因此警示本身並不代表服務已關閉，而只是單純表示該服務沒有在預期的時間範圍內傳回結果。
 
-通常來說，您應該先評估某個警示是否已長時間持續發生，或者是否與使用者先前針對叢集所回報的某個問題有關聯，再對它採取動作。
+通常，您應先評估某個警示是否已長時間持續發生，或者是否與使用者所回報的某個問題有關，再對它採取動作。
 
 ## <a name="file-system-locations"></a>檔案系統位置
 Linux 叢集檔案系統的展開方式和以 Windows 為基礎的 HDInsight 叢集不同。 使用下列表格來尋找常用的檔案。
@@ -148,17 +150,18 @@ Linux 叢集檔案系統的展開方式和以 Windows 為基礎的 HDInsight 叢
 | --- | --- |
 | 組態 |`/etc`。 例如， `/etc/hadoop/conf/core-site.xml` |
 | 記錄檔 |`/var/logs` |
-| Hortonworks Data Platform (HDP) |`/usr/hdp`。此處有兩個目錄，一個是目前的 HDP 版本 (例如 `2.2.9.1-1`)，另一個則是 `current`。 `current` 目錄內含位於版本號碼目錄中之檔案和目錄的符號連結，可作為方便存取 HDP 檔案的方法，因為版本號碼會隨著 HDP 版本更新而變更。 |
+| Hortonworks Data Platform (HDP) |`/usr/hdp`。此處有兩個目錄，一個是目前的 HDP 版本，另一個則是 `current`。 `current` 目錄包含位於版本號碼目錄之檔案和目錄的符號連結。 `current` 目錄的用途是讓您方便存取 HDP 檔案，因為版本號碼會在更新 HDP 版本時變更。 |
 | hadoop-streaming.jar |`/usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar` |
 
 通常來說，如果您知道檔案的名稱，便可以使用下列來自 SSH 工作階段的命令來尋找檔案路徑：
 
     find / -name FILENAME 2>/dev/null
 
-您也可以搭配檔案名稱使用萬用字元。 例如， `find / -name *streaming*.jar 2>/dev/null` 將會傳回任何檔案名稱包含 'streaming' 之 Jar 檔案的路徑。
+您也可以搭配檔案名稱使用萬用字元。 例如，`find / -name *streaming*.jar 2>/dev/null` 會傳回任何檔案名稱包含 'streaming' 這個字的 jar 檔案路徑。
 
 ## <a name="hive-pig-and-mapreduce"></a>Hive、Pig 及 MapReduce
-以 Linux 為基礎之叢集上的 Pig 和 MapReduce 工作負載和以 Windows 為基礎的版本非常相似，主要的差異在於，如果您是使用遠端桌面來連線至以 Windows 為基礎的叢集並執行工作，您必須針對以 Linux 為基礎的叢集使用 SSH。
+
+Pig 和 MapReduce 工作負載與以 Linux 為基礎的叢集非常類似。 唯一的差別在於連接到叢集前端節點的方式。 如需詳細資訊，請參閱下列文件：
 
 * [搭配 SSH 使用 Pig](hdinsight-hadoop-use-pig-ssh.md)
 * [搭配 SSH 使用 MapReduce](hdinsight-hadoop-use-mapreduce-ssh.md)
@@ -178,29 +181,29 @@ Linux 叢集檔案系統的展開方式和以 Windows 為基礎的 HDInsight 叢
 | --- | --- |
 | Storm Dashboard |無法使用 Storm Dashboard。 請參閱 [在以 Linux 為基礎的 HDInsight 上部署與管理 Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md) ，以了解提交拓撲的方法。 |
 | Storm UI |Storm UI 可以在 https://CLUSTERNAME.azurehdinsight.net/stormui 使用 |
-| Visual Studio 以建立、部署及管理 C# 或混合式拓撲 |Visual Studio 可用來建立、部署和管理在 2017/10/28 之後建立之 Linux 架構 Storm on HDInsight 叢集上的 C# (SCP.NET) 或混合式拓撲。 |
+| Visual Studio 以建立、部署及管理 C# 或混合式拓撲 |在 2016/10/28 後建立之以 Linux 為基礎的 Storm on HDInsight 叢集上，可以使用 Visual Studio 來建立、部署和管理 C# (SCP.NET) 或混合式拓撲。 |
 
 ## <a name="hbase"></a>HBase
-在以 Linux 為基礎的叢集上，HBase 的 znode 父項目為 `/hbase-unsecure`。 您必須針對任何使用原生 HBase Java API 的 Java 用戶端應用程式，在其組態中做出此設定。
+在以 Linux 為基礎的叢集上，HBase 的 znode 父項目為 `/hbase-unsecure`。 針對任何使用原生 HBase Java API 的 Java 用戶端應用程式，在組態中設定此值。
 
 如需設定此值的範例用戶端，請參閱 [建置以 Java 為基礎的 HBase 應用程式](hdinsight-hbase-build-java-maven.md) 。
 
 ## <a name="spark"></a>Spark
-Spark 叢集之前可在預覽期間於 Windows 叢集上使用，不過發行後的 Spark 只能在以 Linux 為基礎的叢集上使用。 以 Windows 為基礎的 Spark 預覽叢集和以 Linux 為基礎的 Spark 叢集之間並沒有移轉路徑。
+Spark 叢集可以在 Windows 叢集預覽期間取得。 Spark GA 只適用於以 Linux 為基礎的叢集。 以 Windows 為基礎的 Spark 預覽叢集和以 Linux 為基礎的 Spark 叢集之間並沒有移轉路徑。
 
 ## <a name="known-issues"></a>已知問題
 ### <a name="azure-data-factory-custom-net-activities"></a>Azure Data Factory 自訂 .NET 活動
 Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDInsight 叢集所支援。 您應該改為使用下列其中一個方法，來將自訂活動實作為 ADF 管線的一部分。
 
 * 在 Azure Batch 集區上執行 .NET 活動。 請參閱 [在 Azure Data Factory 管線中使用自訂活動](../data-factory/data-factory-use-custom-activities.md)
-* 將活動實作為 MapReduce 活動。 請參閱 [從 Data Factory 叫用 MapReduce 程式](../data-factory/data-factory-map-reduce.md) ，以取得詳細資訊。
+* 將活動實作為 MapReduce 活動。 如需詳細資訊，請參閱[從 Data Factory 叫用 MapReduce 程式](../data-factory/data-factory-map-reduce.md)。
 
 ### <a name="line-endings"></a>行尾結束符號
 通常來說，以 Windows 為基礎之系統上的行尾結束符號是使用 CRLF，而以 Linux 為基礎的系統則使用 LF。 如果您產生或預期擁有 CRLF 行尾結束符號的資料，便可能需要修改產生者或取用者來搭配 LF 行尾結束符號運作。
 
-例如，使用 Azure PowerShell 來在以 Windows 為基礎的叢集上查詢 HDInsight，將會傳回 CRLF 的資料。 在以 Linux 為基礎的叢集上使用相同的查詢，將會傳回 LF。 在許多情況下，這對資料取用者來說並不重要，但是在移轉至以 Linux 為基礎的叢集之前，仍然應該予以調查。
+例如，使用 Azure PowerShell，在以 Windows 為基礎的叢集上查詢 HDInsight，會傳回擁有 CRLF 的資料。 在以 Linux 為基礎的叢集上使用相同查詢，會傳回 LF。 您應該先進行測試，以查看這是否會導致您的解決方案發生問題，再將它移轉到以 Linux 為基礎的叢集。
 
-如果您擁有會直接在 Linux 叢集節點上執行的指令碼 (例如搭配 Hive 使用的 Python 指令碼，或是 MapReduce 工作)，您應該總是使用 LF 做為行尾結束符號。 如果您使用 CRLF，便可能會在以 Linux 為基礎的叢集上執行指令碼時遭遇到錯誤。
+如果您的指令碼會直接在 Linux 叢集節點上執行，則您應一律使用 LF 做為行尾結束符號。 如果您使用 CRLF，便可能會在以 Linux 為基礎的叢集上執行指令碼時遭遇到錯誤。
 
 如果您知道指令碼並沒有包含擁有內嵌 CR 字元的字串，您可以使用下列其中一種方法來大量變更行尾結束符號：
 
@@ -216,8 +219,8 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
       hdfs dfs -put -f script.py wasbs:///path/to/script.py
 
 ## <a name="next-steps"></a>後續步驟
-* [了解如何建立以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)
-* [從 Windows 用戶端使用 SSH 連線至以 Linux 為基礎的叢集](hdinsight-hadoop-linux-use-ssh-windows.md)
-* [從 Linux、Unix，或 Mac 用戶端使用 SSH 連線至以 Linux 為基礎的叢集](hdinsight-hadoop-linux-use-ssh-unix.md)
-* [使用 Ambari 管理以 Linux 為基礎的叢集](hdinsight-hadoop-manage-ambari.md)
+* [了解如何建立 Linux 型 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)
+* [從 Windows 用戶端使用 SSH 連線至 Linux 型叢集](hdinsight-hadoop-linux-use-ssh-windows.md)
+* [從 Linux、Unix 或 Mac 用戶端使用 SSH 連線至 Linux 型叢集](hdinsight-hadoop-linux-use-ssh-unix.md)
+* [使用 Ambari 管理 Linux 型叢集](hdinsight-hadoop-manage-ambari.md)
 

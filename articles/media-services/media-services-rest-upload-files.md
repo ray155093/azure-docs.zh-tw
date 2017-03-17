@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/13/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: d58462cbd6578093e00c93c7e2753efc1493441d
-ms.openlocfilehash: 8f17399846eafcac8b86a9b7d7baa7a029005c8c
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: c0ea95ed12a704116e8cdff257dacd7768b45708
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -33,7 +34,7 @@ ms.openlocfilehash: 8f17399846eafcac8b86a9b7d7baa7a029005c8c
 > [!NOTE]
 > 您必須考量下列事項：
 > 
-> * 建置串流內容的 URL (例如，http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters) 時，媒體服務會使用 IAssetFile.Name 屬性的值。基於這個理由，不允許 percent-encoding。 **Name** 屬性的值不能有下列任何[百分號編碼保留字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]"。 而且，副檔名只能有一個 '.'。
+> * 建置串流內容的 URL (例如，http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters) 時，媒體服務會使用 IAssetFile.Name 屬性的值。基於這個理由，不允許 percent-encoding。 **Name** 屬性的值不能有下列任何[百分比編碼保留字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]"。 而且，副檔名只能有一個 '.'。
 > * 名稱長度不應超過 260 個字元。
 > * 對於在媒體服務處理檔案，支援的檔案大小有上限。 請參閱[此](media-services-quotas-and-limitations.md)主題，以取得有關檔案大小限制的詳細資料。
 > 
@@ -186,6 +187,10 @@ AMS 也可讓您上傳大量資產。 如需詳細資訊，請參閱 [本節](me
 
 
 ### <a name="creating-the-accesspolicy-with-write-permission"></a>建立具有寫入權限的 AccessPolicy。
+
+>[!NOTE]
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+
 將任何檔案上傳到 blob 儲存體之前，請設定寫入資產的存取原則權限。 若要這樣做，請 POST HTTP 要求到 AccessPolicies 實體集。 請在建立時定義 DurationInMinutes 值，否則您會在回應中收到 500 內部伺服器錯誤訊息。 如需 AccessPolicies 的詳細資訊，請參閱 [AccessPolicy](https://docs.microsoft.com/rest/api/media/operations/accesspolicy)。
 
 下列範例示範如何建立 AccessPolicy：
@@ -371,7 +376,7 @@ SAS URL 具有下列格式：
     HTTP/1.1 204 No Content 
     ...
 
-## <a name="a-iduploadinbulkaupload-assets-in-bulk"></a><a id="upload_in_bulk"></a>上傳大量資產
+## <a id="upload_in_bulk"></a>上傳大量資產
 ### <a name="create-the-ingestmanifest"></a>建立 IngestManifest
 IngestManifest 是適用於一組資產、資產檔案及統計資訊的容器，可用來判斷針對該組合進行大量內嵌的進度。
 
@@ -519,10 +524,5 @@ IngestManifestFile 代表實際的視訊或音訊 Blob 物件，將針對資產�
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 [How to Get a Media Processor]: media-services-get-media-processor.md
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

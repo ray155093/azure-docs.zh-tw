@@ -11,12 +11,12 @@ ms.devlang: NA
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 02/16/2017
+ms.date: 03/05/2017
 ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: 4d7c0afe5e43e0c119f534cdedaaa03a16ed5303
-ms.openlocfilehash: 0d5198c74fa81358dcdfec514e1fe422d17f368f
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 379bc2e80a89b6d46db3bd536737583d51029328
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 02/17/2017
 
 ## <a name="name-the-service-and-url-endpoint"></a>為服務和 URL 端點命名
 
-服務名稱是 URL 端點的一部分，API 呼叫是根據此端點所發出。 在 [URL]  欄位中輸入您的服務名稱。 
+服務名稱是 URL 端點的一部分，API 呼叫是根據此端點所發出。 在 [URL] 欄位中輸入您的服務名稱。 
 
 服務名稱需求：
    * 長度為 2 到 60 個字元
@@ -60,7 +60,7 @@ ms.lasthandoff: 02/17/2017
 做為 Azure 服務，Azure 搜尋服務可以裝載於世界各地的資料中心。 請注意，各地理位置的[價格可能不同](https://azure.microsoft.com/pricing/details/search/) 。
 
 ## <a name="select-a-pricing-tier-sku"></a>選取定價層 (SKU)
-[Azure 搜尋服務目前提供多個定價層](https://azure.microsoft.com/pricing/details/search/)︰免費、基本或標準。 每一層都有自己的 [容量和限制](search-limits-quotas-capacity.md)。 請參閱 [選擇定價層或 SKU](search-sku-tier.md) 以取得指引。
+[Azure 搜尋服務目前提供多個定價層](https://azure.microsoft.com/pricing/details/search/)︰免費、基本或標準。 每一層都有自己的[容量和限制](search-limits-quotas-capacity.md)。 請參閱[選擇定價層或 SKU](search-sku-tier.md) 以取得指導方針。
 
 在此逐步解說中，我們已為服務選擇標準層。
 
@@ -88,6 +88,22 @@ ms.lasthandoff: 02/17/2017
 
 > [!Note] 
 > 關於單一服務中允許的搜尋單位總數 (複本 * 分割區 = 搜尋單位總數)，每一層各有不同的[限制](search-limits-quotas-capacity.md)。
+
+## <a name="when-to-add-a-second-service"></a>新增第二個服務的時機
+
+大部分的客戶都是使用在提供[正確資源平衡](search-sku-tier.md)的層上佈建的單一服務。 單一服務可以裝載多個索引 (數量受限於[所選層的最大限制](search-capacity-planning.md))，且每個索引都互相隔離。 在 Azure 搜尋服務中，要求只能導向到單一索引，以降低意外或刻意從相同服務的其他索引中擷取資料的機會。
+
+雖然大部分的客戶只使用單一服務，但如果操作需求包含下列項目，則可能需要服務備援：
+
++ 災害復原 (資料中心中斷)。 Azure 搜尋服務在中斷時不會提供即時容錯移轉。 如需建議和指導方針，請參閱[服務管理](search-manage.md)。
++ 您的多租用戶模型調查判斷額外服務為最佳化設計。 如需詳細資訊，請參閱[針對多租用戶設計](search-modeling-multitenant-saas-applications.md)。
++ 針對全球部署的應用程式，您在多個區域可能都需要 Azure 搜尋服務執行個體，以降低應用程式國際流量的延遲。
+
+> [!NOTE]
+> 在 Azure 搜尋服務中，您無法區隔索引和查詢工作負載，因此您永遠不會針對區隔的工作負載建立多重服務。 一律是在建立索引的服務上查詢該索引 (您無法在某個服務中建立索引，並將它複製到另一個服務)。
+>
+
+不需要第二個服務即可獲得高可用性。 當您在同一個服務中使用 2 個或更多的複本，查詢就會達到高可用性。 複本更新是循序的，這表示當服務更新推出時，至少會有一個複本是可運作的。 如需執行時間的詳細資訊，請參閱[服務等級協定](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。
 
 ## <a name="next-steps"></a>後續步驟
 佈建 Azure 搜尋服務之後，您就可以[定義索引](search-what-is-an-index.md)，以便上傳和搜尋您的資料。

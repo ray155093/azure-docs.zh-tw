@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 07/22/2016
+ms.date: 02/22/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d853e2ea005eea99d7ea461e21c51c89c6e4aca3
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: d9ef14d1d83d98de5c1d95b237a2e06ea2506766
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -25,12 +26,11 @@ ms.openlocfilehash: d853e2ea005eea99d7ea461e21c51c89c6e4aca3
 > * [PowerShell](role-based-access-control-manage-access-powershell.md)
 > * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 > * [REST API](role-based-access-control-manage-access-rest.md)
-> 
-> 
+
 
 您可以使用 Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制」(RBAC) 來精確管理對您訂用帳戶和資源的存取。 透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
 
-您必須具備下列條件，才能使用 Azure 命令列介面 (CLI) 來管理 RBAC：
+使用 Azure 命令列介面 (CLI) 來管理 RBAC 之前，您必須具備下列必要條件：
 
 * Azure CLI 0.8.8 版或更新版本。 若要安裝最新版本，並將它與 Azure 訂用帳戶建立關聯，請參閱 [安裝和設定 Azure CLI](../xplat-cli-install.md)。
 * Azure CLI 中的 Azure Resource Manager。 如需詳細資訊，請瀏覽 [搭配使用 Azure CLI 和 Resource Manager](../xplat-cli-azure-resource-manager.md) 。
@@ -153,7 +153,7 @@ azure role assignment list --expandPrincipalGroups --signInName sameert@aaddemo.
 
     azure role create --inputfile <file path>
 
-下列範例會建立一個名為 *Virtual Machine Operator*的自訂角色。 自訂角色會授與對 *Microsoft.Compute*、*Microsoft.Storage* 和 *Microsoft.Network* 資源提供者之所有讀取作業的存取權，以及授與對啟動、重新啟動和監視虛擬機器的存取權。 自訂角色可用於兩個訂用帳戶中。 這個範例使用 JSON 檔案做為輸入。
+下列範例會建立一個名為 *Virtual Machine Operator*的自訂角色。 這個自訂角色會授與對 *Microsoft.Compute*、*Microsoft.Storage* 和 *Microsoft.Network* 資源提供者之所有讀取作業的存取權，以及授與對啟動、重新啟動和監視虛擬機器的存取權。 這個自訂角色可用於兩個訂用帳戶中。 這個範例使用 JSON 檔案做為輸入。
 
 ![JSON - 自訂角色定義 - 螢幕擷取畫面](./media/role-based-access-control-manage-access-azure-cli/2-azure-role-create-1.png)
 
@@ -180,7 +180,7 @@ azure role assignment list --expandPrincipalGroups --signInName sameert@aaddemo.
 ## <a name="list-custom-roles"></a>列出自訂角色
 若要列出範圍中可供指派的角色，請使用 `azure role list` 命令。
 
-下列範例會列出選取的訂用帳戶中可供指派的所有角色。
+下列命令會列出所選取訂用帳戶中可供指派使用的所有角色。
 
 ```
 azure role list --json | jq '.[] | {"name":.properties.roleName, type:.properties.type}'
@@ -198,10 +198,5 @@ azure role list --json | jq '.[] | if .properties.type == "CustomRole" then .pro
 
 ## <a name="rbac-topics"></a>RBAC 主題
 [!INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

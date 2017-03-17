@@ -14,13 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 1/10/2017
 ms.author: saurse;trinadhk;markgal
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 3bd18e805dafbfae315cab0e1d5c9421c8210b95
+ms.sourcegitcommit: 82b7541ab1434179353247ffc50546812346bda9
+ms.openlocfilehash: f0f3152daf5f91f7c9e540797bf09b21969d2d33
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="use-azure-backup-to-replace-your-tape-infrastructure"></a>使用 Azure 備份來取代您的磁帶基礎結構
+# <a name="move-your-long-term-storage-from-tape-to-the-azure-cloud"></a>將您的長期儲存空間從磁帶移至 Azure 雲端
 使用 Azure 備份和 System Center Data Protection Manager 的客戶可以進行下列操作：
 
 * 依照最適合組織需求的排程備份資料。
@@ -48,7 +50,7 @@ ms.openlocfilehash: 3bd18e805dafbfae315cab0e1d5c9421c8210b95
 ## <a name="example--putting-both-together"></a>範例 – 將兩者綜合比較
 ![範例畫面](./media/backup-azure-backup-cloud-as-tape/samplescreen.png)
 
-1. **每日的保留原則**：每日所進行的備份會儲存 7 天。
+1. **每日的保留原則**：每日所進行的備份會儲存&7; 天。
 2. **每週的保留原則**：每天午夜和星期六下午 6 點所進行的備份會保留 4 週
 3. **每月的保留原則**：每月最後一個星期六午夜和下午 6 點所進行的備份會保留 12 個月
 4. **每年的保留原則**：每年三月最後一個星期六午夜所進行的備份會保留 10 年
@@ -77,9 +79,4 @@ ms.openlocfilehash: 3bd18e805dafbfae315cab0e1d5c9421c8210b95
 
 * [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
 * [試用 Azure 備份](backup-try-azure-backup-in-10-mins.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

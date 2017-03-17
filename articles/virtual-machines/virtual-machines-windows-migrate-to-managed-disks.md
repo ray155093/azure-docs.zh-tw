@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/07/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 44c1f6ddac328516d707cfe5d328e02e50652e5b
-ms.openlocfilehash: e66857cf6cc05aae2fa102173a2958564ec936e6
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 9974b7a34749e689f6061b61056ae453690792e3
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -53,7 +53,7 @@ Azure 受控磁碟可免除個別管理儲存體帳戶的需求，進而簡化�
 
 ## <a name="location"></a>位置
 
-挑選 Azure 受控磁碟可用的位置。 如果您要移至進階受控磁碟，也請確保進階儲存體可用於您打算移至的區域。 如需可用位置的最新資訊，請參閱[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services)。
+挑選 Azure 受控磁碟可用的位置。 如果您要移至進階受控磁碟，也請確保進階儲存體可用於您打算移至的區域。 如需可使用 Azure 服務之地點的最新資訊，請參閱[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services)。
 
 ## <a name="vm-sizes"></a>VM 大小
 
