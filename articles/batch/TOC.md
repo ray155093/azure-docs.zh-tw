@@ -1,6 +1,7 @@
 # 概觀
 ## [什麼是 Azure Batch？](batch-technical-overview.md)
 ## [功能概觀](batch-api-basics.md)
+## [API 和各項工具](batch-apis-tools.md)
 ## [配額和限制](batch-quota-limit.md)
 # 開始使用
 ## [建立 Batch 帳戶](batch-account-create-portal.md)
@@ -25,7 +26,8 @@
 ### [Batch 診斷記錄](batch-diagnostics.md)
 
 # 參考
-## [PowerShell](/powershell/resourcemanager/azurerm.batch/v2.3.0/azurerm.batch)
+## [PowerShell](/powershell/resourcemanager/azurerm.batch/v2.5.0/azurerm.batch)
+## [Azure CLI](/cli/azure/batch)
 ## [.NET](/dotnet/api/microsoft.azure.batch)
 ## [Java](/java/api/com.microsoft.azure.batch)
 ## [Node.js](http://azure.github.io/azure-sdk-for-node/azure-batch/latest)
@@ -45,9 +47,4 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=batch&updatetype=&platform=)
 ## [C# 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
 ## [Python 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

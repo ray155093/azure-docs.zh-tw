@@ -38,7 +38,8 @@
 ### [將資源移至新群組或訂用帳戶](resource-group-move-resources.md)
 ## 控制存取權
 ### [使用 PowerShell 建立服務主體](resource-group-authenticate-service-principal.md)
-### [使用 Azure CLI 建立服務主體](resource-group-authenticate-service-principal-cli.md)
+### [使用 Azure CLI 2.0 建立服務主體](/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+### [使用 Azure CLI 1.0 建立服務主體](resource-group-authenticate-service-principal-cli.md)
 ### [使用入口網站建立服務主體](resource-group-create-service-principal-portal.md)
 ### [驗證 API 以存取訂閱帳戶](resource-manager-api-authentication.md)
 ### [鎖定資源](resource-group-lock-resources.md)

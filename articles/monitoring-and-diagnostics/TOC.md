@@ -28,8 +28,8 @@
 ## 使用活動記錄
 ### [檢視活動記錄中的事件](../monitoring-and-diagnostics/insights-debugging-with-events.md)
 ### [在活動記錄警示中設定 webhook](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
-### [封存活動記錄檔](../monitoring-and-diagnostics/monitoring-archive-activity-log.md)
-### [將活動記錄檔串流至事件中樞](../monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs.md)
+### [封存活動記錄](../monitoring-and-diagnostics/monitoring-archive-activity-log.md)
+### [將活動記錄串流至事件中樞](../monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs.md)
 ### [使用 Resource Manager 來稽核作業](../azure-resource-manager/resource-group-audit.md)
 ## 管理診斷記錄檔
 ### [封存](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md)
@@ -37,6 +37,8 @@
 ### [使用 Resource Manager 範本啟用診斷設定](../monitoring-and-diagnostics/monitoring-enable-diagnostic-logs-using-template.md)
 ## 使用 REST API
 ### [逐步解說如何使用 REST API](../monitoring-and-diagnostics/monitoring-rest-api-walkthrough.md)
+## 使用 Azure 診斷
+### [傳送至 Application Insights](../monitoring-and-diagnostics/azure-diagnostics-configure-applicationinsights.md)
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.insights/v1.0.12/azurerm.insights?redirectedfrom=msdn#40v=azure.200#41)
@@ -52,8 +54,3 @@
 ## [PowerShell 範例](../monitoring-and-diagnostics/insights-powershell-samples.md)
 ## [Azure CLI 1.0 範例](../monitoring-and-diagnostics/insights-cli-samples.md)
 ## [支援的計量清單](../monitoring-and-diagnostics/monitoring-supported-metrics.md)
-
-
-<!--HONumber=Feb17_HO4-->
-
-

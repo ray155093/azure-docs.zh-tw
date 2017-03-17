@@ -19,9 +19,10 @@
 ## 規劃
 ### [部署必要條件](site-recovery-prereq.md)
 ### [網路基礎結構的注意事項](site-recovery-network-design.md)
-### [針對 Hyper-V 複寫執行 Site Recovery Capacity Planner](site-recovery-capacity-planner.md)
 ### [規劃容量並調整 Azure 中的 VMware 複寫](site-recovery-plan-capacity-vmware.md)
-### [執行部署規劃工具，將 VMware 複寫至 Azure](site-recovery-deployment-planner.md)
+### [將 VMware 複寫至 Azure 的部署規劃工具](site-recovery-deployment-planner.md)
+### [適用於 Hyper-V 複寫的 Site Recovery Capacity Planner](site-recovery-capacity-planner.md)
+
 ## 設定
 ### [設定來源環境](site-recovery-set-up-vmware-to-azure.md)
 ### [設定目標環境](site-recovery-prepare-target-vmware-to-azure.md)
@@ -29,14 +30,14 @@
 ### [部署 VMware 複寫的行動服務](site-recovery-vmware-to-azure-install-mob-svc.md)
 #### [使用 System Center Configuration Manager 部署行動服務](site-recovery-install-mobility-service-using-sccm.md)
 #### [使用 Azure 自動化 DSC 部署行動服務](site-recovery-automate-mobility-service-install.md)
+### [啟用複寫](site-recovery-replicate-vmware-to-azure.md)
 ## 容錯移轉和容錯回復
-### [在 Site Recovery 中進行容錯移轉](site-recovery-failover.md)
+### [針對受保護的機器進行容錯移轉](site-recovery-failover.md)
 ### [設定復原方案](site-recovery-create-recovery-plans.md)
 #### [將 Runbook 新增至復原方案](site-recovery-runbook-automation.md)
-### [執行測試容錯移轉至 Azure](site-recovery-test-failover-to-azure.md)
-### [在兩個 VMM 站台間執行測試容錯移轉](site-recovery-test-failover-vmm-to-vmm.md)
-### [從 Azure 容錯回復 VMware VM/實體伺服器](site-recovery-how-to-failback-azure-to-vmware.md)
-### [從 Azure 容錯回復 Hyper-V VM](site-recovery-failback-from-azure-to-hyper-v.md)
+### [執行測試容錯移轉](site-recovery-test-failover-to-azure.md)
+### [容錯移轉之後重新保護機器](site-recovery-how-to-reprotect.md)
+### [從 Azure 容錯移轉](site-recovery-failback-azure-to-vmware.md)
 
 ## 移轉
 ### [移轉至 Azure](site-recovery-migrate-to-azure.md)
@@ -56,9 +57,13 @@
 ### [自動將 Hyper-V 複寫至 Azure (透過 VMM)](site-recovery-vmm-to-azure-powershell-resource-manager.md)
 ### [自動將 Hyper-V 複寫至 Azure (透過 VMM)](site-recovery-vmm-to-vmm-powershell-resource-manager.md)
 ## 管理
+### [編輯複寫設定](site-recovery-setup-replication-settings-vmware.md#edit-replication-policy.md)
+### [管理 Azure 中的處理序伺服器](site-recovery-vmware-setup-azure-ps-resource-manager.md)
+### [管理組態伺服器](site-recovery-vmware-to-azure-manage-configuration-server.md)
+### [管理相應放大處理序伺服器](site-recovery-vmware-to-azure-manage-scaleout-process-server.md)
+### [管理 vCenter 伺服器](site-recovery-vmware-to-azure-manage-vCenter.md)
 ### [移除伺服器並停用保護](site-recovery-manage-registration-and-protection.md)
-### [擴充處理序伺服器](site-recovery-vmware-to-azure-manage-scaleout-process-server.md)
-### [監視及疑難排解](site-recovery-monitoring-and-troubleshooting.md)
+## [監視及疑難排解](site-recovery-monitoring-and-troubleshooting.md)
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.siterecovery/v3.2.0/azurerm.siterecovery)
