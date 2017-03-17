@@ -1,5 +1,5 @@
 ---
-title: "自訂屬性對應 | Microsoft Docs"
+title: "自訂 Azure AD 屬性對應 | Microsoft Docs"
 description: "了解 Azure Active Directory 中 SaaS 應用程式有哪些屬性對應，以及如何修改屬性對應來應付業務需求。"
 services: active-directory
 documentationcenter: 
@@ -12,15 +12,17 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
+ms.date: 02/27/2017
 ms.author: markvi
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b73c9dc8edd341898ede06f67f383b86010e1e39
+ms.sourcegitcommit: 18415c92d50a00c14823685857ab7e2624334ec7
+ms.openlocfilehash: 19e934895279adb3a32096fffafd567b294c3009
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="customizing-attribute-mappings"></a>自訂屬性對應
+# <a name="customizing-user-provisioning-attribute-mappings-for-saas-applications-in-azure-active-directory"></a>在 Azure Active Directory 中自訂 SaaS 應用程式的使用者佈建屬性對應
 Microsoft Azure AD 支援使用者佈建到例如 Salesforce、Google Apps 等等的協力廠商 SaaS 應用程式。 如果您啟用了協力廠商 SaaS 應用程式的使用者佈建，Azure 管理入口網站會以一種稱為「屬性對應」的組態方式控制其屬性值。
 
 在 Azure AD 使用者物件和每個 SaaS app 的使用者物件之間，有一組預先設定的屬性對應。 有些 app 則管理其他類型的物件，例如群組或連絡人。 <br> 
@@ -49,7 +51,7 @@ Microsoft Azure AD 支援使用者佈建到例如 Salesforce、Google Apps 等�
 
 SaaS 應用程式需要有幾個屬性對應才能正確運作。 在屬性資料表中，相關的屬性對應在 [必要] 屬性的值為 [是]。 如果某個屬性對應是必要的，您就無法刪除它。 在此情況下，[刪除]  功能就無法使用。
 
-若要修改現有的屬性對應，只要選取對應，然後按一下 [編輯] 即可。 此時會顯示一個對話方塊頁面，讓您修改選取的屬性對應。
+若要修改現有的屬性對應，請選取對應，然後按一下 [編輯] 即可。 此時會顯示一個對話方塊頁面，讓您修改選取的屬性對應。
 
 ![編輯屬性對應][4]  
 
@@ -59,12 +61,12 @@ SaaS 應用程式需要有幾個屬性對應才能正確運作。 在屬性資�
 * **直接** - 目標屬性會填入 Azure AD 中連結物件的屬性值。
 * **常數** - 目標屬性會填入您所指定的特定字串。
 * **運算式** - 目標屬性會根據類似指令碼的運算式結果填入。 
-  如需詳細資訊，請參閱〈 [在 Azure Active Directory 中撰寫屬性對應的運算式](active-directory-saas-writing-expressions-for-attribute-mappings.md)〉。
+  如需詳細資訊，請參閱[在 Azure Active Directory 中撰寫屬性對應的運算式](active-directory-saas-writing-expressions-for-attribute-mappings.md)。
 * **無** - 目標屬性保留未修改。 不過，如果目標屬性是空的，就會填入您所指定的預設值。
 
 除了這四個基本屬性對應類型，自訂屬性對應還支援 **預設** 值指派的概念。 預設值指派可確保當 Azure AD 中和目標物件都沒有值時，目標屬性會填入某個值。
 
-Microsoft Azure AD 提供非常有效率的同步處理程序實作。 在初始化環境中，同步處理期間只會處理需要更新的物件。 更新屬性對應會影響同步處理期間的效能。 這是因為更新屬性對應組態需要重新評估所有受管理的物件。 因此，建議您最好不要經常變更屬性對應。
+Microsoft Azure AD 提供有效率的同步處理程序實作。 在初始化環境中，同步處理期間只會處理需要更新的物件。 更新屬性對應會影響同步處理期間的效能。 更新屬性對應組態需要重新評估所有受管理的物件。 建議您最好不要經常變更屬性對應。
 
 ## <a name="related-articles"></a>相關文章
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
@@ -80,9 +82,4 @@ Microsoft Azure AD 提供非常有效率的同步處理程序實作。 在初始
 [2]: ./media/active-directory-saas-customizing-attribute-mappings/ic775419.png
 [3]: ./media/active-directory-saas-customizing-attribute-mappings/ic775420.png
 [4]: ./media/active-directory-saas-customizing-attribute-mappings/ic775421.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

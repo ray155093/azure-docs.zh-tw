@@ -1,6 +1,6 @@
 ---
 title: "在 Azure Active Directory 預覽版中管理群組的成員 | Microsoft Docs"
-description: "如何在 Azure Active Directory 中管理具備群組成員身分的使用者和裝置"
+description: "如何在 Azure Active Directory 的群組中新增或移除使用者和裝置"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,15 +12,17 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/10/2017
+ms.date: 02/27/2017
 ms.author: curtand
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7c0c411f6e2f51fa2d55d46ff92153dc8882bb38
+ms.sourcegitcommit: 58768cd59a922483bcb37797a6dcd515d159ef4c
+ms.openlocfilehash: 3373af848720c7c04e679d7fd4b075c5571fb417
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="manage-the-members-for-a-group-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中管理群組的成員
+# <a name="manage-group-membership-for-users-in-your-azure-active-directory-tenant"></a>管理 Azure Active Directory 租用戶中使用者的群組成員資格
 本文說明如何在 Azure Active Directory (Azure AD) 預覽版中管理群組的成員。 [預覽版有何功能？](active-directory-preview-explainer.md)
 
 ## <a name="how-do-i-find-the-members-and-manage-them"></a>如何尋找成員及管理這些成員？
@@ -53,9 +55,4 @@ ms.openlocfilehash: 7c0c411f6e2f51fa2d55d46ff92153dc8882bb38
 * [管理群組的設定](active-directory-groups-settings-azure-portal.md)
 * [管理群組的成員資格](active-directory-groups-membership-azure-portal.md)
 * [管理群組中使用者的動態規則](active-directory-groups-dynamic-membership-azure-portal.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
