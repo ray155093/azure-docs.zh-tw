@@ -67,7 +67,7 @@ Azure 儲存體資料表輸入繫結可讓您在您的函式中使用儲存資�
 
 ## <a name="input-usage"></a>輸入使用方式
 在 C# 函式中，您使用在您函式簽章中的具名參數 (例如 `<T> <name>`) 繫結至資料表實體 (或多個實體)。
-其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [輸入繫結][](#input) 中指定的名稱。 在 Node.js 函式中，您會使用 `context.bindings.<name>` 來存取輸入資料表實體 (或多個實體)。
+其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [輸入繫結](#input) 中指定的名稱。 在 Node.js 函式中，您會使用 `context.bindings.<name>` 來存取輸入資料表實體 (或多個實體)。
 
 可以在 Node.js 或 C# 函式中將輸入資料還原序列化。 還原序列化的物件具有 `RowKey` 和 `PartitionKey` 屬性。
 
@@ -184,7 +184,7 @@ Azure 儲存體資料表輸出繫結可讓您在函式中將實體寫入儲存�
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>輸出使用方式
-在 C# 函式中，您使用函式簽章中名為 `out` 的參數 (例如 `out <T> <name>`) 繫結至資料表輸出，其中 `T` 是您想要用來序列化資料的資料類型，而 `paramName` 是您在 [輸出繫結][](#output) 中指定的名稱。 在 Node.js 函式中，您會使用 `context.bindings.<name>` 來存取資料表輸出。
+在 C# 函式中，您使用函式簽章中名為 `out` 的參數 (例如 `out <T> <name>`) 繫結至資料表輸出，其中 `T` 是您想要用來序列化資料的資料類型，而 `paramName` 是您在 [輸出繫結](#output) 中指定的名稱。 在 Node.js 函式中，您會使用 `context.bindings.<name>` 來存取資料表輸出。
 
 您可以在 Node.js 或 C# 函式中將物件序列化。 在 C# 函式中，您也可以繫結至下列類型︰
 
