@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/30/2017
 ms.author: kakhan
 translationtype: Human Translation
-ms.sourcegitcommit: 1dd5be3ba3a0fbbb4657a2c0b2ca6757a94cc76a
-ms.openlocfilehash: 1c6b4b45b9e0b018a7cb3f28f7868c89ad0fda61
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 10cc114451da7e73726772da4159776e76f5b8c9
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -139,7 +139,7 @@ Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含：
 > 下列 Linux 伺服器版本支援 Azure 磁碟加密：Ubuntu、CentOS、SUSE、SUSE Linux Enterprise Server (SLES) 和 Red Hat Enterprise Linux。
 
 > [!NOTE]
-> 下列 Linux 散發套件目前支援 Linux OS 磁碟加密：RHEL 7.2、CentOS 7.2 和 Ubuntu 16.04。
+> 下列 Linux 散發套件目前支援 Linux OS 磁碟加密：RHEL 7.2、RHEL 7.3、CentOS 7.2n 和 Ubuntu 16.04。
 >
 > 所有資源 (例如您的金鑰保存庫、儲存體帳戶和 VM) 必須屬於相同的 Azure 區域和訂用帳戶。
 
@@ -537,7 +537,7 @@ Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓該�
  ```
 
 ### <a name="enable-encryption-on-an-existing-or-running-iaas-linux-vm-in-azure"></a>在 Azure 中現有或執行中的 IaaS Linux VM 上啟用加密
-您可以使用 [Resource Manager 範本](https://github.com/Azure/azure-quick-start-templates/tree/master/201-encrypt-running-linux-vm)，在 Azure 中現有或執行中的 IaaS Linux VM 上啟用磁碟加密。
+您可以使用 [Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-running-linux-vm)，在 Azure 中現有或執行中的 IaaS Linux VM 上啟用磁碟加密。
 
 1. 在 Azure 快速入門範本上按一下 [部署至 Azure]，在 [參數] 刀鋒視窗中輸入加密組態，然後按一下 [確定]。
 

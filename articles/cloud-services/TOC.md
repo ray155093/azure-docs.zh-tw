@@ -36,8 +36,8 @@
 #### [使用工作在雲端服務角色上安裝 .NET](cloud-services-dotnet-install-dotnet.md)
 
 ### 設定遠端桌面
-#### [Visual Studio](cloud-services-role-enable-remote-desktop.md)
-#### [Node.js](cloud-services-nodejs-enable-remote-desktop.md)
+#### [入口網站](cloud-services-role-enable-remote-desktop-new-portal.md)
+#### [傳統入口網站](cloud-services-role-enable-remote-desktop.md)
 #### [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md)
 
 ## 部署

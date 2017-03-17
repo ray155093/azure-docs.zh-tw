@@ -1,6 +1,7 @@
 ---
 title: "將免費 Azure 訂用帳戶升級至隨用隨付 | Microsoft Docs"
-description: "描述從免費訂用帳戶升級至隨用隨付的程序和需求"
+description: "描述如何從免費訂用帳戶進行隨用隨付升級及需求"
+keywords: "隨用隨付升級"
 services: 
 documentationcenter: 
 author: adpick
@@ -13,30 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/03/2017
+ms.date: 03/01/2017
 ms.author: jlian
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 09c18ca6a967c2930ddd2b16d37f0bc606712ea1
-ms.openlocfilehash: 9d58a61521fe4e9171bf570e386e54ca79c7a26d
-
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 3ffb5d9828c167953c6553ff34e2d0dcdfe701b0
+ms.lasthandoff: 03/03/2017
 
 ---
-# <a name="upgrade-your-free-azure-subscription-to-pay-as-you-go"></a>將免費 Azure 訂用帳戶升級至隨用隨付
-您可以將[免費試用版](https://azure.microsoft.com/free/)或 [Microsoft Imagine](https://azure.microsoft.com/offers/ms-azr-0144p/) 訂用帳戶從 Azure 帳戶入口網站升級至[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)。 
+# <a name="upgrade-your-free-trial-or-microsoft-imagine-azure-subscription-to-pay-as-you-go"></a>將免費試用或 Microsoft Imagine Azure 訂用帳戶升級至隨用隨付
+從 Azure 帳戶入口網站將[免費試用](https://azure.microsoft.com/free/)或 [Microsoft Imagine](https://azure.microsoft.com/offers/ms-azr-0144p/) 訂用帳戶升級至[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)。 
 
 1. 登入 [Azure 帳戶入口網站](https://account.windowsazure.com/subscriptions)，並瀏覽至 [訂用帳戶] 索引標籤。
 2. 在訂用帳戶狀態區段中，選取 [立即升級] 橫幅。
    
-    ![將免費試用版升級至隨收隨付的通知](./media/billing-upgrade-azure-subscription/billpage.png)
+    ![此螢幕擷取畫面顯示按一下即可從免費試用升級至隨用隨付的位置](./media/billing-upgrade-azure-subscription/billpage.png)
 3. 確認您的升級。
    
-    ![確認升級您的訂用帳戶](./media/billing-upgrade-azure-subscription/Upgrade.png)
+    ![此螢幕擷取畫面顯示要選取以確認您想要升級訂用帳戶的項目](./media/billing-upgrade-azure-subscription/Upgrade.png)
 
-當您升級免費試用版隨用隨付時，所有免費試用版的優惠 (例如 30 天限制或 200 元美金信用額度) 將可繼續使用，直到其中一項用完為止。 之後便會發生訂用帳戶升級。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
+使用免費試用期間所剩餘的任何優惠，例如 30 天的限制或美金 200 元信用額度。 當您用完所有優惠之後，即會升級您的訂用帳戶。
 
 

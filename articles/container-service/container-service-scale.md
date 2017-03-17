@@ -1,6 +1,6 @@
 ---
 title: "調整 Azure Container Service 叢集 | Microsoft Docs"
-description: "如何使用 Azure CLI 或 Azure 入口網站來調整 Azure Container Service 叢集。"
+description: "如何使用 Azure CLI 或 Azure 入口網站來調整 Azure Container Service 中 DC/OS、Docker Swarm 或 Kubernetes 叢集中的代理程式節點。"
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -14,19 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/21/2017
+ms.date: 03/01/2017
 ms.author: saudas
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
-ms.openlocfilehash: 773eba80715cb990b23ecec548a18c112ba73a42
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 2464901d22bb91cbf396ef60f4bda6d979b578b7
+ms.openlocfilehash: 022e34811de9d2023d113c43d6f85842812dfee3
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="scale-an-azure-container-service-cluster"></a>調整 Azure Container Service 叢集
+# <a name="scale-agent-nodes-in-a-container-service-cluster"></a>調整 Container Service 叢集中的代理程式節點
 在[部署 Azure Container Service 叢集](container-service-deployment.md)之後，您可能需要變更代理程式節點的數目。 例如，您可能需要更多代理程式，以便可以執行更多的容器應用程式或執行個體。 
 
-您可以使用 Azure 入口網站或 Azure CLI 2.0 來變更 DC/OS、Docker Swarm 或 Kubernetes 叢集中的代理程式節點數目。 Azure CLI 2.0 是適用於 Resource Manager 部署模型的[新一代 CLI](/cli/azure/old-and-new-clis)。
+您可以使用 Azure 入口網站或 Azure CLI 2.0 來變更 DC/OS、Docker Swarm 或 Kubernetes 叢集中的代理程式節點數目。 
 
 ## <a name="scale-with-the-azure-portal"></a>使用 Azure 入口網站進行調整
 

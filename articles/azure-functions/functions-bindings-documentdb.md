@@ -17,8 +17,9 @@ ms.workload: na
 ms.date: 11/10/2016
 ms.author: chrande; glenga
 translationtype: Human Translation
-ms.sourcegitcommit: c9e736f7ce5330823f3890c669da40e2bb1ecf43
-ms.openlocfilehash: 13b69118c6732ed872bec11e880737db3b8fa3c5
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: e476a80a3846b8c80c35d6803d5518727f008824
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -53,7 +54,7 @@ DocumentDB 輸入繫結會擷取 DocumentDB 文件，並將它傳遞給函式的
 請注意：
 
 * `id` 支援類似於 `{queueTrigger}` 的繫結，此繫結會使用佇列訊息的字串值做為文件識別碼。
-* `connection` 必須是指向 DocumentDB 帳戶端點的應用程式設定的名稱 (具有值 `AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>`)。 如果您透過 Functions 入口網站 UI 建立 DocumentDB 帳戶，帳戶建立程序會為您建立應用程式設定。 若要使用現有的 DocumentDB 帳戶，您需要[手動設定設定此應用程式]()。 
+* `connection` 必須是指向 DocumentDB 帳戶端點的應用程式設定名稱 (具有值 `AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>`)。 如果您透過 Functions 入口網站 UI 建立 DocumentDB 帳戶，帳戶建立程序會為您建立應用程式設定。 若要使用現有的 DocumentDB 帳戶，您需要[手動設定設定此應用程式](functions-how-to-use-azure-function-app-settings.md)。 
 * 如果找不到指定的文件，對函式的具名輸入參數會設定為 `null`。 
 
 ## <a name="input-usage"></a>輸入使用方式
@@ -132,7 +133,7 @@ module.exports = function (context) {
 };
 ```
 
-## <a name="a-iddocdboutputadocumentdb-output-binding"></a><a id="docdboutput"></a>DocumentDB 輸出繫結
+## <a id="docdboutput"></a>DocumentDB 輸出繫結
 DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。 
 
 輸出繫結會使用 function.json `bindings` 陣列中的下列 JSON 物件︰ 
@@ -157,13 +158,16 @@ DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。
 ## <a name="output-usage"></a>輸出使用方式
 本節說明如何在您的函式程式碼中使用您的 DocumentDB 輸出繫結。
 
-在函式中寫入輸出參數時，依預設會在資料庫中產生新文件，使用自動產生的 GUID 做為文件識別碼。 您可以藉由在輸出參數中指定 `id` JSON 屬性來指定輸出文件的文件識別碼。 如果已存在具有該識別碼的文件，輸出文件會覆寫它。 
+在函式中寫入輸出參數時，依預設會在資料庫中產生新文件，使用自動產生的 GUID 做為文件識別碼。 您可以藉由在輸出參數中指定 `id` JSON 屬性來指定輸出文件的文件識別碼。 
+
+>[!Note]  
+>當您指定現有文件的識別碼時，新的輸出文件會覆寫現有文件。 
 
 您可以使用下列任何類型來寫入輸出︰
 
 * 任何[物件](https://msdn.microsoft.com/library/system.object.aspx) - 適用於 JSON 序列化。
-  如果您宣告自訂輸出類型 (例如 `out FooType paramName`)，Azure Functions 會嘗試將物件序列化為 JSON。 如果函式結束時輸出參數為 null，則函式的執行階段會建立 blob 作為 null 物件。
-* 字串 - (`out string paramName`) 適用於文字 blob 資料。 當函式結束時，如果字串參數非 Null，就只會建立 Blob。
+  如果您宣告自訂輸出類型 (例如 `out FooType paramName`)，Azure Functions 會嘗試將物件序列化為 JSON。 如果函式結束時輸出參數為 Null，則函式的執行階段會建立 Blob 作為 Null 物件。
+* 字串 - (`out string paramName`) 適用於文字 Blob 資料。 當函式結束時，如果字串參數非 Null，就只會建立 Blob。
 
 在 C# 函式中，您也可以輸出至下列任何類型︰
 
@@ -194,7 +198,7 @@ DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。
 }
 ```
 
-而您會具有可接收 JSON 佇列的佇列輸入繫結，其格式如下︰
+而且您有可接收 JSON 佇列的佇列輸入繫結，其格式如下︰
 
 ```json
 {
@@ -306,9 +310,4 @@ module.exports = function (context) {
   context.done();
 };
 ```
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

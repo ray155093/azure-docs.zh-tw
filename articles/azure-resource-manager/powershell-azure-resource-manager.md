@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/05/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
-ms.openlocfilehash: d1f4b7806f72dc2632ba981781097b19e89d07f3
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 407e9a1e4a50b875fa65e61d3e9aae245dd907e5
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -56,10 +57,10 @@ Get-Module -ListAvailable -Name AzureRm.Resources | Select Version
 ## <a name="log-in-to-your-azure-account"></a>登入您的 Azure 帳戶
 在使用您的解決方案之前，您必須登入您的帳戶。
 
-若要登入您的 Azure 帳戶，請使用 **Add-AzureRmAccount** Cmdlet。
+若要登入您的 Azure 帳戶，請使用 **Login-AzureRmAccount** Cmdlet。
 
 ```powershell
-Add-AzureRmAccount
+Login-AzureRmAccount
 ```
 
 cmdlet 會提示您 Azure 帳戶的登入認證。 登入之後，它會下載您的帳戶設定以供 Azure PowerShell 使用。
@@ -273,10 +274,5 @@ Export-AzureRmResourceGroup -ResourceGroupName TestRG1 -Path c:\Azure\Templates\
 * 若要了解部署範本的相關資訊，請參閱[使用 Azure Resource Manager 範本部署應用程式](resource-group-template-deploy.md)。
 * 您可以將現有的資源移動到新的資源群組。 如需範例，請參閱 [將資源移至新的資源群組或訂用帳戶](resource-group-move-resources.md)。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

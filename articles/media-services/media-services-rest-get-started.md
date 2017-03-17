@@ -15,15 +15,14 @@ ms.topic: article
 ms.date: 03/01/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: f1b8c68639fd2b778e7e56a6826e91d5bffd4ae8
-ms.openlocfilehash: c6f843e452353edc7c4c7e9bacf653c555145afe
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 52f672dcf42a19bf10935fcf733b8f07ff559a8d
+ms.lasthandoff: 03/14/2017
 
 
 ---
 # <a name="get-started-with-delivering-content-on-demand-using-rest"></a>使用 REST 傳遞點播內容入門
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
-
 
 本快速入門將逐步引導您使用 REST API 完成利用 Azure 媒體服務 (AMS) 來實作點播視訊 (VoD) 內容傳遞應用程式。
 
@@ -51,6 +50,9 @@ ms.lasthandoff: 01/13/2017
 4. 使用 REST API 將來源檔案編碼為一組調適性位元速率 MP4 檔案。
 5. 使用 REST API 發行資產及取得串流和漸進式下載 URL。
 6. 播放您的內容。
+
+>[!NOTE]
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
 
 如需本主題中所用的 AMS REST 實體的詳細資訊，請參閱 [Azure 媒體服務 REST API 參考](/rest/api/media/services/azure-media-services-rest-api-reference)。 此外，請參閱 [Azure 媒體服務概念](media-services-concepts.md)。

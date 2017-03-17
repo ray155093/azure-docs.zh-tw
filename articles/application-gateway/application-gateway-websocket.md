@@ -15,12 +15,13 @@ ms.workload: infrastructure-services
 ms.date: 12/16/2016
 ms.author: amsriva
 translationtype: Human Translation
-ms.sourcegitcommit: 3a8e5583f213c6d35f8e41dd31fe2ccad7389977
-ms.openlocfilehash: a3c0aaae014619fb3f4a2fffa6063a473da691e1
+ms.sourcegitcommit: 119275f335344858cd20b6a17ef87e3ef32b6e12
+ms.openlocfilehash: 5af1b1bacce2fe189a7b557527520795ed622b54
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="application-gateway-websocket-support"></a>應用程式閘道 WebSocket 支援
+# <a name="overview-of-websocket-support-in-application-gateway"></a>應用程式閘道中的 WebSocket 支援概觀
 
 應用程式閘道可跨所有閘道大小對 WebSocket 提供原生支援。 使用者無法進行設定來選擇要啟用或停用 WebSocket 支援。 您可以在連接埠 80/443 上繼續使用標準 HTTPListener 來接收 WebSocket 流量。 WebSocket 流量接著會使用應用程式閘道規則中指定的適當後端集區，來導向到已啟用 WebSocket 的後端伺服器。 以 [RFC6455](https://tools.ietf.org/html/rfc6455) 標準化的 WebSocket 通訊協定可透過長時間執行的 TCP 連線讓伺服器和用戶端之間能夠進行全雙工通訊。 此功能可讓 Web 伺服器和用戶端之間進行互動性更高的通訊，此通訊可以是雙向的，而不需要像 HTTP 型實作所要求的進行輪詢。  不同於 HTTP，WebSocket 的負荷很低，而且可以對多個要求/回應重複使用相同的 TCP 連線，進而提升資源使用效率。 WebSocket 通訊協定設計為透過傳統 HTTP 連接埠 80 和 443 進行運作。
 
@@ -120,10 +121,5 @@ ms.openlocfilehash: a3c0aaae014619fb3f4a2fffa6063a473da691e1
 ## <a name="next-steps"></a>後續步驟
 
 在了解 WebSocket 支援之後，請移至 [建立應用程式閘道](application-gateway-create-gateway.md) 以開始使用已啟用 WebSocket 的 Web 應用程式。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

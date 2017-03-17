@@ -15,13 +15,14 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 4d6ea516717077ffb4b832caa9e8a064905fce09
-ms.openlocfilehash: e101972777e45bcf3b49b113c6fd92d220ad43fc
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: d65f730a0f84b89d0228a22b42d0421ad4f2678f
+ms.lasthandoff: 03/09/2017
 
 
 ---
 # <a name="use-view-designer-to-create-custom-views-in-log-analytics"></a>在 Log Analytics 中使用檢視表設計工具來建立自訂檢視
-[Log Analytics]() 中的檢視設計工具可讓您在 OMS 主控台中建立自訂檢視，其中包含 OMS 存放庫中不同資料的視覺效果。 本文包含檢視設計工具的概觀以及建立和編輯自訂檢視的程序。
+[Log Analytics](log-analytics-overview.md) 中的檢視設計工具可讓您在 OMS 主控台中建立自訂檢視，其中包含 OMS 存放庫中不同資料的視覺效果。 本文包含檢視設計工具的概觀以及建立和編輯自訂檢視的程序。
 
 其他與檢視設計工具相關的文章︰
 
@@ -95,10 +96,5 @@ ms.openlocfilehash: e101972777e45bcf3b49b113c6fd92d220ad43fc
 ## <a name="next-steps"></a>後續步驟
 * 將[圖格](log-analytics-view-designer-tiles.md)新增至您的自訂檢視。
 * 將[視覺效果組件](log-analytics-view-designer-parts.md)新增至您的自訂檢視。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 07/05/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: bc0fe3341bc5b698032c56dec836b942ce7fa8be
-ms.openlocfilehash: 3ca6156369bf4ae530a91520e86166592181511a
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 75ddbacbd4dd14597b786d26f0730477f6c85811
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -116,9 +116,9 @@ ms.lasthandoff: 03/02/2017
 * 如需 Azure App Service 最佳作法 (包括建置可調整且具彈性的架構) 的詳細資訊，請參閱 [最佳作法：Azure App Service Web Apps](http://blogs.msdn.com/b/windowsazure/archive/2014/02/10/best-practices-windows-azure-websites-waws.aspx)。
 * 如需調整 App Service 應用程式的相關影片，請參閱下列資源：
   
-  * [何時該調整 Azure 網站 - Stefan Schackow](https://azure.microsoft.com/en-us/resources/videos/azure-web-sites-free-vs-standard-scaling/)
-  * [自動調整 Azure 網站、CPU 或排程 - Stefan Schackow](https://azure.microsoft.com/en-us/resources/videos/auto-scaling-azure-web-sites/)
-  * [如何調整 Azure 網站 - Stefan Schackow](https://azure.microsoft.com/en-us/resources/videos/how-azure-web-sites-scale/)
+  * [何時該調整 Azure 網站 - Stefan Schackow](https://azure.microsoft.com/resources/videos/azure-web-sites-free-vs-standard-scaling/)
+  * [自動調整 Azure 網站、CPU 或排程 - Stefan Schackow](https://azure.microsoft.com/resources/videos/auto-scaling-azure-web-sites/)
+  * [如何調整 Azure 網站 - Stefan Schackow](https://azure.microsoft.com/resources/videos/how-azure-web-sites-scale/)
 
 <!-- LINKS -->
 [vmsizes]:/pricing/details/app-service/

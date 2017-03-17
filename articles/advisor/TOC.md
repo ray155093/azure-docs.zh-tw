@@ -8,14 +8,11 @@
 
 # 開始使用
 ## [開始使用建議程式](advisor-get-started.md)
-
+# 參考
+## [REST](https://docs.microsoft.com/rest/api/advisor)
 # 相關參考
 ## [資訊安全中心](https://azure.microsoft.com/services/security-center/)
 ## [SQL DB 建議程式](https://azure.microsoft.com/documentation/articles/sql-database-advisor/)
 ## [Redis 快取](https://azure.microsoft.com/documentation/articles/cache-configure/#redis-cache-advisor)
 ## [應用程式服務](https://azure.microsoft.com/documentation/articles/app-service-best-practices/)
  
-
-<!--HONumber=Nov16_HO4-->
-
-

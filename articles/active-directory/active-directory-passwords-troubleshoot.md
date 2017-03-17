@@ -3,7 +3,7 @@ title: "疑難排解：Azure AD 密碼管理 |Microsoft Docs"
 description: "Azure AD 密碼管理的常見疑難排解步驟，包括重設、變更、回寫、註冊，以及尋求協助時應包含的資訊。"
 services: active-directory
 documentationcenter: 
-author: asteen
+author: MicrosoftGuyJFlo
 manager: femila
 editor: curtand
 ms.assetid: 18f3dcf7-9314-4a2b-8fed-54b00c0026dd
@@ -12,19 +12,20 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/12/2016
-ms.author: asteen
+ms.date: 02/28/2017
+ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: 8a4e26b7ccf4da27b58a6d0bcfe98fc2b5533df8
-ms.openlocfilehash: 3515091cf71ecb595d8c08902ff13549a9ddd2f4
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 3aa3a2fce46f37b06b60472d296e21fd10e070dc
+ms.lasthandoff: 03/10/2017
 
 
 ---
 # <a name="how-to-troubleshoot-password-management"></a>如何疑難排解密碼管理
 > [!IMPORTANT]
-> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
-> 
-> 
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+>
+>
 
 如果您有密碼管理方面的問題，我們在此提供協助。 您可能會碰到的大多數問題都可以透過以下幾個簡單的疑難排解步驟來加以解決，請閱讀其內容來疑難排解您的部署：
 
@@ -46,11 +47,11 @@ ms.openlocfilehash: 3515091cf71ecb595d8c08902ff13549a9ddd2f4
 * **頁面** – 您看到錯誤時的所在頁面 (包含 URL)。
 * **日期/時間/時區** – 您看到錯誤時的精確日期和時間 (包含時區)。
 * **支援碼** – 使用者看到錯誤時所產生的支援碼 (若要找到支援碼，請重現錯誤，然後按一下畫面底部的 [支援碼] 連結，將所產生的 GUID 傳送給支援工程師)。
-  
+
   * 如果您所在的頁面底部沒有支援碼，請按 F12，搜尋 SID 和 CID，然後將這兩個結果傳送給支援工程師。
-    
+
     ![][001]
-* **使用者識別碼** – 看到錯誤的使用者識別碼為何 (例如 user@contoso.com)?
+* **使用者識別碼** – 看到錯誤的使用者識別碼為何 (例如 user@contoso.com)？
 * **使用者的相關資訊** – 使用者已同盟、密碼雜湊同步處理、只在雲端嗎？  使用者是否已獲得 AAD Premium 或 AAD Basic 授權？
 * **應用程式事件記錄檔** – 如果您使用密碼回寫，而且錯誤位於您的內部部署基礎結構中，請將 Azure AD Connect 伺服器中的應用程式事件記錄檔複本進行壓縮，然後連同要求一起送出。
 
@@ -97,7 +98,7 @@ ms.openlocfilehash: 3515091cf71ecb595d8c08902ff13549a9ddd2f4
               <p>可以看到 [使用者密碼重設原則]<strong></strong> 區段，但其下方出現的唯一旗標是 [啟用密碼重設的使用者]<strong></strong> 旗標。</p>
             </td>
             <td>
-              <p>當您將 [啟用密碼重設的使用者]<strong></strong> 旗標切換為 [是]<strong> 時，就會出現其餘 UI。</strong></p>
+              <p>當您將 [啟用密碼重設的使用者]<strong></strong> 旗標切換為 [是]<strong></strong> 時，就會出現其餘 UI。</p>
             </td>
           </tr>
           <tr>
@@ -726,7 +727,7 @@ ms.openlocfilehash: 3515091cf71ecb595d8c08902ff13549a9ddd2f4
               <p>HR 8023042</p>
             </td>
             <td>
-              <p>同步處理引擎傳回的錯誤 hr= 80230402，訊息=嘗試取得物件失敗，因為存在具有相同錨點的重複項目</p>
+              <p>同步處理引擎傳回的錯誤 hr=&80230;402，訊息=嘗試取得物件失敗，因為存在具有相同錨點的重複項目</p>
             </td>
             <td>
               <p>ADSync</p>
@@ -1455,7 +1456,7 @@ MA 服務帳戶沒有適當的權限，無法對所提及的使用者帳戶設�
 2. 在搜尋方塊中輸入 **“services.msc”**，然後按 **Enter**。
 3. 找出 **Microsoft Azure AD Connect** 項目。
 4. 以滑鼠右鍵按一下服務項目，然後按一下 [ **重新啟動**]，並等候作業完成。
-   
+
    ![][002]
 
 這些步驟將會重新建立您與雲端服務的連線，解決您可能會遇到的任何中斷問題。  如果重新啟動同步處理服務無法解決您的問題，建議您接下來試著停用再重新啟用密碼回寫功能。
@@ -1468,14 +1469,14 @@ MA 服務帳戶沒有適當的權限，無法對所提及的使用者帳戶設�
 3. 在 [連線到 AD DS] 對話方塊上，輸入您的「AD Domain Services 系統管理員認證」。
 4. 在 [專門識別您的使用者] 對話方塊上，按 [下一步] 按鈕。
 5. 在 [選用功能] 對話方塊上，取消核取 [密碼回寫] 核取方塊。
-   
+
    ![][003]
 6. 在其餘的對話方塊頁面上逐一點選 [下一步] 而不變更任何項目，直到到達 [準備好設定] 頁面為止。
 7. 確認設定頁面顯示**密碼回寫選項為停用**，然後按一下綠色的 [設定] 按鈕來認可變更。
 8. 在 [已完成] 對話方塊上，取消選取 [立即同步處理] 選項，然後按一下 [完成] 來關閉精靈。
 9. 重新開啟 [ **Azure AD Connect 設定精靈**]。
 10. **重複步驟 2-8**，但請確定您已在 [選用功能] 畫面上**勾選 [密碼回寫] 選項** 來重新啟用服務。
-    
+
     ![][004]
 
 這些步驟將會重新建立您與雲端服務的連線，解決您可能會遇到的任何中斷問題。
@@ -1496,14 +1497,12 @@ MA 服務帳戶沒有適當的權限，無法對所提及的使用者帳戶設�
 
 如果這麼做無法解決您的問題，建議您閱讀[疑難排解密碼回寫](#troubleshoot-password-writeback)和 [Azure AD 密碼管理常見問題集](active-directory-passwords-faq.md)，看看其中是否有討論到您的問題。
 
-<br/>
-<br/>
-<br/>
 
-## <a name="links-to-password-reset-documentation"></a>密碼重設文件的連結
+
+## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
@@ -1516,9 +1515,4 @@ MA 服務帳戶沒有適當的權限，無法對所提及的使用者帳戶設�
 [002]: ./media/active-directory-passwords-troubleshoot/002.jpg "Image_002.jpg"
 [003]: ./media/active-directory-passwords-troubleshoot/003.jpg "Image_003.jpg"
 [004]: ./media/active-directory-passwords-troubleshoot/004.jpg "Image_004.jpg"
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

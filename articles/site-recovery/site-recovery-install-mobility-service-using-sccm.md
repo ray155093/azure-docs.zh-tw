@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 1/10/2017
 ms.author: anoopkv
 translationtype: Human Translation
-ms.sourcegitcommit: 93ac6629df82b1a5b8d14a1ad289e1e462b49b17
-ms.openlocfilehash: 8883b2d15592ea5e0c286bd6e6fc7c38134326a7
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 310f2a2fe793601d22952bf516a812bf4867bbec
+ms.lasthandoff: 03/03/2017
 
 ---
 # <a name="automate-mobility-service-installation-using-software-deployment-tools"></a>使用軟體部署工具來自動化行動服務安裝
@@ -94,19 +94,19 @@ ms.lasthandoff: 02/22/2017
 ### <a name="step-3-deploy-the-package"></a>步驟 3︰部署套件
 1. 在 SCCM 主控台，以滑鼠右鍵按一下套件，然後選取 [發佈內容]****
   ![distribute-sccm-package](./media/site-recovery-install-mobility-service-using-sccm/sccm_distribute.png)
-2. 選取套件應該複製到的 [發佈點]**[](https://technet.microsoft.com/library/gg712321.aspx#BKMK_PlanForDistributionPoints)**。
+2. 選取套件應該複製到的 **[發佈點](https://technet.microsoft.com/library/gg712321.aspx#BKMK_PlanForDistributionPoints)**。
 3. 完成精靈後，套件會開始複寫至指定的發佈點
 4. 完成套件發佈後，以滑鼠右鍵按一下套件，然後選取 [部署]****
   ![deploy-sccm-package](./media/site-recovery-install-mobility-service-using-sccm/sccm_deploy.png)
 5. 選取您在必要條件一節所建立的 Widows Server 裝置集合，作為部署的目標集合。
 
   ![sccm-select-target-collection](./media/site-recovery-install-mobility-service-using-sccm/sccm-select-target-collection.png)
-6. 在 [指定內容目的地] 頁面上，選取您的 [發佈點]
+6. 在 **指定內容目的地** 頁面上，選取您的 **發佈點**
 7. 在 [指定控制此軟體部署方式的設定] 頁面上，確定已依需要選取用途。
 
   ![sccm-deploy-select-purpose](./media/site-recovery-install-mobility-service-using-sccm/sccm-deploy-select-purpose.png)
 8. 在 [指定此部署的排程] 中指定排程。 深入了解[排程套件](https://technet.microsoft.com/library/gg682178.aspx)
-9. 根據資料中心的需求，在 [發佈點] 頁面上設定屬性，並完成精靈。
+9. 根據資料中心的需求，在 **發佈點** 頁面上設定屬性，並完成精靈。
 
 > [!TIP]
 > 為了避免不必要的重新開機，請排定在每月維護期間或軟體更新期間安裝套件。
@@ -177,19 +177,19 @@ ms.lasthandoff: 02/22/2017
 ### <a name="step-3-deploy-the-package"></a>步驟 3︰部署套件
 1. 在 SCCM 主控台，以滑鼠右鍵按一下套件，然後選取 [發佈內容]****
   ![distribute-sccm-package](./media/site-recovery-install-mobility-service-using-sccm/sccm_distribute.png)
-2. 選取套件應該複製到的 [發佈點]**[](https://technet.microsoft.com/library/gg712321.aspx#BKMK_PlanForDistributionPoints)**。
+2. 選取套件應該複製到的 **[發佈點](https://technet.microsoft.com/library/gg712321.aspx#BKMK_PlanForDistributionPoints)**。
 3. 完成精靈後，套件會開始複寫至指定的發佈點。
 4. 完成套件發佈後，以滑鼠右鍵按一下套件，然後選取 [部署]****
   ![deploy-sccm-package](./media/site-recovery-install-mobility-service-using-sccm/sccm_deploy.png)
 5. 選取您在必要條件一節所建立的 Linux 伺服器裝置集合，作為部署的目標集合。
 
   ![sccm-select-target-collection](./media/site-recovery-install-mobility-service-using-sccm/sccm-select-target-collection-linux.png)
-6. 在 [指定內容目的地] 頁面上，選取您的 [發佈點]
+6. 在 **指定內容目的地** 頁面上，選取您的 **發佈點**
 7. 在 [指定控制此軟體部署方式的設定] 頁面上，確定已依需要選取用途。
 
   ![sccm-deploy-select-purpose](./media/site-recovery-install-mobility-service-using-sccm/sccm-deploy-select-purpose.png)
 8. 在 [指定此部署的排程] 中指定排程。 深入了解[排程套件](https://technet.microsoft.com/library/gg682178.aspx)
-9. 根據資料中心的需求，在 [發佈點] 頁面上設定屬性，並完成精靈。
+9. 根據資料中心的需求，在 **發佈點** 頁面上設定屬性，並完成精靈。
 
 行動服務會根據您設定的排程，安裝在 Linux 伺服器裝置集合上。
 
@@ -199,6 +199,30 @@ ms.lasthandoff: 02/22/2017
 * [使用命令列手動安裝](http://aka.ms/mobsvcmanualinstallcli)
 * [使用設定伺服器推送安裝](http://aka.ms/pushinstall)
 * [使用 Azure 自動化和期望的狀態設定來自動化安裝](http://aka.ms/mobsvcdscinstall)
+
+## <a name="uninstall-mobility-service"></a>將行動服務解除安裝
+就像安裝一樣，您可以建立 SCCM 套件以將行動服務解除安裝。 使用以下指令碼以將行動服務解除安裝。
+
+```
+Time /t >> C:\logfile.log
+REM ==================================================
+REM ==== Check if Mob Svc is already installed =======
+REM ==== If not installed no operation required ========
+REM ==== Else run uninstall command =====================
+REM ==== {275197FC-14FD-4560-A5EB-38217F80CBD1} is ====
+REM ==== guid for Mob Svc Installer ====================
+whoami >> C:\logfile.log
+NET START | FIND "InMage Scout Application Service"
+IF  %ERRORLEVEL% EQU 1 (GOTO :INSTALL) ELSE GOTO :UNINSTALL
+:NOOPERATION
+                echo "No Operation Required." >> c:\logfile.log
+                GOTO :ENDSCRIPT
+:UNINSTALL
+                echo "Uninstall" >> C:\logfile.log
+                MsiExec.exe /qn /x {275197FC-14FD-4560-A5EB-38217F80CBD1} /L+*V "C:\ProgramData\ASRSetupLogs\UnifiedAgentMSIUninstall.log"
+:ENDSCRIPT
+
+```
 
 ## <a name="next-steps"></a>後續步驟
 您現在可以對虛擬機器[啟用保護](https://docs.microsoft.com/en-us/azure/site-recovery/site-recovery-vmware-to-azure#step-6-replicate-applications)。

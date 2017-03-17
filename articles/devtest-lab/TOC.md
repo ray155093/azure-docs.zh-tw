@@ -5,17 +5,20 @@
 
 # 開始使用
 ## [建立實驗室](devtest-lab-create-lab.md)
+## [建立公式](devtest-lab-create-formulas.md)
 ## [建立 VM](devtest-lab-add-vm.md)
+## [管理基本實驗室原則](devtest-lab-get-started-with-lab-policies.md)
 ## [建立實驗室以進行訓練](devtest-lab-training-lab.md)
 ## [常見問題集](devtest-lab-faq.md)
 
 # 作法：
 ## 管理實驗室
 ### [加入實驗室擁有者與使用者](devtest-lab-add-devtest-user.md)
-### [定義實驗室原則](devtest-lab-set-lab-policy.md)
+### [管理所有實驗室原則](devtest-lab-set-lab-policy.md)
 ### [將權限授與原則](devtest-lab-grant-user-permissions-to-specific-lab-policies.md)
 ### [設定成本管理](devtest-lab-configure-cost-management.md)
 ### [設定虛擬網路](devtest-lab-configure-vnet.md)
+### [了解共用 IP 位址](devtest-lab-shared-ip.md)
 
 ## 管理構件
 ### [加入構件存放庫](devtest-lab-add-artifact-repo.md)
@@ -33,8 +36,6 @@
 ### [使用 AzCopy 來上傳 VHD 檔案](devtest-lab-upload-vhd-using-azcopy.md)
 ### [使用 PowerShell 上傳 VHD 檔案](devtest-lab-upload-vhd-using-powershell.md)
 ### [使用儲存體總管上傳 VHD 檔案](devtest-lab-upload-vhd-using-storage-explorer.md)
-
-
 
 # 資源
 ## [服務更新](https://azure.microsoft.com/updates/?product=devtest-lab)

@@ -39,9 +39,10 @@
 ## [用 PowerShell 設定 Azure VPN 閘道 BGP](vpn-gateway-bgp-resource-manager-ps.md)
 ## [設定高可用性的主動-主動連線](vpn-gateway-activeactive-rm-powershell.md)
 ## [使用 PowerShell 修改區域網路閘道設定](vpn-gateway-modify-local-network-gateway.md)
-## [驗證閘道連線](vpn-gateway-verify-connection-resource-manager.md)
-## [重設 Azure VPN 閘道](vpn-gateway-resetgw-classic.md)
-## [如何使用點對站連線的自我簽署憑證](vpn-gateway-certificates-point-to-site.md)
+## [確認 VPN 閘道連線](vpn-gateway-verify-connection-resource-manager.md)
+## [重設 VPN 閘道](vpn-gateway-resetgw-classic.md)
+## [刪除 VPN 閘道](vpn-gateway-delete-vnet-gateway-powershell.md)
+## [為 P2S 連線建立自我簽署的根憑證](vpn-gateway-certificates-point-to-site.md)
 ## [設定 VPN 閘道 (傳統)](vpn-gateway-configure-vpn-gateway-mp.md)
 
 # 參考
@@ -64,8 +65,3 @@
 ## [價格](https://azure.microsoft.com/pricing/details/vpn-gateway)
 ## [SLA](https://azure.microsoft.com/support/legal/sla)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=vpn-gateway)
-
-
-<!--HONumber=Jan17_HO5-->
-
-

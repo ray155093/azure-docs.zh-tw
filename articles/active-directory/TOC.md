@@ -79,9 +79,12 @@
 ### [有風險的登入](active-directory-reporting-security-risky-sign-ins.md)
 ### [風險事件](active-directory-reporting-risk-events.md)
 ### [具名網路](active-directory-known-networks-azure-portal.md)
-### [常見問題集](active-directory-reporting-faq.md)
 ### [報告移轉](active-directory-reporting-migration.md)
 ### [保留](active-directory-reporting-retention.md)
+### [常見問題集](active-directory-reporting-faq.md)
+### 疑難排解
+#### [缺少稽核資料](active-directory-reporting-troubleshoot-missing-audit-data.md)
+#### [下載中缺少的資料](active-directory-reporting-troubleshoot-missing-data-download.md)
 ###    程式設計存取
 #### [稽核參考](active-directory-reporting-api-audit-reference.md)
 #### [稽核範例](active-directory-reporting-api-audit-samples.md)
@@ -124,13 +127,14 @@
 #### [疑難排解](active-directory-passwords-troubleshoot.md)
 
 ## 管理裝置
-### [註冊裝置](active-directory-conditional-access-device-registration-overview.md)
-#### [管理自動註冊](active-directory-conditional-access-automatic-device-registration.md)
+### [註冊裝置](active-directory-device-registration-overview.md)
+#### [管理自動註冊](active-directory-device-registration.md)
 #### [設定](active-directory-conditional-access-automatic-device-registration-setup.md)
-#### [常見問題集](active-directory-conditional-access-automatic-device-registration-faq.md)
+#### [部署內部部署](active-directory-device-registration-on-premises-setup.md)
+#### [常見問題集](active-directory-device-registration-faq.md)
 #### 疑難排解
-##### [針對 Windows 10 與 Windows Server 2016 進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows.md)
-##### [針對 Windows 下層用戶端進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows-legacy.md)
+##### [針對 Windows 10 與 Windows Server 2016 進行疑難排解](active-directory-device-registration-troubleshoot-windows.md)
+##### [針對 Windows 下層用戶端進行疑難排解](active-directory-device-registration-troubleshoot-windows-legacy.md)
 ### [Azure AD Join](active-directory-azureadjoin-overview.md)
 #### [規劃](active-directory-azureadjoin-deployment-aadjoindirect.md)
 #### [設定裝置註冊](active-directory-azureadjoin-setup.md)
@@ -277,7 +281,6 @@
 #### [支援的應用程式](active-directory-conditional-access-supported-apps.md)
 #### [了解裝置原則](active-directory-conditional-access-device-policies.md)
 #### [設定已連接應用程式的存取權](active-directory-conditional-access-policy-connected-applications.md)
-#### [部署內部部署](active-directory-conditional-access-on-premises-setup.md)
 #### [常見問題集](active-directory-conditional-faqs.md)
 #### [疑難排解](active-directory-conditional-access-device-remediation.md)
 #### [參考](active-directory-conditional-access-technical-reference.md)

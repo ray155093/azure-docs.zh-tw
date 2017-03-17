@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/08/2017
+ms.date: 02/28/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: fda7455320e1c043f1f5aa2a92b72329fc20e76a
-ms.openlocfilehash: b4aca222974e3165c9131134a8e1a2171b3d5088
+ms.sourcegitcommit: feb6e388a98cd6e133d010cada97f895140c3f4f
+ms.openlocfilehash: ee9a3b605c5445007f880a37e96c2326dd7c9b89
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -40,7 +41,7 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 ## <a name="scheduler-configuration"></a>排程器組態
 若要查看目前的組態設定，請移至 PowerShell 並執行 `Get-ADSyncScheduler`。 它會向您顯示類似以下圖片︰
 
-![GetSyncScheduler](./media/active-directory-aadconnectsync-feature-scheduler/getsynccyclesettings.png)
+![GetSyncScheduler](./media/active-directory-aadconnectsync-feature-scheduler/getsynccyclesettings2016.png)
 
 如果您在執行這個 Cmdlet 時看到 **無法使用同步命令或 Cmdlet** ，則表示 PowerShell 模組並未載入。 如果您在網域控制站或 PowerShell 限制層級高於預設設定的伺服器上執行 Azure AD Connect，即會發生此問題。 如果您看到此錯誤，則請執行 `Import-Module ADSync` ，以使 Cmdlet 可供使用。
 
@@ -52,7 +53,8 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 * **PurgeRunHistoryInterval**。 應該保留作業記錄的時間。 您可以在同步處理服務管理員中檢閱這些記錄。 這些記錄預設會保留 7 天。
 * **SyncCycleEnabled**。 指出排程器是否要在其作業中一併執行匯入、同步處理及匯出程序。
 * **MaintenanceEnabled**。 顯示是否已啟用維護程序。 它會更新憑證/金鑰，並清除作業記錄。
-* **IsStagingModeEnabled**。 顯示是否已啟用 [預備模式](active-directory-aadconnectsync-operations.md#staging-mode) 。 如果已啟用此設定，則它會停用執行匯出，但仍執行匯入和同步處理。
+* **StagingModeEnabled**。 顯示是否已啟用 [預備模式](active-directory-aadconnectsync-operations.md#staging-mode) 。 如果已啟用此設定，則它會停用執行匯出，但仍執行匯入和同步處理。
+* **SchedulerSuspended**。 由 Connect 在升級時設定，用來防止排程器執行。
 
 您可以使用 `Set-ADSyncScheduler`變更這些設定的其中一部分。 您可以修改下列參數：
 
@@ -61,6 +63,8 @@ Azure AD Connect 同步處理會使用排程器來同步處理您內部部署目
 * PurgeRunHistoryInterval
 * SyncCycleEnabled
 * MaintenanceEnabled
+
+在先前的 Azure AD Connect 組建中，**isStagingModeEnabled** 已在 Set-ADSyncScheduler 中公開。 **不支援**設定此屬性。 **SchedulerSuspended** 屬性應該僅供 Connect 修改。 **不支援**直接使用 PowerShell 來修改此屬性。
 
 排程器組態儲存在 Azure AD 中。 如果您有預備伺服器，主要伺服器上的任何變更也會影響預備伺服器 (IsStagingModeEnabled 除外)。
 
@@ -169,9 +173,4 @@ Get-ADSyncConnectorRunStatus
 深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

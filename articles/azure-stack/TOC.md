@@ -55,6 +55,8 @@
 #### [開始之前](azure-stack-app-service-before-you-get-started.md)
 #### [部署 App Service 資源提供者](azure-stack-app-service-deploy.md)
 #### [新增更多 Web 背景工作角色](azure-stack-app-service-add-worker-roles.md)
+#### [設定部署來源](azure-stack-app-service-configure-deployment-sources.md)
+#### [在 Azure Stack 上的 App Service 中啟用 FTP](azure-stack-app-service-enable-ftp.md)
 ### 植入 Marketplace
 #### [Marketplace 概觀](azure-stack-marketplace.md)
 #### [下載 Marketplace 項目](azure-stack-download-azure-marketplace-item.md)
@@ -110,6 +112,7 @@
 
 # 疑難排解
 ## [已知問題](azure-stack-troubleshooting.md)
+## [Azure Stack 中的診斷功能](azure-stack-diagnostics.md)
 
 # 資源
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=AzureStack)  

@@ -15,6 +15,7 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
+ROBOTS: NOINDEX
 translationtype: Human Translation
 ms.sourcegitcommit: c9a5091973395dd888939432292fbd06dcbf0680
 ms.openlocfilehash: 565220fa7b90ac49fd0c9ad01d36ba50fd7f6849
@@ -32,16 +33,16 @@ ms.lasthandoff: 01/18/2017
 >
 > 針對 HDInsight 3.4 或更新版本，請參閱[使用 Hive 搭配 HDInsight 和 Beeline](hdinsight-hadoop-use-hive-beeline.md)，以了解如何從命令列直接在叢集上執行 Hive 查詢。
 
-## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
+## <a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目。
 
 * Windows 型 HDInsight (HDInsight 上的 Hadoop) 叢集
 * 執行 Windows 10、Windows 8 或 Windows 7 的用戶端電腦
 
-## <a name="a-idconnectaconnect-with-remote-desktop"></a><a id="connect"></a>使用遠端桌面連線
+## <a id="connect"></a>使用遠端桌面連線
 依照 [使用 RDP 連線到 HDInsight 叢集](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)中的指示，為 HDInsight 叢集啟用遠端桌面，然後進行連線。
 
-## <a name="a-idhiveause-the-hive-command"></a><a id="hive"></a>使用 Hive 命令
+## <a id="hive"></a>使用 Hive 命令
 當您連線到 HDInsight 叢集的桌面時，請使用下列步驟來使用 Hive：
 
 1. 從 HDInsight 桌面，啟動 **Hadoop 命令列**。
@@ -96,10 +97,10 @@ ms.lasthandoff: 01/18/2017
 
      應該傳回三個資料列，且在資料行 t4 中全部包含 **[ERROR]** 。
 
-## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
+## <a id="summary"></a>摘要
 如您所見，Hive 命令提供簡單的方法，以互動方式在 HDInsight 叢集上執行 Hive 查詢、監視工作狀態，以及擷取輸出。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 如需 HDInsight 中 Hive 的一般資訊：
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)

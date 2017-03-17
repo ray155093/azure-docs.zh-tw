@@ -96,7 +96,7 @@ Xamarin、Git、模擬器及其他實用元件已全部與 Visual Studio 整合�
 當您在 Windows 上使用 Visual Studio 開啟 iOS 專案時，Xamarin 外掛程式會提示您輸入 Mac 的識別碼。
 
 ## <a name="fetch-the-github-repository"></a>擷取 GitHub 儲存機制
-使用 GitHub、Visual Studio 或其他 Git 用戶端中的 [下載 ZIP] [](https://github.com/Azure-Samples/MyDriving) 按鈕，擷取 **GitHub MyDriving 儲存機制** 的本機複本。
+使用 GitHub、Visual Studio 或其他 Git 用戶端中的 **[下載 ZIP]** 按鈕，[擷取 GitHub MyDriving 儲存機制](https://github.com/Azure-Samples/MyDriving) 的本機複本。
 
 將檔案解壓縮至具有簡短路徑名稱的資料夾，例如 C:\\code。
 
@@ -349,9 +349,9 @@ Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式�
 
 我們假設︰
 
-* 一個不到 5 人 (加上觀察專案關係人) 的小組。
+* 一個不到&5; 人 (加上觀察專案關係人) 的小組。
 * 執行約一個月。
-* 100 位使用者，每天 4 趟行程。
+* 100 位使用者，每天&4; 趟行程。
 
 > [!NOTE]
 > 如果您不熟悉 Azure，這裡有 [免費帳戶](https://azure.microsoft.com/free/)。
@@ -362,26 +362,26 @@ Microsoft Azure 提供許多不同的服務，可用來建置雲端應用程式�
 | --- | --- | --- |
 | [Visual Studio 2015 Community](https://www.visualstudio.com/products/visual-studio-community-vs) 與 [Xamarin](https://visualstudiogallery.msdn.microsoft.com/dcd5b7bd-48f0-4245-80b6-002d22ea6eee) <br/>跨平台開發環境 |Visual Studio Community。 (需要適用於 [Xamarin.Forms](https://xamarin.com/forms) 的 [Visual Studio Professional](https://www.visualstudio.com/vs-2015-product-editions)，以從單一程式碼基底設定跨平台)。 |美金 $0 元 |
 | [Azure IoT 中心](https://azure.microsoft.com/pricing/details/iot-hub/) <br/>裝置的雙向資料連接 |8,000 則訊息 + 每則訊息 0.5 KB 免費。 |美金 $0 元 |
-| [串流分析](https://azure.microsoft.com/pricing/details/stream-analytics/)  <br/>    大量串流資料處理 |啟用時，每小時每個串流單位收取美金 $0.031 元。 您可以選擇所需的串流單位數目；選擇更多可相應增加。 |美金 $23 元 |
-| [機器學習服務](https://azure.microsoft.com/documentation/services/machine-learning/)<br/>  自適性回應 |每月每個基座美金 $10 元。 <br/>                                                                                                                                                                                 + 3 小時實驗 \* 美金 $1 元 / 實驗小時。 <br/>                                                                                                                                                           + 3.5 小時 API CPU \* 美金 $2 元 / 生產 CPU 小時。 <br/>                                                                                                                                                           API CPU 時間假設每天重新訓練 5 分鐘，不過這會隨輸入資料愈多而增加。                   <br/>                                                                                                                                                                      + 每天計分 2 分鐘以處理每天 400 趟行程。 |美金 $20 元 |
-| [App Service](https://azure.microsoft.com/pricing/details/app-service/)  <br/>  裝載行動後端 |B1 層--生產環境 Web 應用程式。 |美金 $56 元 |
-| [Visual Studio Team Services ](https://azure.microsoft.com/pricing/details/visual-studio-team-services/)  <br/>  組建、單元測試和發行管理；工作管理 |私人 Agent，5 位使用者。 |美金 $0 元 |
+| [串流分析](https://azure.microsoft.com/pricing/details/stream-analytics/)  <br/>   大量串流資料處理 |啟用時，每小時每個串流單位收取美金 $0.031 元。 您可以選擇所需的串流單位數目；選擇更多可相應增加。 |美金 $23 元 |
+| [機器學習服務](https://azure.microsoft.com/documentation/services/machine-learning/)<br/> 自適性回應 |每月每個基座美金 $10 元。 <br/>                                                                                                                                                                                 + 3 小時實驗 \* 美金 $1 元 / 實驗小時。 <br/>                                                                                                                                                           + 3.5 小時 API CPU \* 美金 $2 元 / 生產 CPU 小時。 <br/>                                                                                                                                                          API CPU 時間假設每天重新訓練 5 分鐘，不過這會隨輸入資料愈多而增加。                   <br/>                                                                                                                                                                     + 每天計分 2 分鐘以處理每天 400 趟行程。 |美金 $20 元 |
+| [App Service](https://azure.microsoft.com/pricing/details/app-service/)  <br/> 裝載行動後端 |B1 層--生產環境 Web 應用程式。 |美金 $56 元 |
+| [Visual Studio Team Services ](https://azure.microsoft.com/pricing/details/visual-studio-team-services/)  <br/> 組建、單元測試和發行管理；工作管理 |私人 Agent，5 位使用者。 |美金 $0 元 |
 | [Application Insights](https://azure.microsoft.com/pricing/details/application-insights/) <br/>監視 Web 服務和網站的效能和使用狀況 |免費層。 |美金 $0 元 |
-| [HockeyApp](http://hockeyapp.net/pricing/) <br/>  散發 Beta 版應用程式，以及收集意見反應、使用狀況和當機資料 |新使用者有兩個免費的應用程式。<br/> 之後每月美金 $30 元。 |美金 $0 元 |
-| [Xamarin](https://store.xamarin.com/)<br/>  多部裝置之統一平台上的程式碼 |免費試用版。 <br/>之後每月美金 $25 元。 |美金 $0 元 |
+| [HockeyApp](http://hockeyapp.net/pricing/) <br/> 散發 Beta 版應用程式，以及收集意見反應、使用狀況和當機資料 |新使用者有兩個免費的應用程式。<br/> 之後每月美金 $30 元。 |美金 $0 元 |
+| [Xamarin](https://store.xamarin.com/)<br/> 多部裝置之統一平台上的程式碼 |免費試用版。 <br/>之後每月美金 $25 元。 |美金 $0 元 |
 | [SQL Database](https://azure.microsoft.com/pricing/details/sql-database/)  |基本層；單一資料庫模型。 |美金 $5 元 |
 | [Service Fabric](https://azure.microsoft.com/pricing/details/service-fabric/) (選擇性) |執行本機叢集。 |美金 $0 元 |
-| [Power BI](https://powerbi.microsoft.com/pricing/)<br/>  對串流處理的靜態資料進行多元顯示及調查 |免費層：1GB，每小時 10,000 列，每天重新整理。 <br/> 針對 [更高限制](https://powerbi.microsoft.com/documentation/powerbi-power-bi-pro-content-what-is-it/)、更多連接選項和共同作業，則為每月每位使用者美金 $10 元。 |美金 $0 元 |
+| [Power BI](https://powerbi.microsoft.com/pricing/)<br/> 對串流處理的靜態資料進行多元顯示及調查 |免費層：1GB，每小時 10,000 列，每天重新整理。 <br/> 針對 [更高限制](https://powerbi.microsoft.com/documentation/powerbi-power-bi-pro-content-what-is-it/)、更多連接選項和共同作業，則為每月每位使用者美金 $10 元。 |美金 $0 元 |
 | [儲存體](https://azure.microsoft.com/pricing/details/storage/) |L (本機備援) &lt; 100 G 美金 $0.024 元/GB。 |美金 $3 元 |
 | [Data Factory](https://azure.microsoft.com/pricing/details/data-factory/) |每個活動美金 $0.60 元 \* (8 - 5 FOC)。 |美金 $2 元 |
-| [HDInsight](https://azure.microsoft.com/pricing/details/hdinsight/) <br/>   用於每日重新訓練的隨選叢集 |3 個 A3 節點，每天 1 小時每小時美金 $0.32 元 * 31 天。 |美金 $30 元 |
+| [HDInsight](https://azure.microsoft.com/pricing/details/hdinsight/) <br/>  用於每日重新訓練的隨選叢集 |3 個 A3 節點，每天 1 小時每小時美金 $0.32 元 * 31 天。 |美金 $30 元 |
 | [事件中樞](https://azure.microsoft.com/pricing/details/event-hubs/) |基本為每月輸送量單位美金 $11 元 + 美金 $0.028 元的輸入。 |美金 $11 元 |
 | OBD 硬體鎖 | |美金 $12 元 |
 | **總計** | |**美金 $157 元** |
 
 如需詳細資訊，請參閱：
 
-*  [Azure 服務配額與限制](../azure-subscription-service-limits.md#iot-hub-limits)
+* [Azure 服務配額與限制](../azure-subscription-service-limits.md#iot-hub-limits)
 * [Azure 價格計算機](https://azure.microsoft.com/pricing/calculator/)
 
 ## <a name="send-us-your-feedback"></a>將您的意見反應傳給我們

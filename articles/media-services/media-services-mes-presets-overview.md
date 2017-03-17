@@ -12,27 +12,28 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 03/02/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
-ms.openlocfilehash: 42acc73e1c97f5570e674d95627a760a7fc88154
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: e9018ffa74c2895560adbd4c0d2b83ee67e9eb1c
+ms.lasthandoff: 03/03/2017
 
 
 ---
 
 # <a name="task-presets-for-mes-media-encoder-standard"></a>MES 的工作預設 (媒體編碼器標準)
 
-`Media Encoder Standard` 定義一組編碼預設，供您在建立編碼作業時使用。  
-  
- XML 或 JSON 預設字串應以下列檔案中顯示的預設為依據。 您可以將含有自訂值的預設傳遞給編碼器 (必須是有效值)。如需這些預設中每個元素的意義說明及每個元素的有效值，請參閱[媒體編碼器標準結構描述](media-services-mes-schema.md)主題。  
+**媒體編碼器標準**會定義一組編碼預設，供您在建立編碼作業時使用。 如果您想要將視訊編碼以使用媒體服務進行串流處理，建議使用「彈性資料流」預設。 當您指定這個預設時，媒體編碼器標準將[自動產生位元速率階梯](media-services-autogen-bitrate-ladder-with-mes.md)。 
+
+不過，如果您需要自訂編碼預設，則應採用本節中定義的其中一個編碼預設做為您自訂組態的範本。 如需這些預設中每個元素的意義說明及每個元素的有效值，請參閱[媒體編碼器標準結構描述](media-services-mes-schema.md)主題。  
   
 > [!NOTE]
 >  使用 4k 編碼的預設值時，您應該取得 `S3` 保留單元類型。 如需詳細資訊，請參閱 [如何調整編碼](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units)。  
   
- 使用媒體編碼器標準時，預設會啟用旋轉。 如果您的視訊是在智慧型手機或其他行動裝置上以直向模式錄製，根據預設，這些預設會將它們旋轉成橫向模式後再編譯 (有別於使用 Azure 媒體編碼器時，視訊旋轉為手動操作，如[此部落格](http://azure.microsoft.com/blog/2014/08/21/advanced-encoding-features-in-azure-media-encoder/)中的＜視訊旋轉＞所述)。  
+使用媒體編碼器標準時，預設會啟用旋轉。 如果您的視訊是在智慧型手機或其他行動裝置上以直向模式錄製，根據預設，這些預設會將它們旋轉成橫向模式後再編譯 (有別於使用 Azure 媒體編碼器時，視訊旋轉為手動操作，如[此部落格](http://azure.microsoft.com/blog/2014/08/21/advanced-encoding-features-in-azure-media-encoder/)中的＜視訊旋轉＞所述)。  
   
- 預設名稱對應下列主題中顯示的預設。  
+可用的預設：  
   
  [H264 多重位元速率 1080p 音訊 5.1](media-services-mes-preset-H264-Multiple-Bitrate-1080p-Audio-5.1.md) 會產生一組 8 個對齊 GOP 的 MP4 檔案 (範圍從 6000 kbps 到 400 kbps) 和 AAC 5.1 音訊。  
   
@@ -85,9 +86,4 @@ ms.openlocfilehash: 42acc73e1c97f5570e674d95627a760a7fc88154
  [H264 單一位元速率低品質 SD (適用於 Android)](media-services-mes-preset-H264-Single-Bitrate-Low-Quality-SD-for-Android.md) 會產生位元速率為 56 kbps 的單一 MP4 檔案，而且是立體聲 AAC 音訊。  
   
  如需與媒體服務編碼器相關的詳細資訊，請參閱[使用 Azure 媒體服務隨選編碼](https://azure.microsoft.com/en-us/documentation/articles/media-services-encode-asset/)。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

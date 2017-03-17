@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/21/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 15a811d35aab9995f4895a9106771310a95f7a41
-ms.openlocfilehash: 6ef9b43fb5fb88591186b20b52dd8f06b7d46cec
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: a985f7999affa1af8fdc1263d3cf674d6888158f
+ms.lasthandoff: 03/11/2017
 
 ---
 
@@ -33,13 +33,7 @@ ms.lasthandoff: 02/27/2017
 
 [!code-azurecli[主要](../../../cli_scripts/app-service/deploy-deployment-slot/deploy-deployment-slot.sh "建立 Web 應用程式並將程式碼部署至預備環境")]
 
-## <a name="clean-up-deployment"></a>清除部署 
-
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、App Service 應用程式和所有相關資源。
-
-```azurecli
-az group delete --name myResourceGroup
-```
+[!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>指令碼說明
 

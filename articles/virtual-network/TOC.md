@@ -49,6 +49,10 @@
 #### [PowerShell](virtual-networks-create-vnetpeering-arm-ps.md)
 #### [範本](virtual-networks-create-vnetpeering-arm-template-click.md)
 
+### [網路介面](virtual-network-network-interface.md)
+
+### [公用 IP 位址](virtual-network-public-ip-address.md)
+
 ### 虛擬機器
 
 #### 靜態公用 IP 位址
@@ -123,9 +127,9 @@
 #### [PowerShell](virtual-network-routes-troubleshoot-powershell.md)
 
 # 參考
-## [PowerShell (Resource Manager)](https://msdn.microsoft.com/library/mt163510(v=azure.300))
-## [PowerShell (傳統)](https://msdn.microsoft.com/library/mt270335(v=azure.300))
-## [Azure CLI](/cli/azure/)
+## [PowerShell (資源管理員)](/powershell/resourcemanager/azurerm.network/v3.4.0/azurerm.network)
+## [PowerShell (傳統)](/powershell/servicemanagement/azure.networking/v3.4.0/azure.networking)
+## [Azure CLI](/cli/azure/network)
 ## [Java](/java/api/)
 ## [REST (Resource Manager)](https://msdn.microsoft.com/library/mt163658.aspx)
 ## [REST (傳統)](https://msdn.microsoft.com/library/jj157182.aspx)

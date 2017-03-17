@@ -96,7 +96,10 @@
 #### [疑難排解](iot-hub-intel-edison-kit-c-troubleshooting.md)
 
 ## 使用 Arduino
-### [Node.js](iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started.md)
+
+### [Adafruit Feather HUZZAH ESP8266](iot-hub-arduino-huzzah-esp8266-get-started.md)
+
+### [Adafruit Feather M0](iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started.md)
 #### 第 1 課：設定裝置
 ##### [設定裝置](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson1-configure-your-device.md)
 ##### [取得工具 (Windows 7+)](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson1-get-the-tools-win32.md)
@@ -116,6 +119,7 @@
 ##### [執行範例應用程式以接收訊息](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson4-send-cloud-to-device-messages.md)
 ##### [選擇性︰變更 LED 行為](iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson4-change-led-behavior.md)
 #### [疑難排解](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md)
+
 
 ## 使用閘道 SDK
 ### [在 Linux 上模擬](iot-hub-linux-gateway-sdk-get-started.md)
@@ -140,6 +144,8 @@
 ##### [建立 Azure 函式應用程式與 Azure 儲存體帳戶](iot-hub-gateway-kit-c-sim-lesson4-deploy-resource-manager-template.md)
 ##### [讀取保存在 Azure 表格儲存體中的訊息](iot-hub-gateway-kit-c-sim-lesson4-read-table-storage.md)
 
+#### [第 5 課：建立您的第一個 Azure IoT 閘道模組](iot-hub-gateway-kit-c-lesson5-create-gateway-module.md)
+
 #### [疑難排解](iot-hub-gateway-kit-c-sim-troubleshooting.md)
 
 ### [SensorTag 裝置](iot-hub-gateway-kit-c-get-started.md)
@@ -159,6 +165,8 @@
 #### 第 4 課︰將訊息儲存到 Azure 資料表儲存體
 ##### [建立 Azure 函式應用程式與 Azure 儲存體帳戶](iot-hub-gateway-kit-c-lesson4-deploy-resource-manager-template.md)
 ##### [讀取保存在 Azure 表格儲存體中的訊息](iot-hub-gateway-kit-c-lesson4-read-table-storage.md)
+
+#### [第 5 課：建立您的第一個 Azure IoT 閘道模組](iot-hub-gateway-kit-c-lesson5-create-gateway-module.md)
 
 ##### [疑難排解](iot-hub-gateway-kit-c-troubleshooting.md)
 
@@ -219,7 +227,7 @@
 ## 管理
 ### 建立 IoT 中樞 
 #### [使用入口網站](iot-hub-create-through-portal.md)
-#### [使用 CLI 2.0 預覽](iot-hub-create-using-cli.md)
+#### [使用 CLI 2.0](iot-hub-create-using-cli.md)
 #### [使用 CLI](iot-hub-create-using-cli-nodejs.md)
 #### [使用 REST API](iot-hub-rm-rest.md)
 #### [使用 PowerShell](iot-hub-rm-template-powershell.md)

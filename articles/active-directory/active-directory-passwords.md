@@ -1,9 +1,9 @@
 ---
-title: "Azure AD 密碼重設 |Microsoft Docs"
+title: "Azure Active Directory 密碼重設 | Microsoft Docs"
 description: "Azure AD 中的密碼管理功能說明，包括密碼重設、變更、密碼管理報告，以及本機內部部署 Active Directory 回寫。"
 services: active-directory
 documentationcenter: 
-author: asteen
+author: MicrosoftGuyJFlo
 manager: femila
 editor: curtand
 ms.assetid: be6164fc-bae1-49df-af76-761329ba70a1
@@ -12,26 +12,27 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/13/2016
-ms.author: asteen
+ms.date: 02/28/2017
+ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: a6287228622070d566266f184dc1c32ec6c3dea5
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 68334eab580e7117cf0b18f84ba56ed699fea12e
+ms.lasthandoff: 03/10/2017
 
 
 ---
-# <a name="azure-ad-password-reset-for-it-administrators"></a>IT 系統管理員的 Azure AD 密碼重設
+# <a name="azure-active-directory-password-reset-for-it-administrators"></a>IT 系統管理員的 Azure Active Directory 密碼重設
 > [!IMPORTANT]
-> 您來到此處是因為想要重設 Azure 或 O365 密碼嗎？  若是如此，請 [跳到本節](#users-how-to-manage-your-own-password)。
-> 
-> 
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+>
+>
 
-利用自助管理方式來降低成本和節省人力，一直以來都是世界各地 IT 部門追求的主要目標。  因此，市場中充斥著各式產品，讓您能夠從雲端或內部部署管理內部部署群組、密碼或使用者設定檔。 而 Azure AD 便是藉由提供您一些現今市場上最容易使用、最強大的自助式功能，從這些產品中脫穎而出。
+利用自助管理方式來降低成本和節省人力，一直以來都是世界各地 IT 部門追求的主要目標。  因此，市場中充斥著各式產品，讓您能夠從雲端或內部部署管理內部部署群組、密碼或使用者設定檔。 而 Azure Active Directory (Azure AD) 藉由提供一些現今市場上最容易使用、最強大的自助式功能，從這些產品中脫穎而出。
 
 **Azure AD 密碼管理** 提供一組讓使用者隨時隨地從任何裝置管理密碼的功能，同時還能遵循您定義的安全性原則。
 
 ## <a name="admins-learn-about-how-to-get-started-with-azure-ad-password-reset"></a>系統管理員：了解如何開始使用 Azure AD 密碼重設
-如果您是想要啟用 Azure AD 密碼重設，或只是想深入加以了解的系統管理員，請從下列連結開始取得您感興趣的內容。
+如果您是想要啟用 Azure AD 密碼重設，或只是想加以深入了解的系統管理員，請從下列連結開始取得您感興趣的內容。
 
 | 主題 |  |
 | --- | --- |
@@ -117,8 +118,8 @@ Azure AD 密碼重設有 3 個可用層級，視您擁有的訂用帳戶而定�
 | 主題 |  |
 | --- | --- |
 | 我該至何處查看密碼重設報告？ |[密碼管理報告概觀](active-directory-passwords-get-insights.md#overview-of-password-management-reports) |
-| 哪裡可以查看使用者在我的組織中使用密碼重設的情形？ |[檢視密碼重設活動](active-directory-passwords-get-insights.md#view-password-reset-activity) |
-| 哪裡可以查看有多少使用者註冊及其註冊的項目？ |[檢視密碼重設註冊活動](active-directory-passwords-get-insights.md#view-password-reset-registration-activity) |
+| 哪裡可以查看使用者在我的組織中使用密碼重設的情形？ |[檢視密碼重設活動](active-directory-passwords-get-insights.md#how-to-view-password-management-reports) |
+| 哪裡可以查看有多少使用者註冊及其註冊的項目？ |[檢視密碼重設註冊活動](active-directory-passwords-get-insights.md#how-to-view-password-management-reports) |
 | 如何從 API 取得密碼重設報告？ |[建立 Azure AD 應用程式以存取報告 API](active-directory-reporting-api-getting-started.md) |
 | 透過 API 可取得何種密碼重設報告資訊？ |[報告 API 中提供的密碼重設和註冊事件](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-reports-and-events-preview#SsprActivityEvent) |
 
@@ -169,14 +170,14 @@ Azure AD 密碼重設有 3 個可用層級，視您擁有的訂用帳戶而定�
 #### <a name="enforce-password-reset-registration-at-sign-in-to-office-365-apps---november-2015"></a>在登入 Office 365 應用程式時強制密碼重設註冊 - 2015 年 11 月
 * 現在，在啟用 [強制註冊](active-directory-passwords-customize.md#require-users-to-register-when-signing-in) 功能後，您的使用者將必須使用工作或學校帳戶從他們登入的任何位置進行註冊。  這將可大幅增加許多組織可上線以重設密碼的速度。  藉由這項新功能，我們發現大型組織在短短 2 週內即可上線。
 
-#### <a name="support-for-unlocking-active-directory-accounts-without-resetting-a-password---november-2015"></a>支援解除鎖定 Active Directory 帳戶而不必重設密碼 - 2015 年 11 月
-* 僅解除鎖定而不重設，是近來客服中心龐大的業務之一。  事實上，許多組織有高達 70% 的密碼重設預算都花在解除鎖定帳戶上。  為了因應此需求，現在您可以利用 Azure AD 密碼重設啟用特定功能，讓您的使用者直接解除鎖定 AD 帳戶，而不需重設密碼。  請在此處了解如何開啟此功能： [設定：讓使用者直接解除鎖定 AD 帳戶而不必重設密碼](active-directory-passwords-customize.md#allow-users-to-unlock-accounts-without-resetting-their-password)。
+#### <a name="support-for-unlocking-on-premises-ad-accounts-without-resetting-a-password---november-2015"></a>支援直接解除鎖定內部部署 AD 帳戶，而不必重設密碼 - 2015 年 11 月
+* 僅解除鎖定而不重設，是近來客服中心龐大的業務之一。  事實上，許多組織有高達 70% 的密碼重設預算都花在解除鎖定帳戶上。  為了因應此需求，現在您可以利用 Azure AD 密碼重設啟用特定功能，讓您的使用者直接解除鎖定內部部署 AD 帳戶，而不必重設密碼。  請在此處了解如何開啟此功能：[設定：讓使用者直接解除鎖定其內部部署 AD 帳戶，而不必重設密碼](active-directory-passwords-customize.md#allow-users-to-unlock-accounts-without-resetting-their-password)。
 
-#### <a name="usability-updates-to-registration-page---october-2015"></a>對註冊頁面的可用性更新 - 2015 年 10 月
+#### <a name="usability-updates-to-registration-page---october-2015"></a>註冊頁面的可用性更新 - 2015 年 10 月
 * 現在，當使用者註冊資料之後，他或她只需按一下 [看起來不錯] 即可更新資料而不需要重新傳送電子郵件或打電話。
 
 #### <a name="improved-reliability-of-password-writeback---september-2015"></a>改進密碼回寫的可靠性 - 2015 年 9 月
-* 從 Azure AD Connect 9 月的發行版本開始，密碼回寫代理程式現在將更積極地重試連接，還有其他更健全的容錯移轉功能。
+* 從 Azure AD Connect&9; 月的發行版本開始，密碼回寫代理程式現在將更積極地重試連接，還有其他更健全的容錯移轉功能。
 
 #### <a name="api-for-retrieving-password-reset-reporting-data---august-2015"></a>用於擷取密碼重設報告資料的 API - 2015 年 8 月
 * 現在，密碼重設報告背後的資料可以直接從 [Azure AD 的報告和事件 API](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent)擷取。
@@ -193,7 +194,7 @@ Azure AD 密碼重設有 3 個可用層級，視您擁有的訂用帳戶而定�
 #### <a name="account-unlock-support-during-password-reset---june-2015"></a>密碼重設期間帳戶解除鎖定支援 - 2015 年 6 月
 * 如果您使用密碼回寫，並且您在帳戶已鎖定時重設密碼，我們將會自動解除鎖定您的 Active Directory 帳戶！
 
-#### <a name="branded-sspr-registration---april-2015"></a>加上標誌的 SSPR 註冊 - 2015 年 4 月
+#### <a name="branded-self-service-password-reset-sspr-registration---april-2015"></a>加上標誌的自助式密碼重設 (SSPR) 註冊 - 2015 年 4 月
 * 密碼重設註冊頁面現在已加上您的公司標誌！
 
 #### <a name="security-questions---march-2015"></a>安全性問題 - 2015 年 3 月
@@ -209,10 +210,10 @@ Azure AD 密碼重設有 3 個可用層級，視您擁有的訂用帳戶而定�
 
 * 現在，我們支援在存取 myapps.microsoft.com 時提醒使用者更新其所註冊的資料，但我們正努力對所有登入實現此功能。
 
-## <a name="links-to-password-reset-documentation"></a>密碼重設文件的連結
+## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
@@ -221,10 +222,4 @@ Azure AD 密碼重設有 3 個可用層級，視您擁有的訂用帳戶而定�
 * [**常見問題集**](active-directory-passwords-faq.md) - 取得常見問題的解答
 * [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何快速移難排解服務的問題
 * [**深入了解**](active-directory-passwords-learn-more.md) - 深入探索服務運作方式的技術細節
-
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

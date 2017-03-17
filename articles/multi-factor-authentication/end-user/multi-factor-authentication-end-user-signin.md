@@ -13,11 +13,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/02/2016
+ms.date: 03/02/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: c0af680c83a72a9f2a415999141f9913c8b724a4
-ms.openlocfilehash: 85e0212ed9d7bde001f9b5cd4776d34ad1f01816
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: e972446ea92e8fd31406c9ccff7832b7441f3a2a
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -26,25 +27,34 @@ ms.openlocfilehash: 85e0212ed9d7bde001f9b5cd4776d34ad1f01816
 > 本文的目的逐步解說典型的登入體驗。 如需登入的說明或疑難排解問題，請參閱 [使用 Azure Multi-Factor Authentication 時碰到困難](multi-factor-authentication-end-user-troubleshoot.md)。
 
 ## <a name="what-will-your-sign-in-experience-be"></a>您的登入體驗將會如何？
-視您登入及使用 Multi-Factor Authentication 的方式而定，您的體驗將會有所不同。 選擇最符合您的情況的一個選項：
+您的登入體驗會根據您選擇來做為第二個要素的項目而不同︰撥打電話、驗證應用程式或簡訊。 選擇最符合您的情況的一個選項：
 
 | 您要如何登入？ | 
 | --- |
-| [使用行動或辦公室電話登入](#signing-in-with-mobile-or-office-phone) |
+| [透過電話撥打我的行動或辦公室電話](#signing-in-with-a-phone-call) |
+| [傳送簡訊到我的行動電話號碼](#signing-in-with-a-text-message)
 | [從 Microsoft 驗證器應用程式使用通知](#signing-in-with-the-microsoft-authenticator-app-using-notification) |
 | [從 Microsoft 驗證器應用程式使用驗證碼](#signing-in-with-the-microsoft-authenticator-app-using-verification-code) |
 | [使用替代方法，因為現在無法使用我慣用的方法](#signing-in-with-an-alternate-method) |
 
-## <a name="signing-in-with-mobile-or-office-phone"></a>使用行動或辦公室電話登入
-下列資訊將說明搭配行動電話或辦公室電話使用 Multi-Factor Authentication 的經驗。
+## <a name="signing-in-with-a-phone-call"></a>透過撥打電話來登入
+下列資訊將說明透過撥打您的行動或辦公室電話來進行雙步驟驗證體驗。
 
 1. 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。  
-2. Microsoft 將會打電話給您。  
+2. Microsoft 打電話給您。  
 3. 請接聽電話並按 # 鍵。  
 4. 您現在應已登入。  
 
+## <a name="signing-in-with-a-text-message"></a>透過簡訊登入
+下列資訊將說明透過傳送簡訊到您的行動電話來進行雙步驟驗證體驗：
+
+1. 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。 
+2. Microsoft 傳送包含數字代碼的簡訊給您。 
+3. 請在登入頁面上提供的方塊中輸入此代碼。 
+4. 您現在應已登入。 
+
 ## <a name="signing-in-with-the-microsoft-authenticator-app"></a>使用 Microsoft 驗證器應用程式登入 
-下列資訊將說明使用 Microsoft 驗證器進行雙步驟驗證的體驗。 應用程式有兩種不同的使用方式。 您可以在裝置上接收推送通知，或是開啟應用程式以取得驗證碼。
+下列資訊將說明使用 Microsoft Authenticator 應用程式進行雙步驟驗證的體驗。 應用程式有兩種不同的使用方式。 您可以在裝置上接收推送通知，或是開啟應用程式以取得驗證碼。
 
 ### <a name="to-sign-in-with-a-notification-from-the-microsoft-authenticator-app"></a>從 Microsoft 驗證器應用程式使用通知登入
 1. 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。
@@ -57,10 +67,10 @@ ms.openlocfilehash: 85e0212ed9d7bde001f9b5cd4776d34ad1f01816
 
 ### <a name="to-sign-in-using-a-verification-code-with-the-microsoft-authenticator-app"></a>使用驗證碼登入 Microsoft 驗證器應用程式
 
-如果您使用 Microsoft 驗證器應用程式取得驗證碼，那麼開啟應用程式時，您會在您的帳戶名稱下面看到一個數字。 這個數字每&30; 秒會變更一次，所以您不會使用相同的數字兩次。 當系統要求您輸入驗證碼時，開啟應用程式並使用當下所顯示的任何數字。 
+如果您使用 Microsoft Authenticator 應用程式取得驗證碼，則當您開啟應用程式時，會在您的帳戶名稱下面看到一個數字。 這個數字每 30 秒會變更一次，所以您不會使用相同的數字兩次。 當系統要求您輸入驗證碼時，開啟應用程式並使用當下所顯示的任何數字。 
 
 1. 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。
-2. Microsoft 將會提示您輸入驗證碼。
+2. Microsoft 提示您輸入驗證碼。
 
   ![輸入驗證碼](./media/multi-factor-authentication-end-user-signin/verify3.png)
 
@@ -68,10 +78,10 @@ ms.openlocfilehash: 85e0212ed9d7bde001f9b5cd4776d34ad1f01816
 4. 您現在應已登入。
 
 ## <a name="signing-in-with-an-alternate-method"></a>使用替代方法登入
-有時候您設定做為慣用驗證方法的電話或裝置不在手邊。 這種情況就是為什麼我們建議您為帳戶設定備份方法。 下一節將說明當主要方法無法使用時，如何使用替代方法進行登入。
+有時候您設定做為慣用驗證方法的電話或裝置不在手邊。 這種情況就是為什麼我們建議您為帳戶設定備份方法。 下一節示範當主要方法無法使用時，如何使用替代方法進行登入。
 
 1. 使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。
-2. 選取 [使用不同的驗證選項]。 您會看到不同的驗證選項，這取決於您設定了幾種驗證方法。
+2. 選取 [使用不同的驗證選項]。 根據您已設定的驗證選項數量而定，您將會看到不同的驗證選項。
 
   ![使用替代方法](./media/multi-factor-authentication-end-user-signin/alt.png)
 
@@ -84,8 +94,3 @@ ms.openlocfilehash: 85e0212ed9d7bde001f9b5cd4776d34ad1f01816
 了解如何[管理雙步驟驗證設定](multi-factor-authentication-end-user-manage-settings.md)。
 
 了解如何[開始使用 Microsoft 驗證器應用程式](microsoft-authenticator-app-how-to.md)，如此一來，因此您可以使用通知登入，而不是經由文字訊息和來電。 
-
-
-<!--HONumber=Feb17_HO1-->
-
-

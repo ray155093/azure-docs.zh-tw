@@ -16,8 +16,9 @@ ms.workload: data-management
 ms.date: 07/31/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: d3456b190d78560dc9380d5ecb56e0e82006e2ea
-ms.openlocfilehash: 209446ae6b1a4f951bc141d95ff481f2f5ab43b0
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: 821be267a109bdcb1a1d22107f0ab4c469e6d6aa
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -53,7 +54,7 @@ ms.openlocfilehash: 209446ae6b1a4f951bc141d95ff481f2f5ab43b0
 
 #### <a name="recovery"></a>復原
 * 請確定 DR 區域中的應用程式組態指向先前的次要資料庫，該資料庫將變成可完全存取的新主要資料庫。
-* 執行 [規劃的容錯移轉](sql-database-geo-replication-failover-powershell.md#initiate-a-planned-failover) 將次要資料庫變成新的主要資料庫
+* 執行 [規劃的容錯移轉](scripts/sql-database-setup-geodr-and-failover-database-powershell.md) 將次要資料庫變成新的主要資料庫
 * 請遵循 [在復原後設定資料庫](sql-database-disaster-recovery.md) 指南以完成復原。
 
 #### <a name="validation"></a>驗證
@@ -64,9 +65,4 @@ ms.openlocfilehash: 209446ae6b1a4f951bc141d95ff481f2f5ab43b0
 * 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
 * 若要了解如何使用自動備份進行復原，請參閱 [從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
 * 若要了解更快速的復原選項，請參閱 [作用中異地複寫](sql-database-geo-replication-overview.md)  
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

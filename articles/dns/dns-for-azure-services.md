@@ -12,15 +12,17 @@ ms.service: dns
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
+ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 09/21/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 42d47741e414b2de177f1fd75b3e1ac3fde96579
-ms.openlocfilehash: 15412e67b6785812d00438e1819f24a6cb4fd0a8
+ms.sourcegitcommit: 119275f335344858cd20b6a17ef87e3ef32b6e12
+ms.openlocfilehash: 3a917b34c925965aacd161e8a01284d9a01bebae
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="using-azure-dns-with-other-azure-services"></a>使用 Azure DNS 搭配其他 Azure 服務
+# <a name="how-azure-dns-works-with-other-azure-services"></a>Azure DNS 如何與其他 Azure 服務搭配運作
 
 Azure DNS 是一種託管的 DNS 管理與名稱解析服務。 這可讓您為其他應用程式和已在 Azure 中部署的服務建立公用 DNS 名稱。 為您的自訂網域中的 Azure 服務建立名稱，就和為您的服務新增正確類型的記錄一樣簡單。
 
@@ -38,10 +40,5 @@ Azure DNS 是一種託管的 DNS 管理與名稱解析服務。 這可讓您為�
 | App Service |外部 IP |若使用外部 IP 位址，您可以建立 DNS A 記錄。 若不是，則必須建立對應至 azurewebsites.net 名稱的 CNAME 記錄。 如需詳細資訊，請參閱 [將自訂網域名稱對應至 Azure 應用程式](../app-service-web/web-sites-custom-domain-name.md) |
 | Resource Manager VM |公用 IP |Resource Manager VM 可以有公用 IP 位址。 帶有公用 IP 位址的 VM 也可能擺在負載平衡器後。 您可以為公用位址建立 DNS A 或 CNAME 記錄。 這個自訂名稱可以用來略過負載平衡器上的 VIP。 |
 | 傳統 VM |公用 IP |使用 PowerShell 或 CLI 建立的傳統 VM 可設定為使用動態或靜態 (保留) 的虛擬位址。 您可以分別建立 DNS CNAME 或 A 記錄。 |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

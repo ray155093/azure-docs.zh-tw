@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/25/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 672d1518e22c5ab5595fb5c7c708f584e80b68e9
-ms.openlocfilehash: c6117296c8bd12e3bb8f276709bc4d4c2aa81719
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 59ccb7a043e1db750e596f173af0791099ea1827
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -59,6 +59,9 @@ ms.lasthandoff: 02/27/2017
 
 ### <a name="access-policy"></a>存取原則
 [AccessPolicy](https://docs.microsoft.com/rest/api/media/operations/accesspolicy) 定義資產存取的權限 (例如讀取、寫入和清單) 和持續時間。 您通常會傳遞 AccessPolicy 物件到定位器，接著再用來存取資產中包含的檔案。
+
+>[!NOTE]
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
 ### <a name="blob-container"></a>Blob 容器
 Blob 容器提供一組 blob。 Blob 容器在媒體服務中是做為存取控制的分界點，以及資產上的共用存取簽章 (SAS) 定位器。 Azure 儲存體帳戶可以包含無限多個 blob 容器。 容器可以儲存無限制的 Blob。

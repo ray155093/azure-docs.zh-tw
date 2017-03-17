@@ -54,6 +54,9 @@
 ### [於下班時間開始/停止 VM](automation-solution-vm-management.md)
 ### [搭配 GitHub Enterprise 的原始檔控制整合](automation-scenario-source-control-integration-with-github-ent.md)
 ### [搭配 VSTS 的原始檔控制整合](automation-scenario-source-control-integration-with-VSTS.md)
+## 解決方案
+### [變更追蹤](../log-analytics/log-analytics-change-tracking.md)
+### [更新管理](../operations-management-suite/oms-solution-update-management.md)
 ## 監視
 ### [將 Azure 自動化作業資料轉送到 Log Analytics](automation-manage-send-joblogs-log-analytics.md)
 ### [從 Log Analytics 取消 Azure 自動化帳戶連結](automation-unlink-from-log-analytics.md)

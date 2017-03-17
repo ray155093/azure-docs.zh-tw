@@ -2,13 +2,16 @@
 ## [什麼是虛擬機器擴展集？](virtual-machine-scale-sets-overview.md)
 
 # 開始使用
-## [在入口網站中建立擴展集](virtual-machine-scale-sets-portal-create.md)
-## [使用 Azure CLI 建立擴展集](virtual-machine-scale-sets-linux-create-cli.md)
-## [使用 Resource Manager 範本建立擴展集](virtual-machine-scale-sets-mvss-start.md)
+## [在入口網站中部署擴展集](virtual-machine-scale-sets-portal-create.md)
+## [使用 Azure CLI 部署擴展集](virtual-machine-scale-sets-linux-create-cli.md)
+## [使用 Resource Manager 範本部署簡單的擴展集](virtual-machine-scale-sets-mvss-start.md)
 
 # 作法
 ## 規劃和設計
 ### [設計考量](virtual-machine-scale-sets-design-overview.md)
+## 將擴展集範本寫入
+### [部署簡單的擴展集](virtual-machine-scale-sets-mvss-start.md)
+### [將擴展集部署至現有的虛擬網路](virtual-machine-scale-sets-mvss-existing-vnet.md)
 
 ## 部署
 ### [使用入口網站的擴展集](virtual-machine-scale-sets-portal-create.md)
@@ -36,6 +39,9 @@
 
 ## 疑難排解
 ### [Autoscale](virtual-machine-scale-sets-troubleshoot.md)
+
+## 常見問題集
+### [擴展集常見問題](virtual-machine-scale-sets-faq.md)
 
 # 參考
 ## [PowerShell](/powershell/azureps-cmdlets-docs)

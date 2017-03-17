@@ -119,7 +119,7 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
     > 
     > WordCount 範例和其他 Storm 入門範例都已經包含在叢集中，位置是 `/usr/hdp/current/storm-client/contrib/storm-starter/`。
 
-如果您有興趣檢視 Storm 入門範例的來源，您可以在 [https://github.com/apache/storm/tree/1.0.x-branch/examples/storm-starter](https://github.com/apache/storm/tree/1.0.x-branch/examples/storm-starter) 找到程式碼。 這個連結是 Storm 1.0.x，隨附於 HDInsight 3.5。 如需其他 Storm 版本，請使用頁面頂端的 [Branch] (分支) 按鈕來選取其他 Storm 版本。
+如果您有興趣檢視 Storm 入門範例的來源，您可以在 [https://github.com/apache/storm/tree/1.0.x-branch/examples/storm-starter](https://github.com/apache/storm/tree/1.0.x-branch/examples/storm-starter) 找到程式碼。 這個連結是 Storm 1.0.x，隨附於 HDInsight 3.5。 如需其他 Storm 版本，請使用頁面頂端的 __Branch__ 分支 按鈕來選取其他 Storm 版本。
 
 ## <a name="monitor-the-topology"></a>監視拓撲
 
@@ -199,7 +199,7 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-## <a name="a-idnextanext-steps"></a><a id="next"></a>接續步驟
+## <a id="next"></a>接續步驟
 
 在本 Apache Storm 教學課程中，您已了解使用 Storm on HDInsight 的基本概念。 接下來，了解如何 [使用 Maven 開發 Java 型拓撲](hdinsight-storm-develop-java-topology.md)。
 

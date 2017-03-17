@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/03/2017
 ms.author: casoper
 translationtype: Human Translation
-ms.sourcegitcommit: aea6f0fedb447e953b9db40342e5091bd35486af
-ms.openlocfilehash: 9b80ae8c247480e69025b86fac322166a4d5cb4c
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: b334ba6bbec1d0a7e23a514174bffae01c7fff05
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -59,7 +60,13 @@ HTTPS 功能的一些重要特色如下：
 >[!IMPORTANT] 
 >必須先完成網域驗證才能在您的自訂網域上啟用 HTTPS。 您有 6 個工作天可以核准網域。 6 個工作天內沒有核准將會取消要求。  
 
-在您的自訂網域上啟用 HTTPS 之後，我們的憑證提供者 DigiCert 會根據 WHOIS 註冊資訊，透過電子郵件 (預設) 或電話連絡您網域的註冊人，以驗證網域的所有權。 如果 WHOIS 註冊資訊是不公開的，DigiCert 會傳送驗證電子郵件到 **admin@*<您的網域名稱.com>***。
+在您的自訂網域上啟用 HTTPS 之後，我們的憑證提供者 DigiCert 會根據 WHOIS 註冊資訊，透過電子郵件 (預設) 或電話連絡您網域的註冊人，以驗證網域的所有權。 DigiCert 也會將驗證電子郵件傳送到下列地址。 如果 WHOIS 註冊者資訊為私用，請確定您可以直接從下列其中一個地址做出核准。
+
+>admin@<your-domain-name.com> administrator@<your-domain-name.com>  
+>webmaster@<your-domain-name.com>  
+>hostmaster@<your-domain-name.com>  
+>postmaster@<your-domain-name.com>
+
 
 收到電子郵件之後，您有兩種驗證方式選項：
 
@@ -104,10 +111,5 @@ HTTPS 功能的一些重要特色如下：
 
 - 了解如何[在 Azure CDN 端點上設定自訂網域](./cdn-map-content-to-custom-domain.md)
 
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

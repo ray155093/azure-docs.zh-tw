@@ -4,6 +4,7 @@
 ## [什麼是 DocumentDB：適用於 MongoDB 的 API？](documentdb-protocol-mongodb.md)
 ## [核心概念](documentdb-resources.md)
 ## [全球發佈](documentdb-distribute-data-globally.md)
+## [安全性](documentdb-nosql-database-security.md)
 ## [NoSQL TCO 分析](https://aka.ms/documentdb-tco-paper)
 ## 案例
 ### [一般使用案例](documentdb-use-cases.md)
@@ -36,32 +37,33 @@
 ### [符合成本效益的讀取和寫入](documentdb-key-value-store-cost.md)
 
 ## 管理
+### [要求單位](documentdb-request-units.md)
 ### [匯入資料](documentdb-import-data.md)
 ### [匯入適用於 MongoDB 的 API](documentdb-mongodb-migrate.md)
 ### [連線至您的 MongoDB 帳戶](documentdb-connect-mongodb-account.md)
 ### [使用 MongoChef](documentdb-mongodb-mongochef.md)
 ### [使用 Robomongo](documentdb-mongodb-robomongo.md)
 ### [模型化資料](documentdb-modeling-data.md)
-### [使用地理空間資料](documentdb-geospatial.md)
-### [多重區域開發](documentdb-developing-with-multiple-regions.md)
-### [區域容錯移轉](documentdb-regional-failovers.md)
 ### [讓資料自動到期](documentdb-time-to-live.md)
-### [自訂索引](documentdb-indexing-policies.md)
-### [安全存取資料](documentdb-secure-access-to-data.md)
 ### [備份與還原](documentdb-online-backup-and-restore.md)
+### [區域容錯移轉](documentdb-regional-failovers.md)
+### 自動化
+#### [Azure CLI 2.0](documentdb-automation-resource-manager-cli.md)
+#### [Azure CLI 1.0：建立帳戶](documentdb-automation-resource-manager-cli-nodejs.md)
+#### [Azure CLI 1.0：新增或移除區域](documentdb-automation-region-management.md)
+#### [Azure PowerShell](documentdb-manage-account-with-powershell.md)
+### 安全性
+#### [安全存取資料](documentdb-secure-access-to-data.md)
+#### [防火牆支援](documentdb-firewall-support.md)
 ### [淘汰 S1、 S2、 S3](documentdb-performance-levels.md)
-### [要求單位](documentdb-request-units.md)
-### [Azure CLI 2.0](documentdb-automation-resource-manager-cli.md)
-### Azure CLI 1.0
-#### [建立帳戶](documentdb-automation-resource-manager-cli-nodejs.md)
-#### [新增或移除區域](documentdb-automation-region-management.md)
-### [Azure PowerShell](documentdb-manage-account-with-powershell.md)
-### [防火牆支援](documentdb-firewall-support.md)
 
 ## 開發
 ### [SQL query](documentdb-sql-query.md)
 ### [預存程序、觸發程序和 UDF](documentdb-programming.md)
+### [自訂索引](documentdb-indexing-policies.md)
+### [多重區域部署](documentdb-developing-with-multiple-regions.md)
 ### [以變更摘要追蹤變更](documentdb-change-feed.md)
+### [使用地理空間資料](documentdb-geospatial.md)
 ### [效能測試](documentdb-performance-testing.md)
 ### [效能秘訣](documentdb-performance-tips.md)
 ### 最佳作法

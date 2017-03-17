@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 08/30/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4234def6200b8beb6db7e4bd96ca1b8ebcc11c03
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: bb3ae3d26d174d0f37cc348cde570250699bf067
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -49,6 +50,10 @@ ms.openlocfilehash: 4234def6200b8beb6db7e4bd96ca1b8ebcc11c03
 5. 請注意，您無法使用包含寫入或刪除權限的 AccessPolicy 建立串流訂位器。
 
 ### <a name="create-an-access-policy"></a>建立存取原則
+
+>[!NOTE]
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+
 要求：
 
     POST https://media.windows.net/api/AccessPolicies HTTP/1.1
@@ -154,7 +159,7 @@ URL： **Path** + 資產檔案 MP4 名稱
 
     http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny_H264_650kbps_AAC_und_ch2_96kbps.mp4
 
-## <a name="a-idtypesaenum-types"></a><a id="types"></a>列舉類型
+## <a id="types"></a>列舉類型
     [Flags]
     public enum AccessPermissions
     {
@@ -180,10 +185,5 @@ URL： **Path** + 資產檔案 MP4 名稱
 
 ## <a name="see-also"></a>另請參閱
 [設定資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

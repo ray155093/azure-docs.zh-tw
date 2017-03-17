@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/05/2017
 ms.author: cenkdin;juliako
 translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: b00dcddf38885b002822b9e92010bdf2c5938cc4
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 67d446263c7a884cd8d22e88e6fb607b1399d9aa
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -62,6 +62,10 @@ ms.lasthandoff: 02/11/2017
 >[!NOTE]
 >確定您想要串流內容的串流端點已處於 [執行中] 狀態。 
     
+    
+>[!NOTE]
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+
 如需有關如何設定即時編碼器的詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](https://azure.microsoft.com/blog/2014/09/18/azure-media-services-rtmp-support-and-live-encoders/)。
 
     using System;

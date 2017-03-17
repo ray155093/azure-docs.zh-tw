@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: a4a78b92c8bb9e8aff25fd724ed78283de8f2fd8
-ms.openlocfilehash: 8dd4c5ab11c43ca09085004ee4dce3e616b19d8e
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: b875c83ba7d87a572e78625e4038840aadcf9c85
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -144,7 +145,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **其他詳細資訊：**
 
-* [如何更新自己的密碼](active-directory-passwords-update-your-own-password.md)
+* [如何更新自己的密碼](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)
 
 #### <a name="connect--sync-engine-that-extends-on-premises-directories-to-azure-active-directory"></a>Connect (可將內部部署目錄延伸至 Azure Active Directory 的同步處理引擎)
 **類型：** 常用功能
@@ -241,7 +242,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 ## <a name="premium-features"></a>進階功能
 
 
-#### <a name="a-nameself-service-groupaself-service-group-and-app-managementself-service-application-additionsdynamic-groups"></a><a name="self-service-group"></a>自助式群組和應用程式管理/自助式應用程式新增/動態群組
+#### <a name="self-service-group"></a>自助式群組和應用程式管理/自助式應用程式新增/動態群組
 **類型：** 進階功能
 
 **可用性：**
@@ -273,7 +274,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 * [什麼是 Azure Multi-Factor Authentication？](../multi-factor-authentication/multi-factor-authentication.md)
 
 
-#### <a name="a-namemim-cal-mim-serveramim-cal--mim-server"></a><a name="mim-cal-mim-server"></a>MIM CAL + MIM 伺服器
+#### <a name="mim-cal-mim-server"></a>MIM CAL + MIM 伺服器
 Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 (任何版本) 一起授與。 因為 Microsoft Identity Manager 會在 Windows Server 作業系統上執行，因此只要伺服器執行有效且經過授權的 Windows Server 複本，就可以在該伺服器上安裝並使用 Microsoft Identity Manager。 Microsoft Identity Manager Server 不需要其他個別授權。
 
 **類型：** 進階功能
@@ -344,7 +345,7 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 | ![勾選][12] |![勾選][12] |![勾選][12] |![勾選][12] |
 
 
-#### <a name="a-namemdm-auto-enrollmentamdm-auto-enrollment-self-service-bitlocker-recovery-additional-local-administrators-to-windows-10-devices-via-azure-ad-join"></a><a name="mdm-auto-enrollment"></a>透過 Azure AD Join 進行 MDM 自動註冊、自助式 Bitlocker 復原、為 Windows 10 裝置新增其他本機系統管理員
+#### <a name="mdm-auto-enrollment"></a>透過 Azure AD Join 進行 MDM 自動註冊、自助式 Bitlocker 復原、為 Windows 10 裝置新增其他本機系統管理員
 **類型：**Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
 
 **可用性：**
@@ -384,9 +385,4 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 <!--Image references-->
 [12]: ./media/active-directory-editions/ic195031.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
