@@ -14,11 +14,12 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 01/11/2017
-ms.author: chrande
+ms.date: 03/06/2017
+ms.author: chrande, glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 7b691e92cfcc8c6c62f854b3f1b6cf13d317df7b
-ms.openlocfilehash: 961aa46e3f3654c250aa10e61149fac2fc251935
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 1c071390fd6cd9bb5889cb225696b7782fe2bd6b
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -55,6 +56,8 @@ ms.openlocfilehash: 961aa46e3f3654c250aa10e61149fac2fc251935
 
 * 如 `path`，請參閱[命名模式](#pattern)以了解如何格式化 blob 名稱模式。
 * `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定]()。 
+
+在執行取用方案時，如果函式應用程式已進入閒置狀態，則處理新 Blob 時最多會有 10 分鐘的延遲。 如果函式應用程式正在執行，Blob 的處理速度會較快。 為了避免發生此初始延遲，您可以使用一般的 App Service 方案並啟用 [永遠開啟]，或使用其他機制來觸發 Blob 的處理，例如包含 Blob 名稱的佇列訊息。 
 
 另外，如需詳細資訊，請參閱下列其中一個子標題︰
 
@@ -235,7 +238,7 @@ Azure 儲存體 blob 輸入繫結可讓您在函式中從儲存體容器使用 b
 blob 可以還原序列化為下列任何一種類型︰
 
 * 任何[物件](https://msdn.microsoft.com/library/system.object.aspx) - 適用於 JSON 序列化的 blob 資料。
-  如果您宣告自訂輸入類型 (例如 `FooType`)，Azure Functions 會嘗試將 JSON 資料還原序列化為您指定的類型。
+  如果您宣告自訂輸入類型 (例如 `InputType`)，Azure Functions 會嘗試將 JSON 資料還原序列化為您指定的類型。
 * 字串 - 適用於文字 blob 資料。
 
 在 C# 函式中，您也可以繫結至下列任何類型，函式的執行階段會嘗試使用該類型還原序列化 blob 資料︰
@@ -347,7 +350,7 @@ Azure 儲存體 blob 輸出繫結可讓您在函式中將 blob 寫入儲存體�
 您可以使用下列任何類型寫入輸出 blob︰
 
 * 任何[物件](https://msdn.microsoft.com/library/system.object.aspx) - 適用於 JSON 序列化。
-  如果您宣告自訂輸出類型 (例如 `out FooType paramName`)，Azure Functions 會嘗試將物件序列化為 JSON。 如果函式結束時輸出參數為 null，則函式的執行階段會建立 blob 作為 null 物件。
+  如果您宣告自訂輸出類型 (例如 `out OutputType paramName`)，Azure Functions 會嘗試將物件序列化為 JSON。 如果函式結束時輸出參數為 null，則函式的執行階段會建立 blob 作為 null 物件。
 * 字串 - (`out string paramName`) 適用於文字 blob 資料。 當函式結束時，如果字串參數非 Null，就只會建立 Blob。
 
 在 C# 函式中，您也可以輸出至下列任何類型︰
@@ -358,8 +361,6 @@ Azure 儲存體 blob 輸出繫結可讓您在函式中將 blob 寫入儲存體�
 * `ICloudBlob`
 * `CloudBlockBlob` 
 * `CloudPageBlob` 
-* `ICollector<T>` (輸出多個 blob)
-* `IAsyncCollector<T>` (`ICollector<T>` 的非同步版本)
 
 <a name="outputsample"></a>
 
@@ -368,10 +369,5 @@ Azure 儲存體 blob 輸出繫結可讓您在函式中將 blob 寫入儲存體�
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

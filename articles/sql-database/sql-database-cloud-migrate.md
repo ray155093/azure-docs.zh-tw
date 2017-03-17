@@ -17,9 +17,9 @@ ms.workload: sqldb-migrate
 ms.date: 02/08/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 21be71a1b4c79ecec8af02d08f65c41128c5ef73
-ms.openlocfilehash: 92c8f2e0f2dfa35c904a1132d72c037ceb7d3765
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: 8d4823576fe0d44fa565fdb72e8b229d31dff609
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -51,7 +51,7 @@ ms.lasthandoff: 02/11/2017
 
 下列清單包含可在匯入程序期間獲得最佳效能的建議。
 
-* 選擇預算許可的最高服務層級和效能層級，以獲得最大傳輸效能。 移轉完成後，您可以相應減少層級以節省成本。 請參閱[使用 Azure 入口網站變更單一資料庫的服務層和效能層級](sql-database-manage-single-databases-portal.md#change-the-service-tier-and-performance-level-of-a-single-database)、[使用 PowerShell 變更單一資料庫的服務層和效能層級](sql-database-manage-single-databases-powershell.md#change-the-service-tier-and-performance-level-of-a-single-database)和[使用 Transact-SQL 變更單一資料庫的服務層和效能層級](sql-database-manage-single-databases-tsql.md#change-the-service-tier-and-performance-level-of-a-single-database)
+* 選擇預算許可的最高服務層級和效能層級，以獲得最大傳輸效能。 移轉完成後，您可以相應減少層級以節省成本。 
 * 盡量縮短 .BACPAC 檔案和目的地資料中心之間的距離。
 * 在移轉期間停用自動統計資料
 * 分割資料表和索引

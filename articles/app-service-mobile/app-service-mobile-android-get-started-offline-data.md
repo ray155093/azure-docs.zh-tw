@@ -3,7 +3,7 @@ title: "啟用 Azure 行動應用程式的離線同步處理 (Android)"
 description: "了解如何使用 App Service Mobile Apps 來快取和同步處理離線資料"
 documentationcenter: android
 author: ysxu
-manager: erikre
+manager: adrianha
 services: app-service\mobile
 ms.assetid: 32a8a079-9b3c-4faf-8588-ccff02097224
 ms.service: app-service-mobile
@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 10/01/2016
 ms.author: yuaxu
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 00d800dda92c3cd9bb4a6c7edbb11647726f9883
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 6135c042010147270e06740038afe80efc738f2d
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -23,7 +24,7 @@ ms.openlocfilehash: 00d800dda92c3cd9bb4a6c7edbb11647726f9883
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
 ## <a name="overview"></a>概觀
-本教學課程說明 Android 之 Azure Mobile Apps 的離線同步處理功能。 離線同步處理可讓使用者與行動應用程式進行互動&mdash;檢視、新增或修改資料&mdash;即使沒有網路連線也可行。 變更會儲存在本機資料庫中。 裝置恢復上線後，這些變更就會與遠端後端進行同步處理。
+本教學課程說明 Android 之 Azure Mobile Apps 的離線同步處理功能。 離線同步處理可讓使用者與行動應用程式進行互動&mdash;檢視、新增或修改資料&mdash;即使沒有網路連接進也可行。 變更會儲存在本機資料庫中。 裝置恢復上線後，這些變更就會與遠端後端進行同步處理。
 
 如果這是您第一次接觸 Azure Mobile Apps，您應先完成 [建立 Android 應用程式]教學課程。 如果您不要使用下載的快速入門伺服器專案，必須將資料存取擴充套件新增至您的專案。 如需伺服器擴充套件的詳細資訊，請參閱 [使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
@@ -101,11 +102,6 @@ ms.openlocfilehash: 00d800dda92c3cd9bb4a6c7edbb11647726f9883
 [建立 Android 應用程式]: app-service-mobile-android-get-started.md
 
 [雲端報導：Azure Mobile Services 中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
-[Azure Friday：Azure 行動服務中離線啟用的應用程式]: http://azure.microsoft.com/documentation/videos/azure-mobile-services-offline-enabled-apps-with-donna-malayeri/
-
-
-
-
-<!--HONumber=Nov16_HO3-->
+[Azure Friday: Offline-enabled apps in Azure Mobile Services]: http://azure.microsoft.com/documentation/videos/azure-mobile-services-offline-enabled-apps-with-donna-malayeri/
 
 

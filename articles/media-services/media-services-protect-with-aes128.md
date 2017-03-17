@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: f6d6b7b1051a22bbc865b237905f8df84e832231
-ms.openlocfilehash: 5b81c3cdabe7b02a2049d7d1a5e227f5886bdbad
-ms.lasthandoff: 01/11/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 3d292501fba980edcb567e7da7c79e8f1d90d1dd
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -71,12 +71,12 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
 ## <a name="current-limitations"></a>目前的限制
 如果您加入或更新您的資產傳遞原則，您必須刪除現有的定位程式 (如果有的話)，並建立新的定位器。
 
-## <a name="a-idcreateassetacreate-an-asset-and-upload-files-into-the-asset"></a><a id="create_asset"></a>建立資產並將檔案上傳到資產
+## <a id="create_asset"></a>建立資產並將檔案上傳到資產
 為了管理、編碼及串流處理您的視訊，您必須先將內容上傳到 Microsoft Azure 媒體服務。 一旦上傳，您的內容就會安全地儲存在雲端，以進一步進行處理和串流處理。 
 
 如需詳細資訊，請參閱 [上傳檔案到媒體服務帳戶](media-services-dotnet-upload-files.md)。
 
-## <a name="a-idencodeassetaencode-the-asset-containing-the-file-to-the-adaptive-bitrate-mp4-set"></a><a id="encode_asset"></a>將包含檔案的資產編碼為自適性位元速率 MP4 集
+## <a id="encode_asset"></a>將包含檔案的資產編碼為自適性位元速率 MP4 集
 使用動態加密時，您只需建立一個資源，其中包含一組多位元速率 MP4 檔案或多位元速率 Smooth Streaming 來源檔案。 然後隨選資料流處理伺服器會根據資訊清單或片段要求中的指定格式，確保您以自己選擇的通訊協定接收串流。 因此，您只需要儲存及支付一種儲存格式之檔案的費用，媒體服務會根據用戶端的要求建置及提供適當的回應。 如需詳細資訊，請參閱 [動態封裝概觀](media-services-dynamic-packaging-overview.md) 主題。
 
 >[!NOTE]
@@ -86,17 +86,17 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
 
 如需如何編碼的指示，請參閱 [如何使用 Media Encoder Standard 為資產編碼](media-services-dotnet-encode-with-media-encoder-standard.md)。
 
-## <a name="a-idcreatecontentkeyacreate-a-content-key-and-associate-it-with-the-encoded-asset"></a><a id="create_contentkey"></a>建立內容金鑰並將它與編碼的資產產生關聯
+## <a id="create_contentkey"></a>建立內容金鑰並將它與編碼的資產產生關聯
 在媒體服務中，內容金鑰包含您要加密資產時使用的金鑰。
 
 如需詳細資訊，請參閱 [建立內容金鑰](media-services-dotnet-create-contentkey.md)。
 
-## <a name="a-idconfigurekeyauthpolicyaconfigure-the-content-keys-authorization-policy"></a><a id="configure_key_auth_policy"></a>設定內容金鑰的授權原則
+## <a id="configure_key_auth_policy"></a>設定內容金鑰的授權原則
 媒體服務支援多種方式來驗證提出金鑰要求的使用者。 內容金鑰授權原則必須由您設定，而且用戶端 (播放器) 必須符合條件，才能將金鑰傳遞給用戶端。 內容金鑰授權原則可能會有一個或多個授權限制：Open、權杖限制或 IP 限制。
 
 如需詳細資訊，請參閱 [設定內容金鑰授權原則](media-services-dotnet-configure-content-key-auth-policy.md)。
 
-## <a name="a-idconfigureassetdeliverypolicyaconfigure-asset-delivery-policy"></a><a id="configure_asset_delivery_policy"></a>設定資產傳遞原則
+## <a id="configure_asset_delivery_policy"></a>設定資產傳遞原則
 設定資產的傳遞原則。 資產傳遞原則組態包括：
 
 * 金鑰取得 URL。 
@@ -106,7 +106,7 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
 
 如需詳細資訊，請參閱 [設定資產傳遞原則 ](media-services-rest-configure-asset-delivery-policy.md)。
 
-## <a name="a-idcreatelocatoracreate-an-ondemand-streaming-locator-in-order-to-get-a-streaming-url"></a><a id="create_locator"></a>建立隨選串流定位器以取得串流 URL
+## <a id="create_locator"></a>建立隨選串流定位器以取得串流 URL
 您必須為您的使用者提供 Smooth、DASH 或 HLS 的串流 URL。
 
 > [!NOTE]
@@ -132,7 +132,7 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
 
 您可以使用 [AMS 播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html) 來測試您的串流。
 
-## <a name="a-idclientrequestahow-can-your-client-request-a-key-from-the-key-delivery-service"></a><a id="client_request"></a>您的用戶端如何從金鑰傳遞服務要求金鑰？
+## <a id="client_request"></a>您的用戶端如何從金鑰傳遞服務要求金鑰？
 在上一個步驟中，您可以建構指向資訊清單檔案的 URL。 您的用戶端必須從串流資訊清單檔案擷取所需的資訊，才能向金鑰傳遞服務提出要求。
 
 ### <a name="manifest-files"></a>資訊清單檔案
@@ -220,7 +220,7 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
         return key;
     }
 
-## <a name="a-idexampleaexample"></a><a id="example"></a>範例
+## <a id="example"></a>範例
 1. 建立新的主控台專案。
 2. 使用 NuGet 來安裝和新增 Azure Media Services .NET SDK 延伸模組。 安裝這個封裝，也會安裝 Media Services .NET SDK，並新增所有其他必要相依性。
 3. 新增包含帳戶名稱和金鑰資訊的組態檔：
@@ -241,7 +241,10 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
         </configuration>
 
 1. 以本章節中所顯示的程式碼覆寫 Program.cs 檔案中的程式碼。
-   
+ 
+    >[!NOTE]
+    >對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+
     請務必更新變數，以指向您的輸入檔案所在的資料夾。
 
         using System;
@@ -372,20 +375,11 @@ Microsoft Azure 媒體服務可讓您傳遞您使用進階加密標準 (AES) (�
 
                     Console.WriteLine("Created assetFile {0}", assetFile.Name);
 
-                    var policy = _context.AccessPolicies.Create(
-                                            assetName,
-                                            TimeSpan.FromDays(30),
-                                            AccessPermissions.Write | AccessPermissions.List);
-
-                    var locator = _context.Locators.CreateLocator(LocatorType.Sas, inputAsset, policy);
 
                     Console.WriteLine("Upload {0}", assetFile.Name);
 
                     assetFile.Upload(singleFilePath);
                     Console.WriteLine("Done uploading {0}", assetFile.Name);
-
-                    locator.Delete();
-                    policy.Delete();
 
                     return inputAsset;
                 }

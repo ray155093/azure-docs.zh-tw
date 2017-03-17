@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9ec07aacbde3f218d7a1bbddadad7552e737e1ea
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 4feb0eb81823835e8e0b701463d85b27f5598019
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -49,6 +50,9 @@ ms.openlocfilehash: 9ec07aacbde3f218d7a1bbddadad7552e737e1ea
         Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
    
     您應該將後續的 API 呼叫張貼到 https://wamsbayclus001rest-hs.cloudapp.net/api/。
+
+    >[!NOTE]
+    >對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
 ## <a name="access-control-address"></a>存取控制服務
 媒體服務存取控制位址是 https://wamsprodglobal001acs.accesscontrol.windows.net，中國北部區域除外，該區域是 https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn。
@@ -182,10 +186,5 @@ ms.openlocfilehash: 9ec07aacbde3f218d7a1bbddadad7552e737e1ea
 
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

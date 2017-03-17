@@ -12,12 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/05/2017
+ms.date: 03/10/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: 6aecea32361166d363a412b4e8f2b01d421da5cf
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 4d35bdd88998d30435e9e5e916a18b3ce3bc7978
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -42,7 +42,8 @@ Azure 媒體服務提供多個用於將雲端中之媒體編碼的選項。
 
 本文概略敘述隨選媒體編碼器，並提供文章連結以提供更詳細資訊。 本主題也提供各種編碼器的比較。
 
-請注意，每個媒體服務帳戶預設一次可以有一個進行中的編碼工作。 您可以保留編碼單位，這樣就可以同時執行多個編碼工作，其中一個用於您購買的每一個編碼保留單位。 如需相關資訊，請參閱 [調整編碼單位](media-services-scale-media-processing-overview.md)。
+>[!NOTE]
+>依預設，每個媒體服務帳戶一次可以有一個進行中的編碼工作。 您可以保留編碼單位，這樣就可以同時執行多個編碼工作，其中一個用於您購買的每一個編碼保留單位。 如需相關資訊，請參閱 [調整編碼單位](media-services-scale-media-processing-overview.md)。
 
 ## <a name="media-encoder-standard"></a>Media Encoder Standard
 ### <a name="how-to-use"></a>使用方式

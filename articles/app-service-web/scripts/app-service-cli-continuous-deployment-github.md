@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/21/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 97ab792a0ad7420e97dbab378736b9815356e8a4
-ms.openlocfilehash: 220c150205858dd9ae200d7636a086972aeed6e9
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 6ba7dacb9a8828495c9ec15b46020a493d406096
+ms.lasthandoff: 03/11/2017
 
 ---
 
@@ -37,13 +37,7 @@ ms.lasthandoff: 02/27/2017
 
 [!code-azurecli[主要](../../../cli_scripts/app-service/deploy-github-continuous/deploy-github-continuous.sh?highlight=3-4 "建立可從 GitHub 連續部署的 Web 應用程式")]
 
-## <a name="clean-up-deployment"></a>清除部署
-
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、App Service 應用程式和所有相關資源。
-
-```azurecli
-az group delete --name myResourceGroup
-```
+[!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>指令碼說明
 

@@ -16,12 +16,13 @@ ms.topic: article
 ms.date: 01/17/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: cfc58b84ccd671b3a34a399bad11d15c9bc3b713
-ms.openlocfilehash: f338a124537090894773bb6fce1052fc7f590a33
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 5f6d8a5bb0209f1dbc0de682b185089e87a1574b
+ms.lasthandoff: 03/11/2017
 
 
 ---
+
 # <a name="frequently-asked-question-about-windows-virtual-machines"></a>Windows 虛擬機器的常見問題
 本文可解決在 Azure 中使用 Resource Manager 部署模型建立之 Windows 虛擬機器的一些常見問題。 如需本主題的 Linux 版本，請參閱 [Linux 虛擬機器的常見問題](virtual-machines-linux-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 

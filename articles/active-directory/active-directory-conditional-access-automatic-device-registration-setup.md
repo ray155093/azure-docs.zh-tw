@@ -12,78 +12,122 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/04/2016
+ms.date: 03/07/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 617599c7df6284e6319a1b3331d1e894e5d4b2d1
-ms.openlocfilehash: 2ced7d0d4e2e653013c605932066c412c4202082
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 6a7e0964a3a6e9be534a6bd683446d3da5edcecd
+ms.lasthandoff: 03/10/2017
 
 
 ---
 # <a name="how-to-configure-automatic-registration-of-windows-domain-joined-devices-with-azure-active-directory"></a>如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊
 
-若要使用 [Azure Active Directory 裝置型條件式存取](active-directory-conditional-access.md)，電腦必須向 Azure Active Directory (Azure AD) 註冊。 本文會提供可供設定讓已加入網域的 Windows 裝置自動向組織中之 Azure AD 註冊的相關步驟。
+若要使用 [Azure Active Directory 裝置型條件式存取](active-directory-conditional-access-azure-portal.md)，電腦必須向 Azure Active Directory (Azure AD) 註冊。 您可以在 [Azure Active Directory PowerShell 模組](https://docs.microsoft.com/en-us/powershell/msonline/) 中使用 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) Cmdlet，以取得您組織中已註冊的裝置清單。 
 
-> [!NOTE]
-> 「Windows 10 11 月更新版」會提供一些增強的 Azure AD 使用者體驗，不過「Windows 10 年度更新版」才會完整支援裝置型條件式存取。 如需有關條件式存取的詳細資訊，請參閱 [Azure Active Directory 裝置型條件式存取](active-directory-conditional-access.md)。 如需有關工作場所中的 Windows 10 裝置以及使用者如何向 Azure AD 註冊 Windows 10 裝置的詳細資訊，請參閱[適合企業使用的 Windows 10：使用裝置工作](active-directory-azureadjoin-windows10-devices-overview.md)。
-> 
-> 
+本文會提供可供設定讓已加入網域的 Windows 裝置自動向組織中之 Azure AD 註冊的相關步驟。
 
-對於執行 Windows 的裝置，您可以註冊某些舊版的 Windows，包括︰
 
-- Windows 8.1
-- Windows 7
+如需下列詳細資訊︰
 
-對於執行 Windows Server 的裝置，您可以註冊下列平台︰
+- 有關條件式存取，請參閱 [Azure Active Directory 裝置型條件式存取](active-directory-conditional-access-azure-portal.md)。 
+- 有關工作場所中的 Windows 10 裝置以及向 Azure AD 註冊後的進階體驗，請參閱[適合企業使用的 Windows 10：使用裝置處理工作](active-directory-azureadjoin-windows10-devices-overview.md)。
 
-- Windows Server 2016
-- Windows Server 2012 R2
-- Windows Server 2012
-- Windows Server 2008 R2
+
+## <a name="before-you-begin"></a>開始之前
+
+開始在您的環境中設定自動註冊已加入網域的 Windows 裝置之前，您應該先熟悉支援的案例和條件約束。  
+
+為了改善說明的可讀性，本主題使用下列詞彙︰ 
+
+- **現行 Windows 裝置** - 這個詞彙是指執行 Windows 10 或 Windows Server 2016 之已加入網域的裝置。
+- **舊版 Windows 裝置** - 這個詞彙是指並非執行 Windows 10 或 Windows Server 2016 之所有**支援的**已加入網域 Windows 裝置。  
+
+
+### <a name="windows-current-devices"></a>現行 Windows 裝置
+
+- 對於執行 Windows 桌面作業系統的裝置，我們建議使用 Windows 10 年度更新版 (版本 1607) 或更新版本。 
+- 非同盟的環境**支援**現行 Windows 裝置註冊，例如密碼雜湊同步處理組態。  
+
+
+### <a name="windows-down-level-devices"></a>舊版 Windows 裝置
+
+- 以下是支援的舊版 Windows Server 裝置：
+    - Windows 8.1
+    - Windows 7
+    - Windows Server 2012 R2
+    - Windows Server 2012
+    - Windows Server 2008 R2
+- 下列各項**不支援**舊版 Windows 裝置註冊：
+    - 非同盟環境 (密碼雜湊同步處理組態)。  
+    - 使用漫遊設定檔的裝置。 如果您倚賴設定檔或設定的漫遊，請使用 Windows 10。
 
 
 
 ## <a name="prerequisites"></a>必要條件
 
-若要讓已加入網域的裝置自動註冊，主要的需求就是擁有最新版的 Azure Active Directory Connect (Azure AD Connect)。
+開始啟用自動註冊組織中已加入網域的裝置之前，您必須先確定執行最新版的 Azure AD connect。
 
-依據您部署 Azure AD Connect 的方式，不論是使用快速安裝、自訂安裝還是就地升級，可能都已自動設定下列必要條件：
+Azure AD Connect：
 
-- **內部部署 Active Directory 中的服務連接點** - 可供要向 Azure AD 註冊的電腦探索 Azure AD 租用戶資訊。
- 
-- **Active Directory Federation Services (AD FS) 發佈轉換規則** - 用於在註冊時進行電腦驗證 (適用於同盟組態)。
+- 保持內部部署 Active Directory (AD) 中的電腦帳戶和 Azure AD 中的裝置物件之間的關聯。 
+- 啟用其他裝置相關功能，例如 Windows Hello 企業版。
 
-如果您的組織中有些裝置不是已加入網域的 Windows 10 裝置，請執行下列步驟︰
 
-* 在 Azure AD 中設定原則，讓使用者可以註冊裝置
-* 將 Windows 整合式驗證 (WIA) 設定為 AD FS 中 Multi-Factor Authentication 的有效替代方式
 
-## <a name="step-1-configure-service-connection-point"></a>步驟 1︰設定服務連接點 
+## <a name="configuration-steps"></a>組態步驟
 
-服務連接點 (SCP) 物件必須存在於電腦網域的組態命名內容分割區中。 服務連接點含有電腦註冊所在 Azure AD 租用戶的相關探索資訊。 在多樹系 Active Directory 組態中，服務連接點必須存在於具有已加入網域電腦的所有樹系中。
+本主題包含所有一般組態案例所需的步驟。  
+使用下表來取得您的案例所需步驟的概觀︰  
 
-SCP 位於︰  
 
-**CN=62a0ff2e-97b9-4513-943f-0d221bd30080,CN=Device Registration Configuration,CN=Services,[您的組態命名內容]**
 
-如果樹系的 Active Directory 網域名稱為 *example.com*，則組態命名內容為：  
+| 步驟                                      | 現行 Windows 和密碼雜湊同步處理 | 現行 Windows 和同盟 | 舊版 Windows |
+| :--                                        | :-:                                    | :-:                            | :-:                |
+| 步驟 1︰設定服務連接點 | ![勾選][1]                            | ![勾選][1]                    | ![勾選][1]        |
+| 步驟 2︰設定宣告的發行           |                                        | ![勾選][1]                    | ![勾選][1]        |
+| 步驟 3︰啟用非 Windows 10 裝置      |                                        |                                | ![勾選][1]        |
 
-**CN=Configuration,DC=example,DC=com**
 
-透過下列 Windows PowerShell 指令碼，您可以確認物件是否存在，並擷取探索值︰ 
+
+
+## <a name="step-1-configure-service-connection-point"></a>步驟 1︰設定服務連接點
+
+您的裝置會在註冊期間使用服務連接點 (SCP) 物件來探索 Azure AD 租用戶資訊。 在內部部署 Active Directory (AD) 中，用於自動註冊已加入網域裝置的 SCP 物件必須存在於電腦樹系的組態命名內容資料分割中。 每個樹系只有一個組態命名內容。 在多樹系 Active Directory 組態中，服務連接點必須存在於包含已加入網域電腦的所有樹系中。
+
+您可以使用 [**Get-ADRootDSE**](https://technet.microsoft.com/library/ee617246.aspx) Cmdlet 來擷取樹系的組態命名內容。  
+
+如果樹系的 Active Directory 網域名稱為 fabrikam.com，則組態命名內容為：
+
+`CN=Configuration,DC=fabrikam,DC=com`
+
+在您的樹系中，用於自動註冊已加入網域裝置的 SCP 物件位於︰  
+
+`CN=62a0ff2e-97b9-4513-943f-0d221bd30080,CN=Device Registration Configuration,CN=Services,[Your Configuration Naming Context]`
+
+視您部署 Azure AD Connect 的方式而定，可能已經設定 SCP 物件。
+您可以使用下列 Windows PowerShell 指令碼，確認物件是否存在並擷取探索值︰ 
 
     $scp = New-Object System.DirectoryServices.DirectoryEntry;
 
-    $scp.Path = "LDAP://CN=62a0ff2e-97b9-4513-943f-0d221bd30080,CN=Device Registration Configuration,CN=Services,CN=Configuration,DC=example,DC=com";
+    $scp.Path = "LDAP://CN=62a0ff2e-97b9-4513-943f-0d221bd30080,CN=Device Registration Configuration,CN=Services,CN=Configuration,DC=fabrikam,DC=com";
 
     $scp.Keywords;
 
 **$scp.Keywords** 的輸出會顯示 Azure AD 租用戶資訊，例如：
 
-azureADName:microsoft.com  
-azureADId:72f988bf-86f1-41af-91ab-2d7cd011db47
+    azureADName:microsoft.com
+    azureADId:72f988bf-86f1-41af-91ab-2d7cd011db47
 
-如果服務連接點不存在，請在 Azure AD Connect 伺服器上執行下列 PowerShell 指令碼加以建立：
+如果服務連接點不存在，請在 Azure AD Connect 伺服器上執行 `Initialize-ADSyncDomainJoinedComputerSync` Cmdlet 加以建立。  
+此 Cmdlet：
+
+- 在 Azure AD Connect 連線到的 Active Directory 樹系中建立服務連接點。 
+- 要求您指定 `AdConnectorAccount` 參數。 這是在 Azure AD Connect 中設定為 Active Directory 連接器帳戶的帳戶。 
+
+
+以下指令碼顯示使用此 Cmdlet 的範例。 在此指令碼中，`$aadAdminCred = Get-Credential` 會要求您輸入使用者名稱。 您必須提供使用者主體名稱 (UPN) 格式 (`user@example.com`) 的使用者名稱。 
+
 
     Import-Module -Name "C:\Program Files\Microsoft Azure Active Directory Connect\AdPrep\AdSyncPrep.psm1";
 
@@ -91,277 +135,443 @@ azureADId:72f988bf-86f1-41af-91ab-2d7cd011db47
 
     Initialize-ADSyncDomainJoinedComputerSync –AdConnectorAccount [connector account name] -AzureADCredentials $aadAdminCred;
 
+`Initialize-ADSyncDomainJoinedComputerSync` Cmdlet 會使用 Active Directory PowerShell 模組，其倚賴在網域控制站上執行的 Active Directory Web 服務。 執行 Windows Server 2008 R2 和更新版本的網域控制站可支援 Active Directory Web 服務。 
 
+對於執行 Windows Server 2008 或更早版本的網域控制站，請使用下列指令碼來建立服務連接點。
 
-**備註：**
-
-- 當您執行 **$aadAdminCred = Get-Credential** 時，您必須輸入使用者名稱。 使用者名稱請使用下列格式︰**user@example.com** 
-
-
-- 當您執行 **Initialize-ADSyncDomainJoinedComputerSync** Cmdlet 時，請以 Active Directory 連接器帳戶中使用的網域帳戶取代 [連接器帳戶名稱]。
-  
-- 此 Cmdlet 會使用 Active Directory PowerShell 模組，其倚賴網域控制站中的 Active Directory Web 服務。 Windows Server 2008 R2 和更新版本的網域控制站可支援 Active Directory Web 服務。 對於 Windows Server 2008 或更早版本的網域控制站，透過 PowerShell 使用 System.DirectoryServices API 來建立服務連接點，然後指派 Keywords 值。
+在多樹系組態中，您應該使用下列指令碼在電腦所在的樹系中建立服務連接點︰
  
+    $verifiedDomain = "contoso.com"    # Replace this with any of your verified domain names in Azure AD
+    $tenantID = "72f988bf-86f1-41af-91ab-2d7cd011db47"    # Replace this with you tenant ID
+    $configNC = "CN=Configuration,DC=corp,DC=contoso,DC=com"    # Replace this with your AD configuration naming context
+
+    $de = New-Object System.DirectoryServices.DirectoryEntry
+    $de.Path = "LDAP://CN=Services," + $configNC
+
+    $deDRC = $de.Children.Add("CN=Device Registration Configuration", "container")
+    $deDRC.CommitChanges()
+
+    $deSCP = $deDRC.Children.Add("CN=62a0ff2e-97b9-4513-943f-0d221bd30080", "serviceConnectionPoint")
+    $deSCP.Properties["keywords"].Add("azureADName:" + $verifiedDomain)
+    $deSCP.Properties["keywords"].Add("azureADId:" + $tenantID)
+
+    $deSCP.CommitChanges()
+
+
+## <a name="step-2-setup-issuance-of-claims"></a>步驟 2︰設定宣告的發行
+
+在同盟 Azure AD 組態中，裝置倚賴 Active Directory Federation Services (AD FS) 或協力廠商內部部署同盟伺服器向 Azure AD 進行驗證。 裝置會進行驗證以取得向 Azure Active Directory 裝置註冊服務 (Azure ADS) 註冊的存取權杖。
+
+現行 Windows 裝置會使用整合式 Windows 驗證向內部部署同盟服務所裝載的作用中 WS-Trust 端點 (1.3 或 2005 版) 進行驗證。
+
+> [!NOTE]
+> 使用 AD FS 時，必須啟用 **adfs/services/trust/13/windowstransport** 或 **adfs/services/trust/2005/windowstransport**。 如果您使用 Web 驗證 Proxy，也需確定已透過 Proxy 發佈此端點。 您可以在 AD FS 管理主控台的 [服務] > [端點] 底下看到已啟用的端點。
+>
+>如果您沒有以 AD FS 做為您的內部部署同盟伺服器，請依照廠商的指示來確定支援 WS-Trust 1.3 或 2005 端點，而這些端點是透過中繼資料交換檔 (MEX) 發佈。
+
+下列宣告必須存在於 Azure DRS 所收到的權杖中，才能完成裝置註冊。 Azure DRS 會使用其中一些資訊在 Azure AD 中建立裝置物件，而 Azure AD Connect 接著會使用此資訊將新建立的裝置物件與內部部署電腦帳戶建立關聯。
+
+* `http://schemas.microsoft.com/ws/2012/01/accounttype`
+* `http://schemas.microsoft.com/identity/claims/onpremobjectguid`
+* `http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`
+
+如果您有多個經過驗證的網域名稱，您必須為電腦提供下列宣告︰
+
+* `http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`
+
+如果您已發出 ImmutableID 宣告 (例如，替代登入 ID)，您必須為電腦提供一個對應宣告：
+
+* `http://schemas.microsoft.com/LiveID/Federation/2008/05/ImmutableID`
+
+在下列各節中，您可找到下列相關資訊：
  
+- 每個宣告應該具有的值
+- 定義在 AD FS 中看起來如何
 
+此定義可協助您確認值是否存在，或者您是否需要加以建立。
 
+> [!NOTE]
+> 如果您未將 AD FS 用於您的內部部署同盟伺服器，請依照廠商的指示來建立適當組態以發出這些宣告。
 
-##<a name="step-2-register-your-devices"></a>步驟 2︰註冊裝置
+### <a name="issue-account-type-claim"></a>發出帳戶類型宣告
 
-用於註冊裝置的正確步驟取決於組織是否已同盟。 
+**`http://schemas.microsoft.com/ws/2012/01/accounttype`** - 此宣告必須包含 **DJ** 這個值，此值可將裝置識別為已加入網域的電腦。 在 AD FS 中，您可以新增發行轉換規則，如下所示︰
 
+    @RuleName = "Issue account type for domain-joined computers"
+    c:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", 
+        Value =~ "-515$", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    => issue(
+        Type = "http://schemas.microsoft.com/ws/2012/01/accounttype", 
+        Value = "DJ"
+    );
 
-### <a name="device-registration-in-non-federated-organizations"></a>非同盟組織的裝置註冊
+### <a name="issue-objectguid-of-the-computer-account-on-premises"></a>發出內部部署電腦帳戶的 objectGUID
 
-下列條件成立時才支援非同盟組織的裝置註冊︰
+**`http://schemas.microsoft.com/identity/claims/onpremobjectguid`** - 此宣告必須包含內部電腦帳戶的 **objectGUID** 值。 在 AD FS 中，您可以新增發行轉換規則，如下所示︰
 
-- 您的裝置執行 Windows 10 及 Windows Server 2016
-- 您的裝置已加入網域
-- 已啟用使用 Azure AD Connect 進行密碼同步處理
-
-如果上述所有需求皆符合，您不需要執行任何動作就能註冊裝置。  
-
-
-### <a name="device-registration-in-federated-organizations"></a>同盟組織的裝置註冊
-
-在同盟 Azure AD 組態中，裝置倚賴 AD FS (或內部部署同盟伺服器) 向 Azure AD 進行驗證。 裝置會對 Azure Active Directory 裝置註冊服務進行註冊。
-
-對於 Windows 10 和 Windows Server 2016 電腦，Azure AD Connect 會將 Azure AD 中的裝置物件與內部部署的電腦帳戶物件建立關聯。 驗證期間必須有下列宣告，Azure AD 裝置註冊服務才能完成註冊並建立裝置物件︰
-
-- **http://schemas.microsoft.com/ws/2012/01/accounttype** - 包含 DJ 值，該值會將主體驗證器視為已加入網域的電腦。
-
-- **http://schemas.microsoft.com/identity/claims/onpremobjectguid** - 包含內部部署電腦帳戶的 **objectGUID** 屬性值。
+    @RuleName = "Issue object GUID for domain-joined computers"
+    c1:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", 
+        Value =~ "-515$", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    && 
+    c2:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    => issue(
+        store = "Active Directory", 
+        types = ("http://schemas.microsoft.com/identity/claims/onpremobjectguid"), 
+        query = ";objectguid;{0}", 
+        param = c2.Value
+    );
  
-- **http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid** - 包含電腦的主要安全性識別碼 (SID)，其對應於內部部署電腦帳戶的 **objectSid** 屬性值。
+### <a name="issue-objectsid-of-the-computer-account-on-premises"></a>發出內部部署電腦帳戶的 objectSID
 
-- **http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid** - 包含 Azure AD 用於信任 AD FS 或內部部署 Security Token Service (STS) 所發出之權杖的值。 如果您的 Azure AD 中有數個已驗證的網域，則這個值很重要。 在 AD FS 案例中，請使用 **http://\<domain-name**\>/adfs/services/trust/**，其中 **\<domain-name\>** 是 Azure AD 中已驗證的網域名稱。
+**`http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`** - 此宣告必須包含內部電腦帳戶的 **objectSid** 值。 在 AD FS 中，您可以新增發行轉換規則，如下所示︰
+
+    @RuleName = "Issue objectSID for domain-joined computers"
+    c1:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", 
+        Value =~ "-515$", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    && 
+    c2:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    => issue(claim = c2);
+
+### <a name="issue-issuerid-for-computer-when-multiple-verified-domain-names-in-azure-ad"></a>當 Azure AD 中有多個經過驗證的網域名稱時，發出電腦的 issuerID
+
+**`http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`** - 此宣告必須包含與發行權杖的內部部署同盟服務 (AD FS 或協力廠商) 連線之任何已驗證網域名稱的統一資源識別項 (URI)。 在 AD FS 中，您可以在上述內容之後，以該特定順序新增如下所示的發行轉換規則。 請注意，需要有一個規則可為使用者明確發出此規則。 下列規則中會新增用來識別使用者與電腦驗證的優先規則。
+
+    @RuleName = "Issue account type with the value User when its not a computer"
+    NOT EXISTS(
+    [
+        Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", 
+        Value == "DJ"
+    ]
+    )
+    => add(
+        Type = "http://schemas.microsoft.com/ws/2012/01/accounttype", 
+        Value = "User"
+    );
+    
+    @RuleName = "Capture UPN when AccountType is User and issue the IssuerID"
+    c1:[
+        Type == "http://schemas.xmlsoap.org/claims/UPN"
+    ]
+    && 
+    c2:[
+        Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", 
+        Value == "User"
+    ]
+    => issue(
+        Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", 
+        Value = regexreplace(
+        c1.Value, 
+        ".+@(?<domain>.+)", 
+        "http://${domain}/adfs/services/trust/"
+        )
+    );
+    
+    @RuleName = "Issue issuerID for domain-joined computers"
+    c:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", 
+        Value =~ "-515$", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    => issue(
+        Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", 
+        Value = "http://<verified-domain-name>/adfs/services/trust/"
+    );
+
+> [!NOTE]
+> 上述規則中的電腦的 issuerID 宣告必須包含 Azure AD 中其中一個已驗證的網域名稱。 這不是 AD FS 服務 URL。
 
 如需已驗證之網域名稱的詳細資料，請參閱[將自訂網域名稱新增至 Azure Active Directory](active-directory-add-domain.md)。  
 若要取得已驗證之公司網域的清單，您可以使用 [Get-MsolDomain](https://docs.microsoft.com/powershell/msonline/v1/get-msoldomain) Cmdlet。 
 
 ![Get-MsolDomain](./media/active-directory-conditional-access-automatic-device-registration-setup/01.png)
 
+### <a name="issue-immutableid-for-computer-when-one-for-users-exist-eg-alternate-login-id-is-set"></a>當使用者存在 ImmutableID (例如已設定替代登入識別碼) 時，請發出電腦的 ImmutableID
 
-已加入網域的 Windows 10 和 Windows Server 2016 電腦會使用 Windows 整合式驗證，向 AD FS 所裝載的作用中 WS-Trust 端點進行驗證。 請確定此端點已啟用。 如果您使用 Web 驗證 Proxy，也需確定已透過 Proxy 發佈此端點。 端點是 **adfs/services/trust/13/windowstransport**。 
+**`http://schemas.microsoft.com/LiveID/Federation/2008/05/ImmutableID`** - 此宣告必須包含電腦的有效值。 在 AD FS 中，您可以新增發行轉換規則，如下所示︰
 
-它應該會在 AD FS 管理主控台的 [服務] > [端點] 底下啟用。 如果您沒有以 AD FS 做為您的內部部署同盟伺服器，請依照廠商的指示來確定已啟用對應的端點。 
+    @RuleName = "Issue ImmutableID for computers"
+    c1:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", 
+        Value =~ "-515$", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ] 
+    && 
+    c2:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    => issue(
+        store = "Active Directory", 
+        types = ("http://schemas.microsoft.com/LiveID/Federation/2008/05/ImmutableID"), 
+        query = ";objectguid;{0}", 
+        param = c2.Value
+    );
 
+### <a name="helper-script-to-create-the-ad-fs-issuance-transform-rules"></a>建立 AD FS 發行轉換規則的協助程式指令碼
 
+下列指令碼可協助您建立上面所述的發行轉換規則。
 
-> [!NOTE]
-> 如果您未將 AD FS 用於您的內部部署同盟伺服器，請依照廠商的指示來建立規則以發出這些宣告。
-> 
-> 
+    $multipleVerifiedDomainNames = $false
+    $immutableIDAlreadyIssuedforUsers = $false
+    $oneOfVerifiedDomainNames = 'example.com'   # Replace example.com with one of your verified domains
+    
+    $rule1 = '@RuleName = "Issue account type for domain-joined computers"
+    c:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", 
+        Value =~ "-515$", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    => issue(
+        Type = "http://schemas.microsoft.com/ws/2012/01/accounttype", 
+        Value = "DJ"
+    );'
 
+    $rule2 = '@RuleName = "Issue object GUID for domain-joined computers"
+    c1:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", 
+        Value =~ "-515$", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    && 
+    c2:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    => issue(
+        store = "Active Directory", 
+        types = ("http://schemas.microsoft.com/identity/claims/onpremobjectguid"), 
+        query = ";objectguid;{0}", 
+        param = c2.Value
+    );'
 
+    $rule3 = '@RuleName = "Issue objectSID for domain-joined computers"
+    c1:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", 
+        Value =~ "-515$", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    && 
+    c2:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    => issue(claim = c2);'
 
+    $rule4 = ''
+    if ($multipleVerifiedDomainNames -eq $true) {
+    $rule4 = '@RuleName = "Issue account type with the value User when it is not a computer"
+    NOT EXISTS(
+    [
+        Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", 
+        Value == "DJ"
+    ]
+    )
+    => add(
+        Type = "http://schemas.microsoft.com/ws/2012/01/accounttype", 
+        Value = "User"
+    );
+    
+    @RuleName = "Capture UPN when AccountType is User and issue the IssuerID"
+    c1:[
+        Type == "http://schemas.xmlsoap.org/claims/UPN"
+    ]
+    && 
+    c2:[
+        Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", 
+        Value == "User"
+    ]
+    => issue(
+        Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", 
+        Value = regexreplace(
+        c1.Value, 
+        ".+@(?<domain>.+)", 
+        "http://${domain}/adfs/services/trust/"
+        )
+    );
+    
+    @RuleName = "Issue issuerID for domain-joined computers"
+    c:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", 
+        Value =~ "-515$", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    => issue(
+        Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", 
+        Value = "http://<verified-domain-name>/adfs/services/trust/"
+    );'
+    }
 
-**若要在 AD FS 中手動建立規則︰**
-
-- 選取下列其中一個 Windows PowerShell 指令碼 
-- 在連線至伺服器的工作階段中執行 Windows PowerShell 指令碼。 
-- 以 Azure AD 中已驗證的組織網域名稱取代第一行。
-
-
-
-
-#### <a name="setting-ad-fs-rules-in-a-single-domain-environment"></a>在單一網域環境中設定 AD FS 規則
-
-如果您只有**一個已驗證的網域**，請使用下列指令碼新增 AD FS 規則：
-
-
-    <#----------------------------------------------------------------------
-    |   Modify the Azure AD Relying Party to include the claims needed
-    |   for DomainJoin++. The rules include:
-    |   -ObjectGuid
-    |   -AccountType
-    |   -ObjectSid
-    +---------------------------------------------------------------------#>
-
-    $rule1 = '@RuleName = "Issue object GUID" 
-
-    c1:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", Value =~ "-515$", Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"] && 
-
-    c2:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname", Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"] 
-
-    => issue(store = "Active Directory", types = ("http://schemas.microsoft.com/identity/claims/onpremobjectguid"), query = ";objectguid;{0}", param = c2.Value);' 
-
-    $rule2 = '@RuleName = "Issue account type for domain joined computers" 
-
-    c:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", Value =~ "-515$", Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"] 
-
-    => issue(Type = "http://schemas.microsoft.com/ws/2012/01/accounttype", Value = "DJ");' 
-
-    $rule3 = '@RuleName = "Pass through primary SID" 
-
-    c1:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", Value =~ "-515$", Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"] && 
-
-    c2:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid", Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"] 
-
-    => issue(claim = c2);' 
+    $rule5 = ''
+    if ($immutableIDAlreadyIssuedforUsers -eq $true) {
+    $rule5 = '@RuleName = "Issue ImmutableID for computers"
+    c1:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", 
+        Value =~ "-515$", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ] 
+    && 
+    c2:[
+        Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname", 
+        Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"
+    ]
+    => issue(
+        store = "Active Directory", 
+        types = ("http://schemas.microsoft.com/LiveID/Federation/2008/05/ImmutableID"), 
+        query = ";objectguid;{0}", 
+        param = c2.Value
+    );'
+    }
 
     $existingRules = (Get-ADFSRelyingPartyTrust -Identifier urn:federation:MicrosoftOnline).IssuanceTransformRules 
 
-    $updatedRules = $existingRules + $rule1 + $rule2 + $rule3
+    $updatedRules = $existingRules + $rule1 + $rule2 + $rule3 + $rule4 + $rule5
 
     $crSet = New-ADFSClaimRuleSet -ClaimRule $updatedRules 
 
     Set-AdfsRelyingPartyTrust -TargetIdentifier urn:federation:MicrosoftOnline -IssuanceTransformRules $crSet.ClaimRulesString 
 
+### <a name="remarks"></a>備註 
 
-#### <a name="setting-ad-fs-rules-in-a-multi-domain-environment"></a>在多個網域環境中設定 AD FS 規則
+- 此指令碼會將規則附加至現有的規則。 請勿執行此指令碼兩次，因為會新增這組規則兩次。 先確定這些宣告沒有對應的規則存在 (在對應的條件下)，才能再次執行指令碼。
 
-如果您有多個已驗證的網域，請執行下列步驟︰
-
-1. 移除 Azure AD Connect 所建立的現有 **IssuerID** 規則。  
-此規則的範例如下：c:[Type == "http://schemas.xmlsoap.org/claims/UPN"] => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, ".+@(?<domain>.+)",  "http://${domain}/adfs/services/trust/")); 
+- 如果您有多個經過驗證的網域名稱 (如 Azure AD 入口網站中所示，或透過 Get-MsolDomains cmdlet)，將指令碼中 **$multipleVerifiedDomainNames** 的值設定為 **$true**。 此外，也務必移除經由 Azure AD Connect 或透過其他方式所建立的任何現有 issuerid 宣告。 此規則的範例如下︰
 
 
-2. 執行此指令碼︰ 
+        c:[Type == "http://schemas.xmlsoap.org/claims/UPN"]
+        => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, ".+@(?<domain>.+)",  "http://${domain}/adfs/services/trust/")); 
 
-        <#----------------------------------------------------------------------  
-        |   Modify the Azure AD Relying Party to include the claims needed  
-        |   for DomainJoin++. The rules include:
-        |   -ObjectGuid
-        |   -AccountType
-        |   -ObjectSid
-        +---------------------------------------------------------------------#>
+- 如果您已對使用者帳戶發出 **ImmutableID** 宣告，請將指令碼中 **$oneOfVerifiedDomainNames** 的值設定為 **$true**。
 
-        $VerifiedDomain = 'example.com'      # Replace example.com with one of your verified domains
+## <a name="step-3-enable-windows-down-level-devices"></a>步驟 3：啟用舊版 Windows 裝置
 
-        $rule1 = '@RuleName = "Issue object GUID" 
+如果有些已加入網域的裝置是舊版 Windows 裝置，您需要︰
 
-        c1:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", Value =~ "-515$", Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"] && 
+- 在 Azure AD 中設定原則，讓使用者可以註冊裝置。
+ 
+- 設定內部部署同盟服務來發出宣告，以支援**整合式 Windows 驗證 (IWA)** 來進行裝置註冊。
+ 
+- 將 Azure AD 裝置驗證端點新增至近端內部網路區域，以避免在驗證裝置時出現憑證提示。
 
-        c2:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname", Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"] 
+### <a name="set-policy-in-azure-ad-to-enable-users-to-register-devices"></a>在 Azure AD 中設定原則，讓使用者可以註冊裝置
 
-        => issue(store = "Active Directory", types = ("http://schemas.microsoft.com/identity/claims/onpremobjectguid"), query = ";objectguid;{0}", param = c2.Value);' 
+若要註冊舊版 Windows 裝置，您需要確定已設定可允許使用者在 Azure AD 中註冊裝置的設定。 在 Azure 入口網站中，您可以在底下找到此設定：
 
-        $rule2 = '@RuleName = "Issue account type for domain joined computers" 
+`Azure Active Directory > Users and groups > Device settings`
+    
+下列原則必須設定為 [全部]：**使用者可以向 Azure AD 註冊其裝置**
 
-        c:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", Value =~ "-515$", Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"] 
-
-        => issue(Type = "http://schemas.microsoft.com/ws/2012/01/accounttype", Value = "DJ");' 
-
-        $rule3 = '@RuleName = "Pass through primary SID" 
-
-        c1:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", Value =~ "-515$", Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"] && 
-
-        c2:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid", Issuer =~ "^(AD AUTHORITY|SELF AUTHORITY|LOCAL AUTHORITY)$"] 
-
-        => issue(claim = c2);' 
-
-        $rule4 = '@RuleName = "Issue AccountType with the value User when its not a computer account" 
-
-        NOT EXISTS([Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", Value == "DJ"]) 
-
-        => add(Type = "http://schemas.microsoft.com/ws/2012/01/accounttype", Value = "User");' 
-
-        $rule5 = '@RuleName = "Capture UPN when AccountType is User and issue the IssuerID" 
-
-        c1:[Type == "http://schemas.xmlsoap.org/claims/UPN"] && 
-
-        c2:[Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", Value == "User"] 
-
-        => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c1.Value, ".+@(?<domain>.+)", "http://${domain}/adfs/services/trust/"));' 
-
-        $rule6 = '@RuleName = "Update issuer for DJ computer auth" 
-
-        c1:[Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", Value == "DJ"] 
-
-        => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = "http://'+$VerifiedDomain+'/adfs/services/trust/");' 
-
-        $existingRules = (Get-ADFSRelyingPartyTrust -Identifier urn:federation:MicrosoftOnline).IssuanceTransformRules 
-
-        $updatedRules = $existingRules + $rule1 + $rule2 + $rule3 + $rule4+ $rule5+  $rule6 
-
-        $crSet = New-ADFSClaimRuleSet -ClaimRule $updatedRules 
-
-        Set-AdfsRelyingPartyTrust -TargetIdentifier urn:federation:MicrosoftOnline -IssuanceTransformRules $crSet.ClaimRulesString 
+![註冊裝置](./media/active-directory-conditional-access-automatic-device-registration-setup/23.png)
 
 
+### <a name="configure-on-premises-federation-service"></a>設定內部部署同盟服務 
 
-## <a name="step-3-setup-ad-fs-for-authentication-of-device-registration"></a>步驟 3︰設定 AD FS 以驗證裝置註冊
+內部部署同盟服務必須支援在收到對 Azure AD 信賴憑證者 (持有 resouce_params 參數且編碼值如下所示) 的驗證要求時發出 **authenticationmehod** 和 **wiaormultiauthn** 宣告︰
 
-確定 WIA 已設定為 Multi-Factor Authentication 的有效替代方式，以便在 AD FS 中進行裝置註冊。 若要這麼做，您必須擁有可傳遞驗證方法的發佈轉換規則。
+    eyJQcm9wZXJ0aWVzIjpbeyJLZXkiOiJhY3IiLCJWYWx1ZSI6IndpYW9ybXVsdGlhdXRobiJ9XX0
 
-1. 在 AD FS 管理主控台中，移至 [AD FS]  >  [信任關係] >  [信賴憑證者信任]。
+    which decoded is {"Properties":[{"Key":"acr","Value":"wiaormultiauthn"}]}
+
+收到這類要求時，內部部署同盟服務必須先使用整合式 Windows 驗證來驗證使用者，並且在成功時發出下列兩個宣告︰
+
+    http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/windows
+    http://schemas.microsoft.com/claims/wiaormultiauthn
+
+在 AD FS 中，您必須新增可傳遞驗證方法的發行轉換規則。  
+
+**若要新增此規則︰**
+
+1. 在 AD FS 管理主控台中，移至 `AD FS > Trust Relationships > Relying Party Trusts`。
 2. 在 [Microsoft Office 365 身分識別平台] 信賴憑證者信任物件上按一下滑鼠右鍵，然後選取 [編輯宣告規則]。
 3. 在 [發佈轉換規則] 索引標籤上，選取 [新增規則]。
 4. 在 [宣告規則] 範本清單中，選取 [使用自訂規則傳送宣告]。
 5. 選取 [下一步] 。
 6. 在 [宣告規則名稱] 方塊中，輸入**驗證方法宣告規則**。
-7. 在 [宣告規則] 方塊中，輸入此規則︰  
-**c:[Type == "http://schemas.microsoft.com/claims/authnmethodsreferences"] => issue(claim = c);**
-8. 在同盟伺服器上，輸入此 PowerShell 命令：
+7. 在 [宣告規則] 方塊中，輸入下列規則︰
+
+    `c:[Type == "http://schemas.microsoft.com/claims/authnmethodsreferences"] => issue(claim = c);`
+
+8. 在同盟伺服器上，以 Azure AD 信賴憑證者信任物件的信賴憑證者物件名稱取代 **\<RPObjectName\>** 之後，輸入下列 PowerShell 命令。 此物件通常名為「Microsoft Office 365 身分識別平台」。
    
     `Set-AdfsRelyingPartyTrust -TargetName <RPObjectName> -AllowedAuthenticationClassReferences wiaormultiauthn`
 
-**\<RPObjectName\>** 是 Azure AD 信賴憑證者信任物件的信賴憑證者物件名稱。 此物件通常名為「Microsoft Office 365 身分識別平台」。
+### <a name="add-the-azure-ad-device-authentication-end-point-to-the-local-intranet-zones"></a>將 Azure AD 裝置驗證端點新增至近端內部網路區域
 
+若要避免在註冊裝置中的使用者向 Azure AD 進行驗證時出現憑證提示時，您可以將原則推送到已加入網域的裝置，進而將下列 URL 新增至 Internet Explorer 的近端內部網路區域︰
 
+`https://device.login.microsoftonline.com`
 
-##<a name="step-4-deployment-and-rollout"></a>步驟 4︰部署與導入
+## <a name="step-4-control-deployment-and-rollout"></a>步驟 4︰控制部署與導入
 
-當已加入網域的電腦符合必要條件時，便可以向 Azure AD 註冊。
+當您完成所需的步驟時，已加入網域的裝置即可自動向 Azure AD 註冊。 所有已加入網域且執行 Windows 10 年度更新版和 Windows Server 2016 的裝置會在裝置重新啟動或使用者登入時自動向 Azure AD 註冊。 加入網域作業完成之後，向 Azure AD 註冊的新裝置會在裝置重新啟動時向 Azure AD 註冊。
 
-已加入網域的「Windows 10 年度更新版」和 Windows Server 2016 電腦會在下次重新啟動裝置或在使用者登入 Windows 時，自動向 Azure AD 註冊。 加入網域的新電腦會在加入網域作業之後，於裝置重新啟動時向 Azure AD 註冊。
+### <a name="remarks"></a>備註
 
-> [!NOTE]
-> 執行 Windows 10 11 月更新之已加入網域的 Windows 10 電腦只有在已設定導入群組原則物件的情況下，才會自動向 Azure AD 註冊。
-> 
-> 
+- 您可以使用「群組原則」物件來控制已加入網域之 Windows 10 和 Windows Server 2016 電腦的自動註冊導入。
 
-您可以使用「群組原則」物件來控制已加入網域之 Windows 10 和 Windows Server 2016 電腦的自動註冊導入。 
+- **只有**已設定導入群組原則物件的情況下，Windows 10 2015 年 11 月更新才會自動向 Azure AD 註冊。
 
-若要導入已加入網域之非 Windows 10 電腦的自動註冊，您可以將 Windows Installer 套件部署到您所選的電腦。
+- 若要導入舊版 Windows 電腦的自動註冊，您可以將 [Windows Installer 套件](#windows-installer-packages-for-non-windows-10-computers)部署到您所選的電腦。
 
-> [!NOTE]
-> 對於所有非 Windows 10/Windows Server 2016 電腦，建議使用如本文件後面所述的 Windows Installer 套件。
-> 
-> 
+- 如果您將群組原則物件推送到已加入網域的 Windows 8.1 裝置，將會嘗試註冊。不過，建議您使用 [Windows Installer 套件](#windows-installer-packages-for-non-windows-10-computers)來註冊所有的舊版 Windows 裝置。 
 
-### <a name="create-a-group-policy-object-to-control-the-rollout-of-automatic-registration"></a>建立可控制自動註冊導入的群組原則物件
+### <a name="create-a-group-policy-object"></a>建立群組原則物件 
 
-若要控制已加入網域之電腦的 Azure AD 自動註冊導入，您可以將 [將已加入網域的電腦註冊為裝置] 群組原則部署到您要註冊的電腦。 例如，您可以將此原則部署到組織單位或安全性群組。
+若要控制現行 Windows 電腦的自動註冊導入，您應將 [將已加入網域的電腦註冊為裝置] 群組原則物件部署到您要註冊的裝置。 例如，您可以將此原則部署到組織單位或安全性群組。
 
 **若要設定原則︰**
 
-1. 開啟 [伺服器管理員]，然後移至 [工具]  >  [群組原則管理]。
-2. 移至您要啟用自動註冊 Windows 10 或 Windows Server 2016 電腦的網域所對應的網域節點。
+1. 開啟 [伺服器管理員]，然後移至 `Tools > Group Policy Management`。
+2. 移至您要啟用自動註冊現行 Windows 電腦的網域所對應的網域節點。
 3. 在 [群組原則物件] 上按一下滑鼠右鍵，然後選取 [新增]。
 4. 輸入群組原則物件的名稱。 例如，「自動向 Azure AD 註冊」。 選取 [確定] 。
 5. 以滑鼠右鍵按一下新的群組原則物件，然後選取 [編輯]。
 6. 移至 [電腦設定]  >  [原則]  >  [系統管理範本]  >  [Windows 元件]  >  [裝置註冊]。 以滑鼠右鍵按一下 [將已加入網域的電腦註冊為裝置]，然後選取 [編輯]。
    
    > [!NOTE]
-   > 此「群組原則」範本已從舊版 [群組原則管理] 主控台重新命名。 如果您使用舊版的主控台，請移至 [電腦設定]  >  [原則]  >  [系統管理範本]  >  [Windows 元件]  >  [工作場所聯結]  >  [自動將用戶端電腦聯結工作場所]。
-   > 
-   > 
+   > 此「群組原則」範本已從舊版 [群組原則管理] 主控台重新命名。 如果您使用舊版的主控台，請移至 `Computer Configuration > Policies > Administrative Templates > Windows Components > Workplace Join > Automatically workplace join client computers`。 
+
 7. 選取 [已啟用]，然後選取 [套用]。
 8. 選取 [確定] 。
 9. 將群組原則物件連結到您選擇的位置。 例如，您可以將它連結到特定組織單位。 也可以將它連結到會向 Azure AD 自動註冊的特定電腦安全性群組。 若要為貴組織中所有已加入網域的 Windows 10 和 Windows Server 2016 電腦設定此原則，請將「群組原則」物件連結至網域。
 
 ### <a name="windows-installer-packages-for-non-windows-10-computers"></a>非 Windows 10 電腦的 Windows Installer 套件
-若要在同盟環境中註冊執行 Windows 8.1、Windows 7、Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 的已加入網域電腦，您可以下載並安裝下列 Windows Installer 套件 (.msi) 檔案：
 
-* [x64](http://download.microsoft.com/download/C/A/7/CA79FAE2-8C18-4A8C-A4C0-5854E449ADB8/Workplace_x64.msi)
-* [x86](http://download.microsoft.com/download/C/A/7/CA79FAE2-8C18-4A8C-A4C0-5854E449ADB8/Workplace_x86.msi)
+若要在同盟環境中註冊已加入網域的舊版 Windows 電腦，您可以從下載中心的 [適用於非 Windows 10 電腦的 Microsoft Workplace Join](https://www.microsoft.com/en-us/download/details.aspx?id=53554) 頁面下載並安裝下列 Windows Installer 套件 (.msi)。
 
-使用軟體發佈系統 (例如 System Center Configuration Manager) 來部署此套件。 此套件使用 quiet 參數來支援標準的無訊息安裝選項。 System Center Configuration Manager 2016 提供額外的舊版好處，例如能夠追蹤已完成的註冊。 如需詳細資訊，請參閱 [System Center 2016](https://www.microsoft.com/en-us/cloud-platform/system-center)。
+您可以使用軟體發佈系統 (例如 System Center Configuration Manager) 來部署此套件。 此套件使用 quiet 參數來支援標準的無訊息安裝選項。 System Center Configuration Manager Current Branch 提供額外的舊版好處，例如能夠追蹤已完成的註冊。 如需詳細資訊，請參閱 [System Center Configuration Manager](https://www.microsoft.com/cloud-platform/system-center-configuration-manager)。
 
-安裝程式會在系統上建立排定的工作，此工作是在使用者的內容中執行。 此工作會在使用者登入 Windows 時觸發。 此工作會在透過 IWA 驗證之後，利用使用者認證以無訊息方式向 Azure AD 註冊裝置。 若要查看排定的工作，請移至 [Microsoft]  >  [工作場所聯結]，然後移至工作排程器程式庫。
+安裝程式會在系統上建立排定的工作，此工作是在使用者的內容中執行。 此工作會在使用者登入 Windows 時觸發。 此工作會在使用整合式 Windows 驗證進行驗證之後，使用使用者認證以無訊息方式向 Azure AD 註冊裝置。 若要查看裝置中排定的工作，請移至 [Microsoft] > [Workplace Join]，然後移至工作排程器程式庫。
+
+## <a name="step-5-verify-registered-devices"></a>步驟 5︰驗證已註冊的裝置
+
+您可以在 [Azure Active Directory PowerShell 模組](https://docs.microsoft.com/en-us/powershell/msonline/) 中使用 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) Cmdlet，以查看您組織中已註冊成功的裝置。
+
+此 Cmdlet 的輸出會顯示 Azure AD 中已註冊的裝置。 若要取得所有裝置，請使用 **-All** 參數，然後使用 **deviceTrustType** 屬性進行篩選。 已加入網域的裝置具有**已加入網域**這個值。
 
 ## <a name="next-steps"></a>後續步驟
 
-- 若自動裝置註冊期間發生問題，請參閱下列疑難排解主題以取得說明：
-    - [針對 Windows 10 與 Windows Server 2016 進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows.md)
-    - [針對 Windows 下層用戶端進行疑難排解](active-directory-conditional-access-automatic-device-registration-troubleshoot-windows-legacy.md)
-- 如需常見問題解答，請參閱[自動裝置註冊常見問題集](active-directory-conditional-access-automatic-device-registration-faq.md)。
+* [自動裝置註冊常見問題集](active-directory-device-registration-faq.md)
+* [針對已加入 Azure AD 網域之電腦的自動註冊進行疑難排解 – Windows 10 和 Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md)
+* [針對向 Azure AD 自動註冊已加入網域的電腦進行疑難排解 - 非 Windows 10](active-directory-device-registration-troubleshoot-windows-legacy.md)
+* [Azure Active Directory 條件式存取](active-directory-conditional-access-azure-portal.md)
 
 
 
-
-<!--HONumber=Feb17_HO2-->
-
+<!--Image references-->
+[1]: ./media/active-directory-conditional-access-automatic-device-registration-setup/12.png
 

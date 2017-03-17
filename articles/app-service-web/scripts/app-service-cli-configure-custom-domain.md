@@ -1,13 +1,13 @@
 ---
-title: "Azure CLI 指令碼範例 - 建立 Web 應用程式並將程式碼部署至預備環境 | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 建立 Web 應用程式並將程式碼部署至預備環境"
+title: "Azure CLI 指令碼範例 - 將自訂網域對應至 Web 應用程式 | Microsoft Docs"
+description: "Azure CLI 指令碼範例 - 將自訂網域對應至 Web 應用程式"
 services: app-service\web
 documentationcenter: 
 author: cephalin
 manager: erikre
 editor: 
 tags: azure-service-management
-ms.assetid: 2b995dcd-e471-4355-9fda-00babcdb156e
+ms.assetid: 5ac4a680-cc73-4578-bcd6-8668c08802c2
 ms.service: app-service-web
 ms.workload: web
 ms.devlang: na
@@ -16,22 +16,22 @@ ms.date: 02/21/2017
 ms.author: cephalin
 translationtype: Human Translation
 ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: a985f7999affa1af8fdc1263d3cf674d6888158f
+ms.openlocfilehash: b618e1e7095cf56a1f2f91a6bddee17d512f43c9
 ms.lasthandoff: 03/11/2017
 
 ---
 
-# <a name="create-a-web-app-and-deploy-code-to-a-staging-environment"></a>建立 Web 應用程式並將程式碼部署至預備環境
+# <a name="map-a-custom-domain-to-a-web-app"></a>將自訂網域對應至 Web 應用程式
 
-此範例指令碼會在 App Service 中建立 Web 應用程式以及稱為「預備」的其他部署位置，然後將範例應用程式部署至「預備」位置。
+此範例指令碼會在 App Service 中建立 Web 應用程式及其相關資源，然後將 `www.<yourdomain>` 與其對應。 
 
-在執行這個指令碼之前，請確定您已使用 `az login` 命令建立與 Azure 的連線。 
+在執行這個指令碼之前，請確定您已使用 `az login` 命令建立與 Azure 的連線，而且您可以存取網域註冊機構的 DNS 組態頁面。
 
 這個範例適用於 Bash 殼層。 如需在 Windows 用戶端上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../../virtual-machines/virtual-machines-windows-cli-options.md)。
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-azurecli[主要](../../../cli_scripts/app-service/deploy-deployment-slot/deploy-deployment-slot.sh "建立 Web 應用程式並將程式碼部署至預備環境")]
+[!code-azurecli[主要](../../../cli_scripts/app-service/configure-custom-domain/configure-custom-domain.sh?highlight=3 "將自訂網域對應至 Web 應用程式")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
@@ -44,10 +44,7 @@ ms.lasthandoff: 03/11/2017
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | 建立用來存放所有資源的資源群組。 |
 | [az appservice plan create](https://docs.microsoft.com/cli/azure/appservice/plan#create) | 建立 App Service 方案。 |
 | [az appservice web create](https://docs.microsoft.com/cli/azure/appservice/web#delete) | 建立 Azure Web 應用程式。 |
-| [az appservice web deployment slot create](https://docs.microsoft.com/cli/azure/appservice/web/deployment/slot#create) | 建立部署位置。 |
-| [az appservice web source-control config](https://docs.microsoft.com/cli/azure/appservice/web/source-control#config) | 將 Azure Web 應用程式關聯到 Git 或 Mercurial 存放庫。 |
-| [az appservice web browse](https://docs.microsoft.com/cli/azure/appservice/web#browse) | 在瀏覽器中開啟 Azure Web 應用程式。 |
-| [az appservice web deployment slot swap](https://docs.microsoft.com/cli/azure/appservice/web/deployment/slot#swap) | 將指定的部署位置切換到生產環境。 |
+| [az appservice web config hostname add](https://docs.microsoft.com/cli/azure/appservice/web/config/hostname#add) | 更新 App Service 方案來調整其定價層。 |
 
 ## <a name="next-steps"></a>後續步驟
 

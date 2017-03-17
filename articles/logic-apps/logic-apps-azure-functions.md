@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Functions 在 Logic Apps 中加入自訂程式碼 | Microsoft Docs"
-description: "使用 Azure Functions 建立適用於 Azure Logic Apps 的自訂程式碼"
+title: "透過 Azure Functions 的適用於 Azure Logic Apps 的自訂程式碼 | Microsoft Docs"
+description: "使用 Azure Functions 建立並執行適用於 Azure Logic Apps 的自訂程式碼"
 services: logic-apps,functions
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -12,31 +12,32 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
+ms.custom: H1Hack27Feb2017
 ms.date: 10/18/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: c63dde728eaaf8237970e05cc524c6220b69a074
-ms.openlocfilehash: 8b68f017a2c7a17603508438b0d4bd760bec4f78
-ms.lasthandoff: 02/15/2017
-
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 7d21ab1180fcd6df39a5dcc5c095c9521c00f6fd
+ms.lasthandoff: 03/10/2017
 
 ---
-# <a name="add-custom-code-to-azure-logic-apps-with-azure-functions"></a>使用 Azure Functions 在 Azure Logic Apps 中加入自訂程式碼
 
-您可以在邏輯應用程式內使用 Azure Functions，來執行 C# 或 node.js 的自訂程式碼片段。 
+# <a name="add-and-run-custom-code-for-logic-apps-through-azure-functions"></a>透過 Azure Functions 新增並執行適用於 Logic Apps 的自訂程式碼
+
+若要在邏輯應用程式中執行 C# 或 node.js 的自訂程式碼片段，您可以透過 Azure Functions 建立自訂函式。 
 [Azure Functions](../azure-functions/functions-overview.md) 提供 Microsoft Azure 中無伺服器運算的功能，並有助於執行下列工作：
 
 * 邏輯應用程式中欄位的進階格式設定或計算
 * 在工作流程中執行計算。
 * 利用 C# 或 node.js 中支援的函式來擴充邏輯應用程式功能
 
-## <a name="create-functions-for-logic-apps"></a>建立 Logic Apps 的函式
+## <a name="create-custom-functions-for-your-logic-apps"></a>建立邏輯應用程式的自訂函式
 
 建議您在 Azure Functions 入口網站中，從**一般 Webhook - 節點**或**一般 Webhook - C#** 範本建立新的函式。 結果會建立自動填入以接受來自邏輯應用程式之 `application/json` 的範本。 系統即會自動偵測您從這些範本建立的函式，並顯示於邏輯應用程式設計工具的 [我的區域中的 Azure Functions] 下方。
 
 在 Azure 入口網站中函式的 [整合] 窗格上，您的範本應該會顯示將 [模式] 設為 [Webhook]，以及將 [Webhook 類型] 設為 [一般 JSON]。 
 
-Webhook 函數會接受要求，並透過 `data` 變數將它傳入方法。 您可以使用點標記法 (例如 `data.foo`) 來存取承載的屬性。 例如，將日期時間值轉換為日期字串的簡單 JavaScript 函數看起來如以下範例︰
+Webhook 函數會接受要求，並透過 `data` 變數將它傳入方法。 您可以使用點標記法 (例如 `data.function-name`) 來存取承載的屬性。 例如，將日期時間值轉換為日期字串的簡單 JavaScript 函數看起來如以下範例︰
 
 ```
 function start(req, res){
