@@ -13,11 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 02/22/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 7f5e33b7f80e3c1e1e3e66b3cab879a5bc30e823
-ms.openlocfilehash: f4f04a05c1d522f43668e31db15092476b4ef6df
+ms.sourcegitcommit: 5ed72d95ae258d6fa8e808cd72ab6e8a665901c9
+ms.openlocfilehash: 4c72a7c7127f2d387926ac2722aeb3f1e5f7c2a6
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -39,62 +40,65 @@ Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 
 
 接著再回到本文，我們將會從 SQL 查詢教學課程開始，帶領您演練一些簡易的 JSON 文件和 SQL 命令。
 
-## <a name="getting-started-with-sql-commands-in-documentdb"></a>開始使用 DocumentDB 中的 SQL 命令
+## <a id="GettingStarted"></a>開始使用 DocumentDB 中的 SQL 命令
 為了查看 DocumentDB SQL 如何運作，讓我們從一些簡單的 JSON 文件開始著手，然後對其逐步執行一些簡單查詢。 請考慮有關兩個家族的這兩份 JSON 文件。 請注意，使用 DocumentDB，我們不需要明確地建立任何結構描述或次要索引。 我們只需要將 JSON 文件插入到 DocumentDB 集合中，再接著進行查詢即可。 這裡有 Andersen 一家的簡單 JSON 文件，包括這一家的父母、孩子 (以及寵物)、地址及註冊資訊。 這份文件包含字串、數字、布林值、陣列和巢狀屬性。 
 
 **文件**  
 
-    {
-        "id": "AndersenFamily",
-        "lastName": "Andersen",
-        "parents": [
-           { "firstName": "Thomas" },
-           { "firstName": "Mary Kay"}
-        ],
-        "children": [
-           {
-               "firstName": "Henriette Thaulow", "gender": "female", "grade": 5,
-               "pets": [{ "givenName": "Fluffy" }]
-           }
-        ],
-        "address": { "state": "WA", "county": "King", "city": "seattle" },
-        "creationDate": 1431620472,
-        "isRegistered": true
-    }
-
+```JSON
+{
+  "id": "AndersenFamily",
+  "lastName": "Andersen",
+  "parents": [
+     { "firstName": "Thomas" },
+     { "firstName": "Mary Kay"}
+  ],
+  "children": [
+     {
+         "firstName": "Henriette Thaulow", 
+         "gender": "female", 
+         "grade": 5,
+         "pets": [{ "givenName": "Fluffy" }]
+     }
+  ],
+  "address": { "state": "WA", "county": "King", "city": "seattle" },
+  "creationDate": 1431620472,
+  "isRegistered": true
+}
+```
 
 以下是第二份具有些微差異的文件：使用 `givenName` 和 `familyName` 來取代 `firstName` 和 `lastName`。
 
 **文件**  
 
-    {
-        "id": "WakefieldFamily",
-        "parents": [
-            { "familyName": "Wakefield", "givenName": "Robin" },
-            { "familyName": "Miller", "givenName": "Ben" }
-        ],
-        "children": [
-            {
-                "familyName": "Merriam", 
-                "givenName": "Jesse", 
-                "gender": "female", "grade": 1,
-                "pets": [
-                    { "givenName": "Goofy" },
-                    { "givenName": "Shadow" }
-                ]
-            },
-            { 
-                "familyName": "Miller", 
-                 "givenName": "Lisa", 
-                 "gender": "female", 
-                 "grade": 8 }
-        ],
-        "address": { "state": "NY", "county": "Manhattan", "city": "NY" },
-        "creationDate": 1431620462,
-        "isRegistered": false
-    }
-
-
+```json
+{
+  "id": "WakefieldFamily",
+  "parents": [
+      { "familyName": "Wakefield", "givenName": "Robin" },
+      { "familyName": "Miller", "givenName": "Ben" }
+  ],
+  "children": [
+      {
+        "familyName": "Merriam", 
+        "givenName": "Jesse", 
+        "gender": "female", "grade": 1,
+        "pets": [
+            { "givenName": "Goofy" },
+            { "givenName": "Shadow" }
+        ]
+      },
+      { 
+        "familyName": "Miller", 
+         "givenName": "Lisa", 
+         "gender": "female", 
+         "grade": 8 }
+  ],
+  "address": { "state": "NY", "county": "Manhattan", "city": "NY" },
+  "creationDate": 1431620462,
+  "isRegistered": false
+}
+```
 
 現在，讓我們嘗試對此資料執行一些查詢，以了解 DocumentDB SQL 的一些重要部分。 例如，下列查詢將會傳回 id 欄位符合 `AndersenFamily`的文件。 因為它是 `SELECT *`，所以查詢的輸出是完整 JSON 文件：
 
@@ -168,7 +172,7 @@ Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 
 * DocumentDB 只支援嚴謹的 JSON 文件。 這表示類型系統和運算式只能處理 JSON 類型。 如需詳細資料，請參閱 [JSON 規格](http://www.json.org/) 。  
 * DocumentDB 集合是 JSON 文件的無結構描述容器。 集合中文件內及跨文件之資料實體中的關係，會由內含項目以隱含方式擷取，而不是由主索引鍵和外部索引鍵關係擷取。 這是本文稍後討論之文件內聯結中值得指出的重要部分。
 
-## <a name="documentdb-indexing"></a>DocumentDB 索引編製
+## <a id="Indexing"></a>DocumentDB 索引編製
 在進入 DocumentDB SQL 語法之前，有必要先探索 DocumentDB 的索引設計。 
 
 資料庫索引的目的是要在使用最少資源 (例如 CPU、輸入/輸出) 的情況下，以各種方式提供查詢，同時兼顧良好的輸送量和低延遲。 通常，選擇適用於資料庫查詢的正確索引需要經過相當的規劃和實驗。 此方式對資料不符合嚴謹結構描述的無結構描述資料庫而言是種挑戰，而且發展十分迅速。 
@@ -183,16 +187,16 @@ Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 
 
 如需示範如何為集合設定索引編製原則的範例，請參閱 MSDN 上的 [DocumentDB 範例](https://github.com/Azure/azure-documentdb-net) 。 現在，讓我們深入討論 DocumentDB SQL 語法。
 
-## <a name="basics-of-a-documentdb-sql-query"></a>DocumentDB SQL 查詢的基本概念
+## <a id="Basics"></a>DocumentDB SQL 查詢的基本概念
 根據 ANSI-SQL 標準，每個查詢都會包含 SELECT 子句以及選擇性的 FROM 和 WHERE 子句。 針對每個查詢，通常都會列舉 FROM 子句中的來源。 接著，會對來源套用 WHERE 子句中的篩選，以擷取 JSON 文件的子集。 最後，使用 SELECT 子句來投射選取清單中所要求的 JSON 值。
 
-    SELECT [TOP <top_expression>] <select_list> 
+    SELECT <select_list> 
     [FROM <from_specification>] 
     [WHERE <filter_condition>]
     [ORDER BY <sort_specification]    
 
 
-## <a name="from-clause"></a>FROM 子句
+## <a id="FromClause"></a>FROM 子句
 除非稍後會在查詢中篩選或投射來源，否則 `FROM <from_specification>` 子句為選用子句。 此子句的目的是指定查詢必須操作的資料來源。 整個集合通常是來源，但是您可以改為指定集合的子集。 
 
 類似 `SELECT * FROM Families` 的查詢指出整個 Families 集合是要列舉的來源。 可使用特殊識別碼 ROOT 來代表此集合，而不使用集合名稱。 下列清單包含會針對每個查詢強制執行的規則：
@@ -255,7 +259,7 @@ Microsoft Azure DocumentDB 支援使用 SQL (結構化查詢語言) 做為 JSON 
     ]
 
 
-## <a name="where-clause"></a>WHERE 子句
+## <a id="WhereClause"></a>WHERE 子句
 WHERE 子句 (**`WHERE <filter_condition>`**) 是選用的。 它會指定條件，而且來源所提供的 JSON 文件必須滿足這些條件才能併入為結果的一部分。 任何 JSON 文件都必須將指定的條件評估為 "true"，才能視為結果。 索引層使用 WHERE 子句，來判斷可為結果一部分的來源文件的絕對最小子集。 
 
 下列查詢會要求包含名稱屬性且其值為 `AndersenFamily`的文件。 沒有名稱屬性或值不符合 `AndersenFamily` 的任何其他文件都會予以排除。 
@@ -586,7 +590,7 @@ IN 關鍵字可用來檢查指定的值是否符合清單中的任何值。 例�
     SELECT f.lastName ?? f.surname AS familyName
     FROM Families f
 
-### <a name="quoted-property-accessor"></a>加上引號的屬性存取子
+### <a id="EscapingReservedKeywords"></a>加上引號的屬性存取子
 您也可以使用加上引號的屬性運算子 `[]`存取屬性。 例如， `SELECT c.grade` and `SELECT c["grade"]` 是相等的。 當您需要逸出包含空格、特殊字元的屬性，或剛好要共用和 SQL 關鍵字或保留字相同的名稱時，此語法很有用。
 
     SELECT f["lastName"]
@@ -594,7 +598,7 @@ IN 關鍵字可用來檢查指定的值是否符合清單中的任何值。 例�
     WHERE f["id"] = "AndersenFamily"
 
 
-## <a name="select-clause"></a>SELECT 子句
+## <a id="SelectClause"></a>SELECT 子句
 SELECT 子句 (**`SELECT <select_list>`**) 是必要項目，並指定將從查詢中擷取的值 (就像在 ANSI-SQL 中)。 在來源文件上篩選出來的子集會傳遞給投射階段，而在此階段中，會擷取指定的 JSON 值並建構新的 JSON 物件 (針對每個傳遞給它的輸入)。 
 
 下列範例示範一般的 SELECT 查詢。 
@@ -617,7 +621,7 @@ SELECT 子句 (**`SELECT <select_list>`**) 是必要項目，並指定將從查�
 
 
 ### <a name="nested-properties"></a>巢狀屬性
-在下列範例中，我們將投射兩個巢狀屬性 `f。address。state` and `f。address。city`。
+在下列範例中，我們將投射兩個巢狀屬性 `f.address.state` and `f.address.city`。
 
 **查詢**
 
@@ -771,7 +775,7 @@ DocumentDB SQL 的另一個重要功能是建立陣列/物件。 在前一個範
       }
     ]
 
-### <a name="value-keyword"></a>VALUE 關鍵字
+### <a id="ValueKeyword"></a>VALUE 關鍵字
 **VALUE** 關鍵字提供可傳回 JSON 值的方法。 例如，下面顯示的查詢會傳回純量 `"Hello World"` 而非 `{$1: "Hello World"}`。
 
 **查詢**
@@ -851,7 +855,7 @@ DocumentDB SQL 的另一個重要功能是建立陣列/物件。 在前一個範
         "isRegistered": true
     }]
 
-### <a name="top-operator"></a>TOP 運算子
+### <a id="TopKeyword"></a>TOP 運算子
 TOP 關鍵字可以用來限制來自查詢的值數目。 當 TOP 與 ORDER BY 子句一起使用時，結果集會限制於前 N 個已排序的值。否則，它會以未定義的順序傳回前 N 個結果。 最佳做法是在 SELECT 陳述式中，一律搭配 TOP 子句來使用 ORDER BY 子句。 這是唯一能如預期般指出哪些資料列會受到 TOP 影響的方式。 
 
 **查詢**
@@ -881,7 +885,64 @@ TOP 關鍵字可以用來限制來自查詢的值數目。 當 TOP 與 ORDER BY 
 
 TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配使用 。 如需詳細資訊，請參閱下方的參數化查詢。
 
-## <a name="order-by-clause"></a>ORDER BY 子句
+### <a id="Aggregates"></a>彙總函式
+您也可以在 `SELECT` 子句中執行彙總。 彙總函式會執行一組值的計算，然後傳回單一值。 例如，下列查詢會傳回集合內的系列文件計數。
+
+**查詢**
+
+    SELECT COUNT(1) 
+    FROM Families f 
+
+**結果**
+
+    [{
+        "$1": 2
+    }]
+
+您也可以使用 `VALUE` 關鍵字來傳回彙總的純量值。 例如，下列查詢會以單一數字傳回值的計數：
+
+**查詢**
+
+    SELECT VALUE COUNT(1) 
+    FROM Families f 
+
+**結果**
+
+    [ 2 ]
+
+您也可以搭配篩選器執行彙總。 例如，下列查詢會傳回位址在華盛頓州的文件計數。
+
+**查詢**
+
+    SELECT VALUE COUNT(1) 
+    FROM Families f
+    WHERE f.address.state = "WA" 
+
+**結果**
+
+    [{
+        "$1": 1
+    }]
+
+下表顯示 DocumentDB 中支援的彙總函式清單。 `SUM` 和 `AVG` 是對數值執行，而 `COUNT`、`MIN`和 `MAX` 則可對數字、字串、布林值和 null 執行。 
+
+| 使用量 | 說明 |
+|-------|-------------|
+| COUNT | 以運算式傳回項目的數目。 |
+| SUM   | 以運算式傳回所有值的總和。 |
+| 最小值   | 以運算式傳回最小值。 |
+| 最大值   | 以運算式傳回最大值。 |
+| 平均   | 以運算式傳回值的平均。 |
+
+彙總也可以對陣列反覆運算的結果執行。 如需詳細資訊，請參閱[查詢中的陣列反覆運算](#Iteration)。
+
+> [!NOTE]
+> 使用 Azure 入口網站的 [查詢總管] 時，請注意彙總查詢可能會對查詢頁面傳回部分彙總的結果。 SDK 會產生所有頁面的單一累計值。 
+> 
+> 若要使用程式碼執行彙總查詢，您需要 .NET SDK 1.12.0、.NET Core SDK 1.1.0 或 Java SDK 1.9.5 或更高版本。    
+>
+
+## <a id="OrderByClause"></a>ORDER BY 子句
 像是在 ANSI SQL 中，您可以在查詢時包含選擇性的 Order By 子句。 子句可以包含選擇性 ASC/DESC 引數，利用它來指定擷取結果時必須依循的順序。
 
 例如，以下是依據居住城市名稱的順序擷取家族的查詢。
@@ -926,8 +987,9 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
       }
     ]
 
-## <a name="advanced-database-concepts-and-sql-queries"></a>進階資料庫概念和 SQL 查詢
-### <a name="iteration"></a>反覆運算
+## <a id="Advanced"></a>進階資料庫概念和 SQL 查詢
+
+### <a id="Iteration"></a>反覆運算
 在 DocumentDB SQL 中已透過 **IN** 關鍵字加入新的建構，以支援反覆運算 JSON 陣列。 FROM 來源支援反覆運算。 讓我們從下列範例開始：
 
 **查詢**
@@ -1006,7 +1068,22 @@ TOP 可以與常數值 (如上所示) 或使用參數化查詢的變數值搭配
       "givenName": "Lisa"
     }]
 
-### <a name="joins"></a>聯結
+您也可以對陣列反覆運算的結果執行彙總。 例如，下列查詢會計算所有系列的子系數目。
+
+**查詢**
+
+    SELECT COUNT(child) 
+    FROM child IN Families.children
+
+**結果**  
+
+    [
+      { 
+        "$1": 3
+      }
+    ]
+
+### <a id="Joins"></a>聯結
 在關聯式資料庫中，跨資料表的聯結需求極為重要。 就設計正規化結構描述而言，邏輯上需要它。 與此相反的是，DocumentDB 會處理無結構描述文件的反正規化資料模型。 這在邏輯上等同於「自我聯結」。
 
 語言支援的語法是 <from_source1> JOIN <from_source2> JOIN ...JOIN <from_sourceN>。 整體而言，這會傳回一組 **N**-Tuple (具有 **N** 個值的 Tuple)。 每個 Tuple 所擁有的值，都是將所有集合別名在其個別集合上反覆運算所產生。 換句話說，這是參與聯結之集的完整交叉乘積。
@@ -1155,13 +1232,13 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
     ]
 
 
-## <a name="javascript-integration"></a>JavaScript 整合
+## <a id="JavaScriptIntegration"></a>JavaScript 整合
 DocumentDB 提供一個程式設計模型，以根據預存程序和觸發程序，直接對集合執行 JavaScript 型應用程式邏輯。 這允許：
 
 * 藉由直接在資料庫引擎內深入整合 JavaScript 執行階段，對集合中的文件執行高效能交易式 CRUD 操作和查詢。 
 * 將控制流程、變數範圍限制、指派以及例外狀況處理基本類型與資料庫交易的整合自然模型化。 如需 JavaScript 整合之 DocumentDB 支援的詳細資料，請參閱 JavaScript 伺服器端程式設計文件。
 
-### <a name="user-defined-functions-udfs"></a>使用者定義函數 (UDF)
+### <a id="UserDefinedFunctions"></a>使用者定義函數 (UDF)
 除了本文中已定義的類型之外，DocumentDB SQL 還支援使用者定義函式 (UDF)。 特別的是，如果開發人員可以傳入零個或多個引數並傳回單一引數結果，則支援純量 UDF。 系統會檢查所有這些引數是否為合法的 JSON 值。  
 
 DocumentDB SQL 語法已延伸，可支援使用這些使用者定義函式的自訂應用程式邏輯。 您可以向 DocumentDB 註冊 UDF，然後在 SQL 查詢中參照它。 實際上，UDF 是特別設計來透過查詢進行叫用。 這項選擇的必然結果，就是 UDF 無法存取其他 JavaScript 類型 (預存程序和觸發程序) 擁有的內容物件。 因為查詢是以唯讀形式執行，所以可以在主要或次要複本上執行。 因此，與其他 JavaScript 類型不同，UDF 是設計成在次要複本上執行。
@@ -1281,7 +1358,7 @@ DocumentDB 憑藉著為 JSON 資料庫，來描繪 JavaScript 運算子和其評
 與 JavaScript 不同，DocumentDB SQL 不會執行隱含轉換。 例如，類似 `SELECT * FROM Person p WHERE p.Age = 21` 的查詢會針對包含 Age 屬性且值為 21 的文件進行比對。 任何其他 Age 屬性符合字串 "21" 或其他可能之無限制變化 (例如 "021"、"21.0"、"0021"、"00021" 等等) 的文件，則不會成為比對的結果。 這與 JavaScript 形成對比，在 JavaScript 中，會將字串值隱含地轉換成數字 (根據運算子，例如：==)。 這項選擇對 DocumentDB SQL 中有效率的索引比對十分重要。 
 
 ## <a name="parameterized-sql-queries"></a>參數化 SQL 查詢
-DocumentDB 支援查詢使用以熟悉的 @ 標記法表示的參數。 參數化 SQL 提供使用者輸入的健全處理和逸出，防止透過 SQL 插入式意外洩露資料。 
+DocumentDB 支援查詢使用以類似 @ 標記法表示的參數。 參數化 SQL 提供使用者輸入的健全處理和逸出，防止透過 SQL 插入式意外洩露資料。 
 
 比方說，您可以撰寫查詢，將姓氏和地址 (州) 做為參數，然後根據使用者輸入，使用各種不同姓氏和地址 (州) 的值執行查詢。
 
@@ -1310,7 +1387,7 @@ DocumentDB 支援查詢使用以熟悉的 @ 標記法表示的參數。 參數�
 
 參數值可以是任何有效的 JSON (字串、數字、布林值、null，甚至是陣列或巢狀 JSON)。 而且因為 DocumentDB 屬於無結構描述，系統不會針對任何類型驗證參數。
 
-## <a name="built-in-functions"></a>內建函數
+## <a id="BuiltinFunctions"></a>內建函數
 DocumentDB 也支援一般作業的數個內建函數，這些函數可用於查詢內，例如使用者定義函數 (UDF)。
 
 | 函式群組          | 作業                                                                                                                                          |
@@ -1319,7 +1396,7 @@ DocumentDB 也支援一般作業的數個內建函數，這些函數可用於查
 | 類型檢查函數 | IS_ARRAY、IS_BOOL、IS_NULL、IS_NUMBER、IS_OBJECT、IS_STRING、IS_DEFINED 和 IS_PRIMITIVE                                                           |
 | 字串函數        | CONCAT、CONTAINS、ENDSWITH、INDEX_OF、LEFT、LENGTH、LOWER、LTRIM、REPLACE、REPLICATE、REVERSE、RIGHT、RTRIM、STARTSWITH、SUBSTRING 和 UPPER       |
 | 陣列函數         | ARRAY_CONCAT、ARRAY_CONTAINS、ARRAY_LENGTH 和 ARRAY_SLICE                                                                                         |
-|  空間函數      | ST_DISTANCE、ST_WITHIN、ST_INTERSECTS、ST_ISVALID 和 ST_ISVALIDDETAILED                                                                           | 
+| 空間函數       | ST_DISTANCE、ST_WITHIN、ST_INTERSECTS、ST_ISVALID 和 ST_ISVALIDDETAILED                                                                           | 
 
 如果您目前使用的使用者定義函數 (UDF) 已提供內建函數，您應該使用相對應的內建函數，因為這樣會加快執行速度並更有效率。 
 
@@ -1370,7 +1447,7 @@ DocumentDB 也支援一般作業的數個內建函數，這些函數可用於查
 
 <table>
 <tr>
-  <td><strong>使用量</strong></td>
+  <td><strong>用法</strong></td>
   <td><strong>說明</strong></td>
 </tr>
 <tr>
@@ -1535,7 +1612,7 @@ DocumentDB 支援下列開放地理空間協會 (OGC) 的內建函數，以用�
 
 <table>
 <tr>
-  <td><strong>使用量</strong></td>
+  <td><strong>用法</strong></td>
   <td><strong>說明</strong></td>
 </tr>
 <tr>
@@ -1576,7 +1653,7 @@ DocumentDB 支援下列開放地理空間協會 (OGC) 的內建函數，以用�
 
 如需 DocumentDB 支援之地理空間的詳細資料，請參閱 [使用 Azure DocumentDB 中的地理空間資料](documentdb-geospatial.md)。 這樣會包裝空間函式以及 DocumentDB 的 SQL 語法。 現在讓我們看看 LINQ 查詢如何運作，以及它如何與我們到目前為止所見到的語法互動。
 
-## <a name="linq-to-documentdb-sql"></a>LINQ 到 DocumentDB SQL
+## <a id="Linq"></a>LINQ 到 DocumentDB SQL
 LINQ 是一種 .NET 程式設計模型，此模型會將運算表示為對物件串流的查詢。 DocumentDB 提供用戶端程式庫，以透過促進 JSON 與 .NET 物件之間的轉換，以及從小部分的 LINQ 查詢對應至 DocumentDB 查詢，來與 LINQ 互動。 
 
 下圖顯示使用 DocumentDB 支援 LINQ 查詢的架構。  開發人員可以使用 DocumentDB 用戶端來建立 **IQueryable** 物件，此物件會直接查詢 DocumentDB 查詢提供者，而此查詢提供者會接著將 LINQ 查詢轉譯成 DocumentDB 查詢。 然後，將查詢傳遞給 DocumentDB 伺服器，以擷取一組具有 JSON 格式的結果。 傳回的結果會在用戶端進行還原序列化，變成 .NET 物件的串流。
@@ -1685,13 +1762,13 @@ DocumentDB 查詢提供者執行從 LINQ 查詢到 DocumentDB SQL 查詢的最�
      new Parent { familyName = "Smith", givenName = "Joe" }; new { first = 1, second = 2 }; //an anonymous type with 2 fields              
      new int[] { 3, child.grade, 5 };
 
-### <a name="list-of-supported-linq-operators"></a>支援的 LINQ 運算子清單
+### <a id="SupportedLinqOperators"></a>支援的 LINQ 運算子清單
 以下是隨附於 DocumentDB.NET SDK 之 LINQ 提供者中支援的 LINQ 運算子清單。
 
 * **Select**：投影會轉譯為包括物件建構的 SQL SELECT
 * **Where**：篩選會轉譯為 SQL WHERE，並支援 &&、|| 及 ! 之間的轉譯 到 SQL 運算子之間的轉譯
 * **SelectMany**：可讓陣列回溯到 SQL JOIN 子句。 可用來鏈結/巢串運算式來篩選陣列元素
-* **OrderBy 和 OrderByDescending**：以遞增/遞減順序轉譯為 ORDER BY：
+* **OrderBy 和 OrderByDescending**：轉譯為 ORDER BY 遞增/遞減順序
 * **CompareTo**：轉譯為範圍比較。 通常用於字串，因為字串在 .NET 中是無法比較的
 * **Take**：轉譯為 SQL TOP，以限制查詢的結果
 * **數學函數**：支援從 .NET 的 Abs、Acos、Asin、Atan、Ceiling、Cos、Exp、Floor、Log、Log10、Pow、Round、Sign、Sin、Sqrt、Tan、Truncate 轉譯為對等的 SQL 內建函式。
@@ -1700,6 +1777,11 @@ DocumentDB 查詢提供者執行從 LINQ 查詢到 DocumentDB SQL 查詢的最�
 * **地理空間擴充函數**：支援從虛設常式方法 Distance、Within、IsValid 及 IsValidDetailed 轉譯為對等的 SQL 內建函式。
 * **使用者定義函式的擴充函數**：支援從虛設常式方法 UserDefinedFunctionProvider.Invoke 轉譯為對應的使用者定義函式。
 * **其他**：支援聯合和條件式運算子的轉譯。 可根據內容將 Contains 轉譯為字串 CONTAINS、ARRAY_CONTAINS 或 SQL IN。
+
+> [!NOTE]
+> 目前不支援彙總運算子 **Count、Sum、Min、Max 和 Average**，但未來的 SDK 版本會提供支援。  
+> 
+> 
 
 ### <a name="sql-query-operators"></a>SQL 查詢運算子
 以下一些範例說明如何將一些標準 LINQ 查詢運算子往下轉譯為 DocumentDB 查詢。
@@ -1892,12 +1974,12 @@ DocumentDB 查詢提供者執行從 LINQ 查詢到 DocumentDB SQL 查詢的最�
     WHERE c.familyName = f.parents[0].familyName
 
 
-## <a name="executing-sql-queries"></a>執行 SQL 查詢
+## <a id="ExecutingSqlQueries"></a>執行 SQL 查詢
 DocumentDB 公開資源的方式是透過 REST API，此 API 可供任何能發出 HTTP/HTTPS 要求的語言呼叫。 此外，DocumentDB 還為數種熱門語言 (例如 .NET、Node.js、JavaScript 和 Python) 提供程式設計程式庫。 REST API 和各種程式庫都支援透過 SQL 進行查詢。 .NET SDK 除了 SQL 之外，也支援 LINQ 查詢。
 
 下列範例顯示如何建立查詢，並針對 DocumentDB 資料庫帳戶提交它。
 
-### <a name="rest-api"></a>REST API
+### <a id="RestAPI"></a>REST API
 DocumentDB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使用 Azure 訂用帳戶佈建資料庫帳戶。 DocumentDB 資源模型包含某個資料庫帳戶下的一組資源，其中每個資源都可透過邏輯和穩定 URI 來定址。 在本文件中，一組資源稱為摘要。 資料庫帳戶包含一組資料庫，而每個資料庫都包含多個集合，且各集合因此會包含文件、UDF 和其他資源類型。
 
 與這些資源的基本互動模型是透過具有其標準解譯的 HTTP 動詞命令 GET、PUT、POST 和 DELETE。 POST 動詞命令用於建立新的資源、執行預存程序或發出 DocumentDB 查詢。 查詢一律是唯讀作業，而且沒有任何副作用。
@@ -2024,13 +2106,13 @@ DocumentDB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使�
     }
 
 
-如果查詢的結果無法放入結果的單一頁面內，則 REST API 會透過 `x-ms-continuation-token` 傳回接續 Token。 用戶端可以透過在後續結果中包括標頭，以將結果分頁。 每頁的結果數目也可以透過 `x-ms-max-item-count` 數字標頭來控制。
+如果查詢的結果無法放入結果的單一頁面內，則 REST API 會透過 `x-ms-continuation-token` 傳回接續 Token。 用戶端可以透過在後續結果中包括標頭，以將結果分頁。 每頁的結果數目也可以透過 `x-ms-max-item-count` 數字標頭來控制。 如果指定的查詢有一個彙總函數 (如 `COUNT`)，則查詢頁面可對結果頁面傳回部分彙總的值。 用戶端必須對這些結果執行第二層彙總以產生最終結果，例如，對個別頁面中傳回的計數執行加總以傳回總計數。
 
 若要管理查詢的資料一致性原則，請使用 `x-ms-consistency-level` 標頭 (例如，所有 REST API 要求)。 針對工作階段一致性，也需要在查詢要求中回應最新的 `x-ms-session-token` Cookie 標頭。 請注意，所查詢集合的索引原則也可能會影響查詢結果的一致性。 運用預設索引原則設定，集合的索引一律會具有最新文件內容，而且查詢結果會符合針對資料所選擇的一致性。 如果編索引原則放寬為 Lazy，則查詢可能會傳回過時的結果。 如需詳細資訊，請參閱 [DocumentDB 一致性層級][consistency-levels]。
 
 如果集合上所設定的索引原則無法支援指定的查詢，則 DocumentDB 伺服器會傳回 400「不正確的要求」。 針對範圍查詢 (針對雜湊 (相等) 查閱所設定的路徑) 以及明確地排除不進行編製索引的路徑，會傳回此訊息。 `x-ms-documentdb-query-enable-scan` 標頭可以指定成允許查詢在無法使用索引時執行掃描。
 
-### <a name="c-net-sdk"></a>C# (.NET) SDK
+### <a id="DotNetSdk"></a>C# (.NET) SDK
 .NET SDK 支援 LINQ 和 SQL 查詢。 下列範例顯示如何執行稍早在本文件中介紹的簡單篩選查詢。
 
     foreach (var family in client.CreateDocumentQuery(collectionLink, 
@@ -2121,7 +2203,11 @@ DocumentDB 提供透過 HTTP 的開放 RESTful 程式設計模型。 可以使�
 
 如需更多包含查詢的範例，請參閱 [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net) 。 
 
-### <a name="javascript-server-side-api"></a>JavaScript 伺服器端 API
+> [!NOTE]
+> 若要執行彙總查詢，您需要 SDK 1.12.0 或更高版本。 不支援彙總函式的 LINQ 支援，但會在 .NET SDK 1.13.0 中提供支援。
+>
+
+### <a id="JavaScriptServerSideApi"></a>JavaScript 伺服器端 API
 DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序，直接對集合執行 JavaScript 型應用程式邏輯。 在集合層級註冊的 JavaScript 邏輯接著可以對給定集合之文件的作業發出資料庫作業。 這些作業會包裝在環境 ACID 交易中。
 
 下列範例示範如何在 JavaScript 伺服器 API 中使用 queryDocuments，從預存程序和觸發程序內發出查詢。
@@ -2156,19 +2242,7 @@ DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序
             });
     }
 
-## <a name="aggregate-functions"></a>彙總函式
-我們正在計劃原生支援彙總函式，但如果您在此同時需要計數或加總功能，您可以使用不同方法來達到相同的結果。  
-
-在讀取路徑上︰
-
-* 您可以藉由在本機擷取資料並執行計數以執行彙總函式。 建議您使用成本較低的查詢投影，例如 `SELECT VALUE 1`，而非使用完整的文件，例如 `SELECT * FROM c`。 這有助於將每一頁結果中處理的文件數目最大化，進而在需要時避免額外的服務反覆存取。
-* 您也可以使用預存程序來將重複的反覆存取網路延遲降至最低。 如需會計算給定篩選查詢之計數的範例預存程序，請參閱 [Count.js](https://github.com/Azure/azure-documentdb-js-server/blob/master/samples/stored-procedures/Count.js)。 預存程序可以讓使用者結合豐富的商務邏輯以及以有效率的方式進行彙總。
-
-在寫入路徑上︰
-
-* 另一個常見模式是在「寫入」路徑預先彙總結果。 當「讀取」要求的數量高於「寫入」要求的數量時，此模式特別具有吸引力。 一旦預先彙總，便可透過單點讀取要求取得結果。  在 DocumentDB 中預先彙總的最佳方式是設定透過每個「寫入」來叫用的觸發程序，並更新具有將要具體化之查詢最新結果的中繼資料文件。 例如，請查看 [UpdateaMetadata.js](https://github.com/Azure/azure-documentdb-js-server/blob/master/samples/triggers/UpdateMetadata.js) 範例，這會更新集合之中繼資料文件的 minSize、maxSize 和 totalSize。 此範例可以延伸為更新計數器、總和等。
-
-## <a name="references"></a>參考
+## <a id="References"></a>參考
 1. [Azure DocumentDB 簡介][introduction]
 2. [DocumentDB SQL 規格](http://go.microsoft.com/fwlink/p/?LinkID=510612)
 3. [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net)
@@ -2186,10 +2260,4 @@ DocumentDB 提供一個程式設計模型，以使用預存程序和觸發程序
 [1]: ./media/documentdb-sql-query/sql-query1.png
 [introduction]: documentdb-introduction.md
 [consistency-levels]: documentdb-consistency-levels.md
-
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

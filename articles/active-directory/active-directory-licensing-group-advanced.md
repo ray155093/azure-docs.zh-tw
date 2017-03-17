@@ -14,17 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/21/2017
+ms.date: 03/03/2017
 ms.author: curtand
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: dad9a176f5f60b9165c5a55628929460047e5fdd
-ms.openlocfilehash: a1510240350d88ee140acb11b3f86fd7985b9427
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 09f0ed3f7624bb242c40868710fb3eae49cda906
+ms.openlocfilehash: a739e2320f8ea42912d169353a956e2b2f551619
+ms.lasthandoff: 03/01/2017
 
 
 ---
 
-# <a name="azure-active-directory-group-based-licensing-additional-scenarios"></a>Azure Active Directory 群組型授權其他案例
+# <a name="scenarios-limitations-and-known-issues-with-using-groups-to-manage-licensing-in-azure-active-directory"></a>使用群組來管理 Azure Active Directory 授權的案例、限制及已知問題 
 
 ## <a name="group-based-licensing-using-dynamic-groups"></a>使用動態群組的群組型授權
 
@@ -121,77 +122,77 @@ ms.lasthandoff: 02/22/2017
 
 3. 在此範例中，我們想要了解哪些使用者是直接指派 EMS 授權，哪些使用者是從群組，或兩者。 我們將使用 PowerShell 指令碼，其中包含兩個函式，可針對使用者物件和 SKU 回答此問題
   ```
-  \# Returns TRUE if the user has the license assigned directly
+  # Returns TRUE if the user has the license assigned directly
 
   function UserHasLicenseAssignedDirectly
   {
-      Param(\[Microsoft.Online.Administration.User\]\$user, \[string\]\$skuId)
+      Param([Microsoft.Online.Administration.User]$user, [string]$skuId)
 
-      foreach(\$license in \$user.Licenses)
+      foreach($license in $user.Licenses)
       {
-          \# we look for the specific license SKU in all licenses assigned to the user
-          if (\$license.AccountSkuId -ieq \$skuId)
+          # we look for the specific license SKU in all licenses assigned to the user
+          if ($license.AccountSkuId -ieq $skuId)
           {
-              \# GroupsAssigningLicense contains a collection of IDs of objects assigning the license
-              \# This could be a group object or a user object (contrary to what the name suggests)
-              \# If the collection is empty, this means the license is assigned directly - this is the case for users who have never been licensed via groups in the past
+              # GroupsAssigningLicense contains a collection of IDs of objects assigning the license
+              # This could be a group object or a user object (contrary to what the name suggests)
+              # If the collection is empty, this means the license is assigned directly - this is the case for users who have never been licensed via groups in the past
 
-              if (\$license.GroupsAssigningLicense.Count -eq 0)
+              if ($license.GroupsAssigningLicense.Count -eq 0)
               {
-                  return \$true
+                  return $true
               }
-              \# If the collection contains the ID of the user object, this means the license is assigned directly
-              \# Note: the license may also be assigned through one or more groups in addition to being assigned directly
-              foreach (\$assignmentSource in \$license.GroupsAssigningLicense)
+              # If the collection contains the ID of the user object, this means the license is assigned directly
+              # Note: the license may also be assigned through one or more groups in addition to being assigned directly
+              foreach ($assignmentSource in $license.GroupsAssigningLicense)
               {
-                  if (\$assignmentSource -ieq \$user.ObjectId)
+                  if ($assignmentSource -ieq $user.ObjectId)
                   {
-                      return \$true
+                      return $true
                   }
 
               }
-              return \$false
+              return $false
           }
       }
-      return \$false
+      return $false
   }
-  \# Returns TRUE if the user is inheriting the license from a group
+  # Returns TRUE if the user is inheriting the license from a group
   function UserHasLicenseAssignedFromGroup
   {
-      Param(\[Microsoft.Online.Administration.User\]\$user, \[string\]\$skuId)
-      foreach(\$license in \$user.Licenses)
+      Param([Microsoft.Online.Administration.User]$user, [string]$skuId)
+      foreach($license in $user.Licenses)
       {
-          \# we look for the specific license SKU in all licenses assigned to the user
-          if (\$license.AccountSkuId -ieq \$skuId)
+          # we look for the specific license SKU in all licenses assigned to the user
+          if ($license.AccountSkuId -ieq $skuId)
           {
-              \# GroupsAssigningLicense contains a collection of IDs of objects assigning the license
-              \# This could be a group object or a user object (contrary to what the name suggests)
-              foreach (\$assignmentSource in \$license.GroupsAssigningLicense)
+              # GroupsAssigningLicense contains a collection of IDs of objects assigning the license
+              # This could be a group object or a user object (contrary to what the name suggests)
+              foreach ($assignmentSource in $license.GroupsAssigningLicense)
               {
-                  \# If the collection contains at least one ID not matching the user ID this means that the license is inherited from a group.
-                  \# Note: the license may also be assigned directly in addition to being inherited
-                  if (\$assignmentSource -ine \$user.ObjectId)
+                  # If the collection contains at least one ID not matching the user ID this means that the license is inherited from a group.
+                  # Note: the license may also be assigned directly in addition to being inherited
+                  if ($assignmentSource -ine $user.ObjectId)
                   {
-                      return \$true
+                      return $true
                   }
               }
-              return \$false
+              return $false
           }
       }
-      return \$false
+      return $false
   }
   ```
 4. 其餘的指令碼會取得所有使用者，並對每一個使用者執行這些函式，然後將輸出格式化為資料表。
 
   ```
-  \# the license SKU we are interested in
-  \$skuId = "reseller-account:EMS"
-  \# find all users that have the SKU license assigned
-  Get-MsolUser -All | where {\$\_.isLicensed -eq \$true -and \$\_.Licenses.AccountSKUID -eq \$skuId} | select \`
-      ObjectId, \`
-      @{Name="SkuId";Expression={\$skuId}}, \`
-      @{Name="AssignedDirectly";Expression={(UserHasLicenseAssignedDirectly \$\_ \$skuId)}}, \`
-      @{Name="AssignedFromGroup";Expression={(UserHasLicenseAssignedFromGroup \$\_ \$skuId)}}
+  # the license SKU we are interested in
+  $skuId = "reseller-account:EMS"
+  # find all users that have the SKU license assigned
+  Get-MsolUser -All | where {$_.isLicensed -eq $true -and $_.Licenses.AccountSKUID -eq $skuId} | select `
+      ObjectId, `
+      @{Name="SkuId";Expression={$skuId}}, `
+      @{Name="AssignedDirectly";Expression={(UserHasLicenseAssignedDirectly $_ $skuId)}}, `
+      @{Name="AssignedFromGroup";Expression={(UserHasLicenseAssignedFromGroup $_ $skuId)}}
   ```
 
 5. 會出現完整指令碼的輸出，如下所示︰
@@ -206,7 +207,7 @@ ms.lasthandoff: 02/22/2017
 
 3. [Office 365 系統管理入口網站](https://portal.office.com )目前不支援群組型授權。 如果使用者從群組繼承授權，此授權會顯示在 Office 系統管理入口網站中，做為一般使用者授權。 如果您嘗試修改該授權 (例如，停用授權中的服務，或嘗試移除授權)，則入口網站會傳回錯誤訊息 (因為繼承的群組授權無法直接在使用者上修改)。
 
-  `To assign a license that contains Azure Information Protection Plan 1, you must also assign one of the following service plans: Azure Rights Management.`
+  `One or more of the licenses could not be modified because they are inherited from a group membership. To view or modify group based licenses visit the Azure admin portal.`
 
 4. 當使用者從群組移除且遺失授權時，來自該授權 (例如 Exchange Online 或 SharePoint Online) 的服務計劃會設定為「擱置」狀態，而不是最終已停用狀態。 這是做為預防措施以當系統管理員在群組成員資格管理犯錯時，可避免意外移除使用者資料。
 
