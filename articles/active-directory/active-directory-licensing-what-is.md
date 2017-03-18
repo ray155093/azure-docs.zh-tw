@@ -1,5 +1,5 @@
 ---
-title: "什麼是 Microsoft Azure Active Directory 授權？ | Microsoft Docs"
+title: "在 Azure 傳統入口網站中進行 Azure Active Directory 使用者授權 | Microsoft Docs"
 description: "描述 Microsoft Azure Active Directory 授權、如何運作、如何開始著手，以及最佳作法，包括 Office 365、Microsoft Intune 和 Azure Active Directory Premium 與 Basic 版本"
 services: active-directory
 keywords: "Azure AD 授權"
@@ -13,15 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/06/2017
+ms.date: 02/27/2017
 ms.author: curtand
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ae4961611195c1574f5b94edbca74e1f182b4361
-ms.openlocfilehash: eb0b428f84dc16abd5cfee73dc8e4191698ebdd6
+ms.sourcegitcommit: f8b63e5831897d3a45298b0415bb2d6d44ab0de1
+ms.openlocfilehash: 7df8805139b6e3cc23041a8201b496fb7fce8063
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="what-is-microsoft-azure-active-directory-licensing"></a>什麼是 Microsoft Azure Active Directory 授權？
+# <a name="what-is-microsoft-azure-active-directory-licensing-in-the-azure-classic-portal"></a>Azure 傳統入口網站中的 Microsoft Azure Active Directory 授權為何？
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-licensing-get-started-azure-portal.md)
@@ -158,9 +160,4 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 * [群組指派給應用程式](active-directory-manage-groups.md)
 * [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)
 * [直接購買 Azure AD Premium 授權](http://aka.ms/buyaadp)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -17,8 +17,9 @@ ms.workload: na
 ms.date: 01/30/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 545ec23bc720dc1a17ce3d084642e96c2397d482
-ms.openlocfilehash: e61638db3c6c3acdc58f374b94b28d855161cf59
+ms.sourcegitcommit: e89ec01cb47a87a45378f73d138224095bcbebed
+ms.openlocfilehash: 201d98c4f4ff29393ad308824ed0575f1ff602ee
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -127,9 +128,9 @@ ms.openlocfilehash: e61638db3c6c3acdc58f374b94b28d855161cf59
 
 若要將 HTTP 或 HTTPS 流量負載平衡到容器 Web 應用程式，並管理傳輸層安全性 (TLS) 的憑證，您可以使用 Kubernetes [輸入 (英文)](https://kubernetes.io/docs/user-guide/ingress/) 資源。 輸入是允許傳入連線連絡叢集服務的規則集合。 若要使輸入資源順利運作，Kubernetes 叢集必須具備執行中的[輸入控制器 (英文)](https://kubernetes.io/docs/user-guide/ingress/#ingress-controllers)。
 
-Azure Container Service 不會自動實作 Kubernetes 輸入控制器。 有數個控制器實作可供使用。 目前，建議您使用 [Nginx 輸入控制器 (英文)](https://github.com/kubernetes/contrib/blob/master/ingress/controllers/nginx/README.md) 來設定輸入規則，並針對 HTTP 與 HTTPS 流量進行負載平衡。 
+Azure Container Service 不會自動實作 Kubernetes 輸入控制器。 有數個控制器實作可供使用。 目前，建議您使用 [Nginx 輸入控制器 (英文)](https://github.com/kubernetes/ingress/tree/master/examples/deployment/nginx) 來設定輸入規則，並針對 HTTP 與 HTTPS 流量進行負載平衡。 
 
-如需詳細資訊和範例，請參閱 [Nginx 輸入控制器文件集 (英文)](https://github.com/kubernetes/contrib/blob/master/ingress/controllers/nginx/README.md)。
+如需詳細資訊，請參閱 [Nginx 輸入控制器文件集 (英文)](https://github.com/kubernetes/ingress/tree/master/controllers/nginx/README.md)。
 
 > [!IMPORTANT]
 > 在 Azure Container Service 中使用 Nginx 輸入控制器時，您必須使用 `type: LoadBalancer` 將控制器部署公開為服務。 這會設定 Azure Load Balancer 將流量路由傳送到控制器。 如需詳細資訊，請參閱上一節。
@@ -140,10 +141,5 @@ Azure Container Service 不會自動實作 Kubernetes 輸入控制器。 有數�
 * 請參閱 [Kubernetes LoadBalancer 文件集 (英文)](https://kubernetes.io/docs/user-guide/load-balancer/)
 * 深入了解 [Kubernetes 輸入和輸入控制器 (英文)](https://kubernetes.io/docs/user-guide/ingress/)
 * 請參閱 [Kubernetes 範例 (英文)](https://github.com/kubernetes/kubernetes/tree/master/examples)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

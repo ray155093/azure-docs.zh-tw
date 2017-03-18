@@ -4,7 +4,7 @@ description: "IoT 套件的常見問題集"
 services: 
 suite: iot-suite
 documentationcenter: 
-author: aguilaaj
+author: dominicbetts
 manager: timlt
 editor: 
 ms.assetid: cb537749-a8a1-4e53-b3bf-f1b64a38188a
@@ -13,21 +13,41 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2017
-ms.author: araguila
+ms.date: 02/15/2017
+ms.author: corywink
 translationtype: Human Translation
-ms.sourcegitcommit: 69d4439a20fec8caaabdb43444cabd81f7d1b7c8
-ms.openlocfilehash: 6245c2a0f73ff63e3bfb5fe16112f89ed0efdf30
+ms.sourcegitcommit: 623f502a92dc8eb152a9b01c4f6db0640ce57e54
+ms.openlocfilehash: ab027e1f21e8c2c33829f833395a6872cb7bcdd8
+ms.lasthandoff: 02/27/2017
 
 
 ---
 # <a name="frequently-asked-questions-for-iot-suite"></a>IoT 套件的常見問題集
+
+### <a name="where-can-i-find-the-source-code-for-the-preconfigured-solutions"></a>哪裡可以找到預先設定之解決方案的原始程式碼？
+原始程式碼儲存在下列 GitHub 儲存機制中︰
+* [預先設定的遠端監視解決方案][lnk-remote-monitoring-github]
+* [預先設定的預防性維護的解決方案][lnk-predictive-maintenance-github]
+
+### <a name="how-do-i-update-to-the-latest-version-of-the-remote-monitoring-preconfigured-solution-that-uses-the-iot-hub-device-management-features"></a>如何更新為最新版預先設定的遠端監視解決方案，其使用 IoT 中樞裝置管理功能？
+* 如果您從 https://www.azureiotsuite.com/ 網站部署預先設定的解決方案，一律會部署最新版解決方案的新執行個體。
+* 如果您使用命令列來部署預先設定的解決方案，您可以使用新的程式碼來更新現有的部署。 請參閱 GitHub [儲存機制][lnk-remote-monitoring-github]中的[雲端部署][lnk-cloud-deployment]。
+
+### <a name="how-can-i-add-support-for-a-new-device-method-to-the-remote-monitoring-preconfigured-solution"></a>如何將新裝置方法的支援新增至預先設定的遠端監視解決方案？
+請參閱[自訂預先設定的解決方案][lnk-customize]一文中的[將新方法的支援新增至模擬器][lnk-add-method]一節。
+
+### <a name="the-simulated-device-is-ignoring-my-desired-property-changes-why"></a>模擬裝置會忽略我的所需屬性變更，為什麼？
+在預先設定的遠端監視解決方案中，模擬裝置程式碼只會使用 **Desired.Config.TemperatureMeanValue** 和 **Desired.Config.TelemetryInterval** 所需屬性來更新報告屬性。 所有其他所需屬性變更要求都會被忽略。
+
+### <a name="my-device-does-not-appear-in-the-list-of-devices-in-the-solution-dashboard-why"></a>我的裝置未顯示於解決方案儀表板的裝置清單中，為什麼？
+解決方案儀表板中的裝置清單會使用查詢來傳回裝置清單。 目前，查詢無法傳回超過 10,000 個裝置。 試著讓查詢的搜尋準則更具限制性。
+
 ### <a name="whats-the-difference-between-deleting-a-resource-group-in-the-azure-portal-and-clicking-delete-on-a-preconfigured-solution-in-azureiotsuitecom"></a>在 Azure 入口網站中刪除資源群組，與在 azureiotsuite.com 中對預先設定解決方案按一下 [刪除] 之間的差異為何？
 * 如果您在 [azureiotsuite.com][lnk-azureiotsuite] 中刪除預先設定的解決方案，將會刪除您在建立該預先設定解決方案時所佈建的一切資源。 將額外資源新增到資源群組時，也會一併刪除這些資源。 
 * 如果您在 [Azure 入口網站][lnk-azure-portal]中刪除資源群組，則只會刪除該資源群組中的資源。 您還必須在 [Azure 傳統入口網站][lnk-classic-portal]中刪除與預先設定的解決方案關聯的 Azure Active Directory 應用程式。
 
 ### <a name="how-many-iot-hub-instances-can-i-provision-in-a-subscription"></a>我可以在一個訂用帳戶中佈建多少個 IoT 中樞執行個體？
-10 個。 您可以建立 [Azure 支援票證][link-azuresupportticket]來提高此限制，但每一個訂用帳戶預設只能佈建 10 個「IoT 中樞」，如 [Azure 訂用帳戶限制][link-azuresublimits]所述。 結果就是，由於每個預先設定的解決方案會佈建一個新的「IoT 中樞」，因此在一個指定的訂用帳戶中，您最多只能佈建 10 個預先設定的解決方案。 
+每個訂用帳戶可以佈建 10 個 IoT 中樞。 您可以建立 [Azure 支援票證][link-azuresupportticket]來提高此限制，但每一個訂用帳戶預設只能佈建 10 個「IoT 中樞」，如 [Azure 訂用帳戶限制][link-azuresublimits]所述。 結果就是，由於每個預先設定的解決方案會佈建一個新的「IoT 中樞」，因此在一個指定的訂用帳戶中，您最多只能佈建 10 個預先設定的解決方案。 
 
 ### <a name="how-many-documentdb-instances-can-i-provision-in-a-subscription"></a>我可以在一個訂用帳戶中佈建多少個 DocumentDB 執行個體？
 50 個。 您可以建立 [Azure 支援票證][link-azuresupportticket]來提高此限制，但每一個訂用帳戶預設只能佈建 50 個 DocumentDB 執行個體。 
@@ -77,9 +97,8 @@ ms.openlocfilehash: 6245c2a0f73ff63e3bfb5fe16112f89ed0efdf30
 [lnk-dreamspark]: https://www.dreamspark.com/Product/Product.aspx?productid=99 
 [lnk-30daytrial]: https://azure.microsoft.com/free/
 [lnk-delete-aad-tennant]: http://blogs.msdn.com/b/ericgolpe/archive/2015/04/30/walkthrough-of-deleting-an-azure-ad-tenant.aspx
-
-
-
-<!--HONumber=Jan17_HO1-->
-
-
+[lnk-cloud-deployment]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/cloud-deployment.md
+[lnk-add-method]: iot-suite-guidance-on-customizing-preconfigured-solutions.md#add-support-for-a-new-method-to-the-simulator
+[lnk-customize]: iot-suite-guidance-on-customizing-preconfigured-solutions.md
+[lnk-remote-monitoring-github]: https://github.com/Azure/azure-iot-remote-monitoring
+[lnk-predictive-maintenance-github]: https://github.com/Azure/azure-iot-predictive-maintenance

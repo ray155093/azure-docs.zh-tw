@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/24/2017
+ms.date: 02/22/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: d49d7e6b4a9485c2371eb02ac8068adfde9bad6b
-ms.openlocfilehash: 92195f4479f429f0911d9e2ca7be29c1aef7785e
+ms.sourcegitcommit: bf5010537d222045b5bf13d85cab6c48c9659ed0
+ms.openlocfilehash: b055342d8e11e4d38688681b36ef9a1f717fdf15
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -29,7 +30,7 @@ Data Factory 目前只支援將資料從 Amazon S3 移到其他資料存放區�
 若要從 Amazon S3 複製資料，請確定您已獲得下列權限︰
 
 * 適用於 Amazon S3 物件作業的 **s3:GetObject** 和 **s3:GetObjectVersion**
-* 適用於 Amazon S3 貯體作業的 **s3:ListBucket** 和 **s3:ListAllMyBuckets** (僅用於複製精靈)
+* 適用於 Amazon S3 貯體作業的 **s3:ListBucket**。 如果您使用複製精靈，則還需要 **s3:ListAllMyBuckets**。
 
 您可以從[在原則中指定權限](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)找到 Amazon S3 權限的完整清單和詳細資料。
 
@@ -340,9 +341,4 @@ Data Factory 目前只支援將資料從 Amazon S3 移到其他資料存放區�
 請參閱下列文章：
 
 * [複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得使用「複製活動」來建立管線的逐步指示。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

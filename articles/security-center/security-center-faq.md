@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/09/2016
+ms.date: 02/22/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 0135732e95279f2e717334d3dd39902b56b0aa90
-ms.openlocfilehash: 30a327f59b8149f41c3b5206e0b0c2fc859934a0
+ms.sourcegitcommit: f07cd15658f7d367bdf364ece449dd5d09b2f9d3
+ms.openlocfilehash: 38503e36f9c0ad981d0239d82a858dbe2c5263a4
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -36,7 +37,7 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 
 免費層可讓您設定安全性原則，並接收安全性警示、事件及建議，可引導您完成設定必要控制項目的程序。 您也可以使用免費層來監視與您的 Azure 訂用帳戶整合的 Azure 資源與合作夥伴解決方案的安全性狀態。
 
-標準層提供免費層的功能，加上進階偵測功能：威脅情報、行為分析、當機分析，和異常偵測。 90 天的免費標準層試用已可使用。 若要升級，請選取 [安全性原則](security-center-policies.md#set-security-policies-for-subscriptions)中的 [定價層]。 若要深入了解，請參閱[資訊安全中心價格](security-center-pricing.md)。
+標準層提供免費層的功能，加上進階偵測功能：威脅情報、行為分析、當機分析，和異常偵測。 標準層的前 60 天免費。 如果您在超過 60 天後選擇繼續使用服務，服務會自動開始計費。 若要升級，請選取 [安全性原則](security-center-policies.md#set-security-policies-for-subscriptions)中的 [定價層]。 若要深入了解，請參閱[資訊安全中心價格](security-center-pricing.md)。
 
 ## <a name="permissions"></a>權限
 Azure 資訊安全中心會使用[角色型存取控制 (RBAC)](../active-directory/role-based-access-control-configure.md)，以提供可在 Azure 中指派給使用者、群組與服務的[內建角色](../active-directory/role-based-access-built-in-roles.md)。
@@ -49,7 +50,7 @@ Azure 資訊安全中心會使用[角色型存取控制 (RBAC)](../active-direct
 資訊安全中心會收集虛擬機器的資料，以便評估其安全性狀態、提供安全性建議，並對您發出威脅警示。 當您第一次存取資訊安全中心時，訂用帳戶中的所有虛擬機器都會啟用資料收集。 建議啟用資料收集，但您可以在資訊安全中心原則中 [停用資料收集](#how-do-i-disable-data-collection) 來選擇退出。
 
 ### <a name="how-do-i-disable-data-collection"></a>我要如何停用資料收集？
-您可以隨時在安全性原則中停用訂用帳戶的 [資料收集]  。 ([登入 Azure 入口網站](https://portal.azure.com)，選取 [瀏覽]，選取 [資訊安全中心]，然後選取 [原則]。)選取訂用帳戶時，會開啟新的刀鋒視窗，並提供您關閉 [資料收集] 的選項。 請選取上方功能區中的 [刪除代理程式]  選項，以從現有的虛擬機器移除代理程式。
+您可以隨時在安全性原則中停用訂用帳戶的 [資料收集]  。 ([登入 Azure 入口網站](https://portal.azure.com)，選取 [瀏覽]，選取 [資訊安全中心]，然後選取 [原則]。)選取訂用帳戶時，會開啟新的刀鋒視窗，並提供您關閉 [資料收集] 的選項。 當您關閉資料收集時，會自動從訂用帳戶現有的虛擬機器中移除 Azure 監視代理程式。
 
 > [!NOTE]
 > 安全性原則可以在 Azure 訂用帳戶層級和資源群組層級進行設定，但您必須選取訂用帳戶以關閉資料收集。
@@ -71,7 +72,7 @@ Azure 資訊安全中心會使用[角色型存取控制 (RBAC)](../active-direct
 代理程式與擴充功能只耗用少量的系統資源，對效能的影響應該很小。 如需有關效能影響和代理程式與擴充的詳細資訊，請參閱[規劃和操作指南](security-center-planning-and-operations-guide.md#data-collection-and-storage)。
 
 ### <a name="where-is-my-data-stored"></a>我的資料會儲存在何處？
-針對每個有虛擬機器在其中執行的區域，您需選擇儲存體帳戶，以儲存從這些虛擬機器收集到的資料。 這可讓您針對隱私權和資料主權的考量，輕鬆將資料保留在相同的地理區域。 您可以在安全性原則中為訂用帳戶選擇儲存體帳戶。 ([登入 Azure 入口網站](https://portal.azure.com)，選取 [瀏覽]，選取 [資訊安全中心]，然後選取 [原則]。)選取訂用帳戶時，會開啟新的刀鋒視窗。 若要選取區域，請選取 [選擇儲存體帳戶] 。
+針對每個有虛擬機器在其中執行的區域，您需選擇儲存體帳戶，以儲存從這些虛擬機器收集到的資料。 這可讓您針對隱私權和資料主權的考量，輕鬆將資料保留在相同的地理區域。 您可以在安全性原則中為訂用帳戶選擇儲存體帳戶。 ([登入 Azure 入口網站](https://portal.azure.com)，選取 [瀏覽]，選取 [資訊安全中心]，然後選取 [原則]。)選取訂用帳戶時，會開啟新的刀鋒視窗。 若要選取區域，請選取 [選擇儲存體帳戶] 。 如果您沒有選擇每個區域的儲存體帳戶，則會為您建立儲存體帳戶，並置於 securitydata 資源群組。
 
 > [!NOTE]
 > 安全性原則可以在 Azure 訂用帳戶層級和資源群組層級進行設定，但您的儲存體帳戶區域只可在訂用帳戶層級選取。
@@ -140,6 +141,7 @@ Azure 資訊安全中心會監視下列 Azure 資源：
 * Windows Server 2008 R2
 * Windows Server 2012
 * Windows Server 2012 R2
+* Windows Server 2016
 
 支援的 Linux VM：
 
@@ -147,7 +149,7 @@ Azure 資訊安全中心會監視下列 Azure 資源：
 * Debian 版本 7、8
 * CentOS 版本 6.\*、7.*
 * Red Hat Enterprise Linux (RHEL) 版本 6.\*、7.*
-* SUSE Linux Enterprise Server (SLES) 版本 11.\*、12.*
+* SUSE Linux Enterprise Server (SLES) 版本 11 SP4+、12.*
 * Oracle Linux 版本 6.\*、7.*
 
 也支援雲端服務中執行的 VM。 只監視生產位置中執行的雲端服務 Web 角色和背景工作角色。 若要深入了解雲端服務，請參閱 [雲端服務概觀](../cloud-services/cloud-services-choose-me.md)。
@@ -160,9 +162,4 @@ Azure 資訊安全中心僅能辨識透過 Azure 擴充功能安裝的反惡意�
 
 ### <a name="why-do-i-get-the-message-vm-agent-is-missing"></a>為什麼我會收到「VM 代理程式已遺失」訊息？
 VM 代理程式必須安裝在 VM 上，才能啟用資料收集。 預設會為從 Azure Marketplace 部署的 VM 安裝「VM 代理程式」。 如需如何在其他 VM 上安裝 VM 代理程式的資訊，請參閱部落格文章 [VM Agent and Extensions (VM 代理程式和擴充功能)](https://azure.microsoft.com/blog/vm-agent-and-extensions-part-2/)。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

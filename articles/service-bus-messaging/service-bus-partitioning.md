@@ -1,5 +1,5 @@
 ---
-title: "分割的佇列和主題 | Microsoft Docs"
+title: "建立分割的 Azure 服務匯流排佇列和主題 | Microsoft Docs"
 description: "說明如何使用多個訊息代理程式分割服務匯流排佇列和主題。"
 services: service-bus-messaging
 documentationcenter: na
@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 12/22/2016
 ms.author: sethm;hillaryc
 translationtype: Human Translation
-ms.sourcegitcommit: 6b169b3501ac938c1c0d621909dfc82418a7146e
-ms.openlocfilehash: 7da16e2bca1332b63709ecff39af7124656db98a
+ms.sourcegitcommit: 4a972b9b8b52a90f27afda98d8bdc661016d1fe1
+ms.openlocfilehash: af2024f059efa9cb51d6e52b599c00d71f941423
+ms.lasthandoff: 02/28/2017
 
 
 ---
@@ -142,9 +143,4 @@ committableTransaction.Commit();
 [OperationTimeout]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.messagingfactorysettings#Microsoft_ServiceBus_Messaging_MessagingFactorySettings_OperationTimeout
 [QueueDescription.ForwardTo]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_ForwardTo
 [AMQP 1.0 support for Service Bus partitioned queues and topics]: service-bus-partitioned-queues-and-topics-amqp-overview.md
-
-
-
-<!--HONumber=Dec16_HO4-->
-
 

@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: e331e7aab69890637a74382938e22cca56c4d39a
-ms.openlocfilehash: 223dcbb2b54c9b0de384515b185266dc19653191
+ms.sourcegitcommit: c2b0c6b125ededd30e9db8e7f42796bdf6b413d4
+ms.openlocfilehash: f254b4a9b942004f0d1d1065ec2efb2ea5df8418
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -29,8 +30,8 @@ ms.openlocfilehash: 223dcbb2b54c9b0de384515b185266dc19653191
 ## <a name="azure-cli"></a>Azure CLI
 [Azure CLI](../xplat-cli-install.md) 是跨平台、開放原始碼的命令介面式命令工具，用於建立和管理 Microsoft Azure 中的資源。 這個版本的 CLI 是使用 Node.js 來實作。
 
-## <a name="azure-cli-20-preview"></a>Azure CLI 2.0 (預覽)
-[Azure CLI 2.0 (預覽)](https://docs.microsoft.com/cli/azure/install-az-cli2) 是跨平台、開放原始碼的命令介面式命令工具，用於建立和管理 Microsoft Azure 中的資源。 這個預覽版本的 CLI 是使用 Python 來實作。
+## <a name="azure-cli-20"></a>Azure CLI 2.0
+[Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2) 是跨平台、開放原始碼的命令介面式命令工具，用於建立和管理 Microsoft Azure 中的資源。 這個預覽版本的 CLI 是使用 Python 來實作。
 
 
 ## <a name="azure-iot-device-sdks"></a>Azure IoT 裝置 SDK
@@ -61,7 +62,7 @@ ms.openlocfilehash: 223dcbb2b54c9b0de384515b185266dc19653191
 在 [IoT 中樞](#iot-hub)的內容中，後端應用程式是連接到 IoT 中樞上其中一個服務面向端點的應用程式。 例如，後端應用程式可能會擷取[裝置到雲端](#device-to-cloud)訊息或管理[身分識別登錄](#identity-registry)。 後端應用程式通常會在雲端執行，但在許多教學課程中，後端應用程式是在本機開發電腦上執行的主控台應用程式。
 
 ## <a name="built-in-endpoints"></a>內建端點
-每個 IoT 中樞都包括與「事件中樞」相容的內建[端點](iot-hub-devguide-endpoints.md)。 您可以使用可搭配「事件中樞」使用的任何機制從此端點讀取裝置到雲端訊息。
+每個 IoT 中樞都包含與事件中樞相容的內建[端點](iot-hub-devguide-endpoints.md)。 您可以使用可搭配「事件中樞」使用的任何機制從此端點讀取裝置到雲端訊息。
 
 ## <a name="cloud-gateway"></a>雲端閘道
 雲端閘道可讓無法直接連接到 [IoT 中樞](#iot-hub)的裝置能夠連線。 相對於在裝置本機執行的[現場閘道](#field-gateway)，雲端閘道是裝載於雲端。 雲端閘道的典型使用案例是針對您的裝置實作通訊協定轉譯。
@@ -256,8 +257,3 @@ Azure 訂用帳戶是發生帳單的地方。 您建立的每個 Azure 資源，
 
 ## <a name="x509-client-certificate"></a>X.509 用戶端憑證
 裝置可以使用 X.509 憑證向 [IoT 中樞](#iot-hub)進行驗證。 使用 X.509 憑證是使用 [SAS 權杖](#shared-access-signature)的替代方式。
-
-
-<!--HONumber=Feb17_HO2-->
-
-

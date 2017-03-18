@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: priyamo
 translationtype: Human Translation
-ms.sourcegitcommit: d24fd29cfe453a12d72998176177018f322e64d8
-ms.openlocfilehash: 2000e2005533d4e4d4c7bba9d5168c395af1499f
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: 3d5ad974c01e0ee3954da4f990da87338b2d1756
+ms.openlocfilehash: e41620d3192dbb77a26b79663494e441ccd96d40
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -169,12 +169,10 @@ post_logout_redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
 | post_logout_redirect_uri |建議使用 |使用者在成功登出之後，應該要前往的 URL。  如果此參數，則會向使用者顯示一般訊息。 |
 
 ## <a name="single-sign-out"></a>單一登出
-Azure AD 會使用 cookie 來識別使用者的工作階段。 您的 Web 應用程式可能也會設定用 cookie 來管理應用程式內的工作階段。 當使用者第一次登入應用程式時，Azure AD 會在使用者的瀏覽器的中設置 cookie。 當使用者稍後登入另一個應用程式時，Azure AD 會先檢查 cookie 來判斷使用者是否具有該 Azure AD 端點的有效登入工作階段，而不是重新驗證使用者。
-
-同樣地，當使用者第一次登出應用程式，Azure AD 會清除瀏覽器中的 cookie。 不過，使用者可能仍然登入其他使用 Azure AD 進行驗證的應用程式。 為了確保使用者登出所有的應用程式，Azure AD 會傳送至 HTTP GET 要求給使用者目前登入的所有應用程式的 `LogoutUrl`。 應用程式必須回應此要求，清除用於識別使用者工作階段的所有 cookie。 您可以在 Azure 入口網站設定 `LogoutUrl`。
+當您將使用者重新導向至 `end_session_endpoint` 時，Azure AD 會清除瀏覽器中的使用者工作階段。 不過，使用者可能仍然登入其他使用 Azure AD 進行驗證的應用程式。 為了讓這些應用程式能同時將使用者登入，Azure AD 會將 HTTP GET 要求傳送至使用者目前登入之所有應用程式的已註冊 `LogoutUrl`。 應用程式必須藉由清除任何可識別使用者的工作階段並傳回 `200` 回應，以回應此要求。  如果您想要在應用程式中支援單一登出，您必須在應用程式的程式碼中實作這類 `LogoutUrl`。  您可以在 Azure 入口網站中設定 `LogoutUrl`：
 
 1. 瀏覽至 [Azure 入口網站](https://portal.azure.com)。
-2. 在頁面右上角按一下您的帳戶以選擇您的 Active Directory。
+2. 在頁面右上角按一下您的帳戶，以選擇您的 Active Directory。
 3. 在左側導覽窗格中，依序選擇 [Azure Active Directory]、[應用程式註冊]，然後選取您的應用程式。
 4. 按一下 [屬性]，找到 [登出 URL] 文字方塊。 
 

@@ -11,16 +11,18 @@ ms.service: dns
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
+ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 12/05/2016
 ms.author: jonatul
 translationtype: Human Translation
-ms.sourcegitcommit: efa52b5f30cab16bfde4202dbfe2c95f4464e2c4
-ms.openlocfilehash: 4950edd41f58175c675afb7a7ea9f14fe4a59b26
+ms.sourcegitcommit: 119275f335344858cd20b6a17ef87e3ef32b6e12
+ms.openlocfilehash: 4e25ec1ece6017dc58c24ce593802293b7fc12b8
+ms.lasthandoff: 03/01/2017
 
 ---
 
-# <a name="dns-zones-and-records"></a>DNS 區域和記錄
+# <a name="overview-of-dns-zones-and-records"></a>DNS 區域和記錄的概觀
 
 此頁面說明的重要概念，包括網域、DNS 區域、DNS 記錄和記錄集，以及在 Azure DNS 中所受到的支援。
 
@@ -58,19 +60,19 @@ Azure DNS 支援 [萬用字元記錄](https://en.wikipedia.org/wiki/Wildcard_DNS
 
 CNAME 記錄集不能與其他具有相同名稱的記錄集共存。 例如，您無法同時建立具有相對名稱 'www' 的 CNAME 記錄集和具有相對名稱 'www' 的 A 記錄。
 
-因為區域頂點 (名稱 = '@')) 一定會包含建立區域時所建立的 NS 和 SOA 記錄集，您無法在區域頂點建立 CNAME 記錄集。
+因為區域頂點 (名稱 = '@') 一定會包含建立區域時所建立的 NS 和 SOA 記錄集，您無法在區域頂點建立 CNAME 記錄集。
 
 這些條件約束源自於 DNS 標準，而不是 Azure DNS 的限制。
 
 ### <a name="ns-records"></a>NS 記錄
 
-在每個區域頂點 (名稱 = '@'),) 會自動建立 NS 記錄集，並在刪除該區域時自動將其刪除 (無法個別刪除)。  可以修改此記錄集的 TTL，但無法修改記錄，因為依照預先設定，記錄會參考指派給該區域的 Azure DNS 名稱伺服器。
+在每個區域頂點 (名稱 = '@') 會自動建立 NS 記錄集，並在刪除該區域時自動將其刪除 (無法個別刪除)。  可以修改此記錄集的 TTL，但無法修改記錄，因為依照預先設定，記錄會參考指派給該區域的 Azure DNS 名稱伺服器。
 
 除了在區域頂點，您可以在該區域內建立和刪除其他 NS 記錄。  這可讓您設定子區域 (請參閱[在 Azure DNS 中委派子網域](dns-domain-delegation.md#delegating-sub-domains-in-azure-dns)。)
 
 ### <a name="soa-records"></a>SOA 記錄
 
-在每個區域頂點 (名稱 = '@'),) 會自動建立 SOA 記錄集，並在刪除該區域時自動將其刪除。  無法個別建立或刪除 SOA 記錄。
+在每個區域頂點 (名稱 = '@') 會自動建立 SOA 記錄集，並在刪除該區域時自動將其刪除。  無法個別建立或刪除 SOA 記錄。
 
 可以修改 SOA 記錄除了 'Host' 屬性以外的所有屬性，因為依照預先設定，該屬性會參考 Azure DNS 所提供的主要名稱伺服器名稱。
 
@@ -86,7 +88,7 @@ Azure DNS 支援 SPF 記錄，因此應該使用 TXT 記錄類型來建立。 �
 
 各種服務都會使用 [SRV 記錄](https://en.wikipedia.org/wiki/SRV_record)來指定伺服器位置。 在 Azure DNS 中指定 SRV 記錄時︰
 
-* 必須在記錄集名稱中包括 [服務] 和 [通訊協定]，並在其前方加上底線。  例如，'\_sip.\_tcp.name'。  在區域頂點的記錄，則不需要在記錄名稱中包括 '@'，只要使用服務與通訊協定即可，例如 '\_sip.\_tcp'。
+* 必須在記錄集名稱中包括 [服務] 和 [通訊協定]，並在其前方加上底線。  例如，'\_sip.\_tcp.name'。  在區域頂點的記錄，則不需要在記錄名稱中指定 '@'，只要使用服務與通訊協定即可，例如 '\_sip.\_tcp'。
 * 系統已將 [優先順序]、[權數]、[連接埠] 和 [目標]，指定為記錄集內每筆記錄的參數。
 
 ### <a name="txt-records"></a>TXT 記錄
@@ -139,10 +141,5 @@ Azure DNS 使用 Etag 以安全地處理相同資源的並行變更。 Etag 和 
 
 * 若要開始使用 Azure DNS，請學習如何[建立 DNS 區域](dns-getstarted-create-dnszone-portal.md)和[建立 DNS 記錄](dns-getstarted-create-recordset-portal.md)。
 * 若要移轉現有的 DNS 區域，請學習如何[匯入和匯出 DNS 區域檔案](dns-import-export.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 02/17/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 59ecf25dfe445343c0908c0955f9a17bad12226f
+ms.sourcegitcommit: 2d8d925f80830a0d7047e9567fdd413af2e8c5c3
+ms.openlocfilehash: f1ade8fa8b38aff86c119b74d6a68155a650d4dc
+ms.lasthandoff: 02/28/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 59ecf25dfe445343c0908c0955f9a17bad12226f
 eDigitalResearch 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中管控可存取 eDigitalResearch 的人員
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 eDigitalResearch (單一登入)
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 eDigitalResearch 單一登入 (SSO)
 * 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -35,25 +36,24 @@ eDigitalResearch 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 eDigitalResearch 整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 已啟用 eDigitalResearch 單一登入的訂用帳戶
+* 已啟用 eDigitalResearch SSO 的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
-此教學課程的目標是讓您在測試環境中測試 Microsoft Azure AD 單一登入。
+本教學課程的目標是讓您在測試環境中測試 Microsoft Azure AD SSO。
 
 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 eDigitalResearch
-2. 設定並測試 Microsoft Azure AD 單一登入
+2. 設定並測試 Microsoft Azure AD SSO
 
 ## <a name="adding-edigitalresearch-from-the-gallery"></a>從資源庫新增 eDigitalResearch
 若要設定 eDigitalResearch 與 Azure AD 的整合作業，您必須從資源庫將 eDigitalResearch 新增至受管理的 SaaS 應用程式清單。
@@ -80,23 +80,23 @@ eDigitalResearch 與 Azure AD 整合提供下列優點：
    
     ![選取資源庫中的應用程式](./media/active-directory-saas-edigitalresearch-tutorial/tutorial_edigitalresearch_0001.png)
 
-## <a name="configuring-and-testing-microsoft-azure-ad-single-sign-on"></a>設定並測試 Microsoft Azure AD 單一登入
-本節目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試透過 eDigitalResearch 使用 Microsoft Azure AD 單一登入。
+## <a name="configure-and-test-microsoft-azure-ad-sso"></a>設定並測試 Microsoft Azure AD SSO
+本節目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試透過 eDigitalResearch 使用 Microsoft Azure AD SSO。
 
-若要使單一登入生效，Azure AD 必須能識別 eDigitalResearch 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 eDigitalResearch 中的相關使用者之間建立連結關聯性。
+若要使 SSO 生效，Azure AD 必須能識別 eDigitalResearch 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 eDigitalResearch 中的相關使用者之間建立連結關聯性。
 
 建立此連結關聯性的方法，是將 Azure AD 中**使用者名稱**的值，指派為 eDigitalResearch 中 **Username** 的值。
 
-若要設定及測試與 eDigitalResearch 搭配運作的 Microsoft Azure AD 單一登入，您需要完成下列構成要素：
+若要設定及測試與 eDigitalResearch 搭配運作的 Microsoft Azure AD SSO，您需要完成下列構成要素：
 
 1. **[設定 Microsoft Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Microsoft Azure AD 單一登入。
 3. **[建立 eDigitalResearch 測試使用者](#creating-a-edigitalresearch-test-user)** - 使 eDigitalResearch 中對應的 Britta Simon 連結到她在 Azure AD 中的代表項目。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Microsoft Azure AD 單一登入。
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
+5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-microsoft-azure-ad-single-sign-on"></a>設定 Microsoft Azure AD 單一登入
-在本節中，您會在傳統入口網站中啟用 Microsoft Azure AD 單一登入，然後在您的 eDigitalResearch 應用程式中設定單一登入。
+### <a name="configure-microsoft-azure-ad-sso"></a>設定 Microsoft Azure AD SSO
+在本節中，您會在傳統入口網站中啟用 Microsoft Azure AD SSO，並在您的 eDigitalResearch 應用程式中設定 SSO。
 
 **若要使用 eDigitalResearch 設定 Microsoft Azure AD 單一登入，請執行下列步驟：**
 
@@ -109,31 +109,23 @@ eDigitalResearch 與 Azure AD 整合提供下列優點：
 3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟，然後按 [下一步]：
    
     ![設定單一登入](./media/active-directory-saas-edigitalresearch-tutorial/tutorial_edigitalresearch_04.png)
+  1. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<company name>.edigitalresearch.com/login/consume` 
+  2. 按 [下一步] 。
    
-    a. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：
-   
-    `https://<company name>.edigitalresearch.com/login/consume`
-   
-    b. 依序按一下 [ **下一步**
-   
-   > [!NOTE]
-   > 本教學課程中的 [回覆 URL] 值只是預留位置。 若要取得您環境的實際值，請連絡 eDigitalResearch。
+   >[!NOTE]
+   >本教學課程中的 [回覆 URL] 值只是預留位置。 若要取得您環境的實際值，請連絡 eDigitalResearch。
    > 
    > 
 4. 在 [設定在 eDigitalResearch 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
    
-    ![設定單一登入](./media/active-directory-saas-edigitalresearch-tutorial/tutorial_edigitalresearch_05.png)
-   
-    a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
-   
-    b. 按 [下一步]。
+  ![設定單一登入](./media/active-directory-saas-edigitalresearch-tutorial/tutorial_edigitalresearch_05.png)
+  1. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
+  2. 按 [下一步] 。
 5. 若要為您的應用程式設定 SSO，請連絡您的 eDigitalResearch 支援小組，並提供下列資訊： 
-   
-      - **下載的憑證** 檔案
-   
-      - **實體識別碼**
-   
-      - **單一登出服務 URL**
+
+  *  **下載的憑證**檔案
+  *   **實體識別碼**   
+  *   **單一登出服務 URL**
 6. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
@@ -141,7 +133,7 @@ eDigitalResearch 與 Azure AD 整合提供下列優點：
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 本節的目標是要在傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
@@ -161,43 +153,33 @@ eDigitalResearch 與 Azure AD 整合提供下列優點：
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-edigitalresearch-tutorial/create_aaduser_05.png)
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+  1. 針對 [使用者類型]，選取 [您組織中的新使用者]。 
+  2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+  3. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-edigitalresearch-tutorial/create_aaduser_06.png)
-   
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+  1. 在 [名字] 文字方塊中，輸入 **Britta**。   
+  2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+  3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+  4. 在 [角色] 清單中選取 [使用者]。
+  5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-edigitalresearch-tutorial/create_aaduser_07.png)
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-edigitalresearch-tutorial/create_aaduser_08.png)
-   
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下 [完成]。   
+  1. 記下 [新密碼] 的值。
+  2. 按一下 [完成]。   
 
-### <a name="creating-a-edigitalresearch-test-user"></a>建立 eDigitalResearch 測試使用者
+### <a name="create-a-edigitalresearch-test-user"></a>建立 eDigitalResearch 測試使用者
 本節目標是在 eDigitalResearch 中建立名為 Britta Simon 的使用者。 
 
 請與 eDigitalResearch 支援小組合作以建立此使用者。
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-本節的目標是要授與 Britta Simon 對 eDigitalResearch 的存取權，讓她能夠使用 Azure 單一登入。
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+本節的目標是授與 Britta Simon 對 eDigitalResearch 的存取權，使她能夠使用 Azure SSO。
 
 ![指派使用者][200]
 
@@ -217,8 +199,8 @@ eDigitalResearch 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
-本節的目標是要使用「存取面板」來測試您的 Microsoft Azure AD 單一登入組態。
+### <a name="test-single-sign-on"></a>測試單一登入
+本節的目標是要使用「存取面板」來測試您的 Microsoft Azure AD SSO 組態。
 
 當您在存取面板中按一下 [eDigitalResearch] 圖格時，應該會自動登入您的 eDigitalResearch 應用程式。
 
@@ -243,9 +225,4 @@ eDigitalResearch 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-edigitalresearch-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-edigitalresearch-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-edigitalresearch-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

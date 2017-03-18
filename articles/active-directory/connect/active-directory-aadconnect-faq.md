@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 02/22/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 85458f4477dadb83a6a2627ef490471ca38ac634
-ms.openlocfilehash: c2b78731feb1993e5c7123ff676f38704120ccff
+ms.sourcegitcommit: c22a8f4a895efc86abc328c6cf82685d7db8c19c
+ms.openlocfilehash: 33de5839e1e8fa70f75636488a0769f7aebf8b95
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -72,12 +73,33 @@ ms.openlocfilehash: c2b78731feb1993e5c7123ff676f38704120ccff
 **問：是否支援將現有 Azure AD「群組/連絡人」物件上的 ImmutableId 屬性手動設定成與內部部署 AD「群組/連絡人」物件完全相符？**  
 否，目前不支援。
 
+## <a name="security"></a>安全性
+**問︰帳戶會在特定次數的嘗試失敗之後鎖定，或者是否使用更複雜的策略？**</br>
+我們使用更複雜的策略來鎖定帳戶。  此策略是以要求的 IP 和所輸入的密碼為基礎。 鎖定持續期間也會根據它是攻擊的可能性而加長。  
+
+**問︰有些 (通用) 密碼遭到拒絕並出現「此密碼已使用許多次」訊息，這是指使用於目前 Active Directory 的密碼嗎？**</br>
+這是指全域通用的密碼，例如 “Password” 和 “123456” 的任何變體。
+
+**問︰來自可疑來源 (殭屍網路、Tor 端點) 的登入要求是否會在 B2C 租用戶中遭到封鎖，或者需要基本或進階版本租用戶？**</br>
+我們沒有適用於所有 B2C 租用戶的閘道，可篩選要求並提供殭屍網路的一些防護功能。 
+
 ## <a name="custom-configuration"></a>自訂組態
 **問：Azure AD Connect 適用的 PowerShell Cmdlet 記載於何處？**  
 除了記載於本網站上的 Cmdlet，在 Azure AD Connect 中找到的其他 PowerShell Cmdlet 不支援客戶使用。
 
 **問：我是否可以使用 *Synchronization Service Manager* 中的「伺服器匯出/伺服器匯入」，在伺服器之間移動組態？  
-否。 此選項將不會擷取所有組態設定，因此不應使用。 您應該改用精靈在第二部伺服器上建立基底組態，並使用同步處理規則編輯器產生 PowerShell 指令碼，以在伺服器之間移動任何自訂規則。 請參閱 [把自訂組態從作用中伺服器移動到預備伺服器](active-directory-aadconnect-upgrade-previous-version.md#move-custom-configuration-from-active-to-staging-server)。
+否。 此選項將不會擷取所有組態設定，因此不應使用。 您應該改用精靈在第二部伺服器上建立基底組態，並使用同步處理規則編輯器產生 PowerShell 指令碼，以在伺服器之間移動任何自訂規則。 請參閱[變換移轉](active-directory-aadconnect-upgrade-previous-version.md#swing-migration)。
+
+**問︰是否可針對 Azure 登入頁面密碼快取，而且是否可以因為它包含自動完成 ="false" 屬性的密碼輸入元素而避免此行為？**</br>
+我們目前不支援修改密碼輸入欄位的 HTML 屬性，包括自動完成標記。 我們目前正在開發適用於自訂 javascript 的功能，可讓您將任何屬性新增密碼欄位。 應可在 2017 年下半年使用這項功能。
+
+**問︰在 Azure 登入頁面上，會顯示先前登入成功之使用者的使用者名稱。可以關閉此行為嗎？**</br>
+我們目前不支援修改登入頁面的 HTML 屬性。 我們目前正在開發適用於自訂 javascript 的功能，可讓您將任何屬性新增密碼欄位。 應可在 2017 年下半年使用這項功能。
+
+**問︰是否辦法避免並行的工作階段？**</br>
+否。
+
+
 
 ## <a name="troubleshooting"></a>疑難排解
 **問：如何取得 Azure AD Connect 的說明？**
@@ -93,10 +115,5 @@ ms.openlocfilehash: c2b78731feb1993e5c7123ff676f38704120ccff
 [Azure AD Connect 客戶支援](https://manage.windowsazure.com/?getsupport=true)
 
 * 使用此連結透過 Azure 入口網站取得支援。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

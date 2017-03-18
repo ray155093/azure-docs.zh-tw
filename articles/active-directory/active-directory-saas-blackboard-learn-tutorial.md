@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/29/2016
+ms.date: 02/15/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 9d32b156878ff963e6dac00663fc5f1f272d269b
-ms.openlocfilehash: f86b20d5cf20ff977901d481438292c7b38658da
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 0247e7c8f3803e27b4304dae6af11f18432e76b0
+ms.openlocfilehash: 92ee9f08ff85a85a08a2d1e021cdb7afec0c6de7
+ms.lasthandoff: 02/28/2017
 
 
 ---
@@ -35,8 +35,8 @@ ms.lasthandoff: 02/17/2017
 ## <a name="prerequisites"></a>必要條件
 若要設定 Azure AD 與 Blackboard Learn 整合，您需要下列項目：
 
-* 一個 Azure AD 訂用帳戶
-* 已啟用單一登入的 Blackboard Learn 雲端平台訂用帳戶
+* Azure AD 訂用帳戶
+* 已啟用單一登入 (SSO) 的 Blackboard Learn 雲端平台訂用帳戶
 
 >[!NOTE]
 >若要測試本教學課程中的步驟，我們不建議使用生產環境。 
@@ -45,7 +45,7 @@ ms.lasthandoff: 02/17/2017
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。

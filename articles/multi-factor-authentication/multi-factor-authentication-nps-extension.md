@@ -12,15 +12,16 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 02/23/2017
 ms.author: kgremban
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 68f1088a7303b5eddecc9ff99f7330c0462baafc
-ms.openlocfilehash: 9fb517a08fb56a1adb9e23f820aa2e4aa20eacf6
-
+ms.sourcegitcommit: e4ef137656c12cf6495a00450eed308ac6a8a872
+ms.openlocfilehash: 804e811c0db5f72b6764b3cb120eb5ec8898baac
+ms.lasthandoff: 02/28/2017
 
 ---
-# <a name="augment-your-existing-authentication-infrastructure-with-the-nps-extension-for-azure-multi-factor-authentication---public-preview"></a>利用 Azure Multi-Factor Authentication 的 NPS 擴充功能強化現有的驗證基礎結構 - 公開預覽
+# <a name="integrate-your-existing-nps-infrastructure-with-azure-multi-factor-authentication---public-preview"></a>將現有的 NPS 基礎結構與 Azure Multi-Factor Authentication 整合 - 公開預覽
 
 Azure MFA 的網路原則伺服器 (NPS) 擴充功能可使用現有伺服器將雲端式 MFA 功能新增至驗證基礎結構。 利用 NPS 擴充功能，您可以在現有驗證流程中新增通話、簡訊或電話應用程式驗證，而不必安裝、設定及維護新的伺服器。 
  
@@ -155,9 +156,4 @@ Azure MFA 的 NPS 擴充功能可透過 [Azure Multi-Factor Authentication 授�
 ## <a name="next-steps"></a>後續步驟
 
 了解如何整合 Azure MFA 與[Active Directory](multi-factor-authentication-get-started-server-dirint.md)、[RADIUS 驗證](multi-factor-authentication-get-started-server-radius.md)和 [LDAP 驗證](multi-factor-authentication-get-started-server-ldap.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

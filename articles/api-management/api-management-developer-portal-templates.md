@@ -15,20 +15,28 @@ ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 94e13ac6fec09081484a2f7f5d7bc1871822743f
-ms.openlocfilehash: 01fb45cc2d2323290427a08e3210fadf27f6cda8
+ms.sourcegitcommit: 2434762c2a1174a40d9c6daad6c317bc3ca8f374
+ms.openlocfilehash: 40d25726d31d2018785b77d169a8811c565316bf
+ms.lasthandoff: 02/23/2017
 
 
 ---
 # <a name="how-to-customize-the-azure-api-management-developer-portal-using-templates"></a>如何使用範本自訂 Azure API 管理開發人員入口網站。
-Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發人員入口網站的外觀與風格](api-management-customize-portal.md)，以及使用一組設定網頁本身內容的範本來自訂開發人員入口網站頁面的內容。 使用 [DotLiquid](http://dotliquidmarkup.org/) 語法及一組提供的當地語系化字串資源、圖示和頁面控制項，您可以使用這些範本依照您的想法自由靈活地設定頁面內容。
+
+在 Azure API 管理中自訂開發人員入口網站的基本方式有三種：
+
+* [編輯靜態頁面和頁面配置元素的內容][modify-content-layout]
+* [更新用於開發人員入口網站上頁面元素的樣式][customize-styles]
+* [修改網站所產生來用於網頁的範本][portal-templates] (本指南會說明)
+
+範本可用來自訂系統產生之開發人員入口網站網頁的內容 (例如 API 文件、產品、使用者驗證等)。 使用 [DotLiquid](http://dotliquidmarkup.org/) 語法及一組提供的當地語系化字串資源、圖示和頁面控制項，您可以依照您的想法自由靈活地設定頁面內容。
 
 ## <a name="developer-portal-templates-overview"></a>開發人員入口網站範本概觀
-開發人員入口網站的範本，都是由 API 管理服務執行個體的系統管理員，在開發人員入口網站中加以管理。 若要管理開發人員範本，請在「Azure 入口網站」中瀏覽至您的「API 管理」服務執行個體，然後從工具列中按一下 [開發人員入口網站]。
+當您以系統管理員身分登入時，可從 [開發人員入口網站] 編輯範本。 若要到達該處，請開啟 Azure 入口網站，然後從 API 管理執行個體的服務工具列按一下 [發行者入口網站]。
 
-![開發人員入口網站][api-management-browse]
+![發行者入口網站][api-management-management-console]
 
-如果您已在發行者入口網站中，您可以按一下 [開發人員入口網站] 來存取開發人員入口網站。
+接著按一下右上角的 [開發人員入口網站]。 
 
 ![開發人員入口網站功能表][api-management-developer-portal-menu]
 
@@ -181,6 +189,9 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 ## <a name="next-steps"></a>後續步驟
 如需開發人員入口網站範本、字串資源、圖示和頁面控制項的參考資訊，請參閱 [API 管理開發人員入口網站範本參考](api-management-developer-portal-templates-reference.md)。
 
+[modify-content-layout]: api-management-modify-content-layout.md
+[customize-styles]: api-management-customize-styles.md
+[portal-templates]: api-management-developer-portal-templates.md
 
 [api-management-customize-menu]: ./media/api-management-developer-portal-templates/api-management-customize-menu.png
 [api-management-templates-menu]: ./media/api-management-developer-portal-templates/api-management-templates-menu.png
@@ -188,6 +199,7 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 [api-management-template]: ./media/api-management-developer-portal-templates/api-management-template.png
 [api-management-template-data]: ./media/api-management-developer-portal-templates/api-management-template-data.png
 [api-management-developer-portal-menu]: ./media/api-management-developer-portal-templates/api-management-developer-portal-menu.png
+[api-management-management-console]: ./media/api-management-developer-portal-templates/api-management-management-console.png
 [api-management-browse]: ./media/api-management-developer-portal-templates/api-management-browse.png
 [api-management-user-profile-templates]: ./media/api-management-developer-portal-templates/api-management-user-profile-templates.png
 [api-management-save-template]: ./media/api-management-developer-portal-templates/api-management-save-template.png
@@ -206,10 +218,5 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 
 
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

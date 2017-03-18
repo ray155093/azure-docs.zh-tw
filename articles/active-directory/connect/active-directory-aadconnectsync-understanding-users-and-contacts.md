@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 01/24/2017
 ms.author: markvi;andkjell
 translationtype: Human Translation
-ms.sourcegitcommit: 9bf2e87353901a043f01ff7d634e1b174cd6a52a
-ms.openlocfilehash: d77e9309fa8823846f25c58276bfbaaf8d65717a
+ms.sourcegitcommit: c5b54c80d9a74d72b242f8d7dd55e2dcadbfa48e
+ms.openlocfilehash: 96d568b6d264fa484e09ee81cdbc779a6f65eb0d
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -53,10 +54,5 @@ ms.openlocfilehash: d77e9309fa8823846f25c58276bfbaaf8d65717a
 ## <a name="additional-resources"></a>其他資源
 * [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -1,23 +1,7 @@
----
-title: "加密 Azure 虛擬機器 | Microsoft Docs"
-description: "本文件可協助您在收到 Azure 資訊安全中心所發出的警示後，加密 Azure 虛擬機器。"
-services: security, security-center
-documentationcenter: na
-author: TomShinder
-manager: swadhwa
-editor: 
-ms.assetid: f6c28bc4-1f79-4352-89d0-03659b2fa2f5
-ms.service: security
-ms.devlang: na
-ms.topic: hero-article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.date: 05/27/2016
-ms.author: tomsh
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 83e277fe261338aed960dea8e2ab15cbff3c895e
+le--- title: 加密 Azure 虛擬機器 | Microsoft Docs description: 本文件可協助您在收到 Azure 資訊安全中心所發出的警示後，加密 Azure 虛擬機器。
+services: 安全性, 資訊安全中心 documentationcenter: na author: TomShinder manager: swadhwa editor: "
 
+ms.assetid: f6c28bc4-1f79-4352-89d0-03659b2fa2f5 ms.service: security ms.devlang: na ms.topic: hero-article ms.tgt_pltfrm: na ms.workload: na ms.date: 05/27/2016 ms.author: tomsh
 
 ---
 # <a name="encrypt-an-azure-virtual-machine"></a>加密 Azure 虛擬機器
@@ -26,7 +10,7 @@ Azure 資訊安全中心會在您有未加密的虛擬機器時對您發出警�
 ![磁碟加密建議](./media/security-center-disk-encryption/security-center-disk-encryption-fig1.png)
 
 > [!NOTE]
-> 本文件中的資訊適用於「Azure 資訊安全中心」的預覽版本。
+> 這份文件中的資訊適用於加密虛擬機器，而不使用金鑰加密金鑰 (使用 Azure 備份來備份虛擬機器時需要)。 如需有關如何使用金鑰加密金鑰，以支援加密 Azure 虛擬機器之 Azure 備份的資訊，請參閱[適用於 Windows 和 Linux 虛擬機器的 Azure 磁碟加密](https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption)一文。
 >
 >
 
@@ -178,9 +162,3 @@ Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $resourceGroupName -VMNa
 * [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示
 * [Azure 安全性中心常見問題集](security-center-faq.md) - 尋找使用服務的常見問題
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
-
-
-
-<!--HONumber=Dec16_HO2-->
-
-

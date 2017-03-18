@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/12/2016
+ms.date: 02/23/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: dd8a68029449ad013c4df9a46c558efaefd20e96
-ms.openlocfilehash: 88f746a4802e13e062f4414e5d2032dfcee565b7
+ms.sourcegitcommit: 5046ec3f6a29fb4791cd6badc67c2111a9e3ab2c
+ms.openlocfilehash: 132ecec8aef2f166753214fce410237103583c08
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -186,9 +187,7 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 | --- | --- | --- |
 | 類型 |類型屬性必須設為： **Web** |是 |
 | Url |Web 來源的 URL |是 |
-| authenticationType |匿名或基本。 |是 |
-| userName |基本驗證用的使用者名稱 |是 (用於基本驗證) |
-| password |基本驗證用的密碼 |是 (用於基本驗證) |
+| authenticationType |匿名。 |是 |
 
 ### <a name="using-anonymous-authentication"></a>使用匿名驗證
 
@@ -202,25 +201,6 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
         {
             "authenticationType": "Anonymous",
             "url" : "https://en.wikipedia.org/wiki/"
-        }
-    }
-}
-```
-
-### <a name="using-basic-authentication"></a>使用基本驗證
-
-```JSON
-{
-    "name": "web",
-    "properties":
-    {
-        "type": "Web",
-        "typeProperties":
-        {
-            "authenticationType": "basic",
-            "url" : "http://myit.mycompany.com/",
-            "userName": "Administrator",
-            "password": "password"
         }
     }
 }
@@ -296,9 +276,4 @@ Data factory 目前只支援把 Web 資料表的資料移動到其他資料存�
 
 ## <a name="performance-and-tuning"></a>效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

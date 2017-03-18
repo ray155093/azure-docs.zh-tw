@@ -13,11 +13,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2016
+ms.date: 02/23/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 4ff028f88e984f28bc0f4a228aabed1fabc90560
-ms.openlocfilehash: b5c031d1e36508e7622ba516d7bb8b2cfb3d7a89
+ms.sourcegitcommit: 847a8bdcf880b56f587f6759058825fd1965d29e
+ms.openlocfilehash: 6ad91429794e465be7cb26963d032d9357143053
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: b5c031d1e36508e7622ba516d7bb8b2cfb3d7a89
 如果您的 IT 管理員送出特定的 URL 或步驟來管理雙步驟驗證，請遵循這些指示。 否則，下面的指示應可適用於其他所有人。 如果您遵循下列步驟，但沒有看到相同的選項，表示您的工作或學校自訂了自己的網站。 請要求系統管理員提供您的 Azure Multi-factor Authentication 入口網站連結。
 
 1. 登入 [https://myapps.microsoft.com](https://myapps.microsoft.com)  
-2. 在頂端，選取 [設定檔]。  
+2. 在右上方選取您的帳戶名稱，然後選取 [設定檔]。  
 3. 選取 [其他安全性驗證]。  
 
     ![Myapps](./media/multi-factor-authentication-end-user-manage/myapps1.png)
@@ -56,15 +57,17 @@ ms.openlocfilehash: b5c031d1e36508e7622ba516d7bb8b2cfb3d7a89
 2. 在文字方塊中輸入您的次要電話號碼。  
 3. 選取 [儲存] 您的變更即完成。  
 
+## <a name="require-two-step-verification-again-on-a-device-youve-marked-as-trusted"></a>需要在已標示為受信任的裝置上再次進行雙步驟驗證
+
+根據您組織的設定，當您在您的瀏覽器上執行雙步驟驗證時，您可能會看到核取方塊指出「**X** 天內不要再問我」。 如果核取此方塊然後遺失您的裝置，或認為您的帳戶遭到入侵，您應該將雙步驟驗證還原到所有的裝置。 
+
+1. 在 [其他安全性驗證] 頁面上，選取 [還原先前受信任裝置上的 Multi-Factor Authentication]。
+2. 下次您在任何裝置上登入時，程式將會提示您執行雙步驟驗證。 
+
 ## <a name="how-do-i-clean-up-microsoft-authenticator-from-my-old-device-and-move-to-a-new-one"></a>如何清除舊裝置的 Microsoft驗證器並移到新裝置？
 無論您是從裝置解除安裝應用程式或是重設裝置，都不會移除後端的啟動功能。 如需詳細資訊，請參閱 [Microsoft Authenticator](microsoft-authenticator-app-how-to.md)。
 
 ## <a name="next-steps"></a>後續步驟
 * 取得疑難排解提示以及[使用雙步驟驗證遇到困難](multi-factor-authentication-end-user-troubleshoot.md)的說明。
 * 針對不支援雙步驟驗證的任何應用程式，設定[應用程式密碼](multi-factor-authentication-end-user-app-passwords.md)。
-
-
-
-<!--HONumber=Dec16_HO4-->
-
 

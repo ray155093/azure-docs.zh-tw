@@ -13,11 +13,12 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/30/2017
+ms.date: 02/23/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 5f9783232e9b03ca3777a000ffc189863d0956ab
-ms.openlocfilehash: ffc481943a9dc55593fa8b46dffef0098f288eaf
+ms.sourcegitcommit: 92479ddca2c69f1b8630374e88cc5eda9ac8c9ef
+ms.openlocfilehash: 59b2205fcddf48cfbfb8d15e174c385482a21ec9
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -38,9 +39,9 @@ DocumentDB 模擬器的硬體和軟體需求如下︰
 
 * 軟體需求
   * Windows Server 2012 R2、Windows Server 2016 或 Windows 10
-*   最低硬體需求
-  * 2 GB RAM
-  * 10 GB 可用硬碟空間
+*    最低硬體需求
+  *    2 GB RAM
+  *    10 GB 可用硬碟空間
 
 ## <a name="installing-the-documentdb-emulator"></a>安裝 DocumentDB 模擬器
 您可以從 [Microsoft 下載中心](https://aka.ms/documentdb-emulator)下載並安裝 DocumentDB 模擬器。 
@@ -117,7 +118,7 @@ DocumentDB 模擬器預設會安裝到 `C:\Program Files\DocumentDB Emulator` �
 
 從 Python 和 Node.js SDK 連接到模擬器時，會停用 SSL 驗證。
 
-## <a name="a-idcommand-lineadocumentdb-emulator-command-line-tool-reference"></a><a id="command-line"></a>DocumentDB 模擬器命令列工具參考
+## <a id="command-line"></a>DocumentDB 模擬器命令列工具參考
 您可以從安裝位置使用命令列來啟動和停止模擬器、設定選項，以及執行其他作業。
 
 ### <a name="command-line-syntax"></a>命令列語法
@@ -223,7 +224,7 @@ DocumentDB 模擬器預設會安裝到 `C:\Program Files\DocumentDB Emulator` �
 * DocumentDB 模擬器不支援 Azure DocumentDB 服務中可用的服務配額覆寫 (例如文件大小限制、增加的分割集合儲存體)。
 * 因為 Azure DocumentDB 服務最近有變更，DocumentDB 模擬器複本可能不是最新狀態，請使用 [DocumentDB 容量規劃工具](https://www.documentdb.com/capacityplanner) ，準確地評估應用程式的生產輸送量 (RU) 需求。
 
-## <a name="a-idset-partitioncountachange-the-number-of-collections"></a><a id="set-partitioncount"></a>變更集合的數目
+## <a id="set-partitioncount"></a>變更集合的數目
 
 根據預設，您可以使用 DocumentDB 模擬器建立最多 25 個單一分割區集合，或 1 個已分割個集合。 藉由修改 **PartitionCount** 值，您可以建立最多 250 個單一分割區集合或是 10 個已分割的集合，或是這兩種的任何組合 (不超過 250 個單一分割區，其中 1 個已分割集合 = 25 個單一分割區集合)。
 
@@ -249,9 +250,11 @@ DocumentDB 模擬器預設會安裝到 `C:\Program Files\DocumentDB Emulator` �
 
 - 如果 DocumentDB 模擬器當機，請從 c:\Users\user_name\AppData\Local\CrashDumps 資料夾中收集傾印檔案，壓縮檔案後，再附加到電子郵件寄至 [askdocdb@microsoft.com](mailto:askdocdb@microsoft.com)。
 
+- 如果 DocumentDB.StartupEntryPoint.exe 發生損毀，請從系統管理員命令提示字元執行下列命令︰`lodctr /R` 
+
 - 如果您遇到連線問題，請[收集追蹤檔案](#trace-files)，壓縮檔案後，再附加到電子郵件寄至[askdocdb@microsoft.com](mailto:askdocdb@microsoft.com)。
 
-### <a name="a-idtrace-filesacollect-trace-files"></a><a id="trace-files"></a>收集追蹤檔案
+### <a id="trace-files"></a>收集追蹤檔案
 
 若要收集偵錯追蹤，請從系統管理命令提示字元執行下列命令︰
 
@@ -268,9 +271,4 @@ DocumentDB 模擬器預設會安裝到 `C:\Program Files\DocumentDB Emulator` �
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解 DocumentDB，請參閱 [Azure DocumentDB 簡介](documentdb-introduction.md)
 * 若要開始針對 DocumentDB 模擬器進行開發，請下載其中一個[支援的 DocumentDB SDK](documentdb-sdk-dotnet.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

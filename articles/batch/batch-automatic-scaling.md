@@ -12,15 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: multiple
-ms.date: 01/23/2017
+ms.date: 02/27/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ffba988bd8cd3896816118afde979c7067fced79
-ms.openlocfilehash: 89ff5d5deeda72361cb619516681aca386c5a422
+ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
+ms.openlocfilehash: b8cad4541d4e17f98a35289c6c031b9331ab4a8b
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="automatically-scale-compute-nodes-in-an-azure-batch-pool"></a>自動調整 Azure Batch 集區中的計算節點
+# <a name="create-an-automatic-scaling-formula-for-scaling-compute-nodes-in-a-batch-pool"></a>建立自動調整公式來調整 Batch 集區中的計算節點
+
 透過自動調整功能，Azure Batch 服務可以根據您定義的參數，動態新增或移除集區中的計算節點。 您可自動調整您的應用程式所用的計算能力來節省時間與金頡 -- 隨著作業的工作需求增加來新增節點，並在需求降低時將它們移除。
 
 您可讓您定義的「自動調整公式」與計算節點的集區 (例如 [Batch .NET](batch-dotnet-get-started.md) 程式庫中的 [PoolOperations.EnableAutoScale][net_enableautoscale] 方法) 產生關聯，以在該集區上啟用自動調整。 Batch 服務會接著使用此公式來判斷要執行您的工作負載所需的計算節點數目。 Batch 會回應定期收集的服務計量資料範例，並根據您的公式在可設定的間隔調整集區中的計算節點數目。
@@ -182,7 +185,7 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 
 評估之前，*doubleVecList* 值會轉換成單一的 *doubleVec*。 例如，如果 `v = [1,2,3]`，呼叫 `avg(v)` 就相當於呼叫 `avg(1,2,3)`。 呼叫 `avg(v, 7)` 就相當於呼叫 `avg(1,2,3,7)`。
 
-## <a name="a-namegetsampledataaobtain-sample-data"></a><a name="getsampledata"></a>取得樣本資料
+## <a name="getsampledata"></a>取得樣本資料
 自動調整公式會對 Batch 服務所提供的度量資料 (範例) 產生作用。 公式會根據從服務取得的值擴大或縮減集區大小。 上述服務定義的變數是可提供各種方法來存取與該物件相關聯資料的物件。 例如，下列運算式顯示取得最後五分鐘的 CPU 使用量的要求：
 
 ```
@@ -643,9 +646,4 @@ string formula = string.Format(@"
 [rest_autoscaleformula]: https://msdn.microsoft.com/library/azure/dn820173.aspx
 [rest_autoscaleinterval]: https://msdn.microsoft.com/library/azure/dn820173.aspx
 [rest_enableautoscale]: https://msdn.microsoft.com/library/azure/dn820173.aspx
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

@@ -12,15 +12,18 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 02/27/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a3d79c2df96c21d1af77c8ea1f53a2cc4e28343e
-ms.openlocfilehash: 30b1a9144e06db92ba12030dfe37a83e79d62857
+ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
+ms.openlocfilehash: de2e6d201ba54774697356e1cd55c4881664a401
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="connect-computers-and-devices-to-oms-using-the-oms-gateway"></a>使用 OMS 閘道將電腦和裝置連線到 OMS
+# <a name="connect-computers-and-devices-without-internet-access-to-oms-using-the-oms-gateway"></a>在無網際網路存取下使用 OMS 閘道將電腦和裝置連線到 OMS
+
 此文件說明您受 OMS 管理的裝置與受 System Center Operations Manager (SCOM) 監視的電腦如何在它們沒有網際網路存取時傳送資料給 OMS 服務。 OMS 閘道可以收集資料並代表它們將資料傳送給 OMS 服務。
 
 閘道是一個 HTTP 正向 Proxy，使用 HTTP CONNECT 命令支援 HTTP 通道。 當閘道在執行 Windows 的 4 核心 CPU、16 GB 伺服器上執行時，最多可以處理 2000 個同時連線至 OMS 的裝置。
@@ -72,9 +75,9 @@ OMS 閘道有下列語言版本︰
 
 ### <a name="oms-portal"></a>OMS 入口網站
 
-1.  登入 OMS 工作區。
-2.  選取 [設定] > [連接的來源] > [Windows 伺服器]。
-3.  按一下 [下載 OMS 閘道]。
+1.    登入 OMS 工作區。
+2.    選取 [設定] > [連接的來源] > [Windows 伺服器]。
+3.    按一下 [下載 OMS 閘道]。
 
 
 ### <a name="azure-portal"></a>Azure 入口網站
@@ -100,11 +103,11 @@ OMS 閘道有下列語言版本︰
 4. 在連接埠和 Proxy 位址頁面上：
    1. 輸入要用於閘道的 TCP 連接埠號碼。 安裝程式會從 Windows 防火牆開啟此連接埠號碼。 預設值為 8080。
       連接埠號碼的有效範圍是 1 到 65535。 如果輸入的值不在此範圍內，就會顯示錯誤訊息。
-   2. 如果閘道安裝所在的伺服器需要使用 Proxy，您也可以選擇輸入閘道需要連線的 Proxy 位址。 例如，`http://myorgname.corp.contoso.com:80` 如果空白，閘道將會嘗試直接連線到網際網路。 否則，閘道會連線到 Proxy。 如果您的 Proxy 伺服器需要驗證，請輸入您的使用者名稱與密碼。
+   2. 如果閘道安裝所在的伺服器需要使用 Proxy，您也可以選擇輸入閘道需要連線的 Proxy 位址。 例如，`http://myorgname.corp.contoso.com:80` 如果空白，閘道將會嘗試直接連線到網際網路。 否則，閘道會連線到 Proxy。 如果您的 Proxy 伺服器需要驗證，請輸入您的使用者名稱與密碼。  
        ![閘道精靈 Proxy 組態](./media/log-analytics-oms-gateway/gateway-wizard02.png)  
    3. 按一下 [下一步]
 5. 如果您沒有啟用 Microsoft Update，會顯示 Microsoft Update 頁面，您可以在其中選擇啟用 Microsoft Update。 選擇想要的選項，然後按一下 [下一步]。 否則，請繼續下一個步驟。
-6. 在 [目的地資料夾] 頁面上，保留預設資料夾 **%ProgramFiles%\OMS Gateway** 或輸入您想要安裝閘道的位置，然後按一下 [下一步]。
+6. 在 [目的地資料夾] 頁面上，保留預設資料夾 c:\ProgramFiles\OMS 或輸入您想要安裝閘道的位置，然後按一下 [下一步]。
 7. 在 [準備安裝] 頁面上，按一下 [安裝]。 可能會顯示 [使用者帳戶控制] 要求安裝權限。 如果有顯示，請按一下 [是]。
 8. 安裝完成後，請按一下 [完成]。 您可以透過開啟 services.msc 嵌入式管理單元來確認服務正在執行，並確認服務清單中已顯示 [OMS 閘道]。  
     ![服務 – OMS 閘道](./media/log-analytics-oms-gateway/gateway-service.png)
@@ -214,7 +217,7 @@ Cmdlet 可以協助您完成更新 OMS 閘道的組態設定時需執行的作�
 4. 如果上一個步驟沒有發生錯誤，就表示模組已經成功匯入，且可以使用 Cmdlet。 輸入 `Get-Module OMSGateway`
 5. 在您使用 Cmdlet 進行變更之後，請確定您已重新啟動閘道服務。
 
-如果您在步驟 3 發生錯誤，表示模組並未匯入。 當 PowerShell 找不到模組時，就可能會發生錯誤。 您可以在閘道的安裝路徑中找到它：C:\Program File\Microsoft OMS Gateway\PowerShell。
+如果您在步驟 3 發生錯誤，表示模組並未匯入。 當 PowerShell 找不到模組時，就可能會發生錯誤。 您可以在閘道的安裝路徑中找到它：C:\Program Files\Microsoft OMS Gateway\PowerShell。
 
 | **Cmdlet** | **參數** | **描述** | **範例** |
 | --- | --- | --- | --- |
@@ -277,9 +280,4 @@ Cmdlet 可以協助您完成更新 OMS 閘道的組態設定時需執行的作�
 
 ## <a name="next-steps"></a>後續步驟
 * [新增資料來源](log-analytics-data-sources.md) 來從您 OMS 工作區的 [連接的來源] 收集資料，並將它儲存在 OMS 存放庫中。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 
