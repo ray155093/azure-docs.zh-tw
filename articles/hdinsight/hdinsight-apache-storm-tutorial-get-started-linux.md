@@ -13,7 +13,7 @@ ms.devlang: java
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/12/2017
+ms.date: 03/17/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
@@ -107,7 +107,7 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
 
 2. 使用下列命令以啟動範例拓撲：
    
-        storm jar /usr/hdp/current/storm-client/contrib/storm-starter/storm-starter-topologies-*.jar storm jar org.apache.storm.starter.WordCountTopology wordcount
+        storm jar /usr/hdp/current/storm-client/contrib/storm-starter/storm-starter-topologies-*.jar org.apache.storm.starter.WordCountTopology wordcount
    
     > [!NOTE]
     > 在舊版 HDInsight 上，拓撲的類別名稱是 `storm.starter.WordCountTopology` 而不是 `org.apache.storm.starter.WordCountTopology`。
