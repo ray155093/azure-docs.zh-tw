@@ -115,7 +115,7 @@ ms.lasthandoff: 02/17/2017
 2. 在工具列中，按一下 [管理]，然後按一下 [使用者]。
    
    ![管理](./media/active-directory-saas-bime-tutorial/IC775561.png "管理")
-3. 在 [使用者清單] 中，按一下 [新增使用者] ("+")。
+3. 在 [使用者清單] 中，按一下 新增使用者\ ("+")。
    
    ![使用者](./media/active-directory-saas-bime-tutorial/IC775562.png "使用者")
 4. 在 [使用者詳細資料]  對話頁面上，執行下列步驟：
