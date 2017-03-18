@@ -17,6 +17,7 @@ ms.author: garbrad
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: b4fffba6d95f4c9c30ab3a1ecd9dfeb7acd9119d
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -67,10 +68,5 @@ Linux 用戶端通常不會在啟動時向 DNS 伺服器自行登錄，其假設
 如有需要，您可以將 DNS 搜尋尾碼加入您的 VM。 DNS 尾碼是在 */etc/resolv.conf* 檔案中指定。 大多數的 Linux 發行版會自動管理這個檔案的內容，因此通常您無法編輯該檔案。 不過，您可以使用 DHCP 用戶端的 *supersede* 命令以覆寫尾碼。 若要這樣做，請在 */etc/dhcp/dhclient.conf*中，加入：
 
         supersede domain-name <required-dns-suffix>;
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

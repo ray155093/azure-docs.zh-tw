@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 6d3f4908fd8e245960ba1b1b1244aafeb06922eb
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -94,10 +95,5 @@ ms.openlocfilehash: 6d3f4908fd8e245960ba1b1b1244aafeb06922eb
 
 ## <a name="virtual-device-updates-in-the-october-release"></a>10 月發行的虛擬裝置更新
 這個版本不包含任何虛擬裝置的更新。 套用此更新不會變更虛擬裝置的軟體版本。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

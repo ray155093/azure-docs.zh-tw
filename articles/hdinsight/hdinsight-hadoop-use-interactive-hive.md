@@ -19,6 +19,7 @@ ms.author: jgao
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 6971e123b388eab689e02a5c67809509c2ad29c6
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -63,10 +64,5 @@ Hive 查詢的執行方式有不同選項可供您選擇︰
 * [在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)︰了解如何在 HDInsight 中建立互動式 Hive 叢集。
 * [利用 Beeline 搭配使用 Hive 與 HDInsight 中的 Hadoop](hdinsight-hadoop-use-hive-beeline.md)︰了解如何使用 Beeline 提交 Hive 查詢。
 * [使用 Microsoft Hive ODBC 驅動程式將 Excel 連接到 Hadoop](hdinsight-connect-excel-hive-odbc-driver.md)：了解如何將 Excel 連接到 Hive。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -18,6 +18,7 @@ ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: ed7bd79face77a132a4a6588e72b7511bab4b4d4
+ms.lasthandoff: 11/17/2016
 
 ---
 
@@ -143,10 +144,5 @@ Runbook 可以連結至多個排程，而排程可以有多個與其連結的 Ru
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解如何使用排程，請參閱 [Azure 自動化中的排程資產](http://msdn.microsoft.com/library/azure/dn940016.aspx)
 * 若要在 Azure 自動化中開始使用 Runbook，請參閱 [在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md) 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

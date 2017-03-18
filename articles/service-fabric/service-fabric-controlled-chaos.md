@@ -17,6 +17,7 @@ ms.author: motanv
 translationtype: Human Translation
 ms.sourcegitcommit: 1a9bec270650223cd40b3b60e5bc9fc7e212a207
 ms.openlocfilehash: ea8f76d146bd630cc8cb0a417d8c090b656150a4
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -194,9 +195,4 @@ while($true)
 
 Stop-ServiceFabricChaos
 ```
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

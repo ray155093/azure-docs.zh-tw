@@ -17,6 +17,7 @@ ms.author: magoedte;csand
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 3e21af65ecb6f0ce70048846a9786271dd4cc985
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -42,10 +43,5 @@ Azure RemoteApp 可透過 [Azure PowerShell](https://msdn.microsoft.com/library/
 了解 Azure 自動化的基本概念以及如何用它來管理 Azure RemoteApp 之後，請參考下列連結，以深入了解 Azure 自動化。
 
 * 請參閱 Azure 自動化 [入門指南](../automation/automation-first-runbook-graphical.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

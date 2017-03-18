@@ -19,6 +19,7 @@ redirect_document_id: FALSE
 translationtype: Human Translation
 ms.sourcegitcommit: 00b217a4cddac0a893564db27ffb4f460973c246
 ms.openlocfilehash: ba67183cf0518bee102579a8ab16a9be92ed7b73
+ms.lasthandoff: 11/17/2016
 
 ---
 
@@ -140,9 +141,4 @@ Runbook 的最後一個步驟是傳送輸出，而不論是否成功提交每個
 * [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
 * [Azure 自動化中的子 Runbook](automation-child-runbooks.md)
 * [Azure 自動化中的 Runbook 輸出與訊息](automation-runbook-output-and-messages.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

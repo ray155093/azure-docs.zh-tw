@@ -17,6 +17,7 @@ ms.author: support@blitline.com
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: f8b7e8dd557ddeeaa295a9849d471d74259941c2
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -124,10 +125,5 @@ SAS 必須包含整個 SAS URL，包括目的地檔案的檔案名稱。
 * Blitline API 函式 <http://www.blitline.com/docs/functions>
 * Blitline API 範例 <http://www.blitline.com/docs/examples>
 * 協力廠商 Nuget 程式庫 <http://nuget.org/packages/Blitline.Net>
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

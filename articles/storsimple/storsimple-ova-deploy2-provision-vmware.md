@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 712a91948253721fb0b6eacd238feee670414ee2
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -242,10 +243,5 @@ ms.openlocfilehash: 712a91948253721fb0b6eacd238feee670414ee2
 ## <a name="next-steps"></a>後續步驟
 * [Set up your StorSimple Virtual Array as a file server (將 StorSimple 虛擬陣列設定為檔案伺服器)](storsimple-ova-deploy3-fs-setup.md)
 * [Set up your StorSimple Virtual Array as an iSCSI server (將 StorSimple 虛擬陣列設定為 iSCSI 伺服器)](storsimple-ova-deploy3-iscsi-setup.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

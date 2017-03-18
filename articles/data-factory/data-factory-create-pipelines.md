@@ -18,6 +18,7 @@ ms.author: shlo
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: d841c57dc736f7d690a6dc97863b7568365fd01a
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -286,10 +287,5 @@ New-AzureRmDataFactoryPipeline -ResourceGroupName ADF -Name DPWikisample -DataFa
 * 深入了解 Azure Data Factory 中的[資料移動](data-factory-data-movement-activities.md)和[資料轉換功能](data-factory-data-transformation-activities.md)
 * 了解 [在 Azure Data Factory 中管理和監視](data-factory-monitor-manage-pipelines.md)。
 * [建置和部署第一個管線](data-factory-build-your-first-pipeline.md)。 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: mazha
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: ec6a021e087d9218856370e8bf067359de54bdb9
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -136,10 +137,5 @@ ms.openlocfilehash: ec6a021e087d9218856370e8bf067359de54bdb9
 
 ## <a name="considerations"></a>注意事項
 報告只會產生於過去 18 個月內。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

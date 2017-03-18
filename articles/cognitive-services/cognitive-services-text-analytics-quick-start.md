@@ -17,6 +17,7 @@ ms.author: onewth
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 663b99c2491bebf49f950605152604b040ade070
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -281,10 +282,5 @@ ms.openlocfilehash: 663b99c2491bebf49f950605152604b040ade070
 恭喜！ 您已完成對資料使用文字分析。 現在您可以考慮使用一種工具 (例如 [Power BI](//powerbi.microsoft.com) )，以視覺化方式呈現資料，以及將您的見解自動化，以提供文字資料的即時檢視。
 
 若要查看如何將文字分析功能 (如情感) 當做 Bot 的一部分，請參閱 Bot Framework 網站上的 [Emotional Bot (有情感的 Bot)](http://docs.botframework.com/en-us/bot-intelligence/language/#example-emotional-bot) 範例。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

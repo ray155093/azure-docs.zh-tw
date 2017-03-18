@@ -17,6 +17,7 @@ ms.author: shlo
 translationtype: Human Translation
 ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
 ms.openlocfilehash: 3137773458ca5b50b1bf42972d4cfd8e9b8d5cba
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -120,9 +121,4 @@ ms.openlocfilehash: 3137773458ca5b50b1bf42972d4cfd8e9b8d5cba
 16. 在 [部署狀態]  頁面上，您應該會看到部署程序的狀態。 部署完成後按一下 [完成]。
 
 如需有關使用 Visual Studio 來撰寫 Data Factory 實體並將其發行至 Azure 的詳細資料，請參閱 [建置您的第一個 Data Factory (Visual Studio)](data-factory-build-your-first-pipeline-using-vs.md) 。          
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

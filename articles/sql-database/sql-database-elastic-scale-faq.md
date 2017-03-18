@@ -18,6 +18,7 @@ ms.author: ddove
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 2420d31c73fcb43e680edf2a95995e4ed4969236
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -50,10 +51,5 @@ ms.openlocfilehash: 2420d31c73fcb43e680edf2a95995e4ed4969236
 不會。 如果是「分割」  作業，目標資料庫必須有適當的結構描述，而且必須向分區對應管理員登錄。  如果是「合併」  作業，您必須從分區對應管理員刪除分區，然後再刪除資料庫。
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

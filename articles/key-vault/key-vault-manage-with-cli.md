@@ -17,6 +17,7 @@ ms.author: bruceper
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: c52d41bbac22c6a20b1632b529b061ed7e640ea1
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -251,10 +252,5 @@ ms.openlocfilehash: c52d41bbac22c6a20b1632b529b061ed7e640ea1
 
 ## <a name="next-steps"></a>後續步驟
 如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

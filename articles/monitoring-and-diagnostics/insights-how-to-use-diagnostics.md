@@ -17,6 +17,7 @@ ms.author: robb
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: c30ffa9e392bb6411312b0789ae6e8218f770bc1
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -65,10 +66,5 @@ ms.openlocfilehash: c30ffa9e392bb6411312b0789ae6e8218f770bc1
 * [監視應用程式效能](../application-insights/app-insights-azure-web-apps.md) 。
 * [檢視事件和活動記錄檔](insights-debugging-with-events.md)以了解在您服務內發生的所有內容。
 * [追蹤服務健康狀況](insights-service-health.md) 可以找出 Azure 何時遭遇效能降低或服務中斷。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: bwren
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: d7325b0bb900dcaf789c01e1a9b534d7f72c8c43
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -171,10 +172,5 @@ Log Analytics 中的查詢也是其他功能的基礎。  您可以儲存查詢�
 ## <a name="next-steps"></a>後續步驟
 * 部署 [System Center Operations Manager (SCOM)](https://technet.microsoft.com/library/hh205987.aspx)。
 * 註冊 [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics)。  
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

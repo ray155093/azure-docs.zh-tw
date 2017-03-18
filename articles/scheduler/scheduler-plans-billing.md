@@ -17,6 +17,7 @@ ms.author: deli
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 5452a42cff5204fce780af41368b9515f9652d91
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -85,10 +86,5 @@ P20 進階工作集合提供與 P10 進階工作集合相同的功能，但整�
  [Azure 排程器限制、預設值和錯誤碼](scheduler-limits-defaults-errors.md)
 
  [Azure 排程器輸出驗證](scheduler-outbound-authentication.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: estfan; manasma; ahomer
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 71f0a6e8d63e8f9ebb9307cce051010649a31a53
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -137,10 +138,5 @@ ms.openlocfilehash: 71f0a6e8d63e8f9ebb9307cce051010649a31a53
 * [執行 Apache Jmeter 效能測試](https://www.visualstudio.com/docs/test/performance-testing/getting-started/get-started-jmeter-test)
 * [Record and replay cloud-based load tests (記錄並重新執行雲端架構負載測試)](https://www.visualstudio.com/docs/test/performance-testing/getting-started/record-and-replay-cloud-load-tests)
 * [在雲端中進行 App 效能測試](https://www.visualstudio.com/docs/test/performance-testing/getting-started/getting-started-with-performance-testing)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

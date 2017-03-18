@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: 64f6f245b86d9194a52e40ed226de9960a36f3f9
 ms.openlocfilehash: 63bdf5e5cecbb473a18965e311be06abc72cacc7
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -233,10 +234,5 @@ ms.openlocfilehash: 63bdf5e5cecbb473a18965e311be06abc72cacc7
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 [使用 Windows PowerShell 來管理您的 StorSimple 裝置](storsimple-windows-powershell-administration.md)。
 * 深入了解 [使用 StorSimple Manager 服務來管理您的 StorSimple 裝置](storsimple-manager-service-administration.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

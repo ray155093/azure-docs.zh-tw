@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/07/2016
+ms.date: 02/22/2017
 ms.author: jingwang
 translationtype: Human Translation
 ms.sourcegitcommit: 5b8144b0a65c18fb98cb410cfd83ad9812c6ed2a
 ms.openlocfilehash: 5cb04849a3346777a124fc3c0d3464843efaca52
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -666,9 +667,4 @@ create table dbo.TargetTbl
 
 ## <a name="performance-and-tuning"></a>效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

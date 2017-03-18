@@ -18,6 +18,7 @@ ms.author: guybo
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: a5158c51149e75952eaf91af14f3fcf2dd1ed2af
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -93,10 +94,5 @@ $vmss.virtualMachineProfile.storageProfile.osDisk.image.uri= $newURI
 當您依序按一下 [升級] 和 [取得詳細資料] 之後，UD 0 中的虛擬機器將會開始更新。
 
 ![顯示更新進行中的 vmsseditor](./media/virtual-machine-scale-sets-upgrade-scale-set/vmssEditor2.png)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

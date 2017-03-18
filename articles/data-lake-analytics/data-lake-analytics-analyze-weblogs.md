@@ -17,6 +17,7 @@ ms.author: edmaca
 translationtype: Human Translation
 ms.sourcegitcommit: 73d3e5577d0702a93b7f4edf3bf4e29f55a053ed
 ms.openlocfilehash: e820ca068bd9be151c4241bb233806847855933c
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -200,9 +201,4 @@ U-SQL 應用程式基本上是 U-SQL 指令碼。 若要深入了解 U-SQL，請
 * [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
 * [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
 * [針對資料湖分析工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

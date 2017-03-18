@@ -17,6 +17,7 @@ ms.author: suchia
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: f13ccbb5ac1eff7ea8924c9d7b5ea9d9ef09a7ad
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -305,10 +306,5 @@ ms.openlocfilehash: f13ccbb5ac1eff7ea8924c9d7b5ea9d9ef09a7ad
 
 ## <a name="next-steps"></a>後續步驟
 * [在 Reliable Services 中搭配 OWIN 使用 Web API](service-fabric-reliable-services-communication-webapi.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
