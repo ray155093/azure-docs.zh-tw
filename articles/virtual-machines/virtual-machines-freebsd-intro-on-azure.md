@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 01/09/2017
+ms.date: 02/28/2017
 ms.author: kyliel
 translationtype: Human Translation
-ms.sourcegitcommit: 71ad04b10bc49500197db6fecdcc0305a1ea0dd2
-ms.openlocfilehash: ecb1c385de6c1b12674326afe7d5a0ebf6cd9ad0
+ms.sourcegitcommit: 24410a07995d5ac813b2bf4cdeed320c72ce7e06
+ms.openlocfilehash: 7845b552bd1360927eae414f57fefbd74ac0b7f7
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -37,10 +38,47 @@ Microsoft Corporation 目前在 Azure 上提供已預先設定 [Azure VM 客體�
 至於未來的 FreeBSD 版本，策略是維持最新狀態，在 FreeBSD 版本工程小組發佈最新版本後不久，便立即提供最新版本。
 
 ## <a name="deploying-a-freebsd-virtual-machine"></a>部署 FreeBSD 虛擬機器
-使用來自 Azure Marketplace 的映像來部署 FreeBSD 虛擬機器相當簡單：
+使用來自 Azure Marketplace 的映像從 Azure 入口網站部署 FreeBSD 虛擬機器相當簡單：
 
 - [Azure Marketplace 上的 FreeBSD 10.3](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd103/)
 - [Azure Marketplace 上的 FreeBSD 11.0](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd110/)
+
+### <a name="create-a-freebsd-vm-through-azure-cli-20-on-freebsd"></a>透過 Azure CLI 2.0 在 FreeBSD 上建立 FreeBSD VM
+首先，您必須透過下列命令在 FreeBSD 電腦上安裝 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)。
+
+```bash 
+    curl -L https://aka.ms/InstallAzureCli | bash
+```
+
+如果您的 FreeBSD 電腦上未安裝 Bash，請先執行下列命令，再進行安裝。 
+
+```
+    sudo pkg install bash
+```
+
+如果您的 FreeBSD 電腦上未安裝 Python，請先執行下列命令，再進行安裝。 
+
+```
+    sudo pkg install python35
+    cd /usr/local/bin 
+    sudo rm /usr/local/bin/python 
+    sudo ln -s /usr/local/bin/python3.5 /usr/local/bin/python
+```
+
+進行安裝時，系統會向您提出下列問題：`Modify profile to update your $PATH and enable shell/tab completion now? (Y/n)`。 如果您回答 `y` 並輸入 `/etc/rc.conf` 作為 `a path to an rc file to update`，您可能會遇到下列問題：`ERROR: [Errno 13] Permission denied`。 若要解決此問題，您應該將檔案 `etc/rc.conf` 的寫入權限授與目前的使用者。
+
+現在您可以登入 Azure 並建立您的 FreeBSD VM。 以下是一個建立 FreeBSD 11.0 VM 的範例。 您也可以新增 `--public-ip-address-dns-name` 參數，其中含有新建立之公用 IP 的全域唯一 DNS 名稱。 
+
+```azurecli
+    az login 
+    az group create -n myResourceGroup -l westus az vm create -n myFreeBSD11 -g myResourceGroup --image MicrosoftOSTC:FreeBSD:11.0:latest --admin-username azureuser --ssh-key-value /etc/ssh/ssh_host_rsa_key.pub 
+```
+
+接著，您便可以透過上述部署作業輸出中所列印的 IP 位址來登入您的 FreeBSD VM。 
+
+```bash
+    ssh azureuser@xx.xx.xx.xx -i /etc/ssh/ssh_host_rsa_key
+```   
 
 ## <a name="vm-extensions-for-freebsd"></a>適用於 FreeBSD 的 VM 擴充功能
 以下為 FreeBSD VM 中支援的 VM 擴充功能。
@@ -67,7 +105,8 @@ Microsoft Corporation 目前在 Azure 上提供已預先設定 [Azure VM 客體�
 * 自動移除 Shell 和 Python 指令碼中的 BOM。
 * 保護 CommandToExecute 中的機密資料。
 
-[!NOTE]FreeBSD VM 目前僅支援 CustomScript 1.x 版。  
+> [!NOTE]
+> FreeBSD VM 目前僅支援 CustomScript 1.x 版。  
 
 ## <a name="authentication-user-names-passwords-and-ssh-keys"></a>驗證：使用者名稱、密碼和 SSH 金鑰
 使用 Azure 入口網站來建立 FreeBSD 虛擬機器時，您必須提供使用者名稱、密碼或 SSH 公開金鑰。
@@ -78,21 +117,16 @@ Microsoft Corporation 目前在 Azure 上提供已預先設定 [Azure VM 客體�
 在 Azure 上部署虛擬機器執行個體時所指定的使用者帳戶是特殊權限帳戶。 sudo 的封裝已安裝於所發佈的 FreeBSD 映像中。
 當您使用此使用者帳戶登入之後，您便能以 root 身分，使用命令語法來執行命令。
 
+```
     $ sudo <COMMAND>
+```
 
 您可以視需要使用 `sudo -s` 來取得 root shell。
 
 ## <a name="known-issues"></a>已知問題
-1. 目前 Hyper-V (和 Azure) 上的 FreeBSD 11.0 有一個未解決的問題，此問題會導致在使用 `freebsd-update` 修補作業系統的情況下 VM 發生失敗。 [建議的修補程式](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=212721)包含在 Azure Marketplace 上的 FreeBSD 映像中。 不過，FreeBSD 小組尚未將它與上游合併，因此執行 `freebsd-update` 會將核心取代成未修補的核心。 建議 Azure 上的使用者在修正程式發佈為 ERRATA 之前，不要安裝 FreeBSD 11.0 的修補程式。
-
-2. [Azure VM 客體代理程式](https://github.com/Azure/WALinuxAgent/) 2.2.2 版有一個[已知問題] (https://github.com/Azure/WALinuxAgent/pull/517)，此問題會導致 Azure 上的 FreeBSD VM 佈建失敗。 建議 Azure 上的 FreeBSD VM 使用者使用 2.2.1 或更舊的版本。 [Azure VM 客體代理程式](https://github.com/Azure/WALinuxAgent/) 2.2.3 版將會包含這項修正。 
+[Azure VM 客體代理程式](https://github.com/Azure/WALinuxAgent/) 2.2.2 版有一個[已知問題] (https://github.com/Azure/WALinuxAgent/pull/517)，此問題會導致 Azure 上的 FreeBSD VM 佈建失敗。 [Azure VM 客體代理程式](https://github.com/Azure/WALinuxAgent/) 2.2.3 版和更新版本已包含這項修正。 
 
 ## <a name="next-steps"></a>後續步驟
 * 前往 [Azure Marketplace](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd110/) 以建立 FreeBSD VM。
 * 如果您想要將自己的 FreeBSD 攜至 Azure，請參閱[建立並上傳 FreeBSD VHD 到 Azure](./virtual-machines-linux-classic-freebsd-create-upload-vhd.md)。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

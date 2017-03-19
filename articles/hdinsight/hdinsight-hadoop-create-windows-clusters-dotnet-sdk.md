@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/17/2017
+ms.date: 03/03/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: ede2e4ec5f3414d1c8a17f4c120011eba0d9a6ca
-ms.openlocfilehash: 4f597fad719637e66d64143c302334b1c62e226e
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: a78bd696ead85138331d00d3543fdc88ac01d39b
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 01/20/2017
 開始執行本文中的指示之前，您必須擁有以下項目：
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* Visual Studio 2013 或 2015。
+* Visual Studio 2013、Visual Studio 2015 或 Visual Studio 2017。
 
 ### <a name="access-control-requirements"></a>存取控制需求
 [!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]

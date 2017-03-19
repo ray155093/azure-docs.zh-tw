@@ -15,13 +15,15 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 11/30/2016
 ms.author: danlep
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 4bf470737f961219250c37d890ed81eb62409626
-ms.openlocfilehash: feb9370f0241fd860749d32f5db5842cb18463f1
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 57d7475db8183cfaad017fc934210d0481868d5f
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="set-up-gpu-drivers-for-n-series-vms"></a>為 N 系列 VM 設定 GPU 驅動程式
+# <a name="set-up-gpu-drivers-for-n-series-windows-vms"></a>為 N 系列 Windows VM 設定 GPU 驅動程式
 若要利用 Azure N 系列 VM (執行 Windows Server) 的 GPU 功能，您必須在部署之後於每個 VM 上安裝 NVIDIA 圖形驅動程式。 本文也適用於 [Linux VM](virtual-machines-linux-n-series-driver-setup.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 如需基本規格、儲存體容量與磁碟的詳細資料，請參閱[虛擬機器的大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
@@ -67,10 +69,5 @@ ms.openlocfilehash: feb9370f0241fd860749d32f5db5842cb18463f1
 
 * 針對 NVIDIA Tesla GPU 建置 GPU 加速應用程式的開發人員也可以下載及安裝 [CUDA Toolkit 8](https://developer.nvidia.com/cuda-downloads)。
 
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

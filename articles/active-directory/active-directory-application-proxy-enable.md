@@ -11,12 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/12/2017
+ms.date: 02/22/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2d5ea8109f5fde5f2b480ceeea34c365b619fab5
-ms.openlocfilehash: 5f42292fa9238dadd717d5c2e9530b22ee10d943
-ms.lasthandoff: 02/14/2017
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: c979e6328f09618642aa7a432c873c7ce20c072b
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -47,6 +47,7 @@ ms.lasthandoff: 02/14/2017
   | 9091 |啟用連接器信任憑證自動更新 |
   
     如果您的防火牆根據原始使用者強制執行流量，請針對來自當做網路服務執行的 Windows 服務的流量，開放這些連接埠。 此外，請務必為 NT Authority\System 啟用連接埠 8080。
+* 請使用 [Azure AD 應用程式 Proxy 連接器連接埠測試工具](https://aadap-portcheck.connectorporttest.msappproxy.net/)，來確認您的連接器是否能夠連線到「應用程式 Proxy」服務。 至少，請確定「美國中部」區域及離您最近的區域都具有綠色勾選記號。 除此之外，綠色勾選記號越多代表恢復能力越佳。 
 * 如果您的組織使用 Proxy 伺服器來連接網際網路，如需設定 Proxy 伺服器的詳細資訊，請看一下部落格文章[使用現有的內部部署 Proxy 伺服器](https://blogs.technet.microsoft.com/applicationproxyblog/2016/03/07/working-with-existing-on-prem-proxy-servers-configuration-considerations-for-your-connectors/)。
 
 ## <a name="step-1-enable-application-proxy-in-azure-ad"></a>步驟 1：在 Azure AD 中啟用應用程式 Proxy

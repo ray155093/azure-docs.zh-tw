@@ -1,6 +1,6 @@
 ---
-title: "如何變更 Azure 帳戶的設定檔資訊 | Microsoft Docs"
-description: "描述如何變更 Azure 帳戶的設定檔，以及解答常見問題，例如，為什麼無法變更 Azure 帳戶中心的國家/地區。"
+title: "變更 Azure 帳戶的設定檔資訊 | Microsoft Docs"
+description: "描述如何變更 Azure 帳戶的設定檔，以及解答常見問題，例如，為什麼您無法變更 Azure 帳戶中心的國家/地區"
 services: 
 documentationcenter: 
 author: genlin
@@ -13,15 +13,16 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/03/2017
+ms.date: 03/01/2017
 ms.author: genli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 8587b157886f2d0f5778573aeec55c072a50bf93
-ms.openlocfilehash: dd28c37bc63d1c457d7c8ffc60b1bad1f2831f31
-
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: c4f76065996c7db43ec5503ff76fc7a1bbeb87ed
+ms.lasthandoff: 03/03/2017
 
 ---
-# <a name="how-to-change-profile-information-of-your-azure-account-such-as-contact-email-address-and-phone-number"></a>如何變更連絡人電子郵件、地址和電話號碼等 Azure 帳戶的設定檔資訊
+# <a name="change-your-azure-account-profile-information-such-as-contact-email-address-and-phone-number"></a>變更連絡人電子郵件、地址和電話號碼等 Azure 帳戶的設定檔資訊
 帳戶管理員設定檔中的電子郵件地址可供 Microsoft 通知您與訂用帳戶計費相關的重要更新。 建議您指定會定期收信的連絡人電子郵件地址。
 
 ## <a name="how-to-change-your-profile-information"></a>如何變更設定檔資訊
@@ -47,14 +48,9 @@ ms.openlocfilehash: dd28c37bc63d1c457d7c8ffc60b1bad1f2831f31
 由於技術限制，我們無法變更現有帳戶的國家/地區。 不過，您可以在想要的國家/地區建立帳戶，然後連絡 Azure 支援將服務移轉至該帳戶。
 
 ### <a name="what-email-address-does-the-azure-billing-alerts-preview-feature-use"></a>Azure 計費警示預覽功能使用哪些電子郵件地址？
-您會在註冊警示期間新增的電子郵件地址收到警示通知。 用於警是的電子郵件地址與帳戶管理員電子郵件地址不同。 如需詳細資訊，請參閱[為您的 Microsoft Azure 訂用帳戶設定帳單通知](billing-set-up-alerts.md)。
+您會在註冊警示期間新增的電子郵件地址收到警示通知。 用於警示的電子郵件地址與帳戶管理員電子郵件地址不同。 如需詳細資訊，請參閱[為您的 Microsoft Azure 訂用帳戶設定帳單通知](billing-set-up-alerts.md)。
 
 ## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
 如果仍需要協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。 
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

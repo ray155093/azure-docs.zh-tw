@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
-ms.openlocfilehash: 88b75c2b222ee153c935898dbece0c366c7f198d
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: ff0b234f27e2d5068cc0dcdc73e32e60f8622633
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -42,7 +43,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 若要完成此教學課程，您需要下列項目：
 
-* Microsoft Visual Studio 2015。
+* Visual Studio 2015 或 Visual Studio 2017。
 * 使用中的 Azure 帳戶。 <br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立 [免費帳戶](https://azure.microsoft.com/free/) 。
 
 您應具備 [Azure 儲存體]和 [Azure 服務匯流排]的基本知識。
@@ -129,7 +130,7 @@ private static async void SendDeviceToCloudMessagesAsync()
 ## <a name="read-from-the-queue-endpoint"></a>從佇列端點讀取
 在本節中，您會讀取佇列端點中的訊息。
 
-1. 在目前的 Visual Studio 方案中，使用 [主控台應用程式] 專案範本來建立 Visual C# Windows 專案。 將專案命名為 **ReadCriticalQueue**。
+1. 在 Visual Studio 中，使用 [主控台應用程式 (.NET Framework)] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **ReadCriticalQueue**。
 
 2. 在 [方案總管] 中，以滑鼠右鍵按一下 **ReadCriticalQueue** 專案，然後按一下 [管理 NuGet 套件]。 此操作會顯示 [NuGet 套件管理員]  視窗。
 
@@ -225,9 +226,4 @@ private static async void SendDeviceToCloudMessagesAsync()
 [lnk-classic-portal]: https://manage.windowsazure.com
 [lnk-c2d]: iot-hub-csharp-csharp-process-d2c.md
 [lnk-suite]: https://azure.microsoft.com/documentation/suites/iot-suite/
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

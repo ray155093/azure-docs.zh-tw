@@ -1,6 +1,6 @@
 ---
-title: "具備 EDIFACT 的企業整合 | Microsoft Docs"
-description: "了解如何使用 EDIFACT 合約來建立 Logic Apps"
+title: "適用於企業整合的 EDIFACT 訊息 - Azure Logic Apps | Microsoft Docs"
+description: "利用 Azure Logic Apps 交換「行政、商業、貿易的電子資料交換 (EDIFACT)」訊息以進行企業整合"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -12,24 +12,28 @@ ms.workload: integration
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
+ms.custom: H1Hack27Feb2017
 ms.date: 07/26/2016
 ms.author: jonfan
 translationtype: Human Translation
-ms.sourcegitcommit: dc8c9eac941f133bcb3a9807334075bfba15de46
-ms.openlocfilehash: 30c26d1fb2dfb7c458789e70f4f8d1a6c39cd0ca
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: c5ed4f7413bf8a0b4fd188ca451d4a60b761e886
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="enterprise-integration-with-edifact"></a>具備 EDIFACT 的企業整合
+# <a name="exchange-edifact-messages-with-logic-apps"></a>利用邏輯應用程式交換 EDIFACT 訊息
+
 > [!NOTE]
-> 本頁涵蓋 Logic Apps 的 EDIFACT 功能。 如需詳細資訊，請參閱 [X12 (英文)](logic-apps-enterprise-integration-x12.md)。
-> 
-> 
+> 本頁涵蓋 Azure Logic Apps 的 EDIFACT 功能。 如需詳細資訊，請參閱 [X12](logic-apps-enterprise-integration-x12.md)。
 
 ## <a name="create-an-edifact-agreement"></a>建立 EDIFACT 合約
 在您可以交換 EDIFACT 訊息之前，您必須先建立 EDIFACT 合約，並將它儲存在您的整合帳戶中。 下列步驟將逐步引導您完成建立 EDIFACT 合約的程序。
 
-### <a name="heres-what-you-need-before-you-get-started"></a>以下是您在開始之前的必要條件
+### <a name="before-you-get-started"></a>開始之前
+
+您將需要這些項目：
+
 * 在 Azure 訂用帳戶中定義一個[整合帳戶](../logic-apps/logic-apps-enterprise-integration-accounts.md)  
 * 至少已經在整合帳戶中定義兩個[夥伴](logic-apps-enterprise-integration-partners.md)  
 
@@ -194,10 +198,5 @@ ms.openlocfilehash: 30c26d1fb2dfb7c458789e70f4f8d1a6c39cd0ca
 
 ## <a name="learn-more"></a>詳細資訊
 * [深入了解企業整合套件](logic-apps-enterprise-integration-overview.md "了解企業整合套件")  
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: a9ebbbdc431a34553de04e920efbbc8c2496ce5f
-ms.openlocfilehash: dd5ce9de46d4089d285268125f2b63f1117d48c7
+ms.sourcegitcommit: ac5dfa34c867ecf2f38ebe33d7f5cf6610c33472
+ms.openlocfilehash: 005d96d66843b50d9c7003ae5264896718c37151
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -113,6 +114,10 @@ Machine Learning Studio 已在移除[分割][split]模組時移除一個[執行 
 ![設定 Web 服務][5]  
 
 ### <a name="deploy-as-a-new-web-service"></a>部署為新式 Web 服務
+
+> [!NOTE] 
+> 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
+
 若要將實驗衍生部署為新式 Web 服務：
 
 1. 按一下畫布底下的 [部署 Web 服務]，然後選取 [部署 Web 服務 [新式]]。 Machine Learning Studio 會帶您到 Azure Machine Learning Web 服務的 [部署實驗] 頁面。
@@ -225,9 +230,4 @@ Machine Learning Studio 已在移除[分割][split]模組時移除一個[執行 
 [two-class-boosted-decision-tree]: https://msdn.microsoft.com/library/azure/e3c522f8-53d9-4829-8ea4-5c6a6b75330c/
 [two-class-support-vector-machine]: https://msdn.microsoft.com/library/azure/12d8479b-74b4-4e67-b8de-d32867380e20/
 [project-columns]: https://msdn.microsoft.com/en-us/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

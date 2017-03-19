@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/11/2017
+ms.date: 02/28/2017
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: 66fb3dc316ce25aea4dff4add5c25b7f0f56ad7a
-ms.openlocfilehash: ef24162006c508134db3f385e791306495ac4614
+ms.sourcegitcommit: 1029c7e4c6a17ad2a290ff0783fc88692555b255
+ms.openlocfilehash: ad1314aa4b504bd2cb3285789073d4f1de1f545d
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -32,6 +33,19 @@ ms.openlocfilehash: ef24162006c508134db3f385e791306495ac4614
 * 新增和刪除端點 (僅限傳統)
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
+
+## <a name="permissions-to-manage-new-resources-manager-based-web-services"></a>管理以資源管理員為基礎的新 Web 服務的權限
+
+新的 Web 服務會部署為 Azure 資源。 因此，您必須具備正確權限，才能部署和管理新的 Web 服務。  若要部署或管理新的 Web 服務，您必須獲得下列角色的指派：要部署 Web 服務之訂用帳戶上的參與者或管理員角色。 如果您邀請另一位使用者到 Machine Learning 工作區，就必須為他們指派訂用帳戶上的參與者或管理員角色，然後他們才能部署或管理 Web 服務。 
+
+如果使用者沒有正確權限來存取 Azure Machine Learning Web 服務入口網站中的資源，他們將會在嘗試部署 Web 服務時，收到下列錯誤：
+
+*Web 服務部署工作失敗。此帳戶沒有足夠權限來存取包含該工作區的 Azure 訂用帳戶。若要將 Web 服務部署到 Azure，必須邀請同一個帳戶到該工作區，並為該帳戶授予包含該工作區之 Azure 訂用帳戶的存取權。*
+
+如需建立工作區的詳細資訊，請參閱[建立和共用 Azure Machine Learning 工作區](machine-learning-create-workspace.md)。
+
+如需設定存取權限的詳細資訊，請參閱[在 Azure 入口網站 - 公開預覽中檢視存取使用者和群組的工作分派](../active-directory/role-based-access-control-manage-assignments.md)。
+
 
 ## <a name="manage-new-web-services"></a>管理新式 Web 服務
 管理新式 Web 服務：
@@ -174,10 +188,5 @@ ms.openlocfilehash: ef24162006c508134db3f385e791306495ac4614
 > [ **登入 ML Studio** ] 連結會使用目前登入的 Microsoft 帳戶來開啟 Machine Learning Studio。 您用來登入 Azure 傳統入口網站以建立工作區的 Microsoft 帳戶，不會自動具備開啟該工作區的權限。 若要開啟工作區，您必須使用定義為工作區擁有者的 Microsoft 帳戶登入，或者您需要收到來自擁有者的邀請，才能加入工作區。
 > 
 > 
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

@@ -15,8 +15,9 @@ ms.workload: infrastructure
 ms.date: 2/7/2017
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 8651566079a0875e1a3a549d4bf1dbbc6ac7ce21
-ms.openlocfilehash: 410159ad7b5abc5eb3cb1a212895eda7ac225323
+ms.sourcegitcommit: 710307b01fe64852771c071c070f5fcee59c9579
+ms.openlocfilehash: 494dbaf23de22efa79cfe65aa22bb7c948b3da80
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -47,7 +48,7 @@ Azure VM (不論是使用受控或非受控磁碟) 可以標準儲存體磁碟�
 
 ## <a name="creating-a-vm-with-a-managed-disk"></a>建立具有受控磁碟的 VM
 
-下列範例需要 Azure CLI 2.0 (預覽)，您可以 [在此安裝]。
+下列範例需要 Azure CLI 2.0，您可以 [在此安裝]。
 
 首先，建立資源群組來管理資源：
 
@@ -232,16 +233,18 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 * [Azure 儲存體安全性指南](../storage/storage-security-guide.md)
 
+## <a name="temporary-disk"></a>暫存磁碟
+每個 VM 都包含一個暫存磁碟。 暫存磁碟為應用程式和處理程序提供短期的儲存空間，且僅供用來儲存分頁檔之類的資料。 暫存磁碟上的資料可能會在[維護事件](virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#understand-planned-vs-unplanned-maintenance)期間或當您[重新佈署 VM](virtual-machines-linux-redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 時遺失。 在 VM 的標準重新開機期間，暫存磁碟上的資料會保留。
+
+在 Linux 虛擬機器上，這個磁碟通常是 **/dev/sdb**，並且會由「Azure Linux 代理程式」將它格式化並裝載至 **/mnt/**。 暫存磁碟的大小會依據虛擬機器的大小而改變。 如需詳細資訊，請參閱 [Linux 虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md)。
+
+如需有關 Azure 如何使用暫存磁碟的詳細資訊，請參閱 [Understanding the temporary drive on Microsoft Azure Virtual Machines (了解 Microsoft Azure 虛擬機器上的暫存磁碟機)](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
+
 ## <a name="cost-savings"></a>節省成本
 * [儲存成本](https://azure.microsoft.com/pricing/details/storage/)
 * [儲存成本計算機](https://azure.microsoft.com/pricing/calculator/?service=storage)
 
 ## <a name="storage-limits"></a>儲存體限制
 * [儲存體服務限制](../azure-subscription-service-limits.md#storage-limits)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

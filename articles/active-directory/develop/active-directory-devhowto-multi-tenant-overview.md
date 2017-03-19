@@ -15,8 +15,9 @@ ms.workload: identity
 ms.date: 01/23/2017
 ms.author: skwan;bryanla
 translationtype: Human Translation
-ms.sourcegitcommit: 7d6525f4614c6301f0ddb621b0483da70842a71b
-ms.openlocfilehash: 8daad095d80b244f53b4ee94c48ae9421172f062
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: f87aedd989ab091efeac5f99e198fb60b6781ab2
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -163,6 +164,10 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 ## <a name="multi-tenant-applications-and-caching-access-tokens"></a>多租用戶應用程式和快取存取權杖
 多租用戶應用程式也可以取得存取權杖來呼叫受 Azure AD 保護的 API。  搭配多租用戶應用程式使用 Active Directory Authentication Library (ADAL) 時有一個常見的錯誤，就是一開始即使用 /common 來為使用者要求權杖、接收回應，然後也使用 /common 來為該相同使用者要求後續的權杖。  由於從 Azure AD 傳回的回應是來自租用戶而非 /common，因此 ADAL 快取權杖時會將它視為來自租用戶。 後續為了為使用者取得存取權杖而進行的 /common 呼叫會遺漏快取項目，因此系統會再次提示使用者登入。  為了避免遺漏快取，請確定後續為已登入之使用者進行的呼叫是對租用戶的端點發出。
 
+## <a name="next-steps"></a>後續步驟
+在本文中，您已了解如何建置可讓使用者從任何 Azure Active Directory 租用戶登入的應用程式。 在啟用您應用程式與 Azure Active Directory 之間的單一登入功能之後，您也可以將應用程式更新成存取 Microsoft 資源 (例如 Office 365) 所公開的 API。 因此，您可以在應用程式中提供個人化的體驗，例如向使用者顯示內容資訊，像是他們的個人資料圖片或下一個行事曆約會。 若要深入了解如何對 Azure Active Directory 和 Office 365 服務 (例如 Exchange、SharePoint、OneDrive、OneNote、Planner、Excel 等) 進行 API 呼叫，請瀏覽：[Microsoft Graph API][MSFT-Graph-overview]。
+
+
 ## <a name="related-content"></a>相關內容
 * [多租用戶應用程式範例][AAD-Samples-MT]
 * [應用程式的商標指導方針][AAD-App-Branding]
@@ -170,7 +175,7 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 * [應用程式物件和服務主體物件][AAD-App-SP-Objects]
 * [整合應用程式與 Azure Active Directory][AAD-Integrating-Apps]
 * [同意架構的概觀][AAD-Consent-Overview]
-* [Microsoft Graph API 權限範圍][MSFT-Graph-AAD]
+* [Microsoft Graph API 權限範圍][MSFT-Graph-permision-scopes]
 * [Azure AD Graph API 權限範圍][AAD-Graph-Perm-Scopes]
 
 請使用下方的註解區段來提供意見反應，並協助我們改善及設計我們的內容。
@@ -189,7 +194,8 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 [AAD-Samples-MT]: https://azure.microsoft.com/documentation/samples/?service=active-directory&term=multitenant
 [AAD-Why-To-Integrate]: ./active-directory-how-to-integrate.md
 [AZURE-portal]: https://portal.azure.com
-[MSFT-Graph-AAD]: https://graph.microsoft.io/en-us/docs/authorization/permission_scopes
+[MSFT-Graph-overview]: https://graph.microsoft.io/en-us/docs/overview/overview
+[MSFT-Graph-permision-scopes]: https://graph.microsoft.io/en-us/docs/authorization/permission_scopes
 
 <!--Image references-->
 [AAD-Sign-In]: ./media/active-directory-devhowto-multi-tenant-overview/sign-in-with-microsoft-light.png
@@ -235,10 +241,5 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 
 
 
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

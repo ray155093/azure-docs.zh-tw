@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 11/17/2016
 ms.author: juanpere
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 0a4dc9c39d864dcfd52121ed4e4fa2393b56f872
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -50,7 +51,7 @@ ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
 
 若要完成此教學課程，您需要下列項目：
 
-* Microsoft Visual Studio 2015。
+* Visual Studio 2015 或 Visual Studio 2017。
 * Node.js 0.12.x 版或更新版本， <br/>  [準備您的開發環境][lnk-dev-setup]說明如何在 Windows 或 Linux 上安裝本教學課程的 Node.js。
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
@@ -61,7 +62,7 @@ ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
 ## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>使用直接方法在裝置上觸發遠端重新啟動
 在本節中，您會建立一個 Node.js 主控台應用程式 (使用 C#)，此應用程式會使用直接方法在裝置上起始遠端重新啟動，並使用裝置對應項查詢來尋找該裝置的上次重新啟動時間。
 
-1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **TriggerReboot**。
+1. 在 Visual Studio 中，使用 [主控台應用程式 (.NET Framework)] 專案範本，將 Visual C# Windows 傳統桌面專案新增至新的方案。 確定 .NET Framework 為 4.5.1 或更新版本。 將專案命名為 **TriggerReboot**。
 
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
 
@@ -251,8 +252,3 @@ ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
 [lnk-c2dmethod]: iot-hub-devguide-direct-methods.md
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [lnk-nuget-service-sdk]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
-
-
-<!--HONumber=Dec16_HO1-->
-
-

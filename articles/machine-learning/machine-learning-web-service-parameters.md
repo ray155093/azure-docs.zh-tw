@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/12/2017
 ms.author: raymondl;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 045e3a6869880be6e7b2c5abf5f0869ed157600d
-ms.openlocfilehash: 38adf31dda1c36d0573142eacda6453ccd2b4f90
+ms.sourcegitcommit: 247d370c1f80729856e53690045991127ad54351
+ms.openlocfilehash: 4c9f2bb57e3669327d8704b93fa56e2ace1e8b35
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -67,6 +68,9 @@ Web 服務的 API 文件會包含 Web 服務使用者在存取 Web 服務時，�
 6. 按一下 **[執行]**。 
 7. 按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]] 或 [部署 Web 服務 [新]] 可部署 Web 服務。
 
+> [!NOTE] 
+> 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
+
 Web 服務的使用者現在即可在存取 Web 服務時，為[匯出資料][writer]模組指定新的目的地。
 
 ## <a name="more-information"></a>詳細資訊
@@ -84,10 +88,5 @@ Web 服務的使用者現在即可在存取 Web 服務時，為[匯出資料][wr
 [filter-based-feature-selection]: https://msdn.microsoft.com/library/azure/918b356b-045c-412b-aa12-94a1d2dad90f/
 [reader]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
 [writer]: https://msdn.microsoft.com/library/azure/7a391181-b6a7-4ad4-b82d-e419c0d6522c/
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

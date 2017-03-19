@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/15/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 1753096f376d09a1b5f2a6b4731775ef5bf6f5ac
-ms.openlocfilehash: 4f66de2fe4b123e208413ade436bb66b9a03961b
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 212b4481affc345cff3e8abd2475c838926f5eda
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -40,14 +40,14 @@ ms.lasthandoff: 02/21/2017
 * [我的儲存體帳戶包含 "/"，net use 命令失敗](#slashfails)
 * [我的應用程式/服務無法存取掛接的 Azure 檔案磁碟機](#accessfiledrive)
 * [效能最佳化的其他建議](#additional)
+* [將檔案上傳/複製至 Azure 檔案時，發生「您正將檔案複製到不支援加密的目的地」錯誤](#encryption)
 
 **Linux 用戶端的問題**
 
-* [將檔案上傳/複製至 Azure 檔案時，發生「您正將檔案複製到不支援加密的目的地」錯誤](#encryption)
-* [間歇性 IO 錯誤 - 在現有檔案共用上發生「主機當機」錯誤，或在掛接點上進行清單命令時殼層停止回應](#errorhold)
+* [間歇性 IO 錯誤 - 在現有檔案共用上發生「主機當機 (錯誤 112)」，或在掛接點上執行 list 命令時殼層停止回應](#errorhold)
 * [嘗試在 Linux VM 上掛接 Azure 檔案時，發生掛接錯誤 115](#error15)
-* [使用類似 "ls" 的命令時 Linux VM 遇到隨機延遲](#delayproblem)
-* [錯誤 112 - 逾時錯誤](#error112)
+* [掛接在 Linux VM 上的 Azure 檔案共用發生效能變慢的問題](#delayproblem)
+
 
 **從其他應用程式存取**
 
@@ -85,7 +85,7 @@ ms.lasthandoff: 02/21/2017
 <a id="windowsslow"></a>
 
 ## <a name="slow-performance-when-accessing-the-file-storage-from-windows-81-or-windows-server-2012-r2"></a>從 Windows 8.1 或 Windows Server 2012 R2 存取檔案儲存體時效能緩慢
-若用戶端執行 Windows 8.1 或 Windows Server 2012 R2，請確定已安裝 hotfix [KB3114025](https://support.microsoft.com/kb/3114025)。 此 hotfix 可改善建立和關閉控點的效能。
+若用戶端執行 Windows 8.1 或 Windows Server 2012 R2，請確定已安裝 Hotfix [KB3114025](https://support.microsoft.com/kb/3114025)。 此 hotfix 可改善建立和關閉控點的效能。
 
 您可以執行下列指令碼來檢查是否已安裝此 hotfix：
 
@@ -163,7 +163,7 @@ Azure 檔案僅支援 NTLMv2 驗證。 請確定群組原則有套用到用戶�
 根據預設，Windows 檔案總管不會以系統管理員身分執行。 如果您從系統管理員命令提示字元執行 **net use**，會將網路磁碟機對應至「系統管理員身分」。 因為對應的磁碟機是以使用者為中心，如果磁碟機掛接在不同的使用者帳戶下，登入的使用者帳戶不會顯示此磁碟機。
 
 ### <a name="solution"></a>方案
-從非系統管理員命令掛接共用。 或者，您可以依照[本 TechNet 主題](https://technet.microsoft.com/library/ee844140.aspx) 設定 **EnableLinkedConnections** 登錄值。
+從非系統管理員命令掛接共用。 或者，您可以依照[此 TechNet 主題](https://technet.microsoft.com/library/ee844140.aspx)設定 **EnableLinkedConnections** 登錄值。
 
 <a id="slashfails"></a>
 
@@ -193,7 +193,7 @@ Azure 檔案僅支援 NTLMv2 驗證。 請確定群組原則有套用到用戶�
 ### <a name="solution"></a>方案
 從應用程所屬的相同使用者帳戶掛接磁碟機。 這可以使用 psexec 之類的工具。
 
-或者，您可以建立具有和網路服務或系統帳戶相同權限的新使用者，然後在該帳戶下執行 **cmdkey** 和 **net use**。 使用者名稱應該是儲存體帳戶名稱，密碼應該是儲存體帳戶金鑰。 使用 **net use** 的另一個做法，是在 **net use** 命令的使用者名稱和密碼參數中傳遞儲存體帳戶名稱和金鑰。
+使用 **net use** 的另一個做法，是在 **net use** 命令的使用者名稱和密碼參數中傳遞儲存體帳戶名稱和金鑰。
 
 遵循這些指示操作之後，您可能會收到下列錯誤訊息：「發生系統錯誤 1312。 指定的登入工作階段不存在。 可能已被終止。」，在您以系統/網路服務帳戶執行 **net use ** 時。 如果發生這種情況，請確定傳遞至 **net use** 的使用者名稱包含網域資訊 (例如，"[storage account name].file.core.windows.net")。
 
@@ -219,14 +219,31 @@ Bitlocker 加密的檔案可以複製到 Azure 檔案。 不過，檔案儲存�
 
 <a id="errorhold"></a>
 
-## <a name="host-is-down-error-on-existing-file-shares-or-the-shell-hangs-when-you-run-list-commands-on-the-mount-point"></a>在現有檔案共用上發生「主機當機」錯誤，或在掛接點上執行清單命令時殼層停止回應
+## <a name="host-is-down-error-112-on-existing-file-shares-or-the-shell-hangs-when-you-run-list-commands-on-the-mount-point"></a>在現有檔案共用上發生「主機當機 (錯誤 112)」錯誤，或在掛接點上執行 list 命令時殼層停止回應
 ### <a name="cause"></a>原因
-當用戶端已經閒置一段時間，Linux 用戶端上會發生此錯誤。 發生此錯誤時，用戶端會中斷連接，然後用戶端連線逾時。
+當用戶端已經閒置一段時間，Linux 用戶端上會發生此錯誤。 發生此錯誤時，用戶端會中斷連接，然後用戶端連線逾時。 此外，此錯誤可能指出當使用「軟」掛接選項時 (這是預設值)，造成無法重新建立 TCP 連線以連線到伺服器的通訊失敗。
 
-### <a name="solution"></a>方案
-現在這個問題在 Linux 核心的[變更集](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/fs/cifs?id=4fcd1813e6404dd4420c7d12fb483f9320f0bf93)中已經修正，等待向下移植到 Linux 散發套件。
+此錯誤可能表示有 Linux 重新連線問題，原因可能是舊版核心中的已知錯誤，或其他阻止重新連線的問題 (如網路錯誤)。 
 
-若要解決此問題，維持連線並避免進入閒置狀態，定期保存您寫入至 Azure 檔案共用中的檔案。 這必須是寫入作業，例如重寫檔案的建立/修改日期。 否則，您可能會收到快取的結果，而且您的作業可能不會觸發連線。
+### <a name="solution"></a>解決方式
+
+指定硬掛接將會強制用戶端一直等候直到連線建立或明確中斷，而且它可用來防止因為網路逾時而發生錯誤。 不過，使用者應該注意這可能會導致無限期等候，而且應該視需要處理暫停連線的情況。
+
+此 Linux 核心中的重新連線問題已隨下列變更集修正
+
+* [修正重新連線在通訊端重新連線許久之後不會延遲 SMB3 工作階段重新連線 (英文)](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/fs/cifs?id=4fcd1813e6404dd4420c7d12fb483f9320f0bf93)
+
+* [在通訊端重新連線之後立即呼叫 Echo 服務 (英文)](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=b8c600120fc87d53642476f48c8055b38d6e14c7)
+
+* [CIFS：修正重新連線期間可能發生的記憶體損毀 (英文)](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=53e0e11efe9289535b060a51d4cf37c25e0d0f2b)
+
+* [CIFS：修正重新連線期間可能發生的 Mutex 雙重鎖定 (針對核心&4;.9 版與更新版本) (英文)](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=96a988ffeb90dba33a71c3826086fe67c897a183) 
+
+但是此變更可能尚未移植到所有 Linux 發行版本。 這是已經修正此重新連線問題及其他重新連線問題的已知熱門 Linux 核心清單：4.4.40+ 4.8.16+ 4.9.1+。您可以移至上述建議的核心版本，以取得最新的修正。
+
+### <a name="workaround"></a>因應措施
+如果無法移至最新的核心版本，您可以使用下列因應措施解決此問題：在 Azure 檔案共用中保留一個每 30 秒 (或更短時間) 就會寫入的檔案。 這必須是寫入作業，例如重寫檔案的建立/修改日期。 否則，您可能會取得快取的結果，而您的作業可能不會觸發重新連線。 
+
 
 <a id="error15"></a>
 
@@ -239,33 +256,21 @@ Linux 散發套件尚未支援 SMB 3.0 中的加密功能。 在某些散發套�
 
 <a id="delayproblem"></a>
 
-## <a name="linux-vm-experiencing-random-delays-in-commands-like-ls"></a>使用類似 "ls" 的命令時 Linux VM 遇到隨機延遲
-### <a name="cause"></a>原因
-掛接命令中沒有 **serverino** 選項時可能會發生這個情況。 少了 **serverino**，ls 命令會對每個檔案執行 **stat**。
+## <a name="azure-file-share-mounted-on-linux-vm-experiencing-slow-performance"></a>掛接在 Linux VM 上的 Azure 檔案共用發生效能變慢的問題
 
-### <a name="solution"></a>方案
-檢查 "/etc/fstab" 項目中的 **serverino**：
+停用快取可能是效能變慢的原因。 查看 "cache=" 來檢查是否已啟用快取。  *cache=none* 表示已停用快取。 請使用預設的 mount 命令重新掛接共用，或明確地為 mount 命令加上 **cache=strict** 選項，以確保啟用預設快取或 "strict" 快取模式。
 
-`//azureuser.file.core.windows.net/cifs        /cifs   cifs vers=3.0,cache=none,serverino,username=xxx,password=xxx,dir_mode=0777,file_mode=0777`
+在某些情況下，serverino 掛接選項可能會造成 ls 命令對所有目錄項目執行 stat，這會在列出大型目錄時導致效能變慢。 您可以檢查 "/etc/fstab" 項目中的掛接選項：
 
-您也可以檢查目前是否使用該選項，只要執行 **sudo mount | grep cifs** 命令並查看其輸出即可：
+`//azureuser.file.core.windows.net/cifs        /cifs   cifs vers=3.0,serverino,username=xxx,password=xxx,dir_mode=0777,file_mode=0777`
 
-`//mabiccacifs.file.core.windows.net/cifs on /cifs type cifs (rw,relatime,vers=3.0,sec=ntlmssp,cache=none,username=xxx,domain=X,uid=0,noforceuid,gid=0,noforcegid,addr=192.168.10.1,file_mode=0777,dir_mode=0777,persistenthandles,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,actimeo=1)`
+您也可以執行 **sudo mount | grep cifs** 命令並查看其輸出，來檢查是否使用正確的選項：
 
-如果沒有 **serverino** 選項，請選取 **serverino** 選項以取消掛接並掛接 Azure 檔案。+
+`//mabiccacifs.file.core.windows.net/cifs on /cifs type cifs
+(rw,relatime,vers=3.0,sec=ntlmssp,cache=strict,username=xxx,domain=X,uid=0,noforceuid,gid=0,noforcegid,addr=192.168.10.1,file_mode=0777,
+dir_mode=0777,persistenthandles,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,actimeo=1)`
 
-<a id="error112"></a>
-## <a name="error-112---timeout-error"></a>錯誤 112 - 逾時錯誤
-
-此錯誤指出當使用「軟」掛接選項時 (這是預設值) 造成無法重新建立 TCP 連線以連線到伺服器的通訊失敗。
-
-### <a name="cause"></a>原因
-
-此錯誤的原因為 Linux 重新連線問題或造成無法重新連線的其他問題 (例如網路錯誤)。 指定硬掛接將會強制用戶端一直等候直到連線建立或明確中斷，而且它可用來防止因為網路逾時而發生錯誤。 不過，使用者應該注意這可能會導致無限期等候，而且應該視需要處理暫停連線的情況。
-
-### <a name="workaround"></a>因應措施
-
-該 Linux 問題已經修復，不過尚未移植到 Linux 發行版本。 如果問題是因為 Linux 中的重新連線而造成的，那麼只要避免進入閒置狀態即可解決。 若要達到此目的，請在 Azure 檔案共用中保留一個檔案供您每隔 30 秒 (或更少) 寫入一次。 這必須是寫入作業，例如重寫檔案的建立/修改日期。 否則，您可能會收到快取的結果，而且您的作業可能不會觸發連線。
+如果沒有 cache=strict 或 serverino 選項，請執行[文件](https://docs.microsoft.com/en-us/azure/storage/storage-how-to-use-files-linux#mount-the-file-share)中的掛接命令，將 Azure 檔案卸載並再次掛接，然後重新檢查 "/etc/fstab" 項目是否有正確的選項。
 
 <a id="webjobs"></a>
 

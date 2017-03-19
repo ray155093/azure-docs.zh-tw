@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/23/2017
+ms.date: 03/07/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 6f2db3b411069b31424627f50336f1ba9750a9f5
-ms.openlocfilehash: 060f684cee6a8f98e5e8fb4a49f0bab92bd4df9c
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 9f513cfb976848960c2164165994dd5b9fcc4fc1
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -39,7 +39,9 @@ ms.lasthandoff: 02/24/2017
   > 在 Microsoft Graph API、Azure AD Graph API 及 Azure AD PowerShell 中，是將此角色識別為「公司系統管理員」。 它是 [Azure 入口網站](https://portal.azure.com)中的「全域管理員」。
   >
   >
-* **規範管理員**：
+
+* **規範管理員**：具備此角色的使用者在「Office 365 安全與規範中心」及「Exchange 系統管理中心」內具有管理權限，並具有讀取「Office 365 系統管理中心」中稽核記錄檔的存取權。 如需詳細資訊，請參閱[關於 Office 365 管理員角色](https://microsoft.sharepoint.com/teams/adiamteam/_layouts/15/WopiFrame.aspx?sourcedoc={dae8d6f3-5990-46a2-b12b-4c0e561bc7cc}&action=view&wdAccPdf=1)。
+
 * **CRM 服務管理員**︰具備此角色的使用者在有 Microsoft CRM Online 服務時，於該服務內具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。
 * **客戶加密箱存取核准者**︰已啟用「加密箱」服務時，具備此角色的使用者可以核准要求讓 Microsoft 工程師存取公司資訊。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。
 * **裝置系統管理員**︰具備此角色的使用者會在所有已加入 Azure Active Directory 的 Windows 10 裝置上成為「系統管理員」。
@@ -50,12 +52,16 @@ ms.lasthandoff: 02/24/2017
 * **Intune 服務管理員**︰在有 Microsoft Intune Online 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。
 * **商務用 Skype 服務管理員**︰在有 Microsoft 商務用 Skype 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。 這個角色先前稱為「Lync 服務管理員」  角色。
 * **來賓邀請者**：具備此角色的使用者可以管理來賓邀請。 這不包含任何其他權限。
+* **信箱管理員**︰此角色僅用來為 RIM Blackberry 裝置提供 Exchange Online 電子郵件支援。 如果您的組織不使用 RIM Blackberry 裝置上的 Exchange Online 電子郵件，請勿使用此角色。
+* **合作夥伴第 1 層支援**︰請勿使用。 此角色已被取代，而且未來將從 Azure AD 中移除。 此角色僅供少數 Microsoft 轉售合作夥伴使用，不適用於一般用途。
+* **合作夥伴第 2 層支援**︰請勿使用。 此角色已被取代，而且未來將從 Azure AD 中移除。 此角色僅供少數 Microsoft 轉售合作夥伴使用，不適用於一般用途。
 * **密碼管理員/技術支援中心管理員**：重設密碼、管理服務要求，以及監視服務健全狀況。 密碼管理員可以僅重設使用者和其他密碼管理員的密碼。
 
   > [!NOTE]
   > 在 Microsoft Graph API、Azure AD Graph API 和 Azure AD PowerShell 中，會將此角色識別為「技術支援中心管理員」。
   >
   >
+
 * **Power BI 服務管理員**︰在有 Microsoft Power BI 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱[讓管理 Power BI 變得更簡單 (英文)](https://powerbi.microsoft.com/en-us/blog/making-it-easier-to-administer-power-bi/)。
 * **特殊權限角色管理員**：具備此角色的使用者可以管理 Azure AD [Privileged Identity Management](active-directory-privileged-identity-management-configure.md)，以及更新其他使用者的角色指派。
 * **SharePoint 服務管理員**︰在有 Microsoft SharePoint Online 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-US&ad=US)。

@@ -16,13 +16,13 @@ ms.topic: article
 ms.date: 02/15/2017
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: 1a87af9efeb6c00f3c67f2c2d8d8f2e0491d248d
-ms.openlocfilehash: 07f501e720df925e17bc3f25c8f00ff37167d4c3
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 82b7541ab1434179353247ffc50546812346bda9
+ms.openlocfilehash: b89e7b0538ae428b5057ea1d69b7371a4a261589
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="back-up-azure-virtual-machines"></a>備份 Azure 虛擬機器
+# <a name="back-up-azure-virtual-machines-classic-portal"></a>備份 Azure 虛擬機器 (傳統入口網站)
 > [!div class="op_single_selector"]
 > * [將 VM 備份到復原服務保存庫](backup-azure-arm-vms.md)
 > * [將 VM 備份到備份保存庫](backup-azure-vms.md)

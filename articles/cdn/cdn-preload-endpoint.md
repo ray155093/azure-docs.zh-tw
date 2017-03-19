@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 57d00f2192fed7a2e89ac94e110ebb7e84c83b72
-ms.openlocfilehash: df0dec0731031f2dee69719dd03a588ad6589044
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 242c3a6bf656da9b029a780e8b80667405b7b92f
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -49,7 +50,11 @@ ms.openlocfilehash: df0dec0731031f2dee69719dd03a588ad6589044
    > [!TIP]
    > 在您輸入文字之後會出現更多 [路徑] 文字方塊，讓您能夠建立多個資產的清單。  按一下刪節號 (...) 按鈕可以將資產從清單刪除。
    > 
-   > 路徑必須是符合下列[規則運算式](https://msdn.microsoft.com/library/az24scfc.aspx)的相對 URL：`^(?:\/[a-zA-Z0-9-_.\u0020]+)+$`。  每個資產都必須有自己的路徑。  預先載入資產沒有萬用字元功能。
+   > 路徑必須是符合下列[規則運算式](https://msdn.microsoft.com/library/az24scfc.aspx)的相對 URL：  
+   > >載入單一檔案路徑 `@"^(?:\/[a-zA-Z0-9-_.%=\u0020]+)+$"`；  
+   > >以查詢字串載入單一檔案 `@"^(?:\?[-_a-zA-Z0-9\/%:;=!,.\+'&\u0020]*)?$";`  
+   > 
+   > 每個資產都必須有自己的路徑。  預先載入資產沒有萬用字元功能。
    > 
    > 
    
@@ -66,10 +71,5 @@ ms.openlocfilehash: df0dec0731031f2dee69719dd03a588ad6589044
 ## <a name="see-also"></a>另請參閱
 * [清除 Azure CDN 端點](cdn-purge-endpoint.md)
 * [Azure CDN REST API 參考資料 - 清除或預先載入端點](https://msdn.microsoft.com/library/mt634451.aspx)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: e25eaee75b1637447447ace88c2bf1d9aed83880
-ms.openlocfilehash: 484cc6419150b84ee6ed7d2c92960a4d0202e10b
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 59798ae9412a7550c94f8fa67c39f504aad8d00c
+ms.openlocfilehash: 3867c57d40a218c80403578d30cb999bf9f6cd38
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -48,17 +48,6 @@ ms.lasthandoff: 02/27/2017
 2.    將 OS VHD 複製到具有從未啟用過 SSE 的儲存體帳戶。 若要將磁碟複製到另一個儲存體帳戶，請使用[AzCopy](../storage/storage-use-azcopy.md)：`AzCopy /Source:https://sourceaccount.blob.core.windows.net/mycontainer1 /Dest:https://destaccount.blob.core.windows.net/mycontainer2 /SourceKey:key1 /DestKey:key2 /Pattern:myVhd.vhd`
 3.    建立使用受控磁碟的 VM，並且在建立期間附加該 VHD 檔案作為 OS 磁碟。
 
-
-## <a name="before-you-begin"></a>開始之前
-如果您使用 PowerShell，請確定您擁有最新版的 AzureRM.Compute PowerShell 模組。 執行下列命令來安裝它。
-
-```powershell
-Install-Module AzureRM.Compute -RequiredVersion 2.6.0
-```
-如需詳細資訊，請參閱 [Azure PowerShell 版本控制](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/#azure-powershell-versioning)。
-
-
-
 ## <a name="convert-vms-in-an-availability-set-to-managed-disks-in-a-managed-availability-set"></a>將可用性設定組中的 VM 轉換為受控可用性設定組中的受控磁碟
 
 如果您想要轉換為受控磁碟的 VM 位於可用性設定組中，您必須先將此可用性設定組轉換為受控可用性設定組。
@@ -87,7 +76,7 @@ foreach($vmInfo in $avSet.VirtualMachinesReferences)
 ## <a name="convert-existing-azure-vms-to-managed-disks-of-the-same-storage-type"></a>將現有的 Azure VM 轉換為相同儲存體類型的受控磁碟
 
 > [!IMPORTANT]
-> 執行下列程序之後，預設 /vhds 容器中會保留單一區塊 blob。 檔案的名稱是 “VMName.xxxxxxx.status”。 請勿刪除此保留的狀態物件。 未來應可解決此問題。
+> 執行下列程序之後，預設 /vhds 容器中會剩下一個單一區塊 Blob。 檔案的名稱是 “VMName.xxxxxxx.status”。 只有當您已在 VM 上安裝 [VM 擴充功能](virtual-machines-windows-classic-agents-and-extensions.md)時，Azure 才會建立此檔案。 請勿刪除此保留的狀態物件。 未來應可解決此問題。
 
 本節說明當您要使用相同的儲存體類型時，如何將現有的 Azure VM 從儲存體帳戶中的非受控磁碟轉換為受控磁碟。 您可以使用此程序從進階 (SDD) 非受控磁碟移至進階受控磁碟，或從標準 (HDD) 非受控磁碟移至標準受控磁碟。 
 
@@ -149,7 +138,7 @@ foreach($vmInfo in $avSet.VirtualMachinesReferences)
 1. 停止 (解除配置) VM。
 
     ```powershell
-    Stop-AzureRmVM -ResourceGroupName $resourceGroupName -VMName $vmName -Force
+    Stop-AzureRmVM -ResourceGroupName $resourceGroupName -Name $vmName -Force
     ```
 2.  將所有磁碟升級為進階儲存體。
 
@@ -168,7 +157,7 @@ foreach($vmInfo in $avSet.VirtualMachinesReferences)
 1. 啟動 VM。
 
     ```powershell
-    Start-AzureRmVM -ResourceGroupName $resourceGroupName -VMName $vmName
+    Start-AzureRmVM -ResourceGroupName $resourceGroupName -Name $vmName
     ```
     
 您也可以有混合使用標準和進階儲存體的磁碟。

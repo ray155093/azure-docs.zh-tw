@@ -15,13 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/29/2016
 ms.author: singhkay
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f2e2752a1bd7ee2f9c766d900f25adc8cdba6714
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 8f0bb8b221a36f081fd0db5a3de0cb698d6cfb95
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="vertically-scale-azure-virtual-machine-with-azure-automation"></a>使用 Azure 自動化垂直調整 Azure 虛擬機器大小
+# <a name="vertically-scale-azure-linux-virtual-machine-with-azure-automation"></a>使用 Azure 自動化來垂直調整 Azure Linux 虛擬機器
 垂直調整大小是指為回應工作負載而增加或減少電腦資源的程序。 在 Azure 中，可以透過變更虛擬機器的大小來完成。 在下列情況中這種方式很有幫助
 
 * 如果不常使用虛擬機器，可以將其調整成較小的規模，以降低每月成本
@@ -89,10 +91,5 @@ Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小�
 ![將警示加入虛擬機器 1 中](./media/virtual-machines-vertical-scaling-automation/add-alert-webhook-1.png)
 
 ![將警示加入虛擬機器 2 中](./media/virtual-machines-vertical-scaling-automation/add-alert-webhook-2.png)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

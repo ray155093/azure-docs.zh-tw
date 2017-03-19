@@ -15,13 +15,16 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 11/21/2016
 ms.author: nepeters
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 0dee2c3b92adc4098a51014dd7379aa3d53c1627
-ms.openlocfilehash: 6f352b000ce4e284a1f1cc9ba9b384827ee62003
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 1c8f8a958a6ea6ea096d4a55479879aab7c7e96d
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="availability-and-scale-in-azure-resource-manager-templates"></a>Azure Resource Manager 範本中的可用性和規模
+# <a name="availability-and-scale-in-azure-resource-manager-templates-for-linux-vms"></a>適用於 Linux VM 之 Azure Resource Manager 範本中的可用性和規模
+
 可用性和規模是指滿足需求的執行時間和能力。 如果應用程式必須 99.9% 的時間都處於執行狀態，它就需要一個可允許多個並行計算資源的架構。 例如，具有較高層級可用性的組態不會包含單一網站，而是會包含相同網站的多個執行個體，其中前端會有平衡技術。 在此組態中，可以讓一個應用程式執行個體停機來進行維護，而剩下的執行個體則繼續運作。 另一方面，規模則是指應用程式為需求提供服務的能力。 使用已負載平衡的應用程式時，在集區中新增或移除執行個體，即可讓應用程式調整來滿足需求。
 
 本文件詳細說明如何針對可用性和規模設定「音樂市集」範例部署。 所有相依項目和獨特的設定都會以醒目提示的方式標示。 為了獲得最佳體驗，請將一個解決方案執行個體預先部署到您的 Azure 訂用帳戶，然後與 Azure Resource Manager 範本搭配運作。 您可以在下列連結找到完整的範本 – [Ubuntu 上的音樂市集部署](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)。
@@ -261,10 +264,5 @@ Azure 入口網站中所示的一個範例輸入 NAT 規則樣子。 在部署�
 <hr>
 
 [步驟 4 - 使用 Azure Resource Manager 範本進行應用程式部署](virtual-machines-linux-dotnet-core-5-app-deployment.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

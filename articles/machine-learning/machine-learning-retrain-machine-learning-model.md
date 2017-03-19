@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/11/2017
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: 201b07536bcee58e2b7102379dff1c1c93c4b675
-ms.openlocfilehash: 882157d2cb544e5bb59caf7d64de579e23b12480
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 247d370c1f80729856e53690045991127ad54351
+ms.openlocfilehash: 3fd731d83ca32359193534f043b3eb3e0333e0aa
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -58,6 +58,9 @@ ms.lasthandoff: 02/11/2017
 * 使用批次執行服務程式碼重新定型模型
 
 如需上述步驟的逐步解說，請參閱[以程式設計方式重新定型機器學習服務模型](machine-learning-retrain-models-programmatically.md)。
+
+> [!NOTE] 
+> 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
 
 如果您部署了傳統 Web 服務：
 

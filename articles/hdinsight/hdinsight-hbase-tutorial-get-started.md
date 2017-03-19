@@ -13,12 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
+ms.date: 03/03/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 541c06240f0c437ad92ea955caee67456851a6e1
-ms.openlocfilehash: 59aee407be91279276ec6eaafed608e354030676
-ms.lasthandoff: 02/07/2017
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 0e4d560113581dc9dbafd421a1307bff61a2aa9b
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -35,7 +35,7 @@ ms.lasthandoff: 02/07/2017
 開始進行本 HBase 教學課程之前，您必須具備下列條件：
 
 * **Microsoft Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* **工作站** ：如需相關指示，請參閱 [安裝 Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx)。
+* **工作站** (含 Visual Studio 2013/2015/2017)：如需相關指示，請參閱[安裝 Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx)。
 
 ### <a name="access-control-requirements"></a>存取控制需求
 [!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]

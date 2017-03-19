@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 5d51a5ef3387b4c00079547b0f44ffe1f96bd77c
-ms.openlocfilehash: 641fe31fc4b160fe5f0628df717006fb540394b9
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: eaf3df69428124127ef3daf134bc948cd0988ec6
+ms.openlocfilehash: c1956e97444077f197ab5d0fd67097ddea0f7244
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -51,11 +51,11 @@ Azure 負責保護您的應用程式執行所在的基礎結構和平台，而�
 有關 Web 架構應用程式安全性考量的詳細討論超出本文件的範圍。 請參閱[開放 Web 軟體安全計劃 (Open Web Application Security Project，OWASP)](https://www.owasp.org/index.php/Main_Page)，作為保護您的應用程式的進一步指引起點，尤其是[十大專案](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)，其中列出由 OWASP 成員所確認的目前十大主要的 Web 應用程式安全性錯誤。
 
 ## <a name="perform-penetration-testing-on-your-app"></a>在您的應用程式上執行滲透測試
-開始測試您的 App Service 應用程式中的弱點的其中一個最簡單的方法是使用 [與 Tinfoil Security 整合](https://azure.microsoft.com/blog/web-vulnerability-scanning-for-azure-app-service-powered-by-tinfoil-security/) ，以在您的應用程式上執行單鍵弱點掃描。 您可以在容易了解的報告中檢視測試結果，並且了解如何以逐步指示修正每個弱點。
+其中一個可開始測試您 App Service 應用程式上是否有弱點的最簡單方式是使用[與 Tinfoil Security 的整合](https://azure.microsoft.com/blog/web-vulnerability-scanning-for-azure-app-service-powered-by-tinfoil-security/)，以在您的應用程式上執行單鍵弱點掃描。 您可以在容易了解的報告中檢視測試結果，並且了解如何以逐步指示修正每個弱點。
 
 如果您想要執行專屬的滲透測試，或想要使用另一個掃描器套件或提供者，您必須依照 [Azure 滲透測試核准程序](https://security-forms.azure.com/penetration-testing/terms) 並取得先前核准，才能執行所需的滲透測試。
 
-## <a name="a-namehttpsa-secure-communication-with-customers"></a><a name="https"></a> 與客戶的安全通訊
+## <a name="https"></a> 與客戶的安全通訊
 如果您使用為 App Service 應用程式建立的 **\*.azurewebsites.net** 網域名稱，就可立即使用 HTTPS，因為 SSL 憑證是針對所有 **\*.azurewebsites.net** 網域名稱而提供。 如果您的網站使用[自訂網域名稱](web-sites-custom-domain-name.md)，您可以上傳 SSL 憑證以為自訂網域[啟用 HTTPS](web-sites-configure-ssl-certificate.md)。
 
 啟用 [HTTPS](https://en.wikipedia.org/wiki/HTTPS) 有助於防範對於您的應用程式與使用者之間的通訊的 MITM 攻擊。
@@ -65,13 +65,13 @@ App Service 與 SQL Database 高度整合，使所有連接字串會全面加密
 
 如果您使用協力廠商資料庫提供者，例如 ClearDB，您應直接參閱提供者的文件以取得安全性最佳作法。  
 
-## <a name="a-namedevelopa-secure-development-and-deployment"></a><a name="develop"></a> 保護開發和部署
+## <a name="develop"></a> 保護開發和部署
 ### <a name="publishing-profiles-and-publish-settings"></a>發行設定檔和發行設定
 在開發應用程式及使用公用程式，例如 **Visual Studio****Web Matrix****Azure PowerShell** 或 **Azure 命令列介面 (Azure CLI)** 執行管理工作或自動化工作時，您可以使用「發佈設定」檔案或「發行設定檔」。 這兩個檔案類型都會以 Azure 驗證您的身分，且應已設定安全性防止未經授權的存取。
 
 * **發行設定** 檔案包含
   
-  * 您的 Azure 訂閱識別碼
+  * 您的 Azure 訂用帳戶 ID
   * 可讓您執行訂閱管理工作的管理憑證， *而無需提供帳戶名稱或密碼*。
 * **發行設定檔** 檔案包含
   

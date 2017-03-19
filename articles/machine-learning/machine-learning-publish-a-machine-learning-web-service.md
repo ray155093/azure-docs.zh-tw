@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/06/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 52153526fb5b127823316b86fa05c0528151e18f
-ms.openlocfilehash: df8aebc78969ac6ceb00ee8b20a60cb153e8891b
+ms.sourcegitcommit: 247d370c1f80729856e53690045991127ad54351
+ms.openlocfilehash: fa62c0883b8230e514f60626b59fa3b3b20a6784
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -62,6 +63,9 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 既然已經備妥預測實驗，您現在即可將它部署為新式 Azure Web 服務。 使用者可以使用 Web 服務，將料傳送到您的模型，模型就會傳回其預測。
 
 若要部署您的預測性實驗，請按一下實驗畫布底端的 [執行]  。 實驗完成執行之後，請按一下 [部署 Web 服務]，然後選取 [部署 Web 服務[新式]]。  Machine Learning Web 服務入口網站的 [部署] 頁面將會開啟。
+
+> [!NOTE] 
+> 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
 
 #### <a name="machine-learning-web-service-portal-deploy-experiment-page"></a>Machine Learning Web 服務入口網站 [部署實驗] 頁面
 在 [部署實驗] 頁面上，輸入 Web 服務的名稱。
@@ -116,7 +120,7 @@ RRS 測試頁面會顯示輸入、輸出以及任何您已為實驗定義的全�
 如需存取 Machine Learning Web 服務的詳細資訊，請參閱 [如何使用已發佈的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
 #### <a name="manage-your-new-web-service"></a>管理新式 Web 服務
-您可以在 Machine Learning Web Services 入口網站中管理傳統 Web 服務。 從[入口網站主頁面](https://services.azureml-test.net/)按一下 [Web 服務]。 從 Web 服務頁面可以刪除或複製服務。 若要監視特定的服務，請按一下服務，然後按一下 [儀表板] 。 若要監視與 Web 服務相關聯的批次作業，請按一下 [批次要求記錄檔] 。
+您可以在 Machine Learning Web 服務入口網站中管理新的 Web 服務。 從[入口網站主頁面](https://services.azureml-test.net/)按一下 [Web 服務]。 從 Web 服務頁面可以刪除或複製服務。 若要監視特定的服務，請按一下服務，然後按一下 [儀表板] 。 若要監視與 Web 服務相關聯的批次作業，請按一下 [批次要求記錄檔] 。
 
 ### <a name="deploy-the-predictive-experiment-as-a-classic-web-service"></a>將預測實驗部署為傳統 Web 服務
 
@@ -187,9 +191,4 @@ For more information on how to manage Azure Machine Learning web service endpoin
 [Access]: #access-the-Web-service
 [Manage]: #manage-the-Web-service-in-the-azure-management-portal
 [Update]: #update-the-Web-service
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

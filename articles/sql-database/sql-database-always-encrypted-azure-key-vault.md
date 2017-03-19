@@ -14,12 +14,12 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/18/2016
+ms.date: 03/02/2017
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
-ms.openlocfilehash: a2a738ef1df470e17b805e843a159e0abc23efdf
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 9d654904e06758bc8634efa9b18ea3bac2b64523
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -60,8 +60,8 @@ ms.lasthandoff: 02/16/2017
 7. 複製您的 [用戶端識別碼] 。 (您之後在程式碼中將需要此值)。
 8. 在 [金鑰] 區段中，從 [選取持續時間] 下拉式清單中選取 [1 年]。 (您將在儲存金鑰後，於步驟 13 複製金鑰)。
 9. 向下捲動並按一下 [新增應用程式] 。
-10. 將 [顯示] 保留設定為 [Microsoft 應用程式]，然後選取 [Microsoft Azure 服務管理]。 按一下核取記號以繼續。
-11. 從 [委派權限] 下拉式清單中選取 [存取 Azure 服務管理]。
+10. 將 [顯示] 保留設定為 [Microsoft 應用程式]，然後選取 [Microsoft Azure 服務管理 API]。 按一下核取記號以繼續。
+11. 從 [委派權限] 下拉式清單中選取 [存取 Azure 服務管理...]。
 12. 按一下 [儲存] 。
 13. 完成儲存之後，複製 [金鑰]  區段中的金鑰值。 (您之後在程式碼中將需要此值)。
 

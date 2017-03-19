@@ -12,25 +12,33 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/12/2017
+ms.date: 03/03/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
-ms.openlocfilehash: 0342c13e48d3f3605dcc169523d7d8d2d7aedba8
-ms.lasthandoff: 01/18/2017
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 376415d34592d18de00513ee9142512eb716e426
+ms.lasthandoff: 03/04/2017
 
 
 ---
 # <a name="use-azure-data-lake-store-with-apache-storm-with-hdinsight-java"></a>搭配 Apache Storm 與 HDInsight 使用 Azure Data Lake Store (Java)
 
-Azure Data Lake Store 是 HDFS 相容的雲端儲存體服務，可為資料提供高輸送量、可用性、持久性及可靠性。 在本文件中，您將學習如何使用 Java 型 Storm 拓撲，透過 Apache Storm 中所提供的 [HdfsBolt](http://storm.apache.org/releases/1.0.2/javadocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 元件將資料寫入至 Azure Data Lake Store。
+Azure Data Lake Store 是 HDFS 相容的雲端儲存體服務，可為資料提供高輸送量、可用性、持久性及可靠性。 在本文件中，您將了解如何使用以 Java 為基礎的 Storm 拓撲，將資料寫入 Azure Data Lake Store。 此文件中使用 [HdfsBolt](http://storm.apache.org/releases/1.0.2/javadocs/org/apache/storm/hdfs/bolt/HdfsBolt.html) 元件的步驟，此元件是提供來做為 Apache Storm 的一部分。
 
 > [!IMPORTANT]
 > 本文件中使用的範例拓撲需依賴 Storm on HDInsight 叢集隨附的元件，而且可能需要進行修改才能在搭配其他 Apache Storm 叢集使用時使用 Azure Data Lake Store。
 
 ## <a name="how-to-work-with-azure-data-lake-store"></a>如何使用 Azure Data Lake Store
 
-Data Lake Store 對 HDInsight 來說會顯示為 HDFS 相容檔案系統，因此您可以 Storm-HDFS Bolt 來寫入它。 下列程式碼示範如何使用 Storm-HDFS Bolt 將資料寫入到名為 `MYDATALAKE` 之 Data Lake Store 帳戶上名為 `/stormdata` 的目錄。
+Data Lake Store 對 HDInsight 來說會顯示為 HDFS 相容檔案系統，因此您可以 Storm-HDFS Bolt 來寫入它。 從 HDInsight 使用 Azure Data Lake 時，您可以使用 `adl://` 的檔案配置。
+
+* 如果 Data Lake 儲存體是叢集的主要儲存體，請使用 `adl:///`。 這是 Azure Data Lake 中叢集儲存體的根。 這可能會轉譯為 Data Lake 儲存體帳戶中 /clusters/CLUSTERNAME 的路徑。
+* 如果 Data Lake 儲存體是叢集的次要儲存體，請使用 `adl://DATALAKEACCOUNT.azuredatalakestore.net/`。 這個 URI 會指定要寫入資料的 Data Lake 儲存體帳戶。 資料是從 Data Lake Store 的根開始寫入。
+
+    > [!NOTE]
+    > 您也可以使用這個 URI 格式，來將資料儲存到包含您叢集主要儲存體的 Data Lake Store 帳戶。 這可讓您將資料儲存於包含 HDInsight 的目錄路徑以外的位置。
+
+下列 Java 程式碼示範如何使用 Storm-HDFS Bolt，將資料寫入名為 `MYDATALAKE` 之 Data Lake Store 帳戶上名為 `/stormdata` 的目錄。
 
 ```java
 // 1. Create sync and rotation policies to control when data is synched
@@ -57,25 +65,76 @@ builder.setBolt("ADLStoreBolt", adlsBolt, 1)
     .globalGrouping("finalcount");
 ```
 
-> [!IMPORTANT]
-> 從 HDInsight 使用 Data Lake Store 時，請使用 `adl://` URI 配置。
+下列 YAML 示範如何從 Flux 架構使用 Storm HDFS Bolt：
+
+```yaml
+components:
+  - id: "syncPolicy"
+    className: "org.apache.storm.hdfs.bolt.sync.CountSyncPolicy"
+    constructorArgs:
+      - 1000
+  - id: "rotationPolicy"
+    className: "org.apache.storm.hdfs.bolt.rotation.FileSizeRotationPolicy"
+    constructorArgs:
+      - 5
+      - KB
+
+  - id: "fileNameFormat"
+    className: "org.apache.storm.hdfs.bolt.format.DefaultFileNameFormat"
+    configMethods:
+      - name: "withPath"
+        args: ["${hdfs.write.dir}"]
+      - name: "withExtension"
+        args: [".txt"]
+
+  - id: "recordFormat"
+    className: "org.apache.storm.hdfs.bolt.format.DelimitedRecordFormat"
+    configMethods:
+      - name: "withFieldDelimiter"
+        args: ["|"]
+
+  - id: "rotationAction"
+    className: "org.apache.storm.hdfs.common.rotation.MoveFileAction"
+    configMethods:
+      - name: "toDestination"
+        args: ["${hdfs.dest.dir}"]
+
+# bolt definitions
+bolts:
+  - id: "hdfs-bolt"
+    className: "org.apache.storm.hdfs.bolt.HdfsBolt"
+    configMethods:
+      - name: "withConfigKey"
+        args: ["hdfs.config"]
+      - name: "withFsUrl"
+        args: ["${hdfs.url}"]
+      - name: "withFileNameFormat"
+        args: [ref: "fileNameFormat"]
+      - name: "withRecordFormat"
+        args: [ref: "recordFormat"]
+      - name: "withRotationPolicy"
+        args: [ref: "rotationPolicy"]
+      - name: "withSyncPolicy"
+        args: [ref: "syncPolicy"]
+    parallelism: 1
+```
+
+> [!NOTE]
+> 本文件中的範例會使用 Flux 架構。
 
 ## <a name="prerequisites"></a>必要條件
 
-* [Java JDK 1.7](https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 或更新版本
+* [Java JDK 1.8](https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 或更新版本。 HDInsight 3.5 需要 Java 8。
 
 * [Maven 3.x](https://maven.apache.org/download.cgi)
 
-* Storm on HDInsight 叢集 3.2 版。 若要建立新的 Storm on HDInsight 叢集，請使用 [使用 Azure 來搭配使用 HDInsight 與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) 文件中的步驟。 本文件中的步驟將逐步引導您建立新的 HDInsight 叢集和 Azure Data Lake Store。  
-  
-  > [!IMPORTANT]
-  > 當您建立 HDInsight 叢集時，必須選取 **Storm** 做為叢集類型，以及選取 **3.2** 做為版本。 作業系統可以是 Windows 或 Linux。
+* Storm on HDInsight 叢集 3.5 版。 若要建立新的 Storm on HDInsight 叢集，請使用 [使用 Azure 來搭配使用 HDInsight 與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) 文件中的步驟。
 
 ### <a name="configure-environment-variables"></a>設定環境變數
 
 當您在開發工作站上安裝 Java 和 JDK 時可能會設定下列環境變數。 不過，您應該檢查它們是否存在，以及它們是否包含您系統的正確值。
 
-* **JAVA_HOME** - 應該指向已安裝 Java 執行階段環境 (JRE) 的目錄。 例如，在 Unix 或 Linux 散發套件上，它的值應該類似 `/usr/lib/jvm/java-7-oracle` 在 Windows 中，它的值應該類似 `c:\Program Files (x86)\Java\jre1.7`。
+* **JAVA_HOME** - 應該指向已安裝 Java 執行階段環境 (JRE) 的目錄。 例如，在 Unix 或 Linux 散發套件上，它的值應該類似 `/usr/lib/jvm/java-8-oracle` 在 Windows 中，它的值應該類似 `c:\Program Files (x86)\Java\jre1.8`。
 * **PATH** - 應該包含下列路徑：
   
   * **JAVA\_HOME** (或對等的路徑)
@@ -93,44 +152,6 @@ builder.setBolt("ADLStoreBolt", adlsBolt, 1)
 
 包含此拓撲的專案可從 [https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store](https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store)下載。
 
-### <a name="understanding-adlstorebolt"></a>了解 ADLStoreBolt
-
-ADLStoreBolt 是用於拓撲中寫入至 Azure Data Lake 之 HdfsBolt 執行個體的名稱。 這不是由 Microsoft 所建立的 HdfsBolt 特殊版本，不過它的確仰賴核心網站組態值，以及 Azure HDInsight 中用來與 Data Lake 通訊的隨附 Hadoop 元件。
-
-具體來說，當您建立 HDInsight 叢集時，您可以將其關聯至 Azure Data Lake Store。 這會將項目寫入至所選取 Data Lake Store 的核心網站，hadoop-client 和 hadoop-hdfs 等元件會使用這些項目來與 Data Lake Store 進行通訊。
-
-> [!NOTE]
-> Microsoft 已為 Apache Hadoop 和 Storm 專案提供可與 Azure Data Lake Store 和 Azure Blob 儲存體進行通訊的程式碼，但其他 Hadoop 和 Storm 散發套件依預設不一定會包含這項功能。
-
-拓撲中的 HdfsBolt 組態如下所示：
-
-    // 1. Create sync and rotation policies to control when data is synched
-    //    (written) to the file system and when to roll over into a new file.
-    SyncPolicy syncPolicy = new CountSyncPolicy(1000);
-    FileRotationPolicy rotationPolicy = new FileSizeRotationPolicy(0.5f, Units.KB);
-    // 2. Set the format. In this case, comma delimited
-    RecordFormat recordFormat = new DelimitedRecordFormat().withFieldDelimiter(",");
-    // 3. Set the directory name. In this case, '/stormdata/'
-    FileNameFormat fileNameFormat = new DefaultFileNameFormat().withPath("/stormdata/");
-    // 4. Create the bolt using the previously created settings,
-    //    and also tell it the base URL to your Data Lake Store.
-    // NOTE! Replace 'MYDATALAKE' below with the name of your data lake store.
-    HdfsBolt adlsBolt = new HdfsBolt()
-        .withFsUrl("adl://MYDATALAKE.azuredatalakestore.net/")
-          .withRecordFormat(recordFormat)
-          .withFileNameFormat(fileNameFormat)
-          .withRotationPolicy(rotationPolicy)
-          .withSyncPolicy(syncPolicy);
-    // 4. Give it a name and wire it up to the bolt it accepts data
-    //    from. NOTE: The name used here is also used as part of the
-    //    file name for the files written to Data Lake Store.
-    builder.setBolt("ADLStoreBolt", adlsBolt, 1)
-      .globalGrouping("finalcount");
-
-如果您已熟悉 HdfsBolt 的使用方式，您會發現除了 URL 不一樣以外，這全都是相當標準的組態。 URL 會提供 Azure Data Lake Store 的根目錄路徑。
-
-因為寫入 Data Lake Store 時是使用 HdfsBolt，並且只需變更 URL，您應該能夠取得使用 HdfsBolt 寫入到 HDFS 或 WASB 的現有拓撲，並輕鬆地將它變更為使用 Azure Data Lake Store。
-
 ## <a name="build-and-package-the-topology"></a>建置和封裝拓撲
 
 1. 從 [https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store ](https://github.com/Azure-Samples/hdinsight-storm-azure-data-lake-store) 下載範例專案到開發環境。
@@ -144,9 +165,7 @@ ADLStoreBolt 是用於拓撲中寫入至 Azure Data Lake 之 HdfsBolt 執行個�
    
     建置和封裝完成之後，會有名為 `target` 的新目錄，其中包含名為 `StormToDataLakeStore-1.0-SNAPSHOT.jar` 的檔案。 這會包含已編譯的拓撲。
 
-## <a name="deploy-and-run-on-linux-based-hdinsight"></a>在 Linux 型 HDInsight 上部署和執行
-
-如果您建立了 Linux 型 Storm on HDInsight 叢集，請使用下列步驟來部署和執行拓撲。
+## <a name="deploy-and-run-the-topology"></a>部署並執行拓撲
 
 1. 使用下列命令將拓撲複製到 HDInsight 叢集。 將 **USER** 取代為建立叢集時所使用的 SSH 使用者名稱。 將 **CLUSTERNAME** 取代為叢集的名稱。
    
@@ -166,70 +185,47 @@ ADLStoreBolt 是用於拓撲中寫入至 Azure Data Lake 之 HdfsBolt 執行個�
    > [!NOTE]
    > 如果您使用 Windows 用戶端進行開發，請依照 [從 Windows 使用 SSH 連接至 Linux 型 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md) 中的資訊，來取得使用 PuTTY 用戶端連接到叢集的資訊。
 
-3. 連線之後，使用下列命令啟動拓撲：
-   
-        storm jar StormToDataLakeStore-1.0-SNAPSHOT.jar com.microsoft.example.StormToDataLakeStore datalakewriter
-   
-    這會啟動擁有易記名稱 `datalakewriter`的拓撲。
+3. 連接之後，使用下列命令來建立名為 `dev.properties` 的檔案：
 
-## <a name="deploy-and-run-on-windows-based-hdinsight"></a>在 Windows 型 HDInsight 上部署和執行
+        nano dev.properties
 
-1. 開啟網頁瀏覽器並移至 HTTPS://CLUSTERNAME.azurehdinsight.net，其中 **CLUSTERNAME** 是 HDInsight 叢集的名稱。 出現提示時，提供建立叢集時用於此帳戶的系統管理員使用者名稱 (`admin`) 和密碼。
+4. 使用下列文字做為 `dev.properties` 檔案的內容：
 
-2. 在 Storm 儀表板中，從 [Jar 檔案] 下拉式清單中選取 [瀏覽]，然後選取 `target` 目錄中的 StormToDataLakeStore-1.0-SNAPSHOT.jar 檔案。 針對表單上的其他項目使用下列值：
+        hdfs.write.dir: /stormdata
+        hdfs.url: adl:///
+    
+    若要儲存檔案，使用 __Ctrl + X__，然後是 __Y__，最後按 __Enter__。 此檔案中的值會設定 Data Lake Store URL，以及要寫入資料的目錄名稱。
+
+3. 使用下列命令來啟動拓撲：
    
-   * 類別名稱：com.microsoft.example.StormToDataLakeStore
-   * 其他參數：datalakewriter
-     
-  ![Storm 儀表板的影像](./media/hdinsight-storm-write-data-lake-store/submit.png)
+        storm jar StormToDataLakeStore-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /datalakewriter.yaml --filter dev.properties
 
-3. 選取 [提交] 按鈕來上傳和啟動拓撲。 拓撲啟動之後，[提交] 按鈕底下的結果欄位應該會顯示類似下面的資訊：
-   
-        Process exit code: 0
-        Currently running topologies:
-        Topology_name        Status     Num_tasks  Num_workers  Uptime_secs
-        -------------------------------------------------------------------
-        datalakewriter       ACTIVE     68         8            10        
+    此命令會使用 Flux 架構來啟動拓撲。 拓撲是由 jar 中包含的 `datalakewriter.yaml` 檔案所定義。 `dev.properties` 檔案會傳遞來做為篩選，而檔案中包含的值是透過拓撲來讀取。
 
 ## <a name="view-output-data"></a>檢視輸出資料
 
-有數種方法能夠檢視資料。 在本節中，我們使用 Azure 入口網站和 `hdfs` 命令來檢視資料。
+若要檢視資料，請使用下列命令：
 
-> [!NOTE]
-> 您應該讓拓撲先執行幾分鐘後再檢查輸出資料，這樣才能讓資料同步至 Azure Data Lake Store 上的數個檔案。
+    hdfs dfs -ls /stormdata/
 
+這會顯示檔案所建立的拓撲清單。
 
-* **從 [Azure 入口網站](https://portal.azure.com)**：在入口網站中，選取搭配 HDInsight 使用的 Azure Data Lake Store。
-  
-  > [!NOTE]
-  > 如果未將 Data Lake Store 固定至 Azure 入口網站的儀表板，其尋找方式是依序選取左側清單底部的 [瀏覽] 和 [Data Lake Store]，最後選取該存放區。
-  
-    從 Data Lake Store 頂端的圖示，選取 [資料總管]。
-  
-    ![資料瀏覽圖示](./media/hdinsight-storm-write-data-lake-store/dataexplorer.png)
-  
-    接下來，選取 [stormdata] 資料夾。 此時應該會顯示文字檔案清單。
-  
-    ![文字檔](./media/hdinsight-storm-write-data-lake-store/stormoutput.png)
-  
-    選取其中一個檔案以檢視其內容。
+如果 Data Lake Store 不是叢集的預設儲存體，請使用下列命令來檢視資料：
 
-* **從叢集**：如果您已使用 SSH 連接到 HDInsight 叢集 (Linux 叢集) 或連接到遠端桌面 (Windows 叢集)，您可以使用下列命令來檢視資料。 將 **DATALAKE** 取代為 Data Lake Store 的名稱
-  
-        hdfs dfs -cat adl://DATALAKE.azuredatalakestore.net/stormdata/*.txt
-  
-    這會串連目錄中儲存的文字檔案，並顯示類似下面的資訊：
-  
-        406000000
-        407000000
-        408000000
-        409000000
-        410000000
-        411000000
-        412000000
-        413000000
-        414000000
-        415000000
+    hdfs dfs -ls adl://MYDATALAKE.azuredatalakestore.net/stormdata/
+
+在上一個命令中，使用 Data Lake Store 帳戶來取代 __MYDATALAKE__。
+
+下列清單是前一個命令所傳回的資料範例：
+
+    Found 30 items
+    -rw-r-----+  1 larryfr larryfr       5120 2017-03-03 19:13 /stormdata/hdfs-bolt-3-0-1488568403092.txt
+    -rw-r-----+  1 larryfr larryfr       5120 2017-03-03 19:13 /stormdata/hdfs-bolt-3-1-1488568404567.txt
+    -rw-r-----+  1 larryfr larryfr       5120 2017-03-03 19:13 /stormdata/hdfs-bolt-3-10-1488568408678.txt
+    -rw-r-----+  1 larryfr larryfr       5120 2017-03-03 19:13 /stormdata/hdfs-bolt-3-11-1488568411636.txt
+    -rw-r-----+  1 larryfr larryfr       5120 2017-03-03 19:13 /stormdata/hdfs-bolt-3-12-1488568411884.txt
+    -rw-r-----+  1 larryfr larryfr       5120 2017-03-03 19:13 /stormdata/hdfs-bolt-3-13-1488568412603.txt
+    -rw-r-----+  1 larryfr larryfr       5120 2017-03-03 19:13 /stormdata/hdfs-bolt-3-14-1488568415055.txt
 
 ## <a name="stop-the-topology"></a>停止拓撲
 
@@ -240,18 +236,6 @@ Storm 拓撲會一直執行，直到其停止或叢集遭到刪除。 若要停�
 在連往叢集的 SSH 工作階段中，使用下列命令：
 
     storm kill datalakewriter
-
-**如果是以 Windows 為基礎的 HDInsight**：
-
-1. 在 Storm 儀表板 (https://CLUSTERNAME.azurehdinsight.net) 中，選取頁面頂端的 [Storm UI] 連結。
-
-2. Storm UI 載入後，選取 [datalakewriter] 連結。
-   
-    ![datalakewriter 的連結](./media/hdinsight-storm-write-data-lake-store/selecttopology.png)
-
-3. 在 [拓撲動作] 區段中，選取 [刪除]，然後在出現的對話方塊上選取 [確定]。
-   
-    ![拓撲動作](./media/hdinsight-storm-write-data-lake-store/topologyactions.png)
 
 ## <a name="delete-your-cluster"></a>刪除叢集
 

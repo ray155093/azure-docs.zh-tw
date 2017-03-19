@@ -15,9 +15,9 @@ ums.workload: na
 ms.date: 01/07/2017
 ms.author: TomSh
 translationtype: Human Translation
-ms.sourcegitcommit: 9c27ea02ae341197a70d2b399cf8d534d79c9e4c
-ms.openlocfilehash: 001cc873960733bfe3e37fad95dbac29872ba00a
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 6ec3397f62cb2ae57cd9ce27a0a5022fd876e263
+ms.openlocfilehash: 39bac7d0cc6fee8a99949d167e3aa0c15cfaebc2
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -129,15 +129,22 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 
 ## <a name="integrate-azure-active-directory-audit-logs"></a>整合 Azure Active Directory 稽核記錄
 1. 開啟命令提示字元，並使用 **cd** 命令前往 **c:\Program Files\Microsoft Azure Log Integration**
-2. 執行命令 .\AZLOG.exe authorizedirectoryreader <TenantID> 範例 - 
+2. 執行提供 tenantID 的命令。 您必須是租用戶系統管理員角色的成員才能執行命令。
 
-.\AZLOG.exe authorizedirectoryreader ba2c0023-d24b-4f4e-92b1-48c4469999
+AZLOG.exe authorizedirectoryreader tenantId
+
+範例 - 
+
+AZLOG.exe authorizedirectoryreader ba2c0023-d24b-4f4e-92b1-48c4469999
+
 
 3. 檢查下列資料夾以確認 JSON 檔案建立在 Azure Active Directory 稽核記錄中 
 * **C:\Users\azlog\AzureActiveDirectoryJson**   
 * **C:\Users\azlog\AzureActiveDirectoryJsonLD**
 
 4. 將標準的 SIEM 檔案轉寄站連接器指向適當資料夾，以透過管線將資料傳送至 SIEM 執行個體。 您可能需要根據所使用的 SIEM 產品進行某些欄位對應。
+
+[目前在 Azure Active Directory 中記錄為稽核事件的事件清單](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-reporting-audit-events#list-of-audit-report-events)
 
 如果您在安裝和設定期間遇到任何問題，請開啟[支援要求](https://docs.microsoft.com/en-us/azure/azure-supportability/how-to-create-azure-support-request)，選取「記錄整合」作為您要求支援的服務。
 

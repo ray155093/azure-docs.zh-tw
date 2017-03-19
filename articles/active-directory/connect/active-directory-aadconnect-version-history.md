@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 0966b1332ee6d831a1f24ee817aa8022538a5558
-ms.openlocfilehash: f8cd2b907bd6b20ec778dc6257e2a30113dd4909
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 7e16fa749389ab876ae413e2ffef7713ed22adac
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -34,6 +34,37 @@ Azure Active Directory (Azure AD) 團隊會定期以新的特性和功能更新 
 從 Azure AD Connect 升級的步驟 | [從舊版升級到最新版本](active-directory-aadconnect-upgrade-previous-version.md) Azure AD Connect 的多種方法。
 所需的權限 | 如需套用更新所需權限的詳細資訊，請參閱[帳戶和權限](./active-directory-aadconnect-accounts-permissions.md#upgrade)。
 下載| [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)。
+
+## <a name="114430"></a>1.1.443.0
+發行日期︰2017 年 3 月
+
+**已修正的問題：**
+
+Azure AD Connect 同步處理
+* 修正當「Azure AD 連接器」的顯示名稱不包含指派給 Azure AD 租用戶的初始 onmicrosoft.com 網域時，會造成 Azure AD Connect 精靈發生失敗的問題。
+* 修正當「同步處理服務帳戶」的密碼包含特殊字元 (例如單引號、冒號及空格) 時，會造成 Azure AD Connect 精靈在連線到 SQL Database 時發生失敗的問題。
+* 修正在您暫時將內部部署 AD 物件從同步處理作業中排除又再重新包含在同步處理作業中之後，會造成在處於預備模式的 Azure AD Connect 伺服器上發生「映像具有與映像不同的錨點」錯誤的問題。
+* 修正在您暫時將內部部署 AD 物件從同步處理作業中排除又再重新包含在同步處理作業中之後，會造成在處於預備模式的 Azure AD Connect 伺服器上發生「DN 所定位的物件是虛設項目」錯誤的問題。
+
+AD FS 管理
+* 修正在設定「替代登入識別碼」之後，Azure AD Connect 精靈不會更新 AD FS 組態並在信賴憑證者信任上設定正確宣告的問題。
+* 修正 Azure AD Connect 精靈對於服務帳戶是使用 userPrincipalName 格式而非 sAMAccountName 格式來設定的 AD FS 伺服器，無法正確進行處理的問題。
+
+傳遞驗證
+* 修正在已選取「傳遞驗證」但註冊其連接器失敗的情況下，會造成 Azure AD Connect 精靈發生失敗的問題。
+* 修正在已啟用「傳統型 SSO」功能的情況下，會造成 Azure AD Connect 精靈在所選登入方法上略過驗證檢查的問題。
+
+**新功能/改進︰**
+
+Azure AD Connect 同步處理
+* Get-ADSyncScheduler Cmdlet 現在會傳回一個名為 SyncCycleInProgress 的新布林值屬性。 如果傳回的值為 true，即表示有已排定的同步處理循環正在進行。
+* 用來儲存 Azure AD Connect 安裝和設定記錄檔的目的地資料夾已經從 %localappdata%\AADConnect 移到 %programdata%\AADConnect，以提升記錄檔的存取便利性。
+
+AD FS 管理
+* 新增對更新「AD FS 伺服器陣列 SSL 憑證」的支援。
+* 新增對管理 AD FS 2016 的支援。
+* 您現在可以在安裝 AD FS 時指定現有的 gMSA (群組受管理服務帳戶)。
+* 您現在可以為 Azure AD 信賴憑證者信任設定 SHA-256 作為簽章雜湊演算法。
 
 ## <a name="113800"></a>1.1.380.0
 發行日期︰2016 年 12 月

@@ -13,12 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/13/2016
+ms.date: 03/02/2017
 ms.author: bprakash
 translationtype: Human Translation
-ms.sourcegitcommit: 0371c6ba2434c315db1bdbacab8639fd40d5c999
-ms.openlocfilehash: 1986a4f19d89f1451ca47a94511ff998705ed785
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: d9c85736e9578ff4f821a118a25055e360e33ae9
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -39,7 +39,7 @@ Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：**標準**
 | --- | --- |
 | 已加入網域的 HDInsight 叢集 |將 HDInsight 叢集加入 Azure Active Directory (AAD) 網域，以獲得企業級安全性。 您現在可以設定企業員工清單，指出可透過 Azure Active Directory 進行驗證以登入 HDInsight 叢集的員工。 企業系統管理員也可以使用 [Apache Ranger](http://hortonworks.com/apache/ranger/)，針對 Hive 安全性設定角色型存取控制，進而將資料存取限制為僅限有需要時。 最後，系統管理員可以依照員工稽核資料存取，以及對存取控制原則所做的任何變更，因而達到高度的公司資源控管。 如需詳細資訊，請參閱[設定已加入網域的 HDInsight 叢集](hdinsight-domain-joined-configure.md)。 |
 
-### <a name="cluster-types-supported-for-premium"></a>進階的支援叢集類型
+### <a name="cluster-types-supported-for-hdinsight-premium"></a>HDInsight Premium 支援的叢集類型
 下表列出 HDInsight 叢集類型和進階支援矩陣。
 
 | 叢集類型 | 標準 | 進階 |
@@ -48,10 +48,17 @@ Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：**標準**
 | Spark |是 |否 |
 | HBase |是 |否 |
 | Storm |是 |否 |
+| R 伺服器  |是 |否 |
 | 互動式 Hive (預覽) |是 |否 |
-| R 伺服器 (預覽) |是 |否 |
+| Kafka (預覽)|是|否| 
 
 因為 HDInsight Premium 中包含更多的叢集類型，所以此資料表將會更新。
+
+### <a name="features-not-supported-for-hdinsight-premium"></a>HDInsight Premium 不支援的功能
+
+HDInsight Premium 叢集目前不支援下列功能。
+
+* **不支援 Azure Data Lake Store 做為主要儲存體**。 您仍然可以使用 Azure Data Lake Store 做為含有 HDInsight Premium 叢集的附加元件儲存體。
 
 ### <a name="pricing-and-sla"></a>價格和 SLA
 如需 HDInsight Premium 的價格和 SLA 的詳細資訊，請參閱 [HDInsight 價格](https://azure.microsoft.com/pricing/details/hdinsight/)。
@@ -66,8 +73,21 @@ Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個�
 
 
 | 元件 | HDInsight 3.5 版 (預設) | HDInsight 3.4 版 | HDInsight 3.3 版 | HDInsight 3.2 版 | HDInsight 3.1 版 | HDInsight 3.0 版 |
-
-| --- | --- | --- | --- | --- | --- | --- | | Hortonworks Data Platform |2.5 |2.4 |2.3 |2.2 |2.1.7 |2.0 | | Apache Hadoop & YARN |2.7.3 |2.7.1 |2.7.1 |2.6.0 |2.4.0 |2.2.0 | | Apache Tez |0.7.0 |0.7.0 |0.7.0 |0.5.2 |0.4.0 | | | Apache Pig |0.16.0 |0.15.0 |0.15.0 |0.14.0 |0.12.1 |0.12.0 | | Apache Hive & HCatalog |1.2.1.2.5 |1.2.1 |1.2.1 |0.14.0 |0.13.1 |0.12.0 | | Apache HBase |1.1.2 |1.1.2 |1.1.1 |0.98.4 |0.98.0 | | | Apache Sqoop |1.4.6 |1.4.6 |1.4.6 |1.4.5 |1.4.4 |1.4.4 | | Apache Oozie |4.2.0 |4.2.0 |4.2.0 |4.1.0 |4.0.0 |4.0.0 | | Apache Zookeeper |3.4.6 |3.4.6 |3.4.6 |3.4.6 |3.4.5 |3.4.5 | | Apache Storm |1.0.1 |0.10.0 |0.10.0 |0.9.3 |0.9.1 | | | Apache Mahout |0.9.0+ |0.9.0+ |0.9.0+ |0.9.0 |0.9.0 | | | Apache Phoenix |4.7.0 |4.4.0 |4.4.0 |4.2.0 |4.0.0.2.1.7.0-2162 | | | Apache Spark |1.6.2 + 2.0 (僅限 Linux) |1.6.0 (僅限 Linux) |1.5.2 (僅限 Linux/實驗性組建) |1.3.1 (僅限 Windows) | | |
+| --- | --- | --- | --- | --- | --- | --- |
+| Hortonworks Data Platform |2.5 |2.4 |2.3 |2.2 |2.1.7 |2.0 |
+| Apache Hadoop & YARN |2.7.3 |2.7.1 |2.7.1 |2.6.0 |2.4.0 |2.2.0 |
+| Apache Tez |0.7.0 |0.7.0 |0.7.0 |0.5.2 |0.4.0 |-|
+| Apache Pig |0.16.0 |0.15.0 |0.15.0 |0.14.0 |0.12.1 |0.12.0 |
+| Apache Hive & HCatalog |1.2.1.2.5 |1.2.1 |1.2.1 |0.14.0 |0.13.1 |0.12.0 |
+| Apache HBase (英文) |1.1.2 |1.1.2 |1.1.1 |0.98.4 |0.98.0 |-|
+| Apache Sqoop |1.4.6 |1.4.6 |1.4.6 |1.4.5 |1.4.4 |1.4.4 |
+| Apache Oozie |4.2.0 |4.2.0 |4.2.0 |4.1.0 |4.0.0 |4.0.0 |
+| Apache Zookeeper |3.4.6 |3.4.6 |3.4.6 |3.4.6 |3.4.5 |3.4.5 |
+| Apache Storm |1.0.1 |0.10.0 |0.10.0 |0.9.3 |0.9.1 |-|
+| Apache Mahout |0.9.0+ |0.9.0+ |0.9.0+ |0.9.0 |0.9.0 |-|
+| Apache Phoenix |4.7.0 |4.4.0 |4.4.0 |4.2.0 |4.0.0.2.1.7.0-2162 |-|
+| Apache Spark |1.6.2 + 2.0 (僅限 Linux) |1.6.0 (僅限 Linux) |1.5.2 (僅限 Linux/實驗性組建) |1.3.1 (僅限 Windows) |-|-|
+| Apache Kafka | 0.10.0 | 0.9.0 |-|-|-|-|
 
 **取得目前的元件版本資訊**
 

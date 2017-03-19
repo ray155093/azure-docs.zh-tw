@@ -12,12 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: media
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 02/21/2017
+ms.date: 03/02/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: f76277ab93c58098648ee65ea5aba0757495da68
-ms.openlocfilehash: 1222a670a1bf530871a19c79b7da441c03f8df51
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 353677bc7eb7fe791d23bcfdb79f3a0df6366c6f
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -44,6 +44,13 @@ ms.lasthandoff: 02/22/2017
 
 ## <a id="rest_version_history"></a>REST API 版本歷程記錄
 如需媒體服務 REST API 版本歷程記錄的相關資訊，請參閱 [Azure 媒體服務 REST API 參考]。
+
+## <a name="march-2017-release"></a>2017 年 3 月版本
+
+您現在可以使用 Azure 媒體標準來[自動產生位元速率階梯](media-services-autogen-bitrate-ladder-with-mes.md)，方法是在建立編碼工作時指定「彈性資料流」預設字串。 如果您想要將視訊編碼以使用媒體服務進行串流處理，則「彈性資料流」為建議預設。 如果您需要自訂特定案例的編碼預設，您可以開始使用[這些](media-services-mes-presets-overview.md)預設。
+
+您現在可以使用 Azure 媒體標準或媒體編碼器高階工作流程來[建立會產生 fMP4 區塊的編碼工作](media-services-generate-fmp4-chunks.md)。 
+
 
 ## <a name="febuary-2017-release"></a>2017 年 2 月版本
 
