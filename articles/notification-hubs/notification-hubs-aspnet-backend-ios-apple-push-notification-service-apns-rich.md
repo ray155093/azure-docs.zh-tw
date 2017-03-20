@@ -17,6 +17,7 @@ ms.author: yuaxu
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 394efdc2dfaff0666bc23d8a448b0a00d414da99
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -126,7 +127,7 @@ ms.openlocfilehash: 394efdc2dfaff0666bc23d8a448b0a00d414da99
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 8. 為了可以從所有裝置存取此應用程式，我們現在可以將它重新部署到 Azure 網站。 以滑鼠右鍵按一下 **AppBackend** 專案，然後選取 [發佈]。
-9. 選取 Azure 網站作為您的發行目標。 使用您的 Azure 帳戶登入，並選取現有或新的網站，記下 [連線] 索引標籤中的 [目的地 URL] 屬性。。 我們後續將在本教學課程中參考此 URL 作為您的 *後端端點* 。 按一下 [發行] 。
+9. 選取 Azure 網站作為您的發行目標。 使用您的 Azure 帳戶登入，並選取現有或新的網站，記下 [連線] 索引標籤中的 [目的地 URL] 屬性。 我們後續將在本教學課程中參考此 URL 作為您的 *後端端點* 。 按一下 [發行] 。
 
 ## <a name="modify-the-ios-project"></a>修改 iOS 專案
 既然您已將應用程式後端修改為只傳送通知的識別碼  ，您將需要變更 iOS 應用程式以處理該識別碼，並從後端擷取豐富訊息。
@@ -355,9 +356,4 @@ ms.openlocfilehash: 394efdc2dfaff0666bc23d8a448b0a00d414da99
 [IOS2]: ./media/notification-hubs-aspnet-backend-ios-rich-push/rich-push-ios-2.png
 [IOS3]: ./media/notification-hubs-aspnet-backend-ios-rich-push/rich-push-ios-3.png
 [IOS4]: ./media/notification-hubs-aspnet-backend-ios-rich-push/rich-push-ios-4.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
