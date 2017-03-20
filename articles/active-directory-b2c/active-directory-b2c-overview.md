@@ -15,8 +15,9 @@ ms.topic: hero-article
 ms.date: 12/06/2016
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: f37fa3a212a0dca46c76b3928cf78756722f0340
-ms.openlocfilehash: 2c6765e28f40210730823a9af0b6fb80a5ddc4d1
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 851319639f1443c062b87305bbde351f41846433
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -55,8 +56,8 @@ Azure Active Directory B2C 是適用於取用者導向 Web 與行動應用程式
 
 * 請參閱 [Azure Active Directory B2C 價格資訊](https://azure.microsoft.com/pricing/details/active-directory-b2c/)。
 * 檢閱 Azure Active Directory B2C 的[程式碼範例](https://azure.microsoft.com/en-us/resources/samples/?service=active-directory&term=b2c)。 
-* 使用 [azure-active-directory](http://stackoverflow.com/questions/tagged/azure-active-directory) 或 [adal](http://stackoverflow.com/questions/tagged/adal) 標記，取得 Stack Overflow 的相關說明。
-* 透過 [User Voice](https://feedback.azure.com/forums/169401-azure-active-directory/)告訴我們您的想法 -- 我們冀望瞭解您的看法！ 請在您的文章標題中使用 "AzureADB2C:" 字詞，以方便我們尋找。
+* 使用 [azure-ad-b2c](http://stackoverflow.com/questions/tagged/azure-ad-b2c) 標記，取得 Stack Overflow 的相關說明。
+* 透過 [User Voice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c)告訴我們您的想法 -- 我們冀望瞭解您的看法！
 * 檢閱 [Azure AD B2C 通訊協定參考](active-directory-b2c-reference-protocols.md)。
 * 檢閱 [Azure AD B2C 權杖參考](active-directory-b2c-reference-tokens.md)。
 * 閱讀 [Azure Active Directory B2C 常見問題集](active-directory-b2c-faqs.md)。
@@ -64,10 +65,5 @@ Azure Active Directory B2C 是適用於取用者導向 Web 與行動應用程式
 
 ## <a name="get-security-updates-for-our-products"></a>取得產品的安全性更新
 我們鼓勵您造訪 [此頁面](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

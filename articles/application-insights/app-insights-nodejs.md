@@ -14,9 +14,9 @@ ms.topic: get-started-article
 ms.date: 02/23/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 46b829ce52994a5112494145a02e78859c5fae2d
-ms.openlocfilehash: d4c7fa2058b1c07671329304c37630d2e6e8e8a7
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: bc7b0d4037effd7bcc8685a357a49de339e31d7b
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -34,7 +34,7 @@ SDK 可自動收集內送 HTTP 要求率和回應、效能計數器 (CPU、記�
 
 * [Microsoft Azure](http://azure.com)訂用帳戶。 如果您的小組或組織擁有 Azure 訂用帳戶，擁有者就可以使用您的 [Microsoft 帳戶](http://live.com)將您加入。
 
-## <a name="a-nameaddacreate-an-application-insights-resource"></a><a name="add"></a>建立 Application Insights 資源
+## <a name="add"></a>建立 Application Insights 資源
 登入 [Azure 入口網站][portal]，並建立新的 Application Insights 資源。 Azure 中的[資源][roles]是服務的執行個體。 此資源是來自您應用程式的遙測將經過分析並呈現的地方。
 
 ![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-nodejs/01-new-asp.png)
@@ -46,7 +46,7 @@ SDK 可自動收集內送 HTTP 要求率和回應、效能計數器 (CPU、記�
 
 ![按一下 [屬性]，選取金鑰，然後按下 CTRL+C](./media/app-insights-nodejs/02-props-asp.png)
 
-## <a name="a-namesdka-install-the-sdk-in-your-application"></a><a name="sdk"></a> 在應用程式中安裝 SDK
+## <a name="sdk"></a> 在應用程式中安裝 SDK
 ```
 npm install applicationinsights --save
 ```
@@ -64,10 +64,10 @@ appInsights.setup("<instrumentation_key>").start();
 
 您可以在不傳送遙測的情況下嘗試 SDK︰將檢測金鑰設定為非空白字串。
 
-## <a name="a-nameruna-run-your-project"></a><a name="run"></a> 執行專案
+## <a name="run"></a> 執行專案
 執行應用程式並立即試用：開啟不同的頁面來產生一些遙測。
 
-## <a name="a-namemonitora-view-your-telemetry"></a><a name="monitor"></a> 檢視遙測
+## <a name="monitor"></a> 檢視遙測
 返回 [Azure 入口網站](https://portal.azure.com) ，並且瀏覽至您的 Application Insights 資源。
 
 在 [概觀] 頁面中尋找資料。 剛開始的時候，您只會看見一或兩個資料點。 例如：
@@ -86,10 +86,7 @@ appInsights.setup("<instrumentation_key>").start();
 現在請將應用程式部署至 IIS 或 Azure，並觀看資料累積情形。
 
 #### <a name="no-data-after-you-publish-to-your-server"></a>發佈資料到伺服器之後，卻沒有資料？
-請在您的伺服器防火牆中，開啟這些連出流量的連接埠：
-
-* `dc.services.visualstudio.com:443`
-* `f5.services.visualstudio.com:443`
+請檢查[必要的防火牆連接埠已開啟](app-insights-ip-addresses.md)。
 
 #### <a name="trouble-on-your-build-server"></a>組建伺服器發生問題？
 請參閱 [此疑難排解項目](app-insights-asp-net-troubleshoot-no-data.md#NuGetBuild)。

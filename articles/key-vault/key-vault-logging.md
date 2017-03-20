@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: cabailey
 translationtype: Human Translation
-ms.sourcegitcommit: 30b30513d5563cf64679e29c4858bf15f65d3a44
-ms.openlocfilehash: 015c997135eae9c936af1a1ec0b0064912baaa04
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 51732acdad74dd6dbfc47fae62efc87df6ce5c15
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -50,7 +50,7 @@ ms.lasthandoff: 03/01/2017
 * Azure PowerShell ( **至少必須是 1.0.1 版**)。 若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 如果您已安裝 Azure PowerShell 但不知道版本，請在 Azure PowerShell 主控台中輸入 `(Get-Module azure -ListAvailable).Version`。  
 * 足夠的 Azure 儲存體以儲存金鑰保存庫記錄。
 
-## <a name="a-idconnectaconnect-to-your-subscriptions"></a><a id="connect"></a>連線到您的訂用帳戶
+## <a id="connect"></a>連線到您的訂用帳戶
 開始 Azure PowerShell 工作階段，並使用下列命令登入您的 Azure 帳戶：  
 
     Login-AzureRmAccount
@@ -65,9 +65,14 @@ ms.lasthandoff: 03/01/2017
 
     Set-AzureRmContext -SubscriptionId <subscription ID>
 
+> [!NOTE]
+> 這個步驟很重要，如果您有多個與帳戶相關聯的訂用帳戶會特別實用。 若您略過此步驟，則可能會收到註冊 Microsoft.Insights 的錯誤。 
+>   
+>
+
 如需設定 Azure PowerShell 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
-## <a name="a-idstorageacreate-a-new-storage-account-for-your-logs"></a><a id="storage"></a>建立新的儲存體帳戶來儲存記錄
+## <a id="storage"></a>建立新的儲存體帳戶來儲存記錄
 雖然您可以使用現有儲存體帳戶來儲存記錄，但我們將建立新的儲存體帳戶來專用儲存金鑰保存庫記錄。 為了方便起見，在稍後遇到必須指定此帳戶時，我們會將詳細資料儲存到名為 **sa**的變數中。
 
 為了進一步簡化管理，我們也會使用包含我們的金鑰保存庫的同一個資源群組。 在 [開始使用教學課程](key-vault-get-started.md)中，此資源群組的名稱是 **ContosoResourceGroup** ，並且我們會繼續使用「東亞」位置。 請視情況將這些值替換成您自己的值：
@@ -80,13 +85,13 @@ ms.lasthandoff: 03/01/2017
 > 
 > 
 
-## <a name="a-ididentifyaidentify-the-key-vault-for-your-logs"></a><a id="identify"></a>識別用來儲存記錄的金鑰保存庫
+## <a id="identify"></a>識別用來儲存記錄的金鑰保存庫
 在開始使用教學課程中，金鑰保存庫名稱是 **ContosoKeyVault**，因此我們會繼續使用該名稱，並將詳細資料儲存到名為 **kv** 的變數中：
 
     $kv = Get-AzureRmKeyVault -VaultName 'ContosoKeyVault'
 
 
-## <a name="a-idenableaenable-logging"></a><a id="enable"></a>啟用記錄
+## <a id="enable"></a>啟用記錄
 為了啟用金鑰保存庫記錄，我們將使用 Set-AzureRmDiagnosticSetting Cmdlet，並搭配針對新儲存體帳戶和金鑰保存庫所建立的變數。 我們也會將 **-Enabled** 旗標設定為 **$true**，並將類別設定為 AuditEvent (金鑰保存庫記錄適用的唯一類別)：
 
     Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Categories AuditEvent
@@ -117,11 +122,16 @@ ms.lasthandoff: 03/01/2017
 * 對金鑰保存庫中的金鑰和密碼所執行的作業，包括建立、修改或刪除這些金鑰或密碼，以及簽署、驗證、加密、解密、包裝和解除包裝金鑰、取得密碼、列出金鑰和密碼及其版本等等的作業。
 * 產生 401 回應的未經驗證要求。 例如，沒有持有人權杖的要求，或格式不正確或已過期的要求，或具有無效權杖的要求。  
 
-## <a name="a-idaccessaaccess-your-logs"></a><a id="access"></a>存取記錄
+## <a id="access"></a>存取記錄
 金鑰保存庫記錄儲存在所提供儲存體帳戶的 **insights-logs-auditevent** 容器中。 若要列出此容器中的所有 blob，請輸入：
 
-    Get-AzureStorageBlob -Container 'insights-logs-auditevent' -Context $sa.Context
+首先，建立容器名稱的變數。 此變數會用於逐步解說剩餘的各個部分。
 
+    $container = 'insights-logs-auditevent'
+
+若要列出此容器中的所有 blob，請輸入：
+
+    Get-AzureStorageBlob -Container $container -Context $sa.Context
 其輸出類似如下範例：
 
 **容器 Uri：https://contosokeyvaultlogs.blob.core.windows.net/insights-logs-auditevent**
@@ -172,7 +182,7 @@ ms.lasthandoff: 03/01/2017
 * 若要查詢金鑰保存庫資源的診斷設定狀態：`Get-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId`
 * 若要停用金鑰保存庫資源記錄： `Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $false -Categories AuditEvent`
 
-## <a name="a-idinterpretainterpret-your-key-vault-logs"></a><a id="interpret"></a>解譯金鑰保存庫記錄
+## <a id="interpret"></a>解譯金鑰保存庫記錄
 各個 blob 皆會儲存為文字，並格式化為 JSON blob。 以下是執行 `Get-AzureRmKeyVault -VaultName 'contosokeyvault'`後所得到的範例記錄項目：
 
     {
@@ -253,11 +263,11 @@ ms.lasthandoff: 03/01/2017
 | SecretList |[列出保存庫中的密碼](https://msdn.microsoft.com/en-us/library/azure/dn903614.aspx) |
 | SecretListVersions |[列出密碼的版本](https://msdn.microsoft.com/en-us/library/azure/dn986824.aspx) |
 
-## <a name="a-idloganalyticsause-log-analytics"></a><a id="loganalytics"></a>使用 Log Analytics
+## <a id="loganalytics"></a>使用 Log Analytics
 
 您可以使用 Log Analytics 中的 Azure 金鑰保存庫解決方案來檢閱 Azure 金鑰保存庫 AuditEvent 記錄檔。 如需詳細資訊 (包括如何進行此設定)，請參閱 [Log Analytics 中的 Azure Key Vault 解決方案](../log-analytics/log-analytics-azure-key-vault.md)。 如果您需要從 Log Analytics 預覽版時期所提供的舊 Key Vault 解決方案 (其中您是先將記錄檔路由遞送至「Azure 儲存體」帳戶，然後將 Log Analytics 設定成從該處讀取) 移轉，本文也包含相關指示。
 
-## <a name="a-idnextanext-steps"></a><a id="next"></a>後續步驟
+## <a id="next"></a>後續步驟
 如需在 Web 應用程式中使用 Azure 金鑰保存庫的教學課程，請參閱 [從 Web 應用程式使用 Azure 金鑰保存庫](key-vault-use-from-web-application.md)。
 
 如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。

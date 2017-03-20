@@ -12,30 +12,33 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/21/2017
+ms.date: 03/14/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 22b50dd6242e8c10241b0626b48f8ef842b6b0fd
-ms.openlocfilehash: c33ca9e5292096a0fd96d98da3e89d721463e903
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 4674985363bc1267449e018ab15a53757a8fd32d
+ms.lasthandoff: 03/15/2017
 
 
 ---
 # <a name="how-does-azure-site-recovery-work"></a>Azure Site Recovery 如何運作？
 
-閱讀本文，了解 [Azure Site Recovery](site-recovery-overview.md) 服務的基礎架構以及讓它運作的元件。
+本文說明 [Azure Site Recovery](site-recovery-overview.md) 服務的基礎架構以及可讓它運作的元件。
 
 如有任何意見，請張貼於這篇文章下方或 [Azure 復原服務論壇 (英文)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 中。
 
 
-## <a name="replication-to-azure"></a>複寫至 Azure
+## <a name="replicate-to-azure"></a>複寫至 Azure
 
 您可以將下列項目複寫至 Azure：
+
 - **VMware**︰[支援主機](site-recovery-support-matrix-to-azure.md#support-for-datacenter-management-servers)上執行的內部部署 VMware VM。 您可以複寫執行[支援的作業系統](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions)的 VMware VM
 - **Hyper-V**︰[支援主機](site-recovery-support-matrix-to-azure.md#support-for-datacenter-management-servers)上執行的內部部署 Hyper-V VM。
 - **實體機器**︰[支援的作業系統](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions)上執行 Windows 或 Linux 的內部部署實體伺服器。 您可以複寫 Hyper-V VM，執行 [Hyper-V 和 Azure 支援](https://technet.microsoft.com/en-us/windows-server-docs/compute/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows)的任何客體作業系統。
 
-## <a name="vmware-replication-to-azure"></a>VMware 複寫至 Azure
+## <a name="vmware-to-azure"></a>VMware 至 Azure
+
+以下是要將 VMware VM 複寫到 Azure 的所需項目。
 
 領域 | 元件 | 詳細資料
 --- | --- | ---
@@ -85,14 +88,16 @@ ms.lasthandoff: 03/02/2017
 
 ![容錯回復](./media/site-recovery-components/enhanced-failback.png)
 
-## <a name="physical-server-replication-to-azure"></a>實體伺服器複寫至 Azure
+## <a name="physical-to-azure"></a>實體至 Azure
 
-此複寫案例也會使用與 [VMware 到 Azure](#vmware-replication-to-azure) 的相同元件和處理序，但請注意這些差異︰
+當您將實體內部部署伺服器複寫至 Azure 時，複寫作業也會使用和 [VMware 至 Azure](#vmware-replication-to-azure) 相同的元件和程序，但請注意這些差異︰
 
 - 您可以針對組態伺服器使用實體伺服器，而不是 VMware VM
 - 您需要內部部署的 VMware 基礎結構以供進行容錯回復。 您無法容錯回復到實體機器。
 
-## <a name="hyper-v-replication-to-azure"></a>Hyper-V 複寫至 Azure
+## <a name="hyper-v-to-azure"></a>Hyper-V 至 Azure
+
+以下是要將 Hyper-V VM 複寫到 Azure 的所需項目。
 
 **領域** | **元件** | **詳細資料**
 --- | --- | ---
@@ -130,7 +135,7 @@ ms.lasthandoff: 03/02/2017
 ![元件](./media/site-recovery-components/arch-onprem-onprem-azure-vmm.png)
 
 
-## <a name="replication-to-a-secondary-site"></a>複寫至次要網站
+## <a name="replicate-to-a-secondary-site"></a>複寫至次要站台
 
 您可以將下列項目複寫至次要網站：
 
@@ -139,13 +144,15 @@ ms.lasthandoff: 03/02/2017
 - **Hyper-V**：在 VMM 雲端中進行管理之[支援 Hyper-V 主機](site-recovery-support-matrix-to-sec-site.md#on-premises-servers)上執行的內部部署 Hyper-V VM。 [支援的主機](site-recovery-support-matrix-to-azure.md#support-for-datacenter-management-servers). 您可以複寫 Hyper-V VM，執行 [Hyper-V 和 Azure 支援](https://technet.microsoft.com/en-us/windows-server-docs/compute/hyper-v/supported-windows-guest-operating-systems-for-hyper-v-on-windows)的任何客體作業系統。
 
 
-## <a name="vmware-vmphysical-server-replication-to-a-secondary-site"></a>VMware VM/實體伺服器複寫至次要網站
+## <a name="vmwarephysical-to-a-secondary-site"></a>VMware/實體至次要網站
+
+您可以使用 InMage Scout 將 VMware VM 或實體伺服器複寫至次要網站。
 
 ### <a name="components"></a>元件
 
 **領域** | **元件** | **詳細資料**
 --- | --- | ---
-**Azure** | 您會使用 InMage Scout 部署此案例。 | 若要取得 InMage Scout，您必須要有 Azure 訂用帳戶。<br/><br/> 建立復原服務保存庫之後，您可下載 InMage Scout 並安裝最新的更新，以設定部署。
+**Azure** | InMage Scout。 | 若要取得 InMage Scout，您必須要有 Azure 訂用帳戶。<br/><br/> 建立復原服務保存庫之後，您可下載 InMage Scout 並安裝最新的更新，以設定部署。
 **處理序伺服器** | 位於主要網站 | 您部署處理序伺服器來處理快取、壓縮和資料最佳化。<br/><br/> 它也會處理您想要保護的機器的整合代理程式推入安裝。
 **組態伺服器** | 位於次要網站 | 組態伺服器會使用管理網站或 vContinuum 主控台來管理、設定和監視您的部署。
 **vContinuum 伺服器** | 選用。 與組態伺服器安裝在相同的位置。 | 它會提供主控台來管理及監視您的受保護的環境。
@@ -166,7 +173,9 @@ ms.lasthandoff: 03/02/2017
 
 
 
-## <a name="hyper-v-vm-replication-to-a-secondary-site"></a>Hyper-V VM 複寫至次要網站
+## <a name="hyper-v-to-a-secondary-site"></a>Hyper-V 至次要網站
+
+以下是要將 Hyper-V VM 複寫到次要網站的所需項目。
 
 
 **領域** | **元件** | **詳細資料**
@@ -202,25 +211,8 @@ ms.lasthandoff: 03/02/2017
 7. 若要讓主要網站再次成為使用中位置，您需要起始從次要網站到主要網站的計劃性容錯移轉，然後再進行另一個反向複寫。
 
 
-## <a name="hyper-v-replication-workflow"></a>Hyper-V 複寫工作流程
-
-**工作流程階段** | **動作**
---- | ---
-1.**啟用保護** | 啟用 Hyper-V VM 的保護之後，便會起始**啟用保護**作業，以檢查機器是否符合先決條件。 該作業會叫用兩種方法︰<br/><br/> [CreateReplicationRelationship](https://msdn.microsoft.com/library/hh850036.aspx)，以使用您的設定來設定複寫。<br/><br/> [StartReplication](https://msdn.microsoft.com/library/hh850303.aspx)，以初始化完整的 VM 複寫。
-2.**初始複寫** |  擷取虛擬機器快照，並且逐一複寫虛擬硬碟，直到它們全部複製到次要位置。<br/><br/> 完成此作業所需的時間取決於 VM 大小、網路頻寬，以及初始複寫方法。<br/><br/> 如果在初始複寫正在進行時發生磁碟變更，Hyper-V 複本複寫追蹤器會追蹤這些變更，並記錄在 Hyper-V 複寫記錄檔 (.hrl)，這類檔案位於與磁碟相同的資料夾中。<br/><br/> 每個磁碟都有一個相關聯的.hrl 檔案，將會傳送至次要儲存體。<br/><br/> 當初始複寫正在進行時，快照和記錄檔會取用磁碟資源。 當初始複寫完成時，會刪除 VM 快照，並且會同步處理和合併記錄檔中的差異磁碟變更。
-3.**完成保護** | 初始複寫完成之後，**完成保護**作業會設定網路和其他複寫後設定，如此就能讓虛擬機器受到保護。<br/><br/> 如果您要複寫至 Azure，您可能需要調整虛擬機器的設定，使其準備好進行容錯移轉。<br/><br/> 此時，您可以執行測試容錯移轉，以確認一切如預期般運作。
-4.**複寫** | 在初始複寫之後，會根據複寫設定，開始進行差異同步處理。<br/><br/> **複寫失敗**：如果差異複寫失敗且完整複寫因為頻寬或時間需要大量成本，就會發生重新同步處理。 例如，如果 .hrl 檔案達到磁碟大小的 50%，系統就會標示 VM 以便重新同步處理。 重新同步處理會計算來源和目標虛擬機器的總和檢查碼，並只傳送差異部分，藉此將傳送的資料量降至最低。 重新同步處理完成之後，會繼續進行差異複寫。 根據預設，重新同步處理會排程在上班時間以外的時間自動執行，但是您可以手動重新同步處理虛擬機器。<br/><br/> **複寫錯誤**：如果發生複寫錯誤，會有內建的重試。 如果它是無法復原的錯誤，例如驗證或授權錯誤，或複本機器處於無效狀態，則不會嘗試重試。 如果它是可復原的錯誤，例如網路錯誤，或低磁碟空間/記憶體，則會發生重試，重試之間的間隔會遞增 (1、2、4、8、10，然後每隔 30 分鐘)。
-5.**計劃性/非計劃性容錯移轉** | 您可以視需要執行計劃性或非計劃性容錯移轉。<br/><br/> 如果您執行計劃性容錯移轉，則來源 VM 會關閉以確保不會遺失資料。<br/><br/> 建立複本 VM 之後，它們即會處於認可擱置中的狀態。 您需要認可它們以完成容錯移轉。<br/><br/> 主要網站已啟動並執行之後，您就可以在主要網站可用時容錯回復至其中。
-
-
-**圖 8：Hyper-V 工作流程**
-
-![工作流程](./media/site-recovery-components/arch-hyperv-azure-workflow.png)
-
-
-
-
 ## <a name="next-steps"></a>後續步驟
 
-[檢查必要條件](site-recovery-prereq.md)
+- [深入了解](site-recovery-hyper-v-azure-architecture.md) Hyper-V 複寫工作流程。
+- [檢查必要條件](site-recovery-prereq.md)
 

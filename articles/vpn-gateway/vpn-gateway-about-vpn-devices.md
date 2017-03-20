@@ -16,33 +16,30 @@ ms.workload: infrastructure-services
 ms.date: 03/03/2017
 ms.author: yushwang;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: bea87fce9f1b1587af5a3e0d827a75e93d7bf534
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 13ef48ebe79571c7139e46f9510a5f8d2f504cb7
+ms.lasthandoff: 03/15/2017
 
 
 ---
-# <a name="about-vpn-devices-for-site-to-site-vpn-gateway-connections"></a>關於站對站 VPN 閘道連線的 VPN 裝置
-使用 VPN 閘道設定站對站 (S2S) 跨單位 VPN 連接需要有 VPN 裝置。 站對站連線可以用來建立混合式解決方案，或者用於您想要在內部部署網路與虛擬網路之間建立安全連線之時。 這篇文章討論相容的 VPN 裝置和組態參數。
+# <a name="about-vpn-devices-and-ipsecike-parameters-for-site-to-site-vpn-gateway-connections"></a>關於 VPN 裝置和站對站 VPN 閘道連線的 IPsec/IKE 參數
+
+使用 VPN 閘道設定站對站 (S2S) 跨單位 VPN 連接需要有 VPN 裝置。 站對站連線可以用來建立混合式解決方案，或者用於您想要在內部部署網路與虛擬網路之間建立安全連線之時。 這篇文章討論相容的 VPN 裝置和組態參數。 本文件提供 Azure VPN 閘道的 IPsec/IKE 參數清單，和連線至 Azure VPN 閘道的已驗證 VPN 裝置清單。
 
 
 > [!IMPORTANT]
-> 如果您的內部部署 VPN 裝置與 Azure VPN 閘道之間發生連線問題，請參考[已知的裝置相容性問題](#known)。
-> 
-> 
+> 如果您的內部部署 VPN 裝置與 Azure VPN 閘道之間發生連線問題，請參考[已知的裝置相容性問題](#known)。 
 
 
 ###<a name="items-to-note-when-viewing-the-tables"></a>檢視表格時應注意的項目：
 
-* 靜態與動態路由的名稱已經變更。 您可能二種詞彙都會看到。 只有變更名稱，功能未變更。
+* Azure VPN 閘道的名稱已經變更。 您可能二種詞彙都會看到。 只有變更名稱，功能未變更。
   * 靜態路由 = 原則式
   * 動態路由 = 路由式
 * 除非另有說明，否則高效能 VPN 閘道和路由式 VPN 閘道的規格相同。 例如，已經驗證與路由式 VPN 閘道相容的 VPN 裝置，也能與 Azure 高效能 VPN 閘道相容。
 
 > [!NOTE]
 > 設定站對站連線時，您的 VPN 裝置需要公開的 IPv4 IP 位址。                                                                                                                                                                               
->
->
 
 
 ## <a name="devicetable"></a>已經驗證的 VPN 裝置
@@ -102,58 +99,80 @@ ms.lasthandoff: 03/04/2017
 | &lt;SP_AzureGatewayIpAddress&gt; |此為您虛擬網路的特定資訊，位於管理入口網站中的 [閘道器 IP 位址] 。 |
 | &lt;SP_PresharedKey&gt; |此資訊專屬於您的虛擬網路，是 [管理入口網站] 中的管理金鑰。 |
 
-## <a name="IPSec"></a>IPsec 參數
+## <a name="IPSec"></a>IPsec/IKE 參數
 > [!NOTE]
-> 雖然 Azure VPN 閘道支援下表所列的值，但您目前無法指定或選取 Azure VPN 閘道的特定組合。 您必須指定內部部署 VPN 裝置的任何條件約束。 此外，您必須將 MSS 固定在 1350。
->
->
+> 雖然 Azure VPN 閘道支援下表所列的值，但您目前沒有任何機制可指定，或從 Azure VPN 閘道選取演算法或參數的特定組合。 您必須指定內部部署 VPN 裝置的任何條件約束。
+> 
+> 此外，您必須將 **MSS** 固定在 **1350**。
 
-### <a name="ike-phase-1-setup"></a>IKE 階段 1 設定
-| **屬性** | **原則式** | **路由式和標準或高效能 VPN 閘道** |
-| --- | --- | --- |
-| IKE 版本 |IKEv1 |IKEv2 |
-| Diffie-Hellman 群組 |群組 2 (1024 位元) |群組 2 (1024 位元) |
-| 驗證方法 |預先共用金鑰 |預先共用金鑰 |
-| 加密演算法 |AES256 AES128 3DES |AES256 3DES |
-| 雜湊演算法 |SHA1(SHA128) |SHA1(SHA128)、SHA2(SHA256) |
-| 階段 1 安全性關聯 (SA) 存留期 (時間) |28,800 秒 |10,800 秒 |
+在下表中︰
 
-### <a name="ike-phase-2-setup"></a>IKE 階段 2 設定
-| **屬性** | **原則式** | **路由式和標準或高效能 VPN 閘道** |
-| --- | --- | --- |
-| IKE 版本 |IKEv1 |IKEv2 |
-| 雜湊演算法 |SHA1(SHA128)、SHA2(SHA256) |SHA1(SHA128)、SHA2(SHA256) |
-| 階段 2 安全性關聯 (SA) 存留期 (時間) |3,600 秒 |3,600 秒 |
-| 階段 2 安全性關聯 (SA) 存留期 (輸送量) |102,400,000 KB |- |
-| IPsec SA 加密和驗證提供項目 (依喜好順序) |1.ESP-AES256 2. ESP-AES128 3. ESP-3DES 4. N/A |請參閱「路由式閘道 IPsec 安全性關聯 (SA) 提供項目」(下面) |
-| 完整轉寄密碼 (PFS) |否 |否 (*) |
-| 停用的對等偵測 |不支援 |支援 |
+* SA = 安全性關聯
+* IKE 階段 1 也稱為「主要模式」
+* IKE 階段 2 也稱為「快速模式」
 
-(*) 身為 IKE 回應者的 Azure 閘道器可以接受 PFS DH 群組 1、2、5、14、24。
+### <a name="ike-phase-1-main-mode-parameters"></a>IKE 階段 1 (主要模式) 參數
+| **屬性**          |**原則式**    | **路由式**    |
+| ---                   | ---               | ---               |
+| IKE 版本           |IKEv1              |IKEv2              |
+| Diffie-Hellman 群組  |群組 2 (1024 位元) |群組 2 (1024 位元) |
+| 驗證方法 |預先共用金鑰     |預先共用金鑰     |
+| 加密與雜湊演算法 |1.AES256、SHA256<br>2.AES256、SHA1<br>3.AES128、SHA1<br>4. 3DES、SHA1 |1.AES256、SHA1<br>2.AES256、SHA256<br>3.AES128、SHA1<br>4.AES128、SHA256<br>5. 3DES、SHA1<br>6. 3DES、SHA256 |
+| SA 存留期           |28,800 秒     |10,800 秒     |
 
-### <a name="routebased-gateway-ipsec-security-association-sa-offers"></a>路由式閘道 IPsec 安全性關聯 (SA) 提供項目
-下表列出 IPsec SA 加密及驗證提供項目。 提供項目是依其呈現或被接受的喜好設定順序而列出。
+### <a name="ike-phase-2-quick-mode-parameters"></a>IKE 階段 2 (快速模式) 參數
+| **屬性**                  |**原則式**| **路由式**                              |
+| ---                           | ---           | ---                                         |
+| IKE 版本                   |IKEv1          |IKEv2                                        |
+| 加密與雜湊演算法 |1.AES256、SHA256<br>2.AES256、SHA1<br>3.AES128、SHA1<br>4. 3DES、SHA1 |[RouteBased QM SA 提供項目](#RouteBasedOffers) |
+| SA 存留期 (時間)            |3,600 秒  |3,600 秒                                |
+| SA 存留期 (位元組)           |102,400,000 KB | -                                           |
+| 完整轉寄密碼 (PFS) |否             |[RouteBased QM SA 提供項目](#RouteBasedOffers) |
+| 停用的對等偵測 (DPD)     |不支援  |支援                                    |
 
-| **IPsec SA 加密及驗證提供項目** | **Azure 閘道器為啟動者** | **Azure 閘道器為回應者** |
-| --- | --- | --- |
-| 1 |ESP AES_256 SHA |ESP AES_128 SHA |
-| 2 |ESP AES_128 SHA |ESP 3_DES MD5 |
-| 3 |ESP 3_DES MD5 |ESP 3_DES SHA |
-| 4 |ESP 3_DES SHA |AH SHA1 與 ESP AES_128 與 null HMAC |
-| 5 |AH SHA1 與 ESP AES_256 與 null HMAC |AH SHA1 與 ESP 3_DES 與 null HMAC |
-| 6 |AH SHA1 與 ESP AES_128 與 null HMAC |AH MD5 與 ESP 3_DES 與 null HMAC，未提議存留期 |
-| 7 |AH SHA1 與 ESP 3_DES 與 null HMAC |AH SHA1與 ESP 3_DES SHA1，無存留期 |
-| 8 |AH MD5 與 ESP 3_DES 與 null HMAC，未提議存留期 |AH MD5 與 ESP 3_DES MD5，無存留期 |
-| 9 |AH SHA1與 ESP 3_DES SHA1，無存留期 |ESP DES MD5 |
-| 10 |AH MD5 與 ESP 3_DES MD5，無存留期 |ESP DES SHA1，無存留期 |
-| 11 |ESP DES MD5 |AH SHA1 與 ESP DES null HMAC，未提議存留期 |
-| 12 |ESP DES SHA1，無存留期 |AH MD5 與 ESP DES null HMAC，未提議存留期 |
-| 13 |AH SHA1 與 ESP DES null HMAC，未提議存留期 |AH SHA1與 ESP DES SHA1，無存留期 |
-| 14 |AH MD5 與 ESP DES null HMAC，未提議存留期 |AH MD5 與 ESP DES MD5，無存留期 |
-| 15 |AH SHA1與 ESP DES SHA1，無存留期 |ESP SHA，無存留期 |
-| 16 |AH MD5 與 ESP DES MD5，無存留期 |ESP MD5，無存留期 |
-| 17 |- |AH SHA，無存留期 |
-| 18 |- |AH MD5，無存留期 |
+
+### <a name ="RouteBasedOffers"></a>RouteBased VPN IPsec 安全性關聯 (IKE 快速模式 SA) 提供項目
+下表列出 IPsec SA (IKE 快速模式) 提供項目。 提供項目是依其呈現或被接受的喜好設定順序而列出。
+
+#### <a name="azure-gateway-as-initiator"></a>Azure 閘道器為啟動者
+|-  |**加密**|**驗證**|**PFS 群組**|
+|---| ---          |---               |---          |
+| 1 |GCM AES256    |GCM (AES256)      |None         |
+| 2 |AES256        |SHA1              |None         |
+| 3 |3DES          |SHA1              |None         |
+| 4 |AES256        |SHA256            |None         |
+| 5 |AES128        |SHA1              |None         |
+| 6 |3DES          |SHA256            |None         |
+
+#### <a name="azure-gateway-as-responder"></a>Azure 閘道器為回應者
+|-  |**加密**|**驗證**|**PFS 群組**|
+|---| ---          | ---              |---          |
+| 1 |GCM AES256    |GCM (AES256)      |None         |
+| 2 |AES256        |SHA1              |None         |
+| 3 |3DES          |SHA1              |None         |
+| 4 |AES256        |SHA256            |None         |
+| 5 |AES128        |SHA1              |None         |
+| 6 |3DES          |SHA256            |None         |
+| 7 |DES           |SHA1              |None         |
+| 8 |AES256        |SHA1              |1            |
+| 9 |AES256        |SHA1              |2            |
+| 10|AES256        |SHA1              |14           |
+| 11|AES128        |SHA1              |1            |
+| 12|AES128        |SHA1              |2            |
+| 13|AES128        |SHA1              |14           |
+| 14|3DES          |SHA1              |1            |
+| 15|3DES          |SHA1              |2            |
+| 16|3DES          |SHA256            |2            |
+| 17|AES256        |SHA256            |1            |
+| 18|AES256        |SHA256            |2            |
+| 19|AES256        |SHA256            |14           |
+| 20|AES256        |SHA1              |24           |
+| 21|AES256        |SHA256            |24           |
+| 22|AES128        |SHA256            |None         |
+| 23|AES128        |SHA256            |1            |
+| 24|AES128        |SHA256            |2            |
+| 25|AES128        |SHA256            |14           |
+| 26|3DES          |SHA1              |14           |
 
 * 您可以使用路由式和高效能 VPN 閘道指定 IPsec ESP NULL 加密。 以 Null 為基礎的加密不提供傳輸中資料的保護，應該只用於時需要最大輸送量和最小延遲時。  用戶端可能會選擇在 VNet 對 VNet 通訊案例中，或當加密套用至解決方案中的其他地方時，使用此功能。
 * 透過網際網路的跨單位連線，請使用含有加密和雜湊演算法的預設 Azure VPN 閘道設定 (如上表所列)，以確保重要通訊的安全性。

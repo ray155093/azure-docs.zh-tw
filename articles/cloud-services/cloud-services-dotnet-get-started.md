@@ -15,8 +15,9 @@ ms.topic: hero-article
 ms.date: 11/16/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 02474f8ab77763be1b40da95f5d7cd935ba7f121
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: f72a3650de5b1d43c992a801ffce1384774594f2
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -54,8 +55,9 @@ ms.openlocfilehash: 02474f8ab77763be1b40da95f5d7cd935ba7f121
 
 * Visual Studio 2013
 * Visual Studio 2015
+* Visual Studio 2017
 
-如果您尚未安裝任一個產品，安裝 Azure SDK 時，將為您自動安裝 Visual Studio 2015。
+如果您尚未安裝任一個產品，安裝 Azure SDK 時，將為您自動安裝 Visual Studio。
 
 ## <a name="application-architecture"></a>應用程式架構
 本應用程式會將廣告儲存在 SQL 資料庫中，使用 Entity Framework Code First 來建立表格和存取資料。 針對每個廣告，資料庫會儲存兩個 URL，一個用於完整大小的影像，而另一個用於縮圖。
@@ -76,7 +78,7 @@ ms.openlocfilehash: 02474f8ab77763be1b40da95f5d7cd935ba7f121
 
     根據預設，Visual Studio 會自動還原未包含在 *.zip* 檔案中的 NuGet 封裝內容。 如果套件未還原，請移至 [管理方案的 NuGet 套件] 對話方塊，然後按一下右上方的 [還原] 按鈕來手動安裝。
 5. 在 [方案總管] 中，確定已選取 **ContosoAdsCloudService** 作為啟動專案。
-6. 如果您使用 Visual Studio 2015，變更 ContosoAdsWeb 專案中的 Web.config 檔案和ContosoAdsCloudService 專案中的 ServiceConfiguration.Local.cscfg 檔案的應用程式中的 SQL Server 連接字串。 在每個案例中，將 "(localdb)\v11.0" 變更為 "(localdb)\MSSQLLocalDB"。
+6. 如果您使用 Visual Studio 2015 或更新版本，變更 ContosoAdsWeb 專案中的 Web.config 檔案和 ContosoAdsCloudService 專案中的 ServiceConfiguration.Local.cscfg 檔案的應用程式中的 SQL Server 連接字串。 在每個案例中，將 "(localdb)\v11.0" 變更為 "(localdb)\MSSQLLocalDB"。
 7. 按 CTRL+F5 執行應用程式。
 
     在本機執行雲端服務專案時，Visual Studio 會自動叫用 Azure「計算模擬器」和 Azure「儲存體模擬器」。 計算模擬器會使用您電腦的資源來模擬 Web 角色和背景工作角色環境。 儲存體模擬器則使用 [SQL Server Express LocalDB](http://msdn.microsoft.com/library/hh510202.aspx) 資料庫來模擬 Azure 雲端儲存體。
@@ -364,7 +366,7 @@ Web 角色專案和背景工作角色專案的 Azure 儲存體帳戶連接字串
     </connectionStrings>
     ```
 
-    如果您使用 Visual Studio 2015，將 "v11.0" 取代為 "MSSQLLocalDB"。
+    如果您使用 Visual Studio 2015 或更新版本，將 "v11.0" 取代為 "MSSQLLocalDB"。
 2. 儲存您的變更。
 3. 在 ContosoAdsCloudService 專案中，於 [角色] 下的 ContosoAdsWeb 上按一下滑鼠右鍵，然後按一下 [屬性]。
 
@@ -381,7 +383,7 @@ Web 角色專案和背景工作角色專案的 Azure 儲存體帳戶連接字串
 
    * 名稱：ContosoAdsDbConnectionString
    * 類型：字串
-   * 值：貼上用於 Web 角色專案的相同連接字串。 (下列範例適用於 Visual Studio 2013，如果您複製此範例且您是使用 Visual Studio 2015，請記得變更資料來源。)
+   * 值：貼上用於 Web 角色專案的相同連接字串。 (下列範例適用於 Visual Studio 2013，如果您複製此範例且您是使用 Visual Studio 2015 或更新版本，請記得變更資料來源。)
 
        ```
        Data Source=(localdb)\v11.0; Initial Catalog=ContosoAds; Integrated Security=True; MultipleActiveResultSets=True;
@@ -390,7 +392,7 @@ Web 角色專案和背景工作角色專案的 Azure 儲存體帳戶連接字串
 ### <a name="add-code-files"></a>加入程式碼檔案
 在本節中，您會從所下載的方案複製檔案到新方案。 下一節將示範和說明此程式碼的重要部分。
 
-若要加入檔案到專案或資料夾，請以滑鼠右鍵按一下專案或資料夾，然後按一下 [  - **現有項目**。 選取您需要的檔案，然後按一下 [加入] 。 如果詢問您是否要取代現有的檔案，請按一下 [是] 。
+若要加入檔案到專案或資料夾，請以滑鼠右鍵按一下專案或資料夾，然後按一下   - **現有項目**。 選取您需要的檔案，然後按一下 [加入] 。 如果詢問您是否要取代現有的檔案，請按一下 [是] 。
 
 1. 在 ContosoAdsCommon 專案中，刪除 *Class1.cs* 檔案，並在其位置新增來自所下載專案的 *Ad.cs* 和 *ContosoAdscontext.cs* 檔案。
 2. 在 ContosoAdsWeb 專案中，從所下載的專案加入下列檔案。
@@ -769,9 +771,4 @@ Contoso Ads 應用程式特意保持簡潔，以做為入門的教學課程。 �
 * [如何管理雲端服務](cloud-services-how-to-manage.md)
 * [Azure 儲存體](/documentation/services/storage/)
 * [如何選擇雲端服務提供者](https://azure.microsoft.com/overview/choosing-a-cloud-service-provider/)
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

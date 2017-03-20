@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/30/2017
-ms.author: jotaub
+ms.date: 03/08/2017
+ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: c52f7055897ba8e851add431e5ab9c0defdb5bfc
-ms.openlocfilehash: 29523e308e038904773582c73c1688f57e3c31e3
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 5c326a025a4276ae9b1a777439ed6c728d3e7103
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -29,17 +30,21 @@ ms.openlocfilehash: 29523e308e038904773582c73c1688f57e3c31e3
 
 若要完成此教學課程，您需要下列項目：
 
-* [Microsoft Visual Studio](http://visualstudio.com)
+* [Microsoft Visual Studio 2015 或更高版本](http://visualstudio.com)。 本教學課程中的螢幕擷取畫面使用 Visual Studio 2017。
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/free/)。
 
-## <a name="send-messages-to-event-hubs"></a>將訊息傳送至事件中心
+## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>建立事件中樞命名空間和事件中樞
+
+第一個步驟是使用 [Azure 入口網站](https://portal.azure.com)來建立「事件中樞」類型的命名空間，然後取得您應用程式與「事件中樞」進行通訊所需的管理認證。 若要建立命名空間和「事件中樞」，請依照[這篇文章](event-hubs-create.md)中的程序操作，然後繼續進行下列步驟。
+
+## <a name="create-a-console-application"></a>建立主控台應用程式
 在本節中，您將撰寫一個 Windows 主控台應用程式，以將事件傳送至事件中心。
 
-1. 在 Visual Studio 中，使用**主控台應用程式**專案範本建立新的「Visual C# 桌面應用程式」專案。 將專案命名為 **Sender**。
+1. 在 Visual Studio 中，使用 **主控台應用程式** 專案範本建立新的「Visual C# 桌面應用程式」專案。 將專案命名為 **Sender**。
    
     ![](./media/event-hubs-dotnet-framework-getstarted-send/create-sender-csharp1.png)
-2. 在 [方案總管] 中，以滑鼠右鍵按一下方案，然後按一下 [管理方案的 NuGet 封裝] 。 
-3. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。 確定已在 [版本] 方塊中指定專案名稱 (傳送者)。 按一下 [安裝] 並接受使用條款。 
+2. 在 [方案總管] 中，以滑鼠右鍵按一下 [寄件者] 專案，然後按一下 [管理方案的 NuGet 封裝]。 
+3. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。 按一下 [安裝] 並接受使用條款。 
    
     ![](./media/event-hubs-dotnet-framework-getstarted-send/create-sender-csharp2.png)
    
@@ -91,6 +96,9 @@ ms.openlocfilehash: 29523e308e038904773582c73c1688f57e3c31e3
     Console.ReadLine();
     SendingRandomMessages();
     ```
+8. 執行程式，並確定沒有任何錯誤。
+  
+恭喜！ 您現在已可以傳送訊息至事件中樞。
 
 ## <a name="next-steps"></a>後續步驟
 您現在已建置一個可建立事件中樞及傳送資料的工作應用程式，接下來可繼續進行下列案例：
@@ -104,14 +112,5 @@ ms.openlocfilehash: 29523e308e038904773582c73c1688f57e3c31e3
 [20]: ./media/event-hubs-csharp-ephcs-getstarted/create-eh-proj2.png
 [21]: ./media/event-hubs-csharp-ephcs-getstarted/run-csharp-ephcs1.png
 [22]: ./media/event-hubs-csharp-ephcs-getstarted/run-csharp-ephcs2.png
-
-<!-- Links -->
-[Event Processor Host]: https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost
-[Event Hubs overview]: event-hubs-overview.md
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

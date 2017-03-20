@@ -16,9 +16,9 @@ ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
-ms.openlocfilehash: 9a17b749a50c0f75890fa71b4ae00391aa63876a
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 0682a048429d8e980da529975a24dde28a9812fe
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -105,7 +105,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
   * 如同背景工作角色，建議為 [OS 版本]指定 `*`，以便自動升級節點，而且不需為了因應新發行的版本而執行工作。 選取特定 OS 版本的主要使用案例是為了確保應用程式相容性，以允許在更新版本之前執行回溯相容性測試。 通過驗證之後，即可更新集區的 [OS 版本] 並安裝新的 OS 映像，如此會中斷任何執行中的工作並重新排入佇列。
 * **節點的大小**
 
-    **雲端服務組態** 計算節點大小會列於 [雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。 Batch 支援 `ExtraSmall`以外的所有雲端服務大小。
+    **雲端服務組態** 計算節點大小會列於 [雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。 Batch 支援 `ExtraSmall`、`STANDARD_A1_V2` 和 `STANDARD_A2_V2` 以外的所有雲端服務大小。
 
     [虛擬機器組態] 計算節點大小列於 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-linux-sizes.md) (Linux) 和 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-windows-sizes.md) (Windows)。 除了 `STANDARD_A0` 和進階儲存體的大小 (`STANDARD_GS`、`STANDARD_DS` 和 `STANDARD_DSV2` 系列) 以外，Batch 支援所有的 Azure VM 大小。
 

@@ -14,13 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/11/2017
 ms.author: nberdy
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 9c2817129162ab17faadf3c5ecf8ef7dcb370c3c
-ms.openlocfilehash: 2c9c4b59077ea7d31677a5e1c690160bf63633a6
+ms.sourcegitcommit: 37b2a82d7f6043224e68219fde753eef73078ffd
+ms.openlocfilehash: 930be4397a56dc0af0fd13305e0e4171929cb2cc
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="direct-methods"></a>直接方法
+# <a name="understand-and-invoke-direct-methods-from-iot-hub"></a>了解 IoT 中樞的直接方法並從中樞叫用直接方法
 ## <a name="overview"></a>概觀
 IoT 中樞能讓您從雲端在裝置上叫用直接方法。 直接方法代表與裝置的要求-回覆互動，類似於 HTTP 呼叫，因為會立即成功或失敗 (在使用者指定的逾時之後)。 這對於依據裝置是否可以回應的不同立即動作的案例相當有用，例如如果裝置離線時傳送 SMS 喚醒至裝置 (SMS 比方法呼叫還貴)。
 
@@ -45,7 +47,7 @@ IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的
 
 直接的方法從雲端側為僅限 HTTP，從裝置側則為僅限 MQTT。
 
-方法要求和回應的承載是 JSON 文件 (最多 8KB)。
+方法要求和回應的承載是 JSON 文件 (最多 8 KB)。
 
 ## <a name="reference-topics"></a>參考主題：
 下列參考主題會提供您關於使用直接方法的詳細資訊。
@@ -141,9 +143,4 @@ IoT 中樞開發人員指南中的其他參考主題包括︰
 [lnk-methods-tutorial]: iot-hub-node-node-direct-methods.md
 [lnk-devguide-messages]: iot-hub-devguide-messaging.md
 [lnk-c2d-guidance]: iot-hub-devguide-c2d-guidance.md
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

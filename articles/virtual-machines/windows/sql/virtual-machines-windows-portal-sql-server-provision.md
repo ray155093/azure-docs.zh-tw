@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 02/28/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 5121b2f9d33ebf4749fae6d990feab3bf9244e93
-ms.openlocfilehash: 6b99dbbacd9451285cca29de4a72ffb1473479fc
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: fa7c846cf5018b5f0d918e5dc9d9020313833d77
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -53,8 +53,8 @@ Azure 虛擬機器 (VM) 資源庫涵蓋數個包含 Microsoft SQL Server 的映�
 
    ![Azure 虛擬機器刀鋒視窗](./media/virtual-machines-windows-portal-sql-server-provision/azure-compute-blade2.png)
 
-5. 檢閱可用的 SQL Server 範本。 每個範本皆識別一個 SQL Server 版本和一個作業系統。 
-6. 選取 [Windows Server 2016 上的 SQL Server 2016 SP1 Developer] 的範本。
+5. 檢閱可用的 SQL Server 映像。 每個映像皆識別一個 SQL Server 版本和一個作業系統。 
+6. 選取「Windows Server 2016 上的 SQL Server 2016 SP1 Developer」的映像。
 
    > [!TIP]
    > 本教學課程中使用 Developer 版本，因為它是免費供開發測試使用的 SQL Server 完整功能版。 您只需支付執行 VM 的費用。
@@ -97,7 +97,7 @@ Azure 虛擬機器 (VM) 資源庫涵蓋數個包含 Microsoft SQL Server 的映�
     ![SQL 基本概念刀鋒視窗](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-basic.png)
 
 ## <a name="2-choose-virtual-machine-size"></a>2.選擇虛擬機器大小
-在 [大小] 步驟上，請在 [選擇大小] 刀鋒視窗中選擇虛擬機器大小。 此刀鋒視窗一開始會顯示以您選取的範本為基礎的建議機器大小。 也可預估執行 VM 的每月成本。
+在 [大小] 步驟上，請在 [選擇大小] 刀鋒視窗中選擇虛擬機器大小。 此刀鋒視窗一開始會顯示以您選取的映像為基礎的建議機器大小。 也可預估執行 VM 的每月成本。
 
 ![SQL VM 大小選項](./media/virtual-machines-windows-portal-sql-server-provision/azure-sql-vm-choose-a-size.png)
 

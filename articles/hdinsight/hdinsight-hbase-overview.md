@@ -17,8 +17,9 @@ ms.topic: get-started-article
 ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: ec9e3c6c6919bb5ce50553a29536f821fe79f577
-ms.openlocfilehash: 3d8ee1d23fab0b410bce711afc27f8bbbad4c7e4
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 8b1d057ab533e5665513b5b5969b48e18a3ae40c
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -28,7 +29,7 @@ Apache HBase 是開放原始碼的 NoSQL 資料庫，其建置於 Hadoop 上並�
 資料儲存在資料表的資料列中，而資料列中的資料會依據資料行系列進行分組。 HBase 是無結構描述的資料庫，也就是說，在使用資料行之前，並不需要先定義資料行和其中儲存之資料的類型。 開放原始碼的程式碼會以線性方式延展，以處理數千個節點上的 PB 資料。 它可依賴散佈在 Hadoop 生態系統中的應用程式所提供的資料備援、批次處理及其他功能。
 
 ## <a name="how-is-hbase-implemented-in-azure-hdinsight"></a>Azure HDInsight 中的 HBase 是如何實作的？
-HDInsight HBase 會以受管理叢集的形式提供，並整合到 Azure 環境中。 叢集依設定會將資料直接儲存至 Azure Blob 儲存體中，使其在效能與成本的選擇中提供低延遲性與高度彈性。 這可讓客戶建置使用大型資料集的互動式網站、建置可儲存數百萬端點上之感應器和遙測資料的服務，以及使用 Hadoop 工作分析此資料。 HBase 和 Hadoop 是在 Azure 中處理巨量資料專案的好起點，尤其是它們讓即時應用程式能夠使用大型資料集。
+HDInsight HBase 會以受管理叢集的形式提供，並整合到 Azure 環境中。 叢集依設定會將資料直接儲存至 Azure 儲存體中，使其在效能與成本的選擇中提供低延遲性與高度彈性。 這可讓客戶建置使用大型資料集的互動式網站、建置可儲存數百萬端點上之感應器和遙測資料的服務，以及使用 Hadoop 工作分析此資料。 HBase 和 Hadoop 是在 Azure 中處理巨量資料專案的好起點，尤其是它們讓即時應用程式能夠使用大型資料集。
 
 HDInsight 實作運用 HBase 的向外延展架構，提供資料表自動分區功能、讀取和寫入的強大一致性，以及自動容錯移轉功能。 透過在記憶體內部快取讀取和高輸送量的串流寫入，來提高效能。 可以在虛擬網路內建立 HBase 叢集。 如需詳細資訊，請參閱[在 Azure 虛擬網路上建立 HDInsight 叢集][hbase-provision-vnet]。
 
@@ -51,14 +52,14 @@ HDInsight 實作運用 HBase 的向外延展架構，提供資料表自動分區
   
     應用程式可以將 HBase 做為資料存放區，並在此基礎上執行。 範例包括 Phoenix、OpenTSDB、Kiji 及 Titan。 應用程式也可與 HBase 整合。 範例包括 Hive、Pig、Solr、Storm、Flume、Impala、Spark、Ganglia 及 Drill。
 
-## <a name="a-namenext-stepsanext-steps"></a><a name="next-steps"></a>接續步驟
+## <a name="next-steps"></a>接續步驟
 * [開始在 HDInsight 中搭配使用 HBase 與 Hadoop][hbase-get-started]
 * [在 Azure 虛擬網路上建立 HDInsight 叢集][hbase-provision-vnet]
 * [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-replication.md)
 * [使用 HDInsight 中的 HBase 分析 Twitter 情緒][hbase-twitter-sentiment]
 * [使用 Maven 建置搭配使用 HBase 和 HDInsight (Hadoop) 的 Java 應用程式][hbase-build-java-maven]
 
-## <a name="a-namesee-alsoasee-also"></a><a name="see-also"></a>另請參閱
+## <a name="see-also"></a>另請參閱
 * [Apache HBase](https://hbase.apache.org/)
 * [Bigtable：結構化資料的分散式儲存體系統](http://research.google.com/archive/bigtable.html)
 
@@ -81,9 +82,4 @@ HDInsight 實作運用 HBase 的向外延展架構，提供資料表自動分區
 [azure-create-storageaccount]: ../storage-create-storage-account.md
 
 [apache-hadoop]: http://hadoop.apache.org/
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

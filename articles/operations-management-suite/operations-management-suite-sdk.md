@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/08/2016
+ms.date: 03/01/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 5d1ace8c6dab1655b0c2b512376b69444434f1ad
-ms.openlocfilehash: 414699ef94a6679f1b3bc777669674247a3449e9
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 03e0f5b6fa26806083cd7852e123495c898bcf0c
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -37,16 +38,18 @@ ms.openlocfilehash: 414699ef94a6679f1b3bc777669674247a3449e9
 
 ## <a name="log-analytics"></a>Log Analytics
 * [Log Analytics 文件](http://azure.microsoft.com/documentation/services/log-analytics)
+* [Log Analytics REST API](/rest/api/loganalytics)
 * [Log Analytics HTTP 資料收集器 API](../log-analytics/log-analytics-data-collector-api.md)
-* [記錄檔搜尋 API](../log-analytics/log-analytics-log-search-api.md)
-* [警示 API](../log-analytics/log-analytics-api-alerts.md)
+* [記錄搜尋 REST API](../log-analytics/log-analytics-log-search-api.md)
+* [警示 REST API](../log-analytics/log-analytics-api-alerts.md)
 * [Log Analytics PowerShell Cmdlet](https://msdn.microsoft.com/library/mt188224.aspx)
 * [Log Analytics .NET 程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.OperationalInsights/0.16.0-preview)
 
 ## <a name="service-map"></a>服務對應
 * [服務對應文件](operations-management-suite-service-map.md)
+* [服務對應 REST API](https://docs.microsoft.com/rest/api/servicemap/)
 
-## <a name="site-recovery"></a>Site Recovery
+## <a name="site-recovery"></a>站台復原
 * [Site Recovery PowerShell Cmdlet](https://msdn.microsoft.com/library/mt637930.aspx)
 * [Site Recovery REST API](https://msdn.microsoft.com/library/azure/mt750497.aspx)
 * [將 Azure 自動化 Runbook 新增至復原計劃](../site-recovery/site-recovery-runbook-automation.md)
@@ -54,11 +57,6 @@ ms.openlocfilehash: 414699ef94a6679f1b3bc777669674247a3449e9
 
 ## <a name="next-steps"></a>後續步驟
 * 閱讀關於[與 OMS 服務進行整合](operations-management-suite-integration.md)的各種選項。
-* 在 OMS 中建立自訂解決方案 (即將推出)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
+* 在 [OMS 中建立自訂解決方案](operations-management-suite-solutions-creating.md)。
 
 
