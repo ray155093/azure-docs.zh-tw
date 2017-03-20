@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/23/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: c8cd6efc9af5b0022ed5fed315a63395477e1c34
-ms.openlocfilehash: 7b132387468a97b2fb149576092f7867edc43e6e
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: d9e79c78f55dc80e113062bf0a134c02787e06a1
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -100,7 +100,7 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 
 ## <a name="images"></a>映像
 
-受控磁碟也支援建立受管理的自訂映像。 您可以從儲存體帳戶中的自訂 VHD 或直接從執行中的 VM 建立映像。 這會在單一映像中擷取與執行中 VM 相關聯的所有受控磁碟，包括 OS 和資料磁碟。 這可讓您使用自訂映像建立數百個 VM，而不需要複製或管理任何儲存體帳戶。
+受控磁碟也支援建立受管理的自訂映像。 您可以從儲存體帳戶中的自訂 VHD 或直接從一般化 (系統預備的) VM 建立映像。 這會在單一映像中擷取與 VM 相關聯的所有受控磁碟，包括 OS 和資料磁碟。 這可讓您使用自訂映像建立數百個 VM，而不需要複製或管理任何儲存體帳戶。
 
 如需建立映像的相關資訊，請參閱下列文章︰
 * [在 Azure 中如何擷取一般化 VM 的受管理映像](../virtual-machines/virtual-machines-windows-capture-image-resource.md)
@@ -112,7 +112,7 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 
 快照集是在建立時的磁碟複本。 它只適用於一個磁碟。 如果您的 VM 只有一個磁碟 (OS)，您可以建立它的快照集或映像，然後從快照集或映像建立 VM。
 
-如果 VM 有五個磁碟，且都已等量分配，情形又如何？ 您可以建立每個磁碟的快照集，但 VM 內對各磁碟的狀態一無所知 – 快照集只知道那個磁碟的情形。 在此情況下，快照集可能需要彼此協調，但目前不支援這樣做。 因此，在此情況下，如果您想要建立 VM 的複本，您必須建立映像。 根據預設，映像會包含所有這五個磁碟的協調複本。
+如果 VM 有五個磁碟，且都已等量分配，情形又如何？ 您可以建立每個磁碟的快照集，但 VM 內對各磁碟的狀態一無所知 – 快照集只知道那個磁碟的情形。 在此情況下，快照集可能需要彼此協調，但目前不支援這樣做。
 
 ## <a name="azure-backup-service-support"></a>Azure 備份服務支援 
 

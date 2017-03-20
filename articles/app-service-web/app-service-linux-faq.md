@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/14/2017
 ms.author: aelnably
 translationtype: Human Translation
-ms.sourcegitcommit: 842eb16768fd5064bd57a0c3672e7ae57885720e
-ms.openlocfilehash: 6ed0f07268715102be197bb8a6654fb05b52b0c4
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 148bc76b7f3e09745cbecfa41710a5e949704948
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -61,6 +61,10 @@ ms.lasthandoff: 03/01/2017
 **問︰**是否支援未編譯的 .NET Core 應用程式？
 
 **答：**否。 您必須部署具有所有相依性的已編譯 .NET Core 應用程式。 我們正計劃在未來的版本中，提供完整的部署和建置體驗。
+
+**問︰**您是否支援以 Composer 做為 PHP 應用程式的相依性管理程式？
+
+**答：**否。 您必須部署具有所有相依性的 PHP 應用程式。 我們計劃在未來的版本中提供完整的部署體驗。
 
 ## <a name="custom-containers"></a>自訂容器
 

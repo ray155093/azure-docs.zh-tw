@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 10/19/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 30faf4b99414e5f7b5131c231b4dccf3a7272d25
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: bd67cb868e57be0d6cb9c3ea37f67de6dca4e307
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -250,6 +250,34 @@ Get-AzureRmVMUsage -Location "West US"
 
 ### <a name="migrate-a-storage-account"></a>移轉儲存體帳戶
 完成虛擬機器的移轉之後，建議您移轉儲存體帳戶。
+
+移轉儲存體帳戶之前，請執行上述必要條件檢查︰
+
+* **檢查傳統 VM 磁碟是否儲存於儲存體帳戶**
+
+    使用下列命令，尋找連線至儲存體帳戶中 VM 的傳統 VM 磁碟︰ 
+
+    ```powershell
+     $storageAccountName = 'yourStorageAccountName'
+      Get-AzureDisk | where-Object {$_.MediaLink.Host.Contains($storageAccountName)} | Select-Object -ExpandProperty AttachedTo -Property `
+      DiskName | Format-List -Property RoleName, DiskName 
+
+    ```
+    上述命令會傳回儲存體帳戶中所有傳統 VM 磁碟的 RoleName 和 DiskName 屬性。 RoleName 是磁碟所連線的虛擬機器名稱。 如果上述命令傳回磁碟，則確保這些磁碟所連線的虛擬機器會在移轉儲存體帳戶之前移轉。
+
+    使用下列命令，尋找儲存體帳戶中未連線的傳統 VM 磁碟︰ 
+
+    ```powershell
+        $storageAccountName = 'yourStorageAccountName'
+        Get-AzureDisk | where-Object {$_.MediaLink.Host.Contains($storageAccountName)} | Format-List -Property DiskName  
+
+    ```
+    如果上述命令傳回磁碟，則使用下列命令刪除這些磁碟︰
+
+    ```powershell
+       Remove-AzureDisk -DiskName 'yourDiskName'
+    ```
+     
 
 請使用下列命令來準備每個要移轉的儲存體帳戶。 在此範例中，儲存體帳戶名稱是 **myStorageAccount**。 將範例名稱取代為您自己的儲存體帳戶名稱。 
 

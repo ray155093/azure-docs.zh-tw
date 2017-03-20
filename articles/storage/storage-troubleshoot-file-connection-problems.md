@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/15/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: 212b4481affc345cff3e8abd2475c838926f5eda
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 0479db07710d7ff6037dc692e5387a314bed32ca
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -36,7 +36,7 @@ ms.lasthandoff: 03/03/2017
 * [當您從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時效能緩慢](#windowsslow)
 * [錯誤 53 嘗試掛接 Azure 檔案共用](#error53)
 * [錯誤 87 嘗試掛接為 Azure 檔案共用時，參數不正確](#error87)
-* [net use 成功，但在 Windows 檔案總管中看不到掛接的 Azure 檔案共用](#netuse)
+* [net use 成功，但在 Windows 檔案總管 UI 中看不到掛接的 Azure 檔案共用或磁碟機代碼](#netuse)
 * [我的儲存體帳戶包含 "/"，net use 命令失敗](#slashfails)
 * [我的應用程式/服務無法存取掛接的 Azure 檔案磁碟機](#accessfiledrive)
 * [效能最佳化的其他建議](#additional)
@@ -221,11 +221,13 @@ Bitlocker 加密的檔案可以複製到 Azure 檔案。 不過，檔案儲存�
 
 ## <a name="host-is-down-error-112-on-existing-file-shares-or-the-shell-hangs-when-you-run-list-commands-on-the-mount-point"></a>在現有檔案共用上發生「主機當機 (錯誤 112)」錯誤，或在掛接點上執行 list 命令時殼層停止回應
 ### <a name="cause"></a>原因
-當用戶端已經閒置一段時間，Linux 用戶端上會發生此錯誤。 發生此錯誤時，用戶端會中斷連接，然後用戶端連線逾時。 此外，此錯誤可能指出當使用「軟」掛接選項時 (這是預設值)，造成無法重新建立 TCP 連線以連線到伺服器的通訊失敗。
+當用戶端已經閒置一段時間，Linux 用戶端上會發生此錯誤。 用戶端長時間閒置時，用戶端會中斷連線，而連線會逾時。 
 
-此錯誤可能表示有 Linux 重新連線問題，原因可能是舊版核心中的已知錯誤，或其他阻止重新連線的問題 (如網路錯誤)。 
+連線可能會因各種原因而閒置。 有一個原因是使用「軟」掛接選項時 (這是預設值)，造成無法重新建立 TCP 連線以連線到伺服器的網路通訊失敗。
 
-### <a name="solution"></a>解決方式
+另一個原因可能是還有一些未存在於較舊核心的重新連線修正程式。
+
+### <a name="solution"></a>方案
 
 指定硬掛接將會強制用戶端一直等候直到連線建立或明確中斷，而且它可用來防止因為網路逾時而發生錯誤。 不過，使用者應該注意這可能會導致無限期等候，而且應該視需要處理暫停連線的情況。
 
@@ -239,7 +241,8 @@ Bitlocker 加密的檔案可以複製到 Azure 檔案。 不過，檔案儲存�
 
 * [CIFS：修正重新連線期間可能發生的 Mutex 雙重鎖定 (針對核心&4;.9 版與更新版本) (英文)](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=96a988ffeb90dba33a71c3826086fe67c897a183) 
 
-但是此變更可能尚未移植到所有 Linux 發行版本。 這是已經修正此重新連線問題及其他重新連線問題的已知熱門 Linux 核心清單：4.4.40+ 4.8.16+ 4.9.1+。您可以移至上述建議的核心版本，以取得最新的修正。
+但是此變更可能尚未移植到所有 Linux 發行版本。 這是已知的常用 Linux 核心清單，其具有這個和其他重新連線修正程式︰4.4.40+ 4.8.16+ 4.9.1+。
+您可以移至上述建議的核心版本，以便挑選最新的修正程式。
 
 ### <a name="workaround"></a>因應措施
 如果無法移至最新的核心版本，您可以使用下列因應措施解決此問題：在 Azure 檔案共用中保留一個每 30 秒 (或更短時間) 就會寫入的檔案。 這必須是寫入作業，例如重寫檔案的建立/修改日期。 否則，您可能會取得快取的結果，而您的作業可能不會觸發重新連線。 
