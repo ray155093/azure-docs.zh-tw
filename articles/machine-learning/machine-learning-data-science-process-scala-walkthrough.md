@@ -17,6 +17,7 @@ ms.author: bradsev;deguhath
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 99f12dc1ea65d4b9be3249ea5d5c7452f5a8d72e
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -1107,10 +1108,5 @@ ROC 曲線夏的領域 = 0.9846895479241554
 [Team Data Science Process 逐步解說](data-science-process-walkthroughs.md) 說明的其他端對端逐步解說示範 Team Data Science Process 針對特定案例的步驟。 這些逐步解說也示範如何將雲端和內部部署工具與服務組合成工作流程或管線，以建立智慧型應用程式。
 
 [評分 Spark 建置的機器學習模型](machine-learning-data-science-spark-model-consumption.md) 示範如何利用 Spark 內建並儲存於 Azure Blob 儲存體的機器學習模型，使用 Scala 程式碼來自動載入及評分新資料集。 您可以遵循此處提供的指示，只要將本文中的 Python 程式碼取代為 Scala 程式碼，即可自動取用。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

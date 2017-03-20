@@ -17,6 +17,7 @@ ms.author: magoedte;bwren
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 0bacd2ccb08d20c4e0457d9fc83468e747cde870
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -190,10 +191,5 @@ jsmith
 ## <a name="next-steps"></a>後續步驟
 * 目前文件中的 Runbook 架構提供在 Azure 中管理資源的 Runbook 整體概觀，並利用 Hybrid Runbook Worker 進行內部部署。  若要了解如何在您的資料中心執行自動化 Runbook，請參閱 [混合式 Runbook 背景工作](automation-hybrid-runbook-worker.md)。
 * 若要深入了解如何建立模組化 Runbook，以供其他 Runbook 用於特定或一般函式，請參閱 [子 Runbook](automation-child-runbooks.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

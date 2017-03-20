@@ -16,6 +16,7 @@ ms.author: mbaldwin
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 71537845edcca85a7d0722dd32264da9f6b579e9
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -56,10 +57,5 @@ ms.openlocfilehash: 71537845edcca85a7d0722dd32264da9f6b579e9
 
 ## <a name="virtual-network-with-forced-tunneling"></a>具有強制通道的虛擬網路
 [強制通道](../vpn-gateway/vpn-gateway-about-forced-tunneling.md) 。 我們目前不支援現有集合的移轉，而支援強制通道。  您必須使用您要連結至 Azure RemoteApp 的 VNET 來刪除所有現有的集合，並建立新的集合以在集合上啟用強制通道。 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

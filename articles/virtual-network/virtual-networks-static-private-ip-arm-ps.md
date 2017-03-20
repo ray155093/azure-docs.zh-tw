@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 設定靜態私人 IP 位址 | Microsoft Docs"
-description: "了解如何使用 PowerShell 設定及管理靜態私人 IP 位址 | Azure Resource Manager。"
+title: "設定 VM 的私人 IP 位址 - Azure PowerShell | Microsoft Docs"
+description: "了解如何使用 PowerShell 設定虛擬機器的私人 IP 位址。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,13 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 75dbe164bf0fb4b3aff95954ce619781bbafaa5c
-ms.openlocfilehash: 3b966921bccb8e2bd29412c6e4aa200c606b4bf8
+ms.sourcegitcommit: b1eb8aa6bc822932b9f2abd1c448aca96069fefa
+ms.openlocfilehash: 2810190897c44c944912ef3325b1f40479aa3078
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="set-and-manage-a-static-private-ip-address-using-powershell"></a>使用 PowerShell 設定靜態私人 IP 位址
+# <a name="configure-private-ip-addresses-for-a-virtual-machine-using-powershell"></a>使用 PowerShell 設定虛擬機器的私人 IP 位址
+
 [!INCLUDE [virtual-networks-static-private-ip-selectors-arm-include](../../includes/virtual-networks-static-private-ip-selectors-arm-include.md)]
 
 [!INCLUDE [virtual-networks-static-private-ip-intro-include](../../includes/virtual-networks-static-private-ip-intro-include.md)]
@@ -32,8 +35,8 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
 以下的範例 PowerShell 命令會預期已根據上述案例建立簡單的環境。 如果您想要執行如本文件中所顯示的命令，請先建置 [建立 vnet](virtual-networks-create-vnet-arm-ps.md)中所說明的測試環境。
 
-## <a name="specify-a-static-private-ip-address-when-creating-a-vm"></a>建立 VM 時指定靜態私人 IP 位址
-若要在名為 TestVNet 之 VNet 的FrontEnd子網路中建立名為 DNS01 且其靜態私人 IP 為 192.168.1.101 的 VM，請遵循下列步驟：
+## <a name="create-a-vm-with-a-static-private-ip-address"></a>建立具有靜態私人 IP 位址的 VM
+若要在名為 TestVNet 之 VNet 的FrontEnd子網路中建立名為 DNS01 且其靜態私人 IP 為&192;.168.1.101 的 VM，請遵循下列步驟：
 
 1. 針對儲存體帳戶、位置、 資源群組和要使用的認證設定變數。 您必須輸入 VM 的使用者名稱和密碼。 儲存體帳戶和資源群組必須已經存在。
 
@@ -92,7 +95,7 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
         RequestId           : [Id]
         StatusCode          : OK 
 
-## <a name="retrieve-static-private-ip-address-information-for-a-vm"></a>擷取 VM 的靜態私人 IP 位址資訊
+## <a name="retrieve-static-private-ip-address-information-for-a-network-interface"></a>擷取網路介面的靜態私人 IP 位址資訊
 如果要檢視使用上述指令碼所建立之 VM 的靜態私人 IP 位址資訊，請執行下列 PowerShell 命令並查看 *PrivateIpAddress* 和 *PrivateIpAllocationMethod* 的值：
 
 ```powershell
@@ -139,7 +142,7 @@ Get-AzureRmNetworkInterface -Name TestNIC -ResourceGroupName TestRG
     NetworkSecurityGroup : null
     Primary              : True
 
-## <a name="remove-a-static-private-ip-address-from-a-vm"></a>移除 VM 的靜態私人 IP 位址
+## <a name="remove-a-static-private-ip-address-from-a-network-interface"></a>從網路介面移除靜態私人 IP 位址
 若要移除上述指令碼中新增至 VM 的靜態私人 IP 位址，請執行下列 PowerShell 命令：
 
 ```powershell
@@ -188,7 +191,7 @@ Set-AzureRmNetworkInterface -NetworkInterface $nic
     NetworkSecurityGroup : null
     Primary              : True
 
-## <a name="add-a-static-private-ip-address-to-an-existing-vm"></a>將靜態私人 IP 位址新增至現有的 VM
+## <a name="add-a-static-private-ip-address-to-a-network-interface"></a>將靜態私人 IP 位址新增至網路介面
 若要將靜態私人 IP 位址新增至使用上述指令碼建立之 VM，請執行下列命令：
 
 ```powershell
@@ -197,15 +200,31 @@ $nic.IpConfigurations[0].PrivateIpAllocationMethod = "Static"
 $nic.IpConfigurations[0].PrivateIpAddress = "192.168.1.101"
 Set-AzureRmNetworkInterface -NetworkInterface $nic
 ```
+## <a name="change-the-allocation-method-for-a-private-ip-address-assigned-to-a-network-interface"></a>針對指派至網路介面的私人 IP 位址變更配置方法
+
+私人 IP 位址是透過靜態或動態配置方法指派至 NIC。 啟動原先處於已停止 (已解除配置) 狀態的 VM 之後，動態 IP 位址可能變更。 即使 VM 從已停止 (已解除配置) 狀態重新啟動之後，如果 VM 裝載的服務需要相同的 IP 位址，這可能會造成問題。 靜態 IP 位址會一直保留，直到刪除 VM 為止。 若要變更 IP 位址的配置方法，請執行下列指令碼，將配置方法從動態變更為靜態。 如果目前私人 IP 位址的配置方法是靜態，請先將 *Static* 變更為 *Dynamic*，再執行指令碼。
+
+```powershell
+$RG = "TestRG"
+$NIC_name = "testnic1"
+
+$nic = Get-AzureRmNetworkInterface -ResourceGroupName $RG -Name $NIC_name
+$nic.IpConfigurations[0].PrivateIpAllocationMethod = 'Static'
+Set-AzureRmNetworkInterface -NetworkInterface $nic 
+$IP = $nic.IpConfigurations[0].PrivateIpAddress
+
+Write-Host "The allocation method is now set to"$nic.IpConfigurations[0].PrivateIpAllocationMethod"for the IP address" $IP"." -NoNewline
+```
+
+如果您不知道的 NIC 的名稱，您可以輸入下列命令，檢視資源群組內的 NIC 清單︰
+
+```powershell
+Get-AzureRmNetworkInterface -ResourceGroupName $RG | Where-Object {$_.ProvisioningState -eq 'Succeeded'} 
+```
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 [保留的公用 IP](virtual-networks-reserved-public-ip.md) 位址。
 * 深入了解 [執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) 位址。
 * 請參閱 [保留 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)。
-
-
-
-
-<!--HONumber=Nov16_HO5-->
 
 

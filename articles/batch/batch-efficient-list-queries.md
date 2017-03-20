@@ -12,15 +12,18 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 01/23/2017
+ms.date: 02/27/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ffba988bd8cd3896816118afde979c7067fced79
-ms.openlocfilehash: 4e127422e2ad4644aa028cdb987ca5bafa101868
+ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
+ms.openlocfilehash: 791b7a22e5b7edd2e31f6ab01131530a8053ac2b
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="query-the-azure-batch-service-efficiently"></a>有效率地查詢 Azure Batch 服務
+# <a name="create-queries-to-list-batch-resources-efficiently"></a>建立查詢以便有效率地列出 Batch 資源
+
 在此您將了解如何透過減少在使用 [Batch .NET][api_net] 程式庫查詢作業、工作和計算節點時所傳回的資料量，增加 Azure Batch 應用程式的效能。
 
 幾乎所有 Batch 應用程式都必須執行某種類型的監視或其他查詢 Batch 服務的作業，並且通常是定期執行。 例如，若要判斷作業中是否有任何剩餘的已排入佇列的工作，您必須取得作業內每項工作的資料。 若要判斷集區中節點的狀態，您必須取得集區中每個節點的資料。 這篇文章說明如何以最有效率的方式執行這類查詢。
@@ -289,9 +292,4 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 [net_pool]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudpool.aspx
 [net_schedule]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudjobschedule.aspx
 [net_task]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.aspx
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

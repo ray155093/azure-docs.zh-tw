@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 10/19/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: e90036d97451b271451d0ba5845c788ac05d7abf
-ms.openlocfilehash: 4253d60a8a12877a3c5dac073bd06d70d020ccdc
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: bd67cb868e57be0d6cb9c3ea37f67de6dca4e307
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -49,7 +49,10 @@ Azure PowerShell 的主要安裝選項有兩個：[PowerShell 資源庫](https:/
 
 <br>
 
-## <a name="step-3-set-your-subscription-and-sign-up-for-migration"></a>步驟 3︰設定您的訂用帳戶並註冊以進行移轉
+## <a name="step-3-ensure-that-you-are-co-administrator-for-the-subscription-in-azure-classic-portal"></a>步驟 3：確定您在 Azure 傳統入口網站中是訂用帳戶的共同管理員
+若要執行此移轉，必須在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中將您新增為訂用帳戶的共同管理員。 即使已經在 [Azure 入口網站](https://portal.azure.com)中將您新增為擁有者，也必須執行此操作。 請嘗試[在 Azure 傳統入口網站中新增訂用帳戶的共同管理員](../billing/billing-add-change-azure-subscription-administrator.md)，以查明您是否是訂用帳戶的共同管理員。 如果您無法新增共同管理員，則請連絡服務管理員或訂用帳戶的共同管理員，來將您新增為共同管理員。   
+
+## <a name="step-4-set-your-subscription-and-sign-up-for-migration"></a>步驟 4︰設定您的訂用帳戶並註冊以進行移轉
 首先，開啟 PowerShell 提示字元。 針對移轉，您必須為傳統和 Resource Manager 模型設定您的環境。
 
 登入您的 Resource Manager 模型帳戶。
@@ -111,7 +114,7 @@ Azure PowerShell 的主要安裝選項有兩個：[PowerShell 資源庫](https:/
 
 <br>
 
-## <a name="step-4-make-sure-you-have-enough-azure-resource-manager-virtual-machine-cores-in-the-azure-region-of-your-current-deployment-or-vnet"></a>步驟 4︰確定您目前的部署或 VNET 的 Azure 區域中有足夠的 Azure Resource Manager 虛擬機器核心
+## <a name="step-5-make-sure-you-have-enough-azure-resource-manager-virtual-machine-cores-in-the-azure-region-of-your-current-deployment-or-vnet"></a>步驟 5︰確定您目前的部署或 VNET 的 Azure 區域中有足夠的 Azure Resource Manager 虛擬機器核心
 您可以使用下列 PowerShell 命令來檢查您目前在 Azure Resource Manager 中擁有的核心數目。 若要深入了解核心配額，請參閱 [限制和 Azure Resource Manager](../azure-subscription-service-limits.md#limits-and-the-azure-resource-manager)。 
 
 此範例會檢查**美國西部**區域的可用性。 將範例區域名稱取代為您自己的名稱。 
@@ -120,7 +123,7 @@ Azure PowerShell 的主要安裝選項有兩個：[PowerShell 資源庫](https:/
 Get-AzureRmVMUsage -Location "West US"
 ```
 
-## <a name="step-5-run-commands-to-migrate-your-iaas-resources"></a>步驟 5︰執行命令來移轉 IaaS 資源
+## <a name="step-6-run-commands-to-migrate-your-iaas-resources"></a>步驟 6︰執行命令來移轉 IaaS 資源
 > [!NOTE]
 > 下述所有作業都是等冪的。 如果您有不支援的功能或組態錯誤以外的任何問題，建議您重新嘗試準備、中止或認可作業。 平台將會重新嘗試該動作。
 > 
@@ -247,6 +250,34 @@ Get-AzureRmVMUsage -Location "West US"
 
 ### <a name="migrate-a-storage-account"></a>移轉儲存體帳戶
 完成虛擬機器的移轉之後，建議您移轉儲存體帳戶。
+
+移轉儲存體帳戶之前，請執行上述必要條件檢查︰
+
+* **檢查傳統 VM 磁碟是否儲存於儲存體帳戶**
+
+    使用下列命令，尋找連線至儲存體帳戶中 VM 的傳統 VM 磁碟︰ 
+
+    ```powershell
+     $storageAccountName = 'yourStorageAccountName'
+      Get-AzureDisk | where-Object {$_.MediaLink.Host.Contains($storageAccountName)} | Select-Object -ExpandProperty AttachedTo -Property `
+      DiskName | Format-List -Property RoleName, DiskName 
+
+    ```
+    上述命令會傳回儲存體帳戶中所有傳統 VM 磁碟的 RoleName 和 DiskName 屬性。 RoleName 是磁碟所連線的虛擬機器名稱。 如果上述命令傳回磁碟，則確保這些磁碟所連線的虛擬機器會在移轉儲存體帳戶之前移轉。
+
+    使用下列命令，尋找儲存體帳戶中未連線的傳統 VM 磁碟︰ 
+
+    ```powershell
+        $storageAccountName = 'yourStorageAccountName'
+        Get-AzureDisk | where-Object {$_.MediaLink.Host.Contains($storageAccountName)} | Format-List -Property DiskName  
+
+    ```
+    如果上述命令傳回磁碟，則使用下列命令刪除這些磁碟︰
+
+    ```powershell
+       Remove-AzureDisk -DiskName 'yourDiskName'
+    ```
+     
 
 請使用下列命令來準備每個要移轉的儲存體帳戶。 在此範例中，儲存體帳戶名稱是 **myStorageAccount**。 將範例名稱取代為您自己的儲存體帳戶名稱。 
 

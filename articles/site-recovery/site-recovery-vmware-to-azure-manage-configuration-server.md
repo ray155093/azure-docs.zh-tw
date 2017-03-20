@@ -15,9 +15,9 @@ ms.workload: backup-recovery
 ms.date: 2/14/2017
 ms.author: anoopkv
 translationtype: Human Translation
-ms.sourcegitcommit: 96e6696818a0de2fadd55ff7e0ccee350d2666ad
-ms.openlocfilehash: 0e49b7dded14ab6b76c7c73af714af5f5c854bbc
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 73d5f91f31780350c68b3475c2cbbb597f9b438e
+ms.openlocfilehash: 0c8f37055a6c64a54009ecafd883426824dcd901
+ms.lasthandoff: 03/01/2017
 
 ---
 
@@ -104,11 +104,32 @@ ProxyPassword="Password"
   ```
 
   >[!WARNING]
-  如果您有連結至此組態伺服器的相應放大處理序伺服器，您需要在部署中[修正所有相應放大處理序伺服器上的 Proxy 設定](site-recovery-vmware-to-azure-manage-scaleout-process-server.md)。
+  如果您有連結至此組態伺服器的相應放大處理序伺服器，您需要在部署中[修正所有相應放大處理序伺服器上的 Proxy 設定](site-recovery-vmware-to-azure-manage-scaleout-process-server.md#modifying-proxy-settings-for-scale-out-process-server)。
+
+## <a name="re-register-a-configuration-server-with-the-same-recovery-services-vault"></a>向相同的復原服務保存庫註冊組態伺服器
+  1. 登入您的組態伺服器。
+  2. 使用捷徑啟動 cspsconfigtool.exe。
+  3. 按一下 [保存庫註冊] 索引標籤。
+  4. 從入口網站下載新的註冊檔案，並當做輸入提供給工具。
+        ![註冊組態伺服器](./media/site-recovery-vmware-to-azure-manage-configuration-server/register-csonfiguration-server.png)
+  5. 提供 Proxy 伺服器詳細資料，然後按一下 [註冊] 按鈕。  
+  6. 開啟系統管理 PowerShell 命令視窗。
+  7. 執行下列命令
+
+      ```
+      $pwd = ConvertTo-SecureString -String MyProxyUserPassword
+      Set-OBMachineSetting -ProxyServer http://myproxyserver.domain.com -ProxyPort PortNumber – ProxyUserName domain\username -ProxyPassword $pwd
+      net stop obengine
+      net start obengine
+      ```
+
+  >[!WARNING]
+  如果您有連結至此組態伺服器的相應放大處理序伺服器，您需要在部署中[重新註冊所有相應放大處理序伺服器](site-recovery-vmware-to-azure-manage-scaleout-process-server.md#re-registering-a-scale-out-process-server)。
 
 ## <a name="registering-a-configuration-server-with-a-different-recovery-services-vault"></a>向不同的復原服務保存庫註冊組態伺服器。
 1. 登入您的組態伺服器。
 2. 從系統管理命令提示字元中，執行命令
+
 ```
 reg delete HKLM\Software\Microsoft\Azure Site Recovery\Registration
 net stop dra
@@ -152,11 +173,11 @@ net stop dra
 1. 以系統管理員身分登入組態伺服器。
 2. 開啟 [控制台] > [程式集] > [解除安裝程式]
 3. 依下列順序將程式解除安裝：
+  * Microsoft Azure 復原服務代理程式
   * Microsoft Azure Site Recovery Mobility Service/主要目標伺服器
+  * Microsoft Azure Site Recovery Provider
   * Microsoft Azure Site Recovery 組態伺服器/處理序伺服器
   * Microsoft Azure Site Recovery 組態伺服器相依性
-  * Microsoft Azure 復原服務代理程式
-  * Microsoft Azure Site Recovery Provider
   * MySQL Server 5.5
 4. 從系統管理命令提示字元中，執行下列命令。
   ```

@@ -12,15 +12,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 1/09/2017
+ms.date: 2/15/2017
 ms.author: pratshar
 translationtype: Human Translation
-ms.sourcegitcommit: 1c3a3a3e9381e20382bb537299b04993180ee729
-ms.openlocfilehash: 465da7ae1aa3a31400706c28d0516507ddf66ff0
+ms.sourcegitcommit: 6b1a5b2879a7b98ec4ad3e8ebbc9e95c0740d89f
+ms.openlocfilehash: 3aaa005319b1ce2a10cd913c63b31860d31b797e
+ms.lasthandoff: 02/23/2017
 
 
 ---
 # <a name="test-failover-vmm-to-vmm-in-site-recovery"></a>在 Site Recovery 中測試容錯移轉 (VMM 到 VMM)
+> [!div class="op_single_selector"]
+> * [執行測試容錯移轉至 Azure](./site-recovery-test-failover-to-azure.md)
+> * [測試容錯移轉 (VMM 至 VMM)](./site-recovery-test-failover-vmm-to-vmm.md)
+
 
 本文提供使用 VMM 管理的內部部署站台做為復原站台，對使用 Site Recovery 保護的虛擬機器與實體伺服器執行測試容錯移轉或 DR (災害復原) 訓練的相關資訊和指示。 
 
@@ -67,6 +72,8 @@ ms.openlocfilehash: 465da7ae1aa3a31400706c28d0516507ddf66ff0
 ## <a name="run-a-test-failover"></a>執行測試容錯移轉
 此程序說明如何針對復原方案執行測試容錯移轉。 或者，您可以在 [虛擬機器]  索引標籤上，針對單一虛擬機器或實體伺服器執行容錯移轉。
 
+![Test Failover](./media/site-recovery-test-failover-vmm-to-vmm/TestFailover.png)
+
 1. 選取 [復原方案]  >  *recoveryplan_name*。 按一下 [容錯移轉] **容錯移轉** > **Test 容錯移轉**中張貼意見或問題。
 1. 在 [測試容錯移轉] 刀鋒視窗上，指定虛擬機器在測試容錯移轉後應如何連接到網路。 查看[網路選項](#network-options-in-site-recovery)以了解詳細資訊。
 1. 在 [工作]  索引標籤上追蹤容錯移轉進度。 
@@ -100,9 +107,4 @@ ms.openlocfilehash: 465da7ae1aa3a31400706c28d0516507ddf66ff0
 
 ## <a name="next-steps"></a>後續步驟
 一旦您成功嘗試測試容錯移轉之後，您就可以嘗試執行[容錯移轉](site-recovery-failover.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

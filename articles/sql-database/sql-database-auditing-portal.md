@@ -13,15 +13,16 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 2/25/2017
 ms.author: ronitr; giladm
 translationtype: Human Translation
-ms.sourcegitcommit: 5d51a5ef3387b4c00079547b0f44ffe1f96bd77c
-ms.openlocfilehash: 2882c41ced74c35e28a9237f3f08b6e6f687b846
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: fb56545df42e997e5960eec73ae59e9334731392
+ms.openlocfilehash: 8c6fa92764cb720a0c71a24d839d3e73ce3ba447
+ms.lasthandoff: 03/02/2017
 
 
 ---
+
 # <a name="configure-and-manage-sql-database-auditing-in-the-azure-portal"></a>設定和管理 Azure 入口網站中的 SQL 資料庫稽核
 
 下節描述如何使用 Azure 入口網站設定和管理稽核。 若要使用 PowerShell 設定和管理稽核，請參閱[使用 PowerShell 設定稽核](sql-database-auditing-powershell.md)。 若要使用 REST API 設定和管理稽核，請參閱[使用 REST API 設定稽核](sql-database-auditing-rest.md)。
@@ -45,7 +46,9 @@ ms.lasthandoff: 02/17/2017
     <a id="storage-screenshot"></a>
     ![瀏覽窗格][4]
 6. 如果您想要自訂稽核的事件，您可以透過 [PowerShell](sql-database-auditing-powershell.md) 或 [REST API](sql-database-auditing-rest.md) 來自訂。
-7. 按一下 [儲存] 。
+7. 設定您的稽核設定之後，您可以開啟新的「威脅偵測」(預覽) 功能，並設定電子郵件以接收安全性警示。 「威脅偵測」可讓您接收與可能指示潛在安全性威脅的異常資料庫活動相關的主動式警示。 如需詳細資訊，請參閱[威脅偵測](sql-database-threat-detection.md)。
+8. 按一下 [儲存] 。
+
 
 ## <a name="table-auditing"></a>資料表稽核
 

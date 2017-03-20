@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 0544cb9aaf9ec03c16cc07f2974b6b8d90b3c61d
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -128,10 +129,5 @@ ms.openlocfilehash: 0544cb9aaf9ec03c16cc07f2974b6b8d90b3c61d
 * 如果您需要疑難排解降級或失敗狀態的裝置元件，請參閱 [StorSimple 監視指示器](storsimple-monitoring-indicators.md)。 
 * 若要更換故障的硬體元件，請參閱 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
 * 如果持續發生裝置問題，請 [連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -15,8 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 12/04/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 1e88eba53b8ec3388ede1ae69cb290423919fda6
-ms.openlocfilehash: d683e25ef96bbd87a6d5b5ea143754b8f67f288e
+ms.sourcegitcommit: 3b9d269a780e9a4c61263208f26f440b1121c682
+ms.openlocfilehash: f437598b612a145c5dd8b46a1ba340d298a76981
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -62,7 +63,7 @@ vCenter 5.5 或 6.0 (僅支援 5.5 功能) <br/><br/> vSphere 6.0、 5.5 或 5.1
 
 ### <a name="machines-replicate-to-azure"></a>機器 (複寫至 Azure)
 
-虛擬機器必須符合 [Azure 需求](site-recovery-best-practices.md#azure-virtual-machine-requirements)。
+虛擬機器必須符合 [Azure 需求](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements)。
 
 **需求** | **VMware/實體伺服器** | **Hyper-V (無 VMM)** | **Hyper-V (含 VMM)**
 --- | --- | --- | ---
@@ -163,17 +164,17 @@ RDM | 是<br/><br/> 實體伺服器為 NA | NA | NA
 使用等量磁碟的磁碟區 > 1 TB<br/><br/> LVM | 是 | 是 | 是
 儲存空間 | 否 | 是 | 是
 熱新增/移除磁碟 | 否 | 否 | 否
-排除磁碟 | 是 | 否 | 否
+排除磁碟 | 是 | 是 | 是
 多重路徑 (MPIO) | NA | 是 | 是
 
 **Azure 儲存體** | **VMware/實體伺服器** | **Hyper-V (無 VMM)** | **Hyper-V (含 VMM)**
 --- | --- | --- | ---
 LRS | 是 | 是 | 是
-GRS | 是 | 是 | 是
+GRS (僅適用於標準儲存體) | 是 | 是 | 是
 非經常性儲存體 | 否 | 否 | 否
 經常性存取儲存體| 否 | 否 | 否
 待用加密 | 是 | 是 | 是
-進階儲存體 | 是 | 否 | 否
+進階儲存體 | 是 | 是 | 是
 匯入/匯出服務 | 否 | 否 | 否
 
 
@@ -261,10 +262,5 @@ RDM | 是 | NA
 
 
 ## <a name="next-steps"></a>後續步驟
-[準備部署](site-recovery-best-practices.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
+檢查[必要條件](site-recovery-prereq.md)
 

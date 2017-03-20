@@ -15,8 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 01/19/2017
 ms.author: rajanaki
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 5ef0bd33cb37474573cd136b882ca5141f365476
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 664a1bd9df9ace4993a8389dbeb049e721932082
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -35,12 +36,12 @@ ms.openlocfilehash: 5ef0bd33cb37474573cd136b882ca5141f365476
 ![用於在內部部署網站之間複寫的 Virtual Machine Manager 網站部署](media/site-recovery-monitoring-and-troubleshooting/image1.png)
 
 ### <a name="virtual-machine-manager-site-deployment-for-replication-between-on-premises-locations-and-azure"></a>用於在內部部署位置和 Azure 之間複寫的 Virtual Machine Manager 網站部署
-當您設定內部部署位置和 Azure 之間的資料庫復原時，您需要下載 Azure Site Recovery 提供者，並將它安裝在 Virtual Machine Manager 伺服器上。 您也需要安裝 Azure 復原服務代理程式，它必須安裝在每一部 Hyper-V 主機上。 如需詳細資訊，請參閱[了解網站至 Azure 保護](site-recovery-understanding-site-to-azure-protection.md)。
+當您設定內部部署位置和 Azure 之間的資料庫復原時，您需要下載 Azure Site Recovery 提供者，並將它安裝在 Virtual Machine Manager 伺服器上。 您也需要安裝 Azure 復原服務代理程式，它必須安裝在每一部 Hyper-V 主機上。 [深入了解](site-recovery-hyper-v-azure-architecture.md)以取得詳細資訊。
 
 ![用於在內部部署位置和 Azure 之間複寫的 Virtual Machine Manager 網站部署](media/site-recovery-monitoring-and-troubleshooting/image2.png)
 
 ### <a name="hyper-v-site-deployment-for-replication-between-on-premises-locations-and-azure"></a>用於在內部部署位置和 Azure 之間複寫的 Hyper-V 網站部署
-此程序類似於 Virtual Machine Manager 部署。 唯一的差別是 Azure Site Recovery 提供者和 Azure 復原服務代理程式會安裝在 Hyper-V 主機本身。 如需詳細資訊，請參閱[了解網站至 Azure 保護](site-recovery-understanding-site-to-azure-protection.md)。
+此程序類似於 Virtual Machine Manager 部署。 唯一的差別是 Azure Site Recovery 提供者和 Azure 復原服務代理程式會安裝在 Hyper-V 主機本身。 [深入了解](site-recovery-hyper-v-azure-architecture.md)。 。
 
 ## <a name="monitor-configuration-protection-and-recovery-operations"></a>監視組態、保護和復原作業
 Azure Site Recovery 中的每個作業都是在 [作業] 索引標籤下稽核和追蹤。 發生任何組態、保護或復原錯誤時，請移至 [作業] 索引標籤來尋找失敗。
@@ -80,15 +81,15 @@ Azure Site Recovery 中的每個作業都是在 [作業] 索引標籤下稽核�
 
 > [!NOTE]
 > 如果有任何作用中的作業正在進行中或失敗，請移至 [作業] 檢視，如先前所述，以檢視特定作業的錯誤。
-> 
-> 
+>
+>
 
 ## <a name="troubleshoot-on-premises-hyper-v-issues"></a>疑難排解內部部署 Hyper-V 問題
 連接到內部部署 Hyper-V 管理員主控台，選取虛擬機器，然後查看複寫健康情況。
 
 ![Option to view replication health in the Hyper-V manager console](media/site-recovery-monitoring-and-troubleshooting/image12.png)
 
-在此案例中，[複寫健康情況] 是 [嚴重]。 以滑鼠右鍵按一下虛擬機器，然後按一下 [複寫] > 檢視複寫健康情況]，以檢視詳細資訊。
+在此案例中，[複寫健康情況] 是 [嚴重]。 以滑鼠右鍵按一下虛擬機器，然後按一下 複寫 > 檢視複寫健康情況，以檢視詳細資訊。
 
 ![Replication health for a specific virtual machine](media/site-recovery-monitoring-and-troubleshooting/image13.png)
 
@@ -194,10 +195,4 @@ Azure Site Recovery 中的每個作業都是在 [作業] 索引標籤下稽核�
 如果入口網站中的 [連接] 按鈕停用，而且您未透過 Express Route 或網站間 VPN 連接來連接到 Azure，則您必須先建立虛擬機器並指派公用 IP 位址給它，才能使用遠端桌面/共用殼層。 然後，您就可以將公用 IP 新增到虛擬機器的網路介面。  
 
 ![將公用 IP 新增到容錯移轉虛擬機器的網路介面上](media/site-recovery-monitoring-and-troubleshooting/createpublicip.gif)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

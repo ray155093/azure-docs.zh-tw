@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/09/2016
+ms.date: 03/06/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: cbc91181f2531ea5e60bb426d6b8b42e2c7684d3
-ms.openlocfilehash: 0bb6db67df25fb3c3484c819398890efef343943
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 40636aa9d847b97ea872bf4689a1da6e3eb23eb4
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -61,7 +62,7 @@ ms.openlocfilehash: 0bb6db67df25fb3c3484c819398890efef343943
    安全性原則![][3]
 2. 在 [安全性原則 – 定義每個訂用帳戶或資源群組的原則] 刀鋒視窗上，選取訂用帳戶。
 3. 在 [安全性原則] 刀鋒視窗上，[資料收集] 已啟用以自動收集記錄檔。 監視擴充功能會佈建在訂用帳戶的所有目前 VM 和新 VM 上。 (您可以透過將 [資料收集] 設定為 [關閉] 以選擇退出資料收集，但這會讓資訊安全中心無法為您提供安全性警示與建議。)
-4. 選取 [安全性原則] 刀鋒視窗上的 [選擇每個區域的儲存體帳戶]。 針對每個有 VM 在其中執行的區域，您需選擇儲存體帳戶，以儲存從這些 VM 收集到的資料。 如不為每個區域選擇儲存體帳戶，系統會為您建立。 基於安全性考量，收集到的資料在邏輯上會與其他客戶的資料隔離。
+4. 選取 [安全性原則] 刀鋒視窗上的 [選擇每個區域的儲存體帳戶]。 針對每個有 VM 在其中執行的區域，您需選擇儲存體帳戶，以儲存從這些 VM 收集到的資料。 如果您沒有選擇每個區域的儲存體帳戶，則會為您建立儲存體帳戶，並置於 securitydata 資源群組。 基於安全性考量，收集到的資料在邏輯上會與其他客戶的資料隔離。
 
    > [!NOTE]
    > 建議您啟用資料收集，並先在訂用帳戶層級選擇儲存體帳戶。 安全性原則可以在 Azure 訂用帳戶層級和資源群組層級進行設定，但資料收集和儲存體帳戶只可在訂用帳戶層級進行設定。
@@ -91,7 +92,7 @@ ms.openlocfilehash: 0bb6db67df25fb3c3484c819398890efef343943
    ![Azure 資訊安全中心的安全性警示][7]
 
    > [!NOTE]
-   > 如果已啟用資訊安全中心的標準層，才會出現安全性警示。 標準層有 90 天的免費試用可供使用。 如需有關如何取得標準層級資訊，請參閱[後續步驟](#next-steps)。
+   > 如果已啟用資訊安全中心的標準層，才會出現安全性警示。 標準層有 60 天的免費試用可供使用。 如需有關如何取得標準層級資訊，請參閱[後續步驟](#next-steps)。
    >
    >
 2. 選取警示以檢視其他資訊。 在這個例子中，請選取 [探索到修改過的系統二進位檔]。 這會開啟刀鋒視窗，提供有關警示的其他詳細資料。
@@ -109,7 +110,7 @@ ms.openlocfilehash: 0bb6db67df25fb3c3484c819398890efef343943
 * 為您的 Azure 訂用帳戶設定安全性原則。 若要深入了解，請參閱[在 Azure 資訊安全中心設定安全性原則](security-center-policies.md)。
 * 使用資訊安全中心的建議來協助您保護 Azure 資源。 若要深入了解，請參閱[管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md)。
 * 檢閱並管理目前的安全性警示。 若要深入了解，請參閱[管理及回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md)。
-* 深入了解 資訊安全中心[標準層](security-center-pricing.md)隨附的[進階威脅偵測功能](security-center-detection-capabilities.md)。 標準層有 90 天的免費試用可供使用。
+* 深入了解 資訊安全中心[標準層](security-center-pricing.md)隨附的[進階威脅偵測功能](security-center-detection-capabilities.md)。 標準層的前 60 天免費。
 * 如果您對使用資訊安全中心有問題，請參閱 [Azure 資訊安全中心常見問題集](security-center-faq.md)。
 
 <!--Image references-->
@@ -123,9 +124,4 @@ ms.openlocfilehash: 0bb6db67df25fb3c3484c819398890efef343943
 [8]: ./media/security-center-get-started/security-alert-detail.png
 [9]: ./media/security-center-get-started/partner-solutions.png
 [10]: ./media/security-center-get-started/welcome.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

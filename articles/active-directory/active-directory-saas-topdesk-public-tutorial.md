@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 12/05/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 1cef7ff21a8d076c89688f1fe75cebdb7c468199
-ms.openlocfilehash: ee413f5044d541a7a127690fab0115341c7619f3
+ms.sourcegitcommit: 1c22e4fc17226578aaaf272fdf79178da65c63c2
+ms.openlocfilehash: 54c7da3fc0693ee44358cb77973c8c37e653d3cc
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.openlocfilehash: ee413f5044d541a7a127690fab0115341c7619f3
 3. 設定使用者佈建
 4. 指派使用者
 
-![案例](./media/active-directory-saas-topdesk-public-tutorial/IC790613.png "Scenario")
+![案例](./media/active-directory-saas-topdesk-public-tutorial/IC790613.png "案例")
 
 ## <a name="enabling-the-application-integration-for-topdesk---public"></a>啟用 TOPdesk - Public 的應用程式整合
 本節的目的是要說明如何啟用 TOPdesk - Public 的應用程式整合。
@@ -49,19 +50,19 @@ ms.openlocfilehash: ee413f5044d541a7a127690fab0115341c7619f3
 
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC700994.png "應用程式")
 
 4. 按一下頁面底部的 [新增]  。
    
-    ![新增應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC749321.png "新增應用程式")
 
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-    ![從組件庫新增應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6. 在 [搜尋方塊] 中，輸入 **TOPdesk - Public**。
    
-    ![應用程式庫](./media/active-directory-saas-topdesk-public-tutorial/IC790614.png "Application Gallery")
+    ![應用程式資源庫](./media/active-directory-saas-topdesk-public-tutorial/IC790614.png "應用程式資源庫")
 
 7. 在結果窗格中，選取 [TOPdesk - Public]，然後按一下 [完成] 以新增應用程式。
    
@@ -76,19 +77,19 @@ ms.openlocfilehash: ee413f5044d541a7a127690fab0115341c7619f3
 
 2. 在 [TOPdesk] 功能表中按一下 [設定]。
    
-    ![設定](./media/active-directory-saas-topdesk-public-tutorial/IC790598.png "Settings")
+    ![設定](./media/active-directory-saas-topdesk-public-tutorial/IC790598.png "設定")
 
 3. 按一下 [登入設定] 。
    
-    ![登入設定](./media/active-directory-saas-topdesk-public-tutorial/IC790599.png "Login Settings")
+    ![登入設定](./media/active-directory-saas-topdesk-public-tutorial/IC790599.png "登入設定")
 
 4. 展開 [登入設定] 功能表，然後按一下 [一般]。
    
-    ![一般](./media/active-directory-saas-topdesk-public-tutorial/IC790600.png "General")
+    ![一般](./media/active-directory-saas-topdesk-public-tutorial/IC790600.png "一般")
 
 5. 在 [SAML 登入] 組態區段的 [Public] 區段中，執行下列步驟：
    
-    ![技術設定](./media/active-directory-saas-topdesk-public-tutorial/IC790601.png "Technical Settings")
+    ![技術設定](./media/active-directory-saas-topdesk-public-tutorial/IC790601.png "技術設定")
    
     a. 按 [下載]  來下載公用中繼資料檔案，然後再將它儲存在本機電腦上。
    
@@ -106,15 +107,15 @@ ms.openlocfilehash: ee413f5044d541a7a127690fab0115341c7619f3
 
 7. 在 [TOPdesk - Public] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
    
-    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790620.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790620.png "設定單一登入")
 
 8. 在 [要如何讓使用者登入 TOPdesk - Public] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
-    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790621.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790621.png "設定單一登入")
 
 9. 在 [設定應用程式 URL]  頁面上，執行下列步驟：
    
-    ![設定應用程式 URL](./media/active-directory-saas-topdesk-public-tutorial/IC790622.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-topdesk-public-tutorial/IC790622.png "設定應用程式 URL")
    
     a. 在 [TOPdesk - Public 登入 URL] 文字方塊中，輸入使用者用來登入 TOPdesk - Public 應用程式的 URL (例如："*https://qssolutions.topdesk.net*")。
    
@@ -124,11 +125,11 @@ ms.openlocfilehash: ee413f5044d541a7a127690fab0115341c7619f3
 
 10. 在 [設定在 TOPdesk - Public 單一登入] 頁面上，若要下載您的中繼資料檔，請按一下 [下載中繼資料]，然後將檔案儲存在本機電腦上。
     
-    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790623.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790623.png "設定單一登入")
 
 11. 若要建立憑證檔案，請執行下列步驟：
     
-    ![憑證](./media/active-directory-saas-topdesk-public-tutorial/IC790606.png "Certificate")
+    ![憑證](./media/active-directory-saas-topdesk-public-tutorial/IC790606.png "憑證")
     
     1. 開啟下載的中繼資料檔案。
     2. 展開 **RoleDescriptor** 節點，其具有 **fed:ApplicationServiceType** 的 **xsi:type**。
@@ -136,19 +137,19 @@ ms.openlocfilehash: ee413f5044d541a7a127690fab0115341c7619f3
     4. 儲存複製的 **X509Certificate** 值到本機電腦的檔案中。
 12. 在您 TOPdesk - Public 公司網站的 [TOPdesk] 功能表上，按一下 [設定]。
     
-    ![設定](./media/active-directory-saas-topdesk-public-tutorial/IC790598.png "Settings")
+    ![設定](./media/active-directory-saas-topdesk-public-tutorial/IC790598.png "設定")
 13. 按一下 [登入設定] 。
     
-    ![登入設定](./media/active-directory-saas-topdesk-public-tutorial/IC790599.png "Login Settings")
+    ![登入設定](./media/active-directory-saas-topdesk-public-tutorial/IC790599.png "登入設定")
 14. 展開 [登入設定] 功能表，然後按一下 [一般]。
     
-    ![一般](./media/active-directory-saas-topdesk-public-tutorial/IC790600.png "General")
+    ![一般](./media/active-directory-saas-topdesk-public-tutorial/IC790600.png "一般")
 15. 在 **Public** 區段中，按一下 [加入]。
     
-    ![SAML 登入](./media/active-directory-saas-topdesk-public-tutorial/IC790625.png "SAML Login")
+    ![SAML 登入](./media/active-directory-saas-topdesk-public-tutorial/IC790625.png "SAML 登入")
 16. 在 [SAML 組態輔助程式]  對話頁面上，執行下列步驟：
     
-    ![SAML 組態輔助程式](./media/active-directory-saas-topdesk-public-tutorial/IC790608.png "SAML Configuration Assistant")
+    ![SAML 組態輔助程式](./media/active-directory-saas-topdesk-public-tutorial/IC790608.png "SAML 組態輔助程式")
     
     a. 若要上傳您下載的中繼資料檔，請在 [同盟中繼資料] 下按一下 [瀏覽]。
 
@@ -164,7 +165,7 @@ ms.openlocfilehash: ee413f5044d541a7a127690fab0115341c7619f3
 
 17. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
     
-    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790627.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790627.png "設定單一登入")
 
 ## <a name="configuring-user-provisioning"></a>設定使用者佈建
 若要讓 Azure AD 使用者可以登入 TOPdesk - Public，則必須將他們佈建到 TOPdesk - Public。  
@@ -175,11 +176,11 @@ TOPdesk - Public 需以手動的方式佈建。
 
 2. 在上方功能表中按一下 [TOPdesk] \> [新增] \> [支援檔案] \> [人員]。
    
-    ![Person](./media/active-directory-saas-topdesk-public-tutorial/IC790628.png "Person")
+    ![人員](./media/active-directory-saas-topdesk-public-tutorial/IC790628.png "人員")
 
 3. 在 [新增人員] 對話方塊上，執行下列步驟：
    
-    ![新增人員](./media/active-directory-saas-topdesk-public-tutorial/IC790629.png "New Person")
+    ![新增人員](./media/active-directory-saas-topdesk-public-tutorial/IC790629.png "新增人員")
    
     a. 按一下 [一般] 索引標籤。
 
@@ -202,17 +203,12 @@ TOPdesk - Public 需以手動的方式佈建。
 
 2. 在 [TOPdesk - Public] 應用程式整合頁面上，按一下 [指派使用者]。
    
-    ![指派使用者](./media/active-directory-saas-topdesk-public-tutorial/IC790630.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-topdesk-public-tutorial/IC790630.png "指派使用者")
 
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
    
-    ![是](./media/active-directory-saas-topdesk-public-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-topdesk-public-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

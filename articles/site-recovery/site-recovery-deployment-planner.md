@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 2/21/2017
 ms.author: nisoneji
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 4e444deaa84c7f02608f4910e31f7033df51a73b
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 2575621d72b7db2b090ba923324697b7fa7b8308
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -82,9 +82,9 @@ Azure Site Recovery Deployment Planner Public Preview 是一項命令列工具�
 將 zip 資料夾解壓縮。 您可以看到多個檔案和子資料夾。 可執行檔是父資料夾中的 ASRDeploymentPlanner.exe。
 
 範例：將 .zip 檔案複製到 E:\ 磁碟機並將它解壓縮。
-E:\ASR Deployment Planner-Preview_v1.0.zip
+E:\ASR Deployment Planner-Preview_v1.1.zip
 
-E:\ASR Deployment Planner-Preview_v1.0\ ASR Deployment Planner-Preview_v1.0\ ASRDeploymentPlanner.exe
+E:\ASR Deployment Planner-Preview_v1.1\ ASR Deployment Planner-Preview_v1.1\ ASRDeploymentPlanner.exe
 
 ##<a name="capabilities"></a>功能
 可以使用下列任何模式 (共三種) 執行命令列工具 (ASRDeploymentPlanner.exe)：
@@ -199,7 +199,7 @@ ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.cont
 
 
 ##### <a name="example-2-to-generate-report-when-profiled-data-is-on-a-remote-server-user-should-have-readwrite-access-on-the-remote-directory"></a>範例 2︰當剖析的資料位於遠端伺服器時產生報告。 使用者應具備遠端目錄的讀取/寫入存取權。
-ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.contoso.com **-Directory** “\\PS1-W2K12R2\vCenter1_ProfiledData” **-VMListFile** “\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
+ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.contoso.com **-Directory** “\\\\PS1-W2K12R2\vCenter1_ProfiledData” **-VMListFile** “\\\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
 
 ##### <a name="example-3-generate-report-with-specific-bandwidth-and-goal-to-complete-ir-within-specified-time"></a>範例 3︰使用特定頻寬和目標來產生報告，以在指定的時間內完成 IR
 ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.contoso.com **-Directory** “E:\vCenter1_ProfiledData” **-VMListFile** “E:\vCenter1_ProfiledData\ProfileVMList1.txt” **-Bandwidth** 100 **-GoalToCompleteIR** 24
@@ -407,10 +407,10 @@ d. 變更處理序伺服器中的 Azure Site Recovery 設定，以[增加用於�
 
 [要放置的虛擬機器] 會列出應置於指定之 Azure 儲存體帳戶的所有虛擬機器，以提供最佳效能和使用量。
 
-##<a name="compatible-vms"></a>相容的 VM
+## <a name="compatible-vms"></a>相容的 VM
 ![Deployment Planner](./media/site-recovery-deployment-planner/compatible-vms.png)
 
-[VM 名稱] 是在產生報告時用於 VMListFile 的虛擬機器名稱或 IP 位址。 此資料行也會列出連接至虛擬機器的磁碟 (VMDK)。
+[VM 名稱] 是在產生報告時用於 VMListFile 的虛擬機器名稱或 IP 位址。 此資料行也會列出連接至虛擬機器的磁碟 (VMDK)。 vCenter 上具有重複名稱或 IP 位址的虛擬機器，在提及時會加上 ESXi 主機名稱以便區別每個虛擬機器。 所列出的 ESXi 主機是此工具在分析期間首次探索到虛擬機器時其所在位置的主機。
 
 [VM 相容性] 有兩個值 - 是 / 是*。*「是」適用於虛擬機器適合以下[進階 Azure 儲存體](https://aka.ms/premium-storage-workload)的情況：剖析的高變換 / IOPS 磁碟符合 P20 或 P30 類別，但磁碟大小會導致它向下對應至 P10 或 P20。 Azure 儲存體會根據磁碟大小決定磁碟所要對應至的進階儲存體大小類型 – 即 < 128 GB 為 P10、128 至 512 GB 為 P20，而 512 GB 至 1023 GB 為 P30。 因此如果磁碟的工作負載特性符合 P20 或 P30，但大小使其對應至較低的進階儲存體磁碟類型，此工具會將該虛擬機器標示為 [是*]，並建議您變更來源磁碟大小以符合右邊建議的進階儲存體磁碟類型，或變更容錯移轉後的目標磁碟類型。
 儲存體類型為標準或進階。
@@ -439,7 +439,7 @@ d. 變更處理序伺服器中的 Azure Site Recovery 設定，以[增加用於�
 
 ![Deployment Planner](./media/site-recovery-deployment-planner/incompatible-vms.png)
 
-[VM 名稱] 是在產生報告時用於 VMListFile 的虛擬機器名稱或 IP 位址。 此資料行也會列出連接至虛擬機器的磁碟 (VMDK)。
+[VM 名稱] 是在產生報告時用於 VMListFile 的虛擬機器名稱或 IP 位址。 此資料行也會列出連接至虛擬機器的磁碟 (VMDK)。 vCenter 上具有重複名稱或 IP 位址的虛擬機器，在提及時會加上 ESXi 主機名稱以便區別每個虛擬機器。 所列出的 ESXi 主機是此工具在分析期間首次探索到虛擬機器時其所在位置的主機。
 
 [VM 相容性] 會指出為何指定的虛擬機器不適合與 Azure Site Recovery 搭配使用。 相關原因會按照虛擬機器的不相容磁碟進行概述，而且可能是以發佈的 Azure 儲存體為基礎的下列其中一項[限制](https://aka.ms/azure-storage-scalbility-performance)。
 
@@ -483,7 +483,24 @@ d. 變更處理序伺服器中的 Azure Site Recovery 設定，以[增加用於�
 
 上述發佈的限制是以我們的測試為基礎，但無法涵蓋所有可能的應用程式 I/O 組合。 實際的結果會隨著您的應用程式 I/O 混合而有所不同。 為了獲得最佳結果，即使在部署規劃之後，仍一律建議使用測試容錯移轉來執行廣泛的應用程式測試，以了解真正的效能情況。
 
-##<a name="release-notes"></a>版本資訊
+## <a name="how-to-update-the-deployment-planner"></a>如何更新 Deployment Planner？
+[下載](site-recovery-deployment-planner.md#download)最新版的 Azure Site Recovery Deployment Planner。 將 zip 檔案複製到您要執行所在的伺服器。 解壓縮 zip 檔案。
+如果您已有舊版 Deployment Planner 且正在進行分析作業，則不需要停止分析，除非新版本有分析修正。 如果該版本的分析元件中包含修正，則建議您停止使用舊版進行分析，然後使用新版本再次啟動分析。 請注意，當您開始使用新版本進行分析時，需要傳遞相同的輸出目錄路徑，以便工具能在現有檔案附加設定檔資料，並使用一組完整的分析資料來產生報告。 如果您傳遞不同的輸出目錄，則會建立新檔案，舊的分析資料將無法用來產生報告。<br> 每次更新都是含有 zip 檔案的累積更新。 您不需要將新版檔案複製到先前版本的資料夾就能使用它。 您可以為其使用新資料夾。
+
+
+##<a name="version-history"></a>版本歷程記錄
+### <a name="11"></a>1.1
+更新日期︰2017 年 3 月 9 日 <br>
+
+修正下列問題<br>
+
+* 如果 vCenter 在不同的 ESXi 主機上有兩部或多部虛擬機器具有相同的名稱/IP 位址，就無法剖析虛擬機器。<br>
+* 相容的 VM 和不相容的 VM 工作表已停用複製和搜尋。
+
+
+### <a name="10"></a>1.0 
+更新日期︰2017 年 2 月 23 日 
+
 Azure Site Recovery Deployment Planner Public Preview 1.0 具有下列已知問題，這些問題將會在即將推出的更新中獲得解決。
 
 * 此工具僅適用於 VMware 到 Azure 案例，而不適用於 Hyper-V 到 Azure 部署。 對於 Hyper-V 到 Azure 案例，使用 [Hyper-V 容量規劃工具](./site-recovery-capacity-planning-for-hyper-v-replication.md)。

@@ -14,24 +14,27 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 11/09/2016
-ms.author: wesmc
+ms.date: 02/27/2017
+ms.author: glenga
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 182e28e37eb56c547e28524f2a3e13f042238cb4
-ms.openlocfilehash: c638bf42b9adf906f195d77268637d056f7b00a9
+ms.sourcegitcommit: 2fd12dd32ed3c8479c7460cbc0a1cac3330ff4f4
+ms.openlocfilehash: 53dcaea155471d47eb61317c52d38524c05e4600
+ms.lasthandoff: 03/01/2017
+
 
 ---
 
-# <a name="best-practices-for-azure-functions"></a>Azure Functions 的最佳作法
+# <a name="tips-for-improving-the-performance-and-reliability-of-azure-functions"></a>改善 Azure Functions 效能和可靠性的秘訣
 
 ##<a name="overview"></a>概觀
 
-本文提供實作函式應用程式時需考量的最佳作法的集合。 請記得，Azure Functions 應用程式是一項 Azure App Service。 因此適用這些最佳作法。
+本文提供實作函式應用程式時需考量的最佳作法的集合。 請記得，您的函數應用程式是 Azure App Service 中的應用程式。 所以也適用 App Service 最佳做法。
 
 
 ## <a name="avoid-large-long-running-functions"></a>避免大型長時間執行的函式
 
-大型長時間執行的函式可能會造成非預期的逾時問題。 函式可能會因為許多 Node.js 相依性而變大。 匯入這些相依性可能會造成載入時間增加，導致未預期的逾時。 Node.js 相依性可以明確地由您的程式碼中的多個 `require()` 陳述式載入。 它們也可以根據單一模組，其由您的程式碼所隱含載入，具有其本身內部相依性。  
+大型長時間執行的函式可能會造成非預期的逾時問題。 函式可能會因為許多 Node.js 相依性而變大。 匯入這些相依性可能會造成載入時間增加，導致未預期的逾時。 Node.js 相依性可以明確地由您的程式碼中的多個 `require()` 陳述式載入。 根據您的程式碼所載入的單一模組 (具有其本身的內部相依性)，相依性也可能是隱含的。  
 
 在可能時，將大型函式重構為較小的函式集，共用運作並快速傳回回應。 例如，Webhook 或 HTTP 觸發程序函式可能要求在特定時間限制內的通知回應。 您可以將 HTTP 觸發程序承載傳遞到要由佇列觸發程序函式處理的佇列中。 此方法可讓您延後實際工作，並傳回立即回應。 對於要求立即回應的 Webhook 很常見。
 
@@ -71,8 +74,6 @@ ms.openlocfilehash: c638bf42b9adf906f195d77268637d056f7b00a9
 利用已針對您在 Azure Functions 平台中所使用元件提供的防禦性措施。 例如，請參閱文件中**處理有害的佇列訊息**中的 [Azure 儲存體佇列觸發程序](functions-bindings-storage-queue.md#trigger)。
  
 
-
-
 ## <a name="dont-mix-test-and-production-code-in-the-same-function-app"></a>不要在相同函式應用程式中混用測試和實際執行程式碼。
 
 函式應用程式內的 Functions 會共用資源。 例如，共用記憶體。 如果您在生產環境中使用函式應用程式，請勿對它新增與測試相關的函式和資源。 在實際執行程式碼執行期間可能導致發生未預期的額外負荷。
@@ -103,10 +104,6 @@ ms.openlocfilehash: c638bf42b9adf906f195d77268637d056f7b00a9
 * [Azure Functions C# 開發人員參考](functions-reference-csharp.md)
 * [Azure Functions F# 開發人員參考](functions-reference-fsharp.md)
 * [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
+* [HTTP 效能最佳化的模式與做法](https://github.com/mspnp/performance-optimization/blob/master/ImproperInstantiation/docs/ImproperInstantiation.md)
 
 

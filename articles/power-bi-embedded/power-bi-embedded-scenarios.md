@@ -18,6 +18,7 @@ ms.author: asaxton
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: bcfb9370af716756440a09f4f0c2e4ca0af70b45
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -33,10 +34,5 @@ ms.openlocfilehash: bcfb9370af716756440a09f4f0c2e4ca0af70b45
 ### <a name="see-also"></a>另請參閱
 * [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 * [開始使用範例](power-bi-embedded-get-started.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

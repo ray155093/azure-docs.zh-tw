@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 01/24/2017
+ms.date: 03/06/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 183cc2025bd909ea4450564bc3598c2694b1c0db
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 37797743df0e2ce029b65f267a7cea5c8d793773
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: 183cc2025bd909ea4450564bc3598c2694b1c0db
 ## <a name="prerequisites"></a>必要條件
 開始閱讀本文之前，您必須符合下列必要條件：
 
-* Visual Studio 2012 或 2013。
+* Visual Studio 2017 或 2015。
 * 下載並安裝 [Azure .NET SDK](https://azure.microsoft.com/downloads/)。
 * 一項需要啟用監視的現有串流分析工作。
 
@@ -179,10 +180,5 @@ ms.openlocfilehash: 183cc2025bd909ea4450564bc3598c2694b1c0db
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

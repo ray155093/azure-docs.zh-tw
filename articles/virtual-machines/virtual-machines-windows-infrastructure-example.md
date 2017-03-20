@@ -15,13 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: iainfou
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 1e52ae69951b6b1feee6207033a85a583d13bcc2
-ms.openlocfilehash: 851dd4a2a76eff0e2f95c9a0a7280986cfb3e26a
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: b01825022189722c9c0d396984a1a369a5d57584
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="example-azure-infrastructure-walkthrough"></a>範例 Azure 基礎結構逐步解說
+# <a name="example-azure-infrastructure-walkthrough-for-windows-vms"></a>適用於 Windows VM 的範例 Azure 基礎結構逐步解說
+
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
 
 本文將逐步解說建置範例應用程式基礎結構的方法。 我們會詳述設計簡單線上商店基礎結構的方式，此線上商店能將所有命名慣例、可用性設定組、虛擬網路及負載平衡器的指導方針和決定集合在一起，並實際部署您的虛擬機器 (VM)。
@@ -120,10 +123,5 @@ Adventure Works Cycles 決定為其 Azure VM 使用下列名稱：
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-next-steps](../../includes/virtual-machines-windows-infrastructure-guidelines-next-steps.md)]
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

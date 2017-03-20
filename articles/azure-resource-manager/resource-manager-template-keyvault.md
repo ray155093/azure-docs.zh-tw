@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 06/23/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: e841c21a15c47108cbea356172bffe766003a145
-ms.openlocfilehash: f72ae06c2e31de5d8a1121a9e265c23f016fffe9
+ms.sourcegitcommit: f2d009477a614c3b2876ce98a355d3775abf772b
+ms.openlocfilehash: 04f2d5d8e501ebf41cf95ea925d238f64b096c1d
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -34,7 +35,7 @@ ms.openlocfilehash: f72ae06c2e31de5d8a1121a9e265c23f016fffe9
         "properties": {
             "enabledForDeployment": bool,
             "enabledForTemplateDeployment": bool,
-            "enabledForVolumeEncryption": bool,
+            "enabledForDiskEncryption": bool,
             "tenantId": string,
             "accessPolicies": [
                 {
@@ -75,7 +76,7 @@ ms.openlocfilehash: f72ae06c2e31de5d8a1121a9e265c23f016fffe9
 | --- | --- |
 | enabledForDeployment |Boolean<br />選用<br />**True** 或 **False**<br /><br />指定是否要針對虛擬機器或 Service Fabric 部署啟用保存庫。 |
 | enabledForTemplateDeployment |Boolean<br />選用<br />**True** 或 **False**<br /><br />指定是否要啟用保存庫，以便在 Resource Manager 範本部署中使用。 如需詳細資訊，請參閱 [在部署期間傳遞安全值](resource-manager-keyvault-parameter.md) |
-| enabledForVolumeEncryption |Boolean<br />選用<br />**True** 或 **False**<br /><br />指定是否要啟用保存庫來進行磁碟區加密。 |
+| enabledForDiskEncryption |Boolean<br />選用<br />**True** 或 **False**<br /><br />指定是否要啟用保存庫來進行磁碟區加密。 |
 | tenantId |String<br />必要<br />**全域唯一識別碼**<br /><br />訂用帳戶的租用戶識別碼。 您可以使用 [Get-AzureRmSubscription](https://msdn.microsoft.com/library/azure/mt619284.aspx) PowerShell Cmdlet 或 **azure account show** Azure CLI 命令來擷取此識別碼。 |
 | accessPolicies |陣列<br />必要<br />[accessPolicies 物件](#accesspolicies)<br /><br />最多 16 個物件的陣列，可指定使用者或服務主體的權限。 |
 | sku |Object<br />必要<br />[SKU 物件](#sku)<br /><br />金鑰保存庫的 SKU。 |
@@ -169,7 +170,7 @@ ms.openlocfilehash: f72ae06c2e31de5d8a1121a9e265c23f016fffe9
                     "description": "Specifies if the vault is enabled for ARM template deployment"
                 }
             },
-            "enableVaultForVolumeEncryption": {
+            "enableVaultForDiskEncryption": {
                 "type": "bool",
                 "defaultValue": false,
                 "metadata": {
@@ -201,7 +202,7 @@ ms.openlocfilehash: f72ae06c2e31de5d8a1121a9e265c23f016fffe9
             "properties": {
                 "enabledForDeployment": "[parameters('enabledForDeployment')]",
                 "enabledForTemplateDeployment": "[parameters('enabledForTemplateDeployment')]",
-                "enabledForVolumeEncryption": "[parameters('enableVaultForVolumeEncryption')]",
+                "enabledForDiskEncryption": "[parameters('enableVaultForDiskEncryption')]",
                 "tenantId": "[parameters('tenantId')]",
                 "accessPolicies": [
                 {
@@ -240,10 +241,5 @@ ms.openlocfilehash: f72ae06c2e31de5d8a1121a9e265c23f016fffe9
 ## <a name="next-steps"></a>後續步驟
 * 如需金鑰保存庫的一般資訊，請參閱[開始使用 Azure 金鑰保存庫](../key-vault/key-vault-get-started.md)。
 * 如需部署範本時參考金鑰保存庫密碼的範例，請參閱 [在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

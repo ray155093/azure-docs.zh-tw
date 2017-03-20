@@ -15,14 +15,16 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 11/21/2016
 ms.author: nepeters
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 8284fa063d8ffa0d9951b77eb06be14159fc2561
-ms.openlocfilehash: 5b40d5476d85a4eeba65f01320e0ea03ed4debaa
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 3aeefecabb72b57c64fb47aeb5b6523b9ff3239b
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="automating-application-deployments-to-azure-virtual-machines"></a>將應用程式自動部署到 Azure 虛擬機器
+# <a name="automating-application-deployments-to-windows-virtual-machines"></a>將應用程式自動部署到 Windows 虛擬機器
+
 這個系列包含四個部分，詳細說明了如何使用 Azure Resource Manager 範本來部署及設定 Azure 資源和應用程式。 在這個系列中，會部署一個範例範本，並檢查部署範本。 這個系列的目標是要教導 Azure 資源之間的關聯性，並提供部署完全整合之 Azure Resource Manager 範本的實際操作體驗。 本文件假設您對 Azure Resource Manager 有基本程度的認識，開始進行本教學課程之前，請讓自己熟悉 Azure Resource Manager 的基本概念。
 
 ## <a name="music-store-application"></a>音樂市集應用程式

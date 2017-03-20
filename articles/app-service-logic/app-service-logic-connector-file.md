@@ -99,6 +99,6 @@ API 應用程式執行個體建立之後，瀏覽至其儀表板。  作法是�
 
 <!-- Links -->
 [建立新的邏輯應用程式]: app-service-logic-create-a-logic-app.md
-[File connector API definition]: https://msdn.microsoft.com/library/dn936296.aspx
+[檔案連接器 API 定義]: https://msdn.microsoft.com/library/dn936296.aspx
 [使用混合式連線管理員]: ../app-service-web/web-sites-hybrid-connection-get-started.md
 

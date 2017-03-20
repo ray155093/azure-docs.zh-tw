@@ -14,21 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/21/2017
+ms.date: 02/27/2017
 ms.author: curtand
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6a9cebafd1ad8f513bfab897970241f7b82b2a53
-ms.openlocfilehash: cea745934c36297f5fe0867f4335a797a3ae2515
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: 909402b0c603433883757dc3082676462a7c6683
+ms.lasthandoff: 03/08/2017
 
 
 ---
 
-# <a name="assigning-licenses-to-a-group-in-azure-active-directory"></a>將授權指派給 Azure Active Directory 中的群組
+# <a name="assign-licenses-to-a-group-of-users-in-azure-active-directory"></a>將授權指派給 Azure Active Directory 中的使用者群組
 
 在本文中，我們要逐步解說將產品授權指派給群組，以及確認已正確授權群組的所有成員之基本案例。
 
-在本範例中，租用戶包含稱為**人力資源部門**的安全性群組，其包括人力資源部門的所有成員，在此案例中大約是 1,000 位使用者。 系統管理員想要將 Office 365 Enterprise E3 授權指派給整個部門；產品中包含的 Yammer Enterprise 服務需要暫時停用，直到稍後部門準備好要開始使用它為止。 系統管理員也要將 Enterprise Mobility + Security 授權部署到相同群組的使用者。
+在本範例中，租用戶包含稱為**人力資源部門**的安全性群組，其包括人力資源部門的所有成員 (在此案例中大約是 1,000 位使用者)。 系統管理員想要將 Office 365 Enterprise E3 授權指派給整個部門；產品中包含的 Yammer Enterprise 服務需要暫時停用，直到稍後部門準備好要開始使用它為止。 系統管理員也要將 Enterprise Mobility + Security 授權部署到相同群組的使用者。
 
 ## <a name="step-1-assign-the-required-licenses"></a>步驟 1︰指派所需的授權
 
@@ -46,7 +47,7 @@ ms.lasthandoff: 02/22/2017
 
   ![選取群組](media/active-directory-licensing-group-assignment-azure-portal/select-a-group.png)
 
-6. 在 [指派授權] 刀鋒視窗中，按一下 [指派選項 (選用)]，其會顯示我們先前選取的兩個產品中所包含的所有服務計劃。 尋找 Yammer Enterprise 並將它**關閉**以從產品授權停用該服務。 按一下 [指派選項] 底部的 [確定] 來確認。
+6. 在 [指派授權] 刀鋒視窗中，按一下 [指派選項 (選用)]，其會顯示我們先前選取的兩個產品中所包含的所有服務方案。 尋找 Yammer Enterprise 並將它**關閉**以從產品授權停用該服務。 按一下 [指派選項] 底部的 [確定] 來確認。
 
   ![指派選項](media/active-directory-licensing-group-assignment-azure-portal/assignment-options.png)
 
@@ -63,11 +64,11 @@ ms.lasthandoff: 02/22/2017
 
 1. 移至 **Azure Active Directory &gt; 使用者和群組 &gt; 所有群組**並尋找授權所指派的人力資源部門群組。
 
-2. 在人力資源部門群組刀鋒視窗中，選取 [授權] 以快速確認授權是否已完全指派給使用者，以及是否有任何錯誤需要探究，包括︰
+2. 在人力資源部門群組刀鋒視窗中，選取 [授權] 以快速確認授權是否已完全指派給使用者，以及是否有任何錯誤需要探究。 可用資訊如下：
 
-  - 已指派給群組的產品授權。 選取項目來顯示已啟用且要進行變更的特定服務。
+  - 目前指派給群組的產品授權清單。 選取項目來顯示已啟用且要進行變更的特定服務。
 
-  - 對授權指派進行的最新變更狀態︰變更是否要進行處理，或是否已完成處理所有使用者的成員。
+  - 對群組進行的最新授權變更狀態︰變更是否要進行處理，或是否已完成處理所有使用者的成員。
 
   - 如果發生錯誤，無法指派授權給處於錯誤狀態之使用者的相關資訊。
 
@@ -84,9 +85,9 @@ ms.lasthandoff: 02/22/2017
 
 1. 移至 **Azure Active Directory &gt; 使用者和群組 &gt; 所有群組**並尋找授權所指派的人力資源部門群組。
 
-2. 在 [人力資源部門] 群組刀鋒視窗中，選取 [授權]。 刀鋒視窗頂端的通知表示有 10 位使用者無法指派授權。 隨即開啟一份此群組為授權錯誤狀態的所有使用者。
+2. 在 [人力資源部門] 群組刀鋒視窗中，選取 [授權]。 刀鋒視窗頂端的通知顯示有 10 位使用者無法指派授權。 按一下隨即開啟一份此群組為授權錯誤狀態的所有使用者。
 
-3. **無法指派**資料行告訴我們，兩個產品授權都無法指派給使用者。 **排名在前的失敗原因**包含失敗的原因，在此案例中為**衝突服務計劃**。
+3. **無法指派**資料行告訴我們，兩個產品授權都無法指派給使用者。 **排名在前的失敗原因**包含失敗的原因，在此案例中為**衝突服務方案**。
 
   ![失敗的指派](media/active-directory-licensing-group-assignment-azure-portal/failed-assignments.png)
 
@@ -104,6 +105,6 @@ ms.lasthandoff: 02/22/2017
 
 * [什麼是 Azure Active Directory 中以群組為基礎的授權？](active-directory-licensing-whatis-azure-portal.md)
 * [識別及解決 Azure Active Directory 中群組的授權問題](active-directory-licensing-group-problem-resolution-azure-portal.md)
-* [如何將個別授權使用者移轉至 Azure Active Directory 中以群組為基礎的授權](active-directory-licensing-group-migration-azure-portal.md)
-* [Azure Active Directory 群組型授權其他案例](active-directory-licensing-group-advanced.md)
+* [如何將個別的已授權使用者移轉成 Azure Active Directory 中的群組型授權 (英文)](active-directory-licensing-group-migration-azure-portal.md)
+* [Azure Active Directory 群組型授權其他案例 (英文)](active-directory-licensing-group-advanced.md)
 

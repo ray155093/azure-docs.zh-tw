@@ -11,27 +11,29 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 10/10/2016
+ms.date: 02/17/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: eb7dce1c0664e34c4946bb08f5b412e1e01c715d
+ms.sourcegitcommit: 2d8d925f80830a0d7047e9567fdd413af2e8c5c3
+ms.openlocfilehash: 8a13dd5ebd872f86247158379b28bc291a9c9d83
+ms.lasthandoff: 02/28/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-benefitsolver"></a>教學課程：Azure Active Directory 與 Benefitsolver 整合
 本教學課程的目的是要示範 Azure 與 Benefitsolver 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
-* 有效的 Azure 訂用帳戶
-* 啟用 Benefitsolver 單一登入的訂用帳戶
+* 有效的 Azure 訂閱
+* 已啟用 Benefitsolver 單一登入 (SSO) 的訂用帳戶
 
 完成本教學課程之後，您指派給 Benefitsolver 的 Azure AD 使用者就能夠單一登入應用程式或是使用 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 Benefitsolver 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
@@ -61,15 +63,18 @@ ms.openlocfilehash: eb7dce1c0664e34c4946bb08f5b412e1e01c715d
    
    ![Benefitssolver](./media/active-directory-saas-benefitsolver-tutorial/IC804822.png "Benefitssolver")
    
-   ## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Benefitsolver 。  
-Benefitsolver 應用程式需要特定格式的 SAML 判斷提示，因此您必須將自訂屬性對應加入 **SAML Token 屬性** 組態。  
+
+Benefitsolver 應用程式需要特定格式的 SAML 判斷提示，因此您必須將自訂屬性對應加入 **SAML Token 屬性** 組態。 
+
 以下螢幕擷取畫面顯示上述的範例。
 
 ![屬性](./media/active-directory-saas-benefitsolver-tutorial/IC804823.png "屬性")
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
+**若要設定單一登入，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站的 **Benefitsolver** 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-benefitsolver-tutorial/IC804824.png "設定單一登入")
@@ -88,11 +93,10 @@ Benefitsolver 應用程式需要特定格式的 SAML 判斷提示，因此您必
    ![設定單一登入](./media/active-directory-saas-benefitsolver-tutorial/IC804827.png "設定單一登入")
 5. 將下載的中繼資料檔傳送給 Benefitsolver 支援小組。
    
-   > [!NOTE]
-   > Benefitsolver 支援小組必須執行實際的 SSO 組態。
-   > 當您的訂用帳戶啟用 SSO 之後，您會收到通知。
-   > 
-   > 
+   >[!NOTE]
+   >Benefitsolver 支援小組必須執行實際的 SSO 組態。 當您的訂用帳戶啟用 SSO 之後，您會收到通知。
+   >
+
 6. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-benefitsolver-tutorial/IC804828.png "設定單一登入")
@@ -116,13 +120,13 @@ Benefitsolver 應用程式需要特定格式的 SAML 判斷提示，因此您必
    4. 按一下 [完成] 。
 9. 按一下 [套用變更] 。
 
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 若要讓 Azure AD 使用者可以登入 Benefitsolver，必須將他們佈建到 Benefitsolver。  
+
 在 Benefitsolver 案例中，員工資料是透過您的 HRIS 系統的普查檔案填入應用程式中 (通常是每晚)。  
 
-> [!NOTE]
-> 您可以使用任何其他的 Benefitsolver 使用者帳戶建立工具或 Benefitsolver 提供的 API 來佈建 AAD 使用者帳戶。
-> 
+>[!NOTE]
+>您可以使用任何其他的 Benefitsolver 使用者帳戶建立工具或 Benefitsolver 提供的 API 來佈建 AAD 使用者帳戶。 
 > 
 
 ## <a name="assigning-users"></a>指派使用者
@@ -130,7 +134,7 @@ Benefitsolver 應用程式需要特定格式的 SAML 判斷提示，因此您必
 
 ### <a name="to-assign-users-to-benefitsolver-perform-the-following-steps"></a>若要將使用者指派給 Benefitsolver，請執行下列步驟：
 1. 在 Azure 傳統入口網站中建立測試帳戶。
-2. 在 **Benefitsolver** 應用程式整合頁面上，按一下 [指派使用者。
+2. 在 **Benefitsolver** 應用程式整合頁面上，按一下 指派使用者。
    
    ![指派使用者](./media/active-directory-saas-benefitsolver-tutorial/IC804829.png "指派使用者")
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
@@ -138,10 +142,5 @@ Benefitsolver 應用程式需要特定格式的 SAML 判斷提示，因此您必
    ![是](./media/active-directory-saas-benefitsolver-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

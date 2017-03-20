@@ -16,9 +16,9 @@ ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
-ms.openlocfilehash: e204a3c79768ddbd433f3b00a3db456ef3258173
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 9ea205cb5034fea66c770ec71934e302ee818a89
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -100,7 +100,7 @@ Batch 也可以執行平行計算 (最後加上歸納步驟)，以及執行其�
 雖然不一定要使用 Batch 建置解決方案，但以下是建置和偵錯 Batch 應用程式和服務時所要使用的一些重要工具。
 
 * [Azure 入口網站][portal]︰您可以在 Azure 入口網站的 Batch 刀鋒視窗中建立、監視和刪除 Batch 集區、作業和工作。 您可以在執行作業時檢視上述和其他資源的狀態資訊，甚至從您集區中的計算節點下載檔案 (例如，在進行疑難排解時下載失敗的工作 `stderr.txt` )。 您也可以下載可用來登入計算節點的遠端桌面 (RDP) 檔案。
-* [Azure Batch 總管][batch_explorer]︰Batch 總管可提供與 Azure 入口網站類似的 Batch 資源管理功能，但是在獨立的 Windows Presentation Foundation (WPF) 用戶端應用程式中。 在 [GitHub][github_samples] 上可取得其中一個 Batch .NET 範例應用程式，您可以使用 Visual Studio 2015 建置此種應用程式，並在開發及偵錯 Batch 解決方案時，使用它來瀏覽和管理 Batch 帳戶中的資源。 檢視作業、集區和工作詳細資訊、從計算節點下載檔案，以及使用您可透過 Batch 總管下載的遠端桌面 (RDP) 檔案從遠端連接到節點。
+* [Azure Batch 總管][batch_explorer]︰Batch 總管可提供與 Azure 入口網站類似的 Batch 資源管理功能，但是在獨立的 Windows Presentation Foundation (WPF) 用戶端應用程式中。 在 [GitHub][github_samples] 上可取得其中一個 Batch .NET 範例應用程式，您可以使用 Visual Studio 2015 或更新版本建置此種應用程式，並在開發及偵錯 Batch 解決方案時，使用它來瀏覽和管理 Batch 帳戶中的資源。 檢視作業、集區和工作詳細資訊、從計算節點下載檔案，以及使用您可透過 Batch 總管下載的遠端桌面 (RDP) 檔案從遠端連接到節點。
 * [Microsoft Azure 儲存體總管][storage_explorer]：嚴格來說，雖然儲存體總管不算是 Azure Batch 工具，但卻是您開發和偵錯 Batch 解決方案時的另一個很實用的工具。
 
 ## <a name="scenario-scale-out-a-parallel-workload"></a>案例：相應放大平行工作負載

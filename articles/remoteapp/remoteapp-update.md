@@ -17,6 +17,7 @@ ms.author: mbaldwin
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 593718b0d0d99f813321cb9ad6a7241e2315f6d0
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -41,10 +42,5 @@ ms.openlocfilehash: 593718b0d0d99f813321cb9ad6a7241e2315f6d0
    * **更新後給與使用者 60 分鐘**。 一完成更新，Azure RemoteApp 就會顯示訊息給任何作用中使用者，告訴他們儲存工作並登出，然後重新登入。 60 分鐘之後，任何未登出的作用中使用者將自動登出。 使用者可以立即重新登入。
    * **立即登出使用者**。 一完成更新，就會自動登出所有使用者，而且沒有任何警告。 如果您選擇此選項，使用者可能會遺失資料。 不過，它們可以立即重新連接至應用程式。
 6. 按一下核取記號以啟動更新。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

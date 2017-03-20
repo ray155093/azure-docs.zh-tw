@@ -1,5 +1,5 @@
 ---
-title: "將 Linux 電腦連接到 Log Analytics | Microsoft Docs"
+title: "將 Linux 電腦連線到 Azure Log Analytics | Microsoft Docs"
 description: "使用 Log Analytics，您可以收集和處理從 Linux 電腦所產生的資料。"
 services: log-analytics
 documentationcenter: 
@@ -12,16 +12,18 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 02/27/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 218ffec4601c5b0b4ee9872b5bbd03489cb3ddcf
+ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
+ms.openlocfilehash: fba4e68e78b8267ff2413f94d5ca5066325f9c76
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="connect-linux-computers-to-log-analytics"></a>將 Linux 電腦連接到 Log Analytics
-使用 Log Analytics，您可以收集和處理從 Linux 電腦所產生的資料。 將從 Linux 收集的資料加入 OMS 中，可讓您管理 Linux 系統和容器解決方案 (如 Docker)，無論您的電腦位於何處 (含虛擬的任何位置)。 因此，這些資料來源可能位於內部部署資料中心內，以做為實體伺服器、雲端託管服務 (如 Amazon Web Services (AWS) 或 Microsoft Azure) 中的虛擬電腦，甚至桌上的膝上型電腦。 此外，OMS 同樣也會收集來自 Windows 電腦的資料，因此支援真正混合式 IT 環境。
+# <a name="connect-your-linux-computers-to-log-analytics"></a>將 Linux 電腦連線到 Log Analytics
+使用 Log Analytics，您可以收集和處理從 Linux 電腦所產生的資料。 將從 Linux 收集的資料加入 OMS 中，可讓您管理 Linux 系統和容器解決方案 (如 Docker)，無論您的電腦位於何處 (含虛擬的任何位置)。 資料來源可能位於內部部署資料中心內，以做為實體伺服器、雲端託管服務 (如 Amazon Web Services (AWS) 或 Microsoft Azure) 中的虛擬電腦，甚至桌上的膝上型電腦。 此外，OMS 同樣也會收集來自 Windows 電腦的資料，因此支援真正混合式 IT 環境。
 
 您可以使用單一管理入口網站，來檢視和管理來自具有 OMS 中 Log Analytics 之所有來源的資料。 這會降低使用許多不同系統監視它的需求、讓您輕鬆地使用它，而且您可以將喜歡的任何資料匯出至任何您已經有的商務分析解決方案或系統。
 
@@ -96,9 +98,7 @@ Operations Management Suite Agent for Linux 包含多個封裝。 發行檔案�
 ![工作區詳細資料](./media/log-analytics-linux-agents/oms-direct-agent-primary-key.png)
 
 ```
-wget https://github.com/Microsoft/OMS-Agent-for-Linux/releases/download/v1.1.0-28/omsagent-1.1.0-28.universal.x64.sh
-sha256sum ./omsagent-1.1.0-28.universal.x64.sh
-sudo sh ./omsagent-1.1.0-28.universal.x64.sh --upgrade -w <YOUR OMS WORKSPACE ID> -s <YOUR OMS WORKSPACE PRIMARY KEY>
+wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w <YOUR OMS WORKSPACE ID> -s <YOUR OMS WORKSPACE PRIMARY KEY>
 ```
 
 有各種其他方法可安裝代理程式，並將它升級。 您可以在 [OMS Agent for Linux 安裝步驟](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#steps-to-install-the-oms-agent-for-linux)深入閱讀它們。
@@ -108,7 +108,7 @@ sudo sh ./omsagent-1.1.0-28.universal.x64.sh --upgrade -w <YOUR OMS WORKSPACE ID
 ## <a name="choose-your-linux-data-collection-method"></a>選擇 Linux 資料收集方法
 如何選擇您想要收集的資料類型，取決於您是否要使用 OMS 入口網站，或者是否想要直接編輯 Linux 用戶端上的各種組態檔。 如果您選擇使用入口網站，會自動將組態傳送給所有 Linux 用戶端。 如果不同的 Linux 用戶端需要不同的組態，則需要個別編輯用戶端檔案，或使用替代方法 (如 PowerShell DSC、Chef 或 Puppet)。
 
-您可以指定您想要使用 Linux 電腦上組態檔所收集的 syslog 事件和效能計數器。 *如果您選擇編輯代理程式組態檔來設定資料收集，則應該停用集中式組態。*   提供下面的指示，以在代理程式的組態檔中設定資料收集，以及停用所有 OMS Agent for Linux 或個別電腦的集中式組態。
+您可以指定您想要使用 Linux 電腦上組態檔所收集的 syslog 事件和效能計數器。 *如果您選擇編輯代理程式組態檔來設定資料收集，則應該停用集中式組態。*  提供下面的指示，以在代理程式的組態檔中設定資料收集，以及停用所有 OMS Agent for Linux 或個別電腦的集中式組態。
 
 ### <a name="disable-oms-management-for-an-individual-linux-computer"></a>停用個別 Linux 電腦的 OMS 管理
 使用 OMS_MetaConfigHelper.py 指令碼，針對個別 Linux 電腦停用組態資料的集中式資料收集。 如果有一部分的電腦應該有特製化組態，則這十分有用。
@@ -782,9 +782,4 @@ azure vm extension set <resource-group> <vm-name> LinuxDiagnostic Microsoft.OSTC
 * [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md) ，以加入功能和收集資料。
 * 熟悉 [記錄檔搜尋](log-analytics-log-searches.md) 以檢視方案所收集的詳細資訊。
 * 使用 [儀表板](log-analytics-dashboards.md) 以儲存和顯示您自己的自訂搜尋。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

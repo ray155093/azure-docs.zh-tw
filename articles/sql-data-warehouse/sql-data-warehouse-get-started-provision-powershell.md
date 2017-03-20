@@ -15,8 +15,9 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 5d3bcc3c1434b16279778573ccf3034f9ac28a4d
-ms.openlocfilehash: 2b78101f6abd675487c7879de5440021832af181
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: 58ba34f8f99b7cd2b6a9a199bc70d79431405100
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -34,7 +35,7 @@ ms.openlocfilehash: 2b78101f6abd675487c7879de5440021832af181
 若要開始，您需要：
 
 * **Azure 帳戶**︰請瀏覽 [Azure 免費試用][Azure Free Trial]或 [MSDN Azure 點數][MSDN Azure Credits]以建立帳戶。
-* **Azure SQL Server**︰如需詳細資訊，請參閱[使用 Azure 入口網站建立 Azure SQL Database 邏輯伺服器][Create an Azure SQL Database logical server with the Azure Portal]或[使用 PowerShell 建立 Azure SQL Database 邏輯伺服器][Create an Azure SQL Database logical server with PowerShell]。
+* **Azure SQL Server**︰如需詳細資訊，請參閱[在 Azure 入口網站中建立 Azure SQL Database][Create an Azure SQL database in the Azure Portal] 或[使用 PowerShell 建立 Azure SQL Database][Create an Azure SQL database with PowerShell]。
 * **資源群組**︰使用與 Azure SQL Server 相同的資源群組，或參閱 [如何建立資源群組](../azure-resource-manager/resource-group-portal.md)。
 * **PowerShell 1.0.3 版或更新版本**：您可以執行 **Get-Module -ListAvailable -Name Azure** 來檢查您的版本。  可透過 [Microsoft Web Platform Installer][Microsoft Web Platform Installer]安裝最新的版本。  如需安裝最新版本的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][How to install and configure Azure PowerShell]。
 
@@ -84,7 +85,7 @@ SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][loading
 <!--Image references-->
 
 <!--Article references-->
-[DWU]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
+[DWU]: ./sql-data-warehouse-overview-what-is.md
 [migrate]: ./sql-data-warehouse-overview-migrate.md
 [develop]: ./sql-data-warehouse-overview-develop.md
 [load]: ./sql-data-warehouse-load-with-bcp.md
@@ -94,8 +95,8 @@ SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][loading
 
 [How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [how to create a SQL Data Warehouse from the Azure Portal]: ./sql-data-warehouse-get-started-provision.md
-[Create an Azure SQL Database logical server with the Azure Portal]: ../sql-database/sql-database-get-started.md#create-logical-server-bk
-[Create an Azure SQL Database logical server with PowerShell]: ../sql-database/sql-database-get-started-powershell.md#complete-azure-powershell-script-to-create-a-server-firewall-rule-and-database
+[Create an Azure SQL database in the Azure Portal]: ../sql-database/sql-database-get-started.md
+[Create an Azure SQL database with PowerShell]: ../sql-database/sql-database-get-started-powershell.md
 [how to create a resource group]: ../azure-resource-manager/resource-group-template-deploy-portal.md#create-resource-group
 
 <!--MSDN references-->
@@ -108,9 +109,4 @@ SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][loading
 [SQL Data Warehouse pricing]: https://azure.microsoft.com/pricing/details/sql-data-warehouse/
 [Azure Free Trial]: https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F
 [MSDN Azure Credits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

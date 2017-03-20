@@ -14,14 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/31/2016
 ms.author: trinadhk;markgal;
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: e12d533ac5befe020c0aad4aa64ca9ed50349c3d
-ms.openlocfilehash: bea1012fcd63b15ebfb5137dcfbd7e868c4e060f
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 82b7541ab1434179353247ffc50546812346bda9
+ms.openlocfilehash: d00235d788dbe1674eac219a7c708a8ecd53ccc5
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="manage-and-monitor-azure-virtual-machine-backups"></a>管理和監視 Azure 虛擬機器備份
+# <a name="manage-common-azure-backup-jobs-and-trigger-alerts-in-the-classic-portal"></a>在傳統入口網站中管理一般的 Azure 備份作業和觸發警示
 > [!div class="op_single_selector"]
 > * [管理 Azure VM 備份](backup-azure-manage-vms.md)
 > * [管理傳統 VM 備份](backup-azure-manage-vms-classic.md)
@@ -239,7 +240,7 @@ PS C:\> Add-AzureRmLogAlertRule -Name backupFailedAlert -Location "East US" -Res
 
 1. 在備份保存庫中的所有虛擬機器上觸發警示。 您無法自訂它以取得備份保存庫中特定一組虛擬機器的警示。
 2. 這項功能處於預覽狀態。 [深入了解](../monitoring-and-diagnostics/insights-powershell-samples.md#create-alert-rules)
-3. 您將會收到來自 "alerts-noreply@mail.windowsazure.com" 的通知。 目前您無法修改電子郵件寄件者。
+3. 您將會收到來自 "alerts-noreply@mail.windowsazure.com" 的警示。 目前您無法修改電子郵件寄件者。
 
 ## <a name="next-steps"></a>後續步驟
 * [還原 Azure VM](backup-azure-restore-vms.md)

@@ -1,6 +1,6 @@
 ---
-title: "在 Azure VM 上部署 S/4 HANA 或 BW/4 HANA | Microsoft Docs"
-description: "在 Azure VM 上部署 S/4 HANA 或 BW/4 HANA"
+title: "在 Azure VM 上部署 SAP S/4HANA 或 BW/4HANA | Microsoft Docs"
+description: "在 Azure VM 上部署 SAP S/4HANA 或 BW/4HANA"
 services: virtual-machines-linux
 documentationcenter: 
 author: hermanndms
@@ -17,82 +17,75 @@ ms.workload: infrastructure-services
 ms.date: 09/15/2016
 ms.author: hermannd
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f653e69590ee15d272543dc58840b1ee6983e953
+ms.sourcegitcommit: 6f345bb816a3fd6f6fb8672b9a43a0d075bd94eb
+ms.openlocfilehash: 939c051cad98590acffb6e550ca45bf5fec90d7e
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="deploying-s4-hana-or-bw4-hana-on-microsoft-azure"></a>在 Microsoft Azure 上部署 S/4 HANA 或 BW/4 HANA
-本文說明如何透過 SAP Cloud Appliance Library 3.0 在 Microsoft Azure 上部署 S/4 HANA。
-螢幕擷取畫面會逐步顯示此程序。 從程序觀點來看，部署其他以 SAP HANA 為基礎的解決方案 (如 BW/4 HANA) 的方式相同。 使用者只需選取不同的解決方案。
+# <a name="deploy-sap-s4hana-or-bw4hana-on-microsoft-azure"></a>在 Microsoft Azure 上部署 SAP S/4HANA 或 BW/4HANA
+本文說明如何使用 SAP Cloud Appliance Library (SAP CAL) 3.0 在 Microsoft Azure 上部署 S/4HANA。 從程序觀點來看，部署其他 SAP HANA 型解決方案 (例如 BW/4 HANA) 也是以相同的方式運作。 您只需選取不同的解決方案即可。
 
-若要開始使用 SAP Cloud Appliance Library (SAP CAL)，請前往 [這裡](https://cal.sap.com/)。 SAP 提供了有關全新 [SAP Cloud Appliance Library 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience)的部落格。
+> [!NOTE]
+如需有關 SAP Cloud Appliance Library 的詳細資訊，請參閱[它們的網站首頁](https://cal.sap.com/)。 SAP 也有提供一個關於 [SAP Cloud Appliance Library 3.0 (英文)](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience) 的部落格。
 
-下列螢幕擷取畫面逐步顯示如何在 Microsoft Azure 上部署 S/4 HANA。 對於 BW/4 HANA 等其他解決方案，此程序的運作方式相同。
+## <a name="step-by-step-process-to-deploy-the-solution"></a>部署解決方案的逐步程序
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic-1b.jpg)
+下列螢幕擷取畫面顯示如何在 Azure 上部署 S/4HANA。 對於 BW/4 HANA 等其他解決方案，此程序的運作方式相同。
 
-第一張圖顯示 Microsoft Azure 上所有以 SAP CAL HANA 為基礎的可用解決方案。
-已選擇「SAP S/4 HANA 內部部署版本」(螢幕擷取畫面底部的解決方案) 作為範例來逐步解說此程序。
+第一個螢幕擷取畫面顯示 Azure 上可用的所有 SAP CAL HANA 型解決方案。 請注意位於底部的「SAP S/4HANA 內部部署版本」。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic-2.jpg)
+![SAP Cloud Appliance Library [Solutions] (解決方案) 視窗的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic-1b.jpg)
 
-首先必須建立新的 SAP CAL 帳戶。 Azure 目前有兩個選擇 - 標準 Azure 以及在中國大陸由合作夥伴 21Vianet 運作的 Azure。
+首先，請建立新的 SAP CAL 帳戶。 在 [Accounts] (帳戶) 中，您會看到兩個 Azure 選項：Microsoft Azure 和由 21Vianet 操作的 Azure 選項。 針對此範例，請選擇 [Microsoft Azure]。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic3b.jpg)
+![SAP Cloud Appliance Library [Accounts] (帳戶) 視窗的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic-2.jpg)
 
-然後使用者必須輸入可在 Azure 入口網站上找到的 Azure 訂用帳戶識別碼 - 請進一步參閱底下的取得方式。 之後必須下載 Azure 管理憑證。
+接著，輸入可在 Azure 入口網站上找到的 Azure 訂用帳戶 ID。 然後，下載 Azure 管理憑證。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic6b.jpg)
+![SAP Cloud Appliance Library [Accounts] (帳戶) 視窗的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic3b.jpg)
 
-在新的 Azure 入口網站中，使用者可在左側找到 [訂用帳戶] 項目。 按一下可顯示您的使用者的所有作用中訂用帳戶。
+> [!NOTE]
+若要尋找您的 Azure 訂用帳戶 ID，您應該使用 Azure 傳統入口網站，而不是較新的 Azure 入口網站。 這是因為 SAP CAL 尚未針對新模型進行調整，而仍然需要傳統入口網站才能使用管理憑證。
 
-選取其中一個訂用帳戶，然後選擇 [管理憑證]，表示有對新的 Azure Resource Manager 模型使用「服務主體」的新概念。
-SAP CAL 尚未針對這個新的模型進行調整，仍需要「傳統」模型和舊版 Azure 入口網站才能使用管理憑證。
+以下螢幕擷取畫面顯示傳統入口網站。 從 [設定]，選取 [訂用帳戶] 索引標籤，以尋找要在 SAP CAL [Accounts] (帳戶) 視窗中輸入的訂用帳戶 ID。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic4b.jpg)
+![Azure 傳統入口網站的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic4b.jpg)
 
-使用者可以在這裡看到舊版 Azure 入口網站。 上傳管理憑證，可讓 SAP CAL 有權限在客戶訂用帳戶內建立虛擬機器。 在「訂用帳戶」索引標籤之下，使用者可以找到必須在 SAP CAL 入口網站中輸入的訂用帳戶識別碼。
+從 [設定]，切換到 [管理憑證] 索引標籤。 上傳管理憑證可賦予 SAP CAL 權限，讓它能夠在客戶訂用帳戶內建立虛擬機器。 (您要上傳的是先前從 SAP CAL 下載的管理憑證)。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic5.jpg)
+![Azure 傳統入口網站中 [管理憑證] 索引標籤的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic5.jpg)
 
-在第二個索引標籤上，可以接著上傳之前從 SAP CAL 下載的管理憑證。
+此時會跳出一個對話方塊，供您選取已下載的憑證檔案。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic8.jpg)
+![[上傳管理憑證] 對話方塊的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic8.jpg)
 
-隨即跳出小型對話方塊，以便選取下載的憑證檔案。
+上傳憑證之後，即可在 SAP CAL 內測試 SAP CAL 與 Azure 訂用帳戶之間的連線。 應該會跳出一則指出此連線有效的訊息。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic9.jpg)
+![SAP Cloud Appliance Library [Accounts] (帳戶) 視窗的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic9.jpg)
 
-上傳憑證後，即可在 SAP CAl 內測試 SAP CAL 與客戶 Azure 訂用帳戶之間的連線。 應會跳出一則小訊息，告知此連線有效。
+接著，選取應該部署的解決方案，然後建立執行個體。
+輸入執行個體名稱、選擇 Azure 區域，然後定義解決方案的主要密碼。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic10.jpg)
+![SAP Cloud Appliance Library [Solutions] (解決方案) 視窗的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic10.jpg)
 
-設定帳戶之後，使用者必須選取應部署的解決方案並建立執行個體。
-在「基本」模式中，這真的微不足道。 輸入執行個體名稱，選擇 Azure 區域並定義解決方案的主要密碼。
+在一段時間之後，視解決方案的大小和複雜性 (SAP CAL 會提供預估) 而定，解決方案將會顯示為作用中並可供使用。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic11.jpg)
+![SAP Cloud Appliance Library [Instances] (執行個體) 視窗的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic11.jpg)
 
-在一段時間之後，視解決方案的大小和複雜性 (由 SAP CAL 提供估計) 而定，它會顯示為「作用中」並可供使用。 這非常簡單。
+您可以查看解決方案的一些詳細資料，例如已部署的 VM 類型。 在此案例中，已建立三個不同大小和用途的 Azure VM。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic12.jpg)
+![SAP Cloud Appliance Library [Instances] (執行個體) 視窗的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic12.jpg)
 
-查看解決方案的一些詳細資料，使用者可以看到已部署的 VM 種類。 在此情況下，會建立三個不同大小和用途的 Azure VM。
+在 Azure 傳統入口網站中，可以找到這些虛擬機器，其開頭與 SAP CAL 中所提供的執行個體名稱相同。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic13.jpg)
+![顯示 Azure 傳統入口網站中三部虛擬機器的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic13.jpg)
 
-在 Azure 入口網站上，可以找到以 SAP CAL 中所提供的相同執行個體名稱開頭的虛擬機器。
+現在可以使用 SAP CAL 入口網站中的 [Connect] (連接) 按鈕來連接到解決方案。 對話方塊會包含一個使用者指南連結，其中說明與該解決方案搭配運作的所有預設認證。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic14b.jpg)
+![[Connect to the Instance] (連接到執行個體) 對話方塊的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic14b.jpg)
 
-現在可以透過 SAP CAL 入口網站中的 [連接] 按鈕連接到解決方案。 小型對話方塊包含使用者指南的連結，其中說明使用解決方案時的所有預設認證。
+另一個選項是登入用戶端 Windows VM，然後啟動預先設定的 SAP GUI (舉例來說)。
 
-![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic15.jpg)
-
-另一個選項是登入用戶端 Windows VM，並啟動預先設定的 SAP GUI (舉例來說)。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+![預先設定之 SAP GUI 的螢幕擷取畫面](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic15.jpg)
 

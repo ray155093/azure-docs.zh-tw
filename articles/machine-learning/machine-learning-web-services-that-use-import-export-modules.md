@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/13/2016
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: 66fb3dc316ce25aea4dff4add5c25b7f0f56ad7a
-ms.openlocfilehash: 0dc02034ea1f3c4f8413aca1ff693838ad1e49bd
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: 247d370c1f80729856e53690045991127ad54351
+ms.openlocfilehash: 30a3a6c438bae191605e35c352cf03fd8eaddf0f
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -108,7 +108,7 @@ ms.lasthandoff: 01/31/2017
 9. 找出要求宣告並更新傳入「匯入資料」和「匯出資料」模組的 Web 服務參數值。 在此情況下，您將使用原始的查詢，但定義新的資料表名稱。
    
         var request = new BatchExecutionRequest() 
-        {           
+        {            
             GlobalParameters = new Dictionary<string, string>() {
                 { "Query", @"select [age], [workclass], [fnlwgt], [education], [education-num], [marital-status], [occupation], [relationship], [race], [sex], [capital-gain], [capital-loss], [hours-per-week], [native-country], [income] from dbo.censusdata" },
                 { "Table", "dbo.ScoredTable2" },
@@ -119,6 +119,10 @@ ms.lasthandoff: 01/31/2017
 執行完成時，新的資料表會加入包含評分結果的資料庫。
 
 ### <a name="deploy-a-new-web-service"></a>部署新的 Web 服務
+
+> [!NOTE] 
+> 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
+
 部署為新的 Web 服務，並建立應用程式取用它︰
 
 1. 在實驗畫布底端，按一下 [執行] 。
@@ -132,7 +136,7 @@ ms.lasthandoff: 01/31/2017
 9. 找出 *scoreRequest* 宣告並更新傳入「匯入資料」和「匯出資料」模組的 Web 服務參數值。 在此情況下，您將使用原始的查詢，但定義新的資料表名稱。
    
         var scoreRequest = new
-        {       
+        {        
             Inputs = new Dictionary<string, StringTable>()
             {
             },

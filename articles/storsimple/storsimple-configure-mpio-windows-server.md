@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: d07d1c838d99d0de0c5b62aaf42330b447df102c
 ms.openlocfilehash: 4483a395659a09e88fc4174e622143d9acaedf61
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -169,10 +170,5 @@ MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。 您應該透�
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [使用 StorSimple Manager 服務修改 StorSimple 裝置設定](storsimple-modify-device-config.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Azure Multi-Factor Authentication 常見問題集 | Microsoft Docs"
-description: "提供與 Azure Multi-Factor Authentication 相關的常見問題與答案清單。 Multi-Factor Authentication 是一種驗證使用者身分識別的方法。它除了需要使用者名稱與密碼之外，還需要其他驗證方式。 它可以為使用者登入和交易提供一層額外的安全性。"
+description: "與 Azure Multi-Factor Authentication 相關的常見問題與答案。 Multi-Factor Authentication 是一種驗證使用者身分識別的方法。它除了需要使用者名稱與密碼之外，還需要其他驗證方式。 它可以為使用者登入和交易提供一層額外的安全性。"
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -12,15 +12,16 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 02/26/2017
 ms.author: kgremban
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 9617cd00ed4a5f8f867542238e5008a9a17663c9
-ms.openlocfilehash: 1e01bdc099af865e01eb2784cf367e482300ade8
-
+ms.sourcegitcommit: 20afeb3ba290ddf728d2b52c076c7a57fadc77c6
+ms.openlocfilehash: dfbb5e2358cd857c2a16ded5d4d82c1f246cbe20
+ms.lasthandoff: 02/28/2017
 
 ---
-# <a name="azure-multi-factor-authentication-faq"></a>Azure Multi-Factor Authentication 常見問題集
+# <a name="frequently-asked-questions-about-azure-multi-factor-authentication"></a>與 Azure Multi-Factor Authentication 相關的常見問題
 此常見問題集回答關於 Azure Multi-Factor Authentication 和使用 Multi-Factor Authentication 服務的常見問題，包括計費模式和可用性相關問題。
 
 ## <a name="general"></a>一般
@@ -62,7 +63,7 @@ ms.openlocfilehash: 1e01bdc099af865e01eb2784cf367e482300ade8
 
 當您使用授權模型時，需要購買 Azure Multi-Factor Authentication 授權，然後指派給使用者，就像 Office 365 和其他訂用帳戶產品一樣。
 
-若要深入了解您的選項，請參閱[Azure Multi-Factor Authentication 的作用](multi-factor-authentication-how-it-works.md#how-to-get-azure-multi-factor-authentication)
+若要深入了解您的選項，請參閱[Azure Multi-Factor Authentication 的作用](multi-factor-authentication-how-it-works.md)
 
 **問：是否有免費版本的 Azure Multi-Factor Authentication 供系統管理員使用？**
 
@@ -166,10 +167,5 @@ Windows Server 2012 R2 中的安全性變更已改變 Azure Multi-Factor Authent
 * 在 [Azure Active Directory 論壇](https://social.msdn.microsoft.com/Forums/azure/newthread?category=windowsazureplatform&forum=WindowsAzureAD&prof=required)中，搜尋及瀏覽來自社群的技術問題與解答，或是提出您的問題。
 * 如果您是舊版 PhoneFactor 的客戶且有問題或需要協助重設密碼，請使用 [重設密碼](mailto:phonefactorsupport@microsoft.com) 連結來建立支援案例。
 * 請透過 [Azure Multi-Factor Authentication Server (PhoneFactor) 支援](https://support.microsoft.com/oas/default.aspx?prid=14947)連絡支援專業人員。 連絡我們時，請盡量包含有關問題的最多資訊，這樣會十分有幫助。 您可以提供的資訊包含您看到錯誤的頁面、特定錯誤碼、特定工作階段識別碼，以及看到錯誤的使用者的識別碼。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

@@ -17,6 +17,7 @@ ms.author: micflan
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 764bcf22809a2d613b405f6fb75c7a148a1b3fb9
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -45,10 +46,5 @@ ms.openlocfilehash: 764bcf22809a2d613b405f6fb75c7a148a1b3fb9
 | ， |將焦點移至命令列 |
 | 。 |將焦點移至導覽列 |
 | ? |檢視鍵盤快速鍵 |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

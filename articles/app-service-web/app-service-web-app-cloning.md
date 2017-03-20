@@ -17,6 +17,7 @@ ms.author: aelnably
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: e238f804d4a96e10101e7aa2e2a1bcb78a44e967
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -46,7 +47,7 @@ ms.openlocfilehash: e238f804d4a96e10101e7aa2e2a1bcb78a44e967
 
 若要複製現有的 Web 應用程式 (包括所有相關聯的部署位置)，使用者必須使用 IncludeSourceWebAppSlots 參數，以下 PowerShell 命令示範如何使用該參數搭配 New-AzureRmWebApp 命令：
 
-    $destapp = New-AzureRmWebApp -ResourceGroupName DestinationAzureResourceGroup -Name dest-webapp -Location "North Central US" -AppServicePlan DestinationAppServicePlan -SourceWebApp $srcapp -IncludeSourceWebAppSlots $true
+    $destapp = New-AzureRmWebApp -ResourceGroupName DestinationAzureResourceGroup -Name dest-webapp -Location "North Central US" -AppServicePlan DestinationAppServicePlan -SourceWebApp $srcapp -IncludeSourceWebAppSlots
 
 若要在相同區域中複製現有的 Web 應用程式，使用者必須在相同區域中建立新資源群組和新的 App Service 方案，然後使用下列 PowerShell 命令來複製 Web 應用程式
 
@@ -112,10 +113,5 @@ ms.openlocfilehash: e238f804d4a96e10101e7aa2e2a1bcb78a44e967
 * [Azure Resource Manager 的 Azure 流量管理員支援預覽](../traffic-manager/traffic-manager-powershell-arm.md)
 * [App Service 環境簡介](app-service-app-service-environment-intro.md)
 * [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

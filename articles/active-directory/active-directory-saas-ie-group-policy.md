@@ -1,5 +1,5 @@
 ---
-title: "如何使用群組原則部署 Internet Explorer 的存取面板延伸模組 | Microsoft Docs"
+title: "使用 GPO 部署適用於 IE 的 Azure 存取面板延伸模組 | Microsoft Docs"
 description: "如何使用群組原則針對我的 app 入口網站部署 Internet Explorer 附加元件。"
 services: active-directory
 documentationcenter: 
@@ -11,11 +11,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/24/2017
+ms.date: 02/27/2017
 ms.author: markvi
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b312e1a37b15e170847fae02e40bae26103b6d6d
+ms.sourcegitcommit: c06c089fb08c19b55246122201c378917a560e14
+ms.openlocfilehash: af36f45e66b68e2e76651eb408682f36ee0cbb68
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -28,23 +30,23 @@ ms.openlocfilehash: b312e1a37b15e170847fae02e40bae26103b6d6d
 
 ## <a name="prerequisites"></a>必要條件
 * 您已設定了 [Active Directory 網域服務](https://msdn.microsoft.com/library/aa362244%28v=vs.85%29.aspx)，並且已將使用者的電腦加入網域。
-* 您必須擁有 [編輯設定] 權限，才能編輯群組原則物件 (GPO)。 根據預設，下列安全性群組的成員擁有此權限：網域系統管理員、企業系統管理員及群組原則建立者擁有者。 [深入了解。](https://technet.microsoft.com/library/cc781991%28v=ws.10%29.aspx)
+* 您必須擁有「編輯設定」權限，才能編輯群組原則物件 (GPO)。 根據預設，下列安全性群組的成員擁有此權限：網域系統管理員、企業系統管理員及群組原則建立者擁有者。 [深入了解。](https://technet.microsoft.com/library/cc781991%28v=ws.10%29.aspx)
 
 ## <a name="step-1-create-the-distribution-point"></a>步驟 1：建立發佈點
-首先，您必須將安裝程式套件放在網路位置上，該位置可以從您要在上面遠端安裝延伸模組的所有電腦存取。 若要這樣做，請遵循下列步驟：
+首先，您必須將安裝程式套件放在網路位置上，該位置可供您要在上面遠端安裝延伸模組的電腦進行存取。 若要這樣做，請遵循下列步驟：
 
 1. 以系統管理員身分登入伺服器
 2. 在 [伺服器管理員] 視窗中，移至 [檔案和存放服務]。
    
     ![開啟檔案和存放服務](./media/active-directory-saas-ie-group-policy/files-services.png)
-3. 移至 [共用]  索引標籤。 然後按一下 [工作]  >  [新增共用...]
+3. 移至 [共用]  索引標籤。 然後按一下 [工作] > [新增共用...]
    
     ![開啟檔案和存放服務](./media/active-directory-saas-ie-group-policy/shares.png)
 4. 完成 [新增共用精靈]  並設定權限以確保可以從您的使用者電腦存取該精靈。 [深入了解共用。](https://technet.microsoft.com/library/cc753175.aspx)
 5. 下載下列 Microsoft Windows 安裝程式套件 (.msi file)：[Access Panel Extension.msi](https://account.activedirectory.windowsazure.com/Applications/Installers/x64/Access Panel Extension.msi)
 6. 將安裝程式套件複製到共用上想要的位置。
    
-    ![將 .msi 檔案複製到您的共用。](./media/active-directory-saas-ie-group-policy/copy-package.png)
+    ![將 .msi 檔案複製到共用。](./media/active-directory-saas-ie-group-policy/copy-package.png)
 7. 確認用戶端電腦能夠從共用存取安裝程式套件。 
 
 ## <a name="step-2-create-the-group-policy-object"></a>步驟 2：建立群組原則物件
@@ -58,23 +60,23 @@ ms.openlocfilehash: b312e1a37b15e170847fae02e40bae26103b6d6d
    > 如果您想要建立或編輯您的組織單位 (OU)，切換回 [伺服器管理員]，然後移至 [工具]  >  [Active Directory 使用者和電腦]。
    > 
    > 
-4. 一旦您選取 OU，以滑鼠右鍵按一下它然後選取 [在這個網域中建立 GPO 並連結到...] 
+4. 一旦您選取 OU，以滑鼠右鍵按一下它然後選取 [在這個網域中建立 GPO 並連結到...]
    
     ![建立新的 GPO](./media/active-directory-saas-ie-group-policy/create-gpo.png)
 5. 在 [新增 GPO]  提示中，輸入新的群組原則物件的名稱。
    
     ![命名新的 GPO](./media/active-directory-saas-ie-group-policy/name-gpo.png)
-6. 以滑鼠右鍵按一下您剛才建立的群組原則物件，然後選取 [編輯] 。
+6. 以滑鼠右鍵按一下您建立的群組原則物件，然後選取 [編輯]。
    
     ![編輯新的 GPO](./media/active-directory-saas-ie-group-policy/edit-gpo.png)
 
 ## <a name="step-3-assign-the-installation-package"></a>步驟 3：指派安裝套件
-1. 決定您想要根據 [電腦設定] 或 [使用者設定] 部署延伸模組。 當使用 [電腦設定](https://technet.microsoft.com/library/cc736413%28v=ws.10%29.aspx)時，不論哪一個使用者登入電腦，都會在電腦上安裝延伸模組。 相反地，使用 [使用者設定](https://technet.microsoft.com/library/cc781953%28v=ws.10%29.aspx)時，無論使用者登入哪一台電腦，都會在該電腦上安裝延伸模組。
+1. 決定您想要根據 [電腦設定] 或 [使用者設定] 部署延伸模組。 當使用[電腦設定](https://technet.microsoft.com/library/cc736413%28v=ws.10%29.aspx)時，不論哪一個使用者登入電腦，都會在電腦上安裝延伸模組。 使用[使用者設定](https://technet.microsoft.com/library/cc781953%28v=ws.10%29.aspx)時，無論使用者登入哪一台電腦，都會在該電腦上安裝延伸模組。
 2. 在 [群組原則管理編輯器]  視窗的左窗格中，移至下列其中一個資料夾路徑，根據您選擇的設定類型而定：
    
    * `Computer Configuration/Policies/Software Settings/`
    * `User Configuration/Policies/Software Settings/`
-3. 以滑鼠右鍵按一下 [軟體安裝]，然後選取 [新增]  >  [套件...]
+3. 以滑鼠右鍵按一下 [軟體安裝]，然後選取 [新增] > [套件...]
    
     ![建立新的軟體安裝套件](./media/active-directory-saas-ie-group-policy/new-package.png)
 4. 移至共用資料夾，該資料夾包含[步驟 1：建立發佈點](#step-1-create-the-distribution-point)的安裝程式套件，選取 .msi 檔案，然後按一下 [開啟]。
@@ -121,7 +123,7 @@ ms.openlocfilehash: b312e1a37b15e170847fae02e40bae26103b6d6d
 
 如果不想使用者看到此提示，請依照下列步驟防止自動完成記住密碼：
 
-1. 在 [群組原則管理編輯器]  視窗中，移至下文列出的路徑。 請注意，這項組態設定僅提供於 [使用者設定] 。
+1. 在 [群組原則管理編輯器]  視窗中，移至下文列出的路徑。 這項組態設定僅提供於 [使用者設定]。
    
    * `User Configuration/Policies/Administrative Templates/Windows Components/Internet Explorer/`
 2. 尋找名為 [開啟表單上使用者名稱和密碼的自動完成功能] 的設定。
@@ -132,7 +134,7 @@ ms.openlocfilehash: b312e1a37b15e170847fae02e40bae26103b6d6d
    > 
    
     ![記得要在 [使用者設定] 下尋找此項目。](./media/active-directory-saas-ie-group-policy/disable-auto-complete.png)
-3. 以滑鼠右鍵按一下上述設定，然後選取 [編輯] 。
+3. 以滑鼠右鍵按一下上述設定，然後選取 [編輯]。
 4. 在標題為 [開啟表單上使用者名稱和密碼的自動完成功能] 的視窗中選取 [停用]。
    
     ![選取 [停用]](./media/active-directory-saas-ie-group-policy/disable-passwords.png)
@@ -162,10 +164,5 @@ ms.openlocfilehash: b312e1a37b15e170847fae02e40bae26103b6d6d
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 * [搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)
 * [疑難排解 Internet explorer 的存取面板擴充功能](active-directory-saas-ie-troubleshooting.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

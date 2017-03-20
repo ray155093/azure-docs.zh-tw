@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 01/24/2017
+ms.date: 03/06/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 9faf3e48983ded91016e39992bc03a0b62720c06
-ms.openlocfilehash: 4b46a46e6a9de58b9640830852ca19939b3eabdb
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 01850cbf8967fd5f79db64103fb18c6ec01babea
+ms.lasthandoff: 03/06/2017
 
 
 ---
@@ -37,10 +38,10 @@ ms.openlocfilehash: 4b46a46e6a9de58b9640830852ca19939b3eabdb
 您需要下列必要條件來完成本教學課程：
 
 * 最新版的 [Azure PowerShell](/powershell/azureps-cmdlets-docs)
-* Visual Studio 2015 或，或是免費的 [Visual Studio Community](https://www.visualstudio.com/products/visual-studio-community-vs.aspx)
+* Visual Studio 2017、2015 或免費的 [Visual Studio Community](https://www.visualstudio.com/products/visual-studio-community-vs.aspx)
 * [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)
 * 電腦的系統管理員權限
-* 從 Microsoft 下載中心下載 [TollApp.zip](http://download.microsoft.com/download/D/4/A/D4A3C379-65E8-494F-A8C5-79303FD43B0A/TollApp.zip)
+* 從 Microsoft 下載中心下載 [TollApp.zip](https://github.com/Azure/azure-stream-analytics/blob/master/Samples/TollApp/TollApp.zip)
 * 選擇性： [GitHub](https://aka.ms/azure-stream-analytics-toll-source)
 
 ## <a name="scenario-introduction-hello-toll"></a>案例簡介：收費站，你好！
@@ -135,7 +136,7 @@ ms.openlocfilehash: 4b46a46e6a9de58b9640830852ca19939b3eabdb
 
 您可以使用 GitHub 上 TollApp 資料夾中的 Setup.ps1 指令碼來建立所有必要的資源。 為了節省時間，我們建議您執行這個指令碼。 如果您想要深入了解如何在 Azure 入口網站中設定這些資源，請參閱＜在 Azure 入口網站中設定教學課程資源＞附錄。
 
-請下載並儲存支援的 [TollApp](http://download.microsoft.com/download/D/4/A/D4A3C379-65E8-494F-A8C5-79303FD43B0A/TollApp.zip) 資料夾和檔案。
+請下載並儲存支援的 [TollApp](https://github.com/Azure/azure-stream-analytics/blob/master/Samples/TollApp/TollApp.zip) 資料夾和檔案。
 
 請*以系統管理員的身分*開啟 [Microsoft Azure PowerShell]。 如果您沒有 Azure PowerShell，請依照 [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的指示來安裝。
 
@@ -441,10 +442,5 @@ Azure 串流分析是設計成能進行彈性調整，以便於處理大量資�
    > 
    > 
 
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

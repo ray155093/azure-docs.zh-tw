@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/14/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 794f87c3d4b8378d7aeca63791a8fbfd03e44ceb
-ms.openlocfilehash: 50802013de0bd6f4bf1396df00cdc72bc378d503
+ms.sourcegitcommit: e34a2bfbf5f1ae544a729c994d91c485d48bb440
+ms.openlocfilehash: 7cd157cd1c5730443a710ac46d923319789aec61
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -35,13 +36,9 @@ ms.openlocfilehash: 50802013de0bd6f4bf1396df00cdc72bc378d503
 每個虛擬機器都有一個連接的作業系統磁碟。 它會註冊為 SATA 磁碟機，並預設標示為 /dev/sda。 此磁碟的最大容量為 1023 GB。 
 
 ## <a name="temporary-disk"></a>暫存磁碟
-系統會自動為您建立暫存磁碟。 在 Linux 虛擬機器上，這個磁碟通常是 /dev/sdb，且由 Azure Linux 代理程式格式化並裝載至 /mnt/resource。
+每個 VM 都包含一個暫存磁碟。 暫存磁碟為應用程式和處理程序提供短期的儲存空間，且僅供用來儲存分頁檔之類的資料。 暫存磁碟上的資料可能會在[維護事件](../virtual-machines/virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#understand-planned-vs-unplanned-maintenance)期間或當您[重新佈署 VM](../virtual-machines/virtual-machines-linux-redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 時遺失。 在 VM 的標準重新開機期間，暫存磁碟上的資料會保留。
 
-暫存磁碟的大小會依據虛擬機器的大小而改變。 如需詳細資訊，請參閱 [Linux 虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md)。
-
-> [!WARNING]
-> 請勿在暫存磁碟上儲存資料。 它提供應用程式和處理程序暫時的儲存空間，且其用意僅為儲存分頁檔等資料。 
-> 
+在 Linux 虛擬機器上，這個磁碟通常是 **/dev/sdb**，並且會由「Azure Linux 代理程式」將它格式化並裝載至 **/mnt/**。 暫存磁碟的大小會依據虛擬機器的大小而改變。 如需詳細資訊，請參閱 [Linux 虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md)。
 
 如需有關 Azure 如何使用暫存磁碟的詳細資訊，請參閱 [Understanding the temporary drive on Microsoft Azure Virtual Machines (了解 Microsoft Azure 虛擬機器上的暫存磁碟機)](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
 
@@ -65,10 +62,5 @@ ms.openlocfilehash: 50802013de0bd6f4bf1396df00cdc72bc378d503
 * [連接磁碟](../virtual-machines/virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來為您的 VM 新增額外的儲存空間。
 * [設定軟體 RAID](../virtual-machines/virtual-machines-linux-configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 以提供備援。
 * [擷取 Linux 虛擬機器](../virtual-machines/virtual-machines-linux-classic-capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)以便快速部署額外的 VM。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.date: 02/09/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 984adf244596578a3301719e5ac2f68a841153bf
-ms.openlocfilehash: c01b8c174567f745e2803a1498ec0b9a762e94ae
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 12da8c9f7b55a8758d7f4bf743cd85e493fb24b9
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -137,7 +137,7 @@ Azure SQL Database 提供三個 [服務層](sql-database-service-tiers.md)：基
 如需其他查詢的資訊，請參閱 [sys.dm_db_resource_stats](https://msdn.microsoft.com/library/dn800981.aspx) 中的範例。
 
 ### <a name="sysresourcestats"></a>sys.resource_stats
-**master** 資料庫中的 [sys.resource_stats](https://msdn.microsoft.com/library/dn269979.aspx) 檢視有其他資訊可協助您監視 SQL Database 在其特定服務層和效能等級的效能。 這項資料每隔 5 分鐘就會收集一次，並且會維持大約 35 天。 這個檢視適合用於進行 SQL Database 如何使用資源的長期歷史分析。
+**master** 資料庫中的 [sys.resource_stats](https://msdn.microsoft.com/library/dn269979.aspx) 檢視有其他資訊可協助您監視 SQL Database 在其特定服務層和效能等級的效能。 這項資料每隔 5 分鐘就會收集一次，並且會維持大約 14 天。 這個檢視適合用於進行 SQL Database 如何使用資源的長期歷史分析。
 
 下圖顯示在一週中 P2 效能等級之高階資料庫每小時的 CPU 資源使用量。 此圖從星期一開始，顯示 5 個工作天，然後顯示較少發生在應用程式的週末。
 

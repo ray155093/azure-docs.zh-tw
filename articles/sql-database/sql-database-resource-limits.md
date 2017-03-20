@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.date: 02/24/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: f2e48e290f59efb5ab6271b7b2882ca8ea8887a6
-ms.openlocfilehash: 15fd64f21eb20ae412f4d0cf1930e99e2e9fc62b
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 8441a5318bfee3fc45482a61db13adaa034b824a
+ms.openlocfilehash: 7d50a2861e4dae06d4de09417a2208b453fa499b
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -56,14 +56,14 @@ Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源�
 
 [!INCLUDE [SQL DB service tiers table for elastic databases](../../includes/sql-database-service-tiers-table-elastic-pools.md)]
 
-如需上述表格所列之每項資源的擴充定義，請參閱 [服務層功能和限制](sql-database-performance-guidance.md#service-tier-capabilities-and-limits)中的說明。 如需服務層的概觀，請參閱 [Azure SQL Database 服務層和效能等級](sql-database-service-tiers.md)。
+如需上述表格所列之每項資源的擴充定義，請參閱[服務層功能和限制](sql-database-performance-guidance.md#service-tier-capabilities-and-limits)中的說明。 如需服務層的概觀，請參閱 [Azure SQL Database 服務層和效能等級](sql-database-service-tiers.md)。
 
 ## <a name="other-sql-database-limits"></a>其他 SQL Database 限制
 | 領域 | 限制 | 說明 |
 | --- | --- | --- |
 | 每個訂用帳戶使用自動匯出的資料庫 |10 |自動匯出可讓您建立自訂排程以備份 SQL Database。 此功能的預覽將於 2017 年 3 月 1 日結束。  |
-| 每一部伺服器的資料庫 |最多 5000 個 |在 V12 伺服器上，每一伺服器最多允許 5000 個資料庫。 |
-| 每一部伺服器的 DTU |45000 |在 V12 伺服器上，每一部伺服器會有&45000; 個 DTU 可用於佈建資料庫、彈性集區和資料倉儲。 |
+| 每一伺服器的資料庫 |最多 5000 個 |在 V12 伺服器上，每一伺服器最多允許 5000 個資料庫。 |
+| 每一部伺服器的 DTU |45000 |V12 伺服器上每一伺服器允許&45000; 個 DTU，以佈建獨立資料庫和彈性集區。 每一伺服器允許的獨立資料庫和集區總數，僅受限於伺服器 DTU 數目。  
 
 > [!IMPORTANT]
 > Azure SQL 資料庫自動匯出目前為預覽狀態，並會在 2017 年 3 月 1 日停用。 從 2016 年 12 月 1 日開始，您將無法再於任何 SQL 資料庫上設定自動匯出。 所有現有的自動匯出作業會繼續運作至 2017 年 3 月 1 日。 2016 年 12 月 1 日之後，您可以使用[長期的備份保留](sql-database-long-term-retention.md)或 [Azure 自動化](../automation/automation-intro.md)，根據您選擇的排程使用 PowerShell 定期封存 SQL Database。 如需範例指令碼，您可以[從 GitHub 下載範例指令碼](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-automation-automated-export)。 

@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 80d58a6ab5f2148b2391d4d63e70371724e5990b
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -272,10 +273,5 @@ StorSimple 磁碟區可以是：
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [複製 StorSimple 磁碟區](storsimple-clone-volume.md)。
 * 了解如何 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

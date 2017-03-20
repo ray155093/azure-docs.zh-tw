@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/12/2017
+ms.date: 02/22/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 36e737ebc3451a190e99dc2bc91ef4242d2f573e
-ms.openlocfilehash: e9dfe8ad62dfa0eec810ecdeeddadbecc25b9163
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 41d6f678dba769cf7f949751da8cacf3df7f88c1
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -26,8 +27,6 @@ ms.openlocfilehash: e9dfe8ad62dfa0eec810ecdeeddadbecc25b9163
 
 > [!NOTE]
 > 應用程式 Proxy 是您升級至 Premium 或 Basic 版本的 Azure Active Directory 時才能使用的功能。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
-> 
-> 
 
 ## <a name="what-are-azure-ad-application-proxy-connectors"></a>何謂 Azure AD 應用程式 Proxy 連接器？
 須在您的網路上安裝稱為連接器的 Windows Server 服務之後，應用程式 Proxy 才會運作。 您可以根據您的高可用性和延展性需求安裝連接器。 以其中一種開始，並視需要新增更多。 每次安裝連接器時，它會新增至做為您租用戶的連接器集區。
@@ -51,11 +50,13 @@ ms.openlocfilehash: e9dfe8ad62dfa0eec810ecdeeddadbecc25b9163
 ## <a name="all-networking-is-outbound"></a>所有的網路為輸出
 連接器只會傳送輸出要求，因此連接一律由連接器啟動。 不需要開啟輸入連接埠，因為一旦建立工作階段後，流量會以兩種方式流動。
 
-輸出流量會傳送到應用程式 Proxy 服務和已發佈應用程式。 服務的流量會傳送至 Azure 資料中心的多個不同通訊埠編號。 如需詳細資訊，請參閱[啟用 Azure 入口網站中的應用程式 Proxy](active-directory-application-proxy-enable.md)。
+輸出流量會傳送到應用程式 Proxy 服務和已發佈應用程式。 服務的流量會傳送至 Azure 資料中心的多個不同通訊埠編號。 如需詳細資訊，請參閱[在 Azure 入口網站中啟用應用程式 Proxy](active-directory-application-proxy-enable.md)。
 
 由於僅有輸出流量，不需要設定連接器之間的負載平衡，或透過您的防火牆設定內部存取。
 
 如需設定輸出防火牆規則的相關資訊，請參閱[使用現有的內部部署 Proxy 伺服器](application-proxy-working-with-proxy-servers.md)。
+
+請使用 [Azure AD 應用程式 Proxy 連接器連接埠測試工具](https://aadap-portcheck.connectorporttest.msappproxy.net/)，來確認您的連接器是否能夠連線到「應用程式 Proxy」服務。 至少，請確定「美國中部」區域及離您最近的區域都具有綠色勾選記號。 除此之外，綠色勾選記號越多代表恢復能力越佳。 
 
 ## <a name="network-security"></a>網路安全性
 
@@ -114,7 +115,7 @@ DMZ 部署通常較為複雜。 但是，在 DMZ 中部署連接器的原因之�
 * _後端應用程式︰_在某些情況下，連接器和後端應用程式之間有其他 Proxy。 疑難排解這個問題很容易，方法為從連接器電腦開啟瀏覽器，並存取這些應用程式。 如果您在 Azure 中執行連接器，且應用程式在內部部署，則體驗可能無法如您的使用者所預期。
 * _網域控制器︰_如果連接器使用 Kerberos 限制委派 (KCD) 來執行 SSO，它們會先連絡網域控制器後，才傳送要求至後端。 連接器有 Kerberos 票證的快取 (但是在忙碌環境中)，網域控制器的回應速度可能會減緩體驗。 當網域控制器為內部部署時，這在 Azure 中執行的連接器很常見。
 
-##<a name="automatic-updates-to-the-connector"></a>自動更新至連接器
+## <a name="automatic-updates-to-the-connector"></a>自動更新至連接器
 
 利用連接器更新程式服務，我們提供自動化的方式來維持最新狀態。 如此一來，您可持續擁有所有新功能的優點，以及安全性和效能增強功能。
 
@@ -152,13 +153,9 @@ _其他租用戶︰_在連接器更新期間，流量會重新路由至其他連
 
 如需有關解決應用程式 Proxy 連接器錯誤的詳細資訊，請參閱[疑難排解應用程式 Proxy](https://azure.microsoft.com/en-us/documentation/articles/active-directory-application-proxy-troubleshoot)。
 
-##<a name="next-steps"></a>後續步驟
-[使用現有的內部部署 Proxy 伺服器](application-proxy-working-with-proxy-servers.md)<br>
+## <a name="next-steps"></a>後續步驟
+[使用現有的內部部署 Proxy 伺服器](application-proxy-working-with-proxy-servers.md)
+
 [如何以無訊息方式安裝 Azure AD 應用程式 Proxy 連接器](active-directory-application-proxy-silent-installation.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 12/05/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: c4983024e5f5902620c0be7b422bc3d1eaf4a36f
-ms.openlocfilehash: ac22518bb36cc9d4c7a581dab8aca22ffde986e5
+ms.sourcegitcommit: 1c22e4fc17226578aaaf272fdf79178da65c63c2
+ms.openlocfilehash: 4ef08fb592ff8558fa779d628945d14144dc09b7
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.openlocfilehash: ac22518bb36cc9d4c7a581dab8aca22ffde986e5
 3. 設定使用者佈建
 4. 指派使用者
 
-![案例](./media/active-directory-saas-zendesk-tutorial/IC773083.png "Scenario")
+![案例](./media/active-directory-saas-zendesk-tutorial/IC773083.png "案例")
 
 ## <a name="enabling-the-application-integration-for-zendesk"></a>啟用 Zendesk 的應用程式整合
 本節的目的是要說明如何啟用 Zendesk 的應用程式整合。
@@ -49,19 +50,19 @@ ms.openlocfilehash: ac22518bb36cc9d4c7a581dab8aca22ffde986e5
 
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![應用程式](./media/active-directory-saas-zendesk-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-zendesk-tutorial/IC700994.png "應用程式")
 
 4. 按一下頁面底部的 [新增]  。
    
-    ![新增應用程式](./media/active-directory-saas-zendesk-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-zendesk-tutorial/IC749321.png "新增應用程式")
 
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-    ![從組件庫新增應用程式](./media/active-directory-saas-zendesk-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-zendesk-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6. 在**搜尋方塊**中，輸入 **Zendesk**。
    
-    ![應用程式庫](./media/active-directory-saas-zendesk-tutorial/IC773084.png "Application Gallery")
+    ![應用程式資源庫](./media/active-directory-saas-zendesk-tutorial/IC773084.png "應用程式資源庫")
 
 7. 在結果窗格中，選取 [Zendesk]，然後按一下 [完成] 以新增應用程式。
    
@@ -75,15 +76,15 @@ ms.openlocfilehash: ac22518bb36cc9d4c7a581dab8aca22ffde986e5
 ### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure AD 入口網站的 **Zendesk** 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
    
-    ![單一登入](./media/active-directory-saas-zendesk-tutorial/IC773086.png "Single sign-on")
+    ![單一登入](./media/active-directory-saas-zendesk-tutorial/IC773086.png "單一登入")
 
 2. 在 [您希望使用者如何登入 Zendesk] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
-    ![設定單一登入](./media/active-directory-saas-zendesk-tutorial/IC773087.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-zendesk-tutorial/IC773087.png "設定單一登入")
 
 3. 在 [設定應用程式 URL]  頁面上，執行下列步驟：
    
-    ![設定應用程式 URL](./media/active-directory-saas-zendesk-tutorial/IC773088.png "Configure app URL")
+    ![設定應用程式 URL](./media/active-directory-saas-zendesk-tutorial/IC773088.png "設定應用程式 URL")
    
     a. 在 [Zendesk 登入 URL] 文字方塊中，使用下列模式輸入您的 URL：`https://<tenant-name>.zendesk.com`
    
@@ -91,7 +92,7 @@ ms.openlocfilehash: ac22518bb36cc9d4c7a581dab8aca22ffde986e5
 
 4. 在 [設定在 Zendesk 單一登入] 頁面上，按一下 [下載憑證]，然後將憑證檔案儲存在本機電腦上。
    
-    ![設定單一登入](./media/active-directory-saas-zendesk-tutorial/IC777534.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-zendesk-tutorial/IC777534.png "設定單一登入")
 
 5. 在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Zendesk 公司網站。
 
@@ -99,7 +100,7 @@ ms.openlocfilehash: ac22518bb36cc9d4c7a581dab8aca22ffde986e5
 
 7. 在左側導覽窗格中按一下 [設定]，然後按一下 [安全性]。
    
-    ![安全性](./media/active-directory-saas-zendesk-tutorial/IC773089.png "Security")
+    ![安全性](./media/active-directory-saas-zendesk-tutorial/IC773089.png "安全性")
 
 8. 在 [安全性] 頁面上，按一下 [系統管理員和代理程式] 索引標籤。
 
@@ -109,7 +110,7 @@ ms.openlocfilehash: ac22518bb36cc9d4c7a581dab8aca22ffde986e5
 
 11. 在 Azure AD 入口網站的 [設定在 Zendesk 單一登入] 頁面上，複製 [遠端登出 URL] 值，然後將它貼入 [遠端登出 URL] 文字方塊。
     
-    ![單一登入](./media/active-directory-saas-zendesk-tutorial/IC773090.png "Single sign-on")
+    ![單一登入](./media/active-directory-saas-zendesk-tutorial/IC773090.png "單一登入")
 
 12. 從匯出的憑證複製 [指紋] 值，然後將它貼入 [憑證指紋] 文字方塊。
     
@@ -122,7 +123,7 @@ ms.openlocfilehash: ac22518bb36cc9d4c7a581dab8aca22ffde986e5
 
 14. 在 Azure AD 入口網站上，選取單一登入設定確認，然後按一下 [完成] 以關閉 [設定單一登入] 對話方塊。
     
-    ![設定單一登入](./media/active-directory-saas-zendesk-tutorial/IC773093.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-zendesk-tutorial/IC773093.png "設定單一登入")
 
 ## <a name="configuring-user-provisioning"></a>設定使用者佈建
 為了讓 Azure AD 使用者登入 **Zendesk**，他們必須佈建到 **Zendesk** 中。  
@@ -135,10 +136,10 @@ ms.openlocfilehash: ac22518bb36cc9d4c7a581dab8aca22ffde986e5
 
 3. 選取 [使用者] 索引標籤，然後按一下 [新增]。
    
-    ![新增使用者](./media/active-directory-saas-zendesk-tutorial/IC773632.png "Add user")
+    ![新增使用者](./media/active-directory-saas-zendesk-tutorial/IC773632.png "新增使用者")
 4. 輸入您要佈建之現有 Azure AD 帳戶的電子郵件地址，然後按一下 [儲存] 。
    
-    ![新增使用者](./media/active-directory-saas-zendesk-tutorial/IC773633.png "New user")
+    ![新增使用者](./media/active-directory-saas-zendesk-tutorial/IC773633.png "新增使用者")
 
 > [!NOTE]
 > 您可以使用任何其他的 Zendesk 使用者帳戶建立工具或 Zendesk 提供的 API，佈建 AAD 使用者帳戶。
@@ -153,17 +154,12 @@ ms.openlocfilehash: ac22518bb36cc9d4c7a581dab8aca22ffde986e5
 
 2. 在 **Zendesk** 應用程式整合頁面上，按一下 [指派使用者]。
    
-    ![指派使用者](./media/active-directory-saas-zendesk-tutorial/IC773094.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-zendesk-tutorial/IC773094.png "指派使用者")
 
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
    
-    ![是](./media/active-directory-saas-zendesk-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-zendesk-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

@@ -18,9 +18,9 @@ ms.date: 02/27/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 09f0ed3f7624bb242c40868710fb3eae49cda906
-ms.openlocfilehash: a798de49ed08eedaf27267c6bac12f8b0b64739f
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
+ms.openlocfilehash: bbad7fbd1395c3982ecba03ab6ba90d833c889a9
+ms.lasthandoff: 03/08/2017
 
 
 ---
@@ -59,7 +59,9 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 
 取得訂用帳戶之後，您只需要設定付費功能，但是要使用 Azure AD 的付費功能，就必須將授權分配給適當的人員。 一般而言，應存取 Azure AD 付費功能或者透過 Azure AD 付費功能管理的人員，都必須被指派授權。 授權指派是一種使用者與購買的服務 (例如 Azure AD Premium、Basic 或 Enterprise Mobility Suite) 之間的對應。
 
-管理您的目錄中哪些使用者應該擁有授權很簡單。 只要在 Azure 入口網站中指派授權給群組，或是透過入口網站、PowerShell 或 API 直接將授權指派給適當的人員即可。 將授權指派給群組時，則會對所有群組成員指派授權。 如果群組新增或移除使用者，也會對他們指派或移除適當的授權。 群組指派可以利用您可用的任何群組管理功能，而且與以群組為基礎的應用程式指派一致。 使用這個方法，您可以設定規則讓您的目錄中所有使用者都會自動被指派，確保有適當職稱的每個人都獲得授權，或者甚至委派決策權給組織中的其他管理人員。 如需指派授權給群組的詳細討論，包括進階案例和 Office 365 授權案例，請參閱這篇文章。
+管理您的目錄中哪些使用者應該擁有授權很簡單。 只要在 Azure 入口網站中指派授權給群組，或是透過入口網站、PowerShell 或 API 直接將授權指派給適當的人員即可。 將授權指派給群組時，則會對所有群組成員指派授權。 如果群組新增或移除使用者，也會對他們指派或移除適當的授權。 群組指派可以利用您可用的任何群組管理功能，而且與以群組為基礎的應用程式指派一致。 使用這個方法，您可以設定規則讓您的目錄中所有使用者都會自動被指派，確保有適當職稱的每個人都獲得授權，或者甚至委派決策權給組織中的其他管理人員。 
+
+如需指派授權給群組的詳細討論，包括進階案例和 Office 365 授權案例，請參閱[這篇文章](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-licensing-group-assignment-azure-portal)。
 
 ## <a name="getting-started-with-azure-ad-licensing"></a>開始使用 Azure AD 授權
 
@@ -152,6 +154,7 @@ Azure Active Directory (Azure AD) 是 Microsoft 的「身分識別即服務 (IDa
 * [自助式群組管理](active-directory-accessmanagement-self-service-group-management.md)
 * [Azure AD Connect 健康情況](active-directory-aadconnect-health.md)
 * [群組指派給應用程式](active-directory-manage-groups.md)
+* [將授權指派給群組](active-directory-licensing-group-assignment-azure-portal.md)
 * [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)
 * [直接購買 Azure AD Premium 授權](http://aka.ms/buyaadp)
 

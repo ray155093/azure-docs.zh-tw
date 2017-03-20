@@ -12,11 +12,12 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/24/2017
+ms.date: 02/28/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: ef3f31c633eeba92f343e2126626bd029aebbf64
-ms.openlocfilehash: 170657601a0ea6b0c0ebabfd34befdce290cebd8
+ms.sourcegitcommit: c0dd85570f052c4a9651faecbaeb3eaa181f9017
+ms.openlocfilehash: b00b2cf1d3a54bba716d7470643aa1a5e6a58633
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -37,13 +38,13 @@ Azure Analysis Services Cmdlet 包含在 [AzureRM.AnalysisServices](https://www.
 
 |Cmdlet|說明| 
 |------------|-----------------| 
-|Get-AzureRmAnalysisServicesServer|取得伺服器執行個體的詳細資料。|  
-|New-AzureRmAnalysisServicesServer|建立新的伺服器執行個體。|
-|Remove-AzureRmAnalysisServicesServer|移除伺服器執行個體。|  
-|Suspend-AzureRmAnalysisServicesServe|暫停伺服器執行個體。| 
-|Resume-AzureRmAnalysisServicesServer|繼續伺服器執行個體。|  
-|Set-AzureRmAnalysisServicesServer|修改伺服器執行個體。|   
-|Test-AzureRmAnalysisServicesServer|測試伺服器執行個體的存在。| 
+|[Get-AzureRmAnalysisServicesServer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.analysisservices/v3.0.0/get-azurermanalysisservicesserver)|取得伺服器執行個體的詳細資料。|  
+|[New-AzureRmAnalysisServicesServer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.analysisservices/v3.0.0/new-azurermanalysisservicesserver)|建立新的伺服器執行個體。|
+|[Remove-AzureRmAnalysisServicesServer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.analysisservices/v3.0.0/remove-azurermanalysisservicesserver)|移除伺服器執行個體。|  
+|[Suspend-AzureRmAnalysisServicesServe](https://docs.microsoft.com/powershell/resourcemanager/azurerm.analysisservices/v3.0.0/suspend-azurermanalysisservicesserver)|暫停伺服器執行個體。| 
+|[Resume-AzureRmAnalysisServicesServer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.analysisservices/v3.0.0/resume-azurermanalysisservicesserver)|繼續伺服器執行個體。|  
+|[Set-AzureRmAnalysisServicesServer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.analysisservices/v3.0.0/set-azurermanalysisservicesserver)|修改伺服器執行個體。|   
+|[Test-AzureRmAnalysisServicesServer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.analysisservices/v3.0.0/test-azurermanalysisservicesserver)|測試伺服器執行個體的存在。| 
 
 ## <a name="database-operations"></a>資料庫作業
 Azure Analysis Services 資料庫作業使用與 SQL Server Analysis Services 相同的 [SQLASCMDLETS](https://msdn.microsoft.com/library/hh758425.aspx) 模組。 不過，Azure Analysis Services 預覽並不支援所有的 Cmdlet。 
@@ -64,8 +65,3 @@ SQLASCMDLETS 模組提供特定工作的資料庫管理 Cmdlet，以及接受「
 ## <a name="related-information"></a>相關資訊
 * [Analysis Services 中的 PowerShell 指令碼](https://msdn.microsoft.com/library/hh213141.aspx)。
 * [相容性層級 1200 的表格式模型程式設計 (英文)](https://msdn.microsoft.com/library/mt712541.aspx)
-
-
-<!--HONumber=Jan17_HO5-->
-
-

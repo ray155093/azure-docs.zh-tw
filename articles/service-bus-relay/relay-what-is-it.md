@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: get-started-article
-ms.date: 02/14/2017
+ms.date: 03/09/2017
 ms.author: babanisa;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
-ms.openlocfilehash: 1b9423c22ff6e003a6236e01118b600a2c746db4
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 9fd40892c77630bd4f0b7abf5c3458a6dc200402
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -32,7 +33,7 @@ Azure 轉送服務可執行混合式應用程式，方法是讓您以安全的�
 Azure 轉送有兩項功能︰
 
 1. [混合式連線](#hybrid-connections) - 使用開放式標準 Web 通訊端來啟用多平台案例。
-2. [WCF 轉送](#wcf-relays) - 使用 Windows Communication Foundation (WCF) 來啟用遠端程序呼叫。 WCF 轉送是舊版的轉送服務，許多客戶可能已將該服務使用於其 WCF 程式設計模型。
+2. [WCF 轉送](#wcf-relays) - 使用 Windows Communication Foundation (WCF) 來啟用遠端程序呼叫。 WCF 轉送是舊版的轉送服務，許多客戶已將該服務使用於其 WCF 程式設計模型。
 
 混合式連線和 WCF 轉送都能夠對存在於企業網路內的資產進行安全的連線。 視您的特定需求使用其中一項功能，詳述於下表︰
 
@@ -41,12 +42,9 @@ Azure 轉送有兩項功能︰
 | **WCF** |x | |
 | **.NET Core** | |x |
 | **.NET Framework** |x |x |
-| **JavaScript/NodeJS*** | |x |
-| **Java*** | |x |
+| **JavaScript/NodeJS** | |x |
 | **標準型開放式通訊協定** | |x |
 | **多個 RPC 程式設計模型** | |x |
-
-*經由公開上市
 
 ## <a name="hybrid-connections"></a>混合式連線
 [Azure 轉送混合式連線](relay-hybrid-connections-protocol.md)功能是現有轉送功能的安全、開放式通訊協定演化，可以在任何平台上以任何具有基本 WebSocket 功能的語言實作，而基本 WebSocket 功能會明確地將 WebSocket API 納入一般網頁瀏覽器中。 混合式連線是以 HTTP 和 Websocket 為基礎。
@@ -62,10 +60,5 @@ WCF 轉送適用於完整的 .NET Framework (NETFX) 和 WCF。 您在內部部�
 * [建立命名空間](relay-create-namespace-portal.md)
 * [開始使用 .NET](relay-hybrid-connections-dotnet-get-started.md)
 * [開始使用 Node](relay-hybrid-connections-node-get-started.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

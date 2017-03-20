@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/15/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b24490585019c049af4e1808bf980e36c5143e71
+ms.sourcegitcommit: 0837cb33bf438fb7fd9665d21d411f0170cdd393
+ms.openlocfilehash: 6f217ee0398933cfad713398952a79d39b6020c3
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.openlocfilehash: b24490585019c049af4e1808bf980e36c5143e71
 3. 設定使用者佈建
 4. 指派使用者
 
-![案例](./media/active-directory-saas-empcenter-tutorial/IC802916.png "Scenario")
+![案例](./media/active-directory-saas-empcenter-tutorial/IC802916.png "案例")
 
 ## <a name="enabling-the-application-integration-for-empcenter"></a>啟用 EmpCenter 的應用程式整合
 本節的目的是要說明如何啟用 EmpCenter 的應用程式整合。
@@ -47,16 +48,16 @@ ms.openlocfilehash: b24490585019c049af4e1808bf980e36c5143e71
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-   ![應用程式](./media/active-directory-saas-empcenter-tutorial/IC700994.png "Applications")
+   ![應用程式](./media/active-directory-saas-empcenter-tutorial/IC700994.png "應用程式")
 4. 按一下頁面底部的 [新增]  。
    
-   ![新增應用程式](./media/active-directory-saas-empcenter-tutorial/IC749321.png "Add application")
+   ![新增應用程式](./media/active-directory-saas-empcenter-tutorial/IC749321.png "新增應用程式")
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-   ![從組件庫新增應用程式](./media/active-directory-saas-empcenter-tutorial/IC749322.png "Add an application from gallerry")
+   ![從資源庫新增應用程式](./media/active-directory-saas-empcenter-tutorial/IC749322.png "從資源庫新增應用程式")
 6. 在**搜尋方塊**中，輸入 **EmpCenter**。
    
-   ![應用程式庫](./media/active-directory-saas-empcenter-tutorial/IC802917.png "Application Gallery")
+   ![應用程式資源庫](./media/active-directory-saas-empcenter-tutorial/IC802917.png "應用程式資源庫")
 7. 在結果窗格中，選取 [EmpCenter]，然後按一下 [完成] 以加入應用程式。
    
    ![EmpCentral](./media/active-directory-saas-empcenter-tutorial/IC802918.png "EmpCentral")
@@ -69,19 +70,19 @@ ms.openlocfilehash: b24490585019c049af4e1808bf980e36c5143e71
 ### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 [EmpCenter] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
-   ![設定單一登入](./media/active-directory-saas-empcenter-tutorial/IC802919.png "Configure Single Sign-On")
+   ![設定單一登入](./media/active-directory-saas-empcenter-tutorial/IC802919.png "設定單一登入")
 2. 在 [要如何讓使用者登入 EmpCenter] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
-   ![設定單一登入](./media/active-directory-saas-empcenter-tutorial/IC802920.png "Configure Single Sign-On")
+   ![設定單一登入](./media/active-directory-saas-empcenter-tutorial/IC802920.png "設定單一登入")
 3. 在 [設定應用程式設定]  頁面上，執行下列步驟：
    
-   ![設定 App 設定](./media/active-directory-saas-empcenter-tutorial/IC802921.png "Configure App Settings")
+   ![設定應用程式設定](./media/active-directory-saas-empcenter-tutorial/IC802921.png "進行應用程式設定")
    
    1. 在 [登入 URL] 文字方塊中，輸入使用者用來登入您 EmpCenter 應用程式的 URL (例如：*https://partner-authenticati.empcenter.com/workforce/SSO.do*)。
-   2. 依序按一下 [ **下一步**
+   2. 依序按一下  **下一步**
 4. 於 [設定在 EmpCenter 單一登入] 頁面上，按一下 [下載中繼資料] 來下載您的中繼資料，然後將中繼資料檔儲存在您的電腦中。
    
-   ![設定單一登入](./media/active-directory-saas-empcenter-tutorial/IC802922.png "Configure Single Sign-On")
+   ![設定單一登入](./media/active-directory-saas-empcenter-tutorial/IC802922.png "設定單一登入")
 5. 將下載的中繼資料檔案傳送給 EmpCenter 支援小組。
    
    > [!NOTE]
@@ -91,7 +92,7 @@ ms.openlocfilehash: b24490585019c049af4e1808bf980e36c5143e71
    > 
 6. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
-   ![設定單一登入](./media/active-directory-saas-empcenter-tutorial/IC802923.png "Configure Single Sign-On")
+   ![設定單一登入](./media/active-directory-saas-empcenter-tutorial/IC802923.png "設定單一登入")
    
 ## <a name="configuring-user-provisioning"></a>設定使用者佈建
 
@@ -110,16 +111,11 @@ ms.openlocfilehash: b24490585019c049af4e1808bf980e36c5143e71
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [EmpCenter] 應用程式整合頁面上，按一下 [指派使用者]。
    
-   ![指派使用者](./media/active-directory-saas-empcenter-tutorial/IC802924.png "Assign Users")
+   ![指派使用者](./media/active-directory-saas-empcenter-tutorial/IC802924.png "指派使用者")
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
    
-   ![是](./media/active-directory-saas-empcenter-tutorial/IC767830.png "Yes")
+   ![是](./media/active-directory-saas-empcenter-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

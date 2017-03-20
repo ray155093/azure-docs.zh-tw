@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 8d5c21f8e746a9bcddc2eb9b0294836e0de55bf2
-ms.openlocfilehash: 6300aa7030cfd29ec4b8b1db7b42227855fddbcf
+ms.sourcegitcommit: ea6b80e289f039a5924fcc2ccf9d71dbbb432982
+ms.openlocfilehash: 2f2676d85a513a152832cfd336c3b643577341b9
+ms.lasthandoff: 02/24/2017
 
 ---
 # <a name="azure-api-management-faqs"></a>Azure API 管理常見問題集
@@ -44,13 +45,13 @@ ms.openlocfilehash: 6300aa7030cfd29ec4b8b1db7b42227855fddbcf
 * [為什麼我在嘗試複製 GIT 儲存機制時會發生驗證失敗？](#why-do-i-get-an-authentication-failure-when-i-try-to-clone-a-git-repository)
 * [API 管理是否能搭配 Azure ExpressRoute 運作？](#does-api-management-work-with-azure-expressroute)
 * [可以將 API 管理服務從某一個訂用帳戶移至另一個嗎？](#can-i-move-an-api-management-service-from-one-subscription-to-another)
-* [匯入 API 有任何限制或已知的問題嗎？](#api-management-api-import-restrictions)
+* [匯入 API 有任何限制或已知的問題嗎？](#are-there-restrictions-on-or-known-issues-with-importing-my-api)
 
 ### <a name="how-can-i-ask-the-microsoft-azure-api-management-team-a-question"></a>如何向 Microsoft Azure API 管理小組詢問問題？
 您可以使用下列其中一個選項與我們連絡︰
 
 * 將問題張貼在我們的 [API 管理 MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=azureapimgmt)。
-* 將電子郵件傳送至 < mailto:apimgmt@microsoft.com >。
+* 將電子郵件傳送至 <mailto:apimgmt@microsoft.com>。
 * 在 [Azure 意見反應論壇](https://feedback.azure.com/forums/248703-api-management)將功能要求傳送給我們。
 
 ### <a name="what-does-it-mean-when-a-feature-is-in-preview"></a>功能預覽中是什麼意思？
@@ -62,7 +63,7 @@ ms.openlocfilehash: 6300aa7030cfd29ec4b8b1db7b42227855fddbcf
 * 使用 HTTP 基本驗證。 如需詳細資訊，請參閱 [設定 API 設定](api-management-howto-create-apis.md#configure-api-settings)。
 * 依照[如何使用 Azure API 管理中的用戶端憑證驗證保護後端服務](api-management-howto-mutual-certificates.md)所述，使用 SSL 相互驗證。
 * 在您的後端服務上使用 IP 允許清單。 如果您有標準或高階層 API 管理執行個體，閘道的 IP 位址會保持不變。 您可以設定您的允許清單來允許此 IP 位址。 您可以在 Azure 入口網站中的 [儀表板] 上取得API 管理執行個體的 IP 位址。
-* 將您的 API 管理執行個體連接至 Azure 虛擬網路。 如需詳細資訊，請參閱 [如何在 Azure API 管理中設定 VPN 連線](api-management-howto-setup-vpn.md)。
+* 將您的 API 管理執行個體連接至 Azure 虛擬網路。 
 
 ### <a name="how-do-i-copy-my-api-management-service-instance-to-a-new-instance"></a>如何將我的 API 管理服務執行個體複製到新的執行個體？
 如果您要將 API 管理執行個體複製到新的執行個體，您有幾個選項可用。 您可以：
@@ -149,9 +150,4 @@ API 管理會在部署到多個地理位置時，使用[效能流量路由方法
 
 ### <a name="are-there-restrictions-on-or-known-issues-with-importing-my-api"></a>匯入 API 有任何限制或已知的問題嗎？
 Open API(Swagger)、WSDL 及 WADL 格式的[已知問題和限制](api-management-api-import-restrictions.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

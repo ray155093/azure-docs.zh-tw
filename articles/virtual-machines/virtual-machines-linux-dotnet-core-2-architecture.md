@@ -15,14 +15,16 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 11/21/2016
 ms.author: nepeters
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: bd214be3aec3fbfa70fe579447f1e00f17a354c7
-ms.openlocfilehash: e3840e6f688d586650d877a854ee81035ce39b48
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 764ef15f631166bf720c846aa3b4f4b6936054d9
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="application-architecture-with-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本的應用程式架構
+# <a name="application-architecture-with-azure-resource-manager-templates-for-linux-vms"></a>使用適用於 Linux VM 之 Azure Resource Manager 範本的應用程式架構
+
 開發 Azure Resource Manager 部署時，必須將計算需求與 Azure 資源和服務對應。 如果應用程式是由數個 http 端點、一個資料庫及一個資料快取服務所組成，就必須將裝載這當中每個元件的 Azure 資源合理化。 例如，範例「音樂市集」應用程式包含一個裝載於虛擬機器上的 Web 應用程式，以及一個裝載於 Azure SQL Database 中的 SQL Database。 
 
 本文件詳細說明範例 Azure Resource Manager 範本中如何設定「音樂市集」計算資源。 所有相依項目和獨特的設定都會以醒目提示的方式標示。 為了獲得最佳體驗，請將一個解決方案執行個體預先部署到您的 Azure 訂用帳戶，然後與 Azure Resource Manager 範本搭配運作。 您可以在下列連結找到完整的範本 – [Ubuntu 上的音樂市集部署](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)。 

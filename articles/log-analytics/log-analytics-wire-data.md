@@ -17,6 +17,7 @@ ms.author: banders
 translationtype: Human Translation
 ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
 ms.openlocfilehash: be00cb9b1e8ba5d9d8368695ca8d448d466e8f47
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -106,9 +107,4 @@ ms.openlocfilehash: be00cb9b1e8ba5d9d8368695ca8d448d466e8f47
 ## <a name="next-steps"></a>後續步驟
 * [搜尋記錄檔](log-analytics-log-searches.md) 以檢視詳細的連線資料搜尋記錄。
 * 請參閱 Dan 的 [Using Wire Data in Operations Management Suite Log Search (在 Operations Management Suite 記錄檔搜尋中使用連線資料)](http://blogs.msdn.com/b/dmuscett/archive/2015/09/09/using-wire-data-in-operations-management-suite.aspx) 部落格文章，其中提供有關資料收集頻率及如何修改 Operations Manager 代理程式收集屬性的其他資訊。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

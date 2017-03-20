@@ -12,20 +12,22 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/31/2016
+ms.date: 02/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 872d4dd72029d26f9b98ad1a0fd6d33da63879a6
+ms.sourcegitcommit: 4a07f946d396a9263d5b00202cd5229ddc86d1be
+ms.openlocfilehash: 02619192a5106a064a9f97cddac7c20bd73559e7
+ms.lasthandoff: 03/01/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-learnupon"></a>教學課程：Azure Active Directory 與 LearnUpon 整合
-本教學課程旨在說明如何整合 LearnUpon 與 Azure Active Directory (Azure AD)。  
+本教學課程旨在說明如何整合 LearnUpon 與 Azure Active Directory (Azure AD)。
+
 LearnUpon 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制可存取 LearnUpon 的人員
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 LearnUpon (單一登入)
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 LearnUpon 單一登入 (SSO)
 * 您可以在 Azure Active Directory 傳統入口網站集中管理您的帳戶 
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -34,24 +36,24 @@ LearnUpon 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 LearnUpon 整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 啟用 LearnUpon 單一登入的訂用帳戶
+* 啟用 LearnUpon 單一登入 (SSO) 的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。  
+此教學課程的目標是讓您在測試環境中測試 Azure AD SSO。 
+
 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫中加入 LearnUpon
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Azure AD SSO
 
 ## <a name="adding-learnupon-from-the-gallery"></a>從資源庫中加入 LearnUpon
 若要設定將 LearnUpon 整合到 Azure AD 中，您需要從資源庫將 LearnUpon 新增到受管理的 SaaS 應用程式清單。
@@ -78,10 +80,11 @@ LearnUpon 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_02.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-本節目標是示範如何根據名為 "Britta Simon" 的測試使用者，使用 LearnUpon 設定及測試 Azure AD 單一登入功能。
+## <a name="configure-and-test-azure-ad-sso"></a>設定並測試 Azure AD SSO
+本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 LearnUpon 搭配運作的 Azure AD SSO。
 
-若要讓單一登入運作，Azure AD 必須知道 LearnUpon 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 LearnUpon 中的相關使用者之間建立連結關聯性。  
+若要讓 SSO 運作，Azure AD 必須知道 LearnUpon 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 LearnUpon 中的相關使用者之間建立連結關聯性。  
+
 建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值，指派為 LearnUpon 中 **Username** 的值。
 
 若要設定及測試與 LearnUpon 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
@@ -92,8 +95,8 @@ LearnUpon 與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-本節的目標是要在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 LearnUpon 應用程式中設定單一登入。
+### <a name="configure-azure-ad-sso"></a>設定 Azure AD SSO
+本節目標是在 Azure 傳統入口網站啟用 Azure AD SSO 功能，並在您的 LearnUpon 應用程式中設定單一登入功能。
 
 **若要設定與 LearnUpon 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
 
@@ -106,61 +109,45 @@ LearnUpon 與 Azure AD 整合提供下列優點：
 3. 在 [設定應用程式設定]  對話方塊頁面上，執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_04.png) 
-
-    a. 在 [回覆 URL] 文字方塊中，以下列模式輸入「判斷提示取用者服務 URL」：`https://\<companyname\>.learnupon.com/saml/consumer`
-
-    b. 按 [下一步] 。 
-
-
-1. 在 [設定在 LearnUpon 單一登入]  頁面上，執行下列步驟：
+  1. 在 [回覆 URL] 文字方塊中，以下列模式輸入「判斷提示取用者服務 URL」：`https://\<companyname\>.learnupon.com/saml/consumer`
+  2. 按 [下一步] 。 
+4. 在 [設定在 LearnUpon 單一登入]  頁面上，執行下列步驟：
    
-    ![設定單一登入](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_05.png) 
-   
-    a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。 我們將需要此憑證和「中繼資料 URL」(實體識別碼、SSO 登入 URL 及登出 URL) 來設定 LearnUpon 端的 SSO。
-   
-    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
-2. 開啟另一個瀏覽器執行個體，並使用系統管理員帳戶登入 LearnUpon。 
-3. 按一下 [設定]  索引標籤。
+    ![設定單一登入](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_05.png)   
+  1. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。 我們將需要此憑證和「中繼資料 URL」(實體識別碼、SSO 登入 URL 及登出 URL) 來設定 LearnUpon 端的 SSO。
+  2. 按 [下一步] 。
+5. 開啟另一個瀏覽器執行個體，並使用系統管理員帳戶登入 LearnUpon。 
+6. 按一下 [設定]  索引標籤。
    
     ![設定單一登入](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_06.png) 
-4. 按一下 [單一登入 - SAML]，然後按一下 [一般設定] 以設定 SAML 設定。
+7. 按一下 [單一登入 - SAML]，然後按一下 [一般設定] 以設定 SAML 設定。
    
     ![設定單一登入](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_07.png) 
-5. 在 [一般設定]  區段中，執行下列步驟：
+8. 在 [一般設定]  區段中，執行下列步驟：
    
-    ![設定單一登入](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_08.png) 
+    ![設定單一登入](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_08.png)  
+  1. 選取 [啟用] 。
+  2. 選取 [2.0] 做為 [版本]。
+  3. 選取 [否] 做為 [略過條件]。
+  4. 在 [SAML 權杖張貼參數名稱] 文字方塊中，輸入上述 SAML 取用者 URL 的要求張貼參數名稱，其中包含要確認和驗證的 SAML 判斷提示，例如 **SAMLResponse**。
+  5. 在 [名稱識別碼格式] 文字方塊中，輸入可指出使用者識別碼 (電子郵件地址) 在您「SAML 判斷提示」中的所在位置的值，例如 **urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress**。
+  6. 在 [識別提供者位置] 文字方塊中，輸入可指出當使用者按一下 Azure 傳統入口網站登入畫面中的所上傳圖示時，要將他們傳送到何處的值。
+  7. 在 Azure 傳統入口網站上，複製 [單一登出服務 URL]，然後將它貼到 [登出 URL] 文字方塊中。
+  8. 按一下 [管理指紋]，然後上傳所下載憑證的指紋。 
+9. 按一下 [使用者設定] ，然後執行下列步驟：
    
-    a. 選取 [啟用] 。
-   
-    b.這是另一個 C# 主控台應用程式。 選取 [2.0] 做為 [版本]。
-   
-    c. 選取 [否] 做為 [略過條件]。
-   
-    d. 在 [SAML 權杖張貼參數名稱] 文字方塊中，輸入上述 SAML 取用者 URL 的要求張貼參數名稱，其中包含要確認和驗證的 SAML 判斷提示，例如 **SAMLResponse**。
-   
-    e. 在 [名稱識別碼格式] 文字方塊中，輸入可指出使用者識別碼 (電子郵件地址) 在您「SAML 判斷提示」中的所在位置的值，例如 **urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress**。
-   
-    f. 在 [識別提供者位置] 文字方塊中，輸入可指出當使用者按一下 Azure 傳統入口網站登入畫面中的所上傳圖示時，要將他們傳送到何處的值。
-   
-    g. 在 Azure 傳統入口網站上，複製 [單一登出服務 URL]，然後將它貼到 [登出 URL] 文字方塊中。
-   
-    h. 按一下 [管理指紋]，然後上傳所下載憑證的指紋。 
-6. 按一下 [使用者設定] ，然後執行下列步驟：
-   
-    ![設定單一登入](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_11.png) 
-   
-    a. 在 [名字識別碼格式] 文字方塊中，輸入可告知我們使用者名字在您「SAML 判斷提示」中的所在位置的值，例如：**http://schemas.xmlsoap.org/ws/2005/05/identity/claims/    givenname**。
-   
-    b. 在 [姓氏識別碼格式] 文字方塊中，輸入可告知我們使用者名字在您「SAML 判斷提示」中的所在位置的值，例如：**http://schemas.xmlsoap.org/ws/2005/05/identity/claims/    surname**。
-7. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
+    ![設定單一登入](./media/active-directory-saas-learnupon-tutorial/tutorial_learnupon_11.png)  
+  1. 在 [名字識別碼格式] 文字方塊中，輸入可告知我們使用者名字在您「SAML 判斷提示」中的所在位置的值，例如：http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname。 
+  2. 在 [姓氏識別碼格式] 文字方塊中，輸入可告知我們使用者名字在您「SAML 判斷提示」中的所在位置的值，例如：http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname。
+7. 在 Azure 傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
 8. 在 [單一登入確認] 頁面上，按一下 [完成]。  
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -179,48 +166,37 @@ LearnUpon 與 Azure AD 整合提供下列優點：
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-learnupon-tutorial/create_aaduser_05.png) 
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+  1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+  2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+  3. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-learnupon-tutorial/create_aaduser_06.png) 
-   
-   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-   d. 在 [角色] 清單中選取 [使用者]。
-   
-   e. 按 [下一步] 。
+  1. 在 [名字] 文字方塊中，輸入 **Britta**。   
+  2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+  3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+  4. 在 [角色] 清單中選取 [使用者]。
+  5. 按 [下一步] 。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-learnupon-tutorial/create_aaduser_07.png) 
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-learnupon-tutorial/create_aaduser_08.png) 
-   
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+  1. 記下 [新密碼] 的值。 
+  2. 按一下 [完成]。   
 
-### <a name="creating-a-learnupon-test-user"></a>建立 LearnUpon 測試使用者
+### <a name="create-a-learnupon-test-user"></a>建立 LearnUpon 測試使用者
 本節的目標是要在 LearnUpon 中建立名為 Britta Simon 的使用者。 LearnUpon 支援預設啟用的 Just-In-Time 佈建。
 
 在這一節沒有您需要進行的動作項目。 嘗試存取 LearnUpon 時，如果使用者尚未存在，就會建立新使用者。 [設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)。
 
-> [!NOTE]
-> 如果您需要手動建立使用者，您需要連絡 LearnUpon 支援小組。
-> 
+>[!NOTE]
+>如果您需要手動建立使用者，您需要連絡 LearnUpon 支援小組。 
 > 
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-本節的目標是要授權 Britta Simon 存取 LearnUpon，讓她能夠使用 Azure 單一登入。
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+本節的目標是授與 Britta Simon 對 LearnUpon 的存取權，使她能夠使用 Azure SSO。
 
 ![指派使用者][200] 
 
@@ -240,8 +216,9 @@ LearnUpon 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
-本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。  
+### <a name="test-single-sign-on"></a>測試單一登入
+本節的目標是要使用「存取面板」來測試您的 Azure AD SSO 組態。  
+
 當您按一下「存取面板」中的 LearnUpon 磚時，您應該會自動登入 LearnUpon 應用程式。
 
 ## <a name="additional-resources"></a>其他資源
@@ -265,9 +242,4 @@ LearnUpon 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-learnupon-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-learnupon-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-learnupon-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

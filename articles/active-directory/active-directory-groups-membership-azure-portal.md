@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Active Directory 預覽版中管理您群組所屬的群組 | Microsoft Docs"
-description: "在 Azure Active Directory 中，群組可以包含其他群組。  以下說明如何管理這些成員資格。"
+title: "在 Azure Active Directory 預覽版中管理您的群組所屬的群組 | Microsoft Docs"
+description: "在 Azure Active Directory 中，群組可以包含其他群組。 以下說明如何管理這些成員資格。"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,16 +12,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/10/2017
+ms.date: 02/27/2017
 ms.author: curtand
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1968862a68d86c0f42e86ecb1f23aeebd264076c
+ms.sourcegitcommit: 58768cd59a922483bcb37797a6dcd515d159ef4c
+ms.openlocfilehash: 8e0563f3490186a19dd9418ebf7beac7dd8dd046
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="manage-the-groups-your-group-is-a-member-of-in-azure-active-directory-preview"></a>在 Azure Active Directory 預覽版中管理您群組所屬的群組
-在 Azure Active Directory 預覽版中，群組可以包含其他群組。 [預覽版有何功能？](active-directory-preview-explainer.md)  以下說明如何管理這些成員資格。
+# <a name="manage-to-which-groups-a-group-belongs-in-your-azure-active-directory-tenant"></a>管理 Azure Active Directory 租用戶中群組所屬的群組
+在 Azure Active Directory 預覽版中，群組可以包含其他群組。 [預覽版有何功能？](active-directory-preview-explainer.md) 以下說明如何管理這些成員資格。
 
 ## <a name="how-do-i-find-the-groups-my-group-is-a-member-of"></a>如何找出我群組所屬的群組？
 1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
@@ -53,9 +55,4 @@ ms.openlocfilehash: 1968862a68d86c0f42e86ecb1f23aeebd264076c
 * [管理群組的設定](active-directory-groups-settings-azure-portal.md)
 * [管理群組的成員](active-directory-groups-members-azure-portal.md)
 * [管理群組中使用者的動態規則](active-directory-groups-dynamic-membership-azure-portal.md)
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

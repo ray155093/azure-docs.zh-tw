@@ -13,15 +13,17 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 03/02/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: a344a3a05c2a27e6b6500a6560c7fbb2096c9bfc
-ms.openlocfilehash: 0303145ba0ce611242f218cdf6a2274e9e393fb4
+ms.sourcegitcommit: fd30c5befb378a031e818c29e9bde72c1105bf78
+ms.openlocfilehash: ac7e47835b0ae4fee724c18df949cedfc3a16957
+ms.lasthandoff: 03/02/2017
 
 
 ---
 # <a name="use-empty-edge-nodes-in-hdinsight"></a>在 HDInsight 中使用空白邊緣節點
+
 了解如何將空白邊緣節點新增至以 Linux 為基礎的 HDInsight 叢集。 空白邊緣節點是一部 Linux 虛擬機器，其中已安裝及設定和前端節點相同的用戶端工具，但未執行任何 Hadoop 服務。 您可以使用邊緣節點來存取叢集、測試用戶端應用程式，以及裝載用戶端應用程式。 
 
 您可以將空白邊緣節點新增至現有 HDInsight 叢集，以及在建立叢集時新增到新的叢集。 空白邊緣節點是使用 Azure Resource Manager 範本來新增。  下列範例示範如何使用範本來新增︰
@@ -57,6 +59,8 @@ ms.openlocfilehash: 0303145ba0ce611242f218cdf6a2274e9e393fb4
 
 如範例所示，您可以選擇性地呼叫[指令碼動作](hdinsight-hadoop-customize-cluster-linux.md)來執行其他設定，例如在邊緣節點中安裝 [Apache Hue](hdinsight-hadoop-hue-linux.md)。
 
+邊緣節點虛擬機器大小必須符合 HDInsight 叢集背景工作節點 VM 大小需求。 如需建議的背景工作節點 VM 大小，請參閱[在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md#cluster-types)。
+
 建立邊緣節點之後，您可以使用 SSH 連線到邊緣節點，並執行用戶端工具來存取 HDInsight 中的 Hadoop 叢集。
 
 ## <a name="add-an-edge-node-to-an-existing-cluster"></a>將邊緣節點新增至現有叢集
@@ -74,7 +78,7 @@ ms.openlocfilehash: 0303145ba0ce611242f218cdf6a2274e9e393fb4
    * **資源群組**：選取用於現有 HDInsight 叢集的資源群組。
    * **位置**：選取現有 HDInsight 叢集的位置。
    * **叢集名稱**︰輸入現有 HDInsight 叢集的名稱。
-   * **邊緣節點大小**︰選取其中一個 VM 大小。
+   * **邊緣節點大小**︰選取其中一個 VM 大小。 VM 大小必須符合背景工作節點 VM 大小需求。 如需建議的背景工作節點 VM 大小，請參閱[在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md#cluster-types)。
    * **邊緣節點前置詞**︰預設值是 **new**。  若使用預設值，邊緣節點名稱是 **new-edgenode**。  您可以從入口網站自訂前置詞。 您也可以從範本自訂完整名稱。
 4. 核取 [我同意上方所述的條款及條件]，然後按一下 [購買] 以建立邊緣節點。
 
@@ -144,10 +148,5 @@ ms.openlocfilehash: 0303145ba0ce611242f218cdf6a2274e9e393fb4
 * [MSDN：安裝 HDInsight 應用程式](https://msdn.microsoft.com/library/mt706515.aspx)︰了解如何定義 HDInsight 應用程式。
 * [使用指令碼動作自訂以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)：了解如何使用指令碼動作來安裝其他應用程式。
 * [使用 Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)︰了解如何呼叫 Resource Manager 範本來建立 HDInsight 叢集。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

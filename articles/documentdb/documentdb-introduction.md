@@ -13,12 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/16/2016
+ms.date: 03/14/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 988c887d2d26ab3ab5b287f803c7d598bd6620e3
-ms.openlocfilehash: 23b1780df8ec01c0692e3afd408ea44fc9773b28
-ms.lasthandoff: 02/04/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 4f6ae0c3c40a10f75b46c6e44b0aa9e8ce440b4d
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -46,8 +46,9 @@ Azure DocumentDB 提供下列重要功能和優點：
 * **受到完整管理：** 消除資料庫和電腦資源的管理需求。 做為受到完整管理的 Microsoft Azure 服務，您不需要管理虛擬機器、部署和設定軟體、管理調整，或處理複雜的資料層升級。 每個資料庫都會自動進行備份，防範區域性失敗。 您可以輕鬆地新增 DocumentDB 帳戶，並在需要時佈建容量，因此能夠將所有精神放在應用程式，而非操作與管理資料庫。 
 * **開放式設計：** 使用現有技能和工具讓您快速上手。 針對 DocumentDB 進行程式設計十分簡單、容易達成，而且不需要採用新工具或符合 JSON 或 JavaScript 的自訂擴充功能。 您可以透過簡單的 RESTful HTTP 介面來存取所有資料庫功能，包括 CRUD、查詢和 JavaScript 處理。 DocumentDB 既採用現有的格式、語言和標準，同時又能提供凌駕於它們之上的高價值資料庫功能。
 * **自動編製索引**：根據預設，DocumentDB 會自動為資料庫中的所有文件編制索引，且不預期或需要任何結構描述或建立次要索引。 不想要編製所有項目的索引嗎？ 別擔心，您也可以 [選擇退出 JSON 檔案中的路徑](documentdb-indexing-policies.md) 。
+* **與 MongoDB 應用程式的相容性︰**使用 DocumentDB：適用於 MongoDB 的 API，您可以使用 DocumentDB 資料庫做為針對 MongoDB 撰寫之應用程式的資料儲存。 這表示，使用 MongoDB 資料庫現有的驅動程式，針對 MongoDB 所撰寫的應用程式現在可與 DocumentDB 通訊，並使用 DocumentDB 資料庫而非 MongoDB 資料庫。 在許多情況下，您只要變更連接字串，就可以從使用 MongoDB 切換到 DocumentDB。 在[什麼是 DocumentDB：適用於 MongoDB 的 API？](documentdb-protocol-mongodb.md)中深入了解
 
-## <a name="a-namedata-managementahow-does-documentdb-manage-data"></a><a name="data-management"></a>DocumentDB 如何管理資料？
+## <a name="data-management"></a>DocumentDB 如何管理資料？
 Azure DocumentDB 透過定義完善的資料庫資源管理 JSON 資料。 這些資源會進行複寫來達到高可用性，並且會透過其邏輯 URI 來進行唯一定址。 DocumentDB 針對所有資源提供簡單的 HTTP 式 RESTful 程式設計模型。 
 
 DocumentDB 資料庫帳戶是可讓您存取 Azure DocumentDB 的唯一命名空間。 在建立資料庫帳戶之前，您必須先擁有 Azure 訂用帳戶，此帳戶可讓您存取各種 Azure 服務。 
@@ -60,8 +61,8 @@ DocumentDB 內的所有資源都會被建立模型，並儲存為 JSON 文件。
 
 資料庫帳戶是由一組資料庫所組成，每個資料庫都包含多個集合，而集合可包含預存程序、觸發程序、UDF、文件和相關附件。 資料庫也有相關聯的使用者，每個使用者都有一組可存取其他各種集合、預存程序、觸發程序、UDF、文件或附件的權限。 資料庫、使用者、權限和集合是系統所定義、具有已知結構描述的資源，而文件、預存程序、觸發程序、UDF 和附件則包含使用者定義的任意 JSON 內容。  
 
-## <a name="a-namedevelopa-how-can-i-develop-apps-with-documentdb"></a><a name="develop"></a> 如何使用 DocumentDB 開發應用程式？
-Azure DocumentDB 公開資源的方式是透過 REST API，此 API 可供任何能發出 HTTP/HTTPS 要求的語言呼叫。 另外，DocumentDB 還提供了幾種熱門語言的程式設計程式庫。 這些程式庫可透過處理詳細資料 (例如位址快取、例外狀況管理、自動重試等) 來簡化使用 Azure DocumentDB 的各個層面。 程式庫目前適用於下列語言和平台：  
+## <a name="develop"></a> 如何使用 DocumentDB 開發應用程式？
+Azure DocumentDB 公開資源的方式是透過 REST API，此 API 可供任何能發出 HTTP/HTTPS 要求的語言呼叫。 另外，DocumentDB 還提供了幾種熱門語言的程式設計程式庫，並與 MongoDB API 相容。 用戶端程式庫可透過處理詳細資料 (例如位址快取、例外狀況管理、自動重試等) 來簡化使用 Azure DocumentDB 的各個層面。 程式庫目前適用於下列語言和平台：  
 
 | 下載 | 文件 |
 | --- | --- |
@@ -71,6 +72,7 @@ Azure DocumentDB 公開資源的方式是透過 REST API，此 API 可供任何�
 | [JavaScript SDK](http://go.microsoft.com/fwlink/?LinkID=402991) |[JavaScript 程式庫](http://azure.github.io/azure-documentdb-js/) |
 | n/a |[伺服器端 JavaScript SDK](http://azure.github.io/azure-documentdb-js-server/) |
 | [Python SDK](https://pypi.python.org/pypi/pydocumentdb) |[Python 程式庫](http://azure.github.io/azure-documentdb-python/) |
+| n/a | [適用於 MongoDB 的 API](documentdb-protocol-mongodb.md)
 
 您可以使用 [Azure DocumentDB 模擬器](documentdb-nosql-local-emulator.md)在本機開發及測試應用程式，不需建立 Azure 訂用帳戶，也不會產生任何費用。 如果您滿意應用程式在 DocumentDB 模擬器中的運作方式，就可以切換成使用雲端的 Azure DocumentDB 帳戶。
 

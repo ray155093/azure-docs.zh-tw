@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/09/2016
 ms.author: bradsev;hangzh;weig
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
+ms.sourcegitcommit: 29c718d0c34d1e2f9d17b285a7270541a9ff15cf
+ms.openlocfilehash: f12bf7ef4f608e01115a7e7d12b734d65ccc40e5
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
 
 此程序會遵循 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 工作流程。 我們會示範如何設定資料科學環境、如何將資料載入 SQL DW，以及如何使用 SQL DW 或 IPython Notebook 來探索要模型化的資料和工程功能。 然後，我們會示範如何使用 Azure Machine Learning 建置和部署模型。
 
-## <a name="a-namedatasetathe-nyc-taxi-trips-dataset"></a><a name="dataset"></a>NYC 計程車車程資料集
+## <a name="dataset"></a>NYC 計程車車程資料集
 「NYC 計程車車程」資料是由約 20GB 的 CSV 壓縮檔 (未壓縮時可達 48GB) 所組成，裡面記錄了超過 1 億 7300 萬筆個別車程及針對每趟車程所支付的費用。 每趟車程記錄包括上車和下車的位置與時間、匿名的計程車司機駕照號碼，以及計程車牌照 (計程車的唯一識別碼) 號碼。 資料涵蓋 2013 年的所有車程，並且每月會在下列兩個資料集中加以提供：
 
 1. **trip_data.csv** 檔案包含車程的詳細資訊，例如，乘客數、上車和下車地點、車程持續時間，以及車程長度。 以下是一些範例記錄：
@@ -51,7 +52,7 @@ ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
 * hack\_license 和
 * pickup\_datetime。
 
-## <a name="a-namemltasksaaddress-three-types-of-prediction-tasks"></a><a name="mltasks"></a>處理三種類型的預測工作
+## <a name="mltasks"></a>處理三種類型的預測工作
 我們根據 *tip\_amount* 將三個預測問題公式化來說明三種類型的模型化工作：
 
 1. **二元分類**：預測是否已支付某趟車程的小費 (即大於美金 $0 元的 *tip\_amount* 為正面範例)，而等於美金 $0 元的 *tip\_amount* 為負面範例。
@@ -64,7 +65,7 @@ ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
         Class 4 : tip_amount > $20
 3. **迴歸工作**：預測針對某趟車程支付的小費金額。  
 
-## <a name="a-namesetupaset-up-the-azure-data-science-environment-for-advanced-analytics"></a><a name="setup"></a>設定適用於進階分析的 Azure 資料科學環境
+## <a name="setup"></a>設定適用於進階分析的 Azure 資料科學環境
 若要設定您的 Azure 資料科學環境，請遵循下列步驟。
 
 **建立自己的 Azure Blob 儲存體帳戶**
@@ -84,7 +85,7 @@ ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
 * **使用者名稱**
 * **密碼**
 
-**安裝 Visual Studio 2015 和 SQL Server Data Tools。** 如需指示，請參閱 [安裝適用於 SQL 資料倉儲的 Visual Studio 2015 及/或 SSDT (SQL Server Data Tools)](../sql-data-warehouse/sql-data-warehouse-install-visual-studio.md)中概述的步驟。
+**安裝 Visual Studio 和 SQL Server Data Tools。** 如需指示，請參閱 [安裝適用於 SQL 資料倉儲的 Visual Studio 2015 及/或 SSDT (SQL Server Data Tools)](../sql-data-warehouse/sql-data-warehouse-install-visual-studio.md)中概述的步驟。
 
 **使用 Visual Studio 連接到 Azure SQL DW。** 如需指示，請參閱[使用 Visual Studio 連接到 Azure SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-connect-overview.md)中的步驟 1 和 2。
 
@@ -103,7 +104,7 @@ ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
 
 **在 Azure 訂用帳戶下建立 Azure Machine Learning 工作區。** 如需指示，請參閱 [建立 Azure Machine Learning 工作區](machine-learning-create-workspace.md)中概述的步驟。
 
-## <a name="a-namegetdataaload-the-data-into-sql-data-warehouse"></a><a name="getdata"></a>將資料載入 SQL 資料倉儲
+## <a name="getdata"></a>將資料載入 SQL 資料倉儲
 開啟 Windows PowerShell 命令主控台。 執行下列 PowerShell 命令，將我們在 Github 上與您分享的範例 SQL 指令碼檔案，下載到您使用 *-DestDir*參數所指定的本機目錄中。 您可以將 *-DestDir* 參數的值變更為任何本機目錄。 如果 *-DestDir* 不存在，PowerShell 指令碼會加以建立。
 
 > [!NOTE]
@@ -338,7 +339,7 @@ ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
 
 ![][20]
 
-## <a name="a-namedbexploreadata-exploration-and-feature-engineering-in-azure-sql-data-warehouse"></a><a name="dbexplore"></a>Azure SQL 資料倉儲中的資料探索和特徵工程
+## <a name="dbexplore"></a>Azure SQL 資料倉儲中的資料探索和特徵工程
 在本節中，我們會使用 **Visual Studio Data Tools**直接對 Azure SQL DW 執行 SQL 查詢，以探索資料和產生特徵。 本節中使用的所有 SQL 查詢都能在名為 *SQLDW_Explorations.sql* 的範例指令碼中找到。 PowerShell 指令碼已將此檔案下載到您的本機目錄。 您也可以從 [Github](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/SQLDW/SQLDW_Explorations.sql)擷取此檔案。 但 Github 中的檔案並未插入 Azure SQL DW 資訊。
 
 使用 Visual Studio 與 SQL DW 登入名稱和密碼連接到您的 Azure SQL DW，然後開啟 **SQL 物件總管** 確認資料庫和資料表已匯入。 擷取 *SQLDW_Explorations.sql* 檔案。
@@ -564,7 +565,7 @@ ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
 1. 儲存最後一個 SQL 查詢以擷取和取樣資料，然後複製該查詢並直接貼到 Azure Machine Learning 中的[匯入資料][import-data]模組，或者
 2. 將您打算用來建置模型的取樣和工程設計資料保存在新的 SQL DW 資料表中，然後在 Azure Machine Learning 的[匯入資料][import-data]模組中使用該新的資料表。 先前步驟中的 PowerShell 指令碼已為您完成此作業。 您可以在「匯入資料」模組中直接讀取此資料表。
 
-## <a name="a-nameipnbadata-exploration-and-feature-engineering-in-ipython-notebook"></a><a name="ipnb"></a>IPython Notebook 中的資料探索和特徵工程設計
+## <a name="ipnb"></a>IPython Notebook 中的資料探索和特徵工程設計
 在本節中，我們將在先前建立的 SQL DW 中進行 Python 和 SQL 查詢，藉此探索資料和產生功能。 名為 **SQLDW_Explorations.ipynb** 的 IPython Notebook 範例和 Python 指令碼檔案 **SQLDW_Explorations_Scripts.py** 已下載到您的本機目錄中。 您也可以在 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/SQLDW)上取得這兩個檔案。 在 Python 指令碼中，這兩個檔案是相同的。 我們會提供 Python 指令碼檔案給您，以免您沒有 IPython Notebook 伺服器。 這兩個範例 Python 檔案是以 **Python 2.7**設計。
 
 範例 IPython Notebook 和 Python 指令碼檔案中下載到本機電腦的所需 Azure SQL DW 資訊先前已由 PowerShell 指令碼插入。 因此，不必進行任何修改就可以執行。
@@ -804,7 +805,7 @@ ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
     query = '''SELECT TOP 100 * FROM <schemaname>.<nyctaxi_sample>'''
     pd.read_sql(query,conn)
 
-## <a name="a-namemlmodelabuild-models-in-azure-machine-learning"></a><a name="mlmodel"></a>在 Azure Machine Learning 中建置模型
+## <a name="mlmodel"></a>在 Azure Machine Learning 中建置模型
 我們現在已準備好在 [Azure Machine Learning](https://studio.azureml.net)中建置和部署模型。 資料已經準備好用於稍早所識別的任何預測問題，也就是：
 
 1. **二元分類**：預測是否已支付某趟車程的小費。
@@ -853,7 +854,7 @@ ms.openlocfilehash: 572f09e5034f60e20b6668b5d513741048619ab6
 > 
 > 
 
-## <a name="a-namemldeployadeploy-models-in-azure-machine-learning"></a><a name="mldeploy"></a>在 Azure Machine Learning 中部署模型
+## <a name="mldeploy"></a>在 Azure Machine Learning 中部署模型
 當您備妥模型時，可以輕鬆地直接從實驗中將它部署為 Web 服務。 如需關於部署 Azure ML Web 服務的詳細資訊，請參閱 [部署 Azure 機器學習 Web 服務](machine-learning-publish-a-machine-learning-web-service.md)。
 
 若要部署新的 Web 服務，您需要：
@@ -920,9 +921,4 @@ Azure Machine Learning 將根據訓練實驗的元件來建立計分實驗。 �
 [edit-metadata]: https://msdn.microsoft.com/library/azure/370b6676-c11c-486f-bf73-35349f842a66/
 [select-columns]: https://msdn.microsoft.com/library/azure/1ec722fa-b623-4e26-a44e-a50c6d726223/
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

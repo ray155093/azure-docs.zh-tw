@@ -12,12 +12,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 02/14/2017
+ms.date: 03/08/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: a3fc1a6bf552ed8c6511c432c0d74b76247ce877
-ms.openlocfilehash: c08d863ef8913b9bad766c6232faaaa0a6cfa950
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 1d208f931af4704528309780b45e170627f1753c
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -140,6 +140,8 @@ Microsoft Azure Redis 快取有下列階層：
     // Simple get of data types from the cache
     string key1 = cache.StringGet("key1");
     int key2 = (int)cache.StringGet("key2");
+
+Azure Redis 快取具有可供用來以邏輯方式區隔 Redis 快取內資料的可設定數目資料庫 (預設值為 16 個)。 如需詳細資訊，請參閱 [Redis 資料庫是什麼？](cache-faq.md#what-are-redis-databases)和[預設 Redis 伺服器組態](cache-configure.md#default-redis-server-configuration)。
 
 現在您知道如何連線至 Azure Redis 快取執行個體，並傳回快取資料庫的參考，讓我們來看看如何使用快取。
 

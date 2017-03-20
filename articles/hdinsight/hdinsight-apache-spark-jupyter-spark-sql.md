@@ -13,12 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/22/2017
+ms.date: 03/13/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a3bdeb6fea306babc9358134c37044843b9bdd1c
-ms.openlocfilehash: d8d9c5111a19bb165c25d2796d6b6e933d75042a
-ms.lasthandoff: 02/06/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 33256025811f18529c942fa00726b40191127b7a
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -28,23 +28,11 @@ ms.lasthandoff: 02/06/2017
 
    ![開始使用 HDInsight 中的 Apache Spark](./media/hdinsight-apache-spark-jupyter-spark-sql/hdispark.getstartedflow.png "開始使用 HDInsight 中的 Apache Spark 教學課程。說明的步驟：建立儲存體帳戶、建立叢集、執行 Spark SQL 陳述式")
 
-[!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
-
 ## <a name="prerequisites"></a>必要條件
 * **Azure 訂用帳戶**。 開始進行本教學課程之前，您必須擁有 Azure 訂用帳戶。 請參閱[立即建立免費的 Azure 帳戶](https://azure.microsoft.com/free)。
 
-* **安全殼層 (SSH) 用戶端**：Linux、Unix 和 OS X 系統透過 `ssh` 命令提供 SSH 用戶端。 若為 Windows 系統，請參閱[從具有 PuTTY 的 Windows 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)；若為 Linux、Unix 或 OS X，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
-
-> [!NOTE]
-> 本文使用 Azure Resource Manager 範本來建立使用 [Azure 儲存體 Blob 做為叢集儲存體](hdinsight-hadoop-use-blob-storage.md)的 Spark 叢集。 除了使用 Azure 儲存體 Blob 做為預設儲存體外，您也可以建立使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 做為額外儲存體的 Spark 叢集。 如需指示，請參閱 [建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
->
->
-
-### <a name="access-control-requirements"></a>存取控制需求
-[!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
-
-## <a name="create-spark-cluster"></a>建立 Spark 叢集
-在本節中，您會在 HDInsight 中使用 [Azure Resource Manager 範本](https://azure.microsoft.com/resources/templates/101-hdinsight-spark-linux/)建立 Spark 叢集。 如需不同 HDInsight 版本及其 SLA 的相關資訊，請參閱〈 [HDInsight 元件版本設定](hdinsight-component-versioning.md)〉。 如需其他叢集建立方法，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+## <a name="create-a-spark-cluster"></a>建立 Spark 叢集
+在本節中，您會在 HDInsight 中使用 [Azure Resource Manager 範本](https://azure.microsoft.com/resources/templates/101-hdinsight-spark-linux/)建立 Spark 叢集。 如需其他叢集建立方法，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 
 1. 按一下以下影像，在 Azure 入口網站中開啟範本。         
 
@@ -54,24 +42,32 @@ ms.lasthandoff: 02/06/2017
 
     ![在 HDInsight 中使用 Azure Resource Manager 範本建立 Spark 叢集](./media/hdinsight-apache-spark-jupyter-spark-sql/create-spark-cluster-in-hdinsight-using-azure-resource-manager-template.png "在 HDInsight 中使用 Azure Resource Manager 範本建立 Spark 叢集")
 
-   * **訂用帳戶**：針對此叢集選取您的 Azure 訂用帳戶。
-   * **資源群組**：建立新的資源群組，或選取現有的資源群組。 資源群組用來管理專案的 Azure 資源。
-   * **位置**：選取資源群組的位置。  這個位置也用於預設叢集儲存體和 HDInsight 叢集。
-   * **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
-   * 叢集登入名稱和密碼：預設登入名稱是 admin。
-   * SSH 使用者名稱和密碼。
+    * **訂用帳戶**：針對此叢集選取您的 Azure 訂用帳戶。
+    * **資源群組**：建立資源群組，或選取現有的資源群組。 資源群組用來管理專案的 Azure 資源。
+    * **位置**：選取資源群組的位置。  這個位置也用於預設叢集儲存體和 HDInsight 叢集。
+    * **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
+    * **Spark 版本**︰選取您想要在叢集上安裝的 Spark 版本。
+    * 叢集登入名稱和密碼：預設登入名稱是 admin。
+    * SSH 使用者名稱和密碼。
 
    請記下這些值。  稍後在教學課程中需要這些資訊。
 
 3. 選取 [我同意上方所述的條款及條件]，選取 [釘選到儀表板]，然後按一下 [購買]。 您可以看到新的圖格，標題為「提交範本部署的部署」。 大約需要 20 分鐘的時間來建立叢集。
 
-## <a name="run-spark-sql-queries-using-a-jupyter-notebook"></a>使用 Jupyter Notebook 執行 Spark SQL 查詢
-在本節中，您會使用 Jupyter Notebook 來針對 Spark 叢集執行 Spark SQL 查詢。 HDInsight Spark 叢集提供兩種核心，可讓您用於 Jupyter Notebook。 它們是：
+> [!NOTE]
+> 本文建立使用 [Azure 儲存體 Blob 做為叢集儲存體](hdinsight-hadoop-use-blob-storage.md)的 Spark 叢集。 除了使用 Azure 儲存體 Blob 做為預設儲存體外，您也可以建立使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 做為額外儲存體的 Spark 叢集。 如需指示，請參閱 [建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+>
+>
+
+## <a name="run-a-spark-sql-query"></a>執行 Spark SQL 查詢
+
+在本節中，您會使用 Jupyter Notebook 來針對 Spark 叢集執行 Spark SQL 查詢。 HDInsight Spark 叢集提供三種核心，可讓您用於 Jupyter Notebook。 它們是：
 
 * **PySpark** (適用於以 Python 撰寫的應用程式)
+* **PySpark3** (適用於以 Python3 撰寫的應用程式)
 * **Spark** (適用於以 Scala 撰寫的應用程式)
 
-在本文中，您會使用 PySpark 核心。 如需兩個核心的詳細資訊，請參閱[在 HDInsight 中搭配使用 Jupyter Notebook 核心與 Apache Spark 叢集](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 使用 PySpark 核心的幾個主要優點包括：
+在本文中，您會使用 **PySpark** 核心。 如需核心的詳細資訊，請參閱[在 HDInsight 中搭配使用 Jupyter Notebook 核心與 Apache Spark 叢集](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 使用 PySpark 核心的幾個主要優點包括：
 
 * 系統會自動設定 Spark 和 Hive 的內容。
 * 使用 cell magic (例如 `%%sql`) 直接執行 SQL 或 Hive 查詢，而不需要任何前置的程式碼片段。
@@ -80,11 +76,12 @@ ms.lasthandoff: 02/06/2017
 ### <a name="create-jupyter-notebook-with-pyspark-kernel"></a>使用 PySpark 核心建立 Jupyter Notebook
 
 1. 開啟 [Azure 入口網站](https://portal.azure.com/)。
-2. 從左功能表，按一下 [資源群組]。
-3. 按一下您在上一節中建立的資源群組名稱。 如果有太多的資源群組，您可以使用搜尋功能。 您可以在群組、HDInsight 叢集及預設儲存體帳戶中看見兩個資源。
-4. 按一下叢集加以開啟。
 
-2. 從 [快速連結]，按一下 [叢集儀表板]，然後按一下 [Jupyter Notebook]。 出現提示時，輸入叢集的系統管理員認證。
+2. 如果您選擇將叢集釘選至儀表板，從儀表板按一下 [叢集] 圖格以啟動叢集刀鋒視窗。
+
+    如果您未將叢集釘選至儀表板，從左窗格中按一下 [HDInsight 叢集]，然後按一下您建立的叢集。
+
+3. 從 [快速連結]，按一下 [叢集儀表板]，然後按一下 [Jupyter Notebook]。 出現提示時，輸入叢集的系統管理員認證。
 
    ![HDInsight 叢集儀表板](./media/hdinsight-apache-spark-jupyter-spark-sql/hdinsight-azure-portal-cluster-dashboards.png "HDInsight 叢集儀表板")
 
@@ -94,15 +91,16 @@ ms.lasthandoff: 02/06/2017
    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
    >
    >
-3. 建立新的 Notebook。 按一下 [新增]，然後按一下 [PySpark]。
+3. 建立 Notebook。 按一下 [新增]，然後按一下 [PySpark]。
 
-   ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-spark-sql/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
+   ![建立 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-spark-sql/hdispark.note.jupyter.createnotebook.png "建立 Jupyter Notebook")
 
    新的 Notebook 隨即建立並以 Untitled(Untitled.pynb) 名稱開啟。
 
 4. 按一下頂端的 Notebook 名稱，然後輸入好記的名稱。
 
     ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-jupyter-spark-sql/hdispark.note.jupyter.notebook.name.png "提供 Notebook 的名稱")
+
 5. 將以下程式碼貼入空白儲存格，然後按下 **SHIFT + ENTER** 鍵以執行此程式碼。 此程式碼會匯入此案例所需的類型：
 
         from pyspark.sql.types import *
@@ -111,9 +109,9 @@ ms.lasthandoff: 02/06/2017
 
     ![Jupyter Notebook 作業的狀態](./media/hdinsight-apache-spark-jupyter-spark-sql/hdispark.jupyter.job.status.png "Jupyter Notebook 作業的狀態")
 
-    每當您在 Jupyter 中執行作業時，網頁瀏覽器視窗標題將會顯示 Notebook 標題和 **(忙碌)** 狀態。 您也會在右上角的 **PySpark** 文字旁看到一個實心圓。 工作完成後，實心圓將變成空心圓。
+    每當您在 Jupyter 中執行作業時，網頁瀏覽器視窗標題將會顯示 Notebook 標題和 **(忙碌)** 狀態。 您也會在右上角的 **PySpark** 文字旁看到一個實心圓。 作業完成後，實心圓將變成空心圓。
 
-6. 執行下列程式碼，將一些範例資料註冊到名為 **hvac** 的暫存資料表。
+6. 執行下列程式碼，以註冊範例資料集做為暫存資料表 (**hvac**)。
 
         # Load the data
         hvacText = sc.textFile("wasbs:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
@@ -132,12 +130,12 @@ ms.lasthandoff: 02/06/2017
 
     HDInsight 中的 Spark 叢集隨附範例資料檔案 **hvac.csv** (位於 **\HdiSamples\HdiSamples\SensorSampleData\hvac**)。
 
-7. 執行下列程式碼以查詢資料：
+7. 執行下列程式碼以查詢資料。
 
         %%sql
         SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = \"6/1/13\"
 
-   由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#choose-between-the-kernels)。
+   由於您使用的是 PySpark 核心，因此現在可在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#choose-between-the-kernels)。
 
    預設會顯示下列表格式輸出。
 
@@ -147,7 +145,14 @@ ms.lasthandoff: 02/06/2017
 
     ![查詢結果的區域圖](./media/hdinsight-apache-spark-jupyter-spark-sql/area.output.png "查詢結果的區域圖")
 
-9. 應用程式執行完畢之後，您可以關閉 Notebook 來釋放資源。 若要這樣做，請從 Notebook 的 [檔案] 功能表中，按一下 [關閉並停止]。 這樣就能夠結束並關閉 Notebook。
+9. 應用程式執行完畢之後，請關閉 Notebook 來釋放叢集資源。 若要這樣做，請從 Notebook 的 [檔案] 功能表中，按一下 [關閉並停止]。
+
+## <a name="troubleshoot"></a>疑難排解
+
+以下是使用 HDInsight 叢集時可能會遇到的一些常見問題。
+
+### <a name="access-control-requirements"></a>存取控制需求
+[!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
 ## <a name="delete-the-cluster"></a>刪除叢集
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]

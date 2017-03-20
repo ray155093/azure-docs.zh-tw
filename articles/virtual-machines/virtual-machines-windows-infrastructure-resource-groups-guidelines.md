@@ -13,16 +13,18 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 03/17/2017
 ms.author: iainfou
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
-ms.openlocfilehash: ec2392cb926df7c375c1c7c58766ef3b6ca2ff2d
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: d0576b965bd2e96f377aeb33765e71fa20140d7d
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="azure-resource-group-guidelines"></a>Azure 資源群組指導方針
+# <a name="azure-resource-group-guidelines-for-windows-vms"></a>適用於 Windows VM 的 Azure 資源群組指導方針
+
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
 
 本文著重於了解如何在資源群組中以邏輯方式建置環境，並將所有元件分組的方式。

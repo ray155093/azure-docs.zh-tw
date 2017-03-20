@@ -14,12 +14,12 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/18/2016
+ms.date: 03/06/2017
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
-ms.openlocfilehash: a2a738ef1df470e17b805e843a159e0abc23efdf
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: aa3f2bc04fe33466ca44abd7331a4b3aa7be26fc
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -55,13 +55,13 @@ ms.lasthandoff: 02/16/2017
 2. 選取 [Active Directory]  ，然後按一下您應用程式將會使用的 [Active Directory]。
 3. 按一下 [應用程式]，然後按一下 [新增]。
 4. 輸入您應用程式的名稱 (例如：*myClientApp*)，選取 [WEB 應用程式]，然後按一下箭號以繼續。
-5. 針對 [登入 URL] 和 [應用程式識別碼 URI]，您可以輸入一個有效的 URL (例如：http://myClientApp)，然後繼續。
+5. 針對 [登入 URL] 和 [應用程式識別碼 URI]，您可以輸入一個有效的 URL (例如： *http://myClientApp* )，然後繼續。
 6. 按一下 [設定] 。
 7. 複製您的 [用戶端識別碼] 。 (您之後在程式碼中將需要此值)。
 8. 在 [金鑰] 區段中，從 [選取持續時間] 下拉式清單中選取 [1 年]。 (您將在儲存金鑰後，於步驟 13 複製金鑰)。
 9. 向下捲動並按一下 [新增應用程式] 。
-10. 將 [顯示] 保留設定為 [Microsoft 應用程式]，然後選取 [Microsoft Azure 服務管理]。 按一下核取記號以繼續。
-11. 從 [委派權限] 下拉式清單中選取 [存取 Azure 服務管理]。
+10. 將 [顯示] 保留設定為 [Microsoft 應用程式]，然後選取 [Microsoft Azure 服務管理 API]。 按一下核取記號以繼續。
+11. 從 [委派權限] 下拉式清單中選取 [存取 Azure 服務管理...]。
 12. 按一下 [儲存] 。
 13. 完成儲存之後，複製 [金鑰]  區段中的金鑰值。 (您之後在程式碼中將需要此值)。
 
@@ -145,7 +145,7 @@ SSMS 提供一個精靈，可為您設定資料行主要金鑰、資料行加密
    
     ![加密資料行](./media/sql-database-always-encrypted-azure-key-vault/encrypt-columns.png)
 
-「一律加密」精靈包含下列區段︰[資料行選取]、[主要金鑰組態]、[驗證] 及 [摘要]。
+「一律加密」精靈包含下列區段︰[資料行選取]、主要金鑰組態、[驗證] 及 [摘要]。
 
 ### <a name="column-selection"></a>資料行選取
 在 [簡介] 頁面上按 [下一步]，即可開啟 [資料行選取] 頁面。 在此頁面上，您將選取要加密的資料行、 [加密類型及要使用的資料行加密金鑰 (CEK)](https://msdn.microsoft.com/library/mt459280.aspx#Anchor_2) 。
@@ -192,9 +192,8 @@ SSMS 提供一個精靈，可為您設定資料行主要金鑰、資料行加密
 > 
 > 
 
-1. 開啟 Visual Studio，建立新的 C# 主控台應用程式。 請確定您的專案設定為 **.NET Framework 4.6** 或更新版本。
+1. 開啟 Visual Studio 並建立新的 C# **主控台應用程式**(Visual Studio 2015 和更早版本) 或**主控台應用程式 (.NET Framework)** (Visual Studio 2017 和更新版本)。 請確定您的專案設定為 **.NET Framework 4.6** 或更新版本。
 2. 將專案命名為 **AlwaysEncryptedConsoleAKVApp**，然後按一下 [確定]。
-   ![新的主控台應用程式](./media/sql-database-always-encrypted-azure-key-vault/console-app.png)
 3. 移至 [工具]  >  [NuGet 套件管理員]  >  [套件管理員主控台]，以安裝下列 NuGet 套件。
 
 在 [封裝管理員主控台] 中執行下列兩行程式碼。

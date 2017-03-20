@@ -1,5 +1,5 @@
 ---
-title: "設定對不在 Azure Active Directory 應用程式庫中的應用程式的單一登入 | Microsoft Docs"
+title: "設定應用程式的 Azure AD SSO | Microsoft Docs"
 description: "了解如何使用 SAML 和密碼 SSO 以自助方式將應用程式連接到 Azure Active Directory"
 services: active-directory
 author: asmalser-msft
@@ -11,11 +11,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/09/2016
+ms.date: 02/27/2017
 ms.author: asmalser
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 8274e47e99998b735e7252ce72bb3ac7c2ecc672
+ms.sourcegitcommit: 18415c92d50a00c14823685857ab7e2624334ec7
+ms.openlocfilehash: b4a1bb3211da8c02d48ebad69d5e1cbb4de2c45d
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -139,9 +141,4 @@ Azure Active Directory 應用程式資源庫提供一份已知能支援單一登
 [5]: ./media/active-directory-saas-custom-apps/customapp5.png
 [6]: ./media/active-directory-saas-custom-apps/customapp6.png
 [7]: ./media/active-directory-saas-custom-apps/customapp7.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

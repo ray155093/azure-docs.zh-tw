@@ -1,6 +1,6 @@
 ---
-title: "將 Windows Server 備份至 Azure (Resource Manager) | Microsoft Docs"
-description: "藉由建立備份保存庫、下載認證、安裝備份代理程式，並完成檔案和資料夾的初始備份，來將 Windows Server 或用戶端備份到 Azure。"
+title: "使用 Azure 備份代理程式來備份檔案和資料夾 | Microsoft Docs"
+description: "使用 Microsoft Azure 備份代理程式，可將 Windows 檔案和資料夾備份至 Azure。 建立復原服務保存庫、安裝備份代理程式、定義備份原則，並對檔案和資料夾執行初始備份。"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -13,12 +13,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 2/16/2017
+ms.date: 2/23/2017
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: 1a87af9efeb6c00f3c67f2c2d8d8f2e0491d248d
-ms.openlocfilehash: 018a1bde8163eda660fd50a41839b6c1ec622d79
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: b188affca609dd5ff3aa0d2cba3ec81c1c91888f
+ms.openlocfilehash: 3528294d944fd71fc98a30e2736e1245e50c3be6
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -38,133 +38,168 @@ ms.lasthandoff: 02/17/2017
 ## <a name="before-you-start"></a>開始之前
 若要將伺服器或用戶端備份至 Azure，您需要 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立 [免費帳戶](https://azure.microsoft.com/free/) 。
 
-## <a name="step-1-create-a-recovery-services-vault"></a>步驟 1：建立復原服務保存庫
+## <a name="create-a-recovery-services-vault"></a>建立復原服務保存庫
 復原服務保存庫是一個實體，會儲存歷來建立的所有備份和復原點。 復原服務保存庫也包含套用至受保護檔案和資料夾的備份原則。 當您建立復原服務保存庫時，也應該選取適當的儲存體備援選項。
 
 ### <a name="to-create-a-recovery-services-vault"></a>建立復原服務保存庫
 1. 如果您尚未這麼做，請使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com/) 。
-2. 在 [中樞] 功能表上按一下 [瀏覽]，然後在資源清單中輸入**復原服務**。 當您開始輸入時，清單將會根據您輸入的文字進行篩選。 按一下 [復原服務保存庫] 。
+2. 在 [中樞] 功能表上按一下 [更多服務]，在資源清單中輸入**復原服務**，然後按一下 [復原服務保存庫]。
 
-    ![建立復原服務保存庫的步驟 1](./media/backup-configure-vault/browse-to-rs-vaults.png) <br/>
+    ![建立復原服務保存庫的步驟 1](./media/backup-try-azure-backup-in-10-mins/open-rs-vault-list.png) <br/>
 
-    隨即會顯示 [復原服務保存庫] 清單。
+    如果訂用帳戶中有復原服務保存庫，則會列出保存庫。
+
 3. 在 [復原服務保存庫] 功能表上，按一下 [新增]。
 
-    ![建立復原服務保存庫的步驟 2](./media/backup-configure-vault/rs-vault-menu.png)
+    ![建立復原服務保存庫的步驟 2](./media/backup-try-azure-backup-in-10-mins/rs-vault-menu.png)
 
     [復原服務保存庫] 刀鋒視窗隨即開啟，並提示您提供 [名稱]、[訂用帳戶]、[資源群組] 和 [位置]。
 
-    ![建立復原服務保存庫的步驟 5](./media/backup-configure-vault/rs-vault-attributes.png)
-4. 在 [名稱] 中，輸入易記名稱來識別保存庫。 必須是 Azure 訂用帳戶中唯一的名稱。 輸入包含 2 到 50 個字元的名稱。 該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。
-5. 按一下 [訂用帳戶]  以查看可用的訂用帳戶清單。 如果您不確定要使用哪個訂用帳戶，請使用預設 (或建議) 的訂用帳戶。 只有在您的組織帳戶與多個 Azure 訂用帳戶相關聯時，才會有多個選擇。
-6. 按一下 [資源群組] 以查看可用的資源群組清單，或按一下 [新增] 以建立新的資源群組。 如需資源群組的完整資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)
-7. 按一下 [位置]  以選取保存庫的地理區域。 此選項會決定您的備份資料要傳送到哪個地理區域。 透過選擇靠近您位置的地理區域，可以在備份至 Azure 時減少網路延遲。
-8. 按一下 [建立] 。 要等復原服務保存庫建立好，可能需要一些時間。 請監視入口網站右上方區域中的狀態通知。 保存庫一旦建立好，應該就會在入口網站中開啟。 如果保存庫在完成之後並沒有在清單中列出，請按一下 [重新整理] 。 清單重新整理之後，按一下保存庫的名稱。
+    ![建立復原服務保存庫的步驟 3](./media/backup-try-azure-backup-in-10-mins/rs-vault-step-3.png)
 
-### <a name="to-determine-storage-redundancy"></a>決定儲存體備援
+4. 在 [名稱] 中，輸入易記名稱來識別保存庫。 必須是 Azure 訂用帳戶中唯一的名稱。 輸入包含 2 到 50 個字元的名稱。 該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。
+
+5. 在 [訂用帳戶] 區段中，使用下拉式功能表來選擇 Azure 訂用帳戶。 如果您只使用一個訂用帳戶，該訂用帳戶會出現，您可以跳到下一個步驟。 如果您不確定要使用哪個訂用帳戶，請使用預設 (或建議) 的訂用帳戶。 只有在您的組織帳戶與多個 Azure 訂用帳戶相關聯時，才會有多個選擇。
+
+6. 在 [資源群組] 區段中︰
+
+    * 如果您想建立新的資源群組，請選取 [新建]。
+    或
+    * 選取 [使用現有的]﹐然後按一下下拉式功能表，以查看可用的資源群組清單。
+
+  如需資源群組的完整資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。
+
+7. 按一下 [位置]  以選取保存庫的地理區域。 此選項會決定您的備份資料要傳送到哪個地理區域。
+
+8. 按一下 [復原服務保存庫] 刀鋒視窗底部的 [建立]。
+
+  建立復原服務保存庫可能需要一些時間。 請監視入口網站右上方區域中的狀態通知。 保存庫一旦建立好，就會出現在 [復原服務保存庫] 的清單中。 在數分鐘之後﹐如果您沒有看到您的保存庫，請按一下 [重新整理]。
+
+  ![按一下 [重新整理] 按鈕。](./media/backup-try-azure-backup-in-10-mins/refresh-button.png)</br>
+
+  一旦在復原服務保存庫清單中看到您的保存庫，您即可開始設定儲存體備援。
+
+
+### <a name="set-storage-redundancy"></a>設定儲存體備援
 首次建立復原服務保存庫時會決定儲存體的複寫方式。
 
-1. 在保存庫儀表板會自動開啟的 [設定] 刀鋒視窗中，按一下 [備份基礎結構]。
-2. 在 [備份基礎結構] 刀鋒視窗中，按一下 [備份組態] 以檢視 [儲存體複寫類型]。
+1. 從 [復原服務保存庫] 刀鋒視窗，按一下 [新增保存庫]。
 
-    ![建立復原服務保存庫的步驟 5](./media/backup-configure-vault/backup-infrastructure.png)
-3. 選擇保存庫的儲存體複寫選項。
+    ![從復原服務保存庫清單中選取新的保存庫](./media/backup-try-azure-backup-in-10-mins/rs-vault-list.png)
 
-    ![復原服務保存庫清單](./media/backup-configure-vault/choose-storage-configuration.png)
+    當您選取保存庫時，[復原服務保存庫] 刀鋒視窗會縮小﹐而 [設定] 刀鋒視窗 (頂端有保存庫名稱) 和 [保存庫詳細資料] 刀鋒視窗隨即開啟。
 
-    根據預設，保存庫具有異地備援儲存體。 如果您使用 Azure 做為主要的備份儲存體端點，請繼續使用異地備援儲存體。 如果您使用 Azure 做為非主要的備份儲存體端點，則請選擇本地備援儲存體，以減少在 Azure 中儲存資料的成本。 在此[概觀](../storage/storage-redundancy.md)中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)和[本地備援](../storage/storage-redundancy.md#locally-redundant-storage)儲存體選項。
+    ![檢視新保存庫的儲存體組態](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration-2.png)
 
-    選擇好保存庫的儲存體選項後，就可以開始建立檔案和資料夾與保存庫的關聯。
+2. 在新保存庫的 [設定] 刀鋒視窗中，使用垂直滑桿捲動至 [管理] 區段，然後按一下 [備份基礎結構]。
 
-現在您已建立保存庫，接下來您要下載及安裝 Microsoft Azure 復原服務代理程式、下載保存庫認證，以及使用這些認證向保存庫註冊代理程式，讓基礎結構做好備份檔案和資料夾的準備。
+  [備份基礎結構] 刀鋒視窗隨即開啟。
 
-## <a name="step-2-download-files"></a>步驟 2：下載檔案
+3. 在 [備份基礎結構] 刀鋒視窗中，按一下 [備份設定]開啟 [備份設定] 刀鋒視窗。
+
+  ![為新保存庫設定儲存體組態](./media/backup-try-azure-backup-in-10-mins/set-storage-configuration.png)
+
+4. 為保存庫選擇適當的儲存體複寫選項。
+
+  ![儲存體組態選項](./media/backup-try-azure-backup-in-10-mins/choose-storage-configuration.png)
+
+  根據預設，保存庫具有異地備援儲存體。 如果您使用 Azure 做為主要的備份儲存體端點，請繼續使用 [異地備援]。 如果您未使用 Azure 做為主要的備份儲存體端點，則選擇 [本地備援]，以減少 Azure 儲存體成本。 在此[儲存體備援概觀](../storage/storage-redundancy.md)中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)和[本地備援](../storage/storage-redundancy.md#locally-redundant-storage)儲存體選項。
+
+現在您已建立保存庫，接下來請下載及安裝 Microsoft Azure 復原服務代理程式、下載保存庫認證，以及使用這些認證向保存庫註冊代理程式，讓基礎結構做好備份檔案和資料夾的準備。
+
+## <a name="configure-the-vault"></a>設定保存庫
+
+1. 在 [復原服務保存庫] 刀鋒視窗上 (針對剛建立的保存庫)，在 [開始使用] 區段中按一下 [備份]，然後在 [開始使用備份功能] 刀鋒視窗上，選取 [備份目標]。
+
+  ![開啟備份目標刀鋒視窗](./media/backup-try-azure-backup-in-10-mins/open-backup-settings.png)
+
+  [備份目標] 刀鋒視窗隨即開啟。 如果先前已設定過復原服務保存庫，當您按一下 [復原服務保存庫] 刀鋒視窗上的 [備份] 時，便會開啟 [備份目標] 刀鋒視窗。
+
+  ![開啟備份目標刀鋒視窗](./media/backup-try-azure-backup-in-10-mins/backup-goal-blade.png)
+
+2. 從 [您的工作負載在何處執行?] 下拉式功能表中，選取 [內部部署]。
+
+  因為您的 Windows Server 或 Windows 電腦是不在 Azure 中的實體電腦，所以您選擇 [內部部署]。
+
+3. 從 [您要備份什麼?] 功能表中，選取 [檔案和資料夾]，然後按一下 [確定]。
+
+  ![設定檔案和資料夾](./media/backup-try-azure-backup-in-10-mins/set-file-folder.png)
+
+  按一下 [確定] 後，[備份目標] 旁會出現勾選記號，且 [準備基礎結構] 刀鋒視窗隨即開啟。
+
+  ![已設定備份目標，接下來是準備基礎結構](./media/backup-try-azure-backup-in-10-mins/backup-goal-configed.png)
+
+4. 在 [準備基礎結構] 刀鋒視窗上，按 [下載 Windows Server 或 Windows Client 的代理程式]。
+
+  ![準備基礎結構](./media/backup-try-azure-backup-in-10-mins/choose-agent-for-server-client.png)
+
+  如果您使用 Windows Server Essential，請選擇下載 Windows Server Essential 的代理程式。 快顯功能表會提示您執行或儲存 MARSAgentInstaller.exe。
+
+  ![MARSAgentInstaller dialog](./media/backup-try-azure-backup-in-10-mins/mars-installer-run-save.png)
+
+5. 在下載快顯功能表中，按一下 [儲存]。
+
+  根據預設，**MARSagentinstaller.exe** 檔案會儲存至 [下載] 資料夾。 安裝程式完成時，您會看到快顯視窗，詢問您是否要執行安裝程式，或開啟資料夾。
+
+  ![準備基礎結構](./media/backup-try-azure-backup-in-10-mins/mars-installer-complete.png)
+
+  您還不需要安裝代理程式。 您可以在下載保存庫認證之後﹐安裝代理程式。
+
+6. 在 [準備基礎結構] 刀鋒視窗上，按 [下載]。
+
+  ![下載保存庫認證](./media/backup-try-azure-backup-in-10-mins/download-vault-credentials.png)
+
+  保存庫認證會下載至「下載」資料夾。 保存庫認證下載完成之後，您會看到快顯視窗，詢問您是否要開啟或儲存認證。 按一下 [儲存] 。 如果您不小心按到 [開啟]，請讓嘗試開啟保存庫認證的對話方塊失敗。 您無法開啟保存庫認證。 請繼續進行下一個步驟。 保存庫認證位於 [下載] 資料夾中。   
+
+  ![保存庫認證下載完成](./media/backup-try-azure-backup-in-10-mins/vault-credentials-downloaded.png)
+
+## <a name="install-and-register-the-agent"></a>安裝和註冊代理程式
+
 > [!NOTE]
-> 透過 Azure 入口網站進行備份的功能很快就會推出。 目前，您可以在內部部署使用 Microsoft Azure 復原服務代理程式來備份檔案和資料夾。
+> 透過 Azure 入口網站啟用備份的功能尚未推出。 使用 Microsoft Azure 復原服務代理程式來備份檔案和資料夾。
 >
->
 
-1. 按一下復原服務保存庫儀表板上的 [設定]  。
+1. 在 [下載] 資料夾 (或其他儲存位置) 中找到 **MARSagentinstaller.exe** 並對其按兩下。
 
-    ![開啟備份目標刀鋒視窗](./media/backup-configure-vault/settings-button.png)
-2. 按一下 [設定] 刀鋒視窗上的 [開始使用] > [備份]。
+  安裝程式在擷取、安裝和註冊復原服務代理程式時會提供一系列訊息。
 
-    ![開啟備份目標刀鋒視窗](./media/backup-configure-vault/getting-started-backup.png)
-3. 按一下 [備份] 刀鋒視窗上的 [備份目標]  。
+  ![執行復原服務代理安裝程式的認證](./media/backup-try-azure-backup-in-10-mins/mars-installer-registration.png)
 
-    ![開啟備份目標刀鋒視窗](./media/backup-configure-vault/backup-goal.png)
-4. 在 [工作負載的執行位置?] 功能表中選取 [內部部署]。
-5. 在 [欲備份的項目?] 功能表中選取 [檔案和資料夾]，然後按一下 [確定]。
-
-#### <a name="download-the-recovery-services-agent"></a>下載復原服務代理程式
-1. 按一下 [準備基礎結構] 刀鋒視窗中的 [下載適用於 Windows Server 或 Windows 用戶端的代理程式]。
-
-    ![準備基礎結構](./media/backup-configure-vault/prepare-infrastructure-short.png)
-2. 按一下下載快顯視窗中的 [儲存]。 根據預設，**MARSagentinstaller.exe** 檔案會儲存至 [下載] 資料夾。
-
-#### <a name="download-vault-credentials"></a>下載保存庫認證
-1. 按一下 [準備基礎結構] 刀鋒視窗上的 [下載] > [儲存]。
-
-    ![準備基礎結構](./media/backup-configure-vault/prepare-infrastructure-download.png)
-
-## <a name="step-3-install-and-register-the-agent"></a>步驟 3：安裝並註冊代理程式
-1. 在 [下載] 資料夾 (或其他儲存位置) 找到 **MARSagentinstaller.exe** 並對其按兩下。
 2. 完成 Microsoft Azure 復原服務代理程式安裝精靈。 若要完成精靈，您需要︰
 
-   * 選擇安裝和快取資料夾的位置。
-   * 如果您使用 Proxy 伺服器來連線到網際網路，請提供您的 Proxy 伺服器資訊。
-   * 如果您使用已驗證的 Proxy，請提供您的使用者名稱和密碼詳細資料。
-   * 提供下載的保存庫認證
-   * 將加密複雜密碼存放在安全的位置。
+  * 選擇安裝和快取資料夾的位置。
+  * 如果您使用 Proxy 伺服器來連線到網際網路，請提供您的 Proxy 伺服器資訊。
+  * 如果您使用已驗證的 Proxy，請提供您的使用者名稱和密碼詳細資料。
+  * 提供下載的保存庫認證
+  * 將加密複雜密碼存放在安全的位置。
 
-     > [!NOTE]
-     > 如果遺失或忘記複雜密碼，Microsoft 將無法協助您復原備份資料。 請將檔案存放在安全的位置。 必須有此檔案才能還原備份。
-     >
-     >
+  > [!NOTE]
+  > 如果遺失或忘記複雜密碼，Microsoft 將無法協助您復原備份資料。 將檔案存放在安全的位置。 必須有此檔案才能還原備份。
+  >
+  >
 
 現已安裝代理程式，且已向保存庫註冊您的電腦。 您已準備好可以設定及排程備份。
 
-### <a name="confirm-the-installation"></a>確認安裝
-若要確認已正確安裝和註冊代理程式，您可以檢查在管理入口網站的 [生產伺服器]  區段中所備份的項目。 作法：
 
-1. 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com/) 。
-2. 在 [中樞] 功能表上按一下 [瀏覽]，然後在資源清單中輸入**復原服務**。 當您開始輸入時，清單將會根據您輸入的文字進行篩選。 按一下 [復原服務保存庫] 。
+## <a name="create-the-backup-policy"></a>建立備份原則
+備份原則就是復原點擷取排程以及復原點保留時間長度。 請使用 Microsoft Azure 備份代理程式來為檔案和資料夾建立備份原則。
 
-    ![建立復原服務保存庫的步驟 1](./media/backup-configure-vault/browse-to-rs-vaults.png) <br/>
-
-    隨即會顯示 [復原服務保存庫] 清單。
-3. 選取所建立之保存庫的名稱。
-
-    [復原服務保存庫儀表板] 刀鋒視窗隨即開啟。
-
-    ![復原服務保存庫儀表板](./media/backup-configure-vault/rs-vault-dashboard.png) <br/>
-4. 按一下頁面頂端的 [設定]  按鈕。
-5. 按一下 [備份基礎結構] > [生產伺服器]。
-
-    ![生產伺服器](./media/backup-configure-vault/production-server-verification.png)
-
-如果您在清單中看到您的伺服器，就能確認代理程式已正確安裝和註冊。
-
-## <a name="step-4-complete-the-initial-backup"></a>步驟 4︰完成初始備份
-初始備份包括兩項重要工作：
-
-* 排程備份
-* 第一次備份檔案和資料夾
-
-若要完成初始備份，您可以使用 Microsoft Azure 備份代理程式。
-
-### <a name="to-schedule-the-backup"></a>排程備份
+### <a name="to-create-a-backup-schedule"></a>建立備份排程
 1. 開啟 Microsoft Azure 備份代理程式。 您可以透過在您的電腦中搜尋 **Microsoft Azure 備份**來找出備份。
 
     ![啟動 Azure 備份代理程式](./media/backup-configure-vault/snap-in-search.png)
-2. 在備份代理程式中，按一下 [排程備份] 。
+2. 在備份代理程式的 [動作] 窗格中，按一下 [排程備份] 以啟動「排程備份精靈」。
 
     ![Windows Server 備份排程](./media/backup-configure-vault/schedule-first-backup.png)
-3. 在排程備份精靈的 [開始使用] 頁面上，按 [下一步] 。
-4. 在 [選取要備份的項目] 頁面上，按一下 [新增項目] 。
-5. 選取您要備份的檔案和資料夾，然後按一下 [確定] 。
-6. 按 [下一步] 。
-7. 在 [指定備份排程] 頁面上，指定[備份排程]，然後按 [下一步]。
+
+3. 在排程備份精靈的 [開始使用] 頁面上，按 [下一步]。
+4. 在 [選取要備份的項目] 頁面上，按一下 [新增項目]。
+
+  [選取項目] 對話方塊隨即開啟。
+
+5. 選取您要保護的檔案和資料夾，然後按一下 [確定]。
+6. 在 [選取要備份的項目] 頁面上，按 [下一步]。
+7. 在 [指定備份排程] 頁面上，指定備份排程並按 [下一步]。
 
     您可以排程每日 (一天最多三次) 或每週備份。
 
@@ -174,9 +209,10 @@ ms.lasthandoff: 02/17/2017
    > 如需如何指定備份排程的相關詳細資訊，請參閱 [使用 Azure 備份來取代您的磁帶基礎結構](backup-azure-backup-cloud-as-tape.md)一文。
    >
    >
-8. 在 [選取保留原則] 頁面上，選取 [保留原則] 做為備份複本。
 
-    保留原則會指定備份將儲存的期間。 除了僅針對所有備份點指定「一般原則」之外，您可以指定在進行備份時根據不同的保留原則。 您可以修改每日、每週、每月和每年保留原則，以符合您的需求。
+8. 在 [選取保留原則] 頁面上，選擇用於備份複本的特定保留原則，然後按 [下一步]。
+
+    保留原則會指定備份的儲存持續期間。 除了僅針對所有備份點指定「一般原則」之外，您可以指定在進行備份時根據不同的保留原則。 您可以修改每日、每週、每月和每年保留原則，以符合您的需求。
 9. 在 [選擇初始備份類型] 頁面上，選擇初始備份類型。 讓 [自動透過網路] 選項保持已選取狀態，然後按 [下一步]。
 
     您可以透過網路自動備份，也可以離線備份。 這篇文章的其餘部分說明自動備份的程序。 如果您想要執行離線備份，請檢閱 [在 Azure Backup 中離線備份工作流程](backup-azure-backup-import-export.md) 一文以了解其他資訊。
@@ -184,7 +220,7 @@ ms.lasthandoff: 02/17/2017
 11. 當精靈建立好備份排程時，請按一下 [關閉] 。
 
 ### <a name="enable-network-throttling"></a>啟用網路節流
-備份代理程式提供網路節流。 節流會控制資料傳輸期間的網路頻寬使用方式。 如果您需要在上班時間內備份資料，但不希望備份程序干擾其他網際網路流量，這樣的控制會很有幫助。 節流適用於備份和還原活動。
+Microsoft Azure 備份代理程式提供網路節流。 節流會控制資料傳輸期間的網路頻寬使用方式。 如果您需要在上班時間內備份資料，但不希望備份程序干擾其他網際網路流量，這樣的控制會很有幫助。 節流適用於備份和還原活動。
 
 > [!NOTE]
 > 網路節流不適用於 Windows Server 2008 R2 SP1、Windows Server 2008 SP2 或 Windows 7 (含 service pack)。 Azure 備份網路節流功能可保證本機作業系統上的服務品質 (QoS)。 雖然 Azure 備份可保護這些作業系統，但這些平台上可用的 QoS 版本無法與 Azure 備份網路節流搭配使用。 網路節流可使用於所有其他 [支援的作業系統](backup-azure-backup-faq.md)。
@@ -193,7 +229,7 @@ ms.lasthandoff: 02/17/2017
 
 **啟用網路節流**
 
-1. 在備份代理程式中，按一下 [變更屬性] 。
+1. 在 Microsoft Azure 備份代理程式中，按一下 [變更屬性]。
 
     ![變更屬性](./media/backup-configure-vault/change-properties.png)
 2. 在 [節流] 索引標籤上，選取 [啟用備份作業的網際網路頻寬使用節流功能] 核取方塊。

@@ -1,6 +1,6 @@
 ---
-title: "使用 DataDog 監視 Azure Kubernetes 叢集 | Microsoft Docs"
-description: "使用 DataDog 監視 Azure Container Service 中的 Kubernetes 叢集"
+title: "使用 Datadog 監視 Azure Kubernetes 叢集 | Microsoft Docs"
+description: "使用 Datadog 監視 Azure Container Service 中的 Kubernetes 叢集"
 services: container-service
 documentationcenter: 
 author: bburns
@@ -17,8 +17,9 @@ ms.workload: na
 ms.date: 12/09/2016
 ms.author: bburns
 translationtype: Human Translation
-ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
-ms.openlocfilehash: 2984a3811eba670b54fd253a8d7dc84acd8c8ec4
+ms.sourcegitcommit: f7377b3d0c0b89d7e196a31890173575688687cf
+ms.openlocfilehash: 901cbf5093c6a547f5dffa7ed6d71fe67caaadb9
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -55,16 +56,12 @@ Datadog 是一項監視服務，會從 Azure 容器服務叢集內的容器收�
 
 您必須先[建立帳戶 (英文)](https://www.datadoghq.com/lpg/)
 
-## <a name="installing-the-datadog-agent-with-a-daemonset"></a>使用 DaemonSet 安裝 DataDog Agent
+## <a name="installing-the-datadog-agent-with-a-daemonset"></a>使用 DaemonSet 安裝 Datadog Agent
 DaemonSet 是 Kubernetes 用來在叢集中每個主機上執行容器的單一執行個體。
 它們非常適合用來執行監視代理程式。
 
-當您登入 DataDog 之後，您可以依照[DataDog 指示 (英文)](https://app.datadoghq.com/account/settings#agent/kubernetes) 使用 DaemonSet 在您的叢集上安裝 DataDog Agent。
+當您登入 Datadog 之後，您可以依照 [Datadog 指示 (英文)](https://app.datadoghq.com/account/settings#agent/kubernetes) 使用 DaemonSet 在您的叢集上安裝 Datadog Agent。
 
 ## <a name="conclusion"></a>結論
 就這麼簡單！ 當代理程式啟動並執行之後，幾分鐘之內您應該會在主控台中看到資料。 您可以造訪這些整合式 [kubernetes 儀表板 (英文)](https://app.datadoghq.com/screen/integration/kubernetes) 以查看您的叢集摘要。
-
-
-<!--HONumber=Jan17_HO4-->
-
 

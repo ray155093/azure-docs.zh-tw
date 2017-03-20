@@ -17,6 +17,7 @@ ms.author: kmouss;aglick
 translationtype: Human Translation
 ms.sourcegitcommit: e7d3c82e235d691c4ab329be3b168dcccc19774f
 ms.openlocfilehash: 5db1864f5fb04b30a7b8ce59932e826fcef792f0
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -72,9 +73,4 @@ Azure 已經有許多支援高可用性應用程式的內建平台功能。 如�
 若要開發雲端平台功能的詳細技術知識，請參閱 [Azure 復原技術指導](../resiliency/resiliency-technical-guidance.md)。
 
 如果指示不清楚，或如果您希望 Microsoft 代您執行作業，請連絡 [客戶支援](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

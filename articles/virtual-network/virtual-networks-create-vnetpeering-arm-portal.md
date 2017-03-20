@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 09/14/2016
 ms.author: narayan;annahar
 translationtype: Human Translation
-ms.sourcegitcommit: c3c3938577f610eba522ba593bfab5e93c70e459
-ms.openlocfilehash: d47a97fb023e2cc3ad4acaa07eb4edfd1f82509e
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: a4a770ec6f258c62864cd3fcc79b33b5cac38ace
+ms.openlocfilehash: 8f05957e8c40dee8ceb7fb1355d8d8776935cf5a
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -76,7 +76,7 @@ VNet 對等互連中的每個連結都有一組前述屬性。 從入口網站�
 [!INCLUDE [virtual-networks-create-vnet-scenario-crosssub-include](../../includes/virtual-networks-create-vnetpeering-scenario-crosssub-include.md)]
 
 1. 透過瀏覽器瀏覽至 http://portal.azure.com，並視需要使用您的 Azure 帳戶登入。
-2. 在此範例中，使用者 A 具有訂用帳戶 A 的系統管理權限，而使用者 B 具有訂用帳戶 B 的系統管理權限。
+2. 在此範例中，使用者 A 具有訂用帳戶 A 的系統管理權限，而使用者 B 具有訂用帳戶 B 的系統管理權限。 兩個訂用帳戶都與相同的 Azure Active Directory 租用戶相關聯。 您無法在與不同 Azure Active Directory 租用戶相關聯的訂閱帳戶之間建立對等互連。
 3. 在入口網站中，按一下 [瀏覽]，選擇 [虛擬網路]。 按一下要為其設定對等互連的 VNet。
 4. 在您所選的 VNet 的刀鋒視窗中，按一下 [存取控制]，然後按一下 [新增]，如下圖所示：
 

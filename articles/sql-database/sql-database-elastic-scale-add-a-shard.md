@@ -18,6 +18,7 @@ ms.author: ddove
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 540ef8379145b764d0926649095db57fddb27329
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -77,10 +78,5 @@ ms.openlocfilehash: 540ef8379145b764d0926649095db57fddb27329
 **重要**：只有在您確定更新對應的範圍是空白時，才可使用這項技術。  上述方法並不會檢查要移動的資料範圍，因此您最好在程式碼中納入檢查。  如果資料列存在於要移動的範圍中，則實際的資料分佈將不會符合更新的分區對應。 在這些情況下，請改用 [分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md) 執行作業。  
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

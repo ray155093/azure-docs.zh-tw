@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/11/2017
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: 201b07536bcee58e2b7102379dff1c1c93c4b675
-ms.openlocfilehash: adf31b2e309e4ec19bb19e5683bd5298d27ad3eb
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: 247d370c1f80729856e53690045991127ad54351
+ms.openlocfilehash: dc4716a26ba5c2ba93dda83890dbff81f22cbd2a
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -26,6 +26,9 @@ ms.lasthandoff: 01/13/2017
 
 * 您有訓練實驗和預測實驗，您已部署為實際運作的 Web 服務。
 * 您有新的資料想要讓預測 Web 服務用來執行其評分。
+
+> [!NOTE] 
+> 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
 
 從您現有的 Web 服務和實驗開始，您必須請遵循下列步驟︰
 

@@ -16,15 +16,15 @@ ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: dbf337a27c43fc6c91f1b061a1938c5471dd36a4
-ms.openlocfilehash: c511a73794a4b1333e149d286ae43c6929d58f75
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: c83a5aacca6669c4259365fba9f444ecb1b2a6c9
+ms.openlocfilehash: 1e7393537f6c9e4d6af522dd05f149403a85559e
+ms.lasthandoff: 03/01/2017
 
 
 ---
 # <a name="create-and-manage-an-elastic-pool-with-cx23"></a>使用 C&#x23; 建立及管理彈性集區
 
-本主題說明如何使用 C# 來建立及管理可調整的[彈性集區](sql-database-elastic-pool.md)。 您也可以使用 [Azure 入口網站](https://portal.azure.com/)、[PowerShell](sql-database-elastic-pool-manage-powershell.md)、REST API 來建立及管理彈性集區。 您也可以使用 [Transact-SQL](sql-database-elastic-pool-manage-tsql.md) 來建立資料庫並將它移入和移出彈性集區。
+本主題說明如何使用 C# 來建立及管理可調整的[彈性集區](sql-database-elastic-pool.md)。 您也可以使用 [Azure 入口網站](https://portal.azure.com/)、[PowerShell](sql-database-elastic-pool-manage-powershell.md) 或 REST API 來建立及管理 Azure 彈性集區。 您也可以使用 [Transact-SQL](sql-database-elastic-pool-manage-tsql.md) 來建立資料庫並將它移入和移出彈性集區。
 
 > [!NOTE]
 > SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模型](../azure-resource-manager/resource-group-overview.md)時才支援，所以您應該一律使用最新的**適用於 .NET ([docs](https://msdn.microsoft.com/library/azure/mt349017.aspx) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)) 的 Azure SQL Database Management Library**。 支援較舊的[以傳統部署模型為基礎的程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)，以提供回溯相容性，因此我們建議您使用較新的以 Resource Manager 為基礎的程式庫。

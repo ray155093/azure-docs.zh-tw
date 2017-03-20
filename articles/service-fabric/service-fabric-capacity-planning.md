@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/14/2016
+ms.date: 03/02/2017
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e95d00d0ff9bcb825bfe3fcc787386c8c8133c69
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: caeb0569de89b1af7b87f393601c7aa1a1e293dc
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -45,14 +46,14 @@ Number of Nodes = (DB_Size * RF)/Node_Size
 ## <a name="account-for-growth"></a>考慮成長
 除了開始使用的 DB_Size，您可能想要根據您預期服務成長的 DB_Size 來計算節點數目。 然後，隨著服務的成長而讓節點數目成長，使得您不會過度佈建節點數目 但是，資料分割數目應該基於以最大成長執行您的服務時所需的節點數。
 
-最好有一些額外的電腦隨時可用，以便您可以處理任何預期外的尖峰或失敗 (例如有少數 VM 停機)。  雖然這個額外容量要使用您預期的尖峰來決定，但一開始可以多保留幾個 VM (多 5-10%)。
+最好有一些額外的電腦隨時可用，以便您可以處理任何預期外的尖峰或失敗 (例如有少數 VM 停機)。  雖然這個額外容量要使用您預期的尖峰來決定，但一開始可以多保留幾個 VM (多&5;-10%)。
 
 以上假設使用單一的具狀態服務。 如果您有多個具狀態服務，則必須將與其他服務相關聯的 DB_Size 加入方程式。 或者，您可以分別為每個具狀態服務計算節點數目。  您的服務的複本或資料分割可能不平衡。 請記住，有些資料分割的資料可能比其他資料分割還多。 如需有關分割的詳細資訊，請參閱 [最佳作法的分割文章](service-fabric-concepts-partitioning.md)。 不過，上述方程式不受資料分割或複本影響，因為 Service Fabric 會確保複本以最佳化方式分散在節點之間。
 
 ## <a name="use-a-spreadsheet-for-cost-calculation"></a>使用試算表進行成本計算
 現在，讓我們在公式中放入一些實際的數字。 [範例試算表](https://servicefabricsdkstorage.blob.core.windows.net/publicrelease/SF%20VM%20Cost%20calculator-NEW.xlsx) 示範如何規劃包含三種資料物件類型的應用程式的容量。 針對每個物件，我們會估計其大小以及我們預計具有的物件數。 我們也選取對每個物件類型我們想要的複本數。 試算表會計算要在叢集中儲存的記憶體數量總計。
 
-然後，我們輸入 VM 大小和每月成本。 根據 VM 大小，試算表會告訴您必須用來將資料分割的最少分割數量，以實際上納入節點。 您可能想要較大量的資料分割以配合您的應用程式特定的計算和網路流量需求。 試算表顯示目前管理使用者設定檔物件的資料分割數目已從 1 增加到 6。
+然後，我們輸入 VM 大小和每月成本。 根據 VM 大小，試算表會告訴您必須用來將資料分割的最少分割數量，以實際上納入節點。 您可能想要較大量的資料分割以配合您的應用程式特定的計算和網路流量需求。 試算表顯示目前管理使用者設定檔物件的資料分割數目已從&1; 增加到&6;。
 
 現在，根據這所有資訊，試算表會顯示您可以實際上取得在具有 26 個節點的叢集上所需的資料分割和複本的所有資料。 不過，此叢集會密集壓縮，因此您可能會想要一些其他節點來容納節點失敗和升級。 試算表也顯示具有超過 57 個節點不會提供任何額外的值，因為您會有空白節點。 同樣地，您可能想要有超過 57 節點以容納節點失敗和升級。 您可以調整試算表以符合應用程式的特定需求。   
 
@@ -66,9 +67,4 @@ Number of Nodes = (DB_Size * RF)/Node_Size
 
 <!--Link references--In actual articles, you only need a single period before the slash-->
 [10]: service-fabric-concepts-partitioning.md
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

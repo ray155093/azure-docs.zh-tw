@@ -12,12 +12,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 03/03/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: a62cd616f0abd59c83c834bf13b4ba8549a9c73e
-ms.openlocfilehash: dd47e9c8f5c440c72acb60877d556476fe187ddf
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 8f8b84d600082336fe3659cefa6598210861ce86
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -55,7 +55,7 @@ ms.lasthandoff: 02/23/2017
     <tr><td>叢集使用者密碼</td><td>Hadoop 叢集使用者密碼。</td></tr>
     </table>
 
-* **工作站** 。 如需指示，請參閱 [安裝 Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx)。
+* 安裝 Visual Studio 2013/2015/2017 的**工作站**。 如需指示，請參閱 [安裝 Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx)。
 
 ## <a name="create-a-twitter-application-id-and-secrets"></a>建立 Twitter 應用程式 ID 和密碼
 Twitter 串流 API 使用 [OAuth](http://oauth.net/) 以授權要求。 使用 OAuth 的第一個步驟，是在 Twitter 開發人員網站上建立新的應用程式。

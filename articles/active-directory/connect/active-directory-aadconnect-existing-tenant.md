@@ -1,5 +1,5 @@
 ---
-title: "Azure AD Connect︰當您有存在的租用戶 | Microsoft Docs"
+title: "Azure AD Connect︰當您已經有 Azure AD 時 | Microsoft Docs"
 description: "本主題描述當您有現有的 Azure AD 租用戶時，如何使用 Connect。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 02/22/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: e358f6d1937a45f375777cea1153b975a745a719
-ms.openlocfilehash: 160a3ae7190dab76eee4634bd6babb5b047cd5ac
+ms.sourcegitcommit: f59028a2f909914222236f3b3575afd0949b4277
+ms.openlocfilehash: c89e206462856d25a81729e7028065ac1cd13ef3
+ms.lasthandoff: 02/23/2017
 
 ---
 
@@ -26,7 +27,7 @@ ms.openlocfilehash: 160a3ae7190dab76eee4634bd6babb5b047cd5ac
 ## <a name="the-basics"></a>基本概念
 Azure AD 中的物件可能會在雲端 (Azure AD) 中受控或內部部署。 針對一個單一物件，您無法管理內部部署的某些屬性和 Azure AD 中的一些其他屬性。 每個物件都有表示物件受管理位置的旗標。
 
-您可以在內部部署管理部分使用者，並在雲端中管理其他使用者。 此組態的常見案例是具有混合使用辦公室員工和藍領員工的組織。 辦公室員工有內部部署 AD 帳戶，而藍領員工則沒有。 您可在內部部署管理部分使用者，並在 Azure AD 管理其他使用者。
+您可以在內部部署管理部分使用者，並在雲端中管理其他使用者。 混合著會計工作者和銷售工作者的組織是此組態的常見案例。 會計工作者具有內部部署 AD 帳戶，但銷售工作者沒有這種帳戶，他們在 Azure AD 中有帳戶。 您可在內部部署管理部分使用者，並在 Azure AD 管理其他使用者。
 
 如果您開始管理 Azure AD 且也在內部部署 AD 中的使用者，且稍後想要使用 Connect，則您必須考慮一些其他考量。
 
@@ -60,9 +61,4 @@ Azure AD 中的物件可能會在雲端 (Azure AD) 中受控或內部部署。 �
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -1,5 +1,5 @@
 ---
-title: "Log Analytics 中的 Active Directory 複寫狀態解決方案 | Microsoft Docs"
+title: "使用 Azure Log Analytics 監視 Active Directory 複寫狀態 | Microsoft Docs"
 description: "Active Directory 複寫狀態解決方案組件會定期監控您的 Active Directory 環境是否有任何複寫失敗，並在 OMS 儀表板上報告結果。"
 services: log-analytics
 documentationcenter: 
@@ -12,15 +12,18 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/17/2017
+ms.date: 02/27/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 744c4bd37b7b1443cf78586aab8ec2661e02254e
-ms.openlocfilehash: c0fc2ae5318068c204296b9e053c2cc7324e84c7
+ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
+ms.openlocfilehash: ffae86cb963f0df7f879effbace073d7e830cd94
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="active-directory-replication-status-solution-in-log-analytics"></a>Log Analytics 中的 Active Directory 複寫狀態解決方案
+# <a name="monitor-active-directory-replication-status-with-log-analytics"></a>使用 Log Analytics 監視 Active Directory 複寫狀態
+
 Active Directory 是企業 IT 環境的重要元件。 為了確保高可用性和高效能，每個網域控制站有它自己的 Active Directory 資料庫複本。 網域控制站會彼此複寫，以便將變更傳播到整個企業。 此複寫處理序中的失敗可導致整個企業發生各種問題。
 
 AD 複寫狀態解決方案組件會定期監控您的 Active Directory 環境是否有任何複寫失敗，並在 OMS 儀表板上報告結果。
@@ -150,9 +153,4 @@ AD 複寫狀態解決方案組件會定期監控您的 Active Directory 環境�
 
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md) 可檢視詳細的 Active Directory 複寫狀態資料。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

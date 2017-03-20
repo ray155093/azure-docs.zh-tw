@@ -18,6 +18,7 @@ ms.author: liamca
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: a90d7d90a6f3a75e230d32fb02b5ae69909d3c31
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -137,10 +138,5 @@ var index = new Index()
 
 ## <a name="next-step"></a>後續步驟
 [票選複雜資料類型的原生支援](https://feedback.azure.com/forums/263029-azure-search) ，並提供您希望我們對於功能實作考量的任何其他輸入。 您也可以直接在 Twitter 上透過 @liamca. 聯繫我。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

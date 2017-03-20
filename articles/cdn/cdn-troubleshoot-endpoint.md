@@ -17,6 +17,7 @@ ms.author: mazha
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 53fdf1fe661167b468ef602634528e4d4173f606
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -97,10 +98,5 @@ ms.openlocfilehash: 53fdf1fe661167b468ef602634528e4d4173f606
 例如，在我的端點中，我想要能夠使用儲存體帳戶上的所有資源，因此我會將 **來源路徑** 保留空白。  這表示，對於 `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` 的要求，結果會讓我的端點連接至要求 `/publicblob/lorem.txt` 的 `cdndocdemo.core.windows.net`。  同樣地，對於 `https://cdndocdemo.azureedge.net/donotcache/status.png` 的要求會導致端點向來源要求 `/donotcache/status.png`。
 
 但如果我不想在我的來源上的每個路徑使用 CDN 呢？  假設我只想要公開 `publicblob` 路徑。  如果我在 [原始路徑] 欄位中輸入 */publicblob*，將導致端點在對來源提出每個要求之前，都要插入 */publicblob*。  這表示，對於 `https://cdndocdemo.azureedge.net/publicblob/lorem.txt` 的要求，現在實際上會取得 URL 的要求部分 `/publicblob/lorem.txt`，並將 `/publicblob` 附加至開頭。 這會造成從來源對 `/publicblob/publicblob/lorem.txt` 進行要求。  如果該路徑未解析為實際檔案，來源會傳回 404 狀態。  實際上，在此範例中擷取 lorem.txt 的正確 URL 會是 `https://cdndocdemo.azureedge.net/lorem.txt`。  請注意，我們完全不會納入*/publicblob* 路徑，因為 URL 的要求部分是 `/lorem.txt`，且端點新增 `/publicblob` 會造成 `/publicblob/lorem.txt` 將要求傳遞至來源。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

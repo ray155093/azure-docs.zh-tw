@@ -17,9 +17,9 @@ ms.topic: hero-article
 ms.date: 02/17/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: c70b3b23fa95af6614c34bd951943f0559409220
-ms.openlocfilehash: cf43790c329ef156ae17579d2281c861533ec201
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: a5084b62a309dba433e2b363322b9a9c362bcdc3
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -47,8 +47,9 @@ ms.lasthandoff: 02/21/2017
 
 * **SQL Server Management Studio**。 您可以從[下載 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) 下載和安裝最新版的 SQL Server Management Studio (SSMS)。 因為新的功能會持續不斷地推出，當您連接到 Azure SQL Database，務必使用最新版的 SSMS。
 
-* **完成基本教學課程**。 您已完成[藉由使用 Azure 入口網站和 SQL Server Management Studio 或相同的 [PowerShell 版本](sql-database-get-started-powershell.md)來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started.md)。 如果沒有，請完成本必要的教學課程或執行 [PowerShell 版本](sql-database-get-started-powershell.md)結尾的 PowerShell 指令碼再繼續本教學課程。
+* **基本伺服器和資料庫** 若要安裝及設定本教學課程中使用的一部伺服器和兩部資料庫，請按一下 [部署至 Azure] 按鈕。 按一下此按鈕會開啟 [從範本部署] 刀鋒視窗、建立新的資源群組，並為將要建立的新伺服器提供 [系統管理員登入密碼]︰
 
+   [![下載](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fsqldbtutorial.blob.core.windows.net%2Ftemplates%2Fsqldbgetstarted.json)
 
 
 ## <a name="sign-in-to-the-azure-portal-using-your-azure-account"></a>使用 Azure 帳戶登入 Azure 入口網站

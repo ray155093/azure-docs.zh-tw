@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 01/20/2016
+ms.date: 02/27/2016
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: f24024821f522bf89c0d9baf32a427af4636c890
-ms.openlocfilehash: 41e2556437004699991363096147379d0ffa967c
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 03720b926e3a75c5443308f510b38132144318ff
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -31,8 +32,17 @@ Analysis Services 會利用三個資料提供者。 ADOMD.NET 和 Analysis Servi
 Microsoft 用戶端應用程式 (如 Power BI Desktop 和 Excel) 會安裝所有三個資料提供者。 不過，視 Excel 的版本而定，或者是否會每月更新較新版本的 Excel 和 Power BI Desktop，已安裝的資料提供者可能不會更新為 Azure Analysis Service 所需的最新版本。 同樣適用於自訂應用程式或其他介面，例如 AsCmd、TOM、ADOMD.NET。 這些應用程式需要手動安裝提供者。 手動安裝的資料提供者會以可散發套件形式包含在 SQL Server 功能套件中；不過，這些會繫結至 SQL Server 版本，而且可能不是最新版本。  
 
 用戶端連線的資料提供者不同於從 Azure Analysis Services 伺服器連接到資料來源所需的資料提供者。 若要深入了解資料來源連接，請參閱[資料來源連接](analysis-services-datasource.md)。
- 
-## <a name="download-the-latest-data-providers"></a>下載最新的資料提供者  
+
+## <a name="download-the-latest-preview-data-providers"></a>下載最新的**預覽**資料提供者  
+請使用下列資料提供者來取得最新的錯誤修正和更新。 連接到「Azure Analysis Services 預覽」或「SQL Server vNext 分析服務」時，建議使用下列資料提供者。
+
+[MSOLAP (amd64) 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.304.138/1033/x64/SQL_AS_OLEDB.msi)</br>
+[MSOLAP (x86) 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.304.138/1033/x86/SQL_AS_OLEDB.msi)</br>
+[AMO 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.304.138/1033/x64/SQL_AS_AMO.msi)</br>
+[ADOMD 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.304.138/1033/x64/SQL_AS_ADOMD.msi)</br>
+
+## <a name="download-the-latest-rtm-data-providers"></a>下載最新的 **RTM** 資料提供者  
+如果您處於生產環境並需要完整發行且受支援的版本，請使用下列資料提供者。
 
 [MSOLAP (amd64)](https://go.microsoft.com/fwlink/?linkid=829576)</br>
 [MSOLAP (x86)](https://go.microsoft.com/fwlink/?linkid=829575)</br>
@@ -40,10 +50,5 @@ Microsoft 用戶端應用程式 (如 Power BI Desktop 和 Excel) 會安裝所有
 [ADOMD](https://go.microsoft.com/fwlink/?linkid=829577)</br>
 
 ## <a name="next-steps"></a>後續步驟
-安裝最新的資料提供者後，用戶端應用程式即可連接到伺服器。 若要深入了解連接，請參閱[從 Azure Analysis Services 取得資料](analysis-services-connect.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
+安裝最新的資料提供者後，用戶端應用程式即可連接到伺服器。 若要深入了解從用戶端連接，請參閱[從 Azure Analysis Services 取得資料](analysis-services-connect.md)。
 

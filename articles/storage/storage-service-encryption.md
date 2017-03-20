@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 130100a4f1710a7820c8e9793db73144d7d68808
-ms.openlocfilehash: 26b1f0708b3705297b9a35cce0692d3503b03246
+ms.sourcegitcommit: 47398863e01204b840a965767cf2a022242d92fe
+ms.openlocfilehash: ea4d46e2d555c6572d0d741310abc4ee492767df
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 26b1f0708b3705297b9a35cce0692d3503b03246
 下列章節提供有關如何使用儲存體服務加密功能的詳細指引，以及支援的案例和使用者體驗。
 
 ## <a name="overview"></a>概觀
-Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 您可以使用[用戶端加密](storage-client-side-encryption.md)、HTTPs 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。 儲存體服務加密可提供待用加密，並以完全透明的方式處理加密、解密和金鑰管理。 所有資料都使用 256 位元 [AES 加密](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)(可用的最強區塊加密方式之一) 進行加密。
+Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 您可以使用[用戶端加密](storage-client-side-encryption.md)、HTTPs 或 SMB 3.0，在應用程式和 Azure 之間進行傳輸時保護資料的安全。 儲存體服務加密可提供待用加密，並以完全透明的方式處理加密、解密和金鑰管理。 所有資料都使用 256 位元 [AES 加密](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (可用的最強區塊加密方式之一) 進行加密。
 
 SSE 運作方式是在資料寫入 Azure 儲存體時進行加密，並可使用於 Azure Blob 儲存體和檔案儲存體 (預覽)。 它也適用於下列各項︰
 
@@ -38,13 +39,14 @@ SSE 運作方式是在資料寫入 Azure 儲存體時進行加密，並可使用
 
 儲存體服務加密 – 檔案預覽 SSE 現在可用於將檔案儲存體中的資料加密。 這目前為預覽狀態。 下面是提供檔案儲存體 SSE 的區域清單。
 
-若要參與 SSE 檔案預覽，請連絡 ssdiscussions@microsoft.com。
+若要參與 SSE 檔案預覽，請連絡 ssediscussions@microsoft.com。
 
 若要深入了解，請參閱常見問題集。
-檔案儲存體的檔案儲存體儲存體服務加密目前在東亞地區提供。
+### <a name="availability-for-file-storage"></a>檔案儲存體的可用性
+檔案儲存體的儲存體服務加密目前在東亞、北歐和美國東部 2 等地區提供。
 
 
-若要針對儲存體帳戶啟用或停用儲存體服務加密，請登入 [Azure 入口網站](https://azure.portal.com) 並選取儲存體帳戶。 在 [設定] 刀鋒視窗上，尋找此螢幕擷取畫面所示的 [Blob 服務] 區段，並按一下 [加密]。
+若要針對儲存體帳戶啟用或停用儲存體服務加密，請登入 [Azure 入口網站](https://azure.portal.com)並選取儲存體帳戶。 在 [設定] 刀鋒視窗上，尋找此螢幕擷取畫面所示的 [Blob 服務] 區段，並按一下 [加密]。
 
 ![顯示 [加密] 選項的入口網站螢幕擷取畫面](./media/storage-service-encryption/image1.png)
 <br/>*圖 1：為 Blob 服務啟用 SSE (步驟 1)*
@@ -76,7 +78,7 @@ SSE 有下列限制：
 * 系統不會將資料表和佇列資料加密。
 
 ## <a name="getting-started"></a>開始使用
-### <a name="step-1-create-a-new-storage-accountstorage-create-storage-accountmd"></a>步驟 1： [建立新的儲存體帳戶](storage-create-storage-account.md)。
+### <a name="step-1-create-a-new-storage-accountstorage-create-storage-accountmd"></a>步驟 1：[建立新的儲存體帳戶](storage-create-storage-account.md)。
 ### <a name="step-2-enable-encryption"></a>步驟 2︰啟用加密。
 您可以使用 [Azure 入口網站](https://portal.azure.com)來啟用加密。
 
@@ -91,7 +93,7 @@ SSE 有下列限制：
 #### <a name="using-azcopy"></a>使用 AzCopy
 AzCopy 是個 Windows 命令列公用程式，專為使用簡單命令高效率地將資料複製到和複製出 Microsoft Azure Blob、檔案和表格儲存體所設計。 您可以使用此公用程式將 Blob 或檔案從某個儲存體帳戶複製到另一個已啟用 SSE 的儲存體帳戶。 
 
-若要深入了解，請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。
+若要深入了解，請參閱[使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。
 
 #### <a name="using-smb"></a>使用 SMB
 Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案共用。 您可以從內部部署或 Azure 中的用戶端掛接檔案共用。 一旦掛接，您就能使用如 Robocopy 的工具來將檔案複製到 Azure 檔案共用。 如需詳細資訊，請參閱[如何在 Windows 上掛接 Azure 檔案共用](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-files#mount-the-file-share)與[如何在 Linux 上掛接 Azure 檔案共用](https://docs.microsoft.com/en-us/azure/storage/storage-how-to-use-files-linux#mount-the-file-share)。
@@ -100,7 +102,7 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 #### <a name="using-the-storage-client-libraries"></a>使用儲存體用戶端程式庫
 您可以使用我們豐富的儲存體用戶端程式庫集合 (包括 .NET、C++、Java、Android、Node.js、PHP、Python 和 Ruby)，從 Blob 儲存體來回複製 Blob 或檔案資料或在儲存體帳戶之間進行複製。
 
-若要深入了解，請參閱 [以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)。
+若要深入了解，請參閱[以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)。
 
 #### <a name="using-a-storage-explorer"></a>使用儲存體總管
 您可以使用儲存體總管來建立儲存體帳戶、上傳和下載資料、檢視 blob 的內容，以及瀏覽目錄。 您可以使用其中一種將 blob 上傳至儲存體帳戶，並且啟用加密。 使用某些儲存體總管，您也可以將資料從現有的 Blob 儲存體複製到儲存體帳戶中的不同容器或已啟用 SSE 的新儲存體帳戶。
@@ -110,7 +112,7 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 ### <a name="step-4-query-the-status-of-the-encrypted-data"></a>步驟 4︰查詢加密資料的狀態
 已部署儲存體用戶端程式庫的更新版本，可讓您查詢物件的狀態，以判斷它是否加密。 這目前只能供 Blob 儲存體使用。 針對檔案儲存體的支援已在我們的藍圖規劃中。 
 
-在此同時，您可以呼叫 [取得帳戶屬性](https://msdn.microsoft.com/library/azure/mt163553.aspx) 來確認儲存體帳戶是否已啟用加密，或在 Azure 入口網站中檢視儲存體帳戶屬性。
+在此同時，您可以呼叫[取得帳戶屬性](https://msdn.microsoft.com/library/azure/mt163553.aspx)來確認儲存體帳戶是否已啟用加密，或在 Azure 入口網站中檢視儲存體帳戶屬性。
 
 ## <a name="encryption-and-decryption-workflow"></a>加密和解密工作流程
 以下是加密/解密工作流程的簡短描述：
@@ -174,7 +176,7 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 
 **問︰這項功能與 Azure 磁碟機加密有什麼不同？**
 
-答︰這項功能是用來加密 Azure Blob 儲存體中的資料。 Azure 磁碟加密可用來加密作業系統和 IaaS VM 中的資料磁碟。 如需詳細資訊，請參閱我們的 [儲存體安全性指南](storage-security-guide.md)。
+答︰這項功能是用來加密 Azure Blob 儲存體中的資料。 Azure 磁碟加密可用來加密作業系統和 IaaS VM 中的資料磁碟。 如需詳細資訊，請參閱我們的[儲存體安全性指南](storage-security-guide.md)。
 
 **問︰如果我啟用 SSE，然後在磁碟上進入並啟用 Azure 磁碟加密？**
 
@@ -197,11 +199,6 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 答︰如果有儲存體服務加密的相關問題，請連絡 [ssediscussions@microsoft.com](mailto:ssediscussions@microsoft.com) 。
 
 ## <a name="next-steps"></a>後續步驟
-Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 如需詳細資訊，請參閱 [儲存體安全性指南](storage-security-guide.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
+Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共同建置安全應用程式。 如需詳細資訊，請參閱[儲存體安全性指南](storage-security-guide.md)。
 
 

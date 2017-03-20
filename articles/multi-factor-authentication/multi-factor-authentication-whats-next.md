@@ -12,19 +12,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/15/2017
+ms.date: 02/21/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 999361daa2faebe3e88cab0b6085a938d6f40e9d
-ms.openlocfilehash: c8a53cbbfdb0f3d5d5b4b3a1e70f2c08d50c6004
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 042b99a77fae0de2fe65113d9d909a443f5487d4
+ms.openlocfilehash: 3a6020b2c189b4ce9a930a18d78140b7bd8ff8ff
+ms.lasthandoff: 02/24/2017
 
 
 ---
 # <a name="configure-azure-multi-factor-authentication-settings"></a>設定 Azure Multi-Factor Authentication 設定
 既然您已啟動並執行 Azure Multi-Factor Authentication，本文將協助您進行管理。  本文涵蓋各種主題，協助您充分發揮 Azure Multi-Factor Authentication 的功效。  並非所有版本的 Azure Multi-Factor Authentication 均提供所有這些功能。
 
-| 功能 | 描述 | |:--- |:--- || | [詐騙警示](#fraud-alert) |您可以設定詐騙警示，讓使用者得以針對存取其資源的詐騙嘗試提出報告。 | | [單次許可](#one-time-bypass) |單次許可會「略過」Multi-Factor Authentication，讓使用者只需要驗證一次。 | | [自訂語音訊息](#custom-voice-messages) |自訂語音訊息可讓您將自己的錄音或問候語用於 Multi-Factor Authentication。 | | [快取](#caching-in-azure-multi-factor-authentication) |您可以利用快取來設定一段特定的時間，讓後續的驗證嘗試自動成功。 | | [信任的 IP](#trusted-ips) |受管理或同盟租用戶的管理員可以使用「信任的 IP」，讓從公司近端內部網路登入的使用者略過雙步驟驗證。 | | [應用程式密碼](#app-passwords) |應用程式密碼允許非 MFA 感知應用程式略過 Multi-Factor Authentication 並繼續運作。 | | [針對已記住的裝置和瀏覽器記住 Multi-Factor Authentication](#remember-multi-factor-authentication-for-devices-users-trust) |可讓您在使用者使用 MFA 成功登入後的設定天數內記住裝置。 | | [可選取的驗證方法](#selectable-verification-methods) |可讓您選擇可供使用者使用的驗證方法。 |
+| 功能 | 描述 | |:--- |:--- || | [詐騙警示](#fraud-alert) |您可以設定詐騙警示，讓使用者得以針對存取其資源的詐騙嘗試提出報告。 | | [單次許可](#one-time-bypass) |單次許可會「略過」Multi-Factor Authentication，讓使用者只需要驗證一次。 | | [自訂語音訊息](#custom-voice-messages) |自訂語音訊息可讓您將自己的錄音或問候語用於 Multi-Factor Authentication。 | | [快取](#caching-in-azure-multi-factor-authentication) |您可以利用快取來設定一段特定的時間，讓後續的驗證嘗試自動成功。 | | [信任的 IP](#trusted-ips) |受管理或同盟租用戶的管理員可以使用「信任的 IP」，讓從公司近端內部網路登入的使用者略過雙步驟驗證。 | | [應用程式密碼](#app-passwords) |應用程式密碼允許非 MFA 感知應用程式略過 Multi-Factor Authentication 並繼續運作。 | | [針對已記住的裝置和瀏覽器記住 Multi-Factor Authentication](#remember-multi-factor-authentication-for-devices-that-users-trust) |可讓您在使用者使用 MFA 成功登入後的設定天數內記住裝置。 | | [可選取的驗證方法](#selectable-verification-methods) |可讓您選擇可供使用者使用的驗證方法。 |
 
 ## <a name="access-the-azure-mfa-management-portal"></a>存取 Azure MFA 管理入口網站
 
@@ -164,7 +164,7 @@ ms.lasthandoff: 02/17/2017
 <center>![雲端](./media/multi-factor-authentication-whats-next/cache.png)</center>
 
 ## <a name="trusted-ips"></a>信任的 IP
-「信任的 IP」是 Azure MFA 的一項功能，受管理或同盟租用戶的管理員可以利用此功能，讓從公司近端內部網路登入的使用者略過雙步驟驗證。 完整版 Azure Multi-Factor Authentication 提供此功能給管理員使用，免費版不提供。 如需有關如何取得完整版 Azure Multi-Factor Authentication 的詳細資訊，請參閱[如何取得 Azure Multi-Factor Authentication](multi-factor-authentication.md#how-to-get-azure-multi-factor-authentication)。
+「信任的 IP」是 Azure MFA 的一項功能，受管理或同盟租用戶的管理員可以利用此功能，讓從公司近端內部網路登入的使用者略過雙步驟驗證。 完整版 Azure Multi-Factor Authentication 提供此功能給管理員使用，免費版不提供。 如需有關如何取得完整版 Azure Multi-Factor Authentication 的詳細資訊，請參閱[ Azure Multi-Factor Authentication](multi-factor-authentication.md)。
 
 | Azure AD 租用戶類型 | 可用的信任 IP 選項 |
 |:--- |:--- |
@@ -260,13 +260,18 @@ Azure AD 支援與內部部署 Windows Server Active Directory Domain Services (
 ## <a name="remember-multi-factor-authentication-for-devices-that-users-trust"></a>針對使用者信任的裝置，記住 Multi-Factor Authentication
 記住裝置和瀏覽器的 Multi-Factor Authentication，使用者信任是供給所有 MFA 使用者的免費功能。 它可讓您在使用者使用 MFA 成功登入後的設定天數內有略過 MFA 的選項。 這會減少使用者在相同裝置上執行雙步驟驗證的次數，可提高可用性。
 
+不過，若帳戶或裝置遭到入侵，則記住受信任裝置的 MFA 可能會影響安全性。 如果公司帳戶遭入侵或信任的裝置遺失或遭竊，您應該[在所有裝置上還原 Multi-Factor Authentication](multi-factor-authentication-manage-users-and-devices.md#restore-mfa-on-all-remembered-devices-for-a-user)。 此動作會從所有裝置撤銷受信任的狀態，使用者需要再次執行雙步驟驗證。 您也可以使用[管理雙步驟驗證的設定](./end-user/multi-factor-authentication-end-user-manage-settings.md#require-two-step-verification-again-on-a-device-youve-marked-as-trusted)中的指示，指示使用者在自己的裝置上還原 MFA
+
+### <a name="how-it-works"></a>運作方式
+
+當使用者在登入時勾選「**X** 天內不要再問我」的方塊時，記住 Multi-Factor Authentication 的運作方式是在瀏覽器上設定永續性 cookie。 系統不會再次提示使用者從該瀏覽器輸入 MFA，直到 cookie 到期為止。 如果使用者在相同的裝置上開啟不同的瀏覽器或清除其 cookie，系統會提示他們再次確認。 
+
+非瀏覽器應用程式上不會顯示「**X**天內不要再問我」核取方塊，不論是否支援數據機驗證。 這些應用程式使用每隔一小時會提供新存取權杖的重新整理權杖。 當已驗證重新整理權杖時，Azure AD 會檢查最後一次執行雙步驟驗證是否在已設定天數內。 
+
+因此，在受信任的裝置上記住 MFA 會減少 web 應用程式 (通常每一次都會提示) 的驗證次數，但是會增加現代化驗證用戶端 (通常每 90 天會提示) 的驗證次數。
+
 > [!NOTE]
-> 這項功能的實作方式採用瀏覽器 Cookie 快取。 如果未啟用瀏覽器 Cookie，它便無法運作。
-
-不過，若帳戶或裝置遭到入侵，則記住受信任裝置的 MFA 可能會影響安全性。 若要確保帳戶安全性，您可以選擇在所有裝置上還原 Multi-Factor Authentication。 這表示所有裝置會失去其受信任的狀態，使用者需要再次執行雙步驟驗證。 在下列任一情況中，您應該還原其裝置的 Multi-Factor Authentication：
-
-* 當他們的公司帳戶遭到入侵
-* 當已記住的裝置遺失或遭竊
+>當使用者透過 Azure MFA Server 或第三方 MFA 解決方案執行雙步驟驗證時，這項功能無法與 AD FS 的「讓我保持登入」功能相容。 如果您的使用者選取 AD FS 上的「讓我保持登入」，並將其裝置標示為受 MFA 信任，他們在「記住 MFA」天數到期後將無法確認。 Azure AD 要求重新整理雙步驟驗證，但是 AD FS 會傳回包含原始 MFA 宣告及日期的權杖，而不是再次執行雙步驟驗證。 這會啟動 Azure AD 與 AD FS 之間的驗證迴圈。 
 
 ### <a name="enable-remember-multi-factor-authentication"></a>啟用記住 Multi-Factor Authentication
 1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。

@@ -16,14 +16,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 12/07/2016
 ms.author: rclaus
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 746ed119239d5a0a71a0663e81d9c5b259354419
-ms.openlocfilehash: 21b7bf78e70b7d4534220913987cdac5f04cb462
-ms.lasthandoff: 01/26/2017
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 9e64fc5425db5ffde6af493e961edfcac527b6df
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="using-sap-on-azure-virtual-machines-vms"></a>在 Azure 虛擬機器 (VM) 上使用 SAP
+# <a name="using-sap-on-azure-linux-virtual-machines-vms"></a>在 Azure Linux 虛擬機器 (VM) 上使用 SAP
 [767598]:https://launchpad.support.sap.com/#/notes/767598
 [773830]:https://launchpad.support.sap.com/#/notes/773830
 [826037]:https://launchpad.support.sap.com/#/notes/826037
@@ -330,7 +331,7 @@ Microsoft Azure 已獲認證可用於下列 SAP 產品，因此具備 Microsoft 
 
 [這裡可以找到本指南](virtual-machines-linux-sap-on-suse-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-## <a name="a-name3da0389e-708b-4e82-b2a2-e92f132df89caplanning-and-implementation"></a><a name="3da0389e-708b-4e82-b2a2-e92f132df89c"></a>規劃和實作
+## <a name="3da0389e-708b-4e82-b2a2-e92f132df89c"></a>規劃和實作
 標題：Linux 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南
 
 摘要：如果您考慮在 Azure 虛擬機器中執行 SAP NetWeaver，那麼請先閱讀此白皮書。 此規劃和實作指南將協助您評估是否可以將現有或已規劃的 SAP NetWeaver 架構系統部署到 Azure 虛擬機器環境。 其內容涵蓋多個 SAP NetWeaver 部署案例，並包含 Azure 特有的 SAP 組態。 本白皮書列出並描述若要執行混合式 SAP 環境，SAP/Azure 端所需的所有必要設定資訊。 另外也會說明為確保 IaaS 上的 SAP NetWeaver 架構系統擁有高可用性，您所能採取的措施。
@@ -339,7 +340,7 @@ Microsoft Azure 已獲認證可用於下列 SAP 產品，因此具備 Microsoft 
 
 [這裡可以找到本指南][planning-guide]
 
-## <a name="a-name6aadadd2-76b5-46d8-8713-e8d63630e955adeployment"></a><a name="6aadadd2-76b5-46d8-8713-e8d63630e955"></a>部署
+## <a name="6aadadd2-76b5-46d8-8713-e8d63630e955"></a>部署
 標題：Linux 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南
 
 摘要：本文件提供用來將 SAP NetWeaver 軟體部署到 Azure 虛擬機器的程序指引。 本白皮書將重點放在三個特定的部署案例，強調要啟用 Azure Monitoring Extensions for SAP，並包括 Azure Monitoring Extensions for SAP 的疑難排解建議。 本白皮書假設您已閱讀過規劃和實作指南。
@@ -348,7 +349,7 @@ Microsoft Azure 已獲認證可用於下列 SAP 產品，因此具備 Microsoft 
 
 [這裡可以找到本指南][deployment-guide]
 
-## <a name="a-name1343ffe1-8021-4ce6-a08d-3a1553a4db82adbms-deployment-guide"></a><a name="1343ffe1-8021-4ce6-a08d-3a1553a4db82"></a>DBMS 部署指南
+## <a name="1343ffe1-8021-4ce6-a08d-3a1553a4db82"></a>DBMS 部署指南
 標題：Linux 虛擬機器 (VM) 上的 SAP NetWeaver - DBMS 部署指南
 
 摘要：本白皮書涵蓋應該與 SAP 搭配執行之 DBMS 系統的規劃和實作考量。 第一個部分會列出和提出一般考量。 本白皮書的後續部分與在 Azure 中部署 SAP 所支援的不同 DBMS 有關。 所提出的不同 DBMS 分別是 SQL Server、SAP ASE 和 Oracle。 這幾個特定部分會探討當您在 Azure 上搭配這些 DBMS 來執行 SAP 系統時，所必須納入的考量。 本白皮書也會提出在搭配 SAP 應用程式使用時，Azure 上不同 DBMS 所支援的備份和高可用性方法等主題。

@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/16/2017
+ms.date: 02/23/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 509053c87e84a4dbff78eee503dcf3af149b6f1e
-ms.openlocfilehash: 81d2a746b5e1df2cfd5b8fc465045cb92af01358
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 2e26bd81c59fd53a0e8fc693dde30cb403995896
+ms.openlocfilehash: 38d37e45c34c8c0a3bd2ed94f72944208292f466
+ms.lasthandoff: 02/24/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 02/16/2017
 
 Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢集的管理和監視。 使用 Linux 作業系統的 HDInsight 叢集上有 Ambari，用來監視叢集並進行組態變更。 在本文件中，您會了解使用 Ambari REST API 的基本概念。
 
-## <a name="a-idwhatisawhat-is-ambari"></a><a id="whatis"></a>什麼是 Ambari
+## <a id="whatis"></a>什麼是 Ambari
 
 [Apache Ambari](http://ambari.apache.org) 提供簡單易用的 Web UI，以供用來佈建、管理及監視 Hadoop 叢集，讓 Hadoop 管理起來更為簡單。 開發人員可以使用 [Ambari REST API](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)將這些功能整合到應用程式。
 
@@ -66,7 +66,7 @@ HDInsight 上 Ambari REST API 的基底 URI 是 https://CLUSTERNAME.azurehdinsig
 
 ### <a name="authentication"></a>驗證
 
-連線到 HDInsight 上的 Ambari 需要 HTTPS。 在驗證連線時，您必須使用系統管理員帳戶名稱 (預設值是 **admin**) 和建立叢集時所提供的密碼。
+連線到 HDInsight 上的 Ambari 需要 HTTPS。 在驗證連線時，您必須使用管理帳戶名稱 (預設值是 **admin**) 和建立叢集時所提供的密碼。
 
 ## <a name="examples-authentication-and-parsing-json"></a>範例︰驗證和剖析 JSON
 
@@ -207,7 +207,7 @@ $respObj.Clusters.health_report
 >
 > 如需使用 HDInsight 和虛擬網路的詳細資訊，請參閱[使用自訂 Azure 虛擬網路擴充 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)。
 
-在取得 IP 位址之前，您必須先知道主機的 FQDN。 一旦您擁有 FQDN，就可以取得主機的 IP 位址。 下列範例會先查詢所有主機節點之 FQDN 的 Ambari，然後查詢每部主機之 IP 位址的 Ambari。
+您必須先知道主機的 FQDN，才能取得 IP 位址。 一旦您擁有 FQDN，就可以取得主機的 IP 位址。 下列範例會先查詢所有主機節點之 FQDN 的 Ambari，然後查詢每部主機之 IP 位址的 Ambari。
 
 ```bash
 for HOSTNAME in $(curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/hosts" | jq -r '.items[].Hosts.host_name')
@@ -293,7 +293,55 @@ $respObj.items.configurations.properties.'fs.defaultFS'
 > [!NOTE]
 > [Azure PowerShell](https://docs.microsoft.com/powershell/) 提供的 `Get-AzureRmHDInsightCluster` Cmdlet 也會傳回叢集的儲存體資訊。
 
-## <a name="example-update-ambari-configuration"></a>範例︰更新 Ambari 組態
+
+## <a name="example-get-configuration"></a>範例：取得組態
+
+1. 取得可供您的叢集使用的組態。
+
+    ```bash
+    curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME?fields=Clusters/desired_configs"
+    ```
+
+    ```powershell
+    Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName`?fields=Clusters/desired_configs" `
+        -Credential $creds
+    ```
+
+    此範例會傳回 JSON 文件，其中包含叢集上安裝之元件的目前組態 (由「tag」值識別)。 下列範例是從 Spark 叢集類型傳回之資料的摘要。
+   
+   ```json
+   "spark-metrics-properties" : {
+       "tag" : "INITIAL",
+       "user" : "admin",
+       "version" : 1
+   },
+   "spark-thrift-fairscheduler" : {
+       "tag" : "INITIAL",
+       "user" : "admin",
+       "version" : 1
+   },
+   "spark-thrift-sparkconf" : {
+       "tag" : "INITIAL",
+       "user" : "admin",
+       "version" : 1
+   }
+   ```
+
+2. 取得您感興趣之元件的組態。 在下列範例中，以前一個要求傳回的標記值取代 `INITIAL`。
+
+    ```bash
+    curl -u admin:$PASSWORD -sS -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/configurations?type=core-site&tag=INITIAL"
+    ```
+
+    ```powershell
+    $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName/configurations?type=core-site&tag=INITIAL" `
+        -Credential $creds
+    $resp.Content
+    ```
+
+    此範例會傳回 JSON 文件，其中包含 `core-site` 元件的目前組態。
+
+## <a name="example-update-configuration"></a>範例︰更新組態
 
 1. 取得目前的組態，Ambari 會將其儲存為「所需的組態」:
 
@@ -354,7 +402,7 @@ $respObj.items.configurations.properties.'fs.defaultFS'
 
     * 刪除 `href`、`version` 和 `Config` 元素，因為提交新組態時不需要這些元素。
 
-    * 使用 `version#################` 的值新增新的 `tag`元素。 數字部分是根據目前的日期。 每個組態都必須有唯一的標記。
+    * 使用 `version#################` 的值新增 `tag` 元素。 數字部分是根據目前的日期。 每個組態都必須有唯一的標記。
      
     最後，將資料儲存至 `newconfig.json` 文件。 此文件結構應會顯示為類似下列範例：
      

@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 12/05/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 1cef7ff21a8d076c89688f1fe75cebdb7c468199
-ms.openlocfilehash: d6845f666c8b987319bd0b5a7bbe8726f8501249
+ms.sourcegitcommit: 1c22e4fc17226578aaaf272fdf79178da65c63c2
+ms.openlocfilehash: 8c8ac0af8a39afdd9755040d21585185ceca890e
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -34,7 +35,7 @@ ms.openlocfilehash: d6845f666c8b987319bd0b5a7bbe8726f8501249
 3. 設定使用者佈建
 4. 指派使用者
 
-![案例](./media/active-directory-saas-veracode-tutorial/IC802903.png "Scenario")
+![案例](./media/active-directory-saas-veracode-tutorial/IC802903.png "案例")
 
 ## <a name="enabling-the-application-integration-for-veracode"></a>啟用 Veracode 的應用程式整合
 本節的目的是要說明如何啟用 Veracode 的應用程式整合。
@@ -48,19 +49,19 @@ ms.openlocfilehash: d6845f666c8b987319bd0b5a7bbe8726f8501249
 
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![應用程式](./media/active-directory-saas-veracode-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-veracode-tutorial/IC700994.png "應用程式")
 
 4. 按一下頁面底部的 [新增]  。
    
-    ![新增應用程式](./media/active-directory-saas-veracode-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-veracode-tutorial/IC749321.png "新增應用程式")
 
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-    ![從組件庫新增應用程式](./media/active-directory-saas-veracode-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-veracode-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6. 在 [搜尋方塊] 中，輸入 **Veracode**。
    
-    ![應用程式庫](./media/active-directory-saas-veracode-tutorial/IC802904.png "Application Gallery")
+    ![應用程式資源庫](./media/active-directory-saas-veracode-tutorial/IC802904.png "應用程式資源庫")
 
 7. 在結果窗格中，選取 [Veracode]，然後按一下 [完成] 以加入應用程式。
    
@@ -71,36 +72,36 @@ ms.openlocfilehash: d6845f666c8b987319bd0b5a7bbe8726f8501249
 Veracode 應用程式需要特定格式的 SAML 判斷提示，要求您加入自訂屬性對應到您的 **SAML 權杖屬性** 組態。  
 以下螢幕擷取畫面顯示上述的範例。
 
-![屬性](./media/active-directory-saas-veracode-tutorial/IC802906.png "Attributes")
+![屬性](./media/active-directory-saas-veracode-tutorial/IC802906.png "屬性")
 
 ### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 [Veracode] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
    
-    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802907.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802907.png "設定單一登入")
 
 2. 在 [要如何讓使用者登入 Veracode] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
-    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802908.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802908.png "設定單一登入")
 
 3. 在 [設定應用程式設定] 頁面上，按 [下一步]。
    
-    ![設定 App 設定](./media/active-directory-saas-veracode-tutorial/IC802909.png "Configure App Settings")
+    ![設定應用程式設定](./media/active-directory-saas-veracode-tutorial/IC802909.png "進行應用程式設定")
 
 4. 在 [設定在 Veracode 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案儲存在本機電腦上。
    
-    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802910.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802910.png "設定單一登入")
 
 5. 在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 Veracode 公司網站。
 
 6. 在頂端功能表中，按一下 [設定]，然後按一下 [管理員]。
    
-    ![系統管理](./media/active-directory-saas-veracode-tutorial/IC802911.png "Administration")
+    ![管理](./media/active-directory-saas-veracode-tutorial/IC802911.png "管理")
 
 7. 按一下 [SAML]  索引標籤。
 
 8. 在 [組織 SAML 設定]  區段中，執行下列步驟：
    
-    ![系統管理](./media/active-directory-saas-veracode-tutorial/IC802912.png "Administration")
+    ![管理](./media/active-directory-saas-veracode-tutorial/IC802912.png "管理")
    
     a. 在 Azure 傳統入口網站的 [設定在 Veracode 單一登入] 對話方塊頁面上，複製 [簽發者 URL] 值，然後將它貼到 [簽發者] 文字方塊中
    
@@ -110,7 +111,7 @@ Veracode 應用程式需要特定格式的 SAML 判斷提示，要求您加入�
 
 9. 在 [自動註冊設定] 區段上，執行下列步驟，然後按一下 [儲存]：
    
-    ![系統管理](./media/active-directory-saas-veracode-tutorial/IC802913.png "Administration")
+    ![管理](./media/active-directory-saas-veracode-tutorial/IC802913.png "管理")
    
     a. 在 [啟用新的使用者] 選取 [不需要啟用]。
    
@@ -130,15 +131,15 @@ Veracode 應用程式需要特定格式的 SAML 判斷提示，要求您加入�
 
 10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
     
-    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802914.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-veracode-tutorial/IC802914.png "設定單一登入")
 
 11. 在頂端的功能表中，按一下 [屬性] **屬性** to open the **SAML Token 屬性** 對話方塊。
     
-    ![屬性](./media/active-directory-saas-veracode-tutorial/IC795920.png "Attributes")
+    ![屬性](./media/active-directory-saas-veracode-tutorial/IC795920.png "屬性")
 
 12. 若要加入必要的屬性對應，請執行下列步驟：
     
-    ![屬性](./media/active-directory-saas-veracode-tutorial/IC802906.png "Attributes")
+    ![屬性](./media/active-directory-saas-veracode-tutorial/IC802906.png "屬性")
     
     | 屬性名稱 | 屬性值 |
     |:--- |:--- |
@@ -176,17 +177,12 @@ Veracode 應用程式需要特定格式的 SAML 判斷提示，要求您加入�
 
 2. 在 [Veracode] 應用程式整合頁面上，按一下 [指派使用者]。
    
-    ![指派使用者](./media/active-directory-saas-veracode-tutorial/IC802915.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-veracode-tutorial/IC802915.png "指派使用者")
 
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
    
-    ![是](./media/active-directory-saas-veracode-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-veracode-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

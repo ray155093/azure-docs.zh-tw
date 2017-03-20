@@ -17,6 +17,7 @@ ms.author: robinsh
 translationtype: Human Translation
 ms.sourcegitcommit: 223a7f808ae21ddf8e237e7c5ec2d7ba035e38e8
 ms.openlocfilehash: 82d91881e7f744471f4e60d1c6571e0ae2f7ee4e
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -245,8 +246,3 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
 * 下載 [適用於 .NET NuGet 封裝的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage)
 * 下載 Azure 金鑰保存庫 NuGet 的 [Core](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core/)、[Client](http://www.nuget.org/packages/Microsoft.Azure.KeyVault/) 和 [Extensions](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Extensions/) 封裝  
 * 請瀏覽 [Azure 金鑰保存庫文件](../key-vault/key-vault-whatis.md)
-
-
-<!--HONumber=Nov16_HO3-->
-
-

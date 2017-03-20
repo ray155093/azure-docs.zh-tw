@@ -15,13 +15,14 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 94e13ac6fec09081484a2f7f5d7bc1871822743f
-ms.openlocfilehash: bc77893c80e9ede11a60aa7d809ac4311b44f5cc
+ms.sourcegitcommit: dc279718cbb360e611d7e4cfb6961a087159fb01
+ms.openlocfilehash: 7637e6419d17a2d75904fbe63df5f27d4be4bbe3
+ms.lasthandoff: 02/24/2017
 
 ---
 # <a name="how-to-authorize-developer-accounts-using-azure-active-directory-in-azure-api-management"></a>如何在 Azure API 管理中使用 Azure Active Directory 授權開發人員帳戶
-## <a name="overview"></a>Overview
-本指南說明如何為一或多個 Azure Active Directory 中的所有使用者啟用開發人員入口網站的存取。 本指南也說明如何管理 Azure Active Directory 的使用者，方法是加入包含 Azure Active Directory 的使用者的外部群組。
+## <a name="overview"></a>概觀
+本指南說明如何讓使用者能夠從 Azure Active Directory 存取開發人員入口網站。 本指南也說明如何管理 Azure Active Directory 的使用者，方法是加入包含 Azure Active Directory 的使用者的外部群組。
 
 > 若要完成本指南中的步驟，您必須先具備要在其中建立應用程式的 Azure Active Directory。
 > 
@@ -58,7 +59,7 @@ ms.openlocfilehash: bc77893c80e9ede11a60aa7d809ac4311b44f5cc
 
 ![新 Azure Active Directory 應用程式屬性][api-management-new-aad-application-2]
 
-按一下核取記號按鈕來儲存並建立新應用程式，然後切換至 [設定] 索引標籤來設定新應用程式。
+按一下核取記號按鈕來儲存並建立應用程式，然後切換至 [設定] 索引標籤來設定新應用程式。
 
 ![新 Azure Active Directory 應用程式已建立][api-management-new-aad-app-created]
 
@@ -110,13 +111,6 @@ ms.openlocfilehash: bc77893c80e9ede11a60aa7d809ac4311b44f5cc
 
 ![允許的租用戶][api-management-client-allowed-tenants]
 
-可以在 [ **允許的租用戶** ] 區段中指定多個網域。 在使用者可透過與註冊應用程式之原始網域不同的網域登入前，不同網域的全域管理員必須授與權限，應用程式才能存取目錄資料。 若要授與權限，全域管理員必須登入應用程式，然後按一下 [ **接受**]。 在以下的範例中， `miaoaad.onmicrosoft.com` 已被加入至 [ **允許的租用戶** ]，並且來自該網域的全域管理員正在第一次登入。
-
-![權限][api-management-permissions-form]
-
-> 如果非全域管理員在全域管理員授與其權限之前便嘗試登入，登入嘗試會失敗，並且顯示錯誤畫面。
-> 
-> 
 
 指定需要的組態之後，按一下 [ **儲存**]。
 
@@ -124,10 +118,22 @@ ms.openlocfilehash: bc77893c80e9ede11a60aa7d809ac4311b44f5cc
 
 儲存變更之後，在指定 Azure Active Directory 中的使用者透過遵循[使用 Azure Active Directory 帳戶登入開發人員入口網站][Log in to the Developer portal using an Azure Active Directory account]中的步驟，即可登入開發人員入口網站。
 
+可以在 [ **允許的租用戶** ] 區段中指定多個網域。 在使用者可透過與註冊應用程式之原始網域不同的網域登入前，不同網域的全域管理員必須授與權限，應用程式才能存取目錄資料。 若要授與權限，全域系統管理員應該移至 `https://<URL of your developer portal>/aadadminconsent` (例如，https://contoso.portal.azure-api.net/aadadminconsent)，輸入他們想要提供存取權之 Active Directory 租用戶的網域名稱，然後按一下 [提交]。 在下列範例中，來自 `miaoaad.onmicrosoft.com` 的全域管理員嘗試給予這個特定開發人員入口網站的權限。 
+
+![權限][api-management-aad-consent]
+
+在下一個畫面中，系統會提示全域系統管理員確認要給予權限。 
+
+![權限][api-management-permissions-form]
+
+> 如果非全域管理員在全域管理員授與其權限之前便嘗試登入，登入嘗試會失敗，並且顯示錯誤畫面。
+> 
+> 
+
 ## <a name="how-to-add-an-external-azure-active-directory-group"></a>如何加入外部 Azure Active Directory 群組
 為 Azure Active Directory 中的使用者啟用存取之後，您可以將 Azure Active Directory 群組加入至 API 管理，以更輕鬆管理所需產品的群組中開發人員的關聯。
 
-> 為了設定外部 Azure Active Directory 群組，必須先遵循上一節中的程序，在 [身分識別] 索引標籤中設定 Azure Active Directory。 
+> 若要設定外部 Azure Active Directory 群組，必須先遵循上一節中的程序，在 [身分識別] 索引標籤中設定 Azure Active Directory。 
 > 
 > 
 
@@ -147,15 +153,15 @@ ms.openlocfilehash: bc77893c80e9ede11a60aa7d809ac4311b44f5cc
 
 ![Azure Active Directory 群組清單][api-management-aad-groups-list]
 
-按一下 [ **加入** ] 可驗證群組名稱並加入群組。 在此範例中會加入 **Contoso 5 Developers** 外部群組。 
+按一下 [ **加入** ] 可驗證群組名稱並加入群組。 在此範例中會新增 **Contoso 5 Developers** 外部群組。 
 
 ![Group added][api-management-aad-group-added]
 
 按一下 [ **儲存** ] 以儲存新群組選項。
 
-透過一個產品設定 Azure Active Directory 群組之後，即可在 API 管理服務執行個體中其他產品的 [ **可見性** ] 索引標籤加以查看。
+透過一個產品設定 Azure Active Directory 群組之後，即可在 API 管理服務執行個體中其他產品的 [可見性] 索引標籤加以查看。
 
-在加入外部群組之後，若要檢查並設定其屬性，請從 [ **群組** ] 索引標籤按一下群組的名稱。
+在加入外部群組之後，若要檢查並設定其屬性，請從 [群組] 索引標籤按一下群組的名稱。
 
 ![管理群組][api-management-groups]
 
@@ -204,6 +210,7 @@ ms.openlocfilehash: bc77893c80e9ede11a60aa7d809ac4311b44f5cc
 [api-management-registration-complete]: ./media/api-management-howto-aad/api-management-registration-complete.png
 [api-management-aad-app-multi-tenant]: ./media/api-management-howto-aad/api-management-aad-app-multi-tenant.png
 [api-management-aad-reply-url]: ./media/api-management-howto-aad/api-management-aad-reply-url.png
+[api-management-aad-consent]: ./media/api-management-howto-aad/api-management-aad-consent.png
 [api-management-permissions-form]: ./media/api-management-howto-aad/api-management-permissions-form.png
 [api-management-configure-product]: ./media/api-management-howto-aad/api-management-configure-product.png
 [api-management-add-groups]: ./media/api-management-howto-aad/api-management-add-groups.png
@@ -234,10 +241,5 @@ ms.openlocfilehash: bc77893c80e9ede11a60aa7d809ac4311b44f5cc
 [Next steps]: #next-steps
 
 [Log in to the Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

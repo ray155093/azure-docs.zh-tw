@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/13/2016
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: 66fb3dc316ce25aea4dff4add5c25b7f0f56ad7a
-ms.openlocfilehash: d57d3802e1678c6754b0d770acc4fe6c092329a3
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: 1029c7e4c6a17ad2a290ff0783fc88692555b255
+ms.openlocfilehash: e971bd36f9245032296537ea3e0b64e5f3e18ddd
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -28,9 +28,9 @@ ms.lasthandoff: 01/31/2017
 您必須已設定訓練實驗與預測性實驗，如[以程式設計方式重新訓練機器學習服務模型](machine-learning-retrain-models-programmatically.md)中所示。 
 
 > [!IMPORTANT]
-> 預測性實驗必須部署為 Azure Resource Manager (新) 型 Machine Learning Web 服務。 
-> 
-> 
+> 預測性實驗必須部署為 Azure Resource Manager (新) 型 Machine Learning Web 服務。 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
+
+
 
 如需關於部署 Web 服務的其他資訊，請參閱[部署 Azure Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)。
 

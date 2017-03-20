@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 12/05/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 1cef7ff21a8d076c89688f1fe75cebdb7c468199
-ms.openlocfilehash: 11b14aee1ef28cd29976b138919ccea8b4763016
+ms.sourcegitcommit: 1c22e4fc17226578aaaf272fdf79178da65c63c2
+ms.openlocfilehash: e3a93cc039d4e24d19f2df2d859c5899cd2a402e
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.openlocfilehash: 11b14aee1ef28cd29976b138919ccea8b4763016
 3. 設定使用者佈建
 4. 指派使用者
 
-![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798965.png "Configure Single Sign-On")
+![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798965.png "設定單一登入")
 
 ## <a name="enabling-the-application-integration-for-tinfoil-security"></a>啟用 Tinfoil Security 的應用程式整合
 本節的目的是要說明如何啟用 Tinfoil Security 的應用程式整合。
@@ -49,19 +50,19 @@ ms.openlocfilehash: 11b14aee1ef28cd29976b138919ccea8b4763016
 
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![應用程式](./media/active-directory-saas-tinfoil-security-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-tinfoil-security-tutorial/IC700994.png "應用程式")
 
 4. 按一下頁面底部的 [新增]  。
    
-    ![新增應用程式](./media/active-directory-saas-tinfoil-security-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-tinfoil-security-tutorial/IC749321.png "新增應用程式")
 
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-    ![從組件庫新增應用程式](./media/active-directory-saas-tinfoil-security-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-tinfoil-security-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6. 在**搜尋方塊**中，輸入 **Tinfoil Security**。
    
-    ![應用程式庫](./media/active-directory-saas-tinfoil-security-tutorial/IC798966.png "Application Gallery")
+    ![應用程式資源庫](./media/active-directory-saas-tinfoil-security-tutorial/IC798966.png "應用程式資源庫")
 
 7. 在結果窗格中，選取 [Tinfoil Security]，然後按一下 [完成] 以新增應用程式。
    
@@ -75,11 +76,11 @@ ms.openlocfilehash: 11b14aee1ef28cd29976b138919ccea8b4763016
 ### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 [Tinfoil Security] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
    
-    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798967.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798967.png "設定單一登入")
 
 2. 在 [您希望使用者如何登入 Tinfoil Security] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
-    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798968.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798968.png "設定單一登入")
 
 3. 在 [設定應用程式 URL] 頁面的 [Tinfoil Security 回覆 URL] 文字方塊中，輸入您的「Tinfoil Security 判斷提示取用者服務 (ACS) URL」(例如： "*https://www.tinfoilsecurity.com/saml/consume*")，然後按 [下一步]。
    
@@ -88,25 +89,25 @@ ms.openlocfilehash: 11b14aee1ef28cd29976b138919ccea8b4763016
     > 
     > 
    
-    ![設定應用程式 URL](./media/active-directory-saas-tinfoil-security-tutorial/IC798969.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-tinfoil-security-tutorial/IC798969.png "設定應用程式 URL")
 
 4. 在 [設定在 Tinfoil Security 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案以 **c:\\Tinfoil Security.cer** 方式儲存在本機。
    
-    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798970.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798970.png "設定單一登入")
 
 5. 在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 Tinfoil Security 公司網站。
 
 6. 在頂端工具列中，按一下 [我的帳戶] 。
    
-    ![儀表板](./media/active-directory-saas-tinfoil-security-tutorial/IC798971.png "Dashboard")
+    ![儀表板](./media/active-directory-saas-tinfoil-security-tutorial/IC798971.png "儀表板")
 
 7. 按一下 [安全性] 。
    
-    ![安全性](./media/active-directory-saas-tinfoil-security-tutorial/IC798972.png "Security")
+    ![安全性](./media/active-directory-saas-tinfoil-security-tutorial/IC798972.png "安全性")
 
 8. 在 [單一登入]  組態頁面上，執行下列步驟：
    
-    ![單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798973.png "Single Sign-On")
+    ![單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798973.png "單一登入")
    
     a. 選取 [啟用 SAML] 。
    
@@ -127,15 +128,15 @@ ms.openlocfilehash: 11b14aee1ef28cd29976b138919ccea8b4763016
 
 9. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
-    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798974.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798974.png "設定單一登入")
 
 10. 在頂端的功能表中，按一下 [屬性] **屬性** to open the **SAML Token 屬性** 對話方塊。
     
-    ![屬性](./media/active-directory-saas-tinfoil-security-tutorial/IC795920.png "Attributes")
+    ![屬性](./media/active-directory-saas-tinfoil-security-tutorial/IC795920.png "屬性")
 
 11. 若要加入必要的屬性對應，請執行下列步驟：
     
-    ![屬性](./media/active-directory-saas-tinfoil-security-tutorial/IC798975.png "Attributes")
+    ![屬性](./media/active-directory-saas-tinfoil-security-tutorial/IC798975.png "屬性")
     
     a. 按一下 [加入使用者屬性] 。
 
@@ -167,17 +168,12 @@ Tinfoil Security 需以手動的方式佈建。
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [Tinfoil Security] 應用程式整合頁面上，按一下 [指派使用者]。
    
-    ![指派使用者](./media/active-directory-saas-tinfoil-security-tutorial/IC798976.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-tinfoil-security-tutorial/IC798976.png "指派使用者")
 
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
    
-    ![是](./media/active-directory-saas-tinfoil-security-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-tinfoil-security-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

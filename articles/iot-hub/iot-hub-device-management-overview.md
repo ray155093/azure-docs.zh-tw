@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/03/2016
+ms.date: 03/09/2017
 ms.author: briz
 translationtype: Human Translation
-ms.sourcegitcommit: 55d3f08de7f8c7ba68faba1945e8fd960e888853
-ms.openlocfilehash: 5e1b1333212af0b9042e7ed3793c08e305085519
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 352c42ddeef5537f9b912ddfe6a72b6b5342835b
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -38,7 +39,11 @@ IoT 本身伴隨著一組獨特的管理挑戰，因此每個企業級解決方�
 
 * **規模和自動化**：IoT 解決方案需要簡單的工具，以便能夠自動執行例行工作，並且只需要少數作業人員就可以管理數百萬個裝置。 每一天，操作員無不期望能夠從遠端大量處理裝置作業，並且只在發生需要他們直接關注的問題時才接獲通知。
 * **開放性和相容性**：裝置生態系統富含多樣性。 管理工具必須經過量身打造，才能配合數量眾多的裝置類別、平台和通訊協定。 操作員必須能夠支援許多類型的裝置，不論是最受限的內嵌單一處理晶片，乃至功能完整而強大的電腦。
-* **內容感知**：IoT 環境是動態且不斷變化的， 因此服務可靠性非常重要。 裝置管理作業必須納入 SLA 維護時段、網路和電源狀態、使用中況況和裝置地理位置等因素，以確保該維護停機時間不會影響重要的商業運作或造成危險情況。
+* **內容感知**：IoT 環境是動態且不斷變化的， 因此服務可靠性非常重要。 裝置管理作業必須考量下列因素，以確保維護停機時間不會影響重要的商業運作或造成危險情況︰
+    * SLA 維護期間
+    * 網路和電源狀態
+    * 使用中狀況
+    * 裝置地理位置
 * **服務眾多角色**︰是否能夠支援 IoT 作業角色的獨特工作流程和處理程序非常重要。 操作人員必須和諧地配合內部 IT 部門指定的限制。  他們也必須找出向主管和其他商務管理角色呈現即時裝置作業資訊的永續方式。
 
 ## <a name="device-lifecycle"></a>裝置的生命週期
@@ -50,19 +55,19 @@ IoT 本身伴隨著一組獨特的管理挑戰，因此每個企業級解決方�
 
 * **計劃**︰讓操作員得以建立裝置中繼資料配置，以便他們可以輕鬆且精確地查詢和鎖定要進行大量管理作業的裝置群組。 您可以使用裝置對應項，以標記和屬性的形式來儲存此裝置中繼資料。
   
-    *進階閱讀*：[開始使用裝置對應項][lnk-twins-getstarted]、[了解裝置對應項][lnk-twins-devguide]、[如何使用裝置對應項屬性][lnk-twin-properties]
+    *進階閱讀*：[開始使用裝置對應項][lnk-twins-getstarted]、[了解裝置對應項][lnk-twins-devguide]、[如何使用裝置對應項屬性][lnk-twin-properties]。
 * **佈建**︰安全地向 IoT 中樞佈建新裝置，並且讓操作員能夠立即探索裝置功能。  使用 IoT 中樞身分識別登錄來建立富有彈性的裝置身分識別與認證，並利用作業 (Job) 大量執行此作業 (Operation)。 建置一些裝置，經由裝置對應項中的裝置屬性來報告其功能和狀況。
   
-    *進階閱讀*：[管理裝置身分識別][lnk-identity-registry]、[大量管理裝置身分識別][lnk-bulk-identity]、[如何使用裝置對應項屬性][lnk-twin-properties]
+    *進階閱讀*：[管理裝置身分識別][lnk-identity-registry]、[大量管理裝置身分識別][lnk-bulk-identity]、[如何使用裝置對應項屬性][lnk-twin-properties]。
 * **設定**︰協助裝置進行大量組態變更和韌體更新，同時維持健康狀態與安全性。 使用所需的屬性或透過直接方法和廣播作業，大量執行這些裝置管理作業。
   
-    *進階閱讀*：[使用直接方法][lnk-c2d-methods]、[在裝置上叫用直接方法][lnk-methods-devguide]、[如何使用裝置對應項屬性][lnk-twin-properties]、[排程及廣播工作][lnk-jobs]、[在多個裝置上排程工作][lnk-jobs-devguide]
+    *進階閱讀*：[使用直接方法][lnk-c2d-methods]、[在裝置上叫用直接方法][lnk-methods-devguide]、[如何使用裝置對應項屬性][lnk-twin-properties]、[排程及廣播工作][lnk-jobs]、[在多個裝置上排程工作][lnk-jobs-devguide]。
 * **監視**︰監視整體裝置集合健康狀態、進行中作業的狀態，以及就可能需要關注的問題對操作員發出警示。  套用裝置對應項，可讓裝置報告更新作業的即時作業狀況和狀態。 建置強大的儀表板報告，以使用裝置對應項查詢來呈現最即時的問題。
   
-    *進階閱讀*：[如何使用裝置對應項屬性][lnk-twin-properties]、[裝置對應項與工作的 IoT 中樞查詢語言][lnk-query-language]
+    *進階閱讀*：[如何使用裝置對應項屬性][lnk-twin-properties]、[裝置對應項與工作的 IoT 中樞查詢語言][lnk-query-language]。
 * **淘汰**︰在故障、升級循環或服務存留期結束後，更換裝置或予以解除委任。  如果實體裝置正被取代，則使用裝置對應項來維護裝置資訊，若正在淘汰中則加以封存。 使用 IoT 中樞身分識別登錄，安全地撤銷裝置身分識別與認證。
   
-    *進階閱讀*：[如何使用裝置對應項屬性][lnk-twin-properties]、[管理裝置身分識別][lnk-identity-registry]
+    *進階閱讀*：[如何使用裝置對應項屬性][lnk-twin-properties]、[管理裝置身分識別][lnk-identity-registry]。
 
 ## <a name="device-management-patterns"></a>裝置管理模式
 IoT 中樞可實現下列這套裝置管理模式。  [裝置管理教學課程][lnk-get-started]更詳細地說明如何擴充這些模式來符合確切的案例，以及如何根據這些核心範本來設計新模式。
@@ -84,7 +89,7 @@ IoT 中樞可實現下列這套裝置管理模式。  [裝置管理教學課程]
     ![裝置管理報告進度和狀態模式圖形][img-report_progress_pattern]
 
 ## <a name="next-steps"></a>後續步驟
-您可以使用 IoT 中樞針對裝置管理所提供的功能、模式和程式碼程式庫來建立 IoT 應用程式，以滿足企業 IoT 操作員在裝置生命週期內各階段的需求。
+IoT 中樞針對裝置管理所提供的功能、模式和程式碼程式庫，可讓您建立 IoT 應用程式，以滿足企業 IoT 操作員在裝置生命週期內各階段的需求。
 
 若要繼續了解 IoT 中樞內的裝置管理功能，請參閱[開始使用裝置管理][lnk-get-started]教學課程。
 
@@ -109,9 +114,4 @@ IoT 中樞可實現下列這套裝置管理模式。  [裝置管理教學課程]
 [lnk-methods-devguide]: iot-hub-devguide-direct-methods.md
 [lnk-jobs]: iot-hub-node-node-schedule-jobs.md
 [lnk-jobs-devguide]: iot-hub-devguide-jobs.md
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

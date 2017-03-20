@@ -12,31 +12,37 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 02/22/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 820a9463c0e58054cf70324b680c5af8fdcacade
-ms.openlocfilehash: 18479c3680aa46113e59d25b6e034830f78a1859
+ms.sourcegitcommit: aca83d2de9247bedacce0fb03efe141d903d8605
+ms.openlocfilehash: f93d37ad5be4bf7fdc78d83ec68ba56a427b3e35
+ms.lasthandoff: 02/23/2017
 
 
 ---
 # <a name="connect-configuration-manager-to-log-analytics"></a>將 Configuration Manager 連線至 Log Analytics
-您可以在 OMS 中將 System Center Configuration Manager 連線至 Log Analytics 來同步處理裝置集合資料。 這可讓 Configuration Manager 部署中的資料可在 OMS 中使用。
+您可以在 OMS 中將 System Center Configuration Manager 連線至 Log Analytics 來同步處理裝置集合資料。 這可讓 Configuration Manager 階層中的資料可在 OMS 中使用。
 
-需要數個步驟才能將 Configuration Manager 連線至 OMS，以下是整個程序的快速概要︰
+## <a name="prerequisites"></a>必要條件
+
+Log Analytics 支援 System Center Configuration Manager 目前分支，1606 版和更高版本。  
+
+## <a name="configuration-overview"></a>組態概觀
+下列步驟摘要說明將 Configuration Manager 連線至 Log Analytics 的程序。  
 
 1. 在 Azure 管理入口網站中，將 Configuration Manager 註冊為 Web 應用程式和/或 Web API 應用程式，並確保您擁有 Azure Active Directory 註冊中的用戶端識別碼和用戶端秘密金鑰。 如需如何完成此步驟的詳細資訊，請參閱[使用入口網站來建立可存取資源的 Active Directory 應用程式和服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)。
 2. 在 Azure 管理入口網站中，[為 Configuration Manager (已註冊的 Web 應用程式) 提供存取 OMS 的權限](#provide-configuration-manager-with-permissions-to-oms)。
 3. 在 Configuration Manager 中，[使用新增 OMS 連線精靈新增連線](#add-an-oms-connection-to-configuration-manager)。
-4. 如果密碼或用戶端祕密金鑰過期或遺失，您可以在 Configuration Manager 中[更新連線屬性](#update-oms-connection-properties)。
+4. 如果密碼或用戶端祕密金鑰過期或遺失，在 Configuration Manager 中[更新連線屬性](#update-oms-connection-properties)。
 5. 使用 OMS 入口網站的資訊，在執行 Configuration Manager 服務連線點網站系統角色的電腦上[下載並安裝 Microsoft Monitoring Agent](#download-and-install-the-agent)。 代理程式會將 Configuration Manager 資料傳送至 OMS。
-6. 在 OMS 中，以電腦群組的形式[從 Configuration Manager 匯入集合](#import-collections)。
-7. 在 OMS 中，以[電腦群組](log-analytics-computer-groups.md)的形式從 Configuration Manager 檢視資料。
+6. 在 Log Analytics 中，以電腦群組的形式[從 Configuration Manager 匯入集合](#import-collections)。
+7. 在 Log Analytics 中，以電腦群組的形式[從 Configuration Manager 檢視資料](log-analytics-computer-groups.md)。
 
 若要深入了解如何將 Configuration Manager 連線至 OMS，請參閱[將資料從 Configuration Manager 同步處理至 Microsoft Operations Management Suite](https://technet.microsoft.com/library/mt757374.aspx)。
 
 ## <a name="provide-configuration-manager-with-permissions-to-oms"></a>為 Configuration Manager 提供 OMS 的權限
-下列程序可為 Azure 管理入口網站提供存取 OMS 的權限。 具體來說，您必須對資源群組中的使用者授與「參與者角色」。 這會進而讓 Azure 管理入口網站將 Configuration Manager 連線至 OMS。
+下列程序可為 Azure 管理入口網站提供存取 OMS 的權限。 具體來說，您必須授與參與者角色給資源群組中的使用者，以允許 Azure 管理入口網站將 Configuration Manager 連線至 OMS。
 
 > [!NOTE]
 > 您必須為 Configuration Manager 指定 OMS 的權限。 否則，當您在 Configuration Manager 中使用組態精靈時，將會收到錯誤訊息。
@@ -125,13 +131,8 @@ ms.openlocfilehash: 18479c3680aa46113e59d25b6e034830f78a1859
 
 ![電腦群組 - SCCM 索引標籤](./media/log-analytics-sccm/sccm-computer-groups02.png)
 
-當您按一下其中一項時，[搜尋] 會開啟，顯示所有匯入的群組或是屬於每個群組的所有電腦。 使用 [記錄檔搜尋](log-analytics-log-searches.md)，您就可以開始深入分析 Configuration Manager 資料。
+當您按一下其中一項時，[搜尋] 會開啟，顯示所有匯入的群組或是屬於每個群組的所有電腦。 使用 [記錄搜尋](log-analytics-log-searches.md)，您就可以開始深入分析 Configuration Manager 資料。
 
 ## <a name="next-steps"></a>後續步驟
 * 請使用 [記錄檔搜尋](log-analytics-log-searches.md)，檢視有關 Configuration Manager 資料的詳細資訊。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

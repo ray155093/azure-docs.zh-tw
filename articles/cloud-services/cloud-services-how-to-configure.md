@@ -17,6 +17,7 @@ ms.author: adegeo
 translationtype: Human Translation
 ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
 ms.openlocfilehash: 838be613a35ac4af988e089efb57e45365cc7636
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -77,10 +78,5 @@ Azure 傳統入口網站也可讓您 [啟用 Azure 雲端服務中角色的遠�
 * [管理您的雲端服務](cloud-services-how-to-manage.md)。
 * [啟用 Azure 雲端服務中角色的遠端桌面連線](cloud-services-role-enable-remote-desktop.md)
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

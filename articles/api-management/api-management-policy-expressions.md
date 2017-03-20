@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 77fd7b5b339a8ede8a297bec96f91f0a243cc18d
-ms.openlocfilehash: ed28fcea134bfbeda25abff41a3163471cef4294
+ms.sourcegitcommit: 3152a1306f2c3eeb42dd3b21cff62b696ed01e5d
+ms.openlocfilehash: 75ea0486a1b5abc71df3b7d9e8385717954b89f4
+ms.lasthandoff: 03/01/2017
 
 ---
 # <a name="api-management-policy-expressions"></a>API 管理原則運算式
@@ -35,12 +36,12 @@ ms.openlocfilehash: ed28fcea134bfbeda25abff41a3163471cef4294
 > -   若要下載這段影片中使用的原則陳述式，請參閱 [api-management-samples/policies](https://github.com/Azure/api-management-samples/tree/master/policies) GitHub 儲存機制。  
   
   
-##  <a name="a-namesyntaxa-syntax"></a><a name="Syntax"></a>語法  
+##  <a name="Syntax"></a>語法  
  單一陳述式的運算式會以 `@(expression)` 括住，其中 `expression` 是格式正確的 C# 運算式陳述式。  
   
  多重陳述式的運算式則會以 `@{expression}` 括住。 多重陳述式運算式內的所有程式碼路徑都必須以 `return` 陳述式結尾。  
   
-##  <a name="a-namepolicyexpressionsexamplesa-examples"></a><a name="PolicyExpressionsExamples"></a>範例  
+##  <a name="PolicyExpressionsExamples"></a>範例  
   
 ```  
 @(true)  
@@ -51,7 +52,7 @@ ms.openlocfilehash: ed28fcea134bfbeda25abff41a3163471cef4294
   
 @(Regex.Match(context.Response.Headers.GetValueOrDefault("Cache-Control",""), @"max-age=(?<maxAge>\d+)").Groups["maxAge"]?.Value)  
   
-@(context.Variables.ContainsKey("maxAge")?3600:int.Parse((string)context.Variables["maxAge"]))  
+@(context.Variables.ContainsKey("maxAge") ? int.Parse((string)context.Variables["maxAge"]) : 3600)  
   
 @{   
   string value;   
@@ -66,13 +67,13 @@ ms.openlocfilehash: ed28fcea134bfbeda25abff41a3163471cef4294
 }  
 ```  
   
-##  <a name="a-namepolicyexpressionsusagea-usage"></a><a name="PolicyExpressionsUsage"></a>使用方式  
+##  <a name="PolicyExpressionsUsage"></a>使用方式  
  如果原則參考未另行指定，則可以在任何 API 管理[原則](api-management-policies.md)中，使用運算式做為屬性值或文字值。  
   
 > [!IMPORTANT]
 >  請注意，當您使用原則運算式時，若原則已定義，則只能對原則運算式進行有限的驗證。 由於閘道會在執行階段於輸入或輸出管線中執行運算式，由原則運算式產生的任何執行階段例外狀況都會導致 API 呼叫中發生執行階段錯誤。  
   
-##  <a name="a-nameclrtypesa-net-framework-types-allowed-in-policy-expressions"></a><a name="CLRTypes"></a>原則運算式中允許的 .NET Framework 類型  
+##  <a name="CLRTypes"></a>原則運算式中允許的 .NET Framework 類型  
  下表列出原則運算式中允許的 .NET Framework 類型和其成員。  
   
 |CLR 類型|支援的方法|  
@@ -166,12 +167,12 @@ ms.openlocfilehash: ed28fcea134bfbeda25abff41a3163471cef4294
 |System.Xml.Linq.XText|支援所有方法|  
 |System.Xml.XmlNodeType|全部|  
   
-##  <a name="a-namecontextvariablesa-context-variable"></a><a name="ContextVariables"></a>內容變數  
+##  <a name="ContextVariables"></a>內容變數  
  名為 `context` 的變數可在每個原則[運算式](api-management-policy-expressions.md#Syntax)中隱含地使用。 其成員會提供與 `\request` 相關的資訊。 所有 `context` 成員都是唯讀的。  
   
 |內容變數|允許的方法、屬性和參數值|  
 |----------------------|-------------------------------------------------------|  
-|context|Api：IApi<br /><br /> 部署<br /><br /> LastError<br /><br /> 作業<br /><br /> 產品<br /><br /> 要求<br /><br /> Response<br /><br /> 訂閱<br /><br /> 追蹤︰bool<br /><br /> 使用者<br /><br /> Variables:IReadOnlyDictionary<string, object><br /><br /> void Trace(訊息：字串)|  
+|context|Api：IApi<br /><br /> 部署<br /><br /> LastError<br /><br /> 作業<br /><br /> 產品<br /><br /> 要求<br /><br /> RequestId：字串<br /><br /> Response<br /><br /> 訂閱<br /><br /> 追蹤︰bool<br /><br /> 使用者<br /><br /> Variables:IReadOnlyDictionary<string, object><br /><br /> void Trace(訊息：字串)|  
 |context.Api|識別碼︰字串<br /><br /> 名稱︰字串<br /><br /> 路徑︰字串<br /><br /> ServiceUrl：IUrl|  
 |context.Deployment|區域︰字串<br /><br /> ServiceName︰字串|  
 |context.LastError|來源︰字串<br /><br /> 原因︰字串<br /><br /> 訊息︰字串<br /><br /> 範圍︰字串<br /><br /> 區段︰字串<br /><br /> 路徑︰字串<br /><br /> PolicyId︰字串<br /><br /> 如需 context.LastError 的詳細資訊，請參閱[錯誤處理](api-management-error-handling-policies.md)。|  
@@ -201,8 +202,4 @@ ms.openlocfilehash: ed28fcea134bfbeda25abff41a3163471cef4294
 
 ## <a name="next-steps"></a>後續步驟
 如需有關使用原則的詳細資訊，請參閱 [API 管理中的原則](api-management-howto-policies.md)。  
-
-
-<!--HONumber=Jan17_HO2-->
-
 

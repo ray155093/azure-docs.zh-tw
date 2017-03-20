@@ -1,5 +1,5 @@
 ---
-title: "執行平行工作將節點使用量最大化 - Azure Batch | Microsoft Docs"
+title: "平行執行工作以便有效率地使用計算資源 - Azure Batch | Microsoft Docs"
 description: "在 Azure Batch 集區中的每個節點上執行並行工作時，使用較少的運算節點以增加效率和降低成本"
 services: batch
 documentationcenter: .net
@@ -12,15 +12,18 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 01/23/2017
+ms.date: 02/27/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ffba988bd8cd3896816118afde979c7067fced79
-ms.openlocfilehash: 8080c8c43d1e88381cd49bdac6a5f36b6cd82709
+ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
+ms.openlocfilehash: c4053ded725ad7ab2acc6d5d54e8343ffb961408
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="maximize-azure-batch-compute-resource-usage-with-concurrent-node-tasks"></a>使用並行節點工作最大化 Azure Batch 計算資源使用量
+# <a name="run-tasks-concurrently-to-maximize-usage-of-batch-compute-nodes"></a>並行執行工作以充分使用 Batch 計算節點 
+
 藉由在 Azure Batch 集區的每個計算模式同時執行一個以上的工作，您可以用較少的集中區節點將資源使用量最大化。 對於某些工作負載來說，這會產生縮短作業時間和降低成本的效益。
 
 雖然某些案例受益於將節點的所有資源配置給單一工作，但是許多案例受益於允許多個工作共用這些資源：
@@ -143,9 +146,4 @@ Duration: 00:08:48.2423500
 [task_schedule]: https://msdn.microsoft.com/library/microsoft.azure.batch.cloudpool.taskschedulingpolicy.aspx
 
 [1]: ./media/batch-parallel-node-tasks\heat_map.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

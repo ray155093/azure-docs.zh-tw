@@ -1,5 +1,5 @@
 ---
-title: "疑難排解 Internet explorer 的存取面板延伸模組 | Microsoft Docs"
+title: "針對適用於 IE 的 Azure 存取面板延伸模組進行疑難排解 | Microsoft Docs"
 description: "如何使用群組原則針對我的 app 入口網站部署 Internet Explorer 附加元件。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/24/2017
+ms.date: 02/27/2017
 ms.author: markvi
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 43768d76e3cdc0dc34a3412675ea4fb84170c021
+ms.sourcegitcommit: f593ecca4f4c82dcbd07e6f57ad120537f7d2134
+ms.openlocfilehash: 4c3f7f95b1052512547a9996019803b6185a3405
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -50,7 +52,7 @@ ms.openlocfilehash: 43768d76e3cdc0dc34a3412675ea4fb84170c021
 ## <a name="check-that-the-access-panel-extension-is-enabled"></a>檢查存取面板延伸模組是否已啟用
 確認 Internet Explorer 中已啟用存取面板延伸模組：
 
-1. 在 Internet Explorer 中按一下視窗右上角的「齒輪」圖示  。 然後選取 [網際網路選項]。<br />(在舊版 Internet Explorer 中可以在 [工具] > [網際網路選項] 下找到。
+1. 在 Internet Explorer 中按一下視窗右上角的「齒輪」圖示。 然後選取 [網際網路選項]。<br />(在舊版 Internet Explorer 中可以在 [工具] > [網際網路選項] 下找到。
    
     ![移至 [工具] > [網際網路選項]](./media/active-directory-saas-ie-troubleshooting/internetoptions.png)
 2. 按一下 [程式] 索引標籤，然後按一下 [管理附加元件] 按鈕。
@@ -64,7 +66,7 @@ ms.openlocfilehash: 43768d76e3cdc0dc34a3412675ea4fb84170c021
 ## <a name="enable-extensions-for-inprivate-browsing"></a>啟用 InPrivate 瀏覽的延伸模組
 如果您正在使用 InPrivate 瀏覽模式：
 
-1. 在 Internet Explorer 中按一下視窗右上角的「齒輪」圖示  。 然後選取 [網際網路選項]。<br />(在舊版 Internet Explorer 中可以在 [工具] > [網際網路選項] 下找到。
+1. 在 Internet Explorer 中按一下視窗右上角的「齒輪」圖示。 然後選取 [網際網路選項]。<br />(在舊版 Internet Explorer 中可以在 [工具] > [網際網路選項] 下找到。
    
     ![一個診斷視窗範例](./media/active-directory-saas-ie-troubleshooting/inprivateoptions.png)
 2. 移至 [隱私權] 索引標籤，然後**取消核取**標示為 [InPrivate 瀏覽啟動時停用工具列和延伸模組] 的核取方塊</p>
@@ -78,7 +80,7 @@ ms.openlocfilehash: 43768d76e3cdc0dc34a3412675ea4fb84170c021
 1. 在鍵盤上按下 **Windows 鍵** 以開啟 [開始] 功能表。 功能表開啟時，您可以輸入任何內容進行搜尋。 請輸入「控制台」，然後當控制台  出現在搜尋結果中時將它開啟。
    
     ![搜尋「控制台」](./media/active-directory-saas-ie-troubleshooting/search_sm.png)
-2. 在控制台的右上角，將 [檢視方式] 選項變更為 [大圖示]。 然後尋找 [程式和功能]  按鈕並按一下。
+2. 在控制台的右上角，將 [檢視方式] 選項變更為 [大圖示]。 然後尋找 [程式和功能] 按鈕並按一下。
    
     ![變更檢視以顯示大圖示](./media/active-directory-saas-ie-troubleshooting/control_panel.png)
 3. 從清單中選取 [存取面板延伸模組]，再按一下 [解除安裝] 按鈕。
@@ -92,10 +94,5 @@ ms.openlocfilehash: 43768d76e3cdc0dc34a3412675ea4fb84170c021
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 * [搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)
 * [如何使用群組原則部署 Internet Explorer 的存取面板擴充功能](active-directory-saas-ie-group-policy.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

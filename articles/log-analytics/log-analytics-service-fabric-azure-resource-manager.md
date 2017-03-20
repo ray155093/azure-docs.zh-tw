@@ -1,6 +1,6 @@
 ---
-title: "在 Log Analytics 中使用 Service Fabric 解決方案進行環境最佳化 | Microsoft Docs"
-description: "您可以使用 Service Fabric 解決方案評估 Service Fabric 應用程式、微服務、節點和叢集的風險和健全狀況。"
+title: "使用 Azure 入口網站以 Log Analytics 評估 Service Fabric 應用程式 | Microsoft Docs"
+description: "您可以在 Log Analytics 中使用 Azure 入口網站，使用 Service Fabric 解決方案評估 Service Fabric 應用程式、微服務、節點和叢集的風險和健全狀況。"
 services: log-analytics
 documentationcenter: 
 author: niniikhena
@@ -15,17 +15,19 @@ ms.topic: article
 ms.date: 09/21/2016
 ms.author: nini
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2fe6c2b23c816a5ec5bb00199725cdf0b29b31f0
+ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
+ms.openlocfilehash: ac94bca1657efbe0ce94db953933f026217d1c8a
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="service-fabric-solution-in-log-analytics"></a>Service Fabric Solution in Log Analytics (Log Analytics 中的 Service Fabric 方案)
+# <a name="assess-service-fabric-applications-and-micro-services-with-the-azure-portal"></a>使用 Azure 入口網站評估 Service Fabric 應用程式和微服務
+
 > [!div class="op_single_selector"]
 > * [Resource Manager](log-analytics-service-fabric-azure-resource-manager.md)
 > * [PowerShell](log-analytics-service-fabric.md)
-> 
-> 
+>
+>
 
 這篇文章說明如何在 Log Analytics 中使用 Service Fabric 解決方案，協助識別整個 Service Fabric 叢集的問題並且進行疑難排解。
 
@@ -79,11 +81,11 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 * 移至左窗格中的 [設定]，然後選取資料 >> Windows 效能計數器 >> [新增選取的效能計數器]：![Service Fabric](./media/log-analytics-service-fabric/7.png)
 * 在 [記錄搜尋] 中，使用下列查詢深入節點的關鍵度量︰
   </br>
-  
+
     a. 比較最近一個小時您所有節點的平均 CPU 使用率，以查看哪個節點有問題，以及在哪個時間間隔節點有突然增加︰
-  
+
     ``` Type=Perf ObjectName=Processor CounterName="% Processor Time"|measure avg(CounterValue) by Computer Interval 1HOUR. ```
-  
+
     ![Service Fabric](./media/log-analytics-service-fabric/10.png)
 
     b. 使用此查詢檢視每個節點上可用記憶體的類似折線圖︰
@@ -115,8 +117,8 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 > [!NOTE]
 > 在選取資源群組時，如果您正在使用現有的 Log Analytics 工作區，則選取 [使用現有]，並搜尋包含 OMS 工作區的資源群組。 否則建立一個新的。
 > ![Service Fabric](./media/log-analytics-service-fabric/8.png)
-> 
-> 
+>
+>
 
 部署此範本之後，您可以看見儲存體帳戶連接到您的 Log Analytics 工作區。 在此例中，我多新增一個儲存體帳戶至上述所建立的 Exchange 工作區。
 ![Service Fabric](./media/log-analytics-service-fabric/9.png)
@@ -144,15 +146,9 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 
 > [!NOTE]
 > 您可以按一下儀表板頂端的 [根據最近 7 天的資料]，變更 Service Fabric 解決方案中這些事件的範圍。 您也可以顯示過去 7 天、1 天或 6 個小時內產生的事件。 或者，也可以選取 [自訂]，以指定自訂日期範圍。
-> 
-> 
+>
+>
 
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)，檢視詳細的 Service Fabric 事件資料。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

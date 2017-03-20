@@ -1,7 +1,26 @@
-i--- 標題：設定多重要素驗證 - Azure SQL | Microsoft Docs 描述：針對 SQL Database 和 SQL 資料倉儲使用多重要素驗證搭配 SSMS。
-services: sql-database documentationcenter: '' author: BYHAM manager: jhubbard editor: '' tags: ''
+---
+title: "設定 Multi-Factor Authentication - Azure SQL | Microsoft Docs"
+description: "針對 SQL Database 和 SQL 資料倉儲，搭配使用 Multi-Factor Authentication 與 SSMS。"
+services: sql-database
+documentationcenter: 
+author: BYHAM
+manager: jhubbard
+editor: 
+tags: 
+ms.assetid: 
+ms.service: sql-database
+ms.custom: authentication and authorization
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: data-management
+ms.date: 01/23/2017
+ms.author: rickbyh
+translationtype: Human Translation
+ms.sourcegitcommit: b134999d407195aaf44babb3e4862b96cc1dc1ed
+ms.openlocfilehash: b36f0cf8cbf0dfb310d6dd534906ee5391ce4cd5
+ms.lasthandoff: 03/02/2017
 
-ms.assetid: ms.service: sql-database ms.custom: authentication and authorization ms.devlang: na ms.topic: article ms.tgt_pltfrm: na ms.workload: data-management ms.date: 01/23/2017 ms.author: rickbyh
 
 ---
 # <a name="configure-azure-sql-database-multi-factor-authentication-for-sql-server-management-studio"></a>設定適用於 SQL Server Management Studio 的 Azure SQL Database 多重要素驗證
@@ -56,4 +75,5 @@ ms.assetid: ms.service: sql-database ms.custom: authentication and authorization
 [3]: ./media/sql-database-ssms-mfa-auth/3mfa-setup.png
 [4]: ./media/sql-database-ssms-mfa-auth/4mfa-verify-1.png
 [5]: ./media/sql-database-ssms-mfa-auth/5mfa-verify-2.png
+
 

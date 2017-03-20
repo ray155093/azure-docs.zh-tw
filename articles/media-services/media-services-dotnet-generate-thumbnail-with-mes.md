@@ -17,6 +17,7 @@ ms.author: juliako
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 1c28e756548b69d336b7f66ae9fbfa3c9259f787
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -172,7 +173,7 @@ ms.openlocfilehash: 1c28e756548b69d336b7f66ae9fbfa3c9259f787
             }
         }
 
-## <a name="a-idjsonathumbnail-json-preset"></a><a id="json"></a>縮圖 JSON 預設
+## <a id="json"></a>縮圖 JSON 預設
 如需結構描述的資訊，請參閱 [這個主題](https://msdn.microsoft.com/library/mt269962.aspx) 。
 
     {
@@ -274,7 +275,7 @@ ms.openlocfilehash: 1c28e756548b69d336b7f66ae9fbfa3c9259f787
     }
 
 
-## <a name="a-idxmlathumbnail-xml-preset"></a><a id="xml"></a>縮圖 XML 預設
+## <a id="xml"></a>縮圖 XML 預設
 如需結構描述的資訊，請參閱 [這個主題](https://msdn.microsoft.com/library/mt269962.aspx) 。
 
     <?xml version="1.0" encoding="utf-16"?>
@@ -373,10 +374,5 @@ ms.openlocfilehash: 1c28e756548b69d336b7f66ae9fbfa3c9259f787
 
 ## <a name="see-also"></a>另請參閱
 [媒體服務編碼概觀](media-services-encode-asset.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

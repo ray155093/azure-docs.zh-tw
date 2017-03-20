@@ -18,6 +18,7 @@ ms.author: spelluru
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 2e84eb020b46fe89426e547b389715d6190fc03c
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -35,10 +36,5 @@ ms.openlocfilehash: 2e84eb020b46fe89426e547b389715d6190fc03c
 * [匯入/匯出工具](https://azure.microsoft.com/documentation/samples/data-catalog-dotnet-import-export/)
   
   一個範例，示範如何使用資料目錄 REST API 以從 Azure 資料目錄擷取資產，並將其序列化成檔案。 它也會示範如何取用一組已序列化為 JSON 的資產，並將其推送至目錄。 它支援使用搜尋查詢匯出目錄的子集。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

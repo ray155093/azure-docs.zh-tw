@@ -12,15 +12,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/09/2017
+ms.date: 02/22/2017
 ms.author: arramac
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 876e0fd12d045bba85d1e30d4abfcb8ce421213a
-ms.openlocfilehash: ed58e623ff74a21df25fc93346e571edec7b40da
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 1f5f0b1aca581900b94f0f87563c5c7e720f46c8
+ms.lasthandoff: 03/07/2017
 
 
 ---
-# <a name="partitioning-and-scaling-in-azure-documentdb"></a>Azure DocumentDB 的資料分割與調整規模
+# <a name="partitioning-partition-keys-and-scaling-in-documentdb"></a>Azure DocumentDB 的資料分割、資料分割索引鍵和調整規模
+
 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 的設計可協助您達成快速且可預測的效能，並順暢地隨著應用程式的成長而調整規模。 本文概述 DocumentDB 中資料分割運作方式的概觀，並描述可如何設定 DocumentDB 集合以有效地地調整應用程式規模。
 
 閱讀本文後，您將能夠回答下列問題：   
@@ -41,14 +44,22 @@ Scott Hanselman 和 DocumentDB 工程總經理 Shireesh Thota 也會在這段 Az
 
 應用程式完全不會感受到資料分割作業的進行。 DocumentDB 支援快速的讀取與寫入、SQL 與 LINQ 查詢、JavaScript 形式的交易邏輯、一致性層級，以及透過呼叫單一集合資源的 REST API 進行更細微的存取控制。 此服務會處理跨資料分割所分散的資料，以及將查詢要求路由傳送至正確的資料分割。 
 
-運作方式為何？ 當您在 DocumentDB 中建立集合時，會注意到有一個您可以指定的「資料分割索引鍵屬性」  組態值。 此為文件中 DocumentDB 可用來在多部伺服器或多個資料分割之間分散資料的 JSON 屬性 (或路徑)。 DocumentDB 會將資料分割索引鍵值變成雜湊值，並使用雜湊的結果來判斷儲存 JSON 文件所在的資料分割。 具有相同資料分割索引鍵的所有文件，都會儲存在相同的資料分割中。 
+運作方式為何？ 當您在 DocumentDB 中建立集合時，您可以指定**資料分割索引鍵屬性**組態值。 此為文件中 DocumentDB 可用來在多部伺服器或多個資料分割之間分散資料的 JSON 屬性 (或路徑)。 DocumentDB 會將資料分割索引鍵值變成雜湊值，並使用雜湊的結果來判斷儲存 JSON 文件所在的資料分割。 具有相同資料分割索引鍵的所有文件，都會儲存在相同的資料分割中。 
 
 例如，請考慮使用將員工和其部門資料儲存在 DocumentDB 中的應用程式。 為了依部門相應放大資料，讓我們選擇 `"department"` 作為資料分割索引鍵屬性。 DocumentDB 中的每個文件都必須包含必要的 `"id"` 屬性，而就每個具有相同資料分割索引鍵值 (例如 `"Marketing`") 的文件而言，這個屬性都不得重複。 儲存在集合中的每個文件都必須具有不重複的資料分割索引鍵與識別碼組合 (例如 `{ "Department": "Marketing", "id": "0001" }`、`{ "Department": "Marketing", "id": "0002" }` 和 `{ "Department": "Sales", "id": "0001" }`)。 換句話說，複合屬性 (資料分割索引鍵, 識別碼) 是集合的主要索引鍵。
 
-## <a name="partition-keys"></a>資料分割索引鍵
-選擇資料分割索引鍵是在設計階段必須進行的一項重要決策。 您選擇的 JSON 屬性名稱必須具有各種不同的值，而且應該可以平均分散存取模式。 資料分割索引鍵會以 JSON 路徑的形式指定，例如 `/department` 代表 department 屬性。 
+DocumentDB 會儲存體大小與佈建的輸送量，在每個集合背後建立少量的實體資料分割。 您定義為資料分割索引鍵的屬性為邏輯資料分割。 多個資料分割索引鍵值通常會共用單一實體資料分割，但單一值永遠不會跨越資料分割。 資料分割索引鍵最好有許多值，因為 DocumentDB 可隨著資料成長或您增加佈建的輸送量，執行更理想的負載平衡。
 
-下表顯示資料分割索引鍵定義及其對應的 JSON 值的範例。
+例如，假設您建立的集合有每秒 25,000 個要求的輸送量，而且 DocumentDB 可支援單一實體資料分割每秒 10,000 個要求。 DocumentDB 會為您的集合建立 3 個實體資料分割 P1、 P2 和 P3。 在插入或讀取文件時，DocumentDB 服務會雜湊對應的 `Department` 值，以將資料對應至三個資料分割 P1、 P2 和 P3。 所以說，如果「行銷」和「銷售」雜湊為 1，則兩者都會儲存於 P1。 而如果 P1 已滿，則 DocumentDB 會將 P1 分割成兩個新的資料分割 P4 和 P5。 然後此服務可能會在分割後將「行銷」移至 P4、將「銷售」移至 P5，而後捨棄 P1。 對您的應用程式而言，資料分割之間的這些資料分割索引鍵移動是透明的，並不會影響到您的集合可用性。
+
+## <a name="partition-keys"></a>資料分割索引鍵
+選擇資料分割索引鍵是在設計階段必須進行的一項重要決策。 您選擇的 JSON 屬性名稱必須具有各種不同的值，而且應該可以平均分散存取模式。 
+
+> [!NOTE]
+> 資料分割索引鍵最好有大量相異值 (至少數百至數千個)。 許多客戶會有效利用 DocumentDB 做為索引鍵值存放區，其中唯一的「識別碼」就是資料分割索引鍵，所以會有數百萬至數十億個資料分割索引鍵。
+>
+
+下表顯示資料分割索引鍵定義及其對應的 JSON 值的範例。 資料分割索引鍵會以 JSON 路徑的形式指定，例如 `/department` 代表 department 屬性。 
 
 <table border="0" cellspacing="0" cellpadding="0">
     <tbody>
@@ -157,21 +168,22 @@ Azure DocumentDB 已藉由 [REST API 版本 2015-12-16](https://msdn.microsoft.c
 
 在此範例中，我們挑選了 `deviceId` ，因為我們知道 (a) 由於有大量的裝置，因此可以將寫入平均分散到所有資料分割，讓我們能夠調整資料庫規模以內嵌大量資料，以及 (b) 許多要求 (例如，提取裝置的最新讀取) 會限定在單一 deviceId，而可以從單一資料分割擷取。
 
-    DocumentClient client = new DocumentClient(new Uri(endpoint), authKey);
-    await client.CreateDatabaseAsync(new Database { Id = "db" });
+```csharp
+DocumentClient client = new DocumentClient(new Uri(endpoint), authKey);
+await client.CreateDatabaseAsync(new Database { Id = "db" });
 
-    // Collection for device telemetry. Here the JSON property deviceId will be used as the partition key to 
-    // spread across partitions. Configured for 10K RU/s throughput and an indexing policy that supports 
-    // sorting against any number or string property.
-    DocumentCollection myCollection = new DocumentCollection();
-    myCollection.Id = "coll";
-    myCollection.PartitionKey.Paths.Add("/deviceId");
+// Collection for device telemetry. Here the JSON property deviceId will be used as the partition key to 
+// spread across partitions. Configured for 10K RU/s throughput and an indexing policy that supports 
+// sorting against any number or string property.
+DocumentCollection myCollection = new DocumentCollection();
+myCollection.Id = "coll";
+myCollection.PartitionKey.Paths.Add("/deviceId");
 
-    await client.CreateDocumentCollectionAsync(
-        UriFactory.CreateDatabaseUri("db"),
-        myCollection,
-        new RequestOptions { OfferThroughput = 20000 });
-
+await client.CreateDocumentCollectionAsync(
+    UriFactory.CreateDatabaseUri("db"),
+    myCollection,
+    new RequestOptions { OfferThroughput = 20000 });
+```
 
 > [!NOTE]
 > 若要使用 SDK 建立已分割集合，您必須指定等於或大於 10,100 RU/秒的輸送量值。 若要為已分割集合設定介於 2,500 與 10,000 之間的輸送量值，您必須暫時使用 Azure 入口網站，因為這些新的較低值尚無法在 SDK 中取得。
@@ -183,107 +195,118 @@ Azure DocumentDB 已藉由 [REST API 版本 2015-12-16](https://msdn.microsoft.c
 ### <a name="reading-and-writing-documents"></a>讀取和寫入文件
 現在，我們將資料插入 DocumentDB 中。 以下是包含裝置讀取的範例類別，以及呼叫 CreateDocumentAsync 將新的裝置讀取插入集合中。
 
-    public class DeviceReading
+```csharp
+public class DeviceReading
+{
+    [JsonProperty("id")]
+    public string Id;
+
+    [JsonProperty("deviceId")]
+    public string DeviceId;
+
+    [JsonConverter(typeof(IsoDateTimeConverter))]
+    [JsonProperty("readingTime")]
+    public DateTime ReadingTime;
+
+    [JsonProperty("metricType")]
+    public string MetricType;
+
+    [JsonProperty("unit")]
+    public string Unit;
+
+    [JsonProperty("metricValue")]
+    public double MetricValue;
+  }
+
+// Create a document. Here the partition key is extracted as "XMS-0001" based on the collection definition
+await client.CreateDocumentAsync(
+    UriFactory.CreateDocumentCollectionUri("db", "coll"),
+    new DeviceReading
     {
-        [JsonProperty("id")]
-        public string Id;
-
-        [JsonProperty("deviceId")]
-        public string DeviceId;
-
-        [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("readingTime")]
-        public DateTime ReadingTime;
-
-        [JsonProperty("metricType")]
-        public string MetricType;
-
-        [JsonProperty("unit")]
-        public string Unit;
-
-        [JsonProperty("metricValue")]
-        public double MetricValue;
-      }
-
-    // Create a document. Here the partition key is extracted as "XMS-0001" based on the collection definition
-    await client.CreateDocumentAsync(
-        UriFactory.CreateDocumentCollectionUri("db", "coll"),
-        new DeviceReading
-        {
-            Id = "XMS-001-FE24C",
-            DeviceId = "XMS-0001",
-            MetricType = "Temperature",
-            MetricValue = 105.00,
-            Unit = "Fahrenheit",
-            ReadingTime = DateTime.UtcNow
-        });
-
+        Id = "XMS-001-FE24C",
+        DeviceId = "XMS-0001",
+        MetricType = "Temperature",
+        MetricValue = 105.00,
+        Unit = "Fahrenheit",
+        ReadingTime = DateTime.UtcNow
+    });
+```
 
 請依資料分割索引鍵和識別碼來讀取文件，並加以更新，然後最後一個步驟是依資料分割索引鍵和識別碼刪除文件。 請注意，讀取包括 PartitionKey 值 (對應至 REST API 中的 `x-ms-documentdb-partitionkey` 要求標頭)。
 
-    // Read document. Needs the partition key and the ID to be specified
-    Document result = await client.ReadDocumentAsync(
-      UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
-      new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
+```csharp
+// Read document. Needs the partition key and the ID to be specified
+Document result = await client.ReadDocumentAsync(
+  UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
+  new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
 
-    DeviceReading reading = (DeviceReading)(dynamic)result;
+DeviceReading reading = (DeviceReading)(dynamic)result;
 
-    // Update the document. Partition key is not required, again extracted from the document
-    reading.MetricValue = 104;
-    reading.ReadingTime = DateTime.UtcNow;
+// Update the document. Partition key is not required, again extracted from the document
+reading.MetricValue = 104;
+reading.ReadingTime = DateTime.UtcNow;
 
-    await client.ReplaceDocumentAsync(
-      UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
-      reading);
+await client.ReplaceDocumentAsync(
+  UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
+  reading);
 
-    // Delete document. Needs partition key
-    await client.DeleteDocumentAsync(
-      UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
-      new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
-
-
+// Delete document. Needs partition key
+await client.DeleteDocumentAsync(
+  UriFactory.CreateDocumentUri("db", "coll", "XMS-001-FE24C"), 
+  new RequestOptions { PartitionKey = new PartitionKey("XMS-0001") });
+```
 
 ### <a name="querying-partitioned-collections"></a>查詢資料分割的集合
 當您在資料分割的集合中查詢資料時，DocumentDB 會自動將查詢路由傳送至資料分割 (對應至篩選中所指定的資料分割索引鍵值 (如果有的話))。 例如，此查詢只會路由傳送至包含資料分割索引鍵 "XMS-0001" 的資料分割。
 
-    // Query using partition key
-    IQueryable<DeviceReading> query = client.CreateDocumentQuery<DeviceReading>(
-        UriFactory.CreateDocumentCollectionUri("db", "coll"))
-        .Where(m => m.MetricType == "Temperature" && m.DeviceId == "XMS-0001");
-
+```csharp
+// Query using partition key
+IQueryable<DeviceReading> query = client.CreateDocumentQuery<DeviceReading>(
+    UriFactory.CreateDocumentCollectionUri("db", "coll"))
+    .Where(m => m.MetricType == "Temperature" && m.DeviceId == "XMS-0001");
+```
+    
 下列查詢沒有根據資料分割索引鍵 (DeviceId) 的篩選，且已展開至對資料分割索引執行它的所有資料分割。 請注意，您必須指定 EnableCrossPartitionQuery (REST API 中的`x-ms-documentdb-query-enablecrosspartition` )，才能讓 SDK 跨資料分割執行查詢。
 
-    // Query across partition keys
-    IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<DeviceReading>(
-        UriFactory.CreateDocumentCollectionUri("db", "coll"), 
-        new FeedOptions { EnableCrossPartitionQuery = true })
-        .Where(m => m.MetricType == "Temperature" && m.MetricValue > 100);
+```csharp
+// Query across partition keys
+IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<DeviceReading>(
+    UriFactory.CreateDocumentCollectionUri("db", "coll"), 
+    new FeedOptions { EnableCrossPartitionQuery = true })
+    .Where(m => m.MetricType == "Temperature" && m.MetricValue > 100);
+```
+
+DocumentDB 使用 SQL (包含 SDK 1.12.0 和更新版本) 支援已分割集合的 [彙總函式] ([彙總函式](documentdb-sql-query.md#Aggregates) `COUNT`、`MIN`、`MAX`、`SUM` 和 `AVG`)。 查詢必須包含單一彙總運算子，而且在投射中必須包含單一值。
 
 ### <a name="parallel-query-execution"></a>平行查詢執行
 DocumentDB SDK 1.9.0 和更新版本支援平行查詢執行選項，可讓您對分割集合執行低延遲查詢 (即使它們需要涉及大量的資料分割也一樣)。 例如，下列查詢設定為跨資料分割平行執行。
 
-    // Cross-partition Order By Queries
-    IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<DeviceReading>(
-        UriFactory.CreateDocumentCollectionUri("db", "coll"), 
-        new FeedOptions { EnableCrossPartitionQuery = true, MaxDegreeOfParallelism = 10, MaxBufferedItemCount = 100})
-        .Where(m => m.MetricType == "Temperature" && m.MetricValue > 100)
-        .OrderBy(m => m.MetricValue);
-
+```csharp
+// Cross-partition Order By Queries
+IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<DeviceReading>(
+    UriFactory.CreateDocumentCollectionUri("db", "coll"), 
+    new FeedOptions { EnableCrossPartitionQuery = true, MaxDegreeOfParallelism = 10, MaxBufferedItemCount = 100})
+    .Where(m => m.MetricType == "Temperature" && m.MetricValue > 100)
+    .OrderBy(m => m.MetricValue);
+```
+    
 若要管理平行執行查詢，您可以調整下列參數︰
 
 * 藉由設定 `MaxDegreeOfParallelism`，您可以控制平行處理原則的程度，亦即與集合的資料分割同時的網路連線數上限。 如果您將此設定為 -1，平行處理原則的程度是由 SDK 管理。 如果 `MaxDegreeOfParallelism` 未指定或設為 0 (這是預設值)，將會有連往集合資料分割的單一網路連線。
-* 藉由設定 `MaxBufferedItemCount`，您可以平衡查詢延遲和用戶端端記憶體使用量。 如果您省略這個參數或將此設定為 -1，平行查詢執行期間緩衝處理的項目數是由 SDK 管理。
+* 您可藉由設定 `MaxBufferedItemCount`，來權衡取捨查詢延遲和用戶端記憶體使用量。 如果您省略這個參數或將此設定為 -1，平行查詢執行期間緩衝處理的項目數是由 SDK 管理。
 
 在相同的集合狀態下，平行查詢會以和序列執行相同的順序傳回結果。 執行包含排序 (ORDER BY 和/或 TOP) 的跨資料分割查詢時，DocumentDB SDK 會跨資料分割發出平行查詢，並合併用戶端中已部分排序的結果來產生全域排序的結果。
 
 ### <a name="executing-stored-procedures"></a>執行預存程序
 您也可以對具有相同裝置識別碼的文件執行不可部分完成交易，例如，如果您正在維護彙總或處於單一文件中裝置的最新狀態。 
 
-    await client.ExecuteStoredProcedureAsync<DeviceReading>(
-        UriFactory.CreateStoredProcedureUri("db", "coll", "SetLatestStateAcrossReadings"),
-        new RequestOptions { PartitionKey = new PartitionKey("XMS-001") }, 
-        "XMS-001-FE24C");
-
+```csharp
+await client.ExecuteStoredProcedureAsync<DeviceReading>(
+    UriFactory.CreateStoredProcedureUri("db", "coll", "SetLatestStateAcrossReadings"),
+    new RequestOptions { PartitionKey = new PartitionKey("XMS-001") }, 
+    "XMS-001-FE24C");
+```
+    
 在下一節中，我們會探討如何從單一資料分割集合改為資料分割的集合。
 
 <a name="migrating-from-single-partition"></a>
@@ -350,10 +373,5 @@ DocumentDB 最常見的其中一個使用案例是用在記錄與遙測。 您�
 [2]: ./media/documentdb-partition-data/single-and-partitioned.png
 [3]: ./media/documentdb-partition-data/documentdb-migration-partitioned-collection.png  
 
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

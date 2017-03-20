@@ -15,13 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 12/07/2016
 ms.author: danlep
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 4bf470737f961219250c37d890ed81eb62409626
-ms.openlocfilehash: f03026212dfcbe2faa22188ebfb2e953114a87fd
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 0d7eba02757fb1b2263cf11c561b374eab837f21
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="set-up-gpu-drivers-for-n-series-vms"></a>為 N 系列 VM 設定 GPU 驅動程式
+# <a name="set-up-gpu-drivers-for-n-series-linux-vms"></a>為 N 系列 Linux VM 設定 GPU 驅動程式
 若要利用 Azure N 系列 VM (執行支援的 Linux 散發套件) 的 GPU 功能，您必須在部署之後於每個 VM 上安裝 NVIDIA 圖形驅動程式。 本文也適用於 [Windows VM](virtual-machines-windows-n-series-driver-setup.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 如需 N 系列 VM 規格、儲存體容量與磁碟的詳細資料，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
@@ -109,10 +111,5 @@ sudo apt-get install cuda-drivers
 * 如需 N 系列 VM 上 NVIDIA GPU 的詳細資訊，請參閱︰
     * [NVIDIA Tesla K80](http://www.nvidia.com/object/tesla-k80.html) (適用於 Azure NC VM)
     * [NVIDIA Tesla M60](http://www.nvidia.com/object/tesla-m60.html) (適用於 Azure NV VM)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

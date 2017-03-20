@@ -1,6 +1,6 @@
 ---
-title: "評估 Azure Service Fabric 應用程式和微服務 | Microsoft Docs"
-description: "您可以使用 Service Fabric 解決方案評估 Service Fabric 應用程式、微服務、節點和叢集的風險和健全狀況。"
+title: "使用 PowerShell 以 Azure Log Analytics 評估 Service Fabric 應用程式 | Microsoft Docs"
+description: "您可以在 Log Analytics 中使用 PowerShell，使用 Service Fabric 解決方案評估 Service Fabric 應用程式、微服務、節點和叢集的風險和健全狀況。"
 services: log-analytics
 documentationcenter: 
 author: niniikhena
@@ -15,12 +15,13 @@ ms.topic: article
 ms.date: 09/21/2016
 ms.author: nini
 translationtype: Human Translation
-ms.sourcegitcommit: 7695debd9f8152efbbc04b6d63a0b44e70646f16
-ms.openlocfilehash: 7cf1174791187cd7d751c4e2d2646282f4a0a5ce
+ms.sourcegitcommit: 6d20dc322a2493b9dd9a3fd843512befc1e90100
+ms.openlocfilehash: a822e7eb85eca42cba85d191e1effd7240deb1af
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="service-fabric-solution-in-log-analytics"></a>Service Fabric Solution in Log Analytics (Log Analytics 中的 Service Fabric 方案)
+# <a name="assess-azure-service-fabric-applications-and-micro-services-with-powershell"></a>使用 PowerShell 評估 Azure Service Fabric 應用程式和微服務
 > [!div class="op_single_selector"]
 > * [Resource Manager](log-analytics-service-fabric-azure-resource-manager.md)
 > * [PowerShell](log-analytics-service-fabric.md)
@@ -636,9 +637,4 @@ foreach($storageAccount in $storageAccountsToCheck)
 
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)，檢視詳細的 Service Fabric 事件資料。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

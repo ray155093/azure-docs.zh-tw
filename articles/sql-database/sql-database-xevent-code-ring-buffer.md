@@ -19,6 +19,7 @@ ms.author: genemi
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 4421506f516e6a65b7ff9207ce13dfb86e7c3540
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -359,9 +360,4 @@ Azure SQL Database 上擴充事件的主要主題是：
 - Code sample for SQL Server: [Determine Which Queries Are Holding Locks](http://msdn.microsoft.com/library/bb677357.aspx)
 - Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
