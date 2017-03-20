@@ -54,7 +54,7 @@ Xamarin 可讓您使用 C# 撰寫可在 iOS、Android 和 Windows (行動裝置�
 4. 按一下 [應用程式註冊]，然後選取 [新增]。
 5. 若要建立新的**原生用戶端應用程式**，請遵照提示進行。
   * [名稱] 向使用者說明該應用程式。
-  * [重新導向 URI] 是配置和字串的組合，Azure AD 可用它來傳回權杖回應。 輸入值，(例如，http://DirectorySearcher)。
+  * [重新導向 URI] 是配置和字串的組合，Azure AD 可用它來傳回權杖回應。 輸入值，(例如， http://DirectorySearcher )。
 6. 完成註冊之後，Azure AD 會為應用程式指派唯一的應用程式識別碼。 從 [應用程式] 索引標籤複製值，因為稍後將會需要它。
 7. 在 [設定] 頁面中，選取 [必要的權限]，然後選取 [新增]。
 8. 選取 [Microsoft Graph] 做為 API。 在 [委派的權限] 下，新增 [讀取目錄資料] 權限。  
@@ -91,7 +91,7 @@ Xamarin 可讓您使用 C# 撰寫可在 iOS、Android 和 Windows (行動裝置�
 
   * 租用戶 是指您的 Azure AD 租用戶網域 (例如 contoso.onmicrosoft.com)。
   * ClientId 是您從入口網站複製的應用程式用戶端識別碼。
-  * ReturnUri 是您在入口網站中輸入的重新導向 URI (例如，http://DirectorySearcher)。
+  * ReturnUri 是您在入口網站中輸入的重新導向 URI (例如， http://DirectorySearcher )。
 
 ## <a name="step-4-use-adal-to-get-tokens-from-azure-ad"></a>步驟 4：使用 ADAL 來取得 Azure AD 的權杖
 幾乎所有應用程式的驗證邏輯採用 `DirectorySearcher.SearchByAlias(...)`。 平台特定專案所需的只是將內容參數傳遞至 `DirectorySearcher` PCL。
