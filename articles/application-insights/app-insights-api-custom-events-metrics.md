@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 11/16/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 08e2e0894810693696b326538a7449ddab30d2f8
-ms.openlocfilehash: 7b156e647bbf27fe31d9c89b764c6c1c363a8827
+ms.sourcegitcommit: 1330d8be444f596b0d1ed2038eaeb1200e8b9285
+ms.openlocfilehash: 6951a50050c5b0c8edb2deb1eb64aef44e94ff96
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -39,7 +40,7 @@ API 是跨所有平台統一的，除了一些小變化形式。
 
 您可以 [附加屬性和度量](#properties) 至這裡大部分的遙測呼叫。
 
-## <a name="a-nameprepabefore-you-start"></a><a name="prep"></a>開始之前
+## <a name="prep"></a>開始之前
 如果您尚未完成這些動作：
 
 * 將 Application Insights SDK 加入至專案：
@@ -399,12 +400,12 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 
 您也可以[搜尋][diagnostic]具有特定使用者名稱和帳戶的用戶端資料點。
 
-## <a name="a-namepropertiesafiltering-searching-and-segmenting-your-data-by-using-properties"></a><a name="properties"></a>使用屬性篩選、搜尋和分割資料
+## <a name="properties"></a>使用屬性篩選、搜尋和分割資料
 您可以將屬性和測量結果附加至您的事件 (同時還有度量，頁面檢視、例外狀況和其他的遙測資料)。
 
 *屬性* 是可在使用情況報告中用來篩選遙測的字串值。 例如，如果您的應用程式提供數個遊戲，則您可以將遊戲的名稱附加至每個事件，以了解哪些遊戲較受歡迎。
 
-字串長度限制為大約 1,000 個。 (如果您想要傳送大量的資料區塊，請使用訊息參數 [TrackTrace](#track-trace)。)
+字串長度限制為 8192 個。 (如果您想要傳送大量的資料區塊，請使用訊息參數 [TrackTrace](#track-trace)。)
 
 *度量* 是可以用圖表方式呈現的數值。 例如，您可能想要查看玩家達到的分數是否逐漸增加。 圖表可以依據隨事件傳送的屬性分割，讓您可以針對不同遊戲取得個別或堆疊圖表。
 
@@ -516,7 +517,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 >
 >
 
-## <a name="a-nametimeda-timing-events"></a><a name="timed"></a> 計時事件
+## <a name="timed"></a> 計時事件
 有時候您想要繪製執行某些動作耗費多少時間的圖表。 例如，您可能想要知道使用者在遊戲中思考選項時花費多少時間。 您可以對此使用測量參數。
 
 *C#*
@@ -539,7 +540,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 
 
 
-## <a name="a-namedefaultsadefault-properties-for-custom-telemetry"></a><a name="defaults"></a>自訂遙測資料的預設屬性
+## <a name="defaults"></a>自訂遙測資料的預設屬性
 如果您想為您撰寫的一些自訂事件設定預設屬性值，您可以在 TelemetryClient 執行個體中設定它們。 它們會附加至從該用戶端傳送的每個遙測項目。
 
 *C#*
@@ -604,7 +605,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 
 若要*停用選取的標準收集器* (例如效能計數器、HTTP 要求或相依性)，請刪除或註解化 [ApplicationInsights.config][config] 中的相關行。 例如，如果您想要傳送自己的 TrackRequest 資料，可以這麼做。
 
-## <a name="a-namedebugadeveloper-mode"></a><a name="debug"></a>開發人員模式
+## <a name="debug"></a>開發人員模式
 偵錯期間，讓您的遙測透過管線加速很有用，如此您就可以立即看到結果。 您也會取得額外的訊息，協助您追蹤任何遙測的問題。 在生產環境中將它關閉，因為它可能會拖慢您的應用程式。
 
 *C#*
@@ -616,7 +617,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
     TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = True
 
 
-## <a name="a-nameikeya-setting-the-instrumentation-key-for-selected-custom-telemetry"></a><a name="ikey"></a>設定已選取自訂遙測的檢測金鑰
+## <a name="ikey"></a>設定已選取自訂遙測的檢測金鑰
 *C#*
 
     var telemetry = new TelemetryClient();
@@ -624,7 +625,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
     // ...
 
 
-## <a name="a-namedynamic-ikeya-dynamic-instrumentation-key"></a><a name="dynamic-ikey"></a> 動態檢測金鑰
+## <a name="dynamic-ikey"></a> 動態檢測金鑰
 若要避免混合來自開發、測試和實際執行環境的遙測，您可以[建立個別的 Application Insights 資源][create]，並且依據環境變更其金鑰。
 
 而不是從組態檔取得檢測金鑰，您可以在程式碼中設定。 在初始化方法中設定金鑰，例如 ASP.NET 服務中的 global.aspx.cs：
@@ -709,7 +710,7 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
     是，[資料存取 API](https://dev.applicationinsights.io/)。 其他擷取資料的方法包括[從分析匯出至 Power BI](app-insights-export-power-bi.md) 和[連續匯出](app-insights-export-telemetry.md)。
 
-## <a name="a-namenextanext-steps"></a><a name="next"></a>接續步驟
+## <a name="next"></a>接續步驟
 * [搜尋事件和記錄檔][diagnostic]
 
 * [範例和逐步解說](app-insights-code-samples.md)
@@ -729,9 +730,4 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 [metrics]: app-insights-metrics-explorer.md
 [qna]: app-insights-troubleshoot-faq.md
 [trace]: app-insights-search-diagnostic-logs.md
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

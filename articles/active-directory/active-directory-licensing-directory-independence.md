@@ -1,6 +1,6 @@
 ---
-title: "新增和管理多個 Azure Active Directory 目錄 | Microsoft Docs"
-description: "新增和管理 Azure Active Directory 目錄的指示和最佳作法，說明目錄為完全獨立的資源"
+title: "Azure Active Directory 目錄的特性 | Microsoft Docs"
+description: "了解您的目錄為完全獨立的資源以管理 Azure Active Directory 目錄"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,15 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/13/2017
+ms.date: 02/27/2017
 ms.author: curtand
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a4a78b92c8bb9e8aff25fd724ed78283de8f2fd8
-ms.openlocfilehash: 23aad0421088b620f32bbf3f6b3f0b11e001e3ae
+ms.sourcegitcommit: f8b63e5831897d3a45298b0415bb2d6d44ab0de1
+ms.openlocfilehash: 5ec00d5e8380f121dd9302cf08a0708c530aab9b
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="add-and-manage-multiple-azure-active-directory-directories"></a>新增和管理多個 Azure Active Directory 目錄
+# <a name="understand-how-multiple-azure-active-directory-directories-interact"></a>了解多個 Azure Active Directory 目錄的互動方式
 在 Azure Active Directory (Azure AD) 目錄中，每個目錄都是完全獨立的資源：對等、全功能，且在邏輯上獨立於您管理的其他目錄。 目錄之間沒有任何父子關聯性。 目錄之間的這項獨立性包括資源獨立性、系統管理獨立性和同步處理獨立性。
 
 ## <a name="resource-independence"></a>資源獨立性
@@ -49,9 +51,4 @@ ms.openlocfilehash: 23aad0421088b620f32bbf3f6b3f0b11e001e3ae
 
 ## <a name="next-steps"></a>後續步驟
 如需 Azure AD 授權問題和最佳作法的一般概觀，請參閱 [什麼是 Azure Active Directory 授權？](active-directory-licensing-what-is.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

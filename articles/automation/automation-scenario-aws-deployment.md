@@ -17,6 +17,7 @@ ms.author: tiandert; bwren
 translationtype: Human Translation
 ms.sourcegitcommit: ff1acafaacc40dd8a04b008df7cd479c811a7af0
 ms.openlocfilehash: 62b6c09f749aa36307206e23d36bd86b5b8ce455
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -113,10 +114,5 @@ ms.openlocfilehash: 62b6c09f749aa36307206e23d36bd86b5b8ce455
 * 若要開始使用 PowerShell 工作流程 Runbook，請參閱 [我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 * 若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
 * 如需 PowerShell 指令碼支援功能的詳細資訊，請參閱 [Azure 自動化中的原生 PowerShell 指令碼支援](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

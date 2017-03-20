@@ -17,6 +17,7 @@ ms.author: bwren
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 7870e2aebf6c142b0f3103a500ca73d691e6d3e6
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -117,10 +118,5 @@ ms.openlocfilehash: 7870e2aebf6c142b0f3103a500ca73d691e6d3e6
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 [記錄檔搜尋](log-analytics-log-searches.md) ，建置可以匯出至 Power BI 的查詢。
 * 深入了解 [Power BI](http://powerbi.microsoft.com)，建置以 Log Analytics 匯出為基礎的視覺效果。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

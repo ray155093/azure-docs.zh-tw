@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
+ms.date: 02/22/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 52316e90cd2207ee20033cd96f981692b20b5ece
-ms.openlocfilehash: d581ecc99220befefcd8c2f14a756debb3ab2eb1
+ms.sourcegitcommit: ed8ef101a0757fd32585f5b3249e49d4fb0e09b4
+ms.openlocfilehash: ea3aa0b94c6a74747f7efa8633d5b6bfff75a230
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -109,7 +110,7 @@ Azure AD Connect 適用於 [所有版本的 Azure Active Directory](https://azur
 | 簡介跨 Azure AD、Office365 和 Intune 提供的條件式存取功能 |[使用條件式存取管理風險](active-directory-conditional-access.md) |
 | 如何為下列類型的資源啟用條件式存取 |[SaaS 應用程式的條件式存取](active-directory-conditional-access-azuread-connected-apps.md)<br /><br />[Office 365 服務的條件式存取](active-directory-conditional-access-device-policies.md)<br /><br />[內部部署應用程式的條件式存取](active-directory-conditional-access-on-premises-setup.md)<br /><br />[透過 Azure AD 應用程式 Proxy 發佈之內部部署應用程式的條件式存取](active-directory-application-proxy-conditional-access.md) |
 | 如何向 Azure Active Directory 註冊裝置，以便啟用裝置型條件式存取原則 |[Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)<br /><br />[如何為加入網域的 Windows 裝置啟用自動註冊裝置](active-directory-conditional-access-automatic-device-registration.md)<br />— [適用於 Windows 8.1 裝置的步驟](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)<br />— [適用於 Windows 7 裝置的步驟](active-directory-conditional-access-automatic-device-registration-windows7.md) |
-| 如何對包括 Multi-Factor Authentication 的原則使用 Android 版本的 Azure Authenticator 應用程式 |[適用於 Android 的 Azure Authenticator](active-directory-conditional-access-azure-authenticator-app.md) |
+| 如何使用 Microsoft 驗證器應用程式進行雙步驟驗證 |[Microsoft 驗證器](../multi-factor-authentication/end-user/microsoft-authenticator-app-how-to.md) |
 
 「條件式存取」是一項 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/) 功能。
 
@@ -209,10 +210,5 @@ Azure Active Directory 提供數個報告和警示，以協助您監視組織對
 [Azure Active Directory 網域服務](https://azure.microsoft.com/services/active-directory-ds/)
 
 [Azure Multi-Factor Authentication](https://azure.microsoft.com/services/multi-factor-authentication/)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

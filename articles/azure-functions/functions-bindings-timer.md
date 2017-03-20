@@ -14,18 +14,20 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 10/31/2016
+ms.date: 02/27/2017
 ms.author: chrande; glenga
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: b41a5aacec6748af5ee05b01487310cc339af1f9
-ms.openlocfilehash: 542e5378aff893741a68c979bc2c5e8bfe58ba26
+ms.sourcegitcommit: 2542d8c750fc7e1bcc31a9c0eb1672402facfd58
+ms.openlocfilehash: 146884833e968767c14d7e4f924762a592e427e2
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="azure-functions-timer-trigger"></a>Azure Functions 計時器觸發程序
+# <a name="schedule-code-execution-with-azure-functions"></a>使用 Azure Functions 排程程式碼執行
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中設定及撰寫計時器觸發程序。 Azure Functions 支援計時器的觸發程序。 計時器觸發程序會根據排程，以單次或週期性方式呼叫函數。 
+這篇文章說明如何在 Azure Functions 中設定及撰寫計時器觸發程序。 Azure Functions 具有計時器觸發程序繫結，可讓您根據所定義的排程執行函式程式碼。 
 
 計時器觸發程序支援多個執行個體向外延展。 特定計時器函式的單一執行個體會對所有執行個體執行。
 
@@ -45,21 +47,26 @@ ms.openlocfilehash: 542e5378aff893741a68c979bc2c5e8bfe58ba26
 }
 ```
 
-`schedule` 的值是包含 6 個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)︰`{second} {minute} {hour} {day} {month} {day of the week}`。 您會在線上找到的許多 cron 運算式會省略 `{second}` 欄位。 如果您從中複製一個，您需要對 `{second}` 欄位進行額外調整。 如需特定範例，請參閱以下的[排程範例](#examples)。
+`schedule` 的值是包含以下&6; 個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)︰ 
 
-CRON 運算式使用的預設時區是國際標準時間 (UTC)。 如果您想要 CRON 運算式基於另一個時區，請為名為 `WEBSITE_TIME_ZONE` 的函式應用程式建立新的應用程式設定。 將值設定為所需的時區名稱，如 [Microsoft 時區索引](https://msdn.microsoft.com/library/ms912391.aspx)中所示。 
+    {second} {minute} {hour} {day} {month} {day-of-week}
+&nbsp;
+>[!NOTE]   
+>您會在線上找到的許多 cron 運算式會省略 `{second}` 欄位。 如果您從中複製一個，您需要對 `{second}` 欄位進行額外調整。 如需特定範例，請參閱以下的[排程範例](#examples)。
 
-例如，*美加東部標準時間*是 UTC-05:00。 如果您想要計時器觸發程序在每天的美加東部標準時間上午 10:00 觸發，您可以使用說明 UTC 時區的下列 CRON 運算式︰
+CRON 運算式使用的預設時區是國際標準時間 (UTC)。 若要讓 CRON 運算式以另一個時區為基礎，請為名為 `WEBSITE_TIME_ZONE` 的函式應用程式建立新的應用程式設定。 將值設定為所需的時區名稱，如 [Microsoft 時區索引](https://msdn.microsoft.com/library/ms912391.aspx)中所示。 
+
+例如，*美加東部標準時間*是 UTC-05:00。 若要讓計時器觸發程序在每天上午 10:00 (美加東部標準時間) 觸發，您可以使用說明 UTC 時區的下列 CRON 運算式︰
 
 ```json
 "schedule": "0 0 15 * * *",
-``` 
+```    
 
 或者，您可以為名為 `WEBSITE_TIME_ZONE` 的函式應用程式新增新的應用程式設定，並將值設為**美加東部標準時間**。  那麼，下列 CRON 運算式即可用於 EST 上午 10:00： 
 
 ```json
 "schedule": "0 0 10 * * *",
-``` 
+```    
 
 
 <a name="examples"></a>
@@ -67,7 +74,7 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 如果您想�
 ## <a name="schedule-examples"></a>排程範例
 以下是您可以用於 `schedule` 屬性的 CRON 運算式的一些範例。 
 
-若要每隔 5 分鐘觸發一次︰
+若要每隔&5; 分鐘觸發一次︰
 
 ```json
 "schedule": "0 */5 * * * *"
@@ -79,7 +86,7 @@ CRON 運算式使用的預設時區是國際標準時間 (UTC)。 如果您想�
 "schedule": "0 0 * * * *",
 ```
 
-若要每隔 2 小時觸發一次：
+若要每隔&2; 小時觸發一次：
 
 ```json
 "schedule": "0 0 */2 * * *",
@@ -184,10 +191,5 @@ module.exports = function (context, myTimer) {
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

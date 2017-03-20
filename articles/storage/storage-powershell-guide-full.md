@@ -4,18 +4,19 @@ description: "了解如何使用適用於 Azure 儲存體的 Azure PowerShell Cm
 services: storage
 documentationcenter: na
 author: robinsh
-manager: carmonm
+manager: timlt
 ms.assetid: f4704f58-abc6-4f89-8b6d-1b1659746f5a
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/03/2016
+ms.date: 03/03/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 6539789d343b18f07619c376f6ecf618958c6eb6
-ms.openlocfilehash: 00f5ac8e9df3e28db10ac57cf728ed6c1c5a6e06
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 8b9e174523b3d08be20a4d30cc83c11f5bc93cd5
+ms.lasthandoff: 03/06/2017
 
 ---
 
@@ -38,7 +39,7 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 
 **建立 Microsoft Azure 訂用帳戶和帳戶之後：**
 
-1. 下載並安裝 [Azure PowerShell](http://go.microsoft.com/?linkid=9811175&clcid=0x409)。
+1. 下載並安裝最新的 [Azure PowerShell](https://github.com/Azure/azure-powershell/releases/latest)。
 2. 啟動 Windows PowerShell 整合式指令碼環境 (ISE)：在本機電腦中移至 [開始]功能表。 鍵入**系統管理工具**，然後按一下以執行。 在 [系統管理工具] 視窗中，以滑鼠右鍵按一下 [Windows PowerShell ISE]，按一下 [以系統管理員身分執行]。
 3. 在 [Windows PowerShell ISE] 中，按一下 [檔案]  >  [新增]，建立新的指令碼檔。
 4. 現在，我們將提供簡單的指令碼，顯示用以存取 Azure 儲存體的基本 PowerShell 命令。 此指令碼會先要求您的 Azure 帳戶認證，以將您的 Azure 帳戶新增到本機 PowerShell 環境。 然後，指令碼會設定預設 Azure 訂用帳戶，並在 Azure 中建立新的儲存體帳戶。 接著，指令碼將在這個新的儲存體帳戶中建立新容器，並將現有的映像檔案 (Blob) 上傳至該容器。 指令碼列出該容器中的所有 Blob 之後，它會在本機電腦中建立新的目的地目錄並下載映像檔。
@@ -98,7 +99,7 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
     # end
     ```
 
-6. 在 [Windows PowerShell ISE] 中，按 CTRL+V 以複製指令碼。 按一下 [檔案] > 儲存]。 在 [另存新檔] 對話方塊視窗中，輸入指令碼檔的名稱，例如 "mystoragescript"。 按一下 [儲存] 。
+6. 在 [Windows PowerShell ISE] 中，按 CTRL+V 以複製指令碼。 按一下 檔案 > 儲存。 在 [另存新檔] 對話方塊視窗中，輸入指令碼檔的名稱，例如 "mystoragescript"。 按一下 [儲存] 。
 7. 現在，您需要根據您的組態設定更新指令碼變數。 您必須使用自己的訂用帳戶更新 **$SubscriptionName** 變數。 您可以保留指令碼中指定的其他變數或視需要予以更新。
    
    * **$SubscriptionName：** 您必須使用自己的訂用帳戶名稱更新此變數。 依照下列其中一個方式執行，即可找出您的訂用帳戶名稱：
@@ -136,7 +137,7 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 ## <a name="prerequisites-for-using-azure-powershell-with-azure-storage"></a>搭配使用 Azure PowerShell 與 Azure 儲存體的先決條件
 您需要有 Azure 訂用帳戶和帳戶，才能如上面說明的方法執行本指南提供的 PowerShell Cmdlet。
 
-Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows PowerShell 管理 Azure。 如需安裝和設定 Azure PowerShell 的資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。 建議您在使用本指南之前，先下載並安裝或升級至最新的 Azure PowerShell 模組。
+Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows PowerShell 管理 Azure。 如需安裝和設定 Azure PowerShell 的資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 建議您在使用本指南之前，先下載並安裝或升級至最新的 Azure PowerShell 模組。
 
 您可以在標準 Windows PowerShell 主控台，或是 Windows PowerShell 整合式指令碼環境 (ISE) 中執行 Cmdlet。 若要開啟 [Windows PowerShell ISE] ，請移至 [開始] 功能表、輸入「系統管理工具」，然後按一下加以執行。 在 [系統管理工具] 視窗中，以滑鼠右鍵按一下 [Windows PowerShell ISE]，按一下 [以系統管理員身分執行]。
 
@@ -145,7 +146,7 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 讓我們看看如何使用 PowerShell 在 Azure 中管理儲存體帳戶
 
 ### <a name="how-to-set-a-default-azure-subscription"></a>如何設定預設 Azure 訂用帳戶
-若要使用 Azure PowerShell 管理 Azure 儲存體，您需要透過 Azure Active Directory 驗證或憑證型驗證向 Azure 驗證用戶端環境。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 教學課程。 本指南使用 Azure Active Directory 驗證。
+若要使用 Azure PowerShell 管理 Azure 儲存體，您需要透過 Azure Active Directory 驗證或憑證型驗證向 Azure 驗證用戶端環境。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 教學課程。 本指南使用 Azure Active Directory 驗證。
 
 1. 在 Windows PowerShell ISE 中，輸入下列命令，將您的 Azure 帳戶新增到本機的 PowerShell 環境：
 
@@ -692,8 +693,7 @@ Azure 檔案儲存體為使用標準 SMB 通訊協定的應用程式提供共用
 如需 Azure 檔案儲存體的詳細資訊，請參閱[在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)和[檔案服務 REST API](http://msdn.microsoft.com/library/azure/dn167006.aspx)。
 
 ## <a name="how-to-set-and-query-storage-analytics"></a>如何設定及查詢儲存體分析
-您可以使用 [Azure 儲存體分析](storage-analytics.md) 收集 Azure 儲存體帳戶的計量，以及傳送至儲存體帳戶之要求的相關記錄資料。 也可以使用儲存體計量監視儲存體帳戶的健康狀態，並使用儲存體記錄診斷和疑難排解儲存體帳戶的問題。
-根據預設，儲存體服務未啟用儲存體度量。 您可以透過 Azure 入口網站或 Windows PowerShell 啟用監視功能，或使用儲存體用戶端程式庫以程式設計方式啟用。 系統會在伺服器端執行儲存體記錄，這可讓您在儲存體帳戶中記錄成功和失敗要求的詳細資料。 這些記錄檔可讓您查看資料表、佇列和 Blob 的讀取、寫入和刪除作業詳細資料，以及失敗要求的原因。
+您可以使用 [Azure 儲存體分析](storage-analytics.md) 收集 Azure 儲存體帳戶的計量，以及傳送至儲存體帳戶之要求的相關記錄資料。 也可以使用儲存體計量監視儲存體帳戶的健康狀態，並使用儲存體記錄診斷和疑難排解儲存體帳戶的問題。 若要設定監視，可以使用 Azure 入口網站或 Windows PowerShell，或使用儲存體用戶端程式庫以程式設計方式進行。 系統會在伺服器端執行儲存體記錄，這可讓您在儲存體帳戶中記錄成功和失敗要求的詳細資料。 這些記錄檔可讓您查看資料表、佇列和 Blob 的讀取、寫入和刪除作業詳細資料，以及失敗要求的原因。
 
 若要了解如何使用 PowerShell 啟用和檢視儲存體計量的資料，請參閱 [如何使用 PowerShell 啟用儲存體度量](http://msdn.microsoft.com/library/azure/dn782843.aspx#HowtoenableStorageMetricsusingPowerShell)。
 
@@ -809,47 +809,42 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 * [Azure 儲存體 PowerShell Cmdlet](http://msdn.microsoft.com/library/azure/dn806401.aspx)
 * [Windows PowerShell 參考](https://msdn.microsoft.com/library/ms714469.aspx)
 
-[在 5 分鐘內開始使用 Azure 儲存體和 PowerShell]: #getstart
-[搭配使用 Azure PowerShell 與 Azure 儲存體的先決條件]: #pre
-[如何在 Azure 中管理儲存體帳戶]: #manageaccount
-[如何設定預設 Azure 訂用帳戶]: #setdefsub
-[如何建立新的 Azure 儲存體帳戶]: #createaccount
-[如何設定預設 Azure 儲存體帳戶]: #defaultaccount
-[如何列出訂用帳戶中的所有 Azure 儲存體帳戶]: #listaccounts
-[如何建立 Azure 儲存體內容]: #createctx
-[如何管理 Azure Blob 和 Blob 快照集]: #manageblobs
-[如何建立容器]: #container
-[如何將 Blob 上傳到容器中]: #uploadblob
-[如何從容器下載 Blob]: #downblob
-[如何在儲存體容器之間複製 Blob]: #copyblob
-[如何刪除 Blob]: #deleteblob
-[如何管理 Azure Blob 快照集]: #manageshots
-[如何建立 Blob 快照集]: #createshot
-[如何列出 Blob 的快照集]: #listshot
-[如何複製 Blob 的快照集]: #copyshot
-[如何管理 Azure 資料表和資料表實體]: #managetables
-[如何建立資料表]: #createtable
-[如何擷取資料表]: #gettable
-[如何刪除資料表]: #remtable
-[如何管理資料表實體]: #mngentity
-[如何新增資料表實體]: #addentity
-[如何查詢資料表實體]: #queryentity
-[如何刪除資料表實體]: #deleteentity
-[如何管理 Azure 佇列和佇列訊息]: #managequeues
-[如何建立佇列]: #createqueue
-[如何擷取佇列]: #getqueue
-[如何刪除佇列]: #remqueue
-[如何管理佇列訊息]: #mngqueuemsg
-[如何將訊息插入佇列中]: #addqueuemsg
-[如何在下一個訊息中清除佇列]: #dequeuemsg
-[如何管理 Azure 檔案共用和檔案]: #files
-[如何設定及查詢儲存體分析]: #stganalytics
-[如何管理共用存取簽章 (SAS) 和預存的存取原則]: #sas
-[如何使用適用於美國政府和 Azure China 的 Azure 儲存體]: #gov
-[後續步驟]: #next
-
-
-
-<!--HONumber=Nov16_HO4-->
-
+[Getting started with Azure Storage and PowerShell in 5 minutes]: #getstart
+[Prerequisites for using Azure PowerShell with Azure Storage]: #pre
+[How to manage storage accounts in Azure]: #manageaccount
+[How to set a default Azure subscription]: #setdefsub
+[How to create a new Azure storage account]: #createaccount
+[How to set a default Azure storage account]: #defaultaccount
+[How to list all Azure storage accounts in a subscription]: #listaccounts
+[How to create an Azure storage context]: #createctx
+[How to manage Azure blobs and blob snapshots]: #manageblobs
+[How to create a container]: #container
+[How to upload a blob into a container]: #uploadblob
+[How to download blobs from a container]: #downblob
+[How to copy blobs from one storage container to another]: #copyblob
+[How to delete a blob]: #deleteblob
+[How to manage Azure blob snapshots]: #manageshots
+[How to create a blob snapshot]: #createshot
+[How to list snapshots of a blob]: #listshot
+[How to copy a snapshot of a blob]: #copyshot
+[How to manage Azure tables and table entities]: #managetables
+[How to create a table]: #createtable
+[How to retrieve a table]: #gettable
+[How to delete a table]: #remtable
+[How to manage table entities]: #mngentity
+[How to add table entities]: #addentity
+[How to query table entities]: #queryentity
+[How to delete table entities]: #deleteentity
+[How to manage Azure queues and queue messages]: #managequeues
+[How to create a queue]: #createqueue
+[How to retrieve a queue]: #getqueue
+[How to delete a queue]: #remqueue
+[How to manage queue messages]: #mngqueuemsg
+[How to insert a message into a queue]: #addqueuemsg
+[How to de-queue at the next message]: #dequeuemsg
+[How to manage Azure file shares and files]: #files
+[How to set and query storage analytics]: #stganalytics
+[How to manage Shared Access Signature (SAS) and Stored Access Policy]: #sas
+[How to use Azure Storage for U.S. government and Azure China]: #gov
+[Next Steps]: #next
 

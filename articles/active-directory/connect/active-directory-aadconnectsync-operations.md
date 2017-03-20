@@ -15,8 +15,9 @@ ms.workload: identity
 ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: f9523ce62fb24b280c8d5869bf394ab279c48f23
-ms.openlocfilehash: 10b8221c873e3510189e7d82e034669f0466cd84
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 9faa28a86c9427a83e8ca4485ebcdc8e8dacd93d
+ms.lasthandoff: 03/03/2017
 
 
 ---
@@ -44,14 +45,18 @@ ms.openlocfilehash: 10b8221c873e3510189e7d82e034669f0466cd84
 若要套用此方法，請遵循下列步驟：
 
 1. [準備](#prepare)
-2. [匯入和同步處理](#import-and-synchronize)
-3. [Verify](#verify)
-4. [切換作用中的伺服器](#switch-active-server)
+2. [組態](#configuration)
+3. [匯入和同步處理](#import-and-synchronize)
+4. [Verify](#verify)
+5. [切換作用中的伺服器](#switch-active-server)
 
 #### <a name="prepare"></a>準備
 1. 安裝 Azure AD Connect、選取**預備模式**，然後取消選取安裝精靈中最後一個頁面上的 [啟動同步處理]。 此模式可讓您手動執行同步處理引擎。
    ![ReadyToConfigure](./media/active-directory-aadconnectsync-operations/readytoconfigure.png)
 2. 登出/登入，並從 [開始] 功能表中選取 [同步處理服務] 。
+
+#### <a name="configuration"></a>組態
+如果您已對主要伺服器進行變更，並想要將組態與預備伺服器進行比較，則請使用 [Azure AD Connect 組態文件產生器](https://github.com/Microsoft/AADConnectConfigDocumenter)。
 
 #### <a name="import-and-synchronize"></a>匯入和同步處理
 1. 選取 [連接器]，並選取第一個類型為 [Active Directory Domain Services] 的連接器。 按一下 [執行]，選取 [完整匯入] 和 [確定]。 對這種類型的所有連接器執行下列動作。
@@ -63,20 +68,12 @@ ms.openlocfilehash: 10b8221c873e3510189e7d82e034669f0466cd84
 
 #### <a name="verify"></a>Verify
 1. 啟動 CMD 命令提示字元並移至 `%ProgramFiles%\Microsoft Azure AD Sync\bin`
-2. 執行： `csexport "Name of Connector" %temp%\export.xml /f:x`  
-   連接器名稱可以在同步處理服務中找到。 它的名稱類似 Azure AD 的 "contoso.com – AAD"。
-3. 執行： `CSExportAnalyzer %temp%\export.xml > %temp%\export.csv`
-4. 您在 %temp% 中有名稱為 export.csv 的檔案，可在 Microsoft Excel 中加以檢查。 此檔案包含即將匯出的所有變更。
-5. 對資料或組態進行必要的變更並再次執行這些步驟 (匯入和同步處理和驗證)，直到要匯出的變更皆如預期進行。
-
-**了解 export.csv 檔案**
-
-大部分的檔案都簡單易懂。 要了解內容所需的一些縮寫：
-
-* OMODT – 物件修改類型。 指出在物件層級的作業是否為新增、更新或刪除。
-* AMODT – 屬性修改類型。 指出在屬性層級的作業是否為新增、更新或刪除。
-
-如果屬性值是多重值，則不會每個變更都顯示。 只會顯示新增和移除的值數目。
+2. 執行：`csexport "Name of Connector" %temp%\export.xml /f:x` 連接器名稱可以在同步處理服務中找到。 它的名稱類似 Azure AD 的 "contoso.com – AAD"。
+3. 從 [CSAnalyzer](#Appendix-CSAnalyzer) 區段將 PowerShell 指令碼複製到名為 `csanalyzer.ps1` 的檔案。
+4. 開啟 PowerShell 視窗，然後瀏覽至您建立 PowerShell 指令碼的資料夾。
+5. 執行：`.\csanalyzer.ps1 -xmltoimport %temp%\export.xml`。
+6. 您現在已有一個可在 Microsoft Excel 中檢查的名為 **processedusers1.csv** 的檔案。 您可以在此檔案中找到所有已暫存而要匯出到 Azure AD 的變更。
+7. 對資料或組態進行必要的變更並再次執行這些步驟 (匯入和同步處理和驗證)，直到要匯出的變更皆如預期進行。
 
 #### <a name="switch-active-server"></a>切換作用中的伺服器
 1. 在目前作用中的伺服器上，關閉伺服器 (DirSync/FIM/Azure AD Sync) 讓它不會匯出至 Azure AD 或將它設為預備模式 (Azure AD Connect)。
@@ -84,7 +81,7 @@ ms.openlocfilehash: 10b8221c873e3510189e7d82e034669f0466cd84
    ![ReadyToConfigure](./media/active-directory-aadconnectsync-operations/additionaltasks.png)
 
 ## <a name="disaster-recovery"></a>災害復原
-實作設計的一部分是規劃您在失去同步處理伺服器的災害中如何應對。 有不同的模型可供使用，要使用哪一個模組取決於許多因素，包括：
+實作設計的一部分是規劃您在失去同步處理伺服器的災害中應如何應對。 有不同的模型可供使用，要使用哪一個模組取決於許多因素，包括：
 
 * 您在 Azure AD 的停機期間無法變更物件的容錯能力如何？
 * 如果您使用密碼同步化，使用者是否接受他們在內部部署變更時必須在 Azure AD 中使用舊密碼？
@@ -106,7 +103,7 @@ ms.openlocfilehash: 10b8221c873e3510189e7d82e034669f0466cd84
 ### <a name="have-a-spare-standby-server---staging-mode"></a>具有備用的待命伺服器 - 預備模式
 如果您有更複雜的環境，則建議使用一或多個待命伺服器。 您可以在安裝期間啟用狀態為「預備模式」 的伺服器。
 
-如需詳細資料，請參閱 [預備模式](#staging-mode)。
+如需詳細資訊，請參閱[預備模式](#staging-mode)。
 
 ### <a name="use-virtual-machines"></a>使用虛擬機器
 一般和受支援的方法是在虛擬機器中執行同步處理引擎。 如果主機有問題，可將內含同步處理引擎伺服器的映像移轉到另一部伺服器。
@@ -114,15 +111,151 @@ ms.openlocfilehash: 10b8221c873e3510189e7d82e034669f0466cd84
 ### <a name="sql-high-availability"></a>SQL 高可用性
 如果您未使用 Azure AD Connect 隨附的 SQL Server Express，也應該考慮 SQL Server 的高可用性。 唯一受支援的高可用性解決方案是 SQL 叢集。 不支援的解決方案包括鏡像和永遠開啟。
 
+## <a name="appendix-csanalyzer"></a>附錄 CSAnalyzer
+請參閱[驗證](#verify)一節，以了解如何使用此指令碼。
+
+```
+Param(
+    [Parameter(Mandatory=$true, HelpMessage="Must be a file generated using csexport 'Name of Connector' export.xml /f:x)")]
+    [string]$xmltoimport="%temp%\exportedStage1a.xml",
+    [Parameter(Mandatory=$false, HelpMessage="Maximum number of users per output file")][int]$batchsize=1000,
+    [Parameter(Mandatory=$false, HelpMessage="Show console output")][bool]$showOutput=$false
+)
+
+#LINQ isn't loaded automatically, so force it
+[Reflection.Assembly]::Load("System.Xml.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089") | Out-Null
+
+[int]$count=1
+[int]$outputfilecount=1
+[array]$objOutputUsers=@()
+
+#XML must be generated using "csexport "Name of Connector" export.xml /f:x"
+write-host "Importing XML" -ForegroundColor Yellow
+
+#XmlReader.Create won't properly resolve the file location,
+#so expand and then resolve it
+$resolvedXMLtoimport=Resolve-Path -Path ([Environment]::ExpandEnvironmentVariables($xmltoimport))
+
+#use an XmlReader to deal with even large files
+$result=$reader = [System.Xml.XmlReader]::Create($resolvedXMLtoimport) 
+$result=$reader.ReadToDescendant('cs-object')
+do 
+{
+    #create the object placeholder
+    #adding them up here means we can enforce consistency
+    $objOutputUser=New-Object psobject
+    Add-Member -InputObject $objOutputUser -MemberType NoteProperty -Name ID -Value ""
+    Add-Member -InputObject $objOutputUser -MemberType NoteProperty -Name Type -Value ""
+    Add-Member -inputobject $objOutputUser -MemberType NoteProperty -Name DN -Value ""
+    Add-Member -inputobject $objOutputUser -MemberType NoteProperty -Name operation -Value ""
+    Add-Member -inputobject $objOutputUser -MemberType NoteProperty -Name UPN -Value ""
+    Add-Member -inputobject $objOutputUser -MemberType NoteProperty -Name displayName -Value ""
+    Add-Member -inputobject $objOutputUser -MemberType NoteProperty -Name sourceAnchor -Value ""
+    Add-Member -inputobject $objOutputUser -MemberType NoteProperty -Name alias -Value ""
+    Add-Member -inputobject $objOutputUser -MemberType NoteProperty -Name primarySMTP -Value ""
+    Add-Member -inputobject $objOutputUser -MemberType NoteProperty -Name onPremisesSamAccountName -Value ""
+    Add-Member -inputobject $objOutputUser -MemberType NoteProperty -Name mail -Value ""
+
+    $user = [System.Xml.Linq.XElement]::ReadFrom($reader)
+    if ($showOutput) {Write-Host Found an exported object... -ForegroundColor Green}
+
+    #object id
+    $outID=$user.Attribute('id').Value
+    if ($showOutput) {Write-Host ID: $outID}
+    $objOutputUser.ID=$outID
+
+    #object type
+    $outType=$user.Attribute('object-type').Value
+    if ($showOutput) {Write-Host Type: $outType}
+    $objOutputUser.Type=$outType
+
+    #dn
+    $outDN= $user.Element('unapplied-export').Element('delta').Attribute('dn').Value
+    if ($showOutput) {Write-Host DN: $outDN}
+    $objOutputUser.DN=$outDN
+
+    #operation
+    $outOperation= $user.Element('unapplied-export').Element('delta').Attribute('operation').Value
+    if ($showOutput) {Write-Host Operation: $outOperation}
+    $objOutputUser.operation=$outOperation
+
+    #now that we have the basics, go get the details
+
+    foreach ($attr in $user.Element('unapplied-export-hologram').Element('entry').Elements("attr"))
+    {
+        $attrvalue=$attr.Attribute('name').Value
+        $internalvalue= $attr.Element('value').Value
+
+        switch ($attrvalue)
+        {
+            "userPrincipalName"
+            {
+                if ($showOutput) {Write-Host UPN: $internalvalue}
+                $objOutputUser.UPN=$internalvalue
+            }
+            "displayName"
+            {
+                if ($showOutput) {Write-Host displayName: $internalvalue}
+                $objOutputUser.displayName=$internalvalue
+            }
+            "sourceAnchor"
+            {
+                if ($showOutput) {Write-Host sourceAnchor: $internalvalue}
+                $objOutputUser.sourceAnchor=$internalvalue
+            }
+            "alias"
+            {
+                if ($showOutput) {Write-Host alias: $internalvalue}
+                $objOutputUser.alias=$internalvalue
+            }
+            "proxyAddresses"
+            {
+                if ($showOutput) {Write-Host primarySMTP: ($internalvalue -replace "SMTP:","")}
+                $objOutputUser.primarySMTP=$internalvalue -replace "SMTP:",""
+            }
+        }
+    }
+
+    $objOutputUsers += $objOutputUser
+
+    Write-Progress -activity "Processing ${xmltoimport} in batches of ${batchsize}" -status "Batch ${outputfilecount}: " -percentComplete (($objOutputUsers.Count / $batchsize) * 100)
+
+    #every so often, dump the processed users in case we blow up somewhere
+    if ($count % $batchsize -eq 0)
+    {
+        Write-Host Hit the maximum users processed without completion... -ForegroundColor Yellow
+
+        #export the collection of users as as CSV
+        Write-Host Writing processedusers${outputfilecount}.csv -ForegroundColor Yellow
+        $objOutputUsers | Export-Csv -path processedusers${outputfilecount}.csv -NoTypeInformation
+
+        #increment the output file counter
+        $outputfilecount+=1
+
+        #reset the collection and the user counter
+        $objOutputUsers = $null
+        $count=0
+    }
+
+    $count+=1
+
+    #need to bail out of the loop if no more users to process
+    if ($reader.NodeType -eq [System.Xml.XmlNodeType]::EndElement)
+    {
+        break
+    }
+
+} while ($reader.Read)
+
+#need to write out any users that didn't get picked up in a batch of 1000
+#export the collection of users as as CSV
+Write-Host Writing processedusers${outputfilecount}.csv -ForegroundColor Yellow
+$objOutputUsers | Export-Csv -path processedusers${outputfilecount}.csv -NoTypeInformation
+```
+
 ## <a name="next-steps"></a>後續步驟
 **概觀主題**  
 
 * [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)  
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)  
-
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

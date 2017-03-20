@@ -1,10 +1,10 @@
 ---
-title: "如何在 ARM 模式中使用 Azure 入口網站設定靜態私人 IP| Microsoft Docs"
-description: "了解私人 IP (DIP) 及如何在 ARM 模式中使用 Azure 入口網站管理它們"
+title: "設定 VM 的私人 IP 位址 - Azure 入口網站 | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站設定虛擬機器的私人 IP 位址。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
+manager: timlt
 editor: tysonn
 tags: azure-resource-manager
 ms.assetid: 11245645-357d-4358-9a14-dd78e367b494
@@ -15,13 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/04/2016
 ms.author: jdial
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 5d56a0d2c9c44d37520c6a9a3db326f9bdc5420e
-ms.openlocfilehash: e4f6d14f79536c58e40d3ac4b48d00a8c397f1b4
+ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
+ms.openlocfilehash: 251a2977d821b710807e00b2aae71992630feb77
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="how-to-set-a-static-private-ip-address-in-the-azure-portal"></a>如何在 Azure 入口網站中設定靜態私人 IP 位址
+# <a name="configure-private-ip-addresses-for-a-virtual-machine-using-the-azure-portal"></a>使用 Azure 入口網站設定虛擬機器的私人 IP 位址
 
 > [!div class="op_single_selector"]
 - [Azure 入口網站](virtual-networks-static-private-ip-arm-pportal.md)
@@ -86,7 +88,7 @@ ms.openlocfilehash: e4f6d14f79536c58e40d3ac4b48d00a8c397f1b4
 若要將靜態私人 IP 位址新增至使用上述步驟建立之 VM，請遵循下列步驟：
 
 1. 從上方顯示的 [IP 位址] 刀鋒視窗中，按一下 [指派] 底下的[靜態]。
-2. [IP 位址] 輸入 192.168.1.101，然後按一下 [儲存]。
+2. [IP 位址] 輸入&192;.168.1.101，然後按一下 [儲存]。
    
     ![在 Azure 入口網站中建立 VM](./media/virtual-networks-static-ip-arm-pportal/figure09.png)
 
@@ -104,10 +106,5 @@ ms.openlocfilehash: e4f6d14f79536c58e40d3ac4b48d00a8c397f1b4
 * 深入了解 [保留的公用 IP](virtual-networks-reserved-public-ip.md) 位址。
 * 深入了解 [執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) 位址。
 * 請參閱 [保留 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: f16ae589c160338450a41857f88fe29763e1b9eb
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -114,10 +115,5 @@ Update 1.2 包括裝置軟體更新、LSI 驅動程式更新和磁碟韌體更�
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [Update 1.2 版](storsimple-update1-release-notes.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

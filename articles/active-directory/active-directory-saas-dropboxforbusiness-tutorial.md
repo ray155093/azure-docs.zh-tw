@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/17/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 7a0a300f505d9012471679ac27373944f07fdba3
-ms.openlocfilehash: e328f8ecfad5f481462a7b9c0c4a16e966e33217
+ms.sourcegitcommit: ac53d0a2c1c0a257e86fe74e10c8781aa6305975
+ms.openlocfilehash: 80a7280787086a91ceeea308c79f894bdfabb725
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.openlocfilehash: e328f8ecfad5f481462a7b9c0c4a16e966e33217
 3. 設定使用者佈建
 4. 指派使用者
 
-![案例](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769508.png "Scenario")
+![案例](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769508.png "案例")
 
 ## <a name="enabling-the-application-integration-for-dropbox-for-business"></a>啟用 Dropbox for Business 的應用程式整合
 本節的目的是要說明如何啟用 Dropbox for Business 的應用程式整合。
@@ -47,19 +48,19 @@ ms.openlocfilehash: e328f8ecfad5f481462a7b9c0c4a16e966e33217
 2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![應用程式](./media/active-directory-saas-dropboxforbusiness-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-dropboxforbusiness-tutorial/IC700994.png "應用程式")
 4. 按一下頁面底部的 [新增]  。
    
-    ![新增應用程式](./media/active-directory-saas-dropboxforbusiness-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-dropboxforbusiness-tutorial/IC749321.png "新增應用程式")
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-    ![從組件庫新增應用程式](./media/active-directory-saas-dropboxforbusiness-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-dropboxforbusiness-tutorial/IC749322.png "從資源庫新增應用程式")
 6. 在**搜尋方塊**中，輸入 **Dropbox for Business**。
    
-    ![應用程式庫](./media/active-directory-saas-dropboxforbusiness-tutorial/IC701010.png "Application gallery")
+    ![應用程式資源庫](./media/active-directory-saas-dropboxforbusiness-tutorial/IC701010.png "應用程式資源庫")
 7. 在結果窗格中選取 [Dropbox for Business]，然後按一下 [完成] 來新增應用程式。
    
-    ![Dropbox for Business](./media/active-directory-saas-dropboxforbusiness-tutorial/IC701011.png "Dropbox for Business")
+    ![商務用 Dropbox](./media/active-directory-saas-dropboxforbusiness-tutorial/IC701011.png "商務用 Dropbox")
 
 ## <a name="configuring-single-sign-on"></a>設定單一登入
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶向 Dropbox for Business 驗證。
@@ -69,41 +70,41 @@ ms.openlocfilehash: e328f8ecfad5f481462a7b9c0c4a16e966e33217
 ### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 **Dropbox for Business** 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC749323.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC749323.png "設定單一登入")
 2. 在 [要如何讓使用者登入 Dropbox for Business] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC749327.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC749327.png "設定單一登入")
 3. 在 [設定應用程式 URL]  頁面上，執行下列步驟：
    
     a. 登入您的 Dropbox for Business 租用戶。 
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769509.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769509.png "設定單一登入")
    
     b. 在左側的導覽窗格中，按一下 [管理主控台]。 
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769510.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769510.png "設定單一登入")
    
     c. 在 [管理主控台] 上，按一下左側導覽窗格中的 [驗證]。 
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769511.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769511.png "設定單一登入")
    
     d. 在 [單一登入] 區段中，選取 [啟用單一登入]，然後按一下 [更多資訊] 以展開此區段。  
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769512.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769512.png "設定單一登入")
    
     e. 複製 [使用者可藉由輸入其電子郵件地址進行登入或可直接前往] 旁邊的 URL。 
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769513.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769513.png "設定單一登入")
    
     f. 在 Azure 傳統入口網站的 [DropBox for Business 登入 URL] 文字方塊中，貼上此 URL。 
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769514.png "Configure single sign-on")  
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769514.png "設定單一登入")  
 4. 在 [設定在 Dropbox for Business 單一登入] 頁面上，按一下 [下載憑證]，然後將中繼資料檔儲存在您的電腦中。  
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769515.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769515.png "設定單一登入")
 5. 在 Dropbox for Business 租用戶上，於 [驗證] 頁面的 [單一登入] 區段中，執行下列步驟： 
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769516.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769516.png "設定單一登入")
    
     a. 按一下 [必要]。
    
@@ -120,7 +121,7 @@ ms.openlocfilehash: e328f8ecfad5f481462a7b9c0c4a16e966e33217
 
 1. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。 
    
-    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC749329.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-dropboxforbusiness-tutorial/IC749329.png "設定單一登入")
 
 ## <a name="configuring-user-provisioning"></a>設定使用者佈建
 本節的目的是要說明如何對 Dropbox for Business 啟用 Active Directory 使用者帳戶的使用者佈建。
@@ -129,16 +130,16 @@ ms.openlocfilehash: e328f8ecfad5f481462a7b9c0c4a16e966e33217
 1. 在 Azure 傳統入口網站的 [Dropbox for Business] 應用程式整合頁面上，按一下 [設定使用者佈建] 來開啟 [設定使用者佈建] 對話方塊。
 2. 在 [啟用使用者佈建至 DropBox for Business] 頁面上，按一下 [啟用使用者佈建] 以開啟 [登入 Dropbox 來與 Azure AD 連結] 對話方塊。  
    
-    ![使用者佈建](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769517.png "User provisioning")
+    ![使用者佈建](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769517.png "使用者佈建")
 3. 在 [登入 Dropbox 來與 Azure AD 連結]  對話方塊上，登入您的 Dropbox for Business 租用戶。 
    
-    ![使用者佈建](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769518.png "User provisioning")
+    ![使用者佈建](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769518.png "使用者佈建")
 4. 按一下 [允許]  授與 Azure AD 存取 Dropbox。 
    
-    ![使用者佈建](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769519.png "User provisioning")
+    ![使用者佈建](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769519.png "使用者佈建")
 5. 若要完成設定，請按一下 [完成]  按鈕。  
    
-    ![使用者佈建](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769520.png "User provisioning")
+    ![使用者佈建](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769520.png "使用者佈建")
 
 ## <a name="assigning-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
@@ -147,20 +148,20 @@ ms.openlocfilehash: e328f8ecfad5f481462a7b9c0c4a16e966e33217
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [Dropbox for Business] 應用程式整合頁面上，按一下 [指派使用者]。
    
-    ![指派使用者](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769521.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769521.png "指派使用者")
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
    
-    ![是](./media/active-directory-saas-dropboxforbusiness-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-dropboxforbusiness-tutorial/IC767830.png "是")
 
 請等候 10 分鐘並確認帳戶已同步至企業適用的 Dropbox。
 
 在第一個驗證步驟中，您可以在 Azure 傳統入口網站的 [Dropbox for Business] 應用程式整合頁面上，按一下 [儀表板] 來檢查佈建狀態。
 
-![指派使用者](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769522.png "Assign users")
+![指派使用者](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769522.png "指派使用者")
 
 成功完成的使用者佈建週期會以相關狀態表示。
 
-![指派使用者](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769523.png "Assign users")
+![指派使用者](./media/active-directory-saas-dropboxforbusiness-tutorial/IC769523.png "指派使用者")
 
 如果要測試您的單一登入設定，請開啟存取面板。
 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
@@ -168,10 +169,5 @@ ms.openlocfilehash: e328f8ecfad5f481462a7b9c0c4a16e966e33217
 ## <a name="additional-resources"></a>其他資源
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

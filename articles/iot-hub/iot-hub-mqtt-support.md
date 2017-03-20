@@ -12,16 +12,17 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/24/2016
+ms.date: 03/01/2017
 ms.author: kdotchko
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 47e1d5172dabac18c1b355d8514ae492cd973d32
-ms.openlocfilehash: 5c362af149afd4a204c2705ae3d7f67361d8d528
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: c09caf68b4acf90b5a76d2d715e07fc3a522f18c
+ms.openlocfilehash: 7b9b7e558a95de88dedcb744e2a4b3c18cde35cc
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="iot-hub-mqtt-support"></a>IoT 中樞的 MQTT 支援
+# <a name="communicate-with-your-iot-hub-using-the-mqtt-protocol"></a>使用 MQTT 通訊協定來與 IoT 中樞通訊
 「IoT 中樞」可讓裝置在連接埠 8883 使用 [MQTT v3.1.1][lnk-mqtt-org] 通訊協定，或在連接埠 443 使用「透過 WebSocket 的 MQTT v3.1.1」通訊協定，來與「IoT 中樞」裝置端點進行通訊。 「IoT 中樞」要求使用 TLS/SSL 保護所有裝置通訊的安全 (因此，「IoT 中樞」並不支援透過連接埠 1883 的非安全連線)。
 
 ## <a name="connecting-to-iot-hub"></a>連接到 IoT 中樞
@@ -97,7 +98,7 @@ RFC 2396-encoded(<PropertyName1>)=RFC 2396-encoded(<PropertyValue1>)&RFC 2396-en
 ### <a name="receiving-cloud-to-device-messages"></a>接收雲端到裝置訊息
 若要從 IoT 中樞接收訊息，裝置應該使用 `devices/{device_id}/messages/devicebound/#` 做為**主題篩選**來進行訂閱。 「主題篩選」中的多層級萬用字元 **#** 僅供用來允許裝置接收主題名稱中的額外屬性。 「IoT 中樞」並不允許使用 **#** 或 **?** 萬用字元來篩選副主題。 由於「IoT 中樞」不是一般用途的發行/訂閱傳訊訊息代理程式，因此它只支援已記載的主題名稱和主題篩選。
 
-請注意，裝置在成功訂閱「IoT 中樞」的裝置特定端點 (由 `devices/{device_id}/messages/devicebound/#` 主題篩選代表 ) 之後，才會收到來自「IoT 中樞」的訊息。 建立成功的訂閱之後，裝置將會開始接收訊息，但僅限在訂閱之後傳送給它的雲端到裝置訊息。 如果裝置是在 **CleanSession** 旗標設定為 **0** 的情況下連線，訂閱將會跨不同的工作階段持續保留。 在此情況下，下次裝置以 **CleanSession 0** 進行連線時，就會收到在其中斷連線時傳送給它的未送訊息。 如果裝置使用設定為 **1** 的 **CleanSession** 旗標，則必須等到訂閱「IoT 中樞」的裝置端點之後，才會收到來自「IoT 中樞」的訊息。
+請注意，裝置在成功訂閱 IoT 中樞的裝置特定端點 (由 `devices/{device_id}/messages/devicebound/#` 主題篩選代表) 之後，才會收到來自 IoT 中樞的訊息。 建立成功的訂閱之後，裝置將會開始接收訊息，但僅限在訂閱之後傳送給它的雲端到裝置訊息。 如果裝置是在 **CleanSession** 旗標設定為 **0** 的情況下連線，訂閱將會跨不同的工作階段持續保留。 在此情況下，下次裝置以 **CleanSession 0** 進行連線時，就會收到在其中斷連線時傳送給它的未送訊息。 如果裝置使用設定為 **1** 的 **CleanSession** 旗標，則必須等到訂閱「IoT 中樞」的裝置端點之後，才會收到來自「IoT 中樞」的訊息。
 
 IoT 中樞會附上**主題名稱** `devices/{device_id}/messages/devicebound/` 或 `devices/{device_id}/messages/devicebound/{property_bag}` (如果有任何訊息屬性) 來傳遞訊息。 `{property_bag}` 包含訊息屬性的 url 編碼索引鍵/值組。 屬性包中只會包含應用程式屬性和使用者可設定的系統屬性 (例如 **messageId** 或 **correlationId**)。 系統屬性名稱具有前置詞 **$**，但應用程式屬性則會使用沒有前置詞的原始屬性名稱。
 
@@ -105,12 +106,12 @@ IoT 中樞會附上**主題名稱** `devices/{device_id}/messages/devicebound/` 
 
 ### <a name="retrieving-a-device-twins-properties"></a>擷取裝置對應項屬性
 
-首先，裝置會訂閱 `$iothub/twin/res/#`，以接收作業的回應。 然後，它會傳送空白訊息給主題 `$iothub/twin/GET/?$rid={request id}`，其中已填入**要求識別碼**的值。 服務接著會使用和要求相同的**要求識別碼**，傳送內含關於 `$iothub/twin/res/{status}/?$rid={request id}` 主題之裝置對應項資料的回應訊息。
+首先，裝置會訂閱 `$iothub/twin/res/#`，以接收作業的回應。 然後，它會傳送空白訊息給主題 `$iothub/twin/GET/?$rid={request id}`，其中已填入**要求識別碼**的值。 服務接著將使用和要求相同的**要求識別碼**，傳送內含關於 `$iothub/twin/res/{status}/?$rid={request id}` 主題之裝置對應項資料的回應訊息。
 
-根據 [IoT 中樞傳訊開發人員指南][lnk-messaging]，要求識別碼可以是任何有效的訊息屬性值，而狀態則會驗證為整數。
-回應本文會包含裝置對應項的屬性區段︰
+根據 [IoT 中樞傳訊開發人員指南][lnk-messaging]，要求識別碼可以是任何有效的訊息屬性值，而狀態會驗證為整數。
+回應本文將包含裝置對應項的屬性區段：
 
-身分識別登錄項目的本文僅限於「屬性」成員，例如
+身分識別登錄項目的本文僅限於 “properties” 成員，例如：
 
         {
             "properties": {
@@ -146,7 +147,7 @@ IoT 中樞會附上**主題名稱** `devices/{device_id}/messages/devicebound/` 
 
 1. 服務接著會傳送回應訊息，其中包含`$iothub/twin/res/{status}/?$rid={request id}` 主題上報告之屬性集合的新 ETag 值。 這個回應訊息使用和要求相同的 **request id**。
 
-要求訊息本文包含可提供報告屬性新值 (其他屬性或中繼資料則不可修改) 的 JSON 文件。
+要求訊息本文包含一份 JSON 文件，可提供所報告屬性的新值 (其他屬性或中繼資料則不可修改)。
 JSON 文件中的每個成員會在裝置對應項的文件中更新或新增對應的成員。 設定為 `null` 的成員會從包含的物件中刪除成員。 例如：
 
         {
@@ -178,7 +179,7 @@ JSON 文件中的每個成員會在裝置對應項的文件中更新或新增對
 
 
 > [!IMPORTANT] 
-> IoT 中樞只會在裝置連線時產生變更通知，請務必實作[裝置重新連線流程][lnk-devguide-twin-reconnection]，以便 IoT 中樞與裝置應用程式兩者的所需屬性保持同步。
+> IoT 中樞只會在連接裝置時產生變更通知。 請務必實作[裝置重新連線流程][lnk-devguide-twin-reconnection]，以便讓 IoT 中樞與裝置應用程式兩者所需的屬性保持同步。
 
 如需詳細資訊，請參閱[裝置對應項開發人員指南][lnk-devguide-twin]。
 

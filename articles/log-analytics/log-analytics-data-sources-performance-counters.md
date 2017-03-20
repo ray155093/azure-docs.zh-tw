@@ -1,5 +1,5 @@
 ---
-title: "在 Log Analytics 中收集並分析效能計數器 | Microsoft Docs"
+title: "在 Azure Log Analytics 中收集並分析效能計數器 | Microsoft Docs"
 description: "Log Analytics 會收集效能計數器以分析 Windows 和 Linux 代理程式的效能。  本文說明如何設定 Windows 和 Linux 代理程式的效能計數器收集、儲存在 OMS 儲存機制中的相關詳細資料，以及如何在 OMS 入口網站中分析這些資料。"
 services: log-analytics
 documentationcenter: 
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 02/24/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 653696779e612726ed5b75829a5c6ed2615553d7
-ms.openlocfilehash: 1e4b5dac9333a9bd38f6ef89ddce22c74fed06ba
+ms.sourcegitcommit: 853177202e4724546242d4e8d1b41b456a444eeb
+ms.openlocfilehash: 2381b7e9ab4514d6668569c2a58d108af5008a7e
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -28,13 +29,13 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 ## <a name="configuring-performance-counters"></a>設定效能計數器
 從 [Log Analytics [設定] 中的 [資料] 功能表](log-analytics-data-sources.md#configuring-data-sources)設定效能計數器。
 
-當您第一次為新的 OMS 工作區設定 Windows 或 Linux 效能計數器時，系統會提供選項，讓您快速建立數個常用的計數器。  這些計數器旁邊皆會列出核取方塊。  確認已核取所有想一開始就建立的計數器，然後按一下 [Add the selected performance counters] (加入選取的效能計數器) 。
+當您第一次為新的 OMS 工作區設定 Windows 或 Linux 效能計數器時，系統會提供選項，讓您快速建立數個常用的計數器。  這些計數器旁邊皆會列出核取方塊。  確認已核取所有想一開始就建立的計數器，然後按一下 **[Add the selected performance counters]** \ (加入選取的效能計數器) 。
 
 ![設定 Windows 效能計數器](media/log-analytics-data-sources-performance-counters/configure-windows.png)
 
 請遵循此程序以加入要收集的新 Windows 效能計數器。
 
-1. 在文字方塊中輸入計數器名稱，格式為 *object(instance)\counter*。  開始輸入時，您就會看到符合的常用計數器清單。  您可以從清單中選取計數器，或自行輸入。  您也可以指定 *object\counter*，以傳回特定計數器的所有執行個體。 
+1. 在文字方塊中輸入計數器名稱，格式為 *object(instance)\counter*。  開始輸入時，您就會看到符合的常用計數器清單。  您可以從清單中選取計數器，或自行輸入。  您也可以指定 *object\counter*，以傳回特定計數器的所有執行個體。
 2. 按一下 **+** 或按 **Enter**，將計數器新增至清單。
 3. 新增計數器時，它會以 10 秒作為 [取樣間隔時間] 的預設值。  如果您想要降低所收集之效能資料的儲存需求，可以將此值變更為最多 1800 秒 (30 分鐘)。
 4. 加入所要的計數器後，請按一下畫面頂端的 [儲存]  按鈕以儲存設定。
@@ -92,19 +93,9 @@ Windows 和 Linux 的效能計數器可讓您深入了解硬體元件、作業�
 
 ![摺疊的計量檢視](media/log-analytics-data-sources-performance-counters/metricscollapsed.png)
 
-如果您選取的時間範圍在 6 小時以內，則圖形每隔幾秒更新一次。  圖形的右邊會以淺藍色顯示即時資料。
-
-![展開計量檢視與即時資料](media/log-analytics-data-sources-performance-counters/metricsexpanded.png)
-
 若要彙總記錄搜尋中的效能資料，請參閱[在 OMS 中隨需彙總和視覺化度量](http://blogs.technet.microsoft.com/msoms/2016/02/26/on-demand-metric-aggregation-and-visualization-in-oms/)。
 
 ## <a name="next-steps"></a>後續步驟
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。  
 * 將收集的資料匯出至 [Power BI](log-analytics-powerbi.md) 以進行其他視覺效果和分析。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

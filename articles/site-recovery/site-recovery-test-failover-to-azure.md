@@ -15,19 +15,23 @@ ms.workload: storage-backup-recovery
 ms.date: 2/15/2017
 ms.author: pratshar
 translationtype: Human Translation
-ms.sourcegitcommit: 753d70b9b9a4c2805033f2f2fb293dbdef7b4db4
-ms.openlocfilehash: 27ee6bbadd2b03ccf60739a276f49783ea68f9d1
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: e2d464c1c70be0bd7d5551c7f76f02b10c20b9ed
+ms.openlocfilehash: e5c42a574b22278586500048efd5b813d64dd4b7
+ms.lasthandoff: 02/23/2017
 
 
 ---
 # <a name="test-----failover-to-azure-in-site-recovery"></a>在 Site Recovery 中測試容錯移轉到 Azure
+> [!div class="op_single_selector"]
+> * [執行測試容錯移轉至 Azure](./site-recovery-test-failover-to-azure.md)
+> * [測試容錯移轉 (VMM 至 VMM)](./site-recovery-test-failover-vmm-to-vmm.md)
+
 
 本文提供使用 Azure 做為復原站台，對使用 Site Recovery 保護的虛擬機器與實體伺服器執行測試容錯移轉或 DR (災害復原) 訓練的相關資訊和指示。
 
 在這篇文章下方或 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中張貼意見或問題。
 
-執行測試容錯移轉可驗證您的複寫策略，或在沒有資料遺失或停機時間的情況下執行災害復原訓練。 執行測試容錯移轉不會影響任何正在進行的複寫或生產環境。 測試容錯移轉可在虛擬機器或[復原計劃](site-recovery-create-recovery-plans.md)上執行。 觸發測試容錯移轉時，您必須指定測試虛擬機器會連接的網路。 一旦觸發測試容錯移轉，您可以在**工作**頁面追蹤進度。  
+執行測試容錯移轉可驗證您的複寫策略，或在沒有資料遺失或停機時間的情況下執行災害復原訓練。 執行測試容錯移轉不會影響任何正在進行的複寫或生產環境。 測試容錯移轉可在虛擬機器或[復原計劃](site-recovery-create-recovery-plans.md)上執行。 觸發測試容錯移轉時，您必須指定測試虛擬機器會連線的網路。 一旦觸發測試容錯移轉，您可以在 [作業] 頁面追蹤進度。  
 
 
 ## <a name="supported-scenarios"></a>支援的案例
@@ -37,25 +41,36 @@ ms.lasthandoff: 02/15/2017
 ## <a name="run-a-test-failover"></a>執行測試容錯移轉
 此程序說明如何針對復原方案執行測試容錯移轉。 或者，您也可以在單一機器上使用適當的選項來對其執行測試容錯移轉。
 
-1. 選取 [復原方案]  >  *recoveryplan_name*。 按一下 [測試容錯移轉] 。
+![Test Failover](./media/site-recovery-test-failover-to-azure/TestFailover.png)
 
-    ![測試容錯移轉](./media/site-recovery-test-failover-to-azure/test-failover1.png)
+
+1. 選取 [復原方案]  >  *recoveryplan_name*。 按一下 [測試容錯移轉] 。
 1. 選取要容錯移轉到的**復原點**。 您可以使用下列其中一個選項：
-    1.  **最新處理**︰這個選項會將復原計劃的所有虛擬機器容錯移轉至 Site Recovery 服務已處理的最新復原點。 當您進行虛擬機器的測試容錯移轉時，也會顯示最新處理復原點的時間戳記。 如果您正在執行某個復原計劃的容錯移轉，您可以移至個別的虛擬機器，並查看**最新復原點**圖格以取得此資訊。 因為沒有花時間處理未處理的資料，此選項提供低 RTO (復原時間目標) 容錯移轉選項。
-    1.    **最新的應用程式一致**︰這個選項會將復原計劃的所有虛擬機器容錯移轉至 Site Recovery 服務已處理的最新應用程式一致復原點。 當您進行虛擬機器的測試容錯移轉時，也會顯示最新應用程式一致復原點的時間戳記。 如果您正在執行某個復原計劃的容錯移轉，您可以移至個別的虛擬機器，並查看**最新復原點**圖格以取得此資訊。
+    1.  **最新處理**︰這個選項會將復原方案的所有虛擬機器容錯移轉至 Site Recovery 服務已處理的最新復原點。 當您進行虛擬機器的測試容錯移轉時，也會顯示最新處理復原點的時間戳記。 如果您正在執行某個復原方案的容錯移轉，您可以移至個別的虛擬機器，並查看 [最新復原點] 圖格以取得此資訊。 因為沒有花時間處理未處理的資料，此選項提供低 RTO (復原時間目標) 容錯移轉選項。
+    1.    **最新的應用程式一致**︰這個選項會將復原方案的所有虛擬機器容錯移轉至 Site Recovery 服務已處理的最新應用程式一致復原點。 當您進行虛擬機器的測試容錯移轉時，也會顯示最新應用程式一致復原點的時間戳記。 如果您正在執行某個復原方案的容錯移轉，您可以移至個別的虛擬機器，並查看 [最新復原點] 圖格以取得此資訊。
     1.    **最新**︰此選項會先處理已傳送到 Site Recovery 服務的所有資料，先為每個虛擬機器建立復原點後再進行容錯移轉。 此選項提供最低的 RPO (復原點目標)，因為在容錯移轉後建立的虛擬機器會包含觸發容錯移轉時已複寫到 Site Recovery 服務的所有資料。
-    1.    **自訂**︰如果您正在執行虛擬機器的測試容錯移轉，您可以使用此選項以容錯移轉至特定復原點。
-1. 選取一個 **Azure 虛擬網路**︰提供一個 Azure 虛擬網路，測試虛擬機器會建立於該處。 Site Recovery 會嘗試在名稱相同的子網路中建立測試虛擬機器，並使用虛擬機器的 [計算與網路] 設定中提供的 IP。 如果針對測試容錯移轉提供的 Azure 虛擬網路中沒有名稱相同的子網路，則會在依字母順序的第一個子網路中建立測試虛擬機器。 如果子網路中沒有相同的 IP，虛擬機器會接收子網路中另一個可用的 IP 位址。 請參閱此節以[瞭解更多詳細資訊](#creating-a-network-for-test-failover)
+    1.    **自訂**︰如果您要執行虛擬機器的測試容錯移轉，您可以使用此選項以容錯移轉至特定復原點。
+1. 選取一個 **Azure 虛擬網路**︰提供一個 Azure 虛擬網路，測試虛擬機器會建立於該處。 Site Recovery 會嘗試在名稱相同的子網路中建立測試虛擬機器，並使用虛擬機器的 [計算與網路] 設定中提供的 IP。 如果針對測試容錯移轉提供的 Azure 虛擬網路中沒有名稱相同的子網路，則會在依字母順序的第一個子網路中建立測試虛擬機器。 如果子網路中沒有相同的 IP，虛擬機器會取得子網路中另一個可用的 IP 位址。 請參閱此節以[瞭解更多詳細資訊](#creating-a-network-for-test-failover)
 1. 如果您正在容錯移轉到 Azure 且已啟用資料加密，請在 [加密金鑰] 中，選取當您在提供者安裝期間啟用資料加密時所發出的憑證。 如果您尚未在虛擬機器上啟用加密，您可以忽略此步驟。
 1. 在 [工作]  索引標籤上追蹤容錯移轉進度。 您應該可以在 Azure 入口網站中看到測試複本機器。
 1. 若要在虛擬機器上初始化 RDP 連線，您必須在容錯移轉的虛擬機器的網路介面上[新增公用 IP](site-recovery-monitoring-and-troubleshooting.md#adding-a-public-ip-on-a-resource-manager-virtual-machine)。 如果您要容錯移轉到傳統虛擬機器，您必須在連接埠 3389 上[新增端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)
-1. 完成後，在復原方案上按一下 [清除測試容錯移轉]。 在 [記事]  中，記錄並儲存關於測試容錯移轉的任何觀察。 這將刪除在測試容錯移轉期間所建立的虛擬機器。
+1. 完成後，在復原方案上按一下 [清除測試容錯移轉]。 在 [記事]  中，記錄並儲存關於測試容錯移轉的任何觀察。 這會刪除在測試容錯移轉期間所建立的虛擬機器。
 
 
 > [!TIP]
-> Site Recovery 會嘗試在名稱相同的子網路中建立測試虛擬機器，並使用虛擬機器的 [計算與網路] 設定中提供的 IP。 如果針對測試容錯移轉提供的 Azure 虛擬網路中沒有名稱相同的子網路，則會在依字母順序的第一個子網路中建立測試虛擬機器。 如果子網路中沒有相同的 IP，虛擬機器會接收子網路中另一個可用的 IP 位址。 
+> Site Recovery 會嘗試在名稱相同的子網路中建立測試虛擬機器，並使用虛擬機器的 [計算與網路] 設定中提供的 IP。 如果針對測試容錯移轉提供的 Azure 虛擬網路中沒有名稱相同的子網路，則會在依字母順序的第一個子網路中建立測試虛擬機器。 如果子網路中沒有相同的 IP，虛擬機器會取得子網路中另一個可用的 IP 位址。 
 >
 >
+
+## <a name="test-failover-job"></a>測試容錯移轉作業
+
+![Test Failover](./media/site-recovery-test-failover-to-azure/TestFailoverJob.png)
+
+觸發測試容錯移轉時會執行下列步驟︰
+
+1. 先決條件檢查︰這個步驟可確保符合容錯移轉所需的所有條件
+1. 容錯移轉︰這個步驟會處理並備妥資料，以用來建立 Azure 虛擬機器。 如果您已選擇 [最新] 復原點，此步驟會從已傳送至服務的資料建立復原點。
+1. 開始︰這個步驟會使用上一個步驟中所處理的資料建立 Azure 虛擬機器。
 
 
 ## <a name="creating-a-network-for-test-failover"></a>建立測試容錯移轉的網路
@@ -84,10 +99,10 @@ ms.lasthandoff: 02/15/2017
 
 **容錯移轉** | **位置** | **動作**
 --- | --- | ---
-**執行 Windows 的 Azure VM** | 在容錯移轉前的內部部署機器上 | 若要透過網際網路存取 Azure VM，請啟用 RDP，並確定已針對 [公用] 新增 TCP 和 UDP 規則，且在 [Windows 防火牆]  >  [允許的應用程式] 中已針對所有設定檔允許 RDP。<br/><br/> 若要透過站對站連線進行存取，請在機器上啟用 RDP，並確定在 [Windows 防火牆]  ->  [允許的應用程式和功能] 中已針對 [網域] 和 [私人] 網路允許 RDP。<br/><br/> 安裝 Azure VM 代理程式<br/><br/> 確定作業系統的 SAN 原則已設為 **OnlineAll**。 [深入了解](https://support.microsoft.com/kb/3031135)。<br/><br/> 在執行容錯移轉前，關閉 IPsec 服務。
-**執行 Windows 的 Azure VM** | 在容錯移轉後的 Azure VM 上 | 新增 RDP 通訊協定 (連接埠 3389) 的公用端點，並指定用於登入的認證。<br/><br/> 請確定沒有任何網域原則禁止您使用公用位址連接到虛擬機器。<br/><br/> 嘗試連線。 如果無法連線，請確認 VM 正在執行中。 取得[疑難排解秘訣](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)。<br/><br/> 確定作業系統的 SAN 原則已設為 **OnlineAll**。 [深入了解](https://support.microsoft.com/kb/3031135)。<br/><br/> 在執行容錯移轉前，關閉 IPsec 服務。<br/><br/> 如果您有與機器或子網路相關聯的網路安全性群組，請確定群組具有可允許 HTTP/HTTPS 的輸出規則。 請確定 VM 要容錯移轉至的網路 DNS 設定正確。 否則，容錯移轉可能會逾時，並發生錯誤 -「PreFailoverWorkflow 工作 WaitForScriptExecutionTask 逾時」。 [深入了解](https://github.com/rayne-wiselman/azure-docs-pr/blob/75653b84d6ccbefe7d5230449bea81f498e10a98/articles/site-recovery/site-recovery-monitoring-and-troubleshooting.md#recovery)。
+**執行 Windows 的 Azure VM** | 在容錯移轉前的內部部署機器上 | 若要透過網際網路存取 Azure VM，請啟用 RDP，並確定已針對 [公用] 新增 TCP 和 UDP 規則，且在 [Windows 防火牆] > [允許的應用程式] 中已針對所有設定檔允許 RDP。<br/><br/> 若要透過站對站連線進行存取，請在機器上啟用 RDP，並確定在 [Windows 防火牆]  ->  [允許的應用程式和功能] 中已針對 [網域] 和 [私人] 網路允許 RDP。<br/><br/>  確定作業系統的 SAN 原則已設為 **OnlineAll**。 [深入了解](https://support.microsoft.com/kb/3031135)。<br/><br/> 觸發容錯移轉時，請確定虛擬機器上沒有任何暫止的 Windows 更新。 容錯移轉時，可能會啟動 Windows 更新，必須等到更新完成，才能登入虛擬機器。 <br/><br/>
+**執行 Windows 的 Azure VM** | 在容錯移轉後的 Azure VM 上 | 若是傳統虛擬機器，請為 RDP 通訊協定 (連接埠 3389) [新增公用端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)<br/><br/>  若是在 Resource Manager 虛擬機器上，請[新增公用 IP](site-recovery-monitoring-and-troubleshooting.md#adding-a-public-ip-on-a-resource-manager-virtual-machine)。<br/><br/> 已容錯移轉的 VM 上的網路安全性群組規則以及它所連線的 Azure 子網路必須允許 RDP 連接埠的連入連線。<br/><br/> 若是 Resource Manager 虛擬機器，您可以檢查 [開機診斷]，查看虛擬機器的螢幕擷取畫面<br/><br/> 如果您無法連線，請檢查 VM 是否正在執行，然後查看這些[疑難排解秘訣](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)。<br/><br/>
 **執行 Linux 的 Azure VM** | 在容錯移轉前的內部部署機器上 | 確定 Azure VM 上的安全殼層服務已設定為在系統開機時自動啟動。<br/><br/> 請檢查防火牆規則是否允許 SSH 連線。
-**執行 Linux 的 Azure VM** | 容錯移轉後的 Azure VM | 已容錯移轉的 VM 上的網路安全性群組規則以及它所連接的 Azure 子網路必須允許 SSH 連接埠的連入連線。<br/><br/> 應建立公用端點，以允許 SSH 連接埠 (預設為 TCP 通訊埠 22) 上的連入連線。<br/><br/> 如果透過 VPN 連線 (Express Route 或站對站 VPN) 存取 VM，則用戶端可用來透過 SSH 直接連接到 VM。<br/><br/> 如果您有與機器或子網路相關聯的網路安全性群組，請確定群組具有可允許 HTTP/HTTPS 的輸出規則。 請確定 VM 要容錯移轉至的網路 DNS 設定正確。 否則，容錯移轉可能會逾時，並發生錯誤 -「PreFailoverWorkflow 工作 WaitForScriptExecutionTask 逾時」。 [深入了解](https://github.com/rayne-wiselman/azure-docs-pr/blob/75653b84d6ccbefe7d5230449bea81f498e10a98/articles/site-recovery/site-recovery-monitoring-and-troubleshooting.md#recovery)。
+**執行 Linux 的 Azure VM** | 容錯移轉後的 Azure VM | 已容錯移轉的 VM 上的網路安全性群組規則以及它所連接的 Azure 子網路必須允許 SSH 連接埠的連入連線。<br/><br/> 若是傳統虛擬機器，應建立[新增公用端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)，以允許 SSH 連接埠 (預設為 TCP 通訊埠 22) 上的連入連線。<br/><br/> 若是在 Resource Manager 虛擬機器上，請[新增公用 IP](site-recovery-monitoring-and-troubleshooting.md#adding-a-public-ip-on-a-resource-manager-virtual-machine)。<br/><br/> 若是 Resource Manager 虛擬機器，您可以檢查 [開機診斷]，查看虛擬機器的螢幕擷取畫面<br/><br/>
 
 
 

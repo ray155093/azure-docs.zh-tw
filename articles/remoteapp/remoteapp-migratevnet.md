@@ -16,6 +16,7 @@ ms.author: mbaldwin
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: dbc8a612d05f8456e55eb26c58cd4461ced4a521
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -53,10 +54,5 @@ ms.openlocfilehash: dbc8a612d05f8456e55eb26c58cd4461ced4a521
 現在，大功告成！
 
 如果您有任何疑問或需要特殊協助，請將電子郵件寄到 [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com?subject=Azure%20RemoteApp%20VNET%20migration%20help)的 RemoteApp VNET。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

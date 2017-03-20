@@ -18,6 +18,7 @@ ms.author: kumud
 translationtype: Human Translation
 ms.sourcegitcommit: cf1eafc7bca5bddeb32f1e1e05e660d6877ed805
 ms.openlocfilehash: f14a0473ebcf21e04759cb8eb77eb684c4d9a9cb
+ms.lasthandoff: 11/17/2016
 
 ---
 
@@ -146,9 +147,4 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
     ```bash
     sudo systemctl restart systemd-networkd
     ```
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

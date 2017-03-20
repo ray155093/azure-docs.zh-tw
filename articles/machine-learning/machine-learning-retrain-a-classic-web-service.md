@@ -17,6 +17,7 @@ ms.author: v-donglo
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 139980b62aee440ac5f4160e83c7a5eafb32eec2
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -145,10 +146,5 @@ ms.openlocfilehash: 139980b62aee440ac5f4160e83c7a5eafb32eec2
 
 ## <a name="next-steps"></a>後續步驟
 [Azure Machine Learning 傳統 Web 服務的重新訓練進行疑難排解](machine-learning-troubleshooting-retraining-models.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: sethm
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 719403ca2ef90cdcf5f76fe15f7a33095e71a74c
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -99,10 +100,5 @@ ms.openlocfilehash: 719403ca2ef90cdcf5f76fe15f7a33095e71a74c
 * [服務匯流排訊息概觀](service-bus-messaging-overview.md)
 * [服務匯流排架構](service-bus-architecture.md)
 * [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

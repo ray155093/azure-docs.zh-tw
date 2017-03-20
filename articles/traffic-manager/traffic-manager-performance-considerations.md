@@ -17,6 +17,7 @@ ms.author: kumud
 translationtype: Human Translation
 ms.sourcegitcommit: 69b94c93ad3e9c9745af8485766b4237cac0062c
 ms.openlocfilehash: 680c3dd7bbc5ac86d021e119b31352cbfb3451f7
+ms.lasthandoff: 11/17/2016
 
 ---
 
@@ -85,10 +86,5 @@ ms.openlocfilehash: 680c3dd7bbc5ac86d021e119b31352cbfb3451f7
 [流量管理員的相關作業 (REST API 參考)](http://go.microsoft.com/fwlink/?LinkId=313584)
 
 [Azure 流量管理員 Cmdlet](http://go.microsoft.com/fwlink/p/?LinkId=400769)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

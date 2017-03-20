@@ -1,6 +1,6 @@
 ---
 title: "Azure 事件中樞診斷記錄 | Microsoft Docs"
-description: "了解如何在 Microsoft Azure 事件中樞中分析診斷記錄。"
+description: "了解如何設定 Azure 中的事件中樞診斷記錄檔。"
 keywords: 
 documentationcenter: 
 services: event-hubs
@@ -16,58 +16,66 @@ ms.workload: data-services
 ms.date: 02/01/2017
 ms.author: babanisa
 translationtype: Human Translation
-ms.sourcegitcommit: 4d7d0e1f5ffb395bf91bbdac1ab4b9ec3f9dee1c
-ms.openlocfilehash: cb8c7930ee423543c91366de64220ee55609a4cf
+ms.sourcegitcommit: abcb0eee979853948cf6d981ff8f3a457eeeeef0
+ms.openlocfilehash: 87c0f3eab8c09c79de06c2e806830b2f67ea5732
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="event-hub-diagnostic-logs"></a>事件中樞診斷記錄
+# <a name="event-hubs-diagnostic-logs"></a>事件中樞診斷記錄檔
 
-## <a name="introduction"></a>簡介
-事件中樞公開兩種類型的記錄： 
-* [活動記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)，一律會啟用，並提供作業上所執行之作業的深入資訊；
-* [診斷記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)，可供使用者設定，並提供豐富的作業深入資訊，包含從建立、更新、執行，直到刪除作業之間所發生任何事件；
+您可以檢視 Azure 事件中樞的兩種記錄檔類型：
+* **[活動記錄檔](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)**。 這些記錄檔具有針對作業所執行之操作的相關資訊。 此記錄檔一律會開啟。
+* **[診斷記錄檔](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)**。 您可以設定診斷記錄檔，以更深入了解作業中所發生的所有事件。 診斷記錄檔涵蓋從建立作業到刪除作業期間的活動，包括作業執行時發生的更新與活動。
 
-## <a name="how-to-enable-diagnostic-logs"></a>如何啟用診斷記錄
-診斷記錄預設為 [關閉]。 若要啟用，請依照下列步驟執行：
+## <a name="turn-on-diagnostic-logs"></a>開啟診斷記錄檔
+診斷記錄檔預設為 [關閉]。 開啟診斷記錄檔：
 
-登入 Azure 入口網站並瀏覽到 [串流作業] 刀鋒視窗，然後使用 [監視] 底下的 [診斷記錄] 刀鋒視窗。
+1.    在 Azure 入口網站中，移至 [資料流處理工作] 刀鋒視窗。
 
-![瀏覽到診斷記錄的刀鋒視窗](./media/event-hubs-diagnostic-logs/image1.png)  
+2.    在 [監視] 底下，移至 [診斷記錄檔] 刀鋒視窗。
 
-然後按一下 [開啟診斷] 連結
+    ![瀏覽到診斷記錄檔的刀鋒視窗](./media/event-hubs-diagnostic-logs/image1.png)  
 
-![開啟診斷記錄](./media/event-hubs-diagnostic-logs/image2.png)
+3.    選取 [開啟診斷]。
 
-在開啟的診斷中，將狀態變更為 [開啟]。
+    ![開啟診斷記錄檔](./media/event-hubs-diagnostic-logs/image2.png)
 
-![變更診斷記錄狀態](./media/event-hubs-diagnostic-logs/image3.png)
+4.    針對 [狀態] 選取 [開啟]。
 
-設定所需的封存目標 (儲存體帳戶、事件中樞、Log Analytics)，並選取要收集的記錄類別 (執行、製作)。 然後儲存新的診斷組態。
+    ![變更診斷記錄檔的狀態](./media/event-hubs-diagnostic-logs/image3.png)
 
-儲存組態之後，需要約 10 分鐘才會生效，然後記錄會開始顯示在設定的封存目標中。您可以在 [診斷記錄] 刀鋒視窗中查看：
+5.    設定您要使用的封存目標，例如儲存體帳戶、事件中樞或 Azure Log Analytics。
 
-設定診斷的詳細資訊可在 [診斷記錄][](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs) 頁面取得。
+6.    選取您要收集的記錄類別，例如 [執行] 或 [製作]。
+
+7.    儲存新的診斷設定。
+
+新的設定大約會在 10 分鐘內生效。 之後，記錄檔會顯示在 [診斷記錄檔] 刀鋒視窗上已設定的封存目標中。
+
+如需設定診斷的詳細資訊，請參閱 [Azure 診斷記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)。
 
 ## <a name="diagnostic-logs-categories"></a>診斷記錄類別
-目前可擷取的診斷記錄類別有兩種：
+事件中樞會擷取兩種類別的診斷記錄檔：
 
-* **ArchivalLogs：**擷取與事件中樞封存相關的記錄 - 特別是與封存錯誤相關的記錄。
-* **OperationalLogs：**擷取事件中樞作業期間發生的動作 - 特別是作業類型 (例如事件中樞建立)、使用的資源，以及作業狀態。
+* **ArchivalLogs** 會擷取與事件中樞封存相關的記錄檔，具體而言，就是與封存錯誤相關的記錄檔。
+* **OperationalLogs** 會擷取事件中樞作業期間發生的事件，具體而言，就是作業類型 (包括建立事件中樞)、使用的資源，以及作業狀態。
 
 ## <a name="diagnostic-logs-schema"></a>診斷記錄結構描述
-所有記錄檔都以 JSON 格式儲存，且每個項目都有遵循下列格式的字串欄位：
+所有的記錄檔都會以 JavaScript 物件標記法 (JSON) 格式儲存。 每個項目都具有字串欄位，這些欄位會使用下列範例所述的格式。
 
+### <a name="archive-logs-schema"></a>封存記錄檔結構描述
 
-### <a name="archive-error-schema"></a>封存錯誤結構描述
-名稱 | 說明
+封存記錄檔 JSON 字串包括下表所列的元素：
+
+名稱 | 描述
 ------- | -------
-TaskName | 失敗的作業描述
-ActivityId | 用於追蹤目的的內部識別碼
-trackingId | 用於追蹤目的的內部識別碼
-resourceId | ARM 資源識別碼
+TaskName | 失敗工作的描述
+ActivityId | 用於追蹤的內部識別碼
+trackingId | 用於追蹤的內部識別碼
+resourceId | Azure Resource Manager 資源識別碼
 eventHub | 事件中樞完整名稱 (包括命名空間名稱)
-partitionId | 要寫入至事件中樞內的資料分割
+partitionId | 要寫入的事件中樞資料分割
 archiveStep | ArchiveFlushWriter
 startTime | 失敗開始時間
 failures | 發生失敗的次數
@@ -75,7 +83,7 @@ durationInSeconds | 失敗持續時間
 Message | 錯誤訊息
 category | ArchiveLogs
 
-#### <a name="example-archive-log"></a>封存記錄檔範例
+以下是封存記錄檔 JSON 字串的範例：
 
 ```json
 {
@@ -95,22 +103,25 @@ category | ArchiveLogs
 ```
 
 ### <a name="operation-logs-schema"></a>作業記錄檔結構描述
-名稱 | 說明
+
+作業記錄檔 JSON 字串包括下表所列的元素：
+
+名稱 | 描述
 ------- | -------
 ActivityId | 用於追蹤目的的內部識別碼
-EventName | 作業名稱           
-resourceId | ARM 資源識別碼
+EventName | 作業名稱             
+resourceId | Azure Resource Manager 資源識別碼
 SubscriptionId | 訂用帳戶識別碼
 EventTimeString | 作業時間
 EventProperties | 作業屬性
 狀態 | 作業狀態
-呼叫者 | 作業呼叫端 (入口網站或管理用戶端)
+呼叫者 | 作業呼叫者 (Azure 入口網站或管理用戶端)
 category | OperationalLogs
 
-#### <a name="example-operation-log"></a>作業記錄檔範例
+以下是作業記錄檔 JSON 字串的範例：
 
 ```json
-Example: 
+Example:
 {
      "ActivityId": "6aa994ac-b56e-4292-8448-0767a5657cc7",
      "EventName": "Create EventHub",
@@ -128,8 +139,4 @@ Example:
 * [事件中樞簡介](event-hubs-what-is-event-hubs.md)
 * [事件中樞 API 概觀](event-hubs-api-overview.md)
 * [開始使用事件中樞](event-hubs-csharp-ephcs-getstarted.md)
-
-
-<!--HONumber=Feb17_HO1-->
-
 

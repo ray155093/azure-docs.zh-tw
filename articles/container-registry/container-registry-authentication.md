@@ -16,13 +16,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/14/2016
 ms.author: stevelas
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2a381431acb6436ddd8e13c69b05423a33cd4fa6
-ms.openlocfilehash: 848a4011fd180721cf269390b8dd7426b2287dd2
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 0433e22dc7722ef9c8edfaf949dbd9a9d8645e67
+ms.openlocfilehash: acb04a648115c6de0b5699d404ebbf24a2edeb08
+ms.lasthandoff: 03/02/2017
 
 ---
-# <a name="authenticate-with-a-container-registry"></a>向容器登錄庫驗證
+# <a name="authenticate-with-a-private-docker-container-registry"></a>向私用 Docker 容器登錄進行驗證
 若要使用 Azure 容器登錄庫中的容器映像，請使用 `docker login` 命令登入。 您可以使用 **[Azure Active Directory 服務主體](../active-directory/active-directory-application-objects.md)**或登錄庫特定的**管理帳戶**登入。 本文提供關於這些身分識別的詳細資訊。 
 
 

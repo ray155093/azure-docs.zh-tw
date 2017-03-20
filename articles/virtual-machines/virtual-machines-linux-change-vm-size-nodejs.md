@@ -15,14 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/16/2016
 ms.author: mwasson
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: e7ca3b709bf2f09227b1607e4956ce021eab414a
-ms.openlocfilehash: ab52f1a4f568a7ef3c281e16636f61a063cda519
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: fecd0dc34fad70706ac0451a24dac0dc4bf55e40
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="how-to-resize-a-linux-vm"></a>如何重新調整 Linux VM 的大小
+
+# <a name="resize-a-linux-vm-with-azure-cli-10"></a>使用 Azure CLI 1.0 來調整 Linux VM 大小
+
 ## <a name="overview"></a>概觀
+
 部屬虛擬機器 (VM) 之後，您可以藉由變更 [VM 大小][vm-sizes]來相應增加或減少 VM。 在某些情況下，您必須先解除配置 VM。 如果新的大小無法在裝載 VM 的硬體叢集上取得，可能有這樣的情況。
 
 本文說明如何使用 [Azure CLI][azure-cli] 重新調整 Linux VM 的大小。
@@ -33,7 +38,7 @@ ms.openlocfilehash: ab52f1a4f568a7ef3c281e16636f61a063cda519
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 - [Azure CLI 1.0](#resize-a-linux-vm) – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0 (預覽)](virtual-machines-linux-change-vm-size.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](virtual-machines-linux-change-vm-size.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="resize-a-linux-vm"></a>重新調整 Linux VM 的大小
@@ -79,9 +84,4 @@ ms.openlocfilehash: ab52f1a4f568a7ef3c281e16636f61a063cda519
 [boot-diagnostics]: https://azure.microsoft.com/en-us/blog/boot-diagnostics-for-virtual-machines-v2/
 [scale-set]: ../virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md 
 [vm-sizes]: virtual-machines-linux-sizes.md
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

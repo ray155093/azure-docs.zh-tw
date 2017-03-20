@@ -17,6 +17,7 @@ ms.author: mausher;barbkess
 translationtype: Human Translation
 ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
 ms.openlocfilehash: e368ae8b249fe3c33371794160440e472b0f35e3
+ms.lasthandoff: 01/30/2017
 
 
 ---
@@ -202,9 +203,4 @@ bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name>
 
 <!--Other Web references-->
 [Microsoft Download Center]: https://www.microsoft.com/download/details.aspx?id=36433
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

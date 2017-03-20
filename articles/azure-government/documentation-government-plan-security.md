@@ -17,6 +17,7 @@ ms.author: ryansoc
 translationtype: Human Translation
 ms.sourcegitcommit: a9cc2bc044caddec63645932067f7a346945db78
 ms.openlocfilehash: 11d0a67a4c368b50e2f2e8648c4fb2db8e0421c2
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -112,10 +113,5 @@ Azure 作業人員適用下列存取原則︰
 
 ## <a name="next-steps"></a>後續步驟
 如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。 </a>
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

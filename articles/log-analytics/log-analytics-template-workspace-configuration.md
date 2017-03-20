@@ -1,25 +1,28 @@
-
-
 ---
-title: 使用 Azure Resource Manager 範本建立和設定 Log Analytics 工作區 | Microsoft Docs
-description: 您可以使用 Azure Resource Manager 範本來建立和設定 Log Analytics 工作區。
+title: "使用 Azure Resource Manager 範本建立和設定 Log Analytics 工作區 | Microsoft Docs"
+description: "您可以使用 Azure Resource Manager 範本來建立和設定 Log Analytics 工作區。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: richrundmsft
 manager: jochan
-editor: ''
-
+editor: 
+ms.assetid: d21ca1b0-847d-4716-bb30-2a8c02a606aa
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: json
 ms.topic: article
-ms.date: 08/25/2016
+ms.date: 11/01/2016
 ms.author: richrund
+translationtype: Human Translation
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: f392b3c0ab6b4d2e133d59766732188ce97c2f3e
+ms.lasthandoff: 03/03/2017
+
 
 ---
 # <a name="manage-log-analytics-using-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本管理 Log Analytics
-您可以使用 [Azure Resource Manager 範本](../resource-group-authoring-templates.md) 來建立和設定 Log Analytics 工作區。 您可以使用範本執行的工作範例包括︰
+您可以使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)來建立和設定 Log Analytics 工作區。 您可以使用範本執行的工作範例包括︰
 
 * 建立工作區
 * 新增解決方案
@@ -38,7 +41,7 @@ ms.author: richrund
 ## <a name="create-and-configure-a-log-analytics-workspace"></a>建立及設定 Log Analytics 工作區
 下列範例範本說明如何：
 
-1. 建立工作區
+1. 建立工作區，包括設定資料保留
 2. 將方案加入至工作區
 3. 建立已儲存的搜尋
 4. 建立電腦群組
@@ -65,11 +68,20 @@ ms.author: richrund
       "type": "string",
       "allowedValues": [
         "Free",
-        "Standard",
-        "Premium"
+        "Standalone",
+        "PerNode"
       ],
       "metadata": {
-        "description": "Service Tier: Free, Standard, or Premium"
+        "description": "Service Tier: Free, Standalone, or PerNode"
+    }
+      },
+    "dataRetention": {
+      "type": "int",
+      "defaultValue": 30,
+      "minValue": 7,
+      "maxValue": 730,
+      "metadata": {
+        "description": "Number of days of retention. Free plans can only have 7 days, Standalone and OMS plans include 30 days for free"
       }
     },
     "location": {
@@ -118,7 +130,8 @@ ms.author: richrund
       "properties": {
         "sku": {
           "Name": "[parameters('serviceTier')]"
-        }
+        },
+    "retentionInDays": "[parameters('dataRetention')]"
       },
       "resources": [
         {
@@ -444,7 +457,5 @@ Azure 快速入門範本庫中有數個 Log Analytics 的範本，包括︰
 
 ## <a name="next-steps"></a>後續步驟
 * [使用 Resource Manager 範本將代理程式部署到 Azure VM](log-analytics-azure-vm-extension.md)
-
-<!--HONumber=Oct16_HO2-->
 
 

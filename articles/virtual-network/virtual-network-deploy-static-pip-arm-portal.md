@@ -1,10 +1,10 @@
 ---
-title: "使用 Azure 入口網站建立具有靜態公用 IP 的 VM | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站透過 Azure Resource Manager 建立具有靜態公用 IP 位址的 VM。"
+title: "建立具有靜態公用 IP 位址的 VM - Azure 入口網站 | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站建立具有靜態公用 IP 位址的 VM。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-resource-manager
 ms.assetid: e9546bcc-f300-428f-b94a-056c5bd29035
@@ -15,13 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/04/2016
 ms.author: jdial
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 80b452bd96e3a328899ed455b71cf68da8bfde54
-ms.openlocfilehash: c2d0230550249c5f8ca406b61225822b7e19db2e
+ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
+ms.openlocfilehash: 7740861cccfe0ba4e8ae0694f6d5c5fec3df47ef
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="create-a-vm-with-a-static-public-ip-using-the-azure-portal"></a>使用 Azure 入口網站建立具有使用靜態公用 IP 的 VM
+# <a name="create-a-vm-with-a-static-public-ip-address-using-the-azure-portal"></a>使用 Azure 入口網站建立具有靜態公用 IP 位址的 VM
 
 > [!div class="op_single_selector"]
 - [Azure 入口網站](virtual-network-deploy-static-pip-arm-portal.md)
@@ -63,10 +65,5 @@ ms.openlocfilehash: c2d0230550249c5f8ca406b61225822b7e19db2e
 10. VM 建立後，[設定]  刀鋒視窗隨即出現，如下所示
     
     ![Azure 入口網站 - 建立公用 IP 位址](./media/virtual-network-deploy-static-pip-arm-portal/figure6.png)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

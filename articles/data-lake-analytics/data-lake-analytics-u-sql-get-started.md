@@ -15,12 +15,13 @@ ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 96747e898b2d84cbce9251758a90941f85112dd0
-ms.openlocfilehash: 7aa3844b9bdc2c5372c6e54b05296dcde6b1c05f
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: dc8c7beaf5b8e8d4f5467ffe22390c41f446d787
+ms.lasthandoff: 03/04/2017
 
 
 ---
-# <a name="tutorial-get-started-with-azure-data-lake-analytics-u-sql-language"></a>教學課程：開始使用 Azure 資料湖分析 U-SQL 語言
+# <a name="tutorial-get-started-with-azure-data-lake-analytics-u-sql-language"></a>教學課程：開始使用 Azure Data Lake 分析 U-SQL 語言
 U-SQL 語言結合了 SQL 的所有優點，可運用您自有程式碼的運算式能力來處理任何規模的資料。 透過 U-SQL 的可調整分散式查詢功能，您可以有效率地分析各關聯式存放區 (Azure SQL Database) 中的資料。 使用 U-SQL，您可以藉由在讀取時套用結構描述並插入自訂邏輯和 UDF，來處理非結構化資料。 此外，U-SQL 所含有的擴充性可讓您細微控制如何大規模執行。 若要深入了解 U-SQL 背後的設計原理，請參閱 Visual Studio 部落格文章[簡介 U-SQL – 讓巨量資料的處理變簡單的語言](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)。
 
 U-SQL 有幾點不同於 ANSI SQL 或 T-SQL。 例如，SELECT 等關鍵字必須全部是大寫字母。
@@ -55,7 +56,7 @@ U-SQL 有幾點不同於 ANSI SQL 或 T-SQL。 例如，SELECT 等關鍵字必�
 
 在指令碼中，您會發現下列概念和關鍵字︰
 
-* 資料列集變數：每個會產生資料列集的查詢運算式都可以指派給變數。 在指令碼中，U-SQL 會遵循 T-SQL 的變數命名模式，例如 (@searchlog,。
+* 資料列集變數：每個會產生資料列集的查詢運算式都可以指派給變數。 在指令碼中，U-SQL 會遵循 T-SQL 變數命名模式 (例如 @searchlog)。
 
  >[!NOTE]
  >指派作業不會強制執行。 它只會指定運算式，以便您能夠建置更複雜的運算式。
@@ -64,9 +65,9 @@ U-SQL 有幾點不同於 ANSI SQL 或 T-SQL。 例如，SELECT 等關鍵字必�
 
  >[!NOTE]
  >兩個路徑都是相對路徑。 您也可以使用絕對路徑。 例如：    
- >     adl://<ADLStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
+ >     adl://\<ADLStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
  >
- >您必須使用絕對路徑，才能存取所連結儲存體帳戶中的檔案。  儲存在連結 Azure 儲存體帳戶中之檔案的語法是：wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
+ >您必須使用絕對路徑，才能存取所連結儲存體帳戶中的檔案。  儲存在連結 Azure 儲存體帳戶中之檔案的語法是：wasb://\<BlobContainerName>@\<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
 
  >[!NOTE]
  >目前不支援具有公用 Blob 或公用容器存取權限的 Azure Blob 儲存體容器。
@@ -401,18 +402,13 @@ JOIN 中的述詞必須是等號比較聯結且沒有運算式。 如果您想�
 * 連接到 SQL Database 並同盟這些資料庫和 U-SQL 與 Azure Data Lake 資料的查詢。
 
 ## <a name="see-also"></a>另請參閱
-* [Microsoft Azure 資料湖分析概觀](data-lake-analytics-overview.md)
-* [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
-* [針對 Azure 資料湖分析工作使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
+* [Microsoft Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)
+* [使用 Data Lake Tools for Visual Studio 開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
+* [針對Azure Data Lake Analytics 工作使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
 * [使用 Azure 入口網站監視和疑難排解 Azure Data Lake Analytics 作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
 ## <a name="let-us-know-what-you-think"></a>讓我們知道您的想法
 * [提交要求功能](http://aka.ms/adlafeedback)
 * [在論壇上取得協助](http://aka.ms/adlaforums)
 * [提供關於 U-SQL 的意見反應](http://aka.ms/usqldiscuss)
-
-
-
-<!--HONumber=Dec16_HO4-->
-
 

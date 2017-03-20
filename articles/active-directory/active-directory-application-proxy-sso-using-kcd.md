@@ -12,19 +12,21 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/01/2016
+ms.date: 02/27/2017
 ms.author: kgremban
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 1eada96773b1d9c6adb9326c9100da7cde8abf77
-ms.openlocfilehash: 8df936a03868412adf34672108f40829c41f33ab
+ms.sourcegitcommit: 015cc28903bfd366c653a51b0f73512bf8b578ea
+ms.openlocfilehash: aac56543b2b3b7fa8f8baf1cc719ead79b3c1b00
+ms.lasthandoff: 02/28/2017
 
 ---
 
-# <a name="single-sign-on-with-application-proxy"></a>使用應用程式 Proxy 進行單一登入
+# <a name="provide-single-sign-on-to-your-apps-with-application-proxy"></a>使用應用程式 Proxy 提供應用程式的單一登入
 單一登入是 Azure AD 應用程式 Proxy 的重要元素。 它經由下列步驟提供最佳的使用者體驗︰
 
-1. 使用者登入雲端  
-2. 所有安全性驗證都在雲端完成 (預先驗證)  
+1. 使用者登入雲端。  
+2. 所有安全性驗證都在雲端完成 (預先驗證)。  
 3. 當要求傳送至內部部署應用程式時，應用程式 Proxy 連接器會模擬使用者。 後端應用程式會將此視為來自已加入網域之裝置的一般使用者。
 
 ![存取的圖表，從使用者經過應用程式 Proxy 到公司網路](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_diagram.png)
@@ -62,7 +64,7 @@ Azure AD 應用程式 Proxy 可協助您為使用者提供單一登入 (SSO) 體
 #### <a name="connector-and-published-server-in-the-same-domain"></a>連接器和已發佈的伺服器位於相同網域
 1. 在 Active Directory 中，移至 [工具] > [使用者和電腦]。
 2. 選取執行「連接器」的伺服器。
-3. 按一下滑鼠右鍵，然後選取 [屬性] > [委派]。
+.3. 按一下滑鼠右鍵，然後選取 [屬性] > [委派]。
 4. 選取 [信任這台電腦，但只委派指定的服務]。 在 [這個帳戶可以呈送委派認證的服務] 下方，新增應用程式伺服器的 SPN 身分識別值。
 5. 這可讓「應用程式 Proxy 連接器」針對清單中所定義的應用程式，在 AD 中模擬使用者。
 
@@ -105,10 +107,12 @@ Azure AD 應用程式 Proxy 的 Kerberos 委派流程會在 Azure AD 在雲端�
 
 ![非 Windows SSO 的圖表](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_nonwindows_diagram.png)
 
+如需有關 Kerberos 的詳細資訊，請參閱[有關 Kerberos 限制委派 (KCD) 您想要知道的一切](https://blogs.technet.microsoft.com/applicationproxyblog/2015/09/21/all-you-want-to-know-about-kerberos-constrained-delegation-kcd)。
+
 ### <a name="delegated-login-identity"></a>委派的登入身分識別
 委派的登入身分識別可協助您處理兩種不同的登入案例︰
 
-* 通常會以使用者名稱或 SAM 帳戶名稱形式 (而不是電子郵件地址 (username@domain)) 取得使用者身分識別的非 Windows 應用程式。
+* 通常會以使用者名稱或 SAM 帳戶名稱形式 (而不是電子郵件地址 username@domain) 取得使用者身分識別的非 Windows 應用程式。
 * 替代登入設定，其中 Azure AD 中的 UPN 和內部部署 Active Directory 中的 UPN 不同。
 
 使用應用程式 Proxy，您就可以選取要用來取得 Kerberos 票證的身分識別。 這項設定會因應用程式而異。 其中的一些選項適合不接受電子郵件地址格式的系統，另外的選項則設計用於替代登入。
@@ -122,8 +126,8 @@ Azure AD 應用程式 Proxy 的 Kerberos 委派流程會在 Azure AD 在雲端�
 
 此功能可讓具有不同內部部署與雲端身分識別的許多組織，可從雲端單一登入到內部部署應用程式，而不需要使用者輸入不同的使用者名稱與密碼。 這包括下列組織：
 
-* 在內部有多個網域 (joe@us.contoso.com,、joe@eu.contoso.com)，而在雲端有單一網域 (joe@contoso.com)。
-* 在內部有無法路由傳送的網域名稱 (joe@contoso.usa)，而在雲端有合法網域名稱。
+* 在內部有多個網域 (joe@us.contoso.com、joe@eu.contoso.com)，並且在雲端有單一網域 (joe@contoso.com)。
+* 在內部有無法路由傳送的網域名稱 (joe@contoso.usa)，並且在雲端有合法網域名稱。
 * 請勿在內部使用網域名稱 (joe)
 * 在內部部署和雲端中使用不同別名。 例如 joe-johns@contoso.com 對上 joej@contoso.com  
 
@@ -157,9 +161,4 @@ Azure AD 應用程式 Proxy 的 Kerberos 委派流程會在 Azure AD 在雲端�
 <!--Image references-->
 [1]: ./media/active-directory-application-proxy-sso-using-kcd/AuthDiagram.png
 [2]: ./media/active-directory-application-proxy-sso-using-kcd/Properties.jpg
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure 資源群組 Visual Studio 專案 | Microsoft Docs"
+title: "Visual Studio Azure 資源群組 Visual Studio 專案 | Microsoft Docs"
 description: "使用 Visual Studio 建立 Azure 資源群組專案，並將資源部署至 Azure。"
 services: azure-resource-manager
 documentationcenter: na
@@ -12,11 +12,12 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/19/2016
+ms.date: 03/10/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: e3df10acf4a6c123186c72687a56ccb4856c46fe
-ms.openlocfilehash: 07499f9b1c9668d8cb4037405478210e0738e03d
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 14fbfbc5abd6d95744832d9b39e377bbffe652ac
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -25,9 +26,9 @@ ms.openlocfilehash: 07499f9b1c9668d8cb4037405478210e0738e03d
 
 Azure 資源群組專案包含 Azure Resource Manager JSON 範本，可定義部署到 Azure 的資源。 若要了解資源管理員範本的元素，請參閱 [撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。 Visual Studio 可讓您編輯這些範本，並提供工具，可簡化範本的使用。
 
-在本主題中，您將會部署 Web 應用程式和 SQL Database。 不過對於各種類型的資源來說，其步驟幾乎相同。 您可以輕鬆地部署虛擬機器和其相關的資源。 Visual Studio 針對部署常見案例提供許多不同的入門範本。
+在本文中，您將會部署 Web 應用程式和 SQL Database。 不過對於各種類型的資源來說，其步驟幾乎相同。 您可以輕鬆地部署虛擬機器和其相關的資源。 Visual Studio 針對部署常見案例提供許多不同的入門範本。
 
-本文示範 Visual Studio 2015 Update 2 和 Microsoft Azure SDK for .NET 2.9。 如果您使用 Visual Studio 2013 搭配 Azure SDK 2.9，您的體驗大致相同。 您可以使用 Azure SDK 2.6 或更新版本，不過您的使用者介面體驗可能會與本文所示的使用者介面不同。 開始執行步驟前，我們強烈建議您安裝最新版本的 [Azure SDK](https://azure.microsoft.com/downloads/) 。 
+本文說明 Visual Studio 2017。 如果您使用 Visual Studio 2015 Update 2 和 Microsoft Azure SDK for .NET 2.9，或 Visual Studio 2013 與 Azure SDK 2.9，您的經驗會大致相同。 您可以使用 Azure SDK 2.6 或更新版本，不過您的使用者介面體驗可能會與本文所示的使用者介面不同。 開始執行步驟前，我們強烈建議您安裝最新版本的 [Azure SDK](https://azure.microsoft.com/downloads/) 。 
 
 ## <a name="create-azure-resource-group-project"></a>建立 Azure 資源群組專案
 在此程序中，您會利用 **Web 應用程式 + SQL** 範本建立 Azure 資源群組專案。
@@ -35,7 +36,7 @@ Azure 資源群組專案包含 Azure Resource Manager JSON 範本，可定義部
 1. 在 Visual Studio 中，選擇 [檔案]、[新增專案]，再選擇 [C#] 或 [Visual Basic]。 然後選擇 [雲端]，再選擇 [Azure 資源群組] 專案。
    
     ![雲端部署專案](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/create-project.png)
-2. 選擇您想要部署至 Azure 資源管理員的範本。 請注意，根據您想要部署的專案類型，有許多不同的選項。 在此主題中，我們將選擇 **Web 應用程式 + SQL** 範本。
+2. 選擇您想要部署至 Azure 資源管理員的範本。 請注意，根據您想要部署的專案類型，有許多不同的選項。 在本文中，我們將選擇 **Web 應用程式 + SQL** 範本。
    
     ![選擇範本](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/select-project.png)
    
@@ -47,7 +48,7 @@ Azure 資源群組專案包含 Azure Resource Manager JSON 範本，可定義部
    > 
    
     Visual Studio 會建立 web 應用程式和 SQL Database 的資源群組部署專案。
-3. 若要查看建立的內容，請展開部署專案中的節點。
+3. 若要查看建立的內容，請看部署專案中的節點。
    
     ![顯示節點](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/show-items.png)
    
@@ -113,7 +114,7 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 ## <a name="deploy-the-resource-group-project-to-azure"></a>將資源群組部署至 Azure
 您現在已可開始部署您的專案。 當您部署 Azure 資源群組專案時，您會將它部署至 Azure 資源群組。 資源群組是共用共同生命週期的資源邏輯分組。
 
-1. 在部署專案節點的捷徑功能表上，選擇 [部署]  > **新增部署**。
+1. 在部署專案節點的捷徑功能表上，選擇 [部署] > [新增]。
    
     ![部署，新的部署功能表項目](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/deploy.png)
    
@@ -150,7 +151,7 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 6. 部署可能需要幾分鐘的時間。 您可在 [輸出]  視窗中查看部署的狀態。 部署完成時，最後一則訊息會表示成功部署，如下所示︰
    
         ... 
-        18:00:58 - Successfully deployed template 'c:\users\user\documents\visual studio 2015\projects\azureresourcegroup1\azureresourcegroup1\templates\websitesqldatabase.json' to resource group 'DemoSiteGroup'.
+        18:00:58 - Successfully deployed template 'websitesqldatabase.json' to resource group 'DemoSiteGroup'.
 7. 在瀏覽器中，開啟 [Azure 入口網站](https://portal.azure.com/) 並登入您的帳戶。 若要查看資源群組，請選取 [資源群組]  ，然後選取您部署所在的資源群組。
    
     ![選取群組](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/select-group.png)
@@ -162,7 +163,7 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
     ![已部署 Azure 資源群組](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/redeploy.png)
 
 ## <a name="deploy-code-with-your-infrastructure"></a>以您的基礎結構部署程式碼
-此時，您已為您的應用程式部署基礎結構，但是專案尚未部署實際程式碼。 本主題說明如何在部署期間部署 Web 應用程式和 SQL Database 資料表。 如果您是部署虛擬機器而不是 Web 應用程式，您想要在機器上執行一些程式碼做為部署的一部分。 部署 Web 應用程式的程式碼或設定虛擬機器的程序幾乎完全相同。
+此時，您已為您的應用程式部署基礎結構，但是專案尚未部署實際程式碼。 本文說明如何在部署期間部署 Web 應用程式和 SQL Database 資料表。 如果您是部署虛擬機器而不是 Web 應用程式，您想要在機器上執行一些程式碼做為部署的一部分。 部署 Web 應用程式的程式碼或設定虛擬機器的程序幾乎完全相同。
 
 1. 將專案新增至您的 Visual Studio 方案。 以滑鼠右鍵按一下方案，然後選取 [新增] > [新增專案]。
    
@@ -170,7 +171,7 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 2. 新增 **ASP.NET Web 應用程式**。 
    
     ![加入 Web 應用程式](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-app.png)
-3. 選取 [MVC] 並且清除 [雲端中的主機] 欄位，因為資源群組專案會執行這項工作。
+3. 選取 **MVC**。
    
     ![選取 MVC](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/select-mvc.png)
 4. 在 Visual Studio 建立 Web 應用程式之後，您會在方案中看到這兩個專案。
@@ -194,7 +195,7 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
    * 預設值 [建立封裝]  會讓部署建立 Web 部署封裝 (package.zip)。  
      
      您不需要發佈設定檔，因為部署會從屬性取得必要的資訊來建立套件。
-7. 將資源新增至範本。
+7. 請回到 WebSiteSQLDatabase.json，並將資源新增至範本。
    
     ![新增資源](./media/vs-azure-tools-resource-groups-deployment-projects-create-deploy/add-resource-2.png)
 8. 這次請選取 [Web Deploy for Web Apps] 。 
@@ -215,10 +216,5 @@ Visual Studio 也會提供 Intellisense 以協助您了解編輯範本時可以�
 ## <a name="next-steps"></a>後續步驟
 * 若要了解透過入口網站管理資源，請參閱 [使用 Azure 入口網站來管理您的 Azure 資源](resource-group-portal.md)。
 * 若要了解範本，請參閱 [撰寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

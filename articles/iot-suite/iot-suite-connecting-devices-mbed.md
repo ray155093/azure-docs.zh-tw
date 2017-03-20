@@ -13,182 +13,114 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2017
+ms.date: 02/18/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 9ded95283b52f0fc21ca5b99df8e72e1e152fe1c
-ms.openlocfilehash: a70eb51e7ebbc79e1aab4176d154dbef754368c1
+ms.sourcegitcommit: df9772796796f7383aafc583b01f299a53679d88
+ms.openlocfilehash: 12535cbb6fa63c24dd63903380d697f8f38db6f9
+ms.lasthandoff: 02/27/2017
 
 
 ---
 # <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-mbed"></a>將裝置連接至遠端監視預先設定方案 (mbed)
+
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
 ## <a name="build-and-run-the-c-sample-solution"></a>建置並執行 C 範例方案
+
 下列指示描述將[啟用 mbed 的 Freescale FRDM-K64F][lnk-mbed-home] 裝置連接至遠端監視解決方案的步驟。
 
 ### <a name="connect-the-mbed-device-to-your-network-and-desktop-machine"></a>將 mbed 裝置連接到網路和桌上型電腦
+
 1. 使用乙太網路纜線將 mbed 裝置連接到您的網路。 這是必要的步驟，因為範例應用程式需要透過網際網路存取。
-2. 請參閱 [mbed 使用者入門][lnk-mbed-getstarted]來將您的 mbed 裝置連接至桌上型電腦。
-3. 如果桌上型電腦執行的是 Windows，請參閱 [PC 組態][lnk-mbed-pcconnect]以設定對您 mbed 裝置的序列埠存取。
+
+1. 請參閱 [mbed 使用者入門][lnk-mbed-getstarted]來將您的 mbed 裝置連接至桌上型電腦。
+
+1. 如果桌上型電腦執行的是 Windows，請參閱 [PC 組態][lnk-mbed-pcconnect]以設定對您 mbed 裝置的序列埠存取。
 
 ### <a name="create-an-mbed-project-and-import-the-sample-code"></a>建立 mbed 專案並匯入範例程式碼
+
+依照下列步驟將一些範例程式碼新增至 mbed 專案。 匯入遠端監視入門專案，然後將專案變更為使用 MQTT 通訊協定 (而非 AMQP 通訊協定)。 目前，您必須使用 MQTT 通訊協定，才能使用 IoT 中樞的裝置管理功能。
+
 1. 在您的 Web 瀏覽器中，移至 mbed.org [開發人員網站](https://developer.mbed.org/)。 如果您還沒有註冊，您會看到建立帳戶的選項 (它是免費的)。 否則，請使用您的帳戶認證登入。 然後按一下頁面右上角的 [編譯器]  。 這項動作會將您帶往 [工作區] 介面。
-2. 請確定您使用的硬體平台出現在視窗的右上角，或按一下右手邊的圖示來選取您的硬體平台。
-3. 在主功能表上按一下 [匯入]  。 然後按一下 [按一下這裡] 從 mbed 地球標誌旁的 URL 連結匯入。
+
+1. 請確定您使用的硬體平台出現在視窗的右上角，或按一下右手邊的圖示來選取您的硬體平台。
+
+1. 在主功能表上按一下 [匯入]  。 然後按一下 [按一下這裡從 URL 匯入]。
    
-    ![][6]
-4. 在快顯視窗中，輸入範例程式碼 https://developer.mbed.org/users/AzureIoTClient/code/remote_monitoring/ 連結，然後按一下 [匯入]。
+    ![開始匯入至 mbed 工作區][6]
+
+1. 在快顯視窗中，輸入範例程式碼 https://developer.mbed.org/users/AzureIoTClient/code/remote_monitoring/ 連結，然後按一下 [匯入]。
    
-    ![][7]
-5. 您可以看到匯入此專案的 mbed 編譯器視窗也匯入各種程式庫。 有些是由 Azure IoT 小組提供和維護 ([azureiot_common](https://developer.mbed.org/users/AzureIoTClient/code/azureiot_common/)、[iothub_client](https://developer.mbed.org/users/AzureIoTClient/code/iothub_client/)、[iothub_amqp_transport](https://developer.mbed.org/users/AzureIoTClient/code/iothub_amqp_transport/)、[azure_uamqp](https://developer.mbed.org/users/AzureIoTClient/code/azure_uamqp/))，其他則是可以在 mbed 程式庫目錄中取得的協力廠商程式庫。
+    ![將程式碼範例匯入至 mbed 工作區][7]
+
+1. 您可以看到匯入此專案的 mbed 編譯器視窗也匯入各種程式庫。 有些是由 Azure IoT 小組提供和維護 ([azureiot_common](https://developer.mbed.org/users/AzureIoTClient/code/azureiot_common/)、[iothub_client](https://developer.mbed.org/users/AzureIoTClient/code/iothub_client/)、[iothub_amqp_transport](https://developer.mbed.org/users/AzureIoTClient/code/iothub_amqp_transport/)、[azure_uamqp](https://developer.mbed.org/users/AzureIoTClient/code/azure_uamqp/))，其他則是可以在 mbed 程式庫目錄中取得的協力廠商程式庫。
    
-    ![][8]
-6. 開啟 remote_monitoring\remote_monitoring.c 檔案，並在檔案中尋找下列程式碼：
+    ![檢視 mbed 專案][8]
+
+1. 在 [程式工作區] 中，以滑鼠右鍵按一下 **iothub\_amqp\_transport** 程式庫，按一下 [刪除]，然後按一下 [確定] 進行確認。
+
+1. 在 [程式工作區] 中，以滑鼠右鍵按一下 **azure\_amqp\_c** 程式庫，按一下 [刪除]，然後按一下 [確定] 進行確認。
+
+1. 以滑鼠右鍵按一下 [程式工作區] 中的 **remote_monitoring** 專案，選取 [匯入程式庫]，然後選取 [從 URL]。
+   
+    ![開始將程式庫匯入至 mbed 工作區][6]
+
+1. 在快顯視窗中，輸入 MQTT 傳輸程式庫 https://developer.mbed.org/users/AzureIoTClient/code/iothub\_mqtt\_transport/ 連結，然後按一下 [匯入]。
+   
+    ![將程式庫匯入至 mbed 工作區][12]
+
+1. 重複上述步驟以從 https://developer.mbed.org/users/AzureIoTClient/code/azure\_umqtt\_c/ 新增 MQTT 程式庫。
+
+1. 您的工作區現在如下所示：
+
+    ![檢視 mbed 工作區][13]
+
+1. 開啟 remote\_monitoring\remote_monitoring.c 檔案，並以下列程式碼取代現有的 `#include` 陳述字：
+
+    ```
+    #include "iothubtransportmqtt.h"
+    #include "schemalib.h"
+    #include "iothub_client.h"
+    #include "serializer_devicetwin.h"
+    #include "schemaserializer.h"
+    #include "azure_c_shared_utility/threadapi.h"
+    #include "azure_c_shared_utility/platform.h"
+    #include "parson.h"
+
+    #ifdef MBED_BUILD_TIMESTAMP
+    #include "certs.h"
+    #endif // MBED_BUILD_TIMESTAMP
+    ```
+1. 刪除 remote\_monitoring\remote\_monitoring.c 檔案中的所有其餘程式碼。
+
+[!INCLUDE [iot-suite-connecting-code](../../includes/iot-suite-connecting-code.md)]
+
+## <a name="build-and-run-the-sample"></a>建置並執行範例
+
+新增程式碼來叫用 **remote\_monitoring\_run** 函式，然後建置並執行裝置應用程式。
+
+1. 以位於 remote\_monitoring.c 檔案結尾的下列程式碼新增 **main** 函式，以叫用 **remote\_monitoring\_run** 函式︰
    
     ```
-    static const char* deviceId = "[Device Id]";
-    static const char* deviceKey = "[Device Key]";
-    static const char* hubName = "[IoTHub Name]";
-    static const char* hubSuffix = "[IoTHub Suffix, i.e. azure-devices.net]";
+    int main()
+    {
+      remote_monitoring_run();
+      return 0;
+    }
     ```
-7. 將 [Device Id] 和 [Device Key] 以您的裝置資料取代，來使範例程式能夠連線到您的 IoT 中樞。 使用 IoT 中樞主機名稱來取代 [IoTHub Name] 和 [IoTHub Suffix, i.e. azure-devices.net] 預留位置。 例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，**contoso** 就是 **hubName**，而它之後的所有項目就是 **hubSuffix**：
-   
-    ```
-    static const char* deviceId = "mydevice";
-    static const char* deviceKey = "mykey";
-    static const char* hubName = "contoso";
-    static const char* hubSuffix = "azure-devices.net";
-    ```
-   
-    ![][9]
 
-### <a name="walk-through-the-code"></a>程式碼逐步解說
-如果您對程式運作的方式感到興趣，本節將會描述範例程式碼幾個關鍵的部分。 如果您只想要執行程式碼，請直接跳到[建置並執行程式](#buildandrun)。
-
-#### <a name="defining-the-model"></a>定義模型
-此範例使用[序列化程式][lnk-serializer]程式庫來定義一個模型，其中指定裝置可傳送到「IoT 中樞」及從「IoT 中樞」接收的訊息。 在此範例中，**Contoso** 命名空間定義了 **Thermostat** 模型，其中指定：
-
-- **Temperature**、**ExternalTemperature** 及 **Humidity** 遙測資料。
-- 裝置識別碼、裝置屬性等中繼資料。
-- 裝置會回應的命令：
-
-```
-BEGIN_NAMESPACE(Contoso);
-
-DECLARE_STRUCT(SystemProperties,
-    ascii_char_ptr, DeviceID,
-    _Bool, Enabled
-);
-
-DECLARE_STRUCT(DeviceProperties,
-ascii_char_ptr, DeviceID,
-_Bool, HubEnabledState
-);
-
-DECLARE_MODEL(Thermostat,
-
-    /* Event data (temperature, external temperature and humidity) */
-    WITH_DATA(int, Temperature),
-    WITH_DATA(int, ExternalTemperature),
-    WITH_DATA(int, Humidity),
-    WITH_DATA(ascii_char_ptr, DeviceId),
-
-    /* Device Info - This is command metadata + some extra fields */
-    WITH_DATA(ascii_char_ptr, ObjectType),
-    WITH_DATA(_Bool, IsSimulatedDevice),
-    WITH_DATA(ascii_char_ptr, Version),
-    WITH_DATA(DeviceProperties, DeviceProperties),
-    WITH_DATA(ascii_char_ptr_no_quotes, Commands),
-
-    /* Commands implemented by the device */
-    WITH_ACTION(SetTemperature, int, temperature),
-    WITH_ACTION(SetHumidity, int, humidity)
-);
-
-END_NAMESPACE(Contoso);
-```
-
-與模型定義相關的，是裝置會做出回應之 **SetTemperature** 和 **SetHumidity** 命令的定義：
-
-```
-EXECUTE_COMMAND_RESULT SetTemperature(Thermostat* thermostat, int temperature)
-{
-    (void)printf("Received temperature %d\r\n", temperature);
-    thermostat->Temperature = temperature;
-    return EXECUTE_COMMAND_SUCCESS;
-}
-
-EXECUTE_COMMAND_RESULT SetHumidity(Thermostat* thermostat, int humidity)
-{
-    (void)printf("Received humidity %d\r\n", humidity);
-    thermostat->Humidity = humidity;
-    return EXECUTE_COMMAND_SUCCESS;
-}
-```
-
-#### <a name="connecting-the-model-to-the-library"></a>將模型連接到程式庫
-**sendMessage** 和 **IoTHubMessage** 函式是從裝置傳送遙測，並將來自 IoT 中樞的訊息連接到命令處理常式的重複使用程式碼。
-
-#### <a name="the-remotemonitoringrun-function"></a>remote_monitoring_run 函式
-程式的 **main** 函式會在應用程式開始將裝置的行為做為 IoT 中樞裝置用戶端執行時，叫用 **remote_monitoring_run** 函式。 此 **remote_monitoring_run** 函式大部分是以巢狀配對的函式所組成：
-
-* **platform\_init** 和 **platform\_deinit** 能執行平台特定的初始化和關機作業。
-* **serializer\_init** 和 **serializer\_deinit** 能初始化並取消初始化序列化程式程式庫。
-* **IoTHubClient\_Create** 和 **IoTHubClient\_Destroy** 能使用連接到您 IoT 中樞的裝置認證建立用戶端控制代碼 (**iotHubClientHandle**)。
-
-程式在 **remote_monitoring_run** 函式的主要區段中，會使用 **iotHubClientHandle** 控制代碼執行下列作業：
-
-* 建立 Contoso 控溫器模型的執行個體，並針對這兩個命令設定訊息回呼。
-* 使用序列化程式程式庫將有關裝置本身的資訊 (包括其支援的命令) 傳送給您的 IoT 中樞。 當中樞接收到此訊息時，它會將儀表板中的裝置狀態從 [待決] 變更為 [執行中]。
-* 啟動一個 **while** 迴圈，並於每秒將溫度、外部溫度及濕度的值傳送到 IoT 中樞。
-
-以下是啟動時會傳送到 IoT 中樞的範例 **DeviceInfo** 訊息做為參考：
-
-```
-{
-  "ObjectType":"DeviceInfo",
-  "Version":"1.0",
-  "IsSimulatedDevice":false,
-  "DeviceProperties":
-  {
-    "DeviceID":"mydevice01", "HubEnabledState":true
-  }, 
-  "Commands":
-  [
-    {"Name":"SetHumidity", "Parameters":[{"Name":"humidity","Type":"double"}]},
-    { "Name":"SetTemperature", "Parameters":[{"Name":"temperature","Type":"double"}]}
-  ]
-}
-```
-
-以下是傳送到 IoT 中樞的範例 **Telemetry** 訊息做為參考：
-
-```
-{"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}
-```
-
-以下是從 IoT 中樞收到的範例 **Command** 做為參考：
-
-```
-{
-  "Name":"SetHumidity",
-  "MessageId":"2f3d3c75-3b77-4832-80ed-a5bb3e233391",
-  "CreatedTime":"2016-03-11T15:09:44.2231295Z",
-  "Parameters":{"humidity":23}
-}
-```
-
-<a id="buildandrun"/>
-
-### <a name="build-and-run-the-program"></a>建置並執行程式
 1. 按一下 [編譯]  來建置程式。 您可以安全地略過任何警告，但如果建置產生錯誤，請修正錯誤後再繼續。
-2. 如果建置成功，mbed 編譯器網站會產生含有您專案名稱的 .bin 檔案，並將它下載到您的本機電腦。 將 .bin 檔案複製到裝置。 如果將 .bin 檔案儲存到裝置，將會導致裝置重新啟動並執行包含在 .bin 檔案中的程式。 您可以按 mbed 裝置上的 [重設] 按鈕來隨時手動重新啟動程式。
-3. 使用 SSH 用戶端應用程式 (例如 PuTTY) 連接至裝置。 您可以查看 [Windows 裝置管理員] 來確定裝置使用的序列埠。
+
+1. 如果建置成功，mbed 編譯器網站會產生含有您專案名稱的 .bin 檔案，並將它下載到您的本機電腦。 將 .bin 檔案複製到裝置。 如果將 .bin 檔案儲存到裝置，將會導致裝置重新啟動並執行包含在 .bin 檔案中的程式。 您可以按 mbed 裝置上的 [重設] 按鈕來隨時手動重新啟動程式。
+
+1. 使用 SSH 用戶端應用程式 (例如 PuTTY) 連接至裝置。 您可以查看 [Windows 裝置管理員] 來確定裝置使用的序列埠。
    
     ![][11]
-4. 在 PuTTY 中，按一下 [序列]  連接類型。 裝置通常的連線傳輸速率是 9600，因此請在 [速度]  方塊中輸入 9600。 然後按一下 [開啟] 。
-5. 程式開始執行。 連接時如果程式沒有自動啟動，您可能必須重設面板 (按 CTRL + Break 或按面板的重設按鈕)。
+
+1. 在 PuTTY 中，按一下 [序列]  連接類型。 裝置通常的連線傳輸速率是 9600，因此請在 [速度]  方塊中輸入 9600。 然後按一下 [開啟] 。
+
+1. 程式開始執行。 連接時如果程式沒有自動啟動，您可能必須重設面板 (按 CTRL + Break 或按面板的重設按鈕)。
    
     ![][10]
 
@@ -197,17 +129,12 @@ EXECUTE_COMMAND_RESULT SetHumidity(Thermostat* thermostat, int humidity)
 [6]: ./media/iot-suite-connecting-devices-mbed/mbed1.png
 [7]: ./media/iot-suite-connecting-devices-mbed/mbed2a.png
 [8]: ./media/iot-suite-connecting-devices-mbed/mbed3a.png
-[9]: ./media/iot-suite-connecting-devices-mbed/suite6.png
 [10]: ./media/iot-suite-connecting-devices-mbed/putty.png
 [11]: ./media/iot-suite-connecting-devices-mbed/mbed6.png
+[12]: ./media/iot-suite-connecting-devices-mbed/mbed7.png
+[13]: ./media/iot-suite-connecting-devices-mbed/mbed8.png
 
 [lnk-mbed-home]: https://developer.mbed.org/platforms/FRDM-K64F/
 [lnk-mbed-getstarted]: https://developer.mbed.org/platforms/FRDM-K64F/#getting-started-with-mbed
 [lnk-mbed-pcconnect]: https://developer.mbed.org/platforms/FRDM-K64F/#pc-configuration
-[lnk-serializer]: https://azure.microsoft.com/documentation/articles/iot-hub-device-sdk-c-intro/#serializer
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

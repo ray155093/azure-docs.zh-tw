@@ -17,6 +17,7 @@ ms.author: eamono
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 3fac67ed9bbae90a59c9557e3ac933322c15f3cf
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -43,10 +44,5 @@ Azure 自動化提供非常可靠且高度可用的工作流程執行引擎，�
 了解 Azure 自動化的基本概念以及如何用它來管理 Azure 儲存體 Blob、資料表及佇列之後，請參考下列連結，以深入了解 Azure 自動化。
 
 請參閱 Azure 自動化教學課程： [在 Azure 自動化中建立或匯入 Runbook](../automation/automation-creating-importing-runbook.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

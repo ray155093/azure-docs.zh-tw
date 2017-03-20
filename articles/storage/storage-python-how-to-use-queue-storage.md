@@ -17,6 +17,7 @@ ms.author: robinsh
 translationtype: Human Translation
 ms.sourcegitcommit: fefebeae665ccd14f15b0197241b30d33830fd09
 ms.openlocfilehash: 8b09e5c7505554f1007cdf46ae74a100fb083432
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -117,8 +118,3 @@ queue_service.delete_queue('taskqueue')
 
 [Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
 [Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)]: https://github.com/Azure/azure-storage-python
-
-
-<!--HONumber=Nov16_HO3-->
-
-

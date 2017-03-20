@@ -12,117 +12,140 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/31/2017
-ms.author: jotaub
+ms.date: 03/03/2017
+ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 57175ddc53d5856cd3492d4c631a92d4bf9247c4
-ms.openlocfilehash: 859f87356448041a320c2e126478aabf1efa0d44
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 7506430f4ec5522165274f05a2fd5b77e3d6252d
+ms.lasthandoff: 03/06/2017
 
 ---
 
-# <a name="get-started-receiving-messages-with-the-eventprocessorhost-in-net-standard"></a>開始使用 .NET Standard 中的 EventProcessorHost 接收訊息
+# <a name="get-started-receiving-messages-with-the-event-processor-host-in-net-standard"></a>開始使用 .NET Standard 中的事件處理器主機來接收訊息
 
 > [!NOTE]
-> 您可在 [GitHub](https://github.com/Azure/azure-event-hubs-dotnet/tree/master/samples/SampleEphReceiver) 上取得此範例。
+> 您可在 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleEphReceiver) 上取得此範例。
 
-## <a name="what-will-be-accomplished"></a>將會完成的工作
-
-本教學課程示範如何建立現有的解決方案 **SampleEphReceiver** (在此資料夾中)。 您可以依解決方案現狀執行，使用您的事件中樞和儲存體帳戶值取代 `EhConnectionString`、`EhEntityPath` 和 `StorageAccount` 字串，或遵循本教學課程建立您自己的方案。
-
-在本教學課程中，我們將撰寫一個 .NET Core 主控台應用程式來使用 **EventProcessorHost** 從事件中樞接收訊息。
+本教學課程說明如何撰寫一個使用 **EventProcessorHost** 從「事件中樞」接收訊息的 .NET Core 主控台應用程式。 您可以依原樣執行 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleEphReceiver) 解決方案，其中使用您的「事件中樞」和儲存體帳戶值來取代字串，或著，您也可以依照本教學課程中的步驟操作來建立自己的解決方案。 
 
 ## <a name="prerequisites"></a>必要條件
 
-1. [Visual Studio 2015](http://www.visualstudio.com)。
-
-2. [.NET Core Visual Studio 2015 工具](http://www.microsoft.com/net/core)。
-
+1. [Microsoft Visual Studio 2015 或 2017](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2015，但也支援 Visual Studio 2017。
+2. [.NET Core Visual Studio 2015 或 2017 工具](http://www.microsoft.com/net/core)。
 3. Azure 訂用帳戶。
-
 4. 事件中樞命名空間。
+5. Azure 儲存體帳戶。
+
+## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>建立事件中樞命名空間和事件中樞  
+  
+第一個步驟是使用 [Azure 入口網站](https://portal.azure.com)來建立「事件中樞」類型的命名空間，然後取得您應用程式與「事件中樞」進行通訊所需的管理認證。 若要建立命名空間和「事件中樞」，請依照[這篇文章](event-hubs-create.md)中的程序操作，然後繼續進行下列步驟。  
+
+## <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶  
+
+1. 登入 [Azure 入口網站](https://portal.azure.com)。  
+2. 在入口網站的左方瀏覽窗格中，依序按一下 [新增]、[儲存體] 及 [儲存體帳戶]。  
+3. 完成儲存體帳戶刀鋒視窗中的欄位，然後按一下 [建立]。
+  
+    ![][1]
+
+4. 在看到**部署成功**訊息之後，按一下新儲存體帳戶的名稱，並在 [基本功能] 刀鋒視窗中按一下 [Blob]。 當 [Blob 服務] 刀鋒視窗開啟時，按一下頂端的 [+ 容器]。 為容器命名，然後關閉 [Blob 服務] 刀鋒視窗。  
+5. 按一下左側刀鋒視窗中的 [存取金鑰]，然後複製儲存體容器的名稱、儲存體帳戶及 **key1** 的值。 將這些值儲存到記事本或一些其他暫存位置。  
     
-## <a name="receive-messages-from-the-event-hub"></a>從事件中樞接收訊息
+## <a name="create-a-console-application"></a>建立主控台應用程式
 
-### <a name="create-a-console-application"></a>建立主控台應用程式
+1. 啟動 Visual Studio。 從 [檔案] 功能表中，按一下 [新增]，然後按一下 [專案]。 建立 .NET Core 主控台應用程式。
 
-1. 啟動 Visual Studio，並建立新的 .NET Core 主控台應用程式。
+    ![][2]
 
-### <a name="add-the-event-hubs-nuget-package"></a>新增事件中樞 NuGet 封裝
+2. 在 [方案總管] 中，按兩下 [project.json] 檔案，以在 Visual Studio 編輯器中開啟它。
+3. 將字串 `"portable-net45+win8"` 新增到 `"imports"` 宣告中的 `"frameworks`" 區段內。 該區段現在應該看起來如下。 此字串是必要字串，因為「Azure 儲存體」依存於 OData：
 
-* 將下列 NuGet 封裝新增至您的專案：
+    ```json
+    "frameworks": {
+      "netcoreapp1.0": {
+        "imports": [
+          "dnxcore50",
+          "portable-net45+win8"
+        ]
+      }
+    }
+    ```
+
+4. 從 [檔案] 功能表中，按一下 [全部儲存]。
+
+請注意，本教學課程說明如何撰寫 .NET Core 應用程式，但如果您想要以整個 .NET Framework 為目標，請將下列程式碼行新增到 project.json 檔案的 `"frameworks"` 區段中：
+
+```json
+"net451": {
+},
+``` 
+
+## <a name="add-the-event-hubs-nuget-package"></a>新增事件中樞 NuGet 封裝
+
+* 將下列 NuGet 套件新增到專案：
   * [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/)
   * [`Microsoft.Azure.EventHubs.Processor`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/)
 
-### <a name="implement-the-ieventprocessor-interface"></a>實作 IEventProcessor 介面
+## <a name="implement-the-ieventprocessor-interface"></a>實作 IEventProcessor 介面
 
-1. 建立稱為 ’mpleEventProcessor' 的新類別。
+1. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，按一下 [新增]，然後按一下 [類別]。 將新類別命名為 **SimpleEventProcessor**。
 
-2. 在 SimpleEventProcessor.cs 檔案開頭處新增下列 `using` 陳述式。
+2. 開啟 SimpleEventProcessor.cs 檔案，然後在檔案開頭新增下列 `using` 陳述式。
 
-    ```cs
+    ```csharp
+    using System.Text;
     using Microsoft.Azure.EventHubs;
     using Microsoft.Azure.EventHubs.Processor;
     ```
 
-3. 實作 `IEventProcessor` 介面。 該類別看起來應該如下所示：
+3. 實作 `IEventProcessor` 介面。 以下列程式碼取代 `SimpleEventProcessor` 類別的整個內容：
 
-    ```cs
-    namespace SampleEphReceiver
+    ```csharp
+    public class SimpleEventProcessor : IEventProcessor
     {
-        using System;
-        using System.Collections.Generic;
-        using System.Text;
-        using System.Threading.Tasks;
-        using Microsoft.Azure.EventHubs;
-        using Microsoft.Azure.EventHubs.Processor;
-    
-        public class SimpleEventProcessor : IEventProcessor
+        public Task CloseAsync(PartitionContext context, CloseReason reason)
         {
-            public Task CloseAsync(PartitionContext context, CloseReason reason)
+            Console.WriteLine($"Processor Shutting Down. Partition '{context.PartitionId}', Reason: '{reason}'.");
+            return Task.CompletedTask;
+        }
+    
+        public Task OpenAsync(PartitionContext context)
+        {
+            Console.WriteLine($"SimpleEventProcessor initialized. Partition: '{context.PartitionId}'");
+            return Task.CompletedTask;
+        }
+    
+        public Task ProcessErrorAsync(PartitionContext context, Exception error)
+        {
+            Console.WriteLine($"Error on Partition: {context.PartitionId}, Error: {error.Message}");
+            return Task.CompletedTask;
+        }
+    
+        public Task ProcessEventsAsync(PartitionContext context, IEnumerable<EventData> messages)
+        {
+            foreach (var eventData in messages)
             {
-                Console.WriteLine($"Processor Shutting Down. Partition '{context.PartitionId}', Reason: '{reason}'.");
-                return Task.CompletedTask;
+                var data = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
+                Console.WriteLine($"Message received. Partition: '{context.PartitionId}', Data: '{data}'");
             }
     
-            public Task OpenAsync(PartitionContext context)
-            {
-                Console.WriteLine($"SimpleEventProcessor initialized. Partition: '{context.PartitionId}'");
-                return Task.CompletedTask;
-            }
-    
-            public Task ProcessErrorAsync(PartitionContext context, Exception error)
-            {
-                Console.WriteLine($"Error on Partition: {context.PartitionId}, Error: {error.Message}");
-                return Task.CompletedTask;
-            }
-    
-            public Task ProcessEventsAsync(PartitionContext context, IEnumerable<EventData> messages)
-            {
-                foreach (var eventData in messages)
-                {
-                    var data = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
-                    Console.WriteLine($"Message received. Partition: '{context.PartitionId}', Data: '{data}'");
-                }
-    
-                return context.CheckpointAsync();
-            }
+            return context.CheckpointAsync();
         }
     }
     ```
 
-### <a name="write-a-main-console-method-that-uses-simpleeventprocessor-to-receive-messages-from-an-event-hub"></a>撰寫使用 `SimpleEventProcessor` 來從事件中樞接收訊息的主要主控台方法
+## <a name="write-a-main-console-method-that-uses-the-simpleeventprocessor-class-to-receive-messages"></a>撰寫使用 SimpleEventProcessor 類別來接收訊息的主要主控台方法
 
 1. 在 Program.cs 檔案開頭處加入 `using` 陳述式。
   
-    ```cs
+    ```csharp
     using Microsoft.Azure.EventHubs;
     using Microsoft.Azure.EventHubs.Processor;
     ```
 
-2. 針對事件中樞連接字串、事件中心路徑、儲存體容器名稱、儲存體帳戶名稱和儲存體帳戶金鑰，新增常數至 `Program` 類別。 以對應值取代預留位置。
+2. 針對「事件中樞」連接字串、「事件中樞」名稱、儲存體容器名稱、儲存體帳戶名稱及儲存體帳戶金鑰，將常數新增到 `Program` 類別。 新增下列程式碼，其中將預留位置取代成其對應的值。
 
-    ```cs
+    ```csharp
     private const string EhConnectionString = "{Event Hubs connection string}";
     private const string EhEntityPath = "{Event Hub path/name}";
     private const string StorageContainerName = "{Storage account container name}";
@@ -132,8 +155,9 @@ ms.lasthandoff: 02/21/2017
     private static readonly string StorageConnectionString = string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}", StorageAccountName, StorageAccountKey);
     ```   
 
-3. 新增稱為 `MainAsync` 的新方法至 `Program` 類別，如下所示：
-    ```cs
+3. 將名為 `MainAsync` 的新方法新增到 `Program` 類別，如下所示：
+
+    ```csharp
     private static async Task MainAsync(string[] args)
     {
         Console.WriteLine("Registering EventProcessor...");
@@ -148,7 +172,7 @@ ms.lasthandoff: 02/21/2017
         // Registers the Event Processor Host and starts receiving messages
         await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-        Console.WriteLine("Receiving. Press enter key to stop worker.");
+        Console.WriteLine("Receiving. Press ENTER to stop worker.");
         Console.ReadLine();
 
         // Disposes of the Event Processor Host
@@ -158,19 +182,15 @@ ms.lasthandoff: 02/21/2017
 
 3. 將下列程式碼行新增至 `Main` 方法：
 
-    ```cs
+    ```csharp
     MainAsync(args).GetAwaiter().GetResult();
     ```
 
     Program.cs 檔案看起來應該會像下面這樣：
 
-    ```cs
+    ```csharp
     namespace SampleEphReceiver
     {
-        using System;
-        using System.Threading.Tasks;
-        using Microsoft.Azure.EventHubs;
-        using Microsoft.Azure.EventHubs.Processor;
     
         public class Program
         {
@@ -201,7 +221,7 @@ ms.lasthandoff: 02/21/2017
                 // Registers the Event Processor Host and starts receiving messages
                 await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
     
-                Console.WriteLine("Receiving. Press enter key to stop worker.");
+                Console.WriteLine("Receiving. Press ENTER to stop worker.");
                 Console.ReadLine();
     
                 // Disposes of the Event Processor Host
@@ -213,7 +233,7 @@ ms.lasthandoff: 02/21/2017
   
 4. 執行程式，並確定沒有任何錯誤。
   
-恭喜！ 您現在已可以從事件中樞接收訊息。
+恭喜！ 您現在已使用「事件處理器主機」從「事件中樞」收到訊息。
 
 ## <a name="next-steps"></a>後續步驟
 您可以造訪下列連結以深入了解事件中樞︰
@@ -221,3 +241,6 @@ ms.lasthandoff: 02/21/2017
 * [事件中樞概觀](event-hubs-what-is-event-hubs.md)
 * [建立事件中樞](event-hubs-create.md)
 * [事件中樞常見問題集](event-hubs-faq.md)
+
+[1]: ./media/event-hubs-dotnet-standard-getstarted-receive-eph/event-hubs-python1.png
+[2]: ./media/event-hubs-dotnet-standard-getstarted-receive-eph/netcore.png

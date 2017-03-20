@@ -17,6 +17,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 9bd7a76ef644df3db72ce95a3ef89a04bec1381f
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -54,10 +55,5 @@ Azure Data Lake Store 使用公用網際網路 IP 位址執行的 PaaS 服務。
 ## <a name="see-also"></a>另請參閱
 * [Azure 資料湖儲存區概觀](data-lake-store-overview.md)
 * [保護儲存在 Azure Data Lake Store 中的資料](data-lake-store-security-overview.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

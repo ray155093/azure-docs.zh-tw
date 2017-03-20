@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 11/17/2016
+ms.date: 2/22/2017
 ms.author: cbrooks
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: c61be739ce592d75b04bee15d14850cdf94c09da
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -189,10 +190,5 @@ CORS 規則的評估，如下所示：
 [設定資料表服務屬性](https://msdn.microsoft.com/library/hh452240.aspx)
 
 [W3C 跨原始資源共用規格](http://www.w3.org/TR/cors/)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

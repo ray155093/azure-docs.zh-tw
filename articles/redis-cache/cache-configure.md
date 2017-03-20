@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
-ms.date: 02/14/2017
+ms.date: 02/28/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 296a842157e4ecae1b3700e1d22c56852ffc06a2
-ms.openlocfilehash: ad88d998302d264b2a0f607d8408cd12bf833a68
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 59d4e08d0e93096120cc74deb641385084cfd912
+ms.openlocfilehash: 8a4f3616ff314cb280e6673c71ebdcd5d9b3441c
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -52,6 +52,7 @@ ms.lasthandoff: 02/17/2017
     * [Redis 資料永續性](#redis-data-persistence)
     * [排程更新](#schedule-updates)
     * [虛擬網路](#virtual-network)
+    * [防火牆](#firewall)
     * [屬性](#properties)
     * [鎖定](#locks)
     * [自動化指令碼](#automation-script)
@@ -104,6 +105,7 @@ ms.lasthandoff: 02/17/2017
 * [Redis 資料永續性](#redis-data-persistence)
 * [排程更新](#schedule-updates)
 * [虛擬網路](#virtual-network)
+* [防火牆](#firewall)
 * [屬性](#properties)
 * [鎖定](#locks)
 * [自動化指令碼](#automation-script)
@@ -262,7 +264,7 @@ Redis Keyspace 通知是在 [進階設定]  刀鋒視窗上進行設定。 Keysp
 
 
 
-## <a name="virtual-network"></a>虛擬網路
+### <a name="virtual-network"></a>虛擬網路
 [虛擬網路] 區段可讓您為快取設定虛擬網路。 如需使用 VNET 支援建立進階快取並更新其設定的相關資訊，請參閱 [如何設定進階 Azure Redis 快取的虛擬網路支援](cache-how-to-premium-vnet.md)。
 
 > [!IMPORTANT]
@@ -270,6 +272,20 @@ Redis Keyspace 通知是在 [進階設定]  刀鋒視窗上進行設定。 Keysp
 > 
 > 
 
+### <a name="firewall"></a>防火牆
+
+按一下 [防火牆]，檢視並設定進階 Azure Redis 快取的防火牆規則。
+
+![防火牆](./media/cache-configure/redis-firewall-rules.png)
+
+您可以利用開始和結束 IP 位址範圍來指定防火牆規則。 設定防火牆規則時，只有來自指定 IP 位址範圍的用戶端連線可以連接至快取。 儲存防火牆規則時，在規則生效之前，會有短暫的延遲。 此延遲通常不超過一分鐘。
+
+> [!IMPORTANT]
+> 一律允許來自 Azure Redis 快取監視系統的連線，即使設定了防火牆規則也一樣。
+> 
+> 防火牆規則僅適用於進階層快取。
+> 
+> 
 
 ### <a name="properties"></a>屬性
 按一下 [屬性]  以檢視快取的相關資訊，包括快取端點和連接埠。

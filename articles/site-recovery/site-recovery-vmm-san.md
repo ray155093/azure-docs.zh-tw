@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/19/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 34bb02d93f74d437962334802f3bfbf938bbb258
-ms.openlocfilehash: 2bc98da479e6efea322a3782879fae72b106538a
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 67b4861ac564565b2a36932ae15141a1e1f56035
+ms.openlocfilehash: 29084a52aca22b31a2fa42660ec2cdf050aec7ca
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -190,7 +190,7 @@ ms.lasthandoff: 02/22/2017
 
    * 如果您想要使用自訂的 Proxy，請在安裝提供者之前先設定它。 當您進行自訂 Proxy 設定時，會執行一項測試以檢查 Proxy 連線。
    * 如果您使用自訂 proxy，或者您的預設 proxy 需要驗證，您應輸入 Proxy 詳細資料，包含位址和連接埠。
-   * 這些 [URL](site-recovery-best-practices.md#url-access) 應可從 VMM 伺服器存取。
+   * 必須能夠從 VMM 伺服器存取必要的 URL。
    * 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。 設定 Proxy 伺服器，讓此帳戶可以進行驗證。 您可以在 VMM 主控台修改 RunAs 帳戶設定 ([設定]  > [安全性] > [執行身分帳戶] > [DRAProxyAccount])。 您必須重新啟動 VMM 服務，變更才會生效。
 10. 在 [註冊金鑰] 中，選取您從入口網站下載並複製到 VMM 伺服器的金鑰。
 11. 在 [保存庫名稱] 中，確認要註冊伺服器的保存庫名稱。
@@ -321,7 +321,7 @@ VM 啟用複寫後，就會顯示在 Site Recovery 主控台。 您可以檢視 
 
     ![選取虛擬機器](./media/site-recovery-vmm-san/r-plan-vm.png)
 4. 建立復原方案之後，它會出現在 [復原方案] 索引標籤上的清單中。 選取方案，然後選擇 [測試容錯移轉]。
-5. 在 [確認測試容錯移轉] 頁面上，選取 [無]。 啟用此選項時，容錯移轉的複本 VM 將不會連線到任何網路。 這會測試 VM 容錯移轉是否如預期般運作，但不會測試網路環境。 如需其他網路功能選項的相關資訊，請參閱 [Site Recovery 容錯移轉](site-recovery-failover.md#run-a-test-failover)。
+5. 在 [確認測試容錯移轉] 頁面上，選取 [無]。 啟用此選項時，容錯移轉的複本 VM 將不會連線到任何網路。 這會測試 VM 容錯移轉是否如預期般運作，但不會測試網路環境。 如需其他網路功能選項的相關資訊，請參閱 [Site Recovery 容錯移轉](site-recovery-failover.md)。
 
     ![選取測試網路](./media/site-recovery-vmm-san/test-fail1.png)
 

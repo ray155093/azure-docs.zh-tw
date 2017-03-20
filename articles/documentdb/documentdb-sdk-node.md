@@ -1,5 +1,5 @@
 ---
-title: "Node.js API 和 SDK 資源 - Azure DocumentDB | Microsoft Docs"
+title: "Azure DocumentDB Node.js API、SDK 和資源 | Microsoft Docs"
 description: "了解所有 Node.js API 和 SDK 相關資訊，包括 發行日期、停用日期及 DocumentDB Node.js SDK 每個版本之間的變更。"
 services: documentdb
 documentationcenter: nodejs
@@ -12,15 +12,17 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 12/22/2016
+ms.date: 01/27/2017
 ms.author: rnagpal
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a6aadaae2a9400dc62ab277d89d9a9657833b1b7
-ms.openlocfilehash: 43d658a67eb55a2d2e35f79080d63c3effb6387e
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 36b3eab758d006710467d23a30f889b605df1583
+ms.lasthandoff: 03/07/2017
 
 
 ---
-# <a name="documentdb-apis-and-sdks"></a>DocumentDB API 和 SDK
+# <a name="documentdb-nodejs-sdk-release-notes-and-resources"></a>DocumentDB Node.js SDK︰版本資訊與資源
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-sdk-dotnet.md)
 > * [.NET Core](documentdb-sdk-dotnet-core.md)
@@ -33,7 +35,6 @@ ms.openlocfilehash: 43d658a67eb55a2d2e35f79080d63c3effb6387e
 > 
 > 
 
-## <a name="documentdb-nodejs-api-and-sdk"></a>DocumentDB Node.js API 和 SDK
 <table>
 
 <tr><td>**下載 SDK**</td><td>[NPM](https://www.npmjs.com/package/documentdb)</td></tr>
@@ -55,83 +56,87 @@ ms.openlocfilehash: 43d658a67eb55a2d2e35f79080d63c3effb6387e
 
 ## <a name="release-notes"></a>版本資訊
 
-### <a name="a-name11011101a"></a><a name="1.10.1"/>1.10.1</a>
+### <a name="1.10.2"/>1.10.2</a>
+* 修正使用者-代理程式標頭以包含 SDK 版本。
+* 次要程式碼清除。
+
+### <a name="1.10.1"/>1.10.1</a>
 * 當使用 SDK 以模擬器 (hostname=localhost) 為目標時，停用 SSL 驗證。
 * 在預存程序執行期間，加入支援指令碼記錄功能。
 
-### <a name="a-name11001100a"></a><a name="1.10.0"/>1.10.0</a>
+### <a name="1.10.0"/>1.10.0</a>
 * 新增對跨資料分割平行查詢的支援。
 * 新增對已分割集合的 TOP/ORDER BY 查詢支援。
 
-### <a name="a-name190190a"></a><a name="1.9.0"/>1.9.0</a>
+### <a name="1.9.0"/>1.9.0</a>
 * 新加入已節流處理要求的重試原則支援。 (已節流處理的要求會收到要求率太大的例外狀況，即錯誤碼 429。)根據預設，發生錯誤碼 429 時，DocumentDB 會遵守回應標頭中的 retryAfter 時間，並針對每個要求重試九次。 如果您想要忽略伺服器在多次重試之間傳回的 retryAfter 時間，現在可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中設定固定的重試間隔時間。 DocumentDB 現在會針對每個節流處理中的要求等候最多 30 秒 (不論重試計數為何)，並傳回包含錯誤碼 429 的回應。 您也可以在 ConnectionPolicy 物件上的 RetryOptions 屬性中覆寫該時間。
 * DocumentDB 現在會傳回 x-ms-throttle-retry-count 和 x-ms-throttle-retry-wait-time-ms 做為每個要求的回應標頭，其代表節流重試計數和要求歷經多次重試的累積時間。
 * 新增 RetryOptions 類別，以及公開 ConnectionPolicy 類別上的 RetryOptions 屬性，使其能用來覆寫某些預設的重試選項。
 
-### <a name="a-name180180a"></a><a name="1.8.0"/>1.8.0</a>
+### <a name="1.8.0"/>1.8.0</a>
 * 新增對多重區域資料庫帳戶的支援。
 
-### <a name="a-name170170a"></a><a name="1.7.0"/>1.7.0</a>
+### <a name="1.7.0"/>1.7.0</a>
 * 新加入文件的存留時間 (TTL) 功能支援。
 
-### <a name="a-name160160a"></a><a name="1.6.0"/>1.6.0</a>
+### <a name="1.6.0"/>1.6.0</a>
 * 實作[已分割的集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。
 
-### <a name="a-name156156a"></a><a name="1.5.6"/>1.5.6</a>
+### <a name="1.5.6"/>1.5.6</a>
 * 已修正 RangePartitionResolver.resolveForRead 錯誤，其因錯誤的結果 CONCAT 而無法傳回連結。
 
-### <a name="a-name155155a"></a><a name="1.5.5"/>1.5.5</a>
+### <a name="1.5.5"/>1.5.5</a>
 * 修正 hashParitionResolver resolveForRead()：所提供的資料分割索引鍵都未擲回例外狀況時，而不會傳回所有已註冊連結的清單。
 
-### <a name="a-name154154a"></a><a name="1.5.4"/>1.5.4</a>
+### <a name="1.5.4"/>1.5.4</a>
 * 修正問題 [#100](https://github.com/Azure/azure-documentdb-node/issues/100) - HTTPS 專用代理程式：避免基於 DocumentDB 用途而修改全域代理程式。 針對所有 lib 要求使用專用的代理程式。
 
-### <a name="a-name153153a"></a><a name="1.5.3"/>1.5.3</a>
+### <a name="1.5.3"/>1.5.3</a>
 * 修正問題 [#81](https://github.com/Azure/azure-documentdb-node/issues/81) - 正確處理媒體識別碼中的連字號。
 
-### <a name="a-name152152a"></a><a name="1.5.2"/>1.5.2</a>
+### <a name="1.5.2"/>1.5.2</a>
 * 修正問題 [#95](https://github.com/Azure/azure-documentdb-node/issues/95) - EventEmitter 接聽程式洩漏警告。
 
-### <a name="a-name151151a"></a><a name="1.5.1"/>1.5.1</a>
+### <a name="1.5.1"/>1.5.1</a>
 * Fixes issue [#92](https://github.com/Azure/azure-documentdb-node/issues/90) - rename folder Hash to hash for case sensitive systems.
 
-### <a name="a-name150150a"></a><a name="1.5.0"/>1.5.0</a>
+### <a name="1.5.0"/>1.5.0</a>
 * 藉由新增雜湊和範圍分割解析程式來實作分區化支援。
 
-### <a name="a-name140140a"></a><a name="1.4.0"/>1.4.0</a>
+### <a name="1.4.0"/>1.4.0</a>
 * 實作 Upsert。 documentClient 上新的 upsertXXX 方法。
 
-### <a name="a-name130130a"></a><a name="1.3.0"/>1.3.0</a>
+### <a name="1.3.0"/>1.3.0</a>
 * 已略過以配合其他 SDK 的版本號碼。
 
-### <a name="a-name122122a"></a><a name="1.2.2"/>1.2.2</a>
+### <a name="1.2.2"/>1.2.2</a>
 * 將 Q Pomise 包裝函式分割至新的儲存機制。
 * 更新至 npm 登錄的封裝檔案。
 
-### <a name="a-name121121a"></a><a name="1.2.1"/>1.2.1</a>
+### <a name="1.2.1"/>1.2.1</a>
 * 實作以識別碼為基礎的路由。
 * 修正問題 [#49](https://github.com/Azure/azure-documentdb-node/issues/49) - 目前屬性與 current() 方法衝突。
 
-### <a name="a-name120120a"></a><a name="1.2.0"/>1.2.0</a>
+### <a name="1.2.0"/>1.2.0</a>
 * 新增對地理空間索引的支援。
 * 驗證所有資源的識別碼屬性。 資源的識別碼不能包含 ?、/、#、&#47;&#47; 等字元，或在結尾處使用空格。
 * 將新標頭「索引轉換進度」加至 ResourceResponse。
 
-### <a name="a-name110110a"></a><a name="1.1.0"/>1.1.0</a>
+### <a name="1.1.0"/>1.1.0</a>
 * 實作 V2 索引原則。
 
-### <a name="a-name103103a"></a><a name="1.0.3"/>1.0.3</a>
+### <a name="1.0.3"/>1.0.3</a>
 * 問題 [#40](https://github.com/Azure/azure-documentdb-node/issues/40) - 核心與 Promise SDK 中實作的 eslint 和 grunt 組態。
 
-### <a name="a-name102102a"></a><a name="1.0.2"/>1.0.2</a>
+### <a name="1.0.2"/>1.0.2</a>
 * 問題 [#45](https://github.com/Azure/azure-documentdb-node/issues/45) - Promise 包裝函式不包括標頭並發生錯誤。
 
-### <a name="a-name101101a"></a><a name="1.0.1"/>1.0.1</a>
+### <a name="1.0.1"/>1.0.1</a>
 * 已實作透過新增 readConflicts、readConflictAsync 及 queryConflicts 來查詢衝突的功能。
 * 已更新 API 文件。
 * 問題 [#41](https://github.com/Azure/azure-documentdb-node/issues/41) - client.createDocumentAsync 錯誤。
 
-### <a name="a-name100100a"></a><a name="1.0.0"/>1.0.0</a>
+### <a name="1.0.0"/>1.0.0</a>
 * GA SDK。
 
 ## <a name="release--retirement-dates"></a>發行和停用日期
@@ -145,6 +150,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [1.10.2](#1.10.2) |2017 年 1 月 27 日 |--- |
 | [1.10.1](#1.10.1) |2016 年 12 月 22 日 |--- |
 | [1.10.0](#1.10.0) |2016 年 10 月 3 日 |--- |
 | [1.9.0](#1.9.0) |2016 年 7 月 7 日 |--- |
@@ -174,10 +180,5 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 ## <a name="see-also"></a>另請參閱
 若要深入了解 DocumentDB，請參閱 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 服務頁面。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

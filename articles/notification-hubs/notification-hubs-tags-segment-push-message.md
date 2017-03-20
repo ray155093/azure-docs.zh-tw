@@ -17,6 +17,7 @@ ms.author: yuaxu
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 3a5f06b7e9600c34ef690e025a0a2079f71f843e
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -102,9 +103,4 @@ ms.openlocfilehash: 3a5f06b7e9600c34ef690e025a0a2079f71f843e
     toast = @"<toast><visual><binding template=""ToastGeneric""><text id=""1"">" +
     "You want info on the Red Socks</text></binding></visual></toast>";
     outcome = await Notifications.Instance.Hub.SendWindowsNativeNotificationAsync(toast, userTag);
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

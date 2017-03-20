@@ -12,19 +12,47 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/05/2016
+ms.date: 02/27/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: c5479dd817e8929ff5e9129d4643d49758e7ab16
-ms.openlocfilehash: 32e74821309507fed4a20b005dbfbba12ffb0703
+ms.sourcegitcommit: 1029c7e4c6a17ad2a290ff0783fc88692555b255
+ms.openlocfilehash: 94800f51baf83311c33490cada5f991ff2101da9
+ms.lasthandoff: 03/02/2017
 
 
 ---
 # <a name="manage-an-azure-machine-learning-workspace"></a>管理 Azure Machine Learning 工作區
+
 > [!NOTE]
-> 本文中的程序都與 Azure Machine Learning 傳統 Web 服務有關。 如需在 Machine Learning Web 服務入口網站中管理 Web 服務的相關資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。
+> 如需在 Machine Learning Web 服務入口網站中管理 Web 服務的相關資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。
 > 
 > 
+
+您可以在 Azure 入口網站或 Azure 傳統入口網站中管理 Machine Learning 工作區。
+
+[!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
+
+## <a name="use-the-azure-portal"></a>使用 Azure 入口網站
+
+若要在 Azure 入口網站中管理工作區︰
+
+1. 使用 Azure 訂用帳戶系統管理員帳戶登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 在頁面頂端的搜尋方塊中輸入「Machine Learning 工作區」，然後選取 [Machine Learning 工作區]。
+3. 按一下您想要管理的工作區。
+
+除了標準的資源管理資訊和可用的選項，您還可以︰
+
+- 檢視**屬性** - 此頁面會顯示工作區和資源的資訊，而且您可以變更這個工作區所連線的訂用帳戶和資源群組。
+- **重新同步儲存體金鑰** - 工作區會保有儲存體帳戶的金鑰。 如果儲存體帳戶變更了金鑰，則您可以按一下 [重新同步金鑰] 來與工作區同步處理金鑰。
+
+若要管理與此工作區相關聯的 Web 服務，請使用 Machine Learning Web 服務入口網站。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。
+
+> [!NOTE]
+> 若要部署或管理新的 Web 服務，您必須獲得下列角色的指派：要部署 Web 服務之訂用帳戶上的參與者或系統管理員角色。 如果您邀請另一位使用者到 Machine Learning 工作區，就必須為他們指派訂用帳戶上的參與者或系統管理員角色，然後他們才能部署或管理 Web 服務。 
+> 
+>如需有關設定存取權限的詳細資訊，請參閱[在 Azure 入口網站 (公開預覽) 中檢視使用者和群組的存取權指派](../active-directory/role-based-access-control-manage-assignments.md)。
+
+## <a name="use-the-azure-classic-portal"></a>使用 Azure 傳統入口網站
 
 您可以使用 Azure 傳統入口網站來管理您的機器學習服務工作區，以便：
 
@@ -33,8 +61,6 @@ ms.openlocfilehash: 32e74821309507fed4a20b005dbfbba12ffb0703
 * 管理工作區中建立的 Web 服務
 * 刪除工作區
 
-[!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
-
 此外，儀表板索引標籤會提供工作區使用方式的概觀和工作區資訊的快速概覽。  
 
 > [!TIP]
@@ -42,7 +68,7 @@ ms.openlocfilehash: 32e74821309507fed4a20b005dbfbba12ffb0703
 > 
 > 
 
-若要管理工作區：
+若要在 Azure 傳統入口網站中管理工作區︰
 
 1. 使用您的 Microsoft Azure 帳戶登入 [Azure 傳統入口網站](https://manage.windowsazure.com/) - 使用與 Azure 訂用帳戶相關聯的帳戶。
 2. 在 Microsoft Azure 服務面板中，按一下 [機器學習] 。
@@ -54,7 +80,7 @@ ms.openlocfilehash: 32e74821309507fed4a20b005dbfbba12ffb0703
 * **設定** - 可讓您管理對工作區的存取
 * **Web 服務** - 可讓您管理從此工作區發佈的 Web 服務
 
-## <a name="to-monitor-how-the-workspace-is-being-used"></a>監視工作區的使用方式
+### <a name="to-monitor-how-the-workspace-is-being-used"></a>監視工作區的使用方式
 按一下 [ **儀表板** ] 索引標籤。
 
 從儀表板，您可以檢視工作區的整體使用量，並取得工作區資訊的快速概覽。
@@ -68,7 +94,7 @@ ms.openlocfilehash: 32e74821309507fed4a20b005dbfbba12ffb0703
 > 
 > 
 
-## <a name="to-grant-or-suspend-access-for-users"></a>授與或暫停使用者的存取權
+### <a name="to-grant-or-suspend-access-for-users"></a>授與或暫停使用者的存取權
 按一下 [設定]  索引標籤。
 
 您可以從設定索引標籤：
@@ -77,7 +103,7 @@ ms.openlocfilehash: 32e74821309507fed4a20b005dbfbba12ffb0703
 
 若要管理可以存取 Machine Learning Studio 中工作區的其他帳戶，請按一下 [儀表板] 索引標籤中的 [登入 ML Studio]\(請參閱上述有關**登入 ML Studio** 的附註)。 這會在 Machine Learning Studio 中開啟工作區。 從這裡按一下 [設定] 索引標籤，然後按一下 [使用者]。 您可以按一下 [邀請使用者]，讓使用者存取工作區，或選取使用者，並按一下 [移除]。
 
-## <a name="to-manage-web-services-in-this-workspace"></a>管理此工作區中的 Web 服務
+### <a name="to-manage-web-services-in-this-workspace"></a>管理此工作區中的 Web 服務
 按一下 [ **Web 服務** ] 索引標籤。
 
 這會顯示從此工作區發佈的 Web 服務的清單。
@@ -110,10 +136,5 @@ Web 服務可能會有一個或多個定義的端點。
 * [描述] 可讓您輸入 Web 服務的描述。 [描述] 必要欄位。
 * [記錄] 可讓您啟用或停用端點上的錯誤記錄。 如需有關記錄的詳細資訊，請參閱[為 Machine Learning Web 服務啟用記錄](machine-learning-web-services-logging.md)。
 * [啟用範例資料] 可讓您提供範例資料，用來測試要求-回應服務。 如果您是在 Machine Learning Studio 中建立 Web 服務，範例資料會取自您用來訓練模型的資料。 如果您是以程式設計方式建立服務，資料會取自您提供做為 JSON 套件一部分的範例資料。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

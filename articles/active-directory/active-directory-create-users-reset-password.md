@@ -12,22 +12,24 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 02/27/2017
 ms.author: curtand
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a4a78b92c8bb9e8aff25fd724ed78283de8f2fd8
-ms.openlocfilehash: e22177e7faa371e43f5f6a41b3e17a9f2b33e6ff
+ms.sourcegitcommit: 3334729cbc4ab4a48e10ece0a15a31595317ca3f
+ms.openlocfilehash: 5a14124412ac8e86a4a76d18c6d93a17a4f72b1b
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="reset-the-password-for-a-user"></a>重設使用者的密碼
+# <a name="reset-a-password-for-a-user-in-the-azure-classic-portal"></a>在 Azure 傳統入口網站中重設使用者的密碼
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-users-reset-password-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-create-users-reset-password.md)
 >
 >
 
-無論您是在鎖定後回應使用者重設密碼的要求，還是只參加例行的安全性維護，有時就是需要重設使用者的密碼。 Azure Active Directory (Azure AD) 讓這項作業變得輕鬆簡單。
+如果使用者忘記密碼並遭到鎖定，或在執行例行的安全性維護時，Azure Active Directory (Azure AD) 會簡化重設使用者密碼的程序。 
 
 1. 開啟您的目錄。
 2. 選取 [使用者]  索引標籤，然後選取想要變更之使用者的顯示名稱。
@@ -40,9 +42,4 @@ ms.openlocfilehash: e22177e7faa371e43f5f6a41b3e17a9f2b33e6ff
 * [管理 Azure AD](active-directory-administer.md)
 * [在 Azure AD 中管理密碼](active-directory-manage-passwords.md)
 * [在 Azure AD 中管理群組](active-directory-manage-groups.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

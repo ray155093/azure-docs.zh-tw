@@ -12,24 +12,30 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/03/2017
+ms.date: 03/03/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 522496ddcd3cc21501f2390e8cdc158798b6289d
-ms.openlocfilehash: 35d33625badeb0b32079f0487b8bf2a3dd97e141
-ms.lasthandoff: 02/04/2017
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 7680aafcefbe6f1e6e3b55137da2e46b42df5a9b
+ms.lasthandoff: 03/04/2017
 
 
 ---
 # <a name="remediate-os-vulnerabilities-in-azure-security-center"></a>修復 Azure 資訊安全中心的 OS 弱點
-Azure 資訊安全中心每天會分析可能造成虛擬機器 (VM) 更容易受到攻擊的 VM 作業系統 (OS) 組態，並建議進行組態變更來處理這些弱點。 如需受監視之特定設定的詳細資訊，請參閱[建議的設定規則清單](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335)。 當 VM 的 OS 設定不符合建議的設定規則時，資訊安全中心會建議您解決這些弱點。
+Azure 資訊安全中心每天會分析可能造成虛擬機器 (VM) 更容易受到攻擊的 VM 作業系統 (OS) 組態，並建議進行組態變更來處理這些弱點。 當 VM 的 OS 設定不符合建議的設定規則時，資訊安全中心會建議您解決這些弱點。
+
+> [!NOTE]
+> 如需受監視之特定設定的詳細資訊，請參閱[建議的設定規則清單](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335)。 目前，未完全支援 Windows Server 2016。
+>
+>
+
+## <a name="implement-the-recommendation"></a>實作建議
 
 > [!NOTE]
 > 本文件將使用範例部署來介紹服務。  這不是逐步指南。
 >
 >
 
-## <a name="implement-the-recommendation"></a>實作建議
 1. 在 [建議] 刀鋒視窗中，選取 [修復 OS 弱點]。
    ![修復 OS 弱點][1]
 

@@ -12,11 +12,12 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/23/2016
+ms.date: 03/07/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: bd3b92e044a28237706fb004fdc43cca056047ad
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: 017e6942bc49717f98836a2465824c0a42ff8a81
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -24,9 +25,9 @@ ms.openlocfilehash: bd3b92e044a28237706fb004fdc43cca056047ad
 [!INCLUDE [iot-hub-selector-c2d](../../includes/iot-hub-selector-c2d.md)]
 
 ## <a name="introduction"></a>簡介
-Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝置和一個解決方案後端進行可靠且安全的雙向通訊。 [IoT 中樞入門] 教學課程會示範如何建立 IoT 中樞、在其中佈建裝置識別，以及編寫模擬的裝置應用程式，以傳送裝置到雲端的訊息。
+Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝置和一個解決方案後端進行可靠且安全的雙向通訊。 [開始使用 IoT 中樞] 教學課程會示範如何建立 IoT 中樞、在其中佈建裝置識別，以及編寫模擬的裝置應用程式，以傳送裝置到雲端的訊息。
 
-本教學課程是以 [IoT 中樞入門]為基礎。 這會說明如何：
+本教學課程是以 [開始使用 IoT 中樞]為基礎。 這會說明如何：
 
 * 從您的解決方案後端，透過 IoT 中樞將雲端到裝置訊息傳送給單一裝置。
 * 接收裝置上的雲端到裝置訊息。
@@ -36,7 +37,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 
 在本教學課程結尾，您將執行兩個 Java 主控台應用程式：
 
-* **simulated-device**：在 [IoT 中樞入門]中建立的應用程式修改版本，可連接到您的「IoT 中樞」並接收雲端到裝置訊息。
+* **simulated-device**：在 [開始使用 IoT 中樞]中建立的應用程式修改版本，可連接到您的「IoT 中樞」並接收雲端到裝置訊息。
 * **send-c2d-messages**：會將雲端到裝置訊息透過「IoT 中樞」傳送到模擬的裝置應用程式，然後接收其傳遞通知。
 
 > [!NOTE]
@@ -51,28 +52,27 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
 ## <a name="receive-messages-in-the-simulated-device-app"></a>在模擬的裝置應用程式中接收訊息
-在本節中，您會修改在[IoT 中樞入門]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端對裝置訊息。
+在本節中，您會修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端對裝置訊息。
 
 1. 使用文字編輯器開啟 simulated-device\src\main\java\com\mycompany\app\App.java 檔案。
 2. 在 **App** 類別內新增下列 **MessageCallback** 類別作為巢狀類別。 裝置從 IoT 中樞接收到訊息時會叫用 **execute** 方法。 在此範例中，裝置一律會通知 IoT 中樞其已完成訊息︰
    
     ```
-    private static class MessageCallback implements
-    com.microsoft.azure.iothub.MessageCallback {
+    private static class AppMessageCallback implements MessageCallback {
       public IotHubMessageResult execute(Message msg, Object context) {
         System.out.println("Received message from hub: "
           + new String(msg.getBytes(), Message.DEFAULT_IOTHUB_MESSAGE_CHARSET));
-   
+    
         return IotHubMessageResult.COMPLETE;
       }
     }
     ```
-3. 修改 **main** 方法來建立 **MessageCallback** 執行個體，並在其開啟用戶端之前，先呼叫 **setMessageCallback** 方法，如以下所示︰
+3. 修改 **main** 方法來建立 **AppMessageCallback** 執行個體，並在其開啟用戶端之前，先呼叫 **setMessageCallback** 方法，如以下所示︰
    
     ```
     client = new DeviceClient(connString, protocol);
    
-    MessageCallback callback = new MessageCallback();
+    MessageCallback callback = new AppMessageCallback();
     client.setMessageCallback(callback, null);
     client.open();
     ```
@@ -83,9 +83,9 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
    > 
 
 ## <a name="send-a-cloud-to-device-message"></a>傳送雲端到裝置訊息
-在本節中，您會建立 Java 主控台應用程式，以將雲端到裝置訊息傳送給模擬裝置應用程式。 您需要您在[IoT 中樞入門]教學課程中所新增裝置的裝置識別碼。 您也需要中樞的 IoT 中樞連接字串 (可在 [Azure 入口網站]中找到)。
+在本節中，您會建立 Java 主控台應用程式，以將雲端到裝置訊息傳送給模擬裝置應用程式。 您需要您在[開始使用 IoT 中樞]教學課程中所新增裝置的裝置識別碼。 您也需要中樞的 IoT 中樞連接字串 (可在 [Azure 入口網站]中找到)。
 
-1. 在命令提示字元中使用下列命令，建立名為 **send-c2d-messages** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
+1. 在命令提示字元中使用下列命令，建立名為 **send-c2d-messages** 的 Maven 專案。 注意，此命令是單一且非常長的命令：
    
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=send-c2d-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -95,9 +95,9 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
    
     ```
     <dependency>
-      <groupId>com.microsoft.azure.iothub-java-client</groupId>
-      <artifactId>iothub-java-service-client</artifactId>
-      <version>1.0.10</version>
+      <groupId>com.microsoft.azure.sdk.iot</groupId>
+      <artifactId>iot-service-client</artifactId>
+      <version>1.0.14</version>
     </dependency>
     ```
 4. 儲存並關閉 pom.xml 檔案。
@@ -105,7 +105,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 6. 在此檔案中新增下列 **import** 陳述式：
    
     ```
-    import com.microsoft.azure.iot.service.sdk.*;
+    import com.microsoft.azure.sdk.iot.service.sdk.*;
     import java.io.IOException;
     import java.net.URISyntaxException;
     ```
@@ -114,9 +114,9 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
     ```
     private static final String connectionString = "{yourhubconnectionstring}";
     private static final String deviceId = "{yourdeviceid}";
-    private static final IotHubServiceClientProtocol protocol = IotHubServiceClientProtocol.AMQP;
+    private static final IotHubServiceClientProtocol protocol = IotHubServiceClientProtocol.AMQPS;
     ```
-8. 使用下列連線到您 IoT 中樞的程式碼取代 **main** 方法，傳送訊息給您的裝置，然後等候裝置已接收並處理訊息的通知︰
+8. 以下列程式碼取代 **main** 方法。 此程式碼會連線至 IoT 中樞，傳送訊息給您的裝置，然後等候裝置已接收並處理訊息的通知︰
    
     ```
     public static void main(String[] args) throws IOException,
@@ -183,7 +183,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 [img-send-command]:  media/iot-hub-java-java-c2d/sendc2d.png
 <!-- Links -->
 
-[IoT 中樞入門]: iot-hub-java-java-getstarted.md
+[開始使用 IoT 中樞]: iot-hub-java-java-getstarted.md
 [IoT Hub developer guide - C2D]: iot-hub-devguide-messaging.md
 [IoT 中樞開發人員指南]: iot-hub-devguide.md
 [Azure IoT 開發人員中樞]: http://www.azure.com/develop/iot
@@ -192,9 +192,4 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 [暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [Azure 入口網站]: https://portal.azure.com
 [Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

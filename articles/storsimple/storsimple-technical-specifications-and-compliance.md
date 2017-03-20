@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: d82f352d714c0272296eb36782cbbcbac99a1bab
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -173,10 +174,5 @@ StorSimple 裝置混合搭載 8100 及 8600 的硬碟與固態磁碟機。 8100 
 
 ## <a name="next-steps"></a>後續步驟
 您現在已可在您的資料中心內部署 StorSimple 裝置。 如需詳細資訊，請參閱 [部署您的內部部署裝置](storsimple-deployment-walkthrough-u2.md)。  
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

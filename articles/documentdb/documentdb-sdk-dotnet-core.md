@@ -1,5 +1,5 @@
 ---
-title: "DocumentDB .NET Core API 和 SDK | Microsoft Docs"
+title: "Azure DocumentDB .NET Core API、SDK 和資源 | Microsoft Docs"
 description: "全面了解 .NET Core API 和 SDK，包括發行日期、停用日期及 DocumentDB .NET Core SDK 每個版本之間的變更。"
 services: documentdb
 documentationcenter: .net
@@ -12,16 +12,17 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 02/16/2017
+ms.date: 02/22/2017
 ms.author: rnagpal
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2a04860ea7349798d5786e50dc1d564896341d60
-ms.openlocfilehash: 50f13ae0184e5b9609994d382acc126eb2868271
-ms.lasthandoff: 02/18/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: f6e788ed734ce68f4eb9da35bf676f3980e07e62
+ms.lasthandoff: 03/07/2017
 
 
 ---
-# <a name="documentdb-apis-and-sdks"></a>DocumentDB API 和 SDK
+# <a name="documentdb-net-core-sdk-release-notes-and-resources"></a>DocumentDB .NET Core SDK︰版本資訊與資源
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-sdk-dotnet.md)
 > * [.NET Core](documentdb-sdk-dotnet-core.md)
@@ -34,7 +35,6 @@ ms.lasthandoff: 02/18/2017
 > 
 > 
 
-## <a name="documentdb-net-core-api-and-sdk"></a>DocumentDB .NET Core API 和 SDK
 <table>
 
 <tr><td>**SDK 下載**</td><td>[NuGet](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core/)</td></tr>
@@ -59,7 +59,8 @@ DocumentDB .NET Core SDK 有與最新版 [DocumentDB .NET SDK](documentdb-sdk-do
 
 ### <a name="a-name110110httpswwwnugetorgpackagesmicrosoftazuredocumentdbcore110"></a><a name="1.1.0"/>[1.1.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core/1.1.0)
 
-已將分割區集合的最小輸送量從 10,100 RU/s 降低為 2500 RU/s。
+* 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。 請參閱[彙總支援](documentdb-sql-query.md#Aggregates)。
+* 已將分割區集合的最小輸送量從 10,100 RU/s 降低為 2500 RU/s。
 
 ### <a name="a-name100100httpswwwnugetorgpackagesmicrosoftazuredocumentdbcore100"></a><a name="1.0.0"/>[1.0.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core/1.0.0)
 

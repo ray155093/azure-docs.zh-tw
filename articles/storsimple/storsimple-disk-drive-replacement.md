@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: d8f6da61b02a1289be0fa3444fd4dcfbe487068f
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -114,10 +115,5 @@ ms.openlocfilehash: d8f6da61b02a1289be0fa3444fd4dcfbe487068f
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

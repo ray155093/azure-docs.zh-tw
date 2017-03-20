@@ -4,7 +4,7 @@ description: "說明如何取下並更換 StorSimple 裝置上的一個或兩個
 services: storsimple
 documentationcenter: 
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: e25b52b7-60f5-47f3-bffc-6c157d57ab5d
 ms.service: storsimple
@@ -12,11 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 11/18/2016
+ms.date: 03/03/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: dcf0ff5c4d6ebb7d0aea0b9518cbbe66c9f0a649
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: 5dd5ffc7c08fcc9263b91ca5ac86de5163f91657
+ms.lasthandoff: 03/04/2017
 
 
 ---
@@ -79,7 +80,7 @@ ms.openlocfilehash: dcf0ff5c4d6ebb7d0aea0b9518cbbe66c9f0a649
 > 
 
 #### <a name="to-remove-a-single-failed-controller-module"></a>若要取下單一故障的控制器模組
-1. 在 Azure 傳統入口網站中，移至 StorSimple Manager 服務，按一下 [裝置]  索引標籤，然後按一下您想要監視的裝置名稱。
+1. 在 Azure 傳統入口網站中，移至 StorSimple Manager 服務，按一下 [裝置] 索引標籤，然後按一下您想要監視的裝置名稱。
 2. 移至 [維護] > [硬體狀態]。 控制器 0 或控制器 1 的狀態應該是紅色，表示故障。
    
    > [!NOTE]
@@ -99,14 +100,15 @@ ms.openlocfilehash: dcf0ff5c4d6ebb7d0aea0b9518cbbe66c9f0a649
    | 3 |控制器 0 |
    | 4 |控制器 1 |
 4. 在故障的控制器上，從資料連接埠取下所有已連接的網路纜線。 如果您是使用 8600 機型，也請取下將控制器連接至 EBOD 控制器的SAS 纜線。
-5. 依照 [取下控制器](#remove-a-controller) 中的步驟，取下故障的控制器。 
-6. 在取下故障控制器的同一插槽中安裝原廠更換品。 這樣會觸發單一控制器更換邏輯。 如需詳細資訊，請參閱 [單一控制器更換邏輯](#single-controller-replacement-logic)。
+5. 依照[取下控制器](#remove-a-controller)中的步驟，取下故障的控制器。 
+6. 在取下故障控制器的同一插槽中安裝原廠更換品。 這樣會觸發單一控制器更換邏輯。 如需詳細資訊，請參閱[單一控制器更換邏輯](#single-controller-replacement-logic)。
 7. 當單一控制器更換邏輯在背景中進行時，請重新連接纜線。 請完全依照更換之前連接纜線的相同方式，小心地連接所有纜線。
 8. 在控制器重新啟動之後，請檢查 Azure 傳統入口網站中的 [控制器狀態] 和 [叢集狀態]，以確認控制器回到狀況良好的狀態且處於待命模式。
 
 > [!NOTE]
-> 如果您是透過序列主控台監視裝置，則可能會在控制器從更換程序中復原時看到多次重新啟動。 當序列主控台功能表呈現時，您便知道更換已完成。 如果功能表未在啟動控制器更換的兩個小時內出現，請 [連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
-> 
+> 如果您是透過序列主控台監視裝置，則可能會在控制器從更換程序中復原時看到多次重新啟動。 當序列主控台功能表呈現時，您便知道更換已完成。 如果功能表未在啟動控制器更換的兩個小時內出現，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
+>
+> 從 Update 4 開始，您也可以在裝置的 Windows PowerShell 介面中使用 Cmdlet `Get-HCSControllerReplacementStatus` 來監視控制器更換程序的狀態。
 > 
 
 ## <a name="replace-both-controllers"></a>更換兩個控制器
@@ -146,8 +148,8 @@ ms.openlocfilehash: dcf0ff5c4d6ebb7d0aea0b9518cbbe66c9f0a649
    1. 如果您使用的是 8600 機型，請先關閉主要機箱，然後再關閉 EBOD 機箱。
    2. 等到裝置完全關閉。 裝置背面的所有 LED 都將關閉。
 2. 取下所有已連接至資料連接埠的網路纜線。 如果您使用的是 8600 機型，請一併取下將主要機箱連接至 EBOD 機箱的 SAS 纜線。
-3. 從 StorSimple 裝置取下兩個控制器。 如需詳細資訊，請參閱 [取下控制器](#remove-a-controller)。
-4. 首先插入控制器 0 的原廠更換品，再插入控制器 1。 如需詳細資訊，請參閱 [插入控制器](#insert-a-controller)。 這樣會觸發雙重控制器更換邏輯。 如需詳細資訊，請參閱 [雙重控制器更換邏輯](#dual-controller-replacement-logic)。
+3. 從 StorSimple 裝置取下兩個控制器。 如需詳細資訊，請參閱[取下控制器](#remove-a-controller)。
+4. 首先插入控制器 0 的原廠更換品，再插入控制器 1。 如需詳細資訊，請參閱[插入控制器](#insert-a-controller)。 這樣會觸發雙重控制器更換邏輯。 如需詳細資訊，請參閱[雙重控制器更換邏輯](#dual-controller-replacement-logic)。
 5. 當雙重控制器更換邏輯在背景中進行時，請重新連接纜線。 請完全依照更換之前連接纜線的相同方式，小心地連接所有纜線。 請參閱[安裝 StorSimple 8100 裝置](storsimple-8100-hardware-installation.md)或[安裝 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)的＜佈線您的裝置＞一節中，您機型適用的詳細指示。
 6. 開啟 StorSimple 裝置。 如果您使用的是 8600 機型：
    
@@ -157,7 +159,7 @@ ms.openlocfilehash: dcf0ff5c4d6ebb7d0aea0b9518cbbe66c9f0a649
    4. 在第一個控制器重新啟動並處於狀況良好的狀態之後，系統就會執行。
       
       > [!NOTE]
-      > 如果您是透過序列主控台監視裝置，則可能會在控制器從更換程序中復原時看到多次重新啟動。 當序列主控台功能表出現時，您便知道更換已完成。 如果功能表未在啟動控制器更換的 2.5 個小時內出現，請 [連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
+      > 如果您是透過序列主控台監視裝置，則可能會在控制器從更換程序中復原時看到多次重新啟動。 當序列主控台功能表出現時，您便知道更換已完成。 如果功能表未在啟動控制器更換的 2.5 個小時內出現，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
       > 
       > 
 
@@ -197,7 +199,7 @@ ms.openlocfilehash: dcf0ff5c4d6ebb7d0aea0b9518cbbe66c9f0a649
     ![關閉控制器閂鎖](./media/storsimple-controller-replacement/IC741054.png)
    
     **圖 5** 關閉控制器閂鎖
-4. 當閂鎖卡入定位時，即表示完成。 [ **正常** ] LED 現在應該開啟。  
+4. 當閂鎖卡入定位時，即表示完成。 **正常** LED 現在應該亮起。  
    
    > [!NOTE]
    > 最多可能需要 5 分鐘，控制器和 LED 即會啟動。
@@ -246,10 +248,5 @@ ms.openlocfilehash: dcf0ff5c4d6ebb7d0aea0b9518cbbe66c9f0a649
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

@@ -12,32 +12,30 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 02/23/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 502991093c2f3c38f37a6cb4e3770459b7d5ee78
-ms.openlocfilehash: 9a06ba91dea57ef2298f2b0651a01e56f0b5c4ae
+ms.sourcegitcommit: aada5b96eb9ee999c5b1f60b6e7b9840fd650fbe
+ms.openlocfilehash: 2831416bbb290905835396835db2eb6cb5e7b46f
+ms.lasthandoff: 02/24/2017
 
 
 ---
 # <a name="move-data-to-and-from-azure-sql-data-warehouse-using-azure-data-factory"></a>使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料
-本文將概述如何使用 Azure Data Factory 中的複製活動，在 Azure SQL 資料倉儲和另一個資料存放區之間往返移動資料。
+本文將概述如何使用 Azure Data Factory 中的複製活動，在 Azure SQL 資料倉儲和另一個資料存放區之間往返移動資料。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及來源/接收資料存放區清單。
 
-您可以指定是否要在將資料載入 Azure SQL 資料倉儲時使用 PolyBase。 我們建議您在將資料載入 Azure SQL 資料倉儲時使用 PolyBase 來達到最佳效能。 如需詳細資訊，請參閱 [使用 PolyBase 將資料載入 Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md#use-polybase-to-load-data-into-azure-sql-data-warehouse) 。 如需使用案例的逐步解說，請參閱[使用 Azure Data Factory 在 15 分鐘內將 1 TB 載入至 Azure SQL 資料倉儲](data-factory-load-sql-data-warehouse.md)。
+> [!TIP]
+> 若要達到最佳效能，請使用 PolyBase 將資料載入 Azure SQL 資料倉儲。 如需詳細資訊，請參閱 [使用 PolyBase 將資料載入 Azure SQL 資料倉儲](data-factory-azure-sql-data-warehouse-connector.md#use-polybase-to-load-data-into-azure-sql-data-warehouse) 。 如需使用案例的逐步解說，請參閱[使用 Azure Data Factory 在 15 分鐘內將 1 TB 載入至 Azure SQL 資料倉儲](data-factory-load-sql-data-warehouse.md)。
+>
 
 ## <a name="copy-data-wizard"></a>複製資料精靈
-要建立將資料複製到 Azure SQL 資料倉儲，或複製 Azure SQL 資料倉儲資料的管線，最簡單的方法是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
+要建立將資料複製到 Azure SQL 資料倉儲，或複製 Azure SQL 資料倉儲資料的管線，最簡單的方法是使用複製資料精靈。 請參閱[教學課程︰使用 Data Factory 將資料載入 SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-load-with-data-factory.md)以取得使用複製資料精靈建立管線的快速逐步解說。
 
+> [!TIP]
+> 從 SQL Server 或 Azure SQL Database 中將資料複製到 Azure SQL 資料倉儲時，如果目的地存放區中沒有資料表，Data Factory 支援使用來源的結構描述來自動建立資料表。 使用複製精靈立即試用，並透過[自動建立資料表](#auto-table-creation)進行深入了解。
+>
 
 以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到 Azure SQL 資料倉儲和 Azure Blob 儲存體，以及複製其中的資料。 不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源 **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。
-
-
-> [!NOTE]
-> 如需 Azure Data Factory 服務的概觀，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md)。
->
-> 這篇文章提供 JSON 範例，但沒有提供如何建立資料處理站的逐步指示。 請參閱 [教學課程：將資料從 Azure Blob 複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) ，以取得快速逐步解說，其中包含如何使用 Azure Data Factory 中複製活動的逐步指示。
->
->
 
 ## <a name="sample-copy-data-from-azure-sql-data-warehouse-to-azure-blob"></a>範例：將資料從 Azure SQL 資料倉儲複製到 Azure Blob
 此範例會定義下列 Data Factory 實體：
@@ -52,165 +50,170 @@ ms.openlocfilehash: 9a06ba91dea57ef2298f2b0651a01e56f0b5c4ae
 
 **Azure SQL 資料倉儲連結服務：**
 
-    {
-      "name": "AzureSqlDWLinkedService",
-      "properties": {
-        "type": "AzureSqlDW",
-        "typeProperties": {
-          "connectionString": "Server=tcp:<servername>.database.windows.net,1433;Database=<databasename>;User ID=<username>@<servername>;Password=<password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30"
-        }
-      }
+```JSON
+{
+  "name": "AzureSqlDWLinkedService",
+  "properties": {
+    "type": "AzureSqlDW",
+    "typeProperties": {
+      "connectionString": "Server=tcp:<servername>.database.windows.net,1433;Database=<databasename>;User ID=<username>@<servername>;Password=<password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30"
     }
-
+  }
+}
+```
 **Azure Blob 儲存體連結服務：**
 
-    {
-      "name": "StorageLinkedService",
-      "properties": {
-        "type": "AzureStorage",
-        "typeProperties": {
-          "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
-        }
-      }
+```JSON
+{
+  "name": "StorageLinkedService",
+  "properties": {
+    "type": "AzureStorage",
+    "typeProperties": {
+      "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
     }
-
+  }
+}
+```
 **Azure SQL 資料倉儲輸入資料集：**
 
 此範例假設您已在 SQL Azure 資料倉儲中建立資料表 "MyTable"，其中包含時間序列資料的資料行 (名稱為 "timestampcolumn")。
 
 設定 “external”: ”true” 會通知 Data Factory 服務：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
 
-    {
-      "name": "AzureSqlDWInput",
-      "properties": {
-        "type": "AzureSqlDWTable",
-        "linkedServiceName": "AzureSqlDWLinkedService",
-        "typeProperties": {
-          "tableName": "MyTable"
-        },
-        "external": true,
-        "availability": {
-          "frequency": "Hour",
-          "interval": 1
-        },
-        "policy": {
-          "externalData": {
-            "retryInterval": "00:01:00",
-            "retryTimeout": "00:10:00",
-            "maximumRetry": 3
-          }
-        }
+```JSON
+{
+  "name": "AzureSqlDWInput",
+  "properties": {
+    "type": "AzureSqlDWTable",
+    "linkedServiceName": "AzureSqlDWLinkedService",
+    "typeProperties": {
+      "tableName": "MyTable"
+    },
+    "external": true,
+    "availability": {
+      "frequency": "Hour",
+      "interval": 1
+    },
+    "policy": {
+      "externalData": {
+        "retryInterval": "00:01:00",
+        "retryTimeout": "00:10:00",
+        "maximumRetry": 3
       }
     }
-
+  }
+}
+```
 **Azure Blob 輸出資料集：**
 
 資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。 資料夾路徑會使用開始時間的年、月、日和小時部分。
 
-    {
-      "name": "AzureBlobOutput",
-      "properties": {
-        "type": "AzureBlob",
-        "linkedServiceName": "StorageLinkedService",
-        "typeProperties": {
-          "folderPath": "mycontainer/myfolder/yearno={Year}/monthno={Month}/dayno={Day}/hourno={Hour}",
-          "partitionedBy": [
-            {
-              "name": "Year",
-              "value": {
-                "type": "DateTime",
-                "date": "SliceStart",
-                "format": "yyyy"
-              }
-            },
-            {
-              "name": "Month",
-              "value": {
-                "type": "DateTime",
-                "date": "SliceStart",
-                "format": "MM"
-              }
-            },
-            {
-              "name": "Day",
-              "value": {
-                "type": "DateTime",
-                "date": "SliceStart",
-                "format": "dd"
-              }
-            },
-            {
-              "name": "Hour",
-              "value": {
-                "type": "DateTime",
-                "date": "SliceStart",
-                "format": "HH"
-              }
-            }
-          ],
-          "format": {
-            "type": "TextFormat",
-            "columnDelimiter": "\t",
-            "rowDelimiter": "\n"
+```JSON
+{
+  "name": "AzureBlobOutput",
+  "properties": {
+    "type": "AzureBlob",
+    "linkedServiceName": "StorageLinkedService",
+    "typeProperties": {
+      "folderPath": "mycontainer/myfolder/yearno={Year}/monthno={Month}/dayno={Day}/hourno={Hour}",
+      "partitionedBy": [
+        {
+          "name": "Year",
+          "value": {
+            "type": "DateTime",
+            "date": "SliceStart",
+            "format": "yyyy"
           }
         },
-        "availability": {
-          "frequency": "Hour",
-          "interval": 1
+        {
+          "name": "Month",
+          "value": {
+            "type": "DateTime",
+            "date": "SliceStart",
+            "format": "MM"
+          }
+        },
+        {
+          "name": "Day",
+          "value": {
+            "type": "DateTime",
+            "date": "SliceStart",
+            "format": "dd"
+          }
+        },
+        {
+          "name": "Hour",
+          "value": {
+            "type": "DateTime",
+            "date": "SliceStart",
+            "format": "HH"
+          }
         }
+      ],
+      "format": {
+        "type": "TextFormat",
+        "columnDelimiter": "\t",
+        "rowDelimiter": "\n"
       }
+    },
+    "availability": {
+      "frequency": "Hour",
+      "interval": 1
     }
-
+  }
+}
+```
 
 **具有複製活動的管線：**
 
 此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **SqlDWSource**，而 **sink** 類型設為 **BlobSink**。 針對 **SqlReaderQuery** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
 
-    {  
-        "name":"SamplePipeline",
-        "properties":{  
-        "start":"2014-06-01T18:00:00",
-        "end":"2014-06-01T19:00:00",
-        "description":"pipeline for copy activity",
-        "activities":[  
+```JSON
+{  
+    "name":"SamplePipeline",
+    "properties":{  
+    "start":"2014-06-01T18:00:00",
+    "end":"2014-06-01T19:00:00",
+    "description":"pipeline for copy activity",
+    "activities":[  
+      {
+        "name": "AzureSQLDWtoBlob",
+        "description": "copy activity",
+        "type": "Copy",
+        "inputs": [
           {
-            "name": "AzureSQLDWtoBlob",
-            "description": "copy activity",
-            "type": "Copy",
-            "inputs": [
-              {
-                "name": "AzureSqlDWInput"
-              }
-            ],
-            "outputs": [
-              {
-                "name": "AzureBlobOutput"
-              }
-            ],
-            "typeProperties": {
-              "source": {
-                "type": "SqlDWSource",
-                "sqlReaderQuery": "$$Text.Format('select * from MyTable where timestampcolumn >= \\'{0:yyyy-MM-dd HH:mm}\\' AND timestampcolumn < \\'{1:yyyy-MM-dd HH:mm}\\'', WindowStart, WindowEnd)"
-              },
-              "sink": {
-                "type": "BlobSink"
-              }
-            },
-           "scheduler": {
-              "frequency": "Hour",
-              "interval": 1
-            },
-            "policy": {
-              "concurrency": 1,
-              "executionPriorityOrder": "OldestFirst",
-              "retry": 0,
-              "timeout": "01:00:00"
-            }
+            "name": "AzureSqlDWInput"
           }
-         ]
-       }
-    }
-
+        ],
+        "outputs": [
+          {
+            "name": "AzureBlobOutput"
+          }
+        ],
+        "typeProperties": {
+          "source": {
+            "type": "SqlDWSource",
+            "sqlReaderQuery": "$$Text.Format('select * from MyTable where timestampcolumn >= \\'{0:yyyy-MM-dd HH:mm}\\' AND timestampcolumn < \\'{1:yyyy-MM-dd HH:mm}\\'', WindowStart, WindowEnd)"
+          },
+          "sink": {
+            "type": "BlobSink"
+          }
+        },
+       "scheduler": {
+          "frequency": "Hour",
+          "interval": 1
+        },
+        "policy": {
+          "concurrency": 1,
+          "executionPriorityOrder": "OldestFirst",
+          "retry": 0,
+          "timeout": "01:00:00"
+        }
+      }
+     ]
+   }
+}
+```
 > [!NOTE]
 > 在此範例中，已為 SqlDWSource 指定 **sqlReaderQuery** 。 複製活動會針對 Azure SQL 資料倉儲來源執行這項查詢以取得資料。
 >
@@ -233,164 +236,170 @@ ms.openlocfilehash: 9a06ba91dea57ef2298f2b0651a01e56f0b5c4ae
 
 **Azure SQL 資料倉儲連結服務：**
 
-    {
-      "name": "AzureSqlDWLinkedService",
-      "properties": {
-        "type": "AzureSqlDW",
-        "typeProperties": {
-          "connectionString": "Server=tcp:<servername>.database.windows.net,1433;Database=<databasename>;User ID=<username>@<servername>;Password=<password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30"
-        }
-      }
+```JSON
+{
+  "name": "AzureSqlDWLinkedService",
+  "properties": {
+    "type": "AzureSqlDW",
+    "typeProperties": {
+      "connectionString": "Server=tcp:<servername>.database.windows.net,1433;Database=<databasename>;User ID=<username>@<servername>;Password=<password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30"
     }
-
+  }
+}
+```
 **Azure Blob 儲存體連結服務：**
 
-    {
-      "name": "StorageLinkedService",
-      "properties": {
-        "type": "AzureStorage",
-        "typeProperties": {
-          "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
-        }
-      }
+```JSON
+{
+  "name": "StorageLinkedService",
+  "properties": {
+    "type": "AzureStorage",
+    "typeProperties": {
+      "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
     }
-
+  }
+}
+```
 **Azure Blob 輸入資料集：**
 
 每小時從新的 Blob 挑選資料 (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑和檔案名稱。 資料夾路徑使用開始時間的年、月、日部分，而檔案名稱使用開始時間的小時部分。 “external”: “true” 設定會通知 Data Factory 服務：這是 Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
 
-    {
-      "name": "AzureBlobInput",
-      "properties": {
-        "type": "AzureBlob",
-        "linkedServiceName": "StorageLinkedService",
-        "typeProperties": {
-          "folderPath": "mycontainer/myfolder/yearno={Year}/monthno={Month}/dayno={Day}",
-          "fileName": "{Hour}.csv",
-          "partitionedBy": [
-            {
-              "name": "Year",
-              "value": {
-                "type": "DateTime",
-                "date": "SliceStart",
-                "format": "yyyy"
-              }
-            },
-            {
-              "name": "Month",
-              "value": {
-                "type": "DateTime",
-                "date": "SliceStart",
-                "format": "MM"
-              }
-            },
-            {
-              "name": "Day",
-              "value": {
-                "type": "DateTime",
-                "date": "SliceStart",
-                "format": "dd"
-              }
-            },
-            {
-              "name": "Hour",
-              "value": {
-                "type": "DateTime",
-                "date": "SliceStart",
-                "format": "HH"
-              }
-            }
-          ],
-          "format": {
-            "type": "TextFormat",
-            "columnDelimiter": ",",
-            "rowDelimiter": "\n"
+```JSON
+{
+  "name": "AzureBlobInput",
+  "properties": {
+    "type": "AzureBlob",
+    "linkedServiceName": "StorageLinkedService",
+    "typeProperties": {
+      "folderPath": "mycontainer/myfolder/yearno={Year}/monthno={Month}/dayno={Day}",
+      "fileName": "{Hour}.csv",
+      "partitionedBy": [
+        {
+          "name": "Year",
+          "value": {
+            "type": "DateTime",
+            "date": "SliceStart",
+            "format": "yyyy"
           }
         },
-        "external": true,
-        "availability": {
-          "frequency": "Hour",
-          "interval": 1
+        {
+          "name": "Month",
+          "value": {
+            "type": "DateTime",
+            "date": "SliceStart",
+            "format": "MM"
+          }
         },
-        "policy": {
-          "externalData": {
-            "retryInterval": "00:01:00",
-            "retryTimeout": "00:10:00",
-            "maximumRetry": 3
+        {
+          "name": "Day",
+          "value": {
+            "type": "DateTime",
+            "date": "SliceStart",
+            "format": "dd"
+          }
+        },
+        {
+          "name": "Hour",
+          "value": {
+            "type": "DateTime",
+            "date": "SliceStart",
+            "format": "HH"
           }
         }
+      ],
+      "format": {
+        "type": "TextFormat",
+        "columnDelimiter": ",",
+        "rowDelimiter": "\n"
+      }
+    },
+    "external": true,
+    "availability": {
+      "frequency": "Hour",
+      "interval": 1
+    },
+    "policy": {
+      "externalData": {
+        "retryInterval": "00:01:00",
+        "retryTimeout": "00:10:00",
+        "maximumRetry": 3
       }
     }
-
+  }
+}
+```
 **Azure SQL 資料倉儲輸出資料集：**
 
 此範例會將資料複製到 Azure SQL 資料倉儲中名為 "MyTable" 的資料表。 請在Azure SQL 資料倉儲中建立此資料表，其資料行的數目如您預期 Blob CSV 檔案要包含的數目。 此資料表會每小時加入新的資料列。
 
-    {
-      "name": "AzureSqlDWOutput",
-      "properties": {
-        "type": "AzureSqlDWTable",
-        "linkedServiceName": "AzureSqlDWLinkedService",
-        "typeProperties": {
-          "tableName": "MyOutputTable"
-        },
-        "availability": {
-          "frequency": "Hour",
-          "interval": 1
-        }
-      }
+```JSON
+{
+  "name": "AzureSqlDWOutput",
+  "properties": {
+    "type": "AzureSqlDWTable",
+    "linkedServiceName": "AzureSqlDWLinkedService",
+    "typeProperties": {
+      "tableName": "MyOutputTable"
+    },
+    "availability": {
+      "frequency": "Hour",
+      "interval": 1
     }
-
+  }
+}
+```
 **具有複製活動的管線**
 
 此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **BlobSource**，而 **sink** 類型設為 **SqlDWSink**。
 
-    {  
-        "name":"SamplePipeline",
-        "properties":{  
-        "start":"2014-06-01T18:00:00",
-        "end":"2014-06-01T19:00:00",
-        "description":"pipeline with copy activity",
-        "activities":[  
+```JSON
+{  
+    "name":"SamplePipeline",
+    "properties":{  
+    "start":"2014-06-01T18:00:00",
+    "end":"2014-06-01T19:00:00",
+    "description":"pipeline with copy activity",
+    "activities":[  
+      {
+        "name": "AzureBlobtoSQLDW",
+        "description": "Copy Activity",
+        "type": "Copy",
+        "inputs": [
           {
-            "name": "AzureBlobtoSQLDW",
-            "description": "Copy Activity",
-            "type": "Copy",
-            "inputs": [
-              {
-                "name": "AzureBlobInput"
-              }
-            ],
-            "outputs": [
-              {
-                "name": "AzureSqlDWOutput"
-              }
-            ],
-            "typeProperties": {
-              "source": {
-                "type": "BlobSource",
-                "blobColumnSeparators": ","
-              },
-              "sink": {
-                "type": "SqlDWSink"
-              }
-            },
-           "scheduler": {
-              "frequency": "Hour",
-              "interval": 1
-            },
-            "policy": {
-              "concurrency": 1,
-              "executionPriorityOrder": "OldestFirst",
-              "retry": 0,
-              "timeout": "01:00:00"
-            }
+            "name": "AzureBlobInput"
           }
-          ]
-       }
-    }
-
-如需逐步解說，請參閱 Azure SQL 資料倉儲文件中的 [使用 Azure Data Factory 載入資料](../sql-data-warehouse/sql-data-warehouse-get-started-load-with-azure-data-factory.md) 一文。
+        ],
+        "outputs": [
+          {
+            "name": "AzureSqlDWOutput"
+          }
+        ],
+        "typeProperties": {
+          "source": {
+            "type": "BlobSource",
+            "blobColumnSeparators": ","
+          },
+          "sink": {
+            "type": "SqlDWSink",
+            "allowPolyBase": true
+          }
+        },
+       "scheduler": {
+          "frequency": "Hour",
+          "interval": 1
+        },
+        "policy": {
+          "concurrency": 1,
+          "executionPriorityOrder": "OldestFirst",
+          "retry": 0,
+          "timeout": "01:00:00"
+        }
+      }
+      ]
+   }
+}
+```
+如需逐步解說，請參閱 Azure SQL 資料倉儲文件中的[使用 Azure Data Factory 在 15 分鐘內將 1 TB 載入至 Azure SQL 資料倉儲](data-factory-load-sql-data-warehouse.md)和[使用 Azure Data Factory 載入資料](../sql-data-warehouse/sql-data-warehouse-get-started-load-with-azure-data-factory.md)文章。
 
 ## <a name="linked-service-properties"></a>連結服務屬性
 下表提供 Azure SQL 資料倉儲連結服務專屬 JSON 元素的描述。
@@ -398,7 +407,7 @@ ms.openlocfilehash: 9a06ba91dea57ef2298f2b0651a01e56f0b5c4ae
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
 | 類型 |類型屬性必須設為： **AzureSqlDW** |是 |
-| **connectionString** |針對 connectionString 屬性指定連線到 Azure SQL 資料倉儲執行個體所需的資訊。 |是 |
+| connectionString |針對 connectionString 屬性指定連線到 Azure SQL 資料倉儲執行個體所需的資訊。 |是 |
 
 > [!IMPORTANT]
 > 設定 [Azure SQL Database 防火牆](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure)和資料庫伺服器，以[允許 Azure 服務存取伺服器](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure)。 此外，如果您要從 Azure 外部 (包括從具有 Data Factory 閘道器的內部部署資料來源) 將資料複製到 Azure SQL 資料倉儲，則必須為傳送資料到 Azure SQL 資料倉儲的機器設定適當的 IP 位址範圍。
@@ -440,32 +449,35 @@ ms.openlocfilehash: 9a06ba91dea57ef2298f2b0651a01e56f0b5c4ae
 如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，就會使用資料集 JSON 的結構區段中定義的資料行來建立一個查詢，以對 Azure SQL 資料倉儲執行。 範例：`select column1, column2 from mytable`. 如果資料集定義沒有結構，則會從資料表中選取所有資料行。
 
 #### <a name="sqldwsource-example"></a>SqlDWSource 範例
-    "source": {
-        "type": "SqlDWSource",
-        "sqlReaderStoredProcedureName": "CopyTestSrcStoredProcedureWithParameters",
-        "storedProcedureParameters": {
-            "stringData": { "value": "str3" },
-            "id": { "value": "$$Text.Format('{0:yyyy}', SliceStart)", "type": "Int"}
-        }
-    }
 
+```JSON
+"source": {
+    "type": "SqlDWSource",
+    "sqlReaderStoredProcedureName": "CopyTestSrcStoredProcedureWithParameters",
+    "storedProcedureParameters": {
+        "stringData": { "value": "str3" },
+        "identifier": { "value": "$$Text.Format('{0:yyyy}', SliceStart)", "type": "Int"}
+    }
+}
+```
 **預存程序定義：**
 
-    CREATE PROCEDURE CopyTestSrcStoredProcedureWithParameters
-    (
-        @stringData varchar(20),
-        @id int
-    )
-    AS
-    SET NOCOUNT ON;
-    BEGIN
-         select *
-         from dbo.UnitTestSrcTable
-         where dbo.UnitTestSrcTable.stringData != stringData
-        and dbo.UnitTestSrcTable.id != id
-    END
-    GO
-
+```SQL
+CREATE PROCEDURE CopyTestSrcStoredProcedureWithParameters
+(
+    @stringData varchar(20),
+    @identifier int
+)
+AS
+SET NOCOUNT ON;
+BEGIN
+     select *
+     from dbo.UnitTestSrcTable
+     where dbo.UnitTestSrcTable.stringData != stringData
+    and dbo.UnitTestSrcTable.identifier != identifier
+END
+GO
+```
 
 ### <a name="sqldwsink"></a>管線
 **SqlDWSink** 支援下列屬性：
@@ -473,7 +485,7 @@ ms.openlocfilehash: 9a06ba91dea57ef2298f2b0651a01e56f0b5c4ae
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
 | writeBatchSize |當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 |整數 (資料列數目) |否 (預設值：10000) |
-| writeBatchTimeout |在逾時前等待批次插入作業完成的時間。 |時間範圍<br/><br/>  範例：“00:30:00” (30 分鐘)。 |否 |
+| writeBatchTimeout |在逾時前等待批次插入作業完成的時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
 | sqlWriterCleanupScript |指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。 如需詳細資訊，請參閱 [可重複性](#repeatability-during-copy)一節。 |查詢陳述式。 |否 |
 | allowPolyBase |指出是否使用 PolyBase (適用的話) 將資料載入 Azure SQL 資料倉儲 (而不是使用 BULKINSERT 機制)。 <br/><br/>目前只有 **Azure blob** 資料集的**格式**會設定為 **TextFormat** 以做為來源資料集。 <br/><br/>請參閱 [使用 PolyBase 將資料載入 Azure SQL 資料倉儲](#use-polybase-to-load-data-into-azure-sql-data-warehouse) 一節中的條件約束和詳細資料。 |True <br/>FALSE (預設值) |否 |
 | polyBaseSettings |可以在 **allowPolybase** 屬性設定為 **true** 時指定的一組屬性。 |&nbsp; |否 |
@@ -483,111 +495,115 @@ ms.openlocfilehash: 9a06ba91dea57ef2298f2b0651a01e56f0b5c4ae
 | useTypeDefault |指定當 PolyBase 從文字檔擷取資料時，如何處理分隔符號文字檔中的遺漏值。<br/><br/>從 [CREATE EXTERNAL FILE FORMAT (Transact-SQL)](https://msdn.microsoft.com/library/dn935026.aspx) 的＜引數＞一節深入了解這個屬性。 |True/False (預設值為 False) |否 |
 
 #### <a name="sqldwsink-example"></a>SqlDWSink 範例
-    "sink": {
-        "type": "SqlDWSink",
-        "writeBatchSize": 1000000,
-        "writeBatchTimeout": "00:05:00"
-    }
 
+```JSON
+"sink": {
+    "type": "SqlDWSink",
+    "writeBatchSize": 1000000,
+    "writeBatchTimeout": "00:05:00"
+}
+```
 ## <a name="use-polybase-to-load-data-into-azure-sql-data-warehouse"></a>使用 PolyBase 將資料載入 Azure SQL 資料倉儲
 使用 **PolyBase** 是以高輸送量將大量資料載入 Azure SQL 資料倉儲的有效方法。 使用 PolyBase 而不是預設的 BULKINSERT 機制，即可看到輸送量大幅提升。 請參閱[複製效能參考編號](data-factory-copy-activity-performance.md#performance-reference)了解詳細的比較。
 
 * 如果您的來源資料格式與 PolyBase 相容，您就可以使用 PolyBase 從來源資料存放區直接複製到 Azure SQL 資料倉儲。 請參閱**[使用 PolyBase 直接複製](#direct-copy-using-polybase)**了解詳細資料。 如需使用案例的逐步解說，請參閱[使用 Azure Data Factory 在 15 分鐘內將 1 TB 載入至 Azure SQL 資料倉儲](data-factory-load-sql-data-warehouse.md)。
 * 如果 PolyBase 原本不支援您的來源資料格式，您可以改用**[使用 PolyBase 分段複製](#staged-copy-using-polybase)**，這會自動先將資料轉換成與 PolyBase 相容的格式並儲存在 Azure Blob 儲存體，然後載入 SQL 資料倉儲，也能夠提供您更好的輸送量。
 
-將 **allowPolyBase** 屬性設定為 **true** (如下列範例所示)，以便 Azure Data Factory 使用 PolyBase，將資料複製到 Azure SQL 資料倉儲。 當您將 allowPolyBase 設定為 true 時，您可以使用 **polyBaseSettings** 屬性群組來指定 PolyBase 特定屬性。 如需您可搭配 polyBaseSettings 使用之屬性的詳細資訊，請參閱 [SqlDWSink](#SqlDWSink) 一節。
+將 `allowPolyBase` 屬性設定為 **true** (如下列範例所示)，以便 Azure Data Factory 使用 PolyBase，將資料複製到 Azure SQL 資料倉儲。 當您將 allowPolyBase 設定為 true 時，您可以使用 `polyBaseSettings` 屬性群組來指定 PolyBase 特定屬性。 如需您可搭配 polyBaseSettings 使用之屬性的詳細資訊，請參閱 [SqlDWSink](#SqlDWSink) 一節。
 
-    "sink": {
-        "type": "SqlDWSink",
-        "allowPolyBase": true,
-        "polyBaseSettings":
-        {
-            "rejectType": "percentage",
-            "rejectValue": 10.0,
-            "rejectSampleValue": 100,
-            "useTypeDefault": true
-        }
-
+```JSON
+"sink": {
+    "type": "SqlDWSink",
+    "allowPolyBase": true,
+    "polyBaseSettings":
+    {
+        "rejectType": "percentage",
+        "rejectValue": 10.0,
+        "rejectSampleValue": 100,
+        "useTypeDefault": true
     }
-
+}
+```
 ### <a name="direct-copy-using-polybase"></a>使用 PolyBase 直接複製
 如果您的來源資料符合本節所述準則，您就可以使用 PolyBase，從來源資料存放區直接複製到 Azure SQL 資料倉儲。 否則，您可以使用 [使用 PolyBase 分段複製](#staged-copy-using-polybase)。
 
 如果不符合需求，Azure Data Factory 會檢查設定，並自動切換回適用於資料移動的 BULKINSERT 機制。
 
-1. **來源連結服務**的類型為 **Azure 儲存體**，而且不會設定為使用 SAS (共用存取簽章) 驗證。 如需詳細資訊，請參閱 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service) 。  
-2. **輸入資料集**的類型為 **Azure Blob**，而類型屬性下方的格式類型為 **OrcFormat** 或 **TextFormat** 並具備下列組態：
+1. 「來源連結服務」的類型為 **AzureStorage**，而且不會設定為使用 SAS (共用存取簽章) 驗證。 如需詳細資訊，請參閱 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service) 。  
+2. 「輸入資料集」的類型為 **AzureBlob**，而 `type` 屬性下方的格式類型為 **OrcFormat** 或 **TextFormat** 並具備下列組態：
 
-   1. **rowDelimiter** 必須是 **\n**。
-   2. **nullValue** 設定為**空字串** ("")。
-   3. **encodingName** 設定為 **utf-8**，這是**預設**值，所以不會設定為不同的值。
-   4. 未指定 **escapeChar** 和 **quoteChar**。
-   5. **Compression** 不是 **BZIP2**。
+   1. `rowDelimiter` 必須為 **\n**。
+   2. `nullValue` 設定為「空字串」 ("") 或將 `treatEmptyAsNull` 設定為 **true**。
+   3. `encodingName` 設定為 **utf-8**，也就是「預設」值。
+   4. 未指定 `escapeChar`、`quoteChar`、`firstRowAsHeader` 和 `skipLineCount`。
+   5. `compression` 可以是「無壓縮」、**GZip** 或 **Deflate**。
 
-           "typeProperties": {
-               "folderPath": "<blobpath>",
-               "format": {
-                   "type": "TextFormat",     
-                   "columnDelimiter": "<any delimiter>",
-                   "rowDelimiter": "\n",       
-                   "nullValue": "",           
-                   "encodingName": "utf-8"    
-               },
-               "compression": {  
-                   "type": "GZip",  
-                   "level": "Optimal"  
-               }  
-           },
-3. 管線中複製活動的 **BlobSource** 之下沒有 **skipHeaderLineCount** 設定。
-4. 管線中複製活動的 **SqlDWSink** 之下沒有 **sliceIdentifierColumnName** 設定。 (PolyBase 保證所有資料都已更新，或在單一執行未更新任何項目。 若要達到**重複性**，您可以使用 **sqlWriterCleanupScript**。
-5. 目前沒有任何 **columnMapping** 使用於相關聯的複製活動。
+    ```JSON
+    "typeProperties": {
+       "folderPath": "<blobpath>",
+       "format": {
+           "type": "TextFormat",     
+           "columnDelimiter": "<any delimiter>",
+           "rowDelimiter": "\n",       
+           "nullValue": "",           
+           "encodingName": "utf-8"    
+       },
+       "compression": {  
+           "type": "GZip",  
+           "level": "Optimal"  
+       }  
+    },
+    ```
+
+3. 管線中複製活動的 **BlobSource** 之下沒有 `skipHeaderLineCount` 設定。
+4. 管線中複製活動的 **SqlDWSink** 之下沒有 `sliceIdentifierColumnName` 設定。 (PolyBase 保證所有資料都已更新，或在單一執行未更新任何項目。 若要達到「重複性」，您可以使用 `sqlWriterCleanupScript`)。
+5. 目前沒有任何 `columnMapping` 使用於相關聯的複製活動。
 
 ### <a name="staged-copy-using-polybase"></a>使用 PolyBase 分段複製
-當來源資料不符合上一節介紹的準則時，您可以啟用透過過渡暫存 Azure Blob 儲存體複製資料。 在此情況下，Azure Data Factory 會執行資料轉換，以符合 PolyBase 的資料格式需求，然後使用 PolyBase 將資料載入到 SQL 資料倉儲。 如需透過暫存 Azure Blob 複製資料通常如何運作的詳細資訊，請參閱 [分段複製](data-factory-copy-activity-performance.md#staged-copy) 。
+當來源資料不符合上一節介紹的準則時，您可以啟用透過過渡暫存 Azure Blob 儲存體 (不能是進階儲存體) 複製資料。 在此情況下，Azure Data Factory 會執行資料轉換，以符合 PolyBase 的資料格式需求，然後使用 PolyBase 將資料載入到 SQL 資料倉儲。 如需透過暫存 Azure Blob 複製資料通常如何運作的詳細資訊，請參閱 [分段複製](data-factory-copy-activity-performance.md#staged-copy) 。
 
 > [!NOTE]
 > 當您使用 PolyBase 和分段，將資料從內部部署資料存放區複製到 Azure SQL 資料倉儲時，如果您的「資料管理閘道」版本低於 2.4，就必須在閘道電腦上安裝 JRE (Java Runtime Environment)，以便用來將來源資料轉換為適當格式。 建議您將閘道升級為最新的版本，以避免這類相依性。
 >
 >
 
-若要使用此功能，請建立 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)，這是指具有過渡 Blob 儲存體的 Azure 儲存體帳戶，然後針對複製活動指定 **enableStaging** 和 **stagingSettings** 屬性，如下列程式碼所示：
+若要使用此功能，請建立 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)，這是指具有過渡 Blob 儲存體的 Azure 儲存體帳戶，然後針對複製活動指定 `enableStaging` 和 `stagingSettings` 屬性，如下列程式碼所示：
 
-    "activities":[  
-    {
-        "name": "Sample copy activity from SQL Server to SQL Data Warehouse via PolyBase",
-        "type": "Copy",
-        "inputs": [{ "name": "OnpremisesSQLServerInput" }],
-        "outputs": [{ "name": "AzureSQLDWOutput" }],
-        "typeProperties": {
-            "source": {
-                "type": "SqlSource",
-            },
-            "sink": {
-                "type": "SqlDwSink",
-                "allowPolyBase": true
-            },
-            "enableStaging": true,
-            "stagingSettings": {
-                "linkedServiceName": "MyStagingBlob"
-            }
+```JSON
+"activities":[  
+{
+    "name": "Sample copy activity from SQL Server to SQL Data Warehouse via PolyBase",
+    "type": "Copy",
+    "inputs": [{ "name": "OnpremisesSQLServerInput" }],
+    "outputs": [{ "name": "AzureSQLDWOutput" }],
+    "typeProperties": {
+        "source": {
+            "type": "SqlSource",
+        },
+        "sink": {
+            "type": "SqlDwSink",
+            "allowPolyBase": true
+        },
+        "enableStaging": true,
+        "stagingSettings": {
+            "linkedServiceName": "MyStagingBlob"
         }
     }
-    ]
-
+}
+]
+```
 
 ## <a name="best-practices-when-using-polybase"></a>使用 PolyBase 時的最佳作法
 ### <a name="required-database-permission"></a>必要的資料庫權限
 若要使用 PolyBase，要用來將資料載入 SQL 資料倉儲的使用者必須具備目標資料庫的 ["CONTROL" 權限](https://msdn.microsoft.com/library/ms191291.aspx)。 達到此目標的其中一個方法是將該使用者新增為 "db_owner" 角色的成員。 依照[本節](../sql-data-warehouse/sql-data-warehouse-overview-manage-security.md#authorization)了解如何進行這項動作。
 
-### <a name="row-size-limitation"></a>資料列大小限制
-Polybase 不支援大於 32 KB的資料列大小。 嘗試載入資料列大於 32 KB 的資料表會導致下列錯誤︰
+### <a name="row-size-and-data-type-limitation"></a>資料列大小和資料類型限制
+PolyBase 載入被限制為只能載入小於 **1 MB** 的資料列，且不能載入至 VARCHR(MAX)、NVARCHAR(MAX) 或 VARBINARY(MAX)。 請參閱[這裡](../sql-data-warehouse/sql-data-warehouse-service-capacity-limits.md#loads)。
 
-    Type=System.Data.SqlClient.SqlException,Message=107093;Row size exceeds the defined Maximum DMS row size: [35328 bytes] is larger than the limit of [32768 bytes],Source=.Net SqlClient
-
-如果您的來源資料包含大於 32 KB 的資料列，建議您將來源資料表垂直分割成數個小型資料表，而每個資料表的最大資料列大小均不超過限制。 然後可以使用 PolyBase 載入較小的資料表而在 Azure SQL 資料倉儲中合併在一起。
+如果您的來源資料包含大於 1 MB 的資料列，建議您將來源資料表垂直分割成數個小型資料表，而每個資料表的最大資料列大小均不超過限制。 然後可以使用 PolyBase 載入較小的資料表而在 Azure SQL 資料倉儲中合併在一起。
 
 ### <a name="sql-data-warehouse-resource-class"></a>SQL 資料倉儲資源類別
-若要達到最佳的可能輸送量，請考慮透過 PolyBase 將更大的資源類別指派給要用來將資料載入 SQL 資料倉儲的使用者。 遵循[變更使用者資源類別範例](https://acom-sandbox.azurewebsites.net/en-us/documentation/articles/sql-data-warehouse-develop-concurrency/#change-a-user-resource-class-example)，了解如何執行這項作業。
+若要達到最佳的可能輸送量，請考慮透過 PolyBase 將更大的資源類別指派給要用來將資料載入 SQL 資料倉儲的使用者。 遵循[變更使用者資源類別範例](../sql-data-warehouse/sql-data-warehouse-develop-concurrency.md#change-a-user-resource-class-example)，了解如何執行這項作業。
 
 ### <a name="tablename-in-azure-sql-data-warehouse"></a>Azure SQL 資料倉儲中的 tableName
 下表提供的範例是關於如何針對各種結構描述和資料表名稱組合，在資料集 JSON 中指定 **tableName** 屬性。
@@ -601,21 +617,60 @@ Polybase 不支援大於 32 KB的資料列大小。 嘗試載入資料列大於 
 
 如果您看到下列錯誤，可能是您為 tableName 屬性指定的值有問題。 請參閱資料表，以正確的方式指定 tableName JSON 屬性的值。  
 
-    Type=System.Data.SqlClient.SqlException,Message=Invalid object name 'stg.Account_test'.,Source=.Net SqlClient Data Provider
+```
+Type=System.Data.SqlClient.SqlException,Message=Invalid object name 'stg.Account_test'.,Source=.Net SqlClient Data Provider
+```
 
 ### <a name="columns-with-default-values"></a>包含預設值的資料行
 Data Factory 中的 PolyBase 功能目前只接受與目標資料表中相同的資料行數目。 假設您有內含四個資料行的資料表，且其中一個資料行已使用預設值進行定義。 輸入資料應該仍會包含四個資料行。 提供 3 個資料行的輸入資料集會產生類似下列訊息的錯誤︰
 
-    All columns of the table must be specified in the INSERT BULK statement.
-
+```
+All columns of the table must be specified in the INSERT BULK statement.
+```
 NULL 值是一種特殊形式的預設值。 如果資料行可為 null，該資料行的輸入資料 (在 Blob 中) 可以是空的 (不能在輸入資料集中遺漏)。 PolyBase 會在 Azure SQL 資料倉儲中為其插入 NULL。  
+
+## <a name="auto-table-creation"></a>自動建立資料表
+從 SQL Server 或 Azure SQL Database 中將資料複製到 Azure SQL 資料倉儲時，如果目的地存放區中沒有資料表，而您是使用複製精靈來撰寫，Data Factory 便支援使用來源的結構描述來自動建立資料表。
+
+Data Factory 會使用和來源相同的名稱在目的地中建立資料表、使用下列對應建立資料行資料類型，以及使用循環配置資源資料表散發。 請注意，必要時會進行適當的資料類型轉換，以修正來源和目的地存放區之間的不相容性。
+
+| 來源 SQL Database 資料行類型 | 目的地 SQL DW 資料行類型 (大小限制) |
+| --- | --- |
+| int | int |
+| BigInt | BigInt |
+| SmallInt | SmallInt |
+| TinyInt | TinyInt |
+| Bit | Bit |
+| 十進位 | 十進位 |
+| 數值 | 十進位 |
+| Float | Float |
+| Money | Money |
+| Real | Real |
+| SmallMoney | SmallMoney |
+| Binary | Binary |
+| Varbinary | Varbinary (最多 8000) |
+| 日期 | 日期 |
+| DateTime | DateTime |
+| DateTime2 | DateTime2 |
+| 時間 | 時間 |
+| Datetimeoffset | Datetimeoffset |
+| SmallDateTime | SmallDateTime |
+| 文字 | Varchar (最多 8000) |
+| NText | NVarChar (最多 4000) |
+| 映像 | VarBinary (最多 8000) |
+| UniqueIdentifier | UniqueIdentifier |
+| Char | Char |
+| NChar | NChar |
+| VarChar | VarChar (最多 8000) |
+| NVarChar | NVarChar (最多 4000) |
+| xml | Varchar (最多 8000) |
 
 [!INCLUDE [data-factory-type-repeatability-for-sql-sources](../../includes/data-factory-type-repeatability-for-sql-sources.md)]
 
 [!INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
 ### <a name="type-mapping-for-azure-sql-data-warehouse"></a>Azure SQL 資料倉儲的類型對應
-如 [資料移動活動](data-factory-data-movement-activities.md) 一文所述，複製活動會使用下列 2 個步驟的方法，執行從來源類型轉換成接收類型的自動類型轉換：
+如同 [資料移動活動](data-factory-data-movement-activities.md) 一文所述，複製活動會使用下列 2 個步驟的方法，執行自動類型轉換，將來源類型轉換成接收類型：
 
 1. 從原生來源類型轉換成 .NET 類型
 2. 從 .NET 類型轉換成原生接收類型
@@ -665,9 +720,4 @@ NULL 值是一種特殊形式的預設值。 如果資料行可為 null，該資
 
 ## <a name="performance-and-tuning"></a>效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

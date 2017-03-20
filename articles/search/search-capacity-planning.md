@@ -13,29 +13,35 @@ ms.devlang: NA
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 01/23/2017
+ms.date: 02/08/2017
 ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: 814292d76601452493c1d708c39d42da909036d9
-ms.openlocfilehash: c3f547fade400ba35619217dac503ab7ea2fbb40
+ms.sourcegitcommit: 08682b7986cc2210ed21f254e2a9a63b5355e583
+ms.openlocfilehash: bfed40417d800e86de7ef437c42162b1e1a0d886
+ms.lasthandoff: 02/24/2017
 
 ---
 
 # <a name="scale-resource-levels-for-query-and-indexing-workloads-in-azure-search"></a>在 Azure 搜尋服務中調整適用於查詢和編製索引工作負載的資源等級
 在您[選擇定價層](search-sku-tier.md)和[佈建搜尋服務](search-create-service-portal.md)之後，下一個步驟是選擇性地增加服務所使用的複本或分割區數目。 每一層都提供固定的計費單位數目。 本文說明如何配置這些單位以達到最佳的組態，讓您在查詢執行、編制索引和儲存體等需求之間取得平衡。
 
-當您在[基本層](http://aka.ms/azuresearchbasic)或其中一個[標準層](search-limits-quotas-capacity.md)設定服務時，便可使用資源組態。 對於這些層的可計費服務，購買容量就是增加「搜尋單位」(SU)，每個分割區和複本會計為一個 SU。 使用較少 SU，帳單費用也會相應降低。 只要服務處於已設定的狀態，就會持續計費。 如果您暫時不使用某項服務，避免計費的唯一方法就是刪除該服務，然後當您需要該服務時再予以重建。
+當您在[基本層](http://aka.ms/azuresearchbasic)或其中一個[標準層](search-limits-quotas-capacity.md)設定服務時，便可使用資源組態。 對於這些層的可計費服務，購買容量就是增加「搜尋單位」(SU)，每個分割區和複本會計為一個 SU。 
+
+使用較少 SU，帳單費用也會相應降低。 只要服務處於已設定的狀態，就會持續計費。 如果您暫時不使用某項服務，避免計費的唯一方法就是刪除該服務，然後當您需要該服務時再予以重建。
+
+> [!Note]
+> 刪除服務會刪除它上面的一切。 Azure 搜尋服務內沒有任何機制可備份和還原持續性搜尋資料。 若要將現有的索引重新部署在新的服務上，您應該執行原先用來建立和載入此索引的程式。 
 
 ## <a name="terminology-partitions-and-replicas"></a>術語：分割區和複本
 分割區和複本是支撐搜尋服務的主要資源。
 
-分割區可為讀寫作業 (例如，在重建或重新整理索引時) 提供索引儲存體和 I/O。
-
- 是搜尋服務執行個體，主要用來讓查詢作業達到負載平衡。 每個複本一律會裝載一份索引。 如果您有 12 個複本，服務上就會分別載入 12 份索引。
+| 資源 | 定義 |
+|----------|------------|
+|*分割數* | 為讀寫作業 (例如，在重建或重新整理索引時) 提供索引儲存體和 I/O。|
+|複本 | 搜尋服務的執行個體，主要用來讓查詢作業達到負載平衡。 每個複本一律會裝載一份索引。 如果您有 12 個複本，服務上就會分別載入 12 份索引。|
 
 > [!NOTE]
 > 沒有任何方法可直接操作或管理哪些索引會在複本上執行。 每個複本上各有一份索引是服務架構的一部分。
->
 >
 
 ## <a name="how-to-allocate-partitions-and-replicas"></a>如何配置分割區和複本
@@ -71,7 +77,10 @@ ms.openlocfilehash: c3f547fade400ba35619217dac503ab7ea2fbb40
 
 ### <a name="index-availability-during-a-rebuild"></a>索引在重建期間的可用性###
 
-「Azure 搜尋服務」的高可用性與查詢和不涉及重建索引的索引更新相關。 如果您新增或刪除欄位、變更資料類型，或是重新命名欄位，您必須重建索引。 若要重建索引，您必須刪除索引、重新建立索引，並重新載入資料。
+「Azure 搜尋服務」的高可用性與查詢和不涉及重建索引的索引更新相關。 如果您刪除欄位、變更資料類型，或是重新命名欄位，您必須重建索引。 若要重建索引，您必須刪除索引、重新建立索引，並重新載入資料。
+
+> [!NOTE]
+> 您可以將新欄位新增至 Azure 搜尋服務索引，而不需重建索引。 所有已在索引中之文件的新欄位值將為 null。
 
 若要讓索引在重建期間保持可用，您必須在相同服務上有使用不同名稱的索引副本，或在不同服務上有相同名稱的索引副本，然後在您的程式碼中提供重新導向或容錯移轉邏輯。
 
@@ -119,9 +128,4 @@ SU、定價和容量會在 Azure 網站上詳細說明。 如需詳細資訊，�
 特定組合共使用多少 SU 的計算公式是複本數和分割區數的「乘積」，也就是 (R X P = SU)。 例如，&3; 個複本乘以&3; 個資料分割為&9; 個 SU 費用。
 
 每個 SU 的成本由該層決定，基本層的每單位費率比標準層低。 如需每一層的費率，請參閱 [定價詳細資料](https://azure.microsoft.com/pricing/details/search/)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

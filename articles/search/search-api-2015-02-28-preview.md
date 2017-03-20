@@ -17,6 +17,7 @@ ms.author: brjohnst
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 524d3300e621d8e383833198c14c2e2e8461683b
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -1968,9 +1969,4 @@ Azure 搜尋服務可傳回接續語彙基元的原因視實作而定，而且�
       "top": 5,
       "suggesterName": "sg"
     }
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

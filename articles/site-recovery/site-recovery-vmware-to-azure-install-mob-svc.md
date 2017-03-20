@@ -12,21 +12,28 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: backup-recovery
-ms.date: 12/9/2016
+ms.date: 2/20/2017
 ms.author: anoopkv
 translationtype: Human Translation
-ms.sourcegitcommit: f3f9bc205cd038ae636face742292cb28654fd39
-ms.openlocfilehash: 1212ab52afac346ce6c70e6e6f64b9bc87a13320
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 7e82ac74a8aef4e3cc8aff4dea3c572dcb9d9c40
+ms.lasthandoff: 03/03/2017
 
 ---
 
 # <a name="installing-mobility-service-vmwarephysical-to-azure"></a>安裝行動服務 (VMWare/實體至 Azure)
-行動服務需要部署在您想要複寫至 Azure 的每部電腦上 (VMware VM 或實體伺服器)。 它會擷取在電腦上寫入的資料，並將它們轉送到處理序伺服器。  您可以使用下列方法，將行動服務部署至需要保護的伺服器
+行動服務需要部署在您想要複寫至 Azure 的每部電腦上 (VMware VM 或實體伺服器)。 它會擷取在電腦上寫入的資料，並將它們轉送到處理序伺服器。 您可以使用下列方法，將行動服務部署至需要保護的伺服器
+
+
 1. [使用 System Center Configuration Manager 之類的軟體部署工具安裝行動服務](site-recovery-install-mobility-service-using-sccm.md)
 2. [使用 Azure 自動化和期望狀態設定 (DSC) 安裝行動服務](site-recovery-automate-mobility-service-install.md)
 3. [使用圖形化使用者介面 (GUI) 手動安裝行動服務](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-using-the-graphical-user-interface)
 4. [使用命令列手動安裝行動服務](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-using-command-line)
 5. [從 Azure Site Recovery 使用推入安裝來安裝行動服務](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-using-push-install-from-azure-site-recovery)
+
+
+>[!IMPORTANT]
+> 從版本 9.7.0.0 開始，在 Windows 虛擬機器上，行動服務安裝程式也會安裝最新可用的 [Azure VM 代理程式](../virtual-machines/virtual-machines-windows-extensions-features.md#azure-vm-agent)。 這可確保電腦在容錯移轉至 Azure 時符合這項先決條件，以使用任何 VM 擴充功能。
 
 ## <a name="prerequisites"></a>必要條件
 在伺服器上手動開始安裝行動服務之前，請執行這些必要條件。
@@ -75,11 +82,30 @@ ms.openlocfilehash: 1212ab52afac346ce6c70e6e6f64b9bc87a13320
 [!INCLUDE [site-recovery-prepare-push-install-mob-svc-lin](../../includes/site-recovery-prepare-push-install-mob-svc-lin.md)]
 
 
-## <a name="next-steps"></a>後續步驟
+> [!NOTE]
 安裝行動服務後，您可以使用 Azure 入口網站中的 [+複寫] 按鈕，開始對這些 VM 啟用保護。
 
+## <a name="uninstall-mobility-service-on-windows-servers"></a>將 Windows Server 上的行動服務解除安裝
+您可以透過兩種方式將 Windows Server 上的「行動服務」解除安裝
 
+### <a name="uninstall-using-graphical-user-interface"></a>使用圖形化使用者介面來解除安裝
+1. 開啟 [控制台] > [程式集]
+2. 選取 [Microsoft Azure Site Recovery Mobility Service/主要目標伺服器]，然後按一下 [解除安裝]。
 
-<!--HONumber=Feb17_HO2-->
+### <a name="uninstall-using-command-line"></a>使用命令列來解除安裝
+1. 開啟系統管理命令提示字元
+2. 執行下列命令以將「行動服務」解除安裝。
 
+```
+MsiExec.exe /qn /x {275197FC-14FD-4560-A5EB-38217F80CBD1} /L+*V "C:\ProgramData\ASRSetupLogs\UnifiedAgentMSIUninstall.log"
+```
+
+## <a name="uninstall-mobility-service-on-linux-computers"></a>將 Linux 電腦上的行動服務解除安裝
+1. 在您的 Linux 伺服器上以 **ROOT** 身分登入
+2. 在「終端機」中，瀏覽至 /user/local/ASR
+3. 執行下列命令以將「行動服務」解除安裝
+
+```
+uninstall.sh -Y
+```
 

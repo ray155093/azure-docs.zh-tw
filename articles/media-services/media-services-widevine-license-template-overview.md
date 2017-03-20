@@ -17,6 +17,7 @@ ms.author: juliako
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: a90e56bb2b7db0bb964684f9cac04096a6577adc
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -197,10 +198,5 @@ Widevine 授權要求會格式化為 JSON 訊息。
 
 ## <a name="see-also"></a>另請參閱
 [使用 PlayReady 和/或 Widevine 動態 Common Encryption](media-services-protect-with-drm.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

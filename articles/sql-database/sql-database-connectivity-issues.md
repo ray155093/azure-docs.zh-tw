@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 01/20/2017
 ms.author: daleche
 translationtype: Human Translation
-ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
-ms.openlocfilehash: 7ca726f5dc67feae7eeccfdcc00b41aa95c38348
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: a6489fd5ff5e60bc3a1c06485d330556250c21cd
+ms.openlocfilehash: eddbdda847d7d0cc12f3e1c6128ce76d15f6f39f
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -118,7 +118,7 @@ ms.lasthandoff: 01/13/2017
 <a id="net-sqlconnection-parameters-for-connection-retry" name="net-sqlconnection-parameters-for-connection-retry"></a>
 
 ### <a name="net-sqlconnection-parameters-for-connection-retry"></a>進行連線重試的.NET SqlConnection 參數
-如果您的用戶端程式利用 .NET Framework 類別 **System.Data.SqlClient.SqlConnection**連接到 Azure SQL Database，您應該使用 .NET 4.6.1 或更新版本，以利用它的連線重試功能。 此功能的詳細資料在 [這裡](http://go.microsoft.com/fwlink/?linkid=393996)。
+如果您的用戶端程式利用 .NET Framework 類別 **System.Data.SqlClient.SqlConnection** 連接到 Azure SQL Database，您應該使用 .NET 4.6.1 或更新版本 (或是 .NET Core)，以利用它的連線重試功能。 此功能的詳細資料在 [這裡](http://go.microsoft.com/fwlink/?linkid=393996)。
 
 <!--
 2015-11-30, FwLink 393996 points to dn632678.aspx, which links to a downloadable .docx related to SqlClient and SQL Server 2014.

@@ -12,15 +12,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/12/2017
+ms.date: 02/28/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 4b7912b48ef37eac3148582d1d635d8a4c4a4b44
-ms.openlocfilehash: 8ee5dfea961984bd01a24815b9d3c94f486a57d7
-
+ms.sourcegitcommit: ca145339ab14ef29851b53deca9be9ad137317c9
+ms.openlocfilehash: 77d3a4114b23114c0b4bf97a461cee2356d66a4a
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="azure-automation-hybrid-runbook-workers"></a>Azure 自動化混合式 Runbook 背景工作
+
+# <a name="automate-resources-in-your-data-center-with-hybrid-runbook-worker"></a>使用混合式 Runbook 背景工作將資料中心內的資源自動化
 Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源，因為其在 Azure 雲端中執行。  Azure 自動化的混合式 Runbook 背景工作功能可讓您在位於資料中心的機器上執行 Runbook，以管理本機資源。 Runbook 會儲存並在 Azure 自動化中管理，接著傳遞至一或多個內部部署機器。  
 
 下圖說明這項功能。<br>  
@@ -34,7 +35,7 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 > [!NOTE]
 > 為了透過「預期狀態設定」(DSC) 管理支援「Hybrid Runbook 背景工作角色」之伺服器的組態，您將需要將它們新增為 DSC 節點。  如需有關讓它們上線以透過 DSC 進行管理的進一步資訊，請參閱[讓機器上線以透過 Azure 自動化 DSC 進行管理](automation-dsc-onboarding.md)。           
 ><br>
->目前，如果您啟用[更新管理解決方案](../operations-management-suite/oms-solution-update-management.md)，則任何連接至 OMS 工作區的 Windows 電腦都會自動設定為 Hybrid Runbook Worker，以支援屬於此解決方案的 Runbook。  不過，它不會向您在自動化帳戶中建立的任何混合式背景工作群組註冊，而且您無法將它新增至混合式背景工作群組來執行自己的 Runbook。  如果 Windows 電腦已指定為混合式 Runbook 背景工作並連接至 OMS 工作區，您必須先從 OMS 工作區中將它移除，再新增解決方案，以避免 Runbook 無法如預期般運作。  
+>如果您啟用[更新管理解決方案](../operations-management-suite/oms-solution-update-management.md)，則任何連線到 OMS 工作區的 Windows 電腦都會自動設定為 Hybrid Runbook Worker，以支援此解決方案所包含的 Runbook。  不過，它不會向您已在「自動化」帳戶中定義的任何 Hybrid Worker 群組註冊。  您可以將電腦新增到您「自動化」帳戶中的 Hybrid Runbook Worker 群組來支援「自動化」Runbook，只要解決方案和 Hybrid Runbook Worker 群組成員資格兩者所用的帳戶相同即可。  此功能已新增至 Hybrid Runbook Worker 7.2.12024.0 版。  
 
 
 ## <a name="hybrid-runbook-worker-groups"></a>混合式 Runbook 背景工作群組
@@ -56,7 +57,7 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 * 請考慮使用實際位於或接近自動化帳戶所在區域的電腦，因為當作業完成時，作業資料會送回到 Azure 自動化。
 
 ### <a name="configure-proxy-and-firewall-settings"></a>設定 Proxy 和防火牆設定
-若要讓內部部署 Hybrid Runbook Worker 連線到 Microsoft Operations Management Suite (OMS) 服務並向其註冊，它必須能夠存取下述連接埠號碼和 URL。  這是除了 [Microsoft Monitoring Agent 所需的連接埠和 URL](../log-analytics/log-analytics-proxy-firewall.md#configure-proxy-and-firewall-settings-with-the-microsoft-monitoring-agent) 以連線至 OMS。 如果您使用 Proxy 伺服器在代理程式和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取。
+若要讓內部部署 Hybrid Runbook Worker 連線到 Microsoft Operations Management Suite (OMS) 服務並向其註冊，它必須能夠存取下述連接埠號碼和 URL。  這是除了 [Microsoft Monitoring Agent 所需的連接埠和 URL](../log-analytics/log-analytics-proxy-firewall.md#configure-settings-with-the-microsoft-monitoring-agent) 以連線至 OMS。 如果您使用 Proxy 伺服器在代理程式和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取。
 
 以下資訊列出要讓 Hybrid Runbook Worker 與自動化進行通訊所需的連接埠和 URL。
 
@@ -248,9 +249,4 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解可用來啟動 Runbook 的不同方法，請參閱[在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md)。  
 * 若要了解使用文字式編輯器在 Azure 自動化中使用 PowerShell 和 PowerShell 工作流程 Runbook 的不同程序，請參閱 [在 Azure 自動化中編輯 Runbook](automation-edit-textual-runbook.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

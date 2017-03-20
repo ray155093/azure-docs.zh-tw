@@ -12,19 +12,20 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 08/03/2016
+ms.date: 03/03/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 550db52c2b77ad651b4edad2922faf0f951df617
-ms.openlocfilehash: ba615e296c39ccdd15f5867681f7274feb5478b0
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 3c3c7924655f5b932be2a3d947a4df786fc0630d
+ms.lasthandoff: 03/06/2017
 
 
 ---
 # <a name="enabling-storage-metrics-and-viewing-metrics-data"></a>啟用儲存體度量和檢視度量資料
 [!INCLUDE [storage-selector-portal-enable-and-view-metrics](../../includes/storage-selector-portal-enable-and-view-metrics.md)]
 
-## <a name="overview"></a>Overview
-根據預設，儲存體服務未啟用 [儲存體度量]。 您可以使用 [Azure 傳統入口網站](https://manage.windowsazure.com)、Windows PowerShell，或以程式設計方式透過儲存體 API，來啟用監視。
+## <a name="overview"></a>概觀
+當您建立新的儲存體帳戶時，預設會啟用「儲存體計量」。 若要設定監視，可以使用 [Azure 傳統入口網站](https://manage.windowsazure.com)、Windows PowerShell，或透過儲存體 API 以程式設計方式進行。
 
 當您啟用儲存體度量時，必須選擇資料的保留期限：這段期間會決定儲存體服務用來保存度量的時間長度，以及該空間儲存它們所需的費用。 一般而言，您應該針對每分鐘度量使用比每小時度量還短的保留期限，因為每分鐘度量明顯需要額外的空間。 您應該選擇保留期限，讓您擁有足夠的時間來分析資料，並下載任何您想要保留以供離線分析或報告使用的度量。 請記住，您還是必須支付從儲存體帳戶下載度量資料的費用。
 
@@ -190,8 +191,3 @@ private static string MetricsString(MetricsEntity entity, OperationContext opCon
 
 ## <a name="next-steps"></a>後續步驟：
 [啟用儲存體分析記錄和存取記錄檔資料](https://msdn.microsoft.com/library/dn782840.aspx)
-
-
-<!--HONumber=Dec16_HO1-->
-
-

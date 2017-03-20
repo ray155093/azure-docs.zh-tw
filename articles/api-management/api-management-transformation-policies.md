@@ -15,14 +15,15 @@ ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: dc6d0a2d48895da12a95e3f482ad8588b98db4ec
-ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
+ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
+ms.openlocfilehash: 56eb95f5c8dfb34c0dbaec75efc5509f0c930ec3
+ms.lasthandoff: 03/06/2017
 
 ---
 # <a name="api-management-transformation-policies"></a>API 管理轉換原則
 本主題提供下列 API 管理原則的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。  
   
-##  <a name="a-nametransformationpoliciesa-transformation-policies"></a><a name="TransformationPolicies"></a> 轉換原則  
+##  <a name="TransformationPolicies"></a> 轉換原則  
   
 -   [將 JSON 轉換成 XML](api-management-transformation-policies.md#ConvertJSONtoXML) - 將要求或回應內文從 JSON 轉換成 XML。  
   
@@ -44,7 +45,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 -   [使用 XSLT 轉換 XML](api-management-transformation-policies.md#XSLTransform) - 將 XSL 轉換套用至要求或回應本文中的 XML。  
   
-##  <a name="a-nameconvertjsontoxmla-convert-json-to-xml"></a><a name="ConvertJSONtoXML"></a> 將 JSON 轉換成 XML  
+##  <a name="ConvertJSONtoXML"></a> 將 JSON 轉換成 XML  
  `json-to-xml` 原則將要求或回應本文從 JSON 轉換成 XML。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -87,7 +88,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-nameconvertxmltojsona-convert-xml-to-json"></a><a name="ConvertXMLtoJSON"></a> 將 XML 轉換成 JSON  
+##  <a name="ConvertXMLtoJSON"></a> 將 XML 轉換成 JSON  
  `xml-to-json` 原則將要求或回應本文從 XML 轉換成 JSON。 此原則可用於將架構在「僅使用 XML 的後端 Web 服務」上的 API 現代化。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -131,7 +132,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namefindandreplacestringinbodya-find-and-replace-string-in-body"></a><a name="Findandreplacestringinbody"></a> 在本文中尋找並取代字串  
+##  <a name="Findandreplacestringinbody"></a> 在本文中尋找並取代字串  
  `find-and-replace` 原則會尋找要求或回應子字串，並取代為不同的子字串。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -166,7 +167,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namemaskurlscontenta-mask-urls-in-content"></a><a name="MaskURLSContent"></a> 遮罩內容中的 URL  
+##  <a name="MaskURLSContent"></a> 遮罩內容中的 URL  
  `redirect-content-urls` 原則會重寫 (遮罩) 回應本文中的連結，使其經由閘道器指向同等的連結。 使用在輸出區段中，用以重新撰寫回應本文連結，使其指向閘道。 使用在輸入區段中則效果相反。  
   
 > [!NOTE]
@@ -197,7 +198,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namesetbackendservicea-set-backend-service"></a><a name="SetBackendService"></a> 設定後端服務  
+##  <a name="SetBackendService"></a> 設定後端服務  
  使用 `set-backend-service` 原則將傳入要求重新導向至不同的後端，而不是 API 設定中為該作業指定的後端。 此原則會將傳入要求中的後端服務基底 URL 變更為原則中指定的 URL。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -254,7 +255,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namesetbodya-set-body"></a><a name="SetBody"></a> 設定本文  
+##  <a name="SetBody"></a> 設定本文  
  使用 `set-body` 原則來設定傳入和傳出要求的訊息本文。 若要存取訊息本文，您可以使用 `context.Request.Body` 屬性或 `context.Response.Body`，取決於原則是在輸入或輸出區段中。  
   
 > [!IMPORTANT]
@@ -330,13 +331,71 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   </when>  
 </choose>  
 ```  
-  
+
+### <a name="using-liquid-templates-with-set-body"></a>使用 Liquid 範本搭配設定本文 
+您可以設定讓 `set-body` 原則使用 [Liquid](https://shopify.github.io/liquid/basics/introduction/) 範本化語言來轉換要求或回應的本文。 如果您需要完全重設訊息的格式，這會非常有效。
+
+> [!IMPORTANT]
+> `set-body` 原則中使用的 Liquid 實作是在「 C# 模式」下設定。 這在進行篩選之類的操作時尤其重要。 舉例來說，使用日期篩選需要使用 Pascal 大小寫慣例和 C# 日期格是，例如：
+>
+> {{body.foo.startDateTime| Date:"yyyyMMddTHH:mm:ddZ"}}
+
+> [!IMPORTANT]
+> 為了使用 Liquid 範本來正確地繫結至 XML 主體，請使用 `set-header` 原則將 Content-Type 設定為 application/xml、text/xml (或任何結尾為 +xml 的類型)；如果是 JSON 主體，則必須是 application/json、text/json (或任何結尾為 +json 的類型)。
+
+#### <a name="convert-json-to-soap-using-a-liquid-template"></a>使用 Liquid 範本將 JSON 轉換成 SOAP
+```xml
+<set-body template="liquid">
+    <soap:Envelope xmlns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+        <soap:Body>
+            <GetOpenOrders>
+                <cust>{{body.getOpenOrders.cust}}</cust>
+            </GetOpenOrders>
+        </soap:Body>
+    </soap:Envelope>
+</set-body>
+```
+
+#### <a name="tranform-json-using-a-liquid-template"></a>使用 Liquid 範本來轉換 JSON
+```xml
+{
+"order": {
+    "id": "{{body.customer.purchase.identifier}}",
+    "summary": "{{body.customer.purchase.orderShortDesc}}"
+    }
+}
+```
+
 ### <a name="elements"></a>元素  
   
 |名稱|說明|必要|  
 |----------|-----------------|--------------|  
 |set-body|根元素。 包含本文文字或會傳回本文的運算式。|是|  
+
+### <a name="properties"></a>屬性  
   
+|名稱|說明|必要|預設值|  
+|----------|-----------------|--------------|-------------|  
+|template|用來變更設定本文原則將在其中執行的範本化模式。 目前唯一支援的值為：<br /><br />- liquid - 設定本文原則將會使用 Liquid 範本化引擎 |否|liquid|  
+
+為了存取要求與回應的相關資訊，Liquid 範本可以繫結至具有下列屬性的內容物件： <br />
+<pre>context.
+Request.
+Url Method OriginalMethod OriginalUrl IpAddress MatchedParameters HasBody ClientCertificates Headers
+
+    Response.
+        StatusCode
+        Method
+        Headers
+Url.
+Scheme Host Port Path Query QueryString ToUri ToString
+
+OriginalUrl.
+Scheme Host Port Path Query QueryString ToUri ToString
+</pre>
+
+
+
 ### <a name="usage"></a>使用量  
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
@@ -344,7 +403,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namesethttpheadera-set-http-header"></a><a name="SetHTTPheader"></a> 設定 HTTP 標頭  
+##  <a name="SetHTTPheader"></a> 設定 HTTP 標頭  
  `set-header` 原則會指派值給現有的回應及/或要求標頭，或加入新的回應及/或要求標頭。  
   
  將 HTTP 標頭清單插入至 HTTP 訊息中。 放在輸入管線中時，此原則會為傳遞至目標服務的要求設定 HTTP 標頭。 放在輸出管線中時，此原則會為傳送至閘道器用戶端的回應設定 HTTP 標頭。  
@@ -401,7 +460,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namesetquerystringparametera-set-query-string-parameter"></a><a name="SetQueryStringParameter"></a> 設定查詢字串參數  
+##  <a name="SetQueryStringParameter"></a> 設定查詢字串參數  
  `set-query-parameter` 原則會新增、取代值或刪除要求查詢字串參數。 可用來傳遞後端服務所需的查詢參數，為選擇性或從未存在於要求中。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -461,7 +520,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namerewriteurla-rewrite-url"></a><a name="RewriteURL"></a> 重寫 URL  
+##  <a name="RewriteURL"></a> 重寫 URL  
  `rewrite-uri` 原則會將要求 URL 從公用格式轉換成 Web 服務所需的格式，如以下範例中所示。  
   
 -   公用 URL - `http://api.example.com/storenumber/ordernumber`  
@@ -539,7 +598,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 -   **原則範圍︰**產品、API、作業  
   
-##  <a name="a-namexsltransforma-transform-xml-using-an-xslt"></a><a name="XSLTransform"></a> 使用 XSLT 轉換 XML  
+##  <a name="XSLTransform"></a> 使用 XSLT 轉換 XML  
  `Transform XML using an XSLT` 原則會將 XSL 轉換套用至要求或回應本文中的 XML。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -574,7 +633,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   <outbound>  
       <base />  
       <xsl-transform>  
-        <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">  
+          <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">  
             <xsl:output omit-xml-declaration="yes" method="xml" indent="yes" />  
             <!-- Copy all nodes directly-->  
             <xsl:template match="node()| @*|*">  
@@ -582,7 +641,7 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
                     <xsl:apply-templates select="@* | node()|*" />  
                 </xsl:copy>  
             </xsl:template>  
-        </xsl:stylesheet>  
+          </xsl:stylesheet>  
     </xsl-transform>  
   </outbound>  
 </policies>  
@@ -605,9 +664,4 @@ ms.openlocfilehash: 37726a272b0fbe17c58e627d66106ccbbe083936
   
 ## <a name="next-steps"></a>後續步驟
 如需有關使用原則的詳細資訊，請參閱 [API 管理中的原則](api-management-howto-policies.md)。  
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

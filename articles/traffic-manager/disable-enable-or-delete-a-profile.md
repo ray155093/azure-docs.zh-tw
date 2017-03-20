@@ -17,6 +17,7 @@ ms.author: kumud
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 3ea5860767cd21d263c0f0126362d3f6d92d58c6
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -53,10 +54,5 @@ ms.openlocfilehash: 3ea5860767cd21d263c0f0126362d3f6d92d58c6
 [設定效能路由方法](traffic-manager-configure-performance-routing-method.md)
 
 [疑難排解流量管理員的已降級狀態](traffic-manager-troubleshooting-degraded.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

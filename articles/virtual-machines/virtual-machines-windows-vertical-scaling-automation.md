@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 自動化垂直調整 Azure 虛擬機器大小 | Microsoft Docs"
-description: "如何垂直調整 Windows 虛擬機器大小以回應 Azure 自動化的監視警示"
+title: "使用 Azure 自動化來垂直調整 Azure 虛擬機器 | Microsoft Docs"
+description: "使用「Azure 自動化」來垂直調整「Windows 虛擬機器」以回應監視警示"
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -17,13 +17,15 @@ ms.date: 03/29/2016
 ms.author: kasing
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 0a888f945a39a8bb88a730a226af6ec21d133f44
-ms.openlocfilehash: 0075160ea9c0dae991fc2344c46d216a8203bec3
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
+ms.openlocfilehash: 861552da68c2268c42122b0da6633c7935bb3502
+ms.lasthandoff: 03/03/2017
 
 
 ---
-# <a name="how-to-vertically-scale-virtual-machines-with-azure-automation"></a>如何使用 Azure 自動化垂直調整虛擬機器大小
+
+# <a name="vertically-scale-windows-vms-with-azure-automation"></a>使用 Azure 自動化來垂直調整 Windows VM
+
 垂直調整大小是指為回應工作負載而增加或減少電腦資源的程序。 在 Azure 中，可以透過變更虛擬機器的大小來完成。 在下列情況中這種方式很有幫助
 
 * 如果不常使用虛擬機器，可以將其調整成較小的規模，以降低每月成本

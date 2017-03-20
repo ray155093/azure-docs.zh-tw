@@ -1,5 +1,5 @@
 ---
-title: "教學課程：Azure Active Directory 與 Novatus 整合 | Microsoft Docs"
+title: "教學課程：Azure Active Directory 與 10,000ft Plans 整合 | Microsoft Docs"
 description: "了解如何設定 Azure Active Directory 與 10,000ft Plans 之間的單一登入。"
 services: active-directory
 documentationcenter: 
@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/30/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: b1dded643a2526b7df799eddaca071c95ea35442
-ms.openlocfilehash: fbc47fe42fabbe65233364d86252d2e722600975
+ms.sourcegitcommit: 2a1f3df856116e372518b2f88460b3c6905c4c9a
+ms.openlocfilehash: 584ddcfc53afee6a8ff11a03d662d8acf58e4820
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -114,7 +115,7 @@ ms.openlocfilehash: fbc47fe42fabbe65233364d86252d2e722600975
     > [!NOTE] 
     > 如果您有自訂網域，則 **識別碼** 的值則會不同。 如果您需要協助，請連絡您的 [10,000ft Plans 支援小組](mailto:support@10000ft.com)。  
 
-    c. 依序按一下 [ **下一步**
+    c. 依序按一下  **下一步**
 
 
 1. 在 [設定在 10,000ft Plans 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
@@ -239,9 +240,4 @@ ms.openlocfilehash: fbc47fe42fabbe65233364d86252d2e722600975
 [203]: ./media/active-directory-saas-10000ftplans-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-10000ftplans-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-10000ftplans-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

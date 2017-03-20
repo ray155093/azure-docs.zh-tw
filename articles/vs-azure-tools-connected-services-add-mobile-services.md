@@ -17,6 +17,7 @@ ms.author: mlearned
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: dec722c49be99a0d186611e2ec8c324917609fdc
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -75,10 +76,5 @@ Visual Studio 修改您的專案的方式視專案類型而定。 若為 C# 用�
 * [Microsoft Azure 團隊部落格上的 Azure 行動服務](https://azure.microsoft.com/blog/topics/mobile/)
 * [azure.microsoft.com 上的 Azure 行動服務](https://azure.microsoft.com/services/mobile-services/)
 * [azure.microsoft.com 上的 Azure 行動服務文件](https://azure.microsoft.com/documentation/services/mobile-services/)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

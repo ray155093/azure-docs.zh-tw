@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 080376a50e4cde3d3f9f801408e4a02b75bc72da
-ms.openlocfilehash: 40da274d0dcbf1efb22afc474a1c365f7770fdcb
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
+ms.openlocfilehash: 5b3ff989c31f45f3344d406f9f419510dd380f8b
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 02/15/2017
 | [隨選 HDInsight 叢集](#azure-hdinsight-on-demand-linked-service)或[您自己的 HDInsight 叢集](#azure-hdinsight-linked-service) |[DotNet](data-factory-use-custom-activities.md)、[Hive](data-factory-hive-activity.md)、[Pig](data-factory-pig-activity.md)、[MapReduce](data-factory-map-reduce.md)、[Hadoop 串流](data-factory-hadoop-streaming-activity.md) |
 | [Azure Batch](#azure-batch-linked-service) |[DotNet](data-factory-use-custom-activities.md) |
 | [Azure Machine Learning](#azure-machine-learning-linked-service) |[Machine Learning 活動︰批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) |
-| [Azure 資料湖分析](#azure-data-lake-analytics-linked-service) |[資料湖分析 U-SQL](data-factory-usql-activity.md) |
+| [Azure Data Lake Analytics](#azure-data-lake-analytics-linked-service) |[Data Lake Analytics U-SQL](data-factory-usql-activity.md) |
 | [Azure SQL](#azure-sql-linked-service)、[Azure SQL 資料倉儲](#azure-sql-data-warehouse-linked-service)、[SQL Server](#sql-server-linked-service) |[預存程序](data-factory-stored-proc-activity.md) |
 
 ## <a name="on-demand-compute-environment"></a>隨選計算環境
@@ -52,7 +52,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 * 只會針對 HDInsight 叢集啟動並執行工作的時間來向您收取費用。
 
 > [!IMPORTANT]
-> 通常會花費 **15 分鐘** 以上的時間來佈建隨選 Azure HDInsight 叢集。
+> 通常會花費 **20 分鐘**或更久的時間來佈建隨選 Azure HDInsight 叢集。
 > 
 > 
 
@@ -87,7 +87,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
 | 類型 |type 屬性應設為 **HDInsightOnDemand**。 |是 |
-| clusterSize |叢集中的背景工作/資料節點數。 HDInsight 叢集會利用您為此屬性指定的 2 個前端節點以及背景工作節點數目來建立。 節點大小為具有 4 個核心的 Standard_D3，因此 4 個背景工作節點的叢集需要 24 個核心 (4*4 用於背景工作節點 + 2*4 用於前端節點)。 如需 Standard_D3 層的詳細資料，請參閱[在 HDInsight 中建立 Linux 型 Hadoop 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。 |是 |
+| clusterSize |叢集中的背景工作/資料節點數。 HDInsight 叢集會利用您為此屬性指定的 2 個前端節點以及背景工作節點數目來建立。 節點大小為具有 4 個核心的 Standard_D3，因此 4 個背景工作節點的叢集需要 24 個核心 (4\*4 = 16 個核心用於背景工作節點，加上 2\*4 = 8 個核心用於前端節點)。 如需 Standard_D3 層的詳細資料，請參閱[在 HDInsight 中建立 Linux 型 Hadoop 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。 |是 |
 | timetolive |隨選 HDInsight 叢集允許的閒置時間。 指定在活動執行完成後，如果叢集中沒有其他作用中的作業，隨選 HDInsight 叢集要保持運作多久。<br/><br/>例如，如果活動執行花費 6 分鐘，而 timetolive 設為 5 分鐘，叢集會在處理活動執行的 6 分鐘期間之後保持運作 5 分鐘。 如果 6 分鐘期間內執行了另一個活動執行，它便會由相同叢集來處理。<br/><br/>建立隨選 HDInsight 叢集是昂貴的作業 (可能需要一段時間)，因此請視需要使用這項設定，重複使用隨選 HDInsight 叢集以改善 Data Factory 的效能。<br/><br/>如果您將 timetolive 值設為 0，叢集會在處理活動執行後立即刪除。 另一方面，如果您設定較高的值，叢集可能會有不必要的閒置而導致高成本。 因此，請務必根據您的需求設定適當的值。<br/><br/>如果適當地設定 timetolive 屬性值，則多個管線可以共用相同的隨選 HDInsight 叢集執行個體 |是 |
 | 版本 |HDInsight 叢集的版本。 針對 Windows 叢集的預設值為 3.1，針對 Linux 叢集的預設值為 3.2。 |否 |
 | 預設容器 |隨選叢集用於儲存及處理資料的 Azure 儲存體連結服務。 <p>目前，您無法建立使用 Azure Data Lake Store 做為儲存體的隨選 HDInsight 叢集。 如果您想要在 Azure Data Lake Store 中儲存 HDInsight 處理的結果資料，可使用複製活動將 Azure Blob 儲存體的資料複製到 Azure Data Lake Store。</p>  | 是 |
@@ -184,6 +184,8 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 * Azure HDInsight
 * Azure Batch
 * Azure Machine Learning
+* Azure Data Lake Analytics
+* Azure SQL DB、Azure SQL DW、SQL Server
 
 ## <a name="azure-hdinsight-linked-service"></a>Azure HDInsight 連結服務
 您可以建立 Azure HDInsight 連結服務，以向 Data Factory 註冊自己的 HDInsight 叢集。
@@ -240,7 +242,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 }
 ```
 
-將 "**.<地區名稱**" 附加至為 **accountName** 屬性所用的 Batch 帳戶名稱。 範例：
+將 "**.\<區域名稱\>**" 附加至為 **accountName** 屬性所用的 Batch 帳戶名稱。 範例：
 
 ```json
 "accountName": "mybatchaccount.eastus"
@@ -287,10 +289,10 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | mlEndpoint |批次評分 URL。 |是 |
 | apiKey |已發佈的工作區模型的 API。 |是 |
 
-## <a name="azure-data-lake-analytics-linked-service"></a>Azure 資料湖分析連結服務
-您應建立 **Azure 資料湖分析** 連結服務，將 Azure 資料湖分析計算服務連結至 Azure Data Factory，然後再使用管線中的 [資料湖分析 U-SQL 活動](data-factory-usql-activity.md) 。
+## <a name="azure-data-lake-analytics-linked-service"></a>Azure Data Lake Analytics 連結服務
+您應建立 **Azure Data Lake Analytics** 連結服務，將 Azure Data Lake Analytics 計算服務連結至 Azure Data Factory，然後再使用管線中的 [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md) 。
 
-下列範例提供 Azure 資料湖分析連結服務的 JSON 定義。
+下列範例提供 Azure Data Lake Analytics 連結服務的 JSON 定義。
 
 ```json
 {
@@ -314,8 +316,8 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
 | 類型 |type 屬性應設為： **AzureDataLakeAnalytics**。 |是 |
-| accountName |Azure 資料湖分析帳戶名稱。 |是 |
-| dataLakeAnalyticsUri |Azure 資料湖分析 URI。 |否 |
+| accountName |Azure Data Lake Analytics 帳戶名稱。 |是 |
+| dataLakeAnalyticsUri |Azure Data Lake Analytics URI。 |否 |
 | 授權 |按一下 Data Factory 編輯器中的 [授權]  按鈕並完成 OAuth 登入後，即會自動擷取授權碼。 |是 |
 | subscriptionId |Azure 訂用帳戶識別碼 |否 (如果未指定，便會使用 Data Factory 的訂用帳戶)。 |
 | resourceGroupName |Azure 資源群組名稱 |否 (若未指定，便會使用 Data Factory 的資源群組)。 |
@@ -325,7 +327,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 
 | 使用者類型 | 到期時間 |
 |:--- |:--- |
-| 不受 Azure Active Directory 管理的使用者帳戶 ((@hotmail.com,、@live.com, 等) |12 小時 |
+| 不受 Azure Active Directory 管理的使用者帳戶 (@hotmail.com、@live.com、@outlook.com 等) |12 小時 |
 | 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的&14; 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
 如果要避免/解決此錯誤，您必須在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以使用下一節中的程式碼以程式設計方式產生 sessionId 和 authorization 屬性的值。 

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 794f87c3d4b8378d7aeca63791a8fbfd03e44ceb
-ms.openlocfilehash: c226d43e8cc24af7c86ae13b3752bfd6fb53b1c8
+ms.sourcegitcommit: e34a2bfbf5f1ae544a729c994d91c485d48bb440
+ms.openlocfilehash: 1027f9c73a45b7d148643f5ec217683f71c4e899
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -35,15 +36,12 @@ ms.openlocfilehash: c226d43e8cc24af7c86ae13b3752bfd6fb53b1c8
 每個虛擬機器都有一個連接的作業系統磁碟。 它是註冊為 SATA 磁碟機，並預設標示為 C: 磁碟機。 此磁碟的最大容量為 1023 GB。 
 
 ### <a name="temporary-disk"></a>暫存磁碟
-系統會自動為您建立暫存磁碟。 暫存磁碟預設會標示為 D: 磁碟機，並用於儲存 pagefile.sys。 
+每個 VM 都包含一個暫存磁碟。 暫存磁碟為應用程式和處理程序提供短期的儲存空間，且僅供用來儲存分頁檔之類的資料。 暫存磁碟上的資料可能會在[維護事件](../virtual-machines/virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#understand-planned-vs-unplanned-maintenance)期間或當您[重新佈署 VM](../virtual-machines/virtual-machines-windows-redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 時遺失。 在 VM 的標準重新開機期間，暫存磁碟上的資料會保留。
 
-暫存磁碟的大小會依據虛擬機器的大小而改變。 如需詳細資訊，請參閱 [Windows 虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md)。
-
-> [!WARNING]
-> 請勿在暫存磁碟上儲存資料。 它提供應用程式和處理程序暫時的儲存空間，且其用意僅為儲存分頁檔等資料。 若要將此磁碟重新對應至不同的磁碟機代號，請參閱 [變更 Windows 暫存磁碟的磁碟機代號](../virtual-machines/virtual-machines-windows-classic-change-drive-letter.md)。
-> 
+暫存磁碟預設會標示為 D: 磁碟機，並用於儲存 pagefile.sys。 若要將此磁碟重新對應至不同的磁碟機代號，請參閱 [變更 Windows 暫存磁碟的磁碟機代號](../virtual-machines/virtual-machines-windows-classic-change-drive-letter.md)。 暫存磁碟的大小會依據虛擬機器的大小而改變。 如需詳細資訊，請參閱 [Windows 虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md)。
 
 如需有關 Azure 如何使用暫存磁碟的詳細資訊，請參閱 [Understanding the temporary drive on Microsoft Azure Virtual Machines (了解 Microsoft Azure 虛擬機器上的暫存磁碟機)](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
+
 
 ### <a name="data-disk"></a>資料磁碟
 資料磁碟是連接至虛擬機器的 VHD，用來儲存應用程式資料或其他您需要保留的資料。 資料磁碟註冊為 SCSI 磁碟機，並以您選擇的字母標示。 每個資料磁碟的最大容量為 1023 GB。 虛擬機器的大小會決定您可以連接之磁碟的數量，以及您可以用來裝載磁碟的儲存體類型。
@@ -80,10 +78,5 @@ fsutil behavior set DisableDeleteNotify 0
 * [連接磁碟](../virtual-machines/virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來為您的 VM 新增額外的儲存空間。
 * [將 Windows VM 映像上傳至 Azure](../virtual-machines/virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) ，以在建立新的 VM 時使用。
 * [變更 Windows 暫存磁碟的磁碟機代號](../virtual-machines/virtual-machines-windows-classic-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) ，讓您的應用程式可以使用 D: 磁碟機來儲存資料。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

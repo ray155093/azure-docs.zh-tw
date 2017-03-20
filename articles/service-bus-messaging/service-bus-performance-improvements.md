@@ -1,6 +1,6 @@
 ---
-title: "使用服務匯流排提升效能的最佳做法 |Microsoft Docs"
-description: "描述如何使用 Azure 服務匯流排來在交換代理的訊息時將效能最佳化。"
+title: "使用 Azure 服務匯流排提升效能的最佳做法 |Microsoft Docs"
+description: "描述如何使用服務匯流排來在交換代理訊息時將效能最佳化。"
 services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
@@ -12,27 +12,28 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/25/2016
+ms.date: 02/02/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: a696120a5891f53ee8ff7db80fb53acba213978f
+ms.sourcegitcommit: a9fd01e533f4ab76a68ec853a645941eff43dbfd
+ms.openlocfilehash: d077099a9fdc50cf78157bcb7f28d1d28583bea1
+ms.lasthandoff: 02/22/2017
 
 
 ---
 # <a name="best-practices-for-performance-improvements-using-service-bus-messaging"></a>使用服務匯流排傳訊的效能改進最佳作法
-本主題描述如何使用 Azure 服務匯流排傳訊來在交換代理的訊息時將效能最佳化。 本主題的第一個部分說明提供協助提高效能的不同機制。 第二個部分針對如何在特定案例中利用可提供最佳效能的方式來使用服務匯流排提供指引。
+本文描述如何使用 [Azure 服務匯流排傳訊](https://azure.microsoft.com/services/service-bus/)來在交換代理訊息時將效能最佳化。 本主題的第一個部分說明提供協助提高效能的不同機制。 第二個部分針對如何在特定案例中利用可提供最佳效能的方式來使用服務匯流排提供指引。
 
 在本主題中，「用戶端」一詞是指任何存取服務匯流排的實體。 用戶端可以擔任傳送者或接收者的角色。 「傳送者」一詞用於將訊息傳送至服務匯流排佇列或主題的服務匯流排佇列或主題用戶端。 「接收者」一詞指的是從服務匯流排佇列或訂用帳戶接收訊息的服務匯流排佇列或訂用帳戶用戶端。
 
 這些章節介紹幾個服務匯流排用來協助提升效能的概念。
 
 ## <a name="protocols"></a>通訊協定
-服務匯流排可讓用戶端透過三種通訊協定傳送和接收訊息
+服務匯流排可讓用戶端透過三種通訊協定的其中一種傳送和接收訊息：
 
 1. 進階訊息佇列通訊協定 (AMQP)
 2. 服務匯流排傳訊通訊協定 (SBMP)
-3. HTTP
+3. http
 
 AMQP 和 SBMP 會更有效率，因為只要傳訊處理站存在，它們就會維護服務匯流排連線。 它也會實作批次處理和預先擷取作業。 除非明確提到，否則本主題中的所有內容都假設為使用 AMQP 和 SBMP。
 
@@ -44,7 +45,7 @@ AMQP 和 SBMP 會更有效率，因為只要傳訊處理站存在，它們就會
 
 * **非同步作業**：用戶端會透過執行非同步作業來排程作業。 下一個要求會在前一個要求完成之前啟動。 非同步傳送作業的範例如下：
   
-  ```
+ ```csharp
   BrokeredMessage m1 = new BrokeredMessage(body);
   BrokeredMessage m2 = new BrokeredMessage(body);
   
@@ -62,7 +63,7 @@ AMQP 和 SBMP 會更有效率，因為只要傳訊處理站存在，它們就會
   
   非同步接收作業的範例如下：
   
-  ```
+  ```csharp
   Task receive1 = queueClient.ReceiveAsync().ContinueWith(ProcessReceivedMessage);
   Task receive2 = queueClient.ReceiveAsync().ContinueWith(ProcessReceivedMessage);
   
@@ -87,13 +88,13 @@ AMQP 和 SBMP 會更有效率，因為只要傳訊處理站存在，它們就會
 服務匯流排不支援接收和刪除作業的交易。 此外，在用戶端想要延遲或讓訊息[寄不出去](service-bus-dead-letter-queues.md)的任何案例中都需要鎖定語意。
 
 ## <a name="client-side-batching"></a>用戶端批次處理
-用戶端批次處理可讓佇列或主題用戶端將訊息的傳送延遲一段時間。 如果用戶端在此期間傳送其他訊息，它將以單一批次傳輸訊息。 用戶端批次處理也會導致佇列/訂用帳戶用戶端將多個**完成**要求整批放入單一要求中處理。 批次處理僅適用於非同步**傳送**及**完成**作業。 同步作業會立即傳送至服務匯流排服務。 查看或接收作業不會進行批次處理，也不會跨用戶端進行。
+用戶端批次處理可讓佇列或主題用戶端將訊息的傳送延遲一段時間。 如果用戶端在此期間傳送其他訊息，它將以單一批次傳輸訊息。 用戶端批次處理也會導致佇列或訂用帳戶用戶端將多個**完成**要求整批放入單一要求中處理。 批次處理僅適用於非同步**傳送**及**完成**作業。 同步作業會立即傳送至服務匯流排服務。 查看或接收作業不會進行批次處理，也不會跨用戶端進行。
 
 根據預設，用戶端使用的批次間隔為 20 毫秒。 您可以藉由在建立傳訊處理站之前設定 [BatchFlushInterval][BatchFlushInterval] 屬性來變更批次間隔。 這個設定會影響此處理站所建立的所有用戶端。
 
 若要停用批次處理，請將 [BatchFlushInterval][BatchFlushInterval] 屬性設為 **TimeSpan.Zero**。 例如：
 
-```
+```csharp
 MessagingFactorySettings mfs = new MessagingFactorySettings();
 mfs.TokenProvider = tokenProvider;
 mfs.NetMessagingTransportSettings.BatchFlushInterval = TimeSpan.FromSeconds(0.05);
@@ -103,11 +104,11 @@ MessagingFactory messagingFactory = MessagingFactory.Create(namespaceUri, mfs);
 批次處理並不會影響可計費的傳訊作業數目，而且僅適用於服務匯流排用戶端通訊協定。 HTTP 通訊協定不支援批次處理。
 
 ## <a name="batching-store-access"></a>批次處理存放區存取
-為了提高佇列/主題/訂用帳戶的輸送量，服務匯流排會在寫入至其內部存放區時批次處理多個訊息。 如果在佇列或主題上啟用，將會批次處理訊息寫入至存放區。 如果在佇列或訂用帳戶上啟用，將會批次處理從存放區刪除訊息。 如果某個實體啟用批次處理的存放區存取，服務匯流排會延遲與該實體有關的存放區寫入作業，最多 20 毫秒。 在此間隔期間進行的其他存放區作業都會加入至批次。 批次處理的存放區存取只會影響**傳送**和**完成**作業；接收作業不會受到影響。 批次處理的存放區存取是實體上的屬性。 批次處理會在啟用批次處理存放區存取的所有實體進行。
+為了提高佇列、主題或訂用帳戶的輸送量，服務匯流排會在寫入至其內部存放區時批次處理多個訊息。 如果在佇列或主題上啟用，將會批次處理訊息寫入至存放區。 如果在佇列或訂用帳戶上啟用，將會批次處理從存放區刪除訊息。 如果某個實體啟用批次處理的存放區存取，服務匯流排會延遲與該實體有關的存放區寫入作業，最多 20 毫秒。 在此間隔期間進行的其他存放區作業都會加入至批次。 批次處理的存放區存取只會影響**傳送**和**完成**作業；接收作業不會受到影響。 批次處理的存放區存取是實體上的屬性。 批次處理會在啟用批次處理存放區存取的所有實體進行。
 
 建立新佇列、主題或訂用帳戶時，預設會啟用批次處理的存放區存取。 若要停用批次處理的存放區存取，請在建立實體之前將 [EnableBatchedOperations][EnableBatchedOperations] 屬性設為 **false**。 例如：
 
-```
+```csharp
 QueueDescription qd = new QueueDescription();
 qd.EnableBatchedOperations = false;
 Queue q = namespaceManager.CreateQueue(qd);
@@ -120,7 +121,7 @@ Queue q = namespaceManager.CreateQueue(qd);
 
 預先擷取訊息時，服務會鎖定預先擷取的訊息。 藉由這麼做，其他接收者就無法接收預先擷取的訊息。 如果接收者無法在鎖定到期之前完成訊息，訊息就會變成可供其他接收者接收。 訊息的預先擷取副本會保留在快取中。 當取用過其快取複本的接收者嘗試完成該訊息時，他會收到例外狀況。 根據預設，訊息鎖定會在 60 秒之後到期。 此值可延長為 5 分鐘。 若要避免過期訊息遭到取用，快取大小應該一律小於用戶端在鎖定逾時間隔內可取用的訊息數目。
 
-使用 60 秒的預設鎖定到期時間時，[SubscriptionClient.PrefetchCount][SubscriptionClient.PrefetchCount] 的良好值為處理站中所有接收者最高處理速率的 20 倍。 例如，處理站建立 3 個接收者，而每個接收者每秒可以處理最多 10 則訊息。 預先擷取計數不應該超過 20\*3\*10 = 600。 根據預設，[QueueClient.PrefetchCount][QueueClient.PrefetchCount] 設為 0，表示沒有其他訊息從服務擷取。
+使用 60 秒的預設鎖定到期時間時，[SubscriptionClient.PrefetchCount][SubscriptionClient.PrefetchCount] 的良好值為處理站中所有接收者最高處理速率的 20 倍。 例如，處理站建立 3 個接收者，而每個接收者每秒可以處理最多 10 則訊息。 預先擷取計數不應該超過 20 X 3 X 10 = 600。 根據預設，[QueueClient.PrefetchCount][QueueClient.PrefetchCount] 設為 0，表示沒有其他訊息從服務擷取。
 
 預先擷取訊息會增加佇列或訂用帳戶的整體輸送量，因為此舉可減少訊息作業的整體數目或來回次數。 然而，擷取第一個訊息需要較長的時間 (因為訊息大小增加)。 接收預先擷取的訊息比較快速，因為用戶端已經下載這些訊息。
 
@@ -131,7 +132,7 @@ Queue q = namespaceManager.CreateQueue(qd);
 ## <a name="express-queues-and-topics"></a>快速佇列和主題
 快速實體會啟用高輸送量並減少延遲案例。 使用快速實體時，如果訊息傳送至佇列或主題，訊息不會立即儲存在訊息存放區。 相反地，它會快取在記憶體中。 如果訊息保留在佇列中超過幾秒鐘，它會自動寫入至穩定儲存體，藉此保護它免於因中斷而遺失。 將訊息寫入記憶體快取會增加輸送量並減少延遲，因為訊息傳送時沒有存取穩定儲存體。 在幾秒鐘內取用的訊息不會寫入至訊息存放區。 下列範例會建立快速主題。
 
-```
+```csharp
 TopicDescription td = new TopicDescription(TopicName);
 td.EnableExpress = true;
 namespaceManager.CreateTopic(td);
@@ -139,10 +140,13 @@ namespaceManager.CreateTopic(td);
 
 如果將包含不能遺失之重要資訊的訊息傳送至快速實體，傳送者可以強制服務匯流排立即藉由將 [ForcePersistence][ForcePersistence] 屬性設為 **true** 來將訊息儲存到穩定儲存體。
 
+> [!NOTE]
+> 請注意，快速實體不支援交易。
+
 ## <a name="use-of-partitioned-queues-or-topics"></a>使用分割的佇列或主題
 服務匯流排會在內部使用相同的節點和訊息存放區來處理和儲存傳訊實體 (佇列或主題) 的所有訊息。 另一方面，分割的佇列或主題會在多個節點和訊息存放區中散佈。 分割的佇列和主題不僅會產生比一般佇列和主題更高的輸送量，也會展現較優異的可用性。 若要建立分割的實體，請將 [EnablePartitioning][EnablePartitioning] 屬性設為 **true**，如下列範例所示。 如需分割實體的詳細資訊，請參閱[分割的傳訊實體][Partitioned messaging entities]。
 
-```
+```csharp
 // Create partitioned queue.
 QueueDescription qd = new QueueDescription(QueueName);
 qd.EnablePartitioning = true;
@@ -150,14 +154,14 @@ namespaceManager.CreateQueue(qd);
 ```
 
 ## <a name="use-of-multiple-queues"></a>使用多個佇列
+
 如果您不能使用分割的佇列或主題，或無法由單一分割佇列或主題處理預期的負載，您必須使用多個傳訊實體。 使用多個實體時，請針對每個實體建立專屬用戶端，而不是讓所有實體使用相同的用戶端。
 
-## <a name="development--testing-features"></a>開發與測試功能
-服務匯流排有一項專門用於開發的功能，此功能**永遠不應該用在生產組態**。
+## <a name="development-and-testing-features"></a>開發與測試功能
 
-[TopicDescription.EnableFilteringMessagesBeforePublishing](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.topicdescription.enablefilteringmessagesbeforepublishing.aspx)
+服務匯流排有一項專門用於開發的功能，此功能**永遠不應該用在生產組態**：[TopicDescription.EnableFilteringMessagesBeforePublishing][]。
 
-* 當新的規則或篩選器新增至主題時，EnableFilteringMessagesBeforePublishing 可用來確認新的篩選運算式如預期般運作。
+當新的規則或篩選器新增至主題時，您可以使用 [TopicDescription.EnableFilteringMessagesBeforePublishing][] 來確認新的篩選運算式如預期般運作。
 
 ## <a name="scenarios"></a>案例
 下列各節描述典型傳訊的案例，並簡述慣用的服務匯流排設定。 輸送量速率會分類為小型 (小於 1 則訊息/秒)、中型 (1 則訊息/秒或更多但小於 100 則訊息/秒) 和高型 (100 則訊息/秒或更多)。 用戶端數目可分類為小型 (5 個或更少)、中型 (5 個以上但小於或等於 20 個) 和大型 (超過 20 個)。
@@ -243,21 +247,17 @@ namespaceManager.CreateQueue(qd);
 ## <a name="next-steps"></a>後續步驟
 若要深入了解如何最佳化服務匯流排效能，請參閱[分割的傳訊實體][Partitioned messaging entities]。
 
-[QueueClient]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.aspx
-[MessageSender]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesender.aspx
-[MessagingFactory]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagingfactory.aspx
-[PeekLock]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx
-[ReceiveAndDelete]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.receivemode.aspx
-[BatchFlushInterval]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.netmessagingtransportsettings.batchflushinterval.aspx
-[EnableBatchedOperations]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.enablebatchedoperations.aspx
-[QueueClient.PrefetchCount]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queueclient.prefetchcount.aspx
-[SubscriptionClient.PrefetchCount]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.subscriptionclient.prefetchcount.aspx
-[ForcePersistence]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.forcepersistence.aspx
-[EnablePartitioning]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.queuedescription.enablepartitioning.aspx
+[QueueClient]: /dotnet/api/microsoft.servicebus.messaging.queueclient
+[MessageSender]: /dotnet/api/microsoft.servicebus.messaging.messagesender
+[MessagingFactory]: /dotnet/api/microsoft.servicebus.messaging.messagingfactory
+[PeekLock]: /dotnet/api/microsoft.servicebus.messaging.receivemode
+[ReceiveAndDelete]: /dotnet/api/microsoft.servicebus.messaging.receivemode
+[BatchFlushInterval]: /dotnet/api/microsoft.servicebus.messaging.netmessagingtransportsettings#Microsoft_ServiceBus_Messaging_NetMessagingTransportSettings_BatchFlushInterval
+[EnableBatchedOperations]: /dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableBatchedOperations
+[QueueClient.PrefetchCount]: /dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_PrefetchCount
+[SubscriptionClient.PrefetchCount]: /dotnet/api/microsoft.servicebus.messaging.subscriptionclient#Microsoft_ServiceBus_Messaging_SubscriptionClient_PrefetchCount
+[ForcePersistence]: /dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ForcePersistence
+[EnablePartitioning]: /dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnablePartitioning
 [Partitioned messaging entities]: service-bus-partitioning.md
-
-
-
-<!--HONumber=Dec16_HO2-->
-
+[TopicDescription.EnableFilteringMessagesBeforePublishing]: /dotnet/api/microsoft.servicebus.messaging.topicdescription#Microsoft_ServiceBus_Messaging_TopicDescription_EnableFilteringMessagesBeforePublishing
 

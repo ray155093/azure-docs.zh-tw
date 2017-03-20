@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/05/2016
+ms.date: 2/24/2017
 ms.author: shlo
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: deda1cc7be197fc3d59b71038224dc6e8089267b
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -58,10 +59,5 @@ Azure Data Factory 是許多服務之一，可用來實作解決方案加速器�
 藉由最佳化其產品建議策略並與業務目標對齊，解決方案可符合線上零售商的商務和行銷目標。 此外，他們能夠以有效率、可靠且符合成本效益的方式作業化和管理產品建議工作流程。 此方法讓他們能夠輕鬆地根據銷售點擊轉換成功的測量結果更新其模型並微調其有效性。 藉由使用 Azure Data Factory，他們可以放棄其耗時且昂貴的手動雲端資源管理，移至隨選雲端資源管理。 因此，他們能夠節省時間和金錢並減少解決方案部署的時間。 資料歷程檢視和作業服務健全狀況變得容易視覺化，且 Azure 入口網站也提供利用直覺式 Data Factory 監視和管理 UI 進行的疑難排解。 其解決方案可以立即排程與管理，如此可以可靠地產生完成的資料並將其傳送給使用者，並可自動管理資料和處理相依性而不需人力介入。
 
 藉由提供此個人化的購物體驗，線上零售商可建立更具競爭力、更吸引人的客戶體驗，並因此增加銷售量和整體的客戶滿意度。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

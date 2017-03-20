@@ -17,6 +17,7 @@ ms.author: v-sharos
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: e74a04276810c52fef3ad62e7f2c56860ba4fbd1
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -90,10 +91,5 @@ StorSimple Manager 服務 [備份類別目錄]  頁面會顯示在進行手動�
 ## <a name="next-steps"></a>後續步驟
 * 了解如何使用備份類別目錄以 [從備份組還原裝置](storsimple-restore-from-backup-set.md)。
 * 了解如何 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

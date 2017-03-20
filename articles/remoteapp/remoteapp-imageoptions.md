@@ -16,6 +16,7 @@ ms.author: mbaldwin
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 12f27315348040ac897c1ff286b54d38e9950c7d
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -36,10 +37,5 @@ Azure RemoteApp 使用映像保留與使用者共用的應用程式。 (我們�
 * 您可以使用 RemoteApp 訂用帳戶中所含的其中一個 [範本映像](remoteapp-images.md) 。 這些映像是由 RemoteApp 小組所建立和維護，並且包含一些可提供給您使用者的標準應用程式 (如 Office 套件)。 請注意，只有 Office 365 Pro Plus 映像才能用於生產設定中。
 
 不論在何處取得映像或如何建立映像，您都會想要確定您了解 [應用程式需求](remoteapp-appreqs.md) ，確保您的應用程式在 RemoteApp 中運作良好。 然後，下一步是建立[雲端](remoteapp-create-cloud-deployment.md)或[混合式](remoteapp-create-hybrid-deployment.md) 集合。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

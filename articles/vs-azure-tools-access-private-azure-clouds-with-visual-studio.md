@@ -17,6 +17,7 @@ ms.author: tarcher
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 26fea09810e4a5ed1dc19123a5354905ec3e37ea
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -40,10 +41,5 @@ ms.openlocfilehash: 26fea09810e4a5ed1dc19123a5354905ec3e37ea
 [從 Visual Studio 發佈至 Azure 雲端服務](https://msdn.microsoft.com/library/azure/ee460772.aspx)
 
 [如何：下載和匯入發佈設定和訂用帳戶資訊](https://msdn.microsoft.com/library/dn385850\(v=nav.70\).aspx)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

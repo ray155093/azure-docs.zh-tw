@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 02/21/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 080dce21c2c803fc05c945cdadb1edd55bd7fe1c
-ms.openlocfilehash: 84c9ac92ec08d1e7c1a163c2990c4fe3e14bf9e5
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: aebd94edbad210f15bce5b39ebf73269ec67a209
+ms.openlocfilehash: 3bcba1123d3ec00c760d022d200609bf28c22362
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -129,10 +129,10 @@ Azure Site Recovery 會透過公用端點，將資料複製到 Azure 儲存體�
 
 ### <a name="if-i-replicate-to-azure-what-kind-of-storage-account-do-i-need"></a>如果要複寫至 Azure，我需要哪一種儲存體帳戶？
 * **Azure 傳統入口網站**︰如果您要在 Azure 傳統入口網站中部署 Site Recovery，您將需要一個[標準的異地備援儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)。 目前不支援進階儲存體。 此帳戶必須位於與 Site Recovery 保存庫相同的區域中。
-* **Azure 入口網站**︰如果您要在 Azure 入口網站中部署 Site Recovery，您將需要一個 LRS 或 GRS 儲存體帳戶。 我們建議使用 GRS，以便在發生區域性停電或無法復原主要區域時，能夠恢復資料。 此帳戶必須位於與復原服務保存庫相同的區域中。 只有當您複寫的是 VMware VM 或實體伺服器時，才支援進階儲存體。
+* **Azure 入口網站**︰如果您要在 Azure 入口網站中部署 Site Recovery，您將需要一個 LRS 或 GRS 儲存體帳戶。 我們建議使用 GRS，以便在發生區域性停電或無法復原主要區域時，能夠恢復資料。 此帳戶必須位於與復原服務保存庫相同的區域中。 當您在 Azure 入口網站部署 Site Recovery 時，進階儲存體現在支援 VMware VM、Hyper-V VM 和實體伺服器複寫。
 
 ### <a name="how-often-can-i-replicate-data"></a>我可以多久複寫一次資料？
-* **Hyper-V：** 可以每隔 30 秒、5 分鐘或 15 分鐘複寫一次 Hyper-V VM。 如果您已設定 SAN 複寫，則複寫會是同步的。
+* **Hyper-V：**可以每隔 30 秒、5 分鐘或 15 分鐘複寫一次 Hyper-V VM (進階儲存體除外)。 如果您已設定 SAN 複寫，則複寫會是同步的。
 * **VMware 與實體伺服器：** 複寫頻率在此處並不相關。 複寫是連續的。
 
 ### <a name="can-i-extend-replication-from-existing-recovery-site-to-another-tertiary-site"></a>我可以將複寫從現有的復原網站延伸到另一個第三網站嗎？
@@ -142,7 +142,7 @@ Azure Site Recovery 會透過公用端點，將資料複製到 Azure 儲存體�
 不支援此做法。 請在 [意見反應論壇](http://feedback.azure.com/forums/256299-site-recovery/suggestions/6227386-support-for-offline-replication-data-transfer-from)中提出這項功能的要求。
 
 ### <a name="can-i-exclude-specific-disks-from-replication"></a>我可以從複寫中排除特定的磁碟嗎？
-如果您是使用 Azure 入口網站 [將 VMware VM 和實體伺服器複寫至 Azure](site-recovery-exclude-disk.md)，就支援此做法。
+如果您是使用 Azure 入口網站[複寫 VMware VM 和 Hyper-V VM](site-recovery-exclude-disk.md) 至 Azure，就支援此做法。
 
 ### <a name="can-i-replicate-virtual-machines-with-dynamic-disks"></a>我可以使用動態磁碟來複寫虛擬機器嗎？
 複寫 Hyper-V 虛擬機器時，支援使用動態磁碟。 將 VMware VM 和實體機器複寫至 Azure 時，也支援使用這些磁碟。 作業系統磁碟必須是基本磁碟。

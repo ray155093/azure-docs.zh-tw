@@ -15,8 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 02/06/2017
 ms.author: nisoneji
 translationtype: Human Translation
-ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
-ms.openlocfilehash: 7ec48138cf18cf50dc34f28e177c8d774034090b
+ms.sourcegitcommit: d4183b73bcb0441c9ad5f12e7a3a1e4d8e31f4b5
+ms.openlocfilehash: 243fbea75c4ba9b280c65a378d6f2d069add1098
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -38,7 +39,7 @@ Azure Site Recovery Capacity Planner 工具可協助您釐清使用 Azure Site R
 2. 識別複寫資料的每日變更 (流失) 率。 作法：
 
    * 如果您是複寫 Hyper-V VM，請下載 [Hyper-V 容量規劃工具](https://www.microsoft.com/download/details.aspx?id=39057) 來取得變更率。 [深入了解](site-recovery-capacity-planning-for-hyper-v-replication.md) 此工具。 我們建議您執行此工具一週以上的時間來擷取平均值。
-   * 如果您是複寫 VMware 虛擬機器，請使用 [vSphere 容量規劃應用裝置](https://labs.vmware.com/flings/vsphere-replication-capacity-planning-appliance) 來釐清流失率。
+   * 如果是複寫 VMware 虛擬機器，請使用 [Azure Site Recovery Deployment Planner](./site-recovery-deployment-planner.md) 算出變換率。
    * 如果您是複寫實體伺服器，則您必須以手動方式進行預估。
 
 ## <a name="run-the-quick-planner"></a>執行快速規劃
@@ -49,7 +50,7 @@ Azure Site Recovery Capacity Planner 工具可協助您釐清使用 Azure Site R
 3. 在 [容量規劃]  工作表中，輸入必要資訊。 您必須填妥以下螢幕擷取畫面中以紅色圈出來的所有欄位。
 
    * 在 [選取您的案例] 中，選擇 [Hyper-V 到 Azure] 或 [VMware/實體到 Azure]。
-   * 在 [平均每日資料變更率 (%)] 中，放入您使用 [Hyper-V 容量規劃工具](site-recovery-capacity-planning-for-hyper-v-replication.md)或 [vSphere 容量規劃應用裝置收集的資訊](https://labs.vmware.com/flings/vsphere-replication-capacity-planning-appliance)。  
+   * 在 [平均每日資料變更率 (%)] 中，輸入您使用 [Hyper-V 容量規劃工具](site-recovery-capacity-planning-for-hyper-v-replication.md)或 [Azure Site Recovery Deployment Planner](./site-recovery-deployment-planner.md) 收集的資訊。  
    *  只適用於將 VMware VM 或實體伺服器複寫到 Azure 時所提供的壓縮。 我們會評估在 30% 以上，但您可以視需要修改設定。 對於將 Hyper-V VM 複寫到 Azure 的壓縮，您可以使用協力廠商應用裝置，例如 Riverbed。
    * 在 [保留期輸入] 中，指定保留複本的時間長度。 如果您是複寫 VMware 或實體伺服器，以天為單位輸入值。 如果您是複寫 Hyper-V，以小時為單位指定時間。
    * 在 [應該完成虛擬機器批次初始複寫的時數] 與 [每一初始複寫批次的虛擬機器數] 中，您輸入的設定是用於計算初始複寫需求。  部署 Site Recovery 時，應該上傳整個初始資料集。
@@ -119,16 +120,11 @@ Azure Site Recovery Capacity Planner 工具可協助您釐清使用 Azure Site R
     > 在標準及進階儲存體上的 IOPS 是在 VM 層級計算，而不是在磁碟層級。 標準虛擬機器可以處理每個磁碟最多 500 個 IOPS。 如果磁碟的 IOPS 大於 500，則您需要進階儲存體。 不過，如果磁碟的 IOPS 超過 500，但 VM 磁碟總數的 IOPS 在標準 Azure VM 支援的限制中 (VM 大小、磁碟數目、介面卡數目、CPU、記憶體)，那麼規劃工具會挑選標準 VM，而不是 DS 或 GS 系列。 您必須以適當的 DS 或 GS 系列 VM 手動更新 [Mapping Azure Size](對應的 Azure 大小) 儲存格。
 
 
-1. 所有詳細資料已就緒之後，請按一下 [將資料提交至規劃工具] 以開啟 [Capacity Planner]。工作負載會反白顯示以顯示是否適合保護。
+所有詳細資料已就緒之後，請按一下 [將資料提交至規劃工具] 以開啟 [Capacity Planner]。工作負載會反白顯示以顯示是否適合保護。
 
 ### <a name="submit-data-in-the-capacity-planner"></a>提交 Capacity Planner 中的資料
 1. 當您開啟 [Capacity Planner]  工作表時，它會根據您指定的設定填入。 「工作負載」這個字出現在 [基礎輸入來源] 儲存格，以顯示輸入 [工作負載限定性條件] 工作表。
 2. 如果您想要進行變更，您必須修改 [工作負載限定性條件] 工作表，然後再按一次 [將資料提交至規劃工具]。  
 
    ![容量規劃](./media/site-recovery-capacity-planner/capacity-planner.png)
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

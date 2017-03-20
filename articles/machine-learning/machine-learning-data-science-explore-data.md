@@ -17,6 +17,7 @@ ms.author: bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: e85ccd42c743bb38c70ddf233b1e448771db7092
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -31,10 +32,5 @@ ms.openlocfilehash: e85ccd42c743bb38c70ddf233b1e448771db7092
 下列 **功能表** 連結的主題會說明如何從各種不同儲存體環境使用這些工具來瀏覽資料。 
 
 [!INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 11/17/2016
 ms.author: juanpere
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: f03b8d192255a3c93284f3c5e898f68a1234644f
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -39,7 +40,7 @@ ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
 本教學課程說明如何：
 
 * 使用 Azure 入口網站來建立 IoT 中樞，並且在 IoT 中樞建立裝置識別。
-* 建立模擬的裝置應用程式，其具有可以由雲端呼叫以進行重新啟動的直接方法。
+* 建立模擬裝置應用程式，其包含可將該裝置重新開機的直接方法。 直接方法是從雲端叫用。
 * 建立 .NET 主控台應用程式，可透過您的 IoT 中樞在模擬的裝置應用程式中呼叫重新啟動直接方法。
 
 在本教學課程結束時，您會有 Node.js 主控台裝置應用程式和 .NET (C#) 主控台後端應用程式：
@@ -50,7 +51,7 @@ ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
 
 若要完成此教學課程，您需要下列項目：
 
-* Microsoft Visual Studio 2015。
+* Visual Studio 2015 或 Visual Studio 2017。
 * Node.js 0.12.x 版或更新版本， <br/>  [準備您的開發環境][lnk-dev-setup]說明如何在 Windows 或 Linux 上安裝本教學課程的 Node.js。
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
@@ -59,9 +60,9 @@ ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
 ## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>使用直接方法在裝置上觸發遠端重新啟動
-在本節中，您會建立一個 Node.js 主控台應用程式 (使用 C#)，此應用程式會使用直接方法在裝置上起始遠端重新啟動，並使用裝置對應項查詢來尋找該裝置的上次重新啟動時間。
+在本節中，您會建立 .NET 主控台應用程式 (使用 C#)，此應用程式會使用直接方法起始遠端重新開機。 應用程式使用裝置對應項查詢來探索該裝置的上次重新開機時間。
 
-1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **TriggerReboot**。
+1. 在 Visual Studio 中，使用 [主控台應用程式 (.NET Framework)] 專案範本，將 Visual C# Windows 傳統桌面專案新增至新的解決方案。 確定 .NET Framework 為 4.5.1 或更新版本。 將專案命名為 **TriggerReboot**。
 
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
 
@@ -199,7 +200,8 @@ ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
     ```
 8. 儲存並關閉 **dmpatterns_getstarted_device.js**檔案。
    
-   [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
+> [!NOTE]
+> 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
 
 
 ## <a name="run-the-apps"></a>執行應用程式
@@ -210,7 +212,7 @@ ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
     ```
     node dmpatterns_getstarted_device.js
     ```
-2. 執行 C# 主控台應用程式 **TriggerReboot**- 以滑鼠右鍵按一下 **TriggerReboot** 專案，請選取 [偵錯] 和 [啟動新的執行個體]。
+2. 執行 C# 主控台應用程式 **TriggerReboot**。 以滑鼠右鍵按一下 **TriggerReboot** 專案，請選取 [偵錯]，然後選取 [啟動新的執行個體]。
 
 3. 您會在主控台中看到直接方法的裝置回應。
 
@@ -221,7 +223,7 @@ ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
 一般而言，您會設定讓裝置在產生最短中斷和停機時間的時機執行動作。  裝置維護期間是用來定義裝置組態更新時機的常用模式。 您的後端解決方案可以使用所需的裝置對應項 (twin) 屬性，在您的裝置上定義可啟用維護期間的原則並啟用該原則。 當裝置收到維護期間原則時，它可以使用回報的裝置對應項 (twin) 屬性來回報原則的狀態。 接著，後端 App 便可使用裝置對應項 (twin) 查詢來證明是否符合裝置及每個原則的規定。
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已使用直接方法來觸發裝置上的遠端重新啟動、使用報告屬性來從裝置回報上次重新啟動時間，以及查詢裝置對應項來從雲端探索裝置的上次重新啟動時間。
+在本教學課程中，您已使用直接方法在裝置上觸發遠端重新開機。 您已使用報告屬性來從裝置回報上次重新開機時間，以及查詢裝置對應項來從雲端探索裝置的上次重新開機時間。
 
 若要繼續開始使用「IoT 中樞」和裝置管理模式 (例如遠端無線韌體更新)，請參閱︰
 
@@ -251,8 +253,3 @@ ms.openlocfilehash: e4072903a0040d34ad4d41e6c28793d3594fa2f2
 [lnk-c2dmethod]: iot-hub-devguide-direct-methods.md
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [lnk-nuget-service-sdk]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
-
-
-<!--HONumber=Dec16_HO1-->
-
-

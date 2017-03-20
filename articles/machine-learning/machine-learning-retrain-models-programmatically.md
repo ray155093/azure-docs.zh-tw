@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/12/2017
 ms.author: raymondl;garye;v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: cd32cb7d2247676795f345448960d547eafba084
-ms.openlocfilehash: 9290258998f6756dce55a764e020fb3278c2f8a6
-ms.lasthandoff: 01/14/2017
+ms.sourcegitcommit: 0dc0f84ed65e76a95dcac523e42268039212773c
+ms.openlocfilehash: 5032e66556622e44e5f5bba84c4ddf5318b1e194
+ms.lasthandoff: 03/02/2017
 
 
 ---
@@ -57,6 +57,9 @@ ms.lasthandoff: 01/14/2017
 1. 在實驗畫布底端，按一下 [設定 Web 服務]，然後選取 [預測性 Web 服務]。 這樣會將模型儲存為訓練模型，並新增 Web 服務輸入與輸出模組。 
 2. 按一下 **[執行]**。 
 3. 實驗完成執行之後，按一下 [部署 Web 服務 [傳統]] 或 [部署 Web 服務[新式]]。
+
+> [!NOTE] 
+> 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
 
 ## <a name="deploy-the-training-experiment-as-a-training-web-service"></a>將訓練實驗部署為訓練 Web 服務
 若要重新訓練已訓練的模型，您必須將您建立的訓練實驗部署為重新訓練 Web 服務。 這個 Web 服務需要將「Web 服務輸出」模組連接到[定型模型][train-model]模組，才能產生新的定型模組。

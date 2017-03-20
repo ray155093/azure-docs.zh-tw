@@ -14,13 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/19/2016
 ms.author: elioda
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: e223d0613cd48994315451da87e6b7066585bdb6
-ms.openlocfilehash: 7683a6c6afa3dbec3fccadc9f095480ed90aa039
+ms.sourcegitcommit: 7adde91586f5fbbffd0aeaf0efb0810cc891ac0b
+ms.openlocfilehash: cbff931e7acc88b29ed6f51a16156b44c1596d3f
+ms.lasthandoff: 03/02/2017
 
 
 ---
-# <a name="scaling-iot-hub"></a>調整 IoT 中樞
+# <a name="scale-your-iot-hub-solution"></a>調整您的 IoT 中樞解決方案
 Azure IoT 中樞最多可支援百萬個同時連線的裝置。 如需詳細資訊，請參閱 [IoT 中樞價格][lnk-pricing]。 每個 IoT 中樞單位允許一定數量的每日訊息。
 
 為了適當調整您的解決方案，您必須考慮 IoT 中樞的特定使用方式。 尤其要考慮以下類別的作業所需的尖峰輸送量：
@@ -61,9 +63,4 @@ Azure IoT 中樞最多可支援百萬個同時連線的裝置。 如需詳細資
 
 [lnk-devguide]: iot-hub-devguide.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

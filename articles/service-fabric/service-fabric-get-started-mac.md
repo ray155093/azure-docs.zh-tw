@@ -2,21 +2,22 @@
 title: "在 Mac OS X 上設定開發環境 | Microsoft Docs"
 description: "安裝執行階段、SDK 和工具，並建立本機開發叢集。 完成此設定之後，您就可以開始在 Mac OS X 上建置應用程式。"
 services: service-fabric
-documentationcenter: .net
-author: seanmck
-manager: timlt
+documentationcenter: java
+author: saysa
+manager: raunakp
 editor: 
 ms.assetid: bf84458f-4b87-4de1-9844-19909e368deb
 ms.service: service-fabric
-ms.devlang: dotNet
+ms.devlang: java
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 12/27/2016
-ms.author: seanmck
+ms.author: saysa
 translationtype: Human Translation
-ms.sourcegitcommit: d5a04e34a3f46097b3ad1b04ac6b2b845fc946af
-ms.openlocfilehash: beb869fd5c1fcc19101b16149244187c37a6d6a3
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: fc73eedae7ec9664da714567f47a543e625cd023
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -36,11 +37,15 @@ Service Fabric 不會在 OS X 上以原生方式執行。若要執行本機 Serv
 * [Vagrant (v1.8.4 或更新版本)](http://www.vagrantup.com/downloads.html)
 * [VirtualBox](http://www.virtualbox.org/wiki/Downloads)
 
+>[!NOTE]
+>  您需要使用互相支援的 Vagrant 和 VirtualBox 版本。 Vagrant 在不支援的 VirtualBox 版本上的行為可能不穩定。
+>
+
 ## <a name="create-the-local-vm"></a>建立本機 VM
 若要建立包含 5 個節點 Service Fabric 叢集的本機 VM，請執行下列步驟︰
 
 1. 複製 **Vagrantfile** 儲存機制
-   
+
     ```bash
     git clone https://github.com/azure/service-fabric-linux-vagrant-onebox.git
     ```
@@ -53,7 +58,7 @@ Service Fabric 不會在 OS X 上以原生方式執行。若要執行本機 Serv
 
     根據預設，本機 VM 的設定如下所示︰
 
-   * 配置 3 GB 的記憶體
+   * 配置&3; GB 的記憶體
    * 在 IP 192.168.50.50 設定且能夠傳遞 Mac 主機流量的私用主機網路
 
      您可以變更上述任何一項設定或將其他組態新增至 Vagrantfile 中的 VM。 如需設定選項的完整清單，請參閱 [Vagrant 文件](http://www.vagrantup.com/docs) 。
@@ -62,31 +67,29 @@ Service Fabric 不會在 OS X 上以原生方式執行。若要執行本機 Serv
     ```bash
     vagrant up
     ```
-  
+
    這個步驟可下載預先設定的 VM 映像、讓它在本機開機，然後在其中設定一個本機 Service Fabric 叢集。 您預計需花幾分鐘的時間。 如果安裝程式順利完成，您會在輸出中看到一則訊息，表示叢集正在啟動中。
-   
+
     ![在 VM 佈建後啟動的叢集安裝程式][cluster-setup-script]
-    
+
 5. 瀏覽至位於 http://192.168.50.50:19080/Explorer 的 Service Fabric Explorer (假設您保留預設的私人網路 IP)，測試是否已正確設定叢集。
 
     ![從主機 Mac 檢視的 Service Fabric Explorer][sfx-mac]
 
-## <a name="install-the-service-fabric-plugin-for-eclipse-neon-optional"></a>安裝適用於 Eclipse Neon 的 Service Fabric 外掛程式 (選擇性)
-Service Fabric 提供 Eclipse Neon IDE 的外掛程式，可簡化建置和部署 Java 服務的程序。
+## <a name="install-the-service-fabric-plugin-for-eclipse-neon"></a>安裝適用於 Eclipse Neon 的 Service Fabric 外掛程式
 
-1. 在 Eclipse 中，請確定已安裝 Buildship 1.0.17 版或更新版本。 您可以選擇 [說明] > [安裝詳細資料]，檢查已安裝的元件版本。 您可以使用[這裡][buildship-update]的指示更新 Buildship。
-2. 若要安裝 Service Fabric 外掛程式，請選擇 [說明] > [安裝新軟體...]
-3. 在 [使用] 文字方塊中，輸入︰http://dl.windowsazure.com/eclipse/servicefabric。
-4. 按一下 [新增]。
+Service Fabric 為**適用於 Java IDE 的 Eclipse Neon** 提供了外掛程式，可簡化建立、建置和部署 Java 服務的程序。 您可以遵循這個有關安裝或更新 Service Fabric Eclipse 外掛程式的一般[文件](service-fabric-get-started-eclipse.md#install-or-update-service-fabric-plugin-on-eclipse-neon)中所述的安裝步驟。
 
-    ![Service Fabric 的 Eclipse Neon 外掛程式][sf-eclipse-plugin-install]
-5. 選擇 Service Fabric 外掛程式，然後按 [下一步]。
-6. 繼續進行安裝並接受使用者授權合約。
+## <a name="using-service-fabric-eclipse-plugin-on-mac"></a>在 Mac 上使用 Service Fabric Eclipse 外掛程式
+
+確定您已經完成 [Service Fabric Eclipse 外掛程式文件](service-fabric-get-started-eclipse.md)中所說的步驟。 在 Mac 主機上使用 vagrant 客體容器來建立、建置和部署 Service Fabric Java 應用程式的步驟，大多與一般文件相同，但有幾點除外，您必須謹記在心，如下所述 -
+* 需要有 Service Fabric 程式庫才能成功建置 Service Fabric Java 應用程式，因此必須在共用路徑中建立 Eclipse 專案。 根據預設，``Vagrantfile`` 所在之主機路徑中的內容，會與客體上的 ``/vagrant`` 路徑共用。
+* 簡單地說，如果您的路徑中有 ``Vagrantfile``，例如 ``~/home/john/allprojects/``，則必須在位置 ``~/home/john/allprojects/MyActor`` 中建立 Service Fabric 專案 ``MyActor``，而且 Eclipse 工作區的路徑會是 ``~/home/john/allprojects``。
 
 ## <a name="next-steps"></a>後續步驟
 <!-- Links -->
-
-* [建立適用於 Linux 的第一個 Service Fabric 應用程式](service-fabric-create-your-first-linux-application-with-java.md)
+* [使用 Yeoman 在 Linux 上建立和部署第一個 Service Fabric Java 應用程式](service-fabric-create-your-first-linux-application-with-java.md)
+* [在 Linux 上使用適用於 Eclipse 的 Service Fabric 外掛程式建立和部署第一個 Service Fabric Java 應用程式](service-fabric-get-started-eclipse.md)
 * [在 Azure 入口網站中建立 Service Fabric 叢集](service-fabric-cluster-creation-via-portal.md)
 * [使用 Azure Resource Manager 建立 Service Fabric 叢集](service-fabric-cluster-creation-via-arm.md)
 * [了解 Service Fabric 應用程式模型](service-fabric-application-model.md)
@@ -96,9 +99,4 @@ Service Fabric 提供 Eclipse Neon IDE 的外掛程式，可簡化建置和部�
 [sfx-mac]: ./media/service-fabric-get-started-mac/sfx-mac.png
 [sf-eclipse-plugin-install]: ./media/service-fabric-get-started-mac/sf-eclipse-plugin-install.png
 [buildship-update]: https://projects.eclipse.org/projects/tools.buildship
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

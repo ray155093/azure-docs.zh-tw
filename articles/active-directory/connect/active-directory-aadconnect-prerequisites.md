@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 7174da908fda12fbb83a102921d9f223fc3ee17b
-ms.openlocfilehash: 2fb3dffb35a4798942f95df65a9af822dd2485cd
+ms.sourcegitcommit: fe0377fed432ac2c83f7a277ba41d9ffcc138ba7
+ms.openlocfilehash: 8d0533c81866dee7d24f3d5ccc5958b019d55a40
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -52,7 +53,7 @@ ms.openlocfilehash: 2fb3dffb35a4798942f95df65a9af822dd2485cd
 * 如果您使用個別的 SQL Server，這些需求適用於：
   * Azure AD Connect 支援各種 Microsoft SQL Server 版本，從 SQL Server 2008 (含 SP4) 到 SQL Server 2016 都包含在內。 **不支援** 使用 Microsoft Azure SQL Database 作為資料庫。
   * 您必須使用不區分大小寫的 SQL 定序。 這些定序是在其名稱中使用 \_CI_ 來識別。 **不支援**使用區分大小寫的定序 (在其名稱中以 \_CS_ 來識別)。
-  * 您在每個資料庫執行個體中只能有一個同步引擎。 **不支援** 使用 FIM/MIM Sync、DirSync 或 Azure AD Sync 來共用資料庫執行個體。
+  * 您在每個 SQL 執行個體中只能有一個同步引擎。 **不支援** 使用 FIM/MIM Sync、DirSync 或 Azure AD Sync 來共用 SQL 執行個體。
 
 ### <a name="accounts"></a>帳戶
 * 想要與其整合之 Azure AD 目錄的 Azure AD 全域管理員帳戶 必須是**學校或組織帳戶**，不能是 **Microsoft 帳戶**。
@@ -200,10 +201,4 @@ Azure AD Connect 預設使用 TLS 1.0 將同步引擎伺服器和 Azure AD 之�
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

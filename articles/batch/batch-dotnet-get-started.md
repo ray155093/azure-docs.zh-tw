@@ -16,9 +16,9 @@ ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
-ms.openlocfilehash: edda9dc389d670b463d518edf8c4703062ba169d
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 08b478b3108f0673f3a130612020408a0e61c815
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -48,7 +48,7 @@ ms.lasthandoff: 02/28/2017
 >
 
 ### <a name="visual-studio"></a>Visual Studio
-您必須擁有 **Visual Studio 2015** 才能建置範例專案。 您可以在 [Visual Studio 2015 產品概觀][visual_studio]中找到免費試用版的 Visual Studio。
+您必須擁有 **Visual Studio 2015 或更新版本**才能建置範例專案。 您可以在 [Visual Studio 產品概觀][visual_studio]中找到免費試用版的 Visual Studio。
 
 ### <a name="dotnettutorial-code-sample"></a> 程式碼範例
 [DotNetTutorial][github_dotnettutorial] 範例是在 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中找到的許多程式碼範例之一。 按一下儲存機制首頁上的 [複製或下載] > [下載 ZIP]，或按一下 [azure-batch-samples-master.zip][github_samples_zip] 直接下載連結，即可下載所有範例。 將 ZIP 檔案的內容解壓縮後，您可以在下列資料夾中找到方案：
@@ -59,7 +59,7 @@ ms.lasthandoff: 02/28/2017
 [Azure Batch Explorer][github_batchexplorer] 是 GitHub 上 [azure-batch-samples][github_samples] 儲存機制隨附的免費公用程式。 雖然不一定要完成此教學課程，但是在您開發和偵錯 Batch 解決方案時卻很實用。
 
 ## <a name="dotnettutorial-sample-project-overview"></a>DotNetTutorial 範例專案概觀
-DotNetTutorial 程式碼範例是由兩個專案所組成的 Visual Studio 2015 方案：**DotNetTutorial** 和 **TaskApplication**。
+DotNetTutorial 程式碼範例是由兩個專案所組成的 Visual Studio 方案：**DotNetTutorial** 和 **TaskApplication**。
 
 * **DotNetTutorial** 是與 Batch 和儲存體服務進行互動，以在計算節點 (虛擬機器) 上執行平行工作負載的用戶端應用程式。 DotNetTutorial 會在本機工作站上執行。
 * **TaskApplication** 是在 Azure 中的計算節點上執行進而執行實際工作的程式。 在範例中， `TaskApplication.exe` 會剖析從 Azure 儲存體下載的檔案 (輸入檔) 中的文字。 然後產生文字檔 (輸出檔)，其中包含出現在輸入檔中的前三個單字清單。 在它建立輸出檔之後，TaskApplication 會將檔案上傳至 Azure 儲存體。 如此檔案即可供用戶端應用程式下載。 TaskApplication 會在 Batch 服務中的多個計算節點上平行執行。
@@ -792,7 +792,7 @@ Sample complete, hit ENTER to exit...
 [nuget_packagemgr]: https://docs.nuget.org/consume/installing-nuget
 [nuget_restore]: https://docs.nuget.org/consume/package-restore/msbuild-integrated#enabling-package-restore-during-build
 [storage_explorers]: http://storageexplorer.com/
-[visual_studio]: https://www.visualstudio.com/products/vs-2015-product-editions
+[visual_studio]: https://www.visualstudio.com/vs/
 
 [1]: ./media/batch-dotnet-get-started/batch_workflow_01_sm.png "在 Azure 儲存體中建立容器"
 [2]: ./media/batch-dotnet-get-started/batch_workflow_02_sm.png "將工作應用程式和輸入 (資料) 檔案上傳至容器"

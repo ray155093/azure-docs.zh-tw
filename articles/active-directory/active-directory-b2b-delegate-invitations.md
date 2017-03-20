@@ -16,37 +16,38 @@ ms.workload: identity
 ms.date: 02/06/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 0c05cd490ee9125f7e5182cb502db6f4e9390094
-ms.openlocfilehash: 6c6d757a770613498bedca0f8f3a965241d692eb
+ms.sourcegitcommit: f06af80b14b439a223607e91c031a887c200d88d
+ms.openlocfilehash: 11da3f4ff55e8d52a1d0cecb0e275a8af80727ea
+ms.lasthandoff: 02/24/2017
 
 
 ---
 
 # <a name="delegate-invitations-for-azure-active-directory-b2b-collaboration"></a>委派 Azure Active Directory B2B 共同作業邀請
 
-使用 Azure Active Directory (Azure AD) B2B 共同作業公開預覽刷新版時，您不需要是全域系統管理員即可邀請使用者。 您可以透過原則來控制誰可以邀請使用者，並將邀請權限委派給允許角色中的使用者讓其邀請使用者。 委派來賓使用者邀請的一個重要新方式是透過「來賓邀請者」角色。
+使用 Azure Active Directory (Azure AD) 企業對企業 (B2B) 共同作業公開預覽刷新版時，您不需要是全域系統管理員即可傳送邀請。 相反地，您可以使用相關原則並將邀請委派給其角色允許他們傳送邀請的使用者。 委派來賓使用者邀請的一個重要新方式是透過「來賓邀請者」角色。
 
 ## <a name="guest-inviter-role"></a>來賓邀請者角色
-我們可以將使用者指派到「來賓邀請者」角色以傳送邀請。 您不需要是全域系統管理員的成員即可傳送邀請。 根據預設值，一般使用者也能觸發邀請 API，除非全域系統管理員已停用由一般使用者傳送邀請的功能。 您可以透過 Azure 入口網站或透過 PowerShell 執行此動作。
+我們可以將使用者指派到「來賓邀請者」角色以傳送邀請。 您不需要是全域系統管理員角色的成員即可傳送邀請。 根據預設，一般使用者也可叫用邀請 API，除非全域系統管理員已停用一般使用者的邀請功能。 您可以使用 Azure 入口網站或 PowerShell 來執行這項工作。
 
-下列範例顯示如何透過 PowerShell 將使用者新增到「來賓邀請者」角色：
+以下範例顯示如何使用 PowerShell 將使用者新增到「來賓邀請者」角色：
 
 ```
-Add-MsolRoleMember -RoleObjectId 95e79109-95c0-4d8e-aee3-d01accf2d47b -RoleMemberEmailAddress <RoleMemberEmailAddress >
+Add-MsolRoleMember -RoleObjectId 95e79109-95c0-4d8e-aee3-d01accf2d47b -RoleMemberEmailAddress <RoleMemberEmailAddress>
 ```
 
-## <a name="controlling-who-can-invite"></a>控制誰可以邀請
+## <a name="control-who-can-invite"></a>控制誰可以邀請
 
 ![控制邀請方式](media/active-directory-b2b-delegate-invitations/control-who-to-invite.png)
 
-使用 Azure AD B2B 共同作業，我們允許租用戶系統管理員設定下列邀請原則：
+使用 Azure AD B2B 共同作業，租用戶系統管理員可以設定下列邀請原則：
 
-1. 關閉邀請
-2. 只有系統管理員與「來賓邀請者」角色中使用者可以邀請
-3. 系統管理員、來賓邀請者角色與成員可以邀請
-4. 所有使用者 (包括來賓) 都可以邀請
+- 關閉邀請
+- 只有系統管理員與「來賓邀請者」角色中使用者可以邀請
+- 系統管理員、來賓邀請者角色與成員可以邀請
+- 所有使用者 (包括來賓) 都可以邀請
 
-根據預設值，租用戶是設定為 #4 (所有使用者 (包括來賓) 都可以邀請 B2B 使用者)。
+根據預設，租用戶會設定為 #4。 (所有使用者 (包括來賓) 都可以邀請 B2B 使用者。)
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -62,9 +63,4 @@ Add-MsolRoleMember -RoleObjectId 95e79109-95c0-4d8e-aee3-d01accf2d47b -RoleMembe
 * [B2B 共同作業使用者宣告對應](active-directory-b2b-claims-mapping.md)
 * [Office 365 外部共用](active-directory-b2b-o365-external-user.md)
 * [B2B 共同作業目前的限制](active-directory-b2b-current-limitations.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

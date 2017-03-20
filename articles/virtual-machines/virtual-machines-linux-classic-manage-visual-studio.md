@@ -17,15 +17,11 @@ ms.author: tarcher
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 2dc273a08adfd685ee8936fab66cc0f14f8234ab
+ms.lasthandoff: 11/17/2016
 
 
 ---
 # <a name="create-and-manage-linux-virtual-machines-in-visual-studio"></a>在 Visual Studio 中建立和管理 Linux 虛擬機器
 [!INCLUDE [virtual-machines-common-classic-manage-visual-studio](../../includes/virtual-machines-common-classic-manage-visual-studio.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

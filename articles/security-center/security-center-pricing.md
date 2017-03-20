@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/02/2017
+ms.date: 02/22/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: fd4603d7bcbd1d243c6dd37d810040ff0ee1b3ae
-ms.openlocfilehash: e61a9fad0c241da30a615e03aa18c6fbb03baf35
+ms.sourcegitcommit: 9c20ace9112c62e733b7b679e3f0be717144f3c2
+ms.openlocfilehash: 933a485e36b3cf0f514f28fc069d49161605af3a
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -27,26 +28,27 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 資訊安全中心提供兩個層級：
 
 * **免費層**在所有 Azure 訂用帳戶上自動啟用。 免費層提供 Azure 資源安全性狀態的可見度、基本安全性原則、安全性建議以及與合作夥伴的安全性產品和服務整合。
-* **標準層**新增進階威脅偵測功能，包括威脅智慧、行為分析、異常偵測、安全性事件，以及威脅評估報告。 標準層可享 **90 天免費試用**。
+* **標準層**新增進階威脅偵測功能，包括威脅智慧、行為分析、異常偵測、安全性事件，以及威脅評估報告。 標準層的前 60 天免費。
 
 如需詳細資訊，請參閱資訊安全中心[價格頁面](https://azure.microsoft.com/pricing/details/security-center/)。
 
 > [!NOTE]
-> 資訊安全中心使用 Azure 儲存體來儲存產生自受保護節點的安全性資料。 與此儲存體相關的費用不包含在服務價格中，而將以一般 [Azure 儲存體費率](https://azure.microsoft.com/pricing/details/storage/blobs/)分別計費。 儲存體費用在試用期間同樣適用。
+> 資訊安全中心使用 Azure 儲存體來儲存產生自受保護節點的安全性資料。 與此儲存體相關的費用不包含在服務價格中，而將以一般 [Azure 儲存體費率](https://azure.microsoft.com/pricing/details/storage/blobs/)分別計費。 即使在 60 天免費試用期間，也會收取儲存體費用。
 >
 >
 
-## <a name="try-standard-free-for-90-days"></a>免費試用 90 天的標準
-標準層可享 90 天免費試用。 若要取得免費試用版的「標準」層，請選取 [資訊安全中心] 刀鋒視窗上的 [原則] 圖格。 選取您要升級至「標準」的訂用帳戶。 在 [安全性原則] 刀鋒視窗中，選取 [定價層]。 在 [選擇定價層] 刀鋒視窗中，選取 [標準 – 免費試用]。
+## <a name="try-standard-free-for-60-days"></a>免費試用「標準」60 天
+標準層的前 60 天免費。 在 60 天結束時，如果您選擇繼續使用服務，我們將自動開始針對使用量計費。
 
-![免費試用][1]
+若要取得標準層：
 
-在 90 天結束時，如果您選擇繼續使用服務，我們會自動開始針對使用量計費。
+1. 選取 [資訊安全中心] 刀鋒視窗上的 [原則] 圖格。
+2. 選取您要升級至「標準」的訂用帳戶。
+3. 在 [安全性原則] 刀鋒視窗中，選取 [定價層]。
+4. 在 [選擇定價層] 刀鋒視窗中，選取 [標準]。
+5. 按一下 [選取] 。
 
-## <a name="upgrade-to-standard"></a>升級至標準
-升級至「標準」層以新增進階威脅偵測。 若要取得「標準」層，請選取 [資訊安全中心] 刀鋒視窗上的 [原則] 圖格。 選取您要升級至「標準」的訂用帳戶。 在 [安全性原則] 刀鋒視窗中，選取 [定價層]。 在 [選擇定價層] 刀鋒視窗中，選取 [標準]。
-
-![標準層][2]
+![標準層][1]
 
 ## <a name="why-upgrade-to-standard"></a>為何要升級至標準？
 「標準」層的資訊安全中心提供「免費」層的所有功能，再加上進階威脅偵測。 進階威脅偵測可協助識別以您的 Azure 資源為目標的作用中威脅，並提供您迅速回應所需的深入資訊。
@@ -61,16 +63,22 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 
 在以下的 [安全性警示] 刀鋒視窗中，資訊安全中心偵測到安全性**事件**。 安全性事件是符合攻擊鏈模式之資源的所有警示彙總。 選取安全性事件會顯示關於該事件的更多詳細資料，並列出相關警示。 選取警示提供有關該出現次數的詳細資訊。
 
-![安全性事件][3]
+![安全性事件][2]
 
 以下的**網路通訊**警示提供有關警示的詳細資料。 詳細資料包括其完整的描述、其嚴重性、其目前狀態 (在此案例中可關閉，表示使用者採取動作來關閉它)，受到攻擊的資源，以及修復步驟。 另外還有一個 Microsoft 威脅情報報告連結的清單。 這些報告可以用於安全性補救和防禦。
 
-![安全性警示詳細資料][4]
+![安全性警示詳細資料][3]
 
 ## <a name="enable-data-collection"></a>啟用資料收集
-若要啟用虛擬機器行為分析，則必須開啟資料收集。 您可以在第一次存取資訊安全中心，或當您建立安全性原則時啟用資料收集。
+若要啟用虛擬機器行為分析，則必須開啟資料收集。
 
-若要驗證資料收集是否已啟用，請選取 [原則] 圖格。 [安全性原則] 刀鋒視窗隨即開啟，列出您的 Azure 訂用帳戶。 選取一個訂用帳戶。 如果 [資料收集] 關閉，請將它變更為開啟並儲存變更。 請參閱[在 Azure 資訊安全中心啟用資料收集](security-center-enable-data-collection.md)。
+若要驗證資料收集已啟用：
+
+1. 選取 [原則] 圖格。 [安全性原則] 刀鋒視窗隨即開啟，列出您的 Azure 訂用帳戶。
+2. 選取一個訂用帳戶。
+3. 如果 [資料收集] 關閉，請將它變更為開啟並儲存變更。
+
+如需詳細資訊，請參閱[在 Azure 資訊安全中心啟用資料收集](security-center-enable-data-collection.md)。
 
 ## <a name="next-steps"></a>後續步驟
 * 在本文件中，已向您介紹資訊安全中心的價格。 如需價格的詳細資訊，請參閱資訊安全中心[價格頁面](https://azure.microsoft.com/pricing/details/security-center/)。
@@ -79,13 +87,7 @@ Azure 資訊安全中心利用加強對 Azure 資源的能見度及安全性控�
 * 如果您仍然有關於使用資訊安全中心或 Azure 方面的問題，請造訪 [Azure 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureSecurityCenter&filter=alltypes&sort=lastpostdesc)。
 
 <!--Image references-->
-[1]: ./media/security-center-pricing/free-trial.png
-[2]: ./media/security-center-pricing/standard.png
-[3]: ./media/security-center-pricing/incident.png
-[4]: ./media/security-center-pricing/network-alert.png
-
-
-
-<!--HONumber=Feb17_HO1-->
-
+[1]: ./media/security-center-pricing/standard.png
+[2]: ./media/security-center-pricing/incident.png
+[3]: ./media/security-center-pricing/network-alert.png
 

@@ -17,6 +17,7 @@ ms.author: robb
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 16ce99cab9077450a5cfa8e95f7e306ffc1afb6d
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -84,10 +85,5 @@ ms.openlocfilehash: 16ce99cab9077450a5cfa8e95f7e306ffc1afb6d
 
 ## <a name="next-steps"></a>後續步驟
 [使用 Azure 診斷追蹤雲端服務應用程式中的流程](cloud-services-dotnet-diagnostics-trace-flow.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

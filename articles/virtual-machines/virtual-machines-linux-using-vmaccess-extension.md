@@ -1,6 +1,6 @@
 ---
-title: "使用 VMAccess 擴充功能和 Azure CLI 2.0 (預覽) 來重設存取 | Microsoft Docs"
-description: "如何使用 VMAccess 擴充功能和 Azure CLI 2.0 (預覽) 在 Linux VM 上管理使用者及重設存取"
+title: "使用 VMAccess 擴充功能和 Azure CLI 2.0 重設存取 | Microsoft Docs"
+description: "如何使用 VMAccess 擴充功能和 Azure CLI 2.0 在 Linux VM 上管理使用者及重設存取"
 services: virtual-machines-linux
 documentationcenter: 
 author: vlivech
@@ -16,32 +16,25 @@ ms.topic: article
 ms.date: 02/16/2017
 ms.author: v-livech
 translationtype: Human Translation
-ms.sourcegitcommit: 98646daf5a4d2c9aca7dfc02a36f39d12f749443
-ms.openlocfilehash: 7752b486bda4a68b14ff3e8aaf1a369a649c83b5
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: debdb8a16c8cfd6a137bd2a7c3b82cfdbedb0d8c
+ms.openlocfilehash: 4fac98d37dde195af69d8bd03fd796c6eeae3734
+ms.lasthandoff: 02/27/2017
 
 
 ---
-# <a name="manage-users-ssh-and-check-or-repair-disks-on-linux-vms-using-the-vmaccess-extension-with-the-azure-cli-20-preview"></a>使用 VMAccess 擴充功能搭配 Azure CLI 2.0 (預覽) 在 Linux VM 上管理使用者、SSH 及檢查或修復磁碟
+# <a name="manage-users-ssh-and-check-or-repair-disks-on-linux-vms-using-the-vmaccess-extension-with-the-azure-cli-20"></a>使用 VMAccess 擴充功能搭配 Azure CLI 2.0 在 Linux VM 上管理使用者、SSH 及檢查或修復磁碟
 Linux VM 的磁碟顯示錯誤。 您不知怎麼重設 Linux VM的根密碼，或不小心刪除了 SSH 私密金鑰。 如果是過去資料中心的時代發生此狀況，您必須親赴現場，然後再開啟 KVM 才能存取伺服器主控台。 請將 Azure VMAccess 擴充功能想成 KVM 交換器，在此可以存取主控台重設 Linux 存取或執行磁碟等級維護。
 
-本文將說明如何使用 Azure VMAcesss 延伸模組來檢查或修復磁碟、重設使用者存取、管理使用者帳戶或重設 Linux 上的 SSHD 組態。
-
-
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
-您可以使用下列其中一個 CLI 版本來完成工作︰
-
-- [Azure CLI 1.0](virtual-machines-linux-using-vmaccess-extension-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0 (預覽)](#ways-to-use-the-vmaccess-extension) - 適用於資源管理部署模型的新一代 CLI (本文章)
+本文將說明如何使用 Azure VMAcesss 延伸模組來檢查或修復磁碟、重設使用者存取、管理使用者帳戶或重設 Linux 上的 SSHD 組態。 您也可以使用 [Azure CLI 1.0](virtual-machines-linux-using-vmaccess-extension-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
 
 
 ## <a name="ways-to-use-the-vmaccess-extension"></a>使用 VMAccess 擴充功能的方式
 您可以透過兩種方式在 Linux VM 上使用「VMAccess 擴充功能」：
 
-* 使用 Azure CLI 2.0 (預覽) 和必要的參數。
+* 使用 Azure CLI 2.0 和必要的參數。
 * [使用 VMAccess 擴充功能會處理然後作為行動依據的原始 JSON 檔案](#use-json-files-and-the-vmaccess-extension)。
 
-下列範例會使用 [az vm access](/cli/azure/vm/access) 搭配適當的參數。 若要執行這些步驟，您需要安裝最新的 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
+下列範例會使用 [az vm access](/cli/azure/vm/access) 搭配適當的參數。 若要執行這些步驟，您需要安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
 
 ## <a name="reset-ssh-key"></a>重設 SSH 金鑰
 下列範例會重設名為 `myVM` 的 VM 上使用者 `azureuser` 的 SSH 金鑰：

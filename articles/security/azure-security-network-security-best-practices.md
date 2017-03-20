@@ -17,6 +17,7 @@ ms.author: TomSh
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 71e0d74f0e4787393e3184a3a5b553c4935cf785
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -235,9 +236,4 @@ Azure 資訊安全中心藉由下列方式來協助您最佳化和監視網路�
 Microsoft 已建立[資料中心延伸參考架構圖表](https://gallery.technet.microsoft.com/Datacenter-extension-687b1d84#content)和支援相關資料，協助您了解這類資料中心延伸模組的外觀。 其中的提供範例參考實作，可用來規劃和設計安全的企業資料中心延伸至雲端。 我們建議您檢閱這份文件，以了解安全解決方案的重要元件。
 
 若要深入了解如何安全地將資料中心擴充至 Azure，請觀賞 [Extending Your Datacenter to Microsoft Azure (將資料中心擴充至 Microsoft Azure)](https://www.youtube.com/watch?v=Th1oQQCb2KA) 視訊。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

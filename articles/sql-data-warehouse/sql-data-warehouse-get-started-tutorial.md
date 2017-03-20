@@ -15,9 +15,9 @@ ms.workload: data-services
 ms.date: 01/26/2017
 ms.author: elbutter;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2c88c1abd2af7a1ca041cd5003fd1f848e1b311c
-ms.openlocfilehash: 12f72e76ee991dfb701637847f2e406cd0f8c449
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: f5f21fa9a0265258b065a844ffd002749c4dee03
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -76,7 +76,7 @@ SQL 資料倉儲是一種特殊類型的資料庫，其設計用來進行大量�
 
     **來源**：空白資料庫
 
-    **伺服器**︰選取您在 [必要條件] 中建立的伺服器。
+    **伺服器**︰選取您在[必要條件]中建立的伺服器。
 
     **定序**：保留預設定序 SQL_Latin1_General_CP1_CI_AS。
 
@@ -94,7 +94,7 @@ SQL 資料倉儲是一種特殊類型的資料庫，其設計用來進行大量�
 
 ### <a name="get-connection-information"></a>取得連線資訊
 
-若要連線到資料倉儲，您必須透過在 [必要條件] 中所建立的邏輯 SQL Server 進行連線。
+若要連線到資料倉儲，您必須透過在[必要條件]中所建立的邏輯 SQL Server 進行連線。
 
 1. 從儀表板選取資料倉儲，或在您的資源中進行搜尋。
 
@@ -104,7 +104,7 @@ SQL 資料倉儲是一種特殊類型的資料庫，其設計用來進行大量�
 
     ![選取伺服器名稱](./media/sql-data-warehouse-get-started-tutorial/select-server.png)
 
-3. 開啟 SSMS，並使用物件總管以使用您在 [必要條件] 中所建立的伺服器系統管理員認證連線到此伺服器
+3. 開啟 SSMS，並使用物件總管以使用您在[必要條件]中所建立的伺服器系統管理員認證連線到此伺服器
 
     ![以 SSMS 連線](./media/sql-data-warehouse-get-started-tutorial/ssms-connect.png)
 
@@ -415,13 +415,13 @@ SQL 資料倉儲是一種特殊類型的資料庫，其設計用來進行大量�
         REJECT_VALUE = 0
     )
     ;
-    ```
+```
 
-### Import the data from Azure blob storage.
+### <a name="import-the-data-from-azure-blob-storage"></a>從 Azure Blob 儲存體匯入資料。
 
-SQL Data Warehouse supports a key statement called CREATE TABLE AS SELECT (CTAS). This statement creates a new table based on the results of a select statement. The new table has the same columns and data types as the results of the select statement.  This is an elegant way to import data from Azure blob storage into SQL Data Warehouse.
+SQL 資料倉儲支援稱為 CREATE TABLE AS SELECT (CTAS) 的重要陳述式。 此陳述式會根據 select 陳述式的結果建立新的資料表。 新的資料表擁有和 select 陳述式結果相同的資料行和資料類型。  這是將資料從 Azure Blob 儲存體匯入 SQL 資料倉儲的最佳方式。
 
-1. Run this script to import your data.
+1. 執行這個指令碼來匯入資料。
 
     ```sql
     CREATE TABLE [dbo].[Date]
@@ -496,9 +496,9 @@ SQL Data Warehouse supports a key statement called CREATE TABLE AS SELECT (CTAS)
     ;
     ```
 
-2. View your data as it loads.
+2. 檢視載入中的資料。
 
-   You’re loading several GBs of data and compressing it into highly performant clustered columnstore indexes. Run the following query that uses a dynamic management views (DMVs) to show the status of the load. After starting the query, grab a coffee and a snack while SQL Data Warehouse does some heavy lifting.
+   您會載入數 GB 的資料，並將其壓縮成高效能的叢集資料行存放區索引。 執行下列會使用動態管理檢視 (DMV) 來顯示載入狀態的查詢。 啟動查詢之後，喝咖啡吃點心等候 SQL 資料倉儲進行一些繁重的工作。
     
     ```sql
     SELECT
@@ -528,62 +528,61 @@ SQL Data Warehouse supports a key statement called CREATE TABLE AS SELECT (CTAS)
         gb_processed desc;
     ```
 
-3. View all system queries.
+3. 檢視所有系統查詢。
 
     ```sql
     SELECT * FROM sys.dm_pdw_exec_requests;
     ```
 
-4. Enjoy seeing your data nicely loaded into your Azure SQL Data Warehouse.
+4. 輕鬆地看著資料順利載入至 Azure SQL 資料倉儲。
 
-    ![See Data Loaded](./media/sql-data-warehouse-get-started-tutorial/see-data-loaded.png)
+    ![看著資料載入](./media/sql-data-warehouse-get-started-tutorial/see-data-loaded.png)
 
 
-## Improve query performance
+## <a name="improve-query-performance"></a>改善查詢效能
 
-There are several ways to improve query performance and to achieve the high-speed performance that SQL Data Warehouse is designed to provide.  
+有數種方式可以改善查詢效能，並達到 SQL 資料倉儲依設計所能提供的高速效能。  
 
-### See the effect of scaling on query performance 
+### <a name="see-the-effect-of-scaling-on-query-performance"></a>查看調整查詢效能時的影響 
 
-One way to improve query performance is to scale resources by changing the DWU service level for your data warehouse. Each service level costs more, but you can scale back or pause resources at any time. 
+改善查詢效能的方法之一是藉由變更資料倉儲的 DWU 服務層級來調整資源。 每個服務等級的成本會往上增加，但您可以隨時調整回來或暫停資源。 
 
-In this step, you compare performance at two different DWU settings.
+在此步驟中，您將會比較兩個不同 DWU 設定的效能。
 
-First, let's scale the sizing down to 100 DWU so we can get an idea of how one compute node might perform on its own.
+首先，讓我們將規模下調為 100 DWU，以便了解單一計算節點本身的可能執行效能。
 
-1. Go to the portal and select your SQL Data Warehouse.
+1. 移至入口網站，並選取 SQL 資料倉儲。
 
-2. Select scale in the SQL Data Warehouse blade. 
+2. 在 [SQL 資料倉儲] 刀鋒視窗中選取 [調整]。 
 
-    ![Scale DW From portal](./media/sql-data-warehouse-get-started-tutorial/scale-dw.png)
+    ![從入口網站調整 DW](./media/sql-data-warehouse-get-started-tutorial/scale-dw.png)
 
-3. Scale down the performance bar to 100 DWU and hit save.
+3. 將效能列縮小到 100 DWU，然後按一下 [儲存]。
 
-    ![Scale and save](./media/sql-data-warehouse-get-started-tutorial/scale-and-save.png)
+    ![調整並儲存](./media/sql-data-warehouse-get-started-tutorial/scale-and-save.png)
 
-4. Wait for your scale operation to finish.
+4. 等候調整作業完成。
 
     > [!NOTE]
-    > Queries cannot run while changing the scale. Scaling **kills** your currently running queries. You can restart them when the operation is finished.
+    > 變更規模時無法執行查詢。 調整會**刪除**目前執行的查詢。 您可以在作業完成時重新啟動查詢。
     >
     
-5. Do a scan operation on the trip data, selecting the top million entries for all the columns. If you're eager to move on quickly, feel free to select fewer rows. Take note of the time it takes to run this operation.
+5. 對車程資料執行掃描作業，選取所有資料行的前&1; 百萬個項目。 如果您想要進展快一點，可放心地選取較少的資料列。 記下執行這項作業所花費的時間。
 
     ```sql
     SELECT TOP(1000000) * FROM dbo.[Trip]
     ```
-6. Scale your data warehouse back to 400 DWU. Remember, each 100 DWU is adding another compute node to your Azure SQL Data Warehouse.
+6. 將資料倉儲調回 400 DWU。 請記住，每上調 100 DWU 就會再新增一個計算節點至您的 Azure SQL 資料倉儲。
 
-7. Run the query again! You should notice a significant difference. 
+7. 再次執行查詢！ 您應該會發現顯著差異。 
 
 > [!NOTE]
-> Since SQL Data Warehouse uses massively parallel processing. Queries that scan or perform analytic functions on millions of rows experience the true power of
-> Azure SQL Data Warehouse.
+> SQL 資料倉儲會使用大量平行處理。 因此，對數百萬個資料列掃描或執行分析函式將可體驗到 Azure SQL 資料倉儲的真正威力。
 >
 
-### See the effect of statistics on query performance
+### <a name="see-the-effect-of-statistics-on-query-performance"></a>查看查詢效能統計資料的影響
 
-1. Run a query that joins the Date table with the Trip table
+1. 執行聯結了日期資料表與車程資料表的查詢
 
     ```sql
     SELECT TOP (1000000) 
@@ -615,10 +614,10 @@ First, let's scale the sizing down to 100 DWU so we can get an idea of how one c
         ON  tr.DateID = dt.DateID
     ```
 
-    This query takes a while because SQL Data Warehouse has to shuffle data before it can perform the join. Joins do not have to shuffle data if they are designed to join data in the same way it is distributed. That's a deeper subject. 
+    SQL 資料倉儲必須先隨機處理資料才能執行聯結，因此這項查詢需要進行一段時間。 若聯結依設計會以散佈資料時的相同方式來聯結資料，則不必隨機處理資料。 這是更深入的主題了。 
 
-2. Statistics make a difference. 
-3. Run this statement to create statistics on the join columns.
+2. 統計資料會造成差異。 
+3. 執行此陳述式來建立聯結資料行的統計資料。
 
     ```sql
     CREATE STATISTICS [dbo.Date DateID stats] ON dbo.Date (DateID);
@@ -626,48 +625,45 @@ First, let's scale the sizing down to 100 DWU so we can get an idea of how one c
     ```
 
     > [!NOTE]
-    > SQL DW does not automatically manage statistics for you. Statistics are important for query
-    > performance and it is highly recommended you create and update statistics.
+    > SQL DW 不會自動管理您的統計資料。 統計資料對於查詢的效能很重要，因此強烈建議您建立和更新統計資料。
     > 
-    > **You gain the most benefit by having statistics on columns involved in joins, columns
-    > used in the WHERE clause and columns found in GROUP BY.**
+    > **對牽涉聯結的資料行、WHERE 子句中使用的資料行、在 GROUP BY 中找到的資料行加以統計資料，可以獲得最大效益。**
     >
 
-3. Run the query from Prerequisites again and observe any performance differences. While the differences in query performance will not be as drastic as scaling up, you should notice a  speed-up. 
+3. 再次從必要條件執行查詢，並觀察效能差異。 雖然查詢效能的差異幅度不會和上調規模一樣巨大，但您應該會發現速度有所增加。 
 
-## Next steps
+## <a name="next-steps"></a>後續步驟
 
-You're now ready to query and explore. Check out our best practices or tips.
+您現在已準備就緒，可以開始查詢和探索。 請查看我們的最佳作法或提示。
 
-If you're done exploring for the day, make sure to pause your instance! In production, you can experience enormous 
-savings by pausing and scaling to meet your business needs.
+如果您當天的探索已完成，請務必暫停您的執行個體！ 在生產環境中，您可以藉由暫停和調整大小以符合商務需求來省下大額成本。
 
-![Pause](./media/sql-data-warehouse-get-started-tutorial/pause.png)
+![暫停](./media/sql-data-warehouse-get-started-tutorial/pause.png)
 
-## Useful readings
+## <a name="useful-readings"></a>實用內容
 
-[Concurrency and Workload Management][]
+[並行和工作負載管理][]
 
-[Best practices for Azure SQL Data Warehouse][]
+[Azure SQL 資料倉儲最佳做法][]
 
-[Query Monitoring][]
+[查詢監視][]
 
-[Top 10 Best Practices for Building a Large Scale Relational Data Warehouse][]
+[建立大規模關聯式資料倉儲的 10 大最佳作法][]
 
-[Migrating Data to Azure SQL Data Warehouse][]
+[將資料移轉至 Azure SQL 資料倉儲][]
 
-[Concurrency and Workload Management]: sql-data-warehouse-develop-concurrency.md#change-a-user-resource-class-example
-[Best practices for Azure SQL Data Warehouse]: sql-data-warehouse-best-practices.md#hash-distribute-large-tables
-[Query Monitoring]: sql-data-warehouse-manage-monitor.md
-[Top 10 Best Practices for Building a Large Scale Relational Data Warehouse]: https://blogs.msdn.microsoft.com/sqlcat/2013/09/16/top-10-best-practices-for-building-a-large-scale-relational-data-warehouse/
-[Migrating Data to Azure SQL Data Warehouse]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/
+[並行和工作負載管理]: sql-data-warehouse-develop-concurrency.md#change-a-user-resource-class-example
+[Azure SQL 資料倉儲最佳做法]: sql-data-warehouse-best-practices.md#hash-distribute-large-tables
+[查詢監視]: sql-data-warehouse-manage-monitor.md
+[建立大規模關聯式資料倉儲的 10 大最佳作法]: https://blogs.msdn.microsoft.com/sqlcat/2013/09/16/top-10-best-practices-for-building-a-large-scale-relational-data-warehouse/
+[將資料移轉至 Azure SQL 資料倉儲]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/
 
 
 
 [!INCLUDE [Additional Resources](../../includes/sql-data-warehouse-article-footer.md)]
 
 <!-- Internal Links -->
-[Prerequisites]: sql-data-warehouse-get-started-tutorial.md#prerequisites
+[必要條件]: sql-data-warehouse-get-started-tutorial.md#prerequisites
 
 <!--Other Web references-->
 [Visual Studio]: https://www.visualstudio.com/

@@ -38,8 +38,10 @@
 
 > [!NOTE]
 > 如果您的一個 Azure 訂用帳戶中需要超過 10 個付費的 IoT 中樞，請連絡 Microsoft 支援服務。
-> 
-> 
+
+
+> [!NOTE]
+> 您目前可以連線到單一 IoT 中樞的裝置數目上限為 500,000 個。 如果您想要上調此限制，請連絡 [Microsoft 支援服務](https://azure.microsoft.com/en-us/support/options/)。
 
 IoT 中樞服務將在超過下列配額時開始對要求進行節流：
 

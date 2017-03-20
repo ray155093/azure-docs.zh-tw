@@ -17,6 +17,7 @@ ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 87c73981c74fc763fd1aec6c283e934c77008441
 ms.openlocfilehash: d17fa0ffb0c55d49487804cd28d8903107069f06
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -56,9 +57,4 @@ ms.openlocfilehash: d17fa0ffb0c55d49487804cd28d8903107069f06
 
 ## <a name="next-steps"></a>後續步驟
  您想要深入了解 Azure AD Identity Protection？ 查看 [Azure Active Directory Identity Protection](active-directory-identityprotection.md)。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

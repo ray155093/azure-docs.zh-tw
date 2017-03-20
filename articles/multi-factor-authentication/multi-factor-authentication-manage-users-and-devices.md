@@ -12,22 +12,21 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 02/23/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 27ff53646992308d574dcc2e631cd63b8227f9c8
-ms.openlocfilehash: 826fc2b2eaaf180d922c7a9a4c329ec4379c2ae0
+ms.sourcegitcommit: 847a8bdcf880b56f587f6759058825fd1965d29e
+ms.openlocfilehash: 43ab735b91bf3f3f1e9631067827f2c456dd7b72
+ms.lasthandoff: 03/01/2017
 
 
 ---
 # <a name="managing-user-settings-with-azure-multi-factor-authentication-in-the-cloud"></a>管理雲端中 Azure Multi-Factor Authentication 的使用者設定
-身為管理員，您可以管理下列使用者和裝置設定。  
+身為管理員，您可以管理下列使用者和裝置設定：
 
-* [要求選定使用者再次提供連絡方法](#require-selected-users-to-provide-contact-methods-again)
-* [刪除使用者現有的應用程式密碼](#delete-users-existing-app-passwords)
-* [還原使用者所有暫停之裝置的 MFA](#restore-mfa-on-all-suspended-devices-for-a-user)
-
-當電腦或裝置遺失、遭竊或您需要移除使用者存取權限時，這是很實用的方法。
+* 要求選定使用者再次提供連絡方法
+* 刪除使用者現有的應用程式密碼
+* 還原使用者所有暫停之裝置的 MFA
 
 ## <a name="require-selected-users-to-provide-contact-methods-again"></a>要求選定使用者再次提供連絡方法
 此設定會強制使用者在登入時再次完成註冊程序。 請注意，如果使用者擁有非瀏覽器應用程式的應用程式密碼，這些應用程式仍然可以繼續運作。  您也可以選取 [ **刪除選定使用者產生的所有現有應用程式密碼**] 來刪除使用者的應用程式密碼。
@@ -62,7 +61,11 @@ ms.openlocfilehash: 826fc2b2eaaf180d922c7a9a4c329ec4379c2ae0
 10. 按一下 [關閉]。
 
 ## <a name="restore-mfa-on-all-remembered-devices-for-a-user"></a>在使用者已記住的所有裝置上還原 MFA
-系統管理員可以在使用者裝置和瀏覽器上還原 Multi-Factor Authentication。 如果這樣做，將會從使用者的所有裝置和瀏覽器中移除記住 MFA，而使用者在下次登入時必須使用 MFA。
+Azure Multi-Factor Authentication 的可設定功能之一，是讓使用者可以選擇將裝置標示為受信任。 如需詳細資訊，請參閱[設定 Azure Multi-Factor Authentication 設定](multi-factor-authentication-whats-next.md#remember-multi-factor-authentication-for-devices-that-users-trust)
+
+使用者可以在其一般的裝置上設定天數內選擇退出雙步驟驗證。 如果帳戶遭到洩露或信任的裝置遺失，您必須能夠移除受信任的狀態，且再次要求進行雙步驟驗證。
+
+**在所有已記住的裝置上還原 Multi-Factor Authentication** 設定，代表使用者在下次登入時受到查問需進行兩步驟驗證，無論他們是否選擇將其裝置標示為受信任。 
 
 ### <a name="how-to-restore-mfa-on-all-suspended-devices-for-a-user"></a>如何還原使用者所有暫停之裝置上的 MFA
 1. 登入 Azure 傳統入口網站。
@@ -76,9 +79,4 @@ ms.openlocfilehash: 826fc2b2eaaf180d922c7a9a4c329ec4379c2ae0
    ![刪除應用程式密碼](./media/multi-factor-authentication-manage-users-and-devices/rememberdevices.png)
 9. 按一下 [儲存]。
 10. 按一下 [關閉]。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

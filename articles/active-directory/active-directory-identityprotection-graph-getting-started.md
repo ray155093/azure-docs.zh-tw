@@ -17,6 +17,7 @@ ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 77031b3bbe2372bf2cac34bac45368ac40911641
 ms.openlocfilehash: 9c7c10031c068eeb02b4468ec48bf60aece2f12e
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -186,10 +187,5 @@ Microsoft Graph 是 Microsoft 的統一 API 端點，也是 [Azure Active Direct
 * [Microsoft Graph](https://graph.microsoft.io/)
 * [Microsoft Graph 概觀](https://graph.microsoft.io/docs)
 * [Azure AD Identity Protection 服務根目錄](https://graph.microsoft.io/docs/api-reference/beta/resources/identityprotection_root)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

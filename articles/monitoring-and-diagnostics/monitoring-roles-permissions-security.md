@@ -17,6 +17,7 @@ ms.author: johnkem
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 26e12a27693fe94ae88b70328ed5dd0d9d5b4c10
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -169,10 +170,5 @@ New-AzureRmRoleDefinition -Role $role
 ## <a name="next-steps"></a>後續步驟
 * [深入了解 RBAC 和 Resource Manager 中的權限](../active-directory/role-based-access-control-what-is.md)
 * [閱讀 Azure 中的監視概觀](monitoring-overview.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

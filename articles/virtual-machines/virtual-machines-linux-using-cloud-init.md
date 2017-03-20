@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/10/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 7d804c93933fd53b0a74696391e3ade228e66560
-ms.openlocfilehash: f1c44718685cd522dcd79ac7e334e52a9488d123
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: d4278f10582646b841611bdc466343a35cfe39e0
+ms.openlocfilehash: 60276c30e7e017e728c2497cd9e69509f251e7a8
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -41,7 +41,7 @@ users:
       - ssh-rsa AAAAB3<snip>==myAdminUser@myVM
 ```
 
-使用 [az group create] 建立資源群組以將 VM 啟動至 (/cli/azure/group#create。 下列範例會建立名為 `myResourceGroup` 的資源群組：
+使用 [az group create](/cli/azure/group#create) 來建立資源群組以在其中啟動 VM。 下列範例會建立名為 `myResourceGroup` 的資源群組：
 
 ```azurecli
 az group create --name myResourceGroup --location westus
@@ -98,7 +98,7 @@ Microsoft 正與我們的合作夥伴合作，以期在他們提供給 Azure 的
 
 建立資源群組，以將 VM 啟動至其中。
 
-使用 [az group create] 建立資源群組以將 VM 啟動至 (/cli/azure/group#create。 下列範例會建立名為 `myResourceGroup` 的資源群組：
+使用 [az group create](/cli/azure/group#create) 來建立資源群組以在其中啟動 VM。 下列範例會建立名為 `myResourceGroup` 的資源群組：
 
 ```azurecli
 az group create --name myResourceGroup --location westus

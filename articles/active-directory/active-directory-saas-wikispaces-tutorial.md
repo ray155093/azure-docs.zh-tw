@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 12/05/2016
+ms.date: 02/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 1cef7ff21a8d076c89688f1fe75cebdb7c468199
-ms.openlocfilehash: c7569177db0821b36e49439ec54224e1aeb9ad9d
+ms.sourcegitcommit: 1c22e4fc17226578aaaf272fdf79178da65c63c2
+ms.openlocfilehash: 6aeeaeef928d483c48f988c71ed8bc8367749229
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.openlocfilehash: c7569177db0821b36e49439ec54224e1aeb9ad9d
 3. 設定使用者佈建
 4. 指派使用者
 
-![案例](./media/active-directory-saas-wikispaces-tutorial/IC787182.png "Sceanrio")
+![案例](./media/active-directory-saas-wikispaces-tutorial/IC787182.png "案例")
 
 ## <a name="enabling-the-application-integration-for-wikispaces"></a>啟用 Wikispaces 的應用程式整合
 本節的目的是要說明如何啟用 Wikispaces 的應用程式整合。
@@ -49,19 +50,19 @@ ms.openlocfilehash: c7569177db0821b36e49439ec54224e1aeb9ad9d
 
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![應用程式](./media/active-directory-saas-wikispaces-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-wikispaces-tutorial/IC700994.png "應用程式")
 
 4. 按一下頁面底部的 [新增]  。
    
-    ![新增應用程式](./media/active-directory-saas-wikispaces-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-wikispaces-tutorial/IC749321.png "新增應用程式")
 
 5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-    ![從組件庫新增應用程式](./media/active-directory-saas-wikispaces-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-wikispaces-tutorial/IC749322.png "從資源庫新增應用程式")
 
 6. 在**搜尋方塊**中，輸入 **Wikispaces**。
    
-    ![應用程式庫](./media/active-directory-saas-wikispaces-tutorial/IC787186.png "Application Gallery")
+    ![應用程式資源庫](./media/active-directory-saas-wikispaces-tutorial/IC787186.png "應用程式資源庫")
 
 7. 在結果窗格中，選取 [Wikispaces]，然後按一下 [完成] 以加入應用程式。
    
@@ -73,19 +74,19 @@ ms.openlocfilehash: c7569177db0821b36e49439ec54224e1aeb9ad9d
 ### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
 1. 在 Azure 傳統入口網站的 [Wikispaces] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
    
-    ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787188.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787188.png "設定單一登入")
 
 2. 在 [您希望使用者如何登入 Wikispaces] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
-    ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787189.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787189.png "設定單一登入")
 
 3. 在 [設定應用程式 URL] 頁面的 [Wikispaces 登入 URL] 文字方塊中，使用下列模式輸入您的 URL：" *http://company.wikispaces.net* "，然後按 [下一步]。
    
-    ![設定應用程式 URL](./media/active-directory-saas-wikispaces-tutorial/IC787190.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-wikispaces-tutorial/IC787190.png "設定應用程式 URL")
 
 4. 於 [在 Wikispaces 設定單一登入] 頁面上，按 [下載中繼資料]，然後將中繼資料檔儲存在您的電腦中。
    
-   ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787191.png "Configure Single Sign-On")
+   ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787191.png "設定單一登入")
 
 5. 將中繼資料檔傳送給 Wikispaces 支援小組。
    
@@ -96,7 +97,7 @@ ms.openlocfilehash: c7569177db0821b36e49439ec54224e1aeb9ad9d
 
 6. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
-    ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787192.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-wikispaces-tutorial/IC787192.png "設定單一登入")
 
 ## <a name="configuring-user-provisioning"></a>設定使用者佈建
 若要讓 Azure AD 使用者可以登入 Wikispaces，則必須將他們佈建到 Wikispaces。  
@@ -107,15 +108,15 @@ Wikispaces 需以手動的方式佈建。
 
 2. 移至 [成員] 。
    
-    ![成員](./media/active-directory-saas-wikispaces-tutorial/IC787193.png "Members")
+    ![成員](./media/active-directory-saas-wikispaces-tutorial/IC787193.png "成員")
 
 3. 按一下 [邀請人員] 。
    
-    ![邀請人員](./media/active-directory-saas-wikispaces-tutorial/IC787194.png "Invite People")
+    ![邀請人員](./media/active-directory-saas-wikispaces-tutorial/IC787194.png "邀請人員")
 
 4. 在 [邀請人員]  區段中，執行下列步驟：
    
-    ![邀請人員](./media/active-directory-saas-wikispaces-tutorial/IC787208.png "Invite People")
+    ![邀請人員](./media/active-directory-saas-wikispaces-tutorial/IC787208.png "邀請人員")
    
     a. 在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶 **使用者名稱或電子郵件地址** 。
    
@@ -139,17 +140,12 @@ Wikispaces 需以手動的方式佈建。
 
 2. 在 [Wikispaces] 應用程式整合頁面上，按一下 [指派使用者]。
    
-    ![指派使用者](./media/active-directory-saas-wikispaces-tutorial/IC787195.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-wikispaces-tutorial/IC787195.png "指派使用者")
 
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
    
-    ![是](./media/active-directory-saas-wikispaces-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-wikispaces-tutorial/IC767830.png "是")
 
 如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

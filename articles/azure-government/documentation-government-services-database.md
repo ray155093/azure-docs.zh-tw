@@ -17,6 +17,7 @@ ms.author: ryansoc
 translationtype: Human Translation
 ms.sourcegitcommit: c94e643565374f852633254a94c2138713cc290e
 ms.openlocfilehash: 58d6295057c71dad488e04be25cc9a85d73bcd20
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -65,10 +66,5 @@ Azure Government 中用於存取和管理 Azure Redis 快取的 URL 不同：
 
 ## <a name="next-steps"></a>後續步驟
 如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格</a>。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -17,6 +17,7 @@ ms.author: v-sharos
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 2b79492914bb52e970343a2e829622122f03642b
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -177,10 +178,5 @@ StorSimple Manager 服務是 Azure 傳統入口網站的延伸模組，可讓您
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [複製 StorSimple 磁碟區](storsimple-clone-volume.md)。
 * 了解如何 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

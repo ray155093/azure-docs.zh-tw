@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/13/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 2eba5ecc41342b62601750c19e4bffd8b6e78b51
-ms.openlocfilehash: 7ff2d29b52848f21534b5d540fb3908710534f69
+ms.sourcegitcommit: 64b6447608ecdd9bdd2b307f4bff2cae43a4b13f
+ms.openlocfilehash: cff066ff2943443749ee8eb2ef71c7ca93bb829c
+ms.lasthandoff: 03/01/2017
 
 
 ---
@@ -135,135 +136,9 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 如需安全性和 FIPS 的詳細資訊，請參閱 [AAD 密碼同步、加密和 FIPS 法規遵循](https://blogs.technet.microsoft.com/enterprisemobility/2014/06/28/aad-password-sync-encryption-and-fips-compliance/)
 
 ## <a name="troubleshooting-password-synchronization"></a>針對密碼同步處理進行疑難排解
-如果密碼未如預期般同步處理，它可適用於部份的使用者或所有的使用者。
-
-* 如果您有個別的物件問題，則查看 [疑難排解未同步處理密碼的一個物件](#troubleshoot-one-object-that-is-not-synchronizing-passwords)。
-* 如果有未同步處理任何密碼的問題，請參閱 [疑難排解未同步處理任何密碼的問題](#troubleshoot-issues-where-no-passwords-are-synchronized)。
-
-### <a name="troubleshoot-one-object-that-is-not-synchronizing-passwords"></a>疑難排解未同步處理密碼的一個物件
-您可以藉由檢閱物件的狀態，輕鬆地疑難排解密碼同步處理問題。
-
-從 [Active Directory 使用者和電腦] 開始。 尋找使用者並確認未選取 [使用者必須在下次登入時變更密碼]  。
-
-![Active Directory 生產力密碼](./media/active-directory-aadconnectsync-implement-password-synchronization/adprodpassword.png)  
-
-若已選取，則要求使用者登入並變更密碼。 暫時密碼不會同步處理至 Azure AD。
-
-如果 Active Directory 中正確，則下一步是在同步處理引擎中追蹤使用者。 從內部部署 Active Directory 到 Azure AD 追蹤使用者，您可以查看物件是否有描述性錯誤。
-
-1. 啟動 **[Synchronization Service Manager](active-directory-aadconnectsync-service-manager-ui.md)**。
-2. 按一下 [連接器] 。
-3. 選取使用者所位於的 **Active Directory 連接器** 。
-4. 選取 [搜尋連接器空間] 。
-5. 找出您要尋找的使用者。
-6. 選取 [歷程] 索引標籤，並確認至少有一個同步規則的 [密碼同步] 顯示為 [True]。 在預設組態中，同步規則的名稱是 **In from AD - User AccountEnabled**。  
-    ![使用者的相關歷程資訊](./media/active-directory-aadconnectsync-implement-password-synchronization/cspasswordsync.png)  
-7. 然後[追蹤使用者](active-directory-aadconnectsync-service-manager-ui-connectors.md#follow-an-object-and-its-data-through-the-system)一直到 Azure AD 連接器空間。 連接器空間物件的輸出規則應該將 [密碼同步] 設為 [True]。 在預設組態中，同步規則的名稱是 **Out to AAD - User Join**。  
-    ![使用者的連接器空間屬性](./media/active-directory-aadconnectsync-implement-password-synchronization/cspasswordsync2.png)  
-8. 若要查看過去一週物件的密碼同步詳細資料，請按一下 [記錄...] 。  
-    ![取得記錄檔詳細資料](./media/active-directory-aadconnectsync-implement-password-synchronization/csobjectlog.png)  
-    如果物件記錄檔是空的，則表示 Azure AD Connect 還無法從 Active Directory 讀取密碼雜湊。 請查看事件記錄檔中是否有錯誤。
-
-[狀態] 欄可以有下列值︰
-
-| 狀態 | 說明 |
-| --- | --- |
-| 成功 |已成功同步處理密碼。 |
-| FilteredByTarget |密碼會設為 [使用者必須在下次登入時變更密碼] 。 未同步處理密碼。 |
-| NoTargetConnection |Metaverse 或 Azure AD 連接器空間中沒有任何物件。 |
-| SourceConnectorNotPresent |在內部部署 Active Directory 連接器空間中找不到任何物件。 |
-| TargetNotExportedToDirectory |尚未匯出 Azure AD 連接器空間中的物件。 |
-| MigratedCheckDetailsForMoreInfo |記錄項目建立於組建 1.0.9125.0 之前，並且以其舊版的狀態顯示。 |
-
-### <a name="troubleshoot-issues-where-no-passwords-are-synchronized"></a>疑難排解未同步處理任何密碼的問題
-從執行 [取得密碼同步設定的狀態](#get-the-status-of-password-sync-settings)一節中的指令碼開始。 它可讓您大致了解密碼同步設定作業。  
-![來自密碼同步處理設定的 PowerShell 指令碼輸出](./media/active-directory-aadconnectsync-implement-password-synchronization/psverifyconfig.png)  
-如果未在 Azure AD 中啟用此功能，或未啟用同步通道狀態，則執行 Connect 安裝精靈。 選取 [自訂同步處理選項]  並取消選取密碼同步處理。 這項變更會暫時停用此功能。 然後再次執行精靈並重新啟用密碼同步處理。 再次執行指令碼，確認組態正確無誤。
-
-如果指令碼顯示沒有活動訊號，則執行 [觸發所有密碼的完整同步處理](#trigger-a-full-sync-of-all-passwords)中的指令碼。 此指令碼也可以用於其他情況：組態正確無誤，但未同步處理密碼。
-
-如果您已安裝具有自訂設定的 Azure AD Connect，請確定您已將「複寫目錄變更」和「複寫目錄變更 (全部)」權限授與 AD Connector 所使用的帳戶。 如需了解此帳戶所需的全部權限，請參閱[帳戶和權限](active-directory-aadconnect-accounts-permissions.md#create-the-ad-ds-account)。 若沒有這些權限，此帳戶將不具備閱讀 Active Directory 中密碼雜湊的權限。
-
-接著，請查看應用程式事件記錄檔。 如果有與密碼同步處理相關的全域問題，而服務正常運作，則如先前的步驟所確認，應該會有提供更多詳細資料的錯誤。
-
-#### <a name="get-the-status-of-password-sync-settings"></a>取得密碼同步設定的狀態
-```
-Import-Module ADSync
-$connectors = Get-ADSyncConnector
-$aadConnectors = $connectors | Where-Object {$_.SubType -eq "Windows Azure Active Directory (Microsoft)"}
-$adConnectors = $connectors | Where-Object {$_.ConnectorTypeName -eq "AD"}
-if ($aadConnectors -ne $null -and $adConnectors -ne $null)
-{
-    if ($aadConnectors.Count -eq 1)
-    {
-        $features = Get-ADSyncAADCompanyFeature -ConnectorName $aadConnectors[0].Name
-        Write-Host
-        Write-Host "Password sync feature enabled in your Azure AD directory: "  $features.PasswordHashSync
-        foreach ($adConnector in $adConnectors)
-        {
-            Write-Host
-            Write-Host "Password sync channel status BEGIN ------------------------------------------------------- "
-            Write-Host
-            Get-ADSyncAADPasswordSyncConfiguration -SourceConnector $adConnector.Name
-            Write-Host
-            $pingEvents =
-                Get-EventLog -LogName "Application" -Source "Directory Synchronization" -InstanceId 654  -After (Get-Date).AddHours(-3) |
-                    Where-Object { $_.Message.ToUpperInvariant().Contains($adConnector.Identifier.ToString("D").ToUpperInvariant()) } |
-                    Sort-Object { $_.Time } -Descending
-            if ($pingEvents -ne $null)
-            {
-                Write-Host "Latest heart beat event (within last 3 hours). Time " $pingEvents[0].TimeWritten
-            }
-            else
-            {
-                Write-Warning "No ping event found within last 3 hours."
-            }
-            Write-Host
-            Write-Host "Password sync channel status END ------------------------------------------------------- "
-            Write-Host
-        }
-    }
-    else
-    {
-        Write-Warning "More than one Azure AD Connectors found. Please update the script to use the appropriate Connector."
-    }
-}
-Write-Host
-if ($aadConnectors -eq $null)
-{
-    Write-Warning "No Azure AD Connector was found."
-}
-if ($adConnectors -eq $null)
-{
-    Write-Warning "No AD DS Connector was found."
-}
-Write-Host
-```
-
-#### <a name="trigger-a-full-sync-of-all-passwords"></a>觸發所有密碼的完整同步處理
-您可以使用下列指令碼，對所有密碼觸發完整同步處理︰
-
-```
-$adConnector = "<CASE SENSITIVE AD CONNECTOR NAME>"
-$aadConnector = "<CASE SENSITIVE AAD CONNECTOR NAME>"
-Import-Module adsync
-$c = Get-ADSyncConnector -Name $adConnector
-$p = New-Object Microsoft.IdentityManagement.PowerShell.ObjectModel.ConfigurationParameter "Microsoft.Synchronize.ForceFullPasswordSync", String, ConnectorGlobal, $null, $null, $null
-$p.Value = 1
-$c.GlobalParameters.Remove($p.Name)
-$c.GlobalParameters.Add($p)
-$c = Add-ADSyncConnector -Connector $c
-Set-ADSyncAADPasswordSyncConfiguration -SourceConnector $adConnector -TargetConnector $aadConnector -Enable $false
-Set-ADSyncAADPasswordSyncConfiguration -SourceConnector $adConnector -TargetConnector $aadConnector -Enable $true
-```
-
+如果您在進行密碼同步處理時發生問題，則請參閱[針對密碼同步處理進行疑難排解 (英文)](active-directory-aadconnectsync-troubleshoot-password-synchronization.md)。
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure AD Connect 同步處理：自訂同步處理選項](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

@@ -17,6 +17,7 @@ ms.author: ryansoc
 translationtype: Human Translation
 ms.sourcegitcommit: 7eb9fd7e4939542fb7382c20238a221cb6d4b6d1
 ms.openlocfilehash: d3b100b35b21335abee6b833b4507b9a09116497
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -33,10 +34,5 @@ ms.openlocfilehash: d3b100b35b21335abee6b833b4507b9a09116497
 ## <a name="next-steps"></a>後續步驟
 * <a href="https://www.microsoft.com/en-us/TrustCenter/Compliance/CJIS">Microsoft 信任中心 - 刑事犯罪資料資訊服務網頁</a>
 * <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格</a>
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

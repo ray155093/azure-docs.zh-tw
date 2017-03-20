@@ -13,18 +13,19 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/13/2016
+ms.date: 03/03/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 8afc15321db5c6d3b7c6cae2692a9a0d61ccdf6a
-ms.openlocfilehash: d62431f3fae21388d8ccfc0d411267f69823b700
+ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
+ms.openlocfilehash: cf8db132c7f541017744505bf0fca9393db8b3f9
+ms.lasthandoff: 03/04/2017
 
 
 ---
 # <a name="frequently-asked-questions-about-documentdb"></a>DocumentDB 常見問題集
 ## <a name="database-questions-about-microsoft-azure-documentdb-fundamentals"></a>Microsoft Azure DocumentDB 基本概念的相關資料庫問題
 ### <a name="what-is-microsoft-azure-documentdb"></a>什麼是 Microsoft Azure DocumentDB？
-Microsoft Azure DocumentDB 是炫目的高速、全球級的 NoSQL 文件「資料庫即服務」，可在無結構描述的資料上進行豐富的查詢，協助提供可設定和可靠的效能，且支援快速開發，這些完全都是透過受管理的平台，背後有 Microsoft Azure 強大的功能與先進的技術做後盾。 如果關鍵要求在於可預測的輸送量、高可用性、低遲性和無結構描述的資料模型，則 DocumentDB 就是 Web、行動、遊戲和 IoT 應用程式最適當的解決方案。 DocumentDB 透過原生 JSON 資料模型，提供結構描述的彈性和豐富的檢索能力，且包含多文件交易式支援與整合式 JavaScript。  
+Microsoft Azure DocumentDB 是炫目的高速、全球級的 NoSQL 文件「資料庫即服務」，可在無結構描述的資料上進行豐富的查詢，協助提供可設定和可靠的效能，且支援快速開發，這些完全都是透過受管理的平台，背後有 Microsoft Azure 強大的功能與先進的技術做後盾。 如果關鍵要求在於可預測的輸送量、高可用性、低延遲性和無結構描述的資料模型，則 DocumentDB 就是 Web、行動、遊戲和 IoT 應用程式最適當的解決方案。 DocumentDB 透過原生 JSON 資料模型，提供結構描述的彈性和豐富的檢索能力，且包含多文件交易式支援與整合式 JavaScript。  
 
 如需更多資料庫問題、解答，以及部署和使用此服務的指示，請參閱 [DocumentDB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)。
 
@@ -58,7 +59,7 @@ DocumentDB 是 NoSQL 文件導向的資料庫，以 JSON 格式儲存資料。  
 如果您的工作負載可以大致平均分配給夠大的分割索引鍵數目，則在 DocumentDB 中集合可以支援的輸送量總量沒有限制。
 
 ### <a name="how-much-does-microsoft-azure-documentdb-cost"></a>Microsoft Azure DocumentDB 的費用是多少？
-請參閱 [DocumentDB 價格詳細資料](https://azure.microsoft.com/pricing/details/documentdb/) 頁面，以取得詳細資料。 DocumentDB 使用量費用取決於使用中的集合數目、集合已在線上的時數，以及每個集合的已使用儲存體和已佈建輸送量。
+請參閱 [DocumentDB 價格詳細資料](https://azure.microsoft.com/pricing/details/documentdb/) 頁面，以取得詳細資料。 DocumentDB 使用量費用取決於已佈建的集合數目、集合在線上的時數，以及每個集合的已佈建輸送量。
 
 ### <a name="is-there-a-free-account-available"></a>有免費的帳戶嗎？
 如果您不熟悉 Azure，可以註冊 [Azure 免費帳戶](https://azure.microsoft.com/free/)，就能得到 30 天免費試用以及美金 200 元，讓您試用所有 Azure 服務。 或者，如果您有 Visual Studio 訂用帳戶，就可以享有[免費的 Azure 信用額度每月美金&150; 元](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)，可用於所有 Azure 服務。  
@@ -79,7 +80,7 @@ DocumentDB 是 NoSQL 文件導向的資料庫，以 JSON 格式儲存資料。  
 您可以使用 [Azure 入口網站]() (如[建立 DocumentDB 集合和資料庫](documentdb-create-collection.md)所述)、其中一個 [DocumentDB SDK](documentdb-sdk-dotnet.md) 或透過 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 來建立資料庫。  
 
 ### <a name="what-is-a-collection"></a>什麼是集合？
-集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。 集合是計費實體，其 [成本](documentdb-performance-levels.md) 是由使用的輸送量和儲存體所決定。 集合可以跨越一或多個分割/伺服器，也可以進行調整以處理幾乎無限量的儲存體或輸送量。
+集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。 集合是計費實體，其[成本](documentdb-performance-levels.md)是由使用的輸送量和儲存體所決定。 集合可以跨越一或多個資料分割/伺服器，也可以進行調整以處理幾乎無限量的儲存體或輸送量。
 
 集合也是 DocumentDB 的帳務實體。 每個集合根據佈建的輸送量和使用的儲存體空間，以小時為單位計費。 如需詳細資訊，請參閱 [DocumentDB 定價](https://azure.microsoft.com/pricing/details/documentdb/)。  
 
@@ -88,15 +89,18 @@ DocumentDB 是 NoSQL 文件導向的資料庫，以 JSON 格式儲存資料。  
 
 ## <a name="database-questions-about-developing-against-microsoft-azure-documentdb"></a>針對 Microsoft Azure DocumentDB 進行開發的相關資料庫問題
 ### <a name="how-to-do-i-start-developing-against-documentdb"></a>如何開始針對 DocumentDB 進行開發？
-[SDK](documentdb-sdk-dotnet.md) 適用於 .NET、Python、Node.js、JavaScript 和 Java。  開發人員也可以利用 [RESTful HTTP API](https://msdn.microsoft.com/library/azure/dn781481.aspx) ，從各種平台和語言來與 DocumentDB 資源互動。
+[SDK](documentdb-sdk-dotnet.md) 適用於 .NET、Python、Node.js、JavaScript 和 Java。  開發人員也可以使用 [RESTful HTTP API](https://msdn.microsoft.com/library/azure/dn781481.aspx)，經由各種平台和語言來與 DocumentDB 資源互動。
 
 GitHub 上提供 DocumentDB [.NET](documentdb-dotnet-samples.md)、[Java](https://github.com/Azure/azure-documentdb-java)、[Node.js](documentdb-nodejs-samples.md) 和 [Python](documentdb-python-samples.md) 的 SDK。
 
 ### <a name="does-documentdb-support-sql"></a>DocumentDB 支援 SQL 嗎？
 DocumentDB SQL 查詢語言是 SQL 支援的查詢功能增強子集。 DocumentDB 的 SQL 查詢語言提供豐富的階層式和關聯式運算子，且透過 JavaScript 型使用者定義函數 (UDF) 支援擴充性。 JSON 文法允許將 JSON 文件模型化為樹狀目錄，並以標籤當作樹狀節點 - 這是由 DocumentDB 的自動編製索引技術及 DocumentDB 的 SQL 查詢方言所使用。  如需如何使用 SQL 文法的詳細資訊，請參閱[查詢 DocumentDB][query] 一文。
 
+### <a name="does-documentdb-support-sql-aggregation-functions"></a>DocumentDB 支援 SQL 彙總函式嗎？
+DocumentDB 透過彙總函式 `COUNT`、`MIN`、`MAX`、`AVG` 和 `SUM` 及透過 SQL 文法，支援任何規模的低延遲彙總。 如需詳細資訊，請參閱[彙總函式](documentdb-sql-query.md#Aggregates)。
+
 ### <a name="what-are-the-data-types-supported-by-documentdb"></a>DocumentDB 支援什麼資料類型？
-DocumentDB 支援的基本資料類型與 JSON 相同。 JSON 有一套簡單的類型系統，包含字串、數值 (IEEE754 雙精度)、布林值 - true、false 及 Null。  透過使用 { } 運算子建立巢狀物件和使用 [ ] 運算子建立陣列，可以在 JSON 和 DocumentDB 中表示更複雜的資料類型 (例如 DateTime、Guid、Int64 和 Geometry)。
+DocumentDB 支援的基本資料類型與 JSON 相同。 JSON 有一套簡單的類型系統，包含字串、數值 (IEEE754 雙精度)、布林值 - true、false 及 Null。 DocumentDB 原本就支援以 GeoJSON 表示的空間類型點、Polygon 和 LineString。 透過使用 { } 運算子建立巢狀物件和使用 [ ] 運算子建立陣列，可以在 JSON 和 DocumentDB 中表示更複雜的資料類型 (例如 DateTime、Guid、Int64 和 Geometry)。
 
 ### <a name="how-does-documentdb-provide-concurrency"></a>DocumentDB 如何提供並行存取？
 DocumentDB 透過 HTTP 實體標記或 ETag，支援開放式並行存取控制 (OCC)。 每一個 DocumentDB 資源都有一個 ETag，並且會在每次更新文件時，於伺服器上設定此 ETag。 ETag 標頭和目前的值會包含於所有回應訊息中。 Etag 可與 If-Match 標頭搭配使用，讓伺服器能夠決定是否應該更新資源。 If-Match 值是要經過檢查的 ETag 值。 如果 ETag 值符合伺服器的 ETag 值，就會更新資源。 如果 ETag 不再是最新狀態，則伺服器會拒絕該作業，並提供「HTTP 412 前置條件失敗」回應碼。 用戶端接著必須重新擷取資源，以取得該資源目前的 ETag 值。 此外，ETag 可以與 If-None-Match 標頭搭配使用，來判斷是否需要重新擷取資源。
@@ -121,9 +125,4 @@ DocumentDB 透過 JavaScript 預存程序和觸發程序，支援語言整合式
 
 [azure-portal]: https://portal.azure.com
 [query]: documentdb-sql-query.md
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

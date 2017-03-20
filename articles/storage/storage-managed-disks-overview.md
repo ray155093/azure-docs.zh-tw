@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/23/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 388e4c8f46662200a0e05db06d417f086ad41b11
-ms.openlocfilehash: b53feeb08d469363a52303cad4577b752a570900
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
+ms.openlocfilehash: d9e79c78f55dc80e113062bf0a134c02787e06a1
+ms.lasthandoff: 03/07/2017
 
 
 ---
@@ -45,7 +45,7 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 
 受控磁碟可確保可用性設定組中的 VM 磁碟彼此充分隔離，以避免單一失敗點，為可用性設定組提供更高的可靠性。 它的作法是自動以不同的儲存體縮放單位 (戳記) 來放置磁碟。 如果因為硬體或軟體失敗造成戳記失敗，則只有磁碟在這些戳記上的 VM 執行個體才會失敗。 例如，假設您的應用程式在五個 VM 上執行，且這些 VM 位於可用性設定組中。 這些磁碟的 VM 不會全部以相同的戳記儲存，因此，如果有一個戳記失效，應用程式的其他執行個體會繼續執行。
 
-### <a name="better-security"></a>更好的安全性
+### <a name="granular-access-control"></a>細微的存取控制
 
 您可以使用 [Azure 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-what-is.md) 將受控磁碟的特定權限指派給一個或多個使用者。 受控磁碟公開各種不同的作業，包括讀取、寫入 (建立/更新)、刪除、匯出和擷取磁碟的[共用存取簽章 (SAS) URI](storage-dotnet-shared-access-signature-part-1.md)。 您可以授權某人只能存取他份內工作所需的作業。 例如，如果您不想讓某人將受控磁碟複製到儲存體帳戶，您可以選擇不要授權存取該受控磁碟的匯出動作。 同樣地，如果您不想讓某人使用 SAS URI 來複製受控磁碟，您可以選擇不要授與有關受控磁碟的這種權限。
 
@@ -100,7 +100,7 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 
 ## <a name="images"></a>映像
 
-受控磁碟也支援建立受管理的自訂映像。 您可以從儲存體帳戶中的自訂 VHD 或直接從執行中的 VM 建立映像。 這會在單一映像中擷取與執行中 VM 相關聯的所有受控磁碟，包括 OS 和資料磁碟。 這可讓您使用自訂映像建立數百個 VM，而不需要複製或管理任何儲存體帳戶。
+受控磁碟也支援建立受管理的自訂映像。 您可以從儲存體帳戶中的自訂 VHD 或直接從一般化 (系統預備的) VM 建立映像。 這會在單一映像中擷取與 VM 相關聯的所有受控磁碟，包括 OS 和資料磁碟。 這可讓您使用自訂映像建立數百個 VM，而不需要複製或管理任何儲存體帳戶。
 
 如需建立映像的相關資訊，請參閱下列文章︰
 * [在 Azure 中如何擷取一般化 VM 的受管理映像](../virtual-machines/virtual-machines-windows-capture-image-resource.md)
@@ -112,7 +112,7 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 
 快照集是在建立時的磁碟複本。 它只適用於一個磁碟。 如果您的 VM 只有一個磁碟 (OS)，您可以建立它的快照集或映像，然後從快照集或映像建立 VM。
 
-如果您的 VM 有五個磁碟，且都已等量分配，情形又如何？ 您可以建立每個磁碟的快照集，但 VM 內對各磁碟的狀態一無所知 – 快照集只知道那個磁碟的情形。 在此情況下，快照集可能需要彼此協調，但目前不支援這樣做。 因此，在此情況下，如果您想要建立 VM 的複本，您必須建立映像。 根據預設，映像會包含所有這五個磁碟的協調複本。
+如果 VM 有五個磁碟，且都已等量分配，情形又如何？ 您可以建立每個磁碟的快照集，但 VM 內對各磁碟的狀態一無所知 – 快照集只知道那個磁碟的情形。 在此情況下，快照集可能需要彼此協調，但目前不支援這樣做。
 
 ## <a name="azure-backup-service-support"></a>Azure 備份服務支援 
 

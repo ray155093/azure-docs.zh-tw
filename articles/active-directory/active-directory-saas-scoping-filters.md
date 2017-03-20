@@ -1,5 +1,5 @@
 ---
-title: "使用範圍篩選器進行以屬性為基礎的應用程式佈建 | Microsoft Docs"
+title: "使用範圍篩選器佈建應用程式 | Microsoft Docs"
 description: "了解如果某個物件無法滿足您的業務需求，如何使用範圍篩選器來防止實際佈建 App 中支援使用者佈建自動化的物件。"
 services: active-directory
 documentationcenter: 
@@ -11,23 +11,25 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
+ms.date: 02/27/2017
 ms.author: markvi
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 4b95782793956470fd147a98c17759a1a1a3a0de
+ms.sourcegitcommit: c06c089fb08c19b55246122201c378917a560e14
+ms.openlocfilehash: 3e4458f70afce9ebd9477b00afc39b6e84e49319
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="attribute-based-app-provisioning-with-scoping-filters"></a>含範圍篩選器的屬性型 App 佈建
-本節的目標在於說明如何使用範圍篩選器定義將會決定哪些使用者將佈建到應用程式的屬性型規則。
+# <a name="attribute-based-application-provisioning-with-scoping-filters"></a>含範圍篩選器的屬性型應用程式佈建
+本節的目標在於說明如何使用範圍篩選器定義會決定哪些使用者會佈建到應用程式的屬性型規則。
 
 ## <a name="clauses-and-scope-groups"></a>子句和範圍群組
 ![範圍篩選器][1] 
 
 範圍篩選器由一或多個**範圍群組**所定義，其中每個範圍群組都包含一或多個**子句**。 若要查看特定範圍群組的子句，請按一下群組名稱左側的箭號，將其展開。
 
-**子句** 透過評估每個使用者的屬性，決定哪些使用者可以通過範圍篩選器。 例如，您可能有一個子句要求使用者的 'state' 屬性等於 New York，也就是說，只有您的紐約使用者將會佈建到應用程式。
+**子句** 透過評估每個使用者的屬性，決定哪些使用者可以通過範圍篩選器。 例如，您可能有一個子句要求使用者的 'state' 屬性等於 New York，因此只有 New York 使用者會佈建到應用程式。
 
 ![範圍群組名稱][2] 
 
@@ -38,9 +40,9 @@ ms.openlocfilehash: 4b95782793956470fd147a98c17759a1a1a3a0de
 ## <a name="how-scoping-filters-are-evaluated"></a>範圍篩選器的評估方式
 在佈建期間，我們會針對您的範圍篩選器來測試每個指派的使用者，以判斷該使用者是否可以存取應用程式。 您可以將每個子句視為必須通過的測試，使用者才能避免被篩選掉。 
 
-如果您已經定義多個範圍群組，每個使用者都必須至少通過其中一個，才能存取應用程式。 不過，在每個範圍群組中，使用者必須通過每個單一子句，才能通過該特定的範圍群組。 
+如果您已經定義多個範圍群組，每個使用者都必須至少通過其中一個，才能存取應用程式。 不過，在每個範圍群組中，使用者必須通過每個子句，才能通過該特定的範圍群組。 
 
-換句話說，您可以將範圍群組視為 OR，並將子句視為 AND。例如，請考慮以下的範圍篩選器：
+換句話說，您可以將範圍群組視為 OR，並將其中的子句視為 AND。 例如，請考慮以下的範圍篩選器：
 
 ![範圍群組名稱][3]  
 
@@ -63,9 +65,4 @@ ms.openlocfilehash: 4b95782793956470fd147a98c17759a1a1a3a0de
 [1]: ./media/active-directory-saas-scoping-filters/ic782811.png
 [2]: ./media/active-directory-saas-scoping-filters/ic782812.png
 [3]: ./media/active-directory-saas-scoping-filters/ic782813.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

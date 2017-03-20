@@ -14,12 +14,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/16/2017
+ms.date: 02/18/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 0c07c842ba8c6214d6746b0361af7b416069a6f5
-ms.openlocfilehash: 6a854486060c77d743cbdd42b7a341860ab77361
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: a4e25c0dab34f0977b4511046ad53f4c0b409990
+ms.openlocfilehash: 830cc28cdd5ca523c43cf1fa9cdff5131727d71f
+ms.lasthandoff: 02/23/2017
 
 
 ---
@@ -46,6 +46,13 @@ ms.lasthandoff: 02/17/2017
 以 Azure AD 系統管理員身分將 B2B 共同作業使用者新增到應用程式，如下列影片中所示：
 
 >[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-assign-b2b-to-apps/Player]
+
+## <a name="admins-resending-invitations-to-guest-users"></a>將邀請重新傳送給來賓使用者的系統管理員
+您可以移至 B2B 共同作業使用者的設定檔頁面，並將邀請重新傳送給尚未兌換的來賓使用者：
+
+![重新傳送邀請](./media/active-directory-b2b-admin-add-users/resend-invitation.png)
+
+> ![注意] 這將會從已登入的使用者重新傳送邀請並邀請該使用者加入目錄，即使原始邀請是邀請存取特定應用程式或群組。
 
 
 ## <a name="related-articles"></a>相關文章

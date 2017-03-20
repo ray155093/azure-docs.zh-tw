@@ -16,17 +16,17 @@ ms.workload: na
 ms.date: 02/02/2017
 ms.author: glenga
 translationtype: Human Translation
-ms.sourcegitcommit: ab0b218a99ab3ff98edfa075eabbd3eb2c2bd1d4
-ms.openlocfilehash: 996fc80ff926117dc12180efe1949b3dbeba3f91
-ms.lasthandoff: 02/06/2017
+ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
+ms.openlocfilehash: 4ee741cbec8db6b6400ff9f27daa2a0120bd2618
+ms.lasthandoff: 03/03/2017
 
 
 ---
 # <a name="create-a-function-from-the-azure-portal"></a>從 Azure 入口網站建立函式
 ## <a name="overview"></a>概觀
-Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 應用程式平台，使其可實作其他 Azure 服務、SaaS 產品和內部部署系統內事件所觸發的程式碼。 透過 Azure Functions，您的應用程式會根據需求調整，而您只需要支付所用資源的費用。 Azure Functions 可您建立以各種程式設計語言實作的已排程或已觸發程式碼單位。 若要深入了解 Azure Functions，請參閱 [Azure Functions 概觀](functions-overview.md)。
+Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 應用程式平台，使其可實作其他 Azure 服務、SaaS 產品和內部部署系統內事件所觸發的程式碼。 透過 Azure Functions，您的應用程式會根據需求調整，而您只需要支付所用資源的費用。 Azure Functions 可讓您建立以各種程式設計語言實作的已排程或已觸發程式碼單位。 若要深入了解 Azure Functions，請參閱 [Azure Functions 概觀](functions-overview.md)。
 
-本主題說明如何使用 Azure 入口網站建立由 HTTP 觸發程序叫用的簡單 "hello world" Node.js Azure 函式。 在您可以於 Azure 入口網站中建立函式之前，您必須在 Azure App Service 中明確建立一個函數應用程式。 如果要讓系統為您自動建立函數應用程式，請參閱 [另一篇 Azure Functions 快速入門教學課程](functions-create-first-azure-function.md)，該文章提供較為簡單的快速入門體驗，且包含一部影片。
+本主題說明如何使用 Azure 入口網站建立由 HTTP 觸發程序叫用的簡單 "hello world" Node.js Azure 函式。 在您可以於 Azure 入口網站中建立函式之前，您必須在 Azure App Service 中明確建立一個函數應用程式。 如果要讓系統為您自動建立函數應用程式，請參閱[另一篇 Azure Functions 快速入門教學課程](functions-create-first-azure-function.md)，該文章提供較為簡單的快速入門體驗，且包含一部影片。
 
 ## <a name="create-a-function-app"></a>建立函數應用程式
 函式應用程式可在 Azure 中主控函式的執行。 如果您沒有 Azure 帳戶，請查看[試用 Functions](https://functions.azure.com/try) 體驗或[建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。 請遵循下列步驟來在 Azure 入口網站中建立函數應用程式。
@@ -44,9 +44,14 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
 
     請注意，您必須輸入有效的「App 名稱」，該名稱只可包含字母、數字和連字號。 不允許使用底線 (**_**) 字元。
 
-3. 按一下 [建立]  以佈建並部署新的函數應用程式。  
+3. 按一下 [建立] 以佈建並部署新的函數應用程式。  
 
-佈建函數應用程式之後，您便可以建立您的第一個函式。
+### <a name="storage-account-requirements"></a>儲存體帳戶需求
+
+建立函數應用程式時，您必須建立或連結支援 Blob、佇列及表格儲存體的一般用途 Azure 儲存體帳戶。 Azure Functions 會在內部使用 Azure 儲存體來進行作業，例如管理觸發程序和記錄函數執行。 某些儲存體帳戶不支援佇列和表格，例如僅 Blob 儲存體帳戶 (包括進階儲存體) 和具有 ZRS 複寫的一般用途儲存體帳戶。 當建立新的函數應用程式時，這些帳戶會從 [儲存體帳戶] 刀鋒視窗篩選掉。
+當使用「使用情況主控方案」時，函數應用程式內容 (例如函數程式碼檔案和繫結組態) 會儲存在主要儲存體帳戶上的 Azure 檔案共用。 如果您刪除主要儲存體帳戶，此內容將會被刪除且無法復原。
+
+若要深入了解儲存體帳戶類型，請參閱 [Azure 儲存體服務簡介] (../storage/storage-introduction.md#introducing-the-azure-storage-services)。
 
 ## <a name="create-a-function"></a>建立函式
 這些步驟會從 Azure Functions 快速入門建立一個函式。
@@ -56,6 +61,7 @@ Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 
     ![](./media/functions-create-first-azure-function-azure-portal/function-app-quickstart-node-webhook.png)
 
 2. (選擇性) 此時，您可以在快速入門中，選擇在入口網站中進行 Azure Functions 功能的快速導覽。    完成或跳過本教學課程之後，您可以使用 HTTP 觸發程序來測試新函式。
+
 
 ## <a name="test-the-function"></a>測試函式
 [!INCLUDE [Functions quickstart test](../../includes/functions-quickstart-test.md)]
