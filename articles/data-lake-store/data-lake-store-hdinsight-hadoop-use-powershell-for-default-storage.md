@@ -48,8 +48,9 @@ ms.lasthandoff: 03/07/2017
 * **Windows 軟體開發套件 (SDK)**︰若要安裝 Windows SDK，請移至 [Windows 10 下載和工具](https://dev.windows.com/en-us/downloads)。 您可使用 Windows SDK 來建立安全性憑證。
 * **Azure Active Directory 服務主體**︰本教學課程說明如何在 Azure Active Directory (Azure AD) 中建立服務主體。 不過，您必須是 Azure AD 系統管理員，才能建立服務主體。 如果您是系統管理員，就可以略過這項先決條件並繼續進行本教學課程。
 
- >[!NOTE]
- >唯有您是 Azure AD 系統管理員，才可以建立服務主體。 您的 Azure AD 系統管理員必須先建立服務主體，您才能建立搭配 Data Lake Store 的 HDInsight 叢集。 必須使用憑證來建立服務主體，如[使用憑證建立服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)所述。
+    >[!NOTE]
+    >唯有您是 Azure AD 系統管理員，才可以建立服務主體。 您的 Azure AD 系統管理員必須先建立服務主體，您才能建立搭配 Data Lake Store 的 HDInsight 叢集。 必須使用憑證來建立服務主體，如[使用憑證建立服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)所述。
+    >
 
 ## <a name="create-a-data-lake-store-account"></a>建立 Data Lake Store 帳戶
 若要建立 Data Lake Store 帳戶，請執行下列作業︰
@@ -68,8 +69,9 @@ ms.lasthandoff: 03/07/2017
         # Register for Data Lake Store
         Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.DataLakeStore"
 
- > [!NOTE]
- > 如果您註冊 Data Lake Store 資源提供者並收到類似 `Register-AzureRmResourceProvider : InvalidResourceNamespace: The resource namespace 'Microsoft.DataLakeStore' is invalid` 的錯誤，您的訂用帳戶可能不在 Data Lake Store 的允許清單中。 若要針對 Data Lake Store 公開預覽版來啟用 Azure 訂用帳戶，請遵循[透過 Azure 入口網站開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md)中的指示操作。
+    > [!NOTE]
+    > 如果您註冊 Data Lake Store 資源提供者並收到類似 `Register-AzureRmResourceProvider : InvalidResourceNamespace: The resource namespace 'Microsoft.DataLakeStore' is invalid` 的錯誤，您的訂用帳戶可能不在 Data Lake Store 的允許清單中。 若要針對 Data Lake Store 公開預覽版來啟用 Azure 訂用帳戶，請遵循[透過 Azure 入口網站開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md)中的指示操作。
+    > 
 
 2. 當系統提示您登入時，請以其中一個訂用帳戶管理員或擁有者身分登入。
 3. Data Lake Store 帳戶與 Azure 資源群組相關聯。 從建立資源群組著手。
@@ -217,7 +219,8 @@ ms.lasthandoff: 03/07/2017
     您應該會在 SSH 主控台上看到查詢輸出。
 
     >[!NOTE]
-       >上述 CREATE TABLE 命令中範例資料的路徑為 `adl:///example/data/`，其中 `adl:///` 是叢集根目錄。 遵循本教學課程中指定之叢集根目錄的範例，此命令為 `adl://hdiadlstore.azuredatalakestore.net/clusters/hdiadlcluster`。 您可以使用較短的替代路徑，或提供叢集根目錄的完整路徑。
+    >上述 CREATE TABLE 命令中範例資料的路徑為 `adl:///example/data/`，其中 `adl:///` 是叢集根目錄。 遵循本教學課程中指定之叢集根目錄的範例，此命令為 `adl://hdiadlstore.azuredatalakestore.net/clusters/hdiadlcluster`。 您可以使用較短的替代路徑，或提供叢集根目錄的完整路徑。
+    >
 
 ## <a name="access-data-lake-store-by-using-hdfs-commands"></a>使用 HDFS 命令存取 Data Lake Store
 在您設定 HDInsight 叢集使用 Data Lake Store 之後，您可以使用分散式檔案系統 (HDFS) 殼層命令來存取存放區。
