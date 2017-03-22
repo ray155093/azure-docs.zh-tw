@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 10/24/2016
+ms.date: 3/21/2017
 ms.author: raiye
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: a7fde12e9ead0b64a99c93a3839fe2b5a0de93cd
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -79,10 +80,5 @@ Microsoft 可自行決定是否延長該期間，以緩和客戶轉換時的不�
 
 ## <a name="next-steps"></a>後續步驟
 檢閱最新的 [客體作業系統版本](cloud-services-guestos-update-matrix.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

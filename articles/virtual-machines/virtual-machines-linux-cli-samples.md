@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 02/28/2017
+ms.date: 03/08/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 6d4287d391fee55419cf8bd17f4b48a0e5bbfb81
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: ea9ee62b28069f87404b665151a51c5b73edf353
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -35,13 +35,10 @@ ms.lasthandoff: 03/08/2017
 | [建立已啟用 Docker 功能的 VM](./scripts/virtual-machines-linux-cli-sample-create-docker-host.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) | 建立虛擬機器、設定此 VM 作為 Docker 主機，然後執行 NGINX 容器。 |
 | [建立 VM 並執行組態指令碼](./scripts/virtual-machines-linux-cli-sample-create-vm-nginx.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) | 建立虛擬機器，並使用「Azure 自訂指令碼」擴充功能來安裝 NGINX。 |
 | [建立已安裝 WordPress 的 VM](./scripts/virtual-machines-linux-cli-sample-create-vm-wordpress.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) | 建立虛擬機器，並使用「Azure 自訂指令碼」擴充功能來安裝 WordPress。 |
-| [使用虛擬硬碟建立 VM](./scripts/virtual-machines-linux-cli-sample-create-vm-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) | 將虛擬硬碟上傳至儲存體帳戶並且用於建立虛擬機器。 |
 |**網路虛擬機器**||
 | [保護虛擬機器之間的網路流量](./scripts/virtual-machines-linux-cli-sample-create-vm-nsg.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) | 建立兩部虛擬機器、所有相關資源以及內部和外部網路安全性群組 (NSG)。 |
 |**監視虛擬機器**||
 | [使用 Operations Management Suite 監視 VM](./scripts/virtual-machines-linux-cli-sample-create-vm-oms.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) | 建立虛擬機器、安裝 Operations Management Suite 代理程式，並在 OMS 工作區中註冊 VM。  |
-|**重新啟動虛擬機器**||
-| [重新啟動 VM](./scripts/virtual-machines-linux-cli-sample-restart-by-tag.md) | 建立 VM 並將它們重新啟動。 |
 |**針對虛擬機器進行疑難排解**||
 | [針對 VM 作業系統磁碟進行疑難排解](./scripts/virtual-machines-linux-cli-sample-mount-os-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) | 掛接一個 VM 的作業系統磁碟作為第二個 VM 上的資料磁碟。 |
 | | |

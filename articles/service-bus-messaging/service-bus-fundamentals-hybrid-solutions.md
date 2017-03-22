@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/10/2017
+ms.date: 03/08/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
-ms.openlocfilehash: 9c7f4b6f6417b6eef90dc5b92eeaca3a004d2955
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 4d7523c2bd865039cc989b3d6a288f870288b102
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -32,7 +33,7 @@ ms.openlocfilehash: 9c7f4b6f6417b6eef90dc5b92eeaca3a004d2955
 
 **圖 1：服務匯流排提供多租用戶服務，可透過雲端連接應用程式。**
 
-在一個命名空間內，您可以使用四種不同通訊機制的一或多個執行個體，這些機制各以不同的方式連接應用程式。 選擇如下：
+在一個命名空間內，您可以使用三種不同通訊機制的一或多個執行個體，這些機制各以不同的方式連接應用程式。 選擇如下：
 
 * 佇列，允許單向通訊。 每個佇列扮演中繼角色 (有時稱為代理人 )，儲存已傳送但尚未接收的訊息。 每個訊息會由單一收件者接收。
 * 「主題」提供使用「訂用帳戶」的單向通訊，而單一主題可以有多個訂用帳戶。 就像佇列一樣，主題也扮演訊息代理程式的角色，但每個訂用帳戶可選擇性地使用篩選條件，以便只接收符合特定準則的訊息。
@@ -40,7 +41,7 @@ ms.openlocfilehash: 9c7f4b6f6417b6eef90dc5b92eeaca3a004d2955
 
 您在建立佇列、主題或轉送時會提供名稱。 此名稱結合命名空間的名稱，就形成物件的唯一識別碼。 應用程式可以提供此名稱給服務匯流排，然後利用該佇列、主題或轉送，即可相互通訊。 
 
-若要在轉送案例中使用上述任何物件，Windows 應用程式可以使用 Windows Communication Foundation (WCF)。 對於佇列和主題，Windows 應用程式可以使用服務匯流排定義的訊息 API。 為了讓您更輕鬆地從非 Windows 應用程式使用這些物件，Microsoft 提供了 Java、Node.js 和其他語言的 SDK。 您也可以透過 HTTP 使用 REST API，存取佇列和主題。 
+若要在轉送案例中使用上述任何物件，Windows 應用程式可以使用 Windows Communication Foundation (WCF)。 對於佇列和主題，Windows 應用程式可以使用服務匯流排定義的訊息 API。 為了讓您更輕鬆地從非 Windows 應用程式使用這些物件，Microsoft 提供了 Java、Node.js 和其他語言的 SDK。 您也可以透過 HTTP 使用 [REST API](/rest/api/servicebus/)，存取佇列和主題。 
 
 請務必了解，雖然服務匯流排本身是在雲端執行 (亦即，在 Microsoft 的 Azure 資料中心)，但用到服務匯流排的應用程式可在任何地方執行。 舉例來說，您可以使用服務匯流排來連接 Azure 上執行的應用程式，或您自己的資料中心內執行的應用程式。 服務匯流排也可讓您將 Azure 或其他雲端平台上執行的應用程式，與內部部署應用程式連接，或與平板電腦和電話連接。 甚至可以將家電產品、感應器和其他裝置，連接至中央應用程式或其他應用程式。 服務匯流排是雲端中的通訊機制，幾乎從任何地方都能存取。 用途視應用程式的需求而定。
 
@@ -55,15 +56,15 @@ ms.openlocfilehash: 9c7f4b6f6417b6eef90dc5b92eeaca3a004d2955
 
 每一個訊息分成兩個部分：一組屬性 (各為機碼/值組) 和訊息承載。 裝載可以是二進位、文字，或甚至是 XML。 他們的使用方式會取決於應用程式的目的。 例如，假設應用程式會傳送最近一筆交易的相關訊息，則可能包含屬性 Seller="Ava" 和 Amount=10000。 訊息本文可能包含該交易簽訂之合約的掃描影像，如果沒有的話，則維持空白。
 
-接收者以兩種不同的方法從服務匯流排佇列讀取訊息。 第一個選項 (稱為 [ReceiveAndDelete](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode)) 會從佇列中移除訊息，並立即刪除訊息。 這很簡單，但如果接收者在完成訊息處理之前當掉，則會遺失訊息。 因為訊息已從佇列中移除，其他接收者無法再取得該訊息。 
+接收者以兩種不同的方法從服務匯流排佇列讀取訊息。 第一個選項 (稱為 [ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode)) 會從佇列中移除訊息，並立即刪除訊息。 這很簡單，但如果接收者在完成訊息處理之前當掉，則會遺失訊息。 因為訊息已從佇列中移除，其他接收者無法再取得該訊息。 
 
-第二個選項 [PeekLock](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode) 就是為了解決此問題。 就像 **ReceiveAndDelete**一樣，**PeekLock** 讀取也會從佇列中移除訊息。 但並不會刪除訊息。 相反地，此選項會鎖定訊息，不讓其他接收者看到訊息，然後等待三種事件發生：
+第二個選項 [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode) 就是為了解決此問題。 就像 **ReceiveAndDelete**一樣，**PeekLock** 讀取也會從佇列中移除訊息。 但並不會刪除訊息。 相反地，此選項會鎖定訊息，不讓其他接收者看到訊息，然後等待三種事件發生：
 
-* 如果接收者成功處理訊息，則會呼叫 **[Complete()](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete)**，然後佇列會刪除訊息。 
-* 如果接收者判斷無法成功處理訊息，則會呼叫 **[Abandon()](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Abandon)**。 然後，佇列會解除訊息的鎖定，讓其他接收者可以存取訊息。
+* 如果接收者成功處理訊息，則會呼叫 [Complete()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Complete)，然後佇列會刪除訊息。 
+* 如果接收者判斷無法成功處理訊息，則會呼叫 [Abandon()](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Abandon)。 然後，佇列會解除訊息的鎖定，讓其他接收者可以存取訊息。
 * 如果接收者在一段可設定的時間內 (預設為 60 秒) 未呼叫這些方法，佇列會假定接收者已失效。 在此情況下，就視為接收者已呼叫 **Abandon**，讓其他接收者可以存取訊息。
 
-請注意這裡發生的情形：相同的訊息可能傳遞兩次，或許是傳給兩個不同的接收者。 使用服務匯流排佇列的應用程式對此必須有因應之道。 為了輕鬆偵測重複訊息，每個訊息都有唯一的 **[MessageID](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId)** 屬性，不論同一個訊息從佇列中讀取多少次，依預設此屬性維持不變。 
+請注意這裡發生的情形：相同的訊息可能傳遞兩次，或許是傳給兩個不同的接收者。 使用服務匯流排佇列的應用程式對此必須有因應之道。 為了輕鬆偵測重複訊息，每個訊息都有唯一的 [MessageID](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) 屬性，不論同一個訊息從佇列中讀取多少次，依預設此屬性維持不變。 
 
 佇列在許多情況下都很有用。 即使兩個應用程式未同時執行，佇列仍可讓應用程式通訊，這尤其適用於批次和行動應用程式。 如果佇列有多個接收者，由於傳送的訊息會襲捲這些接收者，此佇列也提供自動的負載平衡。
 
@@ -80,7 +81,7 @@ ms.openlocfilehash: 9c7f4b6f6417b6eef90dc5b92eeaca3a004d2955
 * 訂閱者 2 可接收包含 Seller="Ruby" 屬性及/或包含 Amount 屬性 (其值大於 100,000) 的訊息。 Ruby 可能是銷售經理，因此想查看自己的銷售和所有人的銷售佳績。
 * 訂閱者 3 將篩選設為 *True*，這表示接收所有訊息。 例如，此應用程式可能負責維護稽核記錄，因此需要查看所有的訊息。
 
-如同佇列一樣，主題的訂閱者也可以使用 [**ReceiveAndDelete** 或 **PeekLock**](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode) 來讀取訊息。 但與佇列不同，傳送至主題的單一訊息可以由多個訂用帳戶接收。 每當多個應用程式可能都需要存取相同的訊息時，此方法很有用，這個方法通常稱為「發佈和訂閱」 (或 pub/sub)。 每個訂閱者只要定義正確的篩選，即可只存取所需的訊息資料流部分。
+如同佇列一樣，主題的訂閱者也可以使用 [ReceiveAndDelete 或 PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode) 來讀取訊息。 但與佇列不同，傳送至主題的單一訊息可以由多個訂用帳戶接收。 每當多個應用程式可能都需要存取相同的訊息時，此方法很有用，這個方法通常稱為「發佈和訂閱」 (或 pub/sub)。 每個訂閱者只要定義正確的篩選，即可只存取所需的訊息資料流部分。
 
 ## <a name="relays"></a>轉送
 佇列和主題都是透過訊息代理程式來提供單向非同步通訊。 流量只往一個方向流動，傳送者和接收者之間並未直接連接。 但如果不想要這種方式又該如何？ 假設應用程式同時需要傳送和接收訊息，或您可能希望應用程式之間直接連結，而不需要代理人來儲存訊息。 為了處理此種案例，服務匯流排會提供「轉送」 (如圖 4 所示)。
@@ -116,9 +117,4 @@ ms.openlocfilehash: 9c7f4b6f6417b6eef90dc5b92eeaca3a004d2955
 [2]: ./media/service-bus-fundamentals-hybrid-solutions/SvcBus_02_queues.png
 [3]: ./media/service-bus-fundamentals-hybrid-solutions/SvcBus_03_topicsandsubscriptions.png
 [4]: ./media/service-bus-fundamentals-hybrid-solutions/SvcBus_04_relay.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

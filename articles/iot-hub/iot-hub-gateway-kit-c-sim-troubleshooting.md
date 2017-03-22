@@ -13,11 +13,12 @@ ms.devlang: c
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/21/2016
+ms.date: 3/21/2017
 ms.author: xshi
 translationtype: Human Translation
 ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
 ms.openlocfilehash: a70de978d4636a31644702c6f3a8ca0d0b80f5c2
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -171,9 +172,4 @@ iothub-explorer help
 ## <a name="azure-storage-issues"></a>Azure 儲存體問題
 
 [Microsoft Azure 儲存體總管 (預覽)](http://storageexplorer.com/) 是 Microsoft 所提供的獨立應用程式，可供您在 Windows、macOS 和 Linux 上處理 Azure 儲存體資料。 透過使用此工具，您可以連接到資料表，並查看其中的資料。 您可以使用這項工具，對 Azure 儲存體問題進行疑難排解。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

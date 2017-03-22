@@ -79,7 +79,7 @@ ms.lasthandoff: 02/17/2017
 2. 在 [您希望使用者如何登入 Mimecast Personal Portal] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
    
    ![設定單一登入](./media/active-directory-saas-mimecast-personal-portal-tutorial/IC794995.png "設定單一登入")
-3. 在 [設定應用程式 URL] 頁面的 [Mimecast Personal Portal 登入 URL] 文字方塊中，輸入使用者登入您的 Mimecast Personal Portal 應用程式時所使用的 URL (如：“https://webmail-uk.mimecast.com” 或 “https://webmail-us.mimecast.com”)，然後按一下 [下一步]。
+3. 在 [設定應用程式 URL] 頁面的 [Mimecast Personal Portal 登入 URL] 文字方塊中，輸入使用者登入您的 Mimecast Personal Portal 應用程式時所使用的 URL (如：“https://webmail-uk.mimecast.com” 或 “ https://webmail-us.mimecast.com ”)，然後按一下 [下一步]。
    
    >[!NOTE]
    >登入 URL 是地區特定的 URL。 

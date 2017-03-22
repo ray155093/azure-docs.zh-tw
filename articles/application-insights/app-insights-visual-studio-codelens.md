@@ -4,18 +4,19 @@ description: "使用 Visual Studio 中的 CodeLens 快速存取 Application Insi
 services: application-insights
 documentationcenter: .net
 author: numberbycolors
-manager: douge
+manager: carmonm
 ms.assetid: 93559e44-23cb-4b9d-8425-60f7f0d0a82c
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/14/2016
+ms.date: 03/17/2017
 ms.author: daviste
 translationtype: Human Translation
 ms.sourcegitcommit: ebfed89674dc132bd5d93f34a8b5ed5ab12bd73e
 ms.openlocfilehash: 3e7cb9dfbc3a0985794294c94d331f12829c2bdc
+ms.lasthandoff: 11/16/2016
 
 
 ---
@@ -72,16 +73,11 @@ Web 應用程式的程式碼方法可透過遙測資料來標註出執行階段�
 * 選擇 [趨勢]  可檢視過去 24 小時內要求、失敗的要求或平均回應時間的趨勢視覺效果。
 * 選擇 CodeLens 詳細資料檢視左上角的 Application Insights 資源名稱，以變更哪個資源是 CodeLens 資料的來源。
 
-## <a name="a-namenextanext-steps"></a><a name="next"></a>接續步驟
+## <a name="next"></a>接續步驟
 |  |  |
 | --- | --- |
 | **在 Visual Studio 中使用 Application Insights[](app-insights-visual-studio.md)**<br/>搜尋遙測、查看 CodeLens 中的資料，以及設定 Application Insights。 盡在 Visual Studio 中。 |![以滑鼠右鍵按一下專案，然後選擇 [Application Insights]、[搜尋]](./media/app-insights-visual-studio-codelens/34.png) |
 | **新增更多測試[](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。 整合來自記錄架構的追蹤。 撰寫自訂遙測。 |![Visual Studio](./media/app-insights-visual-studio-codelens/64.png) |
 | **[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出等功能。 |![Visual Studio](./media/app-insights-visual-studio-codelens/62.png) |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

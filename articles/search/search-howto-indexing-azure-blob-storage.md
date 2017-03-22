@@ -86,7 +86,7 @@ blob 索引子可以從下列文件格式擷取文字：
 
 您可以採取下列其中一種方式提供 blob 容器的認證︰
 
-- **完整存取儲存體帳戶連接字串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`。 您可以從 Azure 入口網站取得連接字串︰瀏覽至儲存體帳戶刀鋒視窗 > [設定] > [金鑰] (傳統儲存體帳戶)，或 [設定] > [存取金鑰] (Azure Resource Manager 儲存體帳戶)。
+- **完整存取儲存體帳戶連接字串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`。 您可以從 Azure 入口網站取得連接字串︰瀏覽至儲存體帳戶刀鋒視窗 > [設定] > [金鑰] \(傳統儲存體帳戶)，或 [設定] > [存取金鑰] \(Azure Resource Manager 儲存體帳戶)。
 - **儲存體帳戶共用存取簽章** (SAS) 連接字串︰`BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl`。 SAS 對於容器和物件 (在此案例中為 blob) 應該擁有列出和讀取權限。
 -  **容器共用存取簽章**：`ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl`。 SAS 對於容器應該擁有列出和讀取權限。
 
