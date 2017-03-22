@@ -70,7 +70,7 @@ ms.lasthandoff: 03/03/2017
 [2233094]:https://launchpad.support.sap.com/#/notes/2233094
 [2243692]:https://launchpad.support.sap.com/#/notes/2243692
 
-[azure-cli]:../xplat-cli-install.md
+[azure-cli]:../cli-install-nodejs.md
 [azure-portal]:https://portal.azure.com
 [azure-ps]:/powershell/azureps-cmdlets-docs
 [azure-quickstart-templates-github]:https://github.com/Azure/azure-quickstart-templates
@@ -302,7 +302,7 @@ ms.lasthandoff: 03/03/2017
 [vpn-gateway-cross-premises-options]:../vpn-gateway/vpn-gateway-plan-design.md
 [vpn-gateway-site-to-site-create]:../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md
 [vpn-gateway-vpn-faq]:../vpn-gateway/vpn-gateway-vpn-faq.md
-[xplat-cli]:../xplat-cli-install.md
+[xplat-cli]:../cli-install-nodejs.md
 [xplat-cli-azure-resource-manager]:../azure-resource-manager/xplat-cli-azure-resource-manager.md
 
 藉由選擇 Microsoft Azure 作為符合 SAP 需求的雲端合作夥伴，您將能夠在可調整、相容且經企業證明的平台上，可靠地執行您的任務關鍵性 SAP 工作負載。  Azure 不僅具備調整規模的能力，而且彈性十足，可以為您節省成本。 Microsoft 與 SAP 的合作讓您可以在 Azure 的多種開發/測試及生產案例中執行 SAP 應用程式，最重要是能夠獲得完整的支援。 從 SAP NetWeaver 到 SAP S4/HANA、Linux 到 Windows，乃至於 SAP HANA 到 SQL，全部含括在內。 

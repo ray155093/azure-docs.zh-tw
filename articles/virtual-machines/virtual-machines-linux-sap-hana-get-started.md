@@ -300,7 +300,7 @@ SLES-for-SAP Applications 12 GA 和 SP1 具有一個可取代舊 sapconf 公用�
 
 ![透過 NFS 使用 "rw" 和 "no_root_squash" 選項共用 /sapmnt 目錄](./media/virtual-machines-linux-sap-hana-get-started/image017b.jpg)
 
-如下列螢幕擷取畫面所示，必須在 SAP HANA DB 伺服器 VM 上，使用 [NFS 用戶端] (藉助於 YaST) 來設定應用程式伺服器 VM 中的 /sapmnt 共用。
+如下列螢幕擷取畫面所示，必須在 SAP HANA DB 伺服器 VM 上，使用 **NFS 用戶端** (藉助於 YaST) 來設定應用程式伺服器 VM 中的 /sapmnt 共用。
 
 ![使用 [NFS 用戶端] 來設定 /sapmnt 共用](./media/virtual-machines-linux-sap-hana-get-started/image018b.jpg)
 

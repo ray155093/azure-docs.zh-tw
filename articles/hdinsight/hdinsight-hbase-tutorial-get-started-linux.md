@@ -16,8 +16,9 @@ ms.topic: get-started-article
 ms.date: 02/09/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 0a09f1511778623b21a26042a752009ae2208ba6
-ms.openlocfilehash: 415f6f71642726aeb8477f067bd406a57717ff2a
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: bdc00541e55ea68f0b18456f8fa1a1ac51116d69
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -54,7 +55,7 @@ ms.openlocfilehash: 415f6f71642726aeb8477f067bd406a57717ff2a
      
      其他參數都是選擇性的。  
      
-     每個叢集都具備 Azure Blob 儲存體帳戶相依性。 刪除叢集之後，資料會保留在儲存體帳戶中。 叢集預設儲存體帳戶名稱是附加 "store" 的叢集名稱。 它會硬式編碼在範本變數區段中。
+     每個叢集都具備 Azure 儲存體帳戶相依性。 刪除叢集之後，資料會保留在儲存體帳戶中。 叢集預設儲存體帳戶名稱是附加 "store" 的叢集名稱。 它會硬式編碼在範本變數區段中。
 3. 選取 [我同意上方所述的條款及條件]，然後按一下 [購買]。 大約需要 20 分鐘的時間來建立叢集。
 
 > [!NOTE]
@@ -280,9 +281,4 @@ HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，
 [img-hbase-shell]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-shell.png
 [img-hbase-sample-data-tabular]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-contacts-tabular.png
 [img-hbase-sample-data-bigtable]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-contacts-bigtable.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

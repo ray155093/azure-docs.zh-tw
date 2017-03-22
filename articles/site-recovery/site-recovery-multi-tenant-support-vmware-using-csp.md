@@ -12,11 +12,12 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/06/2016
+ms.date: 03/21/2017
 ms.author: manayar
 translationtype: Human Translation
 ms.sourcegitcommit: 3b606aa6dc3b84ed80cd3cc5452bbe1da6c79a8b
 ms.openlocfilehash: ed484afc59bbf48490e3ff4389e8e28c71a5e471
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -193,9 +194,4 @@ VM 的必要條件和 Azure Site Recovery [文件](site-recovery-vmware-to-azure
     ![user-subscription](./media/site-recovery-multi-tenant-support-vmware-using-csp/add-user-subscription.png)
 
     「參與者」角色就足以執行多數的管理作業。 除了變更存取層級 (必須具有「擁有者」存取層級) 之外，具有此存取層級的使用者可以在訂用帳戶上執行任何作業。 您也可以視需要微調存取層級。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

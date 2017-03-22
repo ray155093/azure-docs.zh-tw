@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/07/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 017e6942bc49717f98836a2465824c0a42ff8a81
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 624f5947e31f08f689ceb6c48bc572447acd64ac
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -97,9 +97,13 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
     <dependency>
       <groupId>com.microsoft.azure.sdk.iot</groupId>
       <artifactId>iot-service-client</artifactId>
-      <version>1.0.14</version>
+      <version>1.0.15</version>
     </dependency>
     ```
+
+    > [!NOTE]
+    > 您可以使用 [Maven 搜尋][lnk-maven-service-search]來檢查最新版的 **iot-service-client**。
+
 4. 儲存並關閉 pom.xml 檔案。
 5. 使用文字編輯器開啟 send-c2d-messages\src\main\java\com\mycompany\app\App.java 檔案。
 6. 在此檔案中新增下列 **import** 陳述式：
@@ -192,4 +196,4 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
 [暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [Azure 入口網站]: https://portal.azure.com
 [Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/
-
+[lnk-maven-service-search]: http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22

@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/15/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 0479db07710d7ff6037dc692e5387a314bed32ca
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 62d2cd990bff4ffc982eef507ad69c68c00a65ab
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -48,10 +48,6 @@ ms.lasthandoff: 03/08/2017
 * [嘗試在 Linux VM 上掛接 Azure 檔案時，發生掛接錯誤 115](#error15)
 * [掛接在 Linux VM 上的 Azure 檔案共用發生效能變慢的問題](#delayproblem)
 
-
-**從其他應用程式存取**
-
-* [我可以透過 Web 工作參考我的應用程式的 Azure 檔案共用嗎？](#webjobs)
 
 <a id="quotaerror"></a>
 
@@ -275,11 +271,6 @@ dir_mode=0777,persistenthandles,nounix,serverino,mapposix,rsize=1048576,wsize=10
 
 如果沒有 cache=strict 或 serverino 選項，請執行[文件](https://docs.microsoft.com/en-us/azure/storage/storage-how-to-use-files-linux#mount-the-file-share)中的掛接命令，將 Azure 檔案卸載並再次掛接，然後重新檢查 "/etc/fstab" 項目是否有正確的選項。
 
-<a id="webjobs"></a>
-
-## <a name="accessing-from-other-applications"></a>從其他應用程式存取
-### <a name="can-i-reference-the-azure-file-share-for-my-application-through-a-webjob"></a>我可以透過 Web 工作參考我的應用程式的 Azure 檔案共用嗎？
-您無法在應用程式服務沙箱中掛接 SMB 共用。 因應措施是將 Azure 檔案共用對應為對應磁碟機，並允許應用程式以磁碟機代號方式存取它。
 ## <a name="learn-more"></a>詳細資訊
 * [在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)
 * [在 Linux 上開始使用 Azure 檔案儲存體](storage-how-to-use-files-linux.md)

@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 10/24/2016
+ms.date: 3/21/2017
 ms.author: raiye
 translationtype: Human Translation
 ms.sourcegitcommit: 0994765e37dd8ee1fa6a639a2ed60c913cb170fe
 ms.openlocfilehash: 578059c397319147c8716e2152901dfdc15a28cd
+ms.lasthandoff: 02/11/2017
 
 
 ---
@@ -73,10 +74,5 @@ foreach($subscription in Get-AzureSubscription) {
 
 ## <a name="next-steps"></a>後續步驟
 檢閱最新的 [客體作業系統版本](cloud-services-guestos-update-matrix.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 
