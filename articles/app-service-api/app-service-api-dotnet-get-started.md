@@ -3,7 +3,7 @@ title: "在 App Service 中開始使用 API Apps 和 ASP.NET | Microsoft Docs"
 description: "了解如何在 Azure App Service 使用 Visual Studio 2015 建立、部署和取用 ASP.NET API 應用程式。"
 services: app-service\api
 documentationcenter: .net
-author: tdykstra
+author: alexkarcher-msft
 manager: erikre
 editor: 
 ms.assetid: ddc028b2-cde0-4567-a6ee-32cb264a830a
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: dotnet
 ms.devlang: na
 ms.topic: hero-article
 ms.date: 09/20/2016
-ms.author: rachelap
+ms.author: alkarche
 translationtype: Human Translation
 ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
 ms.openlocfilehash: c7b4e39e01ae335c3e6a5cf9cb1efe8a64490e35
@@ -199,7 +199,7 @@ Swashbuckle 可搭配任何 ASP.NET Web API 專案使用。 如果您要將 Swag
 > 
 > 
 
-## <a name="a-idcreateapiappa-create-an-api-app-in-azure-and-deploy-code-to-it"></a><a id="createapiapp"></a> 在 Azure 中建立 API 應用程式並於其中部署程式碼
+## <a id="createapiapp"></a> 在 Azure 中建立 API 應用程式並於其中部署程式碼
 在本節中，您會使用已整合至 Visual Studio 的 [發佈 Web]  精靈中的 Azure 工具，在 Azure 中建立新的 API 應用程式。 然後您會將 ToDoListDataAPI 專案部署到新的 API 應用程式，並藉由執行 Swagger UI 來呼叫 API。
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下 ToDoListDataAPI 專案，然後按一下 [發佈]。
@@ -303,7 +303,7 @@ Swashbuckle 可搭配任何 ASP.NET Web API 專案使用。 如果您要將 Swag
     
     當您選取要對其產生用戶端程式碼的 API 應用程式時，Visual Studio 會從這個 URL 擷取中繼資料。
 
-## <a name="a-idcodegena-generate-client-code-for-the-data-tier"></a><a id="codegen"></a> 產生資料層的用戶端程式碼
+## <a id="codegen"></a> 產生資料層的用戶端程式碼
 將 Swagger 整合到 Azure API 應用程式的優點之一，就是自動產生程式碼。 產生的用戶端類別讓您能更容易地撰寫會呼叫 API 應用程式的程式碼。
 
 ToDoListAPI 專案已有產生的用戶端程式碼，但在下列步驟中，您要先將其刪除再予以重新產生，以了解如何產生程式碼。

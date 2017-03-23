@@ -3,7 +3,7 @@ title: "Azure App Service 中 API Apps 的服務主體驗證 | Microsoft Docs"
 description: "深入了解如何保護服務對服務案例的 Azure App Service 的 API 應用程式。"
 services: app-service\api
 documentationcenter: .net
-author: tdykstra
+author: alexkarcher-msft
 manager: erikre
 editor: 
 ms.assetid: 7ca0bab2-1d29-4d51-b779-dce0edd34f8b
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: dotnet
 ms.devlang: na
 ms.topic: article
 ms.date: 06/30/2016
-ms.author: rachelap
+ms.author: alkarche
 translationtype: Human Translation
 ms.sourcegitcommit: b75f7aa757679a29a42cdfc04799873ee30bab2e
 ms.openlocfilehash: 232446806309148f7958609608d4afc28ffea98d
@@ -37,7 +37,7 @@ ms.lasthandoff: 01/20/2017
 * [如何在 Azure App Service 中設定服務主體驗證](#authconfig) 一節大致說明如何為 API 應用程式設定驗證，以及如何取用受保護的 API 應用程式。 本節一體適用於 App Service 支援的所有架構，包括 .NET、Node.js 和 Java。
 * 從 [繼續進行 .NET 入門教學課程](#tutorialstart) 章節開始，教學課程會引導您針對 App Service 中執行的 .NET 範例應用程式設定「內部存取」案例。 
 
-## <a name="a-idauthconfiga-how-to-configure-service-principal-authentication-in-azure-app-service"></a><a id="authconfig"></a> 如何在 Azure App Service 中設定服務主體驗證
+## <a id="authconfig"></a> 如何在 Azure App Service 中設定服務主體驗證
 本節提供適用於任何 API 應用程式的一般指示。 如需「待辦事項清單」.NET 範例應用程式的專用步驟，請移至 [繼續進行 .NET API Apps 教學課程系列](#tutorialstart)。
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至您想要保護的 API 應用程式的 [設定] 刀鋒視窗，然後尋找 [功能] 區段，再按一下 [驗證/授權]。
@@ -84,7 +84,7 @@ App Service 也在 X-MS-CLIENT-PRINCIPAL-ID 標頭中提供 `objectidentifier` �
 ### <a name="how-to-protect-the-api-app-from-browser-access"></a>如何防止瀏覽器存取 API 應用程式
 如果您並未驗證受保護 API 應用程式之程式碼中的宣告，而且您為受保護的 API 應用程式使用個別的 Azure AD 應用程式，請確定 Azure AD 應用程式的回覆 URL 與 API 應用程式的基底 URL 不同。 如果回覆 URL 直接指向受保護的 API 應用程式，同一 Azure AD 租用戶中的使用者將能夠瀏覽至 API 應用程式、進行登入，並成功呼叫 API。
 
-## <a name="a-idtutorialstarta-continuing-the-net-api-apps-tutorial-series"></a><a id="tutorialstart"></a> 繼續進行 .NET API Apps 教學課程系列
+## <a id="tutorialstart"></a> 繼續進行 .NET API Apps 教學課程系列
 如果您要遵循適用於 API 應用程式的 Node.js 或 Java 教學課程系列，請跳至 [後續步驟](#next-steps) 一節。 
 
 本文其餘部分將接續說明 .NET API Apps 教學課程系列，並且假設您已完成 [使用者驗證教學課程](app-service-api-dotnet-user-principal-auth.md) 而且擁有在 Azure 中執行、已啟用使用者驗證的範例應用程式。
