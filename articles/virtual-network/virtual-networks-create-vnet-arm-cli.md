@@ -38,13 +38,13 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
     您也可以使用其他工具透過 Resource Manager 建立 VNet，或從下列清單中選取不同選項以透過傳統部署模型建立 VNet︰
 
 > [!div class="op_single_selector"]
-- [入口網站](virtual-networks-create-vnet-arm-pportal.md)
-- [PowerShell](virtual-networks-create-vnet-arm-ps.md)
-- [CLI](virtual-networks-create-vnet-arm-cli.md)
-- [範本](virtual-networks-create-vnet-arm-template-click.md)
-- [入口網站 (傳統)](virtual-networks-create-vnet-classic-pportal.md)
-- [PowerShell (傳統)](virtual-networks-create-vnet-classic-netcfg-ps.md)
-- [CLI (傳統)](virtual-networks-create-vnet-classic-cli.md)
+> * [入口網站](virtual-networks-create-vnet-arm-pportal.md)
+> * [PowerShell](virtual-networks-create-vnet-arm-ps.md)
+> * [CLI](virtual-networks-create-vnet-arm-cli.md)
+> * [範本](virtual-networks-create-vnet-arm-template-click.md)
+> * [入口網站 (傳統)](virtual-networks-create-vnet-classic-pportal.md)
+> * [PowerShell (傳統)](virtual-networks-create-vnet-classic-netcfg-ps.md)
+> * [CLI (傳統)](virtual-networks-create-vnet-classic-cli.md)
 
 [!INCLUDE [virtual-networks-create-vnet-scenario-include](../../includes/virtual-networks-create-vnet-scenario-include.md)]
 
@@ -65,22 +65,22 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
     ```azurecli
     az network vnet create \
-        --name TestVNet \
-        --resource-group TestRG \
-        --location centralus \
-        --address-prefix 192.168.0.0/16 \
-        --subnet-name FrontEnd \
-        --subnet-prefix 192.168.1.0/24
+    --name TestVNet \
+    --resource-group TestRG \
+    --location centralus \
+    --address-prefix 192.168.0.0/16 \
+    --subnet-name FrontEnd \
+    --subnet-prefix 192.168.1.0/24
     ```
 
     預期的輸出：
-   
+    
     ```json
     {
         "newVNet": {
             "addressSpace": {
             "addressPrefixes": [
-                "192.168.0.0/16"
+            "192.168.0.0/16"
             ]
             },
             "dhcpOptions": {
@@ -100,7 +100,7 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
                 "resourceGroup": "TestRG"
             }
             ]
-        }
+            }
     }
     ```
 
@@ -121,20 +121,20 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
 
     這會產生下列輸出：
 
-            Where      Name      Group
-            ---------  --------  -------
-            centralus  TestVNet  TestRG
+        Where      Name      Group
+
+        centralus  TestVNet  TestRG
 
 4. 建立子網路：
 
     ```azurecli
     az network vnet subnet create \
-        --address-prefix 192.168.2.0/24 \
-        --name BackEnd \
-        --resource-group TestRG \
-        --vnet-name TestVNet
+    --address-prefix 192.168.2.0/24 \
+    --name BackEnd \
+    --resource-group TestRG \
+    --vnet-name TestVNet
     ```
-   
+
     預期的輸出：
 
     ```json
@@ -168,11 +168,11 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
     --query '{Name:name,Where:location,Group:resourceGroup,Status:provisioningState,SubnetCount:subnets | length(@)}' \
     -o table
     ```
-   
+
     預期的輸出：
-   
+
         Name      Where      Group    Status       SubnetCount
-        --------  ---------  -------  ---------  -------------
+
         TestVNet  centralus  TestRG   Succeeded              2
 
 6. 查詢子網路的屬性：
@@ -188,7 +188,7 @@ Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建�
     預期的輸出：
 
         Name      CIDR            Status
-        --------  --------------  ---------
+
         FrontEnd  192.168.1.0/24  Succeeded
         BackEnd   192.168.2.0/24  Succeeded
 

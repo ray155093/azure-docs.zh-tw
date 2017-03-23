@@ -26,12 +26,12 @@ ms.lasthandoff: 02/28/2017
 # <a name="create-a-vm-with-a-static-public-ip-address-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立具有靜態公用 IP 位址的 VM
 
 > [!div class="op_single_selector"]
-- [Azure 入口網站](virtual-network-deploy-static-pip-arm-portal.md)
-- [PowerShell](virtual-network-deploy-static-pip-arm-ps.md)
-- [Azure CLI 2.0](virtual-network-deploy-static-pip-arm-cli.md)
-- [Azure CLI 1.0](virtual-network-deploy-static-pip-cli-nodejs.md)
-- [範本](virtual-network-deploy-static-pip-arm-template.md)
-- [PowerShell (傳統)](virtual-networks-reserved-public-ip.md)
+> * [Azure 入口網站](virtual-network-deploy-static-pip-arm-portal.md)
+> * [PowerShell](virtual-network-deploy-static-pip-arm-ps.md)
+> * [Azure CLI 2.0](virtual-network-deploy-static-pip-arm-cli.md)
+> * [Azure CLI 1.0](virtual-network-deploy-static-pip-cli-nodejs.md)
+> * [範本](virtual-network-deploy-static-pip-arm-template.md)
+> * [PowerShell (傳統)](virtual-networks-reserved-public-ip.md)
 
 [!INCLUDE [virtual-network-deploy-static-pip-intro-include.md](../../includes/virtual-network-deploy-static-pip-intro-include.md)]
 
@@ -44,7 +44,7 @@ ms.lasthandoff: 02/28/2017
 
 您可以使用 Azure CLI 1.0 (本文) 或 [Azure CLI 2.0](virtual-network-deploy-static-pip-arm-cli.md) 完成這項工作。 
 
-## <a name="a-name--createastep-1---start-your-script"></a><a name = "create"></a>步驟 1 - 啟動指令碼
+## <a name = "create"></a>步驟 1 - 啟動指令碼
 [這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/virtual-network-deploy-static-pip-arm-cli.sh)可以下載所使用的完整 Bash 指令碼。 請完成下列步驟來變更指令碼，讓指令碼可在您的環境中運作：
 
 根據要用於部署的值來變更下列變數的值。 下列值對應至本文中使用的案例：
