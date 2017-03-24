@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 07b57208-32aa-4e59-900a-6c934fa1b7a7
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -43,7 +44,7 @@ Mahout 是 Apache Hadoop 的[機器學習服務][ml]程式庫。 Mahout 包含�
     >
     > 請遵循 [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的步驟來安裝最新版的 Azure PowerShell。 如果您需要修改指令碼才能使用適用於 Azure Resource Manager 的新 Cmdlet，請參閱 [移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](hdinsight-hadoop-development-using-azure-resource-manager.md) ，以取得詳細資訊。
 
-## <a name="a-namerecommendationsagenerate-recommendations-by-using-azure-powershell"></a><a name="recommendations"></a>使用 Azure PowerShell 產生推薦
+## <a name="recommendations"></a>使用 Azure PowerShell 產生推薦
 
 > [!NOTE]
 > 雖然本節中使用的工作能夠利用 Azure PowerShell 來執行，但 Mahout 隨附的許多類別目前仍無法搭配 Azure PowerShell 運作，而必須使用 Hadoop 命令列來執行。 如需無法搭配 Azure PowerShell 使用的類別清單，請參閱 [疑難排解](#troubleshooting) 一節。
@@ -313,7 +314,7 @@ $recommendations | format-table $recommendationFormat
     Donnie Brasco (1997)                     4.6792455
     Lone Star (1996)                         4.7099237
 
-## <a name="a-nametroubleshootingatroubleshooting"></a><a name="troubleshooting"></a>疑難排解
+## <a name="troubleshooting"></a>疑難排解
 
 ### <a name="cannot-overwrite-files"></a>無法覆寫檔案
 
@@ -364,7 +365,7 @@ foreach($blob in $blobs)
 }
 ```
 
-### <a name="a-namenopowershellaclasses-that-do-not-work-with-azure-powershell"></a><a name="nopowershell"></a>不適用於 Azure PowerShell 的類別
+### <a name="nopowershell"></a>不適用於 Azure PowerShell 的類別
 
 如果從 Windows PowerShell 中使用的 Mahout 工作利用到下列類別，則會傳回各種錯誤訊息：
 

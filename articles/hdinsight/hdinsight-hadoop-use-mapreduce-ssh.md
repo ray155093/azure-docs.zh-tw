@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 844678ba-1e1f-4fda-b9ef-34df4035d547
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -31,7 +32,7 @@ ms.lasthandoff: 02/10/2017
 > [!NOTE]
 > 如果您已熟悉使用以 Linux 為基礎的 Hadoop 伺服器，但剛接觸 HDInsight，請參閱 [以 Linux 為基礎的 HDInsight 秘訣](hdinsight-hadoop-linux-information.md)。
 
-## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
+## <a id="prereq"></a>必要條件
 
 若要完成這篇文章中的步驟，您需要下列項目︰
 
@@ -42,7 +43,7 @@ ms.lasthandoff: 02/10/2017
 
 * SSH 用戶端。 Linux、Unix 和 Mac 作業系統應該具備 SSH 用戶端。 Windows 使用者必須下載用戶端，例如 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
-## <a name="a-idsshaconnect-with-ssh"></a><a id="ssh"></a>使用 SSH 連線
+## <a id="ssh"></a>使用 SSH 連線
 
 使用 SSH 命令，連線至 HDInsight 叢集的完整網域名稱 (FQDN)。 FQDN 是您提供給叢集的名稱，後接 **.azurehdinsight.net**。 例如，下列命令會連線至名為 **myhdinsight**的叢集：
 
@@ -62,7 +63,7 @@ ms.lasthandoff: 02/10/2017
 
 如需使用 PuTTY 的詳細資訊，請參閱[從 Windows 在 HDInsight 上搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)。
 
-## <a name="a-idhadoopause-hadoop-commands"></a><a id="hadoop"></a>使用 Hadoop 命令
+## <a id="hadoop"></a>使用 Hadoop 命令
 
 1. 連線到 HDInsight 叢集之後，請使用下列 **Hadoop** 命令來啟動 MapReduce 工作：
    
@@ -109,11 +110,11 @@ ms.lasthandoff: 02/10/2017
         wretched        6
         wriggling       1
 
-## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
+## <a id="summary"></a>摘要
 
 如您所見，Hadoop 命令提供簡單的方法，在 HDInsight 叢集中執行 MapReduce 工作，然後檢視工作輸出。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 
 如需 HDInsight 中 MapReduce 工作的一般資訊：
 

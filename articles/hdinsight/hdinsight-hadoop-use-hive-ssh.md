@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 0e919171-03e6-4f5a-ab4e-3eec3e34c347
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -31,7 +32,7 @@ ms.lasthandoff: 01/18/2017
 > 雖然 HDInsight 叢集上有提供 Hive 命令，但是您應該考慮使用 Beeline。 Beeline 是可搭配 Hive 使用的較新用戶端，隨附於您的 HDInsight 叢集中。 如需有關如何使用它的詳細資訊，請參閱 [使用 Beeline 搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-hadoop-use-hive-beeline.md)。
 
 
-## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
+## <a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目：
 
 * HDInsight 叢集上以 Linux 為基礎的 Hadoop。
@@ -41,7 +42,7 @@ ms.lasthandoff: 01/18/2017
 
 * SSH 用戶端。 Linux、Unix 和 Mac OS 應該具備 SSH 用戶端。 Windows 使用者必須下載用戶端，例如 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
-## <a name="a-idsshaconnect-with-ssh"></a><a id="ssh"></a>使用 SSH 連線
+## <a id="ssh"></a>使用 SSH 連線
 使用 SSH 命令，連線至 HDInsight 叢集的完整網域名稱 (FQDN)。 FQDN 將是您提供給叢集的名稱，然後是 **.azurehdinsight.net**。 例如，下列命令會連線至名為 **myhdinsight**的叢集：
 
     ssh admin@myhdinsight-ssh.azurehdinsight.net
@@ -59,7 +60,7 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
 
 如需使用 PuTTY 的詳細資訊，請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop ](hdinsight-hadoop-linux-use-ssh-windows.md)。
 
-## <a name="a-idhiveause-the-hive-command"></a><a id="hive"></a>使用 Hive 命令
+## <a id="hive"></a>使用 Hive 命令
 1. 連線之後，使用下列命令來啟動 Hive CLI：
    
         hive
@@ -108,10 +109,10 @@ Windows 未提供內建 SSH 用戶端。 建議使用 **PuTTY**，您可以從�
      > 
      > 
 
-## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
+## <a id="summary"></a>摘要
 如您所見，Hive 命令提供簡單的方法，以互動方式在 HDInsight 叢集上執行 Hive 查詢、監視工作狀態，以及擷取輸出。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 如需 HDInsight 中 Hive 的一般資訊：
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)

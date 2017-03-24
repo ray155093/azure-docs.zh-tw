@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: cc93ed5c-a358-456a-91a4-f179185c0e98
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -30,7 +31,7 @@ ms.lasthandoff: 01/18/2017
 
 本主題中使用的範例指令碼會以特定組態建立 Solr 叢集。 如果您想要以不同的集合、分區、結構描述和複本等項目設定 Solr 叢集，則必須相應修改指令碼和 Solr 二進位檔。
 
-## <a name="a-namewhatisawhat-is-solr"></a><a name="whatis"></a>什麼是 Solr？
+## <a name="whatis"></a>什麼是 Solr？
 [Apache Solr](http://lucene.apache.org/solr/features.html) 是可對資料執行強大全文搜尋作業的企業搜尋平台。 Hadoop 可儲存和管理大量資料，而 Apache Solr 則是提供搜尋功能以便快速擷取資料。 本主題提供如何自訂 HDInsight 叢集以安裝 Solr 的指示。
 
 > [!WARNING]
@@ -48,7 +49,7 @@ ms.lasthandoff: 01/18/2017
 * 將 **solruser** 設為 `/usr/hdp/current/solr` 的擁有者
 * 新增 [Upstart](http://upstart.ubuntu.com/) 組態，如果叢集節點重新啟動，就會啟動 Solr。 Solr 也會在安裝之後於叢集節點上自動啟動
 
-## <a name="a-nameinstallainstall-solr-using-script-actions"></a><a name="install"></a>使用指令碼動作安裝 Solr
+## <a name="install"></a>使用指令碼動作安裝 Solr
 在 HDInsight 叢集上安裝 Solr 的範例指令碼位於下列位置。
 
     https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh
@@ -72,7 +73,7 @@ ms.lasthandoff: 01/18/2017
 3. 在 [指令碼動作] 底部，使用 [選取] 按鈕以儲存組態。 最後，使用 [選用組態] 刀鋒視窗底部的 [選取] 按鈕，儲存選用組態資訊。
 4. 繼續如 [佈建以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-create-linux-clusters-portal.md)中所述佈建叢集。
 
-## <a name="a-nameusesolrahow-do-i-use-solr-in-hdinsight"></a><a name="usesolr"></a>如何在 HDInsight 中使用 Solr？
+## <a name="usesolr"></a>如何在 HDInsight 中使用 Solr？
 ### <a name="indexing-data"></a>索引資料
 您必須從以某些資料檔案編製 Solr 的索引來開始。 然後，您可以使用 Solr 來對已編製索引的資料執行搜尋查詢。 使用下列步驟以將某些範例資料新增至 Solr，然後查詢它：
 

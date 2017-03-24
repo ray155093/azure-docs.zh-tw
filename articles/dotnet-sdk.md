@@ -2,8 +2,7 @@
 title: "什麼是 Azure .NET SDK"
 description: "了解 Azure .NET SDK 包含的項目。"
 documentationcenter: .net
-author: juliako
-manager: wpickett
+author: chrissfanos
 editor: mollybos
 services: 
 ms.assetid: f70279ac-7c56-4d6a-9882-352a8b644a4b
