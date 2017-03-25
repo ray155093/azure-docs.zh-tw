@@ -15,9 +15,9 @@ ms.workload: infrastructure
 ms.date: 12/20/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: dee0ff8431652e8d68bc3e70146b55d8cf94bb64
-ms.openlocfilehash: 577fc318865ff065f107e01ff642a75454c2feb4
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 67d4fee2fc59651903d4c02d1fce84c7b81e5da1
+ms.openlocfilehash: ab58592b7dc55dee1f95338b4931fa76e9146a43
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -32,8 +32,8 @@ ms.lasthandoff: 02/15/2017
 ## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
-- Azure CLI 1.0 – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0 (預覽)](virtual-machines-linux-create-cli-complete-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- Azure CLI 1.0 - 適用於傳統和資源管理部署模型 (本文) 的 CLI
+- [Azure CLI 2.0](virtual-machines-linux-create-cli-complete-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="manually-install-and-configure-mongodb-on-a-vm"></a>在 VM 上手動安裝及設定 MongoDB
