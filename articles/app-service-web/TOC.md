@@ -82,7 +82,6 @@
 
 ### [從 IIS 移轉](web-sites-migration-from-iis-server.md)
 ### [在生產環境中測試](app-service-web-test-in-production-get-start.md)
-### [執行效能測試](app-service-web-app-performance-test.md) 
 
 ## 連線至 DB/資源        
 

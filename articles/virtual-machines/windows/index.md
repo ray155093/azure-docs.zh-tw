@@ -13,13 +13,24 @@ ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 90d760207ee6b6e0d8c15ff597bf53512f071ef0
-ms.openlocfilehash: ace8475bd9a75eb92a3b5c084ee27b9813f13bfb
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 91c81cdba745be375ea6cbdb689d5b6f46e53f98
+ms.lasthandoff: 03/18/2017
 
 ---
 # <a name="windows-virtual-machines-documentation"></a>Windows 虛擬機器文件
 
+<div class="introHolder">
+    <div class="intro">
 了解如何建立 Windows 虛擬機器。 教學課程、API 參考和其他文件可協助您規劃、部署和管理雲端中的虛擬機器計算環境。
+    </div>
+    <div class="calloutHolder">
+        <div class="callout">
+            <a href="https://azure.microsoft.com/community/training/courses/managing-infrastructure-microsoft-azure-getting-started/">
+                <img src="media/index/pluralsight.svg" /> 免費 PluralSight 影片訓練 - 使用 Microsoft Azure 管理基礎結構 </a>
+        </div>
+    </div>
+</div>
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -160,10 +171,5 @@ ms.openlocfilehash: ace8475bd9a75eb92a3b5c084ee27b9813f13bfb
     </li>
 </ul>
 
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

@@ -1,7 +1,6 @@
 # 概觀
 ## [Operations Management Suite (OMS) 是什麼？](operations-management-suite-overview.md)
 ## [OMS 架構](operations-management-suite-architecture.md)
-## [管理解決方案](operations-management-suite-solutions.md)
 
 # 開始使用
 ## 深入解析與分析
@@ -15,15 +14,18 @@
 ### [資料安全性](oms-security-data-security.md)
 
 # 作法
+
 ## 分析
 ### [Log Analytics](../log-analytics/log-analytics-overview.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [監視產品比較](operations-management-suite-monitoring-product-comparison.md)
 ### [管理警示](operations-management-suite-monitoring-alerts.md)
 ## 自動化
 ### [Azure 自動化概觀](../automation/automation-intro.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
+
 ## 備份
 ### [備份概觀](../backup/backup-introduction-to-azure-backup.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [Site Recovery 概觀](../site-recovery/site-recovery-overview.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
+
 ## 安全
 ### [監視資源](oms-security-monitoring-resources.md)
 ### [回應安全性警示](oms-security-responding-alerts.md)
@@ -31,17 +33,9 @@
 ### [惡意程式碼評估](../log-analytics/log-analytics-malware.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [系統更新評估](../log-analytics/log-analytics-system-update.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [連線安全性產品](oms-security-connect-products.md)
-## 建立解決方案
-### [管理解決方案](operations-management-suite-solutions-creating.md)
-### [自動化資源](operations-management-suite-solutions-resources-automation.md)
-### [記錄搜尋與警示](operations-management-suite-solutions-resources-searches-alerts.md)
-### [檢視](operations-management-suite-solutions-resources-views.md)
-## [與 OMS 整合](operations-management-suite-integration.md)
 
-
-# 參考
-## [SDK](operations-management-suite-sdk.md)
-## 解決方案
+## 使用解決方案
+### [管理解決方案](operations-management-suite-solutions.md)
 ### 深入解析與分析
 #### [AD 評估](../log-analytics/log-analytics-ad-assessment.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 #### [AD 複寫狀態](../log-analytics/log-analytics-ad-replication-status.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
@@ -64,8 +58,15 @@
 ### 安全性與法規遵循
 #### [反惡意程式碼評估](../log-analytics/log-analytics-malware.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 
+## 建立解決方案
+### [設計和建置](operations-management-suite-solutions-creating.md)
+### [解決方案檔案](operations-management-suite-solutions-solution-file.md)
+### [自動化資源](operations-management-suite-solutions-resources-automation.md)
+### [記錄搜尋與警示](operations-management-suite-solutions-resources-searches-alerts.md)
+### [檢視](operations-management-suite-solutions-resources-views.md)
 
+## [與 OMS 整合](operations-management-suite-integration.md)
 
-<!--HONumber=Feb17_HO1-->
-
+# 參考
+## [SDK](operations-management-suite-sdk.md)
 

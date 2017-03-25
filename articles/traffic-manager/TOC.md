@@ -1,29 +1,30 @@
 # 概觀
 ## [什麼是流量管理員？](traffic-manager-overview.md)
-## [流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)
-## [流量管理員端點](traffic-manager-endpoint-types.md)
-## [流量管理員端點監視和容錯移轉](traffic-manager-monitoring.md)
-## [流量路由方法](traffic-manager-routing-methods.md)
-## [巢狀設定檔](traffic-manager-nested-profiles.md)
-## [流量管理員的效能考量](traffic-manager-performance-considerations.md)
-## [Azure Resource Manager 支援](traffic-manager-powershell-arm.md)
+## [路由方法](traffic-manager-routing-methods.md)
+### [流量管理員使用的國家/區域階層](traffic-manager-geographic-regions.md)
+## [端點類型](traffic-manager-endpoint-types.md)
+## [端點監視](traffic-manager-monitoring.md)
+## [常見問題集](traffic-manager-FAQs.md)
 
 # 開始使用
+## [建立流量管理員設定檔](traffic-manager-create-profile.md)
+
+# 作法：
+
+## [設定地理路由方法](traffic-manager-configure-geographic-routing-method.md)
+## [設定優先順序路由方法](traffic-manager-configure-priority-routing-method.md)
+## [設定加權路由方法](traffic-manager-configure-weighted-routing-method.md)
+## [設定效能路由方法](traffic-manager-configure-performance-routing-method.md)
 ## [管理端點](traffic-manager-manage-endpoints.md)
 ## [管理設定檔](traffic-manager-manage-profiles.md)
+## [驗證流量管理員設定](traffic-manager-testing-settings.md)
+## [合併負載平衡服務](traffic-manager-load-balancing-azure.md)
+## [測量流量管理員效能](traffic-manager-performance-considerations.md)
+## [使用 PowerShell 管理流量管理員](traffic-manager-powershell-arm.md)
 ## [將您的網際網路網域指向流量管理員](traffic-manager-point-internet-domain.md)
 
-# 作法
-## [設定路由方法](traffic-manager-configure-routing-method.md)
-## [測試您的設定](traffic-manager-testing-settings.md)
-## [合併負載平衡服務](traffic-manager-load-balancing-azure.md)
-## [使用網路資源](../virtual-network/resource-groups-networking.md?toc=%2fazure%2ftraffic-manager%2ftoc.json)
-## 疑難排解
-### [針對降級的端點進行疑難排解](traffic-manager-troubleshooting-degraded.md)
-
 # 參考
-## [PowerShell](/powershell/resourcemanager/azurerm.trafficmanager/v2.3.0/azurerm.trafficmanager)
-## [PowerShell (傳統)](/powershell/servicemanagement/azure.trafficmanager/v3.1.0/azure.trafficmanager)
+## [PowerShell](/powershell/resourcemanager/azurerm.trafficmanager/v2.5.0/azurerm.trafficmanager)
 ## [Azure CLI](/cli/azure/network/traffic-manager)
 ## [Java](/java/api/com.microsoft.azure.management.trafficmanager)
 ## [Node.js](http://azure.github.io/azure-sdk-for-node/azure-arm-trafficmanager/latest/)

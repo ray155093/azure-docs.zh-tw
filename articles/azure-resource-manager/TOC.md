@@ -7,14 +7,13 @@
 
 # 開始使用
 ## [匯出範本](resource-manager-export-template.md)
-## [範本逐步解說](resource-manager-template-walkthrough.md)
+## [建立您的第一個範本](resource-manager-create-first-template.md)
 ## [搭配 Resource Manager 使用 Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)
-## [搭配 Resource Manager 的 VS Code](resource-manager-vs-code.md)
 
 # 作法
 ## 建立範本
 ### [範本的最佳做法](resource-manager-template-best-practices.md)
-### [撰寫範本](resource-group-authoring-templates.md)
+### [範本區段](resource-group-authoring-templates.md)
 ### [範本函式](resource-group-template-functions.md)
 ### [定義資源間的相依性](resource-group-define-dependencies.md)
 ### [設定子資源名稱與類型](resource-manager-template-child-resource.md)
@@ -62,7 +61,7 @@
 ## [.NET](/dotnet/api/microsoft.azure.management.resourcemanager)
 ## [Java](/java/api/com.microsoft.azure.management.resources)
 ## [Python](http://azure-sdk-for-python.readthedocs.io/en/latest/resourcemanagement.html)
-## [範本結構描述](https://github.com/Azure/azure-resource-manager-schemas)
+## [範本格式](/azure/templates/)
 ## [REST](/rest/api/resources/)
 
 # 資源
