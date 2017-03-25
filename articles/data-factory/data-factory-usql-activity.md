@@ -15,22 +15,24 @@ ms.topic: article
 ms.date: 02/07/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 7c9f14503a7cf5c0808e26884a73cd2918ff1c74
-ms.openlocfilehash: 7a26b44f1c2c97174fb98ffdf0cb74a71d27710a
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: b41d906d6948f0f9e3cdb38b4a478b39f55ce219
+ms.lasthandoff: 03/14/2017
 
 
 ---
 # <a name="transform-data-by-running-u-sql-scripts-on-azure-data-lake-analytics"></a>在 Azure Data Lake Analytics 上執行 U-SQL 指令碼來轉換資料 
-> [!div class="op_single_selector"]
-> * [Hive](data-factory-hive-activity.md)  
-> * [Pig](data-factory-pig-activity.md)  
-> * [MapReduce](data-factory-map-reduce.md)  
-> * [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
-> * [機器學習服務](data-factory-azure-ml-batch-execution-activity.md) 
-> * [預存程序](data-factory-stored-proc-activity.md)
-> * [資料湖分析 U-SQL](data-factory-usql-activity.md)
-> * [.NET 自訂](data-factory-use-custom-activities.md)
+> [!div class="op_single_selector" title1="Transformation Activities"]
+> * [Hive 活動](data-factory-hive-activity.md) 
+> * [Pig 活動](data-factory-pig-activity.md)
+> * [MapReduce 活動](data-factory-map-reduce.md)
+> * [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
+> * [Spark 活動](data-factory-spark.md)
+> * [Machine Learning Batch 執行活動](data-factory-azure-ml-batch-execution-activity.md)
+> * [Machine Learning 更新資源活動](data-factory-azure-ml-update-resource-activity.md)
+> * [預存程序活動](data-factory-stored-proc-activity.md)
+> * [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md)
+> * [.NET 自訂活動](data-factory-use-custom-activities.md)
 
 Azure Data Factory 中的「管線」會使用連結的計算服務，來處理連結的儲存體服務中的資料。 它包含一系列活動，其中每個活動都會執行特定的處理作業。 本文將說明 **Data Lake Analytics U-SQL 活動**，它在 **Azure Data Lake Analytics** 計算連結的服務上執行 **U-SQL** 指令碼。 
 
@@ -41,10 +43,10 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 > 
 > 
 
-## <a name="azure-data-lake-analytics-linked-service"></a>Azure 資料湖分析連結服務
+## <a name="azure-data-lake-analytics-linked-service"></a>Azure Data Lake Analytics 連結服務
 您需建立 **Azure Data Lake Analytics** 連結服務，來將 Azure Data Lake Analytics 計算服務連結到 Azure Data Factory。 管線中的 Data Lake Analytics U-SQL 活動會參考此連結服務。 
 
-下列範例提供 Azure 資料湖分析連結服務的 JSON 定義。 
+下列範例提供 Azure Data Lake Analytics 連結服務的 JSON 定義。 
 
 ```JSON
 {
@@ -68,8 +70,8 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
 | 類型 |type 屬性應設為： **AzureDataLakeAnalytics**。 |是 |
-| accountName |Azure 資料湖分析帳戶名稱。 |是 |
-| dataLakeAnalyticsUri |Azure 資料湖分析 URI。 |否 |
+| accountName |Azure Data Lake Analytics 帳戶名稱。 |是 |
+| dataLakeAnalyticsUri |Azure Data Lake Analytics URI。 |否 |
 | 授權 |按一下 Data Factory 編輯器中的 [授權]  按鈕並完成 OAuth 登入後，即會自動擷取授權碼。 |是 |
 | subscriptionId |Azure 訂用帳戶識別碼 |否 (如果未指定，便會使用 Data Factory 的訂用帳戶)。 |
 | resourceGroupName |Azure 資源群組名稱 |否 (若未指定，便會使用 Data Factory 的資源群組)。 |
@@ -79,7 +81,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 
 | 使用者類型 | 到期時間 |
 |:--- |:--- |
-| 不受 Azure Active Directory 管理的使用者帳戶 ((@hotmail.com,、@live.com, 等) |12 小時 |
+| 不受 Azure Active Directory 管理的使用者帳戶 (@hotmail.com、@live.com 等) |12 小時 |
 | 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的&14; 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
 如果要避免/解決此錯誤，請在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以使用下一節中的程式碼以程式設計方式產生 **sessionId** 和 **authorization** 屬性的值。 
@@ -113,8 +115,8 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 
 請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 請針對 WindowsFormsWebAuthenticationDialog 類別，新增對下列項目的參考：Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll。 
 
-## <a name="data-lake-analytics-u-sql-activity"></a>資料湖分析 U-SQL 活動
-下列 JSON 片段會定義具有資料湖分析 U-SQL 活動的管線。 活動定義具有您稍早建立的 Azure 資料湖分析連結服務的參考。   
+## <a name="data-lake-analytics-u-sql-activity"></a>Data Lake Analytics U-SQL 活動
+下列 JSON 片段會定義具有 Data Lake Analytics U-SQL 活動的管線。 活動定義具有您稍早建立的 Azure Data Lake Analytics 連結服務的參考。   
 
 ```JSON
 {
@@ -183,7 +185,7 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 
 ## <a name="sample-input-and-output-datasets"></a>建立輸入和輸出資料集
 ### <a name="input-dataset"></a>輸入資料集
-在此範例中，輸入的資料是位於 Azure 資料湖存放區 (datalake/input 資料夾中的 SearchLog.tsv 檔案)。 
+在此範例中，輸入的資料是位於 Azure Data Lake Store (datalake/input 資料夾中的 SearchLog.tsv 檔案)。 
 
 ```JSON
 {
@@ -209,7 +211,7 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 ```
 
 ### <a name="output-dataset"></a>輸出資料集
-在此範例中，U-SQL 指令碼所產生的輸出資料會儲存在 Azure 資料湖存放區 (datalake/output 資料夾)。 
+在此範例中，U-SQL 指令碼所產生的輸出資料會儲存在 Azure Data Lake Store (datalake/output 資料夾)。 
 
 ```JSON
 {

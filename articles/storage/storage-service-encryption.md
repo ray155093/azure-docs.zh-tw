@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 47398863e01204b840a965767cf2a022242d92fe
-ms.openlocfilehash: ea4d46e2d555c6572d0d741310abc4ee492767df
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: cd727a02716323c54d1c54a23cd4edd8f4940da1
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -42,8 +42,9 @@ SSE 運作方式是在資料寫入 Azure 儲存體時進行加密，並可使用
 若要參與 SSE 檔案預覽，請連絡 ssediscussions@microsoft.com。
 
 若要深入了解，請參閱常見問題集。
+
 ### <a name="availability-for-file-storage"></a>檔案儲存體的可用性
-檔案儲存體的儲存體服務加密目前在東亞、北歐和美國東部 2 等地區提供。
+檔案儲存體的儲存體服務加密目前在美國東部、美國東部&2;、美國中部、美國中北部、美國中南部、美國中西部、美國西部、美國西部&2;、東亞、北歐、西歐、澳大利亞東部和澳大利亞東南部等地區提供。
 
 
 若要針對儲存體帳戶啟用或停用儲存體服務加密，請登入 [Azure 入口網站](https://azure.portal.com)並選取儲存體帳戶。 在 [設定] 刀鋒視窗上，尋找此螢幕擷取畫面所示的 [Blob 服務] 區段，並按一下 [加密]。
@@ -174,7 +175,7 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 
 答：預設未啟用 SSE；您可以使用 Azure 入口網站來啟用它。 您也可以以程式設計方式，使用儲存體資源提供者 REST API 來啟用這項功能。
 
-**問︰這項功能與 Azure 磁碟機加密有什麼不同？**
+**問︰這項功能與 Azure 磁碟加密有什麼不同？**
 
 答︰這項功能是用來加密 Azure Blob 儲存體中的資料。 Azure 磁碟加密可用來加密作業系統和 IaaS VM 中的資料磁碟。 如需詳細資訊，請參閱我們的[儲存體安全性指南](storage-security-guide.md)。
 

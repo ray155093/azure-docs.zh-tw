@@ -17,6 +17,7 @@ ms.author: tarcher
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 76bcb201bb8d862426048b828c0c4cce0335455c
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -177,7 +178,7 @@ ms.openlocfilehash: 76bcb201bb8d862426048b828c0c4cce0335455c
   ![記錄檔目錄](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC796665.png)
 
 ### <a name="etw-logs"></a>ETW 記錄檔
-如果您使用 [Windows 事件追蹤][](https://msdn.microsoft.com/library/windows/desktop/bb968803\(v=vs.85\).aspx) (ETW) 而且想要擷取 ETW 記錄檔，請選取 [啟用 ETW 記錄檔的傳輸] 核取方塊。 您可以在記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。
+如果您使用 [Windows 事件追蹤](https://msdn.microsoft.com/library/windows/desktop/bb968803\(v=vs.85\).aspx) (ETW) 而且想要擷取 ETW 記錄檔，請選取 [啟用 ETW 記錄檔的傳輸] 核取方塊。 您可以在記錄檔傳輸至儲存體帳戶時，藉由變更**傳輸期間 (分鐘)** 值來增加或減少分鐘數。
 
 從事件來源和您指定的事件資訊清單擷取事件。 若要指定事件來源，請在 [事件來源] 區段中輸入名稱，然後選擇 [新增事件來源] 按鈕。 同樣地，您可以指定 [事件資訊清單] 區段中的事件資訊清單，然後選擇 [新增事件資訊清單] 按鈕。
 
@@ -192,7 +193,7 @@ ms.openlocfilehash: 76bcb201bb8d862426048b828c0c4cce0335455c
 
   ![損毀傾印](./media/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines/IC766026.png)
 
-  如需詳細資訊，請參閱[在 Microsoft Azure 中控制記錄和追蹤](https://msdn.microsoft.com/magazine/ff714589.aspx)和 Microsoft Azure 診斷第 4 部分：自訂記錄元件和 [Azure 診斷 1.3 變更](http://justazure.com/microsoft-azure-diagnostics-part-4-custom-logging-components-azure-diagnostics-1-3-changes/)。
+  如需詳細資訊，請參閱[在 Microsoft Azure 中控制記錄和追蹤](https://msdn.microsoft.com/magazine/ff714589.aspx)和 [Microsoft Azure 診斷第 4 部分：自訂記錄元件和 Azure 診斷 1.3 變更](http://justazure.com/microsoft-azure-diagnostics-part-4-custom-logging-components-azure-diagnostics-1-3-changes/)。
 
 ## <a name="view-the-diagnostics-data"></a>檢視診斷資料
 收集到雲端服務或虛擬機器的診斷資料之後，您可以檢視它。
@@ -301,10 +302,5 @@ RoleEntryPoint 的方法是在 WAIISHost.exe 的內容中呼叫，而不是 IIS�
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解 Azure 中的診斷記錄，請參閱[在 Azure 雲端服務](cloud-services/cloud-services-dotnet-diagnostics.md)和[虛擬機器中啟用診斷和在 Azure App Service 中啟用 web 應用程式的診斷記錄](app-service-web/web-sites-enable-diagnostic-log.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

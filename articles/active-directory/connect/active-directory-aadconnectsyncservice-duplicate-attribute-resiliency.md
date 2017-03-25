@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/24/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 9bf2e87353901a043f01ff7d634e1b174cd6a52a
-ms.openlocfilehash: 3dd67e08951780725c4d81ce54aa841a5d13e59a
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: 1209acfb13d53288b1ff0ed232c44c3fdcd3a9f4
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -50,7 +51,8 @@ Azure Active Directory 並不是完全無法佈建或更新具有重複屬性的
 ### <a name="enabling-duplicate-attribute-resiliency"></a>啟用重複屬性恢復功能
 「重複屬性恢復功能」將會是所有 Azure Active Directory 租用戶的新預設行為。 針對所有在 2016 年 8 月 22 日或之後第一次啟用同步處理的租用戶，預設都會開啟這項功能。 在此日期之前啟用同步功能的租用戶則會分批啟用此功能。 這項功能推出將從 2016 年 9 月開始，每個租用戶的技術通知連絡人將會收到電子郵件通知，其中會指出啟用功能的特定日期。
 
-一旦開啟「重複屬性恢復功能」，即無法予以停用。
+> [!NOTE]
+> 一旦開啟「重複屬性恢復功能」，即無法予以停用。
 
 若要檢查是否已為您的租用戶啟用此功能，只要下載最新版的 Azure Active Directory PowerShell 模組並執行下列程式碼即可︰
 
@@ -58,11 +60,8 @@ Azure Active Directory 並不是完全無法佈建或更新具有重複屬性的
 
 `Get-MsolDirSyncFeatures -Feature DuplicateProxyAddressResiliency`
 
-如果您想要在針對您租用戶開啟此功能之前主動啟用此功能，只要下載最新版的 Azure Active Directory PowerShell 模組並執行下列程式碼即可︰
-
-`Set-MsolDirSyncFeature -Feature DuplicateUPNResiliency -Enable $true`
-
-`Set-MsolDirSyncFeature -Feature DuplicateProxyAddressResiliency -Enable $true`
+> [!NOTE]
+> 在為租用戶開啟該功能之前，您無法再使用 Set-MsolDirSyncFeature Cmdlet 來主動啟用重複屬性復原功能。 若要測試該功能，您需要建立新的 Azure Active Directory 租用戶。
 
 ## <a name="identifying-objects-with-dirsyncprovisioningerrors"></a>識別具有 DirSyncProvisioningErrors 的物件
 目前有兩個方法可識別因為重複屬性衝突而發生錯誤的物件：Azure Active Directory PowerShell 和 Office 365 系統管理入口網站。 未來計劃擴充其他以入口網站為基礎的報告。
@@ -174,10 +173,5 @@ ProxyAddress 衝突的電子郵件通知範例如下所示︰
 * [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 * [在 Office 365 中識別目錄同步處理錯誤](https://support.office.com/en-us/article/Identify-directory-synchronization-errors-in-Office-365-b4fc07a5-97ea-4ca6-9692-108acab74067)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

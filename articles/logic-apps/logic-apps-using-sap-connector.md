@@ -15,6 +15,7 @@ ms.author: padmavc
 translationtype: Human Translation
 ms.sourcegitcommit: 72ac4936c656847fa07f1c1a37d6ddbf4ec1acf4
 ms.openlocfilehash: 62b30acf324a5ed6a1b817157c86575d83b4104e
+ms.lasthandoff: 02/02/2017
 
 
 ---
@@ -42,7 +43,7 @@ ms.openlocfilehash: 62b30acf324a5ed6a1b817157c86575d83b4104e
 
 ## <a name="add-the-sap-connector"></a>新增 SAP 連接器
 
-SAP 連接器有動作。 它並沒有任何觸發程序。。 因此，請在工作流程的開頭使用另一個觸發程序。 
+SAP 連接器有動作。 它並沒有任何觸發程序。 因此，請在工作流程的開頭使用另一個觸發程序。 
 
 1. 新增要求/回應觸發程序，然後選取 [新增步驟]。
 2. 選取 [新增動作]，然後在搜尋欄位輸入 `SAP` 以選取 SAP 連接器：    
@@ -76,9 +77,4 @@ SAP 連接器有動作。 它並沒有任何觸發程序。。 因此，請在�
 ## <a name="next-steps"></a>後續步驟
 - 了解如何驗證、轉換及[企業整合套件](../logic-apps/logic-apps-enterprise-integration-overview.md)中其他與 BizTalk 類似的功能。 
 - 建立 Logic Apps 的[內部部署連線](../logic-apps/logic-apps-gateway-connection.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

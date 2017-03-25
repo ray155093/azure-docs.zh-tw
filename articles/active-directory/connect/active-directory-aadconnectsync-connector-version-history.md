@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/08/2017
+ms.date: 03/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 731dd999e053b98c93c374530599232d4dc5bb92
-ms.openlocfilehash: 9c7a8dc5204a799a8b79fa88b243d981bcd54c74
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 3051ed0385b81892b8495e83817ed8255dbce8cd
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -36,6 +37,61 @@ ms.openlocfilehash: 9c7a8dc5204a799a8b79fa88b243d981bcd54c74
 * [Web 服務連接器](http://go.microsoft.com/fwlink/?LinkID=226245) 參考文件
 * [PowerShell 連接器](active-directory-aadconnectsync-connector-powershell.md) 參考文件
 * [Lotus Domino 連接器](active-directory-aadconnectsync-connector-domino.md) 參考文件
+
+## <a name="114430"></a>1.1.443.0
+
+發行日期：2017 年 3 月
+
+### <a name="enhancements"></a>增強功能
+* 一般 SQL：</br>
+  **案例徵兆︰**SQL 連接器的已知限制，一個物件類型只允許一個參考，且成員需要交互參考。 </br>
+  **解決方案說明︰**在已選擇 "*" 選項之參考的處理步驟中，物件類型的所有組合會傳回給同步處理引擎。
+
+>[!Important]
+- 這會造成許多預留位置
+- 必須確定名稱在物件類型之間是唯一的。
+
+
+* 一般 LDAP：</br>
+ **案例︰**只選取了特定資料分割中的幾個容器時，仍會對整個資料分割執行搜尋。 詳細資料會依同步處理服務來進行篩選，而不是依可能會造成效能降低的 MA。 </br>
+
+ **解決方案說明︰**變更了 GLDAP 連接器的程式碼，使其可以瀏覽過所有容器，並搜尋各容器中的物件，而非在整個資料分割中搜尋。
+
+
+* Lotus Domino：
+
+  **案例︰**在匯出期間移除人員時支援刪除 Domino 郵件。 </br>
+  **解決方案︰**可設定在匯出期間移除人員時刪除 Domino 郵件的支援。
+
+### <a name="fixed-issues"></a>已修正的問題：
+* 一般 Web 服務︰
+ * 透過 WebService 組態工具在預設的 SAP wsconfig 專案中變更服務 URL 時，發生下列錯誤︰找不到路徑的一部分
+
+      ``'C:\Users\cstpopovaz\AppData\Local\Temp\2\e2c9d9b0-0d8a-4409-b059-dceeb900a2b3\b9bedcc0-88ac-454c-8c69-7d6ea1c41d17\cfg.config\cloneconfig.xml'. ``
+
+* 一般 LDAP：
+ * 修正未匯入一般 SQL 浮水印差異匯入多重值屬性的錯誤
+ * GLDAP 連接器無法看到 AD LDS 中的所有屬性
+ * 從 LDAP 目錄結構描述偵測不到任何 UPN 屬性時，精靈會中斷
+ * 如果未選取 "objectclass" 屬性，完整匯入期間不會顯示差異匯入的探索失敗錯誤
+ * 「設定資料分割和階層」組態頁面上，不會顯示類型等於一般 LDAP MA 中 Novel 伺服器之資料分割的任何物件。  
+LDAP MA. 頁面上只會顯示來自 RootDSE 資料分割的物件。
+
+
+* 一般 SQL：
+ * 匯出作業刪除\新增多重值屬性的值時，不會在資料來源中刪除\新增這些值。  
+
+
+* Lotus Notes：
+ * Metaverse 會正確顯示特定欄位 [全名]，但匯出至 Notes 時，屬性值會是 Null 或空白。
+ * 修正重複認證者錯誤
+ * 在 Lotus Domino 連接器上連同其他物件選取了沒有任何資料的物件時，我們會在執行完整匯入時收到探索錯誤。
+ * 當 Lotus Domino 連接器上正在執行差異匯入時，於執行結束時，Microsoft.IdentityManagement.MA.LotusDomino.Service.exe 服務有時會傳回應用程式錯誤。
+ * 群組成員資格全都正常運作並保留下來，唯獨在執行匯出以試著從成員資格中移除某位使用者時，雖會顯示更新成功，但使用者實際上並未從 Lotus Notes 的成員資格中移除。
+ * Lotus MA 的組態 GUI 中新增了選擇「將項目附加在底部」做為匯出模式的機會，可在多重值屬性匯出期間將新項目附加在底部。
+ * 連接器會新增從「郵件資料夾」和「識別碼保存庫」中刪除檔案所需要的邏輯。
+ * 刪除成員資格時不會跨 NAB 成員進行。
+ * 值應該會成功從多重值屬性中刪除
 
 ## <a name="111170"></a>1.1.117.0
 發行日期：2016 年 3 月
@@ -98,9 +154,4 @@ ms.openlocfilehash: 9c7a8dc5204a799a8b79fa88b243d981bcd54c74
 深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

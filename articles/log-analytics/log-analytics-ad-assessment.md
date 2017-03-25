@@ -1,5 +1,5 @@
 ---
-title: "在 Log Analytics 中使用 Active Directory 評估方案進行環境最佳化 | Microsoft Docs"
+title: "使用 Azure Log Analytics 最佳化 Active Directory 環境 | Microsoft Docs"
 description: "您可以使用 Active Directory 評估方案定期評估伺服器環境的風險和健全狀況。"
 services: log-analytics
 documentationcenter: 
@@ -12,16 +12,18 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 02/27/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: e0971ca8064a6e4de272a8d890a6fdc88c0f8cc2
-ms.openlocfilehash: 24e3da0ed3aa04e000a4c88fb7b0745d5b880d0d
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: d50d25e4ea594b5231d29a862f3a98f07de70324
+ms.lasthandoff: 03/11/2017
 
 
 ---
-# <a name="optimize-your-environment-with-the-active-directory-assessment-solution-in-log-analytics"></a>在 Log Analytics 中使用 Active Directory 評估方案進行環境最佳化
+# <a name="optimize-your-active-directory-environment-with-the-active-directory-assessment-solution-in-log-analytics"></a>在 Log Analytics 中使用 Active Directory 評估方案來最佳化 Active Directory 環境
+
 您可以使用 Active Directory 評估方案定期評估伺服器環境的風險和健全狀況。 本文將協助您安裝和使用方案，讓您可以針對潛在問題採取修正動作。
 
 此方案能針對已部署的伺服器基礎結構提供依照優先順序排列的具體建議清單。 建議分為四個焦點區域，它們可以幫助您快速了解風險並採取動作。
@@ -41,7 +43,7 @@ ms.lasthandoff: 02/22/2017
 
 * 代理程式必須安裝在隸屬於要評估之網域成員的網域控制站上。
 * Active Directory 評估方案需要在具有 OMS 代理程式的每部電腦上都安裝 .NET Framework 4 (4.5.2 或以上) 的支援版本。
-* 使用 [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)中的程序，將 Active Directory 評估方案加入您的 OMS 工作區中。  不需要進一步的組態。
+* 從 [Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.ADAssessmentOMS?tab=Overview) 或使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，將 Active Directory 評估方案新增至您的 OMS 工作區。  不需要進一步的組態。
 
   > [!NOTE]
   > 您加入方案之後，AdvisorAssessment.exe 檔案會以代理程式加入伺服器中。 組態資料會先讀取後再傳送至雲端中的 OMS 服務，以便進行處理。 會將邏輯套用至接收的資料，且雲端服務會記錄資料。

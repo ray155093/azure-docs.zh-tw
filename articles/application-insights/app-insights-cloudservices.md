@@ -4,7 +4,7 @@ description: "使用 Application Insights 有效地監視您的 Web 和背景工
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 editor: alancameronwills
 ms.assetid: 5c7a5b34-329e-42b7-9330-9dcbb9ff1f88
 ms.service: application-insights
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.tgt_pltfrm: ibiza
 ms.topic: article
 ms.workload: tbd
-ms.date: 11/02/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 4fbfb24a2e9d55d718902d468bd25e12f64e7d24
-ms.openlocfilehash: 925411deed422af00b10ff6787606f5039a5fb23
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 42e4fe54eec414549f09b93a3e12ea130eeee68f
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -98,19 +99,19 @@ ms.openlocfilehash: 925411deed422af00b10ff6787606f5039a5fb23
 
 如果您想要變更傳送到 Application Insights 的診斷資訊層級，只要[直接編輯 .cscfg 檔案](app-insights-azure-diagnostics.md)即可。
 
-## <a name="a-namesdkainstall-the-sdk-in-each-project"></a><a name="sdk"></a>在每個專案中安裝 SDK
+## <a name="sdk"></a>在每個專案中安裝 SDK
 此選項會新增將自訂業務遙測新增到任何角色的功能，可用來進一步分析您應用程式的使用和執行情況。
 
-在 Visual Studio 中，將 Application Insights SDK 新增到每個雲端應用程式專案。
+在 Visual Studio 中，設定每個雲端應用程式專案的 Application Insights SDK。
 
-1. 編輯專案的 NuGet 套件。
+1. **Web 角色**：以滑鼠右鍵按一下專案，然後選擇 [設定 Application Insights] 或 [新增 > Application Insights 遙測]。
    
-    ![以滑鼠右鍵按一下專案，然後選取 [管理 NuGet 封裝]](./media/app-insights-cloudservices/03-nuget.png)
-2. **Web 角色**：新增 [Application Insights for Web](http://www.nuget.org/packages/Microsoft.ApplicationInsights.Web)。 此 SDK 版本包含會收集 HTTP 要求資料及新增伺服器內容 (例如角色資訊) 的模組。
-   
-    **背景工作角色**：新增[適用於 Windows 伺服器的 Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/)。
+2. **背景工作角色**： 
+ * 以滑鼠右鍵按一下專案，然後選取 [管理 NuGet 套件]。
+ * 新增[適用於 Windows 伺服器的 Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/)。
    
     ![搜尋「Application Insights」](./media/app-insights-cloudservices/04-ai-nuget.png)
+
 3. 設定 SDK 以將資料傳送給 Application Insights 資源。
    
     在適合的啟動函式中，從 .cscfg 檔案中的組態設定設定檢測金鑰：
@@ -245,9 +246,4 @@ ms.openlocfilehash: 925411deed422af00b10ff6787606f5039a5fb23
 [qna]: app-insights-troubleshoot-faq.md
 [redfield]: app-insights-monitor-performance-live-website-now.md
 [start]: app-insights-overview.md 
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

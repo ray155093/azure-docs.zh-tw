@@ -12,47 +12,61 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 2/2/2017
+ms.date: 03/02/2017
 ms.author: johnkem
 translationtype: Human Translation
-ms.sourcegitcommit: 97edd5eaa3cfa4a122556583dff28c4a9b6f5adc
-ms.openlocfilehash: 18035fe2a30707f701098cef4b1391b1d5ab2012
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 4ec026a5b95170d0eba244123c37cd3c8fab150a
+ms.lasthandoff: 03/09/2017
 
 
 ---
 # <a name="overview-of-the-azure-activity-log"></a>Azure 活動記錄檔概觀
 **Azure 活動記錄檔** (Activity Log) 能為您提供訂用帳戶中的資源所執行之作業的深入解析。 活動記錄檔之前叫做「稽核記錄」或「作業記錄」，因為它會報告訂用帳戶中控制層面的事件。 您可以使用活動記錄檔來判斷訂用帳戶中的資源上任何寫入作業 (PUT、POST、DELETE) 的「內容、對象和時間」。 您也可以了解作業的狀態和其他相關屬性。 活動記錄不包含讀取 (GET) 作業，或是使用傳統/"RDFE" 模型之資源的作業。
 
-活動記錄檔不同於 [診斷記錄](monitoring-overview-of-diagnostic-logs.md)，是由資源發出的所有記錄檔。 這些記錄檔提供有關該資源的作業資料，而不是該資源上的作業。
+![活動記錄與其他類型的記錄 ](./media/monitoring-overview-activity-logs/Activity_Log_vs_other_logs_v5.png)
+
+圖 1：活動記錄與其他類型的記錄
+
+活動記錄不同於[診斷記錄](monitoring-overview-of-diagnostic-logs.md)。 活動記錄會提供有關外部資源作業的資料。 診斷記錄是由資源所發出，會提供該資源作業的相關資訊。
 
 您可以使用 Azure 入口網站、CLI、PowerShell Cmdlet、Azure 監視器 REST API 從活動記錄檔擷取事件。
 
-檢視此[活動記錄檔簡介影片](https://channel9.msdn.com/Blogs/Seth-Juarez/Logs-John-Kemnetz)。  
 
 > [!WARNING]
-> Azure 活動記錄主要是針對 Azure Resource Manager 中發生的活動，而不是使用傳統/RDFE 模型的活動。 請留意，某些傳統資源類型在 Azure Resource Manager 中有 Proxy 資源提供者 (例如， Microsoft.ClassicCompute)。 如果使用者透過使用這些 Proxy 資源提供者的 Azure Resource Manager 來與傳統資源類型互動，則作業將會顯示在活動記錄。 如果使用者在傳統入口網站或 Azure Resource Manager Proxy 之外與傳統資源類型互動，則使用者動作只會記錄在「作業記錄」，而只能在傳統入口網站取得該記錄。
+> Azure 活動記錄主要是針對 Azure Resource Manager 中發生的活動。 此記錄不會追蹤使用傳統/RDFE 模型的資源。 某些傳統資源類型在 Azure Resource Manager 中有 Proxy 資源提供者 (例如，Microsoft.ClassicCompute)。 如果您透過使用這些 Proxy 資源提供者的 Azure Resource Manager 來與傳統資源類型互動，則作業會顯示在活動記錄。 如果您在傳統入口網站或 Azure Resource Manager Proxy 之外與傳統資源類型互動，則您的動作只會記錄在「作業記錄」。 作業記錄只能在傳統入口網站中存取。
 >
 >
+
+檢視下列簡介活動記錄的影片。
+[!VIDEO https://channel9.msdn.com/Blogs/Seth-Juarez/Logs-John-Kemnetz/player]
 
 ## <a name="what-you-can-do-with-the-activity-log"></a>Azure 活動記錄檔的用途
 以下是您可以利用活動記錄檔進行的事：
 
-* 在 **Azure 入口網站**中查詢和檢視活動記錄檔。
-* 透過 REST API、PowerShell Cmdlet 或 CLI 查詢活動記錄檔。
-* [建立電子郵件或可觸發關閉活動記錄檔事件的 webhook 警示。](insights-auditlog-to-webhook-email.md)
-* [將活動記錄檔儲存到**儲存體帳戶**以供封存或手動檢查](monitoring-archive-activity-log.md)。 您可以使用 **記錄檔設定檔**指定保留時間 (以天為單位)。
-* 使用 [**PowerBI 內容套件**](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-audit-logs/)在 PowerBI 中分析活動記錄檔。
-* [將活動記錄檔串流至**事件中樞**](monitoring-stream-activity-logs-event-hubs.md)，以利第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
+![Azure 活動記錄](./media/monitoring-overview-activity-logs/Activity_Log_Overview_v3.png)
 
-儲存體帳戶或事件中樞命名空間不一定要和訂用帳戶發出記錄檔屬於相同的訂用帳戶，只要使用者有適當的設定可 RBAC 存取這兩個訂用帳戶即可。
+
+* [建立電子郵件或可觸發關閉活動記錄檔事件的 webhook 警示。](insights-auditlog-to-webhook-email.md)
+* [將活動記錄檔串流至**事件中樞**](monitoring-stream-activity-logs-event-hubs.md)，以利第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
+* 使用 [**PowerBI 內容套件**](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-audit-logs/)在 PowerBI 中分析活動記錄檔。
+* [將活動記錄檔儲存到**儲存體帳戶**以供封存或手動檢查](monitoring-archive-activity-log.md)。 您可以使用 **記錄檔設定檔**指定保留時間 (以天為單位)。
+* 在 **Azure 入口網站**中查詢和檢視活動記錄檔。
+* 透過 PowerShell Cmdlet、CLI 或 REST API 查詢活動記錄。
+
+
+您可以使用並非發出記錄的同一個訂用帳戶中的儲存體帳戶或事件中樞命名空間。 進行此設定的使用者必須具有這兩個訂用帳戶的適當 RBAC 存取權。
 
 ## <a name="export-the-activity-log-with-log-profiles"></a>匯出活動記錄檔與記錄檔設定檔
 **記錄檔設定檔** 控制活動記錄檔的匯出方式。 使用記錄檔設定檔，您可以設定︰
 
 * 活動記錄檔應該要傳送至何處 (儲存體帳戶或事件中樞)
-* 應該要傳送何種事件分類 (Write、Delete、Action)。 *請注意，記錄檔設定檔內容中的 "category" 與活動記錄檔事件中的 "category" 屬性具有不同的意義。記錄檔設定檔中的 "category" 代表作業類型 (Write、Delete、Action)，而活動記錄檔事件中的 "category" 屬性代表事件的來源或類型 (Administration、ServiceHealth、Alert 等等)。*
+* 應該要傳送何種事件分類 (Write、Delete、Action)。 *「類別」一詞在記錄設定檔和活動記錄事件中的意義並不相同。在記錄設定檔中，「類別」代表作業類型 (寫入、刪除、動作)。在活動記錄事件中，「類別」屬性代表事件的來源或類型 (例如，管理、ServiceHealth、警示等等)。*
 * 應該要匯出哪一個區域 (Locations)
-* 活動記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。 否則，此值可以是 1 到 2147483647 之間的任意天數。 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄檔將被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。
+* 活動記錄應該在儲存體帳戶中保留多久。
+    - 保留期為&0; 天表示會永遠保留記錄。 否則，此值可以是 1 到 2147483647 之間的任意天數。
+    - 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
+    - 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄會被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。
 
 這些設定可透過入口網站中 [活動記錄檔] 刀鋒視窗中的 [匯出] 選項來設定。 也可以[使用 Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931927.aspx)、PowerShell Cmdlet 或 CLI 以程式設計方式設定。 一個訂用帳戶只能有一個記錄檔的設定檔。
 
@@ -60,18 +74,18 @@ ms.openlocfilehash: 18035fe2a30707f701098cef4b1391b1d5ab2012
 您可以將活動記錄檔串流至事件中樞，或在 Azure 入口網站中使用 [匯出] 選項將它們儲存在儲存體帳戶。
 
 1. 使用入口網站左側的功能表，瀏覽至 [活動記錄檔]  刀鋒視窗。
-   
+
     ![在入口網站中瀏覽至活動記錄檔](./media/monitoring-overview-activity-logs/activity-logs-portal-navigate.png)
 2. 按一下刀鋒視窗頂端的 [匯出]  按鈕。
-   
+
     ![入口網站中的匯出按鈕](./media/monitoring-overview-activity-logs/activity-logs-portal-export.png)
 3. 在出現的刀鋒視窗中，您可以選取︰  
-   
+
    * 您要匯出事件的區域
    * 您要儲存事件的儲存體帳戶
    * 您想要在儲存體中保留這些事件的天數。 如果設定為 0 天會永遠保留記錄檔。
    * 服務匯流排命名空間，您要在其中建立事件中樞以對這些事件進行串流處理。
-     
+
      ![匯出活動記錄檔刀鋒視窗](./media/monitoring-overview-activity-logs/activity-logs-portal-export-blade.png)
 4. 按一下 [儲存]  來儲存這些設定。 您的訂用帳戶時會立即套用設定。
 
@@ -240,10 +254,4 @@ azure insights logprofile delete --name my_log_profile
 ## <a name="next-steps"></a>後續步驟
 * [深入了解活動記錄檔 (之前的稽核記錄檔)](../azure-resource-manager/resource-group-audit.md)
 * [將 Azure 活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

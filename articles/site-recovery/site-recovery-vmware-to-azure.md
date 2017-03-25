@@ -12,16 +12,16 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/05/2017
+ms.date: 03/12/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: dc533f46d71ec1bbe49b3e19821e4fc6009773fc
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: d811cdabe35f28ab8f2496b08c959107c10ef1be
+ms.lasthandoff: 03/14/2017
 
 
 ---
-# <a name="replicate-vmware-virtual-machines-to-azure-with-azure-site-recovery"></a>使用 Azure Site Recovery 將 VMWare 虛擬機器複寫至 Azure
+# <a name="replicate-vmware-virtual-machines-to-azure-with--site-recovery"></a>使用 Site Recovery 將 VMWare 虛擬機器複寫至 Azure
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](site-recovery-vmware-to-azure.md)
@@ -30,11 +30,11 @@ ms.lasthandoff: 03/06/2017
 
 本文說明如何在 Azure 入口網站中使用 [Azure Site Recovery](site-recovery-overview.md) 服務，將內部部署 VMware 虛擬機器複寫至 Azure。
 
- 如果您的目的是要將 VMware VM 移轉至 Azure，請參閱[這篇文章](site-recovery-migrate-to-azure.md)深入了解再繼續進行。
+如果您要將 VMware VM 移轉至 Azure (僅容錯移轉)，請參閱[這篇文章](site-recovery-migrate-to-azure.md)以便深入了解。
 
-請在本文下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中張貼意見或問題。
+請在本文下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)上張貼意見或問題。
 
-## <a name="deployment-summary"></a>部署摘要
+## <a name="deployment-steps"></a>部署步驟
 
 以下是您需要採取的動作：
 
@@ -92,7 +92,7 @@ ms.lasthandoff: 03/06/2017
 
 ## <a name="prepare-for-automatic-discovery-and-push-installation"></a>為自動探索和推入安裝做準備
 
-- **準備自動搜索的帳戶**：Site Recovery 處理序伺服器會自動探索 VM。 若要這樣做，Site Recovery 需要有可存取 vCenter 伺服器/vSphere ESXi 主機的認證。
+- **準備自動搜索的帳戶**：Site Recovery 處理序伺服器會自動探索 VM。 若要這樣做，Site Recovery 需要有可存取 vCenter 伺服器和 vSphere ESXi 主機的認證。
 
     1. 若要使用專用帳戶，請在 vCenter 層級建立具有這些[權限](#vmware-account-permissions)的角色。 指定名稱，例如 **Azure_Site_Recovery**。
     2. 然後，在 vSphere 主機/vCenter 伺服器上建立使用者，並將角色指派給該使用者。 您在 Site Recovery 部署期間指定此使用者帳戶。
@@ -111,11 +111,11 @@ ms.lasthandoff: 03/06/2017
 
 選取您要複寫的項目以及您要複寫到的位置。
 
-1. 按一下 [復原服務保存庫]  >  <vault name>。
-2. 在 [快速入門] 中，按一下 [Site Recovery] > [步驟 1︰準備基礎結構] > [保護目標]。
+1. 按一下 [復原服務保存庫] > 保存庫。
+2. 在 [資源功能表] 中，按一下 [Site Recovery] > [步驟 1: 準備基礎結構] > [保護目標]。
 
     ![選擇目標](./media/site-recovery-vmware-to-azure/choose-goals.png)
-3. 在 [您要將電腦複寫到何處?] 中，選取 [至 Azure]，然後在 [您的電腦虛擬化了嗎?] 中選取 [是，使用 VMware vSphere Hypervisor]。
+3. 在 [保護目標] 中選取 [至 Azure] > [是，使用 VMware vSphere Hypervisor]。
 
     ![選擇目標](./media/site-recovery-vmware-to-azure/choose-goals2.png)
 
@@ -123,32 +123,35 @@ ms.lasthandoff: 03/06/2017
 
 安裝設定伺服器、註冊在保存庫及探索 VM。
 
-1. 在 [步驟 1: 準備基礎結構] 中，按一下 [來源]。
+1. 按一下 [Site Recovery] > [步驟 1: 準備基礎結構] > [來源]。
 2. 如果您沒有設定伺服器，請按一下 [+設定伺服器]。
 
     ![設定來源](./media/site-recovery-vmware-to-azure/set-source1.png)
 3. 在 [新增伺服器] 中，檢查 [設定伺服器] 是否出現在 [伺服器類型] 中。
-4. 下載 **Microsoft Azure Site Recovery 統一安裝**的安裝檔案。
+4. 下載 Site Recovery 統一安裝的安裝檔案。
 5. 下載保存庫註冊金鑰。 您會在執行統一安裝時用到此金鑰。 該金鑰在產生後會維持&5; 天有效。
 
    ![設定來源](./media/site-recovery-vmware-to-azure/set-source2.png)
-6. 在設定伺服器機器上，請確定系統時鐘與[時間伺服器](https://technet.microsoft.com/en-us/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-2016-accurate-time)同步，然後執行「整合安裝」來安裝設定伺服器、處理伺服器和主要目標伺服器。
+
 
 ## <a name="run-site-recovery-unified-setup"></a>執行 Site Recovery 統一安裝
 
-開始之前：
+開始之前請先執行下列作業，然後執行統一安裝以安裝組態伺服器、處理序伺服器與主要目標伺服器。
+    - 透過影片快速建立概念
 
-- 確定 VM 上的時間與當地時區的時間相同。 應該相符。 如果快慢誤差 15 分鐘，安裝可能會失敗。
-- 在設定伺服器 VM 上以本機系統管理員身分執行安裝程式。
-- 確定 VM 上已啟用 TLS 1.0
+        > [!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video1-Source-Infrastructure-Setup/player]
 
-然後在設定伺服器上執行「整合安裝」安裝檔案。
+    - 在組態伺服器 VM 上，確定系統時鐘與[時間伺服器](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service)同步。 應該相符。 如果快慢誤差 15 分鐘，安裝可能會失敗。
+    - 在設定伺服器 VM 上以本機系統管理員身分執行安裝程式。
+    - 確定 VM 上已啟用 TLS 1.0
 
 
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
 
 > [!NOTE]
-> 您可以透過命令列安裝組態伺服器。 [深入了解](http://aka.ms/installconfigsrv)。
+> 您也可以[從命令列](http://aka.ms/installconfigsrv)安裝組態伺服器。
+
+
 
 ### <a name="add-the-account-for-automatic-discovery"></a>新增用於自動探索的帳戶
 
@@ -183,6 +186,9 @@ Site Recovery 會使用指定的設定連接至 VMware 伺服器並探索 VM。
 
 ## <a name="set-up-replication-settings"></a>設定複寫設定
 
+在開始之前，請透過影片快速建立概念︰
+> [!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video2-vCenter-Server-Discovery-and-Replication-Policy/player]
+
 1. 若要建立新的複寫原則，請按一下 [Site Recovery 基礎結構] > [複寫原則] > [+複寫原則]。
 2. 在 [建立複寫原則]中，指定原則名稱。
 3. 在 [RPO 臨界值] 中，指定 RPO 限制。 這個值指定資料復原點的建立頻率。 連續複寫超過此限制時會產生警示。
@@ -191,6 +197,7 @@ Site Recovery 會使用指定的設定連接至 VMware 伺服器並探索 VM。
 
     ![複寫原則](./media/site-recovery-vmware-to-azure/gs-replication2.png)
 8. 當您建立新的原則時，該原則會自動與組態伺服器產生關聯。 依預設會自動建立容錯回復的比對原則。 例如，如果複寫原則是 **rep-policy**，容錯回復原則便會是 **rep-policy-failback**。 從 Azure 起始容錯回復時才會使用此原則。  
+
 
 
 ## <a name="plan-capacity"></a>規劃容量
@@ -203,7 +210,7 @@ Site Recovery 會使用指定的設定連接至 VMware 伺服器並探索 VM。
 
 ## <a name="prepare-vms-for-replication"></a>準備 VM 進行複寫
 
-您想要複寫的所有電腦都必須安裝行動服務。 安裝行動服務有許多方式︰
+行動服務必須安裝在您要複寫的所有 VMware VM 上。 安裝行動服務有許多方式︰
 
 1. 從處理伺服器使用推入安裝來安裝。 您需要準備 VM 才能使用這個方法。
 2. 使用 System Center Configuration Manager 或 Azure 自動化 DSC 之類的部署工具來安裝。
@@ -227,6 +234,10 @@ Site Recovery 會使用指定的設定連接至 VMware 伺服器並探索 VM。
 依預設會複寫電腦上的所有磁碟。 您可以從複寫排除磁碟。 例如，您可能不想要複寫具有暫存資料的磁碟，或是每次機器或應用程式重新啟動時便重新整理的資料 (例如 pagefile.sys 或 SQL Server tempdb)。
 
 ### <a name="replicate-vms"></a>複寫 VM
+
+在開始之前，請觀看快速的影片概觀
+
+>[!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video3-Protect-VMware-Virtual-Machines/player]
 
 1. 按一下 [步驟 2: 複寫應用程式]  >  [來源]。
 2. 在 [來源] 中，選取設定伺服器。
@@ -258,16 +269,17 @@ Site Recovery 會使用指定的設定連接至 VMware 伺服器並探索 VM。
     * 我們建議您將 VM 與實體伺服器一起收集，讓它們鏡像您的工作負載。 啟用多部 VM 一致性可能會影響工作負載的效能，應該只用於機器正在執行相同工作負載，且您需要一致性的情況。
 
     ![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication7.png)
-13. 按一下 [啟用複寫] 。 您可以在 [作業] >  [Site Recovery 作業] 中，追蹤 [啟用保護] 作業的進度。 執行 [完成保護]  作業之後，機器即準備好進行容錯移轉。
+13. 按一下 [啟用複寫] 。 您可以在 [設定]  >  [作業]  >  [Site Recovery 作業] 中，追蹤 [啟用保護] 作業的進度。 執行 [完成保護]  作業之後，機器即準備好進行容錯移轉。
 
 啟用複寫後，如果您設定推入安裝，將會安裝行動服務。 在 VM 上推入安裝行動服務之後，保護作業會啟動且失敗。 在失敗之後，您需要手動重新啟動每一部機器。 然後，保護作業會再次啟動，並進行初始複寫。
+
 
 
 ### <a name="view-and-manage-vm-properties"></a>檢視及管理 VM 屬性
 
 我們建議您確認 VM 屬性，並進行任何需要的變更。
 
-1. 按一下 [複寫的項目]，然後選取電腦。 [程式集] 刀鋒視窗會顯示機器設定與狀態的相關資訊。
+1. 按一下 [複寫的項目]，然後選取電腦。 [程式集]  刀鋒視窗會顯示機器設定與狀態的相關資訊。
 2. 在 [屬性] 中，您可以檢視 VM 的複寫和容錯移轉資訊。
 3. 在 [計算和網路] > [計算屬性] 中，您可以指定 Azure VM 名稱和目標大小。 視需要修改名稱以符合 [Azure 需求](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements) 。
 4. 修改目標網路、子網路以及將指派給 Azure VM 的 IP 位址等設定：
@@ -289,26 +301,30 @@ Site Recovery 會使用指定的設定連接至 VMware 伺服器並探索 VM。
 
 ## <a name="run-a-test-failover"></a>執行測試容錯移轉
 
-一切就緒後，執行測試容錯移轉，確定一切如預期般運作。
+
+一切就緒後，執行測試容錯移轉，確定一切如預期般運作。 在開始之前，請透過影片快速建立概念
+>[!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video4-Recovery-Plan-DR-Drill-and-Failover/player]
 
 
-1. 若要容錯移轉單一機器，請在 [複寫的項目] 中，按一下 VM > [+測試容錯移轉] 圖示。
+1. 若要容錯移轉單一機器，請在 [設定]  >  [複寫的項目] 中，按一下 VM > [+測試容錯移轉] 圖示。
 
     ![測試容錯移轉](./media/site-recovery-vmware-to-azure/TestFailover.png)
 
-1. 若要容錯移轉復原方案，請在 [復原方案] 中，以滑鼠右鍵按一下方案 > [測試容錯移轉]。 若要建立復原方案，請[遵循這些指示](site-recovery-create-recovery-plans.md)。  
+1. 若要容錯移轉復原方案，請在 [設定]  >  [復原方案] 中，以滑鼠右鍵按一下方案 > [測試容錯移轉]。 若要建立復原方案，請[遵循這些指示](site-recovery-create-recovery-plans.md)。  
 
 1. 在 [測試容錯移轉] 中，選取 Azure VM 在容錯移轉之後要連接的 Azure 網路。
 
-1. 按一下 [確定]  即可開始容錯移轉。 您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > > [作業] >  [Site Recovery 作業] 中的 [測試容錯移轉] 作業上按一下，來追蹤進度。
+1. 按一下 [確定]  即可開始容錯移轉。 您可以按一下 VM 以開啟其屬性，或在保存庫名稱 > [設定]  >  [作業]  >  [Site Recovery 作業] 中的 [測試容錯移轉] 作業上按一下，來追蹤進度。
 
 1. 容錯移轉完成之後，您應該也會看到複本 Azure 機器出現在 Azure 入口網站 > [虛擬機器]中。 您應該確定 VM 為適當的大小、已連接到適當的網路，而且正在執行中。
 
 1. 如果您[已準備好容錯移轉後的連線](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover)，您應該能夠連接到 Azure VM。
 
-1. 完成後，在復原方案上按一下 [清除測試容錯移轉]。 在 [記事]  中，記錄並儲存關於測試容錯移轉的任何觀察。 這將刪除在測試容錯移轉期間所建立的虛擬機器。
+1. 完成後，在復原方案上按一下 [清除測試容錯移轉]。 在 [記事] 中，記錄並儲存關於測試容錯移轉的任何觀察。 這將刪除在測試容錯移轉期間所建立的 VM。
 
-如需詳細資訊，請參閱[測試容錯移轉至 Azure](site-recovery-test-failover-to-azure.md) 文件。
+[深入了解](site-recovery-test-failover-to-azure.md)測試容錯移轉。
+
+
 ## <a name="vmware-account-permissions"></a>VMware 帳戶權限
 
 Site Recovery 需要存取 VMware，才能讓處理序伺服器自動探索 VM，以及容錯移轉和容錯回復 VM。

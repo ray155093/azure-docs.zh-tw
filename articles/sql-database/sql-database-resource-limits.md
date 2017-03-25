@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-ms.date: 02/24/2017
+ms.date: 03/06/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 8441a5318bfee3fc45482a61db13adaa034b824a
-ms.openlocfilehash: 7d50a2861e4dae06d4de09417a2208b453fa499b
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 15692a155cdb55d8dc6eeeb68df264411e46b662
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -50,6 +50,10 @@ Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源�
 對於單一資料庫，資料庫的限制是由服務層級和效能等級所定義。 下表說明基本、標準和高階資料庫在不同效能等級的特性。
 
 [!INCLUDE [SQL DB service tiers table](../../includes/sql-database-service-tiers-table.md)]
+
+> [!IMPORTANT]
+> 使用 P11 和 P15 效能等級的客戶不需額外付費就能使用最多 4 TB 的內含儲存體。 這個 4 TB 選項目前在下列區域為公開預覽狀態：美國東部 2、美國西部、西歐、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。 若要了解目前的限制，請參閱[目前的 4 TB 限制](sql-database-service-tiers.md#current-limitations-of-p11-and-p15-databases-with-4-tb-maxsize)
+>
 
 ### <a name="elastic-pools"></a>彈性集區
 [彈性集區](sql-database-elastic-pool.md) 可在集區中的資料庫之間共用資源。 下表說明基本、標準和高階彈性集區的特性。

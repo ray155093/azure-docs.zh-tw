@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/16/2017
+ms.date: 03/13/2017
 ms.author: sethm;jotaub;shvija
 translationtype: Human Translation
-ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
-ms.openlocfilehash: 59622f283daeca59464dfb7a13ca76c7a0148a21
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 7bae4ae6d41e6dc6515a3fcdf574ffd193ae1aa3
+ms.lasthandoff: 03/14/2017
 
 ---
 
@@ -26,7 +26,13 @@ ms.lasthandoff: 03/03/2017
 ## <a name="general"></a>一般
 
 ### <a name="what-is-the-difference-between-event-hubs-basic-and-standard-tiers"></a>事件中樞基本層和標準層之間的差異為何？
-事件中樞標準層提供事件中樞基本層和一些競爭系統未提供的功能。 這些功能包括超過 24 小時的保留期間，以及在延遲時間少於一秒的情況下使用單一 AMQP 連線將命令傳送到大量裝置，外加從這些裝置將遙測傳送到事件中樞等能力。 標準層也提供事件中樞[封存](https://docs.microsoft.com/azure/event-hubs/event-hubs-archive-overview)功能。如需功能清單，請參閱[事件中樞定價詳細資料](https://azure.microsoft.com/pricing/details/event-hubs/)。
+Azure 事件中樞的標準層提供比基本層更多的功能。 標準層包含下列功能︰
+* 較長的事件保留期
+* 其他代理連線，超過包含的數目時支付超額費用
+* 超過單一消費者群組
+* [封存](https://docs.microsoft.com/azure/event-hubs/event-hubs-archive-overview)
+
+如需有關定價層的詳細資訊，包括專用事件中樞，請參閱[事件中樞定價詳細資料](https://azure.microsoft.com/pricing/details/event-hubs/)。
 
 ### <a name="what-are-event-hubs-throughput-units"></a>事件中樞輸送量單位是什麼？
 您明確選取事件中樞輸送量單位，可以者透過 Azure 入口網站或事件中樞 Resource Manager 範本。 輸送量單位會套用到事件中樞命名空間內的所有事件中樞，以及賦予命名空間下列功能的每個輸送量單位：

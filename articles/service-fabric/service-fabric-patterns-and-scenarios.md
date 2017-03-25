@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/30/2016
+ms.date: 03/08/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: e96941bebe07553f8575be4f5dd4ead3271225c9
-ms.openlocfilehash: 924f3287a2b34103eba56310e8e4c4e3e063a44b
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: df7c127f4ab140cb26c82e723964f1d99f03131a
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -67,7 +68,7 @@ ms.openlocfilehash: 924f3287a2b34103eba56310e8e4c4e3e063a44b
 <table><tr><th>影片</th><th>PowerPoint 簡報</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=6wECzeSGD_3805167344">
 <img src="./media/service-fabric-patterns-and-scenarios/gaming.png" WIDTH="360" HEIGHT="244">
-</a></td><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=kfqFWMSGD_6205167344">玩遊戲</a></td></tr>
+</a></td><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=kfqFWMSGD_6205167344">遊戲</a></td></tr>
 </table>
 
 ## <a name="continuous-delivery"></a>持續傳遞
@@ -99,9 +100,4 @@ ms.openlocfilehash: 924f3287a2b34103eba56310e8e4c4e3e063a44b
 
 ## <a name="next-steps"></a>後續步驟
 既然您已了解 Service Fabric 模式和案例，請深入了解如何[建立和管理叢集](service-fabric-deploy-anywhere.md)、[將雲端服務應用程式移轉至 Service Fabric](service-fabric-cloud-services-migration-worker-role-stateless-service.md)、[設定連續傳遞](service-fabric-set-up-continuous-integration.md)以及[部署容器](service-fabric-containers-overview.md)。
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

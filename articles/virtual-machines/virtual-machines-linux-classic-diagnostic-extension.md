@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 12/15/2015
 ms.author: Ning
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: 11a1f6ea289db38aeb8c2fff2c9b0e6b1f0f044c
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 625f4cc08ba023309ac4a9a8b7834d9ab4f4c116
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -45,7 +46,7 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 ## <a name="enable-the-extension"></a>啟用延伸模組
 使用 [Azure 入口網站](https://portal.azure.com/#)、Azure PowerShell 或 Azure CLI 指令碼，可以啟用此擴充功能。
 
-若要直接從 Azure 入口網站檢視和設定系統和效能資料，請遵循 [Azure 部落格上的這些步驟](https://azure.microsoft.com/blog/2014/09/02/windows-azure-virtual-machine-monitoring-with-wad-extension/ "URL to the Windows blog"/)。
+若要直接從 Azure 入口網站檢視和設定系統和效能資料，請遵循 [Azure 部落格上的這些步驟](https://azure.microsoft.com/en-us/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/)進行。
 
 本文著重於如何使用 Azure CLI 命令來啟用及設定延伸模組。 這可讓您直接從儲存體資料表讀取和檢視資料。
 
@@ -138,7 +139,7 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 
 此外，您可以使用下列 UI 工具來存取資料：
 
-1. Visual Studio 伺服器總管。 移至您的儲存體帳戶。 VM 執行約 5 分鐘後，您應該會看到四個預設資料表：“LinuxCpu”, ”LinuxDisk”, ”LinuxMemory” 和 ”Linuxsyslog”。 按兩下資料表名稱以檢視資料。
+1. Visual Studio 伺服器總管。 移至您的儲存體帳戶。 VM 執行約&5; 分鐘後，您應該會看到四個預設資料表：“LinuxCpu”, ”LinuxDisk”, ”LinuxMemory” 和 ”Linuxsyslog”。 按兩下資料表名稱以檢視資料。
 2. [Azure 儲存體總管](https://azurestorageexplorer.codeplex.com/ "Azure 儲存體總管")。
 
 ![映像](./media/virtual-machines-linux-classic-diagnostic-extension/no1.png)
@@ -147,10 +148,5 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 
 ## <a name="known-issues"></a>已知問題
 * 在 Linux 診斷擴充功能的目前版本 (2.3) 中，只能透過指令碼存取 Rsyslog 資訊和客戶指定記錄檔。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

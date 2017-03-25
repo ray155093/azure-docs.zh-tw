@@ -17,8 +17,9 @@ ms.workload: big-data
 ms.date: 03/07/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: e2d78b7e71cd17c88ce4e283cc0b0ddc9bf7b479
-ms.openlocfilehash: 0b12dcfbf69c0f66df7587f6a755f74089090960
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 8a925c38a561d11f1c0e394b8c993f739e912f54
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -157,8 +158,8 @@ ms.openlocfilehash: 0b12dcfbf69c0f66df7587f6a755f74089090960
 2. 依序按一下 [Power Query] 功能表、[From Other Sources]、[From Azure HDInsight]。
    
     ![[Excel PowerQuery 匯入] 功能表針對 Azure HDInsight 開啟。][image-hdi-gettingstarted-powerquery-importdata]
-3. 輸入叢集相關 Azure Blob 儲存體帳戶的 [帳戶名稱]，然後按一下 [確定]。 (這是您在教學課程稍早建立的儲存體帳戶。)
-4. 輸入 Azure Blob 儲存體帳戶的 [帳戶金鑰]，然後按一下 [儲存]。
+3. 輸入叢集相關 Azure 儲存體帳戶的 [帳戶名稱]，然後按一下 [確定]。 (這是您在教學課程稍早建立的儲存體帳戶。)
+4. 輸入 Azure 儲存體帳戶的 [帳戶金鑰]，然後按一下 [儲存]。
 5. 在右窗格中，按兩下 Blob 名稱。 依預設，Blob 名稱與叢集名稱相同。
 6. 在 [名稱] 欄中找到 **stdout**。 驗證對應 [ **資料夾路徑** ] 欄中的 GUID 是否符合您先前複製的 GUID。 相符就表示輸出資料對應於您提交的工作。 按一下 **stdout** 左邊欄的 [二進位]。
    
@@ -190,7 +191,7 @@ HDInsight 叢集會提供查詢主控台，其中包括快速入門組件庫，�
 
 * [開始使用 HDInsight Hadoop Tools for Visual Studio][1]
 * [開始使用 HDInsight 模擬器][hdinsight-emulator]
-* [搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]
+* [搭配 HDInsight 使用 Azure 儲存體][hdinsight-storage]
 * [使用 PowerShell 管理 HDInsight][hdinsight-admin-powershell]
 * [將資料上傳至 HDInsight][hdinsight-upload-data]
 * [搭配 HDInsight 使用 MapReduce][hdinsight-use-mapreduce]
@@ -252,10 +253,5 @@ HDInsight 叢集會提供查詢主控台，其中包括快速入門組件庫，�
 
 [image-hdi-gettingstarted-powerquery-importdata]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.GettingStarted.PowerQuery.ImportData.png
 [image-hdi-gettingstarted-powerquery-importdata2]: ./media/hdinsight-hadoop-tutorial-get-started-windows/HDI.GettingStarted.PowerQuery.ImportData2.png
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

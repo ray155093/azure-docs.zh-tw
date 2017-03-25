@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/22/2016
+ms.date: 03/14/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 9e70638af1ecdd0bf89244b2a83cd7a51d527037
-ms.openlocfilehash: 98b841e300d5b704d134bcfab0968523f3b9c3f0
-ms.lasthandoff: 01/05/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: c5daac3b8374927c094e79299ce52031181ea24d
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -34,7 +34,11 @@ Azure Data Factory 目前只支援將資料從 Salesforce 移動到 [支援的�
 * 若要將資料從 Salesforce 複製到內部部署資料存放區，您必須在內部部署環境中至少安裝資料管理閘道 2.0。
 
 ## <a name="salesforce-request-limits"></a>Salesforce 要求限制
-Salesforce 對於 API 要求總數和並行 API 要求均有限制。 如需詳細資訊，請參閱 [Salesforce 開發人員限制](http://resources.docs.salesforce.com/200/20/en-us/sfdc/pdf/salesforce_app_limits_cheatsheet.pdf)文章的＜API 要求限制＞一節。 請注意，如果並行要求數目超出限制，便會進行節流，而您將會看到隨機發生的失敗；如果要求總數超出限制，Salesforce 帳戶將被鎖住 24 小時；在上述兩種情況下，您也可能收到 “REQUEST_LIMIT_EXCEEDED“ 錯誤。
+Salesforce 對於 API 要求總數和並行 API 要求均有限制。 請注意：
+* 如果並行要求數目超過限制，便會進行節流，而且您會看到隨機失敗。
+* 如果要求總數超過限制，Salesforce 帳戶將會封鎖 24 小時。
+
+在上述兩種情況中，您也可能會收到「REQUEST_LIMIT_EXCEEDED」錯誤。 如需詳細資訊，請參閱 [Salesforce 開發人員限制](http://resources.docs.salesforce.com/200/20/en-us/sfdc/pdf/salesforce_app_limits_cheatsheet.pdf)文章的＜API 要求限制＞一節。
 
 ## <a name="copy-data-wizard"></a>複製資料精靈
 若要建立管線以將資料從 Salesforce 複製到任何支援的接收資料存放區，最簡單的方式是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
@@ -251,8 +255,10 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 如需詳�
 ### <a name="retrieving-data-using-where-clause-on-datetime-column"></a>在 DateTime 資料行上使用 Where 子句來擷取資料
 指定 SOQL 或 SQL 查詢時，請注意 DateTime 格式差異。 例如：
 
-* **SOQL 範例**：$$Text.Format('SELECT Id, Name, BillingCity FROM Account WHERE LastModifiedDate >= {0:yyyy-MM-ddTHH:mm:ssZ} AND LastModifiedDate < {1:yyyy-MM-ddTHH:mm:ssZ}', WindowStart, WindowEnd)
-* **SQL 範例**：$$Text.Format('SELECT * FROM Account  WHERE LastModifiedDate >= {{ts\'{0:yyyy-MM-dd HH:mm:ss}\'}} AND LastModifiedDate  < {{ts\'{1:yyyy-MM-dd HH:mm:ss}\'}}', WindowStart, WindowEnd)`。
+* **SOQL 範例**：`$$Text.Format('SELECT Id, Name, BillingCity FROM Account WHERE LastModifiedDate >= {0:yyyy-MM-ddTHH:mm:ssZ} AND LastModifiedDate < {1:yyyy-MM-ddTHH:mm:ssZ}', WindowStart, WindowEnd)`
+* **SQL 範例**：
+    * **使用複製精靈指定查詢︰**`$$Text.Format('SELECT * FROM Account WHERE LastModifiedDate >= {{ts\'{0:yyyy-MM-dd HH:mm:ss}\'}} AND LastModifiedDate < {{ts\'{1:yyyy-MM-dd HH:mm:ss}\'}}', WindowStart, WindowEnd)`
+    * **使用 JSON 編輯指定查詢 (適當地逸出字元)︰**`$$Text.Format('SELECT * FROM Account WHERE LastModifiedDate >= {{ts\\'{0:yyyy-MM-dd HH:mm:ss}\\'}} AND LastModifiedDate < {{ts\\'{1:yyyy-MM-dd HH:mm:ss}\\'}}', WindowStart, WindowEnd)`
 
 ### <a name="retrieving-data-from-salesforce-report"></a>從 Salesforce 報表擷取資料
 您可以藉由指定 `{call "<report name>"}` 格式的查詢 (例如 `"query": "{call \"TestReport\"}"`，以從 Salesforce 報表擷取資料。
@@ -260,8 +266,8 @@ Salesforce 對於 API 要求總數和並行 API 要求均有限制。 如需詳�
 ### <a name="retrieving-deleted-records-from-salesforce-recycle-bin"></a>從 Salesforce 資源回收筒擷取已刪除的記錄
 若要從「Salesforce 資源回收筒」查詢虛刪除記錄，您可以在查詢中指定 **"IsDeleted = 1"**。 例如，
 
-* 若只要查詢已刪除的記錄，請指定 "select * from MyTable__c **where IsDeleted= 1**"
-* 若要查詢所有記錄 (包括現有和已刪除的記錄)，請指定 "select * from MyTable__c **where IsDeleted = 0 or IsDeleted = 1**"
+* 若只要查詢已刪除的記錄，請指定 "select *from MyTable__c**where IsDeleted= 1**"
+* 若要查詢所有記錄 (包括現有和已刪除的記錄)，請指定 "select *from MyTable__c**where IsDeleted = 0 or IsDeleted = 1**"
 
 [!INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 

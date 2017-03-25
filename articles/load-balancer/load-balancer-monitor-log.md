@@ -15,19 +15,19 @@ ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: ca52a8cfdc4262f55a1fed439f29631966211a00
-ms.openlocfilehash: c605b2f0b49fcc26955e73c931192ada5e407525
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 93640e208c99db41d922399d42c80622022287eb
+ms.lasthandoff: 03/09/2017
 
 ---
 
 # <a name="log-analytics-for-azure-load-balancer"></a>Azure 負載平衡器的記錄檔分析
 
-您可以在 Azure 中使用不同類型的記錄檔來管理和疑難排解負載平衡器。 透過入口網站可以存取其中一些記錄檔。 從 Azure Blob 儲存體可以擷取所有記錄檔，並且在不同的工具中進行檢視 (例如 Excel 和 PowerBI)。 您可以從下列清單進一步了解不同類型的記錄檔。
+您可以在 Azure 中使用不同類型的記錄檔來管理和疑難排解負載平衡器。 透過入口網站可以存取其中一些記錄檔。 從 Azure Blob 儲存體可以擷取所有記錄，並且在不同的工具中進行檢視 (例如 Excel 和 PowerBI)。 您可以從下列清單進一步了解不同類型的記錄檔。
 
 * **稽核記錄檔︰**您可以使用 [Azure 稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md) (之前稱為「作業記錄檔」) 來檢視提交至您 Azure 訂用帳戶的所有作業及其狀態。 預設會啟用稽核記錄檔，並可在 Azure 入口網站中進行檢視。
-* **警示事件記錄檔：** 您可以使用此記錄檔來檢視已引發哪些負載平衡器警示。 系統每五分鐘會收集一次負載平衡器的狀態。 只有在引發負載平衡器警示事件時，才會寫入此記錄檔。
-* **健全狀況探查記錄檔：** 您可以使用此記錄檔檢查探查的健全狀況檢查狀態、負載平衡器後端中有多少個執行個體在線上，以及從負載平衡器接收網路流量之虛擬機器的百分比。 探查狀態事件發生變更時，便會寫入此記錄檔。
+* **警示事件記錄：**您可以使用此記錄來檢視負載平衡器所引發的警示。 系統每五分鐘會收集一次負載平衡器的狀態。 只有在引發負載平衡器警示事件時，才會寫入此記錄檔。
+* **健康狀態探查記錄︰**您可以使用此記錄來檢視健康狀態探查所偵測到的問題，例如後端集區中因為健康狀態探查失敗而未從負載平衡器接收要求的執行個體數目。 健康狀態探查狀態發生變更時會寫入此記錄。
 
 > [!IMPORTANT]
 > 記錄檔分析目前僅適用於網際網路面向的負載平衡器。 記錄檔僅適用於在資源管理員部署模型中部署的資源。 您無法將記錄檔使用於傳統部署模型中的資源。 如需這些部署模型的詳細資訊，請參閱[了解 Resource Manager 部署和傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)。
@@ -50,7 +50,8 @@ ms.lasthandoff: 01/31/2017
 
 5. 在 [診斷] 窗格中，在 [狀態] 下方，選取 [開啟]。
 6. 按一下 [儲存體帳戶]。
-7. 在 [記錄] 下方，選取現有的儲存體帳戶或建立一個新的。 使用滑桿來決定要在事件記錄檔中保存多少天的事件資料。 8. 按一下 [儲存] 。
+7. 在 [記錄] 下方，選取現有的儲存體帳戶或建立一個新的。 使用滑桿來決定值得在事件記錄中儲存多少天的事件資料。 
+8. 按一下 [儲存] 。
 
     ![入口網站 - 診斷記錄檔](./media/load-balancer-monitor-log/load-balancer-diagnostics.png)
 

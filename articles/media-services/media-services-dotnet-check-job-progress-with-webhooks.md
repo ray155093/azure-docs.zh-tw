@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/06/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: c0cf8a3d4e257f88f81fca9a6a1161c158b335b8
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 357a707724266acfef016add97e19d4b1abb41e3
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -54,7 +54,7 @@ Webhook 預期簽署金鑰 (認證) 會符合您在設定通知端點時所傳�
 
 在下列程式碼中，**VerifyWebHookRequestSignature** 方法會進行通知訊息的驗證。 此驗證的目的是確定訊息是由 Azure 媒體服務所傳送，並且未遭到竄改。 簽章是 Azure Functions 的選擇性選項，因為它具有**程式碼**值，可透過傳輸層安全性 (TLS) 做為查詢參數。 
 
-您可以在[這裡](https://github.com/Azure-Samples/media-services-dotnet-functions-integration/tree/master/Notification_Webhook_Function)找到下列媒體服務 .NET Azure Function 的定義。
+您可以在[這裡](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)找到各種媒體服務 .NET Azure 函式的定義 (包括本主題所示的函式)。
 
 下列程式碼清單會顯示 Azure 函式參數的定義以及與 Azure 函式相關聯的三個檔案︰function.json、project.json 和 run.csx。
 
@@ -115,6 +115,10 @@ project.json 檔案包含相依性。
 ### <a name="runcsx"></a>run.csx
 
 下列 C# 程式碼會顯示做為 Webhook 的 Azure Function 定義。 此函式會接聽來自媒體服務通知的 Webhook 回呼，並在作業完成之後發佈輸出資產。 
+
+
+>[!NOTE]
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
     ///////////////////////////////////////////////////
     #r "Newtonsoft.Json"

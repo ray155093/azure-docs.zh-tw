@@ -12,12 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 03/06/2017
+ms.date: 03/13/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 988d859e2cc9cd723e23704193b6c3bbdce08379
-ms.openlocfilehash: 976aa382e34cdc417a79b513c0e8e063b30d9e01
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 3457601f1d295d17d50725ec19cae96ae6efb5b6
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -85,7 +85,7 @@ Hotfix 方法涉及下列三個步驟：
 
 | 順序 | KB | 說明 | 更新類型 | 安裝時間 | 安裝在資料夾|
 | --- | --- | --- | --- | --- | --- |
-| 3. |KB3121899 |磁碟韌體 |維護  <br></br>干擾性 |~ 30 分鐘 | ThirdOrderUpdate |
+| 3. |KB4011837 |磁碟韌體 |維護  <br></br>干擾性 |~ 30 分鐘 | ThirdOrderUpdate |
 
 <br></br>
 

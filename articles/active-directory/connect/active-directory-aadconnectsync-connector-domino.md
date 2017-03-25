@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 03/10/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: ab8c601d862868018fdffb4cd49e8b26acb878c9
-ms.openlocfilehash: da949459f734ea08527fe2380ab2a6a06e6976e7
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: aebe0b74c952045375e264bed88d33d936e34b92
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -146,6 +147,11 @@ Domino 伺服器屬性支援兩種伺服器名稱格式：
 [Domino 伺服器時區]  參數定義 Domino 伺服器的位置。
 
 必須要有這個組態選項才能支援 **差異匯入** 作業，因為它可讓同步處理服務判斷最後兩次匯入之間的變更。
+
+>[!Note]
+從 2017 年 3 月的更新開始，全域參數畫面會包含可在使用者刪除期間刪除使用者郵件資料庫的選項。
+
+![刪除使用者的信箱](./media/active-directory-aadconnectsync-connector-domino/AdminP.png)
 
 #### <a name="import-settings-method"></a>匯入設定、方法
 [完整匯入執行方法]  具有下列選項：
@@ -320,7 +326,7 @@ Lotus Domino 連接器會在資源保留資料庫中執行建立、更新和刪�
 ### <a name="mail-in-databases"></a>郵寄資料庫
 郵寄資料庫是設計來接收郵件的資料庫。 此資料庫是未與任何特定 Lotus Domino 使用者帳戶相關聯 (也就是沒有自己的識別碼檔案和密碼) 的 Lotus Domino 信箱。 郵寄資料庫具有相關聯的唯一 UserID (「簡短名稱」)，並有自己的電子郵件地址。
 
-如果需要可讓不同使用者共用的個別信箱，且此信箱擁有自己的電子郵件地址 (例如：group@contoso.com),，則會建立郵寄資料庫。 此信箱是透過其存取控制清單 (ACL) 來控制存取，此清單中包含允許開啟信箱之 Notes 使用者的名稱。
+如果需要可讓不同使用者共用的個別信箱，且此信箱擁有自己的電子郵件地址 (例如：group@contoso.com，則會建立郵寄資料庫。 此信箱是透過其存取控制清單 (ACL) 來控制存取，此清單中包含允許開啟信箱之 Notes 使用者的名稱。
 
 如需必要屬性清單，請參閱本文稍後的 [必要屬性](#mandatory-attributes) 一節。
 
@@ -489,9 +495,4 @@ Domino 中有數種方式可延伸結構描述，使其顯示為連接器可使�
 
 ## <a name="troubleshooting"></a>疑難排解
 * 如需如何啟用記錄來疑難排解連接器的資訊，請參閱 [如何啟用連接器的 ETW 追蹤](http://go.microsoft.com/fwlink/?LinkId=335731)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

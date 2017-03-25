@@ -16,9 +16,9 @@ ms.topic: get-started-article
 ms.date: 01/03/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 858d6115ed3a96e3b6a3362ff8f5c1fc4c279bd2
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: edfdba3105aba1079d3c707e7320770c4a999a32
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 03/11/2017
 **想要開始使用 Azure HDInsight 上的 Apache Spark 嗎？** 請參閱[快速入門：在 HDInsight 上建立 Spark 叢集，並利用 Jupyter 來執行範例應用程式](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
 > [!NOTE]
-> 如需目前版本的已知問題與限制清單，請參閱 [Azure HDInsight 中 Apache Spark 的已知問題](hdinsight-apache-spark-jupyter-spark-sql.md)。
+> 如需目前版本的已知問題與限制清單，請參閱 [Azure HDInsight 中 Apache Spark 的已知問題](hdinsight-apache-spark-known-issues.md)。
 > 
 > 
 

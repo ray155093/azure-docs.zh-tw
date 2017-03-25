@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/18/2017
+ms.date: 03/15/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 5aa0677e6028c58b7a639f0aee87b04e7bd233a0
-ms.openlocfilehash: 2093c6220ea01a83b7e43b3084d13b719feca3ca
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: b31ecb83665208151e48f81e6148928bbf21d1b5
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -48,6 +49,7 @@ ms.openlocfilehash: 2093c6220ea01a83b7e43b3084d13b719feca3ca
 * [授權失敗](#authorization-failed)
 * [BadRequest](#badrequest)
 * [DeploymentFailed](#deploymentfailed)
+* [DisallowedOperation](#disallowedoperation)
 * [InvalidContentLink](#invalidcontentlink)
 * [InvalidTemplate](#invalidtemplate)
 * [MissingSubscriptionRegistration](#noregisteredproviderfound)
@@ -122,6 +124,40 @@ for subscription '<subscriptionID>'. Please try another tier or deploy to a diff
   ```
 
 如果您在該區域或符合您業務需求的替代區域中找不到適當的 SKU，請連絡 [Azure 支援服務](https://portal.azure.com/#create/Microsoft.Support)。
+
+### <a name="disallowedoperation"></a>DisallowedOperation
+
+```
+Code: DisallowedOperation
+Message: The current subscription type is not permitted to perform operations on any provider 
+namespace. Please use a different subscription.
+```
+
+如果您收到此錯誤，表示您使用的訂用帳戶不被允許存取 Azure Active Directory 以外的任何 Azure 服務。 當您需要存取傳統入口網站，但不被允許部署資源時，就表示您擁有的訂用帳戶可能是這種類型。 若要解決此問題，您必須使用有權部署資源的訂用帳戶。  
+
+若要使用 PowerShell 檢視您可用的訂用帳戶，請使用︰
+
+```powershell
+Get-AzureRmSubscription
+```
+
+若要設定目前的訂用帳戶，請使用︰
+
+```powershell
+Set-AzureRmContext -SubscriptionName {subscription-name}
+```
+
+若要使用 Azure CLI 2.0 檢視您可用的訂用帳戶，請使用︰
+
+```azurecli
+az account list
+```
+
+若要設定目前的訂用帳戶，請使用︰
+
+```azurecli
+az account set --subscription {subscription-name}
+```
 
 ### <a name="invalidtemplate"></a>InvalidTemplate
 此錯誤可能起因於數個不同類型的錯誤。
@@ -387,19 +423,19 @@ Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Cdn
 若要查看是否已註冊該提供者，請使用 `azure provider list` 命令。
 
 ```azurecli
-azure provider list
+az provider list
 ```
 
 若要註冊資源提供者，請使用 `azure provider register` 命令，然後指定要註冊的*命名空間*。
 
 ```azurecli
-azure provider register Microsoft.Cdn
+az provider register --namespace Microsoft.Cdn
 ```
 
-若要查看資源提供者支援的位置和 API 版本的，請使用︰
+若要查看資源類型所支援的位置和 API 版本，請使用︰
 
 ```azurecli
-azure provider show -n Microsoft.Compute --json > compute.json
+az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites'].locations"
 ```
 
 <a id="quotaexceeded" />
@@ -410,18 +446,23 @@ azure provider show -n Microsoft.Compute --json > compute.json
 若要檢查您訂用帳戶的核心配額，可以在 Azure CLI 中使用 `azure vm list-usage` 命令。 以下範例示範核心配額為 4 的免費試用帳戶：
 
 ```azurecli
-azure vm list-usage
+az vm list-usage --location "South Central US"
 ```
 
 它會傳回：
 
 ```azurecli
-info:    Executing command vm list-usage
-Location: westus
-data:    Name   Unit   CurrentValue  Limit
-data:    -----  -----  ------------  -----
-data:    Cores  Count  0             4
-info:    vm list-usage command OK
+[
+  {
+    "currentValue": 0,
+    "limit": 2000,
+    "name": {
+      "localizedValue": "Availability Sets",
+      "value": "availabilitySets"
+    }
+  },
+  ...
+]
 ```
 
 如果您部署的範本會在美國西部區域中建立四個以上的核心，您會看到類似以下的部署錯誤：
@@ -479,13 +520,13 @@ Policy identifier(s): '/subscriptions/{guid}/providers/Microsoft.Authorization/p
 在 **PowerShell** 中，提供該原則識別碼做為 **Id** 參數，以擷取有關封鎖了部署之原則的詳細資料。
 
 ```powershell
-(Get-AzureRmPolicyAssignment -Id "/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition").Properties.policyRule | ConvertTo-Json
+(Get-AzureRmPolicyDefinition -Id "/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition").Properties.policyRule | ConvertTo-Json
 ```
 
-在 **Azure CLI** 中，提供原則定義的名稱︰
+在 **Azure CLI 2.0** 中，提供原則定義的名稱︰
 
 ```azurecli
-azure policy definition show regionPolicyDefinition --json
+az policy definition show --name regionPolicyAssignment
 ```
 
 如需有關原則的詳細資訊，請參閱 [使用原則來管理資源和控制存取](resource-manager-policy.md)。
@@ -522,21 +563,13 @@ azure policy definition show regionPolicyDefinition --json
 
    此資訊可協助您判斷範本中的值是否會正確設定。
 
-- Azure CLI
+- Azure CLI 2.0
 
-   在 Azure CLI 中，將 **--debug-setting** 參數設定為 [All]、[ResponseContent] 或 [RequestContent]。
-
-  ```azurecli
-  azure group deployment create --debug-setting All -f c:\Azure\Templates\storage.json -g examplegroup -n ExampleDeployment
-  ```
-
-   檢查具有下列命令的記錄要求和回應內容︰
+   使用下列命令檢查部署作業︰
 
   ```azurecli
-  azure group deployment operation list --resource-group examplegroup --name ExampleDeployment --json
+  az group deployment operation list --resource-group ExampleGroup --name vmlinux
   ```
-
-   此資訊可協助您判斷範本中的值是否會正確設定。
 
 - 巢狀範本
 
@@ -662,7 +695,7 @@ Resource Manager 範本會在驗證期間識別循環相依性。 它會傳回�
 | 自動化 |[Azure 自動化中常見錯誤的疑難排解秘訣](../automation/automation-troubleshooting-automation-errors.md) |
 | Azure Stack |[Microsoft Azure Stack 疑難排解](../azure-stack/azure-stack-troubleshooting.md) |
 | Data Factory |[對 Data Factory 問題進行疑難排解](../data-factory/data-factory-troubleshoot.md) |
-| Service Fabric |[針對您在 Azure Service Fabric 上部署服務時的常見問題進行疑難排解](../service-fabric/service-fabric-diagnostics-troubleshoot-common-scenarios.md) |
+| Service Fabric |[監視和診斷 Azure Service Fabric 應用程式](../service-fabric/service-fabric-diagnostics-overview.md) |
 | 站台復原 |[監視和疑難排解虛擬機器與實體伺服器的保護](../site-recovery/site-recovery-monitoring-and-troubleshooting.md) |
 | 儲存體 |[監視、診斷與疑難排解 Microsoft Azure 儲存體](../storage/storage-monitoring-diagnosing-troubleshooting.md) |
 | StorSimple |[StorSimple 裝置部署問題的疑難排解](../storsimple/storsimple-troubleshoot-deployment.md) |
@@ -672,9 +705,4 @@ Resource Manager 範本會在驗證期間識別循環相依性。 它會傳回�
 ## <a name="next-steps"></a>後續步驟
 * 若要了解稽核動作，請參閱 [使用 Resource Manager 來稽核作業](resource-group-audit.md)。
 * 若要了解部署期間可採取哪些動作來判斷錯誤，請參閱 [檢視部署作業](resource-manager-deployment-operations.md)。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

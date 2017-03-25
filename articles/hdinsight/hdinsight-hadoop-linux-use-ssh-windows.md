@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
-ms.openlocfilehash: 744d41a85d39cb468a17ac5a60cd2517f3e60147
-ms.lasthandoff: 01/18/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: b1806950581e0adbeec52839f12c70599d28100d
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -111,7 +111,7 @@ SSH 使用者可以使用密碼或公開金鑰來驗證。 密碼是您自己設
 
 ### <a name="azure-command-line-interface-for-mac-linux-and-windows"></a>適用於 Mac、Linux 和 Windows 的 Azure 命令列介面
 
-您可以使用[適用於 Mac、Linux 和 Windows 的 Azure CLI](../xplat-cli-install.md)，使用 `azure hdinsight cluster create` 來建立新叢集。
+您可以使用[適用於 Mac、Linux 和 Windows 的 Azure CLI](../cli-install-nodejs.md)，使用 `azure hdinsight cluster create` 來建立新叢集。
 
 如需使用這個命令的詳細資訊，請參閱 [使用自訂選項在 HDInsight 中佈建 Hadoop Linux 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 
@@ -222,7 +222,7 @@ SSH 使用者可以使用密碼或公開金鑰來驗證。 密碼是您自己設
 
 6. 您現在應該就能使用新的使用者帳戶和私密金鑰驗證伺服器。
 
-## <a name="a-idtunnelassh-tunneling"></a><a id="tunnel"></a>SSH 通道
+## <a id="tunnel"></a>SSH 通道
 
 SSH 可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDInsight 叢集。 要求便會路由至要求的資源，彷彿要求是在 HDInsight 叢集前端節點上產生。
 

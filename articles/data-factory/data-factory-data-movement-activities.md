@@ -13,11 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/22/2017
+ms.date: 03/15/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: da98bc3e4dda1a05cba38701c0042f1c023c419a
-ms.openlocfilehash: 40b172356b3171557d6309a6bb2984fba34f485d
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 91a2ac08f6daac8cba195454e09bb07afe265046
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -73,7 +74,7 @@ ms.openlocfilehash: 40b172356b3171557d6309a6bb2984fba34f485d
 * 複製內部部署 SQL Server 中的資料，然後以 ORC 格式寫入 Azure Data Lake Store。
 * 從內部部署檔案系統複製壓縮檔，然後解壓縮到 Azure Data Lake Store。
 
-## <a name="a-nameglobalaglobally-available-data-movement"></a><a name="global"></a>全域可用的資料移動
+## <a name="global"></a>全域可用的資料移動
 Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用。 不過，支援複製活動的服務可在下列區域和地理位置全域提供使用。 全域可用的拓撲可確保進行有效率的資料移動，通常可避免發生跨區域躍點的情況。 如需了解某區域中是否有 Data Factory 和「資料移動」可供使用，請參閱 [依區域提供的服務](https://azure.microsoft.com/regions/#services) 。
 
 ### <a name="copy-data-between-cloud-data-stores"></a>在雲端資料存放區之間複製資料
@@ -104,7 +105,7 @@ Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用�
 | 。 | 印度西部 | 印度中部 |
 | 。 | 印度南部 | 印度中部 |
 
-或者，您可以明確指出要用來執行複製的 Data Factory 服務區域，方法是指定複製活動 `typeProperties` 底下的 `executionLocation`屬性。 這個屬性支援的值詳列於上述**用於資料移動的區域**資料行。 請注意您的資料在複製期間會透過網路通過該區域。 例如，若要在英國的 Azure 存放區之間複製，您可以將 `executionLocation` 指定為「北歐」以經過北歐區域。
+或者，您可以明確指出要用來執行複製的 Data Factory 服務區域，方法是指定複製活動 `typeProperties` 底下的 `executionLocation`屬性。 這個屬性支援的值詳列於上述**用於資料移動的區域**資料行。 請注意您的資料在複製期間會透過網路通過該區域。 例如，若要在英國的 Azure 存放區之間複製，您可以將 `"executionLocation": "North Europe"` 指定為經過北歐 (請參考 [JSON 範例](#by-using-json-scripts))。
 
 > [!NOTE]
 > 如果目的地資料存放區的區域不在上述清單中，除非指定 `executionLocation`，否則「複製活動」預設將會失敗而不會搜查替代區域。 支援的區域清單將會隨著時間擴展。
@@ -124,7 +125,7 @@ Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用�
 
 JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。 活動的 `typeProperties` 區段中可用的屬性會因每個活動類型的不同而有所不同。
 
-在複製活動中， `typeProperties` 區段會根據來源和接收器的類型而有所不同。 按一下 [支援來源和接收器](#supported-data-stores) 一節中的來源/接收器，即可了解「複製活動」針對該資料存放區所支援的類型屬性。   
+在複製活動中， `typeProperties` 區段會根據來源和接收器的類型而有所不同。 按一下 [支援來源和接收器](#supported-data-stores-and-formats) 一節中的來源/接收器，即可了解「複製活動」針對該資料存放區所支援的類型屬性。
 
 以下是範例 JSON 定義︰
 
@@ -152,10 +153,9 @@ JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) �
             "type": "BlobSource"
           },
           "sink": {
-            "type": "SqlSink",
-            "writeBatchSize": 10000,
-            "writeBatchTimeout": "60:00:00"
-          }
+            "type": "SqlSink"
+          },
+          "executionLocation": "North Europe"          
         },
         "Policy": {
           "concurrency": 1,
@@ -191,9 +191,4 @@ JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) �
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解複製活動，請參閱 [將資料從 Azure Blob 儲存體複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 * 若要了解如何將資料從內部部署資料存放區移到雲端資料存放區，請參閱 [將資料從內部部署資料存放區移到雲端資料存放區](data-factory-move-data-between-onprem-and-cloud.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

@@ -32,15 +32,15 @@ ms.lasthandoff: 02/14/2017
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-template-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
 
-## <a name="a-name--createacreate-a-vm-with-multiple-ip-addresses"></a><a name = "create"></a>建立有多個 IP 位址的 VM
+## <a name = "create"></a>建立有多個 IP 位址的 VM
 
 如果您想要建立具有多重 IP 位址的 VM，您必須使用 PowerShell 或 Azure CLI 加以建立。 按一下本文頂端的 PowerShell 或 CLI 選項，即可了解作法。 您可以依照[建立 Windows VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md) 或[建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-portal.md)文章中的步驟，透過入口網站來建立具有單一靜態私人 IP 位址及 (選擇性) 單一公用 IP 位址的 VM。 建立 VM 之後，您可以依照[將 IP 位址新增至 VM](#add)一節中的步驟，透過入口網站來變更 IP 位址類型並新增其他 IP 位址。
 
-## <a name="a-nameaddaadd-ip-addresses-to-a-vm"></a><a name="add"></a>將 IP 位址新增至 VM
+## <a name="add"></a>將 IP 位址新增至 VM
 
 您可以完成後續步驟，將私人和公用 IP 位址新增至 NIC。 下列各節中的範例假設您已經有一個 VM，其具有本文中的[案例](#Scenario)所述的三項 IP 組態，您不需要進行設定。
 
-### <a name="a-namecoreaddacore-steps"></a><a name="coreadd"></a>核心步驟
+### <a name="coreadd"></a>核心步驟
 
 1. 登入並選取適當的訂用帳戶後，在 PowerShell 中執行下列命令來註冊預覽︰
     ```
@@ -103,7 +103,7 @@ ms.lasthandoff: 02/14/2017
 > 公用 IP 位址需要少許費用。 若要深入了解 IP 位址定價，請閱讀 [IP 位址定價](https://azure.microsoft.com/pricing/details/ip-addresses) 頁面。 訂用帳戶中可使用的公用 IP 位址數目有限制。 若要深入了解限制，請參閱 [Azure 限制](../azure-subscription-service-limits.md#networking-limits)文章。
 > 
 
-### <a name="a-namecreate-public-ipacreate-a-public-ip-address-resource"></a><a name="create-public-ip">建立公用 IP 位址資源</a>
+### <a name="create-public-ip"></a>建立公用 IP 位址資源
 
 公用 IP 位址是公用 IP 位址資源的其中一項設定 如果您的公用 IP 位址資源目前並未關聯至您想要產生關聯的 IP 組態，請略過下列步驟，並視需要完成後續其中一節的步驟。 如果您沒有可用的公用 IP 位址資源，請完成下列步驟來建立一個︰
 

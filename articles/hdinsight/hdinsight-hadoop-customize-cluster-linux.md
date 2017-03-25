@@ -13,12 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 03/10/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: e80bf82df28fbce8a1019c6eb07cfcae4cbba930
-ms.openlocfilehash: 49bec6125bcd76c3bb52f1237b0f0e0ceff85ffb
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 908531e791b3634cb9986946212b8ad8b447b8ce
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -45,7 +45,7 @@ HDInsight 提供一個稱為 [指令碼動作]  的組態選項，此指令碼�
 
 ## <a name="access-control"></a>存取控制
 
-如果您不是所使用之 Azure 訂用帳戶的系統管理員/擁有者，例如公司所擁有的訂用帳戶，您必須確認您的 Azure 登入至少有包含 HDInsight 叢集之 Azure 資源群組的**參與者**存取權。
+如果您不是所使用之 Azure 訂用帳戶的系統管理員/擁有者，例如公司所擁有的訂用帳戶，您必須確認您的 Azure 帳戶至少有包含 HDInsight 叢集之 Azure 資源群組的**參與者**存取權。
 
 此外，如果您要建立 HDInsight 叢集，至少具備 Azure 訂用帳戶之**參與者**存取權的某人，必須已在先前註冊 HDInsight 的提供者。 具有訂用帳戶之參與者存取權的使用者第一次在訂用帳戶上建立資源時，便會註冊提供者。 透過[使用 REST 註冊提供者](https://msdn.microsoft.com/library/azure/dn790548.aspx)，也可以不需要建立資源就完成註冊作業。
 
@@ -56,7 +56,7 @@ HDInsight 提供一個稱為 [指令碼動作]  的組態選項，此指令碼�
 
 ## <a name="understanding-script-actions"></a>了解指令碼動作
 
-指令碼動作只是一個您會提供 URI 和參數的 Bash 指令碼，然後該指令碼會在 HDInsight 叢集節點上執行。 以下是指令碼動作的特性和功能。
+指令碼動作只是一個您會提供 URI 和參數的 Bash 指令碼。 該指令碼會在 HDInsight 叢集節點上執行。 以下是指令碼動作的特性和功能。
 
 * 必須儲存在可從 HDInsight 叢集存取的 URI 上。 以下是可能的儲存位置：
 
@@ -67,12 +67,14 @@ HDInsight 提供一個稱為 [指令碼動作]  的組態選項，此指令碼�
         > [!NOTE]
         > 用來存取 Data Lake Store 的服務主體 HDInsight 必須具有指令碼的讀取權限。
 
-    * 本身是 HDInsight 叢集之主要儲存體帳戶或其他儲存體帳戶的 **Blob 儲存體帳戶**。 由於在建立叢集期間，已將這兩種儲存體帳戶的存取權都授與 HDInsight，因此這些儲存體帳戶提供一個使用非公用指令碼動作的方式。
+    * 本身是 HDInsight 叢集主要或其他儲存體帳戶之 **Azure 儲存體帳戶**中的 Blob。 由於在建立叢集期間，已將這兩種儲存體帳戶的存取權都授與 HDInsight，因此這些儲存體帳戶提供一個使用非公用指令碼動作的方式。
 
-    * https://docs.microsoft.com/zh-tw/azure/service-bus/，例如 Azure Blob、GitHub、OneDrive、Dropbox 等。
+    * 公用檔案共用服務，例如 Azure Blob、GitHub、OneDrive、Dropbox 等。
 
         如需儲存在 Blob 容器 (可公開讀取) 中之指令碼的 URI 範例，請參閱 [範例指令碼動作指令碼](#example-script-action-scripts) 一節。
 
+        > [!WARNING]
+        > HDInsight 僅支援__一般用途__的 Azure 儲存體帳戶。 目前不支援 __Blob 儲存體__帳戶類型。
 
 * 可以限制為**只在特定節點類型上執行**，例如前端節點或背景工作節點。
 
@@ -96,7 +98,7 @@ HDInsight 提供一個稱為 [指令碼動作]  的組態選項，此指令碼�
   > 即使您特別指出應予保存，仍然不會保存失敗的指令碼。
 
 * 可以接受指令碼在執行期間所使用的**參數**。
-* 在叢集節點上是以**根層級權限**執行。
+* 在叢集節點上以**根層級權限**執行。
 * 可以透過 **Azure 入口網站**、**Azure PowerShell**、**Azure CLI** 或 **HDInsight .NET SDK** 使用。
 
 為了協助了解哪些指令碼已套用到叢集，以及判斷可供升級或降級的指令碼 ID，叢集會保留所有已執行指令碼的歷程記錄。
@@ -116,7 +118,7 @@ HDInsight 提供一個稱為 [指令碼動作]  的組態選項，此指令碼�
 
 ![HDInsight 叢集自訂和叢集建立期間的階段][img-hdi-cluster-states]
 
-當設定 HDInsight 時，已執行指令碼。 在此階段，指令碼會以平行方式在叢集中所有指定的節點上執行，在節點上會以根權限執行。
+設定 HDInsight 時會執行此指令碼。 在此階段，指令碼會以平行方式在叢集中所有指定的節點上執行，並且在節點上以根權限執行。
 
 > [!NOTE]
 > 因為指令碼是以根層級權限在叢集節點上執行，所以您可以執行作業，例如停止和啟動服務，包括 Hadoop 相關服務。 如果您停止服務，您必須在指令碼完成執行之前，確定 Ambari 服務及其他 Hadoop 相關服務已啟動並且正在執行。 這些服務必須在叢集建立時，成功地判斷叢集的健康情況和狀態。
@@ -125,9 +127,9 @@ HDInsight 提供一個稱為 [指令碼動作]  的組態選項，此指令碼�
 在叢集建立期間，您可以指定多個指令碼動作，而這些指令碼動作會依其指定的順序被叫用。
 
 > [!IMPORTANT]
-> 指令碼動作必須在 60 分鐘內完成，否則就會逾時。 在叢集佈建期間，會同時執行指令碼與其他安裝和設定程序。 與在您開發環境中的執行時間相較，爭用 CPU 時間和網路頻寬等資源可能會導致指令碼需要較長的時間才能完成。
+> 指令碼動作必須在 60 分鐘內完成，否則就會逾時。 在叢集佈建期間，同時執行指令碼與其他安裝和組態程序。 與在您開發環境中的執行時間相較，爭用 CPU 時間和網路頻寬等資源可能會導致指令碼需要較長的時間才能完成。
 >
-> 若要讓執行指令碼所花費的時間降到最低，請避免從原始程式碼下載和編譯應用程式之類的工作。 您應預先編譯相關應用程式，並將二進位檔儲存在 Azure Blob 儲存體中，這樣可讓其能夠快速地下載到叢集。
+> 若要讓執行指令碼所花費的時間降到最低，請避免從原始程式碼下載和編譯應用程式之類的工作。 您應預先編譯相關應用程式，並將二進位檔儲存在 Azure 儲存體中，這樣可讓其能夠快速地下載到叢集。
 
 
 ### <a name="script-action-on-a-running-cluster"></a>執行中叢集上的指令碼動作
@@ -682,7 +684,7 @@ HDInsight 服務提供數種方式以使用自訂元件。 無論元件如何使
 
 ## <a name="troubleshooting"></a>疑難排解
 
-您可以使用 Ambari Web UI 來檢視指令碼動作所記錄的資訊。 不過，如果在叢集建立期間使用了指令碼，而叢集建立因為指令碼錯誤而失敗，則與該叢集相關聯的預設儲存體帳戶中也會有記錄檔。 本節提供關於如何使用這兩個選項擷取記錄檔的資訊。
+您可以使用 Ambari Web UI 來檢視指令碼動作所記錄的資訊。 不過，如果在叢集建立期間使用指令碼，而叢集建立因為指令碼錯誤而失敗，則與該叢集相關聯的預設儲存體帳戶中也會有記錄。 本節提供關於如何使用這兩個選項擷取記錄檔的資訊。
 
 ### <a name="using-the-ambari-web-ui"></a>使用 Ambari Web UI
 
@@ -698,7 +700,7 @@ HDInsight 服務提供數種方式以使用自訂元件。 無論元件如何使
 
     ![作業的螢幕擷取畫面](./media/hdinsight-hadoop-customize-cluster-linux/ambariscriptaction.png)
 
-    選取此項目，並且向下鑽研連結以檢視在叢集上執行指令碼時，產生的 STDOUT 和 STDERR 輸出。
+    選取此 run\customscriptaction 項目，並且向下鑽研連結以檢視 STDOUT 和 STDERR 輸出。 執行指令碼時會產生此輸出，其中可能包含實用的資訊。
 
 ### <a name="access-logs-from-the-default-storage-account"></a>從預設的儲存體帳戶存取記錄檔
 

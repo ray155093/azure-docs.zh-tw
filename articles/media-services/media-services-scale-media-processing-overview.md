@@ -12,12 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 03/13/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: 1cde923ad0aef1ce1c91d1240f7b3e3d3c26e105
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: eb77dd2aaaeced8c71c2c89937f7f1cc10c7b292
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -47,7 +47,16 @@ ms.lasthandoff: 01/13/2017
 * 如果使用共用的集區，也就是沒有任何保留單元，則編碼工作會和 S1 RU 有相同的效能。 不過，您的工作在已排入佇列的狀態下可以花費的時間沒有上限，而且在任何時候，最多只會執行一個工作。
 * 下列資料中心不提供 **S2** 保留單元類型：巴西南部和印度西部。
 * 下列資料中心不提供 **S3** 保留單元類型：印度西部。
-* 計算成本時會使用 24 小時內指定的最大單位數。
+
+## <a name="billing"></a>計費
+
+您的費用取決於使用媒體保留單元的實際分鐘數。 此處為更詳細的範例。 假設 Joe 原先於當天上午 10:00 有零個媒體保留單元 (RU) 要著手處理，將他的帳戶設定為要使用兩個 S1 的 RU。 下午進來了更多影片，所以 Joe 變更了他的帳戶，要在下午 1:15 使用四個 S3 的 RU。 他所有的影片都於下午 4:00 前處理完畢，然後 Joe 關閉了他帳戶中的 RU (將 RU 的數字設為零)。 Joe 的使用量計算如下。
+
+S1 媒體保留單元：2 個單元 x 3.25 小時 (上午 10:00 到下午 1:15) x $0.02/小時 = $0.13 S3 媒體保留單元：4 個單元 x 2.75 小時 (下午 1:15 到下午 4:00) x $0.08/小時 = $0.88
+
+由此可知 Joe 當 日使用媒體保留單元的費用總計為 $0.13 + $0.88 = $1.01 串流單元和媒體保留單元不同，它會依每天所佈建之串流單位的最大數目，作為費用依據 (高水位線)。
+
+如需詳細資訊，請參閱[媒體服務定價](https://azure.microsoft.com/pricing/details/media-services/)頁面。 常見問題集一節有詳細說明。  
 
 ## <a name="quotas-and-limitations"></a>配額和限制
 如需配額和限制以及如何開啟支援票證的相關資訊，請參閱 [配額和限制](media-services-quotas-and-limitations.md)。

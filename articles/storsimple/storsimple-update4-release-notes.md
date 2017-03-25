@@ -12,12 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 03/03/2017
+ms.date: 03/08/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: c682f9eac1a6ff5e3771aa9e4dfa5b5ffefc1223
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: ec49b8784eb9b18135c5f7ec7242a2468ac87e50
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -57,9 +57,9 @@ Update 4 包含以下重要的改良功能和錯誤修正。
 
 * **FIPS 相關變更** - 從這個版本開始，針對 Microsoft Azure Government 和 Azure 公用雲端帳戶，所有 StorSimple 8000 系列裝置上依預設都啟用 FIPS。
 
-* **更新變更** - 從這個版本開始，針對 Microsoft Azure Government 和 Azure 公用雲端帳戶，所有 StorSimple 8000 系列裝置上依預設都啟用 FIPS。
+* **更新變更** - 此版本已修正與更新失敗相關的錯誤。
 
-* **磁碟失敗的警示** - 此版本中增加新的警示，可向使用者警告磁碟即將失敗。
+* **磁碟失敗的警示** - 此版本中增加新的警示，可向使用者警告磁碟即將失敗。 如果您遇到此警示，請連絡 Microsoft 支援服務以運送替換磁碟。
 
 * **控制器更換變更** - 此版本中增加 Cmdlet，可讓使用者查詢控制器更換程序的狀態。 如需詳細資訊，請移至[用於查詢控制器更換狀態的 Cmdlet](https://technet.microsoft.com/library/dn688168.aspx)。
 

@@ -15,19 +15,21 @@ ms.workload: required
 ms.date: 10/05/2016
 ms.author: ruturajd
 translationtype: Human Translation
-ms.sourcegitcommit: 7688df2aac74d10de7c188ad46f8ab2ec38bbe86
-ms.openlocfilehash: 34c335d17641e9df9b64a7882448afc268e4da7c
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: ba801c69cf2d0d542bebf54e99ef981854284ab0
+ms.lasthandoff: 03/09/2017
 
 
 ---
 # <a name="fail-back-vmware-virtual-machines-and-physical-servers-to-the-on-premises-site"></a>將 VMWare 虛擬機器和實體伺服器容錯回復至內部部署網站
 > [!div class="op_single_selector"]
-> * [Azure 入口網站](site-recovery-failback-azure-to-vmware.md)
-> * [Azure 傳統入口網站](site-recovery-failback-azure-to-vmware-classic.md)
-> * [Azure 傳統入口網站 (舊版)](site-recovery-failback-azure-to-vmware-classic-legacy.md)
+> * [從 Azure 容錯回復 VMware/實體機器](site-recovery-failback-azure-to-vmware.md)
+> * [從 Azure 容錯回復 Hyper-V VM](site-recovery-failback-from-azure-to-hyper-v.md)
 
-此文章說明如何將 Azure 虛擬機器從 Azure 容錯回復到內部部署網站。 當您準備好使用此[教學課程](site-recovery-vmware-to-azure-classic.md)，將已從內部部署網站容錯移轉至 Azure 的 VMware 虛擬機器或 Windows/Linux 實體伺服器容錯回復時，請依照這裡的指示執行。
+本文說明如何將 Azure 虛擬機器從 Azure 容錯回復到內部部署網站。 當您準備好在使用此[參考](site-recovery-how-to-reprotect.md)重新保護機器後，將 VMware 虛擬機器或 Windows/Linux 實體伺服器容錯回復時，請依照這裡的指示執行。
+
+>[!NOTE]
+>如果您使用傳統 Azure 入口網站，請參閱[這裡](site-recovery-failback-azure-to-vmware-classic.md)所說的指示來增強 VMware 到 Azure 的架構，若為舊版架構，則請參閱[這裡](site-recovery-failback-azure-to-vmware-classic-legacy.md)
 
 ## <a name="overview"></a>概觀
 本節中的圖表說明此案例的容錯回復架構。
@@ -94,7 +96,7 @@ ms.lasthandoff: 02/03/2017
 
 如果您已經將您的虛擬機器做為傳統資源保護 (也就是在 Azure 中復原的 VM 是傳統部署模型建立的 VM)，那麼您需要 Azure 中的處理伺服器。 若您已經在使用 Azure Resource Manager 做為部署類型的情況下復原 VM，Process Server 必須使用 Resource Manager 做為部署類型。 部署類型是由您在其中部署處理伺服器的 Azure 虛擬網路所選取。
 
-1. 在 [保存庫] > [設定] > [Site Recovery 基礎結構] (在 [管理] 下) > [組態伺服器] (在 [適用於 VMware 與虛擬機器] 下)，選取組態伺服器。
+1. 在 [保存庫] > [設定] > [Site Recovery 基礎結構] \(在 [管理] 下) > [組態伺服器] \(在 [適用於 VMware 與虛擬機器] 下)，選取組態伺服器。
 2. 按一下 [處理伺服器]。
 
   ![[處理伺服器] 按鈕](./media/site-recovery-failback-azure-to-vmware-classic/add-processserver.png)

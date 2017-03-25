@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: azure-government
-ms.date: 11/18/2016
+ms.date: 3/13/2017
 ms.author: ryansoc
 translationtype: Human Translation
-ms.sourcegitcommit: ca01baebd755e92aff1ef080af1fcd4606b9a2ec
-ms.openlocfilehash: 200caac4b480495b0bbb8f10cc89fdd73c42dbe2
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 146fcd9788bab55e4abd9e70dcfe25741f041d34
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -27,16 +28,18 @@ ms.openlocfilehash: 200caac4b480495b0bbb8f10cc89fdd73c42dbe2
 ### <a name="variations"></a>變化
 Azure Government 中提供這些產品 (VM)︰
 
-| 產品 (VM) | US Gov VA | US Gov IA |
-| --- | --- | --- |
-| A0-A7 |Y |Y |
-| D 系列 |Y |N |
-| Dv2 系列 |Y |Y |
-| DS 系列 |Y |N |
-| F 系列 |Y |Y |
-| FS 系列 |N |N |
-| G 系列 |Y |N |
-| GS 系列 |Y |N |
+| 產品 (VM) | US Gov VA | US Gov IA | 美國 DOD 東部 | 美國 DOD 西部
+| --- | --- | --- |--- |--- |
+| A0-A7 |Y |Y |Y |Y |Y |
+| Av2 |Y |Y |Y |Y |Y |
+| D 系列 |Y |N |N |N |
+| Dv2 系列 |Y |Y |Y |Y |
+| DS 系列 |Y |N |N |N |
+| DSv2 系列 |Y |N |Y |Y |
+| F 系列 |Y |Y |Y |Y |
+| FS 系列 |Y |N |Y |Y |
+| G 系列 |Y |N |N |N |
+| GS 系列 |Y |N |N |N |
 
 ### <a name="data-considerations"></a>資料考量
 下列資訊可識別 Azure 虛擬機器的 Azure Government 界限︰
@@ -47,10 +50,5 @@ Azure Government 中提供這些產品 (VM)︰
 
 ## <a name="next-steps"></a>後續步驟
 如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。 </a>
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

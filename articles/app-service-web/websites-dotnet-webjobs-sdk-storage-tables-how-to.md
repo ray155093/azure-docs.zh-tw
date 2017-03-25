@@ -63,7 +63,7 @@ ms.lasthandoff: 11/17/2016
             public string Name { get; set; }
         }
 
-如果您想要直接使用 Azure 儲存體 API，您可以將 `CloudStorageAccount` 參數新增至方法簽章。。
+如果您想要直接使用 Azure 儲存體 API，您可以將 `CloudStorageAccount` 參數新增至方法簽章。
 
 ## <a id="monitor"></a> 即時監視
 因為資料外送流量函式經常處理大量資料，所以 WebJobs SDK 儀表板提供即時監視資料。 [引動過程記錄]  區段可告訴您是否仍有執行中的函式。

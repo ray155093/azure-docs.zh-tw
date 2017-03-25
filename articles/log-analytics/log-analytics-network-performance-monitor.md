@@ -1,6 +1,6 @@
 ---
-title: "OMS 中的網路效能監視器方案 | Microsoft Docs"
-description: "網路效能監視器可協助您即時監視網路的效能，以偵測和找出網路效能瓶頸。"
+title: "Azure Log Analytics 中的網路效能監視器方案 | Microsoft Docs"
+description: "Azure Log Analytics 中的網路效能監視器可協助您即時監視網路的效能，以偵測和找出網路效能瓶頸。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -12,21 +12,18 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/31/2017
+ms.date: 03/09/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: d1cae87bb312ef903d099b8be59ad39a5b83d468
-ms.openlocfilehash: 4b683ef50ca1046686213b55c32e07b5fb8cca68
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 7e9ca0c15c29fb670b742d939107bb5d4a48245c
+ms.lasthandoff: 03/11/2017
 
 
 ---
-# <a name="network-performance-monitor-preview-solution-in-oms"></a>OMS 中的網路效能監視器 (預覽) 方案
-> [!NOTE]
-> 這是[預覽解決方案](log-analytics-add-solutions.md#preview-management-solutions-and-features)。
->
->
+# <a name="network-performance-monitor-solution-in-log-analytics"></a>Log Analytics 中的網路效能監視器解決方案
 
-本文件說明如何設定和使用 OMS 中的網路效能監視器方案，協助您即時監視網路的效能，以偵測和找出網路效能瓶頸。 使用網路效能監視器方案，可以監視兩個網路、子網路或伺服器之間的遺失和延遲。 網路效能監視器會偵測網路問題，例如流量黑洞、路由錯誤，以及傳統網路監視方法無法偵測的問題。 網路效能監視器會產生警示，並違反網路連結的臨界值時發生通知。 系統可以自動學習這些臨界值，您也可以將其設定為使用自訂警示規則。 網路效能監視器可確保及時偵測網路效能問題，並使問題的來源局限於特定網路區段或裝置。
+本文件說明如何設定和使用 Log Analytics 中的網路效能監視器方案，協助您即時監視網路的效能，以偵測和找出網路效能瓶頸。 使用網路效能監視器方案，可以監視兩個網路、子網路或伺服器之間的遺失和延遲。 網路效能監視器會偵測網路問題，例如流量黑洞、路由錯誤，以及傳統網路監視方法無法偵測的問題。 網路效能監視器會產生警示，並違反網路連結的臨界值時發生通知。 系統可以自動學習這些臨界值，您也可以將其設定為使用自訂警示規則。 網路效能監視器可確保及時偵測網路效能問題，並使問題的來源局限於特定網路區段或裝置。
 
 您可以利用方案儀表板來偵測網路問題，其中顯示您的網路摘要資訊，包括最近的網路健康狀態事件、狀況不良的網路連結，以及正面臨高封包遺失和延遲的子網路連結。 您可以向下切入至網路連結，以檢視子網路的目前健康狀態及節點間的連結。 您也可以檢視網路、子網路和節點對節點層級的遺失和延遲歷史趨勢。 您可以藉由檢視封包遺失和延遲的歷史趨勢圖表來偵測暫時性網路問題，並找出拓撲圖上的網路瓶頸。 互動式拓撲圖可讓您將逐一躍點的網路路由視覺化，並判斷問題的來源。 如同任何其他方案，您可以將「記錄檔搜尋」用於各種分析需求，以根據網路效能監視器所收集的資料建立自訂報告。
 
@@ -63,7 +60,20 @@ ms.openlocfilehash: 4b683ef50ca1046686213b55c32e07b5fb8cca68
 代理程式會監視主機之間的網路連線 (連結) - 而不是主機本身。 所以，若要監視網路連結，您必須在該連結的兩個端點上安裝代理程式。
 
 ### <a name="configure-agents"></a>設定代理程式
-安裝代理程式之後，您必須開啟這些電腦的防火牆連接埠，確保代理程式可以通訊。 您必須使用系統管理權限下載並執行 [EnableRules.ps1 PowerShell 指令碼](https://gallery.technet.microsoft.com/OMS-Network-Performance-04a66634)，而不需 PowerShell 視窗中的任何參數
+
+如果您想要使用 ICMP 通訊協定進行綜合交易，您必須啟用下列防火牆規則，以便可靠地使用 ICMP：
+
+```
+netsh advfirewall firewall add rule name="NPMDICMPV4Echo" protocol="icmpv4:8,any" dir=in action=allow
+netsh advfirewall firewall add rule name="NPMDICMPV6Echo" protocol="icmpv6:128,any" dir=in action=allow
+netsh advfirewall firewall add rule name="NPMDICMPV4DestinationUnreachable" protocol="icmpv4:3,any" dir=in action=allow
+netsh advfirewall firewall add rule name="NPMDICMPV6DestinationUnreachable" protocol="icmpv6:1,any" dir=in action=allow
+netsh advfirewall firewall add rule name="NPMDICMPV4TimeExceeded" protocol="icmpv4:11,any" dir=in action=allow
+netsh advfirewall firewall add rule name="NPMDICMPV6TimeExceeded" protocol="icmpv6:3,any" dir=in action=allow
+```
+
+
+如果您要使用 TCP 通訊協定，必須開啟這些電腦的防火牆連接埠，確保代理程式可以通訊。 您必須使用系統管理權限下載並執行 [EnableRules.ps1 PowerShell 指令碼](https://gallery.technet.microsoft.com/OMS-Network-Performance-04a66634)，而不需 PowerShell 視窗中的任何參數。
 
 此指令碼會建立網路效能監視器所需的登錄機碼並建立 Windows 防火牆規則，以允許代理程式彼此建立 TCP 連線。 此指令碼建立的登錄機碼也會指定是否記錄偵錯記錄檔和記錄檔的路徑。 它也會定義用於通訊的代理程式 TCP 連接埠。 此指令碼會自動設定這些機碼的值，所以您不應手動變更這些機碼。
 
@@ -77,8 +87,11 @@ ms.openlocfilehash: 4b683ef50ca1046686213b55c32e07b5fb8cca68
 ## <a name="configuring-the-solution"></a>設定方案
 請使用下列資訊來安裝和設定方案。
 
-1. 網路效能監視器方案可從執行 Windows Server 2008 SP1 或更新版本或 Windows 7 SP1 或更新版本的電腦取得資料，這與 Microsoft Monitoring Agent (MMA) 的需求相同。
-2. 使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，將網路效能監視器方案新增至您的 OMS 工作區。  
+1. 網路效能監視器方案可從執行 Windows Server 2008 SP1 或更新版本或 Windows 7 SP1 或更新版本的電腦取得資料，這與 Microsoft Monitoring Agent (MMA) 的需求相同。 NPM 代理程式也可以在 Windows 桌面/用戶端作業系統 (Windows 10、Windows 8.1、Windows 8 和 Windows 7) 上執行。
+    >[!NOTE]
+    >Windows 伺服器作業系統的代理程式支援 TCP 和 ICMP 做為綜合交易的通訊協定。 不過，Windows 用戶端作業系統的代理程式僅支援 ICMP 做為綜合交易的通訊協定。
+
+2. 從 [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.NetworkMonitoringOMS?tab=Overview) 或使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，將網路效能監視器方案新增至您的工作區。  
    ![網路效能監視器符號](./media/log-analytics-network-performance-monitor/npm-symbol.png)
 3. 在 OMS 入口網站中，您會看到標題為 [網路效能監視器] 的新圖格以及「方案需要額外設定」訊息。 您必須將方案設定為根據代理程式探索到的子網路和節點新增網路。 按一下 [網路效能監視器] 開始設定預設網路。  
    ![方案需要額外設定](./media/log-analytics-network-performance-monitor/npm-config.png)
@@ -143,11 +156,14 @@ ms.openlocfilehash: 4b683ef50ca1046686213b55c32e07b5fb8cca68
 2. 從清單中選取一對要監視的網路或子網路連結。
 3. 先從網路下拉式清單中選取包含第一個感興趣子網路的網路，然後再從對應的子網路下拉式清單中選取子網路。
    如果您要監視網路連結中的所有子網路，請選取 [所有子網路]。 同樣地，選取其他感興趣的子網路。 而且，您可以按一下 [新增例外狀況]，從您所做的選取範圍中排除特定子網路連結的監視。
-4. 如果您不想建立所選項目的健康狀態事件，則清除 [在此規則所涵蓋的連結上啟用健康狀態監視]。
-5. 選擇監視條件。
+4. 在 ICMP 和 TCP 通訊協定之間選擇，供您用來執行綜合交易。
+5. 如果您不想建立所選項目的健康狀態事件，則清除 [在此規則所涵蓋的連結上啟用健康狀態監視]。
+6. 選擇監視條件。
    您可以輸入臨界值，以設定健康狀態事件產生的自訂臨界值。 只要條件的值高於針對所選網路/子網路配對選取的臨界值時，就會產生健康狀態事件。
-6. 按一下 [儲存] 儲存組態。  
+7. 按一下 [儲存] 儲存組態。  
    ![建立自訂監視規則](./media/log-analytics-network-performance-monitor/npm-monitor-rule.png)
+
+儲存監視規則之後，您可以按一下**建立警示**，使用警示管理整合該規則。 警示規則會使用搜尋查詢自動建立，且其他必要參數會自動填滿。 使用警示規則，除了 NPM 內現有的警示，您還可以接收電子郵件型警示。 警示也會使用 runbook 觸發修復動作，或可以使用 webhook 與現有的服務管理解決方案整合。 您可以按一下**管理警示**以編輯警示設定。
 
 ### <a name="choose-the-right-protocol-icmp-or-tcp"></a>選擇正確的通訊協定：ICMP 或 TCP
 
@@ -183,27 +199,25 @@ TCP 通訊協定會要求 TCP 封包傳送至目的地連接埠。 NPM 代理程
 如果您在部署期間選擇使用 ICMP，您可以隨時編輯預設監視規則來切換為 TCP。
 
 ##### <a name="to-edit-the-default-monitoring-rule"></a>編輯預設監視規則
-1.  瀏覽至 [網路效能]  >  [監視]  >  [設定]  >  [監視]，然後按一下 [預設規則]。
-2.  捲動至 [通訊協定] 區段，然後選取您要使用的通訊協定。
-3.  按一下 [儲存] 來套用設定。
+1.    瀏覽至 [網路效能]  >  [監視]  >  [設定]  >  [監視]，然後按一下 [預設規則]。
+2.    捲動至 [通訊協定] 區段，然後選取您要使用的通訊協定。
+3.    按一下 [儲存] 來套用設定。
 
 即使預設規則正在使用特定的通訊協定，您也能以其他通訊協定建立新規則。 您甚至可以建立混合規則，其中某些規則使用 ICMP，而其他使用 TCP。
 
 
 
 
-
-
 ## <a name="data-collection-details"></a>資料收集詳細資料
-網路效能監視器會使用 TCP SYN-SYNACK-ACK 交握封包來收集遺失和延遲資訊，而「路徑追蹤」也會用來取得拓撲資訊。
+當選取 TCP 時，網路效能監視器會使用 TCP SYN-SYNACK-ACK 交握封包，當選取 ICMP 做為收集中斷和延遲資訊的通訊協定時，會使用 ICMP ECHO ICMP ECHO REPLY。 追蹤路由也用來取得拓撲資訊。
 
 下表顯示網路效能監視器的資料收集方法，以及有關如何收集資料的其他詳細資料。
 
 | 平台 | 直接代理程式 | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
 | --- | --- | --- | --- | --- | --- | --- |
-| Windows |![是](./media/log-analytics-network-performance-monitor/oms-bullet-green.png) |![是](./media/log-analytics-network-performance-monitor/oms-bullet-green.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |TCP 會每 5 秒交握一次，而資料會每 3 分鐘傳送一次 |
+| Windows |![是](./media/log-analytics-network-performance-monitor/oms-bullet-green.png) |![是](./media/log-analytics-network-performance-monitor/oms-bullet-green.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |TCP 交握/ICMP ECHO 訊息會每 5 秒進行一次，而資料會每 3 分鐘傳送一次 |
 
-此方案會利用綜合交易來評估網路的健康狀態。 安裝於網路中不同點的 OMS 代理程式會彼此交換 TCP 封包，並在過程中了解來回行程時間和封包遺失 (如果有的話)。 此外，每個代理程式也會定期執行其他代理程式的路徑追蹤，以找出網路中必須測試的所有各種路由。 使用這項資料，代理程式就能夠推論網路延遲和封包遺失數字。 測試會每&5; 秒重複一次，而代理程式會先彙總三分鐘的資料，再將資料上傳至 OMS。
+此方案會使用綜合交易來評估網路的健全狀況。 OMS 代理程式已安裝在網路交換 TCP 封包或 ICMP Echo (取決於已選取要監視的通訊協定) 各種點。 在過程中，代理程式會了解來回行程時間和封包遺失 (如果有的話)。 此外，每個代理程式也會定期執行其他代理程式的路徑追蹤，以找出網路中必須測試的所有各種路由。 使用這項資料，代理程式就能夠推論網路延遲和封包遺失數字。 測試會每&5; 秒重複一次，而代理程式會先彙總三分鐘的資料，再將資料上傳至 Log Analytics 服務。
 
 > [!NOTE]
 > 雖然代理程式會經常彼此通訊，但是在進行測試時不會產生大量網路流量。 代理程式只依賴 TCP SYN-SYNACK-ACK 交握封包來判斷遺失和延遲 - 不會交換任何資料封包。 在此過程中，代理程式只會在需要時彼此通訊，而且代理程式通訊拓撲已最佳化以減少網路流量。
@@ -238,6 +252,12 @@ TCP 通訊協定會要求 TCP 封包傳送至目的地連接埠。 NPM 代理程
 
 ![向下鑽研資料](./media/log-analytics-network-performance-monitor/npm-drill.png)
 
+### <a name="network-state-recorder"></a>網路狀態錄製器
+
+每個檢視會在特定時間點顯示您網路健全狀況的快照集。 根據預設，會顯示最新狀態。 在頁面頂端的列會顯示狀態正在顯示的時間點。 您可以按一下 [動作] 上的列，選擇回到過去並檢視您網路健全狀況的快照集。 您也可以在檢視最新狀態時，選擇啟用或停用任何頁面的自動重新整理。
+
+![網路狀態](./media/log-analytics-network-performance-monitor/network-state.png)
+
 #### <a name="trend-charts"></a>趨勢圖
 在您向下鑽研的每個層級，您可以看到網路連結的遺失和延遲趨勢。 趨勢圖也可以用於子網路和節點連結。 您可以使用圖形頂端的時間控制項，變更要繪製之圖表的時間間隔。
 
@@ -252,7 +272,7 @@ TCP 通訊協定會要求 TCP 封包傳送至目的地連接埠。 NPM 代理程
 
 拓撲圖會顯示兩個節點之間有多少個路由，以及資料封包所採用的路徑。 在拓撲圖上，網路效能瓶頸會標示為紅色。 您可以查看拓撲圖上的紅色項目，找出錯誤的網路連線或錯誤的網路裝置。
 
-當您按一下節點或將滑鼠移至拓撲圖上的該節點，您會看到節點的屬性 (如 FQDN 和 IP 位址)。 按一下躍點以查看其 IP 位址。 您可以清除而後只選取您要在圖上反白顯示的路由，以反白顯示特定的路由。 您可以使用滑鼠滾輪來放大或縮小拓撲圖。
+當您按一下節點或將滑鼠移至拓撲圖上的該節點，您會看到節點的屬性 (如 FQDN 和 IP 位址)。 按一下躍點以查看其 IP 位址。 您可以使用可摺疊動作窗格中的篩選器來選擇篩選特定的路徑。 而且，您也可以使用動作窗格中的滑桿隱藏中繼躍點，來簡化網路拓樸。 您可以使用滑鼠滾輪來放大或縮小拓撲圖。
 
 請注意，圖中顯示的拓撲是第 3 層拓撲，不包含第 2 層裝置和連線。
 
@@ -271,26 +291,26 @@ TCP 通訊協定會要求 TCP 封包傳送至目的地連接埠。 NPM 代理程
 ## <a name="investigate-the-root-cause-of-a-health-alert"></a>調查健康狀態警示的根本原因
 既然您已深入了解網路效能監視器，讓我們看看簡單的健康狀態事件根本原因調查。
 
-1. 在 [概觀] 頁面上，觀察 [網路效能監視器] 圖格，您可以快速概略了解您的網路健康狀態。 請注意，在 80 個受監視的子網路連結中，有 43 個狀況不良。 這值得調查一下。 按一下此圖格以檢視方案儀表板。  
+1. 在 [概觀] 頁面上，觀察 [網路效能監視器] 圖格，您可以快速概略了解您的網路健康狀態。 請注意，在 6 個受監視的子網路連結中，有 2 個狀況不良。 這值得調查一下。 按一下此圖格以檢視方案儀表板。  
    ![網路效能監視器圖格](./media/log-analytics-network-performance-monitor/npm-investigation01.png)
-2. 在下面的範例圖像中，您會發現目前有 4 個健康狀態事件和 4 個狀況不良的網路連結。 您決定要調查此問題，按一下 **Sharepoint-Web** 網路連結，以找出問題的根源。  
+2. 在下列範例映像中，您會發現有網路連結狀況不佳的健全狀況事件。 您決定要調查此問題，按一下 **DMZ2-DMZ1** 網路連結，以找出問題的根源。  
    ![狀況不良的網路連結範例](./media/log-analytics-network-performance-monitor/npm-investigation02.png)
-3. 向下鑽研頁面會顯示 **Sharepoint-Web** 網路連結中的所有子網路連結。 您會發現，這兩個子網路連結的延遲已超過臨界值，以致網路連結狀況不良。 您也可以查看這兩個子網路連結的延遲趨勢。 您可以使用圖形中的時間選取控制項，將焦點放在所需的時間範圍。 您可以看到一天當中達到延遲尖峰的時間。 您稍後可以在記錄檔中搜尋此時間，以調查問題。 按一下 [檢視節點連結] 進一步深入鑽研。  
+3. 向下鑽研頁面會顯示 **DMZ2-DMZ1** 網路連結中的所有子網路連結。 您會發現，這兩個子網路連結的延遲已超過臨界值，以致網路連結狀況不良。 您也可以查看這兩個子網路連結的延遲趨勢。 您可以使用圖形中的時間選取控制項，將焦點放在所需的時間範圍。 您可以看到一天當中達到延遲尖峰的時間。 您稍後可以在記錄檔中搜尋此時間，以調查問題。 按一下 [檢視節點連結] 進一步深入鑽研。  
    ![狀況不良的子網路連結範例](./media/log-analytics-network-performance-monitor/npm-investigation03.png)
 4. 類似於前一頁，特定子網路連結的向下鑽研頁面會列出其構成的節點連結。 您可以在此執行類似上一個步驟中的動作。 按一下 [檢視拓撲] 可檢視 2 個節點之間的拓撲。  
    ![狀況不良的節點連結範例](./media/log-analytics-network-performance-monitor/npm-investigation04.png)
 5. 2 個選定節點之間的所有路徑都會繪製於拓撲圖。 您可以在拓撲圖上呈現這兩個節點之間路由的逐一躍點拓撲。 拓撲圖會清楚顯示兩個節點之間有多少個路由，以及資料封包所採用的路徑。 網路效能瓶頸會標示為紅色。 您可以查看拓撲圖上的紅色項目，找出錯誤的網路連線或錯誤的網路裝置。  
    ![狀況不良的拓撲檢視範例](./media/log-analytics-network-performance-monitor/npm-investigation05.png)
-6. 在 [路徑詳細資料] 窗格中可以檢閱每個路徑中的遺失、延遲和躍點數目。 在此範例中，您可以看到如窗格中所述的 3 個狀況不良路徑。 使用捲軸來檢視這些狀況不良路徑的詳細資料。  使用核取方塊來選取其中一個路徑，以便繪製僅只一個路徑的拓撲。 您可以使用滑鼠滾輪來放大或縮小拓撲圖。
+6. 在 [動作] 窗格中可以檢閱每個路徑中的遺失、延遲和躍點數目。 使用捲軸來檢視這些狀況不良路徑的詳細資料。  使用篩選器選取具有狀況不良躍點的路徑，以便僅繪製選取路徑的拓撲。 您可以使用滑鼠滾輪來放大或縮小拓撲圖。
 
    在下面的圖像中，藉由查看紅色的路徑和躍點，即可清楚看到特定網路區段中問題區域的根本原因。 按一下拓撲圖中的節點，即可顯示該節點的屬性，包括 FQDN 和 IP 位址。 按一下躍點可顯示該躍點的 IP 位址。  
    ![狀況不良的拓撲 - 路徑詳細資料範例](./media/log-analytics-network-performance-monitor/npm-investigation06.png)
 
+## <a name="provide-feedback"></a>提供意見反應
+
+- **UserVoice** - 您可以張貼您對於希望我們改善之網路效能監視器功能的想法。 造訪 [UserVoice 頁面](https://feedback.azure.com/forums/267889-log-analytics/category/188146-network-monitoring)。
+- **加入我們的社群** - 我們竭誠歡迎新客戶加入我們的社群。 加入其中，您就能夠提早存取新功能，並協助我們改善網路效能監視器。 如果您想加入，請填妥這份[快速問卷調查](https://aka.ms/npmcohort)。
+
 ## <a name="next-steps"></a>後續步驟
 * [搜尋記錄檔](log-analytics-log-searches.md)以檢視詳細的網路效能資料記錄。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

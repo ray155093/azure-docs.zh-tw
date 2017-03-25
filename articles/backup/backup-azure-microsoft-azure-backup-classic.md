@@ -13,11 +13,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 03/10/2017
 ms.author: masaran;trinadhk;pullabhk;markgal
 translationtype: Human Translation
-ms.sourcegitcommit: 2224ddf52283d7da599b1b4842ca617d28b28668
-ms.openlocfilehash: 2d32e8bb650d682684be0e093a9f5dfd9d536a8f
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 2b278b5c512d3ea0ff045869487d4551118c0e5c
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -52,31 +53,19 @@ ms.openlocfilehash: 2d32e8bb650d682684be0e093a9f5dfd9d536a8f
 >
 >
 
-如果您打算在個時間點將此伺服器加入網域中，建議您在安裝 Azure 備份伺服器之前完成網域加入活動。 若在部署後將現有的 Azure 備份伺服器機器移至新網域，該動作將「不受支援」 。
+如果您打算將 Azure 備份伺服器加入網域，建議您在安裝 Azure 備份伺服器軟體之前，將實體伺服器或虛擬機器加入網域。 「不支援」在部署之後將 Azure 備份伺服器機器移至新網域。
 
 ## <a name="2-backup-vault"></a>2.備份保存庫
 ![步驟&2;](./media/backup-azure-microsoft-azure-backup/step2.png)
 
-無論您要將備份資料傳送至 Azure，還是將其保存在本機上，軟體都必須連接到 Azure。 明確而言，Azure 備份伺服器機器必須向備份保存庫註冊。
+無論您是將備份資料傳送至 Azure，或保存在本機，都必須向保存庫註冊 Azure 備份伺服器。
 
-若要建立備份保存庫：
+> [!IMPORTANT]
+> 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。 我們仍然支援現有的備份保存庫，您也可以[使用 Azure PowerShell 來建立備份保存庫](./backup-client-automation-classic.md#create-a-backup-vault)。 不過，Microsoft 建議您建立所有部署的復原服務保存庫，因為未來的增強功能僅適用於復原服務保存庫。
+>
+>
 
-1. 登入 [管理入口網站](http://manage.windowsazure.com/)。
-2. 按一下 [新增] >  [資料服務] >  [復原服務] >  [備份保存庫] > [快速建立]。 如果您有多個與組織帳戶相關聯的訂用帳戶，請選擇與備份保存庫相關聯的正確訂用帳戶。
-3. 在 [名稱] 中，輸入保存庫的易記識別名稱。 每個訂用帳戶皆需為唯一名稱。
-4. 在 [ **區域**] 中，選取保存庫的地理區域。 在一般情況下，會根據資料主權或網路延遲條件約束來選擇保存庫的區域。
 
-    ![建立備份保存庫](./media/backup-azure-microsoft-azure-backup/backup_vaultcreate.png)
-5. 按一下 [建立保存庫] 。 要等備份保存庫建立好，可能需要一些時間。 監視位於入口網站底部的狀態通知。
-
-    ![建立保存庫快顯通知](./media/backup-azure-microsoft-azure-backup/creating-vault.png)
-6. 將有一則訊息確認保存庫已成功建立，並且該保存庫會在「復原服務」頁面中列為 [使用中] 狀態。
-    ![備份保存庫的清單](./media/backup-azure-microsoft-azure-backup/backup_vaultslist.png)
-
-   > [!IMPORTANT]
-   > 保存庫建立之後，請立即確認是否選擇了適當的儲存體備援選項。 在此[概觀](../storage/storage-redundancy.md)中，深入了解[異地備援](../storage/storage-redundancy.md#geo-redundant-storage)和[本機備援](../storage/storage-redundancy.md#locally-redundant-storage)選項。
-   >
-   >
 
 ## <a name="3-software-package"></a>3.軟體封裝
 ![步驟&3;](./media/backup-azure-microsoft-azure-backup/step3.png)
@@ -124,6 +113,7 @@ ms.openlocfilehash: 2d32e8bb650d682684be0e093a9f5dfd9d536a8f
    > Azure 備份伺服器不會使用遠端 SQL Server 執行個體。 Azure 備份伺服器所使用的執行個體必須是本機的。
    >
    >
+
 4. 提供 Microsoft Azure 備份伺服器檔案的安裝位置，按 [下一步] 。
 
     ![Microsoft Azure 備份必要條件&2;](./media/backup-azure-microsoft-azure-backup/space-screen.png)
@@ -209,9 +199,4 @@ Azure 備份伺服器需要連線至 Azure 備份服務，產品才能順利運�
 * [SQL Server 備份](backup-azure-backup-sql.md)
 * [SharePoint 伺服器備份](backup-azure-backup-sharepoint.md)
 * [替代伺服器備份](backup-azure-alternate-dpm-server.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

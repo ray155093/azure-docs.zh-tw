@@ -1,5 +1,5 @@
 ---
-title: "在 Log Analytics 中收集 Azure 服務的記錄和度量 | Microsoft Docs"
+title: "為 Log Analytics 收集 Azure 服務的記錄和計量 | Microsoft Docs"
 description: "在 Azure 資源上設定診斷以便將記錄和度量寫入 Log Analytics。"
 services: log-analytics
 documentationcenter: 
@@ -12,15 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
+ms.date: 03/09/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 23979aec895649d80aab21d729833a846c4aeb19
-ms.openlocfilehash: 176aad9c25af6f4f31cf9f7c2152c8d63b3126a4
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 04bab3024474ae521090a8693b6c095e1704d4dc
+ms.lasthandoff: 03/15/2017
 
 
 ---
-# <a name="collecting-logs-and-metrics-for-azure-services-in-log-analytics"></a>在 Log Analytics 中收集 Azure 服務的記錄和度量
+# <a name="collect-azure-service-logs-and-metrics-for-use-in-log-analytics"></a>收集 Azure 服務的記錄和計量以便使用於 Log Analytics
 
 有四種不同的方式可收集 Azure 服務的記錄和度量︰
 
@@ -32,8 +34,7 @@ ms.openlocfilehash: 176aad9c25af6f4f31cf9f7c2152c8d63b3126a4
 
 | 服務                 | 資源類型                           | 記錄檔        | 度量     | 方案 |
 | --- | --- | --- | --- | --- |
-| 應用程式閘道    | Microsoft.Network/applicationGateways   | 診斷 | 診斷 | [Azure Networking Analytics (Azure 網路分析) (預覽)](log-analytics-azure-networking-analytics.md) |
-| API 管理          | Microsoft.ApiManagement/service         |             | 診斷 | |
+| 應用程式閘道    | Microsoft.Network/applicationGateways   | 診斷 | 診斷 | [Azure 應用程式閘道分析](log-analytics-azure-networking-analytics.md#azure-application-gateway-analytics-solution-in-log-analytics) |
 | Application insights    |                                         | 連接器   | 連接器   | [Application Insights Connector (Application Insights 連接器)](https://blogs.technet.microsoft.com/msoms/2016/09/26/application-insights-connector-in-oms/) (預覽) |
 | 自動化帳戶     | Microsoft.Automation/AutomationAccounts | 診斷 |             | [詳細資訊](../automation/automation-manage-send-joblogs-log-analytics.md)|
 | Batch 帳戶          | Microsoft.Batch/batchAccounts           | 診斷 | 診斷 | |
@@ -43,18 +44,20 @@ ms.openlocfilehash: 176aad9c25af6f4f31cf9f7c2152c8d63b3126a4
 | Data Lake Store         | Microsoft.DataLakeStore/accounts        | 診斷 |             | |
 | 事件中樞命名空間     | Microsoft.EventHub/namespaces           | 診斷 | 診斷 | |
 | IoT 中樞                | Microsoft.Devices/IotHubs               |             | 診斷 | |
-| 金鑰保存庫               | Microsoft.KeyVault/vaults               | 診斷 |             | [KeyVault Analytics (金鑰保存庫分析) (預覽)](log-analytics-azure-key-vault.md) |
+| 金鑰保存庫               | Microsoft.KeyVault/vaults               | 診斷 |             | [金鑰保存庫分析](log-analytics-azure-key-vault.md) |
 | 負載平衡器          | Microsoft.Network/loadBalancers         | 診斷 |             |  |
 | Logic Apps              | Microsoft.Logic/workflows <br> Microsoft.Logic/integrationAccounts | 診斷 | 診斷 | |
-| 網路安全性群組 | Microsoft.Network/networksecuritygroups | 診斷 |             | [Azure Networking Analytics (Azure 網路分析) (預覽)](log-analytics-azure-networking-analytics.md) |
+| 網路安全性群組 | Microsoft.Network/networksecuritygroups | 診斷 |             | [Azure 網路安全性群組分析](log-analytics-azure-networking-analytics.md#azure-network-security-group-analytics-solution-in-log-analytics) |
+| 復原保存庫         | Microsoft.RecoveryServices/vaults       |             |             | [Azure 復原服務分析 (預覽)](https://github.com/krnese/AzureDeploy/blob/master/OMS/MSOMS/Solutions/recoveryservices/)|
 | 搜尋服務         | Microsoft.Search/searchServices         | 診斷 | 診斷 | |
-| 服務匯流排命名空間   | Microsoft.ServiceBus/namespaces         | 診斷 | 診斷 | |
+| 服務匯流排命名空間   | Microsoft.ServiceBus/namespaces         | 診斷 | 診斷 | [服務匯流排分析 (預覽)](https://github.com/Azure/azure-quickstart-templates/tree/master/oms-servicebus-solution)|
 | Service Fabric          |                                         | 儲存體     |             | [Service Fabric Analytics (Service Fabric 分析) (預覽)](log-analytics-service-fabric.md) |
-| SQL (v12)               | Microsoft.Sql/servers/databases <br> Microsoft.Sql/servers/elasticPools |             | 診斷 | |
+| SQL (v12)               | Microsoft.Sql/servers/databases <br> Microsoft.Sql/servers/elasticPools |             | 診斷 | [Azure SQL Analytics (預覽)](log-analytics-azure-sql.md) |
+| 儲存體                 |                                         |             | 指令碼      | [Azure 儲存體分析 (預覽)](https://github.com/Azure/azure-quickstart-templates/tree/master/oms-azure-storage-analytics-solution) |
 | 虛擬機器        | Microsoft.Compute/virtualMachines       | 分機   | 分機 <br> 診斷  | |
 | 虛擬機器擴展集 | Microsoft.Compute/virtualMachines <br> Microsoft.Compute/virtualMachineScaleSets/virtualMachines |             | 診斷 | |
 | Web 伺服器陣列        | Microsoft.Web/serverfarms               |             | 診斷 | |
-| 網站               | Microsoft.Web/sites <br> Microsoft.Web/sites/slots |             | 診斷 | [詳細資訊](https://github.com/Azure/azure-quickstart-templates/tree/master/101-webappazure-oms-monitoring) |
+| 網站               | Microsoft.Web/sites <br> Microsoft.Web/sites/slots |             | 診斷 | [Azure Web Apps 分析 (預覽)](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureWebAppsAnalyticsOMS?tab=Overview) |
 
 
 > [!NOTE]
@@ -112,6 +115,7 @@ Set-AzureRmDiagnosticSetting -ResourceId $ResourceId  -WorkspaceId $workspaceId 
         }
 ```
 
+[!INCLUDE [log-analytics-troubleshoot-azure-diagnostics](../../includes/log-analytics-troubleshoot-azure-diagnostics.md)]
 
 ## <a name="azure-diagnostics-to-storage-then-to-log-analytics"></a>Azure 診斷至儲存體，再至 Log Analytics
 
@@ -149,9 +153,4 @@ Azure 範本庫包含[使用 Azure 自動化的範例](https://azure.microsoft.c
 * [對 IIS 使用 Blob 儲存體，對事件使用表格儲存體](log-analytics-azure-storage-iis-table.md)，以讀取 Azure 服務 (將診斷寫入表格儲存體) 的記錄，或讀取寫入 Blob 儲存體的 IIS 記錄。
 * [啟用解決方案](log-analytics-add-solutions.md) 以提供資料的深入見解。
 * [使用搜尋查詢](log-analytics-log-searches.md) 以分析資料。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

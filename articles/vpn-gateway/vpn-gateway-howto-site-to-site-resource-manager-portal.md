@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: eea00841708212789e14fa8717d83dd81d472bac
-ms.openlocfilehash: c99788aded849933289555dd133b8146d6b2bdf2
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 37311ea17004d8c5cfe9bfc9360c3972e39fb7f5
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -25,9 +26,10 @@ ms.openlocfilehash: c99788aded849933289555dd133b8146d6b2bdf2
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
+> * [傳統 - Azure 入口網站](vpn-gateway-howto-site-to-site-classic-portal.md)
 > * [傳統 - 傳統入口網站](vpn-gateway-site-to-site-create.md)
-> 
-> 
+>
+>
 
 本文逐步引導您使用 Azure Resource Manager 部署模型 和 Azure 入口網站，以建立虛擬網路及連至內部部署網路的網站間 VPN 閘道連線。 網站間連線可以用於跨單位與混合式組態。
 
@@ -50,7 +52,7 @@ ms.openlocfilehash: c99788aded849933289555dd133b8146d6b2bdf2
 * 您的 VPN 裝置對外開放的公用 IP 位址。 此 IP 位址不能位於 NAT 後方。
 * Azure 訂用帳戶。 如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](http://azure.microsoft.com/pricing/member-offers/msdn-benefits-details)或註冊[免費帳戶](http://azure.microsoft.com/pricing/free-trial)。
 
-### <a name="a-namevaluesasample-configuration-values-for-this-exercise"></a><a name="values"></a>此練習的範例組態值
+### <a name="values"></a>此練習的範例組態值
 練習這些步驟時，您可以使用範例組態值：
 
 * **VNet 名稱︰**TestVNet1
@@ -70,22 +72,22 @@ ms.openlocfilehash: c99788aded849933289555dd133b8146d6b2bdf2
 * **區域網路閘道名稱：**Site2
 * **連線名稱︰**VNet1toSite2
 
-## <a name="a-namecreatvneta1-create-a-virtual-network"></a><a name="CreatVNet"></a>1.建立虛擬網路
+## <a name="CreatVNet"></a>1.建立虛擬網路
 如果您已經有 VNet，請驗證設定是否與您的 VPN 閘道設計相容。 請特別注意任何可能與其他網路重疊的子網路。 如果有重疊的子網路，您的連線便無法正常運作。 如果您的 VNet 已設定為正確的設定，即可開始執行 [指定 DNS 伺服器](#dns) 一節中的步驟。
 
 ### <a name="to-create-a-virtual-network"></a>建立虛擬網路
 [!INCLUDE [vpn-gateway-basic-vnet-rm-portal](../../includes/vpn-gateway-basic-vnet-rm-portal-include.md)]
 
-## <a name="a-namesubnetsa2-add-additional-address-space-and-subnets"></a><a name="subnets"></a>2.新增其他位址空間和子網路
+## <a name="subnets"></a>2.新增其他位址空間和子網路
 您可以將其他位址空間和子網路新增至已建立的 Vnet。
 
 [!INCLUDE [vpn-gateway-additional-address-space](../../includes/vpn-gateway-additional-address-space-include.md)]
 
-## <a name="a-namednsa3-specify-a-dns-server"></a><a name="dns"></a>3.指定 DNS 伺服器
+## <a name="dns"></a>3.指定 DNS 伺服器
 ### <a name="to-specify-a-dns-server"></a>指定 DNS 伺服器
 [!INCLUDE [vpn-gateway-add-dns-rm-portal](../../includes/vpn-gateway-add-dns-rm-portal-include.md)]
 
-## <a name="a-namegatewaysubneta4-create-a-gateway-subnet"></a><a name="gatewaysubnet"></a>4.建立閘道子網路
+## <a name="gatewaysubnet"></a>4.建立閘道子網路
 將虛擬網路連接到閘道之前，您必須先建立虛擬網路要連接的閘道子網路。 可能的話，最好使用 /28 或 /27 的 CIDR 區塊建立閘道子網路，以便提供足以容納未來其他組態需求的 IP 位址。
 
 如果您在練習中建立此設定，請在建立閘道子網路時參考這些 [值](#values) 。
@@ -93,13 +95,13 @@ ms.openlocfilehash: c99788aded849933289555dd133b8146d6b2bdf2
 ### <a name="to-create-a-gateway-subnet"></a>建立閘道子網路
 [!INCLUDE [vpn-gateway-add-gwsubnet-rm-portal](../../includes/vpn-gateway-add-gwsubnet-rm-portal-include.md)]
 
-## <a name="a-namevnetgatewaya5-create-a-virtual-network-gateway"></a><a name="VNetGateway"></a>5.建立虛擬網路閘道
+## <a name="VNetGateway"></a>5.建立虛擬網路閘道
 如果您要練習建立此組態，您可以參考[範例組態值](#values)。
 
 ### <a name="to-create-a-virtual-network-gateway"></a>建立虛擬網路閘道
 [!INCLUDE [vpn-gateway-add-gw-rm-portal](../../includes/vpn-gateway-add-gw-rm-portal-include.md)]
 
-## <a name="a-namelocalnetworkgatewaya6-create-a-local-network-gateway"></a><a name="LocalNetworkGateway"></a>6.建立區域網路閘道
+## <a name="LocalNetworkGateway"></a>6.建立區域網路閘道
 「區域網路閘道」會參考您的內部部署位置。 賦予區域網路閘道一個可供 Azure 參考它的名稱。 
 
 如果您要練習建立此組態，您可以參考[範例組態值](#values)。
@@ -107,10 +109,10 @@ ms.openlocfilehash: c99788aded849933289555dd133b8146d6b2bdf2
 ### <a name="to-create-a-local-network-gateway"></a>建立區域網路閘道
 [!INCLUDE [vpn-gateway-add-lng-rm-portal](../../includes/vpn-gateway-add-lng-rm-portal-include.md)]
 
-## <a name="a-namevpndevicea7-configure-your-vpn-device"></a><a name="VPNDevice"></a>7.設定 VPN 裝置
+## <a name="VPNDevice"></a>7.設定 VPN 裝置
 [!INCLUDE [vpn-gateway-configure-vpn-device-rm](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
 
-## <a name="a-namecreateconnectiona8-create-a-site-to-site-vpn-connection"></a><a name="CreateConnection"></a>8.建立網站間 VPN 連線
+## <a name="CreateConnection"></a>8.建立網站間 VPN 連線
 在虛擬網路閘道與 VPN 裝置之間建立網站間 VPN 連線。 請務必將值取代為您自己的值。 共用的金鑰必須符合您用於 VPN 裝置設定的值。 
 
 開始這一節之前，請確認虛擬網路閘道與區域網路閘道已完成建立。 如果您在練習中建立此組態，請在建立連線時參考這些 [值](#values) 。
@@ -118,7 +120,7 @@ ms.openlocfilehash: c99788aded849933289555dd133b8146d6b2bdf2
 ### <a name="to-create-the-vpn-connection"></a>建立 VPN 連線
 [!INCLUDE [vpn-gateway-add-site-to-site-connection-rm-portal](../../includes/vpn-gateway-add-site-to-site-connection-rm-portal-include.md)]
 
-## <a name="a-nameverifyconnectiona9-verify-the-vpn-connection"></a><a name="VerifyConnection"></a>9.驗證 VPN 連線
+## <a name="VerifyConnection"></a>9.驗證 VPN 連線
 您可以在入口網站中，或使用 PowerShell 來驗證您的 VPN 連線。
 
 [!INCLUDE [vpn-gateway-verify-connection-rm](../../includes/vpn-gateway-verify-connection-rm-include.md)]
@@ -126,10 +128,5 @@ ms.openlocfilehash: c99788aded849933289555dd133b8146d6b2bdf2
 ## <a name="next-steps"></a>後續步驟
 *  一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱[虛擬機器](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。
 *  如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

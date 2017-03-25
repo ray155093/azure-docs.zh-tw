@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 01/17/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: fe38c16f94faa3e7a5a2622ff4eb8a1ae93fba20
-ms.openlocfilehash: 1bf1e323798a702029663953d3a30de174aefc4c
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: a673044269016f5d216fa62a3bcc6f3b106838c0
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -65,6 +65,7 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 **問：IP 或 DNS 是否會在應用程式閘道的存留期內變更？**
 
 如果客戶停止後啟動閘道，VIP 可能會變更。 與應用程式閘道相關聯的 DNS 不會在閘道的存留期內變更。 基於這個理由，建議使用 CNAME 別名並將它指向應用程式閘道的 DNS 位址。
+
 
 **問：應用程式閘道是否支援靜態 IP？**
 
@@ -123,6 +124,10 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 **問：自訂探查的 [主機] 欄位表示什麼？**
 
 主機欄位指定探查要送達的名稱。 只有當應用程式閘道上設定多站台時適用，否則請使用 '127.0.0.1'。 此值與 VM 主機名稱不同，其格式為 \<protocol\>://\<host\>:\<port\>\<path\>。 
+
+**問：應用程式閘道也支援多租用戶後端嗎？**
+
+否，應用程式閘道目前會保留傳入的主機標頭，將相同的標頭傳送至後端。 如果後端需要其他的標頭，這個標頭就沒有作用。 同樣地，如果後端為多租用戶，且已啟用端對端 SSL，則後端需要 SNI 擴充中有伺服器名稱。 在端對端 SSL 案例中，應用程式閘道目前不會在後端要求中傳送 SNI 標頭，因為這會造成探查和資料路徑的問題。 
 
 ## <a name="performance"></a>效能
 
@@ -283,3 +288,4 @@ WAF 目前支援 CRS 2.2.9，其針對 Open Web Application Security Project (OW
 ## <a name="next-steps"></a>後續步驟
 
 若要深入了解應用程式閘道，請瀏覽[應用程式閘道簡介](application-gateway-introduction.md)。
+

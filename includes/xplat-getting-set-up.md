@@ -13,13 +13,14 @@ ms.workload: infrastructure
 ms.date: 04/13/2015
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: e664ce9426a2852a35dfdade5d41a9ce8b37a3b7
-ms.openlocfilehash: f18a4705c9fd57790bff9cfdd23c19fd30fe0d32
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 737e4be21eefcbd6fbd31d15a6f77770cd59ca67
+ms.lasthandoff: 03/21/2017
 
 
 ---
 ## <a name="using-azure-cli"></a>使用 Azure CLI
-下列步驟可協助您利用最新版本和正確的訂用帳戶，輕鬆使用 Azure CLI。 如果您需要安裝 Azure CLI 並先將它連接到您的帳戶，請參閱 [Azure 命令列介面 (Azure CLI)](../articles/xplat-cli-install.md)。
+下列步驟可協助您利用最新版本和正確的訂用帳戶，輕鬆使用 Azure CLI。 如果您需要安裝 Azure CLI 並先將它連接到您的帳戶，請參閱 [Azure 命令列介面 (Azure CLI)](../articles/cli-install-nodejs.md)。
 
 ### <a name="step-1-update-azure-cli-version"></a>步驟 1：更新 Azure CLI 版本
 若要利用服務管理模式，針對命令式指令使用 Azure CLI，您應該盡可能使用最新版本。 若要確認您的版本，請輸入 `azure --version`。 您應該會看到如下的內容：
@@ -42,10 +43,5 @@ ms.openlocfilehash: f18a4705c9fd57790bff9cfdd23c19fd30fe0d32
 > 如果您還沒有 Azure 帳戶，但是擁有 MSDN 訂用帳戶的訂用帳戶，您可以藉由啟用 [此處的 MSDN 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) 來取得免費的 Azure 點數，或者您可以使用免費帳戶。 這其中一種方式將可用來存取 Azure。
 > 
 > 
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

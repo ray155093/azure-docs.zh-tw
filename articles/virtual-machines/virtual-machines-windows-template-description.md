@@ -13,12 +13,12 @@ ms.workload: na
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 01/04/2017
+ms.date: 03/07/2017
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: debdb8a16c8cfd6a137bd2a7c3b82cfdbedb0d8c
-ms.openlocfilehash: 9f3923092e0731b6bc75e9f28d152b1f50ca0848
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: ea363667db5a4ef0dd6c3f06a13f3f8f6c192714
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -31,10 +31,10 @@ ms.lasthandoff: 02/27/2017
 
 此範例顯示用來建立指定數目之 VM 範本的一般資源區段︰
 
-```
+```json
 "resources": [
   { 
-    "apiVersion": "2016-03-30", 
+    "apiVersion": "2016-04-30-preview", 
     "type": "Microsoft.Compute/virtualMachines", 
     "name": "[concat('myVM', copyindex())]", 
     "location": "[resourceGroup().location]",
@@ -63,10 +63,6 @@ ms.lasthandoff: 02/27/2017
         }, 
         "osDisk": { 
           "name": "[concat('myOSDisk', copyindex())]" 
-          "vhd": { 
-            "uri": "[concat('https://', variables('storageName'), 
-              '.blob.core.windows.net/vhds/myOSDisk', copyindex(),'.vhd')]" 
-          }, 
           "caching": "ReadWrite", 
           "createOption": "FromImage" 
         }
@@ -75,10 +71,6 @@ ms.lasthandoff: 02/27/2017
             "name": "[concat('myDataDisk', copyindex())]",
             "diskSizeGB": "100",
             "lun": 0,
-            "vhd": {
-              "uri": "[concat('https://', variables('storageName'), 
-                '.blob.core.windows.net/vhds/myDataDisk', copyindex(),'.vhd')]"
-            },  
             "createOption": "Empty"
           }
         ] 
@@ -165,7 +157,7 @@ ms.lasthandoff: 02/27/2017
 當您使用範本部署資源時，必須指定要使用的 API 版本。 此範例會使用這個 apiVersion 項目顯示虛擬機器資源︰
 
 ```
-"apiVersion": "2016-03-30",
+"apiVersion": "2016-04-30-preview",
 ```
 
 您在範本中指定的 API 版本會影響您可以在範本中定義的屬性。 一般而言，您應在建立範本時選取最新的 API 版本。 對於現有的範本，您可以決定是否繼續使用舊的 API 版本，或更新您的範本以便最新版本利用新功能。
@@ -236,15 +228,20 @@ ms.lasthandoff: 02/27/2017
 },
 ```
 
-另外，在範例中請注意指定某些資源的值時會使用迴圈索引。 例如，如果您輸入三個執行個體計數，VHD 的定義會造成磁碟命名為 myOSDisk1、myOSDisk2 和 myOSDisk3：
+另外，在範例中請注意指定某些資源的值時會使用迴圈索引。 例如，如果您輸入三個執行個體計數，則作業系統磁碟的名稱為 myOSDisk1、myOSDisk2 和 myOSDisk3：
 
 ```
-"vhd": { 
-  "uri": "[concat('https://', variables('storageName'), 
-    '.blob.core.windows.net/vhds/myOSDisk', 
-    copyindex(),'.vhd')]" 
-},
+"osDisk": { 
+  "name": "[concat('myOSDisk', copyindex())]" 
+  "caching": "ReadWrite", 
+  "createOption": "FromImage" 
+}
 ```
+
+> [!NOTE] 
+>此範例會使用虛擬機器的受控磁碟。
+>
+>
 
 請記住，在範本中建立一個資源的迴圈，可能會在建立或存取其他資源時要求您使用迴圈。 例如，多個 VM 無法使用相同的網路介面，因此如果您的範本透過建立三個 VM 來執行迴圈，則它也必須透過建立三個網路介面來執行迴圈。 將網路介面指派至 VM 時，迴圈索引會用來識別它︰
 
@@ -278,23 +275,7 @@ Resource Manager 會以平行方式部署任何不依存於另一個要部署資
 }
 ```
 
-若要設定這個屬性，網路介面必須存在。 因此，您需要相依性。 您在另一個資源 (父系) 內定義一項資源 (子系) 時，也需要設定相依性。 例如，診斷設定和自訂指令碼延伸模組都定義為虛擬機器的子資源。 在虛擬機器存在之後，它們才能建立。 因此，這兩個資源都會標示為相依於虛擬機器。 
-
-您可能會好奇，為什麼虛擬機器資源在儲存體帳戶上沒有相依性。 虛擬機器包含指向儲存體帳戶的項目。
-
-```
-"osDisk": { 
-  "name": "[concat('myOSDisk', copyindex())]" 
-  "vhd": { 
-    "uri": "[concat('https://', variables('storageName'), 
-      '.blob.core.windows.net/vhds/myOSDisk', copyindex(),'.vhd')]" 
-  }, 
-  "caching": "ReadWrite", 
-  "createOption": "FromImage" 
-}
-```
-
-在此情況下，我們假設儲存體帳戶已經存在。 如果儲存體帳戶部署在相同的範本中，您需要在儲存體帳戶上設定相依性。
+若要設定這個屬性，網路介面必須存在。 因此，您需要相依性。 您在另一個資源 (父系) 內定義一項資源 (子系) 時，也需要設定相依性。 例如，診斷設定和自訂指令碼延伸模組都定義為虛擬機器的子資源。 在虛擬機器存在之後，它們才能建立。 因此，這兩個資源都會標示為相依於虛擬機器。
 
 ## <a name="profiles"></a>設定檔
 
@@ -334,83 +315,64 @@ Resource Manager 會以平行方式部署任何不依存於另一個要部署資
 },
 ```
 
-磁碟的組態設定會使用 OsDisk 項目指派。 此範例會定義磁碟儲存體的位置、磁碟的快取模式，以及磁碟會從[平台映像](virtual-machines-windows-cli-ps-findimage.md)建立：
+作業系統磁碟的組態設定會使用 OsDisk 項目指派。 此範例會定義新的受控磁碟，其快取模式設定為 [ReadWrite]，而此磁碟會從[平台映像](virtual-machines-windows-cli-ps-findimage.md)建立：
 
 ```
 "osDisk": { 
-  "name": "[concat('myOSDisk', copyindex())]" 
-  "vhd": { 
-    "uri": "[concat('https://', variables('storageName'), 
-      '.blob.core.windows.net/vhds/myOSDisk', copyindex(),'.vhd')]" 
-  }, 
+  "name": "[concat('myOSDisk', copyindex())]",
   "caching": "ReadWrite", 
   "createOption": "FromImage" 
 }
 ```
 
-### <a name="create-new-virtual-machines-from-existing-disks"></a>從現有磁碟建立新的虛擬機器
+### <a name="create-new-virtual-machines-from-existing-managed-disks"></a>從現有受控磁碟建立新的虛擬機器
 
 如果您想要從現有磁碟建立虛擬機器，移除 imageReference 和 osProfile 項目，並定義這些磁碟的設定︰
 
 ```
 "osDisk": { 
-  "name": "[concat('myOSDisk', copyindex())]", 
   "osType": "Windows",
-  "vhd": { 
-    "[concat('https://', variables('storageName'),
-      '.blob.core.windows.net/vhds/myOSDisk', copyindex(),'.vhd')]" 
+  "managedDisk": { 
+    "id": "[resourceId('Microsoft.Compute/disks', [concat('myOSDisk', copyindex())])]" 
   }, 
   "caching": "ReadWrite",
   "createOption": "Attach" 
 }
 ```
 
-在此範例中，URI 會指向現有 VHD 檔案而不是新檔案的位置。 CreateOption 會設定為連接現有磁碟。
+### <a name="create-new-virtual-machines-from-a-managed-image"></a>從受控映像建立新的虛擬機器
 
-### <a name="create-new-virtual-machines-from-a-custom-image"></a>從自訂映像建立新的虛擬機器
-
-如果您想要從[自訂映像](virtual-machines-windows-upload-image.md)建立虛擬機器，移除 imageReference 項目，並定義這些磁碟的設定︰
+如果您想要從受控映像建立虛擬機器，請變更 imageReference 元素並定義這些磁碟設定︰
 
 ```
-"osDisk": { 
-  "name": "[concat('myOSDisk', copyindex())]",
-  "osType": "Windows", 
-  "vhd": { 
-    "uri": "[concat('https://', variables('storageName'), 
-      '.blob.core.windows.net/vhds/myOSDisk', copyindex(),'.vhd')]"
+"storageProfile": { 
+  "imageReference": {
+    "id": "[resourceId('Microsoft.Compute/images', 'myImage')]"
   },
-  "image": {
-    "uri": "[concat('https://', variables('storageName'), 
-      'blob.core.windows.net/images/myImage.vhd"
-  },
-  "caching": "ReadWrite", 
-  "createOption": "FromImage" 
+  "osDisk": { 
+    "name": "[concat('myOSDisk', copyindex())]",
+    "osType": "Windows",
+    "caching": "ReadWrite", 
+    "createOption": "FromImage" 
+  }
 }
 ```
 
-在此範例中，VHD URI 會指向新磁碟儲存的位置，而影像 URI 會指向要使用的自訂映像。
-
 ### <a name="attach-data-disks"></a>連接資料磁碟
 
-您可以選擇性地將資料磁碟新增至 VM。 [磁碟數量](virtual-machines-windows-sizes.md)取決於您使用的作業系統磁碟大小。 將 VM 大小設定為 Standard_DS1_v2，則可以新增到它們的資料磁碟數目上限為&2;。 在範例中，有一個資料磁碟會新增至每個 VM：
+您可以選擇性地將資料磁碟新增至 VM。 [磁碟數量](virtual-machines-windows-sizes.md)取決於您使用的作業系統磁碟大小。 將 VM 大小設定為 Standard_DS1_v2，則可以新增到它們的資料磁碟數目上限為&2;。 在範例中，有一個受控資料磁碟會新增至每部 VM：
 
 ```
 "dataDisks": [
   {
     "name": "[concat('myDataDisk', copyindex())]",
     "diskSizeGB": "100",
-    "lun": 0,
-    "vhd": {
-      "uri": "[concat('https://', variables('storageName'), 
-        '.blob.core.windows.net/vhds/myDataDisk', copyindex(),'.vhd')]"
-    },  
+    "lun": 0, 
     "caching": "ReadWrite",
     "createOption": "Empty"
   }
 ]
 ```
-
-此範例中的 VHD 是針對磁碟所建立的新檔案。 您可以將 URI 設為現有的 VHD，並將 createOption 設為**附加**。
 
 ## <a name="extensions"></a>擴充功能
 

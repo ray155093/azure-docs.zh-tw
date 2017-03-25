@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 09/19/2016
 ms.author: apurvajo
 translationtype: Human Translation
-ms.sourcegitcommit: 3629280101a6c8c53dacf9f80c09becf1db53f03
-ms.openlocfilehash: e4331c6d5a07e6450c1fdde43d4c226e9a06de54
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: edcb6d37eb4d82ff5928ee33cf456c3795eb8131
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -29,7 +29,7 @@ ms.lasthandoff: 02/27/2017
 > 
 > 
 
-根據預設，**[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 已使用 *.azurewebsites.net 網域的萬用字元憑證來啟用您 Web 應用程式的 HTTPS。如果您不打算設定自訂網域，您可以直接利用預設的 HTTPS 憑證。但是，就像 *[所有萬用字元網域](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates)一樣，這並不如使用自訂網域搭配自己的憑證那麼安全。 Azure App Service 現在提供購買及管理 SSL 憑證真正簡易的方法，就是從 Azure 入口網站，完全不用離開入口網站。  
+根據預設，**[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 已使用 *.azurewebsites.net 網域的萬用字元憑證來啟用您 Web 應用程式的 HTTPS。如果您不打算設定自訂網域，您可以直接利用預設的 HTTPS 憑證。但是，就像*[所有萬用字元網域](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates)一樣，這並不如使用自訂網域搭配自己的憑證那麼安全。 Azure App Service 現在提供購買及管理 SSL 憑證真正簡易的方法，就是從 Azure 入口網站，完全不用離開入口網站。  
 本文說明如何使用 3 個簡單的步驟，來購買並設定 **[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 的 SSL 憑證。 
 
 > [!NOTE]
@@ -170,8 +170,11 @@ ms.lasthandoff: 02/27/2017
   
     請注意，此 IP 位址與先前用來設定您網域之 A 記錄的虛擬 IP 位址不同。 如果您設定成使用 SNI SSL，或未設定成使用 SSL，則不會列出此項目的位址。
 
-1. 使用網域名稱註冊機構所提供的工具，修改自訂網域名稱的 A 記錄，使其指向上一個步驟的 IP 位址。
+* 使用網域名稱註冊機構所提供的工具，修改自訂網域名稱的 A 記錄，使其指向上一個步驟的 IP 位址。
    現在，您應該可以使用 HTTPS:// 而非 HTTP:// 造訪您的應用程式，確認已正確設定憑證。
+
+## <a name="bkmk_Rekey"></a>匯出 App Service 憑證
+您可以建立 App Service 憑證的本機 PFX 複本，以便使用它來搭配其他 Azure 服務。 如需詳細資訊，**[請閱讀我們的部落格文章](https://blogs.msdn.microsoft.com/appserviceteam/2017/02/24/creating-a-local-pfx-copy-of-app-service-certificate/)**
 
 ## <a name="bkmk_Rekey"></a>重設金鑰和同步處理憑證
 1. 基於安全性理由，如果您需要重設憑證的金鑰，只要選取 [憑證內容] 刀鋒視窗的 [重設金鑰和同步處理] 選項。 

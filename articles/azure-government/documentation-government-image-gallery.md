@@ -15,14 +15,18 @@ ms.workload: azure-government
 ms.date: 10/20/2016
 ms.author: brendal
 translationtype: Human Translation
-ms.sourcegitcommit: f245bf964664a0817ba26580aea9990b1767da82
-ms.openlocfilehash: 9b2fee2e98c11ef0468cef3f2bdc81e15698a6fe
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: e2d82497c2ceaa9a6c0a1592b5785449f095f85c
+ms.lasthandoff: 03/10/2017
 
 
 ---
 # <a name="azure-government-marketplace-images"></a>Azure Government Marketplace 映像
 ## <a name="overview"></a>Overview
 Microsoft Azure Government Marketplace 類似於公用 Azure 入口網站。  客戶可以選擇部署 Microsoft 和我們的合作夥伴預先建立的映像，或是上傳自己的 VHD。  這提供了依照您的需求部署自己的標準化映像的彈性。
+
+## <a name="variations"></a>變化
+* DoD 中目前不支援 Marketplace 映像
 
 下面提供 Azure Government Marketplace 中可用映像的清單。  某些預先建立的映像確實包含了特定軟體的隨用隨付授權。  請先檢閱 [<a href="http://azure.microsoft.com/pricing/details/virtual-machines/">虛擬機器定價</a>] 頁面以取得詳細指引，並向您的 Microsoft 帳戶小組或轉銷商取得 Azure Government 專屬定價。
 
@@ -251,9 +255,4 @@ Microsoft Azure Government Marketplace 類似於公用 Azure 入口網站。  �
 [Link 1 to another azure.microsoft.com documentation topic]: virtual-machines/virtual-machines-windows-hero-tutorial.md
 [Link 2 to another azure.microsoft.com documentation topic]: app-service-web/web-sites-custom-domain-name.md
 [Link 3 to another azure.microsoft.com documentation topic]: storage-whatis-account.md
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

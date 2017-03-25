@@ -13,12 +13,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/20/2016
+ms.date: 3/10/2017
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: f517a649a6c6aa65b350767bc66cf4d60c7988b5
-ms.openlocfilehash: 9a114e954d59dcecaf3310e024428770bc4a2349
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 9d9c56697a022fac2ad84b7688445cad3e489658
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -64,33 +64,13 @@ ms.lasthandoff: 02/24/2017
 ## <a name="create-a-backup-vault-for-a-vm"></a>為 VM 建立備份保存庫
 備份保存庫是一個實體，儲存隨著時間建立的所有備份和復原點。 備份保存庫也包含備份虛擬機器時將套用的備份原則。
 
+> [!IMPORTANT]
+> 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。 我們仍然支援現有的備份保存庫，您也可以[使用 Azure PowerShell 來建立備份保存庫](./backup-client-automation-classic.md#create-a-backup-vault)。 不過，Microsoft 建議您建立所有部署的復原服務保存庫，因為未來的增強功能僅適用於復原服務保存庫。
+
+
 此影像顯示各種 Azure 備份實體之間的關係：    ![Azure 備份實體和關聯性](./media/backup-azure-vms-prepare/vault-policy-vm.png)
 
-若要建立備份保存庫：
 
-1. 登入 [Azure 入口網站](http://manage.windowsazure.com/)。
-2. 在 Azure 入口網站，按一下 [新增] > [混合式整合] > [備份]。 當您按一下 [備份] 時，您會自動切換至傳統入口網站 (顯示於 [注意] 之後)。
-
-    ![Ibiza 入口網站](./media/backup-azure-vms-prepare/Ibiza-portal-backup01.png)
-
-   > [!NOTE]
-   > 如果您上次是在傳統入口網站中使用訂用帳戶，則您的訂用帳戶可能會在傳統入口網站中開啟。 在此情況下，若要建立備份保存庫，請按一下 [新增] > [資料服務] > [復原服務] > [備份保存庫] > [快速建立] \(請參閱下圖)。
-   >
-   >
-
-    ![建立備份保存庫](./media/backup-azure-vms-prepare/backup_vaultcreate.png)
-3. 針對 [名稱] ，輸入保存庫的易記識別名稱。 必須是 Azure 訂用帳戶中唯一的名稱。 輸入包含 2 到 50 個字元的名稱。 該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。
-4. 在 [ **區域**] 中，選取保存庫的地理區域。 保存庫必須與您想要保護的虛擬機器位於相同區域。 如果您在多個區域中有虛擬機器，您必須在每個區域中建立備份保存庫。 儲存備份資料時，不需要指定儲存體帳戶，備份保存庫和「Azure 備份」服務會自動處理此作業。
-5. 在 [訂用帳戶]  中，選取您希望與備份保存庫相關聯的訂用帳戶。 只有在您的組織帳戶與多個 Azure 訂用帳戶相關聯時，才會有多個選擇。
-6. 按一下 [建立保存庫] 。 要等備份保存庫建立好，可能需要一些時間。 監視位於入口網站底部的狀態通知。
-
-    ![建立保存庫快顯通知](./media/backup-azure-vms-prepare/creating-vault.png)
-7. 將有則訊息確認已成功建立保存庫。 該保存庫將會在 [復原服務] 頁面中以 [使用中] 狀態列出。 建立保存庫之後，請務必立即選擇適當的儲存體備援選項。 進一步了解[在備份保存庫中設定儲存體備援選項](backup-configure-vault.md#create-a-recovery-services-vault)。
-
-    ![備份保存庫的清單](./media/backup-azure-vms-prepare/backup_vaultslist.png)
-8. 按一下備份保存庫以前往 [快速入門]  頁面，此頁面會顯示備份 Azure 虛擬機器的相關指示。
-
-    ![「儀表板」頁面上的虛擬機器備份指示](./media/backup-azure-vms-prepare/vmbackup-instructions.png)
 
 ## <a name="network-connectivity"></a>網路連線
 為了管理 VM 快照，備份擴充功能需要連接 Azure 公用 IP 位址。 若無適當的網際網路連線，虛擬機器的 HTTP 要求將會逾時，而備份作業將會失敗。 如果您的部署有存取限制 (如透過網路安全性群組 (NSG))，請選擇其中一個選項來為備份流量提供明確的路徑︰
