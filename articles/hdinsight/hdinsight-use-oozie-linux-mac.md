@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: d7603471-5076-43d1-8b9a-dbc4e366ce5d
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,8 +17,9 @@ ms.topic: article
 ms.date: 02/07/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 9d20050dada974c0c2a54399e2db7b9a289f7e89
-ms.openlocfilehash: 48cc9c7181d83d2fe851b454eaf887b0483d3a01
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: dc22bfee0471da2d61d1d3d720e26d5fc785f832
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -36,7 +38,7 @@ Apache Oozie 是可管理 Hadoop 工作的工作流程/協調系統。 它可與
 
 開始進行本教學課程之前，您必須具備下列條件：
 
-* **Azure CLI**：請參閱 [安裝和設定 Azure CLI](../xplat-cli-install.md)
+* **Azure CLI**：請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md)
 
 * **HDInsight 叢集**：請參閱 [開始使用 Linux 上的 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)
 
@@ -544,7 +546,7 @@ Oozie Web UI 可讓您用網頁檢視叢集上 Oozie 工作的狀態。 它可�
 
     ![工作資訊](./media/hdinsight-use-oozie-linux-mac/jobinfo.png)
 
-6. 您可以在 [Job Info] (工作資訊) 索引標籤中看到基本的工作資訊，以及工作內的個別動作。 使用上方的索引標籤，即可檢視 Job Definition (工作定義)、Job Configuration (工作組態)，以及存取 Job Log (工作記錄)，或檢視工作的定向非循環圖 (DAG)。
+6. 您可以在 [Job Info] \(工作資訊) 索引標籤中看到基本的工作資訊，以及工作內的個別動作。 使用上方的索引標籤，即可檢視 Job Definition (工作定義)、Job Configuration (工作組態)，以及存取 Job Log (工作記錄)，或檢視工作的定向非循環圖 (DAG)。
 
    * **作業記錄**：選取 [取得記錄] 按鈕，以取得作業的所有記錄，或使用 [輸入搜尋篩選條件] 欄位來篩選記錄
 
@@ -681,7 +683,7 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 
 1. 在 Oozie Web UI 中檢視工作。
 
-2. 如果發生錯誤或特定動作失敗，請選取該動作，以查看 [Error Message] (錯誤訊息)  欄位是否有提供失敗的詳細資訊。
+2. 如果發生錯誤或特定動作失敗，請選取該動作，以查看 [Error Message] \(錯誤訊息)  欄位是否有提供失敗的詳細資訊。
 
 3. 如果有提供，請使用動作的 URL 以檢視動作的更多詳細資料 (例如 JobTracker 記錄)。
 
@@ -787,9 +789,4 @@ Oozie UI 對於疑難排解 Oozie 工作的問題很有幫助，因為它可讓�
 [img-runworkflow-output]: ./media/hdinsight-use-oozie/HDI.UseOozie.RunWF.Output.png
 
 [technetwiki-hive-error]: http://social.technet.microsoft.com/wiki/contents/articles/23047.hdinsight-hive-error-unable-to-rename.aspx
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

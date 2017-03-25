@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 12/15/2015
 ms.author: Ning
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 625f4cc08ba023309ac4a9a8b7834d9ab4f4c116
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: e43a3920da0baafa1be0d3a9a8596f19bf7ebc3e
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -55,7 +55,7 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 ## <a name="prerequisites"></a>必要條件
 * **Azure Linux Agent 2.0.6 版或更新版本**。
   請注意，大部分的 Azure VM Linux 資源庫映像包含版本 2.0.6 或更新版本。 您可以執行 **WAAgent -version** 來確認 VM 上安裝的版本。 如果執行的 VM 版本早於 2.0.6，您可以依照 [GitHub 上的這些指示](https://github.com/Azure/WALinuxAgent "指示") 更新它。
-* **Azure CLI**。 遵循[本指引來安裝 CLI](../xplat-cli-install.md)，以在電腦上設定 Azure CLI 環境。 安裝 Azure CLI 之後，您可以在命令列介面 (Bash、終端機或命令提示字元) 使用 **azure** 命令來存取 Azure CLI 命令。 例如：
+* **Azure CLI**。 遵循[本指引來安裝 CLI](../cli-install-nodejs.md)，以在電腦上設定 Azure CLI 環境。 安裝 Azure CLI 之後，您可以在命令列介面 (Bash、終端機或命令提示字元) 使用 **azure** 命令來存取 Azure CLI 命令。 例如：
   
   * 執行 **azure vm extension set --help** 取得詳細的說明資訊。
   * 執行 **azure login** 登入 Azure。

@@ -14,8 +14,9 @@ ms.workload: infrastructure-services
 ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 652a8a0dcb3216e9b762b85de56673beda74edc4
-ms.openlocfilehash: b29b7fc56e1797d9daa33ff18df0fe5590b12612
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 96d34c176e028b89617c1f09d7baba7b31eb1601
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -27,11 +28,11 @@ ms.openlocfilehash: b29b7fc56e1797d9daa33ff18df0fe5590b12612
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 - [Azure CLI 1.0](#quick-commands) – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0 (預覽)](virtual-machines-linux-nsg-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](virtual-machines-linux-nsg-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="quick-commands"></a>快速命令
-若要建立「網路安全性群組」和規則，您需要安裝 [the Azure CLI 1.0](../xplat-cli-install.md) 和使用 Resource Manager 模式：
+若要建立「網路安全性群組」和規則，您需要安裝 [the Azure CLI 1.0](../cli-install-nodejs.md) 和使用 Resource Manager 模式：
 
 ```azurecli
 azure config mode arm
@@ -83,10 +84,5 @@ azure network vnet subnet set --resource-group myResourceGroup \
 * [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)
 * [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
 * [負載平衡器的 Azure Resource Manager 概觀](../load-balancer/load-balancer-arm.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 12/21/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 1aeb983730f732a021b828c658cc741f8659c487
-ms.openlocfilehash: c17b96fa5d37a8cfbb0b6a5c026891cb84523fac
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 8df7eff135b6cb316562a503bb938b051d87562f
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -136,7 +136,7 @@ azure vm extension set myResourceGroup myVM \
 ```
 
 ## <a name="use-the-azure-cli-10"></a>使用 Azure CLI 1.0
-如果尚未安裝，請 [安裝 Azure CLI 1.0 並連線至您的 Azure 訂用帳戶](../xplat-cli-install.md)。 確定您使用的是 Resource Manager 模式，如下所示：
+如果尚未安裝，請 [安裝 Azure CLI 1.0 並連線至您的 Azure 訂用帳戶](../cli-install-nodejs.md)。 確定您使用的是 Resource Manager 模式，如下所示：
 
 ```azurecli
 azure config mode arm

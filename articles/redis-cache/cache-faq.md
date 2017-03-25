@@ -12,12 +12,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 02/14/2017
+ms.date: 03/08/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 256d215deb2224dca188e373a1bf2cf7fc55be1f
-ms.openlocfilehash: 9089a14f1f0b1fa5265f616e0bd9f0f30aff0c60
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 705e64d52d796ae861465f71de397d11bf14086e
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -59,6 +59,7 @@ ms.lasthandoff: 02/17/2017
 * [如何執行 Redis 命令？](#how-can-i-run-redis-commands)
 * [Azure Redis 快取為什麼沒有像一些其他 Azure 服務的 MSDN 類別庫參考？](#why-doesnt-azure-redis-cache-have-an-msdn-class-library-reference-like-some-of-the-other-azure-services)
 * [是否可以使用 Azure Redis 快取做為 PHP 工作階段快取？](#can-i-use-azure-redis-cache-as-a-php-session-cache)
+* [什麼是 Redis 資料庫？](#what-are-redis-databases)
 
 ## <a name="security-faqs"></a>安全性常見問題集
 * [何時應該啟用非 SSL 連接埠來連線至 Redis？](#when-should-i-enable-the-non-ssl-port-for-connecting-to-redis)
@@ -263,6 +264,16 @@ Microsoft Azure Redis 快取是以受歡迎的開放原始碼 Redis 快取為基
 >
 
 如需對 PhpRedis 用戶端使用 Redis 快取做為 PHP 工作階段快取的詳細資訊，請參閱 [PHP 工作階段處理常式](https://github.com/phpredis/phpredis#php-session-handler)。
+
+### <a name="what-are-redis-databases"></a>什麼是 Redis 資料庫？
+
+Redis 資料庫就是相同 Redis 執行個體內的資料邏輯分隔。 所有資料庫之間會共用快取記憶體，給定資料庫的實際記憶體耗用量取決於該資料庫中儲存的索引鍵/值。 假設 C6 快取有 53 GB 的記憶體。 您可以選擇將 53GB 全部放入一個資料庫，或分割給多個資料庫。 
+
+> [!NOTE]
+> 使用進階 Azure Redis 快取且啟用叢集時，只有資料庫 0 可用。 這項限制是 Redis 固有的限制，並非特別針對 Azure Redis 快取。 如需詳細資訊，請參閱 [我需要對用戶端應用程式進行任何變更才能使用叢集嗎？](cache-how-to-premium-clustering.md#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
+> 
+> 
+
 
 <a name="cache-ssl"></a>
 

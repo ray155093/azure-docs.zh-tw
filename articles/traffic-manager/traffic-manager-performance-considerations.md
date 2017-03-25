@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/11/2016
+ms.date: 03/16/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 69b94c93ad3e9c9745af8485766b4237cac0062c
-ms.openlocfilehash: 680c3dd7bbc5ac86d021e119b31352cbfb3451f7
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: f686685138625a53971f1fc5fc754fd22c9d67b2
+ms.lasthandoff: 03/18/2017
 
 ---
 
@@ -27,13 +27,13 @@ ms.lasthandoff: 11/17/2016
 
 您在美國東部和東亞區域有網站的執行個體。 其中一個執行個體在流量管理員探查中健全狀況檢查失敗。 應用程式流量會被導向健全狀況良好的區域。 此容錯移轉是預期中之事，但效能可能是個問題，因為延遲的流量現在要流動到遙遠的區域。
 
-## <a name="how-traffic-manager-works"></a>流量管理員的運作方式
+## <a name="performance-considerations-for-traffic-manager"></a>流量管理員的效能考量
 
 流量管理員對您的網站造成的唯一效能影響就是初始 DNS 查閱。 對流量管理員設定檔名稱的 DNS 要求是由裝載 trafficmanager.net 區域的 Microsoft DNS 根伺服器處理。 流量管理員會根據流量管理員的原則和探查結果，填入並定期更新 Microsoft 的 DNS 根伺服器。 因此即使在初始 DNS 查閱期間，也不會傳送任何 DNS 查詢給流量管理員。
 
 流量管理員元件由幾個元件組成︰DNS 名稱伺服器、API 服務、儲存層、端點監視服務。 如果流量管理員服務元件失敗，對您的流量管理員設定檔相關聯的 DNS 名稱不會有影響。 Microsoft DNS 伺服器中的記錄保持不變。 不過，端點監視和 DNS 更新不會發生。 因此，當主要網站關閉時，流量管理員無法將 DNS 更新為指向您的容錯移轉網站。
 
-系統會快速解析 DNS 名稱並快取結果。 初始 DNS 查閱的速度取決於用戶端用於名稱解析的 DNS 伺服器。 一般而言，用戶端可以在大約 50 毫秒內完成 DNS 查閱。 系統會快取查閱的結果用於 DNS 存留時間 (TTL) 的持續時間。 流量管理員的預設 TTL 為 300 秒。
+系統會快速解析 DNS 名稱並快取結果。 初始 DNS 查閱的速度取決於用戶端用於名稱解析的 DNS 伺服器。 一般而言，用戶端可以在大約&50; 毫秒內完成 DNS 查閱。 系統會快取查閱的結果用於 DNS 存留時間 (TTL) 的持續時間。 流量管理員的預設 TTL 為 300 秒。
 
 流量不會透過流量管理員流動。 一旦完成 DNS 查閱，用戶端會有您的網站的執行個體 IP 位址。 用戶端直接連線到該位址，不會通過流量管理員。 您選擇的流量管理員原則並不會影響到 DNS 效能。 不過，效能路由方法可能對應用程式體驗產生負面影響。 例如，如果您的原則將流量從北美重新導向裝載於亞洲的執行個體，這些工作階段的網路延遲可能是個效能問題。
 

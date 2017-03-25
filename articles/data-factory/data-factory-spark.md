@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/21/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 2af5d275bb331101b370e4a12043e27b6cdf5b68
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 8be5e1525a7c481de5cb02edd26da305af2d4798
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -140,10 +140,7 @@ SparkJob2
 > [!IMPORTANT]
 > 如需有關建立含有轉換活動之管線的完整逐步解說，請參閱[建立管線以轉換資料](data-factory-build-your-first-pipeline-using-editor.md)一文。 
 
-## <a name="spark-sample-on-github"></a>GitHub 上的 Spark 範例
-在支援 Spark 活動之前，從 Data Factory 管線執行 Spark 程式的解決辦法是使用 MapReduce 活動。 您仍然可以在 Data Factory 管線中使用 [MapReduce 活動](data-factory-map-reduce.md)，以便在 HDInsight Spark 叢集上執行 Spark 程式。 我們建議您使用 Spark 活動，而不要使用 MapReduce 活動。 
 
-[Spark - Data Factory sample on GitHub](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/Spark) 示範如何使用 MapReduce 活動叫用 Spark 程式。 Spark 程式只是將資料從一個 Azure Blob 容器複製到另一個。 
 
 ## <a name="see-also"></a>另請參閱
 * [Hive 活動](data-factory-hive-activity.md)

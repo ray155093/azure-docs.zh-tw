@@ -9,6 +9,7 @@ documentationcenter:
 tags: azure-portal
 ms.assetid: 99c9f59c-cf6b-4529-99d1-bf060435e8d4
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: multiple
@@ -16,9 +17,9 @@ ms.topic: article
 ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
-ms.openlocfilehash: c29f539d25df3f7b005eb0fa98009d26549fa32b
-ms.lasthandoff: 01/18/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: c4003809decfb83c08e808f4bd7a14c1ecf05a55
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -211,12 +212,12 @@ Ambari REST API 可透過網際網路提供，而且公用閘道器會處理路�
 在本文件中，您已了解到 Azure HDInsight 如何讓 Hadoop 更加可用。 若要深入了解這份文件中所敘述的項目，請使用下列連結。
 
 * [Ambari REST 參考](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)
-* [安裝和設定 Azure CLI](../xplat-cli-install.md)
+* [安裝和設定 Azure CLI](../cli-install-nodejs.md)
 * [安裝並設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
 * [使用 Ambari 管理 HDInsight](hdinsight-hadoop-manage-ambari.md)
 * [佈建以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)
 
 [preview-portal]: https://portal.azure.com/
 [azure-powershell]: /powershell/azureps-cmdlets-docs
-[azure-cli]: ../xplat-cli-install.md
+[azure-cli]: ../cli-install-nodejs.md
 

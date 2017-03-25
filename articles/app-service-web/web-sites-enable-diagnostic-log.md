@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 06/06/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 27bf5b15ebeed13733df2ddd9dbda5d5cfe4e49d
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 6a000e84f38e7e2b56f1d79d5c88f1704b6789a0
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -29,7 +29,7 @@ Azure 提供內建診斷功能，可協助對 [App Service Web 應用程式](htt
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-## <a name="a-namewhatisdiagaweb-server-diagnostics-and-application-diagnostics"></a><a name="whatisdiag"></a>Web 伺服器診斷和應用程式診斷
+## <a name="whatisdiag"></a>Web 伺服器診斷和應用程式診斷
 App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的記錄資訊提供診斷功能。 這些資訊邏輯上可區分為 [Web 伺服器診斷] 與 [應用程式診斷]。
 
 ### <a name="web-server-diagnostics"></a>Web 伺服器診斷
@@ -48,7 +48,7 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 
 當您將內容發行至 Web 應用程式時，App Service Web 應用程式也會記錄部署資訊。 此動作會自動發生，因此無須任何組態設定即會記錄部署動作。 部署記錄功能可讓您判斷部署失敗的原因。 例如，如果您是使用自訂的部署指令碼，則您可以使用部署記錄功能來判斷指令碼失敗的原因。
 
-## <a name="a-nameenablediagahow-to-enable-diagnostics"></a><a name="enablediag"></a>如何啟用診斷
+## <a name="enablediag"></a>如何啟用診斷
 若要在 [Azure 入口網站](https://portal.azure.com)中啟用診斷，請移至 Web 應用程式的刀鋒視窗，然後依序按一下 [設定] > [診斷記錄]。
 
 <!-- todo:cleanup dogfood addresses in screenshot -->
@@ -90,7 +90,7 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 >
 >
 
-## <a name="a-namedownloada-how-to-download-logs"></a><a name="download"></a> 作法：下載記錄
+## <a name="download"></a> 作法：下載記錄
 儲存在 Web 應用程式檔案系統中的診斷資訊，可透過 FTP 直接存取。 或是使用 Azure PowerShell 或 Azure 命令列介面下載為 Zip 封存。
 
 儲存這些記錄的目錄結構如下所示：
@@ -129,7 +129,7 @@ App Service Web 應用程式會針對來自 Web 伺服器和 Web 應用程式的
 此舉會將名為 'webappname' 的 Web 應用程式記錄儲存至目前目錄中名為 **diagnostics.zip** 的檔案。
 
 > [!NOTE]
-> 如果您尚未安裝 Azure 命令列介面 (Azure CLI)，或是尚未將其設定為使用您的 Azure 訂用帳戶，請參閱 [如何使用 Azure CLI](../xplat-cli-install.md)。
+> 如果您尚未安裝 Azure 命令列介面 (Azure CLI)，或是尚未將其設定為使用您的 Azure 訂用帳戶，請參閱 [如何使用 Azure CLI](../cli-install-nodejs.md)。
 >
 >
 
@@ -145,7 +145,7 @@ Visual Studio Application Insights 提供篩選與搜尋記錄的工具，以及
 
 [深入了解使用 Application Insights 的效能追蹤](../application-insights/app-insights-azure-web-apps.md)
 
-## <a name="a-namestreamlogsa-how-to-stream-logs"></a><a name="streamlogs"></a> 作法：串流記錄
+## <a name="streamlogs"></a> 作法：串流記錄
 開發應用程式時，如果能夠幾近即時地檢視記錄資訊，通常會很實用。 您可以使用 Azure PowerShell 或 Azure 命令列介面，將記錄資訊串流至開發環境來達到這個目的。
 
 > [!NOTE]
@@ -194,11 +194,11 @@ Visual Studio Application Insights 提供篩選與搜尋記錄的工具，以及
     azure site log tail webappname --path http
 
 > [!NOTE]
-> 如果您尚未安裝 Azure 命令列介面，或是尚未將其設定為使用您的 Azure 訂用帳戶，請參閱 [如何使用 Azure 命令列介面](../xplat-cli-install.md)。
+> 如果您尚未安裝 Azure 命令列介面，或是尚未將其設定為使用您的 Azure 訂用帳戶，請參閱 [如何使用 Azure 命令列介面](../cli-install-nodejs.md)。
 >
 >
 
-## <a name="a-nameunderstandlogsa-how-to-understand-diagnostics-logs"></a><a name="understandlogs"></a> 作法：了解診斷記錄
+## <a name="understandlogs"></a> 作法：了解診斷記錄
 ### <a name="application-diagnostics-logs"></a>應用程式診斷記錄
 應用程式診斷功能會根據您將記錄儲存至檔案系統、資料表儲存體或 Blob 儲存體的不同，將 .NET 應用程式的資訊儲存為特定格式。 這三種儲存類型所儲存的資料基底集合全都相同，包括事件發生的日期與時間、產生事件的處理序識別碼、事件類型 (資訊、警告與錯誤)，以及事件訊息。
 
@@ -274,7 +274,7 @@ Web 伺服器記錄使用 [W3C 擴充記錄檔案格式](http://msdn.microsoft.c
 >
 >
 
-## <a name="a-namenextstepsa-next-steps"></a><a name="nextsteps"></a> 後續步驟
+## <a name="nextsteps"></a> 後續步驟
 * [如何監視 Web 應用程式](/manage/services/web-sites/how-to-monitor-websites/)
 * [在 Visual Studio 中疑難排解 Azure Web App](web-sites-dotnet-troubleshoot-visual-studio.md)
 * [在 HDInsight 中分析 Web 應用程式記錄](http://gallery.technet.microsoft.com/scriptcenter/Analyses-Windows-Azure-web-0b27d413)

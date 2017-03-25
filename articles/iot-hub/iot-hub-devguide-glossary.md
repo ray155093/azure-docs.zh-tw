@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: c2b0c6b125ededd30e9db8e7f42796bdf6b413d4
-ms.openlocfilehash: f254b4a9b942004f0d1d1065ec2efb2ea5df8418
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 408dfd655db7a4a5fa33920e0c8bc8b7a065e886
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 03/01/2017
 [進階訊息佇列通訊協定 (AMQP)](https://www.amqp.org/) 是 [IoT 中樞](#iot-hub)支援用來與裝置通訊的其中一種傳訊通訊協定。 如需 IoT 中樞支援的傳訊通訊協定詳細資訊，請參閱[使用 IoT 中樞傳送及接收訊息](iot-hub-devguide-messaging.md)。
 
 ## <a name="azure-cli"></a>Azure CLI
-[Azure CLI](../xplat-cli-install.md) 是跨平台、開放原始碼的命令介面式命令工具，用於建立和管理 Microsoft Azure 中的資源。 這個版本的 CLI 是使用 Node.js 來實作。
+[Azure CLI](../cli-install-nodejs.md) 是跨平台、開放原始碼的命令介面式命令工具，用於建立和管理 Microsoft Azure 中的資源。 這個版本的 CLI 是使用 Node.js 來實作。
 
 ## <a name="azure-cli-20"></a>Azure CLI 2.0
 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2) 是跨平台、開放原始碼的命令介面式命令工具，用於建立和管理 Microsoft Azure 中的資源。 這個預覽版本的 CLI 是使用 Python 來實作。

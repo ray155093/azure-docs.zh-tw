@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: magoedte;bwren;sngun
 translationtype: Human Translation
-ms.sourcegitcommit: deb32f98bbfc0032ffbdcf168a2b4c42f1c4ae76
-ms.openlocfilehash: 4cf402877d5ddee8f4944a104163a55025013cc0
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 6c65427fcd18e41a90dfb872aa9525f758b17b87
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -74,7 +74,7 @@ Webhook 可以定義由該 Webhook 啟動 Runbook 時所使用的 Runbook 參數
 
 > [!NOTE]
 > 所有輸入參數的值會使用 Runbook 工作進行記錄。  這表示，任何由用戶端在 Webhook 要求中提供的輸入將會進行記錄，並可讓任何有自動化工作存取權的人使用。  基於這個原因，您在 Webhook 呼叫中包含機密資訊時應該特別謹慎。
-> 
+>
 
 ## <a name="security"></a>安全性
 Webhook 的安全性仰賴其 URL 的隱私權，其中包含可允許其接受叫用的安全性權杖。 只要針對正確的 URL 進行要求，Azure 自動化就不會對要求執行任何驗證。 基於這個原因，若不使用驗證要求的替代方式時，Webhooks 不應用於執行高度機密功能的 Runbook。
@@ -267,6 +267,4 @@ Runbook 預期在要求的主體中有 JSON 格式的虛擬機器清單。 我�
 * 如需以不同方式啟動 Runbook 的詳細資訊，請參閱[啟動 Runbook](automation-starting-a-runbook.md)。
 * 如需檢視 Runbook 作業狀態的相關資訊，請參閱 [Azure 自動化中的 Runbook 執行](automation-runbook-execution.md)。
 * 若要了解如何使用 Azure 自動化來對 Azure 警示採取動作，請參閱[使用自動化 Runbook 修復 Azure VM 警示](automation-azure-vm-alert-integration.md)。
-* 若要了解如何從 OMS Log Analytics 警示叫用 Runbook，請參閱 [Log Analytics 警示的 Runbook 動作](../log-analytics/log-analytics-alerts.md#runbook-actions)。
-
 

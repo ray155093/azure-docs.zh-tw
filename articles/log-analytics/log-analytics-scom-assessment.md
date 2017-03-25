@@ -16,9 +16,9 @@ ms.date: 02/27/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
-ms.openlocfilehash: f812ff8fb2b32f89e24d640e0eae8f2da9858a18
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 97ae17912eaa7508e3ae1315800408664a340837
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -45,7 +45,7 @@ ms.lasthandoff: 02/28/2017
 
 請使用下列資訊來安裝和設定方案。
 
- - 在使用 OMS 中的評估方案之前，您必須先安裝方案。 如需閱讀安裝方案的更多資訊，請參閱 [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)。
+ - 在使用 OMS 中的評估方案之前，您必須先安裝方案。 從 [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.SCOMAssessmentOMS?tab=Overview) 或遵循[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中的指示，安裝解決方案。
 
  - 將解決方案新增至工作區之後，儀表板上的 System Center Operations Manager 評定圖格會顯示額外設定必要的訊息。 按一下圖格，然後遵循頁面中所述的設定步驟
 

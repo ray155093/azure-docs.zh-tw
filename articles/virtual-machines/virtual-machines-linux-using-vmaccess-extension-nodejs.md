@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 10/25/2016
 ms.author: v-livech
 translationtype: Human Translation
-ms.sourcegitcommit: debdb8a16c8cfd6a137bd2a7c3b82cfdbedb0d8c
-ms.openlocfilehash: 3f5a5f908106adab72f7e8ba5a15af58f8e1175d
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 5574f726d90ff804ae40852ee20850150a179a00
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 02/27/2017
 本文將說明如何使用 Azure VMAcesss 延伸模組來檢查或修復磁碟、重設使用者存取、管理使用者帳戶或重設 Linux 上的 SSHD 組態。 本文需要：
 
 * 一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))。
-* 使用 `azure login` 登入的 [Azure CLI](../xplat-cli-install.md)。
+* 使用 `azure login` 登入的 [Azure CLI](../cli-install-nodejs.md)。
 * Azure CLI *必須處於* Azure Resource Manager 模式 `azure config mode arm`。
 
 

@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 11/30/2016
 ms.author: annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 394315f81cf694cc2bb3a28b45694361b11e0670
-ms.openlocfilehash: 6e7eac6ae505c627ffa1d63aace76b9006d92c74
-ms.lasthandoff: 02/14/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: 6101c58e41202091ac89320177b0ca5bc36483a8
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -27,8 +27,6 @@ ms.lasthandoff: 02/14/2017
 >[!INCLUDE [virtual-network-multiple-ip-addresses-intro.md](../../includes/virtual-network-multiple-ip-addresses-intro.md)]
 >
 本文說明如何使用 Azure 入口網站透過 Azure Resource Manager 部署模型建立虛擬機器 (VM)。 無法將多個 IP 位址指派給透過傳統部署模型建立的資源。 若要深入了解 Azure 部署模型，請參閱[了解部署模型](../resource-manager-deployment-model.md)文章。
-
-[!INCLUDE [virtual-network-preview](../../includes/virtual-network-preview.md)]
 
 [!INCLUDE [virtual-network-multiple-ip-addresses-template-scenario.md](../../includes/virtual-network-multiple-ip-addresses-scenario.md)]
 
@@ -42,33 +40,13 @@ ms.lasthandoff: 02/14/2017
 
 ### <a name="coreadd"></a>核心步驟
 
-1. 登入並選取適當的訂用帳戶後，在 PowerShell 中執行下列命令來註冊預覽︰
-    ```
-    Register-AzureRmProviderFeature -FeatureName AllowMultipleIpConfigurationsPerNic -ProviderNamespace Microsoft.Network
-
-    Register-AzureRmProviderFeature -FeatureName AllowLoadBalancingonSecondaryIpconfigs -ProviderNamespace Microsoft.Network
-    
-    Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
-    ```
-    執行 ```Get-AzureRmProviderFeature``` 命令時，請在看到下列輸出之後再嘗試完成剩餘步驟︰
-        
-    ```powershell
-    FeatureName                            ProviderName      RegistrationState
-    -----------                            ------------      -----------------      
-    AllowLoadBalancingOnSecondaryIpConfigs Microsoft.Network Registered       
-    AllowMultipleIpConfigurationsPerNic    Microsoft.Network Registered       
-    ```
-        
-    >[!NOTE] 
-    >這可能需要幾分鐘的時間。
-    
-2. 瀏覽至 Azure 入口網站 (https://portal.azure.com) 並視需要進行登入。
-3. 在 Azure 入口網站中，按一下 [更多服務]，接著在篩選方塊中輸入「虛擬機器」，然後按一下 [虛擬機器]。
-4. 在 [虛擬機器] 刀鋒視窗中，按一下您想要新增 IP 位址的 VM。 在顯示的 [虛擬機器] 刀鋒視窗中，按一下 [網路介面]，然後選取您想要新增 IP 位址的網路介面。 在下圖顯示的範例中，已選取名為 myVM 的 VM 中名為 myNIC 的 NIC︰
+1. 瀏覽至 Azure 入口網站 (https://portal.azure.com) 並視需要進行登入。
+2. 在 Azure 入口網站中，按一下 [更多服務]，接著在篩選方塊中輸入「虛擬機器」，然後按一下 [虛擬機器]。
+3. 在 [虛擬機器] 刀鋒視窗中，按一下您想要新增 IP 位址的 VM。 在顯示的 [虛擬機器] 刀鋒視窗中，按一下 [網路介面]，然後選取您想要新增 IP 位址的網路介面。 在下圖顯示的範例中，已選取名為 myVM 的 VM 中名為 myNIC 的 NIC︰
 
     ![網路介面](./media/virtual-network-multiple-ip-addresses-portal/figure1.png)
 
-5. 在針對您所選 NIC 出現的刀鋒視窗中，按一下 [IP 組態]，如下圖所示︰
+4. 在針對您所選 NIC 出現的刀鋒視窗中，按一下 [IP 組態]，如下圖所示︰
 
     ![IP 組態](./media/virtual-network-multiple-ip-addresses-portal/figure2.png)
 

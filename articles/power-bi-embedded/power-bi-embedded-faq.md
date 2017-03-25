@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 01/06/2017
+ms.date: 03/02/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: f57b400dc20dc08221c0a8a770fd78f5885f634c
-ms.openlocfilehash: 0beb98220f043dc7c66cc494c3de00e0993798a6
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: be485debb4d8a2d1f64e1752bc204f1634d53c97
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -89,14 +90,11 @@ Power BI Embedded 服務是使用應用程式權杖進行驗證和授權，而�
 您現在就可以免費開始使用！ 如果您有 Azure 訂用帳戶，您現在就可以直接從 Azure 入口網站佈建 Power BI Embedded。  您也可以建立 [免費 Azure 帳戶](https://azure.microsoft.com/free/)。 在您佈建 Power BI Embedded 服務之後，就能夠輕鬆地直接使用 Power BI REST API，或使用 [GitHub](http://go.microsoft.com/fwlink/?LinkID=746472)上提供的開發人員 SDK。 也有提供範例說明如何使用開發人員 SDK。
 
 ## <a name="see-also"></a>另請參閱
-* [何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
-* [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
+[何謂 Microsoft Power BI Embedded](power-bi-embedded-what-is-power-bi-embedded.md)
+[開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
+[開始使用範例](power-bi-embedded-get-started-sample.md)   
+[JavaScript 內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
 有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

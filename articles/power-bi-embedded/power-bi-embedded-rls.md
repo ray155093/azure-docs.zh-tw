@@ -13,16 +13,17 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 01/06/2017
+ms.date: 03/11/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 2f0f36e7ffeec52bacc35ac5039cd183976dc3aa
-ms.openlocfilehash: c0b3e2de393c53dab4c9e9341269f792603eec18
-ms.lasthandoff: 01/07/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 1cde5b9ee4c716af07d427d4d0eb3f0775d456ac
+ms.lasthandoff: 03/14/2017
 
 
 ---
 # <a name="row-level-security-with-power-bi-embedded"></a>Power BI Embedded 的資料列層級安全性
+
 資料列層級安全性 (RLS) 可以用來限制使用者對於報告或資料集內特定資料的存取，讓多個不同使用者在查看不同資料的同時，能夠使用相同的報告。 Power BI Embedded 現在支援使用 RLS 設定資料集。
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-flow-1.png)
@@ -36,6 +37,7 @@ ms.lasthandoff: 01/07/2017
 **規則** – 角色有規則，這些規則是要套用至資料的實際篩選器。 可以像 “Country = USA” 一樣簡單，或是更動態的項目。
 
 ### <a name="example"></a>範例
+
 對於這篇文章的其餘部分，我們將提供撰寫 RLS，然後在內嵌應用程式中使用的範例。 我們的範例會使用 [零售分析範例](http://go.microsoft.com/fwlink/?LinkID=780547) PBIX 檔案。
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-scenario-2.png)
@@ -82,7 +84,8 @@ RLS 是在 Power BI Desktop 中撰寫。 當開啟資料集和報告時，我們
 
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-diagram-view-11.png)
 
-**注意** 如果您針對資料使用 DirectQuery 模式，您必須啟用雙向交叉篩選，方法是選取這兩個選項︰
+> [!NOTE]
+> 如果您針對資料使用 DirectQuery 模式，您必須啟用雙向交叉篩選，方法是選取這兩個選項︰
 
 1. [檔案]  ->  [選項和設定]  ->  [預覽功能]  ->  [針對 DirectQuery 啟用兩個方向的交叉篩選]。
 2. [檔案]  ->  [選項和設定]  ->  [DirectQuery]  ->  [允許 DirectQuery 模式中的不受限制量值]。
@@ -113,6 +116,11 @@ RLS 是在 Power BI Desktop 中撰寫。 當開啟資料集和報告時，我們
 ![](media/power-bi-embedded-rls/pbi-embedded-rls-dashboard-13.png)
 
 ## <a name="see-also"></a>另請參閱
-[資料列層級安全性 (RLS) 與 Power](https://powerbi.microsoft.com/en-us/documentation/powerbi-admin-rls/)
+
+[資料列層級安全性 (RLS) 與 Power](https://powerbi.microsoft.com/en-us/documentation/powerbi-admin-rls/)  
+[在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)  
+[Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)  
+[JavaScript 內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo/)  
+有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
 
 

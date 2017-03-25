@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: e3de500e3dc64abbbe7a5983db0ad14a0a9b76c8
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 4f5c04525437aefeccbe58e06b084433d0413dc1
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -65,7 +66,7 @@ Socket.IO 使用 WebSocket 提供 node.js 伺服器與用戶端之間的即時�
 > 
 > 
 
-1. 安裝 Azure 命令列介面 (Azure CLI)，並連線到您的 Azure 訂用帳戶。 請參閱 [安裝和設定 Azure CLI](../xplat-cli-install.md)。
+1. 安裝 Azure 命令列介面 (Azure CLI)，並連線到您的 Azure 訂用帳戶。 請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md)。
 2. 如果這是您第一次在 Azure 中設定儲存機制，就需要建立登入認證。 從 Azure CLI 中，輸入下列命令：
    
         azure site deployment user set [username] [password]
@@ -283,7 +284,7 @@ Azure Web Apps 可用於多個 SKU，SKU 可以決定您網站適用的資源。
 [App Service Web Apps]: http://go.microsoft.com/fwlink/?LinkId=529714
 [Web Apps 定價]: http://go.microsoft.com/fwlink/?LinkId=511643
 [在 Azure 雲端服務上使用 Socket.IO 建立 Node.js 聊天應用程式]: ../cloud-services/cloud-services-nodejs-chat-app-socketio.md
-[Install and Configure the Azure CLI]: ../xplat-cli-install.md
+[Install and Configure the Azure CLI]: ../cli-install-nodejs.md
 [Azure App Service 及其對現有 Azure 服務的影響]: http://go.microsoft.com/fwlink/?LinkId=529714
 [Node.js 開發人員中心]: /develop/nodejs/
 [試用 App Service]: https://azure.microsoft.com/try/app-service/
@@ -299,9 +300,4 @@ Azure Web Apps 可用於多個 SKU，SKU 可以決定您網站適用的資源。
 [chat-example-view]: ./media/web-sites-nodejs-chat-app-socketio/socketio-2.png
 [npm-output]: ./media/web-sites-nodejs-chat-app-socketio/socketio-7.png
 [completed-app]: ./media/web-sites-nodejs-chat-app-socketio/websitesocketcomplete.png
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

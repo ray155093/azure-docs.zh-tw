@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/11/2016
+ms.date: 03/16/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 69b94c93ad3e9c9745af8485766b4237cac0062c
-ms.openlocfilehash: 2ced9e73a65160f4f3c8ba92affc143ca554d07c
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: c27b6ed05faa5d9c408e6812d4ecbb8e0e2bbbab
+ms.lasthandoff: 03/17/2017
 
 ---
 
@@ -89,49 +90,11 @@ PublicIPAddress 資源是 Azure Resource Manager 資源。 它們不存在於傳
 
 如果設定檔中的所有端點都已停用，或設定檔本身已停用，流量管理員會傳送 'NXDOMAIN' 回應給新的 DNS 查詢。
 
-## <a name="faq"></a>常見問題集
-
-### <a name="can-i-use-traffic-manager-with-endpoints-from-multiple-subscriptions"></a>可以將流量管理員用於來自多個訂用帳戶的端點嗎？
-
-來自多個訂用帳戶的端點不能與 Azure Web 應用程式搭配使用。 Azure Web Apps 規定 Web Apps 使用的任何自訂網域名稱只能在單一訂用帳戶內使用。 無法使用具有相同網域名稱的多個訂用帳戶中的 Web Apps。
-
-針對其他端點類型，則可以將「流量管理員」與來自多個訂用帳戶的端點搭配使用。 設定流量管理員的方式取決於您是使用傳統部署模型，還是 Resource Manager 經驗。
-
-* 在 Resource Manager 中，來自任何訂用帳戶的端點都可以新增至流量管理員，只要設定流量管理員設定檔的人員具有端點的讀取權限即可。 使用 [Azure Resource Manager 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-configure.md)可以授與這些權限。
-* 在傳統部署模型介面中，流量管理員要求任何設定為 Azure 端點的雲端服務或 Web 應用程式，都必須位於與流量管理員設定檔相同的訂用帳戶中。 其他訂用帳戶中的雲端服務端點可以當做「外部」端點新增至流量管理員。 這些外部端點會當成 Azure 端點計費，而不是採用外部費率。
-
-### <a name="can-i-use-traffic-manager-with-cloud-service-staging-slots"></a>我可以使用流量管理員來設定雲端服務「預備」位置嗎？
-
-是。 雲端服務「預備」位置可在流量管理員中設定為外部端點。 健康情況檢查仍然以 Azure 端點費率計費。 因為外部端點類型正在使用中，所以不會自動挑選基礎服務的變更。 使用外部端點時，流量管理員無法偵測雲端服務何時停止或刪除。 因此，流量管理員會持續計費健康情況檢查，直到停用或刪除端點為止。
-
-### <a name="does-traffic-manager-support-ipv6-endpoints"></a>流量管理員是否支援 IPv6 端點？
-
-流量管理員目前不提供 IPv6 定址的名稱伺服器。 不過，連接到 IPv6 端點的 IPv6 用戶端仍然可以使用流量管理員。 用戶端不會直接向流量管理員提出 DNS 要求。 相反地，用戶端會使用遞迴 DNS 服務。 僅支援 IPv6 的用戶端會透過 IPv6 將要求傳送至遞迴 DNS 服務。 然後，遞迴服務應該就能夠使用 IPv4 來連絡流量管理員名稱伺服器。
-
-流量管理員會以端點的 DNS 名稱來回應。 為了支援 IPv6 端點，必須有一筆 DNS AAAA 記錄將端點 DNS 名稱指向 IPv6 位址。 流量管理員健康情況檢查僅支援 IPv4 位址。 此服務必須在相同 DNS 名稱上公開 IPv4 端點。
-
-### <a name="can-i-use-traffic-manager-with-more-than-one-web-app-in-the-same-region"></a>可以使用流量管理員搭配相同區域中的多個 Web 應用程式嗎？
-
-通常，流量管理員用於將流量導向不同區域中部署的應用程式。 不過，也可用於應用程式在相同區域中有多個部署時。 流量管理員 Azure 端點不允許將相同 Azure 區域中的多個 Web 應用程式端點新增至相同的流量管理員設定檔。
-
-下列步驟提供此條件約束的因應措施：
-
-1. 請檢查您的端點位於不同的 Web 應用程式「縮放單位」中。 網域名稱必須對應到指定縮放單位中的單一網站。 因此，相同縮放單位中的兩個 Web Apps 不能共用流量管理員設定檔。
-2. 將虛名網域名稱當做自訂主機名稱，新增至每個 Web 應用程式。 每個 Web 應用程式必須在不同的縮放單位中。 所有 Web Apps 都必須屬於相同的訂用帳戶。
-3. 將一個 (且只有一個) Web 應用程式端點當做 Azure 端點，新增至流量管理員設定檔。
-4. 將每個額外的 Web 應用程式端點新增至流量管理員設定檔，成為外部端點。 只能使用 Resource Manager 部署模型來新增外部端點。
-5. 在虛名網域中建立 DNS CNAME 記錄，以指向流量管理員設定檔 DNS 名稱 (<…>.trafficmanager.net)。
-6. 透過虛名網域名稱 (而不是流量管理員設定檔 DNS 名稱) 存取您的網站。
 
 ## <a name="next-steps"></a>後續步驟
 
 * 了解 [流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)。
 * 了解「流量管理員」的 [端點監視和自動容錯移轉](traffic-manager-monitoring.md)。
 * 了解「流量管理員」的 [流量路由方法](traffic-manager-routing-methods.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

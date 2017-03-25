@@ -15,9 +15,9 @@ ms.workload: multiple
 ms.date: 06/08/2016
 ms.author: mlearned
 translationtype: Human Translation
-ms.sourcegitcommit: c327fc0f8175f3fe62f9a0975b7fbad1437bbbe0
-ms.openlocfilehash: 4309d2dffacb9baf2563c8a4fcd1984beabdeef0
-ms.lasthandoff: 01/12/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: a5b845a93f318b991e14705f0fadea3acd802ced
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 01/12/2017
 ## <a name="create-vms-with-docker-machine"></a>使用 Docker 電腦建立 VM
 搭配使用 `docker-machine create` 命令與 `azure` 驅動程式，在 Azure 中建立 Docker 主機 VM。 
 
-Azure 驅動程式將需要您的訂用帳戶識別碼。 您可以使用 [Azure CLI](xplat-cli-install.md) 或 [Azure 入口網站](https://portal.azure.com)來擷取您的「Azure 訂用帳戶」。 
+Azure 驅動程式將需要您的訂用帳戶識別碼。 您可以使用 [Azure CLI](cli-install-nodejs.md) 或 [Azure 入口網站](https://portal.azure.com)來擷取您的「Azure 訂用帳戶」。 
 
 **使用 Azure 入口網站**
 

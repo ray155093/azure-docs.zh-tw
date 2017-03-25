@@ -16,8 +16,9 @@ ms.workload: big-data
 ms.date: 01/24/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 528266346733fff72113104d585540d75512b3a6
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 9dcac84fdc33515ef12ab5b8154f700bb8618290
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -27,6 +28,7 @@ ms.openlocfilehash: 528266346733fff72113104d585540d75512b3a6
 雖然這兩個分析平台都提供 PaaS 解決方案的優點，但它們之間還是有幾個重要的功能差異。 我們在下面列出這兩個服務的功能及限制，以協助您選擇達成目標所需的方案。
 
 ## <a name="storm-comparison-to-stream-analytics-general-features"></a>Storm 與串流分析的比較：一般功能
+
 <table border="1" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
@@ -137,7 +139,9 @@ ms.openlocfilehash: 528266346733fff72113104d585540d75512b3a6
         </tr>
     </tbody>
 </table>
-## 每個分析平台的編寫功能 ##
+
+## <a name="authoring-on-each-analytics-platform"></a>每個分析平台的編寫功能 ##
+
 <table border="1" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
@@ -261,7 +265,9 @@ ms.openlocfilehash: 528266346733fff72113104d585540d75512b3a6
         </tr>
     </tbody>
 </table>
-## 資料來源和輸出 ##
+
+## <a name="data-sources-and-outputs"></a>資料來源和輸出 ##
+
 <table border="1" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
@@ -350,7 +356,9 @@ ms.openlocfilehash: 528266346733fff72113104d585540d75512b3a6
         </tr>
     </tbody>
 </table>
-## 管理和作業 ##
+
+## <a name="management-and-operations"></a>管理和作業 ##
+
 <table border="1" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
@@ -509,7 +517,9 @@ SLA 保證 Storm 叢集的運作時間達 99.9%。 Apache Storm 是一個容錯�
         </tr>
     </tbody>
 </table>
-## 進階功能 ##
+
+## <a name="advanced-features"></a>進階功能 ##
+
 <table border="1" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
@@ -585,9 +595,4 @@ Azure Blob 提供的參考資料的記憶體內部查閱快取大小上限為 10
         </tr>
     </tbody>
 </table>
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

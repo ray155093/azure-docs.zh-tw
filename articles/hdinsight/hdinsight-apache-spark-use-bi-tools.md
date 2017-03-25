@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 1448b536-9bc8-46bc-bbc6-d7001623642a
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,15 +17,15 @@ ms.topic: article
 ms.date: 03/13/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: ba238a5d18dd83e4adb9e5ba737ec0cff135d34e
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 36b7aaf99db48efa1b56b84ac0616cf9ee2830ac
+ms.lasthandoff: 03/18/2017
 
 
 ---
 # <a name="use-bi-tools-with-apache-spark-cluster-on-azure-hdinsight"></a>在 Azure HDInsight 上搭配使用 BI 工具和 Apache Spark 叢集
 
-了解如何在 Azure HDInsight 中使用 Apache Spark 來分析未經處理範例資料集，然後使用 BI 工具將資料視覺化。 本文說明如何使用 Power BI 和 Tableau 等 BI 工具搭配 HDInsight Spark 叢集。 
+了解如何在 Azure HDInsight 中使用 Apache Spark 來分析未經處理範例資料集，然後使用 BI 工具將資料視覺化。 本文說明如何使用 Power BI 和 Tableau 等 BI 工具搭配 HDInsight Spark 叢集。
 
 > [!NOTE]
 > Azure HDInsight 3.6 預覽版的 Spark 2.1 不支援本文所述的 BI 工具連接性。 僅支援 Spark 1.6 版和 2.0 版 (分別是 HDInsight 3.4 版和 3.5 版)。
@@ -86,7 +87,7 @@ ms.lasthandoff: 03/15/2017
         dfw = DataFrameWriter(hvacTable)
         dfw.saveAsTable('hvac')
 
-7. 確認資料表已成功建立。 您可以使用 `%%sql` magic 直接執行 Hive 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#choose-between-the-kernels)。
+7. 確認資料表已成功建立。 您可以使用 `%%sql` magic 直接執行 Hive 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#parameters-supported-with-the-sql-magic)。
 
         %%sql
         SHOW TABLES
@@ -128,7 +129,7 @@ ms.lasthandoff: 03/15/2017
 
     ![連線到 Spark](./media/hdinsight-apache-spark-use-bi-tools/power-bi-connect-to-spark.png "將資料送入 Power BI")
 
-    建立連線之後，Power BI 會開始從 Spark 叢集將資料匯入 HDInsight。。
+    建立連線之後，Power BI 會開始從 Spark 叢集將資料匯入 HDInsight。
 
 6. Power BI 會匯入資料，並在 [資料集] 標頭下方新增 **Spark** 資料集。 按一下資料集來開啟新的工作表，以便將資料視覺化。 您也可以把工作表儲存成報告。 如要儲存工作表，請按一下 [檔案] 功能表中的 [儲存]。
 
@@ -160,7 +161,7 @@ ms.lasthandoff: 03/15/2017
 >
 >
 
-1. 在執行本教學課程的電腦上安裝 [Tableau Desktop](http://www.tableau.com/products/desktop)。 
+1. 在執行本教學課程的電腦上安裝 [Tableau Desktop](http://www.tableau.com/products/desktop)。
 
 2. 確保這部電腦也也安裝 Microsoft Spark ODBC 驅動程式。 您可以前往 [這裡](http://go.microsoft.com/fwlink/?LinkId=616229)來安裝驅動程式。
 

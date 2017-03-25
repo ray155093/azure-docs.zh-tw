@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 01/19/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 67d4fee2fc59651903d4c02d1fce84c7b81e5da1
-ms.openlocfilehash: e038515302acc4871687ad592c44fcf9a352bfe6
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: c3959babbfa6d7d512248e262060d44390de28a4
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 02/27/2017
 - Azure CLI 1.0 - 適用於傳統和資源管理部署模型 (本文) 的 CLI
 - [Azure CLI 2.0](virtual-machines-linux-creation-choices.md) - 適用於資源管理部署模型的新一代 CLI
 
-Azure CLI 1.0 可透過 npm 套件、散發版本提供的套件或 Docker 容器，跨平台適用。 您可以深入了解 [如何安裝和設定 Azure CLI](../xplat-cli-install.md)。 下列教學課程提供有關使用 Azure CLI 1.0 的範例。 如需以下 CLI 快速入門命令的詳細資訊，請閱讀每篇文章：
+Azure CLI 1.0 可透過 npm 套件、散發版本提供的套件或 Docker 容器，跨平台適用。 您可以深入了解 [如何安裝和設定 Azure CLI](../cli-install-nodejs.md)。 下列教學課程提供有關使用 Azure CLI 1.0 的範例。 如需以下 CLI 快速入門命令的詳細資訊，請閱讀每篇文章：
 
 * [從 Azure CLI 建立用於開發和測試的 Linux VM](virtual-machines-linux-quick-create-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
   

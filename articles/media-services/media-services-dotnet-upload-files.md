@@ -12,11 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 03/12/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 9cd4fa1c5927fb85a406a99bf5d2dacbb0fcbb2f
-ms.openlocfilehash: 0cdc48927c22292a4637a4e40b4ecd5be5e4478e
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 08dfdb54db0655bc025f8c268988804b069f70c6
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -35,10 +36,10 @@ ms.openlocfilehash: 0cdc48927c22292a4637a4e40b4ecd5be5e4478e
 > [!NOTE]
 > 您必須考量下列事項：
 > 
-> * 建置串流內容的 URL (例如，http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters) 時，媒體服務會使用 IAssetFile.Name 屬性的值。基於這個理由，不允許 percent-encoding。 **Name** 屬性的值不能有下列任何[百分號編碼保留字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]"。 而且，副檔名只能有一個 '.'。
+> * 建置串流內容的 URL (例如，http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters) 時，媒體服務會使用 IAssetFile.Name 屬性的值。基於這個理由，不允許 percent-encoding。 **Name** 屬性的值不能有下列任何[百分比編碼保留字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]"。 而且，副檔名只能有一個 '.'。
 > * 名稱長度不應超過 260 個字元。
-> * 對於在媒體服務處理檔案，支援的檔案大小有上限。 如需檔案大小限制的詳細資訊，請參閱[此主題](media-services-quotas-and-limitations.md)。
->
+> * 對於在媒體服務處理檔案，支援的檔案大小有上限。 請參閱[此](media-services-quotas-and-limitations.md)主題，以取得有關檔案大小限制的詳細資料。
+> * 對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 > 
 
 建立資產時，您可以指定下列加密選項。 
@@ -60,13 +61,8 @@ ms.openlocfilehash: 0cdc48927c22292a4637a4e40b4ecd5be5e4478e
 本主題顯示如何使用 Media Services .NET SDK 以及 Media Services .NET SDK 延伸模組，以將檔案上傳到媒體服務資產。
 
 ## <a name="upload-a-single-file-with-media-services-net-sdk"></a>使用媒體服務 .NET SDK 上傳單一檔案
-下面的範例程式碼會使用 .NET SDK 來執行下列工作： 
+以下範例程式碼會使用 .NET SDK 來上傳一個檔案。 AccessPolicy 與定位器會由所上傳的函式建立並終結。 
 
-* 建立空資產。
-* 建立要與資產相關聯的 AssetFile 執行個體。
-* 建立 AccessPolicy 執行個體，以定義存取資產所需的權限和規定期間。
-* 建立可用來存取資產的定位器執行個體。
-* 將單一媒體檔案上傳至媒體服務。 
 
         static public IAsset CreateAssetAndUploadSingleFile(AssetCreationOptions assetCreationOptions, string singleFilePath)
         {
@@ -77,29 +73,18 @@ ms.openlocfilehash: 0cdc48927c22292a4637a4e40b4ecd5be5e4478e
             }
 
             var assetName = Path.GetFileNameWithoutExtension(singleFilePath);
-            IAsset inputAsset = _context.Assets.Create(assetName, assetCreationOptions); 
+            IAsset inputAsset = _context.Assets.Create(assetName, assetCreationOptions);
 
             var assetFile = inputAsset.AssetFiles.Create(Path.GetFileName(singleFilePath));
-
-            Console.WriteLine("Created assetFile {0}", assetFile.Name);
-
-            var policy = _context.AccessPolicies.Create(
-                                    assetName,
-                                    TimeSpan.FromDays(30),
-                                    AccessPermissions.Write | AccessPermissions.List);
-
-            var locator = _context.Locators.CreateLocator(LocatorType.Sas, inputAsset, policy);
 
             Console.WriteLine("Upload {0}", assetFile.Name);
 
             assetFile.Upload(singleFilePath);
             Console.WriteLine("Done uploading {0}", assetFile.Name);
 
-            locator.Delete();
-            policy.Delete();
-
             return inputAsset;
         }
+
 
 ## <a name="upload-multiple-files-with-media-services-net-sdk"></a>使用媒體服務 .NET SDK 上傳多個檔案
 下列程式碼將說明如何建立資產並上傳多個檔案。
@@ -182,7 +167,7 @@ ms.openlocfilehash: 0cdc48927c22292a4637a4e40b4ecd5be5e4478e
 * 將 NumberOfConcurrentTransfers 從預設值 2 增加為較高的值 (例如 5)。 設定此屬性會影響所有 **CloudMediaContext**執行個體。 
 * 將 ParallelTransferThreadCount 保持為預設值 10。
 
-## <a name="a-idingestinbulkaingesting-assets-in-bulk-using-media-services-net-sdk"></a><a id="ingest_in_bulk"></a>使用媒體服務 .NET SDK 大量擷取資產
+## <a id="ingest_in_bulk"></a>使用媒體服務 .NET SDK 大量擷取資產
 上傳大型資產檔案可能會在建立資產期間造成瓶頸。 大量內嵌資產或「大量內嵌」包含透過上傳程序來解除結合資產建立。 若要使用大量內嵌方式，請建立可描述資產及其相關檔案的資訊清單 (IngestManifest)。 然後使用您選擇的上傳方法，將相關的檔案上傳至資訊清單的 Blob 容器。 Microsoft Azure 媒體服務會監看與資訊清單相關聯的 Blob 容器。 將檔案上傳至 Blob 容器之後，Microsoft Azure 媒體服務會根據資訊清單 (IngestManifestAsset) 中的資產組態來完成資產建立。
 
 若要建立新的 IngestManifest，請呼叫 CloudMediaContext 上 IngestManifests 集合所公開的 Create 方法。 此方法會使用您提供的資訊清單名稱來建立新的 IngestManifest。
@@ -314,10 +299,5 @@ IngestManifestAsset 會建立資產與大量 IngestManifest 的關聯，以進�
 您已將資產上傳至媒體服務，現在請移至 [如何取得媒體處理器][How to Get a Media Processor]主題。
 
 [How to Get a Media Processor]: media-services-get-media-processor.md
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

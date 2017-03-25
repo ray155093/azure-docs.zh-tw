@@ -9,6 +9,7 @@ tags: azure-portal
 documentationcenter: 
 ms.assetid: 4f26c79f-8540-44bd-a470-84722a9e4eca
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,16 +17,16 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 53973b27ae6531d5c4eaceb862ca5bd2bc5f9249
-ms.openlocfilehash: dec07803397ec5df17dfb57703e276ba071e942a
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: e70e24951481c33525a852479c9c9647a45e71ac
+ms.lasthandoff: 03/21/2017
 
 
 ---
 # <a name="manage-hadoop-clusters-in-hdinsight-using-the-azure-cli"></a>使用 Azure CLI 管理 HDInsight 中的 Hadoop 叢集
 [!INCLUDE [selector](../../includes/hdinsight-portal-management-selector.md)]
 
-了解如何使用 [Azure 命令列介面](../xplat-cli-install.md) 來管理 Azure HDInsight 中的 Hadoop 叢集。 Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平台上使用，包括 Windows、Mac 和 Linux。
+了解如何使用 [Azure 命令列介面](../cli-install-nodejs.md) 來管理 Azure HDInsight 中的 Hadoop 叢集。 Azure CLI 會在 Node.js 中實作。 此工具可在任何支援 Node.js 的平台上使用，包括 Windows、Mac 和 Linux。
 
 本文只涵蓋搭配 HDInsight 使用 Azure CLI。 如需如何使用 Azure CLI 的一般指南，請參閱[安裝及設定 Azure CLI][azure-command-line-tools]。
 
@@ -35,7 +36,7 @@ ms.lasthandoff: 02/23/2017
 開始閱讀本文之前，您必須符合下列必要條件：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* **Azure CLI** - 請參閱 [安裝及設定 Azure CLI](../xplat-cli-install.md) 以取得安裝和設定資訊。
+* **Azure CLI** - 請參閱 [安裝及設定 Azure CLI](../cli-install-nodejs.md) 以取得安裝和設定資訊。
 * **連線到 Azure**，使用下列命令：
   
         azure login
@@ -92,7 +93,7 @@ ms.lasthandoff: 02/23/2017
 * [開始使用 Azure HDInsight][hdinsight-get-started]
 * [如何使用 Azure CLI][azure-command-line-tools]
 
-[azure-command-line-tools]: ../xplat-cli-install.md
+[azure-command-line-tools]: ../cli-install-nodejs.md
 [azure-create-storageaccount]: ../storage-create-storage-account.md
 [azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/
 [azure-member-offers]: http://azure.microsoft.com/pricing/member-offers/

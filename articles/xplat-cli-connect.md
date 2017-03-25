@@ -17,8 +17,9 @@ ms.date: 10/04/2016
 ms.author: rasquill
 "\"/": 
 translationtype: Human Translation
-ms.sourcegitcommit: 3136b8345d0c851c29a9498089da73c8564549d1
-ms.openlocfilehash: 88414392c4ee03e0b140bba0f73e44b6886c4038
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 31efab60690b54faf7992251fcd01e307c4464f2
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -28,7 +29,7 @@ Azure CLI 是一組開放原始碼的跨平台命令，可供您運用在 Azure 
 * 透過 Azure Active Directory 執行 `azure login` CLI 命令以進行驗證。 這個方法可讓您在兩個[命令模式](#cli-command-modes)中存取 CLI 命令。 當您執行命令時若沒有其他選項，`azure login` 會提示您透過 Web 入口網站以互動方式繼續登入。 如需其他 `azure login` 命令選項，請參閱本文中的案例，或輸入 `azure login --help`。
 * 如果您只需要使用 Azure 服務管理模式 CLI 命令 (不建議用於大部分的新部署)，您可以在您的電腦上下載並安裝發佈設定檔。
 
-如果您尚未安裝 CLI，請參閱 [安裝 Azure CLI](xplat-cli-install.md)。 如果您沒有 Azure 訂用帳戶，則只需要幾分鐘的時間就可以建立 [免費帳戶](http://azure.microsoft.com/free/) 。
+如果您尚未安裝 CLI，請參閱 [安裝 Azure CLI](cli-install-nodejs.md)。 如果您沒有 Azure 訂用帳戶，則只需要幾分鐘的時間就可以建立 [免費帳戶](http://azure.microsoft.com/free/) 。
 
 如需不同帳戶身分識別與 Azure 訂用帳戶的背景，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory/active-directory-how-subscriptions-associated-directory.md)。
 
@@ -165,9 +166,4 @@ Azure CLI 提供兩種命令模式來使用具備不同命令集的 Azure 資源
 * 若要使用 Azure CLI 命令，請參閱 [Resource Manager 模式中的 Azure CLI 命令](virtual-machines/azure-cli-arm-commands.md)和[服務管理模式中的 Azure CLI 命令](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
 * 若要深入了解 Azure CLI、下載來源程式碼、回報問題，或是參與專案，請造訪 [Azure CLI 的 GitHub 儲存機制](https://github.com/azure/azure-xplat-cli)。
 * 如果您在使用 Azure CLI 或 Azure 方面遇到問題，請造訪 [Azure 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurescripting)(英文)。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

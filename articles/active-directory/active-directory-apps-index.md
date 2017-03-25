@@ -14,16 +14,16 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: ed8ef101a0757fd32585f5b3249e49d4fb0e09b4
-ms.openlocfilehash: ea3aa0b94c6a74747f7efa8633d5b6bfff75a230
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 6017fa3fe2134452bf24d2fc54c8f82b08862dbb
+ms.lasthandoff: 03/18/2017
 
 
 ---
 # <a name="article-index-for-application-management-in-azure-active-directory"></a>Azure Active Directory 中應用程式管理的文章索引
 本頁面提供一份完整清單，列出撰寫 Azure Active Directory (Azure AD) 中各種應用程式相關功能的所有文章。
 
-每個主要功能區都有簡介，同時也會根據要尋找的資訊指引您需要閱讀的文章。 
+每個主要功能區都有簡介，同時也會根據要尋找的資訊指引您需要閱讀的文章。
 
 ## <a name="overview-articles"></a>概觀文章
 對於只需要 Azure AD 應用程式管理功能之簡要說明的使用者，以下文章是很好的起點。
@@ -100,7 +100,7 @@ ms.lasthandoff: 02/23/2017
 | 使用協力廠商身分識別提供者來啟用 SSO 的指導方針 |[可用來啟用單一登入的相容協力廠商身分識別提供者清單](https://aka.ms/ssoproviders) |
 | Windows 10 使用者如何透過 Azure AD Join 享受單一登入的優點 |[透過 Azure Active Directory Join 擴充 Windows 10 裝置的雲端功能](active-directory-azureadjoin-overview.md) |
 
-Azure AD Connect 適用於 [所有版本的 Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/)。 「Azure AD 自助式密碼重設」適用於 [Azure AD Basic](https://azure.microsoft.com/pricing/details/active-directory/) 和 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/)。 對內部部署 AD 進行「密碼回寫」是一項 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/) 功能。 
+Azure AD Connect 適用於 [所有版本的 Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/)。 「Azure AD 自助式密碼重設」適用於 [Azure AD Basic](https://azure.microsoft.com/pricing/details/active-directory/) 和 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/)。 對內部部署 AD 進行「密碼回寫」是一項 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/) 功能。
 
 ### <a name="conditional-access-enforce-additional-security-requirements-for-high-risk-apps"></a>條件式存取：強制高風險應用程式符合額外的安全性需求
 一旦您對應用程式和資源設定單一登入，就可以在每次登入該應用程式時，強制符合特定的安全性需求，進一步保護機密應用程式的安全。 比方說，您可以使用 Azure AD，要求只要存取特定應用程式就需要執行 Multi-Factor Authentication，不論該應用程式是否本來就支援該功能。 條件式存取的另一個常見範例是要求使用者連線到組織信任的網路，以便能夠存取特別敏感的應用程式。
@@ -108,8 +108,8 @@ Azure AD Connect 適用於 [所有版本的 Azure Active Directory](https://azur
 | 文章指南 |  |
 |:---:| --- |
 | 簡介跨 Azure AD、Office365 和 Intune 提供的條件式存取功能 |[使用條件式存取管理風險](active-directory-conditional-access.md) |
-| 如何為下列類型的資源啟用條件式存取 |[SaaS 應用程式的條件式存取](active-directory-conditional-access-azuread-connected-apps.md)<br /><br />[Office 365 服務的條件式存取](active-directory-conditional-access-device-policies.md)<br /><br />[內部部署應用程式的條件式存取](active-directory-conditional-access-on-premises-setup.md)<br /><br />[透過 Azure AD 應用程式 Proxy 發佈之內部部署應用程式的條件式存取](active-directory-application-proxy-conditional-access.md) |
-| 如何向 Azure Active Directory 註冊裝置，以便啟用裝置型條件式存取原則 |[Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)<br /><br />[如何為加入網域的 Windows 裝置啟用自動註冊裝置](active-directory-conditional-access-automatic-device-registration.md)<br />— [適用於 Windows 8.1 裝置的步驟](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)<br />— [適用於 Windows 7 裝置的步驟](active-directory-conditional-access-automatic-device-registration-windows7.md) |
+| 如何為下列類型的資源啟用條件式存取 |[SaaS 應用程式的條件式存取](active-directory-conditional-access-azuread-connected-apps.md)<br /><br />[Office 365 服務的條件式存取](active-directory-conditional-access-device-policies.md)<br /><br />[內部部署應用程式的條件式存取](active-directory-conditional-access.md)<br /><br />[透過 Azure AD 應用程式 Proxy 發佈之內部部署應用程式的條件式存取](active-directory-application-proxy-conditional-access.md) |
+| 如何向 Azure Active Directory 註冊裝置，以便啟用裝置型條件式存取原則 |[Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)<br /><br />[如何為加入網域的 Windows 裝置啟用自動註冊裝置](active-directory-conditional-access-automatic-device-registration.md)<br />— [適用於 Windows 8.1 裝置的步驟](active-directory-device-registration.md#configure-automatic-device-registration-for-windows-7-and-windows-81-domain-joined-devices)<br />— [適用於 Windows 7 裝置的步驟](active-directory-device-registration.md#configure-automatic-device-registration-for-windows-7-and-windows-81-domain-joined-devices) |
 | 如何使用 Microsoft 驗證器應用程式進行雙步驟驗證 |[Microsoft 驗證器](../multi-factor-authentication/end-user/microsoft-authenticator-app-how-to.md) |
 
 「條件式存取」是一項 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/) 功能。
@@ -142,7 +142,7 @@ Cloud App Discovery 是一項 [Azure AD Premium](https://azure.microsoft.com/pri
 自動化使用者佈建適用於所有版本的 Azure AD，每個使用者最多十個應用程式。 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/) 支援無限多個應用程式。 如果您的組織具有 [Azure AD Basic](https://azure.microsoft.com/pricing/details/active-directory/) 或 [Azure AD Premium](https://azure.microsoft.com/pricing/details/active-directory/)，您就可以[使用群組來管理要佈建哪些使用者](#managing-access-to-applications)。
 
 ### <a name="building-applications-that-integrate-with-azure-ad"></a>建置與 Azure AD 整合的應用程式
-如果您的組織從事開發或維護特定業務 (LoB) 應用程式，或如果您是使用 Azure Active Directory 客戶的應用程式開發人員，下列教學課程將協助您整合應用程式與 Azure AD。 
+如果您的組織從事開發或維護特定業務 (LoB) 應用程式，或如果您是使用 Azure Active Directory 客戶的應用程式開發人員，下列教學課程將協助您整合應用程式與 Azure AD。
 
 | 文章指南 |  |
 |:---:| --- |
@@ -178,7 +178,7 @@ Cloud App Discovery 是一項 [Azure AD Premium](https://azure.microsoft.com/pri
 「B2B 共同作業」預覽目前適用於 [所有版本的 Azure Active Directory](https://azure.microsoft.com/pricing/details/active-directory/)。
 
 ### <a name="access-panel-a-portal-for-accessing-apps-and-self-service-features"></a>存取面板：存取應用程式和自助式功能的入口網站
-使用者可以在 Azure AD 存取面板上啟動應用程式和存取自助式功能，而自助式功能可讓使用者管理自己的應用程式和群組成員資格。 除了存取面板外，下列清單還包括其他存取啟用 SSO 之應用程式的選項。 
+使用者可以在 Azure AD 存取面板上啟動應用程式和存取自助式功能，而自助式功能可讓使用者管理自己的應用程式和群組成員資格。 除了存取面板外，下列清單還包括其他存取啟用 SSO 之應用程式的選項。
 
 | 文章指南 |  |
 |:---:| --- |
@@ -210,5 +210,4 @@ Azure Active Directory 提供數個報告和警示，以協助您監視組織對
 [Azure Active Directory 網域服務](https://azure.microsoft.com/services/active-directory-ds/)
 
 [Azure Multi-Factor Authentication](https://azure.microsoft.com/services/multi-factor-authentication/)
-
 

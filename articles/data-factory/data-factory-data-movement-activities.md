@@ -13,12 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/15/2017
+ms.date: 03/22/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 91a2ac08f6daac8cba195454e09bb07afe265046
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: f4c225c97ac997c412704b278c033c519d4424ed
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -83,27 +83,27 @@ Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用�
 | 目的地資料存放區的地理位置 | 目的地資料存放區的區域 | 用於資料移動的區域 |
 |:--- |:--- |:--- |
 | 美國 | 美國東部 | 美國東部 |
-| 。 | 美國東部 2 | 美國東部 2 |
-| 。 | 美國中部 | 美國中部 |
-| 。 | 美國中北部 | 美國中北部 |
-| 。 | 美國中南部 | 美國中南部 |
-| 。 | 美國中西部 | 美國中西部 |
-| 。 | 美國西部 | 美國西部 |
-| 。 | 美國西部 2 | 美國西部 |
+| &nbsp; | 美國東部 2 | 美國東部 2 |
+| &nbsp; | 美國中部 | 美國中部 |
+| &nbsp; | 美國中北部 | 美國中北部 |
+| &nbsp; | 美國中南部 | 美國中南部 |
+| &nbsp; | 美國中西部 | 美國中西部 |
+| &nbsp; | 美國西部 | 美國西部 |
+| &nbsp; | 美國西部 2 | 美國西部 |
 | 加拿大 | 加拿大東部 | 加拿大中部 |
-| 。 | 加拿大中部 | 加拿大中部 |
+| &nbsp; | 加拿大中部 | 加拿大中部 |
 | 巴西 | 巴西南部 | 巴西南部 |
 | 歐洲 | 北歐 | 北歐 |
-| 。 | 西歐 | 西歐 |
+| &nbsp; | 西歐 | 西歐 |
 | 亞太地區 | 東南亞 | 東南亞 |
-| 。 | 東亞 | 東南亞 |
+| &nbsp; | 東亞 | 東南亞 |
 | 澳大利亞 | 澳洲東部 | 澳洲東部 |
-| 。 | 澳大利亞東南部 | 澳大利亞東南部 |
+| &nbsp; | 澳大利亞東南部 | 澳大利亞東南部 |
 | 日本 | 日本東部 | 日本東部 |
-| 。 | 日本西部 | 日本東部 |
+| &nbsp; | 日本西部 | 日本東部 |
 | 印度 | 印度中部 | 印度中部 |
-| 。 | 印度西部 | 印度中部 |
-| 。 | 印度南部 | 印度中部 |
+| &nbsp; | 印度西部 | 印度中部 |
+| &nbsp; | 印度南部 | 印度中部 |
 
 或者，您可以明確指出要用來執行複製的 Data Factory 服務區域，方法是指定複製活動 `typeProperties` 底下的 `executionLocation`屬性。 這個屬性支援的值詳列於上述**用於資料移動的區域**資料行。 請注意您的資料在複製期間會透過網路通過該區域。 例如，若要在英國的 Azure 存放區之間複製，您可以將 `"executionLocation": "North Europe"` 指定為經過北歐 (請參考 [JSON 範例](#by-using-json-scripts))。
 

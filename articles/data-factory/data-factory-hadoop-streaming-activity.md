@@ -15,22 +15,24 @@ ms.topic: article
 ms.date: 2/24/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 49545648a069f25820f6a6e483072be8410b091e
-ms.openlocfilehash: 56754bde961708f04477be74e1ae80acddf2c0cd
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 2748838279462a493983c397454cbcf13b2a82e6
+ms.lasthandoff: 03/14/2017
 
 
 ---
 # <a name="transform-data-using-hadoop-streaming-activity-in-azure-data-factory"></a>使用 Azure Data Factory 中的 Hadoop 資料流活動轉換資料
-> [!div class="op_single_selector"]
-> * [Hive](data-factory-hive-activity.md)  
-> * [Pig](data-factory-pig-activity.md)  
-> * [MapReduce](data-factory-map-reduce.md)  
-> * [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
-> * [機器學習服務](data-factory-azure-ml-batch-execution-activity.md) 
-> * [預存程序](data-factory-stored-proc-activity.md)
-> * [資料湖分析 U-SQL](data-factory-usql-activity.md)
-> * [.NET 自訂](data-factory-use-custom-activities.md)
+> [!div class="op_single_selector" title1="Transformation Activities"]
+> * [Hive 活動](data-factory-hive-activity.md) 
+> * [Pig 活動](data-factory-pig-activity.md)
+> * [MapReduce 活動](data-factory-map-reduce.md)
+> * [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
+> * [Spark 活動](data-factory-spark.md)
+> * [Machine Learning Batch 執行活動](data-factory-azure-ml-batch-execution-activity.md)
+> * [Machine Learning 更新資源活動](data-factory-azure-ml-update-resource-activity.md)
+> * [預存程序活動](data-factory-stored-proc-activity.md)
+> * [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md)
+> * [.NET 自訂活動](data-factory-use-custom-activities.md)
 
 您可以使用 HDInsightStreamingActivity 活動從 Azure Data Factory 管線叫用 Hadoop 串流工作。 下列 JSON 片段會示範在管線 JSON 檔案中使用 HDInsightStreamingActivity 的語法。 
 
@@ -91,7 +93,7 @@ HDInsight 叢集會使用範例程式 (wc.exe 和 cat.exe) 和資料 (將 davinc
 2. 將活動的類型設為 **HDInsightStreaming**。
 3. 針對 **mapper** 屬性，指定對應程式可執行檔的名稱。 在範例中，cat.exe 是對應程式可執行檔。
 4. 針對 **reducer** 屬性，指定減壓器可執行檔的名稱。 在範例中，cat.exe 是減壓器可執行檔。
-5. 針對 **input** 類型屬性，指定對應程式的輸入檔 (包括位置)。 在 "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt" 範例中：adfsample 是 blob 容器、example/data/Gutenberg 是資料夾，而 davinci.txt 是 blob。
+5. 針對 **input** 類型屬性，指定對應程式的輸入檔 (包括位置)。 在 "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt" 範例中：adfsample 是 blob 容器，example/data/Gutenberg 是資料夾，而 davinci.txt 是 blob。
 6. 針對 **output** 類型屬性，指定減壓器的輸出檔 (包括位置)。 Hadoop 串流作業的輸出會寫入針對這個屬性指定的位置。
 7. 在 **filePaths** 區段中，指定對應程式和減壓器可執行檔的路徑。 在 "adfsample/example/apps/wc.exe" 範例中，adfsample 是 blob 容器，example/apps 是資料夾，而 wc.exe 是可執行檔。
 8. 針對 **fileLinkedService** 屬性，指定代表 Azure 儲存體 (包含 filePaths 區段中指定的檔案) 的 Azure 儲存體連結服務。

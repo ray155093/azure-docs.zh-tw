@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
 translationtype: Human Translation
-ms.sourcegitcommit: 57d00f2192fed7a2e89ac94e110ebb7e84c83b72
-ms.openlocfilehash: 26085360a1f2a2ffda3789c654bc7212f2e652f3
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 7c6ca3789e9a5dcde799d9ef40b58bd2f3c8966c
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -98,7 +99,7 @@ class Program
 > 
 
 ## <a name="other-methods"></a>其他方法
-* [Azure 命令列介面](../xplat-cli-install.md)
+* [Azure 命令列介面](../cli-install-nodejs.md)
   
     上傳 Blob 時，使用 `-p` 參數設定 *cacheControl* 屬性。  本範例將 TTL 設定為一小時 (3600 秒)。
   
@@ -118,10 +119,5 @@ class Program
 ## <a name="next-steps"></a>後續步驟
 * [了解 *Cache-Control* 標頭](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
 * [了解如何在 Azure CDN 中管理雲端服務內容的到期](cdn-manage-expiration-of-cloud-service-content.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

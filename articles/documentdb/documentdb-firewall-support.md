@@ -14,11 +14,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/20/2016
+ms.date: 03/10/2017
 ms.author: ankshah
 translationtype: Human Translation
-ms.sourcegitcommit: 08cac64a6b08266f78bca03f1139a13e9686ebc3
-ms.openlocfilehash: 819602cda932ea698287724e307ebbd73f1af988
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 7acbdda2e8179219c21370d20d30a94feb405fce
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -47,25 +48,32 @@ ms.openlocfilehash: 819602cda932ea698287724e307ebbd73f1af988
 ## <a name="connections-from-the-internet"></a>從網際網路的連接
 從網際網路上的電腦存取 DocumentDB 資料庫帳戶時，必須將電腦的用戶端 IP 位址或 IP 位址範圍新增至 DocumentDB 資料庫帳戶的允許 IP 位址清單。 
 
-## <a name="a-idconfigure-ip-policya-configuring-the-ip-access-control-policy"></a><a id="configure-ip-policy"></a> 設定 IP 存取控制原則
-IP 存取控制原則可以藉由更新 `ipRangeFilter` 屬性，透過 [Azure CLI](documentdb-automation-resource-manager-cli.md)、[Azure Powershell](documentdb-manage-account-with-powershell.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 以程式設計方式設定。 IP 位址/範圍必須以逗號分隔，而且不得包含任何空格。 範例："13.91.6.132,13.91.6.1/24"。 透過這些方法更新資料庫帳戶時，請務必填入所有屬性，以避免重設為預設設定。
+## <a id="configure-ip-policy"></a> 設定 IP 存取控制原則
+您可以在 Azure 入口網站中設定 IP 存取控制原則，也可以透過 [Azure CLI](documentdb-automation-resource-manager-cli.md)、[Azure Powershell](documentdb-manage-account-with-powershell.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx)，以程式設計方式更新 `ipRangeFilter` 屬性來設定。 IP 位址/範圍必須以逗號分隔，而且不得包含任何空格。 範例："13.91.6.132,13.91.6.1/24"。 透過這些方法更新資料庫帳戶時，請務必填入所有屬性，以避免重設為預設設定。
 
 > [!NOTE]
 > 啟用 DocumentDB 資料庫帳戶的 IP 存取控制原則，即會封鎖所設定之允許 IP 位址範圍清單外部的電腦對 DocumentDB 資料庫帳戶的所有存取。 透過這個模型，也會封鎖從入口網站瀏覽資料平面作業，確保存取控制的完整性。
 
+為了簡化開發工作，Azure 入口網站協助您識別用戶端電腦的 IP 並新增至允許清單，讓您電腦上執行的應用程式可以存取 DocumentDB 帳戶。 請注意，此處的用戶端 IP 位址是由入口網站偵測到。 它可能是您電腦的用戶端 IP 位址，但也可能是網路閘道的 IP 位址。 移至生產環境之前，別忘記移除它。
+
+若要在 Azure 入口網站中設定 IP 存取控制原則，請瀏覽至 [DocumentDB 帳戶] 刀鋒視窗，按一下導覽功能表中的 [防火牆]，然後按一下 [開啟] 
+
+![顯示如何在 Azure 入口網站中開啟 [防火牆] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-firewall-support/documentdb-azure-portal-firewall.png)
+
+在新窗格中，指定 Azure 入口網站是否可以存取帳戶，並適當地新增其他地址和範圍，然後按一下 [儲存]。  
+
+![顯示如何在 Azure 入口網站中進行防火牆設定的螢幕擷取畫面](./media/documentdb-firewall-support/documentdb-azure-portal-firewall-configure.png)
+
 ## <a name="troubleshooting-the-ip-access-control-policy"></a>針對 IP 存取控制原則進行疑難排解
 ### <a name="portal-operations"></a>入口網站作業
-啟用 DocumentDB 資料庫帳戶的 IP 存取控制原則，即會封鎖所設定之允許 IP 位址範圍清單外部的電腦對 DocumentDB 資料庫帳戶的所有存取。 透過這個模型，也會封鎖從入口網站瀏覽資料平面作業，確保存取控制的完整性。 
+啟用 DocumentDB 資料庫帳戶的 IP 存取控制原則，即會封鎖所設定之允許 IP 位址範圍清單外部的電腦對 DocumentDB 資料庫帳戶的所有存取。 因此，如果您想要啟用資料層面作業，例如瀏覽集合和查詢文件，您需要在入口網站使用 [防火牆] 刀鋒視窗，明確允許存取 Azure 入口網站。 
+
+![顯示如何允許存取 Azure 入口網站的螢幕擷取畫面](./media/documentdb-firewall-support/documentdb-azure-portal-access-firewall.png)
 
 ### <a name="sdk--rest-api"></a>SDK & Rest API
 基於安全性考量，如果從電腦透過 SDK 或 REST API 的存取不在允許清單上，則會傳回沒有其他詳細資料的一般「404 找不到」回應。 請確認設定 DocumentDB 資料庫帳戶的 IP 允許清單，確保將正確的原則組態套用至 DocumentDB 資料庫帳戶。
 
 ## <a name="next-steps"></a>後續步驟
 如需網路相關效能秘訣的相關資訊，請參閱[效能秘訣](documentdb-performance-tips.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

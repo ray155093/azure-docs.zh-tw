@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: f584ca5e-abee-4b7c-ae58-2e45dfc56bf4
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -18,6 +19,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
 ms.openlocfilehash: 94c7aca175543b94742ad57af6949b3fcdda6356
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -32,7 +34,7 @@ ms.openlocfilehash: 94c7aca175543b94742ad57af6949b3fcdda6356
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。 
 
-## <a name="a-namedataashow-me-the-data"></a><a name="data"></a>顯示資料
+## <a name="data"></a>顯示資料
 在開始建置應用程式之前，我們先來了解資料的結構，以及要針對資料執行哪種分析。 
 
 在本文中，我們使用的範例是 **HVAC.csv** 資料檔案，您可以在與 HDInsight 叢集相關聯的 Azure 儲存體帳戶中取得此檔案。 在儲存體帳戶中，檔案位於 **\HdiSamples\HdiSamples\SensorSampleData\hvac**。 下載及開啟 CSV 檔案，以取得資料的快照。  
@@ -43,7 +45,7 @@ ms.openlocfilehash: 94c7aca175543b94742ad57af6949b3fcdda6356
 
 在指定系統識別碼和系統年期的情況下，我們可以使用這些資料來預測建築物的溫度會比目標溫度高或低。
 
-## <a name="a-nameappawrite-a-machine-learning-application-using-spark-mllib"></a><a name="app"></a>使用 Spark MLlib 編寫機器學習應用程式
+## <a name="app"></a>使用 Spark MLlib 編寫機器學習應用程式
 在此應用程式中，我們會使用 Spark ML 管線來執行文件分類。 在管線中，我們將文件分割成單字、將單字轉換成數值特性向量，最後再使用特性向量和標籤建立預測模型。 執行下列步驟以建立應用程式。
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。 您也可以按一下 [瀏覽全部] > [HDInsight 叢集]，瀏覽至您的叢集。   
@@ -193,10 +195,10 @@ ms.openlocfilehash: 94c7aca175543b94742ad57af6949b3fcdda6356
    從預測的第一個資料列可看出，對於識別碼為 20 且年期為 25 年的 HVAC 系統而言，建築物將會是熱的 (**prediction=1.0**)。 DenseVector (0.49999) 的第一個值對應到預測 0.0，而第二個值 (0.5001) 對應到預測 1.0。 在輸出中，即使第二個值只是稍微高一點，模型仍舊顯示 **prediction=1.0**。
 4. 應用程式執行完畢之後，您應該要關閉 Notebook 來釋放資源。 若要這樣做，請從 Notebook 的 [檔案] 功能表中，按一下 [關閉並停止]。 這樣就能夠結束並關閉 Notebook。
 
-## <a name="a-nameanacondaause-anaconda-scikit-learn-library-for-machine-learning"></a><a name="anaconda"></a>使用適用於機器學習的 Anaconda scikit-learn 程式庫
+## <a name="anaconda"></a>使用適用於機器學習的 Anaconda scikit-learn 程式庫
 HDInsight 上的 Apache Spark 叢集包含 Anaconda 程式庫。 其中也包含適用於機器學習的 **scikit-learn** 程式庫。 此程式庫另包含用來直接從 Jupyter Notebook 建置範例應用程式的各種資料集。 如需使用 scikit-learn 程式庫的範例，請參閱 [http://scikit-learn.org/stable/auto_examples/index.html](http://scikit-learn.org/stable/auto_examples/index.html)。
 
-## <a name="a-nameseealsoasee-also"></a><a name="seealso"></a>另請參閱
+## <a name="seealso"></a>另請參閱
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
 
 ### <a name="scenarios"></a>案例
@@ -233,9 +235,4 @@ HDInsight 上的 Apache Spark 叢集包含 Anaconda 程式庫。 其中也包含
 [azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [azure-management-portal]: https://manage.windowsazure.com/
 [azure-create-storageaccount]: storage-create-storage-account.md
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

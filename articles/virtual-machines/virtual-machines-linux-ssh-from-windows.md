@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/08/2017
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: ba75d58b6e0ce6a75173c6d38ea27e7917a054c8
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 88351f0c3333fb06b1949a8ab9f63deea7259a41
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -61,9 +61,9 @@ Azure 需要至少 2048 位元的 **ssh-rsa** 格式公開和私密金鑰。 如
 
 以下是部署案例，以及您在每個案例中使用的檔案類型：
 
-1. 任何使用 [Azure 入口網站](https://portal.azure.com)進行的部署，以及使用 [Azure CLI](../xplat-cli-install.md) 進行的 Resource Manager 部署都需要 **ssh-rsa**。
+1. 任何使用 [Azure 入口網站](https://portal.azure.com)進行的部署，以及使用 [Azure CLI](../cli-install-nodejs.md) 進行的 Resource Manager 部署都需要 **ssh-rsa**。
    * 通常大部分的人都需要這些金鑰。
-2. 需要 `.pem` 檔案才能使用傳統部署來建立 VM。 使用 [Azure 入口網站](https://portal.azure.com)或 [Azure CLI](../xplat-cli-install.md) 時，傳統部署可支援這些金鑰。
+2. 需要 `.pem` 檔案才能使用傳統部署來建立 VM。 使用 [Azure 入口網站](https://portal.azure.com)或 [Azure CLI](../cli-install-nodejs.md) 時，傳統部署可支援這些金鑰。
    * 如果您要管理使用傳統部署模型建立的資源，您只需要建立額外的這些金鑰和憑證。
 
 ## <a name="install-git-for-windows"></a>安裝 Git for Windows
