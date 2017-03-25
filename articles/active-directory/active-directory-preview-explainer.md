@@ -17,11 +17,12 @@ ms.author: curtand
 translationtype: Human Translation
 ms.sourcegitcommit: 3b31bd036d9c3ff8036b314b93cbddd94874ff63
 ms.openlocfilehash: 8f7a679dc5b5726107503a9f7363ab162b1770d0
+ms.lasthandoff: 02/15/2017
 
 
 ---
 # <a name="preview-of-the-azure-active-directory-management-experience-in-the-azure-portal"></a>Azure 入口網站中的 Azure Active Directory 管理體驗預覽
-Azure 入口網站目前提供預覽版的 Azure Active Directory (Azure AD) 管理體驗。 您可以用您目錄的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com) 來試試這項體驗。 然後，從服務清單中選取 [Azure Active Directory] (如果可以看到的話)，或是選取 [更多服務]  來檢視所有服務的清單。 您不需要有 Azure 訂用帳戶，即可使用 Azure 入口網站中的 Azure AD 管理體驗。
+Azure 入口網站目前提供預覽版的 Azure Active Directory (Azure AD) 管理體驗。 您可以用您目錄的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com) 來試試這項體驗。 然後，從服務清單中選取 [Azure Active Directory] \(如果可以看到的話)，或是選取 [更多服務]  來檢視所有服務的清單。 您不需要有 Azure 訂用帳戶，即可使用 Azure 入口網站中的 Azure AD 管理體驗。
 
 ## <a name="learn-about-what-you-can-do-in-the-preview-experience"></a>了解您可以在預覽版體驗中執行哪些操作
 預覽版體驗可讓您在 Azure 入口網站中管理許多目錄資源，例如使用者、群組、應用程式及目錄設定。 我們正在改善這項體驗，使其包括 [Azure 傳統入口網站](https://manage.windowsazure.com)中 Azure AD 管理體驗現有的所有功能。 在那之前，有一些目錄管理工作，您仍然必須在傳統入口網站中完成。
@@ -36,9 +37,4 @@ Azure 入口網站目前提供預覽版的 Azure Active Directory (Azure AD) 管
 
 ## <a name="next-steps"></a>後續步驟
 您可以在 [Azure AD 意見反應論壇](https://social.msdn.microsoft.com/Forums/home?forum=WindowsAzureAD&filter=alltypes&sort=lastpostdesc)的「管理入口網站」區段中，提供有關預覽版體驗的意見反應。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 
