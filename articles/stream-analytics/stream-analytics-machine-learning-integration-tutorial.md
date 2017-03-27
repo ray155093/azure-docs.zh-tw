@@ -50,7 +50,7 @@ ms.lasthandoff: 02/14/2017
 ## <a name="create-a-storage-blob-and-upload-the-csv-input-file"></a>建立儲存體 blob 並上傳 CSV 輸入檔
 在此步驟中，您可以使用任何 CSV 檔案，例如 GitHub 上已指定為可供下載的檔案。 上傳 csv 檔案是建立儲存體 blob 時的一個選項，所以很簡單。
 
-在教學課程中，按一下 [新增]，搜尋「儲存體帳戶」，然後選取產生的儲存體帳戶圖示，並提供用於建立帳戶的詳細資料，即可建立新的儲存體帳戶。 提供 [名稱] (我的範例中使用 azuresamldemosa)，建立或使用現有的 [資源群組]，然後指定 [位置]，此示範中建立的所有資源必須盡可能全都使用相同的位置。
+在教學課程中，按一下 [新增]，搜尋「儲存體帳戶」，然後選取產生的儲存體帳戶圖示，並提供用於建立帳戶的詳細資料，即可建立新的儲存體帳戶。 提供 [名稱] \(我的範例中使用 azuresamldemosa)，建立或使用現有的 [資源群組]，然後指定 [位置]，此示範中建立的所有資源必須盡可能全都使用相同的位置。
 
 ![建立儲存體帳戶](./media/stream-analytics-machine-learning-integration-tutorial/create-sa.png)
 

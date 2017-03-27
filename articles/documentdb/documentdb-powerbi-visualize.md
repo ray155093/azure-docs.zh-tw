@@ -91,7 +91,7 @@ ms.lasthandoff: 02/15/2017
     ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 桌面連接視窗](./media/documentdb-powerbi-visualize/power_bi_connector_pbiconnectwindow.png)
 7. 如果您是第一次連接到此端點，系統會提示您提供帳戶金鑰。  您可以從 Azure 入口網站 [[唯讀金鑰](documentdb-manage-account.md#keys)] 刀鋒視窗的 [主要金鑰] 方塊中擷取金鑰，示範中是 `MSr6kt7Gn0YRQbjd6RbTnTt7VHc5ohaAFu7osF0HdyQmfR+YhwCH2D2jcczVIR1LNK3nMPNBD31losN7lQ/fkw==`。 輸入帳戶金鑰，然後按一下 [連接] 。
    
-    建議您在建置報告時使用唯讀金鑰。  這樣可避免非必要地將主要金鑰暴露於潛在的安全性風險下。 唯讀金鑰可從 Azure 入口網站的 [金鑰] [](documentdb-manage-account.md#keys) 刀鋒視窗取得，或使用上面提供的示範帳戶資訊。
+    建議您在建置報告時使用唯讀金鑰。  這樣可避免非必要地將主要金鑰暴露於潛在的安全性風險下。 唯讀金鑰可從 Azure 入口網站的 [[金鑰](documentdb-manage-account.md#keys)] 刀鋒視窗取得，或使用上面提供的示範帳戶資訊。
    
     ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 帳戶金鑰](./media/documentdb-powerbi-visualize/power_bi_connector_pbidocumentdbkey.png)
 8. 順利連接帳戶後，會出現 [瀏覽器]  。  [瀏覽器]  會顯示帳戶下的資料庫清單。
