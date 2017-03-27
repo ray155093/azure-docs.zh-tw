@@ -15,8 +15,9 @@ ms.tgt_pltfrm: na
 ms.author: heidist
 ms.date: 10/27/2016
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 076e97d1a264216d7f51914ed53dc70450aa2677
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 960880e44ad4de74339df7d0786dd8aa34962e3f
+ms.lasthandoff: 03/15/2017
 
 ---
 
@@ -257,7 +258,7 @@ Azure 搜尋服務會使用預設計分來計算分數，但您可以透過評�
 | `magnitude:boostingRangeEnd` |設定計算量級分數之範圍的結束值。 此值必須是整數或浮點數。 就 1 到 4 的星級評等而言，這會是 4。 |
 | `magnitude:constantBoostBeyondRange` |有效值為 true 或 false (預設值)。 設為 true 時，完整提升仍會繼續套用至目標欄位的值高於範圍上限的文件。 如果為 false，則此函數的提升將不會套用至目標欄位的值超出範圍的文件。 |
 | `freshness` |有效性計分函數可用來根據 DateTimeOffset 欄位中的值改變項目的排名分數。 例如，日期較近的項目可排在較舊項目之前。 (請注意，也可能會對像是具有未來日期的行事曆事件的項目進行排名，因此，越接近目前日期的項目排名會高於未來日期較遠的項目。)在目前的服務版本中，範圍的其中一端會固定為目前的時間。 另一端則是以 `boostingDuration`為依據的過去時間。 若要提升未來的某個時間範圍，請使用負數的 `boostingDuration`。 從最大與最小範圍變更的提升比率，取決於套用至評分設定檔的插補 (請參閱下圖)。 若要反轉套用的提升係數，請選擇小於 1 的提升係數。 |
-| `freshness:boostingDuration` |設定要開始停止對特定文件進行提升的到期時間。 如需語法和範例，請參閱下一節中的 [設定 boostingDuration][#bkmk_boostdur]。 |
+| `freshness:boostingDuration` |設定要開始停止對特定文件進行提升的到期時間。 如需語法和範例，請參閱下一節中的[設定 boostingDuration](#bkmk_boostdur)。 |
 | `distance` |距離計分函數可用來根據文件與參考地理位置的距離，對文件的分數產生影響。 參考位置會以 lon,lat 引數的形式，指定為參數中查詢的一部分 (使用 `scoringParameter` 查詢參數)。 |
 | `distance:referencePointParameter` |傳入查詢中做為參考位置的參數。 scoringParameter 是查詢參數。 如需查詢參數的說明，請參閱 [搜尋文件](search-api-2015-02-28-preview.md#SearchDocs) 。 |
 | `distance:boostingDistance` |以公里為單位，設定與提升範圍結束處的參考位置相隔的距離。 |
@@ -304,9 +305,4 @@ Azure 搜尋服務會使用預設計分來計算分數，但您可以透過評�
 
 <!--Image references-->
 [1]: ./media/search-api-scoring-profiles-2015-02-28-Preview/scoring_interpolations.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

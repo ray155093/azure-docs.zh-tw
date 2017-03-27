@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 01/17/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
-ms.openlocfilehash: 76c5bdeb2a27b733d8566c7a19f9457feebdc273
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: a99b55c98f29356fb78e053434f6f3fc5c9d0efc
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -34,7 +35,7 @@ ms.openlocfilehash: 76c5bdeb2a27b733d8566c7a19f9457feebdc273
 * 如果您的職責變更，就不需要變更 App 的認證。 
 * 您可以使用憑證在執行自動指令碼時自動進行驗證。
 
-本主題說明如何使用[適用於 Mac、Linux 和 Windows 的 Azure CLI](../xplat-cli-install.md) 來設定應用程式，讓它利用自己的認證和身分識別來執行。
+本主題說明如何使用[適用於 Mac、Linux 和 Windows 的 Azure CLI](../cli-install-nodejs.md) 來設定應用程式，讓它利用自己的認證和身分識別來執行。
 
 在 Azure CLI 中，您有&2; 個選項可以驗證您的 AD 應用程式︰
 
@@ -372,10 +373,5 @@ azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --cert-val
 ## <a name="next-steps"></a>後續步驟
 * 如需有關將應用程式整合至 Azure 來管理資源的詳細步驟，請參閱 [利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
 * 如需使用憑證和 Azure CLI 的詳細資訊，請參閱 [從 Linux 命令列以憑證方式驗證 Azure 服務主體](http://blogs.msdn.com/b/arsen/archive/2015/09/18/certificate-based-auth-with-azure-service-principals-from-linux-command-line.aspx)。 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

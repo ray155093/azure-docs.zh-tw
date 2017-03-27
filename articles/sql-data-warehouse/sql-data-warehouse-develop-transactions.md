@@ -15,8 +15,9 @@ ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: dde5397405b64d394cdff9c69c05a565c5427f56
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: a0582c71e786ae5365e39a5f161b63e946435b2e
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -51,7 +52,7 @@ SQL 資料倉儲實作 ACID 交易。 不過，交易支援的隔離僅限於 `R
 
 系統會針對每個交易或作業套用交易大小限制。 它不會套用到所有並行交易。 因此允許每一個交易在記錄檔中寫入這個資料量。 
 
-若要最佳化寫入記錄檔的資料量並降到最低，請參閱[交易的最佳作法][交易的最佳作法]一文。
+若要最佳化寫入記錄的資料量並降到最低，請參閱[交易的最佳做法][Transactions best practices]一文。
 
 > [!WARNING]
 > 交易大小上限僅可針對 HASH 或 ROUND_ROBIN 散發資料表 (資料會平均分佈) 來達成。 如果交易是以扭曲方式將資料寫入散發，則可能會在到達交易大小上限之前就先達到限制。
@@ -175,23 +176,18 @@ SQL 資料倉儲有一些與交易相關的其他限制。
 * 使用者定義的交易內部不支援 DDL，例如 `CREATE TABLE`
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解最佳化交易，請參閱[交易的最佳作法][交易的最佳作法]。  若要深入了解 SQL 資料倉儲最佳做法，請參閱 [SQL 資料倉儲最佳作法][SQL 資料倉儲最佳作法]。
+若要深入了解最佳化交易，請參閱[交易的最佳做法][Transactions best practices]。  若要深入了解其他 SQL 資料倉儲最佳作法，請參閱 [SQL 資料倉儲最佳做法][SQL Data Warehouse best practices]。
 
 <!--Image references-->
 
 <!--Article references-->
-[DWU]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
-[開發概觀]: ./sql-data-warehouse-overview-develop.md
-[交易的最佳作法]: ./sql-data-warehouse-develop-best-practices-transactions.md
-[SQL 資料倉儲最佳作法]: ./sql-data-warehouse-best-practices.md
+[DWU]: ./sql-data-warehouse-overview-what-is.md
+[development overview]: ./sql-data-warehouse-overview-develop.md
+[Transactions best practices]: ./sql-data-warehouse-develop-best-practices-transactions.md
+[SQL Data Warehouse best practices]: ./sql-data-warehouse-best-practices.md
 [LABEL]: ./sql-data-warehouse-develop-label.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

@@ -41,7 +41,7 @@ ms.lasthandoff: 03/08/2017
 4. 在 [連接設定] 視窗中，選擇名稱。 然後，從步驟 1 的連接資訊中，找出 [主機] 和 [連接埠]，分別輸入至 [位址] 和 [連接埠]。
 
     ![Robomongo 管理連線的螢幕擷取畫面](./media/documentdb-mongodb-robomongo/manageconnections.png)
-5. 在 [驗證] 索引標籤上，按一下 [執行驗證]。 然後，輸入您的 [資料庫] (預設值是 *Admin*)、[使用者名稱] 和 [密碼]。
+5. 在 [驗證] 索引標籤上，按一下 [執行驗證]。 然後，輸入您的 [資料庫] \(預設值是 *Admin*)、[使用者名稱] 和 [密碼]。
 在步驟 1 的連接資訊中，可以找到 [使用者名稱] 和 [密碼]。
 
     ![Robomongo 驗證索引標籤的螢幕擷取畫面](./media/documentdb-mongodb-robomongo/authentication.png)

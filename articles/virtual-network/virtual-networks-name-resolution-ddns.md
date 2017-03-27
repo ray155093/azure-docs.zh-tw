@@ -12,7 +12,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 08/31/2016
+ms.date: 02/23/2017
 ms.author: garbrad
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
@@ -58,8 +58,8 @@ Linux 用戶端通常不會在啟動時向 DNS 伺服器自行登錄，其假設
               nsupdate $nsupdatecmds
         fi
 
-        #done
-        exit 0;
+        
+        
 
 您也可以使用 *nsupdate* 命令來執行安全動態 DNS 更新。 例如，當您使用繫結 DNS 伺服器時，會 [產生](http://linux.yyz.us/nsupdate/)公開-私密金鑰組。  DNS 伺服器已使用金鑰的公開部分進行 [設定](http://linux.yyz.us/dns/ddns-server.html) ，因此其可驗證要求的簽章。 您必須使用 -k 選項以提供金鑰組給 nsupdate，以便簽署動態 DNS 更新要求。
 

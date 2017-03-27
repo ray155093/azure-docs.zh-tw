@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 05/23/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: cbd1c7e7d915e8a10d69c7a2f1679835dcee23b7
-ms.openlocfilehash: b64129b77385685b41aac55c52a34e9d0495124e
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 531fdbbeab09a67be9636b3a70eabbb4148f7400
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -122,15 +122,12 @@ ms.lasthandoff: 02/22/2017
 
 儲存在不同分區中、來自 [客戶]  資料表的所有資料列會填入 Excel 工作表。
 
-## <a name="next-steps"></a>後續步驟
 您現在可以使用 Excel 強大的資料視覺化功能。 您可以使用具備您的伺服器名稱、資料庫名稱和認證的連接字串來連接您的 BI 和資料整合工具至彈性查詢資料庫。 請確定 SQL Server 可支援做為您的工具的資料來源。 您可以參考彈性查詢資料庫和外部資料表，就如同您會使用您的工具連接的任何其他 SQL Server 資料庫和 SQL Server 資料表。
 
 ### <a name="cost"></a>成本
 使用彈性資料庫查詢功能不另行收費。
 
 如需價格資訊，請參閱 [SQL Database 價格詳細資料](https://azure.microsoft.com/pricing/details/sql-database/)。
-
-## <a name="next-steps"></a>後續步驟
 
 ## <a name="next-steps"></a>後續步驟
 

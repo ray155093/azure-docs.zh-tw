@@ -4,18 +4,19 @@ description: "監視應用程式在不同開發階段的效能和使用量"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 578e30f0-31ed-4f39-baa8-01b4c2f310c9
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 05/04/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 96614dd3c0bf9c55ffd81d0912ecb62b71c32b22
-ms.openlocfilehash: 2eeb22d310a3aa67bacf821d319fb2919d0b536f
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 43fb1e764c929be14d42c3d214b051aeb5367d77
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -24,7 +25,7 @@ ms.openlocfilehash: 2eeb22d310a3aa67bacf821d319fb2919d0b536f
 
 首先，讓我們了解這個問題。 從您的應用程式收到的資料會由 Microsoft Azure 儲存及處理在 Application Insights *資源*中。 每項資源均會以「檢測金鑰」  (iKey) 來加以識別。 在應用程式中，該金鑰會提供給 Application Insights SDK，使它可以將所收集的資料傳送到正確的資源。 可以在程式碼或在 ApplicationInsights.config 中提供金鑰。 藉由變更 SDK 中的金鑰，您可以將資料導向不同資源。 
 
-在簡單的案例中，當您為新的應用程式建立程式碼時，您也會在 Application Insights 中建立新的資源。 在 Visual Studio 中，[新增專案]  對話方塊會為您執行此作業。
+在簡單的案例中，當您向 Application Insights 註冊應用程式時，會在 Application Insights 中建立新的資源。 在 Visual Studio 中，可以使用 [設定 Application Insights] 或 [新增 Application Insights] 對話方塊。
 
 如果是高容量網站，它可能會部署在多個伺服器執行個體上。
 
@@ -61,7 +62,7 @@ ms.openlocfilehash: 2eeb22d310a3aa67bacf821d319fb2919d0b536f
 
 (如果您的系統是「Azure 雲端服務」，有[另一個設定個別 ikey 的方法](app-insights-cloudservices.md))。
 
-### <a name="a-namedynamic-ikeya-dynamic-instrumentation-key"></a><a name="dynamic-ikey"></a> 動態檢測金鑰
+### <a name="dynamic-ikey"></a> 動態檢測金鑰
 在初始化方法中設定金鑰，例如 ASP.NET 服務中的 global.aspx.cs：
 
 *C#*
@@ -115,10 +116,5 @@ iKey 也會用在您的應用程式網頁中，在 [您從快速啟動刀鋒視�
 ![按一下 [基本功能]，按一下 [檢測金鑰]，CTRL+C](./media/app-insights-separate-resources/02-props.png)
 
 您將需要您的應用程式會將資料傳送至其中的所有資源的檢測金鑰。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

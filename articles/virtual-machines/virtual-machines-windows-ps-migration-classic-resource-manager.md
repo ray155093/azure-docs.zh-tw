@@ -1,9 +1,9 @@
 ---
 title: "使用 PowerShell 移轉到 Resource Manager | Microsoft Docs"
-description: "本文提供使用 Azure PowerShell 命令進行平台支援之 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager) 的逐步解說"
+description: "本文逐步解說使用 Azure PowerShell 命令進行平台支援之 IaaS 資源 (例如虛擬機器 (VM)、虛擬網路 (VNET) 和儲存體帳戶) 移轉 (從傳統移轉至 Azure Resource Manager (ARM))"
 services: virtual-machines-windows
 documentationcenter: 
-author: cynthn
+author: singhkays
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -13,12 +13,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 10/19/2016
-ms.author: cynthn
+ms.date: 03/14/2017
+ms.author: kasing
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: bd67cb868e57be0d6cb9c3ea37f67de6dca4e307
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: f5ef5242a565358fb4af90cf10bb332b9c942fce
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -211,7 +211,9 @@ Get-AzureRmVMUsage -Location "West US"
 ```
 
 ### <a name="migrate-virtual-machines-in-a-virtual-network"></a>移轉虛擬網路中的虛擬機器
-若要移轉虛擬網路中的虛擬機器，您將需要移轉網路。 虛擬機器會自動隨著網路移轉。 選取您想要移轉的虛擬網路。 
+若要移轉虛擬網路中的虛擬機器，您將需要移轉虛擬網路。 虛擬機器會自動隨著虛擬網路移轉。 選取您想要移轉的虛擬網路。 
+> [!NOTE]
+> [移轉單一傳統虛擬機器](./virtual-machines-windows-migrate-single-classic-to-resource-manager.md)，其做法是使用虛擬機器的 VHD (OS 和資料) 檔案，建立具有受控磁碟的新 Resource Manager 虛擬機器。 
 
 這個範例會將虛擬網路名稱設定為 **myVnet**。 將範例虛擬網路名稱取代為您自己的名稱。 
 
@@ -253,18 +255,17 @@ Get-AzureRmVMUsage -Location "West US"
 
 移轉儲存體帳戶之前，請執行上述必要條件檢查︰
 
-* **檢查傳統 VM 磁碟是否儲存於儲存體帳戶**
+* **移轉磁碟儲存於儲存體帳戶的傳統虛擬機器**
 
-    使用下列命令，尋找連線至儲存體帳戶中 VM 的傳統 VM 磁碟︰ 
-
+    上述命令會傳回儲存體帳戶中所有傳統 VM 磁碟的 RoleName 和 DiskName 屬性。 RoleName 是磁碟所連線的虛擬機器名稱。 如果上述命令傳回磁碟，則確保這些磁碟所連線的虛擬機器會在移轉儲存體帳戶之前移轉。
     ```powershell
      $storageAccountName = 'yourStorageAccountName'
       Get-AzureDisk | where-Object {$_.MediaLink.Host.Contains($storageAccountName)} | Select-Object -ExpandProperty AttachedTo -Property `
       DiskName | Format-List -Property RoleName, DiskName 
 
     ```
-    上述命令會傳回儲存體帳戶中所有傳統 VM 磁碟的 RoleName 和 DiskName 屬性。 RoleName 是磁碟所連線的虛擬機器名稱。 如果上述命令傳回磁碟，則確保這些磁碟所連線的虛擬機器會在移轉儲存體帳戶之前移轉。
-
+* **刪除儲存於儲存體帳戶的未連結傳統 VM 磁碟**
+ 
     使用下列命令，尋找儲存體帳戶中未連線的傳統 VM 磁碟︰ 
 
     ```powershell
@@ -277,8 +278,25 @@ Get-AzureRmVMUsage -Location "West US"
     ```powershell
        Remove-AzureDisk -DiskName 'yourDiskName'
     ```
-     
+* **刪除儲存於儲存體帳戶的 VM 映像**
 
+    上述命令會傳回 OS 磁碟儲存於儲存體帳戶的所有 VM 映像。
+     ```powershell
+        Get-AzureVmImage | Where-Object { $_.OSDiskConfiguration.MediaLink -ne $null -and $_.OSDiskConfiguration.MediaLink.Host.Contains($storageAccountName)`
+                                } | Select-Object -Property ImageName, ImageLabel
+     ```
+     上述命令會傳回資料磁碟儲存於儲存體帳戶的所有 VM 映像。
+     ```powershell
+
+        Get-AzureVmImage | Where-Object {$_.DataDiskConfigurations -ne $null `
+                                         -and ($_.DataDiskConfigurations | Where-Object {$_.MediaLink -ne $null -and $_.MediaLink.Host.Contains($storageAccountName)}).Count -gt 0 `
+                                        } | Select-Object -Property ImageName, ImageLabel
+     ```
+    使用上述命令，刪除上述命令傳回的所有 VM 映像︰
+    ```powershell
+    Remove-AzureVMImage -ImageName 'yourImageName'
+    ```
+    
 請使用下列命令來準備每個要移轉的儲存體帳戶。 在此範例中，儲存體帳戶名稱是 **myStorageAccount**。 將範例名稱取代為您自己的儲存體帳戶名稱。 
 
 ```powershell

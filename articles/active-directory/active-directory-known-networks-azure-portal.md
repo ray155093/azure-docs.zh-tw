@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 01/17/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 71116ade676677c5b6d14b07a038d043fba46032
-ms.openlocfilehash: 02a1aae805aa36aa68f341197e44b19bc6236b7b
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 161d36f0bef4b3cd1ac1ad85d0844a3dd8e51e16
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -24,26 +25,26 @@ ms.openlocfilehash: 02a1aae805aa36aa68f341197e44b19bc6236b7b
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-known-networks-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-known-networks.md)
-> 
-> 
+>
+>
 
 
 Azure Active Directory 會針對每一個偵測到的[風險事件](active-directory-identity-protection-risk-events.md)建立記錄。 利用 Azure Active Directory 安全報告可取得的風險事件資訊，您可以深入了解環境中使用者帳戶遭入侵的可能性。   
 
-針對您組織實際擁有的 IP 位址，Azure Active Directory 可能會偵測到*不可能進入非慣用位置*和*從具有可以活動的 IP 位址登入*[風險事件類型](active-directory-identity-protection-risk-events.md#risk-event-types)的誤判。 
+針對您組織實際擁有的 IP 位址，Azure Active Directory 可能會偵測到*不可能進入非慣用位置*和*從具有可以活動的 IP 位址登入*[風險事件類型](active-directory-reporting-risk-events.md#risk-event-types)的誤判。 
 
-比方說，這可以發生在下列情形： 
+比方說，這可以發生在下列情形：
 
-- 在波士頓辦公室的使用者已從遠端登入您在舊金山的資料中心，產生了*從多個地理區域登入*風險事件 
+- 在波士頓辦公室的使用者已從遠端登入您在舊金山的資料中心，產生了*從多個地理區域登入*風險事件
 
-- 貴組織的使用者多次嘗試以不正確的密碼登入，產生了*從具有可疑活動的 IP 位址登入*風險事件 
+- 貴組織的使用者多次嘗試以不正確的密碼登入，產生了*從具有可疑活動的 IP 位址登入*風險事件
 
 若要避免這些情況下產生誤導的風險事件，您應該在貴組織的公用 IP 位址清單中新增具名的 IP 位址範圍。    
 
 ### <a name="to-add-your-organizations-public-ip-address-ranges-perform-the-following-steps"></a>若要新增貴組織的公用 IP 位址範圍，請執行下列步驟：
 
 1. 登入 Azure 管理入口網站。
- 
+
 2. 在左窗格中，按一下 [Active Directory] 。
 
     ![已知的網路](./media/active-directory-known-networks-azure-portal/01.png)
@@ -73,10 +74,4 @@ Azure Active Directory 會針對每一個偵測到的[風險事件](active-direc
 * [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 * [從具有可疑活動的 IP 位址登入](active-directory-reporting-sign-ins-from-ip-addresses-with-suspicious-activity.md)
 * [從多個地理區域登入](active-directory-reporting-sign-ins-from-multiple-geographies.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

@@ -12,12 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/11/2017
+ms.date: 03/09/2017
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 45225c4250539dfeb9f3b4654615acbdd162191b
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: c433e8683755e454f9561f094269c3daccf78a62
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -54,17 +54,17 @@ ms.lasthandoff: 03/07/2017
 這些步驟是假設您已熟悉 Resource Manager 的運作方式，並已使用 Resource Manager 範本至少部署一個 Service Fabric 叢集，而且已讓您使用的範本將叢集設定妥當。 此外亦假設您可輕鬆自如地使用 JSON。
 
 > [!NOTE]
-> 如果您正在尋找可用來依循或作為起點的範例範本和參數，可從這個 [git 儲存機制](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)下載。 
+> 如果您正在尋找可用來依循或作為起點的範例範本和參數，可從這個 [git 存放庫](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)下載。 
 > 
 > 
 
 ### <a name="edit-your-resource-manager-template"></a>編輯您的 Resource Manager 範本
 
-為了便於跟著操作，範例 5-VM-1-NodeTypes-Secure_Step2.JSON 包含我們將進行的所有編輯。 您可以從 [git 儲存機制](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)取得該範例。
+為了便於跟著操作，範例 5-VM-1-NodeTypes-Secure_Step2.JSON 包含我們將進行的所有編輯。 您可以從 [git 存放庫](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)取得該範例。
 
 **務必依照所有步驟操作**
 
-**步驟 1：**開啟您用來部署叢集的 Resource Manager 範本。  (如果您已從上述儲存機制下載該範例，則請使用 5-VM-1-NodeTypes-Secure_Step1.JSON 來部署一個安全的叢集，然後開啟該範本)。
+**步驟 1：**開啟您用來部署叢集的 Resource Manager 範本。 (如果您已從上述儲存機制下載該範例，則請使用 5-VM-1-NodeTypes-Secure_Step1.JSON 來部署一個安全的叢集，然後開啟該範本)。
 
 **步驟 2：**將類型為 "string" 的**兩個新參數** "secCertificateThumbprint" 和 "secCertificateUrlValue" 新增到您範本的參數區段。 您可以複製下列程式碼片段並新增到範本中。 視您的範本來源而定，這些有可能已經定義好，如果是這樣，請移至下一個步驟。 
  
@@ -84,7 +84,7 @@ ms.lasthandoff: 03/07/2017
 
 ```
 
-**步驟 3：**對 **Microsoft.ServiceFabric/clusters** 資源進行變更 - 找出您範本中的 "Microsoft.ServiceFabric/clusters" 資源定義。 在該定義的屬性底下，您會發現「憑證」JSON 標籤，看起來應該會像以下 JSON 程式碼片段。
+**步驟 3：**對 **Microsoft.ServiceFabric/clusters** 資源進行變更 - 找出您範本中的 "Microsoft.ServiceFabric/clusters" 資源定義。 在該定義的屬性底下，您會發現「憑證」JSON 標籤，看起來應該會像以下 JSON 程式碼片段：
 
    
 ```JSON
@@ -108,7 +108,7 @@ ms.lasthandoff: 03/07/2017
      }
 ``` 
 
-如果您想要「變換憑證」，請將新憑證指定為主要憑證，並將目前的主要憑證移轉為次要憑證。  這可讓您透過單一部署步驟，就將目前的主要憑證變換成新憑證。
+如果您想要「變換憑證」，請將新憑證指定為主要憑證，並將目前的主要憑證移轉為次要憑證。 這可讓您透過單一部署步驟，就將目前的主要憑證變換成新憑證。
 
 ```JSON
       "properties": {
@@ -120,7 +120,7 @@ ms.lasthandoff: 03/07/2017
 ``` 
 
 
-**步驟 4：**對「所有」**Microsoft.Compute/virtualMachineScaleSets** 資源定義進行變更 - 找出 Microsoft.Compute/virtualMachineScaleSets 資源定義。 捲動到 "virtualMachineProfile" 底下的 "publisher": "Microsoft.Azure.ServiceFabric"。
+**步驟 4：**對**所有** **Microsoft.Compute/virtualMachineScaleSets** 資源定義進行變更 - 找出 Microsoft.Compute/virtualMachineScaleSets 資源定義。 捲動到 "virtualMachineProfile" 底下的 "publisher": "Microsoft.Azure.ServiceFabric"。
 
 在 Service Fabric 發行者設定中，您應該會看到像這樣的畫面。
 

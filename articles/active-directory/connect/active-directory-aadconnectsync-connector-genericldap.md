@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 03/10/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: ab8c601d862868018fdffb4cd49e8b26acb878c9
-ms.openlocfilehash: 5eacb832ba2a20eae35c58704296c9d03e94ef0e
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 9245a2ce63746f039a3015a5a0cda2ff05cf950e
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -228,10 +229,18 @@ True/False 篩選器通常因為由 LDAP 目錄所支援而不回報，而且可
 
 此外，也可以選取連接器應匯入及匯出的容器和 OU。
 
+在執行搜尋時，這會對資料分割中的所有容器執行。 在有大量容器的情況下，這種行為會導致效能降低。
+
+>[!NOTE]
+從 2017 年 3 月的一般 LDAP 連接器更新開始，您已可將搜尋範圍限制在所選容器內。 藉由選取下圖所示的 [僅在所選容器中搜尋] 核取方塊，就能執行此操作。
+
+![僅搜尋所選容器](./media/active-directory-aadconnectsync-connector-genericldap/partitions-only-selected-containers.png)
+
 ### <a name="configure-anchors"></a>設定錨點
 此頁面一定有預先設定的值，而且無法變更。 如果已識別出伺服器廠商，則錨點可能會填入不可變的屬性，例如物件的 GUID。 如果尚未偵測到或已知沒有不可變的屬性，則連接器會使用 dn (辨別名稱) 做為錨點。
 
 ![錨點](./media/active-directory-aadconnectsync-connector-genericldap/anchors.png)
+
 
 以下是 LDAP 伺服器清單和所使用的錨點：
 
@@ -261,9 +270,4 @@ Open LDAP 中的差異浮水印是 UTC 日期/時間。 基於這個理由，FIM
 
 ## <a name="troubleshooting"></a>疑難排解
 * 如需如何啟用記錄來疑難排解連接器的資訊，請參閱 [如何啟用連接器的 ETW 追蹤](http://go.microsoft.com/fwlink/?LinkId=335731)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

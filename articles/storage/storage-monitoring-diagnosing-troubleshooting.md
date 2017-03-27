@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/03/2017
 ms.author: jahogg
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 2e2978f6e81b3f584eb73ce10fb373b62f7b85ff
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: a5193cb222fab1f3ed3e700d45c4a51676707d5a
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -240,9 +240,9 @@ Storage Client Library for .NET 能讓您針對應用程式所執行的儲存體
 ### <a name="client-request-id"></a>用戶端要求 ID
 儲存體用戶端程式庫會自動為每一項要求產生唯一的用戶端要求 ID。
 
-* 在儲存體用戶端程式庫所建立的用戶端記錄上，用戶端要求 ID 會顯示在與該要求相關之每個記錄項目的 [用戶端要求 ID]  欄位。
+* 在儲存體用戶端程式庫所建立的用戶端記錄上，用戶端要求 ID 會顯示在與該要求相關之每個記錄項目的 **用戶端要求 ID** 欄位。
 * 以 Fiddler 所擷取的網路追蹤為例，用戶端要求 ID 會顯示在要求訊息中，並呈現為 **x-ms-client-request-id** HTTP 標頭值。
-* 在伺服器端的儲存體記錄中，用戶端要求 ID 會顯示在 [用戶端要求 ID] 資料欄。
+* 在伺服器端的儲存體記錄中，用戶端要求 ID 會顯示在 用戶端要求 ID 資料欄。
 
 > [!NOTE]
 > 多個要求可以共用同一個用戶端要求 ID，這是因為用戶端可以指派此值 (雖然儲存體用戶端程式庫會自動指派新的值)。 如果重試來自用戶端，則所有嘗試都共用相同的用戶端要求 ID。 如果批次是從用戶端傳送，則該批次具有單一用戶端要求 ID。
@@ -305,7 +305,7 @@ catch (StorageException storageException)
 
 **疑難排解決策樹**
 
-- - -
+---
 您的問題是否與其中一項儲存體服務效能相關？
 
 * [度量顯示高 AverageE2ELatency 與低 AverageServerLatency]
@@ -313,39 +313,39 @@ catch (StorageException storageException)
 * [度量顯示高 AverageServerLatency]
 * [佇列上的訊息在遞送期間出現非預期的延遲]
 
-- - -
+---
 您的問題是否與其中一項儲存體服務可用性相關？
 
 * [度量顯示 PercentThrottlingError 增加]
 * [度量顯示 PercentTimeoutError 增加]
 * [度量顯示 PercentNetworkError 增加]
 
-- - -
-您的用戶端應用程式是否收到來自儲存體服務的 HTTP 4XX (例如 404) 回應？
+---
+ 您的用戶端應用程式是否收到來自儲存體服務的 HTTP 4XX (例如 404) 回應？
 
 * [用戶端收到 HTTP 403 (禁止) 訊息]
 * [用戶端收到 HTTP 404 (找不到) 訊息]
 * [用戶端收到 HTTP 409 (衝突) 訊息]
 
-- - -
-[度量顯示低 PercentSuccess，或是分析記錄項目內含具有 ClientOtherErrors 交易狀態的作業項目]
+---
+[Metrics show low PercentSuccess or analytics log entries have operations with transaction status of ClientOtherErrors]
 
-- - -
+---
 [容量度量顯示非預期的儲存體容量使用增加]
 
-- - -
-[附加大量 VHD 的虛擬機器，出現非預期的重新開機情況]
+---
+[You are experiencing unexpected reboots of Virtual Machines that have a large number of attached VHDs]
 
-- - -
+---
 [您的問題起因於使用儲存體模擬器進行開發或測試]
 
-- - -
-[安裝 Azure SDK for .NET 時發生問題]
+---
+[You are encountering problems installing the Azure SDK for .NET]
 
-- - -
+---
 [您的儲存體服務出現其他問題]
 
-- - -
+---
 ### <a name="metrics-show-high-AverageE2ELatency-and-low-AverageServerLatency"></a>度量顯示高 AverageE2ELatency 與低 AverageServerLatency
 下圖來自 [Azure 入口網站](https://portal.azure.com)監視工具，顯示一個 **AverageE2ELatency** 遠遠高出 **AverageServerLatency** 的範例。
 
@@ -478,7 +478,7 @@ queueServicePoint.UseNagleAlgorithm = false;
 | Microsoft.WindowsAzure.Storage |警告 |2 |85d077ab -… |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(403) 禁止... |
 | Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |收到回應。 狀態碼 = 403，要求 ID = 9d67c64a-64ed-4b0d-9515-3b14bbcdc63d，Content-MD5 =，ETag = . |
 | Microsoft.WindowsAzure.Storage |警告 |2 |85d077ab -… |作業期間擲回例外狀況：遠端伺服器傳回錯誤：(403) 禁止... |
-| Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |檢查是否應該重試作業。 重試計數 = 0，HTTP 狀態碼 = 403，例外狀況 = 遠端伺服器傳回錯誤：(403) 禁止.. |
+| Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |檢查是否應該重試作業。 重試計數 = 0，HTTP 狀態碼 = 403，例外狀況 = 遠端伺服器傳回錯誤：(403) 禁止. |
 | Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |以下位置已經設為「主要」(依據位置模式)。 |
 | Microsoft.WindowsAzure.Storage |錯誤 |1 |85d077ab -… |重試原則不允許重試。 失敗時遠端伺服器傳回錯誤：(403) 禁止。 |
 
@@ -538,7 +538,7 @@ queueServicePoint.UseNagleAlgorithm = false;
 | de8b1c3c-... |開始將要求同步至 https://domemaildist.blob.core.windows.net/azuremmblobcontainer/blobCreated.txt。 |
 | de8b1c3c-... |StringToSign = PUT...64.qCmF+TQLPhq/YYK50mP9ZQ==........x-ms-blob-type:BlockBlob.x-ms-client-request-id:de8b1c3c-....x-ms-date:Tue, 03 Jun 2014 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer/blobCreated.txt. |
 | de8b1c3c-... |正在準備寫入要求資料。 |
-| e2d06d78-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到.. |
+| e2d06d78-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到. |
 | e2d06d78-... |收到回應。 狀態碼 = 404，要求 ID = 353ae3bc-...，Content-MD5 = ，ETag = . |
 | e2d06d78-... |回應標頭已成功處理完畢，並繼續剩下的作業。 |
 | e2d06d78-... |正在下載回應內文。 |
@@ -548,14 +548,14 @@ queueServicePoint.UseNagleAlgorithm = false;
 | e2d06d78-... |等候回應。 |
 | de8b1c3c-... |正在寫入要求資料。 |
 | de8b1c3c-... |等候回應。 |
-| e2d06d78-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(409) 衝突.. |
+| e2d06d78-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(409) 衝突. |
 | e2d06d78-... |收到回應。 狀態碼 = 409，要求 ID = c27da20e-...，Content-MD5 = ，ETag = . |
 | e2d06d78-... |正在下載錯誤回應內文。 |
-| de8b1c3c-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到.. |
+| de8b1c3c-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到. |
 | de8b1c3c-... |收到回應。 狀態碼 = 404，回應 ID = 0eaeab3e-...，Content-MD5 = ，ETag = . |
-| de8b1c3c-... |作業期間擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到.. |
-| de8b1c3c-... |重試原則不允許重試。 失敗時遠端伺服器傳回錯誤：(404) 找不到.. |
-| e2d06d78-... |重試原則不允許重試。 失敗時遠端伺服器傳回錯誤：(409) 衝突.. |
+| de8b1c3c-... |作業期間擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到. |
+| de8b1c3c-... |重試原則不允許重試。 失敗時遠端伺服器傳回錯誤：(404) 找不到. |
+| e2d06d78-... |重試原則不允許重試。 失敗時遠端伺服器傳回錯誤：(409) 衝突. |
 
 在此範例中，記錄顯示用戶端正將來自 **UploadFromStream** 方法的要求 (de8b1c3c-...) 穿插到來自 **CreateIfNotExists** 方法 (要求 ID e2d06d78…) 的要求；而這種現象是因為用戶端應用程式正以非同步方式叫用這些方法所致。 您應該修改用戶端裡的非同步程式碼，確保該程式碼在嘗試將任何資料上傳至容器的 Blob 之前，先建立該容器。 理想的情況是，您應該事先建立所有容器。
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: bruceper
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c52d41bbac22c6a20b1632b529b061ed7e640ea1
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: eec68b1cbfbddf0b72b55376ee11451b25898b68
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -42,7 +42,7 @@ ms.lasthandoff: 11/17/2016
 若要完成本教學課程，您必須具備下列項目：
 
 * Microsoft Azure 訂用帳戶。 如果您沒有訂用帳戶，您可以註冊 [免費試用](https://azure.microsoft.com/pricing/free-trial)。
-* 命令列介面 0.9.1 版或更新版本。 若要安裝最新版本，並連接至 Azure 訂用帳戶，請參閱 [安裝與設定 Azure 跨平台命令列介面](../xplat-cli-install.md)。
+* 命令列介面 0.9.1 版或更新版本。 若要安裝最新版本，並連接至 Azure 訂用帳戶，請參閱 [安裝與設定 Azure 跨平台命令列介面](../cli-install-nodejs.md)。
 * 可設定使用您在本教學課程中所建立之金鑰或密碼的應用程式。 您可以在 [Microsoft 下載中心](http://www.microsoft.com/download/details.aspx?id=45343)找到範例應用程式。 如需相關指示，請參閱隨附的讀我檔案。
 
 ## <a name="getting-help-with-azure-cross-platform-command-line-interface"></a>取得使用 Azure 跨平台命令列介面的說明
@@ -60,7 +60,7 @@ ms.lasthandoff: 11/17/2016
 
 您也可以閱讀以下教學課程，以熟悉 Azure 跨平台命令列介面中的 Azure 資源管理員：
 
-* [如何安裝與設定 Azure 跨平台命令列介面](../xplat-cli-install.md)
+* [如何安裝與設定 Azure 跨平台命令列介面](../cli-install-nodejs.md)
 * [搭配 Azure 資源管理員使用 Azure 跨平台命令列介面](../xplat-cli-azure-resource-manager.md)
 
 ## <a name="connect-to-your-subscriptions"></a>連線到您的訂閱
@@ -95,7 +95,7 @@ ms.lasthandoff: 11/17/2016
 
     azure account set <subscription name>
 
-如需關於設定 Azure 跨平台命令列介面的詳細資訊，請參閱 [如何安裝與設定 Azure 跨平台命令列介面](../xplat-cli-install.md)。
+如需關於設定 Azure 跨平台命令列介面的詳細資訊，請參閱 [如何安裝與設定 Azure 跨平台命令列介面](../cli-install-nodejs.md)。
 
 ## <a name="switch-to-using-azure-resource-manager"></a>切換成使用 Azure 資源管理員
 金鑰保存庫需有 Azure 資源管理員，因此請輸入下列內容以切換至 Azure 資源管理員模式：
@@ -167,7 +167,7 @@ ms.lasthandoff: 11/17/2016
 在 Azure Active Directory 中註冊應用程式：
 
 1. 登入 Azure 入口網站。
-2. 按一下左側的 [ **Active Directory**]，然後選取您將要註冊應用程式的目錄。 <br> <br>  注意：您必須選取包含用來建立金鑰保存庫之 Azure 訂用帳戶的相同目錄。 如果您不知道是哪個目錄，請按一下 [ **設定**]，找出建立金鑰保存庫所用的訂用帳戶，並記下最後一欄中顯示的目錄名稱。
+2. 按一下左側的 [ **Active Directory**]，然後選取您將要註冊應用程式的目錄。 <br> <br> 注意：您必須選取包含用來建立金鑰保存庫之 Azure 訂用帳戶的相同目錄。 如果您不知道是哪個目錄，請按一下 [ **設定**]，找出建立金鑰保存庫所用的訂用帳戶，並記下最後一欄中顯示的目錄名稱。
 3. 按一下 [ **應用程式**]。 如果您的目錄中尚未新增任何應用程式，則此頁面將僅會顯示 [ **新增應用程式** ] 連結。 按一下此連結，或者您可以按一下命令列上的 [ **新增** ]。
 4. 在 [新增應用程式] 精靈的 [您想做什麼？] 頁面上，按一下 [新增我的組織正在開發的應用程式]。
 5. 在 [告訴我們您的應用程式] 頁面上，指定您的應用程式名稱，並選取 [WEB 應用程式和/或 WEB API] (預設值)。 按 [下一步] 圖示。

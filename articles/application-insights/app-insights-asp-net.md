@@ -11,12 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/28/2017
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 05b642949205d7698fbcf791a5d2f06528ff239e
-ms.openlocfilehash: e827bddfa0bcc1c1e46d06c6856033e77859c7fb
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: ae869be6ed9f304629498f416ffdda96252bdf9c
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -34,7 +34,7 @@ ms.lasthandoff: 03/01/2017
 * [在執行階段檢測 Web 應用程式](app-insights-monitor-performance-live-website-now.md)
 * [Azure 雲端服務](app-insights-cloudservices.md)
 
-## <a name="a-nameidea-step-1-add-the-application-insights-sdk"></a><a name="ide"></a>步驟 1：新增 Application Insights SDK
+## <a name="ide"></a>步驟 1：新增 Application Insights SDK
 
 在 [方案總管] 中以滑鼠右鍵按一下 Web 應用程式，然後選擇 [新增]、[Application Insights 遙測] 或 [設定 Application Insights]。
 
@@ -53,7 +53,7 @@ ms.lasthandoff: 03/01/2017
 5. 或者，您可以只是將 Application Insights SDK 新增至應用程式。 在此情況下，您在 Visual Studio 中偵錯時可以看到遙測。 稍後，您可以回到此設定頁面，或等到部署您的應用程式之後，[在執行階段開啟遙測](app-insights-monitor-performance-live-website-now.md)。
 
 
-## <a name="a-nameruna-step-2-run-your-app"></a><a name="run"></a> 步驟 2︰執行您的應用程式
+## <a name="run"></a> 步驟 2︰執行您的應用程式
 按 F5 執行您的應用程式。 開啟不同的頁面來產生一些遙測。
 
 在 Visual Studio 中，您可以看見已記錄的事件計數。
@@ -124,7 +124,7 @@ ms.lasthandoff: 03/01/2017
 >
 >
 
-## <a name="a-namelanda-what-does-the-add-application-insights-command-do"></a><a name="land"></a>「新增 Application Insights」命令有何作用？
+## <a name="land"></a>「新增 Application Insights」命令有何作用？
 Application Insights 會將應用程式的遙測傳送至 Application Insights 入口網站 (裝載於 Azure)。
 
 ![遙測移動的圖表](./media/app-insights-asp-net/01-scheme.png)
@@ -197,6 +197,10 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 如果您使用 Visual Studio Team Services，您可以[取得註解標記](app-insights-annotations.md) (每當發行新版本時，這會新增至您的圖表)。 下圖顯示此標記的顯示方式。
 
 ![圖表上版本註解範例的螢幕擷取畫面](./media/app-insights-asp-net/release-annotation.png)
+
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
 
 ## <a name="next-steps"></a>後續步驟
 **在 Visual Studio 中使用 Application Insights[](app-insights-visual-studio.md)**<br/>包括使用遙測來偵錯、診斷搜尋及鑽研程式碼的相關資訊。

@@ -227,10 +227,11 @@
 ## 管理
 ### 建立 IoT 中樞 
 #### [使用入口網站](iot-hub-create-through-portal.md)
+#### [使用 PowerShell](iot-hub-create-using-powershell.md)
 #### [使用 CLI 2.0](iot-hub-create-using-cli.md)
 #### [使用 CLI](iot-hub-create-using-cli-nodejs.md)
 #### [使用 REST API](iot-hub-rm-rest.md)
-#### [使用 PowerShell](iot-hub-rm-template-powershell.md)
+#### [使用 PowerShell 範本](iot-hub-rm-template-powershell.md)
 #### [使用 .NET 範本](iot-hub-rm-template.md)
 ### [設定檔案上傳](iot-hub-configure-file-upload.md)
 ### [大量管理 IoT 裝置](iot-hub-bulk-identity-mgmt.md)

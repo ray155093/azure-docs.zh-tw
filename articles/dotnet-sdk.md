@@ -2,8 +2,7 @@
 title: "什麼是 Azure .NET SDK"
 description: "了解 Azure .NET SDK 包含的項目。"
 documentationcenter: .net
-author: tdykstra
-manager: wpickett
+author: chrissfanos
 editor: mollybos
 services: 
 ms.assetid: f70279ac-7c56-4d6a-9882-352a8b644a4b
@@ -13,10 +12,11 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/30/2016
-ms.author: rachelap
+ms.author: juliako
 translationtype: Human Translation
 ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
 ms.openlocfilehash: 5f61a5422fc36b2468585e601823f292680142ec
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -26,7 +26,7 @@ Azure SDK for .NET 是一組 Visual Studio 工具、命令列工具、執行階�
 
 Azure SDK for .NET 還包含[用來使用 Azure 服務的用戶端程式庫](http://go.microsoft.com/fwlink/?LinkId=510472)。 這些程式庫可使用 NuGet (英文) 個別進行安裝。
 
-## <a name="a-idincludedawhats-included-in-the-azure-sdk-for-net"></a><a id="included"></a>Azure SDK for .NET 包含的內容
+## <a id="included"></a>Azure SDK for .NET 包含的內容
 Azure SDK for .NET 將安裝下列產品：
 
 * [Visual Studio Community 2015 版](#vwd)
@@ -42,41 +42,41 @@ Azure SDK for .NET 將安裝下列產品：
 * [Microsoft ASP.NET 和 Web Tools for Visual Studio](#wte)
 * [Microsoft Azure Data Lake Tools for Visual Studio](#datalake)
 
-### <a name="a-idvwdavisual-studio-community-edition-2015"></a><a id="vwd"></a>Visual Studio Community 2015 版
+### <a id="vwd"></a>Visual Studio Community 2015 版
 如果您的電腦上沒有 Visual Studio，SDK 將會安裝 [Visual Studio Community 2015 版](https://www.visualstudio.com/products/visual-studio-community-vs)。
 
-### <a name="a-idstgemulatoramicrosoft-azure-storage-emulator"></a><a id="stgemulator"></a>Microsoft Azure 儲存體模擬器
+### <a id="stgemulator"></a>Microsoft Azure 儲存體模擬器
 [Azure 儲存體模擬器](http://msdn.microsoft.com/library/hh403989.aspx) 使用 SQL Server 執行個體和本機檔案系統來模擬 Azure 儲存體 (佇列、資料表、Blob)，因此您可以在本機進行測試。
 
-### <a name="a-idstgtoolsamicrosoft-azure-storage-tools"></a><a id="stgtools"></a>Microsoft Azure 儲存體工具
+### <a id="stgtools"></a>Microsoft Azure 儲存體工具
 這會安裝命令列工具 [AzCopy](http://aka.ms/AzCopy)(英文)，供您用來將資料傳入和傳出 Azure 儲存體帳戶。
 
-### <a name="a-idauthamicrosoft-azure-authoring-tools"></a><a id="auth"></a>Microsoft Azure 製作工具
+### <a id="auth"></a>Microsoft Azure 製作工具
 其包含下列工具：
 
 * [CSPack 命令列工具](http://msdn.microsoft.com/library/gg432988.aspx) ，用於建立部署封裝。
 * [CSEncrypt 命令列工具](http://msdn.microsoft.com/library/hh404001.aspx) ，用於加密密碼，若要透過遠端桌面連線存取雲端服務角色執行個體，便需要用到此密碼。
 * 執行階段二進位檔，要有此二進位檔，雲端服務專案才能與專案執行階段環境進行通訊，也才能進行診斷。 NuGet 封裝不提供這些二進位檔。
 
-### <a name="a-idemulatoramicrosoft-azure-emulator"></a><a id="emulator"></a>Microsoft Azure 模擬器
+### <a id="emulator"></a>Microsoft Azure 模擬器
 [Azure 模擬器](http://msdn.microsoft.com/library/dn339018.aspx) 可模擬雲端服務環境，因此您可以在將雲端服務專案部署至 Azure 之前，先在您的電腦本機上進行測試。
 
-### <a name="a-idhdinsightahdinsight-tools-for-visual-studio-and-microsoft-hive-odbc-driver"></a><a id="hdinsight"></a>HDInsight Tools for Visual Studio 和 Microsoft Hive ODBC 驅動程式
+### <a id="hdinsight"></a>HDInsight Tools for Visual Studio 和 Microsoft Hive ODBC 驅動程式
 伺服器總管中的 HDInsight 工具可讓您瀏覽 Hive 資料庫，和 HDInsight 叢集的連結儲存體帳戶、建立資料表，以及建立並送出 Hive 查詢。 如需詳細資訊，請參閱〈 [開始使用 HDInsight Hadoop Tools for Visual Studio](hdinsight/hdinsight-hadoop-visual-studio-tools-get-started.md)〉。
 
-### <a name="a-idlibrariesamicrosoft-azure-libraries-for-net"></a><a id="libraries"></a>Microsoft Azure Libraries for .NET
+### <a id="libraries"></a>Microsoft Azure Libraries for .NET
 其包含下列工具：
 
 * 用於 Azure 儲存體、服務匯流排及快取的 NuGet 封裝，NuGet 封裝皆儲存於您的電腦中，所以 Visual Studio 可在離線時建立新的雲端服務專案。
 * Visual Studio 外掛程式，可讓 [角色中快取](http://msdn.microsoft.com/library/dn386103.aspx) 專案在 Visual Studio 中以本機方式執行。
 
-### <a name="a-idmobileamicrosoft-azure-mobile-app-sdk"></a><a id="mobile"></a>Microsoft Azure Mobile App SDK
+### <a id="mobile"></a>Microsoft Azure Mobile App SDK
 可使用 [Azure App Service Mobile Apps](app-service-mobile/app-service-mobile-value-prop.md)的工具。
 
-### <a name="a-idpsamicrosoft-azure-powershell"></a><a id="ps"></a>Microsoft Azure PowerShell
+### <a id="ps"></a>Microsoft Azure PowerShell
 Azure PowerShell 可讓您 [將 Azure 環境的建立及部署自動化](http://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/automate-everything)(英文)。
 
-### <a name="a-idtoolsamicrosoft-azure-tools-for-microsoft-visual-studio"></a><a id="tools"></a>Microsoft Azure Tools for Microsoft Visual Studio
+### <a id="tools"></a>Microsoft Azure Tools for Microsoft Visual Studio
 這可讓您使用 Azure 資源，主要是 Azure 雲端服務和虛擬機器：
 
 * [建立、開啟及發行雲端服務專案](cloud-services/cloud-services-dotnet-get-started.md)(英文)。
@@ -88,7 +88,7 @@ Azure PowerShell 可讓您 [將 Azure 環境的建立及部署自動化](http://
 * [在 Visual Studio 中對雲端服務或虛擬機器進行偵錯](http://msdn.microsoft.com/library/ff683670.aspx)。
 * [使用 Azure 資源群組部署專案自動化資源佈建](https://msdn.microsoft.com/library/dn872471.aspx)
 
-### <a name="a-idwteamicrosoft-app-service-tools-for-visual-studio"></a><a id="wte"></a>Microsoft App Service Tools for Visual Studio
+### <a id="wte"></a>Microsoft App Service Tools for Visual Studio
 這可讓您使用 Azure 網站：
 
 * [發行 Web 專案至 Azure 網站](app-service-web/web-sites-dotnet-get-started.md)(英文)。
@@ -103,10 +103,10 @@ Azure PowerShell 可讓您 [將 Azure 環境的建立及部署自動化](http://
 > 
 > 
 
-## <a name="a-iddatalakeamicrosoft-azure-data-lake-tools-for-visual-studio"></a><a id="datalake"></a>Microsoft Azure Data Lake Tools for Visual Studio
+## <a id="datalake"></a>Microsoft Azure Data Lake Tools for Visual Studio
 如需詳細資訊，請參閱 [教學課程：使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics/data-lake-analytics-data-lake-tools-get-started.md)。
 
-## <a name="a-idnotincludedawhats-not-included-when-you-install-the-azure-sdk-for-net"></a><a id="notincluded"></a>安裝 Azure SDK for .NET 時不包含的內容
+## <a id="notincluded"></a>安裝 Azure SDK for .NET 時不包含的內容
 當您安裝此 SDK 時，有一些您想用來開發 Azure 的項目並不包含在內。 其中最重要的項目如下：
 
 * [用戶端程式庫](http://go.microsoft.com/fwlink/?LinkId=510472)(英文)。
@@ -120,7 +120,7 @@ Azure PowerShell 可讓您 [將 Azure 環境的建立及部署自動化](http://
   
     只有 Visual Studio 2013 Update 2 和更新版本會提供 Mobile Apps 範本。 即使您安裝 Azure SDK for .NET，Visual Studio 2012 或更早版本以及 Visual Studio 2013 Update 1 或更早版本也不提供行動服務範本。
 
-## <a name="a-idfaqafrequently-asked-questions"></a><a id="faq"></a>常見問題集
+## <a id="faq"></a>常見問題集
 * [Visual Studio 中已經有許多 Azure 功能。我是否還需要安裝 Azure SDK for .NET？](#azinvs)
 * [我想要用戶端程式庫。我是否必須要安裝 Azure SDK for .NET 才能取得？](#clientlib)
 * [哪裡可以找到舊版的 Azure SDK for .NET？](#olderversions)
@@ -128,26 +128,26 @@ Azure PowerShell 可讓您 [將 Azure 環境的建立及部署自動化](http://
 * [哪個客體 OS 版本與 Azure SDK for .NET 相容？](#guestos)
 * [如何解除安裝 Azure SDK for .NET？](#uninstall)
 
-### <a name="a-idazinvsamany-azure-features-are-already-in-visual-studio-do-i-need-to-install-the-azure-sdk-for-net"></a><a id="azinvs"></a>Visual Studio 中已經有許多 Azure 功能。 我是否還需要安裝 Azure SDK for .NET？
+### <a id="azinvs"></a>Visual Studio 中已經有許多 Azure 功能。 我是否還需要安裝 Azure SDK for .NET？
 如果您想要使用最新工具來開發 Azure，那麼您最好安裝此 SDK。 如果您具備下列條件，也可以不安裝此 SDK：
 
 * 已安裝最新版的 [Visual Studio 更新](http://www.visualstudio.com/downloads/download-visual-studio-vs#DownloadFamilies_5)。
 * 僅開發 Azure 網站或行動服務，不開發雲端服務或虛擬機器。
 * 您的應用程式沒有使用儲存體，或是有使用儲存體，但不需要儲存體模擬器或 AzCopy 工具。
 
-### <a name="a-idclientlibai-want-a-client-library-do-i-have-to-install-the-azure-sdk-for-net-to-get-it"></a><a id="clientlib"></a>我想要用戶端程式庫。 我是否必須要安裝 Azure SDK for .NET 才能取得？
+### <a id="clientlib"></a>我想要用戶端程式庫。 我是否必須要安裝 Azure SDK for .NET 才能取得？
 此 SDK 只會安裝用戶端程式庫，因此您可以在未連線至網際網路的狀態下建立雲端服務專案。 [NuGet.org](http://go.microsoft.com/fwlink/?LinkId=510472)(英文) 上的 NuGet 封裝有提供目前版本的用戶端程式庫。 如需詳細資訊，請參閱本文前面的 [安裝 Azure SDK for .NET 時不包含的內容](#notincluded) 。
 
-### <a name="a-idolderversionsawhere-can-i-find-older-versions-of-the-azure-sdk-for-net"></a><a id="olderversions"></a>哪裡可以找到舊版的 Azure SDK for .NET？
+### <a id="olderversions"></a>哪裡可以找到舊版的 Azure SDK for .NET？
 如需較舊的版本，請參閱 [Azure SDK for .NET](https://azure.microsoft.com/downloads/archive-net-downloads/) 下載頁面。
 
-### <a name="a-idlifecycleawhats-the-lifecycle-policy-for-versions-of-the-azure-sdk-for-net"></a><a id="lifecycle"></a>Azure SDK for .NET 各版本的生命週期原則內容是什麼？
+### <a id="lifecycle"></a>Azure SDK for .NET 各版本的生命週期原則內容是什麼？
 請參閱 [Microsoft Azure 雲端服務支援週期原則](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq)。
 
-### <a name="a-idguestosawhich-guest-os-versions-is-the-azure-sdk-for-net-compatible-with"></a><a id="guestos"></a>哪個客體 OS 版本與 Azure SDK for .NET 相容？
+### <a id="guestos"></a>哪個客體 OS 版本與 Azure SDK for .NET 相容？
 請參閱 [Azure 客體 OS 版本與 SDK 相容性比較表](http://msdn.microsoft.com/library/ee924680.aspx)。
 
-### <a name="a-iduninstallahow-do-i-uninstall-the-azure-sdk-for-net"></a><a id="uninstall"></a>如何解除安裝 Azure SDK for .NET？
+### <a id="uninstall"></a>如何解除安裝 Azure SDK for .NET？
 本文的＜ [Azure SDK for .NET 包含的內容](#included) ＞中列出的每個項目，皆為 Windows 控制台 [ **程式和功能**] 的已安裝程式清單中所列的個別程式。  您無法一次同時解除安裝這些項目，必須個別解除安裝每個程式。
 
 若您已安裝 Azure SDK for.NET，且安裝的是最新版本，通常不需要解除安裝舊有版本。 在大部分情況下，SDK 安裝會更新現有的程式，而不會加入新的程式及保留舊有的程式。
@@ -162,19 +162,14 @@ Azure PowerShell 可讓您 [將 Azure 環境的建立及部署自動化](http://
 > 
 > 
 
-## <a name="a-idversionsaversions"></a><a id="versions"></a>版本
+## <a id="versions"></a>版本
 若要查看目前版本或下載舊版，請參閱「 [Azure SDK for.NET 版本歷程記錄](https://azure.microsoft.com/downloads/archive-net-downloads/) 」頁面。
 
-## <a name="a-idresourcesaresources"></a><a id="resources"></a>資源
+## <a id="resources"></a>資源
 若要下載 Azure SDK for .NET 的目前版本或用戶端程式庫，請參閱「 [Azure 下載」頁面](https://azure.microsoft.com/downloads/)。
 
 如需 Azure SDK for .NET 原始程式碼 (包含用戶端程式庫)，請參閱 [GitHub.com/Azure](https://github.com/azure/)(英文)。
 
 如需 Azure 用戶端程式庫的參考文件，請參閱 [Azure .NET 參考](https://azure.microsoft.com/documentation/api/)(英文)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

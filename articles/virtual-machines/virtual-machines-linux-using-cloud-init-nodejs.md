@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 10/26/2016
 ms.author: v-livech
 translationtype: Human Translation
-ms.sourcegitcommit: 7d804c93933fd53b0a74696391e3ade228e66560
-ms.openlocfilehash: 4895bd1a47a918df8029ef0d2e0343d9b0da0903
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: cdd446dbacb531c3778d232446231bfae08c74ac
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 02/27/2017
 本文中示範如何製作 cloud-init 指令碼來設定主機名稱、更新已安裝的封裝及管理使用者帳戶。  在 VM 建立期間，會從 Azure CLI 呼叫 cloud-init 指令碼。  本文需要：
 
 * 一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))。
-* 使用 `azure login` 登入的 [Azure CLI](../xplat-cli-install.md)。
+* 使用 `azure login` 登入的 [Azure CLI](../cli-install-nodejs.md)。
 * Azure CLI *必須處於* Azure Resource Manager 模式 `azure config mode arm`。
 
 ## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本

@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 01/25/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: a4121f8857fa9eaeb1cf1bca70e29666f6a04f63
-ms.openlocfilehash: 2714bfbf2bf35b11ca1ba6ab8b7e4e6bf5431f45
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 36c245b98868682c24a87bba6628de492e620012
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: 2714bfbf2bf35b11ca1ba6ab8b7e4e6bf5431f45
 > * [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
 > * [機器學習服務](data-factory-azure-ml-batch-execution-activity.md) 
 > * [預存程序](data-factory-stored-proc-activity.md)
-> * [資料湖分析 U-SQL](data-factory-usql-activity.md)
+> * [Data Lake Analytics U-SQL](data-factory-usql-activity.md)
 > * [.NET 自訂](data-factory-use-custom-activities.md)
 
 ## <a name="overview"></a>概觀
@@ -51,10 +52,11 @@ Data Factory 管線中的 HDInsight Pig 活動會在您自己或隨選的 Window
 ## <a name="hdinsight-mapreduce-activity"></a>HDInsight MapReduce 活動
 Data Factory 管線中的 HDInsight MapReduce 活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 MapReduce 程式。 如需此活動的詳細資訊，請參閱 [MapReduce 活動](data-factory-map-reduce.md) 。
 
-您可以使用 MapReduce 活動，在 HDInsight Spark 叢集上執行 Spark 程式。 如需詳細資訊，請參閱 [從 Azure Data Factory 叫用 Spark 程式](data-factory-spark.md) 。
-
 ## <a name="hdinsight-streaming-activity"></a>HDInsight 串流活動
 Data Factory 管線中的 HDInsight 串流活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 Hadoop 串流程式。 如需此活動的詳細資訊，請參閱 [HDInsight 串流活動](data-factory-hadoop-streaming-activity.md) 。
+
+## <a name="hdinsight-spark-activity"></a>HDInsight Spark 活動
+Data Factory 管線中的 HDInsight Spark 活動會在您自己的 HDInsight 叢集上執行 Spark 程式。 如需詳細資訊，請參閱[從 Azure Data Factory 叫用 Spark 程式](data-factory-spark.md)。 
 
 ## <a name="machine-learning-activities"></a>Machine Learning 活動
 Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 Azure Machine Learning Web 服務進行預測性分析。 在 Azure Data Factory 管線中使用 [批次執行活動](data-factory-azure-ml-batch-execution-activity.md#invoking-a-web-service-using-batch-execution-activity) ，您可以叫用 Machine Learning Web 服務來對批次中的資料進行預測。
@@ -93,12 +95,7 @@ Azure Data Factory 支援下列資料轉換活動和活動計算環境。 可將
 | [Hadoop 串流](data-factory-hadoop-streaming-activity.md) |HDInsight [Hadoop] |
 | [Machine Learning 活動︰批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) |Azure VM |
 | [預存程序](data-factory-stored-proc-activity.md) |Azure SQL、Azure SQL 資料倉儲或 SQL Server |
-| [資料湖分析 U-SQL](data-factory-usql-activity.md) |Azure 資料湖分析 |
+| [Data Lake Analytics U-SQL](data-factory-usql-activity.md) |Azure Data Lake Analytics |
 | [DotNet](data-factory-use-custom-activities.md) |HDInsight [Hadoop] 或 Azure Batch |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

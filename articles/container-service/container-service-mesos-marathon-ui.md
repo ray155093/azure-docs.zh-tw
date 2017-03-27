@@ -17,9 +17,9 @@ ms.workload: na
 ms.date: 12/02/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
-ms.openlocfilehash: de250fbc3982cdc493f74976914290d8ac89bb08
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: f26b191d9d98768d766e4c974138c9d191340027
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -41,7 +41,7 @@ DC/OS 提供環境來部署及調整叢集工作負載，同時將基礎硬體�
 ![DC/OS UI](./media/dcos/dcos2.png)
 
 ## <a name="explore-the-marathon-ui"></a>瀏覽 Marathon UI
-若要查看 Marathon UI，請瀏覽至 http://localhost/Marathon。 在此畫面中，您可以啟動 Azure 容器服務 DC/OS 叢集上的新容器或其他應用程式。 您也可以看到有關執行容器和應用程式的資訊。  
+若要查看 Marathon UI，請瀏覽至 http://localhost/marathon。 在此畫面中，您可以啟動 Azure 容器服務 DC/OS 叢集上的新容器或其他應用程式。 您也可以看到有關執行容器和應用程式的資訊。  
 
 ![Marathon UI](./media/dcos/dcos3.png)
 

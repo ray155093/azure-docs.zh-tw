@@ -1,6 +1,6 @@
 ---
-title: "Logic Apps 內部部署資料閘道連接 | Microsoft Docs"
-description: "如何從邏輯應用程式建立內部部署資料閘道連接的相關資訊。"
+title: "存取內部部署資料 - Azure Logic Apps | Microsoft Docs"
+description: "邏輯應用程式如何藉由連線至內部部署資料閘道來存取內部部署資料。"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -15,49 +15,74 @@ ms.workload: integration
 ms.date: 07/05/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: dc8c9eac941f133bcb3a9807334075bfba15de46
-ms.openlocfilehash: 0a16f22b6e3bb60091409c64b631afcba3d6db10
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: ce0be184fe11a7e5873639d79961e98de730ec86
+ms.lasthandoff: 03/10/2017
 
 
 ---
-# <a name="connect-to-the-on-premises-data-gateway-for-logic-apps"></a>連接至 Logic Apps 的內部部署資料閘道
-支援的邏輯應用程式連接器可讓您設定連接，透過內部部署資料閘道存取內部部署資料。  下列步驟將引導您了解如何安裝和設定內部部署資料閘道，以搭配邏輯應用程式使用。
+# <a name="connect-to-on-premises-data-from-logic-apps"></a>從邏輯應用程式連線至內部部署資料
 
-## <a name="prerequisites"></a>必要條件
-  * 必須在 Azure 中使用工作或學校電子郵件地址將內部部署資料閘道與您的帳戶 (Azure Active Directory 帳戶) 相關聯
-  * 如果您使用 Microsoft 帳戶 (例如 @outlook.com, @live.com))，可以 [依照這裡的步驟](../virtual-machines/virtual-machines-windows-create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal) ，使用您的 Azure 帳戶建立一個工作或學校的電子郵件地址 
-  * 必須 [在本機電腦上安裝](logic-apps-gateway-install.md)內部部署資料閘道。
-  * 閘道必須未被另一個 Azure 內部部署資料閘道宣告 ([宣告會在下面建立步驟 2 時進行](#2-create-an-azure-on-premises-data-gateway-resource)) - 一個安裝只能與一個閘道資源相關聯。
+若要存取內部部署資料，您可以為受支援的 Azure Logic Apps 連接器設定內部部署資料閘道的連線。 下列步驟可引導您了解如何安裝和設定內部部署資料閘道，以搭配邏輯應用程式使用。
+內部部署資料閘道支援這些資料來源連線︰
 
-## <a name="installing-and-configuring-the-connection"></a>安裝和設定連接
+*   BizTalk Server
+*    DB2  
+*   檔案系統
+*   Informix
+*   MQ
+*    Oracle 資料庫 
+*   SAP 應用程式伺服器 
+*   SAP 訊息伺服器
+*    SQL Server
+
+如需這些連線的詳細資訊，請參閱[Azure Logic Apps 的連接器](https://docs.microsoft.com/azure/connectors/apis-list)。
+
+## <a name="requirements"></a>需求
+
+* 您必須在 Azure 中擁有工作或學校電子郵件地址，以便將內部部署資料閘道與您的帳戶 (Azure Active Directory 帳戶) 相關聯。
+
+* 如果您使用 Microsoft 帳戶 (例如 @outlook.com)，您可以使用 Azure 帳戶[建立工作或學校電子郵件地址](../virtual-machines/virtual-machines-windows-create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal)。
+
+* 您必須[已在本機電腦上安裝內部部署資料閘道](logic-apps-gateway-install.md)。
+
+* 您只能將安裝關聯至一個閘道資源。 您的閘道無法供另一個 Azure 內部部署資料閘道進行宣告。 宣告會發生在 ([本主題步驟 2 期間的建立作業](#2-create-an-azure-on-premises-data-gateway-resource))。
+
+## <a name="install-and-configure-the-connection"></a>安裝和設定連線
+
 ### <a name="1-install-the-on-premises-data-gateway"></a>1.安裝內部部署資料閘道
-安裝內部部署資料閘道的資訊可參閱 [本文](logic-apps-gateway-install.md)。  必須先在內部部署機器上安裝閘道，才能繼續執行其餘的步驟。
+
+如果您還沒有這麼做，請依照下列步驟來[安裝內部部署資料閘道](logic-apps-gateway-install.md)。 在繼續進行其他步驟前，請先確定您已在內部部署機器上安裝資料閘道。
 
 ### <a name="2-create-an-azure-on-premises-data-gateway-resource"></a>2.建立 Azure 內部部署資料閘道資源
-安裝之後，您必須將您的 Azure 訂用帳戶與內部部署資料閘道相關聯。
 
-1. 使用安裝閘道期間所使用的工作或學校電子郵件地址登入 Azure
-2. 按一下 [新增]  資源按鈕
-3. 搜尋並選取 [內部部署資料閘道] 
-4. 完成資訊，將閘道與您的帳戶相關聯 - 包括選取適當的 [安裝名稱] 
+安裝閘道之後，您必須將 Azure 訂用帳戶與閘道相關聯。
+
+1. 使用安裝閘道期間所使用的同一個工作或學校電子郵件地址來登入 Azure。
+2. 選擇 [新增]。
+3. 尋找並選取 [內部部署資料閘道]。
+4. 若要將閘道與您的帳戶相關聯，請填妥資訊，包括選取適當的 [安裝名稱]。
    
     ![內部部署資料閘道連接][1]
-5. 按一下 [建立]  按鈕以建立資源
 
-### <a name="3-create-a-logic-app-connection-in-the-designer"></a>3.在設計工具中建立邏輯應用程式連接
-現在，您的 Azure 訂用帳戶已經與內部部署資料閘道的執行個體相關聯，您可以從邏輯應用程式內建立連接。
+5. 若要建立資源，請選擇 [建立]。
 
-1. 開啟邏輯應用程式，然後選擇支援內部部署連接的連接器 (撰寫本文時為 SQL Server)
-2. 選取 [透過內部部署資料閘道連接] 
+### <a name="3-create-a-logic-app-connection-in-logic-app-designer"></a>3.在邏輯應用程式設計工具中建立邏輯應用程式連線
+
+現在，您的 Azure 訂用帳戶已經與內部部署資料閘道的執行個體相關聯，您可以從邏輯應用程式建立與閘道的連線。
+
+1. 開啟邏輯應用程式，然後選擇支援內部部署連線能力的連接器 (例如 SQL Server)。
+2. 選取 [透過內部部署資料閘道連線]。
    
     ![邏輯應用程式設計工具閘道建立][2]
-3. 選取 [閘道]  來連接並完成所需的任何其他連接資訊
-4. 按一下 [建立]  來建立連接
 
-連接現在應該已成功設定，可在邏輯應用程式中使用。  
+3. 選取要連線的 [閘道]，並完成所需的任何其他連線資訊。
+4. 若要建立連線，請選擇 [建立]。
+
+連線現已設定好，可供邏輯應用程式使用。
 
 ## <a name="next-steps"></a>後續步驟
+
 * [Logic Apps 範例和常見案例](../logic-apps/logic-apps-examples-and-scenarios.md)
 * [企業整合功能](../logic-apps/logic-apps-enterprise-integration-overview.md)
 

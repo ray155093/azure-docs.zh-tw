@@ -15,24 +15,37 @@ ms.topic: article
 ms.date: 02/09/2017
 ms.author: richrund
 translationtype: Human Translation
-ms.sourcegitcommit: 14df6b49d79aa1bf6f414070c60e7acac6578301
-ms.openlocfilehash: 7267b41d5d1a7903a084eea2c813bc40249fbf6a
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 1095267ce0c2a922d4bd9cb95a607ce8993df310
+ms.lasthandoff: 03/11/2017
 
 
 ---
 # <a name="azure-networking-monitoring-solutions-in-log-analytics"></a>Log Analytics 中的 Azure 網路監視解決方案
 
-您可以在 Log Analytics 中使用 Azure 應用程式閘道分析解決方案來檢閱：
+Log Analytics 提供下列解決方案來監視您的網路︰
+* 網路效能監視器 (NPM)
+ * 監視網路的健康狀態
+* 要檢閱的 Azure 應用程式閘道分析
+ * Azure 應用程式閘道記錄檔
+ * Azure 應用程式閘道計量
+* 要檢閱的 Azure 網路安全性群組分析
+ * Azure 網路安全性群組記錄檔
 
-* Azure 應用程式閘道記錄檔
-* Azure 應用程式閘道計量
+## <a name="network-performance-monitor-npm"></a>網路效能監視器 (NPM)
+[網路效能監視器](log-analytics-network-performance-monitor.md)管理解決方案是網路監視解決方案，可監視網路的健康狀態、可用性和連線能力。  可用來監視下列項目之間的連線能力︰
+* 公用雲端與內部部署環境 
+* 資料中心與使用者地點 (分公司)
+* 裝載各種多層式應用程式的子網路。
 
-您可以在 Log Analytics 中使用 Azure 網路安全性群組分析解決方案來檢閱：
+ ![網路效能監視器的映像](./media/log-analytics-network-performance-monitor/npm-topology.png)
 
-* Azure 網路安全性群組記錄檔
+如需詳細資訊，請參閱[網路效能監視器](log-analytics-network-performance-monitor.md)。
 
-若要使用此解決方案，請為 Azure 應用程式閘道記錄檔和 Azure 網路安全性群組啟用診斷，並將診斷導向至 Log Analytics 工作區。 不需要將記錄寫入 Azure Blob 儲存體。
+## <a name="azure-application-gateway-and-network-security-group-analytics"></a>Azure 應用程式閘道和網路安全性群組分析
+若要使用解決方案：
+1. 將管理解決方案新增至 Log Analytics，以及
+2. 啟用診斷功能以將診斷導向 Log Analytics 工作區。 不需要將記錄寫入 Azure Blob 儲存體。
 
 您可以針對應用程式閘道和網路安全性群組其中之一 (或兩者) 啟用診斷與對應的解決方案。
 
@@ -68,8 +81,8 @@ Azure 應用程式閘道分析和網路安全性群組分析管理解決方案�
 ### <a name="install-and-configure-the-solution"></a>安裝和設定解決方案
 使用下列指示來安裝和設定 Azure 應用程式閘道分析解決方案：
 
-1. 針對您想要監視的[應用程式閘道](../application-gateway/application-gateway-diagnostics.md)啟用診斷記錄。
-2. 使用[從方案庫新增 Log Analytics 解決方案](log-analytics-add-solutions.md)中所述的程序，啟用 Azure 應用程式閘道分析解決方案。 
+1. 從 [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureAppGatewayAnalyticsOMS?tab=Overview) 或使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，啟用 Azure 應用程式閘道分析解決方案。
+2. 針對您想要監視的[應用程式閘道](../application-gateway/application-gateway-diagnostics.md)啟用診斷記錄。 
 
 #### <a name="enable-azure-application-gateway-diagnostics-in-the-portal"></a>在入口網站中啟用 Azure 應用程式閘道診斷
 
@@ -131,8 +144,8 @@ Set-AzureRmDiagnosticSetting -ResourceId $gateway.ResourceId  -WorkspaceId $work
 ### <a name="install-and-configure-the-solution"></a>安裝和設定解決方案
 使用下列指示來安裝和設定 Azure 網路分析解決方案︰
 
-1. 針對您想要監視的[網路安全性群組](../virtual-network/virtual-network-nsg-manage-log.md)資源啟用診斷記錄。
-2. 使用[從方案庫新增 Log Analytics 解決方案](log-analytics-add-solutions.md)中所述的程序，啟用 Azure 網路安全性群組分析解決方案。 
+1. 從 [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.AzureNSGAnalyticsOMS?tab=Overview) 或使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，啟用 Azure 網路安全性群組分析解決方案。 
+2. 針對您想要監視的[網路安全性群組](../virtual-network/virtual-network-nsg-manage-log.md)資源啟用診斷記錄。
 
 ### <a name="enable-azure-network-security-group-diagnostics-in-the-portal"></a>在入口網站中啟用 Azure 網路安全性群組診斷
 

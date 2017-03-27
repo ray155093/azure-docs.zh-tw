@@ -1,9 +1,9 @@
 ---
-title: "自訂：Azure AD 密碼管理 |Microsoft Docs"
+title: "自訂：Azure Active Directory 密碼管理 | Microsoft Docs"
 description: "如何自訂 Azure AD 中的密碼管理外觀、行為和通知，以符合您的需求。"
 services: active-directory
 documentationcenter: 
-author: asteen
+author: MicrosoftGuyJFlo
 manager: femila
 editor: curtand
 ms.assetid: 2cddd150-8747-447a-a7cf-1d7d5775c0b3
@@ -12,38 +12,43 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/03/2016
-ms.author: asteen
+ms.date: 02/28/2017
+ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: b6794425e233508ae72cb3b541738e56044453c1
+ms.lasthandoff: 03/10/2017
 
 
 ---
 # <a name="customizing-password-management-to-fit-your-organizations-needs"></a>自訂密碼管理以符合您的組織的需求
 > [!IMPORTANT]
-> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
-> 
-> 
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+>
+>
 
-為了給予您的使用者最佳的體驗，我們建議您探索和試驗您可以使用的所有密碼管理組態選項。 事實上，您可以前往 **Azure 傳統入口網站** 的 [[Active Directory 延伸模組](https://manage.windowsazure.com)中的組態索引標籤，立即開始探索。 本主題會引導您從 **Azure 傳統入口網站** 中目錄的 [設定](https://manage.windowsazure.com)索引標籤，完成身為系統管理員可以進行的不同密碼管理自訂，包括：
+為了給予您的使用者最佳體驗，我們建議您探索和嘗試可以使用的所有密碼管理組態選項。 事實上，您可以前往 **Azure 傳統入口網站** 的 [Active Directory 延伸模組](https://manage.windowsazure.com)中的組態索引標籤，立即開始探索。 本主題會引導您在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，從您的目錄的 [設定] 索引標籤，完成您以系統管理員身分所能做到的各種密碼管理自訂。
 
-| 主題 |  |
-| --- | --- |
-| 如何啟用或停用密碼重設？ |[設定：啟用使用者的密碼重設](#users-enabled-for-password-reset) |
-| 如何將密碼重設的範圍限定為一組特定的使用者？ |[將密碼重設限定於特定使用者](#restrict-access-to-password-reset) |
-| 如何變更支援的驗證方法？ |[設定：使用者可用的驗證方法](#authentication-methods-available-to-users) |
-| 如何變更必要驗證方法數目？ |[設定：必要驗證方法數目](#number-of-authentication-methods-required) |
-| 如何設定自訂安全性問題？ |[設定：自訂安全性問題](#custom-security-questions) |
-| 如何設定預先定義的當地語系化安全性問題？ |[設定：以知識為基礎的安全性問題](#knowledge-based-security-questions) |
-| 如何變更必要的安全性問題數目？ |[設定：註冊或重設的安全性問題數目](#number-of-questions-required-to-register) |
-| 如何促使我的使用者在登入時註冊？ |[以強制註冊的方式推動密碼重設](#require-users-to-register-when-signing-in) |
-| 如何促使我的使用者定期重新確認他們的註冊？ |[設定：幾天後使用者必須重新確認其驗證資料](#number-of-days-before-users-must-confirm-their-contact-data) |
-| 如何自訂使用者聯繫系統管理員的方式？ |[設定：自訂「連絡您的系統管理員」連結](#customize-the-contact-your-administrator-link) |
-| 如何讓使用者直接解除鎖定 AD 帳戶而不必重設密碼？ |[設定：讓使用者直接解除鎖定 AD 帳戶而不必重設密碼](#allow-users-to-unlock-accounts-without-resetting-their-password) |
-| 如何為使用者啟用密碼重設通知？ |[設定：在使用者的密碼重設時通知使用者](#notify-users-and-admins-when-their-own-password-has-been-reset) |
-| 如何為系統管理員啟用密碼重設通知？ |[設定：在系統管理員重設其密碼時通知其他系統管理員](#notify-admins-when-other-admins-reset-their-own-passwords) |
-| 如何自訂密碼重設的外觀及操作？ |[設定：公司名稱、商標和標誌 ](#password-management-look-and-feel) |
+## <a name="what-customization-options-are-available"></a>有哪些自訂選項可用？
+下表概述所有可用於 Azure Active Directory 密碼重設的自訂選項。
+
+| 主題 | 設定 | 需要的授權 |
+| --- | --- | --- |
+| 如何啟用或停用密碼重設？ |[設定：啟用使用者的密碼重設](#users-enabled-for-password-reset) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何將密碼重設的範圍限定為一組特定的使用者？ |[將密碼重設限定於特定使用者](#restrict-access-to-password-reset) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何變更支援的驗證方法？ |[設定：使用者可用的驗證方法](#authentication-methods-available-to-users) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何變更必要驗證方法數目？ |[設定：必要驗證方法數目](#number-of-authentication-methods-required) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何設定自訂安全性問題？ |[設定：自訂安全性問題](#custom-security-questions) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何設定預先定義的當地語系化安全性問題？ |[設定：以知識為基礎的安全性問題](#knowledge-based-security-questions) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何變更必要的安全性問題數目？ |[設定：註冊或重設的安全性問題數目](#number-of-questions-required-to-register) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何促使我的使用者在登入時註冊？ |[以強制註冊的方式推動密碼重設](#require-users-to-register-when-signing-in) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何促使我的使用者定期重新確認他們的註冊？ |[設定：幾天後使用者必須重新確認其驗證資料](#number-of-days-before-users-must-confirm-their-contact-data) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何自訂使用者聯繫系統管理員的方式？ |[設定：自訂「連絡您的系統管理員」連結](#customize-the-contact-your-administrator-link) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何根據雲端管理經驗來啟用或停用密碼回寫？ |[設定：啟用或停用密碼回寫](#write-back-passwords-to-on-premises-directory) | <ul><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何讓使用者直接解除鎖定內部部署 AD 帳戶，而不必重設密碼？ |[設定：讓使用者直接解除鎖定 AD 帳戶而不必重設密碼](#allow-users-to-unlock-accounts-without-resetting-their-password) | <ul><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何為使用者啟用密碼重設通知？ |[設定：在使用者的密碼重設時通知使用者](#notify-users-and-admins-when-their-own-password-has-been-reset) |  <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何為系統管理員啟用密碼重設通知？ |[設定：在系統管理員重設其密碼時通知其他系統管理員](#notify-admins-when-other-admins-reset-their-own-passwords) | <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
+| 如何自訂密碼重設的外觀及操作？ |[設定：公司名稱、商標和標誌 ](#password-management-look-and-feel) |  <ul><li>O365 (任何付費 SKU) [僅限雲端使用者]</li><li>Azure AD Basic [僅限雲端使用者]</li><li>Azure AD Premium P1 或 P2 [雲端或內部部署使用者]</li><li>Enterprise Mobility Suite [雲端或內部部署使用者]</li><li>Enterprise Cloud Suite [雲端或內部部署使用者]</li></ul> |
 
 ## <a name="password-management-look-and-feel"></a>密碼管理外觀與風格
 下表描述每個控制項如何影響使用者註冊密碼重設及重設其密碼的體驗。  您可以在 [Azure 管理入口網站](https://manage.windowsazure.com)中目錄的 [設定] 索引標籤的 [目錄內容] 區段底下，設定這些選項。
@@ -74,6 +79,15 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>決定使用者或系統管理員會在密碼重設電子郵件通訊上看到什麼組織名稱</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -102,10 +116,16 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>決定造訪密碼重設頁面的使用者是否會看到 Microsoft 標誌或您自己的自訂標誌。  這個組態項目也會將您的商標加入至存取面板和登入頁面。</p>
-                <p>
-
-                </p>
                 <p>您可以在<a href="https://technet.microsoft.com/library/dn532270.aspx">將公司商標新增至您的登入和存取面板頁面</a>深入了解租用戶商標和自訂功能。</p>
+                                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -113,9 +133,10 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
                 </p>
                 <ul>
                   <li class="unordered">
-決定在密碼重設入口網站頂端顯示您的標誌，而不是預設 Microsoft 標誌。<br><br></li>
-                  <li class="unordered">
-                    <strong>附註：</strong>如果您直接進入密碼重設頁面，可能無法在密碼重設入口網站的第一頁上看見您的標誌。  一旦使用者輸入他或她的使用者識別碼，並按 [下一步]，您的標誌會出現。  您可以藉由將 whr 參數傳遞至密碼重設頁面，強制您的標誌顯示在頁面載入上，如下所示：<a href="https://passwordreset.microsoftonline.com?whr=wingtiptoysonline.com">https://passwordreset.microsoftonline.com?whr=wingtiptoysonline.com</a><br><br></li>
+決定在密碼重設入口網站頂端顯示您的標誌，而不是預設 Microsoft 標誌。<br><br>
+                    <strong>附註：</strong>如果您直接進入密碼重設頁面，可能無法在密碼重設入口網站的第一頁上看見您的標誌。 一旦使用者輸入使用者名稱並按 [下一步]，您的標誌就會出現。<br><br>
+您可以將 <code>whr</code> 參數傳遞至密碼重設頁面，以強制在頁面載入時顯示您的標誌，如下所示︰<code><a href="https://passwordreset.microsoftonline.com?whr=wingtiptoysonline.com">https://passwordreset.microsoftonline.com?whr=wingtiptoysonline.com</a></code><br><br>
+您可以傳遞 <code>username</code> 參數，以產生連結來預先填入使用者名稱欄位。 這樣也會載入您組織的標誌 (如果已設定)︰<code><a href="https://passwordreset.microsoftonline.com?username=user%40wingtiptoysonline.com">https://passwordreset.microsoftonline.com?username=user%40wingtiptoysonline.com</a></code></li>
                 </ul>
                 <p>
                   <strong>「連絡您的系統管理員」電子郵件：</strong>
@@ -140,8 +161,8 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
 
 > [!NOTE]
 > 您使用的系統管理員帳戶必須已獲指派 AAD Premium 授權，才能看到這些原則控制項。<br><br>這些原則控制項只適用於使用者重設其密碼，不適用於系統管理員。  **系統管理員擁有備用電子郵件和/或行動電話的預設原則，由 Microsoft 為其指定且無法變更。**
-> 
-> 
+>
+>
 
 <table>
             <tbody><tr>
@@ -169,6 +190,15 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>判對是否對此目錄中的使用者啟用密碼重設。 </p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -203,6 +233,15 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>決定是否只允許特定群組使用者使用密碼重設。 (只有在 [使用者啟用密碼重設]<strong></strong> 設為 [是]<strong></strong> 時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -232,10 +271,16 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>決定允許哪個使用者群組使用密碼重設。 </p>
-                <p>
-
-                </p>
                 <p>(只有在 [密碼重設限制存取]<strong></strong> 設為 [是]<strong></strong> 時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -272,10 +317,16 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>決定允許使用者使用哪些挑戰以重設其密碼。</p>
-                <p>
-
-                </p>
                 <p>(只有在 [使用者啟用密碼重設]<strong></strong> 設為 [是]<strong></strong> 時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -302,7 +353,7 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
                   <li class="unordered">
 安全性問題會私密且安全地儲存在目錄中的使用者物件上，只能在註冊期間由使用者回答。  基於安全性考量，目前系統管理員無法編輯或者查看這些答案。<br><br></li>
                   <li class="unordered">
-                    <strong>附註：</strong>依預設，只有雲端屬性辦公室電話和行動電話會從您的內部部署目錄同步處理至您的雲端目錄。  若要深入了解哪些內部部署屬性會同步處理至雲端，請參閱<a href="https://msdn.microsoft.com/library/azure/dn764938.aspx">屬性同步處理至 Azure AD。</a><br><br></li>
+                    <strong>附註：</strong>依預設，只有雲端屬性辦公室電話和行動電話會從您的內部部署目錄同步處理至您的雲端目錄。  若要深入了解哪些內部部署屬性會同步處理至雲端，請參閱<a href="https://msdn.microsoft.com/library/azure/dn764938.aspx">屬性同步處理至 Azure AD</a>。<br><br></li>
                 </ul>
                 <p>
                   <strong>註冊入口網站：</strong>
@@ -332,10 +383,16 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>判斷使用者必須通過才能重設其密碼的可用驗證方法數目下限。</p>
-                <p>
-
-                </p>
                 <p>(只有在 [使用者啟用密碼重設]<strong></strong> 設為 [是]<strong></strong> 時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -372,6 +429,15 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               <td>
                 <p>決定當註冊安全性問題選項時，使用者必須回答的問題數目下限。</p>
                 <p>(只有在已啟用 [安全性問題]<strong></strong> 核取方塊時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -402,10 +468,16 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>決定當重設密碼時，使用者必須回答的問題數目下限。</p>
-                <p>
-
-                </p>
                 <p>(只有在已啟用 [安全性問題]<strong></strong> 核取方塊時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -436,10 +508,16 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>定義您的使用者在註冊密碼重設以及重設其密碼時，可以選取的預先定義安全性問題。</p>
-                <p>
-
-                </p>
                 <p>(只有在已啟用 [安全性問題]<strong></strong> 核取方塊時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -487,10 +565,16 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>定義您的使用者在註冊密碼重設以及重設其密碼時，可能會選取的安全性問題。</p>
-                <p>
-
-                </p>
                 <p>(只有在已啟用 [安全性問題]<strong></strong> 核取方塊時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -537,31 +621,25 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
                 <div id="require-users-to-register-when-signing-in">
                   <p>登入時要求使用者註冊？</p>
                 </div>
-                <p>
-
-                </p>
               </td>
               <td>
                 <p>決定使用者下一次登入時是否需要註冊連絡資料以進行密碼重設。  
                 </p>
                 <p>這項功能適用於任何使用工作或學校帳戶的登入頁面。  這類頁面包括所有 Office 365、Azure 管理入口網站、存取面板和任何使用 Azure AD 來登入的同盟或自訂開發應用程式。
                 </p>
-                <p>
-
-                </p>
                 <p>強制執行的註冊將僅適用於啟用密碼重設的使用者，因此，如果您已經使用「限制密碼重設的存取」功能並將密碼重設的範圍限定為一組特定的使用者，則只有該群組中的使用者需於登入時註冊密碼重設。</p>
-                <p>
-
-                </p>
                 <p>(只有在 [使用者啟用密碼重設]<strong></strong> 設為 [是]<strong></strong> 時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
-                <p>
-
-                </p>
-                <p>
-
-                </p>
                 <p>
                   <strong>注意：</strong>
                 </p>
@@ -590,18 +668,18 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>當 [要求使用者註冊]<strong></strong> 開啟時，此設定會決定使用者必須重新確認其資料之前所經過的時間長度。 </p>
-                <p>
-
-                </p>
                 <p>(只有在 [當登入存取面板時要求使用者註冊]<strong></strong> 設為 [是]<strong></strong> 時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
-                <p>
-
-                </p>
-                <p>
-
-                </p>
                 <p>
                   <strong>注意：</strong>
                 </p>
@@ -626,10 +704,16 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>控制當發生錯誤或使用者於作業等候太久時，在密碼重設入口網站上顯示的連絡您的系統管理員連結 (顯示在左側) 是否指向自訂 URL 或電子郵件地址。</p>
-                <p>
-
-                </p>
                 <p>(只有在 [使用者啟用密碼重設]<strong></strong> 設為 [是]<strong></strong> 時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -672,10 +756,16 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>控制 [連絡您的系統管理員]<strong></strong> 連結所指向的電子郵件地址或 URL。 </p>
-                <p>
-
-                </p>
                 <p>(只有在 [自訂連絡您的系統管理員連結]<strong></strong> 設定為 [是]<strong></strong> 時才能看見)。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -706,15 +796,16 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>控制是否對此目錄啟用密碼回寫，如果回寫開啟，則表示內部部署回寫服務的狀態。</p>
-                <p>
-
-                </p>
                 <p>如果您想要暫時停用服務而不重新設定 Azure AD Connect，此設定就很有用。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
-                <p>
-
-                </p>
                 <p>
                   <strong>注意：</strong>
                 </p>
@@ -744,22 +835,25 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
                   <li class="unordered">
 如果此參數設定為 [是]<strong></strong>，則回寫會啟用，而且同盟和密碼雜湊同步處理使用者可以重設其密碼。<br><br></li>
                 </ul>
-              </td>
+              </td
             </tr>
              <tr>
               <td>
                 <div id="allow-users-to-unlock-accounts-without-resetting-their-password">
-                  <p>允許使用者在不重設密碼的情況下解除鎖定帳戶</p>
+                  <p>讓使用者直接解除鎖定內部部署 Active Directory 帳戶，而不必重設其密碼</p>
                 </div>
               </td>
               <td>
-
               <p>指定是否應為瀏覽密碼重設入口網站的使用者提供選項，讓他們在不重設密碼的情況下解除鎖定內部部署的 Active Directory 帳戶。 根據預設，Azure AD 執行密碼重設時會一律解除鎖定帳戶，此設定可讓您區隔這兩項作業。</p>
-
               <p>如果設為「是」，會提供使用者重設其密碼以解除鎖定帳戶的選項，或是在不重設密碼的情況下解除鎖定的選項。 </p>
-
               <p>如果設定為「否」，使用者將只能執行合併的密碼重設和帳戶解除鎖定作業。</p>
-
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -767,8 +861,7 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
                 </p>
                 <ul>
                   <li class="unordered">
-若要使用這項功能，您必須安裝 2015 年 8 月或更新版本的 Azure AD Connect (v. 1.0.8667.0 或更新版本)。<br><br><a href="http://www.microsoft.com/download/details.aspx?id=47594">按一下這裡以下載最新版本的 Azure AD Connect。</a></li>
-
+若要使用這項功能，您必須安裝 2015 年 8 月或更新版本的 Azure AD Connect (v. 1.0.8667.0 或更新版本)。<br><br><a href="http://www.microsoft.com/download/details.aspx?id=47594">按一下這裡以下載最新版本的 Azure AD Connect</a>。</li>
                   <li class="unordered">
                     <strong>附註：</strong>為測試這項功能，您需要啟用密碼回寫，並使用來自內部部署 (例如同盟或密碼同步處理使用者) 的帳戶，而且有一個已鎖定的帳戶。  非內部部署而且沒有鎖定帳戶的使用者，將看不到解除鎖定其帳戶的選項。</li>
                 </ul>
@@ -812,6 +905,15 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>決定當任何類型的其他系統管理員重設自己的密碼時，是否透過傳送至其主要電子郵件地址的電子郵件，通知所有全域管理員。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -842,6 +944,15 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
               </td>
               <td>
                 <p>決定重設自己密碼的使用者或系統管理員是否會收到電子郵件通知，表示他們的密碼已重設。</p>
+                <br>
+                <p><b><u>需要下列其中一個授權 <a href="https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability">深入了解</a></u></b></p>
+                 <ul>
+                   <li>O365 (任何付費 SKU) [僅限雲端使用者]</li>
+                   <li>Azure AD Basic [僅限雲端使用者]</li>
+                   <li>Azure AD Premium P1 或 P2 [雲端和內部部署使用者]</li>
+                   <li>Enterprise Mobility Suite [雲端和內部部署使用者]</li>
+                   <li>Enterprise Cloud Suite [雲端和內部部署使用者]</li>
+                 </ul>
               </td>
               <td>
                 <p>
@@ -864,10 +975,10 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
 <br/>
 <br/>
 
-## <a name="links-to-password-reset-documentation"></a>密碼重設文件的連結
+## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**最佳作法**](active-directory-passwords-best-practices.md) - 了解如何快速部署且有效管理組織的密碼
@@ -877,9 +988,4 @@ ms.openlocfilehash: c02f5a2b0ef127805aed0f8b8b5ec8ccac1f879f
 * [**深入了解**](active-directory-passwords-learn-more.md) - 深入探索服務運作方式的技術細節
 
 [001]: ./media/active-directory-passwords-customize/001.jpg "Image_001.jpg"
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

@@ -13,12 +13,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
+ms.date: 03/07/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 015b152b2e807de6ad92d141d3c8bad6bb8d8eba
-ms.openlocfilehash: e070a2eac2bb356ad8544ec107cab230f8e3637c
-ms.lasthandoff: 01/12/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: 8245ff39ce191e741fdc54fee0ca039e8571ba8e
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 01/12/2017
 > [!IMPORTANT]
 > Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。  本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 若要使用 Resource Manager 部署模型安裝及設定 MongoDB，請參閱[本文章](virtual-machines-windows-install-mongodb.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-[MongoDB][MongoDB] 是一個受歡迎的高效能開放原始碼 NoSQL 資料庫。 本文會引導您使用 [Azure 傳統入口網站][AzurePortal]來建立 Windows Server 虛擬機器 (VM)。 接著您會建立資料磁碟，並將其連接至 VM，然後安裝及設定 MongoDB。 如果您想要使用 Azure 中現有的 VM，您可以直接跳到[安裝並設定 MongoDB](#install-and-run-mongodb-on-the-virtual-machine)。
+[MongoDB][MongoDB] 是一個受歡迎的高效能開放原始碼 NoSQL 資料庫。 本文會引導您使用 [Azure 入口網站][AzurePortal]來建立 Windows Server 虛擬機器 (VM)。 接著您會建立資料磁碟，並將其連接至 VM，然後安裝及設定 MongoDB。 如果您想要使用 Azure 中現有的 VM，您可以直接跳到[安裝並設定 MongoDB](#install-and-run-mongodb-on-the-virtual-machine)。
 
 ## <a name="create-a-virtual-machine-running-windows-server"></a>建立執行 Windows Server 的虛擬機器
 請遵循這些指示來建立虛擬機器。
@@ -35,8 +35,8 @@ ms.lasthandoff: 01/12/2017
 
 > [!NOTE]
 > 您可以在建立虛擬機器時為 MongoDB 加入端點，並遵循下列方式進行設定：將它命名為 **Mongo**，使用 **TCP** 作為通訊協定，然後將公用和私人通訊埠設定為 **27017**。
-> 
-> 
+>
+>
 
 ## <a name="attach-a-data-disk"></a>連接資料磁碟
 若要為虛擬機器提供儲存體，請連接並初始化資料磁碟，這樣 Windows 才能使用該磁碟。 如果您已經有資料磁碟，您可以連接現有的磁碟，或可以連接空的磁碟。
@@ -53,5 +53,8 @@ ms.lasthandoff: 01/12/2017
 
 [MongoDocs]: http://docs.mongodb.org/manual/
 [MongoDB]: http://www.mongodb.org/
-[AzurePortal]: http://manage.windowsazure.com
+[AzurePortal]: https://portal.azure.com/
+
+<!-- Classic portal. Removed 03/07/2017 -->
+<!-- [AzurePortal]: http://manage.windowsazure.com  -->
 

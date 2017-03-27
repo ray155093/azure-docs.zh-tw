@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 12/15/2015
 ms.author: Ning
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: 11a1f6ea289db38aeb8c2fff2c9b0e6b1f0f044c
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: e43a3920da0baafa1be0d3a9a8596f19bf7ebc3e
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -45,7 +46,7 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 ## <a name="enable-the-extension"></a>啟用延伸模組
 使用 [Azure 入口網站](https://portal.azure.com/#)、Azure PowerShell 或 Azure CLI 指令碼，可以啟用此擴充功能。
 
-若要直接從 Azure 入口網站檢視和設定系統和效能資料，請遵循 [Azure 部落格上的這些步驟](https://azure.microsoft.com/blog/2014/09/02/windows-azure-virtual-machine-monitoring-with-wad-extension/ "URL to the Windows blog"/)。
+若要直接從 Azure 入口網站檢視和設定系統和效能資料，請遵循 [Azure 部落格上的這些步驟](https://azure.microsoft.com/en-us/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/)進行。
 
 本文著重於如何使用 Azure CLI 命令來啟用及設定延伸模組。 這可讓您直接從儲存體資料表讀取和檢視資料。
 
@@ -54,7 +55,7 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 ## <a name="prerequisites"></a>必要條件
 * **Azure Linux Agent 2.0.6 版或更新版本**。
   請注意，大部分的 Azure VM Linux 資源庫映像包含版本 2.0.6 或更新版本。 您可以執行 **WAAgent -version** 來確認 VM 上安裝的版本。 如果執行的 VM 版本早於 2.0.6，您可以依照 [GitHub 上的這些指示](https://github.com/Azure/WALinuxAgent "指示") 更新它。
-* **Azure CLI**。 遵循[本指引來安裝 CLI](../xplat-cli-install.md)，以在電腦上設定 Azure CLI 環境。 安裝 Azure CLI 之後，您可以在命令列介面 (Bash、終端機或命令提示字元) 使用 **azure** 命令來存取 Azure CLI 命令。 例如：
+* **Azure CLI**。 遵循[本指引來安裝 CLI](../cli-install-nodejs.md)，以在電腦上設定 Azure CLI 環境。 安裝 Azure CLI 之後，您可以在命令列介面 (Bash、終端機或命令提示字元) 使用 **azure** 命令來存取 Azure CLI 命令。 例如：
   
   * 執行 **azure vm extension set --help** 取得詳細的說明資訊。
   * 執行 **azure login** 登入 Azure。
@@ -138,7 +139,7 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 
 此外，您可以使用下列 UI 工具來存取資料：
 
-1. Visual Studio 伺服器總管。 移至您的儲存體帳戶。 VM 執行約 5 分鐘後，您應該會看到四個預設資料表：“LinuxCpu”, ”LinuxDisk”, ”LinuxMemory” 和 ”Linuxsyslog”。 按兩下資料表名稱以檢視資料。
+1. Visual Studio 伺服器總管。 移至您的儲存體帳戶。 VM 執行約&5; 分鐘後，您應該會看到四個預設資料表：“LinuxCpu”, ”LinuxDisk”, ”LinuxMemory” 和 ”Linuxsyslog”。 按兩下資料表名稱以檢視資料。
 2. [Azure 儲存體總管](https://azurestorageexplorer.codeplex.com/ "Azure 儲存體總管")。
 
 ![映像](./media/virtual-machines-linux-classic-diagnostic-extension/no1.png)
@@ -147,10 +148,5 @@ Linux 診斷延伸模組可協助使用者監視在 Microsoft Azure 上執行的
 
 ## <a name="known-issues"></a>已知問題
 * 在 Linux 診斷擴充功能的目前版本 (2.3) 中，只能透過指令碼存取 Rsyslog 資訊和客戶指定記錄檔。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

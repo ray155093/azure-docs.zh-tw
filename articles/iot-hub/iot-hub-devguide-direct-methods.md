@@ -16,9 +16,9 @@ ms.date: 01/11/2017
 ms.author: nberdy
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 37b2a82d7f6043224e68219fde753eef73078ffd
-ms.openlocfilehash: 930be4397a56dc0af0fd13305e0e4171929cb2cc
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: ce7860e291c71e825561caf3ee7eafe904101799
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -78,7 +78,7 @@ IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的
 後端應用程式收到的回應包含︰
 
 * *HTTP 狀態碼*，用於來自 IoT 中樞的錯誤，包括裝置目前未連接的 404 錯誤
-* *標頭*，其中包含 Etag、要求識別碼、內容類型及內容編碼
+* *標頭*，其中包含 ETag、要求識別碼、內容類型及內容編碼
 * JSON *本文*格式如下︰
 
 ```

@@ -13,17 +13,42 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 01/06/2017
+ms.date: 03/11/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 2f0f36e7ffeec52bacc35ac5039cd183976dc3aa
-ms.openlocfilehash: fd2649f9936da9f86d4fe24b4fa87ca1733d1f3c
-ms.lasthandoff: 01/07/2017
-
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 07c53a5d6b1881a4c207a2aefed9fcede0fa069e
+ms.lasthandoff: 03/14/2017
 
 ---
 # <a name="whats-new-in-power-bi-embedded"></a>Power BI Embedded 新功能
+
 **Power BI Embedded** 的更新會定期發行。 但是，並非所有發行版本都會包含供使用者使用的新功能，某些版本著重在後端服務功能。 我們將會在這裡反白顯示對於使用者的功能。 請務必經常回來查看。
+
+## <a name="march-2017"></a>2017 年 3 月
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/ibuN4DzCl5c?showinfo=0" frameborder="0" allowfullscreen></iframe>
+
+**功能**
+
+* [建立新報告](power-bi-embedded-create-report-from-dataset.md)
+* [報告另存新檔](power-bi-embedded-save-reports.md)
+* 內嵌「讀取/編輯/建立新的」模式的報告 
+* [在編輯/讀取模式之間切換報告](power-bi-embedded-toggle-mode.md)
+
+**使用 REST API 的資料連線能力**
+
+* [建立資料集](https://msdn.microsoft.com/library/azure/mt778875.aspx)
+* 推送資料 
+
+**管理 API**
+
+* 複製報告和資料集
+* 將報告繫結至不同資料集
+
+**範例**
+
+* [JavaScript 報告內嵌範例](https://microsoft.github.io/PowerBI-JavaScript/demo)已更新
 
 ## <a name="december-2016"></a>2016 年 12 月
 

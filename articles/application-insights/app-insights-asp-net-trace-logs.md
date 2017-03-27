@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 07/21/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
-ms.openlocfilehash: f2de2b3f4deb702f6cdc4e36b988ef6ea2697787
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: f803b44172b068b7ba65047c769421e39445ce10
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -137,9 +138,9 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 ### <a name="no-log-adapter-option-in-the-configuration-tool"></a>組態工具中沒有記錄配接器選項
 * 您必須先安裝記錄架構。
 * 如果您使用 System.Diagnostics.Trace，請確定您[已在 `web.config`](https://msdn.microsoft.com/library/system.diagnostics.eventlogtracelistener.aspx) 中設定它。
-* 您已經擁有最新版的 Application Insights 工具嗎？ 在 Visual Studio 的 [工具] 功能表中，選擇 [擴充功能和更新]，然後開啟 [更新] 索引標籤。 如果 Application Insights 工具存在於其中，請按一下該工具以進行更新。
+* 您已有最新版的 Application Insights 嗎？ 在 Visual Studio 的 [工具] 功能表中，選擇 [擴充功能和更新]，然後開啟 [更新] 索引標籤。 如果發現開發人員分析工具，請按一下該工具以進行更新。
 
-### <a name="a-nameemptykeyai-get-an-error-instrumentation-key-cannot-be-empty"></a><a name="emptykey"></a>我收到「檢測金鑰不能是空白」的錯誤
+### <a name="emptykey"></a>我收到「檢測金鑰不能是空白」的錯誤
 您可能只安裝記錄配接器 Nuget 封裝，但未安裝 Application Insights。
 
 在 [方案總管] 中，以滑鼠右鍵按一下 `ApplicationInsights.config` ，然後選擇 [ **更新 Application Insights**]。 將會出現對話方塊邀請您登入 Azure，並建立 Application Insights 資源或重複使用現有的資源。 這樣應該可以解決。
@@ -147,13 +148,13 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 ### <a name="i-can-see-traces-in-diagnostic-search-but-not-the-other-events"></a>我可以在診斷搜尋中看見追蹤，但是看不到其他事件
 有時候可能需要一段時間，所有事件和要求才會通過管線。
 
-### <a name="a-namelimitsahow-much-data-is-retained"></a><a name="limits"></a>保留多少資料？
+### <a name="limits"></a>保留多少資料？
 每個應用程式每秒最多 500 個事件。 事件會保留七天。
 
 ### <a name="im-not-seeing-some-of-the-log-entries-that-i-expect"></a>我沒看到一些預期的記錄項目
 如果您的應用程式傳送大量資料，且您是使用 Application Insights SDK for ASP.NET 版本 2.0.0-beta3 或更新版本，則調適性取樣功能可能會運作，並只傳送一部分的遙測資料。 [深入了解取樣。](app-insights-sampling.md)
 
-## <a name="a-nameaddanext-steps"></a><a name="add"></a>接續步驟
+## <a name="add"></a>接續步驟
 * [設定可用性和回應性測試][availability]
 * [疑難排解][qna]
 
@@ -165,9 +166,4 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 [portal]: https://portal.azure.com/
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

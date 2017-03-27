@@ -17,14 +17,14 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: dbf337a27c43fc6c91f1b061a1938c5471dd36a4
-ms.openlocfilehash: 52cc3c74e05dc3934e0536dea02b4870f6ed86c2
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: 878bb6e792cff555747912a57c1a15632f06b2f7
+ms.lasthandoff: 03/10/2017
 
 
 ---
 # <a name="create-and-manage-an-elastic-pool-with-the-azure-portal"></a>使用 Azure 入口網站建立及管理彈性集區
-本主題說明如何使用 Azure 入口網站來建立及管理可調整的[彈性集區](sql-database-elastic-pool.md)。 您也可以使用 [PowerShell](sql-database-elastic-pool-manage-powershell.md)、REST API 建立及管理 Azure 彈性集區，或是[C#][使用 C# 建立及管理彈性集區](sql-database-elastic-pool-manage-csharp.md)。 您也可以使用 [Transact-SQL](sql-database-elastic-pool-manage-tsql.md) 來建立資料庫並將它移入和移出彈性集區。
+本主題說明如何使用 Azure 入口網站來建立及管理可調整的[彈性集區](sql-database-elastic-pool.md)。 您也可以使用 [PowerShell](sql-database-elastic-pool-manage-powershell.md)、REST API 或 [C#](sql-database-elastic-pool-manage-csharp.md) 來建立及管理 Azure 彈性集區。 您也可以使用 [Transact-SQL](sql-database-elastic-pool-manage-tsql.md) 來建立資料庫並將它移入和移出彈性集區。
 
 ## <a name="create-an-elastic-pool"></a>建立彈性集區 
 

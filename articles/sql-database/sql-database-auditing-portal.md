@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 2/25/2017
-ms.author: ronitr; giladm
+ms.author: ronitr;giladm
 translationtype: Human Translation
-ms.sourcegitcommit: fb56545df42e997e5960eec73ae59e9334731392
-ms.openlocfilehash: 8c6fa92764cb720a0c71a24d839d3e73ce3ba447
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: d1350081aa4f70660802c61a77250496e1e7fc2a
+ms.lasthandoff: 03/10/2017
 
 
 ---
 
 # <a name="configure-and-manage-sql-database-auditing-in-the-azure-portal"></a>設定和管理 Azure 入口網站中的 SQL 資料庫稽核
 
-下節描述如何使用 Azure 入口網站設定和管理稽核。 若要使用 PowerShell 設定和管理稽核，請參閱[使用 PowerShell 設定稽核](sql-database-auditing-powershell.md)。 若要使用 REST API 設定和管理稽核，請參閱[使用 REST API 設定稽核](sql-database-auditing-rest.md)。
+下節描述如何使用 Azure 入口網站設定和管理稽核。 若要使用 PowerShell 設定和管理稽核，請參閱[使用 PowerShell 設定稽核](sql-database-auditing-powershell.md)。 
 
 如需稽核的概觀，請參閱 [SQL Database 稽核](sql-database-auditing.md)。
 
@@ -35,17 +35,17 @@ ms.lasthandoff: 03/02/2017
 2. 瀏覽至您想要稽核的 SQL Database / SQL Server 設定刀鋒視窗。 在 [設定] 刀鋒視窗中，選取 [稽核和威脅偵測]。
 
     ![瀏覽窗格](./media/sql-database-auditing-get-started/1_auditing_get_started_settings.png)
-3. 您可以在資料庫稽核組態刀鋒視窗中，選取 [從伺服器繼承稽核設定] 核取方塊，以指定要根據此資料庫的伺服器設定稽核此資料庫。 如果已經選取此選項，您將會看到可讓您從這個內容檢視或修改伺服器稽核設定的**檢視伺服器稽核設定**連結。
+3. 您可以在 [資料庫稽核組態] 刀鋒視窗中，選取 [從伺服器繼承稽核設定] 核取方塊，以指定要根據此資料庫的伺服器設定稽核此資料庫。 如果已經選取此選項，您會看到可讓您從這個內容檢視或修改伺服器稽核設定的 [檢視伺服器稽核設定] 連結。
 
     ![瀏覽窗格][2]
 4. 如果您想要在資料庫層級上啟用 Blob 稽核 (在伺服器層級稽核之外額外啟用，或取代伺服器層級稽核)，請**取消選取** [從伺服器繼承稽核設定] 選項，[開啟] 稽核，然後選擇 [Blob] 稽核類型。
 
     ![瀏覽窗格][3]
-5. 選取 [儲存體詳細資料] 以開啟 [稽核記錄儲存體] 刀鋒視窗。 選取將儲存記錄的 Azure 儲存體帳戶，以及將舊記錄刪除之前的保留期間，然後按一下底部的 [確定]。 **秘訣：**讓所有稽核的資料庫都使用相同的儲存體帳戶，以充分利用稽核報告範本。
+5. 選取 [儲存體詳細資料] 以開啟 [稽核記錄儲存體] 刀鋒視窗。 選取記錄要儲存所在的 Azure 儲存體帳戶，以及將舊記錄刪除之前的保留期間，然後按一下底部的 [確定]。 **秘訣：**讓所有稽核的資料庫都使用相同的儲存體帳戶，以充分利用稽核報告範本。
 
     <a id="storage-screenshot"></a>
     ![瀏覽窗格][4]
-6. 如果您想要自訂稽核的事件，您可以透過 [PowerShell](sql-database-auditing-powershell.md) 或 [REST API](sql-database-auditing-rest.md) 來自訂。
+6. 如果您想要自訂稽核的事件，您可以透過 PowerShell 或 REST API 來自訂。
 7. 設定您的稽核設定之後，您可以開啟新的「威脅偵測」(預覽) 功能，並設定電子郵件以接收安全性警示。 「威脅偵測」可讓您接收與可能指示潛在安全性威脅的異常資料庫活動相關的主動式警示。 如需詳細資訊，請參閱[威脅偵測](sql-database-threat-detection.md)。
 8. 按一下 [儲存] 。
 
@@ -53,18 +53,18 @@ ms.lasthandoff: 03/02/2017
 ## <a name="table-auditing"></a>資料表稽核
 
 > [!IMPORTANT]
-> 在設定 [資料表稽核] 之前，請先檢查您目前使用的是否是[下層用戶端](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)。 此外，如果您有嚴格的防火牆設定，請注意在啟用 [資料表稽核] 時 [您資料庫的 IP 端點將會變更](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)。
+> 在設定 [資料表稽核] 之前，請先檢查您目前使用的是否是[下層用戶端](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)。 此外，如果您有嚴格的防火牆設定，請注意在啟用 [資料表稽核] 時，[您資料庫的 IP 端點將會變更](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)。
 >
 
 1. 啟動 [Azure 入口網站](https://portal.azure.com)，位址是 https://portal.azure.com。
 2. 瀏覽至您想要稽核的 SQL Database / SQL Server 設定刀鋒視窗。 在 [設定] 刀鋒視窗中，選取 [稽核與威脅偵測] (*[請參閱 Blob 稽核一節中的螢幕擷取畫面](#auditing-screenshot)*)。
-3. 您可以在資料庫稽核組態刀鋒視窗中，選取 [從伺服器繼承稽核設定] 核取方塊，以指定要根據此資料庫的伺服器設定稽核此資料庫。 如果已經選取此選項，您將會看到可讓您從這個內容檢視或修改伺服器稽核設定的**檢視伺服器稽核設定**連結。
+3. 您可以在 [資料庫稽核組態] 刀鋒視窗中，選取 [從伺服器繼承稽核設定] 核取方塊，以指定要根據此資料庫的伺服器設定稽核此資料庫。 如果已經選取此選項，您會看到可讓您從這個內容檢視或修改伺服器稽核設定的 [檢視伺服器稽核設定] 連結。
 
     ![瀏覽窗格][2]
 4. 如果您不想從伺服器繼承稽核設定，請**取消選取** [從伺服器繼承稽核設定] 選項，[開啟] 稽核，然後選擇 [資料表] 稽核類型。
 
     ![瀏覽窗格][3-tbl]
-5. 選取 [儲存體詳細資料] 以開啟 [稽核記錄儲存體] 刀鋒視窗。 選取將儲存記錄的 Azure 儲存體帳戶，以及將舊記錄刪除之前的保留期間。 **秘訣：**讓所有稽核的資料庫都使用相同的儲存體帳戶，以充分利用稽核報告範本 (*[請參閱 Blob 稽核一節中的螢幕擷取畫面](#storage-screenshot)*)。
+5. 選取 [儲存體詳細資料] 以開啟 [稽核記錄儲存體] 刀鋒視窗。 選取記錄要儲存所在的 Azure 儲存體帳戶，以及將舊記錄刪除之前的保留期間。 **秘訣：**讓所有稽核的資料庫都使用相同的儲存體帳戶，以充分利用稽核報告範本 (*[請參閱 Blob 稽核一節中的螢幕擷取畫面](#storage-screenshot)*)。
 6. 按一下 [稽核的事件]  來自訂要稽核的事件。 在 [由事件記錄] 刀鋒視窗中，按一下 [成功] 和 [失敗] 以記錄所有事件，或選擇個別的事件類別。
 
     ![瀏覽窗格][5]
@@ -86,7 +86,7 @@ ms.lasthandoff: 03/02/2017
    * 在主要資料庫上啟用 Blob 稽核之後，它也會在次要資料庫上變成啟用狀態。
 
     > [!IMPORTANT]
-    > 根據預設值，次要資料庫的儲存體設定將會和主要資料庫上的設定完全相同，這會導致跨地區流量。 您可以透過在 [次要伺服器] 上啟用 Blob 稽核，以及在次要伺服器儲存體設定中設定本機儲存體 (這將會複寫次要資料庫的儲存體位置，並導致每個資料庫將稽核記錄儲存至本機儲存體)，來避免發生這個問題。  
+    > 根據預設值，次要資料庫的儲存體設定會和主要資料庫上的設定完全相同，這會導致跨地區流量。 您可以透過在次要伺服器上啟用 Blob 稽核，以及在次要伺服器儲存體設定中設定本機儲存體 (這會複寫次要資料庫的儲存體位置，並導致每個資料庫將稽核記錄儲存至本機儲存體)，來避免發生這個問題。  
 
 ## <a name="viewing-blob-auditing-logs"></a>檢視 Blob 稽核記錄
 
@@ -189,7 +189,6 @@ Blob 稽核記錄是以 Blob 檔案集合的方式儲存在名為 "**sqldbauditl
 ## <a name="next-steps"></a>後續步驟
 
 * 若要使用 PowerShell 設定和管理稽核，請參閱[使用 PowerShell 設定資料庫稽核](sql-database-auditing-powershell.md)。
-* 若要使用 REST API 設定和管理資料庫稽核，請參閱[使用 REST API 設定資料庫稽核](sql-database-auditing-rest.md)。
 * 如需稽核的概觀，請參閱[資料庫稽核](sql-database-auditing.md)。
 
 

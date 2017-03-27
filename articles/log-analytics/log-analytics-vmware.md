@@ -17,6 +17,7 @@ ms.author: banders
 translationtype: Human Translation
 ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
 ms.openlocfilehash: 813120692232096275f3a7500c3b54e16af26b77
+ms.lasthandoff: 11/17/2016
 
 ---
 
@@ -41,7 +42,7 @@ vSphere ESXi 主機 5.5 和 6.0
 ### <a name="configure-syslog-collection"></a>設定 syslog 收集
 1. 設定 VSphere 的 syslog 轉送。 如需詳細資訊來協助您設定 syslog 轉送，請參閱[設定 ESXi 5.x 和 6.0 上的 syslog (2003322)](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2003322)。 移至 [ESXi 主機組態]  >  [軟體]  >  [進階設定]  >  [Syslog]。
    ![vsphereconfig](./media/log-analytics-vmware/vsphere1.png)  
-2. 在 [Syslog.global.logHost] 欄位中，新增您的 Linux 伺服器和連接埠號碼 1514。 例如，`tcp://hostname:1514` 或 `tcp://123.456.789.101:1514`。
+2. 在 [Syslog.global.logHost] 欄位中，新增您的 Linux 伺服器和連接埠號碼&1514;。 例如，`tcp://hostname:1514` 或 `tcp://123.456.789.101:1514`。
 3. 為 syslog 開啟 ESXi 主機防火牆。 [ESXi 主機組態]  >  [軟體]  >  [安全性設定檔]  >  [防火牆]，然後開啟 [屬性]。  
 
     ![vspherefw](./media/log-analytics-vmware/vsphere2.png)  
@@ -76,7 +77,7 @@ VMware 監視解決方案會使用您已啟用的 OMS Agents for Linux，從 ESX
 
 | 平台 | OMS Agent for Linux | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
 | --- | --- | --- | --- | --- | --- | --- |
-|  Linux |![是](./media/log-analytics-vmware/oms-bullet-green.png) |![否](./media/log-analytics-vmware/oms-bullet-red.png) |![否](./media/log-analytics-vmware/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-vmware/oms-bullet-red.png) |每隔 3 分鐘 |
+| Linux |![是](./media/log-analytics-vmware/oms-bullet-green.png) |![否](./media/log-analytics-vmware/oms-bullet-red.png) |![否](./media/log-analytics-vmware/oms-bullet-red.png) |![否](./media/log-analytics-containers/oms-bullet-red.png) |![否](./media/log-analytics-vmware/oms-bullet-red.png) |每隔 3 分鐘 |
 
 下表顯示由 VMware 監視解決方案收集的資料欄位範例︰
 
@@ -149,7 +150,7 @@ VMware 圖格會出現在 OMS 入口網站。 它提供任何失敗的高階檢�
 ![查詢](./media/log-analytics-vmware/queries.png)
 
 #### <a name="save-queries"></a>儲存查詢
-儲存搜尋查詢是 OMS 中的標準功能，可協助您保留任何您認為有用的查詢。 建立您覺得有用的查詢之後，按一下 [我的最愛] 儲存它。 儲存的查詢讓您之後可從 [我的儀表板][](log-analytics-dashboards.md) 頁面輕鬆地重複使用它們，您也可以在此建立您自己自訂的儀表板。
+儲存搜尋查詢是 OMS 中的標準功能，可協助您保留任何您認為有用的查詢。 建立您覺得有用的查詢之後，按一下 [我的最愛] 儲存它。 儲存的查詢讓您之後可從 [我的儀表板](log-analytics-dashboards.md) 頁面輕鬆地重複使用它們，您也可以在此建立您自己自訂的儀表板。
 
 ![DockerDashboardView](./media/log-analytics-vmware/dockerdashboardview.png)
 
@@ -170,7 +171,7 @@ VMware 圖格會出現在 OMS 入口網站。 它提供任何失敗的高階檢�
 syslog 時間戳記有一個 ESXi 主機錯誤。 如需詳細資訊，請參閱 [VMware 知識庫](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2111202)。 在您套用因應措施之後，Hostd 應該就能正常運作。
 
 ### <a name="can-i-have-multiple-esxi-hosts-forwarding-syslog-data-to-a-single-vm-with-omsagent"></a>我可以使用 OMS 代理程式讓多部 ESXi 主機轉送 syslog 資料至單一 VM 嗎？
- 是。 您可以使用 OMS 代理程式讓多部 ESXi 主機轉送資料至單一 VM。
+是。 您可以使用 OMS 代理程式讓多部 ESXi 主機轉送資料至單一 VM。
 
 ### <a name="why-dont-i-see-data-flowing-into-oms"></a>為什麼我沒有看到資料流入 OMS？
 這有幾個原因：
@@ -197,9 +198,4 @@ syslog 時間戳記有一個 ESXi 主機錯誤。 如需詳細資訊，請參閱
 * 使用 Log Analytics 中的 [Log Analytics](log-analytics-log-searches.md) 檢視詳細的 VMware 主機資料。
 * [建立您自己的儀表板](log-analytics-dashboards.md)來顯示 VMware 主機的資料。
 * 在特定的 VMware 主機事件發生時[建立警示](log-analytics-alerts.md)。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

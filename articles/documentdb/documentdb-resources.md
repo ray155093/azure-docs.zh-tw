@@ -13,13 +13,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/15/2017
+ms.date: 03/14/2017
 ms.author: anhoh
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 456ff5cd0c91232ace87e02363f812a36cc38297
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 0c62fc01947e0f2e4b0e45d176d5af04c6250fa8
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -161,7 +161,7 @@ DocumentDB 資料庫是一個或多個集合和使用者的邏輯容器，如下
 ![資料庫帳戶和集合階層式模型][2]  
 **資料庫是使用者和集合的邏輯容器**
 
-資料庫可以包含依集合分割的虛擬無限制文件儲存體，進而形成其內所含文件的交易網域。 
+資料庫可包含集合內分割的文件儲存體數量幾乎不受限制。
 
 ### <a name="elastic-scale-of-a-documentdb-database"></a>DocumentDB 資料庫的彈性延展
 DocumentDB 資料庫預設是彈性的 – 範圍從幾 GB 到數 PB 的 SSD 支持文件儲存體和佈建輸送量。 
@@ -175,7 +175,7 @@ DocumentDB 資料庫同時也是使用者的容器。 使用者因此是一組�
 與 DocumentDB 資源模型中的其他資源相同，不論是使用 [Azure DocumentDB REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 還是任何[用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)，都可輕鬆地建立、取代、刪除、讀取或列舉資料庫。 DocumentDB 保證讀取或查詢資料庫資源之中繼資料的強式一致性。 刪除資料庫會自動確定您無法存取其內所含的任何集合或使用者。   
 
 ## <a name="collections"></a>集合
-DocumentDB 集合是您 JSON 文件的容器。 集合也是交易和查詢的規模單位。 
+DocumentDB 集合是您 JSON 文件的容器。 
 
 ### <a name="elastic-ssd-backed-document-storage"></a>彈性 SSD 支持文件儲存體
 集合本質上是彈性的 - 它會隨著您新增或移除文件自動成長和縮減。 集合是邏輯資源，可以跨一或多個實體分割或伺服器。 集合中的分割數目是 DocumentDB 根據集合的儲存體大小和佈建輸送量所決定。 DocumentDB 中的每個分割都有其相關聯的固定 SSD 支援儲存體數量，並且複寫以提供高可用性。 分割管理完全是由 Azure DocumentDB 所管理，您不需要撰寫複雜程式碼或管理分割。 從儲存體和輸送量的角度來看，DocumentDB 集合 **實際上並無限制** 。 
@@ -206,7 +206,7 @@ DocumentDB 查詢模型嘗試打破功能、效率和簡易性之間的平衡。
 > 
 > 
 
-### <a name="multi-document-transactions"></a>多文件交易
+## <a name="multi-document-transactions"></a>多文件交易
 資料庫交易提供安全且可預測的程式設計模型來處理同時的資料變更。 在 RDBMS 中，撰寫商務邏輯的傳統方式是撰寫「預存程序」和/或「觸發程序」，並將它傳送至資料庫伺服器以進行交易式執行。 在 RDBMS 中，需要有應用程式設計人員，才能處理兩個不同的程式設計語言： 
 
 * (非交易式) 應用程式程式設計語言 (例如 JavaScript、Python、C#、Java 等等)

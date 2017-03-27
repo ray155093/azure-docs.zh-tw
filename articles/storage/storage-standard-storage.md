@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/06/2017
+ms.date: 02/18/2017
 ms.author: yuemlu
 translationtype: Human Translation
-ms.sourcegitcommit: 3a353bc874c1827f8a0fc85352894ad96cff16b5
-ms.openlocfilehash: e6ee3ea5e59e402d69ad255d2210d7092786c9d1
+ms.sourcegitcommit: 36fa9cd757b27347c08f80657bab8a06789a3c2f
+ms.openlocfilehash: c208f44045ba414be2034f577435ae02ea4456cf
+ms.lasthandoff: 02/27/2017
 
 
 ---
@@ -41,7 +42,7 @@ ms.openlocfilehash: e6ee3ea5e59e402d69ad255d2210d7092786c9d1
 如需有關如何以受控磁碟建立 VM 的資訊，請參閱下列其中一份文件。
 
 * [使用 Resource Manager 和 PowerShell 建立 VM](../virtual-machines/virtual-machines-windows-ps-create.md)
-* [使用 Azure CLI 2.0 建立 Linux VM (預覽)](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
+* [使用 Azure CLI 2.0 來建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
 
 ## <a name="standard-storage-features"></a>標準儲存體功能 
 
@@ -152,9 +153,4 @@ ms.openlocfilehash: e6ee3ea5e59e402d69ad255d2210d7092786c9d1
 
 * [使用 Resource Manager 和 PowerShell 建立 VM](../virtual-machines/virtual-machines-windows-ps-create.md)
 
-* [使用 Azure CLI 2.0 建立 Linux VM (預覽)](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
-
-
-<!--HONumber=Feb17_HO2-->
-
-
+* [使用 Azure CLI 2.0 來建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md)

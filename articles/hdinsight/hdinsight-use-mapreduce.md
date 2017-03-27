@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 7f321501-d62c-4ffc-b5d6-102ecba6dd76
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,9 +17,9 @@ ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
-ms.openlocfilehash: ab40eb8b53e2e685be52d24ecf2c32b193b12b85
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 8be0f2f30f815277c4953c223d91c2571c2521a5
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.lasthandoff: 02/16/2017
 
 在本文中，您將了解如何在 HDInsight 叢集中的 Hadoop 上執行 MapReduce 工作。 我們會以 Java MapReduce 工作的方式執行基本字數統計作業實作。
 
-## <a name="a-idwhatisawhat-is-mapreduce"></a><a id="whatis"></a>什麼是 MapReduce？
+## <a id="whatis"></a>什麼是 MapReduce？
 
 Hadoop MapReduce 是一種可撰寫工作來處理大量資料的軟體架構。 輸入資料會分割成幾個獨立區塊，然後在叢集中跨多個節點平行處理。 MapReduce 工作由兩項功能組成：
 
@@ -61,7 +62,7 @@ Hadoop 資料流會透過 STDIN 與 STDOUT 與對應程式和減壓器通訊 (�
 
 * [開發 Python MapReduce 工作](hdinsight-hadoop-streaming-python.md)
 
-## <a name="a-iddataaabout-the-sample-data"></a><a id="data"></a>關於範例資料
+## <a id="data"></a>關於範例資料
 
 在此範例中，您將會使用 The Notebooks of Leonardo Da Vinci 當作範例資料，這會以文字文件的形式在 HDInsight 叢集中提供。
 
@@ -75,7 +76,7 @@ Hadoop 資料流會透過 STDIN 與 STDOUT 與對應程式和減壓器通訊 (�
 > 在上一個語法中，**wasbs:///** 是用來存取 HDInsight 叢集的預設儲存容器所儲存的檔案。 如果您在佈建叢集時指定其他儲存體帳戶，並想要存取這些帳戶上儲存的檔案，您可以指定容器名稱和儲存體帳戶位址來存取資料。 例如：**wasbs://mycontainer@mystorage.blob.core.windows.net/example/data/gutenberg/davinci.txt**。
 
 
-## <a name="a-idjobaabout-the-example-mapreduce"></a><a id="job"></a>關於範例 MapReduce
+## <a id="job"></a>關於範例 MapReduce
 
 用於此範例中的 MapReduce 工作位在 **wasbs://example/jars/hadoop-mapreduce-examples.jar**，隨附於HDInsight 叢集。 這包含您依據 **davinci.txt** 執行的字數統計範例。
 
@@ -158,7 +159,7 @@ public class WordCount {
 
 如需自行撰寫 MapReduce 工作的指示，請參閱 [開發 HDInsight 的 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce-linux.md)。
 
-## <a name="a-idrunarun-the-mapreduce"></a><a id="run"></a>執行 MapReduce
+## <a id="run"></a>執行 MapReduce
 
 HDInsight 可以使用各種方法執行 HiveQL 工作。 請使用下表決定適合您的方法，然後跟著連結逐項閱讀介紹。
 
@@ -172,7 +173,7 @@ HDInsight 可以使用各種方法執行 HiveQL 工作。 請使用下表決定�
 > [!IMPORTANT]
 > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 
 雖然 MapReduce 提供強大的診斷功能，但要靈活運用還是頗具挑戰性。 有數個以 Java 為基礎的架構可更輕鬆地定義 MapReduce 應用程式以及技術 (例如，Pig 和 Hive，這兩者提供更輕鬆的方式在 HDInsight 中使用資料)。 若要深入了解，請參閱下列文章：
 
@@ -181,15 +182,14 @@ HDInsight 可以使用各種方法執行 HiveQL 工作。 請使用下表決定�
 * [使用 HDInsight 上的 Apache Hadoop 開發 Scalding MapReduce 工作](hdinsight-hadoop-mapreduce-scalding.md)
 * [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
 * [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
-* [執行 HDInsight 範例][hdinsight-samples]
+
 
 [hdinsight-upload-data]: hdinsight-upload-data.md
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md
 [hdinsight-develop-mapreduce-jobs]: hdinsight-develop-deploy-java-mapreduce-linux.md
 [hdinsight-use-hive]: hdinsight-use-hive.md
 [hdinsight-use-pig]: hdinsight-use-pig.md
-[hdinsight-samples]: hdinsight-run-samples.md
-[hdinsight-provision]: hdinsight-provision-clusters.md
+
 
 [powershell-install-configure]: /powershell/azureps-cmdlets-docs
 

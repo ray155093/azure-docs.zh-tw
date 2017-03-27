@@ -8,6 +8,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: cf4c89cd-f7da-4a10-857f-838004965d3e
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -44,7 +45,7 @@ ms.lasthandoff: 01/19/2017
 
 如需使用這些方法來套用指令碼動作的詳細資訊，請參閱 [使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
-## <a name="a-namebestpracticescriptingabest-practices-for-script-development"></a><a name="bestPracticeScripting"></a>指令碼開發的最佳做法
+## <a name="bestPracticeScripting"></a>指令碼開發的最佳做法
 
 為 HDInsight 叢集開發自訂的指令碼時，有數個最佳做法需要牢記在心：
 
@@ -62,11 +63,11 @@ ms.lasthandoff: 01/19/2017
 > [!IMPORTANT]
 > 指令碼動作必須在 60 分鐘內完成，否則就會逾時。 在節點佈建期間，會同時執行指令碼與其他安裝和設定程序。 與在您開發環境中的執行時間相較，爭用 CPU 時間和網路頻寬等資源可能會導致指令碼需要較長的時間才能完成。
 
-### <a name="a-namebps1atarget-the-hadoop-version"></a><a name="bPS1"></a>目標 Hadoop 版本
+### <a name="bPS1"></a>目標 Hadoop 版本
 
 不同版本的 HDInsight 有不同版本的 Hadoop 服務和已安裝的元件。 如果您的指令碼預期特定版本的服務或元件，您應該只在包含必要元件的 HDInsight 版本中使用指令碼。 您可以使用 [HDInsight 元件版本設定](hdinsight-component-versioning.md) 文件，找到有關 HDInsight 隨附的元件版本資訊。
 
-### <a name="a-namebps10a-target-the-os-version"></a><a name="bps10"></a>鎖定 OS 版本
+### <a name="bps10"></a>鎖定 OS 版本
 
 以 Linux 為基礎的 HDInsight 所根據的是 Ubuntu Linux 散發套件。 不同 HDInsight 版本仰賴不同的 Ubuntu 版本，因此可能會影響指令碼的運作方式。 例如，HDInsight 3.4 及更早版本所根據的是使用 Upstart 的 Ubuntu 版本。 3.5 版所根據的是 Ubuntu 16.04，其使用的是 Systemd。 Systemd 和 Upstart 仰賴不同的命令，因此應將指令碼撰寫為適用兩者。
 
@@ -109,7 +110,7 @@ fi
 
 若要了解 Systemd 和 Upstart 之間的差異，請參閱 [Upstart 使用者的 Systemd](https://wiki.ubuntu.com/SystemdForUpstartUsers)。
 
-### <a name="a-namebps2aprovide-stable-links-to-script-resources"></a><a name="bPS2"></a>提供穩定的指令碼資源連結
+### <a name="bPS2"></a>提供穩定的指令碼資源連結
 
 您應該確定在叢集的整個存留期間，由指令碼使用的指令碼及資源都保持可用，並且這些檔案的版本在此持續時間內不會變更。 如果已在調整作業期間將新節點加入至叢集，則需要這些資源。
 
@@ -120,24 +121,24 @@ fi
 
 例如，Microsoft 所提供的範例會儲存在 [https://hdiconfigactions.blob.core.windows.net/](https://hdiconfigactions.blob.core.windows.net/) 儲存體帳戶，這是 HDInsight 小組維護的公用、唯讀容器。
 
-### <a name="a-namebps4ause-pre-compiled-resources"></a><a name="bPS4"></a>使用預先編譯的資源
+### <a name="bPS4"></a>使用預先編譯的資源
 
 若要減少執行指令碼所花費的時間，請避免這類從原始程式碼直接編譯的作業。 相反地，請預先編譯相關資源並將二進位版本儲存在 Azure Blob 儲存體中，這樣可讓其能夠快速地從您指令碼下載到叢集。
 
-### <a name="a-namebps3aensure-that-the-cluster-customization-script-is-idempotent"></a><a name="bPS3"></a>確保叢集自訂指令碼具有等冪性
+### <a name="bPS3"></a>確保叢集自訂指令碼具有等冪性
 
 概念上必須將指令碼設計為等冪，意思就是，如果多次執行指令碼，就應該確保叢集在每一次執行時都會回到相同的狀態。
 
 例如，如果自訂指令碼在第一次執行時，在 /usr/local/bin 中安裝了某個應用程式，則在後續每次的執行中，此指令碼應該先檢查 /usr/local/bin 位置中是否有該應用程式，再繼續執行指令碼中的其他步驟。
 
-### <a name="a-namebps5aensure-high-availability-of-the-cluster-architecture"></a><a name="bPS5"></a>確保叢集架構具有高可用性
+### <a name="bPS5"></a>確保叢集架構具有高可用性
 
 以 Linux 為基礎的 HDInsight 叢集提供在叢集中是作用中的兩個前端節點，且指令碼動作會針對兩個節點執行。 如果您安裝的元件預期只有一個前端節點，您必須設計指令碼，它只會在叢集中兩個前端節點之一安裝元件。
 
 > [!IMPORTANT]
 > 安裝為 HDInsight 一部分的預設服務是被設計來視需要在兩個前端節點之間容錯移轉，但是此功能未擴充至透過指令碼動作安裝的自訂元件。 如果您需要讓透過指令碼動作安裝的元件高度可用，您必須實作您自己的容錯移轉機制，該機制使用兩個可用的前端節點。
 
-### <a name="a-namebps6aconfigure-the-custom-components-to-use-azure-blob-storage"></a><a name="bPS6"></a>設定自訂元件來使用 Azure Blob 儲存體
+### <a name="bPS6"></a>設定自訂元件來使用 Azure Blob 儲存體
 
 您安裝在叢集上的元件可能有使用 Hadoop 分散式檔案系統 (HDFS) 儲存體的預設組態。 HDInsight 使用 Azure Blob 儲存體 (WASB) 做為預設儲存體。 這提供 HDFS 相容的檔案系統，即使刪除叢集，也能保存資料。 您應該設定要安裝來使用 WASB 而非 HDFS 的元件。
 
@@ -147,7 +148,7 @@ fi
 hdfs dfs -put /usr/hdp/current/giraph/giraph-examples.jar /example/jars/
 ```
 
-### <a name="a-namebps7awrite-information-to-stdout-and-stderr"></a><a name="bPS7"></a>將資訊寫入至 STDOUT 和 STDERR
+### <a name="bPS7"></a>將資訊寫入至 STDOUT 和 STDERR
 
 系統會記錄指令碼執行期間寫入 STDOUT 和 STDERR 的資訊，而且可以使用 Ambari Web UI 加以檢視。
 
@@ -170,7 +171,7 @@ echo "Getting ready to install Foo"
 
 如需檢視指令碼動作記錄之資訊的詳細資訊，請參閱 [使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting)
 
-### <a name="a-namebps8a-save-files-as-ascii-with-lf-line-endings"></a><a name="bps8"></a> 將檔案儲存為具有 LF 行尾結束符號的 ASCII
+### <a name="bps8"></a> 將檔案儲存為具有 LF 行尾結束符號的 ASCII
 
 Bash 指令碼應該儲存為 ASCII 格式，該格式以 LF 做為行尾結束符號。 如果檔案儲存為 UTF-8，可能在檔案開頭包含位元組順序標記，或者以 CRLF 做為行尾結束符號，這對於 Windows 編輯器很常見，則指令碼將會失敗，且具有如下的錯誤：
 
@@ -179,7 +180,7 @@ $'\r': command not found
 line 1: #!/usr/bin/env: No such file or directory
 ```
 
-### <a name="a-namebps9a-use-retry-logic-to-recover-from-transient-errors"></a><a name="bps9"></a> 使用重試邏輯從暫時性錯誤復原
+### <a name="bps9"></a> 使用重試邏輯從暫時性錯誤復原
 
 下載檔案時，使用 apt-get 安裝封裝的動作，或其他透過網際網路傳輸資料的動作，可能會因為暫時性網路錯誤而失敗。 例如，您正進行通訊的遠端資源可能正處於容錯移轉至備份節點的程序中。
 
@@ -217,7 +218,7 @@ retry ls -ltr foo
 retry wget -O ./tmpfile.sh https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv02/install-hue-uber-v02.sh
 ```
 
-## <a name="a-namehelpermethodsahelper-methods-for-custom-scripts"></a><a name="helpermethods"></a>自訂指令碼的協助程式方法
+## <a name="helpermethods"></a>自訂指令碼的協助程式方法
 
 指令碼動作協助程式方法是您在撰寫字訂指令碼時可以使用的公用程式。 這些協助程式方法會定義在 [https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh](https://hdiconfigactions.blob.core.windows.net/linuxconfigactionmodulev01/HDInsightUtilities-v01.sh)中，並且可以使用以下方式包含至您的指令碼中：
 
@@ -241,7 +242,7 @@ wget -O /tmp/HDInsightUtilities-v01.sh -q https://hdiconfigactions.blob.core.win
 | `get_primary_headnode_number` |取得主要前端節點的數字尾碼。 發生錯誤時會傳回空字串。 |
 | `get_secondary_headnode_number` |取得次要前端節點的數字尾碼。 發生錯誤時會傳回空字串。 |
 
-## <a name="a-namecommonusageacommon-usage-patterns"></a><a name="commonusage"></a>常見使用模式
+## <a name="commonusage"></a>常見使用模式
 
 本節指引您如何實作某些撰寫自訂指令碼時可能遇到的常見使用模式。
 
@@ -310,7 +311,7 @@ elif [[ $OS_VERSION == 16* ]]; then
 fi
 ```
 
-## <a name="a-namedeployscriptachecklist-for-deploying-a-script-action"></a><a name="deployScript"></a>指令碼動作的部署檢查清單
+## <a name="deployScript"></a>指令碼動作的部署檢查清單
 
 以下是我們在準備部署這些指令碼時所採取的步驟：
 
@@ -319,11 +320,11 @@ fi
 * 使用暫存檔案目錄 /tmp 來存放指令碼所使用的下載檔案，然後在執行完指令碼之後將這些檔案清除。
 * 如果作業系統層級設定或 Hadoop 服務組態檔已變更，您可能會想要重新啟動 HDInsight 服務，讓它們可以載入任何作業系統層級設定，例如指令碼中設定的環境變數。
 
-## <a name="a-namerunscriptactionahow-to-run-a-script-action"></a><a name="runScriptAction"></a>如何執行指令碼動作
+## <a name="runScriptAction"></a>如何執行指令碼動作
 
 您可以透過 Azure 入口網站、Azure PowerShell、Azure Resource Manager 或 HDInsight .NET SDK，使用指令碼動作來自訂 HDInsight 叢集。 如需指示，請參閱 [如何使用指令碼動作](hdinsight-hadoop-customize-cluster-linux.md)。
 
-## <a name="a-namesamplescriptsacustom-script-samples"></a><a name="sampleScripts"></a>自訂指令碼範例
+## <a name="sampleScripts"></a>自訂指令碼範例
 
 Microsoft 提供了在 HDInsight 叢集上安裝元件的範例指令碼。 您可以在下方的連結中找到這些範例指令碼和其使用方式的說明：
 
@@ -367,7 +368,7 @@ Microsoft 提供了在 HDInsight 叢集上安裝元件的範例指令碼。 您�
 
 對於上述命令，以包含 BOM 的檔案取代 **INFILE** 。 **OUTFILE** 應該是新檔案的名稱，且包含不具有 BOM 的指令碼。
 
-## <a name="a-nameseealsoanext-steps"></a><a name="seeAlso"></a>接續步驟
+## <a name="seeAlso"></a>接續步驟
 
 * 深入了解 [使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)
 * 使用 [HDInsight.NET SDK 參考](https://msdn.microsoft.com/library/mt271028.aspx) ，深入了解如何建立 .NET 應用程式來管理 HDInsight

@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 02/27/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
-ms.openlocfilehash: 071ef9c0784bdb24c7d29f49c36aee2271f4b524
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 214913cb63e38c5df0ab32ad19629507e5fdb35c
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -160,7 +160,7 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 您可以控�
 
     ![資源群組內容](./media/virtual-network-get-started-vnet-subnet/resource-group-contents.png)
 
-若要深入了解 VM、磁碟和儲存體帳戶，請閱讀[虛擬機器](../virtual-machines/virtual-machines-windows-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)、[磁碟](../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-network%2ftoc.json)，和[儲存體帳戶](../storage/storage-introduction.md?toc=%2fazure%2fvirtual-network%2ftoc.json)概觀文章。 您可以看到入口網站為您建立的兩個預設 NSG。 您也可以看到入口網站建立兩個網路介面 (NIC) 資源。 NIC 可以讓 VM 透過 VNet 連線至其他資源。 閱讀 [NIC](virtual-network-network-interface-overview.md) 文章，以深入了解 NIC。 入口網站也會建立一個公用 IP 位址資源。 公用 IP 位址是公用 IP 位址資源的一項設定。 若要深入了解公用 IP 位址，請閱讀 [IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)文章。
+若要深入了解 VM、磁碟和儲存體帳戶，請閱讀[虛擬機器](../virtual-machines/virtual-machines-windows-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)、[磁碟](../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-network%2ftoc.json)，和[儲存體帳戶](../storage/storage-introduction.md?toc=%2fazure%2fvirtual-network%2ftoc.json)概觀文章。 您可以看到入口網站為您建立的兩個預設 NSG。 您也可以看到入口網站建立兩個網路介面 (NIC) 資源。 NIC 可以讓 VM 透過 VNet 連線至其他資源。 閱讀 [NIC](virtual-network-network-interface.md) 文章，以深入了解 NIC。 入口網站也會建立一個公用 IP 位址資源。 公用 IP 位址是公用 IP 位址資源的一項設定。 若要深入了解公用 IP 位址，請閱讀 [IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)文章。
 
 ## <a name="connect-to-from-vms"></a>連線至 VM
 
@@ -250,7 +250,7 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 您可以控�
 
 - [虛擬網路](virtual-networks-overview.md)
 - [公用 IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)
-- [網路介面](virtual-network-network-interface-overview.md)
+- [網路介面](virtual-network-network-interface.md)
 - [網路安全性群組](virtual-networks-nsg.md)
 - [虛擬機器](../virtual-machines/virtual-machines-windows-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 

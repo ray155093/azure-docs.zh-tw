@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/06/2017
 ms.author: jgao
+ROBOTS: NOINDEX
 translationtype: Human Translation
-ms.sourcegitcommit: 6407c371bc51461a05429fabaf38d3f9bc80d32c
-ms.openlocfilehash: d8ea4fb54db5c114aa886a6267b18eba6563d231
-ms.lasthandoff: 02/07/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 05e8c264376b976bcdc8f3e1f03ed79cb712991e
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -241,7 +242,7 @@ Hadoop MapReduce 是批次處理。 執行 Hive 工作時，最具成本效益�
 
 - - -
 
-## <a name="a-idappendix-aaappendix-a---upload-flight-delay-data-to-azure-blob-storage"></a><a id="appendix-a"></a>附錄 A - 將航班誤點資料上傳至 Azure Blob 儲存體
+## <a id="appendix-a"></a>附錄 A - 將航班誤點資料上傳至 Azure Blob 儲存體
 上傳資料檔案和 HiveQL 指令碼檔案之前 (請參閱 [附錄 B](#appendix-b)) 需要一些規劃。 作法是在建立 HDInsight 叢集之前儲存資料檔案和 HiveQL 檔案，並執行 Hive 工作。 您有兩個選擇：
 
 * **使用 HDInsight 將使用的相同 Azure 儲存體帳戶，作為預設檔案系統。** 由於 HDInsight 叢集將具有儲存體帳戶存取金鑰，您將不需進行任何額外的變更。
@@ -361,7 +362,7 @@ tutorials/flightdelay/data 路徑是您在上傳檔案時所建立的虛擬資�
 
 - - -
 
-## <a name="a-idappendix-baappendix-b---create-and-upload-a-hiveql-script"></a><a id="appendix-b"></a>附錄 B - 建立及上傳 HiveQL 指令碼
+## <a id="appendix-b"></a>附錄 B - 建立及上傳 HiveQL 指令碼
 使用 Azure PowerShell 可讓您逐一執行多個 HiveQL 陳述式，或將 HiveQL 陳述式封裝到指令碼檔案中。 本節說明如何建立 HiveQL 指令碼，以及使用 Azure PowerShell 將指令碼上傳至 Azure Blob 儲存體。 Hive 要求 HiveQL 指令碼必須儲存在 Azure Blob 儲存體中。
 
 HiveQL 指令碼將執行下列作業：
@@ -560,7 +561,7 @@ HiveQL 指令碼將執行下列作業：
    * **$srcDataFolder** 和 **$dstDataFolder** - = "tutorials/flightdelay/data" = "tutorials/flightdelay/output"
 
 - - -
-## <a name="a-idappendix-caappendix-c---prepare-an-azure-sql-database-for-the-sqoop-job-output"></a><a id="appendix-c"></a>附錄 C - 針對 Sqoop 工作輸出準備 Azure SQL Database
+## <a id="appendix-c"></a>附錄 C - 針對 Sqoop 工作輸出準備 Azure SQL Database
 **準備 SQL 資料庫 (將這部分與 Sqoop 指令碼合併)**
 
 1. 準備參數：
@@ -710,7 +711,7 @@ HiveQL 指令碼將執行下列作業：
 4. 按 **F5** 以執行指令碼。
 5. 驗證指令碼輸出。 請確定指令碼已成功執行。
 
-## <a name="a-idnextstepsa-next-steps"></a><a id="nextsteps"></a> 後續步驟
+## <a id="nextsteps"></a> 後續步驟
 現在您已了解如何將檔案上傳至 Azure Blob 儲存體、如何使用 Azure Blob 儲存體中的資料填入 Hive 資料表、如何執行 Hive 查詢，以及如何使用 Sqoop 將資料從 HDFS 匯出至 Azure SQL Database。 若要深入了解，請參閱下列文章：
 
 * [開始使用 HDInsight][hdinsight-get-started]

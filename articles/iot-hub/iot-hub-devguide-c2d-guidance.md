@@ -12,29 +12,29 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/09/2016
+ms.date: 03/09/2017
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: dea438c8b1bd3d6331f84de01def989f66b6f387
-ms.openlocfilehash: 88ae905708a421052666316eb81c1dd97d6c9635
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 65a9815525c612bdfac569e5ec56a1db53d82c78
+ms.lasthandoff: 03/10/2017
 
 
 ---
 # <a name="cloud-to-device-communications-guidance"></a>Cloud-to-device communications guidance
 IoT 中樞提供三個選項以便裝置應用程式對後端應用程式公開功能︰
 
-* [直接方法][lnk-methods]，適用於需要立即確認其結果的通訊，通常是裝置的互動式控制，例如開啟風扇；
-* [對應項的所需屬性][lnk-twins]，適用於可讓裝置進入特定所需狀態的長時間執行命令。 例如，將遙測傳送間隔設定為 30 分鐘；
-* [雲端到裝置 (C2D) 訊息][lnk-c2d]，適用於對裝置應用程式的單向通知。
+* [直接方法][lnk-methods]，適用於需要立即確認結果的通訊。 直接方法通常用於裝置的互動式控制，例如開啟風扇。
+* [對應項的所需屬性][lnk-twins]，適用於可讓裝置進入特定所需狀態的長時間執行命令。 例如，將遙測傳送間隔設定為 30 分鐘。
+* [雲端到裝置訊息][lnk-c2d]，適用於對裝置應用程式的單向通知。
 
 以下是各種雲端到裝置通訊選項的詳細比較。
 
-|  | 直接方法 | 對應項的所需屬性 | D2C 訊息 |
+|  | 直接方法 | 對應項的所需屬性 | 雲端到裝置的訊息 |
 | ---- | ------- | ---------- | ---- |
 | 案例 | 需要立即確認的命令，例如開啟風扇。 | 可讓裝置進入特定所需狀態的長時間執行命令。 例如，將遙測傳送間隔設定為 30 分鐘。 | 對裝置應用程式的單向通知。 |
 | 資料流 | 雙向。 裝置應用程式可以立即回應方法。 解決方案後端會接收到根據要求上下文的結果。 | 單向。 裝置應用程式會收到屬性變更的通知。 | 單向。 裝置應用程式接收訊息
-| 耐久性 | 無法聯繫已中斷連接的裝置。 後端會收到裝置未連線的通知。 | 屬性值會保留在裝置對應項中。 裝置會在下一次重新連線時讀取它。 使用 [IoT 中樞查詢語言][lnk-query]可擷取屬性值。 | IoT 中樞可以保留訊息長達 48 小時。 |
+| 耐久性 | 無法聯繫已中斷連接的裝置。 解決方案後端會收到裝置未連線的通知。 | 屬性值會保留在裝置對應項中。 裝置會在下一次重新連線時讀取它。 使用 [IoT 中樞查詢語言][lnk-query]可擷取屬性值。 | IoT 中樞可以保留訊息長達 48 小時。 |
 | 目標 | 使用 **deviceId** 的單一裝置，或使用[作業][lnk-jobs]的多個裝置。 | 使用 **deviceId** 的單一裝置，或使用[作業][lnk-jobs]的多個裝置。 | 依照 **deviceId** 的單一裝置。 |
 | 大小 | 最多 8KB 要求和 8KB 回應。 | 所需屬性大小上限為 8KB。 | 最多 64KB 的訊息。 |
 | 頻率 | 高。 如需詳細資訊，請參閱 [IoT 中樞限制][lnk-quotas]。 | 中。 如需詳細資訊，請參閱 [IoT 中樞限制][lnk-quotas]。 | 低。 如需詳細資訊，請參閱 [IoT 中樞限制][lnk-quotas]。 |

@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/25/2016
+ms.date: 03/16/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1821aa2a3d6428ca98cad14b0bf5e8b37ec6cb9c
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: 8c5ce9570541def245ca33f5841a8392e73569b4
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -39,25 +40,27 @@ ms.openlocfilehash: 1821aa2a3d6428ca98cad14b0bf5e8b37ec6cb9c
    
     ![選取現有的虛擬網路](./media/devtest-lab-configure-vnet/lab-settings-vnets-vnet1.png)
 9. 在 [選擇虛擬網路]  刀鋒視窗中，選取所需的虛擬網路。 刀鋒視窗會顯示訂用帳戶中與實驗室位於相同區域下方的所有虛擬網路。  
-10. 選取虛擬網路之後，您會回到 [虛擬網路]  刀鋒視窗，有數個欄位是啟用狀態。  
+10. 選取虛擬網路之後，您會回到 [虛擬網路]。按一下刀鋒視窗底部清單中的子網路。
+
+    ![子網路清單](./media/devtest-lab-configure-vnet/lab-settings-vnets-vnet2.png)
     
-     ![選取現有的虛擬網路](./media/devtest-lab-configure-vnet/lab-settings-vnets-vnet2.png)
-11. 指定虛擬網路 / 實驗室組合的描述。
-12. 若要允許在實驗室 VM 建立期間使用子網路，請選取 [在虛擬機器建立時使用] 選項。
-13. 若要允許子網路中的公用 IP 位址，請選取 [允許公用 IP] 。
-14. 在 [每位使用者的最大虛擬機器數]  欄位中，針對每個子網路指定每位使用者的最大 VM 數。 如果您想要不限數目的 VM 數，請將此欄位保留空白。
-15. 選取 [ **儲存**]。
-16. 現在已設定虛擬網路，在建立 VM 時就能選取它。 
+    [實驗室子網路] 刀鋒視窗隨即出現。
+
+    ![實驗室子網路刀鋒視窗](./media/devtest-lab-configure-vnet/lab-subnet.png)
+
+11. 指定 [實驗室子網路名稱]。
+12. 若要允許在實驗室 VM 建立期間使用子網路，請選取 [在虛擬機器建立時使用]。
+13. 若要啟用[共用公用 IP 位址](devtest-lab-shared-ip.md)，請選取 [啟用共用公用 IP]。
+14. 若要允許子網路中使用公用 IP 位址，請選取 [允許建立公用 IP] 。
+15. 在 [每位使用者的最大虛擬機器數] 欄位中，針對每個子網路指定每位使用者的最大 VM 數。 如果您想要不限數目的 VM 數，請將此欄位保留空白。
+16. 選取 [確定]，關閉 [實驗室子網路] 刀鋒視窗。
+17. 選取 [儲存]，關閉 [虛擬網路] 刀鋒視窗。
+18. 現在已設定虛擬網路，在建立 VM 時就能選取它。 
     若要查看如何建立 VM 並指定虛擬網路，請參閱 [將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)一文。 
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ## <a name="next-steps"></a>後續步驟
 一旦您在實驗室中加入所需的虛擬網路之後，下一個步驟就是 [將 VM 加入至實驗室](devtest-lab-add-vm-with-artifacts.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

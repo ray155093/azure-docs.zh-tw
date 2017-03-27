@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 23a01938-3fe5-4e2e-8e8b-3368e1bbe2ca
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: aaff4a7aa717f42dedb96eceeb4315b31a6e7b17
-ms.openlocfilehash: 1ea77289ead60af067a0d07bac6c2e40a1684a04
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 31821203c18f1310c6a781bd28022efd3da7f03d
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -156,29 +157,29 @@ HDInsight 叢集可以建立在下列兩個作業系統的其中之一上：
   >
 
 ### <a name="data-source"></a>資料來源
-原始的 Hadoop 分散式檔案系統 (HDFS) 會使用叢集上的多個本機磁碟。 HDInsight 使用 Azure Blob 儲存體來儲存資料。 Azure Blob 儲存體是強大的一般用途儲存體解決方案，其完美整合了 HDInsight。 透過 HDFS 介面，HDInsight 中的完整元件集可直接處理 Blob 儲存體中的結構化或非結構化資料。 將資料儲存在 Blob 儲存體中，可協助您安全地刪除用於計算的 HDInsight 叢集，而不會遺失使用者資料。
 
-在設定期間，您必須指定 Azure 儲存體帳戶，並在該 Azure 儲存體帳戶中指定 Azure Blob 儲存體容器。 某些建立程序會要求事先建立 Azure 儲存體帳戶和 Blob 儲存體容器。 叢集會以該 Blob 儲存體容器做為預設儲存位置。 您也可以選擇指定叢集可存取的其他 Azure 儲存體帳戶 (連結的儲存體)。 叢集也可以存取任何設有完整公用讀取權限或僅限對 Blob 有公用讀取權的 Blob 儲存體容器。  如需詳細資訊，請參閱 [管理 Azure 儲存體資源的存取](../storage/storage-manage-access-to-resources.md)。
+原始的 Hadoop 分散式檔案系統 (HDFS) 會使用叢集上的多個本機磁碟。 HDInsight 會使用 Azure 儲存體中的 Blob。 Azure 儲存體是強大的一般用途儲存體解決方案，其完美整合了 HDInsight。 透過 HDFS 介面，HDInsight 中的完整元件集可直接處理 Blob 中儲存的結構化或非結構化資料。 將資料儲存在 Azure 儲存體中，可協助您安全地刪除用於計算的 HDInsight 叢集，而不會遺失使用者資料。
+
+> [!WARNING]
+> HDInsight 僅支援__一般用途__的 Azure 儲存體帳戶。 目前不支援 __Blob 儲存體__帳戶類型。
+
+在組態期間，您必須指定 Azure 儲存體帳戶，並在該 Azure 儲存體帳戶中指定 Blob 容器。 某些建立程序會要求事先建立 Azure 儲存體帳戶和 Blob 容器。 叢集會以該 Blob 容器做為預設儲存位置。 您也可以選擇指定叢集可存取的其他 Azure 儲存體帳戶 (連結的儲存體)。 叢集也可以存取任何設有完整公用讀取權限或僅限對 Blob 之公用讀取權的 Blob 容器。  如需詳細資訊，請參閱 [管理 Azure 儲存體資源的存取](../storage/storage-manage-access-to-resources.md)。
 
 ![HDInsight 儲存體](./media/hdinsight-provision-clusters/HDInsight.storage.png)
 
 > [!NOTE]
-> Blob 儲存體容器提供一組 Blob 群組，如下圖所示。
->
->
+> Blob 容器提供一組 Blob 群組，如下圖所示。
 
-![Azure Blob 儲存體](./media/hdinsight-provision-clusters/Azure.blob.storage.jpg)
+![Azure Blob](./media/hdinsight-provision-clusters/Azure.blob.storage.jpg)
 
-不建議您使用預設的 Blob 儲存體容器來儲存商務資料。 最好在每次使用後刪除預設的 Blob 儲存體容器，以減少儲存成本。 請注意，預設容器包含應用程式與系統記錄檔。 請務必先擷取記錄檔再刪除容器。
+不建議您使用預設的 Blob 容器來儲存商務資料。 最好在每次使用後刪除預設的 Blob 容器，以減少儲存成本。 請注意，預設容器包含應用程式與系統記錄檔。 請務必先擷取記錄檔再刪除容器。
 
 > [!WARNING]
-> 不支援多個叢集共用一個 Blob 儲存體容器。
->
->
+> 不支援多個叢集共用一個 Blob 容器。
 
-如需有關使用次要 Blob 儲存體的詳細資訊，請參閱 [使用 Azure Blob 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。
+如需有關使用次要 Azure 儲存體帳戶的詳細資訊，請參閱[使用 Azure 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。
 
-除了 Azure Blob 儲存體，您還可以使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 當做 HDInsight 中 HBase 叢集的預設儲存體帳戶，以及全部&4; 種 HDInsight 叢集類型的連結儲存體。 如需詳細資訊，請參閱 [使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+除了 Azure 儲存體，您還可以使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 當做 HDInsight 中 HBase 叢集的預設儲存體帳戶，以及全部&4; 種 HDInsight 叢集類型的連結儲存體。 如需詳細資訊，請參閱 [使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
 
 ### <a name="location-region"></a>位置 (區域)
 HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置。
@@ -250,7 +251,7 @@ HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置
 
 當您建立 HDInsight 叢集時，或在建立叢集之後，您可以新增儲存體帳戶。  請參閱 [使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
-如需有關次要 Blob 儲存體的詳細資訊，請參閱 [使用 Azure Blob 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。 如需次要 Data Lake 儲存體的詳細資訊，請參閱 [使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+如需有關次要 Azure 儲存體帳戶的詳細資訊，請參閱[使用 Azure 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。 如需次要 Data Lake 儲存體的詳細資訊，請參閱 [使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
 
 ## <a name="use-hiveoozie-metastore"></a>使用 Hive/Oozie 中繼存放區
 如果想要在刪除 HDInsight 叢集之後保留 Hive 資料表，建議您使用自訂的中繼存放區。 您可以將該中繼存放區附加至另一個 HDInsight 叢集。
@@ -314,7 +315,7 @@ Windows 型叢集需要傳統部署模型中所建立的虛擬網路。 Linux �
 ## <a name="customize-clusters-using-script-action"></a>使用指令碼動作來自訂叢集
 您可以在建立期間使用指令碼來安裝其他元件或自訂組態。 這類指令碼可透過 **指令碼動作**叫用，指令碼動作是一個組態選項，其可從 Azure 入口網站、HDInsight Windows PowerShell Cmdlet 或 HDInsight .NET SDK 使用。 如需詳細資訊，請參閱 [使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
-您可以使用 Java 封存 (JAR) 檔案形式在叢集上執行一些原生 Java 元件 (例如 Mahout 和 Cascading)。 這些 JAR 檔案可以配送至 Azure Blob 儲存體，並透過 Hadoop 作業提交機制提交至 HDInsight 叢集。 如需詳細資訊，請參閱 [以程式設計方式提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)。
+您可以使用 Java 封存 (JAR) 檔案形式在叢集上執行一些原生 Java 元件 (例如 Mahout 和 Cascading)。 這些 JAR 檔案可以配送至 Azure 儲存體，並透過 Hadoop 作業提交機制提交至 HDInsight 叢集。 如需詳細資訊，請參閱 [以程式設計方式提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)。
 
 > [!NOTE]
 > 如果您在將 JAR 檔案部署至 HDInsight 叢集，或在 HDInsight 叢集上呼叫 JAR 檔案時發生問題，請連絡 [Microsoft 支援](https://azure.microsoft.com/support/options/)。

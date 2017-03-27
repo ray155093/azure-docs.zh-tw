@@ -16,9 +16,9 @@ ms.date: 10/10/2016
 ms.author: richrund
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
-ms.openlocfilehash: 3bb103a8def2e1c56695169568c2d3c64b7f291f
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 844f7d6fa4191a54d14010adf974401d3a94ba69
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -64,6 +64,12 @@ ms.lasthandoff: 02/28/2017
    ![已連接](./media/log-analytics-azure-vm-extension/oms-connect-azure-05.png)
 
 ## <a name="enable-the-vm-extension-using-powershell"></a>使用 PowerShell 啟用 VM 擴充
+使用 PowerShell 設定虛擬機器時，您必須提供 **workspaceId** 和 **workspaceKey**。 請注意，json 組態中的屬性名稱需**區分大小寫**。
+
+您可以在 OMS 入口網站的 [設定] 頁面上，或使用上述範例所示的 PowerShell，找到識別碼及金鑰。
+
+![工作區識別碼及主要金鑰](./media/log-analytics-azure-vm-extension/oms-analyze-azure-sources.png)
+
 Azure 傳統虛擬機器和 Resource Manager 虛擬機器各使用不同的命令。 以下是傳統和 Resource Manager 虛擬機器的範例。
 
 若是傳統 Azure 虛擬機器，請使用下列 PowerShell 範例：
@@ -115,9 +121,6 @@ $location = $vm.Location
 
 
 ```
-使用 PowerShell 設定虛擬機器時，您必須提供**工作區識別碼**及**主要金鑰**。 您可以在 OMS 入口網站的 [設定] 頁面上，或使用上述範例所示的 PowerShell，找到識別碼及金鑰。
-
-![工作區識別碼及主要金鑰](./media/log-analytics-azure-vm-extension/oms-analyze-azure-sources.png)
 
 ## <a name="deploy-the-vm-extension-using-a-template"></a>使用範本部署 VM 擴充
 您可以利用 Azure Resource Manager 建立簡單範本 (JSON 格式)，以定義應用程式的部署和設定。 此範本就是所謂的資源管理員範本，並提供定義部署的宣告方式。 在整個應用程式生命週期內，您可以使用範本來重複部署應用程式，並確信您的資源會以一致的狀態部署。
@@ -363,7 +366,20 @@ $location = $vm.Location
 New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath
 ```
 
-## <a name="troubleshooting-windows-virtual-machines"></a>針對 Windows 虛擬機器進行疑難排解
+## <a name="troubleshooting-the-log-analytics-vm-extension"></a>針對 Log Analytics VM 擴充功能進行疑難排解
+當系統無法運作時，您通常會收到一則訊息 (從 Azure 入口網站或 Azure Powershell)。
+
+1. 登入 [Azure 入口網站](http://portal.azure.com)。
+2. 找出 VM 並開啟 VM 詳細資料。
+3. 按一下 [擴充功能]，檢查是否已啟用 OMS 擴充功能。
+
+   ![VM 擴充功能檢視](./media/log-analytics-azure-vm-extension/oms-vmview-extensions.png)
+
+4. 按一下 *MicrosoftMonitoringAgent*(Windows) 或 *OmsAgentForLinux*(Linux) 擴充功能，並檢視詳細資料。 
+
+   ![VM 擴充功能詳細資料](./media/log-analytics-azure-vm-extension/oms-vmview-extensiondetails.png)
+
+### <a name="troubleshooting-windows-virtual-machines"></a>針對 Windows 虛擬機器進行疑難排解
 如果 *Microsoft Monitoring Agent* VM 代理程式擴充未安裝或沒有回報，您可以執行下列步驟來排解這個問題。
 
 1. 使用 [KB 2965986](https://support.microsoft.com/kb/2965986#mt1) 中的步驟，檢查 Azure VM 代理程式是否已安裝且正確運作。
@@ -383,7 +399,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Templa
 
 如需詳細資訊，請參閱[針對 Windows 擴充進行疑難排解](../virtual-machines/virtual-machines-windows-extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-## <a name="troubleshooting-linux-virtual-machines"></a>針對 Linux 虛擬機器進行疑難排解
+### <a name="troubleshooting-linux-virtual-machines"></a>針對 Linux 虛擬機器進行疑難排解
 如果 *OMS Agent for Linux* VM 代理程式擴充未安裝或沒有回報，您可以執行下列步驟來排解這個問題。
 
 1. 如果擴充狀態是「未知」，請檢閱 VM 代理程式記錄檔 `/var/log/waagent.log`，以檢查 Azure VM 代理程式是否已安裝且正常運作

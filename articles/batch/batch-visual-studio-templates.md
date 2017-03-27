@@ -1,6 +1,6 @@
 ---
-title: "使用 Visual Studio 範本快速啟動 Batch 專案 - Azure | Microsoft Docs"
-description: "了解這些 Visual Studio 專案範本如何協助您在 Azure Batch 中實作和執行計算密集型工作負載"
+title: "使用 Visual Studio 專案範本開始建置 Batch 解決方案 - Azure | Microsoft Docs"
+description: "了解 Visual Studio 專案範本如何協助您在 Azure Batch 中實作和執行計算密集型工作負載。"
 services: batch
 documentationcenter: .net
 author: fayora
@@ -12,15 +12,18 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 01/23/2017
+ms.date: 02/27/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: bf22cd3426e936c8d74377f59443e5e1a6834286
-ms.openlocfilehash: d56525e55816595f33b1fcd9ea96e41fe48b55a3
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 53c9b75599af48be82c63bc7a9df31d4c2de13a3
+ms.lasthandoff: 03/09/2017
 
 
 ---
-# <a name="visual-studio-project-templates-for-azure-batch"></a>Azure Batch 的 Visual Studio 專案範本
+# <a name="use-visual-studio-project-templates-to-jump-start-batch-solutions"></a>使用 Visual Studio 專案範本快速啟動 Batch 解決方案
+
 Batch 的**作業管理員**和**工作處理器 Visual Studio 範本**提供了程式碼，協助您以最少的心力在 Batch 上實作並執行計算密集型工作負載。 本文件會說明這些範本，並提供其使用方式指引。
 
 > [!IMPORTANT]
@@ -65,7 +68,7 @@ Batch 的**作業管理員**和**工作處理器 Visual Studio 範本**提供了
 ## <a name="preparation"></a>準備工作
 我們建議您建立可在其中包含作業管理員和工作處理器的方案，因為這樣便能更輕鬆地在作業管理員和工作處理器程式之間共用程式碼。 若要建立此方案，請依照下列步驟執行︰
 
-1. 開啟 [Visual Studio 2015]，然後選取 [檔案]  >  [新增]  >  [專案]。
+1. 開啟 Visual Studio，然後選取 [檔案] > [新增] > [專案]。
 2. 在 [範本] 底下展開 [其他專案類型]、按一下 [Visual Studio 方案]，然後選取 [空白方案]。
 3. 輸入可描述應用程式和此方案用途的名稱 (例如，「LitwareBatchTaskPrograms」)。
 4. 若要建立新方案，請按一下 [確定] 。
@@ -84,7 +87,7 @@ Batch 的**作業管理員**和**工作處理器 Visual Studio 範本**提供了
 ### <a name="create-a-job-manager-using-the-template"></a>使用範本建立作業管理員
 若要在稍早建立的方案中新增作業管理員，請遵循下列步驟︰
 
-1. 在 Visual Studio 2015 中開啟現有方案。
+1. 在 Visual Studio 中開啟現有方案。
 2. 在 [方案總管] 中，以滑鼠右鍵按一下方案，然後按一下 [新增] > [新增專案]。
 3. 在 [Visual C#] 底下按一下 [雲端]，然後按一下 [具有作業分割器的 Azure Batch 作業管理員]。
 4. 輸入可描述應用程式並將此專案識別為作業管理員的名稱 (例如"LitwareJobManager")。
@@ -253,7 +256,7 @@ job.JobManagerTask.EnvironmentSettings = new [] {
 ### <a name="create-a-task-processor-using-the-template"></a>使用範本建立工作處理器
 若要在稍早建立的方案中新增工作處理器，請遵循下列步驟︰
 
-1. 在 Visual Studio 2015 中開啟現有方案。
+1. 在 Visual Studio 中開啟現有方案。
 2. 在 [方案總管] 中，以滑鼠右鍵按一下方案、按一下 [新增]，然後按一下 [新增專案]。
 3. 在 [Visual C#] 底下按一下 [雲端]，然後按一下 [Azure Batch 工作處理器]。
 4. 輸入可描述應用程式並將此專案識別為工作處理器的名稱 (例如"LitwareTaskProcessor")。
@@ -451,9 +454,4 @@ MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 B
 [diagram01]: ./media/batch-visual-studio-templates/diagram01.png
 [solution_explorer01]: ./media/batch-visual-studio-templates/solution_explorer01.png
 [solution_explorer02]: ./media/batch-visual-studio-templates/solution_explorer02.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

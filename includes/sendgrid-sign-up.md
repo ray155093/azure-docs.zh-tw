@@ -59,7 +59,7 @@ Azure 客戶每月可以解除鎖定 25,000 封免費電子郵件。 這些每�
     ![索引鍵][key]
 2. 密碼是您在安裝期間所選擇的密碼。 您可以選取 [變更密碼] 或 [重設密碼] 來進行任何變更。
 
-若要管理電子郵件傳遞能力設定，按一下 [管理] 按鈕。 這將會重新導向至您的 [SendGrid 儀表板][SendGrid dashboard]。
+若要管理電子郵件傳遞能力設定，按一下 [管理] 按鈕。 這將會重新導向至您的 SendGrid 儀表板。
 
     ![manage][manage]
 
@@ -78,7 +78,6 @@ Azure 客戶每月可以解除鎖定 25,000 封免費電子郵件。 這些每�
 [general-api-key]: ./media/sendgrid-sign-up/general-api-key.png
 [access]: ./media/sendgrid-sign-up/access.png
 [key]: ./media/sendgrid-sign-up/key.png
-[SendGrid dashboard]: ./media/sendgrid-sign-up/dashboard.png
 
 <!--Links-->
 
@@ -88,4 +87,3 @@ Azure 客戶每月可以解除鎖定 25,000 封免費電子郵件。 這些每�
 [SendGrid Provisioning Process]: https://support.sendgrid.com/hc/articles/200181628-Why-is-my-account-being-provisioned-
 [all APIs]: https://sendgrid.com/docs/API_Reference/index.html
 [Email API Overview]: https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html
-

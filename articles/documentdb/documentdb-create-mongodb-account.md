@@ -2,15 +2,15 @@
 redirect_url: https://docs.microsoft.com/azure/documentdb/documentdb-create-account
 ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: dbd15e0d2b1bc3b5f559d19961e3c45b5079e1c4
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: 21a388894278c9086b40812e5cfa7dc9b662a5ef
+ms.lasthandoff: 03/10/2017
 
 
 
 ---
 
-# <a name="create-a-documentdb-account-for-use-with-mongodb-apps"></a>建立用於 MongoDB 應用程式的 DocumentDB 帳戶
+# <a name="create-a-documentdb-account-with-mongodb-api"></a>使用 MongoDB API 建立 DocumentDB 帳戶
 DocumentDB 資料庫現在可做為針對 MongoDB 所撰寫之應用程式的資料存放區。 若要使用這項功能，您需要 Azure 帳戶和 DocumentDB 帳戶。 本教學課程將逐步引導您完成建立用於 MongoDB 應用程式之 DocumentDB 帳戶的程序。 
 
 您可以使用 Azure 入口網站或使用 Azure CLI 搭配 Azure Resource Manager 範本，來建立支援 MongoDB 的 DocumentDB 帳戶。 本文說明如何使用 Azure 入口網站來建立支援 MongoDB 的 DocumentDB 帳戶。 若要使用 Azure CLI 搭配 Azure Resource Manager 來建立帳戶，請參閱[使用 Azure CLI 2.0 自動進行 Azure DocumentDB 帳戶管理](documentdb-automation-resource-manager-cli.md)。

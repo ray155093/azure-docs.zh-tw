@@ -8,6 +8,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: ff35be59-bae3-42fd-9edc-77f0041bab93
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -15,9 +16,9 @@ ms.workload: big-data
 ms.date: 01/13/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: a4d30ffc0a5c5ef9fe7bb892d17f0859ff27f569
-ms.openlocfilehash: bf6ef38ba28d11d7894a30115174582903f84580
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 1a2a08a844f1502d970cb7686d512387263d1d13
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -86,7 +87,7 @@ ms.lasthandoff: 03/02/2017
 此外，您也可能會想要使用 `Start-AzureStorageBlobCopy` Azure PowerShell Cmdlet 在 HDInsight 之外的儲存體帳戶之間複製 Blob。 如需詳細資訊，請參閱＜搭配使用 Azure PowerShell 與 Azure 儲存體＞一文中的＜如何管理 Azure Blob＞一節。
 
 ## <a name="client-side-technologies"></a>用戶端技術
-一般來說，用戶端技術 (例如 [Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)、[Azure CLI](../xplat-cli-install.md) 或 [.NET SDK for Hadoop](https://hadoopsdk.codeplex.com/)) 在以 Linux 為基礎的叢集上會以相同方式持續運作，因為在這兩個叢集作業系統類型中，它們仰賴相同的 REST API。
+一般來說，用戶端技術 (例如 [Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)、[Azure CLI](../cli-install-nodejs.md) 或 [.NET SDK for Hadoop](https://hadoopsdk.codeplex.com/)) 在以 Linux 為基礎的叢集上會以相同方式持續運作，因為在這兩個叢集作業系統類型中，它們仰賴相同的 REST API。
 
 ## <a name="server-side-technologies"></a>伺服器端技術
 下列表格提供移轉 Windows 特定之伺服器端元件的指導方針。
@@ -94,7 +95,7 @@ ms.lasthandoff: 03/02/2017
 | 如果您正在使用這項技術... | 請執行此動作... |
 | --- | --- |
 | **PowerShell** (伺服器端指令碼，包含於叢集建立期間使用的指令碼動作) |重寫為 Bash 指令碼。 針對指令碼動作，請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)和[以 Linux 為基礎之 HDInsight 的指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。 |
-| **Azure CLI** (伺服器端指令碼) |雖然 Azure CLI 可在 Linux 上使用，它並沒有預先安裝在 HDInsight 叢集前端節點上。 如果您需要搭配伺服器端指令碼來使用，請參閱 [安裝 Azure CLI](../xplat-cli-install.md) 了解在以 Linux 為基礎之平台上進行安裝的資訊。 |
+| **Azure CLI** (伺服器端指令碼) |雖然 Azure CLI 可在 Linux 上使用，它並沒有預先安裝在 HDInsight 叢集前端節點上。 如果您需要搭配伺服器端指令碼來使用，請參閱 [安裝 Azure CLI](../cli-install-nodejs.md) 了解在以 Linux 為基礎之平台上進行安裝的資訊。 |
 | **.NET 元件** |.NET 並未在所有 Linux 型 HDInsight 叢集類型上都受到完全支援。 在 2016/10/28 之後建立的 Linux 型 Storm on HDInsight 叢集支援使用 SCP.NET 架構的 C# Storm 拓撲。 .NET 的其他支援將在未來的更新中新增。 |
 | **Win32 元件或其他僅限 Windows 的技術** |指導方針將視元件或技術而有所不同。 您或許能夠找到與 Linux 相容的版本，也可能需要尋找替代的解決方案，或是重寫此元件。 |
 

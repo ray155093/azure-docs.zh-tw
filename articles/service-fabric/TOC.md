@@ -109,11 +109,11 @@
 #### [叢集網路模式](service-fabric-patterns-networking.md)
 #### [節點類型與 VM 擴展集](service-fabric-cluster-nodetypes.md)
 #### [調整叢集](service-fabric-cluster-scale-up-down.md)
+#### [以程式設計方式調整叢集](service-fabric-cluster-programmatic-scaling.md)
 #### [升級叢集](service-fabric-cluster-upgrade.md)
 #### [刪除叢集](service-fabric-cluster-delete.md)
 #### [存取控制](service-fabric-cluster-security-roles.md)
 #### [設定叢集](service-fabric-cluster-fabric-settings.md)
-#### [使用憑證保護叢集](service-fabric-windows-cluster-x509-security.md)
 #### [新增或變換叢集憑證](service-fabric-cluster-security-update-certs-azure.md) 
 #### [免費試用 Party Cluster](http://aka.ms/tryservicefabric)
 
@@ -131,7 +131,8 @@
 
 ## 管理應用程式生命週期
 ### [概觀](service-fabric-application-lifecycle.md)
-### [設定連續整合](service-fabric-set-up-continuous-integration.md)
+### [透過 VSTS 設定連續整合](service-fabric-set-up-continuous-integration.md)
+### [使用 Jenkins 部署 Linux Java 應用程式](service-fabric-cicd-your-linux-java-application-with-jenkins.md)
 ### [了解 ImageStoreConnectionString 設定](service-fabric-image-store-connection-string.md)
 ### 部署或移除應用程式
 #### [PowerShell](service-fabric-deploy-remove-applications.md)

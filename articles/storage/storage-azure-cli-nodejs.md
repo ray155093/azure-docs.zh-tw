@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: 36fa9cd757b27347c08f80657bab8a06789a3c2f
-ms.openlocfilehash: 289bf7ab1ba91bd9edc6288af93e06170d8f2def
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: b246d8813a41d353a9c0fa31fe838e025fc93046
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 02/27/2017
 
 Azure CLI 提供您一組開放原始碼的跨平台命令集合，供您運用在 Azure 平台上。 它提供許多與 [Azure 入口網站](https://portal.azure.com) 相同的功能，以及豐富的資料存取功能。
 
-在本指南中，我們將探討如何使用 [Azure 命令列介面 (Azure CLI)](../xplat-cli-install.md) 搭配「Azure 儲存體」來執行各種開發和管理工作。 建議您在使用本指南之前，先下載並安裝或升級至最新的 Azure CLI。
+在本指南中，我們將探討如何使用 [Azure 命令列介面 (Azure CLI)](../cli-install-nodejs.md) 搭配「Azure 儲存體」來執行各種開發和管理工作。 建議您在使用本指南之前，先下載並安裝或升級至最新的 Azure CLI。
 
 本指南假設您已了解 Azure 儲存體的基本概念。 本指南提供許多指令碼示範如何使用 Azure CLI 搭配 Azure 儲存體。 在執行每個指令碼之前，請務必先根據您的組態更新指令碼變數。
 
@@ -47,7 +47,7 @@ Azure CLI 提供您一組開放原始碼的跨平台命令集合，供您運用�
 
 **建立 Microsoft Azure 訂用帳戶和帳戶之後：**
 
-1. 依照 [安裝 Azure CLI](../xplat-cli-install.md)中的指示下載並安裝 Azure CLI。
+1. 依照 [安裝 Azure CLI](../cli-install-nodejs.md)中的指示下載並安裝 Azure CLI。
 2. 安裝好 Azure CLI 之後，您就能從命令列介面 (Bash、終端機、命令提示字元) 中使用 azure 命令存取 Azure CLI 命令。 輸入 _azure_ 命令，您應該會看見下列輸出。
 
     ![Azure 命令輸出][Image1]
@@ -239,7 +239,7 @@ azure storage file copy start --source-container srcctn --source-blob hello2.txt
 您可以在下列網頁找到可與「儲存體」資源搭配運作的 Azure CLI 1.0 命令參考資料：
 
 * [Resource Manager 模式中的 Azure CLI 命令](../virtual-machines/azure-cli-arm-commands.md#azure-storage-commands-to-manage-your-storage-objects)
-* [Azure 服務管理模式中的 Azure CLI 命令](../xplat-cli-install.md)
+* [Azure 服務管理模式中的 Azure CLI 命令](../cli-install-nodejs.md)
 
 您或許也會想要試試以 Python 撰寫的新一代 CLI [Azure CLI 2.0](storage-azure-cli.md)，此 CLI 可與 Resource Manager 部署模型搭配使用。
 

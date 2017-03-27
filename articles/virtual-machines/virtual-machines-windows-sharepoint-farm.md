@@ -17,9 +17,9 @@ ms.date: 09/30/2016
 ms.author: josephd
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 32e30b44c2f7cfa9c1069190fdc53dbe6e9f4cd5
-ms.openlocfilehash: b668e32bf00ec32c7ffa77594bd1fb07440cf1ac
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 9e8eb54913b1e7e3f40ac2c9b80b0818eee3a35f
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -79,7 +79,7 @@ Azure 入口網站會在具有網際網路對向網站空間的純雲端虛擬�
 ![sharepointfarm](./media/virtual-machines-windows-sharepoint-farm/SP2016Farm.png)
 
 ## <a name="managing-the-sharepoint-farms"></a>管理 SharePoint 伺服器陣列
-您可以透過遠端桌面連接管理這些伺服器陣列的伺服器。 如需詳細資訊，請參閱 [登入虛擬機器](virtual-machines-windows-hero-tutorial.md#connect-to-the-virtual-machine-and-sign-on)。
+您可以透過遠端桌面連接管理這些伺服器陣列的伺服器。 如需詳細資訊，請參閱 [登入虛擬機器](virtual-machines-windows-quick-create-portal.md#connect-to-virtual-machine)。
 
 在「管理中心 SharePoint」網站中，您可以設定「我的網站」、SharePoint 應用程式和其他功能。 如需詳細資訊，請參閱 [設定 SharePoint](http://technet.microsoft.com/library/ee836142.aspx)。
 

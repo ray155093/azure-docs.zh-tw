@@ -14,13 +14,13 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 02/27/2017
+ms.date: 03/14/2017
 ms.author: dariagrigoriu, glenga
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: f4d589382fe337549f117e7c03af6fd5e237491f
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 9b5dabe5e27e68a4a9f140d4f07131caf7306e32
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -58,7 +58,7 @@ Azure Functions 有兩個不同的服務方案︰取用方案和 App Service 方
 
 ### <a name="runtime-scaling"></a>執行階段調整
 
-函式會使用中央接聽程式，根據設定的觸發程序來評估計算需求，以及決定何時相應放大或縮小。 中央接聽程式會持續處理記憶體需求和觸發程序特定資料點的提示。 例如，在 Azure 佇列儲存體觸發程序的案例中，資料點包含舊項目的佇列長度和佇列時間。
+函式會使用調整控制器，根據設定的觸發程序來評估計算需求，以及決定何時相應放大或縮小。 調整控制器會持續處理記憶體需求和觸發程序特定資料點的提示。 例如，在 Azure 佇列儲存體觸發程序的案例中，資料點包含舊項目的佇列長度和佇列時間。
 
 ![](./media/functions-scale/central-listener.png)
 

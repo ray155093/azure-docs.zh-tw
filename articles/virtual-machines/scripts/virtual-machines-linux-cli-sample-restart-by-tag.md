@@ -16,45 +16,64 @@ ms.workload: infrastructure
 ms.date: 03/01/2017
 ms.author: allclark
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: b292a02770fa74812e74fa38f870e47ed7473b63
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: be1c613744d510e4ace636b47fdf730462a2ae07
+ms.lasthandoff: 03/15/2017
 
 ---
 
-# <a name="restart-vms-by-tag"></a>依標記重新啟動 VM
+# <a name="restart-vms"></a>重新啟動 VM
 
-此範例會使用指定的標記在多個資源群組中建立虛擬機器。
-建立這些虛擬機器時，會使用 `--no-wait` 以平行方式建立，然後等候它們集體完成。
+這個範例顯示取得一些 VM 並加以重新啟動的幾種方式。
 
-建立這些虛擬機器之後，會使用兩個不同的查詢機制來重新啟動它們。
+第一種方式可重新啟動資源群組中的所有 VM。
 
-第一個機制會使用在等候其非同步建立作業時所用的相同查詢來重新啟動 VM。
 ```bash
-az vm restart --ids $(az vm list --query "join(' ', ${GROUP_QUERY}] | [].id)" \
-    -o tsv) $1>/dev/null
+az vm restart --ids $(az vm list --resource-group myResourceGroup --query "[].id" -o tsv)
 ```
 
-第二個機制會使用一般資源列表和查詢來依標記截取其識別碼。
+第二種方式可使用 `az resouce list` 取得已標記的 VM 並篩選至屬於 VM 的資源，然後重新啟動這些 VM。
+
 ```bash
-az vm restart --ids $(az resource list --tag ${TAG} \
-    --query "[?type=='Microsoft.Compute/virtualMachines'].id" -o tsv) $1>/dev/null
+az vm restart --ids $(az resource list --tag "restart-tag" --query "[?type=='Microsoft.Compute/virtualMachines'].id" -o tsv)
 ```
 
 這個範例適用於 Bash 殼層。 如需在 Windows 用戶端上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../virtual-machines-windows-cli-options.md)。
 
+
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-azurecli[main](../../../cli_scripts/virtual-machine/restart-by-tag/restart-by-tag.sh "依標記重新啟動 VM")]
+此範例有三個指令碼。
+第一個指令碼會佈建虛擬機器。
+它會使用不等待選項，因此命令會傳回，而不會在每個 VM 上等待佈建。
+第二個指令碼會等待 VM 完整佈建。
+第三個指令碼會重新啟動所有已佈建的 VM，然後只重新啟動已標記的 VM。
+
+### <a name="provision-the-vms"></a>佈建 VM
+
+此指令碼會建立資源群組，然後建立三部要重新啟動的 VM。
+其中兩部已加上標記。
+
+[!code-azurecli[main](../../../cli_scripts/virtual-machine/restart-by-tag/provision.sh "佈建 VM")]
+
+### <a name="wait"></a>等候
+
+此指令碼會每 20 秒檢查一次佈建狀態，直到三部 VM 都已佈建，或其中一部佈建失敗為止。
+
+[!code-azurecli[main](../../../cli_scripts/virtual-machine/restart-by-tag/wait.sh "等待 VM 進行佈建")]
+
+### <a name="restart-the-vms"></a>重新啟動 VM
+
+此指令碼重新啟動資源群組中的所有 VM，然後只重新啟動已標記的 VM。
+
+[!code-azurecli[main](../../../cli_scripts/virtual-machine/restart-by-tag/restart.sh "依標記重新啟動 VM")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
 在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
 
 ```azurecli
-az group delete -n GROUP1 --no-wait --yes && \ 
-az group delete -n GROUP2 --no-wait --yes && \
-az group delete -n GROUP3 --no-wait --yes
+az group delete -n myResourceGroup --no-wait --yes
 ```
 
 ## <a name="script-explanation"></a>指令碼說明
@@ -65,7 +84,8 @@ az group delete -n GROUP3 --no-wait --yes
 |---|---|
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | 建立用來存放所有資源的資源群組。 |
 | [az vm create](https://docs.microsoft.com/cli/azure/vm/availability-set#create) | 建立虛擬機器。  |
-| [az vm list](https://docs.microsoft.com/cli/azure/vm#list) | 與 `--query` 搭配使用以確保在重新啟動 VM 之前先佈建 VM。 |
+| [az vm list](https://docs.microsoft.com/cli/azure/vm#list) | 與 `--query` 搭配使用，確保在重新啟動 VM 之前先加以佈建，然後取得 VM 識別碼加以重新啟動。 |
+| [az resource list](https://docs.microsoft.com/cli/azure/vm#list) | 與 `--query` 搭配使用，使用標籤取得 VM 的識別碼。 |
 | [az vm restart](https://docs.microsoft.com/cli/azure/vm#list) | 重新啟動 VM。 |
 | [az group delete](https://docs.microsoft.com/cli/azure/vm/extension#set) | 刪除資源群組，包括所有的巢狀資源。 |
 

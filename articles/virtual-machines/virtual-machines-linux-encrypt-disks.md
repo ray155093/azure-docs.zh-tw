@@ -15,8 +15,9 @@ ms.workload: infrastructure
 ms.date: 02/10/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
-ms.openlocfilehash: 97dd91986751031daef24fc806adc7021b2f94fc
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: c6acdf97ee5e947ac48866c003480e393dd4bf35
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 97dd91986751031daef24fc806adc7021b2f94fc
 ## <a name="quick-commands"></a>快速命令
 如果您需要快速完成工作，下列章節詳細說明將 VM 上的虛擬磁碟加密的基本命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](#overview-of-disk-encryption)。
 
-您需要使用 Resource Manager 模式安裝和登入[最新的 Azure CLI](../xplat-cli-install.md)，如下所示：
+您需要使用 Resource Manager 模式安裝和登入[最新的 Azure CLI](../cli-install-nodejs.md)，如下所示：
 
 ```azurecli
 azure config mode arm
@@ -156,7 +157,7 @@ Linux VM 上的待用虛擬磁碟會使用 [dm-crypt](https://wikipedia.org/wiki
 * 在已經加密的 Linux VM 上更新密碼編譯金鑰。
 
 ## <a name="create-the-azure-key-vault-and-keys"></a>建立 Azure 金鑰保存庫和金鑰
-若要完成本指南的其餘部分，您需要使用 Resource Manager 模式安裝和登入[最新的 Azure CLI](../xplat-cli-install.md)，如下所示：
+若要完成本指南的其餘部分，您需要使用 Resource Manager 模式安裝和登入[最新的 Azure CLI](../cli-install-nodejs.md)，如下所示：
 
 ```azurecli
 azure config mode arm
@@ -308,10 +309,5 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
 ## <a name="next-steps"></a>後續步驟
 * 如需有關管理 Azure 金鑰保存庫 (包括刪除密碼編譯金鑰和保存庫) 的詳細資訊，請參閱[使用 CLI 管理金鑰保存庫](../key-vault/key-vault-manage-with-cli.md)。
 * 如需有關磁碟加密 (例如準備加密的自訂 VM 以上傳至 Azure) 的詳細資訊，請參閱 [Azure 磁碟加密](../security/azure-security-disk-encryption.md)。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

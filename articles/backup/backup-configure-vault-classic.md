@@ -1,6 +1,6 @@
 ---
-title: "使用傳統部署模型將 Windows Server 或用戶端備份至 Azure | Microsoft Docs"
-description: "藉由建立備份保存庫、下載認證、安裝備份代理程式，並完成檔案和資料夾的初始備份，來將 Windows Server 或用戶端備份到 Azure。"
+title: "將 Windows 伺服器或工作站備份至 Azure (傳統模型) | Microsoft Docs"
+description: "將 Windows 伺服器或用戶端備份至 Azure 中的備份保存庫。 瀏覽使用 Azure 備份代理程式將檔案和資料夾放入備份保存庫來保護的基本概念。"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -13,24 +13,24 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/28/2016
+ms.date: 3/10/2017
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: ddb1eabf88c48228f312d2fb0ac7f6685e448685
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: a7b55e3949cf8406f7c62e9dfd6cc1567d3a5996
+ms.lasthandoff: 03/14/2017
 
 
 ---
-# <a name="back-up-a-windows-server-or-client-to-azure-using-the-classic-deployment-model"></a>使用傳統部署模型將 Windows Server 或用戶端備份至 Azure
+# <a name="back-up-a-windows-server-or-workstation-to-azure-using-the-classic-portal"></a>使用傳統入口網站將 Windows 伺服器或工作站備份至 Azure
 > [!div class="op_single_selector"]
 > * [傳統入口網站](backup-configure-vault-classic.md)
 > * [Azure 入口網站](backup-configure-vault.md)
 >
 >
 
-本文涵蓋您要準備環境並將 Windows Server (或用戶端) 備份至 Azure 所需依循的程序。 它還涵蓋部署備份解決方案的考量。 如果您想要第一次嘗試 Azure 備份，這篇文章可快速引導您完成該程序。
+本文涵蓋準備環境和將 Windows 伺服器 (或工作站) 備份至 Azure 所需依循的程序。 它還涵蓋部署備份解決方案的考量。 如果您想要第一次嘗試 Azure 備份，這篇文章可快速引導您完成該程序。
 
-![建立保存庫](./media/backup-configure-vault-classic/initial-backup-process.png)
 
 > [!IMPORTANT]
 > Azure 建立和處理資源的部署模型有二種：資源管理員和傳統。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
@@ -40,49 +40,14 @@ ms.openlocfilehash: ddb1eabf88c48228f312d2fb0ac7f6685e448685
 ## <a name="before-you-start"></a>開始之前
 若要將伺服器或用戶端備份至 Azure，您需要 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立 [免費帳戶](https://azure.microsoft.com/free/) 。
 
-## <a name="step-1-create-a-backup-vault"></a>步驟 1：建立備份保存庫
+## <a name="create-a-backup-vault"></a>建立備份保存庫
 若要從伺服器或用戶端備份檔案與資料夾，您必須在要儲存這些資料的地理區域中建立備份保存庫。
 
-### <a name="to-create-a-backup-vault"></a>若要建立備份保存庫
-1. 登入 [傳統入口網站](https://manage.windowsazure.com/)。
-2. 按一下 [新增] > [資料服務] > [復原服務] > [備份保存庫]，然後選擇 [快速建立]。
-3. 針對 [名稱]  參數，輸入易記的備份保存庫名稱。 輸入包含 2 到 50 個字元的名稱。 該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。 每個訂用帳戶的名稱皆需為唯一名稱。
-4. 針對 [ **區域** ] 參數，選取備份保存庫的地區區域。 此選項會決定您的備份資料要傳送到哪個地理區域。 透過選擇靠近您位置的地理區域，可以在備份至 Azure 時減少網路延遲。
-5. 按一下 [建立保存庫] 。
+> [!IMPORTANT]
+> 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。 我們仍然支援現有的備份保存庫，您也可以[使用 Azure PowerShell 來建立備份保存庫](./backup-client-automation-classic.md#create-a-backup-vault)。 不過，Microsoft 建議您建立所有部署的復原服務保存庫，因為未來的增強功能僅適用於復原服務保存庫。
 
-    ![建立備份保存庫](./media/backup-configure-vault-classic/demo-vault-name.png)
 
-    要等備份保存庫建立好，可能需要一些時間。 若要檢查狀態，可以監控位於傳統入口網站底部的通知。
-
-    建立備份保存庫之後，您會看到一則訊息表示已成功建立保存庫。 它也會在 [復原服務] 資源清單中顯示為 [使用中]。
-
-    ![正在建立保存庫狀態](./media/backup-configure-vault-classic/recovery-services-select-vault.png)
-6. 依照此處說明的步驟選取儲存體備援選項。
-
-   > [!IMPORTANT]
-   > 識別儲存體備援選項的最佳時機，在於保存庫建立之後，以及任何電腦註冊至保存庫之前。 在項目已註冊至保存庫之後，儲存體備援選項就會鎖定且無法修改。
-   >
-   >
-
-    如果您使用 Azure 作為主要的備份儲存體端點 (例如，您正從 Windows Server 備份至 Azure)，請考慮挑選 (預設值) [異地備援儲存體](../storage/storage-redundancy.md#geo-redundant-storage) 選項。
-
-    如果您使用 Azure 做為第三備份儲存體端點 (例如，您使用 System Center Data Protection Manager 在內部部署環境中儲存本機備份複本，並使用 Azure 來滿足長期保留需求)，則應該考慮選擇 [本地備援儲存體](../storage/storage-redundancy.md#locally-redundant-storage)。 這將減少在 Azure 中儲存資料的成本，同時針對您可能會接受第三個複本的資料提供較低層級的持久性。
-
-    **選取儲存體備援選項：**
-
-    a. 按一下您剛才建立的保存庫。
-
-    b. 在 [快速啟動] 頁面上，選取 [設定]。
-
-    ![設定保存庫狀態](./media/backup-configure-vault-classic/configure-vault.png)
-
-    c. 選擇適當的儲存體備援選項。
-
-    如果您選取 [本地備援]，您必須按一下 [儲存] (因為 [異地備援] 是預設選項)。
-
-    d. 在左側瀏覽窗格中，按一下 [復原服務] 以回到復原服務的資源清單。
-
-## <a name="step-2-download-the-vault-credential-file"></a>步驟 2：下載保存庫認證檔
+## <a name="download-the-vault-credential-file"></a>下載保存庫認證檔
 內部部署機器必須先驗證備份保存庫，才能將資料備份至 Azure。 驗證是透過「保存庫認證」 來達成。 保存庫認證檔會透過安全通道，從傳統入口網站下載。 憑證私密金鑰不會保存在入口網站或服務中。
 
 深入了解如何 [使用保存庫認證來驗證備份服務](backup-introduction-to-azure-backup.md#what-is-the-vault-credential-file)。
@@ -103,7 +68,7 @@ ms.openlocfilehash: ddb1eabf88c48228f312d2fb0ac7f6685e448685
    >
    >
 
-## <a name="step-3-download-install-and-register-the-backup-agent"></a>步驟 3：下載、安裝和註冊備份代理程式
+## <a name="download-install-and-register-the-backup-agent"></a>下載、安裝和註冊備份代理程式
 在您建立備份保存庫並下載保存庫認證檔之後，必須在您每一部 Windows 電腦上安裝代理程式。
 
 ### <a name="to-download-install-and-register-the-agent"></a>下載、安裝和註冊代理程式
@@ -130,9 +95,10 @@ ms.openlocfilehash: ddb1eabf88c48228f312d2fb0ac7f6685e448685
     > 如果遺失或忘記複雜密碼，Microsoft 將無法協助您復原備份資料。 加密複雜密碼為您所擁有，Microsoft 並無法看到您所使用的複雜密碼。 請將檔案儲存在安全的位置，因為在復原作業期間將會需要該檔案。
     >
     >
+
 11. 設定加密金鑰之後，讓 [啟動 Microsoft Azure 復原服務代理程式] 核取方塊保持已選取狀態，然後按一下 [關閉]。
 
-## <a name="step-4-complete-the-initial-backup"></a>步驟 4︰完成初始備份
+## <a name="complete-the-initial-backup"></a>完成初始備份
 初始備份包括兩項重要工作：
 
 * 建立備份排程
@@ -161,6 +127,7 @@ ms.openlocfilehash: ddb1eabf88c48228f312d2fb0ac7f6685e448685
    > 如需如何指定備份排程的相關詳細資訊，請參閱 [使用 Azure 備份來取代您的磁帶基礎結構](backup-azure-backup-cloud-as-tape.md)一文。
    >
    >
+
 8. 在 [選取保留原則] 頁面上，選取 [保留原則] 做為備份複本。
 
     保留原則會指定備份將儲存的期間。 除了僅針對所有備份點指定「一般原則」之外，您可以指定在進行備份時根據不同的保留原則。 您可以修改每日、每週、每月和每年保留原則，以符合您的需求。
@@ -205,9 +172,4 @@ ms.openlocfilehash: ddb1eabf88c48228f312d2fb0ac7f6685e448685
 * [備份 IaaS VM](backup-azure-vms-prepare.md)
 * [使用 Microsoft Azure 備份伺服器備份工作負載](backup-azure-microsoft-azure-backup.md)
 * [使用 DPM 將工作負載備份到 Azure](backup-azure-dpm-introduction.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

@@ -12,11 +12,12 @@ ms.workload: web
 ms.tgt_pltfrm: vs-getting-started
 ms.devlang: na
 ms.topic: article
-ms.date: 11/18/2016
+ms.date: 03/19/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: f3f8292eb505c73b5fda86499581fe85ad3f8e47
-ms.openlocfilehash: b42bd57c8a7dde854208c65f4477327fbf1108a4
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 333db54fe01aad42cfcd050995b64f3725b31ae9
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -27,14 +28,10 @@ ms.openlocfilehash: b42bd57c8a7dde854208c65f4477327fbf1108a4
 > 
 > 
 
-### <a name="requiring-authentication-to-access-controllers"></a>存取控制器之前需要驗證
+## <a name="requiring-authentication-to-access-controllers"></a>存取控制器之前需要驗證
 專案中的所有控制器都加上 **Authorize** 屬性做裝飾。 此屬性要求使用者必須經過驗證，才能存取這些控制器所定義的 API。 若要允許以匿名方式存取控制器，請從控制器中移除此屬性。 如果您要以更精確地設定權限，請將此屬性套用至每一個需要授權的方法，而非套用至控制器類別。
 
+## <a name="next-steps"></a>後續步驟
 [深入了解 Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

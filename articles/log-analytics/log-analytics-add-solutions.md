@@ -1,5 +1,5 @@
 ---
-title: "新增 Operations Management Suite (OMS) 管理解決方案 | Microsoft Docs"
+title: "新增 Azure Log Analytics 管理解決方案 | Microsoft Docs"
 description: "Operations Management Suite (OMS) / Log Analytics 管理解決方案是邏輯、視覺效果和資料擷取規則的集合，可提供針對特定問題領域進行計量的樞紐分析。"
 services: log-analytics
 documentationcenter: 
@@ -12,17 +12,19 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/13/2017
+ms.date: 02/27/2017
 ms.author: banders
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ebfa17fd5a587cbc985689c37bb14167daaee4bb
-ms.openlocfilehash: 531820db1ff80fb4dcfc72743bf28104fc1014f1
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: dc4a28b64620ecc4829d614b9a3c9e1939fd0063
+ms.lasthandoff: 03/11/2017
 
 
 ---
-# <a name="add-operations-management-suite-oms-management-solutions"></a>新增 Operations Management Suite (OMS) 管理解決方案
+# <a name="add-azure-log-analytics-management-solutions-to-your-workspace"></a>將 Azure Log Analytics 管理解決方案新增至您的工作區
 
-Operations Management Suite (OMS) 管理解決方案是**邏輯**、**視覺效果**和**資料擷取規則**的集合，可提供針對特定問題領域進行計量的樞紐分析。 本文列出 Log Analytics 所支援的管理解決方案，並說明如何使用 Azure 入口網站新增和移除工作區。 您也可以在 OMS 入口網站中使用方案庫新增解決方案。
+Log Analytics 管理解決方案是**邏輯**、**視覺效果**和**資料擷取規則**的集合，可提供針對特定問題領域進行計量的樞紐分析。 本文列出 Log Analytics 所支援的管理解決方案，並說明如何使用 Azure 入口網站新增和移除工作區。 您也可以在 OMS 入口網站中使用方案庫新增解決方案。
 
 管理解決方案可允許更深入的探討，以：
 
@@ -36,6 +38,12 @@ Operations Management Suite (OMS) 管理解決方案是**邏輯**、**視覺效�
 透過本文，您可以使用 Azure 入口網站 Marketplace 對工作區新增管理解決方案。 加入方案後，系統會從基礎結構中的伺服器收集資料，然後再傳送到 OMS 服務。 OMS 服務的處理時間通常需要幾分鐘到一個小時。 待服務處理完資料後，您可以在 OMS 中予以檢視。
 
 當您不再需要管理解決方案時，您可以輕易地將它移除。 當您移除管理解決方案時，就不會將其資料傳送至 OMS。 如果您處於免費定價層，則移除解決方案可減少資料的使用量，協助您保持在每日的資料配額之下。
+
+## <a name="view-available-management-solutions"></a>檢視可用的管理解決方案
+
+Azure Marketplace 包含 [Log Analytics 的管理解決方案](https://azuremarketplace.microsoft.com/marketplace/apps/category/monitoring-management?page=1&subcategories=management-solutions)清單。
+
+按一下每個解決方案底部的 [立刻取得] 連結，即可從 Azure marketplace 安裝管理解決方案。
 
 ## <a name="add-a-management-solution"></a>新增管理解決方案
 1. 如果您尚未這麼做，請使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)。
@@ -61,40 +69,43 @@ Operations Management Suite (OMS) 管理解決方案是**邏輯**、**視覺效�
 
 ## <a name="offers-and-pricing-tiers"></a>優惠和定價層
 
-下表列出適用於每個 Operations Management 和安全性優惠的管理解決方案。 此表格也會列出適用於每個管理解決方案的定價層。 下表中的所有解決方案都可從 Azure 入口網站以及 Log Analytics 入口網站的解決方案庫中取得。
+下表列出適用於每個 Operations Management 和安全性優惠的管理解決方案。
+此表格也會列出適用於每個管理解決方案的定價層。
+下表中的所有解決方案都可從 Azure 入口網站以及 Log Analytics 入口網站的解決方案庫中取得。
 
-| 管理解決方案                                                                       | 提供項目                                                                     | 定價層<sup>1</sup>                                                 | 注意事項 | 
-| ---                                                                                       | ---                                                                       | ---                                                                                                       | ---   |
-| 活動 Log Analytics                                                                    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 可免費使用資料&90; 天 |
-| [AD 評估](log-analytics-ad-assessment.md)                                           | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| [AD 複寫狀態](log-analytics-ad-replication-status.md)                           | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| 代理程式健康狀態                                                                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| [警示管理](log-analytics-solution-alert-management.md)                            | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| Application Insights 連接器 <br>(預覽)                                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| 自動化混合式背景工作角色                                                                  | <ul><li>自動化和控制</li></ul>                                  | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
-| [使用 Azure 網路分析](log-analytics-azure-networking-analytics.md) <br>(預覽)   | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| Azure SQL 分析 <br>(預覽)                                                         | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br>每個&nbsp;節點&nbsp;(OMS)                                                                          | 要求您將 Log Analytics 工作區連結到自動化帳戶|
-| 備份                                                                                    | <ul><li>深入解析與分析</li></ul>                                   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 需要傳統的備份保存庫 |
-| 容量和效能 <br>(預覽)                                                    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| [變更追蹤](log-analytics-change-tracking.md)                                       | <ul><li>自動化和控制</li></ul>                                  | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
-| [容器](log-analytics-containers.md)                                                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| HDInsight HBase 監視 <br>(預覽)                                                  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| [金鑰保存庫分析](log-analytics-azure-key-vault.md) <br>(預覽)                     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| [惡意程式碼評估](log-analytics-malware.md)                                            | <ul><li>安全性與法規遵循</li></ul>                                 | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | |
-| [網路效能監視器](log-analytics-network-performance-monitor.md) <br>(預覽) | <ul><li>深入解析與分析</li></ul>                                   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | |
-| Office 365 分析 <br>(預覽)                                                        | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| [安全性和稽核](../operations-management-suite/oms-security-getting-started.md)      | <ul><li>安全性&nbsp;和&nbsp;合規性</li></ul>                       | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 收集安全性事件記錄檔需要此解決方案 |
-| [Service Fabric 分析](log-analytics-service-fabric.md) <br>(預覽)                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| [服務對應](../operations-management-suite/operations-management-suite-service-map.md) <br>(預覽)| <ul><li>深入解析與分析</li></ul>                       | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 適用於美國東部和西歐  |
-| 站台復原                                                                             | <ul><li>深入解析與分析</li></ul>                                   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 需要傳統的 Site Recovery 保存庫 |
-| [SQL 評估](log-analytics-sql-assessment.md)                                         | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| 於下班時間開始/停止 VM<br>(預覽)                                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
-| [SurfaceHub](log-analytics-surface-hubs.md)                                               | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| [System Center Operations Manager Assessment](log-analytics-scom-assessment.md) <br>(預覽) | <ul><li>深入解析與分析</li><li>Log Analytics</li></ul>         | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| 更新管理                                                                         | <ul><li>自動化和控制</li></ul>                                  | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
-| 升級分析 <br>(預覽)                                                           | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | 免費的資料或節點 |
-| [VMware 監視](log-analytics-vmware.md) <br>(預覽)                                | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)   | |
-| Wire Data 2.0<br>(預覽)                                                                | <ul><li>深入解析與分析</li></ul>                                   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 適用於美國東部和西歐 |
+| 管理解決方案                                                                        | 提供項目                                                                     | 定價層<sup>1</sup>                                                    | 注意事項 |
+| ---                                                                                        | ---                                                                       | ---                                                                                                       | ---   |
+| 活動 Log Analytics                                                                     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 可免費使用資料&90; 天 |
+| [AD 評估](log-analytics-ad-assessment.md)                                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| [AD 複寫狀態](log-analytics-ad-replication-status.md)                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| 代理程式健康狀態                                                                                  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| [警示管理](log-analytics-solution-alert-management.md)                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| Application Insights 連接器 <br>(預覽)                                                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>    | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| 自動化混合式背景工作角色                                                                     | <ul><li>自動化和控制</li></ul>                                    | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
+| [Azure 應用程式閘道分析](log-analytics-azure-networking-analytics.md)      | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| [Azure 網路安全性群組分析](log-analytics-azure-networking-analytics.md)      | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| [Azure SQL Analytics (預覽)](log-analytics-azure-sql.md)                                                          | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br>每個&nbsp;節點&nbsp;(OMS)                                                                             | 要求您將 Log Analytics 工作區連結到自動化帳戶|
+| 備份                                                                                    | <ul><li>深入解析與分析</li></ul>                                     | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 需要傳統的備份保存庫 |
+| 容量和效能 <br>(預覽)                                                     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| [變更追蹤](log-analytics-change-tracking.md)                                         | <ul><li>自動化和控制</li></ul>                                    | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
+| [容器](log-analytics-containers.md)                                                  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| HDInsight HBase 監視 <br>(預覽)                                                     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| [金鑰保存庫分析](log-analytics-azure-key-vault.md)                      | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| [惡意程式碼評估](log-analytics-malware.md)                                             | <ul><li>安全性與法規遵循</li></ul>                                    | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                               | |
+| [網路效能監視器](log-analytics-network-performance-monitor.md) <br>(預覽)    | <ul><li>深入解析與分析</li></ul>                                     | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | |
+| Office 365 分析 <br>(預覽)                                                        | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| [安全性和稽核](../operations-management-suite/oms-security-getting-started.md)        | <ul><li>安全性&nbsp;和&nbsp;合規性</li></ul>                        | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                               | 收集安全性事件記錄檔需要此解決方案 |
+| [Service Fabric 分析](log-analytics-service-fabric.md) <br>(預覽)                    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| [服務對應](../operations-management-suite/operations-management-suite-service-map.md) <br>(預覽)| <ul><li>深入解析與分析</li></ul>                         | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 適用於美國東部和西歐     |
+| 站台復原                                                                                | <ul><li>深入解析與分析</li></ul>                                     | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 需要傳統的 Site Recovery 保存庫 |
+| [SQL 評估](log-analytics-sql-assessment.md)                                            | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| 於下班時間開始/停止 VM<br>(預覽)                                                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
+| [SurfaceHub](log-analytics-surface-hubs.md)                                                    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| [System Center Operations Manager Assessment](log-analytics-scom-assessment.md) <br>(預覽) | <ul><li>深入解析與分析</li><li>Log Analytics</li></ul>         | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| 更新管理                                                                               | <ul><li>自動化和控制</li></ul>                                    | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
+| [Upgrade Analytics](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-analytics) <br>(預覽)                                                             | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 免費的資料或節點 |
+| [VMware 監視](log-analytics-vmware.md) <br>(預覽)                                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| Wire Data 2.0<br>(預覽)                                                                   | <ul><li>深入解析與分析</li></ul>                                      | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 適用於美國東部和西歐 |
 
 <sup>1</sup> *標準*和*進階 (OMS)* 定價層只適用於已在 2016 年 9 月 21 日之前建立 Log Analytics 工作區的客戶。
 
@@ -102,9 +113,9 @@ Operations Management Suite (OMS) 管理解決方案是**邏輯**、**視覺效�
 
 社群提供的解決方案都是來自 [Azure 範本庫](https://azure.microsoft.com/resources/templates/?term=Per&nbsp;Node&nbsp;(OMS))或直接由作者提供。
 
-| 管理解決方案               | 提供項目                                                                     | 定價層                         | 注意事項 | 
-| ---                               | ---                                                                       | ---                                   | ---   |
-| 所有社群提供的解決方案  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>   | 免費<br> 每個&nbsp;節點&nbsp;(OMS)     |   要求您將 Log Analytics 工作區連結到自動化帳戶 |
+| 管理解決方案                 | 提供項目                                                                     | 定價層                         | 注意事項 |
+| ---                                 | ---                                                                       | ---                                   | ---   |
+| 所有社群提供的解決方案  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 每個&nbsp;節點&nbsp;(OMS)     |    要求您將 Log Analytics 工作區連結到自動化帳戶 |
 
 
 
@@ -121,7 +132,7 @@ Log Analytics Windows 代理程式和 System Center Operations Manager 代理程
 > - 不需要 Operations Manager 且表格顯示使用管理群組將 Operations Manager 代理程式資料傳送至 OMS 時，一律會使用管理群組將 Operations Manager 代理程式資料傳送至 OMS。 Windows 代理程式會略過管理群組，直接將其資料傳送至 OMS。
 > - 不使用管理群組來傳送 Operations Manager 代理程式資料時，則會直接將資料傳送至 OMS - 略過管理群組。
 
-### <a name="insight--analytics--log-analytics"></a>深入解析與分析 / Log Analytics 
+### <a name="insight--analytics--log-analytics"></a>深入解析與分析 / Log Analytics
 
 | 管理解決方案 | 平台 | Microsoft Monitoring Agent | Operations Manager 代理程式 | Azure 儲存體 | 是否需要 Operations Manager？ | 透過管理群組傳送的 Operations Manager 代理程式資料 | 收集頻率 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -133,10 +144,12 @@ Log Analytics Windows 代理程式和 System Center Operations Manager 代理程
 | 警示管理 (Zabbix) |Linux |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |1 分鐘 |
 | 警示管理 (Operations Manager) |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |3 分鐘 |
 | Application Insights 連接器 (預覽) | Azure | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 與通知同時 |
-| Azure 網路分析 (預覽) | Azure | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 10 分鐘 |
+| Azure 應用程式閘道分析 | Azure | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 10 分鐘 |
+| Azure 網路安全性群組分析 | Azure | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 10 分鐘 |
+| Azure SQL Analytics (預覽) |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 10 分鐘 |
 | 產能管理 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |每小時 |
-| 容器 | Linux | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 3 分鐘 |
-| 金鑰保存庫分析 (預覽) |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |10 分鐘 |
+| 容器 | Windows 和 Linux | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | 3 分鐘 |
+| 金鑰保存庫分析 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |10 分鐘 |
 | 網路效能監視器 | Windows | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![是](./media/log-analytics-add-solutions/oms-bullet-green.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | TCP 會每 5 秒交握一次，而資料會每 3 分鐘傳送一次 |
 | Office 365 分析 (預覽) |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |與通知同時 |
 | Service Fabric 分析 |Windows |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |5 分鐘 |
@@ -165,7 +178,7 @@ Log Analytics Windows 代理程式和 System Center Operations Manager 代理程
 | 反惡意程式碼評估 |Windows |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![否](./media/log-analytics-add-solutions/oms-bullet-red.png) |![是](./media/log-analytics-add-solutions/oms-bullet-green.png) |每小時 |
 | 安全性和稽核<sup>1</sup> | Windows 和 Linux | ![部分](./media/log-analytics-add-solutions/oms-bullet-yellow.png) | ![部分](./media/log-analytics-add-solutions/oms-bullet-yellow.png) | ![部分](./media/log-analytics-add-solutions/oms-bullet-yellow.png) | ![否](./media/log-analytics-add-solutions/oms-bullet-red.png) | ![部分](./media/log-analytics-add-solutions/oms-bullet-yellow.png) | 各種 |
 
-<sup>1</sup>安全性和稽核解決方案可以從 Windows、Operations Manager 和 Linux 代理程式收集記錄。 請參閱[資料來源](#data-sources)，以取得關於下列各項的資料收集資訊：
+<sup>1</sup> 安全性和稽核解決方案可以從 Windows、Operations Manager 和 Linux 代理程式收集記錄。 請參閱[資料來源](#data-sources)，以取得關於下列各項的資料收集資訊：
 
 - syslog
 - Windows 安全性事件記錄檔
@@ -263,9 +276,4 @@ Log Analytics Windows 代理程式和 System Center Operations Manager 代理程
 
 ## <a name="next-steps"></a>後續步驟
 * [搜尋記錄](log-analytics-log-searches.md) 以檢視管理解決方案所蒐集的詳細資訊。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

@@ -17,8 +17,9 @@ ms.workload: na
 ms.date: 11/03/2016
 ms.author: wesmc
 translationtype: Human Translation
-ms.sourcegitcommit: 109ca4a4672d21969096af26a094390673de25d9
-ms.openlocfilehash: f349dea2ba1a080312cf07f19eded201775c9cd1
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 831b7cc21ee34f900f7e35885a36f6e0faf38211
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -78,7 +79,7 @@ ms.openlocfilehash: f349dea2ba1a080312cf07f19eded201775c9cd1
 
 ### <a name="monitoring-function-app-log-files-with-the-azure-cli"></a>使用 Azure CLI 監視函式應用程式記錄檔
 
-首先，請[安裝 Azure CLI](../xplat-cli-install.md)
+首先，請[安裝 Azure CLI](../cli-install-nodejs.md)
 
 使用下列命令，或[從 Azure CLI 登入 Azure](../xplat-cli-connect.md)中涵蓋的任何其他選項，登入您的 Azure 帳戶。
 
@@ -124,10 +125,5 @@ ms.openlocfilehash: f349dea2ba1a080312cf07f19eded201775c9cd1
 
 * [測試函數](functions-test-a-function.md)
 * [調整函數](functions-scale.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

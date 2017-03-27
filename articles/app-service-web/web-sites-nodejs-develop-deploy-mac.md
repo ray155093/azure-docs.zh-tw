@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 4b8eb863a1fcb65c307870619ea9d8942c57a906
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 335c6fc1bab097367f2d380466d19ea70c7660c2
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -187,7 +187,7 @@ Node.js 提供您豐富的模組生態系統，可供您的應用程式使用。
 
 如果您在將應用程式部署到 Azure 後遇到問題，請參閱 [如何在 Azure App Service 中偵錯 Node.js 應用程式](web-sites-nodejs-debug.md) ，以獲得診斷問題的詳細資訊。
 
-這篇文章會使用 Azure 入口網站來建立 Web 應用程式。 您也可以使用 [Azure 命令列介面](../xplat-cli-install.md)或 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 執行相同作業。
+這篇文章會使用 Azure 入口網站來建立 Web 應用程式。 您也可以使用 [Azure 命令列介面](../cli-install-nodejs.md)或 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 執行相同作業。
 
 如需如何在 Azure 上開發 Node.js 應用程式的詳細資訊，請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
 

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/26/2017
 ms.author: swkrish
 translationtype: Human Translation
-ms.sourcegitcommit: 33521eca953c0e14a7fdaa99edef2997397286eb
-ms.openlocfilehash: cd79a485feddc68924f9b7f5e7d8d614b4e28d28
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 7ad7dce6fc7025a6a6e7935d74b3b71a7bfee097
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -130,7 +131,7 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 2. 按一下 [設定檔編輯原則] 。
 3. 按一下刀鋒視窗頂端的 [+新增]  。
 4. [名稱]  決定您的應用程式所使用的設定檔編輯原則名稱。 例如，輸入 "SiPe"。
-5. 按一下 [身分識別提供者]  ，選取 [電子郵件地址]。 (選擇性) 您也可以選取社交身分識別提供者 (如果已經設定)。 按一下 [確定] 。
+5. 按一下 [識別提供者]，選取 [本機帳戶登入]。 (選擇性) 您也可以選取社交身分識別提供者 (如果已經設定)。 按一下 [確定] 。
 6. 按一下 [設定檔屬性] 。 您在這裡選擇取用者可以檢視及編輯的屬性。 例如，選取 [國家/區域]、[顯示名稱] 和 [郵遞區號]。 按一下 [確定] 。
 7. 按一下 [應用程式宣告] 。 您在這裡選擇成功編輯設定檔後，您要在權杖中傳回給應用程式的宣告。 例如，選取 [顯示名稱] 和 [郵遞區號]。
 8. 按一下 [建立] 。 請注意，剛建立的原則會在 [設定檔編輯原則] 刀鋒視窗中顯示為 "**B2C_1_SiPe**" (會自動新增 **B2C\_1\_** 部分)。
@@ -168,10 +169,5 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 ## <a name="additional-resources"></a>其他資源
 * [權杖、工作階段及單一登入組態](active-directory-b2c-token-session-sso.md)。
 * [在取用者註冊期間停用電子郵件驗證](active-directory-b2c-reference-disable-ev.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

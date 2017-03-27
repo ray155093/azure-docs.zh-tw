@@ -4,18 +4,19 @@ description: "Application Insights 如何融入 DevOps 循環"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 479522a9-ff5c-471e-a405-b8fa221aedb3
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
-ms.date: 11/16/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
-ms.openlocfilehash: e5652353d658a5de197d71231f649c75fe3b245b
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 9f837ea815fdd3ea47608dc36029c35e92eda0ae
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -156,7 +157,7 @@ Visual Studio 和 Eclipse 提供工具，可為您正在開發的專案設定正
 ![建置註解](./media/app-insights-devops/070.png)
 
 ### <a name="work-items"></a>工作項目
-產生警示時，Application Insights 可以在您的工作追蹤系統 (目前只有 Visual Studio Team Services) 中自動建立工作項目。
+產生警示時，Application Insights 可以在您的工作追蹤系統中自動建立工作項目。
 
 ## <a name="but-what-about"></a>但是，您認為...？
 * [隱私權和儲存體](app-insights-data-retention-privacy.md) - 您的遙測會保留於 Azure 安全伺服器上。
@@ -170,10 +171,5 @@ Visual Studio 和 Eclipse 提供工具，可為您正在開發的專案設定正
 * 檢測已在執行的 Web 應用程式。 這可為您提供所有內建的效能遙測。 其適用於 [Java](app-insights-java-live.md) 和 [IIS 伺服器](app-insights-monitor-performance-live-website-now.md)，以及 [Azure Web 應用程式](app-insights-azure.md)。
 * 在開發期間檢測您的專案。 您可以針對 [ASP.NET](app-insights-asp-net.md) 或 [Java](app-insights-java-get-started.md) 應用程式，以及 [Node.js](app-insights-nodejs.md) 和許多[其他類型](app-insights-platforms.md)執行此動作。 
 * 藉由新增簡短的程式碼片段來檢測 [任何網頁](app-insights-javascript.md) 。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

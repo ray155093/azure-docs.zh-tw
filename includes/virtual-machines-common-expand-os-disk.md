@@ -51,7 +51,7 @@
    Start-AzureRmVM -ResourceGroupName $rgName -Name $vmName
    ```
 
-這樣就大功告成了！ 現在 RDP 到 VM，開啟 [電腦管理] (或 [磁碟管理])，然後使用剛配置的空間擴充磁碟機。
+這樣就大功告成了！ 現在 RDP 到 VM，開啟 [電腦管理] \(或 [磁碟管理])，然後使用剛配置的空間擴充磁碟機。
 
 ## <a name="summary"></a>摘要
 在本文中，我們使用 Powershell 的 Azure Resource Manager 模組擴充 IaaS 虛擬機器的作業系統磁碟機。 以下重現完整的指令碼供您參考：
@@ -81,9 +81,4 @@ $vm.StorageProfile.DataDisks[0].DiskSizeGB = 1023
 ```
 
 如果您想要了解如何將磁碟連接至 Azure Resource Manager VM，請參閱這篇[文章](../articles/virtual-machines/virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

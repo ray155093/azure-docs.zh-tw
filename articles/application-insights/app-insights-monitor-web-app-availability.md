@@ -4,19 +4,19 @@ description: "在 Application Insights 中設定 Web 測試。 如果網站無�
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 46dc13b4-eb2e-4142-a21c-94a156f760ee
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/13/2017
+ms.date: 03/13/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: c800f6e7b6bd1e17165146f981e32a8cbb251e3c
-ms.openlocfilehash: af4343dbe23f314a85c98d7337f42c4b60b03c6a
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 153a97154faf65598141f321bcd33c4503fa30b0
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -34,7 +34,7 @@ Web 測試可分為兩種：
 
 每個應用程式資源最多可以建立 10 個 Web 測試。
 
-## <a name="a-namecreatea1-create-a-resource-for-your-test-reports"></a><a name="create"></a>1.建立測試報告的資源
+## <a name="create"></a>1.建立測試報告的資源
 如果您已經為這個應用程式[設定 Application Insights 資源][start]，而且想要在相同位置中查看可用性報告，請略過此步驟。
 
 註冊 [Microsoft Azure](http://azure.com)，移至 [Azure 入口網站](https://portal.azure.com)，然後建立 Application Insights 資源。
@@ -43,7 +43,7 @@ Web 測試可分為兩種：
 
 按一下 [所有資源]  ，以開啟新資源的 [概觀] 刀鋒視窗。
 
-## <a name="a-namesetupa2-create-a-url-ping-test"></a><a name="setup"></a>2.建立 URL Ping 測試
+## <a name="setup"></a>2.建立 URL Ping 測試
 在您的 Application Insights 資源中，尋找 [可用性] 圖格。 按一下以開啟應用程式的 [Web 測試] 刀鋒視窗，然後新增 Web 測試。
 
 ![Fill at least the URL of your website](./media/app-insights-monitor-web-app-availability/13-availability.png)
@@ -67,7 +67,7 @@ Web 測試可分為兩種：
 ### <a name="test-more-urls"></a>測試更多 URL
 加入更多測試。 例如，除了測試首頁，您也可以測試搜尋的 URL 來確定資料庫在執行中。
 
-## <a name="a-namemonitora3-see-your-web-test-results"></a><a name="monitor"></a>3.查看 Web 測試結果
+## <a name="monitor"></a>3.查看 Web 測試結果
 1-2 分鐘後，結果會出現在 [Web 測試] 刀鋒視窗中。
 
 ![Summary results on the home blade](./media/app-insights-monitor-web-app-availability/14-availSummary.png)
@@ -76,7 +76,7 @@ Web 測試可分為兩種：
 
 這些圖表會結合此應用程式的所有 Web 測試的結果。
 
-## <a name="a-namefailuresaif-you-see-failures"></a><a name="failures"></a>如果您看到失敗
+## <a name="failures"></a>如果您看到失敗
 按一下一個紅點。
 
 ![按一下一個紅點](./media/app-insights-monitor-web-app-availability/open-instance.png)
@@ -101,7 +101,7 @@ Web 測試可分為兩種：
 > 進行多步驟 Web 測試此會收取費用。 [價格方案](http://azure.microsoft.com/pricing/details/application-insights/)。
 > 
 
-若要建立多重步驟測試，您可以使用 Visual Studio 來記錄案例，然後將記錄結果上傳至 Application Insights。 Application Insights 會不時地重新執行案例，並確認回應。
+若要建立多重步驟測試，您可以使用 Visual Studio Enterprise 來記錄案例，然後將記錄結果上傳至 Application Insights。 Application Insights 會不時地重新執行案例，並確認回應。
 
 請注意，您無法在測試中使用編碼的函式：做為 .webtest 檔案中的指令碼必須包含案例步驟。
 
@@ -110,7 +110,10 @@ Web 測試可分為兩種：
 
 1. 建立 Web 效能測試專案。
 
-    ![在 Visual Studio 中，從「Web 效能」和「負載測試」範本建立專案。](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-create.png)
+    ![在 Visual Studio Enterprise 版本中，從「Web 效能」和「負載測試」範本建立專案。](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-create.png)
+
+ * *沒看見 Web 效能和負載測試範本嗎？* - 關閉 Visual Studio Enterprise。 開啟 [Visual Studio 安裝程式] 以修改 Visual Studio Enterprise 安裝。 在 [個別元件] 之下，選取 [Web 效能和負載測試工具]。
+
 2. 開啟 .webtest 檔案，並開始記錄。
 
     ![開啟 .webtest 檔案，然後按一下 [記錄]。](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-start.png)
@@ -208,7 +211,7 @@ Web 測試外掛程式提供將時間參數化的方法。
 * 將權杖參數化，當驗證器傳回權杖時設定參數，然後在查詢網站時使用參數。
   (Visual Studio 會嘗試將測試參數化，但不會正確地將權杖參數化。)
 
-## <a name="a-nameedita-edit-or-disable-a-test"></a><a name="edit"></a> 編輯或停用測試
+## <a name="edit"></a> 編輯或停用測試
 開啟個別測試來編輯或停用。
 
 ![Edit or disable a web test](./media/app-insights-monitor-web-app-availability/19-availEdit.png)
@@ -257,12 +260,12 @@ Web 測試外掛程式提供將時間參數化的方法。
 
     很抱歉，我們不支援此功能。
 
-## <a name="a-namevideoavideo"></a><a name="video"></a>影片
+## <a name="video"></a>影片
 > [!VIDEO https://channel9.msdn.com/Series/Application-Insights-on-Azure-Preview-Portal/Monitoring-Availability-with-Application-Insights/player]
 >
 >
 
-## <a name="a-namenextanext-steps"></a><a name="next"></a>接續步驟
+## <a name="next"></a>接續步驟
 [搜尋診斷記錄][diagnostic]
 
 [疑難排解][qna]

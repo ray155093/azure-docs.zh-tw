@@ -18,9 +18,9 @@ ms.date: 03/01/2017
 ms.author: anhowe
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2464901d22bb91cbf396ef60f4bda6d979b578b7
-ms.openlocfilehash: 49602804cc6b4d4f98c802c1a3b651dda2634bb7
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: d342e21e8e0bd78b713f3a6b2f7b3c319185eb43
+ms.lasthandoff: 03/22/2017
 
 ---
 
@@ -142,7 +142,7 @@ watch 'kubectl get svc'
 ```console
 kubectl proxy
 ```
-這會在 localhost 上執行經過簡單驗證的 Proxy，可讓您用來檢視 [Kubernetes Web UI](http://localhost:8001/ui)。 如需詳細資訊，請參閱[搭配 Azure Container Service 使用 Kubernetes Web UI](container-service-kubernetes-ui.md)。
+這會在 localhost 上執行經過簡單驗證的 Proxy，可讓您用來檢視在 [http://localhost:8001/ui](http://localhost:8001/ui) 上執行的 Kubernetes Web UI。 如需詳細資訊，請參閱[搭配 Azure Container Service 使用 Kubernetes Web UI](container-service-kubernetes-ui.md)。
 
 ![Kubernetes 儀表板的影像](media/container-service-kubernetes-walkthrough/kubernetes-dashboard.png)
 
@@ -157,13 +157,13 @@ kubectl get pods
 使用您的 pod 名稱，您可以在 pod 上執行遠端命令。  例如：
 
 ```console
-kubectl exec nginx-701339712-retbj date
+kubectl exec <pod name> date
 ```
 
 您也可以使用 `-it` 旗標取得完整的互動式工作階段：
 
 ```console
-kubectl exec nginx-701339712-retbj -it bash
+kubectl exec <pod name> -it bash
 ```
 
 ![容器內的遠端工作階段](media/container-service-kubernetes-walkthrough/kubernetes-remote.png)

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: adhurwit
 translationtype: Human Translation
-ms.sourcegitcommit: f7589fa62dcfedc6f99439f453a40f999ff8d845
-ms.openlocfilehash: 1c94e442576d28a6e40bcc3a0720ed31db722af5
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 2a7f2cb27cb4ed2d23fee09d53f85283a8592b3a
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -44,7 +45,7 @@ ms.openlocfilehash: 1c94e442576d28a6e40bcc3a0720ed31db722af5
 
 本教學課程是針對 Web 開發人員所設計，這些開發人員必須了解在 Azure 上建立 Web 應用程式的基本概念。 如需有關 Azure Web Apps 的詳細資訊，請參閱 [Web Apps 概觀](../app-service-web/app-service-web-overview.md)。
 
-## <a name="a-idpackagesaadd-nuget-packages"></a><a id="packages"></a>新增 Nuget 封裝
+## <a id="packages"></a>新增 Nuget 封裝
 有二個 Web 應用程式必須已安裝的封裝。
 
 * Active Directory 驗證程式庫 - 包含與 Azure Active Directory 互動及管理使用者身分識別的方法
@@ -58,7 +59,7 @@ ms.openlocfilehash: 1c94e442576d28a6e40bcc3a0720ed31db722af5
     Install-Package Microsoft.Azure.KeyVault
 
 
-## <a name="a-idwebconfigamodify-webconfig"></a><a id="webconfig"></a>修改 Web.Config
+## <a id="webconfig"></a>修改 Web.Config
 有三個必須加入至 web.config 檔案的應用程式設定，如下所示。
 
     <!-- ClientId and ClientSecret refer to the web application registration with Azure Active Directory -->
@@ -71,7 +72,7 @@ ms.openlocfilehash: 1c94e442576d28a6e40bcc3a0720ed31db722af5
 
 如果您不打算將您的應用程式做為 Azure Web 應用程式裝載，則您應該將實際的 ClientId、用戶端密碼和密碼 URI 值加入 web.config。 因為我們將在 Azure 入口網站中新增實際值以取得額外的安全性層級，不然，您可以保留這些虛擬值。
 
-## <a name="a-idgettokenaadd-method-to-get-an-access-token"></a><a id="gettoken"></a>新增方法以取得存取權杖
+## <a id="gettoken"></a>新增方法以取得存取權杖
 為了能夠使用金鑰保存庫 API，您需要存取權杖。 金鑰保存庫用戶端會處理金鑰保存庫 API 的呼叫，但是您必須提供具有取得存取權杖的函式。  
 
 以下是從 Azure Active Directory 取得存取權杖的程式碼。 此程式碼可以放置在應用程式的任何位置。 我想要新增 Utils 或 EncryptionHelper 類別。  
@@ -103,7 +104,7 @@ ms.openlocfilehash: 1c94e442576d28a6e40bcc3a0720ed31db722af5
 > 
 > 
 
-## <a name="a-idappstartaretrieve-the-secret-on-application-start"></a><a id="appstart"></a>在應用程式啟動時擷取密碼
+## <a id="appstart"></a>在應用程式啟動時擷取密碼
 現在我們需要呼叫金鑰保存庫 API，並擷取密碼的程式碼。 下列程式碼可以放置在任何位置，只要在您需要使用它之前呼叫即可。 我已將程式碼放入 Global.asax 的應用程式啟動事件中，因此它在啟動時會執行一次，並讓密碼可在應用程式中使用。
 
     //add these using statements
@@ -120,7 +121,7 @@ ms.openlocfilehash: 1c94e442576d28a6e40bcc3a0720ed31db722af5
 
 
 
-## <a name="a-idportalsettingsaadd-app-settings-in-the-azure-portal-optional"></a><a id="portalsettings"></a>(選擇性) 在 Azure 入口網站中新增應用程式設定
+## <a id="portalsettings"></a>(選擇性) 在 Azure 入口網站中新增應用程式設定
 如果您已有 Azure Web Apps，您現在可以在 Azure 入口網站中為 AppSettings 新增實際值。 如此一來，實際值將不會存在於 web.config 中，但會透過您有個別存取控制功能的入口網站受到保護。 這些值會被您在 web.config 中輸入的值取代。 請確定名稱都相同。
 
 ![Azure 入口網站中顯示的應用程式設定][1]
@@ -133,10 +134,8 @@ ms.openlocfilehash: 1c94e442576d28a6e40bcc3a0720ed31db722af5
 3. 將程式碼加入 Web 應用程式以使用憑證
 4. 將憑證加入 Web 應用程式
 
-**取得或建立憑證** 基於本文的目的，我們將測試憑證。 以下幾個命令可讓您在開發人員命令提示字元中用來建立憑證。 變更您要建立憑證檔案的目錄位置。
-
-    makecert -sv mykey.pvk -n "cn=KVWebApp" KVWebApp.cer -b 07/31/2015 -e 07/31/2016 -r
-    pvk2pfx -pvk mykey.pvk -spc KVWebApp.cer -pfx KVWebApp.pfx -po test123
+**取得或建立憑證** 基於本文的目的，我們將測試憑證。 以下幾個命令可讓您在開發人員命令提示字元中用來建立憑證。 變更您要建立憑證檔案的目錄位置。  此外，對於憑證的開始和結束日期，使用目前日期加上 1 年。
+makecert -sv mykey.pvk -n "cn=KVWebApp" KVWebApp.cer -b 03/07/2017 -e 03/07/2018 -r pvk2pfx -pvk mykey.pvk -spc KVWebApp.cer -pfx KVWebApp.pfx -po test123
 
 記下 .pfx 的結束日期和密碼 (在此範例中為：07/31/2016 和 test123)。 您將需要在下面使用這些資訊。
 
@@ -147,12 +146,12 @@ ms.openlocfilehash: 1c94e442576d28a6e40bcc3a0720ed31db722af5
     $x509 = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
     $x509.Import("C:\data\KVWebApp.cer")
     $credValue = [System.Convert]::ToBase64String($x509.GetRawCertData())
+
+    # If you used different dates for makecert then adjust these values
     $now = [System.DateTime]::Now
+    $yearfromnow = $now.AddYears(1)
 
-    # this is where the end date from the cert above is used
-    $yearfromnow = [System.DateTime]::Parse("2016-07-31")
-
-    $adapp = New-AzureRmADApplication -DisplayName "KVWebApp" -HomePage "http://kvwebapp" -IdentifierUris "http://kvwebapp" -KeyValue $credValue -KeyType "AsymmetricX509Cert" -KeyUsage "Verify" -StartDate $now -EndDate $yearfromnow
+    $adapp = New-AzureRmADApplication -DisplayName "KVWebApp" -HomePage "http://kvwebapp" -IdentifierUris "http://kvwebapp" -CertValue $credValue -StartDate $now -EndDate $yearfromnow
 
     $sp = New-AzureRmADServicePrincipal -ApplicationId $adapp.ApplicationId
 
@@ -231,15 +230,10 @@ ms.openlocfilehash: 1c94e442576d28a6e40bcc3a0720ed31db722af5
 
 **將憑證加入至金鑰保存庫以做為密碼** (而非直接上傳您的憑證至 Web 應用程式服務)，您可以將其儲存在金鑰保存庫以做為密碼，並從此處加以部署。 這是兩個步驟的程序，以下的部落格文章有大概的描述： [透過金鑰保存庫部署 Azure Web 應用程式憑證](https://blogs.msdn.microsoft.com/appserviceteam/2016/05/24/deploying-azure-web-app-certificate-through-key-vault/)
 
-## <a name="a-idnextanext-steps"></a><a id="next"></a>接續步驟
+## <a id="next"></a>接續步驟
 如需程式設計參考，請參閱 [Azure 金鑰保存庫 C# 用戶端 API 參考](https://msdn.microsoft.com/library/azure/dn903628.aspx)。
 
 <!--Image references-->
 [1]: ./media/key-vault-use-from-web-application/PortalAppSettings.png
 [2]: ./media/key-vault-use-from-web-application/PortalAddCertificate.png
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

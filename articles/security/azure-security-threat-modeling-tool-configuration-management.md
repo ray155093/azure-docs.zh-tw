@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/07/2017
 ms.author: rodsan
 translationtype: Human Translation
-ms.sourcegitcommit: e0c0d40cc0c198000264623476c05473d9d24eaf
-ms.openlocfilehash: 34c29cb8a6289ab4dcb489e6cb83e7f16a748177
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 66465e74298c08d64b37ab0ede86f3d187068555
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -35,7 +35,7 @@ ms.lasthandoff: 02/15/2017
 | Azure 儲存體 | <ul><li>[確保 Azure 儲存體存取金鑰的安全管理](#secure-keys)</li><li>[確保在 Azure 儲存體上啟用 CORS 的情況下只允許信任的原始來源](#cors-storage)</li></ul> |
 | WCF | <ul><li>[啟用 WCF 的服務節流功能](#throttling)</li><li>[WCF-透過中繼資料的資訊洩漏](#info-metadata)</li></ul> | 
 
-## <a name="a-idcsp-jsaimplement-content-security-policy-csp-and-disable-inline-javascript"></a><a id="csp-js"></a>實作內容安全性原則 (CSP)，並停用內嵌 javascript
+## <a id="csp-js"></a>實作內容安全性原則 (CSP)，並停用內嵌 javascript
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -67,7 +67,7 @@ javascript:alert(1);
 Example: var str="alert(1)"; eval(str);
 ```
 
-## <a name="a-idxss-filteraenable-browsers-xss-filter"></a><a id="xss-filter"></a>啟用瀏覽器的 XSS 篩選器
+## <a id="xss-filter"></a>啟用瀏覽器的 XSS 篩選器
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -78,7 +78,7 @@ Example: var str="alert(1)"; eval(str);
 | 參考              | [XSS 防護篩選器](https://www.owasp.org/index.php/List_of_useful_HTTP_headers#X-XSS-Protection) |
 | 步驟 | <p>X-XSS-Protection 回應標頭設定可控制瀏覽器的跨網站指令碼篩選器。 此回應標頭可以有下列值︰</p><ul><li>`0:` 這會停用篩選器</li><li>`1: Filter enabled` 如果偵測到跨網站指令碼攻擊，為了停止攻擊，瀏覽器將會淨化頁面</li><li>`1: mode=block : Filter enabled`。 偵測到 XSS 攻擊時，瀏覽器不會呈現網頁呈現，而非淨化頁面</li><li>`1: report=http://[YOURDOMAIN]/your_report_URI : Filter enabled`。 瀏覽器將會淨化頁面並報告違規情形。</li></ul><p>這是一項 Chromium 功能，其利用 CSP 違規報告將詳細資料傳送至您所選的 URI。 最後 2 個選項會被視為安全值。</p>|
 
-## <a name="a-idtrace-deployaaspnet-applications-must-disable-tracing-and-debugging-prior-to-deployment"></a><a id="trace-deploy"></a>ASP.NET 應用程式必須在部署前停用追蹤和偵錯
+## <a id="trace-deploy"></a>ASP.NET 應用程式必須在部署前停用追蹤和偵錯
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -89,7 +89,7 @@ Example: var str="alert(1)"; eval(str);
 | 參考              | [ASP.NET 偵錯概觀](http://msdn2.microsoft.com/library/ms227556.aspx)、[ASP.NET 追蹤概觀](http://msdn2.microsoft.com/library/bb386420.aspx)、[作法：對 ASP.NET 應用程式啟用追蹤](http://msdn2.microsoft.com/library/0x5wc973.aspx)、[作法：對 ASP.NET 應用程式啟用偵錯](http://msdn2.microsoft.com/library/e8z01xdh(VS.80).aspx) |
 | 步驟 | 啟用頁面的追蹤後，每個要求該頁面的瀏覽器也會取得包含內部伺服器狀態和工作流程相關資料的追蹤資訊。 這項資訊可能是安全性相關資訊。 啟用頁面偵錯後，在伺服器上發生的錯誤會導致對瀏覽器呈現完整堆疊追蹤資料。 該資料可能會公開有關伺服器工作流程的安全性相關資訊。 |
 
-## <a name="a-idjs-trustedaaccess-third-party-javascripts-from-trusted-sources-only"></a><a id="js-trusted"></a>僅從信任的來源存取協力廠商 javascript
+## <a id="js-trusted"></a>僅從信任的來源存取協力廠商 javascript
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -100,7 +100,7 @@ Example: var str="alert(1)"; eval(str);
 | 參考              | N/A  |
 | 步驟 | 僅能從信任的來源參照協力廠商 JavaScript 參考端點應一律位於 SSL。 |
 
-## <a name="a-idui-defensesaensure-that-authenticated-aspnet-pages-incorporate-ui-redressing-or-clickjacking-defenses"></a><a id="ui-defenses"></a>確保已驗證的 ASP.NET 頁面納入 UI 偽裝或點擊劫持防禦功能
+## <a id="ui-defenses"></a>確保已驗證的 ASP.NET 頁面納入 UI 偽裝或點擊劫持防禦功能
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -135,7 +135,7 @@ Example: var str="alert(1)"; eval(str);
     </system.webServer>
 ```
 
-## <a name="a-idcors-aspnetaensure-that-only-trusted-origins-are-allowed-if-cors-is-enabled-on-aspnet-web-applications"></a><a id="cors-aspnet">確保在 ASP.NET Web 應用程式上啟用 CORS 的情況下只允許信任的原始來源</a>
+## <a id="cors-aspnet">確保在 ASP.NET Web 應用程式上啟用 CORS 的情況下只允許信任的原始來源</a>
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -147,7 +147,7 @@ Example: var str="alert(1)"; eval(str);
 | 步驟 | <p>瀏覽器安全性可防止網頁對另一個網域提出 AJAX 要求。 這項限制也稱為同源原則，可防止惡意網站從另一個網站讀取敏感性資料。 不過，有時候可能需要安全地公開其他網站可以取用的 API。 跨原始來源資源共用 (CORS) 是 W3C 標準，可讓伺服器放寬同源原則。 使用 CORS，伺服器可以明確允許某些跨源要求，然而拒絕其他要求。</p><p>相較於早期技術 (例如 JSONP)，CORS 較為安全且更具彈性。 基本上，啟用 CORS 會轉變成將一些 HTTP 回應標頭 (Access-Control-*) 新增到 Web 應用程式，而其完成方式有好幾種。</p>|
 
 ### <a name="example"></a>範例
-如果可以存取 Web.config，即可透過下列節點新增 CORS︰ 
+如果可以存取 Web.config，即可透過下列程式碼新增 CORS︰ 
 ```XML
 <system.webServer>
     <httpProtocol>
@@ -166,7 +166,7 @@ HttpContext.Response.AppendHeader("Access-Control-Allow-Origin", "http://example
 
 請注意，務必要確保 "Access-Control-Allow-Origin" 屬性中的原始來源清單設定為一組有限且受信任的原始來源。 無法適當地進行此設定 (例如將值設定為 '*') 會讓惡意網站在沒有任何限制的情況下，觸發對 Web 應用程式的跨源要求，而使應用程式容易遭受 CSRF 攻擊。 
 
-## <a name="a-idvalidate-aspnetaenable-validaterequest-attribute-on-aspnet-pages"></a><a id="validate-aspnet"></a>在 ASP.NET 頁面上啟用 ValidateRequest 屬性
+## <a id="validate-aspnet"></a>在 ASP.NET 頁面上啟用 ValidateRequest 屬性
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -192,7 +192,7 @@ HttpContext.Response.AppendHeader("Access-Control-Allow-Origin", "http://example
 ```
 請注意，要求驗證功能不受支援，而且不是 MVC6 管線的一部分。 
 
-## <a name="a-idlocal-jsause-locally-hosted-latest-versions-of-javascript-libraries"></a><a id="local-js"></a>使用在本機裝載的最新 JavaScript 程式庫版本
+## <a id="local-js"></a>使用在本機裝載的最新 JavaScript 程式庫版本
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -203,7 +203,7 @@ HttpContext.Response.AppendHeader("Access-Control-Allow-Origin", "http://example
 | 參考              | N/A  |
 | 步驟 | <p>使用 JQuery 之類標準 JavaScript 程式庫的開發人員必須使用已核准且不包含已知安全性缺陷的通用 JavaScript 程式庫版本。 最好是使用最新版的程式庫，因為其包含舊版中已知弱點的安全性問題修正。</p><p>如果因為相容性理由而無法使用最新版本，則應該使用低於最小版本的版本。</p><p>可接受的最小版本︰</p><ul><li>**JQuery**<ul><li>JQuery 1.7.1</li><li>JQueryUI 1.10.0</li><li>JQuery Validate 1.9</li><li>JQuery Mobile 1.0.1</li><li>JQuery Cycle 2.99</li><li>JQuery DataTables 1.9.0</li></ul></li><li>**Ajax Control Toolkit**<ul><li>Ajax Control Toolkit 40412</li></ul></li><li>**ASP.NET Web Form 和 Ajax**<ul><li>ASP.NET Web Form 和 Ajax 4</li><li>ASP.NET Ajax 3.5</li></ul></li><li>**ASP.NET MVC**<ul><li>ASP.NET MVC 3.0</li></ul></li></ul><p>決不會從外部網站 (例如 public CDN) 載入任何 JavaScript 程式庫</p>|
 
-## <a name="a-idmime-sniffadisable-automatic-mime-sniffing"></a><a id="mime-sniff"></a>停用自動 MIME 探查
+## <a id="mime-sniff"></a>停用自動 MIME 探查
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -268,7 +268,7 @@ application.Response.Headers.Add("X-Content-Type-Options ", "nosniff");
 this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 ```
 
-## <a name="a-idstandard-fingeraremove-standard-server-headers-on-windows-azure-web-sites-to-avoid-fingerprinting"></a><a id="standard-finger"></a>移除 Windows Azure 網站上的標準伺服器標頭以避免記錄特徵
+## <a id="standard-finger"></a>移除 Windows Azure 網站上的標準伺服器標頭以避免記錄特徵
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -279,7 +279,7 @@ this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 | 參考              | [移除 Windows Azure 網站上的標準伺服器標頭](https://azure.microsoft.com/blog/removing-standard-server-headers-on-windows-azure-web-sites/) |
 | 步驟 | Server、X-Powered-By、X-AspNet-Version 等標頭會揭露有關伺服器和基礎技術的資訊。 建議不要顯示這些標頭，藉此防止記錄應用程式特徵 |
 
-## <a name="a-idfirewall-dbaconfigure-a-windows-firewall-for-database-engine-access"></a><a id="firewall-db"></a>設定用於 Database Engine 存取的 Windows 防火牆
+## <a id="firewall-db"></a>設定用於 Database Engine 存取的 Windows 防火牆
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -290,7 +290,7 @@ this.Response.Headers["X-Content-Type-Options"] = "nosniff";
 | 參考              | [如何設定 Azure SQL Database](https://azure.microsoft.com/documentation/articles/sql-database-firewall-configure/)、[設定用於 Database Engine 存取的 Windows 防火牆](https://msdn.microsoft.com/library/ms175043) |
 | 步驟 | 防火牆系統有助於防止未經授權存取電腦資源。 若要透過防火牆存取 SQL Server 資料庫引擎的執行個體，您必須在執行 SQL Server 的電腦上設定防火牆以允許存取 |
 
-## <a name="a-idcors-apiaensure-that-only-trusted-origins-are-allowed-if-cors-is-enabled-on-aspnet-web-api"></a><a id="cors-api"></a>確保在 ASP.NET Web API 上啟用 CORS 的情況下只允許信任的原始來源
+## <a id="cors-api"></a>確保在 ASP.NET Web API 上啟用 CORS 的情況下只允許信任的原始來源
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -478,7 +478,7 @@ public void ConfigureServices(IServiceCollection services)
     }
 ```
 
-## <a name="a-idconfig-sensitiveaencrypt-sections-of-web-apis-configuration-files-that-contain-sensitive-data"></a><a id="config-sensitive"></a>加密包含敏感性資料的 Web API 組態檔區段
+## <a id="config-sensitive"></a>加密包含敏感性資料的 Web API 組態檔區段
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -489,7 +489,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | [作法：在 ASP.NET 2.0 中使用 DPAPI 加密組態區段](https://msdn.microsoft.com/library/ff647398.aspx)、[指定受保護的組態提供者](https://msdn.microsoft.com/library/68ze1hb2.aspx)、[使用 Azure Key Vault 來保護應用程式的機密資訊](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity-keyvault/) |
 | 步驟 | 組態檔 (例如 Web.config、appsettings.json) 常會用來敏感性資訊，包括使用者名稱、密碼、資料庫連接字串和加密金鑰。 如果您不保護這項資訊，您的應用程式會很容易受到攻擊者或惡意使用者攻擊，而被其取得敏感性資訊，例如帳戶使用者名稱和密碼、資料庫名稱和伺服器名稱。 請根據部署類型 (Azure/內部部署)，使用 DPAPI 或服務 (例如 Azure Key Vault) 加密組態檔的敏感性區段。 |
 
-## <a name="a-idadmin-strongaensure-that-all-admin-interfaces-are-secured-with-strong-credentials"></a><a id="admin-strong"></a>確保使用強式認證保護所有系統管理介面
+## <a id="admin-strong"></a>確保使用強式認證保護所有系統管理介面
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -500,7 +500,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | N/A  |
 | 步驟 | 您應使用強式認證來保護裝置或現場閘道公開的任何系統管理介面。 此外，對於任何公開的介面 (如 WiFi、SSH、檔案共用)，應使用強式認證保護 FTP。 不得使用預設弱式密碼。 |
 
-## <a name="a-idunknown-exeaensure-that-unknown-code-cannot-execute-on-devices"></a><a id="unknown-exe"></a>確保無法在裝置上執行不明的程式碼
+## <a id="unknown-exe"></a>確保無法在裝置上執行不明的程式碼
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -511,7 +511,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | [在 Windows 10 IoT Core 上啟用安全開機和 BitLocker 裝置加密](https://developer.microsoft.com/windows/iot/win10/sb_bl) |
 | 步驟 | 「UEFI 安全開機」會將系統限制為只允許執行指定的授權單位所簽署的二進位檔。 這項功能可防止不明程式碼在平台上執行並可能使其安全性狀態變弱。 啟用「UEFI 安全開機」並限制受託簽署程式碼的憑證授權單位清單。 使用其中一個受信任的授權單位簽署在裝置上部署的所有程式碼。 |
 
-## <a name="a-idpartition-iotaencrypt-os-and-additional-partitions-of-iot-device-with-bitlocker"></a><a id="partition-iot"></a>使用 Bitlocker 將 IoT 裝置的 OS 和其他磁碟分割加密
+## <a id="partition-iot"></a>使用 Bitlocker 將 IoT 裝置的 OS 和其他磁碟分割加密
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -522,7 +522,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | N/A  |
 | 步驟 | Windows 10 IoT Core 會實作 BitLocker 裝置加密的輕量型版本，其高度相依於平台上的 TPM 目前狀態，包括 UEFI 中可採取必要措施的必要 preOS 通訊協定。 這些 preOS 措施可確保 OS 稍後有 OS 啟動方式的明確記錄。使用 Bitlocker 加密 OS 磁碟分割以及任何其他磁碟分割，以防這些磁碟分割儲存任何敏感性資料。 |
 
-## <a name="a-idmin-enableaensure-that-only-the-minimum-servicesfeatures-are-enabled-on-devices"></a><a id="min-enable"></a>確保在裝置上只啟用最少的服務/功能
+## <a id="min-enable"></a>確保在裝置上只啟用最少的服務/功能
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -533,7 +533,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | N/A  |
 | 步驟 | 請勿在並非解決方案運作所需的 OS 中啟用或關閉任何功能或服務。 例如︰如果裝置不需要部署 UI，請在無周邊模式下安裝 Windows IoT Core。 |
 
-## <a name="a-idfield-bitlockeraencrypt-os-and-additional-partitions-of-iot-field-gateway-with-bitlocker"></a><a id="field-bitlocker"></a>使用 Bitlocker 將 IoT 現場閘道的 OS 和其他磁碟分割加密
+## <a id="field-bitlocker"></a>使用 Bitlocker 將 IoT 現場閘道的 OS 和其他磁碟分割加密
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -544,7 +544,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | N/A  |
 | 步驟 | Windows 10 IoT Core 會實作 BitLocker 裝置加密的輕量型版本，其高度相依於平台上的 TPM 目前狀態，包括 UEFI 中可採取必要措施的必要 preOS 通訊協定。 這些 preOS 措施可確保 OS 稍後有 OS 啟動方式的明確記錄。使用 Bitlocker 加密 OS 磁碟分割以及任何其他磁碟分割，以防這些磁碟分割儲存任何敏感性資料。 |
 
-## <a name="a-iddefault-changeaensure-that-the-default-login-credentials-of-the-field-gateway-are-changed-during-installation"></a><a id="default-change"></a>確保在安裝期間變更現場閘道的預設登入認證
+## <a id="default-change"></a>確保在安裝期間變更現場閘道的預設登入認證
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -555,7 +555,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | N/A  |
 | 步驟 | 確保在安裝期間變更現場閘道的預設登入認證 |
 
-## <a name="a-idcloud-firmwareaensure-that-the-cloud-gateway-implements-a-process-to-keep-the-connected-devices-firmware-up-to-date"></a><a id="cloud-firmware"></a>確保雲端閘道實作相關程序讓連接的裝置韌體保持最新狀態
+## <a id="cloud-firmware"></a>確保雲端閘道實作相關程序讓連接的裝置韌體保持最新狀態
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -566,7 +566,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | [IoT 中樞裝置管理概觀](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-overview/)、[如何更新裝置韌體](https://azure.microsoft.com/documentation/articles/iot-hub-device-management-device-jobs/) |
 | 步驟 | LWM2M 是來自 Open Mobile Alliance 且適用於 IoT 裝置管理的通訊協定。 Azure IoT 裝置管理可讓您使用裝置工作來與實體裝置進行互動。 確保雲端閘道會實作相關程序，以使用 Azure IoT 中樞裝置管理讓裝置和其他組態資料常保最新狀態。 |
 
-## <a name="a-idcontrols-policiesaensure-that-devices-have-end-point-security-controls-configured-as-per-organizational-policies"></a><a id="controls-policies"></a>確保裝置已根據組織的原則設定端點安全性控制項
+## <a id="controls-policies"></a>確保裝置已根據組織的原則設定端點安全性控制項
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -577,7 +577,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | N/A  |
 | 步驟 | 確保裝置有根據組織安全性原則設定的端點安全性控制項，例如適用於磁碟層級加密的 bitlocker、採用更新後簽章的防毒軟體、主機型防火牆、OS 升級、群組原則等。 |
 
-## <a name="a-idsecure-keysaensure-secure-management-of-azure-storage-access-keys"></a><a id="secure-keys"></a>確保 Azure 儲存體存取金鑰的安全管理
+## <a id="secure-keys"></a>確保 Azure 儲存體存取金鑰的安全管理
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -588,7 +588,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | [Azure 儲存體安全性指南 - 管理儲存體帳戶金鑰](https://azure.microsoft.com/documentation/articles/storage-security-guide/#_managing-your-storage-account-keys) |
 | 步驟 | <p>金鑰儲存體︰建議將 Azure Key Vault 中的 Azure 儲存體存取金鑰儲存為密碼，並且讓應用程式從 Key Vault 擷取金鑰。 此建議的原因如下︰</p><ul><li>應用程式永遠都不需要將儲存體金鑰硬式編碼於組態檔中，這樣會移除某人不需特定權限即可存取金鑰的途徑</li><li>可以使用 Azure Active Directory 控制金鑰的存取。 這表示帳戶擁有者可以將存取權授予少數需要從 Azure Key Vault 擷取金鑰的應用程式。 若未特別授與權限，其他應用程式將無法存取金鑰</li><li>重新產生金鑰︰基於安全性考量，建議施行相關程序來重新產生 Azure 儲存體存取金鑰。 Azure 儲存體安全性指南參考文章會記載有關為何及如何規劃重新產生金鑰的詳細資訊</li></ul>|
 
-## <a name="a-idcors-storageaensure-that-only-trusted-origins-are-allowed-if-cors-is-enabled-on-azure-storage"></a><a id="cors-storage"></a>確保在 Azure 儲存體上啟用 CORS 的情況下只允許信任的來源
+## <a id="cors-storage"></a>確保在 Azure 儲存體上啟用 CORS 的情況下只允許信任的來源
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -599,7 +599,7 @@ public void ConfigureServices(IServiceCollection services)
 | 參考              | [Azure 儲存體服務的 CORS 支援](https://msdn.microsoft.com/library/azure/dn535601.aspx) |
 | 步驟 | Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每個儲存體帳戶，您可以指定可存取該儲存體帳戶中之資源的網域。 根據預設，所有服務上都會停用 CORS。 您可以使用 REST API 或儲存體用戶端程式庫，呼叫其中一個方法來設定服務原則，藉以啟用 CORS。 |
 
-## <a name="a-idthrottlingaenable-wcfs-service-throttling-feature"></a><a id="throttling"></a>啟用 WCF 的服務節流功能
+## <a id="throttling"></a>啟用 WCF 的服務節流功能
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -622,7 +622,7 @@ public void ConfigureServices(IServiceCollection services)
 </system.serviceModel> 
 ```
 
-## <a name="a-idinfo-metadataawcf-information-disclosure-through-metadata"></a><a id="info-metadata"></a>WCF-透過中繼資料的資訊洩漏
+## <a id="info-metadata"></a>WCF-透過中繼資料的資訊洩漏
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -651,3 +651,4 @@ smb.HttpGetEnabled = false;
 smb.HttpGetUrl = new Uri(EndPointAddress); 
 Host.Description.Behaviors.Add(smb);
 ```
+

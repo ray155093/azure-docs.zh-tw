@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 11/22/2016
 ms.author: daseidma;bwren;dairwin
 translationtype: Human Translation
-ms.sourcegitcommit: 638410921c6dad72e1bbe0c035243cea70a3deb1
-ms.openlocfilehash: 4bab1ba9c30cee50baeddc06931a3997aac0f33f
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: d616a8574d2087be66bc10dfdf3bf6f5a14c11fd
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -55,10 +55,26 @@ ms.lasthandoff: 02/16/2017
 
 根據預設，「服務對應」對應會顯示過去 10 分鐘的相依性資訊。  使用左上角的時間控制項，即可查詢對應的過往時間範圍 (最長可達一小時)，以顯示相依性的過往情形，例如在事件發生期間或變更發生之前。    付費工作區的服務對應資料會儲存 30 天，免費工作區的服務對應資料則會儲存 7 天。
 
-## <a name="status-badges"></a>狀態徽章
+## <a name="status-badges-and-border-coloring"></a>狀態徽章和框線色彩
 在對應中每一部伺服器的底部，可以是一串狀態徽章，傳達伺服器的相關狀態資訊。  徽章表示在其中一個 OMS 解決方案整合中，有某些伺服器的相關資訊。  按一下徽章，會在右窗格中直接顯示狀態的詳細資料。  目前可使用的狀態徽章包括警示、變更、安全性和更新。
 
-![失敗的連線](media/oms-service-map/status-badges.png)
+根據狀態徽章的嚴重性，機器節點框線會呈現紅色 (重大)、黃色 (警告) 或藍色 (資訊)。  色彩可代表任何狀態徽章最嚴重的狀態。  灰色框線代表沒有目前狀態指標的節點。
+
+![狀態徽章](media/oms-service-map/status-badges.png)
+
+## <a name="role-icons"></a>角色圖示
+某些程序會擔任機器上的特殊角色︰Web 伺服器、應用程式伺服器、資料庫等等。服務對應會為程序和機器方塊加上角色圖示註解，以協助您一下就識別出程序或伺服器所扮演的角色。
+
+| 角色圖示 | 說明 |
+|:--|:--|
+| ![Web 伺服器](media/oms-service-map/role-web-server.png) | Web 伺服器 |
+| ![應用程式伺服器](media/oms-service-map/role-application-server.png) | 應用程式伺服器 |
+| ![資料庫伺服器](media/oms-service-map/role-database.png) | 資料庫伺服器 |
+| ![LDAP 伺服器](media/oms-service-map/role-ldap.png) | LDAP 伺服器 |
+| ![SMB 伺服器](media/oms-service-map/role-smb.png) | SMB 伺服器 |
+
+![角色圖示](media/oms-service-map/role-icons.png)
+
 
 ## <a name="failed-connections"></a>失敗的連線
 「服務對應」對應內會顯示處理程序和電腦的失敗連線，並以紅色虛線顯示用戶端系統是否無法連線到處理程序或連接埠。  已部署服務對應代理程式的系統如果就是嘗試進行失敗連線的系統，則會報告失敗的連線。  服務對應會觀察無法建立連線的 TCP 通訊端來測量此失敗連線。  連線失敗可能是因為防火牆，用戶端或伺服器設定不正確，或遠端服務無法使用。
@@ -138,7 +154,7 @@ ms.lasthandoff: 02/16/2017
 
 
 ## <a name="oms-performance-integration"></a>OMS 效能整合
-[機器效能] 面板會顯示所選伺服器標準的效能標準。  這些標準包含 CPU 使用率、記憶體使用量、傳送和接收的網路位元組及按照傳送和接收的網路位元組排序的前幾個處理序清單。
+[機器效能] 面板會顯示所選伺服器標準的效能標準。  這些標準包含 CPU 使用率、記憶體使用量、傳送和接收的網路位元組及按照傳送和接收的網路位元組排序的前幾個處理序清單。  請注意，若要取得網路效能資料，您也必須在 OMS 中啟用 Wire Data 2.0 解決方案。
 ![機器變更追蹤面板](media/oms-service-map/machine-performance.png)
 
 

@@ -14,16 +14,16 @@ ms.topic: get-started-article
 ms.date: 02/08/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 917f54248f4c9277caa3cf09d92f78593a901e89
-ms.openlocfilehash: fd76f40f5a34b6adf9c6ec3bded604d59b6baa72
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: a0340359dff470551a08a8213f3a704f15f78794
+ms.lasthandoff: 03/16/2017
 
 
 ---
 # <a name="instrument-web-apps-at-runtime-with-application-insights"></a>在執行階段使用 Application Insights 檢測 Web 應用程式
 
 
-您可以使用 Azure Application Insights 檢測即時 Web 應用程式，而不需修改或重新部署您的程式碼。 如果您的應用程式是由內部部署 IIS 伺服器裝載，請安裝「狀態監視器」；或者，如果它們是 Azure Web 應用程式或在 Azure VM 中執行，您可以安裝 Application Insights 擴充功能。 (我們還提供有關檢測[即時 J2EE Web 應用程式](app-insights-java-live.md)和 [Azure 雲端服務](app-insights-cloudservices.md)的個別文章)。您需要 [Microsoft Azure](http://azure.com) 訂用帳戶。
+您可以使用 Azure Application Insights 檢測即時 Web 應用程式，而不需修改或重新部署您的程式碼。 如果您的應用程式是由內部部署 IIS 伺服器裝載，請安裝狀態監視器。 如果這些是 Azure Web 應用程式或在 Azure VM 中執行，您可以從 Azure 控制台切換為 Application Insights 監視。 (我們還提供有關檢測[即時 J2EE Web 應用程式](app-insights-java-live.md)和 [Azure 雲端服務](app-insights-cloudservices.md)的個別文章)。您需要 [Microsoft Azure](http://azure.com) 訂用帳戶。
 
 ![範例圖表](./media/app-insights-monitor-performance-live-website-now/10-intro.png)
 
@@ -39,7 +39,7 @@ ms.lasthandoff: 02/09/2017
 | --- | --- | --- |
 | 要求和例外狀況 |是 |是 |
 | [更詳細的例外狀況](app-insights-asp-net-exceptions.md) | |是 |
-| [相依性診斷](app-insights-asp-net-dependencies.md) |在 .Net 4.6 + 上，但較少細節 |是，完整詳細資料︰結果碼，SQL 命令文字，HTTP 動詞|
+| [相依性診斷](app-insights-asp-net-dependencies.md) |在 .Net 4.6 + 上，但較少細節 |是，完整詳細資料︰結果碼、SQL 命令文字、HTTP 指令動詞|
 | [系統效能計數器](app-insights-performance-counters.md) |是 |是 |
 | [自訂遙測的 API][api] |是 | |
 | [追蹤記錄檔整合](app-insights-asp-net-trace-logs.md) |是 | |
@@ -65,7 +65,7 @@ ms.lasthandoff: 02/09/2017
 如果您的應用程式裝載於 IIS 伺服器上，請使用狀態監視器來啟用 Application Insights。
 
 1. 在 IIS Web 伺服器上，以系統管理員認證登入。
-2. 如果尚未安裝 Application Insights 狀態監視器，請下載並執行[狀態監視器安裝程式](http://go.microsoft.com/fwlink/?LinkId=506648)。
+2. 如果尚未安裝 Application Insights 狀態監視器，請下載並執行[狀態監視器安裝程式](http://go.microsoft.com/fwlink/?LinkId=506648) (或執行 [Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx) 並在其中搜尋 Application Insights 狀態監視器)。
 3. 在狀態監視器中，選取您想要監視的已安裝 Web 應用程式或網站。 利用您的 Azure 認證登入。
 
     在 Application Insights 入口網站中設定您要在其中檢視結果的資源。 (通常最好建立新的資源。 如果您已經為此應用程式設定 [Web 測試][availability]或[用戶端監視][client]，請選取現有的資源。) 
@@ -76,7 +76,7 @@ ms.lasthandoff: 02/09/2017
 
     ![選擇對話方塊頂端的 [重新啟動]。](./media/app-insights-monitor-performance-live-website-now/appinsights-036-restart.png)
 
-    您的 Web 服務將會中斷一小段時間。
+    您的 Web 服務會中斷一小段時間。
 
 ## <a name="customize-monitoring-options"></a>自訂監視選項
 
@@ -98,7 +98,7 @@ ms.lasthandoff: 02/09/2017
 
 ### <a name="cant-connect-no-telemetry"></a>無法連接？ 沒有遙測資料？
 
-* 您需要在伺服器防火牆開啟 [某些傳出的連接埠](app-insights-ip-addresses.md#outgoing-ports) ，以允許狀態監視器運作。
+* 在伺服器的防火牆中開啟[必要的傳出連接埠](app-insights-ip-addresses.md#outgoing-ports)，以允許狀態監視器運作。
 
 * 開啟狀態監視器，然後選取左窗格中的應用程式。 檢查 [設定通知] 區段中是否有任何關於此應用程式的診斷訊息：
 
@@ -106,7 +106,7 @@ ms.lasthandoff: 02/09/2017
 * 如果您在伺服器上看到有關「權限不足」的訊息，請嘗試下列操作：
   * 在 IIS 管理員中，選取應用程式集區，開啟 [進階設定]，並記下 [處理序模型] 下的身分識別。
   * 在電腦的管理控制台中，將此身分識別加入至效能監試器使用者群組。
-* 如果您的伺服器上已安裝 MMA/SCOM，某些版本可能會發生衝突。 解除安裝 SCOM 和狀態監視器，重新安裝最新版本。
+* 如果您的伺服器上已安裝 MMA/SCOM (Microsoft Operations Management Suite)，某些版本可能會發生衝突。 解除安裝 SCOM 和狀態監視器，重新安裝最新版本。
 * 請參閱[疑難排解][qna]。
 
 ## <a name="system-requirements"></a>系統需求
@@ -151,7 +151,7 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 * `-InstrumentationKey` 您想要在其中顯示結果之 Application Insights 資源的 ikey。
 * 這個 Cmdlet 只會影響尚未檢測的應用程式，也就是 SdkState==NotInstrumented。
 
-    這個 Cmdlet 不會影響已檢測的應用程式，不論是在建置階段透過將 SDK 加入至程式碼，還是在執行階段透過先前使用的這個 Cmdlet。
+    這個 Cmdlet 不會影響已經過檢測的應用程式。 不論是在建置階段透過將 SDK 新增至程式碼，還是在執行階段透過先前使用的這個 Cmdlet，都沒有影響。
 
     用來檢測應用程式的 SDK 版本是最常下載到此伺服器的版本。
 
@@ -184,7 +184,11 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 
 * 將最新的 Application Insights SDK 下載至伺服器。
 
-## <a name="a-namenextanext-steps"></a><a name="next"></a>接續步驟
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
+
+## <a name="next"></a>接續步驟
 
 檢視遙測：
 

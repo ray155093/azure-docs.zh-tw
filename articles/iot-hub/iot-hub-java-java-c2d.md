@@ -97,7 +97,7 @@ Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝�
     <dependency>
       <groupId>com.microsoft.azure.sdk.iot</groupId>
       <artifactId>iot-service-client</artifactId>
-      <version>1.1.15</version>
+      <version>1.2.16</version>
     </dependency>
     ```
 

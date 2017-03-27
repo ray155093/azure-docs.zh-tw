@@ -1,5 +1,5 @@
 ---
-title: "適用於 Windows 服務和背景工作角色的 Application Insights | Microsoft Docs"
+title: "適用於 Windows 服務和背景工作角色的 Azure Application Insights | Microsoft Docs"
 description: "將 Application Insights SDK 手動新增至您的 ASP.NET 應用程式，以分析使用情況、可用性和效能。"
 services: application-insights
 documentationcenter: .net
@@ -14,8 +14,9 @@ ms.topic: get-started-article
 ms.date: 11/01/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7a9c40081f52b2ffe918f4612f790f7fd08acc5a
-ms.openlocfilehash: 926f77b6674a0dba92e160435e4cce7bb0de160d
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: df23a55197d15946f16868d14c6db08dcba4df19
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: 926f77b6674a0dba92e160435e4cce7bb0de160d
 * [Microsoft Azure](http://azure.com)訂用帳戶。 如果您的小組或組織擁有 Azure 訂用帳戶，擁有者就可以使用您的 [Microsoft 帳戶](http://live.com)將您加入。
 * Visual Studio 2013 或更新版本。
 
-## <a name="a-nameadda1-create-an-application-insights-resource"></a><a name="add"></a>1.建立 Application Insights 資源
+## <a name="add"></a>1.建立 Application Insights 資源
 登入 [Azure 入口網站](https://portal.azure.com/)，並建立新的 Application Insights 資源。 選擇 ASP.NET 做為應用程式類型。
 
 ![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-windows-services/01-new-asp.png)
@@ -46,7 +47,7 @@ Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務�
 
 您剛才所完成用來建立新資源的步驟是開始監視任何應用程式的好方法。 現在您可以將資料傳送給它。
 
-## <a name="a-namesdka2-install-the-sdk-in-your-application"></a><a name="sdk"></a>2.在應用程式中安裝 SDK
+## <a name="sdk"></a>2.在應用程式中安裝 SDK
 安裝和設定 Application Insights SDK 會視您正在使用的平台而有所不同。 對於 ASP.NET 應用程式而言，這非常輕鬆。
 
 1. 在 Visual Studio 中，編輯 Web 應用程式專案的 NuGet 封裝。
@@ -84,14 +85,14 @@ Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務�
 
 如果您想要[針對不同建置組態切換金鑰](app-insights-separate-resources.md)，在程式碼中設定檢測金鑰便很實用。 如果您在程式碼中設定金鑰，您不必在 `.config` 檔案中設定它。
 
-## <a name="a-nameruna-run-your-project"></a><a name="run"></a> 執行專案
+## <a name="run"></a> 執行專案
 使用 **F5** 執行應用程式並立即試用：開啟不同的頁面來產生一些遙測。
 
 在 Visual Studio 中，您可以看見已傳送到的事件計數。
 
 ![Visual Studio 中的事件計數](./media/app-insights-windows-services/appinsights-09eventcount.png)
 
-## <a name="a-namemonitora-view-your-telemetry"></a><a name="monitor"></a> 檢視遙測
+## <a name="monitor"></a> 檢視遙測
 返回 [Azure 入口網站](https://portal.azure.com/) ，並且瀏覽至您的 Application Insights 資源。
 
 在 [概觀] 圖表中尋找資料。 剛開始的時候，您只會看見一或兩個資料點。 例如：
@@ -128,12 +129,11 @@ Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務�
 > 
 > 
 
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
+
 ## <a name="next-steps"></a>後續步驟
 * [新增更多遙測](app-insights-asp-net-more.md) 可取得應用程式的完整 360 度檢視。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

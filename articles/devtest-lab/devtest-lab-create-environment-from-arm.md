@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/31/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: bd280fabf22d569f3c4dae9f00f44b08700c8fc4
-ms.openlocfilehash: f034f028b0b1e0011e152b88d304dd54cfbc8320
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: c17ea1f078c424d855109da07113a4c2f8f84ab3
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -115,5 +115,5 @@ ms.lasthandoff: 02/21/2017
 
 ## <a name="next-steps"></a>後續步驟
 * 一旦建立 VM 之後，您可以選取 VM 刀鋒視窗上的 [連接] 來連接至 VM。
-* 瀏覽 [ Azure 快速入門範本庫中的 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates)
+* 瀏覽 [Azure 快速入門範本庫中的 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates)
 

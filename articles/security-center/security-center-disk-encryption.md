@@ -1,7 +1,24 @@
-le--- title: 加密 Azure 虛擬機器 | Microsoft Docs description: 本文件可協助您在收到 Azure 資訊安全中心所發出的警示後，加密 Azure 虛擬機器。
-services: 安全性, 資訊安全中心 documentationcenter: na author: TomShinder manager: swadhwa editor: "
+---
+title: "加密 Azure 虛擬機器 | Microsoft Docs"
+description: "本文件可協助您在收到 Azure 資訊安全中心所發出的警示後，加密 Azure 虛擬機器。"
+services: security, security-center
+documentationcenter: na
+author: TomShinder
+manager: swadhwa
+editor: 
+ms.assetid: f6c28bc4-1f79-4352-89d0-03659b2fa2f5
+ms.service: security
+ms.devlang: na
+ms.topic: hero-article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 03/15/2017
+ms.author: tomsh
+translationtype: Human Translation
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: 5054ea1d5bd17712a4b343319d583e62a256752d
+ms.lasthandoff: 03/15/2017
 
-ms.assetid: f6c28bc4-1f79-4352-89d0-03659b2fa2f5 ms.service: security ms.devlang: na ms.topic: hero-article ms.tgt_pltfrm: na ms.workload: na ms.date: 05/27/2016 ms.author: tomsh
 
 ---
 # <a name="encrypt-an-azure-virtual-machine"></a>加密 Azure 虛擬機器
@@ -162,3 +179,4 @@ Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $resourceGroupName -VMNa
 * [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) – 了解如何管理與回應安全性警示
 * [Azure 安全性中心常見問題集](security-center-faq.md) - 尋找使用服務的常見問題
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 尋找有關 Azure 安全性與相容性的部落格文章
+

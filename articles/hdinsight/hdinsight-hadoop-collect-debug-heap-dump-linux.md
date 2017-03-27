@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 8f151adb-f687-41e4-aca0-82b551953725
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -32,7 +33,7 @@ ms.lasthandoff: 01/18/2017
 > [!IMPORTANT]
 > 本文件中的步驟只適用於使用 Linux 的 HDInsight 叢集。 Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
-## <a name="a-namewhichservicesaservices"></a><a name="whichServices"></a>服務
+## <a name="whichServices"></a>服務
 您可以啟用下列服務的堆積傾印：
 
 * **hcatalog** - tempelton
@@ -43,7 +44,7 @@ ms.lasthandoff: 01/18/2017
 
 您也可以針對 HDInsight 所執行的 map 和 reduce 處理序來啟用堆積傾印。
 
-## <a name="a-nameconfigurationaunderstanding-heap-dump-configuration"></a><a name="configuration"></a>了解堆積傾印組態
+## <a name="configuration"></a>了解堆積傾印組態
 堆積傾印的啟用方式，是在服務啟動時將選項 (有時稱為參數) 傳遞至 JVM。 就大部分的 Hadoop 服務而言，修改啟動服務所使用的 Shell 指令碼即可完成這項作業。
 
 在每個指令碼中，有一項 **\*\_OPTS** 匯出，其中含有傳遞至 JVM 的選項。 例如，在 **hadoop-env.sh** 指令碼中，以 `export HADOOP_NAMENODE_OPTS=` 為開頭的那一行即含有 NameNode 服務的選項。

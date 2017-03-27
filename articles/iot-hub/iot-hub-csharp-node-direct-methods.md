@@ -12,30 +12,31 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/11/2017
+ms.date: 03/10/2017
 ms.author: nberdy
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: bd2ae99b4e66085590230028ae649502327db50a
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: e7d7065513f69bac5f759bfd5f4b3965b26bab5d
+ms.lasthandoff: 03/14/2017
 
 
 ---
 # <a name="use-direct-methods-netnode"></a>使用直接方法 (.NET/Node)
 [!INCLUDE [iot-hub-selector-c2d-methods](../../includes/iot-hub-selector-c2d-methods.md)]
 
-在本教學課程結尾處，您將會有一個 .NET 主控台應用程式和一個 Node.js 主控台應用程式：
+在本教學課程中，我們即將開發 .NET 和 Node.js 主控台應用程式：
 
 * **CallMethodOnDevice.js**，這是 NET 後端應用程式，可在模擬裝置應用程式中呼叫方法，並顯示回應。
-* **TwinSimulatedDevice.js** 是可模擬裝置的 Node.js 應用程式，而此裝置會以稍早建立的裝置身分識別連接到您的 IoT 中樞，並回應雲端所呼叫的方法。
+* **TwinSimulatedDevice.js** 是可模擬裝置的 Node.js 應用程式，而此裝置會以稍早建立的裝置身分識別連線至您的 IoT 中樞，並回應雲端所呼叫的方法。
 
 > [!NOTE]
 > [Azure IoT SDK][lnk-hub-sdks] 一文提供 Azure IoT SDK (可讓您同時建置在裝置與您的解決方案後端執行的兩個應用程式) 的相關資訊。
 > 
 > 
 
-若要完成此教學課程，您需要下列項目：
+若要完成本教學課程，您需要：
 
-* Microsoft Visual Studio 2015。
+* Visual Studio 2015 或 Visual Studio 2017。
 * Node.js 0.10.x 版或更新版本。
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
@@ -56,7 +57,7 @@ ms.openlocfilehash: bd2ae99b4e66085590230028ae649502327db50a
     ```
         npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. 使用文字編輯器，在 **simulateddevice** 資料夾中建立新的 **SimulatedDevice.js** 檔案。
+3. 使用文字編輯器，在 **simulateddevice** 資料夾中建立檔案並將它命名為 **SimulatedDevice.js**。
 4. 在 **SimulatedDevice.js** 檔案開頭新增下列 `require` 陳述式：
    
     ```
@@ -111,7 +112,7 @@ ms.openlocfilehash: bd2ae99b4e66085590230028ae649502327db50a
 1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 確定 .NET Framework 為 4.5.1 或更新版本。 將專案命名為 **CallMethodOnDevice**。
    
     ![新的 Visual C# Windows 傳統桌面專案][10]
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **CallMethodOnDevice** 專案，然後按一下 [管理 NuGet 套件]。
+2. 在 [方案總管] 中，以滑鼠右鍵按一下 **CallMethodOnDevice** 專案，然後按一下 [管理 NuGet 套件...]。
 3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
    
     ![NuGet 封裝管理員視窗][11]
@@ -148,17 +149,18 @@ ms.openlocfilehash: bd2ae99b4e66085590230028ae649502327db50a
 ## <a name="run-the-applications"></a>執行應用程式
 現在您已經準備好執行應用程式。
 
-1. 在 **simulateddevice** 資料夾的命令提示字元中，執行下列命令以開始接聽來自您的 IoT 中樞的方法呼叫：
+1. 在 Visual Studio 的 [方案總管] 中，以滑鼠右鍵按一下您的方案，然後按一下 [設定啟始專案...]。 選取 [單一啟始專案]，然後選取下拉式功能表中的 **CallMethodOnDevice** 專案。
+
+2. 在 **simulateddevice** 資料夾的命令提示字元中，執行下列命令以開始接聽來自您的 IoT 中樞的方法呼叫：
    
     ```
     node SimulatedDevice.js
     ```
-   
-    ![][7]
-2. 裝置現在已連接並等候方法引動過程，請執行 .NET **CallMethodOnDevice** 應用程式，以在模擬裝置應用程式中叫用方法。 您應會看到在主控台中寫入的裝置回應。
+   等候模擬裝置開啟︰ ![][7]
+3. 裝置現在已連接並等候方法引動過程，請執行 .NET **CallMethodOnDevice** 應用程式，以在模擬裝置應用程式中叫用方法。 您應會看到在主控台中寫入的裝置回應。
    
     ![][8]
-3. 您會看到裝置對方法的反應，方法是列印訊息和應用程式，它們會呼叫方法並且顯示來自裝置的回應：
+4. 此裝置接著藉由列印此訊息來回應此方法︰
    
     ![][9]
 
@@ -177,8 +179,8 @@ ms.openlocfilehash: bd2ae99b4e66085590230028ae649502327db50a
 [8]: ./media/iot-hub-csharp-node-direct-methods/netserviceapp.png
 [9]: ./media/iot-hub-csharp-node-direct-methods/methods-output.png
 
-[10]: ./media/iot-hub-csharp-node-direct-methods/create-identity-csharp1.png
-[11]: ./media/iot-hub-csharp-node-direct-methods/create-identity-csharp2.png
+[10]: ./media/iot-hub-csharp-node-direct-methods/direct-methods-csharp1.png
+[11]: ./media/iot-hub-csharp-node-direct-methods/direct-methods-csharp2.png
 
 <!-- Links -->
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
@@ -198,9 +200,4 @@ ms.openlocfilehash: bd2ae99b4e66085590230028ae649502327db50a
 [Send Cloud-to-Device messages with IoT Hub]: iot-hub-csharp-csharp-c2d.md
 [Process Device-to-Cloud messages]: iot-hub-csharp-csharp-process-d2c.md
 [IoT 中樞入門]: iot-hub-node-node-getstarted.md
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

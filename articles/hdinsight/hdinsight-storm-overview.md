@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 01/11/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 354292f51d07bff00e7a6811e4d1d7beb7844920
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 0cf2d7f4cbbed730d690693fd006665355155c22
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -68,7 +68,7 @@ Apache Storm on HDInsight 提供下列主要優點︰
 只要花數分鐘即可佈建新的 Storm on HDInsight 叢集。 指定叢集名稱、大小、管理帳戶儲存體帳戶。 Azure 即會建立叢集，包括範例拓撲和 Web 管理儀表板。
 
 > [!NOTE]
-> 您也可以使用 [Azure CLI](../xplat-cli-install.md) 或 [Azure PowerShell](/powershell/azureps-cmdlets-docs). 佈建 Storm 叢集。
+> 您也可以使用 [Azure CLI](../cli-install-nodejs.md) 或 [Azure PowerShell](/powershell/azureps-cmdlets-docs). 佈建 Storm 叢集。
 
 提交要求後，15 分鐘內您就會有一個新的執行中 Storm 叢集，並準備好讓您進行第一次即時分析管線。
 
@@ -177,7 +177,7 @@ Data Lake Tools for Visual Studio 可讓 .NET 開發人員以 C# 語言設計和
 
 如需 Java 與 Trident 拓撲的範例，請參閱 [範例 Storm 拓撲清單](hdinsight-storm-example-topology.md) 或 HDInsight 叢集上的 Storm-Starter 範例。
 
-Storm-Starter 範例位於 HDInsight 叢集上的 ** /usr/hdp/current/storm-client/contrib/storm-starter** 目錄。
+Storm-Starter 範例位於 HDInsight 叢集上的 **/usr/hdp/current/storm-client/contrib/storm-starter** 目錄。
 
 ### <a name="python"></a>Python
 

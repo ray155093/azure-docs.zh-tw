@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 09/08/2016
 ms.author: ashwink
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 981056249213c53bb8198fd792b815c5d9b091f5
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 0e629dac553f576f2dd3059453b00d6b10e48fd7
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: 981056249213c53bb8198fd792b815c5d9b091f5
 > 
 
 ## <a name="prerequisites"></a>必要條件
-如果您尚未安裝 Azure CLI，請參閱 [安裝 Azure CLI](../xplat-cli-install.md)。 若您不熟悉 Azure CLI，可閱讀 [搭配使用 Mac、Linux 和 Windows 適用的 Azure CLI 與 Azure Resource Manager](../xplat-cli-azure-resource-manager.md)以深入了解。
+如果您尚未安裝 Azure CLI，請參閱 [安裝 Azure CLI](../cli-install-nodejs.md)。 若您不熟悉 Azure CLI，可閱讀 [搭配使用 Mac、Linux 和 Windows 適用的 Azure CLI 與 Azure Resource Manager](../xplat-cli-azure-resource-manager.md)以深入了解。
 
 在 Windows 中，從 [Node.js 網站](https://nodejs.org/)安裝 npm。 以「以系統管理員身分執行」權限使用 CMD.exe 完成安裝後，從安裝 npm 的資料夾中執行下列命令︰
 
@@ -206,9 +207,4 @@ azure insights autoscale setting list montest2 -n setting2
 ```console
 azure insights autoscale setting set montest2 -n setting2 --settingSpec
 ```
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

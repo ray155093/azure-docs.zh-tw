@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 4787f3cc-a650-4dc3-9d96-a19a67aad046
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -30,7 +31,7 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 
 在本文件中，您會學習如何搭配使用 Ambari Web UI 和 HDInsight 叢集。
 
-## <a name="a-idwhatisawhat-is-ambari"></a><a id="whatis"></a>什麼是 Ambari？
+## <a id="whatis"></a>什麼是 Ambari？
 
 [Apache Ambari](http://ambari.apache.org) 提供簡單易用的 Web UI，以供用來佈建、管理及監視 Hadoop 叢集，讓 Hadoop 管理起來更為簡單。 開發人員可以使用 [Ambari REST API](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)將這些功能整合到應用程式。
 
@@ -197,7 +198,7 @@ Ambari 提供許多警示，其可能狀態如下：
      > [!NOTE]
      > 請勿在 HDInsight 叢集上使用此動作。
 
-### <a name="a-idserviceaservices"></a><a id="service"></a>服務
+### <a id="service"></a>服務
 
 在 [儀表板] 或 [服務] 頁面中，使用服務清單底部的 [動作] 按鈕來停止和啟動所有服務。
 

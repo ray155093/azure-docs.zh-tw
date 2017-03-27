@@ -1,9 +1,9 @@
 ---
-title: "如何監視儲存體帳戶 | Microsoft Docs"
+title: "如何監視 Azure 儲存體帳戶 | Microsoft Docs"
 description: "了解如何使用 Azure 入口網站來監視 Azure 中的儲存體帳戶。"
 services: storage
 documentationcenter: 
-author: robinsh
+author: mmacy
 manager: timlt
 editor: tysonn
 ms.assetid: b83cba7b-4627-4ba7-b5d0-f1039fe30e78
@@ -12,130 +12,151 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/08/2016
-ms.author: robinsh
+ms.date: 03/14/2017
+ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c0506fd6745c9ab04f10b60936315901ed35edbc
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 8dc33077a955052a99b415b1299004cf8a4f217e
+ms.lasthandoff: 03/15/2017
 
 
 ---
 # <a name="monitor-a-storage-account-in-the-azure-portal"></a>在 Azure 入口網站中監視儲存體帳戶
-## <a name="overview"></a>Overview
-您可以從 [Azure 入口網站](https://portal.azure.com)監視儲存體帳戶。 當您設定要透過入口網站來監視的儲存體帳戶時，Azure 儲存體會使用 [儲存體分析](http://msdn.microsoft.com/library/azure/hh343270.aspx) 來追蹤您的帳戶的度量和記錄要求資料。
+
+[Azure 儲存體分析](storage-analytics.md)會提供所有儲存體服務的計量以及 Blob、佇列和資料表的記錄。 您可以使用 [Azure 入口網站](https://portal.azure.com)設定要為帳戶記錄哪些計量和記錄，並設定可利用視覺方式呈現計量資料的圖表。
 
 > [!NOTE]
-> 在 [Azure 入口網站](https://portal.azure.com)中查看監視資料會有額外的成本。 如需詳細資訊，請參閱 <a href="http://msdn.microsoft.com/library/azure/hh360997.aspx">儲存體分析及計費</a>。 <br />
-> 
-> Azure 檔案儲存體目前支援儲存體分析度量，但還不支援記錄。 您可以透過 [Azure 入口網站](https://portal.azure.com)啟用 Azure 檔案儲存體度量。
-> 
-> 複寫類型為區域備援儲存體 (ZRS) 的儲存體帳戶目前未啟用度量或記錄功能。 
+> 在 Azure 入口網站中查看監視資料會衍生相關成本。 如需詳細資訊，請參閱 [儲存體分析及計費](/rest/api/storageservices/fileservices/Storage-Analytics-and-Billing)。
+>
+> Azure 檔案儲存體目前支援儲存體分析度量，但還不支援記錄。
+>
+> 複寫類型為區域備援儲存體 (ZRS) 的儲存體帳戶目前未啟用度量或記錄功能。
 > 
 > 如需使用儲存體分析和其他工具來識別、診斷及疑難排解 Azure 儲存體相關問題的深入指南，請參閱 [監視、診斷及疑難排解 Microsoft Azure 儲存體](storage-monitoring-diagnosing-troubleshooting.md)。
-> 
-> 
+>
 
-## <a name="how-to-configure-monitoring-for-a-storage-account"></a>如何：設定儲存體帳戶的監視
-1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [儲存體]，然後按一下儲存體帳戶名稱即可開啟儀表板。
-2. 按一下 [設定]，然後向下捲動到 Blob、資料表及佇列服務的 [監視] 設定。
-   
-    ![MonitoringOptions](./media/storage-monitor-storage-account/Storage_MonitoringOptions.png)
-3. 在 [監視] 中，設定每個服務的監視等級和資料保留原則：
-   
-   * 若要設定監視等級，請選取下列其中一項：
-     
-     **最小** - 可收集針對 Blob、資料表和佇列服務彙總的度量 (例如入口流量/出口流量、可用性、延遲和成功百分比)。
-     
-      - 除了最小度量之外，在 Azure 儲存體服務 API 中也針對每個儲存體作業收集相同的度量集合。 詳細資訊度量可供進一步分析在應用程式運作期間發生的問題。
-     
-      - 關閉監視。 現有的監視資料會儲存到保留期間結束。
+## <a name="configure-monitoring-for-a-storage-account"></a>設定儲存體帳戶的監視
 
-* 若要設定資料保留原則，請在 [保留期限 (以天為單位)] 中，輸入要保留資料的天數，範圍從 1 到 365 天。 如果不想設定保留原則，則請輸入零。 如果沒有保留原則，您可以決定是否刪除監視資料。 我們建議根據要保留帳戶的儲存體分析資料多久來設定保留原則，以便系統可以不花費成本地刪除舊的無用分析資料。
+1. 在 [Azure 入口網站](https://portal.azure.com)中，選取 [儲存體帳戶]，接著選取儲存體帳戶名稱以開啟帳戶儀表板。
+1. 在功能表刀鋒視窗的 [監視] 區段中選取 [診斷]。
 
-1. 完成監視組態時，按一下 [儲存] 。
+    ![MonitoringOptions](./media/storage-monitor-storage-account/stg-enable-metrics-00.png)
 
-您應該在大約一小時後，開始在儀表板及 [監視]  頁面上看到監視資料。
+1. 針對您想要監視的每個 [服務] 選取計量資料的 [類型]，並選取資料的 [保留原則]。 您也可以將 [狀態] 設定為 [關閉] 來停用監視。
 
-在設定儲存體帳戶的監視之前，不會收集任何監視資料，且儀表板和 [監視]  頁面上的度量圖表為空白。
+    ![MonitoringOptions](./media/storage-monitor-storage-account/stg-enable-metrics-01.png)
 
-設定監視等級與保留原則之後，您可以在 [Azure 入口網站](https://portal.azure.com)選擇要監視哪些可用的度量，以及在度量圖表上繪製哪些度量。 每個監視等級會顯示一組預設的度量。 您可以使用 [Add Metrics]  從度量清單新增或移除度量。
+   您可以為每個服務啟用兩種類型的計量，新的儲存體帳戶預設會同時啟用這兩種類型︰
 
-度量存放在儲存體帳戶中的四個資料表：$MetricsTransactionsBlob、$MetricsTransactionsTable、$MetricsTransactionsQueue 及 $MetricsCapacityBlob。 如需詳細資訊，請參閱 [關於儲存體分析度量](http://msdn.microsoft.com/library/azure/hh343258.aspx)。
+   * **彙總**︰收集計量，例如入口流量/出口流量、可用性、延遲和成功百分比。 系統會為 Blob、佇列、資料表和檔案服務彙總這些計量。
+   * **依 API**：除了彙總計量之外，還會為 Azure 儲存體服務 API 的每個儲存體作業收集一組相同的計量。
 
-## <a name="how-to-customize-the-dashboard-for-monitoring"></a>如何：自訂儀表板以進行監視
-在儀表板上，您可以從九個可用度量中選擇最多六個度量，繪製在度量圖表上。 針對每個服務 (Blob、資料表和佇列)，可以使用「可用性」、「成功百分比」和「要求總數」等度量。 對於最小或詳細資訊監視，儀表板上的可用度量相同。
+   若要設定資料保留原則，請移動 [保留期 (天)] 滑桿，或輸入要保留資料的天數，範圍從 1 到 365 天。 新儲存體帳戶的預設值是&7; 天。 如果不想設定保留原則，則請輸入零。 如果沒有保留原則，您可以決定是否刪除監視資料。
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [儲存體]，然後按一下儲存體帳戶名稱即可開啟儀表板。
-2. 若要變更圖表上繪製的度量，請採取下列其中一個動作：
-   
-   * 若要將度量加入圖表中，請在圖表下面資料表中的度量標頭旁邊按一下彩色的核取方塊。
-   * 若要隱藏圖表上繪製的度量，請清除度量標頭旁邊彩色的核取方塊。
-     
-       ![Monitoring_nmore](./media/storage-monitor-storage-account/storage_Monitoring_nmore.png)
-3. 圖表預設會顯示趨勢，且只顯示每個度量的目前值 (圖表頂端的 [相對]  選項)。 若要顯示 Y 軸以看到絕對值，請選取 [絕對] 。
-4. 若要變更度量圖表顯示的時間範圍，請選取圖表頂端的 [6 hours]、[24 hours] 或 [7 days]。
+   > [!WARNING]
+   > 若您以手動方式刪除計量資料，將需要付費。 過時的分析資料 (存在時間超過保留原則的資料) 則會由系統刪除，不必付費。 建議您根據要將帳戶的儲存體分析資料保留多久來設定保留原則。 如需詳細資訊，請參閱[當您啟用儲存體度量時，會產生哪些費用？](storage-enable-and-view-metrics.md#what-charges-do-you-incur-when-you-enable-storage-metrics)。
+   >
 
-## <a name="how-to-customize-the-monitor-page"></a>如何：自訂 [監視] 頁面
-在 [監視]  頁面上，您可以檢視儲存體帳戶的完整度量集合。
+1. 監視組態完成時，選取 [儲存]。
 
-* 如果儲存體帳戶已設定最小監視，則會從 Blob、資料表和佇列服務彙總例如入口流量/出口流量、可用性、延遲和成功百分比等度量。
-* 如果您的儲存體帳戶已設定詳細資訊監視，則除了服務等級彙總，度量也可以用來更精細地解析個別儲存體作業。
+[儲存體帳戶] 刀鋒視窗以及個別服務的刀鋒視窗 (Blob、佇列、資料表和檔案) 會以圖表顯示一組預設的計量。 為服務啟用計量後，資料最慢可能需要一小時才會出現在其圖表中。 您可以在任何計量圖表上選取 [編輯]，以[設定哪些計量](#how-to-customize-metrics-charts)要顯示在圖表中。
 
-請使用下列程序選擇在 [監視]  頁面上顯示的度量圖表及資料表中，可檢視哪些儲存體度量。 這些設定不會影響儲存體帳戶中的監視資料收集、彙總和儲存。
+您可以將 [狀態] 設定為 [關閉] 來停用計量收集和記錄。
 
-## <a name="how-to-add-metrics-to-the-metrics-table"></a>做法：將計量新增至計量表
-1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [儲存體]，然後按一下儲存體帳戶名稱即可開啟儀表板。
-2. 按一下 [監視] 。
-   
-    即會開啟 [監視]  頁面。 依預設，度量表會顯示一部份可用於監視的度量。 下圖顯示所有三個服務都設定詳細資訊監視的儲存體帳戶預設 [監視] 顯示。 請使用 [Add Metrics]  從所有可用度量中選取您要監視的度量。
-   
-    ![Monitoring_VerboseDisplay](./media/storage-monitor-storage-account/Storage_Monitoring_VerboseDisplay.png)
-   
-   > [!NOTE]
-   > 選取度量時請考慮成本。 重新整理監視顯示時有相關的交易和出口流量成本。 如需詳細資訊，請參閱 [儲存體分析及計費](http://msdn.microsoft.com/library/azure/hh360997.aspx)。
-   > 
-   > 
-3. 按一下 [Add Metrics] 。
-   
-    最小監視中可用的彙總度量在清單的頂端。 如果選取核取方塊，度量便會顯示在度量清單中。
-   
-    ![AddMetricsInitialDisplay](./media/storage-monitor-storage-account/Storage_AddMetrics_InitialDisplay.png)
-4. 移動游標停留在對話方塊的右邊，以顯示捲軸，您可以拖曳捲軸來將其他度量捲入檢視中。
-   
-    ![AddMetricsScrollbar](./media/storage-monitor-storage-account/Storage_AddMetrics_Scrollbar.png)
-5. 按一下度量旁邊的向下箭頭，展開可以包含該度量的操作清單。 選取要在 [Azure 入口網站](https://portal.azure.com)的度量表中檢視的每個操作。
-   
-    在下圖中，已展開 AUTHORIZATION ERROR PERCENTAGE 度量。
-   
-    ![ExpandCollapse](./media/storage-monitor-storage-account/Storage_AddMetrics_ExpandCollapse.png)
-6. 選取所有服務的度量後，按一下 [確定] (核取記號) 更新監視組態。 選取的度量隨即新增到度量表。
-7. 若要從資料表刪除度量，請按一下度量加以選取，然後按一下 [刪除度量] 。
-   
-    ![DeleteMetric](./media/storage-monitor-storage-account/Storage_DeleteMetric.png)
+> [!NOTE]
+> Azure 儲存體使用[表格儲存體](storage-introduction.md#table-storage)來儲存儲存體帳戶的計量，並且會將計量以資料表形式儲存在帳戶中。 如需詳細資訊，請參閱： [度量的儲存方式](storage-analytics.md#how-metrics-are-stored)。
+>
 
-## <a name="how-to-customize-the-metrics-chart-on-the-monitor-page"></a>如何：自訂 [監視] 頁面上的度量圖表
-1. 在儲存體帳戶的 [監視]  頁面上，在度量表中選取最多 6 個度量，在度量圖表上繪製。 若要選取度量，請按一下左邊的核取方塊。 若要從圖表移除度量，請清除核取方塊。
-2. 若要切換圖表的相對值 (只顯示最終值) 和絕對值 (顯示 Y 軸)，請選取圖表頂端的 [相對] 或 [絕對]。
-3. 若要變更度量圖表顯示的時間範圍，請選取圖表頂端的 [6 小時]、[24 小時] 或 [7 天]。
+## <a name="customize-metrics-charts"></a>自訂計量圖表
 
-## <a name="how-to-configure-logging"></a>如何：設定記錄
-針對儲存體帳戶能使用的每個儲存服務 (Blob、資料表和佇列)，您可以儲存「讀取要求」、「寫入要求」及/或「刪除要求」的診斷記錄檔，也可以設定每個服務的資料保留原則。
+使用下列程序可選擇要在計量圖表中檢視哪些儲存體計量。 
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [儲存體]，然後按一下儲存體帳戶名稱即可開啟儀表板。
-2. 按一下 [設定]，然後使用鍵盤上的向下箭頭，向下捲動到 [記錄]。
-   
-    ![Storagelogging](./media/storage-monitor-storage-account/Storage_LoggingOptions.png)
-3. 針對每個服務 (Blob、資料表和佇列)，設定下列各項：
-   
-   * 要記錄的要求類型：「讀取要求」、「寫入要求」及「刪除要求」。
-   * 記錄資料的保留天數。 如果不想設定保留原則，請輸入零。 如果沒有設定保留原則，您可以決定是否刪除記錄檔。
-4. 按一下 [儲存] 。
+1. 一開始先在 Azure 入口網站中顯示儲存體計量圖表。 您可以在 [儲存體帳戶] 刀鋒視窗上和個別服務 (Blob、佇列、資料表及檔案) 的 [計量] 刀鋒視窗中找到圖表。
 
-診斷記錄檔儲存在儲存體帳戶中的 $logs Blob 容器。 如需存取 $logs 容器的詳細資訊，請參閱 [關於儲存體分析記錄](http://msdn.microsoft.com/library/azure/hh343262.aspx)。
+   在此範例中我們使用下列圖表，而此圖表會出現在 [儲存體帳戶] 刀鋒視窗 上：
 
+   ![Azure 入口網站中的圖表選擇](./media/storage-monitor-storage-account/stg-customize-chart-00.png)
 
+1. 接下來，在圖表內的任意位置按一下以開啟 [計量] 刀鋒視窗。 選取 [編輯圖表] 以開啟 [編輯圖表] 刀鋒視窗。
 
+   ![[圖表] 刀鋒視窗上的 [編輯圖表] 按鈕](./media/storage-monitor-storage-account/stg-customize-chart-01.png)
 
-<!--HONumber=Nov16_HO3-->
+1. 在 [編輯圖表] 刀鋒視窗上，選取要在圖表中顯示之計量的 [時間範圍]，以及想要顯示其計量的 [服務] (Blob、佇列、資料表、檔案)。 這裡我們選擇要顯示 Blob 服務過去一週的計量︰
 
+   ![[編輯圖表] 刀鋒視窗中的時間範圍和服務選擇](./media/storage-monitor-storage-account/stg-customize-chart-02.png)
+
+1. 選取要在圖表中顯示的個別 [計量]，然後按一下 [確定]。 例如，這裡我們選擇了要顯示 [ContainerCount] 和 [ObjectCount] 計量︰
+
+   ![[編輯圖表] 刀鋒視窗中的個別計量選擇](./media/storage-monitor-storage-account/stg-customize-chart-03.png)
+
+圖表設定不會影響儲存體帳戶之監視資料的收集、彙總或儲存，只會影響計量資料的檢視。
+
+### <a name="metrics-availability-in-charts"></a>計量在圖表中的可用性
+
+可用計量清單會根據您在下拉式功能表中所選擇的服務以及您正在編輯之圖表的單位類型而有所變更。 例如，只有在編輯以百分比顯示單位的圖表時，才能選取百分比計量，例如 PercentNetworkError 和 PercentThrottlingError︰
+
+![Azure 入口網站中的要求錯誤百分比圖表](./media/storage-monitor-storage-account/stg-customize-chart-04.png)
+
+### <a name="metrics-resolution"></a>計量解析
+
+您在 [診斷] 中選取的計量會決定帳戶可用計量的解析︰
+
+* **彙總**監視會提供入口流量/出口流量、可用性、延遲和成功百分比等計量。 這些計量是從 Blob、資料表、檔案和佇列服務彙總而來。
+* **依 API** 會提供更精細的解析，除了服務層級的彙總外，還能呈現個別儲存體作業可用的計量。
+
+## <a name="configure-metrics-alerts"></a>設定計量警示
+
+您可以建立警示，以在儲存體資源計量達到閾值時通知您。
+
+1. 若要開啟 [警示規則] 刀鋒視窗，請向下捲動至 [功能表] 刀鋒視窗的 [監視] 區段，然後選取 [警示規則]。
+1. 選取 [新增警示] 以開啟 [新增警示規則] 刀鋒視窗
+1. 從下拉式清單中選取 [資源](Blob、檔案、佇列、資料表)，然後輸入新警示規則的 [名稱] 和 [描述]。
+1. 選取要為其新增警示的 [計量]、警示 [條件] 和 [閾值]。 閾值的單位類型會隨您所選擇的計量而變更。 例如，「計數」是 ContainerCount 的單位類型，PercentNetworkError 計量的單位則是百分比。
+1. 選取 [期間]。 在期間內達到或超過閾值的計量會觸發警示。
+1. (選擇性) 設定 [電子郵件] 和 [Webhook] 通知。 如需 Webhook 的詳細資訊，請參閱[針對 Azure 度量警示設定 Webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md)。 如果未設定電子郵件或 Webhook 通知，則警示只會出現在 Azure 入口網站。
+
+![Azure 入口網站中的 [新增警示規則] 刀鋒視窗](./media/storage-monitor-storage-account/stg-alert-rules-01.png)
+
+## <a name="add-metrics-charts-to-the-portal-dashboard"></a>在入口網站儀表板中新增計量圖表
+
+您可以在入口網站儀表板中新增任何儲存體帳戶的 Azure 儲存體計量圖表。
+
+1. 在 [Azure 入口網站](https://portal.azure.com)中檢視儀表板時按一下 [編輯儀表板]。
+1. 在 [圖格庫] 中，選取 [圖格尋找依據] > [類型]。
+1. 選取 [類型] > [儲存體帳戶]。
+1. 在 [資源] 中，選取您想要在儀表板中新增其計量的儲存體帳戶。
+1. 選取 [類別] > [監視]。
+1. 將想要顯示之計量的圖表圖格拖放到儀表板。 針對想要顯示在儀表板上的所有計量重複此操作。 下圖醒目提示「Blob - 要求總數」圖表來做為範例，但所有圖表都可放置在儀表板上。
+
+   ![Azure 入口網站中的圖格庫](./media/storage-monitor-storage-account/stg-customize-dashboard-01.png)
+1. 新增完圖表時，請選取儀表板頂端附近的 [自訂完成]。
+
+在儀表板中新增圖表後，您可以進一步自訂這些圖表，如[自訂計量圖表](#how-to-customize-metrics-charts)所述。
+
+## <a name="configure-logging"></a>設定記錄
+
+您可以指示 Azure 儲存體，讓它將 Blob、資料表和佇列服務之讀取、寫入及刪除要求的診斷記錄儲存起來。 您已設定的資料保留原則同樣適用於這些記錄。
+
+> [!NOTE]
+> Azure 檔案儲存體目前支援儲存體分析度量，但還不支援記錄。
+>
+
+1. 在 [Azure 入口網站](https://portal.azure.com)中，選取 [儲存體帳戶]，然後選取儲存體帳戶名稱以開啟 [儲存體帳戶] 刀鋒視窗。
+1. 在功能表刀鋒視窗的 [監視] 區段中選取 [診斷]。
+
+    ![Azure 入口網站中 [監視] 底下的 [診斷] 功能表項目。](./media/storage-monitor-storage-account/stg-enable-metrics-00.png)
+    
+1. 確定 [狀態] 已設為 [開啟]，然後選取要為其啟用記錄的 [服務]。
+
+    ![在 Azure 入口網站中設定記錄。](./media/storage-monitor-storage-account/stg-enable-logging-01.png)
+1. 按一下 [儲存] 。
+
+診斷記錄檔儲存在儲存體帳戶中的 $logs Blob 容器。 若要檢視記錄資料，您可以使用 [Microsoft 儲存體總管](http://storageexplorer.com)之類的儲存體總管，或使用儲存體用戶端程式庫或 PowerShell 以程式設計方式進行檢視。
+
+如需存取 $logs 容器的相關資訊，請參閱[啟用儲存體記錄和存取記錄檔資料](/rest/api/storageservices/fileservices/enabling-storage-logging-and-accessing-log-data)。
+
+## <a name="next-steps"></a>後續步驟
+
+* 尋找更多關於儲存體分析之[計量、記錄和帳單](storage-analytics.md)的詳細資料。
+* 使用 PowerShell 和程式設計方式 (利用 C#) [啟用 Azure 儲存體計量和檢視計量資料](storage-enable-and-view-metrics.md)。
 

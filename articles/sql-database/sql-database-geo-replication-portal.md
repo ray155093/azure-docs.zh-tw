@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 入口網站為 Azure SQL Database 設定異地複寫 | Microsoft Docs"
-description: "使用 Azure 入口網站為 Azure SQL Database 設定異地複寫"
+title: "Azure 入口網站︰SQL Database 異地複寫 | Microsoft Docs"
+description: "在 Azure 入口網站中為 Azure SQL Database 設定異地複寫，並起始容錯移轉"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -13,18 +13,18 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/22/2016
+ms.date: 03/062/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
-ms.openlocfilehash: fe2d2ef731fb94c7e4e8da0e518bcef8c1ada650
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: 6f646b3776f0aa0bbfba227c81ac5fc4fde9265f
+ms.lasthandoff: 03/10/2017
 
 
 ---
-# <a name="configure-active-geo-replication-for-azure-sql-database-with-the-azure-portal"></a>使用 Azure 入口網站為 Azure SQL Database 設定作用中異地複寫
+# <a name="configure-active-geo-replication-for-azure-sql-database-in-the-azure-portal-and-initiate-failover"></a>在 Azure 入口網站中為 Azure SQL Database 設定主動式異地複寫，並起始容錯移轉
 
-本文說明如何使用 [Azure 入口網站](http://portal.azure.com)為 SQL Database 設定「主動式異地複寫」。
+本文說明如何在 [Azure 入口網站](http://portal.azure.com)中為 SQL Database 設定主動式異地複寫，並起始容錯移轉。
 
 若要使用 Azure 入口網站起始容錯移轉，請參閱 [使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-portal.md)。
 
@@ -51,9 +51,7 @@ ms.lasthandoff: 02/16/2017
 > [!NOTE]
 > 如果夥伴資料庫已經存在 (例如，因終止先前的「異地複寫」關聯性所導致)，命令將會失敗。
 > 
-> 
 
-### <a name="add-secondary"></a>加入次要
 1. 在 [Azure 入口網站](http://portal.azure.com)中，瀏覽至您想要為「異地複寫」設定的資料庫。
 2. 在 SQL Database 頁面上，選取 [異地複寫]，然後選取要建立次要資料庫的區域。 您可以選取裝載主要資料庫之區域以外的任何區域，但我們建議您選取[配對區域](../best-practices-availability-paired-regions.md)。
    
@@ -69,6 +67,26 @@ ms.lasthandoff: 02/16/2017
 7. 當植入程序完成時，次要資料庫會顯示其狀態。
    
     ![植入完成](./media/sql-database-geo-replication-portal/seeding-complete.png)
+
+## <a name="initiate-a-failover"></a>起始容錯移轉
+
+次要資料庫可被切換成為主要資料庫。  
+
+1. 在 [Azure 入口網站](http://portal.azure.com)中，瀏覽至「異地複寫」合作關係中的主要資料庫。
+2. 在 [SQL Database] 刀鋒視窗上，選取 [所有設定]  >  [異地複寫]。
+3. 在 [次要] 清單中，選取要做為新主要資料庫的資料庫，然後按一下 [容錯移轉]。
+   
+    ![容錯移轉](./media/sql-database-geo-replication-failover-portal/secondaries.png)
+4. 按一下 [是]  即可開始容錯移轉。
+
+命令會立即將次要資料庫切換為主要角色。 
+
+切換角色時，會有一小段時間無法使用這兩個資料庫 (大約為 0 到 25 秒)。 如果主要資料庫有多個次要資料庫，此命令會自動重新設定其他次要複本以連接至新的主要複本。 在正常情況下，完成整個作業所需的時間應該少於一分鐘。 
+
+> [!NOTE]
+> 發出命令時，如果主要複本處於線上並且正在認可交易，可能會發生部分資料遺失。
+> 
+> 
 
 ## <a name="remove-secondary-database"></a>移除次要資料庫
 此作業會永久終止對次要資料庫的複寫，並將次要資料庫的角色變更為一般讀寫資料庫。 如果與次要資料庫的連線中斷，命令將會成功，但次要資料庫必須等到連線恢復後才會變成讀寫資料庫。  

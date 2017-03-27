@@ -12,35 +12,49 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/09/2017
+ms.date: 03/12/2017
 ms.author: johnkem; magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 2e011fbde0ee1b070d51a38b23193a4b48a3a154
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 5675a65e3b48e39f44dc320b7b87910ab759b764
+ms.lasthandoff: 03/14/2017
 
 
 ---
-# <a name="overview-of-azure-diagnostic-logs"></a>Azure 診斷記錄檔概觀
-**Azure 診斷記錄檔** 是由資源發出的記錄檔，提供有關該資源之作業的豐富、經常性資料。 這些記錄檔的內容會因資源類型而不同 (例如，Windows 事件系統記錄檔是 VM、blob、資料表的診斷記錄檔中的一個類別，佇列記錄檔是儲存體帳戶的診斷記錄檔的類別)，而且和 [活動記錄檔 (前身為稽核記錄或作業記錄)](monitoring-overview-activity-logs.md)不同，後者提供訂用帳戶中的資源上執行之作業的深入解析。 並非所有資源皆支援此處所述的新型診斷記錄檔。 文後的「支援的服務」一節會說明哪些資源類型支援新的診斷記錄檔。
+# <a name="collect-and-consume-diagnostic-data-from-your-azure-resources"></a>收集並取用來自 Azure 資源的診斷資料
 
-![診斷記錄檔的邏輯位置](./media/monitoring-overview-of-diagnostic-logs/logical-placement-chart.png)
+## <a name="what-are-azure-diagnostic-logs"></a>Azure 診斷記錄是什麼
+**Azure 診斷記錄檔** 是由資源發出的記錄檔，提供有關該資源之作業的豐富、經常性資料。 這些記錄的內容會依資源類型而有所不同。 例如，Windows 事件系統記錄是適用於 VM、Blob 和資料表的一個診斷記錄類別，而佇列記錄則是適用於儲存體帳戶的診斷記錄類別。
+
+診斷記錄不同於[活動記錄 (之前稱為稽核記錄或作業記錄)](monitoring-overview-activity-logs.md)。 活動記錄能讓您了解訂用帳戶中的資源所執行之作業。 診斷記錄能讓您了解資源自行執行的作業。
+
+並非所有資源皆支援此處所述的新型診斷記錄檔。 本文有一個區段會列出哪些資源類型支援新的診斷記錄。
+
+![診斷記錄與其他類型的記錄 ](./media/monitoring-overview-of-diagnostic-logs/Diagnostics_Logs_vs_other_logs_v5.png)
+
+圖 1：診斷記錄與其他類型的記錄
 
 ## <a name="what-you-can-do-with-diagnostic-logs"></a>診斷記錄檔的用途
 以下是您可以利用診斷記錄檔進行的事：
+
+![診斷記錄檔的邏輯位置](./media/monitoring-overview-of-diagnostic-logs/Diagnostics_Logs_Actions.png)
+
 
 * 將診斷記錄檔儲存到[**儲存體帳戶**](monitoring-archive-diagnostic-logs.md)以利稽核或手動檢查。 您可以使用 **診斷設定**指定保留時間 (以天為單位)。
 * [將診斷記錄檔串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)，以供第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
 * 以 [OMS Log Analytics](../log-analytics/log-analytics-azure-storage.md) 分析記錄檔
 
-儲存體帳戶或事件中樞命名空間不一定要和資源發出記錄檔屬於相同的訂用帳戶，只要使用者有適當的設定可 RBAC 存取這兩個訂用帳戶即可。
+您可以使用並非發出記錄的同一個訂用帳戶中的儲存體帳戶或事件中樞命名空間。 進行此設定的使用者必須具有這兩個訂用帳戶的適當 RBAC 存取權。
 
 ## <a name="diagnostic-settings"></a>診斷設定
 非計算資源的診斷記錄檔要使用「診斷設定」來設定。 **診斷設定** ：
 
 * 診斷記錄檔傳送至何處 (儲存體帳戶、事件中樞和/或 OMS Log Analytics)。
 * 傳送何種類別的記錄檔。
-* 診斷記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。 否則，此值範圍介於 1 到 2147483647 之間。 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄檔將被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。
+* 每個記錄類別應該在儲存體帳戶中保留多久
+    - 保留期為&0; 天表示會永遠保留記錄。 否則，此值可以是 1 到 2147483647 之間的任意天數。
+    - 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
+    - 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄會被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。
 
 透過 Azure 入口網站中資源的 [診斷] 刀鋒視窗、透過 Azure PowerShell 和 CLI 命令、或是透過 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931943.aspx)，可以輕鬆地設定這些設定。
 
@@ -141,33 +155,33 @@ ms.lasthandoff: 03/08/2017
 若要使用 Azure 監視器 REST API 變更診斷設定，請參閱[這份文件](https://msdn.microsoft.com/library/azure/dn931931.aspx)。
 
 ## <a name="manage-diagnostic-settings-in-the-portal"></a>在入口網站中管理診斷設定
-為確保所有資源皆以診斷設定正確設定，您可以瀏覽至入口網站中的 [監視] 刀鋒視窗，並開啟 [診斷記錄檔] 刀鋒視窗。
+請確定所有資源皆已設定了診斷設定。 瀏覽至入口網站中的 [監視] 刀鋒視窗，然後開啟 [診斷記錄] 刀鋒視窗。
 
 ![入口網站中的診斷記錄檔刀鋒視窗](./media/monitoring-overview-of-diagnostic-logs/manage-portal-nav.png)
 
 您可能必須按一下 [更多服務] 來尋找 [監視] 刀鋒視窗。
 
-在此刀鋒視窗中，您可以檢視及篩選支援診斷記錄檔的所有資源，以檢查它們是否已啟用診斷，以及該記錄檔要流向哪些儲存體帳戶、事件中樞及/或 Log Analytics 工作區。
+在此刀鋒視窗中，您可以檢視和篩選所有支援診斷記錄的資源，以查看它們是否已啟用診斷。 您也可以檢查這些記錄流向哪一個儲存體帳戶、事件中樞和/或 Log Analytics 工作區。
 
 ![入口網站中的診斷記錄檔刀鋒視窗結果](./media/monitoring-overview-of-diagnostic-logs/manage-portal-blade.png)
 
-按一下資源，即會顯示已儲存在儲存體帳戶的所有記錄檔，並提供您關閉或修改診斷設定的選項。 按一下 [下載] 圖示來下載一段特定時間的記錄。
+按一下資源，即會顯示已儲存在儲存體帳戶的所有記錄，並提供您關閉或修改診斷設定的選項。 按一下 [下載] 圖示來下載一段特定時間的記錄。
 
 ![一項資源的診斷記錄檔刀鋒視窗](./media/monitoring-overview-of-diagnostic-logs/manage-portal-logs.png)
 
 > [!NOTE]
-> 僅在您已設定診斷設定，將它們儲存到儲存體帳戶，診斷記錄檔才會出現在此檢視中並可供下載。
+> 僅在您已設定診斷設定以將它們儲存到儲存體帳戶時，診斷記錄才會出現在此檢視中並可供下載。
 >
 >
 
-按一下連結的**診斷設定**會顯示 [診斷設定] 刀鋒視窗，您可以在其中啟用、停用、修改所選取資源的診斷設定。
+按一下**診斷設定**的連結會顯示 [診斷設定] 刀鋒視窗，您可以在其中啟用、停用、修改所選取資源的診斷設定。
 
 ## <a name="supported-services-and-schema-for-diagnostic-logs"></a>支援的服務以及診斷記錄檔的結構描述
-診斷記錄檔的結構描述會根據資源和記錄類別而有所不同。 以下是支援的服務和其結構描述。
+診斷記錄檔的結構描述會根據資源和記錄類別而有所不同。   
 
 | 服務 | 結構描述與文件 |
 | --- | --- |
-| 負載平衡器 |[Azure 負載平衡器的記錄檔分析 (預覽)](../load-balancer/load-balancer-monitor-log.md) |
+| 負載平衡器 |[Azure 負載平衡器的 Log Analytics](../load-balancer/load-balancer-monitor-log.md) |
 | 網路安全性群組 |[網路安全性群組 (NSG) 的記錄檔分析](../virtual-network/virtual-network-nsg-manage-log.md) |
 | 應用程式閘道 |[應用程式閘道的診斷記錄功能](../application-gateway/application-gateway-diagnostics.md) |
 | 金鑰保存庫 |[Azure 金鑰保存庫記錄](../key-vault/key-vault-logging.md) |
@@ -211,7 +225,8 @@ ms.lasthandoff: 03/08/2017
 |Microsoft.StreamAnalytics/streamingjobs|編寫|編寫|
 
 ## <a name="next-steps"></a>後續步驟
+
 * [將診斷記錄串流至**事件中樞**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 * [使用 Azure 監視器 REST API 變更診斷設定](https://msdn.microsoft.com/library/azure/dn931931.aspx)
-* [以 OMS Log Analytics 分析記錄檔](../log-analytics/log-analytics-azure-storage.md)
+* [使用 Log Analytics 分析來自 Azure 儲存體的記錄](../log-analytics/log-analytics-azure-storage.md)
 

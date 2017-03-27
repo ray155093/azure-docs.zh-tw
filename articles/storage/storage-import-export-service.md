@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 1/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 787f54ca2c19d87866ede452ea1cce0b1c37f263
-ms.openlocfilehash: 50f66d229b80489e429b5db3f2c6cc5787b6884c
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: c30203120a155fd3fc431009baa3e8b318e1330f
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -249,8 +250,8 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 1. 識別要匯入的資料。 這可能是本機伺服器或網路共用上的目錄和獨立檔案。  
 2. 根據資料的總大小，決定您需要的磁碟機數目。 採購所需的 2.5 英吋 SSD 或 2.5 英吋/3.5 英吋 SATA II/III 硬碟機數目。
 3. 識別目標儲存體帳戶、容器、虛擬目錄和 Blob。
-4.  決定將複製到每個硬碟的目錄和/或獨立檔案。
-5.  建立資料集和磁碟機集的 CSV 檔。
+4.    決定將複製到每個硬碟的目錄和/或獨立檔案。
+5.    建立資料集和磁碟機集的 CSV 檔。
     
     **資料集 CSV 檔案**
     
@@ -284,8 +285,8 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 
     深入了解[準備磁碟機集 CSV 檔案](storage-import-export-tool-preparing-hard-drives-import.md#prepare-initialdriveset-or-additionaldriveset-csv-file)。
 
-6.  使用 [WAImportExport 工具](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExport.zip)將資料複製到一或多個硬碟。
-7.  您可以在磁碟機集 CSV 中的加密欄位指定 "Encrypt"，以在硬碟上啟用 BitLocker 加密。 或者，您也可以手動在硬碟上啟用 BitLocker 加密和指定 "AlreadyEncrypted"，並在執行工具時於磁碟機集 CSV 中提供金鑰。
+6.    使用 [WAImportExport 工具](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExport.zip)將資料複製到一或多個硬碟。
+7.    您可以在磁碟機集 CSV 中的加密欄位指定 "Encrypt"，以在硬碟上啟用 BitLocker 加密。 或者，您也可以手動在硬碟上啟用 BitLocker 加密和指定 "AlreadyEncrypted"，並在執行工具時於磁碟機集 CSV 中提供金鑰。
 
 8. 完成磁碟準備工作之後，請勿修改硬碟上的資料或日誌檔案。
 
@@ -422,7 +423,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /DataSet:dataset
 
 **Azure 匯入/匯出服務可用於 CSP 訂用帳戶嗎？**
 
-否，Azure 匯入/匯出服務不支援 CSP 訂用帳戶。 未來將加入此支援。
+Azure 匯入/匯出服務確實支援 CSP 訂用帳戶。
 
 **我可以略過匯入工作的磁碟機準備步驟，或是可以準備磁碟機而不複製嗎？**
 
@@ -499,10 +500,5 @@ Azure 資料中心會將不符支援需求的磁碟機退回給您。 如果包�
 * [設定 WAImportExport 工具](storage-import-export-tool-how-to.md)
 * [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 * [Azure 匯入匯出 REST API 範例](https://azure.microsoft.com/documentation/samples/storage-dotnet-import-export-job-management/)
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

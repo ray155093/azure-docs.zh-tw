@@ -12,12 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/01/2017
+ms.date: 03/02/2017
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: 3693b90509646fd7292861979cd7c2d1c0100d68
-ms.openlocfilehash: 30e92d17a99a0c751397e448108d488aefdd557a
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: ca55f1c295d99ff92abaef1a919d4c90d3c33b8a
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -32,13 +32,13 @@ Azure 監視器的影片逐步解說位於
 
 下圖顯示 Azure 監視的概念式檢視，包括您可以收集的記錄檔類型，以及可以使用該資料進行的作業。   
 
-![針對非計算資源的監視與診斷邏輯模型](./media/monitoring-overview/MonitoringAzureResources-non-compute_v3.png)
+![非計算資源的監視與診斷模型](./media/monitoring-overview/Monitoring_Azure_Resources-compute_v4.png)
 
 圖 1：非計算資源的監視與診斷概念模型
 
 <br/>
 
-![針對計算資源的監視與診斷邏輯模型](./media/monitoring-overview/MonitoringAzureResources-compute_v3.png)
+![計算資源的監視與診斷模型](./media/monitoring-overview/Monitoring_Azure_Resources-non-compute_v4.png)
 
 圖 2：計算資源的監視與診斷概念模型
 
@@ -114,7 +114,8 @@ Azure 監視器的影片逐步解說位於
 * 傳送到事件中樞，讓您可以路由到協力廠商工具以執行即時分析。
 
 ### <a name="automate"></a>自動化
-您可以使用監視資料來觸發警示或甚至觸發整個程序。 範例包括：
+您可以使用監視資料來觸發警示或甚至觸發整個程序。
+範例包括：
 
 * 使用資料來根據應用程式負載，自動向上或向下調整計算執行個體。
 * 在某個計量超過預先定義的臨界值時傳送電子郵件。

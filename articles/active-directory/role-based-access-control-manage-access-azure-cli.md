@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 02/22/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: d9ef14d1d83d98de5c1d95b237a2e06ea2506766
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 3c8ee4a51d69b7511445d441e28a1014200bdc4a
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -32,7 +32,7 @@ ms.lasthandoff: 03/04/2017
 
 使用 Azure 命令列介面 (CLI) 來管理 RBAC 之前，您必須具備下列必要條件：
 
-* Azure CLI 0.8.8 版或更新版本。 若要安裝最新版本，並將它與 Azure 訂用帳戶建立關聯，請參閱 [安裝和設定 Azure CLI](../xplat-cli-install.md)。
+* Azure CLI 0.8.8 版或更新版本。 若要安裝最新版本，並將它與 Azure 訂用帳戶建立關聯，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md)。
 * Azure CLI 中的 Azure Resource Manager。 如需詳細資訊，請瀏覽 [搭配使用 Azure CLI 和 Resource Manager](../xplat-cli-azure-resource-manager.md) 。
 
 ## <a name="list-roles"></a>列出角色

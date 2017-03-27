@@ -12,15 +12,18 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 01/23/2017
+ms.date: 02/27/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ffba988bd8cd3896816118afde979c7067fced79
-ms.openlocfilehash: fc681f21925464d37c43a7fae4f6deaf75e357b2
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: a23ae729e20dcf79ada73f7545861356e31b957e
+ms.lasthandoff: 03/09/2017
 
 
 ---
-# <a name="use-multi-instance-tasks-to-run-message-passing-interface-mpi-applications-in-azure-batch"></a>在 Azure Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式
+# <a name="use-multi-instance-tasks-to-run-message-passing-interface-mpi-applications-in-batch"></a>在 Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式
+
 多重執行個體工作可讓您在多個計算節點上同時執行 Azure Batch 工作。 這些工作可以在 Batch 中實現高效能運算案例，例如訊息傳遞介面 (MPI) 應用程式。 在本文中，您將了解如何使用 [Batch .NET][api_net] 程式庫來執行多重執行個體工作。
 
 > [!NOTE]
@@ -272,7 +275,7 @@ GitHub 上的 [MultiInstanceTasks][github_mpi] 程式碼範例示範如何使用
 
 ### <a name="execution"></a>執行
 1. 從 GitHub 下載 [azure-batch-samples][github_samples_zip]。
-2. 在 Visual Studio 2015 中開啟 MultiInstanceTasks **方案**。 `MultiInstanceTasks.sln` 方案檔位於︰
+2. 在 Visual Studio 2015 或更新版本中，開啟 MultiInstanceTasks **方案**。 `MultiInstanceTasks.sln` 方案檔位於︰
 
     `azure-batch-samples\CSharp\ArticleProjects\MultiInstanceTasks\`
 3. 在 **Microsoft.Azure.Batch.Samples.Common** 專案的 `AccountSettings.settings` 中輸入 Batch 和儲存體帳戶的認證。
@@ -366,9 +369,4 @@ Sample complete, hit ENTER to exit...
 [rest_multiinstance]: https://msdn.microsoft.com/library/azure/mt637905.aspx
 
 [1]: ./media/batch-mpi/batch_mpi_01.png "多重執行個體概觀"
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 
