@@ -83,7 +83,7 @@ ms.lasthandoff: 02/14/2017
    
     ![設定單一登入](./media/active-directory-saas-gigya-tutorial/IC789529.png "設定單一登入")
 
-3. 在 [設定應用程式 URL] 頁面的 [Gigya 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："http://company.gigya.com"，然後按 [下一步]。
+3. 在 [設定應用程式 URL] 頁面的 [Gigya 登入 URL] 文字方塊中，使用下列模式輸入您的 URL：" http://company.gigya.com "，然後按 [下一步]。
    
     ![設定應用程式 URL](./media/active-directory-saas-gigya-tutorial/IC789530.png "設定應用程式 URL")
 
