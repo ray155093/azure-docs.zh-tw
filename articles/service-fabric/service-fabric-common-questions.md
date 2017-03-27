@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/19/2017
+ms.date: 03/08/2017
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: 102be620e8812cc551aebafe7c8df4e4eac0ae90
-ms.openlocfilehash: 2ad3bd7b846693c637fd843383802651a619b128
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 6c0c6b24f9d669e7ed45e6b2acf2e75390e5e1f4
+ms.lasthandoff: 03/09/2017
 
 ---
 
@@ -42,6 +43,16 @@ ms.openlocfilehash: 2ad3bd7b846693c637fd843383802651a619b128
 未來，我們將支援在所有更新網域中完全自動化且協調化的作業系統更新原則，確保在發生重新開機或其他非預期失敗的情況下，都能夠維持可用性。
 
 在此過渡期間，我們已[提供一個指令碼](https://blogs.msdn.microsoft.com/azureservicefabric/2017/01/09/os-patching-for-vms-running-service-fabric/)，可供叢集系統管理員以安全的方式手動開始執行每個節點的修補作業。
+
+### <a name="can-i-use-large-virtual-scale-sets-in-my-sf-cluster"></a>我可以在 SF 叢集中使用大型虛擬擴展集嗎？ 
+
+**簡短回答** - 否。 
+
+**完整回答** - 雖然大型虛擬擴展集 (VMSS) 最多可讓您將 VMSS 調整到 1000 個 VM 執行個體，但它是藉由使用放置群組 (PG) 來達成。 容錯網域 (FD) 和升級網域 (UD) 只會在使用 FD 和 UD 以決定服務複本/服務執行個體放置位置的放置群組 Service Fabric 內保持一致。 由於 FD 和 UD 只能在放置群組內比較，所以 SF 無法使用它。 例如，如果 PG1 中的 VM1 具有 FD=0 的拓撲，且 PG2 中的 VM9 具有 FD=4 的拓撲，此情況並不代表 VM1 和 VM2 位於兩個不同的硬體機架上，因此在此情況下，SF 無法使用 FD 值來決定放置位置。
+
+大型 VMSS 目前有其他問題，像是缺乏層級&4; 的負載平衡支援。 如需詳細資訊，請參閱[大型 VMSS](../virtual-machine-scale-sets/virtual-machine-scale-sets-placement-groups.md)
+
+
 
 ### <a name="what-is-the-minimum-size-of-a-service-fabric-cluster-why-cant-it-be-smaller"></a>Service Fabric 叢集的大小下限為何？ 為什麼無法更小？
 
@@ -118,9 +129,4 @@ ms.openlocfilehash: 2ad3bd7b846693c637fd843383802651a619b128
 ## <a name="next-steps"></a>後續步驟
 
 - [深入了解核心 Service Fabric 概念和最佳做法 (英文)](https://mva.microsoft.com/en-us/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=tbuZM46yC_5206218965)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

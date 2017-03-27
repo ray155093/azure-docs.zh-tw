@@ -65,7 +65,7 @@ ms.lasthandoff: 02/17/2017
    在 Azure 備份中執行重要作業時，您必須輸入 Azure 入口網站上可用的 [安全性 PIN 碼]，這是安全性功能的一部分。 啟用 Azure Multi-Factor Authentication 可多加一層安全性，確保只有獲得授權且具備有效 Azure 認證並從第二個裝置進行驗證的使用者可以存取 Azure 入口網站並執行這類重要作業。
 6. 使用切換按鈕來 [啟用] 並按一下頂端的 [儲存] 來儲存安全性設定，如下圖所示。 您只能在從 [是否已設定 Azure Multi-Factor Authentication？] 的下拉式清單中選取值之後， 選取 [啟用]。
 
-    ![啟用安全性設定](./media/backup-azure-security-feature/enable-security-settings.png)
+    ![啟用安全性設定](./media/backup-azure-security-feature/enable-security-settings-dpm-update.png)
 
 ## <a name="recovering-deleted-backup-data"></a>復原已刪除的備份資料
 基於安全性考量，如果已執行「停止備份並刪除備份資料」作業，Azure 備份會保留已刪除的備份資料額外 14 天，並不會立即將它刪除。 若要在 14 天的期間內還原此資料，請使用下列步驟︰

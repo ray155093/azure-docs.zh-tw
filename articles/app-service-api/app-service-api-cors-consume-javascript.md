@@ -3,7 +3,7 @@ title: "App Service 中的 CORS 支援 | Microsoft Docs"
 description: "了解如何在 Azure App Service 中使用 CORS 支援。"
 services: app-service\api
 documentationcenter: .net
-author: tdykstra
+author: alexkarcher-msft
 manager: erikre
 editor: 
 ms.assetid: 4f980a97-b9f5-4d1d-87ab-82b60bb96e1c
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: dotnet
 ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/27/2016
-ms.author: rachelap
+ms.author: alkarche
 translationtype: Human Translation
-ms.sourcegitcommit: a0580f8d303c7ce33a65f0ce6faecf2492f851b0
-ms.openlocfilehash: b0b701b7ea7a608f114d3a82f0403c2ae506854f
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 79fe018bb6721c431a935dda14b36968688d34e3
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -29,7 +29,7 @@ App Service 提供內建的 [跨原始來源資源共用 (CORS)](https://en.wiki
 * [如何設定 CORS](#corsconfig) 一節說明一般會如何設定 API 應用程式、Web 應用程式或行動應用程式的 CORS。 本節一體適用於 App Service 支援的所有架構，包括 .NET、Node.js 和 Java。 
 * 從[繼續進行 .NET 入門教學課程](#tutorialstart)一節開始，本文就會成為示範 CORS 支援的教學課程，其示範方法是透過以您在[第一個 API Apps 入門教學課程](app-service-api-dotnet-get-started.md)中所做的為基礎進行建置。 
 
-## <a name="a-idcorsconfiga-how-to-configure-cors-in-azure-app-service"></a><a id="corsconfig"></a> 如何在 Azure App Service 中設定 CORS
+## <a id="corsconfig"></a> 如何在 Azure App Service 中設定 CORS
 您可以在 Azure 入口網站中設定 CORS，或使用 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 工具設定。
 
 #### <a name="configure-cors-in-the-azure-portal"></a>在 Azure 入口網站中設定 CORS
@@ -52,7 +52,7 @@ App Service 提供內建的 [跨原始來源資源共用 (CORS)](https://en.wiki
    按一下 [儲存] 之後，API 應用程式會接受來自指定 URL 的 JavaScript 呼叫。
 
 #### <a name="configure-cors-by-using-azure-resource-manager-tools"></a>使用 Azure 資源管理員工具設定 CORS
-您也可以使用 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 和 [Azure CLI](../xplat-cli-install.md) 等命令列工具中的 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)，設定 API 應用程式的 CORS。 
+您也可以使用 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 和 [Azure CLI](../cli-install-nodejs.md) 等命令列工具中的 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)，設定 API 應用程式的 CORS。 
 
 如需可設定 CORS 屬性之 Azure Resource Manager 範本的範例，請開啟 [本教學課程的範例應用程式儲存機制中的 azuredeploy.json 檔案](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/azuredeploy.json)。 找出如下列範例所示的範本區段：
 
@@ -62,7 +62,7 @@ App Service 提供內建的 [跨原始來源資源共用 (CORS)](https://en.wiki
             ]
         }
 
-## <a name="a-idtutorialstarta-continuing-the-net-getting-started-tutorial"></a><a id="tutorialstart"></a> 繼續進行 .NET 入門教學課程
+## <a id="tutorialstart"></a> 繼續進行 .NET 入門教學課程
 如果您正遵循適用於 API 應用程式的 Node.js 或 Java 入門系列，則您已完成入門系列。 請跳至 [後續步驟](#next-steps) 一節，尋找進一步了解 API Apps 的建議。
 
 本文其餘部分是 .NET 入門系列的延續，並假設您已成功完成 [第一個教學課程](app-service-api-dotnet-get-started.md)。

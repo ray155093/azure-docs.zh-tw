@@ -5,7 +5,7 @@ keywords: "App Service, Azure App Service, 行動應用程式, 行動服務, 調
 services: app-service\mobile
 documentationcenter: 
 author: adrianhall
-manager: erikre
+manager: adrianha
 editor: 
 ms.assetid: 0620554f-9590-40a8-9f47-61c48c21076b
 ms.service: app-service-mobile
@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 10/01/2016
 ms.author: adrianha
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 525659afa7ad73ebdc37fd53ecb0a9c4622302ff
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: bad95e1700c1f85d6b4764e8edc3af98f2f5f804
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 11/17/2016
 本主題說明如何在主要的 Azure App Service Mobile Apps 案例中使用 .NET 後端伺服器 SDK Azure Mobile Apps SDK 可協助您從 ASP.NET 應用程式使用行動用戶端。
 
 > [!TIP]
-> [適用於 Azure Mobile Apps 的 .NET 伺服器 SDK][2] 是在 GitHub 上的開放原始碼。 儲存機制包含所有原始程式碼，其中包括整個伺服器 SDK 單元測試組件和一些範例專案。
+> [適用於 Azure Mobile Apps 的 .NET 伺服器 SDK][2]是 GitHub 上的開放原始碼。 儲存機制包含所有原始程式碼，其中包括整個伺服器 SDK 單元測試組件和一些範例專案。
 > 
 > 
 
@@ -41,7 +41,7 @@ ms.lasthandoff: 11/17/2016
 如果您將行動功能新增至現有的專案，請參閱 [下載並初始化 SDK](#install-sdk) 一節。
 
 ### <a name="create-a-net-backend-using-the-azure-portal"></a>使用 Azure 入口網站建立 .NET 後端
-若要建立 App Service 行動後端，請遵循[快速入門教學課程][3]，或遵循下列步驟︰
+若要建立 App Service 行動後端，請遵循[快速入門教學課程][3]或遵循下列步驟︰
 
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service-classic](../../includes/app-service-mobile-dotnet-backend-create-new-service-classic.md)]
 

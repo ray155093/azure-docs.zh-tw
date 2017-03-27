@@ -9,9 +9,9 @@
     這個介面允許支援 RDMA 的執行個體透過 InfiniBand 網路彼此通訊，針對 H16r 與 H16mr 虛擬機器以 FDR 速率運作，以及針對 A8 與 A9 虛擬機器以 QDR 速率運作。 在這些虛擬機器中公開的 RDMA 功能可以提升特定 Linux 與 Windows 訊息傳遞介面 (MPI) 應用程式的延展性與效能。 如需需求的資訊，請參閱本文章中的 [存取 RDMA 網路](#access-to-the-rdma-network) 。
 
 ## <a name="deployment-considerations"></a>部署考量
-* **Azure 訂用帳戶** – 如果您想要部署的不只是少數的計算密集執行個體，請考慮隨用隨付訂用帳戶或其他購買選項。 如果您使用 [Azure 免費帳戶](https://azure.microsoft.com/free/)，您只能使用有限數目的 Azure 計算核心。
+* **Azure 訂用帳戶** – 若要部署的不只是少數的計算密集執行個體，請考慮隨用隨付訂用帳戶或其他購買選項。 如果您使用 [Azure 免費帳戶](https://azure.microsoft.com/free/)，您只能使用有限數目的 Azure 計算核心。
 * **價格與可用性** - 計算密集型 VM 大小僅在 [標準] 定價層提供。 如需了解 Azure 區域中的可用性，請查看 [依區域提供的產品](https://azure.microsoft.com/regions/services/) 。 
-* **核心配額** – 您可能需要增加您 Azure 訂用帳戶的核心配額，預設配額是每個訂用帳戶 20 個核心 (如果您使用傳統部署模型)，或是每個區域 20 個核心 (如果您使用 Resource Manager 部署模型)。 您的訂用帳戶可能也會限制您可以在特定 VM 大小系列 (包括 H 系列) 中部署的核心數目。 若要要求增加配額，可免費[開啟線上客戶支援要求](../articles/azure-supportability/how-to-create-azure-support-request.md)。 (預設限制會視您的訂用帳戶類別而有所不同。)
+* **核心配額** – 您可能需要從預設值增加 Azure 訂用帳戶的核心配額。 您的訂用帳戶可能也會限制您可以在特定 VM 大小系列 (包括 H 系列) 中部署的核心數目。 若要要求增加配額，可免費[開啟線上客戶支援要求](../articles/azure-supportability/how-to-create-azure-support-request.md)。 (預設限制會視您的訂用帳戶類別而有所不同。)
   
   > [!NOTE]
   > 如果您有大規模的容量需求，請連絡 Azure 支援。 Azure 配額為信用額度，而不是容量保證。 無論您的配額有多少，您只需針對您使用的核心付費。
@@ -21,9 +21,4 @@
 * **雲端服務或可用性設定組** – 若要使用 Azure RDMA 網路，請在相同的雲端服務 (如果您是使用傳統部署模型)，或相同的可用性設定組 (如果您是使用 Azure Resource Manager 部署模型) 中部署支援 RDMA 的 VM。 如果您是使用 Azure 批次，支援 RDMA 的 VM 必須在相同的集區中。
 * **調整大小** – 因為計算密集型執行個體中使用了特殊硬體，所以您只能夠在相同大小系列內重新調整計算密集型執行個體的大小 (H 系列或計算密集型 A 系列)。 例如，您只能將 H 系列 VM 的大小，從某一個 H 系列大小重新調整為另一個大小。 此外，不支援從非計算密集型大小重新調整為計算密集型大小。  
 * **RDMA 網路位址空間** - Azure 中的 RDMA 網路會保留位址空間 172.16.0.0/16。 若要在 Azure 虛擬網路中已部署的執行個體上執行 MPI 應用程式，請確定虛擬網路位址空間不會與 RDMA 網路重疊。
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

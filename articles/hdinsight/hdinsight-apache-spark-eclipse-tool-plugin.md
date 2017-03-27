@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: f6c79550-5803-4e13-b541-e86c4abb420b
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -206,7 +207,7 @@ ms.lasthandoff: 01/24/2017
 
 如果您有任何建議或意見反應，或使用此工具時遇到任何問題，歡迎寄電子郵件到 hdivstool@microsoft.com。
 
-## <a name="a-nameseealsoasee-also"></a><a name="seealso"></a>另請參閱
+## <a name="seealso"></a>另請參閱
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
 
 ### <a name="scenarios"></a>案例

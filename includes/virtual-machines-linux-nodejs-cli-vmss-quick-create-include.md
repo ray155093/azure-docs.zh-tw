@@ -1,6 +1,6 @@
 ## <a name="prerequisites"></a>必要條件
 
-您可以取得[免費試用的 Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)，然後透過 [Azure CLI 1.0](../articles/xplat-cli-install.md) [連線到您的 Azure 帳戶](../articles/xplat-cli-connect.md)，如果您尚未這麼做的話。 請確定 Azure CLI 是處於 Resource Manager 模式，如下所示：
+您可以取得[免費試用的 Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)，然後透過 [Azure CLI 1.0](../articles/cli-install-nodejs.md) [連線到您的 Azure 帳戶](../articles/xplat-cli-connect.md)，如果您尚未這麼做的話。 請確定 Azure CLI 是處於 Resource Manager 模式，如下所示：
 
 ```azurecli
 azure config mode arm

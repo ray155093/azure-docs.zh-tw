@@ -1,6 +1,6 @@
 您必須具有 Azure 的帳戶，才能搭配使用 Azure CLI 與 Resource Manager 命令和範本，使用資源群組來部署 Azure 資源和工作負載。 如果您沒有帳戶，可以取得 [此處免費試用的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-如果您尚未安裝 Azure CLI 並且連接至您的訂用帳戶，請參閱[安裝 Azure CLI](../articles/xplat-cli-install.md)，將模式設定為 `arm` 與 `azure config mode arm`，並連接至 Azure 與 `azure login` 命令。
+如果您尚未安裝 Azure CLI 並且連接至您的訂用帳戶，請參閱[安裝 Azure CLI](../articles/cli-install-nodejs.md)，將模式設定為 `arm` 與 `azure config mode arm`，並連接至 Azure 與 `azure login` 命令。
 
 ## <a name="basic-azure-resource-manager-commands-in-azure-cli"></a>Azure CLI 中的基本 Azure Resource Manager 命令
 本文章涵蓋搭配 Azure CLI 來管理 Azure 訂用帳戶中之 ARM 資源 (主要是 VM) 並與其互動的基本命令。  如需特定命令列參數和選項的詳細說明，您可以輸入 `azure <command> <subcommand> --help` 或 `azure help <command> <subcommand>` 來使用線上命令說明和選項。
@@ -36,9 +36,4 @@
 
 ## <a name="next-steps"></a>後續步驟
 * 如需超越基本 VM 管理的其他 CLI 命令範例，請參閱 [Azure CLI 與 Azure Resource Manager 搭配使用](../articles/virtual-machines/azure-cli-arm-commands.md)。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

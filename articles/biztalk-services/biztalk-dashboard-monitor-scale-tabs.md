@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
 translationtype: Human Translation
-ms.sourcegitcommit: 71f9dd111ebdbe885f33d162b2ea320dfaa167bb
-ms.openlocfilehash: 27fb77bb2a6aadc2ab65f3916eeb68f487ae5fad
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: ec1c54c8520170cd19095bf8d752c79c2fd812d8
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.openlocfilehash: 27fb77bb2a6aadc2ab65f3916eeb68f487ae5fad
 
 這樣會開啟新視窗並顯示下列索引標籤。 本主題說明這些索引標籤。
 
-## <a name="quick-start-quick-startquickstart"></a>快速入門 (![快速啟動][QuickStart])
+## <a name="quickstart-quickstartquickstart"></a>快速入門 (![快速入門][Quickstart])
 部分 BizTalk 服務版本可能並未提供下列所有選項。 
 
 <table border="1">
@@ -67,14 +68,14 @@ ms.openlocfilehash: 27fb77bb2a6aadc2ab65f3916eeb68f487ae5fad
 </tr>
 
 <tr>
-<td><strong>存取控制命名空間的連線資訊</strong></td>
+<td>存取控制命名空間的<strong>連線資訊</strong></td>
 <td>選取 [連線資訊] 時會顯示 [存取控制命名空間]、[預設核發者] 和 [預設金鑰]。 您可以複製這些值。
 <br/><br/>
 您也可以開啟存取控制入口網站。 <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=285670">建立存取控制命名空間</a>提供了存取控制入口網站的詳細資訊。</td>
 </tr>
 
 <tr>
-<td><strong>儲存體帳戶內的同步金鑰</strong></td>
+<td>儲存體帳戶內的<strong>同步金鑰</strong></td>
 <td>當建立儲存體帳戶時，會自動建立主要金鑰和次要金鑰。 這些加密金鑰可控制儲存體帳戶的存取。 BizTalk 服務會自動使用主要金鑰。 <strong>同步金鑰</strong>可讓使用者在主要金鑰和次要金鑰之間切換，而不會中斷 BizTalk 服務。
 <br/><br/>
 例如，您希望 BizTalk 服務對儲存體帳戶使用新的主要金鑰。 作法：
@@ -188,7 +189,7 @@ ms.openlocfilehash: 27fb77bb2a6aadc2ab65f3916eeb68f487ae5fad
 <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">在 BizTalk 服務入口網站上設定 EDI 訊息的元件</a>提供 BizTalk 服務入口網站的詳細資訊。</td>
 </tr>
 <tr>
-<td><strong>存取控制命名空間的連線資訊</strong></td>
+<td>存取控制命名空間的<strong>連線資訊</strong></td>
 <td>顯示 Access Control 命名空間、預設核發者和預設金鑰值，供您複製。
 <br/><br/>
 您也可以開啟存取控制入口網站。 此存取控制入口網站的功用就與使用左側導覽窗格中的 [Active Directory] 選項一樣。
@@ -196,7 +197,7 @@ ms.openlocfilehash: 27fb77bb2a6aadc2ab65f3916eeb68f487ae5fad
 <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=285670">管理您的 ACS 命名空間</a>提供存取控制入口網站的詳細資訊。</td>
 </tr>
 <tr>
-<td><strong>儲存體帳戶內的同步金鑰</strong></td>
+<td>儲存體帳戶內的<strong>同步金鑰</strong></td>
 <td>當建立儲存體帳戶時，會自動建立主要金鑰和次要金鑰。 這些加密金鑰可控制儲存體帳戶的存取。 BizTalk 服務會自動使用主要金鑰。 <strong>同步金鑰</strong>可讓使用者在主要金鑰和次要金鑰之間切換，而不會中斷 BizTalk 服務。
 <br/><br/>
 例如，您希望 BizTalk 服務對儲存體帳戶使用新的主要金鑰。 作法：
@@ -243,7 +244,7 @@ ms.openlocfilehash: 27fb77bb2a6aadc2ab65f3916eeb68f487ae5fad
    ![CPU 使用量度量已啟用][EnabledMetric]
 6. 若要從顯示圖表和清單中移除度量，請選取工作列中的 [ **移除度量** ]。 若要將度量加回到清單中，請選取工作列的 [加入度量]，勾選度量，然後選取勾選記號以回到 [監視] 索引標籤。 選取灰色圓圈以啟用度量。
 
-## <a name="a-namemetricsaavailable-metrics"></a><a name="Metrics"></a>可用的度量
+## <a name="Metrics"></a>可用的度量
 以下是可用的效能計數器/度量：
 
 <table border="1">
@@ -264,7 +265,7 @@ ms.openlocfilehash: 27fb77bb2a6aadc2ab65f3916eeb68f487ae5fad
 [目的地認可回應已傳送至閘道] - [訊息進入閘道]</td>
 </tr>
 <tr>
-<td><strong>來源處失敗</strong></td>
+<td><strong>來源失敗</strong></td>
 <td>顯示從來源端點提取訊息時，BizTalk 服務無法處理的訊息總數。</td>
 </tr>
 <tr>
@@ -325,7 +326,7 @@ ms.openlocfilehash: 27fb77bb2a6aadc2ab65f3916eeb68f487ae5fad
 
 [BizTalk 服務：備份與還原](biztalk-backup-restore.md) 提供詳細資料。 
 
-## <a name="a-namehybridconnectionsahybrid-connections"></a><a name="HybridConnections"></a>混合式連線
+## <a name="HybridConnections"></a>混合式連線
 混合式連線可將 Azure 應用程式 (例如 Azure App Service 中的 Web Apps 或 Mobile Apps) 連線到使用靜態 TCP 連接埠的內部部署資源，例如 SQL Server、MySQL、HTTP Web API 及大部分的自訂 Web 服務。 您可以在 Azure 傳統入口網站內的 BizTalk 服務中管理混合式連接。
 
 若要在 Azure App Service 中建立混合式連線，請參閱[在 Azure App Service 中使用混合式連線存取內部部署資源](../app-service-web/web-sites-hybrid-connection-get-started.md)。
@@ -346,14 +347,9 @@ ms.openlocfilehash: 27fb77bb2a6aadc2ab65f3916eeb68f487ae5fad
 * [BizTalk 服務：BizTalk 服務狀態圖](biztalk-service-state-chart.md)  
 * [如何開始使用 Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 
-[QuickStart]: ./media/biztalk-dashboard-monitor-scale-tabs/QuickStartIcon.png
+[Quickstart]: ./media/biztalk-dashboard-monitor-scale-tabs/QuickStartIcon.png
 [AddMetrics]: ./media/biztalk-dashboard-monitor-scale-tabs/WABS_AddMetrics.png
 [GrayedMetric]: ./media/biztalk-dashboard-monitor-scale-tabs/WABS_GrayedMetric.png
 [EnabledMetric]: ./media/biztalk-dashboard-monitor-scale-tabs/WABS_EnabledMetric.png
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

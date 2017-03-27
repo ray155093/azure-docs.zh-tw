@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 03/14/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 1f5f0b1aca581900b94f0f87563c5c7e720f46c8
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 67d817c04672979ec8af8a540c5a63eb4df9bf6a
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -52,6 +52,10 @@ DocumentDB 會儲存體大小與佈建的輸送量，在每個集合背後建立
 
 例如，假設您建立的集合有每秒 25,000 個要求的輸送量，而且 DocumentDB 可支援單一實體資料分割每秒 10,000 個要求。 DocumentDB 會為您的集合建立 3 個實體資料分割 P1、 P2 和 P3。 在插入或讀取文件時，DocumentDB 服務會雜湊對應的 `Department` 值，以將資料對應至三個資料分割 P1、 P2 和 P3。 所以說，如果「行銷」和「銷售」雜湊為 1，則兩者都會儲存於 P1。 而如果 P1 已滿，則 DocumentDB 會將 P1 分割成兩個新的資料分割 P4 和 P5。 然後此服務可能會在分割後將「行銷」移至 P4、將「銷售」移至 P5，而後捨棄 P1。 對您的應用程式而言，資料分割之間的這些資料分割索引鍵移動是透明的，並不會影響到您的集合可用性。
 
+## <a name="sharding-in-api-for-mongodb"></a>API for MongoDB 中的分區化
+API for MongoDB 中的分區化集合會使用相同的基礎結構做為 DocumentDB 的資料分割集合。 如同資料分割集合，分區化集合可以有任意數目的分區，而每個分區有固定數量的 SSD 型儲存體數量與其相關聯。 從儲存體和輸送量的角度來看，分區化集合實際上並無限制。 API for MongoDB 的分區化索引鍵相當於 DocumentDB 的資料分割索引鍵，而在決定分區索引鍵時，請務必閱讀[資料分割索引鍵](#partition-keys)和[設計資料分割](#designing-for-partitioning)章節。
+
+<a name="partition-keys"></a>
 ## <a name="partition-keys"></a>資料分割索引鍵
 選擇資料分割索引鍵是在設計階段必須進行的一項重要決策。 您選擇的 JSON 屬性名稱必須具有各種不同的值，而且應該可以平均分散存取模式。 
 
@@ -160,7 +164,7 @@ DocumentDB 支援建立單一分割和分割的集合。
     </tbody>
 </table>
 
-## <a name="working-with-the-sdks"></a>使用 SDK
+## <a name="working-with-the-documentdb-sdks"></a>使用 DocumentDB SDK
 Azure DocumentDB 已藉由 [REST API 版本 2015-12-16](https://msdn.microsoft.com/library/azure/dn781481.aspx)新增對自動資料分割的支援。 若要建立資料分割的集合，必須下載其中一個支援的 SDK 平台 (.NET、Node.js、Java、Python) 中的 SDK 1.6.0 版或更新版本。 
 
 ### <a name="creating-partitioned-collections"></a>建立資料分割的集合
@@ -276,7 +280,7 @@ IQueryable<DeviceReading> crossPartitionQuery = client.CreateDocumentQuery<Devic
     .Where(m => m.MetricType == "Temperature" && m.MetricValue > 100);
 ```
 
-DocumentDB 使用 SQL (包含 SDK 1.12.0 和更新版本) 支援已分割集合的 [彙總函式] ([彙總函式](documentdb-sql-query.md#Aggregates) `COUNT`、`MIN`、`MAX`、`SUM` 和 `AVG`)。 查詢必須包含單一彙總運算子，而且在投射中必須包含單一值。
+DocumentDB 使用 SQL (包含 SDK 1.12.0 和更新版本) 支援已分割集合的[彙總函式](documentdb-sql-query.md#Aggregates) `COUNT`、`MIN`、`MAX`、`SUM` 和 `AVG`。 查詢必須包含單一彙總運算子，而且在投射中必須包含單一值。
 
 ### <a name="parallel-query-execution"></a>平行查詢執行
 DocumentDB SDK 1.9.0 和更新版本支援平行查詢執行選項，可讓您對分割集合執行低延遲查詢 (即使它們需要涉及大量的資料分割也一樣)。 例如，下列查詢設定為跨資料分割平行執行。
@@ -309,9 +313,34 @@ await client.ExecuteStoredProcedureAsync<DeviceReading>(
     
 在下一節中，我們會探討如何從單一資料分割集合改為資料分割的集合。
 
+## <a name="creating-an-api-for-mongodb-sharded-collection"></a>建立 API for MongoDB 分區化集合
+建立 API for MongoDB 分區化集合的最簡單方式是透過您喜愛的工具、驅動程式或 SDK。 在此範例中，我們將使用 Mongo 殼層建立集合。
+
+在 Mongo 殼層中︰
+
+```
+db.runCommand( { shardCollection: "admin.people", key: { region: "hashed" } } )
+```
+    
+結果：
+
+```JSON
+{
+    "_t" : "ShardCollectionResponse",
+    "ok" : 1,
+    "collectionsharded" : "admin.people"
+}
+```
+
 <a name="migrating-from-single-partition"></a>
 
-## <a name="migrating-from-single-partition-to-partitioned-collections"></a>從單一資料分割集合移轉至資料分割的集合
+## <a name="migrating-from-single-partition-to-partitioned-collections-in-documentdb"></a>從 DocumentDB 中單一資料分割移轉至資料分割集合
+
+> [!IMPORTANT]
+> 如果您要匯入到 API for MongoDB，請遵循這些[指示](documentdb-mongodb-migrate.md)。
+> 
+> 
+
 當使用單一資料分割集合的應用程式需要較高的輸送量 (>&10;,000 RU/秒) 或較大的資料儲存體 (>&10; GB) 時，您可以使用 [DocumentDB 資料移轉工具](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d)將單一資料分割集合中的資料移轉至已分割集合。 
 
 從單一資料分割集合移轉到資料分割的集合
@@ -328,6 +357,7 @@ await client.ExecuteStoredProcedureAsync<DeviceReading>(
 
 現在，我們已經完成基本概念，接著將查看在 DocumentDB 中使用資料分割索引鍵時的一些重要設計考量。
 
+<a name="designing-for-partitioning"></a>
 ## <a name="designing-for-partitioning"></a>設計資料分割
 選擇資料分割索引鍵是在設計階段必須進行的一項重要決策。 本節描述選取集合資料分割索引鍵時的一些取捨。
 

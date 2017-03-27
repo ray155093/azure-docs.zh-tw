@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/14/2016
+ms.date: 03/09/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 3d24c0c29da8c97e5fcff524dc88746982fda77c
-ms.openlocfilehash: a34a30a301e213ad227c21196a0b6299dbc4d357
-ms.lasthandoff: 12/15/2016
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 900f0b4c38f08d1e3017954db01cf32362765578
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -34,7 +34,7 @@ ms.lasthandoff: 12/15/2016
 
 * 有效的 Azure 訂用帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk_free_trial]。
 * [Node.js][lnk-node] 0.12.x 版或更新版本，以建立模擬裝置。
-* Microsoft Visual Studio 2015，以使用新規則修改預先設定的解決方案後端。
+* Visual Studio 2015 或 Visual Studio 2017，以使用新規則修改預先設定的解決方案後端。
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 

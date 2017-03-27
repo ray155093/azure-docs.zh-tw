@@ -16,15 +16,15 @@ ms.workload: data-management
 ms.date: 06/22/2016
 ms.author: srinia
 translationtype: Human Translation
-ms.sourcegitcommit: 637171b775d01e16cec1a7e9ef6fad73875eac69
-ms.openlocfilehash: e04a802b662954ff22cf44e144982dbf0964da8e
-ms.lasthandoff: 02/08/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: ffcf0f0aa80f0a6b65cbef65e361e4830fcca3ff
+ms.lasthandoff: 03/10/2017
 
 
 ---
 
 # <a name="create-and-manage-an-elastic-pool-with-powershell"></a>使用 PowerShell 建立及管理彈性集區
-本主題說明如何使用 PowerShell 建立及管理可調整的[彈性集區](sql-database-elastic-pool.md)。  您也可以使用 [Azure 入口網站](https://portal.azure.com/)、REST API 建立及管理 Azure 彈性集區，或[C#][使用 C# 建立及管理彈性集區](sql-database-elastic-pool-manage-csharp.md)。 您也可以使用 [Transact-SQL](sql-database-elastic-pool-manage-tsql.md) 來建立資料庫並將它移入和移出彈性集區。
+本主題說明如何使用 PowerShell 建立及管理可調整的[彈性集區](sql-database-elastic-pool.md)。  您也可以使用 [Azure 入口網站](https://portal.azure.com/)、REST API 或 [C#](sql-database-elastic-pool-manage-csharp.md) 來建立及管理 Azure 彈性集區。 您也可以使用 [Transact-SQL](sql-database-elastic-pool-manage-tsql.md) 來建立資料庫並將它移入和移出彈性集區。
 
 [!INCLUDE [Start your PowerShell session](../../includes/sql-database-powershell.md)]
 

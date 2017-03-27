@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: fff43da07603be1e54cb9948dfd442491bb8f35a
-ms.openlocfilehash: 8103c85cf27c46acf2a46d87d73ecc7227723479
-ms.lasthandoff: 02/14/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: f941f87019a667deba5ec3e5cd054d04318689db
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -30,7 +30,7 @@ ms.lasthandoff: 02/14/2017
 
 * **主機名稱** - 我們需要主機名稱屬性。
 * **基本路徑** - 我們需要基本路徑屬性。
-* **配置** - 我們需要配置陣列。
+* **配置** - 我們需要配置陣列。 
 
 ## <a name="wsdl"> </a>WSDL
 WSDL 檔案是用來產生 SOAP 傳遞的 API，或做為「SOAP 至 REST」API 的後端。
@@ -39,6 +39,7 @@ WSDL 檔案是用來產生 SOAP 傳遞的 API，或做為「SOAP 至 REST」API 
 * **具有多個部分的訊息** - 目前不支援。
 * **WCF wsHttpBinding** - 使用 Windows Communication Foundation 建立的 SOAP 服務應該使用 basicHttpBinding - wsHttpBinding。
 * **MTOM** - 使用 MTOM 的服務「可能」<em></em>可以運作。 目前不提供官方支援。
+* 不支援以遞迴方式定義的**遞迴**類型 (例如，參考自己的陣列)。
 
 ## <a name="wadl"> </a>WADL
 目前沒有任何已知的 WADL 匯入問題。

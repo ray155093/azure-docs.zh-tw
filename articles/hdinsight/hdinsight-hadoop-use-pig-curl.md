@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: ed5e10d1-4f47-459c-a0d6-7ff967b468c4
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/09/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ecc141c9afa46f23d31de4356068ef4f98a92aa
-ms.openlocfilehash: d4d9ed8380a0e8726fe2e2835e4b10fd262e1562
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: e7489b0485fe4779a72daeef0467a244bb55ff65
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -33,7 +34,7 @@ ms.lasthandoff: 02/10/2017
 > [!NOTE]
 > 如果您已熟悉使用以 Linux 為基礎的 Hadoop 伺服器，但剛接觸 HDInsight，請參閱 [以 Linux 為基礎的 HDInsight 秘訣](hdinsight-hadoop-linux-information.md)。
 
-## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
+## <a id="prereq"></a>必要條件
 
 若要完成這篇文章中的步驟，您需要下列項目︰
 
@@ -45,71 +46,71 @@ ms.lasthandoff: 02/10/2017
 * [Curl](http://curl.haxx.se/)
 * [jq](http://stedolan.github.io/jq/)
 
-## <a name="a-idcurlarun-pig-jobs-by-using-curl"></a><a id="curl"></a>使用 Curl 執行 Pig 工作
+## <a id="curl"></a>使用 Curl 執行 Pig 工作
 
 > [!NOTE]
 > 在使用 Curl 或與 WebHCat 進行任何其他 REST 通訊時，您必須提供 HDInsight 叢集的系統管理員使用者名稱和密碼來驗證要求。 您也必須在用來將要求傳送至伺服器的統一資源識別項 (URI) 中使用叢集名稱。
-> 
+>
 > 在本節的所有命令中，將 **USERNAME** 取代為用來驗證叢集的使用者，並將 **PASSWORD** 取代為使用者帳戶的密碼。 將 **CLUSTERNAME** 取代為您叢集的名稱。
-> 
+>
 > 透過 [基本存取驗證](http://en.wikipedia.org/wiki/Basic_access_authentication)來保護 REST API 的安全。 您應該一律使用安全 HTTP (HTTPS) 提出要求，確保認證安全地傳送至伺服器。
 
 1. 從命令列中，使用下列命令來確認您可以連線到 HDInsight 叢集：
-   
+
         curl -u USERNAME:PASSWORD -G https://CLUSTERNAME.azurehdinsight.net/templeton/v1/status
-   
+
     您應該會收到如下所示的回應：
-   
+
         {"status":"ok","version":"v1"}
-   
+
     此命令中使用的參數如下：
-   
+
     * **-u**：用來驗證要求的使用者名稱和密碼
     * **-G**：指出這是 GET 要求
-     
+
      所有要求的 URL 開頭 **https://CLUSTERNAME.azurehdinsight.net/templeton/v1** 都會相同。 路徑 **/status** 指出要求是要傳回伺服器之 WebHCat (也稱為 Templeton) 的狀態。
 
 2. 使用下列程式碼，以將 Pig Latin 工作提交至叢集：
-   
+
         curl -u USERNAME:PASSWORD -d user.name=USERNAME -d execute="LOGS=LOAD+'/example/data/sample.log';LEVELS=foreach+LOGS+generate+REGEX_EXTRACT($0,'(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)',1)+as+LOGLEVEL;FILTEREDLEVELS=FILTER+LEVELS+by+LOGLEVEL+is+not+null;GROUPEDLEVELS=GROUP+FILTEREDLEVELS+by+LOGLEVEL;FREQUENCIES=foreach+GROUPEDLEVELS+generate+group+as+LOGLEVEL,COUNT(FILTEREDLEVELS.LOGLEVEL)+as+count;RESULT=order+FREQUENCIES+by+COUNT+desc;DUMP+RESULT;" -d statusdir="/example/pigcurl" https://CLUSTERNAME.azurehdinsight.net/templeton/v1/pig
-   
+
     此命令中使用的參數如下：
-   
+
     * **-d**：因為未使用 `-G`，要求會依預設使用 POST 方法。 `-d` 可指定與要求一起傳送的資料值。
-    
+
     * **user.name**：執行命令的使用者
     * **execute**：要執行的 Pig Latin 陳述式
     * **statusdir**：要寫入此工作狀態的目錄
-    
+
     > [!NOTE]
     > 請注意，與 Curl 搭配使用時，會將 Pig Latin 陳述式中的空格取代為 `+` 字元。
-    
+
     此命令應該會傳回可用來檢查工作狀態的工作識別碼，例如：
-     
+
         {"id":"job_1415651640909_0026"}
 
 3. 若要檢查工作的狀態，請使用下列命令。 將 **JOBID** 取代為上一個步驟中所傳回的值。 例如，如果傳回值為 `{"id":"job_1415651640909_0026"}`，則 **JOBID** 會是 `job_1415651640909_0026`。
-   
+
         curl -G -u USERNAME:PASSWORD -d user.name=USERNAME https://CLUSTERNAME.azurehdinsight.net/templeton/v1/jobs/JOBID | jq .status.state
-   
+
     如果工作已完成，則狀態會是 [ **成功**]。
-   
+
     > [!NOTE]
     > 此 Curl 要求會傳回含有工作資訊的 JavaScript Object Notation (JSON) 文件，而 jq 則用來僅擷取狀態值。
 
-## <a name="a-idresultsaview-results"></a><a id="results"></a>檢視結果
+## <a id="results"></a>檢視結果
 
-當作業狀態變更為 [成功] 時，您就可以從叢集使用的預設儲存體擷取作業結果。 與查詢一起傳遞的 `statusdir` 參數包含輸出檔的位置；在此案例中為 **/example/pigcurl**。 
+當作業狀態變更為 [成功] 時，您就可以從叢集使用的預設儲存體擷取作業結果。 與查詢一起傳遞的 `statusdir` 參數包含輸出檔的位置；在此案例中為 **/example/pigcurl**。
 
-HDInsight 的備份存放區可以是 Azure 儲存體或 Azure Data Lake Store，而且根據您使用的項目而定，會有各種不同的方式來取得資料。 如需如何使用 Azure 儲存體和 Azure Data Lake Store 的詳細資訊，請參閱《Linux 上的 HDInsight》文件上的 [HDFS、Blob 儲存體和 Data Lake Store](hdinsight-hadoop-linux-information.md##hdfs-blob-storage-and-data-lake-store) 一節。
+HDInsight 的備份存放區可以是 Azure 儲存體或 Azure Data Lake Store，而且根據您使用的項目而定，會有各種不同的方式來取得資料。 如需如何使用 Azure 儲存體和 Azure Data Lake Store 的詳細資訊，請參閱《Linux 上的 HDInsight》文件上的 [HDFS、Blob 儲存體和 Data Lake Store](hdinsight-hadoop-linux-information.md#hdfs-azure-storage-and-data-lake-store) 一節。
 
-## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
+## <a id="summary"></a>摘要
 
 如這份文件所示，您可以使用原始 HTTP 要求來執行、監視和檢視 HDInsight 叢集上的 Pig 工作結果。
 
 如需本文中使用的 REST 介面的詳細資訊，請參閱 [WebHCat 參照](https://cwiki.apache.org/confluence/display/Hive/WebHCat+Reference)。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 
 如需 HDInsight 上 Pig 的一般資訊：
 
@@ -119,5 +120,4 @@ HDInsight 的備份存放區可以是 Azure 儲存體或 Azure Data Lake Store�
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
-
 

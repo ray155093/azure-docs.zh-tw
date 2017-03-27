@@ -4,7 +4,7 @@ description: "描述 StorSimple 警示條件和嚴重性、如何設定警示通
 services: storsimple
 documentationcenter: NA
 author: SharS
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: bee49253-9ac7-4131-95f6-6bf0e72b8438
 ms.service: storsimple
@@ -12,11 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/18/2016
+ms.date: 03/08/2017
 ms.author: anbacker
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c09a105bd321ec29f4331d2ba4c8cf80a796da45
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 2a1e44920581771af77fb46984b1cea31a957d67
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -55,7 +56,7 @@ StorSimple 裝置會產生警示以回應各種不同的狀況。 以下是最�
 啟用裝置的電子郵件通知之後，每當發生重大警示時，通知清單的成員將會收到電子郵件訊息。 訊息將會從 *storsimple-alerts-noreply@mail.windowsazure.com* 送出，並說明警示狀況。 收件者可以按一下 [取消訂閱]，將自己從電子郵件通知清單中移除。
 
 #### <a name="to-enable-email-notification-of-alerts-for-a-device"></a>啟用裝置的警示電子郵件通知
-1. 移至裝置的 [裝置] > 設定]。
+1. 移至裝置的 裝置 > 設定。
 2. 在 [警示設定] 下，設定下列項目：
    
    1. 在 [傳送電子郵件通知] 欄位中，選取 [是]。
@@ -155,6 +156,7 @@ StorSimple Manager 服務儀表板可讓您快速概覽裝置上的警示數目 
 |:--- |:--- |:--- |
 | 硬體元件 <元件識別碼> 報告狀態為 <狀態>。 | |有時候暫時性狀況可能會導致這些警示。 如果是的話，一段時間之後會自動清除這個警示。 如果問題持續發生，請連絡 Microsoft 支援服務。 |
 | 被動控制器不正常。 |被動 (次要) 控制器無法正常運作。 |您的裝置正常運作，但其中一個控制器不正常。 請嘗試重新啟動該控制器。 如果無法解決問題，請連絡 Microsoft 支援服務。 |
+| 偵測到即將發生的磁碟機失敗。 | 偵測到即將發生的磁碟機失敗。 |我們在硬體元件「插槽 <插槽識別碼>、機箱 <機箱識別碼> 中的磁碟機」上偵測到即將發生的磁碟機失敗。 請考慮替換您的磁碟機。 <br> 在您開始進行磁碟替換前，請檢閱下列資訊。<br><br>如果您的裝置有一部以上失敗的磁碟，永遠不要移除一部以上的 SSD 或 HDD。 這樣做可能會導致資料遺失。<br><br>請確定您將更換 SSD 放置在先前包含 SSD 的插槽中。 同樣的作法也適用於 HDD。<br><br>插槽編號從 0 到 11。 插槽 2 中失敗的磁碟對應到裝置插槽 3 中失敗的磁碟 (從左上方開始)。<br><br>如需磁碟替換的詳細資訊，請前往 https://go.microsoft.com/fwlink/?linkid=838653。 如果問題仍存在，請透過 https://go.microsoft.com/fwlink/?linkid=838654 連絡 Microsoft 支援服務。 |
 
 ### <a name="job-failure-alerts"></a>作業失敗警示
 | 警示文字 | 事件 | 詳細資訊 / 建議的動作 |
@@ -213,10 +215,5 @@ StorSimple Manager 服務儀表板可讓您快速概覽裝置上的警示數目 
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [StorSimple 錯誤和疑難排解可運作的裝置](storsimple-troubleshoot-operational-device.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

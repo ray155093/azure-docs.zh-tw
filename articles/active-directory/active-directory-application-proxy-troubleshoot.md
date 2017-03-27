@@ -13,13 +13,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2017
+ms.date: 03/07/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
-ms.openlocfilehash: 13b77c10dfe42d39ad3802f0be1b3f6fe75788e5
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 0051bbeaac458e8df07e5c7aa186fbefb526f50e
+ms.lasthandoff: 03/15/2017
 
 ---
 
@@ -32,7 +32,7 @@ ms.lasthandoff: 03/03/2017
 * 開啟 [事件檢視器]，然後在 [應用程式及服務記錄檔] > [Microsoft] > [AadApplicationProxy] > [Connector] > [Admin] 中尋找「應用程式 Proxy」連接器事件。
 * 如有需要，開啟分析和偵錯記錄檔及開啟應用程式 Proxy 連接器工作階段記錄檔，即可取得更詳細的記錄檔。
 
-如需 Azure AD 疑難排解工具的詳細資訊，請參閱 [用於驗證連接器網路必要條件的疑難排解工具] (https://blogs.technet.microsoft.com/applicationproxyblog/2015/09/03/troubleshooting-tool-to-validate-connector-networking-prerequisites)。
+如需 Azure AD 疑難排解工具的詳細資訊，請參閱[用於驗證連接器網路必要條件的疑難排解工具](https://blogs.technet.microsoft.com/applicationproxyblog/2015/09/03/troubleshooting-tool-to-validate-connector-networking-prerequisites)。
 
 ## <a name="the-page-is-not-rendered-correctly"></a>無法正確轉譯頁面
 您可能會遇到應用程式轉譯有問題或運作不正確，但沒有收到特定錯誤訊息的情況。 如果您已發佈文章路徑，但應用程式需要存在於該路徑以外的內容，就可能發生此問題。

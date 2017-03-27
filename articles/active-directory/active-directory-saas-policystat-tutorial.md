@@ -82,7 +82,7 @@ PolicyStat 應用程式需要特定格式的 SAML 判斷提示，需要您加入
 2. 在 [要如何讓使用者登入 PolicyStat] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
    ![設定單一登入](./media/active-directory-saas-policystat-tutorial/IC808630.png "設定單一登入")
-3. 在 [設定應用程式設定] 頁面的 [登入 URL] 文字方塊輸入使用者登入您 URL PolicyStat 應用程式所使用的 URL (如：“https://demo-azure.policystat.com”)，然後按 [下一步]。
+3. 在 [設定應用程式設定] 頁面的 [登入 URL] 文字方塊輸入使用者登入您 URL PolicyStat 應用程式所使用的 URL (如： *“https://demo-azure.policystat.com”* )，然後按 [下一步]。
    
    ![設定應用程式設定](./media/active-directory-saas-policystat-tutorial/IC808631.png "進行應用程式設定")
 4. 在 [設定在 PolicyStat 單一登入] 頁面上，按一下 [下載中繼資料]，然後將中繼資料檔儲存在您的電腦中。

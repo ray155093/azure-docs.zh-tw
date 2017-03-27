@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/30/2017
 ms.author: kakhan
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 10cc114451da7e73726772da4159776e76f5b8c9
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: f52b9064d4771c714b829a409037ef6f03c54161
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -177,7 +177,7 @@ Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含：
   > [Azure PowerShell SDK 1.1.0 版](https://github.com/Azure/azure-powershell/releases/tag/v1.1.0-January2016)不支援 Azure 磁碟加密。 如果您收到與使用 Azure PowerShell 1.1.0 相關的錯誤，請參閱[與 Azure PowerShell 1.1.0 相關的 Azure 磁碟加密錯誤](http://blogs.msdn.com/b/azuresecurity/archive/2016/02/10/azure-disk-encryption-error-related-to-azure-powershell-1-1-0.aspx)。
 
 * 若要執行任何 Azure CLI 命令並使其與您的 Azure 訂用帳戶建立關聯，您必須先安裝 Azure CLI：
-  * 若要安裝 Azure CLI 並使其與您的 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure CLI](../xplat-cli-install.md)。
+  * 若要安裝 Azure CLI 並使其與您的 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure CLI](../cli-install-nodejs.md)。
   * 若要使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure Resource Manager，請參閱 [Resource Manager 模式中的 Azure CLI 命令](../virtual-machines/azure-cli-arm-commands.md)。
 * Azure 磁碟加密解決方案對 Windows IaaS VM 使用 BitLocker 外部金鑰保護裝置。 如果您的 VM 加入網域，請勿推送會強制使用 TPM 保護裝置的任何群組原則。 如需關於「在不含相容 TPM 的情形下允許使用 BitLocker」的群組原則相關資訊，請參閱 [BitLocker 群組原則參考文件](https://technet.microsoft.com/library/ee706521)。
 * 若要建立 Azure AD 應用程式、建立金鑰保存庫或設定現有的金鑰保存庫並啟用加密，請參閱 [Azure 磁碟加密的必要條件 PowerShell 指令碼](https://github.com/Azure/azure-powershell/blob/dev/src/ResourceManager/Compute/Commands.Compute/Extension/AzureDiskEncryption/Scripts/AzureDiskEncryptionPreRequisiteSetup.ps1)。
@@ -338,7 +338,7 @@ PFX 上傳完成之後，使用下列作業將金鑰保存庫中的憑證部署�
 | ARM | Azure Resource Manager |
 | BitLocker |[BitLocker](https://technet.microsoft.com/library/hh831713.aspx) 是一種業界認可的 Windows 磁碟區加密技術，用來在 Windows IaaS VM 上啟用磁碟加密。 |
 | BEK | BitLocker 加密金鑰可用來加密作業系統開機磁碟區和資料磁碟區。 BitLocker 金鑰會在金鑰保存庫中以密碼形式保護。 |
-| CLI | 請參閱 [Azure 命令列介面](../xplat-cli-install.md)。 |
+| CLI | 請參閱 [Azure 命令列介面](../cli-install-nodejs.md)。 |
 | DM-Crypt |[DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) 是基於 Linux 的透明磁碟加密子系統，用來在 Linux IaaS VM 上啟用磁碟加密。 |
 | KEK | 金鑰加密金鑰是非對稱金鑰 (RSA 2048)，可用來保護或包裝密碼。 您可以提供硬體安全性模組 (HSM) 保護的金鑰或軟體保護的金鑰。 如需詳細資訊，請參閱 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) 文件。 |
 | PS Cmdlet | 請參閱 [Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)。 |
@@ -560,7 +560,7 @@ Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓該�
 > _KeyEncryptionKeyURL_ 是選擇性參數。 您可以使用自己的 KEK，在金鑰保存庫中進一步保護資料加密金鑰 (複雜密碼)。
 
 #### <a name="cli-commands"></a>CLI 命令
-您可以安裝並使用 [CLI 命令](../xplat-cli-install.md)在加密的 VHD 上啟用磁碟加密。 若要在 Azure 中使用 CLI 命令來啟用現有或執行中 IaaS Linux VM 上的加密，請執行下列步驟：
+您可以安裝並使用 [CLI 命令](../cli-install-nodejs.md)在加密的 VHD 上啟用磁碟加密。 若要在 Azure 中使用 CLI 命令來啟用現有或執行中 IaaS Linux VM 上的加密，請執行下列步驟：
 
 1. 設定金鑰保存庫的存取原則：
 

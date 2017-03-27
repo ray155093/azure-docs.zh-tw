@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 12/08/2016
-ms.author: edmaca
+ms.date: 03/17/2017
+ms.author: edmaca, yanacai
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 2fa2d26b996435c18c2f88396991bf7210350553
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: f5a27eba14560a56ad5020daf7741f37ac2cc6f2
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -128,9 +128,9 @@ Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL�
        名稱自動完成和成員會針對資料列集、類別、資料庫、結構描述和使用者定義物件 (UDO) 顯示。
 
        目錄實體的 IntelliSense (資料庫、結構描述、資料表、UDO 等等) 與您的計算帳戶相關。 您可以在頂端工具列中檢查目前作用中的計算帳戶、資料庫和結構描述，並且透過下拉式清單進行切換。
-   * **展開 *資料行**
+   * **展開*資料行**
 
-       按一下 *的右邊，您應該會看到 *下方的藍色底線。 將滑鼠游標移到藍色底線上，然後按一下向下箭號。
+       按一下 *的右邊，您應該會看到*下方的藍色底線。 將滑鼠游標移到藍色底線上，然後按一下向下箭號。
        ![展開 Data Lake Visual Studio 工具 *](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-expand-asterisk.png)
 
        按一下 [展開資料行] ，然後工具將會用資料行名稱取代 *。
@@ -197,71 +197,11 @@ Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL�
 適用於 Visual Studio 的 Data Lake 工具提供使用者可選取的工作檢視色彩覆疊，以表示每個階段的進度、資料 I/O、執行時間、I/O 輸送量。 透過此方法，使用者可以直接且直覺地找出潛在的問題和工作屬性的分佈。 您可以選擇要從下拉式清單中顯示的資料來源。  
 
 ## <a name="run-u-sql-locally"></a>在本機執行 U-SQL
-在 Visual Studio 中使用 U-SQL 本機執行體驗，您可以：
 
-* 在本機執行 U-SQL 指令碼以及 C# 組件。
-* 在本機偵錯 C# 組件。
-* 在伺服器總管中建立/刪除/檢視本機資料庫、組件、結構描述及資料表，就跟您能為 Azure Data Lake Analytics 服務做的一樣。
+您可以使用 Azure Data Lake Tools for Visual Studio 和 Azure Data Lake U-SQL SDK，和在 Azure Data Lake 服務中一樣地在工作站上執行 U-SQL 作業。 這兩個本機執行功能可節省您對 U-SQL 作業進行測試和偵錯的時間。 
 
-您將會在 Visual Studio 中看到「本機」帳戶，且安裝程式會建立 DataRoot 資料夾 (位於 C:\LocalRunRoot)。 DataRoot 資料夾將用於：
+* [使用本機執行和 Azure Data Lake U-SQL SDK 對 U-SQL 作業進行測試和偵錯](data-lake-analytics-data-lake-tools-local-run.md)
 
-* 儲存中繼資料 (包括資料表、資料庫、TVF 等)。
-* 針對特定指令碼：如果會在輸入/輸出路徑中參考相對路徑，則我們將查閱 DataRoot (以及指令碼的路徑 (如果它是輸入))
-* 如果您嘗試註冊組件並使用相對路徑，就不會參考 DataRoot 資料夾 (如需詳細資訊，請參閱＜進行本機執行時使用組件＞的內容)
-
-下列視訊示範 U-SQL 本機執行功能：
-
-> [!VIDEO https://channel9.msdn.com/Series/AzureDataLake/USQL-LocalRun/player]
->
->
-
-### <a name="known-issues-and-limitations"></a>已知問題與限制
-* 無法在 [伺服器總管] 中為本機帳戶建立資料表/DB 等項目。
-* 參考相對路徑時：
-
-  * 在指令碼輸入 (EXTRACT * FROM “/path/abc”) 中：將同時搜尋 DataRoot 路徑和指令碼路徑。
-  * 在指令碼輸出 (OUTPUT TO “path/abc”) 中：將使用 DataRoot 路徑做為輸出資料夾。
-  * 在組件註冊 (CREATE ASSEMBLY xyz FROM “/path/abc”) 中：將搜尋指令碼路徑，但不會搜尋 DataRoot。
-  * 在註冊的 TVF/檢視或其他中繼資料項目中：將搜尋 DataRoot 路徑，但不會搜尋指令碼路徑。
-
-    針對在 Data Lake 服務上執行的指令碼，預設儲存體帳戶將用來做為根資料夾，並據以進行搜尋。
-
-### <a name="test-u-sql-scripts-locally"></a>在本機測試 U-SQL 指令碼
-如需開發 U-SQL 指令碼的指示，請參閱 [開發 U-SQL 指令碼](#develop-and-test-u-sql-scripts)。 若要在本機建置並執行 U-SQL 指令碼，請在叢集下拉式清單中選取 [(本機)]，然後按一下 [提交]。 請確定您已參考正確的資料：參考絕對路徑，或是將資料放置於 DataRoot 資料夾下。
-
-![在本機提交 U-SQL Visual Studio 專案](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-submit-job-local-run.png)
-
-您也可以用滑鼠右鍵按一下指令碼，然後按一下內容功能表的 [執行本機方案]，或是按下 **CTRL+F5** 來觸發本機執行。
-
-### <a name="use-assemblies-in-local-run"></a>在本機執行中使用組件
-有兩種方式可以執行自訂的 C# 檔案：
-
-* 在程式碼後置檔案中撰寫組件，而組件將會自動註冊，並在指令碼完成之後卸除。
-* 建立 C# 組件專案，並透過類似如下的指令碼，向本機帳戶註冊輸出 dll。 請注意，路徑是相對於指令碼，而不是 DataRoot 資料夾。
-
-![在 U-SQL 本機執行中使用組件](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-local-run-assembly.png)
-
-### <a name="debug-scripts-and-c-assemblies-locally"></a>在本機偵錯指令碼和 C# 組件
-您可以偵錯 C# 組件，而不需提交並向 Azure  Data Lake Analytics 服務註冊。 您可以在這兩個程式碼後置檔案和參考的 C# 專案中設定中斷點。
-
-**如何為程式碼後置檔案中的本機程式碼偵錯**
-
-1. 在程式碼後置檔案中設定中斷點。
-2. 按下 **F5** 以便在本機為指令碼偵錯。
-
-下列程序僅適用於 Visual Studio 2015。 在舊版 Visual Studio 中，您可能需要手動加入 pdb 檔案。
-
-**如何為參考的 C# 專案中的本機程式碼偵錯**
-
-1. 建立 C# 組件專案，並建置它來產生輸出 dll。
-2. 使用 U-SQL 陳述式來註冊 dll：
-
-    ```
-    CREATE ASSEMBLY assemblyname FROM @"..\..\path\to\output\.dll";
-    ```
-    
-3. 在 C# 程式碼中設定中斷點。
-4. 按下 **F5** 以便在本機為參考 C# dll 的指令碼偵錯。  
 
 ## <a name="see-also"></a>另請參閱
 若要使用不同的工具開始使用 Data Lake Analytics，請參閱：

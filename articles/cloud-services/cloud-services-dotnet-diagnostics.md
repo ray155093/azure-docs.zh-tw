@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/25/2016
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: c3540d86a12935cea100248f7f6669df34ae2209
-ms.openlocfilehash: cedc52b514eacb6cf7bc32634819573f5ee154c3
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 81f814ebb977f0f192d450b9c75aab84d2e1c069
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -27,10 +28,10 @@ ms.openlocfilehash: cedc52b514eacb6cf7bc32634819573f5ee154c3
 本逐步解說說明如何實作 Azure 背景工作角色，該角色使用 .NET EventSource 類別發出遙測資料。 Azure 診斷可用來收集遙測資料，並將資料儲存在 Azure 儲存體帳戶。 建立背景工作角色時，Visual Studio 會自動啟用診斷 1.0 來做為 Azure SDK for.NET 2.4 及更早版本中解決方案的一部分。 下列指示說明建立背景工作角色、從解決方案停用診斷 1.0，以及將診斷 1.2 或 1.3 部署至背景工作角色的程序。
 
 ### <a name="prerequisites"></a>必要條件
-本文假設您擁有 Azure 訂用帳戶，並且搭配 Azure SDK 使用 Visual Studio 2013。 如果您沒有 Azure 訂用帳戶，可以註冊[免費試用版][Free Trial]。 請務必[安裝並設定 Azure PowerShell 0.8.7 版或更新版本][Install and configure Azure PowerShell version 0.8.7 or later]。
+本文假設您擁有 Azure 訂用帳戶，並且搭配 Azure SDK 使用 Visual Studio。 如果您沒有 Azure 訂用帳戶，可以註冊[免費試用版][Free Trial]。 請務必[安裝並設定 Azure PowerShell 0.8.7 版或更新版本][Install and configure Azure PowerShell version 0.8.7 or later]。
 
 ### <a name="step-1-create-a-worker-role"></a>步驟 1：建立背景工作角色
-1. 啟動 **Visual Studio 2013**。
+1. 啟動 **Visual Studio**。
 2. 從以 .NET Framework 4.5 為目標的**雲端**範本，建立新的 **Azure 雲端服務**專案。  將專案命名為 "WadExample" 並按一下 [確定]。
 3. 選取 [ **背景工作角色** ] 並按一下 [確定]。 將會建立專案。
 4. 在 [方案總管] 中，按兩下 [WorkerRole1] 屬性檔。
@@ -173,7 +174,7 @@ namespace WorkerRole1
 用於管理 Web 角色或背景工作角色上之診斷的 PowerShell Cmdlet 為：Set-AzureServiceDiagnosticsExtension、Get-AzureServiceDiagnosticsExtension 和 Remove-AzureServiceDiagnosticsExtension。
 
 1. 開啟 Azure PowerShell。
-2. 執行指令碼，在您的背景工作角色上安裝診斷 (以 wadexample 儲存體帳戶的儲存體帳戶金鑰取代 *StorageAccountKey* )：
+2. 執行指令碼，在您的背景工作角色上安裝診斷 (以 wadexample 儲存體帳戶的儲存體帳戶金鑰取代 *StorageAccountKey*，並以 *WadExample.xml* 檔案的路徑取代 *config_path*)：
 
 ```powershell
 $storage_name = "wadexample"
@@ -204,9 +205,4 @@ Set-AzureServiceDiagnosticsExtension -StorageContext $storageContext -Diagnostic
 [Collect Logging Data by Using Azure Diagnostics]: http://msdn.microsoft.com/library/windowsazure/gg433048.aspx
 [Free Trial]: http://azure.microsoft.com/pricing/free-trial/
 [Install and configure Azure PowerShell version 0.8.7 or later]: http://azure.microsoft.com/documentation/articles/install-configure-powershell/
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

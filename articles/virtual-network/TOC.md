@@ -7,9 +7,6 @@
 ## IP 位址
 ### [資源管理員](virtual-network-ip-addresses-overview-arm.md)
 ### [傳統](virtual-network-ip-addresses-overview-classic.md)
-## 虛擬機器
-### [網路介面](virtual-network-network-interface-overview.md)
-### [名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)
 
 # 開始使用
 ## [建立您的第一個虛擬網路](virtual-network-get-started-vnet-subnet.md)
@@ -107,6 +104,7 @@
 ### 存取控制清單
 #### [傳統入口網站](virtual-networks-acl.md)
 #### [PowerShell](virtual-networks-acl-powershell.md)
+### [VM 與雲端服務的名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)
 
 ## 管理
 ### 網路安全性群組

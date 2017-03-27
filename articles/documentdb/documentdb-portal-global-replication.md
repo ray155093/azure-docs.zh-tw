@@ -13,18 +13,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/24/2017
+ms.date: 03/14/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: 41b75cf3059cd3758f1bce149ad8fcad4e5644ac
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: cc393967fec1a98a4dd596a156c7a12e88959b04
+ms.lasthandoff: 03/15/2017
 
 
 ---
-# <a name="how-to-perform-documentdb-global-database-replication-using-the-azure-portal"></a>如何使用 Azure 入口網站執行 DocumentDB 全球資料庫複寫
+# <a name="how-to-perform-global-database-replication-using-the-azure-portal"></a>如何使用 Azure 入口網站執行全球資料庫複寫
 
-針對 Azure DocumentDB 中具有全球可用性的資料，了解如何使用 Azure 入口網站複寫多個區域中的資料。
+了解如何在 Azure DocumentDB 和 API for MongoDB 中使用 Azure 入口網站複寫多個區域中的資料，以確保資料的全球可用性。
 
 有關 DocumentDB 中全球資料庫複寫的運作方式，詳細資訊請參閱 [使用 DocumentDB 全球發佈資料](documentdb-distribute-data-globally.md)。 如需以程式設計方式執行全球資料庫複寫的相關資訊，請參閱 [使用多個區域 DocumentDB 帳戶進行開發](documentdb-developing-with-multiple-regions.md)。
 
@@ -61,7 +61,42 @@ While all regions associated with your DocumentDB database account can serve rea
     ![Change the write region by reordering the region list under DocumentDB Account > Settings > Change Write Regions][3]
 -->
 
-## <a id="next"></a>後續步驟
+### <a name="verifying-your-regional-setup-in-api-for-mongodb"></a>在 API for MongoDB 中驗證您的區域設定
+若要在 API for MongoDB 內仔細檢查檢查您的全球組態，最簡單的方法就是從 Mongo 殼層執行 *isMaster()* 命令。
+
+從您的 Mongo 殼層︰
+
+   ```
+      db.isMaster()
+   ```
+   
+範例結果︰
+
+   ```JSON
+      {
+         "_t": "IsMasterResponse",
+         "ok": 1,
+         "ismaster": true,
+         "maxMessageSizeBytes": 4194304,
+         "maxWriteBatchSize": 1000,
+         "minWireVersion": 0,
+         "maxWireVersion": 2,
+         "tags": {
+            "region": "South India"
+         },
+         "hosts": [
+            "vishi-api-for-mongodb-southcentralus.documents.azure.com:10250",
+            "vishi-api-for-mongodb-westeurope.documents.azure.com:10250",
+            "vishi-api-for-mongodb-southindia.documents.azure.com:10250"
+         ],
+         "setName": "globaldb",
+         "setVersion": 1,
+         "primary": "vishi-api-for-mongodb-southindia.documents.azure.com:10250",
+         "me": "vishi-api-for-mongodb-southindia.documents.azure.com:10250"
+      }
+   ```
+
+## <a id="next"></a>接續步驟
 如欲了解如何管理您的全球複寫帳戶的一致性，請閱讀 [DocumentDB 中的一致性層級](documentdb-consistency-levels.md)。
 
 有關 DocumentDB 中全球資料庫複寫的運作方式，詳細資訊請參閱 [使用 DocumentDB 全球發佈資料](documentdb-distribute-data-globally.md)。 如需以程式設計方式在多個區域複寫資料的相關資訊，請參閱 [使用多個區域 DocumentDB 帳戶進行開發](documentdb-developing-with-multiple-regions.md)。

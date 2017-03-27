@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/18/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 4232c27926c2d48adb91eedd15884e44cc004ac2
-ms.openlocfilehash: 2fad0a4e7c4ac282802c2bc0dd10c7d86b651e08
-ms.lasthandoff: 02/02/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: f09aa6cffbbaa2a3df7f84edee2d3e03aa23a719
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -40,7 +40,7 @@ Microsoft 保護雲端身分識別已經超過十多年。 在您的環境中使
 
 如此一來，您必須：
 
-- 保護所有的識別身分，不論其權限層級 
+- 保護所有的識別身分，不論其權限層級
 
 - 主動防止遭入侵的身分識別被濫用
 
@@ -75,12 +75,12 @@ Azure Active Directory Identity Protection 不只是監視和報告工具而已�
 
 ### <a name="vulnerabilities"></a>弱點
 
-Azure Active Directory Identity Protection 會分析您的組態，並偵測可能影響您使用者身份識別的弱點。 如需詳細資訊，請參閱 [Azure Active Directory Identity Protection 偵測到的弱點](active-directory-identityprotection-vulnerabilities.md)。 
+Azure Active Directory Identity Protection 會分析您的組態，並偵測可能影響您使用者身份識別的弱點。 如需詳細資訊，請參閱 [Azure Active Directory Identity Protection 偵測到的弱點](active-directory-identityprotection-vulnerabilities.md)。
 
 ### <a name="risk-events"></a>風險事件
 
 Azure Active Directory 使用調適性機器學習運算法和啟發學習法來偵測與您使用者身份識別有關的可疑動作。 系統會針對每個偵測到的可疑動作建立記錄。 這些記錄又名風險事件。  
-如需詳細資訊，請參閱 [Azure Active Directory風險事件](active-directory-identity-protection-risk-events.md)。 
+如需詳細資訊，請參閱 [Azure Active Directory風險事件](active-directory-identity-protection-risk-events.md)。
 
 
 ## <a name="investigation"></a>調查
@@ -102,11 +102,11 @@ Azure Active Directory 使用調適性機器學習運算法和啟發學習法來
 
 ## <a name="risky-sign-ins"></a>有風險的登入
 
-Aure Active Directory 會以即時方式偵測某些[風險事件類型](active-directory-identity-protection-risk-events.md#risk-event-types)。 在使用者登入期間偵測到的所有即時風險事件，構成了名為*有風險的登入*的邏輯概念。 有風險的登入表示可能不是由使用者帳戶合法擁有者執行的嘗試登入。 當使用者登出時，有風險的登入的生命週期即結束。
+Aure Active Directory 會以即時方式偵測某些[風險事件類型](active-directory-reporting-risk-events.md#risk-event-types)。 在使用者登入期間偵測到的所有即時風險事件，構成了名為*有風險的登入*的邏輯概念。 有風險的登入表示可能不是由使用者帳戶合法擁有者執行的嘗試登入。 當使用者登出時，有風險的登入的生命週期即結束。
 
 ### <a name="sign-in-risk-level"></a>登入風險層級
 
-登入風險層級指的是，不是由使用者帳戶合法擁有者執行的登入的可能性指示 (高、中或低)。 
+登入風險層級指的是，不是由使用者帳戶合法擁有者執行的登入的可能性指示 (高、中或低)。
 
 ### <a name="mitigating-sign-in-risk-events"></a>緩和登入風險事件
 

@@ -13,18 +13,21 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 01/06/2017
+ms.date: 03/11/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2b860b5815a0dd35138c685eb90490a8e2c53d5e
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 93027f0f5467e0b21c47bbcbc84c67cdd50b26b8
+ms.lasthandoff: 03/14/2017
 
 
 ---
 # <a name="authenticating-and-authorizing-with-power-bi-embedded"></a>使用 Power BI Embedded 驗證和授權
+
 Power BI Embedded 服務是使用**金鑰**和**應用程式權杖**進行驗證和授權，而不是使用明確的使用者驗證。 在此模型中，您的應用程式會管理使用者的驗證與授權。 然後，您的應用程式可以在必要時建立及傳送應用程式權杖，以告知我們的服務轉譯要求的報告。 雖然您仍然可以使用 Azure Active Directory 來進行使用者驗證與授權，但這項設計不需要您的應用程式這樣做。
 
 ## <a name="two-ways-to-authenticate"></a>兩種驗證方式
+
 **金鑰** - 您可以針對所有 Power BI Embedded REST API 呼叫使用金鑰。 金鑰可以在 **Azure 入口網站** 中找到，方法是按一下[所有設定]，然後按一下 [存取金鑰]。 一律將您的金鑰視為密碼。 這些金鑰具有在特定工作區集合上呼叫任何 REST API 的權限。
 
 若要在 REST 呼叫上使用金鑰，請新增下列授權標頭︰            
@@ -39,7 +42,7 @@ Power BI Embedded 服務是使用**金鑰**和**應用程式權杖**進行驗證
 
 | 宣告 | 說明 |
 | --- | --- |
-| **ver** |應用程式權杖的版本。 目前版本為 0.2.0。 |
+| **ver** |應用程式權杖的版本。 目前版本為&0;.2.0。 |
 | **aud** |權杖的預定接收者。 對於 Power BI Embedded，使用：“https://analysis.windows.net/powerbi/api”。 |
 | **iss** |字串，表示已發出權杖的應用程式。 |
 | **type** |正在建立的應用程式權杖類型。 目前唯一支援的類型為 **內嵌**。 |
@@ -48,16 +51,106 @@ Power BI Embedded 服務是使用**金鑰**和**應用程式權杖**進行驗證
 | **rid** |為其發出權杖的報告識別碼。 |
 | **username** (選擇性) |與 RLS 搭配使用，這是字串，可以在套用 RLS 規則時協助識別使用者。 |
 | **角色** (選擇性) |字串，包含套用資料列層級安全性規則時要選取的角色。 如果傳遞多個角色，應該將它們傳遞為字串陣列。 |
+| **scp** (選擇性) |字串，包含權限範圍。 如果傳遞多個角色，應該將它們傳遞為字串陣列。 |
 | **exp** (選擇性) |指出權杖到期的時間。 這些項目應該傳遞為 Unix 時間戳記。 |
 | **nbf** (選擇性) |指出權杖開始生效的時間。 這些項目應該傳遞為 Unix 時間戳記。 |
 
 範例應用程式權杖看起來像這樣：
 
-![](media/power-bi-embedded-app-token-flow/power-bi-embedded-app-token-flow-sample-coded.png)
+```
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXIiOiIwLjIuMCIsInR5cGUiOiJlbWJlZCIsIndjbiI6Ikd1eUluQUN1YmUiLCJ3aWQiOiJkNGZlMWViMS0yNzEwLTRhNDctODQ3Yy0xNzZhOTU0NWRhZDgiLCJyaWQiOiIyNWMwZDQwYi1kZTY1LTQxZDItOTMyYy0wZjE2ODc2ZTNiOWQiLCJzY3AiOiJSZXBvcnQuUmVhZCIsImlzcyI6IlBvd2VyQklTREsiLCJhdWQiOiJodHRwczovL2FuYWx5c2lzLndpbmRvd3MubmV0L3Bvd2VyYmkvYXBpIiwiZXhwIjoxNDg4NTAyNDM2LCJuYmYiOjE0ODg0OTg4MzZ9.v1znUaXMrD1AdMz6YjywhJQGY7MWjdCR3SmUSwWwIiI
+```
 
 解碼時，看起來像這樣：
 
-![](media/power-bi-embedded-app-token-flow/power-bi-embedded-app-token-flow-sample-decoded.png)
+```
+Header
+
+{
+    typ: "JWT",
+    alg: "HS256:
+}
+
+Body
+
+{
+  "ver": "0.2.0",
+  "wcn": "SupportDemo",
+  "wid": "ca675b19-6c3c-4003-8808-1c7ddc6bd809",
+  "rid": "96241f0f-abae-4ea9-a065-93b428eddb17",
+  "iss": "PowerBISDK",
+  "aud": "https://analysis.windows.net/powerbi/api",
+  "exp": 1360047056,
+  "nbf": 1360043456
+}
+
+```
+
+SDK 中有方法可簡化 apptokens 的建立。 例如，對於 .NET，您可以看看 [Microsoft.PowerBI.Security.PowerBIToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken) 類別和 [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_) 方法。
+
+對於 .NET SDK，您可以參考[範圍](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.scopes)。
+
+## <a name="scopes"></a>範圍
+
+在使用內嵌權杖時，您可能會想限制您授與了存取權之資源的使用量。 為此，您可以產生具有範圍權限的權杖。
+
+以下是 Power BI Embedded 的可用範圍。
+
+|Scope|說明|
+|---|---|
+|Dataset.Read|提供讀取指定資料集的權限。|
+|Dataset.Write|提供寫入指定資料集的權限。|
+|Dataset.ReadWrite|提供讀取和寫入指定資料集的權限。|
+|Report.Read|提供檢視指定報告的權限。|
+|Report.ReadWrite|提供檢視和編輯指定報告的權限。|
+|Workspace.Report.Create|提供在指定工作區內建立新報告的權限。|
+|Workspace.Report.Copy|提供在指定工作區內複製現有報告的權限。|
+
+您可以如下所示，在範圍之間使用空格來提供多個範圍。
+
+```
+string scopes = "Dataset.Read Workspace.Report.Create";
+```
+
+**必要宣告 - 範圍**
+
+scp: {scopesClaim} scopesClaim 可以是字串或字串陣列，會記錄工作區資源 (報告、資料集等) 的允許權限
+
+已定義範圍的解碼權杖看起來像下面這樣。
+
+```
+Header
+
+{
+    typ: "JWT",
+    alg: "HS256:
+}
+
+Body
+
+{
+  "ver": "0.2.0",
+  "wcn": "SupportDemo",
+  "wid": "ca675b19-6c3c-4003-8808-1c7ddc6bd809",
+  "rid": "96241f0f-abae-4ea9-a065-93b428eddb17",
+  "scp": "Report.Read",
+  "iss": "PowerBISDK",
+  "aud": "https://analysis.windows.net/powerbi/api",
+  "exp": 1360047056,
+  "nbf": 1360043456
+}
+
+```
+
+### <a name="operations-and-scopes"></a>作業和範圍
+
+|作業|目標資源|權杖權限|
+|---|---|---|
+|根據資料集建立新的報告 (在記憶體內部)。|Dataset|Dataset.Read|
+|根據資料集建立新的報告並儲存報告 (在記憶體內部)。|Dataset|*Dataset.Read<br>* Workspace.Report.Create|
+|檢視和瀏覽/編輯現有報告 (在記憶體內部)。 Report.Read 暗指 Dataset.Read。 這不會允許儲存編輯內容的權限。|報告|Report.Read|
+|編輯並儲存現有報告。|報告|Report.ReadWrite|
+|儲存報告複本 (另存新檔)。|報告|*Report.Read<br>* Workspace.Report.Copy|
 
 ## <a name="heres-how-the-flow-works"></a>以下是流程的運作方式
 1. 將 API 金鑰複製到您的應用程式。 您可以在 **Azure 入口網站**取得金鑰。
@@ -84,13 +177,12 @@ Power BI Embedded 服務是使用**金鑰**和**應用程式權杖**進行驗證
 ![](media/powerbi-embedded-get-started-sample/sample-web-app.png)
 
 ## <a name="see-also"></a>另請參閱
-* [開始使用 Microsoft Power BI Embedded 範例](power-bi-embedded-get-started-sample.md)
-* [Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)
-* [開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)
 
-
-
-
-<!--HONumber=Nov16_HO3-->
+[CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_)  
+[開始使用 Microsoft Power BI Embedded 範例](power-bi-embedded-get-started-sample.md)  
+[Microsoft Power BI Embedded 常見案例](power-bi-embedded-scenarios.md)  
+[開始使用 Microsoft Power BI Embedded](power-bi-embedded-get-started.md)  
+[PowerBI-CSharp Git 存放庫](https://github.com/Microsoft/PowerBI-CSharp)  
+有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
 
 

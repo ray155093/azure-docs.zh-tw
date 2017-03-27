@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 11/16/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: ccd4dda3d7077c9884331c7bfa8021ade398ea42
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
 如果您因為忘記密碼、安全殼層 (SSH) 金鑰不正確或 SSH 組態有問題而無法連線到 Linux 虛擬機器，請使用 VMAccessForLinux 擴充功能搭配 Azure CLI 來重設密碼或 SSH 金鑰、修正 SSH 組態和檢查磁碟一致性。 
 
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用 Resource Manager 模式。 了解如何[使用 Resource Manager 模型執行這些步驟](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)。
+> Azure 建立和處理資源的部署模型有二種： [Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 了解如何[使用 Resource Manager 模型執行這些步驟](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)。
 
 使用 Azure CLI，您就能從命令列介面 (Bash、終端機、命令提示字元) 中使用 **azure vm extension set** 命令來存取命令。 如需詳細的擴充功能使用方式，請執行 **azure help vm extension set**。
 
@@ -44,14 +45,14 @@ ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
 ## <a name="prerequisites"></a>必要條件
 您需要執行下列動作：
 
-* 您需要[安裝 Azure CLI](../xplat-cli-install.md)，並[連接至您的訂用帳戶](../xplat-cli-connect.md)以使用您帳戶的相關 Azure 資源。
+* 您需要[安裝 Azure CLI](../cli-install-nodejs.md)，並[連接至您的訂用帳戶](../xplat-cli-connect.md)以使用您帳戶的相關 Azure 資源。
 * 針對傳統部署模型設定正確的模式，方法是在命令提示字元中輸入以下命令：
     ``` 
         azure config mode asm
     ```
 * 具備新的密碼或一組 SSH 金鑰 (如果要重設其中一項)。 如果您想要重設 SSH 組態，則不需要這些。
 
-## <a name="a-namepwresetcliareset-the-password"></a><a name="pwresetcli"></a>重設密碼
+## <a name="pwresetcli"></a>重設密碼
 1. 使用下列程式行在本機電腦上建立名為 PrivateConf.json 的檔案。 以您自己的使用者名稱和密碼取代 **myUserName** 和 **myP@ssW0rd**，並設定自己的到期日期。
 
     ```   
@@ -68,7 +69,7 @@ ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* –-private-config-path PrivateConf.json
     ```
 
-## <a name="a-namesshkeyresetcliareset-the-ssh-key"></a><a name="sshkeyresetcli"></a>重設 SSH 金鑰
+## <a name="sshkeyresetcli"></a>重設 SSH 金鑰
 1. 使用下列內容建立名為 PrivateConf.json 的檔案。 以您自己的資訊取代 **myUserName** 和 **mySSHKey** 值。
 
     ```   
@@ -81,7 +82,7 @@ ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
    
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
 
-## <a name="a-nameresetbothcliareset-both-the-password-and-the-ssh-key"></a><a name="resetbothcli"></a>同時重設密碼和 SSH 金鑰
+## <a name="resetbothcli"></a>同時重設密碼和 SSH 金鑰
 1. 使用下列內容建立名為 PrivateConf.json 的檔案。 以您自己的資訊取代 **myUserName**、**mySSHKey** 和 **myP@ssW0rd** 值。
 
     ``` 
@@ -98,7 +99,7 @@ ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
         azure vm extension set MyVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
     ```
 
-## <a name="a-namecreatenewsudocliacreate-a-new-sudo-user-account"></a><a name="createnewsudocli"></a>建立新的 sudo 使用者帳戶
+## <a name="createnewsudocli"></a>建立新的 sudo 使用者帳戶
 
 如果您忘記使用者名稱，可以使用 VMAccess，利用 sudo 授權單位來建立一個新的帳戶。 在此案例中，將不會修改現有的使用者名稱和密碼。
 
@@ -108,7 +109,7 @@ ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
 
 您也可以使用[重設密碼和 SSH 金鑰](#resetbothcli)，來建立新的使用者以及密碼和 SSH 金鑰存取權限。
 
-## <a name="a-namesshconfigresetcliareset-the-ssh-configuration"></a><a name="sshconfigresetcli"></a>重設 SSH 組態
+## <a name="sshconfigresetcli"></a>重設 SSH 組態
 如果 SSH 組態處於不良的狀態，您可能也會無法存取 VM。 您可以使用 VMAccess 擴充功能，將組態重設為其預設狀態。 若要這樣做，只需將 "reset_ssh" 金鑰設為 "True"。 擴充功能將會重新啟動 SSH 伺服器、開啟 VM 上的 SSH 連接埠，然後將 SSH 組態重設為預設值。 使用者帳戶 (名稱、密碼或 SSH 金鑰) 將不會變更。
 
 > [!NOTE]
@@ -130,7 +131,7 @@ ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
     ```
 
-## <a name="a-namedeletecliadelete-a-user"></a><a name="deletecli"></a>刪除使用者
+## <a name="deletecli"></a>刪除使用者
 如果您想要刪除使用者帳戶而不直接登入 VM，可以使用這個指令碼。
 
 1. 使用此內容建立名為 PrivateConf.json 的檔案，並以要移除的使用者名稱取代 **removeUserName**。 
@@ -147,14 +148,14 @@ ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
     ```
 
-## <a name="a-namestatuscliadisplay-the-status-of-the-vmaccess-extension"></a><a name="statuscli"></a>顯示 VMAccess 擴充的狀態
+## <a name="statuscli"></a>顯示 VMAccess 擴充的狀態
 若要顯示 VMAccess 擴充的狀態，請執行下列命令。
 
 ```
         azure vm extension get
 ```
 
-## <a name="a-namecheckdiskacheck-consistency-of-added-disks"></a><a name='checkdisk'></a>檢查新增的磁碟的一致性
+## <a name='checkdisk'></a>檢查新增的磁碟的一致性
 若要在 Linux 虛擬機器中的所有磁碟上執行 fsck，您必須執行下列操作：
 
 1. 使用此內容建立名為 PublicConf.json 的檔案。 檢查磁碟以布林值決定是否要檢查附加至您的虛擬機器的磁碟。 
@@ -171,7 +172,7 @@ ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
         azure vm extension set myVM VMAccessForLinux Microsoft.OSTCExtensions 1.* --public-config-path PublicConf.json 
     ```
 
-## <a name="a-namerepairdiskarepair-disks"></a><a name='repairdisk'></a>修復磁碟
+## <a name='repairdisk'></a>修復磁碟
 若要修復未掛接或發生掛接設定錯誤的磁碟，請使用 VMAccess 擴充功能來重設 Linux 虛擬機器上的掛接設定。 使用您的磁碟名稱取代 **myDisk**。
 
 1. 使用此內容建立名為 PublicConf.json 的檔案。 
@@ -193,10 +194,5 @@ ms.openlocfilehash: 68786e2c2f92f8d716c7aa2b3584342ea96c073d
 * 如果您想要使用 Azure PowerShell Cmdlet 或 Azure Resource Manager 範本來重設密碼或 SSH 金鑰、修正 SSH 組態及檢查磁碟一致性，請參閱 [GitHub 上的 VMAccess 擴充功能文件](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)。 
 * 您也可以使用 [Azure 入口網站](https://portal.azure.com)來重設傳統部署模型中部署的 Linux VM 密碼或 SSH 金鑰。 目前您無法使用入口網站來針對部署在 Resource Manager 部署模型內的 Linux VM 執行上述操作。
 * 如需使用 Azure 虛擬機器 VM 擴充功能的詳細資訊，請參閱[有關虛擬機器擴充功能和功能](virtual-machines-linux-extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

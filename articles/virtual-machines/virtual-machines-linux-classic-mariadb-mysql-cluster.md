@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 04/15/2015
 ms.author: asabbour
 translationtype: Human Translation
-ms.sourcegitcommit: 3136b8345d0c851c29a9498089da73c8564549d1
-ms.openlocfilehash: 72aed50d3dd86c5875d3b741a6fff16cb8f17a2d
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: bcb4fa81971ee1276cb8e7b0b249e970423bd630
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -45,7 +45,7 @@ ms.lasthandoff: 01/31/2017
 ![系統架構](media/virtual-machines-linux-classic-mariadb-mysql-cluster/Setup.png)
 
 > [!NOTE]
-> 本主題使用 [Azure CLI](../xplat-cli-install.md) 工具，請務必下載這些工具，並且根據指示將它們連線至您的 Azure 訂用帳戶。 如果您需要 Azure CLI 中可用命令的參考，請參閱 [Azure CLI 命令參考](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。 您也必須[建立驗證的 SSH 金鑰]，並且記下 .pem 檔案位置。
+> 本主題使用 [Azure CLI](../cli-install-nodejs.md) 工具，請務必下載這些工具，並且根據指示將它們連線至您的 Azure 訂用帳戶。 如果您需要 Azure CLI 中可用命令的參考，請參閱 [Azure CLI 命令參考](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。 您也必須[建立驗證的 SSH 金鑰]，並且記下 .pem 檔案位置。
 >
 >
 

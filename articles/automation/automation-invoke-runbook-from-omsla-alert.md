@@ -15,8 +15,9 @@ ms.topic: get-started-article
 ms.date: 01/31/2017
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 4ce5ad30d79e92a11231313fe13dd42b94fc2aa4
-ms.openlocfilehash: 50969591267ca74e5c4d4aa5c1efe5b673498309
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 8460ed6be3e922fb85f46982662d44eed21dda7c
+ms.lasthandoff: 03/18/2017
 
 ---
 
@@ -35,7 +36,7 @@ ms.openlocfilehash: 50969591267ca74e5c4d4aa5c1efe5b673498309
 
 ## <a name="calling-a-runbook-using-a-webhook"></a>使用 Webhook 來呼叫 Runbook
 
-Webhook 可讓您在 Azure 自動化中，透過單一 HTTP 要求啟動特定的 Runbook。  在設定 [Log Analytics Alert](../log-analytics/log-analytics-alerts.md#creating-an-alert-rule) 以使用 Webhook 呼叫 Runbook 作為警示動作前，您必須先為將使用此方法呼叫的 Runbook 建立 Webhook。  檢閱並遵循[建立 Webhook](automation-webhooks.md#creating-a-webhook) 文章且記得記錄 Webhook URL，如此您就可以在設定警示規則時加以參考。   
+Webhook 可讓您在 Azure 自動化中，透過單一 HTTP 要求啟動特定的 Runbook。  在設定 [Log Analytics Alert](../log-analytics/log-analytics-alerts.md#creating-alert-rules) 以使用 Webhook 呼叫 Runbook 作為警示動作前，您必須先為將使用此方法呼叫的 Runbook 建立 Webhook。  檢閱並遵循[建立 Webhook](automation-webhooks.md#creating-a-webhook) 文章且記得記錄 Webhook URL，如此您就可以在設定警示規則時加以參考。   
 
 ## <a name="calling-a-runbook-directly"></a>直接呼叫 Runbook
 
@@ -52,14 +53,14 @@ Webhook 可讓您在 Azure 自動化中，透過單一 HTTP 要求啟動特定�
           [Parameter (Mandatory=$true)]  
           [object] $WebhookData  
          )
-  
+
 *  您必須有將 WebhookData 轉換成 PowerShell 物件的程式碼。
 
     `$SearchResults = (ConvertFrom-Json $WebhookData.RequestBody).SearchResults.value`
 
     *$SearchResults* 將會是物件的陣列；每個物件都包含某個搜尋結果的值欄位
 
-### <a name="webhookdata-inconsistencies-between-the-webhook-option-and-runbook-option"></a>Webhook 選項和 Runbook 選項之間的 WebhookData 不一致 
+### <a name="webhookdata-inconsistencies-between-the-webhook-option-and-runbook-option"></a>Webhook 選項和 Runbook 選項之間的 WebhookData 不一致
 
 * 設定要呼叫 Webhook 的警示，請輸入您為 Runbook 建立的 Webhook URL，然後按一下 [測試 Webhook] 按鈕。  傳送至 Runbook 產生的 WebhookData 不包含任何 *.SearchResul* 或 *.SearchResults*。
 
@@ -68,7 +69,7 @@ Webhook 可讓您在 Azure 自動化中，透過單一 HTTP 要求啟動特定�
 
 因此在上述程式碼範例中，如果警示呼叫的是 webhook，您必須取得 *.SearchResult*，而如果警示直接呼叫 Runbook，則必須取得 *.SearchResults*。
 
-## <a name="example-walkthrough"></a>範例逐步解說 
+## <a name="example-walkthrough"></a>範例逐步解說
 
 我們將透過下列範例圖形化 Runbook (其會啟動 Windows 服務) 示範其運作方式。<br><br> ![啟動 Windows 服務圖形化 Runbook](media/automation-invoke-runbook-from-omsla-alert/automation-runbook-restartservice.png)<br>
 
@@ -90,9 +91,4 @@ Runbook 程式碼活動**從 LA 取得服務名稱**，會將 JSON 格式的字�
 * 若要深入了解 Log Analytics 的警示以及如何建立，請參閱 [Log Analytics 中的警示](../log-analytics/log-analytics-alerts.md)。
 
 * 若要了解如何使用 Webhook 來觸發 Runbook，請參閱 [Azure 自動化 Webhook](automation-webhooks.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 09/13/2016
 ms.author: guybo
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 6fe3bd55b23432a8fddb1ffeeed33bc113b8bd73
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: f63649cc3b6c4acad6e39356f0210d3726548b17
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -40,7 +41,7 @@ ms.openlocfilehash: 6fe3bd55b23432a8fddb1ffeeed33bc113b8bd73
 
 安裝命令假設的是 Ubuntu，但是您可以對任何支援的 Linux distro 採用此安裝。
 
-script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作的連線。 如需此動作的說明，請參閱 [安裝與設定 Azure 命令列介面](../xplat-cli-install.md)。
+script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作的連線。 如需此動作的說明，請參閱 [安裝與設定 Azure 命令列介面](../cli-install-nodejs.md)。
 
 ## <a name="upload-a-script"></a>上傳指令碼
 我們會使用 CustomScript 擴充功能在遠端 VM 上執行指令碼，以安裝 LAMP 堆疊並建立 PHP 頁面。 為了可從任何地方存取指令碼，我們會以 Azure Blob 形式上傳該指令碼。
@@ -105,10 +106,5 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
 [Azure Linux 延伸模組 (GitHub)](https://github.com/Azure/azure-linux-extensions)
 
 [Azure 上的 Linux 和開放原始碼運算](virtual-machines-linux-opensource-links.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

@@ -73,7 +73,7 @@ ms.lasthandoff: 02/03/2017
 2. 在 [要如何讓使用者登入 Qualtrics] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
    ![設定單一登入](./media/active-directory-saas-qualtrics-tutorial/IC789546.png "設定單一登入")
-3. 在 [設定應用程式 URL] 頁面的 [Qualtrics 登入 URL] 文字方塊中，輸入您的 URL (例如：“https://ssotest2ut1.qualtrics.com")，然後按 [下一步]。
+3. 在 [設定應用程式 URL] 頁面的 [Qualtrics 登入 URL] 文字方塊中，輸入您的 URL (例如：“ https://ssotest2ut1.qualtrics.com ")，然後按 [下一步]。
    
    ![設定應用程式 URL](./media/active-directory-saas-qualtrics-tutorial/IC789547.png "設定應用程式 URL")
 4. 在 [設定在 Qualtrics 單一登入] 頁面上，按一下 [下載中繼資料]，然後將中繼資料檔儲存在您的電腦上。

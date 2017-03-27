@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 03/07/2017
+ms.date: 03/14/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 0abe257f3c1c2f35c92fa5f382e9778217f01159
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 4b7ed095729e810f7f1112d3b6becfaf186bf508
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -72,8 +72,6 @@ B2B 共同作業的使用者應該不需要存取 Azure 入口網站，除非他
 
   >[!VIDEO https://channel9.msdn.com/Blogs/Azure/b2b-block-guest-user/Player]
 
-  如果沒有內嵌顯示這段影片，您可以在[這裡](https://channel9.msdn.com/Blogs/Azure/b2b-block-guest-user)取得。
-
 ### <a name="what-is-the-timeline-by-which-azure-ad-b2b-collaboration-will-start-support-for-mfa-and-consumer-email-accounts"></a>Azure AD B2B 共同作業會根據哪一個時間表啟動 MFA 和取用者電子郵件帳戶的支援？
 現在此公開預覽版本重新整理支援 MFA 和取用者電子郵件帳戶。
 
@@ -89,8 +87,16 @@ B2B 共同作業的使用者應該不需要存取 Azure 入口網站，除非他
 ### <a name="does-microsoft-crm-provide-online-support-to-azure-ad-b2b-collaboration"></a>Microsoft CRM 是否會提供 Azure AD B2B 共同作業的線上支援？
 CRM 公開上市之後，會提供 Azure AD B2B 共同作業的支援。
 
+### <a name="are-b2b-collaboration-guest-users-visible-in-sharepoint-onlineonedrive-people-picker"></a>可以在 SharePoint Online/OneDrive 人員選擇器中看到 B2B 共同作業來賓使用者嗎？
+ 
+可以！ 不過，在 SharePoint Online 人員選擇器中搜尋現有來賓使用者的功能預設為關閉，以符合舊版的行為。 您可以使用租用戶和網站集合層級中的 'ShowPeoplePickerSuggestionsForGuestUsers' 設定來啟用此功能。 您可以使用 Set-SPOTenant 和 Set-SPOSite Cmdlet 來設定此功能，讓成員搜尋目錄中所有的現有來賓使用者。 租用戶範圍中的變更不會影響已佈建的 SharePoint Online 網站。
+
 ### <a name="what-is-the-lifetime-of-an-initial-password-for-a-newly-created-b2b-collaboration-user"></a>什麼是新建立的 B2B 共同作業使用者之初始密碼存留期？
 Azure AD 有一組固定的字元、密碼強度，以及帳戶鎖定需求，可同樣適用於所有 Azure AD 雲端使用者帳戶。 雲端使用者帳戶是不與另一個身分識別提供者 (例如 Microsoft 帳戶、Facebook、ADFS 或甚至是另一個 (如果是 B2B 共同作業) 的雲端租用戶) 同盟的帳戶。 針對同盟的帳戶，密碼原則取決於內部部署租用和使用者的 Microsoft 帳戶設定中的原則。
+
+### <a name="applications-want-to-differentiate-their-experience-between-a-tenant-user-and-a-guest-user-is-there-standard-guidance-for-this-is-the-presence-of-the-identity-provider-claim-the-right-model-for-this"></a>應用程式希望區分租用戶使用者和來賓使用者的經驗。 有適用於此案例的標準指引嗎？ 存在的識別提供者是否宣告了適用於此案例的正確模型？
+ 
+來賓使用者可以使用任何識別提供者，依我們在 [B2B 共同作業使用者屬性](active-directory-b2b-user-properties.md)中討論的方式進行驗證。 因此，使用 UserType 是判斷此項目的正確屬性。 UserType 宣告目前不包含在權杖中。 應用程式應該使用圖形 API 來查詢使用者適用的目錄，並取得其 UserType。
 
 ### <a name="next-steps"></a>後續步驟
 

@@ -12,7 +12,7 @@
 * [連接資料磁碟](#attach-a-data-disk)
 
 ## <a name="getting-ready"></a>準備就緒
-在您能夠搭配 Azure 資源群組使用 Azure CLI 之前，必須備妥正確的 Azure CLI 版本以及 Azure 帳戶。 如果沒有 Azure CLI，請 [安裝它](../articles/xplat-cli-install.md)。
+在您能夠搭配 Azure 資源群組使用 Azure CLI 之前，必須備妥正確的 Azure CLI 版本以及 Azure 帳戶。 如果沒有 Azure CLI，請 [安裝它](../articles/cli-install-nodejs.md)。
 
 ### <a name="update-your-azure-cli-version-to-090-or-later"></a>將 Azure CLI 版本更新為 0.9.0 或更新版本
 輸入 `azure --version` ，即可查看您是否已經安裝 0.9.0 版或更新版本。
@@ -80,7 +80,7 @@ azure config mode arm
 
 如需深入了解 Azure 資源群組及其功能，請參閱[Azure Resource Manager 概觀](../articles/azure-resource-manager/resource-group-overview.md)。 如果您有興趣了解如何編寫範本，請參閱 [編寫 Azure 資源管理員範本](../articles/resource-group-authoring-templates.md)。
 
-## <a name="a-idquick-create-a-vm-in-azureatask-quick-create-a-vm-in-azure"></a><a id="quick-create-a-vm-in-azure"></a>工作：在 Azure 中快速建立 VM
+## <a id="quick-create-a-vm-in-azure"></a>工作：在 Azure 中快速建立 VM
 有時候您知道需要何種映像，而且您現在需要該映像的 VM，並且不太在意基礎結構 -- 或許您必須在全新的 VM 上進行某些測試。 當您想要使用 `azure vm quick-create` 命令，然後傳遞必要引數來建立 VM 和基礎結構的時候。
 
 首先，建立資源群組。
@@ -214,7 +214,7 @@ info:    vm quick-create command OK
 
 無論身在何處，新的 VM 就在您身邊。
 
-## <a name="a-iddeploy-a-vm-in-azure-from-a-templateatask-deploy-a-vm-in-azure-from-a-template"></a><a id="deploy-a-vm-in-azure-from-a-template"></a>工作：在 Azure 中利用範本部署 VM
+## <a id="deploy-a-vm-in-azure-from-a-template"></a>工作：在 Azure 中利用範本部署 VM
 請按照以下各節描述的操作方法，使用 Azure CLI 搭配範本來部署新的 Azure VM。 這個範本會在只有單一子網路的新虛擬網路中建立單一虛擬機器，而不同於 `azure vm quick-create`，它可以讓您精確描述想要的內容，而且重複使用時也不會發生任何錯誤。 以下是這個範本建立的內容：
 
 ![](./media/virtual-machines-common-cli-deploy-templates/new-vm.png)
@@ -483,7 +483,7 @@ info:    group deployment create command OK
 ```
 
 
-## <a name="a-idcreate-a-custom-vm-imageatask-create-a-custom-vm-image"></a><a id="create-a-custom-vm-image"></a>工作：建立自訂的 VM 映像
+## <a id="create-a-custom-vm-image"></a>工作：建立自訂的 VM 映像
 您已基本了解上述範本的用法，那麼現在我們可以使用類似的操作方法，透過 Azure CLI 使用範本從 Azure 中的特定 .vhd 檔案建立自訂 VM。 其中的差別就是這個範本會從指定的虛擬硬碟 (VHD) 建立單一虛擬機器。
 
 ### <a name="step-1-examine-the-json-file-for-the-template"></a>步驟 1：檢查範本的 JSON 檔案
@@ -751,7 +751,7 @@ data:    nicName                        String        myNIC
 info:    group deployment create command OK
 ```
 
-## <a name="a-iddeploy-a-multi-vm-application-that-uses-a-virtual-network-and-an-external-load-balanceratask-deploy-a-multi-vm-application-that-uses-a-virtual-network-and-an-external-load-balancer"></a><a id="deploy-a-multi-vm-application-that-uses-a-virtual-network-and-an-external-load-balancer"></a>工作：部署含多部 VM 的應用程式，它會使用虛擬網路和外部負載平衡器
+## <a id="deploy-a-multi-vm-application-that-uses-a-virtual-network-and-an-external-load-balancer"></a>工作：部署含多部 VM 的應用程式，它會使用虛擬網路和外部負載平衡器
 您可以利用這個範本，在一個負載平衡器上建立兩個虛擬機器，然後在連接埠 80 設定負載平衡規則。 這個範本也會部署儲存體帳戶、虛擬網路、公用 IP 位址、可用性集合以及網路介面。
 
 ![](./media/virtual-machines-common-cli-deploy-templates/multivmextlb.png)
@@ -1163,7 +1163,7 @@ info:    group deployment create command OK
 
 請注意，這個範本會部署 Windows Server 映像。不過，任何 Linux 映像都可以輕易取代它。 想要建立一個具備多個 swarm 管理員的 Docker 叢集嗎？ [您做得到](https://azure.microsoft.com/documentation/templates/docker-swarm-cluster/)。
 
-## <a name="a-idremove-a-resource-groupatask-remove-a-resource-group"></a><a id="remove-a-resource-group"></a>工作：移除資源群組
+## <a id="remove-a-resource-group"></a>工作：移除資源群組
 請記住，您可以重新部署至資源群組，但若其中有一個不再使用，則可使用 `azure group delete <group name>`加以刪除。
 
 ```azurecli
@@ -1174,7 +1174,7 @@ Delete resource group myResourceGroup? [y/n] y
 info:    group delete command OK
 ```
 
-## <a name="a-idshow-the-log-for-a-resource-group-deploymentatask-show-the-log-for-a-resource-group-deployment"></a><a id="show-the-log-for-a-resource-group-deployment"></a>工作：顯示資源群組部署記錄檔
+## <a id="show-the-log-for-a-resource-group-deployment"></a>工作：顯示資源群組部署記錄檔
 建立或使用範本時，此種情況很常見。 您可以使用 `azure group log show <groupname>` 呼叫來顯示群組的部署記錄檔，它會顯示相當多的實用資訊，協助您了解發生某些狀況的原因，或是未發生某些狀況的原因 (如需疑難排解部署及其他問題的詳細資訊，請參閱[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解](../articles/azure-resource-manager/resource-manager-common-deployment-errors.md))。
 
 例如，為了查明某些異常狀況，您可以使用 **jq** 此類的工具，就可以更清楚掌握前因後果，例如您需要更正的異常狀況。 下列範例會使用 **jq** 剖析 **lbgroup** 的部署記錄檔，找出各種異常狀況。
@@ -1191,7 +1191,7 @@ azure group log show lbgroup -l --json | jq '.[] | select(.status.value == "Fail
 }
 ```
 
-## <a name="a-iddisplay-information-about-a-virtual-machineatask-display-information-about-a-virtual-machine"></a><a id="display-information-about-a-virtual-machine"></a>工作：顯示虛擬機器的相關資訊
+## <a id="display-information-about-a-virtual-machine"></a>工作：顯示虛擬機器的相關資訊
 您可以使用 `azure vm show <groupname> <vmname>` 命令來了解資源群組中特定 VM 的相關資訊。 如果您的群組中有多個 VM，可能需要先使用 `azure vm list <groupname>`來列出群組中的 VM。
 
 ```azurecli
@@ -1263,10 +1263,10 @@ info:    vm show command OK
 >
 >
 
-## <a name="a-idlog-on-to-a-linux-based-virtual-machineatask-log-on-to-a-linux-based-virtual-machine"></a><a id="log-on-to-a-linux-based-virtual-machine"></a>工作：登入 Linux 架構的虛擬機器
+## <a id="log-on-to-a-linux-based-virtual-machine"></a>工作：登入 Linux 架構的虛擬機器
 通常 Linux 機器是透過 SSH 連接的。 如需詳細資訊，請參閱[如何在 Azure 上搭配使用 SSH 與 Linux](../articles/virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-## <a name="a-idstop-a-virtual-machineatask-stop-a-vm"></a><a id="stop-a-virtual-machine"></a>工作：停止 VM
+## <a id="stop-a-virtual-machine"></a>工作：停止 VM
 請執行這個命令：
 
 ```azurecli
@@ -1278,14 +1278,14 @@ azure vm stop <group name> <virtual machine name>
 >
 >
 
-## <a name="a-idstart-a-virtual-machineatask-start-a-vm"></a><a id="start-a-virtual-machine"></a>工作：啟動 VM
+## <a id="start-a-virtual-machine"></a>工作：啟動 VM
 請執行這個命令：
 
 ```azurecli
 azure vm start <group name> <virtual machine name>
 ```
 
-## <a name="a-idattach-a-data-diskatask-attach-a-data-disk"></a><a id="attach-a-data-disk"></a>工作：連接資料磁碟
+## <a id="attach-a-data-disk"></a>工作：連接資料磁碟
 您也需要決定是否要附加新的磁碟或附加已經包含資料的磁碟。 如果是新的磁碟，這個命令會建立 .vhd 檔案，然後將它附加在同一個命令中。
 
 若要附加新的磁碟，請執行這個命令：
@@ -1306,8 +1306,3 @@ azure vm disk attach <resource-group> <vm-name> [vhd-url]
 如需其他有關 Azure CLI 搭配 **arm** 模式使用的範例，請參閱 [搭配 Azure 資源管理員使用適用於 Mac、Linux 和 Windows 的 Azure CLI](../articles/xplat-cli-azure-resource-manager.md)。 若要深入了解 Azure 資源和概念，請參閱[AAzure Resource Manager 概觀](../articles/azure-resource-manager/resource-group-overview.md)。
 
 如需您可以使用的其他範本，請參閱[Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)和[使用範本的應用程式架構](../articles/virtual-machines/virtual-machines-linux-app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-<!--HONumber=Jan17_HO4-->
-
-

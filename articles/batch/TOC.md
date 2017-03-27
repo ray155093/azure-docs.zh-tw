@@ -11,6 +11,7 @@
 ## 開發
 ### [應用程式封裝](batch-application-packages.md)
 ### [自動調整計算節點的規模](batch-automatic-scaling.md)
+### [Azure AD 驗證](batch-aad-auth.md)
 ### [並行節點工作](batch-parallel-node-tasks.md)
 ### [有效率的清單查詢](batch-efficient-list-queries.md)
 ### [作業的準備與完成工作](batch-job-prep-release.md)
@@ -47,4 +48,5 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=batch&updatetype=&platform=)
 ## [C# 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
 ## [Python 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
+## [部落格](https://blogs.technet.microsoft.com/windowshpc/)
 

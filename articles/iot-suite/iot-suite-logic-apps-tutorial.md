@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/08/2017
+ms.date: 03/09/2017
 ms.author: corywink
 translationtype: Human Translation
-ms.sourcegitcommit: 14e2fcea9a6afbac640d665d5e44a700f855db4b
-ms.openlocfilehash: 609de3ff0fb14aa98b28572dce1eaeb8a4412d93
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 5e3221395082513f842863615d40f7d3ebf2562e
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -31,6 +31,8 @@ ms.lasthandoff: 02/09/2017
 
 * 在您的 Azure 訂用帳戶中佈建遠端監視預先設定的解決方案
 * 建立 SendGrid 帳戶，用來讓您傳送可觸發商務程序的電子郵件。 您可以在 [SendGrid](https://sendgrid.com/) 按一下 [免費試用]，註冊免費試用帳戶。 註冊免費試用帳戶後，您必須在 SendGrid 中建立 [API 金鑰](https://sendgrid.com/docs/User_Guide/Settings/api_keys.html) 來授權傳送郵件。 稍後在教學課程中需要此 API 金鑰。
+
+若要完成本教學課程，您需要 Visual Studio 2015 或 Visual Studio 2017，才能在預先設定的解決方案後端中修改動作。
 
 假設您已佈建遠端監視預先設定解決方案，請在 [Azure 入口網站][lnk-azureportal]中瀏覽至該解決方案的資源群組。 資源群組的名稱與您在佈建遠端監視解決方案時所選擇的解決方案名稱相同。 在資源群組中，您可以看到解決方案已佈建的所有 Azure 資源，但在 Azure 傳統入口網站中可找到的 Azure Active Directory 應用程式除外。 下列螢幕擷取畫面顯示遠端監視預先設定解決方案的 [資源群組]  刀鋒視窗範例︰
 
@@ -117,8 +119,8 @@ ms.lasthandoff: 02/09/2017
     ```
     private Dictionary<string,string> actionIds = new Dictionary<string, string>()
     {
-        { "Send Message", "<Http Post to this UR>" },
-        { "Raise Alarm", "<Http Post to this UR> }
+        { "Send Message", "<Http Post to this URL>" },
+        { "Raise Alarm", "<Http Post to this URL>" }
     };
     ```
 5. 在方案中儲存所做的變更並結束 Visual Studio。

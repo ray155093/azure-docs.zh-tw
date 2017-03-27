@@ -1,5 +1,5 @@
 ---
-title: "從作業和工作保存輸出 - Azure Batch | Microsoft Docs"
+title: "將作業和工作輸出保存到 Azure 儲存體 - Azure Batch | Microsoft Docs"
 description: "了解如何將 Azure 儲存體做為 Batch 工作和作業輸出的永久性存放區，並在 Azure 入口網站中啟用已保存輸出的檢視。"
 services: batch
 documentationcenter: .net
@@ -12,15 +12,18 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 01/23/2017
+ms.date: 02/27/2017
 ms.author: tamram
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ffba988bd8cd3896816118afde979c7067fced79
-ms.openlocfilehash: e5231970b772f7cc043441954ebab6cb1bb6ed8b
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 3b3aa18eb52993843be1feeb8e0b2a43339413c3
+ms.lasthandoff: 03/09/2017
 
 
 ---
-# <a name="persist-azure-batch-job-and-task-output"></a>保存 Azure Batch 作業和工作輸出
+# <a name="persist-results-from-completed-jobs-and-tasks-to-azure-storage"></a>將已完成之作業和工作的結果保存到 Azure 儲存體
+
 您在 Batch 中執行的工作通常會產生必須儲存的輸出，並在後續由作業中的其他工作、執行該作業的用戶端應用程式 (或兩者) 擷取。 此輸出可能是透過處理與工作執行相關的輸入資料或記錄檔，而建立的檔案。 本文將介紹一個 .NET 類別庫，它使用以慣例為基礎的技術將工作輸出保存在 Azure Blob 儲存體，即使您刪除集區、作業和計算節點之後，仍然可以存取這些輸出。
 
 藉由使用本文中的技術，您也可以在 [Azure 入口網站][portal]內的 [已儲存的輸出檔案] 和 [已儲存的記錄檔] 中檢視您的工作輸出。
@@ -207,9 +210,9 @@ Azure 入口網站會顯示使用 [Azure Batch 檔案慣例讀我檔案][github_
 ![Azure 入口網站中的 [工作輸出] 刀鋒視窗][2]
 
 ## <a name="code-sample"></a>程式碼範例
-[PersistOutputs][github_persistoutputs] 範例專案是 GitHub 上的其中一個 [Azure Batch 程式碼範例][github_samples]。 此 Visual Studio 2015 解決方案示範如何使用 Azure Batch 檔案慣例庫來將工作輸出保存到永久性儲存體。 若要執行範例，請遵循下列步驟：
+[PersistOutputs][github_persistoutputs] 範例專案是 GitHub 上的其中一個 [Azure Batch 程式碼範例][github_samples]。 此 Visual Studio 解決方案示範如何使用 Azure Batch 檔案慣例庫，將工作輸出保存到永久性儲存體。 若要執行範例，請遵循下列步驟：
 
-1. 在 **Visual Studio 2015**中開啟專案。
+1. 在 **Visual Studio 2015 或更新版本**中開啟專案。
 2. 將您 Batch 和儲存體的**帳戶認證**新增到 Microsoft.Azure.Batch.Samples.Common 專案中的 **AccountSettings.settings**。
 3.  (但不要執行) 該解決方案。 如果出現提示，請還原任何 NuGet 封裝。
 4. 使用 Azure 入口網站來為 [PersistOutputsTask](batch-application-packages.md) 上傳 **應用程式封裝**。 將 `PersistOutputsTask.exe` 及其相依性組件包含在 .zip 封裝中，將應用程式識別碼和應用程式封裝版本分別設為 "PersistOutputsTask" 和 "1.0"。
@@ -248,9 +251,4 @@ Batch 的 [應用程式封裝](batch-application-packages.md) 功能提供了簡
 
 [1]: ./media/batch-task-output/task-output-01.png "入口網站中的 [已儲存的輸出檔案] 和 [已儲存的記錄檔] 選取器"
 [2]: ./media/batch-task-output/task-output-02.png "Azure 入口網站中的 [工作輸出] 刀鋒視窗"
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

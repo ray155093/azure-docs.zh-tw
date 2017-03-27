@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 03/10/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: ab8c601d862868018fdffb4cd49e8b26acb878c9
-ms.openlocfilehash: da12e642dc4d41fc74fe7b0f3722090da7818405
-ms.lasthandoff: 02/06/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 7185ab62ee0e4383a7128fe731bd68da0ae87e66
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -145,10 +145,25 @@ ms.lasthandoff: 02/06/2017
 
 如果您使用 [DN 是錨點] ，則必須使用相同的物件類型做為您參考的來源物件類型。 您無法參考其他物件類型。
 
+>[!NOTE]
+從 2017 年 3 月的更新開始，現在已有 "*" 的選項。在選擇了此選項時，系統便會匯入所有可能的成員類型。
+
+![globalparameters3](./media/active-directory-aadconnectsync-connector-genericsql/any-option.png)
+
+
+在匯入後，您會看到類似下圖的情形︰
+
+  ![globalparameters3](./media/active-directory-aadconnectsync-connector-genericsql/after-import.png)
+
+
+
 ### <a name="global-parameters"></a>全域參數
 [全域參數] 頁面用來設定差異匯入、日期/時間格式，以及密碼方法。
 
 ![globalparameters1](./media/active-directory-aadconnectsync-connector-genericsql/globalparameters1.png)
+
+>[!IMPORTANT]
+ “*” 也稱為**任何選項**，無法在匯出/刪除作業期間使用。
 
 一般 SQL 連接器支援使用下列差異匯入方法：
 
@@ -212,7 +227,7 @@ ms.lasthandoff: 02/06/2017
 **資料表/檢視**  
 若要匯入物件的多重值屬性，您必須在 [多重資料表/檢視名稱] 中提供以逗號分隔的資料表/檢視名稱，以及在父資料表的 [聯結條件] 中提供各自的聯結條件。
 
-範例：您想要匯入 [員工] 物件與其所有的多重值屬性。 有兩個資料表：[員工] (主要資料表) 和 [部門] (多重值)。
+範例：您想要匯入 [員工] 物件與其所有的多重值屬性。 有兩個資料表：[員工] \(主要資料表) 和 [部門] \(多重值)。
 執行下列動作：
 
 * 在 [資料表/檢視/SP] 中輸入**員工**。

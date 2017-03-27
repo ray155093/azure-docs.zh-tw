@@ -17,6 +17,7 @@ ms.author: rachelap;robmcm
 translationtype: Human Translation
 ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
 ms.openlocfilehash: 26f2fba953870564292ef3e986a3151373f6babf
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -140,7 +141,7 @@ ms.openlocfilehash: 26f2fba953870564292ef3e986a3151373f6babf
 4. 檢視編輯器顯示的文件頁面和 API 摘要。 
    
     ![檢視 Swagger 產生的文件][view-swagger-generated-docs]
-5. 依序選取 [產生伺服器] -> [JAX RS] 功能表選項，來建立伺服器端的程式碼結構，讓您稍後能拿來新增模擬實作。 
+5. 依序選取 [產生伺服器] -> **JAX RS** 功能表選項，來建立伺服器端的程式碼結構，讓您稍後能拿來新增模擬實作。 
    
     ![產生程式碼功能表項目][generate-code-menu-item]
    
@@ -314,9 +315,4 @@ ms.openlocfilehash: 26f2fba953870564292ef3e986a3151373f6babf
 [select-git-repo]: ./media/app-service-api-java-api-app/select-git-repo.png
 [copy-git-repo-url]: ./media/app-service-api-java-api-app/copy-git-repo-url.png
 [postman-calling-azure-contacts]: ./media/app-service-api-java-api-app/postman-calling-azure-contacts.png
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

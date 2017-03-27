@@ -14,13 +14,14 @@ ms.topic: article
 ms.date: 05/07/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1520fde6b60546e408772e04488e8a530a9c1344
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 89e3cb3a7e9185d4a2944c1aa9aaf5aee4bd2b24
+ms.lasthandoff: 03/15/2017
 
 
 ---
 # <a name="resources-roles-and-access-control-in-application-insights"></a>Application Insights 中的資源、角色及存取控制
-您可以使用 [Microsoft Azure 中的角色型存取控制](../active-directory/role-based-access-control-configure.md)，控制誰具有 Visual Studio [Application Insights][start] 中您資料的讀取和更新存取權。
+您可以使用 [Microsoft Azure 中的角色型存取控制start][](../active-directory/role-based-access-control-configure.md)，控制誰對您在 Azure [Application Insights] 中的資料具有讀取和更新存取權。
 
 > [!IMPORTANT]
 > 指派存取權給您的應用程式資源所屬之 **資源群組或訂用帳戶** 中的使用者 - 不在資源本身。 指派 **Application Insights 元件參與者** 角色。 這可確保 Web 測試和警示以及您的應用程式資源的統一存取控制。 [深入了解](#access)。
@@ -32,20 +33,20 @@ ms.openlocfilehash: 1520fde6b60546e408772e04488e8a530a9c1344
 
 * **資源** - Microsoft Azure 服務的執行個體。 您的 Application Insights 資源會收集、分析及顯示從您的應用程式傳送的遙測資料。  其他類型的 Azure 資源包括 Web 應用程式、資料庫和 VM。
   
-    若要查看您的所有資源，請移至 [Azure 入口網站][portal]、登入，然後按一下 [瀏覽]。
+    若要查看所有資源，請移至 [Azure 入口網站][portal]、登入，然後按一下 [瀏覽]。
   
     ![選擇 [瀏覽]，然後依據 Application Insights 選擇 [所有項目] 或 [篩選]](./media/app-insights-resources-roles-access-control/10-browse.png)
 
 <a name="resource-group"></a>
 
-* [**資源群組**][group] - 每個資源都會屬於一個群組。 群組是管理相關資源的便利方式，特別是針對存取控制。 例如，您可以將 Web 應用程式、Application Insights 資源放到一個資源群組，以監視應用程式，以及放到儲存體資源以保存匯出的資料。
+* [資源群組][group] - 每個資源屬於一個群組。 群組是管理相關資源的便利方式，特別是針對存取控制。 例如，您可以將 Web 應用程式、Application Insights 資源放到一個資源群組，以監視應用程式，以及放到儲存體資源以保存匯出的資料。
 
     ![選擇 [瀏覽]、[資源群組]，然後選擇 [群組]](./media/app-insights-resources-roles-access-control/11-group.png)
 
 * [**訂用帳戶**](https://manage.windowsazure.com) - 若要使用 Application Insights 或其他 Azure 資源，您可以登入 Azure 訂用帳戶。 每個資源群組都屬於一個 Azure 訂用帳戶，其中您選擇價格封裝，如果是組織的訂用帳戶，請選擇成員以及其存取權限。
 * [**Microsoft 帳戶**][account] - 您用來登入 Microsoft Azure 訂用帳戶、XBox Live、Outlook.com 及其他 Microsoft 服務的使用者名稱和密碼。
 
-## <a name="a-nameaccessa-control-access-in-the-resource-group"></a><a name="access"></a> 控制資源群組中的存取
+## <a name="access"></a> 控制資源群組中的存取
 請務必了解除了您為應用程式建立的資源之外，還有警示和 Web 測試的個別隱藏資源。 它們會附加到與您的應用程式相同的 [資源群組](#resource-group) 。 您也可以在那裡放置其他 Azure 服務，例如網站或儲存體。
 
 ![Application Insights 中的資源](./media/app-insights-resources-roles-access-control/00-resources.png)
@@ -58,7 +59,7 @@ ms.openlocfilehash: 1520fde6b60546e408772e04488e8a530a9c1344
 ## <a name="to-provide-access-to-another-user"></a>若要提供存取權給其他使用者
 您必須擁有訂用帳戶或資源群組的擁有者權限。
 
-使用者必須擁有 [Microsoft 帳戶][account]，或其[組織的 Microsoft 帳戶](../active-directory/sign-up-organization.md)的存取權。 您可以提供存取權給個人，也可以提供給在 Azure Active Directory 中定義的使用者群組。
+使用者必須擁有 [Microsoft 帳戶][account]，或其[組織的 Microsoft 帳戶](../active-directory/sign-up-organization.md)存取權。 您可以提供存取權給個人，也可以提供給在 Azure Active Directory 中定義的使用者群組。
 
 #### <a name="navigate-to-the-resource-group"></a>瀏覽至資源群組
 在那裡新增使用者。
@@ -99,9 +100,4 @@ ms.openlocfilehash: 1520fde6b60546e408772e04488e8a530a9c1344
 [group]: ../azure-resource-manager/resource-group-overview.md
 [portal]: https://portal.azure.com/
 [start]: app-insights-overview.md
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

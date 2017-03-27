@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
-ms.date: 01/23/2017
+ms.date: 03/08/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 550b4154f0fe510cb37ec4f8bdef251b06f0b495
-ms.openlocfilehash: e739bb129ea2b280803380f3f9c20ca052b3f122
-ms.lasthandoff: 01/27/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: af5e181ce254fefe55c847d9988dd8245c75e864
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -44,7 +44,7 @@ Azure 受管理的快取服務與 Azure Redis 快取類似，但兩者在實作�
 
 | 受管理的快取服務功能 | 受管理的快取服務支援 | Azure Redis 快取支援 |
 | --- | --- | --- |
-| 具名快取 |會設定預設快取，而在標準版和進階版快取服務中，還可以視需要額外設定多達&9; 個具名快取。 |Azure Redis 快取具有可供用來對具名快取實作類似功能的可設定數目資料庫 (預設值為 16 個)。 如需詳細資訊，請參閱 [預設 Redis 伺服器組態](cache-configure.md#default-redis-server-configuration)。 |
+| 具名快取 |會設定預設快取，而在標準版和進階版快取服務中，還可以視需要額外設定多達&9; 個具名快取。 |Azure Redis 快取具有可供用來對具名快取實作類似功能的可設定數目資料庫 (預設值為 16 個)。 如需詳細資訊，請參閱[什麼是 Redis 資料庫？](cache-faq.md#what-are-redis-databases)和[預設 Redis 伺服器組態](cache-configure.md#default-redis-server-configuration)。 |
 | 高可用性 |在標準版和進階版快取服務中，會針對快取中的項目提供高可用性。 如果因為失敗而導致項目遺失，快取中的項目仍有備份複本可供使用。 次要快取的寫入作業是以同步方式進行。 |標準版和進階版快取服務有提供高可用性，其具有雙節點的主要/複本設定 (進階版快取的每個分區都有主要/複本配對)。 複本的寫入作業是以非同步方式進行。 如需詳細資訊，請參閱 [Azure Redis 快取定價](https://azure.microsoft.com/pricing/details/cache/)。 |
 | 通知 |當具名快取上發生各種快取作業時，允許用戶端接收非同步通知。 |用戶端應用程式可以使用 Redis 發行/訂閱或 [Keyspace 通知](cache-configure.md#keyspace-notifications-advanced-settings) 來達成和通知類似的功能。 |
 | 本機快取 |在用戶端本機上儲存快取物件的複本，以利快速存取。 |用戶端應用程式必須使用字典或類似的資料結構來實作這項功能。 |

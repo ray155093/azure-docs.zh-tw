@@ -13,11 +13,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/21/2016
+ms.date: 03/10/2017
 ms.author: nkolli;giridham;markgal
 translationtype: Human Translation
-ms.sourcegitcommit: 2224ddf52283d7da599b1b4842ca617d28b28668
-ms.openlocfilehash: f4a5412615e23cc90acc54a9c7430b01fe77dbcf
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 9d1e68b0e73c60542de566c32c92caf0b3c4630c
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -61,11 +62,13 @@ System Center DPM 會備份檔案和應用程式資料。 備份到 DPM 的資�
 ## <a name="prerequisites"></a>必要條件
 如下所示讓 Azure 備份做好備份 DPM 資料的準備：
 
-1. **建立備份保存庫** — 在 Azure 備份主控台中建立保存庫。
+1. **建立備份保存庫**
+
+  > [!IMPORTANT]
+  > 從 2017 年 3 月開始，您無法再使用傳統入口網站來建立備份保存庫。 我們仍然支援現有的備份保存庫，您也可以[使用 Azure PowerShell 來建立備份保存庫](./backup-client-automation-classic.md#create-a-backup-vault)。 不過，Microsoft 建議您建立所有部署的復原服務保存庫，因為未來的增強功能僅適用於復原服務保存庫。
+
 2. **下載保存庫認證** — 在 Azure 備份中，將您建立的管理憑證上傳到保存庫。
 3. **安裝 Azure 備份代理程式並註冊伺服器** — 從 Azure 備份，在每一部 DPM 伺服器上安裝代理程式，並在備份保存庫中註冊 DPM 伺服器。
-
-[!INCLUDE [backup-create-vault](../../includes/backup-create-vault.md)]
 
 [!INCLUDE [backup-download-credentials](../../includes/backup-download-credentials.md)]
 
@@ -102,9 +105,4 @@ System Center DPM 會備份檔案和應用程式資料。 備份到 DPM 的資�
 > 從 System Center 2012 DPM SP1 開始，您可以使用 Microsoft Azure 備份將受到 DPM 保護的工作負載備份至 Azure。
 >
 >
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

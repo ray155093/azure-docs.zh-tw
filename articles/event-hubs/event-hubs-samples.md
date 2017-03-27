@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/01/2017
+ms.date: 03/07/2017
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: 32b57664fcf15daed75fe7050b672383e79c50cf
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: f3c8f6e52b8713bcdb58d55e8bbc2301a7c316e4
+ms.lasthandoff: 03/09/2017
 
 ---
 
@@ -40,11 +40,11 @@ ms.lasthandoff: 03/03/2017
 
 ### <a name="send-events"></a>傳送事件 
 
-[開始傳送](https://github.com/Azure/azure-event-hubs-dotnet/tree/master/samples/SampleSender)範例會示範如何撰寫將事件傳送到事件中樞的 .NET Core 主控台應用程式。
+[開始傳送](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleSender)範例會示範如何撰寫將事件傳送到事件中樞的 .NET Core 主控台應用程式。
 
 ### <a name="receive-events"></a>接收事件 
 
-[開始使用 Event Processor Host 接收](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleEphReceiver)範例是一個 .NET Core 主控台應用程式，可使用 [Event Processor Host](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/) 從事件中樞接收訊息。 
+[開始使用 Event Processor Host 接收](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleEphReceiver)範例是一個 .NET Core 主控台應用程式，可使用 `Event Processor Host` 從事件中樞接收訊息。
 
 ## <a name="net-framework"></a>.NET Framework    
 

@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: acfeb52b-4b81-4a7d-af77-3e9908407404
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -29,7 +30,7 @@ ms.lasthandoff: 02/16/2017
 
 在本文中，您將了解如何搭配 HDInsight 使用 Pig。
 
-## <a name="a-idwhyawhy-use-pig"></a><a id="why"></a>為何要使用 Pig？
+## <a id="why"></a>為何要使用 Pig？
 在 Hadoop 中使用 MapReduce 處理資料的其中一項挑戰是，只藉由使用 map 和 reduce 函數實作處理邏輯。 如果是複雜的處理，您經常必須將處理分成多個鏈結在一起的 MapReduce 作業，才能獲得想要的結果。
 
 Pig 不會強迫您只使用 map 和 reduce 函數，反而會允許您將處理定義為一系列轉換，使資料流過以產生所需的輸出。
@@ -50,7 +51,7 @@ Pig Latin 也支援使用者定義函數 (UDF)，此函數讓您可用叫用外�
 * [在 HDInsight 中使用 Python 搭配 Pig 和 Hive](hdinsight-python.md)
 * [在 HDInsight 中搭配 Hive 與 Pig 使用 C#](hdinsight-hadoop-hive-pig-udf-dotnet-csharp.md)
 
-## <a name="a-iddataaabout-the-sample-data"></a><a id="data"></a>關於範例資料
+## <a id="data"></a>關於範例資料
 此範例使用 *log4j* 範例檔案，其儲存在 Blob 儲存容器中的 **/example/data/sample.log** 。 檔案中的每一筆記錄均由一列欄位組成，包括以 `[LOG LEVEL]` 欄位來顯示類型和嚴重性，例如：
 
     2012-02-03 20:26:41 SampleClass3 [ERROR] verbose detail for id 1527353937
@@ -73,7 +74,7 @@ Pig Latin 也支援使用者定義函數 (UDF)，此函數讓您可用叫用外�
 > 
 > 
 
-## <a name="a-idjobaabout-the-sample-job"></a><a id="job"></a>關於範例工作
+## <a id="job"></a>關於範例工作
 以下 Pig Latin 工作會從 HDInsight 叢集的預設儲存體載入 **sample.log** 檔案。 然後該工作會執行一系列轉換，進而產生輸入資料中每個記錄層級出現次數的計數。 這些結果會傾印至 STDOUT。
 
     LOGS = LOAD 'wasbs:///example/data/sample.log';
@@ -88,7 +89,7 @@ Pig Latin 也支援使用者定義函數 (UDF)，此函數讓您可用叫用外�
 
 ![轉換的圖形化表示][image-hdi-pig-data-transformation]
 
-## <a name="a-idrunarun-the-pig-latin-job"></a><a id="run"></a>執行 Pig Latin 工作
+## <a id="run"></a>執行 Pig Latin 工作
 HDInsight 可以使用各種方法執行 Pig Latin 工作。 請使用下表決定適合您的方法，然後跟著連結逐項閱讀介紹。
 
 | **使用此方法**  | ...一個 **互動式** 殼層 | ...**批次** 處理 | ...搭配此 **叢集作業系統** | ...從此 **用戶端作業系統** |
@@ -110,7 +111,7 @@ HDInsight 可以使用各種方法執行 Pig Latin 工作。 請使用下表決�
 
 在[這裡][ssispack]深入了解適用於 SSIS 的 Azure Feature Pack。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 現在您已學會如何搭配 HDInsight 使用 Pig，接著請使用下列連結來探索 Azure HDInsight 的其他使用方式。
 
 * [將資料上傳至 HDInsight][hdinsight-upload-data]

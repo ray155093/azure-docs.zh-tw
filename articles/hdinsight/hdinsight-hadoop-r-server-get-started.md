@@ -8,16 +8,17 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: b5e111f3-c029-436c-ba22-c54a4a3016e3
 ms.service: HDInsight
+ms.custom: hdinsightactive
 ms.devlang: R
-ms.topic: article
+ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 02/28/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: c4315f75ff8e2b822aeab14a8211bb45ddbdb5b1
-ms.openlocfilehash: 5f9db46e5ab8fd6216e0386f96a011b2bb24dae9
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: 383a325bfd2620f6c4fd25ce2f3a66522131efef
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -40,7 +41,7 @@ HDInsight 包含了要整合至您的 HDInsight 叢集的 R 伺服器選項。 �
 
 ## <a name="create-the-cluster"></a>建立叢集
 > [!NOTE]
-> 本文件中的步驟會逐步引導您了解如何使用基本組態資訊，在 HDInsight 叢集上建立 R Server。 如需其他叢集設定設定 (例如，新增其他儲存體帳戶、使用 Azure 虛擬網路或建立 Hive 中繼存放區) 的資訊，請參閱 [建立以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+> 本文件中的步驟會逐步引導您了解如何使用基本組態資訊，在 HDInsight 叢集上建立 R Server。 如需其他叢集設定設定 (例如，新增其他儲存體帳戶、使用 Azure 虛擬網路或建立 Hive 中繼存放區) 的資訊，請參閱 [建立以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。 若要使用 Azure Resource Management 範本建立 R Server，請參閱[部署 R Server HDInsight 叢集](https://azure.microsoft.com/resources/templates/101-hdinsight-rserver/)。
 >
 > 
 
@@ -492,7 +493,7 @@ rxSparkDisconnect(myHadoopCluster)
    * **保存此指令碼...**︰這應該是**核取**狀態  
    
    > [!NOTE]
-   > 1. 根據預設，會從與安裝之 R 伺服器同版本的 Microsoft MRAN 儲存機制的快照安裝所有的 R 封裝。  如果您想要安裝更新版的封裝，則會有些不相容的風險，不過，只要指定 `useCRAN` 做為封裝清單的第一個項目 (例如 `useCRAN bitops, stringr, arules`)，仍然可以辦到。  
+   > 1. 根據預設，會從與安裝之 R 伺服器同版本的 Microsoft MRAN 存放庫的快照安裝所有的 R 封裝。  如果您想要安裝更新版的封裝，則會有些不相容的風險，不過，只要指定 `useCRAN` 做為封裝清單的第一個項目 (例如 `useCRAN bitops, stringr, arules`)，仍然可以辦到。  
    > 2. 有些 R 封裝會需要額外的 Linux 系統程式庫。 為了方便起見，我們已預先安裝前 100 個最受歡迎的 R 封裝所需的相依性。 然而，如果您安裝的 R 封裝需要的程式庫不在這之中，則必須下載此處所使用的基底指令碼，並加入安裝系統程式庫的步驟。 接下來，您必須將修改過的指令碼上傳至 Azure 儲存體中的公用 Blob 容器，並使用修改過的指令碼來安裝封裝。
    >    如需開發指令碼動作的詳細資訊，請參閱 [指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。  
    >

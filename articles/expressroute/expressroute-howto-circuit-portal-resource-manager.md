@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/02/2017
+ms.date: 03/07/2017
 ms.author: cherylmc;ganesr
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 46b4e1b149a3e9427e1384abc0d95eb616002ab6
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: e74ebd1d18aa3c5d278557940a765fe02c7182ff
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -128,7 +128,7 @@ ms.lasthandoff: 03/04/2017
 您可以執行下列工作，而無需中途停機：
 
 * 啟用或停用 ExpressRoute 線路的 ExpressRoute 進階附加元件。
-* 增加 ExpressRoute 線路的頻寬。 請注意，不支援將線路的頻寬降級。 
+* 只要連接埠有可用的容量，就增加 ExpressRoute 線路的頻寬。 請注意，不支援將線路的頻寬降級。 
 * 將計量方案從 [計量付費] 變更為 [無限制]。 請注意，不支援將計量方案從 [無限制] 變更為 [計量付費]。
 * 您可以啟用和停用 [允許傳統作業]。
 
@@ -141,6 +141,8 @@ ms.lasthandoff: 03/04/2017
 您可以在 [設定] 刀鋒視窗中修改頻寬、SKU、計費模型並允許傳統作業。
 
 > [!IMPORTANT]
+> 如果現有的連接埠上沒有足夠的容量，您可能必須重新建立 ExpressRoute 線路。 如果該位置已無額外的容量，您無法升級線路。
+>
 > 降低 ExpressRoute 線路的頻寬時必須中斷運作。 頻寬降級需要取消佈建 ExpressRoute 線路，然後重新佈建新的 ExpressRoute 線路。
 > 
 > 如果您使用的資源超出標準線路所允許的數量，停用進階附加元件作業可能會失敗。

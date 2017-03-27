@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 503cf4afba4575492984891a681c187a8683a553
-ms.openlocfilehash: 9d8fd7ec594671e1ea7bf06459494f1c3a1adbdf
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: 0184e95ca56e4bc4ffbe860da2b7a5cae9b5a043
+ms.lasthandoff: 03/11/2017
 
 
 ---
@@ -33,7 +33,7 @@ Azure SQL 監視解決方案，如同其他可用的 Log Analytics，可協助�
 
 ## <a name="connected-sources"></a>連接的來源
 
-不同於大部分其他的 Log Analytics 解決方案，Azure SQL 監視解決方案不使用代理程式連線至 Log Analytics 服務。
+Azure SQL 監視解決方案不使用代理程式連線至 Log Analytics 服務。
 
 下表描述此方案支援的連接來源。
 
@@ -42,7 +42,8 @@ Azure SQL 監視解決方案，如同其他可用的 Log Analytics，可協助�
 | [Windows 代理程式](log-analytics-windows-agents.md) | 否 | 解決方案不使用直接 Windows 代理程式。 |
 | [Linux 代理程式](log-analytics-linux-agents.md) | 否 | 解決方案不使用直接 Linux 代理程式。 |
 | [SCOM 管理群組](log-analytics-om-agents.md) | 否 | 解決方案不使用從 SCOM 代理程式直接連線到 Log Analytics。 |
-| [Azure 儲存體帳戶](log-analytics-azure-storage.md) | 是 | Azure 的公制資料會使用儲存體帳戶傳送至 Log Analytics。 |
+| [Azure 儲存體帳戶](log-analytics-azure-storage.md) | 否 | Log Analytics 不會從儲存體帳戶讀取資料。 |
+| [Azure 診斷](log-analytics-azure-storage.md) | 是 | Azure 會將 Azure 計量資料直接傳送至 Log Analytics。 |
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -54,7 +55,7 @@ Azure SQL 監視解決方案，如同其他可用的 Log Analytics，可協助�
 
 執行下列步驟將 Azure SQL 監視解決方案新增至您的工作區。
 
-1. 使用[從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)中的程序，將 Azure SQL 監視解決方案新增您的工作區。
+1. 從 [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.AzureSQLAnalyticsOMS?tab=Overview) 或使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，將 Azure SQL Analytics 解決方案新增至您的工作區。
 2. 在 Azure 入口網站中，按一下 [新增] (+ 符號)，然後在資源的清單中，選取 [監視 + 管理]。  
     ![監視 + 管理](./media/log-analytics-azure-sql/monitoring-management.png)
 3. 在 [監視 + 管理] 清單中，按一下 [檢視全部]。

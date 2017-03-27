@@ -1,5 +1,5 @@
 ---
-title: "將 Raspberry Pi (C) 連接到 Azure IoT - 第 2 課：登錄裝置 | Microsoft Docs"
+title: "將 Arduino 連線至 Azure IoT - 第 2 課：註冊裝置 | Microsoft Docs"
 description: "使用 Azure CLI 建立資源群組、建立 Azure IoT 中樞，並在 Azure IoT 中樞登錄 Adafruit Feather M0 WiFi。"
 services: iot-hub
 documentationcenter: 
@@ -13,11 +13,12 @@ ms.devlang: arduino
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/13/2016
+ms.date: 3/21/2017
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
-ms.openlocfilehash: e81ff09443b8d4930f20d0bbeb100c4a90f92a7f
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: ac9421be9211d53f8b5239c356201ee3efd27999
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -103,8 +104,3 @@ az iot device create --device-id mym0wifi --hub-name {my hub name}
 
 [troubleshoot]: iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md
 [process-and-store-iot-hub-messages]: iot-hub-adafruit-feather-m0-wifi-kit-arduino-lesson3-deploy-resource-manager-template.md
-
-
-<!--HONumber=Jan17_HO4-->
-
-

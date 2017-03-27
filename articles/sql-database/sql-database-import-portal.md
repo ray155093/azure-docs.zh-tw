@@ -16,8 +16,9 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 60bcd02d24e2084b9020ce56ef6a9f8268c6b1b5
-ms.openlocfilehash: e77a3ba82e7620e23441d9296ebed46d41cb525c
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: ca15248d7ac5232e6308d8188332975f1d21c09b
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.openlocfilehash: e77a3ba82e7620e23441d9296ebed46d41cb525c
 
 ## <a name="prerequisites"></a>必要條件
 
-若要從 PACPAC 匯入 SQL 資料庫，您需要下列項目：
+若要從 BACPAC 匯入 SQL Database，您需要下列項目：
 
 * Azure 訂用帳戶。 
 * Azure SQL Database V12 伺服器。 如果沒有 V12 伺服器，請遵循本文中以下的步驟： [建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
@@ -83,9 +84,4 @@ ms.openlocfilehash: e77a3ba82e7620e23441d9296ebed46d41cb525c
 [4]: ./media/sql-database-import/create.png
 [5]: ./media/sql-database-import/import-history.png
 [6]: ./media/sql-database-import/import-status.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -78,8 +78,8 @@
 ### [使用量計量](logic-apps-pricing.md)
 
 # 參考
-## [工作流程定義語言](https://docs.microsoft.com/rest/api/logic/definition-language)
-## [工作流程動作與觸發程序](https://docs.microsoft.com/rest/api/logic/actions-and-triggers)
+## [工作流程定義語言](logic-apps-workflow-definition-language.md)
+## [工作流程動作與觸發程序](logic-apps-workflow-actions-triggers.md)
 ## [REST API](/rest/api/logic/)
 ## [PowerShell](/powershell/resourcemanager/azurerm.logicapp/v2.3.0/azurerm.logicapp)
 ## 結構描述歷程記錄

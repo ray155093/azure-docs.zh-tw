@@ -16,9 +16,9 @@ ms.topic: get-started-article
 ms.date: 03/01/2017
 ms.author: davidmu
 translationtype: Human Translation
-ms.sourcegitcommit: 9841096da2d16e35878a1c0013a33e9f051e5932
-ms.openlocfilehash: 71b75afc7a31c875672b53c2b2b106220b8c36dd
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 6a31b039825acf3033fa58820bb800f53a355ffb
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -46,7 +46,7 @@ ms.lasthandoff: 03/02/2017
 
 ## <a name="network-interfaces"></a>網路介面
 
-[網路介面 (NIC)](../virtual-network/virtual-network-network-interface-overview.md) 是 VM 與虛擬網路 (VNet) 之間互相連線的橋樑。 VM 必須有至少一個 NIC，但視您所建立的 VM 大小而定，可以有一個以上的 NIC。 若要了解每個 VM 大小支援幾個 NIC，請參閱 [Azure 中的虛擬機器大小](virtual-machines-windows-sizes.md)。 
+[網路介面 (NIC)](../virtual-network/virtual-network-network-interface.md) 是 VM 與虛擬網路 (VNet) 之間互相連線的橋樑。 VM 必須有至少一個 NIC，但視您所建立的 VM 大小而定，可以有一個以上的 NIC。 若要了解每個 VM 大小支援幾個 NIC，請參閱 [Azure 中的虛擬機器大小](virtual-machines-windows-sizes.md)。 
 
 如果您想要建立具有多個 NIC 的 VM，您必須建立至少有兩個 NIC 的 VM。  建立之後，您可以新增其他 NIC，直到 VM 大小所支援的數目為止，但不論 VM 大小可支援多少個 NIC，您都無法將其他 NIC 新增至僅以一個 NIC 建立的 VM。 
 
@@ -180,3 +180,4 @@ VM 會在部署時被指派 IP 位址。 如果您將多部 VM 部署至 VNet �
 - 了解如何設定[使用者定義的路由和 IP 轉送](../virtual-network/virtual-networks-udr-overview.md)。 
 - 了解如何設定 [VNet 對 VNet 連接](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)。
 - 了解如何[針對路由進行疑難排解](../virtual-network/virtual-network-routes-troubleshoot-portal.md)。
+

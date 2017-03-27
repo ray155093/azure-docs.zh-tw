@@ -1,5 +1,5 @@
 ---
-title: "連接 Azure 部署的相關範本 | Microsoft Docs"
+title: "連結 Azure 部署的範本 | Microsoft Docs"
 description: "描述如何在「Azure 資源管理員」範本中使用連結的範本，以建立模組化範本方案。 示範如何傳遞參數值、指定參數檔案，以及動態建立 URL。"
 services: azure-resource-manager
 documentationcenter: na
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/28/2016
+ms.date: 03/14/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
-ms.openlocfilehash: 7bc5e1102b60db0bdf7a8310d0816f65bcfec3a1
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: a6c3e0150a60777d9f824cb1e0768bd44a8c981e
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 7bc5e1102b60db0bdf7a8310d0816f65bcfec3a1
 您可以從主要範本傳遞參數到連結的範本，且那些參數可以直接對應到由發出呼叫之範本所公開的參數或變數。 連結的範本也可以將輸出變數傳遞回來源範本，讓範本之間可進行雙向資料交換。
 
 ## <a name="linking-to-a-template"></a>連結至範本
-您可以透過在主要範本中新增指向連結的範本之部署資源，以在兩個範本之間建立連結。 將 **templateLink** 屬性設為連結的範本之 URI。 您可以透過在範本中直接指定值，或透過連結到參數檔案，以為連結的範本提供參數值。 以下範例會使用 **parameters** 屬性直接指定參數值。
+您可以透過在主要範本中新增指向連結的範本之部署資源，以在兩個範本之間建立連結。 將 **templateLink** 屬性設為連結的範本之 URI。 您可以直接在範本或參數檔中為連結的範本提供參數值。 以下範例會使用 **parameters** 屬性直接指定參數值。
 
 ```json
 "resources": [ 
@@ -87,7 +88,7 @@ Azure Resource Manager 服務必須能夠存取連結的範本。 您無法為�
 ],
 ```
 
-即使該 Token 是以安全字串來傳遞，連結範本的 URI (包括 SAS Token) 還是會記錄在該資源群組的部署作業中。 為了限制公開的程度，請為該 Token 設定到期日。
+即使該 Token 是以安全字串來傳遞，連結範本的 URI (包括 SAS Token) 還是會記錄在部署作業中。 為了限制公開的程度，請為該 Token 設定到期日。
 
 Resource Manager 會以個別部署的方式來處理每一個連結的範本。 在資源群組的部署歷程記錄中，您會看到父項範本和巢狀範本的個別部署。
 
@@ -308,26 +309,36 @@ URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAcc
 ```powershell
 Set-AzureRmCurrentStorageAccount -ResourceGroupName ManageGroup -Name storagecontosotemplates
 $token = New-AzureStorageContainerSASToken -Name templates -Permission r -ExpiryTime (Get-Date).AddMinutes(30.0)
-New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup -TemplateUri ("https://storagecontosotemplates.blob.core.windows.net/templates/parent.json" + $token) -containerSasToken $token
+$url = (Get-AzureStorageBlob -Container templates -Blob parent.json).ICloudBlob.uri.AbsoluteUri
+New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup -TemplateUri ($url + $token) -containerSasToken $token
 ```
 
-在 Azure CLI 中，您會取得容器的 Token 並使用下列指令碼部署範本。 目前，您在使用包含 SAS Token 的範本 URI 時必須提供部署名稱。  
+在 Azure CLI 2.0 中，您會取得容器的 Token 並使用下列指令碼部署範本：
 
+```azurecli
+seconds='@'$(( $(date +%s) + 1800 ))
+expiretime=$(date +%Y-%m-%dT%H:%MZ --date=$seconds)
+connection=$(az storage account show-connection-string \
+    --resource-group ManageGroup \
+    --name storagecontosotemplates \
+    --query connectionString)
+token=$(az storage container generate-sas \
+    --name templates \
+    --expiry $expiretime \
+    --permissions r \
+    --output tsv \
+    --connection-string $connection)
+url=$(az storage blob url \
+    --container-name templates \
+    --name parent.json \
+    --output tsv \
+    --connection-string $connection)
+parameter='{"containerSasToken":{"value":"?'$token'"}}'
+az group deployment create --resource-group ExampleGroup --template-uri $url?$token --parameters $parameter
 ```
-expiretime=$(date -I'minutes' --date "+30 minutes")  
-azure storage container sas create --container templates --permissions r --expiry $expiretime --json | jq ".sas" -r
-azure group deployment create -g ExampleGroup --template-uri "https://storagecontosotemplates.blob.core.windows.net/templates/parent.json?{token}" -n tokendeploy  
-```
-
-系統會提示您以參數提供 SAS Token。 您需要在 Token 前面加上 **?**。
 
 ## <a name="next-steps"></a>後續步驟
 * 若要了解如何定義您資源的部署順序，請參閱 [定義 Azure Resource Manager 範本中的相依性](resource-group-define-dependencies.md)
 * 若要了解如何定義一個資源，但建立它的多個執行個體，請參閱 [在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

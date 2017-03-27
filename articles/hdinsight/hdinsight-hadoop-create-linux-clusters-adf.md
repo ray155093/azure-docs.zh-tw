@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 02/23/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: d6a9be6c5c681cba04fa8ba216c89234ae35b846
-ms.openlocfilehash: 8e554fc73906a912c426cabf6f6dffdc10002c9b
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 2289c99ddd08c1e7ba356e233180cf59d99de182
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -277,7 +277,7 @@ DataFactoryName 是您在部署範本時指定的資料處理站名稱。 目前
 * [具有複製活動的管線](#data-pipeline)
 
 #### <a name="azure-storage-linked-service"></a>Azure 儲存體連結服務
-Azure 儲存體已連結的服務會連結 Azure 儲存體帳戶至資料處理站。 在本教學課程中，相同的儲存體帳戶將做為預設 HDInsight 儲存體帳戶、輸入資料儲存體和輸出資料儲存體。 因此，您只定義一個 Azure 儲存體連結服務。 在連結的服務定義中，您指定 Azure 儲存體帳戶的名稱和金鑰。 如需用來定義 Azure 儲存體連結服務之 JSON 屬性的詳細資料，請參閱 [Azure 儲存體連結服務](../data-factory/data-factory-azure-blob-connector.md#azure-storage-linked-service)。 
+Azure 儲存體已連結的服務會連結 Azure 儲存體帳戶至資料處理站。 在本教學課程中，相同的儲存體帳戶會做為預設 HDInsight 儲存體帳戶、輸入資料儲存體和輸出資料儲存體。 因此，您只定義一個 Azure 儲存體連結服務。 在連結的服務定義中，您指定 Azure 儲存體帳戶的名稱和金鑰。 如需用來定義 Azure 儲存體連結服務之 JSON 屬性的詳細資料，請參閱 [Azure 儲存體連結服務](../data-factory/data-factory-azure-blob-connector.md#azure-storage-linked-service)。 
 
 ```json
 {

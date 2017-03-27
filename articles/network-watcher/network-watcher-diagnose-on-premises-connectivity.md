@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: c232e334e60f9205076ba09d9f561c9fb1b42a4c
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: c7576ce3e802e66ebea6ba83927609ed81fe0869
+ms.lasthandoff: 03/09/2017
 
 ---
 
@@ -59,7 +59,7 @@ Azure VPN 閘道可讓您建立混合式解決方案，以解決內部部署網�
 
 ## <a name="troubleshooting-using-azure-network-watcher"></a>使用 Azure 網路監看員進行疑難排解
 
-若要診斷連線，請連線到 Azure PowerShell，並起始 `Start-AzureRmNetworkWatcherResourceTroubleshooting` Cmdlet。 您可以在＜針對虛擬網路閘道和連線進行疑難排解 - PowerShell＞中找到有關使用這個 Cmdlet 的詳細資料。 這個 Cmdlet 最多可能需要幾分鐘的時間才能完成。 
+若要診斷連線，請連線到 Azure PowerShell，並起始 `Start-AzureRmNetworkWatcherResourceTroubleshooting` Cmdlet。 您可以在[針對虛擬網路閘道和連線進行疑難排解 - PowerShell](network-watcher-troubleshoot-manage-powershell.md)中找到有關使用這個 Cmdlet 的詳細資料。 這個 Cmdlet 最多可能需要幾分鐘的時間才能完成。 
 
 此 Cmdlet 完成後，您可以瀏覽至 Cmdlet 指定的儲存體位置，以取得關於問題的詳細資訊和記錄。 Azure 網路監看員會建立包含下列記錄檔的 zip 資料夾︰
 
@@ -116,3 +116,4 @@ Azure 網路監看員疑難排解功能可讓您輕鬆地利用簡單的 PowerSh
 瀏覽[使用 Azure 網路監看員疑難排解來監視 VPN 閘道](network-watcher-monitor-with-azure-automation.md)，以了解如何利用 PowerShell 和 Azure 自動化來檢查 VPN 閘道連線
 
 [1]: ./media/network-watcher-diagnose-on-premises-connectivity/figure1.png
+

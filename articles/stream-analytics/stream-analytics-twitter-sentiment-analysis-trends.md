@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/03/2017
+ms.date: 03/09/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: 214bd6ca8abb3adc9447536215f28f478959be07
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 09860b34bf4b1664e8d82af0e049cfd1a2d8defa
+ms.lasthandoff: 03/10/2017
 
 ---
 
@@ -172,7 +172,7 @@ GROUP BY TUMBLINGWINDOW(s, 5), Topic
 
 ![powerbi](./media/stream-analytics-twitter-sentiment-analysis-trends/power-bi.png)
 
-## <a name="another-query-of-interest--in-this-scenario"></a>此案例中另一個相關的查詢
+## <a name="another-query-of-interest-in-this-scenario"></a>此案例中另一個相關的查詢
 
 我們為此案例建立的另一個範例查詢是根據[滑動視窗](https://msdn.microsoft.com/library/azure/dn835051.aspx)。 若要識別熱門話題，我們會找出各種在指定時間內，被提及的次數超過臨界值的話題。 基於本教學課程的目的，我們會找出過去五秒內提及次數超過 20 次的話題。
 
@@ -182,6 +182,19 @@ FROM TwitterStream TIMESTAMP BY CreatedAt
 GROUP BY SLIDINGWINDOW(s, 5), topic
 HAVING COUNT(*) > 20
 ```
+
+## <a name="table-of-the-field-headers"></a>欄位標頭表
+
+為了充分揭露，您可以在這個練習中使用的欄位標籤都列在此表中。 您可在查詢編輯器中自由進行試驗。
+
+JSON 屬性 | 定義
+--- | ---
+CreatedAt | 建立推文的時間
+主題 | 符合所指定關鍵字的主題
+SentimentScore | 來自 Sentiment140 的情感分數
+作者 | 傳送推文的 Twitter 控制代碼
+文字 | 推文的全文
+
 
 ## <a name="get-support"></a>取得支援
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。

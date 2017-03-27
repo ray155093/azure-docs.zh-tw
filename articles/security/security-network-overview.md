@@ -1,6 +1,6 @@
 ---
 title: "Azure 中的網路安全性概念和需求 | Microsoft Docs"
-description: " 本文可讓您更容易了解 Microsoft Azure 必須在網路安全性區域中提供的資訊。 我們提供核心網路安全性概念和需求的基本說明，以及 Azure 必須在所有這些區域中提供之資訊的相關資訊. "
+description: " 本文可讓您更容易了解 Microsoft Azure 必須在網路安全性區域中提供的資訊。 我們提供核心網路安全性概念和需求的基本說明，以及 Azure 必須在所有這些區域中提供之資訊的相關資訊。 "
 services: security
 documentationcenter: na
 author: TomShinder
@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/23/2017
+ms.date: 03/13/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: b5edb42f7fac6943a72e02a85a4cbc32300b9f38
-ms.openlocfilehash: 8b0266a86221b379a105b87f130cd0a4f97385f7
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 4f8ff754858dfb12a7c1fb6e11b1ea99d99d4aeb
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -204,7 +204,7 @@ Azure 網路支援下列安全遠端存取案例︰
 ## <a name="logging"></a>記錄
 網路層級的記錄是任何網路安全性案例的重要功能。 在 Azure 中，您可以記錄針對網路安全性群組所取得的資訊，來取得網路層級記錄資訊。 使用 NSG 記錄，您可以從下列項目取得資訊︰
 
-* 稽核記錄檔 – 這些記錄檔用來檢視提交至 Azure 訂用帳戶的所有作業。 預設會啟用這些記錄檔，並且可以在 Azure 入口網站內使用。
+* [活動記錄](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md) – 這些記錄用來檢視提交至 Azure 訂用帳戶的所有作業。 預設會啟用這些記錄檔，並且可以在 Azure 入口網站內使用。 它們以前稱為「稽核記錄」或「作業記錄」。
 * 事件記錄檔 – 這些記錄檔提供套用哪些 NSG 規則的相關資訊。
 * 計數器記錄檔 – 這些記錄檔可讓您知道套用每個 NSG 規則以拒絕或允許流量的次數。
 

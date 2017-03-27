@@ -11,12 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 02/03/2017
+ms.date: 03/08/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: f3a8ef4a166a061e1f4e7ce056255e02b810c196
-ms.openlocfilehash: 1f8083e095ee3c207d3d6d9178017e2dc1670fde
-ms.lasthandoff: 02/08/2017
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: ee759149df038ac08f0d5987c3577454a81999db
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -29,7 +29,7 @@ ms.lasthandoff: 02/08/2017
 
 ![](./media/app-insights-metrics-explorer/01-overview.png)
 
-您可在 Application Insights 入口網站中找到度量圖表。 在大部分情況下，您可以自訂它們，而且您可以將更多圖表新增至刀鋒視窗。 從 [概觀] 刀鋒視窗中，按一下以取得更詳細的圖表 (它們有標題，例如「伺服器回應」)，或按一下 [計量瀏覽器] 以開啟新的刀鋒視窗，您可以在其中建立自訂圖表。
+您可在 Application Insights 入口網站中找到度量圖表。 在大部分情況下，您可以自訂它們，而且您可以將更多圖表新增至刀鋒視窗。 從 [概觀] 刀鋒視窗中，按一下以取得更詳細的圖表 (有「伺服器」之類的標題)，或按一下 [計量瀏覽器]，以開啟新的刀鋒視窗讓您建立自訂圖表。
 
 ## <a name="time-range"></a>時間範圍
 您可以在任何刀鋒視窗上變更圖表或格線涵蓋的時間範圍。
@@ -175,16 +175,6 @@ ms.lasthandoff: 02/08/2017
 
 [深入了解警示][alerts]。
 
-## <a name="export-to-excel"></a>匯出至 Excel
-您可以將 [計量瀏覽器] 中顯示的度量資料匯出到 Excel 檔案。 匯出的資料包括入口網站中所示所有圖表和資料表的資料。
-
-![在 [計量瀏覽器] 中，選擇 [警示規則]，然後選擇 [加入警示]](./media/app-insights-metrics-explorer/31-export.png)
-
-每個圖表或資料表的資料都會匯出到 Excel 檔案中的個別工作表。
-
-您看到的內容即為匯出的內容。 如果您想要變更所匯出資料的範圍，請變更時間範圍或篩選器。 對於資料表，如果有顯示 [ **載入更多** ] 命令，您可以先按它再按一下 [匯出]，以匯出更多資料。
-
-*匯出動作目前僅適用於 Internet Explorer 和 Chrome。我們正努力新增其他瀏覽器的支援。*
 
 ## <a name="continuous-export"></a>連續匯出
 如果您想要連續匯出資料，讓您能夠在外部加以處理，請考慮使用 [連續匯出](app-insights-export-telemetry.md)。
@@ -193,7 +183,9 @@ ms.lasthandoff: 02/08/2017
 如果您希望更完整地檢視您的資料，您可以 [匯出至 Power BI](http://blogs.msdn.com/b/powerbi/archive/2015/11/04/explore-your-application-insights-data-with-power-bi.aspx)。
 
 ## <a name="analytics"></a>Analytics
-[分析](app-insights-analytics.md) 是使用強大的查詢語言來分析遙測的更靈活方式。 如果您想要合併或計算計量的結果，或執行您應用程式近期效能的深入探索，請使用它。 另一方面，如果您想要自動重新整理儀表板上的圖表以及警示，請使用計量瀏覽器。
+[分析](app-insights-analytics.md) 是使用強大的查詢語言來分析遙測的更靈活方式。 如果您想要合併或計算計量的結果，或執行您應用程式近期效能的深入探索，請使用它。 
+
+從計量圖表中，您可以按一下 [分析] 圖示，直接前往對應的分析查詢。
 
 ## <a name="troubleshooting"></a>疑難排解
 *我看不到我的圖表上的任何資料。*

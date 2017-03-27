@@ -15,9 +15,9 @@ ms.workload: infrastructure
 ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 1aeb983730f732a021b828c658cc741f8659c487
-ms.openlocfilehash: 214d968c95fec4695f22152cca53a369299b6e10
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 5dba93fdf9b0f0ca73b47743aa0188dd47094a3f
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -42,7 +42,7 @@ ms.lasthandoff: 02/27/2017
 4. 從疑難排解 VM 卸載並中斷連結虛擬硬碟。
 5. 使用原始虛擬硬碟建立 VM。
 
-確定您已安裝[最新的 Azure CLI 1.0](../xplat-cli-install.md)，並已登入且使用 Resource Manager 模式：
+確定您已安裝[最新的 Azure CLI 1.0](../cli-install-nodejs.md)，並已登入且使用 Resource Manager 模式：
 
 ```azurecli
 azure config mode arm

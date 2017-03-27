@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
-ms.openlocfilehash: 10b1998789feafaf0c28155bc8a96a28ff78cf02
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 51aabf4938714c597ae0cfb2ec524f326b6e355a
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -174,7 +174,7 @@ Azure PowerShell Cmdlet 可供多階段交換的範例，包含在部署位置�
 <a name="Delete"></a>
 
 ## <a name="to-delete-a-deployment-slot"></a>刪除部署位置
-在部署位置的刀鋒視窗中，開啟部署位置的刀鋒視窗，按一下 [概觀] (預設頁面)，然後按一下命令列中的 [刪除]。  
+在部署位置的刀鋒視窗中，開啟部署位置的刀鋒視窗，按一下 概觀 \(預設頁面)，然後按一下命令列中的 [刪除]。  
 
 ![刪除部署位置][DeleteStagingSiteButton]
 
@@ -233,7 +233,7 @@ Remove-AzureRmResource -ResourceGroupName [resource group name] -ResourceType Mi
 ## <a name="azure-command-line-interface-azure-cli-commands-for-deployment-slots"></a>適用於部署位置的 Azure 命令列介面 (Azure CLI) 命令
 Azure CLI 提供跨平台命令供您處理 Azure，包括支援管理 App Service 部署位置。
 
-* 如需安裝與設定 Azure CLI 的相關說明，包括如何將 Azure CLI 連線至 Azure 訂用帳戶的資訊，請參閱 [安裝與設定 Azure CLI](../xplat-cli-install.md)。
+* 如需安裝與設定 Azure CLI 的相關說明，包括如何將 Azure CLI 連線至 Azure 訂用帳戶的資訊，請參閱 [安裝與設定 Azure CLI](../cli-install-nodejs.md)。
 * 若要在 Azure CLI 中列出 Azure App Service 可用的命令，請呼叫 `azure site -h`。
 
 > [!NOTE] 

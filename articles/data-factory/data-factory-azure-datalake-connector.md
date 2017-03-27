@@ -1,6 +1,6 @@
 ---
 title: "從 Azure Data Lake Store 來回移動資料 | Microsoft Docs"
-description: "了解如何使用 Azure Data Factory 從 Azure 資料湖存放區來回移動資料"
+description: "了解如何使用 Azure Data Factory 從 Azure Data Lake Store 來回移動資料"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -12,16 +12,16 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 03/13/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: b2d1a740782a20a7c6b7b8cec8335a41f16231f5
-ms.openlocfilehash: 5a6a14e5fc8f6915b34f9667c4294a46c8591633
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: ee0cee5e653cb8900936e12e87c56cfee5639bc5
+ms.lasthandoff: 03/15/2017
 
 
 ---
-# <a name="move-data-to-and-from-azure-data-lake-store-using-azure-data-factory"></a>使用 Azure Data Factory 從 Azure 資料湖存放區來回移動資料
+# <a name="move-data-to-and-from-azure-data-lake-store-using-azure-data-factory"></a>使用 Azure Data Factory 從 Azure Data Lake Store 來回移動資料
 本文將概述如何使用 Azure Data Factory 中的複製活動，在 Azure Data Lake Store 和另一個資料存放區之間往返移動資料。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
 
 > [!NOTE]
@@ -36,7 +36,7 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 
 以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到 Azure Data Lake Store 和 Azure Blob 儲存體，以及複製其中的資料。 不過，您可以將資料從任何來源**直接**複製到任何支援的接收器。 如需詳細資訊，請參閱[使用複製活動來移動資料](data-factory-data-movement-activities.md)中的＜支援的資料存放區和格式＞一節。  
 
-## <a name="sample-copy-data-from-azure-blob-to-azure-data-lake-store"></a>範例：從 Azure Blob 複製資料到 Azure 資料湖存放區
+## <a name="sample-copy-data-from-azure-blob-to-azure-data-lake-store"></a>範例：從 Azure Blob 複製資料到 Azure Data Lake Store
 下列範例顯示︰
 
 1. [AzureStorage](#azure-storage-linked-service-properties)類型的連結服務。
@@ -61,7 +61,7 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 }
 ```
 
-**Azure 資料湖連結服務：**
+**Azure Data Lake 連結服務：**
 
 ```JSON
 {
@@ -147,9 +147,9 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 }
 ```
 
-**Azure 資料湖輸出資料集：**
+**Azure Data Lake 輸出資料集：**
 
-此範例會將資料複製到 Azure 資料湖存放區。 每個小時會將新資料複製到資料湖存放區。
+此範例會將資料複製到 Azure Data Lake Store。 每個小時會將新資料複製到 Data Lake Store。
 
 ```JSON
 {
@@ -221,7 +221,7 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 }
 ```
 
-## <a name="sample-copy-data-from-azure-data-lake-store-to-azure-blob"></a>範例：將資料從 Azure 資料湖存放區複製到 Azure Blob
+## <a name="sample-copy-data-from-azure-data-lake-store-to-azure-blob"></a>範例：將資料從 Azure Data Lake Store 複製到 Azure Blob
 下列範例顯示︰
 
 1. [AzureDataLakeStore](#azure-data-lake-linked-service-properties)類型的連結服務。
@@ -232,7 +232,7 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 
 此範例每小時會將時間序列資料從 Azure Data Lake Store 複製到 Azure Blob。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
-**Azure 資料湖存放區連結服務：**
+**Azure Data Lake Store 連結服務：**
 
 ```JSON
 {
@@ -266,7 +266,7 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
   }
 }
 ```
-**Azure 資料湖輸入資料集：**
+**Azure Data Lake 輸入資料集：**
 
 設定 **"external": true** 會通知 Data Factory 服務：這是 Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
 
@@ -411,13 +411,13 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 }
 ```
 
-## <a name="azure-data-lake-store-linked-service-properties"></a>Azure 資料湖存放區連結服務屬性
+## <a name="azure-data-lake-store-linked-service-properties"></a>Azure Data Lake Store 連結服務屬性
 下表提供 Azure Data Lake Store 連結服務專屬 JSON 元素的描述，並可在「服務主體」和「使用者認證」驗證之間擇一。
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
 | 類型 | type 屬性必須設為： **AzureDataLakeStore** | 是 |
-| dataLakeStoreUri | 指定有關 Azure 資料湖存放區帳戶的資訊。 它的格式如下：**https://[帳戶名稱].azuredatalakestore.net/webhdfs/v1** 或 **adl://[帳戶名稱].azuredatalakestore.net/**。 | 是 |
+| dataLakeStoreUri | 指定有關 Azure Data Lake Store 帳戶的資訊。 它的格式如下：**https://[帳戶名稱].azuredatalakestore.net/webhdfs/v1** 或 **adl://[帳戶名稱].azuredatalakestore.net/**。 | 是 |
 | subscriptionId | Data Lake Store 所屬的 Azure 訂用帳戶識別碼。 | 接收 (Sink) 的必要項目 |
 | resourceGroupName | Data Lake Store 所屬的 Azure 資源群組名稱。 | 接收 (Sink) 的必要項目 |
 
@@ -425,7 +425,7 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 若要使用服務主體驗證，您必須先在 Azure Active Directory (AAD) 註冊應用程式實體，並在 Data Lake Store 中授與存取權。 之後您可以在 Azure Data Factory 中，利用對應的應用程式識別碼、應用程式金鑰及租用戶資訊，指定下列屬性以從 Data Lake Store 複製資料/將資料複製到 Data Lake Store。 如需如何設定和擷取所需的資訊，請參閱[服務對服務驗證](../data-lake-store/data-lake-store-authenticate-using-active-directory.md)。
 
 > [!IMPORTANT]
-> 使用複製精靈時，請務必至少授與服務主體 ADLS 根 ("/") 的讀取權限或 ADLS 帳戶的讀取者角色，才能順利在不同資料夾瀏覽。 否則，您可能會看到「提供的認證不正確」錯誤。
+> 使用複製精靈來撰寫時，請務必在存取控制 (IAM) 中，至少將 ADLS 帳戶的「讀者」角色授與服務主體，以及 ADLS 根 ("/") 及其子系的「讀取+執行」權限，才能順利在資料夾之間瀏覽。 否則，您可能會看到「提供的認證不正確」錯誤。
 >
 > 若您剛剛才從 AAD 建立/更新服務主體，可能需要幾分鐘才會實際生效。 先重複檢查服務主體和 ADLS ACL 設定，如果仍看見說明「提供的認證不正確」錯誤，請稍候再試。
 >
@@ -484,7 +484,7 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 
 | 使用者類型 | 到期時間 |
 |:--- |:--- |
-| 不受 Azure Active Directory 管理的使用者帳戶 ((@hotmail.com,、@live.com, 等)。 |12 小時 |
+| 不受 Azure Active Directory 管理的使用者帳戶 (@hotmail.com、@live.com 等)。 |12 小時 |
 | 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的&14; 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
 如果您在此權杖的到期時間之前變更密碼，權杖會立即到期，且您會看到本節所述的錯誤。
@@ -519,15 +519,15 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 ```
 請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 針對程式碼中使用的 WindowsFormsWebAuthenticationDialog 類別，將參考新增至 **2.9.10826.1824** 版的 **Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll**。
 
-## <a name="azure-data-lake-dataset-type-properties"></a>Azure 資料湖資料集類型屬性
+## <a name="azure-data-lake-dataset-type-properties"></a>Azure Data Lake 資料集類型屬性
 如需定義資料集的 JSON 區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
 
 每個資料集類型的 **TypeProperties** 區段都不同，可提供資料存放區中資料的位置、格式等相關資訊。 **AzureDataLakeStore** 類型資料集的 typeProperties 區段具有下列屬性：
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| folderPath |Azure 資料湖存放區中容器與資料夾的路徑。 |是 |
-| fileName |Azure Data Lake Store 中的檔案名稱。 fileName 是選擇性的，而且區分大小寫。 <br/><br/>如果您指定檔案名稱，活動 (包括複製) 適用於特定的檔案。<br/><br/>如果您未指定 fileName，複製會包含 folderPath 中的所有檔案以做為輸入資料集。<br/><br/>沒有為輸出資料集指定 fileName 時，所產生的檔案名稱會是下列格式：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |否 |
+| folderPath |Azure Data Lake Store 中容器與資料夾的路徑。 |是 |
+| fileName |Azure Data Lake Store 中的檔案名稱。 fileName 是選擇性的，而且區分大小寫。 <br/><br/>如果您指定檔案名稱，活動 (包括複製) 適用於特定的檔案。<br/><br/>如果您未指定 fileName，複製會包含 folderPath 中的所有檔案以做為輸入資料集。<br/><br/>沒有為輸出資料集指定 fileName 時，所產生的檔案名稱會是下列格式：Data<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |否 |
 | partitionedBy |partitionedBy 是選擇性的屬性。 您可以用來指定時間序列資料的動態 folderPath 和 filename。 例如，folderPath 可針對每小時的資料進行參數化。 如需詳細資訊和範例，請參閱 [使用 partitionedBy 屬性](#using-partitionedby-property) 一節。 |否 |
 | format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](#specifying-textformat)、[Json 格式](#specifying-jsonformat)、[Avro 格式](#specifying-avroformat)、[Orc 格式](#specifying-orcformat)和 [Parquet 格式](#specifying-parquetformat)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
 | compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 如需詳細資訊，請參閱[指定壓縮](#specifying-compression)一節。 |否 |
@@ -566,7 +566,7 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 
 [!INCLUDE [data-factory-compression](../../includes/data-factory-compression.md)]
 
-## <a name="azure-data-lake-copy-activity-type-properties"></a>Azure 資料湖複製活動類型屬性
+## <a name="azure-data-lake-copy-activity-type-properties"></a>Azure Data Lake 複製活動類型屬性
 如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
 另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 若為複製活動，這些屬性會根據來源和接收的類型而有所不同

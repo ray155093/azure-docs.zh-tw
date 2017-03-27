@@ -3,7 +3,7 @@ title: "Azure 中 Linux VM 的概觀 | Microsoft Docs"
 description: "描述 Azure 計算、儲存體和網路服務與 Linux 虛擬機器。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
-author: vlivech
+author: rickstercdn
 manager: timlt
 editor: 
 ms.assetid: 7965a80f-ea24-4cc2-bc43-60b574101902
@@ -13,12 +13,12 @@ ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 09/14/2016
-ms.author: squillace
+ms.author: rclaus
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 50f3c56daaa28b1f28e201ec0502a91804313e5f
-ms.openlocfilehash: 111a80548982a1dab529d9dd6fb46eb759b7f908
-ms.lasthandoff: 02/22/2017
-
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: dbafa7ab292d634d7bd2427803e5a7f78963d7ff
+ms.lasthandoff: 03/14/2017
 
 ---
 # <a name="azure-and-linux"></a>Azure 和 Linux
@@ -27,16 +27,16 @@ Microsoft Azure 集結了各種整合式公用雲端服務且數量不斷增加�
 如果您熟悉 Amazon AWS 的各項功能，您可以查看 Azure 與 AWS 的對照 [定義對應文件](https://azure.microsoft.com/campaigns/azure-vs-aws/mapping/)。
 
 ## <a name="regions"></a>區域
-Microsoft Azure 資源分散在世界各地的多個地理區域。  「區域」代表單一地理區域中的多個資料中心。  自 2016 年 1 月 1 日起，這包括︰美洲 8 個、歐洲 2 個、亞太地區 6 個、中國大陸 2 個，以及印度 3 個。  如果您需要所有 Azure 區域的完整清單，我們維護了一份現有和新公告區域的清單。
+Microsoft Azure 資源分散在世界各地的多個地理區域。  「區域」代表單一地理區域中的多個資料中心。  我們已在世界各地正式推出 34 個區域，並即將推出另外 4 個區域。 我們會繼續擴大在全球各地的涵蓋範圍，因此我們有一份涵蓋現有和新宣布區域的更新清單。
 
 * [Azure 區域](https://azure.microsoft.com/regions/)
 
 ## <a name="availability"></a>Availability
-為了讓您的部署符合 99.95 的 VM 服務等級協定資格，您必須部署兩個或更多在可用性設定組內執行工作負載的 VM。 這可確保您的 VM 會分散在我們資料中心內的多個容錯網域，以及部署至具有不同維護期間的主機。 完整 [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/) 說明保證的 Azure 整體可用性。 
+我們已宣布推出業界領先的單一執行個體虛擬機器 99.9% 服務等級協定 (前提是您部署了所有磁碟都是進階儲存體的 VM)。  為了讓您的部署符合標準的 99.95% VM 服務等級協定資格，您還必須部署兩個或更多在可用性設定組內執行工作負載的 VM。 這可確保您的 VM 會分散在我們資料中心內的多個容錯網域，以及部署至具有不同維護期間的主機。 完整 [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/v1_0/) 說明保證的 Azure 整體可用性。 
 
 ## <a name="managed-disks"></a>受控磁碟
 
-受控磁碟可在背景中為您處理 Azure 儲存體帳戶的建立和管理作業，確保您不需要擔心儲存體帳戶的延展性限制。 您只需指定磁碟大小和效能層級 (標準或進階)，Azure 就會為您建立和管理磁碟。 即便是新增磁碟或相應增加和減少 VM，您都不必擔心所使用的儲存體。 如果您要建立新的 VM，請[使用 Azure CLI 2.0 (預覽)](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 Azure 入口網站來建立具有受控 OS 和資料磁碟的 VM。 如果您有具備非受控磁碟的 VM，您可以[將 VM 轉換成由受控磁碟提供支援](virtual-machines-linux-convert-unmanaged-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+受控磁碟可在背景中為您處理 Azure 儲存體帳戶的建立和管理作業，確保您不需要擔心儲存體帳戶的延展性限制。 您只需指定磁碟大小和效能層級 (標準或進階)，Azure 就會為您建立和管理磁碟。 即便是新增磁碟或相應增加和減少 VM，您都不必擔心所使用的儲存體。 如果您要建立新的 VM，請[使用 Azure CLI 2.0](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 Azure 入口網站來建立具有受控 OS 和資料磁碟的 VM。 如果您有具備非受控磁碟的 VM，您可以[將 VM 轉換成由受控磁碟提供支援](virtual-machines-linux-convert-unmanaged-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
  
 您也可以在每個 Azure 區域中使用單一儲存體帳戶管理自訂映像，並使用映像在相同訂用帳戶中建立數百個 VM。 如需受控磁碟的詳細資訊，請參閱[受控磁碟概觀](../storage/storage-managed-disks-overview.md)。
  
@@ -73,36 +73,25 @@ Azure 將針對支援 [cloud-init](http://cloud-init.io/) 的大多數 Linux 散
 * [在 Azure Linux VM 上使用 cloud-init](virtual-machines-linux-using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="quotas"></a>配額
-每個 Azure 訂用帳戶都有適當的預設配額限制，而此限制會在您要為專案部署大量 VM 時產生影響。 每一訂用帳戶目前的限制是每一區域 20 個 VM。  只要提出支援票證來要求增加限制，即可提高配額限制。  如需有關配額限制的詳細資料：
+每個 Azure 訂用帳戶都有適當的預設配額限制，而此限制會在您要為專案部署大量 VM 時產生影響。 每一訂用帳戶目前的限制是每一區域 20 個 VM。  只要提出支援票證來要求增加限制，即可快速且輕鬆地提高配額限制。  如需有關配額限制的詳細資料：
 
 * [Azure 訂用帳戶服務限制](../azure-subscription-service-limits.md)
 
 ## <a name="partners"></a>合作夥伴
 Microsoft 與我們的合作夥伴密切合作，以確保更新可用的映像並針對 Azure 執行階段進行最佳化。  如需有關我們合作夥伴的詳細資訊，請查看下方他們的市集頁面。
 
-[Azure 背書散發套件上的 Linux](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-SUSE - [Azure Marketplace - SUSE Linux Enterprise Server](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=%27SUSE%27)
-
-Redhat - [Azure Marketplace - RedHat Enterprise Linux 7.2](https://azure.microsoft.com/marketplace/partners/redhat/redhatenterpriselinux72/)
-
-Canonical - [Azure Marketplace - Ubuntu Server 16.04 LTS](https://azure.microsoft.com/marketplace/partners/canonical/ubuntuserver1604lts/)
-
-Debian - [Azure Marketplace - Debian 8 "Jessie"](https://azure.microsoft.com/marketplace/partners/credativ/debian8/)
-
-FreeBSD - [Azure Marketplace - FreeBSD 10.3](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd103/)
-
-CoreOS - [Azure Marketplace - CoreOS (Stable)](https://azure.microsoft.com/marketplace/partners/coreos/coreosstable/)
-
-RancherOS - [Azure Marketplace - RancherOS](https://azure.microsoft.com/marketplace/partners/rancher/rancheros/)
-
-Bitnami - [適用於 Azure 的 Bitnami 程式庫](https://azure.bitnami.com/)
-
-Mesosphere - [Azure Marketplace - Azure 上的 Mesosphere DC/OS](https://azure.microsoft.com/marketplace/partners/mesosphere/dcosdcos/)
-
-Docker - [Azure Marketplace - 與 Docker Swarm 搭配使用的 Azure Container Service](https://azure.microsoft.com/marketplace/partners/microsoft/acsswarms/)
-
-Jenkins - [Azure Marketplace - CloudBees Jenkins Platform](https://azure.microsoft.com/marketplace/partners/cloudbees/jenkins-platformjenkins-platform/)
+* [Azure 背書散發套件上的 Linux](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* SUSE - [Azure Marketplace - SUSE Linux Enterprise Server](https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=%27SUSE%27)
+* Redhat - [Azure Marketplace - RedHat Enterprise Linux 7.2](https://azure.microsoft.com/marketplace/partners/redhat/redhatenterpriselinux72/)
+* Canonical - [Azure Marketplace - Ubuntu Server 16.04 LTS](https://azure.microsoft.com/marketplace/partners/canonical/ubuntuserver1604lts/)
+* Debian - [Azure Marketplace - Debian 8 "Jessie"](https://azure.microsoft.com/marketplace/partners/credativ/debian8/)
+* FreeBSD - [Azure Marketplace - FreeBSD 10.3](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd103/)
+* CoreOS - [Azure Marketplace - CoreOS (Stable)](https://azure.microsoft.com/marketplace/partners/coreos/coreosstable/)
+* RancherOS - [Azure Marketplace - RancherOS](https://azure.microsoft.com/marketplace/partners/rancher/rancheros/)
+* Bitnami - [適用於 Azure 的 Bitnami 程式庫](https://azure.bitnami.com/)
+* Mesosphere - [Azure Marketplace - Azure 上的 Mesosphere DC/OS](https://azure.microsoft.com/marketplace/partners/mesosphere/dcosdcos/)
+* Docker - [Azure Marketplace - 與 Docker Swarm 搭配使用的 Azure Container Service](https://azure.microsoft.com/marketplace/partners/microsoft/acsswarms/)
+* Jenkins - [Azure Marketplace - CloudBees Jenkins Platform](https://azure.microsoft.com/marketplace/partners/cloudbees/jenkins-platformjenkins-platform/)
 
 ## <a name="getting-setup-on-azure"></a>在 Azure 上進行設定
 若要開始使用 Azure，您需要一個 Azure 帳戶、安裝 Azure CLI，以及一組 SSH 公開和私密金鑰。
@@ -111,11 +100,10 @@ Jenkins - [Azure Marketplace - CloudBees Jenkins Platform](https://azure.microso
 使用「Azure 雲端」的第一個步驟就是註冊 Azure 帳戶。  請前往 [Azure 帳戶註冊](https://azure.microsoft.com/pricing/free-trial/) 頁面來開始註冊。
 
 ### <a name="install-the-cli"></a>安裝 CLI
-有了您的新 Azure 帳戶之後，您便可以立即開始使用 Azure 入口網站，這是一個 Web 型系統管理面板。  若要透過命令列管理「Azure 雲端」，您需安裝 `azure-cli`。  請在您的 Mac 或 Linux 工作站上安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install)。
+有了您的新 Azure 帳戶之後，您便可以立即開始使用 Azure 入口網站，這是一個 Web 型系統管理面板。  若要透過命令列管理「Azure 雲端」，您需安裝 `azure-cli`。  請在您的 Mac 或 Linux 工作站上安裝 [Azure CLI 2.0](/cli/azure/install)。
 
 ### <a name="create-an-ssh-key-pair"></a>建立 SSH 金鑰組
 現在您已擁有 Azure 帳戶、Azure Web 入口網站及 Azure CLI。  下一個步驟是建立 SSH 金鑰組，使用此金鑰組即可透過 SSH 連線到 Linux，而不需使用密碼。  [在 Linux 和 Mac 上建立 SSH 金鑰](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，以便啟用無密碼登入功能並提升安全性。
-
 
 ### <a name="create-a-vm-using-the-cli"></a>使用 CLI 來建立 VM
 使用 CLI 來建立 Linux VM 是一個讓您不需離開正在工作的終端機即可快速部署 VM 的方法。  所有您可以在 Web 入口網站上指定的項目，透過命令列旗標或參數也都可以指定。  
@@ -152,6 +140,5 @@ VM 現在已在 Azure 上執行，而您已經可以登入。  使用密碼透�
 ## <a name="next-steps"></a>後續步驟
 您現在已概略了解 Azure 上的 Linux。  下一個步驟是深入了解並建立一些 VM！
 
-* [使用入口網站在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [使用 CLI 在 Azure 上建立 Linux VM](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [探索透過 AzureCLI 執行一般工作的指令碼範例清單 (不斷增加中)](virtual-machines-linux-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 

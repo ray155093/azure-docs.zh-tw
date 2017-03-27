@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 73304272-6c8b-482e-af7c-cd25d95dab4d
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -18,6 +19,7 @@ ms.author: nitinme
 translationtype: Human Translation
 ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
 ms.openlocfilehash: 6c513def2abc8c99b84b2eb48848de76e12e69c7
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -238,7 +240,7 @@ ms.openlocfilehash: 6c513def2abc8c99b84b2eb48848de76e12e69c7
 
 如果您有任何建議或意見反應，或使用此工具時，遇到任何問題，歡迎寄電子郵件到 hdivstool@microsoft.com。
 
-## <a name="a-nameseealsoasee-also"></a><a name="seealso"></a>另請參閱
+## <a name="seealso"></a>另請參閱
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
 
 ### <a name="scenarios"></a>案例
@@ -263,10 +265,5 @@ ms.openlocfilehash: 6c513def2abc8c99b84b2eb48848de76e12e69c7
 ### <a name="manage-resources"></a>管理資源
 * [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

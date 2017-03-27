@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/24/2017
+ms.date: 03/13/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: d49d7e6b4a9485c2371eb02ac8068adfde9bad6b
-ms.openlocfilehash: c7f27fe2560c1800f05c205a73fe738cc609d642
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 8a6050fc52407ab6b974a9698d970248062665c1
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -27,6 +28,10 @@ Data Factory 目前只支援將資料從內部部署 HDFS 移動到其他資料�
 
 ## <a name="enabling-connectivity"></a>啟用連線
 Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS。 請參閱 [在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 一文來了解資料管理閘道和設定閘道的逐步指示。 即使 HDFS 裝載於 Azure IaaS VM 中，仍請使用閘道器與其連接。
+
+> [!NOTE]
+> 請確定資料管理閘道器可以存取 Hadoop 叢集的**所有** [名稱節點伺服器]:[名稱節點連接埠] 和 [資料節點伺服器]:[資料節點連接埠]。 預設 [名稱節點連接埠] 是 50070，而預設 [資料節點連接埠] 是 50075。
+>
 
 雖然您可以在與 HDFS 相同的內部部署機器或 Azure VM 上安裝閘道器，仍建議您在個別的機器/Azure IaaS VM 上安裝。 在個別機器上安裝閘道器可減少資源爭用並改善效能。 當您在不同機器上安裝閘道器時，機器應該能夠存取具有 HDFS 的機器。
 
@@ -267,7 +272,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 * 選項 1：[讓閘道電腦加入 Kerberos 領域](#kerberos-join-realm)
 * 選項 2：[啟用 Windows 網域和 Kerberos 領域之間的相互信任](#kerberos-mutual-trust)
 
-### <a name="a-namekerberos-join-realmaoption-1-make-gateway-machine-join-kerberos-realm"></a><a name="kerberos-join-realm"></a>選項 1：讓閘道電腦加入 Kerberos 領域
+### <a name="kerberos-join-realm"></a>選項 1：讓閘道電腦加入 Kerberos 領域
 
 #### <a name="requirement"></a>需求：
 
@@ -277,7 +282,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 **在閘道電腦上︰**
 
-1.  執行 **Ksetup** 公用程式來設定 Kerberos KDC 伺服器和領域。
+1.    執行 **Ksetup** 公用程式來設定 Kerberos KDC 伺服器和領域。
 
     電腦必須設定為工作群組的成員，因為 Kerberos 領域與 Windows 網域不同。 若要進行此操作，您可以設定 Kerberos 領域並新增 KDC 伺服器，如下所示。 視需要以您自己的個別領域取代 *REALM.COM*。
 
@@ -286,7 +291,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
     在執行這 2 個命令後**重新啟動**電腦。
 
-2.  使用 **Ksetup** 命令確認組態。 輸出應該類似如下︰
+2.    使用 **Ksetup** 命令確認組態。 輸出應該類似如下︰
 
             C:> Ksetup
             default realm = REALM.COM (external)
@@ -297,11 +302,11 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 * 使用 **Windows 驗證**以及您用來連線到 HDFS 資料來源的 Kerberos 主體名稱和密碼，來設定 HDFS 連接器。 檢查組態詳細資料上的 [HDFS 連結服務屬性](#hdfs-linked-service-properties)區段。
 
-### <a name="a-namekerberos-mutual-trustaoption-2-enable-mutual-trust-between-windows-domain-and-kerberos-realm"></a><a name="kerberos-mutual-trust"></a>選項 2：啟用 Windows 網域和 Kerberos 領域之間的相互信任
+### <a name="kerberos-mutual-trust"></a>選項 2：啟用 Windows 網域和 Kerberos 領域之間的相互信任
 
 #### <a name="requirement"></a>需求：
-*   閘道電腦必須加入 Windows 網域。
-*   您需要可更新網域控制站設定的權限。
+*    閘道電腦必須加入 Windows 網域。
+*    您需要可更新網域控制站設定的權限。
 
 #### <a name="how-to-configure"></a>如何設定︰
 
@@ -310,7 +315,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 **在 KDC 伺服器上︰**
 
-1.  在 **krb5.conf** 檔案中編輯 KDC 組態，讓 KDC 信任參照以下組態範本的 Windows 網域。 根據預設，此組態位於 **/etc/krb5.conf**。
+1.    在 **krb5.conf** 檔案中編輯 KDC 組態，讓 KDC 信任參照以下組態範本的 Windows 網域。 根據預設，此組態位於 **/etc/krb5.conf**。
 
             [logging]
              default = FILE:/var/log/krb5libs.log
@@ -346,26 +351,26 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
               REALM.COM = .
              }
 
-        **Restart** the KDC service after configuration.
+        設定之後**重新啟動** KDC 服務。
 
-2.  使用下列命令，在 KDC 伺服器中準備名為 **krbtgt/REALM.COM@AD.COM** 的主體︰
+2.    使用下列命令，在 KDC 伺服器中準備名為 **krbtgt/REALM.COM@AD.COM** 的主體︰
 
             Kadmin> addprinc krbtgt/REALM.COM@AD.COM
 
-3.  在 **hadoop.security.auth_to_local** HDFS 服務組態檔中，新增 `RULE:[1:$1@$0](.*@AD.COM)s/@.*//`。
+3.    在 **hadoop.security.auth_to_local** HDFS 服務組態檔中，新增 `RULE:[1:$1@$0](.*@AD.COM)s/@.*//`。
 
 **在網域控制站上：**
 
-1.  執行以下 **Ksetup** 命令來新增領域項目︰
+1.    執行以下 **Ksetup** 命令來新增領域項目︰
 
             C:> Ksetup /addkdc REALM.COM <your_kdc_server_address>
             C:> ksetup /addhosttorealmmap HDFS-service-FQDN REALM.COM
 
-2.  建立 Windows 網域到 Kerberos 領域的信任關係。 [password] 是主體 **krbtgt/REALM.COM@AD.COM** 的密碼。
+2.    建立 Windows 網域到 Kerberos 領域的信任關係。 [password] 是主體 **krbtgt/REALM.COM@AD.COM** 的密碼。
 
             C:> netdom trust REALM.COM /Domain: AD.COM /add /realm /passwordt:[password]
 
-3.  選取 Kerberos 所使用的加密演算法。
+3.    選取 Kerberos 所使用的加密演算法。
 
     1. 移至 [伺服器管理員] > [群組原則管理] > [網域] > [群組原則物件] > [預設或作用中的網域原則]，然後進行編輯。
 
@@ -379,7 +384,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
                 C:> ksetup /SetEncTypeAttr REALM.COM DES-CBC-CRC DES-CBC-MD5 RC4-HMAC-MD5 AES128-CTS-HMAC-SHA1-96 AES256-CTS-HMAC-SHA1-96
 
-4.  建立網域帳戶與 Kerberos 主體之間的對應，以便在 Windows 網域中使用 Kerberos 主體。
+4.    建立網域帳戶與 Kerberos 主體之間的對應，以便在 Windows 網域中使用 Kerberos 主體。
 
     1. 啟動 [系統管理工具] > [Active Directory 使用者和電腦]。
 
@@ -411,7 +416,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
 | folderPath |資料夾的路徑。 範例：`myfolder`<br/><br/>使用逸出字元 ‘ \ ’ 當做字串中的特殊字元。 例如︰若為 folder\subfolder，請指定 folder\\\\subfolder；若為 d:\samplefolder，請指定 d:\\\\samplefolder。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 |是 |
-| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，所產生檔案的名稱是下列格式︰ <br/><br/>Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
+| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，所產生檔案的名稱是下列格式︰ <br/><br/>Data<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
 | partitionedBy |partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。 範例：folderPath 可針對每小時的資料進行參數化。 |否 |
 | format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](#specifying-textformat)、[Json 格式](#specifying-jsonformat)、[Avro 格式](#specifying-avroformat)、[Orc 格式](#specifying-orcformat)和 [Parquet 格式](#specifying-parquetformat)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
 | compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 如需詳細資訊，請參閱[指定壓縮](#specifying-compression)一節。 |否 |
@@ -475,9 +480,4 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 ## <a name="performance-and-tuning"></a>效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

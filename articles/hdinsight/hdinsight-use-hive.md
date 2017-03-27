@@ -10,6 +10,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 2c10f989-7636-41bf-b7f7-c4b67ec0814f
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -17,9 +18,9 @@ ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
-ms.openlocfilehash: 18131c083a0dc24eaa6f58445aa61d5872210417
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 2f37c2d635920dd286bf0cb5f9a74a01259a786a
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.lasthandoff: 02/16/2017
 
 在本教學課程中，您將了解如何在 HDInsight 中使用 Hadoop 內的 Apache Hive，以及選擇要如何執行 Hive 工作。 您也將了解 HiveQL 以及如何分析範例 Apache Log4j 檔案。
 
-## <a name="a-idwhyawhat-is-hive-and-why-use-it"></a><a id="why"></a>什麼是 Hive，為什麼要使用它？
+## <a id="why"></a>什麼是 Hive，為什麼要使用它？
 [Apache Hive](http://hive.apache.org/) 是適用於 Hadoop 的資料倉儲系統，可透過 HiveQL (與 SQL 類似的查詢語言) 執行資料摘要、查詢以及資料分析。 Hive 可以互動方式用於探索資料，或者建立可重複使用的批次處理工作。
 
 Hive 可讓您將結構投影在大量非結構化資料上。 定義結構後，您不須具備 Jave 或 MapReduce 相關知識，即可使用 Hive 查詢該資料。 **HiveQL** (Hive 查詢語言) 可讓您使用類似於 T-SQL 的陳述式撰寫查詢。
@@ -55,7 +56,7 @@ Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您在 Hive
 
 如需詳細資訊，請參閱 [HDInsight：Hive 內部和外部資料表簡介][cindygross-hive-tables]。
 
-## <a name="a-iddataaabout-the-sample-data-an-apache-log4j-file"></a><a id="data"></a>關於範例資料 Apache Log4j 檔案
+## <a id="data"></a>關於範例資料 Apache Log4j 檔案
 此範例使用 *log4j* 範例檔案，其儲存在 Blob 儲存容器中的 **/example/data/sample.log** 。 檔案中的每一筆記錄均由一列欄位組成，包括以 `[LOG LEVEL]` 欄位來顯示類型和嚴重性，例如：
 
     2012-02-03 20:26:41 SampleClass3 [ERROR] verbose detail for id 1527353937
@@ -78,7 +79,7 @@ Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您在 Hive
 > 
 > 
 
-## <a name="a-idjobasample-job-project-columns-onto-delimited-data"></a><a id="job"></a>範例工作：將資料行投影至帶分隔符號的資料上
+## <a id="job"></a>範例工作：將資料行投影至帶分隔符號的資料上
 下列 HiveQL 陳述式會將資料行投影在 **wasbs:///example/data** 目錄中所儲存且帶分隔符號的資料上：
 
     set hive.execution.engine=tez;
@@ -129,7 +130,7 @@ Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您在 Hive
 > 
 > 
 
-## <a name="a-idusetezause-apache-tez-for-improved-performance"></a><a id="usetez"></a>使用 Apache Tez 以提升效能
+## <a id="usetez"></a>使用 Apache Tez 以提升效能
 [Apache Tez](http://tez.apache.org) 是可讓資料高用量應用程式 (例如 Hive)，以大規模而更有效率方式執行作業的架構。 在最新版的 HDInsight 中，Hive 已支援在 Tez 上執行。 對於以 Linux 為基礎的 HDInsight 叢集，Tez 預設為開啟。
 
 > [!NOTE]
@@ -137,7 +138,7 @@ Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您在 Hive
 > 
 > ```set hive.execution.engine=tez;```
 > 
-> 此值可就個別查詢逐一提交，只要將值放在查詢開頭處即可。 您也可以在建立叢集時設定組態值，在叢集上將此值預設為開啟。 您可以在 [佈建 HDInsight 叢集](hdinsight-provision-clusters.md)中找到詳細資訊。
+> 此值可就個別查詢逐一提交，只要將值放在查詢開頭處即可。 您也可以在建立叢集時設定組態值，在叢集上將此值預設為開啟。 您可以在 [佈建 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)中找到詳細資訊。
 > 
 > 
 
@@ -148,7 +149,7 @@ Hive 也可透過 **使用者定義函數 (UDF)**延伸。 UDF 可讓您在 Hive
 * [在以 Windows 為基礎的 HDInsight 上使用 Tez UI](hdinsight-debug-tez-ui.md)
 * [在以 Linux 為基礎的 HDInsight 上使用 Ambari Tez 檢視](hdinsight-debug-ambari-tez-view.md)
 
-## <a name="a-idrunachoose-how-to-run-the-hiveql-job"></a><a id="run"></a>選擇如何執行 HiveQL 工作
+## <a id="run"></a>選擇如何執行 HiveQL 工作
 HDInsight 可以使用各種方法執行 Hive QL 工作。 請使用下表決定適合您的方法，然後跟著連結逐項閱讀介紹。
 
 | **使用此方法**  | ...一個 **互動式** 殼層 | ...**批次** 處理 | ...搭配此 **叢集作業系統** | ...從此 **用戶端作業系統** |
@@ -173,13 +174,11 @@ HDInsight 可以使用各種方法執行 Hive QL 工作。 請使用下表決定
 
 在[這裡][ssispack]深入了解適用於 SSIS 的 Azure Feature Pack。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 現在您已了解什麼是 Hive 以及如何搭配 HDInsight 中的 Hadoop 使用它，接著請使用下列連結探索 Azure HDInsight 的其他使用方式。
 
 * [將資料上傳至 HDInsight][hdinsight-upload-data]
 * [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
-* [搭配 HDInsight 使用 Sqoop](hdinsight-use-sqoop.md)
-* [在 HDInsight 上使用 Oozie](hdinsight-use-oozie.md)
 * [搭配 HDInsight 使用 MapReduce 作業][hdinsight-use-mapreduce]
 
 [hdinsight-sdk-documentation]: http://msdnstage.redmond.corp.microsoft.com/library/dn479185.aspx

@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/05/2017
 ms.author: hascipio; v-divte
 translationtype: Human Translation
-ms.sourcegitcommit: 27f49a7c0c2736423d73930a1865f7b542f54da4
-ms.openlocfilehash: 63c1591db91a2ffeaced8ac775525291f0fd033f
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: e801d966e7461be7ec6101941c7b70912ad8c403
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -188,7 +188,7 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。 也就�
 
 ### <a name="set-up-the-necessary-tools-powershell-and-azure-cli"></a>設定必要的工具 (PowerShell 和 Azure CLI)
 * [如何設定 PowerShell](/powershell/azureps-cmdlets-docs)
-* [如何設定 Azure CLI](../xplat-cli-install.md)
+* [如何設定 Azure CLI](../cli-install-nodejs.md)
 
 ### <a name="41-create-a-user-vm-image"></a>4.1 建立使用者 VM 映像
 #### <a name="capture-vm"></a>擷取 VM

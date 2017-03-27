@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Application Insights SDK 監視 Node.js 應用程式 | Microsoft Docs"
+title: "使用 Azure Application Insights 監視 Node.js 應用程式 | Microsoft Docs"
 description: "使用 Application Insights，分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。"
 services: application-insights
 documentationcenter: 
@@ -11,12 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/23/2017
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: bc7b0d4037effd7bcc8685a357a49de339e31d7b
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: b4e2ca39cf13b25ee02afec3867a57ab4b665cbd
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -181,6 +181,10 @@ server.on("listening", () => {
     appInsights.client.trackMetric("StartupTime", duration);
 });
 ```
+
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
 
 ## <a name="next-steps"></a>後續步驟
 * [在入口網站中監視遙測](app-insights-dashboards.md)

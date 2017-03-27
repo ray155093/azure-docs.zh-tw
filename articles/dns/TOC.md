@@ -4,13 +4,11 @@
 
 # 開始使用
 
-## [建立 DNS 區域](dns-getstarted-create-dnszone-portal.md)
-### [PowerShell](dns-getstarted-create-dnszone.md)
-### [Azure CLI](dns-getstarted-create-dnszone-cli.md)
-
-## [建立 DNS 記錄](dns-getstarted-create-recordset-portal.md)
-### [PowerShell](dns-getstarted-create-recordset.md)
-### [Azure CLI](dns-getstarted-create-recordset-cli.md)
+## 建立 DNS 區域和記錄
+### [入口網站](dns-getstarted-portal.md)
+### [PowerShell](dns-getstarted-powershell.md)
+### [Azure CLI 1.0](dns-getstarted-cli-nodejs.md)
+### [Azure CLI 2.0](dns-getstarted-cli.md)
 
 ## [將您的網域委派給 Azure DNS](dns-domain-delegation.md)
 ## [建立 Web 應用程式的自訂 DNS 記錄](dns-web-sites-custom-domain.md)

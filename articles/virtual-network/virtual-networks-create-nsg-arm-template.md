@@ -17,9 +17,9 @@ ms.date: 02/02/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
-ms.openlocfilehash: 627dba0f3a0a65ad75ef2799b7e5df56e9d8bfcb
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 9c36ed4ed16b53a7cca2d2eba93ad5063e60569b
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -152,7 +152,7 @@ ms.lasthandoff: 02/28/2017
 ## <a name="deploy-the-arm-template-by-using-the-azure-cli"></a>使用 Azure CLI 部署 ARM 範本
 若要使用 Azure CLI 部署 ARM 範本，請依照下列步驟執行。
 
-1. 如果您從未用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../xplat-cli-install.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
+1. 如果您從未用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
 2. 執行 **`azure config mode`** 命令，以切換為資源管理員模式，如下所示。
 
     ```azurecli

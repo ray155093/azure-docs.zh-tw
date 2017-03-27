@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: ganesr;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 9a8a72f5255184a1ac571532355c7f7a23d7f7bd
-ms.openlocfilehash: 0aacbdafdb5ded81dbc8495a30837e2f4941075f
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: ced4347baf7eca4dd8fc9cf1c8c0b451314f0ad2
+ms.lasthandoff: 03/14/2017
 
 
 ---
@@ -218,7 +218,7 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 > 
 
 ### <a name="8-link-a-virtual-network-to-an-expressroute-circuit"></a>8.將虛擬網路連結到 ExpressRoute 電路
-接下來，將虛擬網路連結到 ExpressRoute 線路。 當使用 Resource Manager 部署模型時，使用 [將虛擬網路連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md) 文章。
+接下來，將虛擬網路連結到 ExpressRoute 線路。 當使用 Resource Manager 部署模型時，使用[將虛擬網路連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)文章。
 
 ## <a name="getting-the-status-of-an-expressroute-circuit"></a>取得 ExpressRoute 線路的狀態
 您隨時可以使用 `Get-AzureRmExpressRouteCircuit` Cmdlet 擷取此資訊。 執行呼叫時，若未指定任何參數，將會列出所有線路。
@@ -286,15 +286,15 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
     get-help get-azurededicatedcircuit -detailed
 
 
-## <a name="a-namemodifyamodifying-an-expressroute-circuit"></a><a name="modify"></a>修改 ExpressRoute 線路
+## <a name="modify"></a>修改 ExpressRoute 線路
 您可以修改 ExpressRoute 線路的某些屬性，而不會影響連線。
 
 您可以執行下列工作，而無需中途停機：
 
 * 啟用或停用 ExpressRoute 線路的 ExpressRoute 進階附加元件。
-* 增加 ExpressRoute 線路的頻寬。 請注意，不支援將循環的頻寬降級。
-* 將計量方案從 [已計量資料] 變更為 [無限制資料]。 請注意，不支援將計量方案從 [無限制資料] 變更為 [已計量資料]。
-* 您可以啟用和停用 [允許傳統作業] 。
+* 只要連接埠有可用的容量，就增加 ExpressRoute 線路的頻寬。 請注意，不支援將線路的頻寬降級。 
+* 將計量方案從 [計量付費] 變更為 [無限制]。 請注意，不支援將計量方案從 [無限制] 變更為 [計量付費]。
+* 您可以啟用和停用 [允許傳統作業]。
 
 如需限制的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
@@ -337,8 +337,9 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 請查閱 [ExpressRoute 常見問題集](expressroute-faqs.md)，以取得提供者支援的頻寬選項。 您可以挑選任何比現有線路規模還大的大小。
 
 > [!IMPORTANT]
+> 如果現有的連接埠上沒有足夠的容量，您可能必須重新建立 ExpressRoute 線路。 如果該位置已無額外的容量，您無法升級線路。
+>
 > 降低 ExpressRoute 線路的頻寬時必須中斷運作。 頻寬降級需要取消佈建 ExpressRoute 線路，然後重新佈建新的 ExpressRoute 線路。
-> 
 > 
 
 一旦決定需要的大小後，可以使用下列命令來重新調整線路大小。
@@ -370,7 +371,7 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 * 您必須取消連結 ExpressRoute 循環的所有虛擬網路。 如果此作業失敗，請確認是否有任何虛擬網路連結至循環。
 * 如果 ExpressRoute 線路服務提供者佈建狀態為 **Provisioning** 或 **Provisioned**，您就必須與服務提供者一起合作，取消佈建他們那邊的線路。 我們將繼續保留資源並向您收取費用，直到線路服務提供者完成取消佈建並通知我們。
-* 若服務提供者已取消佈建循環 (服務提供者佈建狀態設定為 [NotProvisioned] )，則您可以刪除循環。 這樣將會停止針對循環計費
+* 若服務提供者已取消佈建線路 (服務提供者佈建狀態設定為 [NotProvisioned] )，則您可以刪除線路。 這樣將會停止針對循環計費
 
 您可以執行下列命令來刪除 ExpressRoute 線路：
 

@@ -3,7 +3,7 @@ title: "Azure App Service 中 API Apps 的使用者驗證 | Microsoft Docs"
 description: "了解如何藉由僅允許經過驗證的使用者存取，保護 Azure App Service 中的 API 應用程式。"
 services: app-service\api
 documentationcenter: .net
-author: tdykstra
+author: alexkarcher-msft
 manager: erikre
 editor: 
 ms.assetid: 3896760d-46ff-4b67-b98a-edd233f24758
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: dotnet
 ms.devlang: na
 ms.topic: article
 ms.date: 06/30/2016
-ms.author: rachelap
+ms.author: alkarche
 translationtype: Human Translation
 ms.sourcegitcommit: 16a2c6f8e704528c38054bba394e3d11098077e0
 ms.openlocfilehash: c39e7bca6f339a1797a9344778e6a01ffa8adecc
@@ -35,7 +35,7 @@ ms.lasthandoff: 01/24/2017
 * [如何在 Azure App Service 中設定使用者驗證](#authconfig) 一節大致說明如何為 API 應用程式設定使用者驗證，且一體適用於 App Service 支援的所有架構，包括 .NET、Node.js 和 Java。
 * 從 [繼續進行 .NET API Apps 教學課程](#tutorialstart) 一節開始，本文會引導您使用 .NET 後端和 AngularJS 前端設定範例應用程式，使其使用 Azure Active Directory 進行使用者驗證。 
 
-## <a name="a-idauthconfiga-how-to-configure-user-authentication-in-azure-app-service"></a><a id="authconfig"></a> 如何在 Azure App Service 中設定使用者驗證
+## <a id="authconfig"></a> 如何在 Azure App Service 中設定使用者驗證
 本節提供適用於任何 API 應用程式的一般指示。 如需「待辦事項清單」.NET 範例應用程式的專用步驟，請移至 [繼續進行 .NET 入門教學課程](#tutorialstart)。
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至您想要保護的 API 應用程式的 [設定] 刀鋒視窗，尋找 [功能] 區段，再按一下 [驗證/授權]。
@@ -64,7 +64,7 @@ ms.lasthandoff: 01/24/2017
 
 為了讓 API 呼叫受到驗證，呼叫端會在 HTTP 要求的 Authorization 標頭中包含驗證提供者的 OAuth 2.0 持有人權杖。 若要取得權杖，請使用驗證提供者的 SDK。
 
-## <a name="a-idtutorialstarta-continuing-the-net-api-apps-tutorials"></a><a id="tutorialstart"></a> 繼續進行 .NET API Apps 教學課程
+## <a id="tutorialstart"></a> 繼續進行 .NET API Apps 教學課程
 如果您要遵循適用於 API 應用程式的 Node.js 或 Java 教學課程，請跳至下一節 [API Apps 的服務主體驗證](app-service-api-dotnet-service-principal-auth.md)。 
 
 如果您要遵循適用於 API 應用程式的 .NET 教學課程系列，並已依照[第一個](app-service-api-dotnet-get-started.md)和[第二個](app-service-api-cors-consume-javascript.md)教學課程中的指示部署範例應用程式，請跳至在 [App Service 和 Azure AD 中設定驗證](#azureauth)一節。
@@ -80,7 +80,7 @@ ms.lasthandoff: 01/24/2017
 2. 按一下 [To Do List 範例儲存機制的讀我檔案](https://github.com/azure-samples/app-service-api-dotnet-todo-list/blob/master/readme.md)中的 [部署至 Azure] 按鈕，部署 API 應用程式和 Web 應用程式。 記下所建立的 Azure 資源群組，因為您稍後可以使用它來查閱 Web 應用程式和 API 應用程式名稱。
 3. 下載或複製 [To Do List 範例儲存機制](https://github.com/Azure-Samples/app-service-api-dotnet-todo-list) ，以取得您將在 Visual Studio 中本機使用的程式碼。
 
-## <a name="a-idazureautha-set-up-authentication-in-app-service-and-azure-ad"></a><a id="azureauth"></a> 在 App Service 和 Azure AD 中設定驗證
+## <a id="azureauth"></a> 在 App Service 和 Azure AD 中設定驗證
 您現在已擁有在 Azure App Service 中執行、且不需要使用者接受驗證的應用程式。 在本節中，您將執行下列工作來新增驗證機制：
 
 * 設定 App Service 以要求在呼叫中介層 API 應用程式時需要進行 Azure Active Directory (Azure AD) 驗證。

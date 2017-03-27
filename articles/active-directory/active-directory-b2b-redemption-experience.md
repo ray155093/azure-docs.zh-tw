@@ -14,12 +14,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/16/2017
+ms.date: 03/13/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 0c07c842ba8c6214d6746b0361af7b416069a6f5
-ms.openlocfilehash: 92bf625a9e62a24287b752bc1cbe061f1ef83a03
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: a063918766ccff6f5d0ec8a344160b912657d55a
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 02/17/2017
 ## <a name="social-id-user-first-time-redemption"></a>社交識別碼使用者首次兌換
 Azure AD B2B 共同作業可讓使用者使用任何電子郵件地址輕鬆兌換。 看看針對 B2B 共同作業使用非 Microsoft 電子郵件地址的兌換體驗。 這是牽涉範圍更廣的兌換流程，因為您可能必須在兌換時建立帳戶。 在下列影片中查看作法：
 
->[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-adding-guests-to-a-group/Player]
+>[!VIDEO https://channel9.msdn.com/Blogs/Azure/b2b-collaboration-redemption/Player]
 
 ## <a name="next-steps"></a>後續步驟
 

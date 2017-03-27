@@ -17,9 +17,9 @@ ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
-ms.openlocfilehash: e8aaeb255205a0e2a5f1072cfeebf85d270c45b8
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 9179319095c31d5eb454860e173ffa7c65fc9f73
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -46,7 +46,7 @@ ms.lasthandoff: 02/28/2017
 ## <a name="how-to-specify-a-static-private-ip-address-when-creating-a-vm"></a>建立 VM 時如何指定靜態私人 IP 位址
 若要在名為 TestVNet 之 VNet 的FrontEnd子網路中建立名為 DNS01 且其靜態私人 IP 為&192;.168.1.101 的 VM，請遵循下列步驟：
 
-1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../xplat-cli-install.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
+1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
 2. 執行 **azure config mode** 命令，以切換為 Azure 資源管理員模式，如下所示。
    
         azure config mode arm

@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 10/10/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 1aeb983730f732a021b828c658cc741f8659c487
-ms.openlocfilehash: 60e4ee8ff7e9252e3116d15e19ae378570e37196
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 97b5e4c3bda8d66297a43b4e430fec92d9588686
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -36,7 +36,7 @@ ms.lasthandoff: 02/27/2017
 ## <a name="quick-commands"></a>快速命令
 如果您需要快速完成工作，下列章節詳細說明上傳 VM 至 Azure 的基本命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](#requirements)。
 
-確定您已登入 [Azure CLI 1.0](../xplat-cli-install.md)，並且使用的是 Resource Manager 模式：
+確定您已登入 [Azure CLI 1.0](../cli-install-nodejs.md)，並且使用的是 Resource Manager 模式：
 
 ```azurecli
 azure config mode arm
@@ -102,7 +102,7 @@ azure vm create myVM -l "WestUS" --resource-group myResourceGroup \
   * 建立儲存體帳戶和容器來存放您的自訂映像和所建立的 VM
   * 建立所有 VM 之後，您即可放心地刪除您的映像
 
-確定您已登入 [Azure CLI 1.0](../xplat-cli-install.md)，並且使用的是 Resource Manager 模式：
+確定您已登入 [Azure CLI 1.0](../cli-install-nodejs.md)，並且使用的是 Resource Manager 模式：
 
 ```azurecli
 azure config mode arm

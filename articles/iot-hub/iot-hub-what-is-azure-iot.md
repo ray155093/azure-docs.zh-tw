@@ -12,7 +12,7 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2017
+ms.date: 03/24/2017
 ms.author: dobett
 translationtype: Human Translation
 ms.sourcegitcommit: 64e69df256404e98f6175f77357500b562d74318
@@ -24,6 +24,7 @@ ms.lasthandoff: 01/24/2017
 [!INCLUDE [iot-azure-and-iot](../../includes/iot-azure-and-iot.md)]
 
 ## <a name="next-steps"></a>後續步驟
+
 Azure IoT 中樞是一項 Azure 服務，可讓解決方案後端與數百萬個裝置進行安全可靠的雙向通訊。 它可讓解決方案後端︰
 
 * 從您的裝置接收大規模遙測。

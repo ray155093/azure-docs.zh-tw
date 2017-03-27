@@ -15,22 +15,24 @@ ms.topic: article
 ms.date: 2/24/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 7fc30c4283a96f3202e7010828e178895d3613b6
-ms.openlocfilehash: 08245a850e3c78ce893ef18030ee09e701241d1b
-ms.lasthandoff: 12/07/2016
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: afa8c08fc89103a14cc393c62e7f2c9d985426c2
+ms.lasthandoff: 03/14/2017
 
 
 ---
 # <a name="invoke-mapreduce-programs-from-data-factory"></a>從 Data Factory 叫用 MapReduce 程式
-> [!div class="op_single_selector"]
-> * [Hive](data-factory-hive-activity.md)  
-> * [Pig](data-factory-pig-activity.md)  
-> * [MapReduce](data-factory-map-reduce.md)  
-> * [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
-> * [機器學習服務](data-factory-azure-ml-batch-execution-activity.md) 
-> * [預存程序](data-factory-stored-proc-activity.md)
-> * [資料湖分析 U-SQL](data-factory-usql-activity.md)
-> * [.NET 自訂](data-factory-use-custom-activities.md)
+> [!div class="op_single_selector" title1="Transformation Activities"]
+> * [Hive 活動](data-factory-hive-activity.md) 
+> * [Pig 活動](data-factory-pig-activity.md)
+> * [MapReduce 活動](data-factory-map-reduce.md)
+> * [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
+> * [Spark 活動](data-factory-spark.md)
+> * [Machine Learning Batch 執行活動](data-factory-azure-ml-batch-execution-activity.md)
+> * [Machine Learning 更新資源活動](data-factory-azure-ml-update-resource-activity.md)
+> * [預存程序活動](data-factory-stored-proc-activity.md)
+> * [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md)
+> * [.NET 自訂活動](data-factory-use-custom-activities.md)
 
 Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight MapReduce 活動會在[您自己](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)或[隨選](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)的 Windows/Linux 架構 HDInsight 叢集上執行 MapReduce 程式。 本文是根據 [資料轉換活動](data-factory-data-transformation-activities.md) 一文，它呈現資料轉換和支援的轉換活動的一般概觀。
 

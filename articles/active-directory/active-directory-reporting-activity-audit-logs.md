@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 02/21/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 74460492c5eb6edfcc67015f8f6894267cb9edc8
-ms.openlocfilehash: 5a219219cd5e34713cd6a1c54a98d6bd15310e05
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 9f1fd20c77b085a66487c83d8dcd902e8cc83e6d
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -121,7 +121,7 @@ Azure 入口網站中有三個主要類別可稽核相關活動︰
 
 - 核心目錄
 
-- 自助密碼管理
+- 自助式密碼管理
 
 - 自助式群組管理
 
@@ -154,7 +154,7 @@ Azure 入口網站中有三個主要類別可稽核相關活動︰
 
 ![稽核](./media/active-directory-reporting-activity-audit-logs/628.png "稽核")
 
-如果將 [群組] 選取為 [活動類型]，您就能取得其他篩選選項，讓您也能根據下列**活動來源**進行篩選：
+如果將 [群組] 選取為 [活動資源類型]，您就能取得其他篩選選項，讓您也能根據下列**活動來源**進行篩選：
 
 - Azure AD
 

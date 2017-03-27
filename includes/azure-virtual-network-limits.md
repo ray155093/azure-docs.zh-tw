@@ -17,7 +17,7 @@
 | 每個部署的私人 VIP (ILB) |1 |1 |
 | 端點存取控制清單 (ACL) |50 |50 |
 
-#### <a name="a-nameazure-resource-manager-virtual-networking-limitsanetworking-limits---azure-resource-manager"></a><a name="azure-resource-manager-virtual-networking-limits"></a>網路限制 - Azure Resource Manager
+#### <a name="azure-resource-manager-virtual-networking-limits"></a>網路限制 - Azure Resource Manager
 下列限制僅適用於透過每個訂用帳戶每一區域的 Azure Resource Manager 所管理的網路資源。
 
 | 資源 | 預設限制 | 上限 |
@@ -26,6 +26,7 @@
 | 每一虛擬網路的子網路 |1,000 |連絡支援人員 |
 | 每一虛擬網路的 DNS 伺服器 |9 |25 |
 | 每個虛擬網路的私人 IP 位址 |4096 |4096 |
+| 每個網路介面的私人 IP 位址 |50 |連絡支援人員 |
 | 虛擬機器或角色執行個體的並行 TCP 連線 |500K |500K |
 | 網路介面 (NIC) |300 |10000 |
 | 網路安全性群組 (NSG) |100 |400 |
@@ -40,11 +41,7 @@
 | 每個負載平衡器的公用後端 IP |10 |連絡支援人員 |
 | 每個虛擬網路的 VNet 對等互連 |10 |50 |
 | 每個 VPN 閘道的點對站根憑證 |20 |20 |
+| 每個虛擬網路的次要 IP 組態 |1000 |連絡支援人員 |
 
 如果您需要增加預設值以外的限制，請連絡支援服務。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

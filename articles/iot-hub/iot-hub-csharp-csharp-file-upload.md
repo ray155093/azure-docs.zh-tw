@@ -12,17 +12,18 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
+ms.date: 03/08/2017
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: ddc181bde6a154cb3fb35254da6b76a91450ba6b
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 78fce5e464e065620e2f2da7f001d34b5cfd7a9f
+ms.lasthandoff: 03/10/2017
 
 
 ---
-# <a name="upload-files-from-devices-to-the-cloud-with-iot-hub"></a>使用 IoT 中心從裝置將檔案上傳至雲端
+# <a name="upload-files-from-your-simulated-device-to-the-cloud-with-iot-hub"></a>使用 IoT 中樞將檔案從模擬裝置上傳至雲端
 ## <a name="introduction"></a>簡介
-Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。 先前的教學課程 ([開始使用 IoT 中樞]和[使用 IoT 中樞傳送雲端到裝置訊息]) 說明了 IoT 中樞基本的裝置到雲端和雲端到裝置訊息功能，而[處理裝置到雲端訊息]教學課程會討論如何在 Azure Blob 儲存體中可靠地儲存裝置到雲端訊息的方式。 不過，在某些情況下，您無法輕易地將裝置傳送的資料對應到 IoT 中樞接受且相對較小的裝置到雲端訊息。 範例涵蓋包含圖片、影片、高頻率震動資料範例，或是包含部分前置處理資料形式的大型檔案。 這些檔案通常會使用工具 (例如 [Azure Data Factory] 或 [Hadoop] 堆疊) 在雲端中進行批次處理。 若偏好從裝置上傳檔案來傳送事件，您仍然可以使用 IoT 中樞安全性與可靠性功能。
+Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。 教學課程 ([IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。 [處理裝置到雲端訊息]教學課程說明能在 Azure Blob 儲存體中可靠地儲存裝置到雲端訊息的方法。 不過，在某些情況下，您無法輕易地將裝置傳送的資料對應到 IoT 中樞接受且相對較小的裝置到雲端訊息。 例如，包含圖片、影片、高頻率取樣的震動資料，或是包含部分前處理資料形式的大型檔案。 這些檔案通常會使用工具 (例如 [Azure Data Factory] 或 [Hadoop] 堆疊) 在雲端中進行批次處理。 若偏好從裝置上傳檔案來傳送事件，您仍然可以使用 IoT 中樞安全性與可靠性功能。
 
 本教學課程是以 [使用 IoT 中樞傳送雲端到裝置訊息] 教學課程中的程式碼來建置，示範如何使用 IoT 中樞的檔案上傳功能。 這會說明如何：
 
@@ -41,13 +42,16 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 若要完成此教學課程，您需要下列項目：
 
-* Microsoft Visual Studio 2015，
+* Visual Studio 2015 或 Visual Studio 2017
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
 ## <a name="associate-an-azure-storage-account-to-iot-hub"></a>讓 Azure 儲存體帳戶與 IoT 中樞產生關聯
-由於模擬裝置應用程式會將檔案上傳至 Blob，因此您必須擁有和 IoT 中樞關聯的 [Azure 儲存體]帳戶。 當您在建立 Azure 儲存體帳戶與 IoT 中樞的關聯時，IoT 中樞會產生可供裝置安全地將檔案上傳至 Blob 容器的 SAS URI。 IoT 中樞服務和裝置 SDK 會協調產生 SAS URI 的程序，並使其可供裝置用來上傳檔案。
+由於模擬裝置應用程式會將檔案上傳至 Blob，因此您必須擁有和 IoT 中樞關聯的 [Azure 儲存體]帳戶。 當您將 Azure 儲存體帳戶關聯 IoT 中樞時，IoT 中樞會產生 SAS URI。 裝置可以使用此 SAS URI，安全地將檔案上傳至 blob 容器。 IoT 中樞服務和裝置 SDK 會協調產生 SAS URI 的程序，並使其可供裝置用來上傳檔案。
 
-依照[使用 Azure 入口網站設定檔案上傳][lnk-configure-upload]中的指示，讓 Azure 儲存體帳戶與 IoT 中樞產生關聯。
+依照[使用 Azure 入口網站設定檔案上傳][lnk-configure-upload]中的指示，讓 Azure 儲存體帳戶與 IoT 中樞產生關聯。 請確定 blob 容器與 IoT 中樞相關聯，並已啟用檔案通知。 
+   
+![在入口網站中啟用檔案通知][3]
+
 
 ## <a name="upload-a-file-from-a-simulated-device-app"></a>從模擬裝置應用程式上傳檔案
 在本節中，您將修改在[使用 IoT 中樞傳送雲端到裝置訊息]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端到裝置訊息。
@@ -92,17 +96,16 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 1. 在目前的 Visual Studio 方案中，使用 [主控台應用程式] 專案範本來建立 Visual C# Windows 專案。 將專案命名為 **ReadFileUploadNotification**。
    
     ![Visual Studio 中的新專案][2]
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **ReadFileUploadNotification** 專案，然後按一下 [管理 NuGet 封裝]。
-   
-    此動作會顯示 [管理 NuGet 套件] 視窗。
-3. 搜尋 `Microsoft.Azure.Devices`，然後按一下 [ **安裝**] 並接受使用條款。 
+2. 在 [方案總管] 中，以滑鼠右鍵按一下 **ReadFileUploadNotification** 專案，然後按一下 [管理 NuGet 套件...]。
+       
+3. 在 [NuGet 套件管理員] 視窗中，搜尋 **Microsoft.Azure.Devices**，按一下 [安裝] 並接受使用規定。 
    
     此動作會下載和安裝 [Azure IoT 服務 SDK NuGet 套件]，並在 **ReadFileUploadNotification** 專案中新增此套件的參考。
 
 4. 在 **Program.cs** 檔的頂端，新增下列陳述式：
    
         using Microsoft.Azure.Devices;
-5. 將下列欄位新增到 **Program** 類別。 將預留位置的值從 IoT 中樞連接字串替換成[開始使用 IoT 中樞]：
+5. 將下列欄位新增到 **Program** 類別。 將預留位置的值從 IoT 中樞連接字串替換成[IoT 中樞入門]：
    
         static ServiceClient serviceClient;
         static string connectionString = "{iot hub connection string}";
@@ -126,7 +129,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
             }
         }
    
-    請注意，這裡的接收模式，與用來從裝置應用程式接收雲端到裝置訊息的模式相同。
+    請注意，此接收模式與用來從裝置應用程式接收雲端到裝置訊息的模式相同。
 7. 最後，將下列幾行加入至 **Main** 方法：
    
         Console.WriteLine("Receive file upload notifications\n");
@@ -143,7 +146,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
    ![][50]
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已學到如何運用 IoT 中樞的檔案上傳功能來簡化從裝置上傳檔案。 您可以利用下列文章繼續探索 IoT 中樞功能和案例：
+在本教學課程中，您已學到如何使用 IoT 中樞的檔案上傳功能來簡化從裝置上傳檔案。 您可以利用下列文章繼續探索 IoT 中樞功能和案例：
 
 * [以程式設計方式建立 IoT 中樞][lnk-create-hub]
 * [C SDK 簡介][lnk-c-sdk]
@@ -157,7 +160,8 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 [50]: ./media/iot-hub-csharp-csharp-file-upload/run-apps1.png
 [1]: ./media/iot-hub-csharp-csharp-file-upload/image-properties.png
-[2]: ./media/iot-hub-csharp-csharp-file-upload/create-identity-csharp1.png
+[2]: ./media/iot-hub-csharp-csharp-file-upload/file-upload-project-csharp1.png
+[3]: ./media/iot-hub-csharp-csharp-file-upload/enable-file-notifications.png
 
 <!-- Links -->
 
@@ -168,7 +172,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 [使用 IoT 中樞傳送雲端到裝置訊息]: iot-hub-csharp-csharp-c2d.md
 [處理裝置到雲端訊息]: iot-hub-csharp-csharp-process-d2c.md
-[開始使用 IoT 中樞]: iot-hub-csharp-csharp-getstarted.md
+[IoT 中樞入門]: iot-hub-csharp-csharp-getstarted.md
 [Azure IoT 開發人員中心]: http://www.azure.com/develop/iot
 
 [暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
@@ -181,12 +185,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 [lnk-c-sdk]: iot-hub-device-sdk-c-intro.md
 [lnk-sdks]: iot-hub-devguide-sdks.md
 
-[lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
+[lnk-gateway]: iot-hub-windows-gateway-sdk-simulated-device.md
 
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

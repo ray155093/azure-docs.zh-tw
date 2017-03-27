@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 01/17/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 4f541e34e7c0696e4074613c4ab0734a096c6d12
-ms.openlocfilehash: d6ac6253caaf5af1f8a14a499653c8afcbb7a2d8
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: c56a1dc92c27d55b90554e23dd9763ff98ce6cc7
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -212,15 +213,10 @@ Get-AzureRmVM -ResourceGroupName ExampleGroup
 
 **哪裡可以找到 Azure Resource Manager 範本的範例？**
 
-一組完整的入門範本可在 [Azure 資源管理員快速入門範本](https://azure.microsoft.com/documentation/templates/)中找到。
+一組完整的入門範本可在 [Azure Resource Manager 快速入門範本](https://azure.microsoft.com/documentation/templates/)中找到。
 
 ## <a name="next-steps"></a>後續步驟
 * 針對定義虛擬機器、儲存體帳戶和虛擬網路的範本，若需該範本的建立逐步解說，請參閱 [Resource Manager 範本逐步解說](resource-manager-template-walkthrough.md)。
 * 若要查看部署範本的命令，請參閱 [使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

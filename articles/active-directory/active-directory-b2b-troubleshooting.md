@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/09/2017
+ms.date: 03/14/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: a4e59dfa8a098f63c3173176c4d2675d6a59af00
-ms.openlocfilehash: f85c6bcc2abbd14c7879462f7013a97f550fdca5
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 66c0084c89b5c7510196142afd27b58953d0dc86
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -34,6 +35,11 @@ ms.openlocfilehash: f85c6bcc2abbd14c7879462f7013a97f550fdca5
 
 若清單中未顯示外部使用者，該物件可能需要一些時間才能複寫。
 
+## <a name="a-b2b-guest-user-is-not-showing-up-in-sharepoint-onlineonedrive-people-picker"></a>B2B 來賓使用者不會顯示在 SharePoint Online/OneDrive 人員選擇器中 
+ 
+在 SharePoint Online 人員選擇器中搜尋現有來賓使用者的功能預設為關閉，以符合舊版的行為。
+您可以使用租用戶和網站集合層級中的 'ShowPeoplePickerSuggestionsForGuestUsers' 設定來啟用此功能。 您可以使用 Set-SPOTenant 和 Set-SPOSite Cmdlet 來設定此功能，讓成員搜尋目錄中所有的現有來賓使用者。 租用戶範圍中的變更不會影響已佈建的 SPO 網站。
+
 ## <a name="invitations-have-been-disabled-for-directory"></a>已針對目錄停用邀請
 
 若看到錯誤訊息指出您沒有邀請使用者的權限，請確認您的使用者帳戶已獲邀請外部使用者的授權。 這可以在 [使用者設定] 下完成：
@@ -46,9 +52,9 @@ ms.openlocfilehash: f85c6bcc2abbd14c7879462f7013a97f550fdca5
 
 常見錯誤包括：
 
-### <a name="invitees-admin-has-disallowed-emailverified-users-from-being-created-in-their-tenant"></a>受邀者的系統管理員不允許在其租用戶中建立 EmailVerified Users：
+### <a name="invitees-admin-has-disallowed-emailverified-users-from-being-created-in-their-tenant"></a>受邀者的管理員不允許在其租用戶中建立 EmailVerified 使用者
 
-當邀請使用者的組織使用 Azure Active Directory，但指定使用者的帳戶不存在 (使用者不存在於 AAD contoso.com 中)。 contoso.com 的系統管理員可能已建立防止建立使用者的原則。 外部使用者必須連絡其系統管理員了解是否允許外部使用者，外部使用者的系統管理員可能需要在其網域中允許 EmailVerified Users (請參閱此[文章](https://docs.microsoft.com/en-us/powershell/msonline/v1/set-msolcompanysettings#parameters)以了解如何允許 EmailVerified Users)。
+當邀請使用者的組織使用 Azure Active Directory，但指定使用者的帳戶不存在 (例如，使用者不存在於 Azure AD contoso.com 中)。 contoso.com 的系統管理員可能已建立防止建立使用者的原則。 使用者必須向管理員確認，以判斷是否允許外部使用者。 外部使用者的管理員需要允許其網域中存在已驗證的電子郵件使用者 (請參閱[本文](https://docs.microsoft.com/powershell/msonline/v1/set-msolcompanysettings#parameters)，了解允許已驗證的電子郵件使用者)。
 
 ![](media/active-directory-b2b-troubleshooting/allow-email-verified-users.png)
 
@@ -58,7 +64,7 @@ ms.openlocfilehash: f85c6bcc2abbd14c7879462f7013a97f550fdca5
 
 若要解決此問題，外部使用者的系統管理員必須將該使用者的帳戶同步到 Azure Active Directory。
 
-## <a name="how-does--which-is-normally-an-invalid-character-sync-with-azure-ad"></a>‘\#’ (通常是無效的字元) 如何與 Azure AD 同步？
+## <a name="how-does--which-is-not-normally-a-valid-character-sync-with-azure-ad"></a>‘\#’ (通常是無效的字元) 如何與 Azure AD 同步？
 
 “\#” 是 Azure AD B2B 共同作業中的 UPN 或外部使用者保留字元 (亦即，若邀請 &lt;user@contoso.com&gt;，它會變成 &lt;user_contoso.com#EXT@fabrikam.onmicrosoft.com&gt;)，因此來自內部部署之 UPN 中的 \# 不允許登入 Azure 入口網站。
 
@@ -89,9 +95,4 @@ ms.openlocfilehash: f85c6bcc2abbd14c7879462f7013a97f550fdca5
 * [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
 * [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
 * [Azure Active Directory 中應用程式管理的文章索引](active-directory-apps-index.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

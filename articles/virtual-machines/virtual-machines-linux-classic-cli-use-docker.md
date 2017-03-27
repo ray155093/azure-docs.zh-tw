@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 08/29/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: f6537e4ebac76b9f3328223ee30647885ee15d3e
-ms.openlocfilehash: 0daa75e1d4fccf7d7c7785422a9607787e55ca8b
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: f79f6fb82a74d6195491f243dc79db0c6753a894
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -37,7 +38,7 @@ ms.openlocfilehash: 0daa75e1d4fccf7d7c7785422a9607787e55ca8b
 * 使用本機 Docker 命令在 Azure 中的 Docker VM 內管理 Docker 容器。
 
 ### <a name="install-the-azure-command-line-interface-azure-cli"></a>安裝 Azure 命令列介面 (Azure CLI)
-若要安裝和設定 Azure CLI，請參閱 [如何安裝 Azure 命令列介面](../xplat-cli-install.md)。 若要確認安裝狀況，請在命令提示字元中輸入 `azure` ，您應該很快就能看到 Azure CLI ASCII 作品，其中會列出您可以使用的基本命令。 如果安裝正確執行，您應該可以輸入 `azure help vm` 並且可以看到列出的其中一個命令是 "docker"。
+若要安裝和設定 Azure CLI，請參閱 [如何安裝 Azure 命令列介面](../cli-install-nodejs.md)。 若要確認安裝狀況，請在命令提示字元中輸入 `azure` ，您應該很快就能看到 Azure CLI ASCII 作品，其中會列出您可以使用的基本命令。 如果安裝正確執行，您應該可以輸入 `azure help vm` 並且可以看到列出的其中一個命令是 "docker"。
 
 > [!NOTE]
 > Docker 具有適用於 Windows 的工具 [Docker Machine](https://docs.docker.com/installation/windows/)，您也可以使用這些工具來自動建立 Docker 用戶端，以便用來與做為 Docker 主機的 Azure VM 搭配運作。
@@ -181,9 +182,4 @@ azure vm docker create -e 22 -l "West US" <vm-cloudservice name> "b39f27a8b8c64d
 [Docker 使用者指南]: https://docs.docker.com/userguide/
 
 [在 Azure 虛擬機器上開始使用 Docker 和 Compose 定義並執行多容器應用程式]:virtual-machines-linux-docker-compose-quickstart.md。
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

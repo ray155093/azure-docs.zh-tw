@@ -1,6 +1,6 @@
----
-title: "建立 Azure Linux VM 的複本 | Microsoft Docs"
-description: "了解如何在 Resource Manager 部署模型中建立 Azure Linux 虛擬機器的複本"
+--- 
+title: "使用 Azure CLI 2.0 來複製 Linux VM | Microsoft Docs"
+description: "了解如何使用 Azure CLI 2.0 和受控磁碟來建立 Azure Linux VM 的複本。"
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -12,106 +12,123 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 07/28/2016
+ms.date: 03/10/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 55c6eb6eac96b341d082594b2bac2396fe3032e1
+ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
+ms.openlocfilehash: f24b5efb0f970149d30f93b7ad50002a613b4394
+ms.lasthandoff: 03/11/2017
 
 
----
-# <a name="create-a-copy-of-a-linux-virtual-machine-running-on-azure"></a>建立在 Azure 上執行的 Linux 虛擬機器複本
-本文示範如何使用 Resource Manager 部署模型來建立執行 Linux 的 Azure 虛擬機器 (VM) 複本。 首先，您需將作業系統和資料磁碟複製到新容器中，然後設定網路資源並建立新的虛擬機器。
+---                    
+               
+# <a name="create-a-copy-of-a-linux-vm-by-using-azure-cli-20-and-managed-disks"></a>使用 Azure CLI 2.0 和受控磁碟來建立 Azure Linux VM 的複本
 
-您也可以[上傳自訂磁碟映像並從這個映像建立 VM](virtual-machines-linux-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-## <a name="before-you-begin"></a>開始之前
-請先確保符合下列必要條件再開始以下步驟︰
+本文說明如何使用 Azure CLI 2.0 和 Azure Resource Manager 部署模型，建立執行 Linux 之 Azure 虛擬機器 (VM) 的複本。 您也可以使用 [Azure CLI 1.0](virtual-machines-linux-copy-vm-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
 
-* 您已在電腦上下載及安裝 [Azure CLI](../xplat-cli-install.md) 。 
-* 您也需要現有 Azure Linux VM 的一些相關資訊：
+您也可以[上傳 VHD 並從中建立 VM](virtual-machines-linux-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-| 來源 VM 資訊 | 從哪裡取得 |
-| --- | --- |
-| VM 名稱 |`azure vm list` |
-| 資源群組名稱 |`azure vm list` |
-| 位置 |`azure vm list` |
-| 儲存體帳戶名稱 |`azure storage account list -g <resourceGroup>` |
-| 容器名稱 |`azure storage container list -a <sourcestorageaccountname>` |
-| 來源 VM VHD 檔案名稱 |`azure storage blob list --container <containerName>` |
+## <a name="prerequisites"></a>必要條件
 
-* 您將需要進行新 VM 的一些相關選擇：   <br> -容器名稱    <br> -VM 名稱    <br> -VM 大小    <br> -vNet 名稱    <br> -SubNet 名稱    <br> -IP 名稱    <br>  -NIC 名稱
 
-## <a name="login-and-set-your-subscription"></a>登入及設定您的訂用帳戶
-1. 登入 CLI。
+-   安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)
 
-```azurecli
-azure login
-```
+-   使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
-2. 確定您處於 Resource Manager 模式。
+-   讓 Azure VM 做為複製的來源。
+
+## <a name="step-1-stop-the-source-vm"></a>步驟 1︰停止來源 VM
+
+
+使用 [az vm deallocate](/cli/azure/vm#deallocate) 解除配置來源 VM。
+下列範例會解除配置 **myResourceGroup** 資源群組中名為 **myVM** 的 VM：
 
 ```azurecli
-azure config mode arm
+az vm deallocate --resource-group myResourceGroup --name myVM
 ```
 
-3. 設定正確的訂用帳戶。 您可以使用 'azure account list' 來查看您的所有訂用帳戶。
+## <a name="step-2-copy-the-source-vm"></a>步驟 2︰複製來源 VM
+
+
+若要複製 VM，您可建立基礎虛擬硬碟的複本。 此程序會建立特製化 VHD 做為受控磁碟，其包含與來源 VM 相同的組態和設定。
+
+如需 Azure 受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md)。 
+
+1.  使用 [az vm list](/cli/azure/vm#list) 列出每部 VM 及其 OS 磁碟的名稱。 下列範例會列出名為 **myResourceGroup** 的資源群組中的所有 VM：
+    
+    ```azurecli
+    az vm list -g myTestRG --query '[].{Name:name,DiskName:storageProfile.osDisk.name}' --output table
+    ```
+
+    輸出類似於下列範例：
+
+    ```azurecli
+    Name    DiskName
+    ------  --------
+    myVM    myDisk
+    ```
+
+1.  使用 [az disk create](/cli/azure/disk#create) 建立新的受控磁碟，進而複製磁碟。 下列範例會從名為 **myDisk** 的受控磁碟建立名為 **myCopiedDisk** 的磁碟：
+
+    ```azurecli
+    az disk create --resource-group myResourceGroup --name myCopiedDisk --source myDisk
+    ``` 
+
+1.  使用 [az disk list](/cli/azure/disk#list) 來確認此受控磁碟現在位於您的資源群組中。 下列範例會列出名為 **myResourceGroup** 的資源群組中的受控磁碟：
+
+    ```azurecli
+    az disk list --resource-group myResourceGroup --output table
+    ```
+
+1.  跳至[步驟 3︰設定虛擬網路](#step-3-set-up-a-virtual-network)。
+
+
+## <a name="step-3-set-up-a-virtual-network"></a>步驟 3︰設定虛擬網路
+
+
+下列選擇性步驟會建立新的虛擬網路、子網路、公用 IP 位址和虛擬網路介面卡 (NIC)。
+
+如果您為了進行疑難排解或其他部署而複製 VM，您可能不想使用現有虛擬網路中的 VM。
+
+如果您想為所複製的 VM 建立虛擬網路基礎結構，請遵循接下來的幾個步驟。 如果不想建立虛擬網路，請跳至[步驟 4：建立 VM](#step-4-create-a-vm)。
+
+1.  使用 [az network vnet create](/cli/azure/network/vnet#create) 建立虛擬網路。 下列範例會建立名為 **myVnet** 的虛擬網路和名為 **mySubnet** 的子網路：
+
+    ```azurecli
+    az network vnet create --resource-group myResourceGroup --location westus --name myVnet \
+        --address-prefix 192.168.0.0/16 --subnet-name mySubnet --subnet-prefix 192.168.1.0/24
+    ```
+
+1.  使用 [az network public-ip create](/cli/azure/network/public-ip#create) 建立公用 IP。 下列範例會建立名為 **myPublicIP** 的公用 IP，其 DNS 名稱為 **mypublicdns**。 (DNS 名稱必須是唯一的，因此請提供唯一的名稱。)
+
+    ```azurecli
+    az network public-ip create --resource-group myResourceGroup --location westus \
+        --name myPublicIP --dns-name mypublicdns --allocation-method static --idle-timeout 4
+    ```
+
+1.  使用 [az network nic create](/cli/azure/network/nic#create) 來建立 NIC。
+    下列範例會建立連結至 **mySubnet** 子網路且名為 **myNic** 的 NIC：
+
+    ```azurecli
+    az network nic create --resource-group myResourceGroup --location westus --name myNic \
+        --vnet-name myVnet --subnet mySubnet --public-ip-address myPublicIP
+    ```
+
+## <a name="step-4-create-a-vm"></a>步驟 4：建立 VM
+
+您現在可以使用 [az vm create](/cli/azure/vm#create) 建立 VM。
+
+指定要做為 OS 磁碟的所複製受控磁碟 (--attach-os-disk)，如下所示︰
 
 ```azurecli
-azure account set mySubscriptionID
+az vm create --resource-group myResourceGroup --name myCopiedVM \
+    --admin-username azureuser --ssh-key-value ~/.ssh/id_rsa.pub \
+    --nics myNic --size Standard_DS1_v2 --os-type Linux \
+    --attach-os-disk myCopiedDisk
 ```
-
-## <a name="stop-the-vm"></a>停止 VM
-將來源 VM 停止並解除配置。 您可以使用 'azure vm list' 來取得訂用帳戶中所有 VM 及其資源群組名稱的清單。
-
-```azurecli
-azure vm stop myResourceGroup myVM
-azure vm deallocate myResourceGroup MyVM
-```
-
-
-## <a name="copy-the-vhd"></a>複製 VHD
-您可以使用 `azure storage blob copy start`將 VHD 從來源儲存體複製到目的地。 在此範例中，我們將會把 VHD 複製到相同的儲存體帳戶但不同的容器中。
-
-若要將 VHD 複製到相同儲存體帳戶中的另一個容器，請輸入：
-
-```azurecli
-azure storage blob copy start \
-        https://mystorageaccountname.blob.core.windows.net:8080/mycontainername/myVHD.vhd \
-        myNewContainerName
-```
-
-## <a name="set-up-the-virtual-network-for-your-new-vm"></a>為新 VM 設定虛擬網路
-為新 VM 設定虛擬網路和 NIC。 
-
-```azurecli
-azure network vnet create myResourceGroup myVnet -l myLocation
-
-azure network vnet subnet create -a <address.prefix.in.CIDR/format> myResourceGroup myVnet mySubnet
-
-azure network public-ip create myResourceGroup myPublicIP -l myLocation
-
-azure network nic create myResourceGroup myNic -k mySubnet -m myVnet -p myPublicIP -l myLocation
-```
-
-
-## <a name="create-the-new-vm"></a>建立新 VM
-您現在可以 [使用 Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-from-specialized-vhd) 從已上傳的虛擬磁碟建立 VM，或透過 CLI 藉由輸入下列命令來指定所複製磁碟的 URI 以建立 VM︰
-
-```azurecli
-azure vm create -n myVM -l myLocation -g myResourceGroup -f myNic \
-        -z Standard_DS1_v2 -y Linux \
-        https://mystorageaccountname.blob.core.windows.net:8080/mycontainername/myVHD.vhd 
-```
-
-
 
 ## <a name="next-steps"></a>後續步驟
-若要了解如何使用 Azure CLI 來管理新虛擬機器，請參閱 [Azure Resource Manager 的 Azure CLI 命令](azure-cli-arm-commands.md)。
 
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+若要了解如何使用 Azure CLI 來管理新的 VM，請參閱 [Azure Resource Manager 的 Azure CLI 命令](azure-cli-arm-commands.md)。
 

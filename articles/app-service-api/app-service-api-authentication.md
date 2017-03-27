@@ -3,7 +3,7 @@ title: "Azure App Service 中的 API Apps 驗證與授權 | Microsoft Docs"
 description: "了解 Azure App Service 針對 API Apps 所提供的驗證和授權服務。"
 services: app-service\api
 documentationcenter: .net
-author: tdykstra
+author: alexkarcher-msft
 manager: erikre
 editor: 
 ms.assetid: d620b53a-5a6f-41c9-84c7-f7ef5ff02ae7
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2016
-ms.author: rachelap
+ms.author: alkarche
 translationtype: Human Translation
 ms.sourcegitcommit: b75f7aa757679a29a42cdfc04799873ee30bab2e
 ms.openlocfilehash: cd66296718d8ae3cd2bcd69c66f54684f57d7ece
@@ -77,7 +77,7 @@ App Service 可以防止匿名 HTTP 要求進入您的 API 應用程式、傳遞
 
 如需如何設定驗證的詳細資訊，請參閱 [如何設定 App Service 應用程式使用 Azure Active Directory 登入](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md)。 本文適用於 API 應用程式和行動應用程式，而且會連結到關於其他驗證提供者的其他文章。
 
-## <a name="a-idinternala-service-account-authentication"></a><a id="internal"></a> 服務帳戶驗證
+## <a id="internal"></a> 服務帳戶驗證
 App Service 驗證適用於從某個 API 應用程式呼叫另一個 API 應用程式之類的內部案例。 在此案例中，您可以使用服務帳戶認證 (而非使用者認證) 來取得權杖。 服務帳戶在 Azure Active Directory 中也稱為 *服務主體* ，使用這類帳戶的驗證也稱為服務對服務案例。 
 
 若為服務對服務案例，則請使用 Azure Active Directory 保護所呼叫的 API 應用程式，並在呼叫 API 應用程式時提供 AAD 服務主體授權權杖。 透過提供用戶端識別碼和用戶端密碼，您就可以從 AAD 應用程式取得此權杖。 不需要特殊的僅 Azure 適用的程式碼，例如在處理行動服務 Zumo 權杖時為 true。 [API Apps 的服務主體驗證](app-service-api-dotnet-service-principal-auth.md)教學課程中有講述這個使用 ASP.NET API 應用程式之案例的範例。

@@ -14,13 +14,26 @@ ms.topic: article
 ms.date: 02/16/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: ffe3e6c5f61f2debee70683990cf26ce094dc64b
-ms.openlocfilehash: c06b8d6010ca6ddf562df99dcb7bf61ad9648f07
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: f78c735ec9a0bb34921e2ce03a4b96478480bcd0
+ms.lasthandoff: 03/14/2017
 
 
 ---
 # <a name="updating-azure-machine-learning-models-using-update-resource-activity"></a>使用更新資源活動更新 Azure Machine Learning 模型
+
+> [!div class="op_single_selector" title1="Transformation Activities"]
+> * [Hive 活動](data-factory-hive-activity.md) 
+> * [Pig 活動](data-factory-pig-activity.md)
+> * [MapReduce 活動](data-factory-map-reduce.md)
+> * [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
+> * [Spark 活動](data-factory-spark.md)
+> * [Machine Learning Batch 執行活動](data-factory-azure-ml-batch-execution-activity.md)
+> * [Machine Learning 更新資源活動](data-factory-azure-ml-update-resource-activity.md)
+> * [預存程序活動](data-factory-stored-proc-activity.md)
+> * [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md)
+> * [.NET 自訂活動](data-factory-use-custom-activities.md)
+
 本文補充主要 Azure Data Factory - Azure Machine Learning 整合文件︰[使用 Azure Machine Learning 和 Azure Data Factory 建立預測管線](data-factory-azure-ml-batch-execution-activity.md)。 如果您尚未檢閱主要文件，請在閱讀這篇文章之前先這麼做。 
 
 ## <a name="overview"></a>概觀

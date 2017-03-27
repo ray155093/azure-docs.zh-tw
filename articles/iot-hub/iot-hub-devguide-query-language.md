@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: 64f44c176633db4179f954d2f70cdf26d08b60b4
-ms.openlocfilehash: 28ea238484d86b044899aa9f95861bbdbbf3a06c
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 44169ba74f6af2b1c27ea4c2a8fd0214892f90d5
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -95,7 +96,7 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
         SELECT * FROM devices
         WHERE property.reported.connectivity IN ['wired', 'wifi']
 
-會擷取所有報告使用 wifi 或有線連線的裝置對應項。 您通常必須識別包含特定屬性的所有裝置對應項。 為了實現此目的，IoT 中樞支援 `is_defined()` 函式。 例如，
+會擷取所有報告使用 WiFi 或有線連線能力的裝置對應項。 您通常必須識別包含特定屬性的所有裝置對應項。 為了實現此目的，IoT 中樞支援 `is_defined()` 函式。 例如，
 
         SELECT * FROM devices
         WHERE is_defined(property.reported.connectivity)
@@ -285,7 +286,7 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
 
         messageType = 'alerts' AND as_number(severity) <= 2
 
-請參閱[運算式和條件][ lnk-query-expressions]一節，以取得支援的完整運算子和函式清單。
+請參閱[運算式和條件][lnk-query-expressions]一節，以取得支援的完整運算子和函式清單。
 
 ## <a name="basics-of-an-iot-hub-query"></a>IoT 中樞查詢的基本概念
 每一個 IoT 中樞查詢都包含 SELECT 和 FROM 子句，以及選擇性的 WHERE 和 GROUP BY 子句。 每個查詢都會在 JSON 文件的集合上執行，例如裝置對應項。 FROM 子句會指出要在其上反覆運算的文件集合 (**devices** 或 **devices.jobs**)。 然後，會套用 WHERE 子句中的篩選。 若為彙總，此步驟的結果會依照 GROUP BY 子句中所指定的方式針對每個群組進行分組，並依 SELECT 子句中所指定的方式產生一個資料列。
@@ -420,7 +421,7 @@ GROUP BY 的正式語法如下︰
 | ABS(x) | 傳回指定之數值運算式的絕對 (正) 值。 |
 | EXP(x) | 傳回指定之數值運算式 (e^x) 的指數值。 |
 | POWER(x,y) | 將指定之運算式的值傳回給指定的乘冪 (x^y)。|
-| SQUARE(x) | 傳回指定之數值的平方。 |
+| SQUARE(x)    | 傳回指定之數值的平方。 |
 | CEILING(x) | 傳回大於或等於指定之數值運算式的最小整數值。 |
 | FLOOR(x) | 傳回小於或等於指定之數值運算式的最大整數。 |
 | SIGN(x) | 傳回指定之數值運算式的正數 (+1)、零 (0) 或負數 (-1) 符號。|
@@ -471,9 +472,4 @@ GROUP BY 的正式語法如下︰
 
 
 [lnk-hub-sdks]: iot-hub-devguide-sdks.md
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

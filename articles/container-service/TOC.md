@@ -15,6 +15,7 @@
 ### [啟用 DC/OS 公用存取](container-service-enable-public-access.md)
 ### [負載平衡 DC/OS 容器](container-service-load-balancing.md)
 ### [DC/OS 中的應用程式/使用者特定協調者](container-service-application-specific-marathon.md)
+### [新增檔案共用](container-service-dcos-fileshare.md)
 ### 監視 DC/OS
 #### [透過 ELK 進行監視](container-service-monitoring-elk.md)
 #### [透過 OMS 進行監視](container-service-monitoring-oms.md)

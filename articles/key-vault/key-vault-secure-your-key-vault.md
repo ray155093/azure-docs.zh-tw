@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: ambapat
 translationtype: Human Translation
-ms.sourcegitcommit: 36e0a52013b8d12c7e66c5955756a61a2c72b7dc
-ms.openlocfilehash: c3507aed3cc44d6360b8ba3ddf172e1437c1227a
-ms.lasthandoff: 01/05/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: a28e325e8a7e902a64f8cc267e2f0d3be151bcb3
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -73,7 +73,7 @@ Azure 金鑰保存庫是一項可透過 Azure Resource Manager 部署模型取�
 管理平面是由會影響金鑰保存庫本身的作業所組成。 例如，您可以建立或刪除金鑰保存庫。 您可以取得訂用帳戶中的保存庫清單。 您可以擷取金鑰保存庫屬性 (例如 SKU、標籤)，並設定金鑰保存庫存取原則來控制可存取金鑰保存庫中金鑰和密碼的使用者和應用程式。 管理平面存取控制會使用 RBAC。 請參閱上一節的資料表中，可透過管理平面執行的金鑰保存庫作業完整清單。 
 
 ### <a name="role-based-access-control-rbac"></a>角色型存取控制 (RBAC)
-每一個 Azure 訂用帳戶都具有 Azure Active Directory。 您可以為來自該目錄的使用者、群組和應用程式授與存取權，以便在使用 Azure Resource Manager 部署模型的 Azure 訂用帳戶中管理資源。 這種存取控制稱為角色型存取控制 (RBAC)。 若要管理此存取權，您可以使用 [Azure 入口網站](https://portal.azure.com/)、[Azure CLI 工具](../xplat-cli-install.md)、[PowerShell](/powershell/azureps-cmdlets-docs) 或 [Azure Resource Manager REST API](https://msdn.microsoft.com/library/azure/dn906885.aspx)。
+每一個 Azure 訂用帳戶都具有 Azure Active Directory。 您可以為來自該目錄的使用者、群組和應用程式授與存取權，以便在使用 Azure Resource Manager 部署模型的 Azure 訂用帳戶中管理資源。 這種存取控制稱為角色型存取控制 (RBAC)。 若要管理此存取權，您可以使用 [Azure 入口網站](https://portal.azure.com/)、[Azure CLI 工具](../cli-install-nodejs.md)、[PowerShell](/powershell/azureps-cmdlets-docs) 或 [Azure Resource Manager REST API](https://msdn.microsoft.com/library/azure/dn906885.aspx)。
 
 透過 Azure Resource Manager 模型，您可以在資源群組中建立金鑰保存庫，並使用 Azure Active Directory 來控制此金鑰保存庫之管理平面的存取權。 例如，您可以對使用者或群組授與在特定資源群組中管理金鑰保存庫的能力。
 
@@ -90,7 +90,7 @@ Azure 金鑰保存庫是一項可透過 Azure Resource Manager 部署模型取�
 資料平面的存取權是藉由設定金鑰保存庫的存取原則來授與。 使用者、群組或應用程式必須具有管理平面的參與者權限 (RBAC)，金鑰保存庫才能設定該金鑰保存庫的存取原則。 您可以對使用者、群組或應用程式授與權限，來為金鑰保存庫中的金鑰或密碼執行特定作業。 金鑰保存庫最多可支援 16 個存取原則項目。 建立 Azure Active Directory 安全性群組並在該群組中新增使用者，即可對數名使用者授與金鑰保存庫的資料平面存取權。
 
 ### <a name="key-vault-access-policies"></a>金鑰保存庫存取原則
-金鑰保存庫存取原則可分別授與金鑰、密碼和憑證的權限。 例如，您可以只提供金鑰存取權給使用者，但不提供密碼的權限。 不過，金鑰、密碼或憑證的存取權限是在保存庫層級。 換句話說，金鑰保存庫存取原則不支援物件層級權限。 您可以使用 [Azure 入口網站](https://portal.azure.com/)、[Azure CLI 工具](../xplat-cli-install.md)、[PowerShell](/powershell/azureps-cmdlets-docs) 或[金鑰保存庫管理 REST API](https://msdn.microsoft.com/library/azure/mt620024.aspx) 來設定金鑰保存庫的存取原則。
+金鑰保存庫存取原則可分別授與金鑰、密碼和憑證的權限。 例如，您可以只提供金鑰存取權給使用者，但不提供密碼的權限。 不過，金鑰、密碼或憑證的存取權限是在保存庫層級。 換句話說，金鑰保存庫存取原則不支援物件層級權限。 您可以使用 [Azure 入口網站](https://portal.azure.com/)、[Azure CLI 工具](../cli-install-nodejs.md)、[PowerShell](/powershell/azureps-cmdlets-docs) 或[金鑰保存庫管理 REST API](https://msdn.microsoft.com/library/azure/mt620024.aspx) 來設定金鑰保存庫的存取原則。
 
 > [!IMPORTANT]
 > 請注意，金鑰保存庫存取原則會套用在保存庫層級。 例如，對使用者授與金鑰的建立和刪除權限時，她就可以對該金鑰保存庫的所有金鑰執行這些作業。

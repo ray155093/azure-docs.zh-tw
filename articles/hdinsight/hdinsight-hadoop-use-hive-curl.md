@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 6ce18163-63b5-4df6-9bb6-8fcbd4db05d8
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,9 +17,9 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
-ms.openlocfilehash: 0842cbcceb7ac96d4283efdd6c178b08dd728254
-ms.lasthandoff: 01/18/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: a8058d8a2af2836b9e1ac611b272408b10804f24
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -33,14 +34,14 @@ ms.lasthandoff: 01/18/2017
 > 如果您已熟悉使用以 Linux 為基礎的 Hadoop 伺服器，但剛接觸 HDInsight，請參閱 [在以 Linux 為基礎的 HDInsight 上安裝 Hadoop 的須知事項](hdinsight-hadoop-linux-information.md)。
 
 
-## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
+## <a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目：
 
 * 一個 Hadoop on HDInsight 叢集
 * [Curl](http://curl.haxx.se/)
 * [jq](http://stedolan.github.io/jq/)
 
-## <a name="a-idcurlarun-hive-queries-by-using-curl"></a><a id="curl"></a>使用 Curl 執行 Hive 查詢
+## <a id="curl"></a>使用 Curl 執行 Hive 查詢
 > [!NOTE]
 > 在使用 Curl 或與 WebHCat 進行任何其他 REST 通訊時，您必須提供 HDInsight 叢集系統管理員的使用者名稱和密碼來驗證要求。 您也必須在用來將要求傳送至伺服器的統一資源識別項 (URI) 中使用叢集名稱。
 > 
@@ -122,7 +123,7 @@ ms.lasthandoff: 01/18/2017
    > 
 4. 工作狀態變更為 [成功] 之後，即可從 Azure Blob 儲存體擷取工作結果。 隨查詢一起傳送的 `statusdir` 參數包含輸出檔案的位置；在此案例中為 **wasbs:///example/curl**。 此位址會將作業輸出儲存至 HDInsight 叢集所使用之預設儲存體容器的 **example/curl** 目錄中。
    
-    您可以使用 [Azure CLI](../xplat-cli-install.md) 列出並下載這些檔案。 例如，若要列出 **example/curl** 中的檔案，請使用下列命令：
+    您可以使用 [Azure CLI](../cli-install-nodejs.md) 列出並下載這些檔案。 例如，若要列出 **example/curl** 中的檔案，請使用下列命令：
    
         azure storage blob list <container-name> example/curl
    
@@ -152,13 +153,13 @@ ms.lasthandoff: 01/18/2017
 
 6. 使用傳回的工作識別碼檢查工作的狀態。 成功之後，如先前所述使用 Azure CLI 來下載並檢視結果。 輸出應包含三行，其中都包含 **[ERROR]**。
 
-## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
+## <a id="summary"></a>摘要
 
 如這份文件所示，您可以使用原始 HTTP 要求來執行、監視和檢視 HDInsight 叢集上的 Hive 工作結果。
 
 如需本文中使用的 REST 介面的詳細資訊，請參閱 <a href="https://cwiki.apache.org/confluence/display/Hive/WebHCat+Reference" target="_blank">WebHCat 參照</a>。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 
 Hive 與 HDInsight 搭配使用的一般資訊：
 

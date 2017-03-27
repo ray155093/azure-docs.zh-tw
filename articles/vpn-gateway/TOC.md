@@ -14,12 +14,12 @@
 ## 設定站對站連線
 ### [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
 ### [PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
+### [Azure 入口網站 (傳統)](vpn-gateway-howto-site-to-site-classic-portal.md)
 ### [傳統入口網站 (傳統)](vpn-gateway-site-to-site-create.md)
 ## 設定點對站連線
 ### [Azure 入口網站](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
 ### [PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
 ### [Azure 入口網站 (傳統)](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
-### [傳統入口網站 (傳統)](vpn-gateway-point-to-site-create.md)
 ## 設定 VNet 對 VNet 連接
 ### [Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
 ### [PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
@@ -41,7 +41,9 @@
 ## [使用 PowerShell 修改區域網路閘道設定](vpn-gateway-modify-local-network-gateway.md)
 ## [確認 VPN 閘道連線](vpn-gateway-verify-connection-resource-manager.md)
 ## [重設 VPN 閘道](vpn-gateway-resetgw-classic.md)
-## [刪除 VPN 閘道](vpn-gateway-delete-vnet-gateway-powershell.md)
+## 刪除 VPN 閘道
+### [PowerShell](vpn-gateway-delete-vnet-gateway-powershell.md)
+### [PowerShell (傳統)](vpn-gateway-delete-vnet-gateway-classic-powershell.md)
 ## [為 P2S 連線建立自我簽署的根憑證](vpn-gateway-certificates-point-to-site.md)
 ## [設定 VPN 閘道 (傳統)](vpn-gateway-configure-vpn-gateway-mp.md)
 

@@ -23,7 +23,7 @@ ms.lasthandoff: 03/01/2017
 ---
 # <a name="securely-connecting-to-backend-resources-from-an-app-service-environment"></a>安全地從 App Service 環境連接到後端資源
 ## <a name="overview"></a>概觀
-因為 App Service 環境一律會在 Azure Resource Manager 虛擬網路或者傳統式部署模型[][virtualnetwork]兩者之一中建立，從 App Service 環境傳出至其他後端資源的連線可以獨佔方式透過虛擬網路傳送。  在 2016 年 6 月所進行的最新變更之後，ASE 也可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是 私人位址) 的虛擬網路。  
+因為 App Service 環境一律會在 Azure Resource Manager 虛擬網路或者傳統式部署模型[虛擬網路][virtualnetwork]兩者之一中建立，從 App Service 環境傳出至其他後端資源的連線可以獨佔方式透過虛擬網路傳送。  在 2016 年 6 月所進行的最新變更之後，ASE 也可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是 私人位址) 的虛擬網路。  
 
 例如，SQL Server 可能會在已鎖定連接埠 1433 的虛擬機器叢集上執行。  此端點可能已納入 ACL，只允許從相同虛擬網路上的其他資源進行存取。  
 

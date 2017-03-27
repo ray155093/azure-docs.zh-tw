@@ -10,14 +10,15 @@ tags: azure-portal
 ms.assetid: 3fade1e5-c2e1-4ad5-b371-f95caea23f6d
 ms.service: hdinsight
 ms.devlang: na
-ms.topic: hero-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/25/2016
 ms.author: saurinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 20ae053057e74e0bc874391dd8a9cd19e0a293e7
-ms.openlocfilehash: 2d244187585f716af8c4e6d65a445e0ab8217890
+ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
+ms.openlocfilehash: 9ddeaea93af8d5a4356d49da76cb64f5e43657db
+ms.lasthandoff: 03/09/2017
 
 
 ---
@@ -90,7 +91,7 @@ ms.openlocfilehash: 2d244187585f716af8c4e6d65a445e0ab8217890
     Hive 伺服器類型|選取 [Hive Server 2]<strong></strong>
     機制|選取 [Azure HDInsight 服務]<strong></strong>
     HTTP 路徑|保留為空白。
-    使用者名稱|輸入 hiveuser1@contoso158.onmicrosoft.com. 更新網域名稱 (如果不同的話)。
+    使用者名稱|輸入 hiveuser1@contoso158.onmicrosoft.com。 更新網域名稱 (如果不同的話)。
     密碼|輸入 hiveuser1 的密碼。
     </table>
 
@@ -134,7 +135,7 @@ ms.openlocfilehash: 2d244187585f716af8c4e6d65a445e0ab8217890
 
         SELECT clientid, devicemake FROM "HIVE"."default"."hivesampletable"
 
-    完成時，您會看到已匯入 2 個資料行的資料。
+    完成時，您會看到已匯入&2; 個資料行的資料。
 
 ## <a name="next-steps"></a>後續步驟
 * 如需設定已加入網域的 HDInsight 叢集，請參閱[設定已加入網域的 HDInisight 叢集](hdinsight-domain-joined-configure.md)。
@@ -143,9 +144,4 @@ ms.openlocfilehash: 2d244187585f716af8c4e6d65a445e0ab8217890
 * 如需使用 Hive JDBC 連接 Hive，請參閱 [使用 Hive JDBC 驅動程式連接到 Azure HDInsight 上的 Hive](hdinsight-connect-hive-jdbc-driver.md)
 * 如需使用 Hive ODBC 將 Excel 連接到 Hadoop，請參閱[使用 Microsoft Hive ODBC 驅動程式將 Excel 連接到 Hadoop](hdinsight-connect-excel-hive-odbc-driver.md)
 * 如需使用 Power Query 將 Excel 連接到 Hadoop，請參閱[使用 Power Query 將 Excel 連接到 Hadoop](hdinsight-connect-excel-power-query.md)
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

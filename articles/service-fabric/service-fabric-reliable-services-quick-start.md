@@ -1,5 +1,5 @@
 ---
-title: "使用 C# 建立您第一個可靠的 Azure 微服務 | Microsoft Docs"
+title: "在 C# 中建立第一個 Service Fabric 應用程式 | Microsoft Docs"
 description: "概述使用無狀態與具狀態服務來建立 Microsoft Azure Service Fabric 應用程式。"
 services: service-fabric
 documentationcenter: .net
@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/10/2017
+ms.date: 03/06/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: cf8f717d5343ae27faefdc10f81b4feaccaa53b9
-ms.openlocfilehash: 41823b962caf25e1826fc06bc49887fd99876fc4
+ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
+ms.openlocfilehash: 813021d6239ae3cf79bb84b78f77e39c9e0783f6
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -35,14 +36,14 @@ Azure Service Fabric 應用程式包含一個或多個執行您的程式碼的�
 若要開始使用 Reliable Services，您只需要了解幾個基本概念：
 
 * **服務類型**：這是您的服務實作。 它是由您撰寫的類別定義，它會擴充 `StatelessService` 與其中使用的任何其他程式碼或相依性，以及名稱與版本號碼。
-* **具名服務執行個體**：若要執行您的服務，可以建立您服務類型的具名執行個體，很像您建立類別類型的物件執行個體一樣。 服務執行個體實際上就是您所撰寫服務類型的物件具現化。 
-* **服務主機**：您建立的具名服務執行個體需要在主機內部執行。 服務主機只是您服務的執行個體可執行所在的程序。
+* **具名服務執行個體**：若要執行您的服務，可以建立您服務類型的具名執行個體，很像您建立類別類型的物件執行個體一樣。 服務執行個體的名稱格式是使用「fabric:/」配置的 URI，例如「fabric:/MyApp/MyService」。
+* **服務主機**：您建立的具名服務執行個體需要在主機處理序內部執行。 服務主機只是您服務的執行個體可執行所在的程序。
 * **服務註冊**：註冊可將所有項目結合在一起。 服務類型必須在服務主機的 Service Fabric 執行階段中註冊，以允許 Service Fabric 建立其執行個體來執行。  
 
 ## <a name="create-a-stateless-service"></a>建立無狀態服務
 無狀態服務是目前在雲端應用程式中做為基準的服務類型。 服務會視為無狀態，因為服務本身不包含需要可靠地儲存或設為高度可用的資料。 如果無狀態服務的執行個體關閉，其所有內部狀態都會遺失。 在此類型的服務中，狀態必須保存到外部存放區，例如 Azure 資料表或 SQL 資料庫中，才能成為高度可用且可靠。
 
-以管理員身分啟動 Visual Studio 2015，並建立新的 Service Fabric 應用程式專案，命名為 HelloWorld ：
+以管理員身分啟動 Visual Studio 2015 或 Visual Studio 2017，並建立新的 Service Fabric 應用程式專案，命名為 HelloWorld：
 
 ![使用新增專案對話方塊來建立新的 Service Fabric 應用程式](media/service-fabric-reliable-services-quick-start/hello-stateless-NewProject.png)
 
@@ -67,7 +68,7 @@ protected override async Task RunAsync(CancellationToken cancellationToken)
 }
 ```
 
-* 通訊進入點，您可以在這裡插入選擇的通訊堆疊，例如 ASP.NET Web API。 這就是您可以開始接收來自使用者和其他服務要求的地方。
+* 通訊進入點，您可以在這裡插入選擇的通訊堆疊，例如 ASP.NET Core。 這就是您可以開始接收來自使用者和其他服務要求的地方。
 
 ```csharp
 protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -113,7 +114,7 @@ protected override async Task RunAsync(CancellationToken cancellationToken)
 
 此協調流程是由系統管理，可讓您的服務維持高度可用且正確平衡。
 
-`RunAsync()` 不應該同步封鎖。 RunAsync 的實作應該傳回工作或等待任何長時間執行或封鎖作業，以允許執行階段繼續執行 - 請注意，在上一個範例的 `while(true)` 迴圈中，是使用 Task-returning `await Task.Delay()`。 如果您的工作負載必須同步封鎖，您應該使用 `Task.Run()` 在您的 `RunAsync` 實作中排定一個新的工作。
+`RunAsync()` 不應該同步封鎖。 RunAsync 的實作應該傳回工作或等待任何長時間執行或封鎖作業，以允許執行階段繼續執行。 請注意，在上一個範例的 `while(true)` 迴圈中，會使用 Task-returning `await Task.Delay()`。 如果您的工作負載必須同步封鎖，您應該使用 `Task.Run()` 在您的 `RunAsync` 實作中排定一個新的工作。
 
 取消您的工作負載是由所提供的取消語彙基元協調的協同努力。 系統會先等待您工作結束 (成功完成、取消或錯誤) 再繼續。 系統要求取消時，務必接受取消權杖、完成任何工作，並儘快結束 `RunAsync()`。
 
@@ -227,10 +228,5 @@ using (ITransaction tx = this.StateManager.CreateTransaction())
 [應用程式升級](service-fabric-application-upgrade.md)
 
 [Reliable Services 的開發人員參考資料](https://msdn.microsoft.com/library/azure/dn706529.aspx)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

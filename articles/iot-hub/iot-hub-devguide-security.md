@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/04/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 0644efd8753c33c0404b45f567759c0be666bcef
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: efd7aab21a9899ed0f56ffeeda362a61d69ffdc9
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -329,7 +329,7 @@ await registryManager.AddDeviceAsync(device);
 [適用於 .NET 的 Azure IoT 裝置 SDK][lnk-client-sdk] (版本 1.0.11+) 支援使用 X.509 憑證。
 
 ### <a name="c-support"></a>C\# 支援
-**DeviceAuthenticationWithX509Certificate** 類別支援使用 X.509 憑證來建立  **DeviceClient** 執行個體。
+**DeviceAuthenticationWithX509Certificate** 類別支援使用 X.509 憑證來建立  **DeviceClient** 執行個體。 X.509 憑證必須為 PFX (也稱為 PKCS #12) 格式，其中包含私密金鑰。 
 
 以下是範例程式碼片段：
 

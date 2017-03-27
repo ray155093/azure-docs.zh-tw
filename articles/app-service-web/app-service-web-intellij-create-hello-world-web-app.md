@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/22/2016
 ms.author: robmcm;asirveda
 translationtype: Human Translation
-ms.sourcegitcommit: 2687011c449715d2ce5f491c3da501f38035d631
-ms.openlocfilehash: 9c7b708c2bd923733cd034116453fcca2ada949b
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 756c9fa079782f8f0cb194ca07c637d083f9ebd7
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -70,7 +70,7 @@ ms.lasthandoff: 02/10/2017
 2. 當 [專案結構] 對話方塊出現時：
 
    a. 按一下 [專案設定] 清單中的 [構件]。
-   b.這是另一個 C# 主控台應用程式。 變更 [名稱] 方塊中的構件名稱，使其包含空格或特殊字元，這是必要動作，因為此名稱將用於統一資源識別項 (URI) 中。
+   b. 變更 [名稱] 方塊中的構件名稱，使其不包含空格或特殊字元；這是必要動作，因為此名稱將用於統一資源識別項 (URI) 中。
    c. 將 [類型] 變更為 [Web 應用程式：封存]。
    d. 按一下 [確定] 以關閉 [專案結構] 對話方塊。
 
@@ -137,7 +137,7 @@ ms.lasthandoff: 02/10/2017
         * 部署自訂 JDK，這必須封裝為 ZIP 檔案，而且公開可用或位於您的 Azure 儲存體帳戶中
         
         ![新增應用程式容器 JDK 索引標籤][11b]
-   9. 一旦您完成所有上述步驟之後，[New Web App Container] (新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
+   9. 一旦您完成所有上述步驟之後，[New Web App Container] \(新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
       
        ![新增應用程式容器][14]
    10. 按一下 [確定]  來完成建立新的 Web 應用程式容器。

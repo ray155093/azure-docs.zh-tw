@@ -2,7 +2,6 @@
 title: "針對資料管理閘道問題進行疑難排解 | Microsoft Docs"
 description: "提供秘訣以針對資料管理閘道相關問題進行疑難排解。"
 services: data-factory
-documentationcenter: 
 author: linda33wj
 manager: jhubbard
 editor: monicar
@@ -14,10 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/25/2017
 ms.author: jingwang
+published: true
 translationtype: Human Translation
-ms.sourcegitcommit: 03e15660e04e192d9035c25f1a8030310413c118
-ms.openlocfilehash: 738fcd1e2b33bf072f004eb95265ed87e6e931c0
-
+ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
+ms.openlocfilehash: 4bc78bdf71c6de0c35197e84f4bb800d13bda6c0
+ms.lasthandoff: 03/14/2017
 
 ---
 # <a name="troubleshoot-issues-with-using-data-management-gateway"></a>使用資料管理閘道針對問題進行疑難排解
@@ -91,10 +91,12 @@ ms.openlocfilehash: 738fcd1e2b33bf072f004eb95265ed87e6e931c0
 ![閘道金鑰無效或是空的](media/data-factory-troubleshoot-gateway-issues/gateway-key-is-invalid-or-empty.png)
 
 #### <a name="cause"></a>原因
-已重新產生閘道金鑰，或已在入口網站中刪除閘道。
+已重新產生閘道金鑰，或已在 Azure 入口網站中刪除閘道。 如果資料管理閘道安裝程式不是最新的，也可能發生此問題。
 
 #### <a name="resolution"></a>解決方案
-如果閘道仍然存在，則在入口網站中重新產生閘道金鑰，並使用 [複製] 按鈕來複製整個金鑰。 將它貼在這個視窗來註冊閘道。 否則，請重新建立閘道並從頭開始。
+檢查資料管理閘道安裝程式是否為最新版本，您可以在 Microsoft [下載中心](https://go.microsoft.com/fwlink/p/?LinkId=271260)找到最新版本。
+
+如果安裝程式是最新的，但閘道仍然存在於入口網站上，請在 Azure 入口網站中重新產生閘道金鑰，使用 [複製] 按鈕來複製整個金鑰，然後將它貼在此視窗以註冊閘道。 否則，請重新建立閘道並從頭開始。
 
 ### <a name="6-problem"></a>6.問題
 註冊閘道時，您可能會看到下列錯誤訊息。
@@ -250,7 +252,7 @@ ms.openlocfilehash: 738fcd1e2b33bf072f004eb95265ed87e6e931c0
     ![資料管理閘道傳送記錄檔](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-dialog.png)
 3. (選擇性) 按一下 [檢視記錄檔] 以在事件檢視器檢閱記錄檔。
 4. (選擇性) 按一下 [隱私權] 以檢閱 Microsoft Web 服務隱私權聲明。
-5. 當您滿意即將上傳的內容時，請按一下 [傳送記錄檔]，將過去 7 天的記錄檔傳送給 Microsoft 進行疑難排解。 您應該會看到「傳送記錄檔」作業的狀態，如下列螢幕擷取畫面所示。
+5. 當您滿意即將上傳的內容時，請按一下 [傳送記錄檔]，將過去&7; 天的記錄檔傳送給 Microsoft 進行疑難排解。 您應該會看到「傳送記錄檔」作業的狀態，如下列螢幕擷取畫面所示。
 
     ![資料管理閘道傳送記錄檔狀態](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-status.png)
 6. 作業完成之後，您會看到一個對話方塊，如下列螢幕擷取畫面所示。
@@ -284,9 +286,4 @@ ms.openlocfilehash: 738fcd1e2b33bf072f004eb95265ed87e6e931c0
  針對閘道相關問題進行疑難排解時，請在事件檢視器中尋找錯誤層級的事件。
 
 ![資料管理閘道事件檢視器中的記錄檔](media/data-factory-troubleshoot-gateway-issues/gateway-logs-event-viewer.png)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

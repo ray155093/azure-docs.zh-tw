@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 01/03/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 5ea7095e12b6194556d3cd0baa43ccfed1e087ee
-ms.openlocfilehash: 940c762a00dc0efcaedff266cce82e5353c227f6
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: cdf9d576b6a7d3afcfb0839ce8bab2103fba14ed
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -30,7 +30,7 @@ ms.lasthandoff: 02/27/2017
 >深入了解[舊版和新版 Azure CLI](/cli/azure/old-and-new-clis)。
 >
 
-若要開始使用，請先[安裝 Azure CLI](../xplat-cli-install.md)，並[連線到您的 Azure 訂用帳戶](../xplat-cli-connect.md)。
+若要開始使用，請先[安裝 Azure CLI](../cli-install-nodejs.md)，並[連線到您的 Azure 訂用帳戶](../xplat-cli-connect.md)。
 
 如需在資源管理員模式中命令列目前的命令語法和選項，請輸入 `azure help`，或顯示特定命令的說明 `azure help [command]`。 也可以在文件中找到建立和管理特定 Azure 服務的 CLI 範例。
 

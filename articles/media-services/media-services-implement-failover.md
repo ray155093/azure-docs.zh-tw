@@ -1,5 +1,5 @@
 ---
-title: "實作容錯移轉串流案例 | Microsoft Docs"
+title: "使用 Azure 媒體服務實作容錯移轉串流 | Microsoft Docs"
 description: "本主題說明如何實作容錯移轉串流案例。"
 services: media-services
 documentationcenter: 
@@ -15,39 +15,39 @@ ms.topic: article
 ms.date: 01/05/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 84d42efc54f7dcbde8330360941969a5b0884a1a
-ms.openlocfilehash: ed249f63098a82b935016ccac3e0416951cb1b0a
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: eaa87671a90ab6b090fb04f346ef551edba4d173
+ms.lasthandoff: 03/15/2017
 
 
 ---
-# <a name="implementing-failover-streaming-scenario"></a>實作容錯移轉串流案例
+# <a name="implement-failover-streaming-with-azure-media-services"></a>使用 Azure 媒體服務實作容錯移轉串流
 
-本逐步解說示範如何將內容 (Blob) 從一個資產複製到另一個資產，以便處理隨選資料流處理的備援。 對於要將其 CDN 設定成在我們的其中一個資料中心中斷的情況下於兩個資料中心間容錯移轉的客戶，此案例很有用。
-本逐步解說會使用 Microsoft Azure 媒體服務 SDK、Microsoft Azure 媒體服務 REST API 和 Azure 儲存體 SDK 來示範下列工作。
+本逐步解說示範如何將內容 (Blob) 從一個資產複製到另一個資產，以便處理隨選資料流處理的備援。 如果您想要設定 Azure 內容傳遞網路，以便在某個資料中心發生中斷時在兩個資料中心之間進行容錯移轉，這個案例會很有用。 本逐步解說使用 Azure 媒體服務 SDK、Azure 媒體服務 REST API 和 Azure 儲存體 SDK 來示範下列工作：
 
 1. 在「資料中心 A」中設定媒體服務帳戶。
 2. 將夾層檔上傳到來源資產。
 3. 將資產編碼為多位元速率 MP4 檔案。 
-4. 為來源資產建立唯讀 SAS 定位器，以取得與來源資產相關聯的儲存體帳戶中容器的讀取權限。
-5. 從上一個步驟中建立的唯讀 SAS 定位器取得來源資產的容器名稱。 我們需要此資訊，才能在儲存體帳戶之間複製 Blob (本主題稍後說明)。
+4. 建立唯讀的共用存取簽章定位器。 這是為了讓來源資產能夠存取與來源資產相關聯之儲存體帳戶中的容器。
+5. 從上一個步驟中建立的唯讀共用存取簽章定位器取得來源資產的容器名稱。 必須有此名稱，才能在儲存體帳戶之間複製 Blob (本主題稍後說明)。
 6. 為編碼工作所建立的資產建立原始定位器。 
 
 接著，若要處理容錯移轉：
 
 1. 在「資料中心 B」中設定媒體服務帳戶。
 2. 在目標媒體服務帳戶中建立目標空資產。
-3. 為目標空資產建立寫入 SAS 定位器，以取得與目標資產相關聯的目標儲存體帳戶中容器的寫入權限。
-4. 使用「Azure 儲存體 SDK」在「資料中心 A」中的來源儲存體帳戶與「資料中心 B」中的目標儲存體帳戶之間複製 Blob (資產檔案) (這些儲存體帳戶會與相關資產關聯)。
+3. 建立寫入共用存取簽章定位器。 這是為了讓目標空白資產能夠寫入到與目標資產相關聯之目標儲存體帳戶中的容器。
+4. 使用「Azure 儲存體 SDK」在「資料中心 A」中的來源儲存體帳戶與「資料中心 B」中的目標儲存體帳戶之間複製 Blob (資產檔案)。 這些儲存體帳戶會與相關資產關聯。
 5. 讓複製到目標 Blob 容器的 Blob (資產檔案) 與目標資產產生關聯。 
-6. 為「資料中心 B」中的資產建立原始定位器，並指定為「資料中心 A」中的資產所產生的定位器識別碼。 
-7. 這可提供串流 URL，其中 URL 的相對路徑相同 (只有基底 URL 不同)。 
+6. 為「資料中心 B」中的資產建立原始定位器，並指定為「資料中心 A」中的資產所產生的定位器識別碼。
 
-然後，若要處理任何中斷情形，您可以在這些原始定位器之上建立 CDN。 
+這可提供串流 URL，其中 URL 的相對路徑相同 (只有基底 URL 不同)。 
+
+然後，若要處理任何中斷情形，您可以在這些原始定位器之上建立內容傳遞網路。 
 
 您必須考量下列事項：
 
-* 目前的媒體服務 SDK 版本不支援以程式設計方式產生可讓資產和資產檔案產生關聯的 IAssetFile 資訊。 為了達成這項工作，我們將使用 CreateFileInfos 媒體服務 REST API。 
+* 目前的媒體服務 SDK 版本不支援以程式設計方式產生可讓資產和資產檔案產生關聯的 IAssetFile 資訊。 請改為使用 CreateFileInfos 媒體服務 REST API 來進行此操作。 
 * 儲存體加密資產 (AssetCreationOptions.StorageEncrypted) 不支援複寫 (因為兩個媒體服務帳戶中的加密金鑰不同)。 
 * 如果您想要利用動態封裝，請確定您想要從中串流內容的串流端點是處於 [執行中] 狀態。
 
@@ -63,13 +63,13 @@ ms.lasthandoff: 01/31/2017
 * Visual Studio 2010 SP1 或更新版本 (Professional, Premium、Ultimate 或 Express)。
 
 ## <a name="set-up-your-project"></a>設定專案
-在本節中，您將建立 C# Console Application 專案。
+在本節中，您會建立 C# Console Application 專案。
 
-1. 使用 Visual Studio 建立一個包含 C# Console Application 專案的新方案。 輸入 HandleRedundancyForOnDemandStreaming 做為名稱，然後按一下 [確定]。
-2. 在與 HandleRedundancyForOnDemandStreaming.csproj 專案檔案相同的層級上建立 SupportFiles 資料夾。 在 SupportFiles 資料夾下建立 OutputFiles 和 MP4Files 資料夾。 將 .mp4 檔案複製到 MP4Files 資料夾中 (此範例使用 BigBuckBunny.mp4 檔案)。 
-3. 使用 **Nuget** 將參考新增至媒體服務相關的 DLL。 在 Visual Studio 主要功能表中，選取 [工具] -> [Library Package Manager] -> [Package Manager Console]。 在主控台視窗中輸入 Install-package windowsazure.mediaservices，然後按下 Enter。
+1. 使用 Visual Studio 建立一個包含 C# Console Application 專案的新方案。 輸入 **HandleRedundancyForOnDemandStreaming** 做為名稱，然後按一下 [確定]。
+2. 在與 **HandleRedundancyForOnDemandStreaming.csproj** 專案檔案相同的層級上建立 **SupportFiles** 資料夾。 在 **SupportFiles** 資料夾下建立 **OutputFiles** 和 **MP4Files** 資料夾。 將 .mp4 檔案複製到 **MP4Files** 資料夾  (在此範例中，會使用 **BigBuckBunny.mp4** 檔案)。 
+3. 使用 **Nuget** 將參考新增至與媒體服務相關的 DLL。 在 **Visual Studio 主要功能表**中，選取 [工具] > [Library Package Manager] > [Package Manager Console]。 在主控台視窗中輸入 **Install-package windowsazure.mediaservices**，然後按下 Enter。
 4. 新增此專案所需的其他參考：System.Configuration、System.Runtime.Serialization 和 System.Web。
-5. 將預設新增至 Programs.cs 檔的 using 陳述式取代為下列陳述式：
+5. 將預設新增至 **Programs.cs** 檔的 **using** 陳述式取代為下列陳述式：
    
         using System;
         using System.Configuration;
@@ -88,7 +88,7 @@ ms.lasthandoff: 01/31/2017
         using Microsoft.WindowsAzure.Storage;
         using Microsoft.WindowsAzure.Storage.Blob;
         using Microsoft.WindowsAzure.Storage.Auth;
-6. 將 AppSettings 區段新增至 .config 檔中，並根據媒體服務與儲存體金鑰與名稱值將值更新。 
+6. 將 **appSettings** 區段新增至 **.config** 檔中，並根據媒體服務與儲存體金鑰與名稱值將值更新。 
    
         <appSettings>
           <add key="MediaServicesAccountNameSource" value="Media-Services-Account-Name-Source"/>
@@ -102,6 +102,8 @@ ms.lasthandoff: 01/31/2017
         </appSettings>
 
 ## <a name="add-code-that-handles-redundancy-for-on-demand-streaming"></a>新增可為隨選資料流處理備援的程式碼
+在本節中，您會建立處理備援的能力。
+
 1. 將下列類別層級欄位加入至 Program 類別。
        
         // Read values from the App.config file.
@@ -207,8 +209,11 @@ ms.lasthandoff: 01/31/2017
                 writeSasLocator.Delete();
         }
 
-3. 從 Main 呼叫的方法定義。
-   
+3. 從 Main 呼叫下列方法定義。
+
+    >[!NOTE]
+    >對於不同的媒體服務原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您總是使用相同的天數和存取權限，您應該使用相同的原則識別碼。 例如，為預定要長時間維持就地 (非上傳原則) 的定位器原則，使用相同的識別碼。 如需詳細資訊，請參閱[這個主題](media-services-dotnet-manage-entities.md#limit-access-policies)。
+
         public static IAsset CreateAssetAndUploadSingleFile(CloudMediaContext context,
                                                         AssetCreationOptions assetCreationOptions,
                                                         string singleFilePath)
@@ -471,8 +476,8 @@ ms.lasthandoff: 01/31/2017
 
                 if (sourceCloudBlob.Properties.Length > 0)
                 {
-                    // In AMS, the files are stored as block blobs. 
-                    // Page blobs are not supported by AMS.  
+                    // In Azure Media Services, the files are stored as block blobs. 
+                    // Page blobs are not supported by Azure Media Services.  
                     var destinationBlob = targetContainer.GetBlockBlobReference(fileName);
                     destinationBlob.StartCopyFromBlob(new Uri(sourceBlob.Uri.AbsoluteUri + blobToken));
 

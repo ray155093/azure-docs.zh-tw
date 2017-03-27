@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
-ms.openlocfilehash: ebfafd5ee9049b5049070ad111c95746b89e755f
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 7ad5eb2e53e846e7f19e9f136249e4ae280bf996
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -73,6 +73,9 @@ IoT 中樞會對其不同功能強制實施其他限制。
 | 作業 | 作業歷程記錄最多保留 30 天 <br/> 並行作業數上限為 1 個 (若為免費和 S1)、5 個 (若為 S2)、10 個 (若為 S3)。 |
 | 額外端點 | 付費 SKU 中樞包含 10 個額外端點。 免費 SKU 中樞包含&1; 個額外端點。 |
 | 訊息路由規則 | 付費 SKU 中樞包含 100 個路由規則。 免費 SKU 中樞包含&5; 個路由規則。 |
+
+> [!NOTE]
+> 您目前可以連線到單一 IoT 中樞的裝置數目上限為 500,000 個。 如果您想要上調此限制，請連絡 [Microsoft 支援服務](https://azure.microsoft.com/en-us/support/options/)。
 
 ## <a name="next-steps"></a>後續步驟
 此 IoT 中樞開發人員指南中的其他參考主題包括︰

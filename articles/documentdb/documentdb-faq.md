@@ -13,12 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/03/2017
+ms.date: 03/08/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: cf8db132c7f541017744505bf0fca9393db8b3f9
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
+ms.openlocfilehash: 8ebc1aa663f298d1f3f495523d85bda8777d5d29
+ms.lasthandoff: 03/10/2017
 
 
 ---
@@ -122,6 +122,26 @@ DocumentDB 透過 JavaScript 預存程序和觸發程序，支援語言整合式
 
 ### <a name="is-a-local-instance-of-documentdb-available"></a>DocumentDB 的本機執行個體可供使用嗎？
 是。 [Azure DocumentDB 模擬器](documentdb-nosql-local-emulator.md)提供 DocumentDB 服務的高逼真度模擬。 它支援與 Azure DocumentDB 完全相同的功能，包括支援建立和查詢 JSON 文件、佈建和擴充集合，以及執行預存程序和觸發程序。 您可以使用 DocumentDB 模擬器開發及測試應用程式，並且只需對 DocumentDB 的連接端點進行單一組態變更，就能將它們部署至全球規模的 Azure。
+
+## <a name="database-questions-about-developing-against-api-for-mongodb"></a>針對 API for MongoDB 進行開發的相關資料庫問題
+### <a name="what-is-documentdbs-api-for-mongodb"></a>什麼是 DocumentDB 的 API for MongoDB？
+Microsoft Azure DocumentDB 的 API for MongoDB 是一個相容性層級，可讓應用程式使用社群支援的現有 Apache MongoDB API 和驅動程式，輕鬆且透明地與原生 DocumentDB 資料庫引擎通訊。 開發人員現在可以使用現有的 MongoDB 工具鏈結和技巧來建置可利用 DocumentDB 的應用程式，進而受益於 DocumentDB 的獨特功能，其中包括自動編製索引、備份維護、有財務支援的服務等級協定 (SLA) 等。
+
+### <a name="how-to-do-i-connect-to-my-api-for-mongodb-database"></a>如何連線到我的 API for MongoDB 資料庫？
+直接前往 [Azure 入口網站](https://portal.azure.com)是連線到 DocumentDB 之 API for MongoDB 的最快方式。 瀏覽至您的帳戶。 在帳戶的「左導覽列」中，按一下 [快速啟動]。 [快速啟動] 是取得程式碼片段以連線到您的資料庫的最佳方式。 
+
+DocumentDB 強制執行嚴格的安全性需求和標準。 DocumentDB 帳戶需要驗證和透過 *SSL* 的安全通訊，以確保使用 TLSv1.2。
+
+如需詳細資訊，請參閱[連線到 API for MongoDB 資料庫](documentdb-connect-mongodb-account.md)。
+
+### <a name="are-there-additional-error-codes-for-an-api-for-mongodb-database"></a>API for MongoDB 資料庫是否有其他錯誤碼？
+除了常見的 MongoDB 錯誤碼，API for MongoDB 本身有特定的錯誤碼。
+
+
+| 錯誤               | 代碼  | 說明  | 方案  |
+|---------------------|-------|--------------|-----------|
+| TooManyRequests     | 16500 | 取用的要求單位總數已超過針對集合佈建的要求單位率並已進行節流。 | 請考慮從 Azure 入口網站調整集合的輸送量或重試一次。 |
+| ExceededMemoryLimit | 16501 | 做為多租用戶服務，作業已超出用戶端的記憶體配額。 | 透過更嚴格的查詢準則來縮小作業的範圍，或經由 [Azure 入口網站](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)連絡支援人員。 <br><br>*例如：&nbsp;&nbsp;&nbsp;&nbsp;db.getCollection('users').aggregate([<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$match: {name: "Andy"}}, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$sort: {age: -1}}<br>&nbsp;&nbsp;&nbsp;&nbsp;])*) |
 
 [azure-portal]: https://portal.azure.com
 [query]: documentdb-sql-query.md

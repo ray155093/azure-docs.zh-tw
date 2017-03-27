@@ -13,12 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/08/2016
+ms.date: 3/14/2017
 ms.author: anhoh
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: f46965946905bc29a9058904ba62465aba1fa1bf
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
+ms.openlocfilehash: 41e0b9a875b350f5b4a8ce63711ba45e2acb8cae
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 03/08/2017
 
 此文章將說明如何使用官方開放原始碼 DocumentDB 資料移轉工具，將資料從各種來源 (包括 JSON 檔案、CSV 檔案、SQL、MongoDB、Azure 資料表儲存體、Amazon DynamoDB，以及 DocumentDB 集合) 匯入到 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/)。
 
-如果您要將資料匯入到具有 MongoDB 支援的 DocumentDB 帳戶，請依照[將資料移轉至具有 MongoDB 通訊協定支援的 DocumentDB](documentdb-mongodb-migrate.md) 中的指示進行。
+如果您要將資料匯入 API for MongoDB 資料庫，請依照[將資料移轉至具有 MongoDB 通訊協定支援的 DocumentDB](documentdb-mongodb-migrate.md) 中的指示進行。
 
 閱讀本文後，您將能夠回答下列問題：  
 

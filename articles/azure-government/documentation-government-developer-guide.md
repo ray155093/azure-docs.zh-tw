@@ -17,6 +17,7 @@ ms.author: stemi
 translationtype: Human Translation
 ms.sourcegitcommit: 0bab116e977a8490bf0c114c8b829aa1ce07e923
 ms.openlocfilehash: 41af18426ce3f8124458a61c3af280c3dd17cfcd
+ms.lasthandoff: 02/21/2017
 
 
 ---
@@ -30,7 +31,7 @@ Microsoft 提供不同工具來幫助開發人員建立雲端應用程式並部�
 
 當開發人員建立應用程式並部署至 Azure Government 服務時，和全域服務相反，開發人員必須知道這兩種服務的主要差異。 特別需要知道的是：安裝及設定其程式設計環境、設定端點、撰寫應用程式，以及將應用程式部署為 Azure Government 的服務。
 
-本文件中的資訊將概述這些差異。 並以 [Azure Government](http://www.azure.com/gov "Azure Government") 網站及 MSDN 上 [Microsoft Azure 技術文件庫](http://msdn.microsoft.com/cloud-app-development-msdn "MSDN") 中提供的資訊做補充。 也可以在其他位置找到官方資訊，例如 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/ "Microsoft Azure 信任中心")、](https://azure.microsoft.com/documentation/)Azure 文件中心[、]Azure 部落格[(https://azure.microsoft.com/blog/ "Azure 部落格")。
+本文件中的資訊將概述這些差異。 並以 [Azure Government](http://www.azure.com/gov "Azure Government") 網站及 MSDN 上 [Microsoft Azure 技術文件庫](http://msdn.microsoft.com/cloud-app-development-msdn "MSDN") 中提供的資訊做補充。 也可以在其他位置找到官方資訊，例如 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/ "Microsoft Azure 信任中心")、[Azure 文件中心](https://azure.microsoft.com/documentation/)、[Azure 部落格](https://azure.microsoft.com/blog/ "Azure 部落格")。
 
 此內容的適用對象是要對 Microsoft Azure Government 進行部署的合作夥伴和開發人員。
 
@@ -73,9 +74,4 @@ Microsoft 提供不同工具來幫助開發人員建立雲端應用程式並部�
 * [Azure Government 概觀](/azure-government-overview)
 * [Azure Government 部落格](http://blogs.msdn.microsoft.com/azuregov/)
 * [Azure 合規性](https://www.microsoft.com/trustcenter/compliance/complianceofferings)
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

@@ -17,8 +17,9 @@ ms.workload: infrastructure-services
 ms.date: 02/11/2016
 ms.author: telmos
 translationtype: Human Translation
-ms.sourcegitcommit: 109ca4a4672d21969096af26a094390673de25d9
-ms.openlocfilehash: 0843651c8fcddbc171bb485ce9c96b53b170881d
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: f6df10ce5edefbff24011fc20cad8ae927ba5125
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -61,15 +62,10 @@ Azure 有兩個入口網站︰
 * **具有 Azure 資源管理員範本的 PowerShell Cmdlet︰** 您可以使用 PowerShell，透過 Azure 資源管理員範本建立 Azure 資源。 範本可予以儲存及設定版本。 如需詳細資訊，請參閱 [使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md) 一文。 常見解決方案也有數個 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/) 可供下載和修改。
 
 ## <a name="cli"></a>CLI
-您可以從使用 CLI 的 Windows、OS X 或 Linux 電腦建立及設定 Azure 資源。  請閱讀 [安裝 Azure CLI](xplat-cli-install.md) 一文，以在您選擇的作業系統上安裝 CLI。 如同 PowerShell，根據您是使用 [Resource Manager](xplat-cli-azure-resource-manager.md) 或[傳統 (服務管理)](virtual-machines/virtual-machines-linux-classic-manage-visual-studio.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) 部署模型建立資源，而必須使用不同的命令。
+您可以從使用 CLI 的 Windows、OS X 或 Linux 電腦建立及設定 Azure 資源。  請閱讀 [安裝 Azure CLI](cli-install-nodejs.md) 一文，以在您選擇的作業系統上安裝 CLI。 如同 PowerShell，根據您是使用 [Resource Manager](xplat-cli-azure-resource-manager.md) 或[傳統 (服務管理)](virtual-machines/virtual-machines-linux-classic-manage-visual-studio.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) 部署模型建立資源，而必須使用不同的命令。
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 [Resource Manager](azure-resource-manager/resource-group-overview.md)。
 * 了解如何 [設計範本](best-practices-resource-manager-design-templates.md)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

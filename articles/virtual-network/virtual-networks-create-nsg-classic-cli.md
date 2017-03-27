@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d3ea05a1f98dbec4adc9ceea17ece00b19200107
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 115a1937a4c88ba2b986a40c84b1b759ed5e03b5
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -37,7 +38,7 @@ ms.openlocfilehash: d3ea05a1f98dbec4adc9ceea17ece00b19200107
 ## <a name="how-to-create-the-nsg-for-the-front-end-subnet"></a>如何建立前端子網路的 NSG
 若要根據上述案例建立名為 **NSG-FrontEnd** 的 NSG，請依照下列步驟執行。
 
-1. 如果您從未用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../xplat-cli-install.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
+1. 如果您從未用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
 2. 執行 **`azure config mode`** 命令，以切換為傳統模式，如下所示。
    
         azure config mode asm
@@ -234,10 +235,5 @@ ms.openlocfilehash: d3ea05a1f98dbec4adc9ceea17ece00b19200107
         info:    Looking up network configuration
         info:    Creating a network security group "NSG-BackEndX"
         info:    network nsg subnet add command OK
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
