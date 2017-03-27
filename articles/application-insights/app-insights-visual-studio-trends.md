@@ -11,23 +11,25 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/25/2016
+ms.date: 03/17/2017
 ms.author: daviste
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 00c697b47ef17c9c575378c7d433b9bf19602749
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: c0c1eb80685d18794bcae7acaa16b777ff21b3e6
+ms.lasthandoff: 03/21/2017
 
 
 ---
 # <a name="analyzing-trends-in-visual-studio"></a>在 Visual Studio 中分析趨勢 | Microsoft Azure
-「Application Insights 趨勢」工具會以視覺化方式呈現應用程式的重要遙測事件如何隨著時間變更，協助您快速識別問題和異常。 將您連結至更詳細的診斷資訊，「趨勢」可協助您改善應用程式效能、追蹤例外狀況的原因，以及揭露您的自訂事件情資。
+「Application Insights 趨勢」工具會以視覺化方式呈現 Web 應用程式的重要遙測事件如何隨著時間變更，協助您快速識別問題和異常。 將您連結至更詳細的診斷資訊，「趨勢」可協助您改善應用程式效能、追蹤例外狀況的原因，以及揭露您的自訂事件情資。
 
 ![範例趨勢視窗](./media/app-insights-visual-studio-trends/app-insights-trends-hero-750.png)
 
-> [!NOTE]
-> Application Insights 趨勢可用於 Visual Studio 2015 Update 3 及更新版本，或適用於 [開發人員分析工具擴充功能](https://visualstudiogallery.msdn.microsoft.com/82367b81-3f97-4de1-bbf1-eaf52ddc635a) 5.209 版和更新版本。
-> 
-> 
+## <a name="configure-your-web-app-for-application-insights"></a>針對 Application Insights 設定您的 Web 應用程式
+
+如果您尚未這麼做，請[針對 Application Insights 設定您的 Web 應用程式](app-insights-overview.md)。 這可讓它將遙測資料傳送至 Application Insights 入口網站。 趨勢工具會從那裡讀取遙測資料。
+
+在 Visual Studio 2015 Update 3 及更新版本中可取得 Application Insights 趨勢。
 
 ## <a name="open-application-insights-trends"></a>開啟 Application Insights 趨勢
 若要開啟 [Application Insights 趨勢] 視窗：
@@ -99,16 +101,11 @@ Application Insights 趨勢會從您的應用程式的遙測建立時間序列�
 > 
 > 
 
-## <a name="a-namenextanext-steps"></a><a name="next"></a>接續步驟
+## <a name="next"></a>接續步驟
 |  |  |
 | --- | --- |
 | **在 Visual Studio 中使用 Application Insights[](app-insights-visual-studio.md)**<br/>搜尋遙測、查看 CodeLens 中的資料，以及設定 Application Insights。 盡在 Visual Studio 中。 |![以滑鼠右鍵按一下專案，然後選擇 [Application Insights]、[搜尋]](./media/app-insights-visual-studio-trends/34.png) |
 | **新增更多測試[](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。 整合來自記錄架構的追蹤。 撰寫自訂遙測。 |![Visual Studio](./media/app-insights-visual-studio-trends/64.png) |
 | **[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出等功能。 |![Visual Studio](./media/app-insights-visual-studio-trends/62.png) |
-
-
-
-
-<!--HONumber=Nov16_HO2-->
 
 

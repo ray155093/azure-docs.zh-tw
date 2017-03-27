@@ -12,12 +12,12 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 02/27/2017
+ms.date: 03/08/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 0682a048429d8e980da529975a24dde28a9812fe
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: 1ebe72255697af16fc28191a102a7c0487968eda
 ms.lasthandoff: 03/15/2017
 
 
@@ -26,7 +26,7 @@ ms.lasthandoff: 03/15/2017
 
 在 Azure Batch 服務的核心元件概觀中，我們會討論 Batch 開發人員可用來建置大規模平行計算解決方案的主要服務功能和資源。
 
-不論您正在開發可發出直接 [REST API][batch_rest_api] 呼叫的分散式計算應用程式或服務，或是正在使用其中一個 [Batch SDK](batch-technical-overview.md#batch-development-apis)，您都會使用本文所討論的眾多資源和功能。
+不論您正在開發可發出直接 [REST API][batch_rest_api] 呼叫的分散式計算應用程式或服務，或是正在使用其中一個 [Batch SDK](batch-apis-tools.md#batch-development-apis)，您都會使用本文所討論的眾多資源和功能。
 
 > [!TIP]
 > 如需更高層級的 Batch 服務簡介，請參閱 [Azure Batch 的基本概念](batch-technical-overview.md)。
@@ -427,6 +427,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 >
 
 ## <a name="next-steps"></a>後續步驟
+* 了解可用來建置 Batch 解決方案的 [Batch API 和工具](batch-apis-tools.md)。
 * 在 [開始使用適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)中逐步了解範例 Batch 應用程式。 另外還有 [Python 版本](batch-python-tutorial.md) 的教學課程，該教學課程會在 Linux 計算節點上執行工作負載。
 * 下載並建置 [Batch 總管][github_batchexplorer]範例專案，以便您在開發 Batch 解決方案時使用。 使用 Batch 總管可執行下列和其他作業：
 

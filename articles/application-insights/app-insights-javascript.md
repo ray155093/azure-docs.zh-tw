@@ -1,21 +1,22 @@
 ---
-title: "JavaScript Web App 適用的 Application Insights | Microsoft Docs"
+title: "JavaScript Web App 適用的 Azure Application Insights | Microsoft Docs"
 description: "取得頁面檢視和工作階段計數、Web 用戶端資料，並追蹤使用量模式。 Detect exceptions and performance issues in JavaScript web pages."
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 3b710d09-6ab4-4004-b26a-4fa840039500
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/01/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 601045a6048266cbd317f3a8ff328caa7edf877f
-ms.openlocfilehash: a7b17961ea23c109dc840192fa3f7cea1d88326e
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: c4e1ecc824b09fd7523cdc7a29559adca19488f3
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -97,7 +98,7 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 
 
 
-## <a name="a-namerunarun-your-app"></a><a name="run"></a>執行您的應用程式
+## <a name="run"></a>執行您的應用程式
 執行您的 Web 應用程式，稍微使用一下來產生遙測，並等候數秒鐘。 您可以在開發電腦上使用 **F5** 執行應用程式，或發佈應用程式讓使用者處理。
 
 如果您想要檢查 Web 應用程式傳送至 Application Insights 的遙測，請使用您瀏覽器的偵錯工具 (在許多瀏覽器上為**F12** )。 資料會傳送至 dc.services.visualstudio.com。
@@ -167,6 +168,7 @@ Application Insights 資源是您的頁面的效能和使用量相關資料顯�
 
 ![](./media/app-insights-javascript/37.png)
 
+
 按一下 `...` 以取得 Ajax 呼叫的完整遙測。
 
 ### <a name="no-ajax-calls-reported"></a>未報告任何 Ajax 呼叫？
@@ -180,6 +182,7 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP/HTTPS 呼叫。 �
 如果您沒有看到報告的瀏覽器例外狀況，請檢查程式碼片段未設定 `disableExceptionTracking` [參數](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config)。
 
 ## <a name="inspect-individual-page-view-events"></a>檢查個別的頁面檢視事件
+
 頁面檢視遙測資料一般是由 Application Insights 進行分析，而您只會看見以所有使用者為單位平均計算的累積報告。 然而在偵錯時，您也可以查看個別的頁面檢視事件。
 
 在 [Diagnostic Search] 分頁中，將 [篩選器] 設定為 [網頁檢視]。
@@ -217,19 +220,16 @@ Ajax 呼叫包含從您的網頁指令碼所做的任何 HTTP/HTTPS 呼叫。 �
 * [深入了解使用情況追蹤](app-insights-web-track-usage.md)
 * [深入了解自訂事件和計量 API](app-insights-api-custom-events-metrics.md)。
 
-#### <a name="a-namevideoa-video-tracking-usage"></a><a name="video"></a> 影片：追蹤使用量
-> [!VIDEO https://channel9.msdn.com/Series/Application-Insights-on-Azure-Preview-Portal/Tracking-Usage-with-Application-Insights/player]
-> 
-> 
+## <a name="video"></a> 影片
 
-## <a name="a-namenexta-next-steps"></a><a name="next"></a> 後續步驟
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
+
+
+
+## <a name="next"></a> 後續步驟
 * [追蹤流量](app-insights-web-track-usage.md)
 * [自訂事件和計量](app-insights-api-custom-events-metrics.md)
 * [Build-measure-learn](app-insights-overview-usage.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -4,18 +4,18 @@ description: "使用 Application Insights 針對 Java Web 應用程式進行應�
 services: application-insights
 documentationcenter: java
 author: harelbr
-manager: douge
+manager: carmonm
 ms.assetid: 051d4285-f38a-45d8-ad8a-45c3be828d91
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 12/02/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 4fc4561516490b9b285220e7ae688bf97384fe6e
-ms.openlocfilehash: c900840e419c06b70e3a2f53a6aa8314145324fe
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: d2f94ead2e5c7e60037e601ce65a03e809b66dd3
 
 
 ---
@@ -76,7 +76,7 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
 ```
 
 * *建置或總和檢查碼驗證錯誤？* 嘗試使用特定版本，例如：`<version>1.0.n</version>`。 您可以在 [SDK 版本資訊](https://github.com/Microsoft/ApplicationInsights-Java#release-notes)或 [Maven 成品](http://search.maven.org/#search%7Cga%7C1%7Capplicationinsights)中找到最新版本。
-* *需要更新為新的 SDK？*  請重新整理專案的相依項目。
+* *需要更新為新的 SDK？* 請重新整理專案的相依項目。
 
 #### <a name="if-youre-using-gradle"></a>如果您使用 Gradle...
 如果您的專案已設定為要使用 Gradle 建置，請將下列程式碼合併至 build.gradle 檔案。
@@ -97,7 +97,7 @@ Application Insights 支援 Linux、Unix 或 Windows 上執行的 Java 應用程
 
 * *建置或總和檢查碼驗證錯誤？嘗試使用特定版本，例如：* `version:'1.0.n'`。 您可以在 [SDK 版本資訊](https://github.com/Microsoft/ApplicationInsights-Java#release-notes)。
 * *更新為新版 SDK*
-  *  請重新整理專案的相依項目。
+  * 請重新整理專案的相依項目。
 
 #### <a name="otherwise-"></a>否則...
 手動加入 SDK：
@@ -375,6 +375,10 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 ## <a name="questions-problems"></a>有疑問嗎？ 有問題嗎？
 [疑難排解 Java](app-insights-java-troubleshoot.md)
 
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
+
 ## <a name="next-steps"></a>後續步驟
 * [監視相依性呼叫](app-insights-java-agent.md)
 * [監視 Unix 效能計數器](app-insights-java-collectd.md)
@@ -394,9 +398,4 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 [javalogs]: app-insights-java-trace-logs.md
 [metrics]: app-insights-metrics-explorer.md
 [usage]: app-insights-web-track-usage.md
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

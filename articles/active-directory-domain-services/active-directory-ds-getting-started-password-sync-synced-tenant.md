@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/06/2017
+ms.date: 03/17/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 9c43a831768684c6458d5f62557c8a06b2c5ca6b
-ms.lasthandoff: 12/08/2016
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 4969b43831a3813a4e76c6447c252a9c458f371a
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -37,7 +37,14 @@ ms.lasthandoff: 12/08/2016
 <br>
 
 ## <a name="task-5-enable-password-synchronization-to-aad-domain-services-for-a-synced-azure-ad-tenant"></a>工作 5︰為同步處理的 Azure AD 租用戶啟用 AAD 網域服務的密碼同步處理
-已同步處理的 Azure AD 租用戶會設定為使用 Azure AD Connect 來與您組織的內部部署目錄同步處理。 根據預設，Azure AD Connect 不會將 NTLM 和 Kerberos 認證雜湊同步處理到 Azure AD。 若要使用 Azure AD 網域服務，您需要設定 Azure AD Connect 以同步處理 NTLM 和 Kerberos 驗證所需的認證雜湊。 下列步驟能夠將必要的認證雜湊同步處理到 Azure AD 租用戶。
+已同步處理的 Azure AD 租用戶會設定為使用 Azure AD Connect 來與您組織的內部部署目錄同步處理。 根據預設，Azure AD Connect 不會將 NTLM 和 Kerberos 認證雜湊同步處理到 Azure AD。 若要使用 Azure AD 網域服務，您需要設定 Azure AD Connect 以同步處理 NTLM 和 Kerberos 驗證所需的認證雜湊。 
+
+> [!WARNING]
+> 您必須在每次啟用 Azure AD 網域服務 時，啟用 AAD 網域服務的密碼同步處理。 您可能先前已啟用 Azure AD 目錄的 Azure AD Domain Services，而後加以關閉。 不過，您下次為目錄啟用 Azure AD 網域服務時，仍必須啟用密碼同步處理。
+>
+>
+
+下列步驟能夠將必要的認證雜湊同步處理到 Azure AD 租用戶。
 
 ### <a name="install-or-update-azure-ad-connect"></a>安裝或更新 Azure AD Connect
 在已加入網域的電腦上安裝建議的最新 Azure AD Connect 版本。 如果您目前已設定 Azure AD Connect 的執行個體，則必須加以更新才能使用最新版的 Azure AD Connect。 若要避免已知問題/錯誤可能已經修復，請確定您使用的是最新的 Azure AD Connect 版本。

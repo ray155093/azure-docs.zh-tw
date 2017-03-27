@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/04/2017
+ms.date: 03/14/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: c6fe00b72d95a3eb40d91f6f7989b7163518c46f
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 79c6ef627d20be52b6067d1f6dfea2a53505c590
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -28,14 +29,16 @@ ms.openlocfilehash: c6fe00b72d95a3eb40d91f6f7989b7163518c46f
 
 ![雲端中的 MFA](./media/multi-factor-authentication-get-started-cloud/mfa_in_cloud.png)
 
-## <a name="prerequisites"></a>必要條件
-需要下列必要條件，您才可以為您的使用者啟用 Azure Multi-Factor Authentication。
+## <a name="prerequisite"></a>必要條件
+[註冊 Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/) - 如果您還沒有 Azure 訂用帳戶，可以免費註冊。 如果您剛開始使用 Azure MFA，您可以使用試用版訂用帳戶
 
-1. [註冊 Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/) - 如果您還沒有 Azure 訂用帳戶，可以免費註冊。 如果您剛開始使用 Azure MFA，您可以使用試用版訂用帳戶
-2. [建立 Multi-Factor Auth Provider](multi-factor-authentication-get-started-auth-provider.md) 並將它指派給目錄，或[將授權指派給使用者](multi-factor-authentication-get-started-assign-licenses.md)
+## <a name="enable-azure-multi-factor-authentication"></a>啟用 Azure Multi-Factor Authentication
+只要您的使用者具有包含 Azure Multi-Factor Authentication 的授權，您就不需要手動開啟 Azure MFA。 您可以開始要求對個別使用者進行雙步驟驗證。 可啟用 Azure MFA 的授權如下︰
+- Azure Multi-Factor Authentication
+- Azure Active Directory Premium
+- Enterprise Mobility + Security
 
-> [!NOTE]
-> 授權的適用對象是擁有 Azure MFA、Azure AD Premium 或 Enterprise Mobility Suite (EMS) 的使用者。  MFA 包含在 Azure AD Premium 和 EMS。 如果您有足夠的授權，則不需要建立 Auth Provider。
+如果您沒有上述其中一種授權，或沒有足夠的授權來涵蓋所有的使用者，也沒關係。 您只必須執行額外一個步驟以及在您的目錄中[建立多因素驗證提供者](multi-factor-authentication-get-started-auth-provider.md)。
 
 ## <a name="turn-on-two-step-verification-for-users"></a>對使用者開啟雙步驟驗證
 若要開始對使用者要求雙步驟驗證，請將使用者的狀態從停用變更為啟用。  如需使用者狀態的詳細資訊，請參閱 [Azure Multi-Factor Authentication 中的使用者狀態](multi-factor-authentication-get-started-user-states.md)
@@ -97,10 +100,5 @@ ms.openlocfilehash: c6fe00b72d95a3eb40d91f6f7989b7163518c46f
 
 ## <a name="next-steps"></a>後續步驟
 現在您已在雲端中設定 Azure Multi-Factor Authentication，接下來您可以設定及安裝您的部署。 如需詳細資訊，請參閱[設定 Azure Multi-Factor Authentication](multi-factor-authentication-whats-next.md)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

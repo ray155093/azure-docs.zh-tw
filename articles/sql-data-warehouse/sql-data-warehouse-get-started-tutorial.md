@@ -15,9 +15,9 @@ ms.workload: data-services
 ms.date: 01/26/2017
 ms.author: elbutter;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: f5f21fa9a0265258b065a844ffd002749c4dee03
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 9d3029817cae6570ff8871fbcb068250544595d7
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -127,7 +127,7 @@ SQL 資料倉儲是一種特殊類型的資料庫，其設計用來進行大量�
 
 - SQL 資料倉儲會使用預先定義的資料庫角色 (名為資源類別)，來配置記憶體、CPU 資源和並行存取插槽的不同數量的使用者。 每個使用者可屬於小型、中型、大型或超大型資源類別。 使用者的資源類別會決定使用者執行查詢和載入作業所擁有的資源。
 
-- 對於最佳化資料壓縮，使用者通常必須載入大型或超大型資源配置。 請[在此](./sql-data-warehouse-develop-concurrency.md#resource-classes)深入了解資源類別：
+- 對於最佳資料壓縮，使用者必須載入大型或超大型資源配置。 請[在此](./sql-data-warehouse-develop-concurrency.md#resource-classes)深入了解資源類別：
 
 ### <a name="create-an-account-that-can-control-a-database"></a>建立一個可以控制資料庫的帳戶
 

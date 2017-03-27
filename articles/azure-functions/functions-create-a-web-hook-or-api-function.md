@@ -16,9 +16,9 @@ ms.workload: na
 ms.date: 02/02/2017
 ms.author: glenga
 translationtype: Human Translation
-ms.sourcegitcommit: a8f6d111a010666bf4aaaf05e061381cc8fffed0
-ms.openlocfilehash: 23a65319fe1825e2ba51f2fd5a2d0b65ca499472
-ms.lasthandoff: 02/06/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 3e12b8c988b8971574352e976ad88e2e47f47660
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -68,10 +68,10 @@ Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以�
     > [!NOTE]
     > 只要提供所有預期主體的 JSON 資料，然後按一下 [執行] 按鈕，就可以在 [開發] 索引標籤中測試新的範本函式。 這樣範本就有問題註解的預先定義主體。 
 
-接下來，您要在 GitHub 儲存機制中建立實際的 Webhook。
+接下來，您要在 GitHub 存放庫中建立實際的 Webhook。
 
 ## <a name="configure-the-webhook"></a>設定 Webhook
-1. 在 GitHub 中，瀏覽至您自己的儲存機制。 您也可以使用您已分支的任何存放庫。
+1. 在 GitHub 中，瀏覽至您自己的存放庫。 您也可以使用您已分支的任何存放庫。
  
 2. 按一下 [設定] > [Webhooks 和服務] > [新增 Webhook]。
    

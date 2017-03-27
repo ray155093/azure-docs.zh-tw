@@ -15,9 +15,9 @@ ms.workload: big-data
 ms.date: 03/07/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 1886f806d0c1bdbf5e24720ff84cd00ce2c6d77a
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 1fd8fe3847299d98a55a16ab400b43be074a5f33
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -72,14 +72,10 @@ ms.lasthandoff: 03/10/2017
    
         using System;
         using System.IO;
-        using System.Threading;
+    using System.Security.Cryptography.X509Certificates; // Required only if you are using an Azure AD application created with certificates      using System.Threading;
    
-        using Microsoft.Rest.Azure.Authentication;
         using Microsoft.Azure.Management.DataLake.Store;
-        using Microsoft.Azure.Management.DataLake.Store.Models;
-        using Microsoft.Azure.Management.DataLake.StoreUploader;
-        using Microsoft.IdentityModel.Clients.ActiveDirectory;
-        using System.Security.Cryptography.X509Certificates; //Required only if you are using an Azure AD application created with certificates
+    using Microsoft.Azure.Management.DataLake.Store.Models;  using Microsoft.Azure.Management.DataLake.StoreUploader;  using Microsoft.IdentityModel.Clients.ActiveDirectory;  using Microsoft.Rest.Azure.Authentication;
 
 7. 宣告如下所示的變數，並提供已存在的 Data Lake Store 名稱和資源群組名稱的值。 此外，請確定您在此處提供的本機路徑和檔案名稱必須存在於電腦。 將下列程式碼片段加在命名空間宣告之後。
    
@@ -139,11 +135,12 @@ ms.lasthandoff: 03/10/2017
     // Service principal / appplication authentication with client secret / key
     // Use the client ID of an existing AAD "Web App" application.
     SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
+    
     var domain = "<AAD-directory-domain>";
     var webApp_clientId = "<AAD-application-clientid>";
     var clientSecret = "<AAD-application-client-secret>";
     var clientCredential = new ClientCredential(webApp_clientId, clientSecret);
-    var creds = ApplicationTokenProvider.LoginSilentAsync(domain, clientCredential).Result;
+    var creds = await ApplicationTokenProvider.LoginSilentAsync(domain, clientCredential);
 
 ### <a name="if-you-are-using-service-to-service-authentication-with-certificate"></a>如果您要使用服務對服務驗證與憑證
 第三個選項，下列程式碼片段可供使用 Azure Active Directory 應用程式/服務主體的憑證，**以非互動方式**驗證您的應用程式。 請將此方法用於現有的 [Azure AD 與憑證](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)。
@@ -151,28 +148,27 @@ ms.lasthandoff: 03/10/2017
     // Service principal / application authentication with certificate
     // Use the client ID and certificate of an existing AAD "Web App" application.
     SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
+    
     var domain = "<AAD-directory-domain>";
     var webApp_clientId = "<AAD-application-clientid>";
-    System.Security.Cryptography.X509Certificates.X509Certificate2 clientCert = <AAD-application-client-certificate>
+    var clientCert = <AAD-application-client-certificate>
     var clientAssertionCertificate = new ClientAssertionCertificate(webApp_clientId, clientCert);
-    var creds = ApplicationTokenProvider.LoginSilentWithCertificateAsync(domain, clientAssertionCertificate).Result;
+    var creds = await ApplicationTokenProvider.LoginSilentWithCertificateAsync(domain, clientAssertionCertificate);
 
 ## <a name="create-client-objects"></a>建立用戶端物件
 下列程式碼片段會建立 Data Lake Store 帳戶和檔案系統用戶端物件，以便對服務發出要求。
 
     // Create client objects and set the subscription ID
-    _adlsClient = new DataLakeStoreAccountManagementClient(creds);
+    _adlsClient = new DataLakeStoreAccountManagementClient(creds) { SubscriptionId = _subId };
     _adlsFileSystemClient = new DataLakeStoreFileSystemManagementClient(creds);
-
-    _adlsClient.SubscriptionId = _subId;
 
 ## <a name="list-all-data-lake-store-accounts-within-a-subscription"></a>列出訂用帳戶內的所有 Data Lake Store 帳戶
 下列程式碼片段列出指定的 Azure 訂用帳戶中的所有 Data Lake Store 帳戶。
 
     // List all ADLS accounts within the subscription
-    public static List<DataLakeStoreAccount> ListAdlStoreAccounts()
+    public static async Task<List<DataLakeStoreAccount>> ListAdlStoreAccounts()
     {
-        var response = _adlsClient.Account.List();
+        var response = await _adlsClient.Account.ListAsync();
         var accounts = new List<DataLakeStoreAccount>(response);
 
         while (response.NextPageLink != null)
@@ -188,9 +184,9 @@ ms.lasthandoff: 03/10/2017
 下列程式碼片段顯示的 `CreateDirectory` 方法可用於在 Data Lake Store 帳戶中建立目錄。
 
     // Create a directory
-    public static void CreateDirectory(string path)
+    public static async Task CreateDirectory(string path)
     {
-        _adlsFileSystemClient.FileSystem.Mkdirs(_adlsAccountName, path);
+        await _adlsFileSystemClient.FileSystem.MkdirsAsync(_adlsAccountName, path);
     }
 
 ## <a name="upload-a-file"></a>上傳檔案
@@ -211,9 +207,9 @@ ms.lasthandoff: 03/10/2017
 下列程式碼片段顯示的 `GetItemInfo` 方法可用於擷取 Data Lake Store 中可用檔案或目錄的相關資訊。 
 
     // Get file or directory info
-    public static FileStatusProperties GetItemInfo(string path)
+    public static async Task<FileStatusProperties> GetItemInfo(string path)
     {
-        return _adlsFileSystemClient.FileSystem.GetFileStatus(_adlsAccountName, path).FileStatus;
+        return await _adlsFileSystemClient.FileSystem.GetFileStatusAsync(_adlsAccountName, path).FileStatus;
     }
 
 ## <a name="list-file-or-directories"></a>列出檔案或目錄
@@ -229,20 +225,20 @@ ms.lasthandoff: 03/10/2017
 下列程式碼片段顯示的 `ConcatenateFiles` 方法可用於串連檔案。 
 
     // Concatenate files
-    public static void ConcatenateFiles(string[] srcFilePaths, string destFilePath)
+    public static Task ConcatenateFiles(string[] srcFilePaths, string destFilePath)
     {
-        _adlsFileSystemClient.FileSystem.Concat(_adlsAccountName, destFilePath, srcFilePaths);
+        await _adlsFileSystemClient.FileSystem.ConcatAsync(_adlsAccountName, destFilePath, srcFilePaths);
     }
 
 ## <a name="append-to-a-file"></a>附加到檔案
 下列程式碼片段顯示的 `AppendToFile` 方法可用於將資料附加到 Data Lake Store 帳戶中已儲存的檔案。
 
     // Append to file
-    public static void AppendToFile(string path, string content)
+    public static async Task AppendToFile(string path, string content)
     {
         using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(content)))
         {
-            _adlsFileSystemClient.FileSystem.Append(_adlsAccountName, path, stream);
+            await _adlsFileSystemClient.FileSystem.AppendAsync(_adlsAccountName, path, stream);
         }
     }
 
@@ -250,12 +246,12 @@ ms.lasthandoff: 03/10/2017
 下列程式碼片段顯示的 `DownloadFile` 方法可用於從 Data Lake Store 帳戶下載檔案。
 
     // Download file
-    public static void DownloadFile(string srcPath, string destPath)
+    public static async Task DownloadFile(string srcPath, string destPath)
     {
-        using (var stream = _adlsFileSystemClient.FileSystem.Open(_adlsAccountName, srcPath))
+        using (var stream = await _adlsFileSystemClient.FileSystem.OpenAsync(_adlsAccountName, srcPath))
         using (var fileStream = new FileStream(destPath, FileMode.Create))
         {
-            stream.CopyTo(fileStream);
+            await stream.CopyToAsync(fileStream);
         }
     }
 

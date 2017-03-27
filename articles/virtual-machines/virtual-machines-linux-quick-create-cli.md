@@ -10,21 +10,21 @@ tags: azure-resource-manager
 ms.assetid: 
 ms.service: virtual-machines-linux
 ms.devlang: na
-ms.topic: article
+ms.topic: hero-article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 03/10/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 3ad45837a8c3f0e37e8571fb9b894df53ecb5f56
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: c1d7cfe614ab4e677e7fff989e79eb09acb3feed
+ms.lasthandoff: 03/22/2017
 
 ---
 
-# <a name="create-a-linux-virtual-machine-with-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立 Linux 虛擬機器
+# <a name="create-a-linux-virtual-machine-with-the-azure-cli"></a>使用 Azure CLI 建立 Linux 虛擬機器
 
-Azure CLI 2.0 用於從命令列或在指令碼中建立和管理 Azure 資源。 本指南詳細說明如何使用 Azure CLI 來部署執行 Ubuntu 14.04 LTS 的虛擬機器。
+Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。 本指南詳細說明如何使用 Azure CLI 來部署執行 Ubuntu 16.04 LTS 的虛擬機器。
 
 開始之前，請確定已安裝 Azure CLI。 如需詳細資訊，請參閱 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)。 
 
@@ -92,3 +92,4 @@ az group delete --name myResourceGroup
 [建立高可用性的虛擬機器教學課程](./virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [瀏覽 VM 部署 CLI 範例](./virtual-machines-linux-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+

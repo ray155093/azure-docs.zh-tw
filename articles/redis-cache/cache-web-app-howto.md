@@ -12,11 +12,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 01/27/2017
+ms.date: 03/21/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 8d1b9293a0b3958d0f478b6a0b6816b8d534883d
-ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: 5e7520f8a023cd5feb8401483161e7296a413b02
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -45,7 +46,7 @@ ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
 若要完成本教學課程，您必須具備下列必要條件。
 
 * [Azure 帳戶](#azure-account)
-* [Visual Studio 2015 (含 Azure SDK for .NET)](#visual-studio-2015-with-the-azure-sdk-for-net)
+* [Visual Studio 2017 (含 Azure SDK for .NET)](#visual-studio-2017-with-the-azure-sdk-for-net)
 
 ### <a name="azure-account"></a>Azure 帳戶
 您需要有 Azure 帳戶，才能完成本教學課程。 您可以：
@@ -53,22 +54,23 @@ ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
 * [免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero)。 您將獲得能用來試用 Azure 付費服務的額度。 即使在額度用完後，您仍可保留帳戶並使用免費的 Azure 服務和功能。
 * [啟用 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=redis_cache_hero)。 您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
 
-### <a name="visual-studio-2015-with-the-azure-sdk-for-net"></a>Visual Studio 2015 (含 Azure SDK for .NET)
-本教學課程是特別為 Visual Studio 2015 (含 [Azure SDK for .NET](../dotnet-sdk.md) 2.8.2 或更新版本) 所撰寫。 [在此下載最新的 Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003)。 如果您沒有 Visual Studio，它會自動與 SDK 一起安裝。
+### <a name="visual-studio-2017-with-the-azure-sdk-for-net"></a>Visual Studio 2017 (含 Azure SDK for .NET)
+本教學課程是特別為 Visual Studio 2017 (含 [Azure SDK for .NET](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#azuretools)) 所撰寫。 Azure SDK 2.9.5 隨附於 Visual Studio 安裝程式。
+
+如果您有 Visual Studio 2015，您可以遵循 [Azure SDK for.NET](../dotnet-sdk.md) 2.8.2 或更新版本的教學課程。 [在此下載最新的 Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003)。 如果您沒有 Visual Studio，它會自動與 SDK 一起安裝。 有些畫面看起來可能與本教學課程所示插圖不同。
 
 如果您有 Visual Studio 2013，您可以 [下載最新的 Azure SDK for Visual Studio 2013](http://go.microsoft.com/fwlink/?LinkID=324322)。 有些畫面看起來可能與本教學課程所示插圖不同。
-
-> [!NOTE]
-> 視您的電腦上有多少 SDK 相依性而定，安裝 SDK 可能需要很長的時間 (從數分鐘到半小時以上不等)。
-> 
-> 
 
 ## <a name="create-the-visual-studio-project"></a>建立 Visual Studio 專案
 1. 開啟 Visual Studio，然後按一下 [檔案][新增]、[專案]。
 2. 展開 [範本] 清單中的 [Visual C#] 節點、選取 [雲端]，然後按一下 [ASP.NET Web 應用程式]。 確定已選取 [.NET Framework 4.5.2] 或更新版本。  在 [名稱] 文字方塊中輸入 **ContosoTeamStats**，然後按一下 [確定]。
    
     ![建立專案][cache-create-project]
-3. 選取 [MVC]  做為專案類型。 清除 [雲端中的主機]  核取方塊。 在本教學課程的後續步驟中，您將會[佈建 Azure 資源](#provision-the-azure-resources)和[發佈應用程式至 Azure](#publish-the-application-to-azure)。 如需在保持核取 [雲端中的主機]  的狀態下從 Visual Studio 佈建 App Service Web 應用程式的範例，請參閱 [使用 ASP.NET 和 Visual Studio 在 Azure App Service 中開始使用 Web Apps](../app-service-web/web-sites-dotnet-get-started.md)。
+3. 選取 [MVC]  做為專案類型。 
+
+    確保已針對 [驗證] 設定指定 [不需要驗證]。 視您的 Visual Studio 版本而言，預設值可能會設定為其他項目。 若要加以變更，請按一下 [變更驗證]，然後選取 [不需要驗證]。
+
+    如果您密切注意 Visual Studio 2015，請清除 [雲端中的主機] 核取方塊。 在本教學課程的後續步驟中，您將會[佈建 Azure 資源](#provision-the-azure-resources)和[發佈應用程式至 Azure](#publish-the-application-to-azure)。 如需在保持核取 [雲端中的主機]  的狀態下從 Visual Studio 佈建 App Service Web 應用程式的範例，請參閱 [使用 ASP.NET 和 Visual Studio 在 Azure App Service 中開始使用 Web Apps](../app-service-web/web-sites-dotnet-get-started.md)。
    
     ![選取專案範本][cache-select-template]
 4. 按一下 [確定]  以建立專案。
@@ -76,9 +78,21 @@ ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
 ## <a name="create-the-aspnet-mvc-application"></a>建立 ASP.NET MVC 應用程式
 在本教學課程的這一節當中，您將會建立可從資料庫讀取並顯示隊伍統計資料的基本應用程式。
 
+* [新增 Entity Framework NuGet 套件](#add-the-entity-framework-nuget-package)
 * [新增模型](#add-the-model)
 * [新增控制器](#add-the-controller)
 * [設定檢視](#configure-the-views)
+
+### <a name="add-the-entity-framework-nuget-package"></a>新增 Entity Framework NuGet 套件
+
+1. 按一下 [NuGet 套件管理員]、[工具] 功能表中的 [套件管理員主控台]。
+2. 從 `Package Manager Console` 視窗執行下列命令。
+    
+    ```
+    Install-Package EntityFramework
+    ```
+
+如需此套件的詳細資訊，請參閱 [EntityFramework](https://www.nuget.org/packages/EntityFramework/) NuGet 頁面。
 
 ### <a name="add-the-model"></a>新增模型
 1. 在 [方案總管] 中以滑鼠右鍵按一下 [模型]，並選擇 [新增][類別]。 
@@ -172,21 +186,27 @@ ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
 1. 在 [方案總管] 中，連按兩下 [web.config] 來加以開啟。
    
     ![Web.config][cache-web-config]
-2. 在 `connectionStrings` 區段中加入下列連接字串。 連接字串的名稱必須符合 Entity Framework 資料庫內容類別的名稱，亦即 `TeamContext`。
-
-    ```xml   
-    <add name="TeamContext" connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Teams.mdf;Integrated Security=True" providerName="System.Data.SqlClient" />
-    ```
-
-    加入此連接字串之後， `connectionStrings` 區段看起來應該就像下列範例。
+2. 新增下列 `connectionStrings` 區段。 連接字串的名稱必須符合 Entity Framework 資料庫內容類別的名稱，亦即 `TeamContext`。
 
     ```xml
     <connectionStrings>
-        <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-ContosoTeamStats-20160216120918.mdf;Initial Catalog=aspnet-ContosoTeamStats-20160216120918;Integrated Security=True"
-            providerName="System.Data.SqlClient" />
         <add name="TeamContext" connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Teams.mdf;Integrated Security=True"     providerName="System.Data.SqlClient" />
     </connectionStrings>
     ```
+
+    您可以新增 `connectionStrings` 區段，以便它遵照如下列範例所示的 `configSections`。
+
+    ```xml
+    <configuration>
+      <configSections>
+        <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+        <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+      </configSections>
+      <connectionStrings>
+        <add name="TeamContext" connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Teams.mdf;Integrated Security=True"     providerName="System.Data.SqlClient" />
+      </connectionStrings>
+      ...
+      ```
 
 ### <a name="add-the-controller"></a>新增控制器
 1. 按 **F6** 來建置專案。 
@@ -261,14 +281,14 @@ ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
 * [更新用來使用快取的隊伍索引檢視](#update-the-teams-index-view-to-work-with-the-cache)
 
 ### <a name="configure-the-application-to-use-stackexchangeredis"></a>設定應用程式以使用 StackExchange.Redis
-1. 若要在 Visual Studio 中使用 StackExchange.Redis NuGet 套件來設定用戶端應用程式，請在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 套件]。 
+1. 若要在 Visual Studio 中使用 StackExchange.Redis NuGet 套件來設定用戶端應用程式，請按一下 [工具] 功能表中的 [NuGet 套件管理員]、[套件管理員主控台]。
+2. 從 `Package Manager Console` 視窗執行下列命令。
+    
+    ```
+    Install-Package StackExchange.Redis
+    ```
    
-    ![Manage NuGet packages][redis-cache-manage-nuget-menu]
-2. 在搜尋文字方塊中輸入 **StackExchange.Redis**、從結果中選取所需的版本，然後按一下 [安裝]。
-   
-    ![StackExchange.Redis NuGet package][redis-cache-stack-exchange-nuget]
-   
-    NuGet 封裝會為您的用戶端應用程式下載並加入必要的組件參考，以利用 StackExchange.Redis 快取用戶端來存取 Azure Redis 快取。 如果您偏好使用強式名稱版本的 **StackExchange.Redis** 用戶端程式庫，請選取 **StackExchange.Redis.StrongName**；否則選取 **StackExchange.Redis**。
+    NuGet 封裝會為您的用戶端應用程式下載並加入必要的組件參考，以利用 StackExchange.Redis 快取用戶端來存取 Azure Redis 快取。 如果您偏好使用強式命名的 `StackExchange.Redis` 用戶端程式庫版本，請安裝 `StackExchange.Redis.StrongName` 套件。
 3. 在 [方案總管] 中展開 [控制器] 資料夾，然後按兩下 [TeamsController.cs] 來加以開啟。
    
     ![隊伍控制器][cache-teamscontroller]
@@ -670,7 +690,7 @@ ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
     <tr><td colspan="5">@ViewBag.Msg</td></tr>
     ```
    
-    這個資料列會顯示 `ViewBag.Msg` 的值，其包含當您按一下上一個步驟中的其中一個動作連結時所設定之目前作業的相關狀態報告。   
+    這個資料列會顯示 `ViewBag.Msg` 的值，其包含目前作業的相關狀態報告。 當您按一下上一個步驟中的任何一個動作連結時，便會設定 `ViewBag.Msg`。   
    
     ![狀態訊息][cache-status-message]
 2. 按 **F6** 來建置專案。
@@ -698,7 +718,7 @@ ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
 ![部署至 Azure][cache-deploy-to-azure-step-1]
 
 1. 在 [基本] 區段中，選取要使用的 Azure 訂用帳戶，然後選取現有資源群組或建立新的資源群組，並指定資源群組的位置。
-2. 在 [設定] 區段中，指定系統管理員帳戶名稱 (**ADMINISTRATORLOGIN** - 請勿使用 **admin**)、系統管理員登入密碼 (**ADMINISTRATORLOGINPASSWORD**) 和資料庫名稱 (**DATABASENAME**)。 其他參數則針對免費的 App Service 主控方案進行設定，至於 SQL Database 和 Azure Redis 快取請設定較低成本選項，因為免費層不提供這兩種服務。
+2. 在 [設定] 區段中，指定 [系統管理員登入] (請勿使用 **admin**)、[系統管理員登入密碼] 和 [資料庫名稱]。 其他參數則針對免費的 App Service 主控方案進行設定，至於 SQL Database 和 Azure Redis 快取請設定較低成本選項，因為免費層不提供這兩種服務。
 
     ![部署至 Azure][cache-deploy-to-azure-step-2]
 
@@ -726,17 +746,13 @@ ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
 1. 在 Visual Studio 中以滑鼠右鍵按一下 [ContosoTeamStats] 專案，然後選擇 [發佈]。
    
     ![發佈][cache-publish-app]
-2. 按一下 [Microsoft Azure App Service] 。
+2. 按一下 [Microsoft Azure App Service]，選擇 [選取現有的]，然後按一下 [發佈]。
    
     ![發佈][cache-publish-to-app-service]
-3. 選取建立 Azure 資源時所使用的訂用帳戶、展開包含資源的資源群組、選取所需的 Web App，然後按一下 [確定]。 如果您之前是使用 [部署至 Azure] 按鈕，您的 Web 應用程式名稱將會以 **webSite** 開頭，後面再接著一些額外字元。
+3. 選取建立 Azure 資源時所使用的訂用帳戶、展開包含資源的資源群組，然後選取所需的 Web App。 如果您之前是使用 [部署至 Azure] 按鈕，您的 Web 應用程式名稱將會以 **webSite** 開頭，後面再接著一些額外字元。
    
     ![選取 Web 應用程式][cache-select-web-app]
-4. 按一下 [驗證連線] 以驗證您的設定，然後按一下 [發佈]。
-   
-    ![發佈][cache-publish]
-   
-    片刻過後，發佈程序便會完成，而且將會啟動具有執行中範例應用程式的瀏覽器。 如果您在驗證或發佈時收到 DNS 錯誤，而且應用程式的 Azure 資源佈建程序才剛完成不久，請稍候片刻，然後再試一次。
+4. 按一下 [確定]  即可開始發佈程序。 片刻過後，發佈程序會完成，而且會啟動具有執行中範例應用程式的瀏覽器。 如果您在驗證或發佈時收到 DNS 錯誤，而且應用程式的 Azure 資源佈建程序才剛完成不久，請稍候片刻，然後再試一次。
    
     ![已新增快取][cache-added-to-application]
 
@@ -848,10 +864,5 @@ ms.openlocfilehash: d7e98ef1205f0d88e12779a4ce9317128ae81e73
 [cache-publish]: ./media/cache-web-app-howto/cache-publish.png
 [cache-delete-resource-group]: ./media/cache-web-app-howto/cache-delete-resource-group.png
 [cache-delete-confirm]: ./media/cache-web-app-howto/cache-delete-confirm.png
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

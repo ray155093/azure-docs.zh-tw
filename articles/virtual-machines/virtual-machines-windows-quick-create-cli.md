@@ -10,21 +10,21 @@ tags: azure-resource-manager
 ms.assetid: 
 ms.service: virtual-machines-windows
 ms.devlang: na
-ms.topic: article
+ms.topic: hero-article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 03/14/2017
+ms.date: 03/20/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 3064da2a6afee007418ef6ba5ec4247e3e045c38
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 0f9ff487e289eadb857508134b7e08b00360fdd3
+ms.lasthandoff: 03/22/2017
 
 ---
 
-# <a name="create-a-windows-virtual-machine-with-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立 Windows 虛擬機器
+# <a name="create-a-windows-virtual-machine-with-the-azure-cli"></a>使用 Azure CLI 建立 Windows 虛擬機器
 
-Azure CLI 2.0 用於從命令列或在指令碼中建立和管理 Azure 資源。 本指南詳細說明如何使用 Azure CLI 來部署執行 Windows Server 2016 的虛擬機器。
+Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。 本指南詳細說明如何使用 Azure CLI 來部署執行 Windows Server 2016 的虛擬機器。
 
 開始之前，請確定已安裝 Azure CLI。 如需詳細資訊，請參閱 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)。 
 

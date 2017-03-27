@@ -3,7 +3,7 @@
 若要透過 Apple Push Notification Service (APNS) 註冊要進行推播通知的應用程式，您必須在 Apple 開發人員入口網站上為專案建立新的推播憑證、應用程式識別碼和佈建設定檔。 應用程式識別碼會包含可讓您的應用程式傳送及接收推播通知的組態設定。 這些設定將會包含傳送及接收推播通知時，向 Apple Push Notification Service (APNS) 進行驗證所需的推播通知憑證。 如需這些概念的詳細資訊，請參閱 [Apple Push Notification Service](http://go.microsoft.com/fwlink/p/?LinkId=272584) 官方文件。
 
 #### <a name="generate-the-certificate-signing-request-file-for-the-push-certificate"></a>產生推播憑證的憑證簽署要求檔案
-這些步驟會引導您建立憑證簽署要求。 這將會用來產生用於 APNS 的推播憑證。
+這些步驟會引導您建立憑證簽署要求。 這用來產生用於 APNS 的推播憑證。
 
 1. 在您的 Mac 上，執行「鑰匙圈存取」工具。 它可從 Launch Pad 上的 [公用程式] 資料夾或 [其他] 資料夾開啟。
 2. 按一下 [金鑰鏈存取]，並展開 [憑證助理]，然後按一下 [從憑證授權單位要求憑證...]。
@@ -31,14 +31,14 @@
    * **推播通知**：勾選 [應用程式服務] 區段中的 [推播通知] 選項。
      
      ![](./media/notification-hubs-xamarin-enable-apple-push-notifications/notification-hubs-new-appid-info.png)
-3. 在 [確認應用程式識別碼] 畫面中檢閱設定，並於確認無誤後按一下 [提交] 
-4. 提交新的應用程式識別碼之後，您將看見 [註冊完成]  畫面。 按一下 [完成] 。
-5. 在開發人員中心中，於 [App IDs] 下找出您剛才建立的 App ID，並在該列上按一下。 按一下應用程式識別碼列，將顯示應用程式詳細資料。 按一下底部的 [編輯]  按鈕。
+3. 在 [確認應用程式識別碼] 畫面中檢閱設定，並於確認無誤後按一下 [註冊]。
+4. 提交新的應用程式識別碼之後，您會看見 [註冊完成] 畫面。 按一下 [完成] 。
+5. 在開發人員中心中，於 [App IDs] 下找出您剛才建立的 App ID，並在該列上按一下。 按一下應用程式識別碼列，可顯示應用程式詳細資料。 按一下底部的 [編輯]  按鈕。
 6. 捲動到畫面底部，然後按一下 [Development Push SSL Certificate] 區段下方的 [建立憑證...] 按鈕。
    
        ![](./media/notification-hubs-xamarin-enable-apple-push-notifications/notification-hubs-appid-create-cert.png)
    
-       This will display the "Add iOS Certificate" assistant.
+       This displays the "Add iOS Certificate" assistant.
    
    > [!NOTE]
    > 本教學課程使用開發憑證。 註冊生產憑證時，將使用同一個程序。 只要確定在傳送通知時使用相同的憑證類型即可。
@@ -64,33 +64,29 @@
        ![](./media/notification-hubs-xamarin-enable-apple-push-notifications/notification-hubs-cert-in-keychain.png)
    
    > [!NOTE]
-   > 憑證中的名稱可能會不同，不過字首會加上 **Apple Development iOS Push Services:**前置詞。
+   > 憑證中的名稱可能會不同，不過字首會加上 **Apple Development iOS Push Services:** 前置詞。
    > 
    > 
 10. 在 Keychain Access 中，按住 Ctrl 同時按一下您剛在 [憑證]  類別中建立的新推播憑證。 按一下 [匯出]、為檔案命名、選取 [.p12] 格式，然後按一下 [儲存]。
     
-    請記住匯出的 .p12 推播憑證的檔案名稱和位置。 透過在 Azure 傳統入口網站將它上傳，即可將它用來向 APNS 進行驗證。
+    請記住匯出的 .p12 推播憑證的檔案名稱和位置。 透過在 Azure 傳統入口網站將它上傳，即可將它用來向 APNS 進行驗證。 如果無法使用 **.p12** 格式選項，您可能需要重新啟動 Keychain Access。
 
 #### <a name="create-a-provisioning-profile-for-the-app"></a>建立應用程式的佈建設定檔
-1. 返回 <a href="http://go.microsoft.com/fwlink/p/?LinkId=272456" target="_blank">iOS 佈建入口網站</a>，並依序選取 [佈建設定檔] 和 [全部]，然後按一下 **+** 按鈕建立新的設定檔。 如此會啟動 **Add iOS Provisiong Profile** 精靈
+1. 返回 <a href="http://go.microsoft.com/fwlink/p/?LinkId=272456" target="_blank">iOS 佈建入口網站</a>，並依序選取 [佈建設定檔] 和 [全部]，然後按一下 **+** 按鈕建立新的設定檔。 如此會啟動 **Add iOS Provisioning Profile** 精靈。
    
        ![](./media/notification-hubs-xamarin-enable-apple-push-notifications/notification-hubs-new-provisioning-profile.png)
-2. 將 [Development] 下方的 [iOS App Development] 選為佈建設定檔類型，然後按一下 [Continue]。
+2. 選取 [Development] 下的 [iOS App Development] 作為佈建設定檔類型，然後按一下 [Continue]。
 3. 接著，從 [應用程式識別碼] 下拉式清單選取您剛建立的應用程式識別碼，然後按一下 [繼續]。
    
        ![](./media/notification-hubs-xamarin-enable-apple-push-notifications/notification-hubs-select-appid-for-provisioning.png)
 4. 在 [選取憑證] 畫面中，選取用於程式碼簽署的開發憑證，然後按一下 [繼續]。 這是簽署憑證，不是您剛才建立的推播憑證。
    
        ![](./media/notification-hubs-xamarin-enable-apple-push-notifications/notification-hubs-provisioning-select-cert.png)
+       
 5. 接著，選取要用來測試的 [裝置]，然後按一下 [繼續]
    
        ![](./media/notification-hubs-xamarin-enable-apple-push-notifications/notification-hubs-provisioning-select-devices.png)
 6. 最後，在 [設定檔名稱] 中為設定檔挑選名稱，按一下 [產生]。
    
        ![](./media/notification-hubs-xamarin-enable-apple-push-notifications/notification-hubs-provisioning-name-profile.png)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

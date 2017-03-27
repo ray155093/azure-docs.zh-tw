@@ -17,9 +17,9 @@ ms.topic: get-started-article
 ms.date: 02/01/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
-ms.openlocfilehash: bdcf28703f007d32144278c7f0956fe4c27c3b27
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: ed725a12c04646a62cb0737266e24b6035522f20
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -124,7 +124,7 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 
 對於 **Azure VM 上執行的 SQL Server**，Microsoft 提供 99.95% 的可用性 SLA (僅涵蓋虛擬機器)。 本 SLA 未涵蓋在 VM 上執行的程序 (例如 SQL Server)，而且您必須裝載一個可用性設定組中的至少兩個 VM 執行個體。 如需最新資訊，請參閱 [VM SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 如需 VM 內的資料庫高可用性 (HA)，您應在 SQL Server 中設定其中一個支援的高可用性選項，例如 [AlwaysOn 可用性群組](http://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx)。 使用支援的高可用性選項並不提供額外的 SLA，但可讓您達成 >99.99% 的資料庫可用性。
 
-### <a name="a-namemarketatime-to-market"></a><a name="market"></a>產品上市時間
+### <a name="market"></a>產品上市時間
 **SQL Database** 是雲端式設計應用程式的理想解決方案。 有了程式設計 DBA 類似功能，此選項非常適合雲端架構設計人員和開發人員，因為它會降低管理基礎作業系統和資料庫的需求。 例如，您可以使用 [REST API](http://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [PowerShell Cmdlet](http://msdn.microsoft.com/library/mt740629.aspx) 來自動化及管理數千個資料庫的管理作業。 [彈性集區](sql-database-elastic-pool.md) 等功能可讓您將重點放在應用程式層，並且更快速地讓解決方案上市。
 
 **在 Azure VM 上執行的 SQL Server** 會是理想選項。 這也很適合於想要依現狀將現有的內部部署應用程式和資料庫移轉至 Azure。 由於您無需變更簡報、應用程式和資料層，您會在重新架構現有解決方案時節省時間和預算。 相反地，您可以將重點放在將所有解決方案移轉至 Azure，並進行 Azure 平台可能需要的某些效能最佳化作業。 如需詳細資訊，請參閱 [Azure 虛擬機器中 SQL Server 的效能最佳作法](../virtual-machines/windows/sql/virtual-machines-windows-sql-performance.md)。

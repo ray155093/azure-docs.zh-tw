@@ -17,9 +17,9 @@ ms.date: 02/15/2017
 ms.author: markgal;jimpark
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 05a3b32e6d059c219b1b99df02536c5b287c29fd
-ms.openlocfilehash: 9a73f361ba80c7c4219de68d39026b936a77aa05
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 8b1a16384d7204c5d7d4d9a5165658c24b86bdb4
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -38,8 +38,9 @@ ms.lasthandoff: 03/02/2017
 * 進階儲存體 VM
 * 在受控磁碟上執行的 VM
 * 使用 Azure 磁碟加密，搭配 BEK 與 KEK 來加密的 VM
+* 使用 VSS 之 Windows VM 和使用自訂快照前與快照後指令碼之 Linux VM 的應用程式一致備份
 
-如需保護進階儲存體 VM 的詳細資訊，請參閱[備份和還原進階儲存體 VM](backup-introduction-to-azure-backup.md#using-premium-storage-vms-with-azure-backup)一文。 如需受控磁碟 VM 支援的詳細資訊，請參閱[備份及還原受控磁碟上的 VM](backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)。
+如需保護進階儲存體 VM 的詳細資訊，請參閱[備份和還原進階儲存體 VM](backup-introduction-to-azure-backup.md#using-premium-storage-vms-with-azure-backup)一文。 如需受控磁碟 VM 支援的詳細資訊，請參閱[備份及還原受控磁碟上的 VM](backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)。 如需有關 Linux VM 備份之前置和後置指令碼架構的詳細資訊，請參閱 [使用前置指令碼和後置指令碼的應用程式一致 Linux VM 備份] (https://docs.microsoft.com/azure/backup/backup-azure-linux-app-consistent)
 
 > [!NOTE]
 > 本教學課程假設您的 Azure 訂用帳戶中已有 VM，且您已採取措施以允許備份服務存取 VM。

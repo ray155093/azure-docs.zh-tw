@@ -16,9 +16,9 @@ ms.topic: get-started-article
 ms.date: 03/08/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 441caf3cc9a3b9074bd263f4a4c45763967fa580
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: ee46da891ab50a64c649b0370cb9231dd3448ea1
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 03/15/2017
 * [**開始前閱讀來自從我們客戶的最佳秘訣**](#top-tips-from-our-customers-to-read-before-you-begin)
  * [**最佳秘訣︰文件導覽** - 使用我們的目錄及您瀏覽器的尋找功能來尋找解答](#top-tip-documentation-navigation---use-our-table-of-contents-and-your-browsers-find-feature-to-find-answers)
  * [**秘訣 1︰授權** - 確定您了解授權需求](#tip-1-licensing---make-sure-you-understand-the-licensing-requirements)
- * [**秘訣 2︰測試** - 測試使用者而非系統管理員，並與一小組使用者進行試驗](#tip-2-testing---test-with-a-end-user-not-an-administrator-and-pilot-with-a-small-set-of-users)
+ * [**秘訣 2︰測試** - 測試使用者而非系統管理員，並與一小組使用者進行試驗](#tip-2-testing---test-with-an-end-user-not-an-administrator-and-pilot-with-a-small-set-of-users)
  * [**秘訣 3︰部署** - 預先填入使用者的資料，以便他們不需要註冊](#tip-3-deployment---pre-populate-data-for-your-users-so-they-dont-have-to-register)
  * [**祕訣 4︰部署** - 使用密碼重設以排除暫時密碼的需求](#tip-4-deployment---use-password-reset-to-obviate-the-need-to-communicate-temporary-passwords)
  * [**祕訣 5︰回寫** - 查看 AAD Connect 電腦上的應用程式事件記錄以疑難排解密碼回寫](#tip-5-writeback---look-at-the-application-event-log-on-your-aad-connect-machine-to-troubleshoot-password-writeback)
@@ -59,7 +59,7 @@ ms.lasthandoff: 03/15/2017
 
 * [**最佳秘訣︰文件導覽** - 使用我們的目錄及您瀏覽器的尋找功能來尋找解答](#top-tip-documentation-navigation---use-our-table-of-contents-and-your-browsers-find-feature-to-find-answers)
 * [**秘訣 1︰授權** - 確定您了解授權需求](#tip-1-licensing---make-sure-you-understand-the-licensing-requirements)
-* [**秘訣 2︰測試** - 測試使用者而非系統管理員，並與一小組使用者進行試驗](#tip-2-testing---test-with-a-end-user-not-an-administrator-and-pilot-with-a-small-set-of-users)
+* [**秘訣 2︰測試** - 測試使用者而非系統管理員，並與一小組使用者進行試驗](#tip-2-testing---test-with-an-end-user-not-an-administrator-and-pilot-with-a-small-set-of-users)
 * [**秘訣 3︰部署** - 預先填入使用者的資料，以便他們不需要註冊](#tip-3-deployment---pre-populate-data-for-your-users-so-they-dont-have-to-register)
 * [**祕訣 4︰部署** - 使用密碼重設以排除暫時密碼的需求](#tip-4-deployment---use-password-reset-to-obviate-the-need-to-communicate-temporary-passwords)
 * [**祕訣 5︰回寫** - 查看 AAD Connect 電腦上的應用程式事件記錄以疑難排解密碼回寫](#tip-5-writeback---look-at-the-application-event-log-on-your-aad-connect-machine-to-troubleshoot-password-writeback)
@@ -78,9 +78,9 @@ ms.lasthandoff: 03/15/2017
 為了讓 Azure AD 密碼重設為函式，您必須至少在組織中指派一次授權。 我們不會強制每位使用者自行體驗密碼重設，不過，如果您在沒有指派給使用者授權的情況下使用該功能，則會被視為不符合 Microsoft 授權合約，且必須將授權指派給這些使用者。
 
 以下這些文件可協助您了解密碼重設所需的授權。
-* [一般密碼重設授權資訊]()
-* [每個功能的重設授權資訊]()
-* [密碼回寫的支援案例]()
+* [一般密碼重設授權資訊](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-customize#what-customization-options-are-available)
+* [每個功能的重設授權資訊](https://docs.microsoft.com/azure/active-directory/active-directory-passwords#pricing-and-availability)
+* [密碼回寫的支援案例](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-learn-more#scenarios-supported-for-password-writeback)
 
 ### <a name="tip-2-testing---test-with-an-end-user-not-an-administrator-and-pilot-with-a-small-set-of-users"></a>秘訣 2︰測試 - 測試使用者而非系統管理員，並與一小組使用者進行試驗
 當您測試系統管理員時，我們會強制執行系統管理員密碼重設原則，定義如下。  這表示，您不會看見您已為使用者設定之原則的預期結果。
@@ -310,6 +310,7 @@ Azure AD Connect 應用程式事件記錄包含一組豐富的記錄資訊，即
 在您可以啟用及使用密碼回寫之前，您必須確定完成下列先決條件：
 
 * 您有 Azure AD 租用戶且啟用 Azure AD Premium。  如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
+* 您必須將 Azure AD Connect 連線至主要網域控制站模擬器，以便密碼回寫運作。  如有需要，在 Active Directory 同步處理連接器的**屬性**上按一下滑鼠右鍵，然後選取**設定目錄分割**，可以設定 Azure AD Connect 來使用主要網域控制站。 從那裡尋找**網域控制站連線設定**區段，然後核取標題為**只使用慣用的網域控制站**的方塊。  注意︰如果慣用的 DC 不是 PDC 模擬器，Azure AD Connect 仍會連到 PDC 進行密碼回寫。
 * 已經在您的租用戶中設定和啟用密碼重設。  如需詳細資訊，請參閱 [讓使用者重設其 Azure AD 密碼](#enable-users-to-reset-their-azure-ad-passwords)
 * 您必須擁有至少一個系統管理員帳戶和一個測試使用者帳戶，且具有 Azure AD Premium 授權，可讓您用來測試這項功能。  如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 
