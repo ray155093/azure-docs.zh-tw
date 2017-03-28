@@ -24,7 +24,7 @@ ms.lasthandoff: 03/14/2017
 
 ---
 # <a name="questions-about-the-azure-backup-service"></a>關於 Azure 備份服務的問題
-本文包含可協助您快速了解 Azure 備份元件常見問題 (與解答) 的章節。 在某些答案中，有具有完整資訊的文章連結。 按一下 [註解] (位於右側)，即可詢問 Azure 備份的相關問題。 註解會出現於文末。 需有 Livefyre 帳戶才能使用註解。 您也可以在 [論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup)中張貼有關 Azure 備份服務的問題。
+本文包含可協助您快速了解 Azure 備份元件常見問題 (與解答) 的章節。 在某些答案中，有具有完整資訊的文章連結。 按一下 [註解] \(位於右側)，即可詢問 Azure 備份的相關問題。 註解會出現於文末。 需有 Livefyre 帳戶才能使用註解。 您也可以在 [論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup)中張貼有關 Azure 備份服務的問題。
 
 若要快速掃描本文中的各節內容，在**本文**下使用右方連結。
 

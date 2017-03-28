@@ -17,6 +17,7 @@ ms.author: dhanyahk;markvi
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: dce65678f9fc96d5802a7b705689cc63e6532c84
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -180,10 +181,5 @@ loginStatus 有兩個選項：0 - 成功、1 - 失敗
 ## <a name="next-steps"></a>後續步驟
 * 您想要查看篩選過的登入活動範例嗎？ 請查看 [Azure Active Directory 登入活動報告 API 範例](active-directory-reporting-api-sign-in-activity-samples.md)。
 * 您想要深入了解 Azure AD 報告 API 嗎？ 請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

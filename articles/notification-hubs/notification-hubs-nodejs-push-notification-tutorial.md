@@ -75,7 +75,7 @@ Azure 通知中樞提供易用、多平台、可調整的基礎結構，用以�
 
 1. 在左導覽窗格中，按一下 [瀏覽] 。
 2. 選取 [通知中樞] ，然後尋找您要用於範例的中樞。 如果您需要建立新通知中樞的說明，您可以參考 [Windows 市集開始使用教學課程](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) 。
-3. 選取 [Settings] (設定) 。
+3. 選取 [Settings] \(設定) 。
 4. 按一下 [存取原則] 。 您會看到兩個共用和完整存取連接字串。
 
 ![Azure 入口網站 - 通知中樞](./media/notification-hubs-nodejs-how-to-use-notification-hubs/notification-hubs-portal.png)
