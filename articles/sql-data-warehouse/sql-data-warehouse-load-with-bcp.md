@@ -45,7 +45,7 @@ bcp 是將較小的資料集移入和移出 SQL 資料倉儲資料庫的一種�
 * 使用 bcp in 命令將資料匯入資料表
 * 使用 bcp out 命令將資料匯出資料表
 
-> [!影片 https://channel9.msdn.com/Blogs/Azure/Loading-data-into-Azure-SQL-Data-Warehouse-with-BCP/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Loading-data-into-Azure-SQL-Data-Warehouse-with-BCP/player]
 > 
 > 
 
