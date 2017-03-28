@@ -16,13 +16,14 @@ ms.topic: article
 ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 341dcec8c45b380286e2bb96c57afc7740605d16
-ms.openlocfilehash: 40a3fa51b1fcf87bd03f767606c888cc501fd6de
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 4505bb5f572add13c21df06fc7997358eaae6352
+ms.lasthandoff: 03/21/2017
 
 
 ---
 # <a name="capture-a-linux-virtual-machine-running-on-azure"></a>擷取在 Azure 上執行的 Linux 虛擬機器
-請遵循本文中的步驟，在 Resource Manager 部署模型中一般化和擷取 Azure Linux 虛擬機器 (VM)。 當您一般化 VM 時，需移除個人帳戶資訊，並準備要做為映像的 VM。 您接著擷取作業系統的一般化虛擬硬碟 (VHD) 映像、連接資料磁碟的 VHD 以及新 VM 部署的 [Resource Manager 範本](../azure-resource-manager/resource-group-overview.md)。 本文詳細說明如何針對使用非受控磁碟的 VM，透過 Azure CLI 1.0 擷取 VM 映像。 您也可以[透過 Azure CLI 2.0 (預覽) 擷取使用 Azure 受控磁碟的 VM](virtual-machines-linux-capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 受控磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。 如需詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
+請遵循本文中的步驟，在 Resource Manager 部署模型中一般化和擷取 Azure Linux 虛擬機器 (VM)。 當您一般化 VM 時，需移除個人帳戶資訊，並準備要做為映像的 VM。 您接著擷取作業系統的一般化虛擬硬碟 (VHD) 映像、連接資料磁碟的 VHD 以及新 VM 部署的 [Resource Manager 範本](../azure-resource-manager/resource-group-overview.md)。 本文詳細說明如何針對使用非受控磁碟的 VM，透過 Azure CLI 1.0 擷取 VM 映像。 您也可以[透過 Azure CLI 2.0 使用 Azure 受控磁碟擷取 VM](virtual-machines-linux-capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 受控磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。 如需詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
 
 若要使用映像建立 VM、針對每個新的 VM 設定網路資源，並使用範本 (JavaScript 物件標記法 (亦稱為 JSON) 檔案) 從擷取的 VHD 映像部署它。 如此一來，您可以使用 VM 目前軟體的組態來複寫 VM，與您在 Azure Marketplace 中使用映像的方式類似。
 
@@ -33,7 +34,7 @@ ms.openlocfilehash: 40a3fa51b1fcf87bd03f767606c888cc501fd6de
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 - [Azure CLI 1.0](#before-you-begin) – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0 (預覽)](virtual-machines-linux-capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](virtual-machines-linux-capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
 
 ## <a name="before-you-begin"></a>開始之前
 請確保符合下列必要條件︰
@@ -41,7 +42,7 @@ ms.openlocfilehash: 40a3fa51b1fcf87bd03f767606c888cc501fd6de
 * **在 Resource Manager 部署模型中建立的 Azure VM** - 如果您尚未建立 Linux VM，可以使用[入口網站](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、[Azure CLI](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Resource Manager 範本](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
   
     視需要設定 VM。 例如，[新增資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、套用更新，並安裝應用程式。 
-* **Azure CLI** - 在本機電腦上安裝 [Azure CLI](../xplat-cli-install.md)。
+* **Azure CLI** - 在本機電腦上安裝 [Azure CLI](../cli-install-nodejs.md)。
 
 ## <a name="step-1-remove-the-azure-linux-agent"></a>步驟 1：移除 Azure Linux 代理程式
 首先，在 Linux VM 上執行 **waagent** 命令並搭配 **deprovision**參數。 此命令會刪除檔案與資料，使 VM 準備好進行一般化。 如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南](virtual-machines-linux-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
@@ -205,10 +206,5 @@ azure vm create -g myResourceGroup1 -n myNewVM -l eastus -y Linux \
 
 ## <a name="next-steps"></a>後續步驟
 若要使用 CIL 管理 VM，請參閱 [使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)中的工作。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 
