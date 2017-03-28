@@ -66,7 +66,7 @@ gulp run --debug
 
 ### <a name="configure-visual-studio-code-to-connect-to-the-remote-device"></a>設定 Visual Studio Code 以連接到遠端裝置
 1. 開啟左側的 [偵錯] 面板。
-2. 按一下綠色的 [開始偵錯] (F5) 按鈕。 Visual Studio Code 會開啟 launch.json 檔案。
+2. 按一下綠色的 [開始偵錯] \(F5) 按鈕。 Visual Studio Code 會開啟 launch.json 檔案。
 3. 使用下列內容更新 launch.json 檔案。 將 `[device hostname or IP address]` 取代為實際裝置 IP 位址或主機名稱。
 
 > [!NOTE]
@@ -96,7 +96,7 @@ gulp run --debug
 ![遠端偵錯組態](media/iot-hub-raspberry-pi-lessons/troubleshooting/remote_debugging_configuration.png)
 
 ### <a name="attach-to-the-remote-application"></a>附加至遠端應用程式
-按一下綠色的 [開始偵錯] (F5) 按鈕，以開始偵錯。
+按一下綠色的 [開始偵錯] \(F5) 按鈕，以開始偵錯。
 
 請參閱 [VS Code 中的 JavaScript](https://code.visualstudio.com/docs/languages/javascript#_debugging) 以深入了解偵錯工具。
 
