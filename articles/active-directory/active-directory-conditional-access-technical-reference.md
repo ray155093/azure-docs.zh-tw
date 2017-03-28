@@ -1,7 +1,7 @@
 ---
 title: "Azure Active Directory 條件式存取的技術參考 | Microsoft Docs"
 description: "透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。 一旦符合這些條件，就會驗證使用者並允許存取應用程式。"
-services: active-directory
+services: active-directory.
 documentationcenter: 
 author: MarkusVi
 manager: femila
@@ -11,7 +11,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/01/2017
+ms.date: 03/28/2017
 ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: 4296bbc7123f6571ad564351612864a6315d8abf
@@ -21,7 +21,9 @@ ms.lasthandoff: 03/02/2017
 
 ---
 # <a name="azure-active-directory-conditional-access-technical-reference"></a>Azure Active Directory 條件式存取的技術參考
+
 ## <a name="services-enabled-with-conditional-access"></a>已啟用條件式存取功能的服務
+
 各種 Azure AD 應用程式類型都支援「條件式存取」規則。 此清單包括：
 
 
@@ -36,6 +38,13 @@ ms.lasthandoff: 03/02/2017
 * Microsoft Power BI 
 * 來自 Azure AD 應用程式庫的密碼 SSO 應用程式
 * Visual Studio Online
+
+
+
+
+
+
+
 
 
 ## <a name="enable-access-rules"></a>啟用存取規則
