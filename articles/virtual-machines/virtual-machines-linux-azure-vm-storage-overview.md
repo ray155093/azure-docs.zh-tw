@@ -15,9 +15,9 @@ ms.workload: infrastructure
 ms.date: 2/7/2017
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 710307b01fe64852771c071c070f5fcee59c9579
-ms.openlocfilehash: 494dbaf23de22efa79cfe65aa22bb7c948b3da80
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 1ada403a502972ee0d8cd96af2d62d923d43f6cf
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -30,13 +30,13 @@ Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應�
 
 - 自動延展性支援。 Azure 會建立磁碟及管理基礎儲存體，可支援每個訂用帳戶多達 10,000 個磁碟。
 - 提高可用性設定組的可靠性。 Azure 可確保可用性設定組內的 VM 磁碟會自動彼此隔離。
-- 提高存取控制權。 受控磁碟會公開由 [Azure 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-what-is.md) 所控制的各種作業。 
+- 提高存取控制權。 受控磁碟會公開由 [Azure 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-what-is.md) 所控制的各種作業。
 
-受控磁碟與非受控磁碟的價格不同。 如需該資訊，請參閱[受控磁碟的價格和計費](../storage/storage-managed-disks-overview.md#pricing-and-billing)。 
+受控磁碟與非受控磁碟的價格不同。 如需該資訊，請參閱[受控磁碟的價格和計費](../storage/storage-managed-disks-overview.md#pricing-and-billing)。
 
 您可以透過 [az vm convert](/cli/azure/vm#convert)，將使用非受控磁碟的現有 VM 轉換成使用受控磁碟。 如需詳細資訊，請參閱[如何將 Linux VM 從非受控磁碟轉換為 Azure 受控磁碟](virtual-machines-linux-convert-unmanaged-to-managed-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 如果非受控磁碟位於使用 (或曾經使用) [Azure 儲存體服務加密 (SSE)](../storage/storage-service-encryption.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 加密的儲存體帳戶，您就無法將非受控磁碟轉換為受控磁碟。 下列步驟將詳細說明如何轉換位於 (曾經位於) 已加密儲存體帳戶中的非受控磁碟︰
 
-- 使用 [az storage blob copy start](/cli/azure/storage/blob/copy#start) 將[虛擬硬碟 (VHD) 複製](virtual-machines-linux-copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#unmanaged-disks) 到從未針對 Azure 儲存體服務加密啟用的儲存體帳戶。
+- 使用 [az storage blob copy start](/cli/azure/storage/blob/copy#start)，將虛擬硬碟 (VHD) 複製到從未針對 Azure 儲存體服務加密啟用的儲存體帳戶。
 - 建立使用受控磁碟的 VM，並在透過 [az vm create](/cli/azure/vm#create) 建立期間指定該 VHD 檔案，或
 - 使用 [az vm disk attach](/cli/azure/vm/disk#attach)，將複製的 VHD 附加至具有受控磁碟的執行中 VM。
 
@@ -62,7 +62,7 @@ az group create --location westus --name myResourceGroup
 az vm create \
 --image credativ:Debian:8:latest \
 --admin-username azureuser \
---ssh-key-value ~/.ssh/id_rsa.pub 
+--ssh-key-value ~/.ssh/id_rsa.pub
 --public-ip-address-dns-name manageddisks \
 --resource-group myResourceGroup \
 --location westus \
@@ -76,7 +76,7 @@ az vm create \
 --storage-sku Premium_LRS
 --image credativ:Debian:8:latest \
 --admin-username azureuser \
---ssh-key-value ~/.ssh/id_rsa.pub 
+--ssh-key-value ~/.ssh/id_rsa.pub
 --public-ip-address-dns-name manageddisks \
 --resource-group myResourceGroup \
 --location westus \
@@ -246,5 +246,4 @@ Azure 儲存體提供一組完整的安全性功能，讓開發人員能夠共�
 
 ## <a name="storage-limits"></a>儲存體限制
 * [儲存體服務限制](../azure-subscription-service-limits.md#storage-limits)
-
 

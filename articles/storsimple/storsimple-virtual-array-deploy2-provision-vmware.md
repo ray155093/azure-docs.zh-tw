@@ -12,14 +12,16 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/03/2017
+ms.date: 03/15/2017
 ms.author: alkohli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 37f2816cb1fa9c7db43359f16669e6521b0fe46a
-ms.openlocfilehash: 655c00e3042cca78872df052cb89bab43fbc35a4
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 118521a127b2e4b765efabdbdde71605440d81c7
+ms.lasthandoff: 03/16/2017
 
 ---
-# <a name="deploy-storsimple-virtual-array---provision-a-virtual-array-in-vmware"></a>部署 StorSimple Virtual Array：在 VMware 中佈建虛擬陣列
+# <a name="deploy-storsimple-virtual-array---provision-in-vmware"></a>部署 StorSimple Virtual Array：在 VMware 中佈建
 ![](./media/storsimple-virtual-array-deploy2-provision-vmware/vmware4.png)
 
 ## <a name="overview"></a>概觀
@@ -164,7 +166,7 @@ ms.openlocfilehash: 655c00e3042cca78872df052cb89bab43fbc35a4
 30. 在 [選取磁碟] 頁面上，選擇 [建立新的虛擬磁碟]。 按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image31.png)
-31. 在 [建立磁碟] 頁面上，將 [磁碟大小] 變更為至少 500 GB。 在 [磁碟佈建] 下方，選取 [精簡佈建]。 按一下 [下一步]。
+31. 在 [建立磁碟] 頁面上，將 [磁碟大小] 變更為至少 500 GB。 500 GB 是最低需求，您永遠可以佈建更大的磁碟。 請注意，佈建之後您無法擴充或縮小磁碟。 如需有關要佈建之磁碟大小的詳細資訊，請檢閱[最佳作法文件](storsimple-ova-best-practices.md)中的＜調整大小＞一節。 在 [磁碟佈建] 下方，選取 [精簡佈建]。 按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image32.png)
 32. 在 [進階選項]  頁面上，接受預設值。
@@ -241,9 +243,4 @@ ms.openlocfilehash: 655c00e3042cca78872df052cb89bab43fbc35a4
 ## <a name="next-steps"></a>後續步驟
 * [Set up your StorSimple Virtual Array as a file server (將 StorSimple 虛擬陣列設定為檔案伺服器)](storsimple-virtual-array-deploy3-fs-setup.md)
 * [Set up your StorSimple Virtual Array as an iSCSI server (將 StorSimple 虛擬陣列設定為 iSCSI 伺服器)](storsimple-virtual-array-deploy3-iscsi-setup.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

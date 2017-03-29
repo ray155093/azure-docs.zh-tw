@@ -17,12 +17,13 @@ ms.workload: infrastructure
 ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 0dee2c3b92adc4098a51014dd7379aa3d53c1627
-ms.openlocfilehash: 8c051aca8aa9eb0ebbd55098917218f6f874c1be
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: e8ee93cacba552bc7a6ec559dd8aa1fb773fadc2
+ms.lasthandoff: 03/21/2017
 
 
 ---
-# <a name="create-a-complete-linux-environment-by-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立完整的 Linux 環境
+# <a name="create-a-complete-linux-environment-with-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立完整的 Linux 環境
 在這篇文章中，我們將建立一個簡單的網路，當中包含一個負載平衡器，以及一組對開發和簡單運算而言相當實用的 VM。 我們將以逐個命令的方式逐步完成程序命令，直到您具備兩個可供您透過網際網路從任何地方連線的有效、安全 Linux VM 為止。 然後您便可以繼續著手更複雜的網路和環境。
 
 在過程中，您將了解 Resource Manager 部署模型提供給您的相依性階層，以及它提供多少功能。 在您了解系統建置的方式之後，您就可以使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)更快地建置系統。 此外，在您了解環境的組件彼此如何搭配運作之後，就可以更輕鬆地建立範本來將它們自動化。
@@ -35,20 +36,20 @@ ms.openlocfilehash: 8c051aca8aa9eb0ebbd55098917218f6f874c1be
 
 ![基本環境概觀](./media/virtual-machines-linux-create-cli-complete/environment_overview.png)
 
-若要建立此自訂環境，您需要處於 Resource Manager 模式 (`azure config mode arm`) 的最新 [Azure CLI 1.0](../xplat-cli-install.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 您也需要 JSON 剖析工具。 此範例使用 [jq](https://stedolan.github.io/jq/)。
+若要建立此自訂環境，您需要處於 Resource Manager 模式 (`azure config mode arm`) 的最新 [Azure CLI 1.0](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 您也需要 JSON 剖析工具。 此範例使用 [jq](https://stedolan.github.io/jq/)。
 
 
 ## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 - [Azure CLI 1.0](#quick-commands) – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0 (預覽)](virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="quick-commands"></a>快速命令
 如果您需要快速完成工作，下列章節詳細說明上傳 VM 至 Azure 的基本命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，從[這裡](#detailed-walkthrough)開始。
 
-確定您已登入 [Azure CLI 1.0](../xplat-cli-install.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，並且使用的是 Resource Manager 模式：
+確定您已登入 [Azure CLI 1.0](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，並且使用的是 Resource Manager 模式：
 
 ```azurecli
 azure config mode arm
@@ -272,7 +273,7 @@ azure group export myResourceGroup
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
 接下來的詳細步驟將說明您建置環境時每個命令的功能。 當您建置自己的自訂開發環境或生產環境時，這些概念會相當有用。
 
-確定您已登入 [Azure CLI 1.0](../xplat-cli-install.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，並且使用的是 Resource Manager 模式：
+確定您已登入 [Azure CLI 1.0](../cli-install-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，並且使用的是 Resource Manager 模式：
 
 ```azurecli
 azure config mode arm
@@ -823,7 +824,7 @@ data:    Number of probes                : 4
 info:    network lb probe create command OK
 ```
 
-在這裡，我們指定了 15 秒的健全狀況檢查間隔。 最多可錯過&4; 次探查 (1 分鐘)，負載平衡器才會將該主機視為已不再運作。
+在這裡，我們指定了 15 秒的健全狀況檢查間隔。 最多可錯過 4 次探查 (1 分鐘)，負載平衡器才會將該主機視為已不再運作。
 
 ## <a name="verify-the-load-balancer"></a>確認負載平衡器
 現在，負載平衡器設定已完成。 以下是您所採取的步驟：
@@ -1292,9 +1293,4 @@ azure group deployment create --resource-group myNewResourceGroup \
 
 ## <a name="next-steps"></a>後續步驟
 現在您已準備好開始使用多個網路元件和 VM。 您可以利用這裡介紹的核心元件，使用這個範例環境來建置您的應用程式。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

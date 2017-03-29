@@ -17,6 +17,7 @@ ms.author: tomfitz
 translationtype: Human Translation
 ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
 ms.openlocfilehash: 3b132bbc89f64928f971f92365691d40c1aab420
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -109,7 +110,7 @@ ms.openlocfilehash: 3b132bbc89f64928f971f92365691d40c1aab420
 1. 在 Active Directory 中，從 [應用程式註冊]選取您的應用程式。
 
      ![選取應用程式](./media/resource-group-create-service-principal-portal/select-app.png)
-2. 複製 [應用程式識別碼] 並儲存在您的應用程式碼中。 [範例應用程式][](#sample-applications) 區段中的應用程式會參考此值作為用戶端識別碼。
+2. 複製 [應用程式識別碼] 並儲存在您的應用程式碼中。 [範例應用程式](#sample-applications) 區段中的應用程式會參考此值作為用戶端識別碼。
 
      ![用戶端識別碼](./media/resource-group-create-service-principal-portal/copy-app-id.png)
 3. 若要產生驗證金鑰，請選取 [金鑰]。
@@ -206,10 +207,5 @@ ms.openlocfilehash: 3b132bbc89f64928f971f92365691d40c1aab420
 ## <a name="next-steps"></a>後續步驟
 * 若要設定多租用戶應用程式，請參閱 [利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
 * 若要了解如何指定安全性原則，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。  
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 
