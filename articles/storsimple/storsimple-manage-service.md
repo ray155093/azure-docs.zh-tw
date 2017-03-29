@@ -4,7 +4,7 @@ description: "說明如何在 Azure 傳統入口網站中建立和刪除 StorSim
 services: storsimple
 documentationcenter: 
 author: alkohli
-manager: byronr
+manager: timlt
 editor: 
 ms.assetid: bc1d5650-275c-42ed-bc77-cdb596f85943
 ms.service: storsimple
@@ -12,15 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/05/2016
+ms.date: 02/27/2017
 ms.author: alkohli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: f507eb6986f7c62965dc00673ee5ebe38e70f1d7
-ms.openlocfilehash: 1858fa9e1223d0938bb1eb6195c42fb1ec3b007d
+ms.sourcegitcommit: 99fab8eafe4e17f50db8e7e33637001be03abe7b
+ms.openlocfilehash: 0cb356910b858bf231dfadffa1d4561df1977af0
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="deploy-the-storsimple-manager-service"></a>部署 StorSimple Manager 服務
+# <a name="deploy-the-storsimple-manager-service-in-the-azure-classic-portal"></a>在 Azure 傳統入口網站中部署 StorSimple Manager 服務
+
 ## <a name="overview"></a>概觀
 StorSimple Manager 服務可在 Microsoft Azure 中執行，並且連接至多個 StorSimple 裝置。 建立服務之後，您可以使用服務從在瀏覽器中執行的 Microsoft Azure 傳統入口網站管理這些裝置。 這可讓您從單一集中位置監視連線至 StorSimple Manager 服務的所有裝置，所以可以盡可能降低管理負擔。
 
@@ -99,9 +102,4 @@ StorSimple Manager 登陸頁面會列出所有 StorSimple Manager 服務，您�
 * 深入了解 [StorSimple 部署程序](storsimple-deployment-walkthrough-u2.md)。
 * 深入了解 [管理 StorSimple 儲存體帳戶](storsimple-manage-storage-accounts.md)。
 * 深入了解如何 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

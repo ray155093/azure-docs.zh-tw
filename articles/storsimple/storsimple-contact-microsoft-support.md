@@ -4,7 +4,7 @@ description: "了解如何建立支援要求和在 StorSimple 裝置上啟動支
 services: storsimple
 documentationcenter: 
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 2ebc20fe-f490-4749-8e43-c9fac86f1676
 ms.service: storsimple
@@ -12,15 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/21/2016
+ms.date: 02/27/2017
 ms.author: alkohli;anbacker
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ce19be3454c08bbc041b5f6929c4ad56ffe9b7ea
-ms.openlocfilehash: 5f8124371391f7e2e59bbea474bef1da77686e0c
+ms.sourcegitcommit: 6b0e763769564eaa191c78df05c008150c9a363f
+ms.openlocfilehash: cecc2566b432e897b5eff0c12e66598f0518ed80
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="contact-microsoft-support"></a>連絡 Microsoft 支援服務
+# <a name="contact-microsoft-support-for-your-storsimple"></a>連絡 Microsoft 支援服務以解決 StorSimple 問題
 如果您使用 Microsoft Azure StorSimple 解決方案時遇到任何問題，您可以向技術支援人員提出服務要求。 在與支援工程師進行線上工作階段時，可能也需要在您的 StorSimple 裝置上啟動支援工作階段。 本文將引導您：
 
 * 如何建立支援要求。
@@ -91,10 +93,5 @@ ms.openlocfilehash: 5f8124371391f7e2e59bbea474bef1da77686e0c
 > 您可以執行 `Disable-HcsSupportAccess` 來停用支援存取。 在起始工作階段之後 8 小時，StorSimple 裝置也會嘗試停用支援存取。 最好在起始支援工作階段之後變更 StorSimple 裝置認證。
 > 
 > 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

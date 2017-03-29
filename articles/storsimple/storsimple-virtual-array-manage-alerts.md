@@ -4,7 +4,7 @@ description: "描述 StorSimple Virtual Array 警示條件和嚴重性，以及�
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 97ee25a1-0ec3-4883-9a0a-54b722598462
 ms.service: storsimple
@@ -12,14 +12,16 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/21/2016
+ms.date: 02/27/2017
 ms.author: alkohli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: ae076d52b532f5181868b2ab24ee8f2ffa887af7
-ms.openlocfilehash: 33b14d56b8d3622ba4e7bfb553e86055e57362fb
+ms.sourcegitcommit: b870974efdde2ebdf339013ca86b772b665151a4
+ms.openlocfilehash: 8cfdad48524c24b3ad69c01ae0330e90ce197b3a
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="use-the-storsimple-device-manager-service-to-view-and-manage-alerts-for-the-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員服務來檢視和管理 StorSimple Virtual Array 的警示
+# <a name="use-storsimple-device-manager-to-manage-alerts-for-the-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員來管理 StorSimple Virtual Array 的警示
 
 ## <a name="overview"></a>概觀
 
@@ -168,10 +170,5 @@ StorSimple 裝置管理員服務的摘要刀鋒視窗中，可讓您快速概覽
 ## <a name="next-steps"></a>後續步驟
 
 * [深入了解 StorSimple Virtual Array](storsimple-ova-overview.md)。
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

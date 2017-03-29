@@ -4,7 +4,7 @@ description: "說明 StorSimple 8000 系列 Update 1.2 的新功能、問題及�
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 6c9aae87-6f77-44b8-b7fa-ebbdc9d8517c
 ms.service: storsimple
@@ -12,15 +12,18 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 08/18/2016
+ms.date: 02/27/2017
 ms.author: alkohli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 2cc83aec80acceff64774a10d9542183fb0308b9
+ms.sourcegitcommit: 148f3920b92892781ed09380644b05b5bef7c952
+ms.openlocfilehash: 325c688e4da81fd9e6b73bd350a739ac43a480c0
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="storsimple-8000-series-update-12-release-notes"></a>StorSimple 8000 系列 Update 1.2 版本資訊
+# <a name="update-12-release-notes-for-your-storsimple-8000-series-device"></a>StorSimple 8000 系列裝置的 Update 1.2 版本資訊
+
 ## <a name="overview"></a>概觀
 下列版本資訊說明 StorSimple 8000 系列 Update 1.2 的新功能，並識別未決的重要問題。 當中也包含此版本中隨附之 StorSimple 軟體、驅動程式與磁碟韌體更新的清單。 
 
@@ -110,10 +113,5 @@ Update 1.2 可以套用至任何執行 Release (GA)、Update 0.1、Update 0.2 �
 
 ## <a name="next-steps"></a>後續步驟
 * [在您的裝置上安裝 Update 1.2](storsimple-install-update-1.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

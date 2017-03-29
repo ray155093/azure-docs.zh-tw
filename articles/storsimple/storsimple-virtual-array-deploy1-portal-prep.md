@@ -12,19 +12,21 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/03/2017
+ms.date: 02/27/2017
 ms.author: alkohli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 37f2816cb1fa9c7db43359f16669e6521b0fe46a
-ms.openlocfilehash: 8539540f96d1a6fbb34736eebb0a5897b4754c9f
+ms.sourcegitcommit: d8acfd6e0206e8e97b7d49e280a7e72e0acadb6d
+ms.openlocfilehash: 9ce5278e66afb81c5cbfe3662c6654d39bbc9a54
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="deploy-storsimple-virtual-array---prepare-the-portal"></a>部署 StorSimple Virtual Array：準備入口網站
+# <a name="deploy-storsimple-virtual-array---prepare-the-azure-portal"></a>部署 StorSimple Virtual Array - 準備 Azure 入口網站
 
 ![](./media/storsimple-virtual-array-deploy1-portal-prep/getstarted4.png)
 ## <a name="overview"></a>概觀
 
-我們提供一系列如何將虛擬陣列完全部署為檔案伺服器或 iSCSI 伺服器 (使用 Resource Manager 模型) 的佈署教學課程，而這是該系列的第一篇文章。 本文章說明在佈建虛擬陣列之前，要建立並設定 StorSimple Manager 服務所需的準備工作。 本文章也連結到部署設定檢查清單及設定必要條件。
+我們提供一系列如何將虛擬陣列完全部署為檔案伺服器或 iSCSI 伺服器 (使用 Resource Manager 模型) 的佈署教學課程，而這是該系列的第一篇文章。 本文章說明在佈建虛擬陣列之前，要建立並設定 StorSimple 裝置管理員服務所需的準備工作。 本文章也連結到部署設定檢查清單及設定必要條件。
 
 您需要有系統管理員權限，才能完成安裝和設定程序。 我們建議您在開始之前，先檢閱部署設定檢查清單。 入口網站準備工作不到 10 分鐘就能完成。
 
@@ -168,10 +170,5 @@ ms.openlocfilehash: 8539540f96d1a6fbb34736eebb0a5897b4754c9f
 
 * [在 Hyper-V 中佈建 StorSimple Virtual Array](storsimple-virtual-array-deploy2-provision-hyperv.md)
 * [在 VMware 中佈建 StorSimple Virtual Array](storsimple-virtual-array-deploy2-provision-vmware.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

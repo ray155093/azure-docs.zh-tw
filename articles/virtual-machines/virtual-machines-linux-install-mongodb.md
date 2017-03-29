@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 2.0 (預覽) 在 Linux VM 上安裝 MongoDB | Microsoft Docs"
-description: "了解如何使用 Azure CLI 2.0 (預覽) 在 Linux 虛擬機器上安裝及設定 MongoDB"
+title: "使用 Azure CLI 2.0 在 Linux VM 上安裝 MongoDB | Microsoft Docs"
+description: "了解如何使用 Azure CLI 2.0 在 Linux 虛擬機器上安裝及設定 MongoDB"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -15,29 +15,22 @@ ms.workload: infrastructure
 ms.date: 02/14/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 16e6a02e9b40643aaa1393f5736d5a28049a086f
-ms.openlocfilehash: 9e4b5b8aa877b8a2197d402957028c2bb7b5cf49
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 67d4fee2fc59651903d4c02d1fce84c7b81e5da1
+ms.openlocfilehash: c3be1b3459e10281bdbe949b0d303d117d48979f
+ms.lasthandoff: 02/27/2017
 
 
 ---
-# <a name="how-to-install-and-configure-mongodb-on-a-linux-vm-using-the-azure-cli-20-preview"></a>如何使用 Azure CLI 2.0 (預覽) 在 Linux VM 上安裝及設定 MongoDB
-[MongoDB](http://www.mongodb.org) 是受歡迎的高效能開放原始碼 NoSQL 資料庫。 本文說明如何使用 Resource Manager 部署模型在 Azure 中的 Linux VM 上安裝及設定 MongoDB。 範例會詳細說明如何︰
+# <a name="how-to-install-and-configure-mongodb-on-a-linux-vm"></a>如何在 Linux VM 上安裝及設定 MongoDB
+[MongoDB](http://www.mongodb.org) 是受歡迎的高效能開放原始碼 NoSQL 資料庫。 本文說明如何使用 Azure CLI 2.0 在 Linux VM 上安裝及設定 MongoDB。 您也可以使用 [Azure CLI 1.0](virtual-machines-linux-install-mongodb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。 範例會詳細說明如何︰
 
 * [手動安裝及設定基本 MongoDB 執行個體](#manually-install-and-configure-mongodb-on-a-vm)
 * [使用 Resource Manager 範本建立基本 MongoDB 執行個體](#create-basic-mongodb-instance-on-centos-using-a-template)
 * [使用 Resource Manager 範本建立複雜的 MongoDB 分區化叢集與複本集](#create-a-complex-mongodb-sharded-cluster-on-centos-using-a-template)
 
 
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
-您可以使用下列其中一個 CLI 版本來完成工作︰
-
-- [Azure CLI 1.0](virtual-machines-linux-install-mongodb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於傳統和資源管理部署模型的 CLI
-- Azure CLI 2.0 (預覽) - 適用於資源管理部署模型的新一代 CLI (本文章)
-
-
 ## <a name="manually-install-and-configure-mongodb-on-a-vm"></a>在 VM 上手動安裝及設定 MongoDB
-MongoDB [提供 Linux 散發版本的安裝指示](https://docs.mongodb.com/manual/administration/install-on-linux/)，包括 Red Hat / CentOS、SUSE、Ubuntu 和 Debian。 下列範例使用 `~/.ssh/id_rsa.pub` 中儲存的 SSH 金鑰來建立 `CentOS` VM。 若要建立此環境，您需要安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
+MongoDB [提供 Linux 散發版本的安裝指示](https://docs.mongodb.com/manual/administration/install-on-linux/)，包括 Red Hat / CentOS、SUSE、Ubuntu 和 Debian。 下列範例使用 `~/.ssh/id_rsa.pub` 中儲存的 SSH 金鑰來建立 `CentOS` VM。 若要建立此環境，您需要安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
 使用 [az group create](/cli/azure/group#create) 來建立資源群組。 下列範例會在 `West US` 位置建立名為 `myResourceGroup` 的資源群組：
 
@@ -134,7 +127,7 @@ sudo chkconfig mongod on
 
 * [CentOS 上的基本 MongoDB 執行個體](https://github.com/Azure/azure-quickstart-templates/tree/master/mongodb-on-centos) - https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-on-centos/azuredeploy.json
 
-若要建立此環境，您需要安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。 首先，使用 [az group create](/cli/azure/group#create) 建立資源群組。 下列範例會在 `West US` 位置建立名為 `myResourceGroup` 的資源群組：
+若要建立此環境，您需要安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。 首先，使用 [az group create](/cli/azure/group#create) 建立資源群組。 下列範例會在 `West US` 位置建立名為 `myResourceGroup` 的資源群組：
 
 ```azurecli
 az group create --name myResourceGroup --location westus
@@ -194,7 +187,7 @@ test
 > [!WARNING]
 > 部署這個複雜的 MongoDB 分區化叢集需要超過 20 個核心，通常是每個訂用帳戶區域的預設核心計數。 開啟 Azure 支援要求，以增加核心計數。
 
-若要建立此環境，您需要安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。 首先，使用 [az group create](/cli/azure/group#create) 建立資源群組。 下列範例會在 `West US` 位置建立名為 `myResourceGroup` 的資源群組：
+若要建立此環境，您需要安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。 首先，使用 [az group create](/cli/azure/group#create) 建立資源群組。 下列範例會在 `West US` 位置建立名為 `myResourceGroup` 的資源群組：
 
 ```azurecli
 az group create --name myResourceGroup --location westus

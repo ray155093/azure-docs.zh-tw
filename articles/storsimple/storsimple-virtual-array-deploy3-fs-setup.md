@@ -4,7 +4,7 @@ description: "這是如何部署 StorSimple Virtual Array 的第三個教學課�
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: f609f6ff-0927-48bb-a68a-6d8985d2fe34
 ms.service: storsimple
@@ -12,14 +12,16 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/21/2016
+ms.date: 02/27/2017
 ms.author: alkohli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
-ms.openlocfilehash: 16af5829053567b5c67c755e6a4ca50f966fbfdd
+ms.sourcegitcommit: 405e236288a32afa572da8c665ea2557a9c8cb03
+ms.openlocfilehash: 8d09eb65d6d165093f9de5810a6affbe95b7a053
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="deploy-storsimple-virtual-array---set-up-as-file-server"></a>部署 StorSimple Virtual Array - 設定為檔案伺服器
+# <a name="deploy-storsimple-virtual-array---set-up-as-file-server-via-azure-portal"></a>部署 StorSimple Virtual Array - 透過 Azure 入口網站設定為檔案伺服器
 ![](./media/storsimple-virtual-array-deploy3-fs-setup/fileserver4.png)
 
 ## <a name="introduction"></a>簡介
@@ -207,10 +209,5 @@ ms.openlocfilehash: 16af5829053567b5c67c755e6a4ca50f966fbfdd
 
 ## <a name="next-steps"></a>後續步驟
 了解如何使用本機 Web UI 來 [管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 
