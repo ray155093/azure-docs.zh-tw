@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 11/18/2016
 ms.author: daseidma;bwren;dairwin
 translationtype: Human Translation
-ms.sourcegitcommit: 450755b94d7abab9ab7fa626e02f404a73c97865
-ms.openlocfilehash: ac17a567092b8ecf4908d28e6743ba0816fa214e
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 8c9de9aa50cbc26252515d46d0d8d3a603c4e857
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 02/22/2017
 
 服務對應僅支援 64 位元平台。
 
-在 Windows 中，SCOM 和 OMS 都會使用 Microsoft Monitoring Agent (MMA) 來收集和傳送監視資料   (視內容而定，此代理程式會稱為 SCOM 代理程式、OMS 代理程式、MMA 或直接代理程式)。SCOM 和 OMS 會提供不同版本的現成 MMA，但這些版本可能會各自向 SCOM 和 (或) OMS 報告。  在 Linux 上，OMS Agent for Linux 會收集監視資料並傳送給 OMS。  在具有 OMS 直接代理程式的伺服器上或在透過 SCOM 管理群組連接至 OMS 的伺服器上，您可以使用服務對應。  在本文件中，我們將所有代理程式 (不論是在 Linux 還是 Windows 上、不論連接至 SCOM MG 或直接連接至 OMS) 全都稱為「OMS 代理程式」，除非內容需要才會對代理程式使用特定的部署名稱。
+在 Windows 中，SCOM 和 OMS 都會使用 Microsoft Monitoring Agent (MMA) 來收集和傳送監視資料   (視內容而定，此代理程式會稱為 SCOM 代理程式、OMS 代理程式、MMA 或直接代理程式)。SCOM 和 OMS 會提供不同版本的現成 MMA，但這些版本可能會各自向 SCOM 和 (或) OMS 報告。  在 Linux 上，OMS Agent for Linux 會收集監視資料並傳送給 OMS。  在具有 OMS 直接代理程式的伺服器上或在透過 SCOM 管理群組連結至 OMS 的伺服器上，您可以使用服務對應。  在本文件中，我們將所有代理程式 (不論是在 Linux 還是 Windows 上、不論連接至 SCOM MG 或直接連接至 OMS) 全都稱為「OMS 代理程式」，除非內容需要才會對代理程式使用特定的部署名稱。
 
 服務對應代理程式本身不會傳輸任何資料，因此不需要變更防火牆或連接埠。  服務對應的資料一律會由 OMS 代理程式 (直接或透過 OMS 閘道) 傳輸給 OMS。
 
@@ -50,7 +50,7 @@ ms.lasthandoff: 02/22/2017
 - 如果 SCOM 代理程式可以存取網際網路來連接到 OMS，則不需要進行其他設定。  
 - 如果 SCOM 代理程式無法透過網際網路存取 OMS，您必須將 OMS 閘道設定為使用 SCOM。
   
-如果您使用 OMS 直接代理程式，您需要將 OMS 代理程式本身設定為連接至 OMS 或 OMS 閘道。  您可以從 [https://www.microsoft.com/en-us/download/details.aspx?id=52666](https://www.microsoft.com/en-us/download/details.aspx?id=52666) 下載 OMS 閘道
+如果您使用 OMS 直接代理程式，您需要將 OMS 代理程式本身設定為連接至 OMS 或 OMS 閘道。  您可以從 [https://www.microsoft.com/download/details.aspx?id=52666](https://www.microsoft.com/download/details.aspx?id=52666) 下載 OMS 閘道
 
 
 ### <a name="avoiding-duplicate-data"></a>避免資料重複
@@ -143,7 +143,7 @@ Windows 相依性代理程式的檔案預設位於 *C:\Program Files\Microsoft D
 
     InstallDependencyAgent-Linux64.bin -help
 
-| 旗標說明
+| 旗標 | 說明 |
 |:--|:--|
 | -s | 執行無訊息安裝，不會出現任何使用者提示。 |
 | --check | 檢查權限和作業系統，但不會安裝代理程式。 |
@@ -161,65 +161,45 @@ Windows 相依性代理程式的檔案預設位於 *C:\Program Files\Microsoft D
 
 
 ## <a name="troubleshooting"></a>疑難排解
-如果您在使用服務對應時遇到問題，您可以使用下列資訊從多個元件收集疑難排解資訊。
+如果您在安裝或執行服務對應時遇到任何問題，本節內容可以協助您讓服務如常運作。  如果您仍然無法解決問題，請連絡 Microsoft 支援服務。
 
-### <a name="windows-agents"></a>Windows 代理程式
+### <a name="dependency-agent-installation-issues"></a>相依性代理程式安裝問題
+#### <a name="installer-asks-for-a-reboot"></a>安裝程式會要求重新開機
+相依性代理程式*通常*不需要在安裝或解除安裝之後重新開機。  不過，在某些罕見情況下，Windows Server 需要重新開機，才能繼續進行安裝。  這會在相依性 (通常是 Microsoft VC++ 可轉散發套件) 因為鎖定的檔案而需要重新開機時發生。
 
-#### <a name="microsoft-dependency-agent"></a>Microsoft 相依性代理程式
-若要從相依性代理程式產生疑難排解資料，請以系統管理員身分開啟命令提示字元，然後使用下列命令執行 CollectDependencyAgentData.vbs 指令碼。  您可以新增 --help 旗標，以顯示其他選項。
+#### <a name="message-unable-to-install-dependency-agent-visual-studio-runtime-libraries-failed-to-install-code--codenumber"></a>訊息「無法安裝相依性代理程式︰無法安裝 Visual Studio 執行階段程式庫 (程式碼 = [code_number])。」
 
-    cd C:\Program Files\Microsoft Dependency Agent\scripts
-    cscript CollectDependencyData.vbs
+Microsoft 相依性代理程式是建置於 Microsoft Visual Studio 執行階段程式庫。 嘗試安裝程式庫時發生問題。 執行階段程式庫安裝程式會在 %LOCALAPPDATA%\temp 資料夾中建立記錄。 檔案將會是 dd_vcredist_arch_yyyymmddhhmmss.log，其中 arch 是 "x86" 或 "amd64"，yyyymmddhhmmss 是建立記錄的日期和時間 (24 小時制)。 記錄會提供有關阻擋安裝問題的詳細資料。
 
-現行使用者的「支援資料套件」儲存在 %USERPROFILE% 目錄中。  您可以使用 --file <filename> 選項將它儲存到不同位置。
+這對於您自己第一次安裝[最新的執行階段程式庫](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads)十分有用。
 
-#### <a name="microsoft-dependency-agent-management-pack-for-mma"></a>MMA 的 Microsoft 相依性代理程式管理組件
-相依性代理程式管理組件是在 Microsoft Management Agent 內執行。  它會從相依性代理程式接收資料，並轉送至服務對應雲端服務。
-  
-請執行下列步驟來確認已下載管理組件：
+以下是一些 code_numbers 和建議的解決方式。
 
-1.    在 C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs 中尋找稱為 Microsoft.IntelligencePacks.ApplicationDependencyMonitor.mp 的檔案。  
-2.    如果檔案不存在，且代理程式已連接到 SCOM 管理群組，則檢查 Operations 主控台的 [系統管理] 工作區中是否有管理組件，來確認該檔案已匯入 SCOM。
+| 代碼 | 說明 | 解決方案 |
+|:--|:--|:--|
+| 0x17 | 程式庫安裝程式會要求尚未安裝的 Windows 更新。 | 查看最新的程式庫安裝程式記錄 (如上所述)。<br><br>如果 "Windows8.1-KB2999226-x64.msu" 的參考後面接著一行：「錯誤 0x80240017：無法執行 MSU 套件。」，則請參閱知識庫文章 https://support.microsoft.com/kb/2919355。<br><br>再次執行 Microsoft 相依性代理程式安裝程式。 |
 
-服務對應 MP 會將事件寫入 Operations Manager 的 Windows 事件記錄檔。  透過系統記錄檔解決方案即可[在 OMS 中搜尋](../log-analytics/log-analytics-log-searches.md)記錄檔，該解決方案可供您設定要上傳的記錄檔。  如果已啟用偵錯事件，則會將其寫入應用程式事件記錄檔，事件來源為 *ADMConnector*。
+### <a name="post-installation-issues"></a>安裝後問題
+#### <a name="server-doesnt-show-in-service-map"></a>伺服器未出現在服務對應
+如果相依性代理程式安裝成功，但是在服務對應解決方案中沒有看到您的伺服器︰
+1. 相依性代理程式是否安裝成功？  您可以查看是否已安裝服務並且執行，以便驗證。<br><br>
+**Windows**︰尋找名稱為「Microsoft 相依性代理程式」的服務<br>
+**Linux**：尋找執行中的程序 "microsoft-dependency-agent"
 
-#### <a name="microsoft-monitoring-agent"></a>Microsoft Monitoring Agent
-若要收集診斷追蹤，請以系統管理員身分開啟命令提示字元，然後執行下列命令： 
+2. 您位於 [OMS/Log Analytics 的免費定價層](https://docs.microsoft.com/azure/log-analytics/log-analytics-add-solutions#offers-and-pricing-tiers)嗎？  免費方案允許最多五個唯一的服務對應伺服器。  任何後續伺服器則不會顯示在服務對應中，即使先前五個伺服器不會再傳送資料。
 
-    cd \Program Files\Microsoft Monitoring Agent\Agent\Tools
-    net stop healthservice 
-    StartTracing.cmd ERR
-    net start healthservice
+3. 您的伺服器是否將記錄和效能資料傳送到 OMS？  移至 [記錄搜尋]，然後為您的電腦執行下列查詢︰ 
 
-追蹤會寫入 c:\Windows\Logs\OpsMgrTrace。  您可以使用 StopTracing.cmd 停止追蹤。
+        * Computer="<your computer name here>" | measure count() by Type
+        
+您是否在結果中取得各種事件？  是否為最新的資料？  如果是，OMS 代理程式運作正常，並且與 OMS 服務進行通訊。 如果不是，請檢查您伺服器上的 OMS 代理程式︰[OMS Agent for Windows 疑難排解](https://support.microsoft.com/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues)。  [OMS Agent for Linux 疑難排解](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md)。
 
+#### <a name="server-shows-in-service-map-but-has-no-processes"></a>伺服器會顯示在服務對應，但是沒有任何處理序
+如果在服務對應中看到您的伺服器，但是沒有處理序或連線資料，則表示相依性代理程式已安裝且正在執行，但未載入核心驅動程式。  若要了解為什麼未載入驅動程式，請檢查 wrapper.log 檔案 (Windows) 或 service.log 檔案 (Linux)。  檔案的最後一行應該會指出為什麼 (例如核心不受支援，如果您更新了核心，在 Linux 上可能就會發生這個情況) 未載入核心。
 
-### <a name="linux-agents"></a>Linux 代理程式
+Windows：C:\Program Files\Microsoft Dependency Agent\logs\wrapper.log
 
-#### <a name="microsoft-dependency-agent"></a>Microsoft 相依性代理程式
-若要從相依性代理程式產生疑難排解資料，請以具有 sudo 或 root 權限的帳戶進行登入，然後執行下列命令。  您可以新增 --help 旗標，以顯示其他選項。
-
-    /opt/microsoft/dependency-agent/lib/scripts/collect-dependency-agent-data.sh
-
-「支援資料套件」會儲存到代理程式安裝目錄下的 /var/opt/microsoft/dependency-agent/log (如果為 root)，或儲存到執行指令碼之使用者的主目錄 (如果非 root)。  您可以使用 --file <filename> 選項將它儲存到不同位置。
-
-#### <a name="microsoft-dependency-agent-fluentd-plug-in-for-linux"></a>適用於 Linux 的 Microsoft 相依性代理程式 Fluentd 外掛程式
-相依性代理程式 Fluentd 外掛程式是在 OMS Linux 代理程式內執行。  它會從相依性代理程式接收資料，並轉送至服務對應雲端服務。  
-
-記錄檔會寫入至下列兩個檔案。
-
-- /var/opt/microsoft/omsagent/log/omsagent.log
-- /var/log/messages
-
-#### <a name="oms-agent-for-linux"></a>OMS Agent for Linux
-將 Linux 伺服器連接至 OMS 的疑難排解資源可以在這裡找到︰[https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md) 
-
-OMS Agent for Linux 的記錄檔位於 */var/opt/microsoft/omsagent/log/*。  
-
-omsconfig (代理程式組態) 的記錄檔位於 */var/opt/microsoft/omsconfig/log/*。
- 
-提供效能度量資料之 OMI 和 SCX 元件的記錄檔位於 */var/opt/omi/log/* 和 */var/opt/microsoft/scx/log*。
-
+Linux：/var/opt/microsoft/dependency-agent/log/service.log
 
 ## <a name="data-collection"></a>資料收集
 視系統相依性的複雜程度而定，每個代理程式每天預計會傳輸大約 25 MB。  每個代理程式每隔 15 秒就會傳送服務對應相依性資料。  
@@ -228,7 +208,7 @@ omsconfig (代理程式組態) 的記錄檔位於 */var/opt/microsoft/omsconfig/
 
 
 ## <a name="supported-operating-systems"></a>受支援的作業系統
-下列幾節會列出相依性代理程式所支援的作業系統。   所有作業系統皆不支援&32; 位元架構。
+下列幾節會列出相依性代理程式所支援的作業系統。   所有作業系統皆不支援 32 位元架構。
 
 ### <a name="windows-server"></a>Windows Server
 - Windows Server 2016
@@ -277,7 +257,7 @@ omsconfig (代理程式組態) 的記錄檔位於 */var/opt/microsoft/omsconfig/
 | 5.8 | 2.6.18-308 |
 | 5.9 | 2.6.18-348 |
 | 5.10 | 2.6.18-371 |
-| 5.11 | 2.6.18-398<br>2.6.18-400<br>2.6.18-402<br>2.6.18-404<br>2.6.18-406<br>2.6.18-407<br>2.6.18-408<br>2.6.18-409<br>2.6.18-410<br>2.6.18-411<br>2.6.18-412<br>2.6.18-416<br>2.6.18-417 |
+| 5.11 | 2.6.18-398<br>2.6.18-400<br>2.6.18-402<br>2.6.18-404<br>2.6.18-406<br>2.6.18-407<br>2.6.18-408<br>2.6.18-409<br>2.6.18-410<br>2.6.18-411<br>2.6.18-412<br>2.6.18-416<br>2.6.18-417<br>2.6.18-419 |
 
 #### <a name="oracle-enterprise-linux-w-unbreakable-kernel-uek"></a>Oracle Enterprise Linux 搭載 Unbreakable Kernel (UEK)
 

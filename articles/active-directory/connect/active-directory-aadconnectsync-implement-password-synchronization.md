@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/13/2017
+ms.date: 03/21/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 64b6447608ecdd9bdd2b307f4bff2cae43a4b13f
-ms.openlocfilehash: cff066ff2943443749ee8eb2ef71c7ca93bb829c
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 946f135e832667ad6e32743be2b07b4f86cd1cae
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -67,10 +67,29 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 密碼同步處理不會影響目前已登入的使用者。
 目前的雲端服務工作階段不會立即受到同步處理的密碼變更之影響，會在您登入雲端服務時才會受到影響。 不過，當雲端服務要求您重新驗證時，就需要提供新的密碼。
 
+有一點要注意的是，使用者必須輸入其公司認證第二次對 Azure AD 進行驗證，不論他們是否登入其公司網路。 不過，如果使用者在登入時勾選 [讓我保持登入] (KMSI) 核取方塊，這些模式可以最小化。 勾選這個核取方塊會設定工作階段 Cookie 在短期間內略過驗證。 KMSI 行為可以由 Azure Active Directory 系統管理員啟用或停用。
+
 > [!NOTE]
 > 只有 Active Directory 的物件類型使用者才支援密碼同步。 不支援 iNetOrgPerson 物件類型。
->
->
+
+### <a name="detailed-description-of-how-password-synchronization-works"></a>密碼同步處理運作方式的詳細描述
+以下深入說明 Active Directory 與 Azure Active Directory 之間的密碼同步處理運作方式。
+
+![詳細的密碼流程](./media/active-directory-aadconnectsync-implement-password-synchronization/arch3.png)
+
+
+1. 每隔兩分鐘，AD Connect 伺服器上的密碼同步處理代理程式會透過標準 [MS-DRSR](https://msdn.microsoft.com/library/cc228086.aspx) 複寫通訊協定，從 DC 要求儲存的密碼雜湊 (unicodePwd 屬性)，以同步處理 DC 之間的資料。 服務帳戶必須具有複寫目錄變更和複寫目錄變更所有 AD 權限 (預設在安裝時授與)，以取得密碼雜湊。
+2. 在傳送之前，DC 會使用金鑰 (它是 RPC 工作階段金鑰和 salt 的 [MD5](http://www.rfc-editor.org/rfc/rfc1321.txt) 雜湊)，來加密 MD4 密碼雜湊。 然後它會透過 RPC 將結果傳送至密碼同步處理代理程式。 DC 也會使用 DC 複寫通訊協定將 salt 傳送至同步處理代理程式，讓代理程式可以解密信封。
+3.    一旦密碼同步處理代理程式加密信封，它會使用 [MD5CryptoServiceProvider](https://msdn.microsoft.com/library/System.Security.Cryptography.MD5CryptoServiceProvider.aspx) 和 salt 來產生金鑰，以將接收的資料解密回其原始 MD4 格式。 密碼同步處理代理程式完全無法存取純文字密碼。 密碼同步處理代理程式使用 MD5 純粹是為了與 DC 的複寫通訊協定相容性，並且只會在 DC 和密碼同步處理代理程式之間的內部部署上使用。
+4.    密碼同步處理代理程式將 16 位元組二進位密碼雜湊擴展至 64 位元組的方法是首先將該雜湊轉換為 32 位元組十六進位字串，然後將此字串轉換回具有 UTF-16 編碼的二進位。
+5.    密碼同步處理代理程式會新增 salt，其中包含 10 位元組長度 salt，64 位元組二進位檔，以進一步保護原始雜湊。
+6.    然後密碼同步處理代理程式會結合 MD4 雜湊加上 salt，並且將它輸入 [PBKDF2](https://www.ietf.org/rfc/rfc2898.txt) 函式，使用 [HMAC-SHA256](https://msdn.microsoft.com/library/system.security.cryptography.hmacsha256.aspx) 索引雜湊演算法的 1000 次反覆運算。
+Azure AD 
+7.    密碼同步處理代理程式會產生 32 位元組的雜湊，串連 salt 和 SHA256 反覆運算數 (以供 Azure AD 使用)，然後透過 SSL 將字串從 AD 傳輸至 Azure AD。</br> 
+8.    當使用者嘗試登入 Azure AD 並且輸入其密碼時，密碼會執行相同的 MD4+salt+PBKDF2+HMAC-SHA256 程序。 如果產生的雜湊符合 Azure AD 中儲存的雜湊，使用者輸入的密碼正確並且通過驗證。 
+
+>[!Note] 
+>原始 MD4 雜湊不會傳輸至 Azure AD。相反地，會傳輸原始 MD4 雜湊的 SHA256 雜湊。 如此一來，如果取得儲存在 Azure AD 的雜湊，它不能在內部部署傳遞雜湊攻擊中使用。
 
 ### <a name="how-password-synchronization-works-with-azure-ad-domain-services"></a>密碼同步處理對 Azure AD 網域服務的運作方式
 您也可以使用密碼同步處理功能，將內部部署密碼同步處理到 [Azure AD 網域服務](../../active-directory-domain-services/active-directory-ds-overview.md)。 此案例可讓 Azure AD 網域服務，以內部部署 AD 中所有可用的方法驗證雲端中的使用者。 此案例的體驗類似於在內部部署環境中使用 Active Directory 遷移工具 (ADMT)。
@@ -78,7 +97,11 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 ### <a name="security-considerations"></a>安全性考量
 同步密碼的時候，純文字版本的密碼不會向密碼同步處理功能、Azure AD 或任何相關服務公開。
 
-此外，內部部署 Active Directory 不需使用可反轉加密的格式儲存密碼。 Active Directory 密碼雜湊的摘要會用於內部部署 AD 和 Azure Active Directory 之間的傳輸。 密碼雜湊的摘要無法用來存取內部部署環境內的資源。
+使用者驗證是針對 Azure AD 進行，而不是針對組織自己的 Active Directory 進行。 如果您的組織對於離開內部部署之任何表單中的密碼資料有疑慮，請考量事實上儲存在 Azure AD 中的 SHA256 資料密碼 - 原始 MD4 雜湊的雜湊 - 比起儲存在 Active Directory 中的安全許多。 此外，因為此 SHA256 雜湊無法解密，所以無法帶回組織的 Active Directory 環境，並且在傳遞雜湊攻擊中顯示為有效的使用者密碼。
+
+
+
+
 
 ### <a name="password-policy-considerations"></a>密碼原則考量
 啟用密碼同步處理會影響兩種類型的密碼原則：
@@ -91,12 +114,13 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 
 > [!NOTE]
 > 直接在雲端建立的使用者的密碼仍受制於在雲端定義的密碼原則。
->
->
 
 **Password expiration policy**  
 如果使用者位於密碼同步處理範圍內，則雲端帳戶的密碼會設為「永不到期」。
+
 您可以使用內部部署環境中已過期的同步處理密碼，繼續登入雲端服務。 您的雲端密碼會於下一次您在內部部署環境中變更密碼時更新。
+
+**帳戶到期**如果您的組織使用 accountExpires 屬性做為使用者帳戶管理的一部分，請注意這個屬性不會同步處理至 Azure AD。 如此一來，針對密碼同步處理設定之環境中到期的 AD 帳戶在 Azure AD 仍然為作用中。 如果帳戶已到期，建議工作流程動作應該觸發 PowerShell 指令碼，停用使用者的 Azure AD 帳戶。 相反地，當啟用此帳戶時，應該啟用 Azure AD。
 
 ### <a name="overwriting-synchronized-passwords"></a>覆寫已同步的密碼
 系統管理員可以使用 Windows PowerShell 手動重設您的密碼。
@@ -104,6 +128,24 @@ Active Directory 網域服務是以代表使用者實際密碼的雜湊值格式
 在此情況下，新的密碼會覆寫您已同步處理的密碼，且雲端中定義的所有密碼原則都會套用到新的密碼。
 
 如果您再次變更內部部署密碼，則新密碼會同步到雲端並覆寫手動更新的密碼。
+
+密碼同步處理不會影響目前已登入的 Azure 使用者。 目前的雲端服務工作階段不會立即受到同步處理的密碼變更之影響，會在您登入雲端服務時才會受到影響。 KMSI 會延伸此差異的持續時間。 當雲端服務要求您重新驗證時，就需要提供新的密碼。
+
+### <a name="additional-advantages"></a>其他優點
+
+- 一般而言，密碼同步處理比同盟服務更容易實作。 它不需要任何額外的伺服器，並且會排除高可用性同盟服務的相依性以驗證使用者。 
+- 密碼同步處理也可以在同盟之外啟用，如果您的同盟服務體驗發生中斷，可以使用它來做為後援。
+
+
+
+
+
+
+
+
+
+
+
 
 ## <a name="enabling-password-synchronization"></a>啟用密碼同步處理
 當您使用 **快速設定**安裝 Azure AD Connect 時，便會自動啟用密碼同步處理。 如需詳細資訊，請參閱[使用快速設定開始使用 Azure AD Connect](active-directory-aadconnect-get-started-express.md)。

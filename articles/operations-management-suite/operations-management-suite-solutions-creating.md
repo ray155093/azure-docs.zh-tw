@@ -1,5 +1,5 @@
 ---
-title: "在 Operations Management Suite (OMS) 中建立管理解決方案 | Microsoft Docs"
+title: "在 OMS 中建置管理解決方案 | Microsoft Docs"
 description: "管理解決方案會藉由提供客戶可新增至他們 OMS 工作區的套件管理案例，以擴充 Operations Management Suite (OMS) 的功能。  這篇文章提供詳細資料，說明如何建立要用於自己的環境中或可供客戶使用的管理解決方案。"
 services: operations-management-suite
 documentationcenter: 
@@ -12,263 +12,77 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 03/20/2017
 ms.author: bwren
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: fc8b76bf996060e226ac3f508a1ecffca6fc3c98
-ms.openlocfilehash: caa2f96d452174ebb13c5cbf67737f20e2a2134d
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 9d1a89e84b7340bf4bb3d759b4ae856431efcc0e
+ms.lasthandoff: 03/22/2017
 
 
 ---
-# <a name="creating-management-solutions-in-operations-management-suite-oms-preview"></a>在 Operations Management Suite (OMS) 中建立管理解決方案 (預覽)
+# <a name="design-and-build-a-management-solution-in-operations-management-suite-oms-preview"></a>在 Operations Management Suite (OMS) 中設計和建置管理解決方案 (預覽)
 > [!NOTE]
-> 這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。 以下所述的任何結構描述可能會有所變更。  
->
->
+> 這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。 以下所述的任何結構描述可能會有所變更。   j
 
-管理解決方案會藉由提供客戶可新增至他們 OMS 工作區的套件管理案例，以擴充 Operations Management Suite (OMS) 的功能。  這篇文章提供詳細資料，說明如何建立可用於自己的環境中或可透過社群供客戶使用的管理解決方案。
+[管理解決方案](operations-management-suite-solutions.md)會藉由提供客戶可新增至他們 OMS 工作區的套件管理案例，以擴充 Operations Management Suite (OMS) 的功能。  本文介紹的基本程序，可用來設計和建置適用於最常見需求的管理解決方案。  如果您不了解如何建置管理解決方案，則可以先使用此程序，之後再隨著需求的發展，運用相關概念來建置更複雜的解決方案。
 
-## <a name="planning-your-management-solution"></a>規劃您的管理解決方案
-OMS 中的管理解決方案包含支援特定管理案例的多個資源。  在規劃您的解決方案時，您應該專注於您嘗試要達到的案例以及所有支援它的必要資源。  每個解決方案應為自主並定義它所需的每個資源，即使一個或多個資源也是由其他解決方案所定義。  安裝管理解決方案時會建立每個資源 (除非資源已存在)，且您可以定義移除解決方案時，資源會發生什麼事。  
+## <a name="what-is-a-management-solution"></a>何謂管理解決方案？
 
-例如，管理解決方案可能會包含 [Azure 自動化 Runbook](../automation/automation-intro.md)，其會使用[排程](../automation/automation-schedules.md)和可提供所收集資料各種視覺效果的[檢視](../log-analytics/log-analytics-view-designer.md)資料收集到 Log Analytics 存放庫。  其他解決方案可能會使用相同的排程。  身為管理解決方案的作者，您會定義全部三個資源，但指定當移除解決方案時應自動移除 Runbook 及檢視。    您也會定義排程，但指定若移除解決方案時它應該保留在原位，以防其他解決方案仍在使用排程。
+管理解決方案包含 OMS 和 Azure 資源，共同運作以實現特別的監視案例。  解決方案會實作為[資源管理範本](../azure-resource-manager/resource-manager-template-walkthrough.md)，範本中包含如何在安裝解決方案時安裝及設定其內含資源的詳細資料。
 
-## <a name="management-solution-files"></a>管理解決方案檔案
-管理解決方案會實作為[資源管理範本](../azure-resource-manager/resource-manager-template-walkthrough.md)。  學習如何撰寫管理解決方案的主要工作，是學習如何[撰寫範本](../azure-resource-manager/resource-group-authoring-templates.md)。  本文提供用於解決方案的範本獨特詳細資料，以及如何定義一般解決方案資源。
-
-管理解決方案與 [Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md#template-format)的基本結構相同，如下所示。  下列各節說明最上層項目及其在解決方案中的內容。  
-
-    {
-       "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-       "contentVersion": "",
-       "parameters": {  },
-       "variables": {  },
-       "resources": [  ],
-       "outputs": {  }
-    }
-
-## <a name="parameters"></a>參數
-[Parameters](../azure-resource-manager/resource-group-authoring-templates.md#parameters) 是您在使用者安裝解決方案時向他們要求的值。  所有解決方案都會有標準參數，而您可以視需要針對特定解決方案新增額外的參數。  使用者在安裝解決方案時提供參數值的方式，將取決於特定參數以及解決方案的安裝方式。
-
-當使用者透過 [Azure Marketplace](operations-management-suite-solutions.md#finding-and-installing-management-solutions) 或 [Azure 快速入門範本](operations-management-suite-solutions.md#finding-and-installing-management-solutions)安裝管理解決方案時，系統會提示他們選取 [OMS 工作區和自動化帳戶](operations-management-suite-solutions-creating.md#oms-workspace-and-automation-account)。  這些用來填入每個標準參數的值。  系統不會提示使用者直接提供標準參數的值，但會提示他們提供任何其他參數的值。
-
-當使用者以[其他方法](operations-management-suite-solutions.md#finding-and-installing-management-solutions)安裝解決方案時，他們必須提供所有標準參數和所有其他參數的值。
-
-範例參數如下所示。
-
-    "Daily Start Time": {
-        "type": "string",
-        "metadata": {
-            "description": "Enter time for starting VMs by resource group.",
-            "control": "datetime",
-            "category": "Schedule"
-        }
-
-下表說明參數的屬性。
-
-| 屬性 | 說明 |
-|:--- |:--- |
-| 類型 |變數的資料類型。 針對使用者顯示的輸入控制項視資料類型而定。<br><br>bool - 下拉式方塊<br>string - 文字方塊<br>int - 文字方塊<br>securestring - 密碼欄位<br> |
-| category |參數的選擇性類別。  相同類別中的參數會群組在一起。 |
-| control |string 參數的其他功能。<br><br>datetime - Datetime 控制項隨即顯示。<br>guid - 會自動產生 Guid 值，但未顯示此參數。 |
-| 說明 |參數的選擇性說明。  顯示於參數旁邊的資訊球形文字說明。 |
-
-### <a name="standard-parameters"></a>標準參數
-下表列出所有管理解決方案的標準參數。  系統會為使用者填入這些值，而不會在他們從 Azure Marketplace 或快速入門範本安裝解決方案時提示他們輸入這些值。  如果以其他方法安裝解決方案，使用者必須提供這些值。
-
-> [!NOTE]
-> Azure Marketplace 和快速入門範本中的使用者介面需有表格中的參數名稱。  如果您使用不同的參數名稱，則會提示使用者輸入其值，而不會自動填入。
->
->
-
-| 參數 | 類型 | 說明 |
-|:--- |:--- |:--- |
-| accountName |string |Azure 自動化帳戶名稱。 |
-| pricingTier |字串 |Log Analytics 工作區和 Azure 自動化帳戶的定價層。 |
-| regionId |字串 |Azure 自動化帳戶的區域。 |
-| solutionName |字串 |解決方案的名稱。 |
-| workspaceName |字串 |Log Analytics 工作區名稱。 |
-| workspaceRegionId |字串 |Log Analytics 工作區的區域。 |
-
-### <a name="sample"></a>範例
-以下是解決方案的範例參數實體。  這包括所有標準參數和相同目錄中的兩個額外參數。
-
-    "parameters": {
-        "workspaceName": {
-            "type": "string",
-            "metadata": {
-                "description": "A valid Log Analytics workspace name"
-            }
-        },
-        "accountName": {
-               "type": "string",
-               "metadata": {
-                   "description": "A valid Azure Automation account name"
-               }
-        },
-        "workspaceRegionId": {
-               "type": "string",
-               "metadata": {
-                   "description": "Region of the Log Analytics workspace"
-            }
-        },
-        "regionId": {
-            "type": "string",
-            "metadata": {
-                "description": "Region of the Azure Automation account"
-            }
-        },
-        "pricingTier": {
-            "type": "string",
-            "metadata": {
-                "description": "Pricing tier of both Log Analytics workspace and Azure Automation account"
-            }
-        },
-        "jobIdGuid": {
-        "type": "string",
-            "metadata": {
-                "description": "GUID for a runbook job",
-                "control": "guid",
-                "category": "Schedule"
-            }
-        },
-        "startTime": {
-            "type": "string",
-            "metadata": {
-                "description": "Time for starting the runbook.",
-                "control": "datetime",
-                "category": "Schedule"
-            }
-        }
+基本策略是藉由在 Azure 環境中建置個別元件來開始您的管理解決方案。  當功能正常運作後，您就可以開始將這些元件封裝到[管理解決方案檔](operations-management-suite-solutions-solution-file.md)。 
 
 
-參考解決方案的其他項目中使用 **parameters('parameter name')** 語法的參數值。  例如，若要存取工作區名稱，您會使用 **parameters('workspaceName')**
+## <a name="design-your-solution"></a>設計您的解決方案
+下圖所示的是最常見的管理解決方案模式。  下面會討論此模式的不同元件。
 
-## <a name="variables"></a>變數
-**Variables** 元素包含您會在管理解決方案的其餘部分使用的值。  這些值不會公開給安裝解決方案的使用者。  它們旨在為作者提供單一位置，讓他們可以管理在整個解決方案可能會重複使用的值。 您應該將解決方案特有的值放在變數中，而非將這些值硬式編碼在 **resources** 元素中。  這會讓程式碼更容易閱讀，並可讓您輕鬆地在後續的版本中變更這些值。
-
-下列範例為 **variables** 項目，包含解決方案中所使用的一般參數。
-
-    "variables": {
-        "SolutionVersion": "1.1",
-        "SolutionPublisher": "Contoso",
-        "SolutionName": "My Solution",
-        "LogAnalyticsApiVersion": "2015-11-01-preview",
-        "AutomationApiVersion": "2015-10-31"
-    },
-
-參考透過使用 **variables('variable name')** 語法的解決方案參數值。  例如，若要存取 SolutionName 變數，您會使用 **variables('solutionName')**
-
-## <a name="resources"></a>資源
-**resources** 元素定義管理解決方案中包含的不同資源。  這是範本最大且最複雜的部分。  會以如下的結構定義資源。  
-
-    "resources": [
-        {
-            "name": "<name-of-the-resource>",            
-            "apiVersion": "<api-version-of-resource>",
-            "type": "<resource-provider-namespace/resource-type-name>",        
-            "location": "<location-of-resource>",
-            "tags": "<name-value-pairs-for-resource-tagging>",
-            "comments": "<your-reference-notes>",
-            "dependsOn": [
-                "<array-of-related-resource-names>"
-            ],
-            "properties": "<unique-settings-for-the-resource>",
-            "resources": [
-                "<array-of-child-resources>"
-            ]
-        }
-    ]
-
-### <a name="dependencies"></a>相依性
-**dependsOn** 元素指定對另一個資源的[相依性](../azure-resource-manager/resource-group-define-dependencies.md)。  安裝解決方案時，直到所有相依性建立後才會建立資源。  例如，解決方案可能會在使用[作業資源](operations-management-suite-solutions-resources-automation.md#automation-jobs)安裝時[啟動 Runbook](operations-management-suite-solutions-resources-automation.md#runbooks)。  作業資源會相依於 Runbook 資源，以確保在建立作業前建立 Runbook。
-
-### <a name="oms-workspace-and-automation-account"></a>OMS 工作區和自動化帳戶
-管理解決方案需要 [OMS 工作區](../log-analytics/log-analytics-manage-access.md)才可包含檢視，以及需要[自動化帳戶](../automation/automation-security-overview.md#automation-account-overview)才可包含 Runbook 和相關資源。  這些項目必須在建立解決方案中的資源前取得，且不得定義於解決方案本身。  使用者將會在部署解決方案時[指定工作區和帳戶](operations-management-suite-solutions.md#oms-workspace-and-automation-account)，但身為作者，您應該考慮下列幾點。
-
-## <a name="solution-resource"></a>解決方案資源
-每個解決方案需要**資源**項目中定義解決方案本身的資源項目。  這會具有 **Microsoft.OperationsManagement/solutions** 類型。  以下是解決方案資源的範例。  下列各節說明其不同的元素。
-
-    "name": "[concat(variables('SolutionName'), '[ ' ,parameters('workspacename'), ' ]')]",
-    "location": "[parameters('workspaceRegionId')]",
-    "tags": { },
-    "type": "Microsoft.OperationsManagement/solutions",
-    "apiVersion": "[variables('LogAnalyticsApiVersion')]",
-    "dependsOn": [
-        "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/runbooks/', variables('RunbookName'))]",
-        "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/schedules/', variables('ScheduleName'))]",
-        "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'), '/views/', variables('ViewName'))]"
-    ]
-    "properties": {
-        "workspaceResourceId": "[concat(resourceGroup().id, '/providers/Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]",
-        "referencedResources": [
-            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/schedules/', variables('ScheduleName'))]"
-        ],
-        "containedResources": [
-            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/runbooks/', variables('RunbookName'))]",
-            "[concat('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'), '/views/', variables('ViewName'))]"
-        ]
-    },
-    "plan": {
-        "name": "[concat(variables('SolutionName'), '[' ,parameters('workspacename'), ']')]",
-        "Version": "[variables('SolutionVersion')]",
-        "product": "AzureSQLAnalyticSolution",
-        "publisher": "[variables('SolutionPublisher')]",
-        "promotionCode": ""
-    }
-
-### <a name="solution-name"></a>方案名稱
-解決方案名稱在 Azure 訂用帳戶中必須是唯一的。 可用的建議值如下。  這會使用名為 **SolutionName** 的變數做為基底名稱，並使用 **workspaceName** 參數來確保名稱是唯一的。
-
-    [concat(variables('SolutionName'), ' [' ,parameters('workspaceName'), ']')]
-
-這會解析為名稱，如下所示。
-
-    My Solution Name [MyWorkspace]
+![OMS 解決方案概觀](media/operations-management-suite-solutions/solution-overview.png)
 
 
-### <a name="dependencies"></a>相依性
-解決方案資源在解決方案中的每隔一個資源上須有[相依性](../azure-resource-manager/resource-group-define-dependencies.md)，因為必須先存在相依性，才能建立解決方案。  您可以在 **dependsOn** 項目中針對每個資源新增一個項目。
+### <a name="data-sources"></a>資料來源
+設計解決方案時的第一個步驟，是決定您需要從 Log Analytics 存放庫取得的資料。  這項資料可由[資料來源](../log-analytics/log-analytics-data-sources.md)或[另一個解決方案](operations-management-suite-solutions.md)所收集，否則您的解決方案就可能需要提供資料收集程序。
 
-### <a name="properties"></a>屬性
-解決方案資源具有下表中的屬性。  這包括由定義解決方案安裝後如何管理資源的解決方案所參考及包含的資源。  解決方案中的每個資源應列在 **referencedResources** 或 **containedResources** 屬性中。
+有數種方式可以將資料來源收集在 Log Analytics 存放庫中，您可以在 [Log Analytics 中的資料來源](../log-analytics/log-analytics-data-sources.md)中看到其說明。  這包括 Windows 事件記錄中的事件或 Syslog 所產生的事件，以及 Windows 和 Linux 用戶端的效能計數器。  您也可以從 Azure 監視器所收集的 Azure 資源來收集資料。  
 
-| 屬性 | 說明 |
-|:--- |:--- |
-| workspaceResourceId |以下形式的 OMS 工作區識別碼：<Resource Group ID>/providers/Microsoft.OperationalInsights/workspaces/\<工作區名稱\>。 |
-| referencedResources |解決方案移除時不應移除的解決方案資源清單。 |
-| containedResources |解決方案移除時應移除的解決方案資源清單。 |
+如果您需要的資料無法透過任何可用的資料來源取得，可以使用 [HTTP 資料收集器 API](../log-analytics/log-analytics-data-collector-api.md)，這個 API 可讓您從任何可以呼叫 REST API 的用戶端，將資料寫入 Log Analytics 存放庫。  若要在管理解決方案中自訂資料收集，最常見的方法是建立 [Azure 自動化中的 Runbook](../automation/automation-runbook-types.md)，以從 Azure 或外部資源收集所需的資料，並使用資料收集器 API 將資料寫入存放庫中。  
 
-上述範例適用於具有 Runbook、排程和檢視的解決方案。  **properties** 元素會「參考」排程和 Runbook，因此在移除解決方案時不會移除它們。  會*包含*檢視，因此當移除解決方案時會移除它。
+### <a name="log-searches"></a>記錄檔搜尋
+[記錄搜尋](../log-analytics/log-analytics-log-searches.md)可用來擷取和分析 Log Analytics 存放庫中的資料。  除了讓使用者能夠對存放庫中的資料執行特定分析外，記錄搜尋也可供檢視和警示使用。  
 
-### <a name="plan"></a>規劃
-解決方案資源的**計劃**實體具有下表中的屬性。
+您應該定義您認為會對使用者有幫助的任何查詢，即使沒有任何檢視或警示使用這些查詢也是如此。  在入口網站中，這些查詢會以「已儲存搜尋」的形式提供給使用者來使用，而您也可以將這些查詢包含在自訂檢視中的[查詢清單視覺效果部分](../log-analytics/log-analytics-view-designer-parts.md#list-of-queries-part)。
 
-| 屬性 | 說明 |
-|:--- |:--- |
-| 名稱 |解決方案的名稱。 |
-| version |作者所決定的解決方案版本。 |
-| product |識別解決方案的唯一字串。 |
-| publisher |解決方案的發佈者。 |
+### <a name="alerts"></a>Alerts
+[Log Analytics 中的警示](../log-analytics/log-analytics-alerts.md)可透過對存放庫中的資料進行[記錄搜尋](#log-searches)來識別問題。  它們會通知使用者，或自動執行回應中的動作。 您應該識別應用程式的不同警示條件，並在解決方案檔中包含對應的警示規則。
 
-## <a name="other-resources"></a>其他資源
-您可以在下列文章中取得管理解決方案通用的資源詳細資料和範例。
+如果問題有可能透過自動化程序加以修正，您通常會在 Azure 自動化中建立 Runbook 以執行此修復。  大部分 Azure 服務都可使用 [Cmdlet](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 來管理，Runbook 會運用這些 Cmdlet 來執行這類功能。
 
-* [檢視和儀表板](operations-management-suite-solutions-resources-views.md)
-* [自動化資源](operations-management-suite-solutions-resources-automation.md)
+如果您的解決方案需要外部功能以對警示做出回應，您可以使用 [Webhook 回應](../log-analytics/log-analytics-alerts-actions.md)。  這可讓您呼叫外部 Web 服務，以從警示傳送資訊。
 
-## <a name="testing-a-management-solution"></a>測試管理解決方案
-在部署管理解決方案之前，建議您使用 [Test-AzureRmResourceGroupDeployment](../azure-resource-manager/resource-group-template-deploy.md#deploy) 進行測試。  這會驗證您的解決方案檔，並協助您在嘗試部署它之前找出問題。
+### <a name="views"></a>Views
+Log Analytics 中的檢視可以視覺方式呈現 Log Analytics 儲存機制中的資料。  每個解決方案通常會有一個檢視，這個檢視具有[圖格](../log-analytics/log-analytics-view-designer-tiles.md)，並且會顯示在使用者的主要儀表板上。  檢視可以包含任意數目的[視覺效果部分](../log-analytics/log-analytics-view-designer-parts.md)，以便為使用者提供不同的視覺效果來呈現收集到的資料。
+
+您可以[使用檢視設計工具來建立自訂檢視](../log-analytics/log-analytics-view-designer.md)，並於稍後匯出以納入解決方案檔中。  
+
+
+## <a name="create-solution-file"></a>建立解決方案檔
+在設定並測試要成為解決方案一部分的元件後，您可以[建立解決方案檔](operations-management-suite-solutions-solution-file.md)。  您會將解決方案元件實作在 [Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)中，此範本所包含的[解決方案資源](operations-management-suite-solutions-solution-file.md#solution-resource)會與檔案中的其他資源有所關聯。  
+
+
+## <a name="test-your-solution"></a>測試解決方案
+在開發解決方案的同時，您必須將其安裝在工作區中並進行測試。  您可以使用任何可用來[測試和安裝 Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)的方法來進行此操作。
+
+## <a name="publish-your-solution"></a>發佈您的解決方案
+解決方案完成並通過測試後，您可以透過下列來源將它提供給客戶。
+
+- **Azure 快速入門範本**。  [Azure 快速入門範本](https://azure.microsoft.com/resources/templates/)是一組由社群成員透過 GitHub 所貢獻的 Resource Manager 範本。  您可以藉由遵循[參與指南](https://github.com/Azure/azure-quickstart-templates/tree/master/1-CONTRIBUTION-GUIDE)中的資訊，來提供您的解決方案。
+- **Azure Marketplace**。  [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/) 可讓您將解決方案散發和販售給其他開發人員、ISV 和 IT 專業人員。  您可以在[如何在 Azure Marketplace 中發佈和管理供應項目](../marketplace-publishing/marketplace-publishing-getting-started.md)中，了解如何將解決方案發佈至 Azure Marketplace。
+
+
 
 ## <a name="next-steps"></a>後續步驟
-* 在您的管理解決方案中[新增儲存的搜尋和警示](operations-management-suite-solutions-resources-searches-alerts.md)。
-* 在您的管理解決方案中[新增檢視](operations-management-suite-solutions-resources-views.md)。
-* 在您的管理解決方案中[新增自動化 Runbook 及其他資源](operations-management-suite-solutions-resources-automation.md)。
+* 了解如何為您的管理解決方案[建立解決方案檔](operations-management-suite-solutions-solution-file.md)。
 * 了解[編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)的詳細資料。
 * 搜尋 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates)不同 Resource Manager 範本的範例。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 
