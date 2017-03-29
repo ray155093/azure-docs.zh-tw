@@ -29,7 +29,7 @@
 3. 請記下您要卸離之磁碟的 LUN 或 **邏輯單元編號** 。
 
 ## <a name="remove-operating-system-references-to-the-disk"></a>移除磁碟的作業系統參考
-在從 Linux 客體中斷連結磁碟之前，您應該先確定磁碟上的所有磁碟分割都不在使用中。 請確定作業系統沒有在重新開機之後嘗試重新掛接它們。 下列步驟可復原您在[附加](../articles/virtual-machines/virtual-machines-linux-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)磁碟時可能建立的組態。
+在從 Linux 客體中斷連結磁碟之前，您應該先確定磁碟上的所有磁碟分割都不在使用中。 請確定作業系統沒有在重新開機之後嘗試重新掛接它們。 下列步驟可復原您在[附加](../articles/virtual-machines/linux/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)磁碟時可能建立的組態。
 
 1. 使用 `lsscsi` 命令來找出磁碟識別碼。 您可透過 `yum install lsscsi` (Red Hat 式散發) 或 `apt-get install lsscsi`(Debian 式散發) 來安裝 `lsscsi`。 您可以使用 LUN 編號找到要尋找的磁碟識別碼。 在每個資料列的 Tuple 中，最後一個數字即為 LUN。 在下列範例從 `lsscsi`，LUN 0 對應至 /dev/sdc
 
