@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 06/01/2016
 ms.author: glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4d5205b1c693b8c1f199235784263f3f7b6189ff
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: e44199dec6de1e89545f3d122481aa81e97d75ac
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -155,7 +155,7 @@ SDK 會針對 POCO ( [純舊 CLR 物件](http://en.wikipedia.org/wiki/Plain_Old_
 * `MessageProcessor` 策略模式可讓您為每個佇列/主題指定處理器。
 * 訊息處理並行依預設支援。 
 * 透過 `ServiceBusConfiguration.MessageOptions` 輕鬆自訂 `OnMessageOptions`。
-* 允許在 `ServiceBusTriggerAttribute`/`ServiceBusAttribute` 上指定 [AccessRights](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Functions.cs#L71) (針對您可能沒有管理權限的情況)。 
+* 允許在 `ServiceBusTriggerAttribute`/`ServiceBusAttribute` 上指定 [AccessRights](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Functions.cs#L71) (針對您可能沒有管理權限的情況)。 請注意，Azure WebJobs 無法在沒有管理 AccessRights 的情況下，自動佈建不存在的佇列和主題。
 
 ## <a id="queues"></a>儲存體佇列做法文章所涵蓋的相關主題
 如需與特定服務匯流排無關的 WebJobs SDK 案例的相關資訊，請參閱 [如何透過 WebJobs SDK 使用 Azure 佇列儲存體](websites-dotnet-webjobs-sdk-storage-queues-how-to.md)。 

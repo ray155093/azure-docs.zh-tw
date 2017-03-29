@@ -10,12 +10,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 02/09/2017
+ms.date: 03/20/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 938f325e2cd4dfc1a192256e033aabfc39b85dac
-ms.openlocfilehash: 6bb1f31407f9af67e699bd110ee528dddee1a70f
-ms.lasthandoff: 02/14/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 4f10e5a8200af870e0adb8977b9c68b9998a6de7
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -41,7 +41,7 @@ ms.lasthandoff: 02/14/2017
 上傳的頻率是由您以及您希望您的資料多快可供查詢來定義。 以較大的區塊上傳是更有效率的方式，但不超過 1 GB。
 
 > [!NOTE]
-> *有許多資料來源要分析嗎？* [*請考慮使用 logstash **以將您的資料傳送至 Application Insights。*](https://github.com/Microsoft/logstash-output-application-insights)
+> *有許多資料來源要分析嗎？* [*請考慮使用 logstash**以將您的資料傳送至 Application Insights。*](https://github.com/Microsoft/logstash-output-application-insights)
 > 
 
 ## <a name="before-you-start"></a>開始之前
@@ -68,24 +68,34 @@ ms.lasthandoff: 02/14/2017
 ## <a name="define-your-schema"></a>定義結構描述
 
 在您匯入資料之前，您必須定義資料來源，以指定您資料的結構描述。
+在單一 Application Insights 資源中，最多可包含 50 個資料來源
 
-1. 啟動資料來源精靈
+1. 啟動資料來源精靈。
 
     ![新增資料來源](./media/app-insights-analytics-import/add-new-data-source.png)
 
-2. 上傳範例資料檔案。 (如果您上傳結構描述定義則為選擇性。)
+    提供新資料來源的名稱。
 
-    此範例的第一列可以是資料行標頭。 (您可以在下一個步驟中變更欄位名稱。)
+2. 定義您要上傳的檔案格式。
 
-    範例應該包含至少 10 個資料列的資料。
+    您可以手動定義格式，或上傳範例檔案。
+
+    如果資料是 CSV 格式，此範例的第一列可以是資料行標頭。 您可以在下一個步驟中變更欄位名稱。
+
+    範例應該包含至少 10 個資料列或資料記錄。
+
+    資料行或欄位名稱應包含英數字元名稱 (不含空格或標點符號)。
+
+    ![上傳範例檔案](./media/app-insights-analytics-import/sample-data-file.png)
+
 
 3. 檢閱精靈已經得到的結構描述。 如果它是從範例推斷出類型，您可能需要調整推斷的資料行類型。
 
-   (選擇性。)上傳結構描述定義。 請看以下的格式。
+    ![檢閱推斷的結構描述](./media/app-insights-analytics-import/data-source-review-schema.png)
 
-4. 選取時間戳記。 分析中的所有資料都必須都有時間戳記欄位。 必須有 `datetime` 類型，但不必命名為 'timestamp'。 如果您的資料具有包含以 ISO 格式表示之日期和時間的資料行，選擇此選項為時間戳記資料行。 否則，請選擇「資料抵達時」，匯入程序將會新增時間戳記欄位。
+ * (選擇性。)上傳結構描述定義。 請看以下的格式。
 
-    ![檢閱結構描述](./media/app-insights-analytics-import/data-source-review-schema.png)
+ * 選取時間戳記。 分析中的所有資料都必須都有時間戳記欄位。 必須有 `datetime` 類型，但不必命名為 'timestamp'。 如果您的資料具有包含以 ISO 格式表示之日期和時間的資料行，選擇此選項為時間戳記資料行。 否則，請選擇「資料抵達時」，匯入程序將會新增時間戳記欄位。
 
 5. 建立資料來源。
 
@@ -133,6 +143,9 @@ JSON 允許資料部分對應，因此 JSON 格式的結構描述定義不需要
 
  * Blob 未壓縮大小可以達 1 GB 。 從效能觀點來看，數百 MB 的大型 blob 很適合。
  * 可以使用 Gzip 進行壓縮，以改善上傳時間和延遲時間，以便資料可用於查詢。 使用 `.gz` 副檔名。
+ * 針對此目的，最好使用個別的儲存體帳戶，以避免來自不同服務的呼叫拖慢效能。
+ * 以高頻率 (每幾秒一次) 傳送資料時，基於效能考量，建議使用多個儲存體帳戶。
+
  
 2. [建立 blob 的共用存取簽章](../storage/storage-dotnet-shared-access-signature-part-2.md). 金鑰應該有一天的到期時間，並提供讀取權限。
 3. 進行 REST 呼叫，以通知 Application Insights 資料正在等候。
@@ -181,6 +194,7 @@ JSON 允許資料部分對應，因此 JSON 格式的結構描述定義不需要
  * 資料來源名稱錯誤。
 
 回應錯誤訊息中有更詳細的資訊。
+
 
 ## <a name="sample-code"></a>範例程式碼
 

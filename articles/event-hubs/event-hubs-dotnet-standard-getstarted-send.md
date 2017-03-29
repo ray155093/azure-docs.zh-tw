@@ -15,37 +15,37 @@ ms.workload: na
 ms.date: 03/01/2017
 ms.author: jotaub
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 6a6fe5e2e706fd8ab4ee6c51cde5b54fa703688b
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 98de5528d8c74630153bf6908c590b3e0a89d870
+ms.lasthandoff: 03/22/2017
 
 ---
 
-# <a name="get-started-sending-messages-to-event-hubs-in-net-standard"></a>開始在 .NET Standard 中傳送訊息至事件中樞
+# <a name="get-started-sending-messages-to-azure-event-hubs-in-net-standard"></a>開始在 .NET Standard 中傳送訊息至 Azure 事件中樞
 
 > [!NOTE]
 > 您可在 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleSender) 上取得此範例。
 
-本教學課程說明如何撰寫將一組訊息傳送到「事件中樞」的.NET Core 主控台應用程式。 您可以依原樣執行 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleSender) 解決方案，其中使用您的「事件中樞」值來取代 `EhConnectionString` 和 `EhEntityPath` 字串，或著，您也可以依照本教學課程中的步驟操作來建立自己的解決方案。
+本教學課程說明如何撰寫將一組訊息傳送到「事件中樞」的.NET Core 主控台應用程式。 您可以依現狀執行 [GitHub (英文)](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleSender) 解決方案，使用您事件中樞的值取代 `EhConnectionString` 和 `EhEntityPath` 字串。 或者，您可以遵循本教學課程中的步驟，來建立自己的解決方案。
 
 ## <a name="prerequisites"></a>必要條件
 
-1. [Microsoft Visual Studio 2015 或 2017](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2015，但也支援 Visual Studio 2017。
-2. [.NET Core Visual Studio 2015 或 2017 工具](http://www.microsoft.com/net/core)。
-3. Azure 訂用帳戶。
-4. 事件中樞命名空間。
+* [Microsoft Visual Studio 2015 或 2017](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2015，但也支援 Visual Studio 2017。
+* [.NET Core Visual Studio 2015 或 2017 工具](http://www.microsoft.com/net/core)。
+* Azure 訂用帳戶。
+* 事件中樞命名空間。
 
-為了將訊息傳送到事件中樞，我們會使用 Visual Studio 撰寫 C# 主控台應用程式。
+為了將訊息傳送至事件中樞，我們會使用 Visual Studio 撰寫 C# 主控台應用程式。
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>建立事件中樞命名空間和事件中樞
 
-第一個步驟是使用 [Azure 入口網站](https://portal.azure.com)來建立「事件中樞」類型的命名空間，然後取得您應用程式與「事件中樞」進行通訊所需的管理認證。 若要建立命名空間和「事件中樞」，請依照[這篇文章](event-hubs-create.md)中的程序操作，然後繼續進行下列步驟。
+第一個步驟是使用 [Azure 入口網站](https://portal.azure.com)來建立事件中樞類型的命名空間，然後取得您應用程式與事件中樞進行通訊所需的管理認證。 若要建立命名空間和事件中樞，請依照[這篇文章](event-hubs-create.md)中的程序操作，然後繼續進行下列步驟。
 
 ## <a name="create-a-console-application"></a>建立主控台應用程式
 
-啟動 Visual Studio。 從 [檔案] 功能表中，按一下 [新增]，然後按一下 [專案]。 建立 .NET Core 主控台應用程式。
+啟動 Visual Studio。 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。 建立 .NET Core 主控台應用程式。
 
-![][1]
+![新增專案][1]
 
 ## <a name="add-the-event-hubs-nuget-package"></a>新增事件中樞 NuGet 封裝
 
@@ -73,8 +73,8 @@ ms.lasthandoff: 03/06/2017
     ```csharp
     private static async Task MainAsync(string[] args)
     {
-        // Creates an EventHubsConnectionStringBuilder object from a the connection string, and sets the EntityPath.
-        // Typically the connection string should have the Entity Path in it, but for the sake of this simple scenario
+        // Creates an EventHubsConnectionStringBuilder object from the connection string, and sets the EntityPath.
+        // Typically, the connection string should have the entity path in it, but for the sake of this simple scenario
         // we are using the connection string from the namespace.
         var connectionStringBuilder = new EventHubsConnectionStringBuilder(EhConnectionString)
         {
@@ -91,7 +91,7 @@ ms.lasthandoff: 03/06/2017
         Console.ReadLine();
     }
     ```
-    
+
 4. 新增稱為 `SendMessagesToEventHub` 的新方法至 `Program` 類別，如下所示：
 
     ```csharp
@@ -133,38 +133,38 @@ ms.lasthandoff: 03/06/2017
         using System.Text;
         using System.Threading.Tasks;
         using Microsoft.Azure.EventHubs;
-       
+
         public class Program
         {
             private static EventHubClient eventHubClient;
             private const string EhConnectionString = "{Event Hubs connection string}";
             private const string EhEntityPath = "{Event Hub path/name}";
-        
+
             public static void Main(string[] args)
             {
                 MainAsync(args).GetAwaiter().GetResult();
             }
-        
+
             private static async Task MainAsync(string[] args)
             {
-                // Creates an EventHubsConnectionStringBuilder object from a the connection string, and sets the EntityPath.
-                // Typically the connection string should have the Entity Path in it, but for the sake of this simple scenario
+                // Creates an EventHubsConnectionStringBuilder object from the connection string, and sets the EntityPath.
+                // Typically, the connection string should have the entity path in it, but for the sake of this simple scenario
                 // we are using the connection string from the namespace.
                 var connectionStringBuilder = new EventHubsConnectionStringBuilder(EhConnectionString)
                 {
                     EntityPath = EhEntityPath
                 };
-        
+
                 eventHubClient = EventHubClient.CreateFromConnectionString(connectionStringBuilder.ToString());
-        
+
                 await SendMessagesToEventHub(100);
-        
+
                 await eventHubClient.CloseAsync();
-        
+
                 Console.WriteLine("Press ENTER to exit.");
                 Console.ReadLine();
             }
-        
+
             // Creates an Event Hub client and sends 100 messages to the event hub.
             private static async Task SendMessagesToEventHub(int numMessagesToSend)
             {
@@ -180,18 +180,18 @@ ms.lasthandoff: 03/06/2017
                     {
                         Console.WriteLine($"{DateTime.Now} > Exception: {exception.Message}");
                     }
-        
+
                     await Task.Delay(10);
                 }
-        
+
                 Console.WriteLine($"{numMessagesToSend} messages sent.");
             }
         }
     }
     ```
-  
+
 6. 執行程式，並確定沒有任何錯誤。
-  
+
 恭喜！ 您現在已可以傳送訊息至事件中樞。
 
 ## <a name="next-steps"></a>後續步驟
@@ -203,3 +203,4 @@ ms.lasthandoff: 03/06/2017
 * [事件中樞常見問題集](event-hubs-faq.md)
 
 [1]: ./media/event-hubs-dotnet-standard-getstarted-send/netcore.png
+

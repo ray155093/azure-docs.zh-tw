@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: 9cd676554542e4effef54790bf9095c5b7a8f75b
-ms.openlocfilehash: 51913b5e0d43514f50f2d51500f2149438d87045
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 4e6d859ee621a730e0d2c1062d3a31e7c053e798
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -50,8 +51,8 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 5. 遵照提示進行，並建立新的 **Web 應用程式和/或 WebAPI**。
   * 應用程式的 [ **名稱** ] 將對使用者說明您的應用程式
   * [ **登入 URL** ] 是指應用程式的基底 URL。  基本架構的預設值是 `http://localhost:8080/adal4jsample/`。
-  * [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。  慣例會使用 `https://<tenant-domain>/<app-name>`，例如：`http://localhost:8080/adal4jsample/`
 6. 完成註冊後，AAD 會為您的應用程式指派唯一的應用程式識別碼。  您會在後續小節中用到這個值，所以請從應用程式索引標籤中複製此值。
+7. 從應用程式的 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI。 [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。  慣例會使用 `https://<tenant-domain>/<app-name>`，例如：`http://localhost:8080/adal4jsample/`。
 
 進入應用程式的入口網站後，從應用程式的 [設定] 頁面建立 [金鑰]，然後複製下來。  稍後您將會用到此資訊。
 
@@ -267,10 +268,5 @@ public class PublicClient {
 如需參考， [此處以 .zip 格式提供](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/complete.zip)完整範例 (不含您的組態值)，您也可以從 GitHub 將其複製：
 
 ```git clone --branch complete https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect.git```
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

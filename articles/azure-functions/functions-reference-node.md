@@ -17,9 +17,9 @@ ms.workload: na
 ms.date: 05/13/2016
 ms.author: chrande, glenga
 translationtype: Human Translation
-ms.sourcegitcommit: e660f3313ba6805356eef30b3a17ac609fc9043e
-ms.openlocfilehash: 880fdbd6fc51f16add2f2497402d8b01047d0847
-ms.lasthandoff: 02/07/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 2c2d352a8aaf572612e64bd69e6e45616c15891d
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -163,6 +163,8 @@ module.exports = function(context) {
     var matched_names = _
         .where(context.bindings.myInput.names, {first: 'Carla'});
 ```
+
+節點在函數應用程式的根目錄應該具備 `package.json`，這樣子函式才可以共用快取套件。 如果發生版本衝突，您可以於函式層級加入 `package.json`。 不過，針對效能考量，應避免這麼做。 
 
 ## <a name="environment-variables"></a>環境變數
 若要取得環境變數或應用程式設定值，請使用 `process.env`，如下列程式碼範例所示：

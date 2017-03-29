@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-ms.date: 03/03/2017
+ms.date: 03/17/2017
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 78ed4e170c4c296ae78b79c553228d8ea11c0f49
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 9716975994d1ab3b7cf63efc6480efcd48eb67bb
+ms.lasthandoff: 03/18/2017
 
 
 ---
 # <a name="resolving-transact-sql-differences-during-migration-to-sql-database"></a>解決移轉至 SQL Database 期間的 Transact-SQL 差異   
-[將您的資料庫從 SQL Server 移轉](sql-database-cloud-migrate.md)至 Azure SQL Server 時，您可能會發現您的資料庫必須先進行一些再造，才能移轉 SQL Server。 本主題提供一些指引，以協助您執行此再造作業，以及了解為何必須執行再造的基礎原因。 
+[將您的資料庫從 SQL Server 移轉](sql-database-cloud-migrate.md)至 Azure SQL Server 時，您可能會發現您的資料庫必須先進行一些再造，才能移轉 SQL Server。 本主題提供一些指引，以協助您執行此再造作業，以及了解為何必須執行再造的基礎原因。 若要偵測不相容性，請使用 [Data Migration Assistant (DMA)](https://www.microsoft.com/download/details.aspx?id=53595)。
 
 ## <a name="overview"></a>概觀
 Microsoft SQL Server 和 Azure SQL Database 都支援應用程式使用的大部分 Transact-SQL 功能。 例如，資料類型、運算子、字串、算術、邏輯及資料指標函式等核心 SQL 元件在 SQL Server 與 SQL Database 中都以相同的方式運作。 不過，DDL (資料定義語言) 和 DML (資料操作語言) 元素中有幾個 T-SQL 差異導致對 T-SQL 陳述式和查詢僅提供部分支援 (將在本主題中稍後探討)。

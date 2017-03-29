@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/14/2017
 ms.author: kasing
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: f5ef5242a565358fb4af90cf10bb332b9c942fce
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: 3f7a33f947913bf4b5ce9db20cacf746e4f7f169
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -30,6 +30,11 @@ ms.lasthandoff: 03/10/2017
 * 如需了解有關支援之移轉案例的背景，請參閱 [平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager)](virtual-machines-windows-migration-classic-resource-manager.md)。 
 * 如需詳細的指導方針和移轉逐步解說，請參閱 [平台支援的從傳統移轉至 Azure Resource Manager 的技術深入探討](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)。
 * [檢閱最常見的移轉錯誤](virtual-machines-migration-errors.md)
+
+<br>
+下列流程圖會識別在移轉程序期間執行步驟所需的順序
+
+![顯示移轉步驟的螢幕擷取畫面](./media/virtual-machines-windows-migration-classic-resource-manager/migration-flow.png)
 
 ## <a name="step-1-plan-for-migration"></a>步驟 1︰為移轉做規劃
 以下是您評估將 IaaS 資源從傳統移轉至 Resource Manager 時，我們所建議的一些最佳做法：
@@ -86,7 +91,7 @@ Azure PowerShell 的主要安裝選項有兩個：[PowerShell 資源庫](https:/
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
 ```
 
-請等候&5; 分鐘讓註冊完成。 您可以使用下列命令來檢查核准狀態：
+請等候 5 分鐘讓註冊完成。 您可以使用下列命令來檢查核准狀態：
 
 ```powershell
     Get-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
@@ -129,7 +134,7 @@ Get-AzureRmVMUsage -Location "West US"
 > 
 > 
 
-### <a name="migrate-virtual-machines-in-a-cloud-service-not-in-a-virtual-network"></a>移轉雲端服務中的虛擬機器 (不在虛擬網路中)
+## <a name="step-61-migrate-virtual-machines-in-a-cloud-service-not-in-a-virtual-network"></a>步驟 6.1：移轉雲端服務中的虛擬機器 (不在虛擬網路中)
 使用下列命令來取得雲端服務清單，然後選擇您想要移轉的雲端服務。 如果雲端服務中的 VM 是在虛擬網路中，或是具有 Web 角色或背景工作角色，命令就會傳回錯誤訊息。
 
 ```powershell
@@ -210,7 +215,7 @@ Get-AzureRmVMUsage -Location "West US"
     Move-AzureService -Commit -ServiceName $serviceName -DeploymentName $deploymentName
 ```
 
-### <a name="migrate-virtual-machines-in-a-virtual-network"></a>移轉虛擬網路中的虛擬機器
+## <a name="step-62-migrate-virtual-machines-in-a-virtual-network"></a>步驟 6.2：移轉虛擬網路中的虛擬機器
 若要移轉虛擬網路中的虛擬機器，您將需要移轉虛擬網路。 虛擬機器會自動隨著虛擬網路移轉。 選取您想要移轉的虛擬網路。 
 > [!NOTE]
 > [移轉單一傳統虛擬機器](./virtual-machines-windows-migrate-single-classic-to-resource-manager.md)，其做法是使用虛擬機器的 VHD (OS 和資料) 檔案，建立具有受控磁碟的新 Resource Manager 虛擬機器。 
@@ -250,7 +255,7 @@ Get-AzureRmVMUsage -Location "West US"
     Move-AzureVirtualNetwork -Commit -VirtualNetworkName $vnetName
 ```
 
-### <a name="migrate-a-storage-account"></a>移轉儲存體帳戶
+## <a name="step-63-migrate-a-storage-account"></a>步驟 6.3：移轉儲存體帳戶
 完成虛擬機器的移轉之後，建議您移轉儲存體帳戶。
 
 移轉儲存體帳戶之前，請執行上述必要條件檢查︰

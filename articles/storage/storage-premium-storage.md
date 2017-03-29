@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: ramankum
 translationtype: Human Translation
-ms.sourcegitcommit: 3a353bc874c1827f8a0fc85352894ad96cff16b5
-ms.openlocfilehash: c9e43df37784999036c6cf250f27a808f79ebe2f
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 26e78f559fa9a82183a26034580148e39331a214
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -59,7 +59,7 @@ Azure 使用進階儲存體，提供您將要求較高的企業應用程式 (例
 
 **進階儲存體帳戶**︰若要開始使用進階儲存體，請為非受控磁碟建立進階儲存體帳戶。 如果您偏好使用 [Azure 入口網站](https://portal.azure.com)，您可以指定「進階」效能層級和「本地備援儲存體 (LRS)」作為複寫選項，以建立進階儲存體帳戶。 使用[儲存體 REST API](/rest/api/storageservices/fileservices/Azure-Storage-Services-REST-API-Reference) 2014-02-14 版或更新版本並將類型指定為 “Premium_LRS”、[服務管理 REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx) 2014-10-01 版或更新版本 (傳統部署)、[Azure 儲存體資源提供者 REST API 參考](/rest/api/storagerp) (Resource Manager 部署) 以及 [Azure PowerShell](../powershell-install-configure.md) 0.8.10 版或更新版本，也可以建立進階儲存體帳戶。 在下一節的 [進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets.md)中，深入了解進階儲存體帳戶限制。
 
-**進階本地備援儲存體**：進階儲存體帳戶僅支援本地備援儲存體 (LRS) 作為複寫選項，這表示它在單一區域內會保留三份資料。 如需使用進階儲存體時關於異地複寫的考量，請參閱本文的 [快照與複製 Blob](#snapshots-and-copy-blob) 一節。
+**進階本地備援儲存體**：進階儲存體帳戶僅支援本地備援儲存體 (LRS) 作為複寫選項，這表示它在單一區域內會保留三份資料。 針對區域性災害復原，您必須使用 [Azure 備份服務](../backup/backup-introduction-to-azure-backup.md)來備份位於不同區域的 VM 磁碟，並以 GRS 儲存體帳戶作為備份保存庫。 
 
 Azure 使用儲存體帳戶作為非受控磁碟的容器。 當您建立具有非受控磁碟的 Azure DS、DSv2、GS 或 Fs VM 並選取進階儲存體帳戶時，您的作業系統和資料磁碟會儲存在該儲存體帳戶中。
 
@@ -140,9 +140,9 @@ Azure 使用儲存體帳戶作為非受控磁碟的容器。 當您建立具有�
 
 | 每個 P10 磁碟的輸送量上限 | 從磁碟的非快取讀取 | 對磁碟的非快取寫入 |
 | --- | --- | --- |
-| 每秒&100; MB | 每秒&100; MB | 0 |
-| 每秒&100; MB | 0 | 每秒&100; MB |
-| 每秒&100; MB | 每秒&60; MB | 每秒&40; MB |
+| 每秒 100 MB | 每秒 100 MB | 0 |
+| 每秒 100 MB | 0 | 每秒 100 MB |
+| 每秒 100 MB | 每秒 60 MB | 每秒 40 MB |
 
 * **快取命中數**：快取命中數不受限於磁碟配置的 IOPS 或輸送量。 例如，當您在進階儲存體支援的 VM 上使用具有「唯讀」快取設定的資料磁碟時，從快取提供的「讀取數」並不受限於磁碟的 IOPS 和輸送量上限。 因此，如果工作負載以讀取為主，您可以從磁碟獲得極高的輸送量。 請注意，在 VM 層級上，根據 VM 大小，快取會受到不同的 IOPS 和輸送量限制。 DS 系列 VM 大約有 4000 IOPS，快取與本機 SSD IO 是每個核心 33 MB/秒。 GS 系列 VM 的限制為 5000 IOPS，而快取與本機 SSD IO 是每個核心 50 MB/秒。 
 
@@ -208,7 +208,7 @@ DS4 VM 連接了兩個 P30 磁碟。 每個 P30 磁碟有每秒 200 MB 的輸送
 * 對於快取設定為「讀寫」的進階儲存體磁碟，應該啟用阻礙以持久寫入。
 * 對於要在 VM 重新開機後保存的磁碟機標籤，您必須以參考磁碟的 UUID 更新 /etc/fstab。 也請參閱[將受控磁碟新增至 Linux VM](../virtual-machines/virtual-machines-linux-add-disk.md)。
 
-以下是我們驗證能使用 Premium 儲存體的 Linux 散發套件。 我們建議您升級 VM 到至少其中一個版本 (或更新版本)，以便獲得 Premium 儲存體較佳的效能和穩定性。 此外，部分版本需要最新的適用於 Microsoft Azure 的 Linux Integration Services&4;.0 版。 請依照下面提供的連結進行下載及安裝。 當我們完成其他驗證後，將繼續在清單中新增更多映像。 請注意，我們的驗證顯示效能依映像而有所不同，而且也取決於工作負載特性和映像上的設定。 不同的映像已針對不同種類的工作負載進行調整。
+以下是我們驗證能使用 Premium 儲存體的 Linux 散發套件。 我們建議您升級 VM 到至少其中一個版本 (或更新版本)，以便獲得 Premium 儲存體較佳的效能和穩定性。 此外，部分版本需要最新的適用於 Microsoft Azure 的 Linux Integration Services 4.0 版。 請依照下面提供的連結進行下載及安裝。 當我們完成其他驗證後，將繼續在清單中新增更多映像。 請注意，我們的驗證顯示效能依映像而有所不同，而且也取決於工作負載特性和映像上的設定。 不同的映像已針對不同種類的工作負載進行調整。
 
 | 配送映像 | 版本 | 支援的核心 | 詳細資料 |
 | --- | --- | --- | --- |
@@ -261,9 +261,9 @@ sudo yum install microsoft-hyper-v
 
 ## <a name="azure-backup-service-support"></a>Azure 備份服務支援 
 
-您可以使用 Azure 備份來備份具有非受控磁碟的虛擬機器。 [其他詳細資訊](../backup/backup-azure-vms-first-look-arm.md)。
+針對區域性災害復原，您必須使用 [Azure 備份服務](../backup/backup-introduction-to-azure-backup.md)來備份位於不同區域的 VM 磁碟，並以 GRS 儲存體帳戶作為備份保存庫。
 
-您也可以對受控磁碟使用 Azure 備份服務，利用以時間為基礎的備份、簡易 VM 還原和備份保留原則，建立備份作業。 如需深入了解，請參閱[針對具有受控磁碟的 VM 使用 Azure 備份服務](../backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)。 
+同時對未受管理的磁碟和受控磁碟使用 Azure 備份服務，利用以時間為基礎的備份、簡易 VM 還原和備份保留原則，來建立備份作業。 您可以在[針對具有受控磁碟的 VM 使用 Azure 備份服務](../backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)與[針對具有未受管理的磁碟之 VM 使用 Azure 備份服務](../backup/backup-azure-vms-first-look-arm.md)深入了解 
 
 ## <a name="next-steps"></a>後續步驟
 如需 Azure 進階儲存體的詳細資訊，請參閱下列文章。
@@ -278,3 +278,4 @@ sudo yum install microsoft-hyper-v
 ### <a name="blog-posts"></a>部落格文章
 * [Azure 進階儲存體正式推出](https://azure.microsoft.com/blog/azure-premium-storage-now-generally-available-2/)
 * [宣佈 GS 系列︰將進階儲存體支援加入至公用雲端中的最大 VM](https://azure.microsoft.com/blog/azure-has-the-most-powerful-vms-in-the-public-cloud/)
+

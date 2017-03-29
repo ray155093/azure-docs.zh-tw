@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: a74872f308624028016ffb30ead3c056b1fa69ce
-ms.openlocfilehash: fbab411a22d3d1e140bc3ea8f56b113de79f204c
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 43618268aa0b234d271dcee7f95dfad2f2a1bb2b
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -28,8 +28,8 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 
 > [!NOTE]
 > Azure API 管理支援傳統和 Azure Resource Manager Vnet。
-> 
-> 
+>
+>
 
 ## <a name="enable-vpn"> </a>啟用 VNET 連線
 > [!NOTE]
@@ -59,20 +59,20 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 
 > [!IMPORTANT]
 > 將 Azure API 管理執行個體部署至 Resource Manager VNET 時，服務必須在除了 Azure API 管理執行個體之外不包含其他資源的專用子網路中。 如果嘗試將 Azure API 管理執行個體部署到含有其他資源的 Resource Manager VNET 子網路，則部署將會失敗。
-> 
-> 
+>
+>
 
 ![選取 VPN][api-management-setup-vpn-select]
 
-按一下畫面頂端的 [儲存]。 
+按一下畫面頂端的 [儲存]。
 
 > [!NOTE]
 > 「API 管理」執行個體的 VIP 位址在每次啟用或停用 VNET 時都會變更。  
 > 將 API 管理中**外部**移動至**內部**或反之時，也會變更的 VIP 位址
-> 
+>
 
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > 如果您將「API 管理」從 VNET 中移除或變更其部署所在的 VNET，則先前使用的 VNET 將保持鎖定狀態最長達 4 小時。 在這段期間，將無法刪除該 VNET 或在其中部署新的資源。
 
 ## <a name="enable-vnet-powershell"> </a>使用 PowerShell cmdlet 來啟用 VNET 連線
@@ -94,7 +94,7 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 
 > [!IMPORTANT]
 > 如果您針對 VNET 使用「自訂 DNS 伺服器」，建議您在將「API 管理」服務部署到該伺服器「之前」，先將該伺服器設定妥當。 否則，我們將必須重新啟動裝載該服務的 CloudService，才能讓它套用新的「DNS 伺服器」設定。
-> 
+>
 
 * **API 管理所需的連接埠**︰使用[網路安全性群組][Network Security Group]可以控制到 API 管理部署於其中的子網路之輸入和輸出流量。 如果這些連接埠中有任何一個無法使用，「API 管理」可能就無法正常運作而可能變成無法存取。 搭配 VNET 使用 API 管理時，封鎖這其中一或多個連接埠是另一個常見的錯誤組態問題。
 
@@ -134,7 +134,7 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 
 
 ## <a name="related-content"> </a>相關內容
-* [使用 VPN 閘道將虛擬網路連接到後端][Different topologies to connect to Vpn Gateway]
+* [使用 VPN 閘道將虛擬網路連線到後端](../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site-ipsecike-vpn-tunnel)
 * [從不同的部署模型連接虛擬網路](../vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md)
 * [如何在 Azure API 管理中使用 API 偵測器來追蹤呼叫](api-management-howto-api-inspector.md)
 
@@ -149,7 +149,6 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 [Connect to a web service behind VPN]: #connect-vpn
 [Related content]: #related-content
 
-[Different topologies to connect to Vpn Gateway]: ../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site-connections
 [UDRs]: ../virtual-network/virtual-networks-udr-overview.md
 [Network Security Group]: ../virtual-network/virtual-networks-nsg.md
 

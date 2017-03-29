@@ -16,20 +16,20 @@ ms.workload: infrastructure-services
 ms.date: 03/12/2017
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 317c05f9f8faa335cdd3588c3b50a89948066d11
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 3a85fa624dc55f31822f00910b6d124c1d37323f
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="create-user-defined-routes-udr-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立使用者定義的路由 (UDR)
 
 > [!div class="op_single_selector"]
-- [PowerShell](virtual-network-create-udr-arm-ps.md)
-- [Azure CLI](virtual-network-create-udr-arm-cli.md)
-- [範本](virtual-network-create-udr-arm-template.md)
-- [PowerShell (傳統部署)](virtual-network-create-udr-classic-ps.md)
-- [CLI (傳統部署)](virtual-network-create-udr-classic-cli.md)
+> * [PowerShell](virtual-network-create-udr-arm-ps.md)
+> * [Azure CLI](virtual-network-create-udr-arm-cli.md)
+> * [範本](virtual-network-create-udr-arm-template.md)
+> * [PowerShell (傳統部署)](virtual-network-create-udr-classic-ps.md)
+> * [CLI (傳統部署)](virtual-network-create-udr-classic-cli.md)
 
 ## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本 
 
@@ -60,9 +60,9 @@ ms.lasthandoff: 03/15/2017
     --location centralus \
     --name UDR-FrontEnd
     ```
-    
+
     輸出：
-    
+
     ```json
     {
     "etag": "W/\"<guid>\"",
@@ -104,9 +104,8 @@ ms.lasthandoff: 03/15/2017
     "resourceGroup": "testrg"
     }
     ```
-    
     參數：
-    
+
     * **--route-table-name**。 將會加入路由的路由表的名稱。 在本文案例中為 *UDR-FrontEnd*。
     * **--address-prefix**。 封包所指向位置的子網路的位址首碼。 在本文案例中為 *192.168.2.0/24*。
     * **--next-hop-type**。 將傳送流量的目標物件類型。 可能的值為 VirtualAppliance、VirtualNetworkGateway、VNETLocal、Internet 或 None。
@@ -116,10 +115,10 @@ ms.lasthandoff: 03/15/2017
 
     ```azurecli
     az network vnet subnet update \
-    > --resource-group testrg \
-    > --vnet-name testvnet \
-    > --name FrontEnd \
-    > --route-table UDR-FrontEnd
+    --resource-group testrg \
+    --vnet-name testvnet \
+    --name FrontEnd \
+    --route-table UDR-FrontEnd
     ```
 
     輸出：
@@ -149,7 +148,7 @@ ms.lasthandoff: 03/15/2017
         }
     }
     ```
-    
+
     參數：
     
     * **--vnet-name**。 子網路所在的 VNet 名稱。 在本文案例中為 *TestVNet*。
@@ -160,35 +159,34 @@ ms.lasthandoff: 03/15/2017
 
 1. 執行下列命令，建立後端子網路的路由表：
 
-        ```azurecli
-        az network route-table create \
-        --resource-group testrg \
-        --name UDR-BackEnd \
-        --location centralus
-        ```
+    ```azurecli
+    az network route-table create \
+    --resource-group testrg \
+    --name UDR-BackEnd \
+    --location centralus
+    ```
 
 2. 執行下列命令，在上方建立的路由表中建立路由，將目的地為前端子網路 (192.168.1.0/24) 的所有流量傳送到 **FW1** VM (192.168.0.4)：
 
-        ```azurecli
-        az network route-table route create \
-        --resource-group testrg \
-        --name RouteToFrontEnd \
-        --route-table-name UDR-BackEnd \
-        --address-prefix 192.168.1.0/24 \
-        --next-hop-type VirtualAppliance \
-        --next-hop-ip-address 192.168.0.4
-        ```
+    ```azurecli
+    az network route-table route create \
+    --resource-group testrg \
+    --name RouteToFrontEnd \
+    --route-table-name UDR-BackEnd \
+    --address-prefix 192.168.1.0/24 \
+    --next-hop-type VirtualAppliance \
+    --next-hop-ip-address 192.168.0.4
+    ```
 
 3. 執行下列命令，建立與 **BackEnd** 子網路關聯的路由表：
 
-        ```azurecli
-        az network vnet subnet update \
-        --resource-group testrg \
-        --vnet-name testvnet \
-        --name BackEnd \
-        --route-table UDR-BackEnd
-        ```
-
+    ```azurecli
+    az network vnet subnet update \
+    --resource-group testrg \
+    --vnet-name testvnet \
+    --name BackEnd \
+    --route-table UDR-BackEnd
+    ```
 
 ## <a name="enable-ip-forwarding-on-fw1"></a>啟用 FW1 上的 IP 轉送
 
@@ -196,42 +194,38 @@ ms.lasthandoff: 03/15/2017
 
 1. 使用 JMESPATH 篩選條件執行 [az network nic show](/cli/az/network/nic#show) 命令，以顯示 [啟用 IP 轉送] 目前的 **enable-ip-forwarding** 值。 應該設定為 *false*。
 
-        ```azurecli
-        az network nic show \
-        --resource-group testrg \
-        --nname nicfw1 \
-        --query 'enableIpForwarding' -o tsv
-        ```
-
-        Output:
-
-        ```bash
-        false
-        ```
-
-2. 執行下列命令以啟用 IP 轉送：
-
-        ```azurecli
-        az network nic update \
-        > --resource-group testrg \
-        > --name nicfw1 \
-        > --ip-forwarding true
-        ```
-
-    您可檢查串流至主控台的輸出，或只是重新測試特定的 **enableIpForwarding** 值︰
-
-        ```azurecli
-        az network nic show -g testrg -n nicfw1 --query 'enableIpForwarding' -o tsv
-        ```
+    ```azurecli
+    az network nic show \
+    --resource-group testrg \
+    --nname nicfw1 \
+    --query 'enableIpForwarding' -o tsv
+    ```
 
     輸出：
 
-        ```bash
+        false
+
+2. 執行下列命令以啟用 IP 轉送：
+
+    ```azurecli
+    az network nic update \
+    --resource-group testrg \
+    --name nicfw1 \
+    --ip-forwarding true
+    ```
+
+    您可檢查串流至主控台的輸出，或只是重新測試特定的 **enableIpForwarding** 值︰
+
+    ```azurecli
+    az network nic show -g testrg -n nicfw1 --query 'enableIpForwarding' -o tsv
+    ```
+
+    輸出：
+
         true
-        ```
-    
+
     參數：
-    
-    * **--ip-forwarding**。 *true* 或 *false*。
+
+    **--ip-forwarding**：*true* 或 *false*。
 
 

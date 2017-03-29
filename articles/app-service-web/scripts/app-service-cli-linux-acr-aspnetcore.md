@@ -13,12 +13,12 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: web
-ms.date: 02/23/2017
+ms.date: 03/20/2017
 ms.author: cfowler
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 711aaed5521625ee4c4250ad7a2aa6f8b1d6666f
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 9be2feb40ded3abae1ca0b762234f764b4a87f1e
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -26,7 +26,9 @@ ms.lasthandoff: 03/11/2017
 
 在此案例中，您會學習如何建立資源群組、Linux App Service 方案和 Web 應用程式，並使用來自 Azure Container Registry 的 Docker 容器部署 ASP.NET Core 應用程式。
 
-在執行這個指令碼之前，請確定您已使用 `az login` 命令建立與 Azure 的連線。
+您可以視需要使用 [Azure CLI 安裝指南 (英文)](https://docs.microsoft.com/cli/azure/install-azure-cli) 中的指示來安裝 Azure CLI，然後執行 `az login` 來建立與 Azure 的連線。
+
+這個範例適用於 Bash 殼層。 如需在 Windows 用戶端上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../../virtual-machines/virtual-machines-windows-cli-options.md)。
 
 ## <a name="create-app-sample"></a>建立應用程式範例
 

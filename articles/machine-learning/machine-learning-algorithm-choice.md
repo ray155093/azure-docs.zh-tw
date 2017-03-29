@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 12/12/2016
+ms.date: 03/14/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 265bb284d23e42c16c84a718c402b1bc6f6a30f9
-ms.openlocfilehash: c5521c3a02e36fa388e4da90faf4d8b9fa219356
-ms.lasthandoff: 12/19/2016
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 720822c4a6a2b236ca772016c647827050e27d44
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -34,13 +34,13 @@ ms.lasthandoff: 12/19/2016
 > 
 > 
 
-請記住，這份小祕技有非常特定的預設對象：一位剛起步的資料科學家，其機器學習的經驗為大學生程度，正試著在 Azure Machine Learning Studio 中選擇要開始使用的演算法。 這表示小祕技可能會比較概括且過於簡化，但它可指引您一個可靠的方向。 同時這也意味著還有許多演算法並未列入其中。 當 Azure 機器學習成長到擁有一組更完整的可用方法時，我們就會新增這些演算法。
+請記住，這份小祕技有非常特定的預設對象：一位剛起步的資料科學家，其機器學習的經驗為大學生程度，正試著在 Azure Machine Learning Studio 中選擇要開始使用的演算法。 這表示小祕技可能會比較概括且過於簡化，但它為您指引一個可靠的方向。 同時這也意味著還有許多演算法並未列入其中。 當 Azure 機器學習成長到擁有一組更完整的可用方法時，我們就會新增這些演算法。
 
 這些建議是收集許多資料科學家與機器學習專家的意見反應和提示所編撰而成。 雖然我們的想法並不一致，但我已試著將我們的意見整理成粗略的共識。 而大部分的爭論其實都具有同一個考量：「視情況而定。」
 
 ### <a name="how-to-use-the-cheat-sheet"></a>如何使用小祕技
-請將圖表上的路徑和演算法標籤解讀為「如果需要 *&lt;路徑標籤&gt;* 則使用 *&lt;演算法&gt;*。」 例如「如果需要 *speed* (速度) 則使用 *two class logistic regression* (二元羅吉斯迴歸)。」 」 有時候會適用多個分支。
-有時候則全部都不適用。 這些建議通常是來自經驗法則，因此不必擔心是否準確。
+請將圖表上的路徑和演算法標籤解讀為「如果需要*&lt;路徑標籤&gt;*則使用*&lt;演算法&gt;*。」 例如「如果需要 *speed* (速度)，則使用 *two class logistic regression* (雙類別羅吉斯迴歸)。」 有時候適用於多個分支。
+有時候則不完全適用。 這些建議通常是來自經驗法則，因此不必擔心是否準確。
 我和一些資料科學家討論過，他們都認為唯有全部試用一次，才能找出最佳的演算法。
 
 以下是 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的實驗範例，該實驗對相同的資料嘗試數種演算法，並比較其結果：[比較多類別分類器：字母辨識](http://gallery.cortanaintelligence.com/Details/a635502fc98b402a890efe21cec65b92)。
@@ -52,9 +52,9 @@ ms.lasthandoff: 12/19/2016
 
 ## <a name="flavors-of-machine-learning"></a>機器學習的類型
 ### <a name="supervised"></a>監督式
-監督式學習演算法會根據一組範例做出預測。 例如，利用歷史股價來大膽猜測未來的價格。 用於定型的各個範例都會標上需要關注的值，在這裡指的就是股價。 監督式學習演算法會在這些值標籤中尋找模式。 它可以使用任何可能相關的資訊：星期幾、季節、公司的財務資料、產業類型、是否有破壞性的地緣政治事件等，然後每個演算法就會尋找不同類型的模式。 當演算法找到最佳模式之後，它會使用這種模式為沒有標示的測試資料 (也就是未來的股價) 做出預測。
+監督式學習演算法會根據一組範例做出預測。 例如，利用歷史股價來大膽猜測未來的價格。 用於定型的各個範例都會標上需要關注的值，在這裡指的就是股價。 監督式學習演算法會在這些值標籤中尋找模式。 它可以使用任何可能相關的資訊 (星期幾、季度、公司的財務資料、產業類型、是否有破壞性的地緣政治事件等)，然後每個演算法就會尋找不同類型的模式。 當演算法找到最佳模式之後，它會使用這種模式為沒有標示的測試資料 (也就是未來的股價) 做出預測。
 
-這是常見且實用的機器學習服務類型。 除了一個例外之外，Azure 機器學習中的所有模組都是監督式學習演算法。 Azure 機器學習中有幾個代表性的特定監督式學習類型：分類、迴歸和異常偵測。
+監督式學習是常見且實用的機器學習類型。 除了一個例外之外，Azure Machine Learning 中的所有模組都是監督式學習演算法。 Azure 機器學習中有幾個代表性的特定監督式學習類型：分類、迴歸和異常偵測。
 
 * **分類**。 當資料用來預測類別時，這種監督式學習也稱為分類。 將影像指定為 'cat' 或 'dog' 的圖片便屬這種情況。 如果只有兩個選擇，則稱作**雙類別**或**二項式分類**。 如果有多個類別，例如預測 NCAA 季後賽的優勝隊伍，則這個問題就稱為 **多類別分類**。
 * **迴歸**。 如果要預測值，例如股價，這種監督式學習稱為迴歸。
@@ -122,17 +122,17 @@ ms.lasthandoff: 12/19/2016
 | [類神經網路](https://msdn.microsoft.com/library/azure/dn906030.aspx) |● | | |9 |[支援其他自訂項目](http://go.microsoft.com/fwlink/?LinkId=402867) |
 | [one-v-all](https://msdn.microsoft.com/library/azure/dn905887.aspx) |- |- |- |- |請參閱選取的兩個類別方法的屬性 |
 | **迴歸** | | | | | |
-| [線性 ](https://msdn.microsoft.com/library/azure/dn905978.aspx) | |● |● |4 | |
+| [線性](https://msdn.microsoft.com/library/azure/dn905978.aspx) | |● |● |4 | |
 | [貝氏線性](https://msdn.microsoft.com/library/azure/dn906022.aspx) | |○ |● |2 | |
 | [決策樹系](https://msdn.microsoft.com/library/azure/dn905862.aspx) |● |○ | |6 | |
 | [促進式決策樹](https://msdn.microsoft.com/library/azure/dn905801.aspx) |● |○ | |5 |高記憶體使用量 |
 | [快速樹系分量](https://msdn.microsoft.com/library/azure/dn913093.aspx) |● |○ | |9 |分佈而不是點預測 |
 | [類神經網路](https://msdn.microsoft.com/library/azure/dn905924.aspx) |● | | |9 |[支援其他自訂項目](http://go.microsoft.com/fwlink/?LinkId=402867) |
-| [Poisson ](https://msdn.microsoft.com/library/azure/dn905988.aspx) | | |● |5 |技術上為對數線性。 針對預測計算 |
+| [波氏](https://msdn.microsoft.com/library/azure/dn905988.aspx) | | |● |5 |技術上為對數線性。 針對預測計算 |
 | [序數](https://msdn.microsoft.com/library/azure/dn906029.aspx) | | | |0 |針對預測順位排序 |
 | **異常偵測** | | | | | |
 | [支援向量機器](https://msdn.microsoft.com/library/azure/dn913103.aspx) |○ |○ | |2 |特別適用於大型特徵集 |
-| [以 PCA 為基礎的異常偵測 ](https://msdn.microsoft.com/library/azure/dn913102.aspx) | |○ |● |3 | |
+| [PCA 型異常偵測](https://msdn.microsoft.com/library/azure/dn913102.aspx) | |○ |● |3 | |
 | [K-means](https://msdn.microsoft.com/library/azure/5049a09b-bd90-4c4e-9b46-7c87e3a36810/) | |○ |● |4 |叢集演算法 |
 
 **演算法屬性：**
@@ -164,7 +164,7 @@ ms.lasthandoff: 12/19/2016
 
 ***此決策樹將特徵空間細分為值大致統一的區域***
 
-由於特徵空間可以任意細分成較小的區域，因此會很容易推斷出每個區域都能細分成只有一個資料點，而這就是過度學習的極端範例。 若要避免這個問題，建構一大組樹需要採取特殊的數學計算方式，也就是讓樹與樹之間沒有相互關聯。 這種「決策樹系」的平均就是可避免過度學習的樹。 決策樹系會使用大量記憶體。 決策叢林則是使用較少記憶體的變體，但代價是定型時間較長。
+由於特徵空間可以任意細分成較小的區域，因此會很容易推斷出每個區域都能細分成只有一個資料點。 而這就是過度學習的極端範例。 若要避免這個問題，建構一大組樹需要採取特殊的數學計算方式，也就是讓樹與樹之間沒有相互關聯。 這種「決策樹系」的平均就是可避免過度學習的樹。 決策樹系會使用大量記憶體。 決策叢林則是使用較少記憶體的變體，但代價是定型時間較長。
 
 促進式決策樹可藉由限制細分的次數，以及每個區域中允許的最少資料點，來避免過度學習。 此演算法會建構一連串的樹，其中每個樹都會學習彌補前一個樹所留下來的錯誤。 這種學習方式雖然非常精確，但通常會使用大量記憶體。 如需完整的技術說明，請參閱 [Friedman 的原始文件](http://www-stat.stanford.edu/~jhf/ftp/trebst.pdf)。
 
@@ -188,7 +188,7 @@ ms.lasthandoff: 12/19/2016
 
 ***典型的支援向量機器類別界限，會將分隔兩個類別的邊界最大化***
 
-另一個 Microsoft Research 的產品 [雙類別本機深度 SVM](https://msdn.microsoft.com/library/azure/dn913070.aspx) 是 SVM 的非線性變體，能夠保留線性版本中大部分的速度和記憶體效率。 當線性方法的答案不夠精確時，就非常適合使用它。 開發人員藉由將問題分成一堆小型線性 SVM 問題，讓它能保持快速。 請閱讀 [完整說明](http://research.microsoft.com/um/people/manik/pubs/Jose13.pdf) ，其中有如何完成這個技巧的詳細資料。
+另一個 Microsoft Research 的產品 [雙類別本機深度 SVM](https://msdn.microsoft.com/library/azure/dn913070.aspx) 是 SVM 的非線性變體，能夠保留線性版本中大部分的速度和記憶體效率。 當線性方法的答案不夠精確時，就非常適合使用它。 開發人員藉由將問題分成一堆小型線性 SVM 問題，讓它能保持快速。 請閱讀[完整說明](http://research.microsoft.com/um/people/manik/pubs/Jose13.pdf) ，其中有如何完成這個技巧的詳細資料。
 
 使用聰明的非線性 SVM 延伸模組 (即 [單一類別 SVM](https://msdn.microsoft.com/library/azure/dn913103.aspx) )，可繪製出緊密圍繞整個資料集的界限。 這適合用於異常偵測。 任何遠超出該界限外的新資料點，其異常程度都值得特別注意。
 
@@ -199,18 +199,22 @@ ms.lasthandoff: 12/19/2016
 在歷史記錄中，貝氏點機器是由 Microsoft Research 所開發。 它們有一些格外出色的理論做為後盾。 有興趣的學生可參考 [JMLR 中的原始文章](http://jmlr.org/papers/volume1/herbrich01a/herbrich01a.pdf)和 [Chris Bishop 深入探討的部落格](http://blogs.technet.com/b/machinelearning/archive/2014/10/30/embracing-uncertainty-probabilistic-inference.aspx)。
 
 ### <a name="specialized-algorithms"></a>專門的演算法
-如果您有非常特定的目標，那麼您的可能運氣特別好。 Azure 機器學習集合中有各種專用的演算法，包括排名預測 ([序數迴歸](https://msdn.microsoft.com/library/azure/dn906029.aspx))、計數預測 ([Poisson 迴歸](https://msdn.microsoft.com/library/azure/dn905988.aspx)) 和異常偵測 (一項是依據[主體元件分析](https://msdn.microsoft.com/library/azure/dn913102.aspx)，另一項是依據[支援向量機器](https://msdn.microsoft.com/library/azure/dn913103.aspx))。
-此外還有單獨群集演算法 ([K-means](https://msdn.microsoft.com/library/azure/5049a09b-bd90-4c4e-9b46-7c87e3a36810/))。
+如果您有非常特定的目標，那麼您的可能運氣特別好。 在 Azure Machine Learning 集合中，有演算法專門：
 
-![以 PCA 為基礎的異常偵測][8]
+- 排名預測 ([序數迴歸](https://msdn.microsoft.com/library/azure/dn906029.aspx))、
+- 計算預測 ([波氏迴歸](https://msdn.microsoft.com/library/azure/dn905988.aspx))、
+- 異常偵測 (一個以[主體元件分析](https://msdn.microsoft.com/library/azure/dn913102.aspx)為基礎，一個以[支援向量機器](https://msdn.microsoft.com/library/azure/dn913103.aspx)為基礎)
+- 叢集 ([K-means](https://msdn.microsoft.com/library/azure/5049a09b-bd90-4c4e-9b46-7c87e3a36810/))
 
-***以 PCA 為基礎的異常偵測*** *：大部分的資料均可分成舊式的散佈；而大幅偏離該散佈的點都是可疑之處*
+![PCA 型異常偵測][8]
+
+***PCA 型異常偵測****：大部分的資料均可分成舊式的散佈；而大幅偏離該散佈的點都是可疑之處*
 
 ![使用 K-means 分組的資料集][9]
 
-***資料集使用 K-means 分成 5 個叢集***
+***資料集使用 K-means 分為五個叢集***
 
-另外還有整體的 [一對多多類別分類器](https://msdn.microsoft.com/library/azure/dn905887.aspx)，其中會將 N 類別分類問題分成 N-1 雙類別分類問題。 精確度、定型時間和線性屬性是由使用的雙類別分類器來決定。
+另外還有整體的[一對多多類別分類器](https://msdn.microsoft.com/library/azure/dn905887.aspx)，其中會將 N 類別分類問題分成 N-1 雙類別分類問題。 精確度、定型時間和線性屬性是由使用的雙類別分類器來決定。
 
 ![雙類別分類器結合成三個類別分類器][10]
 
@@ -221,7 +225,7 @@ VW 背離這裡的歸納，因為它可以學習分類和迴歸問題，甚至�
 由創辦 Microsoft Research 的 John Langford 所發起及領導的 VW，可謂原裝賽車演算法領域中的一級方程式項目。 並非所有問題都符合 VW，但如果能符合，或許會值得您花時間在它的介面中了解它的學習曲線。 它也有以數種語言提供 [獨立的開放原始程式碼](https://github.com/JohnLangford/vowpal_wabbit) 。
 
 ## <a name="more-help-with-algorithms"></a>更多演算法的詳細說明
-* 如需描述演算法並提供範例的可下載資訊圖詳細資訊，請參閱[可下載的資訊圖：機器學習服務的基本概念和演算法範例](machine-learning-basics-infographic-with-algorithm-examples.md)。
+* 如需描述演算法並提供範例的可下載資訊圖詳細資訊，請參閱[可下載的資訊圖：機器學習服務基本概念和演算法範例](machine-learning-basics-infographic-with-algorithm-examples.md)。
 * 如需 Azure Machine Learning Studio 中依類別排序的所有可用機器學習演算法的清單，請參閱＜Machine Learning Studio 演算法和模組說明＞中的 [起始模型][initialize-model]。
 * 如需 Azure Machine Learning Studio 中按字母順序排列的完整演算法和模組清單，請參閱＜Machine Learning Studio 演算法和模組說明＞中的 [Machine Learning Studio 模組的 A-Z 清單][a-z-list]。
 * 若要下載並列印提供 Azure Machine Learning Studio 功能概觀的圖表，請參閱 [Azure Machine Learning Studio 功能的概觀圖](machine-learning-studio-overview-diagram.md)。

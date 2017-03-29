@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: f9809095128d0069d076d18486cae05b65498fa8
-ms.openlocfilehash: bde8ef9c4f51c38f8e5b41857be02ade43260824
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 9ae8852c02361ff11c302f86cb5c53e01a48068a
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -63,8 +63,9 @@ Active Directory 支援加入兩種類型的應用程式：
 4. 按一下 [應用程式註冊]，然後選取 [新增]。
 5. 輸入應用程式的易記名稱，例如 **TodoListService**)，選取 [Web 應用程式和/或 Web API]，然後按 [下一步]。
 6. 在 [登入 URL] 中，輸入範例的基礎 URL。 依預設，這會是 `https://localhost:8080`。
-7. 應用程式識別碼 URI 請輸入 `https://<your_tenant_name>/TodoListService`。 將 `<your_tenant_name>` 取代為您的 Azure AD 租用戶名稱。 按一下 [確定] 完成註冊。
+7. 按一下 [確定] 完成註冊。
 8. 仍是在 Azure 入口網站中，移至您的應用程式頁面，找出 [應用程式識別碼] 的值並複製。 您稍後在設定應用程式時需要此資訊。
+9. 從 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI - 輸入 `https://<your_tenant_name>/TodoListService`。 將 `<your_tenant_name>` 取代為您的 Azure AD 租用戶名稱。
 
 ## <a name="step-3-register-the-sample-android-native-client-application"></a>步驟 3：註冊範例 Android 原生用戶端應用程式
 在此範例中，您必須註冊您的 Web 應用程式。 這可讓您的應用程式與剛註冊的 Web API 通訊。 除非註冊應用程式，否則 Azure AD 甚至會拒絕讓您的應用程式要求登入。 這是模型安全性的一環。

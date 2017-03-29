@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/11/2016
+ms.date: 03/22/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 3e48a28aa1ecda6792e79646a33875c8f01a878f
-ms.openlocfilehash: fdf22a3f8d0ba6f1838af4f5e6924c8c0a18ef64
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: e274d10b59c6f198962974fda0a804f4d993c324
+ms.lasthandoff: 03/22/2017
 
 ---
 
@@ -32,7 +33,7 @@ ms.openlocfilehash: fdf22a3f8d0ba6f1838af4f5e6924c8c0a18ef64
 
 假設您將應用程式部署在下列 Azure 區域︰美國西部、西歐及東亞。 您使用流量管理員的「效能」流量路由方法，將流量分配給最靠近使用者的區域。
 
-![單一流量管理員設定檔][1]
+![單一流量管理員設定檔][4]
 
 現在，假設您希望先測試服務的更新，再更廣泛地推出。 您想要使用「加權」流量路由方法，將一小部分的流量導向您的測試部署。 除了西歐現有的生產環境部署，您還設定測試部署。
 
@@ -48,7 +49,7 @@ ms.openlocfilehash: fdf22a3f8d0ba6f1838af4f5e6924c8c0a18ef64
 
 ## <a name="example-2-endpoint-monitoring-in-nested-profiles"></a>範例 2︰巢狀設定檔中的端點監視
 
-「流量管理員」會主動監控每個服務端點的健康情況。 如果端點的狀況不良，流量管理員會將使用者導向替代端點，以維持服務的可用性。 這項端點監視及容錯移轉行為適用於所有流量路由方法。 如需詳細資訊，請參閱 [流量管理員端點監視](traffic-manager-monitoring.md)。 巢狀設定檔的端點監視有不同的運作方式。 使用巢狀設定檔時，父設定檔不會直接對子系執行健康狀態檢查， 子設定檔端點的健康狀態會用來計算子設定檔的整體健康狀態。 此健康狀態資訊會在巢狀設定檔階層中往上傳播。 父設定檔會使用這個彙總的健康狀態，來決定是否要將流量導向子設定檔。 如需巢狀設定檔健康狀態監視的完整詳細資料，請參閱本文的[常見問題集](#faq)一節。
+「流量管理員」會主動監控每個服務端點的健康情況。 如果端點的狀況不良，流量管理員會將使用者導向替代端點，以維持服務的可用性。 這項端點監視及容錯移轉行為適用於所有流量路由方法。 如需詳細資訊，請參閱 [流量管理員端點監視](traffic-manager-monitoring.md)。 巢狀設定檔的端點監視有不同的運作方式。 使用巢狀設定檔時，父設定檔不會直接對子系執行健康狀態檢查， 子設定檔端點的健康狀態會用來計算子設定檔的整體健康狀態。 此健康狀態資訊會在巢狀設定檔階層中往上傳播。 父設定檔會使用這個彙總的健康狀態，來決定是否要將流量導向子設定檔。 如需巢狀設定檔健康狀態監視的完整詳細資料，請參閱[常見問題集](traffic-manager-FAQs.md#traffic-manager-nested-profiles)。
 
 回到前一個範例，假設西歐的生產環境部署失敗。 根據預設，「子」設定檔會將所有流量都導向測試部署。 如果測試部署也失敗，父設定檔會決定子設定檔不應該接收流量，因為所有子端點都狀況不良。 接著，父設定檔會將流量分散至其他區域。
 
@@ -97,56 +98,11 @@ ms.openlocfilehash: fdf22a3f8d0ba6f1838af4f5e6924c8c0a18ef64
 
 ![搭配每個設定的流量管理員端點監視][10]
 
-## <a name="faq"></a>常見問題集
-
-### <a name="how-do-i-configure-nested-profiles"></a>如何設定巢狀設定檔？
-
-您可以使用 Azure Resource Manager 和傳統 Azure REST API、Azure PowerShell Cmdlet 及跨平台 Azure CLI 命令來設定巢狀流量管理員設定檔。 透過新的 Azure 入口網站也支援它們。 傳統入口網站不支援它們。
-
-### <a name="how-many-layers-of-nesting-does-traffic-manger-support"></a>流量管理員支援幾層巢狀結構？
-
-設定檔的巢狀結構深度最多可達 10 層。 不允許使用「迴圈」。
-
-### <a name="can-i-mix-other-endpoint-types-with-nested-child-profiles-in-the-same-traffic-manager-profile"></a>在同一個「流量管理員」設定檔中，是否可以將其他端點類型與巢狀子設定檔混合使用？
-
-是。 對於在設定檔內如何結合不同類型的端點，並沒有任何限制。
-
-### <a name="how-does-the-billing-model-apply-for-nested-profiles"></a>巢狀設定檔如何套用計費模型？
-
-使用巢狀設定檔並沒有計價上的負面影響。
-
-流量管理員計費有兩個要素︰端點健康狀態檢查和數百萬個 DNS 查詢
-
-* 端點健康情況檢查︰當子設定檔被設定為父設定檔中的端點時，並不會針對該子設定檔收費。 監視子設定檔中的端點是以一般方式計費。
-* DNS 查詢：每個查詢只計算一次。 查詢父設定檔而從子設定檔傳回端點時，只計入父設定檔內。
-
-如需完整的詳細資料，請參閱[流量管理員定價頁面](https://azure.microsoft.com/pricing/details/traffic-manager/)。
-
-### <a name="is-there-a-performance-impact-for-nested-profiles"></a>巢狀設定檔是否會對效能造成影響？
-
-沒有。 使用巢狀設定檔不會影響效能。
-
-在處理每個 DNS 查詢時，流量管理員名稱伺服器會周遊設定檔階層內部。 父設定檔的 DNS 查詢可能會收到從子設定檔傳回端點的 DNS 回應。 不論您使用單一設定檔或巢狀設定檔，都只會使用單一 CNAME 記錄。 不需要為階層中的每個設定檔建立 CNAME 記錄。
-
-### <a name="how-does-traffic-manager-compute-the-health-of-a-nested-endpoint-in-a-parent-profile"></a>流量管理員如何計算父設定檔中的巢狀端點健康狀態？
-
-父設定檔不會直接對子系執行健康狀態檢查， 子設定檔端點的健康狀態會用來計算子設定檔的整體健康狀態。 這項資訊會在巢狀設定檔階層中往上傳播，以判斷巢狀端點的健康狀態。 父設定檔會使用此彙總健康狀態，以決定是否可以將流量導向子設定檔。
-
-下表描述流量管理員檢查巢狀端點健康狀態時的行為。
-
-| 子設定檔監視狀態 | 父端點監視狀態 | 注意事項 |
-| --- | --- | --- |
-| 已停用。 已停用子設定檔。 |已停止 |父端點狀態為「已停止」，不是「已停用」。 「已停用」狀態會保留，表示您已停用父設定檔中的端點。 |
-| 已降級。 至少有一個子設定檔端點的狀態為「已降級」。 |線上︰子設定檔中「線上」端點的數目至少等於 MinChildEndpoints 的值。<BR>CheckingEndpoint︰子設定檔中「線上」加 CheckingEndpoint 端點的數目至少等於 MinChildEndpoints 的值。<BR>已降級︰其他情況。 |系統會將流量傳遞給狀態為 CheckingEndpoint 的端點。 如果 MinChildEndpoints 設定太高，則端點一律會降級。 |
-| 線上。 至少有一個子設定檔端點處於「線上」狀態。 沒有端點處於「已降級」狀態。 |請參閱上方。 | |
-| CheckingEndpoints。 至少有一個子設定檔端點是 'CheckingEndpoint'。 沒有端點是「線上」或「已降級」。 |同上。 | |
-| 非使用中。 所有子設定檔端點不是「已停用」就是「已停止」，或者此設定檔沒有任何端點 |已停止 | |
-
 ## <a name="next-steps"></a>後續步驟
 
-深入了解 [流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)
+深入了解[流量管理員設定檔](traffic-manager-overview.md)
 
-了解如何 [建立流量管理員設定檔](traffic-manager-manage-profiles.md)
+了解如何 [建立流量管理員設定檔](traffic-manager-create-profile.md)
 
 <!--Image references-->
 [1]: ./media/traffic-manager-nested-profiles/figure-1.png
@@ -159,9 +115,4 @@ ms.openlocfilehash: fdf22a3f8d0ba6f1838af4f5e6924c8c0a18ef64
 [8]: ./media/traffic-manager-nested-profiles/figure-8.png
 [9]: ./media/traffic-manager-nested-profiles/figure-9.png
 [10]: ./media/traffic-manager-nested-profiles/figure-10.png
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

@@ -1,6 +1,6 @@
 ---
 title: "稽核和報告 Azure Active Directory B2B 共同作業使用者 | Microsoft Docs"
-description: "Azure Active Directory B2B 共同作業使用者屬性是可設定的"
+description: "Azure Active Directory B2B 共同作業中的來賓使用者屬性是可設定的"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -13,19 +13,19 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/18/2017
+ms.date: 03/15/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: a4e25c0dab34f0977b4511046ad53f4c0b409990
-ms.openlocfilehash: fd2fe0046d0709bc4527cb680795610daae01a87
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 867a1c8dda37815663fa3fb095351fa3854a52cc
+ms.lasthandoff: 03/17/2017
 
 
 ---
 
 
 # <a name="auditing-and-reporting-a-b2b-collaboration-user"></a>稽核和報告 B2B 共同作業使用者
-使用來賓使用者時，在此預覽版本中您具有與成員使用者相同的稽核功能。 以下範例是剛邀請的 Sam Oogle 的邀請與兌換記錄：
+使用來賓使用者時，在此預覽版本中您具有與成員使用者相同的稽核功能。 以下範例是受邀者 Sam Oogle 的邀請與兌換記錄：
 
 ![稽核記錄檔](./media/active-directory-b2b-auditing-and-reporting/audit-log.png)
 

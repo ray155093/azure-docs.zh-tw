@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/14/2017
+ms.date: 03/21/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 73b5a52b143d17283f677ce3181d8381db41d3c4
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: 60f1ec092635910ae8c98cc0197fdfbf358f01be
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -55,7 +56,7 @@ ms.openlocfilehash: 73b5a52b143d17283f677ce3181d8381db41d3c4
 * 這項整合目前已投入使用，或只是一項試驗？
 
 > [!NOTE]
-> 如果您無法正確對應您的應用程式與雲端服務，您可以使用雲端應用程式探索工具。 這項工具可讓您的 IT 部門深入了解組織的所有商業和取用者雲端應用程式。 尋找組織中的「影子 IT」從未如此容易，就連使用模式的詳細資料，以及正在存取雲端應用程式的使用者都能找到。 若要存取此工具，請移至 [https://appdiscovery.azure.com](https://appdiscovery.azure.com/)
+> 如果您無法正確對應您的應用程式與雲端服務，您可以使用雲端應用程式探索工具。 這項工具可讓您的 IT 部門深入了解組織的所有商業和取用者雲端應用程式。 尋找組織中的「影子 IT」從未如此容易，就連使用模式的詳細資料，以及正在存取雲端應用程式的使用者都能找到。 若要開始使用，請參閱[雲端應用程式探索](active-directory-cloudappdiscovery-whatis.md)。
 > 
 > 
 
@@ -108,10 +109,5 @@ ms.openlocfilehash: 73b5a52b143d17283f677ce3181d8381db41d3c4
 
 ## <a name="see-also"></a>另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

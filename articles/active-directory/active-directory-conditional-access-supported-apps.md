@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/24/2017
+ms.date: 03/22/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: b9605eb10f87f107dffd9f631d043bf550cf030b
-ms.openlocfilehash: 5e293d7d3fa6b0a763663a5428878944660fc03e
-ms.lasthandoff: 01/14/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: 6dea1af021599eb530a4feb3257238e088191d5f
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -46,9 +46,9 @@ Azure Active Directory (Azure AD) 連線應用程式、預先整合的同盟軟�
 | Office 365 SharePoint Online |Windows 8.1、Windows 7 |Office 2016 應用程式、Office 2013 (具備新式驗證)、OneDrive 同步處理用戶端 (請參閱[附註](https://support.office.com/en-US/article/Azure-Active-Directory-conditional-access-with-the-OneDrive-sync-client-on-Windows-028d73d7-4b86-4ee0-8fb7-9a209434b04e)) |
 | Office 365 SharePoint Online |iOS、Android |Office 行動應用程式 |
 | Office 365 SharePoint Online |Mac OS X |僅限 Multi-Factor Authentication 和位置的 Office 2016 應用程式；未來規劃的裝置型原則支援 |
-| Office 365 Yammer |Windows 10、iOS 和 Android |Office Yammer 應用程式 |
+| Office 365 Yammer |;針對未來所規劃的 Windows 10、iOS、Android 支援 |Office Yammer 應用程式 |
 | Dynamics CRM |Windows 10、Windows 8.1、Windows 7、iOS 和 Android |Dynamics CRM 應用程式 |
-| PowerBI service |Windows 10、Windows 8.1、Windows 7、iOS 和 Android |PowerBI 應用程式 |
+| PowerBI service |Windows 10、Windows 8.1、Windows 7 及 iOS|PowerBI 應用程式 (不支援 Andoird 應用程式) |
 | Azure 遠端應用程式服務 |Windows 10、Windows 8.1、Windows 7、iOS、Android 和 Mac OS X |Azure 遠端應用程式 |
 | 任何 My Apps 應用程式服務 |Android 和 iOS |任何 My Apps 應用程式服務 |
 

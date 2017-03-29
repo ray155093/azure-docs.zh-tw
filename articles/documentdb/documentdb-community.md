@@ -15,9 +15,9 @@ ms.workload: data-services
 ms.date: 03/07/2017
 ms.author: andrl
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 4e5d915d474d7ea161f467def931e3013255f843
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 202684a1ae1106d79b9cee4e4ebf20ffa283f41b
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -45,6 +45,13 @@ Microsoft Azure DocumentDB 服務的用戶端管理檢視器/總管。
 DoQmentDB 是一個以 Node.js Promise 為基礎的用戶端，可在 DocumentDB 的頂端提供類似 MongoDB 的階層。
 
 在 [Github](https://github.com/a8m/doqmentdb) 和 [npm](https://www.npmjs.com/package/doqmentdb) 上了解相關資訊。
+
+### <a name="typescript-api"></a>TypeScript API
+*由 Jelmer Cormont 撰寫*
+
+以 TypeScript 撰寫並包覆 Node.js 用戶端的包裝程式 (也能搭配純 JavaScript 運作)。 支援 `async/await` 和簡化的 API。
+
+在 [Github](https://github.com/jcormont/documentdb-typescript) 和 [npm](https://www.npmjs.com/package/documentdb-typescript) 上了解相關資訊。
 
 ### <a name="swagger-rest-api-for-documentdb"></a>DocumentDB 的 Swagger REST API
 *由 Howard Edidin 撰寫*
@@ -123,7 +130,7 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 | [Meetup: NYC .NET Developers Group](http://www.meetup.com/NYC-NET-Developers/events/230396260/) |Leonard Lobel |美國紐約州紐約市 |2016 年 4 月 21 日 |n/a |
 | [Integration User Group](http://www.integrationusergroup.com/#) |Howard Edidin |Webinar |2016 年 4 月 25 日 |n/a |
 | [Global Azure Bootcamp: SoCal](http://xprs.imcreator.com/free/vishalishere/gab2016) |Leonard Lobel |美國加州橙市 |2016 年 4 月 16 日 |n/a |
-| [Global Azure Bootcamp: Redmond](https://www.eventbrite.com/e/2016-global-azure-bootcamp-redmond-wa-tickets-21387752343) |David Makogon |美國華盛頓州雷德蒙德&98052;-6399 |2016 年 4 月 16 日 |n/a |
+| [Global Azure Bootcamp: Redmond](https://www.eventbrite.com/e/2016-global-azure-bootcamp-redmond-wa-tickets-21387752343) |David Makogon |美國華盛頓州雷德蒙德 98052-6399 |2016 年 4 月 16 日 |n/a |
 | [SQL Saturday #481 - Israel 2016](http://www.sqlsaturday.com/481/Sessions/Details.aspx?sid=40912) |Leonard Lobel |以色列中央區 |2016 年 4 月 4 日 |n/a |
 | [組建 2016](https://build.microsoft.com/) |John Macintyre |美國加州舊金山 |2016 年 3 月 31 日 |[Delivering Applications at Scale with DocumentDB, Azure's NoSQL Document Database](https://channel9.msdn.com/Events/Build/2016/B840) |
 | [SQL Saturday #505 - Belgium 2016](http://www.sqlsaturday.com/505/Sessions/Details.aspx?sid=44217) |Mihail Mateev |比利時安特衛普 |2016 年 3 月 19 日 |n/a |

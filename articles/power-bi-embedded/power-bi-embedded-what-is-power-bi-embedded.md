@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: powerbi
-ms.date: 03/11/2017
+ms.date: 03/20/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 1fb7b268e83da66a4bb9fe6d3e053b7a673d3555
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 0b5f7a2c3fd16ac32b0bc382616ca6600d378bb8
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -30,7 +30,7 @@ ms.lasthandoff: 03/14/2017
 Power BI Embedded 是一個 **Azure 服務** ，可讓 ISV 和應用程式開發人員在其應用程式中呈現 Power BI 資料體驗。 身為開發人員，您已建置應用程式，這些應用程式有它們自己的使用者和個別的功能集。 這些應用程式也可能已經內建一些資料元素，例如現在可以由 Microsoft Power BI Embedded 提供的圖表和報表。 您不需要 Power BI 帳戶就可以使用您的應用程式。 您可以像以前一樣繼續登入您的應用程式，以及在不需要任何額外授權的情況下，檢視 Power BI 記錄體驗並與它們互動。
 
 ## <a name="licensing-for-microsoft-power-bi-embedded"></a>Microsoft Power BI Embedded 授權
-在 **Microsoft Power BI Embedded** 使用模型中，Power BI 的授權並不是使用者的責任。  而是由使用視覺效果之應用程式的開發人員購買**工作階段**，並向擁有那些資源的訂用帳戶收費。 其他資訊請見定價頁面 (https://azure.microsoft.com/en-us/pricing/details/power-bi-embedded/)。
+在 **Microsoft Power BI Embedded** 使用模型中，Power BI 的授權並不是使用者的責任。  而是由使用視覺效果之應用程式的開發人員購買**工作階段**，並向擁有那些資源的訂用帳戶收費。 在[價格](https://azure.microsoft.com/en-us/pricing/details/power-bi-embedded/)頁面上可以找到其他資訊。
 
 ## <a name="microsoft-power-bi-embedded-conceptual-model"></a>Microsoft Power BI Embedded 概念模型
 

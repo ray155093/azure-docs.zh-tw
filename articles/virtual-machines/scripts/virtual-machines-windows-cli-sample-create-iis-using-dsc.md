@@ -16,17 +16,17 @@ ms.workload: infrastructure
 ms.date: 02/23/2017
 ms.author: rclaus
 translationtype: Human Translation
-ms.sourcegitcommit: 82d40c30c92f5da090e7ec4e2f25ead3908cc603
-ms.openlocfilehash: ea0598251e979094c5841c56c85f7297aaf3d21d
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 1c72ea16ab760617db7ec10d946b60af74908275
+ms.lasthandoff: 03/21/2017
 
 ---
 
 # <a name="create-a-vm-with-iis-using-dsc"></a>使用 DSC 建立具有 IIS 的 VM
 
-此指令碼會建立虛擬機器，然後使用 Azure 虛擬機器 DSC 自訂指令碼擴充功能安裝及設定 IIS。 
+此指令碼會建立虛擬機器，並使用 Azure 虛擬機器 DSC 自訂指令碼擴充功能來安裝及設定 IIS。 
 
-在執行這個指令碼之前，請確定您已使用 `az login` 命令建立與 Azure 的連線。 此外，您應該將指令碼開頭的 $AdminPassword 變數變更為唯一值，並符合密碼複雜性需求。
+您可以視需要使用 [Azure CLI 安裝指南 (英文)](https://docs.microsoft.com/cli/azure/install-azure-cli) 中的指示來安裝 Azure CLI，然後執行 `az login` 來建立與 Azure 的連線。
 
 這個範例適用於 Bash 殼層。 如需在 Windows 用戶端上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../virtual-machines-windows-cli-options.md)。
 
@@ -36,7 +36,7 @@ ms.lasthandoff: 03/02/2017
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令來移除資源群組、VM 和所有相關資源。
 
 ```azurecli
 az group delete --name myResourceGroup --yes

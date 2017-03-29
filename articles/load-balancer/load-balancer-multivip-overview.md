@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 08/11/2016
 ms.author: chkuhtz
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: e9ffa674363b250a5e286c6e34200fa2b3323173
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: d9e88b859020be2a96a57a01e5624052ed134b64
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -95,7 +96,7 @@ Azure Load Balancer 提供在多個 VIP 重複使用前端連接埠的彈性，�
 
 此案例中，後端集區中的每個 VM 有三個網路介面︰
 
-* DIP：與 VM 相關聯的虛擬 NIC (Azure 的 NIC 資源)
+* DIP：與 VM 相關聯的虛擬 NIC (Azure NIC 資源的 IP 組態)
 * VIP1︰客體 OS 內的回送介面 (此 OS 已設定了 VIP1 的 IP 位址)
 * VIP2︰客體 OS 內的回送介面 (此 OS 已設定了 VIP2 的 IP 位址)
 
@@ -135,9 +136,4 @@ Azure Load Balancer 提供在多個 VIP 重複使用前端連接埠的彈性，�
 * 若使用浮點 IP 規則，您的應用程式必須使用 DIP 輸出流量。 如果您的應用程式繫結至客體 OS 中回送介面上設定的 VIP 位址，就無法使用 SNAT 來重寫輸出流量，流程就會失敗。
 * 公用 IP 位址需要費用。 如需詳細資訊，請參閱 [IP 位址定價](https://azure.microsoft.com/pricing/details/ip-addresses/)
 * 訂用帳戶有其限制。 如需詳細資訊，請參閱 [服務限制](../azure-subscription-service-limits.md#networking-limits) 的說明。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

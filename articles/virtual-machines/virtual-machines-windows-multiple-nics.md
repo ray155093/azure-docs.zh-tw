@@ -12,21 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 10/27/2016
+ms.date: 03/14/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 7167048a287bee7c26cfc08775dcb84f9e7c2eed
-ms.openlocfilehash: 46156a3331585b47761432c13462dffeb0b7eeb5
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 95b2820d2f68be34cca7b8d414c581ba44a29804
+ms.lasthandoff: 03/17/2017
 
 
 ---
-# <a name="creating-a-windows-vm-with-multiple-nics"></a>建立具有多個 NIC 的 Windows VM
+# <a name="create-a-windows-vm-with-multiple-nics"></a>建立具有多個 NIC 的 Windows VM
 您可以在 Azure 中，建立連接多個虛擬網路介面 (NIC) 的虛擬機器 (VM)。 常見案例是有不同的子網路可用於前端和後端連線，或者專門用來監視或備份解決方案的網路。 本文提供快速命令來建立連接多個 NIC 的 VM。 如需詳細資訊，包括如何在自己的 PowerShell 指令碼內建立多個 NIC，請深入了解 [部署多個 NIC 的 VM](../virtual-network/virtual-network-deploy-multinic-arm-ps.md)。 不同的 [VM 大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 支援不同數量的 NIC，因此可據以調整您的 VM。
-
-> [!WARNING]
-> 當您建立 VM 時，必須連接多個 NIC - 您無法在現有的 VM 中新增 NIC。 您可以[根據原始虛擬磁碟建立 VM](virtual-machines-windows-vhd-copy.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，並且在部署 VM 時建立多個 NIC。
-> 
-> 
 
 ## <a name="create-core-resources"></a>建立核心資源
 確定您已 [安裝並執行最新的 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 登入您的 Azure 帳戶：
@@ -132,6 +128,66 @@ $vmConfig = Set-AzureRmVMOSDisk -VM $vmConfig -Name $diskName -VhdUri $osDiskUri
 New-AzureRmVM -VM $vmConfig -ResourceGroupName "myResourceGroup" -Location "WestUS"
 ```
 
+## <a name="add-a-nic-to-an-existing-vm"></a>將 NIC 新增至現有的 VM
+
+您現在可以將 NIC 新增至現有的 VM。 若要使用此功能，您必須先使用下列 Stop-AzureRmVM Cmdlet 來解除配置 VM。
+
+```powershell
+Stop-AzureRmVM -Name "myVM" -ResourceGroupName "myResourceGroup"
+```
+
+接下來，使用 Get-AzureRmVM Cmdlet 取得 VM 現有的組態
+
+```powershell
+$vm = Get-AzureRmVm -Name "myVM" -ResourceGroupName "myResourceGroup"
+```
+
+您可以在**與 VM 相同的 VNET** 中建立新的 NIC (如本文開頭所示)，或連接現有的 NIC。 我們假設您要在 VNET 中連接現有的 NIC `MyNic3`。 
+
+```powershell
+$nicId = (Get-AzureRmNetworkInterface -ResourceGroupName "myResourceGroup" -Name "MyNic3").Id
+Add-AzureRmVMNetworkInterface -VM $vm -Id $nicId -Primary | Update-AzureRmVm -ResourceGroupName "myResourceGroup"
+```
+
+> [!NOTE]
+> 您必須在具有多個 NIC 的 VM 上將其中一個 NIC 設為主要，如此才能讓我們將新的 NIC 設為主要。 如果您在 VM 上的前一個 NIC 是主要的，則不需要指定 -Primary 參數。 如果您想要在 VM 上切換主要 NIC，請依照下列步驟執行
+
+```powershell
+$vm = Get-AzureRmVm -Name "myVM" -ResourceGroupName "myResourceGroup"
+
+# Find out all the NICs on the VM and find which one is Primary
+$vm.NetworkProfile.NetworkInterfaces
+
+# Set the NIC 0 to be primary
+$vm.NetworkProfile.NetworkInterfaces[0].Primary = $true
+$vm.NetworkProfile.NetworkInterfaces[1].Primary = $false
+
+# Update the VM state in Azure
+Update-AzureRmVM -VM $vm -ResourceGroupName "myResourceGroup"
+```
+
+## <a name="remove-a-nic-from-an-existing-vm"></a>從現有的 VM 移除 NIC
+
+您也可以從 VM 移除 NIC。 若要使用此功能，您必須先使用下列 Stop-AzureRmVM Cmdlet 來解除配置 VM。
+
+```powershell
+Stop-AzureRmVM -Name "myVM" -ResourceGroupName "myResourceGroup"
+```
+
+接下來，使用 Get-AzureRmVM Cmdlet 取得 VM 現有的組態
+
+```powershell
+$vm = Get-AzureRmVm -Name "myVM" -ResourceGroupName "myResourceGroup"
+```
+
+現在檢視 VM 上的所有 NIC，並複製您要移除之 NIC 的名稱
+
+```powershell
+$vm.NetworkProfile.NetworkInterfaces
+
+Remove-AzureRmNetworkInterface -Name "myNic3" -ResourceGroupName "myResourceGroup"
+```
+
 ## <a name="creating-multiple-nics-using-resource-manager-templates"></a>使用 Resource Manager 範本建立多個 NIC
 Azure Resource Manager 範本會使用宣告式 JSON 檔案來定義您的環境。 您可以閱讀 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md)。 Resource Manager 範本提供一種方式，可在部署期間建立資源的多個執行個體，例如建立多個 NIC。 您使用 *copy* 來指定要建立的執行個體數目：
 
@@ -155,11 +211,5 @@ Azure Resource Manager 範本會使用宣告式 JSON 檔案來定義您的環境
 ## <a name="next-steps"></a>後續步驟
 嘗試建立具有多個 NIC 的 VM 時，請務必檢閱 [Windows VM 大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 。 注意每個 VM 大小所支援的 NIC 數目上限。 
 
-請記住，您無法在現有 VM 中新增其他 NIC，您必須在部署 VM 時建立所有 NIC。 小心規劃您的部署，以確定您一開始就會有所有需要的網路連線。
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

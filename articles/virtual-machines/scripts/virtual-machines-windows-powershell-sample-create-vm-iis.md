@@ -16,17 +16,17 @@ ms.workload: infrastructure
 ms.date: 03/01/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 68b3d858bc268eb8b93e4968d9fb1e587ebaa1e6
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 5269bd54e2dc9604c855cc9ff061cca26db1bf44
+ms.lasthandoff: 03/21/2017
 
 ---
 
 # <a name="create-an-iis-vm-with-powershell"></a>使用 PowerShell 建立 IIS VM
 
-此指令碼會建立 Azure 虛擬機器，然後使用 Azure 虛擬機器自訂指令碼擴充功能來安裝 IIS。 執行過此指令碼後，即可在虛擬機器的公用 IP 位址連線到示範網站。
+此指令碼會建立執行 Windows Server 2016 的 Azure 虛擬機器，然後使用 Azure 虛擬機器自訂指令碼擴充功能來安裝 IIS。 執行指令碼之後，您可以在虛擬機器的公用 IP 位址上存取預設的 IIS 網站。
 
-在執行這個指令碼之前，請確定您已使用 `Login-AzureRmAccount` 命令建立與 Azure 的連線。
+您可以視需要使用 [Azure PowerShell 指南 (英文)](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。
 
 ## <a name="sample-script"></a>範例指令碼
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 03/15/2017
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令來移除資源群組、VM 和所有相關資源。
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup

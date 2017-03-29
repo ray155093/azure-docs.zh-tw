@@ -15,9 +15,9 @@ ms.workload: big-data
 ms.date: 12/19/2016
 ms.author: stewu
 translationtype: Human Translation
-ms.sourcegitcommit: 787ef52580f5f8bfc51229787c5594883cef3a77
-ms.openlocfilehash: a41548557a91ff91f2496e371dd285977861ab69
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 1dfa93643f45a96ded3fd022aa8b1c71d487acb4
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -125,7 +125,7 @@ ms.lasthandoff: 03/01/2017
 以下是一些常見的疑難排解案例。
 * **許多 Tuple 逾時。** 查看拓撲中的每個節點，以判斷瓶頸所在。 最常見的原因是 Bolt 無法跟上 Spout。 這導致 Tuple 在等待處理時阻塞了內部緩衝區。 請考慮增加逾時值，或減少 Spout 暫止上限。
 
-* **總處理序執行延遲很高，但 Bolt 處理序延遲卻很低。** 在此情況下，Tuple 的處理速度可能不夠快。 請確定認可者的數量足夠。 另一個可能的原因是，它們在佇列中等待很久之後，Bolt 才開始處理。 減少 Spout 暫止上限。
+* **總處理序執行延遲很高，但 Bolt 處理序延遲卻很低。** 在此情況下，認可 Tuple 的速度可能不夠快。 請確認認可者的數量足夠。 另一個可能的原因是，它們在佇列中等待很久之後，Bolt 才開始處理。 減少 Spout 暫止上限。
 
 * **Bolt 執行延遲很高。** 這表示 Bolt 的 execute() 方法花費太久時間。 請將程式碼最佳化，或查看寫入大小和排清行為。
 

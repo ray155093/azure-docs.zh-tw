@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 08/08/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 46ffa25ff6f90c898b958ee6c5b2c47219c468ab
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: f7a2066f43219e8748b5c5356ff6c81535b7842a
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 01/20/2017
 
 這篇文章說明如何在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中為使用自訂網域名稱的 Web 應用程式、行動應用程式後端或 API 應用程式啟用 HTTPS。 本文涵蓋僅限伺服器驗證。 如果您需要相互驗證 (包括用戶端驗證)，請參閱 [如何設定 App Service 的 TLS 相互驗證](app-service-web-configure-tls-mutual-auth.md)。
 
-若要使用 HTTPS 保護擁有自訂網域名稱的應用程式，您可以為該網域名稱新增憑證。 根據預設，Azure 使用單一 SSL 憑證來保護 **\*.azurewebsites.net** 萬用字元網域，因此您的用戶端已經可以在 **https://*&lt;appname>*.azurewebsites.net** 存取您的應用程式。但是，如果您想使用自訂網域 (例如 **contoso.com**、**www.contoso.com** 和 **\*.contoso.com**)，則預設憑證無法提供保護。 此外，如同所有[萬用字元憑證](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates/)，預設憑證的安全性不如使用自訂網域和該自訂網域的憑證。   
+若要使用 HTTPS 保護擁有自訂網域名稱的應用程式，您可以為該網域名稱新增憑證。 根據預設，Azure 使用單一 SSL 憑證來保護 **\*.azurewebsites.net** 萬用字元網域，因此您的用戶端已經可以在 **https://*&lt;appname>*.azurewebsites.net**存取您的應用程式。但是，如果您想使用自訂網域 (例如**contoso.com**、**www.contoso.com**和**\*.contoso.com**)，則預設憑證無法提供保護。 此外，如同所有[萬用字元憑證](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates/)，預設憑證的安全性不如使用自訂網域和該自訂網域的憑證。   
 
 > [!NOTE]
 > 您隨時可以在 [Azure 論壇](https://azure.microsoft.com/support/forums/)上取得 Azure 專家的協助。 如需更個人化的支援，請移至 [Azure 支援](https://azure.microsoft.com/support/options/) ，按一下 **取得支援**。
@@ -439,8 +439,12 @@ ms.lasthandoff: 01/20/2017
    
     ![插入 SSL 繫結的影像](./media/web-sites-configure-ssl-certificate/sslbindings.png)
    
-       •    IP based SSL associates a certificate with a domain name by mapping the dedicated public IP address of the server to the domain name. This requires each domain name (contoso.com, fabricam.com, etc.) associated with your service to have a dedicated IP address. This is the traditional          method of associating SSL certificates with a web server.
-       •    SNI based SSL is an extension to SSL and **[Transport Layer Security](http://en.wikipedia.org/wiki/Transport_Layer_Security)** (TLS) that allows multiple domains to share the same IP address, with separate security certificates for each domain. Most modern browsers (including Internet Explorer, Chrome, Firefox and Opera) support SNI, however older browsers may not support SNI. For more information on SNI, see the **[Server Name Indication](http://en.wikipedia.org/wiki/Server_Name_Indication)** article on Wikipedia.
+    > [!NOTE] 
+    > **以 IP 為主的 SSL** 會將伺服器的專用公用 IP 位址對應至網域名稱，以建立憑證與網域名稱的關聯。 這需要與您服務相關聯的每個網域名稱 (contoso.com、fabricam.com 等) 都有專用 IP 位址。 這是傳統用來建立 SSL 憑證與網頁伺服器之關聯的方法。  
+    >
+    > **以 SNI 為主的 SSL** 是 SSL 和**[傳輸層安全性](http://en.wikipedia.org/wiki/Transport_Layer_Security)** (TLS) 的延伸，可讓多個網域共用相同的 IP 位址，而每個網域都有個別的安全性憑證。 現今大部分的瀏覽器 (包括 Internet Explorer、Chrome、Firefox 和 Opera) 都支援 SNI，不過，較舊的瀏覽器可能不支援 SNI。 如需 SNI 的詳細資訊，請參閱 Wikipedia 上的**[伺服器名稱指示 (英文)](http://en.wikipedia.org/wiki/Server_Name_Indication)** 一文。
+    > 
+
 9. 按一下 [新增繫結]  ，儲存變更並啟用 SSL。
 
 ## <a name="step-3-change-your-domain-name-mapping-ip-based-ssl-only"></a>步驟 3. 變更網域名稱對應 (僅限以 IP 為主的 SSL)

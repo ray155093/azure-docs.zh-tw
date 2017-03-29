@@ -16,9 +16,9 @@ ms.date: 02/27/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: dc4a28b64620ecc4829d614b9a3c9e1939fd0063
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: c187467e8af7503ea22c5953417d8282be97856c
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -75,7 +75,7 @@ Azure Marketplace 包含 [Log Analytics 的管理解決方案](https://azuremark
 
 | 管理解決方案                                                                        | 提供項目                                                                     | 定價層<sup>1</sup>                                                    | 注意事項 |
 | ---                                                                                        | ---                                                                       | ---                                                                                                       | ---   |
-| 活動 Log Analytics                                                                     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 可免費使用資料&90; 天 |
+| 活動 Log Analytics                                                                     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 可免費使用資料 90 天 |
 | [AD 評估](log-analytics-ad-assessment.md)                                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
 | [AD 複寫狀態](log-analytics-ad-replication-status.md)                              | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
 | 代理程式健康狀態                                                                                  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
@@ -91,6 +91,7 @@ Azure Marketplace 包含 [Log Analytics 的管理解決方案](https://azuremark
 | [容器](log-analytics-containers.md)                                                  | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
 | HDInsight HBase 監視 <br>(預覽)                                                     | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
 | [金鑰保存庫分析](log-analytics-azure-key-vault.md)                      | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
+| Logic Apps B2B                      | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
 | [惡意程式碼評估](log-analytics-malware.md)                                             | <ul><li>安全性與法規遵循</li></ul>                                    | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                               | |
 | [網路效能監視器](log-analytics-network-performance-monitor.md) <br>(預覽)    | <ul><li>深入解析與分析</li></ul>                                     | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | |
 | Office 365 分析 <br>(預覽)                                                        | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
@@ -103,7 +104,8 @@ Azure Marketplace 包含 [Log Analytics 的管理解決方案](https://azuremark
 | [SurfaceHub](log-analytics-surface-hubs.md)                                                    | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
 | [System Center Operations Manager Assessment](log-analytics-scom-assessment.md) <br>(預覽) | <ul><li>深入解析與分析</li><li>Log Analytics</li></ul>         | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
 | 更新管理                                                                               | <ul><li>自動化和控制</li></ul>                                    | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                            | 要求您將 Log Analytics 工作區連結到自動化帳戶 |
-| [Upgrade Analytics](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-analytics) <br>(預覽)                                                             | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 免費的資料或節點 |
+| [更新合規性](https://technet.microsoft.com/en-us/itpro/windows/manage/update-compliance-get-started) <br>(預覽)                                                             | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 免費的資料或節點 |
+| [升級整備程度](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-readiness)                                                             | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | 免費的資料或節點 |
 | [VMware 監視](log-analytics-vmware.md) <br>(預覽)                                 | <ul><li>深入解析&nbsp;與&nbsp;分析</li><li>Log Analytics</li></ul>     | 免費<br> 標準<br> 進階&nbsp;(OMS)<br> 每個&nbsp;GB&nbsp;(獨立)<br> 每個&nbsp;節點&nbsp;(OMS)     | |
 | Wire Data 2.0<br>(預覽)                                                                   | <ul><li>深入解析與分析</li></ul>                                      | 免費<br> 每個&nbsp;節點&nbsp;(OMS)                                                                         | 適用於美國東部和西歐 |
 

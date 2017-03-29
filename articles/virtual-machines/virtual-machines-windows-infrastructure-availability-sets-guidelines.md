@@ -13,13 +13,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 03/17/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: c3aca63e0810e97cee58d145423d6b3f5edabeb4
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: fef58c8f32eb42b8497615b7f3d2d63bad4804fb
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -43,7 +43,7 @@ ms.lasthandoff: 03/06/2017
 ## <a name="availability-sets"></a>可用性集合
 在 Azure 中，虛擬機器 (VM) 可以被放置在稱為可用性設定組的邏輯群組之中。 當您在可用性設定組中建立 VM 時，Azure 平台會將這些 VM 的位置散佈於基礎結構上。 若 Azure 平台發生預計的維護事件，或是發生基礎硬體 / 基礎結構錯誤，使用可用性設定組將可確保至少有一個 VM 會保持執行。
 
-最佳作法是不將應用程式放置在單一 VM 上。 包含單一 VM 的可用性設定組將無法在 Azure 平台內針對計畫或非計畫的事件獲得保護。 [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines) 需要可用性設定組內有兩個或以上的 VM，以允許將 VM 散佈於基礎結構上。
+最佳作法是不將應用程式放置在單一 VM 上。 包含單一 VM 的可用性設定組將無法在 Azure 平台內針對計畫或非計畫的事件獲得保護。 [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines) 需要可用性設定組內有兩個或以上的 VM，以允許將 VM 散佈於基礎結構上。 如果您使用的是 [Azure 進階儲存體](../storage/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，Azure SLA 就會套用到單一 VM。
 
 Azure 中的基礎結構分為多個硬體叢集。 每個硬體叢集皆可支援某個 VM 大小範圍。 不論何時，可用性設定組都只能裝載在單一硬體叢集上。 因此，能夠存在於單一可用性設定組中的 VM 大小範圍會限制在硬體叢集所支援的 VM 大小範圍。 當部署可用性設定組中的第一個 VM，或啟動所有 VM 目前都處於「已停止-已解除配置」狀態之可用性設定組中的第一個 VM 時，就會選取該可用性設定組的硬體叢集。 下列 PowerShell 命令可用來判斷可用性設定組可用的 VM 大小範圍："Get-AzureRmVMSize -ResourceGroupName \<string\> -AvailabilitySetName \<string\>"
 
@@ -51,9 +51,9 @@ Azure 中的基礎結構分為多個硬體叢集。 每個硬體叢集皆可支�
 
 設計應用程式基礎結構時，計畫要使用的應用程式層級。 將用途相同的 VM 分組為可用性設定組，例如由執行 IIS 的前端 VM 所組成的可用性設定組。 為執行 SQL Server 的後端 VM 建立個別的可用性設定組。 我們的目標是要確保應用程式的每個元件都會受到某個可用性設定組所保護，且至少有一個執行個體總是保持執行。
 
-負載平衡器可以在每個應用程式層級之前運用，以和可用性設定組一起運作，並確保流量總是會被路由到正在執行中的執行個體。 若沒有負載平衡器，您的 VM 可能可以在計畫或非計畫的維護事件期間持續執行，但在主要 VM 無法使用的情況下，您的終端使用者可能會無法解析它們。
+負載平衡器可以在每個應用程式層級之前運用，以和可用性設定組一起運作，並確保流量總是會被路由到正在執行中的執行個體。 若沒有負載平衡器，您的 VM 可能會在規劃或未規劃的維護事件期間持續執行，但在主要 VM 無法使用的情況下，您的使用者可能無法解析它們。
 
-針對儲存層的高可用性設計應用程式。 最佳作法是針對可用性設定組中的每個 VM 使用個別的儲存體帳戶。 將與 VM 相關聯的所有磁碟 (OS 和資料) 保留於相同的儲存體帳戶中。 將更多 VHD 新增至儲存體帳戶時，請考慮將儲存體帳戶[限制](../storage/storage-scalability-targets.md)。
+使用非受控磁碟時，請針對儲存層的高可用性設計應用程式。 最佳作法是針對可用性設定組中的每個 VM 使用個別的儲存體帳戶。 將與 VM 相關聯的所有磁碟 (OS 和資料) 保留於相同的儲存體帳戶中。 將更多 VHD 新增至儲存體帳戶時，請考慮將儲存體帳戶[限制](../storage/storage-scalability-targets.md)。 如果是 [Azure 受控磁碟](../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，將會為您處理基礎磁碟的散佈。
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-next-steps](../../includes/virtual-machines-windows-infrastructure-guidelines-next-steps.md)]

@@ -16,56 +16,28 @@ ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 4c90cf910af142e8d0cd73a4e6f502a4fb78be9b
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: fef0d6007aa3f9357d7288033220a7d5d6eb5a49
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="load-balancing-on-multiple-ip-configurations"></a>在多個 IP 組態上進行負載平衡
 
 > [!div class="op_single_selector"]
-> * [PowerShell](load-balancer-multiple-ip.md)
+> * [入口網站](load-balancer-multiple-ip.md)
 > * [CLI](load-balancer-multiple-ip-cli.md)
->
+> * [PowerShell](load-balancer-multiple-ip-powershell.md)
 
-本文說明如何對次要網路介面 (NIC) 上的多個 IP 位址使用 Azure Load Balancer。 NIC 上的多個 IP 位址支援目前是預覽版本中的一項功能。 如需詳細資訊，請參閱本文的[限制](#limitations)一節。 下列案例說明這項功能如何與 Load Balancer 搭配運作。
-
-在此案例中，我們有兩部執行 Windows 的 VM，每部各有一個主要和次要 NIC。 每個次要 Nic 有兩個 IP 組態。 每個 VM 裝載 contoso.com 和 fabrikam.com 兩個網站。 每個網站繫結到次要 NIC 上的其中一個 IP 組態。 我們使用 Azure Load Balancer 來公開兩個前端 IP 位址，每個網站各使用其中一個，以將流量分散給網站的個別 IP 組態。 此案例會在兩個前端以及兩個後端集區 IP 位址使用相同的連接埠號碼。
+本文說明如何對次要網路介面 (NIC) 上的多個 IP 位址使用 Azure Load Balancer。 在此案例中，我們有兩部執行 Windows 的 VM，每部各有一個主要和次要 NIC。 每個次要 Nic 有兩個 IP 組態。 每部 VM 都裝載 contoso.com 和 fabrikam.com 兩個網站。 每個網站繫結到次要 NIC 上的其中一個 IP 組態。 我們使用 Azure Load Balancer 來公開兩個前端 IP 位址，每個網站各使用其中一個，以將流量分散給網站的個別 IP 組態。 此案例會在兩個前端以及兩個後端集區 IP 位址使用相同的連接埠號碼。
 
 ![LB 案例影像](./media/load-balancer-multiple-ip/lb-multi-ip.PNG)
-
-## <a name="limitations"></a>限制
-
-[!INCLUDE [virtual-network-preview](../../includes/virtual-network-preview.md)]
-
-登入並選取適當的訂用帳戶後，在 PowerShell 中執行下列命令來註冊預覽︰
-
-```
-Register-AzureRmProviderFeature -FeatureName AllowMultipleIpConfigurationsPerNic -ProviderNamespace Microsoft.Network
-
-Register-AzureRmProviderFeature -FeatureName AllowLoadBalancingonSecondaryIpconfigs -ProviderNamespace Microsoft.Network
-
-Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
-```
-
-執行 ```Get-AzureRmProviderFeature``` 命令時，請在看到下列輸出之後再嘗試完成剩餘步驟︰
-        
-```powershell
-FeatureName                            ProviderName      RegistrationState
------------                            ------------      -----------------      
-AllowLoadBalancingOnSecondaryIpConfigs Microsoft.Network Registered       
-AllowMultipleIpConfigurationsPerNic    Microsoft.Network Registered       
-```
-        
->[!NOTE] 
->這可能需要幾分鐘的時間。
 
 ## <a name="steps-to-load-balance-on-multiple-ip-configurations"></a>在多個 IP 組態上進行負載平衡的步驟
 
 請遵循下列步驟來達成本文所述案例︰
 
-1. [安裝和設定 Azure CLI](../xplat-cli-install.md)，方法是遵循所連結文章內的步驟並登入 Azure 帳戶。
+1. [安裝和設定 Azure CLI](../cli-install-nodejs.md)，方法是遵循所連結文章內的步驟並登入 Azure 帳戶。
 2. 如上所述[建立資源群組](../virtual-machines/virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-network%2ftoc.json#create-resource-groups-and-choose-deployment-locations) (稱為 contosofabrikam)。
 
     ```azurecli
@@ -154,4 +126,8 @@ AllowMultipleIpConfigurationsPerNic    Microsoft.Network Registered
     ```
 
 13. 最後，您必須將 DNS 資源記錄設定為指向 Load Balancer 的個別前端 IP 位址。 您可以在 Azure DNS 中裝載網域。 如需搭配使用 Azure DNS 與 Load Balancer 的詳細資訊，請參閱[使用 Azure DNS 搭配其他 Azure 服務](../dns/dns-for-azure-services.md)。
+
+## <a name="next-steps"></a>後續步驟
+- 若要深入了解如何在 Azure 中合併負載平衡服務，請參閱[在 Azure 中使用負載平衡服務](../traffic-manager/traffic-manager-load-balancing-azure.md)。
+- 若要深入了解如何在 Azure 中使用不同類型的 記錄檔來管理負載平衡器和針對其問題進行疑難排解，請參閱 [Azure Load Balancer 的 Log Analytics](../load-balancer/load-balancer-monitor-log.md)。
 

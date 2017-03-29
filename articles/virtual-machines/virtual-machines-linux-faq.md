@@ -13,11 +13,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 08/16/2016
+ms.date: 03/14/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
-ms.openlocfilehash: 78b476b31f030fba4034dc1f499b020d244e8288
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: bfbd08b40e7d16efd5784497512f9063eb17d808
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -47,7 +48,7 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 針對現有 Azure 訂用帳戶所建立的虛擬機器，不會自動註冊加拿大中部和加拿大東部這兩個新的區域。 當虛擬機器透過 Azure 入口網站使用 Azure Resource Manager 部署到任何其他區域時，就會自動完成註冊。 將虛擬機器部署到任何其他 Azure 區域之後，新的區域即可供後續的虛擬機器使用。
 
 ## <a name="can-i-add-a-nic-to-my-vm-after-its-created"></a>我可以在建立 VM 之後將 NIC 新增至此 VM 嗎？
-不可以。 新增 NIC 只能在建立期間完成。
+是的，目前可行。 您必須先停止解除配置 VM。 然後您可以新增或移除 NIC (除非它是 VM 上的最後一個 NIC)。 
 
 ## <a name="are-there-any-computer-name-requirements"></a>是否有任何電腦名稱需求？
 是。 電腦名稱的長度最多可以有 64 個字元。 如需命名資源的詳細資訊，請參閱 [基礎結構命名指導方針](virtual-machines-linux-infrastructure-naming-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
@@ -111,9 +112,4 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
         <td style="text-align:center">iloveyou!</td>
     </tr>
 </table>
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

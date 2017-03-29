@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/18/2017
+ms.date: 03/18/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 1f6ce516629fd32b5efabce8682b45a3e575eaab
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 4bfd76a00ba694096ef0b045b14beb757ba0809f
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -89,6 +89,12 @@ Azure 入口網站隨即開啟。
 * 提供 B2B 共同作業的 PowerShell 支援。
 
 * 提供稽核和報告功能。
+
+## <a name="help-us-shape-your-features"></a>協助我們設計功能
+ 
+我們會時常聆聽您對改進 B2B 共同作業的意見反應。 我們邀請您在 [Microsoft 技術社群 (英文)](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B/bd-p/AzureAD_B2b) 參與討論、分享您的使用者案例、最佳作法，以及您對 Azure AD B2B 共同作業的意見
+ 
+我們也邀請您前往 [B2B 共同作業構想 (英文)](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B-Ideas/idb-p/AzureAD_B2B_Ideas) 網站提交您的構想和針對未來的功能投票。
 
 ## <a name="next-steps"></a>後續步驟
 

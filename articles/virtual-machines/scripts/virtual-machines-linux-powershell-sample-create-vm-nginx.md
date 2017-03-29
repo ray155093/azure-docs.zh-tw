@@ -16,17 +16,17 @@ ms.workload: infrastructure
 ms.date: 03/01/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: 41486d80c05af92c1eb4e00f1cf3ed4f1490c9bf
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 69c2666aeb51107db2d0c7a3155e2ae6fa891a38
+ms.lasthandoff: 03/21/2017
 
 ---
 
 # <a name="create-an-nginx-vm-with-powershell"></a>使用 PowerShell 建立 NGINX VM
 
-此指令碼會建立 Azure 虛擬機器，然後使用 Azure 虛擬機器自訂指令碼擴充功能來安裝 NGINX。 執行過此指令碼後，即可在虛擬機器的公用 IP 位址連線到示範網站。
+此指令碼會建立 Azure 虛擬機器，然後使用 Azure 虛擬機器自訂指令碼擴充功能來安裝 NGINX。 執行指令碼之後，您可以在虛擬機器的公用 IP 位址上存取示範網站。
 
-在執行這個指令碼之前，請確定您已使用 `Login-AzureRmAccount` 命令建立與 Azure 的連線。 此外，名稱為 `id_rsa.pub` 的 SSH 公開金鑰必須儲存在您使用者設定檔的 .ssh 目錄中。
+您可以視需要使用 [Azure PowerShell 指南 (英文)](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。 此外，您在使用者設定檔的 .ssh 目錄中需要有一個名為 `id_rsa.pub` 的 SSH 公開金鑰。
 
 ## <a name="sample-script"></a>範例指令碼
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 03/10/2017
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令來移除資源群組、VM 和所有相關資源。
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup

@@ -1,30 +1,31 @@
 ---
-title: "在 Application Insights 中監視 Docker 應用程式"
+title: "在 Azure Application Insights 中監視 Docker 應用程式 | Microsoft Docs"
 description: "Docker 效能計數器、事件和例外狀況可以與來自容器化應用程式的遙測一起顯示在 Application Insights 上。"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 27a3083d-d67f-4a07-8f3c-4edb65a0a685
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/10/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 7a9c40081f52b2ffe918f4612f790f7fd08acc5a
-ms.openlocfilehash: 2051bd0d749ccad0fc1280ce03b88fd9e2af7c08
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: b888f3e7fd56aaf8104c1b76264a3753ca37f7c9
+ms.lasthandoff: 03/16/2017
 
 
 ---
 # <a name="monitor-docker-applications-in-application-insights"></a>在 Application Insights 中監視 Docker 應用程式
-[Docker](https://www.docker.com/) 容器的週期事件和效能計數器可以在 Application Insights 上繪製成圖表。 在您主機的容器中安裝 [Application Insights](app-insights-overview.md) 映像，它會顯示主機及其他映像的效能計數器。
+[Docker](https://www.docker.com/) 容器的週期事件和效能計數器可以在 Application Insights 上繪製成圖表。 在您的主機的容器中安裝 [Application Insights](app-insights-overview.md) 映像，它會顯示主機及其他映像的效能計數器。
 
 使用 Docker，您可以在完成所有相依性的輕量級容器中散發應用程式。 它們會在執行 Docker 引擎的任何主機電腦上執行。
 
-當您在 Docker 主機上執行 [Application Insights 映像](https://hub.docker.com/r/microsoft/applicationinsights/) 時，可為您提供下列好處：
+當您在 Docker 主機上執行 [Application Insights 映像 (英文)](https://hub.docker.com/r/microsoft/applicationinsights/) 時，可為您提供下列好處：
 
 * 主機上執行之所有容器的相關週期遙測 - 啟動、停止等。
 * 所有容器的效能計數器。 CPU、記憶體、網路使用量等。
@@ -118,12 +119,15 @@ ms.openlocfilehash: 2051bd0d749ccad0fc1280ce03b88fd9e2af7c08
 
 *如何從應用程式本身取得遙測？*
 
-* 在應用程式中安裝 Application Insights SDK。 
-  針對下列項目深入了解：[Java Web 應用程式](app-insights-java-get-started.md)、[Windows Web 應用程式](app-insights-asp-net.md)。
+* 在應用程式中安裝 Application Insights SDK。 針對下列項目深入了解：[Java Web 應用程式](app-insights-java-get-started.md)、[Windows Web 應用程式](app-insights-asp-net.md)。
 
+## <a name="video"></a>影片
 
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
 
+## <a name="next-steps"></a>後續步驟
 
-<!--HONumber=Nov16_HO3-->
-
+* [適用於 Java 的 Application Insights](app-insights-java-get-started.md)
+* [適用於 Node.js 的 Application Insights](app-insights-nodejs.md)
+* [適用於 ASP.NET 的 Application Insights](app-insights-asp-net.md)
 

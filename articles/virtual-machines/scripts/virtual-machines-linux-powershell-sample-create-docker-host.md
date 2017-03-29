@@ -16,17 +16,17 @@ ms.workload: infrastructure
 ms.date: 03/02/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: b3979468d7fdb04a7efd33f35dcea173afe85b3a
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 23dd4df078da0b93d1924442cf2e6b7542b12f9a
+ms.lasthandoff: 03/21/2017
 
 ---
 
 # <a name="create-a-docker-host-with-powershell"></a>用 PowerShell 建立 Docker 主機
 
-此範例指令碼會建立虛擬機器，然後使用 Azure Docker VM 擴充功能來設定 Docker 主機。 Docker VM 擴充功能會接著建立執行 NGINX 的容器。 最後，指令碼會設定連接埠 80 上所有輸入流量的 Azure 網路安全性群組。 成功執行此指令碼後，即可透過 Azure 虛擬機器的 FQDN 存取 NGINX Web 伺服器。 
+這個指令碼會建立啟用 Docker 功能的虛擬機器，並啟動執行 NGINX 的容器。 執行這個指令碼之後，您可以透過 Azure 虛擬機器的 FQDN 存取 NGINX Web 伺服器。 
 
-在執行這個指令碼之前，請確定您已使用 `Login-AzureRmAccount` 命令建立與 Azure 的連線。 此外，名稱為 `id_rsa.pub` 的 SSH 公開金鑰必須儲存在您使用者設定檔的 .ssh 目錄中。
+您可以視需要使用 [Azure PowerShell 指南 (英文)](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。 此外，您在使用者設定檔的 .ssh 目錄中需要有一個名為 `id_rsa.pub` 的 SSH 公開金鑰。
 
 ## <a name="sample-script"></a>範例指令碼
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 03/10/2017
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令來移除資源群組、VM 和所有相關資源。
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup

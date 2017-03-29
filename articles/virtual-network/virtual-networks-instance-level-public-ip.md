@@ -1,10 +1,10 @@
 ---
-title: "使用 PowerShell 管理執行個體層級公用 IP (傳統) | Microsoft Docs"
-description: "了解 ILPIP (PIP) 及如何使用 PowerShell 管理它們。"
+title: "Azure 執行個體層級公用 IP (傳統) 位址 | Microsoft Docs"
+description: "了解執行個體層級公用 IP (ILPIP) 位址，以及使用 PowerShell 來管理它們的方式。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
+manager: timlt
 editor: tysonn
 ms.assetid: 07eef6ec-7dfe-4c4d-a2c2-be0abfb48ec5
 ms.service: virtual-network
@@ -15,43 +15,47 @@ ms.workload: infrastructure-services
 ms.date: 02/10/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: c934f78e514230958fad8b2aa9be4d2e56a3a835
-ms.openlocfilehash: f1919d84cf912e184d87a5eeb462355e8ee3da07
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: c233439b78fb01beaa3183b79ab633aeb9357ef0
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="instance-level-public-ip-classic-overview"></a>執行個體層級公用 IP (Classic) 概觀
-執行個體層級公用 IP (ILPIP) 是您可以直接指派至 VM 或角色執行個體的 IP 位址，而不是指派至 VM 或角色執行個體所在的雲端服務。 這不會取代指派給雲端服務的 VIP (虛擬 IP)。 應該說是您可以用來直接連接到 VM 或角色執行個體的其他 IP 位址。
+執行個體層級公用 IP (ILPIP) 是您可以直接指派至 VM 或雲端服務角色執行個體的公用 IP 位址，而不是指派至 VM 或角色執行個體所在的雲端服務。 ILPIP 不會取代指派給雲端服務的虛擬 IP (VIP)。 應該說是您可以用來直接連接到 VM 或角色執行個體的其他 IP 位址。
 
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議大部分的新部署使用 Resource Manager。 請確定您了解 [IP 位址](virtual-network-ip-addresses-overview-classic.md) 在 Azure 中的運作方式。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議您透過 Resource Manager 建立 VM。 請確定您了解 [IP 位址](virtual-network-ip-addresses-overview-classic.md) 在 Azure 中的運作方式。
 
 ![ILPIP 和 VIP 之間的差異](./media/virtual-networks-instance-level-public-ip/Figure1.png)
 
 如圖 1 所示，儘管通常是使用 VIP:&lt;連接埠號碼&gt; 來存取個別 VM，但還是會使用 VIP 來存取雲端服務。 將 ILPIP 指派給特定的 VM，就能直接使用該 IP 位址來存取 VM。
 
-當您在 Azure 中建立雲端服務時，對應的 DNS A 記錄即會自動建立，以允許透過完整格式的網域名稱 (FQDN) 存取服務，而不需使用實際的 VIP。 相同程序也適用於 ILPIP，但可改為透過 FQDN 而不是 ILPIP 來允許存取 VM 或角色執行個體。 例如，若您建立名為 contosoadservice 的雲端服務，並設定名為 contosoweb 且具有兩個執行個體的 Web 角色，Azure 將會為那些執行個體登錄下列 A 記錄：
+當您在 Azure 中建立雲端服務時，對應的 DNS A 記錄即會自動建立，以允許透過完整格式的網域名稱 (FQDN) 存取服務，而不需使用實際的 VIP。 相同程序也適用於 ILPIP，但可改為透過 FQDN 而不是 ILPIP 來允許存取 VM 或角色執行個體。 例如，若您建立名為 *contosoadservice* 的雲端服務，並設定名為 *contosoweb* 且具有兩個執行個體的 Web 角色，Azure 將會為那些執行個體登錄下列 A 記錄：
 
 * contosoweb\_IN_0.contosoadservice.cloudapp.net
 * contosoweb\_IN_1.contosoadservice.cloudapp.net 
 
 > [!NOTE]
-> 您只能針對每個 VM 或角色執行個體指派一個 ILPIP。 您可以針對每個訂用帳戶最多使用 5 個 ILPIP。 ILPIP 目前不支援多個 NIC 的 VM。
+> 您只能針對每個 VM 或角色執行個體指派一個 ILPIP。 您可以針對每個訂用帳戶最多使用 5 個 ILPIP。 ILPIP 不支援多個 NIC VM。
 > 
 > 
 
-## <a name="why-should-i-request-an-ilpip"></a>為什麼我應該要求 ILPIP？
+## <a name="why-would-i-request-an-ilpip"></a>為什麼我要要求 ILPIP？
 如果想要透過直接指派 IP 位址的方式連接到 VM 或角色執行個體，而不是使用雲端服務 VIP:&lt;連接埠號碼&gt;，請為 VM 或角色執行個體要求 ILPIP。
 
-* **被動式 FTP** - 若 VM 上有 ILPIP，您可以在近乎所有的連接埠上接收流量，不必開啟端點接收流量。 這會啟用動態選擇連接埠的案例，如被動式 FTP 等。
-* **輸出 IP** - 源自 VM 的輸出流量是使用 ILPIP 作為來源送出，而這可將 VM 唯一識別為外部實體。
+* **被動式 FTP**：透過將 ILPIP 指派給 VM，VM 就可以在幾乎所有的連接埠上接收流量。 VM 不需要端點就可以接收流量。 ILPIP 會啟用動態選擇連接埠的案例，如被動式 FTP 等。
+* **輸出 IP**：源自 VM 的輸出流量是以 ILPIP 往外傳送，因為來源與 ILPIP 可向外部實體唯一識別 VM。
 
 > [!NOTE]
-> ILPIP 過去稱為 PIP，表示公用 IP。
+> ILPIP 過去被稱為公用 IP (PIP) 位址。
 > 
 
-## <a name="how-to-request-an-ilpip-during-vm-creation-using-powershell"></a>如何在建立 VM 期間使用 PowerShell 要求 ILPIP
-下列 PowerShell 指令碼會建立名為 FTPService 的新雲端服務，然後從 Azure 擷取映像，並使用擷取的映像建立名為 FTPInstance 的 VM、設定要使用 ILPIP 的 VM，然後將 VM 加入新服務：
+## <a name="manage-an-ilpip-for-a-vm"></a>管理 VM 的 ILPIP
+下列工作可讓您建立、指派和移除 VM 的 ILPIP：
+
+### <a name="how-to-request-an-ilpip-during-vm-creation-using-powershell"></a>如何在建立 VM 期間使用 PowerShell 要求 ILPIP
+下列 PowerShell 指令碼會建立名為 *FTPService* 的雲端服務、從 Azure 擷取映像、使用擷取的映像建立名為 *FTPInstance* 的 VM、設定要使用 ILPIP 的 VM，以及將 VM 加入新服務：
 
 ```powershell
 New-AzureService -ServiceName FTPService -Location "Central US"
@@ -62,8 +66,8 @@ New-AzureVMConfig -Name FTPInstance -InstanceSize Small -ImageName $image.ImageN
 | Set-AzurePublicIP -PublicIPName ftpip | New-AzureVM -ServiceName FTPService -Location "Central US"
 ```
 
-## <a name="how-to-retrieve-ilpip-information-for-a-vm"></a>如何擷取 VM 的 ILPIP 資訊
-若要檢視使用上述指令碼建立之 VM 的 ILPIP 資訊，請執行下列 PowerShell 命令，並觀察 PublicIPAddress 和 PublicIPName 的值：
+### <a name="how-to-retrieve-ilpip-information-for-a-vm"></a>如何擷取 VM 的 ILPIP 資訊
+若要檢視使用上述指令碼所建立 VM 的 ILPIP 資訊，請執行下列 PowerShell 命令，並觀察 *PublicIPAddress* 和 *PublicIPName* 的值：
 
 ```powershell
 Get-AzureVM -Name FTPInstance -ServiceName FTPService
@@ -88,7 +92,7 @@ Get-AzureVM -Name FTPInstance -ServiceName FTPService
     AvailabilitySetName         : 
     DNSName                     : http://ftpservice888.cloudapp.net/
     Status                      : ReadyRole
-    GuestAgentStatus            :   Microsoft.WindowsAzure.Commands.ServiceManagement.Model.GuestAgentStatus
+    GuestAgentStatus            :     Microsoft.WindowsAzure.Commands.ServiceManagement.Model.GuestAgentStatus
     ResourceExtensionStatusList : {Microsoft.Compute.BGInfo}
     PublicIPAddress             : 104.43.142.188
     PublicIPName                : ftpip
@@ -98,54 +102,50 @@ Get-AzureVM -Name FTPInstance -ServiceName FTPService
     OperationId                 : 568d88d2be7c98f4bbb875e4d823718e
     OperationStatus             : OK
 
-## <a name="how-to-remove-an-ilpip-from-a-vm"></a>如何從 VM 移除 ILPIP
-若要移除在上述指令碼中加入 VM 的 ILPI，請執行下列 PowerShell 命令：
+### <a name="how-to-remove-an-ilpip-from-a-vm"></a>如何從 VM 移除 ILPIP
+若要移除在上述指令碼中加入 VM 的 ILPIP，請執行下列 PowerShell 命令：
 
 ```powershell
 Get-AzureVM -ServiceName FTPService -Name FTPInstance | Remove-AzurePublicIP | Update-AzureVM
 ```
 
-## <a name="how-to-add-an-ilpip-to-an-existing-vm"></a>如何將 ILPIP 加入現有的 VM
-若要將 ILPIP 新增至使用上述指令碼建立的 VM，請執行下列命令：
+### <a name="how-to-add-an-ilpip-to-an-existing-vm"></a>如何將 ILPIP 加入現有的 VM
+若要將 ILPIP 加入至使用上述指令碼建立的 VM，請執行下列命令：
 
 ```powershell
 Get-AzureVM -ServiceName FTPService -Name FTPInstance | Set-AzurePublicIP -PublicIPName ftpip2 | Update-AzureVM
 ```
 
-## <a name="how-to-associate-an-ilpip-to-a-vm-by-using-a-service-configuration-file"></a>如何使用服務組態檔來將 ILPIP 關聯至 VM
-您也可以使用服務組態檔 (CSCFG) 來將 ILPIP 關聯至 VM。 下列範例 XML 示範如何設定雲端服務，以使用名為 *MyPublicIP* 的角色執行個體 ILPIP： 
+## <a name="manage-an-ilpip-for-a-cloud-services-role-instance"></a>管理雲端服務角色執行個體的 ILPIP
 
+若要將 ILPIP 加入至雲端服務角色執行個體，請完成下列步驟：
+
+1. 完成[如何設定雲端服務](../cloud-services/cloud-services-how-to-configure-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json#reconfigure-your-cscfg)文章中的步驟，以下載雲端服務的 .cscfg 檔案。
+2. 加入 `InstanceAddress` 元素來更新 .cscfg 檔案。 下列範例會加入一個名稱為 *MyPublicIP* 的 ILPIP 到名稱為 *WebRole1* 的角色執行個體： 
+
+    ```xml
     <?xml version="1.0" encoding="utf-8"?>
-    <ServiceConfiguration serviceName="ReservedIPSample" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-01.2.3">
+    <ServiceConfiguration serviceName="ILPIPSample" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-01.2.3">
       <Role name="WebRole1">
         <Instances count="1" />
-        <ConfigurationSettings>
-          <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-        </ConfigurationSettings>
+          <ConfigurationSettings>
+        <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+          </ConfigurationSettings>
       </Role>
       <NetworkConfiguration>
-        <VirtualNetworkSite name="VNet"/>
         <AddressAssignments>
-          <InstanceAddress roleName="VMRolePersisted">
-            <Subnets>
-              <Subnet name="Subnet1"/>
-              <Subnet name="Subnet2"/>
-            </Subnets>
-            <PublicIPs>
-              <PublicIP name="MyPublicIP" domainNameLabel="MyPublicIP" />
+          <InstanceAddress roleName="WebRole1">
+        <PublicIPs>
+          <PublicIP name="MyPublicIP" domainNameLabel="MyPublicIP" />
             </PublicIPs>
           </InstanceAddress>
         </AddressAssignments>
       </NetworkConfiguration>
     </ServiceConfiguration>
+    ```
+3. 完成[如何設定雲端服務](../cloud-services/cloud-services-how-to-configure-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json#reconfigure-your-cscfg)文章中的步驟，以上傳雲端服務的 .cscfg 檔案。
 
 ## <a name="next-steps"></a>後續步驟
 * 了解 [IP 位址](virtual-network-ip-addresses-overview-classic.md) 在傳統部署模型中的運作方式。
 * 深入了解 [保留的 IP](virtual-networks-reserved-public-ip.md)。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

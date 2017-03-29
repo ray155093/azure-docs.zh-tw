@@ -1,6 +1,6 @@
 ---
-title: "從 Azure 入口網站建立函式 | Microsoft Docs"
-description: "在兩分鐘內建立您的第一個 Azure 函式 (無伺服器的應用程式)。"
+title: "從 Azure 入口網站建立您的第一個函式 | Microsoft Docs"
+description: "歡迎使用 Azure。 從 Azure 入口網站建立您的第一個 Azure 函式。"
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -13,54 +13,37 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 02/02/2017
+ms.date: 03/15/2017
 ms.author: glenga
+ms.custom: welcome-email
+ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: 4ee741cbec8db6b6400ff9f27daa2a0120bd2618
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: 6bb15dfd0e2c40b99d06ef2d695e3ba7ca78e91b
+ms.lasthandoff: 03/22/2017
 
 
 ---
-# <a name="create-a-function-from-the-azure-portal"></a>從 Azure 入口網站建立函式
-## <a name="overview"></a>概觀
-Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 應用程式平台，使其可實作其他 Azure 服務、SaaS 產品和內部部署系統內事件所觸發的程式碼。 透過 Azure Functions，您的應用程式會根據需求調整，而您只需要支付所用資源的費用。 Azure Functions 可讓您建立以各種程式設計語言實作的已排程或已觸發程式碼單位。 若要深入了解 Azure Functions，請參閱 [Azure Functions 概觀](functions-overview.md)。
+# <a name="create-your-first-function-in-the-azure-portal"></a>在 Azure 入口網站中建立您的第一個函式
 
-本主題說明如何使用 Azure 入口網站建立由 HTTP 觸發程序叫用的簡單 "hello world" Node.js Azure 函式。 在您可以於 Azure 入口網站中建立函式之前，您必須在 Azure App Service 中明確建立一個函數應用程式。 如果要讓系統為您自動建立函數應用程式，請參閱[另一篇 Azure Functions 快速入門教學課程](functions-create-first-azure-function.md)，該文章提供較為簡單的快速入門體驗，且包含一部影片。
+本主題說明如何建立一個由 HTTP 要求叫用的簡單 "hello world" Azure 函式。 在 Azure 入口網站中建立函式之前，您必須在 Azure App Service 中建立函數應用程式，以裝載函式的執行。
+
+若要完成此快速入門，您必須有 Azure 帳戶。 有[免費帳戶](https://azure.microsoft.com/free/)可供使用。 您也可以[試用 Azure Functions](https://azure.microsoft.com/try/app-service/functions/)，而不需向 Azure 註冊。
 
 ## <a name="create-a-function-app"></a>建立函數應用程式
-函式應用程式可在 Azure 中主控函式的執行。 如果您沒有 Azure 帳戶，請查看[試用 Functions](https://functions.azure.com/try) 體驗或[建立免費的 Azure 帳戶](https://azure.microsoft.com/free/)。 請遵循下列步驟來在 Azure 入口網站中建立函數應用程式。
 
-1. 移至 [Azure 入口網站](https://portal.azure.com) ，然後以您的 Azure 帳戶登入。
-2. 按一下 [+新增]  >  [計算]  >  [函式應用程式]，選取您的 [訂用帳戶]，輸入可識別您函式應用程式的唯一 [應用程式名稱]，然後指定下列設定：
-   
-   * **[資源群組](../azure-resource-manager/resource-group-overview.md)**：選取 [新建] 並為您的新資源群組輸入名稱。 您也可以選擇現有的資源群組，不過您可能無法為函式應用程式建立以取用量為基礎的 App Service 方案。
-   * **主控方案[](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)**可以是下列其中一項： 
-     * **取用方案**：Azure Functions 的預設方案類型。 當您選擇取用方案時，您也必須選擇 [位置] 並設定 [記憶體配置] (以 MB 為單位)。 如需記憶體配置如何影響成本的詳細資訊，請參閱 [Azure Functions 定價](https://azure.microsoft.com/pricing/details/functions/)。 
-     * **App Service 方案**：傳統 App Service 方案需要您建立一個 (或選取現有的)「App Service 方案/位置」。 這些設定決定與您的應用程式相關聯的 [位置、功能、成本和計算資源](https://azure.microsoft.com/pricing/details/app-service/) 。  
-   * **儲存體帳戶**：每個函數應用程式都需要一個儲存體帳戶。 您可以選擇現有的儲存體帳戶或是建立帳戶。 
-     
-     ![在 Azure 入口網站中建立新的函數應用程式](./media/functions-create-first-azure-function-azure-portal/function-app-create-flow.png)
+[!INCLUDE [functions-create-function-app-portal](../../includes/functions-create-function-app-portal.md)]
 
-    請注意，您必須輸入有效的「App 名稱」，該名稱只可包含字母、數字和連字號。 不允許使用底線 (**_**) 字元。
-
-3. 按一下 [建立] 以佈建並部署新的函數應用程式。  
-
-### <a name="storage-account-requirements"></a>儲存體帳戶需求
-
-建立函數應用程式時，您必須建立或連結支援 Blob、佇列及表格儲存體的一般用途 Azure 儲存體帳戶。 Azure Functions 會在內部使用 Azure 儲存體來進行作業，例如管理觸發程序和記錄函數執行。 某些儲存體帳戶不支援佇列和表格，例如僅 Blob 儲存體帳戶 (包括進階儲存體) 和具有 ZRS 複寫的一般用途儲存體帳戶。 當建立新的函數應用程式時，這些帳戶會從 [儲存體帳戶] 刀鋒視窗篩選掉。
-當使用「使用情況主控方案」時，函數應用程式內容 (例如函數程式碼檔案和繫結組態) 會儲存在主要儲存體帳戶上的 Azure 檔案共用。 如果您刪除主要儲存體帳戶，此內容將會被刪除且無法復原。
-
-若要深入了解儲存體帳戶類型，請參閱 [Azure 儲存體服務簡介] (../storage/storage-introduction.md#introducing-the-azure-storage-services)。
+如需詳細資訊，請參閱[從 Azure 入口網站建立函數應用程式](functions-create-function-app-portal.md).
 
 ## <a name="create-a-function"></a>建立函式
-這些步驟會從 Azure Functions 快速入門建立一個函式。
+透過使用 Azure Functions 快速入門中的這些步驟，在新的函數應用程式中建立函式。
 
-1. 在 [快速入門] 索引標籤中，按一下 [WebHook + API] 及 [JavaScript]，然後按一下 [建立函式]。 隨即建立新的預先定義的 Node.js 函式。 
+1. 在 [快速入門] 索引標籤中，按一下 [WebHook + API] 並選擇您的函式語言，然後按一下 [建立函式]。 隨即以您所選的語言建立新的預先定義函式。  
    
     ![](./media/functions-create-first-azure-function-azure-portal/function-app-quickstart-node-webhook.png)
 
-2. (選擇性) 此時，您可以在快速入門中，選擇在入口網站中進行 Azure Functions 功能的快速導覽。    完成或跳過本教學課程之後，您可以使用 HTTP 觸發程序來測試新函式。
+4. (選擇性) 此時，您可以在快速入門中，選擇在入口網站中進行 Azure Functions 功能的快速導覽。 完成或跳過本教學課程之後，您可以藉由傳送 HTTP 要求來測試新函式。
 
 
 ## <a name="test-the-function"></a>測試函式

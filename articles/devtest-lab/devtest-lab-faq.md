@@ -12,12 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/13/2016
+ms.date: 03/22/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: fee6c375f93e1e669c031d8ca63470f7f48fadf2
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 4fc454a8c7974b8f53cd6621639dd5b575cc66f7
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -65,9 +65,10 @@ ms.lasthandoff: 03/08/2017
 * [在建立 VM 時，我的構件失敗了。我該如何進行疑難排解？](#my-artifact-failed-during-vm-creation-how-do-i-troubleshoot-it)
 * [為何我現有的虛擬網路未能正確儲存？](#why-isnt-my-existing-virtual-network-saving-properly)
 * [為何我從 PowerShell 佈建時遇到「找不到父資源」錯誤？](#why-do-i-get-a-parent-resource-not-found-error-when-provisioning-a-vm-from-powershell)  
+* [當 VM 部署失敗時，我可以在哪裡找到更多錯誤資訊](#where-can-i-find-more-error-information-when-vm-deployment-is-failed)  
 
 ### <a name="what-if-my-question-isnt-answered-here"></a>如果這裡沒有解答我的問題該怎麼辦？
-如果這裡未列出您的問題，請告訴我們，我們將協助您找到答案。
+如果這裡未列出您的問題，請告訴我們，好讓我們能協助您找到答案。
 
 * 請將問題張貼在此常見問題集尾端的 [討論串](#comments) ，與 Azure 快取小組和其他社群成員交流此篇文章。
 * 若要觸及更多讀者，可將問題張貼在 [Azure DevTest Labs MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=AzureDevTestLabs)，與 Azure DevTest Labs 小組和社群的其他成員交流。
@@ -157,7 +158,12 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 在 VM 連接多個磁碟有受到支援。  
 
 ### <a name="if-i-want-to-use-a-windows-os-image-for-my-testing-do-i-have-to-purchase-an-msdn-subscription"></a>如果我想要使用 Windows 作業系統映像進行測試，是否應購買 MSDN 訂用帳戶？
-是的，如果您要將用戶端作業系統映像 (Windows 7 及更新版本) 用於進行測試，您必須[購買 MSDN 訂用帳戶](https://www.visualstudio.com/products/how-to-buy-vs)。 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/)顯示每個 MSDN 產品的 Azure 點數，並提供更多詳細資料。
+如果您需要針對 Azure 中的開發或測試使用 Windows 用戶端 OS 映像 (Windows 7 或更新版本)，則答案為「是」，且您必須執行下列其中一項動作：
+
+- [購買 MSDN 訂閱](https://www.visualstudio.com/products/how-to-buy-vs)。 
+- 如果您有 Enterprise 合約，請以 [Enterprise 開發/測試優惠](https://azure.microsoft.com/en-us/offers/ms-azr-0148p)建立 Azure 訂用帳戶。
+
+如需每個 MSDN 優惠之 Azure 點數的詳細資訊，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/)。
 
 ### <a name="how-do-i-automate-the-process-of-uploading-vhd-files-to-create-custom-images"></a>如何自動執行上傳 VHD 檔案的程序以建立自訂映像？
 有兩個選項：
@@ -176,7 +182,7 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 7. 在 AzCopy 命令中使用 [URL]  做為目的地。
 
 ### <a name="how-can-i-automate-the-process-of-deleting-all-the-vms-in-my-lab"></a>如何將刪除我實驗室中所有 VM 的程序自動化？
-除了在 Azure 入口網站中將您實驗室中的 VM 刪除之外，您也可以使用 PowerShell 指令碼將您實驗室中的所有 VM 刪除。 在下列範例中，直接修改 **Values to change** 註解底下的值。 您可以從 Azure 入口網站中的 [實驗室] 刀鋒視窗擷取 `subscriptionId`、`labResourceGroup` 及 `labName`。
+除了在 Azure 入口網站中將您實驗室中的 VM 刪除之外，您也可以使用 PowerShell 指令碼將您實驗室中的所有 VM 刪除。 在下列範例中，修改 **Values to change** 註解底下的參數值。 您可以從 Azure 入口網站中的 [實驗室] 刀鋒視窗擷取 `subscriptionId`、`labResourceGroup` 及 `labName`。
 
     # Delete all the VMs in a lab
 
@@ -225,13 +231,13 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 每個實驗室可以建立的 VM 數目並無特定限制， 但實驗室目前可支援的 VM 數目為：標準儲存體只支援同時執行大約 40 個 VM，進階儲存體只支援並行執行大約 25 個 VM。 我們目前正在努力增加這些限制值。
 
 ### <a name="how-do-i-share-a-direct-link-to-my-lab"></a>如何共用我實驗室的直接連結？
-若要與您的實驗室使用者共用直接連結，您可以執行下列程序。
+若要與您的實驗室使用者共用直接連結，您可以執行下列程序：
 
 1. 瀏覽至 Azure 入口網站中的實驗室。
 2. 從瀏覽器複製實驗室 URL，然後與您的實驗室使用者共用。
 
 > [!NOTE]
-> 如果您的實驗室使用者是具有 [MSA 帳戶](#what-is-a-microsoft-account) 的外部使用者，而不屬於貴公司的 Active directory，則當他們瀏覽至所提供的連結時，可能會收到錯誤。 如果他們收到錯誤，請指示他們按一下他們在 Azure 入口網站中右上角的名稱，然後從功能表的 [目錄]  區段中選取實驗室所在的目錄。
+> 如果您的實驗室使用者是具有 [Microsoft 帳戶](#what-is-a-microsoft-account)的外部使用者，而不屬於貴公司的 Active directory，則當他們瀏覽至所提供的連結時，可能會收到錯誤。 如果他們收到錯誤，請指示他們按一下他們在 Azure 入口網站中右上角的名稱，然後從功能表的 [目錄]  區段中選取實驗室所在的目錄。
 >
 >
 
@@ -244,7 +250,7 @@ Microsoft 帳戶是您使用 Microsoft 裝置和服務來執行幾乎所有作�
 >
 
 ### <a name="my-artifact-failed-during-vm-creation-how-do-i-troubleshoot-it"></a>在建立 VM 時，我的構件失敗了。 我該如何進行疑難排解？
-若要了解如何取得失敗構件的相關記錄檔，請參閱我們的其中一位 MVP 所撰寫的部落格文章 - [如何在 AzureDevTestLabs 針對失敗的構件進行疑難排解](http://www.visualstudiogeeks.com/blog/DevOps/How-to-troubleshoot-failing-artifacts-in-AzureDevTestLabs)。
+若要了解如何取得失敗構件的相關記錄檔，請參閱我們的其中一位 MVP 所撰寫的部落格文章 - [如何在 AzureDevTestLabs 針對失敗的構件進行疑難排解 (英文)](http://www.visualstudiogeeks.com/blog/DevOps/How-to-troubleshoot-failing-artifacts-in-AzureDevTestLabs)。
 
 ### <a name="why-isnt-my-existing-virtual-network-saving-properly"></a>為何我現有的虛擬網路未能正確儲存？
 其中一個可能原因是您的虛擬網路名稱包含句點。 若是這樣，請嘗試移除句號或以連字號取代，然後再試著儲存虛擬網路一次。
@@ -252,5 +258,10 @@ Microsoft 帳戶是您使用 Microsoft 裝置和服務來執行幾乎所有作�
 ### <a name="why-do-i-get-a-parent-resource-not-found-error-when-provisioning-a-vm-from-powershell"></a>為何我從 PowerShell 佈建 VM 時遇到「找不到父資源」錯誤？
 當某資源為另一個資源的父資源時，父資源必須在建立子資源之前就存在。 如果不存在，您會收到 **ParentResourceNotFound** 錯誤。 如果您尚未於父資源上指定相依性，子資源可能會在父資源之前進行部署。
 
-VM 是資源群組中實驗室下的子資源。 當您使用 ARM 範本透過 PowerShell 部署時，PowerShell 指令碼中提供的資源群組名稱應該是實驗室的資源群組名稱。 如需詳細資訊，請參閱[對常見的 Azure 部署錯誤進行疑難排解](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-common-deployment-errors#parentresourcenotfound)。
+VM 是資源群組中實驗室下的子資源。 當您使用 Azure 資源範本透過 PowerShell 部署時，PowerShell 指令碼中提供的資源群組名稱應該是實驗室的資源群組名稱。 如需詳細資訊，請參閱[對常見的 Azure 部署錯誤進行疑難排解](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-common-deployment-errors#parentresourcenotfound)。
+
+### <a name="where-can-i-find-more-error-information-if-a-vm-deployment-fails"></a>當 VM 部署失敗時，我可以在哪裡找到更多錯誤資訊？
+VM 部署錯誤會擷取至活動記錄中。 您可以透過實驗室 VM 刀鋒視窗 (在您從 [我的虛擬機器] 清單中選取 VM 之後所顯示的刀鋒視窗) 中資源功能表上的 [稽核記錄] 或 [虛擬機器診斷] 來找到實驗室 VM 活動記錄。 
+
+有時候，部署錯誤會在 VM 部署開始之前發生，例如超過以 VM 建立之資源的訂用帳戶限制。 在此情況下，錯誤詳細資料會擷取至實驗室層級 [活動記錄]，您可以在 [設定和原則] 設定的底部找到它。 如需在 Azure 中使用活動記錄的詳細資訊，請參閱[檢視活動記錄以稽核對資源的動作](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-audit)。
 

@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 9f837ea815fdd3ea47608dc36029c35e92eda0ae
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: f6c8c895f406187f2bc525a60ca7e53f12e99d77
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -106,7 +106,7 @@ Web 系統中的失敗通常是由組態問題或其許多元件之間的互動�
 客戶 Samtec 說：「在最近的功能快速轉換期間，我們發現低於調整規模的資料庫已到達它的資源限制並導致逾時。 主動偵測警示會在我們分類問題時逐字顯現，非常接近即時公告。 這個與 Azure 平台相結合的警示，幾乎可協助我們即時修正問題。 總停機時間 < 10 分鐘。」
 
 ## <a name="live-metrics-stream"></a>即時計量串流
-部署最新組建是令人焦慮的體驗。 如果有任何問題，您會希望立即了解它們，讓您能夠在必要時取消部署。 即時計量串流可為您提供大約&1; 秒延遲的關鍵計量。
+部署最新組建是令人焦慮的體驗。 如果有任何問題，您會希望立即了解它們，讓您能夠在必要時取消部署。 即時計量串流可為您提供大約 1 秒延遲的關鍵計量。
 
 ![即時計量](./media/app-insights-devops/040.png)
 
@@ -164,6 +164,10 @@ Visual Studio 和 Eclipse 提供工具，可為您正在開發的專案設定正
 * 效能 - 影響很低。 遙測會進行批次處理。
 * [支援](app-insights-get-dev-support.md) - 您可以利用 Azure 支援程式。 您可以在熱烈的論壇中，取得我們的開發人員所提供的解答。 而最後的辦法是，我們可以為您提供個別的協助。
 * [價格](app-insights-pricing.md) - 您可以開始免費使用，當您處於低用量期間可繼續使用。
+
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
 
 ## <a name="next-steps"></a>後續步驟
 開始使用 Application Insights 很簡單。 主要選項包括：

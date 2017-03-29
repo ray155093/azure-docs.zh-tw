@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: dfb33a30cac74875281645e74339be152d8ef476
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 7cac733717b4af048e58cf3d574c5743889100c1
+ms.lasthandoff: 03/22/2017
 
 ---
 
@@ -70,7 +70,7 @@ ms.lasthandoff: 03/14/2017
 
 ## <a name="understanding-the-visuals"></a>了解視覺效果
 
-範本中提供幾組視覺效果，有助於彰顯 NSG 流程記錄資料的意義。 下圖示範儀表板填入資料後的樣貌。 接下來，我們更詳細地探討每個視覺效果 
+範本中提供幾組視覺效果，有助於理解 NSG 流程記錄資料的意義。 下圖示範儀表板填入資料後的樣貌。 接下來，我們更詳細地探討每個視覺效果 
 
 ![powerbi][5]
  
@@ -78,7 +78,7 @@ ms.lasthandoff: 03/14/2017
 
 ![toptalkers][6]
 
-下列時間序列圖表顯示期間內的流程數。 上方圖表依流程方向切割，下方圖表依所做決策 (允許或拒絕) 分割。 此視覺效果可讓您檢查一段時間的流量趨勢，並揭露流程或流程區隔中的任何異常暴增或遽減情況。
+下列時間序列圖表顯示期間內的流程數。 上方圖表依流程方向切割，下方圖表依所做決策 (允許或拒絕) 分割。 此視覺效果可讓您檢查一段時間的流量趨勢，並找出流量或流量分割中的任何異常暴增或遽減情況。
 
 ![flowsoverperiod][7]
 

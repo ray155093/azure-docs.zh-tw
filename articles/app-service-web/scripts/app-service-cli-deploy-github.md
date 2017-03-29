@@ -12,33 +12,23 @@ ms.service: app-service-web
 ms.workload: web
 ms.devlang: na
 ms.topic: article
-ms.date: 02/21/2017
+ms.date: 03/20/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: ab4be9d9a03001789bed90e58d62fe1891608823
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 8d9e90cc43df74968c7b9dc30d268f3e6228adcc
+ms.lasthandoff: 03/21/2017
 
 ---
 
 
 # <a name="create-a-web-app-with-deployment-from-github"></a>建立可從 GitHub 部署的 Web 應用程式
 
-此範例指令碼會使用 Azure CLI 2.0 執行下列工作：
+此範例指令碼會在 App Service 中建立 Web 應用程式及其相關資源，然後從公用 GitHub 存放庫部署 Web 應用程式程式碼 (不使用連續部署)。 如需進行使用連續部署的 GitHub 部署，請參閱[建立可從 GitHub 連續部署的 Web 應用程式](app-service-cli-continuous-deployment-github.md)。
 
-* 在 Azure 西歐區域的 Azure App Service 中建立 Web 應用程式。
-* 從 GitHub 部署 Web 應用程式程式碼。
-* 在瀏覽器中顯示已部署的 Azure Web 應用程式。
+您可以視需要使用 [Azure CLI 安裝指南 (英文)](https://docs.microsoft.com/cli/azure/install-azure-cli) 中的指示來安裝 Azure CLI，然後執行 `az login` 來建立與 Azure 的連線。 此外，您需要包含 Web 應用程式程式碼的 GitHub 儲存機制的連結。
 
-## <a name="prerequisites"></a>必要條件
-
-* 執行 `az login` 來登入 Azure。
-* 將 Web 應用程式程式碼放置在 GitHub 存放庫。
-
-> [!NOTE]
-> 如果您使用非自有的公用 GitHub 存放庫，App Service 會從該 GitHub 存放庫部署程式碼，但無法設定連續部署所需的 SSH 金鑰和 Webhook。
->
->
+這個範例適用於 Bash 殼層。 如需在 Windows 用戶端上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../../virtual-machines/virtual-machines-windows-cli-options.md)。
 
 ## <a name="create-app-sample"></a>建立應用程式範例
 
