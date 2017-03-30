@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: d2a65104743d9497debdc85c134fd1a06114c514
-ms.openlocfilehash: f7739d38822d9cb57bc47f1c33f48045e5e97406
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 590d2c39e295e2f855910b00e0302f01d96de8dc
+ms.lasthandoff: 03/18/2017
 
 ---
 
@@ -87,7 +87,7 @@ ms.lasthandoff: 02/23/2017
 - **儲存體帳戶** - 要在其中儲存封包擷取的指定儲存體帳戶。 預設位置是 https://{儲存體帳戶名稱}.blob.core.windows.net/network-watcher-logs/subscriptions/{訂用帳戶識別碼}/resourcegroups/{資源群組名稱}/providers/microsoft.compute/virtualmachines/{虛擬機器名稱}/{YY}/{MM}/{DD}/packetcapture_{HH}_{MM}_{SS}_{XXX}.cap。 (只在選取**儲存體**時才會啟用)
 - **本機檔案路徑** - 要儲存封包擷取的虛擬機器上之本機路徑。 (只在選取**檔案**時才會啟用)。 必須提供有效的路徑
 - **每個封包的最大位元組** - 來自每個封包所擷取的位元組，如果保留空白，會擷取所有位元組。
-- **每個工作階段的最大位元組** - 一旦值是封包擷取停駐點，已擷取之位元組總數。
+- **每個工作階段的位元組數上限** - 已擷取的位元組總數，一旦達到此值，封包擷取便會停止。
 - **時間限制 (秒)** - 設定要停止擷取封包的時間限制。 預設值為 1800 秒。
 
 > [!NOTE]

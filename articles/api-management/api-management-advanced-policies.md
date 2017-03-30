@@ -15,20 +15,23 @@ ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 77fd7b5b339a8ede8a297bec96f91f0a243cc18d
-ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: bfadac7b34eca2ef1f9bcabc6e267ca9572990b8
+ms.lasthandoff: 03/18/2017
 
 ---
 # <a name="api-management-advanced-policies"></a>API 管理進階原則
 本主題提供下列 API 管理原則的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。  
   
-##  <a name="a-nameadvancedpoliciesa-advanced-policies"></a><a name="AdvancedPolicies"></a>進階原則  
+##  <a name="AdvancedPolicies"></a>進階原則  
   
 -   [控制流程](api-management-advanced-policies.md#choose) - 根據布林值[運算式](api-management-policy-expressions.md)的評估結果，有條件地套用原則陳述式。  
   
 -   [轉寄要求](#ForwardRequest) - 將要求轉寄至後端服務。  
   
--   [記錄至事件中樞](#log-to-eventhub) - 將指定格式的訊息傳送至記錄器實體所定義的事件中樞。  
+-   [記錄至事件中樞](#log-to-eventhub) - 將指定格式的訊息傳送至記錄器實體所定義的事件中樞。 
+
+-   [Mock 回應](#mock-response) - 中止管線執行，並將模擬回應直接傳回給呼叫者。
   
 -   [重試](#Retry) - 重試已括住的原則陳述式執行，直到符合條件為止。 系統會在指定的時間間隔重複執行，直到指定的重試計數為止。  
   
@@ -42,16 +45,16 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   [設定要求方法](#SetRequestMethod) - 允許您變更要求的 HTTP 方法。  
   
--   [設定狀態碼](#SetStatus) - 將 HTTP 狀態碼變更為特定值。  
+-   [設定狀態碼](#SetStatus) - 將 HTTP 狀態碼變更為指定的值。  
   
 -   [追蹤](#Trace) - 將字串新增至 [API 檢查器](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/)輸出。  
   
 -   [等候](#Wait) - 等候括住的 [Send 要求](api-management-advanced-policies.md#SendRequest)、[取得快取的值](api-management-caching-policies.md#GetFromCacheByKey)或[控制流程](api-management-advanced-policies.md#choose)原則完成後再繼續。  
   
-##  <a name="a-namechoosea-control-flow"></a><a name="choose"></a>控制流程  
+##  <a name="choose"></a>控制流程  
  `choose` 原則會根據布林運算式 (類似於 if-then-else 或程式語言中的參數建構) 的評估結果套用括住的原則陳述式。  
   
-###  <a name="a-namechoosepolicystatementa-policy-statement"></a><a name="ChoosePolicyStatement"></a>原則陳述式  
+###  <a name="ChoosePolicyStatement"></a>原則陳述式  
   
 ```xml  
 <choose>   
@@ -71,7 +74,7 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 ### <a name="examples"></a>範例  
   
-####  <a name="a-namechooseexamplea-example"></a><a name="ChooseExample"></a>範例  
+####  <a name="ChooseExample"></a>範例  
  下列範例會示範 [set-variable](api-management-advanced-policies.md#set-variable) 原則和兩個控制流程原則。  
   
  設定變數原則位於 inbound 區段中，並且會在 `User-Agent` 要求標頭包含文字 `iPad` 或 `iPhone` 時，建立設為 true 的 `isMobile` 布林[內容](api-management-policy-expressions.md#ContextVariables)變數。  
@@ -142,14 +145,14 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
 |---------------|-----------------|--------------|  
 |condition="Boolean expression &#124; Boolean constant"|所包含之 `when` 原則陳述式受到評估時，所要評估的布林運算式或常數。|是|  
   
-###  <a name="a-namechooseusagea-usage"></a><a name="ChooseUsage"></a>使用方式  
+###  <a name="ChooseUsage"></a>使用方式  
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
   
 -   **原則區段︰**輸入、輸出、後端、錯誤  
   
 -   **原則範圍：**所有範圍  
   
-##  <a name="a-nameforwardrequesta-forward-request"></a><a name="ForwardRequest"></a>轉送要求  
+##  <a name="ForwardRequest"></a>轉送要求  
  `forward-request` 原則會將內送要求轉送給要求[內容](api-management-policy-expressions.md#ContextVariables)中指定的後端服務。 後端服務 URL 會指定於 API [設定](https://azure.microsoft.com/documentation/articles/api-management-howto-create-apis/#configure-api-settings)中，而且可以使用[設定後端服務](api-management-transformation-policies.md)原則加以變更。  
   
 > [!NOTE]
@@ -260,7 +263,7 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   **原則範圍：**所有範圍  
   
-##  <a name="a-namelog-to-eventhuba-log-to-event-hub"></a><a name="log-to-eventhub"></a>記錄到事件中樞  
+##  <a name="log-to-eventhub"></a>記錄到事件中樞  
  `log-to-eventhub` 原則會將指定格式的訊息傳送至記錄器實體所定義的事件中樞。 此原則正如其名，可用來儲存選取的要求或回應內容資訊，以進行線上或離線分析。  
   
 > [!NOTE]
@@ -310,8 +313,50 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
 -   **原則區段︰**輸入、輸出、後端、錯誤  
   
 -   **原則範圍：**所有範圍  
+
+##  <a name="mock-response"></a> Mock 回應  
+如名稱所示，`mock-response` 是用來模擬 API 和作業。 它會中止正常的管線執行，並將模擬回應傳回給呼叫者。 原則一律會嘗試傳回最高精確度的回應。 它偏好使用回應內容範例 (若可使用)。 當提供結構描述而無提供範例時，它會從結構描述產生範例回應。 如果沒有找到範例或結構描述，則會傳回沒有內容的回應。
   
-##  <a name="a-nameretrya-retry"></a><a name="Retry"></a>重試  
+### <a name="policy-statement"></a>原則陳述式  
+  
+```xml  
+<mock-response status-code="code" content-type="media type"/>  
+  
+```  
+  
+### <a name="examples"></a>範例  
+  
+```xml  
+<!-- Returns 200 OK status code. Content is based on an example or schema, if provided for this 
+status code. First found content type is used. If no example or schema is found, the content is empty. -->
+<mock-response/>
+
+<!-- Returns 200 OK status code. Content is based on an example or schema, if provided for this 
+status code and media type. If no example or schema found, the content is empty. -->
+<mock-response status-code='200' content-type='application/json'/>  
+```  
+  
+### <a name="elements"></a>元素  
+  
+|元素|說明|必要|  
+|-------------|-----------------|--------------|  
+|mock-response|根元素。|是|  
+  
+### <a name="attributes"></a>屬性  
+  
+|屬性|說明|必要|預設值|  
+|---------------|-----------------|--------------|--------------|  
+|status-code|指定回應狀態碼，且用來選取對應範例或結構描述。|否|200|  
+|Content-Type|指定 `Content-Type` 回應標頭值，且用來選取對應範例或結構描述。|否|None|  
+  
+### <a name="usage"></a>使用方式  
+ 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+  
+-   **原則區段︰**輸入、輸出、錯誤  
+  
+-   **原則範圍：**所有範圍
+
+##  <a name="Retry"></a>重試  
  `retry` 原則會執行其子原則一次，然後重試子原則的執行，直到重試 `condition` 變成 `false` 或重試 `count` 用盡。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -376,7 +421,7 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   **原則範圍：**所有範圍  
   
-##  <a name="a-namereturnresponsea-return-response"></a><a name="ReturnResponse"></a>傳回回應  
+##  <a name="ReturnResponse"></a>傳回回應  
  `return-response` 原則會中止管線的執行，並將預設或自訂的回應傳回給呼叫者。 預設回應是 `200 OK`，且沒有本文。 透過內容變數或原則陳述式即可指定自訂回應。 若同時提供兩者，原則陳述式會先修改內容變數中包含的回應，再傳回給呼叫者。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -424,7 +469,7 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   **原則範圍：**所有範圍  
   
-##  <a name="a-namesendonewayrequesta-send-one-way-request"></a><a name="SendOneWayRequest"></a>傳送單向要求  
+##  <a name="SendOneWayRequest"></a>傳送單向要求  
  `send-one-way-request` 原則會將所提供的要求傳送到指定的 URL，無須等待回應。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -493,7 +538,7 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   **原則範圍：**所有範圍  
   
-##  <a name="a-namesendrequesta-send-request"></a><a name="SendRequest"></a>傳送要求  
+##  <a name="SendRequest"></a>傳送要求  
  `send-request` 原則會將所提供的要求傳送至指定的 URL，等候時間不會超過所設定的逾時值。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -575,16 +620,16 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   **原則範圍：**所有範圍  
   
-##  <a name="a-nameset-variablea-set-variable"></a><a name="set-variable"></a>設定變數  
+##  <a name="set-variable"></a>設定變數  
  `set-variable` 原則會宣告[內容](api-management-policy-expressions.md#ContextVariables)變數，並對其指派透過[運算式](api-management-policy-expressions.md)或字串常值指定的值。 包含常值的運算式會轉換成字串，且值的類型為 `System.String`。  
   
-###  <a name="a-nameset-variablepolicystatementa-policy-statement"></a><a name="set-variablePolicyStatement"></a>原則陳述式  
+###  <a name="set-variablePolicyStatement"></a>原則陳述式  
   
 ```xml  
 <set-variable name="variable name" value="Expression | String literal" />  
 ```  
   
-###  <a name="a-nameset-variableexamplea-example"></a><a name="set-variableExample"></a>範例  
+###  <a name="set-variableExample"></a>範例  
  下列範例會示範 inbound 區段中的設定變數原則。 此設定變數原則會在 `User-Agent` 要求標頭包含文字 `iPad` 或 `iPhone` 時，建立設為 true 的 `isMobile` 布林[內容](api-management-policy-expressions.md#ContextVariables)變數。  
   
 ```xml  
@@ -611,7 +656,7 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   **原則範圍：**所有範圍  
   
-###  <a name="a-nameset-variableallowedtypesa-allowed-types"></a><a name="set-variableAllowedTypes"></a>允許的類型  
+###  <a name="set-variableAllowedTypes"></a>允許的類型  
  `set-variable` 原則中使用的運算式必須傳回下列其中一個基本類型。  
   
 -   System.Boolean  
@@ -676,7 +721,7 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   System.DateTime?  
   
-##  <a name="a-namesetrequestmethoda-set-request-method"></a><a name="SetRequestMethod"></a>設定要求方法  
+##  <a name="SetRequestMethod"></a>設定要求方法  
  `set-method` 原則允許您變更要求的 HTTP 要求方法。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -728,7 +773,7 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   **原則範圍：**所有範圍  
   
-##  <a name="a-namesetstatusa-set-status-code"></a><a name="SetStatus"></a>設定狀態碼  
+##  <a name="SetStatus"></a>設定狀態碼  
  `set-status` 原則會將 HTTP 狀態碼設為指定值。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -775,7 +820,7 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   **原則範圍：**所有範圍  
   
-##  <a name="a-nametracea-trace"></a><a name="Trace"></a>追蹤  
+##  <a name="Trace"></a>追蹤  
  `trace` 原則會將字串新增至 [API 檢查器](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/)輸出。 此原則只會在觸發追蹤時執行，也就是 `Ocp-Apim-Trace` 要求標頭存在且設為 `true` 以及 `Ocp-Apim-Subscription-Key` 要求標頭存在且含有與管理帳戶相關聯的有效金鑰時。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -807,7 +852,7 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
   
 -   **原則範圍：**所有範圍  
   
-##  <a name="a-namewaita-wait"></a><a name="Wait"></a>等候  
+##  <a name="Wait"></a>等候  
  `wait` 原則會以平行方式執行其直屬子原則，並等候其所有或其中一個直屬子原則完成後再完成。 等候原則可擁有做為其直屬子原則[傳送要求](api-management-advanced-policies.md#SendRequest)、[從快取取得值](api-management-caching-policies.md#GetFromCacheByKey)和[控制流程](api-management-advanced-policies.md#choose)原則。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -878,9 +923,4 @@ ms.openlocfilehash: f1158f363a4796518997633847470f21a5864131
 如需使用原則的詳細資訊，請參閱︰
 -    [API 管理中的原則](api-management-howto-policies.md) 
 -    [原則運算式](api-management-policy-expressions.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

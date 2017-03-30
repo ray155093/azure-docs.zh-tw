@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/06/2017
+ms.date: 03/17/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: 5e6bab265b2b6eabd1a878492588c4eb39d1b332
-ms.openlocfilehash: 89dfabb8feafffee2ed8143c372b53d02033d582
-ms.lasthandoff: 01/14/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 7f3212350b1158cd51a34ee1b20a456a73d41672
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -33,6 +33,9 @@ ms.lasthandoff: 01/14/2017
 
 #### <a name="can-i-enable-azure-ad-domain-services-in-an-azure-resource-manager-virtual-network"></a>是否可以啟用 Azure Resource Manager 虛擬網路中的 Azure AD 網域服務？
 否。 Azure AD 網域服務只可以在傳統 Azure 虛擬網路中啟用。 您可以使用虛擬網路對等互連，將傳統虛擬網路連接到 Resource Manager 虛擬網路，以在 Resource Manager 虛擬網路中使用受管理的網域。
+
+#### <a name="can-i-enable-azure-ad-domain-services-in-a-federated-azure-ad-directory-i-use-adfs-to-authenticate-users-for-access-to-office-365-can-i-enable-azure-ad-domain-services-for-this-directory"></a>我可以在同盟 Azure AD 目錄中啟用 Azure AD Domain Services 嗎？ 我使用 ADFS 驗證存取 Office 365 的使用者。 我可以針對此目錄啟用 Azure AD Domain Services 嗎？
+不可以。 Azure AD Domain Services 需要存取使用者帳戶的密碼雜湊，以透過 NTLM 或 Kerberos 驗證使用者。 在同盟目錄中，密碼雜湊不是儲存在 Azure AD 目錄中。 因此，Azure AD Domain Services 不適用於此類 Azure AD 目錄。
 
 #### <a name="can-i-make-azure-ad-domain-services-available-in-multiple-virtual-networks-within-my-subscription"></a>我可以在訂用帳戶內的多個虛擬網路中使用 Azure AD 網域服務嗎？
 服務本身並不直接支援這種情況。 Azure AD 網域服務一次只能在一個虛擬網路上使用。 不過，您可以在多個虛擬網路之間設定連線，以將 Azure AD 網域服務公開至其他虛擬網路。 此文章說明如何 [在 Azure 中連接虛擬網路](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md)。
@@ -51,22 +54,22 @@ ms.lasthandoff: 01/14/2017
 否。 您沒有權限透過遠端桌面連接至受管理網域上的網域控制站。 「AAD DC 系統管理員」群組的成員可以使用 AD 系統管理工具，例如 Active Directory 管理中心 (ADAC) 或 AD PowerShell 來管理受管理網域。 這些工具會在加入受管理網域的 Windows 伺服器上，使用「遠端伺服器管理工具」功能安裝。
 
 #### <a name="ive-enabled-azure-ad-domain-services-what-user-account-do-i-use-to-domain-join-machines-to-this-domain"></a>我已經啟用 Azure AD 網域服務。 我應該使用哪一個使用者帳戶來將電腦加入此網域？
-您已新增至系統管理群組 (例如「AAD DC 系統管理員」) 的使用者都能夠將電腦新增網域。 此外，此群組中的使用者會被授與已加入網域之電腦的遠端桌面存取權限。
+系統管理群組「AAD DC 系統管理員」的成員都能將電腦加入網域。 此外，此群組的成員會被授與已加入網域之電腦的遠端桌面存取權限。
 
-#### <a name="can-i-wield-domain-administrator-privileges-for-the-domain-provided-by-azure-ad-domain-services"></a>我可以針對 Azure AD 網域服務所提供的網域取得網域系統管理員權限嗎？
-否。 您不會取得受管理網域的系統管理權限。 您無法在網域內使用「網域系統管理員」和「企業系統管理員」權限。 Azure AD 目錄內現有的網域系統管理員或企業系統管理員群組也不會被授與該網域的網域/企業系統管理員權限。
+#### <a name="do-i-have-domain-administrator-privileges-for-the-managed-domain-provided-by-azure-ad-domain-services"></a>我有 Azure AD Domain Services 所提供的受管理網域的網域系統管理員權限嗎？
+不可以。 您不會取得受管理網域的系統管理權限。 您無法在網域內使用「網域系統管理員」和「企業系統管理員」權限。 Azure AD 目錄內現有的網域系統管理員或企業系統管理員群組也不會被授與該網域的網域/企業系統管理員權限。
 
-#### <a name="can-i-modify-group-memberships-using-ldap-or-other-ad-administrative-tools-on-domains-provided-by-azure-ad-domain-services"></a>我可以在 Azure AD 網域服務所提供的網域上，使用 LDAP 或其他 AD 系統管理工具來修改群組成員資格嗎？
-否。 您無法在 Azure AD 網域服務所服務的網域上修改群組成員資格。 這同樣適用於使用者屬性。 但是，您可能會在 Azure AD 中或內部部署網域上變更群組成員資格或使用者屬性。 這類變更會自動同步處理到 Azure AD 網域服務。
+#### <a name="can-i-modify-group-memberships-using-ldap-or-other-ad-administrative-tools-on-managed-domains"></a>我可以在受管理的網域上使用 LDAP 或其他 AD 系統管理工具來修改群組成員資格嗎？
+不可以。 您無法在 Azure AD 網域服務所服務的網域上修改群組成員資格。 這同樣適用於使用者屬性。 但是，您可能會在 Azure AD 中或內部部署網域上變更群組成員資格或使用者屬性。 這類變更會自動同步處理到 Azure AD 網域服務。
 
 #### <a name="how-long-does-it-take-for-changes-i-make-to-my-azure-ad-directory-to-be-visible-in-my-managed-domain"></a>我對 Azure AD 目錄所做的變更要多久才會反映在我的受管理網域中？
 使用 Azure AD UI 或 PowerShell 在您 Azure AD 目錄中進行的變更會同步至您的受管理網域。 這個同步處理程序會在背景執行。 在您目錄的單次初始同步處理完成之後，通常需要 20 分鐘的時間，在 Azure AD 中所做的變更才會反映在您的受管理網域中。
 
-#### <a name="can-i-extend-the-schema-of-the-domain-provided-by-azure-ad-domain-services"></a>可以擴充 Azure AD 網域服務所提供之網域的結構描述嗎？
-否。 結構描述是由 Microsoft 針對受管理網域進行管理。 Azure AD 網域服務不支援結構描述延伸模組。
+#### <a name="can-i-extend-the-schema-of-the-managed-domain-provided-by-azure-ad-domain-services"></a>可以擴充 Azure AD Domain Services 所提供之受管理網域的結構描述嗎？
+不可以。 結構描述是由 Microsoft 針對受管理網域進行管理。 Azure AD 網域服務不支援結構描述延伸模組。
 
 #### <a name="can-i-modify-or-add-dns-records-in-my-managed-domain"></a>是否可以在受管理的網域中修改或新增 DNS 記錄？
-是。 屬於「AAD DC 系統管理員」群組的使用者會被授與「DNS 系統管理」權限，以在受管理網域中修改 DNS 記錄。 這些使用者可以在加入受管理網域且執行 Windows Server 的電腦上，使用 DNS 管理員主控台以管理 DNS。 若要使用 DNS 管理員主控台，請安裝 DNS 伺服器工具，這是伺服器上的「遠端伺服器管理工具」選擇性功能的一部分。 如需 [管理、監視及疑難排解 DNS 的公用程式](https://technet.microsoft.com/library/cc753579.aspx) 詳細資訊，可在 TechNet 上取得。
+是。 「AAD DC 系統管理員」群組的成員會被授與「DNS 系統管理」權限，以在受管理網域中修改 DNS 記錄。 他們可以在加入受管理網域且執行 Windows Server 的電腦上，使用 DNS 管理員主控台管理 DNS。 若要使用 DNS 管理員主控台，請安裝 DNS 伺服器工具，這是伺服器上的「遠端伺服器管理工具」選擇性功能的一部分。 如需 [管理、監視及疑難排解 DNS 的公用程式](https://technet.microsoft.com/library/cc753579.aspx) 詳細資訊，可在 TechNet 上取得。
 
 ### <a name="billing-and-availability"></a>計費與可用性
 #### <a name="is-azure-ad-domain-services-a-paid-service"></a>Azure AD 網域服務是付費服務嗎？

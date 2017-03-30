@@ -1,10 +1,10 @@
 ---
-title: "在多個 IP 組態上進行負載平衡 | Microsoft Docs"
+title: "在 Azure 中多個 IP 組態上進行負載平衡 | Microsoft Docs"
 description: "在主要和次要 IP 組態間進行負載平衡。"
 services: load-balancer
 documentationcenter: na
-author: anavinahar
-manager: narayan
+author: kumudd
+manager: timlt
 editor: na
 ms.assetid: 244907cd-b275-4494-aaf7-dcfc4d93edfe
 ms.service: load-balancer
@@ -12,160 +12,120 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/10/2017
-ms.author: annahar
+ms.date: 03/22/2017
+ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 555f43d6fca2ac6ba53eae94bff22426d667c444
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: cf1e68c7b37b2506de007bdf24eea63a27187a33
+ms.lasthandoff: 03/22/2017
 
 ---
 
-# <a name="load-balancing-on-multiple-ip-configurations"></a>在多個 IP 組態上進行負載平衡
+# <a name="load-balancing-on-multiple-ip-configurations-using-the-azure-portal"></a>使用 Azure 入口網站在多個 IP 組態上進行負載平衡
 
 > [!div class="op_single_selector"]
-> * [PowerShell](load-balancer-multiple-ip.md)
+> * [入口網站](load-balancer-multiple-ip.md)
+> * [PowerShell](load-balancer-multiple-ip-powershell.md)
 > * [CLI](load-balancer-multiple-ip-cli.md)
->
 
-本文說明如何對每個虛擬網路介面 (NIC) 的多個 IP 位址使用 Azure Load Balancer。 NIC 上的多個 IP 位址支援目前是預覽版本中的一項功能。 如需詳細資訊，請參閱本文的[限制](#limitations)一節。 下列案例說明這項功能如何與 Load Balancer 搭配運作。
-
-在此案例中，我們有兩部執行 Windows 的 VM，每部各有一個 NIC。 每個 NIC 具有多個 IP 組態。 每個 VM 裝載 contoso.com 和 fabrikam.com 兩個網站。 每個網站繫結到 NIC 上的其中一個 IP 組態。 我們使用 Load Balancer 公開兩個前端 IP 位址，每個網站各使用其中一個，以將流量分散給網站的個別 IP 組態。 此案例會在兩個前端以及兩個後端集區 IP 位址使用相同的連接埠號碼。
+本文說明如何對次要網路介面 (NIC) 上的多個 IP 位址使用 Azure Load Balancer。在此案例中，我們有兩部執行 Windows 的 VM，每部各有一個主要和次要 NIC。 每個次要 Nic 有兩個 IP 組態。 每個 VM 裝載 contoso.com 和 fabrikam.com 兩個網站。 每個網站繫結到次要 NIC 上的其中一個 IP 組態。 我們使用 Azure Load Balancer 來公開兩個前端 IP 位址，每個網站各使用其中一個，以將流量分散給網站的個別 IP 組態。 此案例會在兩個前端以及兩個後端集區 IP 位址使用相同的連接埠號碼。
 
 ![LB 案例影像](./media/load-balancer-multiple-ip/lb-multi-ip.PNG)
 
-## <a name="limitations"></a>限制
-
-目前您只能使用 Azure PowerShell 和 Azure CLI 來設定次要 IP 組態的負載平衡。 此限制是暫時的，隨時可能變更。 請再次瀏覽此頁面以查看是否有更新。
-
-[!INCLUDE [virtual-network-preview](../../includes/virtual-network-preview.md)]
-
-登入並選取適當的訂用帳戶後，在 PowerShell 中執行下列命令來註冊預覽︰
-
-```
-Register-AzureRmProviderFeature -FeatureName AllowMultipleIpConfigurationsPerNic -ProviderNamespace Microsoft.Network
-
-Register-AzureRmProviderFeature -FeatureName AllowLoadBalancingonSecondaryIpconfigs -ProviderNamespace Microsoft.Network
-
-Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
-```
-
-執行 ```Get-AzureRmProviderFeature``` 命令時，請在看到下列輸出之後再嘗試完成剩餘步驟︰
-        
-```powershell
-FeatureName                            ProviderName      RegistrationState
------------                            ------------      -----------------      
-AllowLoadBalancingOnSecondaryIpConfigs Microsoft.Network Registered       
-AllowMultipleIpConfigurationsPerNic    Microsoft.Network Registered       
-```
-        
->[!NOTE] 
->這可能需要幾分鐘的時間。
+##<a name="prerequisites"></a>必要條件
+此範例假設您有一個名為 contosofabrikam 的資源群組，其具有下列組態︰
+ -  在名為 myAvailset 的同一個可用性設定組內，包含一個名為 myVNet 的虛擬網路，和兩個名稱分別為 VM1 和 VM2 的 VM。 
+ - 每個 VM 各有主要 NIC 和次要 NIC。 主要 NIC 名為 VM1NIC1 和 VM2NIC1，次要 NIC 名為 VM1NIC2 和 VM2NIC2。 如需如何建立具有多個 NIC 之 VM 的詳細資訊，請參閱[使用 PowerShell 建立具有多個 NIC 的 VM](../virtual-network/virtual-network-deploy-multinic-arm-ps.md)。
 
 ## <a name="steps-to-load-balance-on-multiple-ip-configurations"></a>在多個 IP 組態上進行負載平衡的步驟
 
 請遵循下列步驟來達成本文所述案例︰
 
-1. 安裝 Azure PowerShell。 如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
-2. 使用下列設定建立資源群組：
+### <a name="step-1-configure-the-secondary-nics-for-each-vm"></a>步驟 1︰設定每個 VM 的次要 NIC
 
-    ```powershell
-    $location = "westcentralus".
-    $myResourceGroup = "contosofabrikam"
-    ```
+為虛擬網路中的每個 VM，新增次要 NIC 的 IP 組態，如下所示︰  
 
-    如需詳細資訊，請參閱[建立資源群組](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json)的步驟 2。
+1. 透過瀏覽器瀏覽至 Azure 入口網站 http://portal.azure.com，並使用您的 Azure 帳戶登入。
+2. 在畫面左側按一下 [資源群組] 圖示，然後按一下 VM 所位在的資源群組 (例如，contosofabrikam)。 此時會顯示 [資源群組] 刀鋒視窗，裡面列出了所有資源以及 VM 的網路介面。
+3. 對每個 VM 的次要 NIC 新增 IP 組態，如下所示︰
+    1. 選取要將 IP 組態新增至的網路介面。
+    2. 在針對所選 NIC 出現的刀鋒視窗中，按一下 [IP 組態]。 然後按一下出現的刀鋒視窗中靠近上方的 [新增]。
+    3. 在 [新增 IP 組態] 刀鋒視窗中，對 NIC 新增第二個 IP 組態，如下所示︰ 
+        1. 輸入次要 IP 組態的名稱 (例如，將 VM1 和 VM2 的 IP 組態分別命名為 VM1NIC2-ipconfig2 和 VM2NIC2-ipconfig2)。
+        2. 針對 [私人 IP 位址]，為 [配置] 選取 [靜態]。
+        3. 按一下 [確定] 。
+        4. 次要 NIC 的第二個 IP 組態在設定完成時，會顯示在給定 NIC 的 [IP 組態] 設定刀鋒視窗中。
 
-3. [建立可用性設定組](../virtual-machines/virtual-machines-windows-create-availability-set.md?toc=%2fazure%2fload-balancer%2ftoc.json)以容納 VM。 在此案例中，請使用下列命令：
+### <a name="step-2-create-a-load-balancer"></a>步驟 2：建立負載平衡器
 
-    ```powershell
-    New-AzureRmAvailabilitySet -ResourceGroupName "contosofabrikam" -Name "myAvailset" -Location "West Central US"
-    ```
+如下所示建立負載平衡器︰
 
-4. 遵循[建立 Windows VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json)一文中的指示步驟 3 至 5，以準備建立具有單一 NIC 的 VM。 執行步驟 6.1，並使用下列項目，而不是步驟 6.2︰
+1. 透過瀏覽器瀏覽至 Azure 入口網站 http://portal.azure.com，並使用您的 Azure 帳戶登入。
+2. 在畫面左側按一下 [新增] > [網路] > [負載平衡器]。 接下來，按一下 [建立]。
+3. 在 [建立負載平衡器] 刀鋒視窗中，輸入負載平衡器的名稱。 在此我們將其稱為 mylb。
+4. 在 [公用 IP 位址] 底下建立稱為 **PublicIP1** 的新公用 IP。
+5. 在 [資源群組] 底下，選取 VM 的現有資源群組 (例如，contosofabrikam)。 接著選取適當位置，然後按一下 [確定]。 負載平衡器接著會開始部署，並且需要幾分鐘的時間才能順利完成部署。
+6. 負載平衡器在部署後會顯示為資源群組中的資源。
 
-    ```powershell
-    $availset = Get-AzureRmAvailabilitySet -ResourceGroupName "contosofabrikam" -Name "myAvailset"
-    New-AzureRmVMConfig -VMName "VM1" -VMSize "Standard_DS1_v2" -AvailabilitySetId $availset.Id
-    ```
+### <a name="step-3-configure-the-frontend-ip-pool"></a>步驟 3︰設定前端 IP 集區
 
-    然後完成[建立 Windows VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json)的步驟 6.3 至 6.8。
+為每個網站 (Contoso 和 Fabrikam) 設定前端 IP 集區，如下所示︰
 
-5. 在每個 VM 中新增第二個 IP 組態。 遵循[對虛擬機器指派多個 IP 位址](../virtual-network/virtual-network-multiple-ip-addresses-powershell.md#add)一文中的指示。 使用下列組態設定：
-
-    ```powershell
-    $NicName = "VM1-NIC2"
-    $RgName = "contosofabrikam"
-    $NicLocation = "West Central US"
-    $IPConfigName4 = "VM1-ipconfig2"
-    $Subnet1 = Get-AzureRmVirtualNetworkSubnetConfig -Name "mySubnet" -VirtualNetwork $myVnet
-    ```
-
-    在進行本教學課程時，並不需要讓次要 IP 組態與公用 IP 建立關聯。 請編輯命令以移除公用 IP 關聯部分。
-
-6. 針對 VM2 再次完成本文的步驟 4 到 6。 在進行這項操作時，請務必將 VM 名稱改為 VM2。 請注意，您不需要為第二個 VM 建立虛擬網路。 視您的使用案例而定，您不一定需要建立新的子網路。
-
-7. 建立兩個公用 IP 位址，並將它們儲存在適當的變數中，如下所示︰
-
-    ```powershell
-    $publicIP1 = New-AzureRmPublicIpAddress -Name PublicIp1 -ResourceGroupName contosofabrikam -Location 'West Central US' -AllocationMethod Dynamic -DomainNameLabel contoso
-    $publicIP2 = New-AzureRmPublicIpAddress -Name PublicIp2 -ResourceGroupName contosofabrikam -Location 'West Central US' -AllocationMethod Dynamic -DomainNameLabel fabrikam
-
-    $publicIP1 = Get-AzureRmPublicIpAddress -Name PublicIp1 -ResourceGroupName contosofabrikam
-    $publicIP2 = Get-AzureRmPublicIpAddress -Name PublicIp2 -ResourceGroupName contosofabrikam
-    ```
-
-8. 建立兩個前端 IP 組態：
-
-    ```powershell
-    $frontendIP1 = New-AzureRmLoadBalancerFrontendIpConfig -Name contosofe -PublicIpAddress $publicIP1
-    $frontendIP2 = New-AzureRmLoadBalancerFrontendIpConfig -Name fabrikamfe -PublicIpAddress $publicIP2
-    ```
-
-9. 建立後端位址集區、探查和負載平衡規則︰
-
-    ```powershell
-    $beaddresspool1 = New-AzureRmLoadBalancerBackendAddressPoolConfig -Name contosopool
-    $beaddresspool2 = New-AzureRmLoadBalancerBackendAddressPoolConfig -Name fabrikampool
-
-    $healthProbe = New-AzureRmLoadBalancerProbeConfig -Name HTTP -RequestPath 'index.html' -Protocol http -Port 80 -IntervalInSeconds 15 -ProbeCount 2
-
-    $lbrule1 = New-AzureRmLoadBalancerRuleConfig -Name HTTPc -FrontendIpConfiguration $frontendIP1 -BackendAddressPool $beaddresspool1 -Probe $healthprobe -Protocol Tcp -FrontendPort 80 -BackendPort 80
-    $lbrule2 = New-AzureRmLoadBalancerRuleConfig -Name HTTPf -FrontendIpConfiguration $frontendIP2 -BackendAddressPool $beaddresspool2 -Probe $healthprobe -Protocol Tcp -FrontendPort 80 -BackendPort 80
-    ```
-
-10. 建立好這些資源後，請建立負載平衡器︰
-
-    ```powershell
-    $mylb = New-AzureRmLoadBalancer -ResourceGroupName contosofabrikam -Name mylb -Location 'West Central US' -FrontendIpConfiguration $frontendIP1 -LoadBalancingRule $lbrule -BackendAddressPool $beAddressPool -Probe $healthProbe
-    ```
-
-11. 在新建立的負載平衡器中新增第二個後端位址集區和前端 IP 組態︰
-
-    ```powershell
-    $mylb = Get-AzureRmLoadBalancer -Name "mylb" -ResourceGroupName $myResourceGroup | Add-AzureRmLoadBalancerBackendAddressPoolConfig -Name fabrikampool | Set-AzureRmLoadBalancer
-
-    $mylb | Add-AzureRmLoadBalancerFrontendIpConfig -Name fabrikamfe -PublicIpAddress $publicIP2 | Set-AzureRmLoadBalancer
+1. 在入口網站中，按一下 [更多服務]，在篩選方塊中輸入**公用 IP 位址**，然後按一下 [公用 IP 位址]。 按一下出現的刀鋒視窗中靠近上方的 [新增]。
+2. 為這兩個網站 (contoso 和 fabrikam) 設定兩個公用 IP 位址 (PublicIP1 和 PublicIP2)，如下所示︰
+    1. 輸入前端 IP 位址的名稱。
+    2. 在 [資源群組] 中選取 VM 的現有資源群組 (例如，contosofabrikam)。
+    3. 在 [位置] 中選取和 VM 相同的位置。
+    4. 按一下 [確定] 。
+    5. 兩個公用 IP 位址都建立好之後，便會同時顯示在 [公用 IP 位址] 刀鋒視窗中。
+3. 在入口網站中，按一下 [更多服務]，在篩選方塊中輸入**負載平衡器**，然後按一下 [負載平衡器]。  
+4. 選取要將前端 IP 集區新增到的負載平衡器 (mylb)。
+5. 在 [設定] 底下選取 [前端集區]。 然後按一下出現的刀鋒視窗中靠近上方的 [新增]。
+6. 輸入前端 IP 位址的名稱 (farbikamfe 或 *contosofe)。
+7. 按一下 [IP 位址]，然後在 [選擇公用 IP 位址] 刀鋒視窗上，選取前端的 IP 位址 (PublicIP1 或 PublicIP2)。
+8. 重複本節中的步驟 3 到 7，以建立第二個前端 IP 位址。
+9. 當前端 IP 集區組態設定完成時，這兩個前端 IP 位址會顯示在負載平衡器的 [前端 IP 集區] 刀鋒視窗中。 
     
-    Add-AzureRmLoadBalancerRuleConfig -Name HTTP -LoadBalancer $mylb -FrontendIpConfiguration $frontendIP2 -BackendAddressPool $beaddresspool2 -Probe $healthProbe -Protocol Tcp -FrontendPort 80 -BackendPort 80 | Set-AzureRmLoadBalancer
-    ```
+### <a name="step-4-configure-the-backend-pool"></a>步驟 4︰設定後端集區   
+為每個網站 (Contoso 和 Fabrikam) 設定負載平衡器上的後端位址集區，如下所示︰
+        
+1. 在入口網站中，按一下 [更多服務]，在篩選方塊中輸入負載平衡器，然後按一下 [負載平衡器]。  
+2. 選取要將後端集區新增到的負載平衡器 (mylb)。
+3. 在 [設定] 底下選取 [後端集區]。 輸入後端集區的名稱 (例如，contosopool 或 fabrikampool)。 然後按一下出現的刀鋒視窗中靠近上方的 [新增] 按鈕。 
+4. 在 [關聯到] 中，選取 [可用性設定組]。
+5. 在 [可用性設定組] 中，選取 [myAvailset]。
+6. 如下所示為這兩個 VM 新增目標網路 IP 組態 (請參閱圖 2)︰  
+    1. 在 [目標虛擬機器] 中，選取要新增到後端集區的 VM (例如，VM1 或 VM2)。
+    2. 在 [網路 IP 組態] 中，選取該 VM 的次要 NIC IP 組態 (例如，VM1NIC2-ipconfig2 或 VM2NIC2-ipconfig2)。
+    ![LB 案例影像](./media/load-balancer-multiple-ip/lb-backendpool.PNG)
+            
+        **圖 2**︰設定具有後端集區的負載平衡器  
+7. 按一下 [確定] 。
+8. 當後端集區組態設定完成時，這兩個後端位址集區會顯示在負載平衡器的 [後端集區] 刀鋒視窗中。
 
-12. 下列命令會取得 NIC，然後將每個次要 NIC 的這兩個 IP 組態新增至負載平衡器的後端位址集區︰
+### <a name="step-5-configure-a-health-probe-for-your-load-balancer"></a>步驟 5︰設定負載平衡器的健康狀態探查
+設定負載平衡器的健康狀態探查，如下所示︰
+    1. 在入口網站中，按一下 [更多服務]，在篩選方塊中輸入負載平衡器，然後按一下 [負載平衡器]。  
+    2. 選取要將後端集區新增到的負載平衡器。
+    3. 在 [設定] 下，選取 [健康狀態探查]。 然後按一下出現的刀鋒視窗中靠近上方的 [新增]。
+    4. 輸入健康狀態探查的名稱 (例如，HTTP)，然後按一下 [確定]。
 
-    ```powershell
-    $nic1 = Get-AzureRmNetworkInterface -Name "VM1-NIC2" -ResourceGroupName "MyResourcegroup";
-    $nic2 = Get-AzureRmNetworkInterface -Name "VM2-NIC2" -ResourceGroupName "MyResourcegroup";
+### <a name="step-6-configure-load-balancing-rules"></a>步驟 6：設定負載平衡規則
+為每個網站設定負載平衡規則 (HTTPc 和 HTTPf)，如下所示︰
+    
+1. 在 [設定] 下，選取 [健康狀態探查]。 然後按一下出現的刀鋒視窗中靠近上方的 [新增]。
+2. 在 [名稱] 中，輸入負載平衡規則的名稱 (例如，對 Contoso 輸入 HTTPc，對 Fabrikam 則輸入 HTTPf)
+3. 在 [前端 IP 位址] 中選取前端 IP 位址 (例如，Contosofe 或 Fabrikamfe)
+4. 在 [連接埠] 和 [後端連接埠] 中，保留預設值 **80**。
+5. 在 [浮動 IP (伺服器直接回傳)] 中，按一下 [啟用]。
+6. 按一下 [確定] 。
+7. 重複本節中的步驟 1 到 6，以建立第二個負載平衡器規則。
+8. 當負載平衡規則組態設定完成時，這兩個規則 (HTTPc 和 HTTPf) 會顯示在負載平衡器的 [負載平衡規則] 刀鋒視窗中。
 
-    $nic1.IpConfigurations[0].LoadBalancerBackendAddressPools.Add($mylb.BackendAddressPools[0]);
-    $nic1.IpConfigurations[1].LoadBalancerBackendAddressPools.Add($mylb.BackendAddressPools[1]);
-    $nic2.IpConfigurations[0].LoadBalancerBackendAddressPools.Add($mylb.BackendAddressPools[0]);
-    $nic2.IpConfigurations[1].LoadBalancerBackendAddressPools.Add($mylb.BackendAddressPools[1]);
+### <a name="step-7-configure-dns-records"></a>步驟 7︰設定 DNS 記錄
+最後，您必須將 DNS 資源記錄設定為指向負載平衡器的個別前端 IP 位址。 您可以在 Azure DNS 中裝載網域。 如需搭配使用 Azure DNS 與 Load Balancer 的詳細資訊，請參閱[使用 Azure DNS 搭配其他 Azure 服務](../dns/dns-for-azure-services.md)。
 
-    $mylb = $mylb | Set-AzureRmLoadBalancer
-
-    $nic1 | Set-AzureRmNetworkInterface
-    $nic2 | Set-AzureRmNetworkInterface
-    ```
-
-13. 最後，您必須將 DNS 資源記錄設定為指向 Load Balancer 的個別前端 IP 位址。 您可以在 Azure DNS 中裝載網域。 如需搭配使用 Azure DNS 與 Load Balancer 的詳細資訊，請參閱[使用 Azure DNS 搭配其他 Azure 服務](../dns/dns-for-azure-services.md)。
+## <a name="next-steps"></a>後續步驟
+- 如需深入了解如何在 Azure 中合併負載平衡服務，請參閱[在 Azure 中使用負載平衡服務](../traffic-manager/traffic-manager-load-balancing-azure.md)。
+- 如需深入了解如何在 Azure 中使用不同類型的 記錄來管理和疑難排解負載平衡器，請參閱 [Azure Load Balancer 的 Log Analytics](../load-balancer/load-balancer-monitor-log.md)。
 

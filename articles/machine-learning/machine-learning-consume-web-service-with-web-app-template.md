@@ -13,24 +13,20 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 03/20/2017
 ms.author: garye;raymondl
 translationtype: Human Translation
-ms.sourcegitcommit: 52153526fb5b127823316b86fa05c0528151e18f
-ms.openlocfilehash: 971edaa8a4aeb20f740e723c32d0b74315aa4c00
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 5d587618dd885ec30e35b13c5fd543c1a8853200
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="consume-an-azure-machine-learning-web-service-with-a-web-app-template"></a>使用 Azure Machine Learning Web 服務與 Web 應用程式範本
-> [!NOTE]
-> 本主題描述適用於傳統 Web 服務的技巧。 
-> 
-> 
 
 一旦使用 Machine Learning Studio，或使用 R 或 Python 之類的工具開發預測模型並部署為 Azure Web 服務後，即可使用 REST API 存取實際運作模型。
 
-有數種方法可以使用 REST API 和存取 Web 服務。 例如，您可以使用當您部署 Web 服務時為您產生的範例程式碼，在 C#、R 或 Python 中寫入應用程式 (可以在 Machine Learning Studio 中 Web 服務儀表板中的 API 說明頁面上取得)。 或者您可以使用為您建立的範例 Microsoft Excel 活頁簿 (也可以在 Studio 中的 Web 服務儀表板取得)。
+有數種方法可以使用 REST API 和存取 Web 服務。 例如，您可以使用當您部署 Web 服務 (可以在 [Machine Learning Web 服務入口網站](https://services.azureml.net/quickstart)或 Machine Learning Studio 中的 Web 服務儀表板取得) 時為您產生的範例程式碼，以 C#、R 或 Python 撰寫應用程式。 或者，您可以同時使用為您建立的範例 Microsoft Excel 活頁簿。
 
 但是最簡單快速存取 Web 服務的方式是透過 [Azure Web 應用程式 Marketplace](https://azure.microsoft.com/marketplace/web-applications/all/)中提供的 Web 應用程式範本。
 
@@ -46,38 +42,48 @@ Azure Marketplace 中可用的 Web 應用程式範本可以建立自訂的 Web �
 
 每個範本會建立範例 ASP.NET 應用程式，使用您的 Web 服務的 API URI 和金鑰，並做為網站部署至 Azure。 要求回應服務 (RRS) 範本會建立 Web 應用程式，可讓您將資料的單一資料列傳送至 Web 服務以取得單一結果。 批次執行服務 (BES) 範本會建立 Web 應用程式，可讓您傳送資料的許多資料列以取得多個結果。
 
-不必撰寫程式碼就可以使用這些範本。 您只需提供 API URI 和金鑰，範本就會為您建置應用程式。
+不必撰寫程式碼就可以使用這些範本。 您只需提供 API 金鑰和 URI，範本就會為您建置應用程式。
+
+取得 Web 服務的 API 金鑰和要求 URI：
+
+1. 在 [Web 服務入口網站](https://services.azureml.net/quickstart)中，按一下頂端的 [Web 服務] (對於新的 Web 服務)。 或者，按一下 [傳統 Web 服務] (對於傳統 Web 服務)。
+2. 按一下您想要存取的 Web 服務。
+3. 針對傳統 Web 服務，按一下您想要存取的端點。
+4. 按一下頂端的 [取用]。
+5. 複製**主要金鑰**或**次要金鑰**並儲存它。
+6. 如果您正在建立要求-回應服務 (RRS) 範本，請複製 **Request-Response** URI 並儲存它。 如果您正在建立批次執行服務 (BES) 範本，請複製**批次要求** URI 並儲存˙它。
+
 
 ## <a name="how-to-use-the-request-response-service-rrs-template"></a>如何使用要求回應服務 (RRS) 範本
-一旦您部署您的 Web 服務，就可以遵循以下的步驟以使用 RRS Web 應用程式範本，如下圖所示。
+請依照下列步驟使用 RRS Web 應用程式範本，如下圖所示。
 
 ![使用 RRS Web 範本的程序][image1]
 
-1. 在 Machine Learning Studio 中，開啟 [Web 服務]  索引標籤，然後開啟您想要存取的 Web 服務。 複製 [API 金鑰]  底下所列的金鑰並儲存。
-   
-    ![API 金鑰][image3]
-2. 開啟 [要求/回應]  API 說明頁面。 在說明頁面頂端的 [要求] 底下，複製 [要求 URI] 值並儲存。 此值如下所示：
+
+<!--    ![API Key][image3] -->
+
+<!-- This value will look like this:
    
         https://ussouthcentral.services.azureml.net/workspaces/<workspace-id>/services/<service-id>/execute?api-version=2.0&details=true
    
-    ![要求 URI][image4]
-3. 移至 [Azure 入口網站](https://portal.azure.com)的 [登入]，按一下 [新增]，搜尋並選取 [Azure ML 要求-回應服務 Web 應用程式]，然後按一下 [建立]。 
+    ![Request URI][image4] -->
+
+1. 移至 [Azure 入口網站](https://portal.azure.com)的 [登入]，按一下 [新增]，搜尋並選取 [Azure ML 要求-回應服務 Web 應用程式]，然後按一下 [建立]。 
    
    * 為您的 Web 應用程式提供唯一名稱。 Web 應用程式的 URL 將是此名稱後面加上 `.azurewebsites.net.`。例如，`http://carprediction.azurewebsites.net.`
    * 選擇 Azure 訂用帳戶及您的 Web 服務在其下執行的服務。
    * 按一下 [建立] 。
      
      ![建立 Web 應用程式][image5]
+
 4. 當 Azure 完成部署 Web 應用程式時，請按一下 Azure 中 Web 應用程式設定頁面上的 [URL]  ，或在網頁瀏覽器中輸入 URL。 例如， `http://carprediction.azurewebsites.net.`
 5. 當 Web 應用程式第一次執行時，它會要求您提供 **API 貼文 URL** 和 **API 金鑰**。
-   輸入您先前儲存的值：
-   
-   * API 說明頁面針對 **API 貼文 URL** 的**要求 URI**
-   * Web 服務儀表板針對 **API 金鑰**的 **API 金鑰**。
+   輸入您先前儲存的值 (分別為**要求 URI** 和 **API 金鑰**)。
      
      按一下 [提交] 。
      
      ![輸入貼文 URI 和 API 金鑰][image6]
+
 6. Web 應用程式以目前 Web 服務設定顯示其 [Web 應用程式組態]  頁面。 您可以在這裡變更 Web 應用程式所使用的設定。
    
    > [!NOTE]
@@ -86,7 +92,8 @@ Azure Marketplace 中可用的 Web 應用程式範本可以建立自訂的 Web �
    > 
    
     當您完成時，按一下 [儲存變更]，然後按一下 [到首頁]。
-7. 您可以在首頁輸入要傳送至 Web 服務的值，按一下 [提交] ，即會傳回結果。
+
+7. 您可以從首頁輸入值，以傳送至您的 Web 服務。 當您完成時按一下 [提交]，將傳回結果。
 
 如果您想要返回 [組態] 頁面上，請移至 Web 應用程式的 `setting.aspx` 頁面。 例如：`http://carprediction.azurewebsites.net/setting.aspx.`。系統會提示您再次輸入 API 金鑰，您需要該金鑰以存取頁面和更新設定。
 
@@ -95,15 +102,13 @@ Azure Marketplace 中可用的 Web 應用程式範本可以建立自訂的 Web �
 ## <a name="how-to-use-the-batch-execution-service-bes-template"></a>如何使用批次執行服務 (BES) 範本
 您可以使用與 RRS 範本相同的方式使用 BES Web 應用程式範本，不同的是建立的 Web 應用程式可讓您提交資料的多個資料列和接收多個結果。
 
-批次執行 Web 服務的結果會儲存在 Azure 儲存體容器。輸入值可能來自 Azure 儲存體或本機檔案。
+批次執行 Web 服務的輸入值可能來自 Azure 儲存體或本機檔案；結果會儲存在 Azure 儲存體容器中。
 因此，您需要 Azure 儲存體容器以存放 Web 應用程式所傳回的結果，您也必須準備好您的輸入資料。
 
 ![使用 BES Web 範本的程序][image2]
 
-1. 遵循與 RRS 範本相同的程序來建立 BES Web 應用程式，不同之處為：
-   
-   * 從**批次執行** API 說明頁面取得 Web 服務的**要求 URI**。
-   * 移至 [Azure ML Batch 執行服務 Web 應用程式範本](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)以開啟 Azure Marketplace 上的 BES 範本，然後按一下 [建立 Web 應用程式]。
+1. 依照與 RRS 範本相同的程序來建立 BES Web 應用程式 (除了移至 [Azure ML 批次執行服務 Web 應用程式範本](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)開啟 Azure Marketplace 上的 BES 範本並按一下 [建立 Web 應用程式] 之外)。
+
 2. 若要指定您想要儲存結果的位置，請在 Web 應用程式的首頁上輸入目的地容器資訊。 同時指定 Web 應用程式可以在哪裡取得輸入值，在本機檔案或 Azure 儲存體容器。
    按一下 [提交] 。
    

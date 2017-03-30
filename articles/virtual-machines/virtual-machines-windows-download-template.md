@@ -1,6 +1,6 @@
 ---
-title: "從 Azure VM 建立 VM 映像 | Microsoft Docs"
-description: "了解如何從 Resource Manager 部署模型中建立的現有 Azure VM 建立一般化 VM 映像"
+title: "下載 Azure VM 的範本 | Microsoft Docs"
+description: "下載 VM 的範本以協助在 Resource Manager 部署模型中進行自動化部署"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -13,11 +13,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 03/22/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 349b8dc78ace79efca771efb78e453a47e51023e
-ms.openlocfilehash: 6e80064adadcc542523acb1d2478e6b8f0163acb
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 63d9d9ea257ece3af710e25dcf7cfa3c6e2fb8d5
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -50,10 +51,5 @@ template.json 檔案為範本。
 
 ## <a name="next-steps"></a>後續步驟
 若要了解有關使用範本部署資源的詳細資訊，請參閱 [Resource Manager 範本逐步解說](../resource-manager-template-walkthrough.md)。
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

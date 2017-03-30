@@ -16,19 +16,24 @@ ms.topic: article
 ms.date: 02/21/2017
 ms.author: kasing
 translationtype: Human Translation
-ms.sourcegitcommit: e64449991bc28427d8f559ed13c3bdf9160488db
-ms.openlocfilehash: 92211cc98b6d8394ff04bc7c2fe33f7bd710713b
-ms.lasthandoff: 01/26/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 5152367ec4a2ef225f08f2b8d4cb2e92eea8ce26
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="migrate-iaas-resources-from-classic-to-azure-resource-manager-by-using-azure-cli"></a>使用 Azure CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager
-以下步驟說明如何使用 Azure 命令列介面 (CLI) 命令，將基礎結構即服務 (IaaS) 資源從傳統部署模型移轉至 Azure Resource Manager 部署模型。 本文需要 [Azure CLI](../xplat-cli-install.md)。
+以下步驟說明如何使用 Azure 命令列介面 (CLI) 命令，將基礎結構即服務 (IaaS) 資源從傳統部署模型移轉至 Azure Resource Manager 部署模型。 本文需要 [Azure CLI](../cli-install-nodejs.md)。
 
 > [!NOTE]
 > 下述所有作業都是等冪的。 如果您有不支援的功能或組態錯誤以外的任何問題，建議您重新嘗試準備、中止或認可作業。 如此，平台就會重新嘗試該動作。
 > 
 > 
+
+<br>
+下列流程圖會識別在移轉程序期間執行步驟所需的順序
+
+![顯示移轉步驟的螢幕擷取畫面](./media/virtual-machines-windows-migration-classic-resource-manager/migration-flow.png)
 
 ## <a name="step-1-prepare-for-migration"></a>步驟 1︰為移轉做準備
 以下是您評估將 IaaS 資源從傳統移轉至 Resource Manager 時，我們所建議的一些最佳做法：
@@ -37,7 +42,7 @@ ms.lasthandoff: 01/26/2017
 * 如果您是使用自動化指令碼來部署現今的基礎結構和應用程式，請使用這些指令碼來嘗試建立相似的測試設定以進行移轉。 或者，您也可以使用 Azure 入口網站來設定範例環境。
 
 ## <a name="step-2-set-your-subscription-and-register-the-provider"></a>步驟 2︰設定您的訂用帳戶並註冊提供者
-針對移轉案例，您必須為傳統和 Resource Manager 模型設定您的環境。 [安裝 Azure CLI](../xplat-cli-install.md) 並[選取您的訂用帳戶](../xplat-cli-connect.md)。
+針對移轉案例，您必須為傳統和 Resource Manager 模型設定您的環境。 [安裝 Azure CLI](../cli-install-nodejs.md) 並[選取您的訂用帳戶](../xplat-cli-connect.md)。
 
 登入您的帳戶。
 
@@ -58,7 +63,7 @@ ms.lasthandoff: 01/26/2017
 
     azure provider register Microsoft.ClassicInfrastructureMigrate
 
-請等候&5; 分鐘讓註冊完成。 您可以使用下列命令來檢查核准狀態。 請先確定 RegistrationState 是 `Registered` ，再繼續進行。
+請等候 5 分鐘讓註冊完成。 您可以使用下列命令來檢查核准狀態。 請先確定 RegistrationState 是 `Registered` ，再繼續進行。
 
     azure provider show Microsoft.ClassicInfrastructureMigrate
 

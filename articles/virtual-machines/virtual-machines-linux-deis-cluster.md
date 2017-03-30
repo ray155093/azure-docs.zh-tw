@@ -15,13 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 06/24/2015
 ms.author: hbai
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 550db52c2b77ad651b4edad2922faf0f951df617
-ms.openlocfilehash: 8e69e791128710e640cba0c9edfbbadc0ea70ef5
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: cb631a1bcbe73c18b06e247b29056a83cfa61a46
+ms.lasthandoff: 03/21/2017
 
 
 ---
-# <a name="deploy-a-3-node-deis-cluster"></a>部署 3 個節點的 Deis 叢集
+# <a name="deploy-and-configure-a-3-node-deis-cluster-in-azure"></a>在 Azure 中部署和設定 3 個節點的 Deis 叢集
 本文將指導您逐步完成在 Azure 上佈建 [Deis](http://deis.io/) 叢集。 它涵蓋建立必要的憑證，以及在新佈建的叢集上部署及調整 **Go** 應用程式範例的所有步驟。
 
 下圖顯示已部署的系統之架構。 系統管理員會使用 Deis 工具 (如 **deis** 和 **deisctl**) 來管理叢集。 連線是透過會將連線轉送到叢集上其中一個節點的 Azure 負載平衡器而建立。 用戶端也是透過負載平衡器存取部署的應用程式。 在此情況下，負載平衡器將流量轉送到 Deis 路由器網狀結構，進一步將流量路由至裝載於叢集上且相對應的 Docker 容器。
@@ -32,7 +34,7 @@ ms.openlocfilehash: 8e69e791128710e640cba0c9edfbbadc0ea70ef5
 
 * 有效的 Azure 訂用帳戶。 如果沒有，您可以在 [azure.com](https://azure.microsoft.com/)免費取得一個。
 * 用於 Azure 資源群組的工作或學校識別碼。 如果您有個人帳戶且使用 Microsoft ID 登入，則您需要 [以您的個人識別碼建立一個工作識別碼](virtual-machines-windows-create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-* 依您的用戶端作業系統而定 -- [Azure PowerShell](/powershell/azureps-cmdlets-docs) 或[適用於 Mac、Linux 和 Windows 的 Azure CLI](../xplat-cli-install.md)。
+* 依您的用戶端作業系統而定 -- [Azure PowerShell](/powershell/azureps-cmdlets-docs) 或[適用於 Mac、Linux 和 Windows 的 Azure CLI](../cli-install-nodejs.md)。
 * [OpenSSL](https://www.openssl.org/)。 OpenSSL 是用來產生必要的憑證。
 * Git 用戶端，例如 [Git Bash](https://git-scm.com/)。
 * 若要測試範例應用程式，您也需要 DNS 伺服器。 您也可以使用任何 DNS 伺服器或 支援萬用字元 A 記錄的服務。
@@ -248,12 +250,7 @@ ms.openlocfilehash: 8e69e791128710e640cba0c9edfbbadc0ea70ef5
 [如何使用 Azure CLI][azure-command-line-tools]  
 [搭配使用 Azure PowerShell 與 Azure Resource Manager][powershell-azure-resource-manager]  
 
-[azure-command-line-tools]: ../xplat-cli-install.md
+[azure-command-line-tools]: ../cli-install-nodejs.md
 [resource-group-overview]: ../azure-resource-manager/resource-group-overview.md
 [powershell-azure-resource-manager]: ../powershell-azure-resource-manager.md
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

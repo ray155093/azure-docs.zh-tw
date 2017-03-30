@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 2.0 (預覽) 擷取 Linux VM | Microsoft Docs"
-description: "如何使用以 Azure CLI 2.0 (預覽) 建立的受控磁碟，擷取以 Linux 為基礎之 Azure 虛擬機器 (VM) 的映像並將它一般化"
+title: "使用 Azure CLI 2.0 擷取 Linux VM | Microsoft Docs"
+description: "如何使用以 Azure CLI 2.0 建立的受控磁碟，擷取以 Linux 為基礎之 Azure 虛擬機器 (VM) 的映像並將它一般化"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -16,29 +16,25 @@ ms.topic: article
 ms.date: 02/02/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 4620ace217e8e3d733129f69a793d3e2f9e989b2
-ms.openlocfilehash: 64b829de4389ba6aa46dc51afd0cff3f40265d68
+ms.sourcegitcommit: 93abc8b1b14f58b0d0be52517a2b63dfe2dc32fb
+ms.openlocfilehash: c72f576d992c9adfa83b9744672397045833c43f
+ms.lasthandoff: 02/27/2017
 
 
 ---
-# <a name="how-to-generalize-and-capture-a-linux-virtual-machine-using-the-azure-cli-20-preview"></a>如何使用 Azure CLI 2.0 (預覽) 來一般化和擷取 Linux 虛擬機器
-若要重複使用在 Azure 中部署和設定的虛擬機器 (VM)，您可擷取 VM 的映像。 此程序也牽涉到將 VM 一般化，以便在從映像部署新 VM 之前，移除個人帳戶資訊。 本文詳細說明如何針對使用 Azure 受控磁碟的 VM，利用 Azure CLI 2.0 (預覽) 擷取 VM 映像。 這些磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。 如需詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
+# <a name="how-to-generalize-and-capture-a-linux-virtual-machine"></a>如何一般化和擷取 Linux 虛擬機器
+若要重複使用在 Azure 中部署和設定的虛擬機器 (VM)，您可擷取 VM 的映像。 此程序也牽涉到將 VM 一般化，以便在從映像部署新 VM 之前，移除個人帳戶資訊。 本文詳細說明如何針對使用 Azure 受控磁碟的 VM，透過 Azure CLI 2.0 擷取 VM 映像。 這些磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。 如需詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 本文詳述如何使用 Azure CLI 2.0 來擷取 Linux VM。 您也可以使用 [Azure CLI 1.0](virtual-machines-linux-capture-image-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
 
 > [!TIP]
 > 如果您想要建立一份您現有 Linux VM 的複本，當中包含其特殊的備份或偵錯狀態，請參閱[建立在 Azure 上執行的 Linux 虛擬機器複本](virtual-machines-linux-copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 如果您想要從內部部署 VM 上傳 Linux VHD，請參閱[上傳自訂磁碟映像並從這個映像建立 Linux VM](virtual-machines-linux-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。  
 
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
-您可以使用下列其中一個 CLI 版本來完成工作︰
-
-- [Azure CLI 1.0](virtual-machines-linux-capture-image-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0 (預覽) - Azure 受控磁碟](#quick-commands) - 適用於資源管理部署模型的新一代 CLI (本文章)
 
 ## <a name="before-you-begin"></a>開始之前
 請確保符合下列必要條件︰
 
 * **在 Resource Manager 部署模型中建立的 Azure VM** - 如果您尚未建立 Linux VM，可以使用[入口網站](virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、[Azure CLI](virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Resource Manager 範本](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 視需要設定 VM。 例如，[新增資料磁碟](virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、套用更新，並安裝應用程式。 
 
-您也需要安裝最新的 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
+您還需要安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。
 
 ## <a name="quick-commands"></a>快速命令
 如果您需要快速完成工作，下列章節詳細說明在 Azure 中擷取 Linux VM 映像的基本命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，從[這裡](#detailed-steps)開始。 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`myVM` 和 `myImage`。
@@ -95,7 +91,7 @@ ms.openlocfilehash: 64b829de4389ba6aa46dc51afd0cff3f40265d68
 4. 在命令完成之後，請輸入 **exit**。 此步驟會關閉 SSH 用戶端。
 
 ## <a name="step-2-capture-the-vm"></a>步驟 2：擷取 VM
-使用 Azure CLI 2.0 (預覽) 來一般化和擷取 VM。 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 **myResourceGroup**、**myVnet** 和 **myVM**。
+使用 Azure CLI 2.0 來一般化和擷取 VM。 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 **myResourceGroup**、**myVnet** 和 **myVM**。
 
 1. 使用 [az vm deallocate](/cli//azure/vm#deallocate) 解除配置已取消佈建的 VM。 下列範例會解除配置 `myResourceGroup` 資源群組中名為 `myVM` 的 VM：
    
@@ -153,14 +149,10 @@ az vm show --resource-group myResourceGroup --name myVM --show-details
 ## <a name="next-steps"></a>後續步驟
 您可以從來源 VM 映像建立多個 VM。 如果您需要變更您的映像︰ 
 
-- 啟動來源 VM 資源。
+- 從映像建立 VM。
 - 進行任何更新或組態變更。
-- 再次遵循相關步驟，以取消佈建、解除配置、一般化及擷取 VM。 
+- 再次遵循相關步驟，以取消佈建、解除配置、一般化及建立映像。
+- 在日後的部署中使用這個新映像。 如有需要，刪除原始的映像。
 
-如需有關使用 CLI 管理 VM 的詳細資訊，請參閱[Azure CLI 2.0 (預覽)](/cli/azure/overview)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
+如需有關使用 CLI 管理 VM 的詳細資訊，請參閱[Azure CLI 2.0](/cli/azure/overview)。
 

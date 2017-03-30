@@ -11,12 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 02/14/2017
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: c800f6e7b6bd1e17165146f981e32a8cbb251e3c
-ms.openlocfilehash: 1ef09170f9d5dd28005f70913df2c945f8e4ac12
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 5e3cf1407079a166fbe5e24abae2248ef467ebbb
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -87,7 +87,7 @@ ms.lasthandoff: 02/15/2017
 ### <a name="narrow-your-search"></a>縮小搜尋
 篩選器值右側的計數顯示目前篩選的集合中有多少個出現次數。 
 
-在此範例中，很明顯是 'Rpt/Employees' 要求造成大多數的&500; 錯誤：
+在此範例中，很明顯是 'Rpt/Employees' 要求造成大多數的 500 錯誤：
 
 ![展開屬性並選擇值](./media/app-insights-diagnostic-search/04-failingReq.png)
 
@@ -167,15 +167,19 @@ ms.lasthandoff: 02/15/2017
 
 [了解如何將記錄和自訂遙測傳送至 Application Insights](app-insights-search-diagnostic-logs.md)。
 
-## <a name="a-namequestionsaq--a"></a><a name="questions"></a>問與答
-### <a name="a-namelimitsahow-much-data-is-retained"></a><a name="limits"></a>保留多少資料？
+## <a name="questions"></a>問與答
+### <a name="limits"></a>保留多少資料？
 
 請參閱[限制摘要](app-insights-pricing.md#limits-summary)。
 
 ### <a name="how-can-i-see-post-data-in-my-server-requests"></a>我如何查看我的伺服器要求中的 POST 資料？
 我們不會自動記錄 POST 資料，但您可以使用 [TrackTrace 或記錄呼叫](app-insights-search-diagnostic-logs.md)。 將 POST 資料放在訊息參數中。 您無法像篩選屬性一樣來篩選訊息，但大小限制比較長。
 
-## <a name="a-nameaddanext-steps"></a><a name="add"></a>接續步驟
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
+
+## <a name="add"></a>接續步驟
 * [在分析中撰寫複雜的查詢](app-insights-analytics-tour.md)
 * [將記錄和自訂遙測傳送至 Application Insights](app-insights-search-diagnostic-logs.md)
 * [設定可用性和回應性測試](app-insights-monitor-web-app-availability.md)

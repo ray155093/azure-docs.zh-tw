@@ -1,5 +1,5 @@
 ---
-title: "Azure Resource Manager 的流量管理員支援 | Microsoft Docs"
+title: "使用 PowerShell 管理 Azure 中的流量管理員 | Microsoft Docs"
 description: "使用 PowerShell 透過 Azure Resource Manager 執行流量管理員"
 services: traffic-manager
 documentationcenter: na
@@ -11,15 +11,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/11/2016
+ms.date: 03/16/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 550db52c2b77ad651b4edad2922faf0f951df617
-ms.openlocfilehash: f97ba8ebc940d4b3eec5d2610503f8a86af8dbe2
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: c2fb44817f168eee8303d0c07473f043ae30d350
+ms.lasthandoff: 03/18/2017
 
 ---
 
-# <a name="azure-resource-manager-support-for-azure-traffic-manager"></a>Azure Resource Manager 的 Azure 流量管理員支援
+# <a name="using-powershell-to-manage-traffic-manager"></a>使用 PowerShell 管理流量管理員
 
 Azure Resource Manager 是 Azure 中慣用的服務管理介面。 您可以使用以 Azure Resource Manager 為基礎的 API 和工具來管理 Azure 流量管理員設定檔。
 
@@ -30,23 +31,6 @@ Azure 流量管理員使用名為「流量管理員設定檔」的設定集合�
 每個流量管理員設定檔都以 'TrafficManagerProfiles' 類型的資源表示。 在 REST API 層級中，每個設定檔的 URI 如下：
 
     https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Network/trafficManagerProfiles/{profile-name}?api-version={api-version}
-
-## <a name="comparison-with-the-azure-traffic-manager-classic-api"></a>與 Azure 流量管理員傳統 API 的比較
-
-Azure Resource Manager 的流量管理員支援採用不同於傳統部署模型的術語。 下表顯示 Resource Manager 和「傳統」術語之間的差異︰
-
-| Resource Manager 術語 | 傳統術語 |
-| --- | --- |
-| 流量路由方法 |負載平衡方法 |
-| 優先順序方法 |容錯移轉方法 |
-| 加權方法 |循環配置資源方法 |
-| 效能方法 |效能方法 |
-
-我們已根據客戶的意見反應來變更術語，以更加清楚並減少常見的誤解。 功能上並沒有任何差異。
-
-## <a name="limitations"></a>限制
-
-當 Web 應用程式參考 'AzureEndpoints' 類型的端點時，流量管理員端點只能參考預設 (生產) [Web 應用程式位置](../app-service-web/web-sites-staged-publishing.md)。 不支援自訂位置。 而為了因應這個問題，您可以使用「ExternalEndpoints」類型來設定自訂位置。
 
 ## <a name="setting-up-azure-powershell"></a>設定 Azure PowerShell
 
@@ -127,11 +111,10 @@ Set-AzureRmTrafficManagerProfile -TrafficManagerProfile $profile
 
 ## <a name="adding-azure-endpoints"></a>新增 Azure 端點
 
-Azure 端點會參考 Azure 中託管的服務。 支援三種 Azure 端點：
+Azure 端點會參考 Azure 中託管的服務。 支援兩種 Azure 端點：
 
 1. Azure Web Apps 
-2. 「傳統」雲端服務 (可包含 PaaS 服務或 IaaS 虛擬機器)
-3. Azure PublicIpAddress 資源 (可附加至負載平衡器或虛擬機器 NIC)。 PublicIpAddress 必須已獲指派 DNS 名稱，才能在流量管理員中使用。
+2. Azure PublicIpAddress 資源 (可附加至負載平衡器或虛擬機器 NIC)。 PublicIpAddress 必須已獲指派 DNS 名稱，才能在流量管理員中使用。
 
 不論是上述哪一種，都必須注意以下事項：
 
@@ -152,17 +135,7 @@ $webapp2 = Get-AzureRMWebApp -Name webapp2
 Add-AzureRmTrafficManagerEndpointConfig -EndpointName webapp2ep -TrafficManagerProfile $profile -Type AzureEndpoints -TargetResourceId $webapp2.Id -EndpointStatus Enabled
 Set-AzureRmTrafficManagerProfile -TrafficManagerProfile $profile
 ```
-
-### <a name="example-2-adding-a-classic-cloud-service-endpoint-using-new-azurermtrafficmanagerendpoint"></a>範例 2：使用 `New-AzureRmTrafficManagerEndpoint` 新增「傳統」雲端服務端點
-
-此範例會在流量管理員設定檔中新增「傳統」雲端服務端點。 在此範例中，我們使用設定檔和資源群組名稱來指定設定檔，而不是傳遞設定檔物件。 兩種方法都支援。
-
-```powershell
-$cloudService = Get-AzureRmResource -ResourceName MyCloudService -ResourceType "Microsoft.ClassicCompute/domainNames" -ResourceGroupName MyCloudService
-New-AzureRmTrafficManagerEndpoint -Name MyCloudServiceEndpoint -ProfileName MyProfile -ResourceGroupName MyRG -Type AzureEndpoints -TargetResourceId $cloudService.Id -EndpointStatus Enabled
-```
-
-### <a name="example-3-adding-a-publicipaddress-endpoint-using-new-azurermtrafficmanagerendpoint"></a>範例 3︰使用 `New-AzureRmTrafficManagerEndpoint` 新增 publicIpAddress 端點
+### <a name="example-2-adding-a-publicipaddress-endpoint-using-new-azurermtrafficmanagerendpoint"></a>範例 2︰使用 `New-AzureRmTrafficManagerEndpoint` 新增 publicIpAddress 端點
 
 此範例會在流量管理員設定檔中新增公用 IP 位址資源。 公用 IP 位址必須設定 DNS 名稱，而且可以繫結至 VM 的 NIC 或繫結至負載平衡器。
 
@@ -339,9 +312,4 @@ Get-AzureRmTrafficManagerProfile -Name MyProfile -ResourceGroupName MyRG | Remov
 [流量管理員監視](traffic-manager-monitoring.md)
 
 [流量管理員的效能考量](traffic-manager-performance-considerations.md)
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 02/06/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 67b4861ac564565b2a36932ae15141a1e1f56035
-ms.openlocfilehash: d315c5ed186c24236c860df1ad1b79d55c9a4d57
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: e2e09cdabd323575c0da6797c9eb2564572629f1
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -219,7 +219,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 4. 在 [儲存體帳戶]  中，選取您想要用來複寫的 Azure 儲存體帳戶。
 5. 將 [加密儲存的資料] 設為 [關閉]。 這個設定指定在內部部署站台與 Azure 之間進行複寫期間，應該將資料加密。
 6. 在 [複製頻率]  中保留預設設定。 這個值指定應在來源與目標位置之間同步處理資料的頻率。
-7. 在 [Retain recovery points for] 中保留預設設定。 使用預設值&0; 時，只會在複本主機伺服器上儲存主要虛擬機器的最新復原點。
+7. 在 [Retain recovery points for] 中保留預設設定。 使用預設值 0 時，只會在複本主機伺服器上儲存主要虛擬機器的最新復原點。
 8. 在 [應用程式一致快照的頻率] 中保留預設設定。 這個值指定建立快照的頻率。 快照會使用「磁碟區陰影複製服務」(VSS) 來確保建立快照時，應用程式是處於一致狀態。  如果您設定一個值，請確定此值小於您設定的其他復原點數目。
 9. 在 [Replication start time] 中，指定初次將資料複寫至 Azure 的開始時間。 將會使用 Hyper-V 主機伺服器的時區。 建議您將初次複寫排定在離峰時段進行。
 
@@ -274,7 +274,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
     ![Verify virtual machines](./media/site-recovery-vmm-to-azure-classic/vm-properties.png)
 2. 在虛擬機器屬性的 [設定]  索引標籤上可以修改下列網路屬性。
 
-* **目標虛擬機器的網路介面卡數目** - 網路介面卡的數目取決於您針對目標虛擬機器所指定的大小。 查看 [虛擬機器大小規格](../virtual-machines/virtual-machines-linux-sizes.md#size-tables) ，了解虛擬機器大小所支援的介面卡數目。 在修改虛擬機器的大小並儲存設定之後，當您下次開啟 [設定] 頁面時，網路介面卡的數量將會改變。 目標虛擬機器的網路介面卡數目，是來源虛擬機器上的網路介面卡數目下限，以及所選虛擬機器大小支援的網路介面卡數目上限，如下所示：
+* **目標虛擬機器的網路介面卡數目** - 網路介面卡的數目取決於您針對目標虛擬機器所指定的大小。 查看 [虛擬機器大小規格](../virtual-machines/virtual-machines-linux-sizes.md) ，了解虛擬機器大小所支援的介面卡數目。 在修改虛擬機器的大小並儲存設定之後，當您下次開啟 [設定] 頁面時，網路介面卡的數量將會改變。 目標虛擬機器的網路介面卡數目，是來源虛擬機器上的網路介面卡數目下限，以及所選虛擬機器大小支援的網路介面卡數目上限，如下所示：
 
   * 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。
   * 如果來源虛擬機器的介面卡數目超過針對目標大小所允許的數目，則將使用目標大小的最大值。

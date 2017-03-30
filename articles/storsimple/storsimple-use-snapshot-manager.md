@@ -4,7 +4,7 @@ description: "描述 StorSimple Snapshot Manager 使用者介面，並說明如�
 services: storsimple
 documentationcenter: NA
 author: SharS
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: c7d91892-2881-41a2-a7a2-908dc3646493
 ms.service: storsimple
@@ -12,15 +12,18 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 04/25/2016
+ms.date: 02/27/2017
 ms.author: v-sharos
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 88abde99af417f325c12aa2f8790d711fd7fd533
+ms.sourcegitcommit: 7651a2ba6c206bb39d7cf8839f6f0f828fb3bc16
+ms.openlocfilehash: 25265349cb8cb47e93b7bea7103f1d06878a6158
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="storsimple-snapshot-manager-user-interface"></a>StorSimple Snapshot Manager 使用者介面
+# <a name="use-storsimple-snapshot-manager-user-interface-to-manage-backup-jobs-and-backup-catalog"></a>使用 StorSimple Snapshot Manager 使用者介面來管理備份作業與備份類別目錄
+
 ## <a name="overview"></a>概觀
 StorSimple Snapshot Manager 有直覺式使用者介面，可讓您用來取得並管理備份。 本教學課程提供使用者介面的簡介，並接著說明如何使用每個元件。 如需 StorSimple Snapshot Manager 的詳細說明，請參閱 [何謂 StorSimple Snapshot Manager？](storsimple-what-is-snapshot-manager.md)
 
@@ -426,7 +429,7 @@ StorSimple Snapshot Manager 可啟用 Windows 作業系統和 Microsoft Manageme
 | V |開啟 [ **檢視** ] 功能表。 |
 | W |開啟新的 StorSimple Snapshot Manager 主控台，且焦點在 [ **磁碟區群組** ] 節點。 |
 | F |更新 StorSimple Snapshot Manager 主控台。 |
-| L |開啟 [ **匯出清單 **] 頁面。 |
+| L |開啟 [ **匯出清單**] 頁面。 |
 | H |開啟線上說明。 |
 
 #### <a name="backup-catalog-node-shortcut-keys"></a>備份目錄節點快速鍵
@@ -448,10 +451,5 @@ StorSimple Snapshot Manager 可啟用 Windows 作業系統和 Microsoft Manageme
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
 * 了解如何 [使用 StorSimple Snapshot Manager 來連接和管理裝置](storsimple-snapshot-manager-manage-devices.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

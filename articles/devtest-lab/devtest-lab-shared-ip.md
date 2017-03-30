@@ -12,12 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/07/2017
+ms.date: 03/16/2017
 ms.author: casoper
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: b4ae6b16880e4a5e53c8f94dc814e25254c20d73
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 905357b9e2262b86cde31874287cc0b89eef4815
+ms.lasthandoff: 03/17/2017
 
 ---
 
@@ -27,7 +27,7 @@ Azure DevTest Labs 使用共用 IP 位址，將需要存取您的個人實驗室
 
 ## <a name="shared-ip-setting"></a>共用 IP 設定
 
-當您建立實驗室時，它會位於虛擬網路的子網路。  根據預設，建立這個子網路時會將 [啟用共用公用 IP]設為 [是]。  此設定會為整個子網路建立一個公用 IP 位址。  建立實驗室之後，您可以[依照本文中的步驟](devtest-lab-configure-vnet.md)關閉這項功能。
+當您建立實驗室時，它會位於虛擬網路的子網路。  根據預設，建立這個子網路時會將 [啟用共用公用 IP]設為 [是]。  此設定會為整個子網路建立一個公用 IP 位址。  如需設定虛擬網路和子網路的詳細資訊，請參閱[設定 Azure DevTest Labs 中的虛擬網路](devtest-lab-configure-vnet.md)。
 
 ![新的實驗室子網路](media/devtest-lab-shared-ip/lab-subnet.png)
 

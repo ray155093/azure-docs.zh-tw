@@ -1,21 +1,22 @@
 ---
-title: "Application Insights 入口網站中的儀表板與導覽 | Microsoft Docs"
+title: "Azure Application Insights 中的儀表板與導覽 | Microsoft Docs"
 description: "建立重要 APM 圖表和查詢的檢視。"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 39b0701b-2fec-4683-842a-8a19424f67bd
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
-ms.date: 10/18/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: f3a8ef4a166a061e1f4e7ce056255e02b810c196
-ms.openlocfilehash: aa4c6400bcd16c90654c40e14b7a8ed239a4d8aa
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 097a8aeecc783199b25d95dbc470dcabefa37ced
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -148,15 +149,15 @@ ms.openlocfilehash: aa4c6400bcd16c90654c40e14b7a8ed239a4d8aa
 
 * **支援要求** - 需要付費的訂用帳戶。 另請參閱[取得說明](app-insights-get-dev-support.md)。
 
-## <a name="whats-next"></a>後續步驟
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
+
+## <a name="next-steps"></a>後續步驟
+
 |  |  |
 | --- | --- |
 | [計量瀏覽器](app-insights-metrics-explorer.md)<br/>篩選與分割計量 |![搜尋範例](./media/app-insights-dashboards/64.png) |
 | [診斷搜尋](app-insights-diagnostic-search.md)<br/>尋找和檢查事件、相關的事件，並建立 Bug |![搜尋範例](./media/app-insights-dashboards/61.png) |
 | [分析](app-insights-analytics.md)<br/>功能強大的查詢語言 |![搜尋範例](./media/app-insights-dashboards/63.png) |
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

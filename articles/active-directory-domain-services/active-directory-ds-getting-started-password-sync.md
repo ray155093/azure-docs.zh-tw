@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: e4b1907b95576468654703c843a5f6e06846814b
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: f994edd71c6d8ca8a2c3f5de370115747f87da57
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -68,7 +68,7 @@ Azure AD 網域服務需要適合於 NTLM 和 Kerberos 驗證之格式的認證�
 <br>
 
 ## <a name="related-content"></a>相關內容
-* [如何更新自己的密碼](../active-directory/active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。)
+* [如何更新自己的密碼](../active-directory/active-directory-passwords-update-your-own-password.md#reset-your-password)。)
 * [在 Azure AD 中開始使用密碼管理](../active-directory/active-directory-passwords-getting-started.md)。
 * [為同步處理的 Azure AD 租用戶啟用 AAD 網域服務的密碼同步處理](active-directory-ds-getting-started-password-sync-synced-tenant.md)
 * [Administer an Azure AD Domain Services managed domain (管理 Azure AD 網域服務受管理的網域)](active-directory-ds-admin-guide-administer-domain.md)

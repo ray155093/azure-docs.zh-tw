@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/13/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: ee0cee5e653cb8900936e12e87c56cfee5639bc5
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 582cb9dee06c6ec4b030ded866a0f92a575b93ed
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -29,7 +29,7 @@ ms.lasthandoff: 03/15/2017
 >
 
 ## <a name="supported-authentication-types"></a>支援的驗證類型
-Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認證」驗證。 尤其是進行排程的資料複製時，建議您使用前者，避免使用後者而發生權杖到期行為。 如需組態詳細資料，請參閱 [Azure Data Lake Store 連結服務屬性](#azure-data-lake-store-linked-service-properties)一節。
+Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認證」驗證。 建議您使用前者 (尤其是進行排程的資料複製時)，以避免使用後者而發生權杖到期行為。 如需組態詳細資料，請參閱 [Azure Data Lake Store 連結服務屬性](#azure-data-lake-store-linked-service-properties)一節。
 
 ## <a name="copy-data-wizard"></a>複製資料精靈
 要建立將資料複製到 Azure Data Lake Store/複製 Azure Data Lake Store 之資料的管線，最簡單的方法是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
@@ -417,24 +417,23 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
 | 類型 | type 屬性必須設為： **AzureDataLakeStore** | 是 |
-| dataLakeStoreUri | 指定有關 Azure Data Lake Store 帳戶的資訊。 它的格式如下：**https://[帳戶名稱].azuredatalakestore.net/webhdfs/v1** 或 **adl://[帳戶名稱].azuredatalakestore.net/**。 | 是 |
+| dataLakeStoreUri | 指定有關 Azure Data Lake Store 帳戶的資訊。 它的格式如下：`https://[accountname].azuredatalakestore.net/webhdfs/v1` 或 `adl://[accountname].azuredatalakestore.net/`。 | 是 |
 | subscriptionId | Data Lake Store 所屬的 Azure 訂用帳戶識別碼。 | 接收 (Sink) 的必要項目 |
 | resourceGroupName | Data Lake Store 所屬的 Azure 資源群組名稱。 | 接收 (Sink) 的必要項目 |
 
 ### <a name="using-service-principal-authentication-recommended"></a>使用服務主體驗證 (建議)
-若要使用服務主體驗證，您必須先在 Azure Active Directory (AAD) 註冊應用程式實體，並在 Data Lake Store 中授與存取權。 之後您可以在 Azure Data Factory 中，利用對應的應用程式識別碼、應用程式金鑰及租用戶資訊，指定下列屬性以從 Data Lake Store 複製資料/將資料複製到 Data Lake Store。 如需如何設定和擷取所需的資訊，請參閱[服務對服務驗證](../data-lake-store/data-lake-store-authenticate-using-active-directory.md)。
+若要使用服務主體驗證，請在 Azure Active Directory (AAD) 中註冊應用程式實體，並授與它 Data Lake Store 的存取權。 請參閱[服務對服務驗證](../data-lake-store/data-lake-store-authenticate-using-active-directory.md)以取得詳細步驟。 請記錄下列值：「應用程式識別碼」、「應用程式金鑰」及「租用戶識別碼」。 您會將此資訊用於定義已連結的服務。 
 
 > [!IMPORTANT]
-> 使用複製精靈來撰寫時，請務必在存取控制 (IAM) 中，至少將 ADLS 帳戶的「讀者」角色授與服務主體，以及 ADLS 根 ("/") 及其子系的「讀取+執行」權限，才能順利在資料夾之間瀏覽。 否則，您可能會看到「提供的認證不正確」錯誤。
+> 如果您使用複製精靈來撰寫數據管道，請務必為服務主體至少授與 Data Lake Store 帳戶存取控制 (IAM) 中的「讀者」角色，並至少授與針對 Data Lake Store 根 ("/") 及其子系的「讀取+執行」權限。 否則，您可能會看到「提供的認證不正確」錯誤。
 >
-> 若您剛剛才從 AAD 建立/更新服務主體，可能需要幾分鐘才會實際生效。 先重複檢查服務主體和 ADLS ACL 設定，如果仍看見說明「提供的認證不正確」錯誤，請稍候再試。
->
+> 在您建立/更新 AAD 中的服務主體之後，變更可能需要幾分鐘才會實際生效。 首先，請再次檢查服務主體和 Data Lake Store ACL 設定。 如果您仍然看見錯誤：「提供的認證無效」，請稍候片刻並再試一次。
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
 | servicePrincipalId | 指定應用程式的用戶端識別碼。 | 是 |
 | servicePrincipalKey | 指定應用程式的金鑰。 | 是 |
-| tenant | 指定您的應用程式所在租用戶的資訊 (網域名稱或租用戶識別碼)。 將滑鼠游標停留在 Azure 入口網站右上角，即可擷取它。 | 是 |
+| tenant | 指定您的應用程式所在租用戶的資訊 (網域名稱或租用戶識別碼)。 將滑鼠游標暫留在 Azure 入口網站右上角，即可擷取它。 | 是 |
 
 **範例：使用服務主體驗證**
 ```json
@@ -455,7 +454,7 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 ```
 
 ### <a name="using-user-credential-authentication"></a>使用使用者認證驗證
-或者，您可以藉由指定下列屬性，使用使用者認證驗證，從 Data Lake Store 複製/複製到 Data Lake Store。
+或者，您可以藉由指定下列屬性，來透過使用者認證驗證從 Data Lake Store 複製，或是複製到 Data Lake Store。
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
@@ -480,12 +479,16 @@ Azure Data Lake Store 連接器支援「服務主體」驗證和「使用者認�
 ```
 
 #### <a name="token-expiration"></a>權杖到期
-您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。 請參閱下表以了解不同類型的使用者帳戶的到期時間。 當驗證**權杖到期**時，您可能會看到下列錯誤訊息："認證作業發生錯誤：invalid_grant - AADSTS70002：驗證認證時發生錯誤。 AADSTS70008：提供的存取授權已過期或撤銷。 追蹤識別碼：d18629e8-af88-43c5-88e3-d8419eb1fca1 相互關連識別碼：fac30a0c-6be6-4e02-8d69-a776d2ffefd7 時間戳記：2015-12-15 21-09-31Z"。
+您使用 [授權] 按鈕所產生的授權碼在一段時間後會到期。 請參閱下表以了解不同類型的使用者帳戶的到期時間。 當驗證的「權杖到期時」，您可能會看見下列錯誤訊息：
+ 
+```
+"Credential operation error: invalid_grant - AADSTS70002: Error validating credentials. AADSTS70008: The provided access grant is expired or revoked. Trace ID: d18629e8-af88-43c5-88e3-d8419eb1fca1 Correlation ID: fac30a0c-6be6-4e02-8d69-a776d2ffefd7 Timestamp: 2015-12-15 21-09-31Z".
+```
 
 | 使用者類型 | 到期時間 |
 |:--- |:--- |
 | 不受 Azure Active Directory 管理的使用者帳戶 (@hotmail.com、@live.com 等)。 |12 小時 |
-| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的&14; 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
+| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的 14 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
 如果您在此權杖的到期時間之前變更密碼，權杖會立即到期，且您會看到本節所述的錯誤。
 
@@ -530,7 +533,7 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 | fileName |Azure Data Lake Store 中的檔案名稱。 fileName 是選擇性的，而且區分大小寫。 <br/><br/>如果您指定檔案名稱，活動 (包括複製) 適用於特定的檔案。<br/><br/>如果您未指定 fileName，複製會包含 folderPath 中的所有檔案以做為輸入資料集。<br/><br/>沒有為輸出資料集指定 fileName 時，所產生的檔案名稱會是下列格式：Data<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |否 |
 | partitionedBy |partitionedBy 是選擇性的屬性。 您可以用來指定時間序列資料的動態 folderPath 和 filename。 例如，folderPath 可針對每小時的資料進行參數化。 如需詳細資訊和範例，請參閱 [使用 partitionedBy 屬性](#using-partitionedby-property) 一節。 |否 |
 | format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](#specifying-textformat)、[Json 格式](#specifying-jsonformat)、[Avro 格式](#specifying-avroformat)、[Orc 格式](#specifying-orcformat)和 [Parquet 格式](#specifying-parquetformat)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 如需詳細資訊，請參閱[指定壓縮](#specifying-compression)一節。 |否 |
+| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱[指定壓縮](#specifying-compression)一節。 |否 |
 
 ### <a name="using-partitionedby-property"></a>使用 partitionedBy 屬性
 您可以使用 **partitionedBy** 區段、Data Factory 巨集和系統變數 (SliceStart 和 SliceEnd，表示指定資料配量的開始和結束時間)，指定時間序列資料的動態 folderPath 和 filename。
@@ -569,7 +572,7 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 ## <a name="azure-data-lake-copy-activity-type-properties"></a>Azure Data Lake 複製活動類型屬性
 如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 若為複製活動，這些屬性會根據來源和接收的類型而有所不同
+而活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 若為複製活動，這些屬性會根據來源和接收的類型而有所不同
 
 **AzureDataLakeStoreSource** 支援下列屬性 **typeProperties** 區段：
 
@@ -581,7 +584,7 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| copyBehavior |指定複製行為。 |**PreserveHierarchy：**保留目標資料夾中的檔案階層。 來源檔案到來源資料夾的相對路徑，與目標檔案到目標資料夾的相對路徑相同。<br/><br/>**FlattenHierarchy：**來源資料夾的中所有檔案都會建立在目標資料夾的第一層中。 建立的目標檔案會具有自動產生的名稱。<br/><br/>**MergeFiles：**將來源資料夾的所有檔案合併為一個檔案。 如果已指定檔案/Blob 名稱，合併檔案名稱會是指定的名稱；否則，就會是自動產生的檔案名稱。 |否 |
+| copyBehavior |指定複製行為。 |<b>PreserveHierarchy</b>：保留目標資料夾中的檔案階層。 來源檔案到來源資料夾的相對路徑，與目標檔案到目標資料夾的相對路徑相同。<br/><br/><b>FlattenHierarchy</b>：來源資料夾的中所有檔案都會建立在目標資料夾的第一個層級中。 建立的目標檔案會具有自動產生的名稱。<br/><br/><b>MergeFiles</b>：將來源資料夾的所有檔案合併為一個檔案。 如果已指定檔案/Blob 名稱，合併檔案名稱會是指定的名稱；否則，就會是自動產生的檔案名稱。 |否 |
 
 [!INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
@@ -590,8 +593,5 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 [!INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
 
 ## <a name="performance-and-tuning"></a>效能和微調
-
-根據初始資料移動是否已規劃大量的歷史資料或漸進的生產資料負載，Azure Data Factory 有選項可改善這些工作的效能。 並行參數是**複製活動**的一部分，定義要平行處理多少個不同的活動時段。 **ParallelCopies** 參數定義單一活動執行的平行處理原則。 使用 Azure Data Factory 來設計資料移動管線時，務必考慮使用這些參數，以達到最佳輸送量。
-
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
 

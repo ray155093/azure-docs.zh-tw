@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: aungoo
 translationtype: Human Translation
-ms.sourcegitcommit: b84e07b26506149cf9475491b32b9ff3ea9ae80d
-ms.openlocfilehash: d72a191cceaa90f9dae69b5c2698fae1a9fb95a7
+ms.sourcegitcommit: 1cb57e5156dab976599ddfa9a58f26ca8ef1ee0e
+ms.openlocfilehash: 69fbac5acdc812917d1e022d19768a8d72955783
+ms.lasthandoff: 02/22/2017
 
 
 ---
@@ -36,7 +37,7 @@ ms.openlocfilehash: d72a191cceaa90f9dae69b5c2698fae1a9fb95a7
 
 我們特別針對進階儲存體提供這些指導方針，因為進階儲存體上執行的工作負載非常重視效能。 我們在適當的地方都提供範例。 針對在具有標準儲存體磁碟的 IaaS VM 上執行的應用程式，您也可以運用這些指導方針。
 
-開始之前，如果您不熟悉進階儲存體，請先閱讀[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md)一文和 [Azure 進階儲存體延展性和效能目標](storage-scalability-targets.md#premium-storage-accounts)。
+開始之前，如果您不熟悉進階儲存體，請先閱讀[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md)和 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)文章。
 
 ## <a name="application-performance-indicators"></a>應用程式效能指標
 我們使用效能指標來評估應用程式執行是否順暢，例如，應用程式多快處理使用者要求、應用程式在每個要求中處理多少資料、應用程式在一段特定時間內處理多少要求、使用者提交要求之後必須等候少久才獲得回應。 這些效能指標的技術性術語包括 IOPS、輸送量或頻寬及延遲。
@@ -162,10 +163,10 @@ IO 大小是其中一個很重要的因素。 IO 大小是指應用程式所產�
 
 | 應用程式需求 | I/O 大小 | IOPS | 輸送量/頻寬 |
 | --- | --- | --- | --- |
-| 最大 IOPS |8 KB |5,000 |每秒&40; MB |
-| 最大輸送量 |1024 KB |200 |每秒&200; MB |
-| 最大輸送量 + 高 IOPS |64 KB |3,200 |每秒&200; MB |
-| 最大 IOPS + 高輸送量 |32 KB |5,000 |每秒&160; MB |
+| 最大 IOPS |8 KB |5,000 |每秒 40 MB |
+| 最大輸送量 |1024 KB |200 |每秒 200 MB |
+| 最大輸送量 + 高 IOPS |64 KB |3,200 |每秒 200 MB |
+| 最大 IOPS + 高輸送量 |32 KB |5,000 |每秒 160 MB |
 
 若要讓 IOPS 和頻寬高於單一進階儲存體磁碟的最大值，請使用多個串接在一起的進階磁碟。 例如，串接兩個 P30 磁碟可產生 10,000 IOPS 的結合 IOPS，或每秒 400 MB 的結合輸送量。 如下一節所述，您使用的 VM 大小必須支援結合的磁碟 IOPS 和輸送量。
 
@@ -183,8 +184,8 @@ IO 大小是其中一個很重要的因素。 IO 大小是指應用程式所產�
 
 | VM 大小 | CPU 核心 | 記憶體 | VM 磁碟大小 | 最大 資料磁碟 | 快取大小 | IOPS | 頻寬快取 IO 限制 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Standard_DS14 |16 |112 GB |作業系統 = 1023 GB  <br> 本機 SSD = 224 GB |32 |576 GB |50,000 IOPS  <br> 每秒&amp;512; MB |4,000 IOPS 和每秒 33 MB |
-| Standard_GS5 |32 |448 GB |作業系統 = 1023 GB  <br> 本機 SSD = 896 GB |64 |4224 GB |80,000 IOPS  <br> 每秒&amp;2;,000 MB |5,000 IOPS 和每秒 50 MB |
+| Standard_DS14 |16 |112 GB |作業系統 = 1023 GB  <br> 本機 SSD = 224 GB |32 |576 GB |50,000 IOPS  <br> 每秒 512 MB |4,000 IOPS 和每秒 33 MB |
+| Standard_GS5 |32 |448 GB |作業系統 = 1023 GB  <br> 本機 SSD = 896 GB |64 |4224 GB |80,000 IOPS  <br> 每秒 2,000 MB |5,000 IOPS 和每秒 50 MB |
 
 若要檢視所有可用的 Azure VM 大小的完整清單，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 選擇可以符合並調整為期望的應用程式效能需求的 VM 大小。 此外，選擇 VM 大小時，請將下列重要因素納入考量。
 
@@ -221,7 +222,7 @@ Azure 進階儲存體目前提供三種磁碟大小。 對於 IOPS、頻寬和�
 | --- | --- | --- | --- |
 | 磁碟大小 |128 GB |512 GB |1024 GB (1 TB) |
 | 每一磁碟的 IOPS |500 |2300 |5000 |
-| 每一磁碟的輸送量 |每秒&100; MB |每秒&150; MB |每秒&200; MB |
+| 每一磁碟的輸送量 |每秒 100 MB |每秒 150 MB |每秒 200 MB |
 
 您選擇的磁碟數量取決於已選擇的磁碟大小。 您可以使用單一 P30 磁碟或多個 P10 磁碟，以滿足應用程式需求。 做決定時，請將下列因素納入考量。
 
@@ -593,9 +594,4 @@ sudo fio --runtime 30 fioreadwrite.ini
 
 * [Azure 虛擬機器中的 SQL Server 效能最佳作法](../virtual-machines/windows/sql/virtual-machines-windows-sql-performance.md)
 * [Azure 進階儲存體為 Azure VM 中的 SQL Server 提供最高效能](http://blogs.technet.com/b/dataplatforminsider/archive/2015/04/23/azure-premium-storage-provides-highest-performance-for-sql-server-in-azure-vm.aspx)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

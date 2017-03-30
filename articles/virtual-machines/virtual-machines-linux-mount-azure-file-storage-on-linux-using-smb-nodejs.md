@@ -1,6 +1,6 @@
 ---
 title: "透過 Azure CLI 1.0 使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體 | Microsoft Docs"
-description: "如何使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體。"
+description: "如何使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
 author: vlivech
@@ -15,48 +15,56 @@ ms.workload: infrastructure
 ms.date: 12/07/2016
 ms.author: v-livech
 translationtype: Human Translation
-ms.sourcegitcommit: 4d547f854df5d4801779e37ac5f22fb9551bd6bb
-ms.openlocfilehash: 73151dba33e2c05a66176ef6b895339bce167128
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 892e3c62a2ad4dc4fd0691874d46bb296e379524
+ms.openlocfilehash: ac0623a32fd1fb4a3dd9e1dd06f457da6ce56199
+ms.lasthandoff: 02/27/2017
 
 
 ---
 
-# <a name="mount-azure-file-storage-on-linux-vms-using-smb-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 利用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體
+# <a name="mount-azure-file-storage-on-linux-vms-by-using-smb-with-azure-cli-10"></a>透過 Azure CLI 1.0 使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體
 
-這篇文章說明如何使用 SMB 掛接使用 Linux VM 上的 Azure 檔案儲存體服務。  Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案共用。  這些需求包括：
+本文說明如何使用伺服器訊息區 (SMB) 通訊協定在 Linux VM 上掛接 Azure 檔案儲存體。 檔案儲存體可透過標準的 SMB 通訊協定在雲端中提供檔案共用。 這些需求包括：
 
-- [一個 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)
+* [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)
+* [安全殼層 (SSH) 公開金鑰和私密金鑰檔案](virtual-machines-linux-mac-create-ssh-keys.md)
 
-- [SSH 公開金鑰和私密金鑰檔案](virtual-machines-linux-mac-create-ssh-keys.md)
-
-
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
-您可以使用下列其中一個 CLI 版本來完成工作︰
+## <a name="cli-versions-to-use"></a>要使用的 CLI 版本
+您可以使用下列其中一個命令列介面 (CLI) 版本來完成工作︰
 
 - [Azure CLI 1.0](#quick-commands) – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0 (預覽)](virtual-machines-linux-mount-azure-file-storage-on-linux-using-smb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](virtual-machines-linux-mount-azure-file-storage-on-linux-using-smb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="quick-commands"></a>快速命令
+若要快速完成工作，請遵循本節中的步驟。 如需詳細資訊和內容，請從＜[詳細的逐步解說](virtual-machines-linux-mount-azure-file-storage-on-linux-using-smb.md#detailed-walkthrough)＞一節來開始。
 
-如果您需要快速完成工作，接下來這一節將詳細說明所需的命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](virtual-machines-linux-mount-azure-file-storage-on-linux-using-smb.md#detailed-walkthrough)。
+### <a name="prerequisites"></a>必要條件
+* 資源群組
+* Azure 虛擬網路
+* 具有 SSH 輸入的網路安全性群組
+* 子網路
+* Azure 儲存體帳戶
+* Azure 儲存體帳戶金鑰
+* Azure 檔案儲存體共用
+* Linux VM
 
-必要條件︰資源群組、VNet、具有 SSH 輸入的 NSG、子網路、Azure 儲存體帳戶、Azure 儲存體帳戶金鑰、Azure 檔案儲存體共用以及 Linux VM。 將任何範例換成您自己的設定。
+將任何範例換成您自己的設定。
 
-建立本機掛接的目錄
+### <a name="create-a-directory-for-the-local-mount"></a>建立本機掛接的目錄
 
 ```bash
 mkdir -p /mnt/mymountpoint
 ```
 
-掛接 Azure 檔案儲存體 SMB 共用至掛接點
+### <a name="mount-the-file-storage-smb-share-to-the-mount-point"></a>掛接檔案儲存體 SMB 共用至掛接點
 
 ```bash
 sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoint -o vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
 ```
 
-若要在重新開機之後保留掛接，請新增一行至 `/etc/fstab`
+### <a name="persist-the-mount-after-a-reboot"></a>在重新開機之後保留掛接
+將下面這行新增至 `/etc/fstab`：
 
 ```bash
 //myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
@@ -64,63 +72,62 @@ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoi
 
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
 
-Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案共用。  有了最新版本的檔案儲存體，您也可以從支援 SMB 3.0 的任何作業系統掛接檔案共用。  在 Linux 上使用 SMB 掛接可以讓簡單的備份成為 SLA 所支援的強大、永久封存儲存體位置。  
+檔案儲存體可在使用標準 SMB 通訊協定的雲端中提供檔案共用。 有了最新版本的檔案儲存體，您也可以從支援 SMB 3.0 的任何作業系統掛接檔案共用。 在 Linux 上使用 SMB 掛接時，您可以輕鬆地將備份放到有 SLA 支援的強大、永久封存儲存體位置。
 
-將檔案從 VM 移至裝載於 Azure 檔案儲存體的 SMB 掛接，是偵錯記錄檔的好方法，因為該相同的 SMB 共用可在本機掛接至 Mac、Linux 或 Windows 工作站。  SMB 不是即時串流 Linux 或應用程式記錄檔的最佳解決方案，因為 SMB 通訊協定不是針對如此繁重的記錄職責所建置。  專用的整合記錄層級工具，像是 Fluentd，是比透過 SMB 收集 Linux 和應用程式記錄輸出更好的選擇。
+將檔案從 VM 移至裝載在檔案儲存體上的 SMB 掛接，可方便您對記錄進行偵錯。 這是因為相同的 SMB 共用也可掛接至 Mac、Linux 或 Windows 工作站的本機上。 SMB 並非即時串流 Linux 或應用程式記錄的最佳解決方案，因為 SMB 通訊協定的建置目的不是要處理如此繁重的記錄職責。 專用的整合記錄層級工具，像是 Fluentd，是比透過 SMB 收集 Linux 和應用程式記錄輸出更好的選擇。
 
-對於此詳細逐步解說，我們會建立必要的先決條件，先建立 Azure 檔案儲存體共用，然後透過 SMB 在 Linux VM 上掛接它。
+對於此詳細逐步解說，我們會建立必要的先決條件，先建立檔案儲存體共用，然後透過 SMB 在 Linux VM 上掛接它。
 
-## <a name="create-the-azure-storage-account"></a>建立 Azure 儲存體帳戶
+1. 使用下列程式碼來建立 Azure 儲存體帳戶︰
 
-```azurecli
-azure storage account create myStorageAccount \
---sku-name lrs \
---kind storage \
--l westus \
--g myResourceGroup
-```
+    ```azurecli
+    azure storage account create myStorageAccount \
+    --sku-name lrs \
+    --kind storage \
+    -l westus \
+    -g myResourceGroup
+    ```
 
-## <a name="show-the-storage-account-keys"></a>顯示儲存體帳戶金鑰
+2. 顯示儲存體帳戶金鑰。
 
-建立儲存體帳戶時，會成對建立 Azure 儲存體帳戶金鑰。  儲存體帳戶金鑰會成對建立，因此可以輪替金鑰，不會干擾服務。  一旦您將金鑰輪替至金鑰組中的第二個金鑰，您會建立新的金鑰組。  新的儲存體帳戶金鑰一律會成對建立，確保您永遠有至少一個未使用的儲存體金鑰準備輪替。
+    在建立儲存體帳戶時，帳戶金鑰會成對建立，因此您可以輪替金鑰，而不會干擾到服務。 當您將金鑰切換為金鑰組中的第二個金鑰時，您會建立新的金鑰組。 新的儲存體帳戶金鑰一律會成對建立，確保您永遠有至少一個準備切換到的未使用儲存體金鑰。 若要顯示儲存體帳戶金鑰，請使用下列程式碼︰
 
-```azurecli
-azure storage account keys list myStorageAccount \
---resource-group myResourceGroup
-```
+    ```azurecli
+    azure storage account keys list myStorageAccount \
+    --resource-group myResourceGroup
+    ```
+3. 建立檔案儲存體共用。
 
-## <a name="create-the-azure-file-storage-share"></a>建立 Azure 檔案儲存體共用
+    檔案儲存體共用包含 SMB 共用。 配額永遠是以 GB 表示。 若要建立檔案儲存體共用，請使用下列程式碼：
 
-建立檔案儲存體共用，其中包含 SMB 共用。  配額永遠是以 GB 為單位。
+    ```azurecli
+    azure storage share create mystorageshare \
+    --quota 10 \
+    --account-name myStorageAccount \
+    --account-key nPOgPR<--snip-->4Q==
+    ```
 
-```azurecli
-azure storage share create mystorageshare \
---quota 10 \
---account-name myStorageAccount \
---account-key nPOgPR<--snip-->4Q==
-```
+4. 建立掛接點目錄。
 
-## <a name="create-the-mount-point-directory"></a>建立掛接點目錄
+    您必須在 Linux 檔案系統上建立本機目錄，以供 SMB 共用來掛接。 任何從本機掛接目錄寫入或讀取的項目會轉送給裝載於檔案儲存體上的 SMB 共用。 若要建立目錄，請使用下列程式碼：
 
-需要 Linux 檔案系統上的本機目錄以掛接 SMB 共用。  任何從本機掛接目錄寫入或讀取的項目會轉送給裝載於 Azure 檔案儲存體上的 SMB 共用。
+    ```bash
+    sudo mkdir -p /mnt/mymountdirectory
+    ```
 
-```bash
-sudo mkdir -p /mnt/mymountdirectory
-```
+5. 使用下列程式碼來掛接 SMB 共用︰
 
-## <a name="mount-the-smb-share"></a>掛接 SMB 共用
+    ```azurecli
+    sudo mount -t cifs //myStorageAccount.file.core.windows.net/mystorageshare /mnt/mymountdirectory -o vers=3.0,username=myStorageAccount,password=myStorageAccountkey,dir_mode=0777,file_mode=0777
+    ```
 
-```azurecli
-sudo mount -t cifs //myStorageAccount.file.core.windows.net/mystorageshare /mnt/mymountdirectory -o vers=3.0,username=myStorageAccount,password=myStorageAccountkey,dir_mode=0777,file_mode=0777
-```
+6. 透過重新開機持續 SMB 掛接。
 
-## <a name="persist-the-smb-mount-through-reboots"></a>透過重新開機持續 SMB 掛接
+    當您重新開機 Linux VM 時，掛接的 SMB 共用會在關機期間取消掛接。 若要在開機時重新掛接 SMB 共用，您必須新增一行至 Linux /etc/fstab。 Linux 會使用 fstab 檔案來列出它在開機程序期間所必須掛接的檔案系統。 新增 SMB 共用可確保檔案儲存體共用是 Linux VM 的永久掛接檔案系統。 當您使用 cloud-init 時，便可以將檔案儲存體 SMB 共用新增至新的 VM。
 
-一旦您重新開機 Linux VM，掛接的 SMB 共用會在關機期間取消掛接。  若要在開機時重新掛接 SMB 共用，您必須新增一行至 Linux `/etc/fstab`。  Linux 使用 `fstab` 檔案以列出它在開機期間需要掛接哪些檔案系統。  新增 SMB 共用可確保 Azure 檔案儲存體共用是 Linux VM 的永久掛接檔案系統。  可以使用 `cloud-init` 將 Azure 檔案儲存體 SMB 共用新增至新的 VM。
-
-```bash
-//myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
-```
+    ```bash
+    //myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
+    ```
 
 ## <a name="next-steps"></a>後續步驟
 

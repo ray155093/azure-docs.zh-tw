@@ -15,8 +15,9 @@ ms.workload: infrastructure
 ms.date: 10/25/2016
 ms.author: v-livech
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: 9cc4fcb68148ef64829fff6135449a3c0efb75d0
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: f5f611ce6944d37e0afcc9a14fa79d0356d55347
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -47,10 +48,10 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 它是專屬�
 
 * [在 Azure 入口網站中建立完整格式的網域名稱](virtual-machines-linux-portal-create-fqdn.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-## <a name="virtual-nics"></a>虛擬 NIC
+## <a name="network-interfaces"></a>網路介面
 網路介面 (NIC) 是虛擬機器 (VM) 與基礎軟體網路之間互相連線的橋樑。 本文說明什麼是網路介面，以及在 Azure Resource Manager 部署模型中如何加以使用。
 
-* [虛擬網路介面概觀](../virtual-network/virtual-network-network-interface-overview.md)
+* [虛擬網路介面](../virtual-network/virtual-network-network-interface.md)
 
 ## <a name="virtual-nics-and-dns-labeling"></a>虛擬 NIC 和 DNS 標籤
 如果您有需要持續運作的伺服器，但是該伺服器被視為 cattle 並且頻繁地拆除和部署，您會想要在您的 NIC 上使用 DNS 標籤以在 VNET 上保持名稱。  您將使用下列逐步解說，設定持續具名的 NIC 與靜態 IP。
@@ -66,10 +67,5 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 它是專屬�
 Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡器可藉由在負載平衡器集合中，將連入流量分散於雲端服務或虛擬機器中狀況良好的服務執行個體之間，來提供高可用性。 Azure Load Balancer 也會在多個連接埠、多個 IP 位址或兩者上顯示這些服務。
 
 * [使用 Azure CLI 建立內部負載平衡器](../load-balancer/load-balancer-get-started-internet-arm-cli.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

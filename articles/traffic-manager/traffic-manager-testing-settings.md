@@ -1,6 +1,6 @@
 ---
-title: "測試流量管理員設定 | Microsoft Docs"
-description: "本文將協助您測試流量管理員設定"
+title: "驗證 Azure 流量管理員設定 | Microsoft Docs"
+description: "此文章將協助您驗證流量管理員設定"
 services: traffic-manager
 documentationcenter: 
 author: kumudd
@@ -12,16 +12,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/11/2016
+ms.date: 03/16/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 69b94c93ad3e9c9745af8485766b4237cac0062c
-ms.openlocfilehash: 713c01f1a15791ad19792bc58a2c32f8ce787720
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: aadff1806a7cb22347283143563467366e857569
+ms.lasthandoff: 03/18/2017
 
 ---
 
-# <a name="test-your-traffic-manager-settings"></a>測試流量管理員設定
+# <a name="verify-traffic-manager-settings"></a>驗證流量管理員設定
 
 若要測試您的流量管理員設定，您需要有在不同位置的多個用戶端，讓您可以從中執行測試。 然後，在流量管理員設定檔中一次關閉一個端點。
 

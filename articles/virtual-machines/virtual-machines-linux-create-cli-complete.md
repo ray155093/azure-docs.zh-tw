@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure CLI 2.0 建立 Linux 環境 | Microsoft Docs"
-description: "使用 Azure CLI 2.0 (預覽) 從頭開始建立儲存體、Linux VM、虛擬網路和子網路、負載平衡器、NIC、公用 IP 以及網路安全性群組。"
+description: "使用 Azure CLI 2.0，從頭開始建立儲存體、Linux VM、虛擬網路和子網路、負載平衡器、NIC、公用 IP 以及網路安全性群組。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -13,16 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 12/8/2016
+ms.date: 03/07/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: e64449991bc28427d8f559ed13c3bdf9160488db
-ms.openlocfilehash: d8308ed6ec03457bd0ec30d34166631357e2b60f
+ms.sourcegitcommit: d4cff286de1abd492ce7276c300b50d71f06345b
+ms.openlocfilehash: f07a326aa2fcd659f69265001293c9ed332bb842
+ms.lasthandoff: 02/27/2017
 
 
 ---
-# <a name="create-a-complete-linux-environment-by-using-the-azure-cli-20-preview"></a>使用 Azure CLI 2.0 (預覽) 建立完整的 Linux 環境
-在這篇文章中，我們將建立一個簡單的網路，當中包含一個負載平衡器，以及一組對開發和簡單運算而言相當實用的 VM。 我們將以逐個命令的方式逐步完成程序命令，直到您具備兩個可供您透過網際網路從任何地方連線的有效、安全 Linux VM 為止。 然後您便可以繼續著手更複雜的網路和環境。
+# <a name="create-a-complete-linux-environment-with-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立完整的 Linux 環境
+在這篇文章中，我們將建立一個簡單的網路，當中包含一個負載平衡器，以及一組對開發和簡單運算而言相當實用的 VM。 我們將以逐個命令的方式逐步完成程序命令，直到您具備兩個可供您透過網際網路從任何地方連線的有效、安全 Linux VM 為止。 然後您便可以繼續著手更複雜的網路和環境。 本文詳述如何使用 Azure CLI 2.0 來建置環境。 您也可以使用 [Azure CLI 1.0](virtual-machines-linux-create-cli-complete-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
 
 在過程中，您將了解 Resource Manager 部署模型提供給您的相依性階層，以及它提供多少功能。 在您了解系統建置的方式之後，您就可以使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)更快地建置系統。 此外，在您了解環境的組件彼此如何搭配運作之後，就可以更輕鬆地建立範本來將它們自動化。
 
@@ -34,18 +35,12 @@ ms.openlocfilehash: d8308ed6ec03457bd0ec30d34166631357e2b60f
 
 ![基本環境概觀](./media/virtual-machines-linux-create-cli-complete/environment_overview.png)
 
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
-您可以使用下列其中一個 CLI 版本來完成工作︰
-
-- [Azure CLI 1.0](virtual-machines-linux-create-cli-complete-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0 (預覽)](#quick-commands) - 適用於資源管理部署模型的新一代 CLI (本文章)
-
 ## <a name="quick-commands"></a>快速命令
 如果您需要快速完成工作，下列章節詳細說明上傳 VM 至 Azure 的基本命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，從[這裡](#detailed-walkthrough)開始。
 
 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`mystorageaccount` 和 `myVM`。
 
-若要建立此自訂環境，您需要安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
+若要建立此自訂環境，您需要安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
 首先，使用 [az group create](/cli/azure/group#create)建立資源群組。 下列範例會在 `westeurope` 位置建立名為 `myResourceGroup` 的資源群組：
 
@@ -53,7 +48,7 @@ ms.openlocfilehash: d8308ed6ec03457bd0ec30d34166631357e2b60f
 az group create --name myResourceGroup --location westeurope
 ```
 
-使用 [az storage account create](/cli/azure/storage/account#create) 建立儲存體帳戶。 下列範例會建立名為 `mystorageaccount` 的儲存體帳戶。 (儲存體帳戶名稱必須是唯一的，因此請提供您自己的唯一名稱。)
+下一個步驟為選用步驟。 使用 Azure CLI 2.0 建立 VM 時的預設動作是使用 Azure 受控磁碟。 如需 Azure 受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md)。 如果您想改為使用非受控磁碟，您需要使用 [az storage account create](/cli/azure/storage/account#create) 建立儲存體帳戶。 下列範例會建立名為 `mystorageaccount` 的儲存體帳戶。 (儲存體帳戶名稱必須是唯一的，因此請提供您自己的唯一名稱。)
 
 ```azurecli
 az storage account create --resource-group myResourceGroup --location westeurope \
@@ -164,10 +159,11 @@ az network nic create --resource-group myResourceGroup --location westeurope --n
 
 ```azurecli
 az vm availability-set create --resource-group myResourceGroup --location westeurope \
-  --name myAvailabilitySet
+  --name myAvailabilitySet \
+  --platform-fault-domain-count 3 --platform-update-domain-count 2
 ```
 
-使用 [az vm create](/cli/azure/vm#create)建立第一個 Linux VM。 下列範例會建立名為 `myVM1` 的 VM：
+使用 [az vm create](/cli/azure/vm#create)建立第一個 Linux VM。 下列範例使用 Azure 受控磁碟建立名為 `myVM1` 的 VM。 如果您想要使用非受控磁碟，請參閱下列其他附註。
 
 ```azurecli
 az vm create \
@@ -176,13 +172,16 @@ az vm create \
     --location westeurope \
     --availability-set myAvailabilitySet \
     --nics myNic1 \
-    --vnet myVnet \
-    --subnet-name mySubnet \
-    --nsg myNetworkSecurityGroup \
-    --storage-account mystorageaccount \
     --image UbuntuLTS \
     --ssh-key-value ~/.ssh/id_rsa.pub \
-    --admin-username ops
+    --admin-username azureuser
+```
+
+如果您使用 Azure 受控磁碟，請略過此步驟。 如果您想使用非受控磁碟，且您已在先前步驟中建立儲存體帳戶，您必須將一些其他參數新增至後續命令。 將下列其他參數新增至後續命令，以在名為 `mystorageaccount` 的儲存體帳戶中建立非受控磁碟： 
+
+```azurecli
+  --use-unmanaged-disk \
+  --storage-account mystorageaccount
 ```
 
 再次使用 **az vm create** 建立第二個 Linux VM。 下列範例會建立名為 `myVM2` 的 VM：
@@ -194,14 +193,17 @@ az vm create \
     --location westeurope \
     --availability-set myAvailabilitySet \
     --nics myNic2 \
-    --vnet myVnet \
-    --subnet-name mySubnet \
-    --nsg myNetworkSecurityGroup \
-    --storage-account mystorageaccount \
     --image UbuntuLTS \
     --ssh-key-value ~/.ssh/id_rsa.pub \
-    --admin-username ops
+    --admin-username azureuser
 ```
+
+此外，如果您未使用預設 Azure 受控磁碟，將下列其他參數新增至後續命令，以在名為 `mystorageaccount` 的儲存體帳戶中建立非受控磁碟：
+
+```azurecli
+  --use-unmanaged-disk \
+  --storage-account mystorageaccount
+``` 
 
 確認已使用 [az vm show](/cli/azure/vm#show)正確建置的一切：
 
@@ -219,7 +221,7 @@ az group export --name myResourceGroup > myResourceGroup.json
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
 接下來的詳細步驟將說明您建置環境時每個命令的功能。 當您建置自己的自訂開發環境或生產環境時，這些概念會相當有用。
 
-請確定您已安裝最新的 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
+請確定您已安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`mystorageaccount` 和 `myVM`。
 
@@ -245,7 +247,9 @@ az group create --name myResourceGroup --location westeurope
 ```
 
 ## <a name="create-a-storage-account"></a>建立儲存體帳戶
-您需要儲存體帳戶來用於您的 VM 磁碟和任何您想要新增的額外資料磁碟。 您幾乎是在建立資源群組之後立即建立儲存體帳戶。
+下一個步驟為選用步驟。 使用 Azure CLI 2.0 建立 VM 時的預設動作是使用 Azure 受控磁碟。 這些磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。 如需 Azure 受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md)。 如果您想要使用 Azure 受控磁碟，請跳至[建立虛擬網路和子網路](#create-a-virtual-network-and-subnet)。 
+
+如果您想使用非受控磁碟，您必須針對您的 VM 磁碟和任何您想要新增的其他資料磁碟，建立儲存體帳戶。
 
 在這裡，我們使用 [az storage account create](/cli/azure/storage/account#create) 命令，其中會傳遞帳戶的位置、控制它的資源群組，以及您想要的儲存體支援類型。 下列範例會建立名為 `mystorageaccount` 的儲存體帳戶：
 
@@ -556,7 +560,7 @@ az network lb probe create --resource-group myResourceGroup --lb-name myLoadBala
 }
 ```
 
-在這裡，我們指定了 15 秒的健全狀況檢查間隔。 最多可錯過&4; 次探查 (1 分鐘)，負載平衡器才會將該主機視為已不再運作。
+在這裡，我們指定了 15 秒的健全狀況檢查間隔。 最多可錯過 4 次探查 (1 分鐘)，負載平衡器才會將該主機視為已不再運作。
 
 讓我們繼續進行，並針對 web 流量建立 TCP 連接埠 80 的 NAT 規則，以將規則連結到我們的 IP 集區。 如果我們將規則連結到 IP 集區，而不是將規則個別連結到 VM，則我們可在 IP 集區中新增或移除 VM。 負載平衡器會自動調整流量的流動。 下列範例會使用 [az network lb rule create](/cli/azure/network/lb/rule#create) 來建立名為 `myLoadBalancerRuleWeb` 的規則，將 TCP 連接埠 80 對應至連接埠 80，並連結名為 `myHealthProbe` 的健全狀況探查：
 
@@ -983,7 +987,8 @@ az network nic create --resource-group myResourceGroup --location westeurope --n
 
 ```azurecli
 az vm availability-set create --resource-group myResourceGroup --location westeurope \
-  --name myAvailabilitySet
+  --name myAvailabilitySet \
+  --platform-fault-domain-count 3 --platform-update-domain-count 2
 ```
 
 容錯網域定義一個虛擬機器群組，且群組內的虛擬機器會共用通用電源和網路交換器。 根據預設，可用性設定組內設定的虛擬機器最多可分散到三個容錯網域。 這裡的概念是，其中一個容錯網域中的硬體問題將不會影響每個執行您應用程式的 VM。 將多個 VM 放在一個可用性設定組中時，Azure 會自動將它們分散到容錯網域。
@@ -994,11 +999,11 @@ az vm availability-set create --resource-group myResourceGroup --location westeu
 
 
 ## <a name="create-the-linux-vms"></a>建立 Linux VM
-您已建立儲存體和網路資源來支援可存取網際網路的 VM。 現在，讓我們建立這些 VM，並利用沒有密碼的 SSH 金鑰來保障其安全。 在此情況下，我們要根據最新的 LTS 建立 Ubuntu VM。 我們會使用 [az vm image list](/cli/azure/vm/image#list)來找出該映像資訊 (如 [尋找 Azure VM 映像](virtual-machines-linux-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)所述)。
+您已建立網路資源來支援可存取網際網路的 VM。 現在，讓我們建立這些 VM，並利用沒有密碼的 SSH 金鑰來保障其安全。 在此情況下，我們要根據最新的 LTS 建立 Ubuntu VM。 我們會使用 [az vm image list](/cli/azure/vm/image#list)來找出該映像資訊 (如 [尋找 Azure VM 映像](virtual-machines-linux-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)所述)。
 
 我們也會指定要用於驗證的 SSH 金鑰。 如果您沒有任何 SSH 金鑰，可以使用[這些指示](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來建立它們。 或者，您也可以使用 `--admin-password` 方法，在 VM 建立後驗證 SSH 連線。 這個方法通常較不安全。
 
-我們會使用 [az vm create](/cli/azure/vm#create) 命令將所有資源和資訊結合在一起來建立 VM：
+我們會使用 [az vm create](/cli/azure/vm#create) 命令將所有資源和資訊結合在一起來建立 VM。 下列範例使用 Azure 受控磁碟建立名為 `myVM1` 的 VM。 如果您想要使用非受控磁碟，請參閱下列其他附註。
 
 ```azurecli
 az vm create \
@@ -1007,13 +1012,16 @@ az vm create \
     --location westeurope \
     --availability-set myAvailabilitySet \
     --nics myNic1 \
-    --vnet myVnet \
-    --subnet-name mySubnet \
-    --nsg myNetworkSecurityGroup \
-    --storage-account mystorageaccount \
     --image UbuntuLTS \
     --ssh-key-value ~/.ssh/id_rsa.pub \
-    --admin-username ops
+    --admin-username azureuser
+```
+
+如果您使用 Azure 受控磁碟，請略過此步驟。 如果您想使用非受控磁碟，且您已在先前步驟中建立儲存體帳戶，您必須將一些其他參數新增至後續命令。 將下列其他參數新增至後續命令，以在名為 `mystorageaccount` 的儲存體帳戶中建立非受控磁碟： 
+
+```azurecli
+  --use-unmanaged-disk \
+  --storage-account mystorageaccount
 ```
 
 輸出：
@@ -1066,14 +1074,17 @@ az vm create \
     --location westeurope \
     --availability-set myAvailabilitySet \
     --nics myNic2 \
-    --vnet myVnet \
-    --subnet-name mySubnet \
-    --nsg myNetworkSecurityGroup \
-    --storage-account mystorageaccount \
     --image UbuntuLTS \
     --ssh-key-value ~/.ssh/id_rsa.pub \
-    --admin-username ops
+    --admin-username azureuser
 ```
+
+此外，如果您未使用預設 Azure 受控磁碟，將下列其他參數新增至後續命令，以在名為 `mystorageaccount` 的儲存體帳戶中建立非受控磁碟：
+
+```azurecli
+  --use-unmanaged-disk \
+  --storage-account mystorageaccount
+``` 
 
 此時，您的 Ubuntu VM 是在 Azure 中的負載平衡器後方執行，您只能利用 SSH 金鑰組來登入 (因為密碼已被停用)。 您可以安裝 nginx 或 httpd、部署 Web 應用程式，然後查看經由負載平衡器流向兩個 VM 的流量。
 
@@ -1098,9 +1109,4 @@ az group deployment create --resource-group myNewResourceGroup \
 
 ## <a name="next-steps"></a>後續步驟
 現在您已準備好開始使用多個網路元件和 VM。 您可以利用這裡介紹的核心元件，使用這個範例環境來建置您的應用程式。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

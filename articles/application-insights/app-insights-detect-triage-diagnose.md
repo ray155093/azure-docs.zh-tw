@@ -4,18 +4,19 @@ description: "分析損毀及偵測和診斷應用程式的效能問題"
 author: alancameronwills
 services: application-insights
 documentationcenter: 
-manager: douge
+manager: carmonm
 ms.assetid: 6ccab5d4-34c4-4303-9d3b-a0f1b11e6651
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 10/01/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
-ms.openlocfilehash: 1af63c31a8cb7995f64813c12d32b283745c04ed
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 05fe4996a8a9c886f2f1b61471dc80550633ecf6
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -69,7 +70,7 @@ Marcela Markova 是 OBS 小組的資深開發人員，主導線上效能監視�
 
 瀏覽器頁面載入時間是從網頁直接傳送的遙測所衍生。 伺服器回應時間、伺服器要求計數和失敗的要求計數，都是在 Web 伺服器中測量，然後從該處傳送到 Application Insights。
 
-Marcela 對於伺服器回應圖表有點擔心，該圖表會顯示伺服器自收到使用者瀏覽器的 HTTP 要求，直到瀏覽器傳回回應這段期間的平均時間。 在這個圖表中看到差異並無不尋常，因為各系統的負載不同。 但在此情況下，要求數量些微增加與回應時間大幅增加似乎有某種關係。 這可能表示系統到達運作極限。
+Marcela 有些擔心伺服器回應圖形。 此圖表會顯示伺服器自收到使用者瀏覽器的 HTTP 要求，直到傳回回應這段期間的平均時間。 在這個圖表中看到差異並無不尋常，因為各系統的負載不同。 但在此情況下，要求數量些微增加與回應時間大幅增加似乎有某種關係。 這可能表示系統到達運作極限。
 
 她將「伺服器」圖表打開：
 
@@ -89,7 +90,7 @@ Marcela 對於伺服器回應圖表有點擔心，該圖表會顯示伺服器自
 ## <a name="smart-detection-alerts"></a>智慧型偵測警示
 隔天，確實收到了一封來自 Application Insights 的電子郵件。 但是開啟郵件之後，她發現並不是她所設定的回應時間警示。 而是郵件告知她失敗的要求 (也就是傳回 500 或更高數字之失敗代碼的要求) 數目突然提高。
 
-發生失敗的要求時使用者會看到錯誤，通常是在程式碼中擲出例外狀況之後。 也許他們看到訊息指出「很抱歉，我們目前無法更新您的詳細資料」，或是在最遭的情況下，出自於 Web 伺服器，在使用者畫面上出現堆疊傾印。
+發生失敗的要求時使用者會看到錯誤，通常是在程式碼中擲出例外狀況之後。 也許他們會看到訊息指出 「抱歉，我們現在無法更新您的詳細資料。 」 或者，極度尷尬的是，使用者的螢幕上會顯示堆疊傾印 (出自於 Web 伺服器禮貌回應)。
 
 這個警示令人驚訝，因為她上次查看時，失敗的要求計數很低，完全不用擔心。 其中一小部分的失敗預期是在忙碌的伺服器中。
 
@@ -97,7 +98,7 @@ Marcela 對於伺服器回應圖表有點擔心，該圖表會顯示伺服器自
 
 ![主動診斷電子郵件](./media/app-insights-detect-triage-diagnose/21.png)
 
-這封電子郵件非常有幫助。 它不只是發出警示，它也會進行許多分級和診斷工作。
+這封電子郵件非常有幫助。 它不只是發出警示。 它也會進行許多分級和診斷工作。
 
 它會顯示有多少客戶，以及哪些網頁或作業受到影響。 Marcela 可以決定是否需要動員整個小組來處理此問題，或者可以延後到下週再處理。
 
@@ -145,16 +146,16 @@ Fabrikam 銀行小組制定出一律在發生例外狀況時傳送遙測的作�
        telemetry.TrackEvent("transfer failed", properties, measurements);
     }
 
-TrackException 用來報告例外狀況，因為它會傳送堆疊的副本；TrackEvent 用來報告其他事件。 您可以在診斷中附加可能有幫助的任何屬性。
+TrackException 用來報告例外狀況，因為它會傳送堆疊的副本。 TrackEvent 用來報告其他事件。 您可以在診斷中附加可能有幫助的任何屬性。
 
 例外狀況和事件會顯示在 [[診斷搜尋](app-insights-diagnostic-search.md)] 刀鋒視窗中。 您可以深入探索，以查看額外屬性和堆疊追蹤。
 
 ![在「診斷搜尋」中，請使用篩選器來顯示特定類型的資料](./media/app-insights-detect-triage-diagnose/appinsights-333facets.png)
 
 ## <a name="monitoring-user-activity"></a>監視使用者活動
-如果回應時間一直都不錯，只是有一些例外狀況，開發團隊可以思考如何改善使用者體驗，以及如何鼓勵更多使用者來達成想要的目標。
+當回應時間一直都不錯，而且例外狀況不多時，開發小組可以繼續往可用性的方向努力。 他們可以思考如何改善使用者體驗，以及如何鼓勵更多使用者達到想要的目標。
 
-例如，許多使用者在瀏覽網站時都會發生一個清楚的「漏斗」歷程：許多客戶查看不同類型的貸款利率；其中一些客戶填寫報價單；而在獲得報價的客戶中，只有少數會繼續且獲得貸款。
+例如，使用者在網站上的典型使用者旅程是明確的「漏斗圖」。 許多客戶會研究不同類型的貸款利率。 少部分的客戶會繼續填寫報價單。 在取得報價單的客戶當中，有一部分會繼續，並取得貸款。
 
 ![頁面檢視計數](./media/app-insights-detect-triage-diagnose/12-funnel.png)
 
@@ -219,6 +220,10 @@ Application Insights 也可以用來了解使用者在應用程式內執行的�
 ## <a name="your-applications"></a>您的應用程式
 以上就是一個小組如何使用 Application Insights 來不只是修正個別問題，還改善其開發週期的情況。 希望這已提供您一些概念，讓您了解 Application Insights 如何協助您在自己的應用程式中進行應用程式效能管理。
 
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
+
 ## <a name="next-steps"></a>後續步驟
 視您的應用程式特性而定，您可以從數種方式著手。 請挑選最適合您的方式：
 
@@ -228,9 +233,4 @@ Application Insights 也可以用來了解使用者在應用程式內執行的�
 * 裝載於 [IIS](app-insights-monitor-web-app-availability.md)、[J2EE](app-insights-java-live.md) 或 [Azure](app-insights-azure.md) 上的已部署應用程式。
 * [網頁](app-insights-javascript.md) - 單頁應用程式或一般網頁 - 單獨使用此選項或作為任何伺服器選項以外的附加選項。
 * 可從公用網際網路測試您應用程式的[可用性測試](app-insights-monitor-web-app-availability.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

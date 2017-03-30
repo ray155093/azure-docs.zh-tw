@@ -16,8 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 01/09/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 407b189af12116d633ed505facf4bcfde9be5822
-ms.openlocfilehash: 609f2a06b1091a61cd95c54ea9f62888e11f16c1
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 7cf81f2081e7927e4d68b7d0c8ca185f891fdc8d
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -82,8 +83,8 @@ D 系列、Dv2 系列和 G 系列 VM 的暫存磁碟機皆為 SSD 式。 如果�
 對於支援「進階儲存體」的 VM (DS 系列、DSv2 系列與 GS 系列)，建議您將 TempDB 儲存在支援「進階儲存體」且啟用讀取快取的磁碟上。 這項建議有一個例外，如果 TempDB 使用方式是密集寫入，您可以將 TempDB 儲存在本機的 **D** 磁碟機 (在這些機器大小上也是 SSD 型) 上以達到更高的效能。
 
 ### <a name="data-disks"></a>資料磁碟
-* **將資料磁碟用於資料檔和記錄檔**：至少使用 2 個「進階儲存體」[P30 磁碟](../../../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets)，一個儲存記錄檔，另一個儲存資料檔和 TempDB。
-* **磁碟等量分割**︰如需更多的輸送量，您可以新增其他資料磁碟，並使用「磁碟等量分割」。 若要判斷需要的資料磁碟數量，您需要分析資料和記錄磁碟可用的 IOPS 數量。 這項資訊的詳細資訊請參閱根據 [VM 大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)分類的 IOPS 表格，以及下列[針對磁碟使用進階儲存體](../../../storage/storage-premium-storage.md)文章中的磁碟大小。 使用下列指引︰
+* **將資料磁碟用於資料檔和記錄檔**：至少使用 2 個進階儲存體 [P30 磁碟](../../../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets)，一個磁碟包含記錄檔，另一個則包含資料和 TempDB 檔案。 每個進階儲存體磁碟會根據其大小提供數個 IOPS 和頻寬 (MB/s)，如下列文章所述：[針對磁碟使用進階儲存體](../../../storage/storage-premium-storage.md)。 
+* **磁碟等量分割**︰如需更多的輸送量，您可以新增其他資料磁碟，並使用「磁碟等量分割」。 為了判斷資料磁碟的數目，您需要分析記錄檔以及資料和 TempDB 檔案所需的 IOPS 和頻寬數目。 請注意，不同的 VM 大小在支援的 IOPS 和頻寬數目上有不同的限制，請參閱每個 [VM 大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)的 IOPS 相關表格。 請使用下列指引：
 
   * 若為 Windows 8/Windows Server 2012 以上版本，請參閱 [儲存空間](https://technet.microsoft.com/library/hh831739.aspx)。 將 OLTP 工作負載的等量磁碟區大小設為 64 KB，資料倉儲的工作負載則設為 256 KB，以避免分割對齊錯誤影響效能。 此外，設定資料行計數 = 實體磁碟數量。 若要設定磁碟超過 8 個的儲存空間，您必須使用 PowerShell (非伺服器管理員 UI)，以明確地將資料行計數設定為符合磁碟的數量。 如需設定[儲存空間](https://technet.microsoft.com/library/hh831739.aspx)的詳細資訊，請參閱 [Windows PowerShell 中的儲存空間 Cmdlet](https://technet.microsoft.com/library/jj851254.aspx)
   * 對於 Windows 2008 R2 之前的版本，可以使用動態磁碟 (OS 分割的磁碟區)，且等量磁碟區的大小一律為 64 KB。 請注意，Windows 8/Windows Server 2012 已不再提供此選項。 如需相關資訊，請參閱 [虛擬磁碟服務正轉換為 Windows 存放管理 API](https://msdn.microsoft.com/library/windows/desktop/hh848071.aspx)中的支援聲明。
@@ -134,9 +135,4 @@ D 系列、Dv2 系列和 G 系列 VM 的暫存磁碟機皆為 SSD 式。 如果�
 如需安全性的最佳作法，請參閱 [Azure 虛擬機器中的 SQL Server 安全性考量](virtual-machines-windows-sql-security.md)。
 
 請檢閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)中的其他「SQL Server 虛擬機器」主題。
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

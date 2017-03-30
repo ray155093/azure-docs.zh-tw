@@ -1,3 +1,8 @@
+## <a name="microsoft-open-source-code-of-conduct"></a>Microsoft 開放原始碼管理辦法
+
+此專案採用 [Microsoft 開放原始碼管理辦法](https://opensource.microsoft.com/codeofconduct/)。
+如需詳細資訊，請參閱[管理辦法常見問題集](https://opensource.microsoft.com/codeofconduct/faq/)，如有任何其他問題或意見請連絡 [opencode@microsoft.com](mailto:opencode@microsoft.com)。
+
 # <a name="azure-technical-documentation-contributor-guide"></a>Azure 技術文件參與者指南
 您已經找到 GitHub 存放庫，此處存放發佈於 [https://docs.microsoft.com/azure](https://docs.microsoft.com/azure) 之 Azure 技術文件的來源。
 
@@ -20,9 +25,6 @@
 
 * 您可以在 GitHub 使用者介面輕鬆地參與技術文件。 在此存放庫中尋找文章，或瀏覽 [https://docs.microsoft.com/azure](https://docs.microsoft.com/azure) 上的文章，然後按一下其中的連結以前往文章的 GitHub 來源。
 * 如果要大幅變更現有文章、新增或變更圖片或是參與編輯新文章，您還需要先取用其儲存機制、安裝 Git Bash 和 MarkdownPad，並學習一些 Git 命令才行。
-
-## <a name="code-of-conduct"></a>管理辦法
-此專案採用 [Microsoft 開放原始碼管理辦法](https://opensource.microsoft.com/codeofconduct/)。 如需詳細資訊，請參閱[管理辦法常見問題集](https://opensource.microsoft.com/codeofconduct/faq/)，如有任何其他問題或意見請連絡 [opencode@microsoft.com](mailto:opencode@microsoft.com)。
 
 ## <a name="about-your-contributions-to-azure-content"></a>關於您對 Azure 內容的參與
 ### <a name="minor-corrections"></a>小幅度修正
@@ -83,9 +85,4 @@ azure-docs 存放庫中的內容會遵循 https://docs.microsoft.com/azure 上�
 
 ## <a name="more-resources"></a>其他資源
 如需所有指引主題，請參閱[參與者指南索引](contributor-guide/contributor-guide-index.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

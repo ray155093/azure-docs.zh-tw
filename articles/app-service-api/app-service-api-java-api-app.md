@@ -28,8 +28,8 @@ ms.lasthandoff: 01/05/2017
 
 ## <a name="prerequisites"></a>必要條件
 1. [Java Developer Kit 8] \(或更新版本)
-2. [Maven] 
-3. [Git] 
+2. 安裝在您開發電腦上的 [Maven]
+3. 安裝在您開發電腦上的 [Git]
 4. 付費或[免費試用]的 [Microsoft Azure] 訂用帳戶
 5. HTTP 測試應用程式，例如 [Postman]
 

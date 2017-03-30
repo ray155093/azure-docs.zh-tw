@@ -8,16 +8,17 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 1f174323-c17b-428c-903d-04f0e272784c
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/23/2017
+ms.date: 03/21/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: d9efecfaf0b9e461182328b052252b114d78ce39
-ms.openlocfilehash: 840db75456e8383cf4343e2170a55dc50cbb68dd
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: c801dc221d4aaa2c3ed0a7d10c5d58065b26e427
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -34,16 +35,15 @@ ms.lasthandoff: 02/24/2017
 
 * 以 Data Lake Store 做為儲存體的 Azure HDInsight Spark 叢集。 如需相關指示，請參閱[使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
 
-    > [!IMPORTANT]
-       > 如果您使用 Data Lake Store 做為叢集的主要儲存體，請確定您建立了 Spark 1.6 版叢集。
-      >
-       >
-
+    
 ## <a name="prepare-the-data"></a>準備資料
 
-如果您已建立以 Data Lake Store 做為預設儲存體的 HDInsight 叢集，您需要執行這個步驟，因為叢集建立程序會在 Data Lake Store 中新增您在建立叢集時指定的一些範例資料。
+> [!NOTE]
+> 如果您建立具 Data Lake Store 的 HDInsight 叢集做為預設儲存體，則不需執行此步驟。 叢集建立程序會在您建立叢集時所指定的 Data Lake Store 帳戶中新增一些範例資料。 請略過[使用具有 Data Lake Store 的 HDInsight Spark 叢集](#use-an-hdinsight-spark-cluster-with-data-lake-store)一節。
+>
+>
 
-如果您建立的 HDInsight 叢集以 Data Lake Store 做為額外的儲存體並以 Azure 儲存體 Blob 做為預設儲存體，您應該先將某些範例資料複製到 Data Lake Store 帳戶。 您可以使用與 HDInsight 叢集相關聯之 Azure 儲存體 Blob 中的資料範例。 您可以使用 [ADLCopy 工具](http://aka.ms/downloadadlcopy) 來執行此動作。 從連結下載並安裝此工具。
+如果您建立具有 Data Lake Store 的 HDInsight Spark 叢集做為額外的儲存體並以 Azure 儲存體 Blob 做為預設儲存體，您應該先將某些範例資料複製到 Data Lake Store 帳戶。 您可以使用與 HDInsight 叢集相關聯之 Azure 儲存體 Blob 中的資料範例。 您可以使用 [ADLCopy 工具](http://aka.ms/downloadadlcopy) 來執行此動作。 從連結下載並安裝此工具。
 
 1. 開啟命令提示字元，並瀏覽至安裝 AdlCopy 的目錄，通常是 `%HOMEPATH%\Documents\adlcopy`。
 
@@ -98,7 +98,7 @@ ms.lasthandoff: 02/24/2017
     * 如果您以 Data Lake Store 做為預設儲存體，HVAC.csv 會位於類似下列 URL 的路徑︰
 
             adl://<data_lake_store_name>.azuredatalakestore.net/<cluster_root>/HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv
-    
+
         或者，您也可以使用縮短的格式如下︰
 
             adl:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv
@@ -111,20 +111,20 @@ ms.lasthandoff: 02/24/2017
 
             # Load the data. The path below assumes Data Lake Store is default storage for the Spark cluster
             hvacText = sc.textFile("adl://MYDATALAKESTORE.azuredatalakestore.net/cluster/mysparkcluster/HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
-            
+
             # Create the schema
             hvacSchema = StructType([StructField("date", StringType(), False),StructField("time", StringType(), False),StructField("targettemp", IntegerType(), False),StructField("actualtemp", IntegerType(), False),StructField("buildingID", StringType(), False)])
-            
+
             # Parse the data in hvacText
             hvac = hvacText.map(lambda s: s.split(",")).filter(lambda s: s[0] != "Date").map(lambda s:(str(s[0]), str(s[1]), int(s[2]), int(s[3]), str(s[6]) ))
-            
+
             # Create a data frame
             hvacdf = sqlContext.createDataFrame(hvac,hvacSchema)
-            
+
             # Register the data fram as a table to run queries against
             hvacdf.registerTempTable("hvac")
 
-6. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#choose-between-the-kernels)。
+6. 由於您使用的是 PySpark 核心，因此現在可直接在您剛才使用 `%%sql` magic 建立的暫存資料表 **hvac** 上執行 SQL 查詢。 如需 `%%sql` magic 及 PySpark 核心提供的其他 magic 的詳細資訊，請參閱 [使用 Spark HDInsight 叢集之 Jupyter Notebook 上可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md#parameters-supported-with-the-sql-magic)。
 
         %%sql
         SELECT buildingID, (targettemp - actualtemp) AS temp_diff, date FROM hvac WHERE date = \"6/1/13\"

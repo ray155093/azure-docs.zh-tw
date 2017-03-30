@@ -1,6 +1,6 @@
 ---
-title: "建立 Azure Linux VM 的複本 | Microsoft Docs"
-description: "了解如何在 Resource Manager 部署模型中建立 Azure Linux 虛擬機器的複本"
+title: "使用 Azure CLI 1.0 建立 Linux VM 的複本 | Microsoft Docs"
+description: "了解如何在 Resource Manager 部署模型中，使用 Azure CLI 1.0 建立 Azure Linux 虛擬機器的複本"
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -12,15 +12,16 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 07/28/2016
+ms.date: 03/22/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: fc5d84768213f1c9358bfcffd77868c25b6c24a4
-ms.openlocfilehash: 9920e86a00793928bdfae5bc4e9dac161ed56ad0
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: e1fa4ab140c553cab4dc535f750398d633bbb8d2
+ms.lasthandoff: 03/21/2017
 
 
 ---
-# <a name="create-a-copy-of-a-linux-virtual-machine-running-on-azure"></a>建立在 Azure 上執行的 Linux 虛擬機器複本
+# <a name="create-a-copy-of-a-linux-virtual-machine-running-on-azure-with-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立在 Azure 上執行的 Linux 虛擬機器複本
 本文示範如何使用 Resource Manager 部署模型來建立執行 Linux 的 Azure 虛擬機器 (VM) 複本。 首先，您需將作業系統和資料磁碟複製到新容器中，然後設定網路資源並建立新的虛擬機器。
 
 您也可以[上傳自訂磁碟映像並從這個映像建立 VM](virtual-machines-linux-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
@@ -28,13 +29,13 @@ ms.openlocfilehash: 9920e86a00793928bdfae5bc4e9dac161ed56ad0
 ## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
-- Azure CLI 1.0 – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0 (預覽)](virtual-machines-linux-copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- Azure CLI 1.0 - 適用於傳統和資源管理部署模型 (本文) 的 CLI
+- [Azure CLI 2.0](virtual-machines-linux-copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
 
 ## <a name="before-you-begin"></a>開始之前
 請先確保符合下列必要條件再開始以下步驟︰
 
-* 您已在電腦上下載及安裝 [Azure CLI](../xplat-cli-install.md) 。 
+* 您已在電腦上下載及安裝 [Azure CLI](../cli-install-nodejs.md) 。 
 * 您也需要現有 Azure Linux VM 的一些相關資訊：
 
 | 來源 VM 資訊 | 從哪裡取得 |
@@ -112,10 +113,5 @@ azure vm create -n myVM -l myLocation -g myResourceGroup -f myNic \
 
 ## <a name="next-steps"></a>後續步驟
 若要了解如何使用 Azure CLI 來管理新虛擬機器，請參閱 [Azure Resource Manager 的 Azure CLI 命令](azure-cli-arm-commands.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

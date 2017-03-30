@@ -33,8 +33,8 @@ Azure 儲存體帳戶提供作業系統磁碟和任何資料磁碟的儲存空�
 ## <a name="which-virtual-hard-disk-types-can-i-use"></a>可以使用哪些虛擬硬碟類型？
 Azure 僅支援固定的 VHD 格式虛擬硬碟。 如果您想要在 Azure 中使用 VHDX，則需要先使用「Hyper-V 管理員」或 [convert-VHD](http://go.microsoft.com/fwlink/p/?LinkId=393656) Cmdlet 進行轉換。 接著，請使用 [Add-AzureVHD](https://msdn.microsoft.com/library/azure/dn495173.aspx) Cmdlet (以 [服務管理] 模式) 將 VHD 上傳到 Azure 中的儲存體帳戶，您便可以在虛擬機器上使用。
 
-* 如需適用於 Linux 的指示，請參閱[建立及上傳含有 Linux 作業系統的虛擬硬碟](../articles/virtual-machines/virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
-* 如需適用於 Windows 的指示，請參閱[建立及上傳 Windows Server VHD 至 Azure](../articles/virtual-machines/virtual-machines-windows-classic-createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+* 如需適用於 Linux 的指示，請參閱[建立及上傳含有 Linux 作業系統的虛擬硬碟](../articles/virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
+* 如需適用於 Windows 的指示，請參閱[建立及上傳 Windows Server VHD 至 Azure](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 ## <a name="are-these-virtual-machines-the-same-as-hyper-v-virtual-machines"></a>這些虛擬機器與 Hyper-V 虛擬機器是一樣的嗎？
 在許多方面來說，它們與「第一代」Hyper-V VM 類似，但並非完全相同。 這兩種類型都提供虛擬的硬體，以及可相容 VHD 格式虛擬硬碟。 這表示您可以在 Hyper-V 和 Azure 之間移動它們。 有時讓 Hyper-V 使用者感到驚訝的三個主要差異為：
@@ -51,7 +51,7 @@ Azure 僅支援固定的 VHD 格式虛擬硬碟。 如果您想要在 Azure 中�
 ## <a name="how-can-i-access--my-virtual-machine"></a>如何存取我的虛擬機器？
 您需要建立遠端連線以登入虛擬機器，針對 Windows VM，請使用遠端桌面連線；針對 Linux VM，請使用安全殼層 (SSH)。 如需相關指示，請參閱：
 
-* [如何登入執行 Windows Server 的虛擬機器](../articles/virtual-machines/virtual-machines-windows-classic-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 最多支援 2 個並行連線，除非伺服器設定為遠端桌面服務工作階段主機。  
+* [如何登入執行 Windows Server 的虛擬機器](../articles/virtual-machines/windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 最多支援 2 個並行連線，除非伺服器設定為遠端桌面服務工作階段主機。  
 * [如何登入執行 Linux 的虛擬機器](../articles/virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 根據預設，SSH 允許最多 10 個並行連線。 您可以編輯組態檔以增加這個數字。
 
 如果您遇到遠端桌面或 SSH 的相關問題，請安裝並使用 [VMAccess](../articles/virtual-machines/virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 擴充功能來協助修正問題。
@@ -60,7 +60,7 @@ Azure 僅支援固定的 VHD 格式虛擬硬碟。 如果您想要在 Azure 中�
 
 * 在 Azure 傳統入口網站中，找出 VM，然後從命令列按一下 [重設遠端存取]  。
 * 檢閱[針對以 Windows 為基礎的 Azure 虛擬機器的遠端桌面連線進行疑難排解](../articles/virtual-machines/virtual-machines-windows-troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-* 使用 Windows PowerShell 遠端功能以連線到 VM，或建立其他資源的額外端點來連線至 VM。 如需詳細資訊，請參閱[如何設定虛擬機器的端點](../articles/virtual-machines/virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+* 使用 Windows PowerShell 遠端功能以連線到 VM，或建立其他資源的額外端點來連線至 VM。 如需詳細資訊，請參閱[如何設定虛擬機器的端點](../articles/virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 如果您熟悉 Hyper-V，您可能正在尋找類似 VMConnect 的工具。 Azure 沒有提供類似的工具，因為並不支援主控台存取虛擬機器。
 
@@ -68,7 +68,7 @@ Azure 僅支援固定的 VHD 格式虛擬硬碟。 如果您想要在 Azure 中�
 您不應使用 D: 磁碟機 (Windows) 或 /dev/sdb1 (Linux)。 它們僅提供暫存空間，因此您會有遺失資料且無法復原的風險。 當虛擬機器移動到不同的主機時就可能發生這種情況。 可能要移動虛擬機器的一些原因是調整虛擬機器的大小、更新主機，或主機上的硬體故障等等。
 
 ## <a name="how-can-i-change-the-drive-letter-of-the-temporary-disk"></a>如何變更暫存磁碟的磁碟機代號？
-在 Windows 虛擬機器上，您可以透過移動分頁檔並重新指派磁碟機代號來變更磁碟機代號，但您必須確定以特定的順序執行這些步驟。 如需相關指示，請參閱 [變更 Windows 暫存磁碟的磁碟機代號](../articles/virtual-machines/virtual-machines-windows-classic-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+在 Windows 虛擬機器上，您可以透過移動分頁檔並重新指派磁碟機代號來變更磁碟機代號，但您必須確定以特定的順序執行這些步驟。 如需相關指示，請參閱 [變更 Windows 暫存磁碟的磁碟機代號](../articles/virtual-machines/virtual-machines-windows-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 ## <a name="how-can-i-upgrade-the-guest-operating-system"></a>如何升級客體作業系統？
 升級這個詞彙通常是指移動至較新版的作業系統，但仍在相同硬體上。 對於 Azure VM，Linux 和 Windows 移動至較新版的處理程序有所不同：
@@ -128,9 +128,4 @@ Azure 有時會重新啟動您的 VM，這是 Azure 資料中心中定期、計�
 [建立 Linux 虛擬機器的不同方式](../articles/virtual-machines/virtual-machines-linux-creation-choices.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [建立 Windows 虛擬機器的不同方式](../articles/virtual-machines/virtual-machines-windows-creation-choices.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

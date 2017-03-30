@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 01/03/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
-ms.openlocfilehash: 52fe8e3ce0c9c94c918818784fd735b5a6486ed8
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: a75863878a97c1202e9b9946b0bff19261952c21
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -55,7 +56,7 @@ ms.openlocfilehash: 52fe8e3ce0c9c94c918818784fd735b5a6486ed8
 我們在本主題稍後更詳細探討範本的各個區段。
 
 ## <a name="expressions-and-functions"></a>運算式和函式
-範本的基本語法是 JSON。 不過，運算式和函式可延伸範本中提供的 JSON。 使用運算式，您可以建立非嚴格常值的值。 運算式以方括弧 `[` 及 `]` 括住，並會在部署範本後評估。 運算式可出現在 JSON 字串值中的任何一處，並一律傳回另一個 JSON 值。 如果您必須使用開頭為括號 `[` 的常數字串，必須使用兩個括號 `[[`。
+範本的基本語法是 JSON。 不過，運算式和函式可延伸範本中提供的 JSON 值。  運算式是在 JSON 字串常值內撰寫，其第一個字元和最後一個字元分別為下列兩種方括號：`[` 和 `]`。 部署範本時，會評估運算式的值。   雖然是以字串常值撰寫，評估運算式的結果，根據實際的運算式可能會是不同的 JSON 類型 (例如陣列或整數)。  請注意，針對開頭為方括號 `[` 的常值字串，若不要將它解譯為運算式，請加入額外的方括號，使字串開頭成為 `[[`。
 
 一般而言，您可以將運算式搭配函數使用，以執行可設定部署的作業。 正如同在 JavaScript 中，函數呼叫的格式為 **functionName(arg1,arg2,arg3)**。 您可以使用點與 [index] 運算子來參考屬性。
 
@@ -431,9 +432,4 @@ resources 區段包含要部署的資源陣列。 在每個資源內，您也可
 * 您可能需要使用不同資源群組內的資源。 這案例常見於使用多個資源群組之間所共用的儲存體帳戶或虛擬網路時。 如需詳細資訊，請參閱 [resourceId 函式](resource-group-template-functions.md#resourceid)。
 
 [deployment2cmdlet]: https://docs.microsoft.com/powershell/resourcemanager/azurerm.resources/v3.2.0/new-azurermresourcegroupdeployment
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

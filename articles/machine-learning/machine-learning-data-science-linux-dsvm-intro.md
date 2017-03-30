@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/09/2016
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 3136b8345d0c851c29a9498089da73c8564549d1
-ms.openlocfilehash: f355ea88f4d14e48d9523a0ac7aff965171bed4b
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: ba0fc8849a7131a2dee8c9e7db546ca1a22e05df
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -26,7 +26,9 @@ Linux 資料科學虛擬機器是一部 Azure 虛擬機器，其中隨附預先�
 
 * Microsoft R Server Developer Edition
 * Anaconda Python 散發套件 (2.7 版和 3.5 版)，包括常用的資料分析程式庫
-* JupyterHub - 多使用者的 Jupyter Notebook 伺服器，支援 R、Python、Julia 核心
+* JuliaPro - 使用受歡迎科學和資料分析程式庫的 Julia 語言策劃分佈
+* 獨立 Spark 執行個體和單一節點 Hadoop (HDFS、Yarn)
+* JupyterHub - 多使用者的 Jupyter Notebook 伺服器，支援 R、Python、PySpark、Julia 核心
 * Azure 儲存體總管
 * 用於管理 Azure 資源的 Azure 命令列介面 (CLI)
 * PostgresSQL 資料庫
@@ -37,7 +39,8 @@ Linux 資料科學虛擬機器是一部 Azure 虛擬機器，其中隨附預先�
   * [Rattle](http://rattle.togaware.com/) (R Analytical Tool To Learn Easily)︰此工具可讓您利用 GUI 型資料探索，輕鬆地使用 R 架構開始進行資料分析與機器學習，以及自動產生 R 程式碼來建立模型。
 * Java、Python、node.js、Ruby、PHP 中的 Azure SDK
 * R 和 Python 語言的程式庫，可用於 Azure Machine Learning 和其他 Azure 服務
-* 開發工具和編輯器 (Eclipse、Emacs、gedit、vi)
+* 開發工具和編輯器 (RStudio、PyCharm、IntelliJ、Emacs、gedit、vi)
+
 
 執行資料科學涉及反覆進行一連串的工作︰
 
@@ -117,32 +120,38 @@ Linux VM 已經佈建了 X2Go 伺服器，並準備接受用戶端連接。 若�
 當您透過 X2Go 用戶端使用 SSH 用戶端或 XFCE 圖形化桌面登入 VM 之後，便可開始使用已安裝並設定於 VM 上的工具。 在 XFCE 上，您可以看到許多工具的應用程式功能表捷徑和桌面圖示。
 
 ## <a name="tools-installed-on-the-linux-data-science-virtual-machine"></a>Linux 資料科學虛擬機器上所安裝的工具
-### <a name="microsoft-r-open"></a>Microsoft R Open
-R 是其中一種最受歡迎的資料分析和機器學習語言。 如果您想要將 R 用於分析，VM 的數學核心程式庫 (MKL) 已具有 Microsoft R Open (MRO)。 MKL 會將分析演算法中常見的數學運算作業最佳化。 MRO 可與 CRAN-R 完全相容，CRAN 中發佈的任何 R 程式庫都可安裝在 MRO 上。 您可以在其中一個預設編輯器中編輯您的 R 程式，例如 vi、Emacs 或 gedit。 您也可以下載並使用其他 IDE，例如 [RStudio](http://www.rstudio.com)。 為了方便起見，我們在 **/dsvm/tools** 目錄中提供了簡單的指令碼 (installRStudio.sh)，它會安裝 RStudio。 如果您使用 Emacs 編輯器，請注意，已預先安裝 Emacs 封裝 ESS (Emacs Speaks Statistics)，它可簡化在 Emacs 編輯器內的 R 檔案處理。
+### <a name="microsoft-r-server"></a>Microsoft R 伺服器
+R 是其中一種最受歡迎的資料分析和機器學習語言。 如果您想要將 R 用於分析，VM 會具有 Microsoft R 伺服器 (MRS)，它具有 Microsoft R Open (MRO) 和數學核心程式庫 (MKL)。 MKL 會將分析演算法中常見的數學運算作業最佳化。 MRO 可與 CRAN-R 完全相容，CRAN 中發佈的任何 R 程式庫都可安裝在 MRO 上。 MRS 可讓您將 R 模型調整和實施到 Web 服務。 您可以在其中一個預設編輯器中編輯您的 R 程式，例如 RStudio、vi、Emacs 或 gedit。 如果您使用 Emacs 編輯器，請注意，已預先安裝 Emacs 封裝 ESS (Emacs Speaks Statistics)，它可簡化在 Emacs 編輯器內的 R 檔案處理。
 
-若要啟動 R，您只需在殼層中輸入 **R**。 這會帶您前往互動式環境。 若要開發 R 程式，您通常會使用編輯器 (例如 Emacs、vi 或 gedit)，然後在 R 內執行指令碼。如果您安裝 RStudio，就會有完整的圖形化 IDE 環境來開發 R 程式。
+若要啟動 R 主控台，您只需在殼層中輸入 **R**。 這會帶您前往互動式環境。 若要開發 R 程式，您通常會使用編輯器 (例如 Emacs、vi 或 gedit)，然後在 R 內執行指令碼。使用 RStudio，您就會有完整的圖形化 IDE 環境來開發 R 程式。
 
 如果您想要的話，另外也會有 R 指令碼讓您安裝 [前 20 名 R 封裝](http://www.kdnuggets.com/2015/06/top-20-r-packages.html) 。 當您位於 R 互動式介面 (在殼層中輸入 **R** (如上所述)，即可進入) 時，就可以執行這個指令碼。  
 
 ### <a name="python"></a>Python
 為了能夠使用 Python 進行開發，我們已安裝了 Anaconda Python 散佈 2.7 與 3.5。 這個散發套件包含基本的 Python 以及大約 300 個最受歡迎的數學運算、工程設計和資料分析封裝。 您可以使用預設的文字編輯器。 此外，您也可以使用 Spyder，這是與 Anaconda Python 散發套件配套的 Python IDE。 Spyder 需要圖形化桌面或 X11 轉寄。 圖形化桌面中提供了 Spyder 的捷徑。
 
-由於我們有 Python 2.7 和 3.5，您必須明確啟動您想要在目前工作階段中使用的 Python 版本。 啟動程序會將 PATH 變數設定為所需的 Python 版本。
+由於我們有 Python 2.7 和 3.5，您必須明確啟動您想要在目前工作階段中使用的 Python 版本 (conda 環境)。 啟動程序會將 PATH 變數設定為所需的 Python 版本。
 
-若要啟動 Python 2.7，請從殼層執行下列命令：
+若要啟用 Python 2.7 conda 環境，從殼層執行下列命令：
 
     source /anaconda/bin/activate root
 
 Python 2.7 安裝於「/anaconda/bin」 。
 
-若要啟動 Python 3.5，請從殼層執行下列命令：
+若要啟用 Python 3.5 conda 環境，從殼層執行下列命令：
 
     source /anaconda/bin/activate py35
 
 
 Python 3.5 安裝於 */anaconda/envs/py35/bin*上。
 
-若要叫用 Python 互動式工作階段，只需在殼層中輸入 **python** 。 如果您位於圖形化介面，或已設定 X11 轉寄，則可輸入 **spyder** 來啟動 Python IDE。
+若要叫用 Python 互動式工作階段，只需在殼層中輸入 **python** 。 如果您位於圖形化介面，或已設定 X11 轉寄，則可輸入 **pycharm** 來啟動 PyCharm Python IDE。
+
+若要安裝其他的 Python 程式庫，您需要在 sudo 底下執行 ```conda``` 或 ````pip```` 命令，並提供 Python 套件管理員的完整路徑 (conda 或 pip) 以安裝到正確的 Python 環境。 例如：
+
+    sudo /anaconda/bin/pip install <package> #for Python 2.7 environment
+    sudo /anaconda/envs/py35/bin/pip install <package> # for Python 3.5 environment
+
 
 ### <a name="jupyter-notebook"></a>Jupyter 筆記本
 Jupyter Notebook 中也隨附 Anaconda 散發套件，這是一個共用程式碼與分析的環境。 Jupyter 筆記本是透過 JupyterHub 來存取。 您可以使用本機 Linux 使用者名稱和密碼來登入。
@@ -163,12 +172,31 @@ Jupyter 筆記本伺服器已使用 Python 2、Python 3 及 R 核心進行預先
 
 我們已封裝範例 Notebook - 一個用於 Python，另一個用於 R。 選取 [新增] 然後選取適當的語言核心，便可建立新的 Notebook。 如果您沒有看到 [新增] 按鈕，請按一下左上角的 **Jupyter** 圖示移至 Notebook 伺服器的首頁。
 
+### <a name="apache-spark-standalone"></a>獨立 Apache Spark 
+Apache Spark 的獨立執行個體已預先安裝在 Linux DSVM，可協助您在大型叢集上測試及部署之前，先在本機上開發 Spark 應用程式。 您可以透過 Jupyter 核心執行 PySpark 程式。 當您開啟 Jupyter 然後按一下 [新增] 按鈕時，您會看到可用核心的清單。 「Spark - Python」是 PySpark 核心，可讓您使用 Python 語言建置 Spark 應用程式。 您也可以使用像是 PyCharm 或 Spyder 的 Python IDE 來建置您的 Spark 程式。 因為這是獨立執行個體，Spark 堆疊會在呼叫用戶端程式中執行。 相較於在 Spark 叢集上進行開發，這樣可以更快速且輕鬆地針對問題進行疑難排解。 
+
+範例 PySpark Notebook 在 Jupyter 上提供，您可以在 Jupyter 的主目錄 ($HOME/notebooks/SparkML/pySpark) 底下的 "SparkML" 目錄中找到。 
+
+如果您是針對 Spark 在 R 中進行程式設計，您可以使用 Microsoft R 伺服器、SparkR 或 sparklyr。 
+
+在 Microsoft R 伺服器中的 Spark 內容中執行之前，您必須執行一次性設定步驟，以啟用本機單一節點 Hadoop HDFS 和 Yarn 執行個體。 根據預設，Hadoop 服務已安裝但是在 DSVM 上已停用。 若要啟用它，您需要在第一次以 root 身分執行下列命令︰
+
+    echo -e 'y\n' | ssh-keygen -t rsa -P '' -f ~hadoop/.ssh/id_rsa
+    cat ~hadoop/.ssh/id_rsa.pub >> ~hadoop/.ssh/authorized_keys
+    chmod 0600 ~hadoop/.ssh/authorized_keys
+    chown hadoop:hadoop ~hadoop/.ssh/id_rsa
+    chown hadoop:hadoop ~hadoop/.ssh/id_rsa.pub
+    chown hadoop:hadoop ~hadoop/.ssh/authorized_keys
+    systemctl start hadoop-namenode hadoop-datanode hadoop-yarn
+
+您可以在不需要它們時停止 Hadoop 相關服務，方法是執行 ````systemctl stop hadoop-namenode hadoop-datanode hadoop-yarn```` 示範如何在遠端 Spark 內容中開發和測試 MRS (這是 DSVM 上的獨立 Spark 執行個體) 的範例，以及 `/dsvm/samples/MRS` 目錄中的可用項目。 
+
 ### <a name="ides-and-editors"></a>IDE 和編輯器
-您可以選擇數個程式碼編輯器。 這包括 vi/VIM、Emacs、gEdit 和 Eclipse。 gEdit 和 Eclipse 是圖形化編輯器，您需要登入圖形化桌面才能使用它們。 這些編輯器有桌面和應用程式功能表的捷徑可以啟動它們。
+您可以選擇數個程式碼編輯器。 這包括 vi/VIM、Emacs、gEdit、PyCharm、RStudio、Eclipse 和 IntelliJ。 gEdit、Eclipse、IntelliJ、RStudio 和 PyCharm 是圖形化編輯器，您需要登入圖形化桌面才能使用它們。 這些編輯器有桌面和應用程式功能表的捷徑可以啟動它們。
 
 **VIM** 和 **Emacs** 是文字型編輯器。 在 Emacs 上，我們已安裝稱為 Emacs Speaks Statistics (ESS) 的附加元件封裝，它可以方便於在 Emacs 編輯器中使用 R。 如需詳細資訊，請參閱 [ESS](http://ess.r-project.org/)。
 
-**Eclipse** 是可延伸的 IDE 開放原始碼，可支援多種語言。 Java 開發人員版本是安裝在 VM 上的執行個體。 有提供幾種熱門語言的外掛程式，您可以安裝它們以擴充 Eclipse 環境。 我們也在 Eclipse 中安裝了一個外掛程式，稱為 **Azure Toolkit for Eclipse**。 它可讓您使用支援如 Java 等語言的 Eclipse 開發環境，建立、開發、測試和部署 Azure 應用程式。 另外還有 **Azure SDK for Java** ，它可讓您從 Java 環境中存取不同的 Azure 服務。 適用於 Eclipse 的 Azure 工具組的詳細資訊位於 [適用於 Eclipse 的 Azure 工具組](../azure-toolkit-for-eclipse.md)。
+**Eclipse** 是可延伸的 IDE 開放原始碼，可支援多種語言。 Java 開發人員版本是安裝在 VM 上的執行個體。 有提供幾種熱門語言的外掛程式，您可以安裝它們以擴充環境。 我們也在 Eclipse 中安裝了一個外掛程式，稱為 **Azure Toolkit for Eclipse**。 它可讓您使用支援如 Java 等語言的 Eclipse 開發環境，建立、開發、測試和部署 Azure 應用程式。 另外還有 **Azure SDK for Java** ，它可讓您從 Java 環境中存取不同的 Azure 服務。 適用於 Eclipse 的 Azure 工具組的詳細資訊位於 [適用於 Eclipse 的 Azure 工具組](../azure-toolkit-for-eclipse.md)。
 
 **LaTex** 透過 texlive 封裝與 Emacs 附加元件 [auctex](https://www.gnu.org/software/auctex/manual/auctex/auctex.html) 封裝一起安裝，可簡化 Emacs 內的 LaTex 文件撰寫。  
 
@@ -259,12 +287,8 @@ VM 隨附一些已預先編譯且預先安裝在本機上的機器學習工具�
 
 若要執行基本範例，請在殼層中執行以下命令：
 
-    # Copy samples to your home directory and execute cntk
-    cp -r /dsvm/tools/CNTK-2016-02-08-Linux-64bit-CPU-Only/Examples/Other/Simple2d cntkdemo
-    cd cntkdemo/Data
-    cntk configFile=../Config/Simple.cntk
-
-模型輸出位於 *~/cntkdemo/Output/Models*。
+    cd /home/[USERNAME]/notebooks/CNTK/HelloWorld-LogisticRegression
+    cntk configFile=lr_bs.cntk makeMode=false command=Train
 
 如需詳細資訊，請參閱 [GitHub](https://github.com/Microsoft/CNTK) 上的 CNTK 章節，以及 [CNTK wiki](https://github.com/Microsoft/CNTK/wiki)。
 

@@ -16,9 +16,9 @@ ms.date: 03/14/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 67d817c04672979ec8af8a540c5a63eb4df9bf6a
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: ed0910e4843ab8ab80dae1c16b15487d92017e24
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -60,7 +60,7 @@ API for MongoDB 中的分區化集合會使用相同的基礎結構做為 Docume
 選擇資料分割索引鍵是在設計階段必須進行的一項重要決策。 您選擇的 JSON 屬性名稱必須具有各種不同的值，而且應該可以平均分散存取模式。 
 
 > [!NOTE]
-> 資料分割索引鍵最好有大量相異值 (至少數百至數千個)。 許多客戶會有效利用 DocumentDB 做為索引鍵值存放區，其中唯一的「識別碼」就是資料分割索引鍵，所以會有數百萬至數十億個資料分割索引鍵。
+> 資料分割索引鍵最好有大量相異值 (至少數百至數千個)。 許多客戶會將 DocumentDB 做為索引鍵值存放區使用，其中唯一的「識別碼」就是數百萬至數十億個分割區索引鍵的分割區索引鍵。
 >
 
 下表顯示資料分割索引鍵定義及其對應的 JSON 值的範例。 資料分割索引鍵會以 JSON 路徑的形式指定，例如 `/department` 代表 department 屬性。 
@@ -148,12 +148,12 @@ DocumentDB 支援建立單一分割和分割的集合。
         </tr>
         <tr>
             <td valign="top"><p>輸送量下限</p></td>
-            <td valign="top"><p>每秒&400; 個要求單位</p></td>
-            <td valign="top"><p>每秒&2;,500 個要求單位</p></td>
+            <td valign="top"><p>每秒 400 個要求單位</p></td>
+            <td valign="top"><p>每秒 2,500 個要求單位</p></td>
         </tr>
         <tr>
             <td valign="top"><p>輸送量上限</p></td>
-            <td valign="top"><p>每秒&10;,000 個要求單位</p></td>
+            <td valign="top"><p>每秒 10,000 個要求單位</p></td>
             <td valign="top"><p>無限</p></td>
         </tr>
         <tr>
@@ -341,7 +341,7 @@ db.runCommand( { shardCollection: "admin.people", key: { region: "hashed" } } )
 > 
 > 
 
-當使用單一資料分割集合的應用程式需要較高的輸送量 (>&10;,000 RU/秒) 或較大的資料儲存體 (>&10; GB) 時，您可以使用 [DocumentDB 資料移轉工具](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d)將單一資料分割集合中的資料移轉至已分割集合。 
+當使用單一資料分割集合的應用程式需要較高的輸送量 (> 10,000 RU/秒) 或較大的資料儲存體 (> 10 GB) 時，您可以使用 [DocumentDB 資料移轉工具](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d)將單一資料分割集合中的資料移轉至已分割集合。 
 
 從單一資料分割集合移轉到資料分割的集合
 

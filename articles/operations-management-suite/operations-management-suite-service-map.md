@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 11/22/2016
 ms.author: daseidma;bwren;dairwin
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: d616a8574d2087be66bc10dfdf3bf6f5a14c11fd
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: aca6cd69647406d0140d8b0d0cba8e4690b04ae1
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -199,7 +199,7 @@ ms.lasthandoff: 03/09/2017
 | DnsNames_s | DNS 名稱的陣列 |
 | OperatingSystemFamily_s | windows 或 linux |
 | OperatingSystemFullName_s | 作業系統的完整名稱  |
-| Bitness_s | 機器的位元 (32 位元或&64; 位元) |
+| Bitness_s | 機器的位元 (32 位元或 64 位元) |
 | PhysicalMemory_d | 實體記憶體 (MB) |
 | Cpus_d | CPU 數目 |
 | CpuSpeed_d | CPU 速度 (MHz)|
@@ -271,7 +271,7 @@ Type=ServiceMapComputer_CL OperatingSystemFullName_s = \*CentOS\* | Distinct Com
 
 
 ## <a name="rest-api"></a>REST API
-服務對應中所有的伺服器、處理序及相依性資料，都可透過[服務對應 REST API](https://docs.microsoft.com/en-us/rest/api/servicemap/) 取得。
+服務對應中所有的伺服器、處理序及相依性資料，都可透過[服務對應 REST API](https://docs.microsoft.com/rest/api/servicemap/) 取得。
 
 
 ## <a name="diagnostic-and-usage-data"></a>診斷和使用量資料
@@ -282,6 +282,10 @@ Type=ServiceMapComputer_CL OperatingSystemFullName_s = \*CentOS\* | Distinct Com
 
 ## <a name="next-steps"></a>後續步驟
 - 深入了解 Log Analytics 中的[記錄檔搜尋](../log-analytics/log-analytics-log-searches.md)，以擷取服務對應所收集的資料。
+
+
+## <a name="troubleshooting"></a>疑難排解
+- 請參閱[設定服務對應文件的疑難排解小節](operations-management-suite-service-map-configure.md#troubleshooting)。
 
 
 ## <a name="feedback"></a>意見反應

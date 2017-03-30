@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: 682f6d0919df20cd3643abf04e1d5192be116399
-ms.openlocfilehash: f20c2c2c37692d439ca8e023cf9d5a48cd42c973
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 707bb2b7cd9796e0e05234aa08002bbc1820f871
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -70,11 +70,11 @@ ms.lasthandoff: 02/24/2017
 
       * [ **登入 URL** ] 是指應用程式的基底 URL。  範例程式碼的預設 URL 是 `https://localhost:8080`。
 
-      * [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。 慣例是使用 `https://<tenant-domain>/<app-name>`，例如：`https://contoso.onmicrosoft.com/my-first-aad-app`。
-
 6. 註冊之後，Azure AD 會指派唯一的應用程式識別碼給您的應用程式。 您會在後續章節中用到這個值，所以請從應用程式頁面中複製此值。
 
-7. 從 [設定] 頁面建立應用程式的 [金鑰]，然後複製在某處。 稍後您將會用到此資訊。
+7. 從應用程式的 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI。 [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。 慣例是使用 `https://<tenant-domain>/<app-name>`，例如：`https://contoso.onmicrosoft.com/my-first-aad-app`。
+
+8. 從 [設定] 頁面建立應用程式的 [金鑰]，然後複製在某處。 稍後您將會用到此資訊。
 
 ## <a name="step-3-download-nodejs-for-your-platform"></a>步驟 3：下載您的平台適用的 Node.js
 若要成功使用此範例，您必須具備已成功安裝的 Node.js。

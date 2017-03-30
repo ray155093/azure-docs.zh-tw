@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 11/28/2016
 ms.author: trinadhk;markgal
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: d64ca980b82e279e446d2ea279124ae3f54b0f49
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: f8cb0030290d200ab79e340b9b0fe8f5765d49f0
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -95,7 +96,7 @@ ms.openlocfilehash: d64ca980b82e279e446d2ea279124ae3f54b0f49
    * 停止保護虛擬機器 <br\>
    * 繼續保護虛擬機器 <br\>
    * 刪除備份資料 (或復原點) <br\>
-   * [還原備份 (或復原點)](backup-azure-arm-restore-vms.md#restore-a-recovery-point)  <br\>
+   * [還原備份磁碟](backup-azure-arm-restore-vms.md#restore-backed-up-disks)  <br\>
 
 在以下的程序中，起始點是保存庫項目儀表板。
 
@@ -220,9 +221,4 @@ ms.openlocfilehash: d64ca980b82e279e446d2ea279124ae3f54b0f49
 
 ## <a name="next-steps"></a>後續步驟
 如需從復原點重新建立虛擬機器的詳細資訊，請參閱 [還原 Azure VM](backup-azure-restore-vms.md)。 如需保護虛擬機器的詳細資訊，請參閱 [搶先目睹︰將 VM 備份至復原服務保存庫](backup-azure-vms-first-look-arm.md)。 如需監視事件的相關資訊，請參閱 [監視 Azure 虛擬機器備份的警示](backup-azure-monitor-vms.md)。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/10/2017
+ms.date: 03/15/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 0e1ee94504ebff235c1da9128e0ac68c2b28bc59
-ms.openlocfilehash: 944eafeb67df4baefa99172c1082259a95e84afe
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 5560b22f3f92a8e0a7cb8b973ef2e4c66bc32c06
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -97,7 +97,7 @@ PUT https://management.azure.com /subscriptions/{subscription-id}/providers/Micr
     "displayName":"West US only policy assignment on the subscription ",
     "description":"Resources can only be provisioned in West US regions",
     "parameters": {
-      "listOfAllowedLocations": { "value": ["West US", "West US 2"] }
+      "allowedLocations": { "value": ["northeurope", "westus"] }
      },
     "policyDefinitionId":"/subscriptions/{subscription-id}/providers/Microsoft.Authorization/policyDefinitions/{definition-name}",
       "scope":"/subscriptions/{subscription-id}"
@@ -146,17 +146,26 @@ GET /subscriptions/{id}/providers?$expand=resourceTypes/aliases&api-version=2015
 您可以使用 `New-AzureRmPolicyDefinition` cmdlet 建立原則定義。 以下範例會建立一個原則定義，只允許北歐和西歐中的資源。
 
 ```powershell
-$policy = New-AzureRmPolicyDefinition -Name regionPolicyDefinition -Description "Policy to allow resource creation only in certain regions" -Policy '{    
-  "if" : {
-    "not" : {
-      "field" : "location",
-      "in" : ["northeurope" , "westeurope"]
-    }
-  },
-  "then" : {
-    "effect" : "deny"
-  }
-}'
+$policy = New-AzureRmPolicyDefinition -Name regionPolicyDefinition -Description "Policy to allow resource creation only in certain regions" -Policy '{
+   "if": {
+     "not": {
+       "field": "location",
+       "in": "[parameters(''allowedLocations'')]"
+     }
+   },
+   "then": {
+     "effect": "deny"
+   }
+ }' -Parameter '{
+     "allowedLocations": {
+       "type": "array",
+       "metadata": {
+         "description": "An array of permitted locations for resources.",
+         "strongType": "location",
+         "displayName": "List of locations"
+       }
+     }
+ }'
 ```            
 
 輸出會儲存在於原則指派期間使用的 `$policy` 物件中。 
@@ -172,18 +181,32 @@ $policy = New-AzureRmPolicyDefinition -Name regionPolicyDefinition -Description 
 使用 `New-AzureRmPolicyAssignment` cmdlet 將原則套用至所需範圍︰
 
 ```powershell
-New-AzureRmPolicyAssignment -Name regionPolicyAssignment -PolicyDefinition $policy -Scope /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}
+$rg = Get-AzureRmResourceGroup -Name "ExampleGroup"
+$array = @("West US", "West US 2")
+$param = @{"allowedLocations"=$array}
+New-AzureRMPolicyAssignment -Name regionPolicyAssignment -Scope $rg.ResourceId -PolicyDefinition $policy -PolicyParameterObject $param
 ```
 
-### <a name="view-policy-assignment"></a>檢視原則指派
+### <a name="view-policies"></a>檢視原則
 
-若要取得原則，請使用下列 Cmdlet：
+若要取得所有的原則指派，請使用：
 
 ```powershell
-(Get-AzureRmPolicyAssignment -Id "/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/{definition-name}").Properties.policyRule | ConvertTo-Json
+Get-AzureRmPolicyAssignment
 ```
 
-它會傳回原則定義的 JSON。
+若要取得特定的原則，請使用：
+
+```powershell
+$rg = Get-AzureRmResourceGroup -Name "ExampleGroup"
+(Get-AzureRmPolicyAssignment -Name regionPolicyAssignment -Scope $rg.ResourceId
+```
+
+若要檢視原則定義的原則規則，請使用：
+
+```powershell
+(Get-AzureRmPolicyDefinition -Name regionPolicyDefinition).Properties.policyRule | ConvertTo-Json
+```
 
 ### <a name="remove-policy-assignment"></a>移除原則指派 
 

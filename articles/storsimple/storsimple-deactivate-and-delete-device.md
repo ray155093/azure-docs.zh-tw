@@ -4,7 +4,7 @@ description: "描述如何停用然後刪除 StorSimple 裝置，將其從服務
 services: storsimple
 documentationcenter: 
 author: SharS
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 155cda38-c5ae-45dc-b7e8-6444494afc9e
 ms.service: storsimple
@@ -12,15 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 10/18/2016
+ms.date: 02/27/2017
 ms.author: anbacker
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 014d4faeb478690168b44f88e7a0bda2b406cd4b
+ms.sourcegitcommit: 80fde4dfe7de89dffd39242d94fe46f68e41d611
+ms.openlocfilehash: 833dee54ef9de46c50e9e760594359baf4f89b5e
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="deactivate-and-delete-a-storsimple-device"></a>停用及刪除 StorSimple 裝置
+# <a name="deactivate-and-delete-a-storsimple-8000-series-device-via-storsimple-manager-service"></a>透過 StorSimple Manager 服務來停用及刪除 StorSimple 8000 系列裝置
 ## <a name="overview"></a>概觀
 您可能會想讓某個 StorSimple 裝置停止提供服務 (舉例來說，當您在替換或升級裝置時，或是當您不再使用 StorSimple 時)。 如果是如此，您將必須在刪除該裝置之前，先停用該裝置。 停用會切斷裝置與相對應 StorSimple Manager 服務之間的連接。 本教學課程說明如何藉由停用並刪除 StorSimple 裝置，來將該裝置從服務中移除。 
 
@@ -93,10 +95,5 @@ ms.openlocfilehash: 014d4faeb478690168b44f88e7a0bda2b406cd4b
 * 若要將已停用的裝置還原為原廠預設值，請移至 [將裝置重設為原廠預設設定](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings)。
 * 如需技術協助， [請連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 * 若要了解如何使用 StorSimple Manager，請移至 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

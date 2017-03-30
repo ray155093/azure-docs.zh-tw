@@ -17,9 +17,9 @@ ms.date: 11/21/2016
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
-ms.openlocfilehash: 495ee4a14e779099f828db0c08068bc3772cd7d4
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 2d60af167b8d7805e6f01264de84fb1351d85f98
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -120,6 +120,46 @@ New-Website -Name "MusicStore" -Port 80 -PhysicalPath C:\music\ -ApplicationPool
   }
 }
 ```
+
+如上所述，它也能夠將自訂指令碼儲存於 Azure Blob 儲存體中。 用來將指令碼資源儲存於 Blob 儲存體中的選項有兩種：一種是讓容器/指令碼公開，然後遵循與上述相同的方式，另一種則是您也可以將它保留於私人 Blob 儲存體中，這會要求您提供 storageAccountName 和 storageAccountKey 給 CustomScriptExtension 資源定義。
+
+在下列範例中，我們已向前邁進一步。 雖然您可以在部署期間提供儲存體帳戶名稱和金鑰做為參數或變數，但是，Resource Manager 範本會提供 `listKeys` 函式，可在部署階段以程式設計方式取得儲存體帳戶金鑰，並將它插入範本。
+
+在下列 CustomScriptExtension 資源定義範例中，已經將我們的自訂指令碼上傳到稱為 `mystorageaccount9999` 的 Azure 儲存體帳戶中，此帳戶存在於另一個稱為 `mysa999rgname` 的資源群組中。 當我們部署包含此資源的範本時，`listKeys` 函式會以程式設計方式取得資源群組 `mysa999rgname` 中儲存體帳戶 `mystorageaccount9999` 的儲存體帳戶金鑰，並將它插入範本。
+
+```json
+{
+  "apiVersion": "2015-06-15",
+  "type": "extensions",
+  "name": "config-app",
+  "location": "[resourceGroup().location]",
+  "dependsOn": [
+    "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'),copyindex())]",
+    "[variables('musicstoresqlName')]"
+  ],
+  "tags": {
+    "displayName": "config-app"
+  },
+  "properties": {
+    "publisher": "Microsoft.Compute",
+    "type": "CustomScriptExtension",
+    "typeHandlerVersion": "1.7",
+    "autoUpgradeMinorVersion": true,
+    "settings": {
+      "fileUris": [
+        "https://mystorageaccount9999.blob.core.windows.net/container/configure-music-app.ps1"
+      ]
+    },
+    "protectedSettings": {
+      "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File configure-music-app.ps1 -user ',parameters('adminUsername'),' -password ',parameters('adminPassword'),' -sqlserver ',variables('musicstoresqlName'),'.database.windows.net')]",
+      "storageAccountName": "mystorageaccount9999",
+      "storageAccountKey": "[listKeys(resourceId('mysa999rgname','Microsoft.Storage/storageAccounts', mystorageaccount9999), '2015-06-15').key1]"
+    }
+  }
+}
+```
+
+這種方法的主要優點是，它不需要您在發生儲存體帳戶金鑰變更時，變更您的範本或部署參數。
 
 如需有關使用自訂指令碼擴充功能的詳細資訊，請參閱 [使用 Resource Manager 範本來自訂指令碼擴充功能](virtual-machines-windows-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 

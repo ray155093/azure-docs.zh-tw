@@ -1,5 +1,5 @@
 ---
-title: "使用範本控制路由和虛擬應用裝置 | Microsoft Docs"
+title: "在 Azure 中控制路由和虛擬設備 - 範本 | Microsoft Docs"
 description: "深入了解如何使用 Azure Resource Manager 範本控制路由和虛擬應用裝置。"
 services: virtual-network
 documentationcenter: na
@@ -16,19 +16,20 @@ ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: ba7a67b8ae57da165f45bd3552a3dfac5f4ef64b
-ms.openlocfilehash: 6e6afd1088ef02fcad6126dfe6b6e3f0b4dff31d
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 344391589a926cad5d06bf8dff095a97565ca123
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="create-user-defined-routes-udr-using-a-template"></a>使用範本建立使用者定義的路由 (UDR)
 
 > [!div class="op_single_selector"]
-- [PowerShell](virtual-network-create-udr-arm-ps.md)
-- [Azure CLI](virtual-network-create-udr-arm-cli.md)
-- [範本](virtual-network-create-udr-arm-template.md)
-- [PowerShell (傳統)](virtual-network-create-udr-classic-ps.md)
-- [CLI (傳統)](virtual-network-create-udr-classic-cli.md)
+> * [PowerShell](virtual-network-create-udr-arm-ps.md)
+> * [Azure CLI](virtual-network-create-udr-arm-cli.md)
+> * [範本](virtual-network-create-udr-arm-template.md)
+> * [PowerShell (傳統)](virtual-network-create-udr-classic-ps.md)
+> * [CLI (傳統)](virtual-network-create-udr-classic-cli.md)
 
 > [!IMPORTANT]
 > 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-resource-manager/resource-manager-deployment-model.md) 。 您可以按一下本文頂端的索引標籤，檢視不同工具的文件。 本文涵蓋之內容包括資源管理員部署模型。 
@@ -175,7 +176,7 @@ ms.openlocfilehash: 6e6afd1088ef02fcad6126dfe6b6e3f0b4dff31d
 
 若要使用 Azure CLI 部署 ARM 範本，請完成下列步驟：
 
-1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../xplat-cli-install.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
+1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
 2. 執行下列命令切換至 Resource Manager 模式：
 
     ```azurecli
@@ -406,9 +407,4 @@ ms.openlocfilehash: 6e6afd1088ef02fcad6126dfe6b6e3f0b4dff31d
 > [!TIP]
 > 如果沒看到所有資源，請執行 `azure group deployment show` 命令，以確保部署的佈建狀態為 [成功]。
 > 
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

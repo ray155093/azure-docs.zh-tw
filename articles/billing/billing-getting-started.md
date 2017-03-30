@@ -13,24 +13,26 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/03/2017
+ms.date: 03/20/2017
 ms.author: jlian
 translationtype: Human Translation
-ms.sourcegitcommit: 1b738d952685fe71e5a1eecd809afae1c9904267
-ms.openlocfilehash: 8f32c2c85d2f6c2265048e58d5c2b0256fa020bd
-ms.lasthandoff: 02/14/2017
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: af53cea83d2e348b2c73e56cf4b6ce5a875bce18
+ms.lasthandoff: 03/22/2017
 
 
 ---
-# <a name="getting-started-with-azure-billing-and-cost-management"></a>開始使用 Azure 計費與成本管理
+# <a name="prevent-unexpected-costs-with-azure-billing-and-cost-management"></a>使用 Azure 計費與成本管理避免非預期的成本
 
-當您註冊 Azure 時，為了深入了解您的支出，有幾件事您應該做。 在 Azure 入口網站中，您可以看到目前的成本細分和完工速率。 您也可以下載之前的發票與詳細使用量檔案。 如果您想要將不同專案或小組所使用的資源成本分組，請查看資源標記。 如果您組織具備您偏好使用的報告系統，請查看計費 API。 
+當您註冊 Azure 時，為了深入了解您的支出，有幾件事您可以做。 在 [Azure 入口網站](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade)中，選取訂用帳戶之後，您可以看到目前的成本細分和完工速率。 您也可以[下載之前的發票與詳細使用量檔案](billing-download-azure-invoice-daily-usage-date.md)。 如果您想要將不同專案或小組所使用的資源成本分組，請查看[資源標記](../azure-resource-manager/resource-group-using-tags.md)。 如果您的組織有您偏好使用的報告系統，請查看[計費 API](billing-usage-rate-card-overview.md)。 
 
-如果您是 Enterprise 合約 (EA)、雲端解決方案提供者 (CSP) 或 Azure 贊助的客戶，那麼本文中所述的許多功能並不適用於您。 反之，我們有一組不同的工具可供您用於管理成本，請參閱 [EA、CSP 和贊助的其他資源](#other-offers)。
+如需每日使用量的詳細資訊，請參閱[了解 Microsoft Azure 帳單](billing-understand-your-bill.md)。
 
-如果您是免費試用版、[Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)、Azure in Open (AIO) 或 BizSpark 的客戶，請深入了解[消費限制](#spending-limit)以避免遭到停用。 
+如果您的訂用帳戶是透過 Enterprise 合約 (EA)、雲端解決方案提供者 (CSP) 或 Azure 贊助取得，那麼此文章中所述的許多功能並不適用於您。 反之，我們有不同的工具組，可供您用於成本管理。 請參閱[適用於 EA、CSP 和贊助的其他資源](#other-offers)。
 
-## <a name="before-you-add-azure-services"></a>新增 Azure 服務之前
+如果您的訂用帳戶是免費試用、[Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)、Azure in Open (AIO) 或 BizSpark，請了解[消費限制](#spending-limit)以避免您的訂用帳戶非預期地被停用。 
+
+## <a name="day-0-before-you-add-azure-services"></a>第 0 天︰新增 Azure 服務之前
 
 ### <a name="estimate-cost-online-using-the-pricing-calculator"></a>使用價格計算機在線上評估成本
 
@@ -77,9 +79,9 @@ ms.lasthandoff: 02/14/2017
 
 ### <a name="understand-limits-and-quotas-for-your-subscription"></a>了解您訂用帳戶的限制和配額
 
-每個訂用帳戶都有預設限制，例如 CPU 核心數目、IP 位址等等。務必留意這些限制。 如需詳細資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與條件約束](../azure-subscription-service-limits.md)。 您可以 [連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)，要求提高您的限制或配額。
+每個訂用帳戶都有針對各種項目 (例如 CPU 核心數目和 IP 位址) 的預設限制。 務必留意這些限制。 如需詳細資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與條件約束](../azure-subscription-service-limits.md)。 您可以 [連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)，要求提高您的限制或配額。
 
-## <a name="as-you-add-services"></a>當您新增服務時
+## <a name="day-1-as-you-add-services"></a>第 1 天：當您新增服務時
 
 ### <a name="review-the-estimated-cost-in-the-portal"></a>在入口網站中檢閱預估成本
 
@@ -105,9 +107,9 @@ ms.lasthandoff: 02/14/2017
 
 自動關機與您在 VM 中使用電源選項關閉不一樣。 自動關機會停止並解除配置您的 VM，以便停止額外的使用費用。 如需詳細資訊，請參閱 [Linux VM](https://azure.microsoft.com/pricing/details/virtual-machines/linux/) 的定價常見問題，以及 [Windows VM](https://azure.microsoft.com/pricing/details/virtual-machines/windows/)有關 VM 的狀態。
 
-如需研測環境的更多成本削減功能，請參閱 [Azure DevTest Labs](https://azure.microsoft.com/services/devtest-lab/)。
+如需更多針對開發和測試環境的成本削減功能，請參閱 [Azure DevTest Labs](https://azure.microsoft.com/services/devtest-lab/)。
 
-## <a name="cost-reporting"></a> 使用服務之後，檢視使用量
+## <a name="cost-reporting"></a> 第 2 天以後：使用服務之後，檢視使用量
 
 ### <a name="costs"></a>定期查看入口網站以了解成本細分和完工速率
 
@@ -139,7 +141,7 @@ ms.lasthandoff: 02/14/2017
 
 #### <a name="view-costs-for-all-your-subscriptions-in-the-billing-blade"></a>在帳單刀鋒視窗中檢視所有訂用帳戶的成本
 
-如果您以帳戶管理員身份管理多個訂用帳戶，可以在[帳單刀鋒視窗](https://portal.azure.com/#blade/Microsoft_Azure_Billing/BillingBlade)中看到您所有訂用帳戶的彙總帳單金額和細分。 
+如果您以帳戶系統管理員身分管理多個訂用帳戶，您可以在[帳單刀鋒視窗](https://portal.azure.com/#blade/Microsoft_Azure_Billing/BillingBlade)中看到您所有訂用帳戶的彙總帳單金額和細分。 
 
 <!-- Add screenshots of multiple subs each with billed usage -->
 
@@ -181,3 +183,6 @@ ms.lasthandoff: 02/14/2017
 
 如果您管理的是大型組織的 IT，我們建議您閱讀 [Azure 企業 Scaffold](../azure-resource-manager/resource-manager-subscription-governance.md) 和[企業 IT 技術白皮書](http://download.microsoft.com/download/F/F/F/FFF60E6C-DBA1-4214-BEFD-3130C340B138/Azure_Onboarding_Guide_for_IT_Organizations_EN_US.pdf) (.pdf 下載，僅提供英文版)。
 
+## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員
+
+如果需要協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。

@@ -12,11 +12,12 @@ ms.workload: web
 ms.tgt_pltfrm: vs-getting-started
 ms.devlang: na
 ms.topic: article
-ms.date: 11/18/2016
+ms.date: 03/01/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: f3f8292eb505c73b5fda86499581fe85ad3f8e47
-ms.openlocfilehash: 4254e10e845d2f035a569cc7b8e5639ea4cd63d4
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: a58f328795f85e5392d1bd4c305aabb48b65798c
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -28,10 +29,10 @@ ms.openlocfilehash: 4254e10e845d2f035a569cc7b8e5639ea4cd63d4
 > 
 
 ## <a name="requiring-authentication-to-access-controllers"></a>存取控制器之前需要驗證
-專案中的所有控制器都加上 **Authorize** 屬性做裝飾。 此屬性要求使用者必須經過驗證才能存取這些控制器。 若要允許以匿名方式存取控制器，請從控制器中移除此屬性。 如果您要以更精確地設定權限，請將此屬性套用至每一個需要授權的方法，而非套用至控制器類別。
+專案中的所有控制器都加上 **Authorize** 屬性做裝飾。 此屬性要求使用者必須經過驗證，才能存取這些控制器。 若要允許以匿名方式存取控制器，請從控制器中移除此屬性。 如果您要以更精確地設定權限，請將此屬性套用至每一個需要授權的方法，而非套用至控制器類別。
 
 ## <a name="adding-signin--signout-controls"></a>加入 SignIn / SignOut 控制項
-若要將 SignIn/SignOut 控制項新增至檢視，您可以使用 **_LoginPartial.cshtml** 部分檢視將此功能新增至您的其中一個檢視。 以下是新增至標準 **_Layout.cshtml** 檢視的功能範例。 (請注意 div 中具有類別 navbar-collapse 的最後一個元素)：
+若要將 SignIn/SignOut 控制項新增至檢視，您可以使用 **_LoginPartial.cshtml** 部分檢視，將此功能新增至您的其中一個檢視。 以下是新增至標準 **_Layout.cshtml** 檢視的功能範例。 (請注意 div 中具有類別 navbar-collapse 的最後一個元素)：
 
 <pre>
     &lt;!DOCTYPE html&gt; 
@@ -71,11 +72,7 @@ ms.openlocfilehash: 4254e10e845d2f035a569cc7b8e5639ea4cd63d4
     &lt;/html&gt;
 </pre>
 
-[深入了解 Azure Active Directory](https://azure.microsoft.com/services/active-directory/) 
-
-
-
-
-<!--HONumber=Jan17_HO5-->
+## <a name="next-steps"></a>後續步驟
+- [深入了解 Azure Active Directory](https://azure.microsoft.com/services/active-directory/) 
 
 

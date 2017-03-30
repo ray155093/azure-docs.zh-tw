@@ -17,8 +17,9 @@ ms.workload: na
 ms.date: 03/04/2016
 ms.author: cfowler
 translationtype: Human Translation
-ms.sourcegitcommit: 385eb87ec32f5f605b28cc8c76b1c89c7e90bfec
-ms.openlocfilehash: 09ec6d1aae5dc893e92b7c4ca1c30a251d02443d
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: e00d453e9ae34cafb5ce753f63c253e954d6b09a
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -64,6 +65,7 @@ Azure App Service 本機快取功能可讓您以 Web 角色檢視您的內容。
 <a name="Configure-Local-Cache-ARM"></a>
 
 ```
+
 ...
 
 {
@@ -73,7 +75,8 @@ Azure App Service 本機快取功能可讓您以 Web 角色檢視您的內容。
     "dependsOn": [
         "[resourceId('Microsoft.Web/sites/', variables('siteName'))]"
     ],
-    "properties": {
+
+"properties": {
         "WEBSITE_LOCAL_CACHE_OPTION": "Always",
         "WEBSITE_LOCAL_CACHE_SIZEINMB": "300"
     }
@@ -110,8 +113,6 @@ Azure App Service 本機快取功能可讓您以 Web 角色檢視您的內容。
 ### <a name="i-have-local-cache-enabled-but-my-web-app-still-gets-restarted-why-is-that-i-thought-local-cache-helped-with-frequent-app-restarts"></a>我已啟用「本機快取」，但我的 Web 應用程式仍然重新啟動。 這是為什麼？ 我以為「本機快取」有助於頻繁的應用程式重新啟動。
 「本機快取」確實有助於防止儲存體相關 Web 應用程式重新啟動。 不過，您的 Web 應用程式仍有可能在計劃性 VM 基礎結構升級期間重新啟動。 整體而言，啟用「本機快取」後應該比較不會發生應用程式重新啟動。
 
-
-
-<!--HONumber=Feb17_HO2-->
-
+### <a name="does-local-cache-exclude-any-directories-from-being-copied-to-the-faster-local-drive"></a>「本機快取」會排除所有目錄而不會複製到更快的本機磁碟機嗎？
+在複製儲存體內容的步驟中，將會排除名為儲存機制的任何資料夾。 當您的網站內容可能包含 Web 應用程式的日常作業不需要的原始檔控制儲存機制時，這會有幫助。 
 

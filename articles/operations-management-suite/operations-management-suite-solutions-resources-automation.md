@@ -1,5 +1,5 @@
 ---
-title: "OMS 解決方案中的自動化資源 | Microsoft Docs"
+title: "OMS 解決方案中的 Azure 自動化資源 | Microsoft Docs"
 description: "OMS 中的解決方案通常會在 Azure 自動化中包含 Runbook，以便自動執行一些程序，例如收集及處理監視資料。  本文說明如何在解決方案中包含 Runbook 與其相關資源。"
 services: operations-management-suite
 documentationcenter: 
@@ -12,15 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/19/2016
+ms.date: 03/17/2017
 ms.author: bwren
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e115fd3b5f29dbcbfd9f85ebb215d950539cc1e3
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: a86a20e1e83f412a06f54bb195180b9d2af98ca6
+ms.lasthandoff: 03/22/2017
 
 
 ---
-# <a name="automation-resources-in-oms-solutions-preview"></a>OMS 解決方案中的自動化資源 (預覽)
+# <a name="adding-azure-automation-resources-to-an-oms-management-solution-preview"></a>將 Azure 自動化資源新增至 OMS 管理解決方案 (預覽)
 > [!NOTE]
 > 這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。 以下所述的任何結構描述可能會有所變更。   
 > 
@@ -30,25 +32,50 @@ ms.openlocfilehash: e115fd3b5f29dbcbfd9f85ebb215d950539cc1e3
 
 > [!NOTE]
 > 本文中的範例使用管理解決方案所必要或通用的參數和變數，如[在 Operations Management Suite (OMS) 中建立管理解決方案](operations-management-suite-solutions-creating.md)所述。 
-> 
-> 
+
 
 ## <a name="prerequisites"></a>必要條件
-本文假設您已經熟悉如何[建立管理解決方案](operations-management-suite-solutions-creating.md)和方案檔的結構。
+本文假設您已熟悉下列資訊。
 
-## <a name="samples"></a>範例
-您可以從 [GitHub 中的快速入門範本](https://github.com/azureautomation/automation-packs/tree/master/101-sample-automation-resource-templates)取得自動化資源的範例 Resource Manager 範本。
+- 如何[建立管理解決方案](operations-management-suite-solutions-creating.md)。
+- [解決方案檔](operations-management-suite-solutions-solution-file.md)的結構。
+- 如何[製作 Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)
 
 ## <a name="automation-account"></a>自動化帳戶
-Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/automation-security-overview.md#automation-account-overview)中。  如 [OMS 工作區和自動化帳戶](operations-management-suite-solutions-creating.md#oms-workspace-and-automation-account)所述，自動化帳戶不包含在管理解決方案中，但是在安裝解決方案前就必須存在。  如果無法使用，則解決方案會安裝失敗。
+Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/automation-security-overview.md#automation-account-overview)中。  如 [OMS 工作區和自動化帳戶](operations-management-suite-solutions.md#oms-workspace-and-automation-account)所述，自動化帳戶不包含在管理解決方案中，但是在安裝解決方案前就必須存在。  如果無法使用，則解決方案會安裝失敗。
 
-其自動化帳戶的名稱位於每個自動化資源的名稱中。  這可在具有 **accountName** 參數的解決方案中完成，如下列 Runbook 資源範例所示。
+每個自動化資源的名稱皆包含其自動化帳戶的名稱。  這可在具有 **accountName** 參數的解決方案中完成，如下列 Runbook 資源範例所示。
 
     "name": "[concat(parameters('accountName'), '/MyRunbook'))]"
 
 
 ## <a name="runbooks"></a>Runbook
-[Azure 自動化 Runbook](../automation/automation-runbook-types.md) 資源的類型為 **Microsoft.Automation/automationAccounts/runbooks**，且具有下表中的屬性。
+您應該在解決方案檔中包含解決方案所使用的任何 Runbook，以便系統會在安裝解決方案時建立這些 Runbook。  但您不能在範本中包含 Runbook 的主體，因此，您應該將 Runbook 發佈到公用位置，以供安裝了解決方案的使用者存取。
+
+[Azure 自動化 Runbook](../automation/automation-runbook-types.md) 資源的類型為 **Microsoft.Automation/automationAccounts/runbooks**，且具有下列結構。 這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+
+    {
+        "name": "[concat(parameters('accountName'), '/', variables('Runbook').Name)]",
+        "type": "Microsoft.Automation/automationAccounts/runbooks",
+        "apiVersion": "[variables('AutomationApiVersion')]",
+        "dependsOn": [
+        ],
+        "location": "[parameters('regionId')]",
+        "tags": { },
+        "properties": {
+            "runbookType": "[variables('Runbook').Type]",
+            "logProgress": "true",
+            "logVerbose": "true",
+            "description": "[variables('Runbook').Description]",
+            "publishContentLink": {
+                "uri": "[variables('Runbook').Uri]",
+                "version": [variables('Runbook').Version]"
+            }
+        }
+    }
+
+
+下表會說明 Runbook 的屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
@@ -58,116 +85,119 @@ Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/
 | 說明 |Runbook 的選擇性說明。 |
 | publishContentLink |指定 Runbook 的內容。 <br><br>uri - 指定 Runbook 的內容 Uri。  這會是 PowerShell 和 Script Runbook 的 .ps1 檔案，以及 Graph Runbook 的已匯出圖形化 Runbook 檔案。  <br> 版本 - 您自己追蹤的 Runbook 版本。 |
 
-Runbook 資源的範例如下。  在此情況下，它會從 [PowerShell 資源庫](https://www.powershellgallery.com)擷取 Runbook。
-
-    "name": "[concat(parameters('accountName'), '/Start-AzureV2VMs'))]",
-    "type": "Microsoft.Automation/automationAccounts/runbooks",
-    "apiVersion": "[variables('AutomationApiVersion')]",
-    "location": "[parameters('regionId')]",
-    "dependsOn": [
-        "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/runbooks/', variables('startVmsRunbookName'))]"
-    ],
-    "tags": { },
-    "properties": {
-        "runbookType": "PowerShell",
-        "logProgress": "true",
-        "logVerbose": "true",
-        "description": "",
-        "publishContentLink": {
-            "uri": "https://www.powershellgallery.com/api/v2/items/psscript/package/Update-ModulesInAutomationToLatestVersion/1.0/Start-AzureV2VMs.ps1",
-            "version": "1.0"
-        }
-    }
-
-### <a name="starting-a-runbook"></a>啟動 Runbook
-有兩種方法可以在管理方案中啟動 Runbook。
-
-* 若要在安裝解決方案時啟動 Runbook，請建立[作業資源](#automation-jobs)，如下所述。
-* 若要依照排程啟動 Runbook，請建立 [排程資源](#schedules)，如下所述。 
 
 ## <a name="automation-jobs"></a>自動化作業
-若要在安裝管理解決方案時啟動 Runbook，您可建立**作業**資源。  作業資源的類型為 **Microsoft.Automation/automationAccounts/jobs**，且具有下表中的屬性。
+當您在 Azure 自動化中啟動 Runbook 時，此 Runbook 便會建立自動化作業。  您可以在解決方案中新增自動化作業資源，以在安裝管理解決方案時自動啟動 Runbook。  這個方法通常會用來啟動可對解決方案進行初始設定的 Runbook。  若要定期啟動 Runbook，請建立[排程](#schedules)和[作業排程](#job-schedules)
+
+作業資源的類型為 **Microsoft.Automation/automationAccounts/jobs**，且具有下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+
+    {
+      "name": "[concat(parameters('accountName'), '/', parameters('Runbook').JobGuid)]",
+      "type": "Microsoft.Automation/automationAccounts/jobs",
+      "apiVersion": "[variables('AutomationApiVersion')]",
+      "location": "[parameters('regionId')]",
+      "dependsOn": [
+        "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/runbooks/', variables('Runbook').Name)]"
+      ],
+      "tags": { },
+      "properties": {
+        "runbook": {
+          "name": "[variables('Runbook').Name]"
+        },
+        "parameters": {
+          "Parameter1": "[[variables('Runbook').Parameter1]",
+          "Parameter2": "[[variables('Runbook').Parameter2]"
+        }
+      }
+    }
+
+下表會說明自動化作業的屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| Runbook |包含 Runbook 名稱的單一**名稱**實體。 |
-| 參數 |Runbook 所需之每個參數的實體。 |
+| Runbook |具有要啟動之 Runbook 名稱的單一名稱實體。 |
+| 參數 |Runbook 所需之每個參數值的實體。 |
 
-作業包含 Runbook 名稱和任何要傳送至 Runbook 的參數值。  作業必須[相依於](operations-management-suite-solutions-creating.md#resources)正在啟動的 Runbook，因為 Runbook 必須建立於作業之前。  您也可針對應在目前 Runbook 之前完成的 Runbook，建立其他作業的相依性。
+作業包含 Runbook 名稱和任何要傳送至 Runbook 的參數值。  作業應該[相依於](operations-management-suite-solutions-solution-file.md#resources)正在啟動的 Runbook，因為 Runbook 必須建立於作業之前。  如果您有多個應該啟動的 Runbook，您可以藉由讓作業相依於其他任何應該先執行的作業，以定義這些 Runbook 的順序。
 
-作業資源的名稱必須包含通常由參數所指派的 GUID。  [在 Operations Management Suite (OMS) 中建立解決方案](operations-management-suite-solutions-creating.md#parameters)可讓您深入了解 GUID 參數。  
-
-以下是在安裝管理解決方案時啟動 Runbook 的作業資源範例。  在此 Runbook 啟動前，必須先完成其他 Runbook，所以它具有該 Runbook 的作業相依性。  作業的詳細資料會透過參數和變數提供，而非直接指定。
-
-    {
-        "name": "[concat(parameters('accountName'), '/', parameters('startVmsRunbookGuid'))]",
-        "type": "Microsoft.Automation/automationAccounts/jobs",
-        "apiVersion": "[variables('AutomationApiVersion')]",
-        "location": "[parameters('regionId')]",
-        "dependsOn": [
-            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/runbooks/', variables('startVmsRunbookName'))]",
-            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/jobs/', parameters('initialPrepRunbookGuid'))]"
-        ],
-        "tags": { },
-        "properties": {
-            "runbook": {
-                "name": "[variables('startVmsRunbookName')]"
-            },
-            "parameters": {
-                "AzureConnectionAssetName": "[variables('AzureConnectionAssetName')]",
-                "ResourceGroupName": "[variables('ResourceGroupName')]"
-            }
-        }
-    }
+作業資源的名稱必須包含通常由參數所指派的 GUID。  [在 Operations Management Suite (OMS) 中建立解決方案](operations-management-suite-solutions-solution-file.md#parameters)可讓您深入了解 GUID 參數。  
 
 
 ## <a name="certificates"></a>憑證
-[Azure 自動化憑證](../automation/automation-certificates.md)的類型為 **Microsoft.Automation/automationAccounts/certificates**，且具有下表中的屬性。
+[Azure 自動化憑證](../automation/automation-certificates.md)的類型為 **Microsoft.Automation/automationAccounts/certificates**，且具有下列結構。 這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+
+    {
+      "name": "[concat(parameters('accountName'), '/', variables('Certificate').Name)]",
+      "type": "Microsoft.Automation/automationAccounts/certificates",
+      "apiVersion": "[variables('AutomationApiVersion')]",
+      "location": "[parameters('regionId')]",
+      "tags": { },
+      "dependsOn": [
+      ],
+      "properties": {
+        "base64Value": "[variables('Certificate').Base64Value]",
+        "thumbprint": "[variables('Certificate').Thumbprint]"
+      }
+    }
+
+
+
+下表會說明憑證資源的屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
 | base64Value |憑證的 Base 64 值。 |
 | thumbprint |憑證的指紋。 |
 
-憑證資源的範例如下。
 
-    "name": "[concat(parameters('accountName'), '/MyCertificate')]",
-    "type": "certificates",
-    "apiVersion": "2015-01-01-preview",
-    "location": "[parameters('regionId')]",
-    "tags": {},
-    "dependsOn": [
-    ],
-    "properties": {
-        "base64Value": "MIIC1jCCAA8gAwIAVgIYJY4wXCXH/YAHMtALh7qEFzANAgkqhkiG5w0AAQUFGDAUMRIwEBYDVQQDEwlsA3NhAGevc3QqHhcNMTZwNjI5MHQxMjAsWhcNOjEwNjI5NKWwMDAwWjAURIwEAYDVQQBEwlsA2NhAGhvc3QwggEiMA0GCSqGSIA3DQEAAQUAA4IADwAwggEKAoIAAQDIyzv2A0RUg1/AAryI9W1DGAHAqqGdlFfTkUSDfv+hEZTAwKv0p8daqY6GroT8Du7ctQmrxJsy8JxIpDWxUaWwXtvv1kR9eG9Vs5dw8gqhjtOwgXvkOcFdKdQwA82PkcXoHlo+NlAiiPPgmHSELGvcL1uOgl3v+UFiiD1ro4qYqR0ITNhSlq5v2QJIPnka8FshFyPHhVtjtKfQkc9G/xDePW8dHwAhfi8VYRmVMmJAEOLCAJzRjnsgAfznP8CZ/QUczPF8LuTZ/WA/RaK1/Arj6VAo1VwHFY4AZXAolz7xs2sTuHplVO7FL8X58UvF7nlxq48W1Vu0l8oDi2HjvAgMAAAGjJDAiMAsGA1UdDwREAwIEsDATAgNVHSUEDDAKAggrAgEFNQcDATANAgkqhkiG9w0AAQUFAAOCAQEAk8ak2A5Ug4Iay2v0uXAk95qdAthJQN5qIVA13Qay8p4MG/S5+aXOVz4uMXGt18QjGds1A7Q8KDV4Slnwn95sVgA5EP7akvoGXhgAp8Dm90sac3+aSG4fo1V7Y/FYgAgpEy4C/5mKFD1ATeyyhy3PmF0+ZQRJ7aLDPAXioh98LrzMZr1ijzlAAKfJxzwZhpJamAwjZCYqiNZ54r4C4wA4QgX9sVfQKd5e/gQnUM8gTQIjQ8G2973jqxaVNw9lZnVKW3C8/QyLit20pNoqX2qQedwsqg3WCUcPRUUqZ4NpQeHL/AvKIrt158zAfU903yElAEm2Zr3oOUR4WfYQ==",
-        "thumbprint": "F485CBE5569F7A5019CB68D7G6D987AC85124B4C"
-    }
 
 ## <a name="credentials"></a>認證
-[Azure 自動化認證](../automation/automation-credentials.md)的類型為 **Microsoft.Automation/automationAccounts/credentials**，且具有下表中的屬性。
+[Azure 自動化認證](../automation/automation-credentials.md)的類型為 **Microsoft.Automation/automationAccounts/credentials**，且具有下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+
+
+    {
+      "name": "[concat(parameters('accountName'), '/', variables('Credential').Name)]",
+      "type": "Microsoft.Automation/automationAccounts/credentials",
+      "apiVersion": "[variables('AutomationApiVersion')]",
+      "location": "[parameters('regionId')]",
+      "tags": { },
+      "dependsOn": [
+      ],
+      "properties": {
+        "userName": "[parameters('credentialUsername')]",
+        "password": "[parameters('credentialPassword')]"
+      }
+    }
+
+下表會說明認證資源的屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
 | userName |認證的使用者名稱。 |
 | password |認證的密碼。 |
 
-認證資源的範例如下。
-
-    "name": "[concat(parameters('accountName'), '/', variables('credentialName'))]",
-    "type": "Microsoft.Automation/automationAccounts/runbooks/credentials",
-    "apiVersion": "[variables('AutomationApiVersion')]",
-    "location": "[parameters('regionId')]",
-    "tags": { },
-    "dependsOn": [
-    ],
-    "properties": {
-        "userName": "User01",
-        "password": "password"
-    }
-
 
 ## <a name="schedules"></a>排程
-[Azure 自動化排程](../automation/automation-schedules.md)的類型為 **Microsoft.Automation/automationAccounts/schedules**，且具有下表中的屬性。
+[Azure 自動化排程](../automation/automation-schedules.md)的類型為 **Microsoft.Automation/automationAccounts/schedules**，且具有下列結構。 這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+
+    {
+      "name": "[concat(parameters('accountName'), '/', variables('Schedule').Name)]",
+      "type": "microsoft.automation/automationAccounts/schedules",
+      "apiVersion": "[variables('AutomationApiVersion')]",
+      "tags": { },
+      "dependsOn": [
+      ],
+      "properties": {
+        "description": "[variables('Schedule').Description]",
+        "startTime": "[parameters('scheduleStartTime')]",
+        "timeZone": "[parameters('scheduleTimeZone')]",
+        "isEnabled": "[variables('Schedule').IsEnabled]",
+        "interval": "[variables('Schedule').Interval]",
+        "frequency": "[variables('Schedule').Frequency]"
+      }
+    }
+
+下表會說明排程資源的屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
@@ -177,72 +207,101 @@ Runbook 資源的範例如下。  在此情況下，它會從 [PowerShell 資源
 | interval |排程的間隔類型。<br><br>day<br>hour |
 | frequency |應觸發排程的頻率 (以天數或時數為單位)。 |
 
-排程資源的範例如下。
+排程的開始時間值必須大於目前的時間。  您無法知道解決方案會在何時安裝，因此不能以變數來提供此值。
 
-    "name": "[concat(parameters('accountName'), '/', variables('variableName'))]",
-    "type": "microsoft.automation/automationAccounts/schedules",
-    "apiVersion": "[variables('AutomationApiVersion')]",
-    "tags": { },
-    "dependsOn": [
-    ],
-    "properties": {
-        "description": "Schedule for StartByResourceGroup runbook",
-        "startTime": "10/30/2016 12:00:00",
-        "isEnabled": "true",
-        "interval": "day",
-        "frequency": "1"
+在解決方案中使用排程資源時，請使用下列兩種策略的其中一種。
+
+- 使用參數來提供排程的開始時間。  這會提示使用者在他們安裝解決方案時提供值。  如果您有多個排程，您可以對它們使用單一參數值。
+- 使用會在安裝解決方案時啟動的 Runbook 來建立排程。  這可讓使用者不必指定時間，但您不能在解決方案中包含排程，以便在移除解決方案時將該排程移除。
+
+
+### <a name="job-schedules"></a>作業排程
+作業排程資源會連結 Runbook 與排程。  作業排程資源的類型為 **Microsoft.Automation/automationAccounts/jobSchedules**，且具有下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+
+    {
+      "name": "[concat(parameters('accountName'), '/', variables('Schedule').LinkGuid)]",
+      "type": "microsoft.automation/automationAccounts/jobSchedules",
+      "apiVersion": "[variables('AutomationApiVersion')]",
+      "location": "[parameters('regionId')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts/runbooks/', parameters('accountName'), variables('Runbook').Name)]",
+        "[resourceId('Microsoft.Automation/automationAccounts/schedules/', parameters('accountName'), variables('Schedule').Name)]"
+      ],
+      "tags": {
+      },
+      "properties": {
+        "schedule": {
+          "name": "[variables('Schedule').Name]"
+        },
+        "runbook": {
+          "name": "[variables('Runbook').Name]"
+        }
+      }
     }
+
+
+下表會說明作業排程的屬性。
+
+| 屬性 | 說明 |
+|:--- |:--- |
+| 排程名稱 |包含排程名稱的單一**名稱**實體。 |
+| Runbook 名稱  |包含 Runbook 名稱的單一**名稱**實體。  |
+
 
 
 ## <a name="variables"></a>變數
-[Azure 自動化變數](../automation/automation-variables.md)的類型為 **Microsoft.Automation/automationAccounts/variables**，且具有下表中的屬性。
+[Azure 自動化變數](../automation/automation-variables.md)的類型為 **Microsoft.Automation/automationAccounts/variables**，且具有下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。
+
+    {
+      "name": "[concat(parameters('accountName'), '/', variables('Variable').Name)]",
+      "type": "microsoft.automation/automationAccounts/variables",
+      "apiVersion": "[variables('AutomationApiVersion')]",
+      "tags": { },
+      "dependsOn": [
+      ],
+      "properties": {
+        "description": "[variables('Variable').Description]",
+        "isEncrypted": "[variables('Variable').Encrypted]",
+        "type": "[variables('Variable').Type]",
+        "value": "[variables('Variable').Value]"
+      }
+    }
+
+下表會說明變數資源的屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| 說明 |變數的選擇性說明。 |
-| isEncrypted |指定是否應加密變數。 |
-| 類型 |變數的資料類型。 |
-| value |變數的值。 |
-
-變數資源的範例如下。
-
-    "name": "[concat(parameters('accountName'), '/', variables('StartTargetResourceGroupsAssetName')) ]",
-    "type": "microsoft.automation/automationAccounts/variables",
-    "apiVersion": "[variables('AutomationApiVersion')]",
-    "tags": { },
-    "dependsOn": [
-    ],
-    "properties": {
-        "description": "Description for the variable.",
-        "isEncrypted": "true",
-        "type": "string",
-        "value": "'This is a string value.'"
-    }
-
+| 說明 | 變數的選擇性說明。 |
+| isEncrypted | 指定是否應加密變數。 |
+| 類型 | 變數的資料類型。 |
+| value | 變數的值。 |
 
 ## <a name="modules"></a>模組
-您的管理解決方案不需定義您的 Runbook 所用的[全域模組](../automation/automation-integration-modules.md)，因為永遠可用使用這些模組。  您必須包含 Runbook 所用的任何其他模組的資源，而此 Runbook 應該相依於此模組資源，才能確保它在 Runbook 之前建立。
+您的管理解決方案不需定義您的 Runbook 所用的[全域模組](../automation/automation-integration-modules.md)，因為您永遠可以在自動化帳戶中使用這些模組。  對於 Runbook 所使用的其他任何模組，您不需要包含其資源。
 
-[整合模組](../automation/automation-integration-modules.md)的類型為 **Microsoft.Automation/automationAccounts/modules**，且具有下表中的屬性。
+[整合模組](../automation/automation-integration-modules.md)的類型為 **Microsoft.Automation/automationAccounts/modules**，且具有下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。
+
+    {
+      "name": "[concat(parameters('accountName'), '/', variables('Module').Name)]",
+      "type": "Microsoft.Automation/automationAccounts/modules",
+      "apiVersion": "[variables('AutomationApiVersion')]",
+      "dependsOn": [
+      ],
+      "properties": {
+        "contentLink": {
+          "uri": "[variables('Module').Uri]"
+        }
+      }
+    }
+
+
+下表會說明模組資源的屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| contentLink |指定模組的內容。 <br><br>uri - 指定 Runbook 的內容 Uri。  這會是 PowerShell 和 Script Runbook 的 .ps1 檔案，以及 Graph Runbook 的已匯出圖形化 Runbook 檔案。  <br> 版本 - 您自己追蹤的 Runbook 版本。 |
+| contentLink |指定模組的內容。 <br><br>uri - 模組內容的 Uri。  這會是 PowerShell 和 Script Runbook 的 .ps1 檔案，以及 Graph Runbook 的已匯出圖形化 Runbook 檔案。  <br> 版本 - 自有追蹤的模組版本。 |
 
-模組資源的範例如下。
-
-    {        
-        "name": "[concat(parameters('accountName'), '/', variables('OMSIngestionModuleName'))]",
-        "type": "Microsoft.Automation/automationAccounts/modules",
-        "apiVersion": "[variables('AutomationApiVersion')]",
-        "dependsOn": [
-        ],
-        "properties": {
-            "contentLink": {
-                "uri": "https://devopsgallerystorage.blob.core.windows.net/packages/omsingestionapi.1.3.0.nupkg"
-            }
-        }
-    }
+Runbook 應該相依於模組資源，以確保模組資源會比 Runbook 還早建立。
 
 ### <a name="updating-modules"></a>更新模組
 如果您更新的管理解決方案包含使用排程的 Runbook，而且新版的解決方案具有該 Runbook 所用的新模組，則 Runbook 可能會使用舊版的模組。  您應該在您的解決方案中納入下列 Runbook，並建立一項作業，以在任何其他 Runbook 之前執行這些 Runbook。  這可確保在載入 Runbook 之前，會視需要更新任何模組。
@@ -250,74 +309,203 @@ Runbook 資源的範例如下。  在此情況下，它會從 [PowerShell 資源
 * [Update-ModulesinAutomationToLatestVersion](https://www.powershellgallery.com/packages/Update-ModulesInAutomationToLatestVersion/1.03/DisplayScript) 可確保您解決方案中 Runbook 使用的所有模組都是最新版本。  
 * [ReRegisterAutomationSchedule-MS-Mgmt](https://www.powershellgallery.com/packages/ReRegisterAutomationSchedule-MS-Mgmt/1.0/DisplayScript) 可重新註冊所有的排程資源，以確保已連結到這些資源的 Runbook 使用最新模組。
 
-下列是支援模組更新之解決方案的必要元素範例。
 
-    "parameters": {
-        "ModuleImportGuid": {
-            "type": "string",
-            "metadata": {
-                "control": "guid"
-            }
+
+
+## <a name="sample"></a>範例
+以下是解決方案的範例，其中包含下列資源：
+
+- Runbook。  這是儲存在公用 GitHub 儲存機制的 Runbook 範例。
+- 在安裝解決方案時會啟動 Runbook 的自動化作業。
+- 用來定期啟動 Runbook 的排程和作業排程。
+- 憑證。
+- 認證。
+- 變數。
+- 模組。  這個 [OMSIngestionAPI 模組](https://www.powershellgallery.com/packages/OMSIngestionAPI/1.5)可用來將資料寫入 Log Analytics。 
+
+此範例會使用[標準的解決方案參數](operations-management-suite-solutions-solution-file.md#parameters)變數，相對於資源定義中的硬式編碼值，這類變數常用於解決方案中。
+
+
+    {
+      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "workspaceName": {
+          "type": "string",
+          "metadata": {
+            "Description": "Name of Log Analytics workspace."
+          }
         },
-        "ReRegisterRunbookGuid": {
-            "type": "string",
-            "metadata": {
-                "control": "guid"
-            }
+        "accountName": {
+          "type": "string",
+          "metadata": {
+            "Description": "Name of Automation account."
+          }
+        },
+        "workspaceregionId": {
+          "type": "string",
+          "metadata": {
+            "Description": "Region of Log Analytics workspace."
+          }
+        },
+        "regionId": {
+          "type": "string",
+          "metadata": {
+            "Description": "Region of Automation account."
+          }
+        },
+        "pricingTier": {
+          "type": "string",
+          "metadata": {
+            "Description": "Pricing tier of both Log Analytics workspace and Azure Automation account."
+          }
+        },
+        "certificateBase64Value": {
+          "type": "string",
+          "metadata": {
+            "Description": "Base 64 value for certificate."
+          }
+        },
+        "certificateThumbprint": {
+          "type": "securestring",
+          "metadata": {
+            "Description": "Thumbprint for certificate."
+          }
+        },
+        "credentialUsername": {
+          "type": "string",
+          "metadata": {
+            "Description": "Username for credential."
+          }
+        },
+        "credentialPassword": {
+          "type": "securestring",
+          "metadata": {
+            "Description": "Password for credential."
+          }
+        },
+        "scheduleStartTime": {
+          "type": "string",
+          "metadata": {
+            "Description": "Start time for shedule."
+          }
+        },
+        "scheduleTimeZone": {
+          "type": "string",
+          "metadata": {
+            "Description": "Time zone for schedule."
+          }
+        },
+        "scheduleLinkGuid": {
+          "type": "string",
+          "metadata": {
+            "description": "GUID for the schedule link to runbook.",
+            "control": "guid"
+          }
+        },
+        "runbookJobGuid": {
+          "type": "string",
+          "metadata": {
+            "description": "GUID for the runbook job.",
+            "control": "guid"
+          }
         }
-    },
-
-    "variables": {
-        "ModuleImportRunbookName": "Update-ModulesInAutomationToLatestVersion",
-        "ModuleImportRunbookUri": "https://www.powershellgallery.com/packages/Update-ModulesInAutomationToLatestVersion/1.03/Content/Update-ModulesInAutomationToLatestVersion.ps1",
-        "ModuleImportRunbookDescription": "Imports modules and also updates all Azure dependent modules that are in the same Automation Account.",
-        "ReRegisterSchedulesRunbookName": "Update-ModulesInAutomationToLatestVersion",
-        "ReRegisterSchedulesRunbookUri": "https://www.powershellgallery.com/packages/ReRegisterAutomationSchedule-MS-Mgmt/1.0/Content/ReRegisterAutomationSchedule-MS-Mgmt.ps1",
-        "ReRegisterSchedulesRunbookDescription": "Reregisters schedules to ensure that they use latest modules."
-    },
-
-    "resources": [
+      },
+      "variables": {
+        "SolutionName": "MySolution",
+        "SolutionVersion": "1.0",
+        "SolutionPublisher": "Contoso",
+        "ProductName": "SampleSolution",
+    
+        "LogAnalyticsApiVersion": "2015-11-01-preview",
+        "AutomationApiVersion": "2015-10-31",
+    
+        "Runbook": {
+          "Name": "MyRunbook",
+          "Description": "Sample runbook",
+          "Type": "PowerShell",
+          "Uri": "https://raw.githubusercontent.com/user/myrepo/master/samples/MyRunbook.ps1",
+          "JobGuid": "[parameters('runbookJobGuid')]"
+        },
+    
+        "Certificate": {
+          "Name": "MyCertificate",
+          "Base64Value": "[parameters('certificateBase64Value')]",
+          "Thumbprint": "[parameters('certificateThumbprint')]"
+        },
+    
+        "Credential": {
+          "Name": "MyCredential",
+          "UserName": "[parameters('credentialUsername')]",
+          "Password": "[parameters('credentialPassword')]"
+        },
+    
+        "Schedule": {
+          "Name": "MySchedule",
+          "Description": "Sample schedule",
+          "IsEnabled": "true",
+          "Interval": "1",
+          "Frequency": "hour",
+          "StartTime": "[parameters('scheduleStartTime')]",
+          "TimeZone": "[parameters('scheduleTimeZone')]",
+          "LinkGuid": "[parameters('scheduleLinkGuid')]"
+        },
+    
+        "Variable": {
+          "Name": "MyVariable",
+          "Description": "Sample variable",
+          "Encrypted": 0,
+          "Type": "string",
+          "Value": "'This is my string value.'"
+        },
+    
+        "Module": {
+          "Name": "OMSIngestionAPI",
+          "Uri": "https://devopsgallerystorage.blob.core.windows.net/packages/omsingestionapi.1.3.0.nupkg"
+        }
+      },
+      "resources": [
         {
-            "name": "[concat(parameters('accountName'), '/', variables('ModuleImportRunbookName'))]",
-            "type": "Microsoft.Automation/automationAccounts/runbooks",
-            "apiVersion": "[variables('AutomationApiVersion')]",
-            "dependsOn": [
+          "name": "[concat(variables('SolutionName'), '[' ,parameters('workspacename'), ']')]",
+          "location": "[parameters('workspaceRegionId')]",
+          "tags": { },
+          "type": "Microsoft.OperationsManagement/solutions",
+          "apiVersion": "[variables('LogAnalyticsApiVersion')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Automation/automationAccounts/runbooks/', parameters('accountName'), variables('Runbook').Name)]",
+            "[resourceId('Microsoft.Automation/automationAccounts/jobs/', parameters('accountName'), variables('Runbook').JobGuid)]",
+            "[resourceId('Microsoft.Automation/automationAccounts/certificates/', parameters('accountName'), variables('Certificate').Name)]",
+            "[resourceId('Microsoft.Automation/automationAccounts/credentials/', parameters('accountName'), variables('Credential').Name)]",
+            "[resourceId('Microsoft.Automation/automationAccounts/schedules/', parameters('accountName'), variables('Schedule').Name)]",
+            "[resourceId('Microsoft.Automation/automationAccounts/jobSchedules/', parameters('accountName'), variables('Schedule').LinkGuid)]",
+            "[resourceId('Microsoft.Automation/automationAccounts/variables/', parameters('accountName'), variables('Variable').Name)]",
+            "[resourceId('Microsoft.Automation/automationAccounts/modules/', parameters('accountName'), variables('Module').Name)]"
+          ],
+          "properties": {
+            "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspacename'))]",
+            "referencedResources": [
+              "[resourceId('Microsoft.Automation/automationAccounts/modules/', parameters('accountName'), variables('Module').Name)]"
             ],
-            "location": "[parameters('regionId')]",
-            "tags": { },
-            "properties": {
-                "runbookType": "PowerShell",
-                "logProgress": "true",
-                "logVerbose": "true",
-                "description": "[variables('ModuleImportRunbookDescription')]",
-                "publishContentLink": {
-                    "uri": "[variables('ModuleImportRunbookUri')]",
-                    "version": "1.0.0.0"
-                }
-            }
+            "containedResources": [
+              "[resourceId('Microsoft.Automation/automationAccounts/runbooks/', parameters('accountName'), variables('Runbook').Name)]",
+              "[resourceId('Microsoft.Automation/automationAccounts/jobs/', parameters('accountName'), variables('Runbook').JobGuid)]",
+              "[resourceId('Microsoft.Automation/automationAccounts/certificates/', parameters('accountName'), variables('Certificate').Name)]",
+              "[resourceId('Microsoft.Automation/automationAccounts/credentials/', parameters('accountName'), variables('Credential').Name)]",
+              "[resourceId('Microsoft.Automation/automationAccounts/schedules/', parameters('accountName'), variables('Schedule').Name)]",
+              "[resourceId('Microsoft.Automation/automationAccounts/jobSchedules/', parameters('accountName'), variables('Schedule').LinkGuid)]",
+              "[resourceId('Microsoft.Automation/automationAccounts/variables/', parameters('accountName'), variables('Variable').Name)]"
+            ]
+          },
+          "plan": {
+            "name": "[concat(variables('SolutionName'), '[' ,parameters('workspaceName'), ']')]",
+            "Version": "[variables('SolutionVersion')]",
+            "product": "[variables('ProductName')]",
+            "publisher": "[variables('SolutionPublisher')]",
+            "promotionCode": ""
+          }
         },
         {
-            "name": "[concat(parameters('accountName'), '/', parameters('ModuleImportGuid'))]",
-            "type": "Microsoft.Automation/automationAccounts/jobs",
-            "apiVersion": "[variables('AutomationApiVersion')]",
-            "location": "[parameters('regionId')]",
-            "dependsOn": [
-                "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/runbooks/', variables('ModuleImportRunbookName'))]"
-            ],
-            "tags": { },
-            "properties": {
-                "runbook": {
-                    "name": "[variables('ModuleImportRunbookName')]"
-                },
-                "parameters": {
-                    "ResourceGroupName": "[resourceGroup().name]",
-                    "AutomationAccountName": "[parameters('accountName')]",
-                    "NewModuleName": "AzureRM.Insights"
-                }
-            }
-        },
-        {
-          "name": "[concat(parameters('accountName'), '/', variables('ReRegisterSchedulesRunbookName'))]",
+          "name": "[concat(parameters('accountName'), '/', variables('Runbook').Name)]",
           "type": "Microsoft.Automation/automationAccounts/runbooks",
           "apiVersion": "[variables('AutomationApiVersion')]",
           "dependsOn": [
@@ -325,44 +513,132 @@ Runbook 資源的範例如下。  在此情況下，它會從 [PowerShell 資源
           "location": "[parameters('regionId')]",
           "tags": { },
           "properties": {
-            "runbookType": "PowerShell",
+            "runbookType": "[variables('Runbook').Type]",
             "logProgress": "true",
             "logVerbose": "true",
-            "description": "[variables('ReRegisterSchedulesRunbookDescription')]",
+            "description": "[variables('Runbook').Description]",
             "publishContentLink": {
-              "uri": "[variables('ReRegisterSchedulesRunbookUri')]",
+              "uri": "[variables('Runbook').Uri]",
               "version": "1.0.0.0"
             }
           }
         },
         {
-          "name": "[concat(parameters('accountName'), '/', parameters('reRegisterSchedulesGuid'))]",
+          "name": "[concat(parameters('accountName'), '/', variables('Runbook').JobGuid)]",
           "type": "Microsoft.Automation/automationAccounts/jobs",
           "apiVersion": "[variables('AutomationApiVersion')]",
           "location": "[parameters('regionId')]",
           "dependsOn": [
-            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/runbooks/', variables('ReRegisterSchedulesRunbookName'))]"
+            "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'), '/runbooks/', variables('Runbook').Name)]"
           ],
           "tags": { },
           "properties": {
             "runbook": {
-              "name": "[variables('ReRegisterSchedulesRunbookName')]"
+              "name": "[variables('Runbook').Name]"
             },
             "parameters": {
               "targetSubscriptionId": "[subscription().subscriptionId]",
               "resourcegroup": "[resourceGroup().name]",
               "automationaccount": "[parameters('accountName')]"
             }
+          }
+        },
+        {
+          "name": "[concat(parameters('accountName'), '/', variables('Certificate').Name)]",
+          "type": "Microsoft.Automation/automationAccounts/certificates",
+          "apiVersion": "[variables('AutomationApiVersion')]",
+          "location": "[parameters('regionId')]",
+          "tags": { },
+          "dependsOn": [
+          ],
+          "properties": {
+            "Base64Value": "[variables('Certificate').Base64Value]",
+            "Thumbprint": "[variables('Certificate').Thumbprint]"
+          }
+        },
+        {
+          "name": "[concat(parameters('accountName'), '/', variables('Credential').Name)]",
+          "type": "Microsoft.Automation/automationAccounts/credentials",
+          "apiVersion": "[variables('AutomationApiVersion')]",
+          "location": "[parameters('regionId')]",
+          "tags": { },
+          "dependsOn": [
+          ],
+          "properties": {
+            "userName": "[variables('Credential').UserName]",
+            "password": "[variables('Credential').Password]"
+          }
+        },
+        {
+          "name": "[concat(parameters('accountName'), '/', variables('Schedule').Name)]",
+          "type": "microsoft.automation/automationAccounts/schedules",
+          "apiVersion": "[variables('AutomationApiVersion')]",
+          "tags": { },
+          "dependsOn": [
+          ],
+          "properties": {
+            "description": "[variables('Schedule').Description]",
+            "startTime": "[variables('Schedule').StartTime]",
+            "timeZone": "[variables('Schedule').TimeZone]",
+            "isEnabled": "[variables('Schedule').IsEnabled]",
+            "interval": "[variables('Schedule').Interval]",
+            "frequency": "[variables('Schedule').Frequency]"
+          }
+        },
+        {
+          "name": "[concat(parameters('accountName'), '/', variables('Schedule').LinkGuid)]",
+          "type": "microsoft.automation/automationAccounts/jobSchedules",
+          "apiVersion": "[variables('AutomationApiVersion')]",
+          "location": "[parameters('regionId')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Automation/automationAccounts/runbooks/', parameters('accountName'), variables('Runbook').Name)]",
+            "[resourceId('Microsoft.Automation/automationAccounts/schedules/', parameters('accountName'), variables('Schedule').Name)]"
+          ],
+          "tags": {
+          },
+          "properties": {
+            "schedule": {
+              "name": "[variables('Schedule').Name]"
+            },
+            "runbook": {
+              "name": "[variables('Runbook').Name]"
+            }
+          }
+        },
+        {
+          "name": "[concat(parameters('accountName'), '/', variables('Variable').Name)]",
+          "type": "microsoft.automation/automationAccounts/variables",
+          "apiVersion": "[variables('AutomationApiVersion')]",
+          "tags": { },
+          "dependsOn": [
+          ],
+          "properties": {
+            "description": "[variables('Variable').Description]",
+            "isEncrypted": "[variables('Variable').Encrypted]",
+            "type": "[variables('Variable').Type]",
+            "value": "[variables('Variable').Value]"
+          }
+        },
+        {
+          "name": "[concat(parameters('accountName'), '/', variables('Module').Name)]",
+          "type": "Microsoft.Automation/automationAccounts/modules",
+          "apiVersion": "[variables('AutomationApiVersion')]",
+          "dependsOn": [
+          ],
+          "properties": {
+            "contentLink": {
+              "uri": "[variables('Module').Uri]"
+            }
+          }
         }
-    ]
+    
+      ],
+      "outputs": { }
+    }
+
+
 
 
 ## <a name="next-steps"></a>後續步驟
 * [將檢視新增至您的解決方案](operations-management-suite-solutions-resources-views.md)，以將所收集的資料視覺化。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

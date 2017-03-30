@@ -17,16 +17,16 @@ ms.workload: sqldb-migrate
 ms.date: 02/08/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: 8d4823576fe0d44fa565fdb72e8b229d31dff609
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 2d72731304aee0952abbb1f3b2c24b620118fc6c
+ms.lasthandoff: 03/18/2017
 
 
 ---
 # <a name="sql-server-database-migration-to-sql-database-in-the-cloud"></a>SQL Server 資料庫移轉至雲端 SQL Database
 在本文中，您將了解兩種用來將 SQL Server 2005 或更新版本資料庫移轉到 Azure SQL Database 的主要方法。 第一種方法比較簡單，但在移轉期間需要一些可能較長期的停機時間。 第二種方法比較複雜，但可大幅免去移轉期間的停機時間。
 
-不論是哪一種方法，您都需要確定來源資料庫可與 Azure SQL Database 相容。 使用 SQL Database V12 時，除了伺服器層級和跨資料庫作業相關的問題以外，我們將進行 SQL Server 的[功能同位檢查](sql-database-features.md)。 依賴[部分支援或未支援功能](sql-database-transact-sql-information.md)的資料庫和應用程式需要一些[再造來修正這些不相容情況](sql-database-cloud-migrate.md#resolving-database-migration-compatibility-issues)，然後才能移轉 SQL Server 資料。
+不論是哪一種方法，您都需要使用 [Data Migration Assistant (DMA)](https://www.microsoft.com/download/details.aspx?id=53595) 來確定來源資料庫與 Azure SQL Database 相容。 除了伺服器層級和跨資料庫作業的問題相關之外，SQL Database V12 的功能正逐漸與 SQL Server 的[功能相等](sql-database-features.md)。 依賴[部分支援或未支援功能](sql-database-transact-sql-information.md)的資料庫和應用程式需要一些[再造來修正這些不相容情況](sql-database-cloud-migrate.md#resolving-database-migration-compatibility-issues)，然後才能移轉 SQL Server 資料。
 
 > [!NOTE]
 > 若要將非 SQL Server 資料庫 (包括 Microsoft Access、Sybase、MySQL Oracle 和 DB2) 移轉到 Azure SQL Database，請參閱 [SQL Server 移轉小幫手](https://blogs.msdn.microsoft.com/datamigration/2016/12/22/released-sql-server-migration-assistant-ssma-v7-2/)。

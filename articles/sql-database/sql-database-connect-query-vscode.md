@@ -18,9 +18,9 @@ ms.topic: hero-article
 ms.date: 03/17/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 9192ed7b69e52c59efe33981e1e557b634679196
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 86471fe29bbc9076624d96b83f7001d8755363bc
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -32,7 +32,6 @@ ms.lasthandoff: 03/21/2017
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
-- [建立 DB - PowerShell](sql-database-get-started-powershell.md) 
 
 開始之前，確定您已安裝最新版的 [Visual Studio Code](https://code.visualstudio.com/Download) 並已載入 [mssql 擴充功能](https://aka.ms/mssql-marketplace)。 如需 mssql 擴充功能的安裝指引，請參閱[安裝 VS Code](https://docs.microsoft.com/sql/linux/sql-server-linux-develop-use-vscode#install-vs-code)。 
 
@@ -164,3 +163,4 @@ ms.lasthandoff: 03/21/2017
 
 - 如需 Visual Studio Code 的詳細資訊，請參閱 [Visual Studio Code](https://code.visualstudio.com/docs)
 - 如需使用 SQL Server Management Studio 查詢和編輯資料的詳細資訊，請參閱 [SSMS](https://msdn.microsoft.com/library/ms174173.aspx)。
+

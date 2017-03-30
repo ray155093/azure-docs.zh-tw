@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/23/2017
+ms.date: 03/17/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: aada5b96eb9ee999c5b1f60b6e7b9840fd650fbe
-ms.openlocfilehash: 2831416bbb290905835396835db2eb6cb5e7b46f
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: e7d2d0063b1555e098c43b95272c78eaf4678af9
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -32,8 +32,7 @@ ms.lasthandoff: 02/24/2017
 要建立將資料複製到 Azure SQL 資料倉儲，或複製 Azure SQL 資料倉儲資料的管線，最簡單的方法是使用複製資料精靈。 請參閱[教學課程︰使用 Data Factory 將資料載入 SQL 資料倉儲](../sql-data-warehouse/sql-data-warehouse-load-with-data-factory.md)以取得使用複製資料精靈建立管線的快速逐步解說。
 
 > [!TIP]
-> 從 SQL Server 或 Azure SQL Database 中將資料複製到 Azure SQL 資料倉儲時，如果目的地存放區中沒有資料表，Data Factory 支援使用來源的結構描述來自動建立資料表。 使用複製精靈立即試用，並透過[自動建立資料表](#auto-table-creation)進行深入了解。
->
+> 從 SQL Server 或 Azure SQL Database 中將資料複製到 Azure SQL 資料倉儲時，如果目的地存放區中沒有資料表，Data Factory 可以使用來源資料存放區中的資料表結構描述，在 SQL 資料倉儲中自動建立資料表。 請參閱[自動建立資料表](#auto-table-creation)以取得詳細資料。 
 
 以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到 Azure SQL 資料倉儲和 Azure Blob 儲存體，以及複製其中的資料。 不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源 **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。
 
@@ -417,7 +416,7 @@ ms.lasthandoff: 02/24/2017
 ## <a name="dataset-type-properties"></a>資料集類型屬性
 如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
 
-每個資料集類型的 typeProperties 區段都不同，可提供資料存放區中資料的位置相關資訊。 **AzureSqlDWTable** 類型資料集的 **typeProperties** 區段具有下列屬性。
+每個資料集類型的 typeProperties 區段都不同，可提供資料存放區中資料的位置相關資訊。 **AzureSqlDWTable** 類型資料集的 **typeProperties** 區段具有下列屬性：
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
@@ -507,7 +506,7 @@ GO
 使用 **PolyBase** 是以高輸送量將大量資料載入 Azure SQL 資料倉儲的有效方法。 使用 PolyBase 而不是預設的 BULKINSERT 機制，即可看到輸送量大幅提升。 請參閱[複製效能參考編號](data-factory-copy-activity-performance.md#performance-reference)了解詳細的比較。
 
 * 如果您的來源資料格式與 PolyBase 相容，您就可以使用 PolyBase 從來源資料存放區直接複製到 Azure SQL 資料倉儲。 請參閱**[使用 PolyBase 直接複製](#direct-copy-using-polybase)**了解詳細資料。 如需使用案例的逐步解說，請參閱[使用 Azure Data Factory 在 15 分鐘內將 1 TB 載入至 Azure SQL 資料倉儲](data-factory-load-sql-data-warehouse.md)。
-* 如果 PolyBase 原本不支援您的來源資料格式，您可以改用**[使用 PolyBase 分段複製](#staged-copy-using-polybase)**，這會自動先將資料轉換成與 PolyBase 相容的格式並儲存在 Azure Blob 儲存體，然後載入 SQL 資料倉儲，也能夠提供您更好的輸送量。
+* 如果您的來源資料格式不受 PolyBase 支援，您可以改為使用**[使用 PolyBase 分段複製](#staged-copy-using-polybase)**功能。 它也能透過將資料自動轉換為 PolyBase 相容的格式，並將資料儲存在 Azure Blob 儲存體中，來提供更佳的輸送量。 然後，它會將資料載入 SQL 資料倉儲。
 
 將 `allowPolyBase` 屬性設定為 **true** (如下列範例所示)，以便 Azure Data Factory 使用 PolyBase，將資料複製到 Azure SQL 資料倉儲。 當您將 allowPolyBase 設定為 true 時，您可以使用 `polyBaseSettings` 屬性群組來指定 PolyBase 特定屬性。 如需您可搭配 polyBaseSettings 使用之屬性的詳細資訊，請參閱 [SqlDWSink](#SqlDWSink) 一節。
 
@@ -598,7 +597,7 @@ GO
 若要使用 PolyBase，要用來將資料載入 SQL 資料倉儲的使用者必須具備目標資料庫的 ["CONTROL" 權限](https://msdn.microsoft.com/library/ms191291.aspx)。 達到此目標的其中一個方法是將該使用者新增為 "db_owner" 角色的成員。 依照[本節](../sql-data-warehouse/sql-data-warehouse-overview-manage-security.md#authorization)了解如何進行這項動作。
 
 ### <a name="row-size-and-data-type-limitation"></a>資料列大小和資料類型限制
-PolyBase 載入被限制為只能載入小於 **1 MB** 的資料列，且不能載入至 VARCHR(MAX)、NVARCHAR(MAX) 或 VARBINARY(MAX)。 請參閱[這裡](../sql-data-warehouse/sql-data-warehouse-service-capacity-limits.md#loads)。
+PolyBase 載入被限制為只能載入小於 **1 MB**，且不能載入至 VARCHR(MAX)、NVARCHAR(MAX) 或 VARBINARY(MAX) 的資料列。 請參閱[這裡](../sql-data-warehouse/sql-data-warehouse-service-capacity-limits.md#loads)。
 
 如果您的來源資料包含大於 1 MB 的資料列，建議您將來源資料表垂直分割成數個小型資料表，而每個資料表的最大資料列大小均不超過限制。 然後可以使用 PolyBase 載入較小的資料表而在 Azure SQL 資料倉儲中合併在一起。
 
@@ -630,9 +629,9 @@ All columns of the table must be specified in the INSERT BULK statement.
 NULL 值是一種特殊形式的預設值。 如果資料行可為 null，該資料行的輸入資料 (在 Blob 中) 可以是空的 (不能在輸入資料集中遺漏)。 PolyBase 會在 Azure SQL 資料倉儲中為其插入 NULL。  
 
 ## <a name="auto-table-creation"></a>自動建立資料表
-從 SQL Server 或 Azure SQL Database 中將資料複製到 Azure SQL 資料倉儲時，如果目的地存放區中沒有資料表，而您是使用複製精靈來撰寫，Data Factory 便支援使用來源的結構描述來自動建立資料表。
+如果您使用複製精靈從 SQL Server 或 Azure SQL Database 中將資料複製到 Azure SQL 資料倉儲，且目的地存放區中沒有對應來源資料表的資料表，Data Factory 可以使用來源資料表結構描述，在資料倉儲中自動建立資料表。 
 
-Data Factory 會使用和來源相同的名稱在目的地中建立資料表、使用下列對應建立資料行資料類型，以及使用循環配置資源資料表散發。 請注意，必要時會進行適當的資料類型轉換，以修正來源和目的地存放區之間的不相容性。
+Data Factory 會以和來源資料存放區中的資料表相同的名稱，在目的地存放區中建立資料表。 資料行的資料類型會根據下列類型對應來選擇。 它會視需要執行類型轉換，以修正來源和目的地存放區之間所有不相容的情況。 它也會使用循環配置資源資料表散發。 
 
 | 來源 SQL Database 資料行類型 | 目的地 SQL DW 資料行類型 (大小限制) |
 | --- | --- |
