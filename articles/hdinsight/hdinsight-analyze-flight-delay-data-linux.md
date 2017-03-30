@@ -17,9 +17,9 @@ ms.date: 02/07/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 5f0fc28d034306476c5504a65ddb81193e3e589c
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: bd3032b3df92c43b6cc6431eff19bd7cc0cc47bd
+ms.lasthandoff: 03/25/2017
 
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-on-linux-based-hdinsight"></a>在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班延誤資料
@@ -68,10 +68,7 @@ ms.lasthandoff: 03/21/2017
    
     ```ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net```
    
-    如需搭配使用 SSH 與 Linux 型 HDInsight 的詳細資訊，請參閱下列文章：
-   
-   * [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與 Linux型 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
-   * [從 Windows 在 HDInsight 上搭配使用 SSH 與 Linux 型 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+    如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 3. 連線之後，請使用以下命令解壓縮 .zip 檔案：
    

@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 55fb454f-c7dc-46de-a978-e242e9a94f4c
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,9 +17,9 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: 2d50c432f335d362068e55899f350cdf1c4c09ec
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 9b822da3d8fd2706bc65ab842d063be66904649f
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -76,7 +77,7 @@ ms.lasthandoff: 01/24/2017
            192.xxx.xx.xx hn1-nitinp
            192.xxx.xx.xx hn1-nitinp.lhwwghjkpqejawpqbwcdyp3.gx.internal.cloudapp.net
 6. 從您連接到 HDInsight 叢集使用之 Azure 虛擬網路的電腦，確認您可以使用 IP 位址和主機名稱 ping 兩個前端節點。
-7. 利用 [使用 SSH 連線到 HDInsight 叢集](hdinsight-hadoop-linux-use-ssh-windows.md#connect-to-a-linux-based-hdinsight-cluster)中的指示，將 SSH 連線至叢集前端節點。 從叢集前端節點，ping 桌上型電腦的 IP 位址。 您應該測試指派至電腦的這兩個 IP 位址的連線能力，一個用於網路連接，而另一個則用於電腦連接的 Azure 虛擬網路。
+7. 利用 [使用 SSH 連線到 HDInsight 叢集](hdinsight-hadoop-linux-use-ssh-unix.md)中的指示，將 SSH 連線至叢集前端節點。 從叢集前端節點，ping 桌上型電腦的 IP 位址。 您應該測試指派至電腦的這兩個 IP 位址的連線能力，一個用於網路連接，而另一個則用於電腦連接的 Azure 虛擬網路。
 8. 對其他前端節點重複這些步驟。 
 
 ## <a name="step-4-create-a-spark-scala-application-using-the-hdinsight-tools-in-azure-toolkit-for-intellij-and-configure-it-for-remote-debugging"></a>步驟 4：使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具來建立 Spark Scala 應用程式，並設定它以進行遠端偵錯
@@ -255,7 +256,7 @@ ms.lasthandoff: 01/24/2017
    
     ![在偵錯模式中執行程式](./media/hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely/debug-complete.png)
 
-## <a name="a-nameseealsoasee-also"></a><a name="seealso"></a>另請參閱
+## <a name="seealso"></a>另請參閱
 * [概觀：Azure HDInsight 上的 Apache Spark](hdinsight-apache-spark-overview.md)
 
 ### <a name="scenarios"></a>案例

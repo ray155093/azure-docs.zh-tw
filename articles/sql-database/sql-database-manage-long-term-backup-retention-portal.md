@@ -16,9 +16,9 @@ ms.tgt_pltfrm: NA
 ms.date: 12/22/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: f234e50d194c1b8b8deed8282a6ab1250b53d075
-ms.openlocfilehash: d055e40305b277338ae85e8d6c53d3d76a78d235
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: fa4cf56c10f885a2fd4b62e08a369a51d1280ab3
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -91,10 +91,6 @@ ms.lasthandoff: 02/16/2017
 14. 按一下 [儲存] 以使用這個新的原則對您所設定的 Azure 復原服務保存庫啟用長期備份保留。
 
    ![定義保留原則](./media/sql-database-get-started-backup-recovery/enable-long-term-retention.png)
-
-14. 在啟用長期備份保留之後，開啟 [復原服務保存庫] 刀鋒視窗 (移至 [所有資源]，並從您訂用帳戶的資源清單中選取)。
-
-   ![檢視復原服務保存庫](./media/sql-database-get-started-backup-recovery/view-recovery-services-vault.png)
 
 
 ## <a name="restore-from-long-term-backup-retention-using-the-azure-portal"></a>使用 Azure 入口網站從長期備份保留還原

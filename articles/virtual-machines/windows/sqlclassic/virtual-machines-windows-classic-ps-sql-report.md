@@ -16,8 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 01/11/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 7402249aa87ffe985ae13f28a701e22af3afd450
-ms.openlocfilehash: b036296a4b4ce8ba3e6707226642a928381bcf31
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 8f62547316e4ecc02da0341aab94010d880115f8
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -77,7 +78,7 @@ ms.openlocfilehash: b036296a4b4ce8ba3e6707226642a928381bcf31
    * [端點]：保留 [遠端桌面] 和 [PowerShell] 端點，然後根據您的環境新增 HTTP 或 HTTPS 端點。
      
      * [HTTP]：預設的公用和私人連接埠都是 **80**。 請注意，如果您使用的私人連接埠不是 80，請修改 http 指令碼中的 **$HTTPport = 80** 。
-     * [HTTPS]：預設的公用和私人連接埠都是 **443**。 安全性最佳作法就是變更私用連接埠，並將防火牆和報表伺服器設為使用私用連接埠。 如需有關端點的詳細資訊，請參閱 [如何設定與虛擬機器的通訊](../../virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 請注意，如果您使用的連接埠不是 443，請變更 HTTPS 指令碼中的 **$HTTPsport = 443** 參數。
+     * [HTTPS]：預設的公用和私人連接埠都是 **443**。 安全性最佳作法就是變更私用連接埠，並將防火牆和報表伺服器設為使用私用連接埠。 如需有關端點的詳細資訊，請參閱 [如何設定與虛擬機器的通訊](../classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 請注意，如果您使用的連接埠不是 443，請變更 HTTPS 指令碼中的 **$HTTPsport = 443** 參數。
    * 按 [下一步]。 ![下一步](./media/virtual-machines-windows-classic-ps-sql-report/IC692021.gif)
 8. 在精靈的最後一頁，保持選取預設值 [安裝 VM 代理程式]  。 本主題的步驟不會使用 VM 代理程式，但若您打算保留此 VM，VM 代理程式和延伸模組可讓您增強 CM。  如需有關 VM 代理程式的詳細資訊，請參閱 [VM 代理程式和延伸模組 – 第 1 部分](https://azure.microsoft.com/blog/2014/04/11/vm-agent-and-extensions-part-1/)。 其中一個已安裝並執行的預設延伸模組是「BGINFO」延伸模組，它會在 VM 桌面上顯示系統資訊，例如內部 IP 和可用磁碟空間。
 9. 按一下 [完成]。 ![Ok](./media/virtual-machines-windows-classic-ps-sql-report/IC660122.gif)
@@ -555,7 +556,7 @@ ms.openlocfilehash: b036296a4b4ce8ba3e6707226642a928381bcf31
 * 在 VM 上，瀏覽至報表管理員 URL：
   
         http://localhost/Reports
-* 從本機電腦瀏覽至 VM 上的 **遠端** 報告管理員。 視需要更新下列範例中的 DNS 名稱。 如果系統提示輸入密碼，請使用您佈建 VM 時所建立的系統管理員認證。 使用者名稱的格式是 [網域]\[[使用者名稱]，其中的網域是 VM 電腦名稱，例如 ssrsnativecloud\testuser。 如果您不是使用 HTTP**S**，請移除 URL 中的 **s**。 如需有關如何在 VM 上建立其他使用者的資訊，請參閱下一節。
+* 從本機電腦瀏覽至 VM 上的 **遠端** 報告管理員。 視需要更新下列範例中的 DNS 名稱。 如果系統提示輸入密碼，請使用您佈建 VM 時所建立的系統管理員認證。 使用者名稱的格式是 [網域]\[使用者名稱]，其中的網域是 VM 電腦名稱，例如 ssrsnativecloud\testuser。 如果您不是使用 HTTP**S**，請移除 URL 中的 **s**。 如需有關如何在 VM 上建立其他使用者的資訊，請參閱下一節。
   
         https://ssrsnativecloud.cloudapp.net/Reports
 * 從本機電腦瀏覽至遠端報表伺服器 URL。 視需要更新下列範例中的 DNS 名稱。 如果您不是使用 HTTPS，請移除 URL 中的 s。
@@ -607,10 +608,5 @@ ms.openlocfilehash: b036296a4b4ce8ba3e6707226642a928381bcf31
 
 ### <a name="links-to-other-resources-for-sql-server-in-azure-vms"></a>Azure VM 中的 SQL Server 的其他資源連結
 [Azure 虛擬機器上的 SQL Server 概觀](../sql/virtual-machines-windows-sql-server-iaas-overview.md)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

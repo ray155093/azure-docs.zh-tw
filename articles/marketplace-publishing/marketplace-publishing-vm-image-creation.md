@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/05/2017
 ms.author: hascipio; v-divte
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: e801d966e7461be7ec6101941c7b70912ad8c403
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 62e9f34216f25bc1feab3bc76f78a9c1ab07ab9c
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -59,7 +59,7 @@ SKU 是 VM 映像的商務名稱。 VM 映像包含一個作業系統磁碟以�
 3. 如果您正在使用以 Windows 為基礎的 SKU，請遵循建議的連結，要求使用核准的 Windows Server 版本。
 
 ## <a name="2-create-an-azure-compatible-vhd-linux-based"></a>2.建立與 Azure 相容的 VHD (以 Linux 為基礎)
-本節的焦點在於為 Azure Marketplace 建立以 Linux 為基礎的 VM 映像所採行的最佳作法。 若需逐步解說，請參考下列文件：[建立與上傳包含 Linux 作業系統的虛擬硬碟](../virtual-machines/virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+本節的焦點在於為 Azure Marketplace 建立以 Linux 為基礎的 VM 映像所採行的最佳作法。 若需逐步解說，請參考下列文件：[建立與上傳包含 Linux 作業系統的虛擬硬碟](../virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ## <a name="3-create-an-azure-compatible-vhd-windows-based"></a>3.建立與 Azure 相容的 VHD (以 Windows 為基礎)
 本節的焦點在於為 Azure Marketplace 建立以 Windows Server 為基礎的 SKU 所採行的步驟。
@@ -175,7 +175,7 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。 也就�
 
         sysprep.exe /generalize /oobe /shutdown
 
-  下列 MSDN 文章的「步驟」提供如何 sysprep 作業系統的指導：[建立 Windows Server VHD 並將其上傳至 Azure](../virtual-machines/virtual-machines-windows-classic-createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+  下列 MSDN 文章的「步驟」提供如何 sysprep 作業系統的指導：[建立 Windows Server VHD 並將其上傳至 Azure](../virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 ## <a name="4-deploy-a-vm-from-your-vhds"></a>4.從您的 VHD 部署 VM
 在您將 VHD (一般化作業系統 VHD 和零或更多個資料磁碟 VHD) 上傳至 Azure 儲存體帳戶之後，您就可以將它們註冊為使用者 VM 映像。 您可以接著測試該映像。 請注意，因為您的作業系統 VHD 已一般化，所以您無法藉由提供 VHD URL 來直接部署 VM。

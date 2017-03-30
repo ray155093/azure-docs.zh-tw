@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/27/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 04ed5f52a36f5d6483ed197d0886f3a908d393c5
-ms.openlocfilehash: 53bc2f6e0be0af13f95968272aa1f97f1d0918a2
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 488b16623300d80a53a61badee420de106c418b0
+ms.lasthandoff: 03/25/2017
 
 ---
 
@@ -29,7 +29,7 @@ ms.lasthandoff: 02/28/2017
 在 Azure 傳統入口網站的 [調整] 頁面上，您可以設定您 web 角色或背景工作角色的自動調整規模設定。 或者，您可以設定手動調整，而非規則型自動縮放比例。
 
 > [!NOTE]
-> 本文著重於雲端服務 web 和背景工作角色。 當您直接建立虛擬機器 (傳統) 時，它會裝載於雲端服務中。 其中有些資訊適用於這些類型的虛擬機器。 調整虛擬機器的可用性設定組只是根據您設定的調整規則將其關閉或開啟。 如需虛擬機器和可用性設定組的詳細資訊，請參閱 [管理虛擬機器的可用性](../virtual-machines/virtual-machines-windows-classic-configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+> 本文著重於雲端服務 web 和背景工作角色。 當您直接建立虛擬機器 (傳統) 時，它會裝載於雲端服務中。 其中有些資訊適用於這些類型的虛擬機器。 調整虛擬機器的可用性設定組只是根據您設定的調整規則將其關閉或開啟。 如需虛擬機器和可用性設定組的詳細資訊，請參閱 [管理虛擬機器的可用性](../virtual-machines/windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 在設定應用程式的調整之前，您應該先考量下列資訊：
 

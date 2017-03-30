@@ -16,19 +16,20 @@ ms.workload: iaas-sql-server
 ms.date: 01/17/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: 73032c8ed1f74139f5998ad24f5a9e9861c1e990
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 69e3172b1eac844863f51997f3061619f50b68da
+ms.lasthandoff: 03/25/2017
 
 
 ---
 # <a name="automated-patching-for-sql-server-in-azure-virtual-machines-classic"></a>Azure 虛擬機器中的 SQL Server 自動修補 (傳統)
 > [!div class="op_single_selector"]
 > * [資源管理員](../sql/virtual-machines-windows-sql-automated-patching.md)
-> * [傳統](virtual-machines-windows-classic-sql-automated-patching.md)
+> * [傳統](../classic/sql-automated-patching.md)
 > 
 > 
 
-自動修補會針對執行 SQL Server 的 Azure 虛擬機器建立維護時間範圍。 自動更新只能在此維護時間範圍內安裝。 對於 SQL Server，這可以確保系統更新和任何相關聯的重新啟動會在對資料庫最好的時間發生。 自動修補相依於 [SQL Server IaaS 代理程式擴充](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+自動修補會針對執行 SQL Server 的 Azure 虛擬機器建立維護時間範圍。 自動更新只能在此維護時間範圍內安裝。 對於 SQL Server，這可以確保系統更新和任何相關聯的重新啟動會在對資料庫最好的時間發生。 自動修補相依於 [SQL Server IaaS 代理程式擴充](../classic/sql-server-agent-extension.md)。
 
 > [!IMPORTANT] 
 > Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 若要檢視這篇文章的 Resource Manager 版本，請參閱 [Automated Patching for SQL Server in Azure Virtual Machines Resource Manager](../sql/virtual-machines-windows-sql-automated-patching.md)(Azure 虛擬機器的 SQL Server 自動修補 (Resource Manager))。
@@ -53,7 +54,7 @@ ms.openlocfilehash: 73032c8ed1f74139f5998ad24f5a9e9861c1e990
 
 **SQL Server IaaS 擴充功能**：
 
-* [安裝 SQL Server IaaS 擴充功能](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+* [安裝 SQL Server IaaS 擴充功能](../classic/sql-server-agent-extension.md)。
 
 ## <a name="settings"></a>Settings
 下表說明可以為自動修補設定的選項。 針對傳統 VM，您必須使用 PowerShell 來設定這些設定。
@@ -87,13 +88,8 @@ ms.openlocfilehash: 73032c8ed1f74139f5998ad24f5a9e9861c1e990
 若要停用自動修補，請執行相同的指令碼，但不要對 New-AzureVMSqlServerAutoPatchingConfig 使用 -Enable 參數。 和安裝一樣，可能需要幾分鐘的時間來停用自動修補。
 
 ## <a name="next-steps"></a>後續步驟
-如需有關其他可用之自動化工作的資訊，請參閱 [SQL Server IaaS 代理程式擴充功能](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+如需有關其他可用之自動化工作的資訊，請參閱 [SQL Server IaaS 代理程式擴充功能](../classic/sql-server-agent-extension.md)。
 
 如需有關在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](../sql/virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

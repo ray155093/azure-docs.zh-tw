@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 31821203c18f1310c6a781bd28022efd3da7f03d
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: bc047ba2aacbbea6d47d3870ee70d9d9a068f83a
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -32,7 +32,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 [!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
 ## <a name="cluster-types"></a>叢集類型
-目前，Azure HDInsight 提供&5; 種不同類型的叢集，每種都有一組提供特定功能的元件。
+目前，Azure HDInsight 提供 5 種不同類型的叢集，每種都有一組提供特定功能的元件。
 
 | 叢集類型 | 功能 |
 | --- | --- |
@@ -149,7 +149,7 @@ HDInsight 叢集可以建立在下列兩個作業系統的其中之一上：
 使用 HDInsight 叢集，您可以在建立叢集期間設定兩個使用者帳戶：
 
 * HTTP 使用者。 預設的使用者名稱為 *admin*。 使用 Azure 入口網站上的基本組態。 有時稱之為「叢集使用者」。
-* SSH 使用者 (Linux 叢集)。 這可用來透過 SSH 連線到叢集。 當您依照[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 或[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 中的步驟建立叢集之後，即可建立其他 SSH 使用者帳戶。
+* SSH 使用者 (Linux 叢集)。 這可用來透過 SSH 連線到叢集。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
   > [!NOTE]
   > 對於 Windows 型叢集，您可以建立 RDP 使用者，使用 RDP 以連接到叢集。
@@ -179,7 +179,7 @@ HDInsight 叢集可以建立在下列兩個作業系統的其中之一上：
 
 如需有關使用次要 Azure 儲存體帳戶的詳細資訊，請參閱[使用 Azure 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。
 
-除了 Azure 儲存體，您還可以使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 當做 HDInsight 中 HBase 叢集的預設儲存體帳戶，以及全部&4; 種 HDInsight 叢集類型的連結儲存體。 如需詳細資訊，請參閱 [使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+除了 Azure 儲存體，您還可以使用 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 當做 HDInsight 中 HBase 叢集的預設儲存體帳戶，以及全部 4 種 HDInsight 叢集類型的連結儲存體。 如需詳細資訊，請參閱 [使用 Azure 入口網站建立具有 Data Lake Store 的 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
 
 ### <a name="location-region"></a>位置 (區域)
 HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置。
@@ -191,7 +191,7 @@ HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置
 ### <a name="node-pricing-tiers"></a>節點定價層
 客戶需根據叢集的生命期，就這些節點的使用量支付費用。 建立叢集後就開始計費，並在叢集刪除後停止計費。 無法取消配置或保留叢集。
 
-不同的叢集類型具有不同的節點類型、節點數目和節點大小。 例如，Hadoop 叢集類型有兩個「前端節點」和預設的四個「資料節點」，而 Storm 叢集類型有兩個「Nimbus 節點」、三個「ZooKeeper 節點」和預設的四個「監督員節點」。 HDInsight 叢集的成本是由節點數和節點的虛擬機器大小來決定。 例如，如果您知道將會執行需要大量記憶體的作業，您可以選取具有較多記憶體的計算資源。 為了方便學習，建議您使用&1; 個資料節點。 如需關於 HDInsight 定價的詳細資訊，請參閱 [HDInsight 定價](https://go.microsoft.com/fwLink/?LinkID=282635&clcid=0x409)。
+不同的叢集類型具有不同的節點類型、節點數目和節點大小。 例如，Hadoop 叢集類型有兩個「前端節點」和預設的四個「資料節點」，而 Storm 叢集類型有兩個「Nimbus 節點」、三個「ZooKeeper 節點」和預設的四個「監督員節點」。 HDInsight 叢集的成本是由節點數和節點的虛擬機器大小來決定。 例如，如果您知道將會執行需要大量記憶體的作業，您可以選取具有較多記憶體的計算資源。 為了方便學習，建議您使用 1 個資料節點。 如需關於 HDInsight 定價的詳細資訊，請參閱 [HDInsight 定價](https://go.microsoft.com/fwLink/?LinkID=282635&clcid=0x409)。
 
 > [!NOTE]
 > 叢集大小限制會隨著 Azure 訂用帳戶而有所不同。 若要提高限制，請與帳務支援人員連絡。
@@ -212,7 +212,7 @@ HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置
 * Standard_A3 是「大型」
 * Standard_A4 是「特大型」
 
-| 大小 | CPU 核心 | 記憶體 | NIC (最大) | 最大 磁碟大小 | 最大 資料磁碟 (每個&1023; GB) | 最大 IOPS (每個磁碟&500;) |
+| 大小 | CPU 核心 | 記憶體 | NIC (最大) | 最大 磁碟大小 | 最大 資料磁碟 (每個 1023 GB) | 最大 IOPS (每個磁碟 500) |
 | --- | --- | --- | --- | --- | --- | --- |
 | Standard_A3\大型 |4 |7 GB |2 |暫存 = 285 GB |8 |8x500 |
 | Standard_A4\特大型 |8 |14 GB |4 |暫存 = 605 GB |16 |16x500 |
@@ -220,22 +220,22 @@ HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置
 | Standard_A7 |8 |56 GB |4 |暫存 = 605 GB |16 |16x500 |
 
 #### <a name="standard-tier-d-series"></a>標準層級：D 系列
-| 大小 | CPU 核心 | 記憶體 | NIC (最大) | 最大 磁碟大小 | 最大 資料磁碟 (每個&1023; GB) | 最大 IOPS (每個磁碟&500;) |
+| 大小 | CPU 核心 | 記憶體 | NIC (最大) | 最大 磁碟大小 | 最大 資料磁碟 (每個 1023 GB) | 最大 IOPS (每個磁碟 500) |
 | --- | --- | --- | --- | --- | --- | --- |
-| Standard_D3 |4 |14 GB |4 |暫存 (SSD) =&200; GB |8 |8x500 |
-| 標準_D4 |8 |28 GB |8 |暫存 (SSD) =&400; GB |16 |16x500 |
-| 標準_D12 |4 |28 GB |4 |暫存 (SSD) =&200; GB |8 |8x500 |
-| 標準_D13 |8 |56 GB |8 |暫存 (SSD) =&400; GB |16 |16x500 |
-| Standard_D14 |16 |112 GB |8 |暫存 (SSD) =&800; GB |32 |32x500 |
+| Standard_D3 |4 |14 GB |4 |暫存 (SSD) = 200 GB |8 |8x500 |
+| 標準_D4 |8 |28 GB |8 |暫存 (SSD) = 400 GB |16 |16x500 |
+| 標準_D12 |4 |28 GB |4 |暫存 (SSD) = 200 GB |8 |8x500 |
+| 標準_D13 |8 |56 GB |8 |暫存 (SSD) = 400 GB |16 |16x500 |
+| Standard_D14 |16 |112 GB |8 |暫存 (SSD) = 800 GB |32 |32x500 |
 
 #### <a name="standard-tier-dv2-series"></a>標準層級：Dv2 系列
-| 大小 | CPU 核心 | 記憶體 | NIC (最大) | 最大 磁碟大小 | 最大 資料磁碟 (每個&1023; GB) | 最大 IOPS (每個磁碟&500;) |
+| 大小 | CPU 核心 | 記憶體 | NIC (最大) | 最大 磁碟大小 | 最大 資料磁碟 (每個 1023 GB) | 最大 IOPS (每個磁碟 500) |
 | --- | --- | --- | --- | --- | --- | --- |
-| Standard_D3_v2 |4 |14 GB |4 |暫存 (SSD) =&200; GB |8 |8x500 |
-| Standard_D4_v2 |8 |28 GB |8 |暫存 (SSD) =&400; GB |16 |16x500 |
-| Standard_D12_v2 |4 |28 GB |4 |暫存 (SSD) =&200; GB |8 |8x500 |
-| Standard_D13_v2 |8 |56 GB |8 |暫存 (SSD) =&400; GB |16 |16x500 |
-| Standard_D14_v2 |16 |112 GB |8 |暫存 (SSD) =&800; GB |32 |32x500 |
+| Standard_D3_v2 |4 |14 GB |4 |暫存 (SSD) = 200 GB |8 |8x500 |
+| Standard_D4_v2 |8 |28 GB |8 |暫存 (SSD) = 400 GB |16 |16x500 |
+| Standard_D12_v2 |4 |28 GB |4 |暫存 (SSD) = 200 GB |8 |8x500 |
+| Standard_D13_v2 |8 |56 GB |8 |暫存 (SSD) = 400 GB |16 |16x500 |
+| Standard_D14_v2 |16 |112 GB |8 |暫存 (SSD) = 800 GB |32 |32x500 |
 
 如需規劃使用這些資源時需注意的部署考量，請參閱 [虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 如需各式大小的價格資訊，請參閱 [HDInsight 價格](https://azure.microsoft.com/pricing/details/hdinsight)。   
 

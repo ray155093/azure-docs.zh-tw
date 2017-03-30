@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 02/28/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 2df17cddf629cb72b7fa4d590dfaa69311c96aa4
-ms.openlocfilehash: 8a73f04b0b2d6e308f7b2888ef14d48c50c13ce1
-ms.lasthandoff: 01/10/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 970419650e1d3e22637733fdb4fba72ff27f5339
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -44,10 +44,8 @@ ms.lasthandoff: 01/10/2017
 
    * 前端節點 `CLUSTERNAME-ssh.azurehdinsight.net`
    * 邊緣節點 `CLUSTERNAME-ed-ssh.azurehdinsight.net` 
-2. 使用上述的命名模式將 SSH 連接至叢集的邊緣節點。 
+2. 使用上述的命名模式將 SSH 連接至叢集的邊緣節點。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-   * 如果您是從 Linux 用戶端連接，請參閱[連接至以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-linux-use-ssh-unix.md)。
-   * 如果您是從 Windows 用戶端連接，請參閱[使用 PuTTY 連接至以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-linux-use-ssh-windows.md)。
 3. 一旦連接，就會變成叢集上的根使用者。 在 SSH 工作階段中，輸入下列命令。
 
         sudo su -
@@ -81,7 +79,7 @@ ms.lasthandoff: 01/10/2017
        以您的 HDInsight 叢集的 SSH 使用者取代 **USERNAME**，並以您的 HDInsight 叢集的名稱取代 **CLUSTERNAME**。您也可以新增 `-i id_rsa_key` 以使用 SSH 金鑰而非密碼。        
    * 如果使用 Windows 用戶端與 PuTTY，則
 
-     1. 開啟 PuTTY，並輸入連線資訊。 如果您不熟悉 PuTTY，請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md) ，以取得如何搭配 HDInsight 使用 PuTTY 的資訊。
+     1. 開啟 PuTTY，並輸入連線資訊。
      2. 在對話方塊左側的 [類別] 區段中，依序展開 [連接] 和 [SSH]，最後選取 [通道]。
      3. 在 [ **控制 SSH 連接埠轉送的選項** ] 表單中提供下列資訊：
 

@@ -16,15 +16,16 @@ ms.workload: iaas-sql-server
 ms.date: 11/28/2016
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: 64d3f55445c82bf2be3ca8e64d7ea5d19e70310b
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: d9138b17e54aa1c4bf1982b09d3d0ad10e936d4c
+ms.lasthandoff: 03/25/2017
 
 
 ---
 # <a name="configure-an-external-listener-for-always-on-availability-groups-in-azure"></a>設定 Azure 中 Always On 可用性群組的外部接聽程式
 > [!div class="op_single_selector"]
-> * [內部接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)
-> * [外部接聽程式](virtual-machines-windows-classic-ps-sql-ext-listener.md)
+> * [內部接聽程式](../classic/ps-sql-int-listener.md)
+> * [外部接聽程式](../classic/ps-sql-ext-listener.md)
 > 
 > 
 
@@ -33,7 +34,7 @@ ms.openlocfilehash: 64d3f55445c82bf2be3ca8e64d7ea5d19e70310b
 > [!IMPORTANT] 
 > Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
-您的可用性群組可包含的複本為僅限內部部署、僅限 Azure，或同時跨內部部署和 Azure 的混合式組態。 Azure 複本可位於相同區域內，或使用多個虛擬網路 (VNet) 跨多個區域。 下列步驟假設您已 [設定可用性群組](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)，但尚未設定接聽程式。
+您的可用性群組可包含的複本為僅限內部部署、僅限 Azure，或同時跨內部部署和 Azure 的混合式組態。 Azure 複本可位於相同區域內，或使用多個虛擬網路 (VNet) 跨多個區域。 下列步驟假設您已 [設定可用性群組](../classic/portal-sql-alwayson-availability-groups.md)，但尚未設定接聽程式。
 
 ## <a name="guidelines-and-limitations-for-external-listeners"></a>外部接聽程式的指導方針和限制
 請注意下面在使用雲端服務公用 VIP 位址部署時，有關 Azure 中可用性群組接聽程式的指導方針：
@@ -47,7 +48,7 @@ ms.openlocfilehash: 64d3f55445c82bf2be3ca8e64d7ea5d19e70310b
 ## <a name="determine-the-accessibility-of-the-listener"></a>判斷接聽程式的存取性
 [!INCLUDE [ag-listener-accessibility](../../../../includes/virtual-machines-ag-listener-determine-accessibility.md)]
 
-本文著重於建立使用 **外部負載平衡**的接聽程式。 如果您想要虛擬網路專屬的接聽程式，請參閱本文提供設定 [包含 ILB 之接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)
+本文著重於建立使用 **外部負載平衡**的接聽程式。 如果您想要虛擬網路專屬的接聽程式，請參閱本文提供設定 [包含 ILB 之接聽程式](../classic/ps-sql-int-listener.md)
 
 ## <a name="create-load-balanced-vm-endpoints-with-direct-server-return"></a>使用伺服器直接回傳建立負載平衡 VM 端點
 外部負載平衡會使用主控 VM 之雲端服務的虛擬和公用虛擬 IP 位址。 因此在此情況下，您不需要建立或設定負載平衡器。
@@ -132,10 +133,5 @@ ms.openlocfilehash: 64d3f55445c82bf2be3ca8e64d7ea5d19e70310b
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [Listener-Next-Steps](../../../../includes/virtual-machines-ag-listener-next-steps.md)]
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

@@ -17,9 +17,9 @@ ms.workload: database
 ms.date: 03/07/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: dcb02d8162d7dfe7ea414a4cce1920c9b98deaa9
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 4af8e4e1030aa44a149b5ac011cc185df850603b
+ms.lasthandoff: 03/30/2017
 
 ---
 
@@ -27,11 +27,11 @@ ms.lasthandoff: 03/10/2017
 
 此範例 PowerShell 指令碼會建立 Azure SQL Database 並設定伺服器層級防火牆規則。 成功執行指令碼後，即可從所有 Azure 服務和所設定的 IP 位址存取 SQL Database。 
 
-在執行這個指令碼之前，請確定您已使用 `Add-AzureRmAccount` Cmdlet 建立與 Azure 的連線。
+[!INCLUDE [sample-cli-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[主要](../../../powershell_scripts/sql-database/create-and-configure-database/create-and-configure-database.ps1 "建立 SQL Database")]
+[!code-powershell[主要](../../../powershell_scripts/sql-database/create-and-configure-database/create-and-configure-database.ps1?highlight=7-8 "建立 SQL Database")]
 
 ## <a name="clean-up-deployment"></a>清除部署
 

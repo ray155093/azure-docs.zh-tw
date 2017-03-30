@@ -15,9 +15,9 @@ ms.workload: big-data
 ms.date: 03/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: f1c8c5b9bfa14b817efb635cf812242afaa70e35
-ms.openlocfilehash: d536ba2bd44941d036a00a74243cb37b8ae69abb
-ms.lasthandoff: 12/02/2016
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 7f165111cd089d5f32f309235dcbc24d11fb5d64
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 12/02/2016
 開始閱讀本文之前，您必須符合下列必要條件：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **Azure 資料湖儲存區帳戶**。 如需有關如何建立帳戶的詳細指示，請參閱 [開始使用 Azure 資料湖儲存區](data-lake-store-get-started-portal.md)
+* **Azure Data Lake Store 帳戶**。 如需有關如何建立帳戶的詳細指示，請參閱 [開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md)
 * **Azure HDInsight 叢集** 。 請參閱 [建立具有資料湖存放區的 HDInsight 叢集](data-lake-store-hdinsight-hadoop-use-portal.md)。 本文假設您已使用資料湖存放區存取 HDInsight Linux 叢集。
 * **Azure SQL Database**。 如需建立方式的指示，請參閱 [建立 Azure SQL Database](../sql-database/sql-database-get-started.md)
 
@@ -76,7 +76,7 @@ ms.lasthandoff: 12/02/2016
 ## <a name="use-sqoop-from-an-hdinsight-cluster-with-access-to-data-lake-store"></a>從使用資料湖存放區存取的 HDInsight Linux 叢集使用 Sqoop。
 HDInsight 叢集已有可用的 Sqoop 套件。 如果您已設定 HDInsight 叢集使用資料湖存放區做為額外的儲存體，您可以使用 Sqoop (不需要任何組態變更) 在關聯式資料庫 (本範例中為 Azure SQL Database) 與資料湖存放區帳戶之間匯入/匯出資料。
 
-1. 在本教學課程中，我們假設您已經建立 Linux 叢集，因此您應該使用 SSH 來連線至叢集。 請參閱 [連線至以 Linux 為基礎的 HDInsight 叢集](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md#connect)。
+1. 在本教學課程中，我們假設您已經建立 Linux 叢集，因此您應該使用 SSH 來連線至叢集。 請參閱 [連線至以 Linux 為基礎的 HDInsight 叢集](../hdinsight/hdinsight-hadoop-linux-use-ssh-unix.md)。
 2. 請確認您是否可從叢集存取資料湖存放區帳戶。 從 SSH 提示字元執行下列命令：
 
         hdfs dfs -ls adl://<data_lake_store_account>.azuredatalakestore.net/
@@ -109,7 +109,7 @@ HDInsight 叢集已有可用的 Sqoop 套件。 如果您已設定 HDInsight 叢
         -rwxrwxrwx   0 sshuser hdfs         13 2016-02-26 21:09 adl://hdiadlstore.azuredatalakestore.net/Sqoop/SqoopImportTable1/part-m-00002
         -rwxrwxrwx   0 sshuser hdfs         18 2016-02-26 21:09 adl://hdiadlstore.azuredatalakestore.net/Sqoop/SqoopImportTable1/part-m-00003
 
-    每個 **part-m-*** 檔案會對應至來源資料表 **Table1** 中的資料列。*您可以檢視 part-m- 檔案的內容來確認。
+    每個 **part-m-***檔案會對應至來源資料表**Table1**中的資料列。*您可以檢視 part-m- 檔案的內容來確認。
 
 
 ### <a name="export-data-from-data-lake-store-into-azure-sql-database"></a>從資料湖存放區將資料匯出到 Azure SQL Database
@@ -140,8 +140,8 @@ HDInsight 叢集已有可用的 Sqoop 套件。 如果您已設定 HDInsight 叢
 關於 Sqoop 作業將資料複製到 Data Lake Store 時的效能調整，請參閱 [Sqoop 效能文件](https://blogs.msdn.microsoft.com/bigdatasupport/2015/02/17/sqoop-job-performance-tuning-in-hdinsight-hadoop/)。
 
 ## <a name="see-also"></a>另請參閱
-* [將資料從 Azure 儲存體 Blob 複製到資料湖存放區](data-lake-store-copy-data-azure-storage-blob.md)
-* [保護資料湖存放區中的資料](data-lake-store-secure-data.md)
+* [將資料從 Azure 儲存體 Blob 複製到 Data Lake Store](data-lake-store-copy-data-azure-storage-blob.md)
+* [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
 * [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
-* [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
+* [搭配 Data Lake Store 使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 

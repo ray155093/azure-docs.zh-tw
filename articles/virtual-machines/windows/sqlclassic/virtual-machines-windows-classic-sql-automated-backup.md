@@ -16,19 +16,20 @@ ms.workload: iaas-sql-server
 ms.date: 01/18/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 61df14be1d231c4c236774cbcfe1ddff0bce1652
-ms.openlocfilehash: 1412bf2059688177e0b731a6124b4bc66e33b27f
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 5771c7d1716f126570759cd4a3c53ebd3d30adf4
+ms.lasthandoff: 03/25/2017
 
 
 ---
 # <a name="automated-backup-for-sql-server-in-azure-virtual-machines-classic"></a>Azure 虛擬機器中的 SQL Server 自動備份 (傳統)
 > [!div class="op_single_selector"]
 > * [資源管理員](../sql/virtual-machines-windows-sql-automated-backup.md)
-> * [傳統](virtual-machines-windows-classic-sql-automated-backup.md)
+> * [傳統](../classic/sql-automated-backup.md)
 > 
 > 
 
-自動備份會針對執行 SQL Server 2014 Standard 或 Enterprise 之 Azure VM 上所有現存和新的資料庫，自動設定 [Managed Backup 到 Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx) 。 這可讓您設定採用持久性 Azure Blob 儲存體的一般資料庫備份。 自動備份相依於 [SQL Server IaaS 代理程式擴充](virtual-machines-windows-classic-sql-server-agent-extension.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+自動備份會針對執行 SQL Server 2014 Standard 或 Enterprise 之 Azure VM 上所有現存和新的資料庫，自動設定 [Managed Backup 到 Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx) 。 這可讓您設定採用持久性 Azure Blob 儲存體的一般資料庫備份。 自動備份相依於 [SQL Server IaaS 代理程式擴充](../classic/sql-server-agent-extension.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 > [!IMPORTANT] 
 > Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 若要檢視這篇文章的 Resource Manager 版本，請參閱 [Automated Backup for SQL Server in Azure Virtual Machines Resource Manager](../sql/virtual-machines-windows-sql-automated-backup.md) (Azure 虛擬機器的 SQL Server 自動備份 (Resource Manager))。
@@ -61,7 +62,7 @@ ms.openlocfilehash: 1412bf2059688177e0b731a6124b4bc66e33b27f
 
 **SQL Server IaaS 擴充功能**：
 
-* [安裝 SQL Server IaaS 擴充功能](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+* [安裝 SQL Server IaaS 擴充功能](../classic/sql-server-agent-extension.md)。
 
 ## <a name="settings"></a>Settings
 下表說明可以為自動備份設定的選項。 針對傳統 VM，您必須使用 PowerShell 來設定這些設定。
@@ -110,13 +111,8 @@ ms.openlocfilehash: 1412bf2059688177e0b731a6124b4bc66e33b27f
 
 您可以在下列主題中找到 Azure VM 上 SQL Server 的其他備份和還原指引： [Azure 虛擬機器中的 SQL Server 備份和還原](../sql/virtual-machines-windows-sql-backup-recovery.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)。
 
-如需有關其他可用之自動化工作的資訊，請參閱 [SQL Server IaaS 代理程式擴充功能](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+如需有關其他可用之自動化工作的資訊，請參閱 [SQL Server IaaS 代理程式擴充功能](../classic/sql-server-agent-extension.md)。
 
 如需有關在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](../sql/virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

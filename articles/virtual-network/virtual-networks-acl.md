@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 891d950c7d4984b39f2e03af3d0f66af5594a348
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 66ddcea180395b830cdb5310446e1dbc02e7d784
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.openlocfilehash: 891d950c7d4984b39f2e03af3d0f66af5594a348
 > 
 > 
 
-您可以使用 PowerShell 或管理入口網站設定 ACL。 若要使用 PowerShell 設定網路 ACL，請參閱＜ [使用 PowerShell 管理端點的存取控制清單 (ACL)](virtual-networks-acl-powershell.md)＞。 若要使用管理入口網站來設定網路 ACL，請參閱[如何設定虛擬機器的端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+您可以使用 PowerShell 或管理入口網站設定 ACL。 若要使用 PowerShell 設定網路 ACL，請參閱＜ [使用 PowerShell 管理端點的存取控制清單 (ACL)](virtual-networks-acl-powershell.md)＞。 若要使用管理入口網站來設定網路 ACL，請參閱[如何設定虛擬機器的端點](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 您可以使用網路 ACL 執行下列作業：
 
@@ -90,10 +91,5 @@ ACL 是包含規則清單的物件。 當您建立 ACL 並將它套用到虛擬�
 
 ## <a name="next-steps"></a>後續步驟
 [如何使用 PowerShell 管理存取控制清單 (ACL) 端點](virtual-networks-acl-powershell.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
