@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 60bcd02d24e2084b9020ce56ef6a9f8268c6b1b5
-ms.openlocfilehash: 5da07683a4ca9fe1751debc163a0a5a595b6f82b
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 752dcb97101f4a8288125e3e41167095620d130f
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 02/11/2017
 下列步驟說明如何利用 [Azure 入口網站](https://portal.azure.com) ，將 SQL Database 複製到相同的伺服器或不同的伺服器。 
 
 > [!NOTE]
-> 您也可以使用 [PowerShell](sql-database-copy-powershell.md) 或 [TRANSACT-SQL](sql-database-copy-transact-sql.md) 複製 SQL 資料庫。
+> 您也可以使用 [PowerShell](scripts/sql-database-copy-database-to-new-server-powershell.md) 或 [TRANSACT-SQL](sql-database-copy-transact-sql.md) 複製 SQL 資料庫。
 >
 
 若要複製 SQL Database，您需要下列項目：
@@ -70,8 +70,7 @@ ms.lasthandoff: 02/11/2017
 * [SQL Database 文件](https://azure.microsoft.com/documentation/services/sql-database/)
 
 <!--Image references-->
-[1]: ./media/sql-database-copy-portal/copy.png
-[2]: ./media/sql-database-copy-portal/copy-ok.png
+
 [3]: ./media/sql-database-copy-portal/copy-notification.png
 [4]: ./media/sql-database-copy-portal/monitor-copy.png
 

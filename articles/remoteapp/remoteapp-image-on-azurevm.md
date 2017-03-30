@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 310cb63756806c8fab208c47bce6c7292ea5e5d7
-ms.openlocfilehash: 61e8a49475129486505111bd595f98af955ed809
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: efd70d9843f3d8db0c2396c79eacb230fcdfa467
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -37,9 +38,9 @@ ms.openlocfilehash: 61e8a49475129486505111bd595f98af955ed809
     如需詳細資訊，請參閱[建立執行 Windows 的 VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 2. 連接至 VM，並安裝和設定您想要透過 RemoteApp 共用的應用程式。 請務必執行您應用程式所需的任何其他 Windows 設定。
    
-    如需詳細資訊，請參閱[如何登入執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-classic-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+    如需詳細資訊，請參閱[如何登入執行 Windows Server 的虛擬機器](../virtual-machines/windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 3. 如果您打算使用 Windows Server 遠端桌面工作階段主機映像之一，它包含了可確保您的 VM 符合 RemoteApp 先決條件的驗證指令碼。 若要執行指令碼，請按兩下桌面上的 **ValidateRemoteAppImage** 。 在繼續進行下一個步驟之前，請確定已修正指令碼所報告的所有錯誤。
-4. SYSPREP 一般化和擷取映像。 如需相關指示，請參閱[如何擷取 Windows 虛擬機器作為範本使用](../virtual-machines/virtual-machines-windows-classic-capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) 。
+4. SYSPREP 一般化和擷取映像。 如需相關指示，請參閱[如何擷取 Windows 虛擬機器作為範本使用](../virtual-machines/windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) 。
 
 ## <a name="import-the-image-into-the-azure-remoteapp-image-library"></a>將映像匯入 Azure RemoteApp 映像庫
 使用下列步驟將新的映像匯入 Azure RemoteApp：
@@ -58,10 +59,5 @@ ms.openlocfilehash: 61e8a49475129486505111bd595f98af955ed809
 > 
 
 現在您已經準備好開始建立新的收藏 ([雲端](remoteapp-create-cloud-deployment.md)收藏或[混合式](remoteapp-create-hybrid-deployment.md))，視您的需求而定。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

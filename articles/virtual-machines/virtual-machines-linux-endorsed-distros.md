@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
 translationtype: Human Translation
-ms.sourcegitcommit: 6ac9ccd5510c7cdc8748767281965345a5fa0637
-ms.openlocfilehash: 04294bf682ec2e6cf294ebdb686e1fd58e6c58e4
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: cd6c3be6a2667807f29156900b0a5f1fc63704d3
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 02/22/2017
 > 
 > 
 
-Azure 映像庫或 Marketplace 中的 Linux 映像是由許多合作夥伴所提供，而我們仍繼續與不同的 Linux 社群合作，為經過背書的散發套件清單新增更多標註。 同時，針對映像庫中未提供的散發套件，您可以隨時依照 [本頁](virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)上的方針，自備您自己的 Linux。
+Azure 映像庫或 Marketplace 中的 Linux 映像是由許多合作夥伴所提供，而我們仍繼續與不同的 Linux 社群合作，為經過背書的散發套件清單新增更多標註。 同時，針對映像庫中未提供的散發套件，您可以隨時依照 [本頁](linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)上的方針，自備您自己的 Linux。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 

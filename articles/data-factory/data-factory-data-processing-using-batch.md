@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/17/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: bb4188bed4839aea6d19c49a8f0e6d154a343ec1
-ms.openlocfilehash: e0f77f88ee91b263c49a148197e418fdf64cca0b
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: 9702f179a65754be88646987f868385b02a9f2d7
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -483,7 +484,7 @@ test custom activity Microsoft test custom activity Microsoft
 
 輸出檔案現在會有三行，與配量相關聯的資料夾 (2015-11-16-00) 中的每個輸入檔案 (blob) 各一行。
 
-每個活動執行都會建立一個工作。 在此範例中，管線中只有一個活動。 由管線處理配量時，自訂活動即會在 Azure Batch 上執行，以處理配量。 由於有&5; 個配量 (每個配量可以有多個 blob 或檔案)，因此在 Azure Batch 中會建立&5; 個工作。 工作在 Batch 上執行時，它實際上就是執行中的自訂活動。
+每個活動執行都會建立一個工作。 在此範例中，管線中只有一個活動。 由管線處理配量時，自訂活動即會在 Azure Batch 上執行，以處理配量。 由於有 5 個配量 (每個配量可以有多個 blob 或檔案)，因此在 Azure Batch 中會建立 5 個工作。 工作在 Batch 上執行時，它實際上就是執行中的自訂活動。
 
 下列逐步解說將提供其他詳細資料。
 
@@ -749,7 +750,7 @@ test custom activity Microsoft test custom activity Microsoft
 
     -   **isPaused** 屬性預設為 false。 在此範例中，管線會立即執行，因為配量已在過去開始。 您可以將此屬性設為 true，以暫停管線，並將其設回 false，以重新啟動。
 
-    -   **start** 時間和 **end**時間相差&5; 小時，而配量會每小時產生，因此管線會產生&5; 個配量。
+    -   **start** 時間和 **end**時間相差 5 小時，而配量會每小時產生，因此管線會產生 5 個配量。
 
 1. 按一下命令列上的 [部署]  ，部署管線。
 
@@ -762,11 +763,11 @@ test custom activity Microsoft test custom activity Microsoft
 2. 在圖表檢視中，按兩下輸入資料集：**InputDataset**。
 
    ![](./media/data-factory-data-processing-using-batch/image11.png)
-3. 您應會看到 **InputDataset** 刀鋒視窗中已包含所有的&5; 個配量。 請留意每個配量的 [配量開始時間] 和 [配量結束時間]。
+3. 您應會看到 **InputDataset** 刀鋒視窗中已包含所有的 5 個配量。 請留意每個配量的 [配量開始時間] 和 [配量結束時間]。
 
    ![](./media/data-factory-data-processing-using-batch/image12.png)
 4. 在 [圖表檢視] 中，現在按一下 [OutputDataset]。
-5. 如果已產生&5; 個輸出配量，您應該會看到它們都處於就緒狀態。
+5. 如果已產生 5 個輸出配量，您應該會看到它們都處於就緒狀態。
 
    ![](./media/data-factory-data-processing-using-batch/image13.png)
 6. 使用 Azure 入口網站檢視與**配量**相關聯的**工作**，並查看每個配量在哪個 VM 上執行。 請參閱 [Data Factory 和 Batch 整合](#data-factory-and-batch-integration) 一節，以取得詳細資料。
@@ -784,7 +785,7 @@ test custom activity Microsoft test custom activity Microsoft
    ![](./media/data-factory-data-processing-using-batch/image16.png)
 8. 現在，我們要以一個資料夾包含多個檔案的方式來試試。 使用與資料夾 **2015-11-06-01**中的 file.txt 相同的內容，建立檔案 **file2.txt**、**file3.txt**、**file4.txt** 和 **file5.txt**。
 9. 在輸出資料夾中，**刪除**輸出檔案：**2015-11-16-01.txt**。
-10. 現在，在 **OutputDataset** 刀鋒視窗中，以滑鼠右鍵按一下 [配量開始時間] 設定為 **11/16/2015 01:00:00 AM** 的配量，然後按一下 [執行]，以重新執行/重新處理配量。 現在，配量會有&5; 個檔案，而不是&1; 個檔案。
+10. 現在，在 **OutputDataset** 刀鋒視窗中，以滑鼠右鍵按一下 [配量開始時間] 設定為 **11/16/2015 01:00:00 AM** 的配量，然後按一下 [執行]，以重新執行/重新處理配量。 現在，配量會有 5 個檔案，而不是 1 個檔案。
 
     ![](./media/data-factory-data-processing-using-batch/image17.png)
 11. 在配量執行完成，且其狀態為 [就緒] 之後，在您 Blob 儲存體之 **mycontainer** 的 **outputfolder** 中驗證此配量的輸出檔案 (**2015-11-16-01.txt**) 中的內容。 配量的每個檔案應該都有一行。
@@ -809,7 +810,7 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為： **adf-pooln
 
 配量的每個活動執行都會在作業中建立一個工作。 如果有 10 個配量就緒可供處理，作業中會建立 10 個工作。 如果您在集區中有多個計算結點，您可以同時執行多個配量。 如果每個計算結點的工作上限設為 > 1，則相同的計算上可以執行多個配量。
 
-此範例中有&5; 個配量，所以 Azure Batch 中有&5; 個工作。 在 Azure Data Factory 中的管線 JSON 中將**並行**設定為 **5**，並且在具有 **2** 個 VM 的 Azure Batch 集區中將 [每個 VM 的工作數上限] 設定為 **2**，工作會執行得很快 (請檢查工作的開始和結束時間)。
+此範例中有 5 個配量，所以 Azure Batch 中有 5 個工作。 在 Azure Data Factory 中的管線 JSON 中將**並行**設定為 **5**，並且在具有 **2** 個 VM 的 Azure Batch 集區中將 [每個 VM 的工作數上限] 設定為 **2**，工作會執行得很快 (請檢查工作的開始和結束時間)。
 
 使用入口網站來檢視與 **配量** 相關聯的 Batch 作業及其工作，並查看每個配量在哪個 VM 上執行。
 
@@ -869,7 +870,7 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為： **adf-pooln
 3. 建立 [每個 VM 的工作數上限] 較低/較高的集區。 若要使用您所建立的新集區，請更新 Data Factory 解決方案中的 Azure Batch 連結服務。 (請參閱「步驟 4：建立並執行管線」，以進一步了解 [每個 VM 的工作數上限] 設定。)
 4. 建立具有 **自動調整** 功能的 Azure Batch 集區。 自動調整 Azure Batch 集區中的計算節點就是動態調整應用程式所使用的處理能力。 例如，您可以用 0 專用 VM 和依據暫止工作數目自動調整的公式，建立 Azure Batch 集區︰
 
-   每個暫止工作一次一個 VM (例如︰5 個暫止工作 ->&5; 個 VM)：
+   每個暫止工作一次一個 VM (例如︰5 個暫止工作 -> 5 個 VM)：
     
     ```
     pendingTaskSampleVector=$PendingTasks.GetSample(600 * TimeInterval_Second);
@@ -891,10 +892,10 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為： **adf-pooln
 ### <a name="next-steps-consume-the-data"></a>後續步驟：取用資料
 處理資料之後，您可以使用 **Microsoft Power BI** 之類的線上工具來取用資料。 以下連結可協助您了解 Power BI，以及如何在 Azure 中加以使用：
 
-* [在 Power BI 中探索資料集](https://powerbi.microsoft.com/en-us/documentation/powerbi-service-get-data/)
-* [開始使用 Power BI Desktop](https://powerbi.microsoft.com/en-us/documentation/powerbi-desktop-getting-started/)
-* [重新整理 Power BI 中的資料](https://powerbi.microsoft.com/en-us/documentation/powerbi-refresh-data/)
-* [Azure 和 Power BI - 基本概觀](https://powerbi.microsoft.com/en-us/documentation/powerbi-azure-and-power-bi/)
+* [在 Power BI 中探索資料集](https://powerbi.microsoft.com/documentation/powerbi-service-get-data/)
+* [開始使用 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)
+* [重新整理 Power BI 中的資料](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/)
+* [Azure 和 Power BI - 基本概觀](https://powerbi.microsoft.com/documentation/powerbi-azure-and-power-bi/)
 
 ## <a name="references"></a>參考
 * [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/)
@@ -911,9 +912,4 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為： **adf-pooln
 
 [batch-explorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer
 [batch-explorer-walkthrough]: http://blogs.technet.com/b/windowshpc/archive/2015/01/20/azure-batch-explorer-sample-walkthrough.aspx
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

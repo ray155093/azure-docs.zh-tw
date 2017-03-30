@@ -17,15 +17,15 @@ ms.date: 02/17/2017
 ms.author: jroth
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: e0950a5c2c7d40751664c0c5a60facef68a79b2a
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 2a9ac5763bb934bd0646e47c3936f7bdd0d603b1
+ms.lasthandoff: 03/25/2017
 
 ---
 # <a name="configure-azure-key-vault-integration-for-sql-server-on-azure-virtual-machines-classic"></a>在 Azure 虛擬機器上設定 SQL Server 的 Azure Key Vault 整合 (傳統)
 > [!div class="op_single_selector"]
 > * [資源管理員](../sql/virtual-machines-windows-ps-sql-keyvault.md)
-> * [傳統](virtual-machines-windows-classic-ps-sql-keyvault.md)
+> * [傳統](../classic/ps-sql-keyvault.md)
 > 
 > 
 
@@ -45,7 +45,7 @@ ms.lasthandoff: 03/15/2017
 使用 PowerShell 設定 Azure 金鑰保存庫整合。 以下章節提供必要參數的概觀，以及範例 PowerShell 指令碼。
 
 ### <a name="install-the-sql-server-iaas-extension"></a>安裝 SQL Server IaaS 擴充功能
-首先， [安裝 SQL Server IaaS 擴充功能](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+首先， [安裝 SQL Server IaaS 擴充功能](../classic/sql-server-agent-extension.md)。
 
 ### <a name="understand-the-input-parameters"></a>了解輸入參數
 下表列出在下一節中執行 PowerShell 指令碼所需的參數。

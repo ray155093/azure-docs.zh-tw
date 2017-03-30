@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 02/28/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: b4de2d04c331ac608c77057613276ac8f85ec600
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 510a96051d3f650f5451eb46bbc8263a3393432e
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -195,10 +195,7 @@ HDInsight 會使用 Azure 儲存體 Blob 來儲存資料。 HDInsight 必須具�
 * 對於 **以 Windows 為基礎** 的 HDInsight 叢集，使用遠端桌面連接到叢集。 如需詳細資訊，請參閱[使用 RDP 連線至 HDInsight](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)。
   
     連線之後，請使用桌面上的 [Hadoop 命令列] 圖示來開啟命令提示字元。
-* 對於 **以 Linux 為基礎** 的 HDInsight 叢集，使用 SSH 連接到叢集。 如需有關搭配使用 SSH 與以 Linux 為基礎的叢集的詳細資訊，請參閱下列其中一份文件：
-  
-  * [從 Linux、OS X、Unix 或 Bash on Windows 10 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
-  * [從 Windows 在 HDInsight 上搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+* 對於 **以 Linux 為基礎** 的 HDInsight 叢集，使用 SSH 連接到叢集。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 連接到叢集後，使用下列步驟確認您在 SAS 儲存體帳戶僅能讀取和列出項目：
 

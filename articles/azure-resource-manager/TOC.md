@@ -14,11 +14,11 @@
 ## 建立範本
 ### [範本的最佳做法](resource-manager-template-best-practices.md)
 ### [範本區段](resource-group-authoring-templates.md)
-### [範本函式](resource-group-template-functions.md)
 ### [定義資源間的相依性](resource-group-define-dependencies.md)
+### [設定位置](resource-manager-template-location.md)
+### [指派標記](resource-manager-template-tags.md)
 ### [設定子資源名稱與類型](resource-manager-template-child-resource.md)
 ### [建立資源類型的多個執行個體](resource-group-create-multiple.md)
-### [在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)
 ### [連結至其他範本](resource-group-linked-templates.md)
 ### [在連結的範本間共用狀態](best-practices-resource-manager-state.md)
 ### [設計範本的模式](best-practices-resource-manager-design-templates.md)
@@ -28,6 +28,7 @@
 ### [入口網站](resource-group-template-deploy-portal.md)
 ### [REST API](resource-group-template-deploy-rest.md)
 ### [持續與 Visual Studio Team Services 整合](../vs-azure-tools-resource-groups-ci-in-vsts.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+### [在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)
 ## 管理
 ### [PowerShell](powershell-azure-resource-manager.md)
 ### [Azure CLI](xplat-cli-azure-resource-manager.md)
@@ -56,6 +57,7 @@
 ### [檢視部署作業](resource-manager-deployment-operations.md)
 
 # 參考
+## [範本函式](resource-group-template-functions.md)
 ## [PowerShell](/powershell/resourcemanager/azurerm.resources/v3.5.0/azurerm.resources)
 ## [Azure 2.0 CLI](/cli/azure/resource)
 ## [.NET](/dotnet/api/microsoft.azure.management.resourcemanager)

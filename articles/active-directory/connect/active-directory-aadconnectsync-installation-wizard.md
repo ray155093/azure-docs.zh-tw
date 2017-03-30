@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: 902c6ae45e7809e2847c9e45a35803f40c0b0ff3
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: f18e11ac7482b78925d1885ceb20696146603ad2
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 03/03/2017
 
 ![含有其他工作清單的頁面](./media/active-directory-aadconnectsync-installation-wizard/additionaltasks.png)
 
-如果您已使用 Azure AD Connect 安裝 ADFS，您會有更多選項。 [ADFS 管理](active-directory-aadconnect-federation-management.md#ad-fs-management)中記載了您擁有的其他 ADFS 選項。
+如果您已使用 Azure AD Connect 安裝 ADFS，您會有更多選項。 [ADFS 管理](active-directory-aadconnect-federation-management.md#manage-ad-fs)中記載了您擁有的其他 ADFS 選項。
 
 請選取其中一項工作，然後按 [下一步]  繼續。
 

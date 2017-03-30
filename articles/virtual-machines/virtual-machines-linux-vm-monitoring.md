@@ -15,15 +15,16 @@ ms.workload: infrastructure
 ms.date: 02/08/2016
 ms.author: kmouss
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 4b1e6d375b3ab0e33e747b5ccf3cec9dd06fe484
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 1f15a77304ccf4fdef995d216817363fbf3f6e73
+ms.lasthandoff: 03/27/2017
 
 
 ---
 # <a name="enable-or-disable-azure-vm-monitoring"></a>啟用或停用 Azure VM 監視
 本節說明如何在 Azure 上執行的虛擬機器上啟用或停用監視。 如果從 [Azure 入口網站](https://portal.azure.com) 部署，而且預設以 1 分鐘的期間提供監視圖形，則預設會在 Azure 虛擬機器上啟用監視。 您可以使用入口網站或適用於 Mac、Linux 和 Windows (Azure CLI) 的 Azure 命令列介面啟用或停用監視。 
 
-## <a name="enable-disable-monitoring-through-the-azure-portal"></a>透過 Azure 入口網站啟用/停用監視
+## <a name="enable--disable-monitoring-through-the-azure-portal"></a>透過 Azure 入口網站啟用/停用監視
 您可以啟用 Azure VM 的監視，在 1 分鐘的期間提供您的執行個體相關資料。 (儲存體變更適用)。 接著，詳細的診斷資料可用於入口網站圖形中的 VM，或透過 API 取得。 根據預設，Azure 入口網站會啟用監視，但是您可以將它關閉，如下所述。 您可以在 VM 正在執行或處於停止狀態時啟用監視。
 
 * 開啟 Azure 入口網站，位址是 **[https://portal.azure.com](https://portal.azure.com)**
@@ -37,7 +38,7 @@ ms.openlocfilehash: 4b1e6d375b3ab0e33e747b5ccf3cec9dd06fe484
 
 ![透過 Azure 入口網站啟用/停用監視。][1]
 
-## <a name="enable-disable-monitoring-with-azure-cli"></a>使用 Azure CLI 啟用/停用監視
+## <a name="enable--disable-monitoring-with-azure-cli"></a>使用 Azure CLI 啟用/停用監視
 啟用 Azure VM 的監視。
 
 * 建立名為 PrivateConfig.json 且包含下列內容的檔案。
@@ -48,15 +49,10 @@ ms.openlocfilehash: 4b1e6d375b3ab0e33e747b5ccf3cec9dd06fe484
 
 [Azure.Note] 若有提供，您可以從 2.0 版變更為較新的版本。 
 
-如需有關設定監視度量和範例的更多詳細資料，請瀏覽文件 - **[使用 Linux 診斷擴充功能監視 Linux VM 的效能和診斷資料](virtual-machines-linux-classic-diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
+如需有關設定監視度量和範例的更多詳細資料，請瀏覽文件 - **[使用 Linux 診斷擴充功能監視 Linux VM 的效能和診斷資料](linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
 <!--Image references-->
 [1]: ./media/virtual-machines-linux-vm-monitoring/portal-enable-disable.png
 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

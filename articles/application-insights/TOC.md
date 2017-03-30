@@ -91,7 +91,7 @@
 #### [概觀](app-insights-analytics.md)
 #### [教學](app-insights-analytics-tour.md)
 #### [使用](app-insights-analytics-using.md)
-#### [](app-insights-analytics-import.md)
+#### [匯入](app-insights-analytics-import.md)
 
 ## 自動化
 
@@ -159,10 +159,5 @@
 ### [支援](app-insights-get-dev-support.md)
 
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=application-insights)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

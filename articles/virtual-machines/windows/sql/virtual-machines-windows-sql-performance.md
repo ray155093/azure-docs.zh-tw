@@ -16,9 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 01/09/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: 7cf81f2081e7927e4d68b7d0c8ca185f891fdc8d
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 16b659bf07cc44d56234bb5532f931d5ca6fb0a6
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 03/17/2017
 
 | 領域 | 最佳化 |
 | --- | --- |
-| [VM 大小](#vm-size-guidance) |SQL Enterprise Edition 的 [DS3](../../virtual-machines-windows-sizes.md#ds-series) 或更高版本。<br/><br/>SQL Standard 和 Web Edition 的 [DS2](../../virtual-machines-windows-sizes.md#ds-series) 或更高版本。 |
+| [VM 大小](#vm-size-guidance) |SQL Enterprise Edition 的 [DS3](../../virtual-machines-windows-sizes-memory.md) 或更高版本。<br/><br/>SQL Standard 和 Web Edition 的 [DS2](../../virtual-machines-windows-sizes-memory.md) 或更高版本。 |
 | [儲存體](#storage-guidance) |使用[進階儲存體](../../../storage/storage-premium-storage.md)。 標準儲存體只建議用於開發/測試。<br/><br/>將[儲存體帳戶](../../../storage/storage-create-storage-account.md)和 SQL Server VM 置於同一個區域。<br/><br/>停用儲存體帳戶上的 Azure [異地備援儲存體](../../../storage/storage-redundancy.md) (異地複寫)。 |
 | [磁碟](#disks-guidance) |使用至少 2 個 [P30 磁碟](../../../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets) (1 個用於儲存記錄檔案，另 1 個用於儲存資料檔案和存放 TempDB)。<br/><br/>避免使用作業系統或暫存磁碟作為資料儲存體或進行記錄。<br/><br/>啟用裝載資料檔案和 TempDB 的磁碟上的 [讀取快取] 功能。<br/><br/>不要啟用裝載記錄檔案的磁碟上的 [快取] 功能。<br/><br/>重要事項︰變更 Azure VM 磁碟的快取設定時，停止 SQL Server 服務。<br/><br/>分割多個 Azure 資料磁碟，以提高 IO 輸送量。<br/><br/>以文件上記載的配置大小格式化。 |
 | [I/O](#io-guidance) |啟用 [資料庫頁面壓縮] 功能　。<br/><br/>針對資料檔案，啟用 [立即檔案初始化] 功能。<br/><br/>限制資料庫上的 [自動成長] 功能，或停用。<br/><br/>停用資料庫上的 [自動壓縮] 功能。<br/><br/>將所有的資料庫 (包括系統資料庫) 移到資料磁碟。<br/><br/>將 SQL Server 的錯誤記錄檔和追蹤檔案目錄移至資料磁碟。<br/><br/>設定預設備份和資料庫檔案位置。<br/><br/>啟用鎖定的頁面。<br/><br/>套用 SQL Server 效能修正程式。 |
@@ -130,7 +130,7 @@ D 系列、Dv2 系列和 G 系列 VM 的暫存磁碟機皆為 SSD 式。 如果�
 * **Azure 中的 SQL Server 資料檔案**：從 SQL Server 2014 開始提供 [Azure 中的 SQL Server 資料檔](https://msdn.microsoft.com/library/dn385720.aspx)這項新功能。 在 Azure 中執行具有資料檔案的 SQL Server 的效能與使用 Azure 資料磁碟的效能特性相當。
 
 ## <a name="next-steps"></a>後續步驟
-如果您有興趣探索 SQL Server 和進階儲存體，請參閱 [在虛擬機器上將 Azure 進階儲存體和 SQL Server 搭配使用](../sqlclassic/virtual-machines-windows-classic-sql-server-premium-storage.md)文章。
+如果您有興趣探索 SQL Server 和進階儲存體，請參閱 [在虛擬機器上將 Azure 進階儲存體和 SQL Server 搭配使用](../classic/sql-server-premium-storage.md)文章。
 
 如需安全性的最佳作法，請參閱 [Azure 虛擬機器中的 SQL Server 安全性考量](virtual-machines-windows-sql-security.md)。
 

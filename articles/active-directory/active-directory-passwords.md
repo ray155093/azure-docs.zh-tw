@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 68334eab580e7117cf0b18f84ba56ed699fea12e
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 4904a3e21a54a2c60ee8b35a46370a9759a029f3
+ms.lasthandoff: 03/28/2017
 
 
 ---
 # <a name="azure-active-directory-password-reset-for-it-administrators"></a>IT 系統管理員的 Azure Active Directory 密碼重設
 > [!IMPORTANT]
-> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 >
 >
 
@@ -177,7 +177,7 @@ Azure AD 密碼重設有 3 個可用層級，視您擁有的訂用帳戶而定�
 * 現在，當使用者註冊資料之後，他或她只需按一下 [看起來不錯] 即可更新資料而不需要重新傳送電子郵件或打電話。
 
 #### <a name="improved-reliability-of-password-writeback---september-2015"></a>改進密碼回寫的可靠性 - 2015 年 9 月
-* 從 Azure AD Connect&9; 月的發行版本開始，密碼回寫代理程式現在將更積極地重試連接，還有其他更健全的容錯移轉功能。
+* 從 Azure AD Connect 9 月的發行版本開始，密碼回寫代理程式現在將更積極地重試連接，還有其他更健全的容錯移轉功能。
 
 #### <a name="api-for-retrieving-password-reset-reporting-data---august-2015"></a>用於擷取密碼重設報告資料的 API - 2015 年 8 月
 * 現在，密碼重設報告背後的資料可以直接從 [Azure AD 的報告和事件 API](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent)擷取。
@@ -213,7 +213,7 @@ Azure AD 密碼重設有 3 個可用層級，視您擁有的訂用帳戶而定�
 ## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
