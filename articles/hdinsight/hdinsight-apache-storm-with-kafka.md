@@ -12,12 +12,12 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/10/2017
+ms.date: 03/20/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: fb2fe0efe00a7ef7fd1c22ca94c76b2d5f4c5510
-ms.openlocfilehash: 0ab556f074700b7e26be002bc894914a1d429e79
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 3f0d284e122704ba01676c4b0028e196fe47bca8
+ms.lasthandoff: 03/21/2017
 
 ---
 # <a name="use-apache-kafka-preview-with-storm-on-hdinsight"></a>使用 Apache Kafka (預覽) 搭配 Storm on HDInsight
@@ -127,7 +127,7 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
 
 ## <a name="create-a-kafka-topic"></a>建立 Kafka 主題
 
-1. 使用 SSH 連線到 Kafka 叢集。 將 **USERNAME** 替換為建立叢集時所使用的 SSH 使用者名稱。 將 **BASENAME** 替換為建立叢集時使用的基底名稱。
+1. 使用 SSH 連線到 Kafka 叢集。 將 `USERNAME` 替換為建立叢集時所使用的 SSH 使用者名稱。 將 `BASENAME` 替換為建立叢集時所使用的基底名稱。
    
         ssh USERNAME@kafka-BASENAME-ssh.azurehdinsight.net
    
@@ -139,36 +139,62 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
 
     * [從 Windows 搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
 
-2. 在連往 Kafka 叢集的 SSH 連線中，使用下列命令從 Ambari 取得 Zookeeper 節點：
+2. 從連到 Kafka 叢集的 SSH 連線中，使用下列命令來設定適用於 HTTP 登入和叢集名稱的變數。 本節中的其他步驟會用到這些值。
 
-        # Install JQ to make working with JSON easier
-        sudo apt -y install jq
-        # Query Ambari for 
-        KAFKAZKHOSTS=`curl -u admin:PASSWORD -G "http://headnodehost:8080/api/v1/clusters/kafka-BASENAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER" | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")'`
-    
-    將 __PASSWORD__ 替換為您在建立叢集時使用的系統管理員密碼。 將 __BASENAME__ 替換為您在建立叢集時使用的基底名稱。
+  ```bash
+  ADMIN='admin' #replace with the name of the admin account for the cluster
+  PASSWORD='password' #replace with the password for the admin account
+  ```
 
-    此命令會從 Ambari 讀取 Zookeeper 主機的值，並將它們儲存到 KAFKAZKHOSTS 變數中。 使用下列命令來查看這些值︰
+3. 使用下列命令來安裝 `jq` 公用程式、擷取叢集名稱，並設定 `KAFKAZKHOSTS` 變數：
 
-        echo $KAFKAZKHOSTS
-    
+  ```bash
+  sudo apt -y install jq
+  CLUSTERNAME=`curl -u $ADMIN:$PASSWORD -G "http://headnodehost:8080/api/v1/clusters" | jq -r '.items[].Clusters.cluster_name'`
+  KAFKAZKHOSTS=`curl -u $ADMIN:$PASSWORD -G "http://headnodehost:8080/api/v1/clusters/$CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER" | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")'`
+  ```
+
+    使用下列命令來擷取叢集名稱：
+
+  ```bash
+  echo $CLUSTERNAME
+  ```
+
     此命令的輸出類似下列範例：
 
-        zk0-kafka.eahjefxxp1netdbyklgqj5y1ud.ex.internal.cloudapp.net:2181,zk2-kafka.eahjefxxp1netdbyklgqj5y1ud.ex.internal.cloudapp.net:2181,zk3-kafka.eahjefxxp1netdbyklgqj5y1ud.ex.internal.cloudapp.net:2181
+  ```bash
+  kafka-myhdi
+  ```
 
-    儲存此命令傳回的值，因為在 Storm 叢集上啟動拓撲時會用到這些值。
+    使用下列命令來確認已正確設定 `KAFKAZKHOSTS`：
+
+  ```bash
+  echo $KAFKAZKHOSTS
+  ```
+
+    此命令的輸出類似下列範例：
+
+  ```bash
+  zk0-kafka.eahjefxxp1netdbyklgqj5y1ud.ex.internal.cloudapp.net:2181,zk2-kafka.eahjefxxp1netdbyklgqj5y1ud.ex.internal.cloudapp.net:2181,zk3-kafka.eahjefxxp1netdbyklgqj5y1ud.ex.internal.cloudapp.net:2181
+  ```
+
+    儲存 Kafka 叢集名稱和 Zookeeper 主機資訊，因為在 Storm 叢集上啟動拓撲時會用到這些值。
 
     > [!NOTE]
-    > 先前的命令使用 __http://headnodehost:8080/__，這可直接連接到 Ambari。 如果您需要透過網際網路從叢集外部擷取此資訊，您必須改用 __https://kafka-BASENAME/__。
+    > 先前的命令使用 __http://headnodehost:8080/__，這可直接連接到 Ambari。 如果您需要透過網際網路從叢集外部擷取此資訊，您必須改用 __https://kafka-BASENAME.azurehdinsight.net/__。
 
-3. 使用下列命令在 Kafka 中建立主題：
-   
-        /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 2 --partitions 8 --topic stormtest --zookeeper $KAFKAZKHOSTS
-   
+4. 使用下列命令在 Kafka 中建立主題：
+
+  ```bash
+  /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 2 --partitions 8 --topic stormtest --zookeeper $KAFKAZKHOSTS
+  ```
+
     此命令會使用 `$KAFKAZKHOSTS` 中儲存的主機資訊連接到 Zookeeper，然後建立名為 **stormtest** 的 Kafka 主題。 您可以確認使用下列命令建立的主題可列出主題︰
-   
-        /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --list --zookeeper $KAFKAZKHOSTS
-   
+
+  ```bash
+  /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --list --zookeeper $KAFKAZKHOSTS
+  ```
+
     此命令的輸出會列出 Kafka 主題，其中應包含新的 **stormtest** 主題。
 
 讓連往 Kafka 叢集的 SSH 連線保持作用中，因為您可以使用它來驗證 Storm 拓撲是否會將訊息寫入主題。
@@ -176,45 +202,55 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
 ## <a name="download-and-compile-the-project"></a>下載並編譯專案
 
 1. 在開發環境中，從 [https://github.com/Azure-Samples/hdinsight-storm-java-kafka](https://github.com/Azure-Samples/hdinsight-storm-java-kafka) 下載專案，開啟命令列，並將目錄變更為您下載專案的位置。
-   
+
     需要一些時間才可檢查程式碼並了解專案的運作方式。
 
 2. 從 **hdinsight-storm-java-kafka** 目錄，使用下列命令來編譯專案並建立部署套件︰
-   
-        mvn clean package
-   
+
+  ```bash
+  mvn clean package
+  ```
+
     封裝程序會在 `target` 目錄中建立名為 `KafkaTopology-1.0-SNAPSHOT.jar` 的檔案。
 
 3. 使用下列命令將套件複製到 Storm on HDInsight 叢集。 將 **USERNAME** 替換為叢集的 SSH 使用者名稱。 將 **BASENAME** 替換為您在建立叢集時使用的基底名稱。
-   
-        scp ./target/KafkaTopology-1.0-SNAPSHOT.jar USERNAME@storm-BASENAME-ssh.azurehdinsight.net:KafkaTopology-1.0-SNAPSHOT.jar
-   
+
+  ```bash
+  scp ./target/KafkaTopology-1.0-SNAPSHOT.jar USERNAME@storm-BASENAME-ssh.azurehdinsight.net:KafkaTopology-1.0-SNAPSHOT.jar
+  ```
+
     出現提示時，請輸入您在建立叢集時所使用的密碼。
 
 4. 使用下列命令，將 `set-env-variables.sh` 檔案從 `scripts` 專案的目錄複製到 Storm 叢集︰
 
-        scp ./scripts/set-env-variables.sh USERNAME@storm-BASENAME-ssh.azurehdinsight.net:set-env-variables.sh
-    
+  ```bash
+  scp ./scripts/set-env-variables.sh USERNAME@storm-BASENAME-ssh.azurehdinsight.net:set-env-variables.sh
+  ```
+
     此指令碼可設定 Storm 拓撲用來與 Kafka 叢集通訊的環境變數。
 
 ## <a name="start-the-writer"></a>開始寫入器
 
 1. 使用下列命令來透過 SSH 連接到 Storm 叢集。 將 **USERNAME** 替換為建立叢集時所使用的 SSH 使用者名稱。 將 **BASENAME** 替換為建立叢集時使用的基底名稱。
-   
-        ssh USERNAME@storm-BASENAME-ssh.azurehdinsight.net
-   
+
+  ```bash
+  ssh USERNAME@storm-BASENAME-ssh.azurehdinsight.net
+  ```
+
     出現提示時，請輸入您在建立叢集時所使用的密碼。
-   
+
     如需使用 SSH 搭配 HDInsight 的詳細資訊，請參閱下列文件：
-   
+
     * [從 Linux、Unix、Mac OS 和 Bash on Windows 10 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
 
     * [從 Windows 搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
 
 2. 在連往 Storm 叢集的 SSH 連線中，使用下列命令來執行 `set-env-variables.sh` 指令碼：
 
-        chmod +x set-env-variables.sh
-        . ./set-env-variables.sh KAFKACLUSTERNAME PASSWORD
+  ```bash
+  chmod +x set-env-variables.sh
+  . ./set-env-variables.sh KAFKACLUSTERNAME PASSWORD
+  ```
 
     將 __KAFKACLUSTERNAME__ 取代為 Kafka 叢集的名稱。 將 __PASSWORD__ 替換為 Kafka 叢集的系統管理員登入密碼。
 
@@ -229,25 +265,27 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
         $KAFKAZKHOSTS=zk1-storm.4rf4ncirvydube02fuj0gpxp4e.ex.internal.cloudapp.net:2181,zk3-storm.4rf4ncirvydube02fuj0gpxp4e.ex.internal.cloudapp.net:2181,zk5-storm.4rf4ncirvydube02fuj0gpxp4e.ex.internal.cloudapp.net:2181
 
 3. 在連往 Storm 叢集的 SSH 連線中，使用下列命令來啟動寫入器拓撲：
-   
+
         storm jar KafkaTopology-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /writer.yaml -e
-   
+
     此命令使用的參數如下：
-   
-    * **org.apache.storm.flux.Flux**︰使用 Flux 來設定及執行此拓樸。
-   
-    * **--remote**：將拓撲提交至 Nimbus。 拓撲會分散於叢集中的背景工作節點。
-   
-    * **-R /writer.yaml**︰使用 **writer.yaml** 來設定拓撲。 `-R` 表示此資源包含在 jar 檔案中。 剛檔案位於 jar 的根目錄中，所以 `/writer.yaml` 是它的路徑。
-   
-    * **-e**︰使用環境變數替代。 Flux 會挑選您之前設定的 $KAFKABROKERS 和 $KAFKATOPIC 值，並在 reader.yaml 檔案中使用這些值來取代 `${ENV-KAFKABROKER}` 和 `${ENV-KAFKATOPIC}` 項目。
+
+    * `org.apache.storm.flux.Flux`︰使用 Flux 來設定及執行此拓撲。
+
+    * `--remote`：將拓撲提交至 Nimbus。 拓撲會分散於叢集中的背景工作節點。
+
+    * `-R /writer.yaml`︰使用 `writer.yaml` 檔案來設定拓撲。 `-R` 表示此資源包含在 jar 檔案中。 剛檔案位於 jar 的根目錄中，所以 `/writer.yaml` 是它的路徑。
+
+    * `-e`︰使用環境變數替代。 Flux 會挑選您之前設定的 $KAFKABROKERS 和 $KAFKATOPIC 值，並在 reader.yaml 檔案中使用這些值來取代 `${ENV-KAFKABROKER}` 和 `${ENV-KAFKATOPIC}` 項目。
 
 5. 拓撲啟動後，切換至連往 Kafka 叢集的 SSH 連線，並使用下列命令來檢視寫入至 **stormtest** 主題的訊息︰
-   
-         /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --zookeeper $KAFKAZKHOSTS --from-beginning --topic stormtest
-   
+
+  ```bash
+  /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --zookeeper $KAFKAZKHOSTS --from-beginning --topic stormtest
+  ```
+
     此命令會使用 Kafka 隨附的指令碼來監視主題。 稍後，它應該會開始傳回已寫入主題的隨機句子。 輸出類似於下列範例：
-   
+
         i am at two with nature             
         an apple a day keeps the doctor away
         snow white and the seven dwarfs     
@@ -262,14 +300,16 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
         snow white and the seven dwarfs     
         i am at two with nature             
         an apple a day keeps the doctor away
-   
+
     使用 Ctrl + c 來停止指令碼。
 
 ## <a name="start-the-reader"></a>開始讀取器
 
 1. 在 Storm 叢集的 SSH 工作階段中，使用下列命令來啟動讀取器拓撲：
-   
-        storm jar KafkaTopology-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /reader.yaml -e
+
+  ```bash
+  storm jar KafkaTopology-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /reader.yaml -e
+  ```
 
 2. 拓撲啟動後，請開啟 Storm UI。 此 Web UI 位於 https://storm-BASENAME.azurehdinsight.net/stormui。 將 __BASENAME__ 替換為建立叢集時使用的基底名稱。 
 
@@ -305,8 +345,10 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
 
 在連往 Storm 叢集的 SSH 工作階段中，使用下列命令來停止 Storm 拓撲：
 
-    storm kill kafka-writer
-    storm kill kafka-reader
+  ```bash
+  storm kill kafka-writer
+  storm kill kafka-reader
+  ```
 
 ## <a name="delete-the-cluster"></a>刪除叢集
 

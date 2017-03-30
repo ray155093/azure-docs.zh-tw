@@ -12,12 +12,12 @@ ms.service: app-service-web
 ms.workload: web
 ms.devlang: na
 ms.topic: article
-ms.date: 02/21/2017
+ms.date: 03/20/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 20ea69ea285fc97bbcf755ea1c40447745ff4be0
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 10404f2814b167dfd54869f4b6e58f911adbdc8d
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -25,7 +25,7 @@ ms.lasthandoff: 03/11/2017
 
 此範例指令碼會在 App Service 中建立 Web 應用程式及其相關資源，然後在本機 Git 存放庫中部署 Web 應用程式程式碼。
 
-在執行這個指令碼之前，請確定您已使用 `az login` 命令建立與 Azure 的連線，而且應用程式程式碼已認可至本機 Git 存放庫。
+您可以視需要使用 [Azure CLI 安裝指南 (英文)](https://docs.microsoft.com/cli/azure/install-azure-cli) 中的指示來安裝 Azure CLI，然後執行 `az login` 來建立與 Azure 的連線。 此外，應用程式程式碼必須認可到本機 Git 儲存機制。
 
 這個範例適用於 Bash 殼層。 如需在 Windows 用戶端上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../../virtual-machines/virtual-machines-windows-cli-options.md)。
 

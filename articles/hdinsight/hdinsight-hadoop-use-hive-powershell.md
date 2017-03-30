@@ -9,16 +9,17 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: cb795b7c-bcd0-497a-a7f0-8ed18ef49195
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/19/2017
+ms.date: 03/21/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: f3be777497d842f019c1904ec1990bd1f1213ba2
-ms.openlocfilehash: daa914f14a2bd6eb830728f2519eb9749d483c9f
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 8f3fc05668fb9c89aa1854e592e0cbced11fe7dc
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -32,8 +33,6 @@ ms.lasthandoff: 01/20/2017
 
 **必要條件**
 
-若要完成本文中的步驟，您需要下列項目。
-
 * **Azure HDInsight 叢集**︰不論叢集是 Windows 型或 Linux 型。
 
   > [!IMPORTANT]
@@ -45,62 +44,23 @@ ms.lasthandoff: 01/20/2017
 
 ## <a name="run-hive-queries-using-azure-powershell"></a>使用 Azure PowerShell 執行 Hive 查詢
 
-Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Hive 查詢。 在內部，您可以使用在 HDInsight 叢集上執行的 [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) (先前稱為 Templeton) 的 REST 呼叫來達到此目的。
+Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Hive 查詢。 就內部而言，Cmdlet 會對 HDInsight 叢集上的 [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) 進行 REST 呼叫。
 
 在遠端 HDInsight 叢集中執行 Hive 查詢時，會使用下列 Cmdlet：
 
 * **Add-AzureRmAccount**：向您的 Azure 訂用帳戶驗證 Azure PowerShell
-* **New-AzureRmHDInsightHiveJobDefinition**：使用指定的 HiveQL 陳述式建立新的 *工作定義*
+* **New-AzureRmHDInsightHiveJobDefinition**：使用指定的 HiveQL 陳述式建立「作業定義」
 * **Start-AzureRmHDInsightJob**：將工作定義傳送至 HDInsight、啟動工作，然後傳回可用來檢查工作狀態的 *工作* 物件
 * **Wait-AzureRmHDInsightJob**：使用工作物件來檢查工作的狀態。 它會等到工作完成，或等到等候時間超過。
 * **Get-AzureRmHDInsightJobOutput**：用來擷取工作的輸出
-* **Invoke-AzureRmHDInsightHiveJob**：用來執行 HiveQL 陳述式。 這會阻止查詢完成，然後傳回結果
+* **Invoke-AzureRmHDInsightHiveJob**：用來執行 HiveQL 陳述式。 這個 Cmdlet 會阻止查詢完成，然後傳回結果
 * **Use-AzureRmHDInsightCluster**：設定要用於 **Invoke-AzureRmHDInsightHiveJob** 命令的目前的叢集
 
 下列步驟示範如何使用這些 Cmdlet，在您的 HDInsight 叢集中執行工作：
 
 1. 使用編輯器，將下列程式碼儲存為 **hivejob.ps1**。
-   
-   ```powershell
-    # Login to your Azure subscription
-    # Is there an active Azure subscription?
-    $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
-    if(-not($sub))
-    {
-        Add-AzureRmAccount
-    }
-    
-    #Get cluster info
-    $clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-    $creds=Get-Credential -Message "Enter the login for the cluster"
 
-    #HiveQL
-    #Note: set hive.execution.engine=tez; is not required for
-    #      Linux-based HDInsight
-    $queryString = "set hive.execution.engine=tez;" +
-                "DROP TABLE log4jLogs;" +
-                "CREATE EXTERNAL TABLE log4jLogs(t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) ROW FORMAT DELIMITED FIELDS TERMINATED BY ' ' STORED AS TEXTFILE LOCATION 'wasbs:///example/data/';" +
-                "SELECT * FROM log4jLogs WHERE t4 = '[ERROR]';"
-
-    #Create an HDInsight Hive job definition
-    $hiveJobDefinition = New-AzureRmHDInsightHiveJobDefinition -Query $queryString 
-
-    #Submit the job to the cluster
-    Write-Host "Start the Hive job..." -ForegroundColor Green
-
-    $hiveJob = Start-AzureRmHDInsightJob -ClusterName $clusterName -JobDefinition $hiveJobDefinition -ClusterCredential $creds
-
-    #Wait for the Hive job to complete
-    Write-Host "Wait for the job to complete..." -ForegroundColor Green
-    Wait-AzureRmHDInsightJob -ClusterName $clusterName -JobId $hiveJob.JobId -ClusterCredential $creds
-
-    # Print the output
-    Write-Host "Display the standard output..." -ForegroundColor Green
-    Get-AzureRmHDInsightJobOutput `
-        -Clustername $clusterName `
-        -JobId $hiveJob.JobId `
-        -HttpCredential $creds
-   ```
+    [!code-powershell[主要](../../powershell_scripts/hdinsight/use-hive/use-hive.ps1?range=5-42)]
 
 2. 開啟新的 **Azure PowerShell** 命令提示字元。 將目錄變更至 **hivejob.ps1** 檔案的位置，然後使用下列命令來執行指令碼：
    
@@ -108,7 +68,7 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Hi
    
     執行指令碼時，系統會提示您輸入叢集名稱和該叢集的 HTTPS/管理帳戶認證。 系統可能也會提示您登入 Azure 訂用帳戶。
 
-3. 工作完成時，應該會傳回與下面類似的資訊：
+3. 作業完成時，應該會傳回類似下列文字的資訊：
    
         Display the standard output...
         2012-02-03      18:35:34        SampleClass0    [ERROR] incorrect       id
@@ -116,38 +76,15 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Hi
         2012-02-03      19:25:27        SampleClass4    [ERROR] incorrect       id
 
 4. 如前所述， **Invoke-Hive** 可以用來執行查詢，並等候回應。 使用下列指令碼，查看 Invoke-Hive 如何運作：
-   
-   ```powershell
-    # Login to your Azure subscription
-    # Is there an active Azure subscription?
-    $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
-    if(-not($sub))
-    {
-        Add-AzureRmAccount
-    }
 
-    #Get cluster info
-    $clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-    $creds=Get-Credential -Message "Enter the login for the cluster"
+    [!code-powershell[主要](../../powershell_scripts/hdinsight/use-hive/use-hive.ps1?range=50-71)]
 
-    # Set the cluster to use
-    Use-AzureRmHDInsightCluster -ClusterName $clusterName -HttpCredential $creds
-    
-    $queryString = "set hive.execution.engine=tez;" +
-                "DROP TABLE log4jLogs;" +
-                "CREATE EXTERNAL TABLE log4jLogs(t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) ROW FORMAT DELIMITED FIELDS TERMINATED BY ' ' STORED AS TEXTFILE LOCATION 'wasbs:///example/data/';" +
-                "SELECT * FROM log4jLogs WHERE t4 = '[ERROR]';"
-    Invoke-AzureRmHDInsightHiveJob `
-        -StatusFolder "statusout" `
-        -Query $queryString
-   ```
-   
-    輸出顯示如下：
-   
+    輸出看起來會像下列文字：
+
         2012-02-03    18:35:34    SampleClass0    [ERROR]    incorrect    id
         2012-02-03    18:55:54    SampleClass1    [ERROR]    incorrect    id
         2012-02-03    19:25:27    SampleClass4    [ERROR]    incorrect    id
-   
+
    > [!NOTE]
    > 如果 HiveQL 查詢的時間很長，您可以使用 Azure PowerShell **Here-Strings** Cmdlet 或 HiveQL 指令碼檔案。 下列程式碼片段說明如何使用 **Invoke-Hive** Cmdlet 來執行 HiveQL 指令碼檔案。 必須將 HiveQL 指令碼檔案上傳至 wasb://。
    > 
@@ -168,7 +105,7 @@ Get-AzureRmHDInsightJobOutput `
         -DisplayOutputType StandardError
 ```
 
-這會傳回執行工作時寫入至伺服器上之 STDERR 的資訊，而且可能有助於判斷工作的失敗原因。
+這個 Cmdlet 會傳回執行作業時寫入伺服器上之 STDERR 的資訊。
 
 ## <a name="summary"></a>摘要
 

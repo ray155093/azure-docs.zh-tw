@@ -14,12 +14,12 @@ ms.devlang: dotnet
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 05/13/2016
+ms.date: 03/20/2017
 ms.author: chrande
 translationtype: Human Translation
-ms.sourcegitcommit: d405c58bf658222ceb72cc2b73e71f2ae1e1ed8d
-ms.openlocfilehash: 6b2473ef6336aea5c9a79aad78e02bcfc38b9018
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 38546a1cc3ae1696dbb37d4dd47d2d540ecd08fa
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -172,6 +172,8 @@ Azure Functions 裝載環境會自動加入下列組件︰
 只支援 .NET Framework 4.6，因此請確認您的 *project.json* 檔案指定 `net46`，如以下所示。
 
 當您上傳 project.json  檔案時，執行階段會取得封裝並自動加入對封裝組件的參考。 您不需要加入 `#r "AssemblyName"` 指示詞。 只要將所需的 `using` 陳述式新增到 *run.csx* 檔案，即可使用 NuGet 套件中定義的類型。
+
+在 Functions 執行階段中，NuGet 還原會透過比較 `project.json` 和 `project.lock.json` 來運作。 如果檔案的日期和時間戳記不相符，會執行 NuGet 還原，且 NuGet 會下載更新的套件。 不過，如果檔案的日期和時間戳記相符，NuGet 不會執行還原。 因此，`project.lock.json` 不應部署，因為這會造成 NuGet 略過還原，且函式將不會有必要的套件。 若要避免部署鎖定檔案，請將 `project.lock.json` 加入至 `.gitignore` 檔案。
 
 ### <a name="how-to-upload-a-projectjson-file"></a>如何上傳 project.json 檔案
 1. 首先，在 Azure 入口網站中開啟您的函式，以確定函式應用程式正在執行中。 

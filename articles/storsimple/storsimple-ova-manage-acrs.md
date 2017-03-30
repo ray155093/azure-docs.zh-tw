@@ -4,7 +4,7 @@ description: "說明如何使用存取控制記錄 (ACR) 以判斷哪些主機�
 services: storsimple
 documentationcenter: 
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 11252938-5b97-4178-8c37-f58eaa3d00b1
 ms.service: storsimple
@@ -12,15 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/03/2016
+ms.date: 02/27/2017
 ms.author: alkohli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 037da7a5647f5b3d2b0cf1364fab050406be3b62
+ms.sourcegitcommit: f45d8e2b848e930a790e7bf38c2b09fbdaaf2fab
+ms.openlocfilehash: 30b6aedd9b4b7913f6862b34582f3ae96c9eae5f
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="use-the-storsimple-manager-service-to-manage-access-control-records-for-the-storsimple-virtual-array"></a>針對 StorSimple Virtual Array 使用 StorSimple Manager 服務管理存取控制記錄
+# <a name="use-storsimple-manager-to-manage-access-control-records-for-storsimple-virtual-array"></a>使用 StorSimple Manager 來管理 StorSimple Virtual Array 的存取控制記錄
+
 ## <a name="overview"></a>概觀
 存取控制記錄 (ACR) 可讓您指定哪些主機可連接至 StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置) 上的磁碟區。 ACR 設為特定的磁碟區，並且包含主機的 iSCSI 限定名稱 (IQN)。 當主機嘗試連線到磁碟區時，裝置會檢查與該磁碟區相關聯的 ACR 的 IQN 名稱，如果相符，則會建立連接。 [設定] 頁面上的 [存取控制記錄] 區段會顯示具有主機對應 IQN 的所有存取控制記錄。
 
@@ -102,11 +105,6 @@ ms.openlocfilehash: 037da7a5647f5b3d2b0cf1364fab050406be3b62
 4. 按一下核取圖示  ![核取圖示](./media/storsimple-ova-manage-acrs/check-icon.png)。 表格式清單會更新以反映刪除。
 
 ## <a name="next-steps"></a>後續步驟
-* 深入了解 [加入磁碟區和設定 ACR](storsimple-ova-deploy3-iscsi-setup.md#step-3-add-a-volume)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
+* 深入了解[新增和設定 ACR](storsimple-ova-deploy3-iscsi-setup.md#step-3-add-a-volume)。
 
 

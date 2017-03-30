@@ -15,13 +15,13 @@ ms.topic: article
 ms.date: 03/12/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: d811cdabe35f28ab8f2496b08c959107c10ef1be
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: c2e21eefff3ce501ee5fc4003f60df25c4d7665d
+ms.lasthandoff: 03/22/2017
 
 
 ---
-# <a name="replicate-vmware-virtual-machines-to-azure-with--site-recovery"></a>使用 Site Recovery 將 VMWare 虛擬機器複寫至 Azure
+# <a name="replicate-vmware-virtual-machines-to-azure-with-site-recovery"></a>使用 Site Recovery 將 VMWare 虛擬機器複寫至 Azure
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](site-recovery-vmware-to-azure.md)
@@ -129,7 +129,7 @@ ms.lasthandoff: 03/14/2017
     ![設定來源](./media/site-recovery-vmware-to-azure/set-source1.png)
 3. 在 [新增伺服器] 中，檢查 [設定伺服器] 是否出現在 [伺服器類型] 中。
 4. 下載 Site Recovery 統一安裝的安裝檔案。
-5. 下載保存庫註冊金鑰。 您會在執行統一安裝時用到此金鑰。 該金鑰在產生後會維持&5; 天有效。
+5. 下載保存庫註冊金鑰。 您會在執行統一安裝時用到此金鑰。 該金鑰在產生後會維持 5 天有效。
 
    ![設定來源](./media/site-recovery-vmware-to-azure/set-source2.png)
 

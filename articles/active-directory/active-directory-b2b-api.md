@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/09/2017
+ms.date: 03/15/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: a4e59dfa8a098f63c3173176c4d2675d6a59af00
-ms.openlocfilehash: 235b551a716b68c40cc4fe346cc5903d47e6ea74
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 6f487e2e8f368240339ef5e0015c85591522e49a
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -62,7 +63,7 @@ API 提供下列功能：
     "sendInvitationMessage": false
     ```
 
-  在此案例中，您將從 API 取得兌換 URL，您可以將它內嵌在電子郵件範本、IM 或其他發佈方法。
+  在此案例中，您會從 API 取得兌換 URL，您可以將它內嵌在電子郵件範本、IM 或其他發佈方法。
 
 6. 最後，若您是系統管理員，您可以選擇邀請使用者做為成員。
 
@@ -75,28 +76,29 @@ API 提供下列功能：
 API 可以在下列授權模型中執行：
 
 ### <a name="app--user-mode"></a>應用程式 + 使用者模式
-在此模式中，使用 API 的使用者必須有建立 B2B 邀請的權限。
+在此模式中，使用 API 的任何使用者必須有建立 B2B 邀請的權限。
 
 ### <a name="app-only-mode"></a>僅應用程式模式
 在僅應用程式模式中，應用程式需要 User.ReadWrite.All 或 Directory.ReadWrite.All 範圍，邀請才能成功。
-如需詳細資訊，請參閱：https://graph.microsoft.io/en-us/docs/authorization/permission_scopes
+
+如需詳細資訊，請參閱︰ https://graph.microsoft.io/docs/authorization/permission_scopes
 
 
 ## <a name="powershell"></a>PowerShell
-您現在可以輕鬆地使用 PowerShell 來新增並邀請外部使用者加入組織。 只要使用 Cmdlet 建立新邀請
+您現在可以輕鬆地使用 PowerShell 來新增並邀請外部使用者加入組織。 使用 Cmdlet 建立邀請：
 
 ```
 New-AzureADMSInvitation
 ```
 
-搭配下列選項
+您可以使用下列選項：
 
 * -InvitedUserDisplayName
 * -InvitedUserEmailAddress
 * -SendInvitationMessage
 * -InvitedUserMessageInfo
 
-其描述遵循 [https://graph.microsoft.io/en-us/docs/api-reference/beta/resources/invitation](https://graph.microsoft.io/en-us/docs/api-reference/beta/resources/invitation) 中的邀請 API 參考資料
+您也可以參考 [https://graph.microsoft.io/en-us/docs/api-reference/beta/resources/invitation](https://graph.microsoft.io/en-us/docs/api-reference/beta/resources/invitation) 中的邀請 API 參考資料
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -109,13 +111,8 @@ New-AzureADMSInvitation
 * [B2B 共同作業邀請兌換](active-directory-b2b-redemption-experience.md)
 * [Azure AD B2B 共同作業授權](active-directory-b2b-licensing.md)
 * [針對 Azure Active Directory B2B 共同作業問題進行疑難排解](active-directory-b2b-troubleshooting.md)
-* [Azure Active Directory B2B 共同作業常見問題集 (FAQ)](active-directory-b2b-faq.md)
+* [Azure Active Directory B2B 共同作業常見問題 (FAQ)](active-directory-b2b-faq.md)
 * [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
 * [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)
 * [Azure Active Directory 中應用程式管理的文章索引](active-directory-apps-index.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

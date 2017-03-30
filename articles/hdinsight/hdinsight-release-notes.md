@@ -9,6 +9,7 @@ author: nitinme
 tags: azure-portal
 ms.assetid: a363e5f6-dd75-476a-87fa-46beb480c1fe
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,9 +17,9 @@ ms.topic: article
 ms.date: 2/28/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: de252e1d2945f236a4192c5737ed8ec88a6f7444
-ms.openlocfilehash: da5929df1e5db0acae41d757a7e7272014bf9dee
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 7a9e23e8d06bc73855058242cdebd315c9d4d243
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -75,7 +76,7 @@ Spark 2.0.1 現已可在 Spark 叢集上取得 (HDInsight 3.5 版)。
 * R 伺服器 8.0.5 - 主要為修正程式的版本。 詳細資訊請參閱 [R 伺服器版本資訊](https://msdn.microsoft.com/microsoft-r/notes/r-server-notes) 。
 * 邊緣節點上的 AzureML 封裝 - [此 R 封裝](https://cran.r-project.org/web/packages/AzureML/vignettes/getting_started.html) 使 R 模型可以做為 Azure ML Web 服務來發佈和取用。  詳細資訊請參閱我們的 [HDInsight 上的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)文章中的[實作模型](hdinsight-hadoop-r-server-overview.md#operationalize-a-model)一節。
 * [前 100 名熱門 R 封裝](https://github.com/metacran/cranlogs) 的 Linux 相依性 - 現在，這些 Linux 封裝相依性都是預先安裝好。
-* 新增 R 封裝至資料節點時使用 CRAN 儲存機制的選項。 詳細資訊請參閱我們的[開始使用 HDInsight 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)文章中的[安裝 R 封裝](hdinsight-hadoop-r-server-get-started.md#install-r-packages)小節。
+* 新增 R 封裝至資料節點時使用 CRAN 儲存機制的選項。 如需詳細資訊，請參閱[＜開始使用 HDInsight 中的 R 伺服器＞](hdinsight-hadoop-r-server-get-started.md)一文。
 * 改善叢集建立時 R 伺服器佈建的可靠性。
 
 ## <a name="notes-for-08012016-release-of-hdinsight"></a>HDInsight 2016/08/01 版本的相關資訊

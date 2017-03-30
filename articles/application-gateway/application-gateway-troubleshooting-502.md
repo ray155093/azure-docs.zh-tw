@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 12/16/2016
 ms.author: amsriva
 translationtype: Human Translation
-ms.sourcegitcommit: ce40a93372205a4b7c6b0c753ebf30c2b3d51d7a
-ms.openlocfilehash: 86cd149d351cc957577d213d77db732bd5e16658
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: cacc20da7945421f31ce69a9c0b34056c009d9e7
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -33,6 +34,9 @@ ms.openlocfilehash: 86cd149d351cc957577d213d77db732bd5e16658
 * VM 擴展集的後端 VM 或執行個體都沒有回應預設的健全狀況探查。
 * 無效或不適當的自訂健全狀況探查組態。
 * 要求逾期，或使用者要求的連線問題。
+
+> [!note]
+> 應用程式閘道會保留傳入的主機標頭，並將相同的標頭傳送至後端。 如果後端需要其他的標頭，這個標頭就沒有作用。 同樣地，如果後端為多租用戶，且已啟用端對端 SSL，則後端需要 SNI 擴充中有伺服器名稱。 在端對端 SSL 案例中，應用程式閘道目前不會在後端要求中傳送 SNI 標頭，因為這會造成探查和資料路徑的問題。
 
 ## <a name="empty-backendaddresspool"></a>空白的 BackendAddressPool
 
@@ -150,10 +154,5 @@ BackendAddressPoolsText：
 ## <a name="next-steps"></a>後續步驟
 
 如果上述步驟無法解決問題，請開啟 [支援票證](https://azure.microsoft.com/support/options/)。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

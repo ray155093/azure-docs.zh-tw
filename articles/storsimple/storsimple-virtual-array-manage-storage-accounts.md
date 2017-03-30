@@ -4,7 +4,7 @@ description: "針對與 StorSimple Virtual Array 相關聯的儲存體帳戶認�
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 234bf8bb-d5fe-40be-9d25-721d7482bc3b
 ms.service: storsimple
@@ -12,14 +12,15 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 11/21/2016
+ms.date: 02/27/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
-ms.openlocfilehash: 6df75f229b95de99fb7f97714336fdc857e672eb
+ms.sourcegitcommit: 4b5c86314bde2acb7d5723909f89691bf7ed8b98
+ms.openlocfilehash: 6bb07bc1e3ab439352b444016167541eca54f788
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="use-the-storsimple-device-manager-service-to-manage-storage-account-credentials-for-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員服務管理 StorSimple Virtual Array 的儲存體帳戶認證
+# <a name="use-storsimple-device-manager-to-manage-storage-account-credentials-for-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員來管理 StorSimple Virtual Array 的儲存體帳戶認證
 
 ## <a name="overview"></a>概觀
 在 StorSimple Virtual Array 的 StorSimple 裝置管理員服務刀鋒視窗中，[設定] 區段會顯示可在 StorSimple Manager 服務中建立的全域服務參數。 這些參數可以套用到與該服務連線的所有裝置，還包括：
@@ -67,13 +68,13 @@ ms.openlocfilehash: 6df75f229b95de99fb7f97714336fdc857e672eb
 
 1. 瀏覽至您的裝置管理員服務，選取它並按兩下。 這會開啟 [概觀] 刀鋒視窗。
 2. 在 [設定] 區段內選取 [儲存體帳戶認證]。
-3. 按一下 [新增] 。
+3. 按一下 [新增]。
 4. 在 [加入儲存體帳戶] 刀鋒視窗中，執行下列動作︰
    
     1. 在 [訂用帳戶] 中，選取 [目前]。
     2. 提供您 Azure 儲存體帳戶的名稱。
     3. 選取 [啟用]，為 StorSimple 裝置與雲端之間的網路通訊建立安全通道。 只有當您在私人雲端內操作時，才選取 [停用]。
-    4. 按一下 [新增] 。 成功建立儲存體帳戶之後會通知您。<br></br>
+    4. 按一下 [新增]。 成功建立儲存體帳戶之後會通知您。<br></br>
    
         ![新增現有儲存體帳戶認證](./media/storsimple-virtual-array-manage-storage-accounts/ova-add-storageacct.png)
 
@@ -150,10 +151,5 @@ ms.openlocfilehash: 6df75f229b95de99fb7f97714336fdc857e672eb
 
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: klam
 translationtype: Human Translation
-ms.sourcegitcommit: 5b1b65e3d1066bea6958fa6461a157ee39fbe7dc
-ms.openlocfilehash: e14d55ad96187dc8ec6e6aac04463b58280783aa
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 10a2c7771d9d2ec57f3e57e1d6bb4f82c55aa7f1
+ms.lasthandoff: 03/17/2017
 
 ---
 # <a name="logic-apps-pricing-model"></a>Logic Apps 的定價模式
@@ -58,6 +58,10 @@ App Service 方案和其每日允許的動作執行次數︰
 
 ## <a name="next-steps"></a>後續步驟
 * [Logic Apps 概觀][whatis]
-* [Create your first logic app][create] [pricing]: https://azure.microsoft.com/pricing/details/logic-apps/ [whatis]: logic-apps-what-are-logic-apps.md [create]: logic-apps-create-a-logic-app.md
+* [建立第一個邏輯應用程式][create]
+
+[pricing]: https://azure.microsoft.com/pricing/details/logic-apps/
+[whatis]: logic-apps-what-are-logic-apps.md
+[create]: logic-apps-create-a-logic-app.md
 
 

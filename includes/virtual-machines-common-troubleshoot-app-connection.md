@@ -62,7 +62,7 @@
 
 在 Windows 和 Linux 虛擬機器兩者上，使用 **netstat -a** 命令顯示作用中的接聽連接埠。 檢查應用程式應該接聽之預期連接埠的輸出。 重新啟動應用程式，或視需要將它設定成使用預期的連接埠，然後嘗試在本機重新存取應用程式。
 
-## <a name="a-idstep2astep-2-access-application-from-another-vm-in-the-same-virtual-network"></a><a id="step2"></a>步驟 2︰從相同虛擬網路中的其他 VM 存取應用程式
+## <a id="step2"></a>步驟 2︰從相同虛擬網路中的其他 VM 存取應用程式
 使用 VM 的主機名稱或其 Azure 指派的公用、私人或提供者 IP 位址，嘗試存取不同 VM，但相同虛擬網路中的應用程式。 若為使用傳統部署模型建立的虛擬機器，請勿使用雲端服務的公用 IP 位址。
 
 ![從其他 VM 啟動應用程式](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access3.png)
@@ -82,7 +82,7 @@
 
 在 Windows 虛擬機器上，請使用「具有進階安全性的 Windows 防火牆」判斷防火牆規則是否排除了您應用程式的輸入與輸出流量。
 
-## <a name="a-idstep3astep-3-access-application-from-outside-the-virtual-network"></a><a id="step3"></a>步驟 3︰ 從虛擬網路外部存取應用程式
+## <a id="step3"></a>步驟 3︰ 從虛擬網路外部存取應用程式
 嘗試從位於虛擬網路外部的電腦存取在該虛擬網路內 VM 上執行的應用程式。 使用與您的原始用戶端電腦不同的網路。
 
 ![從位於虛擬網路之外的電腦啟動應用程式](./media/virtual-machines-common-troubleshoot-app-connection/tshoot_app_access4.png)
@@ -95,7 +95,7 @@
   
   * 確認 VM 的端點組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
   * 確認端點上的存取控制清單 (ACL) 不會阻擋來自網際網路的連入流量。
-  * 如需詳細資訊，請參閱[如何設定虛擬機器的端點](../articles/virtual-machines/virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+  * 如需詳細資訊，請參閱[如何設定虛擬機器的端點](../articles/virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 * 對於使用資源管理員部署模型建立的 VM：
   
   * 確認 VM 的輸入 NAT 規則組態允許連入流量，特別是通訊協定 (TCP 或 UDP) 和公用與私人連接埠號碼。
@@ -118,9 +118,4 @@
 [針對以 Windows 為基礎的 Azure 虛擬機器的遠端桌面連線進行疑難排解](../articles/virtual-machines/virtual-machines-windows-troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](../articles/virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

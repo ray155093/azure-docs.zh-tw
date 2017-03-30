@@ -11,12 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: ca96cd4ddf1be5ab70475d40fa65e73d248fd67b
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 132576ca394fe475000449ea58871726c36d078f
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -190,7 +190,7 @@ ms.lasthandoff: 03/07/2017
 
 * 如果[資料行名稱](app-insights-analytics-reference.md#names)是以括號括起來 (如下所示)，就可以包含空格或符號︰`['...']` 或 `["..."]`
 * `%` 是很常見的模數運算子。
-* `1d` (這是數字&1;，再加上 'd') 是一個時間範圍常值，表示一天。 以下是其他一些時間範圍常值︰`12h`、`30m`、`10s`、`0.01s`。
+* `1d` (這是數字 1，再加上 'd') 是一個時間範圍常值，表示一天。 以下是其他一些時間範圍常值︰`12h`、`30m`、`10s`、`0.01s`。
 * `floor` (別名 `bin`) 會將一個值無條件捨去為您提供之基值的最近倍數。 所以 `floor(aTime, 1s)` 會將時間無條件捨去為最接近的秒數。
 
 [運算式](app-insights-analytics-reference.md#scalars)可以包含所有常見的運算子 (`+`、`-`...)，而且有一系列的實用函式。
@@ -689,7 +689,9 @@ requests
 ### <a name="traces-table"></a>追蹤資料表
 包含應用程式使用 TrackTrace() 或[其他記錄架構](app-insights-asp-net-trace-logs.md)傳送的遙測。
 
-
+## <a name="video"></a>影片 
+ 
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/123/player] 
 
 ## <a name="next-steps"></a>後續步驟
 * [分析語言參考](app-insights-analytics-reference.md)

@@ -1,5 +1,5 @@
 ---
-title: "Application Insights 中的智慧型偵測 | Microsoft Docs"
+title: "Azure Application Insights 中的智慧型偵測 | Microsoft Docs"
 description: "Application Insights 會自動深入分析您的 App 遙測，並且警告您有潛在的問題。"
 services: application-insights
 documentationcenter: windows
@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 63c901529b81c75f46f1b21219054817c148063a
-ms.openlocfilehash: 30124e697af5f7560e8070ce43c5a985bd2c403b
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: fe2596a7fed52118425c612ebf50c01134928bf6
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -47,6 +48,10 @@ ms.openlocfilehash: 30124e697af5f7560e8070ce43c5a985bd2c403b
 
 (每個通知中的說明連結會帶您前往相關文章。)
 
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
+
 ## <a name="next-steps"></a>後續步驟
 這些診斷工具可協助您檢查來自您的應用程式的遙測︰
 
@@ -58,10 +63,5 @@ ms.openlocfilehash: 30124e697af5f7560e8070ce43c5a985bd2c403b
 
 * [手動設定的度量警示](app-insights-alerts.md)
 * [可用性 Web 測試](app-insights-monitor-web-app-availability.md) 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

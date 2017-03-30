@@ -562,11 +562,11 @@ Microsoft Azure 虛擬機器使用不同的儲存體類型。 在 Azure 虛擬�
 實際的磁碟機由於會儲存在主機伺服器本身，因此是可變更的。 如果重新部署時移動 VM (例如由於主機上的維護作業或關機後再重新啟動)，磁碟機內容會遺失。 因此，不適合在此磁碟機上儲存任何重要資料。 此儲存體類型所使用的媒體類型會因不同的 VM 系列而異，而且會有相當不同的效能特性，截至 2015 年 6 月為止的類型如下所示︰
 
 * A5-A7︰非常有限的效能。 除了分頁檔之外，不建議使用
-* A8-A11︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量。
-* D 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量。
-* DS 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量。
-* G 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量。
-* GS 系列︰效能特性非常良好，有數萬個 IOPS 和 >&1; GB/秒的輸送量。
+* A8-A11︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量。
+* D 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量。
+* DS 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量。
+* G 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量。
+* GS 系列︰效能特性非常良好，有數萬個 IOPS 和 > 1 GB/秒的輸送量。
 
 以上陳述均適用於通過 SAP 認證的 VM 類型。 具有絕佳 IOPS 和輸送量的 VM 系列則可供某些 DBMS 功能使用。 如需更多詳細資料，請參閱 [DBMS 部署指南][dbms-guide]。
 
@@ -1613,15 +1613,15 @@ azure vm disk attach-new --resource-group $rgName --vm-name SAPERPDemo --size-in
 
 作法：
 
-* 在本例中，我們決定內部部署 QAS 系統將成為 CTS 網域控制站。 呼叫交易 STMS。 [TMS] 對話方塊隨即顯示。 [Configure Transport Domain] (設定傳輸網域) 對話方塊隨即顯示 (只有在您尚未設定傳輸網域時，才會顯示此對話方塊)。
-* 確定自動建立的使用者 TMSADM 已獲得授權 ([SM59] -> [ABAP Connection] (ABAP 連線) -> [TMSADM@E61.DOMAIN_E61] -> [Details] (詳細資料) -> [Utilities(M)] (公用程式(M)) -> [Authorization Test] (授權測試))。 交易 STMS 的初始畫面應該顯示此 SAP 系統現在會作為傳輸網域的控制站，如下所示：
+* 在本例中，我們決定內部部署 QAS 系統將成為 CTS 網域控制站。 呼叫交易 STMS。 [TMS] 對話方塊隨即顯示。 [Configure Transport Domain]\(設定傳輸網域) 對話方塊隨即顯示 (只有在您尚未設定傳輸網域時，才會顯示此對話方塊)。
+* 確定自動建立的使用者 TMSADM 已獲得授權 ([SM59] -> [ABAP Connection]\(ABAP 連線) -> [TMSADM@E61.DOMAIN_E61] -> [Details]\(詳細資料) -> [Utilities(M)]\(公用程式(M)) -> [Authorization Test]\(授權測試))。 交易 STMS 的初始畫面應該顯示此 SAP 系統現在會作為傳輸網域的控制站，如下所示：
 
 ![網域控制站上的交易 STMS 初始畫面][planning-guide-figure-2300]
 
 #### <a name="including-sap-systems-in-the-transport-domain"></a>將 SAP 系統加入傳輸網域
 將 SAP 系統加入傳輸網域的順序如下所示︰
 
-* 在 Azure 的 DEV 系統上，移至傳輸系統 (用戶端 000) 並呼叫交易 STMS。 從對話方塊選擇 [Other Configuration] (其他組態)，並繼續進行 [Include System in Domain] (將系統加入網域)。 將「網域控制站」指定為目標主機 ([Including SAP Systems in the Transport Domain (將 SAP 系統加入傳輸網域)](http://help.sap.com/erp2005_ehp_04/helpdata/en/44/b4a0c17acc11d1899e0000e829fbbd/content.htm?frameset=/en/44/b4a0b47acc11d1899e0000e829fbbd/frameset.htm))。 系統正在等候加入傳輸網域。
+* 在 Azure 的 DEV 系統上，移至傳輸系統 (用戶端 000) 並呼叫交易 STMS。 從對話方塊選擇 [Other Configuration]\(其他組態)，並繼續進行 [Include System in Domain]\(將系統加入網域)。 將「網域控制站」指定為目標主機 ([Including SAP Systems in the Transport Domain (將 SAP 系統加入傳輸網域)](http://help.sap.com/erp2005_ehp_04/helpdata/en/44/b4a0c17acc11d1899e0000e829fbbd/content.htm?frameset=/en/44/b4a0b47acc11d1899e0000e829fbbd/frameset.htm))。 系統正在等候加入傳輸網域。
 * 基於安全性理由，您必須接著回到網域控制站確認您的要求。 針對等候中系統，選擇 [系統概觀] 和 [核准]。 然後確認提示，設定會隨即發佈。
 
 此 SAP 系統現在包含有關傳輸網域中所有其他 SAP 系統的必要資訊。 同時會將新 SAP 系統的位址資料傳送至所有其他 SAP 系統，並在傳輸控制程式的傳輸設定檔中輸入 SAP 系統。 檢查網域之傳輸目錄的 RFC 和存取是否運作正常。
@@ -1632,7 +1632,7 @@ azure vm disk attach-new --resource-group $rgName --vm-name SAPERPDemo --size-in
 
 * 確定您在內部部署的 STMS 已正確設定。
 * 確定您在 Azure 上的虛擬機器可解析傳輸網域控制站的主機名稱，反之亦然。
-* 呼叫交易 STMS -> [Other Configuration] (其他組態) -> [Include System in Domain] (將系統加入網域)。
+* 呼叫交易 STMS -> [Other Configuration]\(其他組態) -> [Include System in Domain]\(將系統加入網域)。
 * 確認內部部署 TMS 系統已連線。
 * 像往常一樣，設定傳輸路由、群組和層級。
 

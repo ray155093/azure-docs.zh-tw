@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 10/20/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: e5bacb7ce32845b97e06cb0d35cc62935a3c86f6
-ms.openlocfilehash: 79b597fb1d76ec0dd7bdfca701a16f885d245b94
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 9fa8835003b1d8a0dbc56bf9ff8996e48fc41acf
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -93,14 +94,9 @@ Elapsed time:            00.00:13:07
 ```
 
 ## <a name="troubleshooting"></a>疑難排解
-* 當您使用 AZCopy 時，如果您看到「伺服器無法驗證要求」錯誤，請確定授權標頭值的格式正確 (包含簽章)，且如果您是使用金鑰 2 或次要儲存體金鑰，請嘗試使用主要或第 1 個儲存體金鑰。
+* 當您使用 AZCopy 時，如果您看到「伺服器無法驗證要求」錯誤，請確定授權標頭值的格式正確 (包含簽章)。 如果您正在使用金鑰 2 或次要儲存體金鑰，請嘗試使用主要或第 1 個儲存體金鑰。
 
 ## <a name="next-steps"></a>後續步驟
 * 您可以[將 VHD 的複本附加至 VM 作為 OS 磁碟](virtual-machines-windows-create-vm-specialized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，藉此建立新的 VM。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

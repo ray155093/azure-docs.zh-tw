@@ -1,79 +1,81 @@
 ---
-title: "Logic Apps 範例和案例 | Microsoft Docs"
-description: "請參閱常見的邏輯應用程式範例，並了解如何實作常見的案例"
+title: "範例與案例 - Azure Logic Apps | Microsoft Docs"
+description: "檢閱常見案例的邏輯應用程式範例"
 services: logic-apps
-documentationcenter: .net,nodejs,java
 author: jeffhollan
 manager: anneta
 editor: 
+documentationcenter: .net,nodejs,java
 ms.assetid: e06311bc-29eb-49df-9273-1f05bbb2395c
 ms.service: logic-apps
 ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
-ms.date: 10/18/2016
+ms.date: 03/14/2017
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: dc8c9eac941f133bcb3a9807334075bfba15de46
-ms.openlocfilehash: ebdac3845e3b635ea6be7de41df9b389915e5d39
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: cbe7011f827418c1094c4e262e016cb93d6d224c
+ms.lasthandoff: 03/17/2017
 
 
 ---
-# <a name="logic-apps-examples-and-common-scenarios"></a>Logic Apps 範例和常見案例
-本文件詳述常見案例和範例，協助您了解可使用邏輯應用程式將商務程序自動化的一些方法。 
+# <a name="examples-and-common-scenarios-for-azure-logic-apps"></a>Azure Logic Apps 的範例和常見案例
 
-## <a name="custom-triggers-and-actions"></a>自訂觸發程序和動作
-有幾種方法可從另一個應用程式觸發邏輯應用程式。 以下是一些常見範例︰
+為了協助您深入了解 Azure Logic Apps 中的眾多模式和功能，以下提供了常見的範例與案例。
 
+## <a name="key-scenarios-for-logic-apps"></a>邏輯應用程式的重要案例
+
+Azure Logic Apps 針對不同的服務提供了彈性的協調流程和整合功能。 Logic Apps 服務是「無伺服器」服務，因此您不必擔心調整或執行個體；您需要做的就只是定義工作流程 (觸發程序和動作)。 基礎平台可處理調整、可用性和效能。 只要是需要協調多個動作的案例 (尤其是跨多個系統時)，都是 Azure Logic Apps 的絕佳使用案例。 以下有一些模式和範例。
+
+## <a name="respond-to-triggers-and-extend-actions"></a>回應觸發程序並延伸動作
+
+每個邏輯應用程式都會從觸發程序來開始。 例如，您的工作流程可以從排程事件、手動叫用或外部系統的事件 (例如「當檔案新增至 FTP 伺服器時」觸發程序) 來開始。 Azure Logic Apps 目前支援超過 100 個立即可用的連接器，範圍從內部部署 SAP 到 Azure 辨識服務。 對於可能沒有已發佈連接器的系統和服務，您也可以延伸邏輯應用程式。
+
+* [教學課程︰使用 Logic Apps 和 Power BI 在幾分鐘內建置具有 AI 技術的社交儀表板](http://aka.ms/logicappsdemo)
 * [建立自訂觸發程序或動作](../logic-apps/logic-apps-create-api-app.md)
-* [長時間執行的動作](../logic-apps/logic-apps-create-api-app.md)
-* [HTTP 要求觸發程序 (POST)](logic-apps-http-endpoint.md)
-* [Webhook 觸發程序和動作](../logic-apps/logic-apps-create-api-app.md)
-* [輪詢觸發程序](../logic-apps/logic-apps-create-api-app.md)
+* [為工作流程執行設定長時間執行的動作](../logic-apps/logic-apps-create-api-app.md)
+* [使用 Webhook 回應外部事件和動作](../logic-apps/logic-apps-create-api-app.md)
+* [呼叫、觸發或巢狀處理具有 HTTP 要求同步回應的工作流程](logic-apps-http-endpoint.md)
+* [教學課程︰回應 Twilio SMS Webhook 並傳送文字回應](https://channel9.msdn.com/Blogs/Windows-Azure/Azure-Logic-Apps-Walkthrough-Webhook-Functions-and-an-SMS-Bot)
 
-### <a name="scenarios"></a>案例
-* [要求同步回應](logic-apps-http-endpoint.md)
-* [使用 SMS 的要求回應](https://channel9.msdn.com/Blogs/Windows-Azure/Azure-Logic-Apps-Walkthrough-Webhook-Functions-and-an-SMS-Bot)
+## <a name="error-handling-logging-and-control-flow-capabilities"></a>錯誤處理、記錄和控制流程功能
 
-## <a name="error-handling-and-logging"></a>錯誤處理和記錄
-* [例外狀況和錯誤處理](logic-apps-exception-handling.md)
+邏輯應用程式包含豐富的功能，可用於處理進階控制流程，例如條件、開關、迴圈和範圍。 若要確保解決方案的彈性，您也可以在工作流程中實作錯誤和例外狀況處理。 針對工作流程執行狀態的通知和診斷記錄，Azure Logic Apps 也提供了監視和警示。
+
+* [使用 switch 陳述式來執行不同動作](logic-apps-switch-case.md)
+* [在邏輯應用程式中使用迴圈和批次處理陣列和集合中的項目](logic-apps-loops-and-scopes.md)
+* [在工作流程中撰寫錯誤和例外狀況處理](logic-apps-exception-handling.md)
 * [設定 Azure 警示和診斷](logic-apps-monitor-your-logic-apps.md)
+* [使用案例︰醫療保健公司如何使用邏輯應用程式的例外狀況處理來處理 HL7 FHIR 工作流程](logic-apps-scenario-error-and-exception-handling.md)
 
-### <a name="scenarios"></a>案例
-* [使用案例︰錯誤和例外狀況處理](logic-apps-scenario-error-and-exception-handling.md)
+## <a name="deploy-and-manage-logic-apps"></a>部署和管理邏輯應用程式
 
-## <a name="deploying-and-managing"></a>部署和管理
-* [建立自動部署](../logic-apps/logic-apps-create-deploy-template.md)
+您可以完全透過 Visual Studio、Visual Studio Team Services 或其他任何原始檔控制和自動化建置工具，來開發及部署邏輯應用程式。 為了支援將工作流程與相依連線部署在資源範本中的功能，邏輯應用程式使用 Azure 資源部署範本。 Visual Studio 工具會自動產生這些範本，您可以將其簽入原始檔控制以便控制版本。
+
+* [建立自動部署範本](../logic-apps/logic-apps-create-deploy-template.md)
 * [在 Visual Studio 中建置和部署 Logic Apps](logic-apps-deploy-from-vs.md)
-* [監視邏輯應用程式](logic-apps-monitor-your-logic-apps.md)
+* [監視邏輯應用程式的健康狀態](logic-apps-monitor-your-logic-apps.md)
 
-## <a name="content-types-conversions-and-transformations"></a>內容類型、轉換 (Conversion) 及轉換 (Transformation)
-Logic Apps [工作流程定義語言](http://aka.ms/logicappsdocs) 包含許多功能可讓您進行轉換，以及使用不同的內容類型。 此外，當資料流經工作流程時，引擎將盡其所能地保留內容類型。
+## <a name="content-types-conversions-and-transformations-within-a-run"></a>執行內的內容類型、轉換 (Conversion) 及轉換 (Transformation)
 
-* [處理內容類型](../logic-apps/logic-apps-content-type.md)，例如 application/json、application/xml 和 text/plain
-* [撰寫工作流程定義](../logic-apps/logic-apps-author-definitions.md)
-* [工作流程定義語言參考](http://aka.ms/logicappsdocs)
+您可以使用 Azure Logic Apps [工作流程定義語言](http://aka.ms/logicappsdocs)中的許多函數，來存取、轉換 (Convert) 及轉換 (Transform) 多種內容類型。 例如，您可以使用 `@json()` 和 `@xml()` 工作流程運算式，在字串、JSON 和 XML 之間進行轉換 (Convert)。 Logic Apps 引擎會保留內容類型，以支援在服務之間以不失真的方式進行內容傳輸的功能。
 
-## <a name="batches-and-looping"></a>批次和迴圈
-* [SplitOn](logic-apps-loops-and-scopes.md)
-* [ForEach](logic-apps-loops-and-scopes.md)
-* [Until](logic-apps-loops-and-scopes.md)
+* [處理非 JSON 內容類型](../logic-apps/logic-apps-content-type.md)，例如 `application/xml`、`application/octet-stream` 和 `multipart/formdata`
+* [工作流程運算式在邏輯應用程式中的運作方式](../logic-apps/logic-apps-author-definitions.md)
+* [參考：Azure Logic Apps 工作流程定義語言](http://aka.ms/logicappsdocs)
 
-## <a name="integrating-with-azure-functions"></a>與 Azure Functions 整合
-* [Azure Functions 整合](../logic-apps/logic-apps-azure-functions.md)
+## <a name="other-integrations-and-capabilities"></a>其他整合和功能
 
-### <a name="scenarios"></a>案例
-* [Azure Function 做為服務匯流排觸發程序](logic-apps-scenario-function-sb-trigger.md)
+邏輯應用程式也提供與許多服務 (例如 Azure Functions、Azure API 管理、Azure App Service) 和自訂 HTTP 端點 (例如 REST 和 SOAP) 的整合。
 
-## <a name="http-rest-and-soap"></a>HTTP、REST 和 SOAP
-* [呼叫 SOAP](https://blogs.msdn.microsoft.com/logicapps/2016/04/07/using-soap-services-with-logic-apps/)
+* [從邏輯應用程式呼叫 Azure Functions](../logic-apps/logic-apps-azure-functions.md)
+* [案例：使用 Azure Functions 觸發邏輯應用程式](logic-apps-scenario-function-sb-trigger.md)
+* [部落格︰從邏輯應用程式呼叫 SOAP 端點](https://blogs.msdn.microsoft.com/logicapps/2016/04/07/using-soap-services-with-logic-apps/)
 
-我們將持續在本文件中加入範例和案例。 請使用下列意見段落，讓我們知道您想要在這裡看到的範例或案例。
+## <a name="next-steps"></a>後續步驟
 
-
-
-
-<!--HONumber=Jan17_HO3-->
-
-
+- [處理邏輯應用程式中的錯誤和例外狀況](logic-apps-exception-handling.md)
+- [使用工作流程定義語言撰寫工作流程定義](logic-apps-author-definitions.md)
+- [提交有關我們該如何改善 Azure Logic Apps 的評論、問題、意見或建議](https://feedback.azure.com/forums/287593-logic-apps)

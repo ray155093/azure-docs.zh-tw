@@ -4,7 +4,7 @@ description: "說明如何在您的 StorSimple 8000 系列裝置上安裝 StorSi
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 7a513923-eb77-4078-b0ab-f8e90183796a
 ms.service: storsimple
@@ -12,17 +12,18 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 08/22/2016
+ms.date: 02/27/2017
 ms.author: alkohli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: f16ae589c160338450a41857f88fe29763e1b9eb
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 56af9046fff24229298997b169aaf329e1692cc2
+ms.openlocfilehash: 80ff35cc47dfc38089f4c392ef4c90baf9ccc03e
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="install-update-12-on-your-storsimple-device"></a>在 StorSimple 裝置上安裝 Update 1.2
-## <a name="overview"></a>Overview
+# <a name="install-update-12-on-your-storsimple-8000-series-device"></a>在 StorSimple 8000 系列裝置上安裝 Update 1.2
+## <a name="overview"></a>概觀
 本教學課程說明如何在執行 Update 1 之前軟體版本的 StorSimple 裝置上安裝 Update 1.2。 本教學課程也涵蓋了在 StorSimple 裝置之 DATA 0 以外的網路介面上設定閘道器時，進行更新所需的額外步驟。
 
 Update 1.2 包括裝置軟體更新、LSI 驅動程式更新和磁碟韌體更新。 此軟體和 LSI 驅動程式更新為非干擾性更新，且可透過 Azure 傳統入口網站套用。 磁碟韌體更新為干擾性更新，且只能透過裝置的 Windows PowerShell 介面套用。
@@ -60,7 +61,7 @@ Update 1.2 包括裝置軟體更新、LSI 驅動程式更新和磁碟韌體更�
    
    維護模式更新為干擾性更新，會導致裝置產生停機時間，且只能透過您裝置的 Windows PowerShell 介面加以套用。
    
-   ![維護頁面](./media/storsimple-install-update-1/InstallUpdate12_10M.png "Maintenance page")
+   ![維護頁面](./media/storsimple-install-update-1/InstallUpdate12_10M.png "維護頁面")
 2. 使用 [下載 Hotfix](#to-download-hotfixes) 中列出的步驟，下載維護模式更新，以搜尋和下載 KB3063416，它會安裝磁碟韌體更新 (現在其他更新應該已安裝)。
 3. 請遵循 [安裝及驗證維護模式 Hotfix](#to-install-and-verify-maintenance-mode-hotfixes) 中列出的步驟安裝這些維護模式更新。
 4. 在 Azure 傳統入口網站，瀏覽至 [維護] 頁面，然後在頁面底部，按一下 [掃描更新] 來檢查是否有任何 Windows 更新，然後按一下 [安裝更新]。 成功安裝所有更新之後就完成了。

@@ -15,8 +15,9 @@ ms.workload: TBD
 ms.date: 02/08/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 30f56224a00957127497b6a05a809453294ea94e
-ms.openlocfilehash: ef477af0cfc24233ae9460d6bf020d81d68c87e5
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 4dc5ae7d3feae769a8366f68f412f3b79fa8eb00
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -79,7 +80,7 @@ StorSimple 是依使用量計算的服務。 透過 CSP 途徑採購 StorSimple 
 ### <a name="i-have-provisioned-a-standalone-storsimple-subscription-for-my-customer-do-i-have-to-use-the-azure-portal-to-administer-my-device"></a>我已經為客戶佈建獨立 StorSimple 訂用帳戶。 我必須使用 Azure 入口網站來管理我的裝置嗎？ 
 是。 
 
-### <a name="is-the-microsoft-field-compensated-as-a-result-of-sales-of-storsimple-through-csp"></a>Microsoft 合作夥伴會因為透過 CSP 銷售 StorSimple 而獲得報酬嗎？
+### <a name="is-the-microsoft-account-team-compensated-as-a-result-of-sales-of-storsimple-through-csp"></a>Microsoft 帳戶小組是否會因為透過 CSP 銷售 StorSimple 而獲得報酬？
 是。 合作夥伴銷售經理和一般客戶的客戶服務團隊會獲得 CSP 銷售的報酬。 合作夥伴會隨著銷售出眾的價值和產品而領先群倫。
 
 ## <a name="support-for-storsimple-and-csp"></a>支援 StorSimple 和 CSP
@@ -98,9 +99,4 @@ StorSimple in CSP 的支援模型與 CSP 中其他 Azure 服務的支援模型�
 
 ## <a name="next-steps"></a>後續步驟
 如果您已準備好部署 StorSimple，請移至[部署 StorSimple in CSP](storsimple-partner-csp-deploy.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

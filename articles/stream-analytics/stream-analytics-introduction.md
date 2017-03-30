@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 01/24/2017
+ms.date: 03/28/2017
 ms.author: jeffstok
 translationtype: Human Translation
 ms.sourcegitcommit: 2b4a10c77ae02ac0e9eeecf6d7d6ade6e4c33115
 ms.openlocfilehash: 493a915fb4e3de4cb70324b22beeaae6720a3492
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -50,10 +51,5 @@ Azure 串流分析是完全受管理、符合成本效益的即時事件處理�
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

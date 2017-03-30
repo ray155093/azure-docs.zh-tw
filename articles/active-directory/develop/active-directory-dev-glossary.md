@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/15/2016
+ms.date: 03/20/2017
 ms.author: bryanla
 translationtype: Human Translation
-ms.sourcegitcommit: 186541bee40ada7fc9e6be31d6b989e9bd34e0d1
-ms.openlocfilehash: acc585d139e91b4954658fb061587a69e701bbe2
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 1d65d5292d51c58b92f68dd469bf1eb0ccdc47ca
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -87,7 +87,7 @@ ms.lasthandoff: 02/11/2017
 用戶端應用程式會向資源擁有者要求[授權](#authorization)，以參與 [OAuth2 授權授與](#authorization-grant)流程，並可代表資源擁有者存取 API/資料。 OAuth2 授權架構會根據用戶端是否能夠維護其認證的機密性，[定義兩種類型的用戶端][OAuth2-Client-Types]：「機密」和「公用」。 應用程式可實作在 Web 伺服器上執行的 [Web 用戶端 (機密)](#web-client)、安裝在裝置上的[原生用戶端 (公用)](#native-client)，或在裝置的瀏覽器中執行的[使用者代理程式型用戶端 (公用)](#user-agent-based-client)。
 
 ## <a name="consent"></a>同意
-[資源擁有者](#resource-owner)授與授權給[用戶端應用程式](#client-application)，以讓它獲得特定[權限](#permissions)來代表資源擁有者存取受保護資源的程序。 根據用戶端所要求的權限，會要求系統管理員或使用者同意分別允許其組織/個人資料的存取權。 請注意，在[多租用戶](#multi-tenant-application)案例中，應用程式的[服務主體](#service-principal-object)也會記錄在同意方使用者的租用戶中。
+[資源擁有者](#resource-owner)授與授權給[用戶端應用程式](#client-application)，以讓使用特定[權限](#permissions)來代表資源擁有者存取受保護資源的程序。 根據用戶端所要求的權限，會要求系統管理員或使用者同意分別允許其組織/個人資料的存取權。 請注意，在[多租用戶](#multi-tenant-application)案例中，應用程式的[服務主體](#service-principal-object)也會記錄在同意方使用者的租用戶中。
 
 ## <a name="id-token"></a>識別碼權杖
 [授權伺服器](#authorization-server)的[授權端點](#authorization-endpoint)所提供的 [OpenID Connect][OpenIDConnect-ID-Token] [安全性權杖](#security-token)，其中包含與使用者[資源擁有者](#resource-owner)的驗證有關的[宣告](#claim)。 和存取權杖一樣，識別碼權杖也會以數位簽署的 [JSON Web 權杖 (JWT)][JWT] 來表示。 但識別碼權杖的宣告則不同於存取權杖，它並不會用來進行與資源存取相關的用途，具體來說也就是存取控制。
@@ -95,7 +95,7 @@ ms.lasthandoff: 02/11/2017
 如需詳細資訊，請參閱 [Azure AD 權杖參考][AAD-Tokens-Claims]。
 
 ## <a name="multi-tenant-application"></a>多租用戶應用程式
-一種[用戶端應用程式](#client-application)類別，能讓在任何 Azure AD [租用戶](#tenant) (包括用戶端註冊所在之租用戶以外的租用戶) 中佈建的使用者登入和[同意](#consent)。 相反地，若應用程式註冊為單一租用戶，則只會允許來自應用程式註冊所在相同租用戶中所佈建之使用者帳戶的登入。 [原生用戶端](#native-client)應用程式預設是多租用戶，而 [Web 用戶端](#web-client)應用程式則可以在單一和多租用戶之間做選擇。
+一種應用程式類別，能讓在任何 Azure AD [租用戶](#tenant) (包括用戶端註冊所在之租用戶以外的租用戶) 中佈建的使用者登入和[同意](#consent)。 [原生用戶端](#native-client)應用程式預設是多租用戶，而 [Web 用戶端](#web-client)和 [Web 資源/API](#resource-server) 應用程式則可以在單一或多租用戶之間做選擇。 相反地，若 Web 應用程式註冊為單一租用戶，則只會允許來自應用程式註冊所在相同租用戶中所佈建之使用者帳戶的登入。
 
 如需詳細資訊，請參閱[如何使用多租用戶應用程式模式登入任何 Azure AD 使用者][AAD-Multi-Tenant-Overview]。
 
@@ -105,12 +105,12 @@ ms.lasthandoff: 02/11/2017
 ## <a name="permissions"></a>權限
 透過宣告權限要求來取得[資源伺服器](#resource-server)存取權的[用戶端應用程式](#client-application)。 其可用類型有兩種︰
 
-* 「委派」權限，其可依據登入的[資源擁有者](#resource-owner)的委派授權要求[範圍型](#scopes)存取，而在執行階段會以用戶端[存取權杖](#access-token)中的 ["scp" 宣告](#claim)形式顯示給資源。
-* 「應用程式」權限，其可依據用戶端應用程式的認證/身分識別要求[角色型](#roles)存取，而在執行階段會以用戶端存取權杖中的[「角色」宣告](#claim)形式顯示給資源。
+* 「委派」權限，其可使用登入的[資源擁有者](#resource-owner)的委派授權指定[範圍型](#scopes)存取，而在執行階段會以用戶端[存取權杖](#access-token)中的 ["scp" 宣告](#claim)形式顯示給資源。
+* 「應用程式」權限，其可使用用戶端應用程式的認證/身分識別指定[角色型](#roles)存取，而在執行階段會以用戶端存取權杖中的[「角色」宣告](#claim)形式顯示給資源。
 
 權限也會在 [同意](#consent) 程序期間出現，讓系統管理員或資源擁有者有機會允許/拒絕用戶端對其租用戶中的資源進行存取。
 
-在 [Azure 入口網站][AZURE-portal]的 [應用程式]/[設定] 索引標籤中，於 [必要的權限] 底下按照需要選取 [委派的權限] 和 [應用程式權限] (後者需要全域管理員角色的成員資格)，即可設定權限要求。 [公用用戶端](#client-application)無法維護認證，因此它只能要求委派的權限，而[機密用戶端](#client-application)則能夠要求委派的權限和應用程式權限。 用戶端的[應用程式物件](#application-object)會將宣告的權限儲存在其 [requiredResourceAccess 屬性][AAD-Graph-App-Entity]中。
+在 [Azure 入口網站][AZURE-portal]的 [應用程式]/[設定] 索引標籤中，於 [必要的權限] 底下按照需要選取 [委派的權限] 和 [應用程式權限] (後者需要全域管理員角色的成員資格)，即可設定權限要求。 [公用用戶端](#client-application)無法安全地維護認證，因此它只能要求委派的權限，而[機密用戶端](#client-application)則能夠要求委派的權限和應用程式權限。 用戶端的[應用程式物件](#application-object)會將宣告的權限儲存在其 [requiredResourceAccess 屬性][AAD-Graph-App-Entity]中。
 
 ## <a name="resource-owner"></a>資源擁有者
 如 [OAuth2 授權架構][OAuth2-Role-Def]所定義，這是能夠授與受保護資源存取權的實體。 個人資源擁有者就是指使用者。 例如，當[用戶端應用程式](#client-application)想要透過 [Microsoft 圖形 API][Microsoft-Graph] 存取使用者的信箱時，它需要從信箱的資源擁有者取得權限。
@@ -176,7 +176,7 @@ Azure AD 目錄的執行個體會稱為 Azure AD 租用戶。 它可提供各種
 ## <a name="next-steps"></a>後續步驟
 [Azure AD 開發人員指南][AAD-Dev-Guide]是適用於所有 Azure AD 開發相關主題的門戶，內容包括[應用程式整合][AAD-How-To-Integrate]的概觀和 [Azure AD 驗證與支援的驗證案例][AAD-Auth-Scenarios]的基本概念。
 
-請使用下列 Disqus 註解區段來提供意見反應，並協助我們改善及設計我們的內容。
+請使用下列留言區段提供意見反應，並協助我們改善與設計內容，包括要求新定義或更新現有定義！
 
 <!--Image references-->
 

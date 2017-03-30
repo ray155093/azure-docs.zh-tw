@@ -1,5 +1,5 @@
 ---
-title: "雲端中的 Batch 和 HPC 工作負載的資源 | Microsoft Docs"
+title: "Azure 雲端中的 Batch 和 HPC 資源 | Microsoft Docs"
 description: "列出技術資源協助您在 Azure 中執行大規模平行、批次和高效能運算 (HPC) 工作負載。"
 services: batch, cloud-services, virtual-machines
 documentationcenter: 
@@ -12,11 +12,12 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: big-compute
-ms.date: 01/23/2017
+ms.date: 03/17/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: a0e80acad4e8db2177e699f90f7296c64b38e718
-ms.openlocfilehash: edcf34610e7517f9ca16f8c239e4080c475933f4
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 5e605c8c509c93feb822781257ad979a0dea00aa
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -58,7 +59,15 @@ HPC Pack 是建置在 Microsoft Azure 和 Windows Server 技術上的 Microsoft 
 
 * [加速 SLURM 叢集](https://azure.microsoft.com/documentation/templates/slurm/)和[部落格文章](http://blogs.technet.com/b/windowshpc/archive/2015/06/06/deploy-a-slurm-cluster-on-azure.aspx)
 * [加速扭力叢集](https://azure.microsoft.com/documentation/templates/torque-cluster/)
+* [使用 PBS Professional 計算格線範本 (英文)](https://github.com/xpillons/azure-hpc/tree/master/Compute-Grid-Infra)
+
+## <a name="hpc-storage"></a>HPC 儲存體
+* [Azure 上 HPC 儲存體的平行檔案系統 (英文)](https://blogs.msdn.microsoft.com/azurecat/2017/03/17/parallel-file-systems-for-hpc-storage-on-azure/)
 * [Intel Cloud Edition for Lustre Software - Eval](https://azure.microsoft.com/marketplace/partners/intel/lustre-cloud-edition-evaleval-lustre-2-7/)
+* [CentOS 7.2 範本上的 BeeGFS (英文)](https://github.com/smith1511/hpc/tree/master/beegfs-shared-on-centos7.2)
+
+
+
 
 ## <a name="microsoft-mpi"></a>Microsoft MPI
 [Microsoft MPI](https://msdn.microsoft.com/library/bb524831.aspx) (MS-MPI) 是為了在 Windows 平台上開發及執行平行應用程式，Microsoft 實作的訊息傳遞介面標準。
@@ -68,14 +77,17 @@ HPC Pack 是建置在 Microsoft Azure 和 Windows Server 技術上的 Microsoft 
 * [MPI 論壇](https://social.microsoft.com/Forums/en-us/home?forum=windowshpcmpi)
 
 ## <a name="compute-intensive-instances"></a>計算密集型執行個體
-Azure 提供[各種大小的 VM](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (包括能夠連接到後端 RDMA 網路的[計算密集型 H 系列](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)執行個體) 來執行您的 Linux 和 Windows HPC 工作負載。
+Azure 提供[各種大小的 VM](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (包括能夠連接到後端 RDMA 網路的[計算密集型 H 系列](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)執行個體) 來執行您的 Linux 和 Windows HPC 工作負載。 
 
 * [設定 Linux RDMA 叢集以執行 MPI 應用程式](../virtual-machines/virtual-machines-linux-classic-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [使用 Microsoft HPC Pack 設定 Windows RDMA 叢集以執行 MPI 應用程式](../virtual-machines/virtual-machines-windows-classic-hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
+針對 GPU 密集的工作負載，請參閱 [NC 和 NV 大小 (英文)](https://azure.microsoft.com/blog/azure-n-series-general-availability-on-december-1/)。
+
 ## <a name="samples-and-demos"></a>範例和示範
 * [Azure Batch C# 和 Python 程式碼範例](https://github.com/Azure/azure-batch-samples)
 * [Batch Shipyard](https://azure.github.io/batch-shipyard/) 工具組，以便將批次樣式 Dockerized 工作負載輕鬆部署至 Azure Batch
+* [doAzureParallel (英文)](http://www.github.com/Azure/doAzureParallel) R 套件 (以 Azure Batch 為基礎而建置)
 * [測試磁碟機 SUSE Linux Enterprise Server for HPC](https://azure.microsoft.com/marketplace/partners/suse/suselinuxenterpriseserver12optimizedforhighperformancecompute/)
 
 ## <a name="related-azure-services"></a>相關的 Azure 服務
@@ -110,10 +122,5 @@ Azure 提供[各種大小的 VM](../virtual-machines/virtual-machines-windows-si
 ## <a name="next-steps"></a>後續步驟
 * 如需最新公告，請參閱 [Microsoft HPC 和 Batch 小組部落格](http://blogs.technet.com/b/windowshpc/)以及[Azure 部落格](https://azure.microsoft.com/blog/tag/hpc/)。
 * 另請參閱 [Batch 的新功能](https://azure.microsoft.com/updates/?service=batch)或訂閱 [RSS 摘要](https://azure.microsoft.com/updates/feed/?service=batch)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

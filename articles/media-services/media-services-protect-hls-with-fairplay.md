@@ -15,114 +15,118 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: a6f9e1ceb7dfbb13f2f365acf49e09f1c015f4e3
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: ce1cf83e8f532add509c8c0c97199841c41ecbd7
+ms.lasthandoff: 03/21/2017
 
 
 ---
-# <a name="protect-your-hls-content-with-apple-fairplay-andor-microsoft-playready"></a>使用 Apple FairPlay 及/或 Microsoft PlayReady 保護 HLS 內容
+# <a name="protect-your-hls-content-with-apple-fairplay-or-microsoft-playready"></a>使用 Apple FairPlay 或 Microsoft PlayReady 保護 HLS 內容
 Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時串流 (HLS) 內容︰  
 
 * **AES-128 信封清除金鑰**
 
-    使用 **AES-128 CBC** 模式加密整個區塊。 iOS 和 OSX 播放程式原本就支援資料流解密。 如需詳細資訊，請參閱 [本篇文章](media-services-protect-with-aes128.md)。
+    使用 **AES-128 CBC** 模式加密整個區塊。 iOS 和 OS X 播放程式原本就支援資料流解密。 如需詳細資訊，請參閱[使用 AES-128 動態加密和金鑰傳遞服務](media-services-protect-with-aes128.md)。
 * **Apple FairPlay**
 
-    使用 **AES-128 CBC** 模式加密個別的視訊和音訊範例。 **FairPlay 串流** (FPS) 已整合至裝置工作系統，在 iOS 和 Apple 電視上具有原生支援。 在 OS X 上的 Safari 可讓您使用加密媒體擴充功能 (EME) 介面支援的 FPS。
+    使用 **AES-128 CBC** 模式加密個別的視訊和音訊範例。 **FairPlay 串流** (FPS) 已整合至裝置工作系統，在 iOS 和 Apple 電視上具有原生支援。 OS X 上的 Safari 使用加密媒體擴充功能 (EME) 介面支援來啟用 FPS。
 * **Microsoft PlayReady (英文)**
 
-下圖顯示 **HLS + FairPlay 及/或 PlayReady 動態加密** 工作流程。
+下圖顯示 **HLS + FairPlay 或 PlayReady 動態加密** 工作流程。
 
-![使用 FairPlay 保護](./media/media-services-content-protection-overview/media-services-content-protection-with-fairplay.png)
+![動態加密工作流程的圖表](./media/media-services-content-protection-overview/media-services-content-protection-with-fairplay.png)
 
-本主題示範如何使用 Azure 媒體服務，以 Apple FairPlay 動態加密 HLS 內容。 它也會顯示如何使用媒體服務授權傳遞服務，傳遞 FairPlay 授權給用戶端。
+本主題示範如何使用媒體服務，以 Apple FairPlay 動態加密 HLS 內容。 它也會顯示如何使用媒體服務授權傳遞服務，傳遞 FairPlay 授權給用戶端。
 
 > [!NOTE]
-> 如果您也想要以 PlayReady 加密 HLS 內容，必須建立一般內容金鑰，並將它與您的資產產生關聯。 您也必須設定內容金鑰的授權原則，如 [使用 PlayReady 動態一般加密](media-services-protect-with-drm.md) 主題中所述。
+> 如果您也想要以 PlayReady 加密 HLS 內容，必須建立一般內容金鑰，並將它與您的資產產生關聯。 您也必須設定內容金鑰的授權原則，如[使用 PlayReady 動態一般加密](media-services-protect-with-drm.md)中所述。
 >
 >
 
 ## <a name="requirements-and-considerations"></a>需求和考量
 
-* 以下是使用 AMS 傳遞以 FairPlay 加密的 HLS，以及傳遞 FairPlay 授權時，需要的項目。
+以下是使用媒體服務傳遞以 FairPlay 加密的 HLS，以及傳遞 FairPlay 授權時所需的項目：
 
   * 一個 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。
-  * 媒體服務帳戶。 若要建立媒體服務帳戶，請參閱 [建立帳戶](media-services-portal-create-account.md)。
+  * 媒體服務帳戶。 若要建立一個，請參閱[使用 Azure 入口網站建立 Azure 媒體服務帳戶](media-services-portal-create-account.md)。
   * 註冊 [Apple Development Program](https://developer.apple.com/)。
-  * Apple 要求內容擁有者必須取得 [部署套件](https://developer.apple.com/contact/fps/)。 在要求中說明您已使用 Azure 媒體服務實作 KSM (金鑰安全性模組)，現在想要求最終的 FPS 封裝。 最終 FPS 封裝中提供指示來產生憑證和取得 ASK，供您用來設定 FairPlay。
+  * Apple 要求內容擁有者必須取得 [部署套件](https://developer.apple.com/contact/fps/)。 說明您已使用媒體服務實作金鑰安全性模組 (KSM)，現在想要求最終的 FPS 套件。 最終 FPS 套件包含相關指示，用以產生憑證和取得應用程式密碼金鑰 (ASK)。 您可使用 ASK 來設定 FairPlay。
   * Azure 媒體服務 .NET SDK **3.6.0** 版或更新版本。
-* 在 AMS 金鑰傳遞端必須設定下列各項︰
 
-  * **應用程式憑證 (AC)** - 包含私密金鑰的 .pfx 檔案。 這個檔案是由客戶建立，而且由同一位客戶使用密碼加密。
+必須在媒體服務金鑰傳遞端設定下列各項︰
 
-       當客戶設定金鑰傳遞原則時，他們必須提供該密碼和 base64 格式的 .pfx。
+  * **應用程式憑證 (AC)**︰這是包含私密金鑰的 .pfx 檔案。 您可建立這個檔案並以密碼加密。
 
-      下列步驟說明如何產生 FairPlay 的 pfx 憑證。
+       當您設定金鑰傳遞原則時，您必須提供該密碼和 base64 格式的 .pfx 檔案。
 
-    1. 從 https://slproweb.com/products/Win32OpenSSL.html 安裝 OpenSSL
+      下列步驟說明如何產生 FairPlay 的 .pfx 憑證檔案：
+
+    1. 從 https://slproweb.com/products/Win32OpenSSL.html 安裝 OpenSSL。
 
         移至 FairPlay 憑證和其他 Apple 提供檔案所在的資料夾。
-    2. 將 cer 轉換為 pem 的命令列：
+    2. 從命令列執行下列命令。 這會將 .cer 檔案轉換成 .pem 檔案。
 
         "C:\OpenSSL-Win32\bin\openssl.exe" x509 -inform der -in fairplay.cer -out fairplay-out.pem
-    3. 使用私密金鑰將 pem 轉換為 pfx 的命令列 (OpenSSL 接著會要求 pfx 檔案的密碼)。
+    3. 從命令列執行下列命令。 這會將 .pem 檔案轉換為包含私密金鑰的 .pfx 檔案。 OpenSSL 程式會接著要求 .Pfx 檔案的密碼。
 
         "C:\OpenSSL-Win32\bin\openssl.exe" pkcs12 -export -out fairplay-out.pfx -inkey privatekey.pem -in fairplay-out.pem -passin file:privatekey-pem-pass.txt
-  * **應用程式憑證密碼** - 用來建立 .pfx 檔案的客戶密碼。
-  * **應用程式憑證密碼識別碼** - 與上傳其他 AMS 金鑰的方式類似，客戶必須使用 **ContentKeyType.FairPlayPfxPassword** 列舉值來上傳密碼。 最後他們會得到 AMS 識別碼，這是他們要在金鑰傳遞原則選項內使用所需之物。
-  * **IV** - 16 個位元組的隨機值，必須符合資產傳遞原則中的 IV。 客戶會產生 IV，並將它放在兩個位置︰資產傳遞原則和金鑰傳遞原則選項。
-  * **ASK** - 當您使用 Apple 開發人員入口網站產生憑證時，將會收到 ASK (應用程式密碼金鑰)。 每個開發小組都會收到一個唯一的 ASK。 請儲存一份 ASK，並將它存放在安全的地方。 您之後必須將 ASK 設定為 Azure 媒體服務的 FairPlayAsk。
-  * **ASK ID** - 在客戶將 ASK 上傳到 AMS 時取得。 客戶必須使用 **ContentKeyType.FairPlayASk** 列舉值來上傳 ASK。 結果會傳回 AMS 識別碼，設定金鑰傳遞原則選項時應該使用此識別碼。
-* FPS 用戶端必須設定下列各項︰
+  * **應用程式憑證密碼** - 用來建立 .pfx 檔案的密碼。
+  * **應用程式憑證密碼識別碼**︰您必須上傳密碼，做法類似於其上傳其他媒體服務金鑰的方式。 使用 **ContentKeyType.FairPlayPfxPassword** 列舉值來取得媒體服務識別碼。 這是它們要在金鑰傳遞原則選項內使用所需之物。
+  * **iv**︰這是 16 位元組的隨機值。 其必須符合資產傳遞原則中的 iv。 您會產生 iv，並將它放在兩個位置︰資產傳遞原則和金鑰傳遞原則選項。
+  * **ASK**：當您使用 Apple 開發人員入口網站產生憑證時，會收到此金鑰。 每個開發小組都會收到一個唯一的 ASK。 儲存一份 ASK，並將它存放在安全的地方。 您之後必須將 ASK 設定為媒體服務的 FairPlayAsk。
+  * **ASK 識別碼**︰當您將 ASK 上傳至媒體服務時，會取得這個識別碼。 您必須使用 **ContentKeyType.FairPlayAsk** 列舉值來上傳 ASK。 結果會傳回媒體服務識別碼，設定金鑰傳遞原則選項時應使用此識別碼。
 
-  * **應用程式憑證 (AC)** - .cer/.der 檔案，包含作業系統用來加密某些承載的公開金鑰。 AMS 必須了解它，因為播放程式需要它。 金鑰傳遞服務會使用對應的私密金鑰來解密。
-* 若要播放 FairPlay 加密的資料流，您需要先取得真正的 ASK，然後產生真正的憑證。 該處理程序會建立所有 3 個部分︰
+FPS 用戶端必須設定下列各項︰
 
-  * .der、
-  * .pfx 和
-  * .pfx 的密碼。
-* 支援使用 **AES-128 CBC** 加密之 HLS 的用戶端︰OS X、Apple TV、iOS 上的 Safari。
+  * **應用程式憑證 (AC)**：這是 .cer/.der 檔案，其中包含作業系統用來加密某些承載的公開金鑰。 媒體服務必須了解它，因為播放程式需要它。 金鑰傳遞服務會使用對應的私密金鑰來解密。
 
-## <a name="steps-for-configuring-fairplay-dynamic-encryption-and-license-delivery-services"></a>設定 FairPlay 動態加密和授權傳遞服務的步驟
-以下是您使用 FairPlay 來保護資產、使用媒體服務授權傳遞服務，以及使用動態加密時，需要執行的一般步驟。
+若要播放 FairPlay 加密的資料流，請先取得真正的 ASK，然後產生真正的憑證。 該處理程序會建立所有 3 個部分︰
 
-1. 建立資產並將檔案上傳到資產。
+  * .der 檔案
+  * .pfx 檔案
+  * .pfx 的密碼
+
+下列用戶端支援採用 **AES-128 CBC** 加密的 HLS︰OS X 上的 Safari、Apple TV、iOS.
+
+## <a name="configure-fairplay-dynamic-encryption-and-license-delivery-services"></a>設定 FairPlay 動態加密和授權傳遞服務
+以下是使用媒體服務授權傳遞服務，以及使用動態加密時，透過 FairPlay 來保護資產的一般步驟。
+
+1. 建立資產，並將檔案上傳到資產。
 2. 將包含檔案的資產編碼為自適性位元速率 MP4 集。
-3. 建立內容金鑰，並將它與編碼的資產產生關聯。  
-4. 設定內容金鑰的授權原則。 在建立內容金鑰授權原則時，您需要指定下列各項︰
+3. 建立內容金鑰並將它與編碼的資產產生關聯。  
+4. 設定內容金鑰的授權原則。 指定下列各項：
 
-   * 傳遞方法 (在本案例中為 FairPlay)、
-   * FairPlay 原則選項組態。 如需有關如何設定 FairPlay 的詳細資訊，請參閱下列範例中的 ConfigureFairPlayPolicyOptions() 方法。
+   * 傳遞方法 (在此例中為 FairPlay)。
+   * FairPlay 原則選項組態。 如需有關如何設定 FairPlay 的詳細資訊，請參閱下列範例中的 **ConfigureFairPlayPolicyOptions()** 方法。
 
      > [!NOTE]
      > 您通常只想要設定一次 FairPlay 原則選項，因為您只會有一組憑證和 ASK。
      >
      >
-   * 限制 (開放或權杖)
-   * 以及定義如何將金鑰傳遞至用戶端的金鑰傳遞類型的特定資訊。
+   * 限制 (開放或權杖)。
+   * 金鑰傳遞類型的特定資訊，可定義如何將金鑰傳遞至用戶端。
 5. 設定資產傳遞原則。 傳遞原則組態包括︰
 
-   * 傳遞通訊協定 (HLS)、
-   * 動態加密類型 (在此案例中為 Common CBC Encryption)、
+   * 傳遞通訊協定 (HLS)。
+   * 動態加密類型 (一般 CBC 加密)。
    * 授權取得 URL。
 
      > [!NOTE]
-     > 如果您想要傳遞使用 FairPlay + 另一個 DRM 加密的資料流，必須設定個別的傳遞原則
+     > 如果您想要傳遞使用 FairPlay 和另一個 Digital Rights Management (DRM) 系統加密的資料流，則必須設定個別的傳遞原則：
      >
-     > * 一個 IAssetDeliveryPolicy 以設定使用 CENC (PlayReady + WideVine) 的 DASH，以及使用 PlayReady 的 Smooth。
+     > * 一個 IAssetDeliveryPolicy 以設定使用一般加密 (CENC) (PlayReady + WideVine) 的 Dynamic Adaptive Streaming over HTTP (DASH)，以及使用 PlayReady 的 Smooth
      > * 另一個 IAssetDeliveryPolicy 以設定 HLS 的 FairPlay
      >
      >
 6. 建立隨選定位器以取得串流 URL。
 
-## <a name="using-fairplay-key-delivery-by-playerclient-apps"></a>透過播放程式/用戶端應用程式使用 FairPlay 金鑰傳遞
-客戶可以使用 iOS SDK 開發播放應用程式。 為了能夠播放 FairPlay 內容，客戶必須實作授權交換通訊協定。 授權交換通訊協定不是由 Apple 指定。 而是由每個應用程式如何傳送金鑰傳遞要求而決定。 AMS FairPlay 金鑰傳遞服務會對即將到來的 SPC 視為如下列格式的 www-form-url 已編碼張貼訊息：
+## <a name="use-fairplay-key-delivery-by-player-apps"></a>透過播放程式應用程式使用 FairPlay 金鑰傳遞
+您可以使用 iOS SDK 開發播放應用程式。 為了能夠播放 FairPlay 內容，您必須實作授權交換通訊協定。 此通訊協定不是由 Apple 指定。 而是由每個應用程式如何傳送金鑰傳遞要求而決定。 媒體服務 FairPlay 金鑰傳遞服務會對即將到來的 SPC 視為如下列格式的 www-form-url 已編碼張貼訊息：
 
     spc=<Base64 encoded SPC>
 
 > [!NOTE]
-> Azure 媒體播放器不支援現成的 FairPlay 播放。 客戶需要從 Apple 開發人員帳戶取得範例播放程式，才能在 MAC OSX 上播放 FairPlay。
+> Azure 媒體播放器不支援現成的 FairPlay 播放。 若要在 MAC OS X 上播放 FairPlay，請從 Apple 開發人員帳戶取得範例播放程式。
 >
 >
 
@@ -135,18 +139,18 @@ Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時�
 * 如果只有一個加密套用到資產，則無須在 URL 中指定加密類型。
 * 加密類型不區分大小寫。
 * 可以指定下列加密類型︰  
-  * **cenc**︰一般加密 (Playready 或 Widevine)
-  * **cbcs-aapl**：Fairplay
-  * **cbc**：AES 信封加密。
+  * **cenc**︰一般加密 (PlayReady 或 Widevine)
+  * **cbcs-aapl**：FairPlay
+  * **cbc**：AES 信封加密
 
-## <a name="net-example"></a>.NET 範例
-下列範例會示範在 Azure Media Services SDK for .Net 3.6.0 版引進的功能 (使用 Azure 媒體服務來傳遞使用 FairPlay 加密內容的能力)。 下列 Nuget 封裝命令可用來安裝封裝：
+## <a name="net-example-deliver-your-content-encrypted-with-fairplay"></a>.NET 範例︰傳遞使用 FairPlay 加密的內容
+下列範例會示範如何使用媒體服務來傳遞使用 FairPlay 加密的內容。 Azure Media Services SDK for .NET 3.6.0 版已引進這項功能。 下列 NuGet 套件命令可用來安裝封裝：
 
     PM> Install-Package windowsazure.mediaservices -Version 3.6.0
 
 
 1. 建立主控台專案。
-2. 使用 NuGet 來安裝和加入 Azure 媒體服務 .NET SDK。
+2. 使用 NuGet 來安裝和新增 Azure 媒體服務 .NET SDK。
 3. 加入其他參考資料：System.Configuration。
 4. 新增包含帳戶名稱和金鑰資訊的組態檔：
 

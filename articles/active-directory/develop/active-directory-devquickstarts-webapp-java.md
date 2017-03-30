@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/01/2017
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: ade6b7d9fa195ebea8f8587b01e4cc0ba71a0a83
-ms.openlocfilehash: fa5c367d7b8f46349b4bdc1de2af35050329a650
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: a20017a63ebed745e2d101d556e93594325533dc
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -40,7 +40,7 @@ Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登�
 當您準備就緒，請遵循接下來九個章節的程序。
 
 ## <a name="step-1-register-the-new-app-with-azure-ad"></a>步驟 1︰使用 Azure AD 註冊新的應用程式
-若要設定應用程式以驗證使用者，請先藉由執行下列操作，在您的租用戶中註冊應用程式︰
+若要設定應用程式以驗證使用者，請先藉由執行下列操作，在您的租用戶中註冊該應用程式︰
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在頂端列中，按一下您的帳戶名稱。 在 [目錄] 清單下，選取您要註冊應用程式的 Active Directory 租用戶。
@@ -49,8 +49,8 @@ Azure Active Directory (Azure AD) 只需幾行的程式碼便可提供單一登�
 5. 遵照提示建立 **Web 應用程式和/或 Web API**。
   * [名稱] 向使用者說明該應用程式。
   * [登入 URL] 是應用程式的基底 URL。 基本架構的預設 URL 是 http://localhost:8080/adal4jsample/。
-  * [應用程式識別碼 URI] 應用程式的唯一識別碼。 命名慣例是 `https://<tenant-domain>/<app-name>` (例如，`http://localhost:8080/adal4jsample/`)。
-6. 完成註冊之後，Azure AD 會為應用程式指派唯一的應用程式識別碼。 從應用程式頁面複製值，以在下一節中使用。
+6. 完成註冊之後，Azure AD 會為應用程式指派一個唯一的應用程式識別碼。 請從應用程式頁面複製該值，以在接下來的小節中使用。
+7. 從應用程式的 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI。 [應用程式識別碼 URI] 是應用程式的唯一識別碼。 命名慣例是 `https://<tenant-domain>/<app-name>` (例如 `http://localhost:8080/adal4jsample/`)。
 
 當您在應用程式的入口網站中時，在 [設定] 頁面上建立和複製應用程式的金鑰。 稍後您將需要金鑰。
 

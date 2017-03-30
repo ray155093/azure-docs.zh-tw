@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: kasing
 translationtype: Human Translation
-ms.sourcegitcommit: 2c96a3ca5fd72a4a3c992206aeb93f201342dd6a
-ms.openlocfilehash: aafaacea59c2c7fc463fb84207417d2c4e1d81ff
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 23f4813b3ba587784f5b31cfa633cdf27373843d
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -89,9 +90,8 @@ Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，
 | 計算 |未關聯的虛擬機器磁碟。 |
 | 計算 |虛擬機器映像。 |
 | 網路 |端點 ACL。 |
-| 網路 |虛擬網路閘道 (Azure ExpressRoute 閘道、應用程式閘道)。 |
+| 網路 |ExpressRoute 閘道、應用程式閘道 (支援 VPN 閘道)。 |
 | 網路 |使用 VNet 對等互連的虛擬網路。 (將 VNet 移轉至 ARM，接著對等互連) 深入了解 [VNet 對等互連](../virtual-network/virtual-network-peering-overview.md)。 |
-| 網路 |流量管理員設定檔。 |
 
 ### <a name="unsupported-configurations"></a>不支援的組態
 目前不支援下列組態。
@@ -110,6 +110,8 @@ Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，
 | Azure HDInsight |包含 HDInsight 服務的虛擬網路 |目前不支援。 |
 | Microsoft Dynamics 週期服務 |包含「Dynamics 週期服務」所管理之虛擬機器的虛擬網路 |目前不支援。 |
 | Azure AD 網域服務 |包含 Azure AD 網域服務的虛擬網路 |目前不支援。 |
+| Azure RemoteApp |包含 Azure RemoteApp 部署的虛擬網路 |目前不支援。 |
+| Azure API 管理 |包含 Azure API 管理部署的虛擬網路 |目前不支援。 若要移轉 IaaS VNET，請變更屬於無停機作業的 API 管理部署的 VNET。 |
 | 計算 |與 VNET 搭配使用的「Azure 資訊安全中心」擴充功能，其中該 VNET 具有與內部部署 DNS 伺服器搭配使用的 VPN 閘道傳輸連線或 ExpressRoute 閘道 |「Azure 資訊安全中心」會自動在「虛擬機器」上安裝擴充功能，以監視其安全性並引發警示。 如果已在訂用帳戶上啟用「Azure 資訊安全中心」原則，通常就會自動安裝這些擴充功能。 目前不支援 ExpressRoute 閘道移轉，且具有傳輸連線的 VPN 閘道會失去內部部署存取。 刪除 ExpressRoute 閘道或移轉具有傳輸連線的 VPN 閘道會導致當繼續進行認可移轉時 VM 儲存體帳戶的網際網路存取遺失。 發生這種情況時，將不會繼續進行移轉，因為無法填入客體代理程式狀態 Blob。 建議您先將訂用帳戶上的「Azure 資訊安全中心」原則停用 3 小時，然後再繼續進行移轉。 |
 
 ## <a name="the-migration-experience"></a>移轉體驗
@@ -150,7 +152,16 @@ Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，
 
 接著，Azure 平台會開始將移轉中資源的中繼資料從傳統移轉至 Resource Manager。
 
-準備作業完成之後，您將可以選擇在傳統和 Resource Manager 中將資源視覺化。 Azure 平台會為傳統部署模型中的每個雲端服務，建立一個採用 `cloud-service-name>-migrated`模式的資源群組名稱。
+準備作業完成之後，您將可以選擇在傳統和 Resource Manager 中將資源視覺化。 Azure 平台會為傳統部署模型中的每個雲端服務，建立一個採用 `cloud-service-name>-Migrated`模式的資源群組名稱。
+
+> [!NOTE]
+> 無法選取針對已移轉資源所建立的資源群組名稱 (例如 "-Migrated")，但在完成移轉之後，您可以使用 Azure Resource Manager 移動功能來將資源移動到您所需的任何資源群組。 若要深入了解此概念，請參閱[將資源移動到新的資源群組或訂用帳戶](../resource-group-move-resources.md)。
+
+以下兩個畫面顯示成功進行準備作業之後的結果。 第一個畫面顯示包含原始雲端服務的資源群組。 第二個畫面顯示新的 "-Migrated" 資源群組，其中包含對等的 Azure Resource Manager 資源。
+
+![顯示入口網站傳統雲端服務的螢幕擷取畫面](./media/virtual-machines-windows-migration-classic-resource-manager/portal-classic.png)
+
+![顯示入口網站 ARM 資源處於準備狀態的螢幕擷取畫面](./media/virtual-machines-windows-migration-classic-resource-manager/portal-arm.png)
 
 > [!NOTE]
 > 在這個移轉階段中，會將不在傳統「虛擬網路」中的「虛擬機器」停止並解除配置。
@@ -183,6 +194,11 @@ Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，
 > 這是一種等冪作業。 如果發生失敗，建議您重新嘗試執行該作業。 如果持續發生失敗，請建立支援票證，或是在我們的 [VM 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=WAVirtualMachinesforWindows)上建立一篇標籤為 ClassicIaaSMigration 的論壇文章。
 >
 >
+<br>
+以下是移轉程序期間的步驟流程圖
+
+![顯示移轉步驟的螢幕擷取畫面](./media/virtual-machines-windows-migration-classic-resource-manager/migration-flow.png)
+
 
 ## <a name="frequently-asked-questions"></a>常見問題集
 **此移轉計劃是否會影響任何在 Azure 虛擬機器上執行的現有服務或應用程式？**
@@ -239,7 +255,7 @@ Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，
 
 **我收到訊息*「VM 將整體代理程式狀態回報為『未就緒』。因此，無法移轉 VM。請確定 VM 代理程式將整體代理程式狀態回報為『就緒』」*，或*「VM 包含 VM 未回報其狀態的擴充功能。因此，無法移轉此 VM。」***
 
-當 VM 無法連出到網際網路時，就會收到此訊息。 VM 代理程式會使用連出連線來連接到 Azure 儲存體帳戶，來每隔&5; 分鐘更新一次代理程式狀態。
+當 VM 無法連出到網際網路時，就會收到此訊息。 VM 代理程式會使用連出連線來連接到 Azure 儲存體帳戶，來每隔 5 分鐘更新一次代理程式狀態。
 
 ## <a name="next-steps"></a>後續步驟
 既然您已了解如何將傳統 IaaS 資源移轉至 Resource Manager，您便可以開始移轉資源。
@@ -249,9 +265,4 @@ Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，
 * [使用 CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager](virtual-machines-linux-cli-migration-classic-resource-manager.md)
 * [使用社群 PowerShell 指令碼將傳統虛擬機器複製到 Azure Resource Manager](virtual-machines-windows-migration-scripts.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [檢閱最常見的移轉錯誤](virtual-machines-migration-errors.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

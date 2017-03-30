@@ -69,16 +69,18 @@ ms.lasthandoff: 03/09/2017
 5. 將下列 **using** 陳述式加入專案的原始程式檔 (Program.cs) 中。
 
     ```csharp
-    using System.Threading;
     using System.Configuration;
     using System.Collections.ObjectModel;
+    using System.Threading;
+    using System.Threading.Tasks;
 
+    using Microsoft.Azure;
     using Microsoft.Azure.Management.DataFactories;
     using Microsoft.Azure.Management.DataFactories.Models;
     using Microsoft.Azure.Management.DataFactories.Common.Models;
 
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
-    using Microsoft.Azure;
+
     ```
 6. 將下列會建立 **DataPipelineManagementClient** 類別執行個體的程式碼新增至 **Main** 方法中。 您會使用此物件來建立 Data Factory、連結的服務、輸入和輸出資料集，以及管線。 您也會使用此物件來監視執行階段的資料集配量。
 
@@ -87,10 +89,9 @@ ms.lasthandoff: 03/09/2017
     string resourceGroupName = "resourcegroupname";
     string dataFactoryName = "APITutorialFactorySP";
     
-    TokenCloudCredentials aadTokenCredentials =
-        new TokenCloudCredentials(
+    TokenCloudCredentials aadTokenCredentials = new TokenCloudCredentials(
             ConfigurationManager.AppSettings["SubscriptionId"],
-            GetAuthorizationHeader());
+        GetAuthorizationHeader().Result);
     
     Uri resourceManagerUri = new Uri(ConfigurationManager.AppSettings["ResourceManagerEndpoint"]);
     
@@ -111,7 +112,7 @@ ms.lasthandoff: 03/09/2017
             {
                 Name = dataFactoryName,
                 Location = "westus",
-                Properties = new DataFactoryProperties() { }
+                Properties = new DataFactoryProperties()
             }
         }
     );
@@ -250,7 +251,8 @@ ms.lasthandoff: 03/09/2017
                         Name = "BlobToBlob",
                         Inputs = new List<ActivityInput>()
                         {
-                            new ActivityInput() {
+                            new ActivityInput()
+                {
                                 Name = Dataset_Source
                             }
                         },
@@ -280,36 +282,17 @@ ms.lasthandoff: 03/09/2017
 11. 將 **Main** 方法所使用的下列 Helper 方法新增至 **Program** 類別中。 此方法會顯示一個對話方塊，讓您提供用來登入 Azure 入口網站的**使用者名稱**和**密碼**。
 
     ```csharp
-    public static string GetAuthorizationHeader()
+    public static async Task<string> GetAuthorizationHeader()
     {
-        AuthenticationResult result = null;
-        var thread = new Thread(() =>
-        {
-            try
-            {
-                var context = new AuthenticationContext(ConfigurationManager.AppSettings["ActiveDirectoryEndpoint"] + ConfigurationManager.AppSettings["ActiveDirectoryTenantId"]);
-
-                result = context.AcquireToken(
-                    resource: ConfigurationManager.AppSettings["WindowsManagementUri"],
-                    clientId: ConfigurationManager.AppSettings["AdfClientId"],
-                    redirectUri: new Uri(ConfigurationManager.AppSettings["RedirectUri"]),
-                    promptBehavior: PromptBehavior.Always);
-            }
-            catch (Exception threadEx)
-            {
-                Console.WriteLine(threadEx.Message);
-            }
-        });
-
-        thread.SetApartmentState(ApartmentState.STA);
-        thread.Name = "AcquireTokenThread";
-        thread.Start();
-        thread.Join();
+        var context = new AuthenticationContext(ConfigurationManager.AppSettings["ActiveDirectoryEndpoint"] + ConfigurationManager.AppSettings["ActiveDirectoryTenantId"]);
+        AuthenticationResult result = await context.AcquireTokenAsync(
+            resource: ConfigurationManager.AppSettings["WindowsManagementUri"],
+            clientId: ConfigurationManager.AppSettings["AdfClientId"],
+            redirectUri: new Uri(ConfigurationManager.AppSettings["RedirectUri"]),
+            promptBehavior: PromptBehavior.Always);
 
         if (result != null)
-        {
             return result.AccessToken;
-        }
 
         throw new InvalidOperationException("Failed to acquire token");
     }
@@ -359,14 +342,13 @@ ms.lasthandoff: 03/09/2017
     Console.ReadKey();
     
     var datasliceRunListResponse = client.DataSliceRuns.List(
-            resourceGroupName,
-            dataFactoryName,
-            Dataset_Destination,
-            new DataSliceRunListParameters()
-            {
-                DataSliceStartTime = PipelineActivePeriodStartTime.ConvertToISO8601DateTimeString()
-            }
-        );
+        resourceGroupName,
+        dataFactoryName,
+        Dataset_Destination,
+        new DataSliceRunListParameters()
+        {
+            DataSliceStartTime = PipelineActivePeriodStartTime.ConvertToISO8601DateTimeString()
+        });
     
     foreach (DataSliceRun run in datasliceRunListResponse.DataSliceRuns)
     {
@@ -409,12 +391,18 @@ ms.lasthandoff: 03/09/2017
 建立 GetAuthorizationHeaderNoPopup 方法。
 
 ```csharp
-public static string GetAuthorizationHeaderNoPopup()
+public static async Task<string> GetAuthorizationHeaderNoPopup()
 {
     var authority = new Uri(new Uri("https://login.windows.net"), ConfigurationManager.AppSettings["ActiveDirectoryTenantId"]);
     var context = new AuthenticationContext(authority.AbsoluteUri);
-    var credential = new ClientCredential(ConfigurationManager.AppSettings["AdfClientId"], ConfigurationManager.AppSettings["AdfClientSecret"]);
-    AuthenticationResult result = context.AcquireTokenAsync(ConfigurationManager.AppSettings["WindowsManagementUri"], credential).Result;
+    var credential = new ClientCredential(
+        ConfigurationManager.AppSettings["AdfClientId"],
+    ConfigurationManager.AppSettings["AdfClientSecret"]);
+    
+    AuthenticationResult result = await context.AcquireTokenAsync(
+        ConfigurationManager.AppSettings["WindowsManagementUri"],
+    credential);
+
     if (result != null)
         return result.AccessToken;
 
@@ -428,7 +416,7 @@ public static string GetAuthorizationHeaderNoPopup()
 TokenCloudCredentials aadTokenCredentials =
     new TokenCloudCredentials(
     ConfigurationManager.AppSettings["SubscriptionId"],
-    GetAuthorizationHeaderNoPopup());
+    GetAuthorizationHeaderNoPopup().Result);
 ```
 
 以下說明如何建立 Active Directory 應用程式和服務主體，然後將其指派給 Data Factory 參與者角色︰

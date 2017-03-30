@@ -15,13 +15,14 @@ ms.devlang: python
 ms.topic: article
 ms.date: 11/10/2015
 ms.author: crwilcox
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e33a3314fc127673a8bf7659b72bd91e1a2d1712
-
+ms.sourcegitcommit: 652c4c51d67b8914885406e631e7233694a8a1d8
+ms.openlocfilehash: ad53cb9bb58064aeed49cb05fdcb936e408346d2
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="jupyter-notebook-on-azure"></a>Azure 上的 Jupyter Notebook
+# <a name="creating-an-azure-vm-installing-jupyter-and-running-a-jupyter-notebook-on-azure"></a>在 Azure 上建立 Azure VM、安裝 Jupyter 並執行 Jupyter Notebook
 [Jupyter 專案](http://jupyter.org) (先前稱為 [IPython 專案](http://ipython.org)) 使用功能強大的互動式殼層，來提供適用於科學運算的工具集合，結合了程式碼執行與即時運算文件的建立。 這些 Notebook 文件可以包含任何文字、數學公式、輸入程式碼、結果、圖形、視訊，以及新型 Web 瀏覽器能夠顯示的其他任何類型的媒體。 無論您是第一次使用 Python 並希望在有趣的互動式環境中了解它，還是執行一些重要的平行/技術運算，Jupyter Notebook 都是相當好的選擇。
 
 ![螢幕擷取畫面](./media/virtual-machines-linux-jupyter-notebook/ipy-notebook-spectral.png) 使用 SciPy 和 Matplotlib 封裝來分析錄音的結構。
@@ -172,7 +173,7 @@ Jupyter 不只是文字處理器，因為它能夠混合運算和多樣化媒體
 * 提供以可由其他人立即重現、驗證和擴展的方式顯示研究結果的「可執行文件」。
 * 做為共同運算的平台：多位使用者可以登入同一部 Notebook 伺服器來共享即時運算工作階段。
 
-如果您進入 IPython 原始程式碼[存放庫][儲存機制]，將可找到提供 Notebook 範例的整個目錄，您可以下載範例，然後在自己的 Azure Jupyter VM 上進行試驗。  只需從網站下載 `.ipynb` 檔案，並將這些檔案上傳至您的 Notebook Azure VM 儀表板即可 (也可以將這些檔案直接下載至 VM)。
+如果您進入 IPython 原始程式碼[存放庫][repository]，將可找到提供 Notebook 範例的整個目錄，您可以下載範例，然後在自己的 Azure Jupyter VM 上進行試驗。  只需從網站下載 `.ipynb` 檔案，並將這些檔案上傳至您的 Notebook Azure VM 儀表板即可 (也可以將這些檔案直接下載至 VM)。
 
 ## <a name="conclusion"></a>結論
 Jupyter Notebook 可為互動存取 Azure 上 Python 生態系統的功能提供強大的介面。  它涵蓋的用途範圍相當廣泛，包括簡單的探究和學習 Python、資料分析和視覺化、模擬和平行運算。 最終產生的 Notebook 文件會完整記錄已執行且能夠與其他 Jupyter 使用者共享的運算。  Jupyter Notebook 可以用來做為本機應用程式，不過它相當適合用於 Azure 上的雲端部署
@@ -183,11 +184,6 @@ Jupyter Notebook 可為互動存取 Azure 上 Python 生態系統的功能提供
 如需詳細資訊，請參閱 [Python 開發人員中心](/develop/python/)。
 
 [portal-vm-linux]: https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-tutorial-portal-rm/
-[儲存機制]: https://github.com/ipython/ipython
+[repository]: https://github.com/ipython/ipython
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

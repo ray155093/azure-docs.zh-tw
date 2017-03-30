@@ -16,9 +16,9 @@ ms.workload: infrastructure
 ms.date: 02/23/2017
 ms.author: rclaus
 translationtype: Human Translation
-ms.sourcegitcommit: 82d40c30c92f5da090e7ec4e2f25ead3908cc603
-ms.openlocfilehash: 69a06ba68e9a92ab63fd7c86a80eb9c4718f6679
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 061aaa9fbd2f01029bb174378fb7c4571ede4785
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -26,7 +26,7 @@ ms.lasthandoff: 03/02/2017
 
 此指令碼會建立兩部虛擬機器，並保護兩者的傳入流量。 一部虛擬機器可在網際網路上存取，並已將網路安全性群組 (NSG) 設定為允許連接埠 3389 和連接埠 80 上的流量。 第二部虛擬機器則無法在網際網路上存取，並已將 NSG 設定為只允許來自第一部虛擬機器的流量。 
 
-在執行這個指令碼之前，請確定您已使用 `az login` 命令建立與 Azure 的連線。 此外，您應該將指令碼開頭的 $AdminPassword 變數變更為唯一值，並符合密碼複雜性需求。
+您可以視需要使用 [Azure CLI 安裝指南 (英文)](https://docs.microsoft.com/cli/azure/install-azure-cli) 中的指示來安裝 Azure CLI，然後執行 `az login` 來建立與 Azure 的連線。
 
 這個範例適用於 Bash 殼層。 如需在 Windows 上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../virtual-machines-windows-cli-options.md)。
 
@@ -36,7 +36,7 @@ ms.lasthandoff: 03/02/2017
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令來移除資源群組、VM 和所有相關資源。
 
 ```azurecli
 az group delete --name myResourceGroup --yes

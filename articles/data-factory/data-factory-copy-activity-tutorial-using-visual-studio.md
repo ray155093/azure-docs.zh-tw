@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 02/02/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 7196b4eddc8a00cf2c15e8d8447ef8381db738a3
-ms.openlocfilehash: a1ef4ccb6546f011c405a98cab3cae514de813ea
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 39824fa66dee9f1bd57687e59ece97f4f4636b7d
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -97,7 +97,7 @@ ms.lasthandoff: 03/02/2017
 4. 儲存 **AzureSqlLinkedService1.json** 檔案。 
 
 > [!NOTE]
-> 如需 JSON 屬性的詳細資訊，請參閱 [在 Azure SQL Database 來回移動資料](data-factory-azure-sql-connector.md#azure-sql-linked-service-properties) 。
+> 如需 JSON 屬性的詳細資訊，請參閱 [在 Azure SQL Database 來回移動資料](data-factory-azure-sql-connector.md#linked-service-properties) 。
 > 
 > 
 
@@ -169,7 +169,7 @@ ms.lasthandoff: 03/02/2017
     ```
             
 > [!NOTE]
-> 如需 JSON 屬性的詳細資訊，請參閱 [在 Azure Blob 來回移動資料](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 。
+> 如需 JSON 屬性的詳細資訊，請參閱 [在 Azure Blob 來回移動資料](data-factory-azure-blob-connector.md#dataset-properties) 。
 > 
 > 
 
@@ -216,7 +216,7 @@ ms.lasthandoff: 03/02/2017
    * **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 
 > [!NOTE]
-> 如需 JSON 屬性的詳細資訊，請參閱 [在 Azure SQL Database 來回移動資料](data-factory-azure-sql-connector.md#azure-sql-linked-service-properties) 。
+> 如需 JSON 屬性的詳細資訊，請參閱 [在 Azure SQL Database 來回移動資料](data-factory-azure-sql-connector.md#linked-service-properties) 。
 > 
 > 
 

@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/03/2017
 ms.author: TomSh
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 6859f2f0c627c9c23703875d04b4893b58775a26
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: 434961f7d25195eee3310461a3a97e03ffdd8917
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 03/04/2017
 ## <a name="overview"></a>Overview
 裝載於 Azure 中的「平台即服務」(PaaS) 和「基礎結構即服務」(IaaS) 會在安全性記錄檔中產生大量資料。 這些記錄檔包含重要的資訊，可提供關於下列項目有智慧且有力的深入了解：違反原則、內部和外部威脅、法規遵循問題，以及網路、主機及使用者活動中的異常。
 
-Azure 記錄整合可讓您將來自 Azure 資源的未經處理記錄，整合到內部部署安全性資訊及事件管理 (SIEM) 系統內。 Azure 記錄整合會從您的 Windows (WAD) 虛擬機器、Azure 活動記錄檔，Azure 資訊安全中心警示和 Azure 資源提供者記錄檔收集 Azure 診斷。 這項整合提供您內部部署或在雲端中所有資產統一的儀表板，以便您彙總、相互關聯、分析和警示安全性事件。
+Azure 記錄整合是免費的解決方案，可讓您將來自 Azure 資源的未經處理記錄，整合到內部部署安全性資訊及事件管理 (SIEM) 系統內。 Azure 記錄整合會從您的 Windows (WAD) 虛擬機器、Azure 活動記錄檔，Azure 資訊安全中心警示和 Azure 資源提供者記錄檔收集 Azure 診斷。 這項整合提供您內部部署或在雲端中所有資產統一的儀表板，以便您彙總、相互關聯、分析和警示安全性事件。
 
 ![Azure 記錄整合][1]
 
@@ -50,6 +50,7 @@ Azure 記錄整合目前支援整合 Azure 活動記錄、您的 Azure 訂用帳
 | 診斷記錄 (資源記錄) | 是 | 需要使用者建立 FlexConnector JSON 剖析器檔案。 如需如何進行的指示，請參閱 ArcSight 文件。 | 您必須建立記錄來源擴充。 如需詳細資訊，請參閱 QRadar 文件 |
 | VM 記錄 | 是，透過轉寄的事件，而非透過 JSON | 是，透過轉寄的事件 | 是，透過轉寄的事件 |
 
+Azure 記錄整合是免費的解決方案，您不需要為 Azure 記錄整合二進位檔付費。 不過，記錄檔資訊所需的 Azure 儲存體會產生相關費用。
 
 如果您有關於「Azure 記錄整合」的問題，請傳送電子郵件給 [AzSIEMteam@microsoft.com](mailto:AzSIEMteam@microsoft.com)
 

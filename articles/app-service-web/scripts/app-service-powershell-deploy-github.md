@@ -12,12 +12,12 @@ ms.service: app-service-web
 ms.workload: web
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 03/20/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: 7ee385060bbb3800e8a37f2ae4ba7d06fb31b521
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: f85a45f453bf707ffb544440c6592d29755406a6
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -25,7 +25,7 @@ ms.lasthandoff: 03/10/2017
 
 此範例指令碼會在 App Service 中建立 Web 應用程式及其相關資源，然後從公用 GitHub 存放庫部署 Web 應用程式程式碼 (不使用連續部署)。 如需進行使用連續部署的 GitHub 部署，請參閱[建立可從 GitHub 連續部署的 Web 應用程式](app-service-powershell-continuous-deployment-github.md)。
 
-在執行這個指令碼之前，請確定您已使用 `Login-AzureRmAccount` Cmdlet 建立與 Azure 的連線，並且擁有要部署的 GitHub 存放庫 URL。
+您可以視需要使用 [Azure PowerShell 指南 (英文)](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 中的指示來安裝 Azure PowerShell。 此外，您需要包含 Web 應用程式程式碼的 GitHub 儲存機制的連結。
 
 ## <a name="sample-script"></a>範例指令碼
 

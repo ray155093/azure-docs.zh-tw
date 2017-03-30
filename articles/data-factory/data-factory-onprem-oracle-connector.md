@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/22/2017
+ms.date: 03/17/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: a4b067e732bccb01faa96f23dbfd2ed65b7711a0
-ms.openlocfilehash: 62326da2e801a7c6e01d29e2298bd3552f331647
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: a27ec9e1ebfde3493e41c493b85c0dc7f0ada2a0
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -33,17 +33,13 @@ Data Factory 支援使用資料管理閘道連接至內部部署 Oracle 來源�
 ## <a name="supported-versions-and-installation"></a>支援的版本和安裝
 Oracle 連接器支援兩種驅動程式版本︰
 
-- **適用於 Oracle 的 Microsoft 驅動程式**自 2.7 版起即隨附於資料管理閘道。 **建議**您使用此驅動程式。 如此一來，除了將閘道連線到 Oracle，就不需要安裝任何其他項目，而且您也能夠體驗更好的複製效能。 支援 Oracle Database 10g Release 2 版或更新版本。
+- **適用於 Oracle 的 Microsoft 驅動程式**自 2.7 版起即隨附於資料管理閘道。 **建議**您使用此驅動程式。 除了連線到 Oracle 所需的閘道之外，您不需要安裝任何其他項目，而且您也能夠體驗更好的複製效能。 支援 Oracle Database 10g Release 2 版或更新版本。
 
     > [!NOTE]
     > 目前適用於 Oracle 的 Microsoft 驅動程式僅支援從 Oracle 複製資料，但不支援將資料寫入 Oracle。 請注意，[資料管理閘道診斷] 索引標籤中的測試連線功能不支援此驅動程式。 您可以選擇使用複製精靈來驗證連線。
     >
 
-- **.NET 的 Oracle 資料提供者︰**您也可以選擇使用 Oracle 資料提供者，從 Oracle 複製資料/將資料複製到 Oracle。 此元件包含於 [適用於 Windows 的 Oracle 資料存取元件](http://www.oracle.com/technetwork/topics/dotnet/downloads/)中。 在安裝閘道的電腦上安裝適當版本 (32/64 位元)。 [Oracle Data Provider .NET 12.1](http://docs.oracle.com/database/121/ODPNT/InstallSystemRequirements.htm#ODPNT149) 可以存取 Oracle Database 10g Release 2 或更新版本。
-
-    如果您選擇「XCopy 安裝」，請依照 readme.htm 中的步驟進行。 建議您選擇含有 UI 的安裝程式 (非 XCopy 安裝)。
-
-    安裝提供者之後，請使用 [服務] 小程式 (或) 資料管理閘道組態管理員，「重新啟動」您電腦上的資料管理閘道主機服務。  
+- **Oracle Data Provider for .NET：**資料管理閘道版本 2.7 或更新版本會包含此元件，因此您不需要另外安裝它。 如果您是使用版本低於 2.7 的閘道，我們建議您從[這裡](https://www.microsoft.com/download/details.aspx?id=39717)安裝最新的閘道版本。 您可以在資料管理閘道組態管理員 (請搜尋「資料管理閘道」) 的 [說明] 頁面上找到閘道的版本。
 
 ## <a name="copy-data-wizard"></a>複製資料精靈
 若要建立管線以將資料從 Oracle 資料庫複製到任何支援的接收資料存放區，最簡單的方式是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
@@ -416,7 +412,7 @@ Oracle 連接器支援兩種驅動程式版本︰
 | --- | --- | --- |
 | 類型 |類型屬性必須設為： **OnPremisesOracle** |是 |
 | driverType | 指定要用來從 Oracle 複製資料/將資料複製到 Oracle 資料庫的驅動程式。 允許的值為 **Microsoft** 或 **ODP** (預設值)。 如需驅動程式詳細資料，請參閱[支援的版本和安裝](#supported-versions-and-installation)一節。 | 否 |
-| connectionString | 針對 connectionString 屬性指定連接到 Oracle 資料庫執行個體所需的資訊。 請參閱以下範例。 | 是 |
+| connectionString | 針對 connectionString 屬性指定連接到 Oracle 資料庫執行個體所需的資訊。 | 是 |
 | gatewayName | 用來連接到內部部署 Oracle 伺服器的閘道器名稱 |yes |
 
 如需設定內部部署 Oracle 資料來源認證的詳細資訊，請參閱[利用資料管理閘道在內部部署來源和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
@@ -470,14 +466,14 @@ User Id=<username>;Password=<password>;",
 >
 >
 
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
+而活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
 ### <a name="oraclesource"></a>oracleReaderQuery
 在複製活動中，如果來源的類型為 **OracleSource**，則 **typeProperties** 區段有下列可用屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| oracleReaderQuery |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如：select 若未指定，執行的 SQL 陳述式即為 select 若未指定，執行的 SQL 陳述式即為 select from MyTable * 若未指定，執行的 SQL 陳述式即為 select 若未指定，執行的 SQL 陳述式即為 select from MyTable <br/><br/> * 若未指定，執行的 SQL 陳述式即為 select 若未指定，執行的 SQL 陳述式即為 select from MyTable |否 (如果已指定 **dataset** 的 **tableName**) |
+| oracleReaderQuery |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如：select 若未指定，執行的 SQL 陳述式即為 select 若未指定，執行的 SQL 陳述式即為 select from MyTable *若未指定，執行的 SQL 陳述式即為 select 若未指定，執行的 SQL 陳述式即為 select from MyTable <br/><br/>* 若未指定，執行的 SQL 陳述式即為 select 若未指定，執行的 SQL 陳述式即為 select from MyTable |否 (如果已指定 **dataset** 的 **tableName**) |
 
 ### <a name="oraclesink"></a>管線
 **OracleSink** 支援下列屬性：

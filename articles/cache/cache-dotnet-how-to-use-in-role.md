@@ -12,13 +12,13 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 03/13/2017
+ms.date: 03/17/2017
 ms.author: sdanie
+ROBOTS: NOINDEX
 translationtype: Human Translation
-ms.sourcegitcommit: ec9e12667bc82043fbdc0b3f113533cf518f39be
-ms.openlocfilehash: 9593f49d98794e72728e0683e34a407e39144a5d
-ms.lasthandoff: 01/21/2017
-
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: e8347c21610118af4ebaa80b24edd0838bc58cf8
+ms.lasthandoff: 03/18/2017
 
 ---
 # <a name="how-to-use-in-role-cache-for-azure-cache"></a>如何使用 Azure 快取的角色中快取
@@ -40,7 +40,7 @@ ms.lasthandoff: 01/21/2017
 * 快取任何可序列化的受管理物件，例如：CLR 物件、資料列、XML 和二進位資料。
 * 讓 Azure 和 Windows Server AppFabric 的開發模型保持一致。
 
-In-Role Cache 會使用託管 Azure 雲端服務 (又稱託管服務) 中的角色執行個體之虛擬機器的部分記憶體執行快取。 您會有更為彈性的部署選項可作選擇，快取的大小不僅可以非常大，而且沒有快取特有的配額限制。
+In-Role Cache 會使用託管 Azure 雲端服務 (又稱託管服務) 中的角色執行個體之虛擬機器的部分記憶體執行快取。 您會有更為彈性的部署選項可作選擇，快取的大小可以非常大，而且沒有快取特定的配額限制。
 
 > [!IMPORTANT]
 > 從 Azure SDK 2.6 版開始，In-Role Cache 使用 Microsoft Azure 儲存體 SDK 4.3 版。 在 Azure SDK 舊版中，In-Role Cache 使用 Azure 儲存體 SDK 1.7。 Azure 儲存體版本 2011-08-18 即將於 2016 年 8 月 1 日解除委任，使用採用 Azure SDK 2.6 之前版本之 In-Role Cache 的應用程式請儘早移轉至 Azure SDK 2.6。 如需詳細資訊，請參閱 [Azure SDK 2.6 版本資訊：In-Role Cache](../app-service-web/azure-sdk-dotnet-release-notes-2-6.md#in-role-cache-updates) 和 [Microsoft Azure Storage Service Version Removal Update: Extension to 2016 (Microsoft Azure 儲存體服務版本移除更新：延期至 2016)](http://blogs.msdn.com/b/windowsazurestorage/archive/2015/10/19/microsoft-azure-storage-service-version-removal-update-extension-to-2016.aspx)。
@@ -139,7 +139,7 @@ VM 大小的記憶體總計如下：
 <a name="NuGet"></a>
 
 ## <a name="configure-the-cache-clients"></a>設定快取用戶端
-若要存取「角色中快取」的快取，用戶端必須位於相同部署內。 如果快取叢集為專用角色快取叢集，則用戶端為部署中的其他角色。 如果快取叢集為共置角色快取叢集，則用戶端可以是部署中的其他角色，或是主控快取叢集的角色本身。 系統會提供一個 NuGet 套件，可用來設定每一個存取快取的用戶端角色。 若要使用 Caching NuGet 套件設定角色存取快取叢集，請在 [方案總管] 中的角色專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 封裝]。 
+若要存取 In-Role Cache 快取，用戶端必須位於相同部署內。 如果快取叢集為專用角色快取叢集，則用戶端為部署中的其他角色。 如果快取叢集為共置角色快取叢集，則用戶端可以是部署中的其他角色，或是主控快取叢集的角色本身。 系統會提供一個 NuGet 套件，可用來設定每一個存取快取的用戶端角色。 若要使用 Caching NuGet 套件設定角色存取快取叢集，請在 [方案總管] 中的角色專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 封裝]。 
 
 ![RoleCache4][RoleCache4]
 

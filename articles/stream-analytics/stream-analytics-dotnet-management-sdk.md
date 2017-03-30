@@ -80,7 +80,8 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
    
         using System;
         using System.Configuration;
-        using System.Threading;
+        using System.Threading.Tasks;
+        
         using Microsoft.Azure;
         using Microsoft.Azure.Management.StreamAnalytics;
         using Microsoft.Azure.Management.StreamAnalytics.Models;
@@ -88,40 +89,21 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
 2. 新增驗證協助程式方法：
 
    ```   
-   public static string GetAuthorizationHeader()
+   private static async Task<string> GetAuthorizationHeader()
    {
-   
-       AuthenticationResult result = null;
-       var thread = new Thread(() =>
-       {
-           try
-           {
-               var context = new AuthenticationContext(
-                   ConfigurationManager.AppSettings["ActiveDirectoryEndpoint"] +
-                   ConfigurationManager.AppSettings["ActiveDirectoryTenantId"]);
-   
-               result = context.AcquireToken(
-                   resource: ConfigurationManager.AppSettings["WindowsManagementUri"],
-                   clientId: ConfigurationManager.AppSettings["AsaClientId"],
-                   redirectUri: new Uri(ConfigurationManager.AppSettings["RedirectUri"]),
-                   promptBehavior: PromptBehavior.Always);
-           }
-           catch (Exception threadEx)
-           {
-               Console.WriteLine(threadEx.Message);
-           }
-       });
-   
-       thread.SetApartmentState(ApartmentState.STA);
-       thread.Name = "AcquireTokenThread";
-       thread.Start();
-       thread.Join();
-   
-       if (result != null)
-       {
-           return result.AccessToken;
-       }
-   
+       var context = new AuthenticationContext(
+           ConfigurationManager.AppSettings["ActiveDirectoryEndpoint"] +
+           ConfigurationManager.AppSettings["ActiveDirectoryTenantId"]);
+
+        AuthenticationResult result = await context.AcquireTokenASync(
+           resource: ConfigurationManager.AppSettings["WindowsManagementUri"],
+           clientId: ConfigurationManager.AppSettings["AsaClientId"],
+           redirectUri: new Uri(ConfigurationManager.AppSettings["RedirectUri"]),
+           promptBehavior: PromptBehavior.Always);
+
+        if (result != null)
+            return result.AccessToken;
+
        throw new InvalidOperationException("Failed to acquire token");
    }
    ```  
@@ -138,10 +120,9 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
     string streamAnalyticsTransformationName = "<YOUR JOB TRANSFORMATION NAME>";
 
     // Get authentication token
-    TokenCloudCredentials aadTokenCredentials =
-        new TokenCloudCredentials(
-            ConfigurationManager.AppSettings["SubscriptionId"],
-            GetAuthorizationHeader());
+    TokenCloudCredentials aadTokenCredentials = new TokenCloudCredentials(
+        ConfigurationManager.AppSettings["SubscriptionId"],
+        GetAuthorizationHeader().Result);
 
     // Create Stream Analytics management client
     StreamAnalyticsManagementClient client = new StreamAnalyticsManagementClient(aadTokenCredentials);
@@ -301,8 +282,6 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
 
     LongRunningOperationResponse jobStartResponse = client.StreamingJobs.Start(resourceGroupName, streamAnalyticsJobName, jobStartParameters);
 
-
-
 ## <a name="stop-a-stream-analytics-job"></a>停止資料流分析工作
 您可以藉由呼叫 **Stop** 方法來停止執行中的資料流分析工作。
 
@@ -314,7 +293,6 @@ Azure 資料流分析是完全受管理的服務，可用來對雲端中的串�
 
     // Delete a Stream Analytics job
     LongRunningOperationResponse jobDeleteResponse = client.StreamingJobs.Delete(resourceGroupName, streamAnalyticsJobName);
-
 
 ## <a name="get-support"></a>取得支援
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。

@@ -15,16 +15,25 @@ ms.topic: article
 ms.date: 02/21/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 042b99a77fae0de2fe65113d9d909a443f5487d4
-ms.openlocfilehash: 3a6020b2c189b4ce9a930a18d78140b7bd8ff8ff
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: df4340ce5185405334f08f6098590f84b067dafd
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="configure-azure-multi-factor-authentication-settings"></a>設定 Azure Multi-Factor Authentication 設定
 既然您已啟動並執行 Azure Multi-Factor Authentication，本文將協助您進行管理。  本文涵蓋各種主題，協助您充分發揮 Azure Multi-Factor Authentication 的功效。  並非所有版本的 Azure Multi-Factor Authentication 均提供所有這些功能。
 
-| 功能 | 描述 | |:--- |:--- || | [詐騙警示](#fraud-alert) |您可以設定詐騙警示，讓使用者得以針對存取其資源的詐騙嘗試提出報告。 | | [單次許可](#one-time-bypass) |單次許可會「略過」Multi-Factor Authentication，讓使用者只需要驗證一次。 | | [自訂語音訊息](#custom-voice-messages) |自訂語音訊息可讓您將自己的錄音或問候語用於 Multi-Factor Authentication。 | | [快取](#caching-in-azure-multi-factor-authentication) |您可以利用快取來設定一段特定的時間，讓後續的驗證嘗試自動成功。 | | [信任的 IP](#trusted-ips) |受管理或同盟租用戶的管理員可以使用「信任的 IP」，讓從公司近端內部網路登入的使用者略過雙步驟驗證。 | | [應用程式密碼](#app-passwords) |應用程式密碼允許非 MFA 感知應用程式略過 Multi-Factor Authentication 並繼續運作。 | | [針對已記住的裝置和瀏覽器記住 Multi-Factor Authentication](#remember-multi-factor-authentication-for-devices-that-users-trust) |可讓您在使用者使用 MFA 成功登入後的設定天數內記住裝置。 | | [可選取的驗證方法](#selectable-verification-methods) |可讓您選擇可供使用者使用的驗證方法。 |
+| 功能 | 說明 | 
+|:--- |:--- |
+| [詐騙警示](#fraud-alert) |您可以設定詐騙警示，讓使用者得以針對存取其資源的詐騙嘗試提出報告。 |
+| [一次性略過](#one-time-bypass) |一次性略過可讓使用者「略過」Multi-Factor Authentication 來通過驗證一次。 |
+| [自訂語音訊息](#custom-voice-messages) |自訂語音訊息可讓您將自己的錄音或問候語用於 Multi-Factor Authentication。 |
+| [快取](#caching-in-azure-multi-factor-authentication) |您可以利用快取來設定一段特定的時間，讓後續的驗證嘗試自動成功。 |
+| [信任的 IP](#trusted-ips) |受管理或同盟租用戶的系統管理員可以使用「信任的 IP」，讓從公司近端內部網路登入的使用者略過雙步驟驗證。 |
+| [應用程式密碼](#app-passwords) |應用程式密碼允許非 MFA 感知應用程式略過 Multi-Factor Authentication 並繼續運作。 |
+| [針對已記住的裝置和瀏覽器，記住其 Multi-Factor Authentication](#remember-multi-factor-authentication-for-devices-that-users-trust) |可讓您在使用者使用 MFA 成功登入後的設定天數內記住裝置。 |
+| [可選取的驗證方法](#selectable-verification-methods) |可讓您選擇可供使用者使用的驗證方法。 |
 
 ## <a name="access-the-azure-mfa-management-portal"></a>存取 Azure MFA 管理入口網站
 
@@ -91,7 +100,7 @@ ms.lasthandoff: 02/24/2017
 ### <a name="create-a-one-time-bypass"></a>建立單次許可
 1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。
 2. 依照此頁面最上方的指示，瀏覽至 MFA 管理入口網站。
-3. 在 Azure Multi-Factor Authentication 管理入口網站中，如果在左側看到您的租用戶或 Azure MFA 提供者的名稱旁邊有一個 **++，按一下 ** 可查看不同的 MFA 伺服器複寫群組和 Azure 預設群組。 選取適當的群組。
+3. 在 Azure Multi-Factor Authentication 管理入口網站中，如果在左側看到您的租用戶或 Azure MFA 提供者的名稱旁邊有一個 **++，按一下** 可查看不同的 MFA 伺服器複寫群組和 Azure 預設群組。 選取適當的群組。
 4. 在 [使用者管理] 底下，選取 [單次許可] 。
 5. 在 [單次許可] 頁面中，按一下 [新增單次許可] 。
 
@@ -298,7 +307,7 @@ Azure AD 支援與內部部署 Windows Server Active Directory Domain Services (
 | 電話通話 |撥打自動語音電話。 使用者可接聽電話並按電話鍵盤上的 # 進行驗證。 此電話號碼將不會同步到內部部署 Active Directory。 |
 | 電話簡訊 |傳送包含驗證碼的簡訊。 系統會提示使用者使用驗證碼來回覆簡訊，或在登入介面中輸入驗證碼。 |
 | 行動應用程式的通知 |將推播通知傳送至您的電話或已註冊的裝置。 使用者會看到通知，然後選取 [驗證] 來完成驗證。 <br>Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。 |
-| 行動應用程式傳回的驗證碼 |Microsoft Authenticator 應用程式每隔&30; 秒會產生新的 OATH 驗證碼。 使用者會在登入介面中輸入這個驗證碼。<br>Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。 |
+| 行動應用程式傳回的驗證碼 |Microsoft Authenticator 應用程式每隔 30 秒會產生新的 OATH 驗證碼。 使用者會在登入介面中輸入這個驗證碼。<br>Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。 |
 
 ### <a name="how-to-enabledisable-authentication-methods"></a>如何啟用/停用驗證方法
 1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。

@@ -8,6 +8,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 37b9b600-d7f8-4cb1-a04a-0b3a827c6dcc
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -15,9 +16,9 @@ ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: a4d30ffc0a5c5ef9fe7bb892d17f0859ff27f569
-ms.openlocfilehash: 85fd87c1523eb2beb59e2ef36e604063a3f373aa
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: afd43fb536278d6aa76acaf7c9d18714bc5acd2b
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -154,6 +155,12 @@ __所有其他區域__：
 > 如果您的自訂規則會廣泛封鎖輸入流量 (例如**全部拒絕**規則)，您可能需要調整這些範例中的 priority 值。 範例中的規則必須在封鎖存取的規則之前發生。 否則，會先測試**全部拒絕**規則，而且永遠不會套用此範例中的規則。 您不得封鎖 Azure 虛擬網路的預設規則。 例如，您不應建立套用順序早於預設**允許 VNET 輸入**規則 (優先順序為 65000) 的**全部拒絕**規則。
 > 
 > 如需網路安全性群組規則的詳細資訊，請參閱[什麼是網路安全性群組？](../virtual-network/virtual-networks-nsg.md)。
+
+**使用 Azure 資源管理範本**
+
+從 [Azure 快速入門範本](https://azure.microsoft.com/resources/templates/)中使用下列資源管理範本，在具備安全網路組態的 VNet 中建立 HDInsight 叢集：
+
+[部署安全的 Azure VNet 和 VNet 中的 HDInsight Hadoop 叢集](https://azure.microsoft.com/resources/templates/101-hdinsight-secure-vnet/)
 
 **使用 Azure PowerShell**
 

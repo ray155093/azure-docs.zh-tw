@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/14/2016
+ms.date: 03/20/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 4ebd5dc2da50db93061e92660c97dcca3866c713
-ms.openlocfilehash: c4adae8125a6780ddb4c7c64baf4df6aae139104
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: dd4a672d419a0f5140ffc006bcf58a9bf1e752f4
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -43,7 +44,7 @@ ms.openlocfilehash: c4adae8125a6780ddb4c7c64baf4df6aae139104
 <tr>
   <td valign=top>成人收入普查二進位分類資料集</td>
   <td valign=top>
-1994 年普查資料的子集，使用年齡 16 歲以上的成年工作者，和 > 100 的調整收入指數。<p> </p><b>使用方式：</b>使用人口統計將人口分類，以預測個人年收入是否超過 5 萬元。<p> </p><b>相關研究：</b>Kohavi, R.、Becker, B. (1996 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science </td>
+1994 年普查資料的子集，使用年齡 16 歲以上的成年工作者，和 > 100 的調整收入指數。<p> </p><b>使用方式：</b>使用人口統計來將人口分類，以預測個人年收入是否超過 5 萬元。<p> </p><b>相關研究：</b>Kohavi, R.、Becker, B. (1996 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science </td>
 </tr>
 
 <tr ID=airport-codes-dataset>
@@ -77,7 +78,7 @@ ms.openlocfilehash: c4adae8125a6780ddb4c7c64baf4df6aae139104
 <tr>
   <td valign=top>捐血資料</td>
   <td valign=top>
-台灣省新竹市捐血服務中心的捐血資料庫包含的資料子集。<p> </p>捐血資料包括前次捐血後經過的月數、頻率、或捐血總次數、前次捐血後經過的時間，以及捐血的數量。<p> </p><b>使用方式：</b>其目標是要透過分類來預測捐血者是否是在 2007 年 3 月份捐血；1 表示在目標期間內有 1 名捐血者，0 表示沒有捐血者。 <p> </p><b>相關研究：</b>Yeh, I.C. (2008 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science <p> </p>Yeh, I-Cheng, Yang, King-Jang, and Ting, Tao-Ming, "Knowledge discovery on RFM model using Bernoulli sequence, "Expert Systems with Applications, 2008, <a href="http://dx.doi.org/10.1016/j.eswa.2008.07.018">http://dx.doi.org/10.1016/j.eswa.2008.07.018</a>
+台灣省新竹市捐血服務中心的捐血資料庫包含的資料子集。<p> </p>捐血資料包括前次捐血後經過的月數、頻率、或捐血總次數、前次捐血後經過的時間，以及捐血的數量。<p> </p><b>使用方式：</b>目標是透過分類來預測捐血者是否曾在 2007 年 3 月份捐血；1 表示目標期間內有 1 名捐血者，0 表示沒有捐血者。 <p> </p><b>相關研究：</b>Yeh, I.C. (2008 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science <p> </p>Yeh, I-Cheng, Yang, King-Jang, and Ting, Tao-Ming, "Knowledge discovery on RFM model using Bernoulli sequence, "Expert Systems with Applications, 2008, <a href="http://dx.doi.org/10.1016/j.eswa.2008.07.018">http://dx.doi.org/10.1016/j.eswa.2008.07.018</a>
   </td>
 </tr>
 
@@ -138,7 +139,7 @@ KDD Cup 2009 客戶關係預測挑戰 (<a href="http://www.sigkdd.org/site/2009/
 <tr>
   <td valign=top>能量效益迴歸資料</td>
   <td valign=top>
-模擬能量分佈曲線的集合，以 12 種不同的建築形狀為基礎。 建築物有 8 項不同特徵，例如玻璃區域、玻璃區域分佈和方向。<p> </p><b>使用方式：</b>使用迴歸或分類，可根據兩個實數值回應的其中之一來預測能量效益評等。 就多類別分類而言，會將回應變數進位至最接近的整數。 <p> </p><b>相關研究：</b>Xifara, A. 和 Tsanas, A.(2012 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science </td>
+模擬能量分佈曲線的集合，以 12 種不同的建築形狀為基礎。 建築物有 8 項不同特徵，例如玻璃區域、玻璃區域分佈和方向。<p> </p><b>使用方式：</b>使用迴歸或分類，根據兩個實數值回應的其中之一來預測能量效益評等。 就多類別分類而言，會將回應變數進位至最接近的整數。 <p> </p><b>相關研究：</b>Xifara, A. 和 Tsanas, A.(2012 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science </td>
 </tr>
 
 <tr ID=flight-delays-data>
@@ -192,33 +193,33 @@ UCI Statlog (德國信用卡) 資料集 (<a href="http://archive.ics.uci.edu/ml/
 <tr>
   <td valign=top>不同汽車的油耗資料</td>
   <td valign=top>
-此資料集是根據 Carnegie Mellon University 的 StatLib 圖書館所提供的資料集略做修改而成。 此資料集用於 1983 American Statistical Association Exposition。<p> </p>這項資料以每加侖的里程數為單位列出各種汽車的油耗，再加上汽缸數、引擎排氣量、馬力、總重量和加速等資訊。<p> </p><b>使用方式：</b>根據 3 個多重值離散屬性和 5 個連續屬性預測燃料經濟效益。 <p> </p><b>相關研究：</b>StatLib Carnegie Mellon University (1993 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science </td>
+此資料集是根據 Carnegie Mellon University 的 StatLib 圖書館所提供的資料集略做修改而成。 此資料集用於 1983 American Statistical Association Exposition。<p> </p>這項資料以每加侖的里程數為單位列出各種汽車的油耗，再加上汽缸數、引擎排氣量、馬力、總重量和加速等資訊。<p> </p><b>使用方式：</b>根據 3 個多重值離散屬性和 5 個連續屬性，預測燃料經濟效益。 <p> </p><b>相關研究：</b>StatLib Carnegie Mellon University (1993 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science </td>
 </tr>
 
 <tr>
   <td valign=top>皮馬族印第安人糖尿病二進位分類資料集</td>
   <td valign=top>
-National Institute of Diabetes and Digestive and Kidney Diseases 資料庫中的資料子集。 此資料集經過篩選，主要著重於皮馬族印第安人遺傳疾病的女性病患。 資料中包含葡萄糖和胰島素水平之類的醫學資料，以及生活方式因素。<p> </p><b>使用方式：</b>預測受測者是否有糖尿病 (二進位分類)。 <p> </p><b>相關研究：</b>Sigillito, V.(1990 年)。 UCI Machine Learning Repository <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml"</a>. Irvine, CA: University of California, School of Information and Computer Science </td>
+National Institute of Diabetes and Digestive and Kidney Diseases 資料庫中的資料子集。 此資料集經過篩選，主要著重於皮馬族印第安人遺傳疾病的女性病患。 資料中包含葡萄糖和胰島素水平之類的醫學資料，以及生活方式因素。<p> </p><b>使用方式：</b>預測受測者是否罹患糖尿病 (二元分類)。 <p> </p><b>相關研究：</b>Sigillito, V.(1990 年)。 UCI Machine Learning Repository <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml"</a>. Irvine, CA: University of California, School of Information and Computer Science </td>
 </tr>
 
 <tr>
   <td valign=top>餐廳顧客資料</td>
   <td valign=top>
-一組關於顧客的中繼資料，包括人口統計和喜好。<p> </p><b>使用方式：</b>將此資料集與其他兩個餐廳資料集搭配使用，可訓練及測試推薦系統。 <p> </p><b>相關研究：</b>Bache, K. 和 Lichman, M.(2013 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science.
+一組關於顧客的中繼資料，包括人口統計和喜好。<p> </p><b>使用方式：</b>將此資料集與其他兩個餐廳資料集搭配使用，以使推薦系統定型並進行測試。 <p> </p><b>相關研究：</b>Bache, K. 和 Lichman, M.(2013 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science.
   </td>
 </tr>
 
 <tr>
   <td valign=top>餐廳特色資料</td>
   <td valign=top>
-一組關於餐廳及其特色的中繼資料，例如食物類型、用餐風格和地點等。<p> </p><b>使用方式：</b>將此資料集與其他兩個餐廳資料集搭配使用，可訓練及測試推薦系統。 <p> </p><b>相關研究：</b>Bache, K. 和 Lichman, M.(2013 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science.
+一組關於餐廳及其特色的中繼資料，例如食物類型、用餐風格和地點等。<p> </p><b>使用方式：</b>將此資料集與其他兩個餐廳資料集搭配使用，以使推薦系統定型並進行測試。 <p> </p><b>相關研究：</b>Bache, K. 和 Lichman, M.(2013 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science.
   </td>
 </tr>
 
 <tr>
   <td valign=top>餐廳評等</td>
   <td valign=top>
-包含使用者給予餐廳的評等，最低為 0，最高為 2。<p> </p><b>使用方式：</b>將此資料集與其他兩個餐廳資料集搭配使用，可訓練及測試推薦系統。 <p> </p><b>相關研究：</b>Bache, K. 和 Lichman, M.(2013 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science.
+包含使用者給予餐廳的評等，最低為 0，最高為 2。<p> </p><b>使用方式：</b>將此資料集與其他兩個餐廳資料集搭配使用，以使推薦系統定型並進行測試。 <p> </p><b>相關研究：</b>Bache, K. 和 Lichman, M.(2013 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information and Computer Science.
   </td>
 </tr>
 
@@ -232,7 +233,7 @@ National Institute of Diabetes and Digestive and Kidney Diseases 資料庫中的
 <tr>
   <td valign=top>望遠鏡資料</td>
   <td valign=top>
-高能伽瑪粒子爆與背景雜訊的記錄，兩者皆使用蒙地卡羅程序來模擬。<p> </p>模擬的目的，是要使用統計方法區分所要的訊號 (切倫科夫射線波) 與背景雜訊 (高層大氣中的宇宙射線所引發的強子波)，以改善地面大氣切倫科夫伽瑪望遠鏡的精確性。<p> </p>這項資料已經過前處理，而建立長軸指向攝相中心的狹長叢集。 這個橢圓的特性 (通常稱為 Hillas 參數) 屬於可用於區別的影像參數。<p> </p><b>使用方式：</b>預測某個波的影像是代表訊號還是背景雜訊。<p> </p><b>附註：</b>簡單的分類精確性對這項資料並沒有幫助，因為將背景活動分類為訊號，會比將訊號活動分類為背景還要糟。 若要比較不同的分類器，應使用 ROC 圖形。 將背景活動認定為訊號的機率，必須低於下列其中一個臨界值：0.01、0.02、0.05、0.1 或 0.2。<p> </p>此外請注意，背景活動的數目 (h 表示強子波) 會被低估，而在實際的測量中，h 或雜訊類別會佔活動的多數。 <p> </p><b>相關研究：</b>Bock, R.K。 (1995 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information </td>
+高能伽瑪粒子爆與背景雜訊的記錄，兩者皆使用蒙地卡羅程序來模擬。<p> </p>模擬的目的，是要使用統計方法區分所要的訊號 (切倫科夫射線波) 與背景雜訊 (高層大氣中的宇宙射線所引發的強子波)，以改善地面大氣切倫科夫伽瑪望遠鏡的精確性。<p> </p>這項資料已經過前處理，而建立長軸指向攝相中心的狹長叢集。 這個橢圓的特性 (通常稱為 Hillas 參數) 屬於可用於區別的影像參數。<p> </p><b>使用方式：</b>預測某個波的影像代表的是訊號還是背景雜訊。<p> </p><b>附註：</b>簡單的分類精確性對這項資料並沒有幫助，因為將背景活動分類為訊號，比將訊號活動分類為背景還要糟。 若要比較不同的分類器，應使用 ROC 圖形。 將背景活動認定為訊號的機率，必須低於下列其中一個臨界值：0.01、0.02、0.05、0.1 或 0.2。<p> </p>此外請注意，背景活動的數目 (h 表示強子波) 會被低估，而在實際的測量中，h 或雜訊類別會佔活動的多數。 <p> </p><b>相關研究：</b>Bock, R.K。 (1995 年)。 UCI 機器學習服務儲存機制 <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>。 Irvine, CA: University of California, School of Information </td>
 </tr>
 
 <tr ID=weather-dataset>
@@ -305,9 +306,4 @@ RCV1-V2 路透社新聞資料集中新聞文章的主題指派。 一篇新聞�
 
 <!-- Module References -->
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

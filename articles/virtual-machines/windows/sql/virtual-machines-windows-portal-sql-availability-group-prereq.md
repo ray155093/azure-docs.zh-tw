@@ -14,11 +14,12 @@ ms.custom: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 01/10/2017
+ms.date: 03/17/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 4326cc342088ff16a72b8c460245bda1f2cd17c9
-ms.openlocfilehash: 3e0c58af3566ea443efaa012495e5b736fafb46d
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 96f42929c3f4d0ccf4f2f1fbc206dddd90d6d3d1
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -296,7 +297,7 @@ Azure 會建立虛擬機器。
 
 在伺服器完成組態變更後，重新啟動伺服器。 
 
-### <a name="a-namedomainaccountsa-configure-domain-accounts"></a><a name=DomainAccounts></a> 設定網域帳戶
+### <a name=DomainAccounts></a> 設定網域帳戶
 
 接下來的步驟，將帶您設定 Active Directory (AD) 帳戶。 下表顯示帳戶：
 
@@ -337,7 +338,7 @@ Azure 會建立虛擬機器。
 
 ## <a name="create-sql-servers"></a>建立 SQL Server
 ### <a name="create-and-configure-the-sql-server-vms"></a>建立及設定 SQL Server VM
-接下來，建立三個 VM，包括兩個 SQL Server VM 和一個 WSFC 叢集節點。 若要建立每個 VM，請回到 **SQL-HA-RG** 資源群組，按一下 [新增]，依序搜尋適當的資源庫項目、按一下 [虛擬機器]，然後按一下 [從資源庫]。 使用下表中的資訊可協助您建立 VM：
+接下來，建立三個 VM，包括兩個 SQL Server VM 和一個適用於其他叢集節點的 VM。 若要建立每個 VM，請回到 **SQL-HA-RG** 資源群組，按一下 [新增]，依序搜尋適當的資源庫項目、按一下 [虛擬機器]，然後按一下 [從資源庫]。 使用下表中的資訊可協助您建立 VM：
 
 | Page | VM1 | VM2 | VM3 |
 | --- | --- | --- | --- |
@@ -377,7 +378,7 @@ Azure 會建立虛擬機器。
 
 對所有伺服器重複這些步驟。
 
-### <a name="a-namejoindomainajoin-the-servers-to-the-domain"></a><a name="joinDomain"></a>將伺服器加入網域。
+### <a name="joinDomain"></a>將伺服器加入網域。
 
 現在您可以將 VM 加入 **corp.contoso.com**。 針對 SQL Server 和檔案共用見證伺服器執行下列動作︰ 
 
@@ -408,7 +409,7 @@ Azure 會建立虛擬機器。
 7. 按一下 [確定]，以關閉 [系統管理員內容] 對話方塊。
 8. 在 **sqlserver-1** 和 **cluster-fsw** 上重複上述步驟。
 
-### <a name="a-namesetserviceaccountaset-the-sql-server-service-accounts"></a><a name="setServiceAccount"></a>設定 SQL Server 服務帳戶
+### <a name="setServiceAccount"></a>設定 SQL Server 服務帳戶
 
 在每部 SQL Server 上，設定 SQL Server 服務帳戶。 使用您[設定網域帳戶](#DomainAccounts)時所建立的帳戶。
 
@@ -430,7 +431,7 @@ Azure 會建立虛擬機器。
 
 1. 開啟 SQL Server Management Studio，然後連線到 SQL Server 的本機執行個體。 
 
-1. 在 [物件總管]** 中**，按一下 [安全性]。
+1. 在 [物件總管]**中**，按一下 [安全性]。
 
 1. 以滑鼠右鍵按一下 [登入]。 按一下 [新增登入...]。
 
@@ -506,9 +507,4 @@ Azure 會建立虛擬機器。
 ## <a name="next-steps"></a>後續步驟
 
 * [在 Azure 虛擬機器上建立 SQL Server Always On 可用性群組](virtual-machines-windows-portal-sql-availability-group-tutorial.md)
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

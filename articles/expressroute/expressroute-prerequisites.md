@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 1/6/2017
+ms.date: 03/22/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 1cb57e5156dab976599ddfa9a58f26ca8ef1ee0e
-ms.openlocfilehash: 304acc7d2bfdefffde700ecd469b6335b08b85e6
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: a56749a5ac1098db3970140a76b71c77c1f74c07
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -31,11 +31,12 @@ ms.lasthandoff: 02/22/2017
 * 使用中的 Office 365 訂用帳戶 (如果使用的是 Office 365 服務)。 如需詳細資訊，請參閱本文的 [Office 365 特定需求](#office-365-specific-requirements)一節。
 
 ## <a name="connectivity-provider"></a>連線提供者
+
 * 您可以與 [ExpressRoute 連線合作夥伴](expressroute-locations.md#partners) 合作來連線到 Microsoft Cloud。 您可以透過 [三種方法](expressroute-introduction.md)在內部部署網路與 Microsoft 之間設定連線。 
-* 如果您的提供者不是 ExpressRoute 連線合作夥伴，您仍可透過 [雲端交換服務提供者](expressroute-locations.md#nonpartners)連線到 Microsoft Cloud。
+* 如果您的提供者不是 ExpressRoute 連線合作夥伴，您仍可透過 [雲端交換服務提供者](expressroute-locations.md#c1partners)連線到 Microsoft Cloud。
 
 ## <a name="network-requirements"></a>網路需求
-* **備援連線**︰您和您的提供者之間不需要實體連線備援。 Microsoft 不要求您在 Microsoft 路由器和對等路由器之間設定備援 BGP 工作階段，即使您只有 [一個與雲端交換服務的實體連線](expressroute-faqs.md#onep2plink)也是如此。 
+* **備援連線**︰您和您的提供者之間不需要實體連線備援。 Microsoft 不要求您在 Microsoft 路由器和對等路由器之間設定備援 BGP 工作階段，即使您只有 [一個與雲端交換服務的實體連線](expressroute-faqs.md#onep2plink)也是如此。
 * **路由**︰根據您連線到 Microsoft Cloud 的方式，您或您的提供者需要設定及管理用於 [路由網域](expressroute-circuit-peerings.md)的 BGP 工作階段。 某些乙太網路連線服務提供者或雲端交換服務提供者可能會提供 BGP 管理功能做為附加價值服務。
 * **NAT**：Microsoft 只接受透過 Microsoft 對等互連的公用 IP 位址。 如果您在內部部署網路中使用私人 IP 位址，您或您的提供者必須 [使用 NAT](expressroute-nat.md)將私人 IP 位址轉譯成公用 IP 位址。
 * **QoS**：商務用 Skype 具有各種服務 (例如語音、視訊、文字)，其所要求的 QoS 處理方式各有差異。 您和您的提供者應該遵循 [QoS 需求](expressroute-qos.md)。
@@ -65,5 +66,4 @@ ms.lasthandoff: 02/22/2017
   * [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md)
   * [設定路由](expressroute-howto-routing-classic.md)
   * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
-
 

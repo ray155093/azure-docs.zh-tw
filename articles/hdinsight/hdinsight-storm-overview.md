@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 72d54080-1e48-4a5e-aa50-cce4ffc85077
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
@@ -16,9 +17,9 @@ ms.workload: big-data
 ms.date: 01/11/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 0cf2d7f4cbbed730d690693fd006665355155c22
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 0aa2a7075f64b353f6b052ab6b973a06622a9339
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -42,7 +43,7 @@ Apache Storm on HDInsight 提供下列主要優點︰
 * 在建立期間或之後針對叢集執行指令碼，輕鬆進行自訂。 如需詳細資訊，請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
 * 使用您選擇的語言︰Storm 元件可以各種語言撰寫，例如 **Java**、**C#** 和 **Python**。
-  
+
   * Visual Studio 與 HDInsight 的整合，可供開發、管理及監視 C# 拓撲。 如需詳細資訊，請參閱[使用 HDInsight Tools for Visual Studio 開發 C# Storm 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)。
 
   * 支援 **Trident** Java 介面。 此介面可讓您建立 Storm 拓撲，以支援「只一次性」處理訊息、「交易式」資料存放區持續性和一組常用的串流分析作業。
@@ -50,13 +51,13 @@ Apache Storm on HDInsight 提供下列主要優點︰
 * 輕鬆進行叢集的相應增加和相應減少：新增或移除背景工作節點，而不影響執行 Storm 拓撲。
 
 * 與下列 Azure 服務整合︰
-  
+
     * 事件中樞
     * 虛擬網路
     * SQL Database
     * Azure 儲存體
     * DocumentDB。
-  
+
   * 使用 Azure 虛擬網路安全地結合多個 HDInsight 叢集的功能：建立使用 HDInsight、HBase 或 Hadoop 叢集的分析管線。
 
 如需使用 Apache Storm 做為即時分析解決方案的公司清單，請參閱 [使用 Apache Storm 的公司](https://storm.apache.org/documentation/Powered-By.html)(英文)。
@@ -80,7 +81,7 @@ Apache Storm on HDInsight 提供下列主要優點︰
 
 * __Web 連線__：HDInsight 叢集會提供 Ambari Web UI。 Ambari Web UI 可讓您輕鬆地監視、設定及管理叢集上的服務。 Storm on HDInsight 也提供 Storm UI，這可讓您從瀏覽器監視及管理執行中的 Storm 拓撲。
 
-  如需詳細資訊，請參閱[使用 Ambari Web UI 管理 HDInsight](hdinsight-hadoop-manage-ambari.md)和[使用 Storm UI 進行監視和管理](hdinsight-storm-deploy-monitor-topology-linux.md#monitor-and-manage-using-the-storm-ui)。
+  如需詳細資訊，請參閱[使用 Ambari Web UI 管理 HDInsight](hdinsight-hadoop-manage-ambari.md)和[使用 Storm UI 進行監視和管理](hdinsight-storm-deploy-monitor-topology-linux.md#monitor-and-manage-storm-ui)。
 
 * __Azure PowerShell 和 CLI__︰Azure PowerShell 和 Azure CLI 兩者都提供您可以從用戶端系統使用的命令列公用程式，以便搭配 HDInsight 和其他 Azure 服務運作。
 
@@ -152,7 +153,7 @@ Apache Storm 會執行 **拓撲** ，而不是您在 HDInsight 或 Hadoop 中可
 * **串流**：未繫結的 **Tuple** 集合。 串流由 **pout** 和 **Bolt** 產生，由 **Bolt** 取用。
 * **Tuple**：動態類型值的具名清單。
 * **Spout**：取用資料來源的資料，並發出一或多個**串流**。
-  
+
   > [!NOTE]
   > 資料經常是讀取自 Kafka 或 Azure 事件中樞等佇列。 萬一發生中斷，佇列可確保資料持續存在。
 

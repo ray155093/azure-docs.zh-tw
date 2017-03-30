@@ -16,9 +16,9 @@ ms.workload: na
 ms.date: 02/15/2017
 ms.author: corywink
 translationtype: Human Translation
-ms.sourcegitcommit: 623f502a92dc8eb152a9b01c4f6db0640ce57e54
-ms.openlocfilehash: ab027e1f21e8c2c33829f833395a6872cb7bcdd8
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: ce37bb41babb7bf894c23add994bf2c144ee6549
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -53,7 +53,7 @@ ms.lasthandoff: 02/27/2017
 50 個。 您可以建立 [Azure 支援票證][link-azuresupportticket]來提高此限制，但每一個訂用帳戶預設只能佈建 50 個 DocumentDB 執行個體。 
 
 ### <a name="how-many-free-bing-maps-apis-can-i-provision-in-a-subscription"></a>我可以在一個訂用帳戶中佈建多少個免費 Bing 地圖服務 API？
-2 個。 您只可以在 Azure 訂用帳戶中針對 Enterprise 方案建立兩個內部交易層級 1 Bing 地圖。 根據預設，遠端監視方案會隨著內部交易層級 1 方案一起佈建。 因此，您只可以在一個訂用帳戶中最多佈建&2; 個遠端監視方案。
+2 個。 您只可以在 Azure 訂用帳戶中針對 Enterprise 方案建立兩個內部交易層級 1 Bing 地圖。 根據預設，遠端監視方案會隨著內部交易層級 1 方案一起佈建。 因此，您只可以在一個訂用帳戶中最多佈建 2 個遠端監視方案。
 
 ### <a name="i-have-a-remote-monitoring-solution-deployment-with-a-static-map-how-do-i-add-an-interactive-bing-map"></a>我有使用靜態地圖的遠端監視解決方案部署，如何加入互動式 Bing 地圖？
 1. 從 [Azure 入口網站][lnk-azure-portal]取得 Bing Maps API for Enterprise QueryKey： 
@@ -75,6 +75,9 @@ ms.lasthandoff: 02/27/2017
 
 ### <a name="can-i-create-a-preconfigured-solution-if-i-have-microsoft-azure-for-dreamspark"></a>如果我有 Microsoft Azure for DreamSpark，是否可以建立預先設定的解決方案？
 目前，您無法使用 [Microsoft Azure for DreamSpark][lnk-dreamspark] 帳戶來建立預先設定的解決方案。 不過，您只需花幾分鐘即可建立 [Azure 免費試用帳戶][lnk-30daytrial]，此帳戶可讓您建立預先設定的解決方案。
+
+### <a name="can-i-create-a-preconfigured-solution-if-i-have-cloud-solution-provider-csp-subscription"></a>如果我有雲端方案提供者 (CSP) 訂用帳戶，是否可以建立預先設定的解決方案？
+目前您無法透過雲端方案提供者 (CSP) 訂用帳戶建立預先設定的解決方案。 不過，您只需花幾分鐘即可建立 [Azure 免費試用帳戶][lnk-30daytrial]，此帳戶可讓您建立預先設定的解決方案。
 
 ### <a name="how-do-i-delete-an-aad-tenant"></a>如何刪除 AAD 租用戶？
 請參閱 Eric Golpe 的部落格文章：[刪除 Azure AD 租用戶的逐步解說 (英文)][lnk-delete-aad-tennant]。

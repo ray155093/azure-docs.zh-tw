@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 03/14/2017
+ms.date: 03/18/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 4b7ed095729e810f7f1112d3b6becfaf186bf508
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 995f185f99c80809a5c4c2925b8d594b1d5568ff
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -97,6 +97,13 @@ Azure AD 有一組固定的字元、密碼強度，以及帳戶鎖定需求，�
 ### <a name="applications-want-to-differentiate-their-experience-between-a-tenant-user-and-a-guest-user-is-there-standard-guidance-for-this-is-the-presence-of-the-identity-provider-claim-the-right-model-for-this"></a>應用程式希望區分租用戶使用者和來賓使用者的經驗。 有適用於此案例的標準指引嗎？ 存在的識別提供者是否宣告了適用於此案例的正確模型？
  
 來賓使用者可以使用任何識別提供者，依我們在 [B2B 共同作業使用者屬性](active-directory-b2b-user-properties.md)中討論的方式進行驗證。 因此，使用 UserType 是判斷此項目的正確屬性。 UserType 宣告目前不包含在權杖中。 應用程式應該使用圖形 API 來查詢使用者適用的目錄，並取得其 UserType。
+
+### <a name="where-can-find-a-b2b-collaboration-community-to-share-solutions-and-submit-ideas"></a>哪裡可以找到 B2B 共同作業社群，以分享解決方案並提交構想？
+
+我們會時常聆聽您對改進 B2B 共同作業的意見反應。 我們邀請您在 [Microsoft 技術社群 (英文)](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B/bd-p/AzureAD_B2b) 參與討論、分享您的使用者案例、最佳作法，以及您對 Azure AD B2B 共同作業的意見
+ 
+我們也邀請您前往 [B2B 共同作業構想 (英文)](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B-Ideas/idb-p/AzureAD_B2B_Ideas) 網站提交您的構想和針對未來的功能投票。
+
 
 ### <a name="next-steps"></a>後續步驟
 

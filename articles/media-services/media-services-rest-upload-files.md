@@ -237,7 +237,7 @@ AMS 也可讓您上傳大量資產。 如需詳細資訊，請參閱 [本節](me
     }
 
 ### <a name="get-the-upload-url"></a>取得上傳 URL
-若要接收實際的上傳 URL，請建立 SAS 定位器。 定位器為想要存取資產中之檔案的用戶端定義連線端點的開始時間和類型。 您可以為指定的 AccessPolicy 與 Asset 配對建立多個 Locator 實體，以處理不同的用戶端要求與需求。 這些 Locator 每個都會使用 StartTime 值加上 AccessPolicy 的 DurationInMinutes 值，以判斷可以使用 URL 的時間長度。 如需詳細資訊，請參閱＜定位器＞ [](https://docs.microsoft.com/rest/api/media/operations/locator)。
+若要接收實際的上傳 URL，請建立 SAS 定位器。 定位器為想要存取資產中之檔案的用戶端定義連線端點的開始時間和類型。 您可以為指定的 AccessPolicy 與 Asset 配對建立多個 Locator 實體，以處理不同的用戶端要求與需求。 這些 Locator 每個都會使用 StartTime 值加上 AccessPolicy 的 DurationInMinutes 值，以判斷可以使用 URL 的時間長度。 如需詳細資訊，請參閱 [定位器](https://docs.microsoft.com/rest/api/media/operations/locator)。
 
 SAS URL 具有下列格式：
 

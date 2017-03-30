@@ -41,4 +41,4 @@ Azure 虛擬機器代理程式 (VM 代理程式) 是一個安全、輕量級程�
 >
 
 ## <a name="find-add-update-and-remove-vm-extensions"></a>尋找、加入、更新和移除 VM 擴充功能
-如需這些工作的詳細資訊，請參閱[加入、尋找、更新及移除 Azure VM 延伸模組](../articles/virtual-machines/virtual-machines-windows-classic-manage-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+如需這些工作的詳細資訊，請參閱[加入、尋找、更新及移除 Azure VM 延伸模組](../articles/virtual-machines/windows/classic/manage-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。

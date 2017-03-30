@@ -17,6 +17,7 @@ ms.author: billmath
 translationtype: Human Translation
 ms.sourcegitcommit: 28b5da6098316f8fbe84966e0dac88f5b7d2cb1d
 ms.openlocfilehash: bf7dd55be2b0e6ae43fc148ff36d8d2141a2f12b
+ms.lasthandoff: 12/20/2016
 
 
 ---
@@ -45,7 +46,7 @@ ms.openlocfilehash: bf7dd55be2b0e6ae43fc148ff36d8d2141a2f12b
 1. 從已安裝 Azure AD Connect 的電腦上，以提升權限的模式啟動 PowerShell。
 2. 如果未安裝 Active Directory PowerShell 模組，請使用下列命令安裝：
    
-   `Install-WindowsFeature –Name AD-Domain-Services –IncludeManagementTools`
+   `Add-WindowsFeature RSAT-AD-PowerShell`
 3. 如果「未」安裝 Azure Active Directory PowerShell 模組，請從 [適用於 Windows PowerShell 的 Azure Active Directory 模組 (64 位元版本)](http://go.microsoft.com/fwlink/p/?linkid=236297)下載並安裝。 此元件依存於隨 Azure AD Connect 一併安裝的登入小幫手。
 4. 使用企業系統管理員認證執行下列命令，然後結束 PowerShell。
    
@@ -138,10 +139,5 @@ Description:
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

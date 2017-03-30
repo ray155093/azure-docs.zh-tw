@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 02/23/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 2289c99ddd08c1e7ba356e233180cf59d99de182
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 121be952ea49a8ff47f7e2528adbc87e05359a15
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -81,7 +81,7 @@ adfgetstarted/partitioneddata/year=2014/month=3/000000_0
 - 輸入資料的儲存體帳戶
 - 輸出資料的儲存體帳戶
 
-為了簡化本教學課程，您會將一個儲存體帳戶用於&3; 個用途。 本節中找到的 Azure PowerShell 範例指令碼會執行下列工作：
+為了簡化本教學課程，您會將一個儲存體帳戶用於 3 個用途。 本節中找到的 Azure PowerShell 範例指令碼會執行下列工作：
 
 1. 登入 Azure。
 2. 建立 Azure 資源群組。
@@ -221,7 +221,7 @@ Write-host "`nScript completed" -ForegroundColor Green
 
     ![Azure Data Factory HDInsight 隨選 Hive 活動管線輸出](./media/hdinsight-hadoop-create-linux-clusters-adf/hdinsight-adf-output-year.png)
 
-    如果您向下鑽研清單，您會看到一月、二月和三月的&3; 個資料夾。 而且每個月都有記錄檔。
+    如果您向下鑽研清單，您會看到一月、二月和三月的 3 個資料夾。 而且每個月都有記錄檔。
 
     ![Azure Data Factory HDInsight 隨選 Hive 活動管線輸出](./media/hdinsight-hadoop-create-linux-clusters-adf/hdinsight-adf-output-month.png)
 

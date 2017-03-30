@@ -4,7 +4,7 @@ description: "說明如何設定您的裝置以進行遠端管理，以及如何
 services: storsimple
 documentationcenter: 
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 923377aa-f451-4656-87de-5e95a34a6a2a
 ms.service: storsimple
@@ -12,16 +12,18 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 06/21/2016
+ms.date: 02/27/2017
 ms.author: alkohli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 64f6f245b86d9194a52e40ed226de9960a36f3f9
-ms.openlocfilehash: 63bdf5e5cecbb473a18965e311be06abc72cacc7
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 5760c4a381a10fd1619b0239dd38e41d88f495e5
+ms.openlocfilehash: b916173e127394d3ea06eded36285bdbbf884b12
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="connect-remotely-to-your-storsimple-device"></a>遠端連接至 StorSimple 裝置
+# <a name="connect-remotely-to-your-storsimple-8000-series-device"></a>遠端連線至 StorSimple 8000 系列裝置
+
 ## <a name="overview"></a>概觀
 使用 Windows PowerShell 遠端連線到 StorSimple 裝置。 當您以這種方式連線時，將不會看到功能表。 (只有當您使用裝置上的序列主控台進行連線時，才會看到功能表)。使用 Windows PowerShell 遠端連線到特定的 Runspace。 您也可以指定顯示語言。 
 
@@ -53,7 +55,7 @@ ms.lasthandoff: 11/17/2016
 在 Azure 傳統入口網站中執行下列步驟以啟用透過 HTTP 的遠端管理。
 
 #### <a name="to-enable-remote-management-through-the-azure-classic-portal"></a>透過 Azure 傳統入口網站啟用遠端管理
-1. 針對您的裝置存取 [裝置]  >  [設定]。
+1. 針對您的裝置存取 [裝置] > [設定]。
 2. 向下捲動至 [遠端管理]  區段。
 3. 將 [啟用遠端管理] 設為 [是]。
 4. 您現在可以選擇使用 HTTP 來連接。 (預設是透過 HTTPS 來連線。)請確定已選取 HTTP。
@@ -128,7 +130,7 @@ ms.lasthandoff: 11/17/2016
 在 Azure 傳統入口網站中執行下列步驟以啟用透過 HTTPS 的遠端管理。
 
 #### <a name="to-enable-remote-management-over-https-from-the-azure-classic-portal"></a>從 Azure 傳統入口網站來啟用透過 HTTPS 的遠端管理
-1. 針對您的裝置存取 [裝置]  >  [設定]。
+1. 針對您的裝置存取 [裝置] > [設定]。
 2. 向下捲動至 [遠端管理]  區段。
 3. 將 [啟用遠端管理] 設為 [是]。
 4. 您現在可以選擇使用 HTTPS 來連線。 (預設是透過 HTTPS 來連線。)請確定已選取 HTTPS。 

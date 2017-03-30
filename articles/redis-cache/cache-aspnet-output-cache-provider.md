@@ -15,9 +15,9 @@ ms.workload: tbd
 ms.date: 02/14/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 70341f4a14ee807a085931c3480a19727683e958
-ms.openlocfilehash: ce0f2ddb42e19ee33767878797188e924f5cd1e9
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: 845f25637a0e48460fc76c1ee36060274b3cec38
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -27,15 +27,15 @@ Redis 輸出快取提供者為輸出快取資料的程序外儲存體機制。 �
 若要使用 Redis 輸出快取提供者，請先設定您的快取，然後使用「Redis 輸出快取提供者 NuGet 封裝」設定 ASP.NET 應用程式。 本主題提供為使用 Redis 輸出快取提供者而進行應用程式設定的相關指引。 如需建立和設定 Azure Redis 快取執行個體的相關詳細資訊，請參閱 [建立快取](cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache)。
 
 ## <a name="store-aspnet-page-output-in-the-cache"></a>將 ASP.NET 頁面輸出儲存在快取中
-若要在 Visual Studio 中使用「Redis 輸出快取提供者 NuGet 套件」來設定用戶端應用程式，請在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 套件]。
+若要在 Visual Studio 中使用「Redis 快取工作階段狀態 NuGet 套件」來設定用戶端應用程式，請依序按一下 [工具] 功能表中的 [NuGet 套件管理員] 和 [套件管理器主控台]。
 
-![Azure Redis 快取管理 NuGet 封裝](./media/cache-aspnet-output-cache-provider/redis-cache-manage-nuget-menu.png)
+從 `Package Manager Console` 視窗執行下列命令。
+    
+```
+Install-Package Microsoft.Web.RedisOutputCacheProvider
+```
 
-在搜尋文字方塊中輸入 **RedisOutputCacheProvider**，從結果中選取後按一下 [安裝]。
-
-![Azure Redis 快取輸出快取提供者](./media/cache-aspnet-output-cache-provider/redis-cache-page-output-provider.png)
-
-「Redis 輸出快取提供者 NuGet 封裝」對「StackExchange.Redis.StrongName 封裝」有相依性。 如果 StackExchange.Redis.StrongName 封裝不在專案中，代表已經安裝。
+「Redis 輸出快取提供者 NuGet 封裝」對「StackExchange.Redis.StrongName 封裝」有相依性。 如果 StackExchange.Redis.StrongName 封裝不在專案中，代表已經安裝。 如需「Redis 輸出快取提供者 NuGet 套件」的詳細資訊，請參閱 [RedisOutputCacheProvider (英文)](https://www.nuget.org/packages/Microsoft.Web.RedisOutputCacheProvider/) NuGet 頁面。
 
 >[!NOTE]
 >除了強式名稱的 StackExchange.Redis.StrongName 封裝外，另外還有非強式名稱版本的 StackExchange.Redis。 如果您的專案使用非強式名稱的 StackExchange.Redis 版本，您必須將它解除安裝，否則專案中會發生命名衝突。 如需這些封裝的相關詳細資訊，請參閱 [設定 .NET 快取用戶端](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients)。

@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 03/14/2017
+ms.date: 03/20/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 2de833df26de9a9e160dd0cfcc1589eb0ebb7d34
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 5bded9c15ef6ec5464952d533c6681801f137749
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -51,6 +51,10 @@ ms.lasthandoff: 03/15/2017
 </table></br>
 
 ## <a name="release-notes"></a>版本資訊
+
+### <a name="a-name11221122httpswwwnugetorgpackagesmicrosoftazuredocumentdb1122"></a><a name="1.12.2"/>[1.12.2 (英文)](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.12.2)
+* 修正偶爾會造成「WebException: 無法解析遠端名稱」的錯誤。
+* 透過針對 ReadDocumentAsync API 新增多載，以新增直接讀取具類型文件的支援。
 
 ### <a name="a-name11211121httpswwwnugetorgpackagesmicrosoftazuredocumentdb1121"></a><a name="1.12.1"/>[1.12.1](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.12.1)
 * 新增彙總查詢的 LINQ 支援 (COUNT、MIN、MAX、SUM 和 AVG)。
@@ -212,6 +216,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [1.12.2](#1.12.2) |2017 年 3 月 20 日 |--- |
 | [1.12.1](#1.12.1) |2017 年 3 月 14 日 |--- |
 | [1.12.0](#1.12.0) |2017 年 2 月 15 日 |--- |
 | [1.11.4](#1.11.4) |2017 年 2 月 6 日 |--- |

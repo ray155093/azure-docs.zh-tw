@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 01/24/2017
+ms.date: 03/28/2017
 ms.author: jeffstok
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 561a3b3f9c90274cfff95ab27c6cd745582f15e0
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -50,10 +51,5 @@ ms.openlocfilehash: 561a3b3f9c90274cfff95ab27c6cd745582f15e0
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

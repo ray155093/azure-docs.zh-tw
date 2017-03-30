@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/07/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: c18b0eefb2d8bb43416e15c5b91cf10827f90089
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 4f9f86c2cc106aa96f27293a43cd784e2fb6fe76
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -68,7 +68,7 @@ ms.lasthandoff: 03/15/2017
     * **進階設定** - 選取以開啟 [進階] 刀鋒視窗，以進行下列設定︰
         * **虛擬網路** - 指定所需的虛擬網路。
         * **子網路** - 指定所需的子網路。    
-        * **IP 位址組態** - 指定您想要公用、私人或共用 IP 位址。 如需共用 IP 位址的相關資訊，請參閱＜了解 Azure DevTest Labs 中的共用 IP 位址＞。
+        * **IP 位址組態** - 指定您想要公用、私人或共用 IP 位址。 如需共用 IP 位址的詳細資訊，請參閱[了解 Azure DevTest Labs 中的共用 IP 位址](./devtest-lab-shared-ip.md)。
         * **允許宣告此機器** -「允許宣告」機器表示建立機器時不會指派擁有權。 實驗室使用者將能夠在實驗室的刀鋒視窗中，取得 (「宣告」) 機器的擁有權。     
     * **映像** - 這個欄位會顯示您在前一個刀鋒視窗上選取的基本映像名稱。 
      

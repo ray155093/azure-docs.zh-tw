@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 09/21/2016
+ms.date: 03/14/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 17de66693661e56e9b456581c97a47cfb91cd886
-ms.openlocfilehash: bf08cc7ebb56aaf77c1718545ed4374f47933975
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 2dc56240894666b2fa24baf4902c3097e97d656e
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: bf08cc7ebb56aaf77c1718545ed4374f47933975
 ## <a name="cluster-deployment-options"></a>叢集部署選項
 您可以使用下列方法來建立包含或不含作業排程器的 Linux RDMA 叢集。
 
-* **Azure CLI 指令碼**：如本文稍後所示，請使用 [Azure 命令列介面](../xplat-cli-install.md) (CLI) 來處理支援 RDMA 之 VM 叢集的部署指令碼。 「服務管理」模式下的 CLI 會以傳統部署模型循序建立叢集節點，因此如果部署許多計算節點，可能需要花費數分鐘的時間。 使用傳統部署模型時，若要啟用 RDMA 網路連線，請將 VM 部署在相同的雲端服務中。
+* **Azure CLI 指令碼**：如本文稍後所示，請使用 [Azure 命令列介面](../cli-install-nodejs.md) (CLI) 來處理支援 RDMA 之 VM 叢集的部署指令碼。 「服務管理」模式下的 CLI 會以傳統部署模型循序建立叢集節點，因此如果部署許多計算節點，可能需要花費數分鐘的時間。 使用傳統部署模型時，若要啟用 RDMA 網路連線，請將 VM 部署在相同的雲端服務中。
 * **Azure Resource Manager 範本**：您也可以使用 Resource Manager 部署模型來部署支援 RDMA 的 VM 叢集，以連線到 RDMA 網路。 您可以[建立自己的範本](../resource-group-authoring-templates.md)，或檢查 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)，取得由 Microsoft 或社群貢獻的範本以部署想要的方案。 資源管理員範本可以提供快速可靠的方式來部署 Linux 叢集。 使用 Resource Manager 部署模型時，若要啟用 RDMA 網路連線，請將 VM 部署在相同的可用性設定組中。
 * **HPC Pack**：在 Azure 中建立 Microsoft HPC Pack 叢集，並新增支援 RDMA 的計算節點來執行支援的 Linux 散發套件，以存取 RDMA 網路。 如需詳細資訊，請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
@@ -38,7 +39,7 @@ ms.openlocfilehash: bf08cc7ebb56aaf77c1718545ed4374f47933975
 下列步驟示範如何使用 Azure CLI 從 Azure Marketplace 部署 SUSE Linux Enterprise Server (SLES) 12 SP1 HPC VM、進行自訂，以及建立自訂 VM 映像。 然後，您可以使用映像來處理支援 RDMA 之 VM 叢集的部署指令碼。
 
 > [!TIP]
-> 請使用類似的步驟，根據 Azure Marketplace 中其他支援的 HPC 映像來部署支援 RDMA 的 VM 叢集。 如所述，某些步驟可能會稍有不同。 例如，這當中只有部分映像中有包含及設定 Intel MPI。 並且，如果您部署的是 SLES 12 HPC VM，而不是 SLES 12 SP1 HPC VM，則必須更新 RDMA 驅動程式。 如需詳細資訊，請參閱[關於 A8、A9、A10 和 A11 計算密集執行個體](virtual-machines-linux-a8-a9-a10-a11-specs.md#rdma-driver-updates-for-sles-12)。
+> 請使用類似的步驟，根據 Azure Marketplace 中以 CentOS 為基礎的 HPC 映像來部署支援 RDMA 的 VM 叢集。 如所述，某些步驟會稍有不同。 
 >
 >
 
@@ -47,7 +48,7 @@ ms.openlocfilehash: bf08cc7ebb56aaf77c1718545ed4374f47933975
 * **Azure 訂用帳戶**：如果您沒有訂用帳戶，只需要幾分鐘就可以建立[免費帳戶](https://azure.microsoft.com/free/)。 針對較大的叢集，請考慮隨用隨付訂用帳戶或其他購買選項。
 * **VM 大小可用性**：下列執行個體大小有支援 RDMA︰H16r、H16mr、A8 及 A9。 如需了解 Azure 區域中的可用性，請查看 [依區域提供的產品](https://azure.microsoft.com/regions/services/) 。
 * **核心配額**：您可能需要增加核心配額，才能部署計算密集型 VM 的叢集。 例如，如本文所示，如果您想要部署 8 個 A9 VM，將至少需要 128 個核心。 您的訂用帳戶可能也會限制您可以在特定 VM 大小系列 (包括 H 系列) 中部署的核心數目。 若要要求增加配額，可免費[開啟線上客戶支援要求](../azure-supportability/how-to-create-azure-support-request.md)。
-* **Azure CLI**：[安裝](../xplat-cli-install.md) Azure CLI 並從用戶端電腦[連接到您的 Azure 訂用帳戶](../xplat-cli-connect.md)。
+* **Azure CLI**：[安裝](../cli-install-nodejs.md) Azure CLI 並從用戶端電腦[連接到您的 Azure 訂用帳戶](../xplat-cli-connect.md)。
 
 ### <a name="provision-an-sles-12-sp1-hpc-vm"></a>佈建 SLES 12 SP1 HPC VM
 使用 Azure CLI 登入 Azure 之後，請執行 `azure config list` 來確認輸出顯示服務管理模式。 如果不是，請執行此命令來設定模式：
@@ -74,7 +75,7 @@ ms.openlocfilehash: bf08cc7ebb56aaf77c1718545ed4374f47933975
 其中：
 
 * 大小 (此範例中為 A9) 是其中一個支援 RDMA 的 VM 大小。
-* 外部 SSH 連接埠號碼 (在此範例中為&22;，也就是 SSH 的預設值) 是任何有效的連接埠號碼。 內部 SSH 連接埠號是設定為 22。
+* 外部 SSH 連接埠號碼 (在此範例中為 22，也就是 SSH 的預設值) 是任何有效的連接埠號碼。 內部 SSH 連接埠號是設定為 22。
 * 在 location 所指定的 Azure 區域中會建立一個新雲端服務。 請指定一個有提供您選擇之 VM 大小的位置。
 * 若為 SUSE 優先支援方案 (另外收費)，SLES 12 SP1 映像名稱目前可以是下列其中一個選項： 
 
@@ -122,7 +123,7 @@ VM 完成佈建之後，使用 VM 的外部 IP 位址 (或 DNS 名稱) 以及您
 
         cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
-    在 ~/.ssh 目錄中，編輯或建立組態檔。 請提供您打算在 Azure 中使用的私人網路 IP 位址範圍 (在本範例中為&10;.32.0.0/16)：
+    在 ~/.ssh 目錄中，編輯或建立組態檔。 請提供您打算在 Azure 中使用的私人網路 IP 位址範圍 (在本範例中為 10.32.0.0/16)：
 
         host 10.32.0.*
         StrictHostKeyChecking no
@@ -379,9 +380,4 @@ mpirun -hosts <host1>,<host2> -ppn 1 -n 2 -env I_MPI_FABRICS=dapl -env I_MPI_DAP
 * 在 Linux 叢集上部署並執行 Linux MPI 應用程式。
 * 如需 Intel MPI 的指引，請參閱 [Intel MPI Library 文件](https://software.intel.com/en-us/articles/intel-mpi-library-documentation/)。
 * 請嘗試 [快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/intel-lustre-clients-on-centos) 以使用 CentOS 型 HPC 映像建立 Intel Lustre 叢集。 如需詳細資訊，請參閱[在 Microsoft Azure 上部署 Lustre 的 Intel 雲端版本](https://blogs.msdn.microsoft.com/arsen/2015/10/29/deploying-intel-cloud-edition-for-lustre-on-microsoft-azure/)。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

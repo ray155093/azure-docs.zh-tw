@@ -13,12 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/14/2016
+ms.date: 03/20/2017
 ms.author: garye;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: fa3de6226b59c4f80e71c55a0aad20c19693642d
-ms.openlocfilehash: ffb12a5a999372951827d31e7e24c6b38473cb35
-ms.lasthandoff: 01/28/2017
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 18010864160ceb2d76aea37196e6944bbe426457
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -35,6 +35,8 @@ ms.lasthandoff: 01/28/2017
 3. 在 [ **上傳新的資料集** ] 對話方塊中，瀏覽至您要上傳的檔案。
 4. 輸入名稱、識別資料類型，然後選擇性地輸入說明。 建議輸入說明 - 它可以讓您記錄資料的任何特性，您會希望在未來使用資料時記住這些特性。
 5. 核取方塊 [ **這是現有資料集的新版本** ] 可讓您使用新資料更新現有資料集。 按一下此核取方塊然後輸入現有資料集的名稱即可。
+
+![上傳新的資料集](media/machine-learning-import-data-from-local-file/upload-dataset.png)
 
 在上傳期間，您會看見訊息，指出您的檔案正在上傳。 上傳時間取決於資料大小和連接至服務的速度。 如果您知道上傳檔案將耗費很長的時間，您可以在等待時在 ML Studio 中執行其他動作。 但是，關閉瀏覽器會導致資料上傳失敗。
 

@@ -14,12 +14,12 @@ ms.devlang: CLI
 ms.topic: article
 ms.tgt_pltfrm: sql-database
 ms.workload: database
-ms.date: 03/14/2017
+ms.date: 03/16/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: 4cfc4ab09f7adead289cb949373730bffcfa13ec
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: e022c24b84b0ce10c30ca479c67018b6f60e606a
+ms.lasthandoff: 03/17/2017
 
 ---
 
@@ -27,7 +27,7 @@ ms.lasthandoff: 03/10/2017
 
 此範例 CLI 指令碼會在查詢單一 Azure SQL Database 的大小資訊後，將其調整為不同的效能等級。 
 
-在執行這個指令碼之前，請確定您已使用 `az login` 命令建立與 Azure 的連線。 
+您可以視需要使用 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)中的指示來安裝 Azure CLI，然後執行 `az login` 來建立與 Azure 的連線。
 
 這個範例適用於 Bash 殼層。 如需在 Windows 上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../../virtual-machines/virtual-machines-windows-cli-options.md)。
 

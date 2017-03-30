@@ -1,6 +1,6 @@
 ---
 title: "從一般化 VHD 建立 VM | Microsoft Docs"
-description: "了解如何使用 Resource Manager 部署模型中的 Azure PowerShell，從一般化 VHD 映像建立 Windows 虛擬機器。"
+description: "了解如何使用 Azure PowerShell，從儲存體帳戶中的一般化 VHD 映像建立 Windows 虛擬機器。"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -13,20 +13,22 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 03/21/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: cb7f3a1bf44a18141294ab03677f7e733177c1b8
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: 12832620d94226b6cfe391471c22fad2d1e3cf7e
+ms.lasthandoff: 03/22/2017
 
 
 ---
-# <a name="create-a-vm-from-a-generalized-vhd-image"></a>從一般化 VHD 映像建立 VM
-一般化 VHD 映像已使用 [Sysprep](virtual-machines-windows-generalize-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 移除您所有的個人帳戶資訊。 您可以藉由在內部部署 VM 上執行 Sysprep，然後[將 VHD 上傳至 Azure](virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，或藉由在現有 Azure VM 上執行 Sysprep，然後[複製 VHD](virtual-machines-windows-vhd-copy.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以建立一般化 VHD。
+# <a name="create-a-vm-from-a-generalized-vhd-image-in-a-storage-account"></a>從儲存體帳戶中的一般化 VHD 映像建立 VM 
 
-如果您想要從特殊化 VHD 建立 VM，請參閱[從特殊化 VHD 建立 VM](virtual-machines-windows-create-vm-specialized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+本主題將說明如何從儲存體帳戶中的一般化非受控磁碟建立 VM。 一般化 VHD 映像已使用 [Sysprep](virtual-machines-windows-generalize-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 移除您所有的個人帳戶資訊。 您可以藉由在內部部署 VM 上執行 Sysprep，然後[將 VHD 上傳至 Azure](virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，或藉由在現有 Azure VM 上執行 Sysprep，然後[複製 VHD](virtual-machines-windows-vhd-copy.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以建立一般化 VHD。
 
-從一般化 VHD 建立 VM 最快速的方式是使用[快速入門範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-from-user-image)。 
+如果您想要從儲存體帳戶中的特殊化 VHD 建立 VM，請參閱[從特殊化 VHD 建立 VM](virtual-machines-windows-create-vm-specialized.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+
+如需使用儲存體帳戶中的受控磁碟而非磁碟的相關資訊，請參閱[建立受控 VM 映像](virtual-machines-windows-capture-image-resource.md)和[從受控映像建立 VM](virtual-machines-windows-create-vm-generalized-managed.md)。
 
 ## <a name="prerequisites"></a>必要條件
 如果您要使用從內部部署 VM 上傳的 VHD (例如使用 Hyper-V 建立的 VHD)，您應該確定您已遵循[準備要上傳至 Azure 的 Windows VHD](virtual-machines-windows-prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 中的指示。 
@@ -34,6 +36,7 @@ ms.openlocfilehash: cb7f3a1bf44a18141294ab03677f7e733177c1b8
 您必須先將上傳的 VHD 和現有 Azure VM VHD 一般化，然後才可以使用此方法建立 VM。 如需詳細資訊，請參閱[使用 Sysprep 將 Windows 虛擬機器一般化](virtual-machines-windows-generalize-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 
 ## <a name="set-the-uri-of-the-vhd"></a>設定 VHD 的 URI
+
 要使用之 VHD 的 URI 格式如下：https://**mystorageaccount**.blob.core.windows.net/**mycontainer**/**MyVhdName**.vhd。 在此範例中，名為 **myVHD** 的 VHD 位於容器 **mycontainer** 中的儲存體帳戶 **mystorageaccount**。
 
 ```powershell
@@ -171,10 +174,5 @@ $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $rgName -Name $vnetName
 
 ## <a name="next-steps"></a>後續步驟
 若要使用 Azure PowerShell 管理新的虛擬機器，請參閱 [使用 Azure Resource Manager 與 PowerShell 管理虛擬機器](virtual-machines-windows-ps-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

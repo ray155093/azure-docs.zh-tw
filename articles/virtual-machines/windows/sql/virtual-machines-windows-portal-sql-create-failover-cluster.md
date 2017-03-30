@@ -14,11 +14,12 @@ ms.custom: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 01/11/2017
+ms.date: 03/17/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: b84e07b26506149cf9475491b32b9ff3ea9ae80d
-ms.openlocfilehash: 4d078c3307c5f1a567f580ae5baaa21fa915e90a
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 6f0fe474787efc15db5c75266cde369725832aab
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -33,10 +34,10 @@ ms.openlocfilehash: 4d078c3307c5f1a567f580ae5baaa21fa915e90a
 
 上圖顯示︰
 
-- Windows Server 容錯移轉叢集 (WSFC) 中的兩部 Azure 虛擬機器。 WSFC 內的虛擬機器也稱為「叢集節點」或「節點」。
+- 兩部位於 Windows 容錯移轉叢集中的 Azure 虛擬機器。 位於容錯移轉叢集中的虛擬機器也稱為「叢集節點」或「節點」。
 - 每部虛擬機器有兩個以上的資料磁碟。
 - S2D 會同步處理資料磁碟上的資料，並將已同步處理的儲存體當做儲存體集區使用。 
-- 儲存體集區會向 WSFC 提供叢集共用磁碟區 (CSV)。
+- 儲存體集區會向容錯移轉提供叢集共用磁碟區 (CSV)。
 - SQL Server FCI 叢集角色會針對資料硬碟使用 CSV。 
 - 保留 SQL Server FCI IP 位址的 Azure Load Balancer。
 - 保留所有資源的 Azure 可用性設定組。
@@ -76,11 +77,11 @@ S2D 支援兩種類型的架構 - 交集和超交集。 本文件中的架構為
 - 擁有在 Azure 虛擬機器中建立物件之權限的帳戶。
 - Azure 虛擬網路和子網路，且具有足夠 IP 位址空間以容納下列元件：
    - 兩部虛擬機器。
-   - WSFC IP 位址。
+   - 容錯移轉叢集的 IP 位址。
    - 每個 FCI 上一個 IP 位址。
 - 設定 Azure 網路上的 DNS，並指向網域控制站。 
 
-備妥這些先決條件後，您便可以繼續建置您的 WSFC。 第一步是建立虛擬機器。 
+備妥這些先決條件後，便可繼續建置您的容錯移轉叢集。 第一步是建立虛擬機器。 
 
 ## <a name="step-1-create-virtual-machines"></a>步驟 1：建立虛擬機器
 
@@ -135,9 +136,9 @@ S2D 支援兩種類型的架構 - 交集和超交集。 本文件中的架構為
       - **{BYOL} Windows Server Datacenter 2016 上的 SQL Server 2016 Standard 版本** 
    
    >[!IMPORTANT]
-   >建立虛擬機器後，請移除預先安裝的獨立 SQL Server 執行個體。 設定 WSFC 與 S2D 後，您將使用預先安裝的 SQL Server 媒體來建立 SDL Server FCI。 
+   >建立虛擬機器後，請移除預先安裝的獨立 SQL Server 執行個體。 設定容錯移轉叢集與 S2D 後，您將使用預先安裝的 SQL Server 媒體來建立 SQL Server FCI。 
 
-   或者，您也可以只將 Azure Marketplace 映像與作業系統搭配使用。 設定 WSFC 與 S2D 後，請選擇 **Windows Server 2016 Datacenter** 映像並安裝 SQL Server FCI。 此映像不包含 SQL Server 安裝媒體。 將安裝媒體放置於可在每個伺服器上執行 SQL Server 安裝的位置。
+   或者，您也可以只將 Azure Marketplace 映像與作業系統搭配使用。 設定容錯移轉叢集與 S2D 後，請選擇 **Windows Server 2016 Datacenter** 映像並安裝 SQL Server FCI。 此映像不包含 SQL Server 安裝媒體。 將安裝媒體放置於可在每個伺服器上執行 SQL Server 安裝的位置。
 
 1. Azure 建立虛擬機器後，請透過 RDP 連接至每部虛擬機器。 
 
@@ -179,15 +180,15 @@ S2D 支援兩種類型的架構 - 交集和超交集。 本文件中的架構為
 
 1. [將虛擬機器新增至既存的網域](virtual-machines-windows-portal-sql-availability-group-prereq.md#joinDomain)。
 
-建立並設定虛擬機器後，您便可設定 WSFC。
+建立並設定虛擬機器後，您便可設定容錯移轉叢集。
 
-## <a name="step-2-configure-the-windows-server-failover-cluster-wsfc-with-s2d"></a>步驟 2：透過 S2D 設定 Windows Server 容錯移轉叢集 (WSFC)
+## <a name="step-2-configure-the-windows-failover-cluster-with-s2d"></a>步驟 2：透過 S2D 設定 Windows 容錯移轉叢集
 
-下一步是透過 S2D 設定 WSFC。 在此步驟中，您將執行下列子步驟：
+下一步是透過 S2D 設定容錯移轉叢集。 在此步驟中，您將執行下列子步驟：
 
 1. 新增 Windows 容錯移轉叢集功能
 1. 驗證叢集
-1. 建立 WSFC
+1. 建立容錯移轉叢集
 1. 建立雲端見證
 1. 新增儲存體
 
@@ -240,34 +241,34 @@ S2D 支援兩種類型的架構 - 交集和超交集。 本文件中的架構為
    Test-Cluster –Node ("<node1>","<node2>") –Include "Storage Spaces Direct", "Inventory", "Network", "System Configuration"
    ```
 
-驗證叢集後，請建立 WSFC。
+驗證叢集後，請建立容錯移轉叢集。
 
-### <a name="create-the-wsfc"></a>建立 WSFC
+### <a name="create-the-failover-cluster"></a>建立容錯移轉叢集
 
-此指南參考[建立 WSFC](http://technet.microsoft.com/windows-server-docs/storage/storage-spaces/hyper-converged-solution-using-storage-spaces-direct#step-32-create-a-cluster)。
+本指南會參考[建立容錯移轉叢集](http://technet.microsoft.com/windows-server-docs/storage/storage-spaces/hyper-converged-solution-using-storage-spaces-direct#step-32-create-a-cluster)。
 
-若要建立 WSFC，您需要： 
+若要建立容錯移轉叢集，您需要： 
 - 成為叢集節點的虛擬機器名稱。 
-- WSFC 名稱。 使用有效的 
-- WSFC 的 IP 位址。 您可以使用與叢集節點一樣，沒有在 Azure 虛擬網路和子網路上用過的 IP 位址。 
+- 容錯移轉叢集的名稱
+- 容錯移轉叢集的 IP 位址。 您可以使用與叢集節點一樣，沒有在 Azure 虛擬網路和子網路上用過的 IP 位址。 
 
-其後的 PowerShell 會建立 WSFC。 使用節點名稱 (虛擬機器名稱) 和 Azure VNET 中可用的 IP 位址來更新指令碼： 
+下列 PowerShell 會建立容錯移轉叢集。 使用節點名稱 (虛擬機器名稱) 和 Azure VNET 中可用的 IP 位址來更新指令碼： 
 
 ```PowerShell
-New-Cluster -Name <WSFC-Name> -Node ("<node1>","<node2>") –StaticAddress <n.n.n.n> -NoStorage
+New-Cluster -Name <FailoverCluster-Name> -Node ("<node1>","<node2>") –StaticAddress <n.n.n.n> -NoStorage
 ```   
 
 ### <a name="create-a-cloud-witness"></a>建立雲端見證
 
 雲端見證儲存在 Azure 儲存體 Blob 中，是一種新型的叢集仲裁見證。 如有雲端見證，便不再需要使用獨立的 VM 來裝載見證共用。
 
-1. [建立 WSFC 的雲端見證](http://technet.microsoft.com/windows-server-docs/failover-clustering/deploy-cloud-witness)。 
+1. [建立容錯移轉叢集的雲端見證](http://technet.microsoft.com/windows-server-docs/failover-clustering/deploy-cloud-witness)。 
 
 1. 建立 Blob 容器。 
 
 1. 儲存存取金鑰和容器 URL。
 
-1. 設定 WSFC 叢集仲裁見證。 請在 UI 中參閱 [在使用者介面中設定 WSFC 叢集仲裁見證] (http://technet.microsoft.com/windows-server-docs/failover-clustering/deploy-cloud-witness#to-configure-cloud-witness-as-a-quorum-witness)。
+1. 設定容錯移轉叢集的叢集仲裁見證。 請在 UI 中參閱 [在使用者介面中設定 WSFC 叢集仲裁見證] (http://technet.microsoft.com/windows-server-docs/failover-clustering/deploy-cloud-witness#to-configure-cloud-witness-as-a-quorum-witness)。
 
 ### <a name="add-storage"></a>新增儲存體
 
@@ -297,13 +298,13 @@ S2D 的磁碟需為空白且不含分割區或其他資料。 若要清理磁碟
 
    ![ClusterSharedVolume](./media/virtual-machines-windows-portal-sql-create-failover-cluster/15-cluster-shared-volume.png)
 
-## <a name="step-3-test-wsfc-failover"></a>步驟 3：測試 WSFC 容錯移轉
+## <a name="step-3-test-failover-cluster-failover"></a>步驟 3︰測試容錯移轉叢集的容錯移轉
 
-在容錯移轉叢集管理員中，請確認您可以將儲存體資源移至其他叢集節點。 若您可以透過**容錯移轉叢集管理員**連接至 WSFC，且能將儲存體從一個節點移到另一個，您便可以設定 FCI。 
+在容錯移轉叢集管理員中，請確認您可以將儲存體資源移至其他叢集節點。 如果您可以透過**容錯移轉叢集管理員**連接至容錯移轉叢集，並且能將儲存體從一個節點移到另一個，則您可以設定 FCI。 
 
 ## <a name="step-4-create-sql-server-fci"></a>步驟 4：建立 SDL Server FCI
 
-設定 WSFC 與所有叢集元件 (包括儲存體) 後，您便可以建立 SQL Server FCI。 
+設定容錯移轉叢集與所有叢集元件 (包括儲存體) 後，您可以建立 SQL Server FCI。 
 
 1. 透過 RDP 連接至第一部虛擬機器。 
 
@@ -473,10 +474,5 @@ S2D 的磁碟需為空白且不含分割區或其他資料。 若要清理磁碟
 [儲存空間直接存取概觀](http://technet.microsoft.com/windows-server-docs/storage/storage-spaces/storage-spaces-direct-overview)
 
 [適用於 S2D 的 SQL Server 支援](https://blogs.technet.microsoft.com/dataplatforminsider/2016/09/27/sql-server-2016-now-supports-windows-server-2016-storage-spaces-direct/)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

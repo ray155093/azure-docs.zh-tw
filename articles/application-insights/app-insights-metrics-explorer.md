@@ -1,5 +1,5 @@
 ---
-title: "在 Application Insights 中探索度量 | Microsoft Docs"
+title: "在 Azure Application Insights 中探索計量 | Microsoft Docs"
 description: "如何解譯計量瀏覽器上的圖表，以及如何自訂計量瀏覽器刀鋒視窗。"
 services: application-insights
 documentationcenter: 
@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/08/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: ee759149df038ac08f0d5987c3577454a81999db
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 8005e1c485b9ce2e19e134a12206058ef54a5a8b
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -195,6 +195,10 @@ ms.lasthandoff: 03/10/2017
     如果您想要在不同的圖表上設定不同的篩選，請在不同的刀鋒視窗中建立圖表，將它們儲存為個別的最愛圖表。 如果想要，您可以將這些圖表釘選到儀表板，以便並排查看兩者。
 * 如果您依據計量上未定義的屬性將圖表分組，則圖表上不會有任何資料。 請嘗試清除 [分組依據]，或選擇不同的群組屬性。
 * 效能資料 (CPU、IO 速率等等) 適用於 Java Web 服務、Windows 傳統型應用程式、[IIS Web 應用程式和服務 (若您安裝狀態監視器)](app-insights-monitor-performance-live-website-now.md) 和 [Azure 雲端服務](app-insights-azure.md)。 它不適用於 Azure 網站。
+
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
 
 ## <a name="next-steps"></a>後續步驟
 * [使用 Application Insights 監視使用情況](app-insights-overview-usage.md)

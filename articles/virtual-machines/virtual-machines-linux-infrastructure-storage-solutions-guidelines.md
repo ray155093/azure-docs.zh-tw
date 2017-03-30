@@ -13,13 +13,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 03/17/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
-ms.openlocfilehash: 2aba475cd93e4d3ec37d2eb70f7ba06bc317c222
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 6b36c479c987c801d34f90a4300b7221354b9615
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -32,6 +32,7 @@ ms.lasthandoff: 03/03/2017
 ## <a name="implementation-guidelines-for-storage"></a>儲存體的實作指導方針
 决策：
 
+* 您計劃使用 Azure 受控磁碟或非受控磁碟？
 * 您是否需要針對工作負載使用標準或進階儲存體？
 * 您是否需要進行磁碟等量以建立大於 1023 GB 的磁碟？
 * 您是否需要進行磁碟等量以獲得工作負載的最佳 I/O 效能？
@@ -44,6 +45,8 @@ ms.lasthandoff: 03/03/2017
 
 ## <a name="storage"></a>儲存體
 Azure 儲存體是部署和管理虛擬機器 (VM) 和應用程式的重要部分。 Azure 儲存體提供服務來儲存檔案資料、非結構化資料和訊息，同時也是支援 VM 的基礎結構的一部分。
+
+[Azure 受控磁碟](../storage/storage-managed-disks-overview.md)會在幕後為您管理儲存體。 利用非受控磁碟，您可以建立儲存體帳戶來保存 Azure VM 的磁碟 (VHD 檔案)。 相應增加時，您必須確定已建立其他儲存體帳戶，讓您不會超過任何磁碟的儲存體 IOPS 限制。 由於受控磁碟會處理儲存體，您不再受限於儲存體帳戶限制 (例如 20,000 IOPS / 帳戶)。 您也不再需要將自訂映像 (VHD 檔案) 複製到多個儲存體帳戶。 您可以集中管理它們 (每個 Azure 區域一個儲存體帳戶)，並利用它們在一個訂用帳戶中建立數百個 VM。 我們建議您針對新的部署使用受控磁碟。
 
 有兩種可供支援 VM 使用的儲存體帳戶：
 
@@ -81,7 +84,9 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 如需詳細資訊，請參閱[在 Linux VM 上設定 LVM](virtual-machines-linux-configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ## <a name="multiple-storage-accounts"></a>多個儲存體帳戶
-設計您的 Azure 儲存體環境時，隨著您部署的 VM 數目增加，您可以善用多個儲存體帳戶。 這個方式可協助將 I/O 分散到基礎 Azure 儲存體基礎結構上，以維持 VM 和應用程式的最佳效能。 當您設計要部署的應用程式時，請考慮每個 VM 的 I/O 需求，並使那些 VM 在 Azure 儲存體帳戶之間取得平衡。 請盡量避免只將所有高 I/O 需求的 VM 分配到一個或兩個儲存體帳戶上。
+本節不適用 [Azure 受控磁碟](../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，因為您不會建立個別的儲存體帳戶。 
+
+針對非受控磁碟設計您的 Azure 儲存體環境時，隨著您部署的 VM 數目增加，您可以善用多個儲存體帳戶。 這個方式可協助將 I/O 分散到基礎 Azure 儲存體基礎結構上，以維持 VM 和應用程式的最佳效能。 當您設計要部署的應用程式時，請考慮每個 VM 的 I/O 需求，並使那些 VM 在 Azure 儲存體帳戶之間取得平衡。 請盡量避免只將所有高 I/O 需求的 VM 分配到一個或兩個儲存體帳戶上。
 
 如需不同 Azure 儲存體選項的 I/O 功能以及一些建議最大值的詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](../storage/storage-scalability-targets.md)。
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 30ec6f45da114b6c7bc081f8a2df46f037de61fd
-ms.openlocfilehash: 3d78af41bbe13bcec9336452110a857d114ad006
-ms.lasthandoff: 12/20/2016
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: 7c1f235343074ec11c635097f2b094a10f3fe781
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -119,7 +119,7 @@ ms.lasthandoff: 12/20/2016
 3. API 範圍
 4. 作業範圍
 
-系統會根據 `base` 元素的位置 (若有的話)，評估其中的陳述式。
+系統會根據 `base` 元素的位置 (若有的話)，評估其中的陳述式。 全域原則沒有父系原則，在全域原則中使用 `<base>` 元素沒有任何作用。
 
 例如，若您在全域層級中有一個原則，還有一個為 API 設定的原則，則每次使用該特定 API 時，皆會套用這兩個原則。 API 管理可透過 base 元素來指定組合式原則陳述式的固定順序。 
 
@@ -133,11 +133,9 @@ ms.lasthandoff: 12/20/2016
 </policies>
 ```
 
-在上述的原則定義範例中，`cross-domain` 陳述式會在任何更高層級的原則執行之前執行，而這些原則後面又接著 `find-and-replace` 原則。
+在上述的原則定義範例中，`cross-domain` 陳述式會在任何更高層級的原則執行之前執行，而這些原則後面又接著 `find-and-replace` 原則。 
 
-若原則陳述式中重覆出現相同的原則，將套用最近評估的原則。 您可以藉此覆寫在較高範圍定義的原則。 若要在原則編輯器中查看位於目前範圍的原則，請按一下 [ **重新計算所選取範圍的有效原則**]。
-
-請注意：全域原則沒有父原則，因此在全域原則中使用 `<base>` 元素無法發揮任何作用。 
+若要在原則編輯器中查看位於目前範圍的原則，請按一下 [ **重新計算所選取範圍的有效原則**]。
 
 ## <a name="next-steps"></a>後續步驟
 請查看有關原則運算式的下列影片。

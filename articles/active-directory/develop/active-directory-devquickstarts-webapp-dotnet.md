@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: 4094759caba015b9d609b616d5099a6e109bf1d4
-ms.openlocfilehash: 6ac0c3b2893b96f93bf2aeadd61b263654957477
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 43ba592b6294a9a75a20dacd81953a77c241b89f
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -46,8 +46,8 @@ Azure Active Directory (Azure AD) 透過以幾行程式碼提供單一登入和�
 5. 依照提示來建立新的「Web 應用程式和/或 Web API」。
   * [名稱] 可向使用者描述該應用程式。
   * [登入 URL] 是應用程式的基底 URL。 基本架構的預設 URL 是 https://localhost:44320/。
-  * [應用程式識別碼 URI] 是應用程式的唯一識別碼。 命名慣例是 `https://<tenant-domain>/<app-name>` (例如 `https://contoso.onmicrosoft.com/my-first-aad-app`)。
 6. 完成註冊之後，Azure AD 會為應用程式指派一個唯一的應用程式識別碼。 請從應用程式頁面複製該值，以在接下來的小節中使用。
+7. 從應用程式的 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI。 [應用程式識別碼 URI] 是應用程式的唯一識別碼。 命名慣例是 `https://<tenant-domain>/<app-name>` (例如 `https://contoso.onmicrosoft.com/my-first-aad-app`)。
 
 ## <a name="step-2-set-up-the-app-to-use-the-owin-authentication-pipeline"></a>步驟 2：設定應用程式以使用 OWIN 驗證管線
 在此步驟中，您將設定 OWIN 中介軟體以使用 OpenID Connect 驗證通訊協定。 您將使用 OWIN 來發出登入和登出要求、管理使用者工作階段、取得使用者資訊等等。

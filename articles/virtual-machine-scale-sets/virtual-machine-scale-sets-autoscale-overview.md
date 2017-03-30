@@ -15,13 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: adegeo
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 090374b057a62251e40ccc41f60f61e84e08a03f
-ms.openlocfilehash: ff137ead5e3490a129b36c959040d3571bff7669
+ms.sourcegitcommit: 3f1fdddcf382026e25ac6bca0b835e560152be9f
+ms.openlocfilehash: 98b302c26867d2fb2ade296e6983306266fa6f63
+ms.lasthandoff: 03/01/2017
 
 
 ---
-# <a name="automatic-scaling-and-virtual-machine-scale-sets"></a>自動調整與虛擬機器擴展集
+# <a name="how-to-use-automatic-scaling-and-virtual-machine-scale-sets"></a>如何使用自動調整與虛擬機器擴展集
 擴展集內的虛擬機器自動調整是依需求建立或刪除集合中的機器以符合效能需求。 當工作量增長時，應用程式可能需要額外的資源，才能有效執行工作。
 
 自動調整是自動化程序，可協助減輕管理額外負荷。 透過減少額外負荷，您便不需要持續監視系統效能或決定資源的管理方式。 調整是一項彈性的程序。 系統可以隨著負載提升加入更多資源，並隨著需求的降低移除資源，以將成本降至最低並維持效能層級。
@@ -220,10 +222,5 @@ autoscaleSettings 資源會使用來自診斷擴充的資訊，以決定是否�
 * 若要深入了解通知功能，請參閱[使用自動調整動作在 Azure 監視器中傳送電子郵件和 Webhook 警示通知](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)。
 * 深入了解如何[使用稽核記錄，在 Azure 監視器中傳送電子郵件和 Webhook 警示通知](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
 * 深入了解 [進階自動調整案例](virtual-machine-scale-sets-advanced-autoscale.md)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

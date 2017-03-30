@@ -13,13 +13,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
-ms.date: 01/24/2017
+ms.date: 03/17/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: cea53acc33347b9e6178645f225770936788f807
-ms.openlocfilehash: b86bfcbd8b49dfcf383c48d57f237f2433bf20d6
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 997a5e5db9abdd92c3717d9eb10ff01b2bb40a9f
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -98,7 +98,7 @@ ms.lasthandoff: 03/03/2017
 我們建議讓 Azure VM 名稱與基礎作業系統電腦名稱相同。
 
 ## <a name="storage-account-names"></a>儲存體帳戶名稱
-儲存體帳戶具備負責管理其名稱的特殊規則。 您只能使用小寫字母和數字。 如需詳細資訊，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。 此外，儲存體帳戶名稱 (含 core.windows.net) 應是全域有效的唯一 DNS 名稱。 例如，如果儲存體帳戶名稱為 mystorageaccount，則以下產生的 DNS 名稱應該是唯一的：
+本節不適用 [Azure 受控磁碟](../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，因為您不會建立個別的儲存體帳戶。 對於非受控磁碟，儲存體帳戶具備負責管理其名稱的特殊規則。 您只能使用小寫字母和數字。 如需詳細資訊，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。 此外，儲存體帳戶名稱 (含 core.windows.net) 應是全域有效的唯一 DNS 名稱。 例如，如果儲存體帳戶名稱為 mystorageaccount，則以下產生的 DNS 名稱應該是唯一的：
 
 * mystorageaccount.blob.core.windows.net
 * mystorageaccount.table.core.windows.net

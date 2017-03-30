@@ -11,12 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/01/2017
+ms.date: 03/10/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: b8f354b34e1a3a581dd2e41df4b80cbdbcd9a705
-ms.openlocfilehash: 3033df7c69a1c4211c906c6f3bdcd7868dedde13
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: fb61a2d622b0d829a134b6ce5dfef6e9fb44fa1e
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -148,43 +148,31 @@ OfficeSpace Software 與 Azure AD 整合提供下列優點：
     
     d. 按一下 [確定]。
 
-6. 在 [SAML 簽署憑證] 區段中，按一下 [建立新憑證]。
-
-    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_06.png)     
-
-7. 在 [建立新憑證] 對話方塊中，按一下行事曆圖示並選取 [到期日]。 然後按一下 [儲存] 按鈕。
-
-    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_general_300.png)
-
-8. 在 [SAML 簽署憑證] 區段中，選取 [啟用新憑證] 並按一下 [儲存] 按鈕。
-
-    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_07.png)
-
-9. 在 [變換憑證] 快顯視窗上，按一下 [確定]。
-
-    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_general_400.png)
-
-10. 在 [SAML 簽署憑證] 區段上，按一下 [憑證 (Base64)]，然後將憑證檔案儲存在您的電腦上。
+6. 在 [SAML 簽署憑證] 區段上，按一下 [憑證 (Base64)]，然後將憑證檔案儲存在您的電腦上。
 
     ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_08.png) 
 
-11. 在 [OfficeSpace Software 組態] 區段上，按一下 [設定 OfficeSpace Software] 以開啟 [設定登入] 視窗。
+7. 按一下 [儲存] 。
+
+    ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_general_400.png)
+
+8. 在 [OfficeSpace Software 組態] 區段上，按一下 [設定 OfficeSpace Software] 以開啟 [設定登入] 視窗。
 
     ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_09.png) 
 
     ![設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_10.png)
 
-12. 在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 OfficeSpace Software 租用戶。
+9. 在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 OfficeSpace Software 租用戶。
 
-13. 移至 [設定]，然後按一下 [連接器]。
+10. 移至 [設定]，然後按一下 [連接器]。
 
     ![在應用程式端設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_002.png)
 
-14. 按一下 [SAML 授權] 。
+11. 按一下 [SAML 驗證]。
 
     ![在應用程式端設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_003.png)
 
-15. 在 [SAML 授權]  區段中，執行下列步驟：
+12. 在 [SAML 驗證]  區段中，執行下列步驟：
 
     ![在應用程式端設定單一登入](./media/active-directory-saas-officespace-tutorial/tutorial_officespace_004.png)
 

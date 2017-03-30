@@ -17,21 +17,21 @@ ms.date: 02/04/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
-ms.openlocfilehash: 251a2977d821b710807e00b2aae71992630feb77
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 672462fad715758e50680fa5bade4b1f9d50e6e5
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="configure-private-ip-addresses-for-a-virtual-machine-using-the-azure-portal"></a>使用 Azure 入口網站設定虛擬機器的私人 IP 位址
 
 > [!div class="op_single_selector"]
-- [Azure 入口網站](virtual-networks-static-private-ip-arm-pportal.md)
-- [PowerShell](virtual-networks-static-private-ip-arm-ps.md)
-- [Azure CLI](virtual-networks-static-private-ip-arm-cli.md)
-- [Azure 入口網站 (傳統)](virtual-networks-static-private-ip-classic-pportal.md)
-- [PowerShell (傳統)](virtual-networks-static-private-ip-classic-ps.md)
-- [Azure CLI (傳統)](virtual-networks-static-private-ip-classic-cli.md)
+> * [Azure 入口網站](virtual-networks-static-private-ip-arm-pportal.md)
+> * [PowerShell](virtual-networks-static-private-ip-arm-ps.md)
+> * [Azure CLI](virtual-networks-static-private-ip-arm-cli.md)
+> * [Azure 入口網站 (傳統)](virtual-networks-static-private-ip-classic-pportal.md)
+> * [PowerShell (傳統)](virtual-networks-static-private-ip-classic-ps.md)
+> * [Azure CLI (傳統)](virtual-networks-static-private-ip-classic-cli.md)
 
 
 [!INCLUDE [virtual-networks-static-private-ip-intro-include](../../includes/virtual-networks-static-private-ip-intro-include.md)]
@@ -88,7 +88,7 @@ ms.lasthandoff: 02/28/2017
 若要將靜態私人 IP 位址新增至使用上述步驟建立之 VM，請遵循下列步驟：
 
 1. 從上方顯示的 [IP 位址] 刀鋒視窗中，按一下 [指派] 底下的[靜態]。
-2. [IP 位址] 輸入&192;.168.1.101，然後按一下 [儲存]。
+2. [IP 位址] 輸入 192.168.1.101，然後按一下 [儲存]。
    
     ![在 Azure 入口網站中建立 VM](./media/virtual-networks-static-ip-arm-pportal/figure09.png)
 
@@ -98,9 +98,9 @@ ms.lasthandoff: 02/28/2017
 > 
 
 ## <a name="how-to-remove-a-static-private-ip-address-from-a-vm"></a>如何移除 VM 的靜態私人 IP 位址
-若要移除上方建立之 VM 的靜態私人 IP 位址，請遵循下列步驟。
+若要移除上述所建立 VM 的靜態私人 IP 位址，請完成下列步驟：
 
-1. 從上方顯示的 [IP 位址] 刀鋒視窗中，按一下 [指派] 底下的[動態]，然後按一下 [儲存]。
+從上方顯示的 [IP 位址] 刀鋒視窗中，按一下 [指派] 底下的[動態]，然後按一下 [儲存]。
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 [保留的公用 IP](virtual-networks-reserved-public-ip.md) 位址。

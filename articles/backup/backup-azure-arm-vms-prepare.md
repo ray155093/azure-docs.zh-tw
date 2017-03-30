@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 2/7/2017
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: d7a2b9c13b2c3372ba2e83f726c7bf5cc7e98c02
-ms.openlocfilehash: 5d68b7f1f57da07685c27d592620c1785269f9d8
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 27d8da9df87dc5e93272be0bb6584e90971fb461
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -44,6 +44,7 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 * 選取案例、定義備份原則及定義要保護的項目。
 * 檢查虛擬機器上的 VM 代理程式安裝。
 * 檢查網路連線
+* 針對 Linux VM，如果您想要自訂應用程式一致備份的備份環境，請遵循[設定快照前與快照後指令碼的步驟 (英文)](https://docs.microsoft.com/azure/backup/backup-azure-linux-app-consistent)
 
 如果您知道環境滿足這些條件，請繼續依 [備份 VM 文章](backup-azure-vms.md)中的指示進行。 如果您需要設定或檢查前述任何必要條件，本文章會引導您逐步完成必要條件的準備步驟。
 

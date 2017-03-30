@@ -17,6 +17,7 @@ ms.author: mfussell
 translationtype: Human Translation
 ms.sourcegitcommit: f7edee399717ecb96fb920d0a938da551101c9e1
 ms.openlocfilehash: 469f37362fa0ebe39367a66df8a27e71e762a9d5
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -172,7 +173,7 @@ powershell.exe -ExecutionPolicy Bypass -Command ".\MySetup.ps1"
 ## <a name="use-console-redirection-for-local-debugging"></a>使用主控台重新導向進行本機偵錯
 基於偵錯的目的，查看執行指令碼後的主控台輸出偶爾會有幫助。 若要這樣做，您可以設定主控台重新導向原則，將輸出寫入至檔案。 檔案輸出會寫入至部署並執行應用程式所在的節點上，稱為 **log** 的應用程式資料夾中。 (請參閱先前範例中在何處可以找到此資料夾。)
 
-> [!NOTE]
+> [!WARNING]
 > 切勿在實際部署的應用程式中使用主控台重新導向原則，因為這可能會影響應用程式容錯移轉。 僅將此原則用於本機開發及偵錯。  
 > 
 > 
@@ -379,9 +380,4 @@ Echo "Test console redirection which writes to the application log folder on the
 * [部署應用程式](service-fabric-deploy-remove-applications.md)
 
 [image1]: ./media/service-fabric-application-runas-security/copy-to-output.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

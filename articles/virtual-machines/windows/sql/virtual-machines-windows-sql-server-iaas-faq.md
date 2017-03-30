@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 02/07/2017
+ms.date: 03/17/2017
 ms.author: v-shysun
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 6df28527f502fe2191ee0127a3f9d467ca53c5b5
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 498291fbf49e8bc119d93bb2dd4118e62ebdc71c
+ms.lasthandoff: 03/18/2017
 
 ---
 # <a name="frequently-asked-questions-for-sql-server-on-azure-virtual-machines"></a>Azure 虛擬機器上 SQL Server 的常見問題集
@@ -52,7 +52,7 @@ ms.lasthandoff: 03/07/2017
 
 7. **Azure VM 上是否支援 SQL Server 容錯移轉叢集執行個體 (FCI)？**
 
-   是。 您可以[在 Windows Server 2016 上建立 Windows Server 容錯移轉叢集\(WSFC\)](virtual-machines-windows-portal-sql-create-failover-cluster.md)，並使用儲存空間直接存取 (S2D) 來連結叢集儲存體。 或者，您可以使用 [Azure 虛擬機器中的 SQL Server 的高可用性和災害復原](virtual-machines-windows-sql-high-availability-dr.md#azure-only-high-availability-solutions)中所述的協力廠商叢集或儲存體解決方案。
+   是。 您可以[在 Windows Server 2016 上建立 Windows 容錯移轉叢集](virtual-machines-windows-portal-sql-create-failover-cluster.md)，並使用儲存空間直接存取 (S2D) 來連結叢集儲存體。 或者，您可以使用 [Azure 虛擬機器中的 SQL Server 的高可用性和災害復原](virtual-machines-windows-sql-high-availability-dr.md#azure-only-high-availability-solutions)中所述的協力廠商叢集或儲存體解決方案。
 
 7. **如果只是用於待命/容錯移轉，需要對 Azure VM 上的 SQL Server 授權付費嗎？**
    

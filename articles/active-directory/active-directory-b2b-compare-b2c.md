@@ -14,12 +14,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/08/2017
+ms.date: 03/15/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 72e7e57185d882a5f3243e2705aed54ee8347798
-ms.openlocfilehash: 5d157a936317bbf66cfc3634d4d08ea3483d137b
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 44cbbc149787a2d6cf2e0e8750b98d33b52f6136
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -31,10 +31,10 @@ Azure Active Directory (Azure AD) B2B 共同作業和 Azure AD B2C 皆可讓您�
 
 B2B 共同作業 |     Azure AD B2C 獨立供應項目
 -------- | --------
-適用於︰想要提供公司資料、資源和應用程式給其他組織的使用者存取 (使用他們選擇的任何身分識別) 的組織。 | 適用於︰面向您的客戶、以客戶為目標的行動和 Web 應用程式 - 客戶是個人、市民以及機構或組織的客戶 (不是您的員工或外部共同作業者)，使用他們選擇的任何身分識別。
+適用於︰想要能夠驗證來自合作夥伴組織 (無論是否為識別提供者) 之使用者的組織。 | 適用於︰邀請您的行動和 Web 應用程式的客戶 (無論是個人、機構或組織客戶) 加入您的 Azure AD。
 支援的身分識別︰本機有工作或學校帳戶的員工、本機有工作或學校帳戶的合作夥伴、或任何電子郵件地址。 即將支援直接聯盟。  | 支援的身分識別︰具有本機應用程式帳戶的取用者使用者 (任何電子郵件地址或使用者名稱) 或任何以直接聯盟支援的社交身分識別。
-合作夥伴使用者位於哪個目錄︰外部組織的合作夥伴使用者與員工在相同的管理目錄中，但特別註解。 管理這些外部使用者的方式可和員工相同，可以加入到相同的群組等等  | 客戶使用者實體位於哪個目錄︰在應用程式目錄中。 和組織的員工及合作夥伴目錄 (若有) 分開管理。
-支援單一登入 (SSO) 至 Azure AD 連接的所有應用程式 (包括內部部署應用程式)(例如 Office 365)，及其他 Microsoft 和非 Microsoft SaaS 應用程式 (例如 Salesforce、Box、Workday 等等)。  |  支援 SSO 至客戶在 Azure AD B2C 租用戶內擁有的應用程式。 不支援 SSO 至 Office 365 或其他 Microsoft 和非 Microsoft SaaS 應用程式。
+合作夥伴使用者位於哪個目錄︰外部組織的合作夥伴使用者與員工在相同的管理目錄中，但特別註解。 管理他們的方式可和員工相同，可以加入到相同的群組等等  | 客戶使用者實體位於哪個目錄︰在應用程式目錄中。 和組織的員工及合作夥伴目錄 (若有) 分開管理。
+支援單一登入 (SSO) 至所有和 Azure AD 連線的應用程式。 例如，您可以提供 Office 365 或內部部署應用程式的存取權，以及其他 SaaS 應用程式 (例如 Salesforce 或 Workday) 的存取權。  |  支援 SSO 至客戶在 Azure AD B2C 租用戶內擁有的應用程式。 不支援 SSO 至 Office 365 或其他 Microsoft 和非 Microsoft SaaS 應用程式。
 合作夥伴生命週期︰由主控/邀請組織管理。  | 客戶生命週期︰自助式管理或由應用程式管理。
 安全性原則和合規性︰由主控/邀請組織管理。  | 安全性原則和合規性︰由應用程式管理。
 商標︰使用主控/邀請組織的品牌。  |    商標︰由應用程式管理。 通常多半會是產品品牌加上組織在背景淡出的效果。

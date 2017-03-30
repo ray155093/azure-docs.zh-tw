@@ -15,15 +15,15 @@ ms.workload: identity
 ms.date: 01/07/2017
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 6d40b998316652b7144e641c468e14a965c78a30
-ms.openlocfilehash: 84fc25424f2ca656a089e5f2cdf54e61d5c5868e
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: f9a5e7a4e25ce5e7f63fe5a09fafeb6b4a8166ad
+ms.lasthandoff: 03/21/2017
 
 
 ---
 # <a name="azure-active-directory-graph-api"></a>Azure Active Directory 圖形 API
 > [!IMPORTANT]
-> Azure AD Graph API 功能也透過 [Microsoft Graph](https://graph.microsoft.io/) 提供使用，Microsoft Graph 是一個統一的 API，包含了來自其他 Microsoft 服務 (例如 Outlook、OneDrive、OneNote、Planner 和 Office Graph) 的 API，並可透過單一端點與使用單一存取權杖進行存取。
+> 強烈建議您使用 [Microsoft Graph](https://graph.microsoft.io/) 取代 Azure AD Graph API 來存取 Azure Active Directory 資源。 我們的開發工作現在是針對 Microsoft Graph，並沒有針對 Azure AD Graph API 規劃的進一步增強功能 。 有極少數的案例可能仍適用 Azure AD Graph API；如需詳細資訊，請參閱 Office 開發人員中心的 [Microsoft Graph 或 Azure AD Graph](https://dev.office.com/blogs/microsoft-graph-or-azure-ad-graph) 部落格文章。
 > 
 > 
 

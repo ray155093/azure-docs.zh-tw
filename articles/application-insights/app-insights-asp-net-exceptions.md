@@ -1,21 +1,22 @@
 ---
-title: "使用 Azure Application Insights 診斷 Web 應用程式中的失敗和例外狀況 | Microsoft Docs | Microsoft Docs"
+title: "使用 Azure Application Insights 來診斷 Web 應用程式中的失敗和例外狀況 | Microsoft Docs"
 description: "擷取從 ASP.NET 應用程式與所要求遙測的例外狀況。"
 services: application-insights
 documentationcenter: .net
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: d1e98390-3ce4-4d04-9351-144314a42aa2
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
-ms.openlocfilehash: c4a20fe310d9a70bb3a954bd936daf6f3d432db9
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 2f046ff687985a5c4f83ca7236ce832b4c81ea6e
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -49,31 +50,25 @@ ms.openlocfilehash: c4a20fe310d9a70bb3a954bd936daf6f3d432db9
 *未顯示例外狀況？請參閱[擷取例外狀況](#exceptions)。*
 
 按一下例外狀況報告以顯示其堆疊追蹤。
+按一下堆疊追蹤中的行參考，以開啟相關程式碼檔案。  
 
-![逐一點選例外狀況。](./media/app-insights-asp-net-exceptions/35.png)
+在程式碼中，注意 CodeLens 會顯示關於例外狀況的資料︰
 
-按一下堆疊追蹤中的行參考，以開啟相關檔案。  
+![CodeLens 的例外狀況通知。](./media/app-insights-asp-net-exceptions/35.png)
 
 ## <a name="diagnosing-failures-using-the-azure-portal"></a>使用 Azure 入口網站診斷失敗
 從應用程式的 [Application Insights] 概要，失敗磚會顯示例外狀況和失敗的 HTTP 要求的圖表，以及導致最頻繁失敗的要求 URL 的清單。
 
 ![選取 [設定]、[失敗]](./media/app-insights-asp-net-exceptions/012-start.png)
 
-點選清單中其中一個失敗要求類型，以取得失敗的個別發生次數。 從該處按一下例外狀況或任何與其相關聯的追蹤資料：
+按一下清單中其中一個失敗的例外狀況類型，可取得該例外狀況的個別發生次數，您可以在其中查看詳細資料和堆疊追蹤︰
 
 ![選取失敗要求的執行個體，並在例外狀況詳細資料底下，取得例外狀況的執行個體。](./media/app-insights-asp-net-exceptions/030-req-drill.png)
 
-**或者** ，您可以從例外狀況清單開始，您會在該處進一步發現 [失敗] 刀鋒視窗。 請按一下直到最終到達個別例外狀況。
-
-![鑽研](./media/app-insights-asp-net-exceptions/040-exception-drill.png)
+**或者，**您可以從要求清單中啟動，並尋找與它相關的例外狀況。
 
 *未顯示例外狀況？請參閱[擷取例外狀況](#exceptions)。*
 
-您可以從那裡查看堆疊追蹤和每個例外狀況的詳細屬性，並且找到相關的記錄追蹤或其他事件。
-
-![鑽研](./media/app-insights-asp-net-exceptions/050-exception-properties.png)
-
-[深入了解診斷搜尋](app-insights-diagnostic-search.md)。
 
 ## <a name="custom-tracing-and-log-data"></a>自訂追蹤和記錄資料
 若要取得您的 app 的特定診斷資料，您可以插入程式碼以傳送您自己的遙測資料。 這會隨著要求、頁面檢視和其他自動收集的資料顯示在診斷搜尋中。
@@ -103,7 +98,7 @@ ms.openlocfilehash: c4a20fe310d9a70bb3a954bd936daf6f3d432db9
 
 ![鑽研](./media/app-insights-asp-net-exceptions/060-req-related.png)
 
-## <a name="a-nameexceptionsa-capturing-exceptions-and-related-diagnostic-data"></a><a name="exceptions"></a> 擷取例外狀況和相關的診斷資料
+## <a name="exceptions"></a> 擷取例外狀況和相關的診斷資料
 一開始，您不會在入口網站看到應用程式中造成失敗的所有例外狀況。 您會看到任何瀏覽器例外狀況 (如果您在網頁中使用 [JavaScript SDK](app-insights-javascript.md))。 但是 IIS 會攔截大部分的伺服器例外狀況，而且您必須撰寫一段程式碼才能查看它們。
 
 您可以：
@@ -437,13 +432,12 @@ VB
 
 請注意，其與 Application Insights 入口網站執行 TrackException 報告計數算得的「例外狀況」計數不同。 取樣間隔不同，且 SDK 不會針對所有已處理與未處理的例外狀況傳送 TrackException 報告。
 
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player] 
+
 ## <a name="next-steps"></a>後續步驟
 * [監視 REST、SQL 及其他對相依性的呼叫](app-insights-asp-net-dependencies.md)
 * [監視頁面載入時間、瀏覽器例外狀況及 AJAX 呼叫](app-insights-javascript.md)
 * [監視效能計數器](app-insights-performance-counters.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

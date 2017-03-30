@@ -13,12 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 03/17/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: fba82c5c826da7d1912814b61c5065ca7f726011
-ms.openlocfilehash: 238c74c020625006384a1b31aef320e1346d9ac4
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: a49021d7887ee91da902e5c3dea8cbc6cb3de29d
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -219,6 +219,27 @@ Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/
 為了達成上述任一個機器學習服務案例，我們可以使用 [Azure Data Lake](https://azure.microsoft.com/services/data-lake-store/) 內嵌不同來源的資訊，並使用 [U-SQL](https://azure.microsoft.com/documentation/videos/data-lake-u-sql-query-execution/) 來處理資訊，並產生可由 Azure Machine Learning 處理的輸出。
 
 另一個可行的做法是使用 [Microsoft 辨識服務](https://www.microsoft.com/cognitive-services)來分析使用者內容；我們不但可以更了解它們 (以[文字分析 API](https://www.microsoft.com/cognitive-services/en-us/text-analytics-api) 分析它們撰寫的東西)，也可以利用[電腦願景 API](https://www.microsoft.com/cognitive-services/en-us/computer-vision-api) 偵測到不想要或成熟的內容，並採取適當動作。 辨識服務中有許多現成的解決方案，不需要任何機器學習的知識也能使用。
+
+## <a name="a-planet-scale-social-experience"></a>全球規模的社交體驗
+最後，我還有一項重要的主題必須和各位分享，那就是「延展性」。 設計架構時，讓每個元件都能各自延展是非常重要的，不論是因為需要處理更多資料，還是想要有更廣泛的地理涵蓋範圍 (或兩者皆是！)。 幸好，透過 DocumentDB，我們便能輕鬆完成如此複雜的工作。
+
+DocumentDB 預設便支援[動態分割 (英文)](https://azure.microsoft.com/blog/10-things-to-know-about-documentdb-partitioned-collections/)，它會根據特定「分割區索引鍵」(定義為您文件中的其中一項屬性) 自動建立分割區。 定義正確的分割區索引鍵必須在設計時期完成，並留意可用的[最佳做法](documentdb-partition-data.md#designing-for-partitioning)。以社交體驗的案例而言，您的分割策略必須符合您進行查詢 (理想情況為在相同分割區內進行讀取) 及寫入 (將寫入分散在多個分割區以避免「熱點」) 的方式。 一些選項為：根據時態索引鍵 (日期/月份/週)、依內容分類、依地理區域、依使用者等等的分割區。這完全視您查詢資料及將它顯示於社交體驗的方式而定。 
+
+其中值得注意的一點是，DocumentDB 會透明地在所有分割區上執行您的查詢 (包括[彙總 (英文)](https://azure.microsoft.com/blog/planet-scale-aggregates-with-azure-documentdb/))，您不需要隨資料增加而新增任何邏輯。
+
+流量最終會隨時間增長，而您的資源消耗 (以 [RU](documentdb-request-units.md) (要求單位) 為單位) 也會增加。 隨著使用者數量的增長，讀取及寫入也會變得更頻繁，使用者將會建立及讀取更多內容，因此「調整輸送量」的能力極為重要。 增加 RU 非常容易，只要在 Azure 入口網站按幾下，或是[透過 API 發出命令 (英文)](https://docs.microsoft.com/rest/api/documentdb/replace-an-offer) 即可。
+
+![相應增加及定義分割區索引鍵](./media/documentdb-social-media-apps/social-media-apps-scaling.png)
+
+如果很幸運地，有來自其他地區、國家或洲大陸的使用者注意到您的平台，並開始使用它，這還真是個好消息！
+
+不過，您很快就發現他們無法從您的平台取得最佳的體驗，因為他們離您的作業區域太遠，使延遲變得非常嚴重。但您當然也不希望他們因此而放棄使用。 要是有方法能輕鬆「觸達全球使用者」就好了。當然有！
+
+DocumentDB 可讓您按幾下就能透明地[將資料複寫至全球](documentdb-portal-global-replication.md)，並且自動從您的[用戶端程式碼](documentdb-developing-with-multiple-regions.md)選取可用的區域。 這也表示您可以擁有[多個容錯移轉區域](documentdb-regional-failovers.md)。 
+
+當您將資料複寫至全球時，您必須確保您的用戶端能充分利用它。 如果您是使用 Web 前端，或是從行動用戶端存取 API，您可以部署 [Azure 流量管理員](https://azure.microsoft.com/services/traffic-manager/)並將您的 Azure App Service 複製到所有需要的區域，並使用[效能設定](../app-service-web/web-sites-traffic-manager.md)來支援擴展的全球涵蓋範圍。 當您的用戶端存取您的前端或 API 時，系統會將它們路由至最接近的 App Service，這將會使它們連線到當地的 DocumentDB 複本。
+
+![為您的社交平台加入全球涵蓋範圍](./media/documentdb-social-media-apps/social-media-apps-global-replicate.png)
 
 ## <a name="conclusion"></a>結論
 本篇文章嘗試探討以低成本的服務在 Azure 上完整建立社交網路的替代方案，並鼓勵使用多層次儲存體解決方案和稱為「階梯」的資料分散方式，提供更好的結果。

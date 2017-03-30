@@ -16,14 +16,14 @@ ms.workload: NA
 ms.date: 09/26/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 2c13daf84727a500a2ea6a3dc1d4968c9824e223
-ms.openlocfilehash: 4ed2bfcad36059000b5a8e4bfa5f06bceb56843b
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 26eac30a08db2e224f9e9018817a18c3a4405b7f
+ms.lasthandoff: 03/16/2017
 
 
 ---
 # <a name="overview-sql-database-active-geo-replication"></a>概觀︰SQL Database 主動式異地複寫
-主動式異地複寫可讓您在相同或不同資料中心位置 (區域) 中設定最多&4; 個可讀取的次要資料庫。 在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫進行查詢和容錯移轉。 主動式異地複寫必須是在相同訂用帳戶內的資料庫之間進行。
+主動式異地複寫可讓您在相同或不同資料中心位置 (區域) 中設定最多 4 個可讀取的次要資料庫。 在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫進行查詢和容錯移轉。 主動式異地複寫必須是在相同訂用帳戶內的資料庫之間進行。
 
 > [!NOTE]
 > 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。 在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
@@ -88,7 +88,7 @@ ms.lasthandoff: 02/16/2017
 * **Azure Resource Manager API 和角色型安全性**︰主動式異地複寫包含一組可管理的 [Azure Resource Manager API](https://msdn.microsoft.com/library/azure/mt163571.aspx)，包括[以 Azure Resource Manager 為基礎的 PowerShell Cmdlet](sql-database-geo-replication-powershell.md)。 這些 API 需要使用資源群組，並支援以角色為基礎的安全性 (RBAC)。 如需如何實作存取角色的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
 > [!NOTE]
-> 只有在使用以 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 為基礎的 [Azure SQL REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx) 和 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 時，才支援主動式異地複寫的許多新功能。 (傳統) REST API (https://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx) 支援回溯相容性，因此建議使用以 Azure Resource Manager 為基礎的 API。 
+> 只有在使用以 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 為基礎的 [Azure SQL REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx) 和 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 時，才支援主動式異地複寫的許多新功能。 [(傳統) REST API](https://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx) 支援回溯相容性，因此建議使用以 Azure Resource Manager 為基礎的 API。 
 > 
 > 
 
