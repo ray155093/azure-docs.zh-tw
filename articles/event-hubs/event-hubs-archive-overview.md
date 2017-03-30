@@ -12,18 +12,19 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/13/2016
+ms.date: 03/22/2017
 ms.author: darosa;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
-ms.openlocfilehash: 7f5652aa39d6681b4a96cac00daac904dce2e537
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 95a927d8c2fbfbcb6aa663985d078d5146c489aa
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="azure-event-hubs-archive"></a>Azure 事件中樞封存
-Azure 事件中樞封存可讓您自動將事件中樞的串流資料傳遞到您選擇的 Blob 儲存體帳戶，並另外增加了可指定所選擇的時間或大小間隔的彈性。 設定封存的作業很快，因此執行時不需要系統管理成本，而且它可以使用事件中樞 [輸送量單位](event-hubs-what-is-event-hubs.md#capacity)自動調整。 事件中樞封存是將串流資料載入至 Azure 的最簡單方式，並可讓您專注於處理資料而非擷取資料。
+Azure 事件中樞封存可讓您自動將事件中樞的串流資料傳遞到您選擇的 Blob 儲存體帳戶，並另外增加了可指定所選擇的時間或大小間隔的彈性。 設定封存的作業很快，因此執行時不需要系統管理成本，而且它可以針對事件中樞的[輸送量單位](event-hubs-what-is-event-hubs.md#capacity)自動進行調整。 事件中樞封存是將串流資料載入至 Azure 的最簡單方式，並可讓您專注於處理資料而非擷取資料。
 
-Azure 事件中樞封存可讓您在相同串流上處理即時和批次型的管線。 這可讓您建置可隨時間配合需求成長的方案。 不論您現在是要建置著眼於未來即時處理的批次型系統，或想要為現有即時方案新增有效率的冷路徑，事件中樞封存都可以讓使用串流資料變得更簡單。
+事件中樞封存可讓您在相同資料流上處理即時和批次型的管線。 這可讓您建置可隨時間配合需求成長的方案。 不論您現在是要建置著眼於未來即時處理的批次型系統，或想要為現有即時方案新增有效率的冷路徑，事件中樞封存都可以讓使用串流資料變得更簡單。
 
 ## <a name="how-event-hubs-archive-works"></a>事件中樞封存的運作方式
 事件中樞是用於輸入遙測的時間保留持久緩衝區，類似於分散式記錄。 在事件中樞調整大小的關鍵是 [資料分割取用者模型](event-hubs-what-is-event-hubs.md#partitions)。 每個資料分割都是獨立的資料區段，可獨立取用。 根據可設定的保留期限，此資料會隨時間而過時。 因此，給定的事件中樞永遠不會「太滿」。
@@ -33,7 +34,7 @@ Azure 事件中樞封存可讓您在相同串流上處理即時和批次型的�
 封存的資料會以 [Apache Avro][Apache Avro] 格式寫入，此為精簡、快速、二進位的格式，可使用內嵌結構描述提供豐富的資料結構。 此格式廣泛運用在 Hadoop 生態系統，且為串流分析和 Azure Data Factory 所廣泛使用。 關於使用 Avro 的詳細資訊可在本文稍後看到。
 
 ### <a name="archive-windowing"></a>封存範圍
-事件中樞封存可讓您設定要控制封存的範圍。 此範圍是具有「先者勝出原則」的最小大小和時間組態，這表示所遇到的第一個觸發會導致封存作業。 如果您有 15 分鐘/100 MB 封存範圍且傳送速率為 1 MB/秒，大小範圍會比時間範圍更早觸發。 每個資料分割都會獨立封存，並在封存時寫入已完成的區塊 Blob，而且會以遇到封存間隔的時間命名。 命名慣例如下︰
+事件中樞封存可讓您設定要控制封存的「範圍」。 此範圍是具有「先者勝出原則」的最小大小和時間組態，這表示所遇到的第一個觸發條件會導致封存作業。 如果您有一個 15 分鐘 100 MB 的封存範圍，且傳送速率為每秒 1 MB，則大小範圍會比時間範圍更早觸發。 每個分割區都會獨立封存，並在封存時寫入已完成的區塊 Blob，而且會以遇到封存間隔的時間命名。 命名慣例如下︰
 
 ```
 [Namespace]/[EventHub]/[Partition]/[YYYY]/[MM]/[DD]/[HH]/[mm]/[ss]
@@ -45,7 +46,7 @@ Azure 事件中樞封存可讓您在相同串流上處理即時和批次型的�
 事件中樞封存在經過設定之後，就會自動在您傳送第一個事件時立即執行。 它會一直保持執行。 為了讓下游處理更輕鬆地知道處理程序正在運作，事件中樞會在沒有資料時寫入空白檔案。 這會提供可預測的頻率和標記，以供饋送給批次處理器。
 
 ## <a name="setting-up-event-hubs-archive"></a>設定事件中樞封存
-在建立事件中樞時，可透過入口網站或 Azure Resource Manager 設定事件中樞封存。 只要按一下 [開啟]  按鈕就可以啟用封存。 按一下刀鋒視窗的 [容器]  區段，就可以設定儲存體帳戶和容器。 事件中樞封存會對儲存體使用服務對服務驗證，因此您不需要指定儲存體連接字串。 資源選擇器會自動選取儲存體帳戶的資源 URI。 如果您使用 Azure Resource Manager，您必須以字串形式明確提供此 URI。
+您可以透過入口網站或 Azure Resource Manager，在建立事件中樞時設定封存。 只要按一下 [開啟]  按鈕就可以啟用封存。 按一下刀鋒視窗的 [容器]  區段，就可以設定儲存體帳戶和容器。 事件中樞封存會對儲存體使用服務對服務驗證，因此您不需要指定儲存體連接字串。 資源選擇器會自動選取儲存體帳戶的資源 URI。 如果您使用 Azure Resource Manager，您必須以字串形式明確提供此 URI。
 
 預設時間範圍為 5 分鐘。 最小值是 1，最大值是 15。 **大小** 範圍為 10-500 MB。
 
@@ -97,7 +98,7 @@ java -jar avro-tools-1.8.1.jar getschema \<name of archive file\>
 Apache Avro 已完成適用於 [Java][Java] 和 [Python][Python] 的快速入門指南。 您也可以閱讀 [開始使用事件中樞封存](event-hubs-archive-python.md) 一文。
 
 ## <a name="how-event-hubs-archive-is-charged"></a>事件中樞封存的收費方式
-事件中樞封存的計量方式類似輸送量單位，屬於每小時的費用。 其費用與命名空間所購買的輸送量單位數目成正比。 當輸送量單位增加和減少時，事件中樞封存也會增加和減少以提供相符的效能。 計量會一起發生。 事件中樞封存的費用是每小時每輸送量單位 0.10 美元，預覽期間享有 50% 折扣。
+事件中樞封存的計量方式類似輸送量單位，屬於每小時的費用。 其費用與命名空間所購買的輸送量單位數目成正比。 當輸送量單位增加和減少時，事件中樞封存也會增加和減少以提供相符的效能。 計量會串聯地發生。 事件中樞封存的費用是每小時每輸送量單位 0.10 美元，預覽期間享有 50% 折扣。
 
 事件中樞封存是將資料送入 Azure 的最簡單方式。 使用 Azure Data Lake、Azure Data Factory 和 Azure HDInsight，即可使用熟悉的工具和平台，以您需要的規模執行您所選擇的批次處理和其他分析。
 
@@ -120,9 +121,4 @@ Apache Avro 已完成適用於 [Java][Java] 和 [Python][Python] 的快速入門
 [Event Hubs overview]: event-hubs-what-is-event-hubs.md
 [sample application that uses Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
 [Scale out Event Processing with Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

@@ -1,21 +1,22 @@
 ---
-title: "Application Insights 的相依性追蹤"
+title: "Azure Application Insights 中的相依性追蹤 | Microsoft Docs"
 description: "使用 Application Insights 分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。"
 services: application-insights
 documentationcenter: .net
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: d15c4ca8-4c1a-47ab-a03d-c322b4bb2a9e
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 10/28/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
-ms.openlocfilehash: f0cbb7f78d73c6f39dc4e8a2227b144e8a49c83a
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: 35817adde713995ec82eead033f058ee109bf900
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -33,6 +34,8 @@ ms.openlocfilehash: f0cbb7f78d73c6f39dc4e8a2227b144e8a49c83a
   * Azure DocumentDb、資料表、Blob 儲存體和佇列
 * 網頁
   * AJAX 呼叫
+
+在選取的方法周圍使用[位元組程式碼檢測](https://msdn.microsoft.com/library/z9z62c29.aspx)來監視工作。 效能額外負荷非常小。
 
 您也可以使用 [TrackDependency API](app-insights-api-custom-events-metrics.md#trackdependency)，同時在用戶端和伺服器程式碼中撰寫自己的 SDK 呼叫，來監視其他相依性。
 
@@ -81,7 +84,7 @@ ms.openlocfilehash: f0cbb7f78d73c6f39dc4e8a2227b144e8a49c83a
 ## <a name="ajax-calls"></a>AJAX 呼叫
 [瀏覽器] 刀鋒視窗會顯示來自[您網頁中 JavaScript](app-insights-javascript.md) 之 AJAX 呼叫的持續時間和失敗率。 它們會顯示為「相依性」。
 
-## <a name="a-namediagnosisa-diagnose-slow-requests"></a><a name="diagnosis"></a> 診斷速度緩慢的要求
+## <a name="diagnosis"></a> 診斷速度緩慢的要求
 每個要求事件都與相依性呼叫、例外狀況及您應用程式處理要求時所追蹤的其他事件相關聯。 因此，如果某些要求執行效能很差，您可以了解是否是因為某個相依性的回應太慢。
 
 讓我們逐步解說一個該情況的範例。
@@ -202,13 +205,12 @@ ms.openlocfilehash: f0cbb7f78d73c6f39dc4e8a2227b144e8a49c83a
   * IIS 主機：在主機伺服器上安裝 [Application Insights 代理程式](app-insights-monitor-performance-live-website-now.md)。
   * Azure Web 應用程式：在 Web 應用程式控制台中，開啟 [Application Insights] 索引標籤，然後安裝 Application Insights。
 
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
+
 ## <a name="next-steps"></a>後續步驟
 * [例外狀況](app-insights-asp-net-exceptions.md)
 * [使用者和頁面資料](app-insights-javascript.md)
 * [Availability](app-insights-monitor-web-app-availability.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

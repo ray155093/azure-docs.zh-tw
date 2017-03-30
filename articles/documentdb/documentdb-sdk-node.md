@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 01/27/2017
+ms.date: 03/16/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 36b3eab758d006710467d23a30f889b605df1583
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: dd6e6184dd755ea356cae1c4d50a2b7ba39da9fb
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -55,6 +55,14 @@ ms.lasthandoff: 03/07/2017
 </table></br>
 
 ## <a name="release-notes"></a>版本資訊
+
+### <a name="1.11.0"/>1.11.0</a>
+* 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。
+* 新增控制跨分割區查詢平行處理程度的選項。
+* 新增針對 DocumentDB 模擬器執行時停用 SSL 驗證的選項。
+* 已將分割區集合的最小輸送量從 10,100 RU/s 降低為 2500 RU/s。
+* 修正單一分割區集合的接續 Token 錯誤 (github #107)。
+* 修正將 0 做為單一參數處理的 executeStoredProcedure 錯誤 (github #155)。
 
 ### <a name="1.10.2"/>1.10.2</a>
 * 修正使用者-代理程式標頭以包含 SDK 版本。
@@ -150,6 +158,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [1.11.0](#1.11.0) |2017 年 3 月 16 日 |--- |
 | [1.10.2](#1.10.2) |2017 年 1 月 27 日 |--- |
 | [1.10.1](#1.10.1) |2016 年 12 月 22 日 |--- |
 | [1.10.0](#1.10.0) |2016 年 10 月 3 日 |--- |

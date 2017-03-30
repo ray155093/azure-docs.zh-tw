@@ -12,12 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/12/2017
+ms.date: 03/17/2017
 ms.author: johnkem; magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 5675a65e3b48e39f44dc320b7b87910ab759b764
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: be27a3541caa1620af432dcff438f70cb9b1074b
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -52,7 +52,7 @@ ms.lasthandoff: 03/14/2017
 * 診斷記錄檔傳送至何處 (儲存體帳戶、事件中樞和/或 OMS Log Analytics)。
 * 傳送何種類別的記錄檔。
 * 每個記錄類別應該在儲存體帳戶中保留多久
-    - 保留期為&0; 天表示會永遠保留記錄。 否則，此值可以是 1 到 2147483647 之間的任意天數。
+    - 保留期為 0 天表示會永遠保留記錄。 否則，此值可以是 1 到 2147483647 之間的任意天數。
     - 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
     - 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄會被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。
 
@@ -199,8 +199,10 @@ ms.lasthandoff: 03/14/2017
 ## <a name="supported-log-categories-per-resource-type"></a>每個資源類型支援的記錄檔類別
 |資源類型|類別|類別顯示名稱|
 |---|---|---|
+|Microsoft.ApiManagement/service|GatewayLogs|ApiManagement 閘道的相關記錄檔|
 |Microsoft.Automation/automationAccounts|JobLogs|作業記錄檔|
 |Microsoft.Automation/automationAccounts|JobStreams|作業串流|
+|Microsoft.Automation/automationAccounts|DscNodeStatus|Dsc 節點狀態|
 |Microsoft.Batch/batchAccounts|ServiceLog|服務記錄檔|
 |Microsoft.DataLakeAnalytics/accounts|稽核|稽核記錄檔|
 |Microsoft.DataLakeAnalytics/accounts|要求|要求記錄檔|
@@ -208,16 +210,19 @@ ms.lasthandoff: 03/14/2017
 |Microsoft.DataLakeStore/accounts|要求|要求記錄檔|
 |Microsoft.EventHub/namespaces|ArchiveLogs|封存記錄檔|
 |Microsoft.EventHub/namespaces|OperationalLogs|作業記錄|
+|Microsoft.EventHub/namespaces|AutoScaleLogs|自動調整規模記錄檔|
 |Microsoft.KeyVault/vaults|AuditEvent|稽核記錄檔|
 |Microsoft.Logic/workflows|WorkflowRuntime|工作流程執行階段診斷事件|
 |Microsoft.Logic/integrationAccounts|IntegrationAccountTrackingEvents|整合帳戶追蹤事件|
 |Microsoft.Network/networksecuritygroups|NetworkSecurityGroupEvent|網路安全性群組事件|
 |Microsoft.Network/networksecuritygroups|NetworkSecurityGroupRuleCounter|網路安全性群組規則計數器|
+|Microsoft.Network/networksecuritygroups|NetworkSecurityGroupFlowEvent|網路安全性群組規則流程事件|
 |Microsoft.Network/loadBalancers|LoadBalancerAlertEvent|負載平衡器警示事件|
 |Microsoft.Network/loadBalancers|LoadBalancerProbeHealthStatus|負載平衡器探查健全狀況狀態|
 |Microsoft.Network/applicationGateways|ApplicationGatewayAccessLog|應用程式閘道存取記錄檔|
 |Microsoft.Network/applicationGateways|ApplicationGatewayPerformanceLog|應用程式閘道效能記錄檔|
 |Microsoft.Network/applicationGateways|ApplicationGatewayFirewallLog|應用程式閘道防火牆記錄檔|
+|Microsoft.Network/expressRouteCircuits|GWMCountersTable|GWM 計數器的資料表|
 |Microsoft.Search/searchServices|OperationLogs|作業記錄|
 |Microsoft.ServerManagement/nodes|RequestLogs|要求記錄檔|
 |Microsoft.ServiceBus/namespaces|OperationalLogs|作業記錄|

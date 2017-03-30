@@ -12,12 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 03/08/2017
+ms.date: 03/21/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: ec49b8784eb9b18135c5f7ec7242a2468ac87e50
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: a545925bdade693f4db7db45228188dae7e5ff38
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -32,7 +32,7 @@ Update 4 可以套用至任何執行 Release (GA) 或 Update 0.1 到 Update 3.1 
 在 StorSimple 方案中部署更新之前，請檢閱版本資訊中所包含的資訊。
 
 > [!IMPORTANT]
-> * Update 4 包含裝置軟體、USM 韌體、LSI 驅動程式與韌體、磁碟韌體、Storport 和 Spaceport、 安全性及其他 OS 更新。 安裝此更新，大約需要花費 4 小時。 我們建議您套用此更新，讓裝置保持在最新狀態。 
+> * Update 4 包含裝置軟體、USM 韌體、LSI 驅動程式與韌體、磁碟韌體、Storport 和 Spaceport、 安全性及其他 OS 更新。 安裝此更新，大約需要花費 4 小時。 磁碟韌體更新是干擾性更新，會導致您的裝置停機。 建議您套用 Update 4，讓您的裝置維持在最新狀態。 
 > * 如果是新版本，您可能不會立即看到更新，因為我們會分階段推出更新。 請等候數天然後再次掃描更新，因為很快就會提供更新。
 
 ## <a name="whats-new-in-update-4"></a>Update 4 的新功能
@@ -49,7 +49,7 @@ Update 4 包含以下重要的改良功能和錯誤修正。
 
     所有還原現在都是以熱度圖為基礎的還原。 如需有關如何查詢和取消以熱度圖為基礎的還原和解除凍結作業的詳細資訊，請移至 [Windows PowerShell for StorSimple Cmdlet 參考文件](https://technet.microsoft.com/library/dn688168.aspx)。
 
-* **StorSimple 診斷工具** – Update 4 中推出 StorSimple 診斷工具，對於系統、網路、效能和硬體元件健康狀態的相關問題，可讓您輕鬆診斷和疑難排解。 此工具是透過 Windows PowerShell for StorSimple 執行。 
+* **StorSimple 診斷工具** – Update 4 中推出 StorSimple 診斷工具，對於系統、網路、效能和硬體元件健康狀態的相關問題，可讓您輕鬆診斷和疑難排解。 此工具是透過 Windows PowerShell for StorSimple 執行。 如需詳細資訊，請移至[使用 StorSimple 診斷工具進行疑難排解](storsimple-8000-diagnostics.md)。
 
 * **以 UI 為基礎的 StorSimple 移轉工具** - 在此版本之前，如果要從 5000-7000 系列移轉資料，使用者必須在移轉工作流程中利用 Azure PowerShell 介面來執行移轉。 在此版本中，提供簡單好用以 UI 為基礎的 StorSimple 移轉工具給支援人員，以利於進行相同的移轉工作流程。 此工具也可用來合併復原貯體。 
 
@@ -59,7 +59,7 @@ Update 4 包含以下重要的改良功能和錯誤修正。
 
 * **更新變更** - 此版本已修正與更新失敗相關的錯誤。
 
-* **磁碟失敗的警示** - 此版本中增加新的警示，可向使用者警告磁碟即將失敗。 如果您遇到此警示，請連絡 Microsoft 支援服務以運送替換磁碟。
+* **磁碟失敗的警示** - 此版本中增加新的警示，可向使用者警告磁碟即將失敗。 如果您遇到此警示，請連絡 Microsoft 支援服務以運送替換磁碟。 如需詳細資訊，請移至 [StorSimple 裝置上的硬體警示](storsimple-manage-alerts.md#hardware-alerts)。
 
 * **控制器更換變更** - 此版本中增加 Cmdlet，可讓使用者查詢控制器更換程序的狀態。 如需詳細資訊，請移至[用於查詢控制器更換狀態的 Cmdlet](https://technet.microsoft.com/library/dn688168.aspx)。
 

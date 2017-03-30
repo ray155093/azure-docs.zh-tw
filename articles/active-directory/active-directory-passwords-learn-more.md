@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: e9ee2dba57b153d28c80c2d123d41c3048157ba1
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: 0de0590c1cf5c71a7174fdcca84847b378aa40f8
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -103,7 +103,7 @@ ms.lasthandoff: 03/10/2017
 4. 按一下送出，我們便會以回寫設定程序期間所建立的對稱金鑰加密純文字密碼。
 5. 在加密密碼後，我們會將它放入裝載中，透過 HTTPS 通道傳送到您租用戶特定的服務匯流排轉送 (我們也會在回寫設定過程中為您設定此轉送)。  此轉送受到只有您的內部部署安裝才會知道的隨機產生密碼所保護。
 6. 一旦訊息抵達服務匯流排，密碼重設端點就會自動甦醒，並看到它有擱置中的重設要求。
-7. 服務接著會使用雲端錨點屬性來尋找提出要求的使用者。  此查閱若要成功，使用者物件必須存在於 AD 連接器空間、必須連結至對應的 MV 物件，而且必須連結至對應的 AAD 連接器物件。 最後，為了讓同步處理找到此使用者帳戶，AD 連接器物件與 MV 的連結上必須有同步處理規則 `Microsoft.InfromADUserAccountEnabled.xxx` 。  之所以需要這樣，是因為當呼叫是來自雲端時，同步處理引擎會使用 cloudAnchor 屬性來查閱 AAD 連接器空間物件，然後順著連結回到 MV 物件，接著再順著連結回到 AD 物件。 因為相同使用者可能有多個 AD 物件 (多樹系)，同步處理引擎需仰賴 `Microsoft.InfromADUserAccountEnabled.xxx` 連結來選出正確的物件。
+7. 服務接著會使用雲端錨點屬性來尋找提出要求的使用者。  此查閱若要成功，使用者物件必須存在於 AD 連接器空間、必須連結至對應的 MV 物件，而且必須連結至對應的 AAD 連接器物件。 最後，為了讓同步處理找到此使用者帳戶，AD 連接器物件與 MV 的連結上必須有同步處理規則 `Microsoft.InfromADUserAccountEnabled.xxx` 。  之所以需要這樣，是因為當呼叫是來自雲端時，同步處理引擎會使用 cloudAnchor 屬性來查閱 AAD 連接器空間物件，然後順著連結回到 MV 物件，接著再順著連結回到 AD 物件。 因為相同使用者可能有多個 AD 物件 (多樹系)，同步處理引擎需仰賴 `Microsoft.InfromADUserAccountEnabled.xxx` 連結來選出正確的物件。 請注意，因為此邏輯，您必須將 Azure AD Connect 連線至主要網域控制站，以便密碼回寫運作。  如果需要這樣做，您可以在 Active Directory 同步處理連接器的 [屬性] 上按一下滑鼠右鍵，然後選取 [設定目錄分割]，以設定 Azure AD Connect 使用主要網域控制站模擬器。 從那裡尋找 [網域控制站連線設定] 區段，然後核取標題為 [只使用慣用的網域控制站] 的方塊。 注意︰如果慣用的 DC 不是 PDC 模擬器，Azure AD Connect 仍會連到 PDC 進行密碼回寫。
 8. 一旦找到使用者帳戶，我們會嘗試直接在適當的 AD 樹系中重設密碼。
 9. 如果密碼設定作業成功，我們會告訴使用者他們的密碼已修改完成，可以放心繼續進行其他工作。
 10. 如果密碼設定作業失敗，我們會對使用者傳回錯誤，請他們再試一次。  作業可能因各種原因而失敗，例如服務已關閉、所選密碼不符合組織原則、在本機 AD 中找不到使用者等等。  其中的許多原因會有特定的訊息，讓使用者知道該怎麼做來解決問題。

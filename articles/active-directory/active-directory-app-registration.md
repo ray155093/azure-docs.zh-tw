@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 11/30/2016
 ms.author: priyamo
 translationtype: Human Translation
-ms.sourcegitcommit: bf1b8783ccbc3b3e3185eb10c7f772b58352aab7
-ms.openlocfilehash: 073940bb607b953af324d784a45958977e1af3a2
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 006ebbbc3f6f745f60c5fc6646649097e144beaf
+ms.lasthandoff: 03/17/2017
 
 ---
 
@@ -35,7 +36,7 @@ ms.openlocfilehash: 073940bb607b953af324d784a45958977e1af3a2
 
 ## <a name="update-application-settings-from-the-azure-portal"></a>從 Azure 入口網站更新應用程式設定
 
-您可以使用 Azure 入口網站，輕鬆地修改現有應用程式的設定。 例如，您可以設定回覆 URL，也就是 Azure AD 發出權杖回應的位置。 您也可以設定其他應用程式的權限，例如允許您的應用程式存取 MS 圖形 API。 您可以透過應用程式設定頁面來執行這一切。
+您可以使用 Azure 入口網站，輕鬆地修改現有應用程式的設定。 例如，您可以設定回覆 URL，也就是 Azure AD 發出權杖回應的位置。 您也可以設定其他應用程式的權限，例如允許您的應用程式存取 Microsoft 圖形 API。 您可以透過應用程式設定頁面來執行這一切。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在頁面右上角選取您的帳戶，以選擇您的 Azure AD 租用戶。
@@ -44,7 +45,7 @@ ms.openlocfilehash: 073940bb607b953af324d784a45958977e1af3a2
   * [屬性] 頁面可讓您修改應用程式的一般資訊。 這包括應用程式名稱、登入 URL 以及登出 URL。
   * [回覆 URL] 頁面可讓您新增回覆 URL，也就是 Azure AD 傳送權杖回應的位置。
   * [擁有者] 頁面可讓您新增應用程式擁有者。
-  * [權限] 頁面可讓您設定應用程式的權限。 例如，若要存取 MS 圖形 API，請按一下 [新增] 並在 API 選取器中選取 [Microsoft Graph]，然後選擇所需的權限，例如 [讀取目錄資料]。
+  * [權限] 頁面可讓您設定應用程式的權限。 例如，若要存取 Microsoft 圖形 API，請按一下 [新增] 並在 API 選取器中選取 [Microsoft Graph]，然後選擇所需的權限，例如 [讀取目錄資料]。
   * [金鑰] 頁面可讓您新增應用程式密碼。 密碼只會在建立後立即顯示一次，請務必加以複製以便進一步使用。
 
 ## <a name="use-the-inline-manifest-editor"></a>使用內嵌資訊清單編輯器
@@ -61,9 +62,4 @@ ms.openlocfilehash: 073940bb607b953af324d784a45958977e1af3a2
 
 1. 查看[快速入門](active-directory-developers-guide.md)，以取得使用 Azure AD 執行應用程式驗證的詳細逐步解說。
 2. 查看 [Github](https://github.com/azure-samples) 中完整的程式碼範例清單。
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

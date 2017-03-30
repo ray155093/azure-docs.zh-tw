@@ -17,6 +17,7 @@ ms.author: hascipio
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 8bc9d40daf0b9bc8256e88b39039fca7e4cb8a53
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -41,7 +42,7 @@ ms.openlocfilehash: 8bc9d40daf0b9bc8256e88b39039fca7e4cb8a53
 2. 嘗試新增共同管理員之前，請確定管理員帳戶下至少有一個應用程式。
 3. 上述步驟完成之後，請以共同管理員電子郵件識別碼登入再登出發佈入口網站。
 4. 現在請使用管理員電子郵件識別碼登入發佈入口網站。
-5. 瀏覽至 [發行者] -> [選取您的帳戶] -> [管理員] -> [新增共同管理員] (如以下螢幕擷取畫面所示)
+5. 瀏覽至 [發行者] -> [選取您的帳戶] -> [管理員] -> [新增共同管理員] \(如以下螢幕擷取畫面所示)
    
     ![繪圖](media/marketplace-publishing-pre-requisites/imgAddAdmin_05.png)
 6. 請確定在發佈程序的各階段 (例如開發人員中心、發佈入口網站) 提供的電子郵件識別碼，在與 Microsoft 進行通訊時會受到監視。
@@ -81,10 +82,5 @@ ms.openlocfilehash: 8bc9d40daf0b9bc8256e88b39039fca7e4cb8a53
 
 ## <a name="see-also"></a>另請參閱
 * [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -1,7 +1,7 @@
 ---
 
 title: "Azure Active Directory 系統管理員如何新增 B2B 共同作業使用者？ | Microsoft Docs"
-description: "Azure Active Directory B2B 共同作業可讓系統管理員將合作夥伴組織的使用者新增到 Azure AD 以存取您的公司應用程式"
+description: "系統管理員可以使用 Azure Active Directory B2B 共同作業，將來自合作夥伴組織的來賓使用者新增到 Azure AD。"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -14,12 +14,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/18/2017
+ms.date: 03/15/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: a4e25c0dab34f0977b4511046ad53f4c0b409990
-ms.openlocfilehash: 830cc28cdd5ca523c43cf1fa9cdff5131727d71f
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 7f33165141f31c1b495313f2da0d6e4681bdf8f2
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -48,11 +48,11 @@ ms.lasthandoff: 02/23/2017
 >[!VIDEO https://channel9.msdn.com/Blogs/Azure/admin-assign-b2b-to-apps/Player]
 
 ## <a name="admins-resending-invitations-to-guest-users"></a>將邀請重新傳送給來賓使用者的系統管理員
-您可以移至 B2B 共同作業使用者的設定檔頁面，並將邀請重新傳送給尚未兌換的來賓使用者：
+您可以移至 B2B 共同作業使用者的設定檔頁面，並將邀請重新傳送給任何尚未兌換的來賓使用者：
 
 ![重新傳送邀請](./media/active-directory-b2b-admin-add-users/resend-invitation.png)
 
-> ![注意] 這將會從已登入的使用者重新傳送邀請並邀請該使用者加入目錄，即使原始邀請是邀請存取特定應用程式或群組。
+> ![NOTE] 如果您重新傳送邀請，邀請會從登入的使用者傳送給個別使用者，即使原始邀請是傳送給特定的應用程式或群組也一樣。
 
 
 ## <a name="related-articles"></a>相關文章
@@ -65,7 +65,7 @@ ms.lasthandoff: 02/23/2017
 * [B2B 共同作業邀請兌換](active-directory-b2b-redemption-experience.md)
 * [Azure AD B2B 共同作業授權](active-directory-b2b-licensing.md)
 * [針對 Azure Active Directory B2B 共同作業問題進行疑難排解](active-directory-b2b-troubleshooting.md)
-* [Azure Active Directory B2B 共同作業常見問題集 (FAQ)](active-directory-b2b-faq.md)
+* [Azure Active Directory B2B 共同作業常見問題 (FAQ)](active-directory-b2b-faq.md)
 * [適用於 B2B 共同作業使用者的多重要素驗證](active-directory-b2b-mfa-instructions.md)
 * [Azure Active Directory B2B 共同作業 API 和自訂](active-directory-b2b-api.md)
 * [在沒有邀請的情況下新增 B2B 共同作業使用者](active-directory-b2b-add-user-without-invite.md)

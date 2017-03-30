@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 06/01/2016
 ms.author: allclark;yaqiyang
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7bd6eddcdb20e3ea49cd29d46bb4f98d73ee9cc8
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: fd3d28b133ef8e646f5c2f1c1127f654daa61b95
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -41,7 +42,7 @@ Azure SDK for PHP 內含的元件可讓您開發、部署及管理適用於 Azur
 ## <a name="php-client-libraries-for-azure"></a>適用於 Azure 的 PHP 用戶端程式庫
 適用於 Azure 的 PHP 用戶端程式庫提供了一個介面，以便從任何作業系統存取 Azure 功能，例如資料管理服務和雲端服務。 您可以透過編輯器安裝這些程式庫。
 
-如需有關如何使用適用於 Azure 的 PHP 用戶端程式庫的詳細資訊，請參閱[如何使用 Blob 服務][blob-service]、[如何使用資料表服務][table-service]與[如何使用佇列服務][queue-service]。
+如需有關如何使用適用於 Azure 的 PHP 用戶端程式庫的詳細資訊，請參閱[如何使用 Blob 服務][blob-service]、[如何使用表格服務][table-service]，和[如何使用佇列服務][queue-service]。
 
 ### <a name="install-via-composer"></a>透過編輯器安裝
 1. [安裝 Git][install-git]。
@@ -68,7 +69,7 @@ Azure PowerShell 是一組 PowerShell Cmdlet，可用於部署和管理 Azure �
 如需有關如何使用 Azure PowerShell 的詳細資訊，請參閱[如何使用 Azure PowerShell][powershell-tools]。
 
 ## <a name="azure-cli"></a>Azure CLI
-Azure CLI 是一組命令，可用於部署和管理 Azure 服務，例如 Azure 網站和 Azure 虛擬機器。 如需安裝 Azure CLI 的相關資訊，請參閱 [安裝 Azure CLI](xplat-cli-install.md)。
+Azure CLI 是一組命令，可用於部署和管理 Azure 服務，例如 Azure 網站和 Azure 虛擬機器。 如需安裝 Azure CLI 的相關資訊，請參閱 [安裝 Azure CLI](cli-install-nodejs.md)。
 
 ## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱 [PHP 開發人員中心](/develop/php/)。
@@ -87,9 +88,4 @@ Azure CLI 是一組命令，可用於部署和管理 Azure 服務，例如 Azure
 [powershell-tools]: http://go.microsoft.com/fwlink/?LinkId=252718
 [php-sdk-github]: http://go.microsoft.com/fwlink/?LinkId=252719
 [install-git]: http://git-scm.com/book/en/Getting-Started-Installing-Git
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

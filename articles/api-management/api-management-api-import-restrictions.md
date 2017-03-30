@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: apipm
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: f941f87019a667deba5ec3e5cd054d04318689db
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: ac799d66b5038c207413086b0fa71239ff2a332f
+ms.lasthandoff: 03/15/2017
 
 
 ---
@@ -37,7 +37,7 @@ WSDL 檔案是用來產生 SOAP 傳遞的 API，或做為「SOAP 至 REST」API 
 
 * **WSDL:Import** - 我們目前不支援使用這個屬性的 API。 客戶應該將匯入的項目合併成一份文件。
 * **具有多個部分的訊息** - 目前不支援。
-* **WCF wsHttpBinding** - 使用 Windows Communication Foundation 建立的 SOAP 服務應該使用 basicHttpBinding - wsHttpBinding。
+* **WCF wsHttpBinding** 使用 Windows Communication Foundation 建立的 SOAP 服務應該使用 basicHttpBinding - 不支援 wsHttpBinding。
 * **MTOM** - 使用 MTOM 的服務「可能」<em></em>可以運作。 目前不提供官方支援。
 * 不支援以遞迴方式定義的**遞迴**類型 (例如，參考自己的陣列)。
 

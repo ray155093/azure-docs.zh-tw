@@ -15,13 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/17/2016
 ms.author: szark
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 02579f138f957e5d245290e2cb8fc448120a4701
-ms.openlocfilehash: e77fee96710e99dab664f61d4c64aea0b12944ad
-
+ms.sourcegitcommit: 07ee32a293d53dd9c0e0afa5da2bac7ec146a536
+ms.openlocfilehash: c7f39a5396f0f9b6f9a577a3225ccadff1fd0dc9
+ms.lasthandoff: 03/01/2017
 
 ---
-# <a name="azure-linux-agent-user-guide"></a>Azure Linux 代理程式使用者指南
+# <a name="understanding-and-using-the-azure-linux-agent"></a>了解與使用 Azure Linux 代理程式
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="introduction"></a>簡介
@@ -49,7 +50,7 @@ Microsoft Azure Linux 代理程式 (waagent) 管理 Linux 與 FreeBSD 佈建，�
   * 確保網路介面名稱的穩定性
 * **核心**
   
-  * 設定虛擬 NUMA (核心 <&2;.6.37 時停用)
+  * 設定虛擬 NUMA (核心 < 2.6.37 時停用)
   * 取用 /dev/random 的 Hyper-V Entropy
   * 設定根裝置 (可能在遠端) 的 SCSI 逾時
 * **診斷**
@@ -305,10 +306,5 @@ Linux 代理程式需要一些系統封裝才能正確運作：
   
   * [Ubuntu Wiki：設定交換資料分割](http://go.microsoft.com/fwlink/?LinkID=532955&clcid=0x409)
   * [將自訂資料插入 Azure 虛擬機器](virtual-machines-windows-classic-inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

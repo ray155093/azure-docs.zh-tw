@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 01/05/2017
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 88b16b0b7c951ab0350649de05c00263ec76e630
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
+ms.openlocfilehash: eedddf7a40acfba7513efd810d115f1afe2f224d
+ms.lasthandoff: 03/23/2017
 
 
 ---
@@ -114,7 +114,7 @@ Service Fabric 也會提供您使用 Eclipse 來建立、建置及部署 Service
 2. 執行 `yo azuresfjava:AddService`
 
 ### <a name="using-service-fabric-eclipse-plugin-for-java-on-linux"></a>在 Linux 上使用適用於 Java 的 Service Fabric Eclipse 外掛程式
-若要將服務新增至使用適用於 Service Fabric 的 Eclipse 外掛程式所建立的現有應用程式，請參閱[這裡](service-fabric-get-started-eclipse.md#add-new-service-fabric-service-to-your-service-fabric-application)的文件。
+若要將服務新增至使用適用於 Service Fabric 的 Eclipse 外掛程式所建立的現有應用程式，請參閱[這裡](service-fabric-get-started-eclipse.md#add-a-service-fabric-service-to-your-service-fabric-application)的文件。
 
 ## <a name="next-steps"></a>後續步驟
 * [在 Linux 上使用適用於 Eclipse 的 Service Fabric 外掛程式建立和部署第一個 Service Fabric Java 應用程式](service-fabric-get-started-eclipse.md)

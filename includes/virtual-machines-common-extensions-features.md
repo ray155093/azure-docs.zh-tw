@@ -2,7 +2,7 @@
 
 
 
-如需 VM 代理程式以及它們如何運作以支援 VM 擴充功能的詳細資訊，請參閱 [VM 代理程式和 VM 擴充功能概觀](../articles/virtual-machines/virtual-machines-windows-classic-manage-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+如需 VM 代理程式以及它們如何運作以支援 VM 擴充功能的詳細資訊，請參閱 [VM 代理程式和 VM 擴充功能概觀](../articles/virtual-machines/windows/classic/manage-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 ## <a name="azure-vm-extensions"></a>Azure VM 擴充功能
 VM 擴充功能實作了您想要使用在 VM 使用的大部分重要功能，包括例如重設密碼、設定 RDP 等基本功能，以及許多其他的功能。 因為隨時都有新的擴充功能加入，VM 在 Azure 中支援的可能功能數目不斷增加。 當您從映像庫建立 VM 時，預設會安裝數個基本的 VM 擴充功能，包括 **IaaSDiagnostics** (目前僅限 Windows VM)、**VMAccess** 和 **BGInfo** (目前也僅限 Windows)。 不過，因為功能更新和新擴充功能的持續流程關係，並非所有擴充功能隨時都同時在 Windows 和 Linux 上實作。
@@ -12,7 +12,7 @@ VM 擴充功能實作了您想要使用在 VM 使用的大部分重要功能，�
 
 | VM 擴充功能名稱 | 功能描述 | 相關資訊 |
 | --- | --- | --- |
-| VMAccessAgent (Windows) |建立、更新及重設使用者資訊以及 RDP 連線組態。 |[Windows](../articles/virtual-machines/virtual-machines-windows-classic-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) |
+| VMAccessAgent (Windows) |建立、更新及重設使用者資訊以及 RDP 連線組態。 |[Windows](../articles/virtual-machines/windows/classic/extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) |
 | VMAccessForLinux (Linux) |建立、更新及重設使用者資訊以及 SSH 連線組態。 |[Linux](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) |
 
 ## <a name="deployment-and-configuration-management"></a>部署和組態管理
@@ -29,7 +29,7 @@ VM 擴充功能實作了您想要使用在 VM 使用的大部分重要功能，�
 | **DockerExtension** |安裝 Docker 背景程式以支援遠端 Docker 命令。 |[如何使用 Docker 虛擬機器擴充功能](../articles/virtual-machines/virtual-machines-linux-dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)如需更詳盡的資訊，請參閱 [Docker VM 擴充功能使用者指南](https://github.com/Azure/azure-docker-extension/blob/master/README.md) (英文) |
 | **DSC** |PowerShell DSC (所需的狀態組態) 延伸模組。 |[Azure PowerShell DSC (需要狀態組態) 擴充功能](http://blogs.msdn.com/b/powershell/archive/2014/08/07/introducing-the-azure-powershell-dsc-desired-state-configuration-extension.aspx) |
 | **PuppetEnterpriseAgent** |實作 Puppet Enterprise 的功能。 |[Puppet on Azure](http://puppetlabs.com/solutions/microsoft) |
-| **CustomScriptExtension** (Windows)**CustomScriptForLinux** (Linux) |隨時在 VM 上叫用自訂指令碼：啟動或存留期間。 |[自訂指令碼擴充功能](../articles/virtual-machines/virtual-machines-windows-classic-extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) |
+| **CustomScriptExtension** (Windows)**CustomScriptForLinux** (Linux) |隨時在 VM 上叫用自訂指令碼：啟動或存留期間。 |[自訂指令碼擴充功能](../articles/virtual-machines/windows/classic/extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) |
 | **AzureCATExtensionHandler** |使用 **IaaSDiagnostics** 和幾個其他資料來源，例如 [Azure 儲存體分析度量](https://msdn.microsoft.com/library/azure/hh343270.aspx) 所收集的診斷資料，並將它轉換成適合 SAP 主機控制程序使用的彙總資料集 |[適用於 SAP 的 Azure 強化監視功能](https://azure.microsoft.com/blog/2014/06/04/azure-enhanced-monitoring-for-sap/) |
 
 ## <a name="security-and-protection"></a>安全性與保護
@@ -39,10 +39,10 @@ VM 擴充功能實作了您想要使用在 VM 使用的大部分重要功能，�
 | --- | --- | --- |
 | **CloudLinkSecureVMWindowsAgent** |提供 Microsoft Azure 客戶加密其位於多租用戶共用基礎結構上的虛擬機器資料的能力，以及完全控制其 Azure 儲存體基礎結構上之加密資料的加密金鑰。 |[利用 BitLocker 和原生 OS 加密保護 Microsoft Azure 虛擬機器](http://www.cloudlinktech.com/azure) |
 | **McAfeeEndpointSecurity** |保護您的 VM 防禦惡意軟體。 |[McAfee](https://www.mcafeeasap.com/MarketingContent/default.aspx) |
-| **TrendMicroDSA** |可讓 TrendMicro 的深層安全性平台支援提供入侵偵測和防止、防火牆、反惡意程式碼、Web 信譽、記錄檢查和完整性監視。 |[如何在 Azure VM 上安裝和設定 Trend Micro Deep Security as a Service](../articles/virtual-machines/virtual-machines-windows-classic-install-trend.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) |
+| **TrendMicroDSA** |可讓 TrendMicro 的深層安全性平台支援提供入侵偵測和防止、防火牆、反惡意程式碼、Web 信譽、記錄檢查和完整性監視。 |[如何在 Azure VM 上安裝和設定 Trend Micro Deep Security as a Service](../articles/virtual-machines/windows/classic/install-trend.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) |
 | **PortalProtectExtension** |抵禦對您 Microsoft SharePoint 環境的威脅。 |[在 Azure 上保護 SharePoint 部署](http://blog.trendmicro.com/securing-sharepoint-deployment-azure/) |
 | **IaaSAntimalware** |Azure 雲端服務和虛擬機器的 Microsoft 反惡意程式碼是一項即時防護功能，能幫助識別及移除病毒、間諜軟體及其他惡意軟體，具有可設定的警示，當已知惡意或垃圾軟體嘗試在您的系統上安裝或執行時發出警示。 |[適用於 Azure 雲端服務和虛擬機器的反惡意程式碼軟體](../articles/security/azure-security-antimalware.md) |
-| **SymantecEndpointProtection** |Symantec Endpoint Protection 12.1.4 可跨越實體和虛擬系統達成安全性和效能。 |[如何在 Azure VM 上安裝和設定 Symantec Endpoint Protection](../articles/virtual-machines/virtual-machines-windows-classic-install-symantec.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) |
+| **SymantecEndpointProtection** |Symantec Endpoint Protection 12.1.4 可跨越實體和虛擬系統達成安全性和效能。 |[如何在 Azure VM 上安裝和設定 Symantec Endpoint Protection](../articles/virtual-machines/windows/classic/install-symantec.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) |
 
 ## <a name="vm-operations-and-management"></a>VM 作業和管理
 支援常見的作業管理功能和行為。 另請參閱上面的＜部署和組態管理＞一節。
@@ -73,9 +73,4 @@ VM 擴充功能實作了您想要使用在 VM 使用的大部分重要功能，�
 | --- | --- | --- |
 | **BGInfo** |呈現使用 RDP 時，桌面上實用伺服器資訊的整合圖形。 |[BGInfo 擴充功能](https://msdn.microsoft.com/library/mt589195.aspx) |
 | **HpcVmDrivers** |在執行 Windows Server 2012 R2 或 Windows Server 2012，且大小為 A8 或 A9 的 VM 上安裝、設定及維護遠端直接記憶體存取 (RDMA) 網路裝置驅動程式。 啟用安裝叢集的 A8 或 A9 VM，以便在執行平行 MPI 應用程式時使用 RDMA 網路。 |[關於 A8、A9、A10 和 A11 運算密集型執行個體](../articles/virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

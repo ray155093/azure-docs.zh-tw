@@ -11,15 +11,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/24/2017
+ms.date: 03/20/2017
 ms.author: bwren
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: aaf5c442ef85edbc498aa2fd7815171f4701f960
-ms.openlocfilehash: 262beba30c760335aafdf903d9f5cac6b0dd9669
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: e47aacd1a188649a3b424981c20a6c2b736b2d89
+ms.lasthandoff: 03/22/2017
+
 
 ---
 
-# <a name="log-analytics-saved-searches-and-alerts-in-oms-solutions-preview"></a>OMS 解決方案中 Log Analytics 儲存的搜尋和警示 (預覽)
+# <a name="adding-log-analytics-saved-searches-and-alerts-to-oms-management-solution-preview"></a>將 Log Analytics 儲存的搜尋和警告新增到 OMS 管理解決方案 (預覽)
 
 > [!NOTE]
 > 這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。 以下所述的任何結構描述可能會有所變更。   
@@ -35,7 +38,7 @@ ms.openlocfilehash: 262beba30c760335aafdf903d9f5cac6b0dd9669
 
 
 ## <a name="log-analytics-workspace"></a>Log Analytics 工作區
-Log Analytics 中的所有資源都包含於[工作區](../log-analytics/log-analytics-manage-access.md)中。  如 [OMS 工作區和自動化帳戶](operations-management-suite-solutions-creating.md#oms-workspace-and-automation-account)所述，工作區不會包含於管理解決方案中，但在安裝解決方案前就必須存在。  如果無法使用，則解決方案會安裝失敗。
+Log Analytics 中的所有資源都包含於[工作區](../log-analytics/log-analytics-manage-access.md)中。  如 [OMS 工作區和自動化帳戶](operations-management-suite-solutions.md#oms-workspace-and-automation-account)所述，工作區不會包含於管理解決方案中，但在安裝解決方案前就必須存在。  如果無法使用，則解決方案會安裝失敗。
 
 工作區的名稱位於每個 Log Analytics 資源的名稱中。  這可在解決方案中使用**工作區**參數來完成，如下列 savedsearch 資源範例所示。
 
@@ -90,7 +93,7 @@ Log Analytics 中的所有資源都包含於[工作區](../log-analytics/log-ana
 儲存的搜尋可以有一或多個排程，其中每個排程均代表不同的警示規則。 排程會定義搜尋的執行頻率，以及擷取資料的時間間隔。  排程資源具有 `Microsoft.OperationalInsights/workspaces/savedSearches/schedules/` 類型，並具備下列結構。 
 
     {
-      "name": "<name-of-schedule>",
+      "name": "<name-of-schedule-resource>",
       "type": "Microsoft.OperationalInsights/workspaces/savedSearches/schedules/",
       "apiVersion": "<api-version-of-resource>",
       "dependsOn": [
@@ -100,7 +103,7 @@ Log Analytics 中的所有資源都包含於[工作區](../log-analytics/log-ana
         "etag": "*",               
         "interval": <schedule-interval-in-minutes>,
         "queryTimeSpan": <query-timespan-in-minutes>,
-        "enabled": <schedule-interval-in-minutes>       
+        "enabled": <schedule-enabled>       
       }
     }
 
@@ -257,7 +260,7 @@ Webhook 動作會呼叫 URL 並選擇性地提供要傳送的承載，以啟動�
 
 
 
-### <a name="sample"></a>範例
+## <a name="sample"></a>範例
 
 以下是解決方案的範例，其中包含下列資源：
 
@@ -266,7 +269,7 @@ Webhook 動作會呼叫 URL 並選擇性地提供要傳送的承載，以啟動�
 - 警示動作
 - Webhook 動作
 
-此範例會使用[標準的解決方案參數](operations-management-suite-solutions-creating.md#parameters)變數，相對於資源定義中的硬式編碼值，這類變數常用於解決方案中。
+此範例會使用[標準的解決方案參數](operations-management-suite-solutions-solution-file.md#parameters)變數，相對於資源定義中的硬式編碼值，這類變數常用於解決方案中。
 
     {
         "$schema": "http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01#",
@@ -504,10 +507,5 @@ Webhook 動作會呼叫 URL 並選擇性地提供要傳送的承載，以啟動�
 ## <a name="next-steps"></a>後續步驟
 * 在您的管理解決方案中[新增檢視](operations-management-suite-solutions-resources-views.md)。
 * 在您的管理解決方案中[新增自動化 Runbook 及其他資源](operations-management-suite-solutions-resources-automation.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

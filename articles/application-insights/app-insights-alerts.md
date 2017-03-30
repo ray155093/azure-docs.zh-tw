@@ -1,33 +1,34 @@
 ---
-title: "在 Application Insights 中設定警示 | Microsoft Docs"
+title: "在 Azure Application Insights 中設定警示 | Microsoft Docs"
 description: "獲知回應時間緩慢、例外狀況，以及 Web 應用程式中的其他效能或使用量變更。"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: f8ebde72-f819-4ba5-afa2-31dbd49509a5
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 10/14/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 41ce9b0e323c0938b6db98b99d8d687d1ed0f0ef
-ms.openlocfilehash: 2146030449c691af166d6a9b134d22d4504d7641
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 04965375fc94fc1aa8b1c48deb743bb1d0cf1c26
+ms.lasthandoff: 03/21/2017
 
 
 ---
 # <a name="set-alerts-in-application-insights"></a>在 Application Insights 中設定警示
-[Azure Application Insights][開始] 可在 Web 應用程式中發生效能或使用量度量變更時對您發出警示。 
+[Azure Application Insights][start] 可在 Web 應用程式中發生效能或使用量計量變更時對您發出警示。 
 
-Application Insights 會在[各種平台][平台]上監視即時應用程式，協助您診斷效能問題，以及了解使用模式。
+Application Insights 會在[多種平台][platforms]上監視即時應用程式，協助您診斷效能問題，以及了解使用模式。
 
 共有三種警示︰
 
-* **計量警示**會在任何計量超出某些期間的臨界值 (例如回應時間、例外狀況計數、CPU 使用量或頁面檢視) 的時候通知您。 
-* [**Web 測試**][用性]會在您的網站無法在網際網路上使用或回應速度很慢時通知您。 [深入了解][用性]。
+* **計量警示**會在計量超出某些期間的臨界值 (例如回應時間、例外狀況計數、CPU 使用量或頁面檢視) 的時候通知您。 
+* [**Web 測試**][availability]會在您的網站無法在網際網路上使用或回應速度很慢時通知您。 [深入了解][availability]。
 * [**主動診斷**](app-insights-proactive-diagnostics.md)會自動設定成通知您異常的效能模式。
 
 在本文中，我們著重於計量警示。
@@ -47,7 +48,7 @@ Application Insights 會在[各種平台][平台]上監視即時應用程式，�
 
 *I don't see the Add Alert button.* 
 
-* 您是否使用組織帳戶？ 如果您有這個應用程式資源的擁有者或參與者存取權，您可以設定警示。 請看一下 [存取控制] 刀鋒視窗。 [深入了解存取控制][角色]。
+* 您是否使用組織帳戶？ 如果您有這個應用程式資源的擁有者或參與者存取權，您可以設定警示。 請看一下 [存取控制] 刀鋒視窗。 [深入了解存取控制][roles]。
 
 > [!NOTE]
 > 在 [警示] 刀鋒視窗中，您會看到已經設定警示集︰[主動診斷](app-insights-proactive-failure-diagnostics.md)。 這是會監視要求失敗率這一個特定度量的自動警示。 除非您決定要停用主動警示，否則不需要設定自己的要求失敗率警示。 
@@ -84,7 +85,7 @@ Application Insights 會在[各種平台][平台]上監視即時應用程式，�
 
 熱門的警示包括：
 
-* [瀏覽器計量][用戶端]，適合用於 Web 應用程式，尤其是瀏覽器**頁面載入時間**。 如果您的網頁有很多指令碼，就必須留意 **瀏覽器例外狀況**。 若要取得這些計量和警示，您必須設定[網頁監視][用戶端]。
+* [瀏覽器計量][client]，適合用於 Web 應用程式，尤其是瀏覽器**頁面載入時間**。 如果您的網頁有很多指令碼，就必須留意 **瀏覽器例外狀況**。 若要取得這些計量和警示，您必須設定[網頁監視][client]。
 * Web 應用程式伺服器端的**伺服器回應時間**。 以及設定警示，注意這些計量，以查看高要求率時的差異是否不成比例：可能表示您的應用程式資源不足。 
 * **伺服器例外狀況** - 若要查看它們，您只需要進行一些 [額外設定](app-insights-asp-net-exceptions.md)。
 
@@ -94,6 +95,10 @@ Application Insights 會在[各種平台][平台]上監視即時應用程式，�
 * [使用 PowerShell 自動設定警示](app-insights-powershell-alerts.md)
 * [使用 Webhook 自動回應警示](../monitoring-and-diagnostics/insights-webhooks-alerts.md)
 
+## <a name="video"></a>影片
+
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
+
 ## <a name="see-also"></a>另請參閱
 * [可用性 Web 測試](app-insights-monitor-web-app-availability.md)
 * [自動化設定警示](app-insights-powershell-alerts.md)
@@ -101,15 +106,10 @@ Application Insights 會在[各種平台][平台]上監視即時應用程式，�
 
 <!--Link references-->
 
-[用性]: app-insights-monitor-web-app-availability.md
-[用戶端]: app-insights-javascript.md
-[平台]: app-insights-platforms.md
-[角色]: app-insights-resources-roles-access-control.md
-[開始]: app-insights-overview.md
-
-
-
-
-<!--HONumber=Nov16_HO3-->
+[availability]: app-insights-monitor-web-app-availability.md
+[client]: app-insights-javascript.md
+[platforms]: app-insights-platforms.md
+[roles]: app-insights-resources-roles-access-control.md
+[start]: app-insights-overview.md
 
 

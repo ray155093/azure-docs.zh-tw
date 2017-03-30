@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 06/13/2016
 ms.author: dariagrigoriu
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 5842188b5d0a66436db7ab0f6b85bf14b4759c50
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 657554ee3929572632dc007d1a6500e59e2a6b97
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 01/20/2017
 > 
 > 
 
-## <a name="a-namestep1astep-1-create-a-local-repository"></a><a name="Step1"></a>步驟 1：建立本機儲存機制
+## <a name="Step1"></a>步驟 1：建立本機儲存機制
 請執行下列工作以建立新的 Git 儲存機制。
 
 1. 啟動命令列工具，例如 **GitBash** (Windows) 或 **Bash** (Unix Shell)。 在 OS X 系統上，您可以透過 **[終端機]** 應用程式來存取命令列。
@@ -46,7 +46,7 @@ ms.lasthandoff: 01/20/2017
    
         git init
 
-## <a name="a-namestep2astep-2-commit-your-content"></a><a name="Step2"></a>步驟 2︰認可內容
+## <a name="Step2"></a>步驟 2︰認可內容
 App Service 支援以各種程式設計語言建立的應用程式。 
 
 1. 如果您的儲存機制已經包含內容，請略過這點，並移至下面的第 2 點。 如果您的儲存機制尚未包含內容，請只要填入靜態的 .html 檔案，如下所示︰ 
@@ -60,7 +60,7 @@ App Service 支援以各種程式設計語言建立的應用程式。
    
         git commit -m "Hello Azure App Service"
 
-## <a name="a-namestep3astep-3-enable-the-app-service-app-repository"></a><a name="Step3"></a>步驟 3︰啟用 App Service 應用程式儲存機制
+## <a name="Step3"></a>步驟 3︰啟用 App Service 應用程式儲存機制
 執行下列步驟以啟用 App Service 應用程式的 Git 儲存機制。
 
 1. 登入 [Azure 入口網站]。
@@ -71,7 +71,7 @@ App Service 支援以各種程式設計語言建立的應用程式。
    
     ![](./media/app-service-deploy-local-git/deployment_credentials.png)
 
-## <a name="a-namestep4astep-4-deploy-your-project"></a><a name="Step4"></a>步驟 4：部署專案
+## <a name="Step4"></a>步驟 4：部署專案
 使用下列步驟，使用本機 Git 將應用程式發佈至 App Service。
 
 1. 在 Azure 入口網站上的應用程式刀鋒視窗中，按一下 [Git URL] 的 [設定] > [屬性]。
@@ -97,7 +97,7 @@ App Service 支援以各種程式設計語言建立的應用程式。
     ![](./media/app-service-deploy-local-git/deployment_history.png)
 6. 按一下應用程式刀鋒視窗頂端的 [瀏覽]  按鈕確認是否已部署內容。 
 
-## <a name="a-namestep5atroubleshooting"></a><a name="Step5"></a>疑難排解
+## <a name="Step5"></a>疑難排解
 使用 Git 發佈至 Azure 的 App Service 應用程式時，下列是經常會遇到的錯誤或問題：
 
 - - -
@@ -133,6 +133,15 @@ App Service 支援以各種程式設計語言建立的應用程式。
     git push azure master
 
 - - -
+**徵兆**RPC 失敗；結果 = 22，HTTP 代碼 = 502。
+
+**原因**︰如果您嘗試透過 HTTPS 推送大型 Git 儲存機制，可能會發生此錯誤。
+
+**解決方式**︰變更本機電腦上的 Git 組態以加大 postBuffer
+
+    git config --global http.postBuffer 524288000
+
+- - -
 **徵兆**：錯誤 - 對遠端儲存機制認可變更，但您的 Web 應用程式未更新。
 
 **原因**：如果您打算部署包含 package.json 檔案的 Node.js 應用程式，但該檔案指出需要額外的模組，便有可能發生此錯誤。
@@ -152,7 +161,7 @@ App Service 支援以各種程式設計語言建立的應用程式。
 * [專案 Kudu 文件](https://github.com/projectkudu/kudu/wiki)
 * [持續部署至 Azure App Service](app-service-continuous-deployment.md)
 * [如何使用適用於 Azure 的 PowerShell](/powershell/azureps-cmdlets-docs)
-* [如何使用 Azure 命令列介面](../xplat-cli-install.md)
+* [如何使用 Azure 命令列介面](../cli-install-nodejs.md)
 
 [Azure App Service]: https://azure.microsoft.com/documentation/articles/app-service-changes-existing-services/
 [Azure Developer Center]: http://www.windowsazure.com/en-us/develop/overview/

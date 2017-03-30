@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 08/08/2016
 ms.author: naziml
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: db2f48b248e2232f913a99b4ffbc0d18b77407e8
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: db69852cffd1ff331ac4a640b04ea4360d00bf75
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -40,13 +40,16 @@ ms.lasthandoff: 11/17/2016
 
 將 {} 中的所有內容取代為您 Web 應用程式的資訊，並使用下列 JSON 內容建立稱為 enableclientcert.json 的檔案：
 
-> { "location": "My Web App Location",   
-> "properties": {  
-> "clientCertEnabled": true } }  
-> 
-> 
+    {
+        "location": "My Web App Location",
+        "properties": {
+            "clientCertEnabled": true
+        }
+    }
 
 請一定要將 "location" 的值變更為您 Web 應用程式所在的位置 (例如 North Central US 或 West US 等)。
+
+您也可以使用 https://resources.azure.com，將 `clientCertEnabled` 屬性翻轉為 `true`。
 
 > **附註︰**如果您從 Powershell 執行 ARMClient，您必須使用重音符 ` 為 JSON 檔案逸出 @ 符號。
 > 

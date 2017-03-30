@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 78f367de862e4fa9203cc794549abb935f117848
-ms.openlocfilehash: f7e4f1832a8edd029fcef08e295b6c79c033b664
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 62fa6a6d0cccc5545b94d4ae167f2fcc7e4cd0de
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -55,7 +55,7 @@ ms.lasthandoff: 02/22/2017
 
 ### <a name="step-3"></a>步驟 3
 
-若要在 TCP 對話中檢視初始的來回時間 (RTT)，我們將只會看到參與 TCP 交握的前兩個封包。 我們將在三向交握中使用前兩個封包，也就是 [SYN]、[SYN, ACK] 封包。 它們會針對 TCP 標頭中設定的旗標命名。 在交握期間的最後一個封包 ([ACK] 封包) 不會用於此案例。 [SYN] 封包會由用戶端傳送。 一旦收到它後，伺服器會傳送 [ACK] 封包做為從用戶端 SYN 接收的認可。 利用伺服器的回應需要極少額外負荷的特性，我們計算 RTT 加減用戶端接收 [SYN，ACK] 封包的時間與用戶端傳送 [SYN] 封包的時間。
+若要在 TCP 對話中檢視初始的來回時間 (RTT)，我們將只會看到參與 TCP 交握的前兩個封包。 我們將在三向交握中使用前兩個封包，也就是 [SYN]、[SYN, ACK] 封包。 它們會針對 TCP 標頭中設定的旗標命名。 在交握期間的最後一個封包 ([ACK] 封包) 不會用於此案例。 [SYN] 封包會由用戶端傳送。 一旦收到它後，伺服器會傳送 [ACK] 封包做為從用戶端 SYN 接收的認可。 利用伺服器的回應需要極少額外負荷的特性，我們將用戶端接收 [SYN, ACK] 封包的時間減去用戶端傳送 [SYN] 封包的時間來計算 RTT。
 
 使用 WireShark，系統會為我們計算此值。
 

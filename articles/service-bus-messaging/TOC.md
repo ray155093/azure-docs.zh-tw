@@ -1,6 +1,7 @@
 # 概觀
 ## [什麼是服務匯流排傳訊？](service-bus-messaging-overview.md)
 ## [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
+## [服務匯流排架構](service-bus-architecture.md)
 ## [常見問題集](service-bus-faq.md)
 
 # 開始使用

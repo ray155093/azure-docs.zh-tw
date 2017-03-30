@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 03/05/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: c7ef2a9535362a3dc352b92732abcdf6cd4836c2
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 9da7a59ca5d544121dc9c540a25a3b975988e9a1
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -29,7 +29,7 @@ ms.lasthandoff: 03/06/2017
 >
 >
 
-本文說明如何在 Azure 入口網站中使用 [Azure Site Recovery[](site-recovery-overview.md)，將內部部署 Hyper-V 虛擬機器複寫至 Azure。
+本文說明如何在 Azure 入口網站中使用 [Azure Site Recovery](site-recovery-overview.md)，將內部部署 Hyper-V 虛擬機器複寫至 Azure。
 
 您會將 Hyper-V VM 複寫至 Azure 儲存體，並在主要站台無法使用的情況下將 VM 容錯移轉至 Azure。 您可以在 Azure 中存取工作負載，並在內部部署恢復一般作業時進行容錯回復。 您也可以使用本文中的指示將 VM 移轉至 Azure。 在移轉案例中，您可以複寫並容錯移轉 VM，但您無法再次將它們容錯回復。
 

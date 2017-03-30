@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/23/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 339df6e5ff05c66e898254f2cd4bb5b596d0c537
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 6ec77968a0f264b8bf1fa56a23e4cc7faef614da
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -48,6 +48,9 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 ### <a name="granular-access-control"></a>細微的存取控制
 
 您可以使用 [Azure 角色型存取控制 (RBAC)](../active-directory/role-based-access-control-what-is.md) 將受控磁碟的特定權限指派給一個或多個使用者。 受控磁碟公開各種不同的作業，包括讀取、寫入 (建立/更新)、刪除和擷取磁碟的[共用存取簽章 (SAS) URI](storage-dotnet-shared-access-signature-part-1.md)。 您可以授權某人只能存取他份內工作所需的作業。 例如，如果您不想讓某人將受控磁碟複製到儲存體帳戶，您可以選擇不要授權存取該受控磁碟的匯出動作。 同樣地，如果您不想讓某人使用 SAS URI 來複製受控磁碟，您可以選擇不要授與有關受控磁碟的這種權限。
+
+### <a name="azure-backup-service-support"></a>Azure 備份服務支援 
+搭配受控磁碟使用 Azure 備份服務，以建立具有以時間為基礎的備份、簡易 VM 還原，以及備份保留原則的備份作業。 受控磁碟僅支援本地備援儲存體 (LRS) 做為複寫選項，這表示它在單一區域內會保留三份資料。 針對區域性災害復原，您必須使用 [Azure 備份服務](../backup/backup-introduction-to-azure-backup.md)來備份位於不同區域的 VM 磁碟，並以 GRS 儲存體帳戶作為備份保存庫。 如需深入了解，請參閱[針對具有受控磁碟的 VM 使用 Azure 備份服務](../backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)。 
 
 ## <a name="pricing-and-billing"></a>價格和計費 
 
@@ -114,19 +117,21 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 
 如果 VM 有五個磁碟，且都已等量分配，情形又如何？ 您可以建立每個磁碟的快照集，但 VM 內對各磁碟的狀態一無所知 – 快照集只知道那個磁碟的情形。 在此情況下，快照集可能需要彼此協調，但目前不支援這樣做。
 
-## <a name="azure-backup-service-support"></a>Azure 備份服務支援 
+## <a name="managed-disks-and-encryption"></a>受控磁碟與加密
 
-您可以使用 Azure 備份來備份具有非受控磁碟的虛擬機器。 [其他詳細資訊](../backup/backup-azure-vms-first-look-arm.md)。
+針對受控磁碟，有兩種加密需要討論。 第一種是「儲存體服務加密」(SSE)，這會由儲存體服務執行。 第二種是「Azure 磁碟加密」，您可以在您 VM 的作業系統和資料磁碟上啟用它。 
 
-您也可以對受控磁碟使用 Azure 備份服務，利用以時間為基礎的備份、簡易 VM 還原和備份保留原則，建立備份作業。 如需深入了解，請參閱[針對具有受控磁碟的 VM 使用 Azure 備份服務](../backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup)。 
+### <a name="storage-service-encryption-sse"></a>儲存體服務加密 (SSE)
 
-## <a name="managed-disks-and-storage-service-encryption-sse"></a>受控磁碟和儲存體服務加密 (SSE)
-
-Azure 儲存體支援自動將寫入儲存體帳戶的資料加密。 如需詳細資訊，請參閱[待用資料的 Azure 儲存體服務加密](storage-service-encryption.md)。 關於受控磁碟上的資料呢？ 目前，您無法為受控磁碟啟用儲存體服務加密，這將在未來推出。 現在，您必須知道如何使用位於加密儲存體帳戶中且本身已加密的 VHD 檔案。 
+Azure 儲存體支援自動將寫入儲存體帳戶的資料加密。 如需詳細資訊，請參閱[待用資料的 Azure 儲存體服務加密](storage-service-encryption.md)。 關於受控磁碟上的資料呢？ 目前，您無法為受控磁碟啟用儲存體服務加密。 不過，此功能將會在未來推出。 現在，您必須知道如何使用位於加密儲存體帳戶中且本身已加密的 VHD 檔案。 
 
 SSE 會將寫入儲存體帳戶的資料加密。 如果您有曾經使用 SSE 加密的 VHD 檔案，則無法使用該 VHD 檔案建立使用受控磁碟的 VM。 您也無法將已加密的非受控磁碟轉換成受控磁碟。 最後，如果您在該儲存體帳戶上停用加密，則無法回復和解密 VHD 檔案。 
 
 若要使用已加密的磁碟，您必須先將 VHD 檔案複製到從未加密過的儲存體帳戶。 然後，您可以建立具有受控磁碟的 VM，並在建立期間指定該 VHD 檔案，或將複製的 VHD 檔案附加至具有受控磁碟的執行中 VM。 
+
+### <a name="azure-disk-encryption-ade"></a>Azure 磁碟加密 (ADE)
+
+Azure 磁碟加密可讓您加密由 IaaS 虛擬機器所使用的作業系統和資料磁碟。 這包括受控磁碟。 對於 Windows，磁碟機是使用業界標準的 BitLocker 加密技術來加密。 對於 Linux，磁碟是使用 DM-Crypt 技術來加密。 這會與 Azure 金鑰保存庫整合，可讓您控制和管理磁碟加密金鑰。 如需詳細資訊，請參閱 [Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密](../security/azure-security-disk-encryption.md)。
 
 ## <a name="next-steps"></a>後續步驟
 

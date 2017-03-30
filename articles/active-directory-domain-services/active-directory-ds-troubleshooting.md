@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: a7cf17e7c84ca6ec69b8a88b78bb0bbc91db0b5b
-ms.openlocfilehash: 30248b5f00aaf2d81db79b5a690760f816384723
-ms.lasthandoff: 12/29/2016
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: d6695b0c40f56093e8701dfe6394143268114453
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -129,7 +129,7 @@ if ($sp -ne $null)
 ## <a name="users-are-unable-to-sign-in-to-the-azure-ad-domain-services-managed-domain"></a>使用者無法登入 Azure AD 網域服務管理的網域
 如果 Azure AD 租用戶中有一或多個使用者無法登入新建立的受管理網域，請執行下列疑難排解步驟：
 
-* **使用 UPN 格式進行登入：**嘗試使用 UPN 格式 (例如，'joeuser@contoso.com')) 進行登入，而非使用 SAMAccountName 格式 ('CONTOSO\joeuser')。 對於 UPN 前置詞過長或與受管理網域上其他使用者相同的使用者，可能會自動產生 SAMAccountName。 UPN 格式保證是 Azure AD 租用戶內唯一的格式。
+* **使用 UPN 格式進行登入：**嘗試使用 UPN 格式 (例如，joeuser@contoso.com) 進行登入，而非使用 SAMAccountName 格式 ('CONTOSO\joeuser')。 對於 UPN 前置詞過長或與受管理網域上其他使用者相同的使用者，可能會自動產生 SAMAccountName。 UPN 格式保證是 Azure AD 租用戶內唯一的格式。
 
 > [!NOTE]
 > 建議使用 UPN 格式來登入 Azure AD 網域服務受管理網域。
@@ -137,7 +137,7 @@ if ($sp -ne $null)
 >
 
 * 確定您已根據《入門指南》中所述的步驟來 [啟用密碼同步處理](active-directory-ds-getting-started-password-sync.md) 。
-* **外部帳戶** 確定受影響的使用者帳戶不是 Azure AD 租用戶中的外部帳戶。 外部帳戶的範例包括 Microsoft 帳戶 (例如 'joe@live.com')) 或來自外部 Azure AD 目錄的使用者帳戶。 因為 Azure AD 網域服務沒有這類使用者帳戶的認證，這些使用者會無法登入受管理的網域。
+* **外部帳戶** 確定受影響的使用者帳戶不是 Azure AD 租用戶中的外部帳戶。 外部帳戶的範例包括 Microsoft 帳戶 (例如 joe@live.com) 或來自外部 Azure AD 目錄的使用者帳戶。 因為 Azure AD 網域服務沒有這類使用者帳戶的認證，這些使用者會無法登入受管理的網域。
 * **同步處理的帳戶：** 如果受影響的使用者帳戶會從內部部署目錄同步處理，請確認：
 
   * 您已部署或更新為 [Azure AD Connect 的最新版本](https://www.microsoft.com/en-us/download/details.aspx?id=47594)。
@@ -151,6 +151,8 @@ if ($sp -ne $null)
 
 ## <a name="users-removed-from-your-azure-ad-tenant-are-not-removed-from-your-managed-domain"></a>不會從受管理的網域中移除從 Azure AD 租用戶移除的使用者
 Azure AD 會防止您意外刪除使用者物件。 當您從您的 Azure AD 租用戶刪除使用者帳戶時，對應的使用者物件會移至資源回收筒。 此刪除作業同步處理至受管理的網域時，會導致對應的使用者帳戶被標記為已停用。 這項功能可協助您稍後復原或取消刪除使用者帳戶。
+
+即使您在 Azure AD 目錄中使用相同的 UPN 重新建立使用者帳戶，使用者帳戶在您的受管理網域中仍會維持停用狀態。 若要從受管理的網域移除使用者帳戶，請從您的 Azure AD 租用戶將它強制刪除。
 
 若要完全從受管理的網域移除使用者帳戶，請從您的 Azure AD 租用戶中永久刪除使用者。 如這篇 [MSDN 文章](https://msdn.microsoft.com/library/azure/dn194132.aspx)所述，使用 Remove-MsolUser PowerShell Cmdlet 搭配 '-RemoveFromRecycleBin' 選項。
 

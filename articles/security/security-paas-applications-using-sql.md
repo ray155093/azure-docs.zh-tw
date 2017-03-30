@@ -1,9 +1,9 @@
 ---
 title: "使用 SQL Database 和 SQL 資料倉儲來保護 PaaS Web 與行動應用程式 | Microsoft Docs"
-description: " 了解用來保護 PaaS Web 與行動應用程式的 Azure SQL Database 和「SQL 資料倉儲」安全性最佳做法. "
+description: " 了解用來保護 PaaS Web 與行動應用程式的 Azure SQL Database 和 SQL 資料倉儲安全性最佳做法。 "
 services: security
 documentationcenter: na
-author: TerryLanfear
+author: techlake
 manager: MBaldwin
 editor: 
 ms.assetid: 
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/31/2017
+ms.date: 03/21/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: b3db1281bbd37fcfbec54bdeb998e6338bb08369
-ms.openlocfilehash: 39f841c0f3c8bed1bd640dfd644a58a764422aff
+ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
+ms.openlocfilehash: be00c1427d57b96506ec8b0ac881b7c1bd09e4de
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -91,9 +92,4 @@ TDE 可以保護待用資料，亦即資料和記錄檔。 它提供遵守各種
 
 - [保護 PaaS 部署](security-paas-deployments.md)
 - [使用 Azure App Service 來保護 PaaS Web 與行動應用程式](security-paas-applications-using-app-services.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

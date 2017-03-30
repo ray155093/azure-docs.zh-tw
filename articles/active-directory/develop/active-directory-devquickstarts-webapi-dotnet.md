@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: e2e1c68b83e9b9ec5a3865e89a98b80cf59cdfad
-ms.openlocfilehash: 038b862a355310d264dacb4c619fb6558a0edffc
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: b028a75836f7c762431bfb9e3fc30822b7dee885
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -54,9 +54,10 @@ Azure Active Directory (Azure AD) 只需幾行程式碼，即可使用 OAuth 2.0
 5. 依照提示並建立新的「Web 應用程式和/或 Web API」。
   * [名稱] 可向使用者描述您的應用程式。 輸入**待辦事項清單服務**。
   * 「重新導向 Uri」是配置與字串的組合，Azure AD 會用它來傳回應用程式所要求的任何權杖。 請為此值輸入 `https://localhost:44321/` 。
-  * 針對 [AppID URI]，輸入租用戶特定識別碼。 例如，輸入 `https://contoso.onmicrosoft.com/TodoListService`。
-  
-6. 儲存組態。 讓入口網站保持開啟，因為您很快就必須一併註冊用戶端應用程式。
+
+6. 從應用程式的 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI。 輸入租用戶特定識別碼。 例如，輸入 `https://contoso.onmicrosoft.com/TodoListService`。
+
+7. 儲存組態。 讓入口網站保持開啟，因為您很快就必須一併註冊用戶端應用程式。
 
 ## <a name="step-2-set-up-the-app-to-use-the-owin-authentication-pipeline"></a>步驟 2：設定應用程式以使用 OWIN 驗證管線
 若要驗證連入要求和權杖，您必須設定讓應用程式與 Azure AD 進行通訊。

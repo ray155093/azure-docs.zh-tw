@@ -1,6 +1,6 @@
 ---
 title: "適用於 SQL Database 的 Azure PowerShell 範例 | Microsoft Docs"
-description: "Azure CLI 範例 - 建立和管理 Azure SQL Database 伺服器、彈性集區、資料庫和防火牆。"
+description: "Azure PowerShell 範例 - 可協助您建立和管理 Azure SQL Database 伺服器、彈性集區、資料庫和防火牆的指令碼。"
 services: sql-database
 documentationcenter: sql-database
 author: CarlRabeler
@@ -17,9 +17,9 @@ ms.workload: database
 ms.date: 03/07/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: f8e11c348da1d783b691a60c68055f2d394e6a94
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: abcccabbfc56102c97ef2408fb812755e21b467c
+ms.lasthandoff: 03/22/2017
 
 ---
 

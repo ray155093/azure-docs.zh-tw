@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/04/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: efd7aab21a9899ed0f56ffeeda362a61d69ffdc9
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 1345af54729f278229c98e596d0d213331c2faaf
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -293,7 +293,7 @@ IoT 中樞也可允許裝置使用 [X.509 憑證][lnk-x509]向 IoT 中樞進行�
 
 * **現有的 X.509 憑證**。 裝置可能已經有與其關聯的 X.509 憑證。 裝置可以使用此憑證向「IoT 中樞」進行驗證。
 * **自我產生及自我簽署的 X-509 憑證**。 裝置製造商或公司內部的部署人員可以產生這些憑證，並將對應的私密金鑰 (和憑證) 存放在裝置上。 您可以使用 [OpenSSL][lnk-openssl] 和 [Windows SelfSignedCertificate][lnk-selfsigned] 公用程式之類的工具來達到此目的。
-* **CA 簽署的 X.509 憑證**。 您也可以使用「憑證授權單位」(CA) 所產生和簽署的 X.509 憑證來識別裝置，以及向「IoT 中樞」驗證裝置。
+* **CA 簽署的 X.509 憑證**。 您也可以使用「憑證授權單位」(CA) 所產生和簽署的 X.509 憑證來識別裝置，以及向「IoT 中樞」驗證裝置。 IoTHub 只會驗證出示的指紋是否符合設定的指紋。 IotHub 不會驗證憑證鏈結。
 
 裝置可以使用 X.509 憑證或安全性權杖來進行驗證，但不可同時使用兩者。
 

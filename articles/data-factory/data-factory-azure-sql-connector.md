@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 5b8144b0a65c18fb98cb410cfd83ad9812c6ed2a
-ms.openlocfilehash: 5cb04849a3346777a124fc3c0d3464843efaca52
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 90f8a2c0a30c9cce411215e1b98954de0ed9b787
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -351,7 +351,7 @@ ms.lasthandoff: 11/17/2016
 
 **Azure SQL 輸出資料集**
 
-此範例會將資料複製到 Azure SQL 中名為 "MyTable" 的資料表。 請在Azure SQL 中建立此資料表，其資料行的數目如您預期 Blob CSV 檔案要包含的數目。 此資料表會每小時加入新的資料列。
+此範例會將資料複製到 Azure SQL 中名為 "MyOutputTable" 的資料表。 請在Azure SQL 中建立此資料表，其資料行的數目如您預期 Blob CSV 檔案要包含的數目。 此資料表會每小時加入新的資料列。
 
 ```JSON
 {
@@ -513,7 +513,7 @@ GO
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| writeBatchTimeout |在逾時前等待批次插入作業完成的時間。 |時間範圍<br/><br/>  範例：“00:30:00” (30 分鐘)。 |否 |
+| writeBatchTimeout |在逾時前等待批次插入作業完成的時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
 | writeBatchSize |當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 |整數 (資料列數目) |否 (預設值：10000) |
 | sqlWriterCleanupScript |指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。 如需詳細資訊，請參閱 [可重複性](#repeatability-during-copy)一節。 |查詢陳述式。 |否 |
 | sliceIdentifierColumnName |指定要讓「複製活動」以自動產生的分割識別碼填入的資料行名稱，這可在重新執行時用來清除特定分割的資料。 如需詳細資訊，請參閱 [可重複性](#repeatability-during-copy)一節。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |

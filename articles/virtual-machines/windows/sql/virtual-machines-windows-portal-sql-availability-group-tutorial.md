@@ -14,11 +14,12 @@ ms.custom: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 01/10/2017
+ms.date: 03/17/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 5e41a20f563eab6b236eaa6eaf0ce1d20ebfa493
-ms.openlocfilehash: d8982dda38df92c94e7dac4b5a1cf451bab3a5ce
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 81de52ac95aaf1b6d02572a70a4c1a84fb541401
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -90,7 +91,7 @@ ms.openlocfilehash: d8982dda38df92c94e7dac4b5a1cf451bab3a5ce
 3. 選取 [靜態 IP 位址]，然後在 [位址] 文字方塊中，從 SQL Server 所在的子網路中指定一個可用的位址。 然後按 [下一步] 。
 4. 在 [叢集核心資源] 區段中，於叢集名稱上按一下滑鼠右鍵，然後按一下 [上線]。 然後等待兩個資源上線。 叢集名稱資源上線後，會以新的 AD 電腦帳戶更新 DC 伺服器。 稍後請使用此 AD 帳戶來執行「可用性群組」叢集服務。
 
-### <a name="a-nameaddnodeaadd-the-other-sql-server-to-cluster"></a><a name="addNode"></a>將其他 SQL Server 新增到叢集
+### <a name="addNode"></a>將其他 SQL Server 新增到叢集
 
 將其他 SQL Server 新增到叢集。
 
@@ -223,7 +224,7 @@ Repeat these steps on the second SQL Server.
 7. 在 [物件總管] 中，於 [資料庫] 上按一下滑鼠右鍵，然後按一下 [新增資料庫]。
 8. 在 [資料庫名稱] 中，輸入 **MyDB1**，然後按一下 [確定]。
 
-### <a name="a-namebackupsharea-create-a-backup-share"></a><a name="backupshare"></a> 建立備份共用
+### <a name="backupshare"></a> 建立備份共用
 
 1. 在 [伺服器管理員] 中的第一部 SQL Server 上，按一下 [工具]。 開啟 [電腦管理]。
 
@@ -332,7 +333,7 @@ Repeat these steps on the second SQL Server.
    ![容錯移轉叢集管理員中的 AG](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/80-clustermanager.png)
 
    > [!WARNING]
-   > 請勿嘗試從「容錯移轉叢集管理員」容錯移轉「可用性群組」。 所有容錯移轉作業都應在 SSMS 的 **AlwaysOn 儀表板** 中執行。 如需詳細資訊，請參閱 [容錯移轉叢集和 AlwaysOn 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/ff929171.aspx)。
+   > 請勿嘗試從「容錯移轉叢集管理員」容錯移轉「可用性群組」。 所有容錯移轉作業都應在 SSMS 的 **AlwaysOn 儀表板** 中執行。 如需詳細資訊，請參閱[容錯移轉叢集管理員與可用性群組一起使用的限制](https://msdn.microsoft.com/library/ff929171.aspx)。
     >
 
 此時，您擁有一個在兩個 SQL Server 執行個體上都有複本的「可用性群組」。 您可以在執行個體之間移動「可用性群組」。 您還不能連接到「可用性群組」，因為您沒有接聽程式。 在 Azure 虛擬機器中，接聽程式需要負載平衡器。 下一個步驟就是在 Azure 中建立負載平衡器。
@@ -434,7 +435,7 @@ Repeat these steps on the second SQL Server.
 
 1. 按一下 [確定] 以設定負載平衡規則。
 
-## <a name="a-nameconfigure-listenera-configure-the-listener"></a><a name="configure-listener"></a> 設定接聽程式
+## <a name="configure-listener"></a> 設定接聽程式
 
 下一步是在容錯移轉叢集上設定「可用性群組」接聽程式。
 
@@ -455,7 +456,7 @@ Repeat these steps on the second SQL Server.
 
 1. 您現在應該會看到在容錯移轉叢集管理員中建立的接聽程式名稱。 以滑鼠右鍵按一下接聽程式名稱，然後按一下 [屬性] 。
 
-1. 在 [連接埠] 方塊中，使用您稍早所用的 $EndpointPort (預設值是&1433;) 來指定「可用性群組」接聽程式的連接埠號碼，然後按一下 [確定]。
+1. 在 [連接埠] 方塊中，使用您稍早所用的 $EndpointPort (預設值是 1433) 來指定「可用性群組」接聽程式的連接埠號碼，然後按一下 [確定]。
 
 現在，您在以 Resource Manager 模式執行的 Azure 虛擬機器中，已有一個「SQL Server 可用性群組」。
 
@@ -503,9 +504,4 @@ SQLCMD 連線會自動連線到任何一個裝載主要複本的 SQL Server 執�
 ## <a name="next-steps"></a>後續步驟
 
 - [將第二個可用性群組的 IP 位址新增到負載平衡器](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md#Add-IP)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -1,5 +1,5 @@
 ---
-title: "使用憑證保護 Windows 上的叢集 | Microsoft Docs"
+title: "使用憑證保護 Windows 上的 Azure Service Fabric 叢集 | Microsoft Docs"
 description: "本文說明如何保護獨立或私人叢集內以及用戶端與叢集之間的通訊。"
 services: service-fabric
 documentationcenter: .net
@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/12/2016
+ms.date: 03/15/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 4fb6ef56d694aff967840ab26b75b66a2e799cc1
-ms.openlocfilehash: 48fd90c7ffb6748642ed02804117ff92cb060016
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 2bca90f45e994752ddc3569635ea053f9ef1adaf
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -28,45 +29,47 @@ ms.openlocfilehash: 48fd90c7ffb6748642ed02804117ff92cb060016
 ## <a name="which-certificates-will-you-need"></a>您需要哪些憑證？
 一開始，請 [將獨立叢集封裝](service-fabric-cluster-creation-for-windows-server.md#downloadpackage) 下載至叢集中的其中一個節點。 在下載的套件中，您會找到 **ClusterConfig.X509.MultiMachine.json** 檔案。 開啟檔案，檢閱 **properties** 區段下的 **security** 區段：
 
-    "security": {
-        "metadata": "The Credential type X509 indicates this is cluster is secured using X509 Certificates. The thumbprint format is - d5 ec 42 3b 79 cb e5 07 fd 83 59 3c 56 b9 d5 31 24 25 42 64.",
-        "ClusterCredentialType": "X509",
-        "ServerCredentialType": "X509",
-        "CertificateInformation": {
-            "ClusterCertificate": {
-                "Thumbprint": "[Thumbprint]",
-                "ThumbprintSecondary": "[Thumbprint]",
-                "X509StoreName": "My"
-            },
-            "ServerCertificate": {
-                "Thumbprint": "[Thumbprint]",
-                "ThumbprintSecondary": "[Thumbprint]",
-                "X509StoreName": "My"
-            },
-            "ClientCertificateThumbprints": [
-                {
-                    "CertificateThumbprint": "[Thumbprint]",
-                    "IsAdmin": false
-                }, 
-                {
-                    "CertificateThumbprint": "[Thumbprint]",
-                    "IsAdmin": true
-                }
-            ],
-            "ClientCertificateCommonNames": [
-                {
-                    "CertificateCommonName": "[CertificateCommonName]",
-                    "CertificateIssuerThumbprint" : "[Thumbprint]",
-                    "IsAdmin": true
-                }
-            ]
-            "ReverseProxyCertificate":{
-                "Thumbprint": "[Thumbprint]",
-                "ThumbprintSecondary": "[Thumbprint]",
-                "X509StoreName": "My"
+```JSON
+"security": {
+    "metadata": "The Credential type X509 indicates this is cluster is secured using X509 Certificates. The thumbprint format is - d5 ec 42 3b 79 cb e5 07 fd 83 59 3c 56 b9 d5 31 24 25 42 64.",
+    "ClusterCredentialType": "X509",
+    "ServerCredentialType": "X509",
+    "CertificateInformation": {
+        "ClusterCertificate": {
+            "Thumbprint": "[Thumbprint]",
+            "ThumbprintSecondary": "[Thumbprint]",
+            "X509StoreName": "My"
+        },
+        "ServerCertificate": {
+            "Thumbprint": "[Thumbprint]",
+            "ThumbprintSecondary": "[Thumbprint]",
+            "X509StoreName": "My"
+        },
+        "ClientCertificateThumbprints": [
+            {
+                "CertificateThumbprint": "[Thumbprint]",
+                "IsAdmin": false
+            }, 
+            {
+                "CertificateThumbprint": "[Thumbprint]",
+                "IsAdmin": true
             }
+        ],
+        "ClientCertificateCommonNames": [
+            {
+                "CertificateCommonName": "[CertificateCommonName]",
+                "CertificateIssuerThumbprint" : "[Thumbprint]",
+                "IsAdmin": true
+            }
+        ]
+        "ReverseProxyCertificate":{
+            "Thumbprint": "[Thumbprint]",
+            "ThumbprintSecondary": "[Thumbprint]",
+            "X509StoreName": "My"
         }
     }
+}
+```
 
 此區段描述保護獨立 Windows 叢集所需的憑證。 如果您指定叢集憑證，請將**ClusterCredentialType** 的值設定為 _**X509**_。 如果您指定外部連接的伺服器憑證，請將 **ServerCredentialType** 設定為 _**X509**_。 雖然並非必要，但我們建議具備這兩個憑證以適當保護叢集。 如果您將這些值設定為 X509，則您也必須指定對應憑證或 Service Fabric 將會擲回例外狀況。 在某些情況下，您可能只想要指定 _ClientCertificateThumbprints_ 或 _ReverseProxyCertificate_。 在這些情況下，您需要將 _ClusterCredentialType_ 或 _ServerCredentialType_設定為 _X509_。
 
@@ -88,7 +91,7 @@ ms.openlocfilehash: 48fd90c7ffb6748642ed02804117ff92cb060016
 
 以下是範例叢集組態，其中已提供叢集、 伺服器和用戶端憑證。
 
- ```
+ ```JSON
  {
     "name": "SampleCluster",
     "clusterConfigurationVersion": "1.0.0",
@@ -190,14 +193,14 @@ ms.openlocfilehash: 48fd90c7ffb6748642ed02804117ff92cb060016
 
 現在將憑證匯出至 PFX 檔並設定保護密碼。 首先取得憑證的指紋。 從 [啟動] 功能表中，執行 [管理電腦憑證]。 瀏覽至 [本機電腦\個人] 資料夾，找到您剛建立的憑證。 按兩下憑證以開啟它，選取 [詳細資料] 索引標籤，然後向下捲動至 [指紋] 欄位。 在移除空格之後，將憑證指紋值複製到以下的 PowerShell 命令。  將 `String` 的值變更為適當的安全密碼加以保護，然後在 PowerShell 執行下列命令︰
 
-```   
+```powershell   
 $pswd = ConvertTo-SecureString -String "1234" -Force –AsPlainText
 Get-ChildItem -Path cert:\localMachine\my\<Thumbprint> | Export-PfxCertificate -FilePath C:\mypfx.pfx -Password $pswd
 ```
 
 若要檢視電腦上安裝之憑證的詳細資訊，可以執行下列 PowerShell 命令︰
 
-```
+```powershell
 $cert = Get-Item Cert:\LocalMachine\My\<Thumbprint>
 Write-Host $cert.ToString($true)
 ```
@@ -210,14 +213,14 @@ Write-Host $cert.ToString($true)
 1. 將 .pfx 檔案複製到節點。
 2. 以系統管理員身分開啟 PowerShell 視窗並輸入下列命令。 以您用來建立此憑證的密碼取代 $pswd  。 以複製到這個節點之 .pfx 的完整路徑取代 $PfxFilePath  。
    
-    ```
+    ```powershell
     $pswd = "1234"
     $PfxFilePath ="C:\mypfx.pfx"
     Import-PfxCertificate -Exportable -CertStoreLocation Cert:\LocalMachine\My -FilePath $PfxFilePath -Password (ConvertTo-SecureString -String $pswd -AsPlainText -Force)
     ```
 3. 現在您必須在此憑證上設定存取控制，讓在「網路服務」帳戶下執行的 Service Fabric 程序可以藉由執行下列指令碼來使用它。 提供憑證的指紋和服務帳戶的「網路服務」。 您可以檢查憑證上的 ACL 是否正確，方法是在 [啟動]  >  [管理電腦憑證] 開啟憑證，並查看 [所有工作]  >  [管理私密金鑰]。
    
-    ```
+    ```powershell
     param
     (
     [Parameter(Position=1, Mandatory=$true)]
@@ -257,23 +260,23 @@ Write-Host $cert.ToString($true)
 ## <a name="create-the-secure-cluster"></a>建立安全的叢集
 設定 **ClusterConfig.X509.MultiMachine.json** 檔案的 **security** 區段後，您可以繼續進行[建立叢集](service-fabric-cluster-creation-for-windows-server.md#createcluster)一節，以設定節點和建立獨立叢集。 請記得在建立叢集時使用 **ClusterConfig.X509.MultiMachine.json** 檔案。 例如，您的命令可能如下所示：
 
-```
+```powershell
 .\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json
 ```
 
 順利執行安全的獨立 Windows 叢集，並已設定經過驗證的用戶端以進行連接之後，請依照[使用 PowerShell 來連線到安全的叢集](service-fabric-connect-to-secure-cluster.md#connectsecurecluster)一節來連接它。 例如：
 
-```
+```powershell
 $ConnectArgs = @{  ConnectionEndpoint = '10.7.0.5:19000';  X509Credential = $True;  StoreLocation = 'LocalMachine';  StoreName = "MY";  ServerCertThumbprint = "057b9544a6f2733e0c8d3a60013a58948213f551";  FindType = 'FindByThumbprint';  FindValue = "057b9544a6f2733e0c8d3a60013a58948213f551"   }
 Connect-ServiceFabricCluster $ConnectArgs
 ```
 
-然後，您可以執行其他的 PowerShell 命令以使用此叢集。 例如，`Get-ServiceFabricNode` 可以顯示此安全叢集上的節點清單。
+然後，您可以執行其他的 PowerShell 命令以使用此叢集。 例如，[Get-ServiceFabricNode](/powershell/servicefabric/vlatest/get-servicefabricnode.md) 可以顯示此安全叢集上的節點清單。
 
 
 若要移除叢集，連線至您下載 Service Fabric 套件的叢集節點，開啟命令列並導覽至套件資料夾。 現在執行下列命令：
 
-```
+```powershell
 .\RemoveServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json
 ```
 
@@ -281,10 +284,5 @@ Connect-ServiceFabricCluster $ConnectArgs
 > 不正確的憑證設定可能會在接下來的部署期間阻止叢集。 若要自我診斷安全性問題，請查看事件檢視器群組 [應用程式及服務記錄檔]  >  [Microsoft Service Fabric]。
 > 
 > 
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

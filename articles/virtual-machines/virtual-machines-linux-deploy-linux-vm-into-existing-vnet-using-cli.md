@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 2.0 (預覽) 將 Linux VM 部署至現有網路 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 2.0 (預覽) 將 Linux 虛擬機器部署至現有虛擬網路"
+title: "使用 Azure CLI 2.0 將 Linux VM 部署至現有網路 | Microsoft Docs"
+description: "了解如何使用 Azure CLI 2.0 將 Linux 虛擬機器部署至現有虛擬網路"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,31 +16,27 @@ ms.topic: article
 ms.date: 01/31/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 34e9b401444aeec233d846a6b52f4a452c54cdaf
-ms.openlocfilehash: 106571bf36454ab20e75cb4ee42b2aca787a9d5a
+ms.sourcegitcommit: 67d4fee2fc59651903d4c02d1fce84c7b81e5da1
+ms.openlocfilehash: c56ad780a1d67102d23c84a18c712ae48cec1eb6
+ms.lasthandoff: 02/27/2017
 
 
 ---
 
-# <a name="deploy-a-linux-vm-into-an-existing-virtual-network-using-the-azure-cli-20-preview"></a>使用 Azure CLI 2.0 (預覽) 將 Linux VM 部署至現有虛擬網路
+# <a name="deploy-a-linux-vm-into-an-existing-virtual-network"></a>將 Linux VM 部署到現有的虛擬網路
 
-此文章說明如何使用 Azure CLI 2.0 (預覽) 將虛擬機器 (VM) 部署至現有虛擬網路。 這些需求包括：
+此文章說明如何使用 Azure CLI 2.0 將虛擬機器 (VM) 部署至現有虛擬網路。 這些需求包括：
 
 - [一個 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)
 - [SSH 公開金鑰和私密金鑰檔案](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
-您可以使用下列其中一個 CLI 版本來完成工作︰
-
-- [Azure CLI 1.0](virtual-machines-linux-deploy-linux-vm-into-existing-vnet-using-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) – 適用於傳統和資源管理部署模型的 CLI
-- [Azure CLI 2.0 (預覽)](#quick-commands) - 適用於資源管理部署模型的新一代 CLI (本文章)
+您也可以使用 [Azure CLI 1.0](virtual-machines-linux-deploy-linux-vm-into-existing-vnet-using-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來執行這些步驟。
 
 
 ## <a name="quick-commands"></a>快速命令
 如果您需要快速完成工作，下列章節詳細說明需要的命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](#detailed-walkthrough)。
 
-若要建立此自訂環境，您需要安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
+若要建立此自訂環境，您需要安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`myVnet` 和 `myVM`。
 
@@ -62,7 +58,7 @@ az vm create \
 
 像虛擬網路和網路安全性群組之類的 Azure 資產，最好是當做很少部署的靜態且長久的資源。 虛擬網路部署之後可供新的部署重複使用，完全不會對基礎結構造成負面影響。 將虛擬網路想像成傳統的硬體網路交換器，您就不需要在每次部署時設定全新的硬體交換器。 有了正確設定的虛擬網路，我們就可以一次又一次地將新的 VM 部署至該虛擬網路，整個虛擬網路生命週期內所需的變動極少 (如果有的話)。
 
-若要建立此自訂環境，您需要安裝 [Azure CLI 2.0 (預覽)](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
+若要建立此自訂環境，您需要安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，並且使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`myVnet` 和 `myVM`。
 
@@ -149,7 +145,7 @@ az network nic create \
 
 我們現在有虛擬網路、子網路與做為防火牆網路安全性群組，網路安全性群組會封鎖所有連入流量 (除了用於 SSH 的連接埠 22) 來保護我們的子網路。 現在可以將 VM 部署在這個現有的網路基礎結構內。
 
-使用 [az vm create](/cli/azure/vm#create) 建立 VM。 如需使用旗標搭配 Azure CLI 2.0 (預覽) 來部署完整 VM 的詳細資訊，請參閱[使用 Azure CLI 建立完整的 Linux 環境](virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+使用 [az vm create](/cli/azure/vm#create) 建立 VM。 如需使用旗標搭配 Azure CLI 2.0 來部署完整 VM 的詳細資訊，請參閱[使用 Azure CLI 建立完整的 Linux 環境](virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 下列範例使用 Azure 受控磁碟建立 VM。 這些磁碟是由 Azure 平台處理，不需要任何準備或位置來儲存它們。 如需受控磁碟的詳細資訊，請參閱 [Azure 受控磁碟概觀](../storage/storage-managed-disks-overview.md)。 如果您想要使用非受控磁碟，請參閱下列其他附註。
 
@@ -178,9 +174,4 @@ az vm create \
 * [使用 Azure Resource Manager 範本和 Azure CLI 部署和管理虛擬機器](virtual-machines-linux-cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [直接使用 Azure CLI 命令，建立自訂的 Linux VM 環境](virtual-machines-linux-create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [使用範本在 Azure 上建立 Linux VM](virtual-machines-linux-create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

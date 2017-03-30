@@ -16,9 +16,9 @@ ms.workload: infrastructure
 ms.date: 03/14/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 623eda189cf3fd08a17417df65485a3717f88ace
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: a05059a51113ccaf71b735b1b32a0f3fb7411282
+ms.lasthandoff: 03/21/2017
 
 ---
 
@@ -26,7 +26,7 @@ ms.lasthandoff: 03/15/2017
 
 此指令碼會建立 Azure 虛擬機器、安裝 Operations Management Suite (OMS) 代理程式，並向 OMS 工作區註冊系統。 執行此指令碼後，就能在 OMS 主控台中看到虛擬機器。
 
-在執行這個指令碼之前，請確定您已使用 `Login-AzureRmAccount` 命令建立與 Azure 的連線。 此外，必須更新指令碼中的 OMS 工作區識別碼和工作區金鑰。
+您可以視需要使用 [Azure PowerShell 指南 (英文)](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。 此外，您需要更新 OMS 工作區識別碼和工作區金鑰。
 
 ## <a name="sample-script"></a>範例指令碼
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 03/15/2017
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-在執行過指令碼範例之後，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令來移除資源群組、VM 和所有相關資源。
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup

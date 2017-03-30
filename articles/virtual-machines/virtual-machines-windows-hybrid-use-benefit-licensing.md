@@ -1,6 +1,6 @@
 ---
-title: "適用於 Windows Server 的 Azure Hybrid Use Benefit | Microsoft Docs"
-description: "了解如何發揮「Windows Server 軟體保證」的最大效益來將內部部署授權帶到 Azure"
+title: "適用於 Windows Server 和 Windows 用戶端的 Azure Hybrid Use Benefit | Microsoft Docs"
+description: "了解如何發揮 Windows 軟體保證的最大效益，以將內部部署授權帶到 Azure"
 services: virtual-machines-windows
 documentationcenter: 
 author: george-moore
@@ -12,24 +12,28 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 11/17/2016
+ms.date: 3/10/2017
 ms.author: georgem
 translationtype: Human Translation
-ms.sourcegitcommit: 7167048a287bee7c26cfc08775dcb84f9e7c2eed
-ms.openlocfilehash: df86e73814ceb0c5137c654bce84c8d42ae41820
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: dfa3cf27eebd04507c101fc9421f13dfef39c39f
+ms.lasthandoff: 03/21/2017
 
 
 ---
-# <a name="azure-hybrid-use-benefit-for-windows-server"></a>適用於 Windows Server 的 Azure Hybrid Use Benefit
-若您是搭配軟體保證使用 Windows Server 的客戶，可將內部部署 Windows Server 授權帶到 Azure，並以較少的成本在 Azure 中執行 Windows Server VM。 Azure Hybrid Use Benefit 可讓您在 Azure 中執行 Windows Server 虛擬機器 (VM)，且只需支付基本計算費率。 如需詳細資訊，請瀏覽 [Azure Hybrid Use Benefit](https://azure.microsoft.com/pricing/hybrid-use-benefit/)授權頁面。 本文說明如何在 Azure 中部署 Windows Server VM，以利用此授權的權益。
+# <a name="azure-hybrid-use-benefit-for-windows-server-and-windows-client"></a>適用於 Windows Server 和 Windows 用戶端的 Azure Hybrid Use Benefit
+對於擁有軟體保證的客戶，Azure Hybrid Use Benefit 讓您能夠以較低的成本來使用內部部署 Windows Server 和 Windows 用戶端授權，以及在 Azure 中執行 Windows 虛擬機器。 適用於 Windows Server 的 Azure Hybrid Use Benefit 包含 Windows Server 2008R2、Windows Server 2012、Windows Server 2012R2 及 Windows Server 2016。 適用於 Windows 用戶端的 Azure Hybrid Use Benefit 包含 Windows 10。 如需詳細資訊，請瀏覽 [Azure Hybrid Use Benefit](https://azure.microsoft.com/pricing/hybrid-use-benefit/)授權頁面。
 
+>[!IMPORTANT]
+>適用於 Windows 用戶端的 Azure Hybrid Use Benefit 目前為預覽版。 只有下列企業版客戶有資格使用：每位使用者都具有 Windows 10 Enterprise E3/E5，或者每位使用者都具有 Windows VDA (使用者訂閱授權或附加元件使用者訂閱授權) (「合格授權」)。
+>
+>
 
 ## <a name="ways-to-use-azure-hybrid-use-benefit"></a>如何使用 Azure Hybrid Use Benefit
 有幾種不同方式可部署 Windows VM 與 Azure Hybrid Use Benefit︰
 
 1. 如果您有具備 Enterprise 合約支援，您可以[從預先設有 Azure Hybrid Use Benefit 的特定 Marketplace 映象部署 VM](#deploy-a-vm-using-the-azure-marketplace)。
-2. 若您沒有 Enterprise 合約，則可使用 Resource Manager 範本或 [Azure PowerShell](#detailed-powershell-deployment-walkthrough)，[上傳自訂 VM](#upload-a-windows-server-vhd) 及[進行部署](#deploy-a-vm-via-resource-manager)。
+2. 如果沒有 Enterprise 合約，您可以[上傳自訂 VM](#upload-a-windows-vhd)，並使用 [Resource Manager 範本來部署](#deploy-a-vm-via-resource-manager)或使用 [Azure PowerShell](#detailed-powershell-deployment-walkthrough) 來部署。
 
 ## <a name="deploy-a-vm-using-the-azure-marketplace"></a>使用 Azure Marketplace 部署 VM
 對於具備 [Enterprise 合約訂用帳戶](https://www.microsoft.com/Licensing/licensing-programs/enterprise.aspx)的客戶，可以在預先設有 Azure Hybrid Use Benefit 的 Marketplace 使用映象。 這些映像可以直接從 Azure 入口網站、Resource Manager 範本或 Azure PowerShell 部署，例如。 Marketplace 中的映像會以 `[HUB]` 名稱註明，如下所示︰
@@ -38,16 +42,23 @@ ms.lasthandoff: 02/16/2017
 
 您可以直接從 Azure 入口網站部署這些映像。 若要在 Resource Manager 範本中使用，並與 Azure PowerShell 搭配使用，請檢視映像的清單，如下所示︰
 
+對於 Windows Server：
 ```powershell
 Get-AzureRMVMImageSku -Location "West US" -Publisher "MicrosoftWindowsServer" `
     -Offer "WindowsServer-HUB"
 ```
 
+對於 Windows 用戶端：
+```powershell
+Get-AzureRMVMImageSku -Location "West US" -Publisher "MicrosoftWindowsServer" `
+    -Offer "Windows-HUB"
+```
+
 如果您沒有 Enterprise 合約訂用帳戶，請繼續閱讀如何上傳自訂 VM 並使用 Azure Hybrid Use Benefit 進行部署的指示。
 
 
-## <a name="upload-a-windows-server-vhd"></a>上傳 Windows Server VHD
-若要在 Azure 中部署 Windows Server VM，您必須先建立包含基底 Windows Server 組建的 VHD。 您必須先透過 Sysprep 妥善準備這個 VHD，再將其上傳至 Azure。 您可以深入了解 [VHD 需求和 Sysprep 處理序](virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)及 [伺服器角色的 Sysprep 支援](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。 執行 Sysprep 前，請先備份 VM。 
+## <a name="upload-a-windows-vhd"></a>上傳 Windows VHD
+若要在 Azure 中部署 Windows VM，您必須先建立包含基底 Windows 組建的 VHD。 您必須先透過 Sysprep 妥善準備這個 VHD，再將其上傳至 Azure。 您可以深入了解 [VHD 需求和 Sysprep 處理序](virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)及 [伺服器角色的 Sysprep 支援](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。 執行 Sysprep 前，請先備份 VM。 
 
 確定您已 [安裝並設定最新的 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 備妥 VHD 之後，請使用 `Add-AzureRmVhd` Cmdlet，將 VHD 上傳到 Azure 儲存體帳戶，如下所示：
 
@@ -67,20 +78,35 @@ Add-AzureRmVhd -ResourceGroupName "myResourceGroup" -LocalFilePath "C:\Path\To\m
 ## <a name="deploy-an-uploaded-vm-via-resource-manager"></a>透過 Resource Manager 部署已上傳的 VM
 在 Resource Manager 範本內，可以指定 `licenseType` 的額外參數。 您可以進一步了解如何 [製作 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。 將 VHD 上傳至 Azure 之後，請編輯 Resource Manager 範本以將授權類型納入計算提供者，之後再照常部署範本即可：
 
+對於 Windows Server：
 ```json
 "properties": {  
    "licenseType": "Windows_Server",
    "hardwareProfile": {
         "vmSize": "[variables('vmSize')]"
-   },
+   }
 ```
 
+對於 Windows 用戶端：
+```json
+"properties": {  
+   "licenseType": "Windows_Client",
+   "hardwareProfile": {
+        "vmSize": "[variables('vmSize')]"
+   }
+```
 
 ## <a name="deploy-an-uploaded-vm-via-powershell-quickstart"></a>透過 PowerShell 快速入門部署已上傳的 VM
 透過 PowerShell 部署 Windows Server VM 時，您會有 `-LicenseType`的額外參數。 將 VHD 上傳至 Azure 之後，使用 `New-AzureRmVM` 建立 VM 並指定授權類型，如下所示：
 
+對於 Windows Server：
 ```powershell
 New-AzureRmVM -ResourceGroupName "myResourceGroup" -Location "West US" -VM $vm -LicenseType "Windows_Server"
+```
+
+對於 Windows 用戶端：
+```powershell
+New-AzureRmVM -ResourceGroupName "myResourceGroup" -Location "West US" -VM $vm -LicenseType "Windows_Client"
 ```
 
 您可於下方進一步了解[透過 PowerShell 在 Azure 中部署 VM 的詳細逐步解說](virtual-machines-windows-hybrid-use-benefit-licensing.md#detailed-powershell-deployment-walkthrough)，或閱讀[使用 Resource Manager 和 PowerShell 建立 Windows VM](virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 中不同步驟的描述說明。
@@ -93,7 +119,7 @@ New-AzureRmVM -ResourceGroupName "myResourceGroup" -Location "West US" -VM $vm -
 Get-AzureRmVM -ResourceGroup "myResourceGroup" -Name "myVM"
 ```
 
-輸出類似於下列範例：
+針對 Windows Server 的輸出類似下列範例：
 
 ```powershell
 Type                     : Microsoft.Compute/virtualMachines
@@ -180,8 +206,14 @@ $vm = Set-AzureRmVMOSDisk -VM $vm -Name $osDiskName -VhdUri $osDiskUri -CreateOp
 
 最後，建立 VM 並定義授權類型，以採用 Azure Hybrid Use Benefit：
 
+對於 Windows Server：
 ```powershell
 New-AzureRmVM -ResourceGroupName $resourceGroupName -Location $location -VM $vm -LicenseType "Windows_Server"
+```
+
+對於 Windows 用戶端：
+```powershell
+New-AzureRmVM -ResourceGroupName $resourceGroupName -Location $location -VM $vm -LicenseType "Windows_Client"
 ```
 
 ## <a name="next-steps"></a>後續步驟

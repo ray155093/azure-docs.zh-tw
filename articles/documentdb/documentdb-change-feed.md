@@ -13,11 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: rest-api
 ms.topic: article
-ms.date: 01/25/2017
+ms.date: 03/20/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: f2586eae5ef0437b7665f9e229b0cc2749bff659
-ms.openlocfilehash: 894856c6386b26610ca5078238a88adcdd2d9a03
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 5ad5c688bae7b20ce6e5830e8c7b8dfa9c6df701
+ms.lasthandoff: 03/22/2017
 
 
 ---
@@ -66,9 +67,9 @@ DocumentDB 提供以累加方式讀取對 DocumentDB 集合做出之更新的功
 
 ![DocumentDB 變更摘要的分散式處理](./media/documentdb-change-feed/changefeedvisual.png)
 
-在下一節中，我們會說明如何使用 DocumentDB REST API 和 SDK 存取摘要變更。
+在下一節中，我們會說明如何使用 DocumentDB REST API 和 SDK 存取摘要變更。 對於 .NET 應用程式，我們建議針對處理來自變更摘要的事件使用「變更摘要處理器程式庫」[]()。
 
-## <a name="working-with-the-rest-api-and-sdk"></a>使用 REST API 和 SDK
+## <a id="rest-apis">使用 REST API 和 SDK</a>
 DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集合內的資料會針對延展性和效能，使用[資料分割索引鍵](documentdb-partition-data.md)以邏輯方式分組。 DocumentDB 提供各種用來存取此資料的 API，包括依識別碼查閱 (Read/Get)、查詢及讀取摘要 (掃描) 進行查詢。 變更摘要可以透過將兩個新的要求標頭填入至 DocumentDB 的 `ReadDocumentFeed` API 來取得，並且可以跨資料分割索引鍵的範圍來平行處理。
 
 ### <a name="readdocumentfeed-api"></a>ReadDocumentFeed API
@@ -88,8 +89,6 @@ DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集�
 
 **序列讀取文件摘要**
 
-![DocumentDB ReadDocumentFeed 序列執行](./media/documentdb-change-feed/readfeedserial.png)
-
 您也可以使用其中一個支援的 [DocumentDB SDK](documentdb-sdk-dotnet.md) 擷取文件摘要。 例如，下列程式碼片段會示範如何在 .NET 中執行 ReadDocumentFeed。
 
     FeedResponse<dynamic> feedResponse = null;
@@ -99,15 +98,10 @@ DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集�
     }
     while (feedResponse.ResponseContinuation != null);
 
-> [!NOTE]
-> 「變更摘要」需要 SDK 1.11.0 和更新版本 (目前在私人預覽中提供)
-
 ### <a name="distributed-execution-of-readdocumentfeed"></a>ReadDocumentFeed 的分散式執行
 針對包含數 TB 以上資料或需內嵌大量更新的集合，序列執行單一用戶端電腦的讀取摘要可能不夠實際。 為了支援這些巨量資料案例，DocumentDB 提供在多個用戶端讀取者/取用者之間明確分散 `ReadDocumentFeed` 呼叫的 API。 
 
 **分散式讀取文件摘要**
-
-![DocumentDB ReadDocumentFeed 分散式執行](./media/documentdb-change-feed/readfeedparallel.png)
 
 若要提供可調整的累加式變更處理，DocumentDB 會根據資料分割索引鍵的範圍，支援變更摘要 API 的向外延展模型。
 
@@ -337,15 +331,27 @@ ReadDocumentFeed 支援下列在 DocumentDB 集合中進行累加式變更處理
         // trigger an action, like call an API
     }
 
+## <a id="change-feed-processor"></a>變更摘要處理器程式庫
+[DocumentDB 變更摘要處理器程式庫 (英文)](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/ChangeFeedProcessor) 可用來將來自變更摘要的事件處理分散到多個取用者。 在 .NET 平台上建置變更摘要讀取器時，您應該使用這項實作。 `ChangeFeedProcessorHost` 類別能為事件處理器實作提供安全執行緒、多處理序、安全的執行階段環境，進而提供檢查點和分割區租用管理。
+
+若要使用 [`ChangeFeedProcessorHost`](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/ChangeFeedProcessor/DocumentDB.ChangeFeedProcessor/ChangeFeedEventHost.cs) 類別，您可以實作 [`IChangeFeedObserver`](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/ChangeFeedProcessor/DocumentDB.ChangeFeedProcessor/IChangeFeedObserver.cs)。 這個介面包含三個方法：
+
+* OpenAsync
+* CloseAsync
+* ProcessEventsAsync
+
+若要啟動事件處理，請具現化 ChangeFeedProcessorHost，並為 DocumentDB 集合提供適當的參數。 接著，呼叫 `RegisterObserverAsync` 以向執行階段註冊 `IChangeFeedObserver` 實作。 此時，主機會嘗試使用「窮盡」演算法取得 DocumentDB 集合內每個分割區索引鍵範圍的租用。 這些租用將延續一段指定時間，然後必須更新。 本案例中，當新節點上線時，背景工作執行個體會保留租用，而每當取得更多租用的嘗試發生時，負載會隨著在節點之間轉移。
+
+![使用 DocumentDB 變更摘要處理器主機](./media/documentdb-change-feed/changefeedprocessor.png)
+
+經過一段時間後，均衡的局面將會出現。 此動態功能可讓您將 CPU 架構自動調整套用至消費者，以便進行向上和向下調整。 如果 DocumentDB 中出現可用變更的速度超出取用者的處理能力，取用者上的 CPU 提升可用來引發背景工作執行個體計數的自動調整。
+
+ChangeFeedProcessorHost 類別也會使用個別的 DocumentDB 租用集合來實作檢查點機制。 這項機制能儲存每個磁碟分割的位移，方便各個消費者判斷前一個消費者的最後一個檢查點。 由於資料分割會透過租用在節點之間轉換，因此這是能促進負載移位的同步處理機制。
+
 在本文中，我們提供 DocumentDB「變更摘要」支援的逐步解說，以及如何使用 DocumentDB REST API 及/或 SDK 追蹤對 DocumentDB 資料所進行的變更。 
 
 ## <a name="next-steps"></a>後續步驟
 * 請嘗試 [Github 上的 DocumentDB 變更摘要程式碼範例 (英文)](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/ChangeFeed)
 * 深入了解 [DocumentDB 的資源模型和階層](documentdb-resources.md)
 * 使用 [DocumentDB SDK](documentdb-sdk-dotnet.md) 或 [REST API (英文)](https://msdn.microsoft.com/library/azure/dn781481.aspx) 開始撰寫程式碼
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

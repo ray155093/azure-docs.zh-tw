@@ -146,8 +146,8 @@ Microsoft Azure 上的 Docker：
 
 * [Azure 上 Linux 的 Docker VM 延伸模組](../articles/virtual-machines/virtual-machines-linux-dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [Azure Docker VM 延伸模組使用者指南](https://github.com/Azure/azure-docker-extension/blob/master/README.md)
-* [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](../articles/virtual-machines/virtual-machines-linux-classic-cli-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [使用 Azure 入口網站中的Docker VM 擴充程式](../articles/virtual-machines/virtual-machines-linux-classic-portal-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](../articles/virtual-machines/linux/classic/cli-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [使用 Azure 入口網站中的Docker VM 擴充程式](../articles/virtual-machines/linux/classic/portal-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [如何在 Azure 上使用 docker-machine](../articles/virtual-machines/virtual-machines-linux-docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [如何在 Azure 上搭配 swarm 使用 docker](../articles/virtual-machines/virtual-machines-linux-docker-swarm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [在 Azure 上開始使用 Docker 和 Compose](../articles/virtual-machines/virtual-machines-linux-docker-compose-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
@@ -193,8 +193,3 @@ Linux 散發套件和 Azure 範例：
 [microservices]: http://martinfowler.com/articles/microservices.html
 [microservice]: http://martinfowler.com/articles/microservices.html
 <!--Image references-->
-
-
-<!--HONumber=Feb17_HO3-->
-
-

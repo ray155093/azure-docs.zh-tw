@@ -16,29 +16,37 @@ ms.topic: article
 ms.date: 02/07/2017
 ms.author: guybo
 translationtype: Human Translation
-ms.sourcegitcommit: f13545d753690534e0e645af67efcf1b524837eb
-ms.openlocfilehash: dad27b11b5f02ed41826b82882cc5089eb69cb04
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 9a92490239f22bd4c57c902ac53898aff1adf530
+ms.lasthandoff: 03/17/2017
 
 
 ---
 # <a name="deploy-an-app-on-virtual-machine-scale-sets"></a>在虛擬機器擴展集上部署應用程式
 在「VM 擴展集」上執行的應用程式通常是以三種方式的其中一種來進行部署︰
 
-* 在部署階段，於平台映像上安裝新軟體。 此內容中的平台映像是來自 Azure Marketplace 的作業系統映像，例如 Ubuntu 16.04、Windows Server 2012 R2 等。
+* 在部署階段，於平台映像上安裝新軟體
+* 建立自訂 VM 映像，在單一 VHD 中包含 OS 和應用程式
+* 部署平台或自訂映像做為容器主機，並部署您的應用程式做為一或多個容器
 
-您可以使用 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)在平台映像上安裝新軟體。 VM 擴充功能是在部署 VM 時執行的軟體。 您可以使用自訂指令碼擴充功能，在部署階段執行您想要的任何程式碼。 [這裡](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-lapstack-autoscale) 提供一個含有下列兩個 VM 擴充功能的「Azure Resource Manager 範本」範例︰一個是「Linux 自訂指令碼擴充功能」，用來安裝 Apache 和 PHP，一個是「診斷擴充功能」，用來發出「Azure 自動調整」所使用的效能資料。
+## <a name="install-new-software-on-a-platform-image-at-deployment-time"></a>在部署階段，於平台映像上安裝新軟體
+此內容中的平台映像是來自 Azure Marketplace 的作業系統映像，例如 Ubuntu 16.04、Windows Server 2012 R2 等。
+
+您可以使用 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)在平台映像上安裝新軟體。 VM 擴充功能是在部署 VM 時執行的軟體。 您可以使用自訂指令碼擴充功能，在部署階段執行您想要的任何程式碼。 [這裡 (英文)](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) 是 Azure Resource Manager 範本範例，此範例使用 [Azure 期望狀態組態 (DSC) 延伸模組](virtual-machine-scale-sets-dsc.md)來安裝 IIS 以及已與 Azure 自動調整規模整合的 .NET MVC 應用程式。
 
 此方法的優點是在您應用程式程式碼與 OS 之間有某種程度的分隔，而可以個別維護您的應用程式。 當然，這也意謂著有較多的移動組件，而且如果指令碼需要下載和設定的項目有很多，VM 部署時間也可能較長。
 
-**如果您在「自訂指令碼擴充功能」命令中傳遞機密資訊 (例如密碼)，請務必在「自訂指令碼擴充功能」的 `protectedSettings` 屬性 (而不是 `settings` 屬性) 中指定 `commandToExecute`。**
+>[!NOTE]
+>如果您在自訂指令碼擴充功能命令中傳遞機密資訊 (例如密碼)，請務必在自訂指令碼擴充功能的 `protectedSettings` 屬性 (而不是 `settings` 屬性) 中指定 `commandToExecute`。
 
-* 建立在單一 VHD 中包含 OS 和應用程式的自訂 VM 映像。 這裡的擴展集是由一組 VM 所組成，這些 VM 是從您建立的映像複製且您必須維護的 VM。 此方法不需要在 VM 部署階段進行任何額外的設定。 不過，在 `2016-03-30` 版 (及更舊版本) 的「VM 擴展集」中，擴展集內 VM 的 OS 磁碟受限於單一儲存體帳戶。 因此，一個擴展集內最多可以有 40 個 VM，而不像平台映像的每個擴展集限制為 100 個 VM。 如需詳細資訊，請參閱 [擴展集設計概觀](virtual-machine-scale-sets-design-overview.md)。
+## <a name="create-a-custom-vm-image-that-includes-both-the-os-and-the-application-in-a-single-vhd"></a>建立自訂 VM 映像，在單一 VHD 中包含 OS 和應用程式 
+這裡的擴展集是由一組 VM 所組成，這些 VM 是從您建立的映像複製且您必須維護的 VM。 此方法不需要在 VM 部署階段進行任何額外的設定。 不過，在 `2016-03-30` 版 (及更舊版本) 的「VM 擴展集」中，擴展集內 VM 的 OS 磁碟受限於單一儲存體帳戶。 因此，一個擴展集內最多可以有 40 個 VM，而不像平台映像的每個擴展集限制為 100 個 VM。 如需詳細資訊，請參閱 [擴展集設計概觀](virtual-machine-scale-sets-design-overview.md)。
 
-    >[!NOTE]
-    >VM 擴展集 API 版本 `2016-04-30-preview` 支援使用 Azure 受控磁碟做為作業系統磁碟和任何額外的資料磁碟。 如需詳細資訊，請參閱[受控磁碟概觀](../storage/storage-managed-disks-overview.md)和[使用附加的資料磁碟](virtual-machine-scale-sets-attached-disks.md)。 
+>[!NOTE]
+>VM 擴展集 API 版本 `2016-04-30-preview` 支援使用 Azure 受控磁碟做為作業系統磁碟和任何額外的資料磁碟。 如需詳細資訊，請參閱[受控磁碟概觀](../storage/storage-managed-disks-overview.md)和[使用附加的資料磁碟](virtual-machine-scale-sets-attached-disks.md)。 
 
-* 部署一個基本上作為容器主機的平台或自訂映像，然後將應用程式安裝成一或多個您使用 Orchestrator 或組態管理工具來管理的容器。 此方法的好處在於您已將雲端基礎結構從應用程式層抽離出來，而可以個別維護它們。
+## <a name="deploy-a-platform-or-a-custom-image-as-a-container-host-and-your-app-as-one-or-more-containers"></a>部署平台或自訂映像做為容器主機，並部署您的應用程式做為一或多個容器
+一個平台或自訂映像基本上就是一部容器主機，因此，您可以安裝應用程式做為一或多個容器。  您可以使用 Orchestrator 或組態管理工具來管理應用程式容器。 此方法的好處在於您已將雲端基礎結構從應用程式層抽離出來，而可以個別維護它們。
 
 ## <a name="what-happens-when-a-vm-scale-set-scales-out"></a>當 VM 擴展集相應放大時，會發生什麼情況？
 當您透過增加容量將一或多個 VM 新增到擴展集時 (不論是以手動方式還是透過自動調整)，都會自動安裝應用程式。 例如，如果擴展集已有定義的擴充功能，則每次建立新 VM 時，這些擴充功能都會在新 VM 上執行。 如果擴展集是以自訂映像為基礎，則所有新 VM 都是來源自訂映像的複本。 如果擴展集 VM 是容器主機，則您可以讓啟動程式碼載入「自訂指令碼擴充功能」中的容器，或是擴充功能可以安裝會向叢集 Orchestrator (例如 Azure Container Service) 註冊的代理程式。

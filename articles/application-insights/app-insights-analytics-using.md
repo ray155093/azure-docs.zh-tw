@@ -1,21 +1,22 @@
 ---
-title: "使用分析 - 強大的 Application Insights 搜尋工具 | Microsoft Docs"
+title: "使用分析 - 強大的 Azure Application Insights 搜尋工具 | Microsoft Docs"
 description: "使用分析，這是強大的 Application Insights 診斷搜尋工具。 "
 services: application-insights
 documentationcenter: 
 author: danhadari
-manager: douge
+manager: carmonm
 ms.assetid: c3b34430-f592-4c32-b900-e9f50ca096b3
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
+ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 2389f1d785abc750dd165303f737a883b3f788d0
-ms.openlocfilehash: 6232a80417cf4581f6c6cbe6c11418dc8d0c3407
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: d7f6f9582a3d15563c19d69845836a92a35ee95e
+ms.lasthandoff: 03/16/2017
 
 
 ---
@@ -195,7 +196,7 @@ curl "https://api.applicationinsights.io/beta/apps/DEMO_APP/query?query=requests
 ### <a name="define-your-data-schema"></a>定義資料結構描述
 
 1. 按一下 [設定] \(在左上方)，然後按一下 [資料來源]。 
-2. 依照指示，新增資料來源。 系統會要求您提供資料範例，此範例應該至少包含&10; 個資料列。 接著，您需更正結構描述。
+2. 依照指示，新增資料來源。 系統會要求您提供資料範例，此範例應該至少包含 10 個資料列。 接著，您需更正結構描述。
 
 這定義了資料來源，您可以接著使用它來匯入個別資料表。
 
@@ -222,13 +223,10 @@ curl "https://api.applicationinsights.io/beta/apps/DEMO_APP/query?query=requests
 
 如果您使用 [LogStash](https://www.elastic.co/guide/en/logstash/current/getting-started-with-logstash.html)，您就可以使用「分析」來查詢您的記錄檔。 請使用[透過管道將資料傳送到分析的外掛程式](https://github.com/Microsoft/logstash-output-application-insights)。 
 
+## <a name="video"></a>影片
 
+> [!VIDEO https://channel9.msdn.com/events/Connect/2016/123/player] 
 
 [!INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

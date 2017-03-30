@@ -12,26 +12,20 @@ ms.service: app-service-web
 ms.workload: web
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 03/20/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: 5f3bf8087fa6601ae410d6db907471fd6faa2742
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: f4729e9daf788220358e7cca2508c820a1f2006a
+ms.lasthandoff: 03/21/2017
 
 ---
 
 # <a name="upload-files-to-a-web-app-using-ftp"></a>使用 FTP 將檔案上傳至 Web 應用程式
 
-此範例指令碼會使用 Azure PowerShell 執行下列工作： 
+此範例指令碼會在 App Service 中建立 Web 應用程式及其相關資源，然後使用 FTP 部署您的 Web 應用程式程式碼 (透過 [WebClient.UploadFile()](https://msdn.microsoft.com/library/ms144229.aspx))。
 
-* 在 Azure 西歐區域的 Azure App Service 中建立 Web 應用程式。
-* 從 Web 應用程式取得 FTP 連線資訊
-* 使用 FTP 部署 Web 應用程式程式碼 (透過[WebClient.UploadFile()](https://msdn.microsoft.com/library/ms144229.aspx))。
-
-## <a name="prerequisites"></a>必要條件
-
-* 執行 `Login-AzureRmAccount` 來登入 Azure。
+您可以視需要使用 [Azure PowerShell 指南 (英文)](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。
 
 ## <a name="sample-script"></a>範例指令碼
 

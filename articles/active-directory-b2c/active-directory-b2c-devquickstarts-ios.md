@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/07/2017
 ms.author: saeeda
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 84f5ba5b3836f8524aafd9ca5e30978cc2702c1f
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 992bbf513ac87b0d955f9dc4b27984ef03050b83
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -40,18 +40,18 @@ B2C 平台並未支援 Azure Active Directory 的所有案例和功能。  如�
 ## <a name="create-an-application"></a>建立應用程式
 接著，您必須在 B2C 目錄中建立應用程式。 應用程式註冊會提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。 如果要建立行動應用程式，請遵循[這些指示](active-directory-b2c-app-registration.md)。 請務必：
 
-* 在應用程式中加入 **行動裝置** 。
+* 在應用程式中加入**原生用戶端**。
 * 複製指派給您的應用程式的 **應用程式識別碼** 。 您稍後需要此 GUID。
 * 使用自訂配置設定**重新導向 URI** (例如，com.onmicrosoft.fabrikamb2c.exampleapp://oauth/redirect)。 您稍後需要此 URI。
 
 [!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>建立您的原則
-在 Azure AD B2C 中，每個使用者體驗皆是由某個 [原則](active-directory-b2c-reference-policies.md)所定義。 此應用程式包含一個身分識別體驗：合併登入和註冊。 您必須建立此原則，如[原則參考文章](active-directory-b2c-reference-policies.md#create-a-sign-up-policy)所述。 建立此原則時，請務必：
+在 Azure AD B2C 中，每個使用者體驗皆是由某個 [原則](active-directory-b2c-reference-policies.md)所定義。 此應用程式包含一個身分識別體驗：合併登入和註冊。 建立此原則，如[原則參考文章](active-directory-b2c-reference-policies.md#create-a-sign-up-policy)所述。 建立此原則時，請務必：
 
-* 在原則中選擇 [顯示名稱]  和註冊屬性。
-* 在每個原則中，選擇 [顯示名稱] 和 [物件識別碼] 應用程式宣告。 您也可以選擇其他宣告。
-* 在您建立每個原則之後，請複製原則的 [名稱]  。 其前置詞應該為 `b2c_1_`。  您稍後需要用到此原則名稱。
+* 在 [註冊屬性] 下方，選取 [顯示名稱] 屬性。  您也可以選取其他屬性。
+* 在 [應用程式宣告] 下方，選取 [顯示名稱] 和 [使用者的物件識別碼] 宣告。 您也可以選取其他宣告。
+* 在您建立每個原則之後，請複製原則的 [名稱]  。 當您儲存原則時，原則名稱前面會加上 `b2c_1_`。  您稍後需要用到此原則名稱。
 
 [!INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
@@ -128,12 +128,13 @@ appDelegate.currentAuthorizationFlow =
 
 若要設定應用程式以處理使用自訂配置的 URI 重新導向，您需要更新 Info.pList 中的 [URL 配置] 清單︰
 * 開啟 Info.pList。
-* 將滑鼠停留在像是 [套件組合建立者 OS 類型代碼] 的資料列，然後按一下 \+ 符號。
+* 將滑鼠停留在像是 [套件組合 OS 類型代碼] 的資料列，然後按一下 \+ 符號。
 * 重新命名新的資料列 [URL 類型]。
-* 按一下 [URL 類型] 左邊的箭頭。
-* 將 [項目 0] 中的值重新命名為 [URL 配置]。
-* 在 [URL 配置] 下編輯 [項目 0] 的值，將值設定為應用程式的唯一配置。  建立 OIDAuthorizationRequest 物件時，此配置必須符合 redirectURL 中的配置。
-* 在我們的範例中，我們使用配置 'com.onmicrosoft.fabrikamb2c.exampleapp'。
+* 按一下 [URL 類型] 左邊的箭頭以開啟樹狀結構。
+* 按一下 [項目 0] 左邊的箭頭以開啟樹狀結構。
+* 將 [項目 0] 下方的第一個項目重新命名為 [URL 配置]。
+* 按一下 [URL 配置] 左邊的箭頭以開啟樹狀結構。
+* 在 [值] 資料行中，[URL 配置] 下方的 [項目 0] 左邊有一個空白欄位。  將此值設為應用程式的唯一配置。  建立 OIDAuthorizationRequest 物件時，此值必須符合 redirectURL 中使用的配置。  在我們的範例中，我們使用配置 'com.onmicrosoft.fabrikamb2c.exampleapp'。
 
 有關如何完成此程序的其餘部分，請參閱 [AppAuth 指南](https://openid.github.io/AppAuth-iOS/)。 如果您需要快速開始使用一個可操作的應用程式，請參閱[我們的範例](https://github.com/Azure-Samples/active-directory-ios-native-appauth-b2c)。 請依照 [README.md](https://github.com/Azure-Samples/active-directory-ios-native-appauth-b2c/blob/master/README.md) 中的步驟，輸入自己的 Azure AD B2C 組態。
 

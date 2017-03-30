@@ -13,19 +13,22 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/08/2016
+ms.date: 03/22/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 233116deaaaf2ac62981453b05c4a5254e836806
-ms.openlocfilehash: 0a4ac164a3896d47613e4491a5e4c81c1b660dea
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 86ae353e3bad83ec25060bab8b3df25d3a0ad881
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="move-a-linux-vm-to-another-subscription-or-resource-group"></a>將 Linux VM 移至另一個訂用帳戶或資源群組
 本文將逐步引導您了解如何在資源群組或訂用帳戶之間移動 Linux VM。 如果您在個人訂用帳戶中建立了 VM，而現在想要將它移至您的公司訂用帳戶以繼續工作，在訂用帳戶之間移動 VM 會很方便。
 
-> [!NOTE]
-> 移動過程中會建立新的資源識別碼。 移動 VM 之後，您必須更新工具和指令碼以使用新的資源識別碼。 
+> [!IMPORTANT]
+>此時，您無法移動受控磁碟。 
+>
+>移動過程中會建立新的資源識別碼。 移動 VM 之後，您必須更新工具和指令碼以使用新的資源識別碼。 
 > 
 > 
 
@@ -56,10 +59,5 @@ ms.openlocfilehash: 0a4ac164a3896d47613e4491a5e4c81c1b660dea
 
 ## <a name="next-steps"></a>後續步驟
 您可以在資源群組和訂用帳戶之間移動許多不同類型的資源。 如需詳細資訊，請參閱 [將資源移動到新的資源群組或訂用帳戶](../azure-resource-manager/resource-group-move-resources.md)。    
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

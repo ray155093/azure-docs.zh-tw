@@ -4,7 +4,7 @@ description: "深入了解如何還原 StorSimple Virtual Array 的備份。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 4d0deb8c-e3c7-4bc4-b89d-9881041960cb
 ms.service: storsimple
@@ -12,15 +12,18 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 06/07/2016
+ms.date: 02/27/2017
 ms.author: alkohli
+ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
-ms.openlocfilehash: 1b2156f2768e02be8030d91352422bd935fa7543
+ms.sourcegitcommit: 840deacac773846a9c57d9437cb6f331cd8fcecb
+ms.openlocfilehash: 5ec5cab591907ccc5d9139da2ba149325daf8422
+ms.lasthandoff: 02/28/2017
 
 
 ---
-# <a name="restore-from-a-backup-of-your-storsimple-virtual-array"></a>從 StorSimple Virtual Array 備份中還原
+# <a name="restore-from-a-backup-set-of-shares-and-volumes-on-your-storsimple-virtual-array"></a>從 StorSimple Virtual Array 上的一組共用和磁碟區備份來進行還原
+
 ## <a name="overview"></a>概觀
 本文適用於執行 2016 年 3 月公開上市 (GA) 版或更新版本的 Microsoft Azure StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置或 StorSimple 虛擬裝置)。 本文逐步說明如何在 StorSimple Virtual Array 上從共用或磁碟區的備份組進行還原。 本文也會詳述項目層級復原在設定為檔案伺服器的 StorSimple Virtual Array 上的運作方式。
 
@@ -104,10 +107,5 @@ ms.openlocfilehash: 1b2156f2768e02be8030d91352422bd935fa7543
 
 ## <a name="next-steps"></a>後續步驟
 深入了解如何 [使用本機 Web UI 管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

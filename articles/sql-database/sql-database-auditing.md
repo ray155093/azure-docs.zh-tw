@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 7/3/2017
 ms.author: giladm
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 6b5b357c996f5c4642e61b09c5a7e5e0ec6a93c7
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: fdb80e3379adfa9d65d6e5891cb701cee86eb1b9
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -42,8 +42,8 @@ SQL Database 稽核可讓您：
 
 **稽核方法**有兩種：
 
-* **Blob 稽核** - 記錄會寫入 Azure Blob 儲存體。 這是一個較新的稽核方法，可提供**更高效能**、支援**更高資料粒度物件層級稽核**，以及**更符合成本效益**。
-* **資料表稽核** - 記錄會寫入 Azure 資料表儲存體。
+* **Blob 稽核** - 記錄會寫入 Azure Blob 儲存體。 這是一個較新的稽核方法，可提供**更高效能**、支援**更高資料粒度物件層級稽核**，以及**更符合成本效益**。 Blob 稽核將會取代資料表稽核。
+* **資料表稽核 (已被取代)** - 記錄會寫入 Azure 表格儲存體。
 
 > [!IMPORTANT]
 > 引進新的「Blob 稽核」為資料庫繼承伺服器稽核原則的方式帶來重大的變更。 如需詳細資訊，請參閱[伺服器稽核原則繼承中 Blob/資料表的差異](#subheading-8)一節。
@@ -79,7 +79,7 @@ SQL Database 稽核可讓您：
 7. 設定您的稽核設定之後，您可以開啟新的「威脅偵測」(預覽) 功能，並設定電子郵件以接收安全性警示。 「威脅偵測」可讓您接收與可能指示潛在安全性威脅的異常資料庫活動相關的主動式警示。 如需詳細資料，請參閱 [開始使用威脅偵測](sql-database-threat-detection-get-started.md) 。
 8. 按一下 [儲存] 。
 
-### <a id="subheading-2-2">資料表稽核</a>
+### <a id="subheading-2-2">資料表稽核</a> (已被取代)
 
 > 在設定 [資料表稽核] 之前，請先檢查您目前是否使用[舊版用戶端](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)。 此外，如果您有嚴格的防火牆設定，請注意在啟用 [資料表稽核] 時 [您資料庫的 IP 端點將會變更](sql-database-auditing-and-dynamic-data-masking-downlevel-clients.md)。
 
@@ -119,7 +119,7 @@ SQL Database 稽核可讓您：
     > <br><br>
     > 否則，**建議只啟用伺服器層級 Blob 稽核**，並讓所有資料庫的資料庫層級稽核保留在停用狀態。
 
-###<a name="atable-auditinga"></a><a>資料表稽核</a>
+###<a name="atable-auditinga-deprecated"></a><a>資料表稽核</a> (已被取代)
 
 如果**伺服器層級資料表稽核已啟用**，則只在資料庫刀鋒視窗中 [從伺服器繼承設定] 核取方塊已選取的情況下 (針對所有現有和新建立的資料庫，預設都會選取此選項)，它才會套用到資料庫。
 
@@ -169,7 +169,7 @@ Blob 稽核記錄是以 Blob 檔案集合的方式儲存在名為 "**sqldbauditl
 
 3. 我們已建立一個在 Azure 中執行的**範例應用程式**，它利用 OMS 公用 API 將 SQL 稽核記錄推送到 OMS 以供透過 OMS 儀表板取用 ([這裡提供更多資訊](https://github.com/Microsoft/Azure-SQL-DB-auditing-OMS-integration))。
 
-### <a id="subheading-3-2">資料表稽核</a>
+### <a id="subheading-3-2">資料表稽核</a> (已被取代)
 資料表稽核檔是以具備 **SQLDBAuditLogs** 前置詞的 Azure 儲存體資料表集合方式儲存。
 
 如需有關資料表稽核記錄格式的進一步詳細資料，請參閱[資料表稽核記錄格式參考 (doc 檔案下載)](http://go.microsoft.com/fwlink/?LinkId=506733)。
@@ -245,7 +245,7 @@ Blob 稽核記錄是以 Blob 檔案集合的方式儲存在名為 "**sqldbauditl
    * [取得資料庫 Blob 稽核原則](https://msdn.microsoft.com/library/azure/mt695938.aspx)
    * [取得伺服器 Blob 稽核原則](https://msdn.microsoft.com/library/azure/mt771860.aspx)
    * [取得伺服器 Blob 稽核操作結果](https://msdn.microsoft.com/library/azure/mt771862.aspx)
-3. **REST API - 資料表稽核**
+3. **REST API - 資料表稽核 (已被取代)**
 
    * [建立或更新資料庫稽核原則](https://msdn.microsoft.com/library/azure/mt604471.aspx)
    * [建立或更新伺服器稽核原則](https://msdn.microsoft.com/library/azure/mt604383.aspx)

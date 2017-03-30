@@ -13,36 +13,35 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 09/22/2016
+ms.date: 03/17/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 4d14b4f54957ae31e736211671cba816f8dea629
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 50167d167a1e0dda93d389997d67904e18f248bc
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="configure-always-on-availability-group-in-azure-vm-with-powershell"></a>在 Azure VM 中使用 PowerShell 設定 Always On 可用性群組
 > [!div class="op_single_selector"]
-> * [Resource Manager：範本](../sql/virtual-machines-windows-portal-sql-alwayson-availability-groups.md)
-> * [Resource Manager︰手動](../sql/virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)
 > * [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
 > * [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
-> 
-> 
+<br/>
 
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> Microsoft 建議讓大部分的新部署使用資源管理員模式。 Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 
+
+若要使用 Azure Resource Manager 模型來完成這項工作，請參閱 [Azure 虛擬機器上的 SQL Server Always On 可用性群組](../sql/virtual-machines-windows-portal-sql-availability-group-overview.md)。
 
 Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高可用性 SQL Server 系統。 本教學課程將示範如何使用 Azure 環境中的 SQL Server Always On 端對端實作可用性群組。 在本教學課程結束時，您 Azure 中的 SQL Server Always On 解決方案將包含下列項目：
 
 * 包含多個子網路 (前端和後端子網路) 的虛擬網路
 * 具有 Active Directory (AD) 網域的網域控制站
 * 兩個 SQL Server VM 已部署至後端子網路並加入 AD 網域
-* 具有節點多數仲裁模型的 3 節點 WSFC 叢集
+* 具有節點多數仲裁模型的 3 節點 Windows 容錯移轉叢集
 * 具有兩份可用性資料庫同步認可複本的可用性群組
 
-選擇此案例是基於其單純性，而非因為在 Azure 中具有成本效益或其他因素。 比方說，您可以將雙複本可用性群組的 VM 數量減到最少，以縮短在 Azure 中的運算時數，方法是在 2 節點 WSFC 叢集中使用網域控制站作為仲裁檔案共用見證。 此方法可讓上述組態減少一個 VM。
+選擇此案例是基於其單純性，而非因為在 Azure 中具有成本效益或其他因素。 例如，您可以將雙複本可用性群組的 VM 數量減到最少，以縮短 Azure 中的計算時數，方法是在 2 節點的容錯移轉叢集中使用網域控制站作為仲裁檔案共用見證。 此方法可讓上述組態減少一個 VM。
 
 本教學課程的目的是示範設定上述解決方案所需執行的步驟，但不會闡述每個步驟的細節內容。 因此，本教學課程會使用 PowerShell 指令碼帶您快速進行每個步驟，但不會顯示 GUI 組態步驟。 本教學課程假設您已具備下列條件：
 
@@ -222,7 +221,7 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
             -ChangePasswordAtLogon $false `
             -Enabled $true
    
-    **CORP\Install** 可用來設定與 SQL Server 服務執行個體、WSFC 叢集和可用性群組相關的所有項目。 **CORP\SQLSvc1** 和 **CORP\SQLSvc2** 可作為兩個 SQL Server VM 的 SQL Server 服務帳戶。
+    **CORP\Install** 可用來設定與 SQL Server 服務執行個體、容錯移轉叢集和可用性群組相關的所有項目。 **CORP\SQLSvc1** 和 **CORP\SQLSvc2** 可作為兩個 SQL Server VM 的 SQL Server 服務帳戶。
 7. 接下來，執行下列命令以提供 **CORP\Install** 權限在網域中建立電腦物件。
    
         Cd ad:
@@ -234,7 +233,7 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
         $acl.AddAccessRule($ace1)
         Set-Acl -Path "DC=corp,DC=contoso,DC=com" -AclObject $acl
    
-    上面指定的 GUID 即是電腦物件類型的 GUID。 **CORP\Install** 帳戶需要**讀取所有內容**和**建立電腦物件**權限，才能建立 WSFC 叢集的 Active Directory 物件。 根據預設，系統已將**讀取所有內容**權限授與 CORP\Install，因此，您不需要明確地授與該權限。 如需有關建立 WSFC 叢集之所需權限的詳細資訊，請參閱 [容錯移轉叢集逐步指南：設定 Active Directory 中的帳戶](https://technet.microsoft.com/library/cc731002%28v=WS.10%29.aspx)。
+    上面指定的 GUID 即是電腦物件類型的 GUID。 **CORP\Install** 帳戶需要**讀取全部內容**和**建立電腦物件**權限，才能建立容錯移轉叢集的 Active Directory 物件。 根據預設，系統已將**讀取所有內容**權限授與 CORP\Install，因此，您不需要明確地授與該權限。 如需建立容錯移轉叢集所需權限的詳細資訊，請參閱[容錯移轉叢集逐步指南：設定 Active Directory 中的帳戶 (英文)](https://technet.microsoft.com/library/cc731002%28v=WS.10%29.aspx)。
    
     現在 Active Directory 和使用者物件便已設定完畢，請建立兩個 SQL Server VM，並將這些 VM 加入此網域。
 
@@ -253,7 +252,7 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
         $dnsSettings = New-AzureDns -Name "ContosoBackDNS" -IPAddress "10.10.0.4"
    
     IP 位址 **10.10.0.4** 通常會指派給您在 Azure 虛擬網路的子網路 **10.10.0.0/16** 中建立第一個 VM。 請執行 **IPCONFIG**，以驗證該 IP 位址是否為 DC 伺服器的 IP 位址。
-2. 執行下列已輸送命令，建立 WSFC 叢集中的第一個 VM **ContosoQuorum**：
+2. 執行下列管道命令來建立容錯移轉叢集中的第一個 VM **ContosoQuorum**：
    
         New-AzureVMConfig `
             -Name $quorumServerName `
@@ -372,8 +371,8 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
    
     現在 SQL Server VM 已完成佈建並執行中，但這些 VM 所安裝的是使用預設值的 SQL Server。
 
-## <a name="initialize-the-wsfc-cluster-vms"></a>初始化 WSFC 叢集 VM
-在本節中，必須修改將用於 WSFC 叢集和 SQL Server 安裝中的三個伺服器。 具體而言：
+## <a name="initialize-the-failover-cluster-vms"></a>初始化容錯移轉叢集 VM
+在本節中，您必須修改將用於容錯移轉叢集和 SQL Server 安裝中的三部伺服器。 具體而言：
 
 * (所有伺服器) 必須安裝 [容錯移轉叢集]  功能。
 * (所有伺服器) 您必須以電腦**系統管理員**的身分新增 **CORP\Install**。
@@ -477,8 +476,8 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員以較低的成本實作高�
         $svc2.WaitForStatus([System.ServiceProcess.ServiceControllerStatus]::Stopped,$timeout)
         $svc2.Start();
         $svc2.WaitForStatus([System.ServiceProcess.ServiceControllerStatus]::Running,$timeout)
-7. 從 **在 Azure VM 中建立 Always On 可用性群組的 WSFC 叢集** 將 [CreateAzureFailoverCluster.ps1](http://gallery.technet.microsoft.com/scriptcenter/Create-WSFC-Cluster-for-7c207d3a) 下載至本機工作目錄。 此指令碼將可協助您建立功能 WSFC 叢集。 如需有關 WSFC 如何與 Azure 網路互動的重要資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../sql/virtual-machines-windows-sql-high-availability-dr.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)。
-8. 變更您的工作目錄，並透過下載的指令碼建立 WSFC 叢集。
+7. 從[在 Azure VM 中建立 Always On 可用性群組的容錯移轉叢集 (英文)](http://gallery.technet.microsoft.com/scriptcenter/Create-WSFC-Cluster-for-7c207d3a)，將 **CreateAzureFailoverCluster.ps1** 下載至本機工作目錄。 您將使用此指令碼來協助您建立功能性容錯移轉叢集。 如需 Windows 叢集如何與 Azure 網路互動的重要資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../sql/virtual-machines-windows-sql-high-availability-dr.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)。
+8. 變更您的工作目錄，並利用下載的指令碼建立容錯移轉叢集。
    
         Set-ExecutionPolicy Unrestricted -Force
         .\CreateAzureFailoverCluster.ps1 -ClusterName "$clusterName" -ClusterNode "$server1","$server2","$serverQuorum"

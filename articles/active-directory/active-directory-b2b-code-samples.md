@@ -13,11 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/08/2017
+ms.date: 03/15/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 0c05cd490ee9125f7e5182cb502db6f4e9390094
-ms.openlocfilehash: 1287a44fcf450023d4544202bd5db51dc99768ab
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 51c0f98e3d3ad09e3e6675b2692bc2a8888db9a7
+ms.lasthandoff: 03/17/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 1287a44fcf450023d4544202bd5db51dc99768ab
 # <a name="azure-active-directory-b2b-collaboration-code-and-powershell-samples"></a>Azure Active Directory B2B 共同作業程式碼與 PowerShell 範例
 
 ## <a name="code-sample"></a>程式碼範例
-此範例示範如何以僅限應用程式模式呼叫邀請 API，以取得您要邀請 B2B 使用者存取之資源的兌換 URL。 目標是傳送自訂邀請電子郵件。 您將會看到如何使用 HTTP 用戶端來編寫電子郵件，因此您可以自訂其外觀並透過圖形 API 傳送。
+此處示範如何以僅限應用程式模式呼叫邀請 API，以取得您要邀請 B2B 使用者存取之資源的兌換 URL。 目標是傳送自訂邀請電子郵件。 電子郵件可使用 HTTP 用戶端來編寫，因此您可以自訂其外觀並透過圖形 API 傳送。
 
 ```
 namespace SampleInviteApp
@@ -162,9 +163,9 @@ namespace SampleInviteApp
 ```
 
 ## <a name="powershell-example"></a>PowerShell 範例
-下列範例將逐步說明如何從您儲存在 .CSV 檔案中的電子郵件地址大量邀請外部使用者。
+您可以從您儲存在 .CSV 檔案中的電子郵件地址大量邀請外部使用者。
 
-1. 準備 .CSV 檔案 建立新的 CSV 檔案並將它命名為 invitations.csv。 在此範例中，檔案是儲存在 C:\data。 您的 CSV 檔案看起來可能像下面這樣：
+1. 準備 .CSV 檔案 建立新的 CSV 檔案並將它命名為 invitations.csv。 在此範例中，檔案是儲存在 C:\data。 您的 CSV 檔案看起來可能像這樣：
 
   ```
     InvitedUserEmailAddress
@@ -182,14 +183,17 @@ namespace SampleInviteApp
     Connect-AzureAd and login
     ```
 
-4. 執行 PowerShell Cmdlt
+4. 執行 PowerShell Cmdlet
 
     ```
     $Invitations = import-csv C:\data\invitations.csv
     foreach ($email in $invitations) {New-AzureADMSInvitation -InvitedUserEmailAddress $email.InvitedUserEmailAddress -InviteRedirectUrl http://microsoft.com -SendInvitationMessage $true}
   ```
 
-這會傳送邀請給 invitations.csv 中的電子郵件地址。 此 Cmdlet 的其他功能包括自訂電子郵件訊息中的文字、加入受邀使用者的顯示名稱、傳送訊息給副本收件者，或一併抑制電子郵件訊息。
+此 Cmdlet 會傳送邀請給 invitations.csv 中的電子郵件地址。 此 Cmdlet 的其他功能包括︰
+- 自訂電子郵件訊息中的文字
+- 包括受邀使用者的顯示名稱
+- 傳送訊息給 CC 或完全隱藏電子郵件訊息
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -199,15 +203,10 @@ namespace SampleInviteApp
 * [B2B 共同作業使用者屬性](active-directory-b2b-user-properties.md)
 * [將 B2B 共同作業使用者新增至角色](active-directory-b2b-add-guest-to-role.md)
 * [委派 B2B 共同作業邀請](active-directory-b2b-delegate-invitations.md)
-* [動態群組與 B2B 共同作業](active-directory-b2b-dynamic-groups.md)
+* [動態群組和 B2B 共同作業](active-directory-b2b-dynamic-groups.md)
 * [設定適用於 B2B 共同作業的 SaaS 應用程式](active-directory-b2b-configure-saas-apps.md)
 * [B2B 共同作業使用者權杖](active-directory-b2b-user-token.md)
 * [B2B 共同作業使用者宣告對應](active-directory-b2b-claims-mapping.md)
 * [Office 365 外部共用](active-directory-b2b-o365-external-user.md)
 * [B2B 共同作業目前的限制](active-directory-b2b-current-limitations.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

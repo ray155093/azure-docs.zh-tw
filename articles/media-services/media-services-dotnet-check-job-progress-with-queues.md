@@ -15,49 +15,49 @@ ms.topic: article
 ms.date: 08/19/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: 876b6a81c5fba7cd9567f913860dd5bdc2391c15
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 0ddac6ef30439e6bea04d63c41662bc49309de2c
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="use-azure-queue-storage-to-monitor-media-services-job-notifications-with-net"></a>使用 Azure 佇列儲存體監視 .NET 的媒體服務工作通知
-執行作業時，您通常需要設法追蹤作業進度。 使用 Azure 佇列儲存體監視媒體服務工作通知 (如本主題中所述)，或定義 StateChanged 事件處理常式 (如 [本主題](media-services-check-job-progress.md) 中所述)，即可檢查進度。  
+執行作業時，您通常需要設法追蹤作業進度。 您可以使用 Azure 佇列儲存體來監視 Azure 媒體服務作業通知 (如本文所述)，藉以檢查進度。 您也可以定義 **StateChanged** 事件處理常式，如[使用 .NET 監視工作進度](media-services-check-job-progress.md)中所述。  
 
-## <a name="use-azure-queue-storage-to-monitor-media-services-job-notifications"></a>使用 Azure 佇列儲存體監視媒體服務工作通知
-Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息給 [Azure 佇列儲存體](../storage/storage-dotnet-how-to-use-queues.md)。 本主題示範如何從佇列儲存體取得這些通知訊息。
+## <a name="use-queue-storage-to-monitor-media-services-job-notifications"></a>使用佇列儲存體監視媒體服務作業通知
+在處理媒體作業時，媒體服務可以將通知傳遞給[佇列儲存體](../storage/storage-dotnet-how-to-use-queues.md)。 本主題示範如何從佇列儲存體取得這些通知訊息。
 
-使用者可以從世界各個角落存取之前已傳送至佇列儲存體的訊息。 Azure 佇列訊息架構十分可靠，而且具有高擴充性。 建議利用其他方法輪詢佇列儲存體。
+使用者可以從世界各個角落存取之前已傳送至佇列儲存體的訊息。 佇列儲存體訊息架構十分可靠，而且具有高擴充性。 建議利用其他方法，針對訊息輪詢佇列儲存體。
 
-舉一個常見的接聽媒體服務通知案例：您正在設計一套內容管理系，而且當程式碼設計好之後，這套系統需要執行其他一些工作 (例如, 觸發工作流程的下一個步驟或者發佈內容)。
+舉一個常見的接聽媒體服務通知案例：假設您正在設計一套內容管理系，而且在編碼作業完成之後，這套系統需要執行其他一些工作 (例如，觸發工作流程的下一個步驟或者發佈內容)。
 
 ### <a name="considerations"></a>考量
-當您設計的媒體服務應用程式會使用 Azure 儲存體佇列時，請考慮下列幾點。
+若您開發的媒體服務應用程式會使用佇列儲存體，請考慮下列幾點：
 
-* 佇列服務不保證會按照先進先出 (FIFO) 的順序傳遞訊息。 如需詳細資訊，請參閱 [Azure 佇列和 Azure 服務匯流排佇列的比較和對比](https://msdn.microsoft.com/library/azure/hh767287.aspx)。
-* Azure 儲存體佇列不是推播服務；您必須輪詢佇列。
+* 佇列儲存體不保證會按照先進先出 (FIFO) 的順序進行。 如需詳細資訊，請參閱 [Azure 佇列和 Azure 服務匯流排佇列的比較和對比](https://msdn.microsoft.com/library/azure/hh767287.aspx)。
+* 佇列儲存體不是推送服務。 您必須輪詢佇列。
 * 您可以有任意數目的佇列。 如需詳細資訊，請參閱 [佇列服務 REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/Queue-Service-REST-API)。
-* Azure 儲存體佇列存在某些限制，如需具體的描述，請參閱以下文章： [Azure 佇列和 Azure 服務匯流排佇列 - 比較和對比](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)。
+* 佇列儲存體具有一些要注意的限制和細節。 如需這些限制與細節的說明，請參閱 [Azure 佇列和 Azure 服務匯流排佇列的異同比較](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)。
 
 ### <a name="code-example"></a>程式碼範例
 本節的程式碼會執行下列動作：
 
 1. 定義一個會對應至通知訊息格式的 **EncodingJobMessage** 類別。 程式碼會將那些從佇列接收到的訊息還原序列化，然後變成 **EncodingJobMessage** 類型的物件。
-2. 從 app.config 檔案載入媒體服務和儲存體帳戶資訊。 使用此資訊來建立 **CloudMediaContext** 和 **CloudQueue** 物件。
+2. 從 app.config 檔案載入媒體服務和儲存體帳戶資訊。 這個程式碼範例會使用此資訊來建立 **CloudMediaContext** 和 **CloudQueue** 物件。
 3. 建立一個會接收編碼工作相關通知訊息的佇列。
 4. 建立一個會對應到佇列的通知端點。
 5. 將通知端點附加至工作，然後提交編碼工作。 您可以將多個通知端點附加至工作。
-6. 在這個範例中，我們只想知道工作的最終狀態，所以我們將 **NotificationJobState.FinalStatesOnly** 傳遞給 **AddNew** 方法。
+6. 將 **NotificationJobState.FinalStatesOnly** 傳遞到 **AddNew** 方法 (在此範例中，我們只對工作的最終狀態感興趣)。
 
         job.JobNotificationSubscriptions.AddNew(NotificationJobState.FinalStatesOnly, _notificationEndPoint);
-7. 如果您傳遞 NotificationJobState.All，表示您想取得所有的狀態變更通知：[已排入佇列] -> [已排程] -> [處理中] -> [已完成]。 不過，如先前所述，Azure 儲存體佇列服務不保證會按照順序傳遞。 您可以使用 Timestamp 屬性 (定義在以下範例中的 EncodingJobMessage 類型) 來排序訊息。 您可能會收到重複的通知訊息。 請使用 ETag 屬性 (定義在 EncodingJobMessage 類型上) 來檢查重複的通知訊息。 某些狀態變更通知也有可能被略過。
-8. 每隔 10 秒檢查佇列一次，等候工作進入「已完成」狀態。 處理好訊息之後，請予以刪除。
+7. 如果您傳遞 **NotificationJobState.All**，即會取得下列所有狀態變更通知：已排入佇列、已排程、處理中，以及已完成。 不過，如先前所述，佇列儲存體不保證會按照順序傳遞。 若要排序訊息，請使用 **Timestamp** 屬性 (定義於以下範例的 **EncodingJobMessage** 類型上)。 可能會有重複的訊息。 若要檢查重複項，請使用 **ETag 屬性** (定義於 **EncodingJobMessage** 類型上)。 可能也會略過某些狀態變更通知。
+8. 每隔 10 秒檢查佇列一次，等候作業進入已完成狀態。 處理好訊息之後，請予以刪除。
 9. 刪除佇列和通知端點。
 
 > [!NOTE]
 > 要想監視工作的狀態，建議您接聽通知訊息，如下列範例所示。
 >
-> 或者，使用 **IJob.State** 屬性檢查工作狀態。  **IJob** 的狀態尚未設定成 [已完成] 之前，您可能會先收到一則有關工作已完成的通知訊息。 **IJob.State** 屬性會延遲片刻再反映正確的狀態。
+> 或者，使用 **IJob.State** 屬性檢查工作狀態。  在 **IJob** 的狀態設定成 [已完成] 之前，您可能會收到一則有關作業已完成的通知訊息。 **IJob.State** 屬性會延遲片刻再反映正確的狀態。
 >
 >
 
@@ -346,7 +346,7 @@ Microsoft Azure 媒體服務能夠在處理媒體工作時，傳送通知訊息�
 
 
 ## <a name="next-step"></a>後續步驟
-檢閱媒體服務學習路徑
+檢閱媒體服務學習路徑。
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 

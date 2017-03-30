@@ -15,116 +15,174 @@ ms.topic: article
 ms.date: 02/10/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: c18ef38661e31e16114b88bdfad36320776ef12b
+ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
+ms.openlocfilehash: 5c30f459d9fed71fede2da71306a9b48892566f3
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="azure-active-directory-cmdlets-for-configuring-group-settings"></a>設定群組設定的 Azure Active Directory Cmdlet
-您可以在目錄中針對整合的群組設定下列設定：
 
-1. 分類︰使用者可以在群組上設定的分類清單 (以逗號分隔)。 範例為「已分類」、「密碼」和「最高機密」。
-2. 使用方針 URL：將使用者指向使用整合群組的使用規定 (如您的組織所定義) 的 URL。 這個 URL 會顯示於使用者使用群組的使用者介面中。
-3. 已啟用群組建立︰是否允許部分或所有使用者建立整合的群組，或者不允許任何使用者建立。 設為開啟時，所有使用者都可建立群組。 設為關閉時，沒有任何使用者可以建立群組。 關閉時，您也可以指定安全性群組，仍然允許其中的使用者建立群組。
+注意︰此內容只適用於整合群組，也稱為 Office365 群組。
 
-這些設定是使用 Settings 和 SettingsTemplate 物件所設定。 一開始，您將不會在目錄中看到任何 Settings 物件。 這表示已使用預設設定來設定您的目錄。 若要變更預設設定，您將使用設定範本來建立新的設定物件。 設定範本是由 Microsoft 所定義。
+Office365 群組設定是使用 Settings 物件和 SettingsTemplate 物件所設定。 一開始，您將不會在目錄中看到任何 Settings 物件。 這表示已使用預設設定來設定您的目錄。 若要變更預設設定，您需要使用設定範本來建立新的設定物件。 設定範本是由 Microsoft 所定義。 有數個不同的設定範本。 若要設定目錄的群組設定，您將會使用名為「Group.Unified」的範本。 若要在單一群組上設定群組設定，您將會使用名為「Group.Unified.Guest」的範本。 此範本是用來管理群組的來賓存取權。 
 
-您可以從 [Microsoft Connect 網站](http://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)下載模組，其中包含適用於這些作業的 Cmdlet。
+Cmdlet 是 Azure Active Directory PowerShell V2 模組的一部分。 如需有關此模組的詳細資訊，以及如何在電腦上下載及安裝模組的指示，請參閱 [Azure Active Directory PowerShell 第 2 版](https://docs.microsoft.com/en-us/powershell/azuread/)。
 
 ## <a name="create-settings-at-the-directory-level"></a>建立目錄層級的設定
-這些步驟會建立目錄層級的設定，其會套用至目錄中的所有 Office 群組。
+這些步驟會建立目錄層級的設定，其會套用至目錄中的所有整合群組。
 
-1. 如果您不知道要使用哪一個 SettingTemplate，這個 Cmdlet 會傳回設定範本的清單：
+1. 在 DirectorySettings Cmdlet 中，您必須指定想要使用的 SettingsTemplate 識別碼。 如果您不知道此識別碼，這個 Cmdlet 會傳回所有設定範本的清單：
 
-    `Get-MsolAllSettingTemplate`
+    PS C:> Get-AzureADDirectorySettingTemplate
 
-    ![設定範本的清單](./media/active-directory-accessmanagement-groups-settings-cmdlets/list-of-templates.png)
+這個 Cmdlet 呼叫會傳回所有可用的範本︰
+
+```
+Id                                   DisplayName         Description
+--                                   -----------         -----------
+62375ab9-6b52-47ed-826b-58e47e0e304b Group.Unified       ...
+08d542b9-071f-4e16-94b0-74abb372e3d9 Group.Unified.Guest Settings for a specific Unified Group
+16933506-8a8d-4f0d-ad58-e1db05a5b929 Company.BuiltIn     Setting templates define the different settings that can be used for the associ...
+4bc7f740-180e-4586-adb6-38b2e9024e6b Application...
+898f1161-d651-43d1-805c-3b0b388a9fc2 Custom Policy       Settings ...
+5cf42378-d67d-4f36-ba46-e8b86229381d Password Rule       Settings ...
+```
 2. 若要新增使用方針 URL，首先您需要取得 SettingsTemplate 物件，此物件會定義使用方針 URL 值；也就是 Group.Unified 範本：
 
-    `$template = Get-MsolSettingTemplate –TemplateId 62375ab9-6b52-47ed-826b-58e47e0e304b`
+    $Template = Get-AzureADDirectorySettingTemplate -Id 62375ab9-6b52-47ed-826b-58e47e0e304b
+
 3. 接下來，根據該範本建立新的設定物件：
 
-    `$setting = $template.CreateSettingsObject()`
+    $Setting = $template.CreateDirectorySetting()
+    
 4. 然後更新使用方針值：
 
-    `$setting["UsageGuidelinesUrl"] = "<https://guideline.com>"`
+    $setting["UsageGuidelinesUrl"] = "<https://guideline.com>"
+    
 5. 最後，套用設定：
 
-    `New-MsolSettings –SettingsObject $setting`
+    New-AzureADDirectorySetting -DirectorySetting $settings
 
-    ![新增使用方針 URL](./media/active-directory-accessmanagement-groups-settings-cmdlets/add-usage-guideline-url.png)
+成功完成時，此 Cmdlet 會傳回新的設定物件識別碼︰
+
+
+    Id                                   DisplayName TemplateId                           Values
+    --                                   ----------- ----------                           ------
+    c391b57d-5783-4c53-9236-cefb5c6ef323             62375ab9-6b52-47ed-826b-58e47e0e304b {class SettingValue {...
+
 
 以下是 Group.Unified SettingsTemplate 中定義的設定。
 
 | **設定** | **說明** |
 | --- | --- |
-|  <ul><li>ClassificationList<li>類型：字串<li>預設值：“” |以逗號分隔的有效分類值清單，這些值可以套用到整合的群組。 |
-|  <ul><li>EnableGroupCreation<li>型別：布林值<li> 預設值︰True |此旗標指出是否允許在目錄中建立整合的群組。 |
-|  <ul><li>GroupCreationAllowedGroupId<li>類型：字串<li>預設值：“” |安全性群組的 GUID，即使 EnableGroupCreation == false，還是允許建立整合的群組。 |
+|  <ul><li>EnableGroupCreation<li>類型：布林值<li>預設值︰True |此旗標指出是否允許在目錄中建立整合的群組。 |
+|  <ul><li>GroupCreationAllowedGroupId<li>類型：字串<li>預設值：“” |安全性群組的 GUID，即使 EnableGroupCreation == false，還是允許成員建立整合群組。 |
 |  <ul><li>UsageGuidelinesUrl<li>類型：字串<li>預設值：“” |群組使用方針的連結。 |
+|  <ul><li>ClassificationDescriptions<li>類型：字串<li>預設值：“” | 分類說明的以逗號分隔清單。 |
+|  <ul><li>DefaultClassification<li>類型：字串<li>預設值：“” | 如果尚未指定，則是做為群組預設分類的分類。|
+|  <ul><li>PrefixSuffixNamingRequirement<li>類型：字串<li>預設值：“” |尚未實作
+|  <ul><li>AllowGuestsToBeGroupOwner<li>類型︰布林值<li>預設值︰False | 布林值，表示來賓使用者是否可以是群組的擁有者。 |
+|  <ul><li>AllowGuestsToAccessGroups<li>類型︰布林值<li>預設值︰True | 布林值，表示來賓使用者是否可以具有整合群組內容的存取權。 |
+|  <ul><li>GuestUsageGuidelinesUrl<li>類型：字串<li>預設值：“” | 來賓使用指導方針的連結 url。 |
+|  <ul><li>AllowToAddGuests<li>類型︰布林值<li>預設值︰True | 布林值，表示是否允許將來賓新增至此目錄。|
+|  <ul><li>ClassificationList<li>類型：字串<li>預設值：“” |以逗號分隔的有效分類值清單，這些值可以套用到整合的群組。 |
+|  <ul><li>EnableGroupCreation<li>類型：布林值<li>預設值︰True | 布林值，表示非系統管理使用者是否可以建立新的整合群組。 |
+'
 
 ## <a name="read-settings-at-the-directory-level"></a>讀取目錄層級的設定
 這些步驟會讀取目錄層級的設定，其會套用至目錄中的所有 Office 群組。
 
 1. 讀取所有現有的目錄設定：
 
-    `Get-MsolAllSettings`
+    `Get-AzureADDirectorySetting -All $True'
+
+此 Cmdlet 會傳回所有目錄設定的清單：' Id                                   DisplayName   TemplateId                           Values
+--                                   -----------   ----------                           ------
+c391b57d-5783-4c53-9236-cefb5c6ef323 Group.Unified 62375ab9-6b52-47ed-826b-58e47e0e304b {class SettingValue {...`
+
+
 2. 讀取特定群組的所有設定：
 
-    `Get-MsolAllSettings -TargetType Groups -TargetObjectId <groupObjectId>`
-3. 使用 SettingId GUID 讀取特定的目錄設定：
+    `Get-AzureADObjectSetting -TargetObjectId ab6a3887-776a-4db7-9da4-ea2b0d63c504 -TargetType Groups`
 
-    `Get-MsolSettings –SettingId dbbcb0ea-a6ff-4b44-a1f3-9d7cef74984c`
+3. 使用設定識別碼 GUID，讀取特定目錄設定物件的所有目錄設定值︰
 
-    ![設定識別碼 GUID](./media/active-directory-accessmanagement-groups-settings-cmdlets/settings-id-guid.png)
+    `(Get-AzureADDirectorySetting -Id c391b57d-5783-4c53-9236-cefb5c6ef323).values'
+
+此 Cmdlet 會傳回此特定群組之這個設定物件中的名稱和值：' Name                          Value
+----                          -----
+ClassificationDescriptions DefaultClassification PrefixSuffixNamingRequirement AllowGuestsToBeGroupOwner     False AllowGuestsToAccessGroups     True GuestUsageGuidelinesUrl GroupCreationAllowedGroupId AllowToAddGuests              True UsageGuidelinesUrl            <https://guideline.com> ClassificationList EnableGroupCreation           True` '
+
+## <a name="update-settings-for-a-specific-group"></a>更新特定群組的設定
+
+1. 搜尋名為「Groups.Unified.Guest」的設定範本
+
+    Get-AzureADDirectorySettingTemplate
+
+    Id                                   DisplayName            Description
+    --                                   -----------            -----------
+    62375ab9-6b52-47ed-826b-58e47e0e304b Group.Unified          ...08d542b9-071f-4e16-94b0-74abb372e3d9 Group.Unified.Guest    特定整合群組的設定  4bc7f740-180e-4586-adb6-38b2e9024e6b Application            ...898f1161-d651-43d1-805c-3b0b388a9fc2 自訂原則設定 ...5cf42378-d67d-4f36-ba46-e8b86229381d 密碼規則設定 ...
+
+2. 擷取 Groups.Unified.Guest 範本的範本物件：
+
+    $Template = Get-AzureADDirectorySettingTemplate -Id 08d542b9-071f-4e16-94b0-74abb372e3d9
+
+3. 從範本建立新的設定物件︰
+
+
+    $Setting = $Template.CreateDirectorySetting()
+
+
+4. 將設定設為必要值︰
+
+
+    $Setting["AllowToAddGuests"]=$False
+
+
+6. 在目錄中建立必要群組的新設定︰
+
+
+    New-AzureADObjectSetting -TargetType Groups -TargetObjectId ab6a3887-776a-4db7-9da4-ea2b0d63c504 -DirectorySetting $Setting
+
+
+    Id                                   DisplayName TemplateId                           Values
+    --                                   ----------- ----------                           ------
+    25651479-a26e-4181-afce-ce24111b2cb5             08d542b9-071f-4e16-94b0-74abb372e3d9 {class SettingValue {...
+
 
 ## <a name="update-settings-at-the-directory-level"></a>更新目錄層級的設定
-這些步驟會更新目錄層級的設定，其會套用至目錄中的所有 Office 群組。
 
-1. 取得現有的 Settings 物件：
+這些步驟會更新目錄層級的設定，其會套用至目錄中的所有整合群組。 這些範例假設您的目錄中已經有 Settings 物件。
 
-    `$setting = Get-MsolSettings –SettingId dbbcb0ea-a6ff-4b44-a1f3-9d7cef74984c`
-2. 取得您想要更新的值：
+1. 尋找現有的 Settings 物件：
 
-    `$value = $Setting.GetSettingsValue()`
+    Get-AzureADDirectorySetting | Where-object -Property Displayname -Value "Group.Unified" -EQ`
+
+    Id                                   DisplayName   TemplateId                           Values
+    --                                   -----------   ----------                           ------
+    c391b57d-5783-4c53-9236-cefb5c6ef323 Group.Unified 62375ab9-6b52-47ed-826b-58e47e0e304b {class SettingValue {...
+
+    $setting = Get-AzureADDirectorySetting –Id c391b57d-5783-4c53-9236-cefb5c6ef323`
+
 3. 更新值：
 
-    `$value["AllowToAddGuests"] = "false"`
+    $Setting["AllowToAddGuests"] = "false"`
+
 4. 更新設定：
 
-    `Set-MsolSettings –SettingId dbbcb0ea-a6ff-4b44-a1f3-9d7cef74984c –SettingsValue $value`
+    Set-AzureADDirectorySetting -Id c391b57d-5783-4c53-9236-cefb5c6ef323 -DirectorySetting $Setting`
 
 ## <a name="remove-settings-at-the-directory-level"></a>移除目錄層級的設定
 這個步驟會移除目錄層級的設定，其會套用至目錄中的所有 Office 群組。
 
-    `Remove-MsolSettings –SettingId dbbcb0ea-a6ff-4b44-a1f3-9d7cef74984c`
+    Remove-AzureADDirectorySetting –Id c391b57d-5783-4c53-9236-cefb5c6ef323c`
 
 ## <a name="cmdlet-syntax-reference"></a>Cmdlet 語法參考
-您可以在 [Azure Active Directory Cmdlet](http://go.microsoft.com/fwlink/p/?LinkId=808260)中找到更多 Azure Active Directory PowerShell 文件。
+您可以在 [Azure Active Directory Cmdlet](https://docs.microsoft.com/en-us/powershell/azuread/)中找到更多 Azure Active Directory PowerShell 文件。
 
-## <a name="settingstemplate-object-reference-groupunified-settingstemplate-object"></a>SettingsTemplate 物件參考 (Group.Unified SettingsTemplate 物件)
-* 「名稱」："EnableGroupCreation"、「類型」："System.Boolean"、「defaultValue」："true"、「說明」："一個布林旗標，指出是否已開啟整合的群組建立功能。"
-* 「名稱」："GroupCreationAllowedGroupId"、「類型」："System.Guid"、「defaultValue」：""、「說明」："安全性群組的 GUID，其會在可建立整合群組的允許清單中。"
-* 「名稱」："ClassificationList"、「類型」："System.String"、「defaultValue」：""、「說明」："以逗號分隔的有效分類值清單，這些值可以套用到整合的群組。"
-* 「名稱」："UsageGuidelinesUrl"、「類型」："System.String"、「defaultValue」：""、「說明」："群組使用方針的連結。"
+## <a name="additional-reading"></a>其他閱讀資料
 
-| 名稱 | 類型 | defaultValue | 說明 |
-| --- | --- | --- | --- |
-| "EnableGroupCreation" |"System.Boolean" |"true" |"一個布林旗標，指出是否已開啟整合的群組建立功能。" |
-| "GroupCreationAllowedGroupId" |"System.Guid" |"" |"安全性群組的 GUID，其會在可建立整合群組的允許清單中。" |
-| "ClassificationList" |"System.String" |"" |"以逗號分隔的有效分類值清單，這些值可以套用到整合的群組。" |
-| "UsageGuidelinesUrl" |"System.String" |"" |"群組使用方針的連結。" |
-
-## <a name="next-steps"></a>後續步驟
-您可以在 [Azure Active Directory Cmdlet](http://go.microsoft.com/fwlink/p/?LinkId=808260)中找到更多 Azure Active Directory PowerShell 文件。
-
-如需 Microsoft 專案經理 Rob de Jong 提供的其他指示，請參閱 [Rob 的群組部落格](http://robsgroupsblog.com/blog/configuring-settings-for-office-365-groups-in-azure-ad)。
-
-* [使用 Azure Active Directory 群組管理資源的存取權](active-directory-manage-groups.md)
+* [使用 Azure Active Directory 群組來管理資源的存取權](active-directory-manage-groups.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

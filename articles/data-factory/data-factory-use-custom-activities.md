@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/01/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 3893c98ed72ee7b4ed5aa879047293285e9af071
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: b4b0a8139b69a31e4af40e1f8231d4d7772fee0b
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -395,9 +395,9 @@ public IDictionary<string, string> Execute(
 test custom activity Microsoft test custom activity Microsoft
 ```
 
-即使資料夾有&2; 個以上的檔案，輸入資料夾還是會對應至 Azure Data Factory 中的配量。 管線處理每個配量時，自訂活動會為該配量逐一查看輸入資料夾中的所有 blob。
+即使資料夾有 2 個以上的檔案，輸入資料夾還是會對應至 Azure Data Factory 中的配量。 管線處理每個配量時，自訂活動會為該配量逐一查看輸入資料夾中的所有 blob。
 
-您會看到 adftutorial\customactivityoutput 資料夾中的一個輸出檔案具有&1; 行或更多行 (和輸入資料夾中的 blob 數目相同)：
+您會看到 adftutorial\customactivityoutput 資料夾中的一個輸出檔案具有 1 行或更多行 (和輸入資料夾中的 blob 數目相同)：
 
 ```
 2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2016-11-16-00/file.txt.
@@ -498,7 +498,7 @@ test custom activity Microsoft test custom activity Microsoft
     }
     ```
 
-   您稍後會在本逐步解說建立管線，開始時間為：2016-11-16T00:00:00Z，而結束時間為：2016-11-16T05:00:00Z。 排程為每小時產生，因此會有&5; 個輸入/輸出配量 (在 **00**:00:00 -> **05**:00:00 之間)。
+   您稍後會在本逐步解說建立管線，開始時間為：2016-11-16T00:00:00Z，而結束時間為：2016-11-16T05:00:00Z。 排程為每小時產生，因此會有 5 個輸入/輸出配量 (在 **00**:00:00 -> **05**:00:00 之間)。
 
    輸入資料集的 **frequency** 和 **interval** 設定為 **Hour** 和 **1**，這表示每小時皆可使用輸入配量。 在此範例中，它是 intputfolder 中的相同檔案 (file.txt)。
 
@@ -612,7 +612,7 @@ test custom activity Microsoft test custom activity Microsoft
    * 自訂活動會採用 **InputDataset** 做為輸入和 **OutputDataset** 做為輸出。
    * 自訂活動的 linkedServiceName 屬性會指向 **AzureBatchLinkedService**，這會告知 Azure Data Factory 自訂活動必須在 Azure Batch VM 上執行。
    * **isPaused** 屬性預設為 **false**。 在此範例中，管線會立即執行，因為配量已在過去開始。 您可以將此屬性設為 true，以暫停管線，並將其設回 false，以重新啟動。
-   * **start** 時間和 **end**時間相差 **5** 小時，而配量會每小時產生，因此管線會產生&5; 個配量。
+   * **start** 時間和 **end**時間相差 **5** 小時，而配量會每小時產生，因此管線會產生 5 個配量。
 3. 若要部署管線，按一下命令列上的 [部署]。
 
 ### <a name="monitor-the-pipeline"></a>監視管線
@@ -742,7 +742,7 @@ foreach (KeyValuePair<string, string> entry in extendedProperties)
 ## <a name="auto-scaling-of-azure-batch"></a>Azure Batch 的自動調整
 您也可以建立具有 **自動調整** 功能的 Azure Batch 集區。 例如，您可以用 0 專用 VM 和依據暫止工作數目自動調整的公式，建立 Azure Batch 集區︰
 
-每個暫止工作一次一個 VM (例如︰5 個暫止工作 ->&5; 個 VM)：
+每個暫止工作一次一個 VM (例如︰5 個暫止工作 -> 5 個 VM)：
 
 ```
 pendingTaskSampleVector=$PendingTasks.GetSample(600 * TimeInterval_Second);

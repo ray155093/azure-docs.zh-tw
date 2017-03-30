@@ -1,6 +1,6 @@
 ---
 title: "在 Azure 中使用 Windows 用戶端映像 | Microsoft Docs"
-description: "如何使用 Visual Studio 訂用帳戶權益在 Azure 中部署 Windows 7/8/10，以進行開發/測試案例"
+description: "如何使用 Visual Studio 訂用帳戶權益，在 Azure 中部署 Windows 7、Windows 8 或 Windows 10，以進行開發/測試案例"
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -12,15 +12,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 11/28/2016
+ms.date: 03/14/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 568bd06d1dfd0e253b960dcf2fb5409a390da91b
-ms.openlocfilehash: 2116abf974974c285d94d673b6a614360edbc593
+ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
+ms.openlocfilehash: f0ca7996e52a9b295fff571a270c60520f58101e
+ms.lasthandoff: 03/16/2017
 
 
 ---
-# <a name="using-windows-client-in-azure-for-devtest-scenarios"></a>在 Azure 中使用 Windows 用戶端進行開發/測試案例
+# <a name="use-windows-client-in-azure-for-devtest-scenarios"></a>在 Azure 中使用 Windows 用戶端進行開發/測試案例
 假設您有適當的 Visual Studio (先前稱為 MSDN) 訂用帳戶，您可以在 Azure 中使用 Windows 7、Windows 8 或 Windows 10 進行開發/測試案例。 本文概述在 Azure 中執行 Windows 用戶端和使用 Azure 資源庫映像的資格需求。
 
 ## <a name="subscription-eligibility"></a>訂用帳戶資格
@@ -55,10 +56,5 @@ ms.openlocfilehash: 2116abf974974c285d94d673b6a614360edbc593
 
 ## <a name="next-steps"></a>後續步驟
 您現在可以使用 [PowerShell](virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)、[Resource Manager templates](virtual-machines-windows-ps-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 或 [Visual Studio](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md) 來部署您的 VM。
-
-
-
-
-<!--HONumber=Nov16_HO5-->
 
 

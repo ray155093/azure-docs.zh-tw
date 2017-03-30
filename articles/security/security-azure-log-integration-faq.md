@@ -15,14 +15,17 @@ ms.workload: na
 ms.date: 01/07/2017
 ms.author: TomSh
 translationtype: Human Translation
-ms.sourcegitcommit: d31d4c390d5e03c8b206284c3ae75defed2a38af
-ms.openlocfilehash: 83bedb42e8e685f5ea65e160ab7bfe128236ef82
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
+ms.openlocfilehash: 2d5201a335e96cc8595de834858750f6aac884a3
+ms.lasthandoff: 03/17/2017
 
 
 ---
 # <a name="azure-log-integration-frequently-asked-questions-faq"></a>Azure 記錄整合常見問題集 (FAQ)
 此常見問題集會回答有關 Azure 記錄整合的問題，這是種服務，可讓您將來自 Azure 資源的未經處理記錄，整合到內部部署安全性資訊及事件管理 (SIEM) 系統內。 這項整合提供您內部部署或在雲端中所有資產統一的儀表板，以便您彙總、相互關聯、分析和警示與應用程式相關聯的安全性事件。
+
+## <a name="is-the-azure-log-integration-software-free"></a>Azure 記錄整合軟體是否為免費？
+是。 Azure 記錄整合軟體不需任何費用。 
 
 ## <a name="how-can-i-see-the-storage-accounts-from-which-azure-log-integration-is-pulling-azure-vm-logs-from"></a>如何查看 Azure 記錄整合從中提取 Azure VM 記錄檔的儲存體帳戶？
 執行 **azlog source list**命令。

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: brandwe
 translationtype: Human Translation
-ms.sourcegitcommit: 7950cc1df19ddf0a5d12ff8cba8615bb920e58ba
-ms.openlocfilehash: 37666c8c2e1214f8754375efab1f8e6020dbb2e8
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 27f9c5a18b85c0cc2f918ccefeb063f58cc967c6
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -57,9 +57,8 @@ Passport 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且�
 
   * [ **登入 URL** ] 是指應用程式的基底 URL。  基本架構的預設值是 `http://localhost:3000/auth/openid/return`。
 
-  * [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。 慣例是使用 `https://<tenant-domain>/<app-name>` 格式，例如：`https://contoso.onmicrosoft.com/my-first-aad-app`。
-
 6. 註冊之後，Azure AD 會指派唯一的應用程式識別碼給您的應用程式。 您會在後續章節中用到這個值，所以請從應用程式頁面中複製此值。
+7. 從應用程式的 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI。 [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。 慣例是使用 `https://<tenant-domain>/<app-name>` 格式，例如：`https://contoso.onmicrosoft.com/my-first-aad-app`。
 
 ## <a name="step-2-add-prerequisites-to-your-directory"></a>步驟 2︰在目錄中新增必要條件
 1. 從命令列中，將目錄位置變更為根資料夾 (若目錄位置原本不在該處)，然後執行下列命令：

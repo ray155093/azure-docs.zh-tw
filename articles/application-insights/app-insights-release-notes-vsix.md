@@ -4,23 +4,121 @@ description: "適用於 Developer Analytics 之 Visual Studio 工具的最新更
 services: application-insights
 documentationcenter: 
 author: acearun
-manager: douge
+manager: carmonm
 ms.assetid: 2001db30-efc5-417a-a413-93c1b218975f
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 06/09/2016
+ms.date: 03/20/2017
 ms.author: aruna
 translationtype: Human Translation
-ms.sourcegitcommit: 41ce9b0e323c0938b6db98b99d8d687d1ed0f0ef
-ms.openlocfilehash: 73e9c2bdc8e7851f8de8bcddb0babeb732d8ce15
+ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
+ms.openlocfilehash: 5edd37a3a042f710e7d1b9e148c24d9a548a4fea
+ms.lasthandoff: 03/22/2017
 
 
 ---
 # <a name="release-notes-for-developer-analytics-tools"></a>Developer Analytics 工具的版本資訊
-新功能：Visual Studio 中的 Application Insights 和 HockeyApp 分析
+
+## <a name="version-718-visual-studio-2015"></a>版本 7.18 (Visual Studio 2015)
+
+* 重新設計的快顯通知。
+* Application Insights 搜尋中事件的詳細資料檢視的 Not 篩選條件。
+* 錯誤修正
+
+## <a name="version-86-visual-studio-2017-rtw-and-rc4-and-version-717-visual-studio-2015"></a>版本 8.6 (Visual Studio 2017 RTW 和 RC4) 及版本 7.17 (Visual Studio 2015)
+
+* 從 Visual Studio 發行應用程式時的附註標示，現在改為針對 Azure 入口網站 [計量瀏覽器] 的資料
+* 標記現在加入到程式碼檔案中的捲軸，對應 Application Insights 中紅色與黃色的 CodeLens 警告
+* 更新 [設定] 視窗中的價格資訊
+* 錯誤修正
+
+[請參閱此處的詳細附註](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#devanalytics)
+
+## <a name="version-716-visual-studio-2015"></a>版本 7.16 (Visual Studio 2015)
+
+* 錯誤修正
+
+## <a name="version-85-visual-studio-2017-rc3-and-version-715-visual-studio-2015"></a>版本 8.5 (Visual Studio 2017 RC3) 及版本 7.15 (Visual Studio 2015)
+
+* CodeLens 現在會顯示傳送資料至 Application Insights 資源的專案中的偵錯和即時遙測資料
+* Application Insights 價格資訊現在會顯示在 [設定] 視窗
+* 要求和例外狀況的 CodeLens 現在支援在 Visual Basic 中撰寫的 ASP.NET 專案
+* Application Insights 搜尋現在會顯示已取樣事件的未取樣事件計數
+* 錯誤修正
+
+## <a name="version-714-visual-studio-2015"></a>版本 7.14 (Visual Studio 2015)
+
+* 可用性 (Web 測試) 和頁面檢視事件的搜尋支援
+* 可用性 (Web 測試) 和頁面檢視事件的趨勢支援
+* SDK 調適性取樣的診斷工具和事件詳細資料標籤
+* 錯誤修正
+
+## <a name="version-712-visual-studio-2015"></a>版本 7.12 (Visual Studio 2015)
+
+* 新的發行通知格式
+* 錯誤修正
+
+## <a name="version-84-visual-studio-2017-rc2-and-version-711-visual-studio-2015"></a>版本 8.4 (Visual Studio 2017 RC2) 和版本 7.11 (Visual Studio 2015)
+
+* CodeLens 會針對含有 Application Insights SDK 的專案顯示本機偵錯工作階段的要求
+* CodeLens 會帶您直接進入應用程式分析，以查看使用者影響
+* 插入 JavaScript 以收集頁面檢視
+* 錯誤修正
+
+## <a name="version-710-visual-studio-2015"></a>版本 7.10 (Visual Studio 2015)
+
+* Application Insights [設定] 視窗的新設計
+* 錯誤修正
+
+## <a name="version-79-visual-studio-2015"></a>版本 7.9 (Visual Studio 2015)
+
+* CodeLens 會針對含有 Application Insights SDK 的專案顯示本機偵錯工作階段期間發生的例外狀況
+* 錯誤修正
+
+## <a name="version-83-visual-studio-2017-rc-and-version-78-visual-studio-2015"></a>版本 8.3 (Visual Studio 2017 RC) 和版本 7.8 (Visual Studio 2015)
+
+* 在 [設定] 視窗中加入 Application Insights 的新體驗
+* 錯誤修正
+
+## <a name="version-77-visual-studio-2015"></a>版本 7.7 (Visual Studio 2015)
+
+* 使用自訂 ASP.NET 路由方法，將遙測事件更精確對應至方法
+* 錯誤修正
+
+## <a name="version-76-visual-studio-2015"></a>版本 7.6 (Visual Studio 2015)
+
+* 從 [搜尋] 工具中事件的新 [追蹤作業] 索引標籤分析作業中的事件
+* 錯誤修正
+
+## <a name="version-75-visual-studio-2015"></a>版本 7.5 (Visual Studio 2015)
+
+* [診斷工具] 中要求的生產遙測資訊
+* 從 [搜尋] 工具中的相關項目建立工作項目
+* 錯誤修正
+
+## <a name="version-74-visual-studio-2015"></a>版本 7.4 (Visual Studio 2015)
+
+* [趨勢] 中的 [篩選] 窗格現在可調整大小
+* 錯誤修正
+
+## <a name="version-73-visual-studio-2015"></a>版本 7.3 (Visual Studio 2015)
+
+* CodeLens 中的要求
+* [設定] 視窗
+* HockeyApp SDK 更新至 v4.2.2
+* 錯誤修正
+
+## <a name="version-72-visual-studio-2015"></a>版本 7.2 (Visual Studio 2015)
+
+* 錯誤修正
+
+## <a name="version-71-visual-studio-2015"></a>版本 7.1 (Visual Studio 2015)
+
+* Application Insights 趨勢中的遙測整備指標
+* 錯誤修正
 
 ## <a name="version-70"></a>7.0 版
 ### <a name="azure-application-insights-trends"></a>Azure Application Insights 趨勢
@@ -197,10 +295,4 @@ Windows Forms 專案節點的內容功能表現在包含將組建上傳至 Hocke
 HockeyApp 可讓您在任何所選的平台上建置應用程式，無論是 iOS、Android 或 Windows，或是 Xamarin、Cordova 或 Unity 之類的跨平台解決方案上。
 
 在未來版本的 Application Insights 延伸模組中，我們會在 HockeyApp 與 Visual Studio 之間提供更為整合的體驗。 現在您只要新增 NuGet 參考，即可開始使用 HockeyApp。 如需詳細資訊，請參閱 [文件](http://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone) 。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

@@ -16,9 +16,9 @@ ms.date: 02/23/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: e4ef137656c12cf6495a00450eed308ac6a8a872
-ms.openlocfilehash: 804e811c0db5f72b6764b3cb120eb5ec8898baac
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 9c587378bc8ffe43f6153c6424748e814c7a1d89
+ms.lasthandoff: 03/18/2017
 
 ---
 # <a name="integrate-your-existing-nps-infrastructure-with-azure-multi-factor-authentication---public-preview"></a>將現有的 NPS 基礎結構與 Azure Multi-Factor Authentication 整合 - 公開預覽
@@ -88,7 +88,7 @@ Azure MFA 的 NPS 擴充功能可透過 [Azure Multi-Factor Authentication 授�
 
 ### <a name="configurations-limitations"></a>組態限制
 
-- NPS 擴充功能是為了搭配現有部署來運作，並不適用於新部署。 因此，Azure MFA 的 NPS 擴充功能並未包含從 MFA Server 將使用者和設定移轉至雲端的工具。
+- NPS 擴充功能適用於新的部署，而不適合搭配現有部署使用。 因此，Azure MFA 的 NPS 擴充功能並未包含從 MFA Server 將使用者和設定移轉至雲端的工具。
 
 - NPS 擴充功能會使用來自內部部署 Active Directory 的 UPN，識別 Azure MFA 上用來執行次要驗證的使用者。 擴充功能無法設定為使用不同的識別碼，例如 UPN 以外的替代登入識別碼或自訂 AD 欄位。  
 

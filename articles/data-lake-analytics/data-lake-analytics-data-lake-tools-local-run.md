@@ -15,9 +15,9 @@ ms.workload: big-data
 ms.date: 11/15/2016
 ms.author: yanacai
 translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: ffa31e7eee7642c29a846658b999828434347316
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
+ms.openlocfilehash: 7e8aed4f56471bb2946c610ca63b0ec50ee1b57e
+ms.lasthandoff: 03/21/2017
 
 
 ---
@@ -81,6 +81,30 @@ Data Lake Tools 安裝程式會建立 C:\LocalRunRoot 資料夾，做為預設�
 
     ![Data Lake Tools for Visual Studio 本機執行的提交作業](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-submit-job.png)
 
+### <a name="debug-scripts-and-c-assemblies-locally"></a>在本機偵錯指令碼和 C# 組件
+
+您可以在無需將 C# 組件提交並註冊至 Azure Data Lake Analytics 服務的情況下，對它進行偵錯。 您可以在這兩個程式碼後置檔案和參考的 C# 專案中設定中斷點。
+
+#### <a name="to-debug-local-code-in-code-behind-file"></a>如何為程式碼後置檔案中的本機程式碼偵錯
+
+1. 在程式碼後置檔案中設定中斷點。
+2. 按下 F5 以便在本機為指令碼偵錯。
+
+> [!NOTE]
+   > 下列程序僅適用於 Visual Studio 2015。 在舊版 Visual Studio 中，您可能需要手動加入 pdb 檔案。  
+   >
+   >
+
+#### <a name="to-debug-local-code-in-a-referenced-c-project"></a>如何為參考的 C# 專案中的本機程式碼偵錯
+
+1. 建立 C# 組件專案，並建置它來產生輸出 dll。
+2. 使用 U-SQL 陳述式來註冊 dll：
+
+        CREATE ASSEMBLY assemblyname FROM @"..\..\path\to\output\.dll";
+        
+3. 在 C# 程式碼中設定中斷點。
+4. 按下 F5 以便在本機為參考 C# dll 的指令碼偵錯。
+
 ## <a name="use-local-run-from-the-data-lake-u-sql-sdk"></a>從 Data Lake U-SQL SDK 使用本機執行
 
 除了使用 Visual Studio 在本機執行 U-SQL 指令碼之外，您可以利用 Azure Data Lake U-SQL SDK，使用命令列和程式設計介面在本機執行 U-SQL 指令碼。 這能讓您調整 U-SQL 本機測試。
@@ -88,13 +112,11 @@ Data Lake Tools 安裝程式會建立 C:\LocalRunRoot 資料夾，做為預設�
 深入了解 [Azure Data Lake U-SQL SDK](data-lake-analytics-u-sql-sdk.md)。
 
 
-
-
 ## <a name="next-steps"></a>後續步驟
 
 * 若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 * 若要開始開發 U-SQL 應用程式，請參閱 [使用 Data Lake Tools for Visual Studio 開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
-* 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake 分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
+* 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
 * 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
 * 若要記錄診斷資訊，請參閱 [為 Azure Data Lake Analytics 存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)。
 * 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。

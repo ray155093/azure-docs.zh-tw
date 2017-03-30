@@ -13,13 +13,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 3/08/2017
+ms.date: 3/17/2017
 ms.author: negat
 ms.custom: na
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 8d0adfb995ecfb56ff33814e462a88f3d1102d58
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 850459a79c723de0eb3249cfe9ea19bc988ca318
+ms.lasthandoff: 03/18/2017
 
 
 ---
@@ -467,7 +467,7 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 請參閱︰https://msftstack.wordpress.com/2017/02/24/vip-swap-blue-green-deployment-in-azure-resource-manager/ 
  
   
-### <a name="what-is-the-resourceguid-property-on-a-nic-for-its-not-documented-here"></a>NIC 上的 resourceGuid 屬性作用為何？ 此處並未記載。
+### <a name="what-is-the-resourceguid-property-on-a-nic-for"></a>NIC 上的 resourceGuid 屬性作用為何？
 
 它是唯一的識別碼。 較低層級會在未來的某個時間點記錄此識別碼。 
  
@@ -481,6 +481,9 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 
 請參閱 https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-existing-vnet 
 
+### <a name="how-do-i-add-a-scale-sets-first-vms-ip-address-to-the-output-of-a-template"></a>如何將擴展集中第一個 VM 的 IP 位址新增至範本的輸出？
+
+請參閱︰http://stackoverflow.com/questions/42790392/arm-get-vmsss-private-ips
 
 
 
@@ -488,7 +491,7 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 
 ### <a name="why-would-you-ever-create-a-scale-set-with-fewer-than-2-vms"></a>為什麼您會使用少於 2 部 VM 來建立擴展集？
 
-其中一個原因就是使用擴展集的彈性屬性。 例如，您可以使用&0; 部 VM 來部署擴展集，以定義您的基礎結構而不必付出成本。 然後，當您準備好要部署 VM 時，可藉由將擴展集的「容量」增加至生產執行個體計數來這麼做。
+其中一個原因就是使用擴展集的彈性屬性。 例如，您可以使用 0 部 VM 來部署擴展集，以定義您的基礎結構而不必付出成本。 然後，當您準備好要部署 VM 時，可藉由將擴展集的「容量」增加至生產執行個體計數來這麼做。
 
 另一個原因是當您使用擴展集進行一些動作，而您不在意同樣使用可用性設定組與離散 VM。 擴展集新增使用可取代無差異計算單位的方法。 這個一致性是擴展集與可用性設定組的關鍵區別指標。 許多無狀態工作負載不在意個別的單位，且若工作負載減少時可以相應減少為一個計算單位，然後當工作負載增加時再回到許多計算單位。
 

@@ -15,8 +15,8 @@ ms.topic: article
 ms.date: 03/13/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: eb77dd2aaaeced8c71c2c89937f7f1cc10c7b292
+ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
+ms.openlocfilehash: 165e4394d21a0202a320a8697360b715517bc7a2
 ms.lasthandoff: 03/15/2017
 
 
@@ -50,13 +50,7 @@ ms.lasthandoff: 03/15/2017
 
 ## <a name="billing"></a>計費
 
-您的費用取決於使用媒體保留單元的實際分鐘數。 此處為更詳細的範例。 假設 Joe 原先於當天上午 10:00 有零個媒體保留單元 (RU) 要著手處理，將他的帳戶設定為要使用兩個 S1 的 RU。 下午進來了更多影片，所以 Joe 變更了他的帳戶，要在下午 1:15 使用四個 S3 的 RU。 他所有的影片都於下午 4:00 前處理完畢，然後 Joe 關閉了他帳戶中的 RU (將 RU 的數字設為零)。 Joe 的使用量計算如下。
-
-S1 媒體保留單元：2 個單元 x 3.25 小時 (上午 10:00 到下午 1:15) x $0.02/小時 = $0.13 S3 媒體保留單元：4 個單元 x 2.75 小時 (下午 1:15 到下午 4:00) x $0.08/小時 = $0.88
-
-由此可知 Joe 當 日使用媒體保留單元的費用總計為 $0.13 + $0.88 = $1.01 串流單元和媒體保留單元不同，它會依每天所佈建之串流單位的最大數目，作為費用依據 (高水位線)。
-
-如需詳細資訊，請參閱[媒體服務定價](https://azure.microsoft.com/pricing/details/media-services/)頁面。 常見問題集一節有詳細說明。  
+您的費用取決於使用媒體保留單元的實際分鐘數。 如需詳細說明，請參閱[媒體服務定價](https://azure.microsoft.com/pricing/details/media-services/)頁面的＜常見問題集＞一節。   
 
 ## <a name="quotas-and-limitations"></a>配額和限制
 如需配額和限制以及如何開啟支援票證的相關資訊，請參閱 [配額和限制](media-services-quotas-and-limitations.md)。

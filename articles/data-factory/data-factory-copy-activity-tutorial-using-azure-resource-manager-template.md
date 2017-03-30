@@ -15,8 +15,9 @@ ms.topic: get-started-article
 ms.date: 01/17/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 4b29fd1c188c76a7c65c4dcff02dc9efdf3ebaee
-ms.openlocfilehash: cc25d521b4de64643c8920d45ec9aa6c07b94302
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 977fcf74c86e2ab312d99b3f1821cfb7efbe9745
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -313,7 +314,7 @@ ms.openlocfilehash: cc25d521b4de64643c8920d45ec9aa6c07b94302
 1. 啟動 **Azure PowerShell** 並執行下列命令：
    * 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
     ```PowerShell
-    Login-AzureRmAccount    
+    Login-AzureRmAccount       
     ```  
    * 執行下列命令以檢視此帳戶的所有訂用帳戶。
     ```PowerShell
@@ -408,7 +409,7 @@ dataFactoryName 定義為：
 connectionString 會使用 storageAccountName 和 storageAccountKey 參數。 使用組態檔傳遞這些參數的值。 定義也會使用在範本中定義的變數︰azureStroageLinkedService 和 dataFactoryName。 
 
 #### <a name="azure-sql-database-linked-service"></a>Azure SQL Database 的連結服務
-在此區段中指定 Azure SQL 伺服器名稱、資料庫名稱、使用者名稱和使用者密碼。 如需用來定義 Azure SQL 連結服務之 JSON 屬性的詳細資料，請參閱 [Azure SQL 連結服務](data-factory-azure-sql-connector.md#azure-sql-linked-service-properties)。  
+在此區段中指定 Azure SQL 伺服器名稱、資料庫名稱、使用者名稱和使用者密碼。 如需用來定義 Azure SQL 連結服務之 JSON 屬性的詳細資料，請參閱 [Azure SQL 連結服務](data-factory-azure-sql-connector.md#linked-service-properties)。  
 
 ```json
 {
@@ -431,7 +432,7 @@ connectionString 會使用 storageAccountName 和 storageAccountKey 參數。 �
 connectionString 會使用 sqlServerName、databaseName、sqlServerUserName 和 sqlServerPassword 參數，其值會使用組態檔傳遞。 定義也會使用下列來自範本的參數：azureSqlLinkedServiceName、dataFactoryName。
 
 #### <a name="azure-blob-dataset"></a>Azure Blob 資料集
-您可以指定 blob 容器、資料夾和包含輸入資料之檔案的名稱。 請參閱 [Azure Blob 資料集屬性](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties)，以取得用來定義 Azure Blob 資料集之 JSON 屬性的詳細資訊。 
+您可以指定 blob 容器、資料夾和包含輸入資料之檔案的名稱。 請參閱 [Azure Blob 資料集屬性](data-factory-azure-blob-connector.md#dataset-properties)，以取得用來定義 Azure Blob 資料集之 JSON 屬性的詳細資訊。 
 
 ```json
 {
@@ -473,7 +474,7 @@ connectionString 會使用 sqlServerName、databaseName、sqlServerUserName 和 
 ```
 
 #### <a name="azure-sql-dataset"></a>Azure SQL 資料集
-指定存放來自 Azure Blob 儲存體之複製資料的 Azure SQL Database 中的資料表名稱。 請參閱 [Azure SQL 資料集屬性](data-factory-azure-sql-connector.md#azure-sql-dataset-type-properties)，以取得用來定義 Azure SQL 資料集之 JSON 屬性的詳細資訊。 
+指定存放來自 Azure Blob 儲存體之複製資料的 Azure SQL Database 中的資料表名稱。 請參閱 [Azure SQL 資料集屬性](data-factory-azure-sql-connector.md#dataset-properties)，以取得用來定義 Azure SQL 資料集之 JSON 屬性的詳細資訊。 
 
 ```json
 {
@@ -591,8 +592,3 @@ New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFT
 | [管線](data-factory-create-pipelines.md) |本文協助您了解 Azure Data Factory 中的管線和活動。 |
 | [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
 | [排程和執行](data-factory-scheduling-and-execution.md) |本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 |
-
-
-<!--HONumber=Feb17_HO1-->
-
-

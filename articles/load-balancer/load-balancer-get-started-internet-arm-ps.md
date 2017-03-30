@@ -21,7 +21,7 @@ ms.lasthandoff: 01/24/2017
 
 ---
 
-# <a name="a-nameget-startedacreating-an-internet-facing-load-balancer-in-resource-manager-by-using-powershell"></a><a name="get-started"></a>使用 PowerShell 在 Resource Manager 中建立網際網路面向的負載平衡器
+# <a name="get-started"></a>使用 PowerShell 在 Resource Manager 中建立網際網路面向的負載平衡器
 
 > [!div class="op_single_selector"]
 > * [入口網站](../load-balancer/load-balancer-get-started-internet-portal.md)
@@ -255,7 +255,7 @@ ms.lasthandoff: 01/24/2017
 2. 將後端組態載入到變數之中。
 
     ```powershell
-    $backend=Get-AzureRmLoadBalancerBackendAddressPoolConfig -name backendpool1 -LoadBalancer $lb
+    $backend=Get-AzureRmLoadBalancerBackendAddressPoolConfig -name LB-backend -LoadBalancer $lb
     ```
 
 3. 將已建立的網路介面載入到變數之中。 變數名稱是 **$nic**。 網路介面名稱是來自先前範例的相同名稱。
@@ -283,7 +283,7 @@ ms.lasthandoff: 01/24/2017
 1. 使用先前範例中的負載平衡器，透過 `Get-AzureLoadBalancer` 將負載平衡器物件指派給變數 **$slb**。
 
     ```powershell
-    $slb = get-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
+    $slb = get-AzureRmLoadBalancer -Name NRP-LB -ResourceGroupName NRP-RG
     ```
 
 2. 在下列範例中，您會使用前端集區的連接埠 81 和後端集區的連接埠 8181，將輸入 NAT 規則加入現有的負載平衡器。
@@ -303,7 +303,7 @@ ms.lasthandoff: 01/24/2017
 使用命令 `Remove-AzureLoadBalancer` 刪除資源群組 **NRP-RG** 中先前建立的負載平衡器 **NRP-LB**。
 
 ```powershell
-Remove-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
+Remove-AzureRmLoadBalancer -Name NRP-LB -ResourceGroupName NRP-RG
 ```
 
 > [!NOTE]

@@ -11,17 +11,17 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 03/17/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
-ms.openlocfilehash: 9fc886d9ce69c1ca3d7a981d5eeb276c09cc245e
-ms.lasthandoff: 01/25/2017
+ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
+ms.openlocfilehash: 3ad42c2f982446445402f176ff913833e01c42d6
+ms.lasthandoff: 03/18/2017
 
 
 ---
-# <a name="create-application-insights-resources-using-powershell"></a>使用 PowerShell 建立 Application Insights 資源
-本文說明如何在 Azure 自動建立 [Application Insights](app-insights-overview.md) 資源。 例如，您可能建置程序中這麼做。 除了基本的 Application Insights 資源外，您可以建立[可用性 Web 測試](app-insights-monitor-web-app-availability.md)、[設定警示](app-insights-alerts.md)和建立其他 Azure 資源。
+#  <a name="create-application-insights-resources-using-powershell"></a>使用 PowerShell 建立 Application Insights 資源
+本文說明如何使用 Azure 資源管理，自動將 [Application Insights](app-insights-overview.md) 資源的建立和更新自動化。 例如，您可能建置程序中這麼做。 除了基本的 Application Insights 資源外，您可以建立[可用性 Web 測試](app-insights-monitor-web-app-availability.md)、設定[警示](app-insights-alerts.md)、設定[價格配置](app-insights-pricing.md)和建立其他 Azure 資源。
 
 建立這些資源的關鍵是 [Azure 資源管理員](../azure-resource-manager/powershell-azure-resource-manager.md)適用的 JSON 範本。 簡單地說，此程序是：下載現有資源的 JSON 定義；參數化某些值 (例如名稱)；然後每當您想建立新的資源時再執行範本。 您可以一起封裝幾項資源一次全部建立，例如一個包含可用性測試、警示和連續匯出儲存體的應用程式監視器。 部分參數化有一些微妙之處，我們會在這裡說明。
 
@@ -37,106 +37,118 @@ ms.lasthandoff: 01/25/2017
 建立新的 .json 檔案 - 在此範例中稱為 `template1.json` 。 將此內容複製到其中：
 
 ```JSON
-{
-          "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-          "contentVersion": "1.0.0.0",
-          "parameters": {
+    {
+        "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
             "appName": {
-              "type": "string",
-              "metadata": {
-                "description": "Enter the application name."
-              }
+                "type": "string",
+                "metadata": {
+                    "description": "Enter the application name."
+                }
             },
-            "applicationType": {
-              "type": "string",
-              "defaultValue": "ASP.NET web application",
-              "allowedValues": [ "ASP.NET web application", "Java web application", "HockeyApp bridge application", "Other (preview)" ],
-              "metadata": {
-                "description": "Enter the application type."
-              }
+            "appType": {
+                "type": "string",
+                "defaultValue": "web",
+                "allowedValues": [
+                    "web",
+                    "java",
+                    "HockeyAppBridge",
+                    "other"
+                ],
+                "metadata": {
+                    "description": "Enter the application type."
+                }
             },
             "appLocation": {
-              "type": "string",
-              "defaultValue": "East US",
-              "allowedValues": [ "South Central US", "West Europe", "East US", "North Europe" ],
-              "metadata": {
-                "description": "Enter the application location."
-              }
+                "type": "string",
+                "defaultValue": "East US",
+                "allowedValues": [
+                    "South Central US",
+                    "West Europe",
+                    "East US",
+                    "North Europe"
+                ],
+                "metadata": {
+                    "description": "Enter the application location."
+                }
             },
             "priceCode": {
-              "type": "int",
-              "defaultValue": 1,
-              "allowedValues": [ 1, 2 ],
-              "metadata": {"description": "1 = Basic, 2 = Enterprise"}
+                "type": "int",
+                "defaultValue": 1,
+                "allowedValues": [
+                    1,
+                    2
+                ],
+                "metadata": {
+                    "description": "1 = Basic, 2 = Enterprise"
+                }
             },
             "dailyQuota": {
-              "type": "int",
-              "defaultValue": 100,
-              "minValue": 1,
-              "metadata": {
-                "description": "Enter daily quota in GB."
-              }
+                "type": "int",
+                "defaultValue": 100,
+                "minValue": 1,
+                "metadata": {
+                    "description": "Enter daily quota in GB."
+                }
             },
             "dailyQuotaResetTime": {
-              "type": "int",
-              "defaultValue": 24,
-              "metadata": {
-                "description": "Enter daily quota reset hour in UTC (0 to 23). Values outside the range will get a random reset hour."
-              }
+                "type": "int",
+                "defaultValue": 24,
+                "metadata": {
+                    "description": "Enter daily quota reset hour in UTC (0 to 23). Values outside the range will get a random reset hour."
+                }
             },
             "warningThreshold": {
-              "type": "int",
-              "defaultValue": 90,
-              "minValue": 1,
-              "maxValue": 100,
-              "metadata": {
-                "description": "Enter the % value of daily quota after which warning mail to be sent. "
-              }
-            }
-          },
-
-         "variables": {
-           "priceArray": [ "Basic", "Application Insights Enterprise" ],
-           "pricePlan": "[take(variables('priceArray'),parameters('priceCode'))]",
-           "billingplan": "[concat(parameters('appName'),'/', variables('pricePlan')[0])]"
-          },
-
-          "resources": [
-            {
-              "apiVersion": "2014-08-01",
-              "location": "[parameters('appLocation')]",
-              "name": "[parameters('appName')]",
-              "type": "microsoft.insights/components",
-              "properties": {
-                "Application_Type": "[parameters('applicationType')]",
-                "ApplicationId": "[parameters('appName')]",
-                "Name": "[parameters('appName')]",
-                "Flow_Type": "Redfield",
-                "Request_Source": "ARMAIExtension"
-              }
-            },
-            {
-              "name": "[variables('billingplan')]",
-              "type": "microsoft.insights/components/CurrentBillingFeatures",
-              "location": "[parameters('appLocation')]",
-              "apiVersion": "2015-05-01",
-              "dependsOn": [
-                "[resourceId('microsoft.insights/components', parameters('appName'))]"
-              ],
-              "properties": {
-                "CurrentBillingFeatures": "[variables('pricePlan')]",
-                "DataVolumeCap": {
-                  "Cap": "[parameters('dailyQuota')]",
-                  "WarningThreshold": "[parameters('warningThreshold')]",
-                  "ResetTime": "[parameters('dailyQuotaResetTime')]"
+                "type": "int",
+                "defaultValue": 90,
+                "minValue": 1,
+                "maxValue": 100,
+                "metadata": {
+                    "description": "Enter the % value of daily quota after which warning mail to be sent. "
                 }
-              }
+            }
+        },
+        "variables": {
+            "priceArray": [
+                "Basic",
+                "Application Insights Enterprise"
+            ],
+            "pricePlan": "[take(variables('priceArray'),parameters('priceCode'))]",
+            "billingplan": "[concat(parameters('appName'),'/', variables('pricePlan')[0])]"
+        },
+        "resources": [
+            {
+                "type": "microsoft.insights/components",
+                "kind": "[parameters('appType')]",
+                "name": "[parameters('appName')]",
+                "apiVersion": "2014-04-01",
+                "location": "[parameters('appLocation')]",
+                "tags": {},
+                "properties": {
+                    "ApplicationId": "[parameters('appName')]"
+                },
+                "dependsOn": []
             },
-
-          "__comment":"web test, alert, and any other resources go here"
-          ]
-        }
-
+            {
+                "name": "[variables('billingplan')]",
+                "type": "microsoft.insights/components/CurrentBillingFeatures",
+                "location": "[parameters('appLocation')]",
+                "apiVersion": "2015-05-01",
+                "dependsOn": [
+                    "[resourceId('microsoft.insights/components', parameters('appName'))]"
+                ],
+                "properties": {
+                    "CurrentBillingFeatures": "[variables('pricePlan')]",
+                    "DataVolumeCap": {
+                        "Cap": "[parameters('dailyQuota')]",
+                        "WarningThreshold": "[parameters('warningThreshold')]",
+                        "ResetTime": "[parameters('dailyQuotaResetTime')]"
+                    }
+                }
+            }
+        ]
+    }
 ```
 
 
@@ -161,20 +173,26 @@ ms.lasthandoff: 01/25/2017
 
 您可以新增其他參數 - 可在範本的參數區段中找到其描述。
 
-## <a name="enterprise-price-plan"></a>企業價格方案
+<a id="price"></a>
+## <a name="set-the-price-plan"></a>設定價格方案
+
+您可以設定[價格方案](app-insights-pricing.md)。
 
 若要使用企業價格計劃建立應用程式資源，請使用上述的範本︰
 
 ```PS
-   
-
         New-AzureRmResourceGroupDeployment -ResourceGroupName Fabrikam `
                -TemplateFile .\template1.json `
                -priceCode 2 `
                -appName myNewApp
 ```
 
-* 如果您只想要使用預設基本定價計劃，您可以從範本中省略價格方案資源。
+|priceCode|計劃|
+|---|---|
+|1|基本|
+|2|Enterprise|
+
+* 如果您只想要使用預設基本價格方案，您可以從範本中省略 CurrentBillingFeatures 資源。
 
 
 ## <a name="to-get-the-instrumentation-key"></a>取得檢測金鑰
