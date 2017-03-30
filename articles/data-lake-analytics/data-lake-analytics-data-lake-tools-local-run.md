@@ -77,7 +77,7 @@ Data Lake Tools 安裝程式會建立 C:\LocalRunRoot 資料夾，做為預設�
 1. 從 Visual Studio 開啟您的 U-SQL 專案。   
 2. 在 [方案總管] 中的 U-SQL 指令碼上按一下滑鼠右鍵，然後按一下 [提交指令碼]。
 3. 選取 [(本機)] 做為要在本機執行指令碼的 Analytics 帳戶。
-您也可以按一下指令碼視窗頂端的 [(本機)] 帳戶，然後按一下 [提交] (或使用 Ctrl + F5 鍵盤快速鍵)。
+您也可以按一下指令碼視窗頂端的 [(本機)] 帳戶，然後按一下 [提交] \(或使用 Ctrl + F5 鍵盤快速鍵)。
 
     ![Data Lake Tools for Visual Studio 本機執行的提交作業](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-submit-job.png)
 
