@@ -15,8 +15,9 @@ ms.topic: hero-article
 ms.date: 06/05/2016
 ms.author: mlearned
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 6a03b96b3f06d9c8cdb820e6c7835f728a28cc99
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: eec7d1402bdea4e5433c473dd713eed23aa80464
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -62,10 +63,10 @@ Azure 平台充滿著彈性的 DevOps 工作流程。 在本教學課程中，�
 9. 在選擇專案和分支之後，按一下 [確定]。 您應該會開始看到部署通知。
    
    ![image9][image9]
-10. 瀏覽回到 Github，以查看為了整合原始檔控制儲存機制與 Azure 而建立的 Webhook。 只須進行一些簡單的步驟，Azure 入口網站即可與 Github 整合。
+10. 瀏覽回到 GitHub，以查看為了整合原始檔控制存放庫與 Azure 而建立的 Webhook。 只須進行一些簡單的步驟，Azure 入口網站即可與 GitHub 整合。
     
     ![image10][image10]
-11. 為了示範連續部署，請快速新增一些內容到儲存機制。 如需簡單的範例，可將範例文字檔新增至 Github 儲存機制。 您可以自由地使用 .NET、Ruby、Python 或其他某些類型的應用程式來搭配 App Service。 請隨意新增文字檔、ASP.NET MVC、Java 或 Ruby 應用程式到您選擇的儲存機制。
+11. 為了示範連續部署，請快速新增一些內容到儲存機制。 如需簡單的範例，可將範例文字檔新增至 GitHub 存放庫。 您可以自由地使用 .NET、Ruby、Python 或其他某些類型的應用程式來搭配 App Service。 請隨意新增文字檔、ASP.NET MVC、Java 或 Ruby 應用程式到您選擇的儲存機制。
     
     ![image11][image11]
 12. 在對儲存機制認可變更之後，您會看到入口網站的通知區域中起始了新的部署。 在對儲存機制認可之後，如果沒快速看到變更，請按一下 [同步處理]。
@@ -334,9 +335,4 @@ Azure 提供許多用來監視和針對執行中應用程式進行疑難排解�
 [image67]: ./media/tutorial-azureportal-devops/image67.png
 [image68]: ./media/tutorial-azureportal-devops/image68.png
 [image69]: ./media/tutorial-azureportal-devops/image69.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

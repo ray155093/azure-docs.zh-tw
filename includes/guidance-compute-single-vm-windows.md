@@ -1,19 +1,19 @@
-本文概述一組已經實證的做法，以便在 Azure 上執行 Windows 虛擬機器 (VM)，並注意延展性、可用性、管理性和安全性。 
+本文概述一組已經實證的做法，以便在 Azure 上執行 Windows 虛擬機器 (VM)，並注意延展性、可用性、管理性和安全性。
 
 > [!NOTE]
 > Azure 有兩個不同的部署模型：[Azure Resource Manager][resource-manager-overview] 和傳統。 本文使用 Microsoft 建議用於新部署的資源管理員。
-> 
-> 
+>
+>
 
-我們不建議用使用單一 VM 進行關鍵任務工作負載，因為它會建立單一失敗點。 若要擁有較高的可用性，您必須在[可用性設定組][availability-set]中部署多個 VM。 如需詳細資訊，請參閱[在 Azure 上執行多個 VM][multi-vm]。 
+我們不建議用使用單一 VM 進行關鍵任務工作負載，因為它會建立單一失敗點。 若要擁有較高的可用性，您必須在[可用性設定組][availability-set]中部署多個 VM。 如需詳細資訊，請參閱[在 Azure 上執行多個 VM][multi-vm]。
 
 ## <a name="architecture-diagram"></a>架構圖表
 
 在 Azure 中佈建 VM 牽涉的移動組建比 VM 本身更多。 有計算、網路及儲存體元素。
 
 > 包含此架構圖表的 Visio 文件可在 [Microsoft 下載中心][visio-download]提供下載。 此圖表位於「計算 - 單一 VM」頁面。
-> 
-> 
+>
+>
 
 ![[0]][0]
 
@@ -30,11 +30,11 @@
 
 ## <a name="recommendations"></a>建議
 
-下列建議適用於大部分的案例。 除非您有特定的需求會覆寫它們，否則請遵循下列建議。 
+下列建議適用於大部分的案例。 除非您有特定的需求會覆寫它們，否則請遵循下列建議。
 
 ### <a name="vm-recommendations"></a>VM 建議
 
-Azure 提供許多不同的虛擬機器大小，但是我們建議使用 DS 和 GS 系列，因為這些機器大小支援[進階儲存體][premium-storage]。 選取其中一個機器大小，除非您有高效能運算等特殊工作負載。 如需詳細資訊，請參閱[虛擬機器的大小][virtual-machine-sizes]。 
+Azure 提供許多不同的虛擬機器大小，但是我們建議使用 DS 和 GS 系列，因為這些機器大小支援[進階儲存體][premium-storage]。 選取其中一個機器大小，除非您有高效能運算等特殊工作負載。 如需詳細資訊，請參閱[虛擬機器的大小][virtual-machine-sizes]。
 
 如果您將現有的工作負載移至 Azure，則從最符合您內部部署伺服器的 VM 大小開始。 然後根據 CPU、記憶體和每秒的磁碟輸入/輸出作業 (IOPS) 測量您的實際工作負載效能，並視需要調整大小。 如果您的 VM 需要多個 NIC，請注意 NIC 的最大數目是 [VM 大小][vm-size-tables]的函式。   
 
@@ -48,9 +48,9 @@ azure vm sizes --location <location>
 
 ### <a name="disk-and-storage-recommendations"></a>磁碟和儲存體建議
 
-為了達到最佳的磁碟 I/O 效能，我們建議使用[進階儲存體][premium-storage]，這會將資料儲存在固態硬碟 (SSD)。 成本是依佈建的磁碟大小而定。 IOPS 和輸送量也取決於磁碟大小，因此當您佈建磁碟時，請考慮以下三個因素 (容量、IOPS 和輸送量)。 
+為了達到最佳的磁碟 I/O 效能，我們建議使用[進階儲存體][premium-storage]，這會將資料儲存在固態硬碟 (SSD)。 成本是依佈建的磁碟大小而定。 IOPS 和輸送量也取決於磁碟大小，因此當您佈建磁碟時，請考慮以下三個因素 (容量、IOPS 和輸送量)。
 
-針對每個 VM 建立個別的 Azure 儲存體帳戶來存放虛擬硬碟 (VHD)，以避免達到儲存體帳戶的 IOPS 限制。 
+針對每個 VM 建立個別的 Azure 儲存體帳戶來存放虛擬硬碟 (VHD)，以避免達到儲存體帳戶的 IOPS 限制。
 
 新增一或多個資料磁碟。 當您建立新的 VHD 時，它仍未格式化。 登入 VM 來格式化磁碟。 如果您有大量的資料磁碟，請注意儲存體帳戶的總 I/O 限制。 如需詳細資訊，請參閱[虛擬機器磁碟限制][vm-disk-limits]。
 
@@ -71,15 +71,15 @@ azure vm sizes --location <location>
 
 ## <a name="scalability-considerations"></a>延展性考量
 
-您可以藉由[變更 VM 大小][vm-resize]來相應增加或相應減少 VM。 若要水平相應放大，請將兩個以上的 VM 置於附載平衡器後方的可用性設定組中。 如需詳細資訊，請參閱[在 Azure 上執行多個 VM 以獲得延展性和可用性][multi-vm]。
+您可以藉由[變更 VM 大小](../articles/virtual-machines/virtual-machines-windows-sizes.md)來相應增加或相應減少 VM。 若要水平相應放大，請將兩個以上的 VM 置於附載平衡器後方的可用性設定組中。 如需詳細資訊，請參閱[在 Azure 上執行多個 VM 以獲得延展性和可用性][multi-vm]。
 
 ## <a name="availability-considerations"></a>可用性考量
 
-若要擁有較高的可用性，您必須在可用性設定組中部署多個 VM。 這也會提供較高的[服務等級協定][vm-sla] (SLA)。 
+若要擁有較高的可用性，您必須在可用性設定組中部署多個 VM。 這也會提供較高的[服務等級協定][vm-sla] (SLA)。
 
 您的 VM 可能會受到[計劃性維護][planned-maintenance]或[非計劃性維護][manage-vm-availability]影響。 您可以使用 [VM 重新啟動記錄檔][reboot-logs]來判斷 VM 重新啟動是否是因為計劃性維護所造成。
 
-VHD 是儲存在 [Azure 儲存體][azure-storage]，而系統會複寫 Azure 儲存體來提供持久性和可用性。 
+VHD 是儲存在 [Azure 儲存體][azure-storage]，而系統會複寫 Azure 儲存體來提供持久性和可用性。
 
 為了防止在正常作業期間意外遺失資料 (例如，因使用者錯誤而造成)，您也應該使用 [Blob 快照][blob-snapshot]或其他工具來實作時間點備份。
 
@@ -107,7 +107,7 @@ azure vm deallocate <resource-group> <vm-name>
 
 **刪除 VM。** 如果您刪除 VM，並不會刪除 VHD。 這表示您可以放心地刪除 VM，而不會遺失任何資料。 不過，您仍需支付儲存體費用。 若要刪除 VHD，請將檔案從 [Blob 儲存體][blob-storage]中刪除。
 
-若要防止意外刪除，請使用[資源鎖定][resource-lock]來鎖定整個資源群組或鎖定個別資源 (例如 VM)。 
+若要防止意外刪除，請使用[資源鎖定][resource-lock]來鎖定整個資源群組或鎖定個別資源 (例如 VM)。
 
 ## <a name="security-considerations"></a>安全性考量
 
@@ -121,8 +121,8 @@ azure vm deallocate <resource-group> <vm-name>
 
 > [!NOTE]
 > RBAC 不會限制使用者登入 VM 可執行的動作。 這些權限是由客體 OS上的帳戶類型來決定。   
-> 
-> 
+>
+>
 
 若要重設本機系統管理員密碼，請執行 `vm reset-access` Azure CLI 命令。
 
@@ -132,16 +132,16 @@ azure vm reset-access -u <user> -p <new-password> <resource-group> <vm-name>
 
 使用[稽核記錄檔][audit-logs]來查看佈建動作和其他 VM 事件。
 
-**資料加密。** 如果您要加密作業系統和資料磁碟，請考慮使用 [Azure 磁碟加密][disk-encryption]。 
+**資料加密。** 如果您要加密作業系統和資料磁碟，請考慮使用 [Azure 磁碟加密][disk-encryption]。
 
 ## <a name="solution-deployment"></a>解決方案部署
 
-此參考架構的部署可在 [GitHub][github-folder] 上取得。 它包含 VNet、NSG 及單一 VM。 若要部署架構，請依照下列步驟執行： 
+此參考架構的部署可在 [GitHub][github-folder] 上取得。 它包含 VNet、NSG 及單一 VM。 若要部署架構，請依照下列步驟執行：
 
 1. 以滑鼠右鍵按一下下方的按鈕，然後選取 [在新索引標籤中開啟連結] 或 [在新視窗開啟連結]。  
    [![部署至 Azure](../articles/guidance/media/blueprints/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fguidance-compute-single-vm%2Fazuredeploy.json)
-2. 一旦連結已在 Azure 入口網站中開啟，您必須輸入部分設定的值： 
-   
+2. 一旦連結已在 Azure 入口網站中開啟，您必須輸入部分設定的值：
+
    * **資源群組**名稱已在參數檔案中定義，因此請在文字方塊中選取 [新建] 並輸入 `ra-single-vm-rg`。
    * 從 [位置] 下拉式方塊選取區域。
    * 請勿編輯 [範本的根 URI] 或 [參數根 URI] 文字方塊。
@@ -151,10 +151,10 @@ azure vm reset-access -u <user> -p <new-password> <resource-group> <vm-name>
 3. 等待部署完成。
 4. 參數檔案包含硬式編碼的系統管理員使用者名稱和密碼，並強烈建議您立即變更兩者。 在 Azure 入口網站中按一下名為 `ra-single-vm0 ` 的 VM。 然後，按一下 [支援與疑難排解] 刀鋒視窗中的 [重設密碼]。 選取 [模式] 下拉式清單方塊中的 [重設密碼]，然後選取新的**使用者名稱**和**密碼**。 按一下 [更新] 按鈕，保存新的使用者名稱和密碼。
 
-如需部署此參考架構的其他方式的相關資訊，請參閱 [guidance-single-vm][github-folder] Github 資料夾中的讀我檔案。 
+如需部署此參考架構的其他方式的相關資訊，請參閱 [guidance-single-vm][github-folder] GitHub 資料夾中的讀我檔案。
 
 ## <a name="customize-the-deployment"></a>自訂部署
-如果您需要變更部署以符合需求，請依照 [Readme][github-folder] 頁面中的指示。 
+如果您需要變更部署以符合需求，請依照 [Readme][github-folder] 頁面中的指示。
 
 ## <a name="next-steps"></a>後續步驟
 如需較高的可用性，請在負載平衡器後面部署兩個以上的 VM。 如需詳細資訊，請參閱[在 Azure 上執行多個 VM][multi-vm]。

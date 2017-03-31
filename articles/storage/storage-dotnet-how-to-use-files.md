@@ -12,12 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-/ms.date: 3/8/2017
+ms.date: 03/27/2017
 ms.author: renash
 translationtype: Human Translation
-ms.sourcegitcommit: 4e81088857c0e9cacaf91342227ae63080fc90c5
-ms.openlocfilehash: 780066b1e71d967c64da0a1c1a284ffd5d1b7481
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: fcdeac53c79551000b48a47a1afc65e082bcc692
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -264,17 +264,29 @@ net use z: \\samples.file.core.windows.net\logs /u:AZURE\samples <storage-accoun
 若要撰寫可呼叫檔案儲存體的程式碼，您可以使用 .NET 和 Java 適用的儲存體用戶端程式庫或 Azure 儲存體 REST API。 本節的範例將透過桌面上執行的簡單主控台應用程式，使用 [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://msdn.microsoft.com/library/mt347887.aspx) 來示範如何使用檔案共用。
 
 ### <a name="create-the-console-application-and-obtain-the-assembly"></a>建立主控台應用程式並取得組件
-若要在 Visual Studio 中建立新的主控台應用程式，並安裝包含 Azure 儲存體用戶端程式庫的 NuGet 封裝：
+在 Visual Studio 中，建立新的 Windows 主控台應用程式。 下列步驟示範如何在 Visual Studio 2017 中建立主控台應用程式，但步驟類似其他版本的 Visual Studio。
 
-1. 在 Visual Studio 中，依序選擇 [檔案] -> [新增專案]，然後從 Visual C# 範本清單中選擇 [Windows] -> [主控台應用程式]。
-2. 提供主控台應用程式的名稱，然後按一下 [確定] 。
-3. 建立專案後，在 [方案總管] 中以滑鼠右鍵按一下該專案，然後選擇 [管理 NuGet 封裝] 。 在線上搜尋 "WindowsAzure.Storage"，再按一下 [安裝]  以安裝適用於 .NET 封裝與相依性的 Azure 儲存體用戶端程式庫。
+1. 選取 [檔案] > [新增] > [專案]
+2. 選取 [安裝] > [範本] > [Visual C#] > [Windows 傳統桌面]
+3. 選取 **主控台應用程式 (.NET Framework)**
+4. 在 [名稱：] 欄位中輸入應用程式的名稱
+5. 選取 [確定]
 
-本文中的程式碼範例也使用 [Microsoft Azure Configuration Manager 程式庫](https://msdn.microsoft.com/library/azure/mt634646.aspx) 以從主控台應用程式中的 app.config 檔案擷取儲存體連接字串。 透過 Azure Configuration Manager，無論應用程式是在 Microsoft Azure 中執行還是從桌面、行動或 Web 應用程式執行，您都可以在執行階段擷取連接字串。
+本教學課程中的所有程式碼範例均可新增至您主控台應用程式的 `Program.cs` 檔案中的 `Main()` 方法。
 
-若要安裝 Azure Configuration Manager 封裝，請以滑鼠右鍵按一下 [方案總管] 中的專案，然後選擇 [管理 NuGet 封裝] 。 在線上搜尋 "ConfigurationManager"，再按一下 [安裝]  以安裝封裝。
+您可以在任何類型的 .NET 應用程式 (包括 Azure 雲端服務或 Web 應用程式和桌面與行動應用程式) 中使用 Azure Storage Client Library。 在本指南中，為求簡化，我們會使用主控台應用程式。
 
-是否使用 Azure Configuration Manager 可由您選擇。 您也可以使用 API，例如 .NET Framework 的 [ConfigurationManager 類別](https://msdn.microsoft.com/library/system.configuration.configurationmanager.aspx)。
+### <a name="use-nuget-to-install-the-required-packages"></a>使用 NuGet 來安裝必要的封裝
+您必須在您的專案中參考下列兩個封裝，才能完成本教學課程︰
+
+* [適用於 .NET 的 Microsoft Azure 儲存體用戶端資源庫](https://www.nuget.org/packages/WindowsAzure.Storage/)︰此封裝可供以程式設計方式存取儲存體帳戶中的資料資源。
+* [適用於 .NET 的 Microsoft Azure Configuration Manager 程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)︰此封裝提供一個類別，無論您的應用程式於何處執行，均可用來剖析組態檔中的連接字串。
+
+您可以使用 NuGet 來取得這兩個封裝。 請遵循下列步驟：
+
+1. 在 [方案總管] 中以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。
+2. 在線上搜尋 "WindowsAzure.Storage"，然後按一下 [安裝]  以安裝 Storage Client Library 與其相依項目。
+3. 在線上搜尋 "WindowsAzure.ConfigurationManager"，然後按一下 [安裝]  以安裝 Azure Configuration Manager。
 
 ### <a name="save-your-storage-account-credentials-to-the-appconfig-file"></a>將您的儲存體帳戶認證儲存到 app.config 檔案
 接著，將您的認證儲存到專案的 app.config 檔案。 編輯 app.config 檔案，使其看起來類似下列範例，並使用您的儲存體帳戶名稱來取代 `myaccount`，以及使用您的儲存體帳戶金鑰來取代 `mykey`。
@@ -296,8 +308,8 @@ net use z: \\samples.file.core.windows.net\logs /u:AZURE\samples <storage-accoun
 > 
 > 
 
-### <a name="add-namespace-declarations"></a>新增命名空間宣告
-在 [方案總管] 中開啟 `program.cs` 檔案，並在檔案的開頭處加入下列命名空間宣告。
+### <a name="add-using-directives"></a>新增 using 指示詞
+在 [方案總管] 中開啟 `Program.cs` 檔案，並在檔案的開頭處加入下列 using 指示詞。
 
 ```csharp
 using Microsoft.Azure; // Namespace for Azure Configuration Manager
@@ -546,7 +558,7 @@ Azure 儲存體分析現在支援檔案儲存體的度量。 利用度量資料�
 
 下列程式碼範例會示範如何使用適用於 .NET 的儲存體用戶端程式庫，啟用檔案儲存體的計量。
 
-首先，將下列 `using` 陳述式加入您的 program.cs 檔案中，連同上述所加入的陳述式︰
+首先，將下列 `using` 指示詞加入您的 `Program.cs` 檔案中，連同上述所加入的陳述式︰
 
 ```csharp
 using Microsoft.WindowsAzure.Storage.File.Protocol;
@@ -645,7 +657,7 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
     若要將大量檔案傳輸到檔案儲存體，我們建議您使用 AzCopy、Azure Powershell (Windows) 或 Azure CLI (Linux/Unix)，因為這些工具已針對網路傳輸最佳化。
 15. **已發行修補程式來修正 Azure 檔案的效能下滑問題**
     
-    Windows 小組最近發行了修補程式，以修正當客戶從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時所發生的效能下滑問題。 如需詳細資訊，請查看相關聯的知識庫文件：[當您從 Windows 8.1 或 Server 2012 R2 存取 Azure 檔案儲存體時效能變慢](https://support.microsoft.com/en-us/kb/3114025)。
+    Windows 小組最近發行了修補程式，以修正當客戶從 Windows 8.1 或 Windows Server 2012 R2 存取 Azure 檔案儲存體時所發生的效能下滑問題。 如需詳細資訊，請查看相關聯的知識庫文件：[當您從 Windows 8.1 或 Server 2012 R2 存取 Azure 檔案儲存體時效能變慢](https://support.microsoft.com/kb/3114025)。
 16. **搭配 IBM MQ 使用 Azure 檔案儲存體**
     
     IBM 已發行文件來指引 IBM MQ 客戶設定 Azure 檔案儲存體與其服務。 如需詳細資訊，請查看 [如何使用 Microsoft Azure 檔案服務來設定 IBM MQ 多重執行個體佇列管理員](https://github.com/ibm-messaging/mq-azure/wiki/How-to-setup-IBM-MQ-Multi-instance-queue-manager-with-Microsoft-Azure-File-Service)。
@@ -655,9 +667,10 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
 
 18. **如何啟用 Azure 檔案服務的伺服器端加密？**
 
-    [伺服器端加密](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption)目前為預覽狀態。 在預覽期間，此功能只能針對新建立的 Azure Resource Manager (ARM) 儲存體帳戶啟用。
-    您可以使用 Azure 入口網站在 Azure Resource Manager 儲存體帳戶上啟用此功能。 我們打算在&2; 月底前讓 [Azure Powershell](https://msdn.microsoft.com/en-us/library/azure/mt607151.aspx)、[Azure CLI](https://docs.microsoft.com/en-us/azure/storage/storage-azure-cli-nodejs) 或 [Microsoft Azure 儲存體資源提供者 API](https://docs.microsoft.com/en-us/rest/api/storagerp/storageaccounts) 啟用檔案儲存體的加密。 此用此功能不會額外收費。 當您啟用 Azure 檔案儲存體的儲存體服務加密時，您的資料會自動加密。 
-    深入了解儲存體服務加密。 如有其他預覽相關問題，您可以聯繫 ssediscussions@microsoft.com。
+    Azure 檔案的[伺服器端加密](storage-service-encryption.md)目前為預覽狀態。 在預覽期間，您只可以使用 [Azure 入口網站](https://portal.azure.com)所建立的新 Azure Resource Manager 儲存體帳戶上啟用此功能。 此用此功能不會額外收費。 當您啟用 Azure 檔案儲存體的儲存體服務加密時，您的資料會自動加密。 
+    
+    我們打算在未來讓啟用檔案儲存體的加密支援 [Azure PowerShell](/powershell/resourcemanager/azurerm.storage/v2.7.0/azurerm.storage)、[Azure CLI](storage-azure-cli.md) 或 [Microsoft Azure 儲存體資源提供者 REST API](/rest/api/storagerp/storageaccounts)。 
+    如需有關在 Azure 儲存體中加密靜止的資訊，請參閱[儲存體服務加密](storage-service-encryption.md)，如果您在預覽期間有問題，也可以連絡 ssediscussions@microsoft.com。
 
 ## <a name="next-steps"></a>後續步驟
 請參閱這些連結以取得 Azure 檔案儲存體的相關詳細資訊。
@@ -670,7 +683,7 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
 * [搭配使用 Azure PowerShell 與 Azure 儲存體](storage-powershell-guide-full.md)
 * [如何搭配使用 AzCopy 與 Microsoft Azure 儲存體](storage-use-azcopy.md)
 * [使用 Azure CLI 搭配 Azure 儲存體](storage-azure-cli.md#create-and-manage-file-shares)
-* [針對 Azure 檔案儲存體的問題進行疑難排解](https://docs.microsoft.com/en-us/azure/storage/storage-troubleshoot-file-connection-problems)
+* [針對 Azure 檔案儲存體的問題進行疑難排解](https://docs.microsoft.com/azure/storage/storage-troubleshoot-file-connection-problems)
 
 ### <a name="reference"></a>參考
 * [Storage Client Library for .NET 參考資料](https://msdn.microsoft.com/library/azure/dn261237.aspx)

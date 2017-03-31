@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: eadb1f29da69e7f6fcc2c7c19ba67f4e3072c346
-ms.openlocfilehash: 7796ec3a7c65e320ca142de4d03f6de5d0698e21
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 102eab0e2e915521f8702b526dda886a2502f40b
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -66,7 +67,7 @@ ms.openlocfilehash: 7796ec3a7c65e320ca142de4d03f6de5d0698e21
 
 如需 VNet 對 VNet 連接的詳細資訊，請參閱本文結尾處的 [VNet 對 VNet 的考量](#faq)。
 
-### <a name="a-namevaluesaexample-settings"></a><a name="values"></a>設定範例
+### <a name="values"></a>設定範例
 練習這些步驟時，您可以使用範例組態值。 為了舉例說明，我們對每個 VNet 使用多個位址空間。 不過，VNet 對 VNet 組態不需要多個位址空間。
 
 **TestVNet1 的值︰**
@@ -115,18 +116,18 @@ ms.openlocfilehash: 7796ec3a7c65e320ca142de4d03f6de5d0698e21
   * 名稱︰TestVNet4toTestVNet1
   * 共用金鑰︰您可以自行建立共用金鑰。 此範例中，我們將使用 abc123。 重點是當您建立 VNet 之間的連接時，此值必須符合。
 
-## <a name="a-namecreatvneta1-create-and-configure-testvnet1"></a><a name="CreatVNet"></a>1.建立及設定 TestVNet1
+## <a name="CreatVNet"></a>1.建立及設定 TestVNet1
 如果您已經有 VNet，請驗證設定是否與您的 VPN 閘道設計相容。 請特別注意任何可能與其他網路重疊的子網路。 如果有重疊的子網路，您的連線便無法正常運作。 如果您的 VNet 已設定為正確的設定，即可開始執行 [指定 DNS 伺服器](#dns) 一節中的步驟。
 
 ### <a name="to-create-a-virtual-network"></a>建立虛擬網路
 [!INCLUDE [vpn-gateway-basic-vnet-rm-portal](../../includes/vpn-gateway-basic-vnet-rm-portal-include.md)]
 
-## <a name="a-namesubnetsa2-add-additional-address-space-and-create-subnets"></a><a name="subnets"></a>2.新增其他位址空間和建立子網路
+## <a name="subnets"></a>2.新增其他位址空間和建立子網路
 建立 VNet 之後，您可以新增其他位址空間和建立子網路。
 
 [!INCLUDE [vpn-gateway-additional-address-space](../../includes/vpn-gateway-additional-address-space-include.md)]
 
-## <a name="a-namegatewaysubneta3-create-a-gateway-subnet"></a><a name="gatewaysubnet"></a>3.建立閘道子網路
+## <a name="gatewaysubnet"></a>3.建立閘道子網路
 將虛擬網路連接到閘道之前，您必須先建立虛擬網路要連接的閘道子網路。 可能的話，最好使用 /28 或 /27 的 CIDR 區塊建立閘道子網路，以便提供足以容納未來其他組態需求的 IP 位址。
 
 如果您要練習建立此組態，請在建立閘道子網路時參考這些[範例值](#values) 。
@@ -136,21 +137,21 @@ ms.openlocfilehash: 7796ec3a7c65e320ca142de4d03f6de5d0698e21
 ### <a name="to-create-a-gateway-subnet"></a>建立閘道子網路
 [!INCLUDE [vpn-gateway-add-gwsubnet-rm-portal](../../includes/vpn-gateway-add-gwsubnet-rm-portal-include.md)]
 
-## <a name="a-namednsservera4-specify-a-dns-server-optional"></a><a name="DNSServer"></a>4.指定 DNS 伺服器 (選擇性)
-如果您想要對部署至 VNet 的虛擬機器進行名稱解析，則應該指定 DNS 伺服器。
+## <a name="DNSServer"></a>4.指定 DNS 伺服器 (選擇性)
+VNet 對 VNet 連線不需要 DNS。 不過，如果您想要對部署至虛擬網路的資源進行名稱解析，則應指定 DNS 伺服器。 此設定可讓您指定要用於此虛擬網路之名稱解析的 DNS 伺服器服務。 它不會建立 DNS 伺服器。
 
 [!INCLUDE [vpn-gateway-add-dns-rm-portal](../../includes/vpn-gateway-add-dns-rm-portal-include.md)]
 
-## <a name="a-namevnetgatewaya5-create-a-virtual-network-gateway"></a><a name="VNetGateway"></a>5.建立虛擬網路閘道
+## <a name="VNetGateway"></a>5.建立虛擬網路閘道
 此步驟將帶您建立 VNet 的虛擬網路閘道。 此步驟可能需要 45 分鐘的時間才能完成。 如果您要練習建立此組態，您可以參考[範例設定](#values)。
 
 ### <a name="to-create-a-virtual-network-gateway"></a>建立虛擬網路閘道
 [!INCLUDE [vpn-gateway-add-gw-rm-portal](../../includes/vpn-gateway-add-gw-rm-portal-include.md)]
 
-## <a name="a-namecreatetestvnet4a6-create-and-configure-testvnet4"></a><a name="CreateTestVNet4"></a>6.建立及設定 TestVNet4
+## <a name="CreateTestVNet4"></a>6.建立及設定 TestVNet4
 設定 TestVNet1 之後，請重複先前步驟來建立 TestVNet4，並換成 TestVNet4 的值。 您不需要等到 TestVNet1 的虛擬網路閘道建立完成後才設定 TestVNet4。 如果您使用自己的值，請確定位址空間沒有與任何您想要連接的 VNet 重疊。
 
-## <a name="a-nametestvnet1connectiona7-configure-the-testvnet1-connection"></a><a name="TestVNet1Connection"></a>7.設定 TestVNet1 連接
+## <a name="TestVNet1Connection"></a>7.設定 TestVNet1 連接
 當 TestVNet1 和 TestVNet4 的虛擬網路閘道完成後，您可以建立虛擬網路閘道連接。 本節中，您將建立從 VNet1 到 VNet4 的連接。
 
 1. 在 [所有資源] 中，瀏覽至 VNet 的虛擬網路閘道。 例如，**TestVNet1GW**。 按一下 [TestVNet1GW] 以開啟 [虛擬網路閘道] 刀鋒視窗。
@@ -172,10 +173,10 @@ ms.openlocfilehash: 7796ec3a7c65e320ca142de4d03f6de5d0698e21
     ![共用金鑰](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/sharedkey.png "共用金鑰")
 10. 按一下刀鋒視窗底部的 [確定] 以儲存變更。
 
-## <a name="a-nametestvnet4connectiona8-configure-the-testvnet4-connection"></a><a name="TestVNet4Connection"></a>8.設定 TestVNet4 連接
+## <a name="TestVNet4Connection"></a>8.設定 TestVNet4 連接
 接下來，建立從 TestVNet4 至 TestVNet1 的連接。 像就您建立從 TestVNet1 至 TestVNet4 的連接一樣，使用相同的方法。 請確定您使用相同的共用金鑰。
 
-## <a name="a-nameverifyconnectiona9-verify-your-connection"></a><a name="VerifyConnection"></a>9.確認您的連接
+## <a name="VerifyConnection"></a>9.確認您的連接
 確認連接。 對每個虛擬網路閘道，執行下列作業︰
 
 1. 找出虛擬網路閘道的刀鋒視窗。 例如，**TestVNet4GW**。 
@@ -189,16 +190,11 @@ ms.openlocfilehash: 7796ec3a7c65e320ca142de4d03f6de5d0698e21
 
 ![程式集](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/essentials.png "程式集")
 
-## <a name="a-namefaqavnet-to-vnet-considerations"></a><a name="faq"></a>VNet 對 VNet 的考量
+## <a name="faq"></a>VNet 對 VNet 的考量
 檢視常見問題集詳細資料以取得 VNet 對 VNet 連線的其他資訊。
 
 [!INCLUDE [vpn-gateway-vnet-vnet-faq](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱 [虛擬機器文件](https://docs.microsoft.com/azure/#pivot=services&panel=Compute) 。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

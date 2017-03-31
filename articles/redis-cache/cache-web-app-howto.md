@@ -12,12 +12,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 03/21/2017
+ms.date: 03/27/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: 5e7520f8a023cd5feb8401483161e7296a413b02
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: 02e30f7fcbe0782528460b542a75f1d11c7286a1
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 03/22/2017
 > 
 > 
 
-本教學課程示範如何使用 Visual Studio 2015，在 Azure App Service 的 Web 應用程式中建立和部署 ASP.NET Web 應用程式。 此範例應用程式會顯示資料庫中的隊伍統計資料清單，並示範各種使用 Azure Redis 快取在快取中儲存和擷取資料的方式。 完成本教學課程時您將會擁有執行中的 Web 應用程式，其可對資料庫進行讀取和寫入、已使用 Azure Redis 快取進行最佳化，並裝載在 Azure 中。
+本教學課程示範如何使用 Visual Studio 2017，在 Azure App Service 的 Web 應用程式中建立和部署 ASP.NET Web 應用程式。 此範例應用程式會顯示資料庫中的隊伍統計資料清單，並示範各種使用 Azure Redis 快取在快取中儲存和擷取資料的方式。 完成本教學課程時您將會擁有執行中的 Web 應用程式，其可對資料庫進行讀取和寫入、已使用 Azure Redis 快取進行最佳化，並裝載在 Azure 中。
 
 您將了解：
 
@@ -248,7 +248,7 @@ ms.lasthandoff: 03/22/2017
         url: "{controller}/{action}/{id}",
         defaults: new { controller = "Teams", action = "Index", id = UrlParameter.Optional }
     );
-```
+    ```
 
 
 ### <a name="configure-the-views"></a>設定檢視
