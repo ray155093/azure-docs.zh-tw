@@ -13,11 +13,12 @@ ms.topic: article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/01/2016
+ms.date: 03/30/2017
 ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 7161cacfd371aa73974e635a343793bbec76d858
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -90,10 +91,5 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 * [Operations Management Suite (OMS) 概觀](operations-management-suite-overview.md)
 * [開始使用 Operations Management Suite 安全性和稽核解決方案](oms-security-getting-started.md)
 * [在 Operations Management Suite 安全性和稽核解決方案內監視資源](oms-security-monitoring-resources.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -11,11 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 02/03/2017
+ms.date: 03/24/2017
 ms.author: awills
 translationtype: Human Translation
 ms.sourcegitcommit: 611f4222b5ab1530658f612de39dd2712f98c250
 ms.openlocfilehash: cbc622a959c402fe25ce9ab026c1ae05f194d884
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -351,10 +352,5 @@ Application Insights SDK for ASP.NET v 2.0.0-beta3 及更新版本提供調適�
 
 ## <a name="next-steps"></a>後續步驟
 * [篩選](app-insights-api-filtering-sampling.md) 可以對您的 SDK 所傳送的內容，提供更嚴格的控制。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

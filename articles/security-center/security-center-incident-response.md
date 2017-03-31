@@ -12,11 +12,12 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/23/2017
+ms.date: 03/30/2017
 ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: f40f64906bf87d8505fa1a209222163256326d14
 ms.openlocfilehash: a2cc4729ca5cb1dcc10630158ec3d94315fb01a5
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -100,9 +101,4 @@ Sam 會收到來自 Judy 的案例，開始檢閱資訊安全中心所建議的�
 
 ## <a name="conclusion"></a>結論
 事件發生前召集小組對組織而言非常重要，可正面影響事件的處理方式。 擁有可監視資源的適當工具，有助於這個小組採取正確的步驟來修復安全性事件。 資訊安全中心[偵測功能](security-center-detection-capabilities.md)會協助 IT 部門快速地回應安全性事件並修復安全性問題。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

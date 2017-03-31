@@ -13,11 +13,12 @@ ms.topic: article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/01/2016
+ms.date: 03/30/2017
 ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 81d7d09f48d08943623b24e7e7a26847a0d129fe
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -111,10 +112,5 @@ OMS 安全性和稽核方案可讓 IT 人員主動監視所有資源，此舉有
 * [Operations Management Suite (OMS) 概觀](operations-management-suite-overview.md)
 * [開始使用 Operations Management Suite 安全性和稽核解決方案](oms-security-getting-started.md)
 * [在 Operations Management Suite 安全性和稽核內監視及回應安全性警示](oms-security-responding-alerts.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

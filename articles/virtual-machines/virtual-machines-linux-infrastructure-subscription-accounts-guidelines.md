@@ -50,19 +50,19 @@ ms.lasthandoff: 03/03/2017
 
 由於帳戶/訂用帳戶關係中有兩個階層層級的限制，因此，請務必將帳戶和訂用帳戶的命名慣例與計費需求保持一致。 舉例來說，如果有一家全球性公司使用 Azure，他們可能選擇針對每個區域擁有一個帳戶，並在區域層級管理訂用帳戶：
 
-![](./media/virtual-machines-common-infrastructure-service-guidelines/sub01.png)
+![](windows/media/virtual-machines-common-infrastructure-service-guidelines/sub01.png)
 
 例如，您可以使用下列結構：
 
-![](./media/virtual-machines-common-infrastructure-service-guidelines/sub02.png)
+![](windows/media/virtual-machines-common-infrastructure-service-guidelines/sub02.png)
 
 如果某個區域決定擁有一個以上與特定群組相關聯的訂用帳戶，則命名慣例必須包括在帳戶或訂用帳戶名稱上為額外資料進行編碼的方式。 這個組織允許訊息傳遞計費資料在計費報告期間產生新的階層層級：
 
-![](./media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
+![](windows/media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
 
 組織應看起來如下範例所示：
 
-![](./media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
+![](windows/media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
 
 我們會透過可下載的檔案，針對單一帳戶或企業合約中的所有帳戶提供詳細的計費資訊。
 

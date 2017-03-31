@@ -68,7 +68,7 @@ Refernce article:
 1. 連接至虛擬機器。 如需指示，請參閱[如何連接和登入執行 Windows 的 Azure 虛擬機器](../../virtual-machines-windows-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 2. 登入虛擬機器之後，開啟 [伺服器管理員]。 在左窗格中，選取 [File and Storage Services] 。
 
-    ![開啟伺服器管理員](./media/attach-disk/fileandstorageservices.png)
+    ![開啟伺服器管理員](../media/attach-disk-portal/fileandstorageservices.png)
 
 3. 選取 [磁碟]。
 4. [磁碟]  區段會列出磁碟。 多數情況下，虛擬機器會有磁碟 0、磁碟 1 和磁碟 2。 磁碟 0 是作業系統磁碟，磁碟 1 是暫存磁碟，磁碟 2 則是新連接至虛擬機器的資料磁碟。 資料磁碟會將磁碟分割列為**未知**。
