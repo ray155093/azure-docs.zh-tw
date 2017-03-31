@@ -12,11 +12,12 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/01/2016
+ms.date: 03/30/2017
 ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: 5001cd47b6ee51967d1286414ccefedd8e7e7813
 ms.openlocfilehash: 095b5c9d1a888a4061450234f80c52c5834fbf53
+ms.lasthandoff: 12/02/2016
 
 
 ---
@@ -56,7 +57,7 @@ ms.openlocfilehash: 095b5c9d1a888a4061450234f80c52c5834fbf53
 
 部署合作夥伴解決方案後，您可以檢視解決方案的健康狀態相關資訊，並從主要資訊安全中心儀表板的 [協力廠商解決方案] 圖格執行基本管理工作。 如需管理資訊安全中心中合作夥伴解決方案的相關資訊，請閱讀[透過 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md)。
 
-![合作夥伴整合](./media/security-center-partner-integration/security-center-partner-integration-fig1.png)
+![合作夥伴整合](./media/security-center-partner-integration/security-center-partner-integration-fig1-new.png)
 
 
 ## <a name="see-also"></a>另請參閱
@@ -69,9 +70,4 @@ ms.openlocfilehash: 095b5c9d1a888a4061450234f80c52c5834fbf53
 * [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) — 了解如何監視合作夥伴解決方案的健全狀況。
 * [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 尋找有關 Azure 安全性與相容性的部落格文章。
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 
