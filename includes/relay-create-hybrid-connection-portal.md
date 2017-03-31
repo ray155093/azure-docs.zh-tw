@@ -1,4 +1,4 @@
-請確定您已建立轉送命名空間，如[這裡][namespace-how-to]所示。
+確定您已建立轉送命名空間，如[這裡][namespace-how-to]所示。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在入口網站的左方瀏覽窗格中，按一下 [轉送]。
@@ -14,7 +14,3 @@
 6. 按一下刀鋒視窗底部的 [建立] 。
 
 [namespace-how-to]: ../articles/service-bus-relay/relay-create-namespace-portal.md 
-
-<!--HONumber=Feb17_HO1-->
-
-

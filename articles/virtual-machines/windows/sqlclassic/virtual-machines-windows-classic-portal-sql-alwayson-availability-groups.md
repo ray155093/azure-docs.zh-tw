@@ -16,16 +16,16 @@ ms.workload: iaas-sql-server
 ms.date: 03/17/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 1390a0caf4e9cfe2af8bd6171a4d07f58da4bc43
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 0d58355bf4d9cef0a84a6a192dbf019ee5238904
+ms.lasthandoff: 03/25/2017
 
 
 ---
 # <a name="configure-always-on-availability-group-in-azure-vm-classic"></a>在 Azure VM 中設定 Always On 可用性群組 (傳統)
 > [!div class="op_single_selector"]
-> * [傳統：UI](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)
-> * [傳統：PowerShell](virtual-machines-windows-classic-ps-sql-alwayson-availability-groups.md)
+> * [傳統：UI](../classic/portal-sql-alwayson-availability-groups.md)
+> * [傳統：PowerShell](../classic/ps-sql-alwayson-availability-groups.md)
 <br/>
 
 > [!IMPORTANT] 
@@ -387,7 +387,7 @@ ms.lasthandoff: 03/22/2017
 7. 在 [選取初始資料同步處理] 頁面中，按一下 [僅聯結]，然後按 [下一步]。 您在建立 **ContosoSQL1** 的完整備份和交易備份，並將備份還原至 **ContosoSQL2** 時，便已手動執行資料同步處理。 您可以改為選擇不在資料庫上執行備份與還原作業，並選取 [完整]  讓新可用性群組精靈為您執行資料同步處理。 不過，不建議針對某些企業中的超大型資料庫採用這種同步處理方式。
    
     ![新增 AG 精靈：選取初始資料同步處理](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665529.gif)
-8. 在 [驗證] 頁面中按 [下一步]。 此頁面的外觀類似於下圖。 由於您尚未設定可用性群組接聽程式，所以出現了關於接聽程式組態的警告。 您可以忽略此警告，因為本教學課程不會示範設定接聽程式的步驟。 完成此教學課程之後，若要設定接聽程式，請參閱 [設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+8. 在 [驗證] 頁面中按 [下一步]。 此頁面的外觀類似於下圖。 由於您尚未設定可用性群組接聽程式，所以出現了關於接聽程式組態的警告。 您可以忽略此警告，因為本教學課程不會示範設定接聽程式的步驟。 完成此教學課程之後，若要設定接聽程式，請參閱 [設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](../classic/ps-sql-int-listener.md)。
    
     ![新增 AG 精靈：驗證](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC665530.gif)
 9. 在 [摘要] 頁面中，按一下 [完成]，然後等候精靈設定新的可用性群組。 在 [進度] 頁面中，按一下 [詳細資料] 可檢視詳細的進度。 精靈完成後，如下方所示，檢查 [結果] 頁面，確認是否已成功建立可用性群組，然後按一下 [關閉] 以結束精靈。
@@ -410,7 +410,7 @@ ms.lasthandoff: 03/22/2017
 > 
 
 ## <a name="next-steps"></a>後續步驟
-現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server Always On。 若要為此可用性群組設定接聽程式，請參閱 [設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+現在，您已透過在 Azure 中建立可用性群組的方式，成功實作 SQL Server Always On。 若要為此可用性群組設定接聽程式，請參閱 [設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](../classic/ps-sql-int-listener.md)。
 
 如需在 Azure 中使用 SQL Server 的其他資訊，請參閱 [Azure 虛擬機器上的 SQL Server](../sql/virtual-machines-windows-sql-server-iaas-overview.md)。
 

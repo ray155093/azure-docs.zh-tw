@@ -16,8 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 07/12/2016
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: d96140483edffb1f94add16598bf0dc0a85dd6da
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 38728a20527be060e63d2dbdea923263b3d6c7fa
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -84,16 +85,11 @@ Always On 可用性群組可透過新增次要複本，為資料庫群組提供�
 > 
 
 ## <a name="create-an-availability-group-listener"></a>建立可用性群組接聽程式
-建立可用性群組後，您應該建立供用戶端連線到複本的接聽程式。 接聽程式會將連入連線導向主要或唯讀次要複本。 如需接聽程式的詳細資訊，請參閱 [在 Azure 中設定 Always On 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+建立可用性群組後，您應該建立供用戶端連線到複本的接聽程式。 接聽程式會將連入連線導向主要或唯讀次要複本。 如需接聽程式的詳細資訊，請參閱 [在 Azure 中設定 Always On 可用性群組的 ILB 接聽程式](../classic/ps-sql-int-listener.md)。
 
 ## <a name="next-steps"></a>後續步驟
 除了使用 [加入 Azure 複本精靈]  將您的 Always On 可用性群組延伸至 Azure 之外，您也可以將部分 SQL Server 工作負載完全移動至 Azure。 若要開始進行，請參閱 [在 Azure 上佈建 SQL Server 虛擬機器](../sql/virtual-machines-windows-portal-sql-server-provision.md)。
 
 如需有關在 Azure VM 中執行 SQL Server 的其他主題，請參閱 [Azure 虛擬機器上的 SQL Server](../sql/virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

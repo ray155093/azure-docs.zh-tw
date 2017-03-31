@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 03/02/2017
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: c9730b553e59d12b8720bbf3a06cc956912e27de
-ms.openlocfilehash: 37063d35e76d03a84f6e4451c2f6c363704607f2
-ms.lasthandoff: 01/12/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 46b62b0ebc5b81241815e3b5b4fa3fe275b88af1
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 01/12/2017
 
 若要在建立叢集過程中將診斷擴充功能部署至叢集中的 VM，請將 [診斷] 設為 [開啟]。 建立叢集之後，您就無法使用入口網站變更這項設定。
 
-接著，設定 Linux Azure 診斷 (LAD) 來收集檔案，並將它們放入您的儲存體帳戶中。 [使用 LAD 監視 Linux VM 的效能和診斷資料](../virtual-machines/virtual-machines-linux-classic-diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)一文中的案例 3 (＜上傳您自己的記錄檔＞) 將會說明這個程序。 遵循這個程序就可以存取追蹤。 您可以將追蹤上傳到所選擇的視覺化檢視。
+接著，設定 Linux Azure 診斷 (LAD) 來收集檔案，並將它們放入您的儲存體帳戶中。 [使用 LAD 監視 Linux VM 的效能和診斷資料](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)一文中的案例 3 (＜上傳您自己的記錄檔＞) 將會說明這個程序。 遵循這個程序就可以存取追蹤。 您可以將追蹤上傳到所選擇的視覺化檢視。
 
 您也可以使用 Azure Resource Manager 來部署診斷擴充功能。 此程序在 Windows 及 Linux 上都很類似，而[如何利用 Azure 診斷收集記錄檔](service-fabric-diagnostics-how-to-setup-wad.md)中將針對 Windows 叢集提供相關說明。
 
@@ -48,6 +48,6 @@ ms.lasthandoff: 01/12/2017
 完成此設定之後，LAD 代理程式就會監視指定的記錄檔。 每當新的一行附加至檔案時，系統就會建立 syslog 項目並傳送至您所指定的儲存體。
 
 ## <a name="next-steps"></a>後續步驟
-若要更仔細了解您在進行問題的疑難排解時應該調查哪些事件，請參閱 [LTTng 文件](http://lttng.org/docs)和[使用 LAD](../virtual-machines/virtual-machines-linux-classic-diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
+若要更仔細了解您在進行問題的疑難排解時應該調查哪些事件，請參閱 [LTTng 文件](http://lttng.org/docs)和[使用 LAD](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
 

@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 03/21/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 34445eff89ff7ff513893d5b36b937075b09f599
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 138c90a1a9cbf3b85856f372beeb4472edb9e2e8
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -49,10 +49,7 @@ ms.lasthandoff: 03/22/2017
 * [Java 和 JDK 1.7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)︰用來開發 Storm 拓撲。
 * [Maven](http://maven.apache.org/what-is-maven.html)︰用來建置和編譯專案。
 * [Git](http://git-scm.com/)︰用來從 GitHub 下載專案。
-* **SSH 用戶端** ︰用來連接至以 Linux 為基礎的 HDInsight 叢集。 如需使用 SSH 搭配 HDInsight 的詳細資訊，請參閱下列文件：
-  
-  * [從 Windows 用戶端搭配使用 SSH (PuTTY) 與 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
-  * [從 Linux、Unix、OS X 或 Bash on Windows 10 搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+* **SSH 用戶端** ︰用來連接至以 Linux 為基礎的 HDInsight 叢集。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
     
     > [!NOTE]
     > 您也必須能夠存取 `scp` 命令，該命令用於在本機開發環境與使用 SSH 的 HDInsight 叢集之間複製檔案。

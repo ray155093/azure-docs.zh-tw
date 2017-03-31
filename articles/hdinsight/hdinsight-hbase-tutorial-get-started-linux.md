@@ -9,16 +9,17 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 4d6a2658-6b19-4268-95ee-822890f5a33a
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/09/2017
+ms.date: 03/22/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: bdc00541e55ea68f0b18456f8fa1a1ac51116d69
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 21d8dff230e045607b70013f4eabf1bfe8ec3993
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -64,7 +65,7 @@ ms.lasthandoff: 03/11/2017
 > 
 
 ## <a name="create-tables-and-insert-data"></a>建立資料表和插入資料
-您可以使用 SSH 來連接到 HBase 叢集，然後使用 HBase Shell 來建立 HBase 資料表、插入及查詢資料。 如需使用 SSH 的相關資訊，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 或[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)。
+您可以使用 SSH 來連接到 HBase 叢集，然後使用 HBase Shell 來建立 HBase 資料表、插入及查詢資料。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 對大多數人而言，資料會以表格形式出現：
 
@@ -223,6 +224,11 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
         -v
 
 如需 HBase Rest 的詳細資訊，請參閱 [Apache HBase 參考指南](https://hbase.apache.org/book.html#_rest)。
+
+>
+> [!NOTE]
+> Thrift 不受 HDInsight 中的 HBase 所支援。
+>
 
 ## <a name="check-cluster-status"></a>檢查叢集狀態
 HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，您可要求關於區域的統計資料或資訊。

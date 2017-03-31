@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: carlasab
 translationtype: Human Translation
-ms.sourcegitcommit: b828859cb059e626878b5cb2a2839a76f10de9c9
-ms.openlocfilehash: c40b9cbccba1789e5ee9045d83c39169bb5d2663
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 789e1eabcd284c17c5728156cf185d2ca168f0eb
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -36,7 +36,7 @@ ms.lasthandoff: 02/23/2017
 * 中斷連結並將資料和記錄檔複製到 Azure blob 儲存體，然後從 URL 連結至 Azure VM 中的 SQL Server
 * 將內部部署實體機器轉換為 Hyper-V VHD，接著上傳至 Azure Blob 儲存體，然後使用上傳的 VHD 部署為新的 VM
 * 使用 Windows 匯入/匯出服務寄送硬碟機
-* 如果您有內部部署的 AlwaysOn 部署，請使用 [加入 Azure 複本精靈](../sqlclassic/virtual-machines-windows-classic-sql-onprem-availability.md) 在 Azure 中建立複本，然後進行容錯移轉，將使用者指向 Azure 資料庫執行個體
+* 如果您有內部部署的 AlwaysOn 部署，請使用 [加入 Azure 複本精靈](../classic/sql-onprem-availability.md) 在 Azure 中建立複本，然後進行容錯移轉，將使用者指向 Azure 資料庫執行個體
 * 使用 SQL Server [異動複寫](https://msdn.microsoft.com/library/ms151176.aspx) 將 Azure SQL Server 執行個體設定為訂閱者，然後停用複寫，將使用者指向 Azure 資料庫執行個體
 
 > [!TIP]
@@ -61,7 +61,7 @@ ms.lasthandoff: 02/23/2017
 | [中斷連結並將資料和記錄檔複製到 Azure blob 儲存體，然後從 URL 連結至 Azure 虛擬機器中的 SQL Server](#detach-and-copy-to-url-and-attach-from-url) |SQL Server 2005 或更新版本 |SQL Server 2014 或更新版本 |[Azure VM 儲存體限制](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |當您打算 [使用 Azure Blob 儲存體服務儲存這些檔案](https://msdn.microsoft.com/library/dn385720.aspx) ，並將其連接至在 Azure VM 中執行的 SQL Server，尤其是針對極大資料庫時，請使用這個方法。 |
 | [將內部部署機器轉換為 Hyper-V VHD，接著上傳至 Azure Blob 儲存體，然後使用上傳的 VHD 部署新的虛擬機器](#convert-to-vm-and-upload-to-url-and-deploy-as-new-vm) |SQL Server 2005 或更新版本 |SQL Server 2005 或更新版本 |[Azure VM 儲存體限制](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |使用時機包含[使用您自己的 SQL Server 授權時](../../../sql-database/sql-database-paas-vs-sql-server-iaas.md)、移轉將在舊版 SQL Server 上執行的資料庫時，或同時移轉系統和使用者資料庫作為其他使用者資料庫和/或系統資料庫的一部分資料庫相依性時。 |
 | [使用 Windows 匯入/匯出服務寄送硬碟機](#ship-hard-drive) |SQL Server 2005 或更新版本 |SQL Server 2005 或更新版本 |[Azure VM 儲存體限制](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |當手動複製方法太慢，例如包含極大資料庫時，請使用 [Windows 匯入/匯出服務](../../../storage/storage-import-export-service.md) |
-| [使用加入 Azure 複本精靈](../sqlclassic/virtual-machines-windows-classic-sql-onprem-availability.md) |SQL Server 2012 或更新版本 |SQL Server 2012 或更新版本 |[Azure VM 儲存體限制](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |可將停機時間縮到最短，請在您有內部部署的 AlwaysOn 部署時使用 |
+| [使用加入 Azure 複本精靈](../classic/sql-onprem-availability.md) |SQL Server 2012 或更新版本 |SQL Server 2012 或更新版本 |[Azure VM 儲存體限制](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |可將停機時間縮到最短，請在您有內部部署的 AlwaysOn 部署時使用 |
 | [使用 SQL Server 異動複寫](https://msdn.microsoft.com/library/ms151176.aspx) |SQL Server 2005 或更新版本 |SQL Server 2005 或更新版本 |[Azure VM 儲存體限制](https://azure.microsoft.com/documentation/articles/azure-subscription-service-limits/) |請在您需要將停機時間縮到最短且沒有內部部署的 AlwaysOn 部署時使用 |
 
 ## <a name="backup-and-restore"></a>備份與還原

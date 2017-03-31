@@ -26,7 +26,7 @@
 除了這些範本之外，還可以搜尋 [資源庫範本](https://azure.microsoft.com/documentation/templates/)。
 
 ## <a name="azure-portal"></a>Azure 入口網站
-使用 Azure 入口網站來部署範本的方法很簡單，只要把 URL 傳送給入口網站即可。 但您需要範本檔案的名稱，才能部署範本。 您可以查看範本資源庫的頁面，或是查看 Github 存放庫來尋找名稱。 請將下列 URL 中的 {template name} 變更為您想要部署的範本名稱，然後在瀏覽器輸入該 URL：
+使用 Azure 入口網站來部署範本的方法很簡單，只要把 URL 傳送給入口網站即可。 但您需要範本檔案的名稱，才能部署範本。 您可以查看範本資源庫的頁面，或是查看 GitHub 存放庫來尋找名稱。 請將下列 URL 中的 {template name} 變更為您想要部署的範本名稱，然後在瀏覽器輸入該 URL：
 
     https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F{template name}%2Fazuredeploy.json
 

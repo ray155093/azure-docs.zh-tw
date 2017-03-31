@@ -16,8 +16,9 @@ ms.workload: big-compute
 ms.date: 08/25/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 45a45b616b4de005da66562c69eef83f2f48cc79
-ms.openlocfilehash: 21ec1f15dc7055cdd3b281216abfbac8554abad0
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: c8b8b6af19a347804563b091760b18dfc47aa503
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -91,7 +92,7 @@ HPC Pack IaaS 部署指令碼提供靈活的另一種方式部署 HPC Pack 叢�
 
 **建立組態檔**
 
- HPC Pack IaaS 部署指令碼會使用 XML 組態檔做為輸入，可描述 HPC 叢集的基礎結構。 若要部署由一個前端節點和從包含 Microsoft Excel 之運算節點映像所建立的 18 個運算節點組成的叢集，請將環境的值取代為下列範例組態檔。 如需組態檔的詳細資訊，請參閱指令碼資料夾中的 Manual.rtf 檔案和 [使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+ HPC Pack IaaS 部署指令碼會使用 XML 組態檔做為輸入，可描述 HPC 叢集的基礎結構。 若要部署由一個前端節點和從包含 Microsoft Excel 之運算節點映像所建立的 18 個運算節點組成的叢集，請將環境的值取代為下列範例組態檔。 如需組態檔的詳細資訊，請參閱指令碼資料夾中的 Manual.rtf 檔案和 [使用 HPC Pack IaaS 部署指令碼建立 HPC 叢集](windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -355,9 +356,4 @@ SOA 用戶端應用程式不需要變更，除了將標頭名稱改變為 IaaS �
 [run]: ./media/virtual-machines-windows-excel-cluster-hpcpack/run.png
 [endpoint]: ./media/virtual-machines-windows-excel-cluster-hpcpack/endpoint.png
 [udf]: ./media/virtual-machines-windows-excel-cluster-hpcpack/udf.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

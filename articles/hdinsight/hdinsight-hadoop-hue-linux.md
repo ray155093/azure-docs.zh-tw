@@ -8,6 +8,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 9e57fcca-e26c-479d-a745-7b80a9290447
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -15,9 +16,9 @@ ms.topic: article
 ms.date: 02/09/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 7af856e32064f16e7cb1083432d4d5715cef6e3a
-ms.openlocfilehash: dbffb88020cf53eb59b98eb80e12a47bc17c5708
-ms.lasthandoff: 02/14/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: a5fbd7cd4b57b1bd54c5483fc39733cfd3a8dcca
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -88,10 +89,8 @@ Hue 是一組 Web 應用程式，用來與 Hadoop 叢集互動。 您可以使�
 
 2. 一旦您建立了 SSH 通道，並設定您的瀏覽器將流量以 Proxy 通過該通道傳送後，您必須找到主要前端節點的主機名稱。 若要這麼做，您可以使用 SSH 在連接埠 22 上連線到叢集。 例如，`ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`，其中 **USERNAME** 是您的 SSH 使用者名稱，**CLUSTERNAME** 是您的叢集名稱。
 
-    如需使用 SSH 的詳細資訊，請參閱下列文件：
+    如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-   * [從 Linux、Unix 或 Mac OS X 用戶端搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
-   * [從 Windows 用戶端搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
 3. 連線之後，請使用下列命令來取得主要前端節點的完整網域名稱︰
 
         hostname -f

@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 12/27/2016
 ms.author: saysa
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: fc73eedae7ec9664da714567f47a543e625cd023
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: e5d14eb0a656d67030f4c0d3d510aec0e9cafae7
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -38,17 +38,20 @@ Service Fabric 不會在 OS X 上以原生方式執行。若要執行本機 Serv
 * [VirtualBox](http://www.virtualbox.org/wiki/Downloads)
 
 >[!NOTE]
->  您需要使用互相支援的 Vagrant 和 VirtualBox 版本。 Vagrant 在不支援的 VirtualBox 版本上的行為可能不穩定。
+> 您需要使用互相支援的 Vagrant 和 VirtualBox 版本。 Vagrant 在不支援的 VirtualBox 版本上的行為可能不穩定。
 >
 
 ## <a name="create-the-local-vm"></a>建立本機 VM
 若要建立包含 5 個節點 Service Fabric 叢集的本機 VM，請執行下列步驟︰
 
-1. 複製 **Vagrantfile** 儲存機制
+1. 複製 `Vagrantfile` 存放庫
 
     ```bash
     git clone https://github.com/azure/service-fabric-linux-vagrant-onebox.git
     ```
+    此步驟會帶來包含 VM 組態的 `Vagrantfile` 檔案，以及下載 VM 的來源位置。
+
+   
 2. 瀏覽至儲存機制的本機複本
 
     ```bash
@@ -58,10 +61,10 @@ Service Fabric 不會在 OS X 上以原生方式執行。若要執行本機 Serv
 
     根據預設，本機 VM 的設定如下所示︰
 
-   * 配置&3; GB 的記憶體
+   * 配置 3 GB 的記憶體
    * 在 IP 192.168.50.50 設定且能夠傳遞 Mac 主機流量的私用主機網路
 
-     您可以變更上述任何一項設定或將其他組態新增至 Vagrantfile 中的 VM。 如需設定選項的完整清單，請參閱 [Vagrant 文件](http://www.vagrantup.com/docs) 。
+     您可以變更上述任何一項設定或將其他組態新增至 `Vagrantfile` 中的 VM。 如需設定選項的完整清單，請參閱 [Vagrant 文件](http://www.vagrantup.com/docs) 。
 4. 建立 VM
 
     ```bash
@@ -72,19 +75,24 @@ Service Fabric 不會在 OS X 上以原生方式執行。若要執行本機 Serv
 
     ![在 VM 佈建後啟動的叢集安裝程式][cluster-setup-script]
 
+>[!TIP]
+> 如果 VM 下載花費很長的時間，您可以使用 wget 或 curl 來下載它，或者透過瀏覽器瀏覽至 `Vagrantfile` 檔案中 **config.vm.box_url** 所指定的連結。 在本機下載之後，編輯 `Vagrantfile` 以指向已下載映像的本機路徑。 例如，如果您將映像下載至 /home/users/test/azureservicefabric.tp8.box，則將 **config.vm.box_url** 設定為該路徑。
+>
+
 5. 瀏覽至位於 http://192.168.50.50:19080/Explorer 的 Service Fabric Explorer (假設您保留預設的私人網路 IP)，測試是否已正確設定叢集。
 
     ![從主機 Mac 檢視的 Service Fabric Explorer][sfx-mac]
 
 ## <a name="install-the-service-fabric-plugin-for-eclipse-neon"></a>安裝適用於 Eclipse Neon 的 Service Fabric 外掛程式
 
-Service Fabric 為**適用於 Java IDE 的 Eclipse Neon** 提供了外掛程式，可簡化建立、建置和部署 Java 服務的程序。 您可以遵循這個有關安裝或更新 Service Fabric Eclipse 外掛程式的一般[文件](service-fabric-get-started-eclipse.md#install-or-update-service-fabric-plugin-on-eclipse-neon)中所述的安裝步驟。
+Service Fabric 為**適用於 Java IDE 的 Eclipse Neon** 提供了外掛程式，可簡化建立、建置和部署 Java 服務的程序。 您可以遵循這個有關安裝或更新 Service Fabric Eclipse 外掛程式的一般[文件](service-fabric-get-started-eclipse.md#install-or-update-the-service-fabric-plug-in-in-eclipse-neon)中所述的安裝步驟。
 
 ## <a name="using-service-fabric-eclipse-plugin-on-mac"></a>在 Mac 上使用 Service Fabric Eclipse 外掛程式
 
-確定您已經完成 [Service Fabric Eclipse 外掛程式文件](service-fabric-get-started-eclipse.md)中所說的步驟。 在 Mac 主機上使用 vagrant 客體容器來建立、建置和部署 Service Fabric Java 應用程式的步驟，大多與一般文件相同，但有幾點除外，您必須謹記在心，如下所述 -
-* 需要有 Service Fabric 程式庫才能成功建置 Service Fabric Java 應用程式，因此必須在共用路徑中建立 Eclipse 專案。 根據預設，``Vagrantfile`` 所在之主機路徑中的內容，會與客體上的 ``/vagrant`` 路徑共用。
-* 簡單地說，如果您的路徑中有 ``Vagrantfile``，例如 ``~/home/john/allprojects/``，則必須在位置 ``~/home/john/allprojects/MyActor`` 中建立 Service Fabric 專案 ``MyActor``，而且 Eclipse 工作區的路徑會是 ``~/home/john/allprojects``。
+確定您已經完成 [Service Fabric Eclipse 外掛程式文件](service-fabric-get-started-eclipse.md)中所說的步驟。 在 Mac 主機上使用 vagrant 客體容器來建立、建置和部署 Service Fabric Java 應用程式的步驟，大多與一般文件相同，但下列項目除外：
+
+* Service Fabric Java 應用程式需要 Service Fabric 程式庫，因此必須在共用路徑中建立 Eclipse 專案。 根據預設，``Vagrantfile`` 所在之主機路徑中的內容，會與客體上的 ``/vagrant`` 路徑共用。
+* 如果您的路徑中有 ``Vagrantfile``，例如 ``~/home/john/allprojects/``，則必須在位置 ``~/home/john/allprojects/MyActor`` 中建立 Service Fabric 專案 ``MyActor``，而且 Eclipse 工作區的路徑會是 ``~/home/john/allprojects``。
 
 ## <a name="next-steps"></a>後續步驟
 <!-- Links -->

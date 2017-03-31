@@ -17,8 +17,9 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: acomet
 translationtype: Human Translation
-ms.sourcegitcommit: faf363eb5848752b27faacd971867391b6393337
-ms.openlocfilehash: 1a693477a51a05fb28e7c4772aeee77fd0c4e1dd
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: 4d6ea897ec24ab9cbf5c131cd4629f45447f1460
+ms.lasthandoff: 03/29/2017
 
 ---
 
@@ -30,7 +31,7 @@ Azure DocumentDB 是受到完整管理、全域分散的 NoSQL 資料庫服務�
 
 ## <a name="why-we-use-request-units-rus"></a>為什麼我們要使用「要求單位」(RU)
 
-DocumentDB 效能是以磁碟分割已佈建的[要求單位](documentdb-programming.md) (RU) 數量為基礎。 佈建為第二個資料粒度，且以 RU/秒為單位購買 ([不應該與每小時計費混淆](https://azure.microsoft.com/pricing/details/documentdb/))。 RU 應該被視為可簡化佈建應用程式必要輸送量的貨幣。 我們的客戶不必去區別讀取和寫入容量單位。 RU 的單一貨幣模型可有效率地共用讀取和寫入之間已佈建的容量。 此佈建容量模型可讓服務提供可預測且一致的輸送量、保證低延遲以及高可用性。 最後，我們使用 RU 來建立輸送量的模型，但每個佈建的 RU 也會有定義的資源數量 (記憶體、核心)。 RU/秒不只是 IOPS。
+DocumentDB 效能是以磁碟分割已佈建的[要求單位](documentdb-request-units.md) (RU) 數量為基礎。 佈建為第二個資料粒度，且以 RU/秒為單位購買 ([不應該與每小時計費混淆](https://azure.microsoft.com/pricing/details/documentdb/))。 RU 應該被視為可簡化佈建應用程式必要輸送量的貨幣。 我們的客戶不必去區別讀取和寫入容量單位。 RU 的單一貨幣模型可有效率地共用讀取和寫入之間已佈建的容量。 此佈建容量模型可讓服務提供可預測且一致的輸送量、保證低延遲以及高可用性。 最後，我們使用 RU 來建立輸送量的模型，但每個佈建的 RU 也會有定義的資源數量 (記憶體、核心)。 RU/秒不只是 IOPS。
 
 做為全域分散式的資料庫系統，DocumentDB 是除了高可用性以外，唯一就延遲、輸送量和一致性提供 SLA 的 Azure 服務。 您所佈建的輸送量會套用到與您的 DocumentDB 資料庫帳戶相關的每一個區域。 針對讀取，DocumentDB 提供多個定義完善的[一致性層級](documentdb-consistency-levels.md)，以供您選擇。 
 
@@ -55,9 +56,4 @@ DocumentDB 效能是以磁碟分割已佈建的[要求單位](documentdb-program
 ## <a name="next-steps"></a>後續步驟
 
 敬請期待最佳化 DocumentDB 資源佈建的新文章。 在此同時，歡迎使用我們的 [RU 計算機 (英文)](https://www.documentdb.com/capacityplanner)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

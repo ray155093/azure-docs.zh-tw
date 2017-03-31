@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
-ms.openlocfilehash: 0de0590c1cf5c71a7174fdcca84847b378aa40f8
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: dca6f5189693fc98cec4f92eac81b6985e691889
+ms.lasthandoff: 03/28/2017
 
 
 ---
 # <a name="learn-more-about-password-management"></a>深入了解密碼管理
 > [!IMPORTANT]
-> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 >
 >
 
@@ -120,7 +120,7 @@ ms.lasthandoff: 03/15/2017
 ### <a name="supported-clients"></a>支持的用戶端
 如果您想使用密碼回寫，我們總是建議您使用 Azure AD Connect 的自動更新功能，或安裝最新版的 [Azure AD Connect](connect/active-directory-aadconnect.md#install-azure-ad-connect)。
 
-* **DirSync (任何版本 > 1.0.6862)** - 不支援 - 僅支援基本回寫功能，而且不再由產品群組提供支援 
+* **DirSync (任何版本 > 1.0.6862)** - 不支援 - 僅支援基本回寫功能，而且不再由產品群組提供支援
 * **Azure AD 同步** - 已被取代 - 僅支援基本回寫功能，而且缺少帳戶解除鎖定功能、進階記錄，以及在 Azure AD Connect 中所做的可靠性改進。 因此，我們**強烈**強烈建議進行升級。
 * **Azure AD Connect** - 完全支援 - 支援所有回寫功能 - 請升級至最新版本，以取得最新功能和大部分的穩定性 / 可靠性
 
@@ -132,7 +132,7 @@ ms.lasthandoff: 03/15/2017
 * **Enterprise Moblity Suite** - 密碼回寫使用量沒有限制
 * **Enterprise Cloud Suite** - 密碼回寫使用量沒有限制
 
-您不可以使用密碼回寫搭配任何 Office 365 授權方案 (不論是試用版或付費版)。 您必須升級至上述其中一個方案，才能使用這項功能。 
+您不可以使用密碼回寫搭配任何 Office 365 授權方案 (不論是試用版或付費版)。 您必須升級至上述其中一個方案，才能使用這項功能。
 
 我們不打算針對任何 Office 365 SKU 啟用密碼回寫功能。
 
@@ -166,7 +166,7 @@ ms.lasthandoff: 03/15/2017
 * **不支援的系統管理員作業**
  * 系統管理員從 [Office 管理入口網站](https://portal.office.com)起始的任何使用者密碼重設
  * 系統管理員從 PowerShell v1、v2 或 Azure AD Graph API 起始的任何使用者密碼重設
- 
+
 雖然我們正努力移除這些限制，但我們並未提出任何具體的時間表。
 
 ## <a name="password-writeback-security-model"></a>密碼回寫的安全性模型
@@ -180,9 +180,9 @@ ms.lasthandoff: 03/15/2017
 ### <a name="password-writeback-encryption-details"></a>密碼回寫的加密詳細資料
 以下說明在使用者提交密碼重設要求之後，但在其抵達您的內部部署環境之前，該項要求所要經歷的加密步驟，以確保最高的服務可靠性和安全性。
 
-* **步驟 1- 採用 2048 位元 RSA 金鑰的密碼加密** - 使用者一旦提交要寫回內部部署環境的密碼，首先，所提交的密碼本身會以 2048 位元 RSA 金鑰進行加密。 
+* **步驟 1- 採用 2048 位元 RSA 金鑰的密碼加密** - 使用者一旦提交要寫回內部部署環境的密碼，首先，所提交的密碼本身會以 2048 位元 RSA 金鑰進行加密。
 
-* **步驟 2 - 採用 AES-GCM 的套件層級加密** - 然後會使用 AES-GCM 將整個套件 (密碼 + 必要的中繼資料) 加密。 這可防止任何可直接存取基礎 ServiceBus 通道的人員檢視/竄改內容。 
+* **步驟 2 - 採用 AES-GCM 的套件層級加密** - 然後會使用 AES-GCM 將整個套件 (密碼 + 必要的中繼資料) 加密。 這可防止任何可直接存取基礎 ServiceBus 通道的人員檢視/竄改內容。
 
 * **步驟 3 - 所有通訊都會透過 TLS / SSL 進行** - 此外，所有與 ServiceBus 的通訊都會在 SSL/TLS 通道中進行。 這可保護內容，免於遭到未經授權的第三方存取。
 
@@ -623,13 +623,13 @@ Not possible in PowerShell V2
 1. **來自具備現有 Azure AD 租用戶之合作夥伴組織的使用者** - 如果您合作的組織具備現有的 Azure AD 租用戶，我們將會**遵守該租用戶中啟用的任何密碼重設原則**。 若要讓密碼重設運作，合作夥伴組織只需要確定 Azure AD SSPR 已啟用，O365 客戶不須另外付費即可使用該功能，而且可以依照[開始使用密碼管理](https://azure.microsoft.com/documentation/articles/active-directory-passwords-getting-started/#enable-users-to-reset-or-change-their-aad-passwords)指南中的步驟加以啟用。
 2. **使用[自助式註冊](https://docs.microsoft.com/azure/active-directory/active-directory-self-service-signup)**功能註冊的使用者 - 如果您合作的組織使用[自助式註冊](https://docs.microsoft.com/azure/active-directory/active-directory-self-service-signup)功能進入租用戶，我們會讓他們利用其註冊的電子郵件立即進行重設。
 3. **B2B 使用者** - 任何使用新的 [Azure AD B2B 功能](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-b2b-what-is-azure-ad-b2b)建立的新 B2B 使用者，也能夠利用其在邀請程序期間註冊的電子郵件立即重設其密碼。
- 
+
 若要測試上述任何一項，只要隨著其中一個合作夥伴使用者移至 http://passwordreset.microsoftonline.com 即可。  只要他們定義了替代電子郵件或驗證電子郵件，密碼重設就會如預期般運作。  如需 SSPR 此處所用資料的詳細資訊，請參閱[密碼重設使用哪些資料](https://azure.microsoft.com/en-us/documentation/articles/active-directory-passwords-learn-more/#what-data-is-used-by-password-reset)概觀。
 
 ## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為

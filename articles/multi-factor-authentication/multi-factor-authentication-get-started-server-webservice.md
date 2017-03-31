@@ -23,7 +23,7 @@ ms.lasthandoff: 02/28/2017
 ---
 # <a name="enable-mobile-app-authentication-with-azure-multi-factor-authentication-server"></a>使用 Azure Multi-Factor Authentication Server 來啟用行動應用程式驗證
 
-Microsoft Authenticator 應用程式提供額外的頻外驗證選項。 Azure Multi-Factor Authentication 不會在使用者登入時，撥打自動電話或傳送 SMS 給使用者，而是會將通知推送到使用者智慧型手機或平板電腦上的 Microsoft Authenticator 應用程式。 使用者只需要在應用程式中點選 [驗證] (或輸入 PIN 再點選 [驗證]) 即可完成登入。 
+Microsoft Authenticator 應用程式提供額外的頻外驗證選項。 Azure Multi-Factor Authentication 不會在使用者登入時，撥打自動電話或傳送 SMS 給使用者，而是會將通知推送到使用者智慧型手機或平板電腦上的 Microsoft Authenticator 應用程式。 使用者只需要在應用程式中點選 驗證 \(或輸入 PIN 再點選 [驗證]) 即可完成登入。 
 
 當手機收訊不可靠時，建議使用行動應用程式進行兩步驟驗證。 如果您使用此應用程式作為 OATH 權杖產生器，它並不需要任何網路或網際網路連線。 
 
@@ -38,7 +38,7 @@ Microsoft Authenticator 應用程式提供額外的頻外驗證選項。 Azure M
 
 若要使用 Microsoft Authenticator 應用程式，必須符合以下條件，應用程式才能與 Mobile App Web 服務成功通訊：
 
-* Azure Multi-Factor Authentication Server&6;.0 或更新版本
+* Azure Multi-Factor Authentication Server 6.0 或更新版本
 * 將 Mobile App Web 服務安裝在執行 Microsoft® [Internet Information Services (IIS) IIS 7.x 或更新版本](http://www.iis.net/)的網際網路對向 Web 伺服器上
 * 已安裝、註冊 ASP.NET v4.0.30319 並已設定為 [已允許]
 * 所需的角色服務包括 ASP.NET 和 IIS 6 Metabase 相容性

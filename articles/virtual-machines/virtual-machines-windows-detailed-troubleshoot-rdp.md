@@ -7,8 +7,7 @@ author: iainfoulds
 manager: timlt
 editor: 
 tags: top-support-issue,azure-service-management,azure-resource-manager
-keywords: >
-  cannot connect to remote desktop, troubleshoot remote desktop, remote desktop cannot connect, remote desktop errors, remote desktop troubleshooting, remote desktop problems
+keywords: "無法連線到遠端桌面, 疑難排解遠端桌面, 遠端桌面無法連線, 遠端桌面錯誤, 遠端桌面疑難排解, 遠端桌面問題"
 ms.assetid: 9da36f3d-30dd-44af-824b-8ce5ef07e5e0
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
@@ -18,8 +17,9 @@ ms.topic: support-article
 ms.date: 12/20/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 8835427415e8e01e851796eaf323bce7d1918c8c
-ms.openlocfilehash: 5c9d51d633b07497c230be9da2646bf49b6e8c0e
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: 35dbfaa1cdc274fb2c1fcb3afc68547ffefe80ab
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -108,7 +108,7 @@ ms.openlocfilehash: 5c9d51d633b07497c230be9da2646bf49b6e8c0e
 * 目標 VM 上的遠端桌面流量端點組態：端點的私用 TCP 連接埠必須符合 VM 的遠端桌面服務所接聽的 TCP 連接埠 (預設值為 3389)。
 * 目標 VM 上的遠端桌面流量端點的 ACL：ACL 讓您可指定要根據來源 IP 位址允許或拒絕來自網際網路的連入流量。 設定錯誤的 ACL 會阻止送至端點的連入遠端桌面流量。 檢查您的 ACL，以確保允許來自您的 Proxy 或其他邊緣伺服器的公用 IP 位址之連入流量。 如需詳細資訊，請參閱 [什麼是網路存取控制清單 (ACL)？](../virtual-network/virtual-networks-acl.md)
 
-若要檢查端點是否為問題來源，請移除目前的端點，再選擇外部連接埠號碼介於 49152 到 65535 的隨機連接埠來建立新的端點。 如需詳細資訊，請參閱[如何設定虛擬機器的端點](virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+若要檢查端點是否為問題來源，請移除目前的端點，再選擇外部連接埠號碼介於 49152 到 65535 的隨機連接埠來建立新的端點。 如需詳細資訊，請參閱[如何設定虛擬機器的端點](windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 ## <a name="source-4-network-security-groups"></a>來源 4：網路安全性群組
 網路安全性群組能夠更精確地控制受允許的輸入和輸出流量。 您可以在 Azure 虛擬網路中建立跨越子網路和雲端服務的規則。 請檢查您的網路安全性群組規則，以確保允許來自網際網路的遠端桌面流量：
@@ -125,7 +125,7 @@ ms.openlocfilehash: 5c9d51d633b07497c230be9da2646bf49b6e8c0e
 ## <a name="source-5-windows-based-azure-vm"></a>來源 5：以 Windows 為基礎的 Azure VM
 ![](./media/virtual-machines-windows-detailed-troubleshoot-rdp/tshootrdp_5.png)
 
-請使用 [Azure IaaS (Windows) 診斷套件](https://home.diagnostics.support.microsoft.com/SelfHelp?knowledgebaseArticleFilter=2976864) 來查看失敗的原因是否在 Azure 虛擬機器本身。 如果這個診斷套件無法解決「透過 RDP 連線至 Azure VM (需要重新開機)」問題，請依照 [這篇文章](virtual-machines-windows-reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的指示操作。 這篇文章會重設虛擬機器上的「遠端桌面」服務：
+請依照[本文](virtual-machines-windows-reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)的指示。 這篇文章會重設虛擬機器上的「遠端桌面」服務：
 
 * 啟用「遠端桌面」 Windows 防火牆預設規則 (TCP 連接埠 3389)。
 * 藉由將 HKLM\System\CurrentControlSet\Control\Terminal Server\fDenyTSConnections 登錄值設為 0 ，啟用遠端桌面連線。
@@ -167,7 +167,7 @@ ms.openlocfilehash: 5c9d51d633b07497c230be9da2646bf49b6e8c0e
 此提示的第一個部分是您的雲端服務名稱，其中包含目標 VM，這可以與 "cloudservice4testing.cloudapp.net" 不同。 您現在可以針對此雲端服務發出 Azure PowerShell 命令，以調查所提到的問題並修正組態。
 
 ### <a name="to-manually-correct-the-remote-desktop-services-listening-tcp-port"></a>若要手動更正接聽 TCP 連接埠的遠端桌面服務
-如果您無法針對「透過 RDP 連線至  [Azure VM (需要重新開機)」](https://home.diagnostics.support.microsoft.com/SelfHelp?knowledgebaseArticleFilter=2976864) 問題執行 **Azure IaaS (Windows) 診斷套件** ，請在遠端 Azure PowerShell 工作階段提示字元中執行這個命令。
+針對遠端 Azure PowerShell 工作階段提示字元，請執行此命令。
 
     Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "PortNumber"
 
@@ -186,8 +186,6 @@ PortNumber 屬性會顯示目前的連接埠號碼。 如有需要，請使用�
 確認 Azure VM 的遠端桌面端點也正在使用 TCP 連接埠 3398 做為其內部連接埠。 重新啟動 Azure VM，然後再試一次遠端桌面連線。
 
 ## <a name="additional-resources"></a>其他資源
-[Azure IaaS (Windows) 診斷封裝](https://home.diagnostics.support.microsoft.com/SelfHelp?knowledgebaseArticleFilter=2976864)
-
 [如何重設 Windows 虛擬機器的密碼或遠端桌面服務](virtual-machines-windows-reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
@@ -195,10 +193,5 @@ PortNumber 屬性會顯示目前的連接埠號碼。 如有需要，請使用�
 [疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](virtual-machines-linux-troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [疑難排解在 Azure 虛擬機器上執行的應用程式存取](virtual-machines-linux-troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

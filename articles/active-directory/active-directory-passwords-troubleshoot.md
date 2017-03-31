@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 3aa3a2fce46f37b06b60472d296e21fd10e070dc
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: dd1e0528a508f44daf03b58931925003bc565e41
+ms.lasthandoff: 03/28/2017
 
 
 ---
 # <a name="how-to-troubleshoot-password-management"></a>如何疑難排解密碼管理
 > [!IMPORTANT]
-> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 >
 >
 
@@ -727,7 +727,7 @@ ms.lasthandoff: 03/10/2017
               <p>HR 8023042</p>
             </td>
             <td>
-              <p>同步處理引擎傳回的錯誤 hr=&80230;402，訊息=嘗試取得物件失敗，因為存在具有相同錨點的重複項目</p>
+              <p>同步處理引擎傳回的錯誤 hr= 80230402，訊息=嘗試取得物件失敗，因為存在具有相同錨點的重複項目</p>
             </td>
             <td>
               <p>ADSync</p>
@@ -1502,7 +1502,7 @@ MA 服務帳戶沒有適當的權限，無法對所提及的使用者帳戶設�
 ## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為

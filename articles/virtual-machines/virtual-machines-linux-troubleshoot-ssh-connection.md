@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 12/21/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 8df7eff135b6cb316562a503bb938b051d87562f
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 5d99c53ab5a6c71446b971fb19c6ca4ac4164e2b
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -232,7 +232,7 @@ az vm redeploy --resource-group myResourceGroup --name myVM
 * 將 VM 重新部署到新的 Azure 節點。 如需如何重新部署 VM 的資訊，請參閱[將虛擬機器重新部署至新的 Azure 節點](virtual-machines-windows-redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
   
     此作業完成之後，暫時磁碟機資料將會遺失，且將會更新與虛擬機器相關聯的動態 IP 位址。
-* 請依循[如何為 Linux 虛擬機器重設密碼或 SSH](virtual-machines-linux-classic-reset-access.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) 中的指示進行，以：
+* 請依循[如何為 Linux 虛擬機器重設密碼或 SSH](linux/classic/reset-access.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) 中的指示進行，以：
   
   * 重設密碼或 SSH 金鑰。
   * 建立 *sudo* 使用者帳戶。
@@ -243,6 +243,6 @@ az vm redeploy --resource-group myResourceGroup --name myVM
 ## <a name="additional-resources"></a>其他資源
 * 如果在依循這些步驟之後仍無法以 SSH 連線到您的 VM，請參閱[更詳細的疑難排解步驟](virtual-machines-linux-detailed-troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)以檢閱其他的步驟來解決您的問題。
 * 如需疑難排解應用程式存取的詳細資訊，請參閱[針對存取在 Azure 虛擬機器上執行的應用程式進行疑難排解](virtual-machines-linux-troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* 如需針對使用傳統部署模型所建立之虛擬機器進行疑難排解的詳細資訊，請參閱[如何為 Linux 虛擬機器重設密碼或 SSH](virtual-machines-linux-classic-reset-access.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
+* 如需針對使用傳統部署模型所建立之虛擬機器進行疑難排解的詳細資訊，請參閱[如何為 Linux 虛擬機器重設密碼或 SSH](linux/classic/reset-access.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
 

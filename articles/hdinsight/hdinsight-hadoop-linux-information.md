@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: c41c611c-5798-4c14-81cc-bed1e26b5609
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/02/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 207eb60a359be1d9d9b68a92ac0c8255e7217a97
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 792907646a602004904eef5c4000f464881c6c4b
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -212,10 +213,7 @@ Azure 儲存體帳戶可以保存多達 4.75 TB 的資料，但個別 Blob (或�
 * **Hadoop**︰相應減少叢集中的節點數目時，會重新啟動叢集中的部分服務。 這會導致執行中或擱置的工作在調整作業完成時失敗。 您可以在作業完成後重新提交這些工作。
 * **HBase**︰區域伺服器會在完成調整作業的數分鐘之內自動取得平衡。 若要手動平衡區域伺服器，請使用下列步驟：
 
-    1. 使用 SSH 連線到 HDInsight 叢集。 如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列其中一份文件：
-
-        * [從 Linux、Unix 和 Mac OS X 搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
-        * [從 Windows 搭配 HDInsight 使用 SSH (PuTTY)](hdinsight-hadoop-linux-use-ssh-windows.md)
+    1. 使用 SSH 連線到 HDInsight 叢集。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
     2. 使用下列命令來啟動 HBase Shell：
 

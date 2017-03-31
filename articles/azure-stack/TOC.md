@@ -36,8 +36,9 @@
 
 # 安全性與法規遵循
 ## 作法
-### [管理使用者權限](azure-stack-manage-permissions.md)
+### [管理 RBAC](azure-stack-manage-permissions.md)
 ### [為 AD FS 新增使用者](azure-stack-add-users-adfs.md)
+### [建立服務主體](Azure-stack-create-service-principals.md)
 
 # 優惠服務
 ## 開始使用
@@ -113,6 +114,9 @@
 # 疑難排解
 ## [已知問題](azure-stack-troubleshooting.md)
 ## [Azure Stack 中的診斷功能](azure-stack-diagnostics.md)
+
+# 參考
+## [管理 API 版本設定檔](azure-stack-version-profiles.md)
 
 # 資源
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=AzureStack)  

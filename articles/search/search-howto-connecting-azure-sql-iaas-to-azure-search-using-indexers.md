@@ -15,8 +15,9 @@ ms.tgt_pltfrm: na
 ms.date: 01/23/2017
 ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: 814292d76601452493c1d708c39d42da909036d9
-ms.openlocfilehash: 1e436978da0f2fc8c122a1a99bd891fe82929f50
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: be73e3d009cfcbdd585d81512afaed752ae07364
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -51,7 +52,7 @@ Azure 搜尋服務會針對透過公用網際網路連接的所有索引子要�
 在您設定由 Azure 搜尋服務所要求的加密連接之後，Azure VM 上的 SQL Server 內建函式會有額外設定步驟。 如果您尚未這麼做，則下一個步驟是使用這些文件其中之一來完成設定︰
 
 * 若為 **Resource Manager** VM，請參閱 [使用 Resource Manager 連接到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/windows/sql/virtual-machines-windows-sql-connect.md)。 
-* 若為 **傳統** VM，請參閱 [連線到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/windows/sqlclassic/virtual-machines-windows-classic-sql-connect.md)。
+* 若為 **傳統** VM，請參閱 [連線到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/windows/classic/sql-connect.md)。
 
 特別是，檢閱每個文章中的「透過網際網路連接」一節。
 
@@ -87,10 +88,5 @@ IP 位址可能會造成一些挑戰，如果您知道問題和可能的因應�
 
 ## <a name="next-steps"></a>後續步驟
 解決組態之後，您現在就可以在 Azure VM 指定 SQL Server 作為 Azure 搜尋服務索引子的資料來源。 如需詳細資訊，請參閱 [使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) 。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

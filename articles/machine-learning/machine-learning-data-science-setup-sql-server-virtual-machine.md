@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/19/2016
 ms.author: xibingao;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
-ms.openlocfilehash: 777dc11be139b20363e2060776ac0227883591ff
-ms.lasthandoff: 12/20/2016
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 497b683b1058e134c3c79dbc8c8a119ff20e330b
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -34,7 +34,7 @@ Azure 虛擬機器組件庫涵蓋數個包含 Microsoft SQL Server 的映像。 
   > 
   > 
 
-## <a name="a-nameprovisionaconnect-to-the-azure-classic-portal-and-provision-an-sql-server-virtual-machine"></a><a name="Provision"></a>連線到 Azure 傳統入口網站並佈建 SQL Server 虛擬機器
+## <a name="Provision"></a>連線到 Azure 傳統入口網站並佈建 SQL Server 虛擬機器
 1. 使用您的帳戶登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)。
    如果您沒有 Azure 帳戶，請造訪 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 2. 在 Azure 傳統入口網站中，依序按一下網頁左下角的 [+新增]、[計算]、[虛擬機器] 和 [從資源庫]。
@@ -84,7 +84,7 @@ Azure 虛擬機器組件庫涵蓋數個包含 Microsoft SQL Server 的映像。 
    * 執行中 (佈建中)
    * 執行中
 
-## <a name="a-nameremotedesktopaopen-the-virtual-machine-using-remote-desktop-and-complete-setup"></a><a name="RemoteDesktop"></a>使用遠端桌面開啟虛擬機器並完成設定
+## <a name="RemoteDesktop"></a>使用遠端桌面開啟虛擬機器並完成設定
 1. 佈建完成時，請按一下虛擬機器的名稱以前往 [儀表板] 頁面。 按一下頁面底部的 [ **連接**]。
 2. 選擇使用 Windows 遠端桌面程式 (`%windir%\system32\mstsc.exe`) 開啟 rpd 檔案。
 3. 在 [Windows 安全性] 對話方塊中，提供在先前步驟中指定的本機系統管理員帳戶密碼。
@@ -93,7 +93,7 @@ Azure 虛擬機器組件庫涵蓋數個包含 Microsoft SQL Server 的映像。 
 
 使用 Windows 遠端桌面連接到虛擬機器之後，虛擬機器的運作方式與任何其他電腦很像。 請依照正常方法使用 SQL Server Management Studio (於虛擬機器上運作) 連接 SQL Server 的預設執行個體。
 
-## <a name="a-nameinstallipythonainstall-ipython-notebook-and-other-supporting-tools"></a><a name="InstallIPython"></a>安裝 IPython Notebook 和其他支援工具
+## <a name="InstallIPython"></a>安裝 IPython Notebook 和其他支援工具
 若要設定新的 SQL Server VM 做為 IPython Notebook 伺服器，並安裝其他的支援工具 (例如，AzCopy、Azure 儲存體總管、實用的資料科學 Python 封裝，以及其他工具)，系統為您提供了一個特殊的自訂指令碼。 若要安裝：
 
 * 以滑鼠右鍵按一下 Windows [開始] 圖示，然後按一下 [命令提示字元 (系統管理員)]
@@ -114,7 +114,7 @@ Azure 虛擬機器組件庫涵蓋數個包含 Microsoft SQL Server 的映像。 
 * 您可以使用 `https://<virtual_machine_DNS_name>:<port>`格式的 URL，從任何本機或遠端瀏覽器存取並執行 IPython Notebook，URL 格式中的 port 是您佈建虛擬機器時選取的 IPython 公用連接埠。
 * IPython Notebook 伺服器正以背景服務形式執行，而且將在您重新啟動虛擬機器時自動重新啟動。
 
-## <a name="a-nameoptionalaattach-data-disk-as-needed"></a><a name="Optional"></a>視需要連接資料磁碟
+## <a name="Optional"></a>視需要連接資料磁碟
 如果您的 VM 映像不包含資料磁碟，亦即，磁碟不是 C 磁碟機 (作業系統磁碟) 和 D 磁碟機 (暫存磁碟)，您就需要新增一或多個資料磁碟來儲存資料。 SQL Server 2012 SP2 Enterprise Optimized for DataWarehousing Workloads 的 VM 映像是使用其他磁碟預先設定的，可供 SQL Server 資料和記錄檔使用。
 
 > [!NOTE]
@@ -122,12 +122,12 @@ Azure 虛擬機器組件庫涵蓋數個包含 Microsoft SQL Server 的映像。 
 > 
 > 
 
-若要連接其他資料磁碟，請依照[如何將資料磁碟連接至 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)中所述的步驟執行，這將引導您完成：
+若要連接其他資料磁碟，請依照[如何將資料磁碟連接至 Windows 虛擬機器](../virtual-machines/windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)中所述的步驟執行，這將引導您完成：
 
 1. 將空磁碟連接至先前步驟中佈建的虛擬機器
 2. 在虛擬機器中將新磁碟初始化
 
-## <a name="a-namessmsaconnect-to-sql-server-management-studio-and-enable-mixed-mode-authentication"></a><a name="SSMS"></a>連接到 SQL Server Management Studio 並啟用混合模式驗證
+## <a name="SSMS"></a>連接到 SQL Server Management Studio 並啟用混合模式驗證
 SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。 若要從另一部電腦連接 Database Engine，請設定 SQL Server 以進行混合模式驗證。 混合模式驗證可允許 SQL Server 驗證和 Windows 驗證。 需要使用 SQL 驗證模式，才能在 [Azure Machine Learning Studio](https://studio.azureml.net) 中透過「匯入資料」模組，從您的 SQL Server VM 資料庫直接擷取資料。
 
 1. 使用遠端桌面連接到虛擬機器時，請在 Windows [搜尋] 窗格中輸入 **SQL Server Management Studio** (SMSS)。 按一下以啟動 SQL Server Management Studio (SSMS)。 您可能想要將捷徑新增到桌面上的 SSMS，以供日後使用。
@@ -167,7 +167,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。 若�
    ![重新啟動][9]
 5. 在 [SQL Server Management Studio] 對話方塊中，按一下 [是] 以同意重新啟動 SQL Server。
 
-## <a name="a-nameloginsacreate-sql-server-authentication-logins"></a><a name="Logins"></a>建立 SQL Server 驗證登入
+## <a name="Logins"></a>建立 SQL Server 驗證登入
 若要從另一部電腦連接 Database Engine，您至少必須建立一個 SQL Server 驗證登入。  
 
 您也可以透過程式設計方式或使用 SQL Server Management Studio，來建立新的 SQL Server 登入。 若要以程式設計的方式透過 SQL 驗證建立新的系統管理員使用者，請啟動 [新增查詢]  ，然後執行下列指令碼。 使用您選擇的「使用者名稱」和「密碼」取代 <新使用者名稱\> 和 <新密碼\>。 
@@ -210,7 +210,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。 若�
     ![系統管理員 (sysadmin)][12]
 12. 按一下 [確定]。
 
-## <a name="a-namednsadetermine-the-dns-name-of-the-virtual-machine"></a><a name="DNS"></a>決定虛擬機器的 DNS 名稱
+## <a name="DNS"></a>決定虛擬機器的 DNS 名稱
 若要從另一部電腦連接 SQL Server Database Engine，您必須知道虛擬機器的網域名稱系統 (DNS) 名稱。
 
 (這是網際網路用來識別虛擬機器的名稱。 您可以使用 IP 位址，不過當 Azure 因備援或維護而移動資源時，IP 位址可能會改變。 DNS 名稱是穩定的，因為它可以重新導向新的 IP 位址。)
@@ -218,7 +218,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。 若�
 1. 在 Azure 傳統入口網站 (或前一個步驟) 中選取 [虛擬機器] 。
 2. 在 [虛擬機器執行個體] 頁面的 [DNS 名稱] 欄中，尋找及複製外觀加上 **http://** 之虛擬機器的 DNS 名稱。 (使用者介面可能無法顯示完整名稱，不過您可以在名稱上按一下滑鼠右鍵，然後選擇複製。)
 
-## <a name="a-namecdeaconnect-to-the-database-engine-from-another-computer"></a><a name="cde"></a>從另一台電腦連接到 Database Engine
+## <a name="cde"></a>從另一台電腦連接到 Database Engine
 1. 在連接網際網路的電腦上開啟 SQL Server Management Studio。
 2. 在 [連接到伺服器] 或 [連接到 Database Engine] 對話方塊的 [伺服器名稱] 方塊中，輸入虛擬機器的 DNS 名稱 (於上一個工作中決定) 和 *DNSName,portnumber* 格式的公用端點連接埠名稱 (如 **tutorialtestVM.cloudapp.net,57500**)。
 3. 在 [驗證] 方塊中，選取 [SQL Server 驗證]。
@@ -226,7 +226,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。 若�
 5. 在 [密碼]  方塊中，輸入於先前工作中建立之登入的密碼。
 6. 按一下 [連接] 。
 
-## <a name="a-nameamlconnectaconnect-to-the-database-engine-from-azure-machine-learning"></a><a name="amlconnect"></a>從 Azure Machine Learning 連接 Database Engine
+## <a name="amlconnect"></a>從 Azure Machine Learning 連接 Database Engine
 在 Team Data Science Process 的後續階段中，您將使用 [Azure Machine Learning Studio](https://studio.azureml.net) 來建置和部署機器學習服務模型。 若要將資料從 SQL Server VM 資料庫直接擷取到 Azure Machine Learning 以供訓練或評分使用，請在新的 [Azure Machine Learning Studio](https://studio.azureml.net) 實驗中使用「匯入資料」模組。 您可以透過 Team Data Science Process 指南的連結，找到更多有關本主題的詳細資訊。 如需簡介，請參閱「 [什麼是 Azure Machine Learning Studio？」](machine-learning-what-is-ml-studio.md)。
 
 1. 在[匯入資料模組](https://msdn.microsoft.com/library/azure/dn905997.aspx)的 [屬性] 窗格中，從 [資料來源] 下拉式清單中選取 [Azure SQL Database]。
@@ -236,7 +236,7 @@ SQL Server Database Engine 須有網域環境才能使用 Windows 驗證。 若�
    
    ![Azure Machine Learning 匯入資料][13]
 
-## <a name="a-nameshutdownashutdown-and-deallocate-virtual-machine-when-not-in-use"></a><a name="shutdown"></a>關閉並解除配置非使用中的虛擬機器
+## <a name="shutdown"></a>關閉並解除配置非使用中的虛擬機器
 Azure 虛擬機器的定價策略是「 **只針對您使用的項目進行付費**」。 為了確保未使用虛擬機器時不會被計費，您必須將虛擬機器的狀態設為 [ **已停止 (已解除配置)** ]。
 
 > [!NOTE]

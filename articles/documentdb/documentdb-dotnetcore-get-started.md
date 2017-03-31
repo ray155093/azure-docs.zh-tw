@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 03/06/2017
+ms.date: 03/23/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 35e193a49aac7e3aaf91e2a4798b6eeed8377aae
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: c8a915055318697ade229837653df4c105279299
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -47,6 +47,8 @@ ms.lasthandoff: 03/18/2017
 * 刪除資料庫
 
 沒有時間嗎？ 別擔心！ 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started)上找到完整的方案。 請跳至 [取得完整的解決方案](#GetSolution) 一節，以取得簡要指示。
+
+想要使用 DocumentDB .NET Core SDK 建置 Xamarin iOS、Android 或 Forms 應用程式嗎？ 請參閱[使用 DocumentDB 開發 Xamarin 行動應用程式](documentdb-mobile-apps-with-xamarin.md)。
 
 之後，請使用此頁面頂端或底部的投票按鈕，將意見反應提供給我們。 如果想要我們直接與您連絡，歡迎在留言中留下電子郵件地址。
 
@@ -589,6 +591,7 @@ End of demo, press any key to exit.
 
 ## <a name="next-steps"></a>後續步驟
 * 需要更複雜的 ASP.NET MVC NoSQL 教學課程嗎？ 請參閱 [使用 DocumentDB 建置具有 ASP.NET MVC 的 Web 應用程式](documentdb-dotnet-application.md)。
+* 想要使用 DocumentDB .NET Core SDK 開發 Xamarin iOS、Android 或 Forms 應用程式嗎？ 請參閱[使用 DocumentDB 開發 Xamarin 行動應用程式](documentdb-mobile-apps-with-xamarin.md)。
 * 想要執行 DocumentDB 的規模和效能測試？ 請參閱 [Azure DocumentDB 的效能和級別測試](documentdb-performance-testing.md)
 * 了解如何 [監視 DocumentDB 帳戶](documentdb-monitor-accounts.md)(英文)。
 * 在 [Query Playground](https://www.documentdb.com/sql/demo)中，針對範例資料集執行查詢。

@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 02/28/2017
 ms.author: kyliel
 translationtype: Human Translation
-ms.sourcegitcommit: 24410a07995d5ac813b2bf4cdeed320c72ce7e06
-ms.openlocfilehash: 7845b552bd1360927eae414f57fefbd74ac0b7f7
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: d0fc5de34f7d9e5a607495eb97d9e35dc9eb21f9
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -110,7 +110,7 @@ Microsoft Corporation 目前在 Azure 上提供已預先設定 [Azure VM 客體�
 
 ## <a name="authentication-user-names-passwords-and-ssh-keys"></a>驗證：使用者名稱、密碼和 SSH 金鑰
 使用 Azure 入口網站來建立 FreeBSD 虛擬機器時，您必須提供使用者名稱、密碼或 SSH 公開金鑰。
-在 Azure 上部署 FreeBSD 虛擬機器時所使用的使用者名稱，不可以和虛擬機器中已存在的系統帳戶 (UID <&100;) 名稱相同 (例如 "root")。
+在 Azure 上部署 FreeBSD 虛擬機器時所使用的使用者名稱，不可以和虛擬機器中已存在的系統帳戶 (UID < 100) 名稱相同 (例如 "root")。
 目前只支援 RSA SSH 金鑰。 多行 SSH 金鑰的開頭必須為 `---- BEGIN SSH2 PUBLIC KEY ----`，結尾為 `---- END SSH2 PUBLIC KEY ----`。
 
 ## <a name="obtaining-superuser-privileges"></a>取得超級使用者權限
@@ -128,5 +128,5 @@ Microsoft Corporation 目前在 Azure 上提供已預先設定 [Azure VM 客體�
 
 ## <a name="next-steps"></a>後續步驟
 * 前往 [Azure Marketplace](https://azure.microsoft.com/marketplace/partners/microsoft/freebsd110/) 以建立 FreeBSD VM。
-* 如果您想要將自己的 FreeBSD 攜至 Azure，請參閱[建立並上傳 FreeBSD VHD 到 Azure](./virtual-machines-linux-classic-freebsd-create-upload-vhd.md)。
+* 如果您想要將自己的 FreeBSD 攜至 Azure，請參閱[建立並上傳 FreeBSD VHD 到 Azure](linux/classic/freebsd-create-upload-vhd.md)。
 

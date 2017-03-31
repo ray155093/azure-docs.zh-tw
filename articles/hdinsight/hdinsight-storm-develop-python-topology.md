@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 279990a67ae260b09d056fd84a12160150eb4539
-ms.openlocfilehash: f6bc08230384b637f6b7b83fe32915ab09647d37
-ms.lasthandoff: 01/18/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 8b32aa77e1dbe18076d73e10914b59be107c3588
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -157,10 +157,8 @@ Java 在這裡叫用 Python，並執行含有實際 blot 邏輯的指令碼。 J
              scp wordcount-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:wordcount-1.0-SNAPSHOT.jar
         
          以您叢集的 SSH 使用者取代 USERNAME，並以您的 HDInsight 叢集名稱取代 CLUSTERNAME。
-     2. 將檔案複製到叢集之後，使用 SSH 連接到叢集並提交工作。 如需有關搭配使用 SSH 與 HDInsight 的資訊，請參閱下列其中一份文件：
-        
-        * [從 Linux、Unix 或 OS X 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
-        * [從 Windows 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+     2. 將檔案複製到叢集之後，使用 SSH 連接到叢集並提交工作。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+     
      3. 連線之後，使用下列命令啟動拓撲：
         
              storm jar wordcount-1.0-SNAPSHOT.jar wordcount.core wordcount

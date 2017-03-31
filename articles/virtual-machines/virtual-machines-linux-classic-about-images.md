@@ -1,38 +1,10 @@
 ---
-title: "關於 Azure 中的 Linux VM 映像 | Microsoft Docs"
-description: "了解如何將 Linux 映像與 Azure 中的虛擬機器搭配使用。"
-services: virtual-machines-linux
-documentationcenter: 
-author: cynthn
-manager: timlt
-editor: tysonn
-tags: azure-service-management
-ms.assetid: e6ea8adc-4e7a-467a-9394-cd05e67898b7
-ms.service: virtual-machines-linux
-ms.workload: infrastructure-services
-ms.tgt_pltfrm: vm-linux
-ms.devlang: na
-ms.topic: article
-ms.date: 07/21/2016
-ms.author: cynthn
+redirect_url: /azure/virtual-machines/linux/classic/about-images
+redirect_document_id: true
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: 219c22a15e3386e691ce07d0c48aa289366becef
-ms.lasthandoff: 03/22/2017
-
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 2d4e61336225c9cfbf5b7da5707d5a0f41505730
+ms.lasthandoff: 03/27/2017
 
 ---
-# <a name="about-images-for-linux-virtual-machines"></a>關於 Linux 虛擬機器的映像
-> [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需使用 Resource Manager 模型的映像的詳細資訊，請參閱[這裡](virtual-machines-linux-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-[!INCLUDE [virtual-machines-common-classic-about-images](../../includes/virtual-machines-common-classic-about-images.md)]
-
-## <a name="working-with-images"></a>使用映像
-您可以使用適用於 Mac、Linux 和 Windows 的「Azure 命令列介面」(CLI) 來管理您 Azure 訂用帳戶可使用的映像。 您也可以使用 Azure 入口網站進行部分映像工作，但命令列則提供您更多選項。
-
-如需工具使用範例，請參閱 [Linux 和 Mac 上的常用 Azure CLI 命令](virtual-machines-linux-cli-manage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-## <a name="next-steps"></a>後續步驟
-您也可以[上傳自己的映像](virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 

@@ -33,7 +33,7 @@
 3. 將虛擬網路物件儲存為變數。
    
         $vnet = Get-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $RG
-4. 將閘道子網路加入至虛擬網路。 閘道子網路必須命名為 "GatewaySubnet"。 您想要建立 /27 或更大 (/26、/25 等) 的閘道。
+4. 將閘道子網路加入至虛擬網路。 閘道子網路必須命名為 "GatewaySubnet"。 您應建立 /27 或更大 (/26、/25 等) 的閘道子網路。
    
         Add-AzureRmVirtualNetworkSubnetConfig -Name GatewaySubnet -VirtualNetwork $vnet -AddressPrefix 192.168.200.0/26
 5. 設定組態。
@@ -72,8 +72,3 @@
 使用以下的命令移除閘道器
 
     Remove-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG  
-
-
-<!--HONumber=Nov16_HO3-->
-
-

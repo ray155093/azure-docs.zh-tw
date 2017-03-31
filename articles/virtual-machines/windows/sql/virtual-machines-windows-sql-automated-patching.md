@@ -16,15 +16,16 @@ ms.workload: iaas-sql-server
 ms.date: 01/31/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: b092b8a746f4f94add9727dc17c6b8fc198b6404
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: c48e23c1904d824ce2360f83c9df9c8e17d6200a
+ms.lasthandoff: 03/25/2017
 
 
 ---
 # <a name="automated-patching-for-sql-server-in-azure-virtual-machines-resource-manager"></a>Azure 虛擬機器的 SQL Server 自動修補 (Resource Manager)
 > [!div class="op_single_selector"]
 > * [資源管理員](virtual-machines-windows-sql-automated-patching.md)
-> * [傳統](../sqlclassic/virtual-machines-windows-classic-sql-automated-patching.md)
+> * [傳統](../classic/sql-automated-patching.md)
 > 
 > 
 
@@ -32,7 +33,7 @@ ms.openlocfilehash: b092b8a746f4f94add9727dc17c6b8fc198b6404
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-rm-include.md)]
 
-如需本文的精簡版本，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補 (傳統)](../sqlclassic/virtual-machines-windows-classic-sql-automated-patching.md)。
+如需本文的精簡版本，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補 (傳統)](../classic/sql-automated-patching.md)。
 
 ## <a name="prerequisites"></a>必要條件
 若要使用自動修補，請考慮下列必要條件︰
@@ -126,10 +127,5 @@ ms.openlocfilehash: b092b8a746f4f94add9727dc17c6b8fc198b6404
 如需有關其他可用之自動化工作的資訊，請參閱 [SQL Server IaaS 代理程式擴充功能](virtual-machines-windows-sql-server-agent-extension.md)。
 
 如需有關在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

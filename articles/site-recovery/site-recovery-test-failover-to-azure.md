@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 2/15/2017
 ms.author: pratshar
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: dcb259f04f2b0b1aeec10699b4e7b739ac0926ba
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 2aed07ff82c33111ef1abc9c9cc6b0ba2a9d3718
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -53,7 +53,7 @@ ms.lasthandoff: 03/18/2017
 1. 選取一個 **Azure 虛擬網路**︰提供一個 Azure 虛擬網路，測試虛擬機器會建立於該處。 Site Recovery 會嘗試在名稱相同的子網路中建立測試虛擬機器，並使用虛擬機器的 [計算與網路] 設定中提供的 IP。 如果針對測試容錯移轉提供的 Azure 虛擬網路中沒有名稱相同的子網路，則會在依字母順序的第一個子網路中建立測試虛擬機器。 如果子網路中沒有相同的 IP，虛擬機器會取得子網路中另一個可用的 IP 位址。 請參閱此節以[瞭解更多詳細資訊](#creating-a-network-for-test-failover)
 1. 如果您正在容錯移轉到 Azure 且已啟用資料加密，請在 [加密金鑰] 中，選取當您在提供者安裝期間啟用資料加密時所發出的憑證。 如果您尚未在虛擬機器上啟用加密，您可以忽略此步驟。
 1. 在 [工作]  索引標籤上追蹤容錯移轉進度。 您應該可以在 Azure 入口網站中看到測試複本機器。
-1. 若要在虛擬機器上初始化 RDP 連線，您必須在容錯移轉的虛擬機器的網路介面上[新增公用 IP](site-recovery-monitoring-and-troubleshooting.md#adding-a-public-ip-on-a-resource-manager-virtual-machine)。 如果您要容錯移轉到傳統虛擬機器，您必須在連接埠 3389 上[新增端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)
+1. 若要在虛擬機器上初始化 RDP 連線，您必須在容錯移轉的虛擬機器的網路介面上[新增公用 IP](site-recovery-monitoring-and-troubleshooting.md#adding-a-public-ip-on-a-resource-manager-virtual-machine)。 如果您要容錯移轉到傳統虛擬機器，您必須在連接埠 3389 上[新增端點](../virtual-machines/windows/classic/setup-endpoints.md)
 1. 完成後，在復原方案上按一下 [清除測試容錯移轉]。 在 [記事]  中，記錄並儲存關於測試容錯移轉的任何觀察。 這會刪除在測試容錯移轉期間所建立的虛擬機器。
 
 
@@ -100,9 +100,9 @@ ms.lasthandoff: 03/18/2017
 **容錯移轉** | **位置** | **動作**
 --- | --- | ---
 **執行 Windows 的 Azure VM** | 在容錯移轉前的內部部署機器上 | 若要透過網際網路存取 Azure VM，請啟用 RDP，並確定已針對 [公用] 新增 TCP 和 UDP 規則，且在 [Windows 防火牆] > [允許的應用程式] 中已針對所有設定檔允許 RDP。<br/><br/> 若要透過站對站連線進行存取，請在機器上啟用 RDP，並確定在 [Windows 防火牆]  ->  [允許的應用程式和功能] 中已針對 [網域] 和 [私人] 網路允許 RDP。<br/><br/>  確定作業系統的 SAN 原則已設為 **OnlineAll**。 [深入了解](https://support.microsoft.com/kb/3031135)。<br/><br/> 觸發容錯移轉時，請確定虛擬機器上沒有任何暫止的 Windows 更新。 容錯移轉時，可能會啟動 Windows 更新，必須等到更新完成，才能登入虛擬機器。 <br/><br/>
-**執行 Windows 的 Azure VM** | 在容錯移轉後的 Azure VM 上 | 若是傳統虛擬機器，請為 RDP 通訊協定 (連接埠 3389) [新增公用端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)<br/><br/>  若是在 Resource Manager 虛擬機器上，請[新增公用 IP](site-recovery-monitoring-and-troubleshooting.md#adding-a-public-ip-on-a-resource-manager-virtual-machine)。<br/><br/> 已容錯移轉的 VM 上的網路安全性群組規則以及它所連線的 Azure 子網路必須允許 RDP 連接埠的連入連線。<br/><br/> 若是 Resource Manager 虛擬機器，您可以檢查 [開機診斷]，查看虛擬機器的螢幕擷取畫面<br/><br/> 如果您無法連線，請檢查 VM 是否正在執行，然後查看這些[疑難排解秘訣](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)。<br/><br/>
+**執行 Windows 的 Azure VM** | 在容錯移轉後的 Azure VM 上 | 若是傳統虛擬機器，請為 RDP 通訊協定 (連接埠 3389) [新增公用端點](../virtual-machines/windows/classic/setup-endpoints.md)<br/><br/>  若是在 Resource Manager 虛擬機器上，請[新增公用 IP](site-recovery-monitoring-and-troubleshooting.md#adding-a-public-ip-on-a-resource-manager-virtual-machine)。<br/><br/> 已容錯移轉的 VM 上的網路安全性群組規則以及它所連線的 Azure 子網路必須允許 RDP 連接埠的連入連線。<br/><br/> 若是 Resource Manager 虛擬機器，您可以檢查 [開機診斷]，查看虛擬機器的螢幕擷取畫面<br/><br/> 如果您無法連線，請檢查 VM 是否正在執行，然後查看這些[疑難排解秘訣](http://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)。<br/><br/>
 **執行 Linux 的 Azure VM** | 在容錯移轉前的內部部署機器上 | 確定 Azure VM 上的安全殼層服務已設定為在系統開機時自動啟動。<br/><br/> 請檢查防火牆規則是否允許 SSH 連線。
-**執行 Linux 的 Azure VM** | 容錯移轉後的 Azure VM | 已容錯移轉的 VM 上的網路安全性群組規則以及它所連接的 Azure 子網路必須允許 SSH 連接埠的連入連線。<br/><br/> 若是傳統虛擬機器，應建立[新增公用端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md)，以允許 SSH 連接埠 (預設為 TCP 通訊埠 22) 上的連入連線。<br/><br/> 若是在 Resource Manager 虛擬機器上，請[新增公用 IP](site-recovery-monitoring-and-troubleshooting.md#adding-a-public-ip-on-a-resource-manager-virtual-machine)。<br/><br/> 若是 Resource Manager 虛擬機器，您可以檢查 [開機診斷]，查看虛擬機器的螢幕擷取畫面<br/><br/>
+**執行 Linux 的 Azure VM** | 容錯移轉後的 Azure VM | 已容錯移轉的 VM 上的網路安全性群組規則以及它所連接的 Azure 子網路必須允許 SSH 連接埠的連入連線。<br/><br/> 若是傳統虛擬機器，應建立[新增公用端點](../virtual-machines/windows/classic/setup-endpoints.md)，以允許 SSH 連接埠 (預設為 TCP 通訊埠 22) 上的連入連線。<br/><br/> 若是在 Resource Manager 虛擬機器上，請[新增公用 IP](site-recovery-monitoring-and-troubleshooting.md#adding-a-public-ip-on-a-resource-manager-virtual-machine)。<br/><br/> 若是 Resource Manager 虛擬機器，您可以檢查 [開機診斷]，查看虛擬機器的螢幕擷取畫面<br/><br/>
 
 
 

@@ -16,8 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 01/17/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 7402249aa87ffe985ae13f28a701e22af3afd450
-ms.openlocfilehash: 7706fd453ef8be4ebe65b65da643ec38b7c18433
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 218d7dcf14ebbb28ac043e50e6f9248ecb942aaa
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -31,7 +32,7 @@ ms.openlocfilehash: 7706fd453ef8be4ebe65b65da643ec38b7c18433
 ## <a name="overview"></a>概觀
 本教學課程示範如何使用 Azure PowerShell Cmdlet，建立採用 **Azure Resource Manager** 部署模型的單一 Azure 虛擬機器。 在本教學課程中，我們將從 SQL 資源庫中的映像建立使用單一磁碟機的單一虛擬機器。 我們將為虛擬機器所要使用的儲存體、網路和計算資源，建立新的提供者。 如果上述任何資源有現有的提供者，您可以改用這些提供者。
 
-如果您需要本主題的傳統版本，請參閱 [使用 Azure PowerShell 佈建 SQL Server 虛擬機器 (傳統)](../sqlclassic/virtual-machines-windows-classic-ps-sql-create.md)。
+如果您需要本主題的傳統版本，請參閱 [使用 Azure PowerShell 佈建 SQL Server 虛擬機器 (傳統)](../classic/ps-sql-create.md)。
 
 ## <a name="prerequisites"></a>必要條件
 本教學課程中，您將需要：
@@ -190,7 +191,7 @@ ms.openlocfilehash: 7706fd453ef8be4ebe65b65da643ec38b7c18433
     $Credential = Get-Credential -Message "Type the name and password of the local administrator account."
 
 ### <a name="set-the-operating-system-properties-for-the-virtual-machine"></a>設定虛擬機器的作業系統屬性
-我們現在已準備好設定虛擬機器的作業系統屬性。 我們將使用 [Set-AzureRmVMOperatingSystem](https://msdn.microsoft.com/library/mt603843.aspx) Cmdlet 將作業系統的類型設定為 Windows、要求安裝[虛擬機器代理程式](../../virtual-machines-windows-classic-agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)、指定此 Cmdlet 啟用自動更新，以及使用您先前初始化的變數來設定虛擬機器名稱、電腦名稱和認證。
+我們現在已準備好設定虛擬機器的作業系統屬性。 我們將使用 [Set-AzureRmVMOperatingSystem](https://msdn.microsoft.com/library/mt603843.aspx) Cmdlet 將作業系統的類型設定為 Windows、要求安裝[虛擬機器代理程式](../classic/agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)、指定此 Cmdlet 啟用自動更新，以及使用您先前初始化的變數來設定虛擬機器名稱、電腦名稱和認證。
 
 執行下列 Cmdlet 來設定虛擬機器的作業系統屬性。
 
@@ -295,10 +296,5 @@ ms.openlocfilehash: 7706fd453ef8be4ebe65b65da643ec38b7c18433
 
 ## <a name="next-steps"></a>後續步驟
 建立虛擬機器之後，您即可準備使用 RDP 和設定連線能力來連接到虛擬機器。 如需詳細資訊，請參閱 [連線到 Azure 上的 SQL Server 虛擬機器 (資源管理員)](virtual-machines-windows-sql-connect.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

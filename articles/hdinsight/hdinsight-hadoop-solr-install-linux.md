@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
-ms.openlocfilehash: e270f3dfdaf248ed40d539fa1d2e69a3930d03c6
-ms.lasthandoff: 01/18/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 2214315f084aec80986fe30ebcaff6813162c5f8
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 01/18/2017
 在本主題中，您將了解如何使用指令碼動作，在 Azure HDInsight 上安裝 Solr。 Solr 是強大的搜尋平台，可對 Hadoop 管理的資料執行企業級搜尋功能。 在 HDInsight 叢集上安裝 Solr 之後，您也將學習如何使用 Solr 搜尋資料。
 
 > [!IMPORTANT]
-> 本文件中的步驟需要一個使用 Linux 的 HDInsight 叢集。 Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+> 本文件中的步驟需要一個使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
 
 本主題中使用的範例指令碼會以特定組態建立 Solr 叢集。 如果您想要以不同的集合、分區、結構描述和複本等項目設定 Solr 叢集，則必須相應修改指令碼和 Solr 二進位檔。
 
@@ -81,10 +81,7 @@ ms.lasthandoff: 01/18/2017
    
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
    
-    如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列文章：
-   
-   * [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
-   * [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+    如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
      
      > [!IMPORTANT]
      > 本文件中稍後的步驟會使用 SSL 通道以連線至 Solr Web UI。 為了使用這些步驟，您必須建立 SSL 通道，然後設定您的瀏覽器以使用它。
@@ -173,10 +170,8 @@ Solr 儀表板是 Web UI，可讓您透過網頁瀏覽器使用 Solr。 Solr 儀
    
    1. 在連接埠 22 上使用 SSH 連接到叢集。 例如，`ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`，其中 **USERNAME** 是您的 SSH 使用者名稱，**CLUSTERNAME** 是您的叢集名稱。
       
-       如需使用 SSH 的詳細資訊，請參閱下列文件：
-      
-      * [從 Linux、Unix 或 Mac OS X 用戶端搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
-      * [從 Windows 用戶端搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+       如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+
    2. 使用下列命令以取得完整主機名稱︰
       
            hostname -f

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: 5b3ff989c31f45f3344d406f9f419510dd380f8b
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 5e113af94c1ac27d759a75ff35bb9eb29fa08bf6
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -165,7 +165,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | zookeeperNodeSize |指定 Zoo Keeper 節點的大小。 預設值為：Standard_D3。 |否 |
 
 #### <a name="specifying-node-sizes"></a>指定節點大小
-如需了解需為上方屬性指定的字串值，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fdata-factory%2ftoc.json#size-tables)一文。 值必須符合本文件中所參考的 **CMDLET 與 APIS**。 如您在文中所見，若資料節點的大小設定為大 (預設值)，則記憶體大小為 7 GB，其可能不適用於您的案例。 
+如需了解需為上方屬性指定的字串值，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md)一文。 值必須符合本文件中所參考的 **CMDLET 與 APIS**。 如您在文中所見，若資料節點的大小設定為大 (預設值)，則記憶體大小為 7 GB，其可能不適用於您的案例。 
 
 若想要建立 D4 大小的前端節點與背景工作節點，必須指定 **Standard_D4** 作為 headNodeSize 與 dataNodeSize 屬性的值。 
 
@@ -328,7 +328,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | 使用者類型 | 到期時間 |
 |:--- |:--- |
 | 不受 Azure Active Directory 管理的使用者帳戶 (@hotmail.com、@live.com、@outlook.com 等) |12 小時 |
-| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的&14; 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
+| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的 14 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
 如果要避免/解決此錯誤，您必須在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以使用下一節中的程式碼以程式設計方式產生 sessionId 和 authorization 屬性的值。 
 
@@ -364,12 +364,12 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 請參閱 [AzureDataLakeStoreLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx)、[AzureDataLakeAnalyticsLinkedService 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx)和 [AuthorizationSessionGetResponse 類別](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx)主題，以取得在程式碼中使用的 Data Factory 類別的詳細資訊。 您必須針對 WindowsFormsWebAuthenticationDialog 類別將參考新增至：Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll。 
 
 ## <a name="azure-sql-linked-service"></a>Azure SQL 連結服務
-您可建立 Azure SQL 連結服務，並將其與 [預存程序活動](data-factory-stored-proc-activity.md) 搭配使用，以叫用 Data Factory 管線中的預存程序。 如需此連結服務的詳細資料，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#azure-sql-linked-service-properties) 一文。
+您可建立 Azure SQL 連結服務，並將其與 [預存程序活動](data-factory-stored-proc-activity.md) 搭配使用，以叫用 Data Factory 管線中的預存程序。 如需此連結服務的詳細資料，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#linked-service-properties) 一文。
 
 ## <a name="azure-sql-data-warehouse-linked-service"></a>Azure SQL 資料倉儲連結服務
 您可以建立 Azure SQL 資料倉儲連結服務，並將其與 [預存程序活動](data-factory-stored-proc-activity.md) 搭配使用，以叫用 Data Factory 管線中的預存程序。 如需此連結服務的詳細資料，請參閱 [Azure SQL 資料倉儲連接器](data-factory-azure-sql-data-warehouse-connector.md#linked-service-properties) 一文。
 
 ## <a name="sql-server-linked-service"></a>SQL Server 連結服務
-您可以建立 SQL Server 連結服務，並將其與 [預存程序活動](data-factory-stored-proc-activity.md) 搭配使用，以叫用 Data Factory 管線中的預存程序。 如需此連結服務的詳細資料，請參閱 [SQL Server 連接器](data-factory-sqlserver-connector.md#sql-server-linked-service-properties) 一文。
+您可以建立 SQL Server 連結服務，並將其與 [預存程序活動](data-factory-stored-proc-activity.md) 搭配使用，以叫用 Data Factory 管線中的預存程序。 如需此連結服務的詳細資料，請參閱 [SQL Server 連接器](data-factory-sqlserver-connector.md#linked-service-properties) 一文。
 
 

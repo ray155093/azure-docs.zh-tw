@@ -1,5 +1,5 @@
 ---
-title: "設定可以並存的 ExpressRoute 和站對站 VPN 連線 | Microsoft Docs"
+title: "設定可以並存的 ExpressRoute 和站對站 VPN 連線：傳統：Azure | Microsoft Docs"
 description: "本文會引導您針對傳統部署模型設定可以並存的 ExpressRoute 和站對站 VPN 連線。"
 documentationcenter: na
 services: expressroute
@@ -13,15 +13,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/10/2016
+ms.date: 03/21/2017
 ms.author: charwen
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: aae9215ea67ff254bb3b67c5b113ad55eb3b1ca2
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: 7e866a218c003390e0281f1adce7c0d843d006c0
+ms.lasthandoff: 03/24/2017
 
 
 ---
-# <a name="configure-expressroute-and-site-to-site-coexisting-connections-for-the-classic-deployment-model"></a>為傳統部署模型設定 ExpressRoute 和站對站並存連線
+# <a name="configure-expressroute-and-site-to-site-coexisting-connections-classic"></a>設定 ExpressRoute 和站對站並存連線 (傳統)
 > [!div class="op_single_selector"]
 > * [PowerShell - 資源管理員](expressroute-howto-coexist-resource-manager.md)
 > * [PowerShell - 傳統](expressroute-howto-coexist-classic.md)
@@ -29,6 +30,8 @@ ms.openlocfilehash: aae9215ea67ff254bb3b67c5b113ad55eb3b1ca2
 > 
 
 能夠設定站對站 VPN 和 ExpressRoute 有諸多好處。 您可以將站對站 VPN 設定為 ExressRoute 的安全容錯移轉路徑，或使用站對站 VPN 來連接至不是透過 ExpressRoute 連接的網站。 本文中將說明設定這兩個案例的步驟。 本文適用於傳統部署模型。 此組態無法使用於入口網站。
+
+[!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
 **關於 Azure 部署模型**
 
@@ -76,7 +79,7 @@ ms.openlocfilehash: aae9215ea67ff254bb3b67c5b113ad55eb3b1ca2
   
     在此程序中，建立可以並存的連線將會要求您刪除閘道器，然後設定新的閘道器。 這表示當您刪除和重新建立閘道器與連線時，將會有跨設備連線的停機時間，但您不需要將任何 VM 或服務移轉至新的虛擬網路。 您的 VM 和服務仍能透過負載平衡器對外通訊，而您能夠在這兩者設定為這樣做時進行閘道器設定。
 
-## <a name="a-namenewato-create-a-new-virtual-network-and-coexisting-connections"></a><a name="new"></a>建立新的虛擬網路和並存的連線
+## <a name="new"></a>建立新的虛擬網路和並存的連線
 此程序會引導您建立 VNet，並建立將並存的站對站和 ExpressRoute 連線。
 
 1. 您必須安裝最新版的 Azure PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。 請注意，您將針對此組態使用的 Cmdlet 可能與您熟悉的 Cmdlet 有些微不同。 請務必使用這些指示中指定的 Cmdlet。 
@@ -182,7 +185,7 @@ ms.openlocfilehash: aae9215ea67ff254bb3b67c5b113ad55eb3b1ca2
 
         New-AzureVirtualNetworkGatewayConnection -connectedEntityId <local-network-gateway-id> -gatewayConnectionName Azure2Local -gatewayConnectionType IPsec -sharedKey abc123 -virtualNetworkGatewayId <azure-s2s-vpn-gateway-id>
 
-## <a name="a-nameaddato-configure-coexsiting-connections-for-an-already-existing-vnet"></a><a name="add"></a>為已經存在的 VNet 設定並存的連線
+## <a name="add"></a>為已經存在的 VNet 設定並存的連線
 如果您有現有的虛擬網路，請檢查閘道器子網路大小。 如果閘道器子網路是/28 或/29，您必須先刪除虛擬網路閘道器，並增加閘道器子網路大小。 本節中的步驟將示範如何執行該作業。
 
 如果閘道器子網路是/27 以上且虛擬網路是透過 ExpressRoute 連線，則可以略過下列步驟，並且繼續進行上一節中的 [「步驟 6 - 建立站對站 VPN 閘道」](#vpngw) 。
@@ -222,10 +225,5 @@ ms.openlocfilehash: aae9215ea67ff254bb3b67c5b113ad55eb3b1ca2
 
 ## <a name="next-steps"></a>後續步驟
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

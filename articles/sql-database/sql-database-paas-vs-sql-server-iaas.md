@@ -17,9 +17,9 @@ ms.topic: get-started-article
 ms.date: 02/01/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: ed725a12c04646a62cb0737266e24b6035522f20
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 98cb1d7e5fd464421ae97f2ace33852e71a18a21
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -55,7 +55,7 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 
 一般而言，這兩個 SQL 選項適合用於不同的用途：
 
-* **SQL Database** 已經過最佳化，可將佈建和管理許多資料庫的整體成本降到最低。 由於您無需管理任何虛擬機器、作業系統或資料庫軟體，它會將進行中的系統管理成本降到最低。 您不需要管理升級、高可用性或 [備份](sql-database-automated-backups.md)。 一般而言，Azure SQL Database 可能會大幅增加由單一 IT 或開發資源管理的資料庫數目。
+* **Azure SQL Database** 已經過最佳化，可將佈建和管理許多資料庫的整體成本降到最低。 由於您無需管理任何虛擬機器、作業系統或資料庫軟體，它會將進行中的系統管理成本降到最低。 您不需要管理升級、高可用性或 [備份](sql-database-automated-backups.md)。 一般而言，Azure SQL Database 可能會大幅增加由單一 IT 或開發資源管理的資料庫數目。
 * **在 Azure VM 上執行的 SQL Server** 已最佳化，適合將現有的應用程式移轉到 Azure 或者在混合式部署中將現有的內部部署應用程式擴充到雲端。 此外，您可以使用虛擬機器中的 SQL Server 開發和測試傳統的 SQL Server 應用程式。 有了 Azure VM 上的 SQL server，您即擁有專用 SQL Server 執行個體和雲端架構 VM 的完整系統管理權限。 當組織擁有可用來維護虛擬機器的 IT 資源時，此選項會是最佳選擇。 這些功能可讓您建立高度自訂的系統，以解決應用程式的特定效能和可用性需求。
 
 下表摘要說明 SQL Database 和 Azure VM 上的 SQL Server 的主要特性：

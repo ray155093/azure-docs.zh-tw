@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 3/1/2016
 ms.author: luywang
 translationtype: Human Translation
-ms.sourcegitcommit: 106e03a5a99134eb6e5744cbf29ba32efc31f0ba
-ms.openlocfilehash: d76aa3e62c691c4537684bc70d3a91a3dbb8b446
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 41e3db2762998bd042c0a23fccd03e599bd237a5
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -140,7 +140,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 ## <a name="post-migration-steps"></a>移轉後步驟
 
 1. **在情況允許時將複寫的 VM 設定至可用性設定組**。 Site Recovery 不支援移轉 VM 以及可用性設定組。 根據複寫 VM 的部署，執行下列其中一項︰
-  * 使用傳統部署模型所建立的 VM︰在 Azure 入口網站中將 VM 新增至可用性設定組。 如需詳細步驟，請移至[將現有虛擬機器加入至可用性設定組](../virtual-machines/virtual-machines-windows-classic-configure-availability.md#a-idaddmachine-aoption-2-add-an-existing-virtual-machine-to-an-availability-set)。
+  * 使用傳統部署模型所建立的 VM︰在 Azure 入口網站中將 VM 新增至可用性設定組。 如需詳細步驟，請移至[將現有虛擬機器加入至可用性設定組](../virtual-machines/windows/classic/configure-availability.md#a-idaddmachine-aoption-2-add-an-existing-virtual-machine-to-an-availability-set)。
   * Resource Manager 部署模型︰儲存 VM 的組態，然後在可用性設定組中刪除再重新建立 VM。 若要這樣做，請使用[設定 Azure Resource Manager VM 可用性設定組](https://gallery.technet.microsoft.com/Set-Azure-Resource-Manager-f7509ec4)中的指令碼。 在執行這個指令碼之前，請先查看指令碼的限制並規劃停機時間。
 
 2. **刪除舊 VM 和磁碟**。 在刪除這些項目之前，請確定進階磁碟與來源磁碟一致，而且新的 VM 執行的是與來源 VM 相同的函式。 在 Resource Manager (RM) 部署模型中，於 Azure 入口網站中從來源儲存體帳戶刪除 VM 和磁碟。 在傳統部署模型中，您可以於傳統入口網站或 Azure 入口網站中刪除 VM 和磁碟。 如果有即使已刪除 VM，其中的磁碟卻未刪除的問題，請參閱[針對在 RM 部署中刪除 VHD 時的錯誤進行疑難排解](storage-resource-manager-cannot-delete-storage-account-container-vhd.md)或[針對在傳統部署中刪除 VHD 進行疑難排解](storage-cannot-delete-storage-account-container-vhd.md)。
@@ -157,8 +157,8 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 如需移轉虛擬機器的特定案例，請參閱下列資源：
 
 * [在儲存體帳戶之間移轉 Azure 虛擬機器](https://azure.microsoft.com/blog/2014/10/22/migrate-azure-virtual-machines-between-storage-accounts/)
-* [建立並上傳 Windows Server VHD 到 Azure。](../virtual-machines/virtual-machines-windows-classic-createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
-* [建立及上傳包含 Linux 作業系統的虛擬硬碟](../virtual-machines/virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [建立並上傳 Windows Server VHD 到 Azure。](../virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [建立及上傳包含 Linux 作業系統的虛擬硬碟](../virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [將虛擬機器從 Amazon AWS 移轉至 Microsoft Azure](http://channel9.msdn.com/Series/Migrating-Virtual-Machines-from-Amazon-AWS-to-Microsoft-Azure)
 
 若要深入了解 Azure 儲存體和 Azure 虛擬機器，也請參閱下列資源：

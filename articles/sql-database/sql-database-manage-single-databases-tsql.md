@@ -16,14 +16,15 @@ ms.tgt_pltfrm: NA
 ms.date: 02/06/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 38c53d6f1a2635afbba199e6f0a2adb23abb6a3a
-ms.openlocfilehash: fcf8326edc2ff84d274f7c4dadeae1fbe2595349
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 951c88124219a6962f655b91275aec64c716b1cd
+ms.lasthandoff: 03/28/2017
 
 
 ---
 # <a name="create-and-manage-single-azure-sql-databases-with-transact-sql"></a>使用 Transact-SQL 來建立及管理單一 Azure SQL 資料庫
 
-您可以使用 [Azure 入口網站](https://portal.azure.com/)、PowerShell、Transact-SQL、REST API 或 C# 來建立及管理單一 Azure SQL 資料庫。 此主題是關於使用 Azure 入口網站。 對於 PowerShell，請參閱[使用 Powershell 來建立及管理單一資料庫](sql-database-manage-single-databases-powershell.md)。 對於 Transact-SQL，請參閱[使用 Transact-SQL 來建立及管理單一資料庫](sql-database-manage-single-databases-tsql.md)。 
+您可以使用 [Azure 入口網站](https://portal.azure.com/)、PowerShell、Transact-SQL、REST API 或 C# 來建立及管理單一 Azure SQL 資料庫。 此主題是關於使用 Azure 入口網站。 對於 PowerShell，請參閱[使用 Powershell 來建立及管理單一資料庫](scripts/sql-database-create-and-configure-database-powershell.md)。 對於 Transact-SQL，請參閱[使用 Transact-SQL 來建立及管理單一資料庫](sql-database-manage-single-databases-tsql.md)。 
 
 ## <a name="create-an-azure-sql-database-using-transact-sql-in-sql-server-management-studio"></a>在 SQL Server Management Studio 中使用 Transact-SQL 建立 Azure SQL Database
 
@@ -53,9 +54,4 @@ ms.openlocfilehash: fcf8326edc2ff84d274f7c4dadeae1fbe2595349
 * 若要了解如何使用 SQL Server Management Studio 執行管理工作，請參閱 [SQL Server Management Studio](sql-database-manage-azure-ssms.md)。
 * 如需了解 SQL Database 服務的相關資訊，請參閱[什麼是 SQL Database](sql-database-technical-overview.md)。 
 * 如需 Azure 資料庫伺服器和資料庫功能的相關資訊，請參閱[功能](sql-database-features.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

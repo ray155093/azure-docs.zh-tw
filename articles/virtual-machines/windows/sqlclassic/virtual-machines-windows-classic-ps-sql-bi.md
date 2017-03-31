@@ -16,8 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 01/11/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 4f7527119f0e0955303858a52b638f6dbf483267
-ms.openlocfilehash: 60bd5469b4d22bac87e8794bcb6e1d3713645415
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 90e443fe69afdda8786dd00ffb32e9680a476cd4
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -97,7 +98,7 @@ Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的
   * 預設磁碟機 **C**: 的磁碟機的快取原則不是使用資料的最佳選項。
   * **D**: 磁碟機是主要用於分頁檔的暫存磁碟機。 **D**: 磁碟機不會永久保存，並且不會儲存在 blob 儲存體中。 管理工作 (例如變更虛擬機器大小) 會重設 **D**: 磁碟機。 建議您**不要**將 **D**: 磁碟機用於資料庫檔案，包括 tempdb。
     
-    如需建立及連接磁碟的詳細資訊，請參閱 [如何將資料磁碟連接至虛擬機器](../../virtual-machines-windows-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+    如需建立及連接磁碟的詳細資訊，請參閱 [如何將資料磁碟連接至虛擬機器](../classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 * 停止或解除安裝您不打算使用的服務。 例如，如果虛擬機器僅用於 Reporting Services，請停止或解除安裝 Analysis Services 和 SQL Server Integration Services。 下圖是預設會啟動的服務的範例。
   
     ![SQL Server 服務](./media/virtual-machines-windows-classic-ps-sql-bi/IC650107.gif)
@@ -138,7 +139,7 @@ Analysis Services、Reporting Services、SQL Server Database Engine 和資料來
 SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式安裝，但是未設定報表伺服器。 本小節中的步驟會設定 Reporting Services 報表伺服器。 如需有關詳細設定 Reporting Services 原生模式的詳細資訊，請參閱 [安裝 Reporting Services 原生模式報表伺服器 (SSRS)](https://msdn.microsoft.com/library/ms143711.aspx)。
 
 > [!NOTE]
-> 如需使用 Windows PowerShell 指令碼來設定報表伺服器的類似內容，請參閱 [使用 PowerShell 建立具有原生模式報表伺服器的 Azure VM](virtual-machines-windows-classic-ps-sql-report.md)。
+> 如需使用 Windows PowerShell 指令碼來設定報表伺服器的類似內容，請參閱 [使用 PowerShell 建立具有原生模式報表伺服器的 Azure VM](../classic/ps-sql-report.md)。
 
 ### <a name="connect-to-the-virtual-machine-and-start-the-reporting-services-configuration-manager"></a>連接到虛擬機器並啟動 Reporting Services 組態管理員
 連接到 Azure 虛擬機器有兩個常見的工作流程：
@@ -242,7 +243,7 @@ SQL Server 的虛擬機器資源庫映像包含 Reporting Services 原生模式�
   
   1. 在您的本機電腦上建立包含報表的 .VHD 硬碟機。
   2. 建立及安裝管理憑證。
-  3. 使用 Add-AzureVHD Cmdlet 將 VHD 檔案上傳至 Azure [建立及上傳 Windows Server VHD 至 Azure](../../virtual-machines-windows-classic-createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+  3. 使用 Add-AzureVHD Cmdlet 將 VHD 檔案上傳至 Azure [建立及上傳 Windows Server VHD 至 Azure](../classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
   4. 將磁碟連接至虛擬機器。
 
 ## <a name="install-other-sql-server-services-and-features"></a>安裝其他 SQL Server 服務和功能
@@ -322,7 +323,7 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。 �
 
 如需有關如何建立端點的詳細資訊，請參閱下列各項：
 
-* 建立端點：[如何設定虛擬機器的端點](../../virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+* 建立端點：[如何設定虛擬機器的端點](../classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 * SQL Server：請參閱 [在 Azure 上佈建 SQL Server 虛擬機器](../sql/virtual-machines-windows-portal-sql-server-provision.md)的＜完成在另一部電腦上使用 SQL Server Management Studio 連接到虛擬機器的組態步驟＞一節。
 
 下圖說明要在 VM 防火牆中開啟，以允許遠端存取 VM 上的功能和元件的連接埠。
@@ -334,7 +335,7 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。 �
 * [Azure 虛擬機器上的 SQL Server 概觀](../sql/virtual-machines-windows-sql-server-iaas-overview.md)
 * [虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)
 * [在 Azure 上佈建 SQL Server 虛擬機器](../sql/virtual-machines-windows-portal-sql-server-provision.md)
-* [如何將資料磁碟連接至虛擬機器](../../virtual-machines-windows-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [如何將資料磁碟連接至虛擬機器](../classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 * [將資料庫移轉至 Azure VM 上的 SQL Server](../sql/virtual-machines-windows-migrate-sql.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 * [判斷 Analysis Services 執行個體的伺服器模式](https://msdn.microsoft.com/library/gg471594.aspx)
 * [多維度模型化 (Adventure Works 教學課程)](https://technet.microsoft.com/library/ms170208.aspx)
@@ -346,10 +347,5 @@ Analysis Services 的**預設執行個體**會接聽 TCP 連接埠 **2383**。 �
 
 ### <a name="community-content"></a>社群內容
 * [使用 PowerShell 管理 Azure SQL Database](http://blogs.msdn.com/b/windowsazure/archive/2013/02/07/windows-azure-sql-database-management-with-powershell.aspx)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

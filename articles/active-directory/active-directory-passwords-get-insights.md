@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 334819e0819206d1bd928c0861b25cc59dd29fa7
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: e4e9e16c62ab1262021d1a719f5aa15d936f4843
+ms.lasthandoff: 03/28/2017
 
 
 ---
 # <a name="how-to-get-operational-insights-with-password-management-reports"></a>如何使用密碼管理報告取得作業深入解析
 > [!IMPORTANT]
-> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 >
 >
 
@@ -94,10 +94,10 @@ ms.lasthandoff: 03/10/2017
 * [**重設密碼 (自助式)**](#activity-type-reset-password-self-service) - 指出使用者已從 [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)成功重設密碼。
 * [**自助式密碼重設流程活動進度**](#activity-type-self-serve-password-reset-flow-activity-progress) - 指出使用者在密碼重設過程中經過的每個特定步驟 (例如，通過特定的密碼重設驗證關卡)。
 * [**解除鎖定使用者帳戶 (自助式)**](#activity-type-unlock-user-account-self-service) - 指出使用者已使用 [AD 帳戶解除鎖定而不重設](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-passwords-customize#allow-users-to-unlock-accounts-without-resetting-their-password)功能，成功解除鎖定 Active Directory 帳戶，而沒有從 [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)重設密碼。
-* [**使用者已註冊自助式密碼重設**](#activity-type-user-registered-for-self-service-password-reset) - 指出使用者已根據目前指定的租用戶密碼重設原則，註冊所有必要的資訊，以便能夠重設密碼。 
+* [**使用者已註冊自助式密碼重設**](#activity-type-user-registered-for-self-service-password-reset) - 指出使用者已根據目前指定的租用戶密碼重設原則，註冊所有必要的資訊，以便能夠重設密碼。
 
 ### <a name="activity-type-blocked-from-self-service-password-reset"></a>活動類型︰封鎖自助式密碼重設
-下列清單詳細說明此活動︰ 
+下列清單詳細說明此活動︰
 
 * **活動描述** - 指出使用者在 24 小時內嘗試重設密碼、使用特定的閘道或驗證電話號碼，總計 5 次以上。
 * **活動執行者** - 已受節流控制而無法執行其他重設作業的使用者。 可能是使用者或系統管理員。
@@ -107,7 +107,7 @@ ms.lasthandoff: 03/10/2017
 * **活動狀態失敗原因** - 不適用
 
 ### <a name="activity-type-change-password-self-service"></a>活動類型：變更密碼 (自助式)
-下列清單詳細說明此活動︰ 
+下列清單詳細說明此活動︰
 
 * **活動描述** – 指出使用者自願或被迫 (因為到期) 執行密碼變更。
 * **活動執行者** - 已變更密碼的使用者。 可能是使用者或系統管理員。
@@ -115,11 +115,11 @@ ms.lasthandoff: 03/10/2017
 * **允許的活動狀態**
  * _成功_ - 指出使用者已成功變更密碼
  * _失敗_ - 指出使用者變更密碼失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。
-* **活動狀態失敗原因** - 
+* **活動狀態失敗原因** -
  * _FuzzyPolicyViolationInvalidPassword_ - 使用者選取的密碼自動被禁用，因為 Microsoft 的禁用密碼偵測功能發現此密碼太普通或太弱。
 
 ### <a name="activity-type-reset-password-by-admin"></a>活動類型：重設密碼 (由系統管理員)
-下列清單詳細說明此活動︰ 
+下列清單詳細說明此活動︰
 
 * **活動描述** - 指出系統管理員從 Azure 入口網站代表使用者執行密碼重設。
 * **活動執行者** - 代表另一個使用者或系統管理員來執行密碼重設的系統管理員。 必須是全域管理員、密碼管理員、使用者管理員或技術服務管理員。
@@ -129,7 +129,7 @@ ms.lasthandoff: 03/10/2017
  * _失敗_ - 指出系統管理員變更使用者的密碼失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。
 
 ### <a name="activity-type-reset-password-self-service"></a>活動類型：重設密碼 (自助式)
-下列清單詳細說明此活動︰ 
+下列清單詳細說明此活動︰
 
 * 活動描述 - 指出使用者已從 [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)成功重設密碼。
 * **活動執行者** - 已重設密碼的使用者。 可能是使用者或系統管理員。
@@ -137,11 +137,11 @@ ms.lasthandoff: 03/10/2017
 * **允許的活動狀態**
  * _成功_ - 指出使用者已成功重設密碼
  * _失敗_ - 指出使用者重設密碼失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。
-* **活動狀態失敗原因** - 
+* **活動狀態失敗原因** -
  * _FuzzyPolicyViolationInvalidPassword_ - 系統管理員選取的密碼自動被禁用，因為 Microsoft 的禁用密碼偵測功能發現此密碼太普通或太弱。
 
 ### <a name="activity-type-self-serve-password-reset-flow-activity-progress"></a>活動類型：自助式密碼重設流程活動進度
-下列清單詳細說明此活動︰ 
+下列清單詳細說明此活動︰
 
 * **活動描述** - 指出使用者在密碼重設過程中經過的每個特定步驟 (例如，通過特定的密碼重設驗證關卡)。
 * **活動執行者** - 執行部分密碼重設流程的使用者。 可能是使用者或系統管理員。
@@ -153,7 +153,7 @@ ms.lasthandoff: 03/10/2017
  * 請參閱下表中的[所有允許的重設活動狀態原因](#allowed-values-for-details-column)
 
 ### <a name="activity-type-unlock-user-account-self-service"></a>活動類型：解除鎖定使用者帳戶 (自助式)
-下列清單詳細說明此活動︰ 
+下列清單詳細說明此活動︰
 
 * 活動描述 - 指出使用者已使用 [AD 帳戶解除鎖定而不重設](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-passwords-customize#allow-users-to-unlock-accounts-without-resetting-their-password)功能，成功解除鎖定 Active Directory 帳戶，而沒有從 [Azure AD 密碼重設入口網站](https://passwordreset.microsoftonline.com)重設密碼。
 * **活動執行者** - 已解除鎖定帳戶但未重設密碼的使用者。 可能是使用者或系統管理員。
@@ -163,13 +163,13 @@ ms.lasthandoff: 03/10/2017
  * _失敗_ - 指出使用者解除鎖定帳戶失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。
 
 ### <a name="activity-type-user-registered-for-self-service-password-reset"></a>活動類型︰使用者已註冊自助式密碼重設
-下列清單詳細說明此活動︰ 
+下列清單詳細說明此活動︰
 
-* **活動描述** - 指出使用者已根據目前指定的租用戶密碼重設原則，註冊所有必要的資訊，以便能夠重設密碼。 
+* **活動描述** - 指出使用者已根據目前指定的租用戶密碼重設原則，註冊所有必要的資訊，以便能夠重設密碼。
 * **活動執行者** - 已註冊密碼重設的使用者。 可能是使用者或系統管理員。
 * **活動目標** - 已註冊密碼重設的使用者。 可能是使用者或系統管理員。
 * **允許的活動狀態**
- * _成功_ - 指出使用者已根據目前的原則成功註冊密碼重設。 
+ * _成功_ - 指出使用者已根據目前的原則成功註冊密碼重設。
  * _失敗_ - 指出使用者註冊密碼重設失敗。 按一下此資料列可讓您查看 [活動狀態原因] 類別，以深入了解失敗發生的原因。 注意 - 這不表示使用者無法重設自己的密碼，只表示未完成註冊程序。 如果帳戶上有未驗證但正確的資料 (例如未驗證的電話號碼)，即使此電話號碼尚未驗證，仍然可用來重設密碼。 如需詳細資訊，請參閱[當使用者註冊時會發生什麼事？](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-learn-more#what-happens-when-a-user-registers)
 
 ## <a name="how-to-retrieve-password-management-events-from-the-azure-ad-reports-and-events-api"></a>如何從 Azure AD 報告和事件 API 擷取密碼管理事件
@@ -184,7 +184,7 @@ ms.lasthandoff: 03/10/2017
 * [SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent)：列出密碼重設註冊事件可用的資料行
 
 ### <a name="reporting-api-data-retrieval-limitations"></a>報告 API 資料擷取限制
-目前，Azure AD 報告和事件 API 會從**過去 30 天**內，擷取 [SsprActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent) 和 [SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent) 類型最多 **75,000 個個別事件**。 
+目前，Azure AD 報告和事件 API 會從**過去 30 天**內，擷取 [SsprActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent) 和 [SsprRegistrationActivityEvent](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprRegistrationActivityEvent) 類型最多 **75,000 個個別事件**。
 
 如果您需要擷取或儲存比這個期間更早的資料，建議將資料保存在外部資料庫，並利用 API 來查詢產生的差異。 最佳作法是在組織中啟動密碼重設註冊程序時，就開始擷取此資料，並保存在外部，然後從這一點開始持續追蹤差異。
 
@@ -300,7 +300,7 @@ ms.lasthandoff: 03/10/2017
 ## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
