@@ -19,6 +19,7 @@ ms.author: keikhara
 translationtype: Human Translation
 ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
 ms.openlocfilehash: f10236ab89339234a32abf42c42083e233ab3a52
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -45,18 +46,18 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 
 ![](media/container-service-monitoring-oms/image2.png)
 
-2. 按一下 [Install] 。 您會看到含有 OMS 版本資訊和一個 [Install Package] (安裝套件) 或 [Advanced Installation] (進階安裝) 按鈕的快顯。 按一下 [Advanced Installation] (進階安裝)，就會跳轉至 [OMS specific configuration properties] (OMS 特定組態屬性) 頁面。
+2. 按一下 [Install] 。 您會看到含有 OMS 版本資訊和一個 [Install Package]\(安裝套件) 或 [Advanced Installation]\(進階安裝) 按鈕的快顯。 按一下 [Advanced Installation]\(進階安裝)，就會跳轉至 [OMS specific configuration properties]\(OMS 特定組態屬性) 頁面。
 
 ![](media/container-service-monitoring-oms/image3.png)
 
 ![](media/container-service-monitoring-oms/image4.png)
 
 3. 這裡將要求您輸入 `wsid` (OMS 工作區識別碼) 和 `wskey` (工作區識別碼的 OMS 主索引鍵)。 若要取得 `wsid` 和 `wskey`，您必須建立在 <https://mms.microsoft.com> 建立一個 OMS 帳戶。
-請依步驟指示建立帳戶。 建立帳戶之後，您必須依序按一下 [Settings] (設定)、[Connected Sources] (連接的來源)、[Linux Servers] (Linux 伺服器)，以取得您的 `wsid` 和 `wskey`，如下所示。
+請依步驟指示建立帳戶。 建立帳戶之後，您必須依序按一下 [Settings]\(設定)、[Connected Sources]\(連接的來源)、[Linux Servers]\(Linux 伺服器)，以取得您的 `wsid` 和 `wskey`，如下所示。
 
  ![](media/container-service-monitoring-oms/image5.png)
 
-4. 選取您想要的 OMS 執行個體數目，然後按一下 [Review and Install] (檢閱並安裝) 按鈕。 一般而言，OMS 執行個體數目應等於您代理程式叢集中的 VM 數目。 適用於 Linux 的 OMS 代理程式會在其想要收集資訊的個別 VM 上安裝為獨立容器，以監視和記錄資訊。
+4. 選取您想要的 OMS 執行個體數目，然後按一下 [Review and Install]\(檢閱並安裝) 按鈕。 一般而言，OMS 執行個體數目應等於您代理程式叢集中的 VM 數目。 適用於 Linux 的 OMS 代理程式會在其想要收集資訊的個別 VM 上安裝為獨立容器，以監視和記錄資訊。
 
 ## <a name="setting-up-a-simple-oms-dashboard"></a>設定簡單的 OMS 儀表板
 
@@ -64,11 +65,11 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 
 ### <a name="oms-portal"></a>OMS 入口網站 
 
-登入 OMS 入口網站 (<https://mms.microsoft.com>)，並移至 [Solution Gallery] (方案庫)。
+登入 OMS 入口網站 (<https://mms.microsoft.com>)，並移至 [Solution Gallery]\(方案庫)。
 
 ![](media/container-service-monitoring-oms/image6.png)
 
-在 [Solution Gallery] (方案庫) 中，選取 [Containers] (容器)。
+在 [Solution Gallery]\(方案庫) 中，選取 [Containers]\(容器)。
 
 ![](media/container-service-monitoring-oms/image7.png)
 
@@ -78,7 +79,7 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 
 ### <a name="azure-portal"></a>Azure 入口網站 
 
-登入 Azure 入口網站，位址是 <https://portal.microsoft.com/>。 移至 [Marketplace]，選取 [監視 + 管理]，然後按一下 [查看全部]。 接著在搜尋中輸入 `containers` (容器)。 您會在搜尋結果中看到 "containers" (容器)。 選取 [Containers] (容器)，然後按一下 [建立]。
+登入 Azure 入口網站，位址是 <https://portal.microsoft.com/>。 移至 [Marketplace]，選取 [監視 + 管理]，然後按一下 [查看全部]。 接著在搜尋中輸入 `containers` (容器)。 您會在搜尋結果中看到 "containers" (容器)。 選取 [Containers]\(容器)，然後按一下 [建立]。
 
 ![](media/container-service-monitoring-oms/image9.png)
 
@@ -96,7 +97,7 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 
 如果您需要的已安裝 OMS 代理程式少於實際的節點數，或是您正透過新增更多 VM 來擴充 VMSS，您可以透過擴充 `msoms` 服務來達成。
 
-您可以移至 [Marathon] 或 [DC/OS UI Services] (DC/OS UI 服務) 索引標籤來擴充節點數。
+您可以移至 [Marathon] 或 [DC/OS UI Services]\(DC/OS UI 服務) 索引標籤來擴充節點數。
 
 ![](media/container-service-monitoring-oms/image12.PNG)
 
@@ -116,9 +117,4 @@ $ dcos package uninstall msoms
 ## <a name="next-steps"></a>後續步驟
 
  由於您已設定 OMS 來監視您的容器，[請檢視您的容器儀表板](../log-analytics/log-analytics-containers.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

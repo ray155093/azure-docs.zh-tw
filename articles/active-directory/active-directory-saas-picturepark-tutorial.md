@@ -81,7 +81,7 @@ ms.lasthandoff: 02/03/2017
 2. 在 [您希望使用者如何登入 Picturepark] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
    
    ![設定單一登入](./media/active-directory-saas-picturepark-tutorial/IC795059.png "設定單一登入")
-3. 在 [設定應用程式 URL] 頁面的 [Picturepark 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："http://company.picturepark.com"，然後按 [下一步]。
+3. 在 [設定應用程式 URL] 頁面的 [Picturepark 登入 URL] 文字方塊中，使用下列模式輸入您的 URL： " *http://company.picturepark.com* " ，然後按 [下一步]。
    
    ![設定應用程式 URL](./media/active-directory-saas-picturepark-tutorial/IC795060.png "設定應用程式 URL")
 4. 在 [設定在 Picturepark 單一登入] 頁面上，按一下 [下載憑證] 來下載您的憑證，然後將憑證檔案儲存在您的本機電腦中。

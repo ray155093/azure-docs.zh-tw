@@ -17,6 +17,7 @@ ms.author: asmalser-msft
 translationtype: Human Translation
 ms.sourcegitcommit: a3c339de98250f43c71f7dd9706888c6715ca2ef
 ms.openlocfilehash: e39f2202e83cdf66b85f1cc02a9320ec9e31472e
+ms.lasthandoff: 02/08/2017
 
 ---
 
@@ -54,7 +55,7 @@ Azure Active Directory 會使用稱為「指派」的概念，來判斷哪些使
 
 本節會引導您將 Azure AD 連接至 Slack 的使用者帳戶佈建 API，以及根據 Azure AD 中的使用者和群組指派，設定佈建服務以在 Slack 中建立、更新和停用指派的使用者帳戶。
 
-**提示︰**您也可以選擇啟用 Slack 的 SAML 型單一登入，遵循 (Azure 入口網站) 中提供的指示 [https://portal.azure.com]。 可以獨立設定自動佈建的單一登入，雖然這兩個功能彼此補充。
+**提示︰**您也可以選擇啟用 Slack 的 SAML 型單一登入，遵循 (Azure 入口網站) 中提供的指示 [ https://portal.azure.com ] 。 可以獨立設定自動佈建的單一登入，雖然這兩個功能彼此補充。
 
 
 ### <a name="to-configure-automatic-user-account-provisioning-to-slack-in-azure-ad"></a>若要在 Azure AD 中設定自動使用者帳戶佈建至 Slack︰
@@ -113,9 +114,4 @@ Azure Active Directory 會使用稱為「指派」的概念，來判斷哪些使
 
 * [管理企業應用程式的使用者帳戶佈建](active-directory-enterprise-apps-manage-provisioning.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
