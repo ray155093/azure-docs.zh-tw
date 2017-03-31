@@ -17,6 +17,7 @@ ms.author: gwallace
 translationtype: Human Translation
 ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
 ms.openlocfilehash: 90b7e2f7f5327684f173bd7e10f21e65bea8fbe7
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -61,7 +62,7 @@ ms.openlocfilehash: 90b7e2f7f5327684f173bd7e10f21e65bea8fbe7
 
 ### <a name="step-1"></a>步驟 1
 
-瀏覽至 Azure 入口網站中現有的應用程式閘道 (https://portal.azure.com)。 選取 [後端集區]，按一下 [新增]
+瀏覽至 Azure 入口網站中現有的應用程式閘道 ( https://portal.azure.com ) 。 選取 [後端集區]，按一下 [新增]
 
 ![新增後端集區][7]
 
@@ -108,7 +109,7 @@ ms.openlocfilehash: 90b7e2f7f5327684f173bd7e10f21e65bea8fbe7
 
 ### <a name="step-1"></a>步驟 1
 
-瀏覽至 Azure 入口網站中現有的應用程式閘道 (https://portal.azure.com)。 選取 [規則]，選擇現有的預設規則 **rule1**，然後按一下 [編輯]。
+瀏覽至 Azure 入口網站中現有的應用程式閘道 ( https://portal.azure.com ) 。 選取 [規則]，選擇現有的預設規則 **rule1**，然後按一下 [編輯]。
 
 ### <a name="step-2"></a>步驟 2
 
@@ -118,7 +119,7 @@ ms.openlocfilehash: 90b7e2f7f5327684f173bd7e10f21e65bea8fbe7
 
 ### <a name="step-3"></a>步驟 3
 
-按一下 [基本規則] 以建立第&2; 個規則。 以第二個接聽程式和第二個後端集區填寫表單，按一下 [確定] 以儲存。
+按一下 [基本規則] 以建立第 2 個規則。 以第二個接聽程式和第二個後端集區填寫表單，按一下 [確定] 以儲存。
 
 ![新增基本規則刀鋒視窗][10]
 
@@ -140,9 +141,4 @@ ms.openlocfilehash: 90b7e2f7f5327684f173bd7e10f21e65bea8fbe7
 [9]: ./media/application-gateway-create-multisite-portal/figure9.png
 [10]: ./media/application-gateway-create-multisite-portal/figure10.png
 [multisite]: ./media/application-gateway-create-multisite-portal/multisite.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 
