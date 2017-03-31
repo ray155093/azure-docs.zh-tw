@@ -17,6 +17,7 @@ ms.author: rclaus
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 3c4bd01781b256542650add05faf5ec508be61ef
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -28,9 +29,9 @@ Azure 預設會提供單一虛擬網路內所含之所有 VM 的 DNS 名稱解�
 
 您使用的名稱解析類型取決於 VM 和角色執行個體如何彼此通訊。
 
-**The following table illustrates scenarios and corresponding name resolution solutions:**
+**下表說明各種案例和對應的名稱解析方案：**
 
-| **Scenario** | **Solution** | **尾碼** |
+| **案例** | **方案** | **尾碼** |
 | --- | --- | --- |
 | 位於相同虛擬網路中的角色執行個體或 VM 之間的名稱解析 |[Azure 提供的名稱解析](#azure-provided-name-resolution) |主機名稱或 FQDN |
 | 位於不同虛擬網路中的角色執行個體或 VM 之間的名稱解析 |客戶管理的 DNS 伺服器將 vnet 之間的查詢轉送供 Azure (DNS Proxy) 解析。  請參閱 [使用專屬 DNS 伺服器的名稱解析](#name-resolution-using-your-own-dns-server) |僅 FQDN |
@@ -134,10 +135,5 @@ DNS 轉送也實現 vnet 之間的 DNS 解析，並使內部部署電腦能夠�
 > 為了達到最佳效能，使用 Azure VM 做為 DNS 伺服器時，應該停用 IPv6 且 [執行個體層級公用 IP](../virtual-network/virtual-networks-instance-level-public-ip.md) 應該指派給每個 DNS 伺服器 VM。  
 > 
 > 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
