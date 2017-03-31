@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 12/16/2016
 ms.author: amsriva
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: cacc20da7945421f31ce69a9c0b34056c009d9e7
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: d61e50b7440dcd107df3e5dd085a36b149779553
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -34,9 +34,6 @@ ms.lasthandoff: 03/17/2017
 * VM 擴展集的後端 VM 或執行個體都沒有回應預設的健全狀況探查。
 * 無效或不適當的自訂健全狀況探查組態。
 * 要求逾期，或使用者要求的連線問題。
-
-> [!note]
-> 應用程式閘道會保留傳入的主機標頭，並將相同的標頭傳送至後端。 如果後端需要其他的標頭，這個標頭就沒有作用。 同樣地，如果後端為多租用戶，且已啟用端對端 SSL，則後端需要 SNI 擴充中有伺服器名稱。 在端對端 SSL 案例中，應用程式閘道目前不會在後端要求中傳送 SNI 標頭，因為這會造成探查和資料路徑的問題。
 
 ## <a name="empty-backendaddresspool"></a>空白的 BackendAddressPool
 
@@ -109,7 +106,7 @@ BackendAddressPoolsText：
 * 如果 BackendHttpSetting 指定了 80 以外的連接埠，則應將預設網站設定為在該連接埠上進行接聽。
 * 對 http://127.0.0.1:port 的呼叫應該會傳回 HTTP 結果碼 200。 這應該會在 30 秒逾時期間內傳回。
 * 確定設定的連接埠已開啟，而且沒有任何防火牆或 Azure 網路安全性群組會在所設定的連接埠上封鎖連入或連出流量。
-* 如果Azure 傳統 VM 或雲端服務會與 FQDN 或公用 IP 搭配使用，請確認對應的 [端點](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fapplication-gateway%2ftoc.json) 已開啟。
+* 如果Azure 傳統 VM 或雲端服務會與 FQDN 或公用 IP 搭配使用，請確認對應的 [端點](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fapplication-gateway%2ftoc.json) 已開啟。
 * 如果 VM 是透過 Azure Resource Manager 所設定且位於應用程式閘道部署所在的 VNet 外部，就必須將 [網路安全性群組](../virtual-network/virtual-networks-nsg.md) 設定為允許在所需的連接埠上進行存取。
 
 ## <a name="problems-with-custom-health-probe"></a>自訂健全狀況探查的問題

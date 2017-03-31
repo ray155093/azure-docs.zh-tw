@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: b829f21dbc212cd951f5e417ad56f7eb724a9d56
-ms.openlocfilehash: 42d64d58fab19fc564fbcbf19f464bce8cf46eb7
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 04e078d662c861d5c587c571a42478603e291587
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -50,7 +50,8 @@ ms.lasthandoff: 01/24/2017
 
 **使用 SQLLine**
 
-1. 使用 SSH 連線到叢集。 如需指示，請根據您用戶端電腦的作業系統而定，來參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與 Linux 型的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 或[從 Windows 在 HDInsight 上搭配使用 SSH 與 Linux 型的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)。
+1. 使用 SSH 連線到叢集。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+
 2. 從 SSH，執行下列命令以執行 SQLLine：
 
         cd /usr/hdp/2.2.9.1-7/phoenix/bin

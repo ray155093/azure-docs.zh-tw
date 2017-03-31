@@ -15,15 +15,16 @@ ms.workload: iaas-sql-server
 ms.date: 01/31/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: c6c716c4dce810f190ed66d633524472ba665256
-ms.openlocfilehash: 60d74f1a8dff6441aa461cdc740b5aadc6b77be3
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: edc013dee657cbda7c0d9020b6ff4ccda0580dcd
+ms.lasthandoff: 03/25/2017
 
 
 ---
 # <a name="connect-to-a-sql-server-virtual-machine-on-azure-classic-deployment"></a>連線到 Azure 上的 SQL Server 虛擬機器 (傳統部署)
 > [!div class="op_single_selector"]
 > * [資源管理員](../sql/virtual-machines-windows-sql-connect.md)
-> * [傳統](virtual-machines-windows-classic-sql-connect.md)
+> * [傳統](../classic/sql-connect.md)
 > 
 > 
 
@@ -46,7 +47,7 @@ ms.openlocfilehash: 60d74f1a8dff6441aa461cdc740b5aadc6b77be3
 > 
 
 ### <a name="connect-to-sql-server-in-the-same-cloud-service"></a>連接相同雲端服務中的 SQL Server
-可以在相同的雲端服務中建立多個虛擬機器。 若要了解此虛擬機器案例，請參閱 [如何連接虛擬機器與虛擬網路或雲端服務](../../virtual-machines-windows-classic-connect-vms.md#connect-vms-in-a-standalone-cloud-service)。 此案例為當虛擬機器上的用戶端嘗試連接到在同一個雲端服務中執行的另一部虛擬機器上的 SQL Server。
+可以在相同的雲端服務中建立多個虛擬機器。 若要了解此虛擬機器案例，請參閱 [如何連接虛擬機器與虛擬網路或雲端服務](../classic/connect-vms.md#connect-vms-in-a-standalone-cloud-service)。 此案例為當虛擬機器上的用戶端嘗試連接到在同一個雲端服務中執行的另一部虛擬機器上的 SQL Server。
 
 在此案例中，您可以使用 VM **名稱** (在入口網站中也稱為**電腦名稱**或**主機名稱**) 來連接。 這是您在建立期間提供給 VM 的名稱。 例如，如果將您的 SQL VM 命名為 **mysqlvm**，則在相同雲端服務中的用戶端 VM 將可以使用下列連接字串來連接：
 
@@ -61,7 +62,7 @@ ms.openlocfilehash: 60d74f1a8dff6441aa461cdc740b5aadc6b77be3
 
     "Server=mycloudservice.cloudapp.net,57500;Integrated Security=false;User ID=<login_name>;Password=<your_password>"
 
-用戶端雖然可透過網際網路連線，但這不表示任何人都可以連接您的 SQL Server。 外部用戶端必須要有正確的使用者名稱和密碼。 為了增加安全性，請勿使用知名的 1433 連接埠做為公用虛擬機器端點。 請盡可能考慮在您的端點加入 ACL 來限制流量，只開放給您允許的用戶端。 如需有關在端點中使用 ACL 的指示，請參閱 [在端點上管理 ACL](../../virtual-machines-windows-classic-setup-endpoints.md#manage-the-acl-on-an-endpoint)。
+用戶端雖然可透過網際網路連線，但這不表示任何人都可以連接您的 SQL Server。 外部用戶端必須要有正確的使用者名稱和密碼。 為了增加安全性，請勿使用知名的 1433 連接埠做為公用虛擬機器端點。 請盡可能考慮在您的端點加入 ACL 來限制流量，只開放給您允許的用戶端。 如需有關在端點中使用 ACL 的指示，請參閱 [在端點上管理 ACL](../classic/setup-endpoints.md#manage-the-acl-on-an-endpoint)。
 
 > [!NOTE]
 > 請務必注意，當您使用此技術與 SQL Server 通訊時，所有從 Azure 資料中心傳出的資料都會以一般 [輸出資料傳輸價格](https://azure.microsoft.com/pricing/details/data-transfers/)計費。
@@ -101,17 +102,12 @@ ms.openlocfilehash: 60d74f1a8dff6441aa461cdc740b5aadc6b77be3
 [!INCLUDE [Connect to SQL Server in a VM Classic Steps](../../../../includes/virtual-machines-sql-server-connection-steps-classic.md)]
 
 ## <a name="next-steps"></a>後續步驟
-如果您計畫針對高可用性和嚴重損壞修復使用 AlwaysOn 可用性群組，您應該考慮實作接聽程式。 資料庫用戶端會連接至接聽程式，而非直接連接其中一個 SQL Server 執行個體。 接聽程式路由傳送用戶端至可用性群組中的主要複本。 如需詳細資訊，請參閱 [設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)。
+如果您計畫針對高可用性和嚴重損壞修復使用 AlwaysOn 可用性群組，您應該考慮實作接聽程式。 資料庫用戶端會連接至接聽程式，而非直接連接其中一個 SQL Server 執行個體。 接聽程式路由傳送用戶端至可用性群組中的主要複本。 如需詳細資訊，請參閱 [設定 Azure 中 AlwaysOn 可用性群組的 ILB 接聽程式](../classic/ps-sql-int-listener.md)。
 
 請務必檢閱在 Azure 虛擬機器上執行之 SQL Server 的所有安全性最佳做法。 如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 安全性考量](../sql/virtual-machines-windows-sql-security.md)。
 
 [探索學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-azure-vm/) ：Azure 虛擬機器上的 SQL Server。 
 
 如需有關在 Azure VM 中執行 SQL Server 的其他主題，請參閱 [Azure 虛擬機器上的 SQL Server](../sql/virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

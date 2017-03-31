@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 808343035c2554a3cd01cf3fe0ef6ebba2c54e23
-ms.openlocfilehash: 5b4443a8746bc8c88e2c5b58068c200aafc4beea
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 53e053fe12ea6753b6a47443ab91948c9a753a17
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -34,7 +35,7 @@ ms.openlocfilehash: 5b4443a8746bc8c88e2c5b58068c200aafc4beea
 首先，您需要將資料磁碟連接到虛擬機器。 
 
 * 若要使用入口網站，請參閱[如何在 Azure 入口網站連接資料磁碟](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* 若要使用傳統入口網站，請參閱[如何將資料磁碟連接至 Windows 虛擬機器](virtual-machines-windows-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 
+* 若要使用傳統入口網站，請參閱[如何將資料磁碟連接至 Windows 虛擬機器](windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 
 
 ## <a name="temporarily-move-pagefilesys-to-c-drive"></a>暫時將 pagefile.sys 移到 C 磁碟機
 1. 連接至虛擬機器。 
@@ -69,10 +70,5 @@ ms.openlocfilehash: 5b4443a8746bc8c88e2c5b58068c200aafc4beea
 
 ## <a name="next-steps"></a>後續步驟
 * 您可以[連接其他資料磁碟](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)來增加虛擬機器可以使用的儲存體。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

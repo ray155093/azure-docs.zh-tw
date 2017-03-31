@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/27/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 51338924f5c8eff4234c7d57f7efc0619316bb38
-ms.openlocfilehash: 157a5130755f2092d044f3361e4fb5bc3a7a1053
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 7891fbd326340ed102f885e84993ef987e044023
+ms.lasthandoff: 03/25/2017
 
 ---
 
@@ -29,7 +29,7 @@ ms.lasthandoff: 02/28/2017
 針對雲端服務背景工作角色設定條件，以觸發相應縮小或相應放大作業。 適用於角色的條件可以 CPU、磁碟或角色的網路負載為根據。 您也可以根據訊息佇列或一些與您訂用帳戶相關聯的其他 Azure 資源的計量來設定條件。
 
 > [!NOTE]
-> 本文著重於雲端服務 web 和背景工作角色。 當您直接建立虛擬機器 (傳統) 時，它會裝載於雲端服務中。 如果要調整標準虛擬機器，您可以將它與[可用性設定組](../virtual-machines/virtual-machines-windows-classic-configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)產生關聯，還可以手動開啟或關閉它們。
+> 本文著重於雲端服務 web 和背景工作角色。 當您直接建立虛擬機器 (傳統) 時，它會裝載於雲端服務中。 如果要調整標準虛擬機器，您可以將它與[可用性設定組](../virtual-machines/windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)產生關聯，還可以手動開啟或關閉它們。
 
 ## <a name="considerations"></a>考量
 在設定應用程式的調整之前，您應該先考量下列資訊：

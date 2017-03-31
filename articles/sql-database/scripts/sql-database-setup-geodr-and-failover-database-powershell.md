@@ -17,9 +17,9 @@ ms.workload: database
 ms.date: 03/07/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: f350e96abfa5afcaf9eb9694194918ddcdcb9e2b
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: bae3a92d861570a67d3d1af79822ff21b9c748af
+ms.lasthandoff: 03/30/2017
 
 ---
 
@@ -27,7 +27,7 @@ ms.lasthandoff: 03/10/2017
 
 此 PowerShell 指令碼範例會為單一資料庫設定作用中異地複寫，並將其容錯移轉到次要複本。
 
-在執行這個指令碼之前，請確定您已使用 `Add-AzureRmAccount` Cmdlet 建立與 Azure 的連線。
+[!INCLUDE [sample-cli-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 ## <a name="sample-scripts"></a>指令碼範例
 

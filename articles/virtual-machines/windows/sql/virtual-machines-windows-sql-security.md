@@ -16,8 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 11/15/2016
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 7402249aa87ffe985ae13f28a701e22af3afd450
-ms.openlocfilehash: 12df603e22c8c735bf5c3f892575e79725f7313e
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 9fc96d70592bd55685ebbf1b80f6017b74f58925
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -45,7 +46,7 @@ Azure 符合多種業界規範及標準，可讓您使用在虛擬機器中執�
 ## <a name="considerations-for-securing-connections-to-azure-virtual-machine"></a>保護 Azure 虛擬機器之連接的考量：
 * 請考慮使用 [Azure 虛擬網路](../../../virtual-network/virtual-networks-overview.md) 來管理虛擬機器，而不是公用 RDP 連接埠。
 * 使用 [網路安全性群組](../../../virtual-network/virtual-networks-nsg.md) (NSG) 來允許或拒絕虛擬機器的網路流量。 如果您想要使用 NSG 且已經擁有就地端點 ACL，請先移除端點 ACL。 如需有關執行這項作業的資訊，請參閱＜ [使用 PowerShell 管理端點的存取控制清單 (ACL)](../../../virtual-network/virtual-networks-acl-powershell.md)＞。
-* 使用端點時，如果虛擬機器上有任何不使用的端點，請將它們全部移除。 如需有關在端點中使用 ACL 的指示，請參閱 [在端點上管理 ACL](../../virtual-machines-windows-classic-setup-endpoints.md#manage-the-acl-on-an-endpoint)。
+* 使用端點時，如果虛擬機器上有任何不使用的端點，請將它們全部移除。 如需有關在端點中使用 ACL 的指示，請參閱 [在端點上管理 ACL](../classic/setup-endpoints.md#manage-the-acl-on-an-endpoint)。
 * 針對 Azure 虛擬機器中的 SQL Server Database Engine 執行個體，啟用加密的連接選項。 使用簽署的憑證設定 SQL Server 執行個體。 如需詳細資訊，請參閱[啟用 Database Engine 的加密連接](https://msdn.microsoft.com/library/ms191192.aspx)和[連接字串語法](https://msdn.microsoft.com/library/ms254500.aspx)。
 * 如果應該只從特定的網路存取您的虛擬機器，請使用 Windows 防火牆來限制存取特定的 IP 位址或網路子網路。
 
@@ -53,10 +54,5 @@ Azure 符合多種業界規範及標準，可讓您使用在虛擬機器中執�
 如果您也想了解關於效能的最佳作法，請參閱 [Azure 虛擬機器中 SQL Server 的效能最佳作法](virtual-machines-windows-sql-performance.md)。
 
 如需在 Azure VM 中執行 SQL Server 的其他相關主題，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

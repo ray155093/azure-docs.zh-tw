@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 110f3aa9ce4848c9350ea2e560205aa762decf7a
-ms.openlocfilehash: 450bf3c23eecc356ad21c7f8ed07ca99619c17b7
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 722fc88763fb5c9b79008706c9352a9bc8c8eaa7
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -48,11 +48,7 @@ ms.lasthandoff: 02/21/2017
 
     如需有關安裝 Azure PowerShell 的資訊，請參閱[開始使用 Azure PowerShell (英文)](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)。
 
-    如需使用 SSH 和 SCP 搭配 HDInsight 的詳細資訊，請參閱下列文件：
-  
-    * [從 Linux、OS X、Unix 和 Bash on Windows 10 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
-
-    * [從 Windows 在 HDInsight 上搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+    如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 ## <a name="create-the-project"></a>建立專案
 

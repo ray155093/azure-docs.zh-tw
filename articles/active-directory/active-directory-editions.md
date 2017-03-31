@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: b875c83ba7d87a572e78625e4038840aadcf9c85
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: e5a33f58dfb07b82d4acab533d68135d8ed6a446
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -125,7 +125,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 | 免費版 | 基本版 | Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 |:---:|:---:|:---:|:---:|
-| 每位使用者&10; 個應用程式 (1) |每位使用者&10; 個應用程式 (1) |沒有限制 (2) |每位使用者&10; 個應用程式 (1) |
+| 每位使用者 10 個應用程式 (1) |每位使用者 10 個應用程式 (1) |沒有限制 (2) |每位使用者 10 個應用程式 (1) |
 
 1. Azure AD Free 和 Azure AD Basic 的使用者可使用單一登入功能存取最多 10 個應用程式。
 2. 藉由使用應用程式庫功能表中提供的範本，自助整合任何支援 SAML、SCIM 或表單型驗證的應用程式。 如需詳細資訊，請參閱 [設定對不在 Azure Active Directory 應用程式庫中的應用程式的單一登入](active-directory-saas-custom-apps.md)。
@@ -145,7 +145,7 @@ Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比
 
 **其他詳細資訊：**
 
-* [如何更新自己的密碼](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)
+* [如何更新自己的密碼](active-directory-passwords-update-your-own-password.md#reset-your-password)
 
 #### <a name="connect--sync-engine-that-extends-on-premises-directories-to-azure-active-directory"></a>Connect (可將內部部署目錄延伸至 Azure Active Directory 的同步處理引擎)
 **類型：** 常用功能

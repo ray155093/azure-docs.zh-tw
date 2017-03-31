@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 10/27/2016
 ms.author: sumuth
 translationtype: Human Translation
-ms.sourcegitcommit: 4fc33ba185122496661f7bc49d14f7522d6ee522
-ms.openlocfilehash: 44bb69c53eb5fea6d3e27f17eb6c690df7684bda
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 5bff7fa34fd8ce14a35018dfd3c13b9ca2019f2e
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: 44bb69c53eb5fea6d3e27f17eb6c690df7684bda
 * [ClearDB Shared MySQL 資料庫](/marketplace/partners/cleardb/databases/)
 * [ClearDB MySQL Premium 叢集](/marketplace/partners/cleardb-clusters/cluster/)
 * [Azure VM 上執行的 MySQL 叢集](https://github.com/azure/azure-quickstart-templates/tree/master/mysql-replication)
-* [Azure VM 上執行的 MySQL 單一執行個體](virtual-machines/virtual-machines-windows-classic-mysql-2008r2.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [Azure VM 上執行的 MySQL 單一執行個體](virtual-machines/windows/classic/mysql-2008r2.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ClearDB 是 MySQL 代管服務，會為您管理 MySQL 基礎結構。 在 Azure 虛擬機器上執行自己的 MySQL 叢集或資料庫時，您必須設定 MySQL 伺服器，並使用修補程式讓它保持更新。
 
@@ -47,7 +48,7 @@ ClearDB 是 MySQL 代管服務，會為您管理 MySQL 基礎結構。 在 Azure
 預設資料庫選項是 Titan，也就是 3.50 元美金。 建立資料庫時我們不會顯示成本，您可能會錯誤地購買您不想要的資料庫。 我們正在設法改善此情況，但在那之前，您必須檢查對 Web 應用程式和資料庫所選取的定價層，之後才按一下 [建立]  並開始部署資源。
 
 ## <a name="i-am-running-mysql-on-my-own-azure-virtual-machine-can-i-connect-my-azure-web-app-to-my-database"></a>我在自己的 Azure 虛擬機器上執行 MySQL。 可以將我的 Azure Web 應用程式連接到我的資料庫嗎？
-是。 只要您的 Azure VM 已將遠端存取權提供給 Web 應用程式，Web 應用程式就能連線到您的資料庫。 如需詳細資訊，請參閱 [在虛擬機器上安裝 MySQL](virtual-machines/virtual-machines-windows-classic-mysql-2008r2.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+是。 只要您的 Azure VM 已將遠端存取權提供給 Web 應用程式，Web 應用程式就能連線到您的資料庫。 如需詳細資訊，請參閱 [在虛擬機器上安裝 MySQL](virtual-machines/windows/classic/mysql-2008r2.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 ## <a name="in-which-countries-are-cleardb-premium-mysql-clusters-supported"></a>支援 ClearDB Premium MySQL 叢集的國家 (地區)有哪些？
 [ClearDB Premium MySQL 叢集](/marketplace/partners/cleardb-clusters/cluster/) 。
@@ -104,10 +105,5 @@ Azure Marketplace 無法供在亞塞拜然、克羅埃西亞、挪威或波多�
 
 ## <a name="more-information"></a>詳細資訊
 [Azure Marketplace 常見問題集](/marketplace/faq/)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

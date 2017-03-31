@@ -5,20 +5,17 @@
 ## [建立 DB - 入口網站](sql-database-get-started-portal.md)
 ## [建立 DB - Azure CLI](sql-database-get-started-cli.md)
 ## [建立 DB - PowerShell](sql-database-get-started-powershell.md)
-## 連線
+## 管理
 ### [SSMS](sql-database-connect-query-ssms.md)
 ### [VS 程式碼](sql-database-connect-query-vscode.md)
+## 連線
 ### [C#](sql-database-connect-query-dotnet.md)
 # 範例
 ## [Azure CLI](sql-database-cli-samples.md)
 ## [PowerShell](sql-database-powershell-samples.md)
 # 教學課程
-## Access
-### [SQL Server](sql-database-control-access-sql-authentication-get-started.md)
-### [Azure AD](sql-database-control-access-aad-authentication-get-started.md)
-## 復原
-### [入口網站](sql-database-get-started-backup-recovery-portal.md)
-### [PowerShell](sql-database-get-started-backup-recovery-powershell.md)
+## [設計資料庫](sql-database-design-first-database.md)
+
 # 概念
 ## 資料庫和伺服器
 ### [資料庫](sql-database-overview.md)
@@ -110,6 +107,9 @@
 ### [PowerShell](sql-database-elastic-pool-manage-powershell.md)
 ### [Transact-SQL](sql-database-elastic-pool-manage-tsql.md)
 ### [C#](sql-database-elastic-pool-manage-csharp.md)
+## DB 存取權 
+### [SQL Server](sql-database-control-access-sql-authentication-get-started.md)
+### [Azure AD](sql-database-control-access-aad-authentication-get-started.md)
 ## 保護資料
 ### [Azure AD 驗證](sql-database-aad-authentication-configure.md)
 ### [稽核](sql-database-auditing-portal.md)
@@ -117,11 +117,13 @@
 ### [加密 - 憑證存放區](sql-database-always-encrypted.md)
 ### [加密 - 金鑰保存庫](sql-database-always-encrypted-azure-key-vault.md)
 ### [設定遮罩](sql-database-dynamic-data-masking-get-started-portal.md)
-## 備份與還原
-### [還原 - 入口網站](sql-database-restore-database-portal.md)
+## 復原
+### [入口網站](sql-database-get-started-backup-recovery-portal.md)
+### [PowerShell](sql-database-get-started-backup-recovery-powershell.md)
+### [單一資料表](sql-database-cloud-migrate-restore-single-table-azure-backup.md)
+## 保留
 ### [保留期限 - 入口網站](sql-database-manage-long-term-backup-retention-portal.md)
 ### [保留期限 - PowerShell](sql-database-manage-long-term-backup-retention-powershell.md)
-### [復原單一資料表](sql-database-cloud-migrate-restore-single-table-azure-backup.md)
 ## 地理複寫資料
 ### [入口網站](sql-database-geo-replication-portal.md)
 ### [T-SQL - 設定](sql-database-geo-replication-transact-sql.md)

@@ -10,16 +10,16 @@ tags: azure-service-management
 ms.assetid: 
 ms.service: sql-database
 ms.custom: sample
-ms.devlang: CLI
+ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 03/16/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: a9ee545280d21744a2e91399c80ad1945bac5995
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 2e65b7a5c44c240c1bc7dea8119c821a7bca2120
+ms.lasthandoff: 03/30/2017
 
 ---
 
@@ -27,13 +27,11 @@ ms.lasthandoff: 03/17/2017
 
 此範例 CLI 指令碼會建立 Azure SQL Database 並設定伺服器層級防火牆規則。 成功執行指令碼後，即可從所有 Azure 服務和所設定的 IP 位址存取 SQL Database。 
 
-您可以視需要使用 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)中的指示來安裝 Azure CLI，然後執行 `az login` 來建立與 Azure 的連線。
-
-這個範例適用於 Bash 殼層。 如需在 Windows 上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../../virtual-machines/virtual-machines-windows-cli-options.md)。
+[!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-azurecli[主要](../../../cli_scripts/sql-database/create-and-configure-database/create-and-configure-database.sh "建立 SQL Database")]
+[!code-azurecli[主要](../../../cli_scripts/sql-database/create-and-configure-database/create-and-configure-database.sh?highlight=9-10 "建立 SQL Database")]
 
 ## <a name="clean-up-deployment"></a>清除部署
 

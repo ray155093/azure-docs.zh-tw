@@ -17,9 +17,9 @@ ms.workload: data-management
 wms.date: 03/06/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 4307797b3961d8efef4045590e340268f0ad226d
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: ab637f9910523cc8d8967dd1507dbcfad9f7ae88
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -61,7 +61,7 @@ ms.lasthandoff: 03/10/2017
 一旦決定最低服務層之後，接下來要決定資料庫的效能層級 (DTU 數目)。 標準 S2 和 S3 效能層級通常是不錯的起點。 而對於具有高 CPU 或 IO 需求的資料庫，高階效能層級才是正確的起點。 比起 [標準] 效能層級，[高階] 提供更多的 CPU 以及多了 10 倍的 IO。
 
 ## <a name="single-database-service-tiers-and-performance-levels"></a>單一資料庫服務層和效能等級
-若為單一資料庫，每個服務層內會有多個效能等級。 您可以使用 [Azure 入口網站](sql-database-manage-single-databases-portal.md)、[PowerShell](sql-database-manage-single-databases-powershell.md)、[Transact-SQL](sql-database-manage-single-databases-tsql.md)、C# 和 REST API，有彈性地選擇最符合工作負載需求的層級。 
+若為單一資料庫，每個服務層內會有多個效能等級。 您可以使用 [Azure 入口網站](sql-database-manage-single-databases-portal.md)、[PowerShell](scripts/sql-database-monitor-and-scale-database-powershell.md)、[Transact-SQL](sql-database-manage-single-databases-tsql.md)、C# 和 REST API，有彈性地選擇最符合工作負載需求的層級。 
 
 無論裝載的資料庫數目，您的資料庫都保證會有一組資源，且您資料庫的預期效能特性不會受到影響。
 
@@ -73,7 +73,7 @@ ms.lasthandoff: 03/10/2017
 
 ## <a name="scaling-up-or-scaling-down-a-single-database"></a>相應放大或相應縮小單一資料庫
 
-一開始挑選服務層和效能層級後，您可以根據實際經驗，動態放大或縮小單一資料庫。 如果您需要相應增加或相應減少，使用 [Azure 入口網站](sql-database-manage-single-databases-portal.md)、[PowerShell](sql-database-manage-single-databases-powershell.md)、[Transact-SQL](sql-database-manage-single-databases-tsql.md)、C# 和 REST API 即可輕鬆變更資料庫層級。 
+一開始挑選服務層和效能層級後，您可以根據實際經驗，動態放大或縮小單一資料庫。 如果您需要相應增加或相應減少，使用 [Azure 入口網站](sql-database-manage-single-databases-portal.md)、[PowerShell](scripts/sql-database-monitor-and-scale-database-powershell.md)、[Transact-SQL](sql-database-manage-single-databases-tsql.md)、C# 和 REST API 即可輕鬆變更資料庫層級。 
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-dynamically-scale-up-or-scale-down/player]
 >
@@ -89,7 +89,7 @@ ms.lasthandoff: 03/10/2017
 * 完成變更之前，不會將新屬性套用至資料庫。
 
 > [!IMPORTANT]
-> 如需詳細步驟，請參閱[在 Azure 入口網站中管理單一資料庫](sql-database-manage-single-databases-portal.md)、[使用 Powershell 管理單一資料庫](sql-database-manage-single-databases-powershell.md)或[使用 Transact-SQL 管理單一資料庫](sql-database-manage-single-databases-tsql.md)。
+> 如需詳細步驟，請參閱[在 Azure 入口網站中管理單一資料庫](sql-database-manage-single-databases-portal.md)、[使用 Powershell 管理單一資料庫](scripts/sql-database-monitor-and-scale-database-powershell.md)或[使用 Transact-SQL 管理單一資料庫](sql-database-manage-single-databases-tsql.md)。
 >
 
 ## <a name="elastic-pool-service-tiers-and-performance-in-edtus"></a>eDTU 中的彈性集區服務層和效能
@@ -106,10 +106,10 @@ ms.lasthandoff: 03/10/2017
 
 一開始挑選服務層和效能層級後，您可以根據實際經驗，動態放大或縮小彈性集區。 
 
-* 每個資料庫的最小 eDTU 數或每個資料庫的最大 eDTU 數變更作業通常在&5; 分鐘內即可完成。
+* 每個資料庫的最小 eDTU 數或每個資料庫的最大 eDTU 數變更作業通常在 5 分鐘內即可完成。
 * 變更集區大小的時間 (eDTUs) 取決於集區中所有資料庫的合併大小。 變更作業平均每 100 GB 會在 90 分鐘以內完成。 舉例來說，如果集區中所有資料庫的總空間為 200 GB，則每集區變更集區 eDTU 的預期延遲時間會少於 3 小時。
 
-如需詳細步驟，請參閱[在 Azure 入口網站中管理彈性集區](sql-database-elastic-pool-manage-portal.md)、[使用 PowerShell 管理彈性集區](sql-database-elastic-pool-manage-powershell.md)、[使用 Transact-SQL 管理彈性集區](sql-database-elastic-pool-manage-tsql.md)或[使用 C# 管理彈性集區](sql-database-elastic-pool-manage-csharp.md)。
+如需詳細步驟，請參閱[在 Azure 入口網站中管理彈性集區](sql-database-elastic-pool-manage-portal.md)、[使用 PowerShell 管理彈性集區](scripts/sql-database-monitor-and-scale-pool-powershell.md)、[使用 Transact-SQL 管理彈性集區](sql-database-elastic-pool-manage-tsql.md)或[使用 C# 管理彈性集區](sql-database-elastic-pool-manage-csharp.md)。
 
 ## <a name="creating-or-upgrading-to-4tb"></a>建立或升級至 4 TB
 

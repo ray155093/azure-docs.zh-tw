@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 03/22/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: 6f5a94588e20e62775ffddea0d711bb01e3db4ef
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 032beeb624fb86450e051a9486baf4d04c632da1
+ms.lasthandoff: 03/28/2017
 
 ---
 
@@ -83,7 +83,7 @@ Azure 流量管理員支援三種流量路由方法，以決定如何將網路�
 
 流量管理員會在「網際網路延遲資料表」中查閱傳入 DNS 要求的來源 IP 位址。 流量管理員會在 Azure 資料中心內選擇該 IP 位址範圍內延遲最低的可用端點，然後在 DNS 回應中傳回該端點。
 
-如[流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)中所述，流量管理員不會直接從用戶端接收 DNS 查詢。 相反地，DNS 查詢是來自用戶端已設定使用的遞迴 DNS 服務。 因此，用來判斷「最靠近」端點的 IP 位址不是用戶端的 IP 位址，而是遞迴 DNS 服務的 IP 位址。 實際上，此 IP 位址是用戶端的理想 Proxy。
+如[流量管理員的運作方式](traffic-manager-overview.md#how-traffic-manager-works)中所述，流量管理員不會直接從用戶端接收 DNS 查詢。 相反地，DNS 查詢是來自用戶端已設定使用的遞迴 DNS 服務。 因此，用來判斷「最靠近」端點的 IP 位址不是用戶端的 IP 位址，而是遞迴 DNS 服務的 IP 位址。 實際上，此 IP 位址是用戶端的理想 Proxy。
 
 
 流量管理員會定期更新「網際網路延遲資料表」，以反映全球網際網路的變動和新的 Azure 區域。 不過，隨著網際網路上即時的負載變化，應用程式效能會改變。 效能流量路由不會監視特定服務端點上的負載。 不過，如果端點變得無法使用，流量管理員就不會將它加入 DNS 查詢回應中。

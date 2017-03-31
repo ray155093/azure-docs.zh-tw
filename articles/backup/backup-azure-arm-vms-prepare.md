@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 2/7/2017
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 27d8da9df87dc5e93272be0bb6584e90971fb461
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: c059d39840ae268da647cffd2bfcb937f006356a
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -175,7 +175,7 @@ Azure 備份服務提供兩種類型的保存庫 (備份保存庫和復原服務
 如果您無法註冊虛擬機器，請參閱下列有關安裝 VM 代理程式和有關網路連線的資訊。 如果您要保護在 Azure 中建立的虛擬機器，則不一定需要下列資訊。 不過，如果您將虛擬機器移轉至 Azure，則請確定您已正確安裝 VM 代理程式，而且您的虛擬機器可以與虛擬網路通訊。
 
 ## <a name="install-the-vm-agent-on-the-virtual-machine"></a>在虛擬機器中安裝 VM 代理程式
-Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能才能運作。 如果 VM 是建立自 Azure 資源庫，則 VM 代理程式已存在於虛擬機器上。 此處提供的資訊適用於「未使用」  從 Azure 資源庫建立之 VM 的情況 (例如，從內部部署資料中心移轉的 VM)。 在這種情況下，您需要安裝 VM 代理程式才能保護虛擬機器。 深入了解 [VM 代理程式](../virtual-machines/virtual-machines-windows-classic-agents-and-extensions.md#azure-vm-agents-for-windows-and-linux)。
+Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能才能運作。 如果 VM 是建立自 Azure 資源庫，則 VM 代理程式已存在於虛擬機器上。 此處提供的資訊適用於「未使用」  從 Azure 資源庫建立之 VM 的情況 (例如，從內部部署資料中心移轉的 VM)。 在這種情況下，您需要安裝 VM 代理程式才能保護虛擬機器。 深入了解 [VM 代理程式](../virtual-machines/windows/classic/agents-and-extensions.md#azure-vm-agents-for-windows-and-linux)。
 
 如果您在備份 Azure VM 時遇到問題，請先確定已在虛擬機器上正確安裝 Azure VM 代理程式 (請參閱下表)。 下表提供適用於 Windows 和 Linux VM 之 VM 代理程式的其他資訊。
 

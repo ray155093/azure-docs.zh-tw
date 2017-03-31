@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 02/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 110f3aa9ce4848c9350ea2e560205aa762decf7a
-ms.openlocfilehash: 85f56e223210f14615f7e4e1c87e35111b238aac
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: fcca957dc365d8c38b5a08991939860c5af96813
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -46,11 +46,7 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
   > [!NOTE]
   > 您的編輯器或 IDE 可能具有處理 Maven 的特定功能，但未記載在這份文件中。 如需編輯環境功能的詳細資訊，請參閱所使用產品的文件。
   
-  * SSH 用戶端。 如需詳細資訊，請參閱下列文件之一︰
-    
-    * [從 Linux、Unix、OS X 和 Bash on Windows 10 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)。
-
-    * [從 Windows 在 HDInsight 上搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)。
+  * SSH 用戶端。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 * SCP 用戶端。 所有 Linux、Unix、OS X 系統 (包括 Bash on Windows 10) 皆提供 `scp` 命令。針對沒有 `scp` 命令的 Windows 系統，我們建議使用 PSCP。 可從 [PuTTY 下載頁面](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) 取得 PSCP。
 

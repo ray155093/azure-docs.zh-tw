@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/06/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: c6c92f0d357909921a9f3ee2f484ff355ddde0be
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: ef28ca0a43d7e07fa87d5afdd3f0428f28a310f0
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -49,7 +49,7 @@ ms.lasthandoff: 03/08/2017
 
 「Azure VM 代理程式」可管理「Azure 虛擬機器」與「Azure 網狀架構控制器」之間的互動。 VM 代理程式負責部署和管理「Azure 虛擬機器」的許多功能層面，包括執行「VM 擴充功能」。 「Azure VM 代理程式」會預先安裝在「Azure Marketplace 映像」上，並可手動安裝在支援的作業系統上。
 
-如需有關支援的作業系統和安裝指示，請參閱 [Azure 虛擬機器代理程式](virtual-machines-linux-classic-agents-and-extensions.md)。
+如需有關支援的作業系統和安裝指示，請參閱 [Azure 虛擬機器代理程式](linux/classic/agents-and-extensions.md)。
 
 ## <a name="discover-vm-extensions"></a>探索 VM 擴充功能
 

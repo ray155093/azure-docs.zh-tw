@@ -16,15 +16,15 @@ ms.topic: get-started-article
 ms.date: 03/08/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: ee46da891ab50a64c649b0370cb9231dd3448ea1
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: c2c46637ccccd01c1c3056d6a25ef605cfd68f2d
+ms.lasthandoff: 03/29/2017
 
 
 ---
 # <a name="getting-started-with-password-management"></a>開始使用密碼管理
 > [!IMPORTANT]
-> **您有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+> **您有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 >
 >
 
@@ -375,7 +375,7 @@ Azure AD Connect 應用程式事件記錄包含一組豐富的記錄資訊，即
 #### <a name="to-enable-password-writeback-using-windows-powershell"></a>使用 Windows PowerShell 啟用密碼回寫
 1. 在您的 [目錄同步處理電腦] 中，開啟新的 [提升權限的 Windows PowerShell 視窗]。
 2. 如果尚未載入模組，輸入 `import-module ADSync` 命令以將 Azure AD Connect Cmdlet 載入到您目前的工作階段。
-3. 取得您的系統中的 AAD 連接器清單，方法是執行 `Get-ADSyncConnector` Cmdlet，並將結果儲存在 `$aadConnectorName`，例如 `$connectors = Get-ADSyncConnector|where-object {$\_.name -like "\*AAD"}`
+3. 取得您的系統中的 AAD 連接器清單，方法是執行 `Get-ADSyncConnector` Cmdlet，並將結果儲存在 `$aadConnectorName`，例如 `$aadConnectorName = Get-ADSyncConnector|where-object {$_.name -like "*AAD"}`
 4. 若要取得目前連接器的回寫的目前狀態，請執行下列 Cmdlet：`Get-ADSyncAADPasswordResetConfiguration –Connector $aadConnectorName.name`
 5. 執行下列 Cmdlet，以啟用密碼回寫：`Set-ADSyncAADPasswordResetConfiguration –Connector $aadConnectorName.name –Enable $true`
 
@@ -399,9 +399,9 @@ Azure AD Connect 應用程式事件記錄包含一組豐富的記錄資訊，即
 
 #### <a name="why-do-i-need-to-do-this"></a>我為何需要這麼做？
 
-為了使密碼回寫正確運作，執行 Azure AD Connect 的電腦必須能夠建立 **.servicebus.windows.net*和 Azure 所使用之特定 IP 位址的輸出 HTTPS 連線，如 [Microsoft Azure 資料中心 IP 範圍清單](https://www.microsoft.com/download/details.aspx?id=41653)中所定義。
+為了讓密碼回寫能正常運作，執行 Azure AD Connect 的電腦必須能夠與密碼重設服務及 Azure 服務匯流排通訊。
 
-針對 Azure AD Connect 工具 **1.1.443.0** (最新) 和更新版本︰
+針對 Azure AD Connect 工具 **1.1.443.0** 和更新版本︰
 
 - 最新版本的 Azure AD Connect 工具需要**輸出 HTTPS** 存取至：
     - *passwordreset.microsoftonline.com*
@@ -421,7 +421,7 @@ Azure AD Connect 應用程式事件記錄包含一組豐富的記錄資訊，即
         - 在此組態中，如需密碼回寫繼續運作，您必須確保您的網路應用裝置保持來自 Microsoft Azure 資料中心 IP 範圍清單中最新 IP 的每週更新。 這些 IP 範圍可用來做為每星期三 (太平洋時間) 進行更新的 XML 檔案，並於下星期一 (太平洋時間) 生效。
     - 所需的步驟︰
         - 允許所有輸出 HTTPS 連線到 *.servicebus.windows.net
-        - 允許所有輸出 HTTPS 連接到 Microsoft Azure 資料中心 IP 範圍清單中的所有 IP，並保持每週更新此組態。
+        - 允許所有輸出 HTTPS 連接到 Microsoft Azure 資料中心 IP 範圍清單中的所有 IP，並保持每週更新此組態。 目前可以從[這裡](https://www.microsoft.com/download/details.aspx?id=41653)下載此清單。
 
 > [!NOTE]
 > 如果您已依照上述指示來設定密碼回寫，且未在 Azure AD Connect 事件記錄檔中看到任何錯誤，但在測試時發生連接錯誤，則可能是您環境中的網路應用裝置封鎖 IP 位址的 HTTPS 連接。 例如，當允許 *https://*.servicebus.windows.net* 的連接時，該範圍內的特定 IP 位址連接可能會遭到封鎖。 若要解決此問題，您將需要設定網路環境，以透過連接埠 443 允許所有輸出 HTTPS 連接至任何 URL 或 IP 位址 (上述選項 1)，或與網路小組合作以明確允許 HTTPS 連接至特定的 IP 位址 (上述選項 2)。
@@ -495,7 +495,7 @@ Azure AD Connect 工具會傳送定期 ping/keepalives 至服務匯流排端點�
 ## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
 * [**最佳作法**](active-directory-passwords-best-practices.md) - 了解如何快速部署且有效管理組織的密碼

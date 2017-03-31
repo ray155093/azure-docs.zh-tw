@@ -62,6 +62,7 @@
 ### [同步處理期間的錯誤](active-directory-aadconnect-troubleshoot-sync-errors.md)
 ### [物件未同步處理](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md)
 ### [密碼同步處理](active-directory-aadconnectsync-troubleshoot-password-synchronization.md)
+### [如何從 LocalDB 10-GB 的限制復原](active-directory-aadconnect-recover-from-localdb-10gb-limit.md)
 
 # 參考
 ## [身分識別同步處理和重複屬性恢復功能](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md)

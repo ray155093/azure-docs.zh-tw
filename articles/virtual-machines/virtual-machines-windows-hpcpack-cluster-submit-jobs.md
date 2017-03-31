@@ -16,8 +16,9 @@ ms.workload: big-compute
 ms.date: 10/14/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 71c896673706fad3eb215f12893b65af7b697843
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 4f5ae7c1750d697e7dae3f03ea5d3936c9fee52b
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: 71c896673706fad3eb215f12893b65af7b697843
 ![將工作提交至 Azure 中的叢集][jobsubmit]
 
 ## <a name="prerequisites"></a>必要條件
-* **在 Azure VM 中部署的 HPC Pack 前端節點** - 建議您使用 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/) 或 [Azure PowerShell 指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)等自動化工具來部署前端節點和叢集。 您必須要有前端節點的 DNS 名稱和叢集系統管理員的認證，才能完成本文中的步驟。
+* **在 Azure VM 中部署的 HPC Pack 前端節點** - 建議您使用 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/) 或 [Azure PowerShell 指令碼](windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)等自動化工具來部署前端節點和叢集。 您必須要有前端節點的 DNS 名稱和叢集系統管理員的認證，才能完成本文中的步驟。
 * **用戶端電腦** - 您必須要有可執行 HPC Pack 用戶端公用程式的 Windows 或 Windows Server 用戶端電腦 (請參閱[系統需求](https://technet.microsoft.com/library/dn535781.aspx))。 如果您只想要使用 HPC Pack Web 入口網站或 REST API 來提交工作，您可以使用自行選擇的任何用戶端電腦。
 * **HPC Pack 安裝媒體** - 若要安裝 HPC Pack 用戶端公用程式，可從 [Microsoft 下載中心](http://go.microsoft.com/fwlink/?LinkId=328024)取得最新版 HPC Pack (HPC Pack 2012 R2) 的免費安裝套件。 請確定您下載的是安裝在前端節點 VM 上的相同 HPC Pack 版本。
 
@@ -39,7 +40,7 @@ ms.openlocfilehash: 71c896673706fad3eb215f12893b65af7b697843
 如需詳細程序，請參閱 [安裝 Microsoft HPC Pack Web 元件](http://technet.microsoft.com/library/hh314627.aspx)。
 
 > [!TIP]
-> HPC Pack 的某些 Azure 快速入門範本會自動安裝和設定 Web 元件。 如果您使用 [HPC Pack IaaS 部署指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)來建立叢集，您可以選擇性地安裝 Web 元件並將其設定為部署的一部分。
+> HPC Pack 的某些 Azure 快速入門範本會自動安裝和設定 Web 元件。 如果您使用 [HPC Pack IaaS 部署指令碼](windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)來建立叢集，您可以選擇性地安裝 Web 元件並將其設定為部署的一部分。
 > 
 > 
 
@@ -173,9 +174,4 @@ ms.openlocfilehash: 71c896673706fad3eb215f12893b65af7b697843
 
 <!--Image references-->
 [jobsubmit]: ./media/virtual-machines-windows-hpcpack-cluster-submit-jobs/jobsubmit.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 37291b16a966c17b684a4622f15d0393a5a5ce6d
-ms.openlocfilehash: 0984ccc8163c94f56517e65919f8ea089a3e8b5f
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 03178e1b933f5681caf6efbeb5a89d56727ae743
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -66,12 +66,12 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 * 您可以設定復原方案，將分散於多部機器上的應用程式工作負載聚集起來。 如果您容錯移轉這些方案，Site Recovery 提供多 VM 一致性，以便執行相同工作負載的機器可以同時復原到一致的資料點。
 
 ## <a name="supported-operating-systems"></a>受支援的作業系統
-### <a name="windows-64-bit-only"></a>Windows (僅&64; 位元)
+### <a name="windows-64-bit-only"></a>Windows (僅 64 位元)
 * Windows Server 2008 R2 SP1+
 * Windows Server 2012
 * Windows Server 2012 R2
 
-### <a name="linux-64-bit-only"></a>Linux (僅&64; 位元)
+### <a name="linux-64-bit-only"></a>Linux (僅 64 位元)
 * Red Hat Enterprise Linux 6.7、7.1 和 7.2
 * CentOS 6.5、6.6、6.7、7.0、7.1 和 7.2
 * Oracle Enterprise Linux 6.4 和 6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3)
@@ -454,7 +454,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 | 來源作業系統 | 行動服務安裝檔案 |
 | --- | --- |
-| Windows Server (僅限&64; 位元) |Microsoft-ASR_UA_9.*.0.0_Windows_* release.exe |
+| Windows Server (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_Windows_* release.exe |
 | CentOS 6.4、6.5、6.6 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_RHEL6-64_*release.tar.gz |
 | SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_SLES11-SP3-64_*release.tar.gz |
 | Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) |Microsoft-ASR_UA_9.*.0.0_OL6-64_*release.tar.gz |
@@ -579,7 +579,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 3. 您可以變更這些設定：
 
    * **Azure VM 名稱**：這是將在容錯移轉之後提供給 Azure 中機器的名稱。 名稱必須符合 Azure 需求。
-   * **Azure VM 大小**：網路介面卡的數目取決於您為目標虛擬機器指定的大小。 如需大小和介面卡的詳細資訊，請參閱[大小資料表](../virtual-machines/virtual-machines-linux-sizes.md#size-tables)。 請注意：
+   * **Azure VM 大小**：網路介面卡的數目取決於您為目標虛擬機器指定的大小。 如需大小和介面卡的詳細資訊，請參閱[大小資料表](../virtual-machines/virtual-machines-linux-sizes.md)。 請注意：
 
      * 在您修改虛擬機器的大小並儲存設定之後，下次您開啟 [設定] 索引標籤時，網路介面卡的數目將會改變。 目標虛擬機器上的網路介面卡最小數目，等於來源虛擬機器上的網路介面卡最小數目。 網路介面卡的最大數目取決於虛擬機器的大小。
        * 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。

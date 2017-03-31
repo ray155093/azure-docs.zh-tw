@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/01/2016
 ms.author: adhurwit
 translationtype: Human Translation
-ms.sourcegitcommit: 2c13daf84727a500a2ea6a3dc1d4968c9824e223
-ms.openlocfilehash: a8540a541d05d1d8a0afeb2aeb42c77951ebf8c2
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 9916eb7deaae6acb784cac1b7b64d93a03f3c590
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -76,7 +76,7 @@ Sysprep 完成時，它會關閉 VM。
 ### <a name="4-capture-image"></a>4.擷取映像
 當 VM 已經停止執行時，請在目前的入口網站尋找並擷取它。
 
-若要深入了解擷取映像，[請參閱擷取以傳統部署模型建立之 Azure Windows 虛擬機器的映像](../virtual-machines/virtual-machines-windows-classic-capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+若要深入了解擷取映像，[請參閱擷取以傳統部署模型建立之 Azure Windows 虛擬機器的映像](../virtual-machines/windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ### <a name="5-add-to-azure-remoteapp-template-images"></a>5.新增至 Azure RemoteApp 範本映像
 在目前入口網站的 [Azure RemoteApp] 區段中，移至 [範本映像] 索引標籤然後按一下 [新增]。 在快顯方塊中，選取 [從您的虛擬機器映像庫匯入映像] 然後選擇您剛才建立的映像。

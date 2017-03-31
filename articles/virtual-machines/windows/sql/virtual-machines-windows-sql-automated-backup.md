@@ -16,15 +16,16 @@ ms.workload: iaas-sql-server
 ms.date: 01/30/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 253c504fa433c7ca37c0065ebf01d13dafc76231
-ms.openlocfilehash: c4cf6ab29ebf5b3397017cf754ee04bf57ab1555
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 1b9401d7c2f756081d585b9432ceef412ab1f807
+ms.lasthandoff: 03/25/2017
 
 
 ---
 # <a name="automated-backup-for-sql-server-2014-virtual-machines-resource-manager"></a>SQL Server 2014 虛擬機器的自動備份 (Resource Manager)
 > [!div class="op_single_selector"]
 > * [資源管理員](virtual-machines-windows-sql-automated-backup.md)
-> * [傳統](../sqlclassic/virtual-machines-windows-classic-sql-automated-backup.md)
+> * [傳統](../classic/sql-automated-backup.md)
 > 
 > 
 
@@ -32,7 +33,7 @@ ms.openlocfilehash: c4cf6ab29ebf5b3397017cf754ee04bf57ab1555
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-rm-include.md)]
 
-如需本文的精簡版本，請參閱 [Azure 虛擬機器中的 SQL Server 自動備份 (傳統)](../sqlclassic/virtual-machines-windows-classic-sql-automated-backup.md)。
+如需本文的精簡版本，請參閱 [Azure 虛擬機器中的 SQL Server 自動備份 (傳統)](../classic/sql-automated-backup.md)。
 
 ## <a name="prerequisites"></a>必要條件
 若要使用自動備份，請考慮下列必要條件︰
@@ -149,10 +150,5 @@ ms.openlocfilehash: c4cf6ab29ebf5b3397017cf754ee04bf57ab1555
 如需有關其他可用之自動化工作的資訊，請參閱 [SQL Server IaaS 代理程式擴充功能](virtual-machines-windows-sql-server-agent-extension.md)。
 
 如需有關在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

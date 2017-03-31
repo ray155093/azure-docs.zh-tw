@@ -28,6 +28,7 @@
 ### [定服務主體](container-service-kubernetes-service-principal.md)
 ### [容器管理 - Kubernetes UI](container-service-kubernetes-ui.md)
 ### [負載平衡 Kubernetes 容器](container-service-kubernetes-load-balancing.md)
+### [與 ACS Kubernetes 整合的 Jenkins](container-service-kubernetes-jenkins.md)
 ### 監視 Kubernetes
 #### [透過 OMS 進行監視](container-service-kubernetes-oms.md)
 #### [透過 Datadog 進行監視](container-service-kubernetes-datadog.md)

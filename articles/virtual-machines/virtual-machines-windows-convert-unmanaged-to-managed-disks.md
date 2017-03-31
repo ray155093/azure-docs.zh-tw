@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 59798ae9412a7550c94f8fa67c39f504aad8d00c
-ms.openlocfilehash: 3867c57d40a218c80403578d30cb999bf9f6cd38
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 96137d49d3caa0444400edcfcfaa097dc71ba8e3
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -76,7 +76,7 @@ foreach($vmInfo in $avSet.VirtualMachinesReferences)
 ## <a name="convert-existing-azure-vms-to-managed-disks-of-the-same-storage-type"></a>將現有的 Azure VM 轉換為相同儲存體類型的受控磁碟
 
 > [!IMPORTANT]
-> 執行下列程序之後，預設 /vhds 容器中會剩下一個單一區塊 Blob。 檔案的名稱是 “VMName.xxxxxxx.status”。 只有當您已在 VM 上安裝 [VM 擴充功能](virtual-machines-windows-classic-agents-and-extensions.md)時，Azure 才會建立此檔案。 請勿刪除此保留的狀態物件。 未來應可解決此問題。
+> 執行下列程序之後，預設 /vhds 容器中會剩下一個單一區塊 Blob。 檔案的名稱是 “VMName.xxxxxxx.status”。 只有當您已在 VM 上安裝 [VM 擴充功能](windows/classic/agents-and-extensions.md)時，Azure 才會建立此檔案。 請勿刪除此保留的狀態物件。 未來應可解決此問題。
 
 本節說明當您要使用相同的儲存體類型時，如何將現有的 Azure VM 從儲存體帳戶中的非受控磁碟轉換為受控磁碟。 您可以使用此程序從進階 (SDD) 非受控磁碟移至進階受控磁碟，或從標準 (HDD) 非受控磁碟移至標準受控磁碟。 
 

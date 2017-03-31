@@ -13,8 +13,9 @@ ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 51e27c26873f6caad5df19ff8f2b57f6cd03e219
-ms.openlocfilehash: d12fce2cf25cd7602564e4aa464a14959625073f
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 2bb7fe165fc88df62a2b12ccf666da0a7965d43b
+ms.lasthandoff: 03/27/2017
 
 ---
 
@@ -88,7 +89,7 @@ ms.openlocfilehash: d12fce2cf25cd7602564e4aa464a14959625073f
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用第三方 libraryC 建立 iOS 應用程式</h3>
+                        <h3>使用第三方程式庫建立 iOS 應用程式</h3>
                     </div>
                 </div>
             </div>
@@ -186,10 +187,5 @@ ms.openlocfilehash: d12fce2cf25cd7602564e4aa464a14959625073f
         </a>
     </li>
 </ul>
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

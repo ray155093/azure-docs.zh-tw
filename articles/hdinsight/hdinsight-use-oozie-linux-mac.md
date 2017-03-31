@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 02/07/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: dc22bfee0471da2d61d1d3d720e26d5fc785f832
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: e4f38a061129b2bb8a840d4eec8d224bcbc22e83
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -107,11 +107,7 @@ hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
     ```
 
-    如需使用 SSH 搭配 HDInsight 的詳細資訊，請參閱下列文件：
-
-    * [從 Linux、OS X、Unix 或 Windows 在 HDInsight 上搭配使用 SSH 與 Linux 型 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) - 此文件假設您可以存取 `ssh` 命令。
-
-    * [從已安裝 PuTTY 的 Windows 在 HDInsight 上搭配使用 SSH 與 Linux 型 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md) - 此文件假設您是使用 PuTTY SSH 用戶端。
+    如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 2. 從 SSH 連線，使用下列命令來建立新檔案：
 

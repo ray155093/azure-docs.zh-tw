@@ -1,17 +1,23 @@
 ## <a name="set-up-your-development-environment"></a>設定開發環境
-接下來，在 Visual Studio 中設定您的開發環境，以便您開始嘗試本指南中提供的程式碼範例。
+接下來，在 Visual Studio 中設定您的開發環境，以便您開始嘗試本指南中的程式碼範例。
 
 ### <a name="create-a-windows-console-application-project"></a>建立 Windows 主控台應用程式專案
-在 Visual Studio 中，建立新的 Windows 主控台應用程式，如下所示：
+在 Visual Studio 中，建立新的 Windows 主控台應用程式。 下列步驟示範如何在 Visual Studio 2017 中建立主控台應用程式，但步驟類似其他版本的 Visual Studio。
 
-![建立 Windows 主控台應用程式](./media/storage-development-environment-include/storage-development-environment-include-1.png)
+1. 選取 [檔案] > [新增] > [專案]
+2. 選取 [安裝] > [範本] > [Visual C#] > [Windows 傳統桌面]
+3. 選取 **主控台應用程式 (.NET Framework)**
+4. 在 [名稱：] 欄位中輸入應用程式的名稱
+5. 選取 [確定]
 
-本教學課程中的所有程式碼範例均可加入至您的主控台應用程式的 `program.cs` 中的 **Main()** 方法。
+![Visual Studio 中的專案建立對話方塊](./media/storage-development-environment-include/storage-development-environment-include-1.png)
 
-請注意，您可以在任何類型的 .NET 應用程式 (包括 Azure 雲端服務、Azure Web 應用程式、桌面應用程式或行動應用程式) 中使用 Azure 儲存體用戶端程式庫。 在本指南中，為求簡化，我們會使用主控台應用程式。
+本教學課程中的所有程式碼範例均可新增至您主控台應用程式的 `Program.cs` 檔案中的 `Main()` 方法。
+
+您可以在任何類型的 .NET 應用程式 (包括 Azure 雲端服務或 Web 應用程式和桌面與行動應用程式) 中使用 Azure Storage Client Library。 在本指南中，為求簡化，我們會使用主控台應用程式。
 
 ### <a name="use-nuget-to-install-the-required-packages"></a>使用 NuGet 來安裝必要的封裝
-您必須將下列兩個封裝安裝至您的專案，才能完成本教學課程︰
+您必須在您的專案中參考下列兩個封裝，才能完成本教學課程︰
 
 * [適用於 .NET 的 Microsoft Azure 儲存體用戶端資源庫](https://www.nuget.org/packages/WindowsAzure.Storage/)︰此封裝可供以程式設計方式存取儲存體帳戶中的資料資源。
 * [適用於 .NET 的 Microsoft Azure Configuration Manager 程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)︰此封裝提供一個類別，無論您的應用程式於何處執行，均可用來剖析組態檔中的連接字串。
@@ -20,12 +26,12 @@
 
 1. 在 [方案總管] 中以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。
 2. 在線上搜尋 "WindowsAzure.Storage"，然後按一下 [安裝]  以安裝 Storage Client Library 與其相依項目。
-3. 在線上搜尋 "ConfigurationManager"，然後按一下 [安裝]  以安裝 Azure Configuration Manager。
+3. 在線上搜尋 "WindowsAzure.ConfigurationManager"，然後按一下 [安裝]  以安裝 Azure Configuration Manager。
 
 > [!NOTE]
 > Storage Client Library 封裝也包含在 [適用於 .NET 的 Azure SDK](https://azure.microsoft.com/downloads/)中。 不過，我們建議您也從 NuGet 安裝 Storage Client Library，以確保永遠有最新版的用戶端程式庫。
 > 
-> Storage Client Library for .NET 中的 ODataLib 相依性現已透過 ODataLib (5.0.2 版和更新版本) 封裝解決，該封裝是由 NuGet 而非透過 WCF Data Services 提供。 您可以直接下載 ODataLib 程式庫，或是由您的程式碼專案透過 NuGet 參照這些程式庫。 Storage Client Library 使用的特定 ODataLib 封裝有 [OData](http://nuget.org/packages/Microsoft.Data.OData/5.0.2)、[Edm](http://nuget.org/packages/Microsoft.Data.Edm/5.0.2)，以及 [Spatial](http://nuget.org/packages/System.Spatial/5.0.2)。 這些程式庫雖由 Azure 資料表儲存體類別使用，它們同時也是使用 Storage Client Library 進行程式設計的必要相依項目。
+> Storage Client Library for .NET 中的 ODataLib 相依性現由 ODataLib 套件解決，該套件是在 NuGet 上而非從 WCF 資料服務提供。 您可以直接下載 ODataLib 程式庫，或是由您的程式碼專案透過 NuGet 參照這些程式庫。 Storage Client Library 使用的特定 ODataLib 封裝有 [OData](http://nuget.org/packages/Microsoft.Data.OData/)、[Edm](http://nuget.org/packages/Microsoft.Data.Edm/)，以及 [Spatial](http://nuget.org/packages/System.Spatial/)。 這些程式庫雖由 Azure 資料表儲存體類別使用，它們同時也是使用 Storage Client Library 進行程式設計的必要相依項目。
 > 
 > 
 
@@ -59,13 +65,13 @@ Azure Storage Client Library for .NET 可支援使用儲存體連接字串，來
     <startup> 
         <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
     </startup>
-      <appSettings>
+    <appSettings>
         <add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key" />
-      </appSettings>
+    </appSettings>
 </configuration>
 ```
 
-例如，組態設定會如下所示：
+例如，組態設定會如下顯示：
 
 ```xml
 <add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=nYV0gln6fT7mvY+rxu2iWAEyzPKITGkhM88J8HUoyofvK7C6fHcZc2kRZp6cKgYRUM74lHI84L50Iau1+9hPjB==" />
@@ -76,9 +82,4 @@ Azure Storage Client Library for .NET 可支援使用儲存體連接字串，來
 ```xml
 <add key="StorageConnectionString" value="UseDevelopmentStorage=true;" />
 ```
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

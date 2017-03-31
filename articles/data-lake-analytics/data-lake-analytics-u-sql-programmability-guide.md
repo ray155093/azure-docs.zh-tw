@@ -14,9 +14,9 @@ ms.workload: big-data
 ms.date: 11/15/2016
 ms.author: mrys
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: 6efdd600386a603b38a5733977067f1a987cdac3
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
+ms.openlocfilehash: ca9937d4c0d87827f8b78ecc495fdad791d139e8
+ms.lasthandoff: 03/23/2017
 
 
 ---
@@ -2025,7 +2025,7 @@ U-SQL SELECT 運算式中會叫用使用者定義套用器。
     }
 ```
 
-若要定義使用者定義套用器，我們必須以 [`SqlUserDefinedCombiner`] 屬性 (這是使用者定義套用器之定義的選擇性屬性) 建立 `IApplier` 介面。
+若要定義使用者定義套用器，我們必須以 [`SqlUserDefinedApplier`] 屬性 (這是使用者定義套用器之定義的選擇性屬性) 建立 `IApplier` 介面。
 
 ```c#
     [SqlUserDefinedApplier]

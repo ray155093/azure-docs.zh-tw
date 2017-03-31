@@ -16,9 +16,9 @@ ms.topic: get-started-article
 ms.date: 2/21/2017
 ms.author: negat
 translationtype: Human Translation
-ms.sourcegitcommit: 9b2ef23effa32e9b7507ad6e6eb29e97609a2034
-ms.openlocfilehash: e59e95c55beeb2af6c704bcaad11c8d622f4e853
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 4ec20a30f423d4b30e953f873100be90167f987b
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -41,7 +41,7 @@ az group create -l southcentralus -n dsktest
 az vmss create -g dsktest -n dskvmss --image ubuntults --instance-count 10 --data-disk-sizes-gb 50 100
 ```
 
-或者，您可以針對包含 `vmss` 的資料夾查閱 [Azure 快速入門範本 Github 儲存機制 (英文)](https://github.com/Azure/azure-quickstart-templates)，以查看預先建置來部署擴展集之範本的範例。 若要分辨哪些範本已經在使用受控磁碟，您可以參考[這份清單](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md)。
+或者，您可以針對包含 `vmss` 的資料夾查閱 [Azure 快速入門範本 GitHub 存放庫 (英文)](https://github.com/Azure/azure-quickstart-templates)，以查看預先建置來部署擴展集之範本的範例。 若要分辨哪些範本已經在使用受控磁碟，您可以參考[這份清單](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md)。
 
 ## <a name="api-versions"></a>API 版本
 

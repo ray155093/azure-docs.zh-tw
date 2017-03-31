@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 02/06/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 0c56a74e43b989a32b10a878cec16cce0f972a9f
-ms.openlocfilehash: 63c0397b6e737038fb7758d2749ae82d1485d45d
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 34a9d187eecec185e2b8d6977baea267ca9e60e5
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -130,6 +130,19 @@ Site Recovery 協助保護 Exchange 的方式如下所示：
 * 藉由建立類似生產的複本隨選來測試和偵錯應用程式，以簡化 SAP 開發和測試。
 
 [深入了解](http://aka.ms/asr-sap) 如何保護 SAP。
+
+## <a name="protect-iis"></a>保護 IIS
+使用 Site Recovery 保護您的 IIS 部署，如下所示：
+
+Azure Site Recovery 提供災害復原，方法為將環境中的重要元件複寫至冷遠端站台或類似 Microsoft Azure 的公用雲端。 具有 web 伺服器和資料庫的虛擬機器將複寫至復原站台，因此不需要分開備份組態檔或憑證。 取決於容錯移轉後之環境變數的應用程式對應和繫結，可以透過指令碼整合到災害復原計劃進行更新。 僅在容錯移轉時，虛擬機器才會帶出復原站台。 不只如此，Azure Site Recovery 也會提供下列功能，協助您協調端對端容錯移轉︰
+
+-    排序各層中的虛擬機器啟動與關機。
+-    新增指令碼，以在它們啟動後允許應用程式相依性更新以及虛擬機器上的繫結。 指令碼也可用來更新 DNS 伺服器指向復原站台。
+-    在容錯移轉之前將 IP 位址配置給虛擬機器，方法為對應主要與復原網路，因此使用不需要在容錯移之後更新的指令碼。
+-    能夠在 web 伺服器上一鍵容錯多個 web 應用程式，因此在災害發生時排除造成混淆的範圍。
+-    能夠在 DR 鑽研的隔離環境中測試復原計劃。
+
+[深入了解](https://aka.ms/asr-iis) 如何保護 IIS web 伺服陣列。
 
 ## <a name="next-steps"></a>後續步驟
 [檢查必要條件](site-recovery-prereq.md) 

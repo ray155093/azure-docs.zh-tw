@@ -17,9 +17,9 @@ ms.topic: support-article
 ms.date: 03/07/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 2df9b83132711e199b58fa92841a3dca74c7282a
-ms.openlocfilehash: 0164ad801b11a6c6124df8106bd7b71b737f81f1
-ms.lasthandoff: 11/30/2016
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 81f73e6c1c4fa48c0235cb497fa9e15b0c92a668
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -120,7 +120,7 @@ SSH 用戶端無法連線至 VM 上的 SSH 服務，可能涉及許多原因。 
 * **目標 VM 上的 SSH 流量端點組態。** 此端點的私用 TCP 連接埠應符合 VM 上 SSH 服務正在接聽的 TCP 連接埠， 預設連接埠為 22。 針對使用 Resource Manager 部署模型來建立的 VM，請選取 [虛擬機器] > VM 名稱 > [設定] > [端點]，以驗證 Azure 入口網站中的 SSH TCP 連接埠號碼。
 * **目標虛擬機器上的 SSH 流量端點 ACL。** ACL 可讓您指定要根據來源 IP 位址允許或拒絕來自網際網路的連入流量。 設定錯誤的 ACL 會阻止送至端點的連入 SSH 流量。 檢查您的 ACL，確保允許來自您的 Proxy 或其他邊緣伺服器之公用 IP 位址的連入流量。 如需詳細資訊，請參閱 [關於網路存取控制清單 (ACL)](../virtual-network/virtual-networks-acl.md)。
 
-若要排除端點是問題來源的可能性，請移除目前的端點、建立另一個端點，然後指定 SSH 名稱 (TCP 連接埠 22 作為公用及私用連接埠號碼)。 如需詳細資訊，請參閱 [在 Azure 中設定虛擬機器的端點](virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+若要排除端點是問題來源的可能性，請移除目前的端點、建立另一個端點，然後指定 SSH 名稱 (TCP 連接埠 22 作為公用及私用連接埠號碼)。 如需詳細資訊，請參閱 [在 Azure 中設定虛擬機器的端點](windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 <a id="nsg"></a>
 
@@ -133,7 +133,7 @@ SSH 用戶端無法連線至 VM 上的 SSH 服務，可能涉及許多原因。 
 
 ![強調以 Linux 為基礎的 Azure 虛擬機器的圖表](./media/virtual-machines-linux-detailed-troubleshoot-ssh-connection/ssh-tshoot5.png)
 
-如果您還沒這麼做，請依照 [為 Linux 型虛擬機器重設密碼或 SSH](virtual-machines-linux-classic-reset-access.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)中的指示操作。
+如果您還沒這麼做，請依照 [為 Linux 型虛擬機器重設密碼或 SSH](linux/classic/reset-access.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)中的指示操作。
 
 再次嘗試從您的電腦連線。 如果仍然失敗，以下是一些可能的問題：
 

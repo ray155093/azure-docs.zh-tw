@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 06/27/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 80630ec6762ccd00e1e199460703a128f96c1c37
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 5c3c7707d2e2eaa0b47084c26e96721afea4e4d8
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -30,9 +30,9 @@ ms.lasthandoff: 03/21/2017
 
 ## <a name="get-started"></a>開始使用
 * [Azure 上的 Linux 簡介](virtual-machines-linux-intro-on-azure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [關於以傳統部署模型建立之 Azure 虛擬機器的常見問題集](virtual-machines-linux-classic-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [關於虛擬機器的映像](virtual-machines-linux-classic-about-images.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [上傳您自己的 Distro 映像](virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) (以及使用 [Azure 背書散發版本](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)的指示)
+* [關於以傳統部署模型建立之 Azure 虛擬機器的常見問題集](linux/classic/faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [關於虛擬機器的映像](linux/classic/about-images.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [上傳您自己的 Distro 映像](linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) (以及使用 [Azure 背書散發版本](virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)的指示)
 * [使用 Azure 傳統入口網站登入 Linux VM](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="set-up"></a>設定
@@ -44,27 +44,27 @@ ms.lasthandoff: 03/21/2017
 * [做法：安裝 Apache Qpid Proton-C for AMQP 和服務匯流排](../service-bus-messaging/service-bus-amqp-apache.md)
 
 ### <a name="databases"></a>資料庫
-* [在 Azure 上最佳化 MySQL 的效能](virtual-machines-linux-classic-optimize-mysql.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [MySQL 叢集](virtual-machines-linux-classic-mysql-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [在 Azure 上執行 Cassandra 搭配 Linux 並透過 Node.js 進行存取](virtual-machines-linux-classic-cassandra-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [建立 MariaDbs 的多重主機叢集](virtual-machines-linux-classic-mariadb-mysql-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [在 Azure 上最佳化 MySQL 的效能](linux/classic/optimize-mysql.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [MySQL 叢集](linux/classic/mysql-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [在 Azure 上執行 Cassandra 搭配 Linux 並透過 Node.js 進行存取](linux/classic/cassandra-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [建立 MariaDbs 的多重主機叢集](linux/classic/mariadb-mysql-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="hpc"></a>HPC
-* [開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點](virtual-machines-linux-classic-hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [在 Azure 中的 Linux 運算節點以 Microsoft HPC Pack 執行 NAMD](virtual-machines-linux-classic-hpcpack-cluster-namd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點](linux/classic/hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [在 Azure 中的 Linux 運算節點以 Microsoft HPC Pack 執行 NAMD](linux/classic/hpcpack-cluster-namd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [設定 Linux RDMA 叢集以執行 MPI 應用程式](linux/classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="docker"></a>Docker
-* [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](virtual-machines-linux-classic-cli-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [使用 Azure 入口網站中的Docker VM 擴充程式](virtual-machines-linux-classic-portal-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](linux/classic/cli-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [使用 Azure 入口網站中的Docker VM 擴充程式](linux/classic/portal-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [如何在 Azure 上使用 docker-machine](virtual-machines-linux-docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="ubuntu"></a>Ubuntu
-* [做法：MySQL 叢集](virtual-machines-linux-classic-mysql-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [做法：Node.js 和 Cassandra](virtual-machines-linux-classic-cassandra-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [做法：MySQL 叢集](linux/classic/mysql-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [做法：Node.js 和 Cassandra](linux/classic/cassandra-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="opensuse"></a>OpenSUSE
-* [做法：安裝和執行 MySQL](virtual-machines-linux-classic-mysql-on-opensuse.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [做法：安裝和執行 MySQL](linux/classic/mysql-on-opensuse.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="coreos"></a>CoreOS
 * [做法：在 Azure 上使用 CoreOS](https://coreos.com/os/docs/latest/booting-on-azure.html)
@@ -72,38 +72,38 @@ ms.lasthandoff: 03/21/2017
 ## <a name="planning"></a>規劃
 * [Azure 基礎結構服務實作指導方針](virtual-machines-linux-infrastructure-subscription-accounts-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [選取 Linux 使用者名稱](virtual-machines-linux-usernames.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [如何以傳統部署模型設定虛擬機器的可用性設定組](virtual-machines-linux-classic-configure-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [如何以傳統部署模型設定虛擬機器的可用性設定組](linux/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [如何排定在 Azure VM 上的計劃性維護](virtual-machines-linux-planned-maintenance-schedule.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [管理虛擬機器的可用性](virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [Azure 中 Linux 虛擬機器預定進行的維修](virtual-machines-linux-planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="deployment"></a>部署
-* [建立執行 Linux 的自訂虛擬機器](virtual-machines-linux-classic-createportal.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [基本概念：擷取 Linux VM 來製作範本](virtual-machines-linux-classic-capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [建立執行 Linux 的自訂虛擬機器](linux/classic/createportal.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [基本概念：擷取 Linux VM 來製作範本](linux/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [非背書散發套件的資訊](virtual-machines-linux-create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="management"></a>管理
 * [SSH](virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [如何重設 Linux 的密碼或 SSH 屬性](virtual-machines-linux-classic-reset-access.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [如何重設 Linux 的密碼或 SSH 屬性](linux/classic/reset-access.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [使用 Root](virtual-machines-linux-use-root-privileges.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="azure-resources"></a>Azure 資源
 * [Azure Linux 代理程式](virtual-machines-linux-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [Azure VM 延伸模組與功能](virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [將自訂資料插入 VM 中以搭配 Cloud-init 使用](virtual-machines-windows-classic-inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [將自訂資料插入 VM 中以搭配 Cloud-init 使用](windows/classic/inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="storage"></a>儲存體
-* [將資料磁碟連接至 Linux VM](virtual-machines-linux-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [從 Linux VM 卸離資料磁碟](virtual-machines-linux-classic-detach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [將資料磁碟連接至 Linux VM](linux/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [從 Linux VM 卸離資料磁碟](linux/classic/detach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [RAID](virtual-machines-linux-configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="networking"></a>網路
-* [如何在 Azure 中的傳統虛擬機器上設定端點](virtual-machines-linux-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [如何在 Azure 中的傳統虛擬機器上設定端點](linux/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ## <a name="troubleshooting"></a>疑難排解
 * [疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](virtual-machines-linux-troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [針對在 Azure 中建立新 Linux 虛擬機器的傳統部署問題進行疑難排解](virtual-machines-linux-classic-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)  
-* [針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器的傳統部署問題進行疑難排解](virtual-machines-linux-classic-restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) 
+* [針對在 Azure 中建立新 Linux 虛擬機器的傳統部署問題進行疑難排解](linux/classic/troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)  
+* [針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器的傳統部署問題進行疑難排解](linux/classic/restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) 
 
 ## <a name="reference"></a>參考
 * [Azure 服務管理 (asm) 模式中的 Azure CLI 命令](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
@@ -127,7 +127,7 @@ ms.lasthandoff: 03/21/2017
 * [適用於 Linux 檔案伺服器的 Kaspersky AV](https://azure.microsoft.com/marketplace/partners/kaspersky-lab/kav-for-lfs-kav-for-lfs/)
 
 ### <a name="nosql"></a>NoSQL
-* [Azure 的&8; 個開放原始碼 NoSql 資料庫](http://openness.microsoft.com/blog/2014/11/03/open-source-nosql-databases-microsoft-azure/)
+* [Azure 的 8 個開放原始碼 NoSql 資料庫](http://openness.microsoft.com/blog/2014/11/03/open-source-nosql-databases-microsoft-azure/)
 * [Slideshare (MSOpenTech)︰Azure 上的 CouchDb 經驗](http://www.slideshare.net/brianbenz/experiences-using-couchdb-inside-microsofts-azure-team)
 * [透過 node.js、CORS 和 Grunt 執行 CouchDB 即服務](http://msopentech.com/blog/2013/12/19/tutorial-building-multi-tier-windows-azure-web-application-use-cloudants-couchdb-service-node-js-cors-grunt-2/)
 * [Azure Redis 快取服務中的 Redis on Windows](http://msopentech.com/blog/2014/05/12/redis-on-windows/)

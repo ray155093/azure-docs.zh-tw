@@ -17,9 +17,9 @@ ms.topic: hero-article
 ms.date: 03/13/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 6b101135d2ec6be0d3e7d2e94adf1be4eb3458e5
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 70cf89a5832aee2d0c303e0d40e104d84837b50c
+ms.lasthandoff: 03/25/2017
 
 ---
 
@@ -79,7 +79,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
 
 ## <a name="clean-up-resources"></a>清除資源
 
-這個集合中的**連線**快速入門與教學課程都是以本快速入門為基礎。 如果您打算繼續進行後續的快速入門或教學課程，請勿清除在此快速入門中建立的資源。 如果您不打算繼續，請使用下列命令來刪除本快速入門建立的所有資源。
+此集合中的其他快速入門會建置在本快速入門。 如果您打算繼續進行後續的快速入門或教學課程，請勿清除在此快速入門中建立的資源。 如果您不打算繼續，請使用下列命令來刪除本快速入門建立的所有資源。
 
 ```powershell
 Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"

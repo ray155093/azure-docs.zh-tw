@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/16/2017
+ms.date: 03/29/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: c27b6ed05faa5d9c408e6812d4ecbb8e0e2bbbab
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 6d048b73528d1812f1be9585d30812ca4aeaa397
+ms.lasthandoff: 03/30/2017
 
 ---
 
@@ -25,7 +25,6 @@ ms.lasthandoff: 03/17/2017
 Microsoft Azure 流量管理員可讓您控制如何將網路流量分散到在不同資料中心執行的應用程式部署。 您可以在流量管理員中將每個應用程式部署設定為「端點」。 當流量管理員收到 DNS 要求時，它會選擇可用的端點在 DNS 回應中傳回。 流量管理員會根據目前的端點狀態和流量路由方法來選擇。 如需詳細資訊，請參閱 [流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)。
 
 流量管理員支援三種類型的端點：
-
 * **Azure 端點** 用於在 Azure 中裝載的服務。
 * **外部端點** 用於 Azure 外部裝載的服務 (在內部部署或使用不同的主機服務提供者)。
 * **巢狀端點** 用於合併流量管理員端點，以建立更有彈性的流量路由配置，進而支援更大型且更複雜部署的需求。
@@ -54,7 +53,7 @@ PublicIPAddress 資源是 Azure Resource Manager 資源。 它們不存在於傳
 * 為了讓世界各地使用者感受更短的應用程式延遲，在 Azure 中將現有的內部部署應用程式延伸至其他地理位置。 如需詳細資訊，請參閱[流量管理員「效能」流量路由](traffic-manager-routing-methods.md#performance-traffic-routing-method)。
 * 使用 Azure 來擴充現有內部部署應用程式的容量，以連續方式或「高載至雲端」解決方案來因應需求暴增。
 
-在某些情況下，使用外部端點來參考 Azure 服務很實用 (如需範例，請參閱[常見問題集](#faq))。 在此情況下，健康情況檢查是以 Azure 端點費率計費 (而不是外部端點費率)。 但是，不同於 Azure 端點，如果您停止或刪除基礎服務，健康檢查會持續計費，直到您在流量管理員中停用或刪除端點為止。
+在某些情況下，使用外部端點來參考 Azure 服務很實用 (如需範例，請參閱[常見問題集](traffic-manager-faqs.md#traffic-manager-endpoints))。 在此情況下，健康情況檢查是以 Azure 端點費率計費 (而不是外部端點費率)。 但是，不同於 Azure 端點，如果您停止或刪除基礎服務，健康檢查會持續計費，直到您在流量管理員中停用或刪除端點為止。
 
 ## <a name="nested-endpoints"></a>巢狀端點
 
@@ -66,7 +65,7 @@ PublicIPAddress 資源是 Azure Resource Manager 資源。 它們不存在於傳
 
 1. 只有「標準」SKU 或更高的 Web Apps 才能搭配流量管理員使用。 嘗試新增較低 SKU 的 Web 應用程式會失敗。 將現有 Web 應用程式的 SKU 降級，將會導致流量管理員不再將流量傳送到該 Web 應用程式。
 2. 當端點收到 HTTP 要求時，它會使用要求中的 'host’ 標頭來決定哪個 Web 應用程式應該處理要求。 Host 標頭包含用來起始要求的 DNS 名稱，例如 'contosoapp.azurewebsites.net'。 若要讓 Web 應用程式使用不同的 DNS 名稱，此 DNS 名稱必須註冊為該應用程式的自訂網域名稱。 將 Web 應用程式端點新增為 Azure 端點時，將會自動為該應用程式註冊流量管理員設定檔 DNS 名稱。 刪除端點時，會自動移除此註冊。
-3. 每個流量管理員設定檔最多可以有來自每個 Azure 區域的一個 Web 應用程式端點。 若要克服此限制，您可以將 Web 應用程式設定為外部端點。 如需詳細資訊，請參閱[常見問題集](#faq)。
+3. 每個流量管理員設定檔最多可以有來自每個 Azure 區域的一個 Web 應用程式端點。 若要克服此限制，您可以將 Web 應用程式設定為外部端點。 如需詳細資訊，請參閱[常見問題集](traffic-manager-faqs.md#traffic-manager-endpoints)。
 
 ## <a name="enabling-and-disabling-endpoints"></a>啟用和停用端點
 

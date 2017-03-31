@@ -9,6 +9,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 1f3b3a78-4d16-4d99-ba6e-06f7bb185d6a
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/23/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 121be952ea49a8ff47f7e2528adbc87e05359a15
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: a77aa4a44bbb7dafffa4269c3713153df9bbced9
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -335,7 +336,7 @@ Azure 儲存體已連結的服務會連結 Azure 儲存體帳戶至資料處理�
 > 隨著處理的配量越來越多，您會在 Azure Blob 儲存體中看到許多容器。 如果在疑難排解作業時不需要這些容器，建議您加以刪除以降低儲存成本。 這些容器的名稱遵循下列模式："adf**yourdatafactoryname**-**linkedservicename**-datetimestamp"。 請使用 [Microsoft 儲存體總管](http://storageexplorer.com/) 之類的工具刪除 Azure Blob 儲存體中的容器。
 
 #### <a name="azure-blob-input-dataset"></a>Azure Blob 輸入資料集
-在輸入資料集定義中，您可以指定 blob 容器、資料夾和包含輸入資料之檔案的名稱。 請參閱 [Azure Blob 資料集屬性](../data-factory/data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties)，以取得用來定義 Azure Blob 資料集之 JSON 屬性的詳細資訊。 
+在輸入資料集定義中，您可以指定 blob 容器、資料夾和包含輸入資料之檔案的名稱。 請參閱 [Azure Blob 資料集屬性](../data-factory/data-factory-azure-blob-connector.md#dataset-properties)，以取得用來定義 Azure Blob 資料集之 JSON 屬性的詳細資訊。 
 
 ```json
 
@@ -377,7 +378,7 @@ Azure 儲存體已連結的服務會連結 Azure 儲存體帳戶至資料處理�
 ```
 
 #### <a name="azure-blob-output-dataset"></a>Azure Blob 輸出資料集
-在輸出資料集定義中，您可以指定 blob 容器和包含輸出資料之資料夾的名稱。 請參閱 [Azure Blob 資料集屬性](../data-factory/data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties)，以取得用來定義 Azure Blob 資料集之 JSON 屬性的詳細資訊。  
+在輸出資料集定義中，您可以指定 blob 容器和包含輸出資料之資料夾的名稱。 請參閱 [Azure Blob 資料集屬性](../data-factory/data-factory-azure-blob-connector.md#dataset-properties)，以取得用來定義 Azure Blob 資料集之 JSON 屬性的詳細資訊。  
 
 ```json
 

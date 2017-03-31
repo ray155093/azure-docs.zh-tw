@@ -17,9 +17,9 @@ ms.topic: support-article
 ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 9ca20f34d812e15a7f1e6f5dd032ec05c464046d
-ms.openlocfilehash: 53920a551e24f29274133315b463c6c69605da10
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 19247b7d8333e8bd73d33a7838e99180369b8681
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -216,7 +216,7 @@ ms.lasthandoff: 02/27/2017
    
    ![在 Azure 入口網站中確認雲端服務端點](./media/virtual-machines-windows-troubleshoot-rdp-connection/classic-verify-cloud-services-endpoints.png)
    
-   如果您沒有可允許 RDP 流量的端點，請[建立雲端服務端點](virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 允許使用 TCP 連接至私人連接埠 3389。
+   如果您沒有可允許 RDP 流量的端點，請[建立雲端服務端點](windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 允許使用 TCP 連接至私人連接埠 3389。
 3. **檢閱 VM 開機診斷**。 此疑難排解步驟可檢閱 VM 主控台記錄檔，以判斷 VM 是否報告問題。 並非所有 VM 都已啟用開機診斷，所以此疑難排解步驟可能是選擇性的。
    
     特定疑難排解步驟已超出本文的範圍，但可能指出會影響 RDP 連線的更廣問題。 如需有關檢閱主控台記錄檔和 VM 螢幕擷取畫面的詳細資訊，請參閱 [VM 的開機診斷](https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/)。

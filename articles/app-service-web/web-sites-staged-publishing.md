@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 51aabf4938714c597ae0cfb2ec524f326b6e355a
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 8ec4e8699eb2f2e060db264634b04abfacf40e34
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 03/21/2017
 當您將 Web 應用程式、行動後端和 API 應用程式部署至 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 時，如果是在 [標準] 或 [高階] App Service 方案模式中執行，就可以部署到個別的部署位置，而不是預設的生產位置。 部署位置實際上是含有自己主機名稱的作用中應用程式。 兩個部署位置 (包括生產位置) 之間的應用程式內容與設定項目可以互相交換。 將應用程式部署至部署位置具有下列優點：
 
 * 您可以先驗證預備部署位置中的應用程式變更，再將它與生產位置進行交換。
-* 先將應用程式部署至某個位置，然後再將它交換到生產位置，可確保該位置的所有執行個體在交換到生產位置之前都已準備就緒。 這麼做可以排除部署應用程式時的停機情況。 交換作業期間所有的流量都能順暢地重新導向，而且不會捨棄任何要求封包。 不需要預先交換驗證時，這整個工作流程可藉由設定 [自動交換](#configure-auto-swap-for-your-web-app) 來自動化。
+* 先將應用程式部署至某個位置，然後再將它交換到生產位置，可確保該位置的所有執行個體在交換到生產位置之前都已準備就緒。 這麼做可以排除部署應用程式時的停機情況。 交換作業期間所有的流量都能順暢地重新導向，而且不會捨棄任何要求封包。 不需要預先交換驗證時，這整個工作流程可藉由設定 [自動交換](#Auto-Swap) 來自動化。
 * 交換之後，先前具有預備應用程式的位置，現在已經有之前的生產應用程式。 若交換到生產位置的變更不是您需要的變更，您可以立即執行相同的交換，以取回「上一個已知良好的網站」。
 
 每個 App Service 方案模式所支援的部署位置個數都不一樣。 若要找出應用程式模式所支援的位置個數，請參閱 [App Service 定價](https://azure.microsoft.com/pricing/details/app-service/)。
@@ -130,6 +130,8 @@ ms.lasthandoff: 03/21/2017
 您可以完全預覽應用程式與目的地位置組態的行為模式。 當您完成驗證時，會在個別步驟中完成交換。 此步驟有額外好處，來源位置已做好使用所需的設定，且用戶端不會發生任何停機時間。  
 
 Azure PowerShell Cmdlet 可供多階段交換的範例，包含在部署位置區段的 Azure PowerShell Cmdlet 內。
+
+<a name="Auto-Swap"></a>
 
 ## <a name="configure-auto-swap"></a>設定自動交換
 自動交換會簡化 DevOps 案例，在此案例中，您希望為該應用程式的客戶在不需冷啟動和不需關機的情況下連續部署您的應用程式。 當部署位置已設為自動交換至生產位置時，每當您將程式碼更新推送至該位置時，App Service 就會在其已於該位置上做好準備之後，自動將該應用程式交換至生產位置。

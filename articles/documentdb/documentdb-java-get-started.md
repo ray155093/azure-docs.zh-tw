@@ -16,9 +16,9 @@ ms.topic: hero-article
 ms.date: 01/05/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 74af5fda495adc726bfa85ad48a407fd61d4dd88
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: da7907ffc515ea2e3040075c93bcd53840cf3ff5
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -60,12 +60,12 @@ ms.lasthandoff: 03/08/2017
 * [Maven](http://maven.apache.org/download.cgi).
 
 ## <a name="step-1-create-a-documentdb-account"></a>步驟 1：建立 DocumentDB 帳戶
-讓我們建立 DocumentDB 帳戶。 如果您已經擁有想要使用的帳戶，就可以跳到[複製 Github 專案](#GitClone)。 如果您使用 DocumentDB 模擬器，請遵循 [Azure DocumentDB 模擬器](documentdb-nosql-local-emulator.md)的步驟來設定模擬器，並請直接跳到[複製 Github 專案](#GitClone)。
+讓我們建立 DocumentDB 帳戶。 如果您已經擁有想要使用的帳戶，就可以跳到[複製 GitHub 專案](#GitClone)。 如果您使用 DocumentDB 模擬器，請遵循 [Azure DocumentDB 模擬器](documentdb-nosql-local-emulator.md)的步驟來設定模擬器，並請直接跳到[複製 GitHub 專案](#GitClone)。
 
 [!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
-## <a id="GitClone"></a>步驟 2︰複製 Github 專案
-您可以先從複製[開始使用 DocumentDB 和 Java](https://github.com/Azure-Samples/documentdb-java-getting-started) 的 Github 儲存機制來開始。 例如，請從本機目錄執行下列命令將範例專案擷取到本機。
+## <a id="GitClone"></a>步驟 2︰複製 GitHub 專案
+您可以先從複製[開始使用 DocumentDB 和 Java](https://github.com/Azure-Samples/documentdb-java-getting-started) 的 GitHub 存放庫著手。 例如，請從本機目錄執行下列命令將範例專案擷取到本機。
 
     git clone git@github.com:Azure-Samples/documentdb-java-getting-started.git
 

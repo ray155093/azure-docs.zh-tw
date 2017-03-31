@@ -16,9 +16,9 @@ ms.date: 10/10/2016
 ms.author: richrund
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 844f7d6fa4191a54d14010adf974401d3a94ba69
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 5bb3a67c999c1d41c50b2b660a97a53125511633
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -385,7 +385,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Templa
 1. 使用 [KB 2965986](https://support.microsoft.com/kb/2965986#mt1) 中的步驟，檢查 Azure VM 代理程式是否已安裝且正確運作。
    * 您也可以檢閱 VM 代理程式記錄檔 `C:\WindowsAzure\logs\WaAppAgent.log`
    * 如果記錄檔不存在，則表示未安裝 VM 代理程式。
-     * [在傳統 VM 上安裝 Azure VM 代理程式](../virtual-machines/virtual-machines-windows-classic-agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+     * [在傳統 VM 上安裝 Azure VM 代理程式](../virtual-machines/windows/classic/agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 2. 使用下列步驟，確認 Microsoft Monitoring Agent 擴充活動訊號工作正在執行︰
    * 登入虛擬機器
    * 開啟工作排程器，找出 `update_azureoperationalinsight_agent_heartbeat` 工作

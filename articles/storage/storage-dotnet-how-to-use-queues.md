@@ -12,11 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 12/08/2016
+ms.date: 03/27/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 1fea38ed4caacfee0c69d024b1ea6dbdcbccaf1d
-ms.openlocfilehash: d55b72ac50072a36ecf4547a478ed092ea7aa68a
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: 5876a22651a5ebee2d60992cf08aeae54256fb7d
+ms.lasthandoff: 03/28/2017
 
 ---
 
@@ -48,8 +49,8 @@ Azure 佇列儲存體可提供應用程式元件之間的雲端傳訊。 設計�
 
 [!INCLUDE [storage-development-environment-include](../../includes/storage-development-environment-include.md)]
 
-### <a name="add-namespace-declarations"></a>新增命名空間宣告
-在 `program.cs` 檔案頂端新增下列 `using` 陳述式：
+### <a name="add-using-directives"></a>新增 using 指示詞
+將下列 `using` 指示詞新增至 `Program.cs` 檔案的開頭處：
 
 ```csharp
 using Microsoft.Azure; // Namespace for CloudConfigurationManager
@@ -287,9 +288,4 @@ queue.Delete();
 [OData]: http://nuget.org/packages/Microsoft.Data.OData/5.0.2
 [Edm]: http://nuget.org/packages/Microsoft.Data.Edm/5.0.2
 [Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

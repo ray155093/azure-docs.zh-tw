@@ -17,9 +17,9 @@ ms.date: 11/16/2016
 ms.author: syamk
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 839f8c8669c06e22635b68018d816a669aec895b
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: af8e53d7cc074bf669b967014223ee88476d1686
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -77,7 +77,7 @@ Azure DocumentDB 是考量到全球發佈的全新設計。 它的設計目的�
 | **一致的首碼保證** |是 |是 |是 |是 |
 | **單純讀取** |yes |是，橫跨位於過期期間之外但一直在區域內的區域。 |是，適用於指定的工作階段 |否 |
 | **單純寫入** |是 |是 |是 |是 |
-| **讀取您的寫入** |是 |是 |是 (在寫入區域中) |否 |
+| **讀取您的寫入** |是 |是 (在寫入區域中) | 是 |否 |
 
 ## <a name="configuring-the-default-consistency-level"></a>設定預設一致性層級
 1. 在 [Azure 入口網站](https://portal.azure.com/)的動態工具列中，按一下 [DocumentDB (NoSQL)]。

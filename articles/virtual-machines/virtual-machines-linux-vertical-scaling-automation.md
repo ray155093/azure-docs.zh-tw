@@ -69,7 +69,7 @@ Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小�
 
 需要如下圖所示匯入 Runbook
 
-![匯入 Runbook](./media/virtual-machines-vertical-scaling-automation/scale-runbooks.png)
+![匯入 Runbook](./windows/media/vertical-scaling-automation/scale-runbooks.png)
 
 ## <a name="add-a-webhook-to-your-runbook"></a>將 Webhook 加入您的 Runbook 中
 匯入 Runbook 之後，需要將 Webhook 加入 Runbook 中，如此即可從虛擬機器發出的警示加以觸發。 如需為 Runbook 建立 Webhook 的詳細資訊，請參閱
@@ -88,8 +88,8 @@ Azure 自動化 Runbook 資源庫中已發佈的垂直調整虛擬機器大小�
 7. 選取監視服務將檢查步驟 5 和 6 之條件和臨界值的期間
 8. 貼上從上一節複製的 Webhook。
 
-![將警示加入虛擬機器 1 中](./media/virtual-machines-vertical-scaling-automation/add-alert-webhook-1.png)
+![將警示加入虛擬機器 1 中](./windows/media/vertical-scaling-automation/add-alert-webhook-1.png)
 
-![將警示加入虛擬機器 2 中](./media/virtual-machines-vertical-scaling-automation/add-alert-webhook-2.png)
+![將警示加入虛擬機器 2 中](./windows/media/vertical-scaling-automation/add-alert-webhook-2.png)
 
 

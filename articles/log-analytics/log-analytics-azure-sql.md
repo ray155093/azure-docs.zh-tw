@@ -56,7 +56,7 @@ Azure SQL 監視解決方案不使用代理程式連線至 Log Analytics 服務�
 執行下列步驟將 Azure SQL 監視解決方案新增至您的工作區。
 
 1. 從 [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.AzureSQLAnalyticsOMS?tab=Overview) 或使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，將 Azure SQL Analytics 解決方案新增至您的工作區。
-2. 在 Azure 入口網站中，按一下 [新增] (+ 符號)，然後在資源的清單中，選取 [監視 + 管理]。  
+2. 在 Azure 入口網站中，按一下 [新增] \(+ 符號)，然後在資源的清單中，選取 [監視 + 管理]。  
     ![監視 + 管理](./media/log-analytics-azure-sql/monitoring-management.png)
 3. 在 [監視 + 管理] 清單中，按一下 [檢視全部]。
 4. 在 [建議]清單中，按一下 [詳細]，然後在新的清單中，尋找 **Azure SQL 分析 (預覽)**，然後選取它。  

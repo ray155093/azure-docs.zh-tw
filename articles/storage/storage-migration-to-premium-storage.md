@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: yuemlu
 translationtype: Human Translation
-ms.sourcegitcommit: 4582049fa1d369ea63395514336d26a524dbfdbe
-ms.openlocfilehash: b3f1b2b4e257fea0dd9324b02ea9aad3e1a645e4
-ms.lasthandoff: 02/08/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 2703a7ae9274e6bef38e530839c1a7c5ad69fb88
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -760,8 +760,8 @@ Update-AzureVM  -VM $vm
 如需移轉虛擬機器的特定案例，請參閱下列資源：
 
 * [在儲存體帳戶之間移轉 Azure 虛擬機器](https://azure.microsoft.com/blog/2014/10/22/migrate-azure-virtual-machines-between-storage-accounts/)
-* [建立並上傳 Windows Server VHD 到 Azure。](../virtual-machines/virtual-machines-windows-classic-createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
-* [建立及上傳包含 Linux 作業系統的虛擬硬碟](../virtual-machines/virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [建立並上傳 Windows Server VHD 到 Azure。](../virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [建立及上傳包含 Linux 作業系統的虛擬硬碟](../virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [將虛擬機器從 Amazon AWS 移轉至 Microsoft Azure](http://channel9.msdn.com/Series/Migrating-Virtual-Machines-from-Amazon-AWS-to-Microsoft-Azure)
 
 若要深入了解 Azure 儲存體和 Azure 虛擬機器，也請參閱下列資源：

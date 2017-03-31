@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 11/21/2016
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 3f504db7d67fdf196fbdaaaba2e09d989449b101
-ms.openlocfilehash: 2e76b380ae928bc6935f15546d73a302ed32bcd3
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: f0c174d7d845dd7e48de6388270dde2469d89a12
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -65,8 +66,8 @@ Azure 也支援 Symantec End Point Protection (SEP)。 透過入口網站整合�
 
 * [在 Azure 虛擬機器上部署反惡意程式碼解決方案](https://azure.microsoft.com/blog/deploying-antimalware-solutions-on-azure-virtual-machines/)
 * [適用於 Azure 雲端服務和虛擬機器的 Microsoft Antimalware](azure-security-antimalware.md)
-* [如何在 Windows VM 上安裝和設定 Trend Micro Deep Security as a Service](../virtual-machines/virtual-machines-windows-classic-install-trend.md)
-* [如何在 Windows VM 上安裝和設定 Symantec Endpoint Protection](../virtual-machines/virtual-machines-windows-classic-install-symantec.md)
+* [如何在 Windows VM 上安裝和設定 Trend Micro Deep Security as a Service](../virtual-machines/windows/classic/install-trend.md)
+* [如何在 Windows VM 上安裝和設定 Symantec Endpoint Protection](../virtual-machines/windows/classic/install-symantec.md)
 * [保護 Azure 虛擬機器的新反惡意程式碼選項 - McAfee Endpoint Protection](https://azure.microsoft.com/blog/new-antimalware-options-for-protecting-azure-virtual-machines/)
 
 ## <a name="multi-factor-authentication"></a>Multi-Factor Authentication
@@ -129,9 +130,4 @@ Azure 資訊安全中心可協助您預防、偵測和回應威脅，並加強�
 
 <!--Image references-->
 [1]: ./media/security-management-and-monitoring-overview/shared-responsibility.png
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

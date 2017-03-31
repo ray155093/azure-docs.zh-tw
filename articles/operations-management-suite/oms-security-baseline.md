@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/05/2016
+ms.date: 03/30/2017
 ms.author: yurid
 translationtype: Human Translation
 ms.sourcegitcommit: f0a512fb0684b1db25353bf4bbd35bdf2a07e1b2
 ms.openlocfilehash: f29b20ba11b030d98a7a5574f816ea132edc3f6d
+ms.lasthandoff: 12/06/2016
 
 
 ---
@@ -84,10 +85,5 @@ OMS 支援 Windows Server 2008 R2 至 Windows Server 2012 R2 的網域成員和�
 * [Operations Management Suite (OMS) 概觀](operations-management-suite-overview.md)
 * [在 Operations Management Suite 安全性和稽核內監視及回應安全性警示](oms-security-responding-alerts.md)
 * [在 Operations Management Suite 安全性和稽核解決方案內監視資源](oms-security-monitoring-resources.md)
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

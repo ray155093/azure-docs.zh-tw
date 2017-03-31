@@ -88,7 +88,7 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：**
 2. 按一下 [上傳憑證] 或 [上傳]。
 3. 在 [檔案] 中，使用 [瀏覽] 選取憑證 (.pfx 檔)。
 4. 在 [密碼] 中，輸入憑證的私密金鑰。
-5. 按一下 [確定]  (勾選記號)。
+5. 按一下 [確定]  \(勾選記號)。
    
     ![CloudServices_AddaCertificate](./media/cloud-services-how-to-create-deploy/CloudServices_AddaCertificate.png)
    
@@ -105,7 +105,7 @@ Azure 傳統入口網站提供兩種方法讓您建立和部署雲端服務：**
 6. 如果雲端服務將包含只有一個執行個體的任何角色，請選取 [Deploy even if one or more roles contain a single instance]  核取方塊，讓部署繼續進行。
    
     如果每個角色至少有兩個執行個體，Azure 只能保證在維護和服務更新期間存取雲端服務的成功率為 99.95%。 若有需要，您可以在部署雲端服務後，在 [Scale]  頁面上新增其他角色執行個體。 如需詳細資訊，請參閱 [服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
-7. 按一下 [確定]  (核取記號) 開始雲端服務部署。
+7. 按一下 [確定]  \(核取記號) 開始雲端服務部署。
    
     ![CloudServices_UploadaPackage](./media/cloud-services-how-to-create-deploy/CloudServices_UploadaPackage.png)
    

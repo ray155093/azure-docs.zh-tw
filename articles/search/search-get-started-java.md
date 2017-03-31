@@ -15,8 +15,9 @@ ms.tgt_pltfrm: na
 ms.date: 07/14/2016
 ms.author: evboyle
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 6ecc365fd90ba955efb977c4e598eae6746916f0
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: f6ca06a0349def97b38a1bf6d0d8f36236077e92
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -60,7 +61,7 @@ ms.openlocfilehash: 6ecc365fd90ba955efb977c4e598eae6746916f0
 
 <a id="sub-2"></a>
 
-## <a name="find-the-service-name-and-apikey-of-your-azure-search-service"></a>尋找 Azure 搜尋服務的服務名稱和 API 金鑰
+## <a name="find-the-service-name-and-api-key-of-your-azure-search-service"></a>尋找 Azure 搜尋服務的服務名稱和 API 金鑰
 所有對 Azure 搜尋服務的 REST API 呼叫都會要求您提供服務 URL 和 API 金鑰。 
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
@@ -72,7 +73,7 @@ ms.openlocfilehash: 6ecc365fd90ba955efb977c4e598eae6746916f0
 5. 複製服務 URL 和系統管理金鑰， 稍後會需要將它們加到 **config.properties** 檔案中。
 
 ## <a name="download-the-sample-files"></a>下載範例檔案
-1. 前往 Github 的 [AzureSearchJavaDemo](https://github.com/AzureSearch/AzureSearchJavaIndexerDemo) 。
+1. 前往 GitHub 的 [AzureSearchJavaDemo](https://github.com/AzureSearch/AzureSearchJavaIndexerDemo)。
 2. 按一下 [下載 ZIP] ，將 .zip 檔案儲存至磁碟，然後解壓縮其中所含的所有檔案。 可以考慮將檔案解壓縮到 Java 工作區，以便之後可以輕鬆找到專案。
 3. 範例檔案為唯讀。 請以滑鼠右鍵按一下資料夾內容，然後清除唯讀屬性。
 
@@ -88,7 +89,7 @@ ms.openlocfilehash: 6ecc365fd90ba955efb977c4e598eae6746916f0
 3. 按一下 [完成] 。
 4. 使用 **專案總管** 檢視及編輯檔案。 如果還沒開啟，請按一下 [視窗] > [顯示檢視] > [專案總管]，或使用捷徑來開啟檔案。
 
-## <a name="configure-the-service-url-and-apikey"></a>設定服務 URL 和 API 金鑰
+## <a name="configure-the-service-url-and-api-key"></a>設定服務 URL 和 API 金鑰
 1. 在**專案總管**中按兩下 **config.properties** 以編輯含有伺服器名稱和 API 金鑰的組態設定。
 2. 請參閱本文中稍早的步驟，其中提及如何在 [Azure 入口網站](https://portal.azure.com)中找到服務 URL 和 API 金鑰，藉此取得您現在要輸入 **config.properties** 中的值。
 3. 在 **config.properties**中，以您服務的 API 金鑰取代 "Api Key"。 接著，在同一個檔案中以服務名稱 (URL http://servicename.search.windows.net 的第一個部分) 取代 "service name"。
@@ -179,9 +180,4 @@ USGS 資料集包含與羅德島州相關的記錄。 如果您在空白的搜�
 [10]: ./media/search-get-started-java/AzSearch-Java-BuildProject1.PNG
 [11]: ./media/search-get-started-java/rogerwilliamsschool1.PNG
 [12]: ./media/search-get-started-java/AzSearch-Java-SelectProject.png
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

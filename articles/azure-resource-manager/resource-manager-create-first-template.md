@@ -31,9 +31,9 @@ ms.lasthandoff: 03/22/2017
 
 2. 存取快速開啟 (Ctrl+P) 並執行，以安裝 [Azure Resource Manager Tools](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools) 擴充功能︰ 
 
-  ```
-  ext install msazurermtools.azurerm-vscode-tools
-  ```
+   ```
+   ext install msazurermtools.azurerm-vscode-tools
+   ```
 
 3. 在系統提示時重新啟動 VS Code 以啟用擴充功能。
 
@@ -45,15 +45,15 @@ ms.lasthandoff: 03/22/2017
 
 2. 複製以下 JSON 語法並貼到您的檔案中：
 
-  ```json
-  {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {  },
-    "variables": {  },
-    "resources": [  ],
-    "outputs": {  }
-  }
+   ```json
+   {
+     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+     "contentVersion": "1.0.0.0",
+     "parameters": {  },
+     "variables": {  },
+     "resources": [  ],
+     "outputs": {  }
+   }
    ```
 
 3. 將此檔案儲存為 azuredeploy.json。 
@@ -63,43 +63,43 @@ ms.lasthandoff: 03/22/2017
 
 3. 將該 JSON 貼到範本 **resources** 區段，如下列範例所示︰ 
 
-  ```json
-  {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {  },
-    "variables": {  },
-    "resources": [
-      {
-        "name": "string",
-        "type": "Microsoft.Storage/storageAccounts",
-        "apiVersion": "2016-05-01",
-        "sku": {
-          "name": "string"
-        },
-        "kind": "string",
-        "location": "string",
-        "tags": {},
-        "properties": {
-          "customDomain": {
-            "name": "string",
-            "useSubDomain": boolean
-          },
-          "encryption": {
-            "services": {
-              "blob": {
-                "enabled": boolean
-              }
-            },
-            "keySource": "Microsoft.Storage"
-          },
-          "accessTier": "string"
-        }
-      }
-    ],
-    "outputs": {  }
-  }
-  ```
+   ```json
+   {
+     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+     "contentVersion": "1.0.0.0",
+     "parameters": {  },
+     "variables": {  },
+     "resources": [
+       {
+         "name": "string",
+         "type": "Microsoft.Storage/storageAccounts",
+         "apiVersion": "2016-05-01",
+         "sku": {
+           "name": "string"
+         },
+         "kind": "string",
+         "location": "string",
+         "tags": {},
+         "properties": {
+           "customDomain": {
+             "name": "string",
+             "useSubDomain": boolean
+           },
+           "encryption": {
+             "services": {
+               "blob": {
+                 "enabled": boolean
+               }
+             },
+             "keySource": "Microsoft.Storage"
+           },
+           "accessTier": "string"
+         }
+       }
+     ],
+     "outputs": {  }
+   }
+   ```
 
   上述範例包含許多預留位置值，以及您的儲存體帳戶可能不需要的一些屬性。
 
@@ -111,37 +111,37 @@ ms.lasthandoff: 03/22/2017
 
 2. 請注意，在 **properties** 元素中，**customDomain**、**encryption** 和 **accessTier** 全都列為非必要。 這些值對您的案例而言可能很重要，但是為了方便說明此範例，讓我們將它們移除。
 
-  ```json
-  "resources": [
-    {
-      "name": "string",
-      "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2016-05-01",
-      "sku": {
-        "name": "string"
-      },
-      "kind": "string",
-      "location": "string",
-      "tags": {},
-      "properties": {
-      }
-    }
-  ],
-  ```
+   ```json
+   "resources": [
+     {
+       "name": "string",
+       "type": "Microsoft.Storage/storageAccounts",
+       "apiVersion": "2016-05-01",
+       "sku": {
+         "name": "string"
+       },
+       "kind": "string",
+       "location": "string",
+       "tags": {},
+       "properties": {
+       }
+     }
+   ],
+   ```
 
 3. **kind** 元素目前設定為預留位置值 ("string")。 VS Code 包含許多功能，可協助您了解要使用於範本中的值。 請注意，VS Code 指出此值無效。 如果您將滑鼠移至 "string" 上，VS Code 會建議 **kind** 的有效值為 `Storage` 或 `BlobStorage`。 
 
-  ![顯示 VS Code 建議值](./media/resource-manager-create-first-template/vs-code-show-values.png)
+   ![顯示 VS Code 建議值](./media/resource-manager-create-first-template/vs-code-show-values.png)
 
-  若要查看可用的值，刪除雙引號之間的字元並選取 **Ctrl+空格鍵**。 從可用的選項中選取 [儲存體]。
+   若要查看可用的值，刪除雙引號之間的字元並選取 **Ctrl+空格鍵**。 從可用的選項中選取 [儲存體]。
   
-  ![顯示 intellisense](./media/resource-manager-create-first-template/intellisense.png)
+   ![顯示 intellisense](./media/resource-manager-create-first-template/intellisense.png)
 
-  如果您未使用 VS Code，請查看儲存體帳戶範本參考頁面。 請注意，說明會列出相同的有效值。 將元素設定為 **Storage**。
+   如果您未使用 VS Code，請查看儲存體帳戶範本參考頁面。 請注意，說明會列出相同的有效值。 將元素設定為 **Storage**。
 
-  ```json
-  "kind": "Storage",
-  ```
+   ```json
+   "kind": "Storage",
+   ```
 
 您的範本現在如下所示：
 
@@ -186,8 +186,6 @@ ms.lasthandoff: 03/22/2017
 
 請注意，函式是以方括號括住。 [resourceGroup](resource-group-template-functions.md#resourcegroup) 函式會傳回具有 `location` 屬性的物件。 資源群組會保留您解決方案的所有相關資源。 您可以將 location 屬性硬式編碼為 "Central US" 之類的值，但您必須手動變更範本以重新部署到不同的位置。 使用 `resourceGroup` 函式，輕鬆地將此範本重新部署至不同位置的不同資源群組。
 
-
-
 您的範本現在如下所示：
 
 ```json
@@ -222,71 +220,71 @@ ms.lasthandoff: 03/22/2017
 
 1. 若要傳入符合您的命名慣例的名稱前置詞，請移至範本的 **parameters** 區段。 將參數新增至可接受儲存體帳戶名稱前置詞的範本︰
 
-  ```json
-  "parameters": {
-    "storageNamePrefix": {
-      "type": "string",
-      "maxLength": 11,
-      "defaultValue": "storage",
-      "metadata": {
-        "description": "The value to use for starting the storage account name."
-      }
-    }
-  },
-  ```
+   ```json
+   "parameters": {
+     "storageNamePrefix": {
+       "type": "string",
+       "maxLength": 11,
+       "defaultValue": "storage",
+       "metadata": {
+         "description": "The value to use for starting the storage account name."
+       }
+     }
+   },
+   ```
 
   前置詞受限於最多 11 個字元，因為 `uniqueString` 會傳回 13 個字元，而且名稱不能超過 24 個字元。 如果您未在部署期間傳入此參數的值，則會使用預設值。
 
 2. 移至範本的 **variables** 區段。 若要從前置詞和唯一字串建構名稱，請新增下列變數︰
 
-  ```json
-  "variables": {
-    "storageName": "[concat(parameters('storageNamePrefix'), uniqueString(resourceGroup().id))]"
-  },
-  ```
+   ```json
+   "variables": {
+     "storageName": "[concat(parameters('storageNamePrefix'), uniqueString(resourceGroup().id))]"
+   },
+   ```
 
 3. 在 **resources** 區段中，將儲存體帳戶名稱設定為該變數。
 
-  ```json
-  "name": "[variables('storageName')]",
-  ```
+   ```json
+   "name": "[variables('storageName')]",
+   ```
 
 3. 若要能夠針對儲存體帳戶傳入不同的 SKU，請移至 **parameters** 區段。 在儲存體名稱前置詞的參數之後，新增一個參數，以指定允許的 SKU 值和預設值。 您可以從範本參考頁面或 VS Code 中找到允許的值。 在下列範例中，您會包含 SKU 的所有有效值。 不過，您可將允許的值僅限於您要透過此範本部署的 SKU 類型。
 
-  ```json
-  "parameters": {
-    "storageNamePrefix": {
-      "type": "string",
-      "maxLength": 11,
-      "defaultValue": "storage",
-      "metadata": {
-        "description": "The value to use for starting the storage account name."
-      }
-    },
-    "storageSKU": {
-      "type": "string",
-      "allowedValues": [
-        "Standard_LRS",
-        "Standard_ZRS",
-        "Standard_GRS",
-        "Standard_RAGRS",
-        "Premium_LRS"
-      ],
-      "defaultValue": "Standard_LRS",
-      "metadata": {
-        "description": "The type of replication to use for the storage account."
-      }
-    }
-  },
-  ```
+   ```json
+   "parameters": {
+     "storageNamePrefix": {
+       "type": "string",
+       "maxLength": 11,
+       "defaultValue": "storage",
+       "metadata": {
+         "description": "The value to use for starting the storage account name."
+       }
+     },
+     "storageSKU": {
+       "type": "string",
+       "allowedValues": [
+         "Standard_LRS",
+         "Standard_ZRS",
+         "Standard_GRS",
+         "Standard_RAGRS",
+         "Premium_LRS"
+       ],
+       "defaultValue": "Standard_LRS",
+       "metadata": {
+         "description": "The type of replication to use for the storage account."
+       }
+     }
+   },
+   ```
 
 3. 將 SKU 屬性變更為使用來自參數的值︰
 
-  ```json
-  "sku": {
-    "name": "[parameters('storageSKU')]"
-  },
-  ```    
+   ```json
+   "sku": {
+     "name": "[parameters('storageSKU')]"
+   },
+   ```    
 
 4. 儲存您的檔案。
 

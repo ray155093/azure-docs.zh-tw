@@ -10,16 +10,17 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: d2a76d53-133a-4849-a30c-88d9c794391c
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/06/2017
+ms.date: 03/22/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 8b1d057ab533e5665513b5b5969b48e18a3ae40c
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 45fb85f83570ed7d79e70dc6fb8f0fdabb7ea191
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -35,6 +36,11 @@ HDInsight 實作運用 HBase 的向外延展架構，提供資料表自動分區
 
 ## <a name="how-is-data-managed-in-hdinsight-hbase"></a>如何在 HDInsight HBase 中管理資料？
 要管理 HBase 中的資料，可使用 HBase Shell 的 `create``get`, `put` 和 `scan` 命令。 將資料寫入資料庫，需使用 `put`，讀取則使用 `get` `scan` 命令可用來取得資料表中多個資料列裡的資料。 您也可以使用 HBase C# API 管理資料，其在 HBase REST API 之上提供用戶端程式庫。 HBase 資料庫也可使用 Hive 進行查詢。 如需這些程式設計模型的簡介，請參閱[開始在 HDInsight 中搭配使用 HBase 與 Hadoop][hbase-get-started]。 同時也提供共同處理器，其允許在主控資料庫的節點中進行資料處理。
+
+>
+> [!NOTE]
+> Thrift 不受 HDInsight 中的 HBase 所支援。
+>
 
 ## <a name="scenarios-use-cases-for-hbase"></a>情節：HBase 的使用案例
 建立 BigTable (以及由此延伸出的 HBase) 的正式使用案例是 Web 搜尋。 搜尋引擎會建置索引，以將字詞對應到包含這些字詞的網頁。 除此之外，HBase 還有其他許多適用的使用案例，本節會列舉其中幾個。

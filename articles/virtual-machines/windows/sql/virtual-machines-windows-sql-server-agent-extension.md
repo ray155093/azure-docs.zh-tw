@@ -17,15 +17,15 @@ ms.date: 01/09/2017
 ms.author: jroth
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 00832fcabfb3d1f6d9b7b9745335d4154a2caae3
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 56e3b3cd94a1fb7b4d05c06bc652b37d8a57c9e2
+ms.lasthandoff: 03/25/2017
 
 ---
 # <a name="automate-management-tasks-on-azure-virtual-machines-with-the-sql-server-agent-extension-resource-manager"></a>使用 SQL Server 代理程式延伸模組 (Resource Manager) 自動化 Azure 虛擬機器上的管理工作
 > [!div class="op_single_selector"]
 > * [資源管理員](virtual-machines-windows-sql-server-agent-extension.md)
-> * [傳統](../sqlclassic/virtual-machines-windows-classic-sql-server-agent-extension.md)
+> * [傳統](../classic/sql-server-agent-extension.md)
 > 
 > 
 
@@ -33,7 +33,7 @@ SQL Server IaaS 代理程式擴充功能 (SQLIaaSExtension) 會在 Azure 虛擬�
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-rm-include.md)]
 
-如需檢視這篇文章的精簡版本，請參閱 [SQL Server IaaS 代理程式擴充功能 (傳統)](../sqlclassic/virtual-machines-windows-classic-sql-server-agent-extension.md)。
+如需檢視這篇文章的精簡版本，請參閱 [SQL Server IaaS 代理程式擴充功能 (傳統)](../classic/sql-server-agent-extension.md)。
 
 ## <a name="supported-services"></a>支援的服務
 SQL Server IaaS 代理程式擴充功能支援下列管理工作︰
