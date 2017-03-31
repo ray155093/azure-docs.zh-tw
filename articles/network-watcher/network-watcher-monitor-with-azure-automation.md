@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 35efe2a6a7a1ea1285a8df26f18de0d425b7c48d
-ms.openlocfilehash: 02a1ba7f2861271ae3b0e2e06bde1b2cd03a378f
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: 9a6f42e9b7b737e9316dcc1ff39ea532c4b923c5
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -55,7 +55,7 @@ Runbook 會使用資源疑難排解 API 檢查連線狀態，利用指令碼檢�
 
 ### <a name="create-the-runbook"></a>建立 runbook
 
-設定範例的第一個步驟是建立 runbook。 這個範例會使用「執行身分」帳戶。 若要深入了解執行身分帳戶，請造訪[使用 Azure 執行身分帳戶驗證 Runbook](../automation/automation-sec-configure-azure-runas-account.md#create-a-new-automation-account-from-the-azure-portal)
+設定範例的第一個步驟是建立 runbook。 這個範例會使用「執行身分」帳戶。 若要深入了解執行身分帳戶，請造訪[使用 Azure 執行身分帳戶驗證 Runbook](../automation/automation-sec-configure-azure-runas-account.md#create-an-automation-account-from-the-azure-portal)
 
 ### <a name="step-1"></a>步驟 1
 
@@ -191,17 +191,4 @@ else
 [8]: ./media/network-watcher-monitor-with-azure-automation/figure8.png
 [9]: ./media/network-watcher-monitor-with-azure-automation/figure9.png
 [10]: ./media/network-watcher-monitor-with-azure-automation/figure10.png
-
-
-
-
-
-
-
-
-
-
-
-
-
 

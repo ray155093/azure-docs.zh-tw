@@ -3,22 +3,21 @@
 
 # 開始使用
 ## [在入口網站中部署擴展集](virtual-machine-scale-sets-portal-create.md)
-## [使用 Azure CLI 部署擴展集](virtual-machine-scale-sets-linux-create-cli.md)
-## [使用 Resource Manager 範本部署簡單的擴展集](virtual-machine-scale-sets-mvss-start.md)
+## [使用 PowerShell 或 Azure CLI 部署擴展集](virtual-machine-scale-sets-create.md)
 
 # 作法
 ## 規劃和設計
 ### [設計考量](virtual-machine-scale-sets-design-overview.md)
-## 將擴展集範本寫入
-### [部署簡單的擴展集](virtual-machine-scale-sets-mvss-start.md)
-### [將擴展集部署至現有的虛擬網路](virtual-machine-scale-sets-mvss-existing-vnet.md)
+
+## 建立範本
+### [了解擴展集範本](virtual-machine-scale-sets-mvss-start.md)
+### [新增虛擬網路](virtual-machine-scale-sets-mvss-existing-vnet.md)
 
 ## 部署
-### [使用入口網站的擴展集](virtual-machine-scale-sets-portal-create.md)
+### [使用入口網站建立](virtual-machine-scale-sets-portal-create.md)
+### [使用 Visual Studio 建立](virtual-machine-scale-sets-vs-create.md)
+### [使用 PowerShell 或 Azure CLI 建立](virtual-machine-scale-sets-create.md)
 ### [搭配受控磁碟的擴展集](virtual-machine-scale-sets-managed-disks.md)
-### [使用 Visual Studio 的擴展集](virtual-machine-scale-sets-vs-create.md)
-### [使用 PowerShell 的擴展集](virtual-machine-scale-sets-windows-create.md)
-### [使用 Azure CLI 的擴展集](virtual-machine-scale-sets-linux-create-cli.md)
 ### [具有自動調整的 Linux 擴展集](virtual-machine-scale-sets-linux-autoscale.md)
 ### [具有自動調整的 Windows 擴展集](virtual-machine-scale-sets-windows-autoscale.md)
 ### [應用程式擴展集](virtual-machine-scale-sets-deploy-app.md)

@@ -101,7 +101,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
     **雲端服務組態**「只」提供 Windows 計算節點。 雲端服務組態集區可用的作業系統列於 [Azure 客體 OS 版次與 SDK 相容性矩陣](../cloud-services/cloud-services-guestos-update-matrix.md)。 建立包含雲端服務節點的集區時，您只需指定節點大小及其「作業系統系列」 。 建立 Windows 計算節點集區時，最常使用的是雲端服務。
 
   * 「OS 系列」  也會決定哪些版本的.NET 會與作業系統一起安裝。
-  * 如同雲端服務內的背景工作角色，您可以指定 [OS 版本] (如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
+  * 如同雲端服務內的背景工作角色，您可以指定 [OS 版本] \(如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
   * 如同背景工作角色，建議為 [OS 版本]指定 `*`，以便自動升級節點，而且不需為了因應新發行的版本而執行工作。 選取特定 OS 版本的主要使用案例是為了確保應用程式相容性，以允許在更新版本之前執行回溯相容性測試。 通過驗證之後，即可更新集區的 [OS 版本] 並安裝新的 OS 映像，如此會中斷任何執行中的工作並重新排入佇列。
 * **節點的大小**
 

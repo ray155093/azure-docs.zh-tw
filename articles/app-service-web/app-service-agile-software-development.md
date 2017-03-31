@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 07/01/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 5ef5cfeb82eed86fd0a9b6328c803d6a88cd2822
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 5ea7af4744876f1085e14de800d599e001c3f3dd
+ms.lasthandoff: 03/27/2017
 
 
 ---
 # <a name="agile-software-development-with-azure-app-service"></a>使用 Azure App Service 進行敏捷式軟體開發 (Agile Software Development)
-在本教學課程中，您將學習如何使用支援[敏捷式軟體開發](https://en.wikipedia.org/wiki/Agile_software_development)的方式，使用 [Azure App Service](/services/app-service/) 建立高級別複雜應用程式。 假設您已經知道如何 [透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)。
+在本教學課程中，您將學習如何使用支援[敏捷式軟體開發](https://en.wikipedia.org/wiki/Agile_software_development)的方式，使用 [Azure App Service](/azure/app-service/) 建立高級別複雜應用程式。 假設您已經知道如何 [透過可預測方式在 Azure 中部署複雜應用程式](app-service-deploy-complex-application-predictably.md)。
 
 技術程序限制通常會妨礙成功的實作敏捷式方法。 如果在 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 中明智地結合部署的協調流程與管理，則 Azure App Service 與功能 (例如[持續發佈](app-service-continuous-deployment.md)、[預備環境](web-sites-staged-publishing.md) (位置) 和[監視](web-sites-monitor.md)) 是非常適合採用敏捷式軟體開發之開發人員的解決方案。
 

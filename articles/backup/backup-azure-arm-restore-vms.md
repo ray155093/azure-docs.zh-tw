@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 3/12/2017
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: b64978da0513ac5daf8e7c4699cf6e3501d63fd9
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 1dc2883056eab9764cda674b42fa40c517550ccd
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 03/15/2017
 
 於定義的間隔進行資料快照，來保護您的資料。 這些快照稱為復原點，而且儲存在復原服務保存庫中。 如果或需要修復或重新建立 VM，您可以從任何已儲存的復原點還原 VM。 當您還原復原點時，您可以建立新的 VM 來代表已備份之 VM 的某個時間點，或還原磁碟並使用它隨附的範本，以自訂已還原的 VM 或執行個別的檔案復原。 本文說明如何將 VM 還原至新的 VM，或還原所有已備份的磁碟。 關於個別檔案復原，請參閱[從 Azure VM 備份復原檔案](backup-azure-restore-files-from-vm.md)
 
-![從 VM 備份還原的&3; 種方法](./media/backup-azure-arm-restore-vms/azure-vm-backup-restore.png)
+![從 VM 備份還原的 3 種方法](./media/backup-azure-arm-restore-vms/azure-vm-backup-restore.png)
 
 > [!NOTE]
 > Azure 有兩種用來建立和使用資源的部署模型： [Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文提供的資訊和程序可供還原使用 Resource Manager 模型部署的 VM。
@@ -190,7 +190,7 @@ ms.lasthandoff: 03/15/2017
    ![提交範本部署](./media/backup-azure-arm-restore-vms/submitting-template.png)
 
 ## <a name="post-restore-steps"></a>還原後的步驟
-* 如果您使用 cloud-init 型 Linux 散發套件 (例如 Ubuntu)，基於安全理由，還原後會封鎖密碼。 請在還原的 VM 上使用 VMAccess 擴充功能 [重設密碼](../virtual-machines/virtual-machines-linux-classic-reset-access.md)。 建議您在這些散發套件上使用 SSH 金鑰，以避免在還原後重設密碼。
+* 如果您使用 cloud-init 型 Linux 散發套件 (例如 Ubuntu)，基於安全理由，還原後會封鎖密碼。 請在還原的 VM 上使用 VMAccess 擴充功能 [重設密碼](../virtual-machines/linux/classic/reset-access.md)。 建議您在這些散發套件上使用 SSH 金鑰，以避免在還原後重設密碼。
 * 出現在備份組態期間的擴充功能，將會安裝但不會啟用。 如果您看到任何問題，請重新安裝擴充功能。 
 * 如果備份的 VM 具有靜態 IP，還原後，還原的 VM 將會有動態 IP，以避免在建立還原的 VM 時發生衝突。 深入了解如何[將靜態 IP 加入至還原的 VM](../virtual-network/virtual-networks-reserved-private-ip.md#how-to-add-a-static-internal-ip-to-an-existing-vm)
 * 還原的 VM 不會有可用性設定值組。 從 PowerShell 建立 VM 或使用還原的磁碟建立範本時，我們建議使用還原磁碟選項和[新增可用性設定組](../virtual-machines/virtual-machines-windows-create-availability-set.md#use-powershell-to-create-an-availability-set)。 

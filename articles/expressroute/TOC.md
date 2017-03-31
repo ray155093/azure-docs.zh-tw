@@ -2,27 +2,25 @@
 ## [什麼是 ExpressRoute？](expressroute-introduction.md)
 ## [ExpressRoute 常見問題集](expressroute-faqs.md)
 ## [連線能力模型](expressroute-connectivity-models.md)
+## [電路與路由網域](expressroute-circuit-peerings.md)
 ## [位置與合作夥伴](expressroute-locations.md)
 ### [依位置的提供者](expressroute-locations-providers.md)
 ### [依提供者的位置](expressroute-locations.md)
+## [ExpressRoute 的虛擬網路閘道](expressroute-about-virtual-network-gateways.md)
 
 # 開始使用
-## [工作流程](expressroute-workflows.md)
 ## [必要條件](expressroute-prerequisites.md)
-## [電路與路由網域](expressroute-circuit-peerings.md)
+## [工作流程](expressroute-workflows.md)
 ## [路由需求](expressroute-routing.md)
-## [將路由最佳化](expressroute-optimize-routing.md)
 ## [NAT 需求](expressroute-nat.md)
 ## [QoS 需求](expressroute-qos.md)
 ## [將電路從傳統移到 Resource Manager](expressroute-move.md)
-## [ExpressRoute 的虛擬網路閘道](expressroute-about-virtual-network-gateways.md)
 
 # 作法
 ## 建立及修改電路
 ### [Azure 入口網站](expressroute-howto-circuit-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-circuit-arm.md)
-### [PowerShell (傳統)](expressroute-howto-circuit-classic.md)
-## 建立及修改路由設定
+## 建立和修改對等互連組態
 ### [Azure 入口網站](expressroute-howto-routing-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-routing-arm.md)
 ### [PowerShell (傳統)](expressroute-howto-routing-classic.md)
@@ -38,11 +36,12 @@
 ### [PowerShell (傳統)](expressroute-howto-coexist-classic.md)
 ## [將電路從傳統移轉到 Resource Manager](expressroute-howto-move-arm.md)
 ## 設定 ExpressRoute 的路由器
-### [路由設定安裝範例](expressroute-config-samples-routing.md)
+### [設定路由器](expressroute-config-samples-routing.md)
 ### [NAT 的路由設定範例](expressroute-config-samples-nat.md)
 
 ## 最佳做法
 ### [網路安全性與雲端服務的最佳做法](../best-practices-network-security.md)
+## [將路由最佳化](expressroute-optimize-routing.md)
 ### [非對稱式路由](expressroute-asymmetric-routing.md)
 
 ## 疑難排解

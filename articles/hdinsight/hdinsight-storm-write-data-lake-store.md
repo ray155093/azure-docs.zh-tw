@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 03/03/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 376415d34592d18de00513ee9142512eb716e426
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 514319dfcb532ab3708352b2467c095d7775b714
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -183,8 +183,7 @@ bolts:
    
     出現提示時，請輸入建立叢集的 SSH 使用者時所使用的密碼。 如果您使用公開金鑰而非密碼，則可能必須使用 `-i` 參數來指定相對應私密金鑰的路徑。
    
-   > [!NOTE]
-   > 如果您使用 Windows 用戶端進行開發，請依照 [從 Windows 使用 SSH 連接至 Linux 型 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md) 中的資訊，來取得使用 PuTTY 用戶端連接到叢集的資訊。
+   如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 3. 連接之後，使用下列命令來建立名為 `dev.properties` 的檔案：
 

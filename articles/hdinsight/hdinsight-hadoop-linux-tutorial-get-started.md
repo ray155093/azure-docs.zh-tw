@@ -17,15 +17,15 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: d038245747ff8cfd2c80d7a7e0f05373ccb1e5fe
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 24bb7e2ffd212594f50bab735e86d74ab95d8c62
+ms.lasthandoff: 03/29/2017
 
 
 ---
 # <a name="hadoop-tutorial-get-started-using-hadoop-in-hdinsight"></a>Hadoop 教學課程：開始在 HDInsight 中使用 Hadoop
 
-了解如何在 HDInsight 中建立 [Hadoop](http://hadoop.apache.org/) 叢集，以及如何在 HDInsight 中執行 Hive 作業。 [Apache Hive](https://hive.apache.org/) 是 Hadoop 生態系統中最受歡迎的元件。 HDInsight 目前隨附&6; 種叢集類型︰[Hadoop](hdinsight-hadoop-introduction.md)、[Spark](hdinsight-apache-spark-overview.md)、[HBase](hdinsight-hbase-overview.md)、[Storm](hdinsight-storm-overview.md)、[互動式 Hive (預覽)](hdinsight-hadoop-use-interactive-hive.md) 和 [R 伺服器](hdinsight-hadoop-r-server-overview.md)。  每種叢集類型都支援一組不同的元件。 這&6; 種叢集類型都支援 Hive。 如需 HDInsight 中支援的元件清單，請參閱 [HDInsight 在 Hadoop 叢集版本中提供的新功能](hdinsight-component-versioning.md)  
+了解如何在 HDInsight 中建立 [Hadoop](http://hadoop.apache.org/) 叢集，以及如何在 HDInsight 中執行 Hive 作業。 [Apache Hive](https://hive.apache.org/) 是 Hadoop 生態系統中最受歡迎的元件。 HDInsight 目前隨附 6 種叢集類型︰[Hadoop](hdinsight-hadoop-introduction.md)、[Spark](hdinsight-apache-spark-overview.md)、[HBase](hdinsight-hbase-overview.md)、[Storm](hdinsight-storm-overview.md)、[互動式 Hive (預覽)](hdinsight-hadoop-use-interactive-hive.md) 和 [R 伺服器](hdinsight-hadoop-r-server-overview.md)。  每種叢集類型都支援一組不同的元件。 這 6 種叢集類型都支援 Hive。 如需 HDInsight 中支援的元件清單，請參閱 [HDInsight 在 Hadoop 叢集版本中提供的新功能](hdinsight-component-versioning.md)  
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 ## <a name="prerequisites"></a>必要條件
@@ -40,7 +40,7 @@ ms.lasthandoff: 03/11/2017
 
 大部分 Hadoop 作業都是批次作業。 您會建立叢集、執行一些工作，然後刪除叢集。 在本節中，您會在 HDInsight 中使用 [Azure Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)建立 Hadoop 叢集。 您可以完全自訂 Resource Manager 範本，讓您能夠輕鬆地建立 Azure 資源 (例如 HDInsight)。 進行本教學課程並不需要具備 Resource Manager 範本經驗。 如需其他叢集建立方法及了解本教學課程中使用的屬性，請參閱 [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)。 使用頁面頂端的選取器來選擇叢集建立選項。
 
-本教學課程中使用的 Resource Manager 範本位於 [Github](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-ssh-password/) 中。 
+本教學課程中使用的 Resource Manager 範本位於 [GitHub](https://azure.microsoft.com/resources/templates/101-hdinsight-linux-ssh-password/) 中。 
 
 1. 按一下以下影像，在 Azure 入口網站中登入 Azure 並開啟 Resource Manager 範本。 
    

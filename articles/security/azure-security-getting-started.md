@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 01/09/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: a31a1b7909ea7440780c9a7af4cb908c9aa6a449
-ms.openlocfilehash: 3ad511b55e33653ea0cf7df2c885d27c1c07441d
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: eb53ed852b6175fbc7faea44a243e8c7d5ce1753
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -130,7 +131,7 @@ IP 篩選器有助於防止客體虛擬機器：
 * [使用者定義的路由](../virtual-network/virtual-networks-udr-overview.md)。 您可以透過虛擬應用裝置來控制封包的路由，方法是建立使用者定義的路由，為流向指定子網路的封包指定流向虛擬網路安全性應用裝置的下一個躍點。
 * [**IP 轉送**](../virtual-network/virtual-networks-udr-overview.md)。 虛擬網路安全性應用裝置必須能夠接收未定址到其本身的傳入流量。 若要讓虛擬機器接收定址到其他目的地的流量，您必須針對虛擬機器啟用 IP 轉送。
 * [**強制通道**](../vpn-gateway/vpn-gateway-about-forced-tunneling.md)。 強制通道可讓您透過站對站 VPN 通道，重新導向或「強制」您在虛擬網路中的虛擬機器所產生的所有網際網路繫結流量傳回內部部署位置，以便進行檢查和稽核。
-* [**端點** ACL](../virtual-machines/virtual-machines-windows-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 您可以定義端點 ACL，以控制哪些機器可以從網際網路對您虛擬網路上的虛擬機器進行輸入連線。
+* [**端點** ACL](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 您可以定義端點 ACL，以控制哪些機器可以從網際網路對您虛擬網路上的虛擬機器進行輸入連線。
 * [**合作夥伴網路安全性解決方案**](https://azure.microsoft.com/marketplace/)。 您可以從 Azure Marketplace 存取許多合作夥伴網路安全性解決方案。
 
 ### <a name="how-azure-implements-virtual-networks-and-firewalls"></a>Azure 如何實作虛擬網路和防火牆
@@ -147,7 +148,7 @@ IP 篩選器有助於防止客體虛擬機器：
 ## <a name="secure-remote-access"></a>安全的遠端存取
 儲存在雲端中的資料必須啟用足夠的保護措施，以防止入侵和維護傳輸時的機密性與完整性。 這包括與組織的原則型、可稽核的身分識別和存取管理機制相連結的網路控制。
 
-內建的密碼編譯技術可讓您對部署內部與各部署間的通訊、Azure 區域之間的通訊，以及 Azure 對內部部署資料中心的通訊進行加密。 系統管理員可透過[遠端桌面工作階段](../virtual-machines/virtual-machines-windows-classic-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)、[遠端 Windows PowerShell](http://blogs.technet.com/b/heyscriptingguy/archive/2013/09/07/weekend-scripter-remoting-the-cloud-with-windows-azure-and-powershell.aspx) 來存取虛擬機器，且 Azure 入口網站一律會加密。
+內建的密碼編譯技術可讓您對部署內部與各部署間的通訊、Azure 區域之間的通訊，以及 Azure 對內部部署資料中心的通訊進行加密。 系統管理員可透過[遠端桌面工作階段](../virtual-machines/windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)、[遠端 Windows PowerShell](http://blogs.technet.com/b/heyscriptingguy/archive/2013/09/07/weekend-scripter-remoting-the-cloud-with-windows-azure-and-powershell.aspx) 來存取虛擬機器，且 Azure 入口網站一律會加密。
 
 為了讓您安全地將內部部署資料中心擴充到雲端，Azure 提供了[站對站 VPN](../vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md) 和[點對站 VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md)，以及具有 [ExpressRoute](../expressroute/expressroute-introduction.md) 的專用連結 (透過 VPN 的 Azure 虛擬網路連線會進行加密)。
 
@@ -194,9 +195,4 @@ Azure 有安全性控制可實作威脅防護功能，並協助客戶降低其�
 [Microsoft 安全性回應中心](https://technet.microsoft.com/library/dn440717.aspx)
 
 [Active Directory 部落格](http://blogs.technet.com/b/ad/)
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

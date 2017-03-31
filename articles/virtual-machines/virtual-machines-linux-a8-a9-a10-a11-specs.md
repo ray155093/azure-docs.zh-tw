@@ -17,9 +17,9 @@ ms.date: 03/14/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: e6818ea7db680f34bb4ee900396c74fc6e42c4b6
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: e2e39b0fa9c45027c51bc5e063df990faf934ff5
+ms.lasthandoff: 03/27/2017
 
 ---
 # <a name="about-h-series-and-compute-intensive-a-series-vms-for-linux"></a>關於 Linux 的 H 系列和計算密集型 A 系列 VM
@@ -30,7 +30,7 @@ ms.lasthandoff: 03/16/2017
 [!INCLUDE [virtual-machines-common-a8-a9-a10-a11-specs](../../includes/virtual-machines-common-a8-a9-a10-a11-specs.md)]
 
 ## <a name="access-to-the-rdma-network"></a>存取 RDMA 網路
-您可以建立支援 RDMA 的 Linux VM 叢集來執行下列其中一個支援的 Linux HPC 散發套件及支援的 MPI 實作，以利用 Azure RDMA 網路。 如需部署選項和範例組態步驟，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
+您可以建立支援 RDMA 的 Linux VM 叢集來執行下列其中一個支援的 Linux HPC 散發套件及支援的 MPI 實作，以利用 Azure RDMA 網路。 如需部署選項和範例組態步驟，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](linux/classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
 * **散發套件** - 您必須從 Azure Marketplace 中支援 RDMA 的 SUSE Linux Enterprise Server (SLES) 或 OpenLogic CentOS 型 HPC 映像部署 VM。 下列 Marketplace 映像支援 RDMA 連線能力：
   
@@ -56,10 +56,10 @@ ms.lasthandoff: 03/16/2017
 
   * **CentOS 型 HPC 映像** - 已經安裝 Intel MPI 5.1。  
     
-    必須進行額外的系統設定，才能在叢集 VM 上執行 MPI 作業。 例如，在 VM 叢集上，您必須在計算節點之間建立信任關係。 如需了解一般設定，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
+    必須進行額外的系統設定，才能在叢集 VM 上執行 MPI 作業。 例如，在 VM 叢集上，您必須在計算節點之間建立信任關係。 如需了解一般設定，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](linux/classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
 ## <a name="considerations-for-hpc-pack-and-linux"></a>HPC Pack 和 Linux 的考量
-[HPC Pack](https://technet.microsoft.com/library/jj899572.aspx)是 Microsoft 的免費 HPC 叢集和作業管理解決方案，提供您一個搭配 Linux 使用計算密集型執行個體的選項。 HPC Pack 的最新版本支援讓數個 Linux 散發套件在部署於 Azure VM 中、由 Windows Server 前端節點管理的計算節點上執行。 搭配支援 RDMA 且執行 Intel MPI 的 Linux 計算節點時，HPC Pack 可以排定及執行存取 RDMA 網路的 Linux MPI 應用程式。 如需詳細資訊，請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
+[HPC Pack](https://technet.microsoft.com/library/jj899572.aspx)是 Microsoft 的免費 HPC 叢集和作業管理解決方案，提供您一個搭配 Linux 使用計算密集型執行個體的選項。 HPC Pack 的最新版本支援讓數個 Linux 散發套件在部署於 Azure VM 中、由 Windows Server 前端節點管理的計算節點上執行。 搭配支援 RDMA 且執行 Intel MPI 的 Linux 計算節點時，HPC Pack 可以排定及執行存取 RDMA 網路的 Linux MPI 應用程式。 如需詳細資訊，請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 計算節點](linux/classic/hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
 ## <a name="network-topology-considerations"></a>網路拓撲考量
 * 在 Azure 中具備 RDMA 功能的 Linux VM 上，Eth1 會保留給 RDMA 網路流量使用。 請勿變更任何 Eth1 設定或參考到此網路之組態檔中的任何資訊。 Eth0 會保留給一般 Azure 網路流量。
@@ -70,6 +70,6 @@ ms.lasthandoff: 03/16/2017
 ## <a name="next-steps"></a>後續步驟
 * 如需有關計算密集型大小的可用性和價格的詳細資料，請參閱 [虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/#Linux)。
 * 如需儲存體容量與磁碟詳細資訊，請參閱[虛擬機器的大小](virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-* 若要開始在 Linux 上部署及使用具有 RDMA 的計算密集型大小，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](virtual-machines-linux-classic-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
+* 若要開始在 Linux 上部署及使用具有 RDMA 的計算密集型大小，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](linux/classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
 

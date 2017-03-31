@@ -17,9 +17,9 @@ ms.workload: database
 ms.date: 03/07/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: 0be15d7a90e6201516bcf01eef9bc219ee211e47
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: dd1866368301f75f2df82a5b775d9c7ae0eafb44
+ms.lasthandoff: 03/30/2017
 
 ---
 
@@ -27,7 +27,7 @@ ms.lasthandoff: 03/10/2017
 
 此範例 PowerShell 指令碼會監視彈性集區的效能度量、將其調整為較高的效能等級，並對其中一個效能度量建立警示規則。 
 
-在執行這個指令碼之前，請確定您已使用 `Add-AzureRmAccount` Cmdlet 建立與 Azure 的連線。
+[!INCLUDE [sample-cli-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 ## <a name="sample-script"></a>範例指令碼
 

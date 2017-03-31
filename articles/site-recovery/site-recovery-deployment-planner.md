@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 2/21/2017
 ms.author: nisoneji
 translationtype: Human Translation
-ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
-ms.openlocfilehash: 33f1be6911178315752ce9c39aa1428b70db835c
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 431f73e1be45dec9aa0fe186cb22078f8d95588d
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -67,13 +67,13 @@ Site Recovery Deployment Planner 公開預覽版本是一項命令列工具，�
 
 | 伺服器需求 | 說明|
 |---|---|
-|剖析和輸送量測量| <ul><li>作業系統：Microsoft Windows Server 2012 R2<br>(最好至少符合[組態伺服器的大小建議](https://aka.ms/asr-v2a-on-prem-components))</li><li>機器組態︰8 個 vCPU、16 GB RAM、300 GB HDD</li><li>[Microsoft .NET Framework 4.5](https://aka.ms/dotnet-framework-45)</li><li>[VMware vSphere PowerCLI 6.0 R3](https://developercenter.vmware.com/tool/vsphere_powercli/6.0)</li><li>[適用於 Visual Studio 2012 的 Microsoft Visual C++ 可轉散發套件](https://aka.ms/vcplusplus-redistributable)</li><li>透過網際網路從這部伺服器存取 Azure</li><li>Azure 儲存體帳戶</li><li>伺服器的系統管理員存取權</li><li>100 GB 的可用磁碟空間下限 (假設剖析平均各有 3 個磁碟的 1000 部 VM 30 天)</li></ul> |
+|剖析和輸送量測量| <ul><li>作業系統：Microsoft Windows Server 2012 R2<br>(最好至少符合[組態伺服器的大小建議](https://aka.ms/asr-v2a-on-prem-components))</li><li>機器組態︰8 個 vCPU、16 GB RAM、300 GB HDD</li><li>[Microsoft .NET Framework 4.5](https://aka.ms/dotnet-framework-45)</li><li>[VMware vSphere PowerCLI 6.0 R3](https://developercenter.vmware.com/tool/vsphere_powercli/6.0)</li><li>[適用於 Visual Studio 2012 的 Microsoft Visual C++ 可轉散發套件](https://aka.ms/vcplusplus-redistributable)</li><li>透過網際網路從這部伺服器存取 Azure</li><li>Azure 儲存體帳戶</li><li>伺服器的系統管理員存取權</li><li>100 GB 的可用磁碟空間下限 (假設剖析平均各有 3 個磁碟的 1000 部 VM 30 天)</li><li>VMware vCenter 統計資料層級設定應該設定為 2 或高層級</li></ul>|
 | 報告產生 | 具有 Microsoft Excel 2013 和更新版本的 Windows PC 或 Windows Server |
 | 使用者權限 | 使用者帳戶的唯讀權限，在剖析期間用來存取 VMware vCenter Server/VMware vSphere ESXi 主機 |
 
 > [!NOTE]
 >
-> 此工具只能剖析具有 VMDK 和 RDM 磁碟的 VM。 不能剖析具有 iSCSI 或 NFS 磁碟的 VM。 Site Recovery 支援 VMware 伺服器適用的 iSCSI 和 NFS 磁碟，但因為部署規劃工具不在客體內，而且只使用 vCenter 效能計數器進行剖析，所以此工具看不見這些磁碟類型。
+>此工具只能剖析具有 VMDK 和 RDM 磁碟的 VM。 不能剖析具有 iSCSI 或 NFS 磁碟的 VM。 Site Recovery 支援 VMware 伺服器適用的 iSCSI 和 NFS 磁碟，但因為部署規劃工具不在客體內，而且只使用 vCenter 效能計數器進行剖析，所以此工具看不見這些磁碟類型。
 >
 
 ## <a name="download-and-extract-the-public-preview"></a>下載並解壓縮公開預覽版本
@@ -150,13 +150,7 @@ ASRDeploymentPlanner.exe -Operation StartProfiling /?
 
 在剖析期間，您可以選擇性地傳送儲存體帳戶名稱和金鑰，以尋找 Site Recovery 可在從組態伺服器或處理序伺服器複寫至 Azure 時達成的輸送量。 如果未在剖析期間傳送儲存體帳戶名稱和金鑰，此工具就不會計算可達成的輸送量。
 
-#### <a name="example-1-profile-vms-for-30-days-and-find-the-throughput-from-on-premises-to-azure"></a>範例 1︰剖析 VM 30 天，並找出從內部部署至 Azure 的輸送量
-```
-ASRDeploymentPlanner.exe **-Operation** StartProfiling -Directory “E:\vCenter1_ProfiledData” **-Server** vCenter1.contoso.com **-VMListFile** “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  **-NoOfDaysToProfile**  30  **-User** vCenterUser1 **-StorageAccountName**  asrspfarm1 **-StorageAccountKey** Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
-```
-
-#### <a name="example-2-profile-vms-for-15-days"></a>範例 2︰剖析 VM 15 天
-您可以針對不同組的 VM 執行多個工具執行個體。 確保 VM 名稱不會在任何剖析集中重複出現。 例如，若已剖析&10; 部 VM (VM1 到 VM10)，而在幾天後您想要剖析另外&5; 部 VM (VM11 到 VM15)，您可以針對第二組的 VM (VM11 到 VM15) 從另一個命令列主控台執行此工具。 確保第二組的 VM 沒有任何來自第一個剖析執行個體的 VM 名稱，或您使用不同的輸出目錄進行第二次執行。 如有兩個工具執行個體用於剖析相同的 VM 並使用相同的輸出目錄，所產生的報告則會不正確。
+您可以針對不同組的 VM 執行多個工具執行個體。 確保 VM 名稱不會在任何剖析集中重複出現。 例如，若已剖析 10 部 VM (VM1 到 VM10)，而在幾天後您想要剖析另外 5 部 VM (VM11 到 VM15)，您可以針對第二組的 VM (VM11 到 VM15) 從另一個命令列主控台執行此工具。 確保第二組的 VM 沒有任何來自第一個剖析執行個體的 VM 名稱，或您使用不同的輸出目錄進行第二次執行。 如有兩個工具執行個體用於剖析相同的 VM 並使用相同的輸出目錄，所產生的報告則會不正確。
 
 在剖析作業開始時會擷取一次 VM 組態，並儲存在名為 VMDetailList.xml 的檔案。 產生報告時會使用此資訊。 從剖析開始到結尾，不會擷取任何 VM 組態變更 (例如，增加的核心、磁碟或 NIC 數目)。 如果有剖析的 VM 組態在剖析過程中發生變更，在公開預覽版本中，以下是在產生報告時取得最新 VM 詳細資料的因應措施：
 
@@ -165,25 +159,27 @@ ASRDeploymentPlanner.exe **-Operation** StartProfiling -Directory “E:\vCenter1
 
 剖析命令會在剖析目錄中產生數個檔案。 請勿刪除任何檔案，因為這麼做會影響報告產生。
 
+#### <a name="example-1-profile-vms-for-30-days-and-find-the-throughput-from-on-premises-to-azure"></a>範例 1︰剖析 VM 30 天，並找出從內部部署至 Azure 的輸送量
 ```
-ASRDeploymentPlanner.exe **-Operation** StartProfiling **-Directory** “E:\vCenter1_ProfiledData” **-Server** vCenter1.contoso.com **-VMListFile** “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  **-NoOfDaysToProfile**  15  -User vCenterUser1
+ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfDaysToProfile  30  -User vCenterUser1 -StorageAccountName  asrspfarm1 -StorageAccountKey Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
+```
+
+#### <a name="example-2-profile-vms-for-15-days"></a>範例 2︰剖析 VM 15 天
+
+```
+ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfDaysToProfile  15  -User vCenterUser1
 ```
 
 #### <a name="example-3-profile-vms-for-1-hour-for-a-quick-test-of-the-tool"></a>範例 3：剖析 VM 1 小時以便快速測試工具
 ```
-ASRDeploymentPlanner.exe **-Operation** StartProfiling **-Directory** “E:\vCenter1_ProfiledData” **-Server** vCenter1.contoso.com **-VMListFile** “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  **-NoOfDaysToProfile**  0.04  **-User** vCenterUser1
+ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_ProfiledData” -Server vCenter1.contoso.com -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -NoOfDaysToProfile  0.04  -User vCenterUser1
 ```
 
 >[!NOTE]
 >
 >* 如果此工具執行所在的伺服器已重新啟動或已當機，或如果您使用 Ctrl + C 關閉工具，則會保留剖析的資料。 不過，過去 15 分鐘的剖析資料有可能會遺失。 在這種情況下，請在伺服器開始備份之後，於剖析模式中重新執行此工具。
 >* 傳遞儲存體帳戶名稱和金鑰時，此工具會在剖析的最後一個步驟測量輸送量。 如果此工具在剖析完成前關閉，則不會計算輸送量。 若要在產生報告之前找到輸送量，您可以從命令列主控台執行 GetThroughput 作業。 否則，產生的報告不會包含輸送量資訊。
->* 您可以針對不同組的 VM 執行多個工具執行個體。 確保 VM 名稱不會在任何剖析集中重複出現。 例如，您已剖析&10; 部 VM (VM1 到 VM10)，而在幾天後您想要剖析另外&5; 部 VM (VM11 到 VM15)，您可以針對第二組的 VM (VM11 到 VM15) 從另一個命令列主控台執行此工具。 但確保第二組的 VM 不包含任何來自第一個剖析執行個體的 VM 名稱，或您使用不同的輸出目錄進行第二次執行。 如有兩個工具執行個體用於剖析相同的 VM 並使用相同的輸出目錄，所產生的報告則會不正確。
->* 在剖析作業開始時會擷取一次 VM 組態，並儲存在名為 VMDetailList.xml 的檔案。 產生報告時會使用此資訊。 從剖析開始到結尾，會擷取任何 VM 組態變更 (例如，增加的核心、磁碟或 NIC 數目)。 如果公開預覽版本中有任何剖析的 VM 組態已變更，請執行下列因應措施，以取得最新的 VM 詳細資料︰  
->  * 備份 VMdetailList.xml，然後從其目前的位置刪除此檔案。  
->  * 在報告產生時傳遞 -User 和 -Password 引數。  
->  
->* 剖析命令會在剖析目錄中產生數個檔案。 請勿刪除任何檔案，因為這麼做會影響報告產生。
+
 
 ## <a name="generate-a-report"></a>產生報告
 此工具會產生啟用巨集的 Microsoft Excel 檔案 (XLSM) 做為報告輸出，其中摘要說明所有的部署建議。 此報告的名稱為 DeploymentPlannerReport_<唯一數值識別碼>.xlsm 且置於指定的目錄中。
@@ -207,36 +203,36 @@ ASRDeploymentPlanner.exe **-Operation** StartProfiling **-Directory** “E:\vCen
 | -EndDate | (選用) 採用 MM-DD-YYYY:HH:MM 格式 (24 小時制) 的結束日期和時間。 EndDate 必須與 StartDate 一起指定。 若已指定 EndDate，則會針對在 StartDate 與 EndDate 之間收集的剖析資料產生報告。 |
 | -GrowthFactor | (選用) 以百分比表示的成長因子。 預設值為 30%。 |
 
-### <a name="example-1-generate-a-report-with-default-values-when-the-profiled-data-is-on-the-local-drive"></a>範例 1︰當剖析的資料位於本機磁碟機時，使用預設值來產生報告
+#### <a name="example-1-generate-a-report-with-default-values-when-the-profiled-data-is-on-the-local-drive"></a>範例 1︰當剖析的資料位於本機磁碟機時，使用預設值來產生報告
 ```
-ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.contoso.com **-Directory** “\\PS1-W2K12R2\vCenter1_ProfiledData” **-VMListFile** “\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
+ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “\\PS1-W2K12R2\vCenter1_ProfiledData” -VMListFile “\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
 ```
 
-### <a name="example-2-generate-a-report-when-the-profiled-data-is-on-a-remote-server"></a>範例 2︰當剖析的資料位於遠端伺服器時產生報告
+#### <a name="example-2-generate-a-report-when-the-profiled-data-is-on-a-remote-server"></a>範例 2︰當剖析的資料位於遠端伺服器時產生報告
 您應具備遠端目錄的讀取/寫入存取權。
 ```
-ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.contoso.com **-Directory** “\\PS1-W2K12R2\vCenter1_ProfiledData” **-VMListFile** “\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
+ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “\\PS1-W2K12R2\vCenter1_ProfiledData” -VMListFile “\\PS1-W2K12R2\vCenter1_ProfiledData\ProfileVMList1.txt”
 ```
 
-### <a name="example-3-generate-a-report-with-a-specific-bandwidth-and-goal-to-complete-ir-within-specified-time"></a>範例 3︰使用特定頻寬和目標來產生報告，以在指定的時間內完成 IR
+#### <a name="example-3-generate-a-report-with-a-specific-bandwidth-and-goal-to-complete-ir-within-specified-time"></a>範例 3︰使用特定頻寬和目標來產生報告，以在指定的時間內完成 IR
 ```
-ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.contoso.com **-Directory** “E:\vCenter1_ProfiledData” **-VMListFile** “E:\vCenter1_ProfiledData\ProfileVMList1.txt” **-Bandwidth** 100 **-GoalToCompleteIR** 24
-```
-
-### <a name="example-4-generate-a-report-with-a-5-percent-growth-factor-instead-of-the-default-30-percent"></a>範例 4︰使用 5% (而非預設值 30%) 的成長因子來產生報告
-```
-ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.contoso.com **-Directory** “E:\vCenter1_ProfiledData” **-VMListFile** “E:\vCenter1_ProfiledData\ProfileVMList1.txt” **-GrowthFactor** 5
+ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -Bandwidth 100 -GoalToCompleteIR 24
 ```
 
-### <a name="example-5-generate-a-report-with-a-subset-of-profiled-data"></a>範例 5︰使用剖析資料子集來產生報告
+#### <a name="example-4-generate-a-report-with-a-5-percent-growth-factor-instead-of-the-default-30-percent"></a>範例 4︰使用 5% (而非預設值 30%) 的成長因子來產生報告
+```
+ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -GrowthFactor 5
+```
+
+#### <a name="example-5-generate-a-report-with-a-subset-of-profiled-data"></a>範例 5︰使用剖析資料子集來產生報告
 例如，您有 30 天的剖析資料，而只想要產生 20 天的報告。
 ```
-ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.contoso.com **-Directory** “E:\vCenter1_ProfiledData” **-VMListFile** “E:\vCenter1_ProfiledData\ProfileVMList1.txt” **-StartDate**  01-10-2017:12:30 -**EndDate** 01-19-2017:12:30
+ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt” -StartDate  01-10-2017:12:30 -EndDate 01-19-2017:12:30
 ```
 
-### <a name="example-6-generate-a-report-for-5-minute-rpo"></a>範例 6：針對 5 分鐘 RPO 產生報告
+#### <a name="example-6-generate-a-report-for-5-minute-rpo"></a>範例 6：針對 5 分鐘 RPO 產生報告
 ```
-ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.contoso.com **-Directory** “E:\vCenter1_ProfiledData” **-VMListFile** “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  **-DesiredRPO** 5
+ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com -Directory “E:\vCenter1_ProfiledData” -VMListFile “E:\vCenter1_ProfiledData\ProfileVMList1.txt”  -DesiredRPO 5
 ```
 
 ## <a name="percentile-value-used-for-the-calculation"></a>用來計算的百分位數值
@@ -246,9 +242,9 @@ ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.cont
 
 使用第 95 個百分位數值可提供實際工作負載特性的真實情況，並且讓您在 Azure 上執行這些工作負載時獲得最佳效能。 我們不希望您會需要變更這個數字。 如果您變更此數字 (例如，變更為第 90 個百分位數)，您可以更新預設資料夾中的組態檔 ASRDeploymentPlanner.exe.config 並加以儲存，以產生現有剖析資料的新報告。
 ```
-&lsaquo;add key="WriteIOPSPercentile" value="95" /&rsaquo;>      
-&lsaquo;add key="ReadWriteIOPSPercentile" value="95" /&rsaquo;>      
-&lsaquo;add key="DataChurnPercentile" value="95" /&rsaquo;
+<add key="WriteIOPSPercentile" value="95" />      
+<add key="ReadWriteIOPSPercentile" value="95" />      
+<add key="DataChurnPercentile" value="95" />
 ```
 
 ## <a name="growth-factor-considerations"></a>成長因子考量
@@ -297,7 +293,7 @@ ASRDeploymentPlanner.exe **-Operation** GenerateReport **-Server** vCenter1.cont
 
 ### <a name="example"></a>範例
 ```
-ASRDeploymentPlanner.exe **-Operation** GetThroughput **-Directory**  E:\vCenter1_ProfiledData **-VMListFile** E:\vCenter1_ProfiledData\ProfileVMList1.txt  **-StorageAccountName**  asrspfarm1 **-StorageAccountKey** by8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
+ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_ProfiledData -VMListFile E:\vCenter1_ProfiledData\ProfileVMList1.txt  -StorageAccountName  asrspfarm1 -StorageAccountKey by8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
 ```
 
 >[!NOTE]
@@ -489,7 +485,7 @@ ASRDeploymentPlanner.exe **-Operation** GetThroughput **-Directory**  E:\vCenter
 
 **VM 相容性**：指出為何指定的 VM 不適合與 Site Recovery 搭配使用。 相關原因會針對 VM 的每個不相容磁碟進行說明，且根據發佈的[儲存體限制](https://aka.ms/azure-storage-scalbility-performance)，原因可能是下列其中一項：
 
-* 磁碟大小 >&1023; GB。 Azure 儲存體目前不支援大於 1 TB 的磁碟大小。
+* 磁碟大小 > 1023 GB。 Azure 儲存體目前不支援大於 1 TB 的磁碟大小。
 
 * VM 大小總計 (複寫 + TFO) 超過支援的儲存體帳戶大小限制 (35 TB)。 當 VM 中單一磁碟的效能特性超過標準儲存體支援的最大 Azure 或 Site Recovery 限制，通常會發生此不相容情況。 這類情況會將 VM 推送到進階儲存體區域中。 不過，進階儲存體帳戶支援的大小上限為 35 TB，而單一的受保護 VM 無法跨多個儲存體帳戶受到保護。 也請注意，在受保護的 VM 上執行測試容錯移轉時，它會在正在進行複寫的相同儲存體帳戶中執行。 在此例中，設定 2 倍的磁碟大小，以便進行複寫並以平行方式繼續進行測試容錯移轉。
 * 來源 IOPS 超過支援的儲存體 IOPS 限制 (每個磁碟 5000)。
@@ -518,12 +514,12 @@ ASRDeploymentPlanner.exe **-Operation** GetThroughput **-Directory**  E:\vCenter
 
 **複寫儲存體目標** | **平均來源磁碟 I/O 大小** |**平均來源磁碟資料變換** | **每日的來源磁碟資料變換總計**
 ---|---|---|---
-標準儲存體 | 8 KB    | 2 MBps | 每個磁碟&168; GB
-進階 P10 磁碟 | 8 KB    | 2 MBps | 每個磁碟&168; GB
-進階 P10 磁碟 | 16 KB | 4 MBps |    每個磁碟&336; GB
-進階 P10 磁碟 | 32 KB 或更大 | 8 MBps | 每個磁碟&672; GB
-進階 P20 或 P30 磁碟 | 8 KB    | 5 MBps | 每個磁碟&421; GB
-進階 P20 或 P30 磁碟 | 16 KB 或更大 |10 MBps | 每個磁碟&842; GB
+標準儲存體 | 8 KB    | 2 MBps | 每個磁碟 168 GB
+進階 P10 磁碟 | 8 KB    | 2 MBps | 每個磁碟 168 GB
+進階 P10 磁碟 | 16 KB | 4 MBps |    每個磁碟 336 GB
+進階 P10 磁碟 | 32 KB 或更大 | 8 MBps | 每個磁碟 672 GB
+進階 P20 或 P30 磁碟 | 8 KB    | 5 MBps | 每個磁碟 421 GB
+進階 P20 或 P30 磁碟 | 16 KB 或更大 |10 MBps | 每個磁碟 842 GB
 
 以上是採用 30% I/O 重疊時的平均數字。 Site Recovery 能夠處理更高的輸送量 (以重疊比為基礎)、較大的寫入大小和實際工作負載 I/O 行為。 先前數字採用大約五分鐘的典型積壓。 也就是說，資料上傳之後，便會進行處理並在五分鐘內建立復原點。
 
@@ -543,6 +539,7 @@ ASRDeploymentPlanner.exe **-Operation** GetThroughput **-Directory**  E:\vCenter
  * 如果最新版本包含剖析修正程式，則建議您在目前的版本上停止剖析，並使用新版本重新開始剖析。
 
   >[!NOTE]
+  >
   >當您開始使用新版本進行剖析時，請傳遞相同的輸出目錄路徑，以便工具在現有檔案上附加剖析資料。 將使用一組完整的剖析資料來產生報告。 如果您傳遞不同的輸出目錄，則會建立新檔案，舊的剖析資料不會用來產生報告。
   >
   >每個新的 Deployment Planner 都是 .zip 檔的累積更新。 您不需要將最新的檔案複製到先前的資料夾。 您可以建立及使用新的資料夾。

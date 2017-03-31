@@ -16,16 +16,16 @@ ms.workload: iaas-sql-server
 ms.date: 03/01/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 0c23ee550d8ac88994e8c7c54a33d348ffc24372
-ms.openlocfilehash: 8e59988f24748a82d4e143295bab9bdaa65cf8e4
-ms.lasthandoff: 01/11/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: d09d2b869606995d227aa485a85acd67c18ee4e5
+ms.lasthandoff: 03/25/2017
 
 
 ---
 # <a name="configure-an-ilb-listener-for-always-on-availability-groups-in-azure"></a>設定 Azure 中 Always On 可用性群組的 ILB 接聽程式
 > [!div class="op_single_selector"]
-> * [內部接聽程式](virtual-machines-windows-classic-ps-sql-int-listener.md)
-> * [外部接聽程式](virtual-machines-windows-classic-ps-sql-ext-listener.md)
+> * [內部接聽程式](../classic/ps-sql-int-listener.md)
+> * [外部接聽程式](../classic/ps-sql-ext-listener.md)
 > 
 > 
 
@@ -37,18 +37,18 @@ ms.lasthandoff: 01/11/2017
 
 若要在 Resource Manager 模型中設定 Always On 可用性群組的 ILB 接聽程式，請參閱 [在 Azure 中設定 Always On 可用性群組的內部負載平衡器](../sql/virtual-machines-windows-portal-sql-alwayson-int-listener.md)。
 
-您的可用性群組可包含的複本為僅限內部部署、僅限 Azure，或同時跨內部部署和 Azure 的混合式組態。 Azure 複本可位於相同區域內，或使用多個虛擬網路 (VNet) 跨多個區域。 下列步驟假設您已 [設定可用性群組](virtual-machines-windows-classic-portal-sql-alwayson-availability-groups.md)，但尚未設定接聽程式。
+您的可用性群組可包含的複本為僅限內部部署、僅限 Azure，或同時跨內部部署和 Azure 的混合式組態。 Azure 複本可位於相同區域內，或使用多個虛擬網路 (VNet) 跨多個區域。 下列步驟假設您已 [設定可用性群組](../classic/portal-sql-alwayson-availability-groups.md)，但尚未設定接聽程式。
 
 ## <a name="guidelines-and-limitations-for-internal-listeners"></a>內部接聽程式指導方針和限制
 請注意下列關於 Azure 中可用性群組接聽程式使用 ILB 的指導方針：
 
 * 可用性群組接聽程式支援 Windows Server 2008 R2、Windows Server 2012 和 Windows Server 2012 R2。
-* 每個雲端服務僅支援一個內部可用性群組接聽程式，因為接聽程式被設定為 ILB，且每個雲端服務僅有一個 ILB； 但是可以建立多個外部接聽程式。 如需詳細資訊，請參閱[在 Azure 中設定 Always On 可用性群組的外部接聽程式](virtual-machines-windows-classic-ps-sql-ext-listener.md)。
+* 每個雲端服務僅支援一個內部可用性群組接聽程式，因為接聽程式被設定為 ILB，且每個雲端服務僅有一個 ILB； 但是可以建立多個外部接聽程式。 如需詳細資訊，請參閱[在 Azure 中設定 Always On 可用性群組的外部接聽程式](../classic/ps-sql-ext-listener.md)。
 
 ## <a name="determine-the-accessibility-of-the-listener"></a>判斷接聽程式的存取性
 [!INCLUDE [ag-listener-accessibility](../../../../includes/virtual-machines-ag-listener-determine-accessibility.md)]
 
-本文著重於建立使用 **內部負載平衡器 (ILB)**的接聽程式。 如果您需要公用/外部接聽程式，請參閱本文提供設定 [external listener](virtual-machines-windows-classic-ps-sql-ext-listener.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+本文著重於建立使用 **內部負載平衡器 (ILB)**的接聽程式。 如果您需要公用/外部接聽程式，請參閱本文提供設定 [external listener](../classic/ps-sql-ext-listener.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="create-load-balanced-vm-endpoints-with-direct-server-return"></a>使用伺服器直接回傳建立負載平衡 VM 端點
 對於 ILB，您必須先建立內部負載平衡器。 此動作可使用下方的指令碼來完成。

@@ -1,3 +1,4 @@
+
 # 概觀
 ## [什麼是 Service Fabric？](service-fabric-overview.md)
 ## [了解微服務](service-fabric-overview-microservices.md)
@@ -22,11 +23,13 @@
 ### [模式和案例](service-fabric-patterns-and-scenarios.md)
 ### 基本概念
 #### [應用程式模型](service-fabric-application-model.md)
+#### [封裝應用程式](service-fabric-package-apps.md)
 #### [支援的程式設計模型](service-fabric-choose-framework.md)
 #### [服務狀態](service-fabric-concepts-state.md)
 #### [服務通訊](service-fabric-connect-and-communicate-with-services.md)
 #### [新增 Web 前端](service-fabric-add-a-web-frontend.md)
 #### [服務資訊清單資源](service-fabric-service-manifest-resources.md)
+#### [開始使用 Eclipse 外掛程式進行 Java 部署](service-fabric-get-started-eclipse.md)
 #### [管理 Visual Studio 的應用程式](service-fabric-manage-application-in-visual-studio.md)
 #### [在 Visual Studio 中設定安全連線](service-fabric-visualstudio-configure-secure-connections.md)
 #### 偵錯
@@ -62,7 +65,7 @@
 #### [備份與還原](service-fabric-reliable-services-backup-restore.md)
 #### [與 Reliable Services 通訊](service-fabric-reliable-services-communication.md)
 #### [使用 Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
-##### [ASP.NET](service-fabric-reliable-services-communication-webapi.md)
+##### [ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md)
 ##### [服務遠端處理](service-fabric-reliable-services-communication-remoting.md)
 ##### [WCF](service-fabric-reliable-services-communication-wcf.md)
 ##### [反向 proxy](service-fabric-reverseproxy.md)
@@ -88,6 +91,7 @@
 ## 從雲端服務移轉
 ### [比較雲端服務與 Service Fabric](service-fabric-cloud-services-migration-differences.md)
 ### [移轉室 Service Fabric](service-fabric-cloud-services-migration-worker-role-stateless-service.md)
+### [建議的作法](/azure/architecture/service-fabric/migrate-from-cloud-services)
 
 ## 建立和管理叢集
 

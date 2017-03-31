@@ -15,9 +15,9 @@ ms.date: 01/25/2017
 ms.author: jingwang
 published: true
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 4bc78bdf71c6de0c35197e84f4bb800d13bda6c0
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: d04bf7c5a457b90c5128050642bee6a2623787a0
+ms.lasthandoff: 03/29/2017
 
 ---
 # <a name="troubleshoot-issues-with-using-data-management-gateway"></a>使用資料管理閘道針對問題進行疑難排解
@@ -40,7 +40,7 @@ ms.lasthandoff: 03/14/2017
 #### <a name="resolution"></a>解決方案
 請檢查防火牆 proxy 伺服器設定，以查看這些設定是否會封鎖從電腦到[下載中心](https://download.microsoft.com/)的網路連線，並據以更新設定。
 
-或者，您可以在能夠存取下載中心的其他電腦上，從[下載中心](https://www.microsoft.com/en-US/download/details.aspx?id=39717)下載最新閘道的安裝檔案。 然後您可以將安裝程式檔案複製到閘道主機電腦，並手動執行以安裝及更新閘道。
+或者，您可以在能夠存取下載中心的其他電腦上，從[下載中心](https://www.microsoft.com/download/details.aspx?id=39717)下載最新閘道的安裝檔案。 然後您可以將安裝程式檔案複製到閘道主機電腦，並手動執行以安裝及更新閘道。
 
 ### <a name="2-problem"></a>2.問題
 當您在 Azure 入口網站中按一下 [直接在這部電腦上安裝] 以嘗試安裝閘道時，您會看到此錯誤。
@@ -252,7 +252,7 @@ ms.lasthandoff: 03/14/2017
     ![資料管理閘道傳送記錄檔](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-dialog.png)
 3. (選擇性) 按一下 [檢視記錄檔] 以在事件檢視器檢閱記錄檔。
 4. (選擇性) 按一下 [隱私權] 以檢閱 Microsoft Web 服務隱私權聲明。
-5. 當您滿意即將上傳的內容時，請按一下 [傳送記錄檔]，將過去&7; 天的記錄檔傳送給 Microsoft 進行疑難排解。 您應該會看到「傳送記錄檔」作業的狀態，如下列螢幕擷取畫面所示。
+5. 當您滿意即將上傳的內容時，請按一下 [傳送記錄檔]，將過去 7 天的記錄檔傳送給 Microsoft 進行疑難排解。 您應該會看到「傳送記錄檔」作業的狀態，如下列螢幕擷取畫面所示。
 
     ![資料管理閘道傳送記錄檔狀態](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-status.png)
 6. 作業完成之後，您會看到一個對話方塊，如下列螢幕擷取畫面所示。

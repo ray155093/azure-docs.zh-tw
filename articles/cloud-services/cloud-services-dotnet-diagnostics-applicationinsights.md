@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 12/15/2015
 ms.author: saurabh
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d6e668f5ceffc6e78ac19f83b6022118d5abbb55
+ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
+ms.openlocfilehash: 78d8908a144dadb5fe9d4c48491abf153defe118
+ms.lasthandoff: 03/23/2017
 
 
 ---
@@ -42,9 +43,9 @@ ms.openlocfilehash: d6e668f5ceffc6e78ac19f83b6022118d5abbb55
 
 ![選取服務組態][4]
 
-在發佈期間，Visual studio 使用 **APPINSIGHTS_INSTRUMENTATIONKEY** 組態設定來設定診斷延伸模組的適當 Application Insights 資源資訊。 組態設定是為不同的服務組態定義不同檢測金鑰的便利方式。 發佈時，Visual Studio 會轉譯該設定，並將它插入診斷延伸模組公用組態。 為簡化使用 PowerShell 設定診斷延伸模組的程序，Visual Studio 中的封裝輸出也包含了公用組態 XML，並且內含適當的 Application Insights 檢測金鑰。 公用組態檔會建立在延伸模組資料夾中，並遵循 PaaSDiagnostics.<RoleName>.PubConfig.xml 的模式。 任何以 PowerShell 為基礎的部署都可以使用此模式將每個組態對應至角色。
+在發佈期間，Visual studio 使用 **APPINSIGHTS_INSTRUMENTATIONKEY** 組態設定來設定診斷延伸模組的適當 Application Insights 資源資訊。 組態設定是為不同的服務組態定義不同檢測金鑰的便利方式。 發佈時，Visual Studio 會轉譯該設定，並將它插入診斷延伸模組公用組態。 為簡化使用 PowerShell 設定診斷延伸模組的程序，Visual Studio 中的封裝輸出也包含了公用組態 XML，並且內含適當的 Application Insights 檢測金鑰。 公用組態檔會建立在延伸模組資料夾中，並遵循 PaaSDiagnostics<RoleName>.PubConfig.xml 的模式。 任何以 PowerShell 為基礎的部署都可以使用此模式將每個組態對應至角色。
 
-5) 啟用 [將診斷資料傳送至 Application Insights] 會自動設定 Azure 診斷將 Azure 診斷代理程式收集的所有效能計數器和錯誤層級記錄檔，傳送至 Application Insights。 如果您想進一步設定哪些資料要傳送至 Application Insights，您必須手動編輯每個角色的 *diagnostics.wadcfgx* 檔案。 若要深入了解手動更新組，請參閱 [設定 Azure 診斷以將資料傳送至 Application Insights](../azure-diagnostics-configure-applicationinsights.md) 。
+5) 啟用 [將診斷資料傳送至 Application Insights] 會自動設定 Azure 診斷將 Azure 診斷代理程式收集的所有效能計數器和錯誤層級記錄檔，傳送至 Application Insights。 如果您想進一步設定哪些資料要傳送至 Application Insights，您必須手動編輯每個角色的 *diagnostics.wadcfgx* 檔案。 若要深入了解手動更新組，請參閱 [設定 Azure 診斷以將資料傳送至 Application Insights](#configure-azure-diagnostics-to-send-data-to-application-insights) 。
 
 雲端服務設定為傳送 Azure 診斷資料到 Application Insights 後，您就可以像平常一樣將它部署至 Azure，確定 Azure 診斷延伸模組已啟用。 請參閱 [使用 Visual Studio 發佈雲端服務](../vs-azure-tools-publishing-a-cloud-service.md)。  
 
@@ -77,9 +78,4 @@ Azure 診斷遙測會顯示在為您的雲端服務設定的 Application Insight
 [4]: ./media/cloud-services-dotnet-diagnostics-applicationinsights/role-designer-appinsights-serviceconfig.png
 [5]: ./media/cloud-services-dotnet-diagnostics-applicationinsights/metrics-explorer-custom-metrics.png
 [6]: ./media/cloud-services-dotnet-diagnostics-applicationinsights/search-windowseventlog-error.png
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

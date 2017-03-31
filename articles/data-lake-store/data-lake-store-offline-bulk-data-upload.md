@@ -15,8 +15,9 @@ ms.workload: big-data
 ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 4c0b60afdc95a44dc5fdb0e43605e8bb079278e5
-ms.openlocfilehash: b2dcf4e0e5cc8e2c594357495635889a2e3645bd
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: dae5491962b22453c517da35539ce09463d8802d
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -53,7 +54,7 @@ Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，更安
 1. 取得符合 Auzre 匯入/匯出服務使用需求的硬碟。
 2. 識別當資料被送至 Azure 資料中心時，將用來複製資料的 Azure 儲存體帳戶。
 3. 使用 [Azure 匯入/匯出工具](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409)，這是一個命令列公用程式。 以下是一個有關如何使用該工具的簡單程式碼片段。
-   
+
     ````
     WAImportExport PrepImport /sk:<StorageAccountKey> /t: <TargetDriveLetter> /format /encrypt /logdir:e:\myexportimportjob\logdir /j:e:\myexportimportjob\journal1.jrn /id:myexportimportjob /srcdir:F:\demo\ExImContainer /dstdir:importcontainer/vf1/
     ````
@@ -187,7 +188,7 @@ Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，更安
     }
 }
 ````
-如需詳細資訊，請參閱[使用 Azure Data Factory 將資料從 Azure 儲存體 Blob 移到 Azure Data Lake Store](../data-factory/data-factory-azure-datalake-connector.md#sample-copy-data-from-azure-blob-to-azure-data-lake-store)。
+如需詳細資訊，請參閱[使用 Azure Data Factory 將資料從 Azure 儲存體 Blob 移到 Azure Data Lake Store](../data-factory/data-factory-azure-datalake-connector.md#example-copy-data-from-azure-blob-to-azure-data-lake-store)。
 
 ## <a name="reconstruct-the-data-files-in-azure-data-lake-store"></a>在 Azure Data Lake Store 中重新建構資料檔
 我們從 319 GB 的檔案開始著手並將它分割成數個較小的檔案，以便使用 Azure 匯入/匯出服務來傳輸它。 現在，該資料在 Azure Data Lake Store 中，我們可以將檔案重新建構成其原始大小。 您可以使用下列 Azure PowerShell Cmdlet 來這麼做。
@@ -210,11 +211,5 @@ Join-AzureRmDataLakeStoreItem -AccountName "<adls_account_name" -Paths "/importe
 ## <a name="next-steps"></a>後續步驟
 * [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
 * [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
-* [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
-
-
-
-
-<!--HONumber=Dec16_HO1-->
-
+* [搭配 Data Lake Store 使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 

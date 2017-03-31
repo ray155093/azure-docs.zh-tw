@@ -16,8 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 01/11/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 4f7527119f0e0955303858a52b638f6dbf483267
-ms.openlocfilehash: 084200ba25f0eb213100c638d164441c2618efe0
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 8f85a4cee6a59316eb5c321007b5b9d562c71302
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -37,7 +38,7 @@ ms.openlocfilehash: 084200ba25f0eb213100c638d164441c2618efe0
 * **發佈** 至 Azure
 
 ## <a name="prerequisites"></a>必要條件
-檢閱 [Azure 虛擬機器中的 SQL Server Business Intelligence](virtual-machines-windows-classic-ps-sql-bi.md)中的＜一般建議和最佳作法＞一節。
+檢閱 [Azure 虛擬機器中的 SQL Server Business Intelligence](../classic/ps-sql-bi.md)中的＜一般建議和最佳作法＞一節。
 
 > [!NOTE]
 > ReportViewer 控制項隨附於 Visual Studio (Standard Edition 以上版本) 中。 如果您使用的是 Web Developer Express 版，您必須安裝 [Microsoft Report Viewer 2012 Runtime](https://www.microsoft.com/download/details.aspx?id=35747) ，才能使用 ReportViewer 執行階段功能。
@@ -89,13 +90,8 @@ ReportViewer 必須使用正確的認證對報表伺服器進行驗證，而且�
 ## <a name="resources"></a>資源
 [Microsoft 報告](http://go.microsoft.com/fwlink/?LinkId=205399)
 
-[Azure 虛擬機器中的 SQL Server Business Intelligence](virtual-machines-windows-classic-ps-sql-bi.md)
+[Azure 虛擬機器中的 SQL Server Business Intelligence](../classic/ps-sql-bi.md)
 
-[使用 PowerShell 建立具有原生模式報表伺服器的 Azure VM](virtual-machines-windows-classic-ps-sql-report.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
+[使用 PowerShell 建立具有原生模式報表伺服器的 Azure VM](../classic/ps-sql-report.md)
 
 

@@ -16,9 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 03/17/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: eabba7daa746a836592f775858782aa77fcebd9b
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 8a6b48437eecd9f2f5c3fe8447b31192d8318149
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -102,7 +102,7 @@ Azure 中的可用性設定組可讓您將高可用性節點分別放入容錯�
 如果可用性群組跨越多個 Azure 子網路 (例如跨越多個 Azure 區域的部署)，用戶端連接字串就必須包含 "**MultisubnetFailover = True**"。 這會導致對於不同子網路中的複本進行平行連接嘗試。 如需有關設定接聽程式的指示，請參閱
 
 * [設定 Azure 中 Always On 可用性群組的 ILB 接聽程式](virtual-machines-windows-portal-sql-ps-alwayson-int-listener.md)。
-* [設定 Azure 中 Always On 可用性群組的外部接聽程式](../sqlclassic/virtual-machines-windows-classic-ps-sql-ext-listener.md)。
+* [設定 Azure 中 Always On 可用性群組的外部接聽程式](../classic/ps-sql-ext-listener.md)。
 
 您仍可以透過直接連接至服務執行個體，分別連接至各個可用性複本。 此外，由於 Always On 可用性群組能與資料庫鏡像用戶端回溯相容，因此只要將可用性複本設定成類似資料庫鏡像，即可連接至該複本 (例如資料庫鏡像合作夥伴)：
 

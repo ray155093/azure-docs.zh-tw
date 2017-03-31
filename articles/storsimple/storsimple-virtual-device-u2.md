@@ -4,7 +4,7 @@ description: "了解如何建立、部署和管理 Microsoft Azure 虛擬網路�
 services: storsimple
 documentationcenter: 
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: f37752a5-cd0c-479b-bef2-ac2c724bcc37
 ms.service: storsimple
@@ -12,12 +12,12 @@ ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 03/20/2017
+ms.date: 03/22/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 8b07ac76ebf40cd9bcf428711c2c0f3f3d917388
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 48d9d8ae97eb763932dd6a59a7df01ae92c92eff
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -33,7 +33,7 @@ StorSimple 虛擬裝置可以在兩種模型中使用，標準 8010 (前身為 1
 | **最大容量** |30 TB |64 TB |
 | **Azure VM** |Standard_A3 (4 核心、7 GB 記憶體) |Standard_DS3 (4 核心、14 GB 記憶體) |
 | **版本相容性** |執行 Update 2 之前或更新版本的版本 |執行 Update 2 或更新版本的版本 |
-| **區域可用性** |所有 Azure 區域 |支援進階儲存體的所有 Azure 區域<br></br>您可以在[依區域的 Azure 服務](https://azure.microsoft.com/en-us/regions/services)清單中找到進階儲存體區域。 找出支援 VM 系列 DS、DSV2、 Fs 和 GS 的區域。 |
+| **區域可用性** |所有 Azure 區域 |支援進階儲存體的所有 Azure 區域<br></br> 進階儲存體區域是對應到[依地區的 Azure 服務](https://azure.microsoft.com/en-us/regions/services)清單中的*磁碟儲存體*資料列的區域。 |
 | **儲存體類型** |將 Azure 標準儲存體使用於本機磁碟<br></br> 了解如何 [建立標準儲存體帳戶](../storage/storage-create-storage-account.md) |將 Azure 進階儲存體使用於本機磁碟<sup>2</sup> <br></br>了解如何[建立進階儲存體帳戶](../storage/storage-premium-storage.md) |
 | **工作負載指引** |從備份的檔案的項目層級擷取 |雲端開發和測試案例、低延遲、較高效能工作負載 <br></br>災害復原的次要裝置 |
 
@@ -69,7 +69,7 @@ StorSimple 虛擬裝置是軟體形式的 StorSimple，在 Microsoft Azure 虛�
 #### <a name="azure-requirements"></a>Azure 需求
 佈建虛擬裝置之前，您需要在 Azure 環境中做好下列準備：
 
-* 針對虛擬裝置， [在 Azure 中設定虛擬網路](../virtual-network/virtual-networks-create-vnet-classic-portal.md)。 如果使用進階儲存體，您必須在支援進階儲存體的 Azure 區域中建立虛擬網路。 您可以在[依區域的 Azure 服務](https://azure.microsoft.com/en-us/regions/services)清單中找到進階儲存體區域。 找出支援 VM 系列 DS、DSV2、 Fs 和 GS 的區域。
+* 針對虛擬裝置， [在 Azure 中設定虛擬網路](../virtual-network/virtual-networks-create-vnet-classic-portal.md)。 如果使用進階儲存體，您必須在支援進階儲存體的 Azure 區域中建立虛擬網路。 進階儲存體區域是對應到[依地區的 Azure 服務](https://azure.microsoft.com/en-us/regions/services)清單中的*磁碟儲存體*資料列的區域。
 * 建議您使用 Azure 提供的預設 DNS 伺服器，而非指定您自己的 DNS 伺服器名稱。 如果您的 DNS 伺服器名稱無效，或者如果 DNS 伺服器無法正確解析 IP 位址，則建立虛擬裝置將會失敗。
 * 點對站及站對站都是選用的，但並非必要。 如有需要，您可以針對更進階的案例設定這些選項。
 * 您可以將 [Azure 虛擬機器](../virtual-machines/virtual-machines-linux-about.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (主機伺服器) 建立在可使用由虛擬裝置公開之磁碟區的虛擬網路中。 這些伺服器必須符合下列需求：                             

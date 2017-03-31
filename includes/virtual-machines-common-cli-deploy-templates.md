@@ -677,9 +677,9 @@ info:    group deployment create command OK
 ### <a name="step-2-obtain-the-vhd"></a>步驟 2：取得 VHD
 很明顯，您需要 .vhd。 您可以使用 Azure 現有的 .vhd 或者可以上傳一個 .vhd。
 
-若是 Windows 型虛擬機器，請參閱[建立 Windows Server VHD 並上傳至 Azure](../articles/virtual-machines/virtual-machines-windows-classic-createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+若是 Windows 型虛擬機器，請參閱[建立 Windows Server VHD 並上傳至 Azure](../articles/virtual-machines/windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
-如需了解 Linux 架構的虛擬機器，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](../articles/virtual-machines/virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
+如需了解 Linux 架構的虛擬機器，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](../articles/virtual-machines/linux/classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
 ### <a name="step-3-create-the-virtual-machine-by-using-the-template"></a>步驟 3：使用範本建立虛擬機器
 現在您已準備利用 .vhd 建立新的虛擬機器。 使用 `azure group create <location>` 建立一個要在其中部署的群組：
@@ -759,7 +759,7 @@ info:    group deployment create command OK
 按照下列步驟部署一個多重 VM 應用程式，它會透過 Azure PowerShell 命令使用 GitHub 範本儲存機制中的 Resource Manager 範本，然後就可以使用虛擬網路和負載平衡器。
 
 ### <a name="step-1-examine-the-json-file-for-the-template"></a>步驟 1：檢查範本的 JSON 檔案
-以下是範本的 JSON 檔案內容。 如果您想要最新的版本，可在 [範本的 Github 儲存機制](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json)取得。 這個主題使用 `--template-uri` 參數來呼叫範本，不過您也可以使用 `--template-file` 參數來傳遞本機版本。
+以下是範本的 JSON 檔案內容。 如果您想要最新的版本，可在[範本的 GitHub 存放庫](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json)取得。 這個主題使用 `--template-uri` 參數來呼叫範本，不過您也可以使用 `--template-file` 參數來傳遞本機版本。
 
 ```json
 {

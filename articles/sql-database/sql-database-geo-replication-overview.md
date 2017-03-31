@@ -16,9 +16,9 @@ ms.workload: NA
 ms.date: 09/26/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: 26eac30a08db2e224f9e9018817a18c3a4405b7f
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: bd3aea04266baebbba1b953d5a2b7c4b2fb41a87
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 03/16/2017
 
 若您的主要資料庫因為任何原因而失敗，或只需要離線，您可以「容錯移轉」  至任何次要資料庫。 容錯移轉至其中一個次要資料庫啟動時，所有其他次要複本會自動連結至新的主要複本。
 
-您可以使用 [Azure 入口網站](sql-database-geo-replication-failover-portal.md)、[PowerShell](sql-database-geo-replication-failover-powershell.md)、[Transact-SQL](sql-database-geo-replication-failover-transact-sql.md)、[REST API - 計劃的容錯移轉](https://msdn.microsoft.com/ibrary/azure/mt575007.aspx) 或 [REST API - 非計劃的容錯移轉](https://msdn.microsoft.com/library/azure/mt582027.aspx)，容錯移轉至次要資料庫。
+您可以使用 [Azure 入口網站](sql-database-geo-replication-failover-portal.md)、[PowerShell](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)、[Transact-SQL](sql-database-geo-replication-failover-transact-sql.md)、[REST API - 計劃的容錯移轉](https://msdn.microsoft.com/library/mt575007.aspx) 或 [REST API - 非計劃的容錯移轉](https://msdn.microsoft.com/library/mt582027.aspx)，容錯移轉至次要資料庫。
 
 容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。 如需詳細資訊，請參閱 [災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
 
@@ -107,10 +107,10 @@ ms.lasthandoff: 03/16/2017
 ### <a name="powershell"></a>PowerShell
 | Cmdlet | 說明 |
 | --- | --- |
-| [Get-AzureRmSqlDatabase](https://msdn.microsoft.com/en-us/library/azure/mt603648.aspx) |取得一或多個資料庫。 |
+| [Get-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt603648.aspx) |取得一或多個資料庫。 |
 | [New-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt603689.aspx) |針對現有資料庫建立次要資料庫並開始資料複寫。 |
-| [Set-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/en-us/library/mt619393.aspx) |將次要資料庫切換為主要資料庫以開始容錯移轉。 |
-| [Remove-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/en-us/library/mt603457.aspx) |終止 SQL Database 和指定次要資料庫間的資料複寫。 |
+| [Set-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt619393.aspx) |將次要資料庫切換為主要資料庫以開始容錯移轉。 |
+| [Remove-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt603457.aspx) |終止 SQL Database 和指定次要資料庫間的資料複寫。 |
 | [Get-AzureRmSqlDatabaseReplicationLink](https://msdn.microsoft.com/library/mt619330.aspx) |取得 Azure SQL Database 和資源群組或 SQL Server 之間的異地複寫連結。 |
 |  | |
 
@@ -119,7 +119,7 @@ ms.lasthandoff: 03/16/2017
 | --- | --- |
 | [Create or Update Database (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx) |建立、更新或還原主要或次要資料庫。 |
 | [取得建立或更新資料庫狀態](https://msdn.microsoft.com/library/azure/mt643934.aspx) |在建立作業期間傳回狀態。 |
-| [將次要資料庫設定為主要資料庫 (計劃性容錯移轉)](https://msdn.microsoft.com/ibrary/azure/mt575007.aspx) |在異地複寫關聯性中升級次要資料庫以做為新的主要資料庫。 |
+| [將次要資料庫設定為主要資料庫 (計劃性容錯移轉)](https://msdn.microsoft.com/library/azure/mt575007.aspx) |在異地複寫關聯性中升級次要資料庫以做為新的主要資料庫。 |
 | [將次要資料庫設定為主要資料庫 (非計劃的容錯移轉)](https://msdn.microsoft.com/library/azure/mt582027.aspx) |強制容錯移轉至次要資料庫，並將次要資料庫設定為主要資料庫。 |
 | [取得複寫連結](https://msdn.microsoft.com/library/azure/mt600929.aspx) |取得異地複寫關聯性中指定 SQL Database 的所有複寫連結。 它會擷取 sys.geo_replication_links 目錄檢視中顯示的資訊。 |
 | [取得複寫連結](https://msdn.microsoft.com/library/azure/mt600778.aspx) |取得異地複寫關聯性中指定 SQL Database 的特定複寫連結。 它會擷取 sys.geo_replication_links 目錄檢視中顯示的資訊。 |

@@ -98,6 +98,11 @@
 ## 使用 Arduino
 
 ### [Adafruit Feather HUZZAH ESP8266](iot-hub-arduino-huzzah-esp8266-get-started.md)
+#### [透過 iothub-explorer 管理雲端裝置傳訊](iot-hub-explorer-cloud-device-messaging.md)
+#### [將 IoT 中樞IoT 中樞儲存至 Azure 資料儲存體](iot-hub-store-data-in-azure-table-storage.md)
+### [Sparkfun ESP8266 Thing 開發人員](iot-hub-sparkfun-esp8266-thing-dev-get-started.md)
+#### [透過 iothub-explorer 管理雲端裝置傳訊](iot-hub-explorer-cloud-device-messaging.md)
+#### [將 IoT 中樞IoT 中樞儲存至 Azure 資料儲存體](iot-hub-store-data-in-azure-table-storage.md)
 
 ### [Adafruit Feather M0](iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started.md)
 #### 第 1 課：設定裝置
@@ -233,7 +238,9 @@
 #### [使用 REST API](iot-hub-rm-rest.md)
 #### [使用 PowerShell 範本](iot-hub-rm-template-powershell.md)
 #### [使用 .NET 範本](iot-hub-rm-template.md)
-### [設定檔案上傳](iot-hub-configure-file-upload.md)
+### 設定檔案上傳
+#### [使用入口網站](iot-hub-configure-file-upload.md)
+#### [使用 PowerShell](iot-hub-configure-file-upload-powershell.md)
 ### [大量管理 IoT 裝置](iot-hub-bulk-identity-mgmt.md)
 ### [用量度量](iot-hub-metrics.md)
 ### [作業監視](iot-hub-operations-monitoring.md)

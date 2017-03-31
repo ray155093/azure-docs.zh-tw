@@ -16,9 +16,9 @@ ms.workload: NA
 ms.date: 02/20/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 2ab3a9b28e5bcf5e1a481cc204b46617c20287a8
-ms.openlocfilehash: 2f75c492313b1ab7f4abe82a98640d535c3d7909
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 751e1eaf65da889ab5c7dc26145c017682a12a4d
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -55,7 +55,7 @@ SQL Database 針對使用[自動資料庫備份](sql-database-automated-backups.
 
 ## <a name="point-in-time-restore"></a>還原時間點
 
-您可以使用 [Azure 入口網站](sql-database-point-in-time-restore-portal.md)、[PowerShell](sql-database-point-in-time-restore-powershell.md) 或 [REST API](https://msdn.microsoft.com/library/azure/mt163685.aspx)，將現有的資料庫還原到先前的時間點來作為相同邏輯伺服器上的新資料庫。 
+您可以使用 [Azure 入口網站](sql-database-point-in-time-restore-portal.md)、[PowerShell](scripts/sql-database-restore-database-powershell.md) 或 [REST API](https://msdn.microsoft.com/library/azure/mt163685.aspx)，將現有的資料庫還原到先前的時間點來作為相同邏輯伺服器上的新資料庫。 
 
 > [!IMPORTANT]
 > 在還原期間，您無法覆寫現有的資料庫。
@@ -69,7 +69,7 @@ SQL Database 針對使用[自動資料庫備份](sql-database-automated-backups.
 * ***資料復原︰***如果您打算從還原的資料庫擷取資料，以便從使用者或應用程式錯誤中復原，您就必須撰寫並執行所需的資料復原指令碼，以從還原的資料庫中擷取資料到原始資料庫。 雖然還原作業可能要花很長的時間才能完成，但還原中的資料庫在整個還原過程中都會顯示在資料庫清單上。 如果您在還原期間刪除該資料庫，系統便會取消還原作業，而且不會針對未完成還原的資料庫向您收費。 
 
 ## <a name="deleted-database-restore"></a>還原已刪除的資料庫
-您可以使用 [Azure 入口網站](sql-database-restore-deleted-database-portal.md)、[PowerShell](sql-database-restore-deleted-database-powershell.md) 或 [REST (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)，將已刪除的資料庫還原到相同邏輯伺服器上已刪除資料庫的刪除時間。 
+您可以使用 [Azure 入口網站](sql-database-restore-deleted-database-portal.md)、[PowerShell](scripts/sql-database-restore-database-powershell.md) 或 [REST (createMode=Restore)](https://msdn.microsoft.com/library/azure/mt163685.aspx)，將已刪除的資料庫還原到相同邏輯伺服器上已刪除資料庫的刪除時間。 
 
 > [!IMPORTANT]
 > 如果您刪除 Azure SQL Database 伺服器執行個體，其所有資料庫也會一併刪除且無法加以復原。 目前不支援還原已刪除的伺服器。
@@ -94,8 +94,8 @@ SQL Database 針對使用[自動資料庫備份](sql-database-automated-backups.
 ### <a name="powershell"></a>PowerShell
 | Cmdlet | 說明 |
 | --- | --- |
-| [Get-AzureRmSqlDatabase](https://msdn.microsoft.com/en-us/library/azure/mt603648.aspx) |取得一或多個資料庫。 |
-| [Get-AzureRMSqlDeletedDatabaseBackup](https://msdn.microsoft.com/en-us/library/azure/mt693387.aspx) |取得可還原的已刪除資料庫。 |
+| [Get-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt603648.aspx) |取得一或多個資料庫。 |
+| [Get-AzureRMSqlDeletedDatabaseBackup](https://msdn.microsoft.com/library/azure/mt693387.aspx) |取得可還原的已刪除資料庫。 |
 | [Get-AzureRmSqlDatabaseGeoBackup](https://msdn.microsoft.com/library/azure/mt693388.aspx) |取得資料庫的異地備援備份。 |
 | [Restore-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt693390.aspx) |還原 SQL Database。 |
 |  | |

@@ -160,6 +160,8 @@
 #### 發佈應用程式
 ##### [Azure 入口網站](application-proxy-publish-azure-portal.md)
 ##### [傳統入口網站](active-directory-application-proxy-publish.md)
+
+#### [PingAccess for Azure AD](application-proxy-ping-access.md)
 #### [安全性](application-proxy-security-considerations.md)
 #### [網路](application-proxy-network-topology-considerations.md)
 #### [遠端桌面](application-proxy-publish-remote-desktop.md)

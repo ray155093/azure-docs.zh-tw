@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 5a76f897-02e8-4437-8f2b-4fb12225854a
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,9 +17,9 @@ ms.topic: article
 ms.date: 01/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 8c439591dae0bd561ba4f079aba9f2073d1e954b
-ms.openlocfilehash: dc94c3f428200f107f7e953a57cf4e0e83bc7de1
-ms.lasthandoff: 02/04/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 82c12f4a2a24e190babfd88ff667e24d6c45ebac
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -79,7 +80,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
    * **叢集登入**︰顯示叢集登入資訊。
    * **訂用帳戶核心使用量**︰顯示訂用帳戶的已使用和可用核心。 
    * **調整叢集**：增加和減少叢集背景工作角色節點的數目。 請參閱[調整叢集](hdinsight-administer-use-management-portal.md#scale-clusters)。
-   * **安全殼層**︰顯示使用安全殼層 (SSH) 連線連接到叢集的指示。 請參閱[從 Windows 使用 PuTTY 在 HDInsight 上搭配使用 SSH 與 Linux 型 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md) 和[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與 Linux 型 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)。
+   * **安全殼層**︰顯示使用安全殼層 (SSH) 連線連接到叢集的指示。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
    * **HDInsight 合作夥伴**︰新增/移除目前的 HDInsight 合作夥伴。
    * **外部中繼存放區**：檢視 Hive 和 Oozie 中繼存放區。 中繼存放區只可以在叢集建立程序期間進行設定。 請參閱[使用 Hive/Oozie 中繼存放區](hdinsight-hadoop-provision-linux-clusters.md#use-hiveoozie-metastore)。
    * **指令碼動作**︰在叢集上執行 Bash 指令碼。 請參閱 [使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。

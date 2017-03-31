@@ -15,18 +15,18 @@ ms.topic: article
 ms.date: 02/27/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 86ba122b406d8a3d633184982fbacab078d7c0d1
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 6195b80037762a7f71eee9138c765e4d342acd5f
+ms.lasthandoff: 03/28/2017
 
 
 ---
 # <a name="do-you-need-help-with-myapps"></a>您需要使用 MyApps 的協助嗎？
 
-因為您在使用 MyApps 入口網站時不幸發生問題，所以可能已到達此頁面。 雖然有時候會要求您連絡技術服務人員或系統管理員來解決問題，但我們在本主題中提供常見問題的處理步驟，您可以先自行嘗試。 
+因為您在使用 MyApps 入口網站時不幸發生問題，所以可能已到達此頁面。 雖然有時候會要求您連絡技術服務人員或系統管理員來解決問題，但我們在本主題中提供常見問題的處理步驟，您可以先自行嘗試。
 
-如果您在尋找密碼管理相關的說明，請參閱[這裡](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password).#how-to-reset-your-password)。
-  
+如果您要尋找密碼管理相關說明，請嘗試[這個](active-directory-passwords-update-your-own-password.md#reset-your-password)。
+
 
 ## <a name="what-is-the-myapps-portal"></a>什麼是 MyApps 入口網站？
 
@@ -35,9 +35,9 @@ MyApps 是一個 Web 入口網站，可讓您︰
 
 - 管理及啟動以雲端為基礎的應用程式
 - 管理群組成員資格
-- 管理設定檔的設定 
+- 管理設定檔的設定
 
-![存取面板][1] 
+![存取面板][1]
 
 
 
@@ -49,7 +49,7 @@ MyApps 是一個 Web 入口網站，可讓您︰
 3.    輸入您的舊密碼，然後輸入新密碼並加以確認。
 4.    按一下 [提交] 。
 
-如需詳細資訊，請參閱[如何更新自己的密碼](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+如需詳細資訊，請參閱[如何更新自己的密碼](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 
 
 ## <a name="how-do-i-setup-password-reset"></a>如何設定密碼重設？
@@ -58,7 +58,7 @@ MyApps 是一個 Web 入口網站，可讓您︰
 2.    在 [管理帳戶] 底下，按一下 [設定自助密碼重設]。
 3.    依照對話方塊中的步驟進行並提交。
 
-如需詳細資訊，請參閱[如何重設密碼](active-directory-passwords-update-your-own-password.md#how-to-reset-your-password)。
+如需詳細資訊，請參閱[如何重設密碼](active-directory-passwords-update-your-own-password.md#reset-your-password)。
 
 
 ## <a name="how-can-i-add-a-new-app"></a>如何新增應用程式？

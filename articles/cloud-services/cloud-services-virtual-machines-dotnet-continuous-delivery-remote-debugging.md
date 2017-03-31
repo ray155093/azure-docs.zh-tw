@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 11/18/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: bd0768b9d46c12c38ecd530ccef8397d1b595d8d
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: d011223dbb1ad7b5752875e94a4822be1b6cbe6e
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -45,7 +45,7 @@ ms.lasthandoff: 03/07/2017
 6. 將憑證匯入 (.pfx file) 已安裝包含 Azure SDK for .NET 的 Visual Studio  的機器。 請務必匯入至 `CurrentUser\My` 憑證存放區，否則附加至 Visual Studio 中的偵錯工具將會失敗。
 
 ## <a name="enabling-remote-debugging-for-virtual-machines"></a>對虛擬機器啟用遠端偵錯
-1. 建立 Azure 虛擬機器。 請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[在 Visual Studio 中建立及管理 Azure 虛擬機器](../virtual-machines/virtual-machines-windows-classic-manage-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
+1. 建立 Azure 虛擬機器。 請參閱[建立執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[在 Visual Studio 中建立及管理 Azure 虛擬機器](../virtual-machines/windows/classic/manage-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 2. 在 [Azure 傳統入口網站頁面](http://go.microsoft.com/fwlink/p/?LinkID=269851)，檢視虛擬機器儀表板來查看虛擬機器的 **RDP 憑證指紋**。 此值是用於延伸模組組態中的 `ServerThumbprint` 值。
 3. 建立用戶端憑證，如 [Azure 雲端服務憑證概觀](cloud-services-certs-create.md) 中所述 (保留 .pfx 和 RDP 憑證指紋)。
 4. 如 [如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)中所述安裝 Azure Powershell (0.7.4 版或更新版本)

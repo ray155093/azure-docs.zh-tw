@@ -36,7 +36,14 @@
 ### [排程](../virtual-machines-linux-planned-maintenance-schedule.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ## VM 大小
 ### [VM 大小概觀](../virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-### [計算密集大小](../virtual-machines-linux-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+#### [一般用途](../virtual-machines-linux-sizes-general.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+#### [計算最佳化](../virtual-machines-linux-sizes-compute.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+#### [記憶體最佳化](../virtual-machines-linux-sizes-memory.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+#### [儲存體最佳化](../virtual-machines-linux-sizes-storage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+#### [GPU](../virtual-machines-linux-sizes-gpu.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+#### [高效能計算](../virtual-machines-linux-sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+##### [計算密集大小](../virtual-machines-linux-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+### [Azure 計算單位 (ACU)](../virtual-machines-linux-acu.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [計算基準測試分數](../virtual-machines-linux-compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ## 部署考量
 ### [基礎結構方針](../virtual-machines-linux-infrastructure-virtual-machine-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
@@ -148,7 +155,7 @@
 ### [Jupyter Notebook](../virtual-machines-linux-jupyter-notebook.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [用範本部署應用程式架構](../virtual-machines-linux-app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [高效能運算 (HPC)](../virtual-machines-linux-hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-#### [使用 Microsoft HPC Pack 執行 NAMD](../virtual-machines-linux-classic-hpcpack-cluster-namd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+#### [使用 Microsoft HPC Pack 執行 NAMD](classic/hpcpack-cluster-namd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### SAP on Azure
 #### [開始使用 SAP](../virtual-machines-linux-sap-get-started.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 #### [規劃 SAP](../virtual-machines-linux-sap-planning-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

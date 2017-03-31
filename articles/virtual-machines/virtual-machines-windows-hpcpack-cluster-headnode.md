@@ -16,8 +16,9 @@ ms.workload: big-compute
 ms.date: 12/29/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 3d8300bbb54bd88e6ff3844208ec5d5fa25c5e8d
-ms.openlocfilehash: d935f45f87558dd7f9838ad3b370de0d9a7870a1
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 84d909b3eaa17cb4a1b8a4465615001896000dca
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.openlocfilehash: d935f45f87558dd7f9838ad3b370de0d9a7870a1
 您可以使用來自 Azure Marketplace 的 [Microsoft HPC Pack 2012 R2 虛擬機器映像](https://azure.microsoft.com/marketplace/partners/microsoft/hpcpack2012r2onwindowsserver2012r2/) 和 Azure 入口網站，來建立 HPC 叢集的前端節點。 此 HPC Pack VM 映像是基於已預先安裝 HPC Pack 2012 R2 Update 3 的 Windows Server 2012 R2 Datacenter。 使用此前端節點當作 Azure 中 HPC Pack 的概念證明部署。 然後您可以將計算節點加入叢集以執行 HPC 工作負載。
 
 > [!TIP]
-> 若要在 Azure 中部署包含前端節點和計算節點的完整 HPC Pack 2012 R2 叢集，建議您使用自動化方法。 選項包括 [HPC Pack IaaS 部署指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)和 Resource Manager 範本，例如[適用於 Windows 工作負載的 HPC Pack 叢集](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterwindowscn/)。 此外，也有 [Microsoft HPC Pack 2016 叢集](https://github.com/MsHpcPack/HPCPack2016/tree/master/newcluster-templates)的 Resource Manager 範本可供使用。 
+> 若要在 Azure 中部署包含前端節點和計算節點的完整 HPC Pack 2012 R2 叢集，建議您使用自動化方法。 選項包括 [HPC Pack IaaS 部署指令碼](windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)和 Resource Manager 範本，例如[適用於 Windows 工作負載的 HPC Pack 叢集](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterwindowscn/)。 此外，也有 [Microsoft HPC Pack 2016 叢集](https://github.com/MsHpcPack/HPCPack2016/tree/master/newcluster-templates)的 Resource Manager 範本可供使用。 
 > 
 > 
 
@@ -75,15 +76,10 @@ ms.openlocfilehash: d935f45f87558dd7f9838ad3b370de0d9a7870a1
 
 ## <a name="next-steps"></a>後續步驟
 * 您現在已可以使用 HPC Pack 叢集的前端節點。 例如，啟動「HPC 叢集管理員」並完成 [部署待辦事項清單](https://technet.microsoft.com/library/jj884141.aspx)。
-* 如果您想要視需要增加叢集計算能力，請在雲端服務中新增 [Azure 高載節點](virtual-machines-windows-classic-hpcpack-cluster-node-burst.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 
+* 如果您想要視需要增加叢集計算能力，請在雲端服務中新增 [Azure 高載節點](windows/classic/hpcpack-cluster-node-burst.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 
 * 嘗試在叢集上執行測試工作負載。 如需範例，請參閱 HPC Pack [快速入門指南](https://technet.microsoft.com/library/jj884144)。
 
 <!--Image references-->
 [headnode]: ./media/virtual-machines-windows-hpcpack-cluster-headnode/headnode.png
 [marketplace]: ./media/virtual-machines-windows-hpcpack-cluster-headnode/marketplace.png
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

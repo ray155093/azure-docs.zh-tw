@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 0356f3bdbb691b9bde4e906ed30b3b235180f8ba
-ms.openlocfilehash: 9851ec0771c4fec4719aec8c8f43f2e3dd2604f0
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
+ms.openlocfilehash: e64abfd5581c02b609707f7fa712962c024b293b
+ms.lasthandoff: 03/23/2017
 
 
 ---
@@ -30,7 +30,7 @@ ms.lasthandoff: 02/27/2017
 
 當您將資料庫複製到不同的邏輯伺服器時，新伺服器上的安全性主體就會變成新資料庫上的資料庫擁有者。 如果您使用[自主資料庫使用者](sql-database-manage-logins.md)來進行資料存取，請確保主要和次要資料庫一律具有相同的使用者認證，以便在複製完成時，您可以使用相同的認證立即存取它。 如果您使用 [Azure Active Directory](../active-directory/active-directory-whatis.md)，則可以完全不需管理副本中的認證。 不過，當您將資料庫複製到新的伺服器時，以登入為基礎的存取可能無法運作，因為登入不存在於新的伺服器上。 請參閱[如何管理災害復原後的 Azure SQL Database 安全性](sql-database-geo-replication-security-config.md)，以了解如何在將資料庫複製到不同的邏輯伺服器時管理登入。 
 
-若要建立 SQL 資料庫，您可以使用 [Azure 入口網站](sql-database-copy-portal.md)、[PowerShell](sql-database-copy-powershell.md)  或 [T-SQL](sql-database-copy-transact-sql.md)。 
+若要建立 SQL 資料庫，您可以使用 [Azure 入口網站](sql-database-copy-portal.md)、[PowerShell](scripts/sql-database-copy-database-to-new-server-powershell.md)  或 [T-SQL](sql-database-copy-transact-sql.md)。 
 
 ## <a name="next-steps"></a>後續步驟
 
