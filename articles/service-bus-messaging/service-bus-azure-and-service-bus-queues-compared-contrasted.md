@@ -121,7 +121,7 @@ Microsoft Azure 支援兩種佇列機制：**儲存體佇列**和**服務匯流�
 * 這兩種佇列技術都可讓訊息排定在稍後傳遞。
 * 佇列自動轉送可讓數以千計的佇列將其訊息自動轉送至單一佇列，而接收端應用程式將從中取用訊息。 您可以使用這個機制來達成安全性、控制流程，並在每個訊息發佈者之間隔離儲存體。
 * 儲存體佇列支援更新訊息內容。 您可以使用這項功能，將狀態資訊和累加進度更新保存至訊息中，以便從最後已知的檢查點處理訊息，而不用從頭開始處理。 使用服務匯流排佇列時，您可以透過使用訊息工作階段來實現相同案例。 工作階段可讓您使用 [SetState](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.setstate.aspx) 和 [GetState](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.messagesession.getstate.aspx) 儲存和擷取應用程式處理狀態。
-* 只有服務匯流排佇列支援的「無效信件處理」[](service-bus-dead-letter-queues.md)可用於隔離接收端應用程式無法順利處理的訊息，或是由於存留時間 (TTL) 屬性過期而無法送達目的地的訊息。 TTL 值會指定訊息保留在佇列中的時間長度。 在服務匯流排中，當 TTL 期限到期時，訊息將會移至稱為 $DeadLetterQueue 的特殊佇列。
+* 只有服務匯流排佇列支援的[無效信件處理](service-bus-dead-letter-queues.md)可用於隔離接收端應用程式無法順利處理的訊息，或是由於存留時間 (TTL) 屬性過期而無法送達目的地的訊息。 TTL 值會指定訊息保留在佇列中的時間長度。 在服務匯流排中，當 TTL 期限到期時，訊息將會移至稱為 $DeadLetterQueue 的特殊佇列。
 * 為了在儲存體佇列中找出「有害」訊息，應用程式會在清除佇列中的訊息時，檢查訊息的 **[DequeueCount](https://msdn.microsoft.com/library/azure/dd179474.aspx)** 屬性。 如果 **DequeueCount** 超過給定的臨界值，應用程式就會將訊息移至應用程式定義的「無效信件」佇列。
 * 儲存體佇列可讓您取得針對佇列執行之所有交易的詳細記錄，以及彙總的計量資料。 這兩個選項有助於偵錯和了解應用程式的儲存體佇列使用狀況。 也有助於對您的應用程式進行效能微調，以及降低使用佇列的成本。
 * 服務匯流排所支援之「訊息工作階段」的概念可讓屬於特定邏輯群組的訊息與給定的接收者產生關聯，進而在訊息與其個別的接收者之間建立類似工作階段的密切關係。 您可以設定訊息上的 [SessionID](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.sessionid.aspx) 屬性，以在服務匯流排中啟用這項進階功能。 然後，接收者就可以接聽特定的工作階段 ID，並且接收共用指定之工作階段識別項的訊息。
@@ -133,7 +133,7 @@ Microsoft Azure 支援兩種佇列機制：**儲存體佇列**和**服務匯流�
 | 比較準則 | 儲存體佇列 | 服務匯流排佇列 |
 | --- | --- | --- |
 | 佇列大小上限 |**200 TB**<br/><br/>(限制為單一儲存體帳戶容量) |**1 GB 到 80 GB**<br/><br/>(在建立佇列和[啟用分割](service-bus-partitioning.md)時定義 - 請參閱＜其他資訊＞一節) |
-| 訊息大小上限 |**64 KB**<br/><br/>(使用 **Base64** 編碼時則為&48; KB)<br/><br/>Azure 可以結合佇列和 Blob 來支援大型訊息，因此您最多可以將 200GB 的單一項目加入佇列。 |**256 KB** 或 **1 MB**<br/><br/>(包括標頭和主體，標頭大小上限：64 KB)。<br/><br/>取決於[服務層](service-bus-premium-messaging.md)。 |
+| 訊息大小上限 |**64 KB**<br/><br/>(使用 **Base64** 編碼時則為 48 KB)<br/><br/>Azure 可以結合佇列和 Blob 來支援大型訊息，因此您最多可以將 200GB 的單一項目加入佇列。 |**256 KB** 或 **1 MB**<br/><br/>(包括標頭和主體，標頭大小上限：64 KB)。<br/><br/>取決於[服務層](service-bus-premium-messaging.md)。 |
 | 訊息 TTL 上限 |**7 天** |**`TimeSpan.Max`** |
 | 佇列數目上限 |**無限制** |**10,000**<br/><br/>(每個服務命名空間，可以增加) |
 | 並行用戶端數目上限 |**無限制** |**無限制**<br/><br/>(100 個並行連接限制只適用於以 TCP 通訊協定為基礎的通訊) |
