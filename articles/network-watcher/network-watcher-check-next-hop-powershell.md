@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 1d0136b044f6049e59fa09d824cf244cac703c45
+ms.sourcegitcommit: 95ecd8d4ef3dd7a956206e7c3e07c793db0111f7
 ms.openlocfilehash: 9f53c824b6368dc2a6251fd880f1cabefef884b8
-ms.lasthandoff: 02/23/2017
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -37,8 +37,6 @@ ms.lasthandoff: 02/23/2017
 在此案例中，您會使用 Azure 入口網站來尋找下一個躍點類型和 IP 位址。
 
 此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。 此案例也假設已有具有有效虛擬機器的資源群組可供使用。
-
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 ## <a name="scenario"></a>案例
 

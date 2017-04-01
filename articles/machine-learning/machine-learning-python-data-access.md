@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 03/24/2017
 ms.author: huvalo;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: 045e40bccad59586987c0a18253dafff2f955a93
 ms.openlocfilehash: ea5005e7cff775c798b030748324781ef7dcfe7d
+ms.lasthandoff: 12/06/2016
 
 
 ---
@@ -32,7 +33,7 @@ Microsoft Azure Machine Learning Python 用戶端程式庫的預覽能夠從本�
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="a-nameprerequisitesaprerequisites"></a><a name="prerequisites"></a>必要條件
+## <a name="prerequisites"></a>必要條件
 Python 用戶端程式庫已在下列環境下經過測試：
 
 * Windows、Mac 及 Linux
@@ -46,7 +47,7 @@ Python 用戶端程式庫已在下列環境下經過測試：
 
 建議您使用 Python、IPython 隨附的 [Anaconda](http://continuum.io/downloads#all) 或 [Canopy](https://store.enthought.com/downloads/) 等 Python 發佈，並安裝上面列出的三個套件。 雖然不一定需要 IPython，但它是以互動方式操作和虛擬化資料的絕佳環境。
 
-### <a name="a-nameinstallationahow-to-install-the-azure-machine-learning-python-client-library"></a><a name="installation"></a>如何安裝 Azure Machine Learning Python 用戶端程式庫
+### <a name="installation"></a>如何安裝 Azure Machine Learning Python 用戶端程式庫
 務必要安裝 Azure Machine Learning Python 用戶端程式庫，才能完成本主題概述的工作。 您可以從 [Python 套件索引](https://pypi.python.org/pypi/azureml)取得。 若要在 Python 環境中安裝它，請從本機 Python 環境執行下列命令：
 
     pip install azureml
@@ -60,12 +61,12 @@ Python 用戶端程式庫已在下列環境下經過測試：
     pip install git+https://github.com/Azure/Azure-MachineLearning-ClientLibrary-Python.git
 
 
-## <a name="a-namedatasetaccessause-studio-code-snippets-to-access-datasets"></a><a name="datasetAccess"></a>使用Studio 程式碼片段存取資料集
+## <a name="datasetAccess"></a>使用Studio 程式碼片段存取資料集
 Python 用戶端程式庫讓您以程式設計方式存取執行實驗所得的現有資料集。
 
 您可以從 Studio Web 介面，產生包含所有必要資訊的程式碼片段，以下載資料集並和還原序列化為您位置電腦的 Pandas DataFrame 物件。
 
-### <a name="a-namesecurityasecurity-for-data-access"></a><a name="security"></a>資料存取安全性
+### <a name="security"></a>資料存取安全性
 Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段包括工作區識別碼與授權權杖。 這些項目可提供工作區的完整存取權，且務必加以保護，像是密碼。
 
 基於安全性理由，程式碼片段功能只提供給其角色設定為工作區「擁有者」  的使用者。 您的角色會在 Azure Machine Learning Studio 中，顯示於 [設定] 的 [使用者] 頁面上。
@@ -86,7 +87,7 @@ Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段�
 
 授權權杖可以在 [設定] 下的 [授權權杖] 頁面上管理。 您可以重新產生權杖，但這個程序會撤銷上一個權杖的存取權。
 
-### <a name="a-nameaccessingdatasetsaaccess-datasets-from-a-local-python-application"></a><a name="accessingDatasets"></a>從本機 Python 應用程式存取資料集
+### <a name="accessingDatasets"></a>從本機 Python 應用程式存取資料集
 1. 在 Machine Learning Studio 的左邊導覽列中，按一下 [資料集]  。
 2. 選取您想要存取的資料集。 您可以從 [範例] 清單的 [我的資料集] 清單中，選擇任何資料集。
 3. 按一下底部工具列上的 [產生資料存取程式碼] 。 如果資料格式與 Python 用戶端程式的不相容，就會停用這個按鈕。
@@ -99,7 +100,7 @@ Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段�
    
     ![筆記本][ipython-dataset]
 
-## <a name="a-nameaccessingintermediatedatasetsaaccess-intermediate-datasets-from-machine-learning-experiments"></a><a name="accessingIntermediateDatasets"></a>存取機器學習服務實驗中的中繼資料
+## <a name="accessingIntermediateDatasets"></a>存取機器學習服務實驗中的中繼資料
 在 Machine Learning Studio 中進行實驗後，您能夠從模組的輸出節點存取中繼資料集。 中繼資料集是指當模型工具執行時
 為中繼步驟建立和使用的資料。
 
@@ -144,7 +145,7 @@ Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段�
     
     ![長條圖][ipython-histogram]
 
-## <a name="a-nameclientapisause-the-machine-learning-python-client-library-to-access-read-create-and-manage-datasets"></a><a name="clientApis"></a>使用 Machine Learning Python 用戶端程式碼來存取、讀取、建立及管理資料集
+## <a name="clientApis"></a>使用 Machine Learning Python 用戶端程式碼來存取、讀取、建立及管理資料集
 ### <a name="workspace"></a>工作區
 工作區是 Python 用戶端程式碼的進入點。 將您的工作區識別碼與授權權杖提供給 `Workspace` 類別，就會建立一個執行個體：
 
@@ -335,10 +336,5 @@ Python 用戶端程式碼能夠將 Pandas DataFrame 序列化為下列格式 (�
 <!-- Module References -->
 [convert-to-csv]: https://msdn.microsoft.com/library/azure/faa6ba63-383c-4086-ba58-7abf26b85814/
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

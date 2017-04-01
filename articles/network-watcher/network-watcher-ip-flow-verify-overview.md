@@ -29,8 +29,6 @@ IP 流量驗證是以虛擬機器的網路介面做為目標。 接著會根據�
 
 在您計劃執行 IP 流量驗證的所有區域中，都必須建立網路監看員執行個體。 網路監看員是區域性服務，只能針對相同區域中的資源執行。 這不會影響 IP 流量驗證的結果，因為與 NIC 相關聯的路由仍會傳回。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
-
 ![1][1]
 
 ## <a name="next-steps"></a>後續步驟

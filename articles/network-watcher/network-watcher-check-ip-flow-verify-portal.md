@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 1d0136b044f6049e59fa09d824cf244cac703c45
+ms.sourcegitcommit: 1aa8fff31d8d1908b1ea93cb970487d08ea4adf6
 ms.openlocfilehash: ddd6fcc8de133a5ff5f427d070c6c6ec207d9236
-ms.lasthandoff: 02/23/2017
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -34,8 +34,6 @@ IP 流量驗證是網路監看員的一項功能，可讓您驗證虛擬機器�
 ## <a name="before-you-begin"></a>開始之前
 
 此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員，或您擁有現有的網路監看員執行個體。 此案例也假設已有具有有效虛擬機器的資源群組可供使用。
-
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 ## <a name="scenario"></a>案例
 

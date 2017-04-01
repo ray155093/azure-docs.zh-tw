@@ -106,7 +106,7 @@ ms.lasthandoff: 03/27/2017
    
     ![Swap Button][SwapButtonBar]
 
-2. 請確定交換來源和交換目標都已正確設定。 交換目標通常是生產位置。 按一下 [確定]  來完成操作。 當操作完成時，部署位置就已交換完畢。
+2. 請確定交換來源和交換目標都已正確設定。 交換目標通常是生產位置。 按一下 確定  來完成操作。 當操作完成時，部署位置就已交換完畢。
 
     ![完整的交換](./media/web-sites-staged-publishing/SwapImmediately.png)
 

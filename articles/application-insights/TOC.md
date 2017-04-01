@@ -111,7 +111,7 @@
 ### [管理價格與配額](app-insights-pricing.md)
 ### [使用 SCOM 的 Application Insights 進行應用程式效能監視](app-insights-scom.md)
 
-##匯出
+## 匯出
 ### [連續匯出](app-insights-export-telemetry.md)
 ### [匯出資料模型](app-insights-export-data-model.md)
 ### [匯出至 Power BI](app-insights-export-power-bi.md)

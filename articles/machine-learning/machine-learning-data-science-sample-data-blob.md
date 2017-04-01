@@ -12,15 +12,16 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/19/2016
+ms.date: 03/24/2017
 ms.author: fashah;garye;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
 ms.openlocfilehash: 7873ad084c9d77eea556ae3fec846bebd4c99ebd
+ms.lasthandoff: 12/20/2016
 
 
 ---
-# <a name="a-nameheadingasample-data-in-azure-blob-storage"></a><a name="heading"></a>Azure blob 儲存體中的取樣資料
+# <a name="heading"></a>Azure blob 儲存體中的取樣資料
 本文件說明為儲存於 Azure blob 儲存體中的資料進行取樣的方法，您可以利用程式設計方式加以下載，然後使用以 Python 撰寫的程序進行取樣。
 
 以下**功能表**所連結的主題會說明如何從各種不同儲存體環境進行資料取樣。 
@@ -68,7 +69,7 @@ ms.openlocfilehash: 7873ad084c9d77eea556ae3fec846bebd4c99ebd
 
 現在您可以使用上述具有 1% 樣本的資料框架，進行進一步探索和功能產生。
 
-## <a name="a-nameheadingaupload-data-and-read-it-into-azure-machine-learning"></a><a name="heading"></a>將資料上傳並將其讀入 Azure Machine Learning
+## <a name="heading"></a>將資料上傳並將其讀入 Azure Machine Learning
 您可以使用下列程式碼範例，對資料進行向下取樣，並直接在 Azure Machine Learning 中使用它：
 
 1. 將資料框架寫入本機檔案
@@ -100,10 +101,5 @@ ms.openlocfilehash: 7873ad084c9d77eea556ae3fec846bebd4c99ebd
 3. 使用 Azure Machine Learning [匯入資料](https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/) 從 Azure Blob 讀取資料，如下圖所示：
 
 ![讀取器 Blob](./media/machine-learning-data-science-sample-data-blob/reader_blob.png)
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 05fb0b7e80684737277626c12468ca9c754a0ac9
+ms.sourcegitcommit: 50d82847fb629880f298f79f9ab791a13836f01c
 ms.openlocfilehash: e27bb694d0cbcf1ff7c9d8ca4682a79c8b5c5cb1
-ms.lasthandoff: 02/22/2017
+ms.lasthandoff: 03/31/2017
 
 ---
 
@@ -26,8 +26,6 @@ ms.lasthandoff: 02/22/2017
 封包擷取包含的網路資料可讓您執行網路鑑識和深入的封包檢查。 有許多開啟原始碼工具可用來分析封包擷取，以深入探索您的網路。 例如 CapAnalysis，一個開放原始碼封包擷取視覺效果工具。 將封包擷取資料視覺化有助於快速深入探索網路內的模式和異常。 視覺效果也可讓您輕鬆分享這種深入解析。
 
 Azure 的網路監看員可讓您在網路上執行封包擷取，以擷取這項重要資料。 在本文中，我們提供逐步解說，示範如何使用 CapAnalysis 搭配網路監看員，以視覺化和深入探索封包擷取。
-
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 ## <a name="scenario"></a>案例
 
