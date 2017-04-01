@@ -57,7 +57,7 @@ gulp run --debug
 
 從左側開啟 [偵錯] 面板。
 
-按一下綠色的 [開始偵錯] (F5) 按鈕。 VS Code 會開啟 **launch.json** 檔案，您必須更新該檔案。
+按一下綠色的 [開始偵錯] \(F5) 按鈕。 VS Code 會開啟 **launch.json** 檔案，您必須更新該檔案。
 
 使用下列內容更新 **launch.json** 檔案，使用實際裝置的 IP 位址或主機名稱取代 `[device hostname or IP address]`。  
 
@@ -85,7 +85,7 @@ gulp run --debug
 
 ### <a name="attach-to-the-remote-application"></a>附加至遠端應用程式
 
-按一下綠色的 [開始偵錯] (F5) 按鈕，然後享受偵錯過程。
+按一下綠色的 [開始偵錯] \(F5) 按鈕，然後享受偵錯過程。
 
 您可以閱讀 [VS Code 中的 JavaScript](https://code.visualstudio.com/docs/languages/javascript#_debugging) 以深入了解偵錯工具。
 
