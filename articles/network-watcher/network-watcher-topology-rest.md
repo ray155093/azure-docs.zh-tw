@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 1d0136b044f6049e59fa09d824cf244cac703c45
+ms.sourcegitcommit: 50d82847fb629880f298f79f9ab791a13836f01c
 ms.openlocfilehash: 4fa34050a8039cebebe30842469c596c83744313
-ms.lasthandoff: 02/23/2017
+ms.lasthandoff: 03/31/2017
 
 ---
 
@@ -30,8 +30,6 @@ ms.lasthandoff: 02/23/2017
 
 網路監看員的拓撲功能可以視覺方式呈現訂用帳戶中的網路資源。 在入口網站中，會自動向您呈現這個視覺效果。 透過 PowerShell 即可擷取入口網站拓撲檢視背後的資訊。
 這項功能可讓您活用拓撲資訊，因為資料可供其他工具取用以建立視覺效果。
-
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 系統會根據兩項關聯性建立彼此間聯繫關係的模型。
 

@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 03/24/2017
 ms.author: zhangya;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 4a2bb073360b372bb66281bceb2292d5d29f5625
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -68,7 +69,7 @@ ms.openlocfilehash: 4a2bb073360b372bb66281bceb2292d5d29f5625
 
 ![結果比較](./media/machine-learning-data-science-create-features/result1.png)
 
-## <a name="a-nameexample2a-example-2-creating-features-in-text-mining"></a><a name="example2"></a> 範例 2：在文字採礦中建立特性
+## <a name="example2"></a> 範例 2：在文字採礦中建立特性
 特性工程設計廣泛運用於文字採礦的相關工作，例如文件分類和情感分析。 例如，當我們想要將文件分為數個類別時，通常會假設包含在一個文件類別中的文字/片語比較不可能出現在其他文件類別中。 換言之，文字/片語分配的次數能夠描述不同的文件類別。 在文字採礦應用程式中，因為個別的文字內容通常可作為輸入資料，所以建立文字/片語次數相關特性時需要特性工程設計程序。
 
 為了達成此工作，會套用名為 **特性雜湊** 的技術，有效地將任意文字特性變成索引。 此方法不會將每個文字特性 (文字/片語) 關聯至特定索引，而是將雜湊函數套用至特性並直接使用其雜湊值作為索引。
@@ -89,10 +90,5 @@ Azure 機器學習中有一個 [特性雜湊](https://msdn.microsoft.com/library
 工程設計和選取的特性可提高下列定型程序的效率：嘗試擷取資料中內含的重要資訊。 此外，還可改善這些模型的功效，正確地分類輸入資料以及更精確地預測感興趣的結果。 特性工程設計和選取也可結合起來，讓學習更易於以運算方式處理。 其作法是提高而後減少校正或定型模型所需的特性數量。 從數學的角度來看，選取用來定型模型的特性是極小的一組獨立變數，可供解釋資料中的模式，然後成功地預測結果。
 
 請注意，不一定要執行特性工程設計和特性選取。 需要與否取決於我們所擁有或收集的資料、我們挑選的演算法，以及實驗的目標。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

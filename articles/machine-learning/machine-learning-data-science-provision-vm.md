@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: e1563db23e687f772eaff2e90ce9853c9d8b87de
 ms.openlocfilehash: f87df28a5a44b7ab3c1d9a48d43c8d1354c48830
+ms.lasthandoff: 11/23/2016
 
 
 ---
@@ -196,10 +197,5 @@ VM 上提供含 R 服務的 SQL Server 2016 開發人員版本，以執行資料
 * 閱讀文章： [您可以在 Data Science Virtual Machine 上做的 10 件事](http://aka.ms/dsvmtenthings)
 * 了解如何使用 [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/data-science-process/)以系統化方式建置端對端分析方案。
 * 造訪 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com) ，以取得使用 Cortana Intelligence Suite 的機器學習服務和資料分析範例。 我們也已經在虛擬機器的 **開始** 功能表與桌面上提供此資源庫的圖示。
-
-
-
-
-<!--HONumber=Nov16_HO4-->
 
 

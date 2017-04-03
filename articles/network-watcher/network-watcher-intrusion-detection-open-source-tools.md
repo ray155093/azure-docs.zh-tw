@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: a1199ae3eccc5268006587fa47f2ca4fad362bdc
+ms.sourcegitcommit: d60b1d44844c449e0f66dc0107a25531569d097b
 ms.openlocfilehash: 82d5e525859ebe03b152c63e4debbae469049c12
-ms.lasthandoff: 02/24/2017
+ms.lasthandoff: 03/31/2017
 
 ---
 
@@ -26,8 +26,6 @@ ms.lasthandoff: 02/24/2017
 封包擷取是實作網路入侵偵測系統 (ID) 和執行網路安全性監視 (NSM) 的重要元件。 有數個開放原始碼 IDS 工具，可處理封包擷取並尋找可能的網路入侵和惡意活動的簽章。 使用網路監看員所提供的封包擷取，您可以分析您的網路找出任何有害的入侵或安全性弱點。
 
 一種開放原始碼工具是 Suricata，這是使用規則集監視網路流量且在可疑事件發生時就會觸發警示的 IDS 引擎。 Suricata 提供多執行緒的引擎，這表示它可以更高的速度和效率執行網路流量分析。 如需關於 Suricata 和其功能的詳細資訊，請瀏覽其網站︰https://suricata-ids.org/。
-
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 ## <a name="scenario"></a>案例
 

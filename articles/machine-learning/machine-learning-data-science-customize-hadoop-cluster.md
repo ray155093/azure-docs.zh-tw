@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/19/2016
+ms.date: 03/24/2017
 ms.author: hangzh;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: 22d7dc81cb2fc44ff4471951cbc482f60a97bb27
 ms.openlocfilehash: 9104c45508afdb5682c44db64576a0cdae95d75f
+ms.lasthandoff: 12/20/2016
 
 
 ---
@@ -27,7 +28,7 @@ ms.openlocfilehash: 9104c45508afdb5682c44db64576a0cdae95d75f
 
 [!INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
-## <a name="a-namecustomizeacustomize-azure-hdinsight-hadoop-cluster"></a><a name="customize"></a>自訂 Azure HDInsight Hadoop 叢集
+## <a name="customize"></a>自訂 Azure HDInsight Hadoop 叢集
 若要建立自訂的 HDInsight Hadoop 叢集，請先登入 [**Azure 傳統入口網站**](https://manage.windowsazure.com/)，按一下左下角的 [新增]，然後選取 [資料服務] -> [HDINSIGHT] -> [自訂建立]，以顯示 [叢集詳細資料] 視窗。 
 
 ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img1.png)
@@ -66,7 +67,7 @@ ms.openlocfilehash: 9104c45508afdb5682c44db64576a0cdae95d75f
 
 ![建立工作區](./media/machine-learning-data-science-customize-hadoop-cluster/script-actions.png)
 
-## <a name="a-nameheadnodea-access-the-head-node-of-hadoop-cluster"></a><a name="headnode"></a> 存取 Hadoop 叢集的前端節點
+## <a name="headnode"></a> 存取 Hadoop 叢集的前端節點
 您必須先在 Azure 中啟用 Hadoop 叢集的遠端存取，才能透過 RDP 存取 Hadoop 叢集的前端節點。 
 
 1. 登入 [**Azure 傳統入口網站**](https://manage.windowsazure.com/)，選取左側的 [HDInsight]，從叢集清單中選取您的 Hadoop 叢集，按一下 [設定] 索引標籤，然後按一下頁面底部的 [啟用遠端] 圖示。
@@ -88,10 +89,5 @@ ms.openlocfilehash: 9104c45508afdb5682c44db64576a0cdae95d75f
 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中說明了進階分析程序的後續步驟，其中可能包含將資料移至 HDInsight 並在其中處理資料與取樣，做為透過 Azure Machine Learning 從資料學習的準備。
 
 請參閱[如何提交 Hive 查詢](machine-learning-data-science-move-hive-tables.md#submit)中的相關指示，以了解如何在用來處理儲存於叢集的 Hive 記錄的使用者定義函式 (UDF) 中，從叢集的前端節點存取隨附於 Anaconda 的 Python 模組。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

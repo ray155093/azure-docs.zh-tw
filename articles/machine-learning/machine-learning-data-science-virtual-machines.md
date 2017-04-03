@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/19/2016
+ms.date: 03/24/2017
 ms.author: xibingao;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
 ms.openlocfilehash: 4de0683f2f58cc598a5c37e74a30b7e17aa7fd0d
+ms.lasthandoff: 12/20/2016
 
 
 ---
@@ -43,10 +44,5 @@ ms.openlocfilehash: 4de0683f2f58cc598a5c37e74a30b7e17aa7fd0d
 > Azure 虛擬機器的定價策略是「 **只針對您使用的項目進行付費**」。 若要確保未使用虛擬機器時不會被計費，其在 **Azure 傳統入口網站** 中的狀態必須是 [已停止 (已取消配置)](http://manage.windowsazure.com/)。 如需逐步指示或如何取消配置虛擬機器的相關資訊，請參閱[關閉並取消配置未使用的虛擬機器](machine-learning-data-science-setup-virtual-machine.md#shutdown)
 > 
 > 
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

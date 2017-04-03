@@ -27,8 +27,6 @@ ms.lasthandoff: 03/06/2017
 
 這些流量記錄難以手動剖析和獲得見解。 不過，有幾種開放原始碼工具可協助您將此資料視覺化。 本文提供的解決方案使用「彈性堆疊」將這些記錄視覺化，該功能可讓您快速編製索引並以視覺化方式在 Kibana 儀表板上呈現流量記錄。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
-
 ## <a name="scenario"></a>案例
 
 在本文中，我們將設定一個解決方案，讓您使用「彈性堆疊」將網路安全性群組流量記錄視覺化。  Logstash 輸入外掛程式會直接從為了容納流量記錄而設定的儲存體 blob 取得流量記錄。 然後，使用「彈性堆疊」，替流量記錄編製索引並用來建立 Kibana 儀表板，以將資訊視覺化。

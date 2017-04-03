@@ -12,15 +12,16 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/19/2016
+ms.date: 03/24/2017
 ms.author: fashah;garye;bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: a6bc79b2cb5b73109cddd6cf57caeba754b52e2e
 ms.openlocfilehash: 44ad1c9fb54231a3942889fc24bfc92554ead6fa
+ms.lasthandoff: 02/11/2017
 
 
 ---
-# <a name="a-nameheadingasample-data-in-sql-server-on-azure"></a><a name="heading"></a>在 Azure 上 SQL Server 中進行資料取樣
+# <a name="heading"></a>在 Azure 上 SQL Server 中進行資料取樣
 本文件顯示如何使用 SQL 或 Python 程式設計語言，對儲存在 Azure 上之 SQL Server 中的資料進行取樣。 也示範如何透過將取樣的資料儲存到檔案，讓取樣資料移動到 Azure Machine Learning、將取樣的資料上傳至 Azure blob，然後將其讀入 Azure Machine Learning Studio。
 
 Python 取樣使用 [pyodbc](https://code.google.com/p/pyodbc/) ODBC 程式庫來連接到 Azure 上的 SQL Server 以及 [Pandas](http://pandas.pydata.org/) 程式庫來進行取樣。
@@ -39,7 +40,7 @@ Python 取樣使用 [pyodbc](https://code.google.com/p/pyodbc/) ODBC 程式庫�
 
 這個取樣工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)中的一個步驟。
 
-## <a name="a-namesqlausing-sql"></a><a name="SQL"></a>使用 SQL
+## <a name="SQL"></a>使用 SQL
 本節將說明使用 SQL，對資料庫中的資料執行簡單隨機取樣的數個方法。 請根據資料大小及其分佈來選擇方法。
 
 以下兩個項目示範如何在 SQL Server 中使用 newid 進行取樣。 您選擇的方法取決於想要的隨機取樣程度 (程式碼範例底下的 pk_id 已假設為自動產生的主索引鍵)。
@@ -64,12 +65,12 @@ Tablesample 可用來進行取樣及示範，如下所示。 如果資料大小�
 > 
 > 
 
-### <a name="a-namesql-amlaconnecting-to-azure-machine-learning"></a><a name="sql-aml"></a>連接到 Azure Machine Learning
+### <a name="sql-aml"></a>連接到 Azure Machine Learning
 您可以在 Azure Machine Learning [匯入資料][import-data]模組中直接使用上述取樣查詢，來進行即時資料縮小取樣，然後帶入 Azure Machine Learning 實驗中。 使用讀取程式模組讀取取樣資料的螢幕擷取畫面如下所示：
 
 ![讀取器 SQL][1]
 
-## <a name="a-namepythonausing-the-python-programming-language"></a><a name="python"></a>使用 Python 程式設計語言
+## <a name="python"></a>使用 Python 程式設計語言
 本節示範如何使用 [pyodbc 程式庫](https://code.google.com/p/pyodbc/) 來建立連線至 Python 中 SQL Server 資料庫的 ODBC。 資料庫連接字串如下：(使用您的設定來取代伺服器名稱、資料庫名稱、使用者名稱和密碼)：
 
     #Set up the SQL Azure connection
@@ -85,7 +86,7 @@ Python 中的 [Pandas](http://pandas.pydata.org/) 程式庫提供一組豐富的
 
 您現在可以在 Pandas 資料框架中使用取樣資料。 
 
-### <a name="a-namepython-amlaconnecting-to-azure-machine-learning"></a><a name="python-aml"></a>連接到 Azure Machine Learning
+### <a name="python-aml"></a>連接到 Azure Machine Learning
 您可以使用下列程式碼範例，將向下取樣的資料儲存至檔案，並將它上傳至 Azure Blob。 使用[匯入資料][import-data]模組即可將 Blob 中的資料直接讀取到「Azure Machine Learning 實驗」中。 步驟如下： 
 
 1. 將 Pandas 資料框架寫入本機檔案
@@ -123,9 +124,4 @@ Python 中的 [Pandas](http://pandas.pydata.org/) 程式庫提供一組豐富的
 [2]: ./media/machine-learning-data-science-sample-sql-server-virtual-machine/reader_blob.png
 
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
