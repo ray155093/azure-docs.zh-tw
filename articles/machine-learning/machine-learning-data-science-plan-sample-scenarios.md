@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: 69bb7e5fb0dafa3a9d0f6ad4eb271ab1af2edc50
 ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -41,7 +42,7 @@ ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
 > 
 > 
 
-## <a name="a-namesmalllocalascenario-1-small-to-medium-tabular-dataset-in-a-local-files"></a><a name="smalllocal"></a>案例 \#1：本機檔案中的中小型表格式資料集
+## <a name="smalllocal"></a>案例 \#1：本機檔案中的中小型表格式資料集
 ![中小型本機檔案][1]
 
 #### <a name="additional-azure-resources-none"></a>其他 Azure 資源：無
@@ -49,7 +50,7 @@ ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
 2. 上傳資料集。
 3. 建置從上傳的資料集開始的 Azure 機器學習實驗流程。
 
-## <a name="a-namesmalllocalprocessascenario-2-small-to-medium-dataset-of-local-files-that-require-processing"></a><a name="smalllocalprocess"></a>案例 \#2：本機檔案中需要處理的中小型資料集
+## <a name="smalllocalprocess"></a>案例 \#2：本機檔案中需要處理的中小型資料集
 ![需要處理的中小型本機檔案][2]
 
 #### <a name="additional-azure-resources-azure-virtual-machine-ipython-notebook-server"></a>其他 Azure 資源：Azure 虛擬機器 (IPython Notebook 伺服器)
@@ -62,7 +63,7 @@ ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
 7. 使用[匯入資料][import-data]模組從 Azure Blob 讀取資料。
 8. 建置從內嵌的資料集開始的 Azure 機器學習實驗流程。
 
-## <a name="a-namelargelocalascenario-3-large-dataset-of-local-files-targeting-azure-blobs"></a><a name="largelocal"></a>案例 \#3：本機檔案的大型資料集，以 Azure Blob 為目標
+## <a name="largelocal"></a>案例 \#3：本機檔案的大型資料集，以 Azure Blob 為目標
 ![大型本機檔案][3]
 
 #### <a name="additional-azure-resources-azure-virtual-machine-ipython-notebook-server"></a>其他 Azure 資源：Azure 虛擬機器 (IPython Notebook 伺服器)
@@ -77,7 +78,7 @@ ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
 9. 使用[匯入資料][import-data]模組從 Azure Blob 讀取資料。
 10. 建置從內嵌的資料集開始的 Azure 機器學習實驗流程。
 
-## <a name="a-namesmalllocaltodbascenario-4-small-to-medium-dataset-of-local-files-targeting-sql-server-in-an-azure-virtual-machine"></a><a name="smalllocaltodb"></a>案例 \#4：本機檔案的中小型資料集，以 Azure 虛擬機器中的 SQL Server 為目標
+## <a name="smalllocaltodb"></a>案例 \#4：本機檔案的中小型資料集，以 Azure 虛擬機器中的 SQL Server 為目標
 ![中小型本機檔案至 Azure 中的 SQL DB][4]
 
 #### <a name="additional-azure-resources-azure-virtual-machine-sql-server--ipython-notebook-server"></a>其他 Azure 資源：Azure 虛擬機器 (SQL Server / IPython Notebook 伺服器)
@@ -107,7 +108,7 @@ ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
 10. 使用[匯入資料][import-data]模組直接從 SQL Server 讀取資料。 視需要，將可擷取欄位、建立功能及對資料取樣的必要查詢，直接貼到[匯入資料][import-data]查詢中。
 11. 建置從內嵌的資料集開始的 Azure 機器學習實驗流程。
 
-## <a name="a-namelargelocaltodbascenario-5-large-dataset-in-a-local-files-target-sql-server-in-azure-vm"></a><a name="largelocaltodb"></a>案例 \#5：本機資料中的大型資料集，目標 Azure VM 中的 SQL Server
+## <a name="largelocaltodb"></a>案例 \#5：本機資料中的大型資料集，目標 Azure VM 中的 SQL Server
 ![大型本機檔案至 Azure 中的 SQL DB][5]
 
 #### <a name="additional-azure-resources-azure-virtual-machine-sql-server--ipython-notebook-server"></a>其他 Azure 資源：Azure 虛擬機器 (SQL Server / IPython Notebook 伺服器)
@@ -148,7 +149,7 @@ ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
 8. 使用[匯入資料][import-data]模組直接從 SQL Server 讀取資料。 視需要，將可擷取欄位、建立功能及對資料取樣的必要查詢，直接貼到[匯入資料][import-data]查詢中。
 9. 從上傳的資料集開始的簡單 Azure Machine Learning 實驗流程
 
-## <a name="a-namelargedbtodbascenario-6-large-dataset-in-a-sql-server-database-on-prem-targeting-sql-server-in-an-azure-virtual-machine"></a><a name="largedbtodb"></a>案例 \#6：SQL Server 資料庫內部部署中的大型資料集，以 Azure 虛擬機器中的 SQL Server 為目標
+## <a name="largedbtodb"></a>案例 \#6：SQL Server 資料庫內部部署中的大型資料集，以 Azure 虛擬機器中的 SQL Server 為目標
 ![大型 SQL DB 內部部署至 Azure 中的 SQL DB][6]
 
 #### <a name="additional-azure-resources-azure-virtual-machine-sql-server--ipython-notebook-server"></a>其他 Azure 資源：Azure 虛擬機器 (SQL Server / IPython Notebook 伺服器)
@@ -196,7 +197,7 @@ ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
 
 [使用卸離和連結來移動資料庫 (Transact-SQL)](https://technet.microsoft.com/library/ms187858\(v=sql.110\).aspx)
 
-## <a name="a-namelargedbtohiveascenario-7-big-data-in-local-files-target-hive-database-in-azure-hdinsight-hadoop-clusters"></a><a name="largedbtohive"></a>案例 \#7：本機檔案中的巨量資料，目標 Azure HDInsight Hadoop 叢集中的 Hive 資料庫
+## <a name="largedbtohive"></a>案例 \#7：本機檔案中的巨量資料，目標 Azure HDInsight Hadoop 叢集中的 Hive 資料庫
 ![本機目標 Hive 中的巨量資料][9]
 
 #### <a name="additional-azure-resources-azure-hdinsight-hadoop-cluster-and-azure-virtual-machine-ipython-notebook-server"></a>其他 Azure 資源：Azure HDInsight Hadoop 叢集和 Azure 虛擬機器 (IPython Notebook 伺服器)
@@ -240,7 +241,7 @@ ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
 9. 使用[匯入資料][import-data]模組直接從 `Hive Queries` 讀取資料。 視需要，將可擷取欄位、建立功能及對資料取樣的必要查詢，直接貼到[匯入資料][import-data]查詢中。
 10. 從上傳的資料集開始的簡單 Azure Machine Learning 實驗流程。
 
-## <a name="a-namedecisiontreeadecision-tree-for-scenario-selection"></a><a name="decisiontree"></a>用於案例選擇的決策樹
+## <a name="decisiontree"></a>用於案例選擇的決策樹
 - - -
 下圖摘要說明上述案例，以及讓您連結到每個分項案例的「進階分析程序和技術」選擇。 請注意，資料處理、資料探索、功能工程和取樣可能會出現在一或多個方法/環境中 (在來源、中繼和/或目標環境中)，且可以視需要反覆處理。 圖表的目的只是說明一些可能的流程，並不提供詳盡的列舉。
 
@@ -265,9 +266,4 @@ ms.openlocfilehash: cfb4b3e629a2c02c360cbba3c151ee1553dc2e7e
 
 <!-- Module References -->
 [import-data]: https://msdn.microsoft.com/library/azure/4e1b0fe6-aded-4b3f-a36f-39b8862b9004/
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

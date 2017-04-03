@@ -26,8 +26,6 @@ ms.lasthandoff: 03/29/2017
 
 深入了解網路效能對於為客戶提供可靠的服務相當重要。 因此務必快速偵測網路中斷狀況，並採取更正動作以降低中斷條件。 Azure 自動化可讓您實作，並透過 runbook 以程式設計方式執行工作。 使用 Azure 自動化會建立一個完美的配方，讓您執行連續且主動的網路監視和警示。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
-
 ## <a name="scenario"></a>案例
 
 下圖中的案例是多層式應用程式，並具有使用 VPN 閘道與通道建立的內部部署連線。 確保 VPN 閘道已啟動且執行對於應用程式效能很重要。

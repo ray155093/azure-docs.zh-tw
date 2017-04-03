@@ -18,6 +18,7 @@ ms.author: danlep
 translationtype: Human Translation
 ms.sourcegitcommit: a0e80acad4e8db2177e699f90f7296c64b38e718
 ms.openlocfilehash: da7102882b9dcf7db1285c0ec004ce1ad3859853
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -122,7 +123,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 2. 在 [必要部署工作] 底下，按一下 [設定您的網路]。
    
     ![Configure Network][config_hpc2]
-3. 在 [網路設定精靈] 中，選取 [All nodes only on an enterprise network]  (拓撲 5)。
+3. 在 [網路設定精靈] 中，選取 [All nodes only on an enterprise network]  \(拓撲 5)。
    
     ![Topology 5][config_hpc3]
    
@@ -178,7 +179,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 
 在本教學課程中，您將需要新增兩個小型節點。
 
-1. 在 HPC 叢集管理員中，於 [節點管理] (在最新版本的 HPC Pack 中稱為**資源管理**) 的 [動作] 窗格中，按一下 [新增節點]。
+1. 在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 的 [動作] 窗格中，按一下 [新增節點]。
    
     ![Add Node][add_node1]
 2. 在「新增節點精靈」中的 [選取部署方法] 頁面上，按一下 [新增 Windows Azure 節點]，然後按 [下一步]。
@@ -198,7 +199,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 ## <a name="start-the-azure-nodes"></a>啟動 Azure 節點
 當您想要使用 Azure 中的叢集資源時，請使用 HPC 叢集管理員來啟動 (佈建) Azure 節點並讓節點上線。
 
-1. 在 HPC 叢集管理員中，於 [節點管理] (在最新版本的 HPC Pack 中稱為**資源管理**) 中按一或兩個節點，然後在 [動作] 窗格中按一下 [啟動]。
+1. 在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 中按一或兩個節點，然後在 [動作] 窗格中按一下 [啟動]。
    
    ![Start Nodes][add_node4]
 2. 在 [停止 Windows Azure 節點] 對話方塊中，按一下 [啟動]。
@@ -251,7 +252,7 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 ## <a name="stop-the-azure-nodes"></a>停止 Azure 節點
 試驗完叢集之後，請停止 Azure 節點，以避免給您的帳戶產生不必要的費用。 這樣會停止雲端服務並移除 Azure 角色執行個體。
 
-1. 在 HPC 叢集管理員中，於 [節點管理] (在最新版本的 HPC Pack 中稱為**資源管理**) 中，選取這兩個 Azure 節點。 然後，在 [動作] 窗格中，按一下 [停止]。
+1. 在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 中，選取這兩個 Azure 節點。 然後，在 [動作] 窗格中，按一下 [停止]。
    
     ![Stop Nodes][stop_node1]
 2. 在 [停止 Windows Azure 節點] 對話方塊中，按一下 [停止]。
@@ -308,9 +309,4 @@ HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Micros
 [stop_node2]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/stop_node2.png
 [stop_node4]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/stop_node4.png
 [view_instances2]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/view_instances2.png
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

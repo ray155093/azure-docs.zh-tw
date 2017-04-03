@@ -18,6 +18,7 @@ ms.author: genli
 translationtype: Human Translation
 ms.sourcegitcommit: 09c18ca6a967c2930ddd2b16d37f0bc606712ea1
 ms.openlocfilehash: 3c8d69d17e99d7ec929ff3ca40e5749a2b30e2b6
+ms.lasthandoff: 02/08/2017
 
 
 ---
@@ -123,16 +124,11 @@ Azure 提供各種優惠來符合您的業務需求並開始使用 Azure。 請�
 如果您向轉銷商購買 **Azure in Open** 點數並取得啟用金鑰 (5x5 金鑰)，請遵循下列步驟來啟用您的訂用帳戶：
 
 1. 前往 [訂用帳戶摘要頁面](https://account.windowsazure.com/subscriptions)。
-2. 選取 [Azure in Open] 。 在 [Azure in Open 授權金鑰][](https://azure.microsoft.com/offers/ms-azr-0111p/) 頁面中，選取 [啟用新的訂用帳戶] 或 [啟用現有的訂用帳戶]。
+2. 選取 [Azure in Open] 。 在 [Azure in Open 授權金鑰](https://azure.microsoft.com/offers/ms-azr-0111p/) 頁面中，選取 [啟用新的訂用帳戶] 或 [啟用現有的訂用帳戶]。
 3. 輸入產品金鑰，然後查看合約選項。
 
 > [!NOTE]
 > 如果您仍有其他問題，請 [連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) 以快速解決您的問題。
 >
 >
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -383,7 +383,7 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。 也就�
 
 5.    移至儲存體帳戶，選取 [容器]
 
-6.    選取 [取得共用存取簽章...] (以滑鼠右鍵按一下 [容器])
+6.    選取 [取得共用存取簽章...] \(以滑鼠右鍵按一下 [容器])
 
     ![繪圖](media/marketplace-publishing-vm-image-creation/img5.2_12.png)
 

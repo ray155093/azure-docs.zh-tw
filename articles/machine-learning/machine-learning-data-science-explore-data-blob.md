@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: b663a9df7e8cb692f4156f2609fb515265526868
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -60,7 +61,7 @@ ms.openlocfilehash: b663a9df7e8cb692f4156f2609fb515265526868
 
 現在您已經準備好探索資料並在此資料集上產生功能。
 
-## <a name="a-nameblob-dataexplorationaexamples-of-data-exploration-using-pandas"></a><a name="blob-dataexploration"></a>使用 Pandas 的資料探索範例
+## <a name="blob-dataexploration"></a>使用 Pandas 的資料探索範例
 以下是數個可使用 Pandas 探索資料的範例方式：
 
 1. 檢查 **資料列和資料行的數目** 
@@ -104,10 +105,5 @@ ms.openlocfilehash: b663a9df7e8cb692f4156f2609fb515265526868
    
         #correlation between column_a and column_b
         dataframe_blobdata[['<column_a>', '<column_b>']].corr()
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

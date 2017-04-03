@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: f497366f8e66ba79b0e5978fde54d0b33048aa8d
 ms.openlocfilehash: 3467c5549381f1354987fead424646afe847739c
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -57,10 +58,5 @@ Microsoft Cortana Intelligence 是受完整管理的巨量資料與進階分析�
 
 * **模擬車輛訊號和診斷**：針對指定時點的車輛狀態與駕駛模式，車輛遠程資訊服務模擬器可發出與其對應的診斷資訊和訊號。 
 * **車輛目錄**：包含 VIN 模型對應的參考資料集。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

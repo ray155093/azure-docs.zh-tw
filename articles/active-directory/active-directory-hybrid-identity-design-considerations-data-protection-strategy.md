@@ -116,6 +116,7 @@ Azure Active Directory 可為數千個 SaaS 應用程式和內部部署 Web 應�
 圖 X 中顯示的每個互動，分別代表 Azure AD 可以涵蓋的一個存取控制案例。 每個案例的說明如下：
 
 1.內部部署裝載之應用程式的條件式存取：您可以使用已註冊的裝置搭配適用於已設定為使用 AD FS with Windows Server 2012 R2 之應用程式的存取原則。 如需有關設定內部部署之條件式存取的詳細資訊，請參閱 [使用 Azure Active Directory 裝置註冊設定內部部署條件式存取](active-directory-conditional-access.md)。
+
 2.Azure 管理入口網站的存取控制：Azure 也能夠使用 RBAC (角色型存取控制) 來控制對管理入口網站的存取。 此方法可讓公司限制個人存取 Azure 管理入口網站之後可執行的作業數量。 使用 RBAC 來控制存取入口網站時，IT 系統管理員可以利用下列存取管理方法來委派存取：
 
 * 群組型角色指派：您可以指派存取權給可從本機 Active Directory 同步處理的 Azure AD 群組。 這可讓您運用組織目前在群組管理工具和程序方面所做的投資。 您也可以使用 Azure AD Premium 的委派群組管理功能。

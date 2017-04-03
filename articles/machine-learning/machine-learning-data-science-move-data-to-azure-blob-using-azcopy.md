@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: 9b32c0d9c3bc19a187873eebd6ab21036ee06db8
 ms.openlocfilehash: 1acc98f9688ced2e1cf177a881b28ce98c0bff9e
+ms.lasthandoff: 12/07/2016
 
 
 ---
@@ -88,10 +89,5 @@ AzCopy 命令的基本語法是：
 > 3. 您無法使用 /Source  參數來指定要下載的 *特定 Blob 檔案* 。 若要下載特定檔案，請使用 /Pattern  參數指定要下載的 Blob 檔案名稱。 **/S** 參數可用來讓 AzCopy 以遞迴方式尋找檔案名稱模式。 若未提供模式參數，AzCopy 會下載該目錄中的所有檔案。
 > 
 > 
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 
