@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: f497366f8e66ba79b0e5978fde54d0b33048aa8d
 ms.openlocfilehash: 898b93ad95ab812b8b6a538048a86a8cc8951101
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -705,10 +706,5 @@ Power BI 給此方案一個豐富的儀表板來提供即時資料和預測性�
 
 ## <a name="summary"></a>摘要
 本文件包含車輛遙測資料分析方案的詳細探討。 這以預測和動作示範即時和批次分析的 Lambda 架構模式。 此模式適用於需要最忙碌路徑 (即時) 和不忙碌路徑 (批次) 分析的各種使用案例。 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

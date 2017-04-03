@@ -34,8 +34,6 @@ ms.lasthandoff: 03/21/2017
 在此範例中，您的 VM 正在比平常傳送更多個 TCP 區段，且您想要接獲通知。 會使用 TCP 區段做為範例，您可以使用任何警示的條件。 當您收到警示時，您需要有封包層級的資料，以了解通訊增加的原因，以便您可以採取步驟，讓機器回復到一般的通訊。
 此案例假設您有現有的網路監看員執行個體，並且具有可供使用的有效虛擬機器的資源群組。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
-
 ## <a name="scenario"></a>案例
 
 若要自動化此程序，我們會在 VM 上建立並連線警示，以在事件發生時觸發，以及呼叫網路監看員的 Azure 函式。

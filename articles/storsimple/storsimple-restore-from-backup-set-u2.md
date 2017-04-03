@@ -17,6 +17,7 @@ ms.author: v-sharos
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: fbb5a38e5ef92de7ca4752441d72d29135867a51
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -77,10 +78,10 @@ ms.openlocfilehash: fbb5a38e5ef92de7ca4752441d72d29135867a51
    1. 選取適當的裝置。
    2. 在下拉式清單中，針對要選取的備份選擇磁碟區或備份原則。
    3. 指定時間範圍。
-   4. 按一下核取圖示  ![核取圖示](./media/storsimple-restore-from-backup-set-u2/HCS_CheckIcon.png)  以執行此查詢。
+   4. 按一下核取圖示  ![核取圖示](./media/storsimple-restore-from-backup-set-u2/HCS_CheckIcon.png) 以執行此查詢。
       
       與選取的磁碟區或備份原則相關聯的備份應該會出現在備份組清單中。
-3. 展開備份組以檢視相關聯的磁碟區。 您必須先在主機和裝置上將這些磁碟區離線，才能還原它們。 存取 [磁碟區容器] 頁面上的磁碟區，然後依照 [讓磁碟區離線][](storsimple-manage-volumes-u2.md#take-a-volume-offline) 中的指示來讓它們離線。
+3. 展開備份組以檢視相關聯的磁碟區。 您必須先在主機和裝置上將這些磁碟區離線，才能還原它們。 存取 [磁碟區容器] 頁面上的磁碟區，然後依照 [讓磁碟區離線](storsimple-manage-volumes-u2.md#take-a-volume-offline) 中的指示來讓它們離線。
    
    > [!IMPORTANT]
    > 確定您已先讓主機上的磁碟區離線，然後再讓裝置上的磁碟區離線。 如果您並未讓主機上的磁碟區離線，可能會導致資料損毀。
@@ -106,10 +107,5 @@ ms.openlocfilehash: fbb5a38e5ef92de7ca4752441d72d29135867a51
 ## <a name="next-steps"></a>後續步驟
 * 了解如何 [管理 StorSimple 磁碟區](storsimple-manage-volumes-u2.md)。
 * 了解如何 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

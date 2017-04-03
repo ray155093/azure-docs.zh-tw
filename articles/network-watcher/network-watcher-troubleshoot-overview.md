@@ -25,8 +25,6 @@ ms.lasthandoff: 03/04/2017
 
 虛擬網路閘道可提供 Azure 中內部部署資源與其他虛擬網路之間的連線。 監視這些閘道器及其連線，對於確保通訊不中斷至關重要。 網路監看員可提供針對虛擬網路閘道和連線進行疑難排解的功能。 此功能可透過 PowerShell、CLI 或 REST API 呼叫。 一經呼叫，網路監看員就會診斷虛擬網路閘道或連線的健全狀況，並傳回相關結果。 此要求是長時間執行的交易，一旦完成診斷就會傳回結果。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
-
 ## <a name="results"></a>結果
 
 傳回的初步結果會提供資源的整體健康情況。 可以針對資源提供如下一節所示的更深入資訊︰

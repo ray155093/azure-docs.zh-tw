@@ -27,8 +27,6 @@ ms.lasthandoff: 03/22/2017
 
 手動搜尋記錄檔很難深入探索流程記錄資料。 在本文中，我們提供解決方案將最近的流程記錄視覺化，並了解您網路上的流量。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
-
 ## <a name="scenario"></a>案例
 
 在下列案例中，我們將 Power BI Desktop 連線至我們已設定的儲存體帳戶，做為 NSG 流程記錄資料的接收器。 當我們連線至儲存體帳戶之後，Power BI 會下載並剖析記錄，以視覺表示法呈現網路安全性群組所記錄的流量。

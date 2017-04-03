@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 1654c100c1c57b04a61cf2b9d2cf37d58cec1870
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -32,7 +33,7 @@ ms.openlocfilehash: 1654c100c1c57b04a61cf2b9d2cf37d58cec1870
 > 
 > 
 
-## <a name="a-namesql-dataexplorationaexplore-sql-data-with-sql-scripts"></a><a name="sql-dataexploration"></a>使用 SQL 指令碼瀏覽 SQL 資料
+## <a name="sql-dataexploration"></a>使用 SQL 指令碼瀏覽 SQL 資料
 以下是數個 SQL 指令碼範例，可用來探索儲存於 SQL Server 中的資料。
 
 1. 取得每天的觀察計數
@@ -53,7 +54,7 @@ ms.openlocfilehash: 1654c100c1c57b04a61cf2b9d2cf37d58cec1870
 > 
 > 
 
-## <a name="a-namepythonaexplore-sql-data-with-python"></a><a name="python"></a>使用 Python 瀏覽 SQL 資料
+## <a name="python"></a>使用 Python 瀏覽 SQL 資料
 當資料位於 SQL Server 時，使用 Python 來瀏覽資料與產生特徵，類似於使用 Python 來處理 Azure Blob 中的資料，如 [在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)中所述。 資料必須從資料庫載入 Pandas 資料框架，然後就能進一步處理。 我們將在本節中說明連接到資料庫以及將資料載入資料框架的程序。
 
 下列連接字串格式可用來使用 pyodbc (使用您的特定值來取代 servername、dbname、username 和 password)，從 Python 連接到 SQL Server 資料庫：
@@ -71,10 +72,5 @@ Python 中的 [Pandas 程式庫](http://pandas.pydata.org/) 提供一組豐富�
 
 ## <a name="cortana-analytics-process-in-action-example"></a>Cortana 分析程序實務範例
 如需使用公用資料集進行 Cortana Analytics 程序的端對端逐步解說範例，請參閱 [Team Data Science Process 實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

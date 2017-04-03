@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 03/24/2017
 ms.author: bradsev;sachouks
 translationtype: Human Translation
 ms.sourcegitcommit: 9b32c0d9c3bc19a187873eebd6ab21036ee06db8
 ms.openlocfilehash: 1e773a1332d14109e9f50fb7db17528d061a98f2
+ms.lasthandoff: 12/07/2016
 
 
 ---
@@ -48,10 +49,5 @@ ms.openlocfilehash: 1e773a1332d14109e9f50fb7db17528d061a98f2
 
 * 若要設定 Azure 訂用帳戶，請參閱 [免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
 * 如需建立儲存體帳戶的指示，以及取得帳戶和金鑰的資訊，請參閱 [關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 
