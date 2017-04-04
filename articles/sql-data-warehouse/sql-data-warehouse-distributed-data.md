@@ -12,11 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: tables
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
 ms.sourcegitcommit: 2548f779767635865daf790d301d86feff573a29
 ms.openlocfilehash: 195b78a7f634d01f228c90efb34763e4175708ac
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -62,7 +64,7 @@ ms.openlocfilehash: 195b78a7f634d01f228c90efb34763e4175708ac
 ### <a name="can-i-view-the-compute-nodes"></a>可以檢視計算節點嗎？
 每個計算節點有節點 ID，且在有關 SQL 資料倉儲和平行資料倉儲的系統檢視中可以看見。  您可以在名稱開頭為 sys.pdw_nodes 的系統檢視中尋找 node_id 資料行表來看到計算節點。 如需系統檢視的清單，請參閱 [MPP 系統檢視](sql-data-warehouse-reference-tsql-statements.md)。
 
-## <a name="a-namereplicatedareplicated-tables-for-parallel-data-warehouse"></a><a name="Replicated"></a>複寫平行資料倉儲的資料表
+## <a name="Replicated"></a>複寫平行資料倉儲的資料表
 適用於︰平行資料倉儲
 
 除了使用分散式資料表之外，平行資料倉儲會提供選項來複寫資料表。 *複寫資料表*是在每個計算節點上完整儲存的資料表。 複寫資料表會在聯結或彙總中使用資料表之前，移除在計算節點之間傳輸其資料表資料列的需要。 由於在每個計算節點上儲存完整資料表所需的額外儲存體，因此複寫資料表僅在小型資料表才可行。  
@@ -73,10 +75,5 @@ ms.openlocfilehash: 195b78a7f634d01f228c90efb34763e4175708ac
 
 ## <a name="next-steps"></a>後續步驟
 若要有效使用分散式資料表，請參閱[在 SQL 資料倉儲中散發資料表](sql-data-warehouse-tables-distribute.md)  
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

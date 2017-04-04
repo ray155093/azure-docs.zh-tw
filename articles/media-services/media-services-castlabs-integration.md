@@ -31,7 +31,7 @@ ms.lasthandoff: 11/17/2016
 ## <a name="overview"></a>Overview
 本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權則來自 **castLabs** 授權伺服器。
 
-若要播放受 CENC (PlayReady 和/或 Widevine) 保護的串流內容，您可以使用 [](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。 如需詳細資訊，請參閱 [AMP 文件](http://amp.azure.net/libs/amp/latest/docs/) 。
+若要播放受 CENC (PlayReady 和/或 Widevine) 保護的串流內容，您可以使用 [Azure 媒體播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html) 。 如需詳細資訊，請參閱 [AMP 文件](http://amp.azure.net/libs/amp/latest/docs/) 。
 
 以下為 Azure 媒體服務與 castLabs 整合架構概況圖。
 
