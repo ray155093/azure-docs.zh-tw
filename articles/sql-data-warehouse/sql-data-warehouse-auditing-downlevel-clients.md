@@ -12,11 +12,13 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
+ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 3750e2875935d2753a819ef8ce540009417d19b5
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -39,10 +41,5 @@ ms.openlocfilehash: 3750e2875935d2753a819ef8ce540009417d19b5
 * Tedious (適用於 Node.JS)
 
 **備註：** 上述伺服器 FDQN 修改可能會對於套用 SQL Server 層級稽核原則有所助益，不需要每個資料庫中的組態步驟 (暫存緩和)。     
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
