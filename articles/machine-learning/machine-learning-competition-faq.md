@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 03/31/2017
 ms.author: haining;garye
 translationtype: Human Translation
 ms.sourcegitcommit: de2c4d3d354ef3665134302655f602b043aa8ab0
 ms.openlocfilehash: 106efcd5580f91d6d1ed926b19c142d8ea0b0c7c
+ms.lasthandoff: 12/20/2016
 
 
 ---
@@ -113,10 +114,5 @@ Microsoft 將會驗證私人排行榜的結果，然後我們會與您連絡。 
 **我們是否會保留使用者的競賽解決方案/參賽項目？**
 
 使用者參賽作品只會保留供評估之用，以識別勝出的解決方案。 詳情請參閱我們的 [條款及條件](http://aka.ms/comptermsandconditions) 。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 
