@@ -31,7 +31,7 @@ ms.lasthandoff: 03/09/2017
 請使用下列步驟，建立新的 Azure AD B2C 租用戶。 目前您無法在現有租用戶中開啟 B2C 功能。
 
 1. 以訂用帳戶管理員身分登入 [Azure 入口網站](https://portal.azure.com/)。 此為您註冊 Azure 時所用的相同工作或學校帳戶，或是相同的 Microsoft 帳戶。
-2. 按一下 [新增] (或已收合的 + 按鈕)，然後在 [搜尋 Marketplace] 欄位中輸入 "Azure Active Directory B2C"。
+2. 按一下 [新增] \(或已收合的 + 按鈕)，然後在 [搜尋 Marketplace] 欄位中輸入 "Azure Active Directory B2C"。
    
     ![尋找 Azure AD B2C 選項的螢幕擷取畫面](./media/active-directory-b2c-get-started/find-azure-ad-b2c.png)
 3. 在結果中，按一下 [Azure Active Directory B2C]。

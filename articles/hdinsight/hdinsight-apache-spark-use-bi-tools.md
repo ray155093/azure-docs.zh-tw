@@ -138,7 +138,7 @@ ms.lasthandoff: 03/18/2017
 
       ![列出 Hive 資料表](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.display.tables.png "列出 Hive 資料表")
 
-8. 建置視覺效果，顯示每棟建築物之目標溫度和實際溫度間的差異。 若要將資料視覺化，請選取 [區域圖] (在紅色方框中)。 如要定義軸線，請把 [BuildingID] 欄位拖放到 [軸] 的下方，然後把 [ActualTemp]/[TargetTemp] 欄位拖放到 [值] 的下方。
+8. 建置視覺效果，顯示每棟建築物之目標溫度和實際溫度間的差異。 若要將資料視覺化，請選取 [區域圖] \(在紅色方框中)。 如要定義軸線，請把 [BuildingID] 欄位拖放到 [軸] 的下方，然後把 [ActualTemp]/[TargetTemp] 欄位拖放到 [值] 的下方。
 
     ![建立視覺效果](./media/hdinsight-apache-spark-use-bi-tools/hdispark.powerbi.visual1.png "建立視覺效果")
 
