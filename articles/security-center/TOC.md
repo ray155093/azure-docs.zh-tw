@@ -30,8 +30,8 @@
 #### [僅透過 NGFW 路由傳送流量](security-center-add-next-generation-firewall.md#route-traffic-through-ngfw-only)
 
 ### [SQL 服務建議](security-center-sql-service-recommendations.md)
-#### [Enable auditing on SQL databases](security-center-enable-auditing-on-sql-databases.md)
-#### [Enable auditing on SQL servers](security-center-enable-auditing-on-sql-servers.md)
+#### [在 SQL 資料庫上啟用稽核與威脅偵測](security-center-enable-auditing-on-sql-databases.md)
+#### [在 SQL Server 上啟用稽核與威脅偵測](security-center-enable-auditing-on-sql-servers.md)
 #### [啟用透明資料加密](security-center-enable-transparent-data-encryption.md)
 
 ### [虛擬機器建議](security-center-virtual-machine-recommendations.md)
@@ -74,8 +74,3 @@
 ## [服務概觀](https://azure.microsoft.com/services/security-center/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=security-center)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=security-center)
-
-
-<!--HONumber=Feb17_HO1-->
-
-

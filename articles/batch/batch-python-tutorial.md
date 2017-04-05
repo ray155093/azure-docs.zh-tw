@@ -16,9 +16,9 @@ ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
-ms.openlocfilehash: 4dc9491f3645b071640262af3f1ffcb480cfabef
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: d1c327e90ca3343703784c22aba93280d4599723
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -365,7 +365,7 @@ def create_pool(batch_service_client, pool_id,
 * 集區的**識別碼** (id - 必要)<p/>如同 Batch 中的大部分實體，新的集區必須具有 Batch 帳戶內的唯一識別碼。 您的程式碼會使用其識別碼參考此集區，而這就是您在 Azure [入口網站][azure_portal]中識別集區的方式。
 * **計算節點數目** (target_dedicated -必要)<p/>會指定應在集區中部署多少 VM。 請務必注意，所有的 Batch 帳戶都具有預設**配額**，以限制 Batch 帳戶中的**核心** (因而限制計算節點) 數目。 您可在 [Azure Batch 服務的配額和限制](batch-quota-limit.md)中發現預設配額以及如何[增加配額](batch-quota-limit.md#increase-a-quota) (例如 Batch 帳戶中的核心數目上限) 的說明。 如果您發現自問「為什麼我的集區不會觸達 X 個以上的節點？ 」，此核心配額可能是原因。
 * 節點的**作業系統** (virtual_machine_configuration **或** cloud_service_configuration - 必要)<p/>在 *python_tutorial_client.py*，我們會使用 [VirtualMachineConfiguration][py_vm_config] 建立 Linux 節點的集區。 `common.helpers` 中的 `select_latest_verified_vm_image_with_node_agent_sku` 函式可簡化 [Azure 虛擬機器 Marketplace][vm_marketplace] 映像的使用方式。 如需使用 Marketplace 映像的詳細資訊，請參閱 [在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md) 。
-* **計算節點的大小** (*vm_size* - 必要)<p/>因為我們要針對 [VirtualMachineConfiguration][py_vm_config] 指定 Linux 節點，所以我們會從 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)指定 VM 大小 (在此範例中為 `STANDARD_A1`)。 同樣地，如需詳細資訊，請參閱 [在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md) 。
+* **計算節點的大小** (*vm_size* - 必要)<p/>因為我們要針對 [VirtualMachineConfiguration][py_vm_config] 指定 Linux 節點，所以我們會從 [Azure 中的虛擬機器大小](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)指定 VM 大小 (在此範例中為 `STANDARD_A1`)。 同樣地，如需詳細資訊，請參閱 [在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md) 。
 * **啟動工作** (start_task - 非必要)<p/>透過上述實體節點屬性，您也可以指定集區的 [StartTask][py_starttask] (非必要)。 StartTask 會在每個節點加入集區以及每次重新啟動節點時，於該節點上執行。 StartTask 特別適合用於準備計算節點，以便執行工作，例如安裝工作所要執行的應用程式。<p/>在此範例應用程式中，StartTask 會將它從儲存體下載的檔案 (使用 StartTask 的 **resource_files** 屬性所指定)，從 StartTask「工作目錄」複製到在節點上執行的所有工作可以存取的「共用」目錄。 基本上，這會在節點加入集區時將 `python_tutorial_task.py` 複製到每個節點上的共用目錄，以便在節點上執行的任何工作都能存取它。
 
 您可能會注意到對 `wrap_commands_in_shell` 協助程式函式的呼叫。 此函式會採用不同命令的集合，並針對工作的命令列屬性建立合適的單一命令列。

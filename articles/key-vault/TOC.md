@@ -16,7 +16,7 @@
 ### [移轉到 .NET 2.0](key-vault-dotnet2api-release-notes.md)
 
 ## 管理
-### [Azure 金鑰保存庫記錄](key-vault-logging.md)
+### [Azure Key Vault 記錄](key-vault-logging.md)
 ### [防火牆後的存取](key-vault-access-behind-firewall.md)
 ### [變更租用戶識別碼](key-vault-subscription-move-fix.md)
 ### [可用性與備援](key-vault-disaster-recovery-guidance.md)
@@ -25,6 +25,7 @@
 ## 自動化
 ### [Azure 自動化](automation-manage-key-vault.md)
 ### [使用 CLI 建立和管理](key-vault-manage-with-cli.md)
+### [使用 CLI 2.0 建立和管理](key-vault-manage-with-cli2.md)
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.keyvault/v2.3.0/azurerm.keyvault)

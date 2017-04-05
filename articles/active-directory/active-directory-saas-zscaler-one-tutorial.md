@@ -140,7 +140,7 @@ ms.lasthandoff: 02/23/2017
 
 ## <a name="configuring-user-provisioning"></a>設定使用者佈建
 為了讓 Azure AD 使用者登入 ZScaler One，他們必須佈建到 ZScaler One。  
- ZScaler One 需以手動的方式佈建。。  
+ ZScaler One 需以手動的方式佈建。  
 
 ### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>若要設定使用者佈建，請執行下列步驟：
 1. 登入 **Zscaler One** 租用戶。  

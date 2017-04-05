@@ -3,9 +3,9 @@
 ## <a name="multi-and-single-instance-vms"></a>多重和單一執行個體 VM
 對於在 Azure 上執行的許多客戶而言，在 VM 進行計劃性維護時可以排程是非常重要的，因為維護期間會發生大約 15 分鐘的停機。 您可以在佈建的 VM 接受計劃性維護時，使用可用性設定組協助控制。
 
-有兩個可能的 VM 設定在 Azure 上執行。 VM 可能會設定為多重執行個體或單一執行個體。 如果 VM 在可用性設定組中，它們會隨後設定為多重執行個體。 請注意，即使單一 VM 也可以部署在可用性設定組中，所以才會被視為多重執行個體。 如果 VM 不在可用性設定組中，它們會隨後設定為單一執行個體。  如需可用性設定組的詳細資料，請參閱[管理 Windows 虛擬機器的可用性](../articles/virtual-machines/virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[管理 Linux 虛擬機器的可用性](../articles/virtual-machines/virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+有兩個可能的 VM 設定在 Azure 上執行。 VM 可能會設定為多重執行個體或單一執行個體。 如果 VM 在可用性設定組中，它們會隨後設定為多重執行個體。 請注意，即使單一 VM 也可以部署在可用性設定組中，所以才會被視為多重執行個體。 如果 VM 不在可用性設定組中，它們會隨後設定為單一執行個體。  如需可用性設定組的詳細資料，請參閱[管理 Windows 虛擬機器的可用性](../articles/virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[管理 Linux 虛擬機器的可用性](../articles/virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-單一執行個體和多重執行個體的 VM 計劃性維護更新會分別發生。 藉由將 VM 重新設定維單一執行個體 (如果它們是多重執行個體)，或設定為多重執行個體 (如果它們是單一執行個體)，您可以控制其 VM 收到計劃性維護的時間。 如需 Azure VM 計劃性維護的詳細資料，請參閱 [Azure Linux 虛擬機器的維護計劃](../articles/virtual-machines/virtual-machines-linux-planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)或 [Azure Windows 虛擬機器的維護計劃](../articles/virtual-machines/virtual-machines-windows-planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+單一執行個體和多重執行個體的 VM 計劃性維護更新會分別發生。 藉由將 VM 重新設定維單一執行個體 (如果它們是多重執行個體)，或設定為多重執行個體 (如果它們是單一執行個體)，您可以控制其 VM 收到計劃性維護的時間。 如需 Azure VM 計劃性維護的詳細資料，請參閱 [Azure Linux 虛擬機器的維護計劃](../articles/virtual-machines/linux/planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)或 [Azure Windows 虛擬機器的維護計劃](../articles/virtual-machines/windows/planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ## <a name="for-multi-instance-configuration"></a>對於多重執行個體組態
 您可以藉由將 VM 從可用性設定組中移除，來選取計劃性維護影響部署在「可用性設定組」組態中之 VM 的時間。

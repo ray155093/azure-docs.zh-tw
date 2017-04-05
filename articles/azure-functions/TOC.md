@@ -21,13 +21,12 @@
 #### [HTTP 和 Webhook 繫結](functions-bindings-http-webhook.md)
 #### [Mobile Apps 繫結](functions-bindings-mobile-apps.md)
 #### [通知中樞輸出繫結](functions-bindings-notification-hubs.md)
-#### [佇列和主題的服務匯流排觸發程序和繫結](functions-bindings-service-bus.md)
-#### [Sendgrid 繫結](functions-bindings-sendgrid.md)
+#### [服務匯流排繫結](functions-bindings-service-bus.md)
+#### [SendGrid 繫結](functions-bindings-sendgrid.md)
 #### 儲存體繫結
 ##### [Blod 繫結](functions-bindings-storage-blob.md)
 ##### [佇列繫結](functions-bindings-storage-queue.md)
 ##### [資料表繫結](functions-bindings-storage-table.md)
-##### [SendGrid 繫結](functions-bindings-sendgrid.md)
 #### [計時器觸發程序](functions-bindings-timer.md)
 #### [Twilio 輸出繫結](functions-bindings-twilio.md)
 ### [從 Azure 入口網站建立函式應用程式](functions-create-function-app-portal.md) 
@@ -35,6 +34,8 @@
 ### [在本機開發及偵錯](functions-run-local.md)
 ### [Azure Functions 的最佳做法](functions-best-practices.md)
 ### [使用 Azure Functions 執行排程的清除工作](functions-scenario-database-table-cleanup.md)
+### [建立 OpenAPI 定義 (預覽)](functions-api-definition-getting-started.md)
+#### [函式參考中的 OpenAPI 2.0](functions-api-definition.md)
 
 ## 管理
 ### [設定函式應用程式設定](functions-how-to-use-azure-function-app-settings.md)

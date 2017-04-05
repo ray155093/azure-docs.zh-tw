@@ -18,9 +18,9 @@ ms.date: 03/01/2017
 ms.author: rogardle
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2464901d22bb91cbf396ef60f4bda6d979b578b7
-ms.openlocfilehash: 003d975f57d63bcb95d6b0de9dcfaf8816fcdd6f
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 2e8ff5304d4ccc63f92567b22c0508e3fc7b9bcf
+ms.lasthandoff: 04/03/2017
 
 ---
 # <a name="deploy-a-docker-container-hosting-solution-using-the-azure-portal"></a>使用 Azure 入口網站部署 Docker 容器主控解決方案
@@ -38,7 +38,7 @@ Azure Container Service 支援快速部署常用的開放原始碼容器叢集�
 
 * **Azure 訂用帳戶**：如果您沒有帳戶，請註冊[免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。 
 
-* **SSH RSA 公開金鑰**︰透過入口網站或其中一個 Azure 快速入門範本部署時，您必須提供公開金鑰，以便對 Azure Container Service 虛擬機器進行驗證。 若要建立安全殼層 (SSH) RSA 金鑰，請參閱 [OS X 和 Linux](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md) 和 [Windows](../virtual-machines/virtual-machines-linux-ssh-from-windows.md)指引。 
+* **SSH RSA 公開金鑰**︰透過入口網站或其中一個 Azure 快速入門範本部署時，您必須提供公開金鑰，以便對 Azure Container Service 虛擬機器進行驗證。 若要建立安全殼層 (SSH) RSA 金鑰，請參閱 [OS X 和 Linux](../virtual-machines/linux/mac-create-ssh-keys.md) 和 [Windows](../virtual-machines/linux/ssh-from-windows.md)指引。 
 
 * **服務主體用戶端識別碼和密碼** (僅限 Kubernetes)：如需建立 Azure Active Directory 服務主體的詳細資訊和指引，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)。
 
