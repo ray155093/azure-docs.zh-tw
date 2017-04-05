@@ -110,7 +110,7 @@ ms.lasthandoff: 03/22/2017
 
 權限也會在 [同意](#consent) 程序期間出現，讓系統管理員或資源擁有者有機會允許/拒絕用戶端對其租用戶中的資源進行存取。
 
-在 [Azure 入口網站][AZURE-portal]的 [應用程式]/[設定] 索引標籤中，於 [必要的權限] 底下按照需要選取 [委派的權限] 和 [應用程式權限] (後者需要全域管理員角色的成員資格)，即可設定權限要求。 [公用用戶端](#client-application)無法安全地維護認證，因此它只能要求委派的權限，而[機密用戶端](#client-application)則能夠要求委派的權限和應用程式權限。 用戶端的[應用程式物件](#application-object)會將宣告的權限儲存在其 [requiredResourceAccess 屬性][AAD-Graph-App-Entity]中。
+在 [Azure 入口網站][AZURE-portal]的 [應用程式]/[設定] 索引標籤中，於 [必要的權限] 底下按照需要選取 [委派的權限] 和 [應用程式權限] \(後者需要全域管理員角色的成員資格)，即可設定權限要求。 [公用用戶端](#client-application)無法安全地維護認證，因此它只能要求委派的權限，而[機密用戶端](#client-application)則能夠要求委派的權限和應用程式權限。 用戶端的[應用程式物件](#application-object)會將宣告的權限儲存在其 [requiredResourceAccess 屬性][AAD-Graph-App-Entity]中。
 
 ## <a name="resource-owner"></a>資源擁有者
 如 [OAuth2 授權架構][OAuth2-Role-Def]所定義，這是能夠授與受保護資源存取權的實體。 個人資源擁有者就是指使用者。 例如，當[用戶端應用程式](#client-application)想要透過 [Microsoft 圖形 API][Microsoft-Graph] 存取使用者的信箱時，它需要從信箱的資源擁有者取得權限。

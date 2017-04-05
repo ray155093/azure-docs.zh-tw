@@ -12,17 +12,19 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2017
+ms.date: 03/24/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 1345af54729f278229c98e596d0d213331c2faaf
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 444b01ffc7cccf0951ecb4d032d42667a99f639c
+ms.lasthandoff: 03/24/2017
 
 
 ---
 # <a name="control-access-to-iot-hub"></a>控制 IoT 中樞的存取權
+
 ## <a name="overview"></a>概觀
+
 本文章說明用來保護 Azure IoT 中樞的選項。 IoT 中樞使用「權限」，授與每個 IoT 中樞端點的存取權。 權限可根據功能限制 IoT 中樞的存取權。
 
 本文章說明：
@@ -34,13 +36,15 @@ ms.lasthandoff: 03/22/2017
 * 使用現有的裝置身分識別登錄或驗證結構描述的自訂裝置驗證機制。
 
 ### <a name="when-to-use"></a>使用時機
+
 您必須具有適當權限才能存取任何 IoT 中樞端點。 例如，裝置必須包含權杖，其中包含安全性認證，以及傳送到 IoT 中樞的每個訊息。
 
 ## <a name="access-control-and-permissions"></a>存取控制及權限
+
 您可以透過下列方式授與[權限](#iot-hub-permissions)：
 
 * **IoT 中樞層級的共用存取原則**。 共用存取原則可以授與上面所列[權限](#iot-hub-permissions)的任意組合。 您可以在 [Azure 入口網站][lnk-management-portal]中定義原則，或使用 [IoT 中樞資源提供者 REST API][lnk-resource-provider-apis] 以程式設計方式定義原則。 新建立的 IoT 中樞有下列預設原則︰
-  
+
   * **iothubowner**︰具備所有權限的原則。
   * **service**︰具備 **ServiceConnect** 權限的原則。
   * **device**︰具備 **DeviceConnect** 權限的原則。
@@ -59,18 +63,18 @@ ms.lasthandoff: 03/22/2017
 > 如需詳細資訊，請參閱[權限](#iot-hub-permissions)。
 
 ## <a name="authentication"></a>驗證
+
 Azure IoT 中樞可根據共用存取原則和身分識別登錄安全性認證驗證權杖，以授與端點的存取權。
 
 安全性認證 (例如對稱金鑰) 決不會在網路上傳送。
 
 > [!NOTE]
 > 如同 [Azure Resource Manager][lnk-azure-resource-manager] 中的所有提供者一樣，Azure IoT 中樞資源提供者也是透過您的 Azure 訂用帳戶而受保護。
-> 
-> 
 
 如需如何建構和使用安全性權杖的詳細資訊，請參閱 [IoT 中樞安全性權杖][lnk-sas-tokens]。
 
 ### <a name="protocol-specifics"></a>通訊協定詳細規格
+
 每個支援的通訊協定 (例如 MQTT、AMQP 及 HTTP) 會以不同的方式傳輸權杖。
 
 使用 MQTT 時，CONNECT 封包具有做為 ClientId 的 deviceId，在 [使用者名稱] 欄位中具有 {iothubhostname}/{deviceId}，並且在 [密碼] 欄位中具有 SAS 權杖。 {iothubhostname} 應該是 IoT 中樞的完整 CName (例如，contoso.azure-devices.net)。
@@ -89,39 +93,42 @@ Azure IoT 中樞可根據共用存取原則和身分識別登錄安全性認證�
 HTTP 是以在 **Authorization** 要求標頭中包含有效權杖的方式實作驗證。
 
 #### <a name="example"></a>範例
+
 使用者名稱 (DeviceId 區分大小寫)︰ `iothubname.azure-devices.net/DeviceId`
 
 密碼 (使用[裝置總管][lnk-device-explorer]工具產生 SAS 權杖)︰`SharedAccessSignature sr=iothubname.azure-devices.net%2fdevices%2fDeviceId&sig=kPszxZZZZZZZZZZZZZZZZZAhLT%2bV7o%3d&se=1487709501`
 
 > [!NOTE]
 > [Azure IoT SDK][lnk-sdks] 會在連接至服務時自動產生權杖。 在某些情況下，Azure IoT SDK 不支援所有的通訊協定或所有驗證方法。
-> 
-> 
 
 ### <a name="special-considerations-for-sasl-plain"></a>SASL PLAIN 的特殊考量
+
 搭配 AMQP 使用 SASL PLAIN 時，連接至 IoT 中樞的用戶端可為每個 TCP 連線使用單一權杖。 當權杖過期時，TCP 連線會中斷服務連線，並觸發重新連線。 此行為雖不會對後端應用程式造成問題，但是對裝置應用程式不利，原因如下︰
 
 * 閘道器通常會代表許多裝置連線。 使用 SASL PLAIN 時，它們必須針對連接至 IoT 中樞的每個裝置不同的建立 TCP 連線。 這個案例會大幅提高電力與網路資源的耗用量，並增加每個裝置連線的延遲。
 * 在每個權杖到期後，增加使用要重新連接的資源通常會對資源受限的裝置有不良影響。
 
 ## <a name="scope-iot-hub-level-credentials"></a>設定 IoT 中樞層級認證的範圍
+
 使用受限制的資源 URI 建立權杖，可以設定 IoT 中樞層級安全性原則的範圍。 例如，要從裝置傳送「裝置到雲端」訊息的端點是 **/devices/{deviceId}/messages/events**。 您也可以使用 IoT 中樞層級的共用存取原則搭配 **DeviceConnect** 權限，簽署 resourceURI 為 **/devices/{deviceId}** 的權杖。 這個做法會建立僅可用來代表裝置 **deviceId** 傳送訊息的權杖。
 
 這個機制類似於[事件中樞發行者原則][lnk-event-hubs-publisher-policy]，讓您可實作自訂驗證方法。
 
 ## <a name="security-tokens"></a>安全性權杖
+
 IoT 中樞使用安全性權杖來驗證裝置和服務，以避免透過線路傳送金鑰。 此外，安全性權杖有時效性和範圍的限制。 [Azure IoT SDK][lnk-sdks] 能在不需要任何特殊組態的情況下自動產生權杖。 不過在某些案例中，您必須直接產生及使用安全性權杖。 這些案例包括直接使用 MQTT、AMQP 或 HTTP 介面，或是實作權杖服務模式，如[自訂裝置驗證][lnk-custom-auth]所述。
 
 IoT 中樞也可允許裝置使用 [X.509 憑證][lnk-x509]向 IoT 中樞進行驗證。 
 
 ### <a name="security-token-structure"></a>安全性權杖結構
+
 透過安全性權杖，您可以將 IoT 中樞內特定功能的限時存取權限授與裝置和服務。 為了確保只有取得授權的裝置和服務可以連線，安全性權杖必須經過共用存取金鑰或對稱金鑰簽署。 這些金鑰會與裝置身分識別一同儲存在身分識別登錄中。
 
 經過共用存取金鑰簽署的權限，能授與所有與共用存取原則權限相關聯之功能的存取權限。 另一方面，以裝置身分識別對稱金鑰簽署的權杖只會授與相關裝置身分識別的 **DeviceConnect** 權限。
 
 安全性權杖具有下列格式：
 
-    SharedAccessSignature sig={signature-string}&se={expiry}&skn={policyName}&sr={URL-encoded-resourceURI}
+`SharedAccessSignature sig={signature-string}&se={expiry}&skn={policyName}&sr={URL-encoded-resourceURI}`
 
 以下是預期的值：
 
@@ -137,65 +144,66 @@ IoT 中樞也可允許裝置使用 [X.509 憑證][lnk-x509]向 IoT 中樞進行�
 
 下列 Node.js 程式碼片段顯示稱為 **generateSasToken** 的函式，它會從輸入 `resourceUri, signingKey, policyName, expiresInMins` 計算權杖。 下一節將詳細說明如何初始化不同權杖使用案例的不同輸入。
 
-    var generateSasToken = function(resourceUri, signingKey, policyName, expiresInMins) {
-        resourceUri = encodeURIComponent(resourceUri);
+```nodejs
+var generateSasToken = function(resourceUri, signingKey, policyName, expiresInMins) {
+    resourceUri = encodeURIComponent(resourceUri);
 
-        // Set expiration in seconds
-        var expires = (Date.now() / 1000) + expiresInMins * 60;
-        expires = Math.ceil(expires);
-        var toSign = resourceUri + '\n' + expires;
+    // Set expiration in seconds
+    var expires = (Date.now() / 1000) + expiresInMins * 60;
+    expires = Math.ceil(expires);
+    var toSign = resourceUri + '\n' + expires;
 
-        // Use crypto
-        var hmac = crypto.createHmac('sha256', new Buffer(signingKey, 'base64'));
-        hmac.update(toSign);
-        var base64UriEncoded = encodeURIComponent(hmac.digest('base64'));
+    // Use crypto
+    var hmac = crypto.createHmac('sha256', new Buffer(signingKey, 'base64'));
+    hmac.update(toSign);
+    var base64UriEncoded = encodeURIComponent(hmac.digest('base64'));
 
-        // Construct autorization string
-        var token = "SharedAccessSignature sr=" + resourceUri + "&sig="
-        + base64UriEncoded + "&se=" + expires;
-        if (policyName) token += "&skn="+policyName;
-        return token;
-    };
+    // Construct autorization string
+    var token = "SharedAccessSignature sr=" + resourceUri + "&sig="
+    + base64UriEncoded + "&se=" + expires;
+    if (policyName) token += "&skn="+policyName;
+    return token;
+};
+```
 
 做為比較，用來產生安全性權杖的對等 Python 程式碼是︰
 
-    from base64 import b64encode, b64decode
-    from hashlib import sha256
-    from time import time
-    from urllib import quote_plus, urlencode
-    from hmac import HMAC
+```python
+from base64 import b64encode, b64decode
+from hashlib import sha256
+from time import time
+from urllib import quote_plus, urlencode
+from hmac import HMAC
 
-    def generate_sas_token(uri, key, policy_name, expiry=3600):
-        ttl = time() + expiry
-        sign_key = "%s\n%d" % ((quote_plus(uri)), int(ttl))
-        print sign_key
-        signature = b64encode(HMAC(b64decode(key), sign_key, sha256).digest())
+def generate_sas_token(uri, key, policy_name, expiry=3600):
+    ttl = time() + expiry
+    sign_key = "%s\n%d" % ((quote_plus(uri)), int(ttl))
+    print sign_key
+    signature = b64encode(HMAC(b64decode(key), sign_key, sha256).digest())
 
-        rawtoken = {
-            'sr' :  uri,
-            'sig': signature,
-            'se' : str(int(ttl))
-        }
+    rawtoken = {
+        'sr' :  uri,
+        'sig': signature,
+        'se' : str(int(ttl))
+    }
 
-        if policy_name is not None:
-            rawtoken['skn'] = policy_name
+    if policy_name is not None:
+        rawtoken['skn'] = policy_name
 
-        return 'SharedAccessSignature ' + urlencode(rawtoken)
+    return 'SharedAccessSignature ' + urlencode(rawtoken)
+```
 
 > [!NOTE]
 > 由於權杖的時效性會在 IoT 中樞機器上驗證，因此產生權杖之機器上的時鐘飄移必須降低最低。
-> 
-> 
 
 ### <a name="use-sas-tokens-in-a-device-app"></a>在裝置應用程式中使用 SAS 權杖
+
 利用安全性權杖取得「IoT 中樞」之 **DeviceConnect** 權限的方法有兩種：使用[身分識別登錄的對稱裝置金鑰](#use-a-symmetric-key-in-the-identity-registry)，或使用[共用存取金鑰](#use-a-shared-access-policy)。
 
 請記住，所有可從裝置存取的功能，在設計上會於前置詞為 `/devices/{deviceId}`的端點公開。
 
 > [!IMPORTANT]
 > IoT 中樞驗證特定裝置的唯一方法是使用裝置身分識別對稱金鑰。 在使用共用存取原則來存取裝置功能的案例中，方案必須將發出安全性權杖之元件視為信任的子元件。
-> 
-> 
 
 面向裝置的端點是 (不論通訊協定為何)︰
 
@@ -205,6 +213,7 @@ IoT 中樞也可允許裝置使用 [X.509 憑證][lnk-x509]向 IoT 中樞進行�
 | `{iot hub host name}/devices/{deviceId}/devicebound` |接收雲端到裝置的訊息。 |
 
 ### <a name="use-a-symmetric-key-in-the-identity-registry"></a>使用身分識別登錄中的對稱金鑰
+
 使用裝置身分識別對稱金鑰來產生權杖時，會省略權杖的 policyName (`skn`) 元素。
 
 例如，為存取所有裝置功能而建立的權杖應具有下列參數︰
@@ -216,21 +225,22 @@ IoT 中樞也可允許裝置使用 [X.509 憑證][lnk-x509]向 IoT 中樞進行�
 
 使用前述 Node.js 函式的範例為︰
 
-    var endpoint ="myhub.azure-devices.net/devices/device1";
-    var deviceKey ="...";
+```nodejs
+var endpoint ="myhub.azure-devices.net/devices/device1";
+var deviceKey ="...";
 
-    var token = generateSasToken(endpoint, deviceKey, null, 60);
+var token = generateSasToken(endpoint, deviceKey, null, 60);
+```
 
 結果 (將所有功能的存取權限授與 device1) 為︰
 
-    SharedAccessSignature sr=myhub.azure-devices.net%2fdevices%2fdevice1&sig=13y8ejUk2z7PLmvtwR5RqlGBOVwiq7rQR3WZ5xZX3N4%3D&se=1456971697
+`SharedAccessSignature sr=myhub.azure-devices.net%2fdevices%2fdevice1&sig=13y8ejUk2z7PLmvtwR5RqlGBOVwiq7rQR3WZ5xZX3N4%3D&se=1456971697`
 
 > [!NOTE]
 > 您可以使用 .NET [裝置總管][lnk-device-explorer]工具或跨平台節點型 [iothub-explorer][lnk-iothub-explorer] 命令列公用程式來產生 SAS 權杖。
-> 
-> 
 
 ### <a name="use-a-shared-access-policy"></a>使用共用存取原則
+
 從共用存取原則建立權杖時，原則名稱欄位 `skn` 必須設定為所使用之原則的名稱。 原則也必須授與 **DeviceConnect** 權限。
 
 使用共用存取原則來存取裝置功能的兩個主要案例包括︰
@@ -249,19 +259,22 @@ IoT 中樞也可允許裝置使用 [X.509 憑證][lnk-x509]向 IoT 中樞進行�
 
 使用前述 Node.js 函式的範例為︰
 
-    var endpoint ="myhub.azure-devices.net/devices/device1";
-    var policyName = 'device';
-    var policyKey = '...';
+```nodejs
+var endpoint ="myhub.azure-devices.net/devices/device1";
+var policyName = 'device';
+var policyKey = '...';
 
-    var token = generateSasToken(endpoint, policyKey, policyName, 60);
+var token = generateSasToken(endpoint, policyKey, policyName, 60);
+```
 
 結果 (將所有功能的存取權限授與 device1) 為︰
 
-    SharedAccessSignature sr=myhub.azure-devices.net%2fdevices%2fdevice1&sig=13y8ejUk2z7PLmvtwR5RqlGBOVwiq7rQR3WZ5xZX3N4%3D&se=1456971697&skn=device
+`SharedAccessSignature sr=myhub.azure-devices.net%2fdevices%2fdevice1&sig=13y8ejUk2z7PLmvtwR5RqlGBOVwiq7rQR3WZ5xZX3N4%3D&se=1456971697&skn=device`
 
 通訊協定閘道可以針對所有裝置都使用相同權杖，只要將資源 URI 設定為 `myhub.azure-devices.net/devices`即可。
 
 ### <a name="use-security-tokens-from-service-components"></a>使用來自服務元件的安全性權杖
+
 服務元件只能使用授與適當權限的共用存取原則來產生安全性權杖，如上所述。
 
 以下是在端點上公開的服務功能︰
@@ -279,16 +292,21 @@ IoT 中樞也可允許裝置使用 [X.509 憑證][lnk-x509]向 IoT 中樞進行�
 * 簽署金鑰︰ `registryRead` 原則的其中一個金鑰、
 * 原則名稱： `registryRead`、
 * 任何到期時間。
-  
-    var endpoint ="myhub.azure-devices.net/devices";   var policyName = 'device';   var policyKey = '...';
-  
-    var token = generateSasToken(endpoint, policyKey, policyName, 60);
+
+```nodejs
+var endpoint ="myhub.azure-devices.net/devices";
+var policyName = 'device';
+var policyKey = '...';
+
+var token = generateSasToken(endpoint, policyKey, policyName, 60);
+```
 
 結果 (授與所有裝置身分識別的讀取權限) 會是︰
 
-    SharedAccessSignature sr=myhub.azure-devices.net%2fdevices&sig=JdyscqTpXdEJs49elIUCcohw2DlFDR3zfH5KqGJo4r4%3D&se=1456973447&skn=registryRead
+`SharedAccessSignature sr=myhub.azure-devices.net%2fdevices&sig=JdyscqTpXdEJs49elIUCcohw2DlFDR3zfH5KqGJo4r4%3D&se=1456973447&skn=registryRead`
 
 ## <a name="supported-x509-certificates"></a>支援的 X.509 憑證
+
 您可以使用任何 X.509 憑證向「IoT 中樞」驗證裝置。 憑證包含：
 
 * **現有的 X.509 憑證**。 裝置可能已經有與其關聯的 X.509 憑證。 裝置可以使用此憑證向「IoT 中樞」進行驗證。
@@ -298,19 +316,19 @@ IoT 中樞也可允許裝置使用 [X.509 憑證][lnk-x509]向 IoT 中樞進行�
 裝置可以使用 X.509 憑證或安全性權杖來進行驗證，但不可同時使用兩者。
 
 ### <a name="register-an-x509-certificate-for-a-device"></a>註冊裝置的 X.509 憑證
+
 [適用於 C# 的 Azure IoT 服務 SDK][lnk-service-sdk] (版本 1.0.8+) 支援註冊使用 X.509 憑證來進行驗證的裝置。 其他 API (例如匯入/匯出裝置) 也支援 X.509 憑證。
 
 ### <a name="c-support"></a>C\# 支援
+
 **RegistryManager** 類別提供一個程式設計方式來註冊裝置。 特別是，**AddDeviceAsync** 和 **UpdateDeviceAsync** 方法可讓您在「IoT 中樞」身分識別登錄中註冊和更新裝置。 這兩種方法都會採用 **Device** 執行個體做為輸入。 **Device** 類別包含 **Authentication** 屬性，這可讓您指定主要和次要 X.509 憑證指紋。 憑證指紋代表 X.509 憑證的 SHA-1 雜湊 (使用二進位 DER 編碼來儲存)。 您可以選擇指定主要指紋或次要指紋，或是同時指定兩者。 支援主要和次要指紋是為了處理憑證變換情況。
 
 > [!NOTE]
 > 「IoT 中樞」並不需要也不會儲存整個 X.509 憑證，所需的只有指紋。
-> 
-> 
 
 以下是使用 X.509 憑證來註冊裝置的範例 C\# 程式碼片段︰
 
-```
+```csharp
 var device = new Device(deviceId)
 {
   Authentication = new AuthenticationMechanism()
@@ -326,49 +344,53 @@ await registryManager.AddDeviceAsync(device);
 ```
 
 ### <a name="use-an-x509-certificate-during-run-time-operations"></a>在執行階段作業期間使用 X.509 憑證
+
 [適用於 .NET 的 Azure IoT 裝置 SDK][lnk-client-sdk] (版本 1.0.11+) 支援使用 X.509 憑證。
 
 ### <a name="c-support"></a>C\# 支援
-**DeviceAuthenticationWithX509Certificate** 類別支援使用 X.509 憑證來建立  **DeviceClient** 執行個體。 X.509 憑證必須為 PFX (也稱為 PKCS #12) 格式，其中包含私密金鑰。 
+
+**DeviceAuthenticationWithX509Certificate** 類別支援使用 X.509 憑證來建立  **DeviceClient** 執行個體。 X.509 憑證必須為 PFX (也稱為 PKCS #12) 格式，其中包含私密金鑰。
 
 以下是範例程式碼片段：
 
-```
+```csharp
 var authMethod = new DeviceAuthenticationWithX509Certificate("<device id>", x509Certificate);
 
 var deviceClient = DeviceClient.Create("<IotHub DNS HostName>", authMethod);
 ```
 
 ## <a name="custom-device-authentication"></a>自訂裝置驗證
+
 您可以使用 IoT 中樞[身分識別登錄][lnk-identity-registry]，利用[權杖][lnk-sas-tokens]來設定每一裝置的安全性認證和存取控制。 如果 IoT 解決方案已經大幅投資自訂身分識別登錄及/或驗證配置，您可以藉由建立「權杖服務」，將這個現有基礎結構與 IoT 中樞整合。 如此一來，您可以在解決方案中使用其他 IoT 功能。
 
 權杖服務是自訂雲端服務。 建立具備 **DeviceConnect** 權限的 IoT 中樞共用存取原則，以建立「裝置範圍」權杖。 這些權杖可讓裝置連接到 IoT 中樞。
 
-  ![權杖服務模式的步驟][img-tokenservice]
+![權杖服務模式的步驟][img-tokenservice]
 
 以下是權杖服務模式的主要步驟：
 
 1. 為您的 IoT 中樞建立具備 **DeviceConnect** 權限的 IoT 中樞共用存取原則。 您可以在 [Azure 入口網站][lnk-management-portal]中或以程式設計方式建立此原則。 權杖服務會使用此原則簽署它所建立的權杖。
-2. 當裝置需要存取 IoT 中樞時，它會向您的權杖服務要求已簽署的權杖。 裝置可以使用您的自訂身分識別登錄/驗證配置來進行驗證，以判斷權杖服務用來建立權杖的裝置身分識別。
-3. 權杖服務會傳回權杖。 權杖藉由使用 `/devices/{deviceId}` 作為 `resourceURI` 來建立，具有 `deviceId` 做為要進行驗證的裝置。 權杖服務會使用共用存取原則來建構權杖。
-4. 裝置直接透過 IoT 中樞使用權杖。
+1. 當裝置需要存取 IoT 中樞時，它會向您的權杖服務要求已簽署的權杖。 裝置可以使用您的自訂身分識別登錄/驗證配置來進行驗證，以判斷權杖服務用來建立權杖的裝置身分識別。
+1. 權杖服務會傳回權杖。 權杖藉由使用 `/devices/{deviceId}` 作為 `resourceURI` 來建立，具有 `deviceId` 做為要進行驗證的裝置。 權杖服務會使用共用存取原則來建構權杖。
+1. 裝置直接透過 IoT 中樞使用權杖。
 
 > [!NOTE]
 > 您可以使用 .NET 類別 [SharedAccessSignatureBuilder][lnk-dotnet-sas] 或 Java 類別 [IotHubServiceSasToken][lnk-java-sas] 在權杖服務中建立權杖。
-> 
-> 
 
 權杖服務可以視需要設定權杖到期日。 權杖到期時，IoT 中樞會切斷裝置連線。 然後，裝置必須向權杖服務要求新權杖。 使用過短的到期時間會增加裝置與權杖服務上的負載。
 
 為了讓裝置連線至中樞，即使裝置使用權杖而不是裝置金鑰來連線，您仍必須將它加入 IoT 中樞身分識別登錄。 因此，您可以在裝置使用權杖驗證時，利用在 [IoT 中樞識別登錄][lnk-identity-registry]中啟用或停用裝置身分識別，繼續使用每一裝置存取控制。 此方法可減輕使用較長到期時間權杖的風險。
 
 ### <a name="comparison-with-a-custom-gateway"></a>和自訂閘道器的比較
+
 權杖服務模式為使用 IoT 中樞實作自訂身分識別登錄/驗證配置的建議方式。 這麼建議是因為 IoT 中樞會繼續處理大部份的解決方案流量。 不過，在一些情況下，自訂驗證配置和通訊協定過度交織，因此需要可處理所有流量 (*自訂閘道器*) 的服務。 使用[傳輸層安全性 (TLS) 和預先共用金鑰 (PSK)][lnk-tls-psk] 是這類案例的範例之一。 如需詳細資訊，請參閱[通訊協定閘道][lnk-protocols]主題。
 
 ## <a name="reference-topics"></a>參考主題：
+
 下列參考主題會提供您關於控制 IoT 中樞存取權的詳細資訊。
 
 ## <a name="iot-hub-permissions"></a>IoT 中樞權限
+
 下表列出可用來控制您的 IoT 中樞存取權的權限。
 
 | 權限 | 注意事項 |
@@ -379,6 +401,7 @@ var deviceClient = DeviceClient.Create("<IotHub DNS HostName>", authMethod);
 | **DeviceConnect** |授與裝置面向端點的存取權。 <br/>授與權限以傳送裝置到雲端的訊息和接收雲端到裝置的訊息。 <br/>授與權限以從裝置執行檔案上傳。 <br/>授與權限以接收裝置對應項所需的屬性通知，並更新裝置對應項報告的屬性。 <br/>授與權限以執行檔案上傳。 <br/>裝置會使用此權限。 |
 
 ## <a name="additional-reference-material"></a>其他參考資料
+
 IoT 中樞開發人員指南中的其他參考主題包括︰
 
 * [IoT 中樞端點][lnk-endpoints]說明每個 IoT 中樞公開給執行階段和管理作業的各種端點。
@@ -388,6 +411,7 @@ IoT 中樞開發人員指南中的其他參考主題包括︰
 * [IoT 中樞 MQTT 支援][lnk-devguide-mqtt]針對 MQTT 通訊協定提供 IoT 中樞支援的詳細資訊。
 
 ## <a name="next-steps"></a>後續步驟
+
 現在您已了解如何控制存取 IoT 中樞，接下來您可能對下列 IoT 中樞開發人員指南主題感興趣︰
 
 * [使用裝置對應項同步處理狀態和組態][lnk-devguide-device-twins]

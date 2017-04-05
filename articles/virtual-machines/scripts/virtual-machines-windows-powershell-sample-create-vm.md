@@ -16,15 +16,15 @@ ms.workload: infrastructure
 ms.date: 03/02/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: b62637150773bdfb48ff654675af5c4ffdd67919
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 2cbf4c9576f9cc5b2a71e81181647b71162edc1a
+ms.lasthandoff: 03/30/2017
 
 ---
 
 # <a name="create-a-fully-configured-virtual-machine-with-powershell"></a>使用 PowerShell 建立完整設定的虛擬機器
 
-此指令碼會建立執行 Windows Server 2016 的 Azure 虛擬機器。 執行指令碼之後，您可以透過 SSH 存取虛擬機器。
+此指令碼會建立執行 Windows Server 2016 的 Azure 虛擬機器。 執行指令碼之後，您可以透過 RDP 存取虛擬機器。
 
 您可以視需要使用 [Azure PowerShell 指南 (英文)](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 中的指示來安裝 Azure PowerShell，然後執行 `Login-AzureRmAccount` 來建立與 Azure 的連線。
 

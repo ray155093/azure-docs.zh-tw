@@ -85,6 +85,7 @@
 
 
 ## 整合
+### [連線至 Spark](documentdb-spark-connector.md)
 ### [以 Azure App Service 部署網站](documentdb-create-documentdb-website.md)
 ### [使用 Logic Apps 進行應用程式記錄](../logic-apps/logic-apps-scenario-error-and-exception-handling.md)
 ### [繫結至 Azure Functions](../azure-functions/functions-bindings-documentdb.md)

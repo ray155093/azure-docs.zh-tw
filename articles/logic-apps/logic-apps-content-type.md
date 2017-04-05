@@ -15,9 +15,9 @@ ms.workload: integration
 ms.date: 10/18/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 3206c076350c2105e92d320ce30ce73448ccd3bd
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: d0d283f21caf53406c51670e75bf2796a175be51
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -48,7 +48,7 @@ ms.lasthandoff: 03/10/2017
 
 ### <a name="schema-and-schema-generator"></a>結構描述和結構描述產生器
 
-要求觸發程序可讓您輸入您希望接收之承載的 JSON 結構描述。 此結構描述可讓設計工具產生權杖，以便您取用要求的內容。 如果您尚未準備好結構描述，請選取 `Use sample payload to generate schema`，即可從範例承載產生 JSON 結構描述。
+要求觸發程序可讓您輸入您希望接收之承載的 JSON 結構描述。 此結構描述可讓設計工具產生權杖，以便您取用要求的內容。 如果您尚未準備好結構描述，選取 [請使用範例承載產生結構描述]，如此便能從範例承載中產生 JSON 結構描述。
 
 ![結構描述](./media/logic-apps-http-endpoint/manualtrigger.png)
 

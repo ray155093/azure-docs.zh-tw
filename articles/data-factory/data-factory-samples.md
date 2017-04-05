@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/25/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
-ms.openlocfilehash: 3137773458ca5b50b1bf42972d4cfd8e9b8d5cba
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 446a7b585ca1204d49d76f71106799cbd2b0aa70
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -42,7 +42,7 @@ ms.lasthandoff: 11/17/2016
 | [U-SQL 範例輸入檔](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/U-SQL%20Sample%20Input%20File) |此檔案是 U-SQL 活動所使用的範例檔案。 |
 
 ## <a name="azure-resource-manager-templates"></a>Azure 資源管理員範本
-您可以在 Github 上找到下列適用於 Data Factory 的 Azure Resource Manager 範本。
+您可以在 GitHub 上找到下列適用於 Data Factory 的 Azure Resource Manager 範本。
 
 | 範本 | 說明 |
 | --- | --- |

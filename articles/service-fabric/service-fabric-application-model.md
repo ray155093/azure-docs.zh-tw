@@ -1,5 +1,5 @@
 ---
-title: "Service Fabric 應用程式模型 | Microsoft Docs"
+title: "Azure Service Fabric 應用程式模型 | Microsoft Docs"
 description: "如何在 Service Fabric 中建立模型和描述應用程式與服務。"
 services: service-fabric
 documentationcenter: .net
@@ -15,14 +15,14 @@ ms.workload: NA
 ms.date: 3/02/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 62374d57829067b27bb5876e6bbd9f869cff9187
-ms.openlocfilehash: 4991992f15b941ab9250705e20ff5f37defc30d0
-ms.lasthandoff: 01/18/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 87db655d246dad90bf0afbc91ec507b0a86d90eb
+ms.lasthandoff: 03/27/2017
 
 
 ---
 # <a name="model-an-application-in-service-fabric"></a>在 Service Fabric 中模型化應用程式
-本文提供 Azure Service Fabric 應用程式模型概觀。 也說明如何透過資訊清單檔案定義應用程式和服務，並讓應用程式封裝準備好進行部署。
+本文提供 Azure Service Fabric 應用程式模型的概觀，以及如何透過資訊清單檔案定義應用程式和服務。
 
 ## <a name="understand-the-application-model"></a>了解應用程式模型
 應用程式是組成服務的集合，這些服務會執行特定函數。 服務會執行完整且獨立的函數 (其可獨立於其他服務啟動和執行)，並且是由程式碼、組態和資料組成。 針對每個服務，程式碼由可執行檔二進位檔組成、組態由可在執行階段載入的服務設定組成，而資料由讓服務使用的任意靜態資料組成。 此階層應用程式模型中的每個元件都可以獨立建立版本和升級。
@@ -85,13 +85,20 @@ ms.lasthandoff: 01/18/2017
 
 **ServiceTypes** 會宣告此資訊清單中 **CodePackages** 支援哪些服務類型。 當針對其中一種服務類型來具現化服務時，會藉由執行其進入點來啟動此資訊清單中宣告的所有程式碼封裝。 產生的處理程序預期在執行階段註冊支援的服務類型。 請注意，服務類型是在資訊清單層級而非程式碼封裝層級宣告。 因此如果有多個程式碼封裝，每當系統尋找任何一個宣告的服務類型時，它們都會啟動。
 
-**SetupEntryPoint** 是以與 Service Fabric 相同的認證執行的特殊權限進入點 (通常 *LocalSystem* 帳戶)，優先於任何其他進入點。 **EntryPoint** 指定的可執行檔通常是長時間執行的服務主機。 有個別設定的進入點，就不需要使用較高權限來長時間執行服務主機。 **EntryPoint** 指定的可執行檔是在 **SetupEntryPoint** 成功結束之後執行。 如果曾經終止或當機，產生的程序會監視並重新啟動 (以 **SetupEntryPoint**再次開始)。
+**SetupEntryPoint** 是以與 Service Fabric 相同的認證執行的特殊權限進入點 (通常 *LocalSystem* 帳戶)，優先於任何其他進入點。 **EntryPoint** 指定的可執行檔通常是長時間執行的服務主機。 有個別設定的進入點，就不需要使用較高權限來長時間執行服務主機。 **EntryPoint** 指定的可執行檔是在 **SetupEntryPoint** 成功結束之後執行。 如果曾經終止或當機，產生的程序會監視並重新啟動 (以 **SetupEntryPoint**再次開始)。 
+
+使用 **SetupEntryPoint** 的一般案例，是當您必須在服務啟動之前執行可執行檔，或必須使用提高的權限來執行作業時。 例如：
+
+* 設定及初始化服務可執行檔需要的環境變數。 這不限於透過 Service Fabric 程式設計模型撰寫的執行檔。 例如，npm.exe 部署 node.js 應用程式，需要設定某些環境變數。
+* 透過安裝安全性憑證設定存取控制。
+
+如需有關如何設定 **SetupEntryPoint** 的更多詳細資料，請參閱[設定服務安裝程式進入點的原則](service-fabric-application-runas-security.md)
 
 **EnvironmentVariables** 提供針對此程式碼封裝設定的環境變數清單。 您可以在 `ApplicationManifest.xml` 中覆寫這些環境變數，以針對不同的服務執行個體提供不同的值。 
 
 **DataPackage** 宣告 **Name** 屬性所命名的資料夾，包含由程序在執行階段使用的任意靜態資料。
 
-**ConfigPackage** 宣告 **Name** 屬性所命名的資料夾，其中包含 *Settings.xml* 檔案。 此檔案包含程序可以在執行階段讀回的使用者定義、成對的索引鍵/值設定等區段。 在升級期間，如果只有 **ConfigPackage** **版本**已變更，則不會重新啟動執行中程序。 相反地，回呼會通知程序組態設定已變更，因此它們可以動態方式重新載入。 以下是 Settings.xml 檔案的範例：
+**ConfigPackage** 宣告 **Name** 屬性所命名的資料夾，其中包含 *Settings.xml* 檔案。 此檔案包含程序可以在執行階段讀回的使用者定義、成對的索引鍵/值設定等區段。 在升級期間，如果只有 **ConfigPackage** **版本**已變更，則不會重新啟動執行中程序。 相反地，回呼會通知程序組態設定已變更，因此它們可以動態方式重新載入。 以下是 *Settings.xml* 檔案的範例：
 
 ```xml
 <Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -167,95 +174,11 @@ For more information about other features supported by application manifests, re
 *TODO: Service Templates
 -->
 
-## <a name="package-an-application"></a>封裝應用程式
-### <a name="package-layout"></a>封裝版面配置
-應用程式資訊清單、服務資訊清單和其他必要封裝檔案必須以特定版面配置組織，才能部署至 Service Fabric 叢集。 在本文中的範例資訊清單必須組織成下列目錄結構：
 
-```
-PS D:\temp> tree /f .\MyApplicationType
-
-D:\TEMP\MYAPPLICATIONTYPE
-│   ApplicationManifest.xml
-│
-└───MyServiceManifest
-    │   ServiceManifest.xml
-    │
-    ├───MyCode
-    │       MyServiceHost.exe
-    │
-    ├───MyConfig
-    │       Settings.xml
-    │
-    └───MyData
-            init.dat
-```
-
-命名資料夾以符合每個對應元素的 **名稱** 屬性。 例如，如果服務資訊清單包含名稱為 **MyCodeA** 和 **MyCodeB** 的兩個程式碼封裝，則同名的兩個資料夾會包含每個程式碼封裝所需的二進位檔。
-
-### <a name="use-setupentrypoint"></a>使用 SetupEntryPoint
-使用 **SetupEntryPoint** 的一般案例，是當您必須在服務啟動之前執行可執行檔，或必須使用提高的權限來執行作業時。 例如：
-
-* 設定及初始化服務可執行檔需要的環境變數。 這不限於透過 Service Fabric 程式設計模型撰寫的執行檔。 例如，npm.exe 部署 node.js 應用程式，需要設定某些環境變數。
-* 透過安裝安全性憑證設定存取控制。
-
-如需有關如何設定 **SetupEntryPoint** 的更多詳細資料，請參閱[設定服務安裝程式進入點的原則](service-fabric-application-runas-security.md)  
-
-### <a name="configure"></a>設定 
-### <a name="build-a-package-by-using-visual-studio"></a>使用 Visual Studio 建置封裝
-如果您使用 Visual Studio 2015 來建立您的應用程式，您可以使用 [封裝] 命令來自動建立符合上述版面配置的封裝。
-
-若要建立封裝，請以滑鼠右鍵按一下方案總管中的應用程式專案，然後選擇 [封裝] 命令，如下所示：
-
-![使用 Visual Studio 封裝應用程式][vs-package-command]
-
-封裝完成時，您會在 [輸出]  視窗中發現封裝的位置。 請注意，當您在 Visual Studio 中部署或偵錯應用程式時，封裝步驟會自動進行。
-
-### <a name="build-a-package-by-command-line"></a>透過命令列建置封裝
-使用 `msbuild.exe` 以程式設計方式封裝您的應用程式也是可行的。 深入探究，這就是 Visual Studio 的實際執行內容，因此輸出將會相同。
-
-```shell
-D:\Temp> msbuild HelloWorld.sfproj /t:Package
-```
-
-### <a name="test-the-package"></a>測試封裝
-您可以使用 **Test-ServiceFabricApplicationPackage** 命令，透過 PowerShell 在本機上驗證封裝結構。 這個命令會檢查有無資訊清單剖析問題，並驗證所有參考。 請注意，這個命令只會驗證封裝中檔案與目錄的結構正確性。 除了檢查所有必要檔案都在之外，它不會驗證任何程式碼或資料封裝內容。
-
-```
-PS D:\temp> Test-ServiceFabricApplicationPackage .\MyApplicationType
-False
-Test-ServiceFabricApplicationPackage : The EntryPoint MySetup.bat is not found.
-FileName: C:\Users\servicefabric\AppData\Local\Temp\TestApplicationPackage_7195781181\nrri205a.e2h\MyApplicationType\MyServiceManifest\ServiceManifest.xml
-```
-
-這個錯誤顯示程式碼封裝中遺漏服務資訊清單 *SetupEntryPoint* 中參考的 **MySetup.bat** 檔案。 加入遺漏的檔案之後，應用程式驗證就會通過：
-
-```
-PS D:\temp> tree /f .\MyApplicationType
-
-D:\TEMP\MYAPPLICATIONTYPE
-│   ApplicationManifest.xml
-│
-└───MyServiceManifest
-    │   ServiceManifest.xml
-    │
-    ├───MyCode
-    │       MyServiceHost.exe
-    │       MySetup.bat
-    │
-    ├───MyConfig
-    │       Settings.xml
-    │
-    └───MyData
-            init.dat
-
-PS D:\temp> Test-ServiceFabricApplicationPackage .\MyApplicationType
-True
-PS D:\temp>
-```
-
-一旦應用程式正確封裝並通過驗證，就可供部署。
 
 ## <a name="next-steps"></a>後續步驟
+[對應用程式進行封裝](service-fabric-package-apps.md)並使它準備好進行部署。
+
 [部署與移除應用程式][10]說明如何使用 PowerShell 來管理應用程式執行個體。
 
 [管理多個環境的應用程式參數][11]說明如何為不同的應用程式執行個體設定參數和環境變數。
@@ -266,7 +189,6 @@ PS D:\temp>
 [appmodel-diagram]: ./media/service-fabric-application-model/application-model.png
 [cluster-imagestore-apptypes]: ./media/service-fabric-application-model/cluster-imagestore-apptypes.png
 [cluster-application-instances]: media/service-fabric-application-model/cluster-application-instances.png
-[vs-package-command]: ./media/service-fabric-application-model/vs-package-command.png
 
 <!--Link references--In actual articles, you only need a single period before the slash-->
 [10]: service-fabric-deploy-remove-applications.md

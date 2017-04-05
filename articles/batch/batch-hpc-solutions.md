@@ -16,9 +16,9 @@ ms.date: 02/27/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
-ms.openlocfilehash: 288bd4dc0bde4cb610efc4a6d015e5b9499eb0ee
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 0bab12648a31b416bd7ceca75f0f83f5da226bad
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -90,10 +90,10 @@ Big Compute 與巨量資料應用程式之間的界限不一定很清楚，而�
 > 
 
 ### <a name="compute-services"></a>計算服務
-Azure 計算服務是 Big Compute 解決方案的核心，且不同的計算服務針對不同的案例提供優點。 在基本層級中，這些服務為使用 Windows Server Hyper-V 技術，由 Azure 提供的虛擬機器計算執行個體上執行的應用程式提供不同的模式。 這些執行個體可以執行標準和自訂的 Linux 和 Windows 作業系統和工具。 Azure 可以讓您選擇 [執行個體大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) ，搭配 CPU 核心、記憶體、磁碟容量和其他特性等不同組態。 您可視您的需求將執行個體擴充至數千個核心，並在需要較少的資源時相應減少。
+Azure 計算服務是 Big Compute 解決方案的核心，且不同的計算服務針對不同的案例提供優點。 在基本層級中，這些服務為使用 Windows Server Hyper-V 技術，由 Azure 提供的虛擬機器計算執行個體上執行的應用程式提供不同的模式。 這些執行個體可以執行標準和自訂的 Linux 和 Windows 作業系統和工具。 Azure 可以讓您選擇 [執行個體大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) ，搭配 CPU 核心、記憶體、磁碟容量和其他特性等不同組態。 您可視您的需求將執行個體擴充至數千個核心，並在需要較少的資源時相應減少。
 
 > [!NOTE]
-> 利用 Azure [計量密集型執行個體 (例如 H 系列)](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來改善 HPC 工作負載的效能和延展性。 這些執行個體也支援需要低延遲及高輸送量應用程式網路的平行 MPI 應用程式。 另外也可使用配備 NVIDIA GPU 的 [N 系列](https://azure.microsoft.com/blog/azure-n-series-general-availability-on-december-1/) VM，以擴展 Azure 中計算和視覺化案例的範圍。  
+> 利用 Azure [計量密集型執行個體 (例如 H 系列)](../virtual-machines/windows/a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來改善 HPC 工作負載的效能和延展性。 這些執行個體也支援需要低延遲及高輸送量應用程式網路的平行 MPI 應用程式。 另外也可使用配備 NVIDIA GPU 的 [N 系列](https://azure.microsoft.com/blog/azure-n-series-general-availability-on-december-1/) VM，以擴展 Azure 中計算和視覺化案例的範圍。  
 > 
 > 
 

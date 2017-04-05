@@ -114,7 +114,6 @@
 #### [使用 Hive 查詢](machine-learning-data-science-create-features-hive.md)
 #### [TDSP 特性選取](machine-learning-data-science-select-features.md)
 ### 建立模型並加以定型
-#### [轉換為評分](machine-learning-convert-training-experiment-to-scoring-experiment.md)
 #### [實驗生命週期管理](machine-learning-version-control.md)
 #### [管理反覆運算次數](machine-learning-manage-experiment-iterations.md)
 #### [使用 PowerShell 建立模型](machine-learning-create-models-and-endpoints-with-powershell.md)
@@ -133,19 +132,20 @@
 ##### [撰寫自訂 R 模組](machine-learning-custom-r-modules.md)
 ##### [執行 Python 指令碼](machine-learning-execute-python-scripts.md)
 
-## 部署和取用模型
+## 模型運作
 ### [概觀](machine-learning-deploy-consume-web-service-guide.md)
 ### 部署模型
-#### [運作方式](machine-learning-model-progression-experiment-to-web-service.md)
 #### [部署 Web 服務](machine-learning-publish-a-machine-learning-web-service.md)
+#### [運作方式](machine-learning-model-progression-experiment-to-web-service.md)
+#### [準備部署](machine-learning-convert-training-experiment-to-scoring-experiment.md)
 #### [使用外部資料](machine-learning-web-services-that-use-import-export-modules.md)
 #### [在多個區域中部署](machine-learning-how-to-deploy-to-multiple-regions.md)
 #### [使用 Web 服務參數](machine-learning-web-service-parameters.md)
 #### [啟用記錄](machine-learning-web-services-logging.md)
 ### 管理 Web 服務
-#### [建立端點](machine-learning-create-endpoint.md)
 #### [使用 Web 服務入口網站](machine-learning-manage-new-webservice.md)
 #### [使用 API 管理](machine-learning-manage-web-service-endpoints-using-api-management.md)
+#### [建立端點](machine-learning-create-endpoint.md)
 #### [調整大小](machine-learning-scaling-webservice.md)
 ### 重新定型模型
 #### [概觀](machine-learning-retrain-machine-learning-model.md)
@@ -198,12 +198,6 @@
 #### [異常偵測](machine-learning-apps-anomaly-detection-api.md)
 #### [文字分析](machine-learning-apps-text-analytics.md)
 #### [辨識服務](https://azure.microsoft.com/services/cognitive-services/)
-#### 建議
-##### [概觀](machine-learning-recommendation-api-sample-application.md)
-##### [快速入門](machine-learning-recommendation-api-quick-start-guide.md)
-##### [參考](machine-learning-recommendation-api-documentation.md)
-##### [使用 JavaScript](machine-learning-recommendation-api-javascript-integration.md)
-##### [常見問題集](machine-learning-recommendation-api-faq.md)
 #### 預測性維護
 ##### [概觀](cortana-analytics-playbook-predictive-maintenance.md)
 ##### [架構](cortana-analytics-architecture-predictive-maintenance.md)

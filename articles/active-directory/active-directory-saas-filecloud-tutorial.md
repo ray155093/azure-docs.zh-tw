@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 3/10/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 69473976eb0a9b6a0e9aa929581c0a7cf0c8d188
-ms.openlocfilehash: 49779d5d15e81a50e32b87255152d996600d23eb
-ms.lasthandoff: 12/14/2016
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: b672133e0604e35d6e398fbee4db303f70158111
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 12/14/2016
 FileCloud 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制可存取 FileCloud 的人員
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 FileCloud (單一登入)
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 FileCloud 單一登入 (SSO)
 * 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -36,27 +36,26 @@ FileCloud 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 FileCloud 整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 啟用 FileCloud 單一登入的訂用帳戶
+* 已啟用 FileCloud SSO 的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-> 
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。
+此教學課程的目標是讓您在測試環境中測試 Azure AD SSO。
 
 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 FileCloud
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Azure AD SSO
 
-## <a name="adding-filecloud-from-the-gallery"></a>從資源庫新增 FileCloud
+## <a name="add-filecloud-from-the-gallery"></a>從資源庫新增 FileCloud
 若要設定將 FileCloud 整合到 Azure AD 中，您需要從資源庫將 FileCloud 新增到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫新增 FileCloud，請執行下列步驟：**
@@ -87,23 +86,23 @@ FileCloud 與 Azure AD 整合提供下列優點：
    
     ![選取資源庫中的應用程式](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_0001.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-本節目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試對 FileCloud 的 Azure AD 單一登入。
+## <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
+本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 FileCloud 搭配運作的 Azure AD SSO。
 
-若要讓單一登入能夠運作，Azure AD 必須知道 FileCloud 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 FileCloud 中相關使用者之間的連結關聯性。
+若要讓 SSO 運作，Azure AD 必須知道 FileCloud 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 FileCloud 中相關使用者之間的連結關聯性。
 
 建立此連結關聯性的方法，是將 Azure AD 中**使用者名稱**的值，指派為 FileCloud 中 **Username** 的值。
 
-若要使用 FileCloud 設定及測試 Azure AD 單一登入功能，您需要完成下列建置組塊：
+若要設定及測試與 FileCloud 搭配運作的 Azure AD SSO，您需要完成下列建置組塊：
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
 3. **[建立 FileCloud 測試使用者](#creating-a-filecloud-test-user)** - 在 FileCloud 中建立一個與 Azure AD 中代表 Britta Simon 的項目連結的 Britta Simon 對應項目。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
+5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，然後在您的 FileCloud 應用程式中設定單一登入。
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+在本節中，您會在傳統入口網站中啟用 Azure AD SSO，並在您的 FileCloud 應用程式中設定 SSO。
 
 **若要使用 FileCloud 設定 Azure AD 單一登入，請執行下列步驟：**
 
@@ -118,25 +117,19 @@ FileCloud 與 Azure AD 整合提供下列優點：
 3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟，然後按 [下一步]：
    
     ![設定單一登入](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_04.png)
+  1. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://<subdomain>.filecloudhosted.com`。
+  2. 在 [識別碼] 文字方塊中，輸入：`https://<subdomain>.filecloudhosted.com/simplesaml/module.php/saml/sp/metadata.php/default-sp`。
+  3. 按 [下一步] 。
    
-    a. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://<subdomain>.filecloudhosted.com`。
-   
-    b. 在 [識別碼] 文字方塊中，輸入：`https://<subdomain>.filecloudhosted.com/simplesaml/module.php/saml/sp/metadata.php/default-sp`。
-   
-    c. 依序按一下 [ **下一步**
-   
-    > [!NOTE]
-    > 請注意，您必須使用實際的「登入 URL」及「識別碼」來更新這些值。 若要取得這些值，請透過 <mailto:support@codelathe.com> 連絡 FileCloud 支援小組。
-    > 
-    > 
+    >[!NOTE]
+    >請注意，您必須使用實際的「登入 URL」及「識別碼」來更新這些值。 若要取得這些值，請透過 <mailto:support@codelathe.com> 連絡 FileCloud 支援小組。
+    >  
 
 4. 於 [設定在 FileCloud 單一登入] 頁面上，執行下列步驟，然後按一下 [下一步]：
    
     ![設定單一登入](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_05.png)
-   
-    a. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
-   
-    b. 按 [下一步] 。
+ 1. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
+ 2. 按 [下一步] 。
 
 5. 在不同的網頁瀏覽器視窗中，以管理員身分登入您的 FileCloud 租用戶。
 
@@ -170,7 +163,7 @@ FileCloud 與 Azure AD 整合提供下列優點：
     
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 本節的目標是要在傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
@@ -194,26 +187,18 @@ FileCloud 與 Azure AD 整合提供下列優點：
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-filecloud-tutorial/create_aaduser_05.png)
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+ 1. 針對 [使用者類型]，選取 [您組織中的新使用者]。  
+ 2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。 
+ 3. 按 [下一步] 。
 
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-filecloud-tutorial/create_aaduser_06.png)
-   
-    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-    d. 在 [角色] 清單中選取 [使用者]。
-   
-    e. 按 [下一步] 。
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-filecloud-tutorial/create_aaduser_06.png) 
+ 1. 在 [名字] 文字方塊中，輸入 **Britta**。  
+ 2. 在 [姓氏] 文字方塊中，輸入 **Simon**。 
+ 3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。 
+ 4. 在 [角色] 清單中選取 [使用者]。 
+ 5. 按 [下一步] 。
 
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
@@ -221,24 +206,21 @@ FileCloud 與 Azure AD 整合提供下列優點：
 
 8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
-    ![建立 Azure AD 測試使用者](./media/active-directory-saas-filecloud-tutorial/create_aaduser_08.png)
-   
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下 [完成]。   
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-filecloud-tutorial/create_aaduser_08.png) 
+ 1. 記下 [新密碼] 的值。  
+ 2. 按一下 [完成]。   
 
-### <a name="creating-a-filecloud-test-user"></a>建立 FileCloud 測試使用者
+### <a name="create-a-filecloud-test-user"></a>建立 FileCloud 測試使用者
 本節的目標是要在 FileCloud 中建立名為 Britta Simon 的使用者。 FileCloud 支援預設啟用的 Just-In-Time 佈建。
 
 在這一節沒有您需要進行的動作項目。 嘗試存取 FileCloud 時，如果使用者還不存在，就會建立新使用者。 
 
-> [!NOTE]
-> 如果您需要手動建立使用者，就必須連絡 FileCloud 支援小組。
-> 
+>[!NOTE]
+>如果您需要手動建立使用者，就必須連絡 FileCloud 支援小組。 
 > 
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-本節的目標是要授權 Britta Simon 存取 FileCloud，讓她能夠使用 Azure 單一登入。
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+本節的目標是授與 Britta Simon 對 FileCloud 的存取權，使她能夠使用 Azure SSO。
 
 ![指派使用者][200]
 
@@ -262,8 +244,8 @@ FileCloud 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
-本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。
+### <a name="test-single-sign-on"></a>測試單一登入
+本節的目標是要使用「存取面板」來測試您的 Azure AD SSO 組態。
 
 當您在存取面板中按一下 [FileCloud] 圖格時，應該會自動登入您的 FileCloud 應用程式。
 

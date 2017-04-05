@@ -3,7 +3,7 @@ title: "跨原始資源共用 (CORS) 支援 | Microsoft Docs"
 description: "了解如何啟用 Microsoft Azure 儲存體服務的 CORS 支援。"
 services: storage
 documentationcenter: .net
-author: cbrooks
+author: cbrooksmsft
 manager: carmonm
 editor: tysonn
 ms.assetid: a0229595-5b64-4898-b8d6-fa2625ea6887
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 2/22/2017
 ms.author: cbrooks
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c61be739ce592d75b04bee15d14850cdf94c09da
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: e50e55fb6471add71b3d2ebd477a91ec424a4fab
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -97,7 +97,7 @@ CORS 規則的評估，如下所示：
 
 1. 首先，會針對為 **AllowedOrigins** 項目列出的網域檢查要求的原始網域。 如果清單中包含原始網域，或是使用了萬用字元 '*' 來允許所有網域，則會繼續評估規則。 如果未包含原始網域，則要求會失敗。
 2. 接下來，會針對 **AllowedMethods** 元素中列出的方法檢查要求的方法 (或 HTTP 動詞命令)。 如果方法包含於清單中，就會繼續評估規則；如果沒有，則要求會失敗。
-3. 如果要求符合其原始網域及其方法中的規則，就會選取該規則來處理要求，且不會評估任何其他規則。 不過，需要對 **AllowedHeaders** 元素中列出的標頭檢查要求上指定的所有標頭，該要求才會成功。。 如果傳送的標頭與允許的標頭不符，則要求會失敗。
+3. 如果要求符合其原始網域及其方法中的規則，就會選取該規則來處理要求，且不會評估任何其他規則。 不過，需要對 **AllowedHeaders** 元素中列出的標頭檢查要求上指定的所有標頭，該要求才會成功。 如果傳送的標頭與允許的標頭不符，則要求會失敗。
 
 因為這些規則會依照它們在要求主體中出現的順序來處理，所以，最佳做法建議您先在清單中指定與原始網域有關的最嚴格規則，以便先評估這些規則。 將較不嚴格的規則指定於清單結尾 - 例如，允許所有原始網域的規則。
 
@@ -137,7 +137,7 @@ CORS 規則的評估，如下所示：
 | **方法** |**原始** |**要求標頭** |**規則相符** |**結果** |
 | **PUT** |http://www.contoso.com |x-ms-blob-content-type |第一個規則 |成功 |
 | **GET** |http://www.contoso.com |x-ms-blob-content-type |第二個規則 |成功 |
-| **GET** |http://www.contoso.com |x-ms-blob-content-type |第二個規則 |失敗 |
+| **GET** |http://www.contoso.com |x-ms-client-request-id |第二個規則 |失敗 |
 
 第一個要求符合第一個規則 (原始網域符合允許的原始網域、方法符合允許的方法，而且標頭符合允許的標頭)，因而成功。
 

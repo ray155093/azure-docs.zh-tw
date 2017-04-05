@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 03/16/2017
 ms.author: khdang
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 50f8f6a2d64959a1981f95bfe821a2a79f6cafc6
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 6e558d2b651b9c50bafa5814a18ad360f7beb2f0
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -51,6 +51,11 @@ ms.lasthandoff: 03/07/2017
 </table></br>
 
 ## <a name="release-notes"></a>版本資訊
+
+### <a name="a-name11001100httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb1100"></a><a name="1.10.0"/>[1.10.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.10.0)
+* 已啟用對低至 2,500 RU/秒且以 100 RU/秒遞增量進行調整之資料分割集合的支援。
+* 已修正原生組件中的 Bug，這會在某些查詢中導致 NullRef 例外狀況。
+
 ### <a name="a-name196196httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb196"></a><a name="1.9.6"/>[1.9.6](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.6)
 * 修正查詢引擎組態中可能對閘道模式中的查詢造成例外狀況的錯誤。
 * 修正工作階段容器中可能在集合建立後立即對要求造成「找不到擁有者資源」例外狀況的幾個錯誤。
@@ -156,6 +161,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [1.10.0](#1.10.0) |2017 年 3 月 11 日 |--- |
 | [1.9.6](#1.9.6) |2017 年 2 月 21 日 |--- |
 | [1.9.5](#1.9.5) |2017 年 1 月 31 日 |--- |
 | [1.9.4](#1.9.4) |2016 年 11 月24 日 |--- |

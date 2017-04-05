@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/16/2016
+ms.date: 03/23/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: a9ebbbdc431a34553de04e920efbbc8c2496ce5f
-ms.openlocfilehash: 116dbf0ee30497d82c984b10e61ae02301e820a4
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 8ca42ef8f5314866301f5c9e93caa90dc837a66e
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -44,9 +45,9 @@ ms.openlocfilehash: 116dbf0ee30497d82c984b10e61ae02301e820a4
 4. On the **QUICK CREATE** page, enter your workspace information and then click **CREATE AN ML WORKSPACE**.
 -->
 
-Azure 訂用帳戶的系統管理員將必須建立工作區，然後將您新增為擁有者或參與者。 如需詳細資訊，請參閱[建立 Azure Machine Learning 工作區](machine-learning-create-workspace.md)。
+Azure 訂用帳戶的系統管理員必須建立工作區，然後將您新增為擁有者或參與者。 如需詳細資訊，請參閱[建立 Azure Machine Learning 工作區](machine-learning-create-workspace.md)。
 
-建立工作區後，開啟 Machine Learning Studio ([https://studio.azureml.net](https://studio.azureml.net))。 如果這是您的工作區，Studio 會自動開啟它。 否則，您可以在視窗右上角的工具列中選取工作區。
+建立您的工作區之後，開啟 Machine Learning Studio ([https://studio.azureml.net/Home](https://studio.azureml.net/Home))。 如果您具有多個工作區，您可以在視窗右上角的工具列中選取工作區。
 
 ![在 Studio 中選取工作區][2]
 
@@ -62,9 +63,4 @@ Azure 訂用帳戶的系統管理員將必須建立工作區，然後將您新�
 
 [1]: ./media/machine-learning-walkthrough-1-create-ml-workspace/create1.png
 [2]: ./media/machine-learning-walkthrough-1-create-ml-workspace/open-workspace.png
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

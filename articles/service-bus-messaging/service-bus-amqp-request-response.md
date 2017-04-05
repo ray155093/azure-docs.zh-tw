@@ -1,5 +1,5 @@
 ---
-title: "服務匯流排要求/回應架構作業中的 AMQP 1.0 | Microsoft Docs"
+title: "Azure 服務匯流排要求-回應架構作業中的 AMQP 1.0 | Microsoft Docs"
 description: "Microsoft Azure 服務匯流排要求/回應架構作業的清單。"
 services: service-bus-messaging
 documentationcenter: na
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/23/2016
+ms.date: 03/22/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 05c5c8e8c12357fd150be10def6cd9a272d613e2
-ms.openlocfilehash: 4df8ce114600abfa7abe8e70959a2cd51e2cd8a6
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: a09aefd00a89c48acdc885f98e34d7faa9c5629a
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -46,10 +47,10 @@ ms.openlocfilehash: 4df8ce114600abfa7abe8e70959a2cd51e2cd8a6
 建立傳送要求的管理節點連結。  
   
 ```  
-requestLink = session.attach(     
+requestLink = session.attach(       
 role: SENDER,   
-    target: { address: "<entity address>/$management" },   
-    source: { address: ""<my request link unique address>" }   
+       target: { address: "<entity address>/$management" },   
+       source: { address: ""<my request link unique address>" }   
 )  
   
 ```  
@@ -59,10 +60,10 @@ role: SENDER,
 建立連結，以便接收來自管理節點的回應。  
   
 ```  
-responseLink = session.attach(    
+responseLink = session.attach(      
 role: RECEIVER,   
     source: { address: "<entity address>/$management" }   
-    target: { address: "<my response link unique address>" }   
+       target: { address: "<my response link unique address>" }   
 )  
   
 ```  
@@ -96,13 +97,13 @@ responseMessage = responseLink.receiveTransfer()
   
 ```  
 Message(  
-properties: {     
+properties: {      
         correlation-id: <request id>  
     },  
     application-properties: {  
             "statusCode" -> <status code>,  
             "statusDescription" -> <status description>,  
-           },         
+           },          
 )  
   
 ```  
@@ -186,7 +187,7 @@ properties: {
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-| 上限|對應的清單|是|當中每個對應都代表一則訊息的訊息清單。|  
+|上限|對應的清單|是|當中每個對應都代表一則訊息的訊息清單。|  
   
 表示訊息的對應必須包含下列項目。  
   
@@ -204,21 +205,21 @@ properties: {
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-|operation|string|是|`com.microsoft:schedule-message`|  
+|operation|字串|是|`com.microsoft:schedule-message`|  
 |`com.microsoft:server-timeout`|uint|否|作業伺服器逾時以毫秒為單位。|  
   
 要求訊息本文必須由包含**對應**與下列項目的 **amqp-value** 區段所組成。  
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-| 上限|對應的清單|是|當中每個對應都代表一則訊息的訊息清單。|  
+|上限|對應的清單|是|當中每個對應都代表一則訊息的訊息清單。|  
   
 表示訊息的對應必須包含下列項目。  
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
 |message-id|字串|是|`amqpMessage.Properties.MessageId` 為字串|  
-|session-id|字串|是|`amqpMessage.Properties.GroupId as string`|  
+|session-id|string|是|`amqpMessage.Properties.GroupId as string`|  
 |partition-key|字串|是|`amqpMessage.MessageAnnotations.”x-opt-partition-key"`|  
 |訊息|位元組的陣列|是|AMQP 1.0 連線編碼訊息。|  
   
@@ -290,7 +291,7 @@ properties: {
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-|session-id|字串|是|工作階段識別碼。|  
+|session-id|string|是|工作階段識別碼。|  
   
 #### <a name="response"></a>Response  
 
@@ -299,7 +300,7 @@ properties: {
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
 |StatusCode|int|是|HTTP 回應碼 [RFC2616]<br /><br /> 200：確定 – 有多個訊息<br /><br /> 0xcc︰沒有內容 – 沒有其他訊息|  
-|statusDescription|string|否|狀態的描述。|  
+|statusDescription|字串|否|狀態的描述。|  
   
 回應訊息本文必須由包含對應與下列項目的 **amqp-value** 區段所組成。  
   
@@ -317,7 +318,7 @@ properties: {
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-|operation|string|是|`com.microsoft:peek-message`|  
+|operation|字串|是|`com.microsoft:peek-message`|  
 |`com.microsoft:server-timeout`|uint|否|作業伺服器逾時以毫秒為單位。|  
   
 要求訊息本文必須由包含**對應**與下列項目的 **amqp-value** 區段所組成。  
@@ -326,7 +327,7 @@ properties: {
 |---------|----------------|--------------|--------------------|  
 |from-sequence-number|long|是|要開始查看的序號。|  
 |message-count|int|是|要查看的訊息數目上限。|  
-|session-id|字串|是|工作階段識別碼。|  
+|session-id|string|是|工作階段識別碼。|  
   
 #### <a name="response"></a>Response  
 
@@ -341,7 +342,7 @@ properties: {
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-| 上限|對應的清單|是|當中每個對應都代表一則訊息的訊息清單。|  
+|上限|對應的清單|是|當中每個對應都代表一則訊息的訊息清單。|  
   
  表示訊息的對應必須包含下列項目。  
   
@@ -388,14 +389,14 @@ properties: {
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-|operation|string|是|`com.microsoft:get-session-state`|  
+|operation|字串|是|`com.microsoft:get-session-state`|  
 |`com.microsoft:server-timeout`|uint|否|作業伺服器逾時以毫秒為單位。|  
   
 要求訊息本文必須由包含**對應**與下列項目的 **amqp-value** 區段所組成。  
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-|session-id|字串|是|工作階段識別碼。|  
+|session-id|string|是|工作階段識別碼。|  
   
 #### <a name="response"></a>Response  
 
@@ -422,7 +423,7 @@ properties: {
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-|operation|string|是|`com.microsoft:get-message-sessions`|  
+|operation|字串|是|`com.microsoft:get-message-sessions`|  
 |`com.microsoft:server-timeout`|uint|否|作業伺服器逾時以毫秒為單位。|  
   
 要求訊息本文必須由包含**對應**與下列項目的 **amqp-value** 區段所組成。  
@@ -440,7 +441,7 @@ properties: {
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
 |StatusCode|int|是|HTTP 回應碼 [RFC2616]<br /><br /> 200：確定 – 有多個訊息<br /><br /> 0xcc︰沒有內容 – 沒有其他訊息|  
-|statusDescription|string|否|狀態的描述。|  
+|statusDescription|字串|否|狀態的描述。|  
   
 回應訊息本文必須由包含**對應**與下列項目的 **amqp-value** 區段所組成。  
   
@@ -466,7 +467,7 @@ properties: {
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-|rule-name|string|是|規則名稱，不包括訂用帳戶和主題名稱。|  
+|rule-name|字串|是|規則名稱，不包括訂用帳戶和主題名稱。|  
 |rule-description|map|是|如下一節中指定的規則描述。|  
   
 **rule-description** 對應必須包含下列項目，當中 **sql-filter** 和 **correlation-filter** 為互斥。  
@@ -495,7 +496,7 @@ sql-filter 對應必須包含下列項目。
 |session-id|string|否||  
 |reply-to-session-id|string|否||  
 |Content-Type|字串|否||  
-|properties|map|否|對應至服務匯流排 [BrokeredMessage.Properties](https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.brokeredmessage.properties.aspx)。|  
+|properties|map|否|對應至服務匯流排 [BrokeredMessage.Properties](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Properties)。|  
   
 **sql-rule-action** 對應必須包含下列項目。  
   
@@ -536,7 +537,7 @@ sql-filter 對應必須包含下列項目。
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
 |StatusCode|int|是|HTTP 回應碼 [RFC2616]<br /><br /> 200：確定 – 成功，否則失敗|  
-|statusDescription|string|否|狀態的描述。|  
+|statusDescription|字串|否|狀態的描述。|  
   
 ## <a name="deferred-message-operations"></a>延遲的訊息作業  
   
@@ -550,7 +551,7 @@ sql-filter 對應必須包含下列項目。
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-|operation|string|是|`com.microsoft:receive-by-sequence-number`|  
+|operation|字串|是|`com.microsoft:receive-by-sequence-number`|  
 |`com.microsoft:server-timeout`|uint|否|作業伺服器逾時以毫秒為單位。|  
   
 要求訊息本文必須由包含**對應**與下列項目的 **amqp-value** 區段所組成。  
@@ -567,13 +568,13 @@ sql-filter 對應必須包含下列項目。
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
 |StatusCode|int|是|HTTP 回應碼 [RFC2616]<br /><br /> 200：確定 – 成功，否則失敗|  
-|statusDescription|string|否|狀態的描述。|  
+|statusDescription|字串|否|狀態的描述。|  
   
 回應訊息本文必須由包含**對應**與下列項目的 **amqp-value** 區段所組成。  
   
 |金鑰|值類型|必要|值內容|  
 |---------|----------------|--------------|--------------------|  
-| 上限|對應的清單|是|當中每個對應都代表一則訊息的訊息清單。|  
+|上限|對應的清單|是|當中每個對應都代表一則訊息的訊息清單。|  
   
 表示訊息的對應必須包含下列項目。  
   
@@ -624,8 +625,3 @@ sql-filter 對應必須包含下列項目。
 [服務匯流排 AMQP 概觀]: service-bus-amqp-overview.md
 [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [Windows Server 服務匯流排中的 AMQP]: https://msdn.microsoft.com/library/dn574799.asp
-
-
-<!--HONumber=Nov16_HO4-->
-
-

@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 12/14/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: e982d29f76d521720eea7cbb56c5084572f4a542
-ms.openlocfilehash: 3286a6e98b52f2ce6f173f79ae69f0b86ab2179a
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 899115d213e626f17e58c2e5f01313f760f9e7f4
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -29,6 +30,9 @@ Azure 應用程式閘道預設會監視其後端集區中所有資源的健康�
 ![應用程式閘道探查範例][1]
 
 除了使用預設的健全狀況探查監視，您也可以自訂健全狀況探查，以符合應用程式的需求。 本文會探討預設和自訂健全狀態探查。
+
+> [!NOTE]
+> 如果應用程式閘道子網路上有 NSG，則應在應用程式閘道子網路上開啟連接埠範圍 65503-65534，以供輸入流量使用。 需要這些連接埠，後端健康狀態 API 才能運作。
 
 ## <a name="default-health-probe"></a>預設的健全狀況探查
 
@@ -78,9 +82,4 @@ Azure 應用程式閘道預設會監視其後端集區中所有資源的健康�
 在了解應用程式閘道的健全狀態監視之後，您可以在 Azure 入口網站中[自訂健全狀態探查](application-gateway-create-probe-portal.md)，或使用 PowerShell 和 Azure Resource Manager 部署模型設定[自訂健全狀態探查](application-gateway-create-probe-ps.md)。
 
 [1]: ./media/application-gateway-probe-overview/appgatewayprobe.png
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

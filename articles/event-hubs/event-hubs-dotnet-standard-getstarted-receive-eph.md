@@ -1,6 +1,6 @@
 ---
 title: "使用 .NET Standard 從 Azure 事件中樞接收事件 | Microsoft Docs"
-description: "開始使用 .NET Standard 中的 EventProcessorHost 來接收訊息"
+description: "開始使用 .NET Standard 中的 EventProcessorHost 接收訊息"
 services: event-hubs
 documentationcenter: na
 author: jtaubensee
@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/03/2017
+ms.date: 03/27/2017
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 65ed5164b8d010453ed34e8b8cdf68915e136007
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: c86a1feee02bbf8580a40119ac140528217e435d
+ms.lasthandoff: 03/28/2017
 
 ---
 
@@ -30,7 +30,7 @@ ms.lasthandoff: 03/22/2017
 
 ## <a name="prerequisites"></a>必要條件
 
-* [Microsoft Visual Studio 2015 或 2017](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2015，但也支援 Visual Studio 2017。
+* [Microsoft Visual Studio 2015 或 2017](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2017，但也支援 Visual Studio 2015。
 * [.NET Core Visual Studio 2015 或 2017 工具](http://www.microsoft.com/net/core)。
 * Azure 訂用帳戶。
 * Azure 事件中樞命名空間。
@@ -53,32 +53,9 @@ ms.lasthandoff: 03/22/2017
 
 ## <a name="create-a-console-application"></a>建立主控台應用程式
 
-1. 啟動 Visual Studio。 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。 建立 .NET Core 主控台應用程式。
+啟動 Visual Studio。 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。 建立 .NET Core 主控台應用程式。
 
-    ![新增專案][2]
-
-2. 在 [方案總管] 中，按兩下 [project.json] 檔案，以在 Visual Studio 編輯器中開啟它。
-3. 將字串 `"portable-net45+win8"` 新增到 `"frameworks"` 區段內的 `"imports"` 宣告中。 該區段現在應該看起來如下。 此字串是必要字串，因為「Azure 儲存體」依存於 OData：
-
-    ```json
-    "frameworks": {
-      "netcoreapp1.0": {
-        "imports": [
-          "dnxcore50",
-          "portable-net45+win8"
-        ]
-      }
-    }
-    ```
-
-4. 從 [檔案] 功能表中，按一下 [全部儲存]。
-
-請注意，此教學課程是說明如何撰寫 .NET Core 應用程式。 如果您想要以整個 .NET Framework 為目標，請將下列程式碼行新增到 project.json 檔案的 `"frameworks"` 區段中：
-
-```json
-"net451": {
-},
-```
+![新增專案][2]
 
 ## <a name="add-the-event-hubs-nuget-package"></a>新增事件中樞 NuGet 封裝
 
@@ -93,9 +70,9 @@ ms.lasthandoff: 03/22/2017
 2. 開啟 SimpleEventProcessor.cs 檔案，然後在檔案開頭新增下列 `using` 陳述式。
 
     ```csharp
-    using System.Text;
     using Microsoft.Azure.EventHubs;
     using Microsoft.Azure.EventHubs.Processor;
+    using System.Threading.Tasks;
     ```
 
 3. 實作 `IEventProcessor` 介面。 以下列程式碼取代 `SimpleEventProcessor` 類別的整個內容：
@@ -141,6 +118,7 @@ ms.lasthandoff: 03/22/2017
     ```csharp
     using Microsoft.Azure.EventHubs;
     using Microsoft.Azure.EventHubs.Processor;
+    using System.Threading.Tasks;
     ```
 
 2. 針對事件中樞連接字串、事件中樞名稱、儲存體帳戶容器名稱、儲存體帳戶名稱及儲存體帳戶金鑰，將常數新增到 `Program` 類別。 新增下列程式碼，其中將預留位置取代成其對應的值。

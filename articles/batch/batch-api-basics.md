@@ -16,9 +16,9 @@ ms.date: 03/08/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
-ms.openlocfilehash: 1ebe72255697af16fc28191a102a7c0487968eda
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: f323afdea34e973f3ecdd54022f04b3f0d86afb1
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -107,7 +107,7 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 
     **雲端服務組態** 計算節點大小會列於 [雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。 Batch 支援 `ExtraSmall`、`STANDARD_A1_V2` 和 `STANDARD_A2_V2` 以外的所有雲端服務大小。
 
-    [虛擬機器組態] 計算節點大小列於 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-linux-sizes.md) (Linux) 和 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-windows-sizes.md) (Windows)。 除了 `STANDARD_A0` 和進階儲存體的大小 (`STANDARD_GS`、`STANDARD_DS` 和 `STANDARD_DSV2` 系列) 以外，Batch 支援所有的 Azure VM 大小。
+    [虛擬機器組態] 計算節點大小列於 [Azure 中的虛擬機器大小](../virtual-machines/linux/sizes.md) (Linux) 和 [Azure 中的虛擬機器大小](../virtual-machines/windows/sizes.md) (Windows)。 除了 `STANDARD_A0` 和進階儲存體的大小 (`STANDARD_GS`、`STANDARD_DS` 和 `STANDARD_DSV2` 系列) 以外，Batch 支援所有的 Azure VM 大小。
 
     選取計算節點大小時，請考量將於節點上執行之應用程式的特性和需求。 應用程式是否為多執行緒以及需要使用多少記憶體之類的層面，有助於決定最適合且具成本效益的節點大小。 在選取節點大小時，通常會假設每次在節點上執行一項工作。 不過，在作業執行期間可能會有多項工作 (因而有多個應用程式執行個體) 在計算節點上[以平行方式執行](batch-parallel-node-tasks.md)。 在此情況下，通常會選擇較大的節點大小，以因應增加的平行工作執行需求。 如需詳細資訊，請參閱[工作排程原則](#task-scheduling-policy)。
 
@@ -326,7 +326,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 * VNet 應該擁有足夠的可用 **IP 位址**以配合集區的 `targetDedicated` 屬性。 如果子網路沒有足夠的可用 IP 位址，Batch 服務會配置集區中部分的計算節點，並傳回調整大小錯誤。
 * 針對指定的 VNet，*MicrosoftAzureBatch* 服務主體必須有[傳統虛擬機器參與者](../active-directory/role-based-access-built-in-roles.md#classic-virtual-machine-contributor)角色型存取控制 (RBAC) 角色。 在 Azure 入口網站中：
 
-  * 依序選取 [VNet]、[存取控制 (IAM)] > [角色] > [傳統虛擬機器參與者] > [新增]
+  * 依序選取 VNet、[存取控制 (IAM)] > [角色] > [傳統虛擬機器參與者] > [新增]
   * 在 [搜尋] 方塊中輸入 "MicrosoftAzureBatch"
   * 選取 [MicrosoftAzureBatch] 核取方塊
   * 選取 [選取] 按鈕

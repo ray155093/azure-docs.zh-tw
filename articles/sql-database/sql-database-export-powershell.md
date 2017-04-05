@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 3d04be3d2427bc59d24bfaad227730991b61265b
-ms.openlocfilehash: 162147607baa36de0487cebc06e7ada20f3dd0c0
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 41774c7f1c038ee017d719e59ed79fb68999dac8
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -41,10 +41,10 @@ ms.lasthandoff: 02/11/2017
 [!INCLUDE [Start your PowerShell session](../../includes/sql-database-powershell.md)]
 
 ## <a name="export-your-database"></a>匯出您的資料庫
-[New-AzureRmSqlDatabaseExport](https://msdn.microsoft.com/library/azure/mt707796\(v=azure.300\).aspx) Cmdlet 會向服務提交匯出資料庫要求。 視資料庫大小而定，匯出作業可能需要一些時間才能完成。
+[New-AzureRmSqlDatabaseExport](https://docs.microsoft.com/powershell/resourcemanager/azurerm.sql/v2.7.0/new-azurermsqldatabaseexport) Cmdlet 會向服務提交匯出資料庫要求。 視資料庫大小而定，匯出作業可能需要一些時間才能完成。
 
 > [!IMPORTANT]
-> 若要保證在交易上一致的 BACPAC 檔案，您應該先 [建立您的資料庫複本](sql-database-copy-powershell.md)，然後匯出資料庫複本。
+> 若要保證在交易上一致的 BACPAC 檔案，您應該先 [建立您的資料庫複本](scripts/sql-database-copy-database-to-new-server-powershell.md)，然後匯出資料庫複本。
 > 
 > 
 
@@ -54,7 +54,7 @@ ms.lasthandoff: 02/11/2017
 
 
 ## <a name="monitor-the-progress-of-the-export-operation"></a>監視匯出作業的進度
-執行 [New-AzureRmSqlDatabaseExport](https://msdn.microsoft.com/library/azure/mt603644\(v=azure.300\).aspx) 之後，您即可透過執行 [Get-AzureRmSqlDatabaseImportExportStatus](https://msdn.microsoft.com/library/azure/mt707794\(v=azure.300\).aspx) 來檢查要求的狀態。 如果在要求後立即執行此 Cmdlet，通常會傳回 **Status : InProgress**。 當您看見 **Status: Succeeded** 時，便代表匯出已完成。
+執行 [New-AzureRmSqlDatabaseExport](https://docs.microsoft.com//powershell/resourcemanager/azurerm.sql/v2.7.0/new-azurermsqldatabaseexport) 之後，您即可透過執行 [Get-AzureRmSqlDatabaseImportExportStatus](https://docs.microsoft.com/powershell/resourcemanager/azurerm.sql/v2.7.0/get-azurermsqldatabaseimportexportstatus) 來檢查要求的狀態。 如果在要求後立即執行此 Cmdlet，通常會傳回 **Status : InProgress**。 當您看見 **Status: Succeeded** 時，便代表匯出已完成。
 
     Get-AzureRmSqlDatabaseImportExportStatus -OperationStatusLink $exportRequest.OperationStatusLink
 
@@ -104,7 +104,7 @@ Azure SQL 資料庫自動匯出目前為預覽狀態，並會在 2017 年 3 月 
 
 
 ## <a name="next-steps"></a>後續步驟
-* 若要了解如何使用 PowerShell 匯入 Azure SQL Database，請參閱 [使用 PowerShell 匯入 BACPAC](sql-database-import-powershell.md)。
+* 若要了解如何使用 PowerShell 匯入 Azure SQL Database，請參閱 [使用 PowerShell 匯入 BACPAC](scripts/sql-database-import-from-bacpac-powershell.md)。
 * 若要了解使用 SQLPackage 匯入 BACPAC，請參閱[使用 SqlPackage 將 BACPAC 匯入 Azure SQL Database](sql-database-import-sqlpackage.md)
 * 若要了解使用 Azure 入口網站匯入 BACPAC，請參閱[使用 Azure 入口網站將 BACPAC 匯入 Azure SQL Database](sql-database-import-portal.md)
 * 如需有關整個 SQL Server 資料庫移轉程序的討論，包括效能建議，請參閱[將 SQL Server 資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。
@@ -114,7 +114,7 @@ Azure SQL 資料庫自動匯出目前為預覽狀態，並會在 2017 年 3 月 
 
 
 ## <a name="additional-resources"></a>其他資源
-* [New-AzureRmSqlDatabaseExport](https://msdn.microsoft.com/library/azure/mt707796\(v=azure.300\).aspx)
-* [Get-AzureRmSqlDatabaseImportExportStatus](https://msdn.microsoft.com/library/azure/mt707794\(v=azure.300\).aspx)
+* [New-AzureRmSqlDatabaseExport](https://docs.microsoft.com/powershell/resourcemanager/azurerm.sql/v2.7.0/new-azurermsqldatabaseexport)
+* [Get-AzureRmSqlDatabaseImportExportStatus](https://docs.microsoft.com/powershell/resourcemanager/azurerm.sql/v2.7.0/get-azurermsqldatabaseimportexportstatus)
 
 

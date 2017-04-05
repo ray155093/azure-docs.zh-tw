@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/13/2016
+ms.date: 03/24/2017
 ms.author: ganesr
 translationtype: Human Translation
-ms.sourcegitcommit: 75b7cee2485d1d68fee8dcd65ade84995dcdb9be
-ms.openlocfilehash: fc5bc67fd38fe8a8c4499257a29bc0f0ec71468c
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 32b12bcb7410fcc74450422767e9d92fef38ebdc
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 02/03/2017
 > 
 > 
 
-本文會協助您使用 Resource Manager 部署模型和 PowerShell 將虛擬網路 (VNet) 連結到 Azure ExpressRoute 線路。 虛擬網路可以位於相同的訂用帳戶中，或屬於另一個訂用帳戶。
+本文會協助您使用 Resource Manager 部署模型和 PowerShell，將虛擬網路 (VNet) 連結到 Azure ExpressRoute 線路。 虛擬網路可以位於相同的訂用帳戶中，或屬於另一個訂用帳戶。 本文也會示範如何更新虛擬網路連結。 
 
 **關於 Azure 部署模型**
 
@@ -147,6 +147,18 @@ ms.lasthandoff: 02/03/2017
 **釋出連線授權**
 
 您可以藉由刪除將 ExpressRoute 線路連結到虛擬網路的連線來釋出授權。
+
+## <a name="modify-a-virtual-network-connection"></a>修改虛擬網路連線
+您可以更新虛擬網路連線的特定屬性。 
+
+### <a name="update-the-connection-weight"></a>更新連線權數
+您的虛擬網路可以連接到多個 ExpressRoute 線路。 您可能會收到來自多個 ExpressRoute 線路的相同前置詞。 若要選擇要使用哪一個連線來傳送目的為此前置詞的流量，您可以變更連線的 *RoutingWeight*。 流量將透過具有最高 *RoutingWeight* 的連線來傳送。
+
+    $connection = Get-AzureRmVirtualNetworkGatewayConnection -Name "MyVirtualNetworkConnection" -ResourceGroupName "MyRG"
+    $connection.RoutingWeight = 100
+    Set-AzureRmVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connection
+
+*RoutingWeight* 的範圍是從 0 到 32000。 預設值為 0。 
 
 ## <a name="next-steps"></a>後續步驟
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。

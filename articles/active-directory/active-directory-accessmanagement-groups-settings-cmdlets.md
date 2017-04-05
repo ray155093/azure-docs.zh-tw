@@ -15,19 +15,19 @@ ms.topic: article
 ms.date: 02/10/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 5c30f459d9fed71fede2da71306a9b48892566f3
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 0553c29e12d7cb09c8edd291d3bfb36c4fd2ffcc
+ms.lasthandoff: 03/29/2017
 
 
 ---
 # <a name="azure-active-directory-cmdlets-for-configuring-group-settings"></a>設定群組設定的 Azure Active Directory Cmdlet
 
-注意︰此內容只適用於整合群組，也稱為 Office365 群組。
+注意︰此內容只適用於整合群組，也稱為 Office365 群組。 這些 Cmdlet 目前為公開預覽。
 
 Office365 群組設定是使用 Settings 物件和 SettingsTemplate 物件所設定。 一開始，您將不會在目錄中看到任何 Settings 物件。 這表示已使用預設設定來設定您的目錄。 若要變更預設設定，您需要使用設定範本來建立新的設定物件。 設定範本是由 Microsoft 所定義。 有數個不同的設定範本。 若要設定目錄的群組設定，您將會使用名為「Group.Unified」的範本。 若要在單一群組上設定群組設定，您將會使用名為「Group.Unified.Guest」的範本。 此範本是用來管理群組的來賓存取權。 
 
-Cmdlet 是 Azure Active Directory PowerShell V2 模組的一部分。 如需有關此模組的詳細資訊，以及如何在電腦上下載及安裝模組的指示，請參閱 [Azure Active Directory PowerShell 第 2 版](https://docs.microsoft.com/en-us/powershell/azuread/)。
+Cmdlet 是 Azure Active Directory PowerShell V2 模組的一部分。 如需有關此模組的詳細資訊，以及如何在電腦上下載及安裝模組的指示，請參閱 [Azure Active Directory PowerShell 第 2 版](https://docs.microsoft.com/en-us/powershell/azuread/)。 請注意，由於這些 Cmdlet 現為公開預覽，因此，您將需要安裝模組的預覽版本，您可以在[這裡](https://www.powershellgallery.com/packages/AzureADPreview/2.0.0.85)找到此版本。
 
 ## <a name="create-settings-at-the-directory-level"></a>建立目錄層級的設定
 這些步驟會建立目錄層級的設定，其會套用至目錄中的所有整合群組。

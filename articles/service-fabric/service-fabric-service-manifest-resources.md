@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 03/02/2017
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 193bbedca440302ead00eaac0df62fb7fe767515
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 9cfdb94d1e030fe9d467389acf8894d79efd17d1
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -93,7 +93,7 @@ Service Fabric 會自動將 HTTP 端點處理為 ACL。
 HTTPS 通訊協定提供伺服器驗證，也能用於加密用戶端-伺服器通訊。 若要在 Service Fabric 服務上啟用 HTTPS，請在服務資訊清單的 [資源] -> [端點] -> [端點] 區段指定通訊協定，如先前針對 *ServiceEndpoint3* 端點所示。
 
 > [!NOTE]
-> 服務的通訊協定在應用程式升級期間如果不是一項重大變更就無法變更。
+> 服務的通訊協定不能在應用程式升級期間變更。 如果它在升級期間變更，將會發生中斷變更。
 > 
 > 
 

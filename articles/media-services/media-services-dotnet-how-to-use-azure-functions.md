@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/21/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 0469880325b907065b95f94f62ab76d252c0eda5
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 0cde1f36af2d41697fa956c62cc882e5429707e8
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -339,7 +339,7 @@ project.json 檔案包含相依性。 以下是 **project.json** 檔案的範例
 
 現在，您可以開始開發媒體服務應用程式。 
  
-如需使用 Azure Functions 和 Logic Apps 搭配 Azure 媒體服務來建立自訂內容建立工作流程的詳細資訊和完整範例/解決方案，請參閱 [Github 上的媒體服務 .NET 功能整合範例 (英文)](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)。
+如需使用 Azure Functions 和 Logic Apps 搭配 Azure 媒體服務來建立自訂內容建立工作流程的詳細資訊和完整範例/解決方案，請參閱 [GitHub 上的媒體服務 .NET 功能整合範例 (英文)](https://github.com/Azure-Samples/media-services-dotnet-functions-integration)。
 
 另請參閱[使用 Azure WebHook 監視 .NET 的媒體服務作業通知](media-services-dotnet-check-job-progress-with-webhooks.md)。 
 

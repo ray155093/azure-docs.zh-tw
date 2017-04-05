@@ -1,5 +1,5 @@
 ---
-title: "使用 Web 應用程式防火牆建立 Azure 應用程式閘道 | Microsoft Docs"
+title: "使用 Web 應用程式防火牆建立或更新 Azure 應用程式閘道 | Microsoft Docs"
 description: "了解如何使用入口網站以 Web 應用程式防火牆建立應用程式閘道"
 services: application-gateway
 documentationcenter: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 04/03/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
-ms.openlocfilehash: 9ba454ad2988c1ebb6410d78f79e46ed020a4bc5
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 9f16384a3944c3943dbfc094aaba37a24969e949
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: 9ba454ad2988c1ebb6410d78f79e46ed020a4bc5
 
 Azure 應用程式閘道中的 Web 應用程式防火牆 (WAF) 可保護 Web 應用程式，不致遭受常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。 Web 應用程式可防止許多 OWASP 前 10 大常見 Web 弱點。
 
-Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。
+Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。
 應用程式提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。
 若要尋找完整的支援功能清單，請瀏覽 [應用程式閘道概觀](application-gateway-introduction.md)
 
@@ -51,7 +52,7 @@ Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內
 
 「Azure 應用程式閘道」需要有自己的子網路。 建立虛擬網路時，請確定您保留足夠的位址空間，以便擁有多個子網路。 將應用程式閘道部署到子網路之後，就只能將額外的應用程式閘道新增到該子網路。
 
-## <a name="add-web-application-firewall-to-an-existing-application-gateway"></a>對現有應用程式閘道新增 Web 應用程式防火牆
+##<a name="add-web-application-firewall-to-an-existing-application-gateway"></a> 對現有應用程式閘道新增 Web 應用程式防火牆
 
 此案例會更新現有應用程式閘道，以支援防止模式的 Web 應用程式防火牆。
 
@@ -63,14 +64,18 @@ Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內
 
 ### <a name="step-2"></a>步驟 2
 
-按一下 [組態]  ，並更新應用程式閘道設定。 完成時，按一下 [儲存] 
+按一下 [Web 應用程式防火牆]，然後更新應用程式閘道設定。 完成時，按一下 [儲存] 
 
 用來更新現有應用程式閘道以支援 Web 應用程式防火牆的設定如下：
 
-* **層級** - 選取的層級必須是 **WAF**，才能支援 Web 應用程式防火牆
-* **SKU 大小** - 此設定是具有 Web 應用程式防火牆之應用程式閘道的大小，可用的選項為 (**中型**及**大型**)。
+* **升級至 WAF 層** - 設定 WAF 需要這項設定。
 * **防火牆狀態** - 此設定會停用或啟用 Web 應用程式防火牆。
 * **防火牆模式** - 此設定是 Web 應用程式防火牆處理惡意流量的方式。 **偵測**模式只會記錄事件，**防止**模式則會記錄事件並停止惡意流量。
+* **規則集** - 此設定會決定用來保護後端集區成員的[核心規則集](application-gateway-web-application-firewall-overview.md#core-rule-sets)。
+* **設定停用的規則** - 若要防止可能發生誤判，此設定可讓您停用某些[規則與規則群組](application-gateway-crs-rulegroups-rules.md)。
+
+>[!NOTE]
+> 將現有的應用程式閘道升級至 WAF SKU 時，SKU 大小會變更為 [中型]。 這可以在設定完成之後重新設定。
 
 ![顯示基本設定的刀鋒視窗][2]
 
@@ -164,7 +169,7 @@ Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內
 設定 **WAF** 特定設定。
 
 * **防火牆狀態** - 此設定會開啟或關閉 WAF。
-* **防火牆模式** - 此設定會決定 WAF 對惡意流量採取的動作。 如果選擇 **偵測** ，只會記錄流量。  如果選擇 **防止** ，則會記錄並停止流量，並回應「403 未經授權」。
+* **防火牆模式** - 此設定會決定 WAF 對惡意流量採取的動作。 如果選擇 **偵測** ，只會記錄流量。  如果選擇 [防止]，則會記錄並停止流量，且產生「403 未經授權」的回應。
 
 ![Web 應用程式防火牆設定][9]
 
@@ -180,9 +185,12 @@ Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內
 
 這些步驟會建立一個具有接聽程式、後端集區、後端 http 設定及規則之預設設定的基本應用程式閘道。 佈建成功之後，您可以依據您的部署需求修改這些設定。
 
+> [!NOTE]
+> 基於保護的目的，使用基本 Web 應用程式防火牆設定建立的應用程式閘道，是使用 CRS 3.0 所設定。
+
 ## <a name="next-steps"></a>後續步驟
 
-請造訪 [應用程式閘道診斷](application-gateway-diagnostics.md)
+請參閱[應用程式閘道診斷](application-gateway-diagnostics.md)，以了解如何設定診斷記錄，以及如何記錄 Web 應用程式防火牆偵測到或防止的事件
 
 參閱 [建立自訂健康狀態探查](application-gateway-create-probe-portal.md)
 
@@ -202,9 +210,4 @@ Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內
 [9]: ./media/application-gateway-web-application-firewall-portal/figure9.png
 [10]: ./media/application-gateway-web-application-firewall-portal/figure10.png
 [scenario]: ./media/application-gateway-web-application-firewall-portal/scenario.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

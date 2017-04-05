@@ -6,7 +6,7 @@
 | 每一訂用帳戶[共同管理員](../articles/billing-add-change-azure-subscription-administrator.md) |無限 |無限 |
 | 每一訂用帳戶[儲存體帳戶](../articles/storage/storage-create-storage-account.md) |200 |200<sup>2</sup> |
 | 每一訂用帳戶[資源群組](../articles/azure-resource-manager/resource-group-overview.md) |800 |800 |
-| 每一訂用帳戶[可用性設定組](../articles/virtual-machines/virtual-machines-windows-manage-availability.md#configure-multiple-virtual-machines-in-an-availability-set-for-redundancy) |每個區域 2000 個 |每個區域 2000 個 |
+| 每一訂用帳戶[可用性設定組](../articles/virtual-machines/windows/manage-availability.md#configure-multiple-virtual-machines-in-an-availability-set-for-redundancy) |每個區域 2000 個 |每個區域 2000 個 |
 | 資源管理員 API 讀取 |每小時 15000 |每小時 15000 |
 | 資源管理員 API 寫入 |每小時 1200 |每小時 1200 |
 | 資源管理員 API 要求的大小 |4194304 個位元組 |4194304 個位元組 |
@@ -24,9 +24,4 @@
 > <!-- -->
 > 
 > 
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

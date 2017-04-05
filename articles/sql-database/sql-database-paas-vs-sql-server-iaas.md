@@ -17,9 +17,9 @@ ms.topic: get-started-article
 ms.date: 02/01/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 98cb1d7e5fd464421ae97f2ace33852e71a18a21
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 28edde3e70bca833d888cdf9831c1544d8cdd4bb
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -115,7 +115,7 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 ### <a name="administration"></a>系統管理
 對許多企業來說，決定轉換至雲端服務的關鍵主要在於降低系統管理的複雜度。 有了 **SQL Database**，Microsoft 會管理基礎硬體。 Microsoft 會自動複製所有資料以提供高可用性、設定及升級資料庫軟體、管理負載平衡，並在伺服器故障時進行透明容錯移轉。 您可以繼續管理您的資料庫，但不再需要管理資料庫引擎、伺服器作業系統或硬體。  您可以繼續管理的項目範例包括資料庫和登入、索引和查詢微調，以及稽核和安全性。
 
-有了 **Azure VM 上的 SQL Server**，您可以完全掌控作業系統和 SQL Server 執行個體組態。 有了 VM，您可以決定何時更新/升級作業系統與資料庫軟體，以及何時安裝任何其他軟體 (例如防毒)。 提供某些自動化功能以大幅簡化修補、備份及高可用性。 此外，您還可以控制 VM 的大小、磁碟的數目及其儲存體組態。 Azure 可讓您視需要變更 VM 大小。 如需相關資料，請參閱 [Azure 的虛擬機器和雲端服務大小](../virtual-machines/virtual-machines-windows-sizes.md)。 
+有了 **Azure VM 上的 SQL Server**，您可以完全掌控作業系統和 SQL Server 執行個體組態。 有了 VM，您可以決定何時更新/升級作業系統與資料庫軟體，以及何時安裝任何其他軟體 (例如防毒)。 提供某些自動化功能以大幅簡化修補、備份及高可用性。 此外，您還可以控制 VM 的大小、磁碟的數目及其儲存體組態。 Azure 可讓您視需要變更 VM 大小。 如需相關資料，請參閱 [Azure 的虛擬機器和雲端服務大小](../virtual-machines/windows/sizes.md)。 
 
 ### <a name="service-level-agreement-sla"></a>服務等級協定 (SLA)
 對於許多 IT 部門而言，達到服務等級協定 (SLA) 的正常運作時間義務是首要任務。 在本節中，我們將瞭解 SLA 對每個資料庫主控選項的作用。

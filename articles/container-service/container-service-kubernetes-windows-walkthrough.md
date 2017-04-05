@@ -18,9 +18,9 @@ ms.date: 03/20/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: c43648dae95d90d0ee9f3d6b5bedfad7ab4889ca
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: eb3af43b8a13eaaebfa9147848383ff889119d97
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -49,7 +49,7 @@ ms.lasthandoff: 03/22/2017
 ## <a name="prerequisites"></a>必要條件
 
 
-* **SSH RSA 公開金鑰**︰透過入口網站或其中一個 Azure 快速入門範本部署時，您必須提供 SSH RSA 公開金鑰，以便對 Azure Container Service 虛擬機器進行驗證。 若要建立安全殼層 (SSH) RSA 金鑰，請參閱 [OS X 和 Linux](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md) 和 [Windows](../virtual-machines/virtual-machines-linux-ssh-from-windows.md)指引。 
+* **SSH RSA 公開金鑰**︰透過入口網站或其中一個 Azure 快速入門範本部署時，您必須提供 SSH RSA 公開金鑰，以便對 Azure Container Service 虛擬機器進行驗證。 若要建立安全殼層 (SSH) RSA 金鑰，請參閱 [OS X 和 Linux](../virtual-machines/linux/mac-create-ssh-keys.md) 和 [Windows](../virtual-machines/linux/ssh-from-windows.md)指引。 
 
 * **服務主體用戶端識別碼和密碼**：如需詳細資訊和指引，請參閱[關於 Kubernetes 叢集的服務主體](container-service-kubernetes-service-principal.md)。
 

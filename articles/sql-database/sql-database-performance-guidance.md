@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.date: 03/06/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: a9d496d696298d800bc40b1f3880c95f84e5f29f
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 03d38dbce86711395a967cf8bad440fd50a38631
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -27,8 +27,8 @@ Azure SQL Database 提供四個[服務層](sql-database-service-tiers.md)：基�
 
 > [!NOTE]
 > 本文著重在 Azure SQL Database 中單一資料庫的效能指引。 如需彈性集區的相關效能指引，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。 但請注意，您可以將本文的諸多微調建議套用到彈性集區中的資料庫，並獲得類似的效能優點。
-> 
-> 
+>
+>
 
 ## <a name="why-service-tiers"></a>為何使用服務層？
 雖然每個資料庫的工作負載可能不同，但服務層的目的是要在各種效能等級提供效能可預測性。 對資料庫有大規模資源需求的客戶，則可以在更專用的運算環境中工作。
@@ -58,7 +58,7 @@ Azure SQL Database 提供四個[服務層](sql-database-service-tiers.md)：基�
 [!INCLUDE [SQL DB service tiers table](../../includes/sql-database-service-tiers-table.md)]
 
 > [!IMPORTANT]
-> 使用 P11 和 P15 效能等級的客戶不需額外付費就能使用最多 4 TB 的內含儲存體。 這個 4 TB 選項目前在下列區域為公開預覽狀態：美國東部 2、美國西部、西歐、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。 若要了解目前的限制，請參閱[目前的 4 TB 限制](sql-database-service-tiers.md#current-limitations-of-p11-and-p15-databases-with-4-tb-maxsize)
+> 使用 P11 和 P15 效能等級的客戶不需額外付費就能使用最多 4 TB 的內含儲存體。 這個 4 TB 選項目前在下列區域為公開預覽狀態：美國東部 2、美國西部、西歐、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。
 >
 
 ### <a name="maximum-in-memory-oltp-storage"></a>記憶體內部 OLTP 儲存體上限
@@ -86,8 +86,8 @@ Azure SQL Database 提供四個[服務層](sql-database-service-tiers.md)：基�
 
 > [!NOTE]
 > 這項限制目前不適用於彈性集區中的資料庫。
-> 
-> 
+>
+>
 
 ### <a name="maximum-sessions"></a>工作階段數上限
 若要查看目前的作用中工作階段數目，請在 SQL Database 上執行下列 Transact-SQL 查詢：
@@ -105,7 +105,7 @@ Azure SQL Database 提供四個[服務層](sql-database-service-tiers.md)：基�
 
 同樣地，這些查詢傳回的是某一時間點的計數。 如果您收集一段時間內的多個範例，您就可以充分了解您的工作階段使用量。
 
-若要進行 SQL Database 分析，您可以查詢 [sys.resource_stats](https://msdn.microsoft.com/library/dn269979.aspx)檢視，並檢閱 **active_session_count** 資料行，以取得工作階段的歷史統計資料。 
+若要進行 SQL Database 分析，您可以查詢 [sys.resource_stats](https://msdn.microsoft.com/library/dn269979.aspx)檢視，並檢閱 **active_session_count** 資料行，以取得工作階段的歷史統計資料。
 
 ## <a name="monitor-resource-use"></a>監視資源使用量
 
@@ -149,8 +149,8 @@ Azure SQL Database 會在每個伺服器 **master** 資料庫的 **sys.resource_
 
 > [!NOTE]
 > 您必須連接到邏輯 SQL Database 伺服器的 **master** 資料庫才能在下列範例中查詢 **sys.resource_stats**。
-> 
-> 
+>
+>
 
 下列範例會示範如何公開此檢視中的資料：
 
@@ -164,14 +164,14 @@ Azure SQL Database 會在每個伺服器 **master** 資料庫的 **sys.resource_
 下列範例示範不同方式，以供您用來使用 **sys.resource_stats** 目錄檢視取得有關 SQL Database 如何使用資源的相關資訊：
 
 1. 若要查看 userdb1 資料庫在過去一週的資源使用量，您可以執行下列查詢：
-   
+
         SELECT *
         FROM sys.resource_stats
         WHERE database_name = 'userdb1' AND
               start_time > DATEADD(day, -7, GETDATE())
         ORDER BY start_time DESC;
 2. 若要評估您的工作負載與效能等級的符合程度，您必須鑽研資源度量的每個層面：CPU、讀取、寫入、背景工作角色數目和工作階段數目。 以下是使用 **sys.resource_stats** 修訂過的查詢，可報告這些資源度量的平均值和最大值：
-   
+
         SELECT
             avg(avg_cpu_percent) AS 'Average CPU use in percent',
             max(avg_cpu_percent) AS 'Maximum CPU use in percent',
@@ -186,35 +186,35 @@ Azure SQL Database 會在每個伺服器 **master** 資料庫的 **sys.resource_
         FROM sys.resource_stats
         WHERE database_name = 'userdb1' AND start_time > DATEADD(day, -7, GETDATE());
 3. 利用這項有關各資源度量平均值和最大值的資訊，您可以評估您的工作負載與您所選之效能等級的符合程度。 通常，來自 **sys.resource_stats** 的平均值可提供您對目標大小所使用的理想基準。 它應該是您主要的量尺。 例如，您可能使用標準服務層搭配 S2 效能等級。 CPU 以及 I/O 讀取和寫入的平均使用量百分比低於 40%，背景工作角色平均數目低於 50，而且工作階段平均數目低於 200。 您的工作負載可能符合 S1 效能等級。 要看到您的資料庫是否符合背景工作和工作階段限制範圍內非常容易。 若要查看資料庫在 CPU、讀取和寫入方面是否符合較低的效能等級，請將較低效能等級的 DTU 數目除以目前效能等級的 DTU 數目，然後將結果乘以 100：
-   
-    **S1 DTU / S2 DTU * 100 = 20 / 50* 100 = 40**
-   
+
+    **S1 DTU / S2 DTU * 100 = 20 / 50 * 100 = 40**
+
     此結果是以百分比表示之兩個效能等級的相對效能差異。 如果您的資源使用量未超過這個數量，您的工作負載可能符合較低的效能等級。 不過，您需要查看所有範圍的資源使用量值，並以百分比判斷資料庫工作負載符合較低效能等級的頻率。 下列查詢會根據我們在此範例中計算的 40% 臨界值，輸出每個資源維度的相符百分比：
-   
+
         SELECT
             (COUNT(database_name) - SUM(CASE WHEN avg_cpu_percent >= 40 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'CPU Fit Percent'
             ,(COUNT(database_name) - SUM(CASE WHEN avg_log_write_percent >= 40 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'Log Write Fit Percent'
             ,(COUNT(database_name) - SUM(CASE WHEN avg_data_io_percent >= 40 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'Physical Data IO Fit Percent'
         FROM sys.resource_stats
         WHERE database_name = 'userdb1' AND start_time > DATEADD(day, -7, GETDATE());
-   
+
     根據您的資料庫服務等級目標 (SLO)，您可以決定您的工作負載是否符合較低的效能等級。 如果您的資料庫工作負載 SLO 是 99.9%，且上述查詢針對三個資源維度傳回的值都大於 99.9，您的工作負載可能會符合較低的效能等級。
-   
+
     查看相符百分比也可讓您深入了解是否必須移到下一個較高的效能等級來滿足您的 SLO。 例如，userdb1 會顯示過去一週的下列 CPU 使用量：
-   
+
    | 平均 CPU 百分比 | 最大 CPU 百分比 |
    | --- | --- |
    | 24.5 |100.00 |
-   
+
     平均 CPU 大約是效能等級限制的四分之一，完全符合資料庫的效能等級。 不過，此最大值會顯示資料庫達到效能等級的限制。 您需要移至下一個較高的效能等級嗎？ 請查看工作負載達到 100% 的次數，然後將其與您的資料庫工作負載 SLO 做比較。
-   
+
         SELECT
         (COUNT(database_name) - SUM(CASE WHEN avg_cpu_percent >= 100 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'CPU fit percent'
         ,(COUNT(database_name) - SUM(CASE WHEN avg_log_write_percent >= 100 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'Log write fit percent'
         ,(COUNT(database_name) - SUM(CASE WHEN avg_data_io_percent >= 100 THEN 1 ELSE 0 END) * 1.0) / COUNT(database_name) AS 'Physical data I/O fit percent'
         FROM sys.resource_stats
         WHERE database_name = 'userdb1' AND start_time > DATEADD(day, -7, GETDATE());
-   
+
     如果此查詢針對三個資源維度傳回的值小於 99.9%，請考慮移到下一個較高的效能等級或使用應用程式微調技術減少 SQL Database 的負載。
 4. 此練習也會考慮您預計的未來工作負載增加量。
 
@@ -400,8 +400,8 @@ SQL Server 中常見並且也適用於 Azure SQL Database 的範例是查詢最�
 
 > [!NOTE]
 > 雖然此範例中的數量已刻意簡化，次佳參數的影響還是很明顯，尤其是對於較大型的資料庫。 在極端的情況下，快速案例之間的差異可達數秒，而緩慢案例之間的差異可達數小時。
-> 
-> 
+>
+>
 
 您可以檢查 **sys.resource_stats** 來判斷測試使用的資源比另一個測試多或少。 在比較資料時，請將測試的時間隔開，讓它們不在 **sys.resource_stats** 檢視的同一個 5 分鐘時間範圍內。 練習的目標是要最小化使用的資源總量，而不是最小化尖峰資源。 一般而言，最佳化一段延遲的程式碼也可減少資源耗用量。 請確定您對應用程式所做的變更是必要的，而且這些變更不會讓使用應用程式的某人在使用查詢提示時對客戶體驗造成負面影響。
 
@@ -412,8 +412,8 @@ SQL Server 中常見並且也適用於 Azure SQL Database 的範例是查詢最�
 
 > [!NOTE]
 > SQL Database 現在提供可協助分區化的程式庫。 如需詳細資訊，請參閱 [彈性資料庫用戶端程式庫概觀](sql-database-elastic-database-client-library.md)。
-> 
-> 
+>
+>
 
 例如，如果資料庫有客戶名稱、訂單及訂單詳細資料 (如 SQL Server 隨附的傳統範例 Northwind 資料庫)，則您可以透過以相關訂單和訂單詳細資料等資訊來分組客戶，將這項資料分割至多個資料庫。 您可以保證客戶的資料會保留在單一資料庫內。 應用程式會跨資料庫分割不同的客戶，跨多個資料庫有效分配負載。 透過分區化，客戶不但可以避免資料庫大小上限，Azure SQL Database 也能處理明顯大於不同效能等級限制的工作負載，前提是每個個別資料庫符合其 DTU。
 
@@ -436,5 +436,4 @@ SQL Server 使用者通常會在單一資料庫內結合許多功能。 例如�
 * 如需服務層的詳細資訊，請參閱 [SQL Database 選項和效能](sql-database-service-tiers.md)
 * 如需彈性集區的詳細資訊，請參閱[什麼是 Azure 彈性集區？](sql-database-elastic-pool.md)
 * 如需效能和彈性集區的相關資訊，請參閱 [考慮使用彈性集區的時機](sql-database-elastic-pool-guidance.md)
-
 

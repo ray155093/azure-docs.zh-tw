@@ -13,11 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: rest-api
 ms.topic: article
-ms.date: 01/26/2017
+ms.date: 03/27/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: f1b0fde1e6e31a8179ed61508348d850c5dd784f
-ms.openlocfilehash: 9e2c0cff442f7c66a4b1c76ab612175410f49497
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: 5f712c7fa9b6ee06f7c89de40ba4227a925a35ce
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -35,15 +36,22 @@ DocumentDB 是 NoSQL 資料庫，因此它會透過讓應用程式即時逐一�
 
 現在讓我們開始使用 ODBC 驅動程式。
 
-## <a name="a-idinstallastep-1-install-the-documentdb-odbc-driver"></a><a id="install"></a>步驟 1︰安裝 DocumentDB ODBC 驅動程式
-1. 下載適用於 64 位元 Windows 作業系統的 [Microsoft Azure DocumentDB ODBC 64-bit.msi](https://aka.ms/documentdb-odbc-64x64) 或適用於 32 位元 Windows OS.2 的 [Microsoft Azure DocumentDB ODBC 32-bit.msi](https://aka.ms/documentdb-odbc-32x32)。 在本機執行 msi 檔案，它會啟動 **Microsoft Azure DocumentDB ODBC 驅動程式安裝精靈**。 
+## <a id="install"></a>步驟 1︰安裝 DocumentDB ODBC 驅動程式
+
+1. 下載適用於您的環境的驅動程式：
+
+    * 適用於 64 位元 Windows 的 [Microsoft Azure DocumentDB ODBC 64 bit.msi](https://aka.ms/documentdb-odbc-64x64)
+    * 適用於 32 位元或 64 位元 Windows 的 [Microsoft Azure DocumentDB ODBC 32x64-bit.msi](https://aka.ms/documentdb-odbc-32x64)
+    * 適用於 32 位元 Windows 的 [Microsoft Azure DocumentDB ODBC 32-bit.msi](https://aka.ms/documentdb-odbc-32x32)
+
+    在本機執行 msi 檔案，它會啟動 **Microsoft Azure DocumentDB ODBC 驅動程式安裝精靈**。 
 2. 使用預設的輸入安裝 ODBC 驅動程式，以完成安裝精靈。
 3. 開啟您電腦上的 [ODBC 資料來源管理員] App。您可以在 Windows 搜尋方塊中輸入 [ODBC 資料來源] 來開啟它。 
     您可以按一下 [驅動程式] 索引標籤來確認驅動程式已安裝，並確定已列出 **Microsoft DocumentDB ODBC 驅動程式**。
 
     ![DocumentDB ODBC 資料來源管理員](./media/documentdb-nosql-odbc-driver/documentdb-nosql-odbc-driver.png)
 
-## <a name="a-idconnectastep-2-connect-to-your-documentdb-database"></a><a id="connect"></a>步驟 2︰連線到您的 DocumentDB 資料庫
+## <a id="connect"></a>步驟 2︰連線到您的 DocumentDB 資料庫
 
 1. [安裝 DocumentDB ODBC 驅動程式](#install)之後，在 [ODBC 資料來源管理員] 視窗中，按一下 [新增]。 您可以建立「使用者 DSN」或「系統 DSN」。 在此範例中，我們會建立「使用者 DSN」。
 2. 在 [建立新的資料來源] 視窗中，選取 [Microsoft DocumentDB ODBC 驅動程式]，然後按一下 [完成]。
@@ -69,7 +77,7 @@ DocumentDB 是 NoSQL 資料庫，因此它會透過讓應用程式即時逐一�
 
     ![[使用者 DSN] 索引標籤上的新 DocumentDB ODBC DSN](./media/documentdb-nosql-odbc-driver/documentdb-nosql-odbc-driver-user-dsn.png)
 
-## <a name="a-idcollection-mappingastep-3-create-a-schema-definition-using-the-collection-mapping-method"></a><a id="#collection-mapping"></a>步驟 3︰使用集合對應方法建立結構描述定義
+## <a id="#collection-mapping"></a>步驟 3︰使用集合對應方法建立結構描述定義
 
 您可以使用的取樣方法有兩種：**集合對應**或**資料表分隔符號**。 取樣工作階段可以利用這兩種取樣方法，但是每個集合僅可以使用特定的取樣方法。 下列步驟將使用集合對應方法建立一或多個集合中之資料的結構描述。 此取樣方法會擷取集合的頁面資料，以判斷資料的結構。 它會將集合轉置到 ODBC 端上的資料表。 當集合中的資料屬同質性，使用此取樣方法便會相當有效率且快速。 如果集合包含異質性的資料類型，建議您使用[資料表分隔符號對應方法](#table-mapping)，因為它提供了更強固的取樣方法，以判斷集合中的資料結構。 
 
@@ -87,7 +95,7 @@ DocumentDB 是 NoSQL 資料庫，因此它會透過讓應用程式即時逐一�
 
     如果未來您想要使用此結構描述搭配 DSN，請開啟 [DocumentDB ODBC 驅動程式 DSN 設定] 視窗 (透過 ODBC 資料來源管理員)，按一下 [進階選項]，然後在 [結構描述檔案] 方塊中瀏覽至已儲存的結構描述。 將結構描述檔案儲存至現有的 DSN，會修改 DSN 連線，將範圍設定為由結構描述定義的資料和結構。
 
-## <a name="a-idtable-mappingastep-4-create-a-schema-definition-using-the-table-delimiters-mapping-method"></a><a id="table-mapping"></a>步驟 4︰使用資料表分隔符號對應方法建立結構描述定義
+## <a id="table-mapping"></a>步驟 4︰使用資料表分隔符號對應方法建立結構描述定義
 
 您可以使用的取樣方法有兩種：**集合對應**或**資料表分隔符號**。 取樣工作階段可以利用這兩種取樣方法，但是每個集合僅可以使用特定的取樣方法。 
 
@@ -109,7 +117,7 @@ DocumentDB 是 NoSQL 資料庫，因此它會透過讓應用程式即時逐一�
     - 如果您想要將該資料行從查詢結果中排除，您可以將 [隱藏資料行] 設為 **true**。 雖然 [隱藏資料行] 標註為 true 的資料行仍屬於結構描述的一部份，它並不會針對選取和投影傳回。 例如，您可以隱藏開頭為 “_” 的所有 DocumentDB 系統必要屬性。
     - [識別碼] 資料行是唯一無法隱藏的欄位，因為它會在標準化結構描述中作為主索引鍵使用。 
 6. 當您完成定義結構描述時，按一下 [檔案]  |  [儲存]，瀏覽到要儲存結構描述的目錄，然後按一下 [儲存]。
-7. 返回 [DocumentDB ODBC 驅動程式 DSN 設定] 視窗，按一下 [進階選項]。 然後，在 [結構描述檔案] 方塊中，瀏覽至已儲存的結構描述檔案並按一下 [確定]。 再按一下 [確定] 以儲存 DSN。 這會將您建立的結構描述儲存到 DSN。 
+7. 返回 [DocumentDB ODBC 驅動程式 DSN 設定] 視窗，按一下 [進階選項]****。 然後，在 [結構描述檔案] 方塊中，瀏覽至已儲存的結構描述檔案並按一下 [確定]。 再按一下 [確定] 以儲存 DSN。 這會將您建立的結構描述儲存到 DSN。 
 
 ## <a name="optional-creating-views"></a>(選擇性) 建立檢視
 您可以將檢視定義並建立為取樣程序的一部分。 這些檢視相當於 SQL 檢視。 它們都是唯讀，且以定義的 DocumentDB SQL 的選取項目與投影為範圍。 
@@ -143,8 +151,4 @@ DocumentDB 是 NoSQL 資料庫，因此它會透過讓應用程式即時逐一�
 ## <a name="next-steps"></a>後續步驟
 
 若要深入了解 DocumentDB，請參閱[什麼是 DocumentDB？](documentdb-introduction.md)。
-
-
-<!--HONumber=Jan17_HO4-->
-
 

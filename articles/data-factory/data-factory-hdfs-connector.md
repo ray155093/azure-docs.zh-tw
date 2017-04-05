@@ -15,47 +15,169 @@ ms.topic: article
 ms.date: 03/13/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 8a6050fc52407ab6b974a9698d970248062665c1
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 6ad9eaf381b93547a3d5f54698f8f6023a5644f2
+ms.lasthandoff: 03/27/2017
 
 
 ---
 # <a name="move-data-from-on-premises-hdfs-using-azure-data-factory"></a>使用 Azure Data Factory 從內部部署的 HDFS 移動資料
-本文將概述如何使用 Azure Data Factory 中的複製活動將資料從內部部署 HDFS 移動到另一個資料存放區。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md) 一文，該文呈現使用複製活動移動資料的一般概觀以及支援的資料存放區組合。
+本文說明如何使用 Azure Data Factory 中的「複製活動」，從內部部署的 HDFS 移動資料。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。
 
-Data Factory 目前只支援將資料從內部部署 HDFS 移動到其他資料存放區，而不支援將資料從其他資料存放區移動到內部部署 HDFS。
+您可以將資料從 HDFS 複製到任何支援的接收資料存放區。 如需複製活動所支援作為接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 Data Factory 目前只支援將資料從內部部署 HDFS 移動到其他資料存放區，而不支援將資料從其他資料存放區移動到內部部署 HDFS。
 
 ## <a name="enabling-connectivity"></a>啟用連線
 Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS。 請參閱 [在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 一文來了解資料管理閘道和設定閘道的逐步指示。 即使 HDFS 裝載於 Azure IaaS VM 中，仍請使用閘道器與其連接。
 
 > [!NOTE]
 > 請確定資料管理閘道器可以存取 Hadoop 叢集的**所有** [名稱節點伺服器]:[名稱節點連接埠] 和 [資料節點伺服器]:[資料節點連接埠]。 預設 [名稱節點連接埠] 是 50070，而預設 [資料節點連接埠] 是 50075。
->
 
 雖然您可以在與 HDFS 相同的內部部署機器或 Azure VM 上安裝閘道器，仍建議您在個別的機器/Azure IaaS VM 上安裝。 在個別機器上安裝閘道器可減少資源爭用並改善效能。 當您在不同機器上安裝閘道器時，機器應該能夠存取具有 HDFS 的機器。
 
-## <a name="copy-data-wizard"></a>複製資料精靈
-要建立從內部部署 HDFS 複製資料的管線，最簡單的方法是使用複製資料精靈。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
+## <a name="getting-started"></a>開始使用
+您可以藉由使用不同的工具/API，建立內含複製活動的管線，以從 HDFS 來源移動資料。
 
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 這些範例示範如何將資料從內部部署 HDFS 複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動，將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。
+建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
 
-## <a name="sample-copy-data-from-on-premises-hdfs-to-azure-blob"></a>範例：將資料從內部部署 HDFS 複製到 Azure Blob
+您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API**及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
+
+不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線： 
+
+1. 建立「已連結的服務」，以將輸入和輸出資料存放區連結到 Data Factory。
+2. 建立「資料集」，以代表複製作業的輸入和輸出資料。 
+3. 建立「管線」，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
+
+使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來從 HDFS 資料存放區複製資料之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例：將資料從內部部署 HDFS 複製到 Azure Blob](#json-example-copy-data-from-on-premises-hdfs-to-azure-blob) 一節。 
+
+下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 HDFS 特定的 Data Factory 實體：
+
+## <a name="linked-service-properties"></a>連結服務屬性
+已連結的服務會將資料存放區連結到 Data Factory。 您需建立 **Hdfs** 類型的已連結服務，以將內部部署的 HDFS 連結到 Data Factory。 下表提供 HDFS 連結服務專屬 JSON 元素的描述。
+
+| 屬性 | 說明 | 必要 |
+| --- | --- | --- |
+| 類型 |類型屬性必須設為： **Hdfs** |是 |
+| Url |到 HDFS 的 URL |是 |
+| authenticationType |匿名或 Windows。 <br><br> 若要對 HDFS 連接器使用 **Kerberos 驗證**，請參閱[此章節](#use-kerberos-authentication-for-hdfs-connector)來據以設定您的內部部署環境。 |是 |
+| userName |Windows 驗證的使用者名稱。 |是 (適用於 Windows 驗證) |
+| password |Windows 驗證的密碼。 |是 (適用於 Windows 驗證) |
+| gatewayName |Data Factory 服務應該用來連接到 HDFS 的閘道器名稱。 |是 |
+| encryptedCredential |[New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) 輸出。 |否 |
+
+### <a name="using-anonymous-authentication"></a>使用匿名驗證
+
+```JSON
+{
+    "name": "hdfs",
+    "properties":
+    {
+        "type": "Hdfs",
+        "typeProperties":
+        {
+            "authenticationType": "Anonymous",
+            "userName": "hadoop",
+            "url" : "http://<machine>:50070/webhdfs/v1/",
+            "gatewayName": "mygateway"
+        }
+    }
+}
+```
+
+### <a name="using-windows-authentication"></a>使用 Windows 驗證
+
+```JSON
+{
+    "name": "hdfs",
+    "properties":
+    {
+        "type": "Hdfs",
+        "typeProperties":
+        {
+            "authenticationType": "Windows",
+            "userName": "Administrator",
+            "password": "password",
+            "url" : "http://<machine>:50070/webhdfs/v1/",
+            "gatewayName": "mygateway"
+        }
+    }
+}
+```
+## <a name="dataset-properties"></a>資料集屬性
+如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
+
+每個資料集類型的 **typeProperties** 區段都不同，可提供資料存放區中的資料位置資訊。 **FileShare** 資料集類型 (包含 HDFS 資料集) 的 typeProperties 區段具有下列屬性。
+
+| 屬性 | 說明 | 必要 |
+| --- | --- | --- |
+| folderPath |資料夾的路徑。 範例：`myfolder`<br/><br/>使用逸出字元 ‘ \ ’ 當做字串中的特殊字元。 例如︰若為 folder\subfolder，請指定 folder\\\\subfolder；若為 d:\samplefolder，請指定 d:\\\\samplefolder。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 |是 |
+| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，所產生檔案的名稱是下列格式︰ <br/><br/>Data<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
+| partitionedBy |partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。 範例：folderPath 可針對每小時的資料進行參數化。 |否 |
+| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
+| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
+
+> [!NOTE]
+> 無法同時使用檔名和 fileFilter。
+
+### <a name="using-partionedby-property"></a>使用 partionedBy 屬性
+如上一節所述，您可以使用 **partitionedBy** 屬性、[Data Factory 函式及系統變數](data-factory-functions-variables.md)，來指定時間序列資料的動態 folderPath 和檔案名稱。
+
+若要進一步了解時間序列資料集、排程和配量，請參閱[建立資料集](data-factory-create-datasets.md)、[排程和執行](data-factory-scheduling-and-execution.md)以及[建立管線](data-factory-create-pipelines.md)等文章。
+
+#### <a name="sample-1"></a>範例 1：
+
+```JSON
+"folderPath": "wikidatagateway/wikisampledataout/{Slice}",
+"partitionedBy":
+[
+    { "name": "Slice", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyyMMddHH" } },
+],
+```
+在此範例中，{Slice} 會取代成 Data Factory 系統變數 SliceStart 的值 (使用指定的格式 (YYYYMMDDHH))。 SliceStart 是指配量的開始時間。 每個配量的 folderPath 都不同。 例如：wikidatagateway/wikisampledataout/2014100103 或 wikidatagateway/wikisampledataout/2014100104。
+
+#### <a name="sample-2"></a>範例 2：
+
+```JSON
+"folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
+"fileName": "{Hour}.csv",
+"partitionedBy":
+ [
+    { "name": "Year", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyy" } },
+    { "name": "Month", "value": { "type": "DateTime", "date": "SliceStart", "format": "MM" } },
+    { "name": "Day", "value": { "type": "DateTime", "date": "SliceStart", "format": "dd" } },
+    { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } }
+],
+```
+在此範例中，SliceStart 的年、月、日和時間會擷取到 folderPath 和 fileName 屬性所使用的個別變數。
+
+## <a name="copy-activity-properties"></a>複製活動屬性
+如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
+
+而活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
+
+在複製活動中，如果來源的類型為 **FileSystemSource** ，則 typeProperties 區段會有下列可用屬性：
+
+**FileSystemSource** 支援下列屬性：
+
+| 屬性 | 說明 | 允許的值 | 必要 |
+| --- | --- | --- | --- |
+| 遞迴 |表示是否從子資料夾，或只有從指定的資料夾，以遞迴方式讀取資料。 |True/False (預設值為 False) |否 | 
+
+## <a name="json-example-copy-data-from-on-premises-hdfs-to-azure-blob"></a>JSON 範例：將資料從內部部署 HDFS 複製到 Azure Blob
 此範例示範如何將資料從內部部署 HDFS 複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動， **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。  
 
-此範例具有下列 Data Factory 實體：
+此範例提供下列 Data Factory 實體的 JSON 定義。 您可以透過 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)，使用這些定義來建立管線，以將資料從 HDFS 複製到「Azure Blob 儲存體」。 
 
-1. [OnPremisesHdfs](#hdfs-linked-service-properties)類型的連結服務。
-2. [AzureStorage](data-factory-azure-blob-connector.md#azure-storage-linked-service)類型的連結服務。
-3. [FileShare](#hdfs-dataset-type-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
-4. [AzureBlob](data-factory-azure-blob-connector.md#azure-blob-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
-5. 具有使用 [FileSystemSource](#hdfs-copy-activity-type-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#azure-blob-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
+1. [OnPremisesHdfs](#linked-service-properties)類型的連結服務。
+2. [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)類型的連結服務。
+3. [FileShare](#dataset-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
+4. [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
+5. 具有使用 [FileSystemSource](#copy-activity-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
 此範例會每個小時將資料從內部部署 HDFS 複製到 Azure Blob。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
 第一步是設定資料管理閘道。 如需相關指示，請參閱 [在內部部署位置和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 。
 
-**HDFS 連結服務** 此範例會使用 Windows 驗證。 請參閱 [HDFS 連結服務](#hdfs-linked-service-properties) 章節以了解您可以使用的各種不同類型的驗證。
+**HDFS 已連結的服務：**此範例使用 Windows 驗證。 請參閱 [HDFS 連結服務](#linked-service) 章節以了解您可以使用的各種不同類型的驗證。
 
 ```JSON
 {
@@ -75,7 +197,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 }
 ```
 
-**Azure 儲存體連結服務**
+**Azure 儲存體連結服務：**
 
 ```JSON
 {
@@ -89,7 +211,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 }
 ```
 
-**HDFS 輸入資料集** 此資料集是指 HDFS 資料夾 DataTransfer/UnitTest/。 管線會將此資料夾中的所有檔案複製到目的地。
+**HDFS 輸入資料集：**此資料集係指 HDFS 資料夾 DataTransfer/UnitTest/。 管線會將此資料夾中的所有檔案複製到目的地。
 
 設定 “external”: ”true” 會通知 Data Factory 服務：這是 Data Factory 外部的資料集而且不是由 Data Factory 中的活動所產生。
 
@@ -111,7 +233,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 }
 ```
 
-**Azure Blob 輸出資料集**
+**Azure Blob 輸出資料集：**
 
 資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。 資料夾路徑會使用開始時間的年、月、日和小時部分。
 
@@ -171,7 +293,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 }
 ```
 
-**具有複製活動的管線**
+**具有檔案系統來源和 Blob 接收器的管線中複製活動：** 
 
 此管線包含「複製活動」，該活動已設定為使用這些輸入和輸出資料集，並且排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **FileSystemSource**，而 **sink** 類型設為 **BlobSink**。 針對 **query** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
 
@@ -213,70 +335,16 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 }
 ```
 
-## <a name="hdfs-linked-service-properties"></a>HDFS 連結服務屬性
-下表提供 HDFS 連結服務專屬 JSON 元素的描述。
-
-| 屬性 | 說明 | 必要 |
-| --- | --- | --- |
-| 類型 |類型屬性必須設為： **Hdfs** |是 |
-| Url |到 HDFS 的 URL |是 |
-| authenticationType |匿名或 Windows。 <br><br> 若要對 HDFS 連接器使用 **Kerberos 驗證**，請參閱[此章節](#use-kerberos-authentication-for-hdfs-connector)來據以設定您的內部部署環境。 |是 |
-| userName |Windows 驗證的使用者名稱。 |是 (適用於 Windows 驗證) |
-| password |Windows 驗證的密碼。 |是 (適用於 Windows 驗證) |
-| gatewayName |Data Factory 服務應該用來連接到 HDFS 的閘道器名稱。 |是 |
-| encryptedCredential |[New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) 輸出。 |否 |
-
-如需設定內部部署 HDFS 認證的詳細資訊，請參閱[利用資料管理閘道在內部部署來源和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
-
-### <a name="using-anonymous-authentication"></a>使用匿名驗證
-
-```JSON
-{
-    "name": "hdfs",
-    "properties":
-    {
-        "type": "Hdfs",
-        "typeProperties":
-        {
-            "authenticationType": "Anonymous",
-            "userName": "hadoop",
-            "url" : "http://<machine>:50070/webhdfs/v1/",
-            "gatewayName": "mygateway"
-        }
-    }
-}
-```
-
-### <a name="using-windows-authentication"></a>使用 Windows 驗證
-
-```JSON
-{
-    "name": "hdfs",
-    "properties":
-    {
-        "type": "Hdfs",
-        "typeProperties":
-        {
-            "authenticationType": "Windows",
-            "userName": "Administrator",
-            "password": "password",
-            "url" : "http://<machine>:50070/webhdfs/v1/",
-            "gatewayName": "mygateway"
-        }
-    }
-}
-```
-
 ## <a name="use-kerberos-authentication-for-hdfs-connector"></a>對 HDFS 連接器使用 Kerberos 驗證
 有兩種選項可以設定內部部署環境，以便在 HDFS 連接器中使用 Kerberos 驗證。 您可以選擇較適合您案例的選項。
-* 選項 1：[讓閘道電腦加入 Kerberos 領域](#kerberos-join-realm)
+* 選項 1：[將閘道電腦加入 Kerberos 領域](#kerberos-join-realm)
 * 選項 2：[啟用 Windows 網域和 Kerberos 領域之間的相互信任](#kerberos-mutual-trust)
 
-### <a name="kerberos-join-realm"></a>選項 1：讓閘道電腦加入 Kerberos 領域
+### <a name="kerberos-join-realm"></a>選項 1：將閘道電腦加入 Kerberos 領域
 
 #### <a name="requirement"></a>需求：
 
-* 閘道電腦必須加入 Kerberos 領域，且不得加入任何 Windows 網域。
+* 閘道電腦必須加入 Kerberos 領域，且不可加入任何 Windows 網域。
 
 #### <a name="how-to-configure"></a>如何設定︰
 
@@ -291,7 +359,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
     在執行這 2 個命令後**重新啟動**電腦。
 
-2.    使用 **Ksetup** 命令確認組態。 輸出應該類似如下︰
+2.    使用 **Ksetup** 命令確認組態。 輸出應該會像這樣：
 
             C:> Ksetup
             default realm = REALM.COM (external)
@@ -300,7 +368,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 **在 Azure Data Factory 中：**
 
-* 使用 **Windows 驗證**以及您用來連線到 HDFS 資料來源的 Kerberos 主體名稱和密碼，來設定 HDFS 連接器。 檢查組態詳細資料上的 [HDFS 連結服務屬性](#hdfs-linked-service-properties)區段。
+* 使用 **Windows 驗證**以及您用來連線到 HDFS 資料來源的 Kerberos 主體名稱和密碼，來設定 HDFS 連接器。 檢查組態詳細資料上的 [HDFS 連結服務屬性](#linked-service-properties)區段。
 
 ### <a name="kerberos-mutual-trust"></a>選項 2：啟用 Windows 網域和 Kerberos 領域之間的相互信任
 
@@ -311,11 +379,11 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 #### <a name="how-to-configure"></a>如何設定︰
 
 > [!NOTE]
-> 視需要以您自己的個別領域和網域控制站取代以下教學課程中的 REALM.COM 和 AD.COM。
+> 視需要，以您自己的個別領域和網域控制站取代下列教學課程中的 REALM.COM 和 AD.COM。
 
 **在 KDC 伺服器上︰**
 
-1.    在 **krb5.conf** 檔案中編輯 KDC 組態，讓 KDC 信任參照以下組態範本的 Windows 網域。 根據預設，此組態位於 **/etc/krb5.conf**。
+1.    編輯 **krb5.conf** 檔案中的 KDC 組態，讓 KDC 信任參考下列組態範本的 Windows 網域。 根據預設，此組態位於 **/etc/krb5.conf**。
 
             [logging]
              default = FILE:/var/log/krb5libs.log
@@ -361,7 +429,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 **在網域控制站上：**
 
-1.    執行以下 **Ksetup** 命令來新增領域項目︰
+1.    執行下列 **Ksetup** 命令來新增領域項目：
 
             C:> Ksetup /addkdc REALM.COM <your_kdc_server_address>
             C:> ksetup /addhosttorealmmap HDFS-service-FQDN REALM.COM
@@ -398,85 +466,18 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
 
 **在閘道電腦上︰**
 
-* 執行以下 **Ksetup** 命令來新增領域項目。
+* 執行下列 **Ksetup** 命令來新增領域項目。
 
             C:> Ksetup /addkdc REALM.COM <your_kdc_server_address>
             C:> ksetup /addhosttorealmmap HDFS-service-FQDN REALM.COM
 
 **在 Azure Data Factory 中：**
 
-* 使用 **Windows 驗證**以及您用來連線到 HDFS 資料來源的網域帳戶或 Kerberos 主體，來設定 HDFS 連接器。 檢查組態詳細資料上的 [HDFS 連結服務屬性](#hdfs-linked-service-properties)區段。
-
-
-## <a name="hdfs-dataset-type-properties"></a>HDFS 資料集類型屬性
-如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
-
-每個資料集類型的 **typeProperties** 區段都不同，可提供資料存放區中的資料位置資訊。 **FileShare** 資料集類型 (包含 HDFS 資料集) 的 typeProperties 區段具有下列屬性。
-
-| 屬性 | 說明 | 必要 |
-| --- | --- | --- |
-| folderPath |資料夾的路徑。 範例：`myfolder`<br/><br/>使用逸出字元 ‘ \ ’ 當做字串中的特殊字元。 例如︰若為 folder\subfolder，請指定 folder\\\\subfolder；若為 d:\samplefolder，請指定 d:\\\\samplefolder。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 |是 |
-| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，所產生檔案的名稱是下列格式︰ <br/><br/>Data<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
-| partitionedBy |partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。 範例：folderPath 可針對每小時的資料進行參數化。 |否 |
-| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](#specifying-textformat)、[Json 格式](#specifying-jsonformat)、[Avro 格式](#specifying-avroformat)、[Orc 格式](#specifying-orcformat)和 [Parquet 格式](#specifying-parquetformat)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 如需詳細資訊，請參閱[指定壓縮](#specifying-compression)一節。 |否 |
+* 使用 **Windows 驗證**以及您用來連線到 HDFS 資料來源的網域帳戶或 Kerberos 主體，來設定 HDFS 連接器。 檢查組態詳細資料上的 [HDFS 連結服務屬性](#linked-service)區段。
 
 > [!NOTE]
-> 無法同時使用檔名和 fileFilter。
->
->
+> 若要將來自來源資料集的資料行與來自接收資料集的資料行對應，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。
 
-### <a name="using-partionedby-property"></a>使用 partionedBy 屬性
-如上一節所述，您可以利用 partitionedBy 指定時間序列資料的動態 folderPath 和 filename。 您可以使用 Data Factory 巨集和系統變數以及可指出給定資料配量的邏輯時間週期的 SliceStart、SliceEnd 來這麼做。
-
-若要進一步了解時間序列資料集、排程和配量，請參閱[建立資料集](data-factory-create-datasets.md)、[排程和執行](data-factory-scheduling-and-execution.md)以及[建立管線](data-factory-create-pipelines.md)等文章。
-
-#### <a name="sample-1"></a>範例 1：
-
-```JSON
-"folderPath": "wikidatagateway/wikisampledataout/{Slice}",
-"partitionedBy":
-[
-    { "name": "Slice", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyyMMddHH" } },
-],
-```
-在此範例中，{Slice} 會取代成 Data Factory 系統變數 SliceStart 的值 (使用指定的格式 (YYYYMMDDHH))。 SliceStart 是指配量的開始時間。 每個配量的 folderPath 都不同。 例如：wikidatagateway/wikisampledataout/2014100103 或 wikidatagateway/wikisampledataout/2014100104。
-
-#### <a name="sample-2"></a>範例 2：
-
-```JSON
-"folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
-"fileName": "{Hour}.csv",
-"partitionedBy":
- [
-    { "name": "Year", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyy" } },
-    { "name": "Month", "value": { "type": "DateTime", "date": "SliceStart", "format": "MM" } },
-    { "name": "Day", "value": { "type": "DateTime", "date": "SliceStart", "format": "dd" } },
-    { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } }
-],
-```
-在此範例中，SliceStart 的年、月、日和時間會擷取到 folderPath 和 fileName 屬性所使用的個別變數。
-
-[!INCLUDE [data-factory-file-format](../../includes/data-factory-file-format.md)]
-
-[!INCLUDE [data-factory-compression](../../includes/data-factory-compression.md)]
-
-## <a name="hdfs-copy-activity-type-properties"></a>HDFS 複製活動類型屬性
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
-
-另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
-
-在複製活動中，如果來源的類型為 **FileSystemSource** ，則 typeProperties 區段會有下列可用屬性：
-
-**FileSystemSource** 支援下列屬性：
-
-| 屬性 | 說明 | 允許的值 | 必要 |
-| --- | --- | --- | --- |
-| 遞迴 |表示是否從子資料夾，或只有從指定的資料夾，以遞迴方式讀取資料。 |True/False (預設值為 False) |否 |
-
-[!INCLUDE [data-factory-column-mapping](../../includes/data-factory-column-mapping.md)]
-
-[!INCLUDE [data-factory-structure-for-rectangualr-datasets](../../includes/data-factory-structure-for-rectangualr-datasets.md)]
 
 ## <a name="performance-and-tuning"></a>效能和微調
 請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。

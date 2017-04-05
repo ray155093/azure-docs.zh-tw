@@ -196,7 +196,7 @@ ms.lasthandoff: 03/28/2017
 ## <a name="how-to-view-password-management-reports-in-the-classic-portal"></a>如何在傳統入口網站中檢視密碼管理報告
 若要尋找密碼管理報告，請遵循下列步驟：
 
-1. 按一下 **Azure 傳統入口網站**中的 [Active Directory][](https://manage.windowsazure.com) 擴充功能。
+1. 按一下 [Azure 傳統入口網站](https://manage.windowsazure.com)中的 [Active Directory] 擴充功能。
 2. 從入口網站顯示的清單中選取您的目錄。
 3. 按一下 [報告]  索引標籤。
 4. 查看 [活動記錄檔]  區段。

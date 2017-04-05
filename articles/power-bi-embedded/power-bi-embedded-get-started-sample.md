@@ -16,9 +16,9 @@ ms.workload: powerbi
 ms.date: 03/02/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 4f60937f9a9dd0e7d9939f85d1a9d442a4b7f266
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: beadcbfa4907d68a687ec5144136132d8b0439e1
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -44,16 +44,15 @@ ms.lasthandoff: 03/14/2017
 2. 在 Visual Studio 中開啟 **PowerBI-embedded.sln** 。 您可能需要執行 NuGET 套件管理器主控台中的 **Update-Package** 以更新此方案中使用的套件。
 3. 建置方案。
 4. 執行 **ProvisionSample** 主控台應用程式。 您可以在範例主控台應用程式中，佈建工作區並匯入 PBIX 檔案。
-5. 若要佈建新的**工作區**，請選取選項 5，[在現有的工作區集合中佈建新的工作區]。
+5. 若要佈建新的「工作區」，請選取選項 2 [報告管理]，然後選取選項 3 [將 PBIX 桌面檔案匯入工作區]。
 
-    ![](media/powerbi-embedded-get-started-sample/console-option-5.png)
 6. 輸入您的 [工作區集合] 名稱，以及 [存取金鑰]。 您可以在「Azure 入口網站」 中取得這些項目。 若要深入了解如何取得存取金鑰 ，請參閱＜開始使用 Microsoft Power BI Embedded＞中的 [檢視 Power BI API 存取金鑰](power-bi-embedded-get-started.md#view-power-bi-api-access-keys) 。
 
     ![](media/powerbi-embedded-get-started-sample/azure-portal.png)
 7. 複製並儲存新建立的「工作區識別碼」  ，以供稍後在此文章中使用。 「工作區識別碼」建立之後，您就可以在「Azure 入口網站」中找到它。
 
     ![](media/powerbi-embedded-get-started-sample/workspace-id.png)
-8. 若要將 PBIX 檔案匯入到您的**工作區**，請選取選項**&6;。**\[將 PBIX Desktop 檔案匯入現有的工作區\]。 如果您現在沒有 PBIX 檔案，可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
+8. 若要將 PBIX 檔案匯入到您的**工作區**，請選取選項**6。**\[將 PBIX Desktop 檔案匯入現有的工作區\]。 如果您現在沒有 PBIX 檔案，可以下載[零售分析範例 PBIX](http://go.microsoft.com/fwlink/?LinkID=780547)。
 9. 如果出現提示，請輸入易記名稱做為您「資料集」 的名稱。
 
 您應該會看到像這樣的回應：

@@ -1,6 +1,6 @@
 ---
-title: "Azure 匯入/匯出工具匯入作業命令的快速參考 | Microsoft Docs"
-description: "適用於匯入作業的 Azure 匯入/匯出工具命令常用命令參考。 這是指 v1 的匯入/匯出工具。"
+title: "Azure 匯入/匯出工具匯入作業命令的快速參考 - v1 | Microsoft Docs"
+description: "適用於常用匯入作業命令的 Azure 匯入/匯出工具命令參考。 這是指 v1 的匯入/匯出工具。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 0c58a94a553a22ac06bfdfd8032879f4a4a87fe5
-ms.openlocfilehash: e1c440ee165d148b59f29035b853cd8e13a44e7c
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 632100f324c47d69f64cff020aafbaa300ae8c2b
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -59,11 +60,7 @@ WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:music /srcdir:d:\Music /dstd
 WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:dvd /srcfile:d:\dvd\favoritemovie.vhd /dstblob:dvd/favoritemovie.vhd  
 ```  
   
-## <a name="see-also"></a>另請參閱  
- [針對匯入作業準備硬碟的簡單工作流程](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow-v1.md)
+## <a name="next-steps"></a>後續步驟
 
-
-
-<!--HONumber=Dec16_HO3-->
-
+* [針對匯入作業準備硬碟的簡單工作流程](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow-v1.md)
 

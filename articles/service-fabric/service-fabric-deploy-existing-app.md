@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 02/17/2016
 ms.author: msfussell;mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: d1939e316efb00fb4980c57cbec28920a7475a47
-ms.openlocfilehash: bc9a62eb41a4ccb1ffb17b89e3bee9d40f2e7b54
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: e9c53dc601406961ee7aeca2e350ba14e691cb9b
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -266,6 +266,11 @@ WorkingFolder 適合用來設定正確的工作目錄，以便應用程式或初
 對於來賓可執行檔，最好能夠查看主控台記錄檔，以查明應用程式和設定指令碼是否顯示任何錯誤。
 在 `ServiceManifest.xml` 檔案中，可使用 `ConsoleRedirection` 元素設定主控台重新導向。
 
+> [!WARNING]
+> 切勿在實際部署的應用程式中使用主控台重新導向原則，因為這可能會影響應用程式容錯移轉。 僅將此原則用於本機開發及偵錯。  
+> 
+> 
+
 ```xml
 <EntryPoint>
   <ExeHost>
@@ -286,7 +291,7 @@ WorkingFolder 適合用來設定正確的工作目錄，以便應用程式或初
 記錄檔會儲存在服務的其中一個工作目錄中。 若要判斷檔案的位置，使用 Service Fabric Explorer 來判斷服務執行所在的節點以及目前使用的工作目錄。 本文稍後會說明此程序。
 
 ## <a name="deployment"></a>部署
-最後一個步驟是部署應用程式。 下列 PowerShell 指令碼示範如何將應用程式部署至本機開發叢集，並啟動新的 Service Fabric 服務。
+最後一個步驟是[部署應用程式](service-fabric-deploy-remove-applications.md)。 下列 PowerShell 指令碼示範如何將應用程式部署至本機開發叢集，並啟動新的 Service Fabric 服務。
 
 ```PowerShell
 
@@ -303,6 +308,11 @@ New-ServiceFabricApplication -ApplicationName 'fabric:/nodeapp' -ApplicationType
 New-ServiceFabricService -ApplicationName 'fabric:/nodeapp' -ServiceName 'fabric:/nodeapp/nodeappservice' -ServiceTypeName 'NodeApp' -Stateless -PartitionSchemeSingleton -InstanceCount 1
 
 ```
+
+>[!TIP]
+> 如果封裝很大或有許多檔案，請在將它複製到映像存放區之前[壓縮封裝](service-fabric-package-apps.md#compress-a-package)。 請在[這裡](service-fabric-deploy-remove-applications.md#upload-the-application-package)閱讀更多資訊。
+>
+
 Service Fabric 服務可以各種「組態」部署。 例如，它可部署為單一或多個執行個體，也可以 Service Fabric 叢集的每個節點上有一個服務執行個體的方式部署。
 
 `New-ServiceFabricService` Cmdlet 的 `InstanceCount` 參數用來指定應在 Service Fabric 叢集中啟動多少個服務執行個體。 您可以根據要部署的應用程式類型來設定 `InstanceCount` 值。 兩個最常見的案例包括：

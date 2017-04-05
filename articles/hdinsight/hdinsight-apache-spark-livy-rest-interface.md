@@ -9,16 +9,17 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 2817b779-1594-486b-8759-489379ca907d
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/07/2017
+ms.date: 03/24/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: 3c349aecc87e28275045828a84e0ea3f89400b9e
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 6cb0da6d7b3aafeb9a8079b427e31c66811a6281
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -165,6 +166,16 @@ Livy 可為在叢集上執行的 Spark 作業提供高可用性。 以下是一�
 2. 在左側導覽中，按一下 [Livy]，然後按一下 [設定]。
 
 3. 在 [livy-default] 底下新增屬性名稱 `livy.file.local-dir-whitelist`，如果您想要允許存取整個檔案系統，可將其值設為 **"/"**。 如果您只想要允許存取特定目錄，請將值設為該目錄的路徑。
+
+## <a name="troubleshooting"></a>疑難排解
+
+以下是一些使用 Livy 進行對 Spark 叢集的遠端作業提交時可能遇到的問題。
+
+### <a name="using-an-external-jar-from-the-additional-storage-is-not-supported"></a>不支援從其他儲存體使用外部 jar
+
+**問題︰**如果您正在使用參考與叢集相關聯之其他儲存體中外部 jar 的 Livy 來執行 Spark 作業，則作業將會失敗。
+
+**解決方式︰**請確定您想要使用的 jar 位於與 HDInsight 叢集相關聯的預設儲存體中。
 
 
 ## <a name="seealso"></a>另請參閱

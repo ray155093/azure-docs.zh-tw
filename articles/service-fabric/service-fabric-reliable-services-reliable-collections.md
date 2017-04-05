@@ -12,12 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: required
-ms.date: 3/1/2017
+ms.date: 3/27/2017
 ms.author: mcoskun
 translationtype: Human Translation
-ms.sourcegitcommit: 4952dfded6ec5c4512a61cb18d4c754bf001dade
-ms.openlocfilehash: b5fab7cf91493d477cafd66e27e346ea3ad02f04
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: 6ac47fe040793f2ac4ff596880675df0b331143e
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -146,6 +146,7 @@ ms.lasthandoff: 03/02/2017
 * 請不要在另一個交易的 `using` 陳述式內建立交易，因為它會造成死結。
 * 務必確保 `IComparable<TKey>` 實作是正確的。 系統會對此採取相依性以合併檢查點。
 * 請不要在讀取需更新的項目時使用更新鎖定，以避免發生特定類別的死結。
+* 請考慮將項目 (例如「可靠的字典」的 Tkey 和 TValue) 保持低於 80 KB (越小越好)。 這將會減少大型物件堆積的使用量，並降低磁碟和網路 IO 需求。 在許多情況下，這也能在只更新一小部分的值時，減少重複資料的複寫次數。 在「可靠的字典」中達成此目的的常用方式，是將資料列分成多個資料列。 
 * 請考慮使用備份和還原功能以擁有災害復原。
 * 避免在同一個交易中因為不同的隔離等級混用單一實體作業和多實體作業 (例如 `GetCountAsync`、`CreateEnumerableAsync`)。
 * 請務必處理 InvalidOperationException。 系統有可能因為各種原因而中止使用者交易。 例如，當 Reliable State Manager 正由「主要」角色切換，或長時間執行的交易封鎖交易記錄檔的截斷時。 在這種情況下，使用者可能會收到 InvalidOperationException，指出他們的交易已終止。 假設終止交易不是使用者所要求，處理這個例外狀況的最佳方式是處置交易，請檢查是否已通知取消權杖 (或已變更複本的角色)，如果沒有，請建立新的交易並重試。  

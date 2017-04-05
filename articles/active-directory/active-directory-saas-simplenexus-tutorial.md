@@ -11,28 +11,29 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/08/2017
+ms.date: 3/10/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 451369e21e7471180b6cd8c77d62b157d0bcddff
-ms.openlocfilehash: a4478283ef6ab949cc73322db908347a626c12d8
-ms.lasthandoff: 12/14/2016
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: da3b1e506e603b1f5e3660f31c6d939d77cd2938
+ms.lasthandoff: 03/28/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-simplenexus"></a>教學課程：Azure Active Directory 與 SimpleNexus 整合
 本教學課程的目的是要示範 Azure 與 SimpleNexus 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂用帳戶
-* 啟用 SimpleNexus 單一登入的訂用帳戶
+* 已啟用 SimpleNexus 單一登入 (SSO) 的訂用帳戶
 
 完成本教學課程之後，您指派給 SimpleNexus 的 Azure AD 使用者就能夠從您的 SimpleNexus 公司網站 (服務提供者起始登入)，或使用 [存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
 
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 SimpleNexus 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO) 
 3. 設定使用者佈建
 4. 指派使用者
 
@@ -41,7 +42,8 @@ ms.lasthandoff: 12/14/2016
 ## <a name="enabling-the-application-integration-for-simplenexus"></a>啟用 SimpleNexus 的應用程式整合
 本節的目的是概述如何啟用 SimpleNexus 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-simplenexus-perform-the-following-steps"></a>若要啟用 SimpleNexus 的應用程式整合，請執行下列步驟：
+**若要啟用 SimpleNexus 的應用程式整合，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
     ![Active Directory](./media/active-directory-saas-simplenexus-tutorial/IC700993.png "Active Directory")
@@ -68,11 +70,12 @@ ms.lasthandoff: 12/14/2016
    
     ![Simple Nexus](./media/active-directory-saas-simplenexus-tutorial/IC809578.png "Simple Nexus")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 SimpleNexus 中進行驗證。
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
+**若要設定單一登入，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站的 [SimpleNexus] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
     ![設定單一登入](./media/active-directory-saas-simplenexus-tutorial/IC785896.png "設定單一登入")
@@ -89,29 +92,29 @@ ms.lasthandoff: 12/14/2016
    
     ![設定單一登入](./media/active-directory-saas-simplenexus-tutorial/IC785899.png "設定單一登入")
    
-    > [!NOTE]
-    > 單一登入必須由 SimpleNexus 支援小組啟用。
-    > 
+    >[!NOTE]
+    >單一登入必須由 SimpleNexus 支援小組啟用。 
     > 
 
 5. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
     ![設定單一登入](./media/active-directory-saas-simplenexus-tutorial/IC785900.png "設定單一登入")
    
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
-若要讓 Azure AD 使用者能夠登入 SimpleNexus，必須將他們佈建到 SimpleNexus。  
+若要讓 Azure AD 使用者能夠登入 SimpleNexus，必須將他們佈建到 SimpleNexus。
+
 SimpleNexus 須由租用戶系統管理員手動執行佈建工作。
 
-> [!NOTE]
-> 您可以使用任何其他的 SimpleNexus 使用者帳戶建立工具或 SimpleNexus 提供的 API 來佈建 AAD 使用者帳戶。
-> 
+>[!NOTE]
+>您可以使用任何其他的 SimpleNexus 使用者帳戶建立工具或 SimpleNexus 提供的 API 來佈建 AAD 使用者帳戶。 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-simplenexus-perform-the-following-steps"></a>若要將使用者指派到 SimpleNexus，請執行下列步驟：
+**若要將使用者指派到 SimpleNexus，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [SimpleNexus] 應用程式整合頁面上，按一下 [指派使用者]。
    

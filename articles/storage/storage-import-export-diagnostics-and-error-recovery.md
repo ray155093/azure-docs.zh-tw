@@ -1,6 +1,6 @@
 ---
 title: "Azure 匯入匯出作業的診斷和錯誤復原 | Microsoft Docs"
-description: "了解如何啟用 Microsoft Azure 匯入/匯出服務作業的詳細資訊記錄"
+description: "了解如何啟用 Microsoft Azure 匯入/匯出服務作業的詳細資訊記錄。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 9aca8aad3f268bf21f3bad9fa22821f5d825f99d
-ms.openlocfilehash: 88c42ff541aac2e43724fe62f99e3ddea56afc3c
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 0068aae9d6780aa41a070db0eb191d0d5a165d21
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -29,9 +29,11 @@ ms.lasthandoff: 02/16/2017
 
  您可以藉由呼叫 [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) 作業來擷取工作的記錄 URI。 會針對每個磁碟機在 `VerboseLogUri` 屬性中傳回詳細資訊記錄檔的 URI，而在 `ErrorLogUri` 屬性中會傳回錯誤記錄檔的 URI。
 
-您可以使用記錄資料來識別下列問題︰
+您可以使用記錄資料來識別下列問題。
 
-**磁碟機錯誤**
+## <a name="drive-errors"></a>磁碟機錯誤
+
+下列項目會歸類為磁碟機錯誤：
 
 -   存取或讀取資訊清單檔案中的錯誤
 
@@ -39,7 +41,9 @@ ms.lasthandoff: 02/16/2017
 
 -   磁碟機讀取/寫入錯誤
 
-**Blob 錯誤**
+## <a name="blob-errors"></a>Blob 錯誤
+
+下列項目會歸類為 blob 錯誤：
 
 -   不正確或衝突的 blob 或名稱
 
@@ -55,8 +59,9 @@ ms.lasthandoff: 02/16/2017
 
 -   blob 屬性及/或中繼資料檔案的結構描述不正確
 
-在某些情況下，匯入或匯出作業的某些部分無法順利完成，而整個工作仍然會完成。 在此情況下，您可以透過網路上傳或下載遺漏的資料片段，或可以建立新的作業來傳送資料。 請參閱 [Azure 匯入匯出工具參考](storage-import-export-tool-how-to-v1.md)以了解如何透過網路修復資料。
+在某些情況下，匯入或匯出作業的某些部分無法順利完成，而整個工作仍然會完成。 在此情況下，您可以透過網路上傳或下載遺漏的資料片段，或可以建立新的作業來傳送資料。 請參閱 [Azure 匯入/匯出工具參考](storage-import-export-tool-how-to-v1.md)，以了解如何透過網路修復資料。
 
-## <a name="see-also"></a>另請參閱
-[使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
+## <a name="next-steps"></a>後續步驟
+
+* [使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
 

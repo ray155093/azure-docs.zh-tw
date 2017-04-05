@@ -15,8 +15,9 @@ ms.workload: infrastructure
 ms.date: 12/12/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 0997b2c2eec9070cf8043b09e69d0a4d1ae6e56a
-ms.openlocfilehash: 668ab8121a40aa2300d5cb13e561745fc51b545f
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: bc3013541fdb32f252339140fe61ff7c515a264e
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -135,7 +136,7 @@ ms.openlocfilehash: 668ab8121a40aa2300d5cb13e561745fc51b545f
 ## <a name="create-vm-from-original-hard-disk"></a>從原始硬碟建立 VM
 若要從原始虛擬硬碟建立 VM，請使用[這個 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd-existing-vnet)。 此範本會使用來自先前命令的 VHD URL，將 VM 部署至現有的虛擬網路。 按一下 [部署至 Azure] 按鈕，如下所示︰
 
-![從 Github 的範本部署 VM](./media/virtual-machines-windows-troubleshoot-recovery-disks/deploy-template-from-github.png)
+![從來自 GitHub 的範本部署 VM](./media/virtual-machines-windows-troubleshoot-recovery-disks/deploy-template-from-github.png)
 
 範本會載入到 Azure 入口網站以供部署。 輸入新 VM 和現有 Azure 資源的名稱，並貼上您現有虛擬硬碟的 URL。 若要開始部署，請按一下 [購買]：
 
@@ -151,8 +152,4 @@ ms.openlocfilehash: 668ab8121a40aa2300d5cb13e561745fc51b545f
 如果連接至 VM 時發生問題，請參閱[針對 Azure VM 的 RDP 連接進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 如果存取 VM 上執行的應用程式時發生問題，請參閱[針對 Windows VM 上的應用程式連線問題進行疑難排解](virtual-machines-windows-troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 如需使用 Resource Manager 的詳細資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-
-
-<!--HONumber=Dec16_HO3-->
-
 

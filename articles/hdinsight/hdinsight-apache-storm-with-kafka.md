@@ -8,6 +8,7 @@ manager: paulettm
 editor: cgronlun
 ms.assetid: e4941329-1580-4cd8-b82e-a2258802c1a7
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -15,9 +16,9 @@ ms.workload: big-data
 ms.date: 03/20/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 3f0d284e122704ba01676c4b0028e196fe47bca8
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: dcda5e27cbcadff054c8085b72a1b6fb1c07b889
+ms.lasthandoff: 03/25/2017
 
 ---
 # <a name="use-apache-kafka-preview-with-storm-on-hdinsight"></a>使用 Apache Kafka (預覽) 搭配 Storm on HDInsight
@@ -40,11 +41,7 @@ Apache Kafka 是適用於 HDInsight 的發佈-訂閱訊息解決方案。 Apache
 
 * 文字編輯器或 Java IDE
 
-* SSH 用戶端 (您需要 `ssh` 和 `scp` 命令) - 如需使用 SSH 搭配 HDInsight 的詳細資訊，請參閱下列文件：
-  
-  * [從 Linux、Unix、Mac OS 和 Bash on Windows 10 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
-
-  * [從 Windows 搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+* SSH 用戶端 (您需要 `ssh` 和 `scp` 命令) - 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 ## <a name="create-the-clusters"></a>建立叢集
 
@@ -133,11 +130,7 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
    
     出現提示時，請輸入您在建立叢集時所使用的密碼。
    
-    如需使用 SSH 搭配 HDInsight 的詳細資訊，請參閱下列文件：
-   
-    * [從 Linux、Unix、Mac OS 和 Windows 10 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
-
-    * [從 Windows 搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+    如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 2. 從連到 Kafka 叢集的 SSH 連線中，使用下列命令來設定適用於 HTTP 登入和叢集名稱的變數。 本節中的其他步驟會用到這些值。
 
@@ -238,12 +231,8 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
   ```
 
     出現提示時，請輸入您在建立叢集時所使用的密碼。
-
-    如需使用 SSH 搭配 HDInsight 的詳細資訊，請參閱下列文件：
-
-    * [從 Linux、Unix、Mac OS 和 Bash on Windows 10 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
-
-    * [從 Windows 搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+   
+    如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 2. 在連往 Storm 叢集的 SSH 連線中，使用下列命令來執行 `set-env-variables.sh` 指令碼：
 

@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 02/07/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 23c49393a115d9cd0ac3a1b0f146e9dcc780347e
-ms.openlocfilehash: 42be5d71d8f22a2eb06f7ca0ebd4c33fb3d8bebe
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 025e8c9e575123a3ad9863a35061ebd0af212486
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -138,6 +138,16 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 
 
 - - -
+## <a name="security"></a>安全性
+**問︰帳戶會在特定次數的嘗試失敗之後鎖定，或者是否使用更複雜的策略？**</br>
+我們使用更複雜的策略來鎖定帳戶。  此策略是以要求的 IP 和所輸入的密碼為基礎。 鎖定持續期間也會根據它是攻擊的可能性而加長。  
+
+**問︰有些 (通用) 密碼遭到拒絕並出現「此密碼已使用許多次」訊息，這是指使用於目前 Active Directory 的密碼嗎？**</br>
+這是指全域通用的密碼，例如 “Password” 和 “123456” 的任何變體。
+
+**問︰來自可疑來源 (殭屍網路、Tor 端點) 的登入要求是否會在 B2C 租用戶中遭到封鎖，或者需要基本或進階版本租用戶？**</br>
+我們沒有適用於所有 B2C 租用戶的閘道，可篩選要求並提供殭屍網路的一些防護功能。 
+
 ## <a name="application-access"></a>應用程式存取
 **問︰哪裡可以找到與 Azure AD 預先整合的應用程式及其功能的清單？**
 

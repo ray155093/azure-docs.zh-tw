@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/17/2016
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: c239c12dd9fcc849a6b90ec379ebb8690bd049fc
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 7d0c5f83d907af9109e27d69806d6106d4bc3214
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -47,7 +47,7 @@ ms.lasthandoff: 03/17/2017
 區別機密用戶端與公開用戶端相當重要。 如需不同類型用戶端的詳細資訊，請參閱 [RFC 6749](https://tools.ietf.org/html/rfc6749#section-2.1)。
 
 #### <a name="token-lifetimes-with-confidential-client-refresh-tokens"></a>具有機密用戶端重新整理權杖的權杖存留期
-機密用戶端是可以安全地儲存用戶端密碼的應用程式。 它們可以證明要求是來自用戶端應用程式，而不是來自惡意的執行者。 例如，Web 應用程式是機密用戶端，因為它可在 Web 伺服器上儲存用戶端密碼。 它不是公開的。 因為這些流程較安全，所以簽發給這些流程的重新整理權杖預設存留期會較長，並且無法使用原則來變更。
+機密用戶端是可以安全地儲存用戶端密碼的應用程式。 它們可以證明要求是來自用戶端應用程式，而不是來自惡意的執行者。 例如，Web 應用程式是機密用戶端，因為它可在 Web 伺服器上儲存用戶端密碼。 它不是公開的。 因為這些流程較安全，所以簽發給這些流程的重新整理權杖預設存留期為 `until-revoked`、無法使用原則來變更，而且將不會在自發性密碼重設中撤銷。
 
 #### <a name="token-lifetimes-with-public-client-refresh-tokens"></a>具有公開用戶端重新整理權杖的權杖存留期
 
@@ -203,7 +203,7 @@ Azure AD 會使用兩種 SSO 工作階段權杖︰持續性和非持續性。 �
     Connect-AzureAD -Confirm
     ```
 
-3. 若要查看在組織中建立的所有原則，請執行下列命令。 在下列案例中的大多數操作之後，執行此命令。 執行命令也會協助您取得原則的 **ObjectId**。
+3. 若要查看在組織中建立的所有原則，請執行下列命令。 在下列案例中的大多數操作之後，執行此命令。 執行命令也會協助您取得原則的 ** **。
 
     ```PowerShell
     Get-AzureADPolicy
@@ -243,9 +243,8 @@ Azure AD 會使用兩種 SSO 工作階段權杖︰持續性和非持續性。 �
     您可能會決定您在此範例中設定的第一個原則不若您的服務所需的那樣嚴格。 若要設定單一要素重新整理權杖在兩天內過期，請執行下列命令︰
 
     ```PowerShell
-    Set-AzureADPolicy -ObjectId <ObjectId FROM GET COMMAND> -DisplayName "OrganizationDefaultPolicyUpdatedScenario" -Definition @('{"TokenLifetimePolicy":{"Version":1,"MaxAgeSingleFactor":"2.00:00:00"}}')
+    Set-AzureADPolicy -Id <ObjectId FROM GET COMMAND> -DisplayName "OrganizationDefaultPolicyUpdatedScenario" -Definition @('{"TokenLifetimePolicy":{"Version":1,"MaxAgeSingleFactor":"2.00:00:00"}}')
     ```
-
 
 ### <a name="example-create-a-policy-for-web-sign-in"></a>範例：為 Web 登入建立原則
 
@@ -274,7 +273,7 @@ Azure AD 會使用兩種 SSO 工作階段權杖︰持續性和非持續性。 �
     2.  當您有服務主體的 **ObjectId** 時，執行下列命令︰
 
         ```PowerShell
-        Add-AzureADServicePrincipalPolicy -ObjectId <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
+        Add-AzureADServicePrincipalPolicy -Id <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
         ```
 
 
@@ -300,7 +299,7 @@ Azure AD 會使用兩種 SSO 工作階段權杖︰持續性和非持續性。 �
    有了應用程式的 **ObjectId** 之後，請執行下列命令：
 
         ```PowerShell
-        Add-AzureADApplicationPolicy -ObjectId <ObjectId of the Application> -RefObjectId <ObjectId of the Policy>
+        Add-AzureADApplicationPolicy -Id <ObjectId of the Application> -RefObjectId <ObjectId of the Policy>
         ```
 
 
@@ -330,13 +329,13 @@ Azure AD 會使用兩種 SSO 工作階段權杖︰持續性和非持續性。 �
     2.  當您有服務主體的 **ObjectId** 時，執行下列命令︰
 
             ```PowerShell
-            Add-AzureADServicePrincipalPolicy -ObjectId <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
+            Add-AzureADServicePrincipalPolicy -Id <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
             ```
         
 3. 將 `IsOrganizationDefault` 旗標設為 false：
 
     ```PowerShell
-    Set-AzureADPolicy -ObjectId <ObjectId of Policy> -DisplayName "ComplexPolicyScenario" -IsOrganizationDefault $false
+    Set-AzureADPolicy -Id <ObjectId of Policy> -DisplayName "ComplexPolicyScenario" -IsOrganizationDefault $false
     ```
 
 4. 建立新的組織預設原則：
@@ -380,7 +379,7 @@ Get-AzureADPolicy
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| <code>&#8209;ObjectId</code> [選用] |您想要之原則的 **ObjectId**。 |`-ObjectId <ObjectId of Policy>` |
+| <code>&#8209;Id</code> [選用] |您想要之原則的 **ObjectId (Id)**。 |`-Id <ObjectId of Policy>` |
 
 </br></br>
 
@@ -388,12 +387,12 @@ Get-AzureADPolicy
 取得與原則連結的所有應用程式和服務主體。
 
 ```PowerShell
-Get-AzureADPolicyAppliedObject -ObjectId <ObjectId of Policy>
+Get-AzureADPolicyAppliedObject -Id <ObjectId of Policy>
 ```
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| <code>&#8209;ObjectId</code> |您想要之原則的 **ObjectId**。 |`-ObjectId <ObjectId of Policy>` |
+| <code>&#8209;Id</code> |您想要之原則的 **ObjectId (Id)**。 |`-Id <ObjectId of Policy>` |
 
 </br></br>
 
@@ -401,12 +400,12 @@ Get-AzureADPolicyAppliedObject -ObjectId <ObjectId of Policy>
 更新現有的原則。
 
 ```PowerShell
-Set-AzureADPolicy -ObjectId <ObjectId of Policy> -DisplayName <string>
+Set-AzureADPolicy -Id <ObjectId of Policy> -DisplayName <string>
 ```
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| <code>&#8209;ObjectId</code> |您想要之原則的 **ObjectId**。 |`-ObjectId <ObjectId of Policy>` |
+| <code>&#8209;Id</code> |您想要之原則的 **ObjectId (Id)**。 |`-Id <ObjectId of Policy>` |
 | <code>&#8209;DisplayName</code> |原則名稱的字串。 |`-DisplayName "MyTokenPolicy"` |
 | <code>&#8209;Definition</code> [選用] |字串化 JSON 的陣列，包含所有原則的規則。 |`-Definition @('{"TokenLifetimePolicy":{"Version":1,"MaxInactiveTime":"20:00:00"}}')` |
 | <code>&#8209;IsOrganizationDefault</code> [選用] |如果為 true，就會將原則設定為組織的預設原則。 如果為 false，則不會執行任何動作。 |`-IsOrganizationDefault $true` |
@@ -419,12 +418,12 @@ Set-AzureADPolicy -ObjectId <ObjectId of Policy> -DisplayName <string>
 刪除指定的原則。
 
 ```PowerShell
- Remove-AzureADPolicy -ObjectId <ObjectId of Policy>
+ Remove-AzureADPolicy -Id <ObjectId of Policy>
 ```
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| <code>&#8209;ObjectId</code> |您想要之原則的 **ObjectId**。 | `-ObjectId <ObjectId of Policy>` |
+| <code>&#8209;Id</code> |您想要之原則的 **ObjectId (Id)**。 | `-Id <ObjectId of Policy>` |
 
 </br></br>
 
@@ -435,12 +434,12 @@ Set-AzureADPolicy -ObjectId <ObjectId of Policy> -DisplayName <string>
 將指定的原則連結至應用程式。
 
 ```PowerShell
-Add-AzureADApplicationPolicy -ObjectId <ObjectId of Application> -RefObjectId <ObjectId of Policy>
+Add-AzureADApplicationPolicy -Id <ObjectId of Application> -RefObjectId <ObjectId of Policy>
 ```
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| <code>&#8209;ObjectId</code> |應用程式的 **ObjectId**。 | `-ObjectId <ObjectId of Application>` |
+| <code>&#8209;Id</code> |應用程式的 **ObjectId (Id)**。 | `-Id <ObjectId of Application>` |
 | <code>&#8209;RefObjectId</code> |原則的 **ObjectId**。 | `-RefObjectId <ObjectId of Policy>` |
 
 </br></br>
@@ -449,12 +448,12 @@ Add-AzureADApplicationPolicy -ObjectId <ObjectId of Application> -RefObjectId <O
 取得指派給應用程式的原則。
 
 ```PowerShell
-Get-AzureADApplicationPolicy -ObjectId <ObjectId of Application>
+Get-AzureADApplicationPolicy -Id <ObjectId of Application>
 ```
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| <code>&#8209;ObjectId</code> |應用程式的 **ObjectId**。 | `-ObjectId <ObjectId of Application>` |
+| <code>&#8209;Id</code> |應用程式的 **ObjectId (Id)**。 | `-Id <ObjectId of Application>` |
 
 </br></br>
 
@@ -462,12 +461,12 @@ Get-AzureADApplicationPolicy -ObjectId <ObjectId of Application>
 從應用程式移除原則。
 
 ```PowerShell
-Remove-AzureADApplicationPolicy -ObjectId <ObjectId of Application> -PolicyId <ObjectId of Policy>
+Remove-AzureADApplicationPolicy -Id <ObjectId of Application> -PolicyId <ObjectId of Policy>
 ```
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| <code>&#8209;ObjectId</code> |應用程式的 **ObjectId**。 | `-ObjectId <ObjectId of Application>` |
+| <code>&#8209;Id</code> |應用程式的 **ObjectId (Id)**。 | `-Id <ObjectId of Application>` |
 | <code>&#8209;PolicyId</code> |原則的 **ObjectId**。 | `-PolicyId <ObjectId of Policy>` |
 
 </br></br>
@@ -479,12 +478,12 @@ Remove-AzureADApplicationPolicy -ObjectId <ObjectId of Application> -PolicyId <O
 將指定的原則連結至服務主體。
 
 ```PowerShell
-Add-AzureADServicePrincipalPolicy -ObjectId <ObjectId of ServicePrincipal> -RefObjectId <ObjectId of Policy>
+Add-AzureADServicePrincipalPolicy -Id <ObjectId of ServicePrincipal> -RefObjectId <ObjectId of Policy>
 ```
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| <code>&#8209;ObjectId</code> |應用程式的 **ObjectId**。 | `-ObjectId <ObjectId of Application>` |
+| <code>&#8209;Id</code> |應用程式的 **ObjectId (Id)**。 | `-Id <ObjectId of Application>` |
 | <code>&#8209;RefObjectId</code> |原則的 **ObjectId**。 | `-RefObjectId <ObjectId of Policy>` |
 
 </br></br>
@@ -493,12 +492,12 @@ Add-AzureADServicePrincipalPolicy -ObjectId <ObjectId of ServicePrincipal> -RefO
 取得與指定的服務主體連結的任何原則。
 
 ```PowerShell
-Get-AzureADServicePrincipalPolicy -ObjectId <ObjectId of ServicePrincipal>
+Get-AzureADServicePrincipalPolicy -Id <ObjectId of ServicePrincipal>
 ```
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| <code>&#8209;ObjectId</code> |應用程式的 **ObjectId**。 | `-ObjectId <ObjectId of Application>` |
+| <code>&#8209;Id</code> |應用程式的 **ObjectId (Id)**。 | `-Id <ObjectId of Application>` |
 
 </br></br>
 
@@ -506,11 +505,11 @@ Get-AzureADServicePrincipalPolicy -ObjectId <ObjectId of ServicePrincipal>
 從指定的服務主體移除原則。
 
 ```PowerShell
-Remove-AzureADServicePrincipalPolicy -ObjectId <ObjectId of ServicePrincipal>  -PolicyId <ObjectId of Policy>
+Remove-AzureADServicePrincipalPolicy -Id <ObjectId of ServicePrincipal>  -PolicyId <ObjectId of Policy>
 ```
 
 | 參數 | 說明 | 範例 |
 | --- | --- | --- |
-| <code>&#8209;ObjectId</code> |應用程式的 **ObjectId**。 | `-ObjectId <ObjectId of Application>` |
+| <code>&#8209;Id</code> |應用程式的 **ObjectId (Id)**。 | `-Id <ObjectId of Application>` |
 | <code>&#8209;PolicyId</code> |原則的 **ObjectId**。 | `-PolicyId <ObjectId of Policy>` |
 

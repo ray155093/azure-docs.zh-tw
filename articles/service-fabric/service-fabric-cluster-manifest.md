@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 2/17/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 4cde82601758c9f92ab36c692265a8b6c192cbdc
-ms.openlocfilehash: eef19d304ec63d752b6b84c78833af44ca5344d2
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: 8192f9e36ebadd41d93ec3c2fa61b05e342d5bc1
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -154,7 +154,7 @@ ClusterConfig.JSON 中的 **properties** 區段用來設定叢集，如下所示
 * serviceConnectionEndpointPort 是節點上部署的應用程式和服務用來與該特定節點的 Service Fabric 用戶端通訊的連接埠。
 * httpGatewayEndpointPort 是 Service Fabric Explorer 用來連線到叢集的連接埠。
 * ephemeralPorts 會覆寫 [OS 所使用的動態連接埠](https://support.microsoft.com/kb/929851)。 Service Fabric 會使用一部分連接埠做為應用程式連接埠，其餘連接埠則可供 OS 使用。 它也會將此範圍對應至 OS 中存在的現有範圍，因此不論用途為何，您都可以使用範例 JSON 檔案中給定的範圍。 您必須確保頭尾連接埠之間相差至少 255。 如果這項差異太低，您可能會遇到衝突，因為這個範圍會與作業系統共用。 請參閱設定的動態連接埠範圍，方法是執行 `netsh int ipv4 show dynamicport tcp`。
-* applicationPorts 是 Service Fabric 應用程式將使用的連接埠。 這些連接埠應為 *ephemeralPorts* 的子集，並足以涵蓋應用程式的端點需求。 Service Fabric 會在每當需要新連接埠時使用這些連接埠，以及負責開啟這些連接埠的防火牆。 
+* applicationPorts 是 Service Fabric 應用程式將使用的連接埠。 應用程式連接埠範圍應該足以涵蓋應用程式的端點需求。 此範圍應該排除於電腦上的動態連接埠範圍 (也就是在組態中設定的 *ephemeralPorts* 範圍) 之外。  Service Fabric 會在每當需要新連接埠時使用這些連接埠，以及負責開啟這些連接埠的防火牆。 
 * reverseProxyEndpointPort 是選擇性的反向 Proxy 端點。 如需詳細資訊，請參閱 [Service Fabric 反向 Proxy](service-fabric-reverseproxy.md)。 
 
 ### <a name="log-settings"></a>記錄設定

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 7427a5740dd7fe32aeb4d8396568706399c66bd7
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: f09c231baecf2452a6e3abd196748629f13885ff
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -60,7 +60,7 @@ ms.lasthandoff: 03/15/2017
 |----|----|----|
 |執行持續時間|90 天||
 |儲存體保留期|90 天|從執行開始時間算起|
-|最小循環間隔|1 秒|| 搭配 App Service 方案的邏輯應用程式&15; 秒
+|最小循環間隔|1 秒|| 搭配 App Service 方案的邏輯應用程式 15 秒
 |最大循環間隔|500 天||
 
 
@@ -70,9 +70,9 @@ ms.lasthandoff: 03/15/2017
 
 |Name|限制|注意事項|
 |----|----|----|
-|ForEach 項目|5,000|您可以視需要使用 [查詢動作](../connectors/connectors-native-query.md) 篩選較大的陣列|
+|ForEach 項目|100,000|您可以視需要使用 [查詢動作](../connectors/connectors-native-query.md) 篩選較大的陣列|
 |反覆運算之前|5,000||
-|SplitOn 項目|5,000||
+|SplitOn 項目|100,000||
 |ForEach 平行處理原則|20|您可以藉由在 `foreach` 動作新增 `"operationOptions": "Sequential"` 以設定為循序 foreach|
 
 
@@ -82,8 +82,9 @@ ms.lasthandoff: 03/15/2017
 
 |Name|限制|注意事項|
 |----|----|----|
-|每秒的動作執行 (高載)|1,000|可以視需要將工作負載分散在多個應用程式|
-|每小時的動作執行 (持續)|1,000,000|可以視需要將工作負載分散在多個應用程式|
+|每 5 分鐘的動作執行 |100,000|可以視需要將工作負載分散在多個應用程式|
+
+如果您預期在正常處理時會超過此限制，或者想要執行可能超過此限制的負載測試一段時間，請[與我們連絡](mailto://logicappsemail@microsoft.com)，讓我們可以協助您的需求。
 
 ### <a name="definition-limits"></a>定義限制
 

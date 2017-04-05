@@ -15,9 +15,9 @@ ms.workload: integration
 ms.date: 03/14/2017
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: cbe7011f827418c1094c4e262e016cb93d6d224c
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: dcf089d680249d0a2f9d748b315076d91c8c78e8
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -70,6 +70,7 @@ Azure Logic Apps 針對不同的服務提供了彈性的協調流程和整合功
 
 邏輯應用程式也提供與許多服務 (例如 Azure Functions、Azure API 管理、Azure App Service) 和自訂 HTTP 端點 (例如 REST 和 SOAP) 的整合。
 
+* [使用 Azure 無伺服器建立即時社交儀表板](logic-apps-scenario-social-serverless.md)
 * [從邏輯應用程式呼叫 Azure Functions](../logic-apps/logic-apps-azure-functions.md)
 * [案例：使用 Azure Functions 觸發邏輯應用程式](logic-apps-scenario-function-sb-trigger.md)
 * [部落格︰從邏輯應用程式呼叫 SOAP 端點](https://blogs.msdn.microsoft.com/logicapps/2016/04/07/using-soap-services-with-logic-apps/)

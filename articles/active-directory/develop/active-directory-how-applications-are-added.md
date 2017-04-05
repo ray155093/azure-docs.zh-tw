@@ -15,8 +15,9 @@ ms.workload: identity
 ms.date: 02/09/2016
 ms.author: shoatman
 translationtype: Human Translation
-ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
-ms.openlocfilehash: ceb16b1431d689fb7d56c4dd588b50914357680a
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 65c8a2c020d5ef7ce47905927a248b9e73d2ed1b
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -131,7 +132,7 @@ ms.openlocfilehash: ceb16b1431d689fb7d56c4dd588b50914357680a
 深入了解如何將應用程式加入 Azure AD，以及如何設定應用程式的服務。
 
 * 開發人員： [了解如何整合應用程式與 AAD](https://msdn.microsoft.com/library/azure/dn151122.aspx)
-* 開發人員： [檢閱在 Github 上與 Azure Active Directory 整合的應用程式範例程式碼](https://github.com/AzureADSamples)
+* 開發人員：[檢閱在 GitHub 上與 Azure Active Directory 整合的應用程式範例程式碼](https://github.com/AzureADSamples)
 * 開發人員和 IT 專業人員： [檢閱 Azure Active Directory Graph API 的 REST API 文件](https://msdn.microsoft.com/library/azure/hh974478.aspx)
 * IT 專業人員： [了解如何使用應用程式庫的 Azure Active Directory 預先整合應用程式](https://msdn.microsoft.com/library/azure/dn308590.aspx)
 * IT 專業人員： [尋找設定特定預先整合應用程式的教學課程](https://msdn.microsoft.com/library/azure/dn893637.aspx)
@@ -143,9 +144,4 @@ ms.openlocfilehash: ceb16b1431d689fb7d56c4dd588b50914357680a
 <!--Image references-->
 [apps_service_principals_directory]:../media/active-directory-how-applications-are-added/HowAppsAreAddedToAAD.jpg
 [app_settings]:../media/active-directory-how-applications-are-added/IntegratedAppSettings.jpg
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

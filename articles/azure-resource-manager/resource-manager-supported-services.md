@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/20/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 46eb4a20c85140a7893d77984f375d6abf3e7634
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: 7dc5143086e3a73e0536408a41468b8cdd40bd12
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -38,7 +38,7 @@ ms.lasthandoff: 03/22/2017
 | 容器服務 |是 |[Container Service REST](/rest/api/compute/containerservices) |[Container Service 資源](/azure/templates/microsoft.containerservice/containerservices) |
 | Dynamics 週期服務 |是 | | |
 | 擴展集 |是 |[擴展集 REST](/rest/api/compute/virtualmachinescalesets) |[擴展集資源](/azure/templates/microsoft.compute/virtualmachinescalesets) |
-| Service Fabric |是 |[Service Fabric Rest](/rest/api/servicefabric) | [Service Fabric 結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2016-09-01/Microsoft.ServiceFabric.json) |
+| Service Fabric |是 |[Service Fabric Rest](/rest/api/servicefabric) | [Service Fabric 資源](/azure/templates/microsoft.servicefabric/clusters) |
 | 虛擬機器 |是 |[VM REST](/rest/api/compute/virtualmachines) |[VM 資源](/azure/templates/microsoft.compute/virtualmachines) |
 | 虛擬機器 (傳統) |限制 |- |- |
 | 遠端應用程式 |否 |- |- |
@@ -117,11 +117,11 @@ ms.lasthandoff: 03/22/2017
 | CDN |是 |[CDN REST](/rest/api/cdn) |[CDN 資源](/azure/templates/microsoft.cdn/profiles) |
 | 媒體服務 |是 |[媒體服務 REST](/rest/api/media) |[媒體資源](/azure/templates/microsoft.media/mediaservices) |
 
-## <a name="hybrid-integration"></a>混合式整合
+## <a name="enterprise-integration"></a>企業整合
 | 服務 | 已啟用資源管理員 | REST API | 範本格式 |
 | --- | --- | --- | --- |
 | BizTalk 服務 |是 | |[BizTalk 結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2014-04-01/Microsoft.BizTalkServices.json) |
-| 復原服務 |是 |[復原服務 REST](/rest/api/recoveryservices) |[復原服務資源](/azure/templates/microsoft.recoveryservices/vaults) |
+| 轉送 | 是 |  | [轉送資源](/azure/templates/microsoft.relay/namespaces) |
 | 服務匯流排 |是 |[服務匯流排 REST](/rest/api/servicebus) |[服務匯流排資源](/azure/templates/microsoft.servicebus/namespaces) |
 
 ## <a name="identity--access-management"></a>身分識別與存取管理
@@ -139,10 +139,11 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 | 服務 | 已啟用資源管理員 | REST API | 範本格式 |
 | --- | --- | --- | --- |
 | 建議程式 | 是 | [Advisor REST](/rest/api/advisor/) | - |
-| 自動化 |是 |[自動化 REST](https://msdn.microsoft.com/library/azure/mt662285.aspx) |[自動化結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2015-10-31/Microsoft.Automation.json) |
+| 自動化 |是 |[自動化 REST](https://msdn.microsoft.com/library/azure/mt662285.aspx) |[自動化資源](/azure/templates/microsoft.automation/automationaccounts) |
 | 計費 | 是 | [計費 REST](/rest/api/billing/) | - |
 | 金鑰保存庫 |是 |[金鑰保存庫 REST](/rest/api/keyvault) |[Key Vault 資源](/azure/templates/microsoft.keyvault/vaults) |
 | Operational Insights |是 | | |
+| 復原服務 |是 |[復原服務 REST](/rest/api/recoveryservices) |[復原服務資源](/azure/templates/microsoft.recoveryservices/vaults) |
 | 排程器 |是 |[排程器 REST](/rest/api/scheduler) |[排程器資源](/azure/templates/microsoft.scheduler/jobcollections) |
 | 安全性 |是 |[安全性 REST](https://msdn.microsoft.com/library/azure/mt704034.aspx) | |
 | 伺服器管理 | 是 | [伺服器管理 REST](/rest/api/servermanagement/) | [伺服器管理資源](/azure/templates/microsoft.servermanagement/gateways) |

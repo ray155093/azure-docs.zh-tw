@@ -13,45 +13,43 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-multiple
 ms.devlang: multiple
 ms.topic: article
-ms.date: 10/03/2016
+ms.date: 01/19/2017
 ms.author: yuaxu
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 7f76f8786bf08e4aacc63758260202fe7e1a832f
-ms.lasthandoff: 12/08/2016
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 9f0e7f071f1aa8fdd95c4959eae884afc60644e9
+ms.lasthandoff: 03/25/2017
 
 
 ---
 # <a name="push-notifications-with-azure-notification-hubs---frequently-asked-questions"></a>使用 Azure 通知中樞推播通知 - 常見問題集 (FAQ)
 ## <a name="general"></a>一般
-### <a name="1----what-is-the-price-model-for-notification-hubs"></a>1.  「通知中樞」的價格模式為何？
-通知中樞提供以下三種層次：
+### <a name="0--what-is-the-resource-structure-of-notification-hubs"></a>0.通知中樞的資源結構為何？
 
-* **免費** - 每個訂用帳戶一個月可取得最多 100 萬次推播。
-* **基本** - 每個訂用帳戶一個月可取得 1000 萬次推播做為基準，具有配額成長選項。
-* **標準** - 每個訂用帳戶一個月可取得 1000 萬次推播做為基準，具有配額成長選項，再加上豐富的遙測功能。
+通知中樞有兩個資源層級，分別是中樞和命名空間。 中樞是單一推播資源，可包含一個應用程式的跨平台推播資訊。 命名空間是一個區域中多個中樞的集合。
 
-如需最新的詳細資訊，請參閱 [通知中樞價格] 頁面。 價格依訂用帳戶層級制定，而且是以推播通知起始次數為基礎，因此您在 Azure 訂用帳戶中建立多少命名空間或通知中樞並不重要。
+一般的建議對應會放置一個命名空間來與一個應用程式配對。 在命名空間內，您可以有一個生產中樞來與生產應用程式搭配運作，以及一個測試中樞來與測試應用程式搭配運作，依此類推。
 
-**免費** 層次是針對開發用途所提供，而且不提供 SLA 保證。 對於那些想要透過 Azure 通知中樞探索推播通知功能的使用者，雖然這一層可能是個不錯的起點，但可能不是中型到大型應用程式的最佳選擇。
+### <a name="1--what-is-the-price-model-for-notification-hubs"></a>1.「通知中樞」的價格模式為何？
+如需最新的詳細資訊，請參閱 [通知中樞價格] 頁面。 通知中樞會在命名空間層級計費 (請參閱上面的資源結構以了解命名空間為何)，並提供三個層級︰
 
-「基本」**基本**與「標準」 & **標準**層是針對生產用途提供，而且下列主要功能*僅針對「標準」層*啟用：
+* **免費** - 這是適合作為瀏覽推播功能的起點，但不建議用於生產應用程式。 此層級每月可在每個命名空間中包含 500 個裝置和 100 萬個推播，但沒有 SLA 保證。
+* **基本** - 較小型的生產應用程式建議使用這個層級或標準層級。 此層級基本上每月可在每個命名空間中包含 20 萬個裝置和 1000 萬個推播，並有增加配額的選項。
+* **標準** - 中大型的生產應用程式建議使用此層級。 此層級基本上每月可在每個命名空間中包含 1000 萬個裝置和 1000 萬個推播，並有增加配額的選項，以及豐富的遙測功能。
 
-* *豐富遙測* - 通知中樞提供許多功能，可匯出遙測資料以及推播通知註冊資訊，以供離線檢視和分析。
-* *多租用戶* - 如果您目前使用通知中樞建立行動應用程式來支援多租用戶，則適合使用此功能。 這樣可讓您針對應用程式在「通知中樞」命名空間層級設定推播通知服務 (PNS) 認證，而且您可以接著將租用戶隔離，在此通用命名空間下為其提供個別中樞。 這樣可以簡化維護程序，同時保留 SAS 金鑰以從針對每個租用戶隔離的通知中樞傳送及接收推播通知，確保不會發生跨租用戶重疊的情況。
-* *排定推送* - 可讓您排程推播通知，而推播通知會接著排入佇列並加以傳送。
-* *大量匯入* - 可讓您匯入大量的註冊。
+以下是一些不錯的標準層級功能︰
+* *豐富的遙測* - 通知中樞提供依訊息遙測來追蹤任何推播要求和要偵錯的平台通知系統意見反應。
+* *多租用戶* - 您可以在命名空間層級上使用平台通知系統 (PNS) 認證。 這可讓您在相同的命名空間內輕鬆地將租用戶分割成多個中樞。
+* *排定推播* - 您可以排程在任何時間傳送通知。
 
-### <a name="2----what-is-the-notification-hubs-sla"></a>2.  什麼是通知中樞 SLA？
-對於**「基本」**與**「標準」**通知中樞層次，我們保證已正確設定的應用程式至少有 99.9% 的時間可以傳送推播通知或執行註冊管理作業 (對於部署在支援的層次內的通知中樞)。 若要深入了解我們的 SLA，請瀏覽 [通知中樞 SLA] 頁面。
+### <a name="2--what-is-the-notification-hubs-sla"></a>2.什麼是通知中樞 SLA？
+對於**「基本」**與**「標準」**通知中樞層次，我們保證已正確設定的應用程式至少有 99.9% 的時間可以傳送推播通知或執行註冊管理作業 (對於部署在支援的層次內的通知中樞)。 若要深入了解我們的 SLA，請瀏覽 [通知中樞 SLA](https://azure.microsoft.com/support/legal/sla/notification-hubs/) 頁面。
 
 > [!NOTE]
-> 沒有任何 SLA 保證「平台通知服務」與裝置之間不會發生延遲，因為「通知中樞」依賴外部平台提供者將推播通知傳送至裝置。
-> 
-> 
+> 因為推播通知依存於第 3 方平台通知系統 (Apple 的 APNS、Google 的 FCM 等)，因此這些訊息的傳遞沒有 SLA 保證。 通知中樞將傳送作業批次送到 PNS (有 SLA 保證) 後，便會由 PNS 傳遞推播 (沒有 SLA 保證)。
 
-### <a name="3----which-customers-are-using-notification-hubs"></a>3.  客戶如何使用通知中樞？
-我們有大量使用「通知中樞」的客戶，其中比較著名的有：
+### <a name="3--which-customers-are-using-notification-hubs"></a>3.客戶如何使用通知中樞？
+我們有大量使用「通知中樞」的客戶，以下列出部分較知名者：
 
 * 索契 2014 – 100 個以上的興趣群組、3 百萬部以上的裝置、1.5 億則以上的通知 (在 2 週內傳送)。 [案例研究 - 索契]
 * Skanska - [案例研究 - Skanska]
@@ -60,20 +58,21 @@ ms.lasthandoff: 12/08/2016
 * 7Digital - [案例研究 - 7Digital]
 * Bing 應用程式 – 1 千萬部以上的裝置、每日傳送 3 百萬則通知。
 
-### <a name="4-how-do-i-upgrade-or-downgrade-my-notification-hubs-to-change-my-service-tier"></a>4.如何升級或降級我的通知中樞來變更服務層級？
-前往 [Azure 傳統入口網站]，按一下 [服務匯流排]，然後依序按一下您的命名空間與通知中樞。 在 [調整] 索引標籤下，您可以變更通知中樞服務層級。
+### <a name="4-how-do-i-upgrade-or-downgrade-my-hub-or-namespace-to-a-different-tier"></a>4.如何將中樞或命名空間升級或降級為不同層級？
+移至 [Azure 入口網站]通知中樞命名空間或通知中樞，按一下您想要更新的資源，然後移至導覽上的 [定價層]。 您可以更新為任何您想要的層級，但有一些注意事項︰
+* 更新後的定價層會套用至您正在使用之命名空間中的「所有」中樞。
+* 如果您要降級，而裝置數超過您嘗試要降級為之層級的限制，則必須先刪除裝置以符合限制，然後才能降級。
 
-![](./media/notification-hubs-faq/notification-hubs-classic-portal-scale.png)
 
 ## <a name="design--development"></a>設計與開發
-### <a name="1----which-server-side-platforms-do-you-support"></a>1.  支援哪些伺服器端平台？
-我們提供 .NET、Java、PHP、Python、Node.js 的 SDK 與 [完整範例] ，因此您可以使用上述任一平台設定應用程式後端以便與「通知中樞」通訊。 通知中樞 API 是以 REST 介面為基礎，如果您不想新增額外的相依性，可以選擇直接與其通訊。 您可以在 [NH - REST APIs] 頁面找到更多詳細資料。
+### <a name="1--which-server-side-platforms-do-you-support"></a>1.支援哪些伺服器端平台？
+我們有適用於 .NET、Java、Node.js、PHP 和 Python 的伺服器 SDK。 此外，通知中樞 API 是以 REST 介面為根據，因此如果您要使用不同平台或不想要額外的相依性，則可以選擇直接使用 REST API。 您可以在 [NH - REST API][] 頁面上看到更多詳細資料。
 
-### <a name="2----which-client-platforms-do-you-support"></a>2.  支援哪些用戶端平台？
-我們支援將推播通知傳送到 [Apple iOS](notification-hubs-ios-apple-push-notification-apns-get-started.md)、[Android](notification-hubs-android-push-notification-google-gcm-get-started.md)、[Windows Universal](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)、[Windows Phone](notification-hubs-windows-mobile-push-notifications-mpns.md)、[Kindle](notification-hubs-kindle-amazon-adm-push-notification.md)、[Android China (由百度開發)](notification-hubs-baidu-china-android-notifications-get-started.md)、Xamarin ([iOS](xamarin-notification-hubs-ios-push-notification-apns-get-started.md) & [Android](xamarin-notification-hubs-push-notifications-android-gcm.md))、[Chrome Apps](notification-hubs-chrome-push-notifications-get-started.md) 和 [Safari](https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToSafari) 平台。 如需在這些平台上傳送推播通知的開始使用教學課程完整清單，請瀏覽 [NH - 開始使用教學課程] 頁面。
+### <a name="2--which-client-platforms-do-you-support"></a>2.支援哪些用戶端平台？
+我們支援將推播通知傳送到 [iOS](notification-hubs-ios-apple-push-notification-apns-get-started.md)、[Android](notification-hubs-android-push-notification-google-gcm-get-started.md)、[Windows Universal](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)、[Windows Phone](notification-hubs-windows-mobile-push-notifications-mpns.md)、[Kindle](notification-hubs-kindle-amazon-adm-push-notification.md)、[Android China (由百度開發)](notification-hubs-baidu-china-android-notifications-get-started.md)、Xamarin ([iOS](xamarin-notification-hubs-ios-push-notification-apns-get-started.md) & [Android](xamarin-notification-hubs-push-notifications-android-gcm.md))、[Chrome Apps](notification-hubs-chrome-push-notifications-get-started.md) 和 [Safari](https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToSafari)。 如需詳細資訊，請參閱 [使用者入門教學課程] 頁面。
 
-### <a name="3----do-you-support-smsemailweb-notifications"></a>3.  是否支援簡訊/電子郵件/Web 通知？
-「通知中樞」主要設計來傳送通知給使用上述平台的行動裝置應用程式。 我們尚未提供傳送電子郵件或簡訊警示的功能，但是您可以將提供這些功能的協力廠商平台與「通知中樞」整合，以使用 [Azure Mobile Apps]來傳送原生推播通知。
+### <a name="3--do-you-support-smsemailweb-notifications"></a>3.是否支援簡訊/電子郵件/Web 通知？
+「通知中樞」主要設計來傳送通知給行動裝置應用程式，並未提供電子郵件或簡訊功能。 但是您可以將提供這些功能的第三方平台與「通知中樞」整合，以使用 [Azure Mobile Apps] 來傳送原生推播通知。
 
 通知中樞也不提供現成可用的瀏覽器中推播通知傳送服務。 客戶可以在支援的伺服器端平台上，選擇使用 SignalR 來實作此功能。 如果您想要在 Chrome 沙箱中將通知傳送至瀏覽器應用程式，請參閱 [Chrome 應用程式教學課程]。
 
@@ -96,7 +95,7 @@ ms.lasthandoff: 12/08/2016
 我們現有的客戶每天使用通知中樞來傳送數百萬則推播通知。 只要使用 Azure 通知中樞，您就不需要採取任何特別動作來調整推播通知可及範圍。
 
 ### <a name="7----how-long-does-it-take-for-sent-push-notifications-to-reach-my-device"></a>7.  送出的推播通知多久才會到達我的裝置？
-在一般使用案例中，「Azure 通知中樞」能在&1; 分鐘處理至少&1; 百萬個推播通知傳送作業  ，能處理的連入負載數目大致上差不多，而且在本質上並不難處理。 此速率可能視標記數目、連入傳送作業本質和其他外部因子而異。
+在一般使用案例中，「Azure 通知中樞」能在 1 分鐘處理至少 1 百萬個推播通知傳送作業  ，能處理的連入負載數目大致上差不多，而且在本質上並不難處理。 此速率可能視標記數目、連入傳送作業本質和其他外部因子而異。
 
 在預估的傳遞時間內，服務能計算每個平台的目標數，並根據已註冊的標記/標記運算式將訊息路由傳送到對應的推播通知傳送服務。 從這裡開始，傳送通知到裝置是推播通知服務 (PNS) 的責任。
 
@@ -160,8 +159,8 @@ Azure 通知中樞使用[共用存取簽章 (SAS)](../storage/storage-dotnet-sha
 ### <a name="1----what-is-the-disaster-recovery-dr-story"></a>1.  災害復原 (DR) 是什麼？
 我們在我們這邊提供中繼資料災害復原範圍 (通知中樞名稱、連接字串和其他重要資訊)。 觸發 DR 案例後，註冊資料是通知中樞基礎結構中唯一會遺失的區段  。 您必須實作解決方案，將此資料重新填入到復原後的新中樞。
 
-* *步驟&1;* - 在不同的資料中心建立次要通知中樞。 您可以在發生 DR 事件時建立此通知中樞，或一開始就建立。 您選擇哪一個選項並沒有很大的差別。因為通知中樞佈建是相當快速的程序，大約只需要數秒的時間。 一開始就建立通知中樞將能避免 DR 事件影響我們的管理功能，因此強烈建議您這樣做。
-* *步驟&2;* - 將來自主要通知中樞的註冊移往次要通知中樞。 建議您不要嘗試在兩個中樞上維護註冊，而應該在收到註冊時進行同步，因為註冊會在 PNS 端到期的固有傾向，第一種方式通常無法正確運作。 當我們收到有關已到期或無效註冊的 PNS 回應時，「通知中樞」會將它們清除。  
+* *步驟 1* - 在不同的資料中心建立次要通知中樞。 您可以在發生 DR 事件時建立此通知中樞，或一開始就建立。 您選擇哪一個選項並沒有很大的差別。因為通知中樞佈建是相當快速的程序，大約只需要數秒的時間。 一開始就建立通知中樞將能避免 DR 事件影響我們的管理功能，因此強烈建議您這樣做。
+* *步驟 2* - 將來自主要通知中樞的註冊移往次要通知中樞。 建議您不要嘗試在兩個中樞上維護註冊，而應該在收到註冊時進行同步，因為註冊會在 PNS 端到期的固有傾向，第一種方式通常無法正確運作。 當我們收到有關已到期或無效註冊的 PNS 回應時，「通知中樞」會將它們清除。  
 
 建議您使用會執行下列任一動作的應用程式後端：
 
@@ -199,14 +198,14 @@ Azure 通知中樞提供數個功能，可進行常見的疑難排解，特別�
 
 [Azure 傳統入口網站]: https://manage.windowsazure.com
 [通知中樞價格]: http://azure.microsoft.com/pricing/details/notification-hubs/
-[通知中樞 SLA]: http://azure.microsoft.com/support/legal/sla/
+[Notification Hubs SLA]: http://azure.microsoft.com/support/legal/sla/
 [案例研究 - 索契]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=7942
 [案例研究 - Skanska]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=5847
 [案例研究 - Seattle Times]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=8354
 [案例研究 - Mural.ly]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=11592
 [案例研究 - 7Digital]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=3684
 [NH - REST APIs]: https://msdn.microsoft.com/library/azure/dn530746.aspx
-[NH - 開始使用教學課程]: http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started/
+[NH - Getting Started Tutorials]: http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started/
 [Chrome 應用程式教學課程]: http://azure.microsoft.com/documentation/articles/notification-hubs-chrome-get-started/
 [Mobile Services Pricing]: http://azure.microsoft.com/pricing/details/mobile-services/
 [後端註冊指引]: https://msdn.microsoft.com/library/azure/dn743807.aspx
@@ -217,8 +216,8 @@ Azure 通知中樞提供數個功能，可進行常見的疑難排解，特別�
 [NH - 計量]: https://msdn.microsoft.com/library/dn458822.aspx
 [NH - 計量範例]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/FetchNHTelemetryInExcel
 [註冊匯出/匯入]: https://msdn.microsoft.com/library/dn790624.aspx
-[Azure Portal]: https://portal.azure.com
-[完整範例]: https://github.com/Azure/azure-notificationhubs-samples
-[Azure Mobile Apps]: https://azure.microsoft.com/en-us/services/app-service/mobile/
-[App Service 價格]: https://azure.microsoft.com/en-us/pricing/details/app-service/
+[Azure 入口網站]: https://portal.azure.com
+[complete samples]: https://github.com/Azure/azure-notificationhubs-samples
+[Azure Mobile Apps]: https://azure.microsoft.com/services/app-service/mobile/
+[App Service 價格]: https://azure.microsoft.com/pricing/details/app-service/
 

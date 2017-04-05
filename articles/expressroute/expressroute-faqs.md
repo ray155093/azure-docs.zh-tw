@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/17/2017
+ms.date: 03/29/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 31a267963199518ed6db4610830062099ed0dde4
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 5b7e2d8df2723f77aa8283d9faab22656198ed47
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -109,7 +109,7 @@ ExpressRoute 針對各種服務類型支援[三種路由網域](expressroute-cir
 是。 您可以使用許多服務提供者的 ExpressRoute 電路。 每個 ExpressRoute 電路只會與一個服務提供者產生關聯。 
 
 ### <a name="can-i-have-multiple-expressroute-circuits-in-the-same-location"></a>相同的位置可以有多個 ExpressRoute 線路嗎？
-是。 您在相同的位置可以有多個 ExpressRoute 線路，而且服務提供者相同或不同皆可。 不過，您無法將多個 ExpressRoute 線路連結至相同的虛擬網路。
+是。 您在相同的位置可以有多個 ExpressRoute 線路，而且服務提供者相同或不同皆可。 不過，您無法從相同位置，將多個 ExpressRoute 線路連結至相同的虛擬網路。
 
 ### <a name="how-do-i-connect-my-virtual-networks-to-an-expressroute-circuit"></a>我要如何將虛擬網路連線至 ExpressRoute 電路
 基本步驟說明如下。

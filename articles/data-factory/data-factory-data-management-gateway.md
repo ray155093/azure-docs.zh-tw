@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/25/2017
 ms.author: abnarain
 translationtype: Human Translation
-ms.sourcegitcommit: 3d66640481d8e1f96d3061077f0c97da5fa6bf4e
-ms.openlocfilehash: a0ccdffa5347c4f3cda16ec75b75da3eb3199539
-ms.lasthandoff: 02/02/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: dfa78d1773afd0094ff98a5761a771101016ee13
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -130,28 +130,39 @@ ms.lasthandoff: 02/02/2017
 ### <a name="ports-and-firewall"></a>連接埠和防火牆
 有兩個您需要考量的防火牆：在組織的中央路由器上執行的**公司防火牆**，以及在已安裝閘道的本機電腦上設定為精靈的 **Windows 防火牆**。  
 
-![防火牆](./media/data-factory-data-management-gateway/firewalls.png)
+![防火牆](./media/data-factory-data-management-gateway/firewalls2.png)
 
 在公司防火牆層級，您需要設定下列網域和輸出連接埠：
 
 | 網域名稱 | 連接埠 | 說明 |
 | --- | --- | --- |
-| *.servicebus.windows.net |443、80 |透過 TCP 之服務匯流排轉送上的接聽程式 (需要 443 才能取得「存取控制」權杖) |
-| *.servicebus.windows.net |9350-9354, 5671 |透過 TCP 的選擇性服務匯流排轉送 |
-| *.core.windows.net |443 |HTTPS |
-| *.clouddatahub.net |443 |HTTPS |
-| graph.windows.net |443 |HTTPS |
-| login.windows.net |443 |HTTPS |
+| *.servicebus.windows.net |443、80 |用於與「資料移動服務」後端進行通訊 |
+| *.core.windows.net |443 |用於使用 Azure Blob 的分段複製 (如果已設定)|
+| *frontend.clouddatahub.net |443 |用於與「資料移動服務」後端進行通訊 |
+
 
 Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，您可以在閘道電腦上相應地設定網域和連接埠。
+
+> [!NOTE]
+> 1. 視您的來源/接收器而定，您可能需要將額外的網域和輸出連接埠加到您公司/Windows 防火牆的白名單中。
+> 2. 針對某些「雲端資料庫」(例如 [SQL Azure Database](https://docs.microsoft.com/azure/sql-database/sql-database-configure-firewall-settings)、[Azure Data Lake](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-secure-data#set-ip-address-range-for-data-access) 等)，您可能需要將閘道電腦的 IP 位址加到其防火牆組態的白名單中。
+>
+>
+
 
 #### <a name="copy-data-from-a-source-data-store-to-a-sink-data-store"></a>將資料從來源資料存放區複製到接收資料存放區
 請確定在公司防火牆、閘道機器上的 Windows 防火牆及資料存放區本身都已正確啟用防火牆規則。 啟用這些規則可讓閘道成功連接到來源和接收器。 請為複製作業所涉及的每個資料存放區啟用規則。
 
 例如，若要 **從內部部署資料存放區複製到 Azure SQL Database 接收器或 Azure SQL 資料倉儲接收器**，執行下列步驟︰
 
-* 在 Windows 防火牆或公司防火牆的連接埠 **1433** 上都允許進行輸出 **TCP** 通訊
+* 在 Windows 防火牆和公司防火牆的通訊埠 **1433** 上都允許進行輸出 **TCP** 通訊。
 * 設定 Azure SQL 伺服器的防火牆設定，將閘道機器的 IP 位址新增到允許的 IP 位址清單中。
+
+> [!NOTE]
+> 如果您的防火牆不允許使用輸出連接埠 1433，閘道將無法直接存取 Azure SQL。 在此情況下，您可以使用[分段複製](https://docs.microsoft.com/azure/data-factory/data-factory-copy-activity-performance#staged-copy)來移到 SQL Azure Database/SQL Azure DW。 在此案例中，您只需要 HTTPS (連接埠 443) 即可進行資料移動。
+>
+>
+
 
 ### <a name="proxy-server-considerations"></a>Proxy 伺服器考量
 如果您的公司網路環境使用 Proxy 伺服器來存取網際網路，請將「資料管理閘道」設定為使用適當的 Proxy 設定。 您可以在初始註冊階段期間設定 Proxy。
@@ -186,7 +197,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
 >
 >
 
-### <a name="configure-proxy-server-settings"></a>設定 Proxy 伺服器設定 
+### <a name="configure-proxy-server-settings"></a>設定 Proxy 伺服器設定
 如果您為 HTTP Proxy 選取 [使用系統 Proxy] 設定，閘道就會使用 diahost.exe.config 和 diawp.exe.config 中的 Proxy 設定。  如果 diahost.exe.config 和 diawp.exe.config 中未指定任何 Proxy，閘道就會直接連線到雲端服務而不經由 Proxy。 下列程序說明如何更新 diahost.exe.config 檔案。  
 
 1. 在「檔案總管」中，建立一份 C:\Program Files\Microsoft Data Management Gateway\2.0\Shared\diahost.exe.config 的安全複本來備份原始檔案。
@@ -211,7 +222,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
 
 > [!IMPORTANT]
 > 別忘了「同時」更新 diahost.exe.config 和 diawp.exe.config。  
-     
+
 
 除了這幾點以外，您也必須確定 Microsoft Azure 包含在公司的允許清單中。 如需有效的 Microsoft Azure IP 位址清單，可從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=41653)下載。
 
@@ -260,12 +271,12 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
 1. 在閘道電腦上啟動 Windows PowerShell。
 2. 切換至 C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript 資料夾。
 3. 執行下列命令，將自動更新功能關閉 (停用)。   
-    
+
     ```PowerShell
     .\GatewayAutoUpdateToggle.ps1  -off
     ```
 4. 若要將它重新開啟：
-    
+
     ```PowerShell
     .\GatewayAutoUpdateToggle.ps1  -on  
     ```
@@ -367,8 +378,8 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
                 "connectionString": "data source=myserver;initial catalog=mydatabase;Integrated Security=False;EncryptedCredential=eyJDb25uZWN0aW9uU3R",
                 "gatewayName": "adftutorialgateway"
             }
-        }
-    }
+         }
+     }
     ```
 如果您從閘道器電腦以外的另一台電腦存取入口網站，您必須確定「認證管理員」應用程式可以連接到閘道器電腦。 如果應用程式無法連接閘道器電腦，它不會允許您設定資料來源的認證，以及測試資料來源的連接。  
 
@@ -387,7 +398,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
 
 1. 在系統管理員模式下啟動 **Azure PowerShell** 。
 2. 請執行下列命令並輸入您的 Azure 認證，登入您的 Azure 帳戶。
-    
+
     ```PowerShell
     Login-AzureRmAccount
     ```
@@ -414,7 +425,7 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
     Key               : ADF#00000000-0000-4fb8-a867-947877aef6cb@fda06d87-f446-43b1-9485-78af26b8bab0@4707262b-dc25-4fe5-881c-c8a7c3c569fe@wu#nfU4aBlq/heRyYFZ2Xt/CD+7i73PEO521Sj2AFOCmiI
     ```
 
-1. 在 Azure PowerShell 中，切換到下列資料夾：**C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript\**。執行與本機變數 **$Key** 關聯的 **RegisterGateway.ps1**，如下列命令所示。 此指令碼會向您稍早建立的邏輯閘道註冊您機器上安裝的用戶端代理程式。
+1. 在 Azure PowerShell 中，切換到下列資料夾：**C:\Program Files\Microsoft Data Management Gateway\2.0\PowerShellScript\**。執行與本機變數 **$Key** 關聯的**RegisterGateway.ps1**，如下列命令所示。 此指令碼會向您稍早建立的邏輯閘道註冊您機器上安裝的用戶端代理程式。
 
     ```PowerShell
     PS C:\> .\RegisterGateway.ps1 $MyDMG.Key
@@ -435,13 +446,13 @@ Windows 防火牆層級通常會啟用這些輸出連接埠。 如果沒有，�
 您可以使用 **Remove-AzureRmDataFactoryGateway** Cmdlet 移除閘道器，並使用 **Set-AzureRmDataFactoryGateway** Cmdlet 更新閘道器的說明。 如需這些 Cmdlet 的語法及其他詳細資訊，請參閱 Data Factory Cmdlet 參考文件。  
 
 ### <a name="list-gateways-using-powershell"></a>使用 PowerShell 列出閘道器
-    
+
 ```PowerShell
 Get-AzureRmDataFactoryGateway -DataFactoryName jasoncopyusingstoredprocedure -ResourceGroupName ADF_ResourceGroup
 ```
 
 ### <a name="remove-gateway-using-powershell"></a>使用 PowerShell 移除閘道器
-    
+
 ```PowerShell
 Remove-AzureRmDataFactoryGateway -Name JasonHDMG_byPSRemote -ResourceGroupName ADF_ResourceGroup -DataFactoryName jasoncopyusingstoredprocedure -Force
 ```

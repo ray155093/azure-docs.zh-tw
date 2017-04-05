@@ -15,8 +15,9 @@ ms.workload: integration
 ms.date: 11/11/2016
 ms.author: mezha
 translationtype: Human Translation
-ms.sourcegitcommit: 69c33986f05181460c9eea73295de5721c9ea3cf
-ms.openlocfilehash: 16e87412fd1cbe34ed8a37d6cebcb9395d1c7e36
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 42b182c314795b1ebf69639ec7ac5583208dc7c1
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -132,7 +133,7 @@ ms.openlocfilehash: 16e87412fd1cbe34ed8a37d6cebcb9395d1c7e36
         
     ![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-token-auth/cdn-rules-engine2.png)
 
-5. 您可以自訂權杖，這是可針對權杖型驗證功能產生權杖的應用程式。 原始程式碼可以在 [Github](https://github.com/VerizonDigital/ectoken) 上存取。
+5. 您可以自訂權杖，這是可針對權杖型驗證功能產生權杖的應用程式。 原始程式碼可以在 [GitHub (英文)](https://github.com/VerizonDigital/ectoken) 上存取。
 可用的語言包括：
     
     - C
@@ -146,9 +147,4 @@ ms.openlocfilehash: 16e87412fd1cbe34ed8a37d6cebcb9395d1c7e36
 ## <a name="azure-cdn-features-and-provider-pricing"></a>Azure CDN 功能和提供者定價
 
 請參閱 [CDN 概觀](cdn-overview.md)主題。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

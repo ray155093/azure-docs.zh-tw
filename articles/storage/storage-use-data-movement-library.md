@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/22/2017
 ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: 229007db52de53cd50f4d86c145b87d6c2ecf399
-ms.openlocfilehash: e1baa43957ced78b1e25fd632661be2385530db3
-ms.lasthandoff: 01/28/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 2ba94e4dd931b6d385101c7dadccfa3583b5296e
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -26,9 +26,9 @@ ms.lasthandoff: 01/28/2017
 ## <a name="overview"></a>概觀
 Microsoft Azure 儲存體資料移動程式庫是跨平台的開放原始碼程式庫，設計用來提供 Azure 儲存體 Blob 和檔案的高效能上傳、下載及複製。 這個程式庫是支援 [AzCopy](storage-use-azcopy.md) 的核心資料移動架構。 資料移動程式庫可提供傳統的 [.NET Azure 儲存體用戶端程式庫](storage-dotnet-how-to-use-blobs.md)中並未提供的簡便方法。 這包括設定平行作業數目、追蹤傳輸進度、輕鬆繼續已取消的傳輸等等。  
 
-此程式庫也會使用 .NET Core，這表示您在建置適用於 Windows、Linux 和 MacOS 的 .NET 應用程式時可以使用它。 若要深入了解 .NET Core，請參閱 [.NET Core 文件 (英文)](https://dotnet.github.io/)。 這個程式庫也適用於 Windows 的傳統 .NET 架構應用程式。 
+此程式庫也會使用 .NET Core，這表示您在建置適用於 Windows、Linux 和 macOS 的 .NET 應用程式時可以使用它。 若要深入了解 .NET Core，請參閱 [.NET Core 文件 (英文)](https://dotnet.github.io/)。 這個程式庫也適用於 Windows 的傳統 .NET 架構應用程式。 
 
-本文件將示範如何建立可在 Windows、Linux 和 MacOS 上執行的 .NET Core 主控台應用程式，並執行下列案例：
+本文件將示範如何建立可在 Windows、Linux 和 macOS 上執行的 .NET Core 主控台應用程式，並執行下列案例：
 
 - 將檔案和目錄上傳至 Blob 儲存體。
 - 定義傳輸資料時的平行作業數目。
@@ -581,7 +581,7 @@ public static async Task TransferAzureBlobToAzureBlob(CloudStorageAccount accoun
 現在已經完成資料移動應用程式。 [您可在 GitHub 上取得完整的程式碼範例](https://github.com/azure-samples/storage-dotnet-data-movement-library-app)。 
 
 ## <a name="next-steps"></a>後續步驟
-在此快速入門中，我們已建立可在 Windows、Linux 和 MacOS 上執行並與 Azure 儲存體互動的應用程式。 此快速入門的重點在 Blob 儲存體。 不過，同樣的知識可套用至檔案儲存體。 若要深入了解，請參閱 [Azure 儲存體資料移動程式庫參考文件 (英文)](https://azure.github.io/azure-storage-net-data-movement)。
+在此快速入門中，我們已建立可在 Windows、Linux 和 macOS 上執行並與 Azure 儲存體互動的應用程式。 此快速入門的重點在 Blob 儲存體。 不過，同樣的知識可套用至檔案儲存體。 若要深入了解，請參閱 [Azure 儲存體資料移動程式庫參考文件 (英文)](https://azure.github.io/azure-storage-net-data-movement)。
 
 [!INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 

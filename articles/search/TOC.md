@@ -34,7 +34,6 @@
 ## 管理
 ### 管理 Azure 搜尋服務
 #### [Azure 入口網站](search-manage.md)
-#### [REST](search-get-started-management-api.md)
 #### [PowerShell](search-manage-powershell.md)
 ### [監視使用量和統計資料](search-monitor-usage.md)
 ### [搜尋流量分析](search-traffic-analytics.md)
@@ -85,8 +84,3 @@
 ### [論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureSearch)
 ### [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-search)
 ### [Azure 搜尋服務 Github](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)
-
-
-<!--HONumber=Feb17_HO3-->
-
-

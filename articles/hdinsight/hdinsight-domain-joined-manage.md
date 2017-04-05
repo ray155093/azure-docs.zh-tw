@@ -9,6 +9,7 @@ editor: cgronlun
 tags: 
 ms.assetid: 6ebc4d2f-2f6a-4e1e-ab6d-af4db6b4c87c
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,8 +17,9 @@ ms.workload: big-data
 ms.date: 10/25/2016
 ms.author: saurinsh
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 78382cf83ed5e94507854d41293a95fd529964c1
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: e2b2e8d6110062efb99201f4daac1e1295d9b904
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -107,11 +109,6 @@ ms.openlocfilehash: 78382cf83ed5e94507854d41293a95fd529964c1
 
 ## <a name="next-steps"></a>後續步驟
 * 如需設定已加入網域的 HDInsight 叢集，請參閱[設定已加入網域的 HDInsight 叢集](hdinsight-domain-joined-configure.md)。
-* 如需設定 Hive 原則和執行 Hive 查詢，請參閱[針對已加入網域的 HDInsight 叢集設定 Hive 原則](hdinsight-domain-joined-run-hive.md)。
-* 如需使用 SSH 在已加入網域的 HDInsight 叢集上執行 Hive 查詢，請參閱 [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined)。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
+* 如需設定 Hive 原則和執行 Hive 查詢，請參閱[針對已加入網域的 HDInisight 叢集設定 Hive 原則](hdinsight-domain-joined-run-hive.md)。
+* 若要在已加入網域的 HDInsight 叢集上使用 SSH 執行 Hive 查詢，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined)。
 

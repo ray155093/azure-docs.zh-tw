@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 03/24/2017
 ms.author: chackdan;maburlik
 translationtype: Human Translation
-ms.sourcegitcommit: af121309be44852ee51f34130330533adf19d586
-ms.openlocfilehash: d833fb81a903ed9577bcfa64ee27d94cf428729d
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: 3389684dca62a1b3c8297600c7c09ffef642c854
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -38,6 +38,7 @@ ms.lasthandoff: 02/16/2017
 * 向 [Service Fabric 的專業支援](http://support.microsoft.com/oas/default.aspx?prid=16146)開立票證。  [在這裡](https://support.microsoft.com/en-us/gp/offerprophone?wa=wsignin1.0)深入了解 Microsoft 的專業支援。
 * 您也可以取得此封裝的支援做為 [Microsoft 頂級支援](https://support.microsoft.com/en-us/premier)的一部分。
 * 如需詳細資訊，請參閱 [Azure Service Fabric 支援選項](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-support)。
+* 若要針對支援用途收集記錄檔，請執行 [Service Fabric 獨立記錄收集器](https://go.microsoft.com/fwlink/?linkid=842487)。
 
 <a id="downloadpackage"></a>
 

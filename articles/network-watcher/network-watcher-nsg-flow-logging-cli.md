@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: d2a65104743d9497debdc85c134fd1a06114c514
-ms.openlocfilehash: 7b85a3857667d41085e3bf20d61b79f0a52338e2
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: b4baa3396d28aeb1b4ada7f644a3146dde527fda
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 02/23/2017
 
 網路安全性群組流量記錄是網路監看員的一項功能，可讓您檢視透過網路安全性群組傳輸之輸入和輸出 IP 流量的相關資訊。 這些流量記錄是以 json 格式撰寫，會顯示每一規則的輸出和輸入流量、流量套用至的 NIC、有關流量的 5 個 Tuple 資訊 (來源/目的地 IP、來源/目的地連接埠、通訊協定)，以及流量是被允許或拒絕。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
+本文使用跨平台 Azure CLI 1.0，這適用於 Windows、Mac 和 Linux。 網路監看員目前使用 Azure CLI 1.0 提供 CLI 支援。
 
 ## <a name="enable-network-security-group-flow-logs"></a>啟用網路安全性群組流量記錄
 

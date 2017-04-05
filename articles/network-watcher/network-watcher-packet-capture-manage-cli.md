@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 5437c94983d3ebbc0e96b261e9069935b00ca43a
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: e2f37514cc2cc45192783d2f542320879016df37
+ms.lasthandoff: 03/28/2017
 
 ---
 
@@ -30,6 +30,8 @@ ms.lasthandoff: 03/04/2017
 > - [Azure REST API](network-watcher-packet-capture-manage-rest.md)
 
 網路監看員封包擷取可讓您建立擷取工作階段來追蹤虛擬機器的流入和流出流量。 系統會為擷取工作階段提供篩選器，以確保您只會擷取到您想要的流量。 封包擷取有助於被動和主動地診斷網路異常。 其他用途包括收集網路統計資料、取得有關網路入侵的資訊，以及偵錯用戶端與伺服器間的通訊等等。 藉由能夠從遠端觸發封包擷取，這項功能可以減輕在所需機器上手動執行封包擷取的工作負擔，進而省下寶貴的時間。
+
+本文使用跨平台 Azure CLI 1.0，這適用於 Windows、Mac 和 Linux。 網路監看員目前使用 Azure CLI 1.0 提供 CLI 支援。
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 

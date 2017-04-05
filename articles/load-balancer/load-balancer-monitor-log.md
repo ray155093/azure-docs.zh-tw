@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 93640e208c99db41d922399d42c80622022287eb
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 638ecd5e02889bd8cb6e7429dfcec335feaac4a3
+ms.lasthandoff: 03/29/2017
 
 ---
 
@@ -137,7 +137,7 @@ JSON 輸出在屬性欄位中顯示了探查健全狀況狀態的基本資訊。
 您需要連接到儲存體帳戶並擷取事件和健全狀況探查記錄檔的 JSON 記錄項目。 下載 JSON 檔案後，您可以將它們轉換成 CSV 並在 Excel、PowerBI 或任何其他資料視覺化工具中檢視。
 
 > [!TIP]
-> 如果您熟悉 Visual Studio 以及在 C# 中變更常數和變數值的基本概念，您可以使用 Github 所提供的 [記錄檔轉換器工具](https://github.com/Azure-Samples/networking-dotnet-log-converter) 。
+> 如果您熟悉 Visual Studio 以及在 C# 中變更常數和變數值的基本概念，您可以使用 GitHub 所提供的[記錄檔轉換器工具 (英文)](https://github.com/Azure-Samples/networking-dotnet-log-converter)。
 
 ## <a name="additional-resources"></a>其他資源
 

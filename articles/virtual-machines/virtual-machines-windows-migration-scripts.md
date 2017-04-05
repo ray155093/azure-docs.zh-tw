@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 1/23/2017
 ms.author: kasing
 translationtype: Human Translation
-ms.sourcegitcommit: 2deaf44de51a989463826d6e4815f9ce9f0bbee5
-ms.openlocfilehash: 4b1fd3527140bc40299c008071753a91d264d567
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 5e2ad5e5eae97645368797c8cdf848d88719bb64
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 01/24/2017
 本文收錄由社群所提供、可協助將 IaaS 資源從傳統模型移轉至 Azure Resource Manager 部署模型的工具。
 
 > [!NOTE]
-> 這些工具尚未獲得 Microsoft 支援服務的官方支援。 因此可在 Github 上取得其開放原始碼，我們很樂意收到修正或其他案例的 PR。 若要回報問題，請使用 Github 問題功能。
+> 這些工具尚未獲得 Microsoft 支援服務的官方支援。 因此可在 GitHub 上取得其開放原始碼，我們很樂意收到修正或其他案例的 PR。 若要回報問題，請使用 GitHub 問題功能。
 > 
 > 使用這些工具移轉可能會造成傳統虛擬機器停機。 如果您想要尋求平台支援的移轉，請造訪 
 > 

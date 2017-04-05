@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 1d0136b044f6049e59fa09d824cf244cac703c45
-ms.openlocfilehash: 3c0287783e3f2b7acaeefd87acbda30885f93c22
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: 73d398613fc726ebd51ab6b107dc46c44caffdcc
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -31,11 +31,11 @@ ms.lasthandoff: 02/23/2017
 
 IP 流量驗證是網路監看員的一項功能，可讓您驗證虛擬機器中的流入或流出流量是否被允許。 此案例可用於取得虛擬機器的目前狀態，以了解其是否可以和外部資源或後端通訊。 IP 流量驗證可用來驗證是否已正確設定網路安全性群組 (NSG) 規則，並針對 NSG 規則所封鎖的流量進行疑難排解。 使用 IP 流量驗證的另一個原因是要確保您想要封鎖的流量會被 NSG 正確封鎖。
 
+本文使用跨平台 Azure CLI 1.0，這適用於 Windows、Mac 和 Linux。 網路監看員目前使用 Azure CLI 1.0 提供 CLI 支援。
+
 ## <a name="before-you-begin"></a>開始之前
 
 此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員，或您擁有現有的網路監看員執行個體。 此案例也假設已有具有有效虛擬機器的資源群組可供使用。
-
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 ## <a name="scenario"></a>案例
 

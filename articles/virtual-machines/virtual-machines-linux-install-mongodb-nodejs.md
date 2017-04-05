@@ -15,9 +15,9 @@ ms.workload: infrastructure
 ms.date: 12/20/2016
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 67d4fee2fc59651903d4c02d1fce84c7b81e5da1
-ms.openlocfilehash: ab58592b7dc55dee1f95338b4931fa76e9146a43
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 226d34f9cd762682b2c9e84bf5c32eecf9982b4b
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -110,7 +110,7 @@ sudo chkconfig mongod on
 
 
 ## <a name="create-basic-mongodb-instance-on-centos-using-a-template"></a>使用範本在 CentOS 上建立基本 MongoDB 執行個體
-您可以從 Github 使用下列 Azure 快速入門範本，在單一 CentOS VM 上建立基本 MongoDB 執行個體。 這個範本會使用 Linux 適用的自訂指令碼延伸模組將 `yum` 儲存機制新增至您新建立的 CentOS VM，然後安裝 MongoDB。
+您可以使用下列來自 GitHub 的 Azure 快速入門範本，在單一 CentOS VM 上建立基本的 MongoDB 執行個體。 這個範本會使用 Linux 適用的自訂指令碼延伸模組將 `yum` 儲存機制新增至您新建立的 CentOS VM，然後安裝 MongoDB。
 
 * [CentOS 上的基本 MongoDB 執行個體](https://github.com/Azure/azure-quickstart-templates/tree/master/mongodb-on-centos) - https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-on-centos/azuredeploy.json
 
@@ -157,7 +157,7 @@ test
 
 
 ## <a name="create-a-complex-mongodb-sharded-cluster-on-centos-using-a-template"></a>使用範本在 CentOS 上建立複雜的 MongoDB 分區化叢集
-您可以從 Github 使用下列 Azure 快速入門範本，建立複雜的 MongoDB 分區化叢集。 此範本遵循 [MongoDB 分區化叢集最佳作法](https://docs.mongodb.com/manual/core/sharded-cluster-components/)提供備援和高可用性。 範本會建立兩個分區，其中每個複本集中有三個節點。 還會建立具有三個節點的組態伺服器複本集，加上兩個 `mongos` 路由器伺服器，以提供跨分區應用程式的一致性。
+您可以使用下列來自 GitHub 的 Azure 快速入門範本，建立複雜的 MongoDB 分區化叢集。 此範本遵循 [MongoDB 分區化叢集最佳作法](https://docs.mongodb.com/manual/core/sharded-cluster-components/)提供備援和高可用性。 範本會建立兩個分區，其中每個複本集中有三個節點。 還會建立具有三個節點的組態伺服器複本集，加上兩個 `mongos` 路由器伺服器，以提供跨分區應用程式的一致性。
 
 * [CentOS 上的 MongoDB 分區化叢集](https://github.com/Azure/azure-quickstart-templates/tree/master/mongodb-sharding-centos) - https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-sharding-centos/azuredeploy.json
 

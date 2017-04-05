@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/31/2017
+ms.date: 03/23/2017
 ms.author: hawong
 translationtype: Human Translation
-ms.sourcegitcommit: 912d5af4231dee6aa8bc2f32d7950f59377fe90f
-ms.openlocfilehash: dbd5448c94577e6a21a2433a00e7a2f75afcc4a0
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: 9a0ba106b4c2aded8aaac673dfba3610bd4ca0fb
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -78,7 +79,7 @@ DocumentDB 已獲得 [The Walking Dead: No Man's Land](https://azure.microsoft.c
 ![Azure DocumentDB 遊戲參考架構](./media/documentdb-use-cases/documentdb-gaming-architecture.png)
 
 ## <a name="web-and-mobile-applications"></a>Web 與行動應用程式
-DocumentDB 常用在 Web 和行動裝置應用程式，而且非常適合用於模型化社交網路互動，與協力廠商服務整合，以及用於建立豐富的個人化體驗。 
+DocumentDB 常用在 Web 和行動裝置應用程式，而且非常適合用於模型化社交網路互動，與協力廠商服務整合，以及用於建立豐富的個人化體驗。 DocumentDB SDK 可以用來建置使用熱門 [Xamarin 架構](documentdb-mobile-apps-with-xamarin.md)的豐富 iOS 和 Android 應用程式。  
 
 ### <a name="social-applications"></a>社交應用程式
 DocumentDB 的常見使用案例是針對 Web 和行動應用程式儲存和查詢使用者產生的內容 (UGC)，尤其是社交媒體應用程式。 一些 UGC 範例包括對談、推文、部落格文章、評等和註解。 通常，社交媒體應用程式中的 UGC 會結合使用自由格式文字、屬性、標記和不受固定結構限制的關聯性。 內容 (例如聊天、註解和貼文) 可以儲存在 DocumentDB 中，而無需要求關聯式對應層的轉換或複雜物件。  開發人員在反覆查看應用程式程式碼時，可以輕鬆地新增或修改資料屬性以符合需求，進而加快開發的速度。  
@@ -115,9 +116,4 @@ JSON 是呈現 UI 配置資料的有效格式，因為它不只是輕量，還�
 * [Orange Tribes](https://customers.microsoft.com/en-US/story/theres-more-to-that-food-app-than-meets-the-eye-or-the-mouth)。 那個美食應用程式除了滿足視覺和味蕾享受，還有更多功能。
 * [Real Madrid](https://customers.microsoft.com/en-US/story/real-madrid-brings-the-stadium-closer-to-450-million-f)。 Real Madrid 使用 Microsoft 雲端服務，為全球 4.5 億球迷帶來最即時的精采賽事。
 * [Tuku](https://customers.microsoft.com/en-US/story/tuku-makes-car-buying-fun-with-help-from-azure-services)。 利用 Azure 服務的協助，TUKU 讓購車有樂趣 
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

@@ -16,9 +16,9 @@
 ### [使用 Azure Functions 新增自訂程式碼](logic-apps-azure-functions.md)
 ### [迴圈、範圍和解除批次處理資料](logic-apps-loops-and-scopes.md)
 ### [撰寫邏輯應用程式定義](logic-apps-author-definitions.md)
+### [呼叫、觸發或巢狀邏輯應用程式](logic-apps-http-endpoint.md)
 ### [建立邏輯應用程式的自訂 API](logic-apps-create-api-app.md)
 ### [呼叫邏輯應用程式的自訂 API](logic-apps-custom-hosted-api.md)
-### [呼叫邏輯應用程式邏輯應用程式端點做為觸發程序](logic-apps-http-endpoint.md)
 ### [處理錯誤和例外狀況](logic-apps-exception-handling.md)
 ### [處理內容類型](logic-apps-content-type.md)
 ### [保護邏輯應用程式](logic-apps-securing-a-logic-app.md)
@@ -47,6 +47,7 @@
 ### [X12 企業整合](logic-apps-enterprise-integration-x12.md)
 ### [X12 編碼](logic-apps-enterprise-integration-x12-encode.md)
 ### [X12 解碼](logic-apps-enterprise-integration-x12-decode.md)
+### [災害復原](logic-apps-enterprise-integration-b2b-business-continuity.md)
 
 ## 存取內部部署資料
 ### [連線至內部部署資料](logic-apps-gateway-connection.md)
@@ -69,6 +70,7 @@
 
 ## 範例、案例和逐步解說
 ### [概觀](logic-apps-examples-and-scenarios.md)
+### [建立無伺服器的社交儀表板](logic-apps-scenario-social-serverless.md)
 ### [使用 Azure Functions 呼叫邏輯應用程式](logic-apps-scenario-function-sb-trigger.md)
 ### [新增錯誤和例外狀況處理](logic-apps-scenario-error-and-exception-handling.md)
 ### [B2B 處理](logic-apps-enterprise-integration-b2b.md)

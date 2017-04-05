@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/10/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 276b1bcebbe3c32d6fead8ee240dd1ddfb01c872
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 12811b5cbfc6072075395d8542b79d10d2873286
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -30,9 +30,9 @@ ms.lasthandoff: 03/22/2017
 > * [範本](virtual-network-deploy-static-pip-arm-template.md)
 > * [PowerShell (傳統)](virtual-networks-reserved-public-ip.md)
 
-Azure 中的 IP 位址分為兩個類別：動態和保留。 依預設由 Azure 管理的公用 IP 位址是動態的。 這表示當資源時關閉或解除配置時，用於指定雲端服務 (VIP)，或直接存取 VM 或角色執行個體 (ILPIP) 的 IP 位址可以隨時變更。
+Azure 中的 IP 位址分為兩個類別：動態和保留。 依預設由 Azure 管理的公用 IP 位址是動態的。 這表示當資源關閉或停止 (解除配置) 時，用於所指定雲端服務的 IP 位址 (VIP) 或用來直接存取 VM 或角色執行個體的 IP 位址 (ILPIP) 可以隨時變更。
 
-若要防止 IP 位址變更，您可以保留 IP 位址。 保留的 IP 僅能用作 VIP，即使資源都關閉或解除配置，也能確保雲端服務的 IP 位址將會相同。 此外，您可以轉換現有的動態 IP，作為保留的 IP 位址的 VIP。
+若要防止 IP 位址變更，您可以保留 IP 位址。 保留的 IP 只能用來作為 VIP，用以確保在即使資源關閉或停止 (解除配置) 的情況下，雲端服務的 IP 位址也會保持相同。 此外，您可以轉換現有的動態 IP，作為保留的 IP 位址的 VIP。
 
 > [!IMPORTANT]
 > Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 了解如何使用 [Resource Manager 部署模型](virtual-network-ip-addresses-overview-arm.md)來保留靜態公用 IP 位址。
@@ -40,21 +40,21 @@ Azure 中的 IP 位址分為兩個類別：動態和保留。 依預設由 Azure
 若要深入了解 Azure 中的 IP 位址，請閱讀 [IP 位址](virtual-network-ip-addresses-overview-classic.md)文章。
 
 ## <a name="when-do-i-need-a-reserved-ip"></a>何時需要保留的 IP？
-* **您想要確保 IP 會保留在您的訂用帳戶中**。 如果您想要保留 IP 位址，使其在任何情況下將不會從訂用帳戶釋放，您應該使用保留的公用 IP。  
-* **即使在已停止或解除配置狀態 (VM)，您想要保持 IP 與雲端服務之間的關聯**。 如果您想要讓服務可以使用 IP 位址來存取，且即使雲端服務中的 VM 已停止或解除配置，該 IP 位址也不會變更。
-* **您想要確保來自 Azure 的輸出流量使用可預測的 IP 位址**。 您可能必須設定內部部署防火牆，以便僅允許來自特定 IP 位址的流量。 藉由保留 IP，您將會知道來源 IP 位址，且不必因為 IP 變更而更新您的防火牆規則。
+* **您想要確保 IP 會保留在您的訂用帳戶中**。 如果您想要保留一個在任何情況下都不會從您訂用帳戶釋出的 IP 位址，您應該使用保留的公用 IP。  
+* **即使在已停止或解除配置狀態 (VM)，您想要保持 IP 與雲端服務之間的關聯**。 如果您想要讓使用者使用一個即使雲端服務中的 VM 被關閉或停止 (解除配置) 也不會變更的 IP 位址來存取服務。
+* **您想要確保來自 Azure 的輸出流量使用可預測的 IP 位址**。 您可能必須設定內部部署防火牆，以便僅允許來自特定 IP 位址的流量。 藉由保留 IP，您會知道來源 IP 位址，而不必因為 IP 變更而需要更新您的防火牆規則。
 
 ## <a name="faq"></a>常見問題集
-1. 我可以針對所有 Azure 服務使用保留的 IP 嗎？  
-   * 保留的 IP 僅可用於 VM 和雲端服務透過 VIP 公開的執行個體角色。
-2. 我可以有多少保留的 IP？  
-   * 請參閱 [Azure 限制](../azure-subscription-service-limits.md#networking-limits)文章。
-3. 保留的 IP 是否會收取費用？
-   * 請參閱＜ [保留的 IP 位址定價詳細資料](http://go.microsoft.com/fwlink/?LinkID=398482) ＞以取得定價資訊。
-4. 我該如何保留 IP 位址？
-   * 您可以使用 PowerShell、[Azure 管理 REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx) 或 [Azure 入口網站](https://portal.azure.com)，在特定區域中保留 IP 位址。 這個保留的 IP 位址與您的訂用帳戶相關聯。
-5. 我可以使用這個搭配以同質群組為基礎的 VNet 嗎？
-   * 保留的 IP 僅在區域 VNet 才受支援。 不支援與同質群組相關聯的 VNet。 如需有關將 VNet 與區域或同質群組建立關聯的詳細資訊，請參閱＜ [關於區域 VNet 與同質群組](virtual-networks-migrate-to-regional-vnet.md)＞。
+1. 我是否可以針對所有 Azure 服務都使用保留的 IP？ <br>
+    否。 保留的 IP 僅可用於 VM 和雲端服務透過 VIP 公開的執行個體角色。
+2. 我可以有多少保留的 IP？ <br>
+    如需詳細資訊，請參閱 [Azure 限制](../azure-subscription-service-limits.md#networking-limits)一文。
+3. 保留的 IP 是否會收取費用？ <br>
+    有時會。 如需定價詳細資料，請參閱[保留的 IP 位址定價詳細資料](http://go.microsoft.com/fwlink/?LinkID=398482)頁面。
+4. 我該如何保留 IP 位址？ <br>
+    您可以使用 PowerShell、[Azure 管理 REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx) 或 [Azure 入口網站](https://portal.azure.com)，在 Azure 區域中保留 IP 位址。 保留的 IP 位址會與您的訂用帳戶關聯。
+5. 我是否可以將保留的 IP 位址與同質群組型 VNet 搭配使用？ <br>
+    否。 保留的 IP 僅在區域 VNet 才受支援。 與同質群組關聯的 VNet 不支援保留的 IP。 如需有關將 VNet 與區域或同質群組建立關聯的詳細資訊，請參閱[關於區域 VNet 與同質群組](virtual-networks-migrate-to-regional-vnet.md)一文。
 
 ## <a name="manage-reserved-vips"></a>管理保留的 VIP
 
@@ -87,7 +87,10 @@ Get-AzureReservedIP
     OperationId          : 55e4f245-82e4-9c66-9bd8-273e815ce30a
     OperationStatus      : Succeeded
 
-一旦保留 IP，其就會與您的訂用帳戶相關聯，直到刪除為止。 若要刪除如上所示之保留的 IP，請執行下列 PowerShell 命令：
+>[!NOTE]
+>使用 PowerShell 來建立保留的 IP 位址時，您無法指定資源群組以在其中建立保留的 IP。 Azure 會自動將它放在名為 *Default-Networking* 的資源群組中。 如果您使用 [Azure 入口網站](http://portal.azure.com)來建立保留的 IP，則可以指定您選擇的任何資源群組。 不過，如果您是在 *Default-Networking* 以外的資源群組中建立保留的 IP，則每當您使用 `Get-AzureReservedIP` 和 `Remove-AzureReservedIP` 之類的命令來參考保留的 IP 時，都必須參考 *Group resource-group-name reserved-ip-name* 名稱。  例如，如果您在名為 *myResourceGroup* 的資源群組中建立名為 *myReservedIP* 的保留 IP，就必須以 *Group myResourceGroup myReservedIP* 的形式參考保留的 IP 名稱。   
+
+一旦保留 IP，其就會與您的訂用帳戶相關聯，直到刪除為止。 若要刪除保留的 IP，請執行下列 PowerShell 命令：
 
 ```powershell
 Remove-AzureReservedIP -ReservedIPName "MyReservedIP"
@@ -101,7 +104,7 @@ New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US" -Ser
 ```
 
 ## <a name="associate-a-reserved-ip-to-a-new-cloud-service"></a>建立保留的 IP 至新雲端服務的關聯
-下面的指令碼會建立新保留的 IP，然後將其關聯至新的雲端服務，稱為 *TestService*。
+下列指令碼會建立新的保留 IP，然後將它與名為 *TestService* 的新雲端服務建立關聯。
 
 ```powershell
 New-AzureReservedIP –ReservedIPName MyReservedIP –Location "Central US"
@@ -114,11 +117,11 @@ New-AzureVMConfig -Name TestVM -InstanceSize Small -ImageName $image.ImageName `
 ```
 
 > [!NOTE]
-> 當您建立保留的 IP 以搭配使用雲端服務時，您仍然需要針對輸入通訊使用 *VIP:&lt;連接埠號碼>* 來參照 VM。 保留 IP 並不表示您可以直接連接至 VM。 保留的 IP 會指派給已部署 VM 的雲端服務。 如果您想要透過 IP 直接連接到 VM，您必須設定執行個體層級公用 IP。 執行個體層級公用 IP 是一種公用 IP 類型 (稱為 ILPIP)，其會直接指派給您的 VM。 此類型 IP 無法保留。 請參閱＜ [執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) ＞以取得詳細資訊。
+> 當您建立保留的 IP 以與雲端服務搭配使用時，仍需使用 *VIP:&lt;連接埠號碼>* 來參照 VM 以進行輸入通訊。 保留 IP 並不表示您可以直接連接至 VM。 保留的 IP 會指派給已部署 VM 的雲端服務。 如果您想要透過 IP 直接連接到 VM，您必須設定執行個體層級公用 IP。 執行個體層級公用 IP 是一種直接指派給您 VM 的公用 IP (稱為 ILPIP)。 此類型 IP 無法保留。 如需詳細資訊，請參閱[執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) 一文。
 > 
 
 ## <a name="remove-a-reserved-ip-from-a-running-deployment"></a>從執行中部署移除保留的 IP
-若要針對上述指令碼中建立的新服務，移除新增至其中之保留的 IP，請執行下列 PowerShell 命令：
+若要將已新增到新雲端服務的保留 IP 移除，請執行下列 PowerShell 命令：
 
 ```powershell
 Remove-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName TestService
@@ -129,7 +132,7 @@ Remove-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName Test
 > 
 
 ## <a name="associate-a-reserved-ip-to-a-running-deployment"></a>建立保留的 IP 至執行中部署的關聯
-下列命令會建立稱為 *TestService2* 的新雲端服務，以及稱為 *TestVM2* 的新 VM，然後建立稱為 *MyReservedIP* 之現有保留的 IP 至雲端服務的關聯：
+下列命令會建立一個名為 *TestService2* 且具有名為 *TestVM2* 之新 VM 的雲端服務。 現有名為 *MyReservedIP* 的保留 IP 會接著與雲端服務建立關聯。
 
 ```powershell
 $image = Get-AzureVMImage|?{$_.ImageName -like "*RightImage-Windows-2012R2-x64*"}
@@ -142,7 +145,7 @@ Set-AzureReservedIPAssociation -ReservedIPName MyReservedIP -ServiceName TestSer
 ```
 
 ## <a name="associate-a-reserved-ip-to-a-cloud-service-by-using-a-service-configuration-file"></a>使用服務組態檔建立保留的 IP 至雲端服務的關聯
-您也可以使用服務組態 (CSCFG) 檔建立保留的 IP 至雲端服務的關聯。 下方範例 XML 示範如何設定雲端服務，以便使用稱為 *MyReservedIP*之保留的 VIP：
+您也可以使用服務組態 (CSCFG) 檔建立保留的 IP 至雲端服務的關聯。 下列範例 XML 示範如何將雲端服務設定成使用名為 *MyReservedIP* 的保留 VIP：
 
     <?xml version="1.0" encoding="utf-8"?>
     <ServiceConfiguration serviceName="ReservedIPSample" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-01.2.3">
