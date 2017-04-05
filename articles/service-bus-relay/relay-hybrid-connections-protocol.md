@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/14/2017
+ms.date: 03/23/2017
 ms.author: sethm;clemensv
 translationtype: Human Translation
-ms.sourcegitcommit: 4a972b9b8b52a90f27afda98d8bdc661016d1fe1
-ms.openlocfilehash: f5fd4c6c0b8db3fe91d8b57a68fe33dcff353a59
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: a433b918f48b42d3bf7ee8ee16bd912e278a381d
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -138,9 +138,6 @@ wss://{namespace-address}/$hc/{path}?sb-hc-action=...[&sb-hc-id=...]&sb-hc-token
 #### <a name="accepting-the-socket"></a>接受通訊端
 為了接受，接聽程式會對提供的位址建立 Web 通訊端連線。
 
-請注意，在預覽期間，位址 URI 可能會使用裸機 IP 位址，而伺服器所提供的 TLS 憑證會讓該位址的驗證失敗。
-預覽期間會修正此問題。
-
 如果「accept」訊息攜帶「Sec-WebSocket-Protocol」標頭，則接聽程式預期只會在支援 Web 通訊端通訊協定時才予以接受，而且預期會在建立 Web 通訊端時設定標頭。
 
 「Sec-WebSocket-Extensions」標頭同樣適用此原則。 如果架構支援擴充功能，其應將標頭設定為擴充功能所需「Sec-WebSocket-Extensions」交握的「伺服器」端回覆。
@@ -187,7 +184,7 @@ URL 必須保持原樣以用來建立接受通訊端，但要包含下列參數�
 | StatusCode |是 |數字型 HTTP 狀態碼。 |
 | statusDescription |是 |使用者可以看懂的拒絕原因。 |
 
-產生的 URI 接著會用來建立 WebSocket 連線；請同樣注意，在預覽期間，TLS 憑證可能不會符合位址，因此可能必須停用驗證。
+接著會使用產生的 URI 來建立 WebSocket 連線。
 
 當正確完成時，因為尚未建立任何 Web 通訊端，此交握會刻意失敗，而其 HTTP 錯誤碼為 410。 如果發生錯誤，則選項如下︰
 

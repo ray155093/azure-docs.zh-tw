@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure 匯入作業準備硬碟的範例工作流程 | Microsoft Docs"
-description: "請參閱在 Azure 匯入/匯出服務中為匯入作業準備硬碟之完整程序的逐步解說"
+title: "針對 Azure 匯入/匯出匯入作業準備硬碟的範例工作流程 | Microsoft Docs"
+description: "請參閱在 Azure 匯入/匯出服務中為匯入作業準備硬碟之完整程序的逐步解說。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 50fbd0d214c825137c3ac6873be27b9d2d53cee1
-ms.openlocfilehash: ebed1f1d4cb6cca96e02322d2f76abd6e9810ecc
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 2e522fabf9be5af7477e556ee0c2bf66f41c28fe
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -80,7 +80,7 @@ Y,Format,SilentMode,Encrypt,
 
 除此之外，您可以針對所有檔案設定下列中繼資料：
 
-* **UploadMethod:** Windows Azure Import/Export Service
+* **UploadMethod：**Windows Azure Import/Export service
 * **DataSetName:** SampleData
 * **CreationDate:** 10/1/2013
 
@@ -89,7 +89,7 @@ Y,Format,SilentMode,Encrypt,
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Metadata>
-    <UploadMethod>Windows Azure Import/Export Service</UploadMethod>
+    <UploadMethod>Windows Azure Import/Export service</UploadMethod>
     <DataSetName>SampleData</DataSetName>
     <CreationDate>10/1/2013</CreationDate>
 </Metadata>

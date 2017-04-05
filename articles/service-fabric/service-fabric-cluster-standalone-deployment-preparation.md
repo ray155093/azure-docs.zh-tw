@@ -14,9 +14,9 @@ ms.workload: NA
 ms.date: 1/17/2017
 ms.author: maburlik;chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: c525925cc581b3c95db330a24799056d6aade92d
-ms.openlocfilehash: 35504d3885c09c142502edf35efc36286b3f9024
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: bd9ea82adc97698957dfebc3ee7c14c498808dd3
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -96,7 +96,7 @@ ms.lasthandoff: 02/16/2017
 * 已將 Service Fabric SDK 解除安裝
 * 已將 Service Fabric 執行階段解除安裝 
 * 已啟用 Windows 防火牆服務 (mpssvc)
-* 已啟用移除登錄服務 (remoteregistry)
+* 已啟用遠端登錄服務 (remoteregistry)
 * 已啟用檔案共用 (SMB)
 * 已根據叢集組態的連接埠，開啟必要的連接埠
 * 已經開啟 Windows SMB 和遠端登錄服務的必要通訊埠︰135、137、138、139 和 445

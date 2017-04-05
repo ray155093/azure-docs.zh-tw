@@ -16,14 +16,38 @@ ms.workload: NA
 ms.date: 02/15/2017
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: 1b2e22150f9cea004af4892cd7fa2fb2b59c8787
-ms.openlocfilehash: 16e53dbdb4ce6de02a9c8acb2fb1d8a3ac265b8f
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: bee47924092a0b327ef3aa5b936116bf311ce8d7
+ms.lasthandoff: 03/29/2017
 
 
 ---
 # <a name="customize-service-fabric-cluster-settings-and-fabric-upgrade-policy"></a>自訂 Service Fabric 叢集設定和網狀架構升級原則
 本文件將告訴您如何為 Service Fabric 叢集自訂各種網狀架構設定和網狀架構升級原則。 您可以在入口網站上或使用 Azure Resource Manager 範本來進行自訂。
+
+> [!NOTE]
+> 並非所有設定都可以透過入口網站使用。 若下列設定無法透過入口網站使用，請使用 Azure Resource Manager 範本自訂它。
+> 
+
+## <a name="customizing-service-fabric-cluster-settings-using-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本自訂 Service Fabric 叢集設定
+下列步驟說明如何將新設定 *MaxDiskQuotaInMB* 新增至 *Diagnostics* 區段。
+
+1. 移至 https://resources.azure.com
+2. 透過展開 [訂用帳戶] -> [資源群組] -> [Microsoft.ServiceFabric] -> <您的叢集名稱>，來瀏覽至您的訂用帳戶
+3. 選取右上角的 [讀取/寫入]
+4. 選取 [編輯] 並更新 `fabricSettings` JSON 元素，然後新增新的元素
+
+```
+      {
+        "name": "Diagnostics",
+        "parameters": [
+          {
+            "name": "MaxDiskQuotaInMB",
+            "value": "65536"
+          }
+        ]
+      }
+```
 
 ## <a name="fabric-settings-that-you-can-customize"></a>您可以自訂的網狀架構設定
 以下是您可以自訂的網狀架構設定：
@@ -71,7 +95,7 @@ ms.lasthandoff: 02/16/2017
 | MaxCopyQueueSize |單位，預設值為 16384 |這是用來定義保有複寫作業之佇列初始大小的最大值。 請注意，此值必須是 2 的乘冪。 如果在執行階段期間，佇列增加到此大小，則會將主要和次要複寫器之間的作業節流。 |
 | BatchAcknowledgementInterval | 時間 (秒)，預設值為 0.015 | 以秒為單位指定時間範圍。 決定複寫器在收到作業後，要等待多久才回傳通知。 在此期間所收到的其他作業會透過同一則訊息回傳其通知，以降低網路流量，但可能也會降低複寫器的輸送量。 |
 | MaxReplicationMessageSize |單位，預設值為 52428800 | 複寫作業的訊息大小上限。 預設值為 50 MB。 |
-| ReplicatorAddress |Wstring，預設值為 "localhost:0" | -'IP:Port' 字串形式的端點，Windows Fabric 複寫器使用此端點來建立與其他複本的連線，以便傳送/接收作業。 |
+| ReplicatorAddress |字串，預設值為 "localhost:0" | -'IP:Port' 字串形式的端點，Windows Fabric 複寫器使用此端點來建立與其他複本的連線，以便傳送/接收作業。 |
 | InitialPrimaryReplicationQueueSize |單位，預設值為 64 | 此值會定義主要複寫器上保有複寫作業之佇列的初始大小。 請注意，此值必須是 2 的乘冪。|
 | MaxPrimaryReplicationQueueSize |單位，預設值為 8192 |這是主要複寫佇列中可存在的作業數目上限。 請注意，此值必須是 2 的乘冪。 |
 | MaxPrimaryReplicationQueueMemorySize |單位，預設值為 0 |這是主要複寫佇列的最大值 (位元組)。 |
@@ -92,7 +116,7 @@ ms.lasthandoff: 02/16/2017
 ### <a name="section-name-fabricclient"></a>區段名稱︰FabricClient
 | **參數** | **允許的值** | **指引或簡短描述** |
 | --- | --- | --- |
-| NodeAddresses |Wstring，預設值為 "" |不同節點上可用於與命名服務通訊的位址 (連接字串) 集合。 一開始用戶端會隨機選取其中一個位址來連接。 如果提供了多個連接字串，而且因為通訊或逾時錯誤而導致連接失敗，用戶端便會循序改用下一個位址。 如需重試語意的詳細資料，請參閱命名服務位址的重試區段。 |
+| NodeAddresses |字串，預設值為 "" |不同節點上可用於與命名服務通訊的位址 (連接字串) 集合。 一開始用戶端會隨機選取其中一個位址來連接。 如果提供了多個連接字串，而且因為通訊或逾時錯誤而導致連接失敗，用戶端便會循序改用下一個位址。 如需重試語意的詳細資料，請參閱命名服務位址的重試區段。 |
 | ConnectionInitializationTimeout |時間 (秒)，預設值為 2 |以秒為單位指定時間範圍。 用戶端每次嘗試開啟閘道連線的連線逾時間隔。 |
 | PartitionLocationCacheLimit |整數，預設值為 100000 |針對服務解析所快取的資料分割數目 (設為 0 表示沒有限制)。 |
 | ServiceChangePollInterval |時間 (秒)，預設值為 120 |以秒為單位指定時間範圍。 針對已登錄服務之變更通知回呼，輪詢從用戶端變為閘道之服務變更時，連續兩次輪詢之間所應有的間隔時間。 |
@@ -121,7 +145,7 @@ ms.lasthandoff: 02/16/2017
 ### <a name="section-name-nodedomainids"></a>區段名稱︰NodeDomainIds
 | **參數** | **允許的值** | **指引或簡短描述** |
 | --- | --- | --- |
-| UpgradeDomainId |Wstring，預設值為 "" |說明節點所屬的升級網域。 |
+| UpgradeDomainId |字串，預設值為 "" |說明節點所屬的升級網域。 |
 | PropertyGroup |NodeFaultDomainIdCollection |說明節點所屬的容錯網域。 容錯網域會透過可描述節點在資料中心內之位置的 URI 來定義。  容錯網域 URI 的格式為 fd:/fd/ 再後接 URI 路徑區段。|
 
 ### <a name="section-name-nodeproperties"></a>區段名稱︰NodeProperties
@@ -139,27 +163,27 @@ ms.lasthandoff: 02/16/2017
 | --- | --- | --- |
 | StartApplicationPortRange |整數，預設值為 0 |主控子系統所管理之應用程式連接埠的開頭。 若主控內的 EndpointFilteringEnabled 為 true，則需要此參數。 |
 | EndApplicationPortRange |整數，預設值為 0 |主控子系統所管理之應用程式連接埠的結尾 (不含)。 若主控內的 EndpointFilteringEnabled 為 true，則需要此參數。 |
-| ClusterX509StoreName |Wstring，預設值為 "My" |包含用來保護叢集間通訊之叢集憑證的 X.509 憑證存放區名稱。 |
-| ClusterX509FindType |Wstring，預設值為 "FindByThumbprint" |指出如何在以下列 ClusterX509StoreName 支援值所指定的存放區中搜尋叢集憑證："FindByThumbprint"、"FindBySubjectName" 和 "FindBySubjectName"。當有多個相符項目時，會使用到期日最遠者。 |
-| ClusterX509FindValue |Wstring，預設值為 "" |搜尋用來找出叢集憑證的篩選值。 |
-| ClusterX509FindValueSecondary |Wstring，預設值為 "" |搜尋用來找出叢集憑證的篩選值。 |
-| ServerAuthX509StoreName |Wstring，預設值為 "My" |包含入場服務之伺服器憑證的 X.509 憑證存放區名稱。 |
-| ServerAuthX509FindType |Wstring，預設值為 "FindByThumbprint" |指出如何搜尋以下列 ServerAuthX509StoreName 支援值指定之存放區中的伺服器憑證︰FindByThumbprint、FindBySubjectName。 |
-| ServerAuthX509FindValue |Wstring，預設值為 "" |搜尋用來找出伺服器憑證的篩選值。 |
-| ServerAuthX509FindValueSecondary |Wstring，預設值為 "" |搜尋用來找出伺服器憑證的篩選值。 |
-| ClientAuthX509StoreName |Wstring，預設值為 "My" |包含預設管理員角色 FabricClient 之憑證的 X.509 憑證存放區名稱。 |
-| ClientAuthX509FindType |Wstring，預設值為 "FindByThumbprint" |指出如何搜尋以下列 ClientAuthX509StoreName 支援值指定之存放區中的憑證︰FindByThumbprint、FindBySubjectName。 |
-| ClientAuthX509FindValue |Wstring，預設值為 "" | 搜尋用來找出預設管理員角色 FabricClient 之憑證的篩選值。 |
-| ClientAuthX509FindValueSecondary |Wstring，預設值為 "" |搜尋用來找出預設管理員角色 FabricClient 之憑證的篩選值。 |
-| UserRoleClientX509StoreName |Wstring，預設值為 "My" |包含預設使用者角色 FabricClient 之憑證的 X.509 憑證存放區名稱。 |
-| UserRoleClientX509FindType |Wstring，預設值為 "FindByThumbprint" |指出如何搜尋以下列 UserRoleClientX509StoreName 支援值指定之存放區中的憑證︰FindByThumbprint、FindBySubjectName。 |
-| UserRoleClientX509FindValue |Wstring，預設值為 "" |搜尋用來找出預設使用者角色 FabricClient 之憑證的篩選值。 |
-| UserRoleClientX509FindValueSecondary |Wstring，預設值為 "" |搜尋用來找出預設使用者角色 FabricClient 之憑證的篩選值。 |
+| ClusterX509StoreName |字串，預設值為 "My" |包含用來保護叢集間通訊之叢集憑證的 X.509 憑證存放區名稱。 |
+| ClusterX509FindType |字串，預設值為 "FindByThumbprint" |指出如何在以下列 ClusterX509StoreName 支援值所指定的存放區中搜尋叢集憑證："FindByThumbprint"、"FindBySubjectName" 和 "FindBySubjectName"。當有多個相符項目時，會使用到期日最遠者。 |
+| ClusterX509FindValue |字串，預設值為 "" |搜尋用來找出叢集憑證的篩選值。 |
+| ClusterX509FindValueSecondary |字串，預設值為 "" |搜尋用來找出叢集憑證的篩選值。 |
+| ServerAuthX509StoreName |字串，預設值為 "My" |包含入場服務之伺服器憑證的 X.509 憑證存放區名稱。 |
+| ServerAuthX509FindType |字串，預設值為 "FindByThumbprint" |指出如何搜尋以下列 ServerAuthX509StoreName 支援值指定之存放區中的伺服器憑證︰FindByThumbprint、FindBySubjectName。 |
+| ServerAuthX509FindValue |字串，預設值為 "" |搜尋用來找出伺服器憑證的篩選值。 |
+| ServerAuthX509FindValueSecondary |字串，預設值為 "" |搜尋用來找出伺服器憑證的篩選值。 |
+| ClientAuthX509StoreName |字串，預設值為 "My" |包含預設管理員角色 FabricClient 之憑證的 X.509 憑證存放區名稱。 |
+| ClientAuthX509FindType |字串，預設值為 "FindByThumbprint" |指出如何搜尋以下列 ClientAuthX509StoreName 支援值指定之存放區中的憑證︰FindByThumbprint、FindBySubjectName。 |
+| ClientAuthX509FindValue |字串，預設值為 "" | 搜尋用來找出預設管理員角色 FabricClient 之憑證的篩選值。 |
+| ClientAuthX509FindValueSecondary |字串，預設值為 "" |搜尋用來找出預設管理員角色 FabricClient 之憑證的篩選值。 |
+| UserRoleClientX509StoreName |字串，預設值為 "My" |包含預設使用者角色 FabricClient 之憑證的 X.509 憑證存放區名稱。 |
+| UserRoleClientX509FindType |字串，預設值為 "FindByThumbprint" |指出如何搜尋以下列 UserRoleClientX509StoreName 支援值指定之存放區中的憑證︰FindByThumbprint、FindBySubjectName。 |
+| UserRoleClientX509FindValue |字串，預設值為 "" |搜尋用來找出預設使用者角色 FabricClient 之憑證的篩選值。 |
+| UserRoleClientX509FindValueSecondary |字串，預設值為 "" |搜尋用來找出預設使用者角色 FabricClient 之憑證的篩選值。 |
 
 ### <a name="section-name-paas"></a>區段名稱：Paas
 | **參數** | **允許的值** | **指引或簡短描述** |
 | --- | --- | --- |
-| ClusterId |Wstring，預設值為 "" |網狀架構用來保護組態的 X509 憑證存放區。 |
+| ClusterId |字串，預設值為 "" |網狀架構用來保護組態的 X509 憑證存放區。 |
 
 ### <a name="section-name-fabrichost"></a>區段名稱︰FabricHost
 | **參數** | **允許的值** | **指引或簡短描述** |
@@ -190,7 +214,7 @@ ms.lasthandoff: 02/16/2017
 |ReplicaRestartWaitDuration | 時間 (秒)，預設值為 (60.0 * 30)| 以秒為單位指定時間範圍。 當命名服務複本停止運作時，此計時器就會啟動。  當它到期時，FM 就會開始取代停止運作的複本 (還不會將它們視為遺失)。 |
 |QuorumLossWaitDuration | 時間 (秒)，預設值為 MaxValue | 以秒為單位指定時間範圍。 當命名服務進入仲裁遺失狀態時，此計時器就會啟動。  當計時器到期時，FM 會將停止運作的複本視為遺失，並嘗試復原仲裁。 請注意，這可能會導致資料遺失。 |
 |StandByReplicaKeepDuration | 時間 (秒)，預設值為 3600.0 * 2 | 以秒為單位指定時間範圍。 當命名服務複本從停止運作狀態恢復過來，它可能已被取代。  此計時器會決定 FM 會將待命複本保留多久才予以捨棄。 |
-|PlacementConstraints | Wstring，預設值為 "" | 命名服務的放置條件約束。 |
+|PlacementConstraints | 字串，預設值為 "" | 命名服務的放置條件約束。 |
 |ServiceDescriptionCacheLimit | 整數，預設值為 0 | 命名存放區服務之 LRU 服務說明快取中保有的項目數上限 (設為 0 表示沒有限制)。 |
 |RepairInterval | 時間 (秒)，預設值為 5 | 以秒為單位指定時間範圍。 會開始修復授權單位擁有者和名稱擁有者間命名不一致問題的間隔時間。 |
 |MaxNamingServiceHealthReports | 整數，預設值為 10 | 命名存放區服務會一次報告為狀況不良之緩慢作業的數目上限。 若為 0，則會傳送所有緩慢作業。 |
@@ -207,30 +231,30 @@ ms.lasthandoff: 02/16/2017
 ### <a name="section-name-runas"></a>區段名稱：RunAs
 | **參數** | **允許的值** | **指引或簡短描述** |
 | --- | --- | --- |
-| RunAsAccountName |Wstring，預設值為 "" |指出 RunAs 帳戶名稱。 "DomainUser" 或 "ManagedServiceAccount" 帳戶類型才需要此參數。 有效值為 "domain\user" 或 "user@domain"。 |
-|RunAsAccountType|Wstring，預設值為 "" |指出 RunAs 帳戶類型。 任何 RunAs 區段皆需要此參數。有效值為 "DomainUser/NetworkService/ManagedServiceAccount/LocalSystem"。|
-|RunAsPassword|Wstring，預設值為 "" |指出 RunAs 帳戶密碼。 "DomainUser" 帳戶類型才需要此參數。 |
+| RunAsAccountName |字串，預設值為 "" |指出 RunAs 帳戶名稱。 "DomainUser" 或 "ManagedServiceAccount" 帳戶類型才需要此參數。 有效值為 "domain\user" 或 "user@domain"。 |
+|RunAsAccountType|字串，預設值為 "" |指出 RunAs 帳戶類型。 任何 RunAs 區段皆需要此參數。有效值為 "DomainUser/NetworkService/ManagedServiceAccount/LocalSystem"。|
+|RunAsPassword|字串，預設值為 "" |指出 RunAs 帳戶密碼。 "DomainUser" 帳戶類型才需要此參數。 |
 
 ### <a name="section-name-runasfabric"></a>區段名稱︰RunAs_Fabric
 | **參數** | **允許的值** | **指引或簡短描述** |
 | --- | --- | --- |
-| RunAsAccountName |Wstring，預設值為 "" |指出 RunAs 帳戶名稱。 "DomainUser" 或 "ManagedServiceAccount" 帳戶類型才需要此參數。 有效值為 "domain\user" 或 "user@domain"。 |
-|RunAsAccountType|Wstring，預設值為 "" |指出 RunAs 帳戶類型。 任何 RunAs 區段皆需要此參數。有效值為 "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem"。 |
-|RunAsPassword|Wstring，預設值為 "" |指出 RunAs 帳戶密碼。 "DomainUser" 帳戶類型才需要此參數。 |
+| RunAsAccountName |字串，預設值為 "" |指出 RunAs 帳戶名稱。 "DomainUser" 或 "ManagedServiceAccount" 帳戶類型才需要此參數。 有效值為 "domain\user" 或 "user@domain"。 |
+|RunAsAccountType|字串，預設值為 "" |指出 RunAs 帳戶類型。 任何 RunAs 區段皆需要此參數。有效值為 "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem"。 |
+|RunAsPassword|字串，預設值為 "" |指出 RunAs 帳戶密碼。 "DomainUser" 帳戶類型才需要此參數。 |
 
 ### <a name="section-name-runashttpgateway"></a>區段名稱：RunAs_HttpGateway
 | **參數** | **允許的值** | **指引或簡短描述** |
 | --- | --- | --- |
-| RunAsAccountName |Wstring，預設值為 "" |指出 RunAs 帳戶名稱。 "DomainUser" 或 "ManagedServiceAccount" 帳戶類型才需要此參數。 有效值為 "domain\user" 或 "user@domain"。 |
-|RunAsAccountType|Wstring，預設值為 "" |指出 RunAs 帳戶類型。 任何 RunAs 區段皆需要此參數。有效值為 "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem"。 |
-|RunAsPassword|Wstring，預設值為 "" |指出 RunAs 帳戶密碼。 "DomainUser" 帳戶類型才需要此參數。 |
+| RunAsAccountName |字串，預設值為 "" |指出 RunAs 帳戶名稱。 "DomainUser" 或 "ManagedServiceAccount" 帳戶類型才需要此參數。 有效值為 "domain\user" 或 "user@domain"。 |
+|RunAsAccountType|字串，預設值為 "" |指出 RunAs 帳戶類型。 任何 RunAs 區段皆需要此參數。有效值為 "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem"。 |
+|RunAsPassword|字串，預設值為 "" |指出 RunAs 帳戶密碼。 "DomainUser" 帳戶類型才需要此參數。 |
 
 ### <a name="section-name-runasdca"></a>區段名稱：RunAs_DCA
 | **參數** | **允許的值** | **指引或簡短描述** |
 | --- | --- | --- |
-| RunAsAccountName |Wstring，預設值為 "" |指出 RunAs 帳戶名稱。 "DomainUser" 或 "ManagedServiceAccount" 帳戶類型才需要此參數。 有效值為 "domain\user" 或 "user@domain"。 |
-|RunAsAccountType|Wstring，預設值為 "" |指出 RunAs 帳戶類型。 任何 RunAs 區段皆需要此參數。有效值為 "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem"。 |
-|RunAsPassword|Wstring，預設值為 "" |指出 RunAs 帳戶密碼。 "DomainUser" 帳戶類型才需要此參數。 |
+| RunAsAccountName |字串，預設值為 "" |指出 RunAs 帳戶名稱。 "DomainUser" 或 "ManagedServiceAccount" 帳戶類型才需要此參數。 有效值為 "domain\user" 或 "user@domain"。 |
+|RunAsAccountType|字串，預設值為 "" |指出 RunAs 帳戶類型。 任何 RunAs 區段皆需要此參數。有效值為 "LocalUser/DomainUser/NetworkService/ManagedServiceAccount/LocalSystem"。 |
+|RunAsPassword|字串，預設值為 "" |指出 RunAs 帳戶密碼。 "DomainUser" 帳戶類型才需要此參數。 |
 
 ### <a name="section-name-httpgateway"></a>區段名稱：HttpGateway
 | **參數** | **允許的值** | **指引或簡短描述** |
@@ -246,8 +270,8 @@ ms.lasthandoff: 02/16/2017
 |WriteBufferMemoryPoolMinimumInKB |整數，預設值為 8388608 |一開始要為寫入緩衝區記憶體集區配置的 KB 數目。 使用 0 表示無限制。預設值應與下面的 SharedLogSizeInMB 一致。 |
 |WriteBufferMemoryPoolMaximumInKB | 整數，預設值為 0 |允許寫入緩衝區記憶體集區成長達到的 KB 數目。 使用 0 表示無限制。 |
 |MaximumDestagingWriteOutstandingInKB | 整數，預設值為 0 | 允許共用記錄比專用記錄多出的 KB 數目。 使用 0 表示無限制。
-|SharedLogPath |Wstring，預設值為 "" | 用以放置共用記錄容器之位置的路徑和檔案名稱。 使用 "" 可使用位於網狀架構資料根目錄下的預設路徑。 |
-|SharedLogId |Wstring，預設值為 "" |共用記錄容器的唯一 GUID。 若使用位於網狀架構資料根目錄下的預設路徑，則使用 ""。 |
+|SharedLogPath |字串，預設值為 "" | 用以放置共用記錄容器之位置的路徑和檔案名稱。 使用 "" 可使用位於網狀架構資料根目錄下的預設路徑。 |
+|SharedLogId |字串，預設值為 "" |共用記錄容器的唯一 GUID。 若使用位於網狀架構資料根目錄下的預設路徑，則使用 ""。 |
 |SharedLogSizeInMB |整數，預設值為 8192 | 要在共用記錄容器中配置的 MB 數。 |
 
 ### <a name="section-name-applicationgatewayhttp"></a>區段名稱︰ApplicationGateway/Http
@@ -258,11 +282,11 @@ ms.lasthandoff: 02/16/2017
 |DefaultHttpRequestTimeout |以秒為單位的時間。 預設值為 60 |以秒為單位指定時間範圍。  針對在 http 應用程式閘道中所處理的 http 要求提供預設要求逾時。 |
 |ResolveServiceBackoffInterval |時間 (秒)，預設值為 5 |以秒為單位指定時間範圍。  提供在重試失敗的解析服務作業前的預設輪詢間隔。 |
 |BodyChunkSize |單位，預設值為 4096 |  提供用來讀取主體的區塊大小 (位元組)。 |
-|GatewayAuthCredentialType |Wstring，預設值為 "None" | 表示要在 http 應用程式閘道端點使用的安全性認證類型。有效值為 "None/X509。 |
-|GatewayX509CertificateStoreName |Wstring，預設值為 "My" | 包含 http 應用程式閘道之憑證的 X.509 憑證存放區名稱。 |
-|GatewayX509CertificateFindType |Wstring，預設值為 "FindByThumbprint" | 指出如何搜尋以下列 GatewayX509CertificateStoreName 支援值指定之存放區中的憑證︰FindByThumbprint、FindBySubjectName。 |
-|GatewayX509CertificateFindValue | Wstring，預設值為 "" | 搜尋用來找出 http 應用程式閘道憑證的篩選值。 此憑證設定於 https 端點上，如果服務需要，也可用來驗證應用程式的身分識別。 首先會查閱 FindValue，如果不存在，則會查閱 FindValueSecondary。 |
-|GatewayX509CertificateFindValueSecondary | Wstring，預設值為 "" |搜尋用來找出 http 應用程式閘道憑證的篩選值。 此憑證設定於 https 端點上，如果服務需要，也可用來驗證應用程式的身分識別。 首先會查閱 FindValue，如果不存在，則會查閱 FindValueSecondary。|
+|GatewayAuthCredentialType |字串，預設值為 "None" | 表示要在 http 應用程式閘道端點使用的安全性認證類型。有效值為 "None/X509。 |
+|GatewayX509CertificateStoreName |字串，預設值為 "My" | 包含 http 應用程式閘道之憑證的 X.509 憑證存放區名稱。 |
+|GatewayX509CertificateFindType |字串，預設值為 "FindByThumbprint" | 指出如何搜尋以下列 GatewayX509CertificateStoreName 支援值指定之存放區中的憑證︰FindByThumbprint、FindBySubjectName。 |
+|GatewayX509CertificateFindValue | 字串，預設值為 "" | 搜尋用來找出 http 應用程式閘道憑證的篩選值。 此憑證設定於 https 端點上，如果服務需要，也可用來驗證應用程式的身分識別。 首先會查閱 FindValue，如果不存在，則會查閱 FindValueSecondary。 |
+|GatewayX509CertificateFindValueSecondary | 字串，預設值為 "" |搜尋用來找出 http 應用程式閘道憑證的篩選值。 此憑證設定於 https 端點上，如果服務需要，也可用來驗證應用程式的身分識別。 首先會查閱 FindValue，如果不存在，則會查閱 FindValueSecondary。|
 
 ### <a name="section-name-management"></a>區段名稱︰Management
 | **參數** | **允許的值** | **指引或簡短描述** |
@@ -293,7 +317,7 @@ ms.lasthandoff: 02/16/2017
 | ReplicaRestartWaitDuration |時間 (秒)，預設值為 60 分鐘|以秒為單位指定時間範圍。 FaultAnalysisService 的 ReplicaRestartWaitDuration。 |
 | QuorumLossWaitDuration | 時間 (秒)，預設值為 MaxValue |以秒為單位指定時間範圍。 FaultAnalysisService 的 QuorumLossWaitDuration。 |
 | StandByReplicaKeepDuration| 時間 (秒)，預設值為 (60*24*7) 分鐘 |以秒為單位指定時間範圍。 FaultAnalysisService 的 StandByReplicaKeepDuration。 |
-| PlacementConstraints | Wstring，預設值為 ""| FaultAnalysisService 的 PlacementConstraints。 |
+| PlacementConstraints | 字串，預設值為 ""| FaultAnalysisService 的 PlacementConstraints。 |
 | StoredActionCleanupIntervalInSeconds | 整數，預設值為 3600 |這是存放區的清除頻率。  只有處於終止狀態且在至少 CompletedActionKeepDurationInSeconds 秒前完成的動作會遭到移除。 |
 | CompletedActionKeepDurationInSeconds | 整數，預設值為 604800 | 這大約是處於終止狀態之動作的保留時間長度。  此值也取決於 StoredActionCleanupIntervalInSeconds，因為要清除的工作只會在該間隔內完成。 604800 為 7 天。 |
 | StoredChaosEventCleanupIntervalInSeconds | 整數，預設值為 3600 |這是會稽核存放區是否要清除的頻率，如果事件數目超過 30000，就會開始清除作業。 |
@@ -309,20 +333,20 @@ ms.lasthandoff: 02/16/2017
 | MaxRequestProcessingThreads | 單位，預設值為 200 |允許在主要複寫器處理要求的平行執行緒數目上限。 '0' == 核心數目。 |
 | MaxSecondaryFileCopyFailureThreshold | 單位，預設值為 25| 在放棄前要在次要複寫器上重試檔案複製的次數上限。 |
 | AnonymousAccessEnabled | 布林值，預設值為 true |啟用/停用 FileStoreService 共用的匿名存取。 |
-| PrimaryAccountType | Wstring，預設值為 "" |要對 FileStoreService 共用進行 ACL 操作之主體的主要 AccountType。 |
-| PrimaryAccountUserName | Wstring，預設值為 "" |要對 FileStoreService 共用進行 ACL 操作之主體的主要帳戶使用者名稱。 |
+| PrimaryAccountType | 字串，預設值為 "" |要對 FileStoreService 共用進行 ACL 操作之主體的主要 AccountType。 |
+| PrimaryAccountUserName | 字串，預設值為 "" |要對 FileStoreService 共用進行 ACL 操作之主體的主要帳戶使用者名稱。 |
 | PrimaryAccountUserPassword | SecureString，預設值為空白 |要對 FileStoreService 共用進行 ACL 操作之主體的主要帳戶密碼。 |
 | FileStoreService | PrimaryAccountNTLMPasswordSecret | SecureString，預設值為空白 | 使用 NTLM 驗證時，用來做為種子以產生相同密碼的密碼祕密。 |
-| PrimaryAccountNTLMX509StoreLocation | Wstring，預設值為 "LocalMachine"| 使用 NTLM 驗證時，用來在 PrimaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的存放區位置。 |
-| PrimaryAccountNTLMX509StoreName | Wstring，預設值為 "MY"| 使用 NTLM 驗證時，用來在 PrimaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的存放區名稱。 |
-| PrimaryAccountNTLMX509Thumbprint | Wstring，預設值為 ""|使用 NTLM 驗證時，用來在 PrimaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的指紋。 |
-| SecondaryAccountType | Wstring，預設值為 ""| 要對 FileStoreService 共用進行 ACL 操作之主體的次要 AccountType。 |
-| SecondaryAccountUserName | Wstring，預設值為 ""| 要對 FileStoreService 共用進行 ACL 操作之主體的次要帳戶使用者名稱。 |
+| PrimaryAccountNTLMX509StoreLocation | 字串，預設值為 "LocalMachine"| 使用 NTLM 驗證時，用來在 PrimaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的存放區位置。 |
+| PrimaryAccountNTLMX509StoreName | 字串，預設值為 "MY"| 使用 NTLM 驗證時，用來在 PrimaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的存放區名稱。 |
+| PrimaryAccountNTLMX509Thumbprint | 字串，預設值為 ""|使用 NTLM 驗證時，用來在 PrimaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的指紋。 |
+| SecondaryAccountType | 字串，預設值為 ""| 要對 FileStoreService 共用進行 ACL 操作之主體的次要 AccountType。 |
+| SecondaryAccountUserName | 字串，預設值為 ""| 要對 FileStoreService 共用進行 ACL 操作之主體的次要帳戶使用者名稱。 |
 | SecondaryAccountUserPassword | SecureString，預設值為空白 |要對 FileStoreService 共用進行 ACL 操作之主體的次要帳戶密碼。  |
 | SecondaryAccountNTLMPasswordSecret | SecureString，預設值為空白 | 使用 NTLM 驗證時，用來做為種子以產生相同密碼的密碼祕密。 |
-| SecondaryAccountNTLMX509StoreLocation | Wstring，預設值為 "LocalMachine" |使用 NTLM 驗證時，用來在 SecondaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的存放區位置。 |
-| SecondaryAccountNTLMX509StoreName | Wstring，預設值為 "MY" |使用 NTLM 驗證時，用來在 SecondaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的存放區名稱。 |
-| SecondaryAccountNTLMX509Thumbprint | Wstring，預設值為 ""| 使用 NTLM 驗證時，用來在 SecondaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的指紋。 |
+| SecondaryAccountNTLMX509StoreLocation | 字串，預設值為 "LocalMachine" |使用 NTLM 驗證時，用來在 SecondaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的存放區位置。 |
+| SecondaryAccountNTLMX509StoreName | 字串，預設值為 "MY" |使用 NTLM 驗證時，用來在 SecondaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的存放區名稱。 |
+| SecondaryAccountNTLMX509Thumbprint | 字串，預設值為 ""| 使用 NTLM 驗證時，用來在 SecondaryAccountNTLMPasswordSecret 上產生 HMAC 之 X509 憑證的指紋。 |
 
 ### <a name="section-name-imagestoreservice"></a>區段名稱︰ImageStoreService
 | **參數** | **允許的值** | **指引或簡短描述** |
@@ -333,7 +357,7 @@ ms.lasthandoff: 02/16/2017
 | ReplicaRestartWaitDuration | 時間 (秒)，預設值為 60.0 * 30 | 以秒為單位指定時間範圍。 ImageStoreService 的 ReplicaRestartWaitDuration。 |
 | QuorumLossWaitDuration | 時間 (秒)，預設值為 MaxValue | 以秒為單位指定時間範圍。 ImageStoreService 的 QuorumLossWaitDuration。 |
 | StandByReplicaKeepDuration | 時間 (秒)，預設值為 3600.0 * 2 | 以秒為單位指定時間範圍。 ImageStoreService 的 StandByReplicaKeepDuration。 |
-| PlacementConstraints | Wstring，預設值為 "" | ImageStoreService 的 PlacementConstraints。 |
+| PlacementConstraints | 字串，預設值為 "" | ImageStoreService 的 PlacementConstraints。 |
 | ClientUploadTimeout | 時間 (秒)，預設值為 1800 |以秒為單位指定時間範圍。 目的地為映像存放區服務之頂層上傳要求的逾時值。 |
 | ClientCopyTimeout | 時間 (秒)，預設值為 1800 | 以秒為單位指定時間範圍。 目的地為映像存放區服務之頂層複製要求的逾時值。 |
 | ClientDownloadTimeout | 時間 (秒)，預設值為 1800 | 以秒為單位指定時間範圍。 目的地為映像存放區服務之頂層下載要求的逾時值 |
@@ -352,7 +376,7 @@ ms.lasthandoff: 02/16/2017
 ### <a name="section-name-tokenvalidationservice"></a>區段名稱︰TokenValidationService
 | **參數** | **允許的值** | **指引或簡短描述** |
 | --- | --- | --- |
-| 提供者 |Wstring，預設值為 "DSTS" |要啟用之權杖驗證提供者的逗號分隔清單 (有效提供者為︰DSTS、AAD)。 目前只能隨時啟用單一提供者。 |
+| 提供者 |字串，預設值為 "DSTS" |要啟用之權杖驗證提供者的逗號分隔清單 (有效提供者為︰DSTS、AAD)。 目前只能隨時啟用單一提供者。 |
 
 ### <a name="section-name-upgradeorchestrationservice"></a>區段名稱︰UpgradeOrchestrationService
 | **參數** | **允許的值** | **指引或簡短描述** |
@@ -362,113 +386,113 @@ ms.lasthandoff: 02/16/2017
 | ReplicaRestartWaitDuration | 時間 (秒)，預設值為 60 分鐘| 以秒為單位指定時間範圍。 UpgradeOrchestrationService 的 ReplicaRestartWaitDuration。 |
 | QuorumLossWaitDuration | 時間 (秒)，預設值為 MaxValue | 以秒為單位指定時間範圍。 UpgradeOrchestrationService 的 QuorumLossWaitDuration。 |
 | StandByReplicaKeepDuration | 時間 (秒)，預設值為 60*24*7 分鐘 | 以秒為單位指定時間範圍。 UpgradeOrchestrationService 的 StandByReplicaKeepDuration。 |
-| PlacementConstraints | Wstring，預設值為 "" | UpgradeOrchestrationService 的 PlacementConstraints。 |
+| PlacementConstraints | 字串，預設值為 "" | UpgradeOrchestrationService 的 PlacementConstraints。 |
 | AutoupgradeEnabled | 布林值，預設值為 true | 以目標狀態檔案為基礎的自動輪詢和升級動作。 |
 | UpgradeApprovalRequired | 布林值，預設值為 false | 讓程式碼升級作業需要系統管理員核准後才能繼續的設定。 |
 
 ### <a name="section-name-upgradeservice"></a>區段名稱︰UpgradeService
 | **參數** | **允許的值** | **指引或簡短描述** |
 | --- | --- | --- |
-| PlacementConstraints |Wstring，預設值為 "" |升級服務的 PlacementConstraints。 |
+| PlacementConstraints |字串，預設值為 "" |升級服務的 PlacementConstraints。 |
 | TargetReplicaSetSize | 整數，預設值為 3 | UpgradeService 的 TargetReplicaSetSize。 |
 | MinReplicaSetSize | 整數，預設值為 2 | UpgradeService 的 MinReplicaSetSize。 |
-| CoordinatorType | Wstring，預設值為 "WUTest"| UpgradeService 的 CoordinatorType。 |
-| BaseUrl | Wstring，預設值為 "" |UpgradeService 的 BaseUrl。 |
-| ClusterId | Wstring，預設值為 "" | UpgradeService 的 ClusterId。 |
-| X509StoreName | Wstring，預設值為 "My"| UpgradeService 的 X509StoreName。 |
-| X509StoreLocation | Wstring，預設值為 "" | UpgradeService 的 X509StoreLocation。 |
-| X509FindType | Wstring，預設值為 ""| UpgradeService 的 X509FindType。 |
-| X509FindValue | Wstring，預設值為 "" | UpgradeService 的 X509FindValue。 |
-| X509SecondaryFindValue | Wstring，預設值為 "" | UpgradeService 的 X509SecondaryFindValue。 |
+| CoordinatorType | 字串，預設值為 "WUTest"| UpgradeService 的 CoordinatorType。 |
+| BaseUrl | 字串，預設值為 "" |UpgradeService 的 BaseUrl。 |
+| ClusterId | 字串，預設值為 "" | UpgradeService 的 ClusterId。 |
+| X509StoreName | 字串，預設值為 "My"| UpgradeService 的 X509StoreName。 |
+| X509StoreLocation | 字串，預設值為 "" | UpgradeService 的 X509StoreLocation。 |
+| X509FindType | 字串，預設值為 ""| UpgradeService 的 X509FindType。 |
+| X509FindValue | 字串，預設值為 "" | UpgradeService 的 X509FindValue。 |
+| X509SecondaryFindValue | 字串，預設值為 "" | UpgradeService 的 X509SecondaryFindValue。 |
 | OnlyBaseUpgrade | 布林值，預設值為 false | UpgradeService 的 OnlyBaseUpgrade。 |
-| TestCabFolder | Wstring，預設值為 "" | UpgradeService 的 TestCabFolder。 |
+| TestCabFolder | 字串，預設值為 "" | UpgradeService 的 TestCabFolder。 |
 
 ### <a name="section-name-securityclientaccess"></a>區段名稱︰Security/ClientAccess
 | **參數** | **允許的值** | **指引或簡短描述** |
 | --- | --- | --- |
-| CreateName |Wstring，預設值為 "Admin" |命名 URI 建立的安全性組態。 |
-| DeleteName |Wstring，預設值為 "Admin" |命名 URI 刪除的安全性組態。 |
-| PropertyWriteBatch |Wstring，預設值為 "Admin" |命名屬性寫入作業的安全性組態。 |
-| CreateService |Wstring，預設值為 "Admin" | 服務建立的安全性組態。 |
-| CreateServiceFromTemplate |Wstring，預設值為 "Admin" |從範本建立服務的安全性組態。 |
-| UpdateService |Wstring，預設值為 "Admin" |服務更新的安全性組態。 |
-| DeleteService  |Wstring，預設值為 "Admin" |服務刪除的安全性組態。 |
-| ProvisionApplicationType |Wstring，預設值為 "Admin" | 應用程式類型佈建的安全性組態。 |
-| CreateApplication |Wstring，預設值為 "Admin" | 應用程式建立的安全性組態。 |
-| DeleteApplication |Wstring，預設值為 "Admin" | 應用程式刪除的安全性組態。 |
-| UpgradeApplication |Wstring，預設值為 "Admin" | 用於啟動或中斷應用程式升級的安全性組態。 |
-| RollbackApplicationUpgrade |Wstring，預設值為 "Admin" | 用於復原應用程式升級的安全性組態。 |
-| UnprovisionApplicationType |Wstring，預設值為 "Admin" | 應用程式類型取消佈建的安全性組態。 |
-| MoveNextUpgradeDomain |Wstring，預設值為 "Admin" | 用於以明確的「升級網域」繼續進行應用程式升級的安全性組態。 |
-| ReportUpgradeHealth |Wstring，預設值為 "Admin" | 用於以目前的升級進度繼續進行應用程式升級的安全性組態。 |
-| ReportHealth |Wstring，預設值為 "Admin" | 用於報告健康狀態的安全性組態。 |
-| ProvisionFabric |Wstring，預設值為 "Admin" | MSI 和/或叢集資訊清單佈建的安全性組態。 |
-| UpgradeFabric |Wstring，預設值為 "Admin" | 用於啟動叢集升級的安全性組態。 |
-| RollbackFabricUpgrade |Wstring，預設值為 "Admin" | 用於復原叢集升級的安全性組態。 |
-| UnprovisionFabric |Wstring，預設值為 "Admin" | MSI 和/或叢集資訊清單取消佈建的安全性組態。 |
-| MoveNextFabricUpgradeDomain |Wstring，預設值為 "Admin" | 用於以明確的「升級網域」繼續進行叢集升級的安全性組態。 |
-| ReportFabricUpgradeHealth |Wstring，預設值為 "Admin" | 用於以目前的升級進度繼續進行叢集升級的安全性組態。 |
-| StartInfrastructureTask |Wstring，預設值為 "Admin" | 用於啟動基礎結構工作的安全性組態。 |
-| FinishInfrastructureTask |Wstring，預設值為 "Admin" | 用於完成基礎結構工作的安全性組態。 |
-| ActivateNode |Wstring，預設值為 "Admin" | 用於啟用節點的安全性組態。 |
-| DeactivateNode |Wstring，預設值為 "Admin" | 用於停用節點的安全性組態。 |
-| DeactivateNodesBatch |Wstring，預設值為 "Admin" | 用於停用多個節點的安全性組態。 |
-| RemoveNodeDeactivations |Wstring，預設值為 "Admin" | 用於將停用多個節點之作業還原的安全性組態。 |
-| GetNodeDeactivationStatus |Wstring，預設值為 "Admin" | 用於檢查停用狀態的安全性組態。 |
-| NodeStateRemoved |Wstring，預設值為 "Admin" | 用於報告節點狀態已遭移除的安全性組態。 |
-| RecoverPartition |Wstring，預設值為 "Admin" | 用於復原資料分割的安全性組態。 |
-| RecoverPartitions |Wstring，預設值為 "Admin" | 用於復原資料分割的安全性組態。 |
-| RecoverServicePartitions |Wstring，預設值為 "Admin" | 用於復原服務資料分割的安全性組態。 |
-| RecoverSystemPartitions |Wstring，預設值為 "Admin" | 用於復原系統服務資料分割的安全性組態。 |
-| ReportFault |Wstring，預設值為 "Admin" | 用於報告錯誤的安全性組態。 |
-| InvokeInfrastructureCommand |Wstring，預設值為 "Admin" | 基礎結構工作管理命令的安全性組態。 |
-| FileContent |Wstring，預設值為 "Admin" | 映像存放區用戶端檔案傳輸 (叢集外部) 的安全性組態。 |
-| FileDownload |Wstring，預設值為 "Admin" | 映像存放區用戶端檔案下載起始 (叢集外部) 的安全性組態。 |
-| InternalList |Wstring，預設值為 "Admin" | 映像存放區用戶端檔案列出作業 (內部) 的安全性組態。 |
-| 刪除 |Wstring，預設值為 "Admin" | 映像存放區用戶端刪除作業的安全性組態。 |
-| 上傳 |Wstring，預設值為 "Admin" | 映像存放區用戶端上傳作業的安全性組態。 |
-| GetStagingLocation |Wstring，預設值為 "Admin" | 映像存放區用戶端預備位置擷取的安全性組態。 |
-| GetStoreLocation |Wstring，預設值為 "Admin" | 映像存放區用戶端存放區位置擷取的安全性組態。 |
-| NodeControl |Wstring，預設值為 "Admin" | 用於啟動、停止和重新啟動節點的安全性組態。 |
-| CodePackageControl |Wstring，預設值為 "Admin" | 用於重新啟動程式碼套件的安全性組態。 |
-| UnreliableTransportControl |Wstring，預設值為 "Admin" | 用於新增和移除行為的不可靠傳輸。 |
-| MoveReplicaControl |Wstring，預設值為 "Admin" | 移動複本。 |
-| PredeployPackageToNode |Wstring，預設值為 "Admin" | 預先部署 API。 |
-| StartPartitionDataLoss |Wstring，預設值為 "Admin" | 會在資料分割上引發資料遺失。 |
-| StartPartitionQuorumLoss |Wstring，預設值為 "Admin" | 會在資料分割上引發仲裁遺失。 |
-| StartPartitionRestart |Wstring，預設值為 "Admin" | 同時重新啟動部分或所有的資料分割複本。 |
-| CancelTestCommand |Wstring，預設值為 "Admin" | 取消傳輸中的特定 TestCommand。 |
-| StartChaos |Wstring，預設值為 "Admin" | 啟動尚未啟動的混亂。 |
-| StopChaos |Wstring，預設值為 "Admin" | 停止已啟動的混亂。 |
-| StartNodeTransition |Wstring，預設值為 "Admin" | 用於啟動節點轉換的安全性組態。 |
-| StartClusterConfigurationUpgrade |Wstring，預設值為 "Admin" | 在資料分割上引發 StartClusterConfigurationUpgrade。 |
-| GetUpgradesPendingApproval |Wstring，預設值為 "Admin" | 在資料分割上引發 GetUpgradesPendingApproval。 |
-| StartApprovedUpgrades |Wstring，預設值為 "Admin" | 在資料分割上引發 StartApprovedUpgrades。 |
-| Ping |Wstring，預設值為 "Admin\|\|User" | 用於 Ping 用戶端的安全性組態。 |
-| 查詢 |Wstring，預設值為 "Admin\|\|User" | 查詢的安全性組態。 |
-| NameExists |Wstring，預設值為 "Admin\|\|User" | 命名 URI 存在檢查的安全性組態。 |
-| EnumerateSubnames |Wstring，預設值為 "Admin\|\|User" | 命名 URI 列舉的安全性組態。 |
-| EnumerateProperties |Wstring，預設值為 "Admin\|\|User" | 命名屬性列舉的安全性組態。 |
-| PropertyReadBatch |Wstring，預設值為 "Admin\|\|User" | 命名屬性讀取作業的安全性組態。 |
-| GetServiceDescription |Wstring，預設值為 "Admin\|\|User" | 用於長時間輪詢服務通知和讀取服務描述的安全性組態。 |
-| ResolveService |Wstring，預設值為 "Admin\|\|User" | 抱怨型服務解析的安全性組態。 |
-| ResolveNameOwner |Wstring，預設值為 "Admin\|\|User" | 用於解析命名 URI 擁有者的安全性組態。 |
-| ResolvePartition |Wstring，預設值為 "Admin\|\|User" | 用於解析系統服務的安全性組態。 |
-| ServiceNotifications |Wstring，預設值為 "Admin\|\|User" | 事件型服務通知的安全性組態。 |
-| PrefixResolveService |Wstring，預設值為 "Admin\|\|User" | 抱怨型服務前置詞解析的安全性組態。 |
-| GetUpgradeStatus |Wstring，預設值為 "Admin\|\|User" | 用於輪詢應用程式升級狀態的安全性組態。 |
-| GetFabricUpgradeStatus |Wstring，預設值為 "Admin\|\|User" | 用於輪詢叢集升級狀態的安全性組態。 |
-| InvokeInfrastructureQuery |Wstring，預設值為 "Admin\|\|User" | 用於查詢基礎結構工作的安全性組態。 |
-| 列出 |Wstring，預設值為 "Admin\|\|User" | 映像存放區用戶端檔案列出作業的安全性組態。 |
-| ResetPartitionLoad |Wstring，預設值為 "Admin\|\|User" | 用於重設 failoverUnit 負載的安全性組態。 |
-| ToggleVerboseServicePlacementHealthReporting | Wstring，預設值為 "Admin\|\|User" | 用於切換詳細 ServicePlacement HealthReporting 的安全性組態。 |
-| GetPartitionDataLossProgress | Wstring，預設值為 "Admin\|\|User" | 擷取叫用資料遺失 API 呼叫的進度。 |
-| GetPartitionQuorumLossProgress | Wstring，預設值為 "Admin\|\|User" | 擷取叫用仲裁遺失 API 呼叫的進度。 |
-| GetPartitionRestartProgress | Wstring，預設值為 "Admin\|\|User" | 擷取重新啟動資料分割 API 呼叫的進度。 |
-| GetChaosReport | Wstring，預設值為 "Admin\|\|User" | 擷取指定時間範圍內的混亂狀態。 |
-| GetNodeTransitionProgress | Wstring，預設值為 "Admin\|\|User" | 用於取得節點轉換命令進度的安全性組態。 |
-| GetClusterConfigurationUpgradeStatus | Wstring，預設值為 "Admin\|\|User" | 在資料分割上引發 GetClusterConfigurationUpgradeStatus。 |
-| GetClusterConfiguration | Wstring，預設值為 "Admin\|\|User" | 在資料分割上引發 GetClusterConfiguration。 |
+| CreateName |字串，預設值為 "Admin" |命名 URI 建立的安全性組態。 |
+| DeleteName |字串，預設值為 "Admin" |命名 URI 刪除的安全性組態。 |
+| PropertyWriteBatch |字串，預設值為 "Admin" |命名屬性寫入作業的安全性組態。 |
+| CreateService |字串，預設值為 "Admin" | 服務建立的安全性組態。 |
+| CreateServiceFromTemplate |字串，預設值為 "Admin" |從範本建立服務的安全性組態。 |
+| UpdateService |字串，預設值為 "Admin" |服務更新的安全性組態。 |
+| DeleteService  |字串，預設值為 "Admin" |服務刪除的安全性組態。 |
+| ProvisionApplicationType |字串，預設值為 "Admin" | 應用程式類型佈建的安全性組態。 |
+| CreateApplication |字串，預設值為 "Admin" | 應用程式建立的安全性組態。 |
+| DeleteApplication |字串，預設值為 "Admin" | 應用程式刪除的安全性組態。 |
+| UpgradeApplication |字串，預設值為 "Admin" | 用於啟動或中斷應用程式升級的安全性組態。 |
+| RollbackApplicationUpgrade |字串，預設值為 "Admin" | 用於復原應用程式升級的安全性組態。 |
+| UnprovisionApplicationType |字串，預設值為 "Admin" | 應用程式類型取消佈建的安全性組態。 |
+| MoveNextUpgradeDomain |字串，預設值為 "Admin" | 用於以明確的「升級網域」繼續進行應用程式升級的安全性組態。 |
+| ReportUpgradeHealth |字串，預設值為 "Admin" | 用於以目前的升級進度繼續進行應用程式升級的安全性組態。 |
+| ReportHealth |字串，預設值為 "Admin" | 用於報告健康狀態的安全性組態。 |
+| ProvisionFabric |字串，預設值為 "Admin" | MSI 和/或叢集資訊清單佈建的安全性組態。 |
+| UpgradeFabric |字串，預設值為 "Admin" | 用於啟動叢集升級的安全性組態。 |
+| RollbackFabricUpgrade |字串，預設值為 "Admin" | 用於復原叢集升級的安全性組態。 |
+| UnprovisionFabric |字串，預設值為 "Admin" | MSI 和/或叢集資訊清單取消佈建的安全性組態。 |
+| MoveNextFabricUpgradeDomain |字串，預設值為 "Admin" | 用於以明確的「升級網域」繼續進行叢集升級的安全性組態。 |
+| ReportFabricUpgradeHealth |字串，預設值為 "Admin" | 用於以目前的升級進度繼續進行叢集升級的安全性組態。 |
+| StartInfrastructureTask |字串，預設值為 "Admin" | 用於啟動基礎結構工作的安全性組態。 |
+| FinishInfrastructureTask |字串，預設值為 "Admin" | 用於完成基礎結構工作的安全性組態。 |
+| ActivateNode |字串，預設值為 "Admin" | 用於啟用節點的安全性組態。 |
+| DeactivateNode |字串，預設值為 "Admin" | 用於停用節點的安全性組態。 |
+| DeactivateNodesBatch |字串，預設值為 "Admin" | 用於停用多個節點的安全性組態。 |
+| RemoveNodeDeactivations |字串，預設值為 "Admin" | 用於將停用多個節點之作業還原的安全性組態。 |
+| GetNodeDeactivationStatus |字串，預設值為 "Admin" | 用於檢查停用狀態的安全性組態。 |
+| NodeStateRemoved |字串，預設值為 "Admin" | 用於報告節點狀態已遭移除的安全性組態。 |
+| RecoverPartition |字串，預設值為 "Admin" | 用於復原資料分割的安全性組態。 |
+| RecoverPartitions |字串，預設值為 "Admin" | 用於復原資料分割的安全性組態。 |
+| RecoverServicePartitions |字串，預設值為 "Admin" | 用於復原服務資料分割的安全性組態。 |
+| RecoverSystemPartitions |字串，預設值為 "Admin" | 用於復原系統服務資料分割的安全性組態。 |
+| ReportFault |字串，預設值為 "Admin" | 用於報告錯誤的安全性組態。 |
+| InvokeInfrastructureCommand |字串，預設值為 "Admin" | 基礎結構工作管理命令的安全性組態。 |
+| FileContent |字串，預設值為 "Admin" | 映像存放區用戶端檔案傳輸 (叢集外部) 的安全性組態。 |
+| FileDownload |字串，預設值為 "Admin" | 映像存放區用戶端檔案下載起始 (叢集外部) 的安全性組態。 |
+| InternalList |字串，預設值為 "Admin" | 映像存放區用戶端檔案列出作業 (內部) 的安全性組態。 |
+| 刪除 |字串，預設值為 "Admin" | 映像存放區用戶端刪除作業的安全性組態。 |
+| 上傳 |字串，預設值為 "Admin" | 映像存放區用戶端上傳作業的安全性組態。 |
+| GetStagingLocation |字串，預設值為 "Admin" | 映像存放區用戶端預備位置擷取的安全性組態。 |
+| GetStoreLocation |字串，預設值為 "Admin" | 映像存放區用戶端存放區位置擷取的安全性組態。 |
+| NodeControl |字串，預設值為 "Admin" | 用於啟動、停止和重新啟動節點的安全性組態。 |
+| CodePackageControl |字串，預設值為 "Admin" | 用於重新啟動程式碼套件的安全性組態。 |
+| UnreliableTransportControl |字串，預設值為 "Admin" | 用於新增和移除行為的不可靠傳輸。 |
+| MoveReplicaControl |字串，預設值為 "Admin" | 移動複本。 |
+| PredeployPackageToNode |字串，預設值為 "Admin" | 預先部署 API。 |
+| StartPartitionDataLoss |字串，預設值為 "Admin" | 會在資料分割上引發資料遺失。 |
+| StartPartitionQuorumLoss |字串，預設值為 "Admin" | 會在資料分割上引發仲裁遺失。 |
+| StartPartitionRestart |字串，預設值為 "Admin" | 同時重新啟動部分或所有的資料分割複本。 |
+| CancelTestCommand |字串，預設值為 "Admin" | 取消傳輸中的特定 TestCommand。 |
+| StartChaos |字串，預設值為 "Admin" | 啟動尚未啟動的混亂。 |
+| StopChaos |字串，預設值為 "Admin" | 停止已啟動的混亂。 |
+| StartNodeTransition |字串，預設值為 "Admin" | 用於啟動節點轉換的安全性組態。 |
+| StartClusterConfigurationUpgrade |字串，預設值為 "Admin" | 在資料分割上引發 StartClusterConfigurationUpgrade。 |
+| GetUpgradesPendingApproval |字串，預設值為 "Admin" | 在資料分割上引發 GetUpgradesPendingApproval。 |
+| StartApprovedUpgrades |字串，預設值為 "Admin" | 在資料分割上引發 StartApprovedUpgrades。 |
+| Ping |字串，預設值為 "Admin\|\|User" | 用於 Ping 用戶端的安全性組態。 |
+| 查詢 |字串，預設值為 "Admin\|\|User" | 查詢的安全性組態。 |
+| NameExists |字串，預設值為 "Admin\|\|User" | 命名 URI 存在檢查的安全性組態。 |
+| EnumerateSubnames |字串，預設值為 "Admin\|\|User" | 命名 URI 列舉的安全性組態。 |
+| EnumerateProperties |字串，預設值為 "Admin\|\|User" | 命名屬性列舉的安全性組態。 |
+| PropertyReadBatch |字串，預設值為 "Admin\|\|User" | 命名屬性讀取作業的安全性組態。 |
+| GetServiceDescription |字串，預設值為 "Admin\|\|User" | 用於長時間輪詢服務通知和讀取服務描述的安全性組態。 |
+| ResolveService |字串，預設值為 "Admin\|\|User" | 抱怨型服務解析的安全性組態。 |
+| ResolveNameOwner |字串，預設值為 "Admin\|\|User" | 用於解析命名 URI 擁有者的安全性組態。 |
+| ResolvePartition |字串，預設值為 "Admin\|\|User" | 用於解析系統服務的安全性組態。 |
+| ServiceNotifications |字串，預設值為 "Admin\|\|User" | 事件型服務通知的安全性組態。 |
+| PrefixResolveService |字串，預設值為 "Admin\|\|User" | 抱怨型服務前置詞解析的安全性組態。 |
+| GetUpgradeStatus |字串，預設值為 "Admin\|\|User" | 用於輪詢應用程式升級狀態的安全性組態。 |
+| GetFabricUpgradeStatus |字串，預設值為 "Admin\|\|User" | 用於輪詢叢集升級狀態的安全性組態。 |
+| InvokeInfrastructureQuery |字串，預設值為 "Admin\|\|User" | 用於查詢基礎結構工作的安全性組態。 |
+| 列出 |字串，預設值為 "Admin\|\|User" | 映像存放區用戶端檔案列出作業的安全性組態。 |
+| ResetPartitionLoad |字串，預設值為 "Admin\|\|User" | 用於重設 failoverUnit 負載的安全性組態。 |
+| ToggleVerboseServicePlacementHealthReporting | 字串，預設值為 "Admin\|\|User" | 用於切換詳細 ServicePlacement HealthReporting 的安全性組態。 |
+| GetPartitionDataLossProgress | 字串，預設值為 "Admin\|\|User" | 擷取叫用資料遺失 API 呼叫的進度。 |
+| GetPartitionQuorumLossProgress | 字串，預設值為 "Admin\|\|User" | 擷取叫用仲裁遺失 API 呼叫的進度。 |
+| GetPartitionRestartProgress | 字串，預設值為 "Admin\|\|User" | 擷取重新啟動資料分割 API 呼叫的進度。 |
+| GetChaosReport | 字串，預設值為 "Admin\|\|User" | 擷取指定時間範圍內的混亂狀態。 |
+| GetNodeTransitionProgress | 字串，預設值為 "Admin\|\|User" | 用於取得節點轉換命令進度的安全性組態。 |
+| GetClusterConfigurationUpgradeStatus | 字串，預設值為 "Admin\|\|User" | 在資料分割上引發 GetClusterConfigurationUpgradeStatus。 |
+| GetClusterConfiguration | 字串，預設值為 "Admin\|\|User" | 在資料分割上引發 GetClusterConfiguration。 |
 
 ### <a name="section-name-reconfigurationagent"></a>區段名稱：ReconfigurationAgent
 | **參數** | **允許的值** | **指引或簡短描述** |
@@ -513,10 +537,10 @@ ms.lasthandoff: 02/16/2017
 |UseMoveCostReports | 布林值，預設值為 false | 指示 LB 略過評分函式的成本項目，以便有機會產生大量移動來獲得更平衡的放置。 |
 |PreventTransientOvercommit | 布林值，預設值為 false | 決定 PLB 是否應立即計算所起始之移動將釋放的資源。 根據預設，PLB 可以在相同節點上起始移出和移入，以便能建立暫時性的過量使用。 將此參數設為 true 將會避免這類過量使用，且會停用隨選重組 (也稱為 placementWithMove)。 |
 |InBuildThrottlingEnabled | 布林值，預設值為 false | 決定是否啟用內建的節流。 |
-|InBuildThrottlingAssociatedMetric | Wstring，預設值為 "" | 此節流的相關度量名稱。 |
+|InBuildThrottlingAssociatedMetric | 字串，預設值為 "" | 此節流的相關度量名稱。 |
 |InBuildThrottlingGlobalMaxValue | 整數，預設值為 0 |在全域中允許的內建複本數目上限。 |
 |SwapPrimaryThrottlingEnabled | 布林值，預設值為 false| 決定是否啟用 swap-primary 節流。 |
-|SwapPrimaryThrottlingAssociatedMetric | Wstring，預設值為 ""| 此節流的相關度量名稱。 |
+|SwapPrimaryThrottlingAssociatedMetric | 字串，預設值為 ""| 此節流的相關度量名稱。 |
 |SwapPrimaryThrottlingGlobalMaxValue | 整數，預設值為 0 | 在全域中允許的 swap-primary 複本數目上限。 |
 |PlacementConstraintPriority | 整數，預設值為 0 | 決定放置條件約束的優先順序︰0︰硬式、1︰軟式、負數︰忽略。 |
 |PreferredLocationConstraintPriority | 整數，預設值為 2| 決定慣用位置條件約束的優先順序︰0︰硬式、1︰軟式、2：最佳化、負數︰忽略 |
@@ -571,7 +595,7 @@ ms.lasthandoff: 02/16/2017
 |ReplicaRestartWaitDuration |時間 (秒)，預設值為 (60.0 * 30)|以秒為單位指定時間範圍。 ClusterManager 的 ReplicaRestartWaitDuration。 |
 |QuorumLossWaitDuration |時間 (秒)，預設值為 MaxValue | 以秒為單位指定時間範圍。 ClusterManager 的 QuorumLossWaitDuration。 |
 |StandByReplicaKeepDuration | 時間 (秒)，預設值為 (3600.0 * 2)|以秒為單位指定時間範圍。 ClusterManager 的 StandByReplicaKeepDuration。 |
-|PlacementConstraints | Wstring，預設值為 "" |ClusterManager 的 PlacementConstraints。 |
+|PlacementConstraints | 字串，預設值為 "" |ClusterManager 的 PlacementConstraints。 |
 |SkipRollbackUpdateDefaultService | 布林值，預設值為 false |CM 會在應用程式升級復原期間，略過已更新之預設服務的還原作業。 |
 |EnableDefaultServicesUpgrade | 布林值，預設值為 false |在應用程式升級期間啟用預設服務升級作業。 在升級之後，將會覆寫預設的服務描述。 |
 |InfrastructureTaskHealthCheckWaitDuration |時間 (秒)，預設值為 0| 以秒為單位指定時間範圍。 在後置處理基礎結構工作之後，要開始健康狀態檢查之前所等待的時間量。 |

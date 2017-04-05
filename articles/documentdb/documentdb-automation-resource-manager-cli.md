@@ -13,12 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/17/2017
+ms.date: 03/20/2017
 ms.author: dimakwan
 translationtype: Human Translation
-ms.sourcegitcommit: 655f501f920e3169450831f501f7183ae46a4a60
-ms.openlocfilehash: 67d06372d186a0b51eac7a94ad67b9cd7f516319
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: b286a93d7cc5f962f969e877b2f487e56cbb1a95
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -51,7 +51,7 @@ ms.lasthandoff: 02/27/2017
 * 執行 'az documentdb -h' 來取得可用命令的完整清單，或瀏覽[參考頁面][az-documentdb-ref]。
 * 執行 'az documentdb <command> -h' 來取得每個命令之必要和選擇性參數的詳細資料清單。
 
-## <a name="a-idcreate-documentdb-account-clia-create-a-documentdb-database-account"></a><a id="create-documentdb-account-cli"></a>建立 DocumentDB 資料庫帳戶
+## <a id="create-documentdb-account-cli"></a>建立 DocumentDB 資料庫帳戶
 
 此命令可讓您建立 DocumentDB 資料庫帳戶。 將新的資料庫帳戶設定為單一區域或有特定[一致性原則](documentdb-consistency-levels.md)的[多重區域][scaling-globally]。 
 
@@ -65,6 +65,7 @@ Arguments
                                     address ranges in CIDR form to be included as the allowed list
                                     of client IPs for a given database account. IP addresses/ranges
                                     must be comma separated and must not contain any spaces.
+                                    To enable portal access, include 104.42.195.92.
     --kind                        : The type of DocumentDB database account to create.  Allowed
                                     values: GlobalDocumentDB, MongoDB, Parse.  Default:
                                     GlobalDocumentDB.
@@ -93,7 +94,7 @@ Arguments
 ### <a name="notes"></a>注意事項
 * 位置必須是 DocumentDB 已正式運作的區域。 [Azure 區域頁面](https://azure.microsoft.com/regions/#services)會提供目前的區域清單。
 
-## <a name="a-idupdate-documentdb-account-clia-update-a-documentdb-database-account"></a><a id="update-documentdb-account-cli"></a>更新 DocumentDB 資料庫帳戶
+## <a id="update-documentdb-account-cli"></a>更新 DocumentDB 資料庫帳戶
 
 此命令可讓您更新 DocumentDB 資料庫帳戶屬性。 這包括一致性原則，以及資料庫帳戶存在的位置。
 
@@ -128,7 +129,7 @@ Arguments
     az documentdb update -g rg-test -n docdb-test --ip-range-filter "13.91.6.132,13.91.6.1/24"
     az documentdb update -g rg-test -n docdb-test --default-consistency-level BoundedStaleness --max-interval 10 --max-staleness-prefix 200
 
-## <a name="a-idadd-remove-region-documentdb-account-clia-addremove-region-from-a-documentdb-database-account"></a><a id="add-remove-region-documentdb-account-cli"></a>在 DocumentDB 資料庫帳戶中新增/移除區域
+## <a id="add-remove-region-documentdb-account-cli"></a>在 DocumentDB 資料庫帳戶中新增/移除區域
 
 若要在現有 DocumentDB 資料庫帳戶中新增或移除區域，請使用 [update](#update-documentdb-account-cli) 命令並搭配 `--locations` 旗標。 下列範例示範如何建立新帳戶，並於隨後在帳戶中新增和移除區域。
 
@@ -138,7 +139,7 @@ Arguments
     az documentdb update -g rg-test -n docdb-test --locations "East US"=0 "North Europe"=1 "South Central US"=2
 
 
-## <a name="a-iddelete-documentdb-account-clia-delete-a-documentdb-database-account"></a><a id="delete-documentdb-account-cli"></a>刪除 DocumentDB 資料庫帳戶
+## <a id="delete-documentdb-account-cli"></a>刪除 DocumentDB 資料庫帳戶
 
 此命令可讓您刪除現有的 DocumentDB 資料庫帳戶。
 
@@ -152,7 +153,7 @@ Arguments
 
     az documentdb delete -g rg-test -n docdb-test
 
-## <a name="a-idget-documentdb-properties-clia-get-properties-of-a-documentdb-database-account"></a><a id="get-documentdb-properties-cli"></a>取得 DocumentDB 資料庫帳戶的屬性
+## <a id="get-documentdb-properties-cli"></a>取得 DocumentDB 資料庫帳戶的屬性
 
 此命令可讓您取得現有 DocumentDB 資料庫帳戶的屬性。
 
@@ -166,7 +167,7 @@ Arguments
 
     az documentdb show -g rg-test -n docdb-test
 
-## <a name="a-idlist-account-keys-clia-list-account-keys"></a><a id="list-account-keys-cli"></a>列出帳戶金鑰
+## <a id="list-account-keys-cli"></a>列出帳戶金鑰
 
 當您建立 DocumentDB 帳戶時，服務會產生兩個主要存取金鑰，用於存取 DocumentDB 帳戶時的驗證。 透過提供這兩個存取金鑰，DocumentDB 讓您可以重新產生金鑰，同時又不需中斷 DocumentDB 帳戶。 也提供驗證唯讀作業的唯讀金鑰。 有兩個讀寫金鑰 (主要和次要) 和兩個唯讀金鑰 (主要和次要)。
 
@@ -180,7 +181,7 @@ Arguments
 
     az documentdb list-keys -g rg-test -n docdb-test
 
-## <a name="a-idregenerate-account-key-clia-regenerate-account-key"></a><a id="regenerate-account-key-cli"></a>重新產生帳戶金鑰
+## <a id="regenerate-account-key-cli"></a>重新產生帳戶金鑰
 
 您應定期變更 DocumentDB 帳戶的存取金鑰，讓連線更加安全。 指派的兩個存取金鑰可讓您在重新產生一個存取金鑰的同時，使用另一個存取金鑰維持 DocumentDB 帳戶連線。
 
@@ -196,9 +197,9 @@ Arguments
 
     az documentdb regenerate-key -g rg-test -n docdb-test --key-kind secondary
 
-## <a name="a-idmodify-failover-priority-clia-modify-failover-priority-of-a-documentdb-database-account"></a><a id="modify-failover-priority-cli"></a>修改 DocumentDB 資料庫帳戶的容錯移轉優先順序
+## <a id="modify-failover-priority-cli"></a>修改 DocumentDB 資料庫帳戶的容錯移轉優先順序
 
-如果是多重區域資料庫帳戶，您可以變更 DocumentDB 資料庫帳戶所在之不同區域的容錯移轉優先順序。 如需有關 DocumentDB 資料庫帳戶中容錯移轉的詳細資訊，請參閱 [使用 DocumentDB 全球發佈資料][distribute-data-globally]。
+如果是多重區域資料庫帳戶，您可以變更 DocumentDB 資料庫帳戶所在之不同區域的容錯移轉優先順序。 如需有關 DocumentDB 資料庫帳戶中容錯移轉的詳細資訊，請參閱[使用 DocumentDB 全球發佈資料](documentdb-distribute-data-globally.md)。
 
 ```
 Arguments

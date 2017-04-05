@@ -17,9 +17,9 @@ ms.workload: na
 ms.date: 11/18/2016
 ms.author: mahender
 translationtype: Human Translation
-ms.sourcegitcommit: d405c58bf658222ceb72cc2b73e71f2ae1e1ed8d
-ms.openlocfilehash: ce7534b9ff675e1ae0902ba936e1ea897d80d936
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 06958522139d621f86afd8bf25128ee64cf822b3
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -118,7 +118,7 @@ HTTP 輸出繫結是藉由在 function.json 的 `bindings` 陣列中包含類似
 
 觸發程序可另外針對特定的 Webhook 提供者進行調整 (例如 [GitHub](https://developer.github.com/webhooks/) 和 [Slack](https://api.slack.com/outgoing-webhooks))。 如果指定了提供者，Functions 執行階段就可為您處理提供者的驗證邏輯。  
 
-### <a name="configuring-github-as-a-webhook-provider"></a>將 Github 設定為 Webhook 提供者
+### <a name="configuring-github-as-a-webhook-provider"></a>將 GitHub 設定為 Webhook 提供者
 若要回應 GitHub Webhook，請先建立含有 HTTP 觸發程序的函式，然後將 _webHookType_ 屬性設定為 "github"。 接著將其 [URL](#url) 和 [API 金鑰](#keys) 複製到您 GitHub 存放庫的 [加入 webhook] 頁面。 若要深入了解，請參閱 GitHub 的[建立 Webhook](http://go.microsoft.com/fwlink/?LinkID=761099&clcid=0x409) 文件。
 
 ![](./media/functions-bindings-http-webhook/github-add-webhook.png)

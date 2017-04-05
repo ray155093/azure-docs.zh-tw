@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 590d2c39e295e2f855910b00e0302f01d96de8dc
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: c309151e3e3aa6ff235f0dee2ddf975940f34f44
+ms.lasthandoff: 03/24/2017
 
 ---
 
@@ -82,7 +82,7 @@ ms.lasthandoff: 03/18/2017
 
 **擷取設定**
 
-- **儲存體** - 決定封包擷取是否會儲存在儲存體帳戶中。
+- **儲存體帳戶** - 決定封包擷取是否會儲存在儲存體帳戶中。
 - **檔案** - 決定封包擷取是否會本機儲存在虛擬機器上。
 - **儲存體帳戶** - 要在其中儲存封包擷取的指定儲存體帳戶。 預設位置是 https://{儲存體帳戶名稱}.blob.core.windows.net/network-watcher-logs/subscriptions/{訂用帳戶識別碼}/resourcegroups/{資源群組名稱}/providers/microsoft.compute/virtualmachines/{虛擬機器名稱}/{YY}/{MM}/{DD}/packetcapture_{HH}_{MM}_{SS}_{XXX}.cap。 (只在選取**儲存體**時才會啟用)
 - **本機檔案路徑** - 要儲存封包擷取的虛擬機器上之本機路徑。 (只在選取**檔案**時才會啟用)。 必須提供有效的路徑

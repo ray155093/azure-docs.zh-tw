@@ -17,6 +17,7 @@ ms.author: jeedes
 translationtype: Human Translation
 ms.sourcegitcommit: a14be44b66c5e61350785ddfaf5b96125a196103
 ms.openlocfilehash: 6baceea55e9085556c5b1386de842b3e4393c721
+ms.lasthandoff: 02/15/2017
 
 
 ---
@@ -133,7 +134,7 @@ Fieldglass 與 Azure AD 整合提供下列優點：
     b. 按 [下一步] 。
 5. 若要為您的應用程式設定 SSO，請連絡 Fieldglass 支援小組，並提供下列資訊： 
    
-    - **下載的憑證** 檔案
+    -**下載的憑證** 檔案
    
     - **實體識別碼**
    
@@ -246,9 +247,4 @@ Fieldglass 與 Azure AD 整合提供下列優點：
 [203]: ./media/active-directory-saas-fieldglass-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-fieldglass-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-fieldglass-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure 匯入作業準備硬碟的範例工作流程 | Microsoft Docs"
-description: "請參閱在 Azure 匯入匯出服務中為匯入作業準備硬碟之完整程序的逐步解說"
+title: "針對 Azure 匯入/匯出匯入作業準備硬碟的範例工作流程 - v1 | Microsoft Docs"
+description: "請參閱在 Azure 匯入/匯出服務中為匯入作業準備硬碟之完整程序的逐步解說。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 8de848b1192ff1c10e0375053c4e03f18c06184e
-ms.openlocfilehash: ee7a8c9ae4cda5b67184100dd37ee4e0384aff26
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 313f8c1f3962a943b4c98c530c324ff28aa84c10
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -74,7 +74,7 @@ ms.lasthandoff: 02/16/2017
   
 除此之外，您可以針對所有檔案設定下列中繼資料：  
   
--   **UploadMethod:** Windows Azure Import/Export Service  
+-   **UploadMethod：**Windows Azure Import/Export service  
   
 -   **DataSetName:** SampleData  
   
@@ -85,7 +85,7 @@ ms.lasthandoff: 02/16/2017
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
 <Metadata>  
-    <UploadMethod>Windows Azure Import/Export Service</UploadMethod>  
+    <UploadMethod>Windows Azure Import/Export service</UploadMethod>  
     <DataSetName>SampleData</DataSetName>  
     <CreationDate>10/1/2013</CreationDate>  
 </Metadata>  
@@ -131,38 +131,50 @@ ms.lasthandoff: 02/16/2017
     WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Video1 /logdir:c:\logs /sk:8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg== /t:x /format /encrypt /srcdir:x:\Video1 /dstdir:video/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt /skipwrite
 ```
 
-針對第一個硬碟，請執行 Azure 匯入/匯出工具兩次以複製兩個來源目錄：  
+## <a name="copy-sessions---first-drive"></a>複製工作階段 - 第一個硬碟
+
+針對第一個硬碟，執行 Azure 匯入/匯出工具兩次以複製兩個來源目錄：  
+
+**第一個複製工作階段**
   
 ```
-## First copy session for first drive  
 WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Video1 /logdir:c:\logs /sk:8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg== /t:x /format /encrypt /srcdir:H:\Video1 /dstdir:video/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt  
 ```
 
+**第二個複製工作階段**
+
 ```  
-## Second copy session for first drive  
 WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Photo /srcdir:H:\Photo /dstdir:photo/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt
 ```
+
+## <a name="copy-sessions---second-drive"></a>複製工作階段 - 第二個硬碟
+ 
+針對第二個硬碟，執行 Azure 匯入/匯出工具三次 (針對兩個來源目錄各一次，針對獨立藍光 (Blu-Ray™) 映像檔一次)：  
   
-針對第二個硬碟，請執行 Azure 匯入/匯出工具三次 (針對兩個來源目錄各一次，針對獨立藍光 (Blu-Ray™) 映像檔一次)：  
-  
+**第一個複製工作階段** 
+
 ```
-## First copy session  
 WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:Video2 /logdir:c:\logs /sk:8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg== /t:y /format /encrypt /srcdir:H:\Video2 /dstdir:video/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt  
 ```
   
+**第二個複製工作階段**
+
 ```
-## Second copy session  
 WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:Music /srcdir:\\bigshare\john\music /dstdir:music/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt  
 ```  
   
+**第三個複製工作階段**  
+
 ```
-## Third copy session  
 WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:BlueRayIso /srcfile:K:\Temp\BlueRay.ISO /dstblob:favorite/BlueRay.ISO /MetadataFile:c:\WAImportExport\SampleMetadata.txt /PropertyFile:c:\WAImportExport\SampleProperties.txt  
 ```
-  
+
+## <a name="copy-session-completion"></a>複製工作階段完成
+
 當複製工作階段完成後，您可以將兩個磁碟和複製電腦中斷連線，並將它們寄送到適當的 Microsoft Azure 資料中心。 當您在 [Microsoft Azure 管理入口網站](https://manage.windowsazure.com/)建立匯入作業時，您將會上傳兩個日誌檔案 (`FirstDrive.jrn` 和 `SecondDrive.jrn`)。  
   
-## <a name="see-also"></a>另請參閱  
-[針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
-[常用命令快速參考](storage-import-export-tool-quick-reference-v1.md) 
+## <a name="next-steps"></a>後續步驟
+
+* [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
+* [常用命令快速參考](storage-import-export-tool-quick-reference-v1.md) 
 

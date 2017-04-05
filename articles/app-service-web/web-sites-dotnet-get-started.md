@@ -3,7 +3,7 @@ title: "使用 Visual Studio 將 ASP.NET 應用程式部署至 Azure | Microsoft
 description: "了解如何使用 Visual Studio 在 Azure App Service 中將 ASP.NET Web 專案部署到新的 Web 應用程式。"
 services: app-service\web
 documentationcenter: .net
-author: tdykstra
+author: cephalin
 manager: erikre
 editor: 
 ms.assetid: 69759e3c-384c-4afb-9278-db6724f6cb74
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: get-started-article
 ms.date: 12/16/2016
-ms.author: rachelap
+ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 9b7e0b429575d080819f25e04d492a2b09d4d63a
-ms.openlocfilehash: 946552d1b268c6e70a9e8fcd4c40bd6e2ab76178
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
+ms.openlocfilehash: 93107d19e1814b30d69fc12c92b544d9760bda6a
+ms.lasthandoff: 04/04/2017
 
 
 ---
@@ -50,7 +50,7 @@ ms.lasthandoff: 01/24/2017
   
     如果您想要在註冊 Azure 帳戶之前先開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)。 您可以於該處，在 App Service 中建立短期的入門應用程式 — 不需信用卡，不需任何承諾。
 
-## <a name="a-namesetupdevenvaset-up-the-development-environment"></a><a name="setupdevenv"></a>設定開發環境
+## <a name="setupdevenv"></a>設定開發環境
 本教學課程是特別為 Visual Studio 2015 (含 [Azure SDK for .NET](../dotnet-sdk.md) 2.9 或更新版本) 所撰寫。 
 
 * [下載最新的 Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003)。 如果還沒安裝 Visual Studio 2015，此 SDK 會加以安裝。
@@ -189,8 +189,6 @@ ms.lasthandoff: 01/24/2017
 
 ## <a name="troubleshooting"></a>疑難排解
 如果您在進行本教學課程時遇到問題，請確定您使用的是最新版 Azure SDK for .NET。 若要這麼做，最簡單的方式是 [下載 Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003)。 如果您已安裝最新版本，Web Platform Installer 會指出不需要進行安裝。
-
-如果您位於公司網路內，並嘗試透過防火牆部署至 Azure App Service，請確定連接埠 443 和 8172 已針對 Web Deploy 開啟。 如果您無法開啟這些連接埠，請參閱下面的＜後續步驟＞一節以了解其他部署選項。
 
 在 Azure App Service 中執行 ASP .NET Web 應用程式之後，您可能會想要深入了解可簡化疑難排解步驟的 Visual Studio 功能。 如需記錄和遠端偵錯等功能的相關資訊，請參閱[在 Visual Studio 中針對 Azure Web 應用程式進行疑難排解](web-sites-dotnet-troubleshoot-visual-studio.md)。
 

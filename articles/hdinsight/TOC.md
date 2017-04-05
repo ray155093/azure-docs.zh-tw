@@ -65,6 +65,7 @@
 ### [預測食品檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 ### [分析網站記錄](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 ### [使用 Caffe 進行深入學習](hdinsight-deep-learning-caffe-spark.md)
+### [搭配 Microsoft 辨識工具組使用](hdinsight-apache-spark-microsoft-cognitive-toolkit.md)
 ### [使用 Zeppelin notebook](hdinsight-apache-spark-zeppelin-notebook.md)
 ### [Jupyter Notebook 核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 ### [使用儲存格魔術搭配 Jupyter 使用外部套件](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
@@ -141,9 +142,8 @@
 #### [使用 REST 安裝應用程式](https://msdn.microsoft.com/library/mt706515.aspx)
 #### [將 HDInsight 應用程式發佈到 Azure Marketplace](hdinsight-apps-publish-applications.md)
 ## 安全
+### [搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
 ### [使用 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md)
-### [從 Linux、Unix、OS X 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
-### [從 Windows OS 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)
 ### [限制對資料的存取](hdinsight-storage-sharedaccesssignature-permissions.md)
 ## 管理
 ### [建立 Linux 叢集](hdinsight-hadoop-provision-linux-clusters.md)
@@ -171,6 +171,8 @@
 ### [叢集和服務的連接埠和 URI](hdinsight-hadoop-port-settings-for-services.md)
 ### [移轉至 Resource Manager 開發工具](hdinsight-hadoop-development-using-azure-resource-manager.md)
 ### [可用性與可靠性](hdinsight-high-availability-linux.md)
+### [將 HDInsight 叢集升級為更新的版本](hdinsight-upgrade-cluster.md)
+### [HDInsight 叢集的作業系統修補](hdinsight-os-patching.md)
 ## 疑難排解
 ### [Linux 的秘訣](hdinsight-hadoop-linux-information.md)
 ### [版本資訊](hdinsight-release-notes.md)
@@ -195,16 +197,7 @@
 # 相關參考
 ## Windows 叢集
 ### [將 Windows 叢集移轉到 Linux 叢集](hdinsight-migrate-from-windows-to-linux.md)
-### [開始使用 Hadoop](hdinsight-hadoop-tutorial-get-started-windows.md)
-### [開始使用 Storm](hdinsight-apache-storm-tutorial-get-started.md)
-### [開始使用 HBase](hdinsight-hbase-tutorial-get-started.md)
 ### [執行 Hadoop MapReduce 範例](hdinsight-run-samples.md)
-### [建立 Hadoop 叢集](hdinsight-provision-clusters.md)
-#### [使用 Azure 入口網站](hdinsight-hadoop-create-windows-clusters-portal.md)
-#### [使用 .NET SDK](hdinsight-hadoop-create-windows-clusters-dotnet-sdk.md)
-#### [使用 Azure CLI](hdinsight-hadoop-create-windows-clusters-cli.md)
-#### [使用 Azure PowerShell](hdinsight-hadoop-create-windows-clusters-powershell.md)
-#### [使用 Resource Manager 範本](hdinsight-hadoop-create-windows-clusters-arm-templates.md)
 ### [叢集上的 Solr](hdinsight-hadoop-solr-install-linux.md)
 ### [使用 Giraph 處理大規模圖形](hdinsight-hadoop-giraph-install.md)
 ### [工作流程使用 Oozie](hdinsight-use-oozie.md)
@@ -212,7 +205,6 @@
 ### [使用 Maven 建置 Java 應用程式](hdinsight-hbase-build-java-maven.md)
 ### [使用 Tez UI 為 Tez 作業偵錯](hdinsight-debug-tez-ui.md)
 ### [使用指令碼動作來自訂](hdinsight-hadoop-customize-cluster.md)
-### [可用性與可靠性](hdinsight-high-availability.md)
 ### [存取 YARN 應用程式記錄檔](hdinsight-hadoop-access-yarn-app-logs.md)
 ### [使用 Apache Phoenix 和 SQuirrel](hdinsight-hbase-phoenix-squirrel.md)
 ### [使用 Mahout 來產生電影推薦](hdinsight-mahout.md)

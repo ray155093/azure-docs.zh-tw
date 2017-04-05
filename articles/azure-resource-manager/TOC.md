@@ -46,11 +46,12 @@
 ### [安全性考量](best-practices-resource-manager-security.md)
 ## 設定資源原則
 ### [資源原則是什麼？](resource-manager-policy.md)
-### [指派和管理原則](resource-manager-policy-create-assign.md)
+### [入口網站原則指派](resource-manager-policy-portal.md)
+### [指令碼原則指派](resource-manager-policy-create-assign.md)
 ### [資源標籤原則](resource-manager-policy-tags.md)
 ### [儲存體原則](resource-manager-policy-storage.md)
-### [Linux VM 原則](../virtual-machines/virtual-machines-linux-policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
-### [Windows VM 原則](../virtual-machines/virtual-machines-windows-policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+### [Linux VM 原則](../virtual-machines/linux/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+### [Windows VM 原則](../virtual-machines/windows/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ## 稽核及疑難排解
 ### [針對一般部署錯誤進行疑難排解](resource-manager-common-deployment-errors.md)
 ### [檢視活動記錄檔](resource-group-audit.md)

@@ -17,9 +17,9 @@ ms.date: 3/13/2017
 ms.author: markgal;trinadhk; anuragm
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 0be8f1f9fb96bce445c4a91520b9a847b205a519
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: a2452b95c9355957b10477a6e457000f0eba6a9c
+ms.lasthandoff: 04/04/2017
 
 
 ---
@@ -98,7 +98,7 @@ Azure 備份是您可用來備份 (或保護) 和還原 Microsoft Cloud 資料�
 Azure 備份可保護進階儲存體 VM。 Azure 進階儲存體是一個以固態硬碟 (SSD) 為基礎的儲存體產品，專門設計用來支援需大量 I/O 的工作負載。 進階儲存體非常適合用於虛擬機器 (VM) 工作負載。 如需有關進階儲存體的詳細資訊，請參閱此文章：[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)。
 
 ### <a name="back-up-premium-storage-vms"></a>備份進階儲存體 VM
-在備份進階儲存體 VM 時，備份服務會在進階儲存體帳戶中建立臨時預備位置，名為 "AzureBackup-"。 預備位置等於復原點快照集的大小。 請確定儲存體帳戶中有可用空間以容納暫存的預備位置。 如需詳細資訊，請參閱[進階儲存體限制](../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets)一文。 備份作業完成後，就會刪除預備位置。 用於預備位置之儲存體的價格在所有 [進階儲存體價格](../storage/storage-premium-storage.md#pricing-and-billing)中皆一致。
+在備份進階儲存體 VM 時，備份服務會在進階儲存體帳戶中建立臨時預備位置，名為 "AzureBackup-"。 預備位置等於復原點快照集的大小。 請確定儲存體帳戶中有可用空間以容納暫存的預備位置。 如需詳細資訊，請參閱[進階儲存體限制](../storage/storage-premium-storage.md#scalability-and-performance-targets)一文。 備份作業完成後，就會刪除預備位置。 用於預備位置之儲存體的價格在所有 [進階儲存體價格](../storage/storage-premium-storage.md#pricing-and-billing)中皆一致。
 
 > [!NOTE]
 > 請勿修改或編輯預備位置。
@@ -203,8 +203,8 @@ Azure 備份每個*受保護的執行個體*上限為 9999 個復原點 (也稱�
 
 |  | Azure 備份代理程式 | System Center DPM | Azure 備份伺服器 | Azure IaaS VM 備份 |
 | --- | --- | --- | --- | --- |
-| 備份頻率<br/> (至備份保存庫) |每天備份&3; 次 |每天備份&2; 次 |每天備份&2; 次 |每天備份&1; 次 |
-| 備份頻率<br/> (至磁碟) |不適用 |<li>每隔 15 分鐘 (SQL Server) <li>每隔&1; 小時 (其他工作負載) |<li>每隔 15 分鐘 (SQL Server) <li>每隔&1; 小時 (其他工作負載)</p> |不適用 |
+| 備份頻率<br/> (至備份保存庫) |每天備份 3 次 |每天備份 2 次 |每天備份 2 次 |每天備份 1 次 |
+| 備份頻率<br/> (至磁碟) |不適用 |<li>每隔 15 分鐘 (SQL Server) <li>每隔 1 小時 (其他工作負載) |<li>每隔 15 分鐘 (SQL Server) <li>每隔 1 小時 (其他工作負載)</p> |不適用 |
 | 保留選項 |每日、每週、每月、每年 |每日、每週、每月、每年 |每日、每週、每月、每年 |每日、每週、每月、每年 |
 | 每個受保護執行個體的最大復原點 |9999|9999|9999|9999|
 | 最大保留期間 |依照備份頻率而定 |依照備份頻率而定 |依照備份頻率而定 |依照備份頻率而定 |

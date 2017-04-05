@@ -13,16 +13,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/08/2017
+ms.date: 03/21/2017
 ms.author: ganesr;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 62ecd4cc2eed8623cab75777605d621e16b99977
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: efdec32e565bf1d11b562d283e56bd8ed5d292b9
+ms.lasthandoff: 03/24/2017
 
 
 ---
-# <a name="create-and-modify-an-expressroute-circuit"></a>建立和修改 ExpressRoute 線路
+# <a name="create-and-modify-an-expressroute-circuit-using-powershell-classic"></a>使用 PowerShell 建立和修改 ExpressRoute 線路 (傳統)
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](expressroute-howto-circuit-portal-resource-manager.md)
 > * [Resource Manager - PowerShell](expressroute-howto-circuit-arm.md)
@@ -31,7 +31,7 @@ ms.lasthandoff: 03/14/2017
 > 
 >
 
-本文將逐步引導您使用 PowerShell Cmdlet 和傳統部署模型建立 Azure ExpressRoute 線路。 本文也會示範如何檢查狀態、更新或刪除和取消佈建 ExpressRoute 循環。
+本文將逐步引導您使用 PowerShell Cmdlet 和傳統部署模型建立 Azure ExpressRoute 線路。 本文也會示範如何檢查狀態、更新或刪除和取消佈建 ExpressRoute 線路。
 
 [!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
@@ -44,20 +44,25 @@ ms.lasthandoff: 03/14/2017
 ### <a name="step-1-review-the-prerequisites-and-workflow-articles"></a>步驟 1. 檢閱必要條件和工作流程文章
 開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)和[工作流程](expressroute-workflows.md)。  
 
-### <a name="step-2-install-the-latest-versions-of-the-azure-powershell-modules"></a>步驟 2. 安裝最新版的 Azure PowerShell 模組
-請遵循 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
+### <a name="step-2-install-the-latest-versions-of-the-azure-service-management-sm-powershell-modules"></a>步驟 2. 安裝最新版的 Azure 服務管理 (SM) PowerShell 模組
+請遵循[開始使用 Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs) 中的指示，來取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。
 
 ### <a name="step-3-log-in-to-your-azure-account-and-select-a-subscription"></a>步驟 3. 登入您的 Azure 帳戶並選取訂用帳戶
-1. 使用提升權限的 Windows PowerShell 命令提示字元，執行下列 Cmdlet：
-   
+1. 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。 使用下列範例來協助您連接：
+
+        Login-AzureRmAccount
+
+2. 檢查帳戶的訂用帳戶。
+
+        Get-AzureRmSubscription
+
+3. 如果您有多個訂用帳戶，請選取您要使用的訂用帳戶。
+
+        Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+
+4. 接下來，使用下列 Cmdlet，將您的 Azure 訂用帳戶新增到 PowerShell，以供傳統部署模型使用。
+
         Add-AzureAccount
-2. 在出現的登入畫面中，登入您的帳戶。
-3. 取得您的訂用帳戶清單。
-   
-        Get-AzureSubscription
-4. 選取您要使用的訂用帳戶。
-   
-        Select-AzureSubscription -SubscriptionName "mysubscriptionname"
 
 ## <a name="create-and-provision-an-expressroute-circuit"></a>建立和佈建 ExpressRoute 線路
 ### <a name="step-1-import-the-powershell-modules-for-expressroute"></a>步驟 1. 匯入 ExpressRoute 的 PowerShell 模組
@@ -183,7 +188,7 @@ ExpressRoute 線路必須處於下列狀態，才可供您使用。
 > 
 
 ### <a name="step-8-link-a-virtual-network-to-an-expressroute-circuit"></a>步驟 8。 將虛擬網路連結到 ExpressRoute 電路
-接下來，將虛擬網路連結到 ExpressRoute 線路。 如需逐步指示，請參閱 [將 ExpressRoute 線路連結至虛擬網路](expressroute-howto-linkvnet-classic.md) 。 如果您需要使用傳統部署模型為 ExpressRoute 建立虛擬網路，請參閱 [建立 ExpressRoute 的虛擬網路](expressroute-howto-vnet-portal-classic.md) 中的相關指示。
+接下來，將虛擬網路連結到 ExpressRoute 線路。 如需逐步指示，請參閱 [將 ExpressRoute 線路連結至虛擬網路](expressroute-howto-linkvnet-classic.md) 。 如果您需要使用傳統部署模型為 ExpressRoute 建立虛擬網路，請參閱[建立 ExpressRoute 的虛擬網路](expressroute-howto-vnet-portal-classic.md)。
 
 ## <a name="getting-the-status-of-an-expressroute-circuit"></a>取得 ExpressRoute 線路的狀態
 您隨時可以使用 `Get-AzureCircuit` Cmdlet 擷取此資訊。 執行呼叫時，若未指定任何參數，將會列出所有線路。

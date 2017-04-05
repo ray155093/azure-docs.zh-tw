@@ -6,7 +6,7 @@
 Azure Resource Manager 範本可讓您藉由定義資源之間的相依性，以宣告方式指定 JSON 語言中的 Azure IaaS 基礎結構。 如需 Azure 資源管理員範本的詳細概觀，請參閱以下文章：
 
 * [資源群組概觀](../articles/azure-resource-manager/resource-group-overview.md)
-* [以 Azure PowerShell 部署範本](../articles/virtual-machines/virtual-machines-windows-ps-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [以 Azure PowerShell 部署範本](../articles/virtual-machines/windows/ps-manage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ### <a name="prerequisites"></a>必要條件
 1. 在[這裡](https://azure.microsoft.com/downloads/)下載適用於您作業系統的 Azure 命令列工具。

@@ -190,7 +190,7 @@ ms.lasthandoff: 03/25/2017
 5. 在 [網路連接]  視窗中，選取網路圖示。
    
     ![變更 VM 慣用的 DNS 伺服器](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC784629.png)
-6. 在命令列上按一下 [變更此連接的設定]  (視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
+6. 在命令列上按一下 [變更此連接的設定]  \(視您的視窗大小而定，可能需按一下雙向右箭頭才能看到此命令)。
 7. 選取 [網際網路通訊協定第 4 版 (TCP/IPv4)]  ，然後按一下 [內容]。
 8. 選取使用下列的 DNS 伺服器位址，並指定 [慣用 DNS 伺服器] 中的 [10.10.2.4]。
 9. **10.10.2.4** 位址是指派給 Azure 虛擬網路的 10.10.2.0/24 子網路中的 **ContosoDC** VM 的位址。 若要確認 **ContosoDC**的 IP 位址，請如下方所示，在命令提示字元中加入 **nslookup contosodc**。
@@ -277,7 +277,7 @@ ms.lasthandoff: 03/25/2017
     
      ![將節點新增至叢集](./media/virtual-machines-windows-classic-portal-sql-alwayson-availability-groups/IC784634.png)
 11. 在 [新增節點精靈] 中，按 [下一步]。 在 [輸入伺服器名稱] 中輸入伺服器名稱，然後按一下 [新增]，於 [選取伺服器] 頁面上，將 **ContosoSQL2** 和 **ContosoWSFCNode** 新增至清單。 完成之後，按 [下一步]。
-12. 在 [驗證警告] 頁面上，按一下 [否] (實際操作時，請執行驗證測試)。 然後按 [下一步] 。
+12. 在 [驗證警告] 頁面上，按一下 [否] \(實際操作時，請執行驗證測試)。 然後按 [下一步] 。
 13. 在 [確認] 頁面中按 [下一步]，以新增節點。
     
     > [!WARNING]

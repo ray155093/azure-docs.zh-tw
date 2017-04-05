@@ -37,8 +37,8 @@
 
 # 相關參考
 ## [Batch Shipyard](https://github.com/Azure/batch-shipyard)
+## [透過 Batch 和 Data Factory 處理的資料](../data-factory/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json)
 ## [Azure 雲端中的 Batch 和 HPC 解決方案](batch-hpc-solutions.md)
-## [Azure 的大量計算︰技術資源](big-compute-resources.md)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/batch/)
@@ -48,5 +48,8 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=batch&updatetype=&platform=)
 ## [C# 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
 ## [Python 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
+## [CLI 範例](batch-cli-samples.md)
+## [大量計算資源](big-compute-resources.md)
 ## [部落格](https://blogs.technet.microsoft.com/windowshpc/)
+
 

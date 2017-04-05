@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 09/19/2016
 ms.author: apurvajo
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: edcb6d37eb4d82ff5928ee33cf456c3795eb8131
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: f9ff33f33a196e65f6cb7ee7f5332aacb9231f6d
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -29,7 +29,7 @@ ms.lasthandoff: 03/10/2017
 > 
 > 
 
-根據預設，**[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 已使用 *.azurewebsites.net 網域的萬用字元憑證來啟用您 Web 應用程式的 HTTPS。如果您不打算設定自訂網域，您可以直接利用預設的 HTTPS 憑證。但是，就像*[所有萬用字元網域](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates)一樣，這並不如使用自訂網域搭配自己的憑證那麼安全。 Azure App Service 現在提供購買及管理 SSL 憑證真正簡易的方法，就是從 Azure 入口網站，完全不用離開入口網站。  
+**[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 預設已使用 *.azurewebsites.net 網域的萬用字元憑證來為您的 Web 應用程式啟用 HTTPS。 如果您不打算設定自訂網域，您可以直接利用預設的 HTTPS 憑證。 不過，就像所有 *[萬用字元網域](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates)一樣，這並不如使用自訂網域搭配您自己的憑證那樣安全。 Azure App Service 現在提供購買及管理 SSL 憑證真正簡易的方法，就是從 Azure 入口網站，完全不用離開入口網站。  
 本文說明如何使用 3 個簡單的步驟，來購買並設定 **[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 的 SSL 憑證。 
 
 > [!NOTE]
@@ -85,15 +85,15 @@ ms.lasthandoff: 03/10/2017
 > 
 
 ## <a name="bkmk_StoreKeyVault"></a>步驟 1：將憑證儲存至 Azure 金鑰保存庫
-在此步驟中，您將學習如何訂購 SSL 憑證，並將其儲存至您選擇的 Azure 金鑰保存庫。
+在此步驟中，您將了解如何將所購買的「SSL 憑證」儲存在您選擇的 Azure Key Vault 中。
 
-1. 完成 SSL 憑證購買程序之後，您必須手動開啟 [App Service 憑證]  資源刀鋒視窗，方法是再瀏覽一次 (請參閱上述「步驟 1」)   
+1. 完成「SSL 憑證」購買程序之後，您將必須手動開啟 [App Service 憑證]  資源刀鋒視窗，方法是再次瀏覽它 (請參閱上面的「步驟 1」)   
    
    ![插入準備在 KV 中儲存的影像](./media/app-service-web-purchase-ssl-web-site/ReadyKV.jpg)
    
-   您會注意到憑證狀態是「暫止發行」  ，因為您必須先完成一些其他的步驟，才能開始使用此憑證。
-2. 按一下 [憑證內容] 刀鋒視窗內的 [憑證設定]，然後按一下 [步驟 1：儲存]，將此憑證儲存至 Azure 金鑰保存庫。
-3. 從 [金鑰保存庫狀態] 刀鋒視窗中按一下 [金鑰保存庫儲存機制]，選擇要儲存此憑證的現有金鑰保存庫，或者選擇 [建立新的金鑰保存庫]，在相同訂用帳戶和資源群組內建立新的金鑰保存庫。
+   您會注意到憑證狀態是 [發行待決]，因為您必須先完成一些其他的步驟，才能開始使用此憑證。
+2. 按一下 [憑證內容] 刀鋒視窗內的 [憑證組態]，然後按一下 [步驟 1: 儲存]，以將此憑證儲存在 Azure Key Vault 中。
+3. 從 [Key Vault 狀態] 刀鋒視窗中，按一下 [Key Vault 存放庫]，以選擇要儲存此憑證的現有 Key Vault，或是按一下 [建立新的 Key Vault]，以在相同的訂用帳戶和資源群組內建立新的 Key Vault。
    
    ![插入建立新 KV 的影像](./media/app-service-web-purchase-ssl-web-site/NewKV.jpg)
    
@@ -173,8 +173,16 @@ ms.lasthandoff: 03/10/2017
 * 使用網域名稱註冊機構所提供的工具，修改自訂網域名稱的 A 記錄，使其指向上一個步驟的 IP 位址。
    現在，您應該可以使用 HTTPS:// 而非 HTTP:// 造訪您的應用程式，確認已正確設定憑證。
 
-## <a name="bkmk_Rekey"></a>匯出 App Service 憑證
+## <a name="bkmk_Export"></a>匯出 App Service 憑證
 您可以建立 App Service 憑證的本機 PFX 複本，以便使用它來搭配其他 Azure 服務。 如需詳細資訊，**[請閱讀我們的部落格文章](https://blogs.msdn.microsoft.com/appserviceteam/2017/02/24/creating-a-local-pfx-copy-of-app-service-certificate/)**
+
+## <a name="bkmk_Renew"></a>自動更新 App Service 憑證
+若要切換您憑證的「自動更新」設定，或手動更新您的憑證，只要從 [憑證內容] 刀鋒視窗中選取 [自動更新設定] 選項即可。 
+
+
+  ![插入使用瀏覽建立的影像](./media/app-service-web-purchase-ssl-web-site/autorenew.png)
+
+如果您想要讓憑證在到期前自動更新，請將 [自動更新] [開啟]。 這是預設選項。 如果開啟，我們就會在您憑證到期前的第 90 天開始嘗試更新憑證。 如果您已使用 Azure 入口網站體驗在您的「App Service 應用程式」上建立 SSL 繫結，則在備妥新憑證之後，也會一併以新憑證更新這些繫結 (就像「重設金鑰」和「同步處理」案例一樣)。 另一方面，如果您想要手動處理更新，則應該關閉此設定。 只有當「App Service 憑證」將在 90 天內到期的情況下，您才能手動更新該憑證。
 
 ## <a name="bkmk_Rekey"></a>重設金鑰和同步處理憑證
 1. 基於安全性理由，如果您需要重設憑證的金鑰，只要選取 [憑證內容] 刀鋒視窗的 [重設金鑰和同步處理] 選項。 

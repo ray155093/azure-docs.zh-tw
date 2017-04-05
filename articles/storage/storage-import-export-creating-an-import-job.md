@@ -1,6 +1,6 @@
 ---
 title: "建立 Azure 匯入/匯出的匯入作業 | Microsoft Docs"
-description: "了解如何建立 Microsoft Azure 匯入/匯出服務的匯入作業"
+description: "了解如何建立 Microsoft Azure 匯入/匯出服務的匯入。"
 author: muralikk
 manager: syadav
 editor: syadav
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 50fbd0d214c825137c3ac6873be27b9d2d53cee1
-ms.openlocfilehash: 84ba5256c3ee485af9a1a6bccc0571f93c9c0ab7
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 3a0ac3de9828903b7ca66c15e5422d1228e2a731
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 02/16/2017
 
 使用 REST API 建立 Microsoft Azure 匯入/匯出服務的匯入作業包含下列步驟︰
 
--   準備具有 Azure 匯入/匯出工具的磁碟機。
+-   利用 Azure 匯入/匯出工具來準備磁碟機。
 
 -   取得要寄送磁碟機的位置。
 
@@ -49,9 +49,9 @@ ms.lasthandoff: 02/16/2017
 
 -   在 Windows Azure 儲存體中識別目的地 blob。
 
--   使用 Azure 匯入/匯出工具將資料複製到一或多個硬碟。
+-   使用 Azure 匯入/匯出工具，將資料複製到一或多個硬碟。
 
- Azure 匯入/匯出工具也會在備妥時針對每個磁碟機產生資訊清單檔案。 資訊清單檔案包含︰
+ Azure 匯入/匯出工具也會在備妥時，針對每個磁碟機產生資訊清單檔案。 資訊清單檔案包含︰
 
 -   適用於上傳和從這些檔案對應至 blob 的所有檔案之列舉型別。
 
@@ -105,6 +105,7 @@ ms.lasthandoff: 02/16/2017
 ## <a name="updating-the-import-job-with-your-shipping-information"></a>使用出貨資料更新匯入作業
 在您取得追蹤號碼之後，請呼叫 [Update Job Properties](/api/storageimportexport/jobs#Jobs_Update) 作業以更新貨運公司名稱、作業的追蹤號碼和退貨的貨運公司帳戶號碼。 您可以選擇性指定磁碟機數目及寄送日期。
 
-## <a name="see-also"></a>另請參閱
-[使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
+## <a name="next-steps"></a>後續步驟
+
+* [使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
 

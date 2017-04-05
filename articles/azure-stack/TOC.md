@@ -65,10 +65,11 @@
 #### [建立及發佈 Marketplace 項目](azure-stack-create-and-publish-marketplace-item.md)
 #### [新增自訂虛擬機器映像](azure-stack-add-vm-image.md)
 #### [部署 Linux 虛擬機器](azure-stack-linux.md)
-### 計費與退款
-#### [計費與退款概觀](azure-stack-billing-and-chargeback.md)
-#### [提供者資源使用狀況 API](azure-stack-provider-resource-api.md)
-#### [租用戶資源使用狀況 API](azure-stack-tenant-resource-usage-api.md)
+### 使用量與計費
+#### [概觀](azure-stack-billing-and-chargeback.md)
+#### [使用量資料報告](azure-stack-usage-reporting.md)
+#### [提供者使用量 API](azure-stack-provider-resource-api.md)
+#### [租用戶使用量 API](azure-stack-tenant-resource-usage-api.md)
 #### [使用狀況常見問題集](azure-stack-usage-related-faq.md)
 
 # 使用服務

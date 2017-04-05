@@ -104,7 +104,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 ## <a name="explore-your-logs"></a>探索記錄
 在偵錯模式中執行您的 app 或即時部署它。
 
-在 [Application Insights 入口網站][portal]中您的應用程式概觀刀鋒視窗，選擇 [搜尋][][diagnostic]。
+在 [Application Insights 入口網站][portal]中您的應用程式概觀刀鋒視窗，選擇 [搜尋][diagnostic]。
 
 ![在 Application Insights 中，選擇 [搜尋]](./media/app-insights-asp-net-trace-logs/020-diagnostic-search.png)
 

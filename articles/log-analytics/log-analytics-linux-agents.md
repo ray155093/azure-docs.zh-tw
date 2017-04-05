@@ -12,13 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2017
+ms.date: 03/29/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
-ms.openlocfilehash: fba4e68e78b8267ff2413f94d5ca5066325f9c76
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: b01b0d3d61168c1eec52f3fd040b829e0c51a878
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 02/28/2017
 
 您可以使用單一管理入口網站，來檢視和管理來自具有 OMS 中 Log Analytics 之所有來源的資料。 這會降低使用許多不同系統監視它的需求、讓您輕鬆地使用它，而且您可以將喜歡的任何資料匯出至任何您已經有的商務分析解決方案或系統。
 
-這篇文章是快速入門指南，可協助您使用 OMS Agent for Linux 來收集和管理 Linux 電腦的資料。 如需其他技術詳細資訊 (例如 Proxy 伺服器組態、CollectD 計量相關資訊，以及自訂 JSON 資料來源)，您可在 Github 上的 [OMS Agent for Linux 概觀](https://github.com/Microsoft/OMS-Agent-for-Linux)和 [OMS Agent for Linux 完整文件](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md)找到該資訊。
+這篇文章是快速入門指南，可協助您使用 OMS Agent for Linux 來收集和管理 Linux 電腦的資料。 如需其他技術詳細資訊 (例如 Proxy 伺服器組態、CollectD 計量相關資訊，以及自訂 JSON 資料來源)，您可在 GitHub 上的 [OMS Agent for Linux 概觀 (英文)](https://github.com/Microsoft/OMS-Agent-for-Linux) 和 [OMS Agent for Linux 完整文件 (英文)](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md) 中找到該資訊。
 
 目前，您可以從 Linux 電腦收集下列類型的資料︰
 
@@ -149,7 +149,7 @@ Linux 效能計數器類似於 Windows 效能計數器 (兩者的運作方式類
 同樣地，您針對父計數器選擇的取樣間隔會套用至其所有子計數器。 換句話說，所有子計數器取樣間隔和執行個體都會連結在一起。
 
 ### <a name="add-and-configure-performance-metrics-with-linux"></a>使用 Linux 加入和設定效能計量
-要收集的效能計量是由 /etc/opt/microsoft/omsagent/conf/omsagent.conf 中的組態所控制。 如需 OMS Agent for Linux 的可用類別和計量，請參閱 [可用的效能計量](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#appendix-available-performance-metrics) 。
+要收集的效能計量是由 /etc/opt/microsoft/omsagent/&lt;工作區識別碼&gt;/conf/omsagent.conf 中的組態所控制。 如需 OMS Agent for Linux 的可用類別和計量，請參閱 [可用的效能計量](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#appendix-available-performance-metrics) 。
 
 要收集之效能計量的每個物件或類別都應該當成單一 `<source>` 元素定義於組態檔中。 語法遵循下面的模式。
 
@@ -219,9 +219,9 @@ Linux 效能計數器類似於 Windows 效能計數器 (兩者的運作方式類
 >
 
 ```
-sudo su omsagent -c '/opt/microsoft/mysql-cimprov/bin/mycimprovauth default 127.0.0.1 <username> <password>'
+sudo su omsagent -c '/opt/microsoft/mysql-cimprov/bin/mycimprovauth default 127.0.0.1 <username> <password>
 
-sudo service omiserverd restart
+sudo /opt/omi/bin/service_control restart
 ```
 
 
@@ -263,7 +263,7 @@ Type=Perf Computer=chorizo*
 Syslog 是與 Windows 事件記錄檔類似的事件記錄通訊協定 (在 OMS 中顯示時，兩者的運作方式類似)。
 
 ### <a name="to-add-a-new-linux-syslog-facility-in-oms"></a>在 OMS 中加入新的 Linux syslog 設備
-1. 在 [設定] 頁面的 [資料]**** 下方，按一下 [Syslog]****，然後在加號圖示左邊，輸入您想要新增的 syslog 設備名稱。
+1. 在 [設定] 頁面的 [資料]****下方，按一下 [Syslog]****，然後在加號圖示左邊，輸入您想要新增的 syslog 設備名稱。
     ![Linux syslog](./media/log-analytics-linux-agents/oms-linuxsyslog01.png)
 2. 如果您不知道設備的完整名稱，可以開始輸入局部名稱，並會出現可用的 syslog 設備清單。 當您找到想要加入的 syslog 設備時，請按一下清單中的名稱，然後按一下加號圖示加入 syslog 設備。
 3. 設備在加入之後會出現在以彩色列反白顯示的清單中。 接下來，選擇您想要收集的嚴重性 (syslog 設備資訊的類別)。
@@ -330,12 +330,12 @@ log { source(src); filter(f_warning_oms); destination(warning_oms); };
 ### <a name="collect-alerts-from-nagios"></a>收集來自 Nagios 的警示
 若要收集來自 Nagios 伺服器的警示，您需要進行下列組態變更。
 
-1. 將 Nagios 記錄檔 (即 /var/log/nagios/nagios.log/var/log/nagios/nagios.log) 的 **omsagent** 讀取權授與使用者。 假設 nagios.log 檔案是由 **nagios** 群組所擁有，您可以將使用者 **omsagent** 新增至 **nagios** 群組。
+1. 將 Nagios 記錄檔 (即 /var/log/nagios/nagios.log) 的 **omsagent** 讀取權授與使用者。 假設 nagios.log 檔案是由 **nagios** 群組所擁有，您可以將使用者 **omsagent** 新增至 **nagios** 群組。
 
     ```
     sudo usermod –a -G nagios omsagent
     ```
-2. 修改 omsagent.confconfiguration 檔案 (/etc/opt/microsoft/omsagent/conf/omsagent.conf)。 確定下列項目存在且未標成註解︰
+2. 修改 omsagent.confconfiguration 檔案 (/etc/opt/microsoft/omsagent/&lt;工作區識別碼&gt;/conf/omsagent.conf)。 確定下列項目存在且未標成註解︰
 
     ```
     <source>
@@ -353,13 +353,13 @@ log { source(src); filter(f_warning_oms); destination(warning_oms); };
 3. 重新啟動 omsagent 精靈：
 
     ```
-    sudo service omsagent restart
+    sudo /opt/microsoft/omsagent/bin/service_control restart
     ```
 
 ### <a name="collect-alerts-from-zabbix"></a>收集來自 Zabbix 的警示
 若要收集來自 Zabbix 伺服器的警示，您將執行與上面 Nagios 警示類似的步驟，除了您需要以「純文字」 指定使用者和密碼之外。 這不是理想的做法，可能很快就會變更。 若要解決這個問題，建議您建立使用者，而且只將監視權限授與它。
 
-Zabbix 之 omsagent.conf 組態檔 (/etc/opt/microsoft/omsagent/conf/omsagent.conf) 的範例區段應該與下面類似：
+Zabbix 之 omsagent.conf 組態檔 (/etc/opt/microsoft/omsagent/&lt;工作區識別碼&gt;/conf/omsagent.conf) 的範例區段應該與下面類似：
 
 ```
 <source>
@@ -416,7 +416,7 @@ OMS Agent for Linux 會與 System Center Operations Manager 代理程式共用�
 3. 重新啟動 OMI 伺服器：
 
     ```
-    service omiserver restart or systemctl restart omiserver
+    sudo /opt/omi/bin/service_control restart
     ```
 
 ## <a name="database-permissions-required-for-mysql-performance-counters"></a>MySQL 效能計數器所需的資料庫權限
@@ -506,7 +506,7 @@ omsagent 使用者應該會擁有此檔案 (和 auth/omsagent 目錄)。
 ## <a name="agent-logs"></a>代理程式記錄檔
 OMS Agent for Linux 記錄檔位於：
 
-/var/opt/microsoft/omsagent/log/
+/var/opt/microsoft/omsagent/&lt;工作區識別碼&gt;/log/
 
 omsconfig (代理程式組態) 程式的 OMS Agent for Linux 記錄檔位於：
 
@@ -529,15 +529,15 @@ OMI 和 SCX 元件的記錄檔 (其提供效能計量資料) 位於：
 ### <a name="important-log-locations"></a>重要記錄檔位置
 | 檔案 | 路徑 |
 | --- | --- |
-| OMS Agent for Linux 記錄檔 |`/var/opt/microsoft/omsagent/log/omsagent.log ` |
+| OMS Agent for Linux 記錄檔 |`/var/opt/microsoft/omsagent/<workspace id>/log/omsagent.log ` |
 | OMS Agent 組態記錄檔 |`/var/opt/microsoft/omsconfig/omsconfig.log` |
 
 ### <a name="important-configuration-files"></a>重要組態檔案
 | 分類 | 檔案位置 |
 | --- | --- |
 | syslog |`/etc/syslog-ng/syslog-ng.conf`、`/etc/rsyslog.conf` 或 `/etc/rsyslog.d/95-omsagent.conf` |
-| 效能、Nagios、Zabbix、OMS 輸出和一般代理程式 |`/etc/opt/microsoft/omsagent/conf/omsagent.conf` |
-| 其他組態 |`/etc/opt/microsoft/omsagent/conf.d/*.conf` |
+| 效能、Nagios、Zabbix、OMS 輸出和一般代理程式 |`/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` |
+| 其他組態 |`/etc/opt/microsoft/omsagent/<workspace id>/omsagent.d/*.conf` |
 
 > [!NOTE]
 > 編輯效能計數器的組態檔，而若已啟用 OMS 入口網站組態，則會覆寫 syslog。 您可以在 OMS 入口網站中停用組態 (適用於所有節點)，或對單一節點執行下列命令︰
@@ -553,7 +553,7 @@ sudo su omsagent -c /opt/microsoft/omsconfig/Scripts/OMS_MetaConfigHelper.py --d
 若要啟用偵錯記錄，您可以使用 OMS 輸出外掛程式和詳細資訊輸出。
 
 #### <a name="oms-output-plugin"></a>OMS 輸出外掛程式
-FluentD 可讓外掛程式為不同記錄檔層級的輸入和輸出，指定記錄層級。 若要為 OMS 輸出指定不同的記錄檔層級，在 `/etc/opt/microsoft/omsagent/conf/omsagent.conf` 檔案中編輯一般代理程式組態。
+FluentD 可讓外掛程式為不同記錄檔層級的輸入和輸出，指定記錄層級。 若要為 OMS 輸出指定不同的記錄檔層級，在 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` 檔案中編輯一般代理程式組態。
 
 在組態檔的底部附近，將 `log_level` 屬性從 `info` 變更為 `debug`。
 
@@ -564,7 +564,7 @@ FluentD 可讓外掛程式為不同記錄檔層級的輸入和輸出，指定記
   num_threads 5
   buffer_chunk_limit 5m
   buffer_type file
-  buffer_path /var/opt/microsoft/omsagent/state/out_oms*.buffer
+  buffer_path /var/opt/microsoft/omsagent/<workspace id>/state/out_oms*.buffer
   buffer_queue_limit 10
   flush_interval 20s
   retry_limit 10
@@ -585,7 +585,7 @@ Success sending oms.syslog.authpriv.info x 1 in 0.91s
 #### <a name="verbose-output"></a>詳細資訊輸出
 除了使用 OMS 輸出外掛程式，您也可以將資料項目直接輸出至 `stdout`，其顯示在 OMS Agent for Linux 記錄檔中。
 
-在位於 `/etc/opt/microsoft/omsagent/conf/omsagent.conf` OMS 一般代理程式組態檔中，在每一行前面新增 `#`，以將 OMS 輸出註解化。
+在位於 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` OMS 一般代理程式組態檔中，在每一行前面新增 `#`，以將 OMS 輸出註解化。
 
 ```
 #<match oms.** docker.**>
@@ -594,7 +594,7 @@ Success sending oms.syslog.authpriv.info x 1 in 0.91s
 #  num_threads 5
 #  buffer_chunk_limit 5m
 #  buffer_type file
-#  buffer_path /var/opt/microsoft/omsagent/state/out_oms*.buffer
+#  buffer_path /var/opt/microsoft/omsagent/<workspace id>/state/out_oms*.buffer
 #  buffer_queue_limit 10
 #  flush_interval 20s
 #  retry_limit 10
@@ -662,7 +662,7 @@ Success sending oms.syslog.authpriv.info x 1 in 0.91s
 
 #### <a name="resolutions"></a>解決方式
 * 新增 omsagent 使用者以便從 Nagios 檔案讀取資料。 如需詳細資訊，請參閱 [Nagios 警示](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#nagios-alerts)。
-* 在位於 `/etc/opt/microsoft/omsagent/conf/omsagent.conf` 的 OMS Agent for Linux 一般組態檔中，確保 Nagios 來源和篩選器區段**都**已移除註解，如下列範例所示。
+* 在位於 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` 的 OMS Agent for Linux 一般組態檔中，確保 Nagios 來源和篩選器區段**都**已移除註解，如下列範例所示。
 
 ```
 <source>
@@ -685,10 +685,10 @@ Success sending oms.syslog.authpriv.info x 1 in 0.91s
 * 已備份 OMS Agent for Linux 資料
 
 #### <a name="resolutions"></a>解決方式
-* 驗證 `/etc/opt/microsoft/omsagent/conf/omsadmin.conf` 是否存在，以確認上架至 OMS 服務成功。
+* 驗證 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsadmin.conf` 是否存在，以確認上架至 OMS 服務成功。
 * 使用 omsadmin.sh 命令列重新上架。 如需詳細資訊，請參閱[使用命令列進行上架](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#onboarding-using-the-command-line)。
 * 如果使用 proxy，請使用上述的 Proxy 疑難排解步驟
-* 在某些情況下，當 OMS Agent for Linux 無法與 OMS 服務通訊時，Agent 上的資料會備份至 50 MB 的完整緩衝區大小。 執行 `service omsagent restart` 或 `systemctl restart omsagent` 命令，以重新啟動 OMS Agent for Linux。
+* 在某些情況下，當 OMS Agent for Linux 無法與 OMS 服務通訊時，Agent 上的資料會備份至 50 MB 的完整緩衝區大小。 執行 `/opt/microsoft/omsagent/bin/service_control restart` 命令以重新啟動 OMS Agent for Linux。
   >[AZURE.NOTE] 此問題已在代理程式 1.1.0-28 版和更新版本中修正。
 
 ### <a name="syslog-linux-performance-counter-configuration-is-not-applied-in-the-oms-portal"></a>Syslog Linux 效能計數器組態不會套用於 OMS 入口網站
@@ -697,7 +697,7 @@ Success sending oms.syslog.authpriv.info x 1 in 0.91s
 * 未套用入口網站中經過修訂的設定
 
 #### <a name="resolutions"></a>解決方式
-`omsconfig` 是 OMS Agent for Linux 中的設定代理程式，會每隔 5 分鐘擷取一次 OMS 入口網站組態變更。 此組態接著會套用到位於 `/etc/opt/microsoft/omsagent/conf/omsagent.conf` 的 OMS Agent for Linux 組態檔。
+`omsconfig` 是 OMS Agent for Linux 中的設定代理程式，會每隔 5 分鐘擷取一次 OMS 入口網站組態變更。 此組態接著會套用到位於 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsadmin.conf` 的 OMS Agent for Linux 組態檔。
 
 * 在某些情況下，OMS Agent for Linux 設定代理程式可能無法與入口網站組態服務進行通訊，以致未套用最新的組態。
 * 確認已利用下列項目安裝 `omsconfig` 代理程式︰
@@ -721,7 +721,7 @@ Success sending oms.syslog.authpriv.info x 1 in 0.91s
 * 這是在 OMS Agent for Linux 1.1.0-217 版中修正的已知競爭情況問題
 
 #### <a name="resolutions"></a>解決方式
-* 藉由判斷 `/etc/opt/microsoft/omsagent/conf/omsadmin.conf` 檔案是否存在，以確認您已成功上架。
+* 藉由判斷 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsadmin.conf` 檔案是否存在，以確認您已成功上架。
   * 必要時，再次使用 omsadmin.sh 命令列進行上架。 如需詳細資訊，請參閱[使用命令列進行上架](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#onboarding-using-the-command-line)。
 * 在 OMS 入口網站中，於 [資料] 索引標籤的 [設定] 之下，確定已選取 [將下列組態套用至我的 Linux 伺服器] 設定。  
   ![套用組態](./media/log-analytics-linux-agents/customloglinuxenabled.png)
@@ -741,7 +741,7 @@ OMS Agent for Linux 使用者不會以特殊權限使用者 `root` 身分執行�
 OMS Agent for Linux 1.1.0-217 版修正了已知的競爭情況問題。 更新為最新的代理程式後，請執行下列命令，以取得最新版的輸出外掛程式︰
 
 ```
-sudo cp /etc/opt/microsoft/omsagent/sysconf/omsagent.conf /etc/opt/microsoft/omsagent/conf/omsagent.conf
+sudo cp /etc/opt/microsoft/omsagent/sysconf/omsagent.conf /etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf
 ```
 
 ## <a name="known-limitations"></a>已知限制
@@ -750,7 +750,7 @@ sudo cp /etc/opt/microsoft/omsagent/sysconf/omsagent.conf /etc/opt/microsoft/oms
 ### <a name="azure-diagnostics"></a>Azure 診斷
 對於在 Azure 中執行的 Linux 虛擬機器，可能需要額外的步驟，才能允許 Azure Diagnostics 和 Operations Management Suite 的資料收集。 **版本 2.2** 的 Diagnostics Extension for Linux，才能與 OMS Agent for Linux 相容。
 
-如需安裝和設定 Diagnostic Extension for Linux 的詳細資訊，請參閱 [使用 Azure CLI 命令啟用 Linux Diagnostic Extension](../virtual-machines/virtual-machines-linux-classic-diagnostic-extension.md#use-the-azure-cli-command-to-enable-the-linux-diagnostic-extension)。
+如需安裝和設定 Diagnostic Extension for Linux 的詳細資訊，請參閱 [使用 Azure CLI 命令啟用 Linux Diagnostic Extension](../virtual-machines/linux/classic/diagnostic-extension.md#use-the-azure-cli-command-to-enable-the-linux-diagnostic-extension)。
 
 **將 Linux Diagnostics Extension 從 2.0 升級到 2.2 Azure CLI ASM：**
 

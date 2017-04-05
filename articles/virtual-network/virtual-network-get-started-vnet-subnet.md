@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 02/27/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: 81c9313635f382252550a4c0dcc7a707e9f365fb
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: c731099cb91512f3bf0ecc2ffa5258788c90cd1b
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -101,7 +101,7 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 您可以控�
     |**資源群組**|**使用現有︰**選取 MyRG|雖然我們使用針對 Vnet 使用的相同資源群組，資源不需要存在於相同的資源群組。|
     |**位置**|美國西部|位置必須是您在這篇文章的[建立具有兩個子網路的虛擬網路](#create-vnet)一節中步驟 5 所指定的相同位置。 它們所連線的 VM 和 Vnet 必須存在於相同位置。|
 
-4. 在 [選擇大小] 刀鋒視窗中，按一下 [DS1_V2 標準]，然後按一下 [選取]。 閱讀 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json)文章，以取得 Azure 支援的所有 Windows VM 大小的清單。
+4. 在 [選擇大小] 刀鋒視窗中，按一下 [DS1_V2 標準]，然後按一下 [選取]。 閱讀 [Windows VM 大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json)文章，以取得 Azure 支援的所有 Windows VM 大小的清單。
 5. 在 [設定] 刀鋒視窗中，輸入或選取下列值，然後按一下 [確定]：
 
     |**設定**|**值**|**詳細資料**|
@@ -111,7 +111,7 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 您可以控�
     |**子網路**|選取 [前端]|您可以選取存在於 VNet 中的任何子網路。|
     |**公用 IP 位址**|接受預設值|公用 IP 位址可讓您從網際網路連線至 VM。 若要深入了解公用 IP 位址，請閱讀 [IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)文章。|
     |**網路安全性群組 (防火牆)**|接受預設值|按一下入口網站建立的 [(新的) MyWebServer-nsg] 預設 NSG，以檢視其設定。 在開啟的 [建立網路安全性群組] 刀鋒視窗中，請注意，它具有一個輸入規則以允許來自任何來源 IP 位址的 TCP/3389 (RDP) 流量。|
-    |**所有其他值**|接受預設值|若要深入了解其餘設定，請閱讀[關於 VM](../virtual-machines/virtual-machines-windows-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 文章。|
+    |**所有其他值**|接受預設值|若要深入了解其餘設定，請閱讀[關於 VM](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 文章。|
 
     網路安全性群組 (NSG) 可讓您建立可以流入/流出 VM 之網路流量類型的輸入/輸出規則。 根據預設，會拒絕 VM 的所有輸入流量。 您可以為實際執行網頁伺服器針對 TCP/80 (HTTP) 和 TCP/443 (HTTPS) 新增額外的輸入規則。 因為根據預設沒有輸出流量的規則，所以允許所有輸出流量。 您可以新增/移除規則，以控制每個原則的流量。 若要深入了解 NSG，請閱讀[網路安全性群組](virtual-networks-nsg.md)文章。
 
@@ -160,7 +160,7 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 您可以控�
 
     ![資源群組內容](./media/virtual-network-get-started-vnet-subnet/resource-group-contents.png)
 
-若要深入了解 VM、磁碟和儲存體帳戶，請閱讀[虛擬機器](../virtual-machines/virtual-machines-windows-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)、[磁碟](../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-network%2ftoc.json)，和[儲存體帳戶](../storage/storage-introduction.md?toc=%2fazure%2fvirtual-network%2ftoc.json)概觀文章。 您可以看到入口網站為您建立的兩個預設 NSG。 您也可以看到入口網站建立兩個網路介面 (NIC) 資源。 NIC 可以讓 VM 透過 VNet 連線至其他資源。 閱讀 [NIC](virtual-network-network-interface.md) 文章，以深入了解 NIC。 入口網站也會建立一個公用 IP 位址資源。 公用 IP 位址是公用 IP 位址資源的一項設定。 若要深入了解公用 IP 位址，請閱讀 [IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)文章。
+若要深入了解 VM、磁碟和儲存體帳戶，請閱讀[虛擬機器](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)、[磁碟](../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-network%2ftoc.json)，和[儲存體帳戶](../storage/storage-introduction.md?toc=%2fazure%2fvirtual-network%2ftoc.json)概觀文章。 您可以看到入口網站為您建立的兩個預設 NSG。 您也可以看到入口網站建立兩個網路介面 (NIC) 資源。 NIC 可以讓 VM 透過 VNet 連線至其他資源。 閱讀 [NIC](virtual-network-network-interface.md) 文章，以深入了解 NIC。 入口網站也會建立一個公用 IP 位址資源。 公用 IP 位址是公用 IP 位址資源的一項設定。 若要深入了解公用 IP 位址，請閱讀 [IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)文章。
 
 ## <a name="connect-to-from-vms"></a>連線至 VM
 
@@ -252,5 +252,5 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 您可以控�
 - [公用 IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)
 - [網路介面](virtual-network-network-interface.md)
 - [網路安全性群組](virtual-networks-nsg.md)
-- [虛擬機器](../virtual-machines/virtual-machines-windows-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+- [虛擬機器](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 

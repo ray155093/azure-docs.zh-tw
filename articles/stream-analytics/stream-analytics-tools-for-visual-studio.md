@@ -4,20 +4,21 @@ description: "開始使用適用於 Visual Studio 的 Azure 串流分析工具"
 keywords: visual studio
 documentationcenter: 
 services: stream-analytics
-author: 
-manager: 
-editor: 
+author: jeffstokes72
+manager: jhubbard
+editor: cgronlun
 ms.assetid: a473ea0a-3eaa-4e5b-aaa1-fec7e9069f20
 ms.service: stream-analytics
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 02/01/2017
-ms.author: 
+ms.date: 03/28/2017
+ms.author: sujie
 translationtype: Human Translation
-ms.sourcegitcommit: 81a5678051b026a16bdae2f2eab7ead2c17f9563
-ms.openlocfilehash: 4874c52b24d9c69fa1d1648035102aaef276f944
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: d0125dda4df69279e49a9fad4dc28dcbf6368322
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -56,28 +57,28 @@ ms.openlocfilehash: 4874c52b24d9c69fa1d1648035102aaef276f944
 2. 登入您的 Azure 帳戶。 
 
 ## <a name="define-input-sources"></a>定義輸入來源
-1.  在 [方案總管中]，展開 [輸入] 節點，並將 **Input.json** 重新命名為 **EntryStream.json**。 按兩下 **EntryStream.json**。
-2.  您的 [輸入別名] 現在應該是 **EntryStream**。 請注意，輸入別名將用於查詢指令碼中。 
-3.  [來源類型] 是 [資料流]。
-4.  [來源] 是 [事件中樞]。
-5.  [服務匯流排命名空間] 應該是下拉式清單中的 tollData。
-6.  [事件中樞名稱] 應該設定為 [進入]。
-7.  [事件中樞原則名稱] 是**RootManageSharedAccessKey** (預設值)。
-8.  選取 [JSON] 做為 [事件序列化格式]，並選取 [UTF8] 做為 [編碼] 格式。
+1.    在 [方案總管中]，展開 [輸入] 節點，並將 **Input.json** 重新命名為 **EntryStream.json**。 按兩下 **EntryStream.json**。
+2.    您的 [輸入別名] 現在應該是 **EntryStream**。 請注意，輸入別名將用於查詢指令碼中。 
+3.    [來源類型] 是 [資料流]。
+4.    [來源] 是 [事件中樞]。
+5.    [服務匯流排命名空間] 應該是下拉式清單中的 tollData。
+6.    [事件中樞名稱] 應該設定為 [進入]。
+7.    [事件中樞原則名稱] 是**RootManageSharedAccessKey** (預設值)。
+8.    選取 [JSON] 做為 [事件序列化格式]，並選取 [UTF8] 做為 [編碼] 格式。
    
    您的設定將看起來會像是：
    
    ![定義輸入來源](./media/stream-analytics-tools-for-vs/stream-analytics-tools-for-vs-define-input-01.png)
    
-9.  請按一下頁面底部的 [儲存] 來完成精靈。 您現在可以新增另一個輸入來源以建立輸出資料流。 以滑鼠右鍵按一下 [輸入] 節點，再按一下 [新增項目]。
+9.    請按一下頁面底部的 [儲存] 來完成精靈。 您現在可以新增另一個輸入來源以建立輸出資料流。 以滑鼠右鍵按一下 [輸入] 節點，再按一下 [新增項目]。
    
    ![定義輸入來源](./media/stream-analytics-tools-for-vs/stream-analytics-tools-for-vs-define-input-02.png)
    
-10. 在快顯視窗中，選取 [Azure 串流分析輸入]，然後將名稱變更為 **ExitStream.json**。 按一下 [新增] 。
+10.    在快顯視窗中，選取 [Azure 串流分析輸入]，然後將名稱變更為 **ExitStream.json**。 按一下 [新增] 。
    
    ![定義輸入來源](./media/stream-analytics-tools-for-vs/stream-analytics-tools-for-vs-define-input-03.png)
    
-11. 在專案中按兩下 **ExitStream.json** 並按照填入進入資料流的步驟操作。 請務必輸入如下圖的 [事件中樞] 名稱。
+11.    在專案中按兩下 **ExitStream.json** 並按照填入進入資料流的步驟操作。 請務必輸入如下圖的 [事件中樞] 名稱。
    
    ![定義輸入來源](./media/stream-analytics-tools-for-vs/stream-analytics-tools-for-vs-define-input-04.png)
    
@@ -87,21 +88,21 @@ ms.openlocfilehash: 4874c52b24d9c69fa1d1648035102aaef276f944
    
    接下來，您將為包含車輛登記資料的 Blob 檔案新增參考資料輸入。
    
-12. 以滑鼠右鍵按一下專中的 [輸入] 節點，然後依照資料流輸入的相同程序，但選取 [參考資料] 而不是 [資料流]，且 [輸入別名] 是 [註冊]。
+12.    以滑鼠右鍵按一下專中的 [輸入] 節點，然後依照資料流輸入的相同程序，但選取 [參考資料] 而不是 [資料流]，且 [輸入別名] 是 [註冊]。
    
    ![定義輸入來源](./media/stream-analytics-tools-for-vs/stream-analytics-tools-for-vs-define-input-06.png)
    
-13. 選取包含 **tolldata** 的儲存體帳戶。 容器名稱應該是 **tolldata**，[路徑格式] 應該是 **registration.json**。 這個檔案名稱會區分大小寫，且應該是小寫。
-14. 按一下 [儲存] 完成精靈。
+13.    選取包含 **tolldata** 的儲存體帳戶。 容器名稱應該是 **tolldata**，[路徑格式] 應該是 **registration.json**。 這個檔案名稱會區分大小寫，且應該是小寫。
+14.    按一下 [儲存] 完成精靈。
 
 現在，所有輸入都已經定義了。
 
 ## <a name="define-output"></a>定義輸出
-1.  在 [方案總管] 中，展開 [輸入] 節點，然後按兩下 **Output.json**。
-2.  將 [輸出別名] 設定為 [輸出]，然後將 [接受] 設定為 [SQL 資料庫]。
-2.  輸入資料庫名稱：**TollDataDB**。
-3.  在 [使用者名稱] 欄位中輸入 **tolladmin**，在 [密碼] 欄位中輸入 **123toll!** ，在 [資料表] 欄位中輸入 **TollDataRefJoin**。
-4.  按一下 [儲存] 。
+1.    在 [方案總管] 中，展開 [輸入] 節點，然後按兩下 **Output.json**。
+2.    將 [輸出別名] 設定為 [輸出]，然後將 [接受] 設定為 [SQL 資料庫]。
+2.    輸入資料庫名稱：**TollDataDB**。
+3.    在 [使用者名稱] 欄位中輸入 **tolladmin**，在 [密碼] 欄位中輸入 **123toll!** ，在 [資料表] 欄位中輸入 **TollDataRefJoin**。
+4.    按一下 [儲存] 。
 
 ![定義輸出](./media/stream-analytics-tools-for-vs/stream-analytics-tools-for-vs-define-output-01.png)
  
@@ -124,9 +125,10 @@ ms.openlocfilehash: 4874c52b24d9c69fa1d1648035102aaef276f944
 
 您已經將第一個 Azure 串流分析查詢編寫完成，現在該利用位於下列路徑中您 TollApp 資料夾中的範例資料檔案來測試查詢了：
 
-**..\TollApp\TollApp\Data**
+<seg>
+  **..\TollApp\TollApp\Data**</seg>
 
-此資料夾包含下列檔案：•   Entry.json •   Exit.json •   Registration.json
+此資料夾包含下列檔案：•    Entry.json •    Exit.json •    Registration.json
 
 ## <a name="question-number-of-vehicles-entering-a-toll-booth"></a>問題：進入某個收費亭的車輛數目
 在專案中，按兩下 Script.asaql 來在編輯器中開啟該指令碼，然後在編輯器中貼上上一節中的指令碼。 查詢編輯器支援 IntelliSense、語法著色和錯誤標記。
@@ -252,10 +254,5 @@ ms.openlocfilehash: 4874c52b24d9c69fa1d1648035102aaef276f944
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

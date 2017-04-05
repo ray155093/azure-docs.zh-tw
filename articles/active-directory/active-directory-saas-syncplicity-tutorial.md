@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/27/2017
+ms.date: 3/09/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 49352a5e8255468bbc54c02e0cd9242d49002dbd
-ms.openlocfilehash: 57c649e974cc0514d3a534a5977d537bdd2bb7c5
-ms.lasthandoff: 12/08/2016
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 044769ca5a74b90843cb29510b66d9ce7e90566c
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -31,16 +31,17 @@ ms.lasthandoff: 12/08/2016
 完成本教學課程之後，您已指派 Syncplicity 存取權的 Azure AD 使用者就能夠使用 Syncplicity 公司網站 (服務提供者起始登入)，或「Azure AD 存取面板」來單一登入應用程式。
 
 1. 啟用 Syncplicity 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
 ![案例](./media/active-directory-saas-syncplicity-tutorial/IC769524.png "案例")
 
-## <a name="enabling-the-application-integration-for-syncplicity"></a>啟用 Syncplicity 的應用程式整合
+## <a name="enable-the-application-integration-for-syncplicity"></a>啟用 Syncplicity 的應用程式整合
 本節的目的是要說明如何啟用 Syncplicity 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-syncplicity-perform-the-following-steps"></a>若要啟用 Syncplicity 的應用程式整合，請執行下列步驟：
+**若要啟用 Syncplicity 的應用程式整合，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
     ![Active Directory](./media/active-directory-saas-syncplicity-tutorial/IC700993.png "Active Directory")
@@ -67,10 +68,11 @@ ms.lasthandoff: 12/08/2016
    
     ![Syncplicity](./media/active-directory-saas-syncplicity-tutorial/IC769533.png "Syncplicity")
 
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 本節說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure Active Directory 帳戶驗證至 Syncplicity。
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
+**若要設定單一登入，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中的 [Syncplicity] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
     ![設定單一登入](./media/active-directory-saas-syncplicity-tutorial/IC769534.png "設定單一登入")
@@ -97,30 +99,24 @@ ms.lasthandoff: 12/08/2016
 
 7. 在 [單一登入 (SSO)]  對話方塊頁面執行下列步驟：
    
-    ![單一登入 \(SSO\)](./media/active-directory-saas-syncplicity-tutorial/IC769550.png "Single Sign-On \\\(SSO\\\)")
-   
-    a. 在 [自訂網域]  文字方塊中輸入您的網域名稱。
-   
-    b.這是另一個 C# 主控台應用程式。 在 [單一登入狀態] 中選取 [啟用]。
-   
-    c. 在 Azure 傳統入口網站中的 [設定在 Syncplicity 單一登入] 頁面上，複製 [實體識別碼] 值，然後貼到 [實體識別碼] 文字方塊中。
-   
-    d. 在 Azure 傳統入口網站中的 [設定在 Syncplicity 單一登入] 頁面上，複製 [單一登入服務 URL] 值，然後貼到 [登入頁面 URL] 文字方塊中。
-   
-    e. 在 Azure 傳統入口網站中的 [設定在 Syncplicity 單一登入] 頁面上，複製 [遠端登出 URL] 值，然後貼到 [登出頁面 URL] 文字方塊中。
-   
-    f. 在 [識別提供者憑證] 中按一下 [選擇檔案]，然後上傳您已從 Azure 傳統入口網站下載的憑證。
-   
-    g. 按一下 [儲存變更] 。
+    ![單一登入 \(SSO\)](./media/active-directory-saas-syncplicity-tutorial/IC769550.png "Single Sign-On \\\(SSO\\\)")   
+  1. 在 [自訂網域]  文字方塊中輸入您的網域名稱。
+  2. 在 [單一登入狀態] 中選取 [啟用]。
+  3. 在 Azure 傳統入口網站中的 [設定在 Syncplicity 單一登入] 頁面上，複製 [實體識別碼] 值，然後貼到 [實體識別碼] 文字方塊中。
+  4. 在 Azure 傳統入口網站中的 [設定在 Syncplicity 單一登入] 頁面上，複製 [單一登入服務 URL] 值，然後貼到 [登入頁面 URL] 文字方塊中。
+  5. 在 Azure 傳統入口網站中的 [設定在 Syncplicity 單一登入] 頁面上，複製 [遠端登出 URL] 值，然後貼到 [登出頁面 URL] 文字方塊中。
+  6. 在 [識別提供者憑證] 中按一下 [選擇檔案]，然後上傳您已從 Azure 傳統入口網站下載的憑證。 
+  7. 按一下 [儲存變更] 。
 
 8. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
     ![確認](./media/active-directory-saas-syncplicity-tutorial/IC769554.png "確認")
 
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 AAD 使用者必須先佈建到 Syncplicity 應用程式，才可以登入。 本節描述如何建立 Syncplicity 內的 AAD 使用者帳戶。
 
-### <a name="to-provision-a-user-account-to-syncplicity-perform-the-following-steps"></a>若要佈建使用者帳戶到 Syncplicity，請執行下列步驟：
+**若要將使用者帳戶佈建到 Syncplicity，請執行下列步驟：**
+
 1. 登入您的 **Syncplicity** 租用戶 (例如：*https://company.Syncplicity.com*)。
 
 2. 按一下 [管理員]，然後選取 [使用者帳戶]。
@@ -133,33 +129,31 @@ AAD 使用者必須先佈建到 Syncplicity 應用程式，才可以登入。 �
    
     ![帳戶資訊](./media/active-directory-saas-syncplicity-tutorial/IC769765.png "帳戶資訊")
    
-    > [!NOTE]
-    > AAD 帳戶的持有者會收到一封包含連結的電子郵件，以進行確認並啟用帳戶。
-    > 
+    >[!NOTE]
+    >AAD 帳戶的持有者會收到一封包含連結的電子郵件，以進行確認並啟用帳戶。 
     > 
 
 5. 選取新使用者應該要加入做為成員的公司內群組，然後再按 [下一步] 。
    
     ![群組成員資格](./media/active-directory-saas-syncplicity-tutorial/IC769772.png "群組成員資格")
    
-    > [!NOTE]
-    > 如果沒有列出群組，就只需要按 [下一步] 即可。
-    > 
+    >[!NOTE]
+    >如果沒有列出群組，就只需要按 [下一步] 即可。 
     > 
 
 6. 選取您想要放置在使用者電腦上受 Syncplicity 控制的資料夾，然後按 [下一步] 。
    
     ![Syncplicity 資料夾](./media/active-directory-saas-syncplicity-tutorial/IC769773.png "Syncplicity 資料夾")
 
-> [!NOTE]
-> 您可以使用任何其他的 Syncplicity 使用者帳戶建立工具或 Syncplicity 提供的 API 來佈建 AAD 使用者帳戶。
-> 
+>[!NOTE]
+>您可以使用任何其他的 Syncplicity 使用者帳戶建立工具或 Syncplicity 提供的 API 來佈建 AAD 使用者帳戶。 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-syncplicity-perform-the-following-steps"></a>若要將使用者指派給 Syncplicity，請執行下列步驟：
+**若要將使用者指派給 Syncplicity，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 
 2. 在 [Syncplicity] 應用程式整合頁面上，按一下 [指派使用者]。

@@ -16,13 +16,13 @@ ms.workload: infrastructure-services
 ms.date: 12/13/2016
 ms.author: ganesr
 translationtype: Human Translation
-ms.sourcegitcommit: 1276a64d375ff452f3d29a8f7910475256499ac8
-ms.openlocfilehash: 0c16907f306228c4361e55d21dcb0c834ce7de25
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: 9601ff3152e62baf95794919fdc5a7fc43204d52
+ms.lasthandoff: 03/24/2017
 
 
 ---
-# <a name="connect-a-virtual-network-to-an-expressroute-circuit"></a>將虛擬網路連線到 ExpressRoute 電路
+# <a name="connect-a-virtual-network-to-an-expressroute-circuit-using-powershell-classic"></a>使用 PowerShell 將虛擬網路連接到 ExpressRoute 線路 (傳統)
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](expressroute-howto-linkvnet-portal-resource-manager.md)
 > * [Resource Manager - PowerShell](expressroute-howto-linkvnet-arm.md)
@@ -32,6 +32,8 @@ ms.lasthandoff: 02/03/2017
 > 
 
 本文會協助您使用傳統部署模型和 Azure PowerShell 將虛擬網路 (VNet) 連結到 ExpressRoute 線路。 虛擬網路可以位於相同的訂用帳戶中，或屬於另一個訂用帳戶。
+
+[!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
 **關於 Azure 部署模型**
 
@@ -75,7 +77,7 @@ ms.lasthandoff: 02/03/2017
 
 **建立授權**
 
-電路擁有者可授權其他訂用帳戶管理員使用指定的電路。 在下列範例中，線路管理員 (Contoso IT) 讓另一個訂用帳戶的管理員 (Dev-Test) 可將最多&2; 個虛擬網路連結到線路。 Contoso IT 的系統管理員的做法是指定 Dev-Test Microsoft 識別碼。 此 Cmdlet 不會傳送電子郵件給指定的 Microsoft ID。 電路擁有者必須明確通知其他訂用帳戶擁有者，告知授權已完成。
+電路擁有者可授權其他訂用帳戶管理員使用指定的電路。 在下列範例中，線路管理員 (Contoso IT) 讓另一個訂用帳戶的管理員 (Dev-Test) 可將最多 2 個虛擬網路連結到線路。 Contoso IT 的系統管理員的做法是指定 Dev-Test Microsoft 識別碼。 此 Cmdlet 不會傳送電子郵件給指定的 Microsoft ID。 電路擁有者必須明確通知其他訂用帳戶擁有者，告知授權已完成。
 
     New-AzureDedicatedCircuitLinkAuthorization -ServiceKey "**************************" -Description "Dev-Test Links" -Limit 2 -MicrosoftIds 'devtest@contoso.com'
 

@@ -41,7 +41,7 @@ ms.lasthandoff: 03/10/2017
 
 2. 解碼 EDIFACT 訊息連接器沒有觸發程序，因此您必須新增觸發程序 (例如要求觸發程序) 來啟動邏輯應用程式。 在 Logic Apps 設計工具中，新增觸發程序，然後將動作新增至您的邏輯應用程式。
 
-3.    在搜尋方塊中，輸入 "EDIFACT" 做為篩選條件。 選取 [將 EDIFACT 訊息解碼]。
+3. 在搜尋方塊中，輸入 "EDIFACT" 做為篩選條件。 選取 [將 EDIFACT 訊息解碼]。
    
     ![搜尋 EDIFACT](./media/logic-apps-enterprise-integration-edifact-decode/edifactdecodeimage1.png)
 
@@ -56,7 +56,7 @@ ms.lasthandoff: 03/10/2017
     | 連線名稱 * |為連接器輸入任何名稱。 |
     | 整合帳戶 * |輸入整合帳戶的名稱。 確定您的整合帳戶和邏輯應用程式位於相同的 Azure 位置。 |
 
-4.    當您完成連線建立時，請選擇 [建立]。 您的連線詳細資料看起來類似此範例：
+4. 當您完成連線建立時，請選擇 [建立]。 您的連線詳細資料看起來類似此範例：
 
     ![整合帳戶詳細資料](./media/logic-apps-enterprise-integration-edifact-decode/edifactdecodeimage3.png)  
 

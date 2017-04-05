@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/21/2017
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 183b28ad9b9d0d0cf30d057a15fdd1e9e902d249
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: 09ccdaa18d383569747612c33b63595c06a0131e
+ms.lasthandoff: 03/28/2017
 
 ---
 
@@ -320,7 +320,7 @@ ms.lasthandoff: 03/22/2017
 |startOfHour|傳回小時開始至傳入的字串時間戳記。 例如：`2017-03-15T13:00:00Z`：<br /><br /> `startOfHour('2017-03-15T13:27:36Z')`<br /><br /> **參數編號**：1<br /><br /> **名稱**︰時間戳記<br /><br /> **描述**︰必要。 這是包含時間的字串。<br /><br />**參數編號**：2<br /><br /> **名稱**︰格式<br /><br /> **描述**︰選擇性。 [單一格式規範字元](https://msdn.microsoft.com/library/az4se3k1%28v=vs.110%29.aspx)或[自訂格式模式](https://msdn.microsoft.com/library/8kb3ddd4%28v=vs.110%29.aspx)，指出如何格式化這個時間戳記值。 如果未提供格式，則會使用 ISO 8601 格式 ("o")。|  
 |startOfDay|傳回天數開始至傳入的字串時間戳記。 例如：`2017-03-15T00:00:00Z`：<br /><br /> `startOfDay('2017-03-15T13:27:36Z')`<br /><br /> **參數編號**：1<br /><br /> **名稱**︰時間戳記<br /><br /> **描述**︰必要。 這是包含時間的字串。<br /><br />**參數編號**：2<br /><br /> **名稱**︰格式<br /><br /> **描述**︰選擇性。 [單一格式規範字元](https://msdn.microsoft.com/library/az4se3k1%28v=vs.110%29.aspx)或[自訂格式模式](https://msdn.microsoft.com/library/8kb3ddd4%28v=vs.110%29.aspx)，指出如何格式化這個時間戳記值。 如果未提供格式，則會使用 ISO 8601 格式 ("o")。| 
 |startOfMonth|傳回月份開始至傳入的字串時間戳記。 例如：`2017-03-01T00:00:00Z`：<br /><br /> `startOfMonth('2017-03-15T13:27:36Z')`<br /><br /> **參數編號**：1<br /><br /> **名稱**︰時間戳記<br /><br /> **描述**︰必要。 這是包含時間的字串。<br /><br />**參數編號**：2<br /><br /> **名稱**︰格式<br /><br /> **描述**︰選擇性。 [單一格式規範字元](https://msdn.microsoft.com/library/az4se3k1%28v=vs.110%29.aspx)或[自訂格式模式](https://msdn.microsoft.com/library/8kb3ddd4%28v=vs.110%29.aspx)，指出如何格式化這個時間戳記值。 如果未提供格式，則會使用 ISO 8601 格式 ("o")。| 
-|dayOfWeek|傳回字串時間戳記之週中的日元件。 例如：`Wednesday`：<br /><br /> `dayOfWeek('2017-03-15T13:27:36Z')`<br /><br /> **參數編號**：1<br /><br /> **名稱**︰時間戳記<br /><br /> **描述**︰必要。 這是包含時間的字串。| 
+|dayOfWeek|傳回字串時間戳記之週中的日元件。  星期日是 0、星期一是 1，依此類推。 例如：`3`：<br /><br /> `dayOfWeek('2017-03-15T13:27:36Z')`<br /><br /> **參數編號**：1<br /><br /> **名稱**︰時間戳記<br /><br /> **描述**︰必要。 這是包含時間的字串。| 
 |dayOfMonth|傳回字串時間戳記之月中的日元件。 例如：`15`：<br /><br /> `dayOfMonth('2017-03-15T13:27:36Z')`<br /><br /> **參數編號**：1<br /><br /> **名稱**︰時間戳記<br /><br /> **描述**︰必要。 這是包含時間的字串。| 
 |dayOfYear|傳回字串時間戳記之年中的日元件。 例如：`74`：<br /><br /> `dayOfYear('2017-03-15T13:27:36Z')`<br /><br /> **參數編號**：1<br /><br /> **名稱**︰時間戳記<br /><br /> **描述**︰必要。 這是包含時間的字串。| 
 |刻度|傳回字串時間戳記的刻度屬性。 例如：`1489603019`：<br /><br /> `ticks('2017-03-15T18:36:59Z')`<br /><br /> **參數編號**：1<br /><br /> **名稱**︰時間戳記<br /><br /> **描述**︰必要。 這是包含時間的字串。| 

@@ -13,17 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 11/17/2016
+ms.date: 03/28/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 6cf561b269c4d873a894b47265e39a057cc415c3
-ms.openlocfilehash: 24ad2c2d2872f844e32d3fae559683c3d992bd00
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: accfd5f0fec69175e584528ff9f6db66402cb89e
+ms.lasthandoff: 03/29/2017
 
 
 ---
 # <a name="azure-virtual-machine-agent-overview"></a>Azure 虛擬機器代理程式概觀
 
-Microsoft Azure 虛擬機器代理程式 (AM 代理程式) 是安全的輕量型處理序，可管理 VM 與 Azure 網狀架構控制器的互動。 VM 代理程式已啟用主要角色並執行 Azure 虛擬機器擴充功能。 VM 擴充功能可啟用虛擬機器的部署後組態，例如安裝和設定軟體。 虛擬機器擴充功能也會啟用復原功能，例如重設虛擬機器的系統管理密碼。 若沒有 Azure VM 代理程式，便無法執行虛擬機器擴充功能。
+「Microsoft Azure 虛擬機器代理程式」(VM 代理程式) 是安全的輕量型處理程序，可管理 VM 與「Azure 網狀架構控制器」的互動。 VM 代理程式已啟用主要角色並執行 Azure 虛擬機器擴充功能。 VM 擴充功能可啟用虛擬機器的部署後組態，例如安裝和設定軟體。 虛擬機器擴充功能也會啟用復原功能，例如重設虛擬機器的系統管理密碼。 若沒有 Azure VM 代理程式，便無法執行虛擬機器擴充功能。
 
 本文件詳述 Azure 虛擬機器代理程式的安裝、偵測及移除。
 
@@ -82,8 +83,3 @@ foreach ($vm in $vms) {
 ## <a name="upgrade-the-vm-agent"></a>升級 VM 代理程式
 
 適用於 Windows 的 Azure VM 代理程式會自動升級。 當新的虛擬機器部署至 Azure 時，這些機器會收到最新的 VM 代理程式。 自訂 VM 映像應進行手動更新，以包含新的 VM 代理程式。
-
-
-<!--HONumber=Dec16_HO1-->
-
-

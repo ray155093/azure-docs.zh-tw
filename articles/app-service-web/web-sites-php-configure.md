@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 5ea7095e12b6194556d3cd0baa43ccfed1e087ee
-ms.openlocfilehash: 3adbef0d22673d6cd872f583903d0c73469d4fa1
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: b62ee732f1730e8934443fb4320327e64d110833
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -28,9 +28,9 @@ ms.lasthandoff: 02/27/2017
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="how-to-change-the-built-in-php-version"></a>作法：變更內建 PHP 版本
-當您建立 App Service Web 應用程式時，預設會安裝 PHP 5.4，而且可立即使用。 若要查看可用的修訂版、其預設組態及啟用的擴充，最好的方法是部署呼叫 [phpinfo()] 函數的指令碼。
+當您建立 App Service Web 應用程式時，預設會安裝 PHP 5.5 並立即可供使用。 若要查看可用的修訂版、其預設組態及啟用的擴充，最好的方法是部署呼叫 [phpinfo()] 函數的指令碼。
 
-PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要更新 PHP 版本，請遵循下列方法其中之一：
+PHP 5.6 和 PHP 7.0 版本同樣可供使用，但預設並未啟用。 若要更新 PHP 版本，請遵循下列方法其中之一：
 
 ### <a name="azure-portal"></a>Azure 入口網站
 1. 在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的 Web 應用程式，然後按一下 [設定] 按鈕。
@@ -49,7 +49,7 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
         PS C:\> Login-AzureRmAccount
 2. 設定 Web 應用程式的 PHP 版本。
    
-        PS C:\> Set-AzureWebsite -PhpVersion {5.4 | 5.5 | 5.6} -Name {app-name}
+        PS C:\> Set-AzureWebsite -PhpVersion {5.5 | 5.6 | 7.0} -Name {app-name}
 3. PHP 版本現在已設定完成。 您可確認這些設定：
    
         PS C:\> Get-AzureWebsite -Name {app-name} | findstr PhpVersion
@@ -62,7 +62,7 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
         azure login
 2. 設定 Web 應用程式的 PHP 版本。
    
-        azure site set --php-version {5.4 | 5.5 | 5.6} {app-name}
+        azure site set --php-version {5.5 | 5.6 | 7.0} {app-name}
 
 3. PHP 版本現在已設定完成。 您可確認這些設定：
    
@@ -110,7 +110,7 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
 
 ### <a name="configure-via-ini-settings"></a>透過 ini 設定來設定
 1. 將 `ext` 目錄新增至 `d:\home\site` 目錄。
-2. 將 `.dll` 擴充檔放入 `ext` 目錄中 (例如，`php_mongo.dll` 和 `php_xdebug.dll`)。 確定擴充與 PHP 預設版本 (截至撰寫時為止，該版本為 PHP 5.4) 相容，而且與 VC9 及非安全執行緒 (nts) 相容。
+2. 將 `.dll` 擴充檔放入 `ext` 目錄中 (例如，`php_xdebug.dll`)。 請確定擴充功能與預設的 PHP 版本相容，並且與 VC9 及非執行緒安全 (nts) 相容。
 3. 使用機碼 `PHP_INI_SCAN_DIR` 和值 `d:\home\site\ini` 將應用程式設定新增至 Web 應用程式
 4. 在名為 `extensions.ini` 的 `d:\home\site\ini` 中建立 `ini` 檔案。
 5. 使用在 php.ini 檔案中使用的相同語法，將組態設定新增至 `extensions.ini` 檔案。 例如，如果您要啟用 MongoDB 和 XDebug 擴充，您的 `extensions.ini` 檔案應該包含以下文字：
@@ -122,7 +122,7 @@ PHP 5.5 和 PHP 5.6 版本同樣可供使用，但預設並未啟用。 若要�
 
 ### <a name="configure-via-app-setting"></a>透過應用程式設定來設定
 1. 將 `bin` 目錄新增至根目錄。
-2. 將 `.dll` 擴充檔放入 `bin` 目錄中 (例如，`php_mongo.dll`)。 確定擴充與 PHP 預設版本 (截至撰寫時為止，該版本為 PHP 5.4) 相容，而且與 VC9 及非安全執行緒 (nts) 相容。
+2. 將 `.dll` 擴充檔放入 `bin` 目錄中 (例如，`php_xdebug.dll`)。 請確定擴充功能與預設的 PHP 版本相容，並且與 VC9 及非執行緒安全 (nts) 相容。
 3. 部署 Web 應用程式。
 4. 在 Azure 入口網站中瀏覽至您的 Web 應用程式，然後按一下 [設定]  按鈕。
    

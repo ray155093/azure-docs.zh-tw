@@ -11,37 +11,39 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/08/2017
+ms.date: 3/10/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 451369e21e7471180b6cd8c77d62b157d0bcddff
-ms.openlocfilehash: 058f84f57c18735d42b95a74aee74468ccef0f8d
-ms.lasthandoff: 12/14/2016
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 6b6419694f20f50658d3c0c6de4c22e4a752278e
+ms.lasthandoff: 03/28/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-smarteru"></a>教學課程：Azure Active Directory 與 SmarterU 整合
 本教學課程的目的是要示範 Azure 與 SmarterU 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂用帳戶
 * SmarterU 租用戶
 
-完成本教學課程之後，您指派給 SmarterU 的 Azure AD 使用者就能夠從您的 SmarterU 公司網站 (服務提供者起始登入)，或使用 [存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
+完成本教學課程之後，您指派給 SmarterU 的 Azure AD 使用者就能夠在您的 SmarterU 公司網站上使用單一登入 (SSO) (服務提供者起始登入)，或使用[存取面板的簡介](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
 
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 SmarterU 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
 ![案例](./media/active-directory-saas-smarteru-tutorial/IC777320.png "案例")
 
-## <a name="enabling-the-application-integration-for-smarteru"></a>啟用 SmarterU 的應用程式整合
+## <a name="enable-the-application-integration-for-smarteru"></a>啟用 SmarterU 的應用程式整合
 本節的目的是概述如何啟用 SmarterU 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-smarteru-perform-the-following-steps"></a>若要啟用 SmarterU 的應用程式整合，請執行下列步驟：
+**若要啟用 SmarterU 的應用程式整合，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
     ![Active Directory](./media/active-directory-saas-smarteru-tutorial/IC700993.png "Active Directory")
@@ -68,10 +70,11 @@ ms.lasthandoff: 12/14/2016
    
     ![SmarterU](./media/active-directory-saas-smarteru-tutorial/IC777322.png "SmarterU")
 
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 SmarterU 中進行驗證。
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
+**若要設定單一登入，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站的 [SmarterU] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
     ![設定單一登入](./media/active-directory-saas-smarteru-tutorial/IC777323.png "設定單一登入")
@@ -92,54 +95,46 @@ ms.lasthandoff: 12/14/2016
 
 6. 在 [帳戶組態] 頁面上，執行下列步驟：
    
-    ![外部授權](./media/active-directory-saas-smarteru-tutorial/IC777327.png "外部授權")
- 
-    a. 選取 [啟用外部授權] 。
-   
-    b.這是另一個 C# 主控台應用程式。 在 [主要登入控制] 區段中，選取 [SmarterU] 索引標籤。
-   
-    c. 在 [使用者預設登入] 區段中，選取 [SmarterU] 索引標籤。
-   
-    d. 選取 [啟用 Okta] 。
-   
-    e. 複製下載的中繼資料檔案內容，然後貼到 [Okta 中繼資料]  文字方塊中。
-
-    f. 按一下 [儲存] 。
+    ![外部授權](./media/active-directory-saas-smarteru-tutorial/IC777327.png "外部授權") 
+  1. 選取 [啟用外部授權] 。
+  2. 在 [主要登入控制] 區段中，選取 [SmarterU] 索引標籤。
+  3. 在 [使用者預設登入] 區段中，選取 [SmarterU] 索引標籤。
+  4. 選取 [啟用 Okta] 。
+  5. 複製下載的中繼資料檔案內容，然後貼到 [Okta 中繼資料]  文字方塊中。
+  6. 按一下 [儲存] 。
 
 7. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-smarteru-tutorial/IC777328.png "設定單一登入")
 
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
-若要讓 Azure AD 使用者能夠登入 SmarterU，必須將他們佈建到 SmarterU。  
+## <a name="configure-user-provisioning"></a>設定使用者佈建
+若要讓 Azure AD 使用者能夠登入 SmarterU，必須將他們佈建到 SmarterU。
+
 SmarterU 需以手動方式佈建。
 
-### <a name="to-provision-a-user-accounts-perform-the-following-steps"></a>若要佈建使用者帳戶，請執行下列步驟：
+**若要佈建使用者帳戶，請執行下列步驟：**
+
 1. 登入您的 **SmarterU** 租用戶。
 
 2. 移至 [使用者] 。
 
 3. 在 [使用者] 區段中，執行下列步驟：
    
-    ![新增使用者](./media/active-directory-saas-smarteru-tutorial/IC777329.png "新增使用者")
-   
-    a. 按一下 [新增使用者] 。
-   
-    b.這是另一個 C# 主控台應用程式。 在下列文字方塊中輸入該 Azure AD 使用者帳戶的相關屬性值：**主要電子郵件地址**、**員工識別碼**、**密碼**、**確認密碼**、**名字**、**姓氏**。
-   
-    c. 按一下 [作用中] 。
-   
-    d. 按一下 [儲存] 。
+    ![新增使用者](./media/active-directory-saas-smarteru-tutorial/IC777329.png "新增使用者")   
+  1. 按一下 [新增使用者] 。
+  2. 在下列文字方塊中輸入該 Azure AD 使用者帳戶的相關屬性值：**主要電子郵件地址**、**員工識別碼**、**密碼**、**確認密碼**、**名字**、**姓氏**。
+  3. 按一下 [作用中] 。 
+  4. 按一下 [儲存] 。
 
-> [!NOTE]
-> 您可以使用任何其他的 SmarterU 使用者帳戶建立工具或 SmarterU 提供的 API 來佈建 AAD 使用者帳戶。
-> 
+>[!NOTE]
+>您可以使用任何其他的 SmarterU 使用者帳戶建立工具或 SmarterU 提供的 API 來佈建 AAD 使用者帳戶。
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-smarteru-perform-the-following-steps"></a>若要將使用者指派到 SmarterU，請執行下列步驟：
+**若要將使用者指派到 SmarterU，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 
 2. 在 [SmarterU] 應用程式整合頁面上，按一下 [指派使用者]。

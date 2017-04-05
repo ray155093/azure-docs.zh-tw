@@ -1,7 +1,7 @@
 ---
 
 title: "Azure 匯入/匯出記錄檔格式 | Microsoft Docs"
-description: "深入了解執行匯入匯出服務工作的步驟時所建立的記錄檔格式"
+description: "了解執行匯入/匯出服務作業的步驟時所建立的記錄檔格式。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 74182c8c357085f186aaa43adfaef80a083d16bb
-ms.openlocfilehash: 0b402db8c7e6bd4abb5aaf6ded7f539cfec7172e
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 16234ccaf13ce1d85cfd207ed4734e683070faa6
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -149,7 +149,7 @@ properties-status ::=
 |`Properties/Path/@Hash`|屬性、字串|屬性檔案的 Base16 式編碼的 MD5 雜湊。|  
 |`Blob/Status`|String|Blob 處理狀態。|  
   
-### <a name="drive-status-codes"></a>磁碟機狀態碼  
+# <a name="drive-status-codes"></a>磁碟機狀態碼  
 下表列出磁碟機處理的狀態碼。  
   
 |狀態碼|說明|  
@@ -178,7 +178,7 @@ properties-status ::=
 |`BlobRequestForbidden`|禁止存取儲存體帳戶中的 Blob。 這可能是因為儲存體帳戶金鑰或容器 SAS 無效。|  
 |`InternalError`|處理磁碟機時發生內部錯誤。|  
   
-### <a name="blob-status-codes"></a>Blob 狀態碼  
+## <a name="blob-status-codes"></a>Blob 狀態碼  
 下表列出 Blob 處理的狀態碼。  
   
 |狀態碼|說明|  
@@ -197,7 +197,7 @@ properties-status ::=
 |`IOFailed`|處理 Blob 時發生磁碟或網路 I/O 失敗。|  
 |`Failed`|處理 Blob 時發生未知的失敗。|  
   
-### <a name="import-disposition-status-codes"></a>匯入配置狀態碼  
+## <a name="import-disposition-status-codes"></a>匯入配置狀態碼  
 下表列出解決匯入配置的狀態碼。  
   
 |狀態碼|說明|  
@@ -208,7 +208,7 @@ properties-status ::=
 |`Overwritten`|Blob 已根據 `overwrite` 匯入配置覆寫現有的 Blob。|  
 |`Cancelled`|先前的失敗已停止進一步處理匯入配置。|  
   
-### <a name="page-rangeblock-status-codes"></a>頁面範圍/區塊狀態碼  
+## <a name="page-rangeblock-status-codes"></a>頁面範圍/區塊狀態碼  
 下表列出頁面範圍或區塊處理的狀態碼。  
   
 |狀態碼|說明|  
@@ -224,7 +224,7 @@ properties-status ::=
 |`Failed`|處理頁面範圍或區塊時發生未知的失敗。|  
 |`Cancelled`|先前的失敗已停止進一步處理頁面範圍或區塊。|  
   
-### <a name="metadata-status-codes"></a>中繼資料狀態碼  
+## <a name="metadata-status-codes"></a>中繼資料狀態碼  
 下表列出 Blob 中繼資料處理的狀態碼。  
   
 |狀態碼|說明|  
@@ -242,7 +242,7 @@ properties-status ::=
 |`Failed`|處理中繼資料時發生未知的失敗。|  
 |`Cancelled`|先前的失敗已停止進一步處理中繼資料。|  
   
-### <a name="properties-status-codes"></a>屬性狀態碼  
+## <a name="properties-status-codes"></a>屬性狀態碼  
 下表列出 Blob 屬性處理的狀態碼。  
   
 |狀態碼|說明|  
@@ -260,7 +260,7 @@ properties-status ::=
 |`Failed`|處理屬性時發生未知的失敗。|  
 |`Cancelled`|先前的失敗已停止進一步處理屬性。|  
   
-## <a name="sample-logs"></a>範例記錄檔  
+## <a name="sample-logs"></a>範例記錄  
 以下是詳細資訊記錄檔的範例。  
   
 ```xml
@@ -358,6 +358,7 @@ properties-status ::=
 </DriveLog>  
 ```
   
-## <a name="see-also"></a>另請參閱  
-[儲存體匯入/匯出 REST](/rest/api/storageimportexport/)
+## <a name="next-steps"></a>後續步驟
+ 
+* [儲存體匯入/匯出 REST API](/rest/api/storageimportexport/)
 

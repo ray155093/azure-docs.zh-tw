@@ -9,6 +9,7 @@ editor: cgronlun
 tags: 
 ms.assetid: 0cbb49cc-0de1-4a1a-b658-99897caf827c
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,8 +17,9 @@ ms.workload: big-data
 ms.date: 11/02/2016
 ms.author: saurinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 86a0f6f2bc27f1411652b273325e73144582eee0
-ms.openlocfilehash: b0122a87ec64d16d6e026f9b37a563125a5f1920
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 424ee513afce6ab689c8804594754b1b49234754
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -200,7 +202,7 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
    * 密碼：(輸入密碼)
      
      請注意，使用者名稱和密碼是本機系統管理員。
-4. 依序按一下 [ **下一步**
+4. 依序按一下  **下一步**
 5. 在 [區域/虛擬網路] 中，選取您在上一個步驟建立的新虛擬網路 (contosoaadvnet)，然後按 [下一步]。
 6. 按一下頁面底部的 [新增] 。
 
@@ -237,7 +239,7 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
 7. 從伺服器集區中選取目前的虛擬機器，然後按一下 [下一步]。
 8. 按一下 [下一步] 略過角色。
 9. 展開 [遠端伺服器系統管理工具]，展開 [角色系統管理工具]，選取[AD DS 和 AD LDS 工具] 和 [DNS 伺服器工具]，然後按一下 [下一步]。 
-10. 依序按一下 [ **下一步**
+10. 依序按一下  **下一步**
 11. 按一下 [Install] 。
 
 如需詳細資訊，請參閱[在虛擬機器上安裝 Active Directory 系統管理工具](../active-directory-domain-services/active-directory-ds-admin-guide-administer-domain.md#task-2---install-active-directory-administration-tools-on-the-virtual-machine)。
@@ -404,11 +406,6 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
 ## <a name="next-steps"></a>後續步驟
 * 如需使用 Azure PowerShell 設定已加入網域的 HDInsight 叢集，請參閱[使用 Azure PowerShell 設定已加入網域的 HDInisight 叢集](hdinsight-domain-joined-configure-use-powershell.md)。
 * 如需設定 Hive 原則和執行 Hive 查詢，請參閱[針對已加入網域的 HDInisight 叢集設定 Hive 原則](hdinsight-domain-joined-run-hive.md)。
-* 如需使用 SSH 連線到已加入網域的 HDInsight 叢集，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined)。
-
-
-
-
-<!--HONumber=Nov16_HO5-->
+* 若要使用 SSH 連線到已加入網域的 HDInsight 叢集，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined)。
 
 

@@ -44,6 +44,7 @@
 ### [管理使用者帳戶](api-management-howto-create-or-invite-developers.md)
 ### [使用自動化管理](automation-manage-api-management.md)
 ### [使用 Git 進行設定](api-management-configuration-repository-git.md)
+### [使用 Azure 監視器監視](api-management-howto-use-azure-monitor.md)
 # 參考
 ## [PowerShell](/powershell/azureps-cmdlets-docs)
 ## [REST](/rest/api/apimanagement/)

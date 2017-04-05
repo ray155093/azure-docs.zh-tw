@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: e29c26a7fbd25d01f2d58dc29a7fd2f34c91307b
-ms.openlocfilehash: 88203f84752d464b63ef31fc77d668cb8b3497e3
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 88c919b64513c8441ab73e2750e7ddfb12fcb63e
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -45,7 +46,7 @@ ms.openlocfilehash: 88203f84752d464b63ef31fc77d668cb8b3497e3
 * **解壓縮** 為 .csv 檔案，然後
 * **上傳** 檔案到 [針對進階分析程序和技術自訂 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md) 主題所述之程序所建立的 Azure 儲存體帳戶預設值 (或適當容器)。 請參閱此 [頁面](machine-learning-data-science-process-hive-walkthrough.md#upload)，以了解將 .csv 檔案上傳至儲存體帳戶上之預設容器的程序。
 
-## <a name="a-namesubmitahow-to-submit-hive-queries"></a><a name="submit"></a>如何提交 Hive 查詢
+## <a name="submit"></a>如何提交 Hive 查詢
 您可以使用下列方法來提交 Hive 查詢：
 
 1. [透過 Hadoop 叢集前端節點中的 Hadoop 命令列提交 Hive 查詢](#headnode)
@@ -56,7 +57,7 @@ Hive 查詢類似 SQL。 如果您熟悉 SQL，您可能會發現 [Hive for SQL 
 
 提交 Hive 查詢時，您也可以控制 Hive 查詢輸出的目的地，它是否會出現在螢幕上，或是輸出到前端節點上的本機檔案或 Azure Blob。
 
-### <a name="a-nameheadnodea-1-submit-hive-queries-through-hadoop-command-line-in-headnode-of-hadoop-cluster"></a><a name="headnode"></a> 1.透過 Hadoop 叢集前端節點中的 Hadoop 命令列提交 Hive 查詢
+### <a name="headnode"></a> 1.透過 Hadoop 叢集前端節點中的 Hadoop 命令列提交 Hive 查詢
 如果 Hive 查詢相當複雜，在 Hadoop 叢集的前端節點中直接提交 Hive 查詢，通常會導致整備速度比使用 Hive 編輯器或 Azure PowerShell 指令碼進行提交還快。
 
 登入 Hadoop 叢集的前端節點、在前端節點的桌面上開啟 Hadoop 命令列，然後輸入命令 `cd %hive_home%\bin`。
@@ -116,14 +117,14 @@ Hive 查詢類似 SQL。 如果您熟悉 SQL，您可能會發現 [Hive for SQL 
 
 ![建立工作區](./media/machine-learning-data-science-move-hive-tables/output-hive-results-3.png)
 
-### <a name="a-namehive-editora-2-submit-hive-queries-with-the-hive-editor"></a><a name="hive-editor"></a> 2.利用 Hive 編輯器提交 Hive 查詢
+### <a name="hive-editor"></a> 2.利用 Hive 編輯器提交 Hive 查詢
 您也可以在網頁瀏覽器中輸入https://&#60;Hadoop 叢集名稱>.azurehdinsight.net/Home/HiveEditor 格式的 URL，以使用查詢主控台 (Hive 編輯器)。 您必須登入才能看到此主控台，因此您在這裡需要 Hadoop 叢集認證。
 
-### <a name="a-namepsa-3-submit-hive-queries-with-azure-powershell-commands"></a><a name="ps"></a> 3.利用 Azure PowerShell 命令提交 Hive 查詢
+### <a name="ps"></a> 3.利用 Azure PowerShell 命令提交 Hive 查詢
 您也可以使用 PowerShell 提交 Hive 查詢。 如需指示，請參閱 [使用 PowerShell 提交 Hive 工作](../hdinsight/hdinsight-hadoop-use-hive-powershell.md)。
 
-## <a name="a-namecreate-tablesacreate-hive-database-and-tables"></a><a name="create-tables"></a>建立 Hive 資料庫和資料表
-Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_create_db_tbls_load_data_generic.hql) 中共用，並且可從該處下載。
+## <a name="create-tables"></a>建立 Hive 資料庫和資料表
+Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_create_db_tbls_load_data_generic.hql)中共用，並且可從該處下載。
 
 以下是建立 Hive 資料表的 Hive 查詢。
 
@@ -149,19 +150,19 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
 * **&#60;儲存體位置>**：用來儲存 Hive 資料表資料的 Azure 儲存體位置。 如果您未指定 LOCATION &#60;儲存體位置>，資料庫和資料表預設會儲存在 Hive 叢集之預設容器的 hive/warehouse/ 目錄中。 如果您想要指定儲存體位置，儲存體位置必須位於資料庫和資料表的預設容器內。 這個位置必須是叢集之預設容器的相對位置，其格式為 'wasb:///&#60;directory 1>/' 或 'wasb:///&#60;directory 1>/&#60;directory 2>/' 等。執行查詢之後，系統會在預設容器內建立相對目錄。
 * **TBLPROPERTIES("skip.header.line.count"="1")**：如果資料檔有標頭行，您就必須在 create table 查詢的**結尾**處新增這個屬性。 否則，載入的標頭行會做為資料表的記錄。 如果資料檔不含標頭行，則可在查詢中省略此設定。
 
-## <a name="a-nameload-dataaload-data-to-hive-tables"></a><a name="load-data"></a>將資料載入至 Hive 資料表
+## <a name="load-data"></a>將資料載入至 Hive 資料表
 以下是將資料載入 Hive 資料表的 Hive 查詢。
 
     LOAD DATA INPATH '<path to blob data>' INTO TABLE <database name>.<table name>;
 
-* **&#60;Blob 資料路徑>**：如果要上傳至 Hive 資料表的 Blob 檔案是在 HDInsight Hadoop 叢集的預設容器中，則 &#60;Blob 資料路徑> 的格式應該是 'wasb:///&#60;此容器中的目錄>/&#60;Blob 檔案名稱>'。 Blob 檔案也可以位於 HDInsight Hadoop 叢集的其他容器中。 在此情況下，&#60;Blob 資料路徑> 的格式應該是 'wasb://&#60;container name>@&#60;storage account name>.blob.core.windows.net/&#60;blob file name>'。
+* **&#60;Blob 資料路徑>**：如果要上傳至 Hive 資料表的 Blob 檔案是在 HDInsight Hadoop 叢集的預設容器中，則 &#60;Blob 資料路徑> 的格式應該是 'wasb:///&#60;此容器中的目錄>/&#60;Blob 檔案名稱>'。 Blob 檔案也可以位於 HDInsight Hadoop 叢集的其他容器中。 在此情況下，*&#60;blob 資料路徑>* 的格式應該是 *'wasb://&#60;容器名稱>@&#60;儲存體帳戶名稱>.blob.core.windows.net/&#60;blob 檔案名稱>'*。
 
   > [!NOTE]
   > 上傳至 Hive 資料表的 Blob 資料必須位於 Hadoop 叢集儲存體帳戶的預設或其他容器中。 否則，「LOAD DATA」  查詢會失敗並提報它無法存取資料。
   >
   >
 
-## <a name="a-namepartition-orcaadvanced-topics-partitioned-table-and-store-hive-data-in-orc-format"></a><a name="partition-orc"></a>進階主題：資料分割資料表及使用 ORC 格式儲存 Hive 資料
+## <a name="partition-orc"></a>進階主題：資料分割資料表及使用 ORC 格式儲存 Hive 資料
 如果資料量很大，對於只需掃描資料表中數個資料分割的查詢而言，分割資料表就很有助益。 例如，依日期分割網站的記錄資料就很合理。
 
 除了資料分割 Hive 資料表之外，對於使用最佳化單欄式資料列 (ORC) 格式來儲存 Hive 資料也很有幫助。 如需 ORC 格式的詳細資訊，請參閱<a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC#LanguageManualORC-ORCFiles" target="_blank">在 Hive 讀取、寫入及處理資料時使用 ORC 檔案提升效能</a>。
@@ -186,7 +187,7 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
     from <database name>.<partitioned table name>
     where <partitionfieldname>=<partitionfieldvalue> and ...;
 
-### <a name="a-nameorcastore-hive-data-in-orc-format"></a><a name="orc"></a>使用 ORC 格式儲存 Hive 資料
+### <a name="orc"></a>使用 ORC 格式儲存 Hive 資料
 您無法將資料從 Blob 儲存體直接載入以 ORC 格式儲存的 Hive 資料表。 以下是您為了將資料從 Azure Blob 載入到以 ORC 格式儲存的 Hive 資料表所需採取的步驟。
 
 建立外部資料表 **STORED AS TEXTFILE** ，並將資料從 Blob 儲存體載入該資料表。
@@ -235,9 +236,4 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
         DROP TABLE IF EXISTS <database name>.<external textfile table name>;
 
 依照此程序執行之後，您應該會有含 ORC 格式之資料的資料表可供使用。  
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

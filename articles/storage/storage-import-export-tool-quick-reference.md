@@ -1,6 +1,6 @@
 ---
 title: "Azure 匯入/匯出工具匯入作業命令的快速參考 | Microsoft Docs"
-description: "適用於匯入作業的 Azure 匯入/匯出工具命令常用命令參考"
+description: "適用於常用匯入作業命令的 Azure 匯入/匯出工具命令參考。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 41bc5585f3d9dea2a08dc8a6bc1e4fdf9f0c8fc4
-ms.openlocfilehash: 79b1d3f92671638ba43bac2f5428a1f903d11080
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: e9377e0c5001cf5be220e19e06ff96c1e058e853
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -24,33 +25,31 @@ ms.openlocfilehash: 79b1d3f92671638ba43bac2f5428a1f903d11080
 
 本文章提供一些常用命令的快速參考。 如需詳細使用方式，請參閱[針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import.md)。
 
-## <a name="import-job-quick-reference"></a>匯入作業快速參考
-
-第一個工作階段︰
+## <a name="first-session"></a>第一個工作階段
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#1 /sk:************* /InitialDriveSet:driveset-1.csv /DataSet:dataset-1.csv /logdir:F:\logs
 ```
 
-第二個工作階段︰
+## <a name="second-session"></a>第二個工作階段
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2 /DataSet:dataset-2.csv
 ```
 
-中止第一個工作階段︰
+## <a name="abort-latest-session"></a>中止最近的工作階段
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2 /AbortSession
 ```
 
-繼續最近中斷的工作階段︰
+## <a name="resume-latest-interrupted-session"></a>繼續最近中斷的工作階段
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3 /ResumeSession
 ```
 
-將磁碟機新增至最新的工作階段︰
+## <a name="add-drives-to-latest-session"></a>將磁碟機加入最近的工作階段
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3 /AdditionalDriveSet:driveset-2.csv
@@ -58,10 +57,5 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3 /AdditionalDriveS
 
 ## <a name="next-steps"></a>後續步驟
 
-[針對匯入作業準備硬碟的簡單工作流程](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
+* [針對匯入作業準備硬碟的簡單工作流程](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)
 

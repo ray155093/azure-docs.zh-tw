@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/22/2016
+ms.date: 03/23/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
-ms.openlocfilehash: c983a1cb4120e22834ffd2924b113b198f9b04e1
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: c5127a457e99772a52b76e28e7fd3a3e4dd861b0
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -221,7 +222,7 @@ ms.openlocfilehash: c983a1cb4120e22834ffd2924b113b198f9b04e1
   
     -   如果屬性不存在或屬性的值是 `null`，`property IS NULL` 會評估為 `true`。  
   
-屬性評估語意︰  
+### <a name="property-evaluation-semantics"></a>屬性評估語意  
   
 -   嘗試評估不存在的系統屬性會擲回 [FilterException](/dotnet/api/microsoft.servicebus.messaging.filterexception) 例外狀況。  
   
@@ -273,7 +274,7 @@ ms.openlocfilehash: c983a1cb4120e22834ffd2924b113b198f9b04e1
 +---+---+---+---+  
 ```  
   
-運算子繫結語意︰  
+### <a name="operator-binding-semantics"></a>運算子繫結語意
   
 -   `>`、`>=`、`<`、`<=`、`!=` 和 `=` 等比較運算子會遵循與資料類型升級和隱含轉換中的 C# 運算子繫結相同的語意。  
   
@@ -283,8 +284,3 @@ ms.openlocfilehash: c983a1cb4120e22834ffd2924b113b198f9b04e1
 
 - [SQLFilter 類別](/dotnet/api/microsoft.servicebus.messaging.sqlfilter)
 - [SQLRuleAction 類別](/dotnet/api/microsoft.servicebus.messaging.sqlruleaction)
-
-
-<!--HONumber=Jan17_HO4-->
-
-

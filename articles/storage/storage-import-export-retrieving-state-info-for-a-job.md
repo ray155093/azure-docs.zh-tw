@@ -1,6 +1,6 @@
 ---
 title: "擷取 Azure 匯入/匯出作業的狀態資訊 | Microsoft Docs"
-description: "了解如何取得 Microsoft Azure 匯入/匯出服務作業的狀態資訊"
+description: "了解如何取得 Microsoft Azure 匯入/匯出服務作業的狀態資訊。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 8de848b1192ff1c10e0375053c4e03f18c06184e
-ms.openlocfilehash: d8156439cc81a88172d5af97c31147b6ceb23ff6
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 13169716c47cf9389c8f2651393ac744441bdd6f
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -44,7 +44,7 @@ ms.lasthandoff: 02/16/2017
 
 |作業狀態|說明|
 |---------------|-----------------|
-|`Creating`|呼叫 Put Job 作業之後，會建立一個作業，且其狀態會設為 `Creating`。 工作處於 `Creating` 狀態時，匯入/匯出服務會假設磁碟機尚未運送到資料中心。 工作最多可保持 `Creating` 狀態兩週，超過後會由服務自動刪除。<br /><br /> 如果您在作業處於時 `Creating` 狀態時呼叫 Update Job 屬性作業，作業會維持在 `Creating` 狀態，且逾時間隔會重設為&2; 週。|
+|`Creating`|呼叫 Put Job 作業之後，會建立一個作業，且其狀態會設為 `Creating`。 工作處於 `Creating` 狀態時，匯入/匯出服務會假設磁碟機尚未運送到資料中心。 工作最多可保持 `Creating` 狀態兩週，超過後會由服務自動刪除。<br /><br /> 如果您在作業處於時 `Creating` 狀態時呼叫 Update Job 屬性作業，作業會維持在 `Creating` 狀態，且逾時間隔會重設為 2 週。|
 |`Shipping`|寄送包裹之後，您應該呼叫 Update Job 屬性作業將作業狀態更新為 `Shipping`。 只有當作業的 `DeliveryPackage` (貨運公司和追蹤號碼) 和 `ReturnAddress` 屬性都已設定時，才可以設定寄送狀態。<br /><br /> 作業最多將保持「運送中」狀態兩週。 如果已超過兩週，但未收到磁碟機，將會通知匯入/匯出服務操作員。|
 |`Received`|資料中心收到所有磁碟機之後，作業狀態會設為「已收到」狀態。|
 |`Transferring`|資料中心收到磁碟機，且至少已開始處理一個磁碟機之後，作業狀態將會設定為 `Transferring` 狀態。 如需詳細資訊，請參閱以下的 `Drive States` 一節。|
@@ -86,11 +86,12 @@ ms.lasthandoff: 02/16/2017
 |磁碟機狀態|Event|解析 / 後續步驟|
 |-----------------|-----------|-----------------------------|
 |`NeverReceived`|標示為 `NeverReceived` (因為在作業的出貨部分中未收到它) 的磁碟機會在其他出貨中寄出。|作業小組會將磁碟機移為 `Received` 狀態。|
-|`N/A`|不屬於任何作業的磁碟機會以另一個作業的一部分送達資料中心。|磁碟機會標示為額外的磁碟機，並會在與原始包裹相關聯的作業完成時傳回給客戶。|
+|`N/A`|不屬於任何作業的磁碟機會以另一個作業的一部分送達資料中心。|磁碟機會標示為額外的磁碟機，並會在與原始包裹相關聯的工作完成時寄回給客戶。|
 
 ## <a name="faulted-states"></a>發生錯誤的狀態
 當作業或磁碟機無法透過其預期的生命週期正常完成時，作業或磁碟機會移為 `Faulted` 狀態。 此時，作業小組會以電子郵件或電話連絡客戶。 當問題解決後，發生錯誤的作業或磁碟機將會移出 `Faulted` 狀態並移為適當的狀態。
 
-## <a name="see-also"></a>另請參閱
-[使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
+## <a name="next-steps"></a>後續步驟
+
+* [使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
 

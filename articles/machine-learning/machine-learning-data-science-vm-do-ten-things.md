@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 03/24/2017
 ms.author: gokuma;weig;bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 1072ab3d7c8cc472258925baaa2ef82cdfb17eed
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 3b608f341278ceaef9dd112cea38f138be69ee44
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -30,7 +31,7 @@ Microsoft Data Science Virtual Machine (DSVM) 是強大的資料科學開發環�
 3. 在 Azure Machine Learning 上實作使用 R 和 Python 建置的模型，以便用戶端應用程式使用簡單的 Web 服務介面存取您的模型
 4. 使用 Azure 入口網站或 Powershell 管理您的 Azure 資源
 5. 建立 Azure 檔案儲存體做為 DSVM 上可掛接的磁碟機，以擴充您的儲存空間並與整個小組共用大型資料集 / 程式碼
-6. 使用 Github 來與您的小組共用程式碼，並使用預先安裝的 Git 用戶端 (Git Bash、Git GUI) 來存取您的儲存機制。
+6. 使用 GitHub 來與您的小組共用程式碼，並使用預先安裝的 Git 用戶端 (Git Bash、Git GUI) 來存取您的存放庫。
 7. 存取各種 Azure 資料和分析服務，例如 Azure Blob 儲存體，Azure 資料湖、Azure HDInsight (Hadoop)、Azure DocumentDB、Azure SQL 資料倉儲和資料庫
 8. 使用在 DSVM 上預先安裝的 Power BI Desktop 來建立報告和儀表板並雲端上加以部署
 9. 動態調整 DSVM 以符合您的專案需求
@@ -236,20 +237,20 @@ DSVM 不僅可讓您在虛擬機器本機建置分析解決方案，也可讓您
 
 您現在可以將此磁碟機當作 VM 上的任何一般磁碟機存取。
 
-## <a name="6-share-code-with-your-team-using-github"></a>6.使用 Github 與您的小組共用程式碼
-Github 是一種程式碼儲存機制，開發人員會分享使用各種技術，針對不同工具建立的大量範例程式碼和原始碼。 它會使用 Git 技術來追蹤和儲存各版本的程式碼檔案。 Github 也是一個平台，您可以在其中建立自己的儲存機制，以儲存您小組共用的程式碼和文件、實作版本控制，以及控制有權檢視和貢獻程式碼的人員。 如需使用 Git 的詳細資訊，請瀏覽 [Github 說明網頁](https://help.github.com/) 。 您可以使用 Github 與您的小組共同作業、使用社群所開發的程式碼，以及將程式碼貢獻回社群。
+## <a name="6-share-code-with-your-team-using-github"></a>6.使用 GitHub 與您的小組共用程式碼
+GitHub 是一個程式碼存放庫，您可以在其中找到開發人員分享使用各種技術，針對不同工具建立的大量範例程式碼和原始碼。 它會使用 Git 技術來追蹤和儲存各版本的程式碼檔案。 GitHub 也是一個平台，您可以在其中建立自己的存放庫，以儲存您小組共用的程式碼和文件、實作版本控制，也可以控制有權檢視和貢獻程式碼的人員。 如需使用 Git 的詳細資訊，請瀏覽 [GitHub 說明網頁 (英文)](https://help.github.com/)。 您可以使用 GitHub 來與您的小組共同作業、使用社群所開發的程式碼，以及將程式碼貢獻回社群。
 
-DSVM 已在命令列和 GUI 上載入用戶端工具，以便存取 Github 儲存機制。 可供使用 Git 及 Github 的命令列工具稱為 Git Bash。 DSVM 上安裝的 Visual Studio 具有 Git 延伸模組。 您可以在 [開始] 功能表和桌面上找到這些工具的啟動圖示。
+DSVM 已在命令列和 GUI 上載入用戶端工具，以便存取 GitHub 存放庫。 可搭配使用 Git 及 GitHub 的命令列工具稱為 Git Bash。 DSVM 上安裝的 Visual Studio 具有 Git 延伸模組。 您可以在 [開始] 功能表和桌面上找到這些工具的啟動圖示。
 
-若要從 Github 儲存機制下載程式碼，您可以使用 ```git clone``` 命令。 例如，若要將 Microsoft 所發佈的資料科學儲存機制下載到目前的目錄中，您可以在 ```git-bash```中執行下列命令。
+若要從 GitHub 存放庫下載程式碼，您可以使用 ```git clone``` 命令。 例如，若要將 Microsoft 所發佈的資料科學儲存機制下載到目前的目錄中，您可以在 ```git-bash```中執行下列命令。
 
     git clone https://github.com/Azure/Azure-MachineLearning-DataScience.git
 
-您可以在 Visual Studio 中執行相同的複製作業。 以下的螢幕擷取畫面顯示如何在 Visual Studio 中存取 Git 和 Github 工具。
+您可以在 Visual Studio 中執行相同的複製作業。 下列螢幕擷取畫面示範如何在 Visual Studio 中存取 Git 和 GitHub 工具。
 
 ![Visual Studio 中的 Git](./media/machine-learning-data-science-vm-do-ten-things/VSGit.PNG)
 
-從 github.com 上提供的幾個資源，即可找到透過 Git 來使用 Github 儲存機制的相關詳細資訊。 [功能提要](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf) 是有用的參考資料。
+從 github.com 上提供的幾個資源，即可找到透過 Git 使用 GitHub 存放庫的詳細資訊。 [功能提要](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf) 是有用的參考資料。
 
 ## <a name="7-access-various-azure-data-and-analytics-services"></a>7.存取各種 Azure 資料和分析服務
 ### <a name="azure-blob"></a>Azure Blob
@@ -865,10 +866,5 @@ Azure DocumentDB 是雲端中的 NoSQL 資料庫。 它可讓您使用 JSON 等�
 
 ## <a name="summary"></a>摘要
 這些只是您可以在 Microsoft Data Science Virtual Machine 上可做的一些事情。 您還可以做更多事情，讓它成為有效的分析環境。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

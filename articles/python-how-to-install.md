@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 09/06/2016
 ms.author: lmazuel
 translationtype: Human Translation
-ms.sourcegitcommit: 63cf1a5476a205da2f804fb2f408f4d35860835f
-ms.openlocfilehash: f4c30c4653d8a14c7bf68ec6935c26725c6f623c
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: c2d6999c6c6e8d9168e2417309207dd14bf4f6f2
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -49,7 +50,7 @@ Azure SDK for Python 內含的元件可讓您開發、部署及管理適用於 A
 除非您有特定的需求，否則我們建議您採用前兩個選項。
 
 ## <a name="sdk-installation-on-windows-linux-and-macos-client-libraries-only"></a>Windows、Linux 及 MacOS 上的 SDK 安裝 (僅限用戶端程式庫)
-如果您已經安裝 Python，您可以使用 PIP 在現有的 Python 2.7 或 Python 3.3+ 環境中，安裝所有用戶端程式的組合。 此作業會從 [Python 套件索引][Python 套件索引] (PyPI) 下載封裝。
+如果您已經安裝 Python，您可以使用 PIP 在現有的 Python 2.7 或 Python 3.3+ 環境中，安裝所有用戶端程式的組合。 此作業會從 [Python 套件索引][Python Package Index] (PyPI) 下載封裝。
 
 您可能需要系統管理員權限：
 
@@ -88,7 +89,7 @@ Azure SDK for Python 內含的元件可讓您開發、部署及管理適用於 A
 ```
 
 ## <a name="getting-more-packages"></a>取得更多封裝
-[Python 套件索引][Python 套件索引] (PyPI) 具有選擇性豐富的 Python 程式庫。  如果您選擇了安裝散發版本，則您將已擁有從 Web 開發到「工程運算」的各種案例中大多數令人關注的部分。
+[Python 封裝索引][Python Package Index] (PyPI) 具有選擇性豐富的 Python 程式庫。  如果您選擇了安裝散發版本，則您將已擁有從 Web 開發到「工程運算」的各種案例中大多數令人關注的部分。
 
 ## <a name="python-tools-for-visual-studio"></a>Python Tools for Visual Studio
 [Python Tools for Visual Studio][Python Tools for Visual Studio] (PTVS) 是 Microsoft 提供的免費/OSS 外掛程式，它能將 VS 轉變為成熟的 Python IDE：
@@ -120,52 +121,47 @@ PTVS 可以和您現有的 Visual Studio 2013 或 2015 安裝一同運作。  �
 
 ## <a name="additional-software-and-resources"></a>其他軟體和資源：
 * [Azure SDK for Python ReadTheDocs](http://azure-sdk-for-python.readthedocs.io/en/latest/)
-* [Azure SDK for Python Github](https://github.com/Azure/azure-sdk-for-python)
+* [Azure SDK for Python GitHub](https://github.com/Azure/azure-sdk-for-python)
 * [適用於 Python 的官方 Azure 範例](https://azure.microsoft.com/documentation/samples/?platform=python)
-* [Continuum Analytics Python 發佈][Continuum Analytics Python 發佈]
-* [Enthought Python 發佈][Enthought Python 發佈]
-* [ActiveState Python 發佈][ActiveState Python 發佈]
-* [SciPy - Scientific Python 程式庫套件][SciPy - Scientific Python 程式庫套件]
-* [NumPy - Python 數值程式庫][NumPy - Python 的數值程式庫]
-* [Django 專案 - 成熟的 Web 架構/CMS][Django 專案 - 成熟的 Web 架構/CMS]
-* [IPython - 先進的 Python REPL/Notebook][IPython - 先進的 Python REPL/Notebook]
+* [Continuum Analytics Python 發佈][Continuum Analytics Python Distribution]
+* [Enthought Python 發佈][Enthought Python Distribution]
+* [ActiveState Python 發佈][ActiveState Python Distribution]
+* [SciPy - Scientific Python 程式庫套件][SciPy - A suite of Scientific Python libraries]
+* [NumPy - Python 的數值程式庫][NumPy - A numerics library for Python]
+* [Django 專案 - 成熟的 Web 架構/CMS][Django Project - A mature web framework/CMS]
+* [IPython - 先進的 Python REPL/Notebook][IPython - an advanced REPL/Notebook for Python]
 * [Azure 上的 IPython Notebook](virtual-machines/virtual-machines-linux-jupyter-notebook.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [GitHub 上的 Python Tools for Visual Studio][GitHub 上的 Python Tools for Visual Studio]
+* [GitHub 上適用於 Visual Studio 的 Python 工具][Python Tools for Visual Studio on GitHub]
 * [Python 開發人員中心](/develop/python/)
 
-[Continuum Analytics Python 發佈]: http://continuum.io
-[Enthought Python 發佈]: http://www.enthought.com
-[ActiveState Python 發佈]: http://www.activestate.com
+[Continuum Analytics Python Distribution]: http://continuum.io
+[Enthought Python Distribution]: http://www.enthought.com
+[ActiveState Python Distribution]: http://www.activestate.com
 [www.python.org]: http://www.python.org
 [www.continuum.io]: http://continuum.io
 [www.enthought.com]: http://www.enthought.com
 [www.activestate.com]: http://www.activestate.com
-[SciPy - Scientific Python 程式庫套件]: http://www.scipy.org
-[NumPy - Python 的數值程式庫]: http://www.numpy.org
-[Django 專案 - 成熟的 Web 架構/CMS]: http://www.djangoproject.com
-[IPython - 先進的 Python REPL/Notebook]: http://ipython.org
+[SciPy - A suite of Scientific Python libraries]: http://www.scipy.org
+[NumPy - A numerics library for Python]: http://www.numpy.org
+[Django Project - A mature web framework/CMS]: http://www.djangoproject.com
+[IPython - an advanced REPL/Notebook for Python]: http://ipython.org
 [IPython]: http://ipython.org
-[Azure 上的 IPython Notebook]: virtual-machines-linux-jupyter-notebook.md
-[雲端服務]: cloud-services-python-ptvs.md
-[網站]: web-sites-python-ptvs-django-mysql.md
+[IPython Notebook on Azure]: virtual-machines-linux-jupyter-notebook.md
+[Cloud Services]: cloud-services-python-ptvs.md
+[Websites]: web-sites-python-ptvs-django-mysql.md
 [Python Tools for Visual Studio]: http://aka.ms/ptvs
-[GitHub 上的 Python Tools for Visual Studio]: https://github.com/microsoft/ptvs
-[Python 套件索引]: http://pypi.python.org/pypi
+[Python Tools for Visual Studio on GitHub]: https://github.com/microsoft/ptvs
+[Python Package Index]: http://pypi.python.org/pypi
 [Microsoft Azure SDK for Python 2.7]: http://go.microsoft.com/fwlink/?LinkId=254281
 [Microsoft Azure SDK for Python 3.4]: http://go.microsoft.com/fwlink/?LinkID=516990
-[透過 Azure 入口網站設定 Linux VM]: create-and-configure-opensuse-vm-in-portal.md
-[如何使用 Azure 命令列介面]: crossplat-cmd-tools.md
-[建立執行 Linux 的虛擬機器]: virtual-machines-linux-quick-create-cli.md
-[使用 Django 建立網站]: web-sites-python-create-deploy-django-app.md
-[使用 Bottle 建立網站]: web-sites-python-create-deploy-bottle-app.md
-[使用 Flask 建立網站]: web-sites-python-create-deploy-flask-app.md
-[在 Azure 網站上設定 Python]: web-sites-python-configure.md
-[資料表儲存體]: storage-python-how-to-use-table-storage.md
-[佇列儲存體]: storage-python-how-to-use-queue-storage.md
-[Blob 儲存體]: storage-python-how-to-use-blob-storage.md
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[Setting up a Linux VM via the Azure portal]: create-and-configure-opensuse-vm-in-portal.md
+[How to use the Azure Command-Line Interface]: crossplat-cmd-tools.md
+[Create a Virtual Machine Running Linux]: virtual-machines-linux-quick-create-cli.md
+[Creating Websites with Django]: web-sites-python-create-deploy-django-app.md
+[Creating Websites with Bottle]: web-sites-python-create-deploy-bottle-app.md
+[Creating Websites with Flask]: web-sites-python-create-deploy-flask-app.md
+[Configuring Python with Azure Websites]: web-sites-python-configure.md
+[table storage]: storage-python-how-to-use-table-storage.md
+[queue storage]: storage-python-how-to-use-queue-storage.md
+[blob storage]: storage-python-how-to-use-blob-storage.md
 

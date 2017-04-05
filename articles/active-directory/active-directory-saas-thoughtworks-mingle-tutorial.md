@@ -11,17 +11,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/27/2017
+ms.date: 3/09/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 49352a5e8255468bbc54c02e0cd9242d49002dbd
-ms.openlocfilehash: 6a9a1cf616531de1d0b8194bc0e6c186acc27008
-ms.lasthandoff: 12/08/2016
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 3a58f6d2d3bc39af650f5d62acdf09d769cd7ad0
+ms.lasthandoff: 03/28/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-thoughtworks-mingle"></a>教學課程：Azure Active Directory 與 Thoughtworks Mingle 整合
 本教學課程的目的是要示範 Azure 與 Thoughtworks Mingle 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂用帳戶
@@ -30,16 +31,17 @@ ms.lasthandoff: 12/08/2016
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 Thoughtworks Mingle 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
 ![案例](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC785150.png "案例")
 
-## <a name="enabling-the-application-integration-for-thoughtworks-mingle"></a>啟用 Thoughtworks Mingle 的應用程式整合
+## <a name="enable-the-application-integration-for-thoughtworks-mingle"></a>啟用 Thoughtworks Mingle 的應用程式整合
 本節的目的是要說明如何啟用 Thoughtworks Mingle 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-thoughtworks-mingle-perform-the-following-steps"></a>若要啟用 Thoughtworks Mingle 的應用程式整合，請執行下列步驟：
+**若要啟用 Thoughtworks Mingle 的應用程式整合，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
     ![Active Directory](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC700993.png "Active Directory")
@@ -66,12 +68,14 @@ ms.lasthandoff: 12/08/2016
    
     ![Thoughtworks Mingle](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC785152.png "Thoughtworks Mingle")
 
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 Thoughtworks Mingle。  
+
 您必須將憑證上傳至 Thoughtworks Mingle，這是程序的一部分。
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
-1. 在 Azure 傳統入口網站的 [Thoughtworks Mingle] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
+**若要設定單一登入，請執行下列步驟：**
+
+1. 在 Azure 傳統入口網站的 [Thoughtworks Mingle]**** 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
    
     ![設定單一登入](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC785153.png "設定單一登入")
 
@@ -95,21 +99,21 @@ ms.lasthandoff: 12/08/2016
 
 7. 在 [SSO 組態]  區段中，執行下列步驟：
    
-    ![SSO 組態](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC785158.png "SSO 組態")
-   
-    a. 若要上傳中繼資料檔案，請按一下 [選擇檔案] 。
-   
-    b.這是另一個 C# 主控台應用程式。 按一下 [儲存變更] 。
+    ![SSO 組態](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC785158.png "SSO 組態")   
+ 1. 若要上傳中繼資料檔案，請按一下 [選擇檔案] 。 
+ 2. 按一下 [儲存變更] 。
 
 8. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
     ![設定單一登入](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC785159.png "設定單一登入")
 
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 若要讓 AAD 使用者能夠登入，必須使用他們的 Azure Active Directory 使用者名稱將他們佈建到 Thoughtworks Mingle 應用程式。  
-Thoughtworks Mingle 需以手動的方式佈建。
 
-### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>若要設定使用者佈建，請執行下列步驟：
+* Thoughtworks Mingle 需以手動的方式佈建。
+
+**若要設定使用者佈建，請執行下列步驟：**
+
 1. 以系統管理員身分登入您的 Thoughtworks Mingle 公司網站。
 
 2. 按一下 [設定檔] 。
@@ -126,23 +130,20 @@ Thoughtworks Mingle 需以手動的方式佈建。
 
 5. 在 [新增使用者]  對話頁面上，執行下列步驟：
    
-    ![新增使用者](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC785163.png "新增使用者")
-   
-    a. 在相關的文字方塊中，輸入您要佈建之有效 AAD 帳戶的 [登入名稱]、[顯示名稱]、[選擇密碼]、[確認密碼]。
-   
-    b.這是另一個 C# 主控台應用程式。 選取 [完整使用者] 做為 [使用者類型]。
-   
-    c. 按一下 [建立這個設定檔] 。
+    ![新增使用者](./media/active-directory-saas-thoughtworks-mingle-tutorial/IC785163.png "新增使用者")   
+  1. 在相關的文字方塊中，輸入您要佈建之有效 AAD 帳戶的 [登入名稱]、[顯示名稱]、[選擇密碼]、[確認密碼]。 
+  2. 選取 [完整使用者] 做為 [使用者類型]。
+  3. 按一下 [建立這個設定檔] 。
 
-> [!NOTE]
-> 您可以使用任何其他的 Thoughtworks Mingle 使用者帳戶建立工具或 Thoughtworks Mingle 提供的 API 來佈建 AAD 使用者帳戶。
-> 
-> 
+>[!NOTE]
+>您可以使用任何其他的 Thoughtworks Mingle 使用者帳戶建立工具或 Thoughtworks Mingle 提供的 API 來佈建 AAD 使用者帳戶。
+>  
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-thoughtworks-mingle-perform-the-following-steps"></a>若要指派使用者給 Thoughtworks Mingle，請執行下列步驟：
+**若要指派使用者給 Thoughtworks Mingle，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 
 2. 在 [Thoughtworks Mingle] 應用程式整合頁面上，按一下 [指派使用者]。

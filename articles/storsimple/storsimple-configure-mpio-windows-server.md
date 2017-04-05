@@ -4,7 +4,7 @@ description: "描述如何針對與執行 Windows Server 2012 R2 的主機連線
 services: storsimple
 documentationcenter: 
 author: alkohli
-manager: carmonm
+manager: timlt
 editor: 
 ms.assetid: 879fd0f9-c763-4fa0-a5ba-f589a825b2df
 ms.service: storsimple
@@ -12,12 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 08/17/2016
+ms.date: 03/27/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: d07d1c838d99d0de0c5b62aaf42330b447df102c
-ms.openlocfilehash: 4483a395659a09e88fc4174e622143d9acaedf61
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: 7b484c27157bd0a261adbf81d66b73a78e252955
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -54,7 +54,7 @@ MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。 您應該透�
    
    * 在 [開始之前] 頁面中按 [下一步]。
    * 在 [選取安裝類型] 頁面上，接受 [角色型或功能型安裝] 的預設值。 按一下 [伺服器管理員] &gt; [儀表板] &gt; [新增角色及功能] 。![新增角色及功能精靈 2](./media/storsimple-configure-mpio-windows-server/IC740999.png)
-   * 在 [選取目的地伺服器] 頁面上，選擇 [從伺服器集區選取伺服器]。 應該會自動探索主機伺服器。 [新增] 來單一登入應用程式。
+   * 在 [選取目的地伺服器] 頁面上，選擇 [從伺服器集區選取伺服器]。 應該會自動探索主機伺服器。 按 [下一步] 。
    * 在 [選取伺服器角色] 頁面上，按 [下一步]。
    * 在 [選取功能] 頁面上，選取 [多重路徑 I/O]，然後按 [下一步]。![新增角色及功能精靈 5](./media/storsimple-configure-mpio-windows-server/IC741000.png)
    * 在 [確認安裝選項] 頁面上，確認選取項目，然後選取 [需要時自動重新啟動目的地伺服器]，如下所示。 按一下 [安裝]。![新增角色及功能精靈 8](./media/storsimple-configure-mpio-windows-server/IC741001.png)
@@ -127,18 +127,17 @@ MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。 您應該透�
 
 > [!NOTE]
 > **請不要修改預設的參數。**
-> 
-> 
+
 
 ## <a name="step-4-configure-mpio-for-high-availability-and-load-balancing"></a>步驟 4：設定 MPIO 以獲得高可用性與負載平衡
 多個工作階段必須以手動方式加入以宣告不同的路徑，才能獲得以多重路徑為基礎的高可用性與負載平衡。 比方說，如果主機有兩個介面連接到 SAN，而裝置也有兩個介面連接到 SAN，那麼您需要以正確的路徑排列組合設定四個工作階段 (如果每個 DATA 介面與主機介面都位在不同的 IP 子網路且不可路由時，將只需要兩個工作階段)。
 
+**我們建議您在裝置和應用程式主機之間至少具有 4 個作用中的平行工作階段。** 這可藉由在 Windows Server 系統上啟用 4 個網路介面來達成。 在 Windows Server 主機上的硬體或作業系統層級上，使用實體網路介面或網路虛擬化技術。 利用裝置上的這兩個網路介面，此設定會產生 8 個工作階段，其中 4 個為作用中狀態 (連接到作用中控制器的那些工作階段)，而另外 4 個為被動狀態 (連接到被動控制器的那些工作階段)。 這項設定有助於將裝置和雲端輸送量最佳化。
+
 > [!IMPORTANT]
 > **建議您不要混合使用 1 GbE 與 10 GbE 網路介面。如果您使用兩個網路介面，這兩個介面的類型應要完全相同。**
-> 
-> 
 
-下列程序描述有兩個網路介面的 StorSimple 裝置連接到有兩個網路介面的主機時，要如何新增工作階段。
+下列程序描述有兩個網路介面的 StorSimple 裝置連接到有兩個網路介面的主機時，要如何新增工作階段。 這只會為您提供 2 個作用中的工作階段。 使用這個與具有兩個連接到具有四個網路介面之主機的網路介面的 StorSimple 裝置所使用的相同程序。 您必須設定 8 個工作階段，而不是此處所述的 4 個工作階段。
 
 ### <a name="to-configure-mpio-for-high-availability-and-load-balancing"></a>若要設定 MPIO 以獲得高可用性與負載平衡
 1. 若要探索目標：在 [iSCSI 啟動器內容] 對話方塊的 [探索] 索引標籤中，然後按一下 [探索入口]。

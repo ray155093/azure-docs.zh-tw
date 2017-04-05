@@ -1,92 +1,92 @@
 ---
-title: "Azure 虛擬網路 |Microsoft Docs"
-description: "了解 Azure 中的虛擬網路。"
+title: "Azure 虛擬網路 | Microsoft Docs"
+description: "了解 Azure 虛擬網路概念和功能。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
-manager: carmonm
-editor: tysonn
+manager: timlt
+editor: 
+tags: azure-resource-manager
 ms.assetid: 9633de4b-a867-4ddf-be3c-a332edf02e24
 ms.service: virtual-network
 ms.devlang: na
-ms.topic: get-started-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/15/2016
+ms.date: 03/23/2017
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: d3cd3ea3823c2aefcaaad7cdfdf25c6bd91644d2
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 186b8331d2fcfc16bd41eb08badb200e2abf9e30
+ms.lasthandoff: 03/25/2017
 
 
 ---
-# <a name="virtual-networks"></a>虛擬網路
-Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。  它是專屬於您訂用帳戶的 Azure 雲端邏輯隔離。 您可以完全控制此網路內的 IP 位址區塊、DNS 設定、安全性原則和路由表。 您也可以進一步將 VNet 分成子網路，並啟動 Azure IaaS 虛擬機器 (VM) 和/或 [雲端服務 (PaaS 角色執行個體)](../cloud-services/cloud-services-choose-me.md)。 另外，您也可以使用 Azure 中提供的其中一個[連線選項](../vpn-gateway/vpn-gateway-about-vpngateways.md#site-to-site-and-multi-site-ipsecike-vpn-tunnel) 將虛擬網路連線到內部部署網路。 基本上，您可以將您的網路延伸至 Azure，透過 Azure 提供的企業級好處完整控制 IP 位址區塊。
+# <a name="azure-virtual-network"></a>Azure 虛擬網路
 
-若要進一步了解 VNet，請看下圖顯示的簡化內部部署網路。
+Azure 虛擬網路服務可讓 Azure 資源與虛擬網路 (VNet) 安全地彼此連接。 VNet 是您的網路在雲端中的身分。 VNet 是專屬於您訂用帳戶的 Azure 雲端邏輯隔離。 您也可以將 VNet 連線到內部部署網路。 下圖顯示 Azure 虛擬網路服務的各項功能︰
 
-![內部部署網路](./media/virtual-networks-overview/figure01.png)
+![網路圖表](./media/virtual-networks-overview/virtual-network-overview.png)
 
-上圖顯示透過路由器連線至公用網際網路的內部部署網路。 您也可以看到在路由器與裝載 DNS 伺服器和 Web 伺服器陣列的 DMZ 之間有一道防火牆。 Web 伺服器陣列採用對網際網路公開的硬體負載平衡器來進行負載平衡，並且會耗用內部子網路的資源。 內部子網路藉由另一道防火牆來與 DMZ 分開，並裝載 Active Directory 網域控制站伺服器、資料庫伺服器和應用程式伺服器。
+若要深入了解下列 Azure 虛擬網路功能，請按一下各項功能︰
+- **[隔離︰](#isolation)**VNet 會彼此隔離。 您可以為使用相同 CIDR 位址區塊的開發、測試和生產環境建立個別的 VNet。 相反地，您可以建立多個使用不同 CIDR 位址區塊的 VNet 並將這些網路連接在一起。 您可以將 VNet 分成多個子網路。 Azure 會針對連線至 VNet 的 VM 和雲端服務角色執行個體提供內部名稱解析。 您可以選擇地將 VNet 設定成使用自己的 DNS 伺服器，而不是使用 Azure 內部名稱解析。
+- **[網際網路連線能力︰](#internet)**根據預設，連線至 VNet 的所有 Azure 虛擬機器 (VM) 和雲端服務角色執行個體都可以存取網際網路。 您也可以視需要啟用特定資源的輸入存取。
+- **[Azure 資源連線能力︰](#within-vnet)**Azure 資源 (例如雲端服務和 VM) 可以連線至相同的 VNet。 如果資源位於不同的子網路，則可使用私人 IP 位址彼此連接。 Azure 會提供子網路、VNet 和內部部署網路之間的預設路由，因此您不必設定及管理路由。
+- **[VNet 連線能力︰](#connect-vnets)**VNet 可以彼此連線，讓連線至任何 VNet 的資源能夠與任何其他 VNet 上的任何資源進行通訊。
+- **[內部部署連線能力︰](#connect-on-premises)**VNet 可以透過您的網路與 Azure 之間的私人網路連線，或透過經由網際網路的站對站 VPN 連線，連線到內部部署網路。
+- **[流量篩選︰](#filtering)**可以依照來源 IP 位址和連接埠、目的地 IP 位址和連接埠以及通訊協定的輸入和輸出，篩選 VM 和雲端服務角色執行個體網路流量。
+- **[路由︰](#routing)**您可以設定您自己的路由，或使用透過網路閘道的 BGP 路由，選擇性地覆寫 Azure 的預設路由。
 
-相同的網路可以裝載在 Azure 中，如下圖所示。
+## <a name = "isolation"></a>網路隔離和分割
 
-![Azure 虛擬網路](./media/virtual-networks-overview/figure02.png)
+您可以實作每個 Azure 訂用帳戶和 Azure 區域內的多個 VNet。 每個 VNet 會與其他 VNet 隔離。 對於每個 VNet，您可以︰
+- 使用公用和私人 (RFC 1918) 位址指定自訂私人 IP 位址空間。 Azure 會從您指派的位址空間，將私人 IP 位址指派給連線至 VNet 的資源。
+- 將 VNet 分成一或多個子網路，並將 VNet 位址空間的一部分配置給每個子網路。
+- 使用 Azure 提供的名稱解析，或指定自有的 DNS 伺服器以供連線至 VNet 的資源使用。 若要深入了解 VNet 中的名稱解析，請閱讀 [VM 和雲端服務的名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)一文。
 
-請注意 Azure 基礎結構擔任路由器角色的方式，允許從 VNet 存取公用網際網路，而不需要任何組態。 防火牆可以換成套用至每個個別子網路的網路安全性群組 (NSG)。 而實體負載平衡器可以換成 Azure 中面向網際網路的內部負載平衡器。
+## <a name = "internet"></a>連線到網際網路
+根據預設，連線至 VNet 的所有資源都具有網際網路的輸出連線能力。 資源的私人 IP 位址會由 Azure 基礎結構進行來源網路位址轉譯 (SNAT) 成為公用 IP 位址。 若要深入了解輸出網際網路連線能力，請閱讀[了解 Azure 中的輸出連線](..\load-balancer\load-balancer-outbound-connections.md?toc=%2fazure%2fvirtual-network%2ftoc.json#standalone-vm-with-no-instance-level-public-ip-address)一文。 您可以實作自訂路由和流量篩選，以變更預設連線能力。
 
-> [!NOTE]
-> Azure 中有兩種部署模式：傳統 (也稱為服務管理) 和 Azure 資源管理員 (ARM)。 傳統 VNet 可以加入同質群組，或建立成區域 VNet。 如果您有 VNet 在同質群組中，建議 [將其移轉至區域 VNet](virtual-networks-migrate-to-regional-vnet.md)。
->
+若要進行從網際網路通對 Azure 資源的輸入通訊，或進行對網際網路的輸出通訊 (未經 SNAT)，則必須指派公用 IP 位址給資源。 若要深入了解公用 IP 位址，請閱讀[公用 IP 位址](virtual-network-public-ip-address.md)一文。
 
-## <a name="benefits"></a>優點
-* **隔離**。 VNet 與彼此完全隔離。 這樣可以讓您為使用相同 CIDR 位址區塊的開發、測試和生產環境建立不相連的網路。
-* **存取公用網際網路**。 依預設，VNet 中的所有 IaaS VM 和 PaaS 角色執行個體都可以存取公用網際網路。 您可以使用網路安全性群組 (NSG) 來控制存取。
-* **存取 VNet 中的 VM**。 PaaS 角色執行個體和 IaaS VM 可以在相同虛擬網路中啟動，並可使用私人 IP 位址彼此連線，即使它們位於不同的子網路也一樣，而且不需要設定閘道器或使用公用 IP 位址。
-* **名稱解析**。 Azure 會針對部署在 VNet 中的 IaaS VM 和 PaaS 角色執行個體提供[內部名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)。 您也可以部署自己的 DNS 伺服器，並設定 VNet 來使用它們。
-* **安全性**。 您可以使用網路安全性群組來控制 VNet 中進出虛擬機器和 PaaS 角色執行個體的流量。
-* **連線能力**。 可以使用網路閘道或 VNet 對等互連將 VNet 彼此連接。 透過網站間 VPN 網路或 Azure ExpressRoute，可以將 VNet 連接到內部部署資料中心。 若要深入了解網站間 VPN 連線，請造訪[關於 VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md)。 若要深入了解 ExpressRoute，請瀏覽 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)。 若要深入了解 VNet 對等互連，請造訪 [VNet 對等互連](virtual-network-peering-overview.md)。
+## <a name="within-vnet"></a>連線 Azure 資源
+您可以將數個 Azure 資源連線至 VNet，例如虛擬機器 (VM)、雲端服務、App Service 環境及虛擬機器擴展集。 VM 會透過網路介面 (NIC) 連線至 VNet 內的子網路。 若要深入了解 NIC，請閱讀[網路介面](virtual-network-network-interface.md)一文。
 
-  > [!NOTE]
-  > 在將任何 IaaS VM 或 PaaS 角色執行個體部署至 Azure 環境之前，請確定您已建立 VNet。 ARM 架構的 VM 需要 VNet，而且如果沒有指定現有的 VNet，Azure 建立的預設 VNet 可能會與您的內部部署網路產生 CIDR 位址區塊衝突， 這會使您無法將 VNet 連線至內部部署網路。
-  >
+## <a name="connect-vnets"></a>連線虛擬網路
 
-## <a name="subnets"></a>子網路
-子網路是 VNet 中某個範圍的 IP 位址，您可以將 VNet 分割成多個子網路以便進行組織和獲得安全性。 部署至 VNet 內 (相同或不同) 子網路的 VM 和 PaaS 角色執行個體不需要進行額外設定就可以彼此通訊。 您也可以設定子網路的路由表和 NSG。
+您可以將 VNet 互相連線，讓連線至任一 VNet 的資源能夠跨越 VNet 彼此通訊。 您可以使用下列一個或兩個選項將 VNet 彼此連線：
+- **對等互連︰**讓連線至相同 Azure 位置內不同 Azure VNet 的資源彼此通訊。 如果資源已連線到相同的 VNet，則跨越 VNet 的頻寬和延遲就一樣。 若要深入了解對等互連，請閱讀[虛擬網路對等互連](virtual-network-peering-overview.md)文章。
+- **VNet 對 VNet 連線︰**讓連線至相同或不同 Azure 位置內不同 Azure VNet 的資源彼此通訊。 不同於對等互連，VNet 之間的頻寬有限，因為流量必須通過 Azure VPN 閘道。 若要深入了解如何透過 VNet 對 VNet 連線來連線 VNet，請閱讀[設定 VNet 對 VNet 連線](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)一文。
 
-## <a name="ip-addresses"></a>IP 位址
-有兩種類型的 IP 位址可指派給 Azure 中的資源：*公用*和*私人*。 「公用 IP 位址」可讓 Azure 資源與網際網路及其他 Azure 公開服務 (例如 [Azure Redis 快取](https://azure.microsoft.com/services/cache/)、[Azure 事件中樞](https://azure.microsoft.com/documentation/services/event-hubs/)) 進行通訊。 「私人 IP 位址」可讓虛擬網路中的資源以及透過 VPN 連線的資源彼此通訊，而不必使用可路由的網際網路 IP 位址。
+## <a name="connect-on-premises"></a>連線到內部部署網路
 
-若要深入了解 Azure 中的 IP 位址，請瀏覽 [虛擬網路中的 IP 位址](virtual-network-ip-addresses-overview-arm.md)
+您可以使用下列選項的任意組合，將內部部署網路連線至 VNet︰
+- **點對站虛擬私人網路 (VPN)：**建立於一部連線到您網路的電腦與 VNet 之間。 如果您剛開始使用 Azure，此連線類型就很適合您，也適用於開發人員，因為它幾乎不需要變更您現有的網路。 連線會使用 SSTP 通訊協定，透過網際網路提供電腦與 VNet 之間的加密通訊。 點對站 VPN 的延遲無法預期並已加密，因為流量會周遊網際網路。
+- **站對站 VPN：**建立於 VPN 裝置與 Azure VPN 閘道之間。 此連線類型可讓您授權的任何內部部署資源存取 VNet。 此連線是 IPSec/IKE VPN，可透過網際網路提供內部部署裝置與 Azure VPN 閘道之間的加密通訊。 站對站連線的延遲無法預期，因為流量會周遊網際網路。
+- **Azure ExpressRoute：**透過 ExpressRoute 合作夥伴，建立於您的網路與 Azure 之間。 此連線是私人連線。 流量不會周遊網際網路。 ExpressRoute 連線的延遲無法預期，因為流量不會周遊網際網路且未加密。
 
-## <a name="azure-load-balancers"></a>Azure Load Balancer
-虛擬網路中的虛擬機器和雲端服務可以使用 Azure Load Balancer 對網際網路公開。 對內提供的企業營運應用程式則可以使用內部負載平衡器來平衡負載。
+若要深入了解所有先前的連線選項，請閱讀[連線拓撲圖](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#a-namediagramsaconnection-topology-diagrams)一文。
 
-* **外部負載平衡器**。 您可以使用外部負載平衡器，以提供從公用網際網路存取 IaaS VM 和 PaaS 角色執行個體時的高可用性。
-* **內部負載平衡器**。 您可以使用內部負載平衡器，以提供從 VNet 中其他服務存取 IaaS VM 和 PaaS 角色執行個體時的高可用性。
+## <a name="filtering"></a>篩選網路流量
+<!---Get confirmation that a UDR on the gateway subnet is supported. Need to provide some additional info as to the key differences between the two options.--->
 
-若要深入了解 Azure 中的負載平衡，請瀏覽 [負載平衡器概觀](../load-balancer/load-balancer-overview.md)。
+您可以使用下列一個或兩個選項，篩選子網路之間的網路流量︰
+- **網路安全性群組 (NSG)：**每個 NSG 可以包含多個輸入和輸出安全性規則，讓您依照來源和目的地 IP 位址、連接埠和通訊協定篩選流量。 您可以將 NSG 套用至 VM 中的每個 NIC。 您也可以將 NSG 套用至 NIC 或其他 Azure 資源所連線的子網路。 若要深入了解 NSG，請閱讀[網路安全性群組](virtual-networks-nsg.md)一文。
+- **網路虛擬裝置 (NVA)：**NVA 是可執行以下軟體的 VM：執行防火牆等網路功能的軟體。 請檢視 [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/networking?page=1&subcategories=appliances) 中可用的 NVA 清單。 此外，也可取得提供 WAN 最佳化和其他網路流量功能的 NVA。 NVA 通常使用於使用者定義或 BGP 路由。 您也可以使用 NVA 來篩選 VNet 之間的流量。
 
-## <a name="network-security-groups-nsg"></a>網路安全性群組 (NSG)
-您可以建立 NSG 來控制對網路介面 (NIC)、VM 和子網路的輸入和輸出存取。 每個 NSG 都有包含一個或多個規則，指定是否要根據來源 IP 位址、來源連接埠、目的地 IP 位址和目的地連接埠來核准或拒絕流量。 若要深入了解 NSG，請瀏覽 [什麼是網路安全性群組](virtual-networks-nsg.md)。
+## <a name="routing"></a>路由傳送網路流量
 
-## <a name="virtual-appliances"></a>虛擬應用裝置
-虛擬應用裝置只是 VNet 中的另一個 VM，負責執行以軟體為基礎的應用裝置功能，例如防火牆、WAN 最佳化或入侵偵測。 您可以在 Azure 中建立路由，將 VNet 流量的路由設定為透過虛擬應用裝置來使用其功能。
-
-比方說，NSG 可以用來在 VNet 上提供安全性。 不過，NSG 會提供第 4 層存取控制清單 (ACL) 給傳入和傳出的封包。 如果您想要使用第 7 層安全性模型，則需要使用防火牆應用裝置。
-
-虛擬應用裝置相依於 [使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)。
-
-## <a name="limits"></a>限制
-訂用帳戶中允許的虛擬網路數目有受到限制，如需詳細資訊，請參閱 [Azure 網路限制](../azure-subscription-service-limits.md#networking-limits) 。
+根據預設，Azure 會建立路由表，讓連線至任何 VNet 中任何子網路的資源彼此通訊。 您可以實作下列一個或兩個選項，覆寫 Azure 所建立的預設路由︰
+- **使用者定義的路由︰**您可以建立自訂路由表，其中的路由可控制每個子網路的流量會路由傳送至的位置。 若要深入了解使用者定義的路由，請閱讀[使用者定義的路由](virtual-networks-udr-overview.md)文章。
+- **BGP 路由︰**如果您使用 Azure VPN 閘道或 ExpressRoute 連線將 VNet 連線至內部部署網路，則可將 BGP 路由傳播至 VNet。
 
 ## <a name="pricing"></a>價格
-在 Azure 中使用虛擬網路並沒有其他費用。 至於在 Vnet 中啟動的計算執行個體，則會依 [Azure VM 價格](https://azure.microsoft.com/pricing/details/virtual-machines/)中所述的標準費率進行收費。 VNet 中所使用的 [VPN 閘道](https://azure.microsoft.com/pricing/details/vpn-gateway/)和[公用 IP 位址](https://azure.microsoft.com/pricing/details/ip-addresses/)也會依標準費率進行收費。
 
-## <a name="next-steps"></a>後續步驟
-* [建立 VNet](virtual-networks-create-vnet-arm-pportal.md) 和子網路。
-* [在 VNet 中建立 VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md)。
-* 了解 [NSG](virtual-networks-nsg.md)。
-* 了解 [使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)。
+虛擬網路、子網路、路由表或網路安全性群組均免費。 輸出網際網路頻寬使用量、公用 IP 位址、虛擬網路對等互連、VPN 閘道和 ExpressRoute 都有各自的價格結構。 如需詳細資訊，請檢視[虛擬網路](https://azure.microsoft.com/pricing/details/virtual-network)、[VPN 閘道](https://azure.microsoft.com/pricing/details/vpn-gateway)和 [ExpressRoute](https://azure.microsoft.com/pricing/details/expressroute) 價格頁面。
+
+
+## <a name="next-steps"></a>接續步驟
+
+- 完成[建立第一個虛擬網路](virtual-network-get-started-vnet-subnet.md)一文中的步驟，以建立第一個 VNet，並將一些 VM 連線至該 VNet。
+- 完成[設定點對站連線](../vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)一文中的步驟，以建立對 VNet 的點對站連線。
 

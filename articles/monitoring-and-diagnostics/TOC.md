@@ -4,6 +4,7 @@
 ## [警示](monitoring-overview-alerts.md)
 ## [Autoscale](monitoring-overview-autoscale.md)
 ## [活動記錄檔](monitoring-overview-activity-logs.md)
+## [動作群組](monitoring-action-groups.md)
 ## [診斷記錄檔](monitoring-overview-of-diagnostic-logs.md)
 ## [合作夥伴整合](monitoring-partners.md)
 ## [Azure 診斷](azure-diagnostics.md)
@@ -28,10 +29,19 @@
 ### [設定自動調整規模的 Webhook 與電子郵件通知](insights-autoscale-to-webhook-email.md)
 ## 使用活動記錄
 ### [檢視活動記錄中的事件](insights-debugging-with-events.md)
-### [在活動記錄警示中設定 webhook](insights-auditlog-to-webhook-email.md)
+### [在活動記錄事件中設定警示](monitoring-activity-log-alerts.md)
 ### [封存活動記錄](monitoring-archive-activity-log.md)
 ### [將活動記錄串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
 ### [使用 Resource Manager 來稽核作業](../azure-resource-manager/resource-group-audit.md)
+### [透過 Resource Manager 建立活動記錄警示](monitoring-create-activity-log-alerts-with-resource-manager-template.md)
+## 服務通知
+### [檢視服務通知](monitoring-service-notifications.md)
+### [在服務通知上設定警示](monitoring-activity-log-alerts-on-service-notifications.md)
+## 動作群組
+### [深入了解 webhook 結構描述](monitoring-activity-log-alerts-webhook.md)
+### [SMS 警示行為](monitoring-sms-alert-behavior.md)
+### [警示速率限制](monitoring-alerts-rate-limiting.md)
+### [透過 Resource Manager 建立動作群組](monitoring-create-action-group-with-resource-manager-template.md)
 ## 管理診斷記錄檔
 ### [封存](monitoring-archive-diagnostic-logs.md)
 ### [串流至事件中樞](monitoring-stream-diagnostic-logs-to-event-hubs.md)

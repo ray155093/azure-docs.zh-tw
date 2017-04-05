@@ -1,6 +1,6 @@
 ---
 title: "Azure Functions 儲存體資料表繫結 | Microsoft Docs"
-description: "瞭解如何在 Azure Functions 中使用「Azure 儲存體」觸發程序和繫結。"
+description: "了解如何在 Azure Functions 中使用 Azure 儲存體繫結。"
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -17,16 +17,16 @@ ms.workload: na
 ms.date: 10/28/2016
 ms.author: chrande
 translationtype: Human Translation
-ms.sourcegitcommit: 0d37eb09a6c8a0bb39a331e51a8993c114202b91
-ms.openlocfilehash: 88858cffa5ddc6ba83152d3430f5400a1c66a26a
-ms.lasthandoff: 01/05/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 67c308f8216ebd291ae483c9b18d43528687e9a9
+ms.lasthandoff: 03/29/2017
 
 
 ---
 # <a name="azure-functions-storage-table-bindings"></a>Azure Functions 儲存體資料表繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中為 Azure 儲存體資料表觸發程序和繫結進行設定及撰寫程式碼。 Azure Functions 支援 Azure 儲存體資料表的輸入和輸出繫結。
+本文說明如何在 Azure Functions 中為 Azure 儲存體資料表繫結進行設定及撰寫程式碼。 Azure Functions 支援 Azure 儲存體資料表的輸入和輸出繫結。
 
 儲存體資料表繫結支援下列案例：
 

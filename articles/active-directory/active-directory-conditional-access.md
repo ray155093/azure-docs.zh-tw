@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/23/2017
+ms.date: 03/28/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: af104d47d316b3e46108e7e2ed0771bd06f360af
-ms.openlocfilehash: 6c3b547b052bca6999e47ddc10fcce5e1e56fe09
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 31659a7394a34cf8fb5b6ff11c955bdc9f8b65bb
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -81,7 +82,7 @@ Azure AD 條件式存取是 [Azure Active Directory Premium](http://www.microsof
 
 ### <a name="multi-factor-authentication-and-location-policies"></a>Multi-Factor Authentication 和位置原則
 * [根據群組、位置和 Multi-Factor Authentication 原則開始使用 Azure AD 連線應用程式的條件式存取](active-directory-conditional-access-azuread-connected-apps.md)
-* [不支援的應用程式](active-directory-conditional-access-supported-apps.md)
+* [支援的應用程式和瀏覽器](active-directory-conditional-access-supported-apps.md)
 
 ### <a name="device-based-conditional-access"></a>裝置型條件式存取
 * [設定裝置型條件式存取原則來控制對 Azure Active Directory 連線應用程式的存取](active-directory-conditional-access-policy-connected-applications.md)
@@ -95,10 +96,5 @@ Azure AD 條件式存取是 [Azure Active Directory Premium](http://www.microsof
 ### <a name="next-steps"></a>後續步驟
 * [條件式存取常見問題集](active-directory-conditional-faqs.md)
 * [技術參考](active-directory-conditional-access-technical-reference.md)
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

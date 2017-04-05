@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/17/2017
+ms.date: 03/28/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: a673044269016f5d216fa62a3bcc6f3b106838c0
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 037045c4e76d0fb8e96944fe8a3235223594a034
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -44,7 +44,7 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 
 **問：目前支援哪些資源做為後端集區的一部分？**
 
-後端集區可以包含 NIC、虛擬機器擴展集 (VMSS)、公用 IP、內部 IP 和完整的網域名稱 (FQDN)。 目前不提供 Azure Web Apps 支援。 應用程式閘道後端集區成員不會繫結至可用性設定組。 只要後端集區成員具有 IP 連線能力，就可以跨越叢集、資料中心或在 Azure 外部。
+後端集區可以包含 NIC、虛擬機器擴展集、公用 IP、內部 IP 和完整的網域名稱 (FQDN)。 目前不提供 Azure Web Apps 支援。 應用程式閘道後端集區成員不會繫結至可用性設定組。 只要後端集區成員具有 IP 連線能力，就可以跨越叢集、資料中心或在 Azure 外部。
 
 **問：哪些區域提供此服務？**
 
@@ -65,7 +65,6 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 **問：IP 或 DNS 是否會在應用程式閘道的存留期內變更？**
 
 如果客戶停止後啟動閘道，VIP 可能會變更。 與應用程式閘道相關聯的 DNS 不會在閘道的存留期內變更。 基於這個理由，建議使用 CNAME 別名並將它指向應用程式閘道的 DNS 位址。
-
 
 **問：應用程式閘道是否支援靜態 IP？**
 
@@ -124,10 +123,6 @@ Azure 應用程式閘道支援 HTTP、HTTPS 和 WebSocket。
 **問：自訂探查的 [主機] 欄位表示什麼？**
 
 主機欄位指定探查要送達的名稱。 只有當應用程式閘道上設定多站台時適用，否則請使用 '127.0.0.1'。 此值與 VM 主機名稱不同，其格式為 \<protocol\>://\<host\>:\<port\>\<path\>。 
-
-**問：應用程式閘道也支援多租用戶後端嗎？**
-
-否，應用程式閘道目前會保留傳入的主機標頭，將相同的標頭傳送至後端。 如果後端需要其他的標頭，這個標頭就沒有作用。 同樣地，如果後端為多租用戶，且已啟用端對端 SSL，則後端需要 SNI 擴充中有伺服器名稱。 在端對端 SSL 案例中，應用程式閘道目前不會在後端要求中傳送 SNI 標頭，因為這會造成探查和資料路徑的問題。 
 
 ## <a name="performance"></a>效能
 
@@ -219,7 +214,7 @@ TLS_RSA_WITH_3DES_EDE_CBC_SHA
 
 **問：應用程式閘道支援的 CRS 版本為何？**
 
-應用程式閘道支援 CRS 2.2.9
+應用程式閘道支援 CRS [2.2.9](application-gateway-crs-rulegroups-rules.md#owasp229) 和 CRS [3.0](application-gateway-crs-rulegroups-rules.md#owasp30)。
 
 **問：如何監視 WAF？**
 
@@ -231,11 +226,11 @@ WAF 是透過診斷記錄功能來監視，如需診斷記錄的詳細資訊，�
 
 **問：如何自訂 WAF 規則？**
 
-目前無法自訂 WAF 規則。
+是，WAF 規則是可自訂的，如需如何自訂它們的詳細資訊，請瀏覽[自訂 WAF 規則群組與規則](application-gateway-customize-waf-rules-portal.md)
 
 **問：目前可使用哪些規則？**
 
-WAF 目前支援 CRS 2.2.9，其針對 Open Web Application Security Project (OWASP) 所識別的大多數前 10 大弱點 (請參閱 [OWASP 前 10 大弱點](https://www.owasp.org/index.php/Top10#OWASP_Top_10_for_2013)) 提供基準安全性
+WAF 目前支援 CRS [2.2.9](application-gateway-crs-rulegroups-rules.md#owasp229) 和 [3.0](application-gateway-crs-rulegroups-rules.md#owasp30)，其針對 Open Web Application Security Project (OWASP) 所識別的大多數前 10 大弱點 (請參閱 [OWASP 的前 10 大弱點 (英文)](https://www.owasp.org/index.php/Top10#OWASP_Top_10_for_2013)) 提供基準安全性
 
 * SQL 插入式攻擊保護
 
@@ -251,9 +246,9 @@ WAF 目前支援 CRS 2.2.9，其針對 Open Web Application Security Project (OW
 
 * 偵測一般應用程式錯誤組態 (也就是 Apache、IIS 等)
 
-**問：WAF 是否也支援 DDos 預防？**
+**問：WAF 是否也支援 DDoS 預防？**
 
-否，WAF 不提供 DDos 預防。
+否，WAF 不提供 DDoS 預防。
 
 ## <a name="diagnostics-and-logging"></a>診斷和記錄
 
@@ -288,4 +283,3 @@ WAF 目前支援 CRS 2.2.9，其針對 Open Web Application Security Project (OW
 ## <a name="next-steps"></a>後續步驟
 
 若要深入了解應用程式閘道，請瀏覽[應用程式閘道簡介](application-gateway-introduction.md)。
-

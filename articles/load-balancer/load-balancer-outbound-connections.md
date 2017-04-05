@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 10/31/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 273598a6eecb358c0b308c481193323e67dd475c
-ms.openlocfilehash: 24c3fdd8124ff3cc43feacb6f25dda84be9f46d9
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: f02e17bb413f250fc4d980c62cfb46bc5359f7fb
+ms.lasthandoff: 03/29/2017
 
 ---
 
@@ -66,4 +66,8 @@ SNAT 連接埠是可能會耗盡的有限資源。 請務必了解取用的方�
 有時並不想允許 VM 建立輸出流程，或可能需要管理可以使用輸出流程到達的目的地。 在此情況下，您使用[網路安全性群組 (NSG)](../virtual-network/virtual-networks-nsg.md) 來管理 VM 可到達的目的地。 當您將 NSG 套用到負載平衡的 VM 時，需要注意[預設標籤](../virtual-network/virtual-networks-nsg.md#default-tags)和[預設規則](../virtual-network/virtual-networks-nsg.md#default-rules)。
 
 您必須確定 VM 可以從 Azure Load Balancer 接收健康情況探查要求。 如果 NSG 封鎖來自 AZURE_LOADBALANCER 預設標籤的健全狀況探查要求，您的 VM 健全狀況探查會失敗，且會將 VM 標示為離線。 負載平衡器會停止將新的流程傳送到該 VM。
+
+## <a name="limitations"></a>限制
+
+雖然不提供保證，但目前可供使用的 SNAT 連接埠數目上限是 64,511 個 (65,535 個 - 1024 個具特殊權限的連接埠)。  這不會直接轉譯為連線數目，如需何時及如何配置 SNAT 連接埠以及如何管理這個可耗盡資源的詳細資料，請參閱上述內容。
 

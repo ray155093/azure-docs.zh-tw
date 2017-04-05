@@ -140,7 +140,7 @@ Azure 會建立含有一個作業系統磁碟、一個暫存磁碟，以及零�
 ### <a name="striped-disks"></a>等量磁碟
 除了能夠建立大於 1023 GB 的磁碟，在許多情況下，針對資料磁碟使用等量，可藉由允許多個 blob 備份單一磁碟區的儲存體來增強效能。 從單一邏輯磁碟寫入和讀取資料所需的 I/O 會透過等量速度以平行方式繼續進行。
 
-根據虛擬機器的大小而定，Azure 會強制限制資料磁碟數量和可用頻寬。 如需詳細資訊，請參閱 [虛擬機器的大小](../articles/virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+根據虛擬機器的大小而定，Azure 會強制限制資料磁碟數量和可用頻寬。 如需詳細資訊，請參閱 [虛擬機器的大小](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 如果您針對 Azure 資料磁碟使用磁碟等量，請考量下列指導方針：
 
@@ -390,16 +390,11 @@ Contoso 決定為其 Azure 虛擬機器使用下列名稱：
 ## <a name="additional-resources"></a>其他資源
 [Microsoft Azure 訂用帳戶及服務限制、配額與限制](../articles/azure-subscription-service-limits.md#storage-limits)
 
-[虛擬機器的大小](../articles/virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+[虛擬機器的大小](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [Azure 儲存體的延展性與效能目標](../articles/storage/storage-scalability-targets.md)
 
 [資料中心延伸模組參考架構圖表](https://gallery.technet.microsoft.com/Datacenter-extension-687b1d84)
 
 [Azure 資源管理員提供的 Azure 運算、網路和儲存提供者](../articles/virtual-machines/virtual-machines-windows-compare-deployment-models.md)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 
