@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 11/22/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: eb34bf45fde1fdaa1d7938967e659a13515a0f56
-ms.openlocfilehash: 914d391fa314de5893da462af3e9b59e6f8ce185
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: f64c41733f8fa7e34a0b0dfbbff2b565af7cf7db
+ms.lasthandoff: 03/25/2017
 
 ---
 
@@ -65,7 +66,7 @@ Azure 傳統入口網站會使用遠端桌面延伸模組方法，因此即使�
 ### <a name="use-visual-studio-to-remote-into-a-role-instance"></a>使用 Visual Studio 遠端存取角色執行個體
 在 Visual Studio 中，伺服器總管：
 
-1. 展開 [Azure] > 雲端服務] > 「雲端服務名稱」節點。
+1. 展開 **Azure** > 雲端服務] > 「雲端服務名稱」節點。
 2. 展開 [預備]或 [生產]。
 3. 展開個別角色。
 4. 以滑鼠右鍵按一下其中一個角色執行個體，按一下 [使用遠端桌面連線...] ，然後輸入使用者名稱和密碼。
@@ -134,9 +135,5 @@ Azure 傳統入口網站會使用遠端桌面延伸模組方法，因此即使�
 
 ## <a name="additional-resources"></a>其他資源
 [如何設定雲端服務](cloud-services-how-to-configure.md)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
+[雲端服務常見問題集 - 遠端桌面](cloud-services-faq.md#remote-desktop)
 
