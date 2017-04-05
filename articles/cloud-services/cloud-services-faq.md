@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 11/16/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 8dc7ea843ea316fa4659a8e6575adbfd045f7a70
-ms.openlocfilehash: c169f9ab2eead732ad0fe5579caaa1b4b015732b
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 7287cb1709b7c863cd046edfb995e23455398ec2
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -60,17 +61,39 @@ Azure 會防止您移除使用中的憑證。 您必須刪除使用憑證的部�
 ### <a name="disable-ssl-30"></a>停用 SSL 3.0
 若要停用 SSL 3.0 並使用 TLS 安全性，請建立啟動工作，而其記載於此部落格文章：https://azure.microsoft.com/en-us/blog/how-to-disable-ssl-3-0-in-azure-websites-roles-and-virtual-machines/
 
-## <a name="scale-a-cloud-service"></a>調整雲端服務
+### <a name="add-nosniff-to-your-website"></a>將 **nosniff** 加入您的網站
+若要防止用戶端探查 MIME 類型，請在您的 *web.config* 檔案中加入一項設定。
+
+```xml
+<configuration>
+   <system.webServer>
+      <httpProtocol>
+         <customHeaders>
+            <add name="X-Content-Type-Options" value="nosniff" />
+         </customHeaders>
+      </httpProtocol>
+   </system.webServer>
+</configuration>
+```
+
+您也可以在 IIS 中將此加入為設定。 請參考[常見的啟動工作](cloud-services-startup-tasks-common.md#configure-iis-startup-with-appcmdexe)一文來使用下列命令。
+
+```cmd
+%windir%\system32\inetsrv\appcmd set config /section:httpProtocol /+customHeaders.[name='X-Content-Type-Options',value='nosniff']
+```
+
+### <a name="customize-iis-for-a-web-role"></a>針對 Web 角色自訂 IIS
+請從[常見的啟動工作](cloud-services-startup-tasks-common.md#configure-iis-startup-with-appcmdexe)一文使用 IIS 啟動指令碼。
+
+## <a name="scaling"></a>調整大小
 ### <a name="i-cannot-scale-beyond-x-instances"></a>我不能調整超過 X 個執行個體
 您的 Azure 訂用帳戶對於您可以使用的核心數目有限制。 如果您已使用所有可用的核心，調整將無法運作。 例如，如果您有 100 個核心的限制，這表示您的雲端服務可以有 100 個 A1 大小的虛擬機器執行個體，或 50 個 A2 大小的虛擬機器執行個體。
 
-## <a name="troubleshooting"></a>疑難排解
+## <a name="networking"></a>網路
 ### <a name="i-cant-reserve-an-ip-in-a-multi-vip-cloud-service"></a>無法在多 VIP 的雲端服務中保留 IP
 首先，請確定您想要保留其 IP 的虛擬機器執行個體已開啟。 其次，請確定您會將保留的 IP 同時用於預備與生產部署。 **勿** 於部署正在升級時變更設定。
 
-
-
-
-<!--HONumber=Jan17_HO4-->
-
+## <a name="remote-desktop"></a>遠端桌面
+### <a name="how-do-i-remote-desktop-when-i-have-an-nsg"></a>當我有 NSG 時，應如何設定遠端桌面？
+在 NSG 加入轉送連接埠 **20000** 的規則。
 

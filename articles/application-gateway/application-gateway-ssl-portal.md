@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
-ms.openlocfilehash: b1852b82875c63fa0e252c14b69b281bd501095f
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: a9cb2d921d1be226661311d91367b2b6f44fa0dc
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -69,7 +70,7 @@ HTTPS 接聽程式會根據其組態來尋找流量，並協助將流量路由�
 
 ## <a name="create-a-rule-and-associate-it-to-the-listener"></a>建立規則並將它與接聽程式建立關聯
 
-現在已建立接聽程式。 此時即可建立規則來處理來自接聽程式的流量。
+現在已建立接聽程式。 此時即可建立規則來處理來自接聽程式的流量。 規則會定義如何根據多個組態設定將流量路由傳送到後端集區，包括是否使用以 Cookie 為基礎的工作階段同質性、通訊協定、連接埠和健康狀態探查。
 
 ### <a name="step-1"></a>步驟 1
 
@@ -93,9 +94,4 @@ HTTPS 接聽程式會根據其組態來尋找流量，並協助將流量路由�
 [2]: ./media/application-gateway-ssl-portal/figure2.png
 [3]: ./media/application-gateway-ssl-portal/figure3.png
 [4]: ./media/application-gateway-ssl-portal/figure4.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

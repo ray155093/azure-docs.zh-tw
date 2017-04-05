@@ -1,6 +1,6 @@
 ---
-title: "Azure 虛擬機器擴展集︰現有的虛擬網路範本 | Microsoft Docs"
-description: "了解如何使用現有虛擬網路建立擴展集範本"
+title: "在 Azure 擴展集範本中參考虛擬網路 | Microsoft Docs"
+description: "了解如何將虛擬網路新增到現有的「Azure 虛擬機器擴展集」範本"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -16,18 +16,17 @@ ms.topic: article
 ms.date: 3/06/2017
 ms.author: negat
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: ddb3e1789e49d138e744c2238679236134b69324
-ms.lasthandoff: 03/09/2017
-
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: f300537943b76e53b0e7c271e65293e585a2cd32
+ms.lasthandoff: 03/24/2017
 
 ---
 
-# <a name="about-this-article"></a>本文內容
+# <a name="add-reference-to-a-virtual-network-to-an-azure-scale-set-template"></a>將虛擬網路參考新增到 Azure 擴展集範本
 
 本文說明如何修改[最基本的可行擴展集範本](./virtual-machine-scale-sets-mvss-start.md)以便將其部署至現有虛擬網路，而非建立新的範本。
 
-## <a name="modifying-the-minimum-viable-scale-set-to-deploy-into-an-existing-virtual-network"></a>修改最基本的可行擴展集以便將其部署至現有虛擬網路
+## <a name="change-the-template-definition"></a>變更範本定義
 
 您可以在[這裡](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json)看到最基本的可行擴展集範本，並在[這裡](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json)看到用於將擴展集部署至現有虛擬網路的範本。 讓我們逐步檢查用來建立此範本 (`git diff master minimum-viable-scale-set`) 的差異：
 

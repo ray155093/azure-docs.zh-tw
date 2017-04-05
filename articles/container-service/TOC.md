@@ -16,6 +16,7 @@
 ### [負載平衡 DC/OS 容器](container-service-load-balancing.md)
 ### [DC/OS 中的應用程式/使用者特定協調者](container-service-application-specific-marathon.md)
 ### [新增檔案共用](container-service-dcos-fileshare.md)
+### [使用 Azure 容器登錄](container-service-dcos-acr.md)
 ### 監視 DC/OS
 #### [透過 ELK 進行監視](container-service-monitoring-elk.md)
 #### [透過 OMS 進行監視](container-service-monitoring-oms.md)
@@ -36,6 +37,7 @@
 ## 使用 Docker Swarm 管理
 ### [Docker 與 Docker Compose](container-service-docker-swarm.md)
 ### [Docker Swarm 持續整合](container-service-docker-swarm-setup-ci-cd.md)
+## [安全容器](container-service-security.md)
 # 參考
 ## [Azure CLI 2.0](/cli/azure/acs)
 ## [REST](/rest/api/compute/containerservices)
@@ -43,3 +45,4 @@
 ## [區域可用性](https://azure.microsoft.com/regions/services/)
 ## [價格](https://azure.microsoft.com/pricing/details/container-service/)
 ## [服務更新](https://azure.microsoft.com/en-us/updates/?product=container-service&updatetype=&platform=)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-container-service)

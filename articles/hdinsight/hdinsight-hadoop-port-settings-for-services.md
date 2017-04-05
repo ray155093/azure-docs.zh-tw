@@ -8,6 +8,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: dd14aed9-ec25-4bb3-a20c-e29562735a7d
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -15,8 +16,9 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b65e9e6b196965a7df1e4979219117fb87cedbd7
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 693e3aebad339b1a9b5e0afbe7770197ea70dcf6
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -40,9 +42,9 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 
 | 服務 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
-| sshd |22 |SSH |將用戶端連接到主要前端節點上的 sshd。 請參閱 [搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md) |
-| sshd |22 |SSH |將用戶端連接到邊緣節點上的 sshd (僅限 HDInsight Premium)。 請參閱 [開始使用 HDInsight 中的 R 伺服器](hdinsight-hadoop-r-server-get-started.md) |
-| sshd |23 |SSH |將用戶端連接到次要前端節點上的 sshd。 請參閱 [搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md) |
+| sshd |22 |SSH |將用戶端連接到主要前端節點上的 sshd。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。 |
+| sshd |22 |SSH |將用戶端連接至邊緣節點上的 sshd。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。 |
+| sshd |23 |SSH |將用戶端連接到次要前端節點上的 sshd。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。 |
 | Ambari |443 |HTTPS |Ambari Web UI。 請參閱 [使用 Ambari Web UI 管理 HDInsight](hdinsight-hadoop-manage-ambari.md) |
 | Ambari |443 |HTTPS |Ambari REST API。 請參閱 [使用 Ambari REST API 管理 HDInsight](hdinsight-hadoop-manage-ambari-rest-api.md) |
 | WebHCat |443 |HTTPS |HCatalog REST API。 請參閱[搭配使用 Hive 與 Curl](hdinsight-hadoop-use-pig-curl.md)、[搭配使用 Pig 與 Curl](hdinsight-hadoop-use-pig-curl.md)、[搭配使用 MapReduce 與 Curl](hdinsight-hadoop-use-mapreduce-curl.md) |
@@ -138,10 +140,5 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | --- | --- | --- | --- | --- |
 | Broker |背景工作節點 |9092 |[Kafka Wire Protocol (Kafka 有線通訊協定)](http://kafka.apache.org/protocol.html) |用於用戶端通訊 |
 | &nbsp; |Zookeeper 節點 |2181 |&nbsp; |用戶端用於連接至 ZooKeeper 的連接埠 |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

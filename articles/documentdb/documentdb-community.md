@@ -15,9 +15,9 @@ ms.workload: data-services
 ms.date: 03/07/2017
 ms.author: andrl
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 202684a1ae1106d79b9cee4e4ebf20ffa283f41b
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: a7c366d29cf163c9c30c72751a992a0ebb3462cd
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -30,42 +30,42 @@ ms.lasthandoff: 03/22/2017
 
 彙總 (群組依據、樞紐分析表和 N 維 Cube) 和時間序列轉換為 DocumentDB 中的預存程序。
 
-在 [Github](https://github.com/lmaccherone/documentdb-lumenize) 和 [npm](https://www.npmjs.com/package/lumenize) 上了解相關資訊。
+在 [GitHub](https://github.com/lmaccherone/documentdb-lumenize) 和 [npm](https://www.npmjs.com/package/lumenize) 上了解相關資訊。
 
 ### <a name="documentdb-studio"></a>DocumentDB Studio
 *由 Ming Liu 撰寫*
 
 Microsoft Azure DocumentDB 服務的用戶端管理檢視器/總管。
 
-在 [Github](https://github.com/mingaliu/DocumentDBStudio)上了解相關資訊。
+在 [GitHub](https://github.com/mingaliu/DocumentDBStudio) 上了解相關資訊。
 
 ### <a name="doqmentdb"></a>DoQmentDB
 *由 Ariel Mashraki 撰寫*
 
 DoQmentDB 是一個以 Node.js Promise 為基礎的用戶端，可在 DocumentDB 的頂端提供類似 MongoDB 的階層。
 
-在 [Github](https://github.com/a8m/doqmentdb) 和 [npm](https://www.npmjs.com/package/doqmentdb) 上了解相關資訊。
+在 [GitHub](https://github.com/a8m/doqmentdb) 和 [npm](https://www.npmjs.com/package/doqmentdb) 上了解相關資訊。
 
 ### <a name="typescript-api"></a>TypeScript API
 *由 Jelmer Cormont 撰寫*
 
 以 TypeScript 撰寫並包覆 Node.js 用戶端的包裝程式 (也能搭配純 JavaScript 運作)。 支援 `async/await` 和簡化的 API。
 
-在 [Github](https://github.com/jcormont/documentdb-typescript) 和 [npm](https://www.npmjs.com/package/documentdb-typescript) 上了解相關資訊。
+在 [GitHub](https://github.com/jcormont/documentdb-typescript) 和 [npm](https://www.npmjs.com/package/documentdb-typescript) 上了解相關資訊。
 
 ### <a name="swagger-rest-api-for-documentdb"></a>DocumentDB 的 Swagger REST API
 *由 Howard Edidin 撰寫*
 
 可以輕鬆部署為 API 應用程式的 DocumentDB REST API Swagger 檔案。
 
-在 [Github](https://github.com/HEDIDIN/DocumentDB-REST/tree/master/DocumentDBRestApi)上了解相關資訊。
+在 [GitHub](https://github.com/HEDIDIN/DocumentDB-REST/tree/master/DocumentDBRestApi) 上了解相關資訊。
 
 ### <a name="fluent-plugin-documentdb"></a>fluent-plugin-documentdb
 *作者 Yoichi Kawasaki*
 
 fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛程式。
 
-在 [Github](https://github.com/yokawasa/fluent-plugin-documentdb) 和 [rubygems](https://rubygems.org/gems/fluent-plugin-documentdb) 上了解相關資訊。
+在 [GitHub](https://github.com/yokawasa/fluent-plugin-documentdb) 和 [rubygems](https://rubygems.org/gems/fluent-plugin-documentdb) 上了解相關資訊。
 
 *在 [GitHub](https://github.com/search?p=4&q=documentdb&type=Repositories) 上尋找更多開放原始碼 DocumentDB 專案。*
 
@@ -220,14 +220,14 @@ fluent-plugin-documentdb 是用於輸出到 Azure DocumentDB 的 Fluentd 外掛�
 這些專案是由 Azure DocumentDB 小組與我們的開放原始碼社群共同積極開發。
 
 ### <a name="sdks"></a>SDK
-| 平台 | Github | Package |
+| 平台 | GitHub | Package |
 | --- | --- | --- |
 | Node.js |[azure-documentdb-node](https://github.com/Azure/azure-documentdb-node) |[npm](https://www.npmjs.com/package/documentdb) |
 | Java |[azure-documentdb-java](https://github.com/Azure/azure-documentdb-java) |[Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-documentdb%22) |
 | Python |[azure-documentdb-python](https://github.com/Azure/azure-documentdb-python) |[PyPI](https://pypi.python.org/pypi/pydocumentdb) |
 
 ### <a name="other-projects"></a>其他專案
-| 名稱 | Github | 網站 |
+| 名稱 | GitHub | 網站 |
 | --- | --- | --- |
 | 文件 |[azure-content](https://github.com/Azure/azure-content/tree/master/articles/documentdb) |[文件網站](https://azure.microsoft.com/documentation/services/documentdb/) |
 | Hadoop 連接器 |[azure-documentdb-hadoop](https://github.com/Azure/azure-documentdb-hadoop) |[Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-documentdb-hadoop%22) |

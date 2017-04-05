@@ -12,19 +12,21 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2017
+ms.date: 03/24/2017
 ms.author: boltean
 translationtype: Human Translation
-ms.sourcegitcommit: 5ea7095e12b6194556d3cd0baa43ccfed1e087ee
-ms.openlocfilehash: 1be7dc038f1bc864e7c6461b616449d75ecda439
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 8ac82da36b2edb71fcd0599dac12a3ed18e33b6f
+ms.lasthandoff: 03/24/2017
 
 
 ---
 # <a name="create-an-iot-hub-using-the-azure-cli"></a>使用 Azure CLI 建立 IoT 中樞
+
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 ## <a name="introduction"></a>簡介
+
 您可以使用 Azure CLI (azure.js)，以程式設計方式建立和管理 Azure IoT 中樞。 本文將說明如何使用 Azure CLI (azure.js) 建立 IoT 中樞。
 
 您可以使用下列其中一個 CLI 版本來完成工作︰
@@ -36,84 +38,84 @@ ms.lasthandoff: 02/27/2017
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
 * [Azure CLI 0.10.4][lnk-CLI-install] 或更新版本。 如果您已經安裝 Azure CLI，您可以在命令提示字元中使用下列命令來驗證目前的版本︰
-  ```
-    azure --version
-  ```
+
+```azurecli
+azure --version
+```
 
 > [!NOTE]
 > Azure 有兩種不同的部署模型可建立和處理資源：[Azure Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 Azure CLI 必須處於 Azure Resource Manager 模式：
-> 
-> ```
+>
+> ```azurecli
 > azure config mode arm
 > ```
-> 
-> 
 
 ## <a name="set-your-azure-account-and-subscription"></a>設定 Azure 帳戶和訂用帳戶
+
 1. 在命令提示字元中，輸入下列命令來進行登入：
-   
-   ```
+
+   ```azurecli
     azure login
    ```
+
    使用建議的網頁瀏覽器和程式碼來驗證。
-2. 如果您有多個 Azure 訂用帳戶，則連接到 Azure 會將與您認證關聯的所有 Azure 訂用帳戶的存取權都授與您。 您可以使用下列命令來檢視 Azure 訂用帳戶，以及識別哪個帳戶是預設訂用帳戶：
-   
-   ```
-    azure account list 
+1. 如果您有多個 Azure 訂用帳戶，則連接到 Azure 會將與您認證關聯的所有 Azure 訂用帳戶的存取權都授與您。 您可以使用下列命令來檢視 Azure 訂用帳戶，以及識別哪個帳戶是預設訂用帳戶：
+
+   ```azurecli
+    azure account list
    ```
 
    若要設定您要在其下執行剩餘命令的訂用帳戶內容，請使用：
 
-   ```
+   ```azurecli
     azure account set <subscription name>
    ```
 
-3. 如果您沒有資源群組，您可以建立一個名為 **exampleResourceGroup** 的資源群組：
-   ```
+1. 如果您沒有資源群組，您可以建立一個名為 **exampleResourceGroup** 的資源群組：
+
+   ```azurecli
     azure group create -n exampleResourceGroup -l westus
    ```
 
 > [!TIP]
-> [使用 Azure CLI 管理 Azure 資源和資源群組 (英文)][lnk-CLI-arm] 一文提供關於如何使用 Azure CLI 來管理 Azure 資源的詳細資訊。 
-> 
-> 
+> [使用 Azure CLI 管理 Azure 資源和資源群組 (英文)][lnk-CLI-arm] 一文提供關於如何使用 Azure CLI 來管理 Azure 資源的詳細資訊。
 
 ## <a name="create-an-iot-hub"></a>建立 IoT 中樞
+
 必要參數：
 
+```azurecli
+azure iothub create -g <resource-group> -n <name> -l <location> -s <sku-name> -u <units>
 ```
- azure iothub create -g <resource-group> -n <name> -l <location> -s <sku-name> -u <units>  
-    - <resourceGroup> The resource group name (case insensitive alphanumeric, underscore and hyphen, 1-64 length)
-    - <name> (The name of the IoT hub to be created. The format is case insensitive alphanumeric, underscore and hyphen, 3-50 length )
-    - <location> (The location (azure region/datacenter) where the IoT hub will be provisioned.
-    - <sku-name> (The name of the sku, one of: [F1, S1, S2, S3] etc. For the latest full list refer to the pricing page for IoT Hub.
-    - <units> (The number of provisioned units. Range : F1 [1-1] : S1, S2 [1-200] : S3 [1-10]. IoT Hub units are based on your total message count and the number of devices you want to connect.)
-```
+
+* **resource-group**。 資源群組名稱。 格式為不區分大小寫的英數字元、底線和連字號，長度為 1-64。
+* **名稱**。 要建立的 IoT 中樞名稱。 格式為不區分大小寫的英數字元、底線和連字號，長度為 3-50。
+* **location**。 佈建 IoT 中樞的位置 (azure 區域/資料中心)。
+* **sku-name**。 sku 的名稱，下列其中一個：[F1、S1、S2、S3]。 如需最新的完整清單，請參閱 IoT 中樞的定價頁面。
+* **units**。 佈建的單位數。 範圍：F1 [1-1]：S1、S2 [1-200]：S3 [1-10]。 IoT 中樞單位會根據您的訊息總計數和您想要連接的裝置數目而定。
+
 若要查看可用來建立的所有參數，您可以在命令提示字元中使用 help 命令：
 
+```azurecli
+azure iothub create -h
 ```
-    azure iothub create -h 
-```
-快速範例︰
 
- 若要在資源群組 **exampleResourceGroup** 中建立名為 **exampleIoTHubName** 的「IoT 中樞」，請執行下列命令：
+快速範例：若要在資源群組 **exampleResourceGroup** 中建立名為 **exampleIoTHubName** 的 IoT 中樞，請執行下列命令：
 
-```
-    azure iothub create -g exampleResourceGroup -n exampleIoTHubName -l westus -k s1 -u 1
+```azurecli
+azure iothub create -g exampleResourceGroup -n exampleIoTHubName -l westus -k s1 -u 1
 ```
 
 > [!NOTE]
 > 此 Azure CLI 命令會新增您付費的「S1 標準 IoT 中樞」。 您可以使用下列命令來刪除 IoT 中樞 **exampleIoTHubName**：
-> 
-> ```
+>
+> ```azurecli
 > azure iothub delete -g exampleResourceGroup -n exampleIoTHubName
 > ```
-> 
-> 
-> 
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解如何開發 IoT 中樞，請參閱以下內容︰
+
+若要深入了解如何開發 IoT 中樞，請參閱以下文章：
 
 * [IoT SDK][lnk-sdks]
 

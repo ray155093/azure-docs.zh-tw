@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 11/16/2016
+ms.date: 03/20/2016
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 60219a9c78884e01fcf46e18ac03e2a955787bc5
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 382eecf863f1e4798533034f915101c08dd4f448
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -29,13 +29,13 @@ ms.lasthandoff: 03/07/2017
 * 如何以 SQL 和 LINQ 查詢 Azure DocumentDB 中的地理空間資料？
 * 如何在 DocumentDB 中啟用或停用空間索引編制？
 
-請參閱此 [Github 專案](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Geospatial/Program.cs) 中的程式碼範例。
+請參閱此 [GitHub 專案](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Geospatial/Program.cs)中的程式碼範例。
 
 ## <a name="introduction-to-spatial-data"></a>空間資料簡介
 空間資料可描述空間中物件的位置和形狀。 在大部分的應用程式中，這些會對應至地球上的物件，也就是地理空間資料。 空間資料可以用來代表人、感興趣的地方、城市邊界或湖泊。 常見使用案例通常涉及鄰近性查詢，例如「尋找我目前位置附近的所有咖啡廳」。 
 
 ### <a name="geojson"></a>GeoJSON
-DocumentDB 支援對使用 [GeoJSON 規格](http://geojson.org/geojson-spec.html)表示的地理空間點資料執行索引編製和查詢。 GeoJSON 資料結構永遠是有效的 JSON 物件，因此可以透過 DocumentDB 來儲存及查詢，無須任何特殊的工具或程式庫。 DocumentDB SDK 提供協助程式類別和方法，讓使用空間資料更容易。 
+DocumentDB 支援對使用 [GeoJSON 規格](https://tools.ietf.org/html/rfc7946)表示的地理空間點資料執行索引編製和查詢。 GeoJSON 資料結構永遠是有效的 JSON 物件，因此可以透過 DocumentDB 來儲存及查詢，無須任何特殊的工具或程式庫。 DocumentDB SDK 提供協助程式類別和方法，讓使用空間資料更容易。 
 
 ### <a name="points-linestrings-and-polygons"></a>點、LineString 和多邊形
 **點** 代表空間中的單一位置。 在地理空間資料中，某個點所代表的確切位置可能是雜貨店的街道地址、電話亭、汽車或城市。  點會使用其座標組或經緯度，以 GeoJSON (和 DocumentDB) 來表示。 以下是點的 JSON 範例。
@@ -385,7 +385,7 @@ DocumentDB.NET SDK 也是虛設常式方法 `Distance()` 和 `Within()` 的提�
 ## <a name="next-steps"></a>後續步驟
 既然您已經學會如何開始使用 DocumentDB 中的地理空間支援，您可以：
 
-* 使用 [Github 上的地理空間 .NET 程式碼範例](https://github.com/Azure/azure-documentdb-dotnet/blob/fcf23d134fc5019397dcf7ab97d8d6456cd94820/samples/code-samples/Geospatial/Program.cs)來開始轉寫程式碼
+* 使用 [GitHub 上的地理空間 .NET 程式碼範例](https://github.com/Azure/azure-documentdb-dotnet/blob/fcf23d134fc5019397dcf7ab97d8d6456cd94820/samples/code-samples/Geospatial/Program.cs)來開始轉寫程式碼
 * 在 [DocumentDB 查詢遊樂場](http://www.documentdb.com/sql/demo#geospatial)
 * 深入了解 [DocumentDB 查詢](documentdb-sql-query.md)
 * 深入了解 [DocumentDB 索引編製原則](documentdb-indexing-policies.md)

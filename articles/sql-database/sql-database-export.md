@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 7b96e8b144f329819596e3ff63e6febbbcc1ffb0
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: ff24360696c54091ab93e7e1c8f28d95c226bc0a
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -60,5 +60,5 @@ ms.lasthandoff: 03/18/2017
 
 * 如需有關整個 SQL Server 資料庫移轉程序的討論，請參閱[將 SQL Server 資料庫移轉至 Azure SQL Database](sql-database-cloud-migrate.md)。
 * 如需在 Azure 內複製資料庫的概觀，請參閱[複製 Azure SQL 資料庫](sql-database-copy.md)。
-* 您可以使用 [Azure 入口網站](sql-database-copy-portal.md)、[PowerShell](sql-database-copy-powershell.md)或 [Transact-SQL](sql-database-copy-transact-sql.md)，在 Azure 內複製 Azure SQL 資料庫。 
+* 您可以使用 [Azure 入口網站](sql-database-copy-portal.md)、[PowerShell](scripts/sql-database-copy-database-to-new-server-powershell.md)或 [Transact-SQL](sql-database-copy-transact-sql.md)，在 Azure 內複製 Azure SQL 資料庫。 
 

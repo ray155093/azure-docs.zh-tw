@@ -9,6 +9,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 3ec08d20-4f19-4a8e-ac86-639c04d2f12e
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,9 +17,9 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: dd5471da4d1e69b51d355784dfa2551bc61e9ad9
-ms.openlocfilehash: 508ea94278dc2410e5b9ea1ba760a8a923f12bbd
-ms.lasthandoff: 02/07/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 1d568bc6ab8f2801d575d726352f4c68e1f9277a
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -32,7 +33,7 @@ ms.lasthandoff: 02/07/2017
 * Linux 型 HDInsight 叢集。
 * 您必須[建立 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md) ，才能存取 ResourceManager 記錄 Web UI。
 
-## <a name="a-nameyarntimelineserverayarn-timeline-server"></a><a name="YARNTimelineServer"></a>YARN Timeline Server
+## <a name="YARNTimelineServer"></a>YARN Timeline Server
 [YARN Timeline Server (英文)](http://hadoop.apache.org/docs/r2.4.0/hadoop-yarn/hadoop-yarn-site/TimelineServer.html) 透過兩個不同的介面，提供完整應用程式的一般資訊，以及架構的特定應用程式資訊。 具體而言：
 
 * 儲存及擷取 HDInsight 叢集上泛型應用程式資訊的功能已在版本 3.1.1.374 或更新版本上啟用。
@@ -45,7 +46,7 @@ ms.lasthandoff: 02/07/2017
 * 為完成應用程式而進行之嘗試的相關資訊
 * 任何指定之應用程式嘗試所使用的容器
 
-## <a name="a-nameyarnappsandlogsayarn-applications-and-logs"></a><a name="YARNAppsAndLogs"></a>YARN 應用程式和記錄檔
+## <a name="YARNAppsAndLogs"></a>YARN 應用程式和記錄檔
 
 YARN 藉由將資源管理從應用程式排程/監視分離，支援多種程式設計模型 (MapReduce 為其中之一)。 這是透過全域 *ResourceManager* (RM)、每一背景工作節點 *ResourceManager* (NM) 及每一應用程式 *ResourceManager* (AM) 來達成。 每一應用程式 AM 會與 RM 交涉用來執行您應用程式的資源 (CPU、記憶體、磁碟、網路)。 RM 會與 NM 合作來授與這些資源 (以「 *容器*」的形式授與)。 AM 則是負責追蹤 RM 指派給它之容器的進度。 視應用程式的本質而定，一個應用程式可能會需要許多容器。
 
@@ -61,17 +62,14 @@ YARN 藉由將資源管理從應用程式排程/監視分離，支援多種程�
 
 ## <a name="yarn-cli-tools"></a>YARN CLI 工具
 
-若要使用 YARN CLI 工具，您必須先使用 SSH 連接到 HDInsight 叢集。 如需搭配 HDInsight 使用 SSH 的資訊，請參閱下列其中一個文件：
-
-* [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與 Linux 型 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
-* [從 Windows 在 HDInsight 上搭配使用 SSH 與 Linux 型 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+若要使用 YARN CLI 工具，您必須先使用 SSH 連接到 HDInsight 叢集。 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 您可以執行下列其中一個命令，以檢視這些純文字記錄：
 
     yarn logs -applicationId <applicationId> -appOwner <user-who-started-the-application>
     yarn logs -applicationId <applicationId> -appOwner <user-who-started-the-application> -containerId <containerId> -nodeAddress <worker-node-address>
 
-執行這些命令時，您必須指定 &lt;applicationId>、&lt;user-who-started-the-application>、&lt;containerId> 及 &ltworker-node-address> 資訊。
+執行這些命令時，您必須指定 &lt;applicationId>、&lt;user-who-started-the-application>、&lt;containerId> 及 &lt;worker-node-address> 資訊。
 
 ## <a name="yarn-resourcemanager-ui"></a>YARN ResourceManager UI
 YARN ResourceManager UI 會在叢集前端節點上執行，且您可透過 Ambari Web UI 加以存取；不過，您必須先 [建立 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md) ，才能存取 ResourceManager UI。

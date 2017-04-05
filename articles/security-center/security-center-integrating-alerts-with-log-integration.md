@@ -1,5 +1,5 @@
 ---
-title: "整合 Azure 資訊安全中心警示與 Azure 記錄整合 (預覽) | Microsoft Docs"
+title: "整合 Azure 資訊安全中心警示與 Azure 記錄整合 | Microsoft Docs"
 description: "本文可協助您開始整合資訊安全中心警示與 Azure 記錄整合。"
 services: security-center
 documentationcenter: na
@@ -12,15 +12,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/09/2016
+ms.date: 03/23/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
-ms.openlocfilehash: 32d26fa811f1b5b34981e40d20e6c941d5f08477
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: fcd14b6b0afe08db82f2b8050beaf03ece7fd212
+ms.lasthandoff: 03/24/2017
 
 
 ---
-# <a name="integrating-azure-security-center-alerts-with-azure-log-integration-preview"></a>整合 Azure 資訊安全中心警示與 Azure 記錄整合 (預覽)
+# <a name="integrating-azure-security-center-alerts-with-azure-log-integration"></a>整合 Azure 資訊安全中心警示與 Azure 記錄整合
 許多安全性作業和事件回應小組依賴安全性資訊及事件管理 (SIEM) 方案對安全性警示進行分級和調查做為起點。 利用 Azure 記錄整合，客戶可以將資訊安全中心警示，以及 Azure 診斷和 Azure 稽核記錄檔所收集的虛擬機器安全性事件，與其 Log Analytics 或 SIEM 方案以接近即時的方式進行同步處理。
 
 Azure 記錄整合可與 HP ArcSight、Splunk、IBM QRadar 等等搭配運作。
@@ -92,9 +93,4 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 * [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) — 了解如何管理與回應安全性警示。
 * [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 取得最新的 Azure 安全性新聞和資訊。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

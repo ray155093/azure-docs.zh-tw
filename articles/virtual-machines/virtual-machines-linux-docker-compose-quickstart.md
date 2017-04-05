@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 02/13/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: ad6401c1d18d44f56e0db9e7277f7ded995386bc
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 404b1784717d7a2e56e4154dd8995093b37a3bc1
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -42,7 +42,7 @@ ms.lasthandoff: 03/21/2017
 az group create --name myResourceGroup --location westus
 ```
 
-接下來，使用 [az group deployment create](/cli/azure/group/deployment#create) 部署 VM，其中包含 [Github 上此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)中的 Azure Docker VM 擴充功能。 針對 `newStorageAccountName`、`adminUsername`、`adminPassword` 和 `dnsNameForPublicIP` 提供您自己的值：
+接下來，使用 [az group deployment create](/cli/azure/group/deployment#create) 來部署 VM，其中包含來自 [GitHub 上此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)的 Azure Docker VM 擴充功能。 針對 `newStorageAccountName`、`adminUsername`、`adminPassword` 和 `dnsNameForPublicIP` 提供您自己的值：
 
 ```azurecli
 az group deployment create --resource-group myResourceGroup \
@@ -67,7 +67,7 @@ az vm show --resource-group myResourceGroup --name myDockerVM \
 ### <a name="azure-cli-10"></a>Azure CLI 1.0
 請安裝最新的 [Azure CLI 1.0](../cli-install-nodejs.md) 並登入 Azure 帳戶。 確定您是使用 Resource Manager 模式建立 VM (`azure config mode arm`)。
 
-下列範例會在 `West US` 位置中建立名為 `myResourceGroup` 的資源群組，並透過 Azure Docker VM 擴充功能部署 VM。 [來自 Github 的 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)用來部署環境︰
+下列範例會在 `West US` 位置中建立名為 `myResourceGroup` 的資源群組，並透過 Azure Docker VM 擴充功能部署 VM。 其中使用[來自 GitHub 的 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/docker-simple-on-ubuntu)來部署環境︰
 
 ```azurecli
 azure group create --name myResourceGroup --location "West US" \

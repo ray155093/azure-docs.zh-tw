@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/25/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 6b50b65fa1ad86c8e80fff0fb92352b1be52632e
-ms.openlocfilehash: db7066fb87175caa165d741b63f9b0e3f9ed851c
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 2faab833724bf4bb3f3262517e1d724868f7524d
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -39,8 +40,8 @@ ms.openlocfilehash: db7066fb87175caa165d741b63f9b0e3f9ed851c
 * [教學課程：使用 Azure Resource Manager 範本建立管線以複製資料](data-factory-copy-activity-tutorial-using-azure-resource-manager-template.md)
 * [教學課程：使用 Azure Resource Manager 範本建立管線以處理資料](data-factory-build-your-first-pipeline.md)
 
-## <a name="data-factory-templates-on-github"></a>Github 上的 Data Factory 範本
-請參考 Github 上的下列 Azure 快速啟動範本：
+## <a name="data-factory-templates-on-github"></a>GitHub 上的 Data Factory 範本
+請參考 GitHub 上的下列 Azure 快速入門範本：
 
 * [建立 Data Factory 以將資料從 Azure Blob 儲存體複製到 Azure SQL Database](https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-blob-to-sql-copy)
 * [在 Azure HDInsight 叢集上使用 Hive 活動建立 Data Factory](https://github.com/Azure/azure-quickstart-templates/tree/master/101-data-factory-hive-transformation)
@@ -252,9 +253,4 @@ dataFactoryName 在 “variables” 中定義為：
 > 雖然目前尚未支援匯出現有資料處理站的範本，但是目前正在努力中。
 >
 >
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

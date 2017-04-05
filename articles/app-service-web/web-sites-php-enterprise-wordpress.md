@@ -120,7 +120,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
 1. 使用 [WordPress 匯出][export]來匯出您的現有網站。
 2. 使用[建立 WordPress 網站](#Create-a-new-WordPress-site)一節中的步驟建立 Web 應用程式。
 3. 在 [Azure 入口網站][mgmtportal]上登入您的 WordPress 網站，然後按一下 [外掛程式] > [新增]。 搜尋與安裝 [WordPress Importer] 外掛程式。
-4. 在您安裝 WordPress Importer 外掛程式之後，按一下 [工具] > [匯入]，然後按一下 [WordPress] 以使用 WordPress Importer 外掛程式。
+4. 在您安裝 WordPress Importer 外掛程式之後，按一下 [工具] > [匯入]，然後按一下 **WordPress** 以使用 WordPress Importer 外掛程式。
 5. 在 [Import WordPress] 頁面上，按一下 [選擇檔案]。 尋找從您現有 WordPress 網站匯出的 WXR 檔案，然後按一下 [上傳檔案和匯入]。
 6. 按一下 [提交] 。 系統將提示您已成功匯入。
 7. 完成所有這些步驟之後，在 [Azure 入口網站][mgmtportal]中，從 [應用程式服務] 刀鋒視窗重新啟動您的網站。
@@ -144,7 +144,7 @@ Azure App Service 針對關鍵的大規模 [WordPress][wordpress] 網站，提�
    3. 更新資料庫以將網域項目變更為新的 Azure App Service 網域，例如 mywordpress.azurewebsites.net。 使用[搜尋與取代 WordPress 資料庫指令碼][searchandreplace]，以安全的方式變更所有執行個體。
 4. 在 Azure 入口網站中建立 Web 應用程式，並發佈 WordPress 備份。
 
-   1. 若要建立具有資料庫的 Web 應用程式，請在 [Azure 入口網站][mgmtportal]中，按一下 [新增] > [Web + 行動] > [Azure Marketplace] > [Web Apps] > [Web 應用程式 + SQL] (或者 [Web 應用程式 + MySQL]) > [建立]。 設定所有必要的設定，來建立空的 Web 應用程式。
+   1. 若要建立具有資料庫的 Web 應用程式，請在 [Azure 入口網站][mgmtportal]中，按一下 [新增] > [Web + 行動] > [Azure Marketplace] > [Web Apps] > [Web 應用程式 + SQL] \(或者 [Web 應用程式 + MySQL]) > [建立]。 設定所有必要的設定，來建立空的 Web 應用程式。
    2. 在您的 WordPress 備份中，尋找 **wp-config.php** 檔案，並在編輯器中開啟該檔案。 使用新 MySQL 資料庫的資訊來取代下列項目：
 
       * **DB_NAME**：資料庫的使用者名稱。

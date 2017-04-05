@@ -4,6 +4,7 @@
 # 開始使用
 ## [在入口網站中部署擴展集](virtual-machine-scale-sets-portal-create.md)
 ## [使用 PowerShell 或 Azure CLI 部署擴展集](virtual-machine-scale-sets-create.md)
+## [使用範本部署自動調整應用程式](virtual-machine-scale-sets-deploy-scaling-app-template.md)
 
 # 作法
 ## 規劃和設計

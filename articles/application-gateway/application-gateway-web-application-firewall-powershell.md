@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 03/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
-ms.openlocfilehash: bcff92a362c7f8ad1c69b93af07d77e0d03b6a92
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 52b7728c3fc702e37f5c5fe3d6544117a11464e8
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.openlocfilehash: bcff92a362c7f8ad1c69b93af07d77e0d03b6a92
 
 Azure 應用程式閘道中的 Web 應用程式防火牆 (WAF) 可保護 Web 應用程式，不致遭受常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。
 
-Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。 若要尋找完整的支援功能清單，請瀏覽應用程式閘道概觀
+Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。 若要尋找完整的支援功能清單，請瀏覽應用程式閘道概觀
 
 下列文章說明如何[將 Web 應用程式防火牆新增至現有應用程式閘道](#add-web-application-firewall-to-an-existing-application-gateway)和[建立使用 Web 應用程式防火牆的應用程式閘道](#create-an-application-gateway-with-web-application-firewall)。
 
@@ -66,7 +67,7 @@ Select-AzureRmSubscription -SubscriptionName "<Subscription name>"
 
 ### <a name="step-3"></a>步驟 3
 
-擷取要將 Web 應用程式防火牆新增到的閘道。
+擷取要在其中新增 Web 應用程式防火牆的閘道。
 
 ```powershell
 $gw = Get-AzureRmApplicationGateway -Name "AdatumGateway" -ResourceGroupName "MyResourceGroup"
@@ -98,11 +99,11 @@ $gw | Set-AzureRmApplicationGatewayWebApplicationFirewallConfiguration -Enabled 
 Set-AzureRmApplicationGateway -ApplicationGateway $gw
 ```
 
-此命令會使用 Web 應用程式防火牆更新應用程式閘道。 建議您檢視 [應用程式閘道診斷](application-gateway-diagnostics.md) 來了解如何檢視應用程式閘道中的記錄檔。 由於 WAF 的安全性本質，您必須定期檢閱記錄檔，以了解 Web 應用程式的安全性狀態。
+此命令會更新具有 Web 應用程式防火牆的應用程式閘道。 建議您檢視 [應用程式閘道診斷](application-gateway-diagnostics.md) 來了解如何檢視應用程式閘道中的記錄檔。 由於 WAF 的安全性本質，您必須定期檢閱記錄檔，以了解 Web 應用程式的安全性狀態。
 
-## <a name="create-an-application-gateway-with-web-application-firewall"></a>使用 Web 應用程式防火牆來建立應用程式閘道
+## <a name="create-an-application-gateway-with-web-application-firewall"></a>建立具有 Web 應用程式防火牆的應用程式閘道
 
-下列步驟會帶您從頭到尾完成使用 Web 應用程式防火牆來建立應用程式閘道的整個程序。
+下列步驟會帶您從頭到尾完成建立具有 Web 應用程式防火牆之應用程式閘道的整個程序。
 
 確定您使用最新版本的 Azure PowerShell。 如需詳細資訊，請參閱 [搭配使用 Windows PowerShell 與資源管理員](../powershell-azure-resource-manager.md)。
 
@@ -298,6 +299,9 @@ $config = New-AzureRmApplicationGatewayWebApplicationFirewallConfiguration -Enab
 $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg -Location "West US" -BackendAddressPools $pool -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig  -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku -WebApplicationFirewallConfig $config -SslCertificates $cert -AuthenticationCertificates $authcert
 ```
 
+> [!NOTE]
+> 基於保護的目的，使用基本 Web 應用程式防火牆設定建立的應用程式閘道，是使用 CRS 3.0 所設定。
+
 ## <a name="get-application-gateway-dns-name"></a>取得應用程式閘道 DNS 名稱
 
 建立閘道之後，下一步是設定通訊的前端。 當使用公用 IP 時，應用程式閘道需要動態指派的 DNS 名稱 (不易記住)。 為了確保使用者可以叫用應用程式閘道，可使用 CNAME 記錄來指向應用程式閘道的公用端點。 [在 Azure 中設定自訂網域名稱](../cloud-services/cloud-services-custom-domain-name-portal.md)。 做法是使用連接至應用程式閘道的 PublicIPAddress 元素，擷取應用程式閘道的詳細資料及其關聯的 IP/DNS 名稱。 應用程式閘道的 DNS 名稱應該用來建立將兩個 Web 應用程式指向此 DNS 名稱的 CNAME 記錄。 不建議使用 A-records，因為重新啟動應用程式閘道時，VIP 可能會變更。
@@ -330,12 +334,7 @@ DnsSettings              : {
 
 ## <a name="next-steps"></a>後續步驟
 
-請造訪 [應用程式閘道診斷](application-gateway-diagnostics.md)
+請參閱[應用程式閘道診斷](application-gateway-diagnostics.md)，以了解如何設定診斷記錄，以及如何記錄 Web 應用程式防火牆偵測到或防止的事件
 
 [scenario]: ./media/application-gateway-web-application-firewall-powershell/scenario.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

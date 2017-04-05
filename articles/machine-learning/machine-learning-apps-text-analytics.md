@@ -12,11 +12,14 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/09/2017
+ms.date: 04/04/2017
 ms.author: onewth
+ROBOTS: NOINDEX, NOFOLLOW
+redirect_url: ../cognitive-services/cognitive-services-text-analytics-quick-start
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: f4389705a81b531bd706cbabc0b4c3b171febd5f
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -360,10 +363,5 @@ API 會以下列格式傳回 JSON 格式的輸出：
 | 識別碼 |記錄的識別碼。 等於輸入中包含的識別碼。 |
 | TopicId |已獲指派記錄的主題識別碼。 |
 | Distance |記錄屬於主題的信賴度。 Distance 越接近零，表示信賴度越高。 |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

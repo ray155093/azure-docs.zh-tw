@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/22/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 4fc454a8c7974b8f53cd6621639dd5b575cc66f7
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 5c427ddbe408fc42403eb6738d1983c220e899a7
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -65,7 +65,7 @@ ms.lasthandoff: 03/22/2017
 * [在建立 VM 時，我的構件失敗了。我該如何進行疑難排解？](#my-artifact-failed-during-vm-creation-how-do-i-troubleshoot-it)
 * [為何我現有的虛擬網路未能正確儲存？](#why-isnt-my-existing-virtual-network-saving-properly)
 * [為何我從 PowerShell 佈建時遇到「找不到父資源」錯誤？](#why-do-i-get-a-parent-resource-not-found-error-when-provisioning-a-vm-from-powershell)  
-* [當 VM 部署失敗時，我可以在哪裡找到更多錯誤資訊](#where-can-i-find-more-error-information-when-vm-deployment-is-failed)  
+* [當 VM 部署失敗時，我可以在哪裡找到更多錯誤資訊？](#where-can-i-find-more-error-information-if-a-vm-deployment-fails)  
 
 ### <a name="what-if-my-question-isnt-answered-here"></a>如果這裡沒有解答我的問題該怎麼辦？
 如果這裡未列出您的問題，請告訴我們，好讓我們能協助您找到答案。
@@ -98,9 +98,9 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 ### <a name="what-are-the-different-security-levels-in-azure-devtest-labs"></a>Azure DevTest Labs 中有哪些不同的安全性層級？
 安全性存取權是由 [Azure 角色型存取控制 (RBAC)](../active-directory/role-based-access-built-in-roles.md)所決定。 若要了解存取權的運作方式，了解 RBAC 所定義的權限、角色和範圍之間的差異將有所幫助。
 
-* **權限** - 權限是針對特定動作所定義的存取權。 例如，權限可能是所有虛擬機器的讀取權限。
+* **權限** - 權限是針對特定動作所定義的存取權。 例如，權限可以是對所有虛擬機器的讀取權限。
 * **角色** - 角色是一組可以分組並指派給使用者的權限。 例如，「訂用帳戶擁有者」擁有訂用帳戶內所有資源的存取權。
-* **範圍** - 範圍是 Azure 資源階層中的層級。 例如，範圍可能是一個資源群組、單一實驗室或整個訂用帳戶。
+* **範圍** - 範圍是 Azure 資源階層中的層級。 例如，範圍可以是一個資源群組、單一實驗室或整個訂用帳戶。
 
 在 Azure DevTest Labs 的範圍內有兩種可用來定義使用者權限的角色類型︰實驗室擁有者和實驗室使用者。
 
@@ -160,7 +160,7 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 ### <a name="if-i-want-to-use-a-windows-os-image-for-my-testing-do-i-have-to-purchase-an-msdn-subscription"></a>如果我想要使用 Windows 作業系統映像進行測試，是否應購買 MSDN 訂用帳戶？
 如果您需要針對 Azure 中的開發或測試使用 Windows 用戶端 OS 映像 (Windows 7 或更新版本)，則答案為「是」，且您必須執行下列其中一項動作：
 
-- [購買 MSDN 訂閱](https://www.visualstudio.com/products/how-to-buy-vs)。 
+- [購買 MSDN 訂閱](https://www.visualstudio.com/products/how-to-buy-vs)。
 - 如果您有 Enterprise 合約，請以 [Enterprise 開發/測試優惠](https://azure.microsoft.com/en-us/offers/ms-azr-0148p)建立 Azure 訂用帳戶。
 
 如需每個 MSDN 優惠之 Azure 點數的詳細資訊，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/)。
@@ -216,10 +216,10 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 
 
 ### <a name="what-are-artifacts"></a>何謂構件？
-構件是可用來在 VM 中部署最新版本或開發工具的可自訂項目。 只要按幾下滑鼠，構件就會在 VM 建立期間與其連接，而在 VM 佈建好之後，構件就會部署並設定 VM。 我們的[公用 Github 存放庫](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts)中有許多既存構件，但您也可以輕易地[撰寫自己的構件](devtest-lab-artifact-author.md)。
+構件是可用來在 VM 中部署最新版本或開發工具的可自訂項目。 只要按幾下滑鼠，構件就會在 VM 建立期間與其連接，而在 VM 佈建好之後，構件就會部署並設定 VM。 我們的[公用 GitHub 存放庫](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts)中有許多既存構件，但您也可以輕易地[撰寫自己的構件](devtest-lab-artifact-author.md)。
 
 ### <a name="how-do-i-create-a-lab-from-an-azure-resource-manager-template"></a>如何從 Azure Resource Manager 範本建立實驗室？
-我們已提供一個 [實驗室 Azure Resource Manager 範本的 Github 儲存機制](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates) ，您可以依原狀部署，或是加以修改來為您的實驗室建立自訂範本。 這些範本都各有可供點按的連結，可讓您在自己的 Azure 訂用帳戶下依原狀部署實驗室，或者您也可以自訂範本並 [使用 PowerShell 或 Azure CLI 進行部署](../azure-resource-manager/resource-group-template-deploy.md)。
+我們已提供一個 [實驗室 Azure Resource Manager 範本的 GitHub 存放庫](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)，您可以依原狀部署，或是加以修改來為您的實驗室建立自訂範本。 這些範本都各有可供點按的連結，可讓您在自己的 Azure 訂用帳戶下依原狀部署實驗室，或者您也可以自訂範本並 [使用 PowerShell 或 Azure CLI 進行部署](../azure-resource-manager/resource-group-template-deploy.md)。
 
 ### <a name="why-are-my-vms-created-in-different-resource-groups-with-arbitrary-names-can-i-rename-or-modify-these-resource-groups"></a>為何我的 VM 會建立在具有任意名稱的不同資源群組中？ 我是否可以重新命名或修改這些資源群組？
 之所以用這種方式建立資源群組，是為了讓 Azure DevTest Labs 管理使用者對虛擬機器的權限和存取權。 雖然可以將 VM 移到另一個具有您所需名稱的資源群組，但不建議這樣做。 我們正致力於改善這個體驗，以增加更多彈性。   
@@ -237,7 +237,7 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 2. 從瀏覽器複製實驗室 URL，然後與您的實驗室使用者共用。
 
 > [!NOTE]
-> 如果您的實驗室使用者是具有 [Microsoft 帳戶](#what-is-a-microsoft-account)的外部使用者，而不屬於貴公司的 Active directory，則當他們瀏覽至所提供的連結時，可能會收到錯誤。 如果他們收到錯誤，請指示他們按一下他們在 Azure 入口網站中右上角的名稱，然後從功能表的 [目錄]  區段中選取實驗室所在的目錄。
+> 如果您的實驗室使用者是具有 [Microsoft 帳戶](#what-is-a-microsoft-account)的外部使用者，而且不屬於貴公司的 Active Directory，則當他們瀏覽至所提供的連結時，可能會收到錯誤。 如果他們收到錯誤，請指示他們按一下他們在 Azure 入口網站中右上角的名稱，然後從功能表的 [目錄]  區段中選取實驗室所在的目錄。
 >
 >
 
@@ -261,7 +261,7 @@ Microsoft 帳戶是您使用 Microsoft 裝置和服務來執行幾乎所有作�
 VM 是資源群組中實驗室下的子資源。 當您使用 Azure 資源範本透過 PowerShell 部署時，PowerShell 指令碼中提供的資源群組名稱應該是實驗室的資源群組名稱。 如需詳細資訊，請參閱[對常見的 Azure 部署錯誤進行疑難排解](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-common-deployment-errors#parentresourcenotfound)。
 
 ### <a name="where-can-i-find-more-error-information-if-a-vm-deployment-fails"></a>當 VM 部署失敗時，我可以在哪裡找到更多錯誤資訊？
-VM 部署錯誤會擷取至活動記錄中。 您可以透過實驗室 VM 刀鋒視窗 (在您從 [我的虛擬機器] 清單中選取 VM 之後所顯示的刀鋒視窗) 中資源功能表上的 [稽核記錄] 或 [虛擬機器診斷] 來找到實驗室 VM 活動記錄。 
+VM 部署錯誤會擷取至活動記錄中。 您可以透過實驗室 VM 刀鋒視窗 (在您從 [我的虛擬機器] 清單中選取 VM 之後所顯示的刀鋒視窗) 中資源功能表上的 [稽核記錄] 或 [虛擬機器診斷] 來找到實驗室 VM 活動記錄。
 
 有時候，部署錯誤會在 VM 部署開始之前發生，例如超過以 VM 建立之資源的訂用帳戶限制。 在此情況下，錯誤詳細資料會擷取至實驗室層級 [活動記錄]，您可以在 [設定和原則] 設定的底部找到它。 如需在 Azure 中使用活動記錄的詳細資訊，請參閱[檢視活動記錄以稽核對資源的動作](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-audit)。
 

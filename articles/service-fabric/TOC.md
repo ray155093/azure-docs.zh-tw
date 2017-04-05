@@ -57,16 +57,19 @@
 #### 開始使用
 ##### [Windows 上的 C# ](service-fabric-reliable-services-quick-start.md)
 ##### [在 Linux 上使用 Java](service-fabric-reliable-services-quick-start-java.md)
-#### [Reliable Services lifecycle](service-fabric-reliable-services-lifecycle.md)
+#### [Reliable Services 生命週期 - C#](service-fabric-reliable-services-lifecycle.md)
+#### [Reliable Services 生命週期 - Java](service-fabric-reliable-services-lifecycle-java.md)
 #### [可靠集合](service-fabric-reliable-services-reliable-collections.md)
 #### [使用 Reliable Collections](service-fabric-work-with-reliable-collections.md)
 #### [設定](service-fabric-reliable-services-configuration.md)
 #### [通知](service-fabric-reliable-services-notifications.md)
 #### [備份與還原](service-fabric-reliable-services-backup-restore.md)
 #### [與 Reliable Services 通訊](service-fabric-reliable-services-communication.md)
-#### [使用 Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
+#### [使用 Reliable Services 的安全通訊 - C#](service-fabric-reliable-services-secure-communication.md)
+#### [使用 Reliable Services 的安全通訊 - Java](service-fabric-reliable-services-secure-communication-java.md)
 ##### [ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md)
-##### [服務遠端處理](service-fabric-reliable-services-communication-remoting.md)
+##### [服務遠端處理 - C#](service-fabric-reliable-services-communication-remoting.md)
+##### [服務遠端處理 - Java](service-fabric-reliable-services-communication-remoting-java.md)
 ##### [WCF](service-fabric-reliable-services-communication-wcf.md)
 ##### [反向 proxy](service-fabric-reverseproxy.md)
 #### [進階用量](service-fabric-reliable-services-advanced-usage.md)
@@ -104,6 +107,7 @@
 #### [使用 Azure CLI 管理叢集](service-fabric-azure-cli.md) 
 #### [保護叢集](service-fabric-cluster-security.md)
 #### [災害復原](service-fabric-disaster-recovery.md)
+#### [Linux 和 Windows 間的功能差異](service-fabric-linux-windows-differences.md)
 
 ### Azure 上的叢集
 #### 在 Azure 上建立叢集

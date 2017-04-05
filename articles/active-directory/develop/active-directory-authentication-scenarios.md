@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 01/07/2017
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: f67e96618ea25e4463a4fdf83ea20f238498fac0
-ms.openlocfilehash: 838a19ef05adad59e0317fb62e2acec8a40d7a64
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 97c6724261e35063c461ee95ccad36372dd907db
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -113,7 +113,7 @@ Azure AD 所簽發的安全性權杖包含宣告，或已驗證之主體的相�
 本文件列出的每個案例都有一個小節來說明其佈建需求。 如需關於在 Azure AD 中佈建應用程式的深入資訊，以及了解單一和多租用戶應用程式之間的差異，請參閱 [整合應用程式與 Azure Active Directory](active-directory-integrating-applications.md) ，以取得詳細資訊。 繼續閱讀來了解 Azure AD 中常見的應用程式案例。
 
 ## <a name="application-types-and-scenarios"></a>應用程式類型和案例
-本文件中所述的每個案例也可以使用各種語言和平台進行開發。 它們皆有完整的程式碼範例支援，這些程式碼範例是在我們的[程式碼範例指南](active-directory-code-samples.md)中，或者直接從相對應的 [Github 範例儲存機制](https://github.com/Azure-Samples?utf8=%E2%9C%93&query=active-directory)提供使用。 此外，如果您的應用程式需要端對端案例的特定片段或區段，在大部分情況下可以獨立加入這項功能。 例如，如果您有一個呼叫 Web API 的原生應用程式，您可以輕鬆加入也會呼叫該 Web API 的 Web 應用程式。 下圖說明這些案例和應用程式類型，以及如何加入不同的元件：
+本文件中所述的每個案例也可以使用各種語言和平台進行開發。 它們皆有完整的程式碼範例支援，這些程式碼範例是在我們的[程式碼範例指南](active-directory-code-samples.md)中，或者直接從相對應的 [GitHub 範例存放庫](https://github.com/Azure-Samples?utf8=%E2%9C%93&query=active-directory)提供使用。 此外，如果您的應用程式需要端對端案例的特定片段或區段，在大部分情況下可以獨立加入這項功能。 例如，如果您有一個呼叫 Web API 的原生應用程式，您可以輕鬆加入也會呼叫該 Web API 的 Web 應用程式。 下圖說明這些案例和應用程式類型，以及如何加入不同的元件：
 
 ![應用程式類型和案例](./media/active-directory-authentication-scenarios/application_types_and_scenarios.png)
 

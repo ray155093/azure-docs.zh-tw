@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: 41be26b5dc3b7333521f02053ecb4b6ae1b17f73
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 2ef27dc58e12d1b9e8eed54239332a53860ddd52
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -32,7 +32,7 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
 [!INCLUDE [storage-mobile-authentication-guidance](../../includes/storage-mobile-authentication-guidance.md)]
 
 ## <a name="create-a-new-xamarin-application"></a>建立新的 Xamarin 應用程式
-針對此教學課程，我們將建立以 Android、iOS 和 Windows 為目標的應用程式。 此應用程式只會建立容器，並將 blob 上傳到此容器。 我們將在 Windows 上使用 Visual Studio，但是在 Mac OS 上建立使用 Xamarin Studio 的應用程式時，可以套用相同的做法。
+針對此教學課程，我們將建立以 Android、iOS 和 Windows 為目標的應用程式。 此應用程式只會建立容器，並將 blob 上傳到此容器。 我們將在 Windows 上使用 Visual Studio，但是在 macOS 上使用 Xamarin Studio 建立應用程式時，可以套用相同的做法。
 
 請遵循下列步驟來建立應用程式：
 

@@ -2,9 +2,9 @@
 redirect_url: https://azure.microsoft.com/services/documentdb/
 ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: d59ebef3cda36ba048b844f0cd2326fff66b4aa5
-ms.openlocfilehash: c5fc68fb25a4cb2166e0c0a72871d16c71397852
-ms.lasthandoff: 01/21/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 0ca716857733290fad4278e3be5059408bb75393
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -91,7 +91,7 @@ DocumentDB 支援對於每一個查詢使用單一數值、字串或布林值屬
 
 
 ## <a name="samples"></a>範例
-請參閱示範如何使用 Order By 的 [Github 範例專案](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/Queries) ，其內容包括使用 Order By 建立索引編製原則和分頁。 這些範例是開放原始碼，我們鼓勵您提交提取要求，並附上可幫助其他 DocumentDB 開發人員的貢獻。 請參閱 [貢獻指導方針](https://github.com/Azure/azure-documentdb-net/blob/master/Contributing.md) ，以取得有關如何貢獻的指引。  
+請參閱這個示範如何使用 Order By 的 [GitHub 範例專案](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/Queries)，其內容包括使用 Order By 建立索引編製原則和分頁。 這些範例是開放原始碼，我們鼓勵您提交提取要求，並附上可幫助其他 DocumentDB 開發人員的貢獻。 請參閱 [貢獻指導方針](https://github.com/Azure/azure-documentdb-net/blob/master/Contributing.md) ，以取得有關如何貢獻的指引。  
 
 ## <a name="faq"></a>常見問題集
 **Order By 查詢的預期要求單位 (RU) 耗用量有多高？**
@@ -124,7 +124,7 @@ DocumentDB 支援對於每一個查詢使用單一數值、字串或布林值屬
 如果您收到錯誤說明不支援 Order By，請檢查並確定您正在使用的 [SDK](documentdb-sdk-dotnet.md) 版本可支援 Order By。 
 
 ## <a name="next-steps"></a>後續步驟
-取用 [Github 範例專案](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/Queries) 並開始排序您的資料 ！ 
+取用 [GitHub 範例專案](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/Queries)，並開始排序您的資料 ！ 
 
 ## <a name="references"></a>參考
 * [DocumentDB 查詢參考](documentdb-sql-query.md)

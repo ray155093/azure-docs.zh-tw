@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/13/2017
+ms.date: 03/28/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 4f8ff754858dfb12a7c1fb6e11b1ea99d99d4aeb
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 7fe9111061fed4af6aa720d0b158e5b4f2becd90
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -29,6 +29,7 @@ Microsoft Azure 包括強大網路基礎結構以支援您的應用程式和服�
 本＜Azure 網路安全性概觀＞一文將著重於下列項目︰
 
 * Azure 網路
+* Azure 網路監看員
 * 網路存取控制
 * 安全遠端存取和跨單位連線
 * Availability
@@ -43,6 +44,18 @@ Microsoft Azure 包括強大網路基礎結構以支援您的應用程式和服�
 深入了解：
 
 * [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)
+
+## <a name="azure-network-watcher"></a>Azure 網路監看員
+Azure 網路監看員包含大量的網路監視功能，可協助對問題進行疑難排解，以及提供可協助識別安全性問題的全新工具集。
+
+[安全性群組檢視](/network-watcher/network-watcher-security-group-view-overview.md)可為虛擬機器的稽核與安全性合規性提供協助，並可以用來以程式設計方式執行稽核，將由貴組織所定義的基準原則，與您每個 VM 的有效規則進行比較。 這可以協助您識別所有設定漂移。
+
+[封包擷取](/network-watcher/network-watcher-packet-capture-overview.md)可讓您擷取傳送至虛擬機器，或是自虛擬機器傳送的網路流量。 除了讓您收集網路統計資料，以及對應用程式問題進行疑難排解之外，封包擷取在調查網路入侵上，也能提供非常寶貴的協助。 您可以搭配 Azure Functions 使用此功能，來開始針對特定 Azure 警示進行網路擷取。
+
+如需 Azure 網路監看員的詳細資訊，以及如何開始在實驗室中測試部分功能，請參閱 [Azure 網路監看員監視概觀](/network-watcher/network-watcher-monitoring-overview.md)
+
+>[!NOTE]
+Azure 網路監看員目前仍為公開預覽，因此可能沒有與正式發行版本服務相同層級的可用性和可靠性。 可能不支援特定功能、可能有限制的功能，且可能無法在所有 Azure 位置提供使用。 如需此服務可用性和狀態的最新通知，請查看 [Azure 更新頁面](https://azure.microsoft.com/updates/?product=network-watcher)
 
 ## <a name="network-access-control"></a>網路存取控制
 網路存取控制是指限制與 Azure 虛擬網路內特定裝置或子網路間之連線的動作。 網路存取控制的目的是確定只有您想要它們存取的使用者和裝置，才能存取您的虛擬機器和服務。 存取控制是根據您虛擬機器或服務間之連線的允許或拒絕決策。
@@ -213,6 +226,7 @@ Azure 網路支援下列安全遠端存取案例︰
 深入了解：
 
 * [網路安全性群組 (NSG) 的 Log Analytics](../virtual-network/virtual-network-nsg-manage-log.md)
+
 
 ## <a name="name-resolution"></a>名稱解析
 名稱解析是您在 Azure 中裝載之所有服務的重大功能。 從安全性角度來看，入侵名稱解析功能可能會導致攻擊者將您網站的要求重新導向到攻擊者的網站。 安全名稱解析是所有雲端裝載服務的需求。

@@ -12,12 +12,12 @@ ms.workload: multiple
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/31/2017
+ms.date: 03/29/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: cd4de75743ee46bb07aec2cf23fa7687f4f20f43
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 892d24199be5065ee54d46863cca2fd958db3236
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -114,13 +114,9 @@ ms.lasthandoff: 03/22/2017
 * 流量管理員
 * 虛擬機器 - 若虛擬機器的憑證儲存在 Key Vault，它並不支援移動至新的訂用帳戶
 * 虛擬機器 (傳統) - 請參閱 [傳統部署限制](#classic-deployment-limitations)
-* 虛擬網路
+* 虛擬網路 - 目前，在停用 VNet 對等互連之前，將無法移動對等的虛擬網路。 一旦停用之後，就能成功移動虛擬網路，並接著啟用 VNet 對等互連。
+* VPN 閘道 
 
-> [!NOTE] 
-> 目前無法移動包含「VPN 閘道」的「虛擬網路」，除非先將「閘道」暫時移除。 一旦移除後，就能成功移動「虛擬網路」，然後可以建立該「閘道」。
->
-> 目前在停用 VNet 對等互連之前，將無法移動對等的虛擬網路。 一旦停用之後，就能成功移動虛擬網路，並接著啟用 VNet 對等互連。
->
  
 ## <a name="services-that-do-not-enable-move"></a>不啟用移動的服務
 目前不啟用移動資源的服務有：
@@ -137,9 +133,14 @@ ms.lasthandoff: 03/22/2017
 * 安全性
 * 憑證儲存在金鑰保存庫的虛擬機器
 * 使用受控磁碟的虛擬機器
+* 具有使用受控磁碟之虛擬機器的可用性設定組
+* 使用受控磁碟的虛擬機器擴展集
+* 受控磁碟
+* 從受控磁碟建立的映像
+* 從受控磁碟建立的快照集
 * 虛擬機器擴展集
 * 虛擬網路 (傳統) - 請參閱 [傳統部署限制](#classic-deployment-limitations)
-* VPN 閘道
+* 從 Marketplace 資源建立的虛擬機器 - 無法在訂用帳戶之間移動。 資源必須先在目前的訂用帳戶中取消佈建，並於新訂用帳戶中再次部署
 
 ## <a name="app-service-limitations"></a>App Service 限制
 使用 App Service 應用程式時，您無法只移動 App Service 方案。 若要移動 App Service 應用程式，您的選項如下：

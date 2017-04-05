@@ -1,6 +1,6 @@
 ---
 title: "Azure 匯入/匯出資訊清單檔案格式 | Microsoft Docs"
-description: "深入了解描述 Azure Blob 儲存體中的 Blob 與匯入匯出服務中的匯入或匯出工作中的磁碟機上的檔案之間的對應"
+description: "了解磁碟機資訊清單檔案的格式，此檔案描述在 Azure Blob 儲存體中的 Blob 以及匯入/匯出服務內匯入或匯出作業中磁碟機上的檔案之間的對應。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 8de848b1192ff1c10e0375053c4e03f18c06184e
-ms.openlocfilehash: 2c76120a967aabf546fdb5246478f78e8cf47f94
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: d56754c9c205ddc4933b29e8f4891a56f42496e9
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -90,7 +90,10 @@ block-list ::=
       [<Block Offset="block-offset" Length="block-length" [Id="block-id"]   
        Hash="md5-hash"/>]  
     </BlockList>  
+
 ```
+
+## <a name="manifest-xml-elements-and-attributes"></a>資訊清單的 XML 元素和屬性
 
 下表指定磁碟機資訊清單 XML 格式的資料元素和屬性。  
   
@@ -131,6 +134,7 @@ block-list ::=
 |`Blob/PropertiesPath`|String|選用。 指定屬性檔案的相對路徑。 匯入期間，會在目的地 Blob 上設定屬性。 匯出作業期間，Blob 屬性會儲存在磁碟機上的屬性檔案。|  
 |`Blob/PropertiesPath/@Hash`|屬性、字串|為 Blob 的屬性檔案指定 Base16 式編碼的 MD5 雜湊。|  
   
-## <a name="see-also"></a>另請參閱  
-[儲存體匯入/匯出 REST](/rest/api/storageimportexport/)
+## <a name="next-steps"></a>後續步驟
+ 
+* [儲存體匯入/匯出 REST API](/rest/api/storageimportexport/)
 

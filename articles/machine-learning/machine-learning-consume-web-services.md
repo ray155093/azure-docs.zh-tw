@@ -15,8 +15,9 @@ ms.workload: tbd
 ms.date: 01/05/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: ecb2ab00b56476b4373fa06cb766384cb2fcd514
-ms.openlocfilehash: fceb4254461bd91fd2da8603af4fefa47def72e8
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: f4f3caed8390ba3a80d6cf1282f4d2751c67ae6b
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -523,7 +524,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
     }
 
 #### <a name="sample-code-in-java-for-bes"></a>Java 中適用於 BES 的範例程式碼
-批次執行服務 REST API 會採用包含輸入範例 csv 和輸出範例 csv 的參考的 JSON (如下列範例所示)，並在 Azure ML 中建立作業以執行批次預測。 您可以在 [Github](https://github.com/nk773/AzureML_BESApp/tree/master/src/azureml_besapp)中檢視完整的程式碼。 此 Java 範例需要使用 [apache http 用戶端程式庫](https://hc.apache.org/downloads.cgi)。 
+批次執行服務 REST API 會採用包含輸入範例 csv 和輸出範例 csv 的參考的 JSON (如下列範例所示)，並在 Azure ML 中建立作業以執行批次預測。 您可以在 [GitHub](https://github.com/nk773/AzureML_BESApp/tree/master/src/azureml_besapp) 中檢視完整的程式碼。 此 Java 範例需要使用 [apache http 用戶端程式庫](https://hc.apache.org/downloads.cgi)。 
 
     { "GlobalParameters": {}, 
         "Inputs": { "input1": { "ConnectionString":     "DefaultEndpointsProtocol=https;
@@ -730,9 +731,4 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
 <!-- External Links -->
 [webservicesportal]: https://services.azureml.net/
 [mlstudio]: https://studio.azureml.net
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 11/30/2016
 ms.author: priyamo
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: 006ebbbc3f6f745f60c5fc6646649097e144beaf
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: d2dd84007832c56f5893f0ea9f5effcf5ec5816b
+ms.lasthandoff: 03/29/2017
 
 ---
 
@@ -61,5 +61,5 @@ ms.lasthandoff: 03/17/2017
 ## <a name="next-steps"></a>後續步驟
 
 1. 查看[快速入門](active-directory-developers-guide.md)，以取得使用 Azure AD 執行應用程式驗證的詳細逐步解說。
-2. 查看 [Github](https://github.com/azure-samples) 中完整的程式碼範例清單。
+2. 查看 [GitHub](https://github.com/azure-samples) 中完整的程式碼範例清單。
 

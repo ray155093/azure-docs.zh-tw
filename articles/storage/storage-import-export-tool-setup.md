@@ -1,6 +1,6 @@
 ---
 title: "設定 Azure 匯入/匯出工具 | Microsoft Docs"
-description: "了解如何設定 Azure 匯入/匯出服務的磁碟機準備及修復工具"
+description: "了解如何設定 Azure 匯入/匯出服務的磁碟機準備及修復工具。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 41bc5585f3d9dea2a08dc8a6bc1e4fdf9f0c8fc4
-ms.openlocfilehash: cc7107ce89c063ae69184039893d9c28c912db08
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 2aebded82fcf67bf9ad4a00a703e62eb12e2370c
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -55,9 +56,9 @@ Microsoft Azure 匯入/匯出工具是磁碟機準備及修復工具，可搭配
 
 ## <a name="installing-the-azure-importexport-tool"></a>安裝 Azure 匯入/匯出工具
 
-首先，[下載 Azure 匯入/匯出工具](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExport.zip)並解壓縮至您電腦上的目錄，例如`c:\WAImportExport`。
+首先，[下載 Azure 匯入/匯出工具](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExport.zip)並解壓縮至您電腦上的目錄，例如 `c:\WAImportExport`。
 
-Azure 匯入/匯出工具包含下列檔案︰
+Azure 匯入/匯出工具包含下列檔案：
 
 * dataset.csv
 * driveset.csv
@@ -74,7 +75,7 @@ Azure 匯入/匯出工具包含下列檔案︰
 若要輸出命令的說明，執行此工具而不包含參數︰
 
 ```
-WAImportExport, a client tool for Windows Azure Import/Export Service. Microsoft (c) 2013
+WAImportExport, a client tool for Windows Azure Import/Export service. Microsoft (c) 2013
 
 
 Copy directories and/or files with a new copy session:
@@ -177,7 +178,7 @@ Parameters:
     /ExportBlobListFile:<ExportBlobListFile>
         - Required. Path to the XML file containing list of blob paths or blob path
           prefixes for the blobs to be exported. The file format is the same as the
-          blob list blob format in the Put Job operation of the Import/Export Service
+          blob list blob format in the Put Job operation of the Import/Export service
           REST API.
     /DriveSize:<DriveSize>
         - Required. Size of drives to be used for export. For example, 500GB, 1.5TB.
@@ -223,9 +224,4 @@ Examples:
 * [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)
 * [修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)
 * [針對 Azure 匯入/匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

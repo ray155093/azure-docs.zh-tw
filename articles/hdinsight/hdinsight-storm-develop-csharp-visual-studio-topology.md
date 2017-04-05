@@ -676,7 +676,7 @@ public static MyComponent Get(Context ctx, Dictionary<string, Object> parms)
 Context.Logger.Info("Component started");
 ```
 
-您可以從 [Hadoop 服務記錄] (位於**伺服器總管中**) 檢視記錄的資訊。 展開 Storm on HDInsight 叢集的項目，然後展開 [Hadoop 服務記錄] 。 最後，選取要檢視的記錄檔。
+您可以從 **[Hadoop 服務記錄]** \(位於**伺服器總管中**) 檢視記錄的資訊。 展開 Storm on HDInsight 叢集的項目，然後展開 [Hadoop 服務記錄] 。 最後，選取要檢視的記錄檔。
 
 > [!NOTE]
 > 記錄會儲存在您叢集所使用的 Azure 儲存體帳戶中。 若要在 Visual Studio 中檢視記錄檔，您必須登入至擁有儲存體帳戶的 Azure 訂用帳戶。

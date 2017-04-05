@@ -1,6 +1,6 @@
 ---
 title: "建立 Azure 匯入/匯出的匯出作業 | Microsoft Docs"
-description: "了解如何建立 Microsoft Azure 匯入/匯出服務的匯出作業"
+description: "了解如何建立 Microsoft Azure 匯入/匯出服務的匯出作業。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 74182c8c357085f186aaa43adfaef80a083d16bb
-ms.openlocfilehash: 55a45cf4169056d9426141a533dd1d32fe8064c4
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 3440d7e80e6a806c4119dff687fb9c590b8f0d14
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -81,19 +81,20 @@ ms.lasthandoff: 02/16/2017
 -   要匯出的 blob (或 blob 前置詞) 清單。
 
 ## <a name="shipping-your-drives"></a>寄送您的磁碟機
- 接下來，根據您選取要匯出的 blob 和磁碟機大小，使用 Azure 匯入/匯出工具來判斷需要傳送的磁碟機數目。 如需詳細資訊，請參閱 [Azure 匯入匯出工具參考](storage-import-export-tool-how-to-v1.md)。
+ 接下來，根據您選取要匯出的 blob 和磁碟機大小，使用 Azure 匯入/匯出工具來判斷需要傳送的磁碟機數目。 如需詳細資訊，請參閱 [Azure 匯入/匯出工具參考](storage-import-export-tool-how-to-v1.md)。
 
  將磁碟機封裝在單一包裹中，並將它們寄送至先前步驟中所取得的地址。 下一個步驟中請注意您的包裹追蹤號碼。
 
 > [!NOTE]
 >  您必須透過支援的貨運服務公司 (會提供您的包裹追蹤號碼) 寄送您的磁碟機。
 
-## <a name="updating-the-export-job-with-your-package-information"></a>使用封裝資訊更新匯出作業
+## <a name="updating-the-export-job-with-your-package-information"></a>使用包裹資訊更新匯出作業
  在您取得追蹤號碼之後，請呼叫 [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) 作業以更新貨運公司名稱和作業的追蹤號碼。 您可以選擇性指定磁碟機數目、寄件者地址及寄送日期。
 
 ## <a name="receiving-the-package"></a>接收包裹
  匯出作業處理完成之後，會將您的磁碟機退回給您，並包含您的加密資料。 您也可以藉由呼叫 [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) 作業來擷取每個磁碟機的 BitLocker 金鑰。 然後您就可以使用金鑰來解除鎖定磁碟機。 每個磁碟機上的磁碟機資訊清單檔案包含磁碟機上的檔案清單，以及每個檔案的原始 blob 位址。
 
-## <a name="see-also"></a>另請參閱
- [使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
+## <a name="next-steps"></a>後續步驟
+
+* [使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
 

@@ -44,6 +44,6 @@
 ## <a name="next-steps"></a>後續步驟
 虛擬機器建立後，將會自動啟動。 當入口網站顯示狀態為執行中，您便可以登入虛擬機器。 如需指示，請參閱下列文章︰
 
-* [如何登入執行 Linux 的虛擬機器](../articles/virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [如何登入執行 Linux 的虛擬機器](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [如何登入執行 Windows Server 的虛擬機器](../articles/virtual-machines/windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 

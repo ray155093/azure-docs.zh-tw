@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: ba0fc8849a7131a2dee8c9e7db546ca1a22e05df
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: c041802cd86f9e8b07771413f867691d76b01abf
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -331,7 +331,7 @@ Vowpal Wabbit 是一個機器學習系統，其會使用像是線上、雜湊，
 
 .model 檔案會寫入指定的目錄。 如需此示範範例的相關資訊，請參閱 [GitHub](https://github.com/dmlc/xgboost/tree/master/demo/binary_classification)。
 
-如需 xgboost 的詳細資訊，請參閱 [xgboost 文件頁面](https://xgboost.readthedocs.org/en/latest/)及其 [Github 存放庫](https://github.com/dmlc/xgboost)。
+如需 xgboost 的詳細資訊，請參閱 [xgboost 文件頁面 (英文)](https://xgboost.readthedocs.org/en/latest/) 及其 [GitHub 存放庫 (英文)](https://github.com/dmlc/xgboost)。
 
 #### <a name="rattle"></a>Rattle
 Rattle (**R** **A**nalytical **T**ool **T**o **L**earn **E**asily) 會使用 GUI 型資料探索和模型化。 它會提供資料的統計和視覺化摘要、轉換已經可以輕易模型化的資料、從資料建置未經指導和經過指導的模型、以圖形方式呈現模型的效能，以及評分新的資料集。 它也會產生 R 程式碼，複寫 UI 中可以直接在 R 中執行的作業，或是作為進一步分析之起點的作業。

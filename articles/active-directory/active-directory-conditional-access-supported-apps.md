@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Active Directory 中使用條件式存取規則的應用程式 | Microsoft Docs"
+title: "在 Azure Active Directory 中使用條件式存取規則的應用程式和瀏覽器 | Microsoft Docs"
 description: "透過條件式存取控制，Azure Active Directory 會在驗證使用者以及允許存取應用程式時，檢查特定的條件。"
 services: active-directory
 documentationcenter: 
@@ -12,16 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/22/2017
+ms.date: 03/28/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: 6dea1af021599eb530a4feb3257238e088191d5f
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 7dc79fad1a87f015475cd2643c8bec55192b2a15
+ms.lasthandoff: 03/28/2017
 
 
 ---
-# <a name="applications-that-use-conditional-access-rules-in-azure-active-directory"></a>在 Azure Active Directory 中使用條件式存取規則的應用程式
+# <a name="applications-and-browsers-that-use-conditional-access-rules-in-azure-active-directory"></a>在 Azure Active Directory 中使用條件式存取規則的應用程式和瀏覽器
+
 Azure Active Directory (Azure AD) 連線應用程式、預先整合的同盟軟體即服務 (SaaS) 應用程式、使用密碼單一登入 (SSO) 的應用程式、商務營運應用程式以及使用 Azure AD 應用程式 Proxy 的應用程式，都支援條件式存取規則。 如需可使用條件式存取的應用程式詳細清單，請參閱[已啟用條件式存取功能的服務](active-directory-conditional-access-technical-reference.md)。 條件式存取可以與運用新式驗證的行動和傳統型應用程式搭配使用。 在本文中，我們將討論條件式存取功能在行動和桌面應用程式中的運作方式。
 
 您可以在使用新式驗證的應用程式中使用 Azure AD 登入頁面。 在登入頁面中，系統會提示您進行 Multi-Factor Authentication。 如果使用者的存取遭到封鎖，則會顯示訊息。 需要新式驗證，裝置才能夠向 Azure AD 進行驗證，以便評估裝置型條件式存取原則。
@@ -48,7 +49,7 @@ Azure Active Directory (Azure AD) 連線應用程式、預先整合的同盟軟�
 | Office 365 SharePoint Online |Mac OS X |僅限 Multi-Factor Authentication 和位置的 Office 2016 應用程式；未來規劃的裝置型原則支援 |
 | Office 365 Yammer |;針對未來所規劃的 Windows 10、iOS、Android 支援 |Office Yammer 應用程式 |
 | Dynamics CRM |Windows 10、Windows 8.1、Windows 7、iOS 和 Android |Dynamics CRM 應用程式 |
-| PowerBI service |Windows 10、Windows 8.1、Windows 7 及 iOS|PowerBI 應用程式 (不支援 Andoird 應用程式) |
+| PowerBI service |Windows 10、Windows 8.1、Windows 7、iOS 和 Android |PowerBI 應用程式 |
 | Azure 遠端應用程式服務 |Windows 10、Windows 8.1、Windows 7、iOS、Android 和 Mac OS X |Azure 遠端應用程式 |
 | 任何 My Apps 應用程式服務 |Android 和 iOS |任何 My Apps 應用程式服務 |
 
@@ -109,4 +110,35 @@ Exchange 提供兩個主要的通訊協定類別。 檢閱下列選項，然後�
     c1:[Type == "http://schemas.microsoft.com/ws/2012/01/insidecorporatenetwork", Value == "false"] &&
     c2:[Type == "http://schemas.microsoft.com/2012/01/requestcontext/claims/x-ms-endpoint-absolute-path", Value =~ "(/adfs/ls)|(/adfs/oauth2)"]
     => issue(Type = "http://schemas.microsoft.com/authorization/claims/permit", Value = "true");
+
+
+## <a name="supported-browsers"></a>支援的瀏覽器
+
+
+| 作業系統                     | 瀏覽器                 | 支援 |
+| :--                    | :--                      | :-:     |
+| Win 10                 | IE、Edge                 | ![勾選][1] |
+| Win 10                 | Chrome                   | 敬請期待 |
+| Win 8 / 8.1            | IE                       | ![勾選][1] |
+| Win 7                  | IE                       | ![勾選][1] |
+| iOS                     | Safari                   | ![勾選][1] |
+| Android                | Chrome                   | ![勾選][1] |
+| WinPhone               | IE、Edge                 | ![勾選][1] |
+| Windows Server 2016    | IE、Edge                 | ![勾選][1] |
+| Windows Server 2012 R2 | IE                       | ![勾選][1] |
+| Windows Server2008 R2     | IE                       | ![勾選][1] |
+| Mac OS                 | Safari                   | ![勾選][1] |
+| Mac OS                 | Chrome                   | 敬請期待 |
+
+
+## <a name="next-steps"></a>後續步驟
+
+如需詳細資訊，請參閱 [Azure Active Directory 中的條件式存取](active-directory-conditional-access.md)
+
+
+
+<!--Image references-->
+[1]: ./media/active-directory-conditional-access-supported-apps/ic195031.png
+
+
 

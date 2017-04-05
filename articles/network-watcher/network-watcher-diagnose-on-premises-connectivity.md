@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: c7576ce3e802e66ebea6ba83927609ed81fe0869
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 8b832916f5b6fe413f9fc7b3fcefcea40d3ce7ef
+ms.lasthandoff: 03/29/2017
 
 ---
 
@@ -26,8 +26,6 @@ ms.lasthandoff: 03/09/2017
 Azure VPN 閘道可讓您建立混合式解決方案，以解決內部部署網路與 Azure 虛擬網路之間的安全連線需求。 由於這項需求很獨特，所以選擇的內部部署 VPN 裝置也很獨特。 Azure 目前支援與裝置廠商合作來持續驗證的[數個 VPN 裝置](../vpn-gateway/vpn-gateway-about-vpn-devices.md#a-namedevicetableavalidated-vpn-devices)。 請先檢閱裝置特定的組態設定，再設定內部部署 VPN 裝置。 同樣地，Azure VPN 閘道也使用一組用於建立連線的[受支援 IPsec 參數](../vpn-gateway/vpn-gateway-about-vpn-devices.md#IPSec)來進行設定。 目前您無法指定或選取來自 Azure VPN 閘道之 IPsec 參數的特定組合。 若要在內部部署環境與 Azure 之間成功建立連線，內部部署 VPN 裝置設定必須符合 Azure VPN 閘道所規定的 IPsec 參數。 若未能符合則會導致連線中斷，而且到目前為止，這些問題並不值得進行疑難排解，且通常需要好幾個小時才能識別並修正問題。
 
 使用 Azure 網路監看員疑難排解功能後，您將能夠診斷閘道和連線的任何問題，並在幾分鐘內獲得足夠資訊來做出明智的問題改正決定。
-
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 ## <a name="scenario"></a>案例
 
@@ -53,7 +51,7 @@ Azure VPN 閘道可讓您建立混合式解決方案，以解決內部部署網�
 | 雜湊演算法 |SHA1(SHA128) |SHA1(SHA128)、SHA2(SHA256) |
 | 階段 1 安全性關聯 (SA) 存留期 (時間) |28,800 秒 |10,800 秒 |
  
-身為使用者，您必須設定 Cisco ASA，範例組態可於 [Github](https://github.com/Azure/Azure-vpn-config-samples/blob/master/Cisco/Current/ASA/ASA_9.1_and_above_Show_running-config.txt) 找到。 在其他組態中，您也需要指定雜湊演算法。 Cisco ASA 支援比 Azure VPN 閘道還多的[加密和雜湊演算法](http://www.cisco.com/c/en/us/about/security-center/next-generation-cryptography.html)。 在不知不覺中，您已將 Cisco ASA 設定為使用 SHA-512 做為雜湊演算法。 此演算法並非原則式連線所支援的演算法，因此您的 VPN 連線會運作。
+身為使用者，您必須設定 Cisco ASA，範例組態可於 [GitHub](https://github.com/Azure/Azure-vpn-config-samples/blob/master/Cisco/Current/ASA/ASA_9.1_and_above_Show_running-config.txt) 找到。 在其他組態中，您也需要指定雜湊演算法。 Cisco ASA 支援比 Azure VPN 閘道還多的[加密和雜湊演算法](http://www.cisco.com/c/en/us/about/security-center/next-generation-cryptography.html)。 在不知不覺中，您已將 Cisco ASA 設定為使用 SHA-512 做為雜湊演算法。 此演算法並非原則式連線所支援的演算法，因此您的 VPN 連線會運作。
 
 這些問題很難進行疑難排解，而且根本原因通常很難一下就想到。 在此情況下，您可以開啟支援票證，來獲得協助以解決問題。 但有了 Azure 網路監看員疑難排解 API 後，您可以自行識別這些問題。 
 

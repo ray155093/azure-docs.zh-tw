@@ -46,7 +46,7 @@ Azure Marketplace 中可用的 Web 應用程式範本可以建立自訂的 Web �
 
 取得 Web 服務的 API 金鑰和要求 URI：
 
-1. 在 [Web 服務入口網站](https://services.azureml.net/quickstart)中，按一下頂端的 [Web 服務] (對於新的 Web 服務)。 或者，按一下 [傳統 Web 服務] (對於傳統 Web 服務)。
+1. 在 [Web 服務入口網站](https://services.azureml.net/quickstart)中，按一下頂端的 [Web 服務] \(對於新的 Web 服務)。 或者，按一下 [傳統 Web 服務] \(對於傳統 Web 服務)。
 2. 按一下您想要存取的 Web 服務。
 3. 針對傳統 Web 服務，按一下您想要存取的端點。
 4. 按一下頂端的 [取用]。

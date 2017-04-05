@@ -1,6 +1,6 @@
 ---
 title: "Azure 匯入/匯出中繼資料和屬性檔案格式 | Microsoft Docs"
-description: "了解如何針對匯入或匯出作業中的一或多個 blob 指定中繼資料和屬性"
+description: "了解如何針對匯入或匯出作業中的一或多個 blob 指定中繼資料和屬性。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 8de848b1192ff1c10e0375053c4e03f18c06184e
-ms.openlocfilehash: 0cac5419d4b481a5b783b4b9fbd4ad2d4d637042
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 9aa7815eae9ae3c1771cd0efdc8b9db4ad2e0b65
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -69,6 +69,8 @@ ms.lasthandoff: 02/16/2017
 |`Content-Encoding`|String|選用。 Blob 的內容編碼。|  
 |`Content-Language`|String|選用。 Blob 的內容語言。|  
 |`Cache-Control`|String|選用。 Blob 的快取控制字串。|  
-  
- 如需有關設定 blob 中繼資料和屬性的詳細規則，請參閱[設定 Blob 屬性](/rest/api/storageservices/fileservices/set-blob-properties)、[設定 Blob 中繼資料](/rest/api/storageservices/fileservices/set-blob-metadata)和[設定及擷取 Blob 資源的屬性和中繼資料](/rest/api/storageservices/fileservices/setting-and-retrieving-properties-and-metadata-for-blob-resources)。
+
+## <a name="next-steps"></a>後續步驟
+
+如需有關設定 blob 中繼資料和屬性的詳細規則，請參閱[設定 Blob 屬性](/rest/api/storageservices/fileservices/set-blob-properties)、[設定 Blob 中繼資料](/rest/api/storageservices/fileservices/set-blob-metadata)和[設定及擷取 Blob 資源的屬性和中繼資料](/rest/api/storageservices/fileservices/setting-and-retrieving-properties-and-metadata-for-blob-resources)。
 

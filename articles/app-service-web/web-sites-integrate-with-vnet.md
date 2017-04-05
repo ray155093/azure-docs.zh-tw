@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 08/11/2016
 ms.author: ccompy
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 1184277f90dce4215de2add8b48c022e013d191d
-ms.lasthandoff: 12/08/2016
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 5c8268a90c5e14839ed97daa6a186d170f5a4cc3
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -95,7 +95,7 @@ VNET 整合 UI 可讓您從 VNET 的清單中選取。  Classic VNET 會在 VNET
 ![][8]
 
 ##### <a name="enabling-point-to-site-in-a-resource-manager-vnet"></a>啟用 Resource Manager VNET 中的點對站
-若要使用閘道器和點對站設定 Resource Manager VNET，您必須如以下文件所述使用 PowerShell：[使用 PowerShell 設定虛擬網路的點對站連接][V2VNETP2S]。  用來執行這項功能的 UI 尚無法使用。 
+若要為 Resource Manager VNET 設定閘道和「點對站」連線，您可以如以下文件所述使用 PowerShell：[使用 PowerShell 設定虛擬網路的點對站連線][V2VNETP2S]；或如以下文件所述使用「Azure 入口網站」：[使用 Azure 入口網站設定 VNet 的點對站連線][V2VNETPortal]。  用來執行這項功能的 UI 尚無法使用。 
 
 ### <a name="creating-a-pre-configured-vnet"></a>建立預先設定的 VNET
 如果您想要建立新的 VNET，以閘道器和點對站進行設定，則 App Service 網路 UI 具有功能可以完成這項操作，但是僅適用於 Resource manager VNET。  如果您想要以閘道器和點對站建立 Classic VNET，您需要透過網路使用者介面手動執行。 
@@ -300,4 +300,5 @@ App Service 環境功能可讓您在 VNET 中執行 Azure App Service 的執行�
 [IntPowershell]: http://azure.microsoft.com/documentation/articles/app-service-vnet-integration-powershell/
 [ASEintro]: http://azure.microsoft.com/documentation/articles/app-service-app-service-environment-intro/
 [ILBASE]: http://azure.microsoft.com/documentation/articles/app-service-environment-with-internal-load-balancer/
+[V2VNETPortal]: https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal
 

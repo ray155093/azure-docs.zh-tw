@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 03/06/2017
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: f709fe00cce61f6766a0a56ea31b023e00c91fce
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 18aa17f6af7fe492f3875e1af7cb06b613f171af
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -106,7 +106,7 @@ OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。
 
 在 Azure 自動化中，會由 Runbook 安裝更新。  您無法檢視這些 Runbook，而它們也不需要任何設定。  更新部署在建立後便會建立排程，以在指定時間為所包含的電腦啟動主要更新 Runbook。  這個主要 Runbook 會在每個 Windows 代理程式上啟動子 Runbook，以安裝必要的更新。  
 
-針對從 Azure Marketplace 所提供之隨選 Red Hat Enterprise Linux (RHEL) 映像建立的虛擬機器，系統會將其註冊以存取部署在 Azure 中的 [Red Hat Update Infrastructure (RHUI)](../virtual-machines/virtual-machines-linux-update-infrastructure-redhat.md)。  針對任何其他 Linux 發行版本，則必須從發行版本線上檔案儲存機制，依照其支援的方法來更新這些發行版本。  
+針對從 Azure Marketplace 所提供之隨選 Red Hat Enterprise Linux (RHEL) 映像建立的虛擬機器，系統會將其註冊以存取部署在 Azure 中的 [Red Hat Update Infrastructure (RHUI)](../virtual-machines/linux/update-infrastructure-redhat.md)。  針對任何其他 Linux 發行版本，則必須從發行版本線上檔案儲存機制，依照其支援的方法來更新這些發行版本。  
 
 ### <a name="viewing-update-deployments"></a>檢視更新部署
 按一下 [更新部署] 圖格可檢視現有更新部署的清單。  其分組依據為狀態 – **已排程**、**執行中**和**已完成**。<br><br> ![更新部署排程頁面](./media/oms-solution-update-management/update-updatedeployment-schedule-page.png)<br>  

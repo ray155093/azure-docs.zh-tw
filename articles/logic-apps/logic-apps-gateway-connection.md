@@ -15,9 +15,9 @@ ms.workload: integration
 ms.date: 07/05/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: ce0be184fe11a7e5873639d79961e98de730ec86
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: ef7df25d8080cae41235dffb287906508d4a652d
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -58,6 +58,10 @@ ms.lasthandoff: 03/10/2017
 
 安裝閘道之後，您必須將 Azure 訂用帳戶與閘道相關聯。
 
+> [!IMPORTANT] 
+> 請確定閘道資源建立於與您邏輯應用程式相同的 Azure 區域中。 如果您未將它部署到相同的區域，將無法在您的邏輯應用程式中存取該資源。 
+> 
+
 1. 使用安裝閘道期間所使用的同一個工作或學校電子郵件地址來登入 Azure。
 2. 選擇 [新增]。
 3. 尋找並選取 [內部部署資料閘道]。
@@ -80,6 +84,11 @@ ms.lasthandoff: 03/10/2017
 4. 若要建立連線，請選擇 [建立]。
 
 連線現已設定好，可供邏輯應用程式使用。
+
+## <a name="data-gateway-connection-modifications"></a>修改資料閘道連線
+一旦您將資料閘道連線新增到邏輯應用程式之後，您可能需要進行修改以調整該連線特定的設定。 您可以在下列其中一個位置找到連線：
+* 在邏輯應用程式的主要刀鋒視窗上，您應該會在 [開發工具] 區段中看見 API 連線的面板。 選取將顯示所有與邏輯應用程式相關聯的 API 連線的選項，其中一個便是您的資料閘道連線。 選取該選項，您接著就能檢視和修改與連線相關聯的設定。
+* 選取 [API 連線] 主要刀鋒視窗，將顯示訂用帳戶中的所有 API 連線。 您的資料閘道連線將在此清單中。 選取該選項，您就能檢視和修改與連線相關聯的設定。
 
 ## <a name="next-steps"></a>後續步驟
 

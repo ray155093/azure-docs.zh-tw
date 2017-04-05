@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 10/17/2016
 ms.author: narayan
 translationtype: Human Translation
-ms.sourcegitcommit: 15afcad97941fc595478e36e826a73831f40475e
-ms.openlocfilehash: eb05b504c5cf13cd852a5e01cc3bec79fd20d547
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 6fbcdcf77f46a3c643e8fedc1d112588cbd7befc
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -36,7 +37,7 @@ VNet 對等互連的需求和重要層面︰
 * VNet 對等互連是介於兩個 VNet 之間，但沒有衍生跨對等項目的可轉移關聯性。 例如，如果 VNetA 與 VNetB 對等互連，而 VNetB 與 VNetC 對等互連，則 VNetA 「不會」對等互連至 VNetC。
 * 只要兩個訂用帳戶之間有一個具有權限的使用者授權對等互連，您就可以對等互連存在於兩個不同訂用帳戶中的 VNet，而訂用帳戶會與相同的 Azure Active Directory 租用戶產生關聯。
 * 如果兩個 VNet 都是透過 Resource Manager 部署模型建立，或如果其中一個是透過 Resource Manager 部署模型建立，而另一個是透過傳統部署模型建立，即可對等互連 VNet。 然而，透過傳統部署模型建立的兩個 VNet 無法彼此對等互連。 對等互連透過不同部署模型建立的 VNet 時，Vnet 必須同時存在於「相同」的訂用帳戶中。 能夠對等互連透過存在於「不同」訂用帳戶中的部署模型建立的 VNet，而該功能屬於**預覽**版本。 如需進一步的詳細資訊，請讀取[使用 Powershell 建立虛擬網路對等互連](virtual-networks-create-vnetpeering-arm-ps.md)一文。
-* 雖然已對等互連 VNet 中的 VM 之間的通訊沒有其他頻寬限制，但仍然會有基於 VM 大小的網路頻寬上限。 若要深入了解不同 VM 大小的網路頻寬上限，請閱讀 [Windows](../virtual-machines/virtual-machines-windows-sizes.md) 或 [Linux](../virtual-machines/virtual-machines-linux-sizes.md) VM 大小文章。
+* 雖然已對等互連 VNet 中的 VM 之間的通訊沒有其他頻寬限制，但仍然會有基於 VM 大小的網路頻寬上限。 若要深入了解不同 VM 大小的網路頻寬上限，請閱讀 [Windows](../virtual-machines/windows/sizes.md) 或 [Linux](../virtual-machines/linux/sizes.md) VM 大小文章。
 
 ![基本 VNet 對等互連](./media/virtual-networks-peering-overview/figure01.png)
 
@@ -84,15 +85,10 @@ VNet 對等互連是需要權限的作業。 它是 VirtualNetworks 命名空間
 ## <a name="pricing"></a>價格
 我們會針對使用 VNet 對等互連的輸入和輸出流量收取少許費用。 如需詳細資訊，請參閱 [定價頁面](https://azure.microsoft.com/pricing/details/virtual-network)。
 
-## <a name="a-namenext-stepsanext-steps"></a><a name="next-steps"></a>接續步驟
+## <a name="next-steps"></a>接續步驟
 了解如何使用下列項目建立 VNet 對等互連︰
 
 * [Azure 入口網站](virtual-networks-create-vnetpeering-arm-portal.md)
 * [Azure PowerShell](virtual-networks-create-vnetpeering-arm-ps.md)
 * [Azure Resource Manager 範本](virtual-networks-create-vnetpeering-arm-template-click.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

@@ -4,7 +4,7 @@ description: "使用 ELK (Elasticsearch、Logstash 與 Kibana) 監視 Azure Cont
 services: container-service
 documentationcenter: 
 author: sauryadas
-manager: dan.lepow
+manager: madhana
 editor: 
 tags: acs, azure-container-service
 keywords: "Containers, DC/OS, Azure, monitoring, elk, 容器, 監視"
@@ -14,11 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/31/2017
+ms.date: 03/27/2017
 ms.author: saudas
 translationtype: Human Translation
-ms.sourcegitcommit: 9433eb9f734dbe1b815074f86b9a691b4d16b5c8
-ms.openlocfilehash: c372c4a04de61f1eace81418ec6dea054007ec1f
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: fa17900f8a752d692a62e47d301651cc4f435f06
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -63,12 +64,10 @@ ELK 容器開始運作之後，您需要讓 Marathon-LB 能夠存取 Kibana。 �
 
 ## <a name="next-steps"></a>後續步驟
 
-若要深入了解 Elasticsearch、Logstash 和 Kibarna，請參閱 [Elastic Stack 文件 (英文)](https://www.elastic.co/guide/index.html)。
+* 如需系統和應用程式記錄檔轉送與設定的相關資訊，請參閱 [DC/OS 中使用 ELK 的記錄檔管理 (英文)](https://docs.mesosphere.com/1.8/administration/logging/elk/)。
+
+* 若要篩選記錄檔，請參閱[使用 ELK 篩選記錄檔 (英文)](https://docs.mesosphere.com/1.8/administration/logging/filter-elk/)。 
+
  
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

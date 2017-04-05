@@ -1,6 +1,6 @@
 ---
 title: "設定 Azure 匯入/匯出工具 v1 | Microsoft Docs"
-description: "了解如何設定「Azure 匯入/匯出」的磁碟機準備及修復工具"
+description: "了解如何設定 Azure 匯入/匯出服務的磁碟機準備及修復工具。 這是指 v1 的匯入/匯出工具。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 9aca8aad3f268bf21f3bad9fa22821f5d825f99d
-ms.openlocfilehash: 2d30d0da6055a66b60ed5a836dd897a87d564237
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 39d7e9a71a290ace6f6f4caf48f1ec5e46fe9a48
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -65,7 +65,7 @@ Microsoft Azure 匯入/匯出工具是磁碟機準備及修復工具，可搭配
 -   儲存體帳戶金鑰。  
   
 ## <a name="installing-the-azure-importexport-tool"></a>安裝 Azure 匯入/匯出工具  
- Azure 匯入/匯出工具包含下列檔案︰  
+ Azure 匯入/匯出工具包含下列檔案：  
   
 -   WAImportExport.exe  
   
@@ -84,7 +84,7 @@ Microsoft Azure 匯入/匯出工具是磁碟機準備及修復工具，可搭配
  若要輸出命令的說明，執行此工具而不包含參數︰  
   
 ```  
-WAImportExport, a client tool for Microsoft Azure Import/Export Service. Microsoft (c) 2013, 2014  
+WAImportExport, a client tool for Microsoft Azure Import/Export service. Microsoft (c) 2013, 2014  
   
 Copy a Directory:  
     WAImportExport.exe PrepImport  
@@ -200,7 +200,7 @@ Parameters:
     /ExportBlobListFile:<ExportBlobListFile>  
         - Required. Path to the XML file containing list of blob paths or blob path  
           prefixes for the blobs to be exported. The file format is the same as the  
-          blob list blob format in the Put Job operation of the Import/Export Service  
+          blob list blob format in the Put Job operation of the Import/Export service  
           REST API.  
     /DriveSize:<DriveSize>  
         - Required. Size of drives to be used for export. For example, 500GB, 1.5TB.  
@@ -254,11 +254,12 @@ Examples:
         es\drama /dstdir:movies/drama/ /skipwrite
 ```  
   
-## <a name="see-also"></a>另請參閱  
- [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
- [預覽匯出作業的磁碟機使用量](storage-import-export-tool-previewing-drive-usage-export-v1.md)   
- [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
- [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)   
- [修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)   
- [針對 Azure 匯入匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
+## <a name="next-steps"></a>後續步驟
+
+* [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
+* [預覽匯出作業的磁碟機使用量](storage-import-export-tool-previewing-drive-usage-export-v1.md)   
+* [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
+* [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)   
+* [修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)   
+* [針對 Azure 匯入/匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
 

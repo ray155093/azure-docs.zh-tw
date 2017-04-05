@@ -81,14 +81,14 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 
 當您從 Azure Marketplace 中的映像建立 VM 時，您實際上是在使用範本。 Azure Resource Manager 範本是宣告式「JavaScript 物件標記法」(JSON) 檔案，可用來建立包含 VM、儲存體、虛擬網路功能等的複雜應用程式環境。您可以進一步了解如何使用 [Azure Resource Manager 範本](../articles/azure-resource-manager/resource-group-overview.md)，包括如何[建置您自己的範本](../articles/resource-group-authoring-templates.md)。
 
-您也可以使用 [Azure CLI](../articles/virtual-machines/virtual-machines-linux-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Azure PowerShell](../articles/virtual-machines/virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來建立自己的自訂映像並上傳它們，以快速建立符合您特定建置需求的自訂 VM。
+您也可以使用 [Azure CLI](../articles/virtual-machines/linux/upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Azure PowerShell](../articles/virtual-machines/windows/upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來建立自己的自訂映像並上傳它們，以快速建立符合您特定建置需求的自訂 VM。
 
 ## <a name="availability-sets"></a>可用性設定組
 可用性設定組是 VM 的邏輯群組，可讓 Azure 了解您應用程式的建置方式，以提供備援和可用性。 建議您在可用性設定組內建立兩個或更多個 VM，以提供具高可用性的應用程式，以及符合 [99.95% Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 當單一 VM 是使用 [Azure 進階儲存體](../articles/storage/storage-premium-storage.md)時，非計劃性的維護事件適用 Azure SLA。 可用性設定組是由可防止硬體故障及允許安全地套用更新的兩個額外群組所組成 - 容錯網域 (FD) 和更新網域 (UD)。
 
 ![更新網域和容錯網域組態的概念圖](./media/virtual-machines-common-regions-and-availability/ud-fd-configuration.png)
 
-您可以深入了解如何管理 [Linux VM](../articles/virtual-machines/virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Windows VM](../articles/virtual-machines/virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+您可以深入了解如何管理 [Linux VM](../articles/virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [Windows VM](../articles/virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ### <a name="fault-domains"></a>容錯網域
 容錯網域是共用通用電源和網路交換器的基礎硬體邏輯群組，類似於內部部署資料中心內的機架。 當您在可用性設定組中建立 VM 時，Azure 平台會自動將您的 VM 分散於這些容錯網域。 此方法可限制潛在實體硬體錯誤、網路中斷或電源中斷的影響。
@@ -101,9 +101,4 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 
 ## <a name="next-steps"></a>後續步驟
 您現在可以開始使用這些可用性和備援功能來建置 Azure 環境。 如需最佳作法資訊，請參閱 [Azure 可用性最佳作法](../articles/best-practices-availability-checklist.md)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -8,6 +8,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: dd8f53c1-bdee-4921-b683-3be4c46c2039
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: 
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -15,9 +16,9 @@ ms.workload: big-data
 ms.date: 02/13/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 50a9c3929a4d3194c3786a3d4f6cdd1b73fb5867
-ms.openlocfilehash: 0cb9d65e33bf6f6b67e2a74b7e4634aba3f2359b
-ms.lasthandoff: 02/14/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: c56decc1f7603795e027ce20363c387c593999ae
+ms.lasthandoff: 03/25/2017
 
 ---
 # <a name="use-apache-spark-with-kafka-preview-on-hdinsight"></a>使用 Apache Spark 搭配 Kafka (預覽) on HDInsight
@@ -33,11 +34,7 @@ Apache Spark 可用於以串流方式將資料送入或送出 Apache Kafka。 �
 
 * Azure 訂用帳戶
 
-* SSH 用戶端 (您需要 `ssh` 和 `scp` 命令) - 如需使用 SSH 搭配 HDInsight 的詳細資訊，請參閱下列文件：
-
-    * [從 Linux、Unix 及 Mac 作業系統搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
-
-    * [從 Windows 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
+* SSH 用戶端 (您需要 `ssh` 和 `scp` 命令) - 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 * [cURL](https://curl.haxx.se/) - 跨平台公用程式，用於提出 HTTP 要求。
 
@@ -117,7 +114,7 @@ Notebook 中的程式碼會執行下列工作：
 
 專案中的每個資料格都包含註解或文字區段，以說明程式碼的作用。
 
-##<a name="a-idkafkahostsakafka-host-information"></a><a id="kafkahosts"></a>Kafka 主機資訊
+##<a id="kafkahosts"></a>Kafka 主機資訊
 
 建立可搭配 Kafka on HDInsight 運作的應用程式時，您應該進行的第一件事是取得 Kafka 叢集的 Kafka 訊息代理程式和 Zookeeper 主機資訊。 用戶端應用程式可使用此資訊來與 Kafka 通訊。
 

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 11/28/2016
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: a2dec2daa4be60a4a53a98164265171bf898cafb
-ms.openlocfilehash: 7f03d376b1785637261b58fc34a0f0e1c1e25f5f
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: b478251715076a254fe87abee1d709f47e2b3886
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -65,12 +66,11 @@ Azure 入口網站會使用遠端桌面延伸模組方法，因此即使在應�
 
 4. 按一下 [開啟]，然後按一下 [連接] 以啟動遠端桌面連線。
 
-## <a name="next-steps"></a>後續步驟
+>[!NOTE]
+> 如果您的雲端服務設置在 NSG 之後，您可能需要建立規則以開啟連接埠 **20000**。
+
+## <a name="additional-resources"></a>其他資源
 
 [如何設定雲端服務](cloud-services-how-to-configure.md)
-
-
-
-<!--HONumber=Nov16_HO5-->
-
+[雲端服務常見問題集 - 遠端桌面](cloud-services-faq.md#remote-desktop)
 

@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 02/23/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: dbd4dd3cadf162ea18d58639d31589f7b9b8efc3
-ms.openlocfilehash: 2dfdcd08501a63d62ec6ba565d1abc7d42c8c680
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: 4e3840f68c93998a52fa2956c2ea9d0976e0f627
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -36,7 +36,7 @@ ms.lasthandoff: 02/27/2017
 2. 註冊應用程式類型
 3. 建立應用程式執行個體
 
-在叢集中部署應用程式且執行個體開始執行之後，您就可以刪除應用程式執行個體和其應用程式類型。 從叢集完全移除應用程式需要執行下列步驟︰
+在應用程式中部署且個體開始在叢集中執行之後，您就可以刪除應用程式執行個體和其應用程式類型。 從叢集完全移除應用程式需要執行下列步驟︰
 
 1. 移除 (或刪除) 執行中的應用程式執行個體
 2. 取消註冊不再需要的應用程式類型
@@ -54,7 +54,11 @@ PS C:\>Connect-ServiceFabricCluster
 針對連線至遠端叢集，或連線至使用 Azure Active Directory、X509 憑證或 Windows Active Directory 保護的叢集，如需相關的範例，請參閱[連線至安全的叢集](service-fabric-connect-to-secure-cluster.md)。
 
 ## <a name="upload-the-application-package"></a>上傳應用程式封裝
-上傳應用程式封裝會將它放在一個可由內部 Service Fabric 元件存取的位置。 如果您想要在本機確認應用程式套件，使用 [Test-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/test-servicefabricapplicationpackage) cmdlet。  [Copy-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) 命令會將應用程式封裝上傳至叢集映像存放區。 **Get ImageStoreConnectionStringFromClusterManifest** Cmdlet 是 Service Fabric SDK PowerShell 模組的一部分，可用來取得映像存放區連接字串。  若要匯入 SDK 模組，請執行︰
+上傳應用程式封裝會將它放在一個可由內部 Service Fabric 元件存取的位置。
+如果您想要在本機確認應用程式封裝，使用 [Test-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/test-servicefabricapplicationpackage) cmdlet。
+
+[Copy-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) 命令會將應用程式封裝上傳至叢集映像存放區。
+**Get ImageStoreConnectionStringFromClusterManifest** Cmdlet 是 Service Fabric SDK PowerShell 模組的一部分，可用來取得映像存放區連接字串。  若要匯入 SDK 模組，請執行︰
 
 ```powershell
 Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
@@ -65,7 +69,8 @@ Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\Se
 下列命令會列出應用程式封裝的內容︰
 
 ```powershell
-PS C:\> tree /f 'C:\Users\user\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug'
+PS C:\> $path = 'C:\Users\user\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug'
+PS C:\> tree /f $path
 Folder PATH listing for volume OSDisk
 Volume serial number is 0459-2393
 C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\MYAPPLICATION\MYAPPLICATION\PKG\DEBUG
@@ -91,14 +96,52 @@ C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\MYAPPLICATION\MYAPPLICATION\
             Settings.xml
 ```
 
+如果應用程式封裝是大型且/或有許多檔案，您可以[壓縮](service-fabric-package-apps.md#compress-a-package)。 壓縮會減少檔案大小和數目。
+副作用是註冊和取消註冊應用程式類型會比較快。 目前上傳時間可能會變慢，特別是當您包含壓縮封裝的時間。 
+
+若要壓縮封裝，請使用相同的 [Copy-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) 命令。 壓縮可與上傳分開進行，方法為使用 `SkipCopy` 旗標，或是與上傳作業共同進行。 在壓縮封裝上套用壓縮為無作業。
+若要將已壓縮的封裝解壓縮，請使用相同的 [Copy-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) 命令搭配 `UncompressPackage` 參數。
+
+下列 Cmdlet 會在不將封裝複製到映像存放區的情況下壓縮封裝。 該套件現在包含 `Code` 及 `Config` 封裝的 ZIP 壓縮檔案。 應用程式和服務資訊清單不會壓縮，因為有許多內部作業都需要它們 (例如特定驗證的封裝共用、應用程式類型名稱及版本擷取)。 對資訊清單進行壓縮，將會使這些作業效率不佳。
+
+```
+PS C:\> Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $path -CompressPackage -SkipCopy
+PS C:\> tree /f $path
+Folder PATH listing for volume OSDisk
+Volume serial number is 0459-2393
+C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\MYAPPLICATION\MYAPPLICATION\PKG\DEBUG
+|   ApplicationManifest.xml
+|
+└───Stateless1Pkg
+       Code.zip
+       Config.zip
+       ServiceManifest.xml
+```
+
+針對大型應用程式封裝，壓縮會很花時間。 為了獲得最佳結果，請使用快速的 SSD 磁碟機。 壓縮時間和已壓縮封裝的大小也會根據封裝內容而有所不同。
+例如，以下是一些封裝的壓縮統計資料，其顯示初始和壓縮的封裝大小，以壓縮時間。
+
+|初始大小 (MB)|檔案計數|壓縮時間|壓縮的封裝大小 (MB)|
+|----------------:|---------:|---------------:|---------------------------:|
+|100|100|00:00:03.3547592|60|
+|512|100|00:00:16.3850303|307|
+|1024|500|00:00:32.5907950|615|
+|2048|1000|00:01:04.3775554|1231|
+|5012|100|00:02:45.2951288|3074|
+
+一旦壓縮封裝後，可以視需要將它上傳到一或多個 Service Fabric 叢集。 部署機制針對壓縮及未壓縮的封裝皆相同。 如果封裝已壓縮，它會以壓縮的形式儲存在叢集映像存放區中，並在應用程式執行之前於節點上解壓縮。
+
+
 下列範例會將套件上傳至映像存放區中的 "MyApplicationV1" 資料夾︰
 
 ```powershell
-PS C:\> $path = 'C:\Users\user\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug'
-Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $path -ApplicationPackagePathInImageStore MyApplicationV1 -ImageStoreConnectionString (Get-ImageStoreConnectionStringFromClusterManifest(Get-ServiceFabricClusterManifest))
+PS C:\> Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $path -ApplicationPackagePathInImageStore MyApplicationV1 -ImageStoreConnectionString (Get-ImageStoreConnectionStringFromClusterManifest(Get-ServiceFabricClusterManifest)) -TimeoutSec 1800
 ```
 
 如果您未指定 *-ApplicationPackagePathInImageStore* 參數，應用程式封裝會複製到映像存放區中的 "Debug" 資料夾。
+
+上傳封裝的時間會根據多個因素而有所不同。 這些因素有些是封裝中的檔案數目、封裝大小和檔案大小。 在來源電腦及 Service Fabric 叢集之間的網路速度也會影響上傳時間。 [Copy-servicefabricapplicationpackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) 的預設逾時值為 30 分鐘。
+根據所述的因素，您可能必須增加逾時。 如果要在複製呼叫中壓縮封裝，您需要同時考慮壓縮時間。
 
 請參閱[了解映像存放區連接字串](service-fabric-image-store-connection-string.md)，以取得有關映像存放區和映像存放區連接字串的補充資訊。
 
@@ -114,9 +157,10 @@ Register application type succeeded
 
 "MyApplicationV1" 是應用程式封裝所在映像存放區中的資料夾。 名稱為 "MyApplicationType" 和版本為 "1.0.0" (兩者都在應用程式資訊清單中) 的應用程式類型，現在已註冊在叢集中。
 
-[Register-ServiceFabricApplicationType](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) 命令只有在系統成功註冊應用程式封裝之後才會返回。 註冊所需時間取決於應用程式封裝的大小和內容。 **-TimeoutSec** 參數可在必要時用來提供較長的逾時 (預設逾時為 60 秒)。  如果這是大型應用程式封裝且您遇到逾時，使用 **-Async** 參數。
+[Register-ServiceFabricApplicationType](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) 命令只有在系統成功註冊應用程式封裝之後才會返回。 註冊所需時間取決於應用程式封裝的大小和內容。 **-TimeoutSec** 參數可在必要時用來提供較長的逾時 (預設逾時為 60 秒)。
 
-[Get-ServiceFabricApplicationType](/powershell/servicefabric/vlatest/get-servicefabricapplicationtype) 命令會列出所有成功註冊的應用程式類型版本和其註冊狀態。
+如果您有大型應用程式封裝或如果您遇到逾時，使用 **-Async** 參數。 當叢集接受暫存器命令時會傳回此命令，並視需要繼續處理。
+[Get-ServiceFabricApplicationType](/powershell/servicefabric/vlatest/get-servicefabricapplicationtype) 命令會列出所有成功註冊的應用程式類型版本和其註冊狀態。 您可以使用此命令以判斷何時會完成註冊。
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationType
@@ -196,6 +240,7 @@ DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
 ```powershell
 PS C:\> Unregister-ServiceFabricApplicationType MyApplicationType 1.0.0
 ```
+
 ## <a name="remove-an-application-package-from-the-image-store"></a>從映像存放區移除應用程式封裝
 當不再需要應用程式封裝時，您可以從映像存放區刪除它，以釋放系統資源。
 
@@ -224,6 +269,32 @@ PS C:\> Get-ServiceFabricClusterManifest
 
     [...]
 ```
+
+請參閱[了解映像存放區連接字串](service-fabric-image-store-connection-string.md)，以取得有關映像存放區和映像存放區連接字串的補充資訊。
+
+### <a name="deploy-large-application-package"></a>部署大型應用程式封裝
+問題︰大型應用程式封裝 (GB 的順序) 的 [Copy-servicefabricapplicationpackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) 逾時。
+請嘗試︰
+- 使用`TimeoutSec`參數指定 [Copy-servicefabricapplicationpackage](/powershell/servicefabric/vlatest/copy-servicefabricapplicationpackage) 命令的較大逾時。 此逾時預設為 30 分鐘。
+- 檢查來源電腦與叢集之間的網路連線。 如果連線速度變慢，請考慮使用更佳網路連線的電腦。
+如果用戶端電腦與叢集在不同的區域中，請考慮使用與叢集接近或相同區域中的用戶端電腦。
+- 請檢查是否到達外部節流。 例如，當映像存放區設定為使用 Azure 儲存體時，上傳可能受到節流控制。
+
+問題︰上傳封裝順利完成，但 [Register-servicefabricapplicationtype](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) 逾時。
+請嘗試︰
+- 複製到映像存放區之前[壓縮封裝](service-fabric-package-apps.md#compress-a-package)。
+壓縮會減少檔案的大小和數目，而後者則可減少資料傳輸量和 Service Fabric 必須執行的工作。 上傳作業可能會變慢 (尤其是如果您包含壓縮時間)，但註冊和取消註冊應用程式類型會比較快。
+- 使用 `TimeoutSec` 參數指定 [Register-ServiceFabricApplicationType](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) 的較大逾時。
+- 指定 [Register-ServiceFabricApplicationType](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) 的 `Async` 參數。 當叢集接受命令時會傳回此命令，且佈建會繼續非同步。
+基於這個理由，在此情況下不需要指定較高的逾時。
+
+### <a name="deploy-application-package-with-many-files"></a>部署具有很多檔案的應用程式封裝
+問題︰具有很多檔案的應用程式封裝 (以千計的順序) [Register-servicefabricapplicationtype](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) 的逾時。
+請嘗試︰
+- 複製到映像存放區之前[壓縮封裝](service-fabric-package-apps.md#compress-a-package)。 壓縮會減少檔案的數目。
+- 使用 `TimeoutSec` 參數指定 [Register-ServiceFabricApplicationType](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) 的較大逾時。
+- 指定 [Register-ServiceFabricApplicationType](/powershell/servicefabric/vlatest/register-servicefabricapplicationtype) 的 `Async` 參數。 當叢集接受命令時會傳回此命令，且佈建會繼續非同步。
+基於這個理由，在此情況下不需要指定較高的逾時。 
 
 ## <a name="next-steps"></a>後續步驟
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)

@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 02/01/2017
+ms.date: 03/28/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: f0292efd50721ef58028df778052eb0ed6fcda84
-ms.openlocfilehash: 724eba50b7428b0012e8f062e264ce057e2a5287
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 0dac2cc79de884def8d4cf0ee89dc2f645d35b34
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -25,13 +26,16 @@ ms.openlocfilehash: 724eba50b7428b0012e8f062e264ce057e2a5287
 
 ## <a name="introduction"></a>簡介
 串流分析公開兩種類型的記錄： 
-* [活動記錄 (英文)](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)，一律會啟用，並提供作業上所執行之作業的深入資訊。
-* [診斷記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)，可供使用者設定，並提供豐富的作業深入資訊，包含從建立、更新、執行，直到刪除作業之間所發生任何事件。
+* [活動記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)，一律會啟用，並提供作業上所執行之作業的深入資訊；
+* [診斷記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)，可設定並提供豐富的作業深入資訊，包含從建立、更新、執行，直到刪除作業之間所發生的任何事件。
+
+> [!NOTE]
+> 應注意的是，使用服務 (例如，Azure 儲存體、事件中樞及 Log Analytics) 來分析不合格的資料，將根據那些服務的計價模型來收費。
 
 ## <a name="how-to-enable-diagnostic-logs"></a>如何啟用診斷記錄
-診斷記錄預設為 [關閉]。 若要啟用，請依照下列步驟執行：
+診斷記錄預設為 [關閉]。 若要啟用它們，請依照下列步驟執行：
 
-登入 Azure 入口網站並瀏覽到 [串流作業] 刀鋒視窗，然後使用 [監視] 底下的 [診斷記錄]。
+登入 Azure 入口網站並瀏覽至 [資料流處理工作] 刀鋒視窗。 接著移至 [監視] 下方的 [診斷記錄] 刀鋒視窗。
 
 ![瀏覽到診斷記錄的刀鋒視窗](./media/stream-analytics-job-diagnostic-logs/image1.png)  
 
@@ -45,7 +49,7 @@ ms.openlocfilehash: 724eba50b7428b0012e8f062e264ce057e2a5287
 
 設定所需的封存目標 (儲存體帳戶、事件中樞、Log Analytics)，並選取要收集的記錄類別 (執行、製作)。 然後儲存新的診斷組態。
 
-儲存組態之後，需要約 10 分鐘才會生效，然後記錄會開始顯示在設定的封存目標中。您可以在 [診斷記錄] 刀鋒視窗中查看：
+儲存設定之後，大約需要 10 分鐘才會生效。 之後，記錄將開始出現在設定的封存目標中 (您可以在 [診斷記錄] 刀鋒視窗中看到此目標)：
 
 ![瀏覽到診斷記錄的刀鋒視窗](./media/stream-analytics-job-diagnostic-logs/image4.png)
 
@@ -68,12 +72,12 @@ ms.openlocfilehash: 724eba50b7428b0012e8f062e264ce057e2a5287
 名稱 | 說明
 ------- | -------
 分析 | 記錄的時間戳記 (UTC 時間)
-resourceId | 作業發生之資源的識別碼 (大寫)。 其中包含訂用帳戶識別碼、資源群組，以及作業名稱。 例如， `/SUBSCRIPTIONS/6503D296-DAC1-4449-9B03-609A1F4A1C87/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.STREAMANALYTICS/STREAMINGJOBS/MYSTREAMINGJOB`
-category | 記錄檔類別，`Execution` 或 `Authoring`
-operationName | 記錄的作業名稱。 例如， `Send Events: SQL Output write failure to mysqloutput`
-status | 作業狀態。 例如， `Failed, Succeeded`。
-層級 | 記錄層級。 例如， `Error, Warning, Informational`
-屬性 | 記錄檔項目特定詳細資料，序列化為 JSON 字串，詳細資訊請參閱下面段落
+resourceId | 作業發生之資源的識別碼 (大寫)。 其中包含訂用帳戶識別碼、資源群組，以及作業名稱。 例如，**/SUBSCRIPTIONS/6503D296-DAC1-4449-9B03-609A1F4A1C87/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.STREAMANALYTICS/STREAMINGJOBS/MYSTREAMINGJOB**。
+category | 記錄類別，**執行**或**製作**。
+operationName | 記錄的作業名稱。 例如，**傳送事件︰SQL 輸出將失敗寫入 mysqloutput**
+status | 作業狀態。 例如，**失敗、成功**。
+層級 | 記錄層級。 例如，**錯誤、警告、資訊**。
+屬性 | 記錄項目特定的詳細資料；序列化為 JSON 字串；詳細資訊請參閱下面段落
 
 ### <a name="execution-logs-properties-schema"></a>執行記錄檔屬性結構描述
 執行記錄檔包含在執行串流分析工作期間所發生之事件的資訊。
@@ -86,7 +90,7 @@ status | 作業狀態。 例如， `Failed, Succeeded`。
 ------- | -------
 來源 | 發生錯誤的作業輸入或輸出的名稱。
 訊息 | 與錯誤相關的訊息。
-類型 | 錯誤類型。 例如，`DataConversionError, CsvParserError, ServiceBusPropertyColumnMissingError` 等等。
+類型 | 錯誤類型。 例如，**DataConversionError、CsvParserError 和 ServiceBusPropertyColumnMissingError**。
 資料 | 包含有助於正確找到錯誤來源的資料。 視其大小，可能會做出截斷。
 
 資料錯誤會隨 **operationName** 值的不同而有下列結構描述：
@@ -102,7 +106,7 @@ status | 作業狀態。 例如， `Failed, Succeeded`。
 -------- | --------
 錯誤 | (選則性) 錯誤資訊，若可取得則通常為例外狀況資訊。
 訊息| 記錄訊息。
-類型 | 訊息的類型，對應到錯誤的內部分類，如：JobValidationError、BlobOutputAdapterInitializationFailure 等。
+類型 | 訊息的類型，對應到錯誤的內部分類，例如 **JobValidationError、BlobOutputAdapterInitializationFailure** 等。
 相互關連識別碼 | 唯一識別作業執行的 [GUID (英文)](https://en.wikipedia.org/wiki/Universally_unique_identifier)。 從作業開始到停止的期間所產生的所有執行記錄項目都會有相同的「關聯識別碼」。
 
 
@@ -113,10 +117,5 @@ status | 作業狀態。 例如， `Failed, Succeeded`。
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

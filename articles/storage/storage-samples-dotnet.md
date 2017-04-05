@@ -15,8 +15,9 @@ ms.workload: storage
 ms.date: 01/12/2017
 ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: ae5719c60c6ed2d3467f162f3b273d5bfdcf0073
-ms.openlocfilehash: 2056597abd1d1e895b85770a5525d05c9526b71d
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: d2b6b3d9483f230ad25ae47255a4f28c1a67e064
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -24,13 +25,13 @@ ms.openlocfilehash: 2056597abd1d1e895b85770a5525d05c9526b71d
 
 ## <a name="net-sample-index"></a>.NET 範例索引
 
-下表提供我們的範例儲存機制和每個範例所涵蓋案例的概觀。 按一下連結即可檢視 Github 中對應的範例程式碼。
+下表提供我們的範例儲存機制和每個範例所涵蓋案例的概觀。 按一下連結即可檢視 GitHub 中對應的範例程式碼。
 
 <table style="font-size:90%"><thead><tr><th style="font-size:110%">端點</th><th style="font-size:110%">案例</th><th style="font-size:110%">範例程式碼</th></tr></thead><tbody> 
 <tr> 
 <td rowspan="16"><b>Blob</b></td>
 <td>附加 Blob</td> 
-<td><a href="https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.blob.cloudblobcontainer.getappendblobreference.aspx">CloudBlobContainer.GetAppendBlobReference 方法範例</a></td> 
+<td><a href="https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.storage.blob.cloudblobcontainer.getappendblobreference.aspx">CloudBlobContainer.GetAppendBlobReference 方法範例 (英文)</a></td> 
 </tr> 
 <tr> 
 <td>區塊 Blob</td>
@@ -83,11 +84,11 @@ ms.openlocfilehash: 2056597abd1d1e895b85770a5525d05c9526b71d
 <tr> 
 <td>SAS</td>
 <td><a href="https://github.com/Azure-Samples/storage-blob-dotnet-getting-started/blob/master/BlobStorage/Advanced.cs">開始使用 Blob</a></td>
-</tr>   
+</tr>     
 <tr> 
 <td>服務屬性</td>
 <td><a href="https://github.com/Azure-Samples/storage-blob-dotnet-getting-started/blob/master/BlobStorage/Advanced.cs">開始使用 Blob</a></td>
-</tr>           
+</tr>             
 <tr> 
 <td>快照 Blob</td>
 <td><a href="https://github.com/Azure-Samples/storage-blob-dotnet-back-up-with-incremental-snapshots/blob/master/Program.cs">使用增量快照備份 Azure 虛擬機器磁碟</a></td>
@@ -169,7 +170,7 @@ ms.openlocfilehash: 2056597abd1d1e895b85770a5525d05c9526b71d
 </tr> 
 <tr> 
 <td>刪除實體/資料表</td> 
-<td><a href="https://github.com/Azure-Samples/storage-table-dotnet-getting-started/blob/master/TableStorage/BasicSamples.cs">開始在 .NET 中使用 Azure 資料表儲存體</a></td> 
+<td><a href="https://github.com/Azure-Samples/storage-table-dotnet-getting-started/blob/master/TableStorage/BasicSamples.cs">在 .NET 中開始使用 Azure 表格儲存體</a></td> 
 </tr> 
 <tr> 
 <td>插入/合併/取代實體</td> 
@@ -177,15 +178,15 @@ ms.openlocfilehash: 2056597abd1d1e895b85770a5525d05c9526b71d
 </tr> 
 <tr> 
 <td>查詢實體</td> 
-<td><a href="https://github.com/Azure-Samples/storage-table-dotnet-getting-started/blob/master/TableStorage/BasicSamples.cs">開始在 .NET 中使用 Azure 資料表儲存體</a></td> 
+<td><a href="https://github.com/Azure-Samples/storage-table-dotnet-getting-started/blob/master/TableStorage/BasicSamples.cs">在 .NET 中開始使用 Azure 表格儲存體</a></td> 
 </tr> 
 <tr> 
 <td>查詢資料表</td> 
-<td><a href="https://github.com/Azure-Samples/storage-table-dotnet-getting-started/blob/master/TableStorage/BasicSamples.cs">開始在 .NET 中使用 Azure 資料表儲存體</a></td> 
+<td><a href="https://github.com/Azure-Samples/storage-table-dotnet-getting-started/blob/master/TableStorage/BasicSamples.cs">在 .NET 中開始使用 Azure 表格儲存體</a></td> 
 </tr> 
 <tr> 
 <td>資料表 ACL/屬性</td> 
-<td><a href="https://github.com/Azure-Samples/storage-table-dotnet-getting-started/blob/master/TableStorage/AdvancedSamples.cs">開始在 .NET 中使用 Azure 資料表儲存體</a></td> 
+<td><a href="https://github.com/Azure-Samples/storage-table-dotnet-getting-started/blob/master/TableStorage/AdvancedSamples.cs">在 .NET 中開始使用 Azure 表格儲存體</a></td> 
 </tr> 
 <tr> 
 <td>更新實體</td> 
@@ -216,8 +217,4 @@ ms.openlocfilehash: 2056597abd1d1e895b85770a5525d05c9526b71d
 
 * Java：[使用 Java 的 Azure 儲存體範例](storage-samples-java.md)
 * 所有其他語言︰[Azure 儲存體範例](storage-samples.md)
-
-
-<!--HONumber=Jan17_HO2-->
-
 

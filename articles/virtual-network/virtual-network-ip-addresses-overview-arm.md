@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 04/27/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 3de0b167d0ad32de17093caf7e66a6d08f5c1c61
-ms.openlocfilehash: 762b048056752abd24328433ceb57de492dbf884
-ms.lasthandoff: 01/30/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 0506de98119576aae8f55cc6067f0bee95334c87
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -72,7 +72,7 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 >
 
 ### <a name="virtual-machines"></a>虛擬機器
-您可以藉由將公用 IP 位址指派給其**網路介面**，以建立其與 [Windows](../virtual-machines/virtual-machines-windows-about.md) 或 [Linux](../virtual-machines/virtual-machines-linux-about.md) VM 的關聯。 如果 VM 有多個網路介面，您可以只將它指派給「主要」網路介面。 您可以將動態或靜態公用 IP 位址指派給 VM。
+您可以藉由將公用 IP 位址指派給其**網路介面**，以建立其與 [Windows](../virtual-machines/windows/about.md) 或 [Linux](../virtual-machines/virtual-machines-linux-about.md) VM 的關聯。 如果 VM 有多個網路介面，您可以只將它指派給「主要」網路介面。 您可以將動態或靜態公用 IP 位址指派給 VM。
 
 ### <a name="internet-facing-load-balancers"></a>網際網路對應負載平衡器
 您可以將公用 IP 位址指派給負載平衡器 [前端](../load-balancer/load-balancer-overview.md)組態，以建立其與 **Azure Load Balancer** 的關聯。 此公用 IP 位址可做為負載平衡的虛擬 IP 位址 (VIP)。 您可以將動態或靜態公用 IP 位址指派給負載平衡器前端。 您也可以將多個公用 IP 位址指派給一個負載平衡器前端，以實現 [多重 VIP](../load-balancer/load-balancer-multivip.md) 案例 (例如具有多個 SSL 架構網站的多租用戶環境)。
@@ -116,7 +116,7 @@ Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服
 * 其他應用程式/資源透過 IP 位址存取的資源。
 
 ### <a name="virtual-machines"></a>虛擬機器
-私人 IP 位址會指派給 [Windows](../virtual-machines/virtual-machines-windows-about.md) 或 [Linux](../virtual-machines/virtual-machines-linux-about.md) VM 的**網路介面**。 如果是多重網路介面 VM，每個介面都會取得指派的私人 IP 位址。 您可以將網路介面的配置方法指定為動態或靜態。
+私人 IP 位址會指派給 [Windows](../virtual-machines/windows/about.md) 或 [Linux](../virtual-machines/virtual-machines-linux-about.md) VM 的**網路介面**。 如果是多重網路介面 VM，每個介面都會取得指派的私人 IP 位址。 您可以將網路介面的配置方法指定為動態或靜態。
 
 #### <a name="internal-dns-hostname-resolution-for-vms"></a>內部 DNS 主機名稱解析 (適用於 VM)
 除非明確設定自訂 DNS 伺服器，否則所有 Azure VM 預設都會設定 [Azure 受管理 DNS 伺服器](virtual-networks-name-resolution-for-vms-and-role-instances.md#azure-provided-name-resolution) 。 這些 DNS 伺服器會針對位於相同 VNet 的 VM 提供內部名稱解析。

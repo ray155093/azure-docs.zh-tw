@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 11/17/2016
 ms.author: annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: 80ea942cc8119050474ee5c8332925e5452d264e
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 90f1f63beac199bc88397951896fe28e3824ee64
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -40,12 +40,13 @@ ms.lasthandoff: 03/22/2017
 4. 在 Linux 或 Mac 電腦上執行後續的指令碼以建立 VM。 該指令碼會建立資源群組、一個虛擬網路 (VNet)、一個具有三個 IP 組態的 NIC，以及連接了兩個 NIC 的 VM。 NIC、公用 IP 位址、虛擬網路和 VM 資源必須全都位於相同的位置和訂用帳戶。 雖然資源不需要全都位於相同的資源群組中，但在下列指令碼中，它們卻是如此。
 
 ```bash
+    
 #!/bin/sh
-
+    
 RgName="myResourceGroup"
 Location="westcentralus"
 az group create --name $RgName --location $Location
-
+    
 # Create a public IP address resource with a static IP address using the `--allocation-method Static` option. If you
 # do not specify this option, the address is allocated dynamically. The address is assigned to the resource from a pool
 # of IP adresses unique to each Azure region. Download and view the file from
@@ -79,7 +80,7 @@ az network vnet create \
 --subnet-prefix $VnetSubnetPrefix
 
 # Create a network interface connected to the subnet and associate the public IP address to it. Azure will create the
-# first IP configuration with a dynamic private IP address and will associate the public IP address resource to it.
+# first IP configuration with a static private IP address and will associate the public IP address resource to it.
 
 NicName="MyNic1"
 az network nic create \
@@ -87,9 +88,10 @@ az network nic create \
 --resource-group $RgName \
 --location $Location \
 --subnet $VnetSubnet1Name \
+--private-ip-address 10.0.0.4
 --vnet-name $VnetName \
 --public-ip-address $PipName
-
+    
 # Create a second public IP address, a second IP configuration, and associate it to the NIC. This configuration has a
 # static public IP address and a static private IP address.
 
@@ -107,12 +109,12 @@ az network nic ip-config create \
 --private-ip-address 10.0.0.5 \
 --public-ip-name myPublicIP2
 
-# Create a third IP configuration, and associate it to the NIC. This configuration has a dynamic private IP address and
-# no public IP address.
+# Create a third IP configuration, and associate it to the NIC. This configuration has  static private IP address and    # no public IP address.
 
 azure network nic ip-config create \
 --resource-group $RgName \
 --nic-name $NicName \
+--private-ip-address 10.0.0.6 \
 --name IPConfig-3
 
 # Note: Though this article assigns all IP configurations to a single NIC, you can also assign multiple IP configurations
@@ -124,13 +126,13 @@ azure network nic ip-config create \
 VmName="myVm"
 
 # Replace the value for the following **VmSize** variable with a value from the
-# https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes article. The script fails if the VM size
-# is not supported in the location you select. Run the `azure vm sizes --location westcentralus` command to get a full list
+# https://docs.microsoft.com/azure/virtual-machines/virtual-machines-linux-sizes rticle. The script fails if the VM size
+# is not supported in the location you select. Run the `azure vm sizes --location estcentralus` command to get a full list
 # of VMs in US West Central, for example.
 
 VmSize="Standard_DS1"
 
-# Replace the value for the OsImage variable value with a value for *urn* from the output returned by entering the
+# Replace the value for the OsImage variable value with a value for *urn* from the utput returned by entering the
 # `az vm image list` command.
 
 OsImage="credativ:Debian:8:latest"
@@ -174,7 +176,7 @@ az vm create \
 
     **新增私人 IP 位址**
     
-    若要將私人 IP 位址新增至 NIC，您必須使用隨後的命令建立 IP 組態。 如果您想要新增動態私人 IP 位址，請在輸入命令之前移除 `-PrivateIpAddress 10.0.0.7`。 指定靜態 IP 位址時，它必須是子網路未使用的位址。
+    若要將私人 IP 位址新增至 NIC，您必須使用隨後的命令建立 IP 組態。 靜態 IP 位址必須是未使用的子網路位址。
 
     ```bash
     az network nic ip-config create \
@@ -204,13 +206,14 @@ az vm create \
         --dns-name mypublicdns3
         ```
 
-         若要建立具有動態私人 IP 位址和相關聯的 *myPublicIP3* 公用 IP 位址資源的新 IP 組態，請輸入下列命令︰
+         若要建立具有靜態私人 IP 位址和相關 *myPublicIP3* 公用 IP 位址資源的新 IP 組態，請輸入下列命令︰
 
         ```bash
         az network nic ip-config create \
         --resource-group myResourceGroup \
         --nic-name myNic1 \
         --name IPConfig-5 \
+        --private-ip-address 10.0.0.8
         --public-ip-address myPublicIP3
         ```
 
@@ -264,11 +267,11 @@ az vm create \
 
     傳回的輸出︰ <br>
     
-        Name        PrivateIpAddress    PrivateIpAllocationMethod    PublicIpAddressId
+        Name        PrivateIpAddress    PrivateIpAllocationMethod   PublicIpAddressId
         
-        ipconfig1   10.0.0.4            Dynamic                      /subscriptions/[Id]/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP1
-        IPConfig-2  10.0.0.5            Static                       /subscriptions/[Id]/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP2
-        IPConfig-3  10.0.0.6            Dynamic                      /subscriptions/[Id]/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP3
+        ipconfig1   10.0.0.4            Static                      /subscriptions/[Id]/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP1
+        IPConfig-2  10.0.0.5            Static                      /subscriptions/[Id]/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP2
+        IPConfig-3  10.0.0.6            Static                      /subscriptions/[Id]/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/myPublicIP3
     
 
 4. 依照本文的[將 IP 位址新增至 VM 作業系統](#os-config)一節中的指示，將您新增至 NIC 的私人 IP 位址新增至 VM 作業系統。 請勿將公用 IP 位址新增至作業系統。

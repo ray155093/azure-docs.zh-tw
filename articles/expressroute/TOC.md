@@ -23,18 +23,12 @@
 ## 建立和修改對等互連組態
 ### [Azure 入口網站](expressroute-howto-routing-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-routing-arm.md)
-### [PowerShell (傳統)](expressroute-howto-routing-classic.md)
-## 將虛擬網路連結到 ExpressRoute 電路
+## 將虛擬網路連結到 ExpressRoute 線路
 ### [Azure 入口網站](expressroute-howto-linkvnet-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-linkvnet-arm.md)
-### [PowerShell (傳統)](expressroute-howto-linkvnet-classic.md)
-## 為 ExpressRoute 設定虛擬網路閘道
-### [PowerShell](expressroute-howto-add-gateway-resource-manager.md)
-### [PowerShell (傳統)](expressroute-howto-add-gateway-classic.md)
-## 建立站對站 VPN 閘道及 ExpressRoute 並存連線
-### [PowerShell](expressroute-howto-coexist-resource-manager.md)
-### [PowerShell (傳統)](expressroute-howto-coexist-classic.md)
-## [將電路從傳統移轉到 Resource Manager](expressroute-howto-move-arm.md)
+## [為 ExpressRoute 設定虛擬網路閘道](expressroute-howto-add-gateway-resource-manager.md)
+## [設定 ExpressRoute 和站對站並存連線](expressroute-howto-coexist-resource-manager.md)
+## [將電路從傳統移到 Resource Manager](expressroute-howto-move-arm.md)
 ## 設定 ExpressRoute 的路由器
 ### [設定路由器](expressroute-config-samples-routing.md)
 ### [NAT 的路由設定範例](expressroute-config-samples-nat.md)

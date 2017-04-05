@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/07/2017
+ms.date: 03/24/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 6a7e0964a3a6e9be534a6bd683446d3da5edcecd
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 96fb170e7a079fbb4bcfb4a6b1e98970a709406f
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -87,7 +87,8 @@ Azure AD Connect：
 | 步驟 1︰設定服務連接點 | ![勾選][1]                            | ![勾選][1]                    | ![勾選][1]        |
 | 步驟 2︰設定宣告的發行           |                                        | ![勾選][1]                    | ![勾選][1]        |
 | 步驟 3︰啟用非 Windows 10 裝置      |                                        |                                | ![勾選][1]        |
-
+| 步驟 4︰控制部署與導入     | ![勾選][1]                            | ![勾選][1]                    | ![勾選][1]        |
+| 步驟 5︰驗證已註冊的裝置          | ![勾選][1]                            | ![勾選][1]                    | ![勾選][1]        |
 
 
 
@@ -292,8 +293,13 @@ Azure AD Connect：
         Value = "http://<verified-domain-name>/adfs/services/trust/"
     );
 
-> [!NOTE]
-> 上述規則中的電腦的 issuerID 宣告必須包含 Azure AD 中其中一個已驗證的網域名稱。 這不是 AD FS 服務 URL。
+
+在上述宣告中，
+
+- `$<domain>` 是 AD FS 服務 URL
+- `<verified-domain-name>` 是您要使用您在 Azure AD 中的其中一個已驗證網域名稱來取代的預留位置
+
+
 
 如需已驗證之網域名稱的詳細資料，請參閱[將自訂網域名稱新增至 Azure Active Directory](active-directory-add-domain.md)。  
 若要取得已驗證之公司網域的清單，您可以使用 [Get-MsolDomain](https://docs.microsoft.com/powershell/msonline/v1/get-msoldomain) Cmdlet。 

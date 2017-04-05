@@ -45,6 +45,8 @@
 ## [驗證通訊協定](active-directory-b2c-reference-protocols.md)
 ## [權杖](active-directory-b2c-reference-tokens.md)
 
+## [威脅管理](active-directory-b2c-reference-threat-management.md)
+
 # 相關參考
 ## [Azure Active Directory](../active-directory/active-directory-whatis.md)
 ## [Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)
@@ -55,7 +57,3 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=active-directory-b2c) 
 ## [服務更新](https://azure.microsoft.com/updates/?product=active-directory-b2c)
 ## [支援](active-directory-b2c-support.md)
-
-<!--HONumber=Nov16_HO4-->
-
-

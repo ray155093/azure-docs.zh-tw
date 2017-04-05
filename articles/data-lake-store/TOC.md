@@ -48,6 +48,7 @@
 ### [搭配串流分析使用](data-lake-store-stream-analytics.md)
 ### [搭配 Power BI 使用](data-lake-store-power-bi.md)
 ### [搭配資料目錄使用](data-lake-store-with-data-catalog.md)
+### [在 SQL 資料倉儲中使用 PolyBase](../sql-data-warehouse/sql-data-warehouse-load-from-azure-data-lake-store.md)
 ### [更多 Azure 整合選項](data-lake-store-integrate-with-other-services.md)
 
 ## 管理

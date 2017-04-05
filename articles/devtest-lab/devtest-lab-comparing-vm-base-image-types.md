@@ -12,17 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/25/2016
+ms.date: 03/24/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 08871f5984697370cefe47efa597f7e067f32ae3
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: ff771abc26c08f0adb977c29739d2f5c91924b21
+ms.lasthandoff: 03/24/2017
 
 
 ---
 # <a name="comparing-custom-images-and-formulas-in-devtest-labs"></a>比較研發/測試實驗室中的自訂映像和公式
-## <a name="overview"></a>概觀
-[自訂映像](devtest-lab-create-template.md)和[公式](devtest-lab-manage-formulas.md)可以當作[建立新 VM](devtest-lab-add-vm-with-artifacts.md) 的基礎。 不過，自訂映像與公式的主要差別在於自訂映像只是根據 VHD 的影像，而公式是根據 VHD 的影像並且  具有預先設定的設定 (例如 VM 大小、虛擬網路和子網路、構件等)。 這些預先設定的設定是使用預設值所設定，並且可以在建立 VM 時予以覆寫。 本文說明使用自訂映像與使用公式的一些優缺點。
+[自訂映像](devtest-lab-create-template.md)和[公式](devtest-lab-manage-formulas.md)可以當作[建立新 VM](devtest-lab-add-vm-with-artifacts.md) 的基礎。 不過，自訂映像與公式的主要差別在於自訂映像只是根據 VHD 的映像，而公式是根據 VHD 的映像以及具有預先設定的設定 (例如 VM 大小、虛擬網路、子網路及構件)。 這些預先設定的設定是使用預設值所設定，並且可以在建立 VM 時予以覆寫。 本文說明使用自訂映像與使用公式的一些優缺點。
 
 ## <a name="custom-image-pros-and-cons"></a>自訂映像的優缺點
 自訂映像提供靜態、不可變的方式，從所需的環境中建立 VM。 
@@ -54,9 +54,5 @@ ms.openlocfilehash: 08871f5984697370cefe47efa597f7e067f32ae3
 ## <a name="related-blog-posts"></a>相關部落格文章
 * [自訂映像或公式？](https://blogs.msdn.microsoft.com/devtestlab/2016/04/06/custom-images-or-formulas/)
 
-
-
-
-<!--HONumber=Nov16_HO3-->
-
-
+## <a name="next-steps"></a>後續步驟
+- [DevTest Labs 常見問題集](devtest-lab-faq.md)

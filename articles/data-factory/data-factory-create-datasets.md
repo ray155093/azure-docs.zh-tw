@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 1/30/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 6ec8ac288a4daf6fddd6d135655e62fad7ae17c2
-ms.openlocfilehash: 2ed6b838608f0f2249ef16b62ff2fb0159fc6e7f
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: 34148a8fe2fe5b9ebd2ff4a01ff523f7f5a74c67
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -104,7 +105,7 @@ Azure Data Factory 中的資料集定義如下：
 
 * 類型設為 AzureSqlTable。
 * tableName 類型屬性 (針對 AzureSqlTable 類型) 設定為 MyTable。
-* linkedServiceName 代表 AzureSqlDatabase 類型的連結服務。 請參閱下列連結服務的定義。
+* linkedServiceName 係指 AzureSqlDatabase 類型的已連結服務，這是在下列 JSON 程式碼片段中定義。
 * 可用性頻率設為 [天]，間隔設為 1，表示每天產生配量。  
 
 AzureSqlLinkedService 定義如下︰
@@ -134,11 +135,11 @@ AzureSqlLinkedService 定義如下︰
 >
 >
 
-## <a name="a-nametypea-dataset-type"></a><a name="Type"></a> 資料集類型
+## <a name="Type"></a> 資料集類型
 支援的資料來源和資料集類型會對應。 如需資料集的類型和組態資訊，請參閱 [資料移動活動](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 一文中參照的主題。 例如，如果您使用 Azure SQL Database 中的資料，請在支援的資料存放區清單中按一下 Azure SQL Database 以查看詳細資訊。  
 
-## <a name="a-namestructureadataset-structure"></a><a name="Structure"></a>資料集結構
-**Structure** 區段會定義資料集的結構描述。 它包含資料行的名稱和資料類型的集合。  在下列範例中，資料集有三個資料行 slicetimestamp、projectname 和 pageviews，它們的類型分別是：String、String 和 Decimal。
+## <a name="Structure"></a>資料集結構
+**structure** 區段是一個「選擇性」區段，用來定義資料集的結構描述。 它包含資料行的名稱和資料類型的集合。 您可以使用 structure 區段來提供用於「類型轉換」的類型資訊，或用於執行「資料行對應」。 在下列範例中，資料集有三個資料行 `slicetimestamp`、`projectname` 及 `pageviews`，類型分別為：String、String 及 Decimal。
 
 ```json
 structure:  
@@ -149,7 +150,28 @@ structure:
 ]
 ```
 
-## <a name="a-nameavailabilitya-dataset-availability"></a><a name="Availability"></a> 資料集可用性
+各資料行包含下列屬性：
+
+| 屬性 | 說明 | 必要 |
+| --- | --- | --- |
+| 名稱 |資料行的名稱。 |是 |
+| 類型 |資料行的資料類型。  |否 |
+| culture |.NET 型文化特性是在已指定類型 (type) 且是 .NET 類型 `Datetime` 或 `Datetimeoffset` 時使用。 預設值為 “en-us”。 |否 |
+| format |格式字串是在已指定類型且是 .NET 類型 `Datetime` 或 `Datetimeoffset` 時使用。 |否 |
+
+有關何時要包括 “structure” 資訊以及在**結構**區段中要包含哪些資訊，請遵循下列準則。
+
+* **針對結構化資料來源**，這類來源會將資料結構描述及類型資訊與資料本身儲存在一起 (例如 SQL Server、Oracle、Azure 資料表等來源)，您應該只有在想要將來源資料行對應至接收器資料行且其名稱不相同時，才指定 “structure” 區段。 
+  
+    由於結構化資料來源已經有可用的類型資訊，因此當您包含 “structure” 區段時，便不應包含類型資訊。
+* **針對在讀取時驗證結構描述 (schema on read) 的資料來源 (具體而言即 Azure Blob)**，您可以選擇儲存資料，而不將任何結構描述或類型資訊與資料儲存在一起。 針對這些類型的資料來源，當您想要將來源資料行與接收資料行對應，或當資料集是複製活動的輸入資料集，並且來源資料集的資料類型必須轉換成接收器的原生類型時，請包含 “structure”。 
+    
+    Data Factory 支援使用下列符合 CLS 規範的 .NET 型類型值，在 “structure” 中針對在讀取時驗證結構描述 (schema on read) 的資料來源 (例如 Azure Blob) 提供類型資訊：Int16、Int32、Int64、Single、Double、Decimal、Byte[]、Bool、String、Guid、Datetime、Datetimeoffset、Timespan。
+
+Data Factory 會在將資料從來源資料存放區移到接收資料存放區時，自動執行類型轉換。 
+  
+
+## <a name="Availability"></a> 資料集可用性
 資料集中的 **availability** 區段定義處理時間 (每小時、每天、每週等) 或資料集的切割模型。 如需資料集切割和相依性模型的詳細資訊，請參閱[排程和執行](data-factory-scheduling-and-execution.md)。
 
 下列 availability 區段指定輸出資料集是每小時產生 (或) 輸入資料集是每小時可用：
@@ -166,11 +188,11 @@ structure:
 
 | 屬性 | 說明 | 必要 | 預設值 |
 | --- | --- | --- | --- |
-| frequency |指定資料集配量生產的時間單位。<br/><br/>**支援的頻率**：Minute、Hour、Day、Week、Month |是 |NA |
-| interval |指定頻率的倍數<br/><br/>「頻率 x 間隔」會決定產生配量的頻率。<br/><br/>如果您需要將資料集以每小時為單位來切割，請將 **Frequency** 設定為 **Hour**，將 **interval** 設定為 **1**。<br/><br/>**注意︰**如果您將 Frequency 指定為 Minute，建議您將 interval 設定為不小於 15 |是 |NA |
+| frequency |指定資料集配量生產的時間單位。<br/><br/><b>支援的頻率</b>：Minute、Hour、Day、Week、Month |是 |NA |
+| interval |指定頻率的倍數<br/><br/>「頻率 x 間隔」會決定產生配量的頻率。<br/><br/>如果您需要以每小時為單位來切割資料集，請將 <b>Frequency</b> 設定為 <b>Hour</b>，將 <b>interval</b> 設定為 <b>1</b>。<br/><br/><b>注意</b>：如果您將 Frequency 指定為 Minute，建議您將 interval 設定為不小於 15 |是 |NA |
 | style |指定是否應該在間隔開始/結束時產生配量。<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>如果 Frequency 設為 Month，style 設為 EndOfInterval，則會在當月最後一天產生配量。 如果 style 設為 StartOfInterval，則會在每月的第一天產生配量。<br/><br/>如果 Frequency 設為 Day，style 設為 EndOfInterval，則會在當天最後一個小時產生配量。<br/><br/>如果 Frequency 設為 Hour，style 設為 EndOfInterval，則會在每小時結束時產生配量。 例如，若為下午 1 – 2 點期間的配量，此配量會在下午 2 點產生。 |否 |EndOfInterval |
-| anchorDateTime |定義排程器用來計算資料集配量界限的時間絕對位置。 <br/><br/>**注意：** 如果 AnchorDateTime 有比頻率更細微的日期部分，則會忽略更細微的部分。 <br/><br/>例如，如果 **interval** 為 **hourly** (frequency: hour 且 interval: 1) 而且 **AnchorDateTime** 包含**分鐘和秒鐘**，則會忽略 AnchorDateTime 的**分鐘和秒鐘**部分。 |否 |01/01/0001 |
-| Offset |所有資料集配量的開始和結束移位所依據的時間範圍。 <br/><br/>**注意︰** 如果已指定 anchorDateTime 和 offset，結果會是合併的移位。 |否 |NA |
+| anchorDateTime |定義排程器用來計算資料集配量界限的時間絕對位置。 <br/><br/><b>注意</b>：如果 AnchorDateTime 有比頻率更細微的日期部分，則系統會忽略那些更細微的部分。 <br/><br/>例如，如果 <b>interval</b> 為 <b>hourly</b> (frequency: hour 且 interval: 1) 而 <b>AnchorDateTime</b> 包含「分鐘和秒鐘」<b></b>，系統便會忽略 AnchorDateTime 的「分鐘和秒鐘」<b></b>部分。 |否 |01/01/0001 |
+| Offset |所有資料集配量的開始和結束移位所依據的時間範圍。 <br/><br/><b>注意</b>︰如果同時指定 anchorDateTime 和 offset，結果會是合併的位移。 |否 |NA |
 
 ### <a name="offset-example"></a>位移範例
 於上午 6 點 (而非預設的午夜) 開始的每日配量。
@@ -220,7 +242,7 @@ structure:
 }
 ```
 
-## <a name="a-namepolicyadataset-policy"></a><a name="Policy"></a>資料集原則
+## <a name="Policy"></a>資料集原則
 資料集中的 **policy** 區段定義資料集配量必須符合的準則或條件。
 
 ### <a name="validation-policies"></a>驗證原則
@@ -365,9 +387,4 @@ structure:
     }
 }
 ```
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

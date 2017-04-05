@@ -18,9 +18,9 @@ ms.date: 03/01/2017
 ms.author: saudas
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2464901d22bb91cbf396ef60f4bda6d979b578b7
-ms.openlocfilehash: a0cbf24c2e2f1e6f3a1d2097e6146c09b4eee4fe
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 1dad536939f179cd8231d0f8805c1ff4335850d5
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -76,7 +76,7 @@ az group create -n acsrg1 -l "westus"
 
 
 ### <a name="quick-acs-create-using-defaults"></a>使用預設值的快速 `acs create`
-如果您在預設位置有 SSH RSA 公用金鑰檔案 `id_rsa.pub` (或已針對 [OS X 和 Linux](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md) 或 [Windows](../virtual-machines/virtual-machines-linux-ssh-from-windows.md) 建立一個 SSH 公用金鑰)，請使用類似下列的命令︰
+如果您在預設位置有 SSH RSA 公用金鑰檔案 `id_rsa.pub` (或已針對 [OS X 和 Linux](../virtual-machines/linux/mac-create-ssh-keys.md) 或 [Windows](../virtual-machines/linux/ssh-from-windows.md) 建立一個 SSH 公用金鑰)，請使用類似下列的命令︰
 
 ```azurecli
 az acs create -n acs-cluster -g acsrg1 -d applink789

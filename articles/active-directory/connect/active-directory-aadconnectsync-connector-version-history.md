@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/08/2017
+ms.date: 03/28/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 3051ed0385b81892b8495e83817ed8255dbce8cd
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: 244ca634cfd47ee37e3845380ac05dc68d406621
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -70,15 +70,15 @@ ms.lasthandoff: 03/14/2017
       ``'C:\Users\cstpopovaz\AppData\Local\Temp\2\e2c9d9b0-0d8a-4409-b059-dceeb900a2b3\b9bedcc0-88ac-454c-8c69-7d6ea1c41d17\cfg.config\cloneconfig.xml'. ``
 
 * 一般 LDAP：
- * 修正未匯入一般 SQL 浮水印差異匯入多重值屬性的錯誤
  * GLDAP 連接器無法看到 AD LDS 中的所有屬性
  * 從 LDAP 目錄結構描述偵測不到任何 UPN 屬性時，精靈會中斷
  * 如果未選取 "objectclass" 屬性，完整匯入期間不會顯示差異匯入的探索失敗錯誤
- * 「設定資料分割和階層」組態頁面上，不會顯示類型等於一般 LDAP MA 中 Novel 伺服器之資料分割的任何物件。  
-LDAP MA. 頁面上只會顯示來自 RootDSE 資料分割的物件。
+ * 「設定資料分割和階層」組態頁面，不會在下列位置中顯示類型等於 Novel 伺服器之資料分割的任何物件：一般  
+LDAP MA。 頁面上只會顯示來自 RootDSE 資料分割的物件。
 
 
 * 一般 SQL：
+ * 修正未匯入一般 SQL 浮水印差異匯入多重值屬性的錯誤
  * 匯出作業刪除\新增多重值屬性的值時，不會在資料來源中刪除\新增這些值。  
 
 

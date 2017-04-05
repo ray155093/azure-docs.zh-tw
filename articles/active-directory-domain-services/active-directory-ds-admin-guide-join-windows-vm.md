@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: aad6bcd3eb704f090156d2ace80d2540a9543bd7
-ms.lasthandoff: 12/29/2016
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 9f8d21f6964d26a2e17e31d1f2947e7eb07c177d
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 12/29/2016
 本文說明如何使用 Azure 傳統入口網站，將執行 Windows Server 2012 R2 的虛擬機器加入 Azure AD 網域服務受管理網域。
 
 ## <a name="step-1-create-the-windows-server-virtual-machine"></a>步驟 1︰建立 Windows Server 虛擬機器
-請依照[在 Azure 傳統入口網站中建立執行 Windows 的虛擬機器](../virtual-machines/virtual-machines-windows-classic-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)教學課程中所述的指示操作。 務必要確實將此新建立的虛擬機器加入已在其中啟用 Azure AD 網域服務的相同虛擬網路。 [快速建立] 選項無法讓您將虛擬機器加入虛擬網路。 因此，您必須使用 [從資源庫] 選項來建立虛擬機器。
+請依照[在 Azure 傳統入口網站中建立執行 Windows 的虛擬機器](../virtual-machines/windows/classic/tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)教學課程中所述的指示操作。 務必要確實將此新建立的虛擬機器加入已在其中啟用 Azure AD 網域服務的相同虛擬網路。 [快速建立] 選項無法讓您將虛擬機器加入虛擬網路。 因此，您必須使用 [從資源庫] 選項來建立虛擬機器。
 
 執行下列步驟，以建立 Windows 虛擬機器，並將其加入已在其中啟用 Azure AD 網域服務的虛擬網路。
 
@@ -119,7 +119,7 @@ ms.lasthandoff: 12/29/2016
 * 嘗試使用 UPN 格式來指定認證。 如果您的租用戶中有多個使用者具有相同的 UPN 前置詞，或您的 UPN 前置詞太長，可能就會自動為您的帳戶產生 SAMAccountName。 因此，您帳戶的 SAMAccountName 格式可能會與您在內部部署網域中預期或使用的格式不同。
 * 嘗試使用屬於「AAD DC 系統管理員」群組之使用者帳戶的認證，來將電腦加入受管理的網域。
 * 確定您已根據《入門指南》中所述的步驟來 [啟用密碼同步處理](active-directory-ds-getting-started-password-sync.md) 。
-* 確定您是使用 Azure AD 中所設定的使用者 UPN (例如 'bob@domainservicespreview.onmicrosoft.com')) 來登入。
+* 確定您使用 Azure AD 中所設定的使用者 UPN (例如 'bob@domainservicespreview.onmicrosoft.com') 來登入。
 * 確定您已如《入門指南》中所指定的等候夠久的時間以讓密碼同步處理完成。
 
 ## <a name="related-content"></a>相關內容
