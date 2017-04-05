@@ -15,13 +15,6 @@
 ## [PowerShell](app-service-powershell-samples.md) 
 
 # 教學課程
-## [在 Web 應用程式中新增功能](app-service-web-get-started-2.md)
-## [ASP.NET 應用程式搭配 SQL Database](web-sites-dotnet-get-started.md)
-## [Laravel 應用程式搭配 MySQL](app-service-web-php-get-started.md)
-## [Sails.js 應用程式搭配 NOSQL DB](app-service-web-nodejs-sails.md)
-## [Java 應用程式搭配 Eclipse](app-service-web-eclipse-create-hello-world-web-app.md)
-## [Java 應用程式搭配 IntelliJ](app-service-web-intellij-create-hello-world-web-app.md)
-## [Django 應用程式搭配 MySQL](web-sites-python-ptvs-django-mysql.md)
 
 # 概念
 ## [App Service 的運作方式](../app-service/app-service-how-works-readme.md?toc=%2fazure%2fapp-service-web%2ftoc.json)    
@@ -34,20 +27,25 @@
 # 使用說明指南
 ## 開發您的應用程式    
 ### ASP.NET
-
+#### [ASP.NET 應用程式搭配 SQL Database](web-sites-dotnet-get-started.md)
 #### [使用 VS 程式碼開發 ASP.NET 核心應用程式](web-sites-create-web-app-using-vscode.md)
 ### PHP
+#### [Laravel 應用程式搭配 MySQL](app-service-web-php-get-started.md)
 #### [設定 PHP 專案](web-sites-php-configure.md)
 #### [設定 WordPress 多網站](web-sites-php-convert-wordpress-multisite.md) 
 ### Node.js
+#### [Sails.js 應用程式搭配 NOSQL DB](app-service-web-nodejs-sails.md)
 #### [使用 io.js](web-sites-nodejs-iojs.md)
 #### [偵錯 Node.js 應用程式](web-sites-nodejs-debug.md)
 ### Java
-
+#### [Java 應用程式搭配 Eclipse](app-service-web-eclipse-create-hello-world-web-app.md)
+#### [Java 應用程式搭配 IntelliJ](app-service-web-intellij-create-hello-world-web-app.md)
 #### [使用 Azure SDK for Java](java-create-azure-website-using-java-sdk.md)
 #### [上傳現有應用程式](web-sites-java-add-app.md)
 #### [遠端偵錯 Eclipse](app-service-web-debug-java-web-app-in-eclipse.md)
 #### [遠端偵錯 IntelliJ](app-service-web-debug-java-web-app-in-intellij.md)
+### Python
+#### [Django 應用程式搭配 MySQL](web-sites-python-ptvs-django-mysql.md)
 
 ### [使用 SendGrid 傳送電子郵件](sendgrid-dotnet-how-to-send-email.md)
 
@@ -82,6 +80,7 @@
 
 ### [從 IIS 移轉](web-sites-migration-from-iis-server.md)
 ### [在生產環境中測試](app-service-web-test-in-production-get-start.md)
+### [在 Web 應用程式中新增功能](app-service-web-get-started-2.md)
 
 ## 連線至 DB/資源        
 

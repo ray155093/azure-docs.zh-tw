@@ -23,6 +23,7 @@
 ## 設定 VNet 對 VNet 連接
 ### [Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
 ### [PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
+### [Azure 入口網站 (傳統)](vpn-gateway-howto-vnet-vnet-portal-classic.md)
 ### [傳統入口網站 (傳統)](virtual-networks-configure-vnet-to-vnet-connection.md)
 ## 在部署模型間設定 VNet 對 VNet 連線
 ### [Azure 入口網站](vpn-gateway-connect-different-deployment-models-portal.md)
@@ -42,6 +43,7 @@
 ## [確認 VPN 閘道連線](vpn-gateway-verify-connection-resource-manager.md)
 ## [重設 VPN 閘道](vpn-gateway-resetgw-classic.md)
 ## 刪除 VPN 閘道
+### [Azure 入口網站](vpn-gateway-delete-vnet-gateway-portal.md)
 ### [PowerShell](vpn-gateway-delete-vnet-gateway-powershell.md)
 ### [PowerShell (傳統)](vpn-gateway-delete-vnet-gateway-classic-powershell.md)
 ## [為 P2S 連線建立自我簽署的根憑證](vpn-gateway-certificates-point-to-site.md)

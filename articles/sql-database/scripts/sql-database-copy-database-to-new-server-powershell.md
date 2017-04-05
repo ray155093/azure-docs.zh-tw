@@ -27,7 +27,7 @@ ms.lasthandoff: 03/30/2017
 
 此範例 PowerShell 指令碼會在新伺服器中建立現有資料庫的複本。 
 
-[!INCLUDE [sample-cli-install](../../../includes/sample-powershell-install-no-ssh.md)]
+[!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 ## <a name="copy-a-database-to-a-new-server"></a>將資料庫複製到新伺服器
 

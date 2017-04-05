@@ -27,7 +27,7 @@ ms.lasthandoff: 03/30/2017
 
 此 PowerShell 指令碼範例會為單一資料庫設定作用中異地複寫，並將其容錯移轉到次要複本。
 
-[!INCLUDE [sample-cli-install](../../../includes/sample-powershell-install-no-ssh.md)]
+[!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 ## <a name="sample-scripts"></a>指令碼範例
 

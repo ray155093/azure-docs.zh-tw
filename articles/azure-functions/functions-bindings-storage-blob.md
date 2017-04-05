@@ -133,7 +133,7 @@ Blob 回條儲存於您函數應用程式 (`AzureWebJobsStorage` 應用程式設
 
 ## <a name="trigger-usage"></a>觸發程序使用方式
 在 C# 函式中，您使用在您函式簽章中的具名參數 (例如 `<T> <name>`) 繫結至輸入的 blob 資料。
-其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [觸發 JSON][](#trigger) 中指定的名稱。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取 blob 的輸入資料。
+其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [觸發 JSON](#trigger) 中指定的名稱。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取 blob 的輸入資料。
 
 blob 可以還原序列化為下列任何一種類型︰
 
@@ -233,7 +233,7 @@ Azure 儲存體 blob 輸入繫結可讓您在函式中從儲存體容器使用 b
 
 ## <a name="input-usage"></a>輸入使用方式
 在 C# 函式中，您使用在您函式簽章中的具名參數 (例如 `<T> <name>`) 繫結至輸入的 blob 資料。
-其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [輸入繫結][](#input) 中指定的名稱。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取 blob 的輸入資料。
+其中 `T` 是您要用來還原序列化資料的資料類型，而 `paramName` 是您在 [輸入繫結](#input) 中指定的名稱。 在 Node.js 函式中，您使用 `context.bindings.<name>` 存取 blob 的輸入資料。
 
 blob 可以還原序列化為下列任何一種類型︰
 

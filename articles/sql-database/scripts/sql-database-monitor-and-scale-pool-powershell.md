@@ -27,7 +27,7 @@ ms.lasthandoff: 03/30/2017
 
 此範例 PowerShell 指令碼會監視彈性集區的效能度量、將其調整為較高的效能等級，並對其中一個效能度量建立警示規則。 
 
-[!INCLUDE [sample-cli-install](../../../includes/sample-powershell-install-no-ssh.md)]
+[!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 ## <a name="sample-script"></a>範例指令碼
 
