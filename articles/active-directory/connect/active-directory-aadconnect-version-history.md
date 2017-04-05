@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 7e16fa749389ab876ae413e2ffef7713ed22adac
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
+ms.openlocfilehash: d89135c8f3d5011d7549158a29050e3569defbcc
+ms.lasthandoff: 03/23/2017
 
 
 ---
@@ -54,6 +54,9 @@ AD FS 管理
 * 修正在已選取「傳遞驗證」但註冊其連接器失敗的情況下，會造成 Azure AD Connect 精靈發生失敗的問題。
 * 修正在已啟用「傳統型 SSO」功能的情況下，會造成 Azure AD Connect 精靈在所選登入方法上略過驗證檢查的問題。
 
+密碼重設
+* 已修正如果防火牆或 Proxy 伺服器已清除連線，可能導致 Azure AAD Connect 伺服器不會嘗試重新連線的問題。
+
 **新功能/改進︰**
 
 Azure AD Connect 同步處理
@@ -65,6 +68,10 @@ AD FS 管理
 * 新增對管理 AD FS 2016 的支援。
 * 您現在可以在安裝 AD FS 時指定現有的 gMSA (群組受管理服務帳戶)。
 * 您現在可以為 Azure AD 信賴憑證者信任設定 SHA-256 作為簽章雜湊演算法。
+
+密碼重設
+* 已導入允許產品在具有更嚴格防火牆規則的環境中運作的增強功能。
+* 已改良對 Azure 服務匯流排的連線可靠性。
 
 ## <a name="113800"></a>1.1.380.0
 發行日期︰2016 年 12 月
@@ -217,7 +224,7 @@ AD FS 管理
 
 **新的預覽功能：**
 
-* 新的預設同步處理週期間隔為 30 分鐘。 過去所有舊版本都是&3; 小時。 已新增對變更 [排程器](active-directory-aadconnectsync-feature-scheduler.md) 行為的支援。
+* 新的預設同步處理週期間隔為 30 分鐘。 過去所有舊版本都是 3 小時。 已新增對變更 [排程器](active-directory-aadconnectsync-feature-scheduler.md) 行為的支援。
 
 **已修正的問題：**
 

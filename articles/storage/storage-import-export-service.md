@@ -1,6 +1,6 @@
 ---
-title: "使用匯入/匯出將資料移轉至 Blob 儲存體 | Microsoft Docs"
-description: "了解如何在 Azure 入口網站中建立匯入和匯出工作，以將資料移轉至 Blob 儲存體。"
+title: "使用 Azure 匯入/匯出將資料傳入和傳出 Blob 儲存體 | Microsoft Docs"
+description: "了解如何在 Azure 入口網站中建立匯入和匯出作業，以將資料傳入和傳出 Blob 儲存體。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,22 +15,22 @@ ms.topic: article
 ms.date: 1/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: c30203120a155fd3fc431009baa3e8b318e1330f
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: fd2338b73bd82121ed36e286446b07ccd4a8a219
+ms.lasthandoff: 03/30/2017
 
 
 ---
-# <a name="use-the-microsoft-azure-importexport-service-to-transfer-data-to-blob-storage"></a>使用 Microsoft Azure 匯入/匯出服務將資料移轉至 Blob 儲存體
-## <a name="overview"></a>Overview
-Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，安全地傳輸大量資料至 Azure Blob 儲存體。 您也可以使用這項服務，從 Azure Blob 儲存體傳輸資料到硬碟，然後運送到您的內部部署網站。 這項服務適合您想要和 Azure 相互傳輸數 TB 資料的情形，但是無法透過網路上傳或下載，因為頻寬有限或是網路成本高昴。
+# <a name="use-the-microsoft-azure-importexport-service-to-transfer-data-to-blob-storage"></a>使用 Microsoft Azure 匯入/匯出服務將資料傳入 Blob 儲存體
+
+Azure 匯入/匯出服務可讓您藉由將硬碟寄送到 Azure 資料中心，安全地將大量資料傳入 Azure Blob 儲存體。 您也可以使用這項服務，從 Azure Blob 儲存體傳輸資料到硬碟，然後運送到您的內部部署網站。 這項服務適合您想要將數 TB 資料傳入或傳出 Azure 的情形，但是無法透過網路上傳或下載，因為頻寬有限或是網路成本高昂。
 
 服務需要硬碟使用 BitLocker 進行加密，以提供資料的安全性。 服務支援所有公用 Azure 區域中的傳統和 Azure Resource Manager 儲存體帳戶 (標準層和非經常性存取層)。 您必須將硬碟運送到本文中稍後指定的其中一個支援位置。
 
-在本文中，您將深入了解 Azure 匯入/匯出服務，以及如何運送硬碟以便與 Azure Blob 儲存體相互複製資料。
+在本文中，您將深入了解 Azure 匯入/匯出服務，以及如何寄送硬碟以便將資料複製到和複製出 Azure Blob 儲存體。
 
 ## <a name="when-should-i-use-the-azure-importexport-service"></a>Azure 匯入/匯出服務的使用時機？
-您可以考慮在透過網路上傳或下載資料速度太慢，或是取得額外的網路頻寬成本高昂時使用 Azure 匯入/匯出服務。
+請考慮在透過網路上傳或下載資料速度太慢，或是取得額外的網路頻寬成本高昂時使用 Azure 匯入/匯出服務。
 
 您可以使用此服務的案例，例如︰
 
@@ -40,7 +40,7 @@ Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，安全
 * 資料復原︰復原儲存在 Blob 儲存體中的大量資料，並將它傳遞到您的內部部署位置。
 
 ## <a name="prerequisites"></a>必要條件
-在本節中，我們列出了使用此服務所需的先決條件。 請先仔細檢閱，再運送您的磁碟機。
+在本節中，我們列出了使用此服務所需的必要條件。 請先仔細檢閱，再運送您的磁碟機。
 
 ### <a name="storage-account"></a>儲存體帳戶
 您必須有現有的 Azure 訂用帳戶以及一或多個儲存體帳戶，才能使用匯入/匯出服務。 每項工作都只能從僅只一個儲存體帳戶收送資料。 換句話說，單一匯入/匯出作業不能跨越多個儲存體帳戶。 如需建立新儲存體帳戶的詳細資訊，請參閱 [如何建立儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)(英文)。
@@ -60,7 +60,7 @@ Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，安全
 * 若為匯出工作，您將運送空的硬碟。
 * 您可以針對每個工作運送最多 10 個硬碟。
 
-您可以使用 Azure 入口網站或 [Azure 儲存體匯入/匯出 REST API](/rest/api/storageimportexport) 來建立匯入或匯出工作。
+您可以使用 Azure 入口網站或 [Azure 儲存體匯入/匯出 REST API](/rest/api/storageimportexport) 來建立匯入或匯出作業。
 
 ### <a name="waimportexport-tool"></a>WAImportExport 工具
 建立**匯入**工作的第一個步驟就是要準備將運送以進行匯入的磁碟機。 若要準備您的磁碟機，您必須將它連接到本機伺服器，並在本機伺服器上執行 WAImportExport 工具。 此 WAImportExport 工具可協助將您的資料複製到磁碟機、使用 BitLocker 加密硬碟上的資料，以及產生磁碟機日誌檔案。
@@ -78,7 +78,6 @@ WAImportExport 工具只與 64 位元 Windows 作業系統相容。 請參閱 [�
 ### <a name="hard-disk-drives"></a>硬碟
 只有 2.5 英吋的 SSD 或 2.5 英吋/3.5 英吋的 SATA II 或 III 內接式硬碟能夠用於匯入/匯出服務。 您可以使用高達 10 TB 的硬碟。
 若為匯入工作，將只會處理磁碟機上的第一個資料磁碟區。 此資料磁碟區必須以 NTFS 格式化。
-將資料複製到您的硬碟時，可以使用 2.5 英吋的 SSD 或 2.5 英吋/3.5 英吋的 SATA II 或 III 連接器將它直接附加，或是使用外接式 2.5 英吋的 SSD 或 2.5 英吋/3.5 英吋的 SATA II 或 III USB 介面卡進行外部連接。
 
 > [!IMPORTANT]
 > 此服務不支援隨附內建 USB 介面卡的外接式硬碟。 此外，也無法使用外接式 HDD 機殼內的磁碟；請勿傳送外接式 HDD。
@@ -137,16 +136,16 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 在寄送包裹時，您必須遵守 [Microsoft Azure 服務條款](https://azure.microsoft.com/support/legal/services-terms/)中的條款。
 
 > [!IMPORTANT]
-> 請注意，您寄送的實體媒體可能需要跨國界。 您必須確定實體媒體和資料的匯入和/或匯出符合相關管轄法律。 在寄出實體媒體之前，請洽詢顧問來確認您的媒體和資料可以合法地寄到所識別的資料中心。 這有助於確保及時送達 Microsoft。 例如，任何需要跨國界且需要附上商業發票的包裹 (除了跨歐盟內的國界以外)。 您可以從承運業者網站上列印出商業發票的完整複本。 商業發票的範例有 [DHL 商業發票](http://invoice-template.com/wp-content/uploads/dhl-commercial-invoice-template.pdf)和 [FedEx 商業發票](http://images.fedex.com/downloads/shared/shipdocuments/blankforms/commercialinvoice.pdf)。 請確定 Microsoft 未被指定為匯出者。
+> 請注意，您寄送的實體媒體可能需要跨國界。 您必須確定實體媒體和資料的匯入和/或匯出符合相關管轄法律。 在寄出實體媒體之前，請洽詢顧問來確認您的媒體和資料可以合法地寄到所識別的資料中心。 這有助於確保及時送達 Microsoft。 例如，任何需要跨國界且需要附上商業發票的包裹 (除了跨歐盟內的國界以外)。 您可以從承運業者網站上列印出商業發票的完整複本。 商業發票的範例為 [DHL 商業發票 (英文)](http://invoice-template.com/wp-content/uploads/dhl-commercial-invoice-template.pdf) 和 [FedEx 商業發票 (英文)](http://images.fedex.com/downloads/shared/shipdocuments/blankforms/commercialinvoice.pdf)。 請確定 Microsoft 未被指定為匯出者。
 > 
 > 
 
 ## <a name="how-does-the-azure-importexport-service-work"></a>Azure 匯入/匯出服務如何運作？
 您可以建立作業並運送硬碟機到 Azure 資料中心，在內部部署網站與 Azure Blob 儲存體之間使用 Azure 匯入/匯出服務傳輸資料。 您運送的每個硬碟都與單一作業相關聯。 每個工作都與單一儲存體帳戶相關聯。 請仔細檢閱 [＜必要條件＞一節](#pre-requisites) ，了解此服務的細節，例如支援的 Blob 類型、磁碟類型、位置和運送。
 
-在本節中，我們將概括說明匯入和匯出工作中所牽涉的步驟。 稍後在 [＜快速入門＞一節](#quick-start)中，我們將提供如何建立匯入和匯出作業的逐步指示。
+在本節中，我們將說明匯入和匯出作業中所涉及的步驟。 稍後在[快速入門](#quick-start)一節中，我們將提供如何建立匯入和匯出作業的逐步指示。
 
-### <a name="inside-an-import-job"></a>匯入工作之內
+### <a name="inside-an-import-job"></a>匯入作業之內
 概括而言，匯入工作包含下列步驟︰
 
 * 決定要匯入的資料，以及您將需要的磁碟機數目。
@@ -161,7 +160,7 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
   
     ![圖 1: 匯入工作流程](./media/storage-import-export-service/importjob.png)
 
-### <a name="inside-an-export-job"></a>匯出工作之內
+### <a name="inside-an-export-job"></a>匯出作業之內
 概括而言，匯出工作包含下列步驟︰
 
 * 決定要匯出的資料，以及您將需要的磁碟機數目。
@@ -194,14 +193,12 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 | Completed | 所有磁碟機都寄回給客戶之後，如果工作已完成且沒有錯誤，工作將會設為「已完成」狀態。 「已完成」狀態持續 90 天後，將會自動刪除工作。 |
 | 關閉 | 所有磁碟機都寄回給客戶之後，如果工作處理期間發生任何錯誤，工作將會設為「關閉」狀態。 「關閉」狀態持續 90 天後，將會自動刪除工作。 |
 
-下表說明個別磁碟機在匯入或匯出工作的轉換過程中的生命週期。 現在已可從 Azure 入口網站檢視工作中的每個磁碟機的目前狀態。
+下表說明個別磁碟機在匯入或匯出作業轉換過程中的生命週期。 現在已可從 Azure 入口網站檢視作業中每個磁碟機的目前狀態。
 下表說明工作中的每個磁碟機可能經歷的各個狀態。
-
-![檢視磁碟機狀態](./media/storage-import-export-service/drivestate.png)
 
 | 磁碟機狀態 | 說明 |
 |:--- |:--- |
-| 已指定 | 針對匯入工作，從 Azure 入口網站建立工作時，磁碟機的初始狀態會是「已指定」狀態。 針對匯出工作，因為建立工作時未指定任何磁碟機，初始磁碟機狀態會是「已收到」狀態。 |
+| 已指定 | 針對匯入作業，從 Azure 入口網站建立作業時，磁碟機的初始狀態會是「已指定」狀態。 針對匯出工作，因為建立工作時未指定任何磁碟機，初始磁碟機狀態會是「已收到」狀態。 |
 | 已收到 | 當匯入/匯出服務操作員已處理從貨運公司收到要進行匯入工作的磁碟機後，磁碟機會轉換成「已收到」狀態。 針對匯出工作，初始磁碟機狀態會是「已收到」狀態。 |
 | 從未收到 | 當工作的包裹抵達但包裹未包含磁碟機時，磁碟機會變成「從未收到」狀態。 如果自服務收到出貨資訊起已經過兩週，包裹卻仍未抵達資料中心，磁碟機也會變成此狀態。 |
 | 傳輸中 | 當服務開始將磁碟機中的資料傳輸到 Microsoft Azure 儲存體時，磁碟機將變成「傳輸中」狀態。 |
@@ -209,13 +206,16 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 | 已完成 (其他資訊) | 服務複製磁碟機的資料時若發生一些問題，磁碟機會變成「已完成 (其他資訊)」狀態。 資訊可能包含錯誤、警告或有關覆寫 Blob 的資訊訊息。
 | 已寄回 | 當磁碟機從資料中心運回原地址時，磁碟機會變成「已寄回」狀態。 |
 
+這個來自 Azure 入口網站的影像會顯示範例作業的磁碟機狀態：
+
+![檢視磁碟機狀態](./media/storage-import-export-service/drivestate.png)
+
 下表說明磁碟機失敗狀態，以及針對每個狀態採取的動作。
 
 | 磁碟機狀態 | Event | 解決方法/後續步驟 |
 |:--- |:--- |:--- |
 | 從未收到 | 標示為「從未收到」的磁碟機 (因為在工作的運送過程中未收到) 在另一批貨運中送達。 | 作業小組會將磁碟機變成「已收到」狀態。 |
 | N/A | 不屬於任何工作的磁碟機在另一個工作中送達資料中心。 | 磁碟機會標示為額外的磁碟機，並會在與原始包裹相關聯的工作完成時寄回給客戶。 |
-
 
 ### <a name="time-to-process-job"></a>處理工作的時間
 處理匯入/匯出作業所需的時間量，會根據不同的因素而有所差異，例如運送時間、作業類型、複製的資料類型及大小，以及所提供磁碟的大小。 匯入/匯出服務沒有 SLA。 您可以使用 REST API 更仔細地追蹤工作進度。 在列出工作作業中有一個完成百分比的參數，它可以指出複製進度。 如果您需要對完成一項時間緊迫的匯入/匯出工作的預估，請連絡我們。
@@ -236,7 +236,7 @@ Azure 匯入/匯出服務支援與所有公用 Azure 儲存體帳戶相互複製
 ## <a name="quick-start"></a>快速啟動
 在本節中，我們將提供如何建立匯入和匯出作業的逐步指示。 繼續進行之前，請先確定您符合所有的 [先決條件](#pre-requisites) 。
 
-## <a name="how-to-create-an-import-job"></a>如何建立匯入工作？
+## <a name="create-an-import-job"></a>建立匯入作業
 建立匯入作業，藉由將一或多個包含資料的磁碟機運送到指定的資料中心，將資料從硬碟複製到您的 Azure 儲存體帳戶。 匯入作業會傳送關於硬碟機、要複製的資料、目標儲存體帳戶和運送資訊給 Azure 匯入/匯出服務。 建立匯入工作是一個包含三步驟的程序。 首先，使用 WAImportExport 工具準備您的磁碟機。 其次，使用 Azure 入口網站提交匯入工作。 第三，將磁碟機運送至工作建立期間提供的運送地址，並更新工作詳細資料中的運送資訊。   
 
 > [!IMPORTANT]
@@ -303,7 +303,7 @@ WAImportExport 工具以新的複製工作階段複製目錄和/或檔案的第�
 WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> [/logdir:<LogDirectory>] [/sk:<StorageAccountKey>] [/silentmode] [/InitialDriveSet:<driveset.csv>] DataSet:<dataset.csv>
 ```
 
-**範例：**
+**匯入範例 1**
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#1  /sk:************* /InitialDriveSet:driveset-1.csv /DataSet:dataset-1.csv /logdir:F:\logs
@@ -315,7 +315,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#1  /sk:************
 WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> /AdditionalDriveSet:<driveset.csv>
 ```
 
-**範例**
+**匯入範例 2**
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3  /AdditionalDriveSet:driveset-2.csv
 ```
@@ -326,17 +326,17 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3  /AdditionalDrive
 WAImportExport PrepImport /j:<JournalFile> /id:<SessionId> /j:<JournalFile> /id:<SessionId> [/logdir:<LogDirectory>] DataSet:<dataset.csv>
 ```
 
-**範例：**
+**匯入範例 3**
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /DataSet:dataset-2.csv
 ```
 
-關於使用 WAImportExport 工具的詳細資訊，請參閱[準備硬碟以進行匯入](storage-import-export-tool-preparing-hard-drives-import.md)。
+如需使用 WAImportExport 工具的詳細資訊，請參閱[準備硬碟以進行匯入](storage-import-export-tool-preparing-hard-drives-import.md)。
 
-此外，請參閱 [針對匯入作業準備硬碟的範例工作流程](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md) ，以取得更多詳細的逐步指示。  
+此外，請參閱[針對匯入作業準備硬碟的範例工作流程](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)，以取得更多詳細的逐步指示。  
 
-### <a name="create-the-import-job"></a>建立匯入工作
+### <a name="create-the-import-job"></a>建立匯入作業
 1. 備妥磁碟機後，請在 Azure 入口網站中瀏覽至您的儲存體帳戶，然後檢視 [儀表板]。 在 **[快速概覽]** 之下，按一下 **[建立匯入工作]**。 檢閱步驟，並選取核取方塊，指出您已備妥磁碟機並有可用的磁碟機日誌。
 2. 在步驟 1 中，提供負責處理此匯入工作的人員連絡資訊，以及有效的寄件地址。 若想要儲存匯入工作的詳細資訊記錄資料，請核取 [Save the verbose log in my 'waimportexport' blob container] 選項。
 3. 在步驟 2，上傳在磁碟機準備步驟中取得的磁碟機日誌檔案。 您需要針對已備妥的每個磁碟機上傳一個檔案。
@@ -357,7 +357,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /DataSet:dataset
     若工作處於「建立中」、「傳送中」或「傳輸中」狀態，則您也可以在精靈的步驟 2 中更新貨運公司客戶編號。 一旦工作進入「包裝中」狀態，您就無法更新該工作的貨運公司客戶編號。
 7. 您可以在入口網站儀表板追蹤工作進度。 [檢視您的作業狀態](#viewing-your-job-status)，以查看上一節中每個作業狀態的意義。
 
-## <a name="how-to-create-an-export-job"></a>如何建立匯出工作？
+## <a name="create-an-export-job"></a>建立匯出工作
 建立匯出作業以通知匯入/匯出服務，您會將一或多個空磁碟機送到資料中心，以便將資料從儲存體帳戶匯出至磁碟機，然後再將這些磁碟機運送給您。
 
 ### <a name="prepare-your-drives"></a>準備磁碟機
@@ -366,7 +366,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /DataSet:dataset
 1. 請使用 WAImportExport 工具的 PreviewExport 命令檢查所需的磁碟數目。 如需詳細資訊，請參閱 [Previewing Drive Usage for an Export Job (預覽匯出作業的磁碟機使用量)](https://msdn.microsoft.com/library/azure/dn722414.aspx)。 它可根據您要使用的磁碟機大小，協助您預覽所選取之 Blob 的磁碟機使用情況。
 2. 請檢查您可以對為了匯出工作而運送的硬碟讀取/寫入。
 
-### <a name="create-the-export-job"></a>建立匯出工作
+### <a name="create-the-export-job"></a>建立匯出作業
 1. 若要建立匯出工作，請在 Azure 入口網站中瀏覽至您的儲存體帳戶，然後檢視 [儀表板]。 在 [快速概覽] 之下，按一下 [建立匯出作業]，然後繼續執行精靈。
 2. 在步驟 2，提供負責處理此匯出工作的人員連絡資訊。 若想要儲存匯入工作的詳細資訊記錄資料，請核取 **[將詳細資訊記錄檔儲存在我的 'waimportexport' Blob 容器]** 選項。
 3. 在步驟 3，指定您要從儲存體帳戶匯出至空白磁碟機的 Blob 您可以選擇匯出儲存體帳戶中所有的 Blob 資料，也可以指定要匯出哪幾個或哪幾組 Blob。
@@ -496,9 +496,10 @@ Azure 資料中心會將不符支援需求的磁碟機退回給您。 如果包�
 
 請參閱 [Azure 備份中的離線備份工作流程](../backup/backup-azure-backup-import-export.md)。
 
-## <a name="see-also"></a>另請參閱：
+## <a name="next-steps"></a>後續步驟
+
 * [設定 WAImportExport 工具](storage-import-export-tool-how-to.md)
 * [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
-* [Azure 匯入匯出 REST API 範例](https://azure.microsoft.com/documentation/samples/storage-dotnet-import-export-job-management/)
+* [Azure 匯入匯出 REST API 範例 (英文)](https://azure.microsoft.com/documentation/samples/storage-dotnet-import-export-job-management/)
 
 

@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 3/1/2017
 ms.author: mcoskun
 translationtype: Human Translation
-ms.sourcegitcommit: 615e7ea84aae45f384edb671a28e4ff98b4ade3a
-ms.openlocfilehash: 9cb940a07bf9a5d624669816161450b33e862626
-ms.lasthandoff: 01/05/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: babda2a4ad7dade942a0c7ece84a6f1d65bd3453
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -240,7 +240,7 @@ class MyCustomActorService : ActorService
 請務必確保重要資料正在進行備份，並可進行還原。 在 PowerShell 中叫用會引起特定分割區遺失資料的 **Invoke-ServiceFabricPartitionDataLoss** Cmdlet，以測試您服務的資料備份和還原功能是否如預期般運作。  此外，也可能以程式設計方式叫用資料遺失，並從該事件進行還原。
 
 > [!NOTE]
-> 您可以在 Github 上尋找 Web 參考應用程式中備份與還原功能的範例實作。 如需詳細資訊，請查看 Inventory.Service 服務。
+> 您可以在 GitHub 上的 Web 參考應用程式中，找到備份與還原功能的範例實作。 如需詳細資訊，請查看 Inventory.Service 服務。
 > 
 > 
 

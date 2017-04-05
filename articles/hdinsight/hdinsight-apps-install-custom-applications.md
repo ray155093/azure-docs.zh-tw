@@ -9,6 +9,7 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: e556b29c-8176-4bc5-a90b-aa01abfd3aee
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/22/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 44786974a86a8cef9bfbaa9ea2a131b11747b01e
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 275b1cd91347fdfcc36e0e8a6448ccd8818a507d
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -84,7 +85,7 @@ HDInsight 應用程式可以在您建立叢集時安裝，或安裝至現有的 
 3. 按一下您已安裝應用程式的叢集。
 4. 在 [設定] 刀鋒視窗中，按一下 [一般] 類別之下的 [應用程式]。 您應該會看到 **Hue** 列在 [已安裝的應用程式] 刀鋒視窗中。
 5. 按一下清單中的 **Hue** 以列出相關屬性。  
-6. 按一下 [網頁] 連結來驗證網站；在瀏覽器中開啟 HTTP 端點以驗證 Hue Web UI，使用 [PuTTY](hdinsight-hadoop-linux-use-ssh-windows.md) 或其他 [SSH 用戶端](hdinsight-hadoop-linux-use-ssh-unix.md)開啟 SSH 端點。
+6. 按一下 [網頁] 連結來驗證網站；在瀏覽器中開啟 HTTP 端點以驗證 Hue Web UI，使用 SSH 開啟 SSH 端點。 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 ## <a name="troubleshoot-the-installation"></a>安裝疑難排解
 您可以從入口網站通知檢查應用程式安裝狀態 (按一下入口網站頂端的鈴鐺圖示)。

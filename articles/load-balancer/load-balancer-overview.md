@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 8827793d771a2982a3dccb5d5d1674af0cd472ce
-ms.openlocfilehash: 93577703dd2bc1409250c3df12c2d6265f3f4634
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 2f0b7a04f4b732277abc65dd5fe0844d6e906496
+ms.lasthandoff: 03/30/2017
 
 ---
 
@@ -111,7 +112,7 @@ Azure Load Balancer 可以設定為：
 
     對於虛擬機器起始的每個新輸出連線，負載平衡器也會配置輸出連接埠。 外部主機會看到流量具有以虛擬 IP (VIP) 配置的連接埠。 針對需要大量輸出連線的案例，建議使用 [執行個體層級的公用 IP](../virtual-network/virtual-networks-instance-level-public-ip.md) 位址，讓 VM 有專用的輸出 IP 位址可進行 SNAT。 這會降低連接埠耗盡的風險。
 
-    可供 VIP 或執行個體層級公用 IP (PIP) 使用的連接埠數目上限為 64000。 這是 TCP 標準限制。
+    如需更多有關本主題的詳細資訊，請參閱[輸出連線](load-balancer-outbound-connections.md)一文。
 
 ### <a name="support-for-multiple-load-balanced-ip-addresses-for-virtual-machines"></a>支援虛擬機器有多個負載平衡的 IP 位址
 您可以將多個負載平衡的公用 IP 位址指派給一組虛擬機器。 運用這項功能，您可以在同一組虛擬機器上裝載多個 SSL 網站和/或多個 SQL Server AlwaysOn 可用性群組接聽程式。 如需詳細資訊，請參閱[每一雲端服務有多重 VIP](load-balancer-multivip.md)。
@@ -125,10 +126,5 @@ Azure Load Balancer 可以設定為：
 [內部負載平衡器概觀](load-balancer-internal-overview.md)
 
 [開始建立網際網路面向的負載平衡器](load-balancer-get-started-internet-arm-ps.md)
-
-
-
-
-<!--HONumber=Nov16_HO5-->
 
 

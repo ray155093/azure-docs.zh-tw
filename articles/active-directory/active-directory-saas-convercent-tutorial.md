@@ -11,12 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 3/10/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 6bbfc7e22e5cb70ed1466bda14831412aead76a6
-ms.openlocfilehash: bacabf7fe51e3c417a93a54f043c14aa5d65b31d
-ms.lasthandoff: 01/05/2017
+ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
+ms.openlocfilehash: 187fe8af432d2521e3b9efa59b788280c32692a9
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 01/05/2017
 將 Convercent 與 Azure AD 整合提供下列優點：
 
 - 您可以在 Azure AD 中控制可存取 Convercent 的人員
-- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Convercent (單一登入)
+- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Convercent 單一登入 (SSO)
 - 您可以在 Azure 新的入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -37,27 +37,27 @@ ms.lasthandoff: 01/05/2017
 若要設定 Azure AD 與 Convercent 整合，您需要下列項目：
 
 - Azure AD 訂用帳戶
-- 已啟用 Convercent 單一登入功能的訂用帳戶
+- 已啟用 Convercent SSO 的訂用帳戶
 
-
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。
+>
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+- 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 
 ## <a name="scenario-description"></a>案例描述
-在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
+在本教學課程中，您會在測試環境中測試 Azure AD SSO。 
+
+本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫中新增 Convercent
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Azure AD SSO
 
-
-## <a name="adding-convercent-from-the-gallery"></a>從資源庫中新增 Convercent
+## <a name="add-convercent-from-the-gallery"></a>從資源庫中新增 Convercent
 若要設定將 Convercent 整合到 Azure AD 中，您需要從資源庫將 Convercent 新增到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫加入 Convercent，請執行下列步驟：**
@@ -82,25 +82,24 @@ ms.lasthandoff: 01/05/2017
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-convercent-tutorial/tutorial_convercent_0001.png)
 
+##  <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
+在本節中，您會以名為 "Britta Simon" 的測試使用者身分，設定及測試與 Convercent 搭配運作的 Azure AD SSO。
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Convercent 設定及測試 Azure AD 單一登入。
-
-若要讓單一登入運作，Azure AD 必須知道 Convercent 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 Convercent 中的相關使用者之間建立連結關聯性。
+若要讓 SSO 運作，Azure AD 必須知道 Convercent 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 Convercent 中的相關使用者之間建立連結關聯性。
 
 建立此連結關聯性的方法，就是將 Azure AD 中 [使用者名稱] 的值，指派為 Convercent 中 [使用者名稱] 的值。
 
-若要使用 Convercent 來設定並測試 Azure AD 單一登入，您需要完成下列建置組塊：
+若要設定及測試與 Convercent 搭配運作的 Azure AD SSO，您需要完成下列建置組塊：
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
 3. **[建立 Convercent 測試使用者](#creating-a-works-mobile-test-user)** - 使 Convercent 中對應的 Britta Simon 連結到她在 Azure AD 中的代表項目。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
+5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
-在本節中，您會在 Azure 新的入口網站中啟用 Azure AD 單一登入，然後在您的 Convercent 應用程式中設定單一登入。
+在本節中，您會在 Azure 新的入口網站中啟用 Azure AD SSO，然後在您的 Convercent 應用程式中設定單一登入。
 
 **若要設定與 Convercent 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
 
@@ -115,21 +114,17 @@ ms.lasthandoff: 01/05/2017
 3. 如果您想要以 **IDP 起始模式**設定應用程式，請在 [Convercent 網域和 URL] 區段上執行下列步驟：
 
     ![設定單一登入](./media/active-directory-saas-convercent-tutorial/tutorial_convercent_02.png)
-
-    a. 在 [識別碼] 文字方塊中，輸入：`https://sts.convercent.com/`。
-
-    b.這是另一個 C# 主控台應用程式。 按一下 [顯示進階 URL 設定]
-
-    c. 在 [回覆狀態] 文字方塊中，輸入：`https://app.convercent.com/`
+  1. 在 [識別碼] 文字方塊中，輸入：`https://sts.convercent.com/`。
+  2. 按一下 [顯示進階 URL 設定]。
+  3. 在 [回覆狀態] 文字方塊中，輸入：`https://app.convercent.com/`
     
 4. 如果您想要以 **SP 起始模式**設定應用程式，請在 [Convercent 網域和 URL] 區段上執行下列步驟：
     
     ![設定單一登入](./media/active-directory-saas-convercent-tutorial/tutorial_convercent_03.png)
-
-    a. 在 [登入 URL] 文字方塊中，輸入 `https://app.convercent.com/`。
-
-    > [!NOTE] 
-    > 我們在此建議您使用指定的唯一識別碼。 請連絡 [Convercent 支援小組](mailTo:support@convercent.com)以取得此值。
+  * 在 [登入 URL] 文字方塊中，輸入 `https://app.convercent.com/`。
+    >[!NOTE] 
+    >我們在此建議您使用指定的唯一識別碼。 請連絡 [Convercent 支援小組](mailTo:support@convercent.com)以取得此值。
+    >
 
 5. 在 [Convercent 組態] 區段上，按一下 [設定 Convercent] 以開啟 [設定登入] 對話方塊。 按一下 [SAML XML 中繼資料] ，然後將資料檔儲存在您的電腦中。
 
@@ -141,8 +136,7 @@ ms.lasthandoff: 01/05/2017
 
 7. 在 Azure 新的入口網站中，按一下 [儲存] 按鈕。  
   
-
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 本節的目標是要在新的入口網站中建立名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][100]
@@ -164,25 +158,18 @@ ms.lasthandoff: 01/05/2017
 4. 在 [使用者]  對話頁面上，執行下列步驟：
  
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-convercent-tutorial/create_aaduser_04.png) 
+ 1. 在 [名稱] 文字方塊中，輸入 **BrittaSimon**。
+ 2. 在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。
+ 3. 選取 [顯示密碼] 並記下 [密碼] 的值。
+ 4. 按一下 [建立] 。 
 
-    a. 在 [名稱] 文字方塊中，輸入 **BrittaSimon**。
-
-    b.這是另一個 C# 主控台應用程式。 在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。
-
-    c. 選取 [顯示密碼] 並記下 [密碼] 的值。
-
-    d. 按一下 [建立] 。 
-
-
-
-### <a name="creating-a-convercent-test-user"></a>建立 Convercent 測試使用者
+### <a name="create-a-convercent-test-user"></a>建立 Convercent 測試使用者
 
 在本節中，您要在 Convercent 中建立名為 Britta Simon 的使用者。 請與 [Convercent 支援小組](emailto:support@convercent.com)合作，在 Convercent 平台中新增使用者。
 
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-
-在本節中，您會把 Convercent 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+在本節中，您會將 Convercent 的存取權授與 Britta Simon，讓她能夠使用 Azure SSO。
 
 ![指派使用者][200] 
 
@@ -210,11 +197,9 @@ ms.lasthandoff: 01/05/2017
 
 7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
     
+### <a name="test-single-sign-on"></a>測試單一登入
 
-
-### <a name="testing-single-sign-on"></a>測試單一登入
-
-在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
+在本節中，您會使用存取面板來測試您的 Azure AD SSO 組態。
 
 當您在存取面板中按一下 [Convercent] 圖格時，應該會自動登入您的 Convercent 應用程式。
 

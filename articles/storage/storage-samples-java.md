@@ -15,8 +15,9 @@ ms.workload: storage
 ms.date: 01/12/2017
 ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: ae5719c60c6ed2d3467f162f3b273d5bfdcf0073
-ms.openlocfilehash: 9a311233a6e604ccdb6ab862f11774bff7382a8d
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 98e6022062b4ef5b5c71b54a0e94775b925d216b
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -24,7 +25,7 @@ ms.openlocfilehash: 9a311233a6e604ccdb6ab862f11774bff7382a8d
 
 ## <a name="java-sample-index"></a>Java 範例索引
 
-下表提供我們的範例儲存機制和每個範例所涵蓋案例的概觀。 按一下連結即可檢視 Github 中對應的範例程式碼。
+下表提供我們的範例儲存機制和每個範例所涵蓋案例的概觀。 按一下連結即可檢視 GitHub 中對應的範例程式碼。
 
 <table style="font-size:90%"><thead><tr><th style="font-size:110%">端點</th><th style="font-size:110%">案例</th><th style="font-size:110%">範例程式碼</th></tr></thead><tbody> 
 <tr> 
@@ -73,7 +74,7 @@ ms.openlocfilehash: 9a311233a6e604ccdb6ab862f11774bff7382a8d
 <td><a href="https://github.com/Azure-Samples/storage-blob-java-getting-started/blob/master/src/BlobBasics.java">開始使用 Java 中的 Azure Blob 服務</a></td>
 </tr> 
 <tr> 
-<td>清單 Blob/容器</td>
+<td>列出 Blob/容器</td>
 <td><a href="https://github.com/Azure-Samples/storage-blob-java-getting-started/blob/master/src/BlobBasics.java">開始使用 Java 中的 Azure Blob 服務</a></td>
 </tr> 
 <tr> 
@@ -83,11 +84,11 @@ ms.openlocfilehash: 9a311233a6e604ccdb6ab862f11774bff7382a8d
 <tr> 
 <td>SAS</td>
 <td><a href="https://github.com/Azure/azure-storage-java/blob/master/microsoft-azure-storage-test/src/com/microsoft/azure/storage/blob/SasTests.java">SAS 測試範例</a></td>
-</tr>   
+</tr>     
 <tr> 
 <td>服務屬性</td>
 <td><a href="https://github.com/Azure-Samples/storage-blob-java-getting-started/blob/master/src/BlobAdvanced.java">開始使用 Java 中的 Azure Blob 服務</a></td>
-</tr>           
+</tr>             
 <tr> 
 <td>快照 Blob</td>
 <td><a href="https://github.com/Azure-Samples/storage-blob-java-getting-started/blob/master/src/BlobBasics.java">開始使用 Java 中的 Azure Blob 服務</a></td>
@@ -197,7 +198,7 @@ ms.openlocfilehash: 9a311233a6e604ccdb6ab862f11774bff7382a8d
 
 ## <a name="azure-code-samples-library"></a>Azure 程式碼範例程式庫
 
-若要檢視完整的範例程式庫，請移至 [Azure 程式碼範例](https://azure.microsoft.com/resources/samples/?service=storage)程式庫，其中包含您可以下載並在本機執行的 Azure 儲存體的範例。 程式碼範例程式庫會提供 .zip 格式的範例程式碼。 或者，您可以瀏覽並複製每個範例的 GitHub 儲存機制。
+若要檢視完整的範例程式庫，請移至 [Azure 程式碼範例](https://azure.microsoft.com/resources/samples/?service=storage)程式庫，其中包含您可以下載並在本機執行的「Azure 儲存體」範例。 程式碼範例程式庫會提供 .zip 格式的範例程式碼。 或者，您可以瀏覽並複製每個範例的 GitHub 儲存機制。
 
 [!INCLUDE [storage-java-samples-include](../../includes/storage-java-samples-include.md)]
 
@@ -216,8 +217,4 @@ ms.openlocfilehash: 9a311233a6e604ccdb6ab862f11774bff7382a8d
 
 * .NET：[使用 .NET 的 Azure 儲存體範例](storage-samples-dotnet.md)
 * 所有其他語言︰[Azure 儲存體範例](storage-samples.md)
-
-
-<!--HONumber=Jan17_HO2-->
-
 

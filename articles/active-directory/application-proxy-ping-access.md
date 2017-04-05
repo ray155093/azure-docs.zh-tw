@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/21/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: 09747f06d06f2f0e105b3eef9d46e1505b9e1a7b
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
+ms.openlocfilehash: 173607c481d0ba7ceece6310fcd131ff622a0677
+ms.lasthandoff: 03/23/2017
 
 ---
 
@@ -28,9 +28,9 @@ Azure Active Directory 應用程式 Proxy 和 PingAccess 通力合作，為 Azur
 
 若要讓使用者可存取使用標頭進行驗證的應用程式，請在應用程式 Proxy 與 PingAccess 中發行遠端存取的應用程式。 應用程式 Proxy 會如同任何其他應用程式一樣處理這些應用程式，使用 Azure AD 驗證存取，然後透過連接器服務傳遞流量。 PingAccess 位於前方的應用程式，並將 Azure AD 的存取權杖轉譯為標頭，使應用程式以它可以讀取的格式收到驗證。 
 
-您的使用者在登入使用您公司的應用程式時，將不會注意到什麼不同。 這些還是可以在任何裝置上從任何地方運作。 當使用者在辦公室時，應用程式 Proxy 不會路由傳送其驗證要求，但 PingAccess 仍會做為將權杖轉譯為標頭的媒介。 
+您的使用者在登入使用您公司的應用程式時，將不會注意到什麼不同。 這些還是可以在任何裝置上從任何地方運作。 當使用者在辦公室時，應用程式 Proxy 或 PingAccess 都不會攔截流量，讓您的使用者能夠一如往常般獲得相同的體驗。
 
-由於應用程式 Proxy 連接器會將流量導向至所有的應用程式，不論其驗證類型，因此它們也會繼續自動載入平衡。 
+由於應用程式 Proxy 連接器會將遠端流量導向至所有應用程式，而不論其驗證類型為何，因此它們也將繼續自動載入平衡。 
 
 ## <a name="how-do-i-get-access"></a>如何取得存取權？
 
@@ -69,20 +69,25 @@ Azure Active Directory 應用程式 Proxy 和 PingAccess 通力合作，為 Azur
 3. 在刀鋒視窗頂端選取 [新增]。 
 4. 選取**內部部署應用程式**。
 5. 使用新應用程式的相關資訊填寫必要的欄位。 使用下列指導方針設定︰
-  - **內部 URL**︰當您在公司網路上時，提供可帶您前往應用程式登入頁面的 URL。
+  - **內部 URL**︰當您在公司網路上時，通常會提供此 URL 以帶您前往應用程式登入頁面。 基於此合作關係，連接器需要將 PingAccess Proxy 視為應用程式的首頁。 使用此格式︰`https://<host name of your PA server>:<port>/<App path name>`。 連接埠預設為 3000，但您可以在 PingAccess 中設定它。
   - **預先驗證方法**︰Azure Active Directory
   - **轉譯標頭中的 URL**：否
 6. 選取刀鋒視窗底部的 [新增]。 已新增您的應用程式，快速入門功能表隨即開啟。 
 7. 在 [快速啟動] 功能表中，選取 [指派測試使用者]，並將至少一個使用者新增至應用程式。 請確定此測試帳戶可存取內部部署應用程式。 
 8. 選取**指派**以儲存測試使用者指派。 
 9. 在 [應用程式管理] 刀鋒視窗中，選取 [單一登入]。 
-10. 從下拉式選單選擇 [標頭型登入]。 選取 [ **儲存**]。 
+10. 從下拉式選單選擇 [標頭型登入]。 選取 [ **儲存**]。
+
+  ![選取標頭形式的登入](./media/application-proxy-ping-access/sso-header.PNG)
+
 11. 關閉企業應用程式刀鋒視窗或捲動到最左邊，回到 Azure Active Directory 功能表。 
 12. 選取 [應用程式註冊]。
 13. 選取您剛才新增的應用程式，然後**回覆 URL**。 
 14. 請檢查外部 URL，看看您在步驟 5 中所指派的應用程式是否在回覆 URL 清單。 如果不存在，請立即新增。 
 15. 在應用程式設定刀鋒視窗中，選取 [必要權限]。 
-16. 選取 [新增] 。 針對 API，依序選擇 [Windows Azure Active Directory]、[選取]。 針對權限，依序選擇 [讀取和寫入所有的應用程式]、[選取] 和 [完成]。   
+16. 選取 [新增] 。 針對 API，依序選擇 [Windows Azure Active Directory]、[選取]。 針對權限，依序選擇 [讀取及寫入所有應用程式]、[登入及讀取使用者個人檔案]、[選取] 和 [完成]。  
+
+  ![選取權限](./media/application-proxy-ping-access/select-permissions.png) 
 
 #### <a name="collect-information-for-the-pingaccess-steps"></a>收集 PingAccess 步驟的資訊
 

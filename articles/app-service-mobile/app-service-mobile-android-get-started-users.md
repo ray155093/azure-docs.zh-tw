@@ -4,7 +4,7 @@ description: "了解如何使用 Azure App Service 的 Mobile Apps 功能，透�
 services: app-service\mobile
 documentationcenter: android
 author: ysxu
-manager: adrianha
+manager: 
 editor: 
 ms.assetid: 1fc8e7c1-6c3c-40f4-9967-9cf5e21fc4e1
 ms.service: app-service-mobile
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 10/01/2016
 ms.author: yuaxu
 translationtype: Human Translation
-ms.sourcegitcommit: 817626dd3fc87db61280075b80cedf8b9ed77684
-ms.openlocfilehash: e638495c10742388804e75f3277c50cf1e20c6a6
-ms.lasthandoff: 12/13/2016
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: fcaab18c2c22bcbdbb42708da9840fb6e5c25b2e
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -30,6 +30,20 @@ ms.lasthandoff: 12/13/2016
 ## <a name="register"></a>註冊應用程式進行驗證，並設定 Azure App Service
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
+## <a name="redirecturl"></a>將您的應用程式新增至允許的外部重新導向 URL
+
+安全的驗證會要求您為應用程式定義新的 URL 配置。 這讓驗證系統能夠在驗證程序完成之後，重新導向回到您的應用程式。 我們會在這整個教學課程中使用 URL 配置 appname。 不過，您可以使用任何您選擇的 URL 結構描述。 它對於您的行動應用程式而言應該是唯一的。 在伺服器端啟用重新導向：
+
+1. 在 [Azure 入口網站] 中，選取您的 App Service。
+
+2. 按一下 [驗證/授權] 功能表選項。
+
+3. 在 [允許的外部重新導向 URL] 中，輸入 `appname://easyauth.callback`。  此字串中的 appname 是您行動應用程式的 URL 配置。  它必須遵循通訊協定的標準 URL 規格 (只使用字母和數字，並以字母為開頭)。  請記下您選擇的字串，因為您將需要在數個位置中使用該 URL 配置來調整您的行動應用程式程式碼。
+
+4. 按一下 [確定] 。
+
+5. 按一下 [儲存] 。
+
 ## <a name="permissions"></a>限制只有通過驗證的使用者具有權限
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
@@ -41,6 +55,8 @@ ms.lasthandoff: 12/13/2016
 
 ## <a name="add-authentication-to-the-app"></a>將驗證新增至應用程式
 [!INCLUDE [mobile-android-authenticate-app](../../includes/mobile-android-authenticate-app.md)]
+
+
 
 ## <a name="cache-tokens"></a>在用戶端快取驗證權杖
 [!INCLUDE [mobile-android-authenticate-app-with-token](../../includes/mobile-android-authenticate-app-with-token.md)]

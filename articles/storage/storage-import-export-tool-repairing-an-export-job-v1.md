@@ -1,6 +1,6 @@
 ---
-title: "修復 Azure 匯出作業 | Microsoft Docs"
-description: "了解如何修復使用 Azure 匯入匯出服務建立和執行的匯出作業。"
+title: "修復 Azure 匯入/匯出匯出作業 - v1 | Microsoft Docs"
+description: "了解如何修復使用 Azure 匯入/匯出服務建立和執行的匯出作業。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 74182c8c357085f186aaa43adfaef80a083d16bb
-ms.openlocfilehash: 7ae819a662230a7ca7da6f7bc5bbb3b3f940074e
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: cab61ee993306e830ae899ed639929b0ee7fba82
+ms.lasthandoff: 03/30/2017
 
 
 ---
 # <a name="repairing-an-export-job"></a>修復匯出作業
-完成匯出作業之後，您可以在內部部署上執行 Microsoft Azure 匯入/匯出工具，以便︰  
+完成匯出作業之後，您可以在內部部署上執行 Microsoft Azure 匯入/匯出工具，以便：  
   
 1.  下載 Azure 匯入/匯出服務無法匯出的檔案。  
   
@@ -30,7 +30,11 @@ ms.lasthandoff: 02/16/2017
   
 您必須能夠連線到 Azure 儲存體，才能使用這項功能。  
   
-用於修復匯出作業的命令是 **RepairExport**。 您可以指定下列參數︰  
+用於修復匯出作業的命令是 **RepairExport**。
+
+## <a name="repairexport-parameters"></a>RepairExport 參數
+
+您可以搭配 **RepairExport** 指定下列參數：  
   
 |參數|說明|  
 |---------------|-----------------|  
@@ -83,9 +87,9 @@ WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bob
 ## <a name="using-repairexport-to-validate-drive-contents"></a>使用 RepairExport 驗證磁碟機內容  
 您也可以使用 Azure 匯入/匯出服務搭配 **RepairExport** 選項，以驗證磁碟機上的內容是否正確。 每個匯出磁碟機上的資訊清單檔案都包含磁碟機內容適用的 MD5。  
   
-Azure 匯入/匯出服務也可以在匯出期間將資訊清單檔案儲存到儲存體帳戶。 當作業完成時，可透過 [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業，取得資訊清單檔案的位置。 如需磁碟機資訊清單檔案的格式，請參閱[匯入匯出服務資訊清單檔案格式](storage-import-export-file-format-metadata-and-properties.md)。  
+Azure 匯入/匯出服務也可以在匯出期間將資訊清單檔案儲存到儲存體帳戶。 當作業完成時，可透過 [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業，取得資訊清單檔案的位置。 如需磁碟機資訊清單檔案的格式，請參閱[匯入/匯出服務資訊清單檔案格式](storage-import-export-file-format-metadata-and-properties.md)。  
   
-下列範例示範如何使用 **/ManifestFile** 和 **/CopyLogFile** 參數執行 Azure 匯入/匯出工具︰  
+下列範例示範如何搭配 **/ManifestFile** 和 **/CopyLogFile** 參數執行 Azure 匯入/匯出工具：  
   
 ```  
 WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C3U.log /ManifestFile:G:\9WM35C3U.manifest  
@@ -129,31 +133,34 @@ WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bob
 ``` 
   
 完成修復程序之後，工具會讀取資訊清單檔案中參考的每個檔案，並以 MD5 雜湊驗證檔案的完整性。 在上述資訊清單中，將會逐步進行下列元件。  
+
+```  
+G:\pictures\city\redmond.jpg, offset 0, length 3584  
   
-G:\pictures\city\redmond.jpg，位移 0，長度 3584  
+G:\pictures\city\redmond.jpg, offset 3584, length 3584  
   
-G:\pictures\city\redmond.jpg，位移 3584，長度 3584  
-  
-G:\pictures\city\redmond.jpg，位移 7168，長度 3584  
+G:\pictures\city\redmond.jpg, offset 7168, length 3584  
   
 G:\pictures\city\redmond.jpg.properties  
   
-G:\pictures\wild\canyon.jpg，位移 0，長度 2721  
+G:\pictures\wild\canyon.jpg, offset 0, length 2721  
   
-G:\pictures\wild\canyon.jpg，位移 2721，長度 2721  
+G:\pictures\wild\canyon.jpg, offset 2721, length 2721  
   
-G:\pictures\wild\canyon.jpg，位移 5442，長度 2721  
+G:\pictures\wild\canyon.jpg, offset 5442, length 2721  
   
-G:\pictures\wild\canyon.jpg，位移 8163，長度 2721  
+G:\pictures\wild\canyon.jpg, offset 8163, length 2721  
   
 G:\pictures\wild\canyon.jpg.properties  
-  
+```
+
 工具將會下載驗證失敗的所有元件，並將它們重新寫入至磁碟機上的相同檔案。  
   
-## <a name="see-also"></a>另請參閱  
-[設定 Azure 匯入匯出工具](storage-import-export-tool-setup-v1.md)   
-[針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
-[利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
-[修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)   
-[針對 Azure 匯入匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
+## <a name="next-steps"></a>後續步驟
+ 
+* [設定 Azure 匯入/匯出工具](storage-import-export-tool-setup-v1.md)   
+* [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
+* [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
+* [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)   
+* [針對 Azure 匯入/匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
 

@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 12/12/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: e20f7349f30c309059c2867d7473fa6fdefa9b61
-ms.openlocfilehash: f7036e8e629e78c5346688556a5aa5794bde3955
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 9edaa7a101ae0e1a395491999854ee7009fb69cd
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -30,7 +31,10 @@ ms.openlocfilehash: f7036e8e629e78c5346688556a5aa5794bde3955
 > * [Azure Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
 > * [Azure CLI](application-gateway-create-gateway-cli.md)
 
-Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。 若要尋找完整的支援功能清單，請瀏覽 [應用程式閘道概觀](application-gateway-introduction.md)
+Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。
+應用程式閘道提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。
+
+若要尋找完整的支援功能清單，請瀏覽 [應用程式閘道概觀](application-gateway-introduction.md)
 
 ## <a name="scenario"></a>案例
 
@@ -47,8 +51,6 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 
 > [!IMPORTANT]
 > 其他應用程式閘道組態 (包括自訂健康狀況探查、後端集區位址及其他規則) 會在設定應用程式閘道設定之後才進行設定，而不會在初始部署期間設定。
-> 
-> 
 
 ## <a name="before-you-begin"></a>開始之前
 
@@ -149,21 +151,51 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 
 ## <a name="add-servers-to-backend-pools"></a>將伺服器新增到後端集區
 
-建立應用程式閘道後，裝載要進行負載平衡之應用程式的系統仍必須新增至應用程式閘道。 這些伺服器的 IP 位址或 FQDN 值會新增至後端位址集區。
+建立應用程式閘道後，仍需將裝載要進行負載平衡之應用程式的系統新增至應用程式閘道。 這些伺服器的 IP 位址或 FQDN 值會新增至後端位址集區。
 
-### <a name="step-1"></a>步驟 1
+### <a name="ip-address-or-fqdn"></a>IP 位址或 FQDN
+
+#### <a name="step-1"></a>步驟 1
 
 按一下您所建立的應用程式閘道，按一下 [後端集區]，然後選取目前的後端集區。
 
 ![應用程式閘道後端集區][11]
 
-### <a name="step-2"></a>步驟 2
+#### <a name="step-2"></a>步驟 2
 
-在文字方塊中新增 IP 位址或 FQDN 值，然後按一下 [儲存]
+按一下 [新增目標] 以新增 FQDN 值的 IP 位址
+
+![應用程式閘道後端集區][11-1]
+
+#### <a name="step-3"></a>步驟 3
+
+輸入所有後端值之後，按一下 [儲存]
 
 ![將值新增至應用程式閘道後端集區][12]
 
 此動作會將值儲存在後端集區中。 更新應用程式閘道後，進入應用程式閘道的流量會路由傳送至在此步驟中新增的後端位址。
+
+### <a name="virtual-machine-and-nic"></a>虛擬機器和 NIC
+
+您也可以將虛擬機器 NIC 新增為後端集區成員。 只有與應用程式閘道相同的虛擬網路內的虛擬機器可透過下拉式清單來取得。
+
+#### <a name="step-1"></a>步驟 1
+
+按一下您所建立的應用程式閘道，按一下 [後端集區]，然後選取目前的後端集區。
+
+![應用程式閘道後端集區][11]
+
+#### <a name="step-2"></a>步驟 2
+
+按一下 [新增目標] 以新增後端集區成員。 從下拉式方塊中，選擇虛擬機器和 NIC。
+
+![將 nic 新增至應用程式閘道後端集區][13]
+
+#### <a name="step-3"></a>步驟 3
+
+完成時，按一下 [儲存]，以將 NIC 儲存為後端成員。
+
+![儲存 nic 應用程式閘道後端集區][14]
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -187,11 +219,9 @@ Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內�
 [9]: ./media/application-gateway-create-gateway-portal/figure9.png
 [10]: ./media/application-gateway-create-gateway-portal/figure10.png
 [11]: ./media/application-gateway-create-gateway-portal/figure11.png
+[11-1]: ./media/application-gateway-create-gateway-portal/figure11-1.png
 [12]: ./media/application-gateway-create-gateway-portal/figure12.png
+[13]: ./media/application-gateway-create-gateway-portal/figure13.png
+[14]: ./media/application-gateway-create-gateway-portal/figure14.png
 [scenario]: ./media/application-gateway-create-gateway-portal/scenario.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

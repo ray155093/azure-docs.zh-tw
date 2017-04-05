@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure 匯入匯出工具進行疑難排解 | Microsoft Docs"
-description: "了解使用者使用匯入匯出工具時遇到的常見問題及其處理方式。"
+title: "針對 Azure 匯入/匯出工具進行疑難排解 | Microsoft Docs"
+description: "了解使用 Azure 匯入/匯出工具時見到的一些常見問題及其處理方式。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 9aca8aad3f268bf21f3bad9fa22821f5d825f99d
-ms.openlocfilehash: 53755e0048cfd80d9f930419a105893e5b34dc41
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 43b5d5a57df6bdda57a31ff0330ec6eff7aa732c
+ms.lasthandoff: 03/30/2017
 
 
 ---
 
-# <a name="troubleshooting-the-azure-import-export-tool"></a>針對 Azure 匯入匯出工具進行疑難排解
+# <a name="troubleshooting-the-azure-importexport-tool"></a>針對 Azure 匯入/匯出工具進行疑難排解
 如果發生問題，Microsoft Azure 匯入/匯出工具會傳回錯誤訊息。 本主題列出使用者可能會遇到的一些常見問題。  
   
 ## <a name="a-copy-session-fails-what-i-should-do"></a>複製工作階段失敗，我該怎麼做？  
@@ -38,10 +38,11 @@ ms.lasthandoff: 02/16/2017
 ## <a name="i-lost-the-journal-file-can-i-still-create-the-job"></a>我遺失了日誌檔，還可以建立作業嗎？  
  磁碟機的日誌檔包含將資料複製到這個磁碟機的完整資訊，而且必須將更多檔案新增到磁碟機並將用來建立匯入作業。 如果日誌檔案遺失，您必須針對磁碟機重做所有的複製工作階段。  
   
-## <a name="see-also"></a>另請參閱  
- [設定 Azure 匯入匯出工具](storage-import-export-tool-setup-v1.md)   
- [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
- [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
- [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)   
- [修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)
+## <a name="next-steps"></a>後續步驟
+ 
+* [設定 Azure 匯入/匯出工具](storage-import-export-tool-setup-v1.md)   
+* [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
+* [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
+* [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)   
+* [修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)
 

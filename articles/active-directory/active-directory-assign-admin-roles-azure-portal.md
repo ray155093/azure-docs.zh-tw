@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/07/2017
 ms.author: femila
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: faffd356191b7cca124f0a2cd147837078e4150f
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: e8d3eb7e336383eb639e55656b26d881e8c2adb0
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -34,29 +34,30 @@ ms.lasthandoff: 03/07/2017
 
 * **計費管理員**：進行採購、管理訂用帳戶、管理支援票證，以及監控服務健全狀況。
 
-* **全域管理員/公司系統管理員**：可以存取所有系統管理功能。 註冊 Azure 帳戶的人員會變成全域管理員。 只有全域管理員才能指派其他系統管理員角色。 您的公司可以有多位全域管理員。 全域系統管理員可以為任何使用者和所有其他系統管理員重設密碼。 若要重設自己的密碼，他們必須使用密碼重設服務 (passwordreset.microsoftonline.com) 或讓其他全域系統管理員為他們重設密碼。
+* **規範管理員**：此角色的使用者擁有 Office 365 安全性與法規遵循中心和 Exchange 系統管理中心。 如需詳細資訊，請參閱[關於 Office 365 管理員角色](https://microsoft.sharepoint.com/teams/adiamteam/_layouts/15/WopiFrame.aspx?sourcedoc={dae8d6f3-5990-46a2-b12b-4c0e561bc7cc}&action=view&wdAccPdf=1)。
+
+* **CRM 服務管理員**︰具備此角色的使用者在有 Microsoft CRM Online 服務時，於該服務內具有全域權限，以及管理支援票證和監控服務健全狀況的能力。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
+
+* **裝置系統管理員**︰具備此角色的使用者會在所有已加入 Azure Active Directory 的 Windows 10 裝置上成為本機電腦系統管理員。 它們並沒有在 Azure Active Directory 中管理裝置物件的能力。
+
+* **目錄讀取器**︰這是舊版角色，用來指派給不支援 [同意架構](active-directory-integrating-applications.md)的應用程式。 不應將它指派給任何使用者。
+
+* **目錄同步作業帳戶**：請勿使用。 此角色會自動指派給 Azure AD Connect 服務，不適用於也不支援任何其他用途。
+
+* **目錄寫入器**︰這是舊版角色，用來指派給不支援 [同意架構](active-directory-integrating-applications.md)的應用程式。 不應將它指派給任何使用者。
+
+* **Exchange 服務管理員**︰在有 Microsoft Exchange Online 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
+
+* **全域系統管理員 / 公司系統管理員**︰具有此角色的使用者可以存取 Azure Active Directory 中所有的系統管理功能，以及同盟 Azure Active Directory 的服務，例如 Exchange Online、SharePoint Online 和 Skype for Business Online。 註冊 Azure Active Directory 租用戶的人員會變成全域管理員。 只有全域管理員才能指派其他系統管理員角色。 您的公司可以有多位全域管理員。 全域系統管理員可以為任何使用者和所有其他系統管理員重設密碼。
 
   > [!NOTE]
   > 在 Microsoft Graph API、Azure AD Graph API 及 Azure AD PowerShell 中，是將此角色識別為「公司系統管理員」。 它是 [Azure 入口網站](https://portal.azure.com)中的「全域管理員」。
   >
   >
 
-* **合規性管理員**：具有此角色的使用者擁有 Office 365 安全與規範中心和 Exchange 系統管理中心的管理權限，以及在 Office 365 管理中心讀取稽核記錄的存取權。 如需詳細資訊，請參閱[關於 Office 365 管理員角色](https://microsoft.sharepoint.com/teams/adiamteam/_layouts/15/WopiFrame.aspx?sourcedoc={dae8d6f3-5990-46a2-b12b-4c0e561bc7cc}&action=view&wdAccPdf=1)。
+* **來賓邀請者**︰當「可邀請成員」使用者設定設為 [否] 時，此角色中的使用者可管理 Azure Active Directory B2B 來賓使用者邀請。 在[關於 Azure AD B2B 共同作業預覽](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-b2b-what-is-azure-ad-b2b)中查看 B2B 共同作業的詳細資訊。 這不包含任何其他權限。
 
-* **CRM 服務管理員**︰具備此角色的使用者在有 Microsoft CRM Online 服務時，於該服務內具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
-
-* **客戶加密箱存取核准者**︰已啟用「加密箱」服務時，具備此角色的使用者可以核准要求讓 Microsoft 工程師存取公司資訊。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
-
-* **裝置系統管理員**︰具備此角色的使用者會在所有已加入 Azure Active Directory 的 Windows 10 裝置上成為「系統管理員」。
-
-* **目錄讀取器**︰這是舊版角色，用來指派給不支援 [同意架構](active-directory-integrating-applications.md)的應用程式。 不應將它指派給任何使用者。
-
-* **目錄同步作業帳戶**：請勿使用。 此角色會自動指派給 Azure AD Connect 服務，不適用於也不支援任何其他用途。
-* **目錄寫入器**︰這是舊版角色，用來指派給不支援 [同意架構](active-directory-integrating-applications.md)的應用程式。 不應將它指派給任何使用者。
-
-* **Exchange 服務管理員**︰在有 Microsoft Exchange Online 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
-
-* **Intune 服務管理員**︰在有 Microsoft Intune Online 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
+* **Intune 服務管理員**︰在有 Microsoft Intune Online 服務時，具備此角色的使用者在該服務內會具有全域權限。 此外，此角色包含管理使用者和裝置的能力，可相關聯原則以及建立和管理群組。
 
 * **信箱管理員**︰此角色僅用來當作 RIM Blackberry 裝置的 Exchange Online 電子郵件支援的一部分。 如果您的組織不使用 RIM Blackberry 裝置上的 Exchange Online 電子郵件，請勿使用此角色。
 
@@ -64,43 +65,35 @@ ms.lasthandoff: 03/07/2017
 
 * **合作夥伴第 2 層支援**︰請勿使用。 此角色已被取代，而且未來將從 Azure AD 中移除。 此角色僅供少數 Microsoft 轉售合作夥伴使用，不適用於一般用途。
 
-* **來賓邀請者**：具備此角色的使用者可以管理來賓邀請。 這不包含任何其他權限。
-
-* **密碼管理員/技術支援中心管理員**：重設密碼、管理服務要求，以及監視服務健全狀況。 密碼管理員可以僅重設使用者和其他密碼管理員的密碼。
+* **密碼管理員 / 技術支援中心管理員**：具有此角色的使用者可以重設密碼、管理服務要求，以及監視服務健全狀況。 密碼管理員可以僅重設使用者和其他密碼管理員的密碼。
 
   > [!NOTE]
-  > 在 Microsoft Graph API、Azure AD Graph API 和 Azure AD PowerShell 中，會將此角色識別為「技術支援中心管理員」。
+  > 在 Microsoft Graph API、Azure AD Graph API 和 Azure AD PowerShell 中，會將此角色識別為「技術支援中心管理員」。 它是 [Azure 入口網站](https://portal.azure.com/)中的「密碼管理員」。
   >
   >
-* **SharePoint 服務管理員**︰在有 Microsoft SharePoint Online 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
+  
+* **Power BI 服務管理員**︰具備此角色的使用者在有 Microsoft Power BI 服務時，於該服務內具有全域權限，以及管理支援票證和監控服務健全狀況的能力。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/en-us/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d?ui=en-US&rs=en-001&ad=US)。
 
-- **商務用 Skype 服務管理員**︰在有 Microsoft 商務用 Skype 服務時，具備此角色的使用者在該服務內會具有全域權限。 如需詳細資訊，請參閱〈關於 Office 365 管理員角色〉。 這個角色先前稱為 Lync 服務管理員角色。
+* **特殊權限角色管理員**：具備此角色的使用者可以管理 Azure Active Directory 中，以及 Azure AD Privileged Identity Management 內的角色指派。 此外，這個角色允許各個層面的 Privileged Identity Management 管理。
 
-- **安全性管理員**︰具備安全性讀取者角色的所有唯讀權限，再加上下列相同服務的一些額外系統管理權限︰Identity Protection 中心、Privileged Identity Management、監視 Office 365 服務健康狀況及 Office 365 安全與規範中心。
+* **安全性系統管理員**︰具有此角色的使用者擁有安全性讀取者角色的所有唯讀權限，再加上管理與安全性相關之服務組態的能力︰Azure Active Directory 身分識別保護、Privileged Identity Management 和 Office 365 安全性與法規遵循中心。 關於 Office 365 權限的詳細資訊可在 [Office 365 安全性與法規遵循中心的權限](https://support.office.com/en-us/article/Permissions-in-the-Office-365-Security-Compliance-Center-d10608af-7934-490a-818e-e68f17d0e9c1)中取得。
 
-- **安全性讀取者**︰能夠以唯讀方式存取 Identity Protection 中心、Privileged Identity Management、稽核記錄、監視 Office 365 服務健康狀況及 Office 365 安全與規範中心的一些安全性功能。
+* **安全性讀取者**︰具有此角色的使用者具有全域唯讀存取權，包括 Azure Active Directory、身分識別保護、Privileged Identity Management，以及能夠讀取 Azure Active Directory 登入報表和稽核記錄檔的所有資訊。 角色也會在 Office 365 安全性與法規遵循中心授與唯讀權限。 關於 Office 365 權限的詳細資訊可在 [Office 365 安全性與法規遵循中心的權限](https://support.office.com/en-us/article/Permissions-in-the-Office-365-Security-Compliance-Center-d10608af-7934-490a-818e-e68f17d0e9c1)中取得。
 
-* **服務管理員**：管理服務要求，以及監控服務健全狀況。 具備安全性讀取者角色的所有唯讀權限 (例如，也可以讀取稽核記錄)。
+* **服務支援系統管理員**︰具有此角色的使用者可以使用 Microsoft 開啟 Azure 和 Office 365 服務的支援要求，以及檢視 Azure 入口網站的服務儀表板和訊息中心以及 Office 365 系統管理入口網站。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
+
+* **SharePoint 服務管理員**︰具備此角色的使用者在有 Microsoft SharePoint Online 服務時，於該服務內具有全域權限，以及管理支援票證和監控服務健全狀況的能力。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
+
+* **商務用 Skype / Lync 服務管理員**︰在有 Microsoft 商務用 Skype 服務時，具備此角色的使用者在該服務內會具有全域權限，以及在 Azure Active Directory 中管理 Skype 特定的使用者屬性。 此外，此角色會授與管理支援票證及監控服務健全狀況的能力。 如需詳細資訊，請參閱 [關於 Office 365 管理員角色](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d)。
 
   > [!NOTE]
-  > 若要指派服務管理員角色給使用者，全域管理員必須先指派管理權限給服務中的該使用者，例如 Exchange Online，再指派服務管理員角色給 Azure 傳統入口網站中的使用者。
+  > 在 Microsoft Graph API、Azure AD Graph API 和 Azure AD PowerShell 中，會將此角色識別為「Lync 服務管理員」。 它是 [Azure 入口網站](https://portal.azure.com/)中的「商務用 Skype 服務系統管理員」。
   >
   >
-* **使用者帳戶管理員**：重設密碼、監視服務健全狀況，以及管理使用者帳戶、使用者群組和服務要求。 部分限制適用於使用者管理管理員的權限。 例如，他們無法刪除全域管理員，或建立其他管理員。 他們可以為使用者、其他密碼管理員和其他使用者管理員重設密碼，但不能為計費、全域和服務管理員重設密碼。
+
+* **使用者帳戶管理員**︰具有此角色的使用者可以建立及管理使用者和群組的所有層面。 此外，此角色包含管理支援票證及監控服務健全狀況的能力。 適用某些限制。 例如，此角色不允許刪除全域管理員，且在允許變更非系統管理員的密碼時，它不允許變更全域管理員或其他特殊權限系統管理員的密碼。
 
 ## <a name="administrator-permissions"></a>系統管理員權限
-
-### <a name="application-administrator"></a>應用程式管理員
-| 可以執行 | 無法執行 |
-| --- | --- |
-| <p>建立應用程式 </p><p>管理擁有的應用程式 </p>|<p>重設使用者密碼 </p><p>建立和管理使用者檢視</p><p>建立、編輯和刪除使用者與群組，以及管理使用者授權</p><p>管理網域</p><p>管理公司資訊 </p><p>將系統管理角色委派給其他人</p><p>使用目錄同步作業</p><p>檢視報告稽核記錄</p>|
-
-###<a name="application-developer"></a>應用程式開發人員
-
-| 可以執行 | 無法執行 |
-| --- | --- |
-|<p>檢視目錄資訊 </p><p>建立及管理所有應用程式 </p><p>指派應用程式的授權和存取權 </p><p>管理 Office 支援票證及監視服務健康狀況</p><p>執行 Office 產品的計費和購買作業</p><p>檢視報告稽核記錄</p>|<p>重設使用者密碼 </p><p>建立和管理使用者檢視 </p><p>建立、編輯及刪除使用者和群組</p><p>管理網域 </p><p>管理公司資訊</p><p>將系統管理角色委派給其他人 </p><p>使用目錄同步作業</p>|
-
 
 ### <a name="billing-administrator"></a>計費管理員
 

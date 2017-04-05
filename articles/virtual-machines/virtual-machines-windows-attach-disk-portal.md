@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 11/28/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: b84e07b26506149cf9475491b32b9ff3ea9ae80d
-ms.openlocfilehash: 40375aa411920f966aa6923f0899ca2f88a9ed39
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 88956ec33009bfd6ce5047085f6d7512d951edee
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -30,6 +31,7 @@ ms.openlocfilehash: 40375aa411920f966aa6923f0899ca2f88a9ed39
 * 對於現有的磁碟，該 .vhd 檔案必須可在 Azure 儲存體帳戶中取得。 您可以使用現有的 .vhd 檔案 (若尚未連接至其他虛擬機器)，或上傳您自己的 .vhd 檔案至儲存體帳戶。
 
 您也可以[使用 Powershell 連接資料磁碟](virtual-machines-windows-attach-disk-ps.md)。
+
 
 
 ## <a name="find-the-virtual-machine"></a>尋找虛擬機器
@@ -54,7 +56,7 @@ ms.openlocfilehash: 40375aa411920f966aa6923f0899ca2f88a9ed39
 1. 連接至虛擬機器。 如需指示，請參閱[如何連接和登入執行 Windows 的 Azure 虛擬機器](virtual-machines-windows-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 2. 登入虛擬機器之後，開啟 [伺服器管理員]。 在左窗格中，選取 [File and Storage Services] 。
    
-    ![開啟伺服器管理員](./media/virtual-machines-windows-classic-attach-disk/fileandstorageservices.png)
+    ![開啟伺服器管理員](./windows/classic/media/attach-disk/fileandstorageservices.png)
 3. 展開功能表，然後選取 [ **磁碟**]。
 4. [磁碟]  區段會列出磁碟。 在大部分情況下，會有磁碟 0、磁碟 1 和磁碟 2。 磁碟 0 是作業系統磁碟、磁碟 1 是暫存磁碟，磁碟 2 則是您剛連接至 VM 的資料磁碟。 新的資料磁碟會將磁碟分割列為 [未知] 。 在磁碟上按一下滑鼠右鍵，然後選取 [初始化] 。
 5. 初始化磁碟時，您會收到將清除所有資料的通知。 按一下 [是]，認可此警告並初始化磁碟。 完成之後，即會將磁碟分割列為 [GPT]。 再次於磁碟上按一下滑鼠右鍵，然後選取 新增磁碟區 。
@@ -91,13 +93,14 @@ fsutil behavior query DisableDeleteNotify
 ```
 fsutil behavior set DisableDeleteNotify 0
 ```
+                
+從磁碟中刪除資料之後，您可以使用 TRIM 來執行重組，以確保 TRIM 作業正確排清：
+
+```
+defrag.exe <volume:> -l
+```
 
 ## <a name="next-steps"></a>後續步驟
-如果您的應用程式需要使用 D: 磁碟機來儲存資料，可以[變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
+如果您的應用程式需要使用 D: 磁碟機來儲存資料，可以[變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 

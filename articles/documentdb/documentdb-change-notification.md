@@ -2,9 +2,9 @@
 redirect_url: https://docs.microsoft.com/azure/documentdb/documentdb-change-feed-hl7-fhir-logic-apps
 ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: 0b93e0cd71add8bad86c2b3c0023b524bc4f621a
-ms.openlocfilehash: 1e44ae2341257df6ac367db83947178918016430
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 1b5ec3cb1c2aba86570c6f1753d9142c0d0349ce
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -59,7 +59,7 @@ IT 部門表示他們可以輕鬆提供此通知。 他們還表示可以將文�
    > Blob 儲存體需要 Azure 儲存體帳戶。 您必須佈建 Azure Blob 儲存體帳戶，並加入名為 patients 的新 Blob。 如需詳細資訊，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)和[開始使用 Azure Blob 儲存體](../storage/storage-dotnet-how-to-use-blobs.md)。
    > 
    > 
-5. 最後會傳送電子郵件，通知收件者已找到的文件數目。 如果找不到任何文件，電子郵件本文會是「找到&0; 份文件」。 
+5. 最後會傳送電子郵件，通知收件者已找到的文件數目。 如果找不到任何文件，電子郵件本文會是「找到 0 份文件」。 
 
 您現在已了解工作流程的作用，讓我們看看其實作方式。
 
@@ -734,7 +734,7 @@ QueryDocuments 動作會對 API 應用程式執行 HTTP POST 作業。
 
 在這個動作中，您會傳送電子郵件通知。  您會使用 [SendGrid](https://sendgrid.com/marketing/sendgrid-services?cvosrc=PPC.Bing.sendgrib&cvo_cid=SendGrid%20-%20US%20-%20Brand%20-%20&mc=Paid%20Search&mcd=BingAds&keyword=sendgrib&network=o&matchtype=e&mobile=&content=&search=1&utm_source=bing&utm_medium=cpc&utm_term=%5Bsendgrib%5D&utm_content=%21acq%21v2%2134335083397-8303227637-1649139544&utm_campaign=SendGrid+-+US+-+Brand+-+%28English%29)。   
 
-其程式碼是使用邏輯應用程式的範本以及 [101-logic-app-sendgrid Github 儲存機制](https://github.com/Azure/azure-quickstart-templates/tree/master/101-logic-app-sendgrid)中的 SendGrid 所產生。
+其程式碼是使用邏輯應用程式的範本以及 [101-logic-app-sendgrid GitHub 存放庫 (英文)](https://github.com/Azure/azure-quickstart-templates/tree/master/101-logic-app-sendgrid) 中的 SendGrid 所產生。
 
 HTTP 作業是一個 POST。 
 
@@ -816,7 +816,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ```
 
-這會傳回在電子郵件本文中傳送的相同值。 下圖顯示「找到&29; 筆記錄」的範例。
+這會傳回在電子郵件本文中傳送的相同值。 下圖顯示「找到 29 筆記錄」的範例。
 
 ![結果](./media/documentdb-change-notification/logic-app-run.png)
 
@@ -874,7 +874,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ```
 
-觸發程序已設定為&24; 個小時的週期。 此動作是 HTTP POST，其使用主要邏輯應用程式的回呼 URL。 主體包含 JSON 結構描述中所指定的參數。 
+觸發程序已設定為 24 個小時的週期。 此動作是 HTTP POST，其使用主要邏輯應用程式的回呼 URL。 主體包含 JSON 結構描述中所指定的參數。 
 
 #### <a name="operations"></a>Operations
 ##### <a name="request"></a>要求
@@ -1112,7 +1112,7 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 重點在於事先規劃並建立您的工作流程模型。
 
 ## <a name="next-steps"></a>後續步驟
-請下載並使用 [Github](https://github.com/HEDIDIN/DocDbNotifications)上提供的邏輯應用程式程式碼。 竭誠邀請您建置應用程式，並將變更提交至儲存機制。 
+請下載並使用 [GitHub](https://github.com/HEDIDIN/DocDbNotifications) 上提供的邏輯應用程式程式碼。 竭誠邀請您建置應用程式，並將變更提交至儲存機制。 
 
 若要深入了解 DocumentDB，請瀏覽 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
 

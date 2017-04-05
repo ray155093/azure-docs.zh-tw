@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: bec4f89556a2daa41e19b0ecb2ab9bbbed849107
-ms.openlocfilehash: fb3f7c08c5f3a76e4bd28f3519ab72e8b636b93c
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: 2684e09daa3554a5768a96ae18757a669e221efe
+ms.lasthandoff: 03/29/2017
 
 ---
 
@@ -28,13 +29,13 @@ Azure 負載平衡器將連入流量的公用 IP 位址和連接埠號碼對應�
 
 *servicedefinition.csdef* 檔案將包含端點組態，而當一個 Web 或背景工作角色部署具有多個角色執行個體時，負載平衡器將會針對它進行設定。 將執行個體加入至雲端部署的方法就是變更服務組態檔 (.csfg) 上的執行個體計數。
 
-下圖顯示在三部虛擬機器中共用，且公用和私人 TCP 連接埠均為 443 的已加密 Web 流量負載平衡端點。 這三部虛擬機器均位在負載平衡集合中。
+下圖顯示在三部虛擬機器中共用，且公用和私人 TCP 通訊埠均為 80 的已加密 Web 流量負載平衡端點。 這三部虛擬機器均位在負載平衡集合中。
 
 ![建立負載平衡器範例](./media/load-balancer-internet-overview/IC727496.png))
 
-圖 1 - 加密網頁流量的負載平衡端點
+圖 1 - Web 流量的負載平衡端點
 
-當網際網路用戶端在 TCP 連接埠 443 上傳送網頁要求至雲端服務的公用 IP 位址時，Azure Load Balancer 會在負載平衡集中，將要求分配至這三部虛擬機器。 如需負載平衡器演算法的詳細資訊，請參閱[負載平衡器概觀頁面](load-balancer-overview.md#load-balancer-features)。
+當網際網路用戶端在 TCP 通訊埠 80 上傳送網頁要求至雲端服務的公用 IP 位址時，Azure Load Balancer 會在負載平衡集中，將要求分配至這三部虛擬機器。 如需負載平衡器演算法的詳細資訊，請參閱[負載平衡器概觀頁面](load-balancer-overview.md#load-balancer-features)。
 
 根據預設，Azure Load Balancer 會在多個虛擬機器執行個體之間均分網路流量。 您也可以設定工作階段親和性。如需詳細資訊，請參閱[負載平衡器分配模式](load-balancer-distribution-mode.md)。
 
@@ -45,9 +46,4 @@ Azure 負載平衡器將連入流量的公用 IP 位址和連接埠號碼對應�
 您也可以[開始建立網際網路面向的負載平衡器](load-balancer-get-started-internet-arm-ps.md)，以及為特定負載平衡器的網路流量行為設定[分配模式](load-balancer-distribution-mode.md)類型。
 
 如果您的應用程式需要讓負載平衡器後方的伺服器保持連接狀態，您可以深入了解 [負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)。 當您使用 Azure 負載平衡器時，該文章可幫助您了解閒置連接行為。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

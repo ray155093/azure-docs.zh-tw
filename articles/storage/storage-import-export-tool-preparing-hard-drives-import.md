@@ -15,20 +15,19 @@ ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 48ee2a2bd2ecd2f487748588ef2ad3138dd9983b
-ms.openlocfilehash: a113120381c4e83bd64a41fd30beb138cb1dd5fa
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: d95aaf81ee4d9c19549a57dd1af0f79a1e1bffdd
+ms.lasthandoff: 03/30/2017
 
 
 ---
 # <a name="preparing-hard-drives-for-an-import-job"></a>準備匯入工作的硬碟
-## <a name="overview"></a>概觀
 
 WAImportExport 工具是磁碟機準備及修復工具，可搭配 [Microsoft Azure 匯入/匯出服務](storage-import-export-service.md)使用。 您可以使用此工具，將資料複製到要寄送至 Azure 資料中心的硬碟。 匯入工作完成後，您可以使用此工具來修復損毀、遺漏或與其他 Blob 衝突的任何 Blob。 當您收到已完成的匯出工作中的磁碟機後，您可以使用此工具來修復磁碟機上損毀或遺漏的任何檔案。 在本文中，我們將介紹這項工具的使用。
 
 ## <a name="prerequisites"></a>必要條件
 
-### <a name="prerequisites-for-running-waimportexportexe"></a>執行 WAImportExport.exe 的必要條件
+### <a name="requirements-for-waimportexportexe"></a>WAImportExport.exe 的需求
 
 - **電腦組態**
   - Windows 7、Windows Server 2008 R2 或更新版本的 Windows 作業系統
@@ -52,7 +51,7 @@ WAImportExport 工具是磁碟機準備及修復工具，可搭配 [Microsoft Az
 
 ## <a name="download-and-install-waimportexport"></a>下載和安裝 WAImportExport
 
-下載[最新版的 WAImportExport.exe](http://download.microsoft.com/download/3/6/B/36BFF22A-91C3-4DFC-8717-7567D37D64C5/WAImportExport.zip)。 將壓縮的內容解壓縮至您電腦上的目錄。
+下載[最新版的 WAImportExport.exe](https://www.microsoft.com/download/details.aspx?id=42659)。 將壓縮的內容解壓縮至您電腦上的目錄。
 
 您的下一個工作是建立 CSV 檔案。
 
@@ -89,8 +88,8 @@ BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
 | DstBlobPathOrPrefix | **[必要]**<br/> Microsoft Azure 儲存體帳戶中的目的地虛擬目錄路徑。 虛擬目錄可能已存在或可能不存在。 如果不存在，匯入/匯出服務將會建立一個。<br/><br/>指定目的地虛擬目錄或 blob 時，請確定使用有效的容器名稱。 請記住容器名稱必須是小寫。 如需容器命名規則的詳細資訊，請參閱[命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/fileservices/naming-and-referencing-containers--blobs--and-metadata)。如果只指定根目錄，則會在目的地 Blob 容器中複製來源的目錄結構。如果想要與來源不同的目錄結構，CSV 中多個對應的資料列<br/><br/>您可以指定容器或 blob 首碼，如 music/70s/。 目的地目錄必須以容器名稱開頭，後面接著正斜線 "/"，並可選擇性地包含結尾是 "/" 的虛擬 Blob 目錄。<br/><br/>目的地容器為根容器時，您必須明確指定根容器 (包括正斜線)，例如 $root /。 由於根容器下的 Blob 名稱中不能包含 "/"，當目的地目錄是根容器時，將不會複製來源目錄中的任何子目錄。<br/><br/>**範例**<br/>如果目的地 Blob 路徑是 https://mystorageaccount.blob.core.windows.net/video，這個欄位的值可以是 video/  |
 | BlobType | **[選用]** block &#124; page<br/>目前匯入/匯出服務支援兩種 Blob。 分頁 blob 和區塊 Blob，所有檔案預設會匯入為區塊 Blob。 \*.vhd 和 \*.vhdx 會匯入為分頁 Blob。區塊 Blob 和分頁 Blob 允許的大小有限。 如需詳細資訊，請參閱[儲存體延展性目標](storage-scalability-targets.md#scalability-targets-for-blobs-queues-tables-and-files) (英文)。  |
 | Disposition | **[選用]** rename &#124; no-overwrite &#124; overwrite <br/> 此欄位會指定匯入期間的複製行為，也就是說 當資料從磁碟上傳至儲存體帳戶時，可用的選項有︰rename&#124;overwite&#124;no-overwrite。如未指定，預設值為「重新命名」。 <br/><br/>**重新命名**︰如果已經有同名的物件，會在目的地建立複本。<br/>覆寫︰以較新的檔案覆寫檔案。 上次修改 wins 的檔案。<br/>**不要覆寫**︰如已存在則略過覆寫檔案。|
-| MetadataFile | **[選用]** <br/>此欄位的值為中繼資料檔案，如果需要保留物件的中繼資料或提供自訂中繼資料，則可提供這個欄位的值。 目的地 Blob 的中繼資料檔案路徑。 如需詳細資訊，請參閱[匯入匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md) |
-| PropertiesFile | **[選用]** <br/>目的地 Blob 的屬性檔案路徑。 如需詳細資訊，請參閱[匯入匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)。 |
+| MetadataFile | **[選用]** <br/>此欄位的值為中繼資料檔案，如果需要保留物件的中繼資料或提供自訂中繼資料，則可提供這個欄位的值。 目的地 Blob 的中繼資料檔案路徑。 如需詳細資訊，請參閱[匯入/匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)。 |
+| PropertiesFile | **[選用]** <br/>目的地 Blob 的屬性檔案路徑。 如需詳細資訊，請參閱[匯入/匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)。 |
 
 ## <a name="prepare-initialdriveset-or-additionaldriveset-csv-file"></a>準備 InitialDriveSet 或 AdditionalDriveSet CSV 檔案
 
@@ -187,7 +186,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2  /AbortSession
 
 如果是異常終止，只能中止最後一個複製工作階段。 請注意，您無法中止磁碟機的第一個複製工作階段。 而是必須使用新的日誌檔案重新開始複製工作階段。
 
-### <a name="resume-a-latest-interrupted-session"></a>繼續最近中斷的工作階段︰
+### <a name="resume-a-latest-interrupted-session"></a>繼續最近中斷的工作階段
 
 如果複製工作階段因任何原因中斷，只要指定日誌檔案，就可以執行工具來繼續︰
 
@@ -269,7 +268,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2 /ResumeSession
 </DriveManifest>
 ```
 
-### <a name="sample-journal-file-for-each-drive-ending-with-xml"></a>每個磁碟機的範例日誌檔案︰以 .xml 結尾
+### <a name="sample-journal-file-xml-for-each-drive"></a>每個磁碟機的範例日誌檔案 (XML)
 
 ```xml
 [BeginUpdateRecord][2016/11/01 21:22:25.379][Type:ActivityRecord]
@@ -286,7 +285,7 @@ SaveCommandOutput: Completed
 [EndUpdateRecord]
 ```
 
-### <a name="sample-journal-file-for-session-ended-with-jrn--which-records-the-trail-of-sessions"></a>工作階段的範例日誌檔案︰以 .jrn 結尾，此檔案會記錄工作階段的線索
+### <a name="sample-journal-file-jrn-for-session-which-records-the-trail-of-sessions"></a>工作階段的範例日誌檔案 (JRN)，此檔案會記錄工作階段的線索
 
 ```
 [BeginUpdateRecord][2016/11/02 18:24:14.735][Type:NewJournalFile]
@@ -334,7 +333,7 @@ WAImportExport 工具擁有 WAImportExport V1 工具的所有功能。 WAImportE
 
 每次執行 WAImportExport 工具以將檔案複製到硬碟時，工具會建立一個複製工作階段。 複製工作階段的狀態會寫入日誌檔案。 如果複製工作階段中斷 (例如，因為系統電源斷電)，可以再次執行工具並在命令列指定日誌檔案以繼續。
 
-對於您使用 Azure 匯入/匯出工具準備的每個硬碟，此工具會建立一個名為 "&lt;DriveID&gt;.xml" 的單一日誌檔案，其中的磁碟機識別碼是與工具從磁碟讀取的磁碟機相關聯的序號。 所有磁碟機都將需要日誌檔案，才能建立匯入工作。 如果工具中斷，日誌檔案也可用來繼續磁碟機準備。
+對於您使用 Azure 匯入/匯出工具準備的每個硬碟，此工具會建立名為 "&lt;DriveID&gt;.xml" 的單一日誌檔案，其中的磁碟機識別碼是與工具從磁碟讀取的磁碟機相關聯的序號。 所有磁碟機都將需要日誌檔案，才能建立匯入工作。 如果工具中斷，日誌檔案也可用來繼續磁碟機準備。
 
 #### <a name="what-is-a-log-directory"></a>什麼是記錄檔目錄？
 
@@ -367,15 +366,15 @@ WAImportExport 工具擁有 WAImportExport V1 工具的所有功能。 WAImportE
 3. 編輯 [啟動時需要其他驗證] 原則。
 4. 將原則設為 [啟用]，確定已核取 [在不含相容 TPM 的情形下允許使用 BitLocker]。
 
-####  <a name="how-to-check-if-net-4-or-higher-version-is-installed-on-my-machine"></a>如何檢查電腦上是否已安裝 .Net 4 或更新版本？
+####  <a name="how-to-check-if-net-4-or-higher-version-is-installed-on-my-machine"></a>如何檢查電腦上是否已安裝 .NET 4 或更新版本？
 
 所有 Microsoft .NET Framework 版本均會安裝在下列目錄︰%windir%\Microsoft.NET\Framework\
 
-在您的目標電腦上，瀏覽至執行工具所需的上述組件所在的位置。 尋找開頭為 "v4" 的資料夾名稱。 如果此目錄不存在，表示您的電腦上並未安裝 .Net v4。 您可以使用 [Microsoft .NET Framework 4 (Web 安裝程式)](https://www.microsoft.com/download/details.aspx?id=17851) 在您的電腦上下載 .Net 4。
+在您的目標電腦上，瀏覽至執行工具所需的上述組件所在的位置。 尋找開頭為 "v4" 的資料夾名稱。 如果此目錄不存在，表示您的電腦上並未安裝 .NET 4。 您可以使用 [Microsoft .NET Framework 4 (Web 安裝程式)](https://www.microsoft.com/download/details.aspx?id=17851) 在您的電腦上下載 .Net 4。
 
 ### <a name="limits"></a>限制
 
-#### <a name="how-many-drives-can-i-preparesend-at-the-same-time"></a>一次可以準備/傳送多少磁碟機？
+#### <a name="how-many-drives-can-i-preparesend-at-the-same-time"></a>一次可以準備/傳送多少個磁碟機？
 
 此工具可以準備的磁碟數目沒有限制。 不過，此工具需要磁碟機代號做為輸入。 因此可同時準備的磁碟限制為 25 個。 單一工作一次最多可處理 10 個磁碟。 如果您有 10 個以上的磁碟都對應同一儲存體帳戶，磁碟可以分散到多個工作。
 
@@ -403,9 +402,20 @@ WAImportExport 工具會以批次方式讀取和寫入檔案，一個批次最�
 
 ### <a name="waimportexport-output"></a>WAImportExport 輸出
 
-#### <a name="there-are-two-journal-files-which-one-should-i-upload-to-azure-portal"></a>有兩個日誌檔案。 我應該將哪一個上傳至 Azure 入口網站？
+#### <a name="there-are-two-journal-files-which-one-should-i-upload-to-azure-portal"></a>有兩個日誌檔案，我應該將哪一個上傳至 Azure 入口網站？
 
-**.xml** - 對於您使用 WAImportExport 工具準備的每個硬碟，此工具會建立一個名為 "&lt;DriveID&gt;.xml" 的單一日誌檔案，其中的磁碟機識別碼是與工具從磁碟讀取的磁碟機相關聯的序號。 所有磁碟機都將需要日誌檔案，才能在 Azure 入口網站中建立匯入工作。 如果工具中斷，此日誌檔案也可用來繼續磁碟機準備。
+**.xml** - 對於您使用 WAImportExport 工具準備的每個硬碟，此工具會建立名為 `<DriveID>.xml` 的單一日誌檔案，其中的磁碟機識別碼是與工具從磁碟讀取的磁碟機相關聯的序號。 所有磁碟機都將需要日誌檔案，才能在 Azure 入口網站中建立匯入工作。 如果工具中斷，此日誌檔案也可用來繼續磁碟機準備。
 
-**.jrn** - 後置詞為 .jrn 的日誌檔案包含硬碟所有的複製工作階段的狀態。 它也包含建立匯入工作所需的資訊。 執行 WAImportExport 工具時，永遠必須指定日誌檔案，以及複製工作階段識別碼。
+**.jrn** - 後置詞為 `.jrn` 的日誌檔案包含硬碟所有複製工作階段的狀態。 它也包含建立匯入工作所需的資訊。 執行 WAImportExport 工具時，永遠必須指定日誌檔案，以及複製工作階段識別碼。
+
+## <a name="next-steps"></a>後續步驟
+
+* [設定 Azure 匯入/匯出工具](storage-import-export-tool-setup.md)
+* [在匯入程序期間設定屬性和中繼資料](storage-import-export-tool-setting-properties-metadata-import.md)
+* [針對匯入作業準備硬碟的簡單工作流程](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)
+* [常用命令快速參考](storage-import-export-tool-quick-reference.md) 
+* [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)
+* [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)
+* [修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)
+* [針對 Azure 匯入/匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
 

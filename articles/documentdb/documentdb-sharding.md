@@ -3,8 +3,9 @@
 redirect_url: https://azure.microsoft.com/services/documentdb/
 ROBOTS: NOINDEX, NOFOLLOW
 translationtype: Human Translation
-ms.sourcegitcommit: d59ebef3cda36ba048b844f0cd2326fff66b4aa5
-ms.openlocfilehash: d0a616d27c653e8d3749d93f565f5e8616fdf909
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 7023e7e7f5857db345c47c9a3aa00a816e027a96
+ms.lasthandoff: 03/29/2017
 
 
 
@@ -21,7 +22,7 @@ Azure DocumentDB 支援 [自動分割集合](documentdb-partition-data.md)。 �
 * ACID 交易，也就是預存程序和觸發無法跨越集合。 交易的範圍侷限在集合內的單一分割索引鍵值。
 * 集合不會強制執行結構描述，因此可以用於相同或不同類型的 JSON 文件。
 
-從 [Azure DocumentDB SDK&1;.5.x](documentdb-sdk-dotnet.md) 版起，您可以直接在資料庫中執行文件作業。 在內部， [DocumentClient](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) 會使用您已為資料庫指定的 PartitionResolver，將要求路由至適當的集合。
+從 [Azure DocumentDB SDK 1.5.x](documentdb-sdk-dotnet.md) 版起，您可以直接在資料庫中執行文件作業。 在內部， [DocumentClient](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) 會使用您已為資料庫指定的 PartitionResolver，將要求路由至適當的集合。
 
 > [!NOTE]
 > REST API 2015-12-16 和 SDK 1.6.0+ 中引進的[伺服器端資料分割](documentdb-partition-data.md)取代簡單使用案例的用戶端磁碟分割解析程式方法。 不過，用戶端資料分割更有彈性，可讓您控制跨分割區索引鍵的效能隔離、控制從多個分割區讀取結果時的平行處理程度，以及使用範圍/空間分割方法和雜湊分割方法。
@@ -112,7 +113,7 @@ foreach (UserProfile activeUser in query)
 一個有關定界分割的特殊案例是，當範圍只是單一離散值時，有時也稱為「查閱分割」。 這常用於依區域分割 (例如：斯堪地那維亞的分割包含挪威、丹麥和瑞典)，或用於在多租用戶應用程式中分割租用戶。
 
 ## <a name="samples"></a>範例
-看看 [DocumentDB 分割範例 Github 專案](https://github.com/Azure/azure-documentdb-dotnet/tree/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning)，其中的程式碼片段包括如何使用這些 PartitionResolvers，並將它們延伸到實作自己的解析程式以符合特定使用案例，如下所示： 
+看看 [DocumentDB 分割範例 GitHub 專案 (英文)](https://github.com/Azure/azure-documentdb-dotnet/tree/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning)，其中的程式碼片段說明如何使用這些 PartitionResolvers，並延伸它們來實作您自己的解析程式以符合特定使用案例，如下所示： 
 
 * 如何為 GetPartitionKey 指定任意的 lambda 運算式，並用它來實作複合資料分割索引鍵，或用它來以不同的方式分割不同類型的物件。
 * 如何建立簡單的 [LookupPartitionResolver](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Partitioners/LookupPartitionResolver.cs) ，以便使用手動查閱資料表來執行資料分割。 此模式通常用於以離散值 (例如區域、租用戶識別碼或應用程式名稱) 為基礎的資料分割。
@@ -151,14 +152,9 @@ foreach (UserProfile activeUser in query)
 ## <a name="references"></a>參考
 * [DocumentDB 中的伺服器端分割](documentdb-partition-data.md)
 * [DocumentDB 集合和效能等級](documentdb-performance-levels.md)
-* [Github 上的資料分割程式碼範例](https://github.com/Azure/azure-documentdb-dotnet/tree/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning)
+* [GitHub 上的分割程式碼範例 (英文)](https://github.com/Azure/azure-documentdb-dotnet/tree/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning)
 * [在 MSDN 的 DocumentDB .NET SDK 文件](https://msdn.microsoft.com/library/azure/dn948556.aspx)
 * [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net)
 * [有關效能秘訣的 DocumentDB 部落格](https://azure.microsoft.com/blog/2015/01/20/performance-tips-for-azure-documentdb-part-1-2/)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

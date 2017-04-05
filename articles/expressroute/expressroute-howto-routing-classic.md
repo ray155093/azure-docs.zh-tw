@@ -1,10 +1,10 @@
 ---
-title: "如何使用 PowerShell 為傳統部署模型設定 ExpressRoute 線路的路由 | Microsoft Docs"
+title: "如何設定 ExpressRoute 線路的路由 (對等互連)：Azure：傳統 | Microsoft Docs"
 description: "本文將逐步引導您為 ExpressRoute 線路建立和佈建私用、公用及 Microsoft 對等。 本文也示範如何檢查狀態、更新或刪除線路的對等。"
 documentationcenter: na
 services: expressroute
 author: ganesr
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-service-management
 ms.assetid: a4bd39d2-373a-467a-8b06-36cfcc1027d2
@@ -13,16 +13,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/13/2016
-ms.author: ganesr
+ms.date: 03/21/2017
+ms.author: ganesr;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: ec5e547b88bedd50f451997616c7d72b0b1b4bd4
-ms.openlocfilehash: 66c06ab6beb5e1de9cba25382834f4f9f209fa2f
-ms.lasthandoff: 12/14/2016
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: 6315e0fda231f2bfd3a92cf03cea7cd558bfda37
+ms.lasthandoff: 03/24/2017
 
 
 ---
-# <a name="create-and-modify-routing-for-an-expressroute-circuit"></a>建立和修改 ExpressRoute 電路的路由
+# <a name="create-and-modify-peering-for-an-expressroute-circuit-classic"></a>建立和修改 ExpressRoute 線路的對等互連 (傳統)
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](expressroute-howto-routing-portal-resource-manager.md)
 > * [Resource Manager - PowerShell](expressroute-howto-routing-arm.md)
@@ -35,12 +35,14 @@ ms.lasthandoff: 12/14/2016
 
 本文將逐步引導您使用 PowerShell 和傳統部署模型，以建立和管理 ExpressRoute 電路的路由組態。 下列步驟也會示範如何檢查狀態、更新或刪除和取消佈建 ExpressRoute 線路的對等。
 
+[!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
+
 **關於 Azure 部署模型**
 
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="configuration-prerequisites"></a>組態必要條件
-* 您需要最新版的 Azure PowerShell 模組。 您可以從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)的 PowerShell 區段下載最新的 PowerShell 模組。 遵循 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 頁面上的指示，取得如何設定您的電腦以使用 Azure PowerShell 模組的逐步指引。 
+* 您將需要最新版的 Azure 服務管理 (SM) PowerShell Cmdlet。 如需詳細資訊，請參閱[開始使用 Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)。  
 * 開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)頁面、[路由需求](expressroute-routing.md)頁面和[工作流程](expressroute-workflows.md)頁面。
 * 您必須擁有作用中的 ExpressRoute 線路。 繼續之前，請遵循指示來 [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md) ，並由您的連線提供者來啟用該線路。 ExpressRoute 線路必須處於已佈建和已啟用狀態，您才能執行如下所述的 Cmdlet。
 
@@ -49,7 +51,26 @@ ms.lasthandoff: 12/14/2016
 > 
 > 
 
-您可以為 ExpressRoute 線路設定一個、兩個或全部三個對等 (Azure 私用、Azure 公用和 Microsoft)。 您可以依自己選擇的任何順序設定對等。 不過，您必須確定一次只完成一個對等的設定。 
+您可以為 ExpressRoute 線路設定一個、兩個或全部三個對等 (Azure 私用、Azure 公用和 Microsoft)。 您可以依自己選擇的任何順序設定對等。 不過，您必須確定一次只完成一個對等的設定。
+
+
+### <a name="log-in-to-your-azure-account-and-select-a-subscription"></a>登入您的 Azure 帳戶並選取訂用帳戶
+1. 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。 使用下列範例來協助您連接：
+
+        Login-AzureRmAccount
+
+2. 檢查帳戶的訂用帳戶。
+
+        Get-AzureRmSubscription
+
+3. 如果您有多個訂用帳戶，請選取您要使用的訂用帳戶。
+
+        Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+
+4. 接下來，使用下列 Cmdlet，將您的 Azure 訂用帳戶新增到 PowerShell，以供傳統部署模型使用。
+
+        Add-AzureAccount
+
 
 ## <a name="azure-private-peering"></a>Azure 私用對等
 本節提供如何為 ExpressRoute 線路建立、取得、更新和刪除 Azure 私用對等組態的指示。 
@@ -93,13 +114,13 @@ ms.lasthandoff: 12/14/2016
    * 對等的 AS 編號。 您可以使用 2 位元組和 4 位元組 AS 編號。 您可以將私用 AS 編號用於此對等。 請確定您不是使用 65515。
    * MD5 雜湊 (如果選擇使用)。 **這是選擇性的**。
      
-     您可以執行下列 Cmdlet 來為線路設定 Azure 私用對等。
+    您可以執行下列 Cmdlet 來為線路設定 Azure 私用對等。
      
-       New-AzureBGPPeering -AccessType Private -ServiceKey "*********************************" -PrimaryPeerSubnet "10.0.0.0/30" -SecondaryPeerSubnet "10.0.0.4/30" -PeerAsn 1234 -VlanId 100
+          New-AzureBGPPeering -AccessType Private -ServiceKey "*********************************" -PrimaryPeerSubnet "10.0.0.0/30" -SecondaryPeerSubnet "10.0.0.4/30" -PeerAsn 1234 -VlanId 100
      
-     如果您選擇使用 MD5 雜湊，您可以使用下列 Cmdlet。
+    如果您選擇使用 MD5 雜湊，您可以使用下列 Cmdlet。
      
-       New-AzureBGPPeering -AccessType Private -ServiceKey "*********************************" -PrimaryPeerSubnet "10.0.0.0/30" -SecondaryPeerSubnet "10.0.0.4/30" -PeerAsn 1234 -VlanId 100 -SharedKey "A1B2C3D4"
+          New-AzureBGPPeering -AccessType Private -ServiceKey "*********************************" -PrimaryPeerSubnet "10.0.0.0/30" -SecondaryPeerSubnet "10.0.0.4/30" -PeerAsn 1234 -VlanId 100 -SharedKey "A1B2C3D4"
      
      > [!IMPORTANT]
      > 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
@@ -183,13 +204,13 @@ ms.lasthandoff: 12/14/2016
    * 對等的 AS 編號。 您可以使用 2 位元組和 4 位元組 AS 編號。
    * MD5 雜湊 (如果選擇使用)。 **這是選擇性的**。
      
-     您可以執行下列 Cmdlet 來為電路設定 Azure 公用對等
+    您可以執行下列 Cmdlet 來為電路設定 Azure 公用對等
      
-       New-AzureBGPPeering -AccessType Public -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -PeerAsn 1234 -VlanId 200
+          New-AzureBGPPeering -AccessType Public -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -PeerAsn 1234 -VlanId 200
      
-     如果您選擇使用 MD5 雜湊，您可以使用下列 Cmdlet
+    如果您選擇使用 MD5 雜湊，您可以使用下列 Cmdlet
      
-       New-AzureBGPPeering -AccessType Public -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -PeerAsn 1234 -VlanId 200 -SharedKey "A1B2C3D4"
+          New-AzureBGPPeering -AccessType Public -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -PeerAsn 1234 -VlanId 200 -SharedKey "A1B2C3D4"
      
      > [!IMPORTANT]
      > 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
@@ -272,11 +293,11 @@ ms.lasthandoff: 12/14/2016
    * 路由登錄名稱：您可以指定可供註冊 AS 編號和首碼的 RIR / IRR。
    * MD5 雜湊 (如果選擇使用)。 **這是選擇性。**
      
-     您可以執行下列 Cmdlet 來為線路設定 Microsoft 對等
+    您可以執行下列 Cmdlet 來為線路設定 Microsoft 對等
      
-       New-AzureBGPPeering -AccessType Microsoft -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -VlanId 300 -PeerAsn 1234 -CustomerAsn 2245 -AdvertisedPublicPrefixes "123.0.0.0/30" -RoutingRegistryName "ARIN" -SharedKey "A1B2C3D4"
+          New-AzureBGPPeering -AccessType Microsoft -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -VlanId 300 -PeerAsn 1234 -CustomerAsn 2245 -AdvertisedPublicPrefixes "123.0.0.0/30" -RoutingRegistryName "ARIN" -SharedKey "A1B2C3D4"
 
-### <a name="to-view-microsoft-peering-details"></a>檢視 Microsoft 對等詳細資料
+### <a name="to-view-microsoft-peering-details"></a>檢視 Microsoft 對等詳細資訊
 您可以使用下列 Cmdlet 來取得組態詳細資料。
 
     Get-AzureBGPPeering -AccessType Microsoft -ServiceKey "*********************************"
@@ -298,7 +319,7 @@ ms.lasthandoff: 12/14/2016
 ### <a name="to-update-microsoft-peering-configuration"></a>更新 Microsoft 對等組態
 您可以使用下列 Cmdlet 來更新組態的任何部分。
 
-        Set-AzureBGPPeering -AccessType Microsoft -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -VlanId 300 -PeerAsn 1234 -CustomerAsn 2245 -AdvertisedPublicPrefixes "123.0.0.0/30" -RoutingRegistryName "ARIN" -SharedKey "A1B2C3D4"
+    Set-AzureBGPPeering -AccessType Microsoft -ServiceKey "*********************************" -PrimaryPeerSubnet "131.107.0.0/30" -SecondaryPeerSubnet "131.107.0.4/30" -VlanId 300 -PeerAsn 1234 -CustomerAsn 2245 -AdvertisedPublicPrefixes "123.0.0.0/30" -RoutingRegistryName "ARIN" -SharedKey "A1B2C3D4"
 
 ### <a name="to-delete-microsoft-peering"></a>刪除 Microsoft 對等
 您可以執行下列 Cmdlet 來移除對等組態。

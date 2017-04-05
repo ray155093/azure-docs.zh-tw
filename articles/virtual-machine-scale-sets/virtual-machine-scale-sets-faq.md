@@ -1,6 +1,6 @@
 ---
 title: "Azure 虛擬機器擴展集常見問題集 | Microsoft Docs"
-description: "取得關於虛擬機器擴展集常見問題集的解答"
+description: "取得關於虛擬機器擴展集常見問題集的解答。"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -17,34 +17,32 @@ ms.date: 3/17/2017
 ms.author: negat
 ms.custom: na
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 850459a79c723de0eb3249cfe9ea19bc988ca318
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: e207ace4eb5722e08f2020078dfea9129ef1deb8
+ms.lasthandoff: 03/28/2017
 
 
 ---
 
-# <a name="azure-virtual-machine-scale-sets-faq"></a>Azure 虛擬機器擴展集常見問題集
+# <a name="azure-virtual-machine-scale-sets-faqs"></a>Azure 虛擬機器擴展集常見問題集
 
-本文包含關於擴展集常見問題集的解答。
+取得關於 Azure 中虛擬機器擴展集常見問題集的解答。
 
 ## <a name="autoscale"></a>Autoscale
 
-### <a name="what-are-best-practices-for-azure-autoscale"></a>什麼是 Azure 自動調整的最佳作法？
+### <a name="what-are-best-practices-for-azure-autoscale"></a>什麼是 Azure 自動調整的最佳做法？
 
-是。 請參閱 https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-autoscale-best-practices
+如需自動調整的最佳做法，請參閱[自動調整虛擬機器的最佳做法](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-autoscale-best-practices)。
 
-### <a name="where-do-i-find-the-metric-names-for-autoscaling-using-host-based-metrics"></a>哪裡可以找到使用主機型度量自動調整的計量名稱？
+### <a name="where-do-i-find-metric-names-for-autoscaling-that-uses-host-based-metrics"></a>哪裡可以找到使用主機型計量自動調整的計量名稱？
 
-https://azure.microsoft.com/documentation/articles/monitoring-supported-metrics/
+如需使用主機型計量之自動調整的計量名稱，請參閱[支援的 Azure 監視器度量](https://azure.microsoft.com/documentation/articles/monitoring-supported-metrics/)。
 
-### <a name="are-there-any-examples-of-autoscaling-based-on-a-service-bus-topic-and-queue-length"></a>是否有任何根據根據服務匯流排主題和佇列長度自動調整的範例？
+### <a name="are-there-any-examples-of-autoscaling-based-on-an-azure-service-bus-topic-and-queue-length"></a>是否有任何根據 Azure 服務匯流排主題和佇列長度自動調整的範例？
 
-是。 請參閱：
+是。 如需根據 Azure 服務匯流排主題和佇列長度自動調整的範例，請參閱 [Azure 監視器的自動調整常用計量](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/)。
 
-https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/
-
-服務匯流排佇列：
+如需服務匯流排佇列，請使用下列 JSON：
 
 ```json
 "metricName": "MessageCount",
@@ -52,7 +50,7 @@ https://azure.microsoft.com/documentation/articles/insights-autoscale-common-met
 "metricResourceUri": "/subscriptions/s1/resourceGroups/rg1/providers/Microsoft.ServiceBus/namespaces/mySB/queues/myqueue"
 ```
 
-儲存體佇列：
+如需儲存體佇列，請使用下列 JSON：
 
 ```json
 "metricName": "ApproximateMessageCount",
@@ -60,49 +58,45 @@ https://azure.microsoft.com/documentation/articles/insights-autoscale-common-met
 "metricResourceUri": "/subscriptions/s1/resourceGroups/rg1/providers/Microsoft.ClassicStorage/storageAccounts/mystorage/services/queue/queues/mystoragequeue"
 ```
 
-將這些範例值取代為適當的資源 URI。
+以您資源的統一資源識別項 (URI) 取代範例值。
 
 
-### <a name="should-we-autoscale-with-host-based-metrics-or-use-a-diagnostics-extension"></a>我們應該要以主機型計量自動調整還是使用診斷延伸模組？
+### <a name="should-i-autoscale-by-using-host-based-metrics-or-a-diagnostics-extension"></a>我應該使用主機型計量或診斷擴充功能進行自動調整？
 
-您可以在 VM 上建立自動調整設定來使用主機層級計量，或使用來賓 OS 型的計量。
+您可以在 VM 上建立自動調整設定，以使用主機層級計量或客體 OS 型計量。
 
-請參閱這份支援的計量清單︰https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-autoscale-common-metrics。 以下是擴展集的完整範例 (在此案例中，我們使用主機層級 CPU 計量及訊息計數計量)︰
+如需支援的計量資訊，請參閱 [Azure 監視器的自動調整常見計量](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-autoscale-common-metrics)。 
 
-https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-advanced-autoscale-virtual-machine-scale-sets
+如需虛擬機器擴展集的完整範例，請參閱[使用虛擬機器擴展集的 Resource Manager 範本進行進階自動調整設定](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-advanced-autoscale-virtual-machine-scale-sets)。 
 
-### <a name="how-can-i-set-alert-rules-on-a-scale-set"></a>如何在擴展集上設定警示規則？
+此範例使用主機層級 CPU 計量及訊息計數計量。
 
-您可以透過 PS 或 CLI 在擴展集上建立計量的警示。 請參閱：
 
-https://azure.microsoft.com/documentation/articles/insights-powershell-samples/#create-alert-rules
 
-https://azure.microsoft.com/documentation/articles/insights-cli-samples/#work-with-alerts
+### <a name="how-do-i-set-alert-rules-on-a-virtual-machine-scale-set"></a>如何設定虛擬機器擴展集的警示規則？
 
-擴展集的 TargetResourceId 看起來像：/subscriptions/yoursubscriptionid/resourceGroups/yourresourcegroup/providers/Microsoft.Compute/virtualMachineScaleSets/yourvmssname
+您可以透過 PowerShell 或 Azure CLI，建立虛擬機器擴展集計量的警示。 如需詳細資訊，請參閱 [Azure 監視器 PowerShell 快速入門範例](https://azure.microsoft.com/documentation/articles/insights-powershell-samples/#create-alert-rules)和 [Azure 監視器跨平台 CLI 快速入門範例](https://azure.microsoft.com/documentation/articles/insights-cli-samples/#work-with-alerts)。
 
-您可以選擇任何 VM 做為要警示的計量︰
+虛擬機器擴展集的 TargetResourceId 如下所示： 
 
-https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/#compute-metrics-for-windows-vm-v2-as-a-guest-os
+/subscriptions/yoursubscriptionid/resourceGroups/yourresourcegroup/providers/Microsoft.Compute/virtualMachineScaleSets/yourvmssname
 
-https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/#compute-metrics-for-linux-vm-v2-as-a-guest-os
+您可以選擇任何 VM 效能計數器做為要設定警示的計量。 如需詳細資訊，請參閱 [Azure 監視器的自動調整常用計量](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/)一文中的 [Resource Manager 型 Windows VM 的客體 OS 計量](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/#guest-os-metrics-resource-manager-based-windows-vms)和 [Linux VM 的客體 OS 計量](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/#guest-os-metrics-linux-vms)。
 
-### <a name="how-can-i-set-up-autoscale-on-a-scale-set-using-powershell"></a>如何使用 PowerShell 在擴展集上設定自動調整規模？
+### <a name="how-do-i-set-up-autoscale-on-a-virtual-machine-scale-set-by-using-powershell"></a>如何使用 PowerShell 在虛擬機器擴展集上設定自動調整？
 
-請參閱 https://msftstack.wordpress.com/2017/03/05/how-to-add-autoscale-to-an-azure-vm-scale-set/
+若要使用 PowerShell 在虛擬機器擴展集上設定自動調整，請參閱部落格文章[如何將自動調整新增至 Azure 虛擬機器擴展集](https://msftstack.wordpress.com/2017/03/05/how-to-add-autoscale-to-an-azure-vm-scale-set/)。
 
 
 
 
 ## <a name="certificates"></a>憑證
 
-### <a name="how-do-you-securely-ship-a-certificate-into-the-vm--is-there-an-example-of-provisioning-a-scale-set-to-run-a-website-where-the-ssl-for-the-website-is-shipped-securely-from-a-certificate-configuration--the-common-certificate-rotation-operation-would-amount-to-a-configuration-update-operation"></a>如何安全地送出憑證至 VM？  是否有佈建執行網站 (其中網站的 SSL 會安全地從憑證組態送出) 的擴展集之範例？  常見的憑證旋轉作業會相當於組態更新作業。
+### <a name="how-do-i-securely-ship-a-certificate-to-the-vm-how-do-i-provision-a-virtual-machine-scale-set-to-run-a-website-where-the-ssl-for-the-website-is-shipped-securely-from-a-certificate-configuration-the-common-certificate-rotation-operation-would-be-almost-the-same-as-a-configuration-update-operation-do-you-have-an-example-of-how-to-do-this"></a>如何安全地將憑證送至 VM？ 如何佈建虛擬機器擴展集來執行網站 (其中網站的 SSL 會安全地從憑證組態送出)？ (常見的憑證旋轉作業幾乎與組態更新作業相同。)您是否有如何進行這項操作的範例？ 
 
-我們支援直接從客戶的 Key Vault 中將客戶憑證安裝至 Windows 憑證存放區。
+若要安全地將憑證送至 VM，您可以將客戶憑證直接安裝至客戶金鑰保存庫中的 Windows 憑證存放區。
 
-在擴展集的內容中...
-
-https://msdn.microsoft.com/library/mt589035.aspx
+使用下列 JSON：
 
 ```json
         "secrets": [ {
@@ -116,59 +110,60 @@ https://msdn.microsoft.com/library/mt589035.aspx
         } ]
 ```
 
-它同時支援 Windows 和 Linux。
+程式碼支援 Windows 和 Linux。
 
-### <a name="self-signed-certificate-example"></a>自我簽署憑證的範例︰
+如需詳細資訊，請參閱[建立或更新虛擬機器擴展集](https://msdn.microsoft.com/library/mt589035.aspx)。
 
-#### <a name="create-a-self-signed-cert-in-a-keyvault"></a>在 KeyVault 中建立自我簽署憑證
 
-在 KeyVault 中建立自我簽署憑證的方法之一，是在這裡使用來自本 Service Fabric 文中的指示︰https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/
+### <a name="example-of-self-signed-certificate"></a>自我簽署憑證的範例
 
-PowerShell 命令：
+1.  在金鑰保存庫中建立自我簽署憑證。
 
-```powershell
-Import-Module "C:\Users\mikhegn\Downloads\Service-Fabric-master\Scripts\ServiceFabricRPHelpers\ServiceFabricRPHelpers.psm1"
+    使用下列 PowerShell 命令：
 
-Login-AzureRmAccount
+  ```powershell
+  Import-Module "C:\Users\mikhegn\Downloads\Service-Fabric-master\Scripts\ServiceFabricRPHelpers\ServiceFabricRPHelpers.psm1"
 
-Invoke-AddCertToKeyVault -SubscriptionId <Your SubID> -ResourceGroupName KeyVault -Location westus -VaultName MikhegnVault -CertificateName VMSSCert -Password VmssCert -CreateSelfSignedCertificate -DnsName vmss.mikhegn.azure.com -OutputPath c:\users\mikhegn\desktop\
-```
+  Login-AzureRmAccount
 
-上述命令可讓您輸入 Resource Manager 範本。
+  Invoke-AddCertToKeyVault -SubscriptionId <Your SubID> -ResourceGroupName KeyVault -Location westus -VaultName MikhegnVault -CertificateName VMSSCert -Password VmssCert -CreateSelfSignedCertificate -DnsName vmss.mikhegn.azure.com -OutputPath c:\users\mikhegn\desktop\
+  ```
 
-#### <a name="change-resource-manager-template"></a>變更 Resource Manager 範本
+  此命令可讓您輸入 Azure Resource Manager 範本。
 
-將這個屬性新增至 "virtualMachineProfile” 做為擴展集資源的一部分︰
+  如需如何在金鑰保存庫中建立自我簽署憑證的範例，請參閱 [Service Fabric 叢集安全性案例](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/)一文。
 
-```json 
-"osProfile": {
-            "computerNamePrefix": "[variables('namingInfix')]",
-            "adminUsername": "[parameters('adminUsername')]",
-            "adminPassword": "[parameters('adminPassword')]",
-            "secrets": [
-              {
-                "sourceVault": {
-                  "id": "[resourceId('KeyVault', 'Microsoft.KeyVault/vaults', 'MikhegnVault')]"
-                },
-                "vaultCertificates": [
-                  {
-                    "certificateUrl": "https://mikhegnvault.vault.azure.net:443/secrets/VMSSCert/20709ca8faee4abb84bc6f4611b088a4",
-                    "certificateStore": "My"
-                  }
-                ]
-              }
-            ]
-          }
-```
- 
+2.  變更 Resource Manager 範本。
 
-### <a name="is-there-a-way-to-specify-an-ssh-key-pair-that-i-want-to-use-for-ssh-authentication-with-a-linux-scale-set-from-a-resource-manager-template"></a>是否有方法可指定我想要利用 Resource Manager 範本中的 Linux 擴展集來進行 SSH 驗證使用的 SSH 金鑰組嗎？  
+  將這個屬性新增至 **virtualMachineProfile** 成為虛擬機器擴展集資源的一部分︰
 
-osProfile 的 REST API 看起來類似於一般的 VM 案例︰
- 
-https://msdn.microsoft.com/library/azure/mt589035.aspx#linuxconfiguration
- 
-包含 `osProfile` 在您的範本，如下列範例所示︰
+  ```json 
+  "osProfile": {
+              "computerNamePrefix": "[variables('namingInfix')]",
+              "adminUsername": "[parameters('adminUsername')]",
+              "adminPassword": "[parameters('adminPassword')]",
+              "secrets": [
+                {
+                  "sourceVault": {
+                    "id": "[resourceId('KeyVault', 'Microsoft.KeyVault/vaults', 'MikhegnVault')]"
+                  },
+                  "vaultCertificates": [
+                    {
+                      "certificateUrl": "https://mikhegnvault.vault.azure.net:443/secrets/VMSSCert/20709ca8faee4abb84bc6f4611b088a4",
+                      "certificateStore": "My"
+                    }
+                  ]
+                }
+              ]
+            }
+  ```
+  
+
+### <a name="can-i-specify-an-ssh-key-pair-to-use-for-ssh-authentication-with-a-linux-virtual-machine-scale-set-from-a-resource-manager-template"></a>是否可指定 SSH 金鑰組以便透過 Resource Manager 範本中的 Linux 虛擬機器擴展集來進行 SSH 驗證？  
+
+是。 **osProfile** 的 REST API 類似於標準 VM REST API。 
+
+在您的範本中包含 **osProfile**︰
 
 ```json 
 "osProfile": {
@@ -188,28 +183,24 @@ https://msdn.microsoft.com/library/azure/mt589035.aspx#linuxconfiguration
         }
 ```
  
-此 JSON 區塊可以用於下列的快速入門範本︰
+此 JSON 區塊使用於  [101-vm-sshkey GitHub 快速入門範本](https://github.com/Azure/azure-quickstart-templates/blob/master/101-vm-sshkey/azuredeploy.json)。
  
-https://github.com/Azure/azure-quickstart-templates/blob/master/101-vm-sshkey/azuredeploy.json
- 
-也在此範本看看 OS 設定檔︰
- 
-https://github.com/ExchMaster/gadgetron/blob/master/Gadgetron/Templates/grelayhost.json
+OS 設定檔也會使用於 [grelayhost.json GitHub 快速入門範本](https://github.com/ExchMaster/gadgetron/blob/master/Gadgetron/Templates/grelayhost.json)。
+
+如需詳細資訊，請參閱[建立或更新虛擬機器擴展集](https://msdn.microsoft.com/library/azure/mt589035.aspx#linuxconfiguration)。
+  
 
 ### <a name="how-do-i-remove-deprecated-certificates"></a>如何移除已被取代的憑證？ 
 
-您必須從保存庫憑證清單中移除舊的憑證，但您想要保留在您電腦上的所有憑證例外。 這樣不會從所有的 VM 移除憑證，但也不會將憑證新增至擴展集中所建立的新 VM。 若要從現有的 VM 中移除憑證，您必須撰寫從您的憑證存放區手動移除憑證的自訂指令碼延伸模組。
- 
-### <a name="how-do-i-take-an-existing-ssh-public-key-and-inject-it-into-the-scale-set-ssh-layer-during-provisioning--i-would-like-to-store-the-ssh-public-key-values-in-azure-key-vault-and-then-utilize-them-in-my-resource-manager-template"></a>如何採取現有的 SSH 公開金鑰並在佈建期間將其插入至擴展集 SSH 層？  我想要將 SSH 公開金鑰值儲存在 Azure Key Vault 中，並在我的 Resource Manager 範本中使用它們。
+若要移除已被取代的憑證，請從保存庫憑證清單中移除舊的憑證。 將您想要的所有憑證保留在清單中的電腦上。 這樣不會從所有的 VM 移除憑證。 但也不會將憑證新增至虛擬機器擴展集中所建立的新 VM。 
 
-如果您只提供 VM 一個公開 SSH 金鑰，則沒有理由將公開金鑰放在 Key Vault 中，因為公開金鑰不是密碼。
+若要從現有的 VM 中移除憑證，請撰寫自訂指令碼擴充孤能，以從您的憑證存放區中手動移除憑證。
  
-您可以在建立 Linux VM 時以純文字提供 SSH 公開金鑰。
-範例可以在這裡找到：
+### <a name="how-do-i-inject-an-existing-ssh-public-key-into-the-virtual-machine-scale-set-ssh-layer-during-provisioning-i-want-to-store-the-ssh-public-key-values-in-azure-key-vault-and-then-use-them-in-my-resource-manager-template"></a>如何在佈建期間將現有的 SSH 公開金鑰插入至虛擬機器擴展集 SSH 層？ 我想要將 SSH 公開金鑰值儲存在 Azure Key Vault 中，然後在我的 Resource Manager 範本中使用它們。
 
-https://github.com/Azure/azure-quickstart-templates/blob/master/101-vm-sshkey/azuredeploy.json
+如果您只透過 SSH 公開金鑰提供 VM，則不需要將公開金鑰放在 Key Vault 中。 公開金鑰不是密碼。
  
-具體而言：
+您可以在建立 Linux VM 時以純文字提供 SSH 公開金鑰：
 
 ```json
 "linuxConfiguration": {  
@@ -223,49 +214,54 @@ https://github.com/Azure/azure-quickstart-templates/blob/master/101-vm-sshkey/az
  
 linuxConfiguration 元素名稱 | 必要 | 類型 | 說明
 --- | --- | --- | --- |  ---
-ssh | 否 | 集合 | 指定 Linux OS 的 SSH 金鑰組態。
-路徑 | 是 | String | 指定 SSH 金鑰或憑證必須放置的 Linux 檔案路徑。
-keyData | 是 | String | 指定 base64 編碼的 SSH 公開金鑰。
- 
-### <a name="when-i-run-update-azurermvmss-after-more-than-one-certificate-from-the-same-keyvault-i-get-the-following-error"></a>當我在來自相同 KeyVault 的一個以上憑證之後執行 Update-AzureRmVmss 時，收到下列錯誤︰
- 
-Update-AzureRmVmss：清單密碼包含重複的執行個體 /subscriptions/<我的訂用帳戶識別碼>/resourceGroups/internal-rg-dev/providers/Microsoft.KeyVault/vaults/internal-keyvault-dev，其為不允許。 為什麼無法從相同的 KeyVault 新增兩個憑證？
- 
-如果您正嘗試新增相同的保存庫兩次，而不是對現有 sourceVault 新增 vaultCertificate，就會發生這種行為。 Add-AzureRmVmssSecret 新增額外密碼運作不正常。
- 
-如果您想要從相同的 Key Vault 中新增更多密碼，您應該更新清單 $vmss.properties.osProfile.secrets[0].vaultCertificates
- 
-您可以看到預期的輸入結構如下︰https://msdn.microsoft.com/library/azure/mt589035.aspx
- 
-您需要在擴展集物件中尋找具有相同包含 Key Vault 的密碼。 然後您必須將憑證參考 (URL 以及密碼儲存名稱) 新增至與保存庫相關聯的清單。
+ssh | 否 | 集合 | 指定 Linux OS 的 SSH 金鑰組態
+路徑 | 是 | String | 指定 SSH 金鑰或憑證必須位於的 Linux 檔案路徑
+keyData | 是 | String | 指定 base64 編碼的 SSH 公開金鑰
 
-注意︰目前不支援透過擴展集 API 從 VM 移除憑證。
+如需範例，請參閱 [101-vm-sshkey GitHub 快速入門範本](https://github.com/Azure/azure-quickstart-templates/blob/master/101-vm-sshkey/azuredeploy.json)。
+
  
-新的 VM 不具有舊的憑證，但具有已部署之憑證仍須舊的憑證。
+### <a name="when-i-run-update-azurermvmss-after-adding-more-than-one-certificate-from-the-same-key-vault-i-see-the-following-message"></a>當我在從相同金鑰保存庫新增一個以上的憑證之後執行 `Update-AzureRmVmss` 時，我會看到下列錯誤︰
  
-### <a name="is-there-a-way-to-get-certificates-pushed-to-the-scale-set-without-providing-the-password-when-the-certificate-is-in-secretstore-currently"></a>是否有方法可當憑證目前在 SecretStore 中時，將憑證推送至擴展集而無須提供密碼？
-
-您不需要在指令碼中硬式編碼密碼；您可以利用您所擁有之部署指令碼執行之任何權限以動態方式擷取。 如果您有會從密碼存放區移動憑證的 Key Vault 之指令碼，密碼存放區取得憑證命令也會輸出 pfx 檔案的密碼。
+  Update-AzureRmVmss: 清單密碼包含重複的 /subscriptions/<my-subscription-id>/resourceGroups/internal-rg-dev/providers/Microsoft.KeyVault/vaults/internal-keyvault-dev 執行個體，不允許這種情況。
  
-### <a name="how-does-the-secrets-property-of-virtualmachineprofileosprofile-of-a-scale-set-work-why-do-you-need-sourcevault-when-you-have-to-specify-the-absolute-uri-to-a-certificate-with-certificateurl"></a>擴展集的 VirtualMachineProfile.osProfile 的密碼屬性如何運作？ 當您必須指定絕對 URI 至具有 certificateUrl 的憑證時，為什麼需要 sourceVault？ 
-
-必須在 OS 設定檔的密碼屬性中顯示 Win RM 憑證參考。 
-
-指出來源保存庫的目的是要能夠強制執行 CSM 中存在的 ACL 規則。 如果沒有指定來源保存庫，沒有部署/存取密碼至 Key Vault 權限的使用者能夠透過 CRP。 甚至不存在的資源也會有 ACL。
-
-如果您提供不正確的 sourceVault 識別碼但為有效的 Key Vault URL，在輪詢作業時我們會報告錯誤
+如果您嘗試重新新增相同的保存庫，而不是對現有的來源保存庫使用新的保存庫憑證，就會發生這種情形。 如果您要新增其他密碼，`Add-AzureRmVmssSecret` 命令無法正常運作。
  
-### <a name="if-i-add-secrets-to-an-existing-scale-set-does-it-inject-them-in-existing-instances-or-only-new-ones"></a>如果我將密碼新增至現有的擴展集，它會將這些密碼插入現有的執行個體還是只有新的執行個體？ 
-
-憑證會新增到所有的 VM，甚至是既有的。 如果您的擴展集 upgradePolicy 屬性設定為「手動」，當您在 VM 上執行手動更新時，憑證會新增至 VM。
+若要從相同金鑰保存庫新增更多密碼，請更新 $vmss.properties.osProfile.secrets[0].vaultCertificates 清單。
  
-### <a name="where-do-certificates-go-for-linux-vms"></a>Linux VM 的憑證會移至何處？
+如需預期的輸入結構，請參閱[建立或更新虛擬機器擴展集](https://msdn.microsoft.com/library/azure/mt589035.aspx)。
+ 
+在金鑰保存庫中的虛擬機器擴展集物件中尋找密碼。 然後，將憑證參考 (URL 及密碼存放區名稱) 新增至與保存庫相關聯的清單。
 
-請參閱 https://blogs.technet.microsoft.com/kv/2015/07/14/deploy-certificates-to-vms-from-customer-managed-key-vault/
+> [!NOTE] 
+> 目前，您無法使用虛擬機器擴展集 API 從 VM 中移除憑證。
+>
+
+新的 VM 不會有舊的憑證。 不過，具有憑證且已經部署的 VM 會有舊的憑證。
+ 
+### <a name="can-i-push-certificates-to-the-virtual-machine-scale-set-without-providing-the-password-when-the-certificate-is-in-the-secret-store"></a>當憑證位於密碼存放區時，可以將憑證推送至虛擬機器擴展集而無須提供密碼？
+
+您不需要使用硬式編碼在指令碼中寫入密碼。 您可以使用您用來執行部署指令碼的權限動態擷取密碼。 如果您的指令碼會從密碼存放區金鑰保存庫移動憑證，則密碼存放區 `get certificate` 命令也會輸出 pfx 檔案的密碼。
+ 
+### <a name="how-does-the-secrets-property-of-virtualmachineprofileosprofile-for-a-virtual-machine-scale-set-work-why-do-i-need-the-sourcevault-value-when-i-have-to-specify-the-absolute-uri-for-a-certificate-by-using-the-certificateurl-property"></a>虛擬機器擴展集的 virtualMachineProfile.osProfile 的 Secrets 屬性如何運作？ 當我必須使用 certificateUrl 屬性來指定憑證的絕對 URI 時，為什麼需要 sourceVault 值？ 
+
+必須在 OS 設定檔的 Secrets 屬性中顯示 Windows 遠端管理 (WinRM) 憑證參考。 
+
+指出來源保存庫的目的是要強制執行使用者的 Azure 雲端服務模型中存在的存取控制清單 (ACL) 原則。 如果未指定來源保存庫，則沒有權限可存取密碼或將密碼部署至金鑰保存庫的使用者便能夠透過計算資源提供者 (CRP)。 甚至不存在的資源也會有 ACL。
+
+如果您提供不正確的來源保存庫識別碼，但為有效的金鑰保存庫 URL，則系統會在您輪詢作業時報告錯誤。
+ 
+### <a name="if-i-add-secrets-to-an-existing-virtual-machine-scale-set-are-the-secrets-injected-into-existing-vms-or-only-into-new-ones"></a>如果我將密碼新增至現有虛擬機器擴展集，則新的密碼會插入現有的 VM，或只會插入新的 VM？ 
+
+憑證會新增至所有 VM，甚至是既有的 VM。 如果虛擬機器擴展集 upgradePolicy 屬性設定為 **manual**，當您在 VM 上執行手動更新時，憑證會新增至 VM。
+ 
+### <a name="where-do-i-put-certificates-for-linux-vms"></a>將 Linux VM 的憑證放在哪裡？
+
+若要了解如何部署 Linux VM 的憑證，請參閱[將憑證從客戶管理的金鑰保存庫部署到 VM](https://blogs.technet.microsoft.com/kv/2015/07/14/deploy-certificates-to-vms-from-customer-managed-key-vault/)。
   
-### <a name="how-do-you-add-a-new-vault-certificate-to-a-new-certificate-object"></a>您要如何將新的保存庫憑證新增至新的憑證物件？
+### <a name="how-do-i-add-a-new-vault-certificate-to-a-new-certificate-object"></a>如何將新的保存庫憑證新增至新的憑證物件？
 
-如果您想要將保存庫憑證新增至現有的密碼，其應該只有一個秘密物件，您可以如下列 powershell 範例所示執行它︰
+若要將保存庫憑證新增至現有的密碼，請參閱下列 PowerShell 範例。 只使用一個密碼物件。
  
 ```powershell
 $newVaultCertificate = New-AzureRmVmssVaultCertificateConfig -CertificateStore MY -CertificateUrl https://sansunallapps1.vault.azure.net:443/secrets/dg-private-enc/55fa0332edc44a84ad655298905f1809
@@ -277,64 +273,65 @@ Update-AzureRmVmss -VirtualMachineScaleSet $vmss -ResourceGroup $rg -Name $vmssN
  
 ### <a name="what-happens-to-certificates-if-you-reimage-a-vm"></a>如果您重新安裝映像 VM，憑證會發生什麼事？
 
-如果重新安裝映像 VM，憑證便會消失，因為重新安裝映像會刪除其整個作業的作業系統磁碟。 
+如果您重新安裝 VM 映像，則會刪除憑證。 重新安裝映像會刪除整個 OS 磁碟。 
  
 ### <a name="what-happens-if-you-delete-a-certificate-from-the-key-vault"></a>如果您從 Key Vault 中刪除憑證會發生什麼事？
 
-如果在 Key Vault 中刪除密碼，且您停止解除配置您所有的 VM，然後再次啟動它們，您會發生失敗。 此失敗是因為 CRP 需要從 Key Vault 擷取密碼，但無法完成。 在此案例中，您可以從擴展集模型刪除憑證。 
+如果從金鑰保存庫中刪除密碼，然後您對所有 VM 執行 `stop deallocate` 而後再次啟動它們，您會發生失敗。 發生失敗的原因是 CRP 需要從金鑰保存庫擷取密碼，但無法這麼做。 在此案例中，您可以從虛擬機器擴展集模型刪除憑證。 
 
-CRP 元件不會保存任何客戶密碼。 如果您停止解除配置擴展集中所有的 VM，則會刪除快取。 在此案例中，會從 Key Vault 中擷取密碼。
+CRP 元件不會保存客戶密碼。 如果您對虛擬機器擴展集中的所有 VM 執行 `stop deallocate`，則會刪除快取。 在此案例中會從金鑰保存庫中擷取密碼。
 
-這個問題不會在向外延展架構中叫用，因為在網狀架構中 (至少在單一網狀架構租用戶模型中) 有一個快取的密碼副本。
+您不會在相應放大時遇到此問題，因為 Azure Service Fabric 中有一個快取的密碼副本 (在單一網狀架構租用戶模型中)。
  
-### <a name="why-do-we-have-to-specify-the-exact-location-for-the-certificate-url-as-referenced-here-per-httpsazuremicrosoftcomdocumentationarticlesservice-fabric-cluster-security"></a>為什麼我們必須指定憑證 URL 的確切位置，如此處所參考︰https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/， 
-https://<name of the vault>.vault.azure.net:443/secrets/<exact location>
+### <a name="why-do-i-have-to-specify-the-exact-location-for-the-certificate-url-httpsname-of-the-vaultvaultazurenet443secretsexact-location-as-indicated-in-service-fabric-cluster-security-scenarioshttpsazuremicrosoftcomdocumentationarticlesservice-fabric-cluster-security"></a>為什麼我必須指定憑證 URL 的確切位置 (https://<name of the vault>.vault.azure.net:443/secrets/<exact location>)，如 [Service Fabric 叢集安全性案例](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/)所示？
  
-根據 KeyVault 文件，get-secret REST API 應該傳回最新版本的密碼 (如果未指定版本)︰
+Azure Key Vault 文件表示「取得密碼 REST API」應傳回最新版的密碼 (若未指定版本的話)。
  
 方法 | URL
 --- | ---
 GET | https://mykeyvault.vault.azure.net/secrets/{密碼-名稱}/{密碼-版本}?api-version={api-版本}
 
-將 {密碼-名稱} 取代為名稱，以及 {密碼-版本} 取代為您想要擷取的密碼版本。 可能會排除密碼版本，在此情況下會擷取目前的版本。
+將 {密碼-名稱} 替換為名稱，以及將 {密碼-版本} 替換為您想要擷取的密碼版本。 可能會排除密碼版本。 在此情況下會擷取目前的版本。
   
-### <a name="why-does-certificate-version-have-to-be-specified-when-using-key-vault"></a>使用 Key Vault 時，為何必須指定憑證版本？
+### <a name="why-do-i-have-to-specify-the-certificate-version-when-i-use-key-vault"></a>使用 Key Vault 時，為什麼必須指定憑證版本？
 
-這項要求的原因是要讓使用者清楚了解其 VM 上所部署的憑證。
+指定憑證版本的 Key Vault 需求目的是要讓使用者清楚了解其 VM 上所部署的憑證。
 
-如果您建立 VM，然後更新您 Key Vault 中的密碼，該新的憑證會下載至您的 VM。 但您的 VM 會出現以參考這個位址，且新的 VM 會取得新的密碼。 若要避免混淆，則需要您參考明確的密碼版本。
+如果您建立 VM，然後更新金鑰保存庫中的密碼，新的憑證不會下載至您的 VM。 但您的 VM 似乎會參考它，且新的 VM 會取得新的密碼。 若要避免這個問題，您必須參考密碼版本。
 
-### <a name="my-team-works-with-several-certificates-that-are-distributed-to-us-as-cer-public-keys-what-is-the-recommended-approach-is-for-deployment-of-these-certs-to-a-scale-set"></a>我的小組會使用發佈給我們做為 .cer 公開金鑰的多個憑證。 將這些憑證部署至擴展集的建議方法是什麼？
+### <a name="my-team-works-with-several-certificates-that-are-distributed-to-us-as-cer-public-keys-what-is-the-recommended-approach-for-deploying-these-certificates-to-a-virtual-machine-scale-set"></a>我的小組會使用發佈給我們做為 .cer 公開金鑰的多個憑證。 將這些憑證部署至虛擬機器擴展集的建議方法為何？
 
-您可以使用 X509ContentType = Pfx 產生僅包含 .cer 檔案的 pfx 檔案。 例如，載入 .cer 檔案做為 C# 或 PowerShell 中的 x509Certificate2 物件，並呼叫這個方法：https://msdn.microsoft.com/library/24ww6yzk(v=vs.110).aspx
+若要將 .cer 公開金鑰部署至虛擬機器擴展集，您可以產生僅包含 .cer 檔案的 .pfx 檔案。 若要這樣做，請使用 `X509ContentType = Pfx`。 例如，載入 .cer 檔案做為 C# 或 PowerShell 中的 x509Certificate2 物件，然後呼叫此方法。 
 
-### <a name="i-do-not-see-an-option-for-users-to-pass-in-certificates-as-base64-strings-that-most-other-resource-providers-provide"></a>我看不到可供使用者傳入大部分其他資源提供者所提供的憑證做為 base64 字串的選項。
+如需詳細資訊，請參閱 [X509Certificate.Export 方法 (X509ContentType, String)](https://msdn.microsoft.com/library/24ww6yzk(v=vs.110.aspx))。
 
-您可以在 Resource Manager 範本中擷取最新版本的 URL 來模擬您描述的行為。 您可以在 Resource Manager 範本中包含下列的 JSON 屬性︰
+### <a name="i-do-not-see-an-option-for-users-to-pass-in-certificates-as-base64-strings-most-other-resource-providers-have-this-option"></a>我看不到可供使用者傳入憑證做為 base64 字串的選項。 大部分其他資源提供者都有這個選項。
+
+若要模擬傳入憑證做為 base64 字串，您可以在 Resource Manager 範本中擷取最新版的 URL。 在 Resource Manager 範本中包含下列 JSON 屬性︰
 
 ```json 
 "certificateUrl": "[reference(resourceId(parameters('vaultResourceGroup'), 'Microsoft.KeyVault/vaults/secrets', parameters('vaultName'), parameters('secretName')), '2015-06-01').secretUriWithVersion]"
 ```
  
-### <a name="do-we-have-to-wrap-certs-in-json-objects-in-keyvaults"></a>我們必須在 keyvaults 中包裝 JSON 物件中的憑證嗎？
+### <a name="do-i-have-to-wrap-certificates-in-json-objects-in-key-vaults"></a>我們必須在金鑰保存庫的 JSON 物件中包裝憑證嗎？
 
-這是擴展集/VM 需求。 我們也支援內容類型應用程式/x-pkcs12。 可在此處找到指示：http://www.rahulpnath.com/blog/pfx-certificate-in-azure-key-vault/
+在虛擬機器擴展集和 VM 中，憑證必須包裝在 JSON 物件中。 
+
+我們也支援內容類型 application/x-pkcs12。 如需使用 application/x-pkcs12 的相關指示，請參閱 [Azure Key Vault 中的 PFX 憑證](http://www.rahulpnath.com/blog/pfx-certificate-in-azure-key-vault/)。
  
-我們目前不支援 .cer 檔案，您必須將 .cer 檔案匯出至 pfx 容器。
-
-
+我們目前不支援 .cer 檔案。 若要使用 .cer 檔案，請將它們匯出到 .pfx 容器。
 
 
 
 ## <a name="compliance"></a>法規遵循
 
-### <a name="are-scale-sets-pci-compliant"></a>擴展集是否符合 PCI 規範？
+### <a name="are-virtual-machine-scale-sets-pci-compliant"></a>虛擬機器擴展集符合 PCI 規範嗎？
 
-擴展集為計算資源提供者上的精簡型 API 層，也就是 Azure 服務樹狀結構內所有「計算平台」區域的一部分。
+虛擬機器擴展集是以 CRP 為基礎的精簡 API 層。 這兩個元件都在 Azure 服務樹狀目錄中計算平台的一部分。
 
-因此，相容性的觀點而言，擴展集是 Azure 計算平台的基本部分。 同樣地，它們會共用相同的小組、工具、程序、部署方法、安全性控制 JIT、監控、警示等做為計算資源提供者 (CRP) 本身。  擴展集符合 PCI 規範，因為計算資源提供者屬於目前 PCI DSS 證明︰
+就相容性的觀點而言，虛擬機器擴展集是 Azure 計算平台的基本部分。 它們會與 CRP 本身共用一個小組、工具、程序、部署方法、安全性控制、Just-In-Time (JIT) 編譯、監控、警示等。 虛擬機器擴展集符合支付卡產業 (PCI) 規範，因為 CRP 是目前 PCI 資料安全標準 (DSS) 證明的一部分。
 
-如需詳細資訊，請參閱︰[https://www.microsoft.com/TrustCenter/Compliance/PCI](https://www.microsoft.com/TrustCenter/Compliance/PCI)。
+如需詳細資訊，請參閱 [Microsoft 信任中心](https://www.microsoft.com/TrustCenter/Compliance/PCI)。
 
 
 
@@ -343,9 +340,9 @@ GET | https://mykeyvault.vault.azure.net/secrets/{密碼-名稱}/{密碼-版本}
 
 ## <a name="extensions"></a>擴充功能
 
-### <a name="how-do-you-delete-a-scale-set-extension"></a>如何刪除擴展集延伸模組？
+### <a name="how-do-i-delete-a-virtual-machine-scale-set-extension"></a>如何刪除虛擬機器擴展集擴充功能？
 
-使用 PowerShell 的範例如下︰
+若要刪除虛擬機器擴展集擴充功能，請使用下列 PowerShell 範例︰
 
 ```powershell
 $vmss = Get-AzureRmVmss -ResourceGroupName "resource_group_name" -VMScaleSetName "vmssName" 
@@ -355,24 +352,22 @@ $vmss=Remove-AzureRmVmssExtension -VirtualMachineScaleSet $vmss -Name "extension
 Update-AzureRmVmss -ResourceGroupName "resource_group_name" -VMScaleSetName "vmssName" -VirtualMacineScaleSet $vmss
 ```
  
-可在 `$vmss`中找到 extensionName。
+您可以在 `$vmss` 中找到 extensionName 值。
    
-### <a name="is-there-a-scale-set-template-example-that-integrates-with-oms"></a>是否有與 OMS 整合的擴展集範本範例？
+### <a name="is-there-a-virtual-machine-scale-set-template-example-that-integrates-with-operations-management-suite"></a>是否有與 Operations Management Suite 整合的虛擬機器擴展集範本範例？
 
-查看此處的第二個範例︰
-
-https://github.com/krnese/AzureDeploy/tree/master/OMS/MSOMS/ServiceFabric
+如需與 Operations Management Suite 整合的虛擬機器擴展集範本範例，請參閱[部署 Azure Service Fabric 叢集並使用 Log Analytics 來啟用監視](https://github.com/krnese/AzureDeploy/tree/master/OMS/MSOMS/ServiceFabric)中的第二個範例。
    
-### <a name="extensions-seem-to-run-in-parallel-on-scale-sets-causing-my-custom-script-extension-to-fail-what-can-i-do-to-fix-this-behavior"></a>延伸模組似乎在擴展集上擴充集合以平行方式執行，導致我的自訂指令碼延伸模組失敗。 可以做什麼來修正這個問題？
+### <a name="extensions-seem-to-run-in-parallel-on-virtual-machine-scale-sets-this-causes-my-custom-script-extension-to-fail-what-can-i-do-to-fix-this"></a>擴充功能似乎會在虛擬機器擴展集上平行執行。 這會導致自訂指令碼擴充功能失敗。 可以做什麼來修正這個問題？
 
-請參閱 https://msftstack.wordpress.com/2016/05/12/extension-sequencing-in-azure-vm-scale-sets/ 
+若要了解虛擬機器擴展集中的擴充功能排序，請參閱 [Azure 虛擬機器擴展集中的擴充功能排序](https://msftstack.wordpress.com/2016/05/12/extension-sequencing-in-azure-vm-scale-sets/)。
  
  
-### <a name="how-do-i-reset-the-password-for-scale-set-vms"></a>如何重設擴展集 VM 的密碼？
+### <a name="how-do-i-reset-the-password-for-vms-in-my-virtual-machine-scale-set"></a>如何重設虛擬機器擴展集中 VM 的密碼？
 
-使用 VM 存取延伸模組
+若要重設虛擬機器擴展集中 VM 的密碼，請使用 VM 存取擴充功能。 
 
-使用 PowerShell 的範例如下︰
+使用下列 PowerShell 範例：
 
 ```powershell
 $vmssName = "myvmss"
@@ -384,24 +379,29 @@ $extName = "VMAccessAgent"
 $publisher = "Microsoft.Compute"
 $vmss = Get-AzureRmVmss -ResourceGroupName $vmssResourceGroup -VMScaleSetName $vmssName
 $vmss = Add-AzureRmVmssExtension -VirtualMachineScaleSet $vmss -Name $extName -Publisher $publisher -Setting $publicConfig -ProtectedSetting $privateConfig -Type $extName -TypeHandlerVersion "2.0" -AutoUpgradeMinorVersion $true
-Update-AzureRmVmss -ResourceGroupName $vmssResourceGroup -Name $vmssName VirtualMachineScaleSet $vmss
+Update-AzureRmVmss -ResourceGroupName $vmssResourceGroup -Name $vmssName -VirtualMachineScaleSet $vmss
 ```
  
  
-### <a name="how-do-i-add-an-extension-to-all-vms-in-my-scale-set"></a>如何將延伸模組新增至擴展集中的所有 VM？
+### <a name="how-do-i-add-an-extension-to-all-vms-in-my-virtual-machine-scale-set"></a>如何將擴充功能新增至虛擬機器擴展集中的所有 VM？
 
-- 將更新原則設定為自動時，使用新的延伸模組屬性重新部署範本便會更新每個 VM。
-- 如果更新原則設定為手動，您必須更新延伸模組，然後在所有執行個體上執行 manualUpdate。
+將更新原則設定為**自動**時，使用新的擴充屬性重新部署範本便會更新所有 VM。
+
+如果更新原則設定為**手動**，請先更新擴充功能，然後手動更新 VM 中的所有執行個體。
+
   
-### <a name="if-the-extensions-associated-with-an-existing-scale-set-are-updated-would-they-affect-already-existing-vms-that-is-would-the-vms-show-up-as-not-matching-the-scale-set-model-or-would-they-be-ignored-when-an-existing-machine-is-service-healed--reimaged--etc-would-the-scripts-that-are-currently-configured-on-the-scale-set-be-executed-or-would-the-ones-that-were-configured-when-the-machine-was-first-created-be-used"></a>如果與現有擴展集相關聯的延伸模組更新時，是否會影響現有的 VM？ (也就是，VM 是否會出現為不相符的擴展集模型)？ 或者，是否會忽略它們？ 現有的機器為服務修復 / 重新安裝映像 / 等等時，是否會執行目前在擴展集上設定的指令碼，或是否會使用第一次建立機器時已設定的指令碼？
+### <a name="if-the-extensions-associated-with-an-existing-virtual-machine-scale-set-are-updated-are-existing-vms-affected-that-is-will-the-vms-not-match-the-virtual-machine-scale-set-model-or-are-they-ignored-when-an-existing-machine-is-service-healed-or-reimaged-are-the-scripts-that-are-currently-configured-on-the-virtual-machine-scale-set-executed-or-are-the-scripts-that-were-configured-when-the-vm-was-first-created-used"></a>如果更新與現有虛擬機器擴展集相關聯的擴充功能，現有的 VM 是否會受影響？ (也就是，VM「不」符合虛擬機器擴展集模型嗎？)或者會忽略它們？ 當現有機器為服務所修復或重新安裝映像時，是否會執行目前在虛擬機器擴展集上設定的指令碼，或是否會使用第一次建立 VM 時設定的指令？
 
-- 更新擴展集模型中的延伸模組定義時，如果 upgradePolicy 設定為自動執行，則它會更新 VM，且如果 upgradePolicy 設為手動，則會將它們標示為不符合模型。 
+如果已更新虛擬機器擴展集模型中的擴充定義且 upgradePolicy 屬性設定為 **automatic**，則會更新 VM。 如果 upgradePolicy 屬性設定為 **manual**，則會將擴充功能標示為不符合模型。 
 
-- 如果現有的 VM 已服務修復，它應出現類似於重新開機，且不會重新執行延伸模組。 如果它重新安裝映像，可能會類似從最新的模型以來源映像取代作業系統磁碟機和任何特製化，例如延伸模組可能會執行。
+如果現有 VM 為服務所修復，它會呈現重新開機狀態，且不會重新執行擴充功能。 若已重新安裝映像，就像是以來源映像取代 OS 磁碟機。 系統會執行最新模型的任何特製化項目，例如擴充功能。
  
-### <a name="how-do-i-get-a-scale-set-to-join-an-ad-domain"></a>如何取得要加入 AD 網域的擴展集？
+### <a name="how-do-i-join-a-virtual-machine-scale-set-to-an-azure-ad-domain"></a>如何將虛擬機器擴展集加入至 Azure AD 網域？
 
-您可以像這樣定義延伸模組，例如使用 JsonADDomainExtension︰
+若要將虛擬機器擴展集加入至 Azure Active Directory (Azure AD) 網域，您可以定義擴充功能。 
+
+若要定義擴充功能，請使用 JsonADDomainExtension 屬性︰
+
 ```json
                     "extensionProfile": {
                         "extensions": [
@@ -427,20 +427,20 @@ Update-AzureRmVmss -ResourceGroupName $vmssResourceGroup -Name $vmssName Virtual
                     }
 ```
  
-### <a name="my-scale-set-extension-is-trying-to-install-something-that-requires-a-reboot-for-instance-commandtoexecute-powershellexe--executionpolicy-unrestricted-install-windowsfeature-name-fs-resource-manager-includemanagementtools"></a>我的擴展集延伸模組正在嘗試安裝需要重新開機的項目，例如："commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools"
+### <a name="my-virtual-machine-scale-set-extension-is-trying-to-install-something-that-requires-a-reboot-for-example-commandtoexecute-powershellexe--executionpolicy-unrestricted-install-windowsfeature-name-fs-resource-manager-includemanagementtools"></a>我的虛擬機器擴展集擴充功能正嘗試安裝需要重新開機的項目。 例如："commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools"
 
-您可以使用 DSC 延伸模組。 如果作業系統是 2012 R2，則 Azure 會提取 WMF5.0 安裝程式、重新啟動，並繼續進行組態。 
+如果虛擬機器擴展集擴充功能正嘗試安裝需要重新開機的項目，您可以使用 Azure 自動化預期狀態設定 (自動化 DSC) 擴充功能。 如果作業系統是 Windows Server 2012 R2，Azure 會提取 Windows Management Framework (WMF) 5.0 安裝程式，重新開機，然後繼續進行設定。 
  
-### <a name="how-can-i-enable-antimalware-on-my-scale-set"></a>如何啟用我擴展集上的反惡意程式碼？
+### <a name="how-do-i-turn-on-antimalware-in-my-virtual-machine-scale-set"></a>如何在虛擬機器擴展集中開啟反惡意程式碼？
 
-下列是 PowerShell 範例︰
+若要在虛擬機器擴展集上開啟反惡意程式碼，請使用下列 PowerShell 範例︰
 
 ```powershell
 $rgname = 'autolap'
 $vmssname = 'autolapbr'
 $location = 'eastus'
  
-# retrieve the most recent version number of the extension
+# Retrieve the most recent version number of the extension.
 $allVersions= (Get-AzureRmVMExtensionImage -Location $location -PublisherName "Microsoft.Azure.Security" -Type "IaaSAntimalware").Version
 $versionString = $allVersions[($allVersions.count)-1].Split(".")[0] + "." + $allVersions[($allVersions.count)-1].Split(".")[1]
  
@@ -450,9 +450,9 @@ Add-AzureRmVmssExtension -VirtualMachineScaleSet $VMSS -Name "IaaSAntimalware" -
 Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineScaleSet $VMSS 
 ```
 
-### <a name="i-need-to-execute-a-custom-script-hosted-on-a-private-storage-account-i-have-no-problems-when-the-storage-is-public-but-when-i-try-to-use-a-shared-access-signaturesas-it-fails-with-the-error-missing-mandatory-parameters-for-valid-shared-access-signature-i-know-that-linksas-works-fine-from-my-local-browser"></a>我需要執行裝載在私人儲存體帳戶上的自訂指令碼。 當儲存體為公用時沒有問題，但當我嘗試使用共用存取簽章 (SAS) 時會失敗並出現錯誤訊息：「遺失有效共用存取簽章的必要參數」。 我知道 link+SAS 可從我的本機瀏覽器運作正常。
+### <a name="i-need-to-execute-a-custom-script-thats-hosted-in-a-private-storage-account-the-script-runs-successfully-when-the-storage-is-public-but-when-i-try-to-use-a-shared-access-signature-sas-it-fails-this-message-is-displayed-missing-mandatory-parameters-for-valid-shared-access-signature-linksas-works-fine-from-my-local-browser"></a>我需要執行裝載於私人儲存體帳戶的自訂指令碼。 當儲存體為公用儲存體時，指令碼會執行成功，但是當我嘗試使用共用存取簽章 (SAS) 時，它就會失敗。 隨即顯示此訊息：「遺漏有效的共用存取簽章的強制參數」。 Link+SAS 可從我的本機瀏覽器正常運作。
 
-您必須使用儲存體帳戶金鑰和名稱設定受保護的設定，以便這個案例可以運作。 請參閱 https://azure.microsoft.com/documentation/articles/virtual-machines-windows-extensions-customscript/#template-example-for-a-windows-vm-with-protected-settings
+若要執行裝載於私人儲存體帳戶的自訂指令碼，請使用儲存體帳戶金鑰和名稱來進行受保護的設定。 如需詳細資訊，請參閱[適用於 Windows 的自訂指令碼擴充功能](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-extensions-customscript/#template-example-for-a-windows-vm-with-protected-settings)。
 
 
 
@@ -462,46 +462,47 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 
 ## <a name="networking"></a>網路
  
-### <a name="how-do-i-do-vip-swap-for-scale-sets-in-the-same-subscription-and-same-region"></a>如何在相同訂用帳戶和相同區域中進行擴展集的 VIP 交換？
+### <a name="how-do-i-do-a-vip-swap-for-virtual-machine-scale-sets-in-the-same-subscription-and-same-region"></a>如何在相同訂用帳戶和相同區域中進行虛擬機器擴展集的 VIP 交換？
 
-請參閱︰https://msftstack.wordpress.com/2017/02/24/vip-swap-blue-green-deployment-in-azure-resource-manager/ 
+若要針對相同訂用帳戶和相同區域中的虛擬機器擴展集進行 VIP 交換，請參閱 [VIP 交換︰Azure Resource Manager 中的藍綠部署](https://msftstack.wordpress.com/2017/02/24/vip-swap-blue-green-deployment-in-azure-resource-manager/)。
  
   
-### <a name="what-is-the-resourceguid-property-on-a-nic-for"></a>NIC 上的 resourceGuid 屬性作用為何？
+### <a name="what-is-the-resourceguid-property-on-a-nic-used-for"></a>NIC 上的 resourceGuid 屬性用途為何？
 
-它是唯一的識別碼。 較低層級會在未來的某個時間點記錄此識別碼。 
+網路介面卡 (NIC) 上的 resourceGuid 屬性是唯一的識別碼。 較低層級會在未來的某個時間點記錄此識別碼。 
  
-### <a name="how-do-i-specify-a-range-of-private-ip-addresses-for-static-private-ip-address-allocation"></a>如何指定靜態私人 IP 位址配置的私人 IP 位址範圍？
+### <a name="how-do-i-specify-a-range-of-private-ip-addresses-to-use-for-static-private-ip-address-allocation"></a>如何指定要用於靜態私人 IP 位址配置的私人 IP 位址範圍？
 
-會從您指定的子網路選取 IP。 
+系統會從您指定的子網路選取 IP 位址。 
 
-擴展集 IP 的配置方法一律為「動態」。 但它並不表示可以變更這些 IP。 它只表示您沒有在 PUT 要求中指定 IP。 換句話說，您可以使用子網路指定靜態設定。 
+虛擬機器擴展集 IP 位址的配置方法永遠是「動態」的，但這並不表示可以變更這些 IP 位址。 在此情況下，「動態」只表示您不會在 PUT 要求中指定 IP 位址。 使用子網路指定靜態設定。 
     
-### <a name="how-do-i-deploy-a-scale-set-into-an-existing-vnet"></a>我要如何將擴展集部署到現有的 VNET？ 
+### <a name="how-do-i-deploy-a-virtual-machine-scale-set-to-an-existing-azure-virtual-network"></a>如何將虛擬機器擴展集部署至現有的 Azure 虛擬網路？ 
 
-請參閱 https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-existing-vnet 
+若要將虛擬機器擴展集部署至現有的 Azure 虛擬網路，請參閱[將虛擬機器擴展集部署至現有的虛擬網路](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-existing-vnet)。 
 
-### <a name="how-do-i-add-a-scale-sets-first-vms-ip-address-to-the-output-of-a-template"></a>如何將擴展集中第一個 VM 的 IP 位址新增至範本的輸出？
+### <a name="how-do-i-add-the-ip-address-of-the-first-vm-in-a-virtual-machine-scale-set-to-the-output-of-a-template"></a>如何將虛擬機器擴展集中第一個 VM 的 IP 位址新增至範本的輸出？
 
-請參閱︰http://stackoverflow.com/questions/42790392/arm-get-vmsss-private-ips
+若要將虛擬機器擴展集中第一個 VM 的 IP 位址新增至範本的輸出，請參閱 [ARM︰取得 VMSS 的私人 IP](http://stackoverflow.com/questions/42790392/arm-get-vmsss-private-ips)。
 
 
 
 ## <a name="scale"></a>調整
 
-### <a name="why-would-you-ever-create-a-scale-set-with-fewer-than-2-vms"></a>為什麼您會使用少於 2 部 VM 來建立擴展集？
+### <a name="in-what-case-would-i-create-a-virtual-machine-scale-set-with-fewer-than-two-vms"></a>在何種情況下，我會建立具有兩部以下 VM 的虛擬機器擴展集？
 
-其中一個原因就是使用擴展集的彈性屬性。 例如，您可以使用 0 部 VM 來部署擴展集，以定義您的基礎結構而不必付出成本。 然後，當您準備好要部署 VM 時，可藉由將擴展集的「容量」增加至生產執行個體計數來這麼做。
+建立具有兩部以下 VM 的虛擬機器擴展集的原因之一，就是要使用虛擬機器擴展集的彈性屬性。 例如，您可部署沒有任何 VM 的虛擬機器擴展集來定義您的基礎結構，而不必支付 VM 執行成本。 然後，當您準備好要部署 VM 時，將虛擬機器擴展集的「容量」增加至生產執行個體計數。
 
-另一個原因是當您使用擴展集進行一些動作，而您不在意同樣使用可用性設定組與離散 VM。 擴展集新增使用可取代無差異計算單位的方法。 這個一致性是擴展集與可用性設定組的關鍵區別指標。 許多無狀態工作負載不在意個別的單位，且若工作負載減少時可以相應減少為一個計算單位，然後當工作負載增加時再回到許多計算單位。
+建立具有兩部以下 VM 的虛擬機器擴展集的另一個原因，就是相較於使用具有離散 VM 的可用性設定組，您可能比較不擔心可用性。 虛擬機器擴展集讓您能夠使用可取代的無差異計算單位。 此種一致性是虛擬機器擴展集與可用性設定組的關鍵區別指標。 許多無狀態的工作負載都不會追蹤個別的單位。 如果工作負載減少，您可以相應減少為一個計算單位，然後在工作負載增加時相應增加為許多計算單位。
 
-### <a name="how-do-you-change-the-number-of-vms-in-a-scale-set"></a>如何變更擴展集中的 VM 數目？
+### <a name="how-do-i-change-the-number-of-vms-in-a-virtual-machine-scale-set"></a>如何變更虛擬機器擴展集中的 VM 數目？
 
-請參閱︰https://msftstack.wordpress.com/2016/05/13/change-the-instance-count-of-an-azure-vm-scale-set/
+若要變更虛擬機器擴展集中的 VM 數目，請參閱[變更虛擬機器擴展集的執行個體計數](https://msftstack.wordpress.com/2016/05/13/change-the-instance-count-of-an-azure-vm-scale-set/)。
 
-### <a name="how-can-you-define-custom-alerts-for-when-certain-thresholds-are-reached"></a>當觸達特定的臨界值時，您可以如何定義自訂警示？
+### <a name="how-do-i-define-custom-alerts-for-when-certain-thresholds-are-reached"></a>如何定義觸達特定臨界值時的自訂警示？
 
-處理警示上有一些彈性；例如，您可以如下列範例從 Resource Manager 範本定義自訂的 webhook︰
+您在處理指定之臨界值的警示時有一些彈性。 例如，您可以定義自訂的 webhook。 下列 webhook 範例來自 Resource Manager 範本：
+
 ```json
    {
          "type": "Microsoft.Insights/autoscaleSettings",
@@ -533,15 +534,16 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
                               ]}],
 ```
 
-在此範例中，當觸達臨界值時，警示會進入 Pagerduty。
+在此範例中，警示會在觸達臨界值時移至 Pagerduty.com。
 
 
 
 ## <a name="troubleshooting"></a>疑難排解
 
-### <a name="how-do-i-enable-boot-diagnostics"></a>如何啟用開機診斷？
+### <a name="how-do-i-turn-on-boot-diagnostics"></a>如何開啟開機診斷？
 
-建立儲存體帳戶並將此 JSON 區塊放在您的擴展集 virtualMachineProfile，並更新擴展集︰
+若要開啟開機診斷，首先建立儲存體帳戶。 然後，將此 JSON 區塊放在虛擬機器擴展集 **virtualMachineProfile** 中，並更新此虛擬機器擴展集︰
+
 ```json
       "diagnosticsProfile": {
         "bootDiagnostics": {
@@ -551,7 +553,7 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
       }
 ```
 
-然後當建立新的 VM 時，VM 的 InstanceView 會顯示螢幕擷取畫面等的詳細資料。例如：
+建立新的 VM 時，VM 的 InstanceView 會顯示螢幕擷取畫面等的詳細資料。 以下是範例：
  
 ```json
 "bootDiagnostics": {
@@ -564,54 +566,43 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 
 ## <a name="updates"></a>更新
 
-### <a name="how-to-i-update-my-scale-set-to-a-new-image-and-manage-patching"></a>如何將我的擴展集更新為新的映像並管理修補？
+### <a name="how-to-i-update-my-virtual-machine-scale-set-to-a-new-image-how-do-i-manage-patching"></a>如何將虛擬機器擴展集更新為新的映像？ 如何管理修補？
 
-請參閱︰https://docs.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set
+若要將虛擬機器擴展集更新為新的映像，以及管理修補，請參閱[升級虛擬機器擴展集](https://docs.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set)。
 
-### <a name="can-you-use-the-reimage-operation-to-reset-a-vm-without-changing-the-image-that-is-reset-a-vm-to-factory-settings-rather-than-to-a-new-image"></a>您可以使用重新安裝映像作業重設 VM 而不須變更映像嗎？ (也就是將 VM 重設為原廠設定，而不是新的映像)？
+### <a name="can-i-use-the-reimage-operation-to-reset-a-vm-without-changing-the-image-that-is-i-want-reset-a-vm-to-factory-settings-rather-than-to-a-new-image"></a>是否可以使用重新安裝映像作業來重設 VM，而不變更映像？ (也就是，我想要將 VM 重設為原廠設定，而不是新的映像。)
 
-是。 請參閱︰https://docs.microsoft.com/rest/api/virtualmachinescalesets/manage-all-vms-in-a-set
+是，您可以使用重新安裝映像作業來重設 VM，而不需變更映像。 不過，如果虛擬機器擴展集參考 `version = latest` 的平台映像，當您呼叫 `reimage` 時，您的 VM 可以更新為較新版本的 OS 映像。
 
-不過，如果您的擴展集使用版本 =「最新」參考平台映像，當您呼叫重新安裝映像時，您的 VM 可以更新至較新版本的作業系統映像。
-
-
+如需詳細資訊，請參閱[管理虛擬機器擴展集中的所有 VM](https://docs.microsoft.com/rest/api/virtualmachinescalesets/manage-all-vms-in-a-set)。
 
 
 
+## <a name="virtual-machine-properties"></a>虛擬機器屬性
 
+### <a name="how-do-i-get-property-information-for-each-vm-without-making-multiple-calls-for-example-how-would-i-get-the-fault-domain-for-each-of-the-100-vms-in-my-virtual-machine-scale-set"></a>如何取得每部 VM 的屬性資訊，而不進行多次呼叫？ 例如，如何針對虛擬機器擴展集中的 100 部 VM 取得各自的容錯網域？
 
-## <a name="vm-properties"></a>VM 屬性
+若要取得每部 VM 的屬性資訊，而不進行多次呼叫，您可以對下列資源 URI 進行 REST API`GET`，藉此呼叫 `ListVMInstanceViews`：
 
-### <a name="how-do-i-get-property-information-for-each-vm-without-having-to-make-multiple-calls-for-example-getting-the-fault-domain-for-each-vm-in-my-100-scale-set"></a>如何取得每個 VM 的屬性資訊而不需要進行多次呼叫？ 例如︰在我的 100 個擴展集中，取得每個 VM 的容錯網域？
+/subscriptions/<subscription_id>/resourceGroups/<resource_group_name>/providers/Microsoft.Compute/virtualMachineScaleSets/<scaleset_name>/virtualMachines?$expand=instanceView&$select=instanceView
 
-您可以藉由在下列資源 URI 上進行 REST API `GET` 來呼叫 ListVMInstanceViews：
+### <a name="can-i-pass-different-extension-arguments-to-different-vms-in-a-virtual-machine-scale-set"></a>是否可以將不同的擴充引數傳遞至虛擬機器擴展集中的不同 VM？
 
-`/subscriptions/<subscription_id>/resourceGroups/<resource_group_name>/providers/Microsoft.Compute/virtualMachineScaleSets/<scaleset_name>/virtualMachines?$expand=instanceView&$select=instanceView`
+否，您無法將不同的擴充引數傳遞至虛擬機器擴展集中的不同 VM。 不過，擴充功能可以根據它們執行所在 VM 的唯一屬性來行動，例如根據電腦名稱。 擴充功能也可以在 http://169.254.169.254 上查詢執行個體中繼資料，以取得 VM 詳細資訊。
 
-### <a name="are-there-ways-to-pass-different-extension-arguments-to-different-vms-in-a-scale-set"></a>有辦法將不同的延伸模組引數傳遞至擴展集中的不同 VM 嗎？
+### <a name="why-are-there-gaps-between-my-virtual-machine-scale-set-vm-machine-names-and-vm-ids-for-example-0-1-3"></a>為何我的虛擬機器擴展集 VM 電腦名稱與 VM 識別碼之間會有落差？ 例如：0、1、3...
 
-沒有，但延伸模組可根據它們所執行的 VM 上之唯一屬性來行動，例如電腦名稱。 此外，延伸模組可以在 http://169.254.169.254 查詢執行個體中繼資料以取得詳細資訊。
+您的虛擬機器擴展集 VM 電腦名稱與 VM 識別碼之間有落差，是因為虛擬機器擴展集將 **overprovision** 屬性設定為預設值 **true**。 如果過度佈建設定為 **true**，則會建立超過要求的 VM。 然後會刪除額外的 VM。 在此情況下，您會取得更高的部署可靠性，但代價是連續的命名和連續的網路位址轉譯 (NAT) 規則。 
 
-### <a name="why-are-there-gaps-between-my-scale-set-vm-machine-names-and-vm-ids-for-example-0-1-3"></a>為何我的擴展集 VM 電腦名稱與 VM 識別碼之間會有間隔？ 例如：0、1、3...
+您可以將此屬性設定為 **false**。 若為小型虛擬機器擴展集，這就不會大幅影響部署可靠性。
 
-有間隔是因為您的擴展集過度佈建屬性設定為 true 的預設值。 若過度佈建為 true，會建立比要求更多的 VM，且接下來會刪除額外的 VM。 您會取得更高的部署可靠性，代價為連續命名和連續的 NAT 規則。 您可以將此屬性設定為 false，針對小型擴展集，它並不會對部署可靠性造成太大影響。
+### <a name="what-is-the-difference-between-deleting-a-vm-in-a-virtual-machine-scale-set-and-deallocating-the-vm-when-should-i-choose-one-over-the-other"></a>刪除虛擬機器擴展集中的 VM 與解除配置 VM 之間的差異為何？ 我何時應該選擇優先其中一個？
 
-### <a name="what-is-the-difference-between-deleting-a-vm-in-a-scale-set-vs-deallocating-the-vm-when-should-i-choose-one-over-the-other"></a>刪除擴展集中的 VM 與解除配置 VM 之間的差異為何？ 我何時應該選擇優先其中一個？
+刪除虛擬機器擴展集中的 VM 與解除配置 VM 之間的主要差異在於 `deallocate` 不會刪除虛擬硬碟 (VHD)。 執行 `stop deallocate` 會產生相關的儲存體成本。 基於下列原因之一，您可能會採用其中一種做法：
 
-主要差異在於解除配置並不會刪除 VHD，因此會產生與停止解除配置相關聯的儲存體成本。 您可以使用其中一個的原因包括︰
+- 您想要停止支付計算成本，但又想要保留 VM 的磁碟狀態。
+- 您想要更快速地啟動一組 VM，則可相應放大虛擬機器擴展集。
+  - 關於這種情況，您可能已建立自己的自動調整引擎，並想要更快速的端對端擴展。
+- 您的虛擬機器擴展集並未平均分散於各容錯網域或更新網域。 這可能是因為您選擇性地刪除 VM，或是因為 VM 在過度佈建之後遭到刪除。 在虛擬機器擴展集上接續執行 `stop deallocate` 和 `start`，可讓 VM 平均分散於各容錯網域或更新網域。
 
-- 您想要停止支付計算，但要保留 VM 的磁碟狀態。
-- 您想要比相應放大擴展集更快速地啟動一組 VM。
-  - 關於這種情況，您已建立自己的自動調整引擎，並想要更快速的端對端擴展。
-  - 您有平均地分散到 FD/UD (因選擇性地刪除 VM 或因過度佈建後刪除的 VM) 的擴展集。 在開始擴展集後隨即停止解除配置會在 FD/UD 中平均地分配 VM。
-
-
-
-
-
-
-
-
- 
-   
 

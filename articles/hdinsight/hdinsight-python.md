@@ -17,9 +17,9 @@ ms.date: 02/27/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
 translationtype: Human Translation
-ms.sourcegitcommit: cfaade8249a643b77f3d7fdf466eb5ba38143f18
-ms.openlocfilehash: b39c913367928e8e98dfb1d6bfdca75fcded13c3
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 88d54250c0ce8feff78e2bf122be1c69dd0d8008
+ms.lasthandoff: 03/25/2017
 
 ---
 # <a name="use-python-user-defined-functions-udf-with-hive-and-pig-in-hdinsight"></a>在 HDInsight 上使用 Python 使用者定義函數 (UDF) 與 Hive 和 Pig
@@ -182,7 +182,8 @@ def create_structure(input):
 如果您使用以 Linux 為基礎的 HDInsight 叢集，請使用 **SSH** 步驟。 如果您使用以 Windows 為基礎的 HDInsight 叢集和 Windows 用戶端，請使用 **PowerShell** 步驟。
 
 ### <a name="ssh"></a>SSH
-如需使用 SSH 的詳細資訊，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md) 或[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
+
+如需使用 SSH 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 1. 使用 Python 範例 [streaming.py](#streamingpy) 和 [pig_python.py](#jythonpy)，在開發機器上建立檔案的本機複本。
 
@@ -469,7 +470,7 @@ $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
 
 錯誤資訊 (STDERR,) 和作業 (STDOUT,) 的結果也會記錄至您的 HDInsight 儲存體中。
 
-| 關於此工作.. | 請在 Blob 容器中查看這些檔案 |
+| 關於此工作. | 請在 Blob 容器中查看這些檔案 |
 | --- | --- |
 | Hive |/HivePython/stderr<p>/HivePython/stdout |
 | Pig |/PigPython/stderr<p>/PigPython/stdout |

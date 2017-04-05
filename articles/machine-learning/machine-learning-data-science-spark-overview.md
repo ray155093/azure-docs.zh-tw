@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/15/2017
 ms.author: deguhath;bradsev;gokuma
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: 1d3336e7e2e3ec84ab85a8f494717a75f77982b3
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 379b32f4e533f48f1593a97e73737a0c5bfb9135
+ms.lasthandoff: 03/29/2017
 
 
 
@@ -143,7 +143,7 @@ NYC 計程車和飛行航班延遲資料集上的 Spark 2.0 Notebook 需要 10 �
 | tip_amount |小費金額 |
 | tolls_amount |收費金額 |
 | total_amount |總金額 |
-| tipped |已收到小費 (用&0; 或&1; 表示否或是) |
+| tipped |已收到小費 (用 0 或 1 表示否或是) |
 | tip_class |小費類別 (0：$0、1：$0-5、2：$6-10、3：$11-20、4：> $20) |
 
 ## <a name="execute-code-from-a-jupyter-notebook-on-the-spark-cluster"></a>從 Spark 叢集的 Jupyter Notebook 中執行程式碼
@@ -155,9 +155,9 @@ NYC 計程車和飛行航班延遲資料集上的 Spark 2.0 Notebook 需要 10 �
 
 ![瀏覽 Jupyter Notebooks](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
 
-選取 [PySpark] 來查看包含一些預先封裝 Notebook 範例的目錄，這些範例使用了 PySpark API。適用於這組 Spark 主題的 Notebook (包含程式碼範例) 可在 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上找到。
+選取 [PySpark] 來查看包含一些預先封裝 Notebook 範例的目錄，這些範例使用了 PySpark API。適用於這組 Spark 主題的 Notebook (包含程式碼範例) 可在 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上找到。
 
-您可以將 Notebook 直接從 [Github](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上傳至 Spark 叢集上的 Jupyter Notebook 伺服器。 在您的 Jupyter 首頁，按一下螢幕右側的 [上傳]  按鈕。 [檔案總管] 隨即開啟。 您可以在這裡貼上 Notebook 的 Github (原始內容) URL，然後按一下 [開啟] 。 
+您可以將 Notebook 直接從 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上傳至 Spark 叢集上的 Jupyter Notebook 伺服器。 在您的 Jupyter 首頁，按一下螢幕右側的 [上傳]  按鈕。 [檔案總管] 隨即開啟。 您可以在這裡貼上 Notebook 的 GitHub (原始內容) URL，然後按一下 [開啟]。 
 
 您會在 Jupyter 檔案清單上看到檔案名稱，並重新出現 [上傳]  按鈕。 按一下此 [上傳]  按鈕。 現在您已匯入 Notebook。 重複這些步驟，使用此逐步解說上傳其他 Notebook。
 

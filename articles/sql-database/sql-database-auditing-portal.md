@@ -16,16 +16,16 @@ ms.topic: article
 ms.date: 2/25/2017
 ms.author: ronitr;giladm
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: d1350081aa4f70660802c61a77250496e1e7fc2a
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: e20a30a565198c01f213895a87fe8807a37272cb
+ms.lasthandoff: 03/30/2017
 
 
 ---
 
 # <a name="configure-and-manage-sql-database-auditing-in-the-azure-portal"></a>設定和管理 Azure 入口網站中的 SQL 資料庫稽核
 
-下節描述如何使用 Azure 入口網站設定和管理稽核。 若要使用 PowerShell 設定和管理稽核，請參閱[使用 PowerShell 設定稽核](sql-database-auditing-powershell.md)。 
+下節描述如何使用 Azure 入口網站設定和管理稽核。 若要使用 PowerShell 設定和管理稽核，請參閱[使用 PowerShell 設定稽核](scripts/sql-database-create-and-configure-database-powershell.md)。 
 
 如需稽核的概觀，請參閱 [SQL Database 稽核](sql-database-auditing.md)。
 
@@ -188,7 +188,7 @@ Blob 稽核記錄是以 Blob 檔案集合的方式儲存在名為 "**sqldbauditl
 
 ## <a name="next-steps"></a>後續步驟
 
-* 若要使用 PowerShell 設定和管理稽核，請參閱[使用 PowerShell 設定資料庫稽核](sql-database-auditing-powershell.md)。
+* 若要使用 PowerShell 設定和管理稽核，請參閱[使用 PowerShell 設定資料庫稽核](scripts/sql-database-create-and-configure-database-powershell.md)。
 * 如需稽核的概觀，請參閱[資料庫稽核](sql-database-auditing.md)。
 
 

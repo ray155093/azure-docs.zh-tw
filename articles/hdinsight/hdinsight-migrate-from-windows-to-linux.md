@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 01/13/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 1a2a08a844f1502d970cb7686d512387263d1d13
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 9a2e9b7809b00ae2b60e152bc240ab2ef775c7bf
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -67,10 +67,7 @@ ms.lasthandoff: 03/21/2017
 2. 若要建立測試環境，請依照＜在 HDInsight 中建立以 Linux 為基礎的叢集＞文件中的步驟執行。 於建立叢集之前停止遵循步驟，並改為選取 [選擇性組態] 。
 3. 從 [選擇性組態] 刀鋒視窗中，選取 [連結的儲存體帳戶] 。
 4. 選取 [新增儲存體金鑰] ，並在出現提示時，選取步驟 1 中由 PowerShell 指令碼傳回的儲存體帳戶。 在每個刀鋒視窗上按一下 [選取]。 最後，建立叢集。
-5. 建立叢集之後，使用 **SSH** 來連線至該叢集。 如果您不熟悉搭配 HDInsight 使用 SSH 的方式，請參閱下列其中一份文件：
-
-   * [從 Windows 用戶端搭配使用 SSH (PuTTY) 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
-   * [從 Linux、Unix、OS X 和 Bash on Windows 10 搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+5. 建立叢集之後，使用 **SSH** 來連線至該叢集。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 6. 從 SSH 工作階段中，使用下列命令來將檔案從已連結的儲存體帳戶複製到新的預設儲存體帳戶。 使用 PowerShell 傳回的容器資訊來取代 CONTAINER。 使用帳戶名稱來取代 __ACCOUNT__。 將資料路徑取代為資料檔案路徑。
 
@@ -109,10 +106,7 @@ ms.lasthandoff: 03/21/2017
 
 我們建議使用公開金鑰憑證，因為它比密碼更安全。 憑證驗證會產生已簽署的公開/私人金鑰組，然後在建立叢集時提供公開金鑰。 使用 SSH 連線至伺服器時，用戶端上的私人金鑰將會為連線提供驗證。
 
-如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱：
-
-* [從 Windows 用戶端搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md)
-* [從 Linux、Unix 及 OS X 用戶端搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 ### <a name="cluster-customization"></a>叢集自訂
 **指令碼動作** 必須以 Bash 指令碼撰寫。 雖然指令碼動作可在叢集建立期間使用，它們也可以用來在以 Linux 為基礎之叢集已啟動並開始執行之後進行自訂。 如需詳細資訊，請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)和[以 Linux 為基礎之 HDInsight 的指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。
@@ -220,8 +214,8 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
       hdfs dfs -put -f script.py wasbs:///path/to/script.py
 
 ## <a name="next-steps"></a>後續步驟
+
 * [了解如何建立 Linux 型 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)
-* [從 Windows 用戶端使用 SSH 連線至 Linux 型叢集](hdinsight-hadoop-linux-use-ssh-windows.md)
-* [從 Linux、Unix 或 Mac 用戶端使用 SSH 連線至 Linux 型叢集](hdinsight-hadoop-linux-use-ssh-unix.md)
+* [使用 SSH 連線到 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
 * [使用 Ambari 管理 Linux 型叢集](hdinsight-hadoop-manage-ambari.md)
 

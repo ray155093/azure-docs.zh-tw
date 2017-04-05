@@ -2,10 +2,10 @@
 title: "Azure 服務匯流排診斷記錄 | Microsoft Docs"
 description: "了解如何為 Azure 中的「服務匯流排」設定診斷記錄。"
 keywords: 
-documentationcenter: 
+documentationcenter: .net
 services: service-bus-messaging
 author: banisadr
-manager: 
+manager: timlt
 editor: 
 ms.assetid: 
 ms.service: service-bus-messaging
@@ -13,47 +13,47 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 02/17/2017
-ms.author: babanisa
+ms.date: 03/23/2017
+ms.author: babanisa;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: abcb0eee979853948cf6d981ff8f3a457eeeeef0
-ms.openlocfilehash: 65fe81dc90f2dc7a251860adfdd8374912cb8d73
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: b8ed786fe0c049d9be7ba1ca1cb6adef1950b8e9
+ms.lasthandoff: 03/24/2017
 
 
 ---
 # <a name="service-bus-diagnostic-logs"></a>服務匯流排診斷記錄
 
 您可以檢視「Azure 服務匯流排」的兩種記錄：
-* **[活動記錄](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)**。 這些記錄包含對工作執行之操作的相關資訊。 系統一律會開啟這些記錄。
-* **[診斷記錄](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)**。 您可以設定診斷記錄，以更深入了解在工作發生的所有事件。 診斷記錄涵蓋從建立工作到刪除工作期間的活動，包括工作執行時發生的更新與活動。
+* **[活動記錄](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)**。 這些記錄包含在工作上執行之操作的相關資訊。 系統一律會啟用這些記錄。
+* **[診斷記錄](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)**。 您可以設定診斷記錄，以取得在工作內所發生之所有事件的更詳細資訊。 診斷記錄涵蓋從建立工作到刪除工作期間的活動，包括工作執行時發生的更新與活動。
 
 ## <a name="turn-on-diagnostic-logs"></a>開啟診斷記錄
-診斷記錄預設為 [關閉]。 開啟診斷記錄：
+診斷記錄預設為停用。 若要啟用診斷記錄，請執行下列動作：
 
-1.    在 Azure 入口網站中，移至 [資料流處理工作] 刀鋒視窗。
+1.    在 [Azure 入口網站](https://portal.azure.com)中，移至 [資料流處理工作] 刀鋒視窗。
 
 2.    在 [監視] 底下，移至 [診斷記錄] 刀鋒視窗。
 
     ![瀏覽到診斷記錄的刀鋒視窗](./media/service-bus-diagnostic-logs/image1.png)  
 
-3.    選取 [開啟診斷]。
+3.    按一下 [開啟診斷]。
 
     ![開啟診斷記錄](./media/service-bus-diagnostic-logs/image2.png)
 
-4.    針對 [狀態]，選取 [開啟]。
+4.    針對 [狀態]，按一下 [開啟]。
 
     ![變更診斷記錄狀態](./media/service-bus-diagnostic-logs/image3.png)
 
 5.    設定您要使用的封存目標，例如儲存體帳戶、事件中樞或 Azure Log Analytics。
 
-6.    選取您要收集的記錄類別，例如 [執行] 或 [製作]。
+6.    選取您要收集的記錄類別，例如**執行**或**製作**。
 
 7.    儲存新的診斷設定。
 
 新的設定大約會在 10 分鐘內生效。 之後，記錄就會顯示在 [診斷記錄] 刀鋒視窗上已設定的封存目標中。
 
-如需有關設定診斷的詳細資訊，請參閱 [Azure 診斷記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)。
+如需設定診斷的詳細資訊，請參閱 [Azure 診斷記錄概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)。
 
 ## <a name="diagnostic-logs-schema"></a>診斷記錄結構描述
 
@@ -96,5 +96,5 @@ Example:
 
 ## <a name="next-steps"></a>後續步驟
 * [服務匯流排簡介](service-bus-messaging-overview.md)
-* [開始使用服務匯流排](service-bus-create-namespace-portal.md)
+* [開始使用服務匯流排](service-bus-dotnet-get-started-with-queues.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "預覽匯出作業的磁碟機使用量 | Microsoft Docs"
-description: "了解如何預覽您已針對 Azure 匯入匯出服務中的匯出作業選取的 blob 清單"
+title: "預覽 Azure 匯入/匯出作業的磁碟機使用量 - v1 | Microsoft Docs"
+description: "了解如何預覽您已針對 Azure 匯入/匯出服務中的匯出作業選取的 blob 清單。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 358e3f2574cab0150c59f96b9bc4d32d959e94a8
-ms.openlocfilehash: 9ba9a3970925466285ae1df4676501fbdd24bd66
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 7bf74247090f91e17f81a9bc98ebfa78334c8c10
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -25,17 +25,23 @@ ms.lasthandoff: 02/16/2017
 # <a name="previewing-drive-usage-for-an-export-job"></a>預覽匯出作業的磁碟機使用量
 建立匯出作業之前，您必須先選擇一組要匯出的 blob。 Microsoft Azure 匯入/匯出服務可讓您使用一份 blob 路徑或 blob 前置詞清單來代表您已選取的 blob。  
   
- 接著，您必須判斷您需要傳送多少個磁碟機。 Microsoft Azure 匯入/匯出工具提供的 `PreviewExport` 命令可根據您要使用的磁碟機大小，預覽所選取之 Blob 的磁碟機使用量。 您可以指定下列參數︰  
-  
-|命令列選項|說明|  
+接著，必須判斷您需要傳送多少個磁碟機。 匯入/匯出工具提供的 `PreviewExport` 命令可根據您要使用的磁碟機大小，預覽所選取 Blob 的磁碟機使用量。
+
+## <a name="command-line-parameters"></a>命令列參數
+
+使用匯入/匯出工具的 `PreviewExport` 命令時，您可以使用下列參數。
+
+|命令列參數|說明|  
 |--------------------------|-----------------|  
 |**/logdir:**<LogDirectory\>|選用。 記錄檔目錄。 詳細資訊記錄檔會寫入至這個目錄。 如未指定記錄檔目錄，則會使用目前的目錄做為記錄檔目錄。|  
 |**/sn:**<StorageAccountName\>|必要。 匯出作業的儲存體帳戶名稱。|  
 |**/sk:**<StorageAccountKey\>|如果未指定 (且只有在未指定) 容器 SAS 時，才是必要參數。 匯出作業之儲存體帳戶的帳戶金鑰。|  
 |**/csas:**<ContainerSas\>|如果未指定 (且只有在未指定) 儲存體帳戶金鑰時，才是必要參數。 容器 SAS，可供列出要在匯出作業中匯出的 blob。|  
-|**/ExportBlobListFile:**<ExportBlobListFile\>|必要。 Xml 檔案的路徑，此檔案包含要匯出的 Blob 的Blob 路徑清單或 Blob 路徑前置詞。 匯入/匯出服務 REST API 的 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業中 `BlobListBlobPath` 元素中所使用的檔案格式。|  
+|**/ExportBlobListFile:**<ExportBlobListFile\>|必要。 XML 檔案的路徑，此檔案包含要匯出的 Blob 的Blob 路徑清單或 Blob 路徑前置詞。 匯入/匯出服務 REST API 的 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業中 `BlobListBlobPath` 元素中所使用的檔案格式。|  
 |**/DriveSize:**<DriveSize\>|必要。 要用於匯出作業的磁碟機大小，例如 500GB、1.5TB。|  
-  
+
+## <a name="command-line-example"></a>命令列範例
+
 下列範例示範 `PreviewExport` 命令：  
   
 ```  
@@ -53,7 +59,7 @@ WAImportExport.exe PreviewExport /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTr
 </BlobList>  
 ```
 
-Azure 匯入/匯出工具會列出所有要匯出的 blob 並計算如何將它們封裝到指定大小的磁碟機，並可量任何必要的額外負荷，然後估計保留 blob 和磁碟機使用量資訊所需的磁碟機數目。  
+Azure 匯入/匯出工具會列出所有要匯出的 blob 並計算如何將它們封裝到指定大小的磁碟機，並考量任何必要的額外負荷，然後估計保留 blob 和磁碟機使用量資訊所需的磁碟機數目。  
   
 以下輸出範例，以中省略資訊記錄檔︰  
   
@@ -71,6 +77,7 @@ Number of drives needed:        3
         Drive #3:       blobs = 2, occupied space = 131.28 GB    
 ```  
   
-## <a name="see-also"></a>另請參閱  
-[Azure 匯入匯出工具參考](storage-import-export-tool-how-to-v1.md)
+## <a name="next-steps"></a>後續步驟
+
+* [Azure 匯入/匯出工具參考](storage-import-export-tool-how-to-v1.md)
 

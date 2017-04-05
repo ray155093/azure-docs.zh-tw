@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 03/23/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: a12d3a5c25decdc88df0c9f9b3216bfaae33d5a6
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
+ms.openlocfilehash: e4cbc9b0c9532d56376c4fabebcde8c64cb0474b
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -80,7 +80,7 @@ Database database = await client.CreateDatabaseAsync(
 ## <a name="resource-tokens"></a>資源權杖
 
 資源權杖允許存取資料庫內的應用程式資源。 資源權杖：
-- 允許存取特定的集合、文件、附件、預存程序、觸發程序和 UDF。
+- 允許存取特定的集合、分割索引鍵、文件、附件、預存程序、觸發程序和 UDF。
 - 在[使用者](#users)被授與特定資源的[權限](#permissions)時建立。
 - 使用 POST、GET 或 PUT 呼叫處理權限資源時重新建立。
 - 使用特別為使用者、資源和權限建構的雜湊資源權杖。
@@ -105,9 +105,9 @@ DocumentDB 資源權杖提供一個安全的替代方式，無需主要或唯讀
 
     ![DocumentDB 資源權杖工作流程](./media/documentdb-secure-access-to-data/resourcekeyworkflow.png)
 
- 資源權杖的產生和管理由原生 DocumentDB 用戶端程式庫處理。不過，如果您使用 REST，您必須建構要求/驗證標頭。 如需有關建立 REST 驗證標頭的詳細資訊，請參閱 [DocumentDB 資源的存取控制](https://docs.microsoft.com/en-us/rest/api/documentdb/access-control-on-documentdb-resources)或 [SDK 的原始程式碼](https://github.com/Azure/azure-documentdb-node/blob/master/source/lib/auth.js)。
- 
- 如需用來產生或代理資源權杖的中間層服務的範例，請參閱 [ResourceTokenBroker 應用程式](https://github.com/kirillg/azure-documentdb-dotnet/tree/master/samples/xamarin/UserItems/ResourceTokenBroker/ResourceTokenBroker/Controllers)。
+資源權杖的產生和管理由原生 DocumentDB 用戶端程式庫處理。不過，如果您使用 REST，您必須建構要求/驗證標頭。 如需有關建立 REST 驗證標頭的詳細資訊，請參閱 [DocumentDB 資源的存取控制](https://docs.microsoft.com/en-us/rest/api/documentdb/access-control-on-documentdb-resources)或 [SDK 的原始程式碼](https://github.com/Azure/azure-documentdb-node/blob/master/source/lib/auth.js)。
+
+如需用來產生或代理資源權杖的中間層服務的範例，請參閱 [ResourceTokenBroker 應用程式](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/xamarin/UserItems/ResourceTokenBroker/ResourceTokenBroker/Controllers)。
 
 <a id="users"></a>
 
@@ -184,5 +184,4 @@ DocumentClient userClient = new DocumentClient(new Uri(endpointUrl), permList);
 * 若要深入了解 DocumentDB 資料庫安全性，請參閱 [DocumentDB：NoSQL 資料庫安全性](documentdb-nosql-database-security.md)。
 * 若要了解如何管理主要和唯讀金鑰，請參閱[如何管理 DocumentDB 帳戶](documentdb-manage-account.md#a-idkeysaview-copy-and-regenerate-access-keys)。
 * 若要了解如何建構 DocumentDB 授權權杖，請參閱 [DocumentDB 資源的存取控制](https://docs.microsoft.com/en-us/rest/api/documentdb/access-control-on-documentdb-resources)。
-
 

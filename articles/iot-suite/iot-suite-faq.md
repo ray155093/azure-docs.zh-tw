@@ -16,9 +16,9 @@ ms.workload: na
 ms.date: 02/15/2017
 ms.author: corywink
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: ce37bb41babb7bf894c23add994bf2c144ee6549
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
+ms.openlocfilehash: 8fa08ca6cefc10c1e1b47a7a498f69aca7de882e
+ms.lasthandoff: 03/23/2017
 
 
 ---
@@ -47,7 +47,7 @@ ms.lasthandoff: 03/22/2017
 * 如果您在 [Azure 入口網站][lnk-azure-portal]中刪除資源群組，則只會刪除該資源群組中的資源。 您還必須在 [Azure 傳統入口網站][lnk-classic-portal]中刪除與預先設定的解決方案關聯的 Azure Active Directory 應用程式。
 
 ### <a name="how-many-iot-hub-instances-can-i-provision-in-a-subscription"></a>我可以在一個訂用帳戶中佈建多少個 IoT 中樞執行個體？
-每個訂用帳戶可以佈建 10 個 IoT 中樞。 您可以建立 [Azure 支援票證][link-azuresupportticket]來提高此限制，但每一個訂用帳戶預設只能佈建 10 個「IoT 中樞」，如 [Azure 訂用帳戶限制][link-azuresublimits]所述。 結果就是，由於每個預先設定的解決方案會佈建一個新的「IoT 中樞」，因此在一個指定的訂用帳戶中，您最多只能佈建 10 個預先設定的解決方案。 
+根據預設，您的佈建方式可以是[每個訂用帳戶 10 個 IoT 中樞][link-azuresublimits]。 您可以建立 [Azure 支援票證][link-azuresupportticket]來提高此限制。 結果就是，由於每個預先設定的解決方案會佈建一個新的「IoT 中樞」，因此在一個指定的訂用帳戶中，您最多只能佈建 10 個預先設定的解決方案。 
 
 ### <a name="how-many-documentdb-instances-can-i-provision-in-a-subscription"></a>我可以在一個訂用帳戶中佈建多少個 DocumentDB 執行個體？
 50 個。 您可以建立 [Azure 支援票證][link-azuresupportticket]來提高此限制，但每一個訂用帳戶預設只能佈建 50 個 DocumentDB 執行個體。 

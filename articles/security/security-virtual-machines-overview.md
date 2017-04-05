@@ -1,6 +1,6 @@
 ---
 title: "用於 Azure 虛擬機器的 Azure 安全性功能 | Microsoft Docs"
-description: " 可用於 Azure 虛擬機器的核心 Azure 安全性功能概觀。 Azure VM 讓您能夠有彈性地進行虛擬化，而不需購買並維護執行 VM 的實體硬體. "
+description: " 可用於 Azure 虛擬機器的核心 Azure 安全性功能概觀。 Azure VM 讓您能夠有彈性地進行虛擬化，而不需購買並維護執行 VM 的實體硬體。 "
 services: security
 documentationcenter: na
 author: TerryLanfear
@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 01/23/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: b5edb42f7fac6943a72e02a85a4cbc32300b9f38
-ms.openlocfilehash: 5e9dcd9913cf301e7c5a50eb9e55fb0b3dc303e5
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 70d22ae8d7f67f1e12a233e004f1eb749927e7d8
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -70,8 +71,8 @@ Microsoft Antimalware 是一個針對應用程式和租用戶環境所提供的�
 
 * [適用於 Azure 雲端服務和虛擬機器的 Microsoft Antimalware](azure-security-antimalware.md)
 * [在 Azure 虛擬機器上部署反惡意程式碼解決方案](https://azure.microsoft.com/blog/deploying-antimalware-solutions-on-azure-virtual-machines/)
-* [如何在 Windows VM 上安裝和設定 Trend Micro Deep Security as a Service](../virtual-machines/virtual-machines-windows-classic-install-trend.md)
-* [如何在 Windows VM 上安裝和設定 Symantec Endpoint Protection](../virtual-machines/virtual-machines-windows-classic-install-symantec.md)
+* [如何在 Windows VM 上安裝和設定 Trend Micro Deep Security as a Service](../virtual-machines/windows/classic/install-trend.md)
+* [如何在 Windows VM 上安裝和設定 Symantec Endpoint Protection](../virtual-machines/windows/classic/install-symantec.md)
 * [保護 Azure 虛擬機器的新反惡意程式碼選項 - McAfee Endpoint Protection](https://azure.microsoft.com/blog/new-antimalware-options-for-protecting-azure-virtual-machines/)
 * [Azure Marketplace 中的安全性解決方案](https://azure.microsoft.com/marketplace/?term=security)
 
@@ -151,9 +152,4 @@ Azure 虛擬機器經過 FISMA、FedRAMP、HIPAA、PCI DSS Level 1 及其他重�
 
 * [Microsoft 信任中心：法規遵循](https://www.microsoft.com/TrustCenter/Compliance/default.aspx)
 * [受信任的雲端：Microsoft Azure 安全性、隱私權及法規遵循](http://download.microsoft.com/download/1/6/0/160216AA-8445-480B-B60F-5C8EC8067FCA/WindowsAzure-SecurityPrivacyCompliance.pdf)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

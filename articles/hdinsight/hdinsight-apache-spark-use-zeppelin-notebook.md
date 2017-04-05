@@ -13,12 +13,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/04/2017
+ms.date: 04/03/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: eadf0611ca46a975c364a1b073828c6c3faf5f77
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 9e6e0a696ba27c7758c21fa46754a8539ae2255b
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -27,27 +27,15 @@ ms.lasthandoff: 01/24/2017
 了解如何在 Apache Spark 叢集上安裝 Zeppelin Notebook，以及如何使用 Zeppelin Notebook 來執行 Spark 作業。
 
 > [!IMPORTANT]
-> 如果您已在 HDInsight 3.5 佈建 Spark 1.6 叢集， 您可以使用[在 HDInsight Linux 上搭配使用 Zeppelin Notebook 和 Apache Spark 叢集](hdinsight-apache-spark-zeppelin-notebook.md)的指示來存取預設 Zeppelin Notebook。 如果您想要在 HDInsight 叢集版本 3.3、3.4 上或在 HDInsight 3.5 上的 Spark 2.0 使用 Zeppelin，您必須遵循本文中的指示來安裝 Zeppelin。
+> 如果您在 HDInsight 3.5 上佈建了 Spark 1.6 叢集，您預設可以使用[在 HDInsight Linux 上搭配使用 Zeppelin Notebook 和 Apache Spark 叢集](hdinsight-apache-spark-zeppelin-notebook.md)的指示來存取 Zeppelin。 如果您想要在 HDInsight 叢集版本 3.3 或 3.4 上使用 Zeppelin，您必須遵循本文中的指示來安裝 Zeppelin。
 >
->
+> 不支援使用本文中的指令碼在 Spark 2.0 叢集上安裝 Zeppelin。
 
-**必要條件：**
+## <a name="prerequisites"></a>必要條件
 
-* 開始進行本教學課程之前，您必須擁有 Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* 您必須擁有 Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
-* SSH 用戶端。 若為 Linux 和 Unix 發佈或 Macintosh OS X， `ssh` 命令會隨作業系統提供。 若為 Windows，我們建議使用 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 
-  > [!NOTE]
-  > 如果您想要使用 `ssh` 或 PuTTY 以外的 SSH 用戶端，請參考您用戶端的說明文件，了解如何建立 SSH 通道。
-  >
-  >
-* 可以設定為使用 SOCKS Proxy 的網頁瀏覽器。
-* **(選擇性)**：如 [FoxyProxy](http://getfoxyproxy.org/,) 之類的外掛程式，其可套用的規則是只將特定要求透過通道進行路由傳送。
-
-  > [!WARNING]
-  > 若無 FoxyProxy 之類的外掛程式，所有透過瀏覽器建立的要求可能都會透過通道進行路由傳送。 這會導致瀏覽器中的網頁載入速度較慢。
-  >
-  >
 
 ## <a name="install-zeppelin-on-a-spark-cluster"></a>在 Spark 叢集上安裝 Zeppelin
 您可以使用指令碼動作在 Spark 叢集上安裝 Zeppelin。 指令碼動作會使用自訂指令碼在叢集上安裝不是預設可用的元件。 您可以使用自訂指令碼從 Azure 入口網站安裝 Zeppelin，使用 HDInsight.NET SDK 或 Azure PowerShell 都可以。 您可以使用指令碼，在叢集建立期間安裝 Zeppelin，或在叢集已啟動並執行之後加以安裝。 下列各節中的連結提供如何執行這項操作的指示。

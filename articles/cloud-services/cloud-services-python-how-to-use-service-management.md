@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 09/06/2016
 ms.author: lmazuel
 translationtype: Human Translation
-ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
-ms.openlocfilehash: 553d474c8a9cbd7b8452daf85e1bb74b294b5699
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 579015f419ac0ee886f8e8497760a562ab324c24
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -40,7 +41,7 @@ Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是
 本文中所述的所有功能都可在 `azure-servicemanagement-legacy` 封裝中找到，您可以使用 pip 來安裝此封裝。 如需安裝 (例如，若您不熟悉 Python) 的詳細資訊，請參閱這篇文章︰ [安裝 Python 和 Azure SDK](../python-how-to-install.md)
 
 ## <a name="Connect"> </a>作法：連線到服務管理
-若要連接到服務管理端點，您必須具備 Azure 訂用帳戶 ID 和有效的管理憑證。 您可以透過 [Azure 傳統入口網站][management-portal]取得訂用帳戶識別碼。
+若要連接到服務管理端點，您必須具備 Azure 訂用帳戶 ID 和有效的管理憑證。 您可以透過 [Azure 傳統入口網站][management-portal]取得訂用帳戶 ID。
 
 > [!NOTE]
 > 從 Azure SDK for Python v0.8.0 開始，目前在 Windows 上執行時就能使用以 OpenSSL 建立的憑證。  這需要使用 Python 2.7.4 或更新版本。 建議使用者使用 OpenSSL 而非 .pfx，因為未來可能會移除 .pfx 憑證的支援。
@@ -123,7 +124,7 @@ Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是
 * 澳大利亞東南部
 
 ## <a name="CreateCloudService"> </a>作法：建立雲端服務
-當您在 Azure 中建立應用程式並加以執行時，程式碼和組態會統稱為 Azure [雲端服務][雲端服務] (在舊版的 Azure 中稱為「託管服務」)。 **create\_hosted\_service** 方法可讓您藉由提供託管服務名稱 (在 Azure 中必須是唯一的)、標籤 (自動編碼為 base64)、描述和位置，來建立新的託管服務。
+當您在 Azure 中建立應用程式並加以執行時，程式碼和組態會統稱為 Azure [雲端服務][cloud service] (在舊版的 Azure 中稱為*託管服務*)。 **create\_hosted\_service** 方法可讓您藉由提供託管服務名稱 (在 Azure 中必須是唯一的)、標籤 (自動編碼為 base64)、描述和位置，來建立新的託管服務。
 
     from azure import *
     from azure.servicemanagement import *
@@ -399,42 +400,37 @@ Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是
         role_size='Small',
         vm_image_name = image_name)
 
-若要深入了解如何擷取 Linux 虛擬機器，請參閱[如何擷取 Linux 虛擬機器。](../virtual-machines/virtual-machines-linux-classic-capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+若要深入了解如何擷取 Linux 虛擬機器，請參閱[如何擷取 Linux 虛擬機器。](../virtual-machines/linux/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
-若要深入了解如何擷取 Windows 虛擬機器，請參閱[如何擷取 Windows 虛擬機器。](../virtual-machines/virtual-machines-windows-classic-capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+若要深入了解如何擷取 Windows 虛擬機器，請參閱[如何擷取 Windows 虛擬機器。](../virtual-machines/windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="What's Next"> </a>後續步驟
 現在，您已了解服務管理的基本概念，您可以存取 [Azure Python SDK 的完整 API 參考文件](http://azure-sdk-for-python.readthedocs.org/) 並輕鬆執行複雜工作，以管理 Python 應用程式。
 
 如需詳細資訊，請參閱 [Python 開發人員中心](/develop/python/)。
 
-[什麼是服務管理？]: #WhatIs
-[概念]: #Concepts
-[作法：連線到服務管理]: #Connect
-[作法：列出可用位置]: #ListAvailableLocations
-[作法：建立雲端服務]: #CreateCloudService
-[作法：刪除雲端服務]: #DeleteCloudService
-[作法：建立部署]: #CreateDeployment
-[作法：更新部署]: #UpdateDeployment
-[作法：在預備與生產環境之間移動部署]: #MoveDeployments
-[作法：刪除部署]: #DeleteDeployment
-[作法：建立儲存體服務]: #CreateStorageService
-[作法：刪除儲存體服務]: #DeleteStorageService
-[作法：列出可用作業系統]: #ListOperatingSystems
-[作法：建立作業系統映像]: #CreateVMImage
-[作法：刪除作業系統映像]: #DeleteVMImage
-[作法：建立虛擬機器]: #CreateVM
-[作法：刪除虛擬機器]: #DeleteVM
+[What is Service Management]: #WhatIs
+[Concepts]: #Concepts
+[How to: Connect to service management]: #Connect
+[How to: List available locations]: #ListAvailableLocations
+[How to: Create a cloud service]: #CreateCloudService
+[How to: Delete a cloud service]: #DeleteCloudService
+[How to: Create a deployment]: #CreateDeployment
+[How to: Update a deployment]: #UpdateDeployment
+[How to: Move deployments between staging and production]: #MoveDeployments
+[How to: Delete a deployment]: #DeleteDeployment
+[How to: Create a storage service]: #CreateStorageService
+[How to: Delete a storage service]: #DeleteStorageService
+[How to: List available operating systems]: #ListOperatingSystems
+[How to: Create an operating system image]: #CreateVMImage
+[How to: Delete an operating system image]: #DeleteVMImage
+[How to: Create a virtual machine]: #CreateVM
+[How to: Delete a virtual machine]: #DeleteVM
 [Next Steps]: #NextSteps
 [management-portal]: https://manage.windowsazure.com/
 [svc-mgmt-rest-api]: http://msdn.microsoft.com/library/windowsazure/ee460799.aspx
 
 
-[雲端服務]:/services/cloud-services/
-
-
-
-
-<!--HONumber=Nov16_HO3-->
+[cloud service]:/services/cloud-services/
 
 

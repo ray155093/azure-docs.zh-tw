@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/09/2016
+ms.date: 03/24/2017
 ms.author: bradsev;hangzh;weig
 translationtype: Human Translation
-ms.sourcegitcommit: 29c718d0c34d1e2f9d17b285a7270541a9ff15cf
-ms.openlocfilehash: f12bf7ef4f608e01115a7e7d12b734d65ccc40e5
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 55e3f99cd3202abc012d310b43358d3795c8531e
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -105,7 +105,7 @@ ms.lasthandoff: 02/24/2017
 **在 Azure 訂用帳戶下建立 Azure Machine Learning 工作區。** 如需指示，請參閱 [建立 Azure Machine Learning 工作區](machine-learning-create-workspace.md)中概述的步驟。
 
 ## <a name="getdata"></a>將資料載入 SQL 資料倉儲
-開啟 Windows PowerShell 命令主控台。 執行下列 PowerShell 命令，將我們在 Github 上與您分享的範例 SQL 指令碼檔案，下載到您使用 *-DestDir*參數所指定的本機目錄中。 您可以將 *-DestDir* 參數的值變更為任何本機目錄。 如果 *-DestDir* 不存在，PowerShell 指令碼會加以建立。
+開啟 Windows PowerShell 命令主控台。 執行下列 PowerShell 命令，將我們在 GitHub 上與您分享的範例 SQL 指令碼檔案，下載到您使用 *-DestDir* 參數指定的本機目錄中。 您可以將 *-DestDir* 參數的值變更為任何本機目錄。 如果 *-DestDir* 不存在，PowerShell 指令碼會加以建立。
 
 > [!NOTE]
 > 如果需要系統管理員權限才能建立或寫入 **DestDir** 目錄，您可能需要在執行下列 PowerShell 指令碼時 *以系統管理員身分執行* 。
@@ -340,7 +340,7 @@ ms.lasthandoff: 02/24/2017
 ![][20]
 
 ## <a name="dbexplore"></a>Azure SQL 資料倉儲中的資料探索和特徵工程
-在本節中，我們會使用 **Visual Studio Data Tools**直接對 Azure SQL DW 執行 SQL 查詢，以探索資料和產生特徵。 本節中使用的所有 SQL 查詢都能在名為 *SQLDW_Explorations.sql* 的範例指令碼中找到。 PowerShell 指令碼已將此檔案下載到您的本機目錄。 您也可以從 [Github](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/SQLDW/SQLDW_Explorations.sql)擷取此檔案。 但 Github 中的檔案並未插入 Azure SQL DW 資訊。
+在本節中，我們會使用 **Visual Studio Data Tools**直接對 Azure SQL DW 執行 SQL 查詢，以探索資料和產生特徵。 本節中使用的所有 SQL 查詢都能在名為 *SQLDW_Explorations.sql* 的範例指令碼中找到。 PowerShell 指令碼已將此檔案下載到您的本機目錄。 您也可以從 [GitHub](https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/SQLDW/SQLDW_Explorations.sql) 擷取此檔案。 但 GitHub 中的檔案並未插入 Azure SQL DW 資訊。
 
 使用 Visual Studio 與 SQL DW 登入名稱和密碼連接到您的 Azure SQL DW，然後開啟 **SQL 物件總管** 確認資料庫和資料表已匯入。 擷取 *SQLDW_Explorations.sql* 檔案。
 

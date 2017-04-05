@@ -1,6 +1,6 @@
 ---
-title: "使用 Resource Manager 和 PowerShell 將 VNet 閘道加入至 ExpressRoute 的虛擬網路 | Microsoft Docs"
-description: "本文會逐步引導您完成將 VNet 閘道加入至已經建立的 ExpressRoute 的 Resource Manager VNet"
+title: "將虛擬網路閘道新增到 ExpressRoute 的 VNet：PowerShell：Azure | Microsoft Docs"
+description: "本文會逐步引導您完成將 VNet 閘道新增到已經建立的 ExpressRoute 的 Resource Manager VNet。"
 documentationcenter: na
 services: expressroute
 author: charwen
@@ -13,16 +13,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/21/2016
+ms.date: 03/24/2017
 ms.author: charwen
 translationtype: Human Translation
-ms.sourcegitcommit: 2a0db85dc5699b362aa6a920cc26c40bdfdfc28d
-ms.openlocfilehash: 80ffdd66a02f84b844b660e6c88586d4e99ff9e7
-ms.lasthandoff: 12/14/2016
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 8abcb506243d0cc86d3d65431cd40b3a6d08063c
+ms.lasthandoff: 03/25/2017
 
 
 ---
-# <a name="configure-a-virtual-network-gateway-for-expressroute-using-resource-manager-and-powershell"></a>使用 Resource Manager 和 PowerShell 設定 ExpressRoute 的虛擬網路閘道
+# <a name="configure-a-virtual-network-gateway-for-expressroute-using-powershell"></a>使用 PowerShell 為 ExpressRoute 設定虛擬網路閘道
 > [!div class="op_single_selector"]
 > * [Resource Manager - PowerShell](expressroute-howto-add-gateway-resource-manager.md)
 > * [傳統 - PowerShell](expressroute-howto-add-gateway-classic.md)

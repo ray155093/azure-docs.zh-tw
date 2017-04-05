@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 1d0136b044f6049e59fa09d824cf244cac703c45
-ms.openlocfilehash: 30475d710dc00ff06683dcb963e9fdfdd762735b
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
+ms.openlocfilehash: 0dcc02e4f3b1e512a2c9e4b96894324414182af9
+ms.lasthandoff: 03/28/2017
 
 
 ---
@@ -29,9 +29,9 @@ ms.lasthandoff: 02/23/2017
 > - [CLI](network-watcher-troubleshoot-manage-cli.md)
 > - [REST API](network-watcher-troubleshoot-manage-rest.md)
 
-網路監看員提供了許多功能，因為它的作用就是為了讓您了解您在 Azure 中的網路資源。 這些功能的其中之一便是資源疑難排解。 資源疑難排解可透過 PowerShell、CLI 或 REST API 來呼叫。 一經呼叫，網路監看員就會檢查虛擬網路閘道或連線的健康狀態，並傳回其調查結果。
+網路監看員提供了許多功能，因為它的作用就是為了讓您了解您在 Azure 中的網路資源。 這些功能的其中之一便是資源疑難排解。 資源疑難排解可透過 PowerShell、CLI 或 REST API 來呼叫。 一經呼叫，網路監看員就會檢查虛擬網路閘道或連線的健全狀況，並傳回其調查結果。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
+本文使用跨平台 Azure CLI 1.0，這適用於 Windows、Mac 和 Linux。 網路監看員目前使用 Azure CLI 1.0 提供 CLI 支援。
 
 ## <a name="before-you-begin"></a>開始之前
 
@@ -63,7 +63,7 @@ azure network vpn-connection show -g resourceGroupName -n connectionName
 
 ## <a name="create-a-storage-account"></a>建立儲存體帳戶
 
-資源疑難排解會傳回資源健康狀態的相關資料，它也會將記錄儲存到儲存體帳戶以供檢閱。 在此步驟中，我們會建立儲存體帳戶，如果已有現有的儲存體帳戶，您也可以使用它。
+資源疑難排解會傳回資源健全狀況的相關資料，它也會將記錄儲存到儲存體帳戶以供檢閱。 在此步驟中，我們會建立儲存體帳戶，如果已有現有的儲存體帳戶，您也可以使用它。
 
 ```azurecli
 azure storage account create -n storageAccountName -l location -g resourceGroupName

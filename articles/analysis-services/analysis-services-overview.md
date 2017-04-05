@@ -16,9 +16,9 @@ ms.workload: na
 ms.date: 02/27/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 653c9a04016c0157b2107710e170ba63b3a499f7
-ms.openlocfilehash: 38f68d6df19d24492a234933e10d5d5cf34d1b23
-ms.lasthandoff: 01/05/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 3539da8afe5781d74cbf723090050b767373f268
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -103,7 +103,7 @@ Azure Analysis Services 目前支援 1200 種相容性層級的表格式模型�
 ##### <a name="data-sources"></a>資料來源
 在預覽版本中，部署到 Azure Analysis Services 伺服器的 1200 種表格式模型支援下列資料來源。
 
-| **雲端** | **內部部署** |
+| **雲端** | **內部部署 (需要資料閘道)** |
 | --- | --- |
 | SQL Database |SQL Server |
 | SQL 資料倉儲 |APS |
@@ -114,7 +114,8 @@ Azure Analysis Services 目前支援 1200 種相容性層級的表格式模型�
 Azure Analysis Services 中的資料模型連接到資料來源需要的資料提供者，可能不同於 SQL Server Analysis Services 中的資料模型。 資料提供者需求取決於資料來源是在雲端或內部部署，以及資料模型的類型：記憶體中或直接查詢。 若要深入了解，請參閱[資料來源連接](analysis-services-datasource.md)。
 
 ### <a name="client-connections"></a>用戶端連接
-預覽版目前不支援 Power BI Embedded。
+
+用戶端應用程式需要最新的用戶端[資料提供者](analysis-services-data-providers.md)，才能連接到 Azure Analysis Services。
 
 不支援與 Azure Analysis Services 伺服器即時連接和儲存在 OneDrive 或 SharePoint Online 的 Excel 活頁簿。
 

@@ -1,5 +1,5 @@
 ---
-title: "在 OMS Log Analytics 中建立警示規則 | Microsoft Docs"
+title: "建立 OMS Log Analytics 中的警示 | Microsoft Docs"
 description: "Log Analytics 中的警示會識別您的 OMS 儲存機制中的重要資訊，並可主動通知您相關問題或叫用動作以嘗試更正問題。  本文描述如何建立警示規則及詳細說明可以採取的各種動作。"
 services: log-analytics
 documentationcenter: 
@@ -12,18 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/28/2017
+ms.date: 03/23/2017
 ms.author: bwren
-ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: fdf22ff85a3a76be5de50632c4948df44c2312df
-ms.openlocfilehash: 9778c79ca887e154ad2796ce5d90d953643b8067
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: eec118430c6262626728c3156634361c977ccb4b
+ms.lasthandoff: 03/29/2017
 
 
 ---
-# <a name="create-and-manage-alert-rules-in-log-analytics-with-the-oms-portal"></a>使用 OMS 入口網站在 Log Analytics 中建立及管理警示規則
-[Log Analytics 中的警示](log-analytics-alerts.md)是由自動定期執行記錄搜尋的警示規則所建立。  如果結果符合特定準則，則會建立警示記錄。  此規則接著可以自動執行一或多個動作，以主動通知警示或叫用另一個處理序。   
+# <a name="working-with-alert-rules-in-log-analytics"></a>使用 Log Analytics 中的警示規則
+警示會由自動定期執行記錄搜尋的警示規則所建立。  如果結果符合特定準則，則會建立警示記錄。  此規則接著可以自動執行一或多個動作，以主動通知警示或叫用另一個處理序。   
 
 本文說明使用 OMS 入口網站建立和編輯警示規則的程序。  如需不同設定以及如何實作必要邏輯的詳細資訊，請參閱[了解 Log Analytics 中的警示](log-analytics-alerts.md)。
 
@@ -79,23 +78,37 @@ ms.lasthandoff: 03/01/2017
 
 當您提供警示規則的時間範圍時，將會顯示該時間範圍內符合搜尋準則的現有記錄數目。  這可以協助您判斷可為您提供預期結果數目的頻率。
 
-#### <a name="threshold"></a>閾值
-
-| 屬性 | 說明 |
-|:--- |:---|
-| 結果數目 |如果查詢所傳回的記錄數目**大於**或**小於**您所提供的值，則會建立警示。  |
-
-### <a name="alert-frequency"></a>警示頻率
+### <a name="schedule"></a>排程
 定義搜尋查詢的執行頻率。
 
 | 屬性 | 說明 |
 |:--- |:---|
 | 警示頻率 | 指定應執行查詢的頻率。 可以是介於 5 分鐘與 24 小時之間的任何值。 應等於或小於此時間範圍。  如果值大於時間範圍，則您可能有遺漏記錄的風險。<br><br>例如，請考慮 30 分鐘的時間範圍，以及 60 分鐘的頻率。  如果在 1:00 執行查詢，它會傳回 12:30 到下午 1:00 之間的記錄。  下一次執行查詢就是 2:00 時，它會傳回 1:30 至 2:00 之間的記錄。  1:00 和 1:30 之間建立的任何記錄一律不會評估。 |
+
+
+### <a name="generate-alert-based-on"></a>產生警示的依據
+定義將根據搜尋查詢的結果進行評估以判斷是否應該建立警示的準則。  這些詳細資料將根據您選取的警示規則類型而不同。  您可以從[了解 Log Analytics 中的警示](log-analytics-alerts.md)中取得不同警示規則類型的詳細資料。
+
+| 屬性 | 說明 |
+|:--- |:---|
 | 隱藏警示 | 當您開啟警示規則的隱藏功能時，此規則的動作會在建立新警示後停用並持續一段您所定義的時間。 採規則仍在執行中，並且會在符合準則時建立警示記錄。 這可讓您有時間更正問題，而不需執行重複的動作。 |
 
+#### <a name="number-of-results-alert-rules"></a>結果數目的警示規則
+
+| 屬性 | 說明 |
+|:--- |:---|
+| 結果數目 |如果查詢所傳回的記錄數目**大於**或**小於**您所提供的值，則會建立警示。  |
+
+#### <a name="metric-measurement-alert-rules"></a>公制度量單位的警示規則
+
+| 屬性 | 說明 |
+|:--- |:---|
+| 彙總值 | 結果中的每個彙總值必須超過才會被視為違規的臨界值。 |
+| 觸發警示的依據 | 要針對警示建立的違規數。  您可以跨結果集針對任何違規組合指定 [違規數總計]，或指定 [連續違規] 以要求違規必須發生於連續取樣中。 |
 
 ### <a name="actions"></a>動作
-警示規則一律會在達到閾值時建立[警示記錄](#alert-records)。  您也可以定義一或多個將要執行的動作，例如傳送電子郵件或啟動 Runbook。  如需設定動作的詳細資訊，請參閱[將動作新增至 Log Analytics 中的警示規則](log-analytics-alerts-actions.md)。 
+警示規則一律會在達到閾值時建立[警示記錄](#alert-records)。  您也可以定義一或多個要執行的回應，例如傳送電子郵件或啟動 Runbook。
+
 
 
 #### <a name="email-actions"></a>電子郵件動作
@@ -115,7 +128,7 @@ Webhook 動作可讓您透過單一 HTTP POST 要求叫用外部處理序。
 | Webhook |如果您要在警示觸發時呼叫 Webhook，請指定 [是]  。 |
 | Webhook URL |Webhook 的 URL。 |
 | 包含自訂 JSON 承載 |如果您要使用自訂承載取代預設承載，請選取此選項。 |
-| 輸入您的自訂 JSON 承載 |要傳送至 webhook 的自訂承載。  |
+| 輸入您的自訂 JSON 承載 |Webhook 的自訂承載。  如需詳細資料，請參閱上一節。 |
 
 #### <a name="runbook-actions"></a>Runbook 動作
 Runbook 動作可在 Azure 自動化中啟動 Runbook。 

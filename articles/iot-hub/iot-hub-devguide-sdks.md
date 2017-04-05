@@ -12,18 +12,30 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2017
+ms.date: 03/24/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 7adde91586f5fbbffd0aeaf0efb0810cc891ac0b
-ms.openlocfilehash: 27aa7abee8051ab7d10e9a5da4dd54f4a50eaaa7
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: ff08ea2b6231b2344244b14e44bcfd9acd065508
+ms.lasthandoff: 03/27/2017
 
 
 ---
 # <a name="understand-and-use-azure-iot-sdks"></a>了解和使用 Azure IoT SDK
-## <a name="azure-iot-device-sdk"></a>Azure IoT 裝置 SDK
+
+有三種類別的 SDK 可與 IoT 中樞搭配使用：
+
+* **裝置 SDK** 可讓您建立在 IoT 裝置上執行的應用程式。 這些應用程式會將遙測傳送至您的IoT 中樞，並選擇性地接收來自 IoT 中樞的訊息。
+
+* **服務 SDK** 可讓您管理 IoT 中樞，並選擇性地將訊息傳送到 IoT 裝置。
+
+* **閘道 SDK** 可讓您建置閘道，以啟用不使用其中一個支援通訊協定的裝置，或者當您需要處理邊緣上的訊息時加以建置。
+
+提供 SDK 的目的是支援多種程式設計語言。
+
+## <a name="azure-iot-device-sdks"></a>Azure IoT 裝置 SDK
+
 Microsoft Azure IoT 裝置 SDK 包含有助於建置裝置和應用程式的程式碼，並使裝置和應用程式連接到 Azure IoT 中心服務，且由其進行管理。
 
 您可從 GitHub 下載下列 Azure IoT 裝置 SDK：
@@ -39,10 +51,12 @@ Microsoft Azure IoT 裝置 SDK 包含有助於建置裝置和應用程式的程�
 > 
 > 
 
-## <a name="os-platform-and-hardware-compatibility"></a>作業系統平台和硬體相容性
+### <a name="os-platform-and-hardware-compatibility"></a>作業系統平台和硬體相容性
+
 如需 SDK 與特定硬體裝置之相容性的詳細資訊，請參閱 [Azure IoT 認證裝置目錄][lnk-certified]。
 
-## <a name="azure-iot-service-sdk"></a>Azure IoT 服務 SDK
+## <a name="azure-iot-service-sdks"></a>Azure IoT 服務 SDK
+
 Microsoft Azure IoT 服務 SDK 包含可協助建置應用程式的程式碼，這些應用程式可直接與「IoT 中樞」互動來管理裝置和安全性。
 
 您可從 GitHub 下載下列 Azure IoT 服務 SDK：
@@ -55,15 +69,15 @@ Microsoft Azure IoT 服務 SDK 包含可協助建置應用程式的程式碼，�
 
 > [!NOTE]
 > 請參閱 GitHub 儲存機制中的讀我檔案，以取得使用語言和平台特定套件管理員在開發電腦上安裝二進位檔和相依項目的相關資訊。
-> 
-> 
 
-## <a name="azure-iot-gateway-sdk"></a>Azure IoT 閘道器 SDK
+## <a name="azure-iot-gateway-sdks"></a>Azure IoT 閘道 SDK
+
 此 Azure IoT 閘道器 SDK 包含用來建立 IoT 閘道器方案的基礎結構和模組。 您可以擴充 SDK 來建立適合任何端對端案例的閘道器。
 
 您可以從 GitHub 下載 [Azure IoT 閘道 SDK][lnk-gateway-sdk]。
 
 ## <a name="online-api-reference-documentation"></a>線上 API 參考文件
+
 以下清單包含 Azure IoT 裝置、服務及閘道器程式庫的線上 API 參考文件連結：
 
 * [物聯網 (IoT) .NET (英文)][lnk-dotnet-ref]
@@ -76,6 +90,7 @@ Microsoft Azure IoT 服務 SDK 包含可協助建置應用程式的程式碼，�
 * [Azure IoT 閘道 SDK][lnk-gateway-ref]
 
 ## <a name="next-steps"></a>後續步驟
+
 此 IoT 中樞開發人員指南中的其他參考主題包括︰
 
 * [IoT 中樞端點][lnk-devguide-endpoints]
@@ -100,10 +115,10 @@ Microsoft Azure IoT 服務 SDK 包含可協助建置應用程式的程式碼，�
 [lnk-dotnet-ref]: https://docs.microsoft.com/dotnet/api/microsoft.azure.devices
 [lnk-c-ref]: https://azure.github.io/azure-iot-sdk-c/index.html
 [lnk-java-ref]: https://docs.microsoft.com/java/api/com.microsoft.azure.sdk.iot.device
-[lnk-node-ref]: https://azure.github.io/azure-iot-sdk-node/azure-iot-device/1.1.7/index.html
+[lnk-node-ref]: https://azure.github.io/azure-iot-sdk-node/azure-iot-device/1.1.8/index.html
 [lnk-rest-ref]: https://docs.microsoft.com/rest/api/iothub/
 [lnk-java-service-ref]: https://docs.microsoft.com/java/api/com.microsoft.azure.sdk.iot.service.auth
-[lnk-node-service-ref]: https://azure.github.io/azure-iot-sdk-node/azure-iothub/1.1.7/index.html
+[lnk-node-service-ref]: https://azure.github.io/azure-iot-sdk-node/azure-iothub/1.1.8/index.html
 [lnk-gateway-ref]: http://azure.github.io/azure-iot-gateway-sdk/api_reference/c/html/
 
 [lnk-devguide-endpoints]: iot-hub-devguide-endpoints.md

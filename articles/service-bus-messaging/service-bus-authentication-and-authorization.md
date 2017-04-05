@@ -1,5 +1,5 @@
 ---
-title: "服務匯流排驗證和授權 | Microsoft Docs"
+title: "Azure 服務匯流排驗證和授權 | Microsoft Docs"
 description: "共用存取簽章 (SAS) 驗證的概觀。"
 services: service-bus-messaging
 documentationcenter: na
@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/13/2017
+ms.date: 03/21/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 2c1a1f3b73466526b13bcfeb4580335390506c23
-ms.openlocfilehash: 14dfe58f6296a4ec516845bace456ffd59fa608a
-ms.lasthandoff: 01/18/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 8e113a78519444fd1e0a9da89ec95aa0dccebb2b
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -28,25 +28,25 @@ ms.lasthandoff: 01/18/2017
 > 建議您透過 ACS 使用 SAS，因為它提供服務匯流排簡單、有彈性且容易使用的驗證配置。 在應用程式不需要管理已授權「使用者」概念的情況下，可以使用 SAS。 
 
 ## <a name="shared-access-signature-authentication"></a>共用存取簽章驗證
-[SAS 驗證](service-bus-sas-overview.md) 可讓您授與使用者具有特定權限之服務匯流排資源的存取權。 服務匯流排中的 SAS 驗證牽涉到在服務匯流排資源上設定具有相關權限的密碼編譯金鑰。 接著用戶端可以藉由提出 SAS 權杖 (其中包含正在存取的資源 URI 及利用設定金鑰簽署的過期) 存取該資源。
+[SAS 驗證](service-bus-sas.md) 可讓您授與使用者具有特定權限之服務匯流排資源的存取權。 服務匯流排中的 SAS 驗證牽涉到在服務匯流排資源上設定具有相關權限的密碼編譯金鑰。 接著用戶端可以藉由提出 SAS 權杖 (其中包含正在存取的資源 URI 及利用設定金鑰簽署的到期日) 存取該資源。
 
-您可以在服務匯流排命名空間上設定 SAS 的金鑰。 金鑰套用至該命名空間中的所有訊息實體。 您也可以在服務匯流排佇列和主題上設定金鑰。 服務匯流排轉送也支援 SAS。
+您可以在服務匯流排命名空間上設定 SAS 的金鑰。 金鑰套用至該命名空間中的所有訊息實體。 您也可以在服務匯流排佇列和主題上設定金鑰。 [Azure 轉送](../service-bus-relay/relay-authentication-and-authorization.md)上也支援 SAS。
 
-若要使用 SAS，您可以在命名空間、佇列或主題上設定包含下列項目的 [SharedAccessAuthorizationRule](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 物件：
+若要使用 SAS，您可以在命名空間、佇列或主題上設定包含下列項目的 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 物件：
 
 * *KeyName* 。
 * *PrimaryKey* 是用來簽署/驗證 SAS 權杖的密碼編譯金鑰。
 * *SecondaryKey* 是用來簽署/驗證 SAS 權杖的密碼編譯金鑰。
 * *權限* 表示接聽、傳送或管理授與權限的集合。
 
-在命名空間層級設定的授權規則可以授與命名空間中所有實體的存取權給具備使用對應金鑰簽署之權杖的用戶端。 在服務匯流排命名空間、佇列或主題上最多可以設定 12 條這類授權規則。 根據預設，具備所有權限的 [SharedAccessAuthorizationRule](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 會在第一次佈建時為每個命名空間設定。
+在命名空間層級設定的授權規則可以授與命名空間中所有實體的存取權給具備使用對應金鑰簽署之權杖的用戶端。 在服務匯流排命名空間、佇列或主題上最多可以設定 12 條這類授權規則。 根據預設，具備所有權限的 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule) 會在第一次佈建時為每個命名空間設定。
 
-若要存取實體，用戶端需要使用特定 [SharedAccessAuthorizationRule](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule)產生的 SAS 權杖。 SAS 權杖乃是使用資源字串的 HMAC-SHA256 所產生，該字串由宣告存取的資源 URI 以及具備與授權規則相關聯之密碼編譯金鑰的過期所組成。
+若要存取實體，用戶端需要使用特定 [SharedAccessAuthorizationRule](/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule)產生的 SAS 權杖。 SAS 權杖乃是使用資源字串的 HMAC-SHA256 所產生，該字串由宣告存取的資源 URI 以及具備與授權規則相關聯之密碼編譯金鑰的過期所組成。
 
 服務匯流排的 SAS 驗證支援包含在 Azure .NET SDK 2.0 版或更新版本中。 SAS 包括 [SharedAccessAuthorizationRule](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule)的支援。 所有接受連接字串做為參數的 API 包括 SAS 連接字串的支援。
 
 ## <a name="acs-authentication"></a>ACS 驗證
-透過 ACS 的服務匯流排驗證可透過隨附的「-sb」ACS 命名空間管理。 如果您想要建立服務匯流排命名空間的隨附 ACS 命名空間，您無法使用 Azure 傳統入口網站建立您的服務匯流排命名空間。您必須使用 [New-AzureSBNamespace](https://docs.microsoft.com/powershell/servicemanagement/azure.compute/v1.6.1/New-AzureSBNamespace) PowerShell Cmdlet 建立命名空間。 例如：
+透過 ACS 的服務匯流排驗證可透過隨附的「-sb」ACS 命名空間管理。 如果您想要建立服務匯流排命名空間的隨附 ACS 命名空間，您無法使用 Azure 傳統入口網站建立您的服務匯流排命名空間。您必須使用 [New-AzureSBNamespace](/powershell/servicemanagement/azure.compute/v1.6.1/New-AzureSBNamespace) PowerShell Cmdlet 建立命名空間。 例如：
 
 ```powershell
 New-AzureSBNamespace <namespaceName> "<Region>” -CreateACSNamespace $true
@@ -64,10 +64,11 @@ New-AzureSBNamespace <namespaceName> "<Region>” -CreateACSNamespace $false
 
 若要存取實體，用戶端會藉由出示其認證，利用適當宣告向 ACS 要求 SWT 權杖。 SWT 權杖必須做為要求的一部分傳送至服務匯流排，以啟用用於存取實體的用戶端授權。
 
-服務匯流排的 ACS 驗證支援包含在 Azure .NET SDK 2.0 版或更新版本中。 此驗證包括 [SharedSecretTokenProvider](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.sharedsecrettokenprovider)的支援。 所有接受連接字串做為參數的 API 包括 ACS 連接字串的支援。
+服務匯流排的 ACS 驗證支援包含在 Azure .NET SDK 2.0 版或更新版本中。 此驗證包括 [SharedSecretTokenProvider](/dotnet/api/microsoft.servicebus.sharedsecrettokenprovider)的支援。 所有接受連接字串做為參數的 API 包括 ACS 連接字串的支援。
 
 ## <a name="next-steps"></a>後續步驟
-如需 SAS 的詳細資料，請繼續閱讀 [使用服務匯流排的共用存取簽章驗證](service-bus-shared-access-signature-authentication.md) 。
+如需 SAS 的詳細資料，請繼續閱讀[使用共用存取簽章的服務匯流排驗證](service-bus-sas.md)。
 
-如需服務匯流排中的 SAS 整體概觀，請參閱 [共用存取簽章](service-bus-sas-overview.md)。
+如需 Azure 轉送驗證和授權的相關對應資訊，請參閱 [Azure 轉送驗證和授權](../service-bus-relay/relay-authentication-and-authorization.md)。 
+
 

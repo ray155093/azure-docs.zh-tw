@@ -9,16 +9,17 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 610c4103-ffc8-4ec0-ad06-fdaf3c4d7c10
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/18/2017
+ms.date: 03/24/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: 6c81d978e470754f5c0a737aba0437e105949099
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 2ba5f280b38622b6a0c966d76617cd5698420b92
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -33,7 +34,8 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 請使用下列程序解決此問題：
 
-1. Ssh 到前端節點。 若為 Windows 系統，請參閱[從具有 PuTTY 的 Windows 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)；若為 Linux、Unix 或 OS X，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md) 
+1. Ssh 到前端節點。 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+
 2. 執行下列命令，以尋找透過 Livy 啟動之互動式作業的應用程式識別碼。 
    
         yarn application –list
@@ -62,6 +64,14 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 3. 使用 Ambari 將 Spark 記錄檔位置更新為具有 777 權限的目錄。  
 4. 以 sudo 的身分執行 spark-submit。  
 
+## <a name="spark-phoenix-connector-is-not-supported"></a>不支援 Spark-Phoenix 連接器
+
+目前不支援將 Spark-Phoenix 連接器與 HDInsight Spark 叢集搭配使用。
+
+**緩和：**
+
+您必須改用 Spark-HBase 連接器。 如需指示，請參閱[如何使用 Spark-HBase 連接器 (英文)](https://blogs.msdn.microsoft.com/azuredatalake/2016/07/25/hdinsight-how-to-use-spark-hbase-connector/)。
+
 ## <a name="issues-related-to-jupyter-notebooks"></a>Jupyter Notebook 的相關問題
 以下是 Jupyter Notebook 的已知問題。
 
@@ -73,7 +83,7 @@ Livy 在有互動式工作階段仍作用中的情況下重新啟動時 (從 Amb
 
 **緩和：**
 
-如果您收到這個錯誤，並不表示您的資料已損毀或遺失。  您的 Notebook 仍在磁碟的 `/var/lib/jupyter`中，您可以透過 SSH 連線到叢集來加以存取。 若為 Windows 系統，請參閱[從具有 PuTTY 的 Windows 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)；若為 Linux、Unix 或 OS X，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
+如果您收到這個錯誤，並不表示您的資料已損毀或遺失。  您的 Notebook 仍在磁碟的 `/var/lib/jupyter`中，您可以透過 SSH 連線到叢集來加以存取。 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 在您使用 SSH 連線到叢集之後，您可以從叢集中將 Notebook 複製到本機電腦 (使用 SCP 或 WinSCP) 來做為備份，以避免遺失 Notebook 中的重要資料。 您接著可以在連接埠 8001 以 SSH 通道連到前端節點，以存取 Jupyter 而不透過閘道。  您可以從該處清除 Notebook 的輸出，並將其重新儲存，以盡量縮減 Notebook 的大小。
 

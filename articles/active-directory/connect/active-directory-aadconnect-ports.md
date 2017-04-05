@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/15/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 935246ad590af0dcdb6d52257a94169f94dd66e5
-ms.openlocfilehash: 3ff7256578cffd30ae9b75ead2dd7f08babca171
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: ee4a47cf53898803e0080d3f9d00cf7617fe4ce8
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -33,10 +33,10 @@ ms.lasthandoff: 02/17/2017
 | --- | --- | --- |
 | DNS |53 (TCP/UDP) |在目的地樹系的 DNS 查閱。 |
 | Kerberos |88 (TCP/UDP) |AD 樹系的 Kerberos 驗證。 |
-| MS-RPC |135 (TCP/UDP) |當繫結至 AD 樹系時，用於 Azure AD Connect 精靈的初始設定期間。 |
+| MS-RPC |135 (TCP/UDP) |繫結至 AD 樹系時，用於 Azure AD Connect 精靈的初始設定期間，也可以用於密碼同步處理期間。 |
 | LDAP |389 (TCP/UDP) |用於從 AD 匯入資料。 資料會使用「Kerberos 簽章及密封」加密。 |
 | LDAP/SSL |636 (TCP/UDP) |用於從 AD 匯入資料。 資料的傳輸經過簽署和加密。 只有使用 SSL 時才會使用。 |
-| RPC |49152- 65535 (隨機高 RPC 連接埠)(TCP/UDP) |當繫結至 AD 樹系時，用於 Azure AD Connect 的初始設定期間。 如需詳細資訊，請參閱 [KB929851](https://support.microsoft.com/kb/929851)、[KB832017](https://support.microsoft.com/kb/832017) 和 [KB224196](https://support.microsoft.com/kb/224196)。 |
+| RPC |49152- 65535 (隨機高 RPC 連接埠)(TCP/UDP) |繫結至 AD 樹系時，用於 Azure AD Connect 的初始設定期間，以及用於密碼同步處理期間。 如需詳細資訊，請參閱 [KB929851](https://support.microsoft.com/kb/929851)、[KB832017](https://support.microsoft.com/kb/832017) 和 [KB224196](https://support.microsoft.com/kb/224196)。 |
 
 ## <a name="table-2---azure-ad-connect-and-azure-ad"></a>表 2 - Azure AD Connect 和 Azure AD
 此表說明 Azure AD Connect 伺服器與 Azure AD 之間通訊所需的連接埠和通訊協定。

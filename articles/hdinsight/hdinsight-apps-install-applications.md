@@ -9,16 +9,17 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: eaf5904d-41e2-4a5f-8bec-9dde069039c2
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
-ms.topic: hero-article
+ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 8e7911a3a8080ef8fa125779aa1f6778b9655cde
-ms.openlocfilehash: 8780c193c6aa4b6b183723f88d67ac0990347d1e
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 3b2a18232a9ab8c1b587cfa4fa14ced0c3b515ba
+ms.lasthandoff: 03/25/2017
 
 
 ---
@@ -101,11 +102,11 @@ HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢�
    * 狀態︰應用程式狀態。 
    * 網頁︰您已部署到邊緣節點的 Web 應用程式的 URL (如果有的話)。 此認證與您針對叢集設定的 HTTP 使用者認證相同。
    * HTTP 端點︰此認證與您針對叢集設定的 HTTP 使用者認證相同。 
-   * SSH 端點︰您可以使用 [SSH](hdinsight-hadoop-linux-use-ssh-unix.md) 連接到邊緣節點。 SSH 認證與您針對叢集設定的 SSH 使用者認證相同。
+   * SSH 端點︰您可以使用 SSH 連接到邊緣節點。 SSH 認證與您針對叢集設定的 SSH 使用者認證相同。 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 6. 若要刪除應用程式，請以滑鼠右鍵按一下應用程式，然後按一下內容功能表中的 [刪除]  。
 
 ## <a name="connect-to-the-edge-node"></a>連接到邊緣節點
-您可以使用 HTTP 和 SSH 連接到邊緣節點。 您可以在 [入口網站](#list-installed-hdinsight-apps-and-properties)中找到端點資訊。 如需使用 SSH 的詳細資訊，請參閱 [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)。 
+您可以使用 HTTP 和 SSH 連接到邊緣節點。 您可以在 [入口網站](#list-installed-hdinsight-apps-and-properties)中找到端點資訊。 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 HTTP 端點認證是您已針對 HDInsight 叢集設定的 HTTP 使用者認證；SSH 端點認證就是您已針對 HDInsight 叢集設定的 SSH 認證。
 

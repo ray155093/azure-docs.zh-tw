@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 11/11/2016
 ms.author: andrl
 translationtype: Human Translation
-ms.sourcegitcommit: a6aadaae2a9400dc62ab277d89d9a9657833b1b7
-ms.openlocfilehash: 94376ba0cb7e68045e5bc44e356a91ac2ca787b2
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: d337114c123151f06a24e80b0208c6eafb1df487
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -294,7 +294,7 @@ JavaScript 函數能使用的資源也受到限制。 DocumentDB 會根據所佈
         }
     }
 
-## <a name="a-idtriggera-database-triggers"></a><a id="trigger"></a> 資料庫觸發程序
+## <a id="trigger"></a> 資料庫觸發程序
 ### <a name="database-pre-triggers"></a>資料庫預先觸發程序
 DocumentDB 提供作業在文件上執行或觸發的觸發程序。 例如，您可以在建立文件時指定預先觸發程序；此預先觸發程序會在建立文件之前執行。 下列範例說明如何使用預先觸發程序來驗證所建立文件的屬性：
 
@@ -437,7 +437,7 @@ DocumentDB 提供作業在文件上執行或觸發的觸發程序。 例如，�
 
 有一點務必要注意，那就是在 DocumentDB 中是以 **交易式** 執行觸發程序。 此後續觸發程序會在與建立原始文件時的相同交易過程中執行。 因此，如果從後續觸發程序擲出例外狀況 (例如，如果我們無法更新中繼資料文件的話)，則整個交易會失敗並予以回復。 此時不會建立任何文件，並且會傳回例外狀況。  
 
-## <a name="a-idudfauser-defined-functions"></a><a id="udf"></a>使用者定義函數
+## <a id="udf"></a>使用者定義函數
 使用者定義函數 (UDF) 可用來擴充 DocumentDB 的 SQL 查詢語言文法及實作自訂商務邏輯。 UDF 只能從內部查詢進行呼叫。 它們無法存取內容物件，只能做為計算用途的 JavaScript。 因此，UDF 可以在 DocumentDB 服務的次要複本上執行。  
 
 下列範例會建立 UDF，根據各種收入級距的稅率計算所得稅，然後在查詢內使用它來尋找繳稅超過 $20,000 的所有人員。
@@ -794,7 +794,7 @@ JavaScript 預存程序和觸發程序是在沙箱中執行，除非通過資料
 在這裏，要與要求搭配執行的預先觸發程序指定於 x-ms-documentdb-pre-trigger-include 標頭中。 相對應地，後續觸發程序則是指定於 x-ms-documentdb-post-trigger-include 標頭中。 請注意，您可以指定給定要求的預先和後續觸發程序。
 
 ## <a name="sample-code"></a>範例程式碼
-您可以在我們的 [Github 儲存機制](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples)上找到更多的伺服器端程式碼範例 (包括 [bulk-delete](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples/stored-procedures/bulkDelete.js) 和 [update](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples/stored-procedures/update.js))。
+您可以在我們的 [GitHub 存放庫](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples)上找到更多的伺服器端程式碼範例 (包括 [bulk-delete](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples/stored-procedures/bulkDelete.js) 和 [update](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples/stored-procedures/update.js))。
 
 想要共用您絕佳的預存程序嗎？ 請傳送提取要求給我們！ 
 

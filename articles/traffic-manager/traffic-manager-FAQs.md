@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: cc095b419eae7e85590cdd323a5cf3809c45452e
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
+ms.openlocfilehash: 8c4c8db3cf57537dd77d33b3ded2dc24167f511f
+ms.lasthandoff: 03/25/2017
 
 ---
 
@@ -67,11 +67,15 @@ ms.lasthandoff: 03/22/2017
 
 我們的功能待處理項目中追蹤了對「流量管理員」中裸網域的完整支援。 您可以[在我們的社群意見反應站投票](https://feedback.azure.com/forums/217313-networking/suggestions/5485350-support-apex-naked-domains-more-seamlessly)，以表達您支持這項功能要求。
 
+### <a name="does-traffic-manager-consider-the-client-subnet-address-when-handling-dns-queries"></a>處理 DNS 查詢時，流量管理員會考量用戶端子網路位址嗎？ 
+否，目前流量管理員在執行地理和效能路由方法的查閱時，只會考量它所接收到的 DNS 查詢的來源 IP 位址，在大多數案例中，為 DNS 解析程式的 IP 位址。  
+具體來說，流量管理員中目前不支援 [RFC 7871 – DNS 查詢中的用戶端子網路 (英文)](https://tools.ietf.org/html/rfc7871)，這提供 [DNS (EDNS0) 的延伸模組機制 (英文)](https://tools.ietf.org/html/rfc2671)，其可將用戶端子網路位址從支援它的解析程式傳遞到 DNS 伺服器。 您可以透過我們的[社群意見反應站 (英文)](https://feedback.azure.com/forums/217313-networking) 來表達您支持這項功能要求。
+
 
 ## <a name="traffic-manager-geographic-traffic-routing-method"></a>流量管理員地理流量路由方法
 
 ### <a name="what-are-some-use-cases-where-geographic-routing-is-useful"></a>地理路由派上用場的使用案例有哪些？ 
-每當 Azure 客戶需要依據地理區域來區別位置時，就可使用地理路由類型。 例如，讓特定區域的使用者有不同於其他區域的使用者經驗。 另一個例子是符合本機資料主權規定，要求特定區域的使用者只能由該區域中的端點提供服務。
+每當 Azure 客戶需要依據地理區域來區別他們的使用者位置時，就可以使用地理路由類型。 例如，使用地理流量路由方法，您可以為特定區域的使用者提供不同於其他區域的使用者體驗。 另一個例子是符合本機資料主權規定，要求特定區域的使用者只能由該區域中的端點提供服務。
 
 ### <a name="what-are-the-regions-that-are-supported-by-traffic-manager-for-geographic-routing"></a>流量管理員的地理路由支援哪些區域？ 
 [這裡](traffic-manager-geographic-regions.md)可以找到流量管理員所使用的國家/區域階層。 雖然此頁面一有變動就會隨時更新，但您也可以透過程式設計方式，利用 [Azure 流量管理員 REST API](https://docs.microsoft.com/rest/api/trafficmanager/) 擷取相同的資訊。 
@@ -79,15 +83,23 @@ ms.lasthandoff: 03/22/2017
 ### <a name="how-does-traffic-manager-determine-where-a-user-is-querying-from"></a>流量管理員如何判斷使用者從何處執行查詢？ 
 流量管理員會查看查詢的來源 IP (這很可能是代表使用者執行查詢的本機 DNS 解析程式)，並使用內部 IP 至區域的對應來判斷位置。 此對應會融合網際網路上的變動而不斷更新。 
 
+### <a name="is-it-guaranteed-that-traffic-manager-will-correctly-determine-the-exact-geographic-location-of-the-user-in-every-case"></a>它保證流量管理員將在每個案例中正確判斷使用者確切的地理位置嗎？
+否，基於下列因素，流量管理員不能保證我們從 DNS 查詢的來源 IP 位址推斷的地理區域將會一律對應到使用者的位置： 
+
+- 首先，如先前的常見問題集所述，我們看到的來源 IP 位址是代表使用者執行查閱的 DNS 解析程式的 IP 位址。 儘管 DNS 解析程式的地理位置是使用者地理位置的良好 Proxy，但是，根據 DNS 解析程式服務的使用量和客戶選擇使用的特定 DNS 解析程式服務而定，它也可以不一樣。 例如，位於馬來西亞的客戶可以在他們裝置的設定中指定使用 DNS 解析程式服務，此服務可能會挑選其位於新加坡的 DNS 伺服器來處理該使用者/裝置的查詢解析。 在此情況下，流量管理員只會看到解析程式對應到新加坡位置的 IP 位址。 此外，請參閱此頁面上先前有關用戶端子網路位址支援的常見問題集。
+
+- 其次，流量管理員會使用內部對應來進行 IP 位址到地理區域的轉譯。 雖然此對應已通過驗證並持續更新以提供其精確度並負責網際網路的進化本質，但仍會產生我們的資料無法確切代表所有 IP 位址之地理位址的可能性。
+
+
 ###  <a name="does-an-endpoint-need-to-be-physically-located-in-the-same-region-as-the-one-it-is-configured-with-for-geographic-routing"></a>端點必須實際位於地理路由設定的相同區域嗎？ 
 否，端點的位置不限制哪些區域可以對應它。 例如，美國中部 Azure 區域的端點可以接納所有來自印度的使用者。
 
 ### <a name="can-i-assign-geographic-regions-to-endpoints-in-a-profile-that-is-not-configured-to-do-geographic-routing"></a>您可以在未設定為執行地理路由的設定檔中指派地理區域給端點嗎？ 
-是，如果設定檔的路由方法不是地理，您可以使用 [Azure 流量管理員 REST API](https://docs.microsoft.com/rest/api/trafficmanager/)，指派地理區域給該設定檔中的端點。 在非地理路由類型的設定檔中，將忽略此設定。 如果您稍後將此設定檔變更為地理路由類型，流量管理員會使用這些對應。
+是，如果設定檔的路由方法不是地理，您可以使用 [Azure 流量管理員 REST API](https://docs.microsoft.com/rest/api/trafficmanager/)，將地理區域指派給該設定檔中的端點。 在非地理路由類型的設定檔中，將忽略此設定。 如果您稍後將此設定檔變更為地理路由類型，流量管理員會使用這些對應。
 
 
 ### <a name="when-i-try-to-change-the-routing-method-of-an-existing-profile-to-geographic-i-am-getting-an-error"></a>當我嘗試將現有設定檔的路由方法變更為地理時，發生錯誤。
-設為地理路由的設定檔下的所有端點，必須至少有一個區域對應它。 若要將現有的設定檔轉換成地理路由類型，您需要先使用 [Azure 流量管理員 REST API](https://docs.microsoft.com/rest/api/trafficmanager/)，將地理區域和其所有端點相關聯，才能將路由類型變更為地理。 如果使用入口網站，您必須先刪除端點，將設定檔的路由方法變更為地理，然後新增端點及其地理區域對應。 
+設為地理路由的設定檔下的所有端點，必須至少有一個區域對應到它。 若要將現有的設定檔轉換成地理路由類型，您需要先使用 [Azure 流量管理員 REST API](https://docs.microsoft.com/rest/api/trafficmanager/)，將地理區域和其所有端點相關聯，才能將路由類型變更為地理。 如果使用入口網站，您必須先刪除端點，將設定檔的路由方法變更為地理，然後新增端點及其地理區域對應。 
 
 
 ###  <a name="why-is-it-strongly-recommended-that-customers-create-nested-profiles-instead-of-endpoints-under-a-profile-with-geographic-routing-enabled"></a>為什麼強烈建議客戶建立巢狀設定檔，而不是在啟用地理路由的設定檔下新增端點？ 
@@ -95,7 +107,7 @@ ms.lasthandoff: 03/22/2017
 
 ### <a name="are-there-any-restrictions-on-the-api-version-that-supports-this-routing-type"></a>支援此路由類型的 API 版本有任何限制嗎？
 
-是，只有 2017年 3 月 1 日的 API 版本和更新版本支援地理路由類型。 任何舊版 API 無法用來建立地理路由類型的設定檔，或將地理區域指派給端點。 如果使用舊版 API 從 Azure 訂用帳戶擷取設定檔，則不會傳回地理路由類型的任何設定檔。 此外，使用舊版 API 時，傳回的任何設定檔如果有已指派地理區域的端點，則不會顯示其地理區域指派。
+是，只有 2017 年 3 月 1 日的 API 版本和更新版本支援地理路由類型。 任何舊版 API 都無法用來建立地理路由類型的設定檔，或將地理區域指派給端點。 如果使用舊版 API 從 Azure 訂用帳戶擷取設定檔，將不會傳回地理路由類型的任何設定檔。 此外，使用舊版 API 時，傳回的任何設定檔如果有已指派地理區域的端點，則不會顯示其地理區域指派。
 
 
 

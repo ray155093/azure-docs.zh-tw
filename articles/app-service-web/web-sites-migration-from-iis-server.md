@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 07/01/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 52e4ba9f1f623312780a9072719866932b1af502
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
+ms.openlocfilehash: 6fdee57d33b19569ef892d0d32ea7007fd69faaf
+ms.lasthandoff: 03/23/2017
 
 
 ---
@@ -43,21 +43,13 @@ ms.lasthandoff: 01/20/2017
 * IIS5 相容性模式 - Web Apps 不支援此模式。 
 * 應用程式集區 - 在 Web Apps 中，每個網站及其子應用程式都在相同的應用程式集區中執行。 如果您的網站上有多個利用多個應用程式集區的子應用程式，請將它們彙總到具有通用設定的單一應用程式集區，或將每個應用程式移轉至個別的 Web 應用程式。
 * COM 元件 - Web Apps 不允許在平台上註冊 COM 元件。 如果您的網站或應用程式使用任何 COM 元件，您必須以 Managed 程式碼予以重新撰寫，並與網站或應用程式一起部署這些元件。
-* ISAPI 篩選器 - Web Apps 可支援使用 ISAPI 篩選器。 您需要執行下列動作：
+* ISAPI 擴充功能 - Web Apps 可支援使用 ISAPI 擴充功能。 您需要執行下列動作：
   
   * 使用您的 Web 應用程式部署 DLL 
   * 使用 [Web.config](http://www.iis.net/configreference/system.webserver/isapifilters)
-  * 將 applicationHost.xdt 檔案置於網站根目錄中，包含下列內容：
+  * 將 applicationHost.xdt 檔案與[這篇文章](https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples)的 "Allowing arbitrary ISAPI extensions to be loaded" (允許載入任意的 ISAPI 擴充功能) 一節所述的內容一起放在網站根目錄 
     
-      <?xml version="1.0"?>
-    
-      <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
-      <configSections>
-          <sectionGroup name="system.webServer">
-            <section name="isapiFilters" xdt:Transform="SetAttributes(overrideModeDefault)" overrideModeDefault="Allow" />
-          </sectionGroup>
-        </configSections>
-      </configuration>
+  
     
     如需如何將 XML Document Transformations 使用於您的網站的範例，請參閱 [轉換您的 Microsoft Azure 網站](http://blogs.msdn.com/b/waws/archive/2014/06/17/transform-your-microsoft-azure-web-site.aspx)。
 * 不會移轉其他元件，例如 SharePoint、Front Page Server Extensions (FPSE)、FTP、SSL 憑證。

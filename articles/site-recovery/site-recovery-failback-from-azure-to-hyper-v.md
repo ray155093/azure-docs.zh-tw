@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 2/15/2017
 ms.author: ruturajd
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: a1769a522d13926e887e82b8d26b36afb4c80b08
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 845a950f02ba95a100ffedbb07e4d1491b22a2da
+ms.lasthandoff: 03/24/2017
 
 
 ---
@@ -63,7 +63,7 @@ Azure 是高可用性環境，虛擬機器永遠可用。 錯誤回復是計劃�
 
 4. 如果已針對雲端啟用資料加密，請在 [加密金鑰] 中，選取當您在 VMM 伺服器上安裝提供者期間啟用資料加密時所發出的憑證。
 5. 起始容錯移轉。 您可以在 [工作]  索引標籤上追蹤容錯移轉進度。
-6. 如果您選取要在容錯移轉前同步處理資料的選項，則在完成初始資料同步處理後，且您已經準備好關閉 Azure 中的虛擬機器時，請按一下 [作業] > <planned failover job name> [完成容錯移轉]。 這會將 Azure 機器關機、將最新變更轉送至內部部署虛擬機器，然後啟動內部部署的 VM。
+6. 如果您選取要在容錯移轉前同步處理資料的選項，則在完成初始資料同步處理且您已經準備好關閉 Azure 中的虛擬機器之後，按一下 [作業] > <計劃性容錯移轉作業名稱> > [完成容錯移轉]。 這會將 Azure 機器關機、將最新變更轉送至內部部署虛擬機器，然後啟動內部部署的 VM。
 7. 您現在可以登入虛擬機器，來驗證它是否會如預期般出現。
 8. 虛擬機器目前處於認可擱置中的狀態。 按一下 [認可]  以認可容錯移轉。
 9. 現在為了完成容錯回復，請按一下 [反向複寫]  ，開始保護主要站台中的虛擬機器。

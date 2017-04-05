@@ -18,9 +18,9 @@ ms.date: 02/28/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: 40042fd5ca2671cc26a67736b1c7a1e907c004d8
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
+ms.openlocfilehash: 68155ebaa6af36500bfe856c9bcd49f5efb6cbc2
+ms.lasthandoff: 03/23/2017
 
 
 ---
@@ -43,6 +43,8 @@ Azure Active Directory (Azure AD) 中以群組為基礎的授權會介紹使用�
 
 若要查看哪些使用者及群組在取用授權，請按一下某項產品。 在 [已授權的使用者] 底下，您會看到其授權已直接指派或透過一或多個群組指派的所有使用者。 在 [已授權的群組] 底下，您會看到已被指派該產品的所有群組。
 
+**PowerShell：**PowerShell Cmdlet 會將此錯誤報告為 _CountViolation_。
+
 ## <a name="conflicting-service-plans"></a>衝突的服務方案
 
 **問題：**群組中指定的其中一個產品包含服務方案，與已透過不同產品指派給使用者的另一個服務方案相衝突。 某些服務方案設定的方式不同，所以無法將它們指派給另一個相關服務方案的相同使用者。
@@ -56,11 +58,15 @@ Azure Active Directory (Azure AD) 中以群組為基礎的授權會介紹使用�
 
 如何解決產品授權的衝突一律屬於系統管理員的決策。 Azure AD 不會自動解決授權衝突。
 
+**PowerShell：**PowerShell Cmdlet 會將此錯誤報告為 _MutuallyExclusiveViolation_。
+
 ## <a name="other-products-depend-on-this-license"></a>其他產品相依於此授權
 
 **問題：**群組中指定的其中一個產品包含服務方案，必須在另一個產品中針對另一個服務方案啟用，才能夠運作。 當 Azure AD 嘗試移除基礎服務方案時會發生此錯誤。 例如，因為使用者從群組中移除而造成此問題。
 
 若要解決這個問題，您必須確定所需的方案仍透過其他方法指派給使用者，或已停用這些使用者的相依服務。 之後，您可以適當地移除這些使用者的群組授權。
+
+**PowerShell：**PowerShell Cmdlet 會將此錯誤報告為 _DependencyViolation_。
 
 ## <a name="usage-location-isnt-allowed"></a>不允許使用位置
 
@@ -69,6 +75,8 @@ Azure Active Directory (Azure AD) 中以群組為基礎的授權會介紹使用�
 當 Azure AD 嘗試將群組授權指派給不支援其使用位置的使用者時，將會發生失敗並將此錯誤記錄於該使用者。
 
 若要解決這個問題，請從授權群組不支援的位置中移除使用者。 或者，如果目前的使用位置值不代表實際使用者的位置，您可以進行修改，以便下一次正確指派授權 (如果支援新的位置)。
+
+**PowerShell：**PowerShell Cmdlet 會將此錯誤報告為 _ProhibitedInUsageLocationViolation_。
 
 > [!NOTE]
 > 當 Azure AD 指派群組授權時，未指定使用位置的任何使用者會繼承目錄的位置。 我們建議系統管理員先為使用者設定正確的使用位置值，再使用以群組為基礎的授權，以符合當地法規。

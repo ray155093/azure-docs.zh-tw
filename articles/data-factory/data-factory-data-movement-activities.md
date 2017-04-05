@@ -13,12 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/22/2017
+ms.date: 03/24/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: f4c225c97ac997c412704b278c033c519d4424ed
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
+ms.openlocfilehash: 25e266441e902a06d980b3b51abdd4fcf668d4d2
+ms.lasthandoff: 03/27/2017
 
 
 ---
@@ -95,6 +95,8 @@ Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用�
 | 巴西 | 巴西南部 | 巴西南部 |
 | 歐洲 | 北歐 | 北歐 |
 | &nbsp; | 西歐 | 西歐 |
+| 英國 | 英國西部 | 英國南部 |
+| &nbsp; | 英國南部 | 英國南部 |
 | 亞太地區 | 東南亞 | 東南亞 |
 | &nbsp; | 東亞 | 東南亞 |
 | 澳大利亞 | 澳洲東部 | 澳洲東部 |
@@ -105,7 +107,7 @@ Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用�
 | &nbsp; | 印度西部 | 印度中部 |
 | &nbsp; | 印度南部 | 印度中部 |
 
-或者，您可以明確指出要用來執行複製的 Data Factory 服務區域，方法是指定複製活動 `typeProperties` 底下的 `executionLocation`屬性。 這個屬性支援的值詳列於上述**用於資料移動的區域**資料行。 請注意您的資料在複製期間會透過網路通過該區域。 例如，若要在英國的 Azure 存放區之間複製，您可以將 `"executionLocation": "North Europe"` 指定為經過北歐 (請參考 [JSON 範例](#by-using-json-scripts))。
+或者，您可以明確指出要用來執行複製的 Data Factory 服務區域，方法是指定複製活動 `typeProperties` 底下的 `executionLocation`屬性。 這個屬性支援的值詳列於上述**用於資料移動的區域**資料行。 請注意您的資料在複製期間會透過網路通過該區域。 例如，若要在韓國的 Azure 存放區之間複製，您可以將 `"executionLocation": "Japan East"` 指定為經過日本區域 (請參考[範例 JSON](#by-using-json-scripts))。
 
 > [!NOTE]
 > 如果目的地資料存放區的區域不在上述清單中，除非指定 `executionLocation`，否則「複製活動」預設將會失敗而不會搜查替代區域。 支援的區域清單將會隨著時間擴展。
@@ -155,7 +157,7 @@ JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) �
           "sink": {
             "type": "SqlSink"
           },
-          "executionLocation": "North Europe"          
+          "executionLocation": "Japan East"          
         },
         "Policy": {
           "concurrency": 1,

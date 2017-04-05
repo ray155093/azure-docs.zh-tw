@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/02/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 374b2601857b3983bcd7b2f2e11d22b187fe7105
-ms.openlocfilehash: 732ebaaf5bf16c02cfc2185d9e7138daf74c71dd
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
+ms.openlocfilehash: 15a1605938941b056eda1a151ea018d05bffc246
+ms.lasthandoff: 03/29/2017
 
 
 ---
@@ -74,28 +74,28 @@ az disk create --resource-group myResourceGroup --name myManagedDisk \
   --source https://mystorageaccount.blob.core.windows.net/mydisks/myDisk.vhd
 ```
 
-取得您使用 [az disk list](/cli/azure/disk/list) 所建立受控磁碟的 URI：
+取得您以 [az disk list](/cli/azure/disk/list) 建立之受控磁碟的詳細資料：
 
 ```azurecli
 az disk list --resource-group myResourceGroup \
-  --query '[].{Name:name,URI:creationData.sourceUri}' --output table
+  --query [].{Name:name,ID:id} --output table
 ```
 
 輸出類似於下列範例：
 
 ```azurecli
-Name               URI
+Name               ID
 -----------------  ----------------------------------------------------------------------------------------------------
-myUMDiskFromVHD    https://vhdstoragezw9.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/my_image-osDisk.vhd
+myManagedDisk    /subscriptions/mySubscriptionId/resourceGroups/myResourceGroup/providers/Microsoft.Compute/disks/myManagedDisk
 ```
 
-現在，使用 [az vm create](/cli/azure/vm#create) 建立您的 VM，並指定受控磁碟的 URI (`--image`)。 下列範例會使用從您上傳的 VHD 建立的受控磁碟來建立名為 `myVM` 的 VM：
+現在，使用 [az vm create](/cli/azure/vm#create) 來建立您的 VM，並指定受控磁碟的名稱 (`--attach-os-disk`)。 下列範例會使用從您上傳的 VHD 建立的受控磁碟來建立名為 `myVM` 的 VM：
 
 ```azurecli
 az vm create --resource-group myResourceGroup --location westus \
     --name myVM --os-type linux \
     --admin-username azureuser --ssh-key-value ~/.ssh/id_rsa.pub \
-    --attach-os-disk myUMDiskFromVHD
+    --attach-os-disk myManagedDisk
 ```
 
 ### <a name="unmanaged-disks"></a>非受控磁碟

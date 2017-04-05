@@ -1,6 +1,6 @@
 ---
-title: "修復 Azure 匯入作業 | Microsoft Docs"
-description: "了解如何修復使用匯入匯出服務建立和執行的匯入作業。"
+title: "修復 Azure 匯入/匯出匯入作業 - v1 | Microsoft Docs"
+description: "了解如何修復使用 Azure 匯入/匯出服務建立和執行的匯入作業。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 74182c8c357085f186aaa43adfaef80a083d16bb
-ms.openlocfilehash: a47b0da43a84bb77fb8de16c37811a4b87fe3fbf
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
+ms.openlocfilehash: 9403fb0bb16227871388f063e9d0004c7186866e
+ms.lasthandoff: 03/30/2017
 
 
 ---
@@ -33,7 +33,9 @@ Microsoft Azure 匯入/匯出服務可能無法將某些檔案或某個檔案的
   
 您可以使用匯入作業的複製記錄檔執行 Microsoft Azure 匯入/匯出工具，而此工具會將遺漏的檔案 (或檔案的部分) 上傳到您的 Windows Azure 儲存體帳戶，以完成匯入作業。  
   
-修復匯入作業的命令是 **RepairImport**。 您可以指定下列參數︰  
+## <a name="repairimport-parameters"></a>RepairImport 參數
+
+您可以搭配 **RepairImport** 指定下列參數： 
   
 |||  
 |-|-|  
@@ -73,7 +75,7 @@ WAImportExport.exe RepairImport /r:C:\WAImportExport\9WM35C2V.rep /d:C:\Users\bo
 </DriveLog>  
 ```
   
-當此複製記錄檔傳遞至 Azure 匯入/匯出工具時，此工具會嘗試透過網路複製遺漏的內容來完成此檔案匯入。 在上述範例之後，此工具會在 `C:\Users\bob\Pictures` 和 `X:\BobBackup\photos` 兩個目錄中尋找原始檔案 `\animals\koala.jpg`。 如果檔案 `C:\Users\bob\Pictures\animals\koala.jpg` 存在，則 Azure 匯入/匯出工具會將遺漏的資料範圍複製到對應的 blob `http://bobmediaaccount.blob.core.windows.net/pictures/animals/koala.jpg`。  
+將此複製記錄檔傳遞至 Azure 匯入/匯出工具時，此工具將嘗試透過網路複製遺漏的內容來完成此檔案匯入。 在上述範例之後，此工具會在 `C:\Users\bob\Pictures` 和 `X:\BobBackup\photos` 兩個目錄中尋找原始檔案 `\animals\koala.jpg`。 如果檔案 `C:\Users\bob\Pictures\animals\koala.jpg` 存在，則 Azure 匯入/匯出工具會將遺漏的資料範圍複製到對應的 blob `http://bobmediaaccount.blob.core.windows.net/pictures/animals/koala.jpg`。  
   
 ## <a name="resolving-conflicts-when-using-repairimport"></a>解決使用 RepairImport 時的衝突  
 在某些情況下，基於下列原因之一，此工具可能無法找到或開啟所需的檔案︰找不到檔案、無法存取檔案、檔案名稱模稜兩可，或檔案的內容已不正確。  
@@ -102,10 +104,11 @@ WAImportExport.exe RepairImport /r:C:\WAImportExport\9WM35C2V.rep /d:C:\Users\bo
   
 讓必要檔案可供工具使用，或更新路徑對應檔之後，您可以重新執行工具，以完成匯入程序。  
   
-## <a name="see-also"></a>另請參閱  
-[設定 Azure 匯入匯出工具](storage-import-export-tool-setup-v1.md)   
-[針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
-[利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
-[修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)   
-[針對 Azure 匯入匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
+## <a name="next-steps"></a>後續步驟
+ 
+* [設定 Azure 匯入/匯出工具](storage-import-export-tool-setup-v1.md)   
+* [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
+* [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
+* [修復匯出作業](storage-import-export-tool-repairing-an-export-job-v1.md)   
+* [針對 Azure 匯入/匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
 
