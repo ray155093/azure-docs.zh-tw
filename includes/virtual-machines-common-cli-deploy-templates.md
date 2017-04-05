@@ -36,7 +36,7 @@ docker run -it microsoft/azure-cli
 現在，輸入 `azure login` 並遵循提示來進行 Azure 帳戶的互動式登入體驗，[以互動方式登入您的 Azure 帳戶](../articles/xplat-cli-connect.md#scenario-1-azure-login-with-interactive-login)。 
 
 > [!NOTE]
-> 如果您有公司或學校識別碼，而且知道尚未啟用雙因素驗證，則您「也」可以使用 `azure login -u` 再加上公司或學校識別碼，在「沒有」互動式工作階段的情況下進行登入。 如果沒有公司或學校識別碼，您可以[從個人 Microsoft 帳戶建立公司或學校識別碼](../articles/virtual-machines/virtual-machines-windows-create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，使用相同方式來登入。
+> 如果您有公司或學校識別碼，而且知道尚未啟用雙因素驗證，則您「也」可以使用 `azure login -u` 再加上公司或學校識別碼，在「沒有」互動式工作階段的情況下進行登入。 如果沒有公司或學校識別碼，您可以[從個人 Microsoft 帳戶建立公司或學校識別碼](../articles/virtual-machines/windows/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，使用相同方式來登入。
 >
 >
 
@@ -100,7 +100,7 @@ data:
 info:    group create command OK
 ```
 
-第二，您將需要映像。 若要利用 Azure CLI 尋找映像，請參閱[利用 PowerShell 和 Azure CLI 瀏覽和選取 Azure 虛擬機器映像](../articles/virtual-machines/virtual-machines-linux-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 不過在本文中，以下是常用映像的簡要清單。 我們會使用 CoreOS 的 Stable 映像，縮短整個建立流程。
+第二，您將需要映像。 若要利用 Azure CLI 尋找映像，請參閱[利用 PowerShell 和 Azure CLI 瀏覽和選取 Azure 虛擬機器映像](../articles/virtual-machines/linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 不過在本文中，以下是常用映像的簡要清單。 我們會使用 CoreOS 的 Stable 映像，縮短整個建立流程。
 
 > [!NOTE]
 > 對於 ComputeImageVersion，您也可以只提供 'latest' 做為範本語言和 Azure CLI 中的參數。 這可讓您永遠使用最新且經過修補的映像版本，而不必修改您的指令碼或範本。 如下所示。
@@ -232,7 +232,7 @@ info:    vm quick-create command OK
 * 讓外界使用的網域名稱。
 * Ubuntu Server 版本號碼 -- 但只能接受一個清單。
 
-進一步了解 [使用者名稱和密碼需求](../articles/virtual-machines/virtual-machines-linux-faq.md#what-are-the-username-requirements-when-creating-a-vm)。
+進一步了解 [使用者名稱和密碼需求](../articles/virtual-machines/linux/faq.md#what-are-the-username-requirements-when-creating-a-vm)。
 
 決定這些值之後，就可以開始建立群組，然後將這個範本部署到 Azure 訂用帳戶。
 
@@ -1264,7 +1264,7 @@ info:    vm show command OK
 >
 
 ## <a id="log-on-to-a-linux-based-virtual-machine"></a>工作：登入 Linux 架構的虛擬機器
-通常 Linux 機器是透過 SSH 連接的。 如需詳細資訊，請參閱[如何在 Azure 上搭配使用 SSH 與 Linux](../articles/virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+通常 Linux 機器是透過 SSH 連接的。 如需詳細資訊，請參閱[如何在 Azure 上搭配使用 SSH 與 Linux](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ## <a id="stop-a-virtual-machine"></a>工作：停止 VM
 請執行這個命令：
@@ -1305,4 +1305,4 @@ azure vm disk attach <resource-group> <vm-name> [vhd-url]
 ## <a name="next-steps"></a>後續步驟
 如需其他有關 Azure CLI 搭配 **arm** 模式使用的範例，請參閱 [搭配 Azure 資源管理員使用適用於 Mac、Linux 和 Windows 的 Azure CLI](../articles/xplat-cli-azure-resource-manager.md)。 若要深入了解 Azure 資源和概念，請參閱[AAzure Resource Manager 概觀](../articles/azure-resource-manager/resource-group-overview.md)。
 
-如需您可以使用的其他範本，請參閱[Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)和[使用範本的應用程式架構](../articles/virtual-machines/virtual-machines-linux-app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+如需您可以使用的其他範本，請參閱[Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/)和[使用範本的應用程式架構](../articles/virtual-machines/linux/app-frameworks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。

@@ -37,7 +37,7 @@
     ```
    
    > [!NOTE]
-   > 針對 Linux 虛擬機器，您必須在 `vm create` 中提供 `-e`。 建立虛擬機器後，就無法啟用 SSH。 如需 SSH 的詳細資料，請參閱[如何在 Azure 上搭配使用 SSH 和 Linux](../articles/virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+   > 針對 Linux 虛擬機器，您必須在 `vm create` 中提供 `-e`。 建立虛擬機器後，就無法啟用 SSH。 如需 SSH 的詳細資料，請參閱[如何在 Azure 上搭配使用 SSH 和 Linux](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 5. 您可以使用 `azure vm show` 命令來確認 VM 的屬性。 下列範例會列出名為 `myVM` 的 VM 的資訊：
 
@@ -53,9 +53,4 @@
 
 ## <a name="next-steps"></a>後續步驟
 如需所有 Azure CLI 1.0 虛擬機器命令的詳細資料，請參閱[搭配使用 Azure CLI 1.0 和傳統部署 API](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

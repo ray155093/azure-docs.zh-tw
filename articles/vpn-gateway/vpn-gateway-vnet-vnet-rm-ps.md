@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 03/27/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: eadb1f29da69e7f6fcc2c7c19ba67f4e3072c346
-ms.openlocfilehash: eb21e6cc47da18d2e6fa5cbb00c3b71bf36173c6
-ms.lasthandoff: 01/25/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: a4cbc4cd1c48da1120c643892b19692ac583d4c3
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -26,9 +26,10 @@ ms.lasthandoff: 01/25/2017
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
+> * [傳統 - Azure 入口網站](vpn-gateway-howto-vnet-vnet-portal-classic.md)
 > * [傳統 - 傳統入口網站](virtual-networks-configure-vnet-to-vnet-connection.md)
 > 
-> 
+>
 
 本文逐步引導您使用 VPN 閘道在 Resource Manager 部署模型中建立 VNet 間的連線。 虛擬網路可位於相同或不同的區域，以及來自相同或不同的訂用帳戶。
 
@@ -71,13 +72,13 @@ ms.lasthandoff: 01/25/2017
 
 ![兩個連線](./media/vpn-gateway-vnet-vnet-rm-ps/differentsubscription.png)
 
-## <a name="a-namesamesubahow-to-connect-vnets-that-are-in-the-same-subscription"></a><a name="samesub"></a>如何連接相同訂用帳戶中的 VNet
+## <a name="samesub"></a>如何連接相同訂用帳戶中的 VNet
 ![v2v 圖表](./media/vpn-gateway-vnet-vnet-rm-ps/v2vrmps.png)
 
 ### <a name="before-you-begin"></a>開始之前
 開始之前，您必須先安裝 Azure Resource Manager PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
 
-### <a name="a-namestep1astep-1---plan-your-ip-address-ranges"></a><a name="Step1"></a>步驟 1 - 規劃 IP 位址範圍
+### <a name="Step1"></a>步驟 1 - 規劃 IP 位址範圍
 在下列步驟中，我們會建立兩個虛擬網路，以及它們各自的閘道子網路和組態。 接著建立這兩個 VNet 之間的 VPN 連線。 請務必規劃您的網路組態的 IP 位址範圍。 請記住，您必須先確定您的 VNet 範圍或區域網路範圍沒有以任何方式重疊。
 
 我們會在範例中使用下列值：
@@ -115,7 +116,7 @@ ms.lasthandoff: 01/25/2017
 * 連線︰VNet4toVNet1
 * ConnectionType：VNet2VNet
 
-### <a name="a-namestep2astep-2---create-and-configure-testvnet1"></a><a name="Step2"></a>步驟 2 - 建立及設定 TestVNet1
+### <a name="Step2"></a>步驟 2 - 建立及設定 TestVNet1
 1. 宣告變數
    
     由宣告變數開始。 下列範例會使用此練習中的值來宣告變數。 在大部分的情況下，您應將值取代為您自己的值。 不過，若您執行這些步驟是為了熟悉此類型的設定，則可以使用這些變數。 視需要修改變數，然後將其複製並貼到您的 PowerShell 主控台中。
@@ -266,7 +267,7 @@ ms.lasthandoff: 01/25/2017
     請稍候幾分鐘，應該就會建立連線。
 4. 確認您的連線。 請參閱 [如何驗證您的連線](#verify)一節。
 
-## <a name="a-namedifsubahow-to-connect-vnets-that-are-in-different-subscriptions"></a><a name="difsub"></a>如何連接不同訂用帳戶中的 VNet
+## <a name="difsub"></a>如何連接不同訂用帳戶中的 VNet
 ![v2v 圖表](./media/vpn-gateway-vnet-vnet-rm-ps/v2vdiffsub.png)
 
 在此案例中，我們會連接 TestVNet1 和 TestVNet5。 TestVNet1 和 TestVNet5 位於不同的訂用帳戶中。 此設定的步驟會加入其他的 VNet 對 VNet 連線，以便將 TestVNet1 連接到 TestVNet5。 
@@ -422,7 +423,7 @@ ms.lasthandoff: 01/25/2017
         $vnet1gw.Id = "/subscriptions/b636ca99-6f88-4df4-a7c3-2f8dc4545509/resourceGroups/TestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1GW "
         New-AzureRmVirtualNetworkGatewayConnection -Name $Connection51 -ResourceGroupName $RG5 -VirtualNetworkGateway1 $vnet5gw -VirtualNetworkGateway2 $vnet1gw -Location $Location5 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
 
-## <a name="a-nameverifyahow-to-verify-a-connection"></a><a name="verify"></a>驗證連線
+## <a name="verify"></a>驗證連線
 [!INCLUDE [vpn-gateway-no-nsg-include](../../includes/vpn-gateway-no-nsg-include.md)]
 
 [!INCLUDE [verify connection powershell](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]

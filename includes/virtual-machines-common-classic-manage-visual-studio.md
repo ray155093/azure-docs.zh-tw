@@ -129,10 +129,5 @@
 2. 在捷徑功能表上，選擇 [關閉] 命令，或選擇 [設定] 以檢視虛擬機器組態頁面，然後選擇 [關閉] 按鈕。
 
 ## <a name="next-steps"></a>後續步驟
-若要了解建立虛擬機器的詳細資訊，請參閱[建立執行 Linux 的虛擬機器](../articles/virtual-machines/virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)和[在 Azure Preview 入口網站中建立執行 Windows 的虛擬機器](../articles/virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+若要了解建立虛擬機器的詳細資訊，請參閱[建立執行 Linux 的虛擬機器](../articles/virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)和[在 Azure Preview 入口網站中建立執行 Windows 的虛擬機器](../articles/virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 

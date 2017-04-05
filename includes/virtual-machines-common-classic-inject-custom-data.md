@@ -39,7 +39,7 @@
 如果您的 Azure VM 是來自 Ubuntu 或 CoreOS 映像，則您可以使用 CustomData 將 cloud-config 傳送到 cloud-init。 或者，如果您的自訂資料檔案是指令碼，則 cloud-init 只能執行它。
 
 ### <a name="ubuntu-cloud-images"></a>Ubuntu 雲端映像
-在大部分的 Azure Linux 映像中．您可以編輯 "/etc/waagent.conf" ，以設定暫存資源磁碟和交換檔。 如需詳細資訊，請參閱[Azure Linux 代理程式使用者指南](../articles/virtual-machines/virtual-machines-linux-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+在大部分的 Azure Linux 映像中．您可以編輯 "/etc/waagent.conf" ，以設定暫存資源磁碟和交換檔。 如需詳細資訊，請參閱[Azure Linux 代理程式使用者指南](../articles/virtual-machines/linux/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 不過，在 Ubuntu 雲端映像上，您必須使用 cloud-init 設定資源磁碟 (也就是「暫時」磁碟) 和交換資料分割。 如需詳細資訊，請參閱 Ubuntu wiki 上的下列網頁： [AzureSwapPartitions](https://wiki.ubuntu.com/AzureSwapPartitions)。
 
@@ -51,9 +51,4 @@
 [加入角色服務管理 REST API 參考](http://msdn.microsoft.com/library/azure/jj157186.aspx)
 
 [Azure 命令列介面](https://github.com/Azure/azure-xplat-cli)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
