@@ -3,7 +3,7 @@ title: "使用 Service Fabric 回報和檢查健全狀況 | Microsoft Docs"
 description: "了解如何從您的服務程式碼傳送健全狀況報告，以及如何使用 Azure Service Fabric 所提供的健全狀況監視工具檢查您服務的健全狀況。"
 services: service-fabric
 documentationcenter: .net
-author: toddabel
+author: dkkapur
 manager: mfussell
 editor: 
 ms.assetid: 7c712c22-d333-44bc-b837-d0b3603d9da8
@@ -13,7 +13,7 @@ ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/04/2017
-ms.author: toddabel
+ms.author: dekapur
 translationtype: Human Translation
 ms.sourcegitcommit: bb93d4dac1853a317bbd6ac70946753f35be264e
 ms.openlocfilehash: bc1dd1d2c378e628094fe717d9c89298aca1f7b4

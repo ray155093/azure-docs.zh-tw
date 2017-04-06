@@ -3,7 +3,7 @@ title: "在 Windows 中針對 Azure 微服務進行偵錯 | Microsoft Docs"
 description: "了解如何監視和診斷在本機開發電腦上使用 Microsoft Azure Service Fabric 所撰寫的服務。"
 services: service-fabric
 documentationcenter: .net
-author: ms-toddabel
+author: dkkapur
 manager: timlt
 editor: 
 ms.assetid: edcc0631-ed2d-45a3-851d-2c4fa0f4a326
@@ -13,10 +13,11 @@ ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/04/2017
-ms.author: toddabel
+ms.author: dekapur
 translationtype: Human Translation
 ms.sourcegitcommit: cf8f717d5343ae27faefdc10f81b4feaccaa53b9
 ms.openlocfilehash: 5421cf66449892bb7bbc46cd8727a0642b7d66f3
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -66,10 +67,5 @@ Service Fabric Visual Studio 專案範本包含範例程式碼。 程式碼示�
 
 * [如何利用 Azure 診斷收集記錄檔](service-fabric-diagnostics-how-to-setup-wad.md)
 * [從服務處理程序直接收集記錄檔](service-fabric-diagnostic-collect-logs-without-an-agent.md)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

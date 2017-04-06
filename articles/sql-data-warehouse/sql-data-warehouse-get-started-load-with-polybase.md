@@ -38,7 +38,7 @@ ms.lasthandoff: 03/03/2017
 * 建立資料庫物件以定義資料
 * 執行 T-SQL 查詢以載入資料
 
-> [!影片 https://channel9.msdn.com/Blogs/Azure/Loading-data-with-PolyBase-in-Azure-SQL-Data-Warehouse/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Loading-data-with-PolyBase-in-Azure-SQL-Data-Warehouse/player]
 > 
 > 
 
