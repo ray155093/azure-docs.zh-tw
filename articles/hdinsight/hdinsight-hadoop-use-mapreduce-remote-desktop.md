@@ -15,6 +15,7 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
+ROBOTS: NOINDEX
 translationtype: Human Translation
 ms.sourcegitcommit: dc8e9647d99b39cdee36ec11e144452326e2d968
 ms.openlocfilehash: 99a3e44730737a9e1b3db8eead6dfe181382962b
@@ -32,16 +33,16 @@ ms.lasthandoff: 01/18/2017
 >
 > 針對 HDInsight 3.4 或更新版本，請參閱[使用 MapReduce 搭配 SSH](hdinsight-hadoop-use-mapreduce-ssh.md)，以了解如何連線到 HDInsight 叢集及執行 MapReduce 工作。
 
-## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
+## <a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目。
 
 * Windows 型 HDInsight (HDInsight 上的 Hadoop) 叢集
 * 執行 Windows 10、Windows 8 或 Windows 7 的用戶端電腦
 
-## <a name="a-idconnectaconnect-with-remote-desktop"></a><a id="connect"></a>使用遠端桌面連線
+## <a id="connect"></a>使用遠端桌面連線
 依照 [使用 RDP 連線到 HDInsight 叢集](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)中的指示，為 HDInsight 叢集啟用遠端桌面，然後進行連線。
 
-## <a name="a-idhadoopause-the-hadoop-command"></a><a id="hadoop"></a>使用 Hadoop 命令
+## <a id="hadoop"></a>使用 Hadoop 命令
 當您連線到 HDInsight 叢集的桌面時，請使用下列步驟，利用 Hadoop 命令來執行 MapReduce 工作：
 
 1. 從 HDInsight 桌面，啟動 **Hadoop 命令列**。 這會在 **c:\apps\dist\hadoop-&lt;version number>** 目錄中開啟新的命令提示字元。
@@ -90,10 +91,10 @@ ms.lasthandoff: 01/18/2017
         wretched        6
         wriggling       1
 
-## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
+## <a id="summary"></a>摘要
 如您所見，Hadoop 命令提供簡單的方法，在 HDInsight 叢集上執行 MapReduce 工作，然後檢視工作輸出。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 如需 HDInsight 中 MapReduce 工作的一般資訊：
 
 * [在 HDInsight Hadoop 上使用 MapReduce](hdinsight-use-mapreduce.md)

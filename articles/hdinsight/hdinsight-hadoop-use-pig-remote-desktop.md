@@ -15,6 +15,7 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: larryfr
+ROBOTS: NOINDEX
 translationtype: Human Translation
 ms.sourcegitcommit: ccd1dffda19718a434fc09bb74a536714799740a
 ms.openlocfilehash: 3cf91abf83359f2157d0f8cd53e0b450bfd58d80
@@ -32,16 +33,16 @@ ms.lasthandoff: 01/18/2017
 >
 > 針對 HDInsight 3.4 或更新版本，請參閱[使用 Pig 搭配 HDInsight 和 SSH](hdinsight-hadoop-use-pig-ssh.md)，以了解如何從命令列以互動方式直接在叢集上執行 Pig 工作。
 
-## <a name="a-idprereqaprerequisites"></a><a id="prereq"></a>必要條件
+## <a id="prereq"></a>必要條件
 若要完成本文中的步驟，您需要下列項目。
 
 * Windows 型 HDInsight (HDInsight 上的 Hadoop) 叢集
 * 執行 Windows 10、Windows 8 或 Windows 7 的用戶端電腦
 
-## <a name="a-idconnectaconnect-with-remote-desktop"></a><a id="connect"></a>使用遠端桌面連線
+## <a id="connect"></a>使用遠端桌面連線
 依照 [使用 RDP 連線到 HDInsight 叢集](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)中的指示，為 HDInsight 叢集啟用遠端桌面，然後進行連線。
 
-## <a name="a-idpigause-the-pig-command"></a><a id="pig"></a>使用 Pig 命令
+## <a id="pig"></a>使用 Pig 命令
 1. 在具有遠端桌面連線後，使用桌面上的圖示來啟動 **Hadoop 命令列** 。
 2. 使用下列命令來啟動 Pig 命令：
 
@@ -117,10 +118,10 @@ ms.lasthandoff: 01/18/2017
         (ERROR,6)
         (FATAL,2)
 
-## <a name="a-idsummaryasummary"></a><a id="summary"></a>摘要
+## <a id="summary"></a>摘要
 如您所見，Pig 命令可讓您以互動方式執行 MapReduce 作業，或執行批次檔中所儲存的 Pig Latin 工作。
 
-## <a name="a-idnextstepsanext-steps"></a><a id="nextsteps"></a>接續步驟
+## <a id="nextsteps"></a>接續步驟
 如需 HDInsight 中 Pig 的一般資訊：
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)

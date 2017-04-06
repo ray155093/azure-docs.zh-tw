@@ -104,8 +104,8 @@ Application Insights 趨勢會從您的應用程式的遙測建立時間序列�
 ## <a name="next"></a>接續步驟
 |  |  |
 | --- | --- |
-| **在 Visual Studio 中使用 Application Insights[](app-insights-visual-studio.md)**<br/>搜尋遙測、查看 CodeLens 中的資料，以及設定 Application Insights。 盡在 Visual Studio 中。 |![以滑鼠右鍵按一下專案，然後選擇 [Application Insights]、[搜尋]](./media/app-insights-visual-studio-trends/34.png) |
-| **新增更多測試[](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。 整合來自記錄架構的追蹤。 撰寫自訂遙測。 |![Visual Studio](./media/app-insights-visual-studio-trends/64.png) |
+| **[在 Visual Studio 中使用 Application Insights](app-insights-visual-studio.md)**<br/>搜尋遙測、查看 CodeLens 中的資料，以及設定 Application Insights。 盡在 Visual Studio 中。 |![以滑鼠右鍵按一下專案，然後選擇 [Application Insights]、[搜尋]](./media/app-insights-visual-studio-trends/34.png) |
+| **[新增更多測試](app-insights-asp-net-more.md)**<br/>監視使用狀況、可用性、相依性、例外狀況。 整合來自記錄架構的追蹤。 撰寫自訂遙測。 |![Visual Studio](./media/app-insights-visual-studio-trends/64.png) |
 | **[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/>儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出等功能。 |![Visual Studio](./media/app-insights-visual-studio-trends/62.png) |
 
 

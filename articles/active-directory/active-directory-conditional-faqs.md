@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
+ms.date: 04/06/2017
 ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: 3980b99206c9f0c81ba3d03778777878e25db7c8
+ms.lasthandoff: 12/29/2016
 
 
 ---
@@ -36,10 +37,5 @@ ms.openlocfilehash: 3980b99206c9f0c81ba3d03778777878e25db7c8
 
 ## <a name="does-a-conditional-access-policy-apply-to-service-accounts"></a>是否會對服務帳戶套用條件式存取原則？
 **答：** 所有使用者帳戶都會套用條件式存取原則。 這包括做為服務帳戶的使用者帳戶。 在許多情況下，自動執行的服務帳戶無法符合原則。 例如，在需要 MFA 時即是如此。 在這些情況下，可以使用條件式存取原則管理設定，將服務帳戶排除在原則套用範圍之外。 在此深入了解如何對使用者套用原則。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 
