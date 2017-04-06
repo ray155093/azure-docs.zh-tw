@@ -35,7 +35,7 @@ ms.lasthandoff: 03/09/2017
 本教學課程需要下列必要條件：
 
 * 執行於 Windows 8.1 或更新版本的 Visual Studio 2013。
-* 完成 [建立 Windows 應用程式][create a windows app]。
+* 完成 [建立 Windows 應用程式][建立 Windows 應用程式]。
 * [Azure 行動服務 SQLite Store][sqlite store nuget]
 * [適用於通用 Windows 平台開發的 SQLite](http://www.sqlite.org/downloads)
 
@@ -108,7 +108,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
 <!-- URLs. -->
 [Azure 行動應用程式中的離線資料同步處理]: app-service-mobile-offline-data-sync.md
-[create a windows app]: app-service-mobile-windows-store-dotnet-get-started.md
+[建立 Windows 應用程式]: app-service-mobile-windows-store-dotnet-get-started.md
 [SQLite for Windows 8.1]: http://go.microsoft.com/fwlink/?LinkID=716919
 [SQLite for Windows Phone 8.1]: http://go.microsoft.com/fwlink/?LinkID=716920
 [SQLite for Windows 10]: http://go.microsoft.com/fwlink/?LinkID=716921

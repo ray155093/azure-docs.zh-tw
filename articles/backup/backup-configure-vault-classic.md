@@ -76,7 +76,7 @@ ms.lasthandoff: 03/14/2017
 2. 在 [快速啟動] 頁面上，按一下 [適用於 Windows Server 或 System Center Data Protection Manager 或 Windows 用戶端的代理程式] 代理程式。 然後按一下 [儲存] 。
 
     ![儲存代理程式](./media/backup-configure-vault-classic/agent.png)
-3. 下載 MARSagentinstaller.exe 檔案之後，按一下 [執行] (或從儲存的位置按兩下 **MARSAgentInstaller.exe**)。
+3. 下載 MARSagentinstaller.exe 檔案之後，按一下 [執行] \(或從儲存的位置按兩下 **MARSAgentInstaller.exe**)。
 4. 選擇代理程式所需的安裝資料夾和快取資料夾，然後按一下 [下一步] 。 您指定的快取位置必須至少包含等於備份資料大小 5% 的可用空間。
 5. 您可以繼續透過預設 Proxy 設定連線網際網路。             若您使用 Proxy 伺服器連線網際網路，請在 [Proxy 組態] 頁面上選取 [使用自訂 Proxy 設定]  核取方塊，然後輸入 Proxy 伺服器詳細資料。 若您使用已驗證的 Proxy，請輸入使用者名稱和密碼詳細資料，然後按一下 [下一步] 。
 6. 按一下 [安裝]  開始代理程式安裝。 備份代理程式會安裝 .NET Framework 4.5 和 Windows PowerShell (若尚未安裝) 來完成安裝。

@@ -38,7 +38,7 @@ ms.lasthandoff: 12/08/2016
 
 如果您有 Visual Studio Ultimate，您也可以使用 [IntelliTrace](http://msdn.microsoft.com/library/vstudio/dd264915.aspx) 進行偵錯。 本教學課程未涵蓋 IntelliTrace。
 
-## <a name="a-nameprerequisitesaprerequisites"></a><a name="prerequisites"></a>必要條件
+## <a name="prerequisites"></a>必要條件
 本教學課程可運用於開發環境、Web 專案與您在[開始使用 Azure 和 ASP.NET][GetStarted] 中所設定的 Azure Web 應用程式。 針對 WebJobs 區段，您將會用到您在[開始使用 Azure WebJobs SDK][GetStartedWJ] 中建立的應用程式。
 
 本教學課程中所提供的程式碼範例適用於 C# MVC Web 應用程式，但是疑難排解程序則是與 Visual Basic 和 Web Form 應用程式一樣。
@@ -47,7 +47,7 @@ ms.lasthandoff: 12/08/2016
 
 串流記錄功能僅適用於鎖定 .NET Framework 4 或更新版本的應用程式。
 
-## <a name="a-namesitemanagementaweb-app-configuration-and-management"></a><a name="sitemanagement"></a>Web 應用程式組態與管理
+## <a name="sitemanagement"></a>Web 應用程式組態與管理
 Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)中可用的 Web 應用程式管理功能與組態設定的子集。 本節將說明使用 **伺服器總管**可用的項目。 若要查看最新的 Azure 整合功能，也請試試 **雲端總管** 。 您可以同時從 [檢視]  功能表開啟這兩個視窗。
 
 1. 如果您尚未在 Visual Studio 中登入 Azure，按一下 [伺服器總管] 中的 [連線到 Azure] 按鈕。
@@ -75,7 +75,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
     若您想要執行無法在此視窗中完成的 Web 應用程式管理工作，請按一下 [在管理入口網站中開啟]  ，以開啟 Azure 入口網站的瀏覽器視窗。
 
-## <a name="a-nameremoteviewaaccess-web-app-files-in-server-explorer"></a><a name="remoteview"></a>在伺服器總管中存取 Web 應用程式檔案
+## <a name="remoteview"></a>在伺服器總管中存取 Web 應用程式檔案
 部署 Web 專案時，通常會將 Web.config 檔案中的 `customErrors` 旗標設為 `On` 或 `RemoteOnly`，這表示出現問題時，您將不會收到有用的錯誤訊息。 對許多錯誤而言，您只會看到如下列之一的頁面。
 
 **'/' 應用程式中有伺服器錯誤：**
@@ -113,7 +113,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 能夠讀取與編輯您的 Azure Web 應用程式上的檔案，使得疑難排解作業更為輕鬆，編輯 Web.config 檔案僅僅是其中一個範例案例。
 
-## <a name="a-nameremotedebugaremote-debugging-web-apps"></a><a name="remotedebug"></a>遠端偵錯 Web 應用程式
+## <a name="remotedebug"></a>遠端偵錯 Web 應用程式
 如果詳細的錯誤訊息無法提供足夠的資訊，而且您無法在本機重現錯誤，另一個疑難排解的方式則是在遠端於偵錯模式中執行。 您可以設定中斷點、直接操作記憶體、逐步執行程式碼，甚至變更程式碼路徑。
 
 遠端偵錯無法在 Visual Studio 的 Express 版本中運作。
@@ -159,7 +159,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
      ![含有新值的關於頁面](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-debugchangeinwa.png)
 
-## <a name="a-nameremotedebugwja-remote-debugging-webjobs"></a><a name="remotedebugwj"></a> 遠端偵錯 WebJobs
+## <a name="remotedebugwj"></a> 遠端偵錯 WebJobs
 本節說明如何使用您在 [開始使用 Azure WebJobs SDK](websites-dotnet-webjobs-sdk.md)中建立的專案和 Web 應用程式進行遠端偵錯。
 
 本節顯示的功能僅適用於 Visual Studio 2013 含 Update 4 或更新版本。
@@ -221,7 +221,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 * 當您啟用遠端偵錯功能時，伺服器上會啟動計時器，並在 48 小時後自動關閉此功能。 此 48 小時的限制是為了安全與效能起見而設計的功能。 若需要，您可以輕鬆開啟這項功能，次數不限。 當您不需要偵錯時，建議您將其保持為停用。
 * 您可以手動將偵錯工具附加至任何處理序，不僅止於 Web 應用程式處理序 (w3wp.exe)。 如需如何在 Visual Studio 中使用偵錯模式的詳細資訊，請參閱 [Visual Studio 偵錯](http://msdn.microsoft.com/library/vstudio/sc65sadd.aspx)。
 
-## <a name="a-namelogsoverviewadiagnostic-logs-overview"></a><a name="logsoverview"></a>診斷記錄概觀
+## <a name="logsoverview"></a>診斷記錄概觀
 在 Azure Web 應用程式中執行的 ASP.NET 應用程式，可建立下列各種記錄：
 
 * **應用程式追蹤記錄**<br/>
@@ -237,7 +237,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 記錄會寫入 Web 應用程式的檔案系統中 *LogFiles* 資料夾內的檔案，而且可以透過 FTP 存取此檔案。 Web 伺服器記錄與應用程式記錄也可以寫入至 Azure 儲存體帳戶。 您可以在儲存體帳戶中保留大於檔案系統可容納的記錄檔數量。 當您使用檔案系統時，最大的記錄檔大小為 100 MB。 (檔案系統記錄僅適用於短期保留之用。 Azure 會在達到此上限之後刪除舊的記錄檔以騰出空間給新的記錄檔使用。)  
 
-## <a name="a-nameapptracelogsacreate-and-view-application-trace-logs"></a><a name="apptracelogs"></a>建立並檢視應用程式追蹤記錄
+## <a name="apptracelogs"></a>建立並檢視應用程式追蹤記錄
 您將在本節執行下列工作：
 
 * 將追蹤陳述式新增至您在[開始使用 Azure 和 ASP.NET][GetStarted] 中建立的 Web 專案。
@@ -373,7 +373,7 @@ Visual Studio 可讓您存取 [Azure 入口網站](http://go.microsoft.com/fwlin
 
 如果您輸入搜尋字串或是規則運算式，則 Visual Studio 會篩選用戶端的記錄資訊。 亦即，您可以等到 [輸出]  視窗顯示記錄後輸入條件，這樣您不需重新產生記錄便能直接變更篩選條件。
 
-## <a name="a-namewebserverlogsaview-web-server-logs"></a><a name="webserverlogs"></a>檢視 Web 伺服器記錄
+## <a name="webserverlogs"></a>檢視 Web 伺服器記錄
 Web 伺服器記錄會記下 Web 應用程式的所有 HTTP 活動。 為了在 [輸出]  視窗中看見這些記錄，您必須針對 Web 應用程式啟用它們，然後告訴 Visual Studio 您想要監視它們。
 
 1. 在您從 [伺服器總管] 開啟的 [Azure Web 應用程式設定] 索引標籤中，將 [Web 伺服器記錄] 變更為 [開啟]，然後按一下 [儲存]。
@@ -395,7 +395,7 @@ Web 伺服器記錄會記下 Web 應用程式的所有 HTTP 活動。 為了在 
 
 如果您使用入口網站對 Azure 儲存體帳戶啟用 Web 伺服器記錄功能，然後在 Visual Studio 中停用記錄功能，當您在 Visual Studio 中重新啟用記錄功能時，將會還原您的儲存體帳戶設定。
 
-## <a name="a-namedetailederrorlogsaview-detailed-error-message-logs"></a><a name="detailederrorlogs"></a>檢視詳細的錯誤訊息記錄
+## <a name="detailederrorlogs"></a>檢視詳細的錯誤訊息記錄
 針對導致錯誤回應代碼 (400 或以上) 之 HTTP 要求，詳細的錯誤訊息記錄可提供部分額外資訊。 為了在 [輸出]  視窗中看見這些記錄，您必須針對 Web 應用程式啟用它們，然後告訴 Visual Studio 您想要監視它們。
 
 1. 在您從 [伺服器總管] 開啟的 [Azure Web 應用程式組態] 索引標籤中，將 [詳細錯誤訊息] 變更為 [開啟]，然後按一下 [儲存]。
@@ -415,7 +415,7 @@ Web 伺服器記錄會記下 Web 應用程式的所有 HTTP 活動。 為了在 
 
     ![瀏覽器視窗中的詳細的錯誤記錄](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-detailederrorloginbrowser.png)
 
-## <a name="a-namedownloadlogsadownload-file-system-logs"></a><a name="downloadlogs"></a>下載檔案系統記錄
+## <a name="downloadlogs"></a>下載檔案系統記錄
 任何您可在 [輸出]  視窗中監視的記錄，也能下載為 *.zip* 檔案。
 
 1. 在 [輸出] 視窗中，按一下 [Download Streaming Logs]。
@@ -435,7 +435,7 @@ Web 伺服器記錄會記下 Web 應用程式的所有 HTTP 活動。 為了在 
 
      (deployments 資料夾用於存放來源控制發行功能所建立的檔案，它與 Visual Studio 發行功能沒有任何關聯。 Git 資料夾則用於存放與來源控制發行功能相關的追蹤記錄，以及記錄檔案串流服務。)  
 
-## <a name="a-namestoragelogsaview-storage-logs"></a><a name="storagelogs"></a>檢視儲存體記錄
+## <a name="storagelogs"></a>檢視儲存體記錄
 應用程式追蹤記錄也可以傳送至 Azure 儲存體帳戶，以便您在 Visual Studio 中加以檢視。 若要這麼做，請建立一個儲存體帳戶，並在傳統入口網站中啟用儲存體記錄，然後透過 [Azure Web 應用程式] 視窗的 [記錄] 索引標籤來檢視它們。
 
 您可以將記錄傳送至以下任意或所有目的地 (共三個)：
@@ -514,7 +514,7 @@ Web 伺服器記錄會記下 Web 應用程式的所有 HTTP 活動。 為了在 
 
      ![伺服器總管中的追蹤資料表](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-tracetablerow.png)
 
-## <a name="a-namefailedrequestlogsaview-failed-request-tracing-logs"></a><a name="failedrequestlogs"></a>檢視失敗要求追蹤記錄
+## <a name="failedrequestlogs"></a>檢視失敗要求追蹤記錄
 當您需要了解 IIS 如何處理 HTTP 要求的詳細資料時，例如在 URL 重新寫入或是出現驗證問題等情況，失敗要求追蹤記錄就會很有用。
 
 Azure Web 應用程式會使用 IIS 7.0 及更新版本所提供的相同失敗要求追蹤功能。 但您無法存取用來設定哪些錯誤會被記錄下來的 IIS 設定。 當您啟用失敗要求追蹤時，將擷取所有錯誤。
@@ -555,7 +555,7 @@ Azure Web 應用程式會使用 IIS 7.0 及更新版本所提供的相同失敗�
 
     ![瀏覽器中的失敗要求追蹤](./media/web-sites-dotnet-troubleshoot-visual-studio/tws-failedrequestinbrowser.png)
 
-## <a name="a-namenextstepsanext-steps"></a><a name="nextsteps"></a>後續步驟
+## <a name="nextsteps"></a>後續步驟
 在了解 Visual Studio 如何讓您輕鬆地檢視 Azure Web 應用程式所建立的記錄之後， 下列各節提供相關主題的更多資源連結：
 
 * Azure Web 應用程式疑難排解
@@ -637,6 +637,6 @@ Azure Web 應用程式會使用 IIS 7.0 及更新版本所提供的相同失敗�
 ### <a name="analyzing-failed-request-tracing-logs"></a>分析失敗要求追蹤記錄
 Microsoft TechNet 網站內的 [使用失敗要求追蹤](http://www.iis.net/learn/troubleshoot/using-failed-request-tracing) (英文) 小節可能有助您了解如何使用這些記錄。 不過，本文主要著重在 IIS 內設定失敗要求追蹤功能，這是您無法在 Azure Web Apps 中執行的功能。
 
-[GetStarted]: web-sites-dotnet-get-started.md
+[GetStarted]: app-service-web-get-started-dotnet.md
 [GetStartedWJ]: websites-dotnet-webjobs-sdk.md
 
