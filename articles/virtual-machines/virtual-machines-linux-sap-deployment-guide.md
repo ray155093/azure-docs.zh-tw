@@ -405,7 +405,7 @@ ms.lasthandoff: 02/15/2017
  * **訂用帳戶**：選取您想要用來佈建新虛擬機器的訂用帳戶。
  * **資源群組**：VM 的資源群組名稱。 您可以輸入新資源群組的名稱，或現有資源群組的名稱。
  * **位置**︰部署新虛擬機器的位置。 如果您想要將虛擬機器連接到內部部署網路，請務必選取將 Azure 連接到內部部署網路的虛擬網路位置。 如需詳細資訊，請參閱[適用於 SAP on Linux 的 Azure 虛擬機器規劃和實作][planning-guide]中的[Microsoft Azure 網路][planning-guide-microsoft-azure-networking]。
-2. ：
+2. **大小**：
 
      如需支援的 VM 類型清單，請參閱 SAP Note [1928533]。 如果您想要使用進階儲存體，請務必選取正確的 VM 類型。 並非所有 VM 類型都支援進階儲存體。 如需詳細資訊，請參閱[適用於 SAP on Linux 的 Azure 虛擬機器規劃和實作][planning-guide]中的[儲存體：Microsoft Azure 儲存體和資料磁碟][planning-guide-storage-microsoft-azure-storage-and-data-disks]和 [Azure 進階儲存體][planning-guide-azure-premium-storage]。
 
@@ -607,7 +607,7 @@ ms.lasthandoff: 02/15/2017
 #### <a name="create-a-virtual-machine"></a>建立虛擬機器
 若要透過 Azure 入口網站使用私人 OS 磁碟來建立部署，請使用 [azure-quickstart-templates Github 儲存機制][azure-quickstart-templates-github]中所發佈的 SAP 範本。 您可以也使用 PowerShell 手動建立虛擬機器。
 
-* [**兩層組態 (僅限一部虛擬機器) 範本 ** (sap-2-tier-user-disk)][sap-templates-2-tier-os-disk]
+* [**兩層組態 (僅限一部虛擬機器) 範本** (sap-2-tier-user-disk)][sap-templates-2-tier-os-disk]
 
   若只要使用一部虛擬機器建立一個兩層系統，請使用此範本。
 
