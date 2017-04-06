@@ -58,7 +58,7 @@ ms.lasthandoff: 02/14/2017
 
 ![建立 Blob 容器](./media/stream-analytics-machine-learning-integration-tutorial/create-sa2.png)
 
-然後，提供容器的 [名稱] (我的範例中使用 azuresamldemoblob)，並確認 [存取類型] 設為 'blob'。
+然後，提供容器的 [名稱] \(我的範例中使用 azuresamldemoblob)，並確認 [存取類型] 設為 'blob'。
 
 ![建立 blob 存取類型](./media/stream-analytics-machine-learning-integration-tutorial/create-sa3.png)
 

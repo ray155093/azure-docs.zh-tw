@@ -56,7 +56,7 @@ ms.lasthandoff: 02/17/2017
 6. [存取 Web 服務](machine-learning-walkthrough-6-access-web-service.md)
 
 > [!TIP] 
-> 您可以在 [Cortana Intelligence 資源庫 (英文)](https://gallery.cortanaintelligence.com) 中，找到我們在這個逐步解說中所開發實驗的工作複本。 移至 **[逐步解說 - 信用風險預測 (英文)](https://gallery.cortanaintelligence.com/Experiment/Walkthrough-Credit-risk-prediction-1)**，然後按一下 [Open in Studio] (在 Studio 中開啟)，以將實驗的複本下載到您的 Machine Learning Studio 工作區。
+> 您可以在 [Cortana Intelligence 資源庫 (英文)](https://gallery.cortanaintelligence.com) 中，找到我們在這個逐步解說中所開發實驗的工作複本。 移至 **[逐步解說 - 信用風險預測 (英文)](https://gallery.cortanaintelligence.com/Experiment/Walkthrough-Credit-risk-prediction-1)**，然後按一下 [Open in Studio] \(在 Studio 中開啟)，以將實驗的複本下載到您的 Machine Learning Studio 工作區。
 > 
 > 此逐步解說是以簡化版的[二進位分類：信用風險預測 (英文)](http://go.microsoft.com/fwlink/?LinkID=525270) 範例實驗為基礎，[資源庫](http://gallery.cortanaintelligence.com/)中也有提供此實驗。
 

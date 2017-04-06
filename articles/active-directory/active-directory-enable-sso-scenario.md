@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/11/2017
+ms.date: 04/06/2017
 ms.author: markvi
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: f6bceb2fd03230e4a39c22605ad1fea8dd422be1
+ms.lasthandoff: 12/29/2016
 
 
 ---
@@ -111,10 +112,5 @@ Azure AD 為您提供預先整合的報告與監控功能，可讓您知道可�
 
 ## <a name="see-also"></a>另請參閱
 [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

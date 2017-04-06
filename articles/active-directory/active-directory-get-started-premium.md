@@ -3,8 +3,8 @@ title: "開始使用 Azure Active Directory Premium"
 description: "說明如何透過大量授權網站來註冊 Azure Active Directory Premium Edition 的主題。"
 services: active-directory
 documentationcenter: 
-author: MarkusVi
-manager: curtand
+author: curtand
+manager: femila
 ms.assetid: 391764e5-c4eb-4ae6-b8a9-3d09f0de04a6
 ms.service: active-directory
 ms.workload: infrastructure-services
