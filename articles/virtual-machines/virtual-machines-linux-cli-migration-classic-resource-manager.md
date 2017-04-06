@@ -33,7 +33,7 @@ ms.lasthandoff: 03/22/2017
 <br>
 下列流程圖會識別在移轉程序期間執行步驟所需的順序
 
-![顯示移轉步驟的螢幕擷取畫面](./media/virtual-machines-windows-migration-classic-resource-manager/migration-flow.png)
+![Screenshot that shows the migration steps](./media/virtual-machines-windows-migration-classic-resource-manager/migration-flow.png)
 
 ## <a name="step-1-prepare-for-migration"></a>步驟 1︰為移轉做準備
 以下是您評估將 IaaS 資源從傳統移轉至 Resource Manager 時，我們所建議的一些最佳做法：
