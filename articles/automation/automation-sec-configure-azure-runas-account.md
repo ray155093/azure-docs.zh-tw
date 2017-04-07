@@ -250,7 +250,7 @@ ms.lasthandoff: 03/29/2017
 2. 在 [所有設定] 刀鋒視窗上，選取 [帳戶設定] 之下的 [屬性]。 
 3. 請記下 [屬性] 刀鋒視窗上的值。
 
- ![自動化帳戶的 [屬性] 刀鋒視窗](media/automation-sec-configure-azure-runas-account/automation-account-properties.png)  
+![自動化帳戶的 [屬性] 刀鋒視窗](media/automation-sec-configure-azure-runas-account/automation-account-properties.png)  
 
 ### <a name="create-a-run-as-account-powershell-script"></a>建立執行身分帳戶 PowerShell 指令碼
 這個 PowerShell 指令碼包含下列組態的支援︰
@@ -415,7 +415,6 @@ ms.lasthandoff: 03/29/2017
         $TenantID = $SubscriptionInfo | Select TenantId -First 1
         $Thumbprint = $PfxCert.Thumbprint
         $ConnectionFieldValues = @{"ApplicationId" = $ApplicationId; "TenantId" = $TenantID.TenantId; "CertificateThumbprint" = $Thumbprint; "SubscriptionId" = $SubscriptionId}
-
 
         # Create an Automation connection asset named AzureRunAsConnection in the Automation account. This connection uses the service principal.
         CreateAutomationConnectionAsset $ResourceGroup $AutomationAccountName $ConnectionAssetName $ConnectionTypeName $ConnectionFieldValues
