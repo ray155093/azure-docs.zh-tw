@@ -272,7 +272,7 @@ Webhook 動作會呼叫 URL 並選擇性地提供要傳送的承載，以啟動�
 此範例會使用[標準的解決方案參數](operations-management-suite-solutions-solution-file.md#parameters)變數，相對於資源定義中的硬式編碼值，這類變數常用於解決方案中。
 
     {
-        "$schema": "http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01#",
+        "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
         "contentVersion": "1.0",
         "parameters": {
           "workspaceName": {

@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 1/6/2017
+ms.date: 4/6/2017
 ms.author: v-six
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 55d8e38462691c77a34eb5fca6ac79e2e0f69c37
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -75,9 +76,4 @@ namespace WorkerRole1
 檢視更多雲端服務的 [疑難排解文章](/?tag=top-support-issue&product=cloud-services) 。
 
 若要了解如何利用 Azure PaaS 電腦診斷資料，對雲端服務角色的問題進行疑難排解，請檢視 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
