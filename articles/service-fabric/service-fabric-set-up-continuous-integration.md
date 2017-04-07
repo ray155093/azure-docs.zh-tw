@@ -17,6 +17,7 @@ ms.author: mthalman;mikhegn
 translationtype: Human Translation
 ms.sourcegitcommit: f7edee399717ecb96fb920d0a938da551101c9e1
 ms.openlocfilehash: 437e343425da5c8cfe71d4ae67c423fcc2b794c2
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -104,7 +105,7 @@ Team Services 發行定義描述由一組循序執行的工作所組成的工作
     1. 選取 [新增服務端點]，然後從功能表中選取 [Azure Service Fabric]。
     2. 選取此端點的目標叢集所使用的驗證類型。
     3. 在 [連線名稱]  欄位中定義連線的名稱。  一般而言，您可使用您的叢集名稱。
-    4. 在 [叢集端點]  欄位中，定義用戶端連線端點 URL。  範例：https://contoso.westus.cloudapp.azure.com:19000。
+    4. 在 [叢集端點]  欄位中，定義用戶端連線端點 URL。  範例 ： https://contoso.westus.cloudapp.azure.com:19000 。
     5. 對於 Azure Active Directory 認證，請在 [使用者名稱] 和 [密碼] 欄位中定義連線到叢集所需的認證。
     6. 對於憑證式驗證，請在 [用戶端憑證]  欄位中定義用戶端憑證檔案的 Base64 編碼。  如需如何取得該值的資訊，請參閱該欄位的說明快顯。  如果您的憑證受密碼保護，請在 [密碼]  欄位中定義密碼。
     7. 按一下 [確定] 確認變更。 回到發行定義後，按一下 [叢集連線]  欄位上的重新整理圖示以查看您剛才新增的端點。
@@ -130,10 +131,5 @@ Team Services 發行定義描述由一組循序執行的工作所組成的工作
 * [Team Services 文件首頁](https://www.visualstudio.com/docs/overview)
 * [Team Services 中的組建管理](https://www.visualstudio.com/docs/build/overview)
 * [Team Services 中的發行管理](https://www.visualstudio.com/docs/release/overview)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -52,7 +52,7 @@ ms.lasthandoff: 01/07/2017
 1. 選取「Hortonworks 沙箱」、按一下 [啟動]，然後選取 [正常啟動]。 虛擬機器完成開機程序後會顯示登入指示。
    
     ![正常啟動](./media/hdinsight-hadoop-emulator-get-started/normal-start.png)
-2. 開啟網頁瀏覽器，並瀏覽至顯示的 URL (通常是 http://127.0.0.1:8888)。
+2. 開啟網頁瀏覽器，並瀏覽至顯示的 URL (通常是 http://127.0.0.1:8888 )。
 
 ## <a name="set-sandbox-passwords"></a>設定沙箱密碼
 
