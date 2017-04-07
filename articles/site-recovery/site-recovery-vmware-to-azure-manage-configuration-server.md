@@ -35,7 +35,7 @@ ms.lasthandoff: 03/18/2017
 
 ## <a name="downloading-the-configuration-server-software"></a>下載組態伺服器軟體
 1. 登入 Azure 入口網站並瀏覽至您的復原服務保存庫。
-2. 瀏覽至 [Site Recovery 基礎結構] > [組態伺服器] (位於 [適用於 VMware 和實體機器] 底下)。
+2. 瀏覽至 [Site Recovery 基礎結構] > [組態伺服器] \(位於 [適用於 VMware 和實體機器] 底下)。
 
   ![新增伺服器頁面](./media/site-recovery-vmware-to-azure-manage-configuration-server/AddServers.png)
 3. 按一下 [+伺服器] 按鈕。
