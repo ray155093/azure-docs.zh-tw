@@ -27,6 +27,8 @@ ms.lasthandoff: 03/27/2017
 
 [WebJobs SDK](websites-webjobs-resources.md) 的目的是為了簡化您對 WebJob 可執行的一般工作 (例如，映像處理、佇列處理、RSS 彙總、檔案維護和傳送電子郵件) 所撰寫的程式碼。 WebJobs SDK 具有內建功能，用於處理 Azure 儲存體和服務匯流排、工作排程和處理錯誤，以及許多其他常見案例。 此外，它的設計具有擴充性，而且有 [擴充功能的開放原始碼儲存機制](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview)。 [Azure Functions](../azure-functions/functions-overview.md) (目前為預覽) 以使用 C# 指令碼、Node.js 和其他語言的 WebJobs SDK 版本為基礎。 
 
+[!INCLUDE [app-service-web-webjobs-corenote](../../includes/app-service-web-webjobs-corenote.md)]
+
 使用 Visual Studio 中的整合工具可完美地建立、部署和管理 WebJobs。 您可以從範本建立 WebJobs、發佈及管理 (執行/停止/監視/偵錯) 它們。 
 
 Azure 入口網站中的 WebJob 儀表板提供強大的管理功能，讓您能夠完全掌控 WebJob 的執行，包括叫用 WebJob 內個別函數的功能。 儀表板也會顯示函數執行階段和記錄輸出。 
