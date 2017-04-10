@@ -25,6 +25,8 @@ ms.lasthandoff: 11/17/2016
 ## <a id="overview"></a>概觀
 本文說明 WebJobs SDK 是什麼、檢閱部分適用的典型案例，以及提供在程式碼中的使用方式概觀。
 
+[!INCLUDE [app-service-web-webjobs-corenote](../../includes/app-service-web-webjobs-corenote.md)]
+
 [WebJobs](websites-webjobs-resources.md) 是一項 Azure App Service 功能，可讓您在與 Web 應用程式、API 應用程式或行動應用程式相同的內容中執行程式或指令碼。 [WebJobs SDK](websites-webjobs-resources.md) 的目的是為了簡化您為 WebJob 可執行的一般工作 (例如影像處理、佇列處理、RSS 彙總、檔案維護及傳送電子郵件) 撰寫的程式碼。 WebJobs SDK 具有內建功能，用於處理 Azure 儲存體和服務匯流排、工作排程和處理錯誤，以及許多其他常見案例。 此外，它已被設計成可延伸。 [WebJobs SDK 是開放原始碼](https://github.com/Azure/azure-webjobs-sdk/)，並且有[擴充功能的開放原始碼儲存機制](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview)。
 
 WebJobs SDK 包含下列元件：
