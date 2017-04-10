@@ -12,11 +12,13 @@ ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: connect
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 106b9e8b5fd3461655527004fa7a65bbab9b3182
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: c3c30e51b81886ebc875df7c815a17dfa633a5f8
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -26,7 +28,7 @@ ms.openlocfilehash: 106b9e8b5fd3461655527004fa7a65bbab9b3182
 ## <a name="find-your-server-name"></a>尋找您的伺服器名稱
 連接到 SQL 資料倉儲的第一個步驟是了解如何尋找您的伺服器名稱。  例如，下列範例中的伺服器名稱是 sample.database.windows.net。 若要尋找完整的伺服器名稱：
 
-1. 移至 [Azure 入口網站][Azure 入口網站]。
+1. 移至 [Azure 入口網站][Azure portal]。
 2. 按一下 [SQL Database]  
 3. 按一下您想連接的資料庫。
 4. 找出完整的伺服器名稱。
@@ -72,11 +74,11 @@ SQL 資料倉儲會在連線和物件建立期間將一些設定標準化。 這
 | [DATEFIRST][DATEFIRST] |7 |
 
 ## <a name="next-steps"></a>後續步驟
-若要使用 Visual Studio 連接及查詢，請參閱[使用 Visual Studio 查詢][使用 Visual Studio 查詢]。 若要深入了解驗證選項，請參閱[適用於 Azure SQL 資料倉儲的驗證][適用於 Azure SQL 資料倉儲的驗證]。
+若要使用 Visual Studio 連線及查詢，請參閱 [使用 Visual Studio 查詢][Query with Visual Studio]。 若要深入了解驗證選項，請參閱 [適用於 Azure SQL 資料倉儲的驗證][Authentication to Azure SQL Data Warehouse]。
 
 <!--Articles-->
-[使用 Visual Studio 查詢]: ./sql-data-warehouse-query-visual-studio.md
-[適用於 Azure SQL 資料倉儲的驗證]: ./sql-data-warehouse-authentication.md
+[Query with Visual Studio]: ./sql-data-warehouse-query-visual-studio.md
+[Authentication to Azure SQL Data Warehouse]: ./sql-data-warehouse-authentication.md
 
 <!--MSDN references-->
 [ADO.NET]: https://msdn.microsoft.com/library/e80y5yhx(v=vs.110).aspx
@@ -89,15 +91,10 @@ SQL 資料倉儲會在連線和物件建立期間將一些設定標準化。 這
 [DATEFIRST]: https://msdn.microsoft.com/library/ms181598.aspx
 
 <!--Other-->
-[Azure 入口網站]: https://portal.azure.com
+[Azure portal]: https://portal.azure.com
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-connect-overview/get-server-name.png
 
-
-
-
-
-<!--HONumber=Nov16_HO2-->
 
 

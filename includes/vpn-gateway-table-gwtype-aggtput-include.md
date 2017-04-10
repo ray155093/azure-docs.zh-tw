@@ -4,7 +4,7 @@
 
 |  | **VPN 閘道輸送量 (1)** | **VPN 閘道最大 IPsec 通道 (2)** | **ExpressRoute 閘道輸送量** | **VPN 閘道與 ExpressRoute 共存** |
 | --- | --- | --- | --- | --- |
-| **基本 SKU (3)(5)** |100 Mbps |10 |500 Mbps |否 |
+| **基本 SKU (3)(5)(6)** |100 Mbps |10 |500 Mbps (6) |否 |
 | **標準 SKU (4)(5)** |100 Mbps |10 |1000 Mbps |是 |
 | **高效能 SKU (4)** |200 Mbps |30 |2000 Mbps |是 |
 
@@ -13,9 +13,4 @@
 * (3) 基本 SKU 不支援 BGP。
 * (4) 此 SKU 不支援原則式 VPN。 只有基本 SKU 提供支援。
 * (5) 此 SKU 不支援主動-主動 S2S VPN 閘道連線。 只有高效能 SKU 支援主動-主動。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
-
+* (6) 基本 SKU 已被 ExpressRoute 取代。

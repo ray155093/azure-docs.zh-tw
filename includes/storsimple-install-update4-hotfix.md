@@ -14,7 +14,7 @@
     Hotfix 清單隨即出現，例如**適用於 StorSimple 8000 系列的累積軟體套件組合更新 4.0**。
    
     ![搜尋目錄](./media/storsimple-install-update2-hotfix/HCS_SearchCatalog1-include.png)
-4. 按一下 [新增] 。 更新便會新增到購物籃中。
+4. 按一下 [新增]。 更新便會新增到購物籃中。
 5. 搜尋上表中所列的其他任何 Hotfix (**4011841**)，然後將每個都加入購物籃。
 6. 按一下 [ **檢視購物籃**]。
 7. 按一下 [下載] 。 指定或「瀏覽」  至您想要儲存下載項目的本機位置。 更新便會下載到指定的位置，並放在與更新名稱相同的子資料夾中。 資料夾也可以複製到裝置可連線的網路共用位置。
@@ -22,7 +22,7 @@
 > [!NOTE]
 > Hotfix 必須可同時從兩個控制器存取，以偵測來自對等到控制器的任何潛在錯誤訊息。
 >
-> Hotfix 必須複製到 3 個不同的資料夾。 裝置軟體更新必須複製到 _FirstOrderUpdate_ 資料夾，其他所有非干擾性更新應該複製到 _SecondOrderUpdate_ 資料夾，維護模式更新則應複製到 _ThirdOrderUpdate_ 資料夾。
+> Hotfix 必須複製到 3 個不同的資料夾。 例如，裝置軟體更新可以複製到 _FirstOrderUpdate_ 資料夾，其他所有非干擾性更新應該複製到 _SecondOrderUpdate_ 資料夾，而維護模式更新則會複製到 _ThirdOrderUpdate_ 資料夾。
 
 #### <a name="to-install-and-verify-regular-mode-hotfixes"></a>安裝及驗證一般模式 Hotfix
 
@@ -40,11 +40,11 @@
    
     在系統提示時提供密碼。
    
-    下面會顯示安裝第一級更新的範例輸出。
+    下面會顯示安裝第一級更新的範例輸出。 對於第一級更新，您需要指向特定檔案。
    
         ````
         Controller0>Start-HcsHotfix -Path \\10.100.100.100\share
-        \FirstOrderUpdate\ -Credential contoso\John
+        \FirstOrderUpdate\HcsSoftwareUpdate.exe -Credential contoso\John
    
         Confirm
    
@@ -96,7 +96,7 @@
     > [!IMPORTANT]
     > 您必須先透過 `Restart-HcsController` Cmdlet 重新啟動主動控制器，再套用其餘的更新。
      
-7. 重複步驟 3-5 來安裝第二級更新。 只要執行 `Start-HcsHotfix cmdlet` 並指向第二級更新所在的資料夾，即可安裝多個更新。 此 Cmdlet 會執行資料夾中所有可用的更新。 如果有已安裝的更新，更新邏輯會偵測到，而不套用該更新。 安裝所有 Hotfix 之後，請使用 `Get-HcsSystem` Cmdlet。 版本應該是︰
+7. 重複步驟 3-5 來安裝第二級更新。 **對於第二級更新，只要執行 `Start-HcsHotfix cmdlet` 並指向第二級更新所在的資料夾，即可安裝多個更新。此 Cmdlet 會執行資料夾中所有可用的更新。** 如果有已安裝的更新，更新邏輯會偵測到，而不套用該更新。 安裝所有 Hotfix 之後，請使用 `Get-HcsSystem` Cmdlet。 版本應該是︰
 
    * `CisAgentVersion:  1.0.9441.0`
    * `MdsAgentVersion: 35.2.2.0`
@@ -247,9 +247,4 @@
    `Exit-HcsMaintenanceMode`
 
 5. 當您離開維護模式時，控制器便會重新啟動。 在磁碟韌體更新已成功套用且裝置已結束維護模式後，返回 Azure 傳統入口網站。 請注意，入口網站可能有 24 小時的時間不會顯示您已安裝維護模式更新。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

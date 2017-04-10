@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 02/06/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 34a9d187eecec185e2b8d6977baea267ca9e60e5
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 4149c5e06f1a23864ca0f92f1b7b73f4f66949df
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -61,6 +61,7 @@ Site Recovery 可複寫在支援的機器上執行的任何應用程式。 此�
 | Dynamics CRM |Y |敬請期待 |Y |敬請期待 |
 | Oracle |Y (由 Microsoft 測試) |Y (由 Microsoft 測試) |Y (由 Microsoft 測試) |Y (由 Microsoft 測試) |
 | Windows 檔案伺服器 |Y |Y |Y |Y |
+| Citrix XenApp 和 XenDesktop |N/A |Y |N/A |Y |
 
 ## <a name="replicate-active-directory-and-dns"></a>複寫 Active Directory 和 DNS
 Active Directory 和 DNS 基礎結構是大多數企業應用程式的必要項目。 在災害復原期間，您必須在復原工作負載和應用程式之前，先保護與復原這些基礎結構元件。
@@ -143,6 +144,17 @@ Azure Site Recovery 提供災害復原，方法為將環境中的重要元件複
 -    能夠在 DR 鑽研的隔離環境中測試復原計劃。
 
 [深入了解](https://aka.ms/asr-iis) 如何保護 IIS web 伺服陣列。
+
+## <a name="protect-citrix-xenapp-and-xendesktop"></a>保護 Citrix XenApp 和 XenDesktop
+使用 Site Recovery 保護您的 Citrix XenApp 和 XenDesktop 部署，如下所示：
+
+* 啟用 Citrix XenApp 和 XenDesktop 部署的保護，做法是將不同的部署層 (包括 AD DNS 伺服器、SQL Database 伺服器、Citrix 傳遞控制站、StoreFront 伺服器，XenApp Master (VDA)、Citrix XenApp 授權伺服器) 複寫至 Azure。
+* 使用 Site Recovery 將您的 Citrix XenApp 和 XenDesktop 部署移轉至 Azure，來簡化雲端移轉。
+* 藉由建立類似生產的隨選複本來進行測試和偵錯，以簡化 Citrix XenApp/XenDesktop 測試。
+* 此解決方案僅適用於 Windows Server 作業系統虛擬桌面，而不適用於用戶端虛擬桌面，因為尚未支援在 Azure 中進行用戶端虛擬桌面的授權。 
+[深入了解](https://azure.microsoft.com/en-us/pricing/licensing-faq/)如何在 Azure 中進行用戶端/伺服器桌面的授權。
+
+[深入了解](https://aka.ms/citrix-xenapp-xendesktop-with-asr)如何保護 Citrix XenApp 和 XenDesktop 部署。
 
 ## <a name="next-steps"></a>後續步驟
 [檢查必要條件](site-recovery-prereq.md) 

@@ -14,14 +14,15 @@ ms.topic: get-started-article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: fcc53e4073a6957fae263cfb5d38023ed9710d21
-ms.openlocfilehash: 47a60ba7de5ad09f0fc27efd2d041199b71be348
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 43d0dbb905b2f2b9d98fb3bf8c073ba1c4b6f4c4
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="how-does-licensing-work-in-azure-remoteapp"></a>Azure RemoteApp 中的授權如何運作？
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -40,10 +41,5 @@ RemoteApp 不需要任何 Windows 授權或遠端桌面 CAL。 您的訂用帳�
 這很合理，對吧？ 您可以發佈您有權共用的任何應用程式。 您必須確認您確實有權共用您的程式。
 
 請注意，您不能在雲端收藏中使用 CAL 或大量授權合約。 您 *可以* 在混合式收藏中使用大量授權合約來啟用應用程式 (Office 除外)。 您只需從大量授權媒體將它們安裝在範本映像上。 請依照應用程式廠商提供的資訊，在遠端桌面環境中安裝授權。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

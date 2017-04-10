@@ -15,14 +15,15 @@ ms.topic: get-started-article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: fcc53e4073a6957fae263cfb5d38023ed9710d21
-ms.openlocfilehash: bf8f7763db5844a0706264d24ad7a035758ebbda
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: bc5de9daeb09339c9488de8699174cd280197525
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="what-is-azure-remoteapp"></a>什麼是 Azure RemoteApp？
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -36,7 +37,7 @@ Azure RemoteApp 幾乎可讓您在任何裝置上與使用者共用應用程式�
 
 Azure RemoteApp 屬於 [Microsoft 虛擬桌面基礎結構](http://www.microsoft.com/server-cloud/products/virtual-desktop-infrastructure/explore.aspx)。
 
-**新功能！**  想要深入了解 Azure RemoteApp 嗎？ 或準備要驗證 Azure RemoteApp？ 請加入我們每週的 [專家請益網路研討會](https://azureinfo.microsoft.com/AzureRemoteAppAskTheExperts-Registration-Page.html?ls=Website)。
+**新功能！** 想要深入了解 Azure RemoteApp 嗎？ 或準備要驗證 Azure RemoteApp？ 請加入我們每週的 [專家請益網路研討會](https://azureinfo.microsoft.com/AzureRemoteAppAskTheExperts-Registration-Page.html?ls=Website)。
 
 ## <a name="azure-remoteapp-collections"></a>Azure RemoteApp 收藏
 [Azure RemoteApp 收藏](remoteapp-collections.md)分成兩種：
@@ -83,10 +84,5 @@ Windows 和 Windows RT 的 RemoteApp 用戶端應用程式以及 Mac、iOS 和 A
 
 ### <a name="help-us-help-you"></a>幫我們來協助您
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 或 [編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

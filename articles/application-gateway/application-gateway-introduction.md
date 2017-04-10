@@ -1,5 +1,5 @@
 ---
-title: "應用程式閘道簡介 | Microsoft Docs"
+title: "Azure 應用程式閘道簡介 | Microsoft Docs"
 description: "此頁面提供第 7 層負載平衡的應用程式閘道服務的概觀，包括閘道大小、HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性，以及 SSL 卸載。"
 documentationcenter: na
 services: application-gateway
@@ -13,28 +13,38 @@ ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
-ms.date: 12/14/2016
+ms.date: 04/03/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 119275f335344858cd20b6a17ef87e3ef32b6e12
-ms.openlocfilehash: 15db7dad6b83f6df3891aea60b308f2cf6008dd9
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: d23b400d8e6db66bc596731770a98e2833302543
+ms.lasthandoff: 04/04/2017
 
 
 ---
 # <a name="overview-of-application-gateway"></a>應用程式閘道的概觀
 
-## <a name="what-is-application-gateway"></a>什麼是應用程式閘道
+Microsoft Azure 應用程式閘道是專用的虛擬設備，會以服務形式提供應用程式傳遞控制器 (ADC)，為您的應用程式提供各種第 7 層負載平衡功能。 它是由多個背景工作執行個體構成，以發揮延展性和高可用性。 它會將 CPU 密集 SSL 終止卸載至應用程式閘道，讓客戶最佳化 Web 伺服陣列的產能。 它也提供其他第 7 層路由功能，包括循環配置連入流量、以 Cookie 為基礎的工作階段同質、URL 路徑型路由，以及在單一應用程式閘道背後代管多個網站的能力。 應用程式閘道可以設定為面向網際網路的閘道、內部專用閘道或兩者混合。 應用程式閘道完全由 Azure 管理、可調整且可用性極高。 它提供一組豐富的診斷和記錄功能，很好管理。 當您建立應用程式閘道時，將會有一個端點 (公用 VIP 或內部 ILB IP) 形成關聯，並用於輸入網路流量。 此 VIP 或 ILB IP 由 Azure Load Balancer 提供，此負載平衡器在傳輸層級 (TCP/UDP) 運作，並將所有連入的網路流量平均分散到應用程式閘道背景工作角色執行個體。 接著，應用程式閘道會根據其組態 (無論是虛擬機器、雲端服務、內部或外部 IP 位址) 路由傳送 HTTP/HTTPS 流量。
 
-Microsoft Azure 應用程式閘道會以服務形式提供應用程式傳遞控制器 (ADC)，為您的應用程式提供各種第 7 層負載平衡功能。 它會將 CPU 密集 SSL 終止卸載至應用程式閘道，讓客戶最佳化 Web 伺服陣列的產能。 它也提供其他第 7 層路由功能，包括循環配置連入流量、以 Cookie 為基礎的工作階段同質、URL 路徑型路由，以及在單一應用程式閘道背後代管多個網站的能力。 應用程式閘道也有 Web 應用程式防火牆 (WAF)，可保護您的應用程式以防範 OWASP 前 10 個最常見的 Web 弱點。 應用程式閘道可以設定為面向網際網路的閘道、內部專用閘道或兩者混合。 應用程式閘道完全由 Azure 管理、可調整且可用性極高。 它提供一組豐富的診斷和記錄功能，很好管理。 應用程式閘道適用於虛擬機器、雲端服務及面向內部或外部的 Web 應用程式。
+Web 應用程式防火牆 (WAF) 也會在應用程式閘道 WAF SKU 中提供，它會保護 Web 應用程式免於遭遇常見的 Web 弱點和攻擊。 Web 應用程式防火牆會根據 [OWASP 核心規則集](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) 3.0 或 2.2.9 中的規則提供保護。
 
-應用程式閘道是您的應用程式專用的虛擬應用裝置，由多個背景工作執行個體構成，發揮延展性和高可用性。 當您建立應用程式閘道時，將會有一個端點 (公用 VIP 或內部 ILB IP) 形成關聯，並用於輸入網路流量。 此 VIP 或 ILB IP 由 Azure Load Balancer 提供，此負載平衡器在傳輸層級 (TCP/UDP) 運作，並將所有連入的網路流量平均分散到應用程式閘道背景工作角色執行個體。 接著，應用程式閘道會根據其組態 (無論是虛擬機器、雲端服務、內部或外部 IP 位址) 路由傳送 HTTP/HTTPS 流量。 如需 SLA 和價格的詳細資訊，請參閱 [SLA](https://azure.microsoft.com/support/legal/sla/) 和[價格](https://azure.microsoft.com/pricing/details/application-gateway/)頁面。
+## <a name="differences-between-application-gateway-skus"></a>應用程式閘道 SKU 之間的差異
+
+應用程式閘道隨附兩個 SKU。 標準 SKU 和 Web 應用程式防火牆 (WAF) SKU。
+
+### <a name="standard"></a>標準
+
+標準 SKU 提供 SSL 終止、Cookie 型工作階段同質、循環配置資源負載分配、內容型路由，以及裝載多個網站和安全性增強功能的能力。 應用程式閘道提供的安全性增強功能包括 SSL 原則管理、端對端 SSL 支援及 SSL 終止。
+
+### <a name="web-application-firewall-waf"></a>Web 應用程式防火牆 (WAF)
+
+WAF SKU 提供標準 SKU 提供的所有功能，再加上 [Web 應用程式防火牆](application-gateway-web-application-firewall-overview.md)。 這可提供攻擊偵測規則，進而為 Web 應用程式提供保護來抵禦常見的 Web 弱點和攻擊。
 
 ## <a name="features"></a>特性
 
 應用程式閘道目前支援具有下列功能的第 7 層應用程式傳遞：
 
-* **[Web 應用程式防火牆 (預覽)](application-gateway-webapplicationfirewall-overview.md)** - Azure 應用程式閘道中的 Web 應用程式防火牆 (WAF) 可保護 Web 應用程式，不致遭受常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。
+* **[Web 應用程式防火牆](application-gateway-webapplicationfirewall-overview.md)** - Azure 應用程式閘道中的 Web 應用程式防火牆 (WAF) 可保護 Web 應用程式，不致遭受常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。
 * **HTTP 負載平衡** - 應用程式閘道提供循環配置資源負載平衡。 負載平衡會在第 7 層進行，而且只會用於 HTTP(S) 流量。
 * **以 Cookie 為基礎的工作階段同質性** - 當您想要在同一個後端保留使用者工作階段時，此功能非常有用。 使用受閘道管理的 Cookie，應用程式閘道即可將來自使用者工作階段的後續流量導向至同一個後端進行處理。 當使用者工作階段的工作階段狀態是儲存在後端伺服器本機上時，這項功能很重要。
 * **[安全通訊端層 (SSL) 卸載](application-gateway-ssl-arm.md)** - 這項功能讓您的 Web 伺服器免除將 HTTPS 流量解密的高成本工作。 在應用程式閘道終止 SSL 連線並將要求轉送到未加密的伺服器，Web 伺服器便不需承擔解密。  應用程式閘道會將回應重新加密，再將它傳送回用戶端。 在後端位於與 Azure 中的應用程式閘道相同的安全虛擬網路的情況下，這項功能很有用。
@@ -50,7 +60,7 @@ Microsoft Azure 應用程式閘道會以服務形式提供應用程式傳遞控�
 應用程式閘道對於下列項目很實用：
 
 * 需要要求來自相同使用者/用戶端工作階段，才能到達相同後端虛擬機器的應用程式。 這些應用程式的範例包括購物車應用程式和網頁郵件伺服器。
-* 要從 SSL 終止負荷釋出 Web 伺服器陣列的應用程式。
+* 移除 Web 伺服器陣列的 SSL 終止負荷。
 * 在同一個長時間執行的 TCP 連線上必須要有多個 HTTP 要求才能路由傳送至或負載平衡至不同後端伺服器的應用程式 (例如內容傳遞網路)。
 * 支援 Websocket 流量的應用程式
 * 保護 Web 應用程式不致遭受常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。
@@ -64,8 +74,6 @@ Microsoft Azure 應用程式閘道會以服務形式提供應用程式傳遞控�
 ## <a name="gateway-sizes-and-instances"></a>閘道大小和執行個體
 
 應用程式閘道目前提供三種大小：**小型**、**中型**和**大型**。 小型執行個體大小是針對開發和測試案例。
-
-目前有兩個適用於應用程式閘道的 SKU：**WAF** 和 **Standard**。
 
 每一訂用帳戶您可以建立最多 50 個應用程式閘道，而且每一應用程式閘道最多可以有 10 個執行個體。 每個應用程式閘道可以包含 20 個 http 接聽程式。 如需應用程式閘道限制的完整清單，請瀏覽[應用程式閘道服務限制](../azure-subscription-service-limits.md?toc=%2fazure%2fapplication-gateway%2ftoc.json#application-gateway-limits)。
 
@@ -85,9 +93,13 @@ Azure 應用程式閘道會透過基本或自訂健全狀態探測，自動監�
 
 ## <a name="configuring-and-managing"></a>設定和管理
 
-對於其端點，應用程式閘道可以有公用 IP、私人 IP 或兩者 (若已設定)。 應用程式閘道會設定於自己的子網路中的虛擬網路內。 應用程式閘道建立或使用的子網路不能包含任何其他類型的資源，子網路中唯獨允許的資源是其他應用程式閘道。 若要保護後端資源，您可以將後端伺服器包含在與應用程式閘道相同之虛擬網路中的不同子網路內。 後端應用程式不需要這個額外的子網路，只要應用程式閘道可以連線到 IP 位址，應用程式閘道就能為後端伺服器提供 ADC 功能。
+對於其端點，應用程式閘道可以有公用 IP、私人 IP 或兩者 (若已設定)。 應用程式閘道會設定於自己的子網路中的虛擬網路內。 應用程式閘道建立或使用的子網路不能包含任何其他類型的資源，子網路中唯獨允許的資源是其他應用程式閘道。 若要保護後端資源，您可以將後端伺服器包含在與應用程式閘道相同之虛擬網路中的不同子網路內。 後端應用程式不需要這個額外的子網路，只要應用程式閘道可以連線到 IP 位址，應用程式閘道就能為後端伺服器提供 ADC 功能。 
 
-您可以藉由使用 REST API、PowerShell Cmdlet、Azure CLI 或 [Azure 入口網站](https://portal.azure.com/)來建立和管理應用程式閘道。
+您可以藉由使用 REST API、PowerShell Cmdlet、Azure CLI 或 [Azure 入口網站](https://portal.azure.com/)來建立和管理應用程式閘道。 如有應用程式閘道的其他問題，請造訪[應用程式閘道常見問題集](application-gateway-faq.md)以檢視常見問題清單。
+
+## <a name="pricing"></a>價格
+
+價格是以每小時的閘道器執行個體費用和資料處理費用為基礎。 WAF SKU 的每小時閘道價格不同於標準 SKU 費用，您可在[應用程式閘道價格詳細資料](https://azure.microsoft.com/pricing/details/application-gateway/)找到。 資料處理費用維持不變。
 
 ## <a name="next-steps"></a>後續步驟
 

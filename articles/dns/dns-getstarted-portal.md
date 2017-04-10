@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: jonatul
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 0fee02286f6d5dd4614a933590cdab43cc69237f
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
+ms.openlocfilehash: 79f0c9297c4be70f705f325274f3d9241ea4bc3f
+ms.lasthandoff: 03/29/2017
 
 ---
 
@@ -79,7 +79,7 @@ DNS 區域用來裝載特定網域的 DNS 記錄。 若要開始將網域裝載�
 
 ## <a name="view-records"></a>檢視記錄
 
-在 [DNS 區域] 刀鋒視窗的下半部，您可以看到 DNS 區域的記錄。 您應該會看到預設 NS 和 SOA 記錄 (在每個區域中建立)，還有您已建立的任何新記錄。
+在 [DNS 區域] 刀鋒視窗的下半部，您可以看到 DNS 區域的記錄。 您應該會看到預設 DNS 和 SOA 記錄 (在每個區域中建立)，還有您已建立的任何新記錄。
 
 ![區域](./media/dns-getstarted-portal/viewzone500.png)
 

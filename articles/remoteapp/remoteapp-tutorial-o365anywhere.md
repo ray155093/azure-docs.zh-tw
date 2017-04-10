@@ -15,14 +15,15 @@ ms.workload: compute
 ms.date: 11/23/2016
 ms.author: guscatal;elizapo
 translationtype: Human Translation
-ms.sourcegitcommit: 300ee477a00cdd463a2abf87dd73550777fd9e05
-ms.openlocfilehash: 13634bec8abbefdf941066dece8390f2fd064422
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 584c781c97097cda3c1455ade05cba8659f11073
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="get-the-same-office-365-experience-on-any-device-with-azure-remoteapp"></a>在任何具有 Azure RemoteApp 的裝置上取得相同的 Office 365 體驗
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -71,10 +72,5 @@ ms.openlocfilehash: 13634bec8abbefdf941066dece8390f2fd064422
 ![啟動](./media/remoteapp-tutorial-o365anywhere/10-arastart.png)
 
 ![powerpoint](./media/remoteapp-tutorial-o365anywhere/11-pp.png)
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

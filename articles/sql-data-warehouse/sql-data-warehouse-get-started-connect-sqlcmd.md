@@ -12,11 +12,13 @@ ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: connect
 ms.date: 10/31/2016
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 77474214c6fafe7f591030d30f6a46c66fbc5c09
-ms.openlocfilehash: 1cd3bd8cab4e74da820f844d2ba96243cc6ccdcd
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 3508cdf6dcfa3d7122e1e3b635f3cd37863dbf62
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -30,7 +32,7 @@ ms.openlocfilehash: 1cd3bd8cab4e74da820f844d2ba96243cc6ccdcd
 > 
 > 
 
-使用 [sqlcmd][sqlcmd] 命令列公用程式來連接及查詢 Azure SQL 資料倉儲。  
+使用 [sqlcmd][sqlcmd] 命令列公用程式來連線及查詢 Azure SQL 資料倉儲。  
 
 ## <a name="1-connect"></a>1.連線
 若要開始使用 [sqlcmd][sqlcmd]，請開啟命令提示字元，然後輸入 **sqlcmd** 並在後面加上 SQL 資料倉儲資料庫的連接字串。 連接字串需要下列參數：
@@ -86,7 +88,7 @@ sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@sswor
 ```
 
 ## <a name="next-steps"></a>後續步驟
-如需 sqlcmd 中可用選項的詳細資訊，請參閱 [sqlcmd 文件][sqlcmd] 。
+如需 sqlcmd 中可用選項的詳細資訊，請參閱 [sqlcmd 文件][sqlcmd]。
 
 <!--Image references-->
 
@@ -94,12 +96,7 @@ sqlcmd -S MySqlDw.database.windows.net -d Adventure_Works -U myuser -P myP@sswor
 
 <!--MSDN references--> 
 [sqlcmd]: https://msdn.microsoft.com/library/ms162773.aspx
-[Azure 入口網站]: https://portal.azure.com
+[Azure portal]: https://portal.azure.com
 
 <!--Other Web references-->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

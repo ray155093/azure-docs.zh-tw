@@ -12,12 +12,12 @@ ms.workload: multiple
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/03/2017
+ms.date: 03/30/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: f8512229ee30fee6315d8ba167f1716e40f79b3e
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: f41fbee742daf2107b57caa528e53537018c88c6
+ms.openlocfilehash: cee4748a0b24e11cd8a8ee46471418680fcf7b33
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -53,7 +53,7 @@ Resource Manager 可讓您從您的訂用帳戶中現有的資源匯出 Resource
 3. 刀鋒視窗會顯示部署的摘要。 摘要包含部署和其作業的狀態，與您為參數所提供的值。 若要查看用於部署的範本，請選取 [檢視範本] 。
    
      ![檢視部署摘要](./media/resource-manager-export-template/deployment-summary.png)
-4. Resource Manager 會為您擷取下列六個檔案：
+4. Resource Manager 會為您擷取下列七個檔案：
    
    1. **範本** - 用於定義解決方案之基礎結構的範本。 當您透過入口網站建立儲存體帳戶時，Resource Manager 會使用範本來部署它，並且儲存該範本供日後參考。
    2. **參數** - 您可以在部署期間用來傳入值的參數檔案。 它包含您在第一次部署時提供的值，但是您可以在重新部署範本時變更這些值。
@@ -146,30 +146,30 @@ Resource Manager 可讓您從您的訂用帳戶中現有的資源匯出 Resource
       ![匯出資源群組](./media/resource-manager-export-template/export-resource-group.png)
    
      並非所有的資源類型都支援匯出範本功能。 如果您的資源群組只包含本文中顯示的儲存體帳戶和虛擬網路，您不會看到錯誤。 不過，如果您已建立其他資源類型，您可能會看到錯誤，指出匯出有問題。 您會在 [修正匯出問題](#fix-export-issues) 一節中了解如何處理這些問題。
-2. 您會再次看到可用來重新部署解決方案的六個檔案，但是這次的範本有點不同。 此範本只包含&2; 個參數：一個用於儲存體帳戶名稱，一個用於虛擬網路名稱。
+2. 您會再次看到可用來重新部署解決方案的六個檔案，但是這次的範本有點不同。 此範本只包含 2 個參數：一個用於儲存體帳戶名稱，一個用於虛擬網路名稱。
 
-  ```json
-  "parameters": {
-    "virtualNetworks_VNET_name": {
-      "defaultValue": "VNET",
-      "type": "String"
-    },
-    "storageAccounts_storagetf05092016_name": {
-      "defaultValue": "storagetf05092016",
-      "type": "String"
-    }
-  },
-  ```
+   ```json
+   "parameters": {
+     "virtualNetworks_VNET_name": {
+       "defaultValue": "VNET",
+       "type": "String"
+     },
+     "storageAccounts_storagetf05092016_name": {
+       "defaultValue": "storagetf05092016",
+       "type": "String"
+     }
+   },
+   ```
    
-     Resource Manager 未擷取在部署期間使用的範本。 而是根據資源的目前組態產生新的範本。 例如，範本將儲存體帳戶位置和複寫值設為：
+   Resource Manager 未擷取在部署期間使用的範本。 而是根據資源的目前組態產生新的範本。 例如，範本將儲存體帳戶位置和複寫值設為：
 
-  ```json 
-  "location": "northeurope",
-  "tags": {},
-  "properties": {
-    "accountType": "Standard_RAGRS"
-  },
-  ```
+   ```json 
+   "location": "northeurope",
+   "tags": {},
+   "properties": {
+     "accountType": "Standard_RAGRS"
+   },
+   ```
 3. 有幾個選項可供您繼續使用此範本。 您可以下載範本，並在本機使用 JSON 編輯器來處理範本。 或者，您可以將範本儲存至程式庫，並透過入口網站處理範本。
    
      如果您熟悉如何使用 JSON 編輯器，例如 [VS Code](resource-manager-vs-code.md) 或 [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)，您可能會偏好將範本下載到本機並使用該編輯器。 如果您未設定 JSON 編輯器，則可能會偏好透過入口網站來編輯範本。 本主題的其餘部分假設您已將範本儲存至入口網站中的程式庫。 不過，不論是在本機使用 JSON 編輯器進行工作或透過入口網站來進行，您都要對範本進行相同的語法變更。
@@ -205,88 +205,88 @@ Resource Manager 可讓您從您的訂用帳戶中現有的資源匯出 Resource
      ![編輯範本](./media/resource-manager-export-template/edit-template.png)
 3. 為了能夠傳遞您可能想要在部署期間指定的值，請將 **parameters** 區段取代為新的參數定義。 請注意 **storageAccount_accountType** 的 **allowedValues** 值。 如果您不小心提供了無效的值，會在部署開始之前辨識該錯誤。 另外請注意，您只提供儲存體帳戶名稱前置詞，前置詞限制為 11 個字元。 將前置詞限制為 11 個字元時，您可以確定完整名稱不會超過儲存體帳戶字元數上限。 前置詞可讓您將命名慣例套用至儲存體帳戶。 您將在下一個步驟中了解如何建立唯一的名稱。
 
-  ```json
-  "parameters": {
-    "storageAccount_prefix": {
-      "type": "string",
-      "maxLength": 11
-    },
-    "storageAccount_accountType": {
-      "defaultValue": "Standard_RAGRS",
-      "type": "string",
-      "allowedValues": [
-        "Standard_LRS",
-        "Standard_ZRS",
-        "Standard_GRS",
-        "Standard_RAGRS",
-        "Premium_LRS"
-      ]
-    },
-    "virtualNetwork_name": {
-      "type": "string"
-    },
-    "addressPrefix": {
-      "defaultValue": "10.0.0.0/16",
-      "type": "string"
-    },
-    "subnetName": {
-      "defaultValue": "subnet-1",
-      "type": "string"
-    },
-    "subnetAddressPrefix": {
-      "defaultValue": "10.0.0.0/24",
-      "type": "string"
-    }
-  },
-  ```
+   ```json
+   "parameters": {
+     "storageAccount_prefix": {
+       "type": "string",
+       "maxLength": 11
+     },
+     "storageAccount_accountType": {
+       "defaultValue": "Standard_RAGRS",
+       "type": "string",
+       "allowedValues": [
+         "Standard_LRS",
+         "Standard_ZRS",
+         "Standard_GRS",
+         "Standard_RAGRS",
+         "Premium_LRS"
+       ]
+     },
+     "virtualNetwork_name": {
+       "type": "string"
+     },
+     "addressPrefix": {
+       "defaultValue": "10.0.0.0/16",
+       "type": "string"
+     },
+     "subnetName": {
+       "defaultValue": "subnet-1",
+       "type": "string"
+     },
+     "subnetAddressPrefix": {
+       "defaultValue": "10.0.0.0/24",
+       "type": "string"
+     }
+   },
+   ```
 
 4. 範本的 **variables** 區段目前是空的。 在 **variables** 區段中，您可以建立一些值以簡化範本其他部分的語法。 將此區段取代為新的變數定義。 **storageAccount_name** 變數會將參數的前置詞串連至唯一的字串，該字串是根據資源群組的識別碼產生。 您不必再於提供參數值時猜測唯一的名稱。
 
-  ```json
-  "variables": {
-    "storageAccount_name": "[concat(parameters('storageAccount_prefix'), uniqueString(resourceGroup().id))]"
-  },
-  ```
+   ```json
+   "variables": {
+     "storageAccount_name": "[concat(parameters('storageAccount_prefix'), uniqueString(resourceGroup().id))]"
+   },
+   ```
 
 5. 若要在資源定義中使用參數和變數，請使用新的資源定義取代 **resources** 區段。 請注意，除了指派給資源屬性的值以外，資源定義中的變更不多。 這些屬性與匯出之範本的屬性相同。 您只要將屬性指派至參數值，而不是硬式編碼值。 透過 **resourceGroup().location** 運算式，將資源的位置設為使用與資源群組相同的位置。 您為儲存體帳戶名稱建立的變數是透過 **variables** 運算式參考。
 
-  ```json
-  "resources": [
-    {
-      "type": "Microsoft.Network/virtualNetworks",
-      "name": "[parameters('virtualNetwork_name')]",
-      "apiVersion": "2015-06-15",
-      "location": "[resourceGroup().location]",
-      "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[parameters('addressPrefix')]"
-          ]
-        },
-        "subnets": [
-          {
-            "name": "[parameters('subnetName')]",
-            "properties": {
-              "addressPrefix": "[parameters('subnetAddressPrefix')]"
-            }
-          }
-        ]
-      },
-      "dependsOn": []
-    },
-    {
-      "type": "Microsoft.Storage/storageAccounts",
-      "name": "[variables('storageAccount_name')]",
-      "apiVersion": "2015-06-15",
-      "location": "[resourceGroup().location]",
-      "tags": {},
-      "properties": {
-        "accountType": "[parameters('storageAccount_accountType')]"
-      },
-      "dependsOn": []
-    }
-  ]
-  ```
+   ```json
+   "resources": [
+     {
+       "type": "Microsoft.Network/virtualNetworks",
+       "name": "[parameters('virtualNetwork_name')]",
+       "apiVersion": "2015-06-15",
+       "location": "[resourceGroup().location]",
+       "properties": {
+         "addressSpace": {
+           "addressPrefixes": [
+             "[parameters('addressPrefix')]"
+           ]
+         },
+         "subnets": [
+           {
+             "name": "[parameters('subnetName')]",
+             "properties": {
+               "addressPrefix": "[parameters('subnetAddressPrefix')]"
+             }
+           }
+         ]
+       },
+       "dependsOn": []
+     },
+     {
+       "type": "Microsoft.Storage/storageAccounts",
+       "name": "[variables('storageAccount_name')]",
+       "apiVersion": "2015-06-15",
+       "location": "[resourceGroup().location]",
+       "tags": {},
+       "properties": {
+         "accountType": "[parameters('storageAccount_accountType')]"
+       },
+       "dependsOn": []
+     }
+   ]
+   ```
 
 6. 當您編輯好範本時，選取 [確定]。
 7. 選取 [儲存] 以儲存對範本所做的變更。
@@ -393,7 +393,7 @@ Resource Manager 可讓您從您的訂用帳戶中現有的資源匯出 Resource
 ```
 
 ### <a name="virtual-machine-extension"></a>虛擬機器擴充功能
-如需虛擬機器擴充功能的範例，請參閱 [Azure Windows VM 擴充功能組態範例](../virtual-machines/virtual-machines-windows-extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+如需虛擬機器擴充功能的範例，請參閱 [Azure Windows VM 擴充功能組態範例](../virtual-machines/windows/extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ### <a name="virtual-network-gateway"></a>虛擬網路閘道
 新增虛擬網路閘道資源類型。

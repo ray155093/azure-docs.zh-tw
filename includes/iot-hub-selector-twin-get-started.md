@@ -5,7 +5,7 @@
 > 
 
 ## <a name="introduction"></a>簡介
-「裝置對應項」是存放裝置狀態資訊 (中繼資料、組態和條件) 的 JSON 文件。 IoT 中樞會為連線到 IoT 中樞的每個裝置保存裝置對應項。
+「裝置對應項」是存放裝置狀態資訊 (中繼資料、組態和條件) 的 JSON 文件。 IoT 中樞會為其連線的每個裝置保存裝置對應項。
 
 使用裝置對應項可以：
 
@@ -49,7 +49,3 @@
 [lnk-d2c]: ../articles/iot-hub/iot-hub-devguide-messaging.md#device-to-cloud-messages
 [lnk-methods]: ../articles/iot-hub/iot-hub-devguide-direct-methods.md
 [lnk-devguide-mqtt]: ../articles/iot-hub/iot-hub-mqtt-support.md
-
-<!--HONumber=Dec16_HO1-->
-
-

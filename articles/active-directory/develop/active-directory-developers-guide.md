@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 12/09/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 8da480acc04922a3636821c5303f6380236c5ea3
-ms.openlocfilehash: 1bff76371ea1ca3ee68c9f04ea24a42f95bb7da7
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 45ff2ff08cb36f9a4bf49ff04de149accf157e0e
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -28,7 +28,7 @@ Azure Active Directory (AD) 是身分識別管理即服務 (IDMaaS) 平台，提
 1. [Azure AD 整合的優點](active-directory-how-to-integrate.md)：探索為什麼與 Azure AD 整合是提供安全登入和授權的最佳解決方案。
 2. [Azure AD 驗證案例](active-directory-authentication-scenarios.md)：利用 Azure AD 的簡易驗證來提供登入功能給您的應用程式。
 3. [整合應用程式與 Azure AD](active-directory-integrating-applications.md)：了解如何從 Azure AD 加入、更新和移除應用程式、以及關於整合應用程式商標指導方針的資訊。
-4. [Azure AD 圖形 API](active-directory-graph-api.md)：使用 Azure AD 圖形 API 以程式設計方式透過 REST API 端點存取 Azure AD。 Azure AD Graph API 也是可透過 [Microsoft Graph](https://graph.microsoft.io/)存取。 Microsoft Graph 會提供統一的 API，可透過單一 REST API 端點以單一的存取權杖，存取多個 Microsoft 雲端服務 API。
+4. [Microsoft Graph](https://graph.microsoft.io/) 和 [Azure AD Graph API](active-directory-graph-api.md)︰以程式設計方式透過 REST API 端點存取 Azure AD。 **強烈建議您使用 Microsoft Graph (而非 Azure AD Graph API) 來存取 Azure Active Directory 資源。** 我們的開發工作現在是針對 Microsoft Graph，並沒有針對 Azure AD Graph API 規劃的進一步增強功能 。 有極少數的案例可能仍適用 Azure AD Graph API；如需詳細資訊，請參閱 Office 開發人員中心的 [Microsoft Graph 或 Azure AD Graph](https://dev.office.com/blogs/microsoft-graph-or-azure-ad-graph) 部落格文章。
 5. [Azure AD 驗證程式庫](active-directory-authentication-libraries.md)：利用適用於 .NET、JavaScript、Objective-C、Android 及其他項目的 Azure AD 驗證程式庫，輕鬆地驗證使用者的身分來取得存取權杖。
 
 ## <a name="getting-started"></a>開始使用
@@ -57,10 +57,10 @@ Azure Active Directory (AD) 是身分識別管理即服務 (IDMaaS) 平台，提
 |:---:|:---:|
 | [.NET](active-directory-devquickstarts-webapi-dotnet.md) |[Node.js](active-directory-devquickstarts-webapi-nodejs.md) |
 
-### <a name="querying-the-directory-quickstart-guide"></a>查詢目錄快速入門指南
-| [![.NET](./media/active-directory-developers-guide/graph.png)](active-directory-graph-api-quickstart.md) |
-|:---:|
-| [Graph API](active-directory-graph-api-quickstart.md) |
+### <a name="microsoft-graph-and-azure-ad-graph-api-quick-start-guides"></a>Microsoft Graph 和 Azure AD Graph API 快速入門指南
+| [![Microsoft Graph](./media/active-directory-developers-guide/msgraph.png)](https://developer.microsoft.com/graph/quick-start) | [![Azure AD Graph API](./media/active-directory-developers-guide/graph.png)](active-directory-graph-api-quickstart.md) |
+|:---:|:---:|
+| [Microsoft Graph](https://developer.microsoft.com/graph/quick-start) | [Azure AD Graph API](active-directory-graph-api-quickstart.md) |
 
 ## <a name="how-tos"></a>作法
 這些文章描述如何使用 Azure Active Directory 執行特定工作︰
@@ -91,9 +91,13 @@ Azure Active Directory (AD) 是身分識別管理即服務 (IDMaaS) 平台，提
 * [Azure Active Directory 範例](https://github.com/azure-samples?query=active-directory)：要瀏覽範例清單最簡單的方法，就是使用[程式碼範例索引](active-directory-code-samples.md)。
 * [適用於 .NET 的 Active Directory Authentication Library (ADAL)](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet) - 提供[最新主要版本](https://docs.microsoft.com/active-directory/adal/microsoft.identitymodel.clients.activedirectory)和[先前主要版本](https://docs.microsoft.com/active-directory/adal/v2/microsoft.identitymodel.clients.activedirectory)。
 
-### <a name="graph-api"></a>Graph API
-* [Graph API 參考](https://msdn.microsoft.com/library/azure/hh974476.aspx)：Azure Active Directory 圖形 API 的 REST 參考。 [請檢視互動式的圖形 API 參考體驗](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog)。
-* [圖形 API 權限範圍](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes)：用以控制應用程式對租用戶中目錄資料存取權的 OAuth 2.0 權限範圍。
+### <a name="microsoft-graph-and-azure-ad-graph-api"></a>Microsoft Graph 和 Azure AD Graph API
+> [!IMPORTANT]
+> 強烈建議您使用 [Microsoft Graph](https://graph.microsoft.io/) 取代 Azure AD Graph API 來存取 Azure Active Directory 資源。 我們的開發工作現在是針對 Microsoft Graph，並沒有針對 Azure AD Graph API 規劃的進一步增強功能 。 有極少數的案例可能仍適用 Azure AD Graph API；如需詳細資訊，請參閱 Office 開發人員中心的 [Microsoft Graph 或 Azure AD Graph](https://dev.office.com/blogs/microsoft-graph-or-azure-ad-graph) 部落格文章。
+> 
+* [Microsoft Graph](https://graph.microsoft.io/)：適用於 Microsoft Graph 的文件、參考、範例和 SDK。 
+* [Azure AD Graph API 參考](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog)：Azure Active Directory Graph API 的 REST 參考。 
+* [Azure AD Graph API 權限範圍](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes)：用以控制應用程式對租用戶中目錄資料存取權的 OAuth 2.0 權限範圍。
 
 ### <a name="authentication-and-authorization-protocols"></a>驗證和授權通訊協定
 * [在 Azure AD 中簽署金鑰變換](active-directory-signing-key-rollover.md)：了解 Azure AD 的簽署金鑰變換模式，以及如何針對最常見的應用程式案例更新金鑰。

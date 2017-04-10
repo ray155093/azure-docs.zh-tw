@@ -1,6 +1,6 @@
 ---
-title: "MFA Server 搭配 Windows Server 2012 R2 AD FS | Microsoft Docs"
-description: "本文說明如何開始使用 Azure Multi-Factor Authentication 和 Windows Server 2012 R2 中的 AD FS。"
+title: "MFA Server 搭配 Windows Server 中的 AD FS | Microsoft Docs"
+description: "本文說明如何開始使用 Azure Multi-Factor Authentication 和 Windows Server 2012 R2 和 2016 中的 AD FS。"
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -12,21 +12,21 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/19/2017
+ms.date: 03/29/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: e4ef137656c12cf6495a00450eed308ac6a8a872
-ms.openlocfilehash: 7fd5c4edadc6d9cc070dff937a963f9a83ec66c2
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: f2481c18f12d74a90938ffb0353dd000fe73f440
+ms.lasthandoff: 04/03/2017
 
 ---
-# <a name="configure-azure-multi-factor-authentication-server-to-work-with-with-ad-fs-in-windows-server-2012-r2"></a>設定 Azure Multi-Factor Authentication Server 以與 Windows Server 2012 R2 中的 AD FS 搭配運作
+# <a name="configure-azure-multi-factor-authentication-server-to-work-with-ad-fs-in-windows-server"></a>設定 Azure Multi-Factor Authentication Server 以搭配 Windows Server 中的 AD FS 運作
 如果您使用 Active Directory 同盟服務 (AD FS)，而且想要保護雲端或內部部署資源，您可以設定 Azure Multi-factor Authentication Server 以搭配 AD FS 運作。 此組態會觸發高價值端點的雙步驟驗證。
 
-在本文中，我們將討論如何搭配 Windows Server 2012 R2 中的 AD FS 使用 Azure Multi-Factor Authentication Server。 如需詳細資訊，請參閱 [搭配 AD FS 2.0 使用 Azure Multi-Factor Authentication Server 來保護雲端和內部部署資源](multi-factor-authentication-get-started-adfs-adfs2.md)。
+在本文中，我們將討論如何搭配 Windows Server 2012 R2 或 Windows Server 2016 中的 AD FS 使用 Azure Multi-Factor Authentication Server。 如需詳細資訊，請參閱 [搭配 AD FS 2.0 使用 Azure Multi-Factor Authentication Server 來保護雲端和內部部署資源](multi-factor-authentication-get-started-adfs-adfs2.md)。
 
-## <a name="secure-windows-server-2012-r2-ad-fs-with-azure-multi-factor-authentication-server"></a>使用 Azure Multi-Factor Authentication Server 保護 Windows Server 2012 R2 AD FS
+## <a name="secure-windows-server-ad-fs-with-azure-multi-factor-authentication-server"></a>使用 Azure Multi-Factor Authentication Server 保護 Windows Server AD FS
 安裝 Azure Multi-Factor Authentication Server 時，您有下列選項：
 
 * 在與 AD FS 相同的伺服器本機上安裝 Azure Multi-Factor Authentication Server
@@ -34,20 +34,22 @@ ms.lasthandoff: 02/28/2017
 
 開始之前，請留意下列項目：
 
-* 您不需在 AD FS 伺服器上安裝 Azure Multi-Factor Authentication Server。 不過，您必須在執行 AD FS 的 Windows Server 2012 R2 上安裝適用於 AD FS 的 Multi-Factor Authentication 配接器。 您可以在不同的電腦上安裝伺服器 (只要是支援的版本即可)，以及在 AD FS 同盟伺服器上個別安裝 AD FS 配接器。 請參閱下列程序，以了解如何個別安裝配接器。
-* 在設計 MFA Server 的 AD FS 配接器時，預期 AD FS 可以將信賴憑證者的名稱傳遞至配接器。 接著，信賴憑證者的名稱可做為應用程式名稱。 不過，結果事實並非如此。 如果您的組織使用簡訊或行動應用程式驗證方法，則在 [公司設定] 中定義的字串會包含預留位置 <$*application_name*$>。 使用 AD FS 配接器時並不會自動取代此預留位置。 因此，建議在保護 AD FS 時，從適當的字串中移除此預留位置。
+* 您不需在 AD FS 伺服器上安裝 Azure Multi-Factor Authentication Server。 不過，您必須在執行 AD FS 的 Windows Server 2012 R2 或 Windows Server 2016 上安裝適用於 AD FS 的 Multi-Factor Authentication 配接器。 您可以在不同的電腦上安裝伺服器 (只要是支援的版本即可)，以及在 AD FS 同盟伺服器上個別安裝 AD FS 配接器。 請參閱下列程序，以了解如何個別安裝配接器。
+* 如果您的組織使用簡訊或行動應用程式驗證方法，則在 [公司設定] 中定義的字串會包含預留位置 <$*application_name*$>。 在 MFA Server v7.1 中，您可以提供要取代此預留位置的應用程式名稱。 在 v7.0 或更舊版本中，使用 AD FS 配接器時並不會自動取代此預留位置。 對於這些較舊的版本，請在保護 AD FS 時，從適當的字串中移除此預留位置。
 * 用來登入的帳戶必須具有在 Active Directory 服務中建立安全性群組的使用者權限。
-* Multi-Factor Authentication AD FS 配接器安裝精靈會在 Active Directory 執行個體中建立名為 PhoneFactor Admins 的安全性群組。 然後將 Federation Service 的 AD FS 服務帳戶新增至這個群組。 建議您在網域控制站上確認確實已建立 PhoneFactor Admins 群組，而且 AD FS 服務帳戶是此群組的成員。 如有必要，請以手動方式將 AD FS 服務帳戶加入至網域控制站上的 PhoneFactor Admins 群組。
+* Multi-Factor Authentication AD FS 配接器安裝精靈會在 Active Directory 執行個體中建立名為 PhoneFactor Admins 的安全性群組。 然後將 Federation Service 的 AD FS 服務帳戶新增至這個群組。 在網域控制站上確認確實已建立 PhoneFactor Admins 群組，而且 AD FS 服務帳戶是此群組的成員。 如有必要，請以手動方式將 AD FS 服務帳戶加入至網域控制站上的 PhoneFactor Admins 群組。
 * 如需透過使用者入口網站安裝 Web 服務 SDK 的資訊，請參閱 [部署 Azure Multi-Factor Authentication Server 的使用者入口網站](multi-factor-authentication-get-started-portal.md)
 
 ### <a name="install-azure-multi-factor-authentication-server-locally-on-the-ad-fs-server"></a>在 AD FS 伺服器本機上安裝 Azure Multi-Factor Authentication Server
 1. 在 AD FS 伺服器上下載並安裝 Azure Multi-Factor Authentication Server。 如需安裝資訊，請參閱 [開始使用 Azure Multi-Factor Authentication Server](multi-factor-authentication-get-started-server.md)。
-2. 在 Azure Multi-Factor Authentication Server 管理主控台中，按一下 [AD FS] 圖示，然後選取 [允許使用者註冊] 和 [允許使用者選取方法] 選項。
+2. 在 Azure Multi-Factor Authentication Server 管理主控台中，按一下 [AD FS] 圖示。 選取 [允許使用者註冊] 和 [允許使用者選取方法] 選項。
 3. 選取您想要為您的組織指定的任何其他選項。
 4. 按一下 [安裝 AD FS 配接器] 。
+   
    <center>![雲端](./media/multi-factor-authentication-get-started-adfs-w2k12/server.png)</center>
-5. 如果顯示 [Active Directory] 視窗，這代表兩件事情。 您的電腦已加入網域，而且用於保護 AD FS 配接器與 Multi-Factor Authentication 服務間通訊的 Active Directory 組態尚未完成。 按 [下一步] 自動完成此設定，或選取 [略過自動 Active Directory 設定並手動進行設定] 核取方塊，然後按 [下一步]。
-6. 如果顯示 [本機群組] 視窗，這代表兩件事情。 您的電腦未加入網域，而且用於保護 AD FS 配接器與 Multi-Factor Authentication 服務間通訊的本機群組組態尚未完成。 按 [下一步] 自動完成此設定，或選取 [略過自動本機群組設定並手動進行設定] 核取方塊，然後按 [下一步]。
+
+5. 如果顯示 [Active Directory] 視窗，這代表兩件事情。 您的電腦已加入網域，而且用於保護 AD FS 配接器與 Multi-Factor Authentication 服務間通訊的 Active Directory 組態尚未完成。 按 [下一步] 自動完成此設定，或選取 [略過自動 Active Directory 設定並手動進行設定] 核取方塊。 按 [下一步] 。
+6. 如果顯示 [本機群組] 視窗，這代表兩件事情。 您的電腦未加入網域，而且用於保護 AD FS 配接器與 Multi-Factor Authentication 服務間通訊的本機群組組態尚未完成。 按 [下一步] 自動完成此設定，或選取 [略過自動本機群組設定並手動進行設定] 核取方塊。 按 [下一步] 。
 7. 在安裝精靈中按 [下一步] 。 Azure Multi-Factor Authentication Server 會建立 PhoneFactor Admins 群組並將 AD FS 服務帳戶加入至 PhoneFactor Admins 群組。
    <center>![雲端](./media/multi-factor-authentication-get-started-adfs-w2k12/adapter.png)</center>
 8. 在 [啟動安裝程式] 頁面上，按 [下一步]。
@@ -77,7 +79,7 @@ ms.lasthandoff: 02/28/2017
 請遵循下列步驟來編輯 MultiFactorAuthenticationAdfsAdapter.config 檔案：
 
 1. 將 **UseWebServiceSdk** 節點設定為 **true**。  
-2. 將 **WebServiceSdkUrl** 的值設定為 Multi-Factor Authentication Web 服務 SDK 的 URL。 例如︰https://contoso.com/&lt;certificatename&gt;/MultiFactorAuthWebServicesSdk/PfWsSdk.asmx，其中 certificatename 是您的憑證名稱。  
+2. 將 **WebServiceSdkUrl** 的值設定為 Multi-Factor Authentication Web 服務 SDK 的 URL。 例如︰*https://contoso.com/&lt;certificatename&gt;/MultiFactorAuthWebServiceSdk/PfWsSdk.asmx*，其中 *certificatename* 是您的憑證名稱。  
 3. 編輯 Register-MultiFactorAuthenticationAdfsAdapter.ps1 指令碼，將 -ConfigurationFilePath &lt;path&gt; 新增至 `Register-AdfsAuthenticationProvider` 命令的結尾，其中 &lt;path&gt; 是 MultiFactorAuthenticationAdfsAdapter.config 檔案的完整路徑。
 
 ### <a name="configure-the-web-service-sdk-with-a-username-and-password"></a>以使用者名稱和密碼設定 Web 服務 SDK
@@ -134,7 +136,7 @@ ms.lasthandoff: 02/28/2017
 
    ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip3.png)
 
-6. 指定規則的名稱。 
+6. 指定規則的名稱。
 7. 選取 [驗證方法參考] 做為傳入宣告類型。
 8. 選取 [傳遞所有宣告值]。
     ![新增轉換宣告規則精靈](./media/multi-factor-authentication-get-started-adfs-cloud/configurewizard.png)

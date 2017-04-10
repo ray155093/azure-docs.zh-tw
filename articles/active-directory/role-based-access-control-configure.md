@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/17/2017
+ms.date: 03/27/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: c3e3e407eb6a05b208863443bb8ccf3cba701b23
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 9bbacea92e54609818d69173fafcea2ee8f849d3
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -27,6 +27,8 @@ ms.lasthandoff: 03/22/2017
 > * [資源管理存取](role-based-access-control-configure.md)
 
 Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權管理。 使用 RBAC，您可以僅授與使用者執行其作業所需的存取權。 本文將協助您在 Azure 入口網站中啟動並執行 RBAC。 如果您需要有關 RBAC 如何協助您管理存取權的詳細資訊，請參閱 [什麼是角色型存取控制](role-based-access-control-what-is.md)。
+
+在每個訂用帳戶內，您可以授與最多 2000 個角色指派。 
 
 ## <a name="view-access"></a>檢視存取權
 您可以從 [Azure 入口網站](https://portal.azure.com)的主要刀鋒視窗中查看有誰可以存取資源、資源群組或訂用帳戶。 例如，我們要查看有誰可以存取我們的其中一個資源群組︰

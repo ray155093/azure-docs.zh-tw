@@ -6,7 +6,7 @@
     ```
     npm install -g iothub-explorer@latest
     ```
-2. 然後，執行下列命令來登入中樞，記得以您先前複製的 IoT 中樞連接字串取代 `{iot hub connection string}`：
+2. 接著，執行下列命令來登入您的中樞。 將 `{iot hub connection string}` 替換成您先前複製的 IoT 中樞連接字串：
 
     ```
     iothub-explorer login "{iot hub connection string}"
@@ -21,7 +21,7 @@
 
 ![][img-identity]
 
-請參閱[開始使用 IoT 中樞][lnk-getstarted]，取得以程式設計方式建立裝置身分識別的方式。
+請參閱[開始使用 IoT 中樞][lnk-getstarted]，以程式設計方式建立裝置身分識別。
 
 <!-- images and links -->
 [img-identity]: media/iot-hub-get-started-create-device-identity/devidentity.png
