@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/16/2017
+ms.date: 04/03/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 89d44476e9de8ac32195efaf66535cdd9fb4260e
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: 248e820ccd2c68a8500aab3233c5beea3c8cc868
+ms.lasthandoff: 04/04/2017
 
 ---
 # <a name="connect-to-hdinsight-hadoop-using-ssh"></a>使用 SSH 連線到 HDInsight (Hadoop)
@@ -30,16 +30,19 @@ ms.lasthandoff: 03/25/2017
 
 | 位址 | 連接埠 | 連線到... |
 | ----- | ----- | ----- |
-| `<edgenodename>.<clustername>-ssh.azurehdinsight.net` | 22 | 邊緣節點 (如果有的話) |
+| `<clustername>-ed-ssh.azurehdinsight.net` | 22 | 邊緣節點 (R Server on HDInsight) |
+| `<edgenodename>.<clustername>-ssh.azurehdinsight.net` | 22 | 邊緣節點 (任何其他叢集類型，如果邊緣節點存在的話) |
 | `<clustername>-ssh.azurehdinsight.net` | 22 | 主要前端節點 |
 | `<clustername>-ssh.azurehdinsight.net` | 23 | 次要前端節點 |
 
 > [!NOTE]
-> 將 `<edgenodename>` 替換為邊緣節點的名稱。 如需使用邊緣節點的詳細資訊，請參閱[在 HDInsight 中使用邊緣節點](hdinsight-apps-use-edge-node.md#access-an-edge-node)。
+> 將 `<edgenodename>` 替換為邊緣節點的名稱。
 >
 > 將 `<clustername>` 替換為 HDInsight 叢集的名稱。
 >
 > 如果您有邊緣節點，建議您__永遠連線到邊緣節點__。 前端節點會裝載對於叢集健康狀態至關重要的服務。 邊緣節點則只會執行您放在上面的服務。
+>
+> 如需使用邊緣節點的詳細資訊，請參閱[在 HDInsight 中使用邊緣節點](hdinsight-apps-use-edge-node.md#access-an-edge-node)。
 
 ## <a name="ssh-clients"></a>SSH 用戶端
 

@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/30/2017
+ms.date: 03/30/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 3cba38d95535ff5ed3cd62aac5c0aa04a310f48c
-ms.openlocfilehash: 10e58a76644b5e4d50f05a2db03f4af193cc5152
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: f41fbee742daf2107b57caa528e53537018c88c6
+ms.openlocfilehash: 1091abef19121ac4ce65fdaf7299b091bf41eb1c
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -29,12 +29,12 @@ Azure 資訊安全中心的 [Power BI 儀表板](http://aka.ms/azure-security-ce
 ## <a name="using-azure-security-center-dashboard-to-access-power-bi"></a>使用 Azure 資訊安全中心儀表板存取 Power BI
 您也可以使用 Azure 資訊安全中心儀表板存取 Power BI 報告。 請按照步驟來執行這項工作：
 
-1. 在 [Azure 資訊安全中心] 儀表板按一下 [在 Power BI 中瀏覽] 按鈕。
+1. 在 [Azure 資訊安全中心] 儀表板中，按一下 [Power BI] 按鈕。
 
-    ![使用 Power BI 連線到 Azure 資訊安全中心](./media/security-center-powerbi/security-center-powerbi-fig1-new10.png)
-2. [在 Power BI 中瀏覽]  刀鋒視窗隨即會在右側開啟，如下列畫面所示：
+    ![使用 Power BI 連線到 Azure 資訊安全中心](./media/security-center-powerbi/security-center-powerbi-fig1-new10-2017.png)
+2. [Power BI] 刀鋒視窗隨即會在右側開啟，如下列畫面所示：
 
-    ![使用 Power BI 連線到 Azure 資訊安全中心](./media/security-center-powerbi/security-center-powerbi-fig1-new2.png)
+    ![使用 Power BI 連線到 Azure 資訊安全中心](./media/security-center-powerbi/security-center-powerbi-fig1-new11-2017.png)
 3. 如果您第一次建立 Power BI 儀表板，可以在 [在 Power BI 中瀏覽]  刀鋒視窗中選擇下列的其中一個選項：
 
    * **安全性深入解析儀表板**︰如果您要建立包含安全性狀態、執行緒和偵測的儀表板，請選擇這個選項。 對於負責分析各訂用帳戶的防護狀態及偵測到之警示的 DevOps 角色而言，這是較常見的選項。
@@ -43,7 +43,7 @@ Azure 資訊安全中心的 [Power BI 儀表板](http://aka.ms/azure-security-ce
 4. 在這個範例中，請點選 [安全性深入解析儀表板]  選項。 如果這是您第一次建立資訊安全中心的 Power BI 儀表板，系統會提示您安裝內容套件。 在如下列畫面所示的 [Power BI 內容套件] 視窗中，按一下 [取得] 按鈕：
 
     ![Azure 資訊安全中心安全性深入解析儀表板](./media/security-center-powerbi/security-center-powerbi-fig1-new3.png)
-5. [連接到 Azure 資訊安全中心安全性深入解析]  視窗隨即出現。 確定 [驗證] 方法為 oAuth2 \(如下所示)，然後按一下 [登入] 按鈕。
+5. [連接到 Azure 資訊安全中心安全性深入解析]  視窗隨即出現。 確定 [驗證] 方法為 oAuth2 (如下所示)，然後按一下 [登入] 按鈕。
 
     ![驗證](./media/security-center-powerbi/security-center-powerbi-fig1-new4.png)
 6. 系統可能會要求您再次使用您的 Azure 認證進行驗證。 驗證之後，將會建立您的儀表板。 建立儀表板後，您會看到具有類似結構的報告，如下列畫面所示：
@@ -97,7 +97,7 @@ Azure 資訊安全中心的連結會將您重新導向至 Azure 入口網站。 
    >
    >
 2. 如此範例所述，按一下 [Azure 資訊安全中心原則管理] 圖格中的 [取得]。
-3. 在 [連接到 Azure 資訊安全中心原則管理] 視窗中，請務必選取 [驗證方法] 下拉式清單下方的 oAuth2 \(如下所示)，然後按一下 [登入] 按鈕。
+3. 在 [連接到 Azure 資訊安全中心原則管理] 視窗中，請務必選取 [驗證方法] 下拉式清單下方的 oAuth2 (如下所示)，然後按一下 [登入] 按鈕。
 
     ![原則管理視窗](./media/security-center-powerbi/security-center-powerbi-fig1-new8.png)
 4. 系統會將您重新導向至驗證頁面，請在此輸入您要用來連線到 Azure 資訊安全中心的認證。 驗證程序完成後，Power BI 會開始匯入資料以建置報告。 在這段期間，您可能會在瀏覽器右側角落看到下列訊息：

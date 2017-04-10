@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 03/23/2017
+ms.date: 03/28/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: c8a915055318697ade229837653df4c105279299
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: a2ebd1181535087dbd33c5088fc495ccebf76e4f
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -314,7 +314,7 @@ private async Task CreateFamilyDocumentIfNotExists(string databaseName, string c
 
 插入兩個文件，一個給 Andersen 家族，另一個給 Wakefield 家族。
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的文件集合建立之下。
+複製 `// ADD THIS PART TO YOUR CODE` 後面的程式碼並貼到 **GetStartedDemo** 方法的文件集合建立之下。
 
 ```csharp
 await this.CreateDatabaseIfNotExists("FamilyDB_oa");

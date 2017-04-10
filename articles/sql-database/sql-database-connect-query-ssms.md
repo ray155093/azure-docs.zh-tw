@@ -18,15 +18,15 @@ ms.topic: hero-article
 ms.date: 03/15/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: ba56eaa154116edbe1dd8962049535cfa57551ac
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: 7ae47bcce700336206d532b414b7d0eea41d87c5
+ms.lasthandoff: 04/04/2017
 
 
 ---
 # <a name="azure-sql-database-use-sql-server-management-studio-to-connect-and-query-data"></a>Azure SQL Database：使用 SQL Server Management Studio 連接及查詢資料
 
-使用 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS)，從使用者介面或在指令碼中建立和管理 SQL Server 資源。 本執行詳細說明如何使用 SSMS 連接到 Azure SQL Database，然後執行查詢、插入、更新和刪除陳述式。
+使用 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS)，從使用者介面或在指令碼中建立和管理 SQL Server 資源。 這個快速入門詳細說明如何使用 SSMS 來連線至 Azure SQL Database，然後執行查詢、插入、更新和刪除陳述式。
 
 本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
@@ -45,11 +45,11 @@ ms.lasthandoff: 03/25/2017
 
     <img src="./media/sql-database-connect-query-ssms/connection-information.png" alt="connection information" style="width: 780px;" />
 
-## <a name="connect-to-the-server"></a>連接到伺服器
+## <a name="connect-to-the-server-and-your-new-database"></a>連線至伺服器和新的資料庫
 
 使用 SQL Server Management Studio (SSMS) 建立對 Azure SQL Database 伺服器的連線。
 
-1. 在 Windows 搜尋方塊中輸入 **SSMS**，然後按一下 **Enter** 以開啟 SSMS。
+1. 開啟 SQL Server Management Studio。
 
 2. 在 [連接到伺服器] 對話方塊中，輸入下列資訊：
    - **伺服器類型**：指定資料庫引擎

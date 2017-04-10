@@ -14,9 +14,9 @@ ms.topic: get-started-article
 ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: ae869be6ed9f304629498f416ffdda96252bdf9c
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: bcd8b3b7fb44a28d7184d14969eb998ce07c8e53
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -83,9 +83,10 @@ ms.lasthandoff: 03/16/2017
 ![Visual Studio 的螢幕擷取畫面，顯示如何開啟 Application Insights 入口網站](./media/app-insights-asp-net/appinsights-04-openPortal.png)
 
 > [!NOTE]
-> 如果您收到存取錯誤，表示您可能有一組以上的 Microsoft 認證，而且您可能以錯誤的組合登入。 在入口網站中，登出後重新登入。
+> 如果您收到存取錯誤：您是否有一組以上的 Microsoft 認證，且是否以錯誤的組合登入？ 在入口網站中，登出後重新登入。
 
 入口網站會從您的應用程式開啟遙測檢視。
+
 ![Application Insights 概觀頁面的螢幕擷取畫面](./media/app-insights-asp-net/66.png)
 
 按一下任何圖格或圖表以查看詳細資料。
@@ -131,7 +132,7 @@ Application Insights 會將應用程式的遙測傳送至 Application Insights �
 
 此命令會執行三項工作︰
 
-1. 將 Application Insights Web SDK NuGet 封裝加入您的專案。 若要在 Visual Studio 中看到它，請以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 套件]。
+1. 將 Application Insights Web SDK NuGet 套件新增至您的專案。 若要在 Visual Studio 中看到它，請以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 套件]。
 2. 在 [Azure 入口網站](https://portal.azure.com/)中建立 Application Insights 資源。 這是您會看到資料的位置。 它會擷取可識別資源的「檢測金鑰」。
 3. 在 `ApplicationInsights.config`中插入檢測金鑰，讓 SDK 可以將遙測傳送至入口網站。
 

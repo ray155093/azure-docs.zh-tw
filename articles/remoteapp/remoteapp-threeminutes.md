@@ -14,14 +14,15 @@ ms.topic: hero-article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: ccbae83898ec8ea3bd7bca0beae7f78b2b535562
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 3373e37b8efb1bd7d9b7e6c4fb8d3db468c1ad02
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="try-azure-remoteapp-on-your-device-in-3-minutes-or-less"></a>只需 3 分鐘或以下的時間便可在您的裝置上嘗試 Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -42,10 +43,5 @@ ms.openlocfilehash: ccbae83898ec8ea3bd7bca0beae7f78b2b535562
 > 因為這是個可供示範使用的受控制環境，我們尚未提供從已發佈的示範應用程式的外部網際網路存取。 因此，您無法存取如 OneDrive 的服務。 此外，我們還將剪貼簿共用 (複製和貼上) 及 USB 和印表機重新導向停用。  
 > 
 > 
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

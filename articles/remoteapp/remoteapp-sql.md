@@ -15,14 +15,15 @@ ms.workload: compute
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 52edc23e0f677567beeb33c47b14f6ea66989890
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 24d41c7eb6b5bd34c07d21318740ecf4c6db2d22
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="sql-azure-with-azure-remoteapp"></a>SQL Azure 搭配 Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -56,10 +57,5 @@ ms.openlocfilehash: 52edc23e0f677567beeb33c47b14f6ea66989890
 * 從裝置至 Azure 的網路延遲時間很長。 移至最佳且最快的網路連線，以獲得最佳效能。 使用 [azurespeed.com](http://azurespeed.com/) 作為一般工具，以測試您的裝置對 Azure 資料中心的延遲。  
 * 在 Azure RemoteApp 中裝載的用戶端應用程式承受壓力。 選取不同的計費方案 (例如 Premium 計費) 會改善效能。 另一個訣竅是監視您的應用程式正在使用的資源：在作用中工作階段期間，執行將啟動 SAS 畫面的 ctrl-alt-end 按鍵序列，選取 [工作管理員] 並觀察您的應用程式的資源使用率。
 * SQL Server 承受壓力或未最佳化。 遵循 SQL 疑難排解指引。 
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

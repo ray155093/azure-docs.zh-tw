@@ -1,7 +1,8 @@
 ## <a name="typical-output"></a>典型輸出
-下列範例是 Hello World 範例寫入記錄檔中的輸出。 已加入新行和 Tab 字元以利閱讀︰
 
-```
+下列範例是 Hello World 範例寫入記錄檔中的輸出。 已針對易讀性將輸出格式化︰
+
+```json
 [{
     "time": "Mon Apr 11 13:48:07 2016",
     "content": "Log started"
@@ -30,14 +31,16 @@
 ```
 
 ## <a name="code-snippets"></a>程式碼片段
-本節探討 Hello World 範例中程式碼的一些重要部分。
+
+本節探討 hello\_world 範例中程式碼的一些重要區段。
 
 ### <a name="gateway-creation"></a>建立閘道
-開發人員必須撰寫「閘道程序」 。 此程式會建立內部基礎結構 (訊息代理程式)、載入模組，以及設定所有項目才能正確運作。 SDK 提供 **Gateway_Create_From_JSON** 函式可讓您從 JSON 檔案啟動閘道。 若要使用 **Gateway_Create_From_JSON** 函式，您必須將它傳遞到 JSON 檔案的路徑，而 JSON 檔案指定要載入的模組。 
 
-在 [main.c][lnk-main-c] 檔案中，您可以找到 Hello World 範例中閘道程序的程式碼。 下列程式碼片段顯示精簡版本的閘道程序程式碼，以利閱讀。 此程式會建立閘道，然後先等待使用者按下 **ENTER** 鍵，再終止閘道。 
+開發人員必須撰寫「閘道程序」 。 此程式會建立內部基礎結構 (訊息代理程式)、載入模組，以及設定所有項目才能正確運作。 SDK 提供的 **Gateway\_Create\_From\_JSON** 函式可讓您從 JSON 檔案啟動閘道。 若要使用 **Gateway\_Create\_From\_JSON** 函式，您必須將它傳遞到 JSON 檔案的路徑，而 JSON 檔案指定要載入的模組。
 
-```
+在 [main.c][lnk-main-c] 檔案中，您可以找到 Hello World 範例中閘道程序的程式碼。 下列程式碼片段顯示精簡版本的閘道程序程式碼，以利閱讀。 此範例會建立閘道，然後先等待使用者按下 **ENTER** 鍵，再終止閘道。
+
+```c
 int main(int argc, char** argv)
 {
     GATEWAY_HANDLE gateway;
@@ -53,22 +56,21 @@ int main(int argc, char** argv)
         Gateway_LL_Destroy(gateway);
     }
     return 0;
-} 
+}
 ```
 
-JSON 設定檔包含要載入的模組清單以及模組之間的連結。
-每個模組都必須指定：
+JSON 設定檔包含要載入的模組清單以及模組之間的連結。 每個模組都必須指定：
 
 * **名稱**：模組的唯一名稱。
-* **載入器**︰知道如何載入所需模組的載入器。  載入器是一個用來載入不同模組類型的擴充點。 我們提供可與以原生 C、Node.js、Java 和 .NET 撰寫的模組搭配使用的載入器。 Hello World 範例只會使用「原生」載入器，因為此範例中的所有模組都是以 C 撰寫的動態程式庫。如需使用以不同語言撰寫的模組的詳細資訊，請參閱 [Node.js](https://github.com/Azure/azure-iot-gateway-sdk/blob/develop/samples/nodejs_simple_sample/)、[Java](https://github.com/Azure/azure-iot-gateway-sdk/tree/develop/samples/java_sample) 或 [.NET](https://github.com/Azure/azure-iot-gateway-sdk/tree/develop/samples/dotnet_binding_sample) 範例。
-    * **名稱**︰用來載入模組的載入器名稱。  
-    * **進入點**：包含模組之程式庫的路徑。 在 Linux 上，這是 .so 檔案，在 Windows 上，這是 .dll 檔案。 請注意，此進入點是要使用的載入器類型特定的。 例如，Node.js 載入器的進入點是 .js 檔案、Java 載入器的進入點是類別路徑 + 類別名稱，而 .NET 載入器的進入點是組件名稱 + 類別名稱。
+* **載入器**︰知道如何載入所需模組的載入器。 載入器是一個用來載入不同模組類型的擴充點。 我們提供可與以原生 C、Node.js、Java 和 .NET 撰寫的模組搭配使用的載入器。 Hello World 範例只會使用原生 C 載入器，因為此範例中的所有模組都是以 C 撰寫的動態程式庫。如需有關如何使用以不同語言撰寫之模組的詳細資訊，請參閱 [Node.js](https://github.com/Azure/azure-iot-gateway-sdk/blob/master/samples/nodejs_simple_sample/)、[Java](https://github.com/Azure/azure-iot-gateway-sdk/tree/master/samples/java_sample) 或 [.NET](https://github.com/Azure/azure-iot-gateway-sdk/tree/master/samples/dotnet_binding_sample) 範例。
+    * **名稱**︰用來載入模組的載入器名稱。
+    * **進入點**：包含模組之程式庫的路徑。 在 Linux 上，此程式庫是 .so 檔案，在 Windows 上，此程式庫是 .dll 檔案。 此進入點是要使用的載入器類型特定的。 Node.js 載入器的進入點是 .js 檔案。 Java 載入器的進入點是 classpath 加上類別名稱。 .NET 載入器的進入點是組件名稱加上類別名稱。
 
 * **args**：模組所需的任何組態資訊。
 
-下列程式碼所示範的 JSON 可用來在 Linux 上宣告適用於 Hello World 範例的所有模組。 模組是否需要引數取決於模組的設計。 在此範例中，Logger 模組所採用的引數是輸出檔的路徑，而 Hello World 模組不採用任何引數。
+下列程式碼所示範的 JSON 可用來在 Linux 上宣告適用於 Hello World 範例的所有模組。 模組是否需要引數取決於模組的設計。 在此範例中，Logger 模組所採用的引數是輸出檔的路徑，而 hello\_world 模組沒有任何引數。
 
-```
+```json
 "modules" :
 [
     {
@@ -94,17 +96,17 @@ JSON 設定檔包含要載入的模組清單以及模組之間的連結。
 ]
 ```
 
-JSON 檔案也包含將會傳遞給訊息代理程式之模組之間的連結。 連結有兩個屬性︰
+JSON 檔案也包含會傳遞給訊息代理程式之模組之間的連結。 連結有兩個屬性︰
 
 * **來源**：來自 `modules` 區段的模組名稱，或 "\*"。
 * **接收**：來自 `modules` 區段的模組名稱。
 
-每個連結都會定義訊息路由和方向。 來自模組 `source` 的訊息會傳遞給模組 `sink`。 `source` 可能會設定為 "\*"，代表來自任何模組的訊息都會由 `sink` 接收。
+每個連結都會定義訊息路由和方向。 來自模組 `source` 的訊息會傳遞給模組 `sink`。 `source` 可能會設定為 "\*"，代表來自任何模組的訊息都是由 `sink` 接收。
 
-下列程式碼所示範的 JSON 可用來在 Linux 上設定在 Hello World 範例所使用之模組間的連結。 模組 `hello_world` 所產生的每個訊息都會由模組 `logger` 取用。
+下列程式碼所示範的 JSON 可用來在 Linux 上設定在 hello\_world 範例所使用之模組間的連結。 `hello_world` 模組所產生的每則訊息都是由 `logger` 模組取用。
 
-```
-"links": 
+```json
+"links":
 [
     {
         "source": "hello_world",
@@ -113,10 +115,11 @@ JSON 檔案也包含將會傳遞給訊息代理程式之模組之間的連結。
 ]
 ```
 
-### <a name="hello-world-module-message-publishing"></a>Hello World 模組訊息發佈
-您可以在 ['hello_world.c'][lnk-helloworld-c] 檔案中找到 "hello world" 模組所使用的程式碼來發佈訊息。 下列程式碼片段所示範的修改過版本已移除其他註解和一些錯誤處理程式碼，以利閱讀︰
+### <a name="helloworld-module-message-publishing"></a>Hello\_world 模組訊息發佈
 
-```
+您可以在 ['hello_world.c'][lnk-helloworld-c] 檔案中找到 hello\_world 模組所使用的程式碼來發佈訊息。 下列程式碼片段所示範的修改過程式碼版本已新增註解並移除一些錯誤處理程式碼，以利閱讀︰
+
+```c
 int helloWorldThread(void *param)
 {
     // create data structures used in function.
@@ -162,10 +165,11 @@ int helloWorldThread(void *param)
 }
 ```
 
-### <a name="hello-world-module-message-processing"></a>Hello World 模組訊息處理
-Hello World 模組永遠不需要處理其他模組發佈至訊息代理程式的任何訊息。 這樣會將 Hello World 模組中的訊息回呼實作設為無作業函式。
+### <a name="helloworld-module-message-processing"></a>Hello\_world 模組訊息處理
 
-```
+Hello\_world 模組永遠不會處理其他模組發佈至訊息代理程式的訊息。 因此，hello\_world 模組中的訊息回呼實作為無作業函式。
+
+```c
 static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
 {
     /* No action, HelloWorld is not interested in any messages. */
@@ -173,11 +177,12 @@ static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messag
 ```
 
 ### <a name="logger-module-message-publishing-and-processing"></a>Logger 模組訊息發佈和處理
+
 Logger 模組會接收來自訊息代理程式的訊息，並將它們寫入檔案。 此模組永遠不會發佈任何訊息。 因此，Logger 模組的程式碼永遠不會呼叫 **Broker_Publish** 函式。
 
-[logger.c][lnk-logger-c] 檔案中的 **Logger_Recieve** 函式是訊息代理程式所叫用的回呼，以將訊息傳遞到 Logger 模組。 下列程式碼片段所示範的修改過版本已移除其他註解和一些錯誤處理程式碼，以利閱讀︰
+[logger.c][lnk-logger-c] 檔案中的 **Logger_Recieve** 函式是訊息代理程式所叫用的回呼，以將訊息傳遞到 Logger 模組。 下列程式碼片段所示範的修改過版本已新增註解並移除一些錯誤處理程式碼，以利閱讀︰
 
-```
+```c
 static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
 {
 
@@ -217,7 +222,8 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 ```
 
 ## <a name="next-steps"></a>後續步驟
-若要了解如何使用 IoT 閘道 SDK，請參閱下列項目：
+
+若要了解如何使用 IoT 閘道 SDK，請參閱下列文章：
 
 * [IoT 閘道 SDK – 搭配使用模擬裝置與 Linux 來傳送裝置到雲端訊息][lnk-gateway-simulated]。
 * GitHub 上的 [Azure IoT 閘道 SDK][lnk-gateway-sdk]。
@@ -228,7 +234,3 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 [lnk-logger-c]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/modules/logger/src/logger.c
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk/
 [lnk-gateway-simulated]: ../articles/iot-hub/iot-hub-linux-gateway-sdk-simulated-device.md
-
-<!--HONumber=Dec16_HO1-->
-
-

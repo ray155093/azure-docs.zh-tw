@@ -15,14 +15,15 @@ ms.workload: compute
 ms.date: 11/23/2016
 ms.author: piotrci
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 6dcadbfb99d4d111ab9ddde9d74db65b5542a8f5
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 20f9e9b31498f20c2a27f0d82d434abad73d2454
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="publish-applications-to-individual-users-in-an-azure-remoteapp-collection-preview"></a>在 Azure RemoteApp 集合中發佈應用程式給個別使用者 (預覽)
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -102,10 +103,5 @@ AclLevel 屬性的可能值如下：
 
 ## <a name="havent-had-a-chance-to-try-the-preview-feature"></a>還沒有機會試用預覽功能嗎？
 如果您還未參與使用預覽功能，請使用本 [問卷](http://www.instant.ly/s/AY83p) 來要求存取權。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

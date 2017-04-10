@@ -9,23 +9,25 @@ manager: jhubbard
 editor: 
 ms.assetid: aeb8c4c3-6ae2-45f7-b2c3-fa13e3752eed
 ms.service: sql-database
-ms.custom: quick start
+ms.custom: quick start create
 ms.workload: data-management
 ms.tgt_pltfrm: portal
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 03/13/2017
+ms.date: 04/03/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: be5839e04fae457b889db11dffe56f31afe723a5
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: c0c6cdf8aa48568b7a4468dd87b2896f94fc1bf6
+ms.lasthandoff: 04/04/2017
 
 
 ---
 # <a name="create-an-azure-sql-database-in-the-azure-portal"></a>在 Azure 入口網站中建立 Azure SQL Database
 
 本快速入門教學課程逐步解說如何在 Azure 中建立 SQL Database。  Azure SQL Database 是可讓您在雲端中執行及調整高可用性 SQL Server 資料庫的「資料庫即服務」供應項目。  本快速入門會顯示如何使用 Azure 入口網站建立新的 SQL Database 以開始使用。
+
+如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/) 。
 
 ## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
 
@@ -43,10 +45,10 @@ Azure SQL Database 會使用一組定義的[計算和儲存體資源](sql-databa
 
     ![建立資料庫-1](./media/sql-database-get-started/create-database-1.png)
 
-3. 使用下列資訊填寫 SQL Database 表單，如上圖所示︰ 
-   - 資料庫名稱︰使用 **mySampleDatabase**
-   - 資源群組︰使用 **myResourceGroup**
-   - 來源︰選取 [範例 (AdventureWorksLT)]
+3. 使用下列資訊填寫 SQL Database 表單，如上圖所示︰     
+   - 資料庫名稱︰**mySampleDatabase**
+   - 資源群組︰**myResourceGroup**
+   - 來源︰**範例 (AdventureWorksLT)**
 
 4. 按一下 [伺服器] 為您的新資料庫建立及設定新的伺服器。 填寫指定全域唯一伺服器名稱的**新伺服器表單**提供伺服器系統管理員登入的名稱，然後指定您所選擇的密碼。 
 
@@ -82,7 +84,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 
 4. 依序按一下 [確定] 和 [X] 以關閉 [防火牆設定] 頁面。
 
-您現在可以使用 SQL Server Management Studio 或您選擇的其他工具來連線至資料庫及其伺服器。
+您現在可以利用 SQL Server Management Studio 或您選擇的其他工具，使用先前建立的伺服器管理帳戶從此 IP 位址連線至資料庫及其伺服器。
 
 ## <a name="query-the-sql-database"></a>查詢 SQL Database
 
@@ -103,7 +105,7 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 5. 經過驗證後，在查詢編輯器窗格中輸入下列查詢。
 
    ```
-   SELECT pc.Name as CategoryName, p.name as ProductName
+   SELECT TOP 20 pc.Name as CategoryName, p.name as ProductName
    FROM SalesLT.ProductCategory pc
    JOIN SalesLT.Product p
    ON pc.productcategoryid = p.productcategoryid;

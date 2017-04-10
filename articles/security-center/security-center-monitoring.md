@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/30/2017
+ms.date: 03/30/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 3cba38d95535ff5ed3cd62aac5c0aa04a310f48c
-ms.openlocfilehash: ae263615d5fa262eb8a8ed2e5461d92bec503f1d
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: f41fbee742daf2107b57caa528e53537018c88c6
+ms.openlocfilehash: d796566676e13b312832dd543f52d3475d877ef8
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -34,30 +34,31 @@ ms.lasthandoff: 01/31/2017
 
 您可在 [資源安全性健康情況] 圖格上監視資源的安全性狀態。 在下列範例中，您會看到一些需要注意的高度或中度嚴重性問題。 已啟用的安全性原則將會影響受監督的控制項類型。
 
-![資源安全性健康情況圖格](./media/security-center-monitoring/security-center-monitoring-fig1-new4-2017.png)
+![資源安全性健康情況圖格](./media/security-center-monitoring/security-center-monitoring-fig1-new001-2017.png)
 
 如果資訊安全中心找出必須處理的弱點 (例如遺失了安全性更新的虛擬機器或沒有[網路安全性群組](/virtual-network/virtual-networks-nsg.md)的子網路)，將會在這裡列出。
 
-### <a name="monitor-virtual-machines"></a>監視虛擬機器
-按一下 [資源安全性健康情況] 圖格中的 [虛擬機器] 時，將會開啟 [虛擬機器] 刀鋒視窗，其中會顯示有關訓練的更多詳細資訊、預防步驟，以及受資訊安全中心監視的所有虛擬機器清單，如下列螢幕擷取畫面所示。
+### <a name="monitor-compute"></a>監視計算
+當您按一下 [資源安全性健康狀態] 圖格的 [計算] 時，開啟的 [計算] 刀鋒視窗會顯示三個索引標籤︰
 
-![遺失的系統更新 (依虛擬機器)](./media/security-center-monitoring/security-center-monitoring-fig2-ga.png)
+- **概觀**︰監視和虛擬機器建議。
+- **虛擬機器**︰列出所有虛擬機器及其目前的安全性狀態。
+- **雲端服務**︰資訊安全中心監視的所有 Web 和背景工作角色清單。
 
-* 登入步驟
-* 虛擬機器建議
-* 虛擬機器
+![遺失的系統更新 (依虛擬機器)](./media/security-center-monitoring/security-center-monitoring-fig1-new002-2017.png)
 
-在每個區段中，您可以選取一個個別的選項，以查看有關解決該問題之建議步驟的更多詳細資訊。 下列各節會更加詳細地說明這方面的資訊。
+在您可有多個區段的每個索引標籤中，以及在每個區段中，您可以選取一個個別的選項，以查看有關解決該特定問題之建議步驟的更多詳細資訊。 
 
 #### <a name="monitoring-recommendations"></a>監視建議
-本節顯示已初始化進行資料收集的虛擬機器總數和其目前狀態。 所有虛擬機器都初始化資料收集後，它們就可以接收資訊安全中心的安全性原則。 當您按一下此項目時，[資料收集安裝狀態] 刀鋒視窗會開啟，您會在 [安裝狀態] 資料行中看到虛擬機器名稱和資料收集的目前狀態，如下列螢幕擷取畫面所示。
+本節顯示已初始化進行資料收集的虛擬機器總數和其目前狀態。 所有虛擬機器都初始化資料收集後，它們就可以接收資訊安全中心的安全性原則。 當您按一下此項目時，[VM 代理程式遺失或沒有回應] 刀鋒視窗隨即開啟。 
 
-![虛擬機器的初始化狀態](./media/security-center-monitoring/security-center-monitoring-fig3-ga.png)
+![遺失的系統更新 (依虛擬機器)](./media/security-center-monitoring/security-center-monitoring-fig1-new003-2017.png)
+
 
 #### <a name="virtual-machine-recommendations"></a>虛擬機器建議
 本節提供一組 Azure 資訊安全中心所監視之[每個虛擬機器的建議](security-center-virtual-machine-recommendations.md)。 第一個資料行會列出建議。 第二個資料行則顯示受該項建議影響的虛擬機器總數。 第三個資料行顯示問題的嚴重性，如下列螢幕擷取畫面所示。
 
-![虛擬機器建議](./media/security-center-monitoring/security-center-monitoring-fig4-ga.png)
+![虛擬機器建議](./media/security-center-monitoring/security-center-monitoring-fig1-new004-2017.png)
 
 > [!NOTE]
 > 只有至少擁有一個公用端點的虛擬機器會顯示在 [網路拓撲] 清單的 [網路健康情況] 刀鋒視窗中。
@@ -94,7 +95,7 @@ ms.lasthandoff: 01/31/2017
 #### <a name="virtual-machines-section"></a>虛擬機器區段
 虛擬機器區段提供所有虛擬機器和建議的概觀。 每個資料行代表一組建議，如下列螢幕擷取畫面所示：
 
-![所有虛擬機器和建議的概觀](./media/security-center-monitoring/security-center-monitoring-fig7-ga.png)
+![所有虛擬機器和建議的概觀](./media/security-center-monitoring/security-center-monitoring-fig1-new005-2017.png)
 
 每個建議底下出現的圖示，可協助您快速識別需要關注的虛擬機器以及建議所屬的類型。
 
@@ -104,12 +105,12 @@ ms.lasthandoff: 01/31/2017
 
 此刀鋒視窗中提供虛擬機器的安全性詳細資料。 您可以在此刀鋒視窗底部看到建議的動作和每個問題的嚴重性。
 
-#### <a name="cloud-services-preview-section"></a>雲端服務 (預覽) 區段
-雲端服務的健康情況狀態會包含在虛擬機器的 [安全性健康情況] 圖格中。 若作業系統版本過時，便會建立建議，如下列螢幕擷取畫面所示︰
+#### <a name="cloud-services-section"></a>雲端服務區段
+對於雲端服務，若作業系統版本過時，便會建立建議，如下列螢幕擷取畫面所示︰
 
-![雲端服務的健康情況狀態](./media/security-center-monitoring/security-center-monitoring-fig8-new2.png)
+![雲端服務的健康情況狀態](./media/security-center-monitoring/security-center-monitoring-fig1-new006-2017.png)
 
-您必須依照建議中的步驟來更新作業系統版本。 例如，如果您按一下 WebRole1 (使用自動部署至 IIS 的 Web 應用程式執行 Windows Server) 或 WorkerRole1 (使用自動部署至 IIS 的 Web 應用程式執行 Windows Server) 資料列中的紅色警示，將會開啟新的刀鋒視窗並顯示這項建議的相關詳細資料，如下列螢幕擷取畫面所示︰
+在您具有建議的情況下 (這不是前一個範例的案例)，您需要依照建議步驟來更新作業系統版本。 有可用的更新時，您會收到警示 (紅色或橙色 - 取決於問題的嚴重性)。 當您按一下 WebRole1 (使用自動部署至 IIS 的 Web 應用程式執行 Windows Server) 或 WorkerRole1 (使用自動部署至 IIS 的 Web 應用程式執行 Windows Server) 資料列中的這個警示，將會開啟新的刀鋒視窗並顯示這項建議的相關詳細資料，如下列螢幕擷取畫面所示︰
 
 ![雲端服務詳細資料](./media/security-center-monitoring/security-center-monitoring-fig8-new3.png)
 

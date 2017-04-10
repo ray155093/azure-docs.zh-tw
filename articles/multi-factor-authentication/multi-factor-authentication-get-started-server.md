@@ -13,12 +13,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/26/2017
+ms.date: 03/26/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: c5a26a17ab50993f8b57c8868b02541251de1cb1
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: b769f785f67c24b99156dcfc21a42f661cc9da27
+ms.lasthandoff: 03/31/2017
 
 ---
 
@@ -121,13 +121,13 @@ ms.lasthandoff: 03/06/2017
 ## <a name="send-users-an-email"></a>傳送電子郵件給使用者
 現在您已將使用者匯入 MFA Server，傳送電子郵件，以通知他們已為其註冊雙步驟驗證。
 
-要傳送什麼電子郵件應取決於您是如何為使用者設定雙步驟驗證。 比方說，假設您可以從公司目錄匯入電話號碼，則電子郵件中應該包含預設電話號碼，讓使用者知道應該會有什麼。 如果您未匯入電話號碼，或使用者將使用行動應用程式，請對他們傳送可引導他們透過 Azure Multi-factor Authentication 使用者入口網站的超連結來完成帳戶註冊的電子郵件。
+要傳送什麼電子郵件應取決於您是如何為使用者設定雙步驟驗證。 比方說，假設您可以從公司目錄匯入電話號碼，則電子郵件中應該包含預設電話號碼，讓使用者知道應該會有什麼。 如果您未匯入電話號碼，或使用者將使用行動應用程式，請對他們傳送可引導他們完成帳戶註冊的電子郵件。 在電子郵件中包含 Azure Multi-factor Authentication 使用者入口網站的超連結。
 
 電子郵件的內容也會隨著已為使用者設定的驗證方法而不同 (電話、簡訊或行動應用程式)。  例如，如果使用者驗證時需要使用 PIN，電子郵件會告訴他們已設定的初始 PIN。  使用者必須在第一次驗證時變更他們的 PIN。
 
 
 ### <a name="configure-email-and-email-templates"></a>設定電子郵件和電子郵件範本
-按一下左邊的電子郵件圖示，即可設定用來傳送這些電子郵件的設定。 這裡可讓您輸入郵件伺服器的 SMTP 資訊，並透過核取 [傳送電子郵件給使用者] 核取方塊來傳送電子郵件。
+按一下左邊的電子郵件圖示，即可設定用來傳送這些電子郵件的設定。 此頁面可讓您輸入郵件伺服器的 SMTP 資訊，並透過核取 [傳送電子郵件給使用者] 核取方塊來傳送電子郵件。
 
 ![電子郵件設定](./media/multi-factor-authentication-get-started-server/email1.png)
 
@@ -155,11 +155,7 @@ ms.lasthandoff: 03/06/2017
 
 - 針對使用者自助安裝及設定[使用者入口網站](multi-factor-authentication-get-started-portal.md)。
 
-- 搭配 [Active Directory Federation Service](multi-factor-authentication-get-started-adfs.md) 來設定 Multi-Factor Authentication。
-
-- 搭配 [RADIUS 驗證](multi-factor-authentication-get-started-server-radius.md)來安裝和設定 Azure MFA Server。 使用 RADIUS 可讓您整合各種協力廠商系統與 Azure MFA Server。 
-
-- 搭配 [Windows 驗證](multi-factor-authentication-get-started-server-windows.md)來安裝和設定 Azure MFA Server。
+- 搭配 [Active Directory Federation Service](multi-factor-authentication-get-started-adfs.md)、[RADIUS 驗證](multi-factor-authentication-get-started-server-radius.md)或 [LDAP 驗證](multi-factor-authentication-get-started-server-ldap.md)來安裝和設定 Azure MFA Server。
 
 - 安裝和設定[使用 RADIUS 的遠端桌面閘道和 Azure Multi-Factor Authentication Server](multi-factor-authentication-get-started-server-rdg.md)。 
 

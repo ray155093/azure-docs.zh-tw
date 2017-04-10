@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/03/2017
+ms.date: 03/28/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 682ebb212f9056f3704a6de5dde8d3a35681108f
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: a70b82770a13231ee59ac768deb45b232f95687d
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -44,7 +44,7 @@ ms.lasthandoff: 03/18/2017
 ### <a name="do-you-recommend-a-specific-orchestrator-in-azure-container-service"></a>是否建議在 Azure Container Service 中使用特定 Orchestrator？ 
 我們一般不建議使用特定 Orchestrator。 如果您有使用其中一種受支援 Orchestrator 的經驗，則可以在 Azure Container Service 中套用該經驗。 不過，資料趨勢表明，DC/OS 已在生產環境中證明適用於巨量資料和 IoT 工作負載，Kubernetes 適合用於雲端原生的工作負載，而 Docker Swarm 則眾所皆知可與 Docker 工具整合且容易上手。
 
-根據您的情況，您也可以使用其他 Azure 服務建置並管理自訂的容器解決方案。 這些服務包括[虛擬機器](../virtual-machines/virtual-machines-linux-azure-overview.md)、[Service Fabric](../service-fabric/service-fabric-overview.md)、[Web Apps](../app-service-web/app-service-web-overview.md) 和 [Batch](../batch/batch-technical-overview.md)。  
+根據您的情況，您也可以使用其他 Azure 服務建置並管理自訂的容器解決方案。 這些服務包括[虛擬機器](../virtual-machines/linux/overview.md)、[Service Fabric](../service-fabric/service-fabric-overview.md)、[Web Apps](../app-service-web/app-service-web-overview.md) 和 [Batch](../batch/batch-technical-overview.md)。  
 
 ### <a name="what-is-the-difference-between-azure-container-service-and-acs-engine"></a>Azure Container Service 和 ACS 引擎有何不同？ 
 Azure Container Service 是具有 SLA 保證的 Azure 服務，其功能可在 Azure 入口網站、Azure 命令列工具和 Azure API 中使用。 此服務可讓您快速實作和管理執行標準容器協調流程工具的叢集，但設定選擇相對較少。 
@@ -55,7 +55,7 @@ Azure Container Service 是具有 SLA 保證的 Azure 服務，其功能可在 A
 
 ### <a name="how-do-i-create-ssh-keys-for-my-cluster"></a>如何為叢集建立 SSH 金鑰？
 
-您可以在作業系統上使用標準工具來建立 SSH RSA 公用和私用金鑰組，以針對叢集的 Linux 虛擬機器進行驗證。 如需相關步驟，請參閱 [OS X 及 Linux](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md) 或 [Windows](../virtual-machines/virtual-machines-linux-ssh-from-windows.md) 指引。 
+您可以在作業系統上使用標準工具來建立 SSH RSA 公用和私用金鑰組，以針對叢集的 Linux 虛擬機器進行驗證。 如需相關步驟，請參閱 [OS X 及 Linux](../virtual-machines/linux/mac-create-ssh-keys.md) 或 [Windows](../virtual-machines/linux/ssh-from-windows.md) 指引。 
 
 如果您使用 [Azure CLI 2.0 命令](container-service-create-acs-cluster-cli.md)部署容器服務叢集，系統會自動為叢集產生 SSH 金鑰。
 
@@ -66,6 +66,12 @@ Azure Container Service 是具有 SLA 保證的 Azure 服務，其功能可在 A
 
 如果您使用 [Azure CLI 2.0 命令](container-service-create-acs-cluster-cli.md)部署 Kubernetes 叢集，系統會自動為叢集產生服務主體認證。
 
+### <a name="how-large-a-cluster-can-i-create"></a>可以建立多大的叢集？
+您可以建立含有 1、3 或 5 個主要節點的叢集。 您最多可以選擇 100 個代理程式節點。
+
+> [!IMPORTANT]
+> 如需較大的叢集且視您針對節點選擇的 VM 大小而定，您可能需要增加訂用帳戶的核心配額。 若要要求增加配額，可免費[開啟線上客戶支援要求](../azure-supportability/how-to-create-azure-support-request.md)。 如果您使用 [Azure 免費帳戶](https://azure.microsoft.com/free/)，您只能使用有限數目的 Azure 計算核心。
+> 
 
 ### <a name="how-do-i-increase-the-number-of-masters-after-a-cluster-is-created"></a>如何在建立叢集後增加主要主機的數目？ 
 叢集建立之後，主要主機的數目就已固定，且無法變更。 在建立叢集時，您最好選取多個主要節點，以便享有高可用性。

@@ -1,5 +1,5 @@
 ---
-title: "適用於 Windows 服務和背景工作角色的 Azure Application Insights | Microsoft Docs"
+title: "適用於 Windows 伺服器和背景工作角色的 Azure Application Insights | Microsoft Docs"
 description: "將 Application Insights SDK 手動新增至您的 ASP.NET 應用程式，以分析使用情況、可用性和效能。"
 services: application-insights
 documentationcenter: .net
@@ -14,14 +14,14 @@ ms.topic: get-started-article
 ms.date: 11/01/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: df23a55197d15946f16868d14c6db08dcba4df19
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 97d750035e79d4780738e660d05e1a41085d51f1
+ms.lasthandoff: 03/31/2017
 
 
 ---
-# <a name="manually-configure-application-insights-for-aspnet-4-applications"></a>為 ASP.NET 4 應用程式手動設定 Application Insights
-[Application Insights](app-insights-overview.md) 是一項可延伸的工具，可供 Web 開發人員監視即時應用程式的效能和使用情形。 您可以手動進行設定，以監視 Windows 服務、背景工作角色和其他 ASP.NET 應用程式。 對於 Web 應用程式，Visual Studio 提供手動設定作為 [自動設定](app-insights-asp-net.md) 的替代方法。
+# <a name="manually-configure-application-insights-for-aspnet-applications"></a>為 ASP.NET 應用程式手動設定 Application Insights
+[Application Insights](app-insights-overview.md) 是一項可延伸的工具，可供 Web 開發人員監視即時應用程式的效能和使用情形。 您可以手動進行設定，以監視 Windows 伺服器、背景工作角色和其他 ASP.NET 應用程式。 對於 Web 應用程式，Visual Studio 提供手動設定作為 [自動設定](app-insights-asp-net.md) 的替代方法。
 
 ![範例效能監視圖表](./media/app-insights-windows-services/10-perf.png)
 
@@ -47,13 +47,13 @@ Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務�
 
 您剛才所完成用來建立新資源的步驟是開始監視任何應用程式的好方法。 現在您可以將資料傳送給它。
 
-## <a name="sdk"></a>2.在應用程式中安裝 SDK
-安裝和設定 Application Insights SDK 會視您正在使用的平台而有所不同。 對於 ASP.NET 應用程式而言，這非常輕鬆。
+## <a name="sdk"></a>2.在您的應用程式中安裝 Application Insights 套件
+安裝和設定 Application Insights 套件會因您所正在使用的平台而有所不同。 對於 ASP.NET 應用程式而言，這非常輕鬆。
 
-1. 在 Visual Studio 中，編輯 Web 應用程式專案的 NuGet 封裝。
+1. 在 Visual Studio 中，編輯 Web 應用程式專案的 NuGet 套件。
    
-    ![以滑鼠右鍵按一下專案，然後選取 [管理 NuGet 封裝]](./media/app-insights-windows-services/03-nuget.png)
-2. 安裝 Web Apps 適用的 Application Insights SDK。
+    ![以滑鼠右鍵按一下專案，然後選取 [管理 NuGet 套件]](./media/app-insights-windows-services/03-nuget.png)
+2. 針對 Windows Server 應用程式安裝 Application Insights 套件。
    
     ![搜尋「Application Insights」](./media/app-insights-windows-services/04-ai-nuget.png)
    
@@ -61,10 +61,10 @@ Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務�
    
     是。 如果您只想要使用 API 來傳送您自己的遙測，請選擇核心 API (Microsoft.ApplicationInsights)。 Windows Server 封裝會自動包含核心 API 及其他封裝，例如效能計數器收集和相依性監視。 
 
-#### <a name="to-upgrade-to-future-sdk-versions"></a>若要升級至未來的 SDK 版本
+#### <a name="to-upgrade-to-future-package-versions"></a>升級至未來的套件版本
 我們隨時會發行新版的 SDK。
 
-若要升級至 [新版的 SDK](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases/)，請再次開啟 NuGet 封裝管理員，並篩選出已安裝的封裝。 選取 **Microsoft.ApplicationInsights.Web**，然後選擇 [升級]。
+若要升級至[新版的套件](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases/)，請再次開啟 NuGet 套件管理員，並篩選出已安裝的套件。 選取 **Microsoft.ApplicationInsights.WindowsServer**，然後選擇 [升級]。
 
 如果您已對 ApplicationInsights.config 進行任何的自訂，請在升級前儲存複本，並在升級後合併您的變更到新版本中。
 

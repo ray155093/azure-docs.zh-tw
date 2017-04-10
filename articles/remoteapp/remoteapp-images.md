@@ -14,14 +14,15 @@ ms.topic: get-started-article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: fcc53e4073a6957fae263cfb5d38023ed9710d21
-ms.openlocfilehash: 21ae6458d1d65698c0c8fc7081696cb7406a918c
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 348306795fd3c8275b21e4ec6dceae408916bf72
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="what-is-in-the-azure-remoteapp-template-images"></a>Azure RemoteApp 範本映像中有什麼內容？
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -111,10 +112,5 @@ Office 365 ProPlus 應用程式的完整功能只適用於擁有 Office 365 ProP
 > **法律資訊：**此映像不包含 Microsoft Office 授權，且「無法用於生產環境」。 Office 2013 Professional Plus 映像僅作為試用之用。 如果您想要在 Azure RemoteApp 中使用 Office 應用程式作為生產之用，您必須使用 Office 365 ProPlus 映像。 如需授權 Office 的詳細資訊，請參閱 [使用 Office 365 與 Azure RemoteApp 搭配](remoteapp-o365.md)
 > 
 > 
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

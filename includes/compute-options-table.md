@@ -6,9 +6,5 @@
 | [虛擬機器][lnk_vm] |具備完整作業系統控制能力的自訂 Windows 和 Linux VM |
 
 [lnk_app]: ../articles/app-service-web/app-service-web-overview.md
-[lnk_vm]: ../articles/virtual-machines/virtual-machines-windows-about.md
+[lnk_vm]:../articles/virtual-machines/windows/about.md
 [lnk_cloud]: ../articles/cloud-services/cloud-services-choose-me.md
-
-<!--HONumber=Nov16_HO2-->
-
-

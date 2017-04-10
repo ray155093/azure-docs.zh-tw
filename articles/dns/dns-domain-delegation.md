@@ -14,9 +14,9 @@ ms.workload: infrastructure-services
 ms.date: 06/30/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: dd020bf625510eb90af2e1ad19c155831abd7e75
-ms.openlocfilehash: 5145418159aa457be6d1fc9ed5bb1a43a955791c
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: 1a662d23c7b8eef68e0f182792699210d2b80bac
+ms.lasthandoff: 04/04/2017
 
 ---
 
@@ -28,11 +28,11 @@ Azure DNS 可讓您裝載 DNS 區域，並在 Azure 中管理網域的 DNS 記�
 
 ### <a name="domains-and-zones"></a>網域和區域
 
-網域名稱系統是網域階層。 階層從「根」網域開始，其名稱只是 '**.**'。  下面接著最上層網域，例如 'com'、'net'、'org'、'uk' 或 'jp'。  再往下是第二層網域，例如 'org.uk' 或 'co.jp'。  依此類推。 DNS 階層中的網域裝載於個別的 DNS 區域。 這些區域遍布全球，由世界各地的 DNS 名稱伺服器所裝載。
+網域名稱系統是網域階層。 階層從「根」網域開始，其名稱只是 '**.**'。  下面接著最上層網域，例如 'com'、'net'、'org'、'uk' 或 'jp'。  最上層網域下面是第二層網域，例如 'org.uk' 或 'co.jp'。  依此類推。 DNS 階層中的網域裝載於個別的 DNS 區域。 這些區域遍布全球，由世界各地的 DNS 名稱伺服器所裝載。
 
 **DNS 區域**
 
-網域是網域名稱系統中的唯一名稱，例如 'contoso.com'。 DNS 區域用來裝載特定網域的 DNS 記錄。 例如，網域 'contoso.com' 可能包含許多的 DNS 記錄，例如 'mail.contoso.com' (用於郵件伺服器) 和 'www.contoso.com' (用於網站)。
+網域是網域名稱系統中的唯一名稱，例如 'contoso.com'。 DNS 區域用來裝載特定網域的 DNS 記錄。 例如，網域 'contoso.com' 可能包含數筆 DNS 記錄，例如 'mail.contoso.com' (用於郵件伺服器) 和 'www.contoso.com' (用於網站)。
 
 **網域註冊機構**
 
@@ -55,17 +55,18 @@ Azure DNS 可讓您裝載 DNS 區域，並在 Azure 中管理網域的 DNS 記�
 
 電腦或行動裝置中的 DNS 用戶端，通常會呼叫遞迴 DNS 伺服器，以執行用戶端應用程式需要的任何 DNS 查詢。
 
-當遞迴 DNS 伺服器收到 DNS 記錄的查詢時，例如 'www.contoso.com'，就必須先找到裝載 'contoso.com' 網域的區域的名稱伺服器。 在作法上，它會從根名稱伺服器開始，尋找裝載 'com' 區域的名稱伺服器。 然後，查詢 'com' 名稱伺服器，尋找裝載 'contoso.com' 區域的名稱伺服器。  最後，就能夠向這些名稱伺服器查詢 'www.contoso.com'。
+當遞迴 DNS 伺服器收到 DNS 記錄的查詢時，例如 'www.contoso.com'，就必須先找到裝載 'contoso.com' 網域的區域的名稱伺服器。 若要尋找名稱伺服器，它會從根名稱伺服器開始，尋找裝載 'com' 區域的名稱伺服器。 然後，查詢 'com' 名稱伺服器，尋找裝載 'contoso.com' 區域的名稱伺服器。  最後，就能夠向這些名稱伺服器查詢 'www.contoso.com'。
 
-這稱為 DNS 名稱解析。 嚴格來說，DNS 解析還有其他步驟，例如追蹤 CNAME，但這對於了解 DNS 委派的運作方式並不重要。
+此程序稱為 DNS 名稱解析。 嚴格來說，DNS 解析還有其他步驟，例如追蹤 CNAME，但這對於了解 DNS 委派的運作方式並不重要。
 
 上層區域如何「指向」子區域的名稱伺服器？ 作法是使用一種特殊的 DNS 記錄，稱為 NS 記錄 (NS 代表「名稱伺服器」)。 例如，根區域包含 'com' 的 NS 記錄，並且會顯示 'com' 區域的名稱伺服器。 接著，'com' 區域包含 'contoso.com' 的 NS 記錄，其中顯示 'contoso.com' 區域的名稱伺服器。 在上層區域中設定子區域的 NS 記錄，稱為委派網域。
 
 ![Dns-nameserver](./media/dns-domain-delegation/image1.png)
 
-每個委派實際上有兩份 NS 記錄：一份在上層區域中指向子區域，另一份在子區域本身。 'contoso.com' 區域包含 'contoso.com' 的 NS 記錄 (除了 'com' 中的 NS 記錄之外)。 這些稱為授權 NS 記錄，位於子區域的頂點。
+每個委派實際上有兩份 NS 記錄：一份在上層區域中指向子區域，另一份在子區域本身。 'contoso.com' 區域包含 'contoso.com' 的 NS 記錄 (除了 'com' 中的 NS 記錄之外)。 這些記錄稱為授權 NS 記錄，位於子區域的頂點。
 
 ## <a name="delegating-a-domain-to-azure-dns"></a>將網域委派給 Azure DNS
+
 一旦您在 Azure DNS 中建立 DNS 區域，您需要在上層區域中設定 NS 記錄，使 Azure DNS 成為您的區域的名稱解析授權來源。 如果是從註冊機構購買網域，註冊機構會提供選項來設定這些 NS 記錄。
 
 > [!NOTE]
@@ -82,7 +83,7 @@ Azure DNS 可讓您裝載 DNS 區域，並在 Azure 中管理網域的 DNS 記�
 
 Azure DNS 會自動在包含指派的名稱伺服器的區域中，建立權威 NS 記錄。  您只需要擷取這些記錄，就能透過 Azure PowerShell 或 Azure CLI 查看名稱伺服器的名稱。
 
-使用 Azure PowerShell，就能如下所示擷取授權 NS 記錄。 請注意，記錄名稱 "@" 是用來指出區域頂點的記錄。
+使用 Azure PowerShell，就能如下所示擷取授權 NS 記錄。 記錄名稱 "@" 是用來指出區域頂點的記錄。
 
 ```powershell
 $zone = Get-AzureRmDnsZone -Name contoso.net -ResourceGroupName MyResourceGroup
@@ -132,7 +133,7 @@ info:    network dns record-set show command OK
 
 每個註冊機構都有自己的 DNS 管理工具，可變更網域的名稱伺服器記錄。 在註冊機構的 DNS 管理頁面中，請編輯 NS 記錄，並將 NS 記錄取代為 Azure DNS 建立的記錄。
 
-委派網域給 Azure DNS 時，您必須使用 Azure DNS 提供的名稱伺服器名稱。  不論您的網域名稱為何，您應一律將名稱伺服器的 4 個名稱全部用上。  網域委派不需要名稱伺服器名稱，即可使用相同的最上層網域做為您的網域。
+委派網域給 Azure DNS 時，您必須使用 Azure DNS 提供的名稱伺服器名稱。 不論您的網域名稱為何，建議將名稱伺服器的 4 個名稱全部用上。  網域委派不需要名稱伺服器名稱，即可使用相同的最上層網域做為您的網域。
 
 您不應該使用「黏附記錄」指向 Azure DNS 名稱伺服器 IP 位址，因為這些 IP 位址日後可能變更。 Azure DNS 目前不支援使用您區域中名稱伺服器名稱的委派 (有時稱為「虛名名稱伺服器」)。
 
@@ -140,7 +141,7 @@ info:    network dns record-set show command OK
 
 完成委派之後，您可以使用 'nslookup' 之類的工具來查詢您區域的 SOA 記錄 (這也是在建立區域時自動建立)，以確認名稱解析正常運作。
 
-請注意，您不必指定 Azure DNS 名稱伺服器，因為，如果已正確設定委派，正常的 DNS 解析程序會自動尋找名稱伺服器。
+您不必指定 Azure DNS 名稱伺服器，如果已正確設定委派，正常的 DNS 解析程序會自動尋找名稱伺服器。
 
 ```
 nslookup -type=SOA contoso.com
@@ -190,7 +191,7 @@ $child_ns_recordset = Get-AzureRmDnsRecordSet -Zone $child -Name "@" -RecordType
 
 #### <a name="step-3-delegate-the-child-zone"></a>步驟 3. 委派子區域
 
-在上層區域中建立對應的 NS 記錄集，才能完成委派。 請注意，上層區域中的記錄集名稱會符合子區域名稱，在此案例中為 "partners"。
+在上層區域中建立對應的 NS 記錄集，才能完成委派。 上層區域中的記錄集名稱會符合子區域名稱，在此案例中為 "partners"。
 
 ```powershell
 $parent_ns_recordset = New-AzureRmDnsRecordSet -Zone $parent -Name "partners" -RecordType NS -Ttl 3600

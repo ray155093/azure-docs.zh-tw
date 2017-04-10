@@ -18,9 +18,9 @@ ms.date: 11/14/2016
 ms.author: stevelas
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: dd504c95e22d322707c55818815b09d8a36c7ca4
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 4e4a4f4e299dc2747eb48bbd2e064cd80783211c
+ms.openlocfilehash: 0d3b09fb20f748fe70049c505625d813190e94b0
+ms.lasthandoff: 04/04/2017
 
 ---
 # <a name="introduction-to-private-docker-container-registries"></a>私人 Docker 容器登錄的簡介
@@ -48,9 +48,7 @@ Azure 容器登錄是可管理的 [Docker Registry](https://docs.docker.com/regi
 
 
 ## <a name="key-concepts"></a>重要概念
-* **登錄庫** - 在您的 Azure 訂用帳戶中建立一或多個容器登錄庫。 每個登錄後有一個在相同位置中的標準 Azure [儲存體帳戶](../storage/storage-introduction.md)。 在與您的部署相同的 Azure 位置建立登錄，以利用容器映像接近網路的本機儲存體。
-
-  登錄庫根據訂用帳戶的 [Azure Active Directory 租用戶](../active-directory/active-directory-howto-tenant.md)以根網域命名。 例如，如果您在 Contoso 網域中有組織帳戶，完整的登錄庫名稱是 `myregistry-contoso.azurecr.io`。
+* **登錄庫** - 在您的 Azure 訂用帳戶中建立一或多個容器登錄庫。 每個登錄後有一個在相同位置中的標準 Azure [儲存體帳戶](../storage/storage-introduction.md)。 在與您的部署相同的 Azure 位置建立登錄，以利用容器映像接近網路的本機儲存體。 完整的登錄名稱具有 `myregistry.azurecr.io` 形式。
 
   使用 Azure Active Directory 支持的[服務主體](../active-directory/active-directory-application-objects.md)或提供的管理員帳戶，[控制](container-registry-authentication.md)對容器登錄庫的存取。 執行標準 `docker login` 命令驗證登錄庫。
 
