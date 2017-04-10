@@ -19,6 +19,7 @@ ms.author: chrande, glenga
 translationtype: Human Translation
 ms.sourcegitcommit: 770cac8809ab9f3d6261140333ec789ee1390daf
 ms.openlocfilehash: bf9bd2a1b5acdf5a4a4f862bef693f8c60c63a33
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -181,7 +182,7 @@ Azure 儲存體佇列輸出繫結可讓您在函式中將訊息寫入儲存體�
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>輸出使用方式
-在 C# 函數中，您可以使用像是 `out <T> <name>` 函數簽章中的具名 `out` 參數來寫入佇列訊息。 在這種情控下，`T` 是您要用來序列化訊息的資料類型，而 `paramName` 是您在 [輸出繫結][](#output) 中指定的名稱。 在 Node.js 函式中，您會使用 `context.bindings.<name>` 來存取輸出。
+在 C# 函數中，您可以使用像是 `out <T> <name>` 函數簽章中的具名 `out` 參數來寫入佇列訊息。 在這種情控下，`T` 是您要用來序列化訊息的資料類型，而 `paramName` 是您在 [輸出繫結](#output) 中指定的名稱。 在 Node.js 函式中，您會使用 `context.bindings.<name>` 來存取輸出。
 
 您可以在您的程式碼中使用任何資料類型輸出佇列訊息︰
 
@@ -284,10 +285,5 @@ module.exports = function(context) {
 如需一個使用儲存體佇列觸發程序和繫結的函數範例，請參閱 [建立連接至 Azure 服務的 Azure Functions](functions-create-an-azure-connected-function.md)。
 
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 
