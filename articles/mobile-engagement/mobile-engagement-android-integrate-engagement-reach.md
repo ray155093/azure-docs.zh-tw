@@ -182,7 +182,7 @@ Reach SDK 需要「Android 支援程式庫 (v4)」。
 有兩種類型的通知：系統和應用程式內通知，它們使用不同的配置檔。
 
 #### <a name="system-notifications"></a>系統通知
-若要自訂系統通知，您需要使用 [類別] 。 您可以跳到 [類別] [](#categories)。
+若要自訂系統通知，您需要使用 [類別] 。 您可以跳到 [類別](#categories) 。
 
 #### <a name="in-app-notifications"></a>應用程式內通知
 根據預設，應用程式內通知是採用 Android 方法 `addContentView()`，以動態方式加入至目前活動使用者介面的檢視。 這稱為通知重疊。 通知重疊非常適合快速整合，因為它們不需要您修改應用程式中的任何配置。
@@ -243,7 +243,7 @@ Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，�
               <meta-data android:name="engagement:notification:overlay" android:value="false"/>
             </activity>
 
-#### <a name="a-namecategoriesa-categories"></a><a name="categories"></a> 類別
+#### <a name="categories"></a> 類別
 當您修改提供的配置時，您會修改所有通知的外觀。 類別可讓您定義通知的各種目標外觀 (也可能是行為)。 當您建立觸達活動時可以指定類別。 請記住，類別也可讓您自訂宣告與輪詢，本文件稍後將會說明。
 
 若要登記通知的類別處理常式，您需要在應用程式初始化時加入呼叫。
