@@ -3,7 +3,7 @@ title: "使用 WebJob 執行背景工作"
 description: "了解如何在 Azure Web 應用程式中執行背景工作。"
 services: app-service
 documentationcenter: 
-author: tdykstra
+author: ggailey777
 manager: erikre
 editor: jimbe
 ms.assetid: af01771e-54eb-4aea-af5f-f883ff39572b

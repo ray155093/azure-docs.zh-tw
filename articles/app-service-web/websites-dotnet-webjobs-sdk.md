@@ -3,7 +3,7 @@ title: "什麼是 Azure WebJobs SDK"
 description: "Azure WebJobs SDK 簡介。 說明 SDK 是什麼、適用哪些典型案例，以及程式碼範例。"
 services: app-service\web, storage
 documentationcenter: .net
-author: tdykstra
+author: ggailey777
 manager: erikre
 editor: jimbe
 ms.assetid: 8281267b-572b-4b14-a328-6704493ea682

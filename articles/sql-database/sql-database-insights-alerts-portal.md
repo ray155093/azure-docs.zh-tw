@@ -1,7 +1,7 @@
 ---
 title: "使用 Azure 入口網站建立 SQL Database 警示 | Microsoft Docs"
 description: "使用 Azure 入口網站建立 SQL Database 的警示，在符合指定條件時觸發通知或自動化。"
-author: CarlRabeler
+author: aamalvea
 manager: jhubbard
 editor: 
 services: sql-database
@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/01/2017
-ms.author: carlrab
+ms.author: aamalvea
 translationtype: Human Translation
 ms.sourcegitcommit: 2679681c77dd6a3410bbe6ddbcf562924b13bfe6
 ms.openlocfilehash: afa21052281200768db24ce35a94097f23f23efe
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -73,7 +74,7 @@ ms.openlocfilehash: afa21052281200768db24ce35a94097f23f23efe
 
 ## <a name="sql-database-alert-values-and-thresholds"></a>SQL Database 警示值和臨界值
 
-| 資源類型 | 度量名稱 | 易記名稱 | 彙總類型 | 警示時間間隔下限|
+| 資源類型    | 度量名稱 | 易記名稱 | 彙總類型 | 警示時間間隔下限|
 | --- | --- | --- | --- | --- |
 | SQL Database | cpu_percent | CPU 百分比 | 平均值 | 5 分鐘 |
 | SQL Database | physical_data_read_percent | 資料 IO 百分比 | 平均值 | 5 分鐘 |
@@ -90,7 +91,7 @@ ms.openlocfilehash: afa21052281200768db24ce35a94097f23f23efe
 | SQL Database | sessions_percent | 工作階段百分比 | 平均值 | 5 分鐘 |
 | SQL Database | dtu_limit | DTU 限制 | 平均值 | 5 分鐘 |
 | SQL Database | dtu_used | 已使用 DTU | 平均值 | 5 分鐘 |
-||||||           
+||||||               
 | SQL 資料倉儲 | cpu_percent | CPU 百分比 | 平均值 | 10 分鐘 |
 | SQL 資料倉儲 | physical_data_read_percent | 資料 IO 百分比 | 平均值 | 10 分鐘 |
 | SQL 資料倉儲 | 儲存體 | 資料庫大小總計 | 最大值 | 10 分鐘 |
@@ -101,7 +102,7 @@ ms.openlocfilehash: afa21052281200768db24ce35a94097f23f23efe
 | SQL 資料倉儲 | dwu_limit | dwu 限制 | 最大值 | 10 分鐘 |
 | SQL 資料倉儲 | dwu_consumption_percent | DWU 百分比 | 平均值 | 10 分鐘 |
 | SQL 資料倉儲 | dwu_used | 已使用 DWU | 平均值 | 10 分鐘 |
-||||||               
+||||||                     
 | 彈性集區 | cpu_percent | CPU 百分比 | 平均值 | 5 分鐘 |
 | 彈性集區 | physical_data_read_percent | 資料 IO 百分比 | 平均值 | 5 分鐘 |
 | 彈性集區 | log_write_percent | 記錄 IO 百分比 | 平均值 | 5 分鐘 |
@@ -121,10 +122,5 @@ ms.openlocfilehash: afa21052281200768db24ce35a94097f23f23efe
 * 深入了解 [Azure 自動化 Runbook](../automation/automation-starting-a-runbook.md)。
 * 依照 [診斷記錄檔概觀](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) 中的做法，收集您服務中詳細的高頻率計量。
 * 依照 [計量集合概觀](../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md) 中的做法，確保您的服務可使用且有回應。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

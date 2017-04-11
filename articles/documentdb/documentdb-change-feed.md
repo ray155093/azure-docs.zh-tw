@@ -69,7 +69,7 @@ DocumentDB 提供以累加方式讀取對 DocumentDB 集合做出之更新的功
 
 在下一節中，我們會說明如何使用 DocumentDB REST API 和 SDK 存取摘要變更。 對於 .NET 應用程式，我們建議針對處理來自變更摘要的事件使用「變更摘要處理器程式庫」[]()。
 
-## <a id="rest-apis">使用 REST API 和 SDK</a>
+## <a id="rest-apis"></a>使用 REST API 和 SDK
 DocumentDB 提供彈性的儲存體及輸送量容器，稱為**集合**。 集合內的資料會針對延展性和效能，使用[資料分割索引鍵](documentdb-partition-data.md)以邏輯方式分組。 DocumentDB 提供各種用來存取此資料的 API，包括依識別碼查閱 (Read/Get)、查詢及讀取摘要 (掃描) 進行查詢。 變更摘要可以透過將兩個新的要求標頭填入至 DocumentDB 的 `ReadDocumentFeed` API 來取得，並且可以跨資料分割索引鍵的範圍來平行處理。
 
 ### <a name="readdocumentfeed-api"></a>ReadDocumentFeed API

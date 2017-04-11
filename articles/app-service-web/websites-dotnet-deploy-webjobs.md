@@ -3,7 +3,7 @@ title: "使用 Visual Studio 部署 WebJob"
 description: "了解如何使用 Visual Studio，將 Azure WebJob 部署至 Azure App Service Web Apps。"
 services: app-service
 documentationcenter: 
-author: tdykstra
+author: ggailey777
 manager: erikre
 editor: jimbe
 ms.assetid: a3a9d320-1201-4ac8-9398-b4c9535ba755

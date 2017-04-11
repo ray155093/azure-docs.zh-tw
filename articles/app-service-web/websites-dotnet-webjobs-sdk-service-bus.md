@@ -3,7 +3,7 @@ title: "如何透過 WebJobs SDK 使用 Azure 服務匯流排"
 description: "瞭解如何搭配使用 Azure 服務匯流排佇列和有關 WebJobs SDK 的主題。"
 services: app-service\web, service-bus
 documentationcenter: .net
-author: tdykstra
+author: ggailey777
 manager: erikre
 editor: jimbe
 ms.assetid: 2114a934-135b-42b8-871c-6cc040214e76
