@@ -17,6 +17,7 @@ ms.author: alkohli
 translationtype: Human Translation
 ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
 ms.openlocfilehash: 2fddc72747ce97e8985e9f1c84ffdce52cd05e2e
+ms.lasthandoff: 01/30/2017
 
 
 ---
@@ -132,7 +133,7 @@ ms.openlocfilehash: 2fddc72747ce97e8985e9f1c84ffdce52cd05e2e
 16. 在「選擇磁碟格式」頁面上，接受 [VHDX] 格式預設選項。 按 [下一步] 。 如果您執行的是 Windows Server 2012 R2 或 Windows Server 2008 R2，則不會看到這個畫面。
     
     ![](./media/storsimple-ova-deploy2-provision-hyperv/image15.png)
-17. 在「選擇磁碟類型」頁面上，將虛擬硬碟類型設定為 [動態擴充] (建議選項)。 您也可以選擇 [固定大小]  磁碟，但可能需要等待很長一段時間。 建議您不要使用 [差異]  選項。 按 [下一步] 。 請注意，在 Windows Server 2012 R2 和 Windows Server 2012 中，預設值是 [動態擴充]  。 在 Windows Server 2008 R2 中，預設值是 [固定大小] 。
+17. 在「選擇磁碟類型」頁面上，將虛擬硬碟類型設定為 [動態擴充] \(建議選項)。 您也可以選擇 [固定大小]  磁碟，但可能需要等待很長一段時間。 建議您不要使用 [差異]  選項。 按 [下一步] 。 請注意，在 Windows Server 2012 R2 和 Windows Server 2012 中，預設值是 [動態擴充]  。 在 Windows Server 2008 R2 中，預設值是 [固定大小] 。
     
     ![](./media/storsimple-ova-deploy2-provision-hyperv/image16.png)
 18. 在「指定名稱和位置」頁面上，提供資料磁碟的「名稱」和「位置」(您可以瀏覽至該位置)。 按 [下一步] 。
@@ -223,10 +224,5 @@ ms.openlocfilehash: 2fddc72747ce97e8985e9f1c84ffdce52cd05e2e
 ## <a name="next-steps"></a>後續步驟
 * [Set up your StorSimple Virtual Array as a file server (將 StorSimple 虛擬陣列設定為檔案伺服器)](storsimple-ova-deploy3-fs-setup.md)
 * [Set up your StorSimple Virtual Array as an iSCSI server (將 StorSimple 虛擬陣列設定為 iSCSI 伺服器)](storsimple-ova-deploy3-iscsi-setup.md)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

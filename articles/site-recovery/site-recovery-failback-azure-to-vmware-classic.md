@@ -17,6 +17,7 @@ ms.author: ruturajd
 translationtype: Human Translation
 ms.sourcegitcommit: 75653b84d6ccbefe7d5230449bea81f498e10a98
 ms.openlocfilehash: a898cb9c66a22bb8d19170fdd03d0fc3b4d93000
+ms.lasthandoff: 01/30/2017
 
 
 ---
@@ -127,7 +128,7 @@ ms.openlocfilehash: a898cb9c66a22bb8d19170fdd03d0fc3b4d93000
 #### <a name="retrieve-the-scsi-ids"></a>擷取 SCSI 識別碼
 1. 在安裝後，擷取 VM 中每個 SCSI 硬碟的 SCSI 識別碼。 若要執行此作業，請將管理伺服器 VM 關機，然後在 VMware 的 VM 屬性中以滑鼠右鍵按一下 VM 項目 > [編輯設定]  >  [選項]。
 2. 選取 [進階]  >  [一般項目]，然後按一下 [組態參數]。 機器在執行時會停用此選項。 若要啟用，則必須將機器關閉。
-3. 如果 **disk.EnableUUID** 資料列存在，請確定其值已設定為 [True] (有區分大小寫)。 如果已如此設定，則可加以取消，然後在機器開機之後，於客體作業系統內部測試 SCSI 命令。
+3. 如果 **disk.EnableUUID** 資料列存在，請確定其值已設定為 [True] \(有區分大小寫)。 如果已如此設定，則可加以取消，然後在機器開機之後，於客體作業系統內部測試 SCSI 命令。
 4. 如果該資料列不存在，請按一下 [新增資料列]，並以 [True] 值來新增它。 請勿使用雙引號。
 
 #### <a name="install-additional-packages"></a>安裝其他封裝
@@ -188,9 +189,4 @@ ms.openlocfilehash: a898cb9c66a22bb8d19170fdd03d0fc3b4d93000
 
 * ExpressRoute 應該設定在來源機器所要容錯移轉到的 Azure 虛擬網路上，以及容錯移轉發生時 Azure VM 所位於的 Azure 虛擬網路上。
 * 資料會複寫至公用端點上的 Azure 儲存體帳戶。 您應該在 ExpressRoute 中設定與目標資料中心的公用對等互連，這樣一來，Site Recovery 複寫才能使用 ExpressRoute。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

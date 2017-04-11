@@ -70,7 +70,7 @@ ms.lasthandoff: 01/11/2017
 >
 >
 
-## <a name="a-idconfigurewirecastrtmpaconfigure-the-telestream-wirecast-encoder"></a><a id=configure_wirecast_rtmp></a>設定 Telestream Wirecast 編碼器
+## <a id=configure_wirecast_rtmp></a>設定 Telestream Wirecast 編碼器
 在本教學課程中，我們會使用下列輸出設定。 本章節的其餘部分將詳細說明組態步驟。
 
 **視訊**：
@@ -165,7 +165,7 @@ ms.lasthandoff: 01/11/2017
    >建立程式時所使用的時間會比建立通道時少。
        
 5. 一旦程式開始執行，請在程式上按一下滑鼠右鍵，並瀏覽至 [播放程式]，然後選取 [使用 Azure 媒體播放器] 確認播放。  
-6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿] (或從 [程式資訊和設定] 功能表選項擷取這項資訊)。
+6. 一經確認後，再次於該程式上按一下滑鼠右鍵，並選取 [複製輸出 URL 到剪貼簿] \(或從 [程式資訊和設定] 功能表選項擷取這項資訊)。
 
 串流現在已經可以內嵌於播放程式中，或散發給某個對象，以供即時檢視。  
 

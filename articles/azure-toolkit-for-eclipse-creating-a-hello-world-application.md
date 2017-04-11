@@ -17,6 +17,7 @@ ms.author: robmcm
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: b7a74df9bfcf75b00af5aaf21e9f74610712ab47
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -81,7 +82,7 @@ ms.openlocfilehash: b7a74df9bfcf75b00af5aaf21e9f74610712ab47
     [Azure 活動記錄檔]  會顯示在 Eclipse 索引標籤式的檢視區段。
     ![][ic719489]
     您可以使用這個記錄檔，以及 [主控台]**** 檢視，以查看部署進度。 替代方法是登入[ Azure 管理入口網站][Azure Management Portal]，然後使用 [雲端服務] 區段來監視狀態。
-6. 成功部署後，[Azure 活動記錄檔] 將顯示 [已發佈] 狀態。 按一下 [已發佈] (如下圖所示)，瀏覽器隨即會開啟部署的執行個體。
+6. 成功部署後，[Azure 活動記錄檔] 將顯示 [已發佈] 狀態。 按一下 [已發佈] \(如下圖所示)，瀏覽器隨即會開啟部署的執行個體。
     ![][ic719490]
 
 因為這是部署到預備環境，DNS 名稱將會採用 http://&lt;guid&gt;.cloudapp.net 格式，且 URL 將包含 DNS 名稱再加上您應用程式的尾碼。 例如，http://447564652c20426f6220526f636b7321.cloudapp.net/MyHelloWorld。 (**MyHelloWorld** 部分區分大小寫)。如果您按一下 Azure 平台管理入口網站 (在管理入口網站的 [雲端服務] 部分中) 中的部署名稱，您也會看到 DNS 名稱。
@@ -194,9 +195,4 @@ ms.openlocfilehash: b7a74df9bfcf75b00af5aaf21e9f74610712ab47
 [publishDropdownButton]: ./media/azure-toolkit-for-eclipse-creating-a-hello-world-application/publishDropdownButton.png
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690944.aspx -->
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 
