@@ -17,6 +17,7 @@ ms.author: yanacai
 translationtype: Human Translation
 ms.sourcegitcommit: a5bb452582f05981a17c2514e0e40db0571bf61d
 ms.openlocfilehash: f9b485bfbfbeb8a95ae1908ef6b1733b9cc6999a
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -63,7 +64,7 @@ ADL Tools for Visual Studio 提供稱為**頂點失敗偵錯**的功能，透過
 
 如果您在程式碼後置檔案 (在 U-SQL 專案中通常稱為 「Script.usql.cs」) 中撰寫使用者定義程式碼，之後 U-SQL 作業失敗了，系統會自動將原始程式碼匯入到產生的偵錯方案，您可以逕自使用以 Visual Studio 為基礎的偵錯體驗 (監看式、變數等) 對問題進行疑難排解。 
 
-在進行偵錯之前，請確定您已核取 [例外狀況設定] 視窗中的 [Common Language Runtime 例外狀況] (**Ctrl + Alt + E**)。
+在進行偵錯之前，請確定您已核取 [例外狀況設定] 視窗中的 [Common Language Runtime 例外狀況] \(**Ctrl + Alt + E**)。
 
 ![Azure Data Lake Analytics U-SQL 偵錯 Visual Studio 設定](./media/data-lake-analytics-debug-u-sql-jobs/data-lake-analytics-clr-exception-setting.png)
 
@@ -130,10 +131,5 @@ ADL Tools for Visual Studio 提供稱為**頂點失敗偵錯**的功能，透過
 * [教學課程：開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
 * [教學課程：使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
 
-
-
-
-
-<!--HONumber=Jan17_HO1-->
 
 

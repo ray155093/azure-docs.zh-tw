@@ -310,7 +310,7 @@ Azure SDK for Java 使用管理憑證來向 Azure 訂用帳戶進行驗證。 �
 登入 Azure 傳統入口網站並按一下 [ **Web Apps**]。 幾分鐘內，新的 Web 應用程式應顯示在 Web Apps 清單中。
 
 ## <a name="deploying-an-application-to-the-web-app"></a>將應用程式部署至 Web 應用程式
-執行 AzureWebDemo 並建立新的 Web 應用程式之後，登入傳統入口網站，按一下 **Web Apps**，然後選取 [ **WebDemoWebApp** in the **Web Apps** ] 清單中顯示新的版本號碼。 在 Web 應用程式的儀表板頁面中，按一下 [瀏覽] (或按一下 URL：`webdemowebapp.azurewebsites.net`) 以導覽至該 Web 應用程式。 您將會看見空白預留位置頁面，因為尚未將任何內容發佈至此 Web 應用程式。
+執行 AzureWebDemo 並建立新的 Web 應用程式之後，登入傳統入口網站，按一下 **Web Apps**，然後選取 [ **WebDemoWebApp** in the **Web Apps** ] 清單中顯示新的版本號碼。 在 Web 應用程式的儀表板頁面中，按一下 [瀏覽] \(或按一下 URL：`webdemowebapp.azurewebsites.net`) 以導覽至該 Web 應用程式。 您將會看見空白預留位置頁面，因為尚未將任何內容發佈至此 Web 應用程式。
 
 接下來，您會建立 "Hello World" 應用程式並將其部署至 Web 應用程式。
 
@@ -391,7 +391,7 @@ Azure SDK for Java 使用管理憑證來向 Azure 訂用帳戶進行驗證。 �
 確定您已執行 **AzureWebDemo** 應用程式來建立 Web 應用程式。 您會將檔案移轉到此位置。
 
 1. 登入傳統入口網站並按一下 [ **Web Apps**]。 確定 **WebDemoWebApp** 顯示在 Web 應用程式清單中，並確定它正在執行中。 按一下 **WebDemoWebApp** 以開啟其 [儀表板] 頁面。
-2. 在 [儀表板] 頁面的 [快速瀏覽] 下，按一下 [設定您的部署認證] (如果您已有部署認證，則為 [重設您的部署認證])。
+2. 在 [儀表板] 頁面的 [快速瀏覽] 下，按一下 [設定您的部署認證] \(如果您已有部署認證，則為 [重設您的部署認證])。
    
     部署認證與 Microsoft 帳戶相關聯。 您需要指定使用者名稱和密碼，以便利用 Git 和 FTP 進行部署。 您可以使用這些認證來部署至與您的 Microsoft 帳戶相關聯的所有 Azure 訂用帳戶中的任何 Web 應用程式。 在對話方塊中提供 Git 和 FTP 部署，並記錄使用者名稱和密碼以供未來使用。
 
