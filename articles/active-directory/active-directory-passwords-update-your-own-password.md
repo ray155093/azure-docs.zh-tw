@@ -83,7 +83,7 @@ ms.lasthandoff: 03/28/2017
 >
 >
 
-1. 在任何公司或學校帳戶登入頁面上，按一下 [無法存取您的帳戶嗎?] 連結或前往 [你是誰？] 頁面[](https://passwordreset.microsoftonline.com)。
+1. 在任何公司或學校帳戶登入頁面上，按一下 [無法存取您的帳戶嗎?] 連結或前往 [你是誰？ 頁面](https://passwordreset.microsoftonline.com)。
 
    ![帳戶登入][110]
 
@@ -133,7 +133,7 @@ ms.lasthandoff: 03/28/2017
 >
 >
 
-1. 在任何公司或學校帳戶登入頁面上，按一下 [無法存取您的帳戶嗎?] 連結或前往 [你是誰？] 頁面[](https://passwordreset.microsoftonline.com)。
+1. 在任何公司或學校帳戶登入頁面上，按一下 [無法存取您的帳戶嗎?] 連結或前往 [你是誰？ 頁面](https://passwordreset.microsoftonline.com)。
 
    ![帳戶登入][110]
 2. 在 [你是誰？] 頁面上，輸入您的工作或學校帳戶 ID，並傳遞 CAPTCHA 查問以證明您不是傀儡程式。 
