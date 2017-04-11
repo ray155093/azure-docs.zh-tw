@@ -66,7 +66,7 @@ ms.lasthandoff: 03/25/2017
 
 ## <a name="design--development"></a>設計與開發
 ### <a name="1--which-server-side-platforms-do-you-support"></a>1.支援哪些伺服器端平台？
-我們有適用於 .NET、Java、Node.js、PHP 和 Python 的伺服器 SDK。 此外，通知中樞 API 是以 REST 介面為根據，因此如果您要使用不同平台或不想要額外的相依性，則可以選擇直接使用 REST API。 您可以在 [NH - REST API][] 頁面上看到更多詳細資料。
+我們有適用於 .NET、Java、Node.js、PHP 和 Python 的伺服器 SDK。 此外，通知中樞 API 是以 REST 介面為根據，因此如果您要使用不同平台或不想要額外的相依性，則可以選擇直接使用 REST API。 您可以在 [NH - REST APIs] 頁面上看到更多詳細資料。
 
 ### <a name="2--which-client-platforms-do-you-support"></a>2.支援哪些用戶端平台？
 我們支援將推播通知傳送到 [iOS](notification-hubs-ios-apple-push-notification-apns-get-started.md)、[Android](notification-hubs-android-push-notification-google-gcm-get-started.md)、[Windows Universal](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)、[Windows Phone](notification-hubs-windows-mobile-push-notifications-mpns.md)、[Kindle](notification-hubs-kindle-amazon-adm-push-notification.md)、[Android China (由百度開發)](notification-hubs-baidu-china-android-notifications-get-started.md)、Xamarin ([iOS](xamarin-notification-hubs-ios-push-notification-apns-get-started.md) & [Android](xamarin-notification-hubs-push-notifications-android-gcm.md))、[Chrome Apps](notification-hubs-chrome-push-notifications-get-started.md) 和 [Safari](https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToSafari)。 如需詳細資訊，請參閱 [使用者入門教學課程] 頁面。
