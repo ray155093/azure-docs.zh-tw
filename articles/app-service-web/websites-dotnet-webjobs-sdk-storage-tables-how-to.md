@@ -3,7 +3,7 @@ title: "如何透過 WebJobs SDK 使用 Azure 資料表儲存體"
 description: "了解如何透過 WebJobs SDK 使用 Azure 資料表儲存體。 建立資料表、將實體新增至資料表以及讀取現有資料表。"
 services: app-service\web, storage
 documentationcenter: .net
-author: tdykstra
+author: ggailey777
 manager: erikre
 editor: jimbe
 ms.assetid: 451432cc-c780-4310-85d3-84f44fe48afe

@@ -3,7 +3,7 @@ title: "Azure WebJobs 文件資源"
 description: "了解如何使用 Azure WebJobs 和 Azure WebJobs SDK 的建議資源。"
 services: app-service
 documentationcenter: .net
-author: tdykstra
+author: ggailey777
 manager: erikre
 editor: jimbe
 ms.assetid: ed005e56-4334-4641-a5e5-15435c2be36b

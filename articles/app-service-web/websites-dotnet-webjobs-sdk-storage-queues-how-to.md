@@ -3,7 +3,7 @@ title: "如何透過 WebJobs SDK 使用 Azure 佇列儲存體"
 description: "了解如何透過 WebJobs SDK 使用 Azure 佇列儲存體。 建立和刪除查詢、插入、查看、取得和刪除佇列訊息等。"
 services: app-service\web, storage
 documentationcenter: .net
-author: tdykstra
+author: ggailey777
 manager: erikre
 editor: jimbe
 ms.assetid: dbfac5d9-f4a0-4e3e-9ecc-af3d7bf80463

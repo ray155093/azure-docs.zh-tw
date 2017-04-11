@@ -3,7 +3,7 @@ title: "如何透過 WebJobs SDK 使用 Azure Blob 儲存體"
 description: "了解如何使用 WebJobs SDK 來使用 Azure Blob 儲存體。 在容器中出現新的 Blob 時觸發程序並處理「有害 Blob」 。"
 services: app-service\web, storage
 documentationcenter: .net
-author: tdykstra
+author: ggailey777
 manager: erikre
 editor: 
 ms.assetid: bf32f919-f7bc-4aaa-916e-461c02f2e26c
