@@ -17,6 +17,7 @@ ms.author: thmullan
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: ba1bb3d84b462dfebbb2564569517d7336bf54fd
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -203,7 +204,7 @@ ALTER TABLE Contacts ADD UserId nvarchar(128)
 
 ![SSMS AspNetUsers 資料表](./media/web-sites-dotnet-entity-framework-row-level-security/SSMS-AspNetUsers.png)
 
-複製 user1@contoso.com, 的 Id，並貼到以下的 T-SQL 陳述式中。 執行此陳述式，將三個連絡人與此 UserId 相關聯。
+複製 user1@contoso.com 的 Id，並貼到以下的 T-SQL 陳述式中。 執行此陳述式，將三個連絡人與此 UserId 相關聯。
 
 ```
 UPDATE Contacts SET UserId = '19bc9b0d-28dd-4510-bd5e-d6b6d445f511'
@@ -248,10 +249,5 @@ go
 本教學課程只是稍微示範一下 RLS 的功能。 比方說，存取邏輯可以更複雜或更精細，而 SESSION_CONTEXT 中也不僅止於只能儲存目前的 UserId 而已。 也可以 [整合 RLS 與彈性資料庫工具用戶端程式庫](../sql-database/sql-database-elastic-tools-multi-tenant-row-level-security.md) ，在相應放大的資料層中支援多租用戶分區。
 
 除了這些可能性，我們也正在努力讓 RLS 更臻完美。 如果您有任何疑問、構想或期望，請留下您的意見。 歡迎提供意見反應！
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
