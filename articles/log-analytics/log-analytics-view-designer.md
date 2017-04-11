@@ -82,10 +82,10 @@ ms.lasthandoff: 03/09/2017
 ![[檢視設計工具]](media/log-analytics-view-designer/view-designer-screenshot.png)
 
 ### <a name="configure-view-tile"></a>設定檢視圖格
-自訂檢視可以只有單一圖格。  選取 [控制] 窗格中的 [圖格] 索引標籤來檢視目前圖格或選取另一個圖格。  [屬性] 窗格會列出目前圖格的屬性。  根據 [圖格參考][](log-analytics-view-designer-tiles.md) 中的詳細資訊來設定圖格屬性，然後按一下 [套用] 儲存變更。
+自訂檢視可以只有單一圖格。  選取 [控制] 窗格中的 [圖格] 索引標籤來檢視目前圖格或選取另一個圖格。  [屬性] 窗格會列出目前圖格的屬性。  根據 [圖格參考](log-analytics-view-designer-tiles.md) 中的詳細資訊來設定圖格屬性，然後按一下 [套用] 儲存變更。
 
 ### <a name="configure-visualization-parts"></a>設定視覺效果組件
-檢視可以包含任意數目的視覺效果組件。  選取 [檢視] 索引標籤，然後要新增至檢視的視覺效果組件。  [屬性] 窗格會列出選取組件的屬性。  根據 [視覺效果組件參考][](log-analytics-view-designer-parts.md) 中的詳細資訊來設定檢視的屬性，然後按一下 [套用] 儲存變更。
+檢視可以包含任意數目的視覺效果組件。  選取 [檢視] 索引標籤，然後要新增至檢視的視覺效果組件。  [屬性] 窗格會列出選取組件的屬性。  根據 [視覺效果組件參考](log-analytics-view-designer-parts.md) 中的詳細資訊來設定檢視的屬性，然後按一下 [套用] 儲存變更。
 
 ### <a name="delete-a-visualization-part"></a>刪除視覺效果組件
 按一下組件右上角的 [X] 按鈕，即可從檢視中移除視覺效果組件。

@@ -43,7 +43,7 @@ ms.lasthandoff: 01/24/2017
 
 * Azure 訂用帳戶。 Azure 是訂閱型平台。  如需取得訂用帳戶的詳細資訊，請參閱[購買選項](https://azure.microsoft.com/pricing/purchase-options/)、[成員優惠](https://azure.microsoft.com/pricing/member-offers/)或[免費使用](https://azure.microsoft.com/pricing/free-trial/)。
 
-## <a name="a-idcreatedbastep-1-download-the-template-files"></a><a id="CreateDB"></a>步驟 1︰下載範本檔案
+## <a id="CreateDB"></a>步驟 1︰下載範本檔案
 讓我們從下載本教學課程要使用的範本檔案開始。
 
 1. 將[建立 DocumentDB 帳戶、Web Apps 和部署示範應用程式範例](https://portalcontent.blob.core.windows.net/samples/DocDBWebsiteTodo.json)範本下載至本機資料夾 (例如 C:\DocumentDBTemplates)。 這個範本會部署 DocumentDB 帳戶、App Service Web 應用程式和 Web 應用程式。  它還會自動設定 Web 應用程式，以連線到 DocumentDB 帳戶。
@@ -80,12 +80,12 @@ ms.lasthandoff: 01/24/2017
    ![範本部署 UI 的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment6.png)
 7. 部署完成時，就會開啟資源群組的刀鋒視窗。
    ![資源群組刀鋒視窗的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment7.png)  
-8. 若要使用應用程式，只要瀏覽至 Web 應用程式 URL (上述範例中的 URL 會是 http://mydemodocdbwebapp.azurewebsites.net)。  您會看到下列的 Web 應用程式：
+8. 若要使用應用程式，只要瀏覽至 Web 應用程式 URL (上述範例中的 URL 會是 http://mydemodocdbwebapp.azurewebsites.net ) 。  您會看到下列的 Web 應用程式：
    
    ![範例待辦事項應用程式](./media/documentdb-create-documentdb-website/image2.png)
 9. 請繼續在 Web 應用程式中建立幾個工作，然後回到 Azure 入口網站的資源群組刀鋒視窗。 按一下 [資源] 清單中的 DocumentDB 帳戶資源，然後按一下 [查詢總管] 。
     ![包含反白顯示 myotherdocumentdbwebapp Web 應用程式的 [摘要] 功能濾鏡的螢幕擷取畫面](./media/documentdb-create-documentdb-website/TemplateDeployment8.png)  
-10. 執行預設查詢，"SELECT * FROM c"，並檢查結果。請注意查詢已擷取您在步驟 7 所建立待辦事項的 JSON 表示法。任意嘗試查詢；例如，嘗試執行 SELECT * FROM c WHERE c.isComplete = true，傳回所有已標示為完成的待辦事項。
+10. 執行預設查詢，"SELECT *FROM c"，並檢查結果。請注意查詢已擷取您在步驟 7 所建立待辦事項的 JSON 表示法。任意嘗試查詢；例如，嘗試執行 SELECT* FROM c WHERE c.isComplete = true，傳回所有已標示為完成的待辦事項。
     
     ![顯示查詢結果的 [查詢總管] 和 [結果] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-create-documentdb-website/image5.png)
 11. 任意瀏覽 DocumentDB 入口網站體驗，或修改範例 Todo 應用程式。  當您準備好時，讓我們來部署另一個範本。
