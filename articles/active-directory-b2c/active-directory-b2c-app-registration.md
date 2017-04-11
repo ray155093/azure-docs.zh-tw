@@ -75,7 +75,7 @@ ms.lasthandoff: 03/23/2017
 2. 按一下刀鋒視窗頂端的 [新增]  。
 3. 輸入應用程式的 **名稱** ，此名稱將會為取用者說明您的應用程式。 例如，您可以輸入「Contoso B2C app」。
 4. 將 [包含原生用戶端] 切換為 [是]。
-5. 輸入**重新導向 URI** 與自訂配置。 例如，com.onmicrosoft.contoso.appname://redirect/path。 請確定您選擇 [良好重新導向 URI][](#choosing-a-redirect-uri)。
+5. 輸入**重新導向 URI** 與自訂配置。 例如，com.onmicrosoft.contoso.appname://redirect/path。 請確定您選擇 [良好重新導向 URI](#choosing-a-redirect-uri)。
 6. 按一下 [儲存] 以註冊您的應用程式。
 7. 按一下您剛才建立的應用程式，並複製稍後要在程式碼中使用的全域唯一 **應用程式用戶端識別碼** 。
 8. 若您的原生應用程式也會呼叫 Azure AD B2C 所保護的 Web API，您可移至 [金鑰] 刀鋒視窗並按一下 [產生金鑰] 按鈕，以建立 [應用程式密碼]。
