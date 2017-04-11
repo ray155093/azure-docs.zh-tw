@@ -17,6 +17,7 @@ ms.author: robmcm;asirveda
 translationtype: Human Translation
 ms.sourcegitcommit: 9bb0b5fa32cd6dabd6c41106db38a587b0a55eed
 ms.openlocfilehash: 18299966173f030f615049eaf11a55a1f71305a0
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -115,7 +116,7 @@ ms.openlocfilehash: 18299966173f030f615049eaf11a55a1f71305a0
       * 在 [位置]  下拉式功能表中，為該方案選取適當的 Azure 資料中心位置。
       * 在 [定價層]  下拉式功能表中，為方案選取適當的價格。 針對測試用途，您可以選擇 [免費] 。
       * 在 [執行個體大小]  下拉式功能表中，為方案選取適當的執行個體大小。 針對測試用途，您可以選擇 [小型] 。
-   9. 一旦您完成所有上述步驟之後，[New Web App Container] (新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
+   9. 一旦您完成所有上述步驟之後，[New Web App Container] \(新增 Web 應用程式容器) 對話方塊看起來應該如下圖所示：
       
        ![[新增 Web 應用程式容器] 對話方塊][10]
    10. 按一下 [確定]  來完成建立新的 Web 應用程式容器。
@@ -214,9 +215,4 @@ ms.openlocfilehash: 18299966173f030f615049eaf11a55a1f71305a0
 [13]: ./media/app-service-web-eclipse-create-hello-world-web-app/13-Azure-Explorer-Web-App.png
 [14]: ./media/app-service-web-eclipse-create-hello-world-web-app/14-publishDropdownButton.png
 [15]: ./media/app-service-web-eclipse-create-hello-world-web-app/15-New-Azure-Web-Container.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 
