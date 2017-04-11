@@ -39,7 +39,7 @@ ms.lasthandoff: 01/20/2017
 * **Azure 訂閱** - 如需免費訂閱，請參閱 [Azure 免費試用](/pricing/free-trial/)。
 * **Visual Studio 2013** - 若要下載 Visual Studio 2013 的免費試用版，請參閱 [Visual Studio 下載](http://www.visualstudio.com/downloads/download-visual-studio-vs)。 請先安裝此項目再繼續作業。
 * **Microsoft .NET Framework 3.5 Service Pack 1** - 如果您的作業系統是 Windows 8.1、Windows Server 2012 R2、Windows 8、Windows Server 2012、Windows 7 或 Windows Server 2008 R2，您可以在 [控制台] > [程式和功能] > [開啟或關閉 Windows 功能] 中啟用此項目。 否則，您可以從 [Microsoft 下載中心](http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=22)下載。
-* **SQL Server 2014 Express with Tools** - 請在 [Microsoft Web Platform Database 頁面](http://www.microsoft.com/web/platform/database.aspx)下載免費的 Microsoft SQL Server Express。 選擇 [Express]  (非 LocalDB) 版本。 [Express with Tools]  版本包含您將在此教學課程中使用的 SQL Server Management Studio。
+* **SQL Server 2014 Express with Tools** - 請在 [Microsoft Web Platform Database 頁面](http://www.microsoft.com/web/platform/database.aspx)下載免費的 Microsoft SQL Server Express。 選擇 [Express]  \(非 LocalDB) 版本。 [Express with Tools]  版本包含您將在此教學課程中使用的 SQL Server Management Studio。
 * **SQL Server Management Studio Express** - 此項目隨附於前述的 SQL Server 2014 Express with Tools 下載中，但您必須個別加以安裝，您可以從 [SQL Server Express 下載頁面](http://www.microsoft.com/web/platform/database.aspx)加以下載並安裝。
 
 本教學課程假設您具有 Azure 訂閱、您已安裝 Visual Studio 2013，並且已安裝或啟用 .NET Framework 3.5。 本教學課程將說明如何在可與 Azure 混合式連線功能妥善搭配運作的組態中安裝 SQL Server 2014 Express (使用靜態 TCP 連接埠的預設執行個體)。 在開始本教學課程之前，如果您尚未安裝 SQL Server，請先從前述位置下載 SQL Server 2014 Express with Tools。
@@ -196,7 +196,7 @@ ms.lasthandoff: 01/20/2017
     編譯連接字串時，請留意下列事項：
    
    * 如果您要連接到指定的執行個體而非預設執行個體 (例如 YourServer\SQLEXPRESS)，您必須將 SQL Server 設定成使用靜態連接埠。 如需設定靜態連接埠的相關資訊，請參閱 [如何將 SQL Server 設定成在特定連接埠上接聽](http://support.microsoft.com/kb/823938)。 根據預設，指定的執行個體會使用 UDP 和動態連接埠，而混合式連線並不加以支援。
-   * 建議您在連接字串上指定連接埠 (依預設為&1433;，如範例所示)，以確定您的本機 SQL Server 會啟用 TCP 並使用正確的連接埠。
+   * 建議您在連接字串上指定連接埠 (依預設為 1433，如範例所示)，以確定您的本機 SQL Server 會啟用 TCP 並使用正確的連接埠。
    * 請務必使用 SQL Server 驗證進行連接，以在您的連接字串中指定使用者識別碼和密碼。
 3. 在 Visual Studio 中按一下 [儲存]  ，以儲存 Web.config 檔案。
 

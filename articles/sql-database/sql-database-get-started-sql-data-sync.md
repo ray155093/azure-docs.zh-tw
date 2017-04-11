@@ -70,7 +70,7 @@ ms.lasthandoff: 01/25/2017
 ### <a name="step-2c-finish-the-new-sql-data-sync-agent-wizard"></a>步驟 2c：完成新增 SQL 資料同步代理程式精靈
 1. 返回 [新增 SQL 資料同步代理程式] 精靈。
 2. 給予代理程式有意義的名稱。
-3. 從下拉式清單中選取 [區域]  (資料中心) 以裝載此代理程式。
+3. 從下拉式清單中選取 [區域]  \(資料中心) 以裝載此代理程式。
 4. 從下拉式清單中選取 [訂閱]  以裝載此代理程式。
 5. 按一下向右箭頭。
 
@@ -92,7 +92,7 @@ ms.lasthandoff: 01/25/2017
 
 ### <a name="step-4b-enter-the-basic-settings"></a>步驟 4b：輸入基本設定
 1. 為同步群組輸入有意義的名稱。
-2. 從下拉式清單中選取 [區域]  (資料中心) 以裝載此同步群組。
+2. 從下拉式清單中選取 [區域]  \(資料中心) 以裝載此同步群組。
 3. 按一下向右箭頭。
 
     ![Image3](./media/sql-database-get-started-sql-data-sync/NewSyncGroupName-Figure3.PNG)
