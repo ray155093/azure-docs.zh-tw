@@ -101,7 +101,7 @@ SSMS 提供一個精靈，可為您設定 CMK、CEK 及加密的資料行，來�
    
     ![加密資料行](./media/sql-database-always-encrypted/encrypt-columns.png)
 
-「一律加密」精靈包含下列區段︰[資料行選取]、[主要金鑰組態] (CMK)、[驗證] 及 [摘要]。
+「一律加密」精靈包含下列區段︰[資料行選取]、[主要金鑰組態] \(CMK)、[驗證] 及 [摘要]。
 
 ### <a name="column-selection"></a>資料行選取
 在 [簡介] 頁面上按 [下一步]，即可開啟 [資料行選取] 頁面。 在此頁面上，您將選取要加密的資料行、 [加密類型及要使用的資料行加密金鑰 (CEK)](https://msdn.microsoft.com/library/mt459280.aspx#Anchor_2) 。
