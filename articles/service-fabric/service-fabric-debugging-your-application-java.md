@@ -17,6 +17,7 @@ ms.author: vturecek;mikhegn
 translationtype: Human Translation
 ms.sourcegitcommit: 3d122720c834de672d5cb512c7bad2dc5ed3ea58
 ms.openlocfilehash: aa608d6ab76792234e6607160bb17cff520b5665
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -37,7 +38,7 @@ ms.openlocfilehash: aa608d6ab76792234e6607160bb17cff520b5665
 
 4. 部署應用程式。
 
-5. 在 Eclipse IDE 中，選取 [Run] (執行) -> [Debug Configurations] (偵錯組態) -> [Remote Java Application and input connection properties] (遠端 Java 應用程式和輸入連線屬性)，然後依照下列方式設定屬性：
+5. 在 Eclipse IDE 中，選取 [Run] \(執行) -> [Debug Configurations] \(偵錯組態) -> [Remote Java Application and input connection properties] \(遠端 Java 應用程式和輸入連線屬性)，然後依照下列方式設定屬性：
 
    ```
    Host: ipaddress
@@ -51,9 +52,4 @@ ms.openlocfilehash: aa608d6ab76792234e6607160bb17cff520b5665
 
 * [使用 Linux Azure 診斷來收集記錄檔](service-fabric-diagnostics-how-to-setup-lad.md)。
 * [在本機監視及診斷服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md)。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 
