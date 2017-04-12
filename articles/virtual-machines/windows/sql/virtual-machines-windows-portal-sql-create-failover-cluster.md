@@ -17,9 +17,9 @@ ms.workload: iaas-sql-server
 ms.date: 03/17/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 6f0fe474787efc15db5c75266cde369725832aab
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: c9b7cc0321ba06a5d30ea5bd467efe4feeb73b99
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -87,7 +87,7 @@ S2D 支援兩種類型的架構 - 交集和超交集。 本文件中的架構為
 
 1. 使用您的訂用帳戶登入 [Azure 入口網站](http://portal.azure.com)。
 
-1. [建立 Azure 可用性設定組](../../virtual-machines-windows-create-availability-set.md)。
+1. [建立 Azure 可用性設定組](../create-availability-set.md)。
 
    可用性設定組群組虛擬機器遍佈在容錯網域與更新網域中， 可用性設定組可確保應用程式不受單一失敗點 (如網路交換器或伺服器機架的電源裝置) 所影響。 
 

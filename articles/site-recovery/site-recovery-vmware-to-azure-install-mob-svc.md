@@ -15,9 +15,9 @@ ms.workload: backup-recovery
 ms.date: 2/20/2017
 ms.author: anoopkv
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 79beda244007649253fb7130f0403f587fcf76bf
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 6437190ac58a021ce84993f667bbb5fad6031bb3
+ms.lasthandoff: 03/31/2017
 
 ---
 
@@ -33,7 +33,7 @@ Azure Site Recovery 行動服務會擷取電腦上的資料寫入，然後將它
 
 
 >[!IMPORTANT]
-> 從版本 9.7.0.0 開始，在 Windows 虛擬機器 (VM) 上，行動服務安裝程式也會安裝最新可用的 [Azure VM 代理程式](../virtual-machines/virtual-machines-windows-extensions-features.md#azure-vm-agent)。 當電腦容錯移轉至 Azure 時，該電腦必須符合代理程式安裝必要條件，才能使用任何 VM 擴充功能。
+> 從版本 9.7.0.0 開始，在 Windows 虛擬機器 (VM) 上，行動服務安裝程式也會安裝最新可用的 [Azure VM 代理程式](../virtual-machines/windows/extensions-features.md#azure-vm-agent)。 當電腦容錯移轉至 Azure 時，該電腦必須符合代理程式安裝必要條件，才能使用任何 VM 擴充功能。
 
 ## <a name="prerequisites"></a>必要條件
 在伺服器上手動安裝行動服務之前，必須先完成下列必要條件步驟：

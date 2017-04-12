@@ -16,9 +16,9 @@ ms.workload: sql-database
 ms.date: 05/27/2016
 ms.author: torsteng
 translationtype: Human Translation
-ms.sourcegitcommit: 144774c9106bf5a0e389c99075c822d1c5282692
-ms.openlocfilehash: f9c53a981376cf534c50d80ae2f60fc01f193e4d
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: ceb2d7a28cc416186f3faf1dc5228fce161c34c5
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -143,7 +143,6 @@ SQL DB 中的彈性資料庫交易目前有下列限制：
 
 * 僅支援 SQL DB 中跨資料庫的交易。 其他 [X/Open XA](https://en.wikipedia.org/wiki/X/Open_XA) 資源提供者和 SQL DB 以外的資料庫無法參與彈性資料庫交易。 這表示彈性資料庫交易無法延伸到內部部署 SQL Server 和 Azure SQL Database。 對於內部部署的分散式交易，請繼續使用 MSDTC。 
 * 僅支援來自 .NET 應用程式的用戶端協調交易。 目前已規劃 T-SQL 的伺服器端支援，例如 BEGIN DISTRIBUTED TRANSACTION，但尚未推出。 
-* 僅支援 Azure SQL DB V12 上的資料庫。
 * 不支援跨 WCF 服務的交易。 例如，您有執行交易的 WCF 服務方法。 納入交易範圍內的呼叫將會失敗，因為 [System.ServiceModel.ProtocolException](https://msdn.microsoft.com/library/system.servicemodel.protocolexception)。
 
 ## <a name="next-steps"></a>後續步驟

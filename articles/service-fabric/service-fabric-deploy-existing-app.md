@@ -12,12 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 02/17/2016
+ms.date: 04/07/2016
 ms.author: mfussell;mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: e9c53dc601406961ee7aeca2e350ba14e691cb9b
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 16000dcb751bd96fba247c6209e85c581833681d
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -36,7 +36,7 @@ Service Fabric 將來賓可執行檔視為無狀態服務。 因此會根據可�
 * 密度。 您可以在叢集中執行多個應用程式，每個應用程式不必在自己的硬體上執行。
 
 ## <a name="samples"></a>範例
-* [封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/GuestExe/SimpleApplication)
+* [封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
 * [兩個來賓可執行檔 (C# 和 nodejs) 使用 REST 透過命名服務通訊的範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
 ## <a name="overview-of-application-and-service-manifest-files"></a>應用程式和服務資訊清單檔案的概觀
@@ -348,7 +348,7 @@ Yeoman 會建立應用程式套件，其中包含適當的應用程式和資訊�
 ## <a name="next-steps"></a>後續步驟
 在本文中，您已經學會如何封裝來賓可執行檔並部署至 Service Fabric。 請參閱下列文章以了解相關資訊和工作。
 
-* [封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/GuestExe/SimpleApplication)，包括封裝工具預先發行版本的連結
+* [封裝和部署來賓可執行檔的範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)，包括封裝工具預先發行版本的連結
 * [兩個來賓可執行檔 (C# 和 nodejs) 使用 REST 透過命名服務通訊的範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 * [部署多個來賓可執行檔](service-fabric-deploy-multiple-apps.md)
 * [使用 Visual Studio 建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)

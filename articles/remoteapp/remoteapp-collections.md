@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7c526faeef2418cfbbca7948004691e127327020
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 7891ce3b04cd5978440dd8af73dc95d1d123ed92
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="what-kind-of-collection-do-you-need-for-azure-remoteapp"></a>Azure RemoteApp 需要何種集合？
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -90,10 +91,5 @@ AD Connect 有兩種案例 - 使用密碼同步化或使用 AD 同盟。 請參�
 嗯，我想我們現在已經說明白了，那麼只剩下一件事要做 - 建立您的第一個 Azure RemoteApp 集合。
 
 [建立雲端集合](remoteapp-create-cloud-deployment.md)或[建立混合式集合](remoteapp-create-hybrid-deployment.md) -立即建立。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

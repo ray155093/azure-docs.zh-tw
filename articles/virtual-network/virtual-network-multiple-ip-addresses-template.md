@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 12/08/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: 5267ed6a2d9278b79e9fb98c1067eceae819cb6f
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 262acf8150b5065c3b7b79494856b2bdadd4e4ba
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -47,8 +47,8 @@ ms.lasthandoff: 03/22/2017
 
 |名稱|說明|
 |---|---|
-|adminUsername|系統管理員使用者名稱。 使用者名稱必須符合 [Azure 使用者名稱需求](../virtual-machines/virtual-machines-windows-faq.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。|
-|adminPassword|系統管理員密碼的密碼必須符合 [Azure 密碼需求](../virtual-machines/virtual-machines-windows-faq.md?toc=%2fazure%2fvirtual-network%2ftoc.json#what-are-the-password-requirements-when-creating-a-vm)。|
+|adminUsername|系統管理員使用者名稱。 使用者名稱必須符合 [Azure 使用者名稱需求](../virtual-machines/windows/faq.md?toc=%2fazure%2fvirtual-network%2ftoc.json)。|
+|adminPassword|系統管理員密碼的密碼必須符合 [Azure 密碼需求](../virtual-machines/windows/faq.md?toc=%2fazure%2fvirtual-network%2ftoc.json#what-are-the-password-requirements-when-creating-a-vm)。|
 |dnsLabelPrefix|PublicIPAddressName1 的 DNS 名稱。 DNS 名稱會解析為指派給 VM 的其中一個公用 IP 位址。 名稱在您建立 VM 所在的 Azure 區域 (位置) 中必須是唯一的。|
 |dnsLabelPrefix1|PublicIPAddressName2 的 DNS 名稱。 DNS 名稱會解析為指派給 VM 的其中一個公用 IP 位址。 名稱在您建立 VM 所在的 Azure 區域 (位置) 中必須是唯一的。|
 |OSVersion|VM 的 Windows/Linux 版本。 作業系統是所選取之指定 Windows/Linux 版本完全修補的映像。|
@@ -81,7 +81,7 @@ ms.lasthandoff: 03/22/2017
 
     不論您選擇用來部署範本的選項為何，您必須提供這篇文章的[參數](#parameters)一節中所列的參數值。 如果您選擇使用參數檔案提供參數，將[參數檔案](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.parameters.json)的內容從 GitHub 複製到您的電腦上的新檔案。 修改檔案中的值。 使用您建立的檔案做為 `-TemplateParameterFile` 參數的值。
     
-    若要判斷 OSVersion、ImagePublisher 和 imageOffer 參數的有效值，請完成[瀏覽和選取 Windows VM 映像](../virtual-machines/virtual-machines-windows-cli-ps-findimage.md)文章中的步驟。
+    若要判斷 OSVersion、ImagePublisher 和 imageOffer 參數的有效值，請完成[瀏覽和選取 Windows VM 映像](../virtual-machines/windows/cli-ps-findimage.md)文章中的步驟。
 
     >[!TIP]
     >如果您不確定 dnslabelprefix 是否可供使用，請輸入 `Test-AzureRmDnsAvailability -DomainNameLabel <name-you-want-to-use> -Location <location>` 命令以了解。 如果可以使用，命令會傳回 `True`。
@@ -96,7 +96,7 @@ ms.lasthandoff: 03/22/2017
 
     不論您選擇用來部署範本的選項為何，您必須提供這篇文章的[參數](#parameters)一節中所列的參數值。 如果您選擇使用參數檔案提供參數，將[參數檔案](https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/101-vm-multiple-ipconfig/azuredeploy.parameters.json)的內容從 GitHub 複製到您的電腦上的新檔案。 修改檔案中的值。 使用您建立的檔案做為 `--parameters-file` (-e) 參數的值。
     
-    若要判斷 OSVersion、ImagePublisher 和 imageOffer 參數的有效值，請完成[瀏覽和選取 Windows VM 映像](../virtual-machines/virtual-machines-windows-cli-ps-findimage.md)文章中的步驟。
+    若要判斷 OSVersion、ImagePublisher 和 imageOffer 參數的有效值，請完成[瀏覽和選取 Windows VM 映像](../virtual-machines/windows/cli-ps-findimage.md)文章中的步驟。
 
 2. 部署 VM 之後，連接至 VM 並且將私人 IP 位址新增至您部署的作業系統，方法是完成本文的[將 IP 位址新增至 VM 作業系統](#os-config)一節中的步驟。 請勿將公用 IP 位址新增至作業系統。
 
