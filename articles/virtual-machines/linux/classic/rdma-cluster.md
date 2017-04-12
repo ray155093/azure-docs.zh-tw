@@ -16,14 +16,14 @@ ms.workload: infrastructure-services
 ms.date: 03/14/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 8dd8aafcae3ef9652e6f45cd3a07cdd1fd74d58f
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: b002d21b198fa4887e30d30c20ec67d21ae30579
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="set-up-a-linux-rdma-cluster-to-run-mpi-applications"></a>設定 Linux RDMA 叢集以執行 MPI 應用程式
-了解如何在 Azure 中使用 [H 系列或計算密集型 A 系列 VM](../../virtual-machines-linux-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來設定 Linux RDMA 叢集，以便執行平行「訊息傳遞介面」(MPI) 應用程式。 本文提供準備 Linux HPC 映像以在叢集上執行 Intel MPI 的步驟。 準備之後，您會使用此映像和其中一個支援 RDMA 的 Azure VM 大小 (目前為 H16r、H16mr、A8 或 A9) 來部署 VM 的叢集。 請使用此叢集來執行透過低延遲、高輸送量網路有效率地進行通訊的 MPI 應用程式，此網路是以遠端直接記憶體存取 (RDMA) 技術為基礎。
+了解如何在 Azure 中使用 [H 系列或計算密集型 A 系列 VM](../a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 來設定 Linux RDMA 叢集，以便執行平行「訊息傳遞介面」(MPI) 應用程式。 本文提供準備 Linux HPC 映像以在叢集上執行 Intel MPI 的步驟。 準備之後，您會使用此映像和其中一個支援 RDMA 的 Azure VM 大小 (目前為 H16r、H16mr、A8 或 A9) 來部署 VM 的叢集。 請使用此叢集來執行透過低延遲、高輸送量網路有效率地進行通訊的 MPI 應用程式，此網路是以遠端直接記憶體存取 (RDMA) 技術為基礎。
 
 > [!IMPORTANT]
 > Azure 建立和處理資源的部署模型有兩種：[Azure Resource Manager](../../../resource-manager-deployment-model.md) 和傳統。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
@@ -85,7 +85,7 @@ ms.lasthandoff: 03/27/2017
 
 
 ### <a name="customize-the-vm"></a>自訂 VM
-VM 完成佈建之後，使用 VM 的外部 IP 位址 (或 DNS 名稱) 以及您設定的外部連接埠號碼，透過 SSH 傳送至 VM，然後加以自訂。 如需連接詳細資料，請參閱[如何登入執行 Linux 的虛擬機器](../../virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 除非需要根目錄存取權才能完成步驟，否則請以您在 VM 上設定的使用者身分來執行命令。
+VM 完成佈建之後，使用 VM 的外部 IP 位址 (或 DNS 名稱) 以及您設定的外部連接埠號碼，透過 SSH 傳送至 VM，然後加以自訂。 如需連接詳細資料，請參閱[如何登入執行 Linux 的虛擬機器](../mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 除非需要根目錄存取權才能完成步驟，否則請以您在 VM 上設定的使用者身分來執行命令。
 
 > [!IMPORTANT]
 > Microsoft Azure 不會提供 Linux VM 的根目錄存取權。 若要在以使用者身分連接至 VM 時取得系統管理存取權，請使用 `sudo` 執行命令。

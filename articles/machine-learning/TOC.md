@@ -196,7 +196,6 @@
 ## Cortana Analytics
 ### API
 #### [異常偵測](machine-learning-apps-anomaly-detection-api.md)
-#### [文字分析](machine-learning-apps-text-analytics.md)
 #### [辨識服務](https://azure.microsoft.com/services/cognitive-services/)
 #### 預測性維護
 ##### [概觀](cortana-analytics-playbook-predictive-maintenance.md)

@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/17/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: c56a1dc92c27d55b90554e23dd9763ff98ce6cc7
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: a8221c35a440ae859c82072ea170b438dc40d261
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -189,9 +189,9 @@ Get-AzureRmVM -ResourceGroupName ExampleGroup
 ## <a name="migrate-from-classic-to-resource-manager"></a>從傳統移轉至 Resource Manager
 如果您準備好將資源從傳統部署移轉至 Resource Manager 部署，請參閱：
 
-1. [平台支援的從傳統移轉至 Azure Resource Manager 的技術深入探討](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
-2. [支援將 IaaS 資源從傳統移轉至 Azure Resource Manager 的平台](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)
-3. [使用 Azure PowerShell 將 IaaS 資源從傳統移轉至 Azure Resource Manager](../virtual-machines/virtual-machines-windows-ps-migration-classic-resource-manager.md)
+1. [平台支援的從傳統移轉至 Azure Resource Manager 的技術深入探討](../virtual-machines/windows/migration-classic-resource-manager-deep-dive.md)
+2. [支援將 IaaS 資源從傳統移轉至 Azure Resource Manager 的平台](../virtual-machines/windows/migration-classic-resource-manager-overview.md)
+3. [使用 Azure PowerShell 將 IaaS 資源從傳統移轉至 Azure Resource Manager](../virtual-machines/windows/migration-classic-resource-manager-ps.md)
 4. [使用 Azure CLI 將 IaaS 資源從傳統移轉至 Azure Resource Manager](../virtual-machines/virtual-machines-linux-cli-migration-classic-resource-manager.md)
 
 ## <a name="frequently-asked-questions"></a>常見問題集

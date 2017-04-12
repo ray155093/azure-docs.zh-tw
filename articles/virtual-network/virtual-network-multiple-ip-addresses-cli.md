@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 11/17/2016
 ms.author: annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 90f1f63beac199bc88397951896fe28e3824ee64
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 0e9b2ef89ca39a7988a7b2573496a605dfc604b4
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -35,7 +35,7 @@ ms.lasthandoff: 03/27/2017
 您可以使用 Azure CLI 2.0 (本文) 或 [Azure CLI 1.0](virtual-network-multiple-ip-addresses-cli-nodejs.md) 完成這項工作。 請針對您的環境適當地變更值。 後續步驟說明如何使用多個 IP 位址建立範例 VM，如案例中所述。 視您的實作而定，變更 "" 中的變數值和 IP 位址類型。 
 
 1. 如果尚未安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，請先安裝此軟體。
-2. 完成[建立 Linux VM 的 SSH 公用和私用金鑰組](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json)中的步驟，為 Linux VM 建立 SSH 公用和私用金鑰組。
+2. 完成[建立 Linux VM 的 SSH 公用和私用金鑰組](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json)中的步驟，為 Linux VM 建立 SSH 公用和私用金鑰組。
 3. 從命令殼層使用命令 `az login` 進行登入，然後選取您使用的訂用帳戶。
 4. 在 Linux 或 Mac 電腦上執行後續的指令碼以建立 VM。 該指令碼會建立資源群組、一個虛擬網路 (VNet)、一個具有三個 IP 組態的 NIC，以及連接了兩個 NIC 的 VM。 NIC、公用 IP 位址、虛擬網路和 VM 資源必須全都位於相同的位置和訂用帳戶。 雖然資源不需要全都位於相同的資源群組中，但在下列指令碼中，它們卻是如此。
 
@@ -157,7 +157,7 @@ az vm create \
 
 除了建立具有 NIC (其中含有 3 個 IP 組態) 的 VM 之外，該指令碼還會建立：
 
-- 單一的進階受控磁碟 (預設)，但有其他選項可讓您選擇可以建立的磁碟類型。 如需詳細資料，請閱讀[使用 Azure CLI 2.0 建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 一文。
+- 單一的進階受控磁碟 (預設)，但有其他選項可讓您選擇可以建立的磁碟類型。 如需詳細資料，請閱讀[使用 Azure CLI 2.0 建立 Linux VM](../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 一文。
 - 具有一個子網路和兩個公用 IP 位址的虛擬網路。 或者，您可以使用「現有」虛擬網路、子網路、NIC 或公用 IP 位址資源。 若要了解如何使用現有網路資源，而不是另外建立資源，請輸入 `az vm create -h`。
 
 公用 IP 位址需要少許費用。 若要深入了解 IP 位址定價，請閱讀 [IP 位址定價](https://azure.microsoft.com/pricing/details/ip-addresses) 頁面。 訂用帳戶中可使用的公用 IP 位址數目有限制。 若要深入了解限制，請參閱 [Azure 限制](../azure-subscription-service-limits.md#networking-limits)文章。

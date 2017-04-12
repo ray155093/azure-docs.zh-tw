@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: b9041713f3d084fde77a34ef7956a2c59312245e
-ms.openlocfilehash: d9008f6232ca2442edce2a3cae88f0b3d2be2f14
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 70830309c33d4a94fc1eb5abb85cba26c8623f88
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: d9008f6232ca2442edce2a3cae88f0b3d2be2f14
 
 本主題中的程式碼範例假設您已經有 Node.js 應用程式。 如需如何在 Azure 中建立 Node.js 應用程式的資訊，請參閱下列主題：
 
-* [在 Azure App Service 中建立 Node.js Web 應用程式](../app-service-web/web-sites-nodejs-develop-deploy-mac.md)
+* [在 Azure App Service 中建立 Node.js Web 應用程式](../app-service-web/app-service-web-get-started-nodejs.md)
 * [使用 WebMatrix 來建立 Node.js Web 應用程式並部署至 Azure。](../app-service-web/web-sites-nodejs-use-webmatrix.md)
 * [建置 Node.js 應用程式並部署到 Azure 雲端服務](../cloud-services/cloud-services-nodejs-develop-deploy-app.md) (使用 Windows PowerShell)
 
@@ -195,7 +196,7 @@ tableSvc.replaceEntity('mytable', updatedTask, function(error, result, response)
 > 1. 取得正在更新之物件的 ETag。 系統會針對實體相關的作業將 ETag 包含在 `response` 中傳回，且可透過 `response['.metadata'].etag` 擷取 ETag。
 > 2. 對實體執行更新操作時，請將先前擷取的 ETag 資訊新增至新的實體。 例如：
 >
->       entity2['.metadata'].etag = currentEtag;
+>         entity2['.metadata'].etag = currentEtag;
 > 3. 執行更新操作。 如果擷取 ETag 值之後，實體 (例如您應用程式的其他執行個體) 進行了修改，系統會傳回 `error` ，表示不符合要求中指定的更新條件。
 >
 >
@@ -269,7 +270,7 @@ tableSvc.retrieveEntity('mytable', 'hometasks', '1', function(error, result, res
   * **or** - `or` where 條件
 * **top** - 要提取的項目數
 
-下列範例建立的查詢會傳回 PartitionKey 為 'hometasks' 的前&5; 個項目。
+下列範例建立的查詢會傳回 PartitionKey 為 'hometasks' 的前 5 個項目。
 
 ```nodejs
 var query = new azure.TableQuery()
@@ -457,17 +458,8 @@ tableSAS = tableSvc.generateSharedAccessSignature('hometasks', { Id: 'user2' });
 [Azure Storage SDK for Node]: https://github.com/Azure/azure-storage-node
 [OData.org]: http://www.odata.org/
 [Using the REST API]: http://msdn.microsoft.com/library/azure/hh264518.aspx
-[Azure portal]: portal.azure.com
 
-[Node.js Cloud Service]: ../cloud-services-nodejs-develop-deploy-app.md
 [Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/
-[Website with WebMatrix]: ../web-sites-nodejs-use-webmatrix.md
-[Node.js Cloud Service with Storage]: ../storage-nodejs-use-table-storage-cloud-service-app.md
 [使用 Azure 表格服務的 Node.js Web 應用程式]: ../app-service-web/storage-nodejs-use-table-storage-web-site.md
-[Create and deploy a Node.js application to an Azure website]: ../web-sites-nodejs-develop-deploy-mac.md
-
-
-
-<!--HONumber=Jan17_HO4-->
-
+[Create and deploy a Node.js application to an Azure website]: ../app-service-web/app-service-web-get-started-nodejs.md
 

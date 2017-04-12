@@ -12,12 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: TBD
-ms.date: 03/21/2017
+ms.date: 04/04/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: a545925bdade693f4db7db45228188dae7e5ff38
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
+ms.openlocfilehash: 23f1bbb066c5b6481988ee841ad8979d78abf084
+ms.lasthandoff: 04/05/2017
 
 
 ---
@@ -52,8 +52,6 @@ Update 4 包含以下重要的改良功能和錯誤修正。
 * **StorSimple 診斷工具** – Update 4 中推出 StorSimple 診斷工具，對於系統、網路、效能和硬體元件健康狀態的相關問題，可讓您輕鬆診斷和疑難排解。 此工具是透過 Windows PowerShell for StorSimple 執行。 如需詳細資訊，請移至[使用 StorSimple 診斷工具進行疑難排解](storsimple-8000-diagnostics.md)。
 
 * **以 UI 為基礎的 StorSimple 移轉工具** - 在此版本之前，如果要從 5000-7000 系列移轉資料，使用者必須在移轉工作流程中利用 Azure PowerShell 介面來執行移轉。 在此版本中，提供簡單好用以 UI 為基礎的 StorSimple 移轉工具給支援人員，以利於進行相同的移轉工作流程。 此工具也可用來合併復原貯體。 
-
-* **StorSimple Snapshot Manager 的 MPIO 支援** - 在此版本中，我們已實作 StorSimple Snapshot Manager 的 MPIO 支援。
 
 * **FIPS 相關變更** - 從這個版本開始，針對 Microsoft Azure Government 和 Azure 公用雲端帳戶，所有 StorSimple 8000 系列裝置上依預設都啟用 FIPS。
 

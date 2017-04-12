@@ -17,9 +17,9 @@ ms.date: 02/02/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 4f5eaf5f6ba56709b69d97c1f646f71396fd031b
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 19b1757dd694e756cfd2d0d6cd67e64f43ccab7f
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -38,7 +38,7 @@ ms.lasthandoff: 03/22/2017
 您可以使用 Azure CLI 2.0 (本文) 或 [Azure CLI 1.0](virtual-network-deploy-multinic-cli-nodejs.md) 完成這項工作。 後續步驟所含變數之 "" 中的值，會使用案例中的設定建立資源。 請針對您的環境適當地變更值。
 
 1. 如果尚未安裝 [Azure CLI 2.0](/cli/azure/install-az-cli2)，請先安裝此軟體。
-2. 完成[建立 Linux VM 的 SSH 公用和私用金鑰組](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json)中的步驟，為 Linux VM 建立 SSH 公用和私用金鑰組。
+2. 完成[建立 Linux VM 的 SSH 公用和私用金鑰組](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-network%2ftoc.json)中的步驟，為 Linux VM 建立 SSH 公用和私用金鑰組。
 3. 從命令殼層使用命令 `az login` 進行登入。
 4. 在 Linux 或 Mac 電腦上執行後續的指令碼以建立 VM。 該指令碼會建立資源群組、一個具有兩個子網路的虛擬網路 (VNet)、兩個 NIC，以及連接了兩個 NIC 的 VM。 其中一個 NIC 會連線到一個子網路，並獲指派靜態的公用和私人 IP 位址。 另一個 NIC 則連線到另一個子網路，並獲指派靜態的私人 IP 位址，但沒有公用 IP 位址。 NIC、公用 IP 位址、虛擬網路和 VM 資源必須全都位於相同的位置和訂用帳戶。 雖然資源不需要全都位於相同的資源群組中，但在下列指令碼中，它們卻是如此。
 
@@ -159,7 +159,7 @@ az vm create \
 ```
 
 除了建立具有兩個 NIC 的 VM 外，該指令碼還會建立︰
-- 單一的進階受控磁碟 (預設)，但有其他選項可讓您選擇可以建立的磁碟類型。 如需詳細資料，請閱讀[使用 Azure CLI 2.0 建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 一文。
+- 單一的進階受控磁碟 (預設)，但有其他選項可讓您選擇可以建立的磁碟類型。 如需詳細資料，請閱讀[使用 Azure CLI 2.0 建立 Linux VM](../virtual-machines/linux/quick-create-cli.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 一文。
 - 具有兩個子網路和一個公用 IP 位址的虛擬網路。 或者，您可以使用「現有」虛擬網路、子網路、NIC 或公用 IP 位址資源。 若要了解如何使用現有網路資源，而不是另外建立資源，請輸入 `az vm create -h`。
 
 ## <a name = "validate"></a>驗證 VM 建立和 NIC

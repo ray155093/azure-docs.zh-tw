@@ -16,15 +16,16 @@ ms.date: 01/10/2017
 ms.devlang: na
 ms.author: delhan
 translationtype: Human Translation
-ms.sourcegitcommit: 66b1bcdf0f79ff4743f466c3737696f53ef6a44c
-ms.openlocfilehash: 6bae5c227fb45b1a6ed25c4eb7aac2048fc856c1
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 95b12674f3e7d3d63421be6098c72d87cab562b6
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="troubleshoot-classic-deployment-issues-with-restarting-or-resizing-an-existing-windows-virtual-machine-in-azure"></a>針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器大小的傳統部署問題進行疑難排解
 > [!div class="op_single_selector"]
 > * [傳統](virtual-machines-windows-classic-restart-resize-error-troubleshooting.md)
-> * [資源管理員](../../virtual-machines-windows-restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> * [資源管理員](../restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 > 
 > 
 
@@ -82,11 +83,6 @@ ms.openlocfilehash: 6bae5c227fb45b1a6ed25c4eb7aac2048fc856c1
 如果現有的雲端服務未和以區域為基礎的虛擬網路相關聯，您必須刪除現有雲端服務中的 VM，並從其磁碟在新的雲端服務中將其重新建立。 然而，請務必記得新的雲端服務將會有新的名稱和 VIP，因此您需要為所有目前將此資訊用於現有雲端服務的相依性更新該資訊。
 
 ## <a name="next-steps"></a>後續步驟
-如果您在 Azure 中建立新的 Windows VM 時遇到問題，請參閱[針對在 Azure 中建立新 Windows 虛擬機器的部署問題進行疑難排解](../../virtual-machines-windows-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-
-
-
-
-<!--HONumber=Nov16_HO4-->
+如果您在 Azure 中建立新的 Windows VM 時遇到問題，請參閱[針對在 Azure 中建立新 Windows 虛擬機器的部署問題進行疑難排解](../troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 

@@ -12,12 +12,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: required
-ms.date: 02/23/2017
+ms.date: 04/07/2017
 ms.author: bharatn
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: a68855e0b6ba436849c4de13f1439f0e70009b6a
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 121bf91a2476a079c0737187aef8791be0b4b250
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -297,7 +297,7 @@ Azure 應用程式閘道會嘗試重新解析服務位址，並在無法連線�
 > 當您使用不同於叢集憑證的憑證在現有叢集上啟用反向 Proxy 時，請先在叢集上安裝反向 Proxy 憑證並更新 ACL，再啟用反向 Proxy。 先使用先前所述設定完成 [Azure Resource Manager 範本](service-fabric-cluster-creation-via-arm.md)部署，再開始於步驟 1-4 中啟用反向 Proxy 的部署。
 
 ## <a name="next-steps"></a>後續步驟
-* 請參閱 [GitHub 上的範例專案](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/Services/WordCount)中服務之間的 HTTP 通訊範例。
+* 請參閱 [GitHub 上的範例專案](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)中服務之間的 HTTP 通訊範例。
 * [使用 Reliable Services 遠端服務進行遠端程序呼叫](service-fabric-reliable-services-communication-remoting.md)
 * [在 Reliable Services 中使用 OWIN 的 Web API](service-fabric-reliable-services-communication-webapi.md)
 * [使用 Reliable Services 的 WCF 通訊](service-fabric-reliable-services-communication-wcf.md)
