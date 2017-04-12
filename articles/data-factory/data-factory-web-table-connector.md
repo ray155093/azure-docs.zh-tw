@@ -12,7 +12,7 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/22/2017
+ms.date: 04/12/2017
 ms.author: jingwang
 translationtype: Human Translation
 ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
@@ -26,7 +26,7 @@ ms.lasthandoff: 03/29/2017
 
 Data factory 目前只支援把 Web 資料表的資料移動到其他資料存放區，但不支援把其他資料存放區的資料移動到 Web 資料表。
 
-> [!NOTE]
+> [!IMPORTANT]
 > 此 Web 連接器目前只支援從 HTML 網頁擷取資料表內容。 若要從 HTTP/s 端點擷取資料，請改用 [HTTP 連接器](data-factory-http-connector.md)。
 
 ## <a name="getting-started"></a>開始使用
