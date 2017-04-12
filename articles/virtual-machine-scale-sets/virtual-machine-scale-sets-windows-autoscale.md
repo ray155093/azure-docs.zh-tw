@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 4fa0cdc2ee71d4e499dfc45bac7b690d728b626a
-ms.openlocfilehash: 2649edd4af67e25ce49bf0ced858b7c7e4633290
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: b2565bef6643decd1b96fc3cc5b01003916e9685
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -110,7 +110,7 @@ ms.lasthandoff: 02/09/2017
         * 虛擬網路和子網路的 IP 位址名稱和前置詞。
         * 虛擬網路、負載平衡器和網路介面的名稱和識別碼。
         * 與調整集內的機器相關聯之帳戶的儲存體帳戶名稱。
-        * 安裝在虛擬機器上的診斷延伸模組的設定。 如需診斷延伸模組的詳細資訊，請參閱[使用 Azure Resource Manager 範本建立具有監控和診斷功能的 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+        * 安裝在虛擬機器上的診斷延伸模組的設定。 如需診斷延伸模組的詳細資訊，請參閱[使用 Azure Resource Manager 範本建立具有監控和診斷功能的 Windows 虛擬機器](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 4. 在您新增至範本的資源父元素下，新增下列儲存體帳戶資源： 此範本使用迴圈來建立儲存作業系統磁碟和診斷資料的五個建議的儲存體帳戶。 這組帳戶最多可在一個調整集內支援 100 個虛擬機器，這是目前的最大值。 每個儲存體帳戶的命名方式都相同，即變數中所定義的字母指示項，加上您在參數中為範本提供的前置詞。
 
@@ -459,7 +459,7 @@ ms.lasthandoff: 02/09/2017
     此值是虛擬機器擴展集的資源識別碼。
     
     * **timeGrain**  
-    此值是所收集之計量的精細度。 此範本中，此值設為&1; 分鐘。
+    此值是所收集之計量的精細度。 此範本中，此值設為 1 分鐘。
     
     * **statistic**  
     此值會決定如何結合計量以因應自動調整動作的需要。 可能的值為：Average、Min、Max。 在這個範本中，將會收集虛擬機器的平均總 CPU 使用率。

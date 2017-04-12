@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: 6cc74e3d3bd704dab1a43b66374b51c1f3e2a0a2
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 75d5415d33324d957617426e75909a6c6c58b1f9
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="never-store-sensitive-data-on-custom-images"></a>機密資料絕不要儲存在自訂映像上
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -47,10 +48,5 @@ ms.openlocfilehash: 6cc74e3d3bd704dab1a43b66374b51c1f3e2a0a2
 * 建立自訂映像時，可能遺失的機密資料絕不儲存在映像上。
 * 機密資料應該一律放在雲端的個別檔案伺服器、個別 Azure VM 上，一律是在 Azure RemoteApp 中裝載應用程式的 VM 執行個體外部。 
 * 使用者資料儲存和保存在使用者設定檔磁碟 (UPD)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

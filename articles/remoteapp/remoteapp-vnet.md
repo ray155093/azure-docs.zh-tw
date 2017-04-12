@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: 30d18bdbdc6293bab5a8876fb1e503e125829e2e
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 05c8a0ff04293947cec391b6467cc4adddb6a7b0
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="validate-the-azure-vnet-to-use-with-azure-remoteapp"></a>驗證要搭配 Azure RemoteApp 使用的 Azure VNET
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -40,10 +41,5 @@ ms.openlocfilehash: 30d18bdbdc6293bab5a8876fb1e503e125829e2e
 * [如何針對 Azure RemoteApp 規劃您的虛擬網路](remoteapp-planvnet.md)
 * [建立混合式收藏](remoteapp-create-hybrid-deployment.md)
 * [將 Azure RemoteApp 收藏部署到 Azure 虛擬網路 (支援 ExpressRoute)](http://blogs.msdn.com/b/rds/archive/2015/04/23/deploy-azure-remoteapp-collection-to-your-azure-virtual-network-with-support-for-expressroute.aspx)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

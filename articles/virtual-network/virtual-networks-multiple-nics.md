@@ -16,8 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
-ms.openlocfilehash: d10ae92ba79014d9700613c06ef37a437089f5ac
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 5e91f640ab72fd3a5fffcb0f9d7bac1e9e031249
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.openlocfilehash: d10ae92ba79014d9700613c06ef37a437089f5ac
 * 執行個體層級公用 IP (LPIP) 位址 (傳統部署) 目前不支援多個 NIC 的 VM。
 * VM 內部的 NIC 順序是隨機的，而且也可透過 Azure 基礎結構更新來變更。 不過，IP 位址及對應的乙太網路 MAC 位址會維持不變。 例如，假設 **Eth1** 具有 IP 位址 10.1.0.100 和 MAC 位址 00-0D-3A-B0-39-0D；在 Azure 基礎結構更新並重新開機之後，就無法變更為 **Eth2**，但是 IP 和 MAC 配對會保持相同。 當客戶起始重新啟動時，NIC 順序會保持相同。
 * 每個 VM 上的每個 NIC 位址都必須位於子網路中，單一 VM 上的多個 NIC 每個都可以指派位於相同子網路的位址。
-* VM 大小會決定您可以為 VM 建立的 NIC 數目。 請參考 [Windows Server](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 和 [Linux](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 的VM 大小文章，以確定每個 VM 大小支援的 NIC 數目。 
+* VM 大小會決定您可以為 VM 建立的 NIC 數目。 請參考 [Windows Server](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 和 [Linux](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 的VM 大小文章，以確定每個 VM 大小支援的 NIC 數目。 
 
 ## <a name="network-security-groups-nsgs"></a>網路安全性群組 (NSG)
 在資源管理員部署中，VM 上的任何 NIC 可能會關聯至網路安全性群組 (NSG)，包括已啟用多個 NIC 功能的 VM 上的任何 NIC。 如果已為 NIC 指派子網路 (該子網路會關聯至 NSG) 內的位址，則子網路 NSG 中的規則也適用於該 NIC。 除了將子網路關聯至 NSG，您也可以將 NIC 關聯至 NSG。
@@ -227,10 +228,5 @@ ms.openlocfilehash: d10ae92ba79014d9700613c06ef37a437089f5ac
 ## <a name="next-steps"></a>後續步驟
 * 部署 [在資源管理員部署中的 2 層應用程式案例之多個 NIC VM](virtual-network-deploy-multinic-arm-template.md)。
 * 部署 [在傳統部署中的 2 層應用程式案例之多個 NIC VM](virtual-network-deploy-multinic-classic-ps.md)。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

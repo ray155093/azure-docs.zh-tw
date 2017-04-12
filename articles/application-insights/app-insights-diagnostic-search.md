@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: 5e3cf1407079a166fbe5e24abae2248ef467ebbb
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 08390472c6480200751f37028fef594fb055f118
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -165,7 +165,7 @@ ms.lasthandoff: 03/16/2017
 * 在 [.NET](app-insights-asp-net-trace-logs.md) 或 [Java](app-insights-java-trace-logs.md) 中，從您最喜愛的紀錄架構擷取記錄追蹤。 這表示您可以搜尋您的記錄追蹤，並將它們與頁面檢視、例外狀況和其他事件相互關聯。 
 * [編寫程式碼](app-insights-api-custom-events-metrics.md)以傳送自訂事件、頁面檢視和例外狀況。 
 
-[了解如何將記錄和自訂遙測傳送至 Application Insights](app-insights-search-diagnostic-logs.md)。
+[了解如何將記錄和自訂遙測傳送至 Application Insights](app-insights-asp-net-trace-logs.md)。
 
 ## <a name="questions"></a>問與答
 ### <a name="limits"></a>保留多少資料？
@@ -173,7 +173,7 @@ ms.lasthandoff: 03/16/2017
 請參閱[限制摘要](app-insights-pricing.md#limits-summary)。
 
 ### <a name="how-can-i-see-post-data-in-my-server-requests"></a>我如何查看我的伺服器要求中的 POST 資料？
-我們不會自動記錄 POST 資料，但您可以使用 [TrackTrace 或記錄呼叫](app-insights-search-diagnostic-logs.md)。 將 POST 資料放在訊息參數中。 您無法像篩選屬性一樣來篩選訊息，但大小限制比較長。
+我們不會自動記錄 POST 資料，但您可以使用 [TrackTrace 或記錄呼叫](app-insights-asp-net-trace-logs.md)。 將 POST 資料放在訊息參數中。 您無法像篩選屬性一樣來篩選訊息，但大小限制比較長。
 
 ## <a name="video"></a>影片
 
@@ -181,7 +181,7 @@ ms.lasthandoff: 03/16/2017
 
 ## <a name="add"></a>接續步驟
 * [在分析中撰寫複雜的查詢](app-insights-analytics-tour.md)
-* [將記錄和自訂遙測傳送至 Application Insights](app-insights-search-diagnostic-logs.md)
+* [將記錄和自訂遙測傳送至 Application Insights](app-insights-asp-net-trace-logs.md)
 * [設定可用性和回應性測試](app-insights-monitor-web-app-availability.md)
 * [疑難排解](app-insights-troubleshoot-faq.md)
 

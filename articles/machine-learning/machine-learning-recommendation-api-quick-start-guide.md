@@ -12,12 +12,14 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 03/31/2017
 ms.author: luisca
+ROBOTS: NOINDEX, NOFOLLOW
+redirect_url: machine-learning-datamarket-deprecation
 translationtype: Human Translation
-ms.sourcegitcommit: c5d1812a3bd7e1ad3621ca691339f01729882b08
-ms.openlocfilehash: 67131bbaccff549817bfe5fdf874d609ea22c2bc
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 21cf8b726ffd9b05f771c8ac6480140a6ed3199e
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -39,7 +41,7 @@ ms.lasthandoff: 01/31/2017
 
 * 建立模型 - 模型是使用狀況資料、目錄資料和建議模型的容器。
 * 匯入目錄資料 - 目錄包含項目的中繼資料資訊。 
-* 匯入使用狀況資料 - 上傳使用狀況資料的方式有&2; 種 (使用其中一種或兩種皆用)：
+* 匯入使用狀況資料 - 上傳使用狀況資料的方式有 2 種 (使用其中一種或兩種皆用)：
   * 上傳包含使用資料的檔案。
   * 傳送資料擷取事件。
     通常您會上傳使用方式檔案以便建立初始建議模型 (啟動程序)，並使用這個模型，直到系統收集採用資料擷取格式的足夠資料為止。
@@ -53,7 +55,7 @@ ms.lasthandoff: 01/31/2017
 * 一個目錄可以保留的項目數上限是 100,000。
 * 保留的使用點數上限是 ~5,000,000。 如果將上傳或回報新的點，就會將最舊的點刪除。
 * POST 中可以傳送的資料大小上限 (例如，匯入目錄資料、匯入使用狀況資料) 是 200MB。
-* 非作用中建議模型組建的每秒交易數目是 ~&2;TPS。 作用中建議模型組建可以保留高達 20TPS。
+* 非作用中建議模型組建的每秒交易數目是 ~ 2TPS。 作用中建議模型組建可以保留高達 20TPS。
 
 ## <a name="integration"></a>整合
 ### <a name="authentication"></a>驗證

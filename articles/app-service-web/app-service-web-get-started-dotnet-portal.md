@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 02/10/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 0921b01bc930f633f39aba07b7899ad60bd6a234
-ms.openlocfilehash: fa3f31cdd708729071876ffad707bea70567da83
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 6b1dede903083d1771733330a069b6ab533d9f00
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -103,7 +103,7 @@ ms.lasthandoff: 03/01/2017
     ![Umbraco 設定 - Azure App Service 中的第一個 Umbraco](./media/app-service-web-get-started-dotnet-portal/umbraco-config.png)
     
 ## <a name="next-steps"></a>後續步驟
-* [使用 Visual Studio 將 ASP.NET Web 應用程式部署至 Azure App Service](web-sites-dotnet-get-started.md) - 了解如何從 Visual Studio 中，使用任一個隨附的應用程式範本建立新的 Azure Web 應用程式。
+* [使用 Visual Studio 將 ASP.NET Web 應用程式部署至 Azure App Service](app-service-web-get-started-dotnet.md) - 了解如何從 Visual Studio 中，使用任一個隨附的應用程式範本建立新的 Azure Web 應用程式。
 * [將程式碼部署至 Azure App Service](web-sites-deploy.md) - 了解如何從 FTP 或從原始檔控制儲存機制進行部署。
 * [在您的第一個 Web 應用程式中新增功能](app-service-web-get-started-2.md) - 加強您 Azure App 的功能。 驗證您的使用者。 根據需求加以調整。 設定一些效能警示。 都只要點幾下滑鼠就能完成。
 

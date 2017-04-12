@@ -16,9 +16,9 @@ ms.workload: big-compute
 ms.date: 12/29/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 680b2bec3af18273d0ac43d7102a99392fd8ebe0
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 4e542ea6431933668d96f7028431826bceb9f337
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -85,7 +85,7 @@ Microsoft HPC Pack 是免費提供的工具，可在內部部署環境中或 Azu
    工作執行完成後，請讓節點離線，然後使用 [HPC 叢集管理員] 中的 [停止]  動作。
 
 ## <a name="scenario-2-deploy-compute-nodes-in-compute-intensive-vms-iaas"></a>案例 2︰在大量計算 VM 中部署計算節點 (IaaS)
-在此案例中，您會在 Azure 虛擬網路中的 VM 上部署 HPC Pack 前端節點和叢集計算節點。 HPC Pack 提供一些 [Azure VM 中的部署選項](../../virtual-machines-linux-hpcpack-cluster-options.md)，包括自動部署指令碼和 Azure 快速入門範本。 舉例來說，下列考量和步驟會引導您使用 [HPC Pack IaaS 部署指令碼](hpcpack-cluster-powershell-script.md)，在 Azure 中自動部署 HPC Pack 2012 R2 叢集。
+在此案例中，您會在 Azure 虛擬網路中的 VM 上部署 HPC Pack 前端節點和叢集計算節點。 HPC Pack 提供一些 [Azure VM 中的部署選項](../../linux/hpcpack-cluster-options.md)，包括自動部署指令碼和 Azure 快速入門範本。 舉例來說，下列考量和步驟會引導您使用 [HPC Pack IaaS 部署指令碼](hpcpack-cluster-powershell-script.md)，在 Azure 中自動部署 HPC Pack 2012 R2 叢集。
 
 ![Azure VM 中的叢集][iaas]
 
@@ -102,7 +102,7 @@ Microsoft HPC Pack 是免費提供的工具，可在內部部署環境中或 Azu
    * **Windows Server 作業系統**：若要支援 RDMA 連線能力，請為計算節點 VM 指定 Windows Server 2012 R2 或 Windows Server 2012 作業系統。
    * **雲端服務**：建議您將前端節點部署在一個雲端服務中，而將計算節點部署在另一個雲端服務中。
    * **前端節點大小**：在此案例中，請考慮至少使用 A4 大小 (超大) 的前端節點。
-   * **HpcVmDrivers 延伸模組**：當您使用 Windows Server 作業系統部署 A8 或 A9 大小的計算節點時，部署指令碼會自動安裝 Azure VM 代理程式和 HpcVmDrivers 延伸模組。 HpcVmDrivers 會在運算節點 VM 上安裝驅動程式，使其可以連接到 RDMA 網路。 在支援 RDMA 的 H 系列 VM 上，您必須手動安裝 HpcVmDrivers 擴充功能。 請參閱 [關於 H 系列和計算密集型 A 系列 VM](../../virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#access-to-the-rdma-network)。
+   * **HpcVmDrivers 延伸模組**：當您使用 Windows Server 作業系統部署 A8 或 A9 大小的計算節點時，部署指令碼會自動安裝 Azure VM 代理程式和 HpcVmDrivers 延伸模組。 HpcVmDrivers 會在運算節點 VM 上安裝驅動程式，使其可以連接到 RDMA 網路。 在支援 RDMA 的 H 系列 VM 上，您必須手動安裝 HpcVmDrivers 擴充功能。 請參閱 [關於 H 系列和計算密集型 A 系列 VM](../a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#access-to-the-rdma-network)。
    * **叢集網路組態**：部署指令碼會自動以「拓撲 5」(所有節點在企業網路上) 設定 HPC Pack 叢集。 VM 中的所有 HPC Pack 叢集部署都需要此拓撲。 後續請勿變更此叢集網路拓撲。
 2. **讓運算節點上線執行工作**
    

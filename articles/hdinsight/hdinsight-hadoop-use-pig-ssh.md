@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 4fe50acbbf9424275c5746b3bdabc79b08b027d3
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 22862d87562e9d9ec9d509eab2f65c850f4aa6d6
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -40,7 +40,7 @@ Pig Latin 程式設計語言可讓您描述套用至輸入資料來產生想要�
 * 以 Linux 為基礎的 HDInsight (HDInsight 上的 Hadoop) 叢集。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 * SSH 用戶端。 Linux、Unix 和 Mac OS 應該具備 SSH 用戶端。 Windows 使用者必須下載用戶端，例如 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
@@ -59,24 +59,24 @@ Pig Latin 程式設計語言可讓您描述套用至輸入資料來產生想要�
 
 ## <a id="pig"></a>使用 Pig 命令
 1. 連線之後，使用下列命令來啟動 Pig 命令列介面 (CLI)。
-   
+
         pig
-   
+
     隨後，您應該會看到 `grunt>` 提示字元。
 2. 輸入下列陳述式。
-   
+
         LOGS = LOAD 'wasbs:///example/data/sample.log';
-   
+
     此命令會將 sample.log 檔案的內容載入至 LOGS。 您可以使用下列方法檢視檔案的內容。
-   
+
         DUMP LOGS;
 3. 接下來是轉換資料，方法是套用規則運算式，並使用下列命令僅擷取每筆記錄的記錄層級。
-   
+
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
-   
+
     轉換之後，您可以使用 **DUMP** 來檢視資料。 在此案例中，請使用 `DUMP LEVELS;`。
 4. 使用下列陳述式，繼續套用轉換。 使用 `DUMP` 檢視每個步驟後的轉換結果。
-   
+
     <table>
     <tr>
     <th>陳述式</th><th>作用</th>
@@ -95,25 +95,25 @@ Pig Latin 程式設計語言可讓您描述套用至輸入資料來產生想要�
     </tr>
     </table>
 5. 您也可以使用 `STORE` 陳述式儲存轉換結果。 例如，下列命令會將 `RESULT` 儲存到叢集之預設儲存體容器上的 **/example/data/pigout** 目錄。
-   
+
         STORE RESULT into 'wasbs:///example/data/pigout';
-   
+
    > [!NOTE]
    > 資料會儲存到所指定目錄中名為 **part-nnnnn**的檔案中。 如果目錄已經存在，則會收到錯誤。
-   > 
-   > 
+   >
+   >
 6. 若要結束 grunt 提示字元，請輸入下列陳述式。
-   
+
         QUIT;
 
 ### <a name="pig-latin-batch-files"></a>Pig Latin 批次檔
 您也可以使用 Pig 命令執行檔案中所含的 Pig Latin。
 
 1. 結束 grunt 提示字元之後，請使用下列命令將 STDIN 管道輸出到名為 **pigbatch.pig**的檔案。 將會在登入以進行 SSH 工作階段之帳戶的主目錄中建立此檔案。
-   
+
         cat > ~/pigbatch.pig
 2. 輸入或貼上下列數行，然後在完成後使用 Ctrl+D。
-   
+
         LOGS = LOAD 'wasbs:///example/data/sample.log';
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
         FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
@@ -122,11 +122,11 @@ Pig Latin 程式設計語言可讓您描述套用至輸入資料來產生想要�
         RESULT = order FREQUENCIES by COUNT desc;
         DUMP RESULT;
 3. 使用下列命令，以使用 Pig 命令來執行 **pigbatch.pig** 檔案。
-   
+
         pig ~/pigbatch.pig
-   
+
     批次工作完成後，您應該會看到下列輸出，而輸出應該會與先前步驟中使用 `DUMP RESULT;` 時相同。
-   
+
         (TRACE,816)
         (DEBUG,434)
         (INFO,96)
@@ -146,5 +146,4 @@ Pig Latin 程式設計語言可讓您描述套用至輸入資料來產生想要�
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
-
 

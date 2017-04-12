@@ -17,9 +17,9 @@ ms.workload: data-management
 ms.date: 03/23/2017
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 01294f8f8fdaa65a5f33dbf6d35c0baa342cacc8
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 154cd7eec65559ec2263a12b8977ec0af0a78743
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -39,12 +39,11 @@ Azure Active Directory 驗證是 Azure Active Directory (Azure AD) 中使用身�
 設定步驟包括以下設定和使用 Azure Active Directory 驗證的程序。
 
 1. 建立和填入 Azure AD。
-2. 確定您的資料庫是 Azure SQL Database V12。 (SQL 資料倉儲並不需要)。
-3. 選用：和目前與您的 Azure 訂用帳戶相關聯的 Active Directory 產生關聯並加以變更
-4. 建立 Azure SQL 伺服器或 [Azure SQL 資料倉儲](https://azure.microsoft.com/services/sql-data-warehouse/)的 Azure Active Directory 系統管理員。
-5. 設定用戶端電腦。
-6. 在對應至 Azure AD 身分識別的資料庫中建立自主資料庫使用者。
-7. 使用 Azure AD 身分識別連接到您的資料庫。
+2. 選用：和目前與您的 Azure 訂用帳戶相關聯的 Active Directory 產生關聯並加以變更
+3. 建立 Azure SQL 伺服器或 [Azure SQL 資料倉儲](https://azure.microsoft.com/services/sql-data-warehouse/)的 Azure Active Directory 系統管理員。
+4. 設定用戶端電腦。
+5. 在對應至 Azure AD 身分識別的資料庫中建立自主資料庫使用者。
+6. 使用 Azure AD 身分識別連接到您的資料庫。
 
 > [!NOTE]
 > 若要了解如何建立和填入 Azure AD，然後使用 Azure SQL Database 和 SQL 資料倉儲設定 Azure AD，請參閱[使用 Azure SQL Database 設定 Azure AD](sql-database-aad-authentication-configure.md)。

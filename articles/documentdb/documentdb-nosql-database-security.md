@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/08/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: ca5f5696e9478d5087a09fff16742f65ea3e5589
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 9cf87aa75b2ef65719a38e446a81086d265e7f4d
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -64,14 +64,14 @@ ms.lasthandoff: 03/10/2017
 |安全性需求|DocumentDB 的安全性方法|
 |---|---|---|
 |網路安全性|使用 IP 防火牆是保護 NoSQL 資料庫的第一道防線。 DocumentDB 支援原則驅動的 IP 型存取控制，以提供輸入防火牆支援。 IP 型存取控制類似於傳統資料庫系統所使用的防火牆規則，但可以擴大，以規定只能從一組核准的機器或雲端服務存取 DocumentDB 資料庫帳戶。 <br><br>DocumentDB 可讓您啟用特定的 IP 位址 (168.61.48.0)、IP 範圍 (168.61.48.0/8)，以及 IP 和範圍的組合。 <br><br>DocumentDB 會封鎖此允許清單之外的機器發出的所有要求。 因此，核准的機器和雲端服務發出的要求必須完成驗證程序，才能獲得資源的存取控制。<br><br>請參閱 [DocumentDB 防火牆支援](documentdb-firewall-support.md)以深入了解。|
-|Authorization|DocumentDB 使用雜湊式訊息驗證碼 (HMAC) 來進行授權。 <br><br>每個要求都經過帳戶秘密金鑰的雜湊處理，而後續的 base&64; 編碼雜湊會隨著每次呼叫 DocumentDB 一起傳送。 為了驗證要求，DocumentDB 服務會使用正確的秘密金鑰和屬性產生雜湊，然後比較此值與要求中的值。 如果兩個值相符，則會成功授權作業，並處理要求，否則授權會失敗，也會拒絕要求。<br><br>您可以使用[主要金鑰](documentdb-secure-access-to-data.md#master-keys)或[資源權杖](documentdb-secure-access-to-data.md#resource-tokens)，更細微地控制資源的存取，例如文件。<br><br>請參閱[保護 DocumentDB 資源的存取](documentdb-secure-access-to-data.md)以深入了解。|
+|Authorization|DocumentDB 使用雜湊式訊息驗證碼 (HMAC) 來進行授權。 <br><br>每個要求都經過帳戶秘密金鑰的雜湊處理，而後續的 base 64 編碼雜湊會隨著每次呼叫 DocumentDB 一起傳送。 為了驗證要求，DocumentDB 服務會使用正確的秘密金鑰和屬性產生雜湊，然後比較此值與要求中的值。 如果兩個值相符，則會成功授權作業，並處理要求，否則授權會失敗，也會拒絕要求。<br><br>您可以使用[主要金鑰](documentdb-secure-access-to-data.md#master-keys)或[資源權杖](documentdb-secure-access-to-data.md#resource-tokens)，更細微地控制資源的存取，例如文件。<br><br>請參閱[保護 DocumentDB 資源的存取](documentdb-secure-access-to-data.md)以深入了解。|
 |使用者和權限|您可以使用帳戶的[主要金鑰](#master-key)，建立每個資料庫的使用者資源和權限資源。 [資源權杖](#resource-token)與資料庫中的權限相關聯，將決定使用者是否能夠存取 (讀寫、唯讀或無法存取) 資料庫中的應用程式資源。 應用程式資源包括集合、文件、附件、預存程序、觸發程序和 UDF。 然後，驗證期間會使用資源權杖來允許或拒絕存取資源。<br><br>請參閱[保護 DocumentDB 資源的存取](documentdb-secure-access-to-data.md)以深入了解。|
 |Azure 目錄整合 (RBAC)| 您也可以在 Azure 入口網站中使用存取控制 (IAM) 提供資料庫帳戶的存取權。 IAM 提供角色型存取控制，並與 Active Directory 整合。 您可以對個人或群組使用內建角色或自訂角色，如下圖所示。<br><br>![Azure 入口網站中的存取控制 (IAM) - 示範 NoSQL 資料庫安全性](./media/documentdb-nosql-database-security/nosql-database-security-identity-access-management-iam-rbac.png)|
 |全球複寫|DocumentDB 提供現成的全域散發，您只要按一下按鈕，就能資料複寫至 Azure 的任何一個全球資料中心。 全球複寫可讓您擴大到全球規模，確保存取世界各地資料時的低延遲性。<br><br>在安全性方面，全球複寫可確保資料不受區域性失敗所波及。<br><br>請參閱[將資料分散到全球](documentdb-distribute-data-globally.md)以深入了解。|
 |區域性容錯移轉|如果您已將資料複寫至多個資料中心，萬一某個區域資料中心離線，DocumentDB 會自動轉移您的作業。 您可以使用已複寫資料的區域，建立容錯移轉區域的優先順序清單。 <br><br>請參閱 [Azure DocumentDB 的區域性容錯移轉](documentdb-regional-failovers.md)以深入了解。|
-|區域複寫|即使在單一資料中心內，DocumentDB 也會自動複寫資料來達到高可用性，還可讓您選擇[一致性層級](documentdb-consistency-levels.md)。 這樣可保證  [99.99% 執行時間可用性 SLA](https://azure.microsoft.com/support/legal/sla/documentdb/v1_0/)，同時帶來財務保證 - 其他任何 NoSQL 資料庫服務都沒有這種能力。|
+|區域複寫|即使在單一資料中心內，DocumentDB 也會自動複寫資料來達到高可用性，還可讓您選擇[一致性層級](documentdb-consistency-levels.md)。 這樣可保證  [99.99% 執行時間可用性 SLA](https://azure.microsoft.com/support/legal/sla/documentdb/v1_1/)，同時帶來財務保證 - 其他任何 NoSQL 資料庫服務都沒有這種能力。|
 |自動化線上備份|DocumentDB 資料庫會定期備份，並儲存在異地備援存放區。 <br><br>請參閱[使用 DocumentDB 進行自動線上備份及還原](documentdb-online-backup-and-restore.md)以深入了解。|
-|還原已刪除的資料|自動化線上備份可用來復原您不小心刪除的資料，最多可還原意外發生後&30; 天內的資料。 <br><br>請參閱[使用 DocumentDB 進行自動線上備份及還原](documentdb-online-backup-and-restore.md)以深入了解|
+|還原已刪除的資料|自動化線上備份可用來復原您不小心刪除的資料，最多可還原意外發生後 30 天內的資料。 <br><br>請參閱[使用 DocumentDB 進行自動線上備份及還原](documentdb-online-backup-and-restore.md)以深入了解|
 |保護並隔離機密資料|PII 和其他機密資料可隔離至特定集合，而讀寫或唯讀存取權可以限制只給特定使用者。|
 |監視攻擊|您可以使用稽核記錄和活動記錄，以監視帳戶的正常和異常活動。 您可以檢視資源上執行的作業、誰起始作業、作業何時發生、作業的狀態等等。<br><br>![Azure DocumentDB 的活動記錄](./media/documentdb-nosql-database-security/nosql-database-security-application-logging.png)|
 |回應攻擊|一旦您連絡 Azure 支援來報告潛在的攻擊，就會展開 5 步驟的事件回應程序。 5 步驟程序的目標是在偵測到問題並展開調查之後，儘快恢復正常的服務安全性和作業。<br><br>請參閱[雲端的 Microsoft Azure 安全性回應](https://aka.ms/securityresponsepaper)以深入了解。|

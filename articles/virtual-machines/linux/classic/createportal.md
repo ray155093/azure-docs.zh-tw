@@ -16,15 +16,15 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 95ea05ca755d8a5e9bbc843d3f886615b9462494
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: ba0d95c92a9e5dba507af16b126de484ac7c40e7
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="create-a-custom-virtual-machine-running-linux"></a>建立執行 Linux 的自訂虛擬機器
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需有關使用 Resource Manager 模型來建立 Linux VM的詳細資訊，請參閱[使用入口網站在 Azure 上建立 Linux VM](../../virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需有關使用 Resource Manager 模型來建立 Linux VM的詳細資訊，請參閱[使用入口網站在 Azure 上建立 Linux VM](../quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 [!INCLUDE [virtual-machines-common-classic-createportal](../../../../includes/virtual-machines-common-classic-createportal.md)]
 

@@ -17,9 +17,9 @@ ms.workload: na
 ms.date: 03/15/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: b31ecb83665208151e48f81e6148928bbf21d1b5
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: bfbb3356454b9ef8b1834d03e7b76de9860a12c9
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -191,7 +191,7 @@ az account set --subscription {subscription-name}
   for type {resource-type} has incorrect segment lengths.
   ```
 
-   根層級資源的名稱必須比資源類型少一個區段。 每個區段是以斜線區分。 在下列範例中，類型具有&2; 個區段，而名稱則有&1; 個區段，因此是**有效名稱**。
+   根層級資源的名稱必須比資源類型少一個區段。 每個區段是以斜線區分。 在下列範例中，類型具有 2 個區段，而名稱則有 1 個區段，因此是**有效名稱**。
 
   ```json
   {
@@ -679,13 +679,13 @@ Resource Manager 範本會在驗證期間識別循環相依性。 它會傳回�
 
 | Error | 文章 |
 | --- | --- |
-| 自訂指令碼擴充功能錯誤 |[Windows VM 擴充失敗](../virtual-machines/virtual-machines-windows-extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)<br />或<br />[Linux VM 擴充失敗](../virtual-machines/virtual-machines-linux-extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
-| OS 映像佈建錯誤 |[新的 Windows VM 錯誤](../virtual-machines/virtual-machines-windows-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)<br />或<br />[新的 Linux VM 錯誤](../virtual-machines/virtual-machines-linux-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
-| 配置失敗 |[Windows VM 配置失敗](../virtual-machines/virtual-machines-windows-allocation-failure.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)<br />或<br />[Linux VM 配置失敗](../virtual-machines/virtual-machines-linux-allocation-failure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
-| 嘗試連線時發生安全殼層 (SSH) 錯誤 |[Linux VM 的安全殼層連線](../virtual-machines/virtual-machines-linux-troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
-| 連接至在 VM 上執行的應用程式時發生錯誤 |[在 Windows VM 上執行的應用程式](../virtual-machines/virtual-machines-windows-troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)<br />或<br />[在 Linux VM 上執行的應用程式](../virtual-machines/virtual-machines-linux-troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
-| 遠端桌面連線錯誤 |[Windows VM 的遠端桌面連線](../virtual-machines/virtual-machines-windows-troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
-| 藉由重新部署解決的連線錯誤 |[將虛擬機器重新部署至新的 Azure 節點](../virtual-machines/virtual-machines-windows-redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
+| 自訂指令碼擴充功能錯誤 |[Windows VM 擴充失敗](../virtual-machines/windows/extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)<br />或<br />[Linux VM 擴充失敗](../virtual-machines/linux/extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
+| OS 映像佈建錯誤 |[新的 Windows VM 錯誤](../virtual-machines/windows/troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)<br />或<br />[新的 Linux VM 錯誤](../virtual-machines/linux/troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
+| 配置失敗 |[Windows VM 配置失敗](../virtual-machines/windows/allocation-failure.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)<br />或<br />[Linux VM 配置失敗](../virtual-machines/linux/allocation-failure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
+| 嘗試連線時發生安全殼層 (SSH) 錯誤 |[Linux VM 的安全殼層連線](../virtual-machines/linux/troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
+| 連接至在 VM 上執行的應用程式時發生錯誤 |[在 Windows VM 上執行的應用程式](../virtual-machines/windows/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)<br />或<br />[在 Linux VM 上執行的應用程式](../virtual-machines/linux/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
+| 遠端桌面連線錯誤 |[Windows VM 的遠端桌面連線](../virtual-machines/windows/troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
+| 藉由重新部署解決的連線錯誤 |[將虛擬機器重新部署至新的 Azure 節點](../virtual-machines/windows/redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) |
 | 雲端服務錯誤 |[雲端服務部署問題](../cloud-services/cloud-services-troubleshoot-deployment-problems.md) |
 
 下表列出其他 Azure 服務的疑難排解主題。 它將重點放在部署或設定資源的相關問題。 如果您需要對資源執行階段問題進行疑難排解的說明，請參閱該 Azure 服務的文件。

@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 03/22/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 00fa4810e41bdbc19d0a2663cfe1437c6e678ab3
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 53092b0cfcf2bf9a09b36f6425724669f770e7fb
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -27,8 +27,8 @@ ms.lasthandoff: 03/25/2017
 在本文件中，您可以了解管理和監視在 Storm on HDInsight 叢集上執行之 Storm 拓撲的基本概念。
 
 > [!IMPORTANT]
-> 本文中的步驟需要 HDInsight 叢集上以 Linux 為基礎的 Storm。 Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 
-> 
+> 本文中的步驟需要 HDInsight 叢集上以 Linux 為基礎的 Storm。 Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。 
+>
 > 如需部署和監視以 Windows 為基礎的 HDInsight 上的拓撲的詳細資訊，請參閱 [部署和管理以 Windows 為基礎的 HDInsight 上的Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology.md)
 
 
@@ -78,20 +78,20 @@ HDInsight Tools 可以用來將 C# 或混合式拓撲提交至 Storm 叢集。 �
 ## <a name="submit-a-topology-ssh-and-the-storm-command"></a>提交拓撲︰SSH 和 Storm 命令
 
 1. 使用 SSH 連接到 HDInsight 叢集。 使用您的 SSH 登入名稱來取代 **USERNAME**。 將 **CLUSTERNAME** 取代為 HDInsight 叢集名稱：
-   
+
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
-   
+
     如需使用 SSH 連線至 HDInsight 叢集的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 2. 使用下列命令以啟動範例拓撲：
-   
+
         storm jar /usr/hdp/current/storm-client/contrib/storm-starter/storm-starter-topologies-*.jar storm.starter.WordCountTopology WordCount
-   
+
     這個命令會在叢集上啟動範例 WordCount 拓撲。 這個拓撲會隨機產生句子，並計算句子中每個字詞的出現次數。
-   
+
    > [!NOTE]
    > 將拓撲提交至叢集時，您必須先複製包含叢集的 jar 檔案，再使用 `storm` 命令。 若要將檔案複製到叢集，您可以使用 `scp` 命令。 例如， `scp FILENAME.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:FILENAME.jar`
-   > 
+   >
    > WordCount 範例和其他 Storm 入門範例都已經包含在叢集中，位置是 `/usr/hdp/current/storm-client/contrib/storm-starter/`。
 
 ## <a name="submit-a-topology-programmatically"></a>提交拓撲︰以程式設計的方式
@@ -187,11 +187,11 @@ Storm UI 的主頁面會提供下列資訊：
 
 * **拓撲摘要**：拓撲的基本資訊。
 * **拓撲動作**：您可以針對拓撲執行的管理動作。
-  
+
   * **啟用**：繼續處理已停用的拓撲。
   * **停用**：暫停執行中的拓撲。
   * **重新平衡**：調整拓撲的平行處理原則。 變更叢集中的節點數目之後，您應該重新平衡執行中拓撲。 這個作業可讓拓撲調整平行處理原則，以彌補叢集中增加或減少的節點數目。
-    
+
     如需詳細資訊，請參閱<a href="http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html" target="_blank">了解 Storm 拓撲的平行處理原則</a>。
   * **終止**：在指定的逾時之後結束 Storm 拓撲。
 * **拓撲統計資料**：拓撲的統計資料。 若要設定頁面上其餘項目的時間範圍，請使用 [視窗] 資料行中的連結。
@@ -245,5 +245,4 @@ REST API 的要求必須使用 **基本驗證**，因此請使用 HDInsight 叢�
 現在，您已經了解如何使用 Storm 儀表板來部署和監視拓撲、了解如何 [使用 Maven 來開發以 Java 為基礎的拓撲](hdinsight-storm-develop-java-topology.md)。
 
 若需更多範例拓撲的清單，請參閱 [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)。
-
 

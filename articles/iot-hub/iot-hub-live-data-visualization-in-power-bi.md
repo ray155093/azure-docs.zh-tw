@@ -16,16 +16,15 @@ ms.workload: na
 ms.date: 03/29/2017
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: bf685e4c59117497e27ff7e2ef7b3b39caac6d4a
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 6a99749a96a6239428e5b018a26a6e8fd440c9d2
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="visualize-real-time-sensor-data-from-azure-iot-hub-using-power-bi"></a>使用 Power BI 將 Azure IoT 中樞的即時感應器資料視覺化
 
-> [!NOTE]
-> 開始本教學課程之前，請確定您已完成[將 ESP8266 連接到 Azure IoT 中樞](/iot-hub-arduino-huzzah-esp8266-get-started.md)。 在[將 ESP8266 連接到 Azure IoT 中樞](/iot-hub-arduino-huzzah-esp8266-get-started.md)，您會設定 IoT 裝置和 IoT 中樞，並部署要在裝置上執行的範例應用程式。 應用程式會將所收集的感應器資料傳送到您的 IoT 中樞。
+[!INCLUDE [iot-hub-get-started-note](../../includes/iot-hub-get-started-note.md)]
 
 ## <a name="what-you-learn"></a>您學到什麼
 
@@ -170,8 +169,4 @@ Microsoft 也會提供 [Power BI 行動應用程式](https://powerbi.microsoft.c
 您已成功使用 Power BI 將 Azure IoT 中樞的即時感應器資料視覺化。
 有替代方法可將 Azure IoT 中樞的資料視覺化。 請參閱[使用 Azure Web Apps 將來自 Azure IoT 中樞的即時感應器資料視覺化](iot-hub-live-data-visualization-in-web-apps.md)。
 
-若要繼續開始使用 IoT 中樞並瀏覽其他 IoT 案例，請參閱︰
-
-- [透過 iothub-explorer 管理雲端裝置傳訊](iot-hub-explorer-cloud-device-messaging.md)
-- [將 IoT 中樞IoT 中樞儲存至 Azure 資料儲存體](iot-hub-store-data-in-azure-table-storage.md)
-
+[!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

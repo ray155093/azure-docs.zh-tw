@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 349be81b5d1d5ccc1510360974b4e3b10471cf7f
-ms.openlocfilehash: 13cd31bdce89ae898a6e22a1d27b5aed819ccc0a
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 72e07c4fd686feee5045ef3b9a504d2ea41f8675
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -108,6 +109,7 @@ LRS 相較於其他選項是最低的成本選項，並提供最少的持久性�
 | 澳大利亞東南部 |澳洲東部 |
 | 印度南部 |印度中部 |
 | 印度中部 |印度南部 |
+| 印度西部 |印度南部 |
 | 美國政府愛荷華州 |美國政府維吉尼亞州 |
 | 美國政府維吉尼亞州 |美國政府愛荷華州 |
 | 加拿大中部 |加拿大東部 |
@@ -140,10 +142,5 @@ LRS 相較於其他選項是最低的成本選項，並提供最少的持久性�
 * [Azure 儲存體的延展性與效能目標](storage-scalability-targets.md)
 * [Microsoft Azure 儲存體備援選項和讀取權限異地備援儲存體 ](http://blogs.msdn.com/b/windowsazurestorage/archive/2013/12/11/introducing-read-access-geo-replicated-storage-ra-grs-for-windows-azure-storage.aspx)
 * [SOSP 文件：具有高度一致性的高可用性雲端儲存體服務。](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

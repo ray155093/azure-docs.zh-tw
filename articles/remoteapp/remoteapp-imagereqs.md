@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: a37804025cbd298ef2b98c84b5cc59c0cba07dd9
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 75b0f8d6b25a80f11002b683152cfb294cbb68bd
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="requirements-for-azure-remoteapp-images"></a>Azure RemoteApp 映像的需求
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -50,10 +51,5 @@ Azure RemoteApp 會使用 Windows Server 2012 R2 映像來主控您要與使用�
 * 不支援從快照鏈結上傳您 VHD。
 
 如需建立 Azure RemoteApp 映像的詳細資訊，請參閱 [建立 Azure RemoteApp 映像](remoteapp-imageoptions.md) 。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

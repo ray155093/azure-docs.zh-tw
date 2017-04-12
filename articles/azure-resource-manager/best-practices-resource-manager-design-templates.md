@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/19/2016
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
-ms.openlocfilehash: 2bd8f7ac127cd34b2d5129ecb49c56e2adf257b8
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: c6de21da824a6e81c38f36c41c05ddd704fadcb6
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -130,7 +131,7 @@ ms.openlocfilehash: 2bd8f7ac127cd34b2d5129ecb49c56e2adf257b8
 ### <a name="free-form-configurations"></a>自由格式組態
 表面上，自由格式組態聽起來很實用。 它們讓您能夠選取 VM 類型，且提供任意數目的節點以及這些節點的連接磁碟，並做為範本的參數來執行此動作。 不過，這個做法不適用於某些案例。
 
-在[虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)文章中，已識別出不同的 VM 類型和可用大小，以及每個可連接且持久的磁碟數目 (2、4、8、16 或 32)。 每個連接的磁碟可提供 500 個 IOPS，而您可以利用這個 IOPS 數目做為乘數來共用這些磁碟數目的倍數。 例如，共用 16 個磁碟，即可提供 8,000 個 IOPS。 您可以使用 Microsoft Windows 儲存空間或 Linux 中價格便宜的獨立磁碟容錯陣列 (RAID)，利用作業系統中的組態來完成共用。
+在[虛擬機器的大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)文章中，已識別出不同的 VM 類型和可用大小，以及每個可連接且持久的磁碟數目 (2、4、8、16 或 32)。 每個連接的磁碟可提供 500 個 IOPS，而您可以利用這個 IOPS 數目做為乘數來共用這些磁碟數目的倍數。 例如，共用 16 個磁碟，即可提供 8,000 個 IOPS。 您可以使用 Microsoft Windows 儲存空間或 Linux 中價格便宜的獨立磁碟容錯陣列 (RAID)，利用作業系統中的組態來完成共用。
 
 自由格式組態能夠選取一些 VM 執行個體、各種適用於這些執行個體的不同 VM 類型和大小、VM 類型的各種磁碟，以及一或多個指令碼來設定 VM 內容。
 
@@ -347,10 +348,5 @@ Redis 只會使用單一節點類型，因此您將建立名為 node-resources.j
 * 如需如何在 Azure 資源管理員中處理安全性的建議，請參閱 [Azure 資源管理員的安全性考量](best-practices-resource-manager-security.md)
 * 若要了解進出範本的共用狀態，請參閱〈 [Azure 資源管理員範本中的共用狀態](best-practices-resource-manager-state.md)〉。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

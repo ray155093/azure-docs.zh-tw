@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: fb524efc41b1eaa36319726b3b8b534857e2afc7
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 13085f51529dadb739b4c629bb50d8aff0c9d8c2
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="secure-apps-and-resources-in-azure-remoteapp"></a>保護 Azure RemoteApp 中的應用程式和資源
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -48,10 +49,5 @@ Azure RemoteApp 可讓使用者存取集中管理的 Windows 應用程式，這�
 * 請注意，透過 RemoteApp PowerShell 模組設定重新導向 (如[這裡](remoteapp-redirection.md)所示) 需要依賴用戶端機器強制執行原則，因此，如果安全性是主要目標，則您會想透過範本映像本機原則或群組原則來強制執行原則。
 * [Windows Server 2012 R2 原則](https://technet.microsoft.com/library/hh831791.aspx)。
 * [Office 2013 原則](https://technet.microsoft.com/library/cc178969.aspx) (包括[如何自訂 Office 工具列](https://technet.microsoft.com/library/cc179143.aspx))。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

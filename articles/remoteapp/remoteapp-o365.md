@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: 8c04dc5a91b7859b5d75f919da55846599038f61
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 5a8af257eb964be4677d5da6a57aadaad1eb2cc3
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="using-office-with-azure-remoteapp"></a>使用 Office 與 Azure RemoteApp 搭配
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -53,10 +54,5 @@ RemoteApp 支援 Office 365 共用電腦啟用。 當您啟用「共用電腦啟
 * Office 2013 Professional Plus (試用版) 範本映像僅適用於評估。 透過此範本映像執行的收藏無法轉換成實際執行。 它們會成為「停用」狀態。
 
 如果您在試用期過後還未轉換成實際執行模式，將會停用您的 RemoteApp 收藏。 別擔心，您的設定和使用者資料會持續儲存 90 天，因此，您仍可以啟用您的服務和切換到實際執行模式，不會遺失任何資料。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

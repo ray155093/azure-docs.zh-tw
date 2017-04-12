@@ -16,9 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 01/11/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 90e443fe69afdda8786dd00ffb32e9680a476cd4
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: ee480f4382a93a2420f7c73f7259ce1f0a03d595
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -92,7 +92,7 @@ Microsoft Azure 虛擬機器資源庫涵蓋數個包含 Microsoft SQL Server 的
 ## <a name="general-recommendations-and-best-practices"></a>一般建議和最佳作法
 * 使用 SQL Server Enterprise Edition 時，虛擬機器的最小建議大小為 **A3** 。 Analysis Services 和 Reporting Services 的 SQL Server BI 部署建議的虛擬機器大小為 **A4** 。
   
-    如需關於目前 VM 大小的詳細資訊，請參閱 [Azure 的虛擬機器大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+    如需關於目前 VM 大小的詳細資訊，請參閱 [Azure 的虛擬機器大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 * 磁碟管理的最佳作法是儲存資料、記錄與備份 **C**: 和 **D**: 以外磁碟機上的檔案。 例如，建立資料磁碟 **E**: 和 **F**:。
   
   * 預設磁碟機 **C**: 的磁碟機的快取原則不是使用資料的最佳選項。

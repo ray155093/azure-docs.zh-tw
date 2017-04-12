@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 01/19/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: f3be777497d842f019c1904ec1990bd1f1213ba2
-ms.openlocfilehash: 166ff7f3586932494984e87fc0df7d3d3d914c82
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 0631d522c2a6cc36044106e76de16c78b7c24bca
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -34,7 +34,7 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
 * **HDInsight 叢集上 Windows 或 Linux 架構的 Hadoop**。 如需詳細資訊，請參閱[在 HDInsight 上佈建 Linux 架構的 Hadoop](hdinsight-hadoop-provision-linux-clusters.md) 或[在 HDInsight 上佈建 Windows 架構的 Hadoop](hdinsight-provision-clusters.md)。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 * **[Maven](http://maven.apache.org/)**
 
@@ -43,13 +43,13 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
 ## <a name="create-and-build-the-project"></a>建立和建置專案。
 
 1. 使用下列命令建立新的 Maven 專案：
-   
+
         mvn archetype:generate -DgroupId=com.microsoft.example -DartifactId=scaldingwordcount -DarchetypeGroupId=org.scala-tools.archetypes -DarchetypeArtifactId=scala-archetype-simple -DinteractiveMode=false
-   
+
     此命令將會建立名為 **scaldingwordcount**的新目錄，並建立 Scala 應用程式的樣板。
 
 2. 在 **scaldingwordcount** 目錄中，開啟 **pom.xml** 檔案，並以下列內容取代現有的程式碼：
-   
+
         <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
             <modelVersion>4.0.0</modelVersion>
             <groupId>com.microsoft.example</groupId>
@@ -141,9 +141,9 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
             </plugins>
             </build>
         </project>
-   
+
     此檔案說明專案、相依性和增益集。 以下是重要項目：
-   
+
    * **maven.compiler.source** 和 **maven.compiler.target**：設定此專案的 Java 版本。
 
    * **儲存機制**：包含此專案所使用之相依性檔案的儲存機制。
@@ -153,19 +153,19 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
    * **maven-scala-plugin**：編譯 scala 應用程式的外掛程式。
 
    * **maven-shade-plugin**：建立陰影 (fat) jar 的外掛程式。 此外掛程式適用於篩選和轉換；尤其是：
-     
+
      * **篩選**：套用的篩選會修改 jar 檔案中包含的中繼資訊。 若要防止在執行階段發生簽章例外狀況，這不包含各種可能隨附於相依性的簽名檔。
 
      * **執行**：套件階段執行設定指定 **com.twitter.scalding.Tool** 類別作為套件的主類別。 如果沒有指定，在使用 Hadoop 命令執行工作時，您需要指定 com.twitter.scalding.Tool，以及包含應用程式邏輯的類別。
-    
+
 3. 刪除 **src/test** 目錄，因為您將不會在此範例中建立測試。
 
 4. 開啟 **src/main/scala/com/microsoft/example/App.scala** 檔案，並以下列內容取代現有的程式碼：
-   
+
         package com.microsoft.example
-   
+
         import com.twitter.scalding._
-   
+
         class WordCount(args : Args) extends Job(args) {
             // 1. Read lines from the specified input location
             // 2. Extract individual words from each line
@@ -175,21 +175,21 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
             .flatMap('line -> 'word) { line : String => tokenize(line) }
             .groupBy('word) { _.size }
             .write(Tsv(args("output")))
-   
+
             //Tokenizer to split sentance into words
             def tokenize(text : String) : Array[String] = {
             text.toLowerCase.replaceAll("[^a-zA-Z0-9\\s]", "").split("\\s+")
             }
         }
-   
+
     這會實作基本字數統計工作。
 
 5. 儲存並關閉檔案。
 
 6. 在 **scaldingwordcount** 目錄中使用下列命令，以建置並封裝應用程式：
-   
+
         mvn package
-   
+
     工作完成後，您可以在 **target/scaldingwordcount-1.0-SNAPSHOT.jar**中找到包含 WordCount 應用程式的封裝。
 
 ## <a name="run-the-job-on-a-linux-based-cluster"></a>在以 Linux 為基礎的叢集上執行工作
@@ -199,33 +199,33 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
 
 
 1. 使用下列命令將封裝上傳至 HDInsight 叢集。
-   
+
         scp target/scaldingwordcount-1.0-SNAPSHOT.jar username@clustername-ssh.azurehdinsight.net:
-   
+
     這樣就會將檔案從本機系統複製到前端節點。
-   
+
    > [!NOTE]
    > 如果您使用密碼保護 SSH 帳戶，系統會提示您輸入密碼。 如果您使用 SSH 金鑰，您可能必須使用 `-i` 參數和私密金鑰的路徑。 例如， `scp -i /path/to/private/key target/scaldingwordcount-1.0-SNAPSHOT.jar username@clustername-ssh.azurehdinsight.net:.`
-   > 
-   > 
+   >
+   >
 2. 使用下列命令來連接到叢集前端節點：
-   
+
         ssh username@clustername-ssh.azurehdinsight.net
-   
+
    > [!NOTE]
    > 如果您使用密碼保護 SSH 帳戶，系統會提示您輸入密碼。 如果您使用 SSH 金鑰，您可能必須使用 `-i` 參數和私密金鑰的路徑。 例如， `ssh -i /path/to/private/key username@clustername-ssh.azurehdinsight.net`
 
 3. 連接到前端節點之後，請使用下列命令來執行字數統計作業
-   
+
         yarn jar scaldingwordcount-1.0-SNAPSHOT.jar com.microsoft.example.WordCount --hdfs --input wasbs:///example/data/gutenberg/davinci.txt --output wasbs:///example/wordcountout
-   
+
     這會執行您稍早實作的 WordCount 類別。 `--hdfs` 會指示工作使用 HDFS。 `--input` 指定輸入文字檔，而 `--output` 指定輸出位置。
 4. 工作完成後，請使用下列命令來檢視輸出。
-   
+
         hdfs dfs -text wasbs:///example/wordcountout/*
-   
+
     這時將會顯示類似以下的說明資訊：
-   
+
         writers 9
         writes  18
         writhed 1
@@ -247,22 +247,22 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 1. 啟動 Azure PowerShell 並且登入您的 Azure 帳戶。 提供您的認證之後，命令會傳回您的帳戶的相關資訊。
-   
+
         Add-AzureRMAccount
-   
+
         Id                             Type       ...
         --                             ----
         someone@example.com            User       ...
 
 2. 如果您有多個訂用帳戶，請提供您想要用於部署的訂用帳戶識別碼。
-   
+
         Select-AzureRMSubscription -SubscriptionID <YourSubscriptionId>
-   
+
    > [!NOTE]
    > 您可以使用 `Get-AzureRMSubscription` 來取得與您帳戶關聯的所有訂用帳戶清單，其中會包含每個訂用帳戶的訂用帳戶 ID。
 
 3. 使用下列指令碼來上傳和執行 WordCount 工作。 使用您 HDInsight 叢集的名稱取代 `CLUSTERNAME`，並確定 `$fileToUpload` 是指向 **scaldingwordcount-1.0-SNAPSHOT.jar** 檔案的正確路徑。
-   
+
    ```powershell
     # Login to your Azure subscription
     # Is there an active Azure subscription?
@@ -330,15 +330,15 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
         -HttpCredential $creds `
         -DisplayOutputType StandardError
    ```
-   
+
      當您執行指令碼時，將提示您輸入 HDInsight 叢集的管理員使用者名稱和密碼。 執行工作時所發生的任何錯誤都會記錄至主控台。
 
 4. 完成工作時，會將輸出下載到目前目錄中的 **output.txt** 檔。 使用下列命令來顯示結果。
-   
+
         cat output.txt
-   
+
     檔案應該包含類似下列內容的值：
-   
+
         writers 9
         writes  18
         writhed 1
@@ -359,5 +359,4 @@ Scalding 是可讓您輕鬆建立 Hadoop MapReduce 工作的 Scala 程式庫。 
 * [搭配 HDInsight 使用 Hivet](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
-
 

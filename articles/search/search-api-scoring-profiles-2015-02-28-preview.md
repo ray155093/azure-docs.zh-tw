@@ -15,9 +15,9 @@ ms.tgt_pltfrm: na
 ms.author: heidist
 ms.date: 10/27/2016
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 960880e44ad4de74339df7d0786dd8aa34962e3f
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: a67637d149a84313270c03d21acf8a9c1870be05
+ms.lasthandoff: 03/31/2017
 
 ---
 
@@ -85,8 +85,6 @@ Azure 搜尋服務會使用預設計分來計算分數，但您可以透過評�
 如前所述，自訂計分是透過索引結構描述中定義的一或多個評分設定檔而實作的。
 
 此範例說明具有兩個評分設定檔 (`boostGenre`、`newAndHighlyRated`) 的索引結構描述。 任何以其中一個設定檔做為查詢參數而對此索引所做的查詢，都將使用該設定檔為結果集評分。
-
-[嘗試此範例](search-get-started-scoring-profiles.md)。
 
     {
       "name": "musicstoreindex",

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: cc3c3bff6179b634b82884dfcb3f8f8395f6bb89
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 88f6e1da090eb6088e54c6f81d0f83b1737d3c2c
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -38,10 +39,10 @@ ms.openlocfilehash: cc3c3bff6179b634b82884dfcb3f8f8395f6bb89
 | Media Encoder Premium Workflow |可讓您使用 Media Encoder Premium Workflow 執行編碼工作。 |[Azure 隨選媒體編碼器的概觀和比較](media-services-encode-asset.md) |
 | Azure Media Indexer |可讓您的媒體檔案和內容可供搜尋，以及產生隱藏式輔助字幕和關鍵字。 |[Azure Media Indexer](media-services-index-content.md) |
 | Azure Media Hyperlapse (預覽) |可讓您使用影片穩定讓影片中的「巔簸」變得平滑。 也可讓您將內容加速至可使用的片段。 |[Azure Media Hyperlapse](media-services-hyperlapse-content.md) |
-| Azure Media Encoder |停用 | |
-| Storage Decryption |停用 | |
-| Azure Media Packager |停用 | |
-| Azure Media Encryptor |停用 | |
+| Azure Media Encoder |取代 | |
+| Storage Decryption |取代 | |
+| Azure Media Packager |取代 | |
+| Azure Media Encryptor |取代 | |
 
 ## <a name="get-media-processor"></a>取得媒體處理器
 下列方法將說明如何取得媒體處理器執行個體。 此程式碼範例假設會使用名為 **_context** 的模組層級變數來參考伺服器內容，如[做法：以程式設計方式連接到媒體服務](media-services-dotnet-connect-programmatically.md)一節所述。
@@ -66,10 +67,5 @@ ms.openlocfilehash: cc3c3bff6179b634b82884dfcb3f8f8395f6bb89
 
 ## <a name="next-steps"></a>後續步驟
 既然您已了解如何取得媒體處理器執行個體，請移至 [如何為資產編碼](media-services-dotnet-encode-with-media-encoder-standard.md) 主題，以了解如何使用媒體編碼器標準將資產編碼。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

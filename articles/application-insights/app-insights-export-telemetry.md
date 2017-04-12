@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 02/23/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: a06d97216373ddc6a35160e6226b8eee8df52d27
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 4ad60c18d451ee5f92eafaf5ca81176698496dd2
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -156,7 +156,7 @@ Where
 連續匯出將重新開始。
 
 ## <a name="export-samples"></a>匯出範例
-* [使用背景工作角色匯出至 SQL][exportcode]
+
 * [使用串流分析匯出至 SQL][exportasa]
 * [串流分析範例 2](app-insights-export-stream-analytics.md)
 
@@ -190,14 +190,13 @@ Where
     是。 按一下 [停用]。
 
 ## <a name="code-samples"></a>程式碼範例
-* [使用背景工作角色剖析匯出的 JSON][exportcode]
+
 * [串流分析範例](app-insights-export-stream-analytics.md)
 * [使用串流分析匯出至 SQL][exportasa]
 * [屬性類型和值的詳細資料模型參考。](app-insights-export-data-model.md)
 
 <!--Link references-->
 
-[exportcode]: app-insights-code-sample-export-telemetry-sql-database.md
 [exportasa]: app-insights-code-sample-export-sql-stream-analytics.md
 [roles]: app-insights-resources-roles-access-control.md
 

@@ -18,9 +18,9 @@ ms.date: 09/15/2016
 ms.author: negat
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 06e7418111762a0388ce1704ba5abaa9c3a10349
-ms.openlocfilehash: e0853070b5a3f9d44baebecac625a5ad6b9ef755
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 308355e7d66c977f5cbfc8de3b939b76c2f8f83c
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -38,7 +38,7 @@ ms.lasthandoff: 03/01/2017
 現在您可以使用預設設定並快速建立擴展集。
 
 * 在 [ `Basics` ] 刀鋒視窗上，為擴展集輸入名稱。 此名稱會成為擴展集前方負載平衡器 FQDN 的基底，因此請確保該名稱在整個 Azure 中是唯一的。
-* 選取所需的 OS 類型，輸入所需的使用者名稱，然後選取偏好的驗證類型。 如果您選擇密碼，它的長度必須至少為 12 個字元，且符合下列四個複雜性需求的其中三項：1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。 進一步了解 [使用者名稱和密碼需求](../virtual-machines/virtual-machines-windows-faq.md#what-are-the-username-requirements-when-creating-a-vm)。 如果您選擇 `SSH public key`，請務必只貼上公開金鑰，而不要貼上您的私密金鑰：
+* 選取所需的 OS 類型，輸入所需的使用者名稱，然後選取偏好的驗證類型。 如果您選擇密碼，它的長度必須至少為 12 個字元，且符合下列四個複雜性需求的其中三項：1 個小寫字元、1 個大寫字元、1 個數字和 1 個特殊字元。 進一步了解 [使用者名稱和密碼需求](../virtual-machines/windows/faq.md#what-are-the-username-requirements-when-creating-a-vm)。 如果您選擇 `SSH public key`，請務必只貼上公開金鑰，而不要貼上您的私密金鑰：
 
 ![ScaleSetPortalBasics](./media/virtual-machine-scale-sets-portal-create/ScaleSetPortalBasics.PNG)
 

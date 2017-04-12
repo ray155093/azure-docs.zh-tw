@@ -16,9 +16,9 @@ ms.workload: na
 ms.date: 02/27/2016
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
-ms.openlocfilehash: 14218a7c2acf6b68025095c1ecb60cb480233044
-ms.lasthandoff: 03/23/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 197e32058908533bc46b2ea2e38ff521a4a1fa3f
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -36,10 +36,10 @@ Microsoft 用戶端應用程式 (如 Power BI Desktop 和 Excel) 會安裝所有
 ## <a name="download-the-latest-preview-data-providers"></a>下載最新的**預覽**資料提供者  
 請使用下列資料提供者來取得最新的錯誤修正和更新。 連接到「Azure Analysis Services 預覽」或「SQL Server vNext 分析服務」時，建議使用下列資料提供者。
 
-[MSOLAP (amd64) 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.304.138/1033/x64/SQL_AS_OLEDB.msi)</br>
-[MSOLAP (x86) 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.304.138/1033/x86/SQL_AS_OLEDB.msi)</br>
-[AMO 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.304.138/1033/x64/SQL_AS_AMO.msi)</br>
-[ADOMD 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.304.138/1033/x64/SQL_AS_ADOMD.msi)</br>
+[MSOLAP (amd64) 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.500.170/amd64/SQL_AS_OLEDB.msi)</br>
+[MSOLAP (x86) 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.500.170/x86/SQL_AS_OLEDB.msi)</br>
+[AMO 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.500.170/SQL_AS_AMO.msi)</br>
+[ADOMD 預覽](http://download.microsoft.com/download/4/8/2/482E5799-9B8E-4724-8A4C-F301BAE788EE/14.0.500.170/SQL_AS_ADOMD.msi)</br>
 
 ## <a name="download-the-latest-rtm-data-providers"></a>下載最新的 **RTM** 資料提供者  
 如果您處於生產環境並需要完整發行且受支援的版本，請使用下列資料提供者。

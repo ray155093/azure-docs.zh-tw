@@ -17,9 +17,9 @@ ms.workload: database
 ms.date: 04/04/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 2e65b7a5c44c240c1bc7dea8119c821a7bca2120
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: 7a8a6c634cb4be2da654a971d9412f981d4e0e8a
+ms.lasthandoff: 04/11/2017
 
 ---
 
@@ -49,7 +49,7 @@ az group delete --name myResourceGroup
 |---|---|
 | [az group create](/cli/azure/group#create) | 建立用來存放所有資源的資源群組。 |
 | [az sql server create](/cli/azure/sql/server#create) | 建立主控 SQL Database 的邏輯伺服器。 |
-| [az sql server firewall create](/cli/azure/sql/server/firewall#create) | 建立防火牆規則以允許從輸入的 IP 位址範圍存取伺服器上的所有 SQL Database。 |
+| [az sql server firewall create](/cli/azure/sql/server/firewall-rule#create) | 建立防火牆規則以允許從輸入的 IP 位址範圍存取伺服器上的所有 SQL Database。 |
 | [az sql db create](/cli/azure/sql/db#create) | 在邏輯伺服器中建立 SQL Database。 |
 | [az group delete](/cli/azure/resource#delete) | 刪除資源群組，包括所有的巢狀資源。 |
 

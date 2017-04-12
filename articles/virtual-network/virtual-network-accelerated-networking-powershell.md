@@ -17,9 +17,9 @@ ms.date: 09/23/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
-ms.openlocfilehash: 2dd6e9ba1d08d3528cdf8194e1e338422361d1d5
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 5edba79e5c65f0e9411a418ac1a121fd938feff2
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -56,7 +56,7 @@ ms.lasthandoff: 02/28/2017
 * **VM 建立：** 啟用加速網路的網路介面只能在 VM 建立之後附加至 VM。 網路介面無法附加至現有的 VM。
 * **區域︰** 只在美國中西部和西歐的 Azure 區域中提供。 未來將延伸區域範圍。
 * **支援的作業系統︰** Microsoft Windows Server 2012 R2 和 Windows Server 2016 Technical Preview 5。 即將加入 Linux 和 Windows Server 2012 的支援。
-* **VM 大小︰**只支援 Standard_D15_v2 和 Standard_DS15_v2 的 VM 執行個體大小。 如需詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 文章。 未來將增加支援的 VM 執行個體大小。
+* **VM 大小︰**只支援 Standard_D15_v2 和 Standard_DS15_v2 的 VM 執行個體大小。 如需詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 文章。 未來將增加支援的 VM 執行個體大小。
 
 這些限制如有變更將會透過 [Azure 虛擬網路更新](https://azure.microsoft.com/updates/accelerated-networking-in-preview)頁面發佈。
 

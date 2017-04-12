@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/08/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 5ec4b964066687b506686709c3dc5ed5b402fbaf
-ms.openlocfilehash: a846d5a70451ed3082b90d87b90bef0eb6da5993
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 511d6dd1933f44cd0cb5ba800972a7c112a24c04
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -37,7 +37,7 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 * 以 Linux 為基礎的 HDInsight 叢集。 如需建立叢集的相關資訊，請參閱[開始使用以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md)。
 
 > [!IMPORTANT]
-> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 ## <a name="open-the-hive-view"></a>開啟 Hive 檢視
 
@@ -68,7 +68,7 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 從 Hive 檢視使用下列步驟來執行 Hive 查詢。
 
 1. 在頁面的 [查詢編輯器] 區段中，將下列 HiveQL 陳述式貼到工作表中：
-   
+
     ```hiveql
     DROP TABLE log4jLogs;
     CREATE EXTERNAL TABLE log4jLogs(t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string)
@@ -76,12 +76,12 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
     STORED AS TEXTFILE LOCATION '/example/data/';
     SELECT t4 AS sev, COUNT(*) AS cnt FROM log4jLogs WHERE t4 = '[ERROR]' GROUP BY t4;
     ```
-   
+
     這些陳述式會執行下列動作：
-   
+
    * **DROP TABLE** - 刪除資料表和資料檔 (如果資料表已存在)
 
-   * **CREATE EXTERNAL TABLE** - 在 Hive 中建立新的「外部」資料表。 
+   * **CREATE EXTERNAL TABLE** - 在 Hive 中建立新的「外部」資料表。
    外部資料表只會將資料表定義儲存在 Hive 中。 資料會留在原來的位置。
 
    * **ROW FORMAT** - 告訴 Hive 如何格式化資料。 在此情況下，每個記錄中的欄位會以空格隔開。
@@ -89,42 +89,42 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
    * **STORED AS TEXTFILE LOCATION** - 將資料的儲存位置告訴 Hive (example/data 目錄)，且資料儲存為文字。
 
    * **SELECT** - 選擇其資料欄 t4 包含值 [ERROR] 的所有資料列計數。
-     
+
      > [!NOTE]
      > 當您預期會由外部來源來更新基礎資料時，請使用外部資料表。 例如，自動化的資料上傳程序，或透過其他 MapReduce 作業。 捨棄外部資料表並 *不會* 刪除資料，只會刪除資料表定義。
 
 2. 若要開始查詢，請使用 [查詢編輯器] 底部的 [執行] 按鈕。 它會變成橘色，而且文字會變更為**停止執行**。 [查詢程序結果] 區段應該會出現在 [查詢編輯器] 下方並顯示作業相關資訊。
-   
+
    > [!IMPORTANT]
    > 有些瀏覽器可能無法正確地重新整理記錄檔或結果資訊。 如果您執行一項作業，而該作業似乎會一直執行，但未更新記錄檔或傳回結果，請嘗試改用 Mozilla FireFox 或 Google Chrome。
- 
+
 3. 查詢完成後，[查詢程序結果] 區段會顯示作業的結果。 查詢完成時，[停止執行] 按鈕也會變回綠色 [執行] 按鈕。 [結果]  索引標籤應包含下列資訊：
-   
+
         sev       cnt
         [ERROR]   3
-   
+
     [記錄檔] 索引標籤可用來檢視作業所建立的記錄資訊。
-   
+
    > [!TIP]
    > [查詢程序結果] 區段左上角的 [儲存結果] 下拉式對話方塊可讓您下載或儲存結果。
 
 4. 選取此查詢的前四行，然後選取 [執行]。 請注意，作業完成時沒有任何結果。 在選取部分查詢的情況下使用 [執行] 按鈕，只會執行所選的陳述式。 在此情況下，選取項目不包含從資料表擷取資料列的最後一個陳述式。 如果您只選取那一行並使用 [執行]，您應該會看到預期的結果。
 
 5. 若要新增工作表，請使用 [查詢編輯器] 底部的 [新增工作表] 按鈕。 在新的工作表中，輸入下列 HiveQL 陳述式：
-   
+
     ```hiveql
     CREATE TABLE IF NOT EXISTS errorLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) STORED AS ORC;
     INSERT OVERWRITE TABLE errorLogs SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]';
     ```
-   
-    These statements perform the following actions:
-   
+
+  這些陳述式會執行下列動作：
+
    * **CREATE TABLE IF NOT EXISTS** - 建立資料表 (如果不存在)。 由於未使用  關鍵字，因此會建立內部資料表。 內部資料表儲存在 Hive 資料倉儲中，並完全受到 Hive 所管理。 與外部資料表不同之處在於，捨棄內部資料表也會刪除基礎資料。
 
    * **STORED AS ORC** - 以最佳化資料列單欄式 (Optimized Row Columnar, ORC) 格式儲存資料。 這是高度最佳化且有效率的 Hive 資料儲存格式。
 
    * **INSERT OVERWRITE ...SELECT** - 從包含 [ERROR] 的 **log4jLogs** 資料表選取資料列，然後將資料插入 **errorLogs** 資料表。
-     
+
      使用 [查詢] 按鈕執行此查詢。 當查詢傳回零個資料列時，[結果] 索引標籤不會包含任何資訊。 查詢完成後，狀態應該會顯示為 [成功]。
 
 ### <a name="hive-settings"></a>Hive 設定
@@ -174,13 +174,13 @@ Ambari 是隨著以 Linux 為基礎的 HDInsight 叢集提供的管理和監視�
 ## <a name="saved-queries"></a>儲存的查詢
 
 1. 從 [查詢編輯器] 建立工作表，並輸入下列查詢：
-   
+
     ```hiveql
     SELECT * from errorLogs;
     ```
-   
+
     執行查詢以驗證它是否能正常運作。 結果類似於下列範例：
-   
+
         errorlogs.t1     errorlogs.t2     errorlogs.t3     errorlogs.t4     errorlogs.t5     errorlogs.t6     errorlogs.t7
         2012-02-03     18:35:34     SampleClass0     [ERROR]     incorrect     id     
         2012-02-03     18:55:54     SampleClass1     [ERROR]     incorrect     id     
@@ -235,5 +235,4 @@ create temporary function myawesomeudf as 'com.myudfs.Awesome';
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
-
 

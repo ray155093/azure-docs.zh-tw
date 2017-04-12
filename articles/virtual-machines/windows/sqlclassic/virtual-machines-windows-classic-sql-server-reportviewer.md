@@ -16,9 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 01/11/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 8f85a4cee6a59316eb5c321007b5b9d562c71302
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 3d9bdd4f07d22a7bc6c80150ae27453813d39f07
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -78,7 +78,7 @@ ms.lasthandoff: 03/25/2017
 ReportViewer 必須使用正確的認證對報表伺服器進行驗證，而且認證必須由報表伺服器授權，才能存取您需要的報表。 如需驗證的資訊，請檢閱白皮書《 [Reporting Services 報告檢視器控制項和 Microsoft Azure 虛擬機器型報表伺服器](https://msdn.microsoft.com/library/azure/dn753698.aspx)》。
 
 ## <a name="publish-the-aspnet-web-application-to-azure"></a>將 ASP.NET Web 應用程式發佈至 Azure
-如需有關將 ASP.NET Web 應用程式發佈至 Azure 的指示，請參閱[做法：從 Visual Studio 將 Web 應用程式移轉並發佈至 Azure](../../../vs-azure-tools-migrate-publish-web-app-to-cloud-service.md) 和[開始使用 Web Apps 和 ASP.NET](../../../app-service-web/web-sites-dotnet-get-started.md)。
+如需有關將 ASP.NET Web 應用程式發佈至 Azure 的指示，請參閱[做法：從 Visual Studio 將 Web 應用程式移轉並發佈至 Azure](../../../vs-azure-tools-migrate-publish-web-app-to-cloud-service.md) 和[開始使用 Web Apps 和 ASP.NET](../../../app-service-web/app-service-web-get-started-dotnet.md)。
 
 > [!IMPORTANT]
 > 如果新增 Azure 部署專案，或新增 Azure 雲端服務專案命令沒有顯示在 [方案總管] 的捷徑功能表中，您可能需要將專案的目標 Framework 變更為 .NET Framework 4。

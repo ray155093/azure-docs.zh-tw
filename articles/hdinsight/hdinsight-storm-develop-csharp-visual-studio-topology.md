@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: c2a92e3be7616d241eba3c6690c8f10326d8004c
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: cc6b16b559c4d1eafc570d0361c710487021f175
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -31,9 +31,9 @@ ms.lasthandoff: 03/07/2017
 
 > [!IMPORTANT]
 > 雖然本文件中的步驟依賴 Windows 開發環境與 Visual Studio，但已編譯的專案可以提交到以 Linux 或 Windows 為基礎的 HDInsight 叢集。 __只有在 2016/10/28 之後建立的以 Linux 為基礎的叢集可支援 SCP.NET 拓撲__。
-> 
+>
 > 若要搭配使用 C# 拓撲與以 Linux 為基礎的叢集，您必須將專案使用的 Microsoft.SCP.Net.SDK NuGet 套件，更新為 0.10.0.6 版或更新版本。 套件版本也必須符合 HDInsight 上安裝的 Storm 主要版本。 例如，Storm on HDInsight 3.3 和 3.4 版使用 Storm 0.10.x 版，而 HDInsight 3.5 使用 Storm 1.0.x。
-> 
+>
 > 在以 Linux 為基礎之叢集上的 C# 拓撲必須使用 .NET 4.5，並使用 Mono 以在 HDInsight 叢集上執行。 這些元件大多能正常運作，不過您應該查看 [Mono 相容性](http://www.mono-project.com/docs/about-mono/compatibility/)文件，以了解是否可能有不相容之處。
 
 
@@ -45,7 +45,7 @@ ms.lasthandoff: 03/07/2017
   * **%JAVA_HOME%/bin** 目錄必須在路徑中
 
 * 下列其中一個 Visual Studio 版本：
-  
+
   * Visual Studio 2012 [(含 Update 4)](http://www.microsoft.com/download/details.aspx?id=39305)
   * Visual Studio 2013 [(含 Update 4)](http://www.microsoft.com/download/details.aspx?id=44921) 或 [Visual Studio 2013 Community](http://go.microsoft.com/fwlink/?LinkId=517284)
   * Visual Studio 2015 或 [Visual Studio 2015 Community](https://go.microsoft.com/fwlink/?LinkId=532606)
@@ -54,14 +54,14 @@ ms.lasthandoff: 03/07/2017
 * Azure SDK 2.9.5 或更新版本
 
 * HDInsight Tools for Visual Studio：請參閱 [開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) 以安裝及設定 HDInsight tools for Visual Studio。
-  
+
   > [!NOTE]
   > Visual Studio Express 不支援 HDInsight Tools for Visual Studio
 
 * Apache Storm on HDInsight 叢集：請參閱 [開始使用 Apache Storm on HDInsight](hdinsight-apache-storm-tutorial-get-started.md) 以取得建立叢集的步驟。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 ## <a name="templates"></a>範本
 
@@ -100,19 +100,19 @@ HBase 讀取器和寫入器範例會使用 HBase REST API 與 HDInsight 叢集�
 2. 開啟 Visual Studio，選取 [檔案] > [新增]，然後選取 [專案]。
 
 3. 從 [新增專案] 畫面，展開 [已安裝] > [範本]，然後選取 [Azure Data Lake]。 從範本清單中，選取 [Storm 應用程式]。 在畫面底部，輸入 **WordCount** 做為應用程式名稱。
-   
+
     ![image](./media/hdinsight-storm-develop-csharp-visual-studio-topology/new-project.png)
 
 4. 建立專案之後，您應該會有下列檔案：
-   
+
    * **Program.cs**：此檔案會定義您專案的拓撲。 預設會建立含有一個 Spout 和一個 Bolt 的預設拓撲。
 
    * **Spout.cs**：發出亂數的範例 Spout。
 
    * **Bolt.cs**：保留 Spout 所發出數字之計數的範例 Bolt。
-     
+
      在專案建立過程中，會從 NuGet 下載最新的 [SCP.NET 封裝](https://www.nuget.org/packages/Microsoft.SCP.Net.SDK/)。
-     
+
      [!INCLUDE [scp.net version important](../../includes/hdinsight-storm-scpdotnet-version.md)]
 
 在下列各節中，您會將此專案修改成基本 WordCount 應用程式。
@@ -120,7 +120,7 @@ HBase 讀取器和寫入器範例會使用 HBase REST API 與 HDInsight 叢集�
 ### <a name="implement-the-spout"></a>實作 Spout
 
 1. 開啟 **Spout.cs**。 Spout 是用來讀取來自外部來源之拓撲中的資料。 Spout 的主要元件如下：
-   
+
    * **NextTuple**：允許 Spout 發出新的 Tuple 時，由 Storm 所呼叫。
 
    * **Ack** (僅限交易式拓撲)：針對從 Spout 傳送的 Tuple，處理拓撲中其他元件所起始的認可。 認可 Tuple 可讓 Spout 知道下游元件已順利處理 Tuple。
@@ -128,7 +128,7 @@ HBase 讀取器和寫入器範例會使用 HBase REST API 與 HDInsight 叢集�
    * **Fail** (僅限交易式拓撲)：處理無法處理拓撲中之其他元件的 Tuple。 實作 Fail 方法可讓您重新發出 Tuple，以便再次處理它。
 
 2. 將 **Spout** 類別的內容取代為下文字。 此 spout 會將句子隨機發出至拓撲。
-    
+
     ```csharp
     private Context ctx;
     private Random r = new Random();
@@ -186,7 +186,7 @@ HBase 讀取器和寫入器範例會使用 HBase REST API 與 HDInsight 叢集�
         // Only used for transactional topologies
     }
     ```
-   
+
     請用一些時間閱讀註解，以了解此程式碼的作用。
 
 ### <a name="implement-the-bolts"></a>實作 Bolt
@@ -194,18 +194,18 @@ HBase 讀取器和寫入器範例會使用 HBase REST API 與 HDInsight 叢集�
 1. 刪除專案中的現有 **Bolt.cs** 檔。
 
 2. 在**方案總管**中，於專案上按一下滑鼠右鍵，然後選取 [新增] > [新項目]。 從清單中，選取 [Storm Bolt]，並輸入 **Splitter.cs** 做為名稱。 重複此程序，以建立名為 **Counter.cs** 的第二個 Bolt。
-   
+
    * **Splitter.cs**：將會實作 Bolt，該Bolt 會將句子分成個別單字，並發出一串新文字。
 
    * **Counter.cs**：將會實作 Bolt，該Bolt 會計算每個單字的數目，並發出一串新文字和每個單字的計數。
-     
+
      > [!NOTE]
      > 這些 Bolt 會讀取和寫入資料流，但是您也可以使用 Bolt 與資料庫或服務等來源進行通訊。
 
 3. 開啟 **Splitter.cs**。 它預設只有一個方法：**Execute**。 這是在 Bolt 收到要處理的 Tuple 時所呼叫的執行方法。 此時，您可以讀取和處理內送 Tuple，以及發出輸出 Tuple。
 
 4. 將 **Splitter** 類別的內容取代為下列程式碼：
-    
+
     ```csharp
     private Context ctx;
 
@@ -249,11 +249,11 @@ HBase 讀取器和寫入器範例會使用 HBase REST API 與 HDInsight 叢集�
         Context.Logger.Info("Execute exit");
     }
     ```
-   
+
     請用一些時間閱讀註解，以了解此程式碼的作用。
 
 5. 開啟 **Counter.cs** ，並將類別內容取代為下列內容：
-    
+
     ```csharp
     private Context ctx;
 
@@ -305,7 +305,7 @@ HBase 讀取器和寫入器範例會使用 HBase REST API 與 HDInsight 叢集�
         Context.Logger.Info("Execute exit");
     }
     ```
-   
+
     請用一些時間閱讀註解，以了解此程式碼的作用。
 
 ### <a name="define-the-topology"></a>定義拓撲
@@ -382,21 +382,21 @@ return topologyBuilder;
 ## <a name="submit-the-topology"></a>提交拓撲
 
 1. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，然後選取 [提交至 Storm on HDInsight]。
-   
+
    > [!NOTE]
    > 如果出現提示，請輸入您 Azure 訂閱的登入認證。 如果您有多個訂用帳戶，請登入包含 Storm on HDInsight 叢集的訂用帳戶。
 
 2. 從 [Storm 叢集] 下拉式清單中選取 Storm on HDInsight 叢集，然後選取 [提交]。 您可以使用 [輸出]  視窗監視提交是否成功。
 
 3. 順利提交拓撲時，應該會出現叢集的 [Storm 拓撲]  。 從清單中選取 [WordCount]  拓撲，以檢視執行中拓撲的詳細資訊。
-   
+
    > [!NOTE]
    > 您也可以從**伺服器總管**檢視 **Storm 拓撲**：依序展開 [Azure] > [HDInsight]，以滑鼠右鍵按一下 Storm on HDInsight 叢集，然後選取 [檢視 Storm 拓撲]。
 
     若要檢視拓撲中元件的相關資訊，請按兩下圖表中的元件。
 
 4. 從 [拓撲摘要] 檢視中，按一下 [終止] 停止拓撲。
-   
+
    > [!NOTE]
    > 除非停用 Storm 拓撲或刪除叢集，否則 Storm 拓撲會繼續執行。
 
@@ -413,9 +413,9 @@ return topologyBuilder;
 * **Fail**：每個 Bolt 都可以呼叫 `this.ctx.Fail(tuple)`，以指出 Tuple 的處理失敗。 這項失敗會傳播至 Spout 的 `Fail` 方法，在其中，可以使用快取的中繼資料來重新執行 Tuple。
 
 * **序列識別碼**：發出 Tuple 時，可以指定唯一的序列識別碼。 這個值可識別用於重新執行 (Ack 和 Fail) 處理的 Tuple。 例如，發出資料時，[Storm 範例]  專案中的 Spout 會使用下列項目：
-  
+
         this.ctx.Emit(Constants.DEFAULT_STREAM_ID, new Values(sentence), lastSeqId);
-  
+
     此程式碼會發出含有預設資料流之句子的 Tuple，以及 **lastSeqId** 中所含的序列識別碼值。 在此範例中，會遞增每個發出 Tuple 的 **lastSeqId**。
 
 如 [Storm 範例]  專案中所示，在執行階段可以根據組態來設定元件是否為交易式。
@@ -427,13 +427,13 @@ HDInsight Tools for Visual Studio 也可以用來建立混合式拓撲，其中�
 針對範例混合式拓撲，請建立專案，然後選取 [Storm 混合式範例]。 此範例類型將示範下列概念︰
 
 * **Java Spout** 和 **C# Bolt**：定義於 **HybridTopology_javaSpout_csharpBolt**
-  
+
     * 交易式版本定義於 **HybridTopologyTx_javaSpout_csharpBolt**
 
 * **C# Spout** 和 **Java Bolt**：定義於 **HybridTopology_csharpSpout_javaBolt**
-  
+
     * 交易式版本定義於 **HybridTopologyTx_csharpSpout_javaBolt**
-  
+
   > [!NOTE]
   > 這個版本也會示範如何使用文字檔中的 Clojure 程式碼做為 Java 元件。
 
@@ -510,7 +510,7 @@ public static MyComponent Get(Context ctx, Dictionary<string, Object> parms)
 
 > [!IMPORTANT]
 > 如果您的專案是利用未使用 NuGet 的舊版 SCP.NET 建立，您必須執行下列步驟更新為新的版本：
-> 
+>
 > 1. 在**方案總管**中，對專案按一下滑鼠右鍵，然後選取 [管理 NuGet 套件]。
 > 2. 使用 [搜尋] 欄位，搜尋 **Microsoft.SCP.Net.SDK** 然後將其加入專案。
 
@@ -542,22 +542,22 @@ public static MyComponent Get(Context ctx, Dictionary<string, Object> parms)
 > 本機測試只適用於僅限 C# 的基本拓樸。 您不得將本機測試使用於混合式拓撲或使用多個資料流的拓撲。
 
 1. 在**方案總管**中，於專案上按一下滑鼠右鍵，然後選取 [屬性]。 在專案屬性中，將 [輸出類型] 變更為 [主控台應用程式]。
-   
+
     ![輸出類型](./media/hdinsight-storm-develop-csharp-visual-studio-topology/outputtype.png)
-   
+
    > [!NOTE]
    > 請記得先將 [輸出類型] 變更回 [類別庫]，再將拓撲部署至叢集。
 
 2. 在**方案總管**中，於專案上按一下滑鼠右鍵，然後選取 [新增] > [新項目]。 選取 [類別]，並輸入 **LocalTest.cs** 做為類別名稱。 最後按一下 [新增]。
 
 3. 開啟 **LocalTest.cs**，並在頂端加入下列 **using** 陳述式：
-    
+
     ```csharp
     using Microsoft.SCP;
     ```
 
 4. 使用下列程式碼做為 **LocalTest** 類別的內容：
-    
+
     ```csharp
     // Drives the topology components
     public void RunTestCase()
@@ -638,7 +638,7 @@ public static MyComponent Get(Context ctx, Dictionary<string, Object> parms)
     請用一些時間閱讀程式碼註解。 此程式碼會使用 **LocalContext** ，在開發環境中執行元件，並將元件之間的資料流保存至本機磁碟機上的文字檔。
 
 1. 開啟 **Program.cs**，並將下列程式碼加入 **Main** 方法：
-    
+
     ```csharp
     Console.WriteLine("Starting tests");
     System.Environment.SetEnvironmentVariable("microsoft.scp.logPrefix", "WordCount-LocalTest");
@@ -661,7 +661,7 @@ public static MyComponent Get(Context ctx, Dictionary<string, Object> parms)
 2. 儲存變更，然後按一下 **F5** 或選取 [偵錯] > [開始偵錯] 啟動專案。 應該會出現主控台視窗，並記錄測試進行的狀態。 出現 [測試已完成]  時，請按任意鍵關閉視窗。
 
 3. 使用 **Windows 檔案總管**找到包含您專案的目錄，例如 **C:\Users\<your_user_name>\Documents\Visual Studio 2013\Projects\WordCount\WordCount**。 在此目錄中，開啟 [Bin]，然後按一下 [偵錯]。 您應該會看到執行測試時所產生的文字檔：sentences.txt、counter.txt 和 splitter.txt。 開啟每個文字檔，並檢查資料。
-   
+
    > [!NOTE]
    > 字串資料會保存為這些檔案中的十進位值的陣列。 例如，**splitter.txt** 檔案中的 \[[97,103,111]] 是 'and' 這個字。
 
@@ -729,5 +729,4 @@ Context.Logger.Info("Component started");
 **Apache HBase on HDInsight**
 
 * [開始使用 HBase on HDInsight](hdinsight-hbase-tutorial-get-started.md)
-
 

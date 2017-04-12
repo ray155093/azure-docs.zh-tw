@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/05/2017
 ms.author: hascipio
 translationtype: Human Translation
-ms.sourcegitcommit: b76185c0a4a0e17b663affee9a02b65f222fedeb
-ms.openlocfilehash: d679096476406831c1fda4f695adff84e63d6ae8
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 9d7176b018d25b2a60b2175c289dde7490f8d101
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -71,7 +71,7 @@ ms.lasthandoff: 02/17/2017
 ### <a name="virtual-machine-image-specific"></a>虛擬機器映像專用
 * [建立內部部署 VM 映像](marketplace-publishing-vm-image-creation-on-premise.md)
 * [在 Azure 入口網站中建立執行 Windows 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [在 Azure 入口網站中建立執行 Linux 的虛擬機器](../virtual-machines/virtual-machines-linux-quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [在 Azure 入口網站中建立執行 Linux 的虛擬機器](../virtual-machines/linux/quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [針對 VHD 建立常見問題進行疑難排解](marketplace-publishing-vm-image-creation-troubleshooting.md)
 
 ## <a name="how-to-manage-your-solution"></a>如何管理您的解決方案

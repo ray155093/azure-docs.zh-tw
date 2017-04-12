@@ -15,8 +15,9 @@ ms.workload: tbd
 ms.date: 01/12/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 45011050a6d2f8e4d9d92f4124d6dc9a9eec4cf7
-ms.openlocfilehash: 88032b3855c2f89b935064abe496a8455dcff88b
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: aee9d9b735358c3800f8f97f78dd2d3ad1e5e8a8
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -41,7 +42,7 @@ ms.openlocfilehash: 88032b3855c2f89b935064abe496a8455dcff88b
 
 下列考量可協助您決定大小：
 
-* A8-A11 和 H 系列大小也稱為 *計算密集型執行個體*。 執行這些大小的硬體是針對計算密集型和網路密集型應用程式 (包括高效能運算 (HPC) 叢集應用程式)、模型化及模擬而設計及最佳化的。 A8-A11 系列使用 Intel Xeon E5-2670 @ 2.6 GHZ，而 H 系列使用 Intel Xeon E5-2667 v3 @ 3.2 GHz。 如需有關使用這些大小的詳細資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+* A8-A11 和 H 系列大小也稱為 *計算密集型執行個體*。 執行這些大小的硬體是針對計算密集型和網路密集型應用程式 (包括高效能運算 (HPC) 叢集應用程式)、模型化及模擬而設計及最佳化的。 A8-A11 系列使用 Intel Xeon E5-2670 @ 2.6 GHZ，而 H 系列使用 Intel Xeon E5-2667 v3 @ 3.2 GHz。 如需有關使用這些大小的詳細資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../virtual-machines/windows/a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 * Dv2 系列、D 系列和 G 系列是要求更快速的 CPU、更好的本機磁碟效能，或有更高記憶體需求之應用程式的最佳選擇。 它們為許多企業級應用程式提供了強大的組合。
 * Azure 資料中心的某些實體主機可能不支援較大的虛擬機器大小，例如 A5-A11。 因此，您可能會在將現有的虛擬機器調整為新的大小、在 2013 年 4 月 16 日之前建立的虛擬網路中建立新的虛擬機器，或將新的虛擬機器新增至現有雲端服務時，看到錯誤訊息：**無法設定虛擬機器 {machine name}** 或**無法建立虛擬機器 {machine name}**。 請參閱支援論壇上 [錯誤：「無法設定虛擬機器」](https://social.msdn.microsoft.com/Forums/9693f56c-fcd3-4d42-850e-5e3b56c7d6be/error-failed-to-configure-virtual-machine-with-a5-a6-or-a7-vm-size?forum=WAVirtualMachinesforWindows) ，以查看每個部署案例的因應措施。
 * 您的訂用帳戶也可能會限制您可以在特定大小系列中部署的核心數目。 若要增加配額，請連絡 Azure 支援服務。
@@ -92,7 +93,7 @@ ms.openlocfilehash: 88032b3855c2f89b935064abe496a8455dcff88b
 | A7              | 8         | 56           | 2040                 | 4 / 高 |
 
 ## <a name="a-series---compute-intensive-instances"></a>A 系列 - 大量計算執行個體
-如需有關使用這些大小的資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+如需有關使用這些大小的資訊與考量，請參閱 [關於 H 系列與計算密集型 A 系列 VM](../virtual-machines/windows/a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 | 大小            | CPU 核心 | 記憶體：GiB  | 本機 HDD: GiB       | 最大 NIC / 網路頻寬 |
 |---------------- | --------- | ------------ | -------------------- | ---------------------------- |
@@ -196,10 +197,5 @@ Get-AzureRoleSize | where SupportedByWebWorkerRoles -eq $true | select InstanceS
 
 ## <a name="next-steps"></a>後續步驟
 * 了解 [Azure 訂用帳戶和服務限制、配額與限制](../azure-subscription-service-limits.md)。
-* 深入了解適用於高效能運算 (HPC) 這類工作負載的 [H 系列與計算密集型 A 系列 VM](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
+* 深入了解適用於高效能運算 (HPC) 這類工作負載的 [H 系列與計算密集型 A 系列 VM](../virtual-machines/windows/a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 。
 
