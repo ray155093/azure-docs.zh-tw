@@ -17,21 +17,21 @@ ms.workload: infrastructure-services
 ms.date: 03/22/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 365d6ad9ec0e0a7ad8d9742d863540646257e298
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 193cb2570e4c71c5205cc029543a3a7602a6574e
+ms.lasthandoff: 04/03/2017
 
 ---
 
 # <a name="sizes-for-windows-virtual-machines-in-azure"></a>Azure 中 Windows 虛擬機器的大小
 
-本文說明可用於執行 Windows 應用程式與工作負載之 Azure 虛擬機器的可用大小及選項。 同時也提供當您規劃使用這些資源時所需注意的部署考量。  本文也適用於 [Linux 虛擬機器](virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+本文說明可用於執行 Windows 應用程式與工作負載之 Azure 虛擬機器的可用大小及選項。 同時也提供當您規劃使用這些資源時所需注意的部署考量。  本文也適用於 [Linux 虛擬機器](linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 > [!IMPORTANT]
 >* 如需各式大小的定價，請參閱 [虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)。 
 >* 若要查看 Azure VM 的一般限制，請參閱 [Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)。
 >* 儲存體成本會分別根據儲存體帳戶中使用的頁面來計算。 如需詳細資料，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)。
-> * 深入了解 [Azure 計算單位 (ACU)](virtual-machines-windows-acu.md) 如何協助您比較各個 Azure SKU 的計算效能。
+> * 深入了解 [Azure 計算單位 (ACU)](windows/acu.md) 如何協助您比較各個 Azure SKU 的計算效能。
 >
 >
 <br>    
@@ -50,7 +50,7 @@ ms.lasthandoff: 03/27/2017
 
 <br>
 
-深入了解 [Azure 計算單位 (ACU)](virtual-machines-windows-acu.md) 如何協助您比較各個 Azure SKU 的計算效能。
+深入了解 [Azure 計算單位 (ACU)](windows/acu.md) 如何協助您比較各個 Azure SKU 的計算效能。
 
 深入了解可用的不同 VM 大小：
 - [一般用途](virtual-machines-windows-sizes-general.md)

@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 05/16/2016
 ms.author: vidarmsft
 translationtype: Human Translation
-ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
-ms.openlocfilehash: a0817ac21afb83745ec2cc213fc6029fa395d479
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 700dffe72af853d0daa9af06c0b316e0363ab30b
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -122,7 +123,7 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
    > 這將會導致檔案共用暫時無法使用
    >
    >
-2. 從 Azure Site Recovery 入口網站為檔案伺服器 VM [啟用虛擬機器保護](../site-recovery/site-recovery-hyper-v-site-to-azure.md#step-6-enable-replication)。
+2. 從 Azure Site Recovery 入口網站為檔案伺服器 VM [啟用虛擬機器保護](../site-recovery/site-recovery-hyper-v-site-to-azure.md#enable-replication)。
 3. 當起始同步處理開始時，您可以再次重新連線目標。 移至 iSCSI 啟動器，選取 StorSimple 裝置，然後按一下 [連線] 。
 4. 當同步完成且 VM 的狀態為 [受保護] 時，請選取 VM，選取 [設定] 索引標籤，然後據以更新 VM 的網路 (這是已容錯移轉的 VM 所屬的網路)。 如果網路沒有顯示，表示同步仍在進行中。
 
@@ -301,9 +302,4 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
 
 ## <a name="summary"></a>摘要
 使用 Azure Site Recovery 時，您可以為有檔案共用裝載於 StorSimple 儲存體上的檔案伺服器 VM 建立完整自動化的災害復原計劃。 當發生中斷時，您可以在幾秒鐘內從任何地方起始容錯移轉，並且在數分鐘內啟動並執行應用程式。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

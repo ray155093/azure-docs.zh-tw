@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 07/06/2016
 ms.author: mlearned
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 171c3f05b0eacfd8b1ede0b807f284ce6c0555b4
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: d80ce63eb7ddfd7c45726be887a772f9a7594b28
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -39,7 +40,7 @@ ms.openlocfilehash: 171c3f05b0eacfd8b1ede0b807f284ce6c0555b4
 1. 在 Visual Studio 中，開啟您要部署的方案，或建立新方案。
    您可以依照此逐步解說的步驟部署 Web 應用程式或雲端服務 (Azure 應用程式)。
    如果要建立新方案，請建立新的 Azure 雲端服務專案，或建立新的 ASP.NET MVC 專案。 請確定專案以 .NET Framework 4 或 4.5 為目標，如果是建立雲端服務專案，請加入 ASP.NET MVC Web 角色和背景工作角色，然後對 Web 角色選擇網際網路應用程式。 出現提示時，選擇 [ **網際網路應用程式**]。
-   如果要建立 Web 應用程式，請選擇 ASP.NET Web 應用程式的專案範本，然後選擇 [MVC]。 請參閱「 [在 Azure App Service 中建立 ASP.NET Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md)」。
+   如果要建立 Web 應用程式，請選擇 ASP.NET Web 應用程式的專案範本，然後選擇 [MVC]。 請參閱「 [在 Azure App Service 中建立 ASP.NET Web 應用程式](../app-service-web/app-service-web-get-started-dotnet.md)」。
    
    > [!NOTE]
    > Visual Studio Team Services 目前僅支援 Visual Studio Web 應用程式的 CI 部署。 Web Site 專案超出範圍。
@@ -289,9 +290,4 @@ ms.openlocfilehash: 171c3f05b0eacfd8b1ede0b807f284ce6c0555b4
 [48]: ./media/cloud-services-continuous-delivery-use-vso/CheckInChangeToMakeTestsFail.PNG
 [49]: ./media/cloud-services-continuous-delivery-use-vso/TestsFailed.PNG
 [50]: ./media/cloud-services-continuous-delivery-use-vso/TestsResultsFailed.PNG
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

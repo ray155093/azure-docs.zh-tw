@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 11/30/2016
 ms.author: annahar
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 228737056b813c76bf26ee07023db27be710f6d7
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: d264bd47d76db8015a64f09248c57c94572e2693
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -32,7 +32,7 @@ ms.lasthandoff: 03/27/2017
 
 ## <a name = "create"></a>建立有多個 IP 位址的 VM
 
-如果您想要建立具有多個 IP 位址或一個靜態私人 IP 位址的 VM，您必須使用 PowerShell 或 Azure CLI 來建立它。 按一下本文頂端的 PowerShell 或 CLI 選項，即可了解作法。 您可以依照[建立 Windows VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md) 或[建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-portal.md)文章中的步驟，透過入口網站建立具有單一動態私人 IP 位址及 (選擇性) 單一公用 IP 位址的 VM。 建立 VM 之後，您可以依照本文的[將 IP 位址新增至 VM](#add) 一節中的步驟，透過入口網站將 IP 位址類型從動態變更為靜態，並新增其他 IP 位址。
+如果您想要建立具有多個 IP 位址或一個靜態私人 IP 位址的 VM，您必須使用 PowerShell 或 Azure CLI 來建立它。 按一下本文頂端的 PowerShell 或 CLI 選項，即可了解作法。 您可以依照[建立 Windows VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md) 或[建立 Linux VM](../virtual-machines/linux/quick-create-portal.md)文章中的步驟，透過入口網站建立具有單一動態私人 IP 位址及 (選擇性) 單一公用 IP 位址的 VM。 建立 VM 之後，您可以依照本文的[將 IP 位址新增至 VM](#add) 一節中的步驟，透過入口網站將 IP 位址類型從動態變更為靜態，並新增其他 IP 位址。
 
 ## <a name="add"></a>將 IP 位址新增至 VM
 

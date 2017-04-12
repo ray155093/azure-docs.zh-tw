@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: 097a8aeecc783199b25d95dbc470dcabefa37ced
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: db3285bcdfb93c0c2b9f8972edb04e7064cfa31c
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -145,9 +145,6 @@ ms.lasthandoff: 03/16/2017
 * [**鎖定**](../azure-resource-manager/resource-group-lock-resources.md) -鎖定 Azure 資源
 * [**自動化指令碼**](app-insights-powershell.md) - 匯出 Azure 資源的定義，如此您就能用其做為範本來建立新資源。
 
-支援
-
-* **支援要求** - 需要付費的訂用帳戶。 另請參閱[取得說明](app-insights-get-dev-support.md)。
 
 ## <a name="video"></a>影片
 

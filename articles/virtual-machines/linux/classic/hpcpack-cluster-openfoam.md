@@ -16,9 +16,9 @@ ms.workload: big-compute
 ms.date: 07/22/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: a779dd05623e84250d5595311d7d87d83f1298ad
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 2f92ebd82e5ac64f921e236a77657a1abc478a7c
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -41,7 +41,7 @@ Microsoft HPC Pack 提供可在 Microsoft Azure 虛擬機器叢集上執行大�
   
   **其他應該知道的事項**
   
-  * 如需了解 Azure 中 Linux RDMA 網路的必要條件，請參閱[關於 H 系列和計算密集型 A 系列 VM](../../virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+  * 如需了解 Azure 中 Linux RDMA 網路的必要條件，請參閱[關於 H 系列和計算密集型 A 系列 VM](../../windows/a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
   * 如果使用 PowerShell 指令碼部署選項，請將所有 Linux 計算節點部署在一個雲端服務內，以使用 RDMA 網路連線。
   * 部署 Linux 節點之後，請透過 SSH 進行連線來執行任何額外的系統管理工作。 您可以在 Azure 入口網站中找到每個 Linux VM 的 SSH 連線詳細資料。  
 * **Intel MPI** - 若要在 Azure 中的 SLES 12 HPC 計算節點上執行 OpenFOAM，您必須從 [Intel.com 網站](https://software.intel.com/en-us/intel-mpi-library/)安裝 Intel MPI Library 5 執行階段。 (Intel MPI 5 已預先安裝在 CentOS 型 HPC 映像上)。在稍後的步驟中，請視需要在 Linux 計算節點上安裝 Intel MPI。 若要為此步驟做準備，請在向 Intel 註冊之後，依循確認電子郵件中的連結前往相關的網頁。 然後，複製適當 Intel MPI 版本之 .tgz 檔案的下載連結。 這篇文章根據 Intel MPI 5.0.3.048 版。

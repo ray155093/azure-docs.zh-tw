@@ -17,9 +17,9 @@ ms.date: 02/27/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 88d54250c0ce8feff78e2bf122be1c69dd0d8008
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 1fc13142d3e4f54e0945032a404eb497746ee5a0
+ms.lasthandoff: 04/12/2017
 
 ---
 # <a name="use-python-user-defined-functions-udf-with-hive-and-pig-in-hdinsight"></a>在 HDInsight 上使用 Python 使用者定義函數 (UDF) 與 Hive 和 Pig
@@ -31,7 +31,7 @@ Hive 與 Pig 很適合在 HDInsight 中處理資料，但您有時需要更通�
 * HDInsight 叢集
 
   > [!IMPORTANT]
-  > Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+  > Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 * 文字編輯器
 
@@ -161,7 +161,7 @@ def create_structure(input):
 先前，我們因為輸入沒有一致的結構描述而將 **LINE** 輸入定義為 chararray，記得嗎。 Python 指令碼會將資料轉換成一致的結構描述，以便輸出。
 
 1. 檔案開頭的 **@outputSchema** 陳述式定義將傳回給 Pig 的資料格式。 在此案例中，這是一個 **data bag**(一種 Pig 資料類型)。 Bag 包含下列欄位，全部都是 chararray (字串)：
-   
+
    * date - 記錄項目的建立日期
    * time - 記錄項目的建立時間
    * classname - 建立項目所針對的類別名稱
@@ -188,14 +188,14 @@ def create_structure(input):
 1. 使用 Python 範例 [streaming.py](#streamingpy) 和 [pig_python.py](#jythonpy)，在開發機器上建立檔案的本機複本。
 
 2. 使用 `scp` 將檔案複製到您的 HDInsight 叢集。 例如，下列命令會將檔案複製到名為 **mycluster**的叢集。
-   
+
         scp streaming.py pig_python.py myuser@mycluster-ssh.azurehdinsight.net:
 
 3. 使用 SSH 連接到叢集。 例如，下列會以使用者 **myuser** 的身分，連接到名為 **mycluster** 的叢集。
-   
+
         ssh myuser@mycluster-ssh.azurehdinsight.net
 4. 從 SSH 工作階段，將先前上傳的 python 檔案加入叢集的 WASB 儲存體。
-   
+
         hdfs dfs -put streaming.py /streaming.py
         hdfs dfs -put pig_python.py /pig_python.py
 
@@ -205,7 +205,7 @@ def create_structure(input):
 
 1. 使用 `hive` 命令啟動 Hive Shell。 在 Shell 載入完成時，您應會看到 `hive>` 提示。
 2. 在出現 `hive>` 提示時輸入下列內容。
-   
+
    ```hive
    add file wasbs:///streaming.py;
    SELECT TRANSFORM (clientid, devicemake, devicemodel)
@@ -215,7 +215,7 @@ def create_structure(input):
    ORDER BY clientid LIMIT 50;
    ```
 3. 輸入最後一行後，工作應該就會開始。 作業完成之後，它會傳回與下列範例類似的輸出：
-   
+
         100041    RIM 9650    d476f3687700442549a83fac4560c51c
         100041    RIM 9650    d476f3687700442549a83fac4560c51c
         100042    Apple iPhone 4.2.x    375ad9a0ddc4351536804f1d5d0ea9b9
@@ -227,7 +227,7 @@ def create_structure(input):
 1. 使用 `pig` 命令啟動 Shell。 在 Shell 載入完成時，您應會看到 `grunt>` 提示。
 
 2. 在出現 `grunt>` 提示時輸入下列陳述式：
-   
+
    ```pig
    Register wasbs:///pig_python.py using jython as myfuncs;
    LOGS = LOAD 'wasbs:///example/data/sample.log' as (LINE:chararray);
@@ -237,7 +237,7 @@ def create_structure(input):
    ```
 
 3. 輸入下列行之後，應該就會開始作業。 作業完成之後，它會傳回與下列類似的輸出。
-   
+
         ((2012-02-03,20:11:56,SampleClass5,[TRACE],verbose detail for id 990982084))
         ((2012-02-03,20:11:56,SampleClass7,[TRACE],verbose detail for id 1560323914))
         ((2012-02-03,20:11:56,SampleClass8,[DEBUG],detail for id 2083681507))
@@ -245,17 +245,17 @@ def create_structure(input):
         ((2012-02-03,20:11:56,SampleClass3,[INFO],everything normal for id 530537821))
 
 4. 使用 `quit` 結束 Grunt shell，然後使用下列命令編輯本機檔案系統上的 pig_python.py 檔案︰
-   
+
     nano pig_python.py
 
 5. 進入編輯器後，移除行首的 `#` 字元將以下這行取消註解：
-   
+
         #from pig_util import outputSchema
-   
+
     完成變更後，使用 Ctrl + X 結束編輯器。 選取 [Y]，然後按 Enter 儲存變更。
 
 6. 使用 `pig` 命令再次啟動 Shell。 進入 `grunt>` 提示字元後，使用下列命令以使用 C Python 解譯器執行 Python 指令碼。
-   
+
    ```pig
    Register 'pig_python.py' using streaming_python as myfuncs;
    LOGS = LOAD 'wasbs:///example/data/sample.log' as (LINE:chararray);
@@ -263,7 +263,7 @@ def create_structure(input):
    DETAILS = foreach LOG generate myfuncs.create_structure(LINE);
    DUMP DETAILS;
    ```
-   
+
     此作業完成後，您應該會看到和先前使用 Jython 執行指令碼時所得到的相同輸出。
 
 ### <a name="powershell"></a>PowerShell
@@ -272,7 +272,7 @@ def create_structure(input):
 
 1. 使用 Python 範例 [streaming.py](#streamingpy) 和 [pig_python.py](#jythonpy)，在開發機器上建立檔案的本機複本。
 2. 使用下列 PowerShell 指令碼，將 **streaming.py** 和 **pig\_python.py** 檔案上傳至伺服器。 在指令碼的前三行，替換您的 Azure HDInsight 叢集的名稱及 **streaming.py** 和 **pig\_python.py** 檔案的路徑。
-   
+
    ```powershell
     # Login to your Azure subscription
     # Is there an active Azure subscription?
@@ -314,7 +314,7 @@ def create_structure(input):
    ```
 
     此指令碼會擷取 HDInsight 叢集的資訊，然後擷取預設儲存體帳戶的帳戶和金鑰，再將檔案上傳至容器的根目錄。
-   
+
    > [!NOTE]
    > 關於其他的指令碼上傳方法，請參閱 [在 HDInsight 上將 Hadoop 工作的資料上傳](hdinsight-upload-data.md) 文件。
 
@@ -484,5 +484,4 @@ $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
 * [〈搭配 HDInsight 使用 Hivet〉](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
-
 

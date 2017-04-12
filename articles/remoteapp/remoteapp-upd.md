@@ -14,15 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: dd281ead7d2c06af98ea0baea31d897b5be0d9d7
-ms.openlocfilehash: 04d8031a4c5f06d56afc1d08d4a4fa5fb50f8a25
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: e1a1848bac1cb339569b813ae5c5e214e1ec2409
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="how-does-azure-remoteapp-save-user-data-and-settings"></a>Azure RemoteApp 如何儲存使用者資料和設定？
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 

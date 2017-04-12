@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 04/29/2016
 ms.author: hascipio; v-divte
 translationtype: Human Translation
-ms.sourcegitcommit: 3136b8345d0c851c29a9498089da73c8564549d1
-ms.openlocfilehash: 101d0b2733a43b99b32efae8a9510ffca2a2e467
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 8f6b9a9293dc149586e6e5fd55028170ea825b07
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -124,7 +125,7 @@ ms.openlocfilehash: 101d0b2733a43b99b32efae8a9510ffca2a2e467
 > 這些命令假設目前的儲存體帳戶內容已在 PowerShell 中設定。   請參閱 [設定 Azure PowerShell](marketplace-publishing-powershell-setup.md) ，來了解 PowerShell 安裝程式的詳細資訊。  
 > 
 > ### <a name="create-a-storage-account-by-using-the-command-line-tool-for-mac-and-linux"></a>使用適用於 Mac 和 Linux 的命令列工具建立儲存體帳戶
-> 從 [Linux 命令列工具](../virtual-machines/virtual-machines-linux-cli-manage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)建立儲存體帳戶，如下所示。
+> 從 [Linux 命令列工具](../virtual-machines/linux/cli-manage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)建立儲存體帳戶，如下所示。
 > 
 > 
 
@@ -148,10 +149,5 @@ ms.openlocfilehash: 101d0b2733a43b99b32efae8a9510ffca2a2e467
 ## <a name="see-also"></a>另請參閱
 * [建立 Marketplace 的虛擬機器映像](marketplace-publishing-vm-image-creation.md)
 * [設定 Azure PowerShell](marketplace-publishing-powershell-setup.md)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

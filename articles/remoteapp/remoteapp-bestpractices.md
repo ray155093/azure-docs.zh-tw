@@ -14,15 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 9af9f95e9638eda71fbc4508bea8e35ce5191734
-ms.openlocfilehash: 3caabe366db4def4f8332c64d08f86f271c31bb2
-ms.lasthandoff: 02/11/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: fda356fc5fd6e9888138a06a0b72232e3581567b
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="best-practices-for-configuring-and-using-azure-remoteapp"></a>設定和使用 Azure RemoteApp 的最佳做法
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://blogs.technet.microsoft.com/enterprisemobility/2016/08/12/application-remoting-and-the-cloud/) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://blogs.technet.microsoft.com/enterprisemobility/2016/08/12/application-remoting-and-the-cloud/) 。
 > 
 > 
 

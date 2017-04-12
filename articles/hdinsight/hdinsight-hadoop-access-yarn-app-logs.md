@@ -17,9 +17,9 @@ ms.date: 02/06/2017
 ms.author: jgao
 ROBOTS: NOINDEX
 translationtype: Human Translation
-ms.sourcegitcommit: 6407c371bc51461a05429fabaf38d3f9bc80d32c
-ms.openlocfilehash: bd9133fde0c3ebfd915c8ae33daa6d0113b37889
-ms.lasthandoff: 02/07/2017
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: 059fd9c1578cb987aec09a2f72099a0472c9b119
+ms.lasthandoff: 04/11/2017
 
 
 ---
@@ -27,8 +27,8 @@ ms.lasthandoff: 02/07/2017
 本主題說明如何存取已在 Azure HDInsight 的 Windows 型 Hadoop 叢集上完成的 YARN (Yet Another Resource Negotiator) 應用程式記錄
 
 > [!IMPORTANT]
-> 本文件中的資訊僅適用於 Windows 型 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 如需存取 Linux 之 HDInsight 叢集上 YARN 記錄檔的相關資訊，請參閱 [在 HDInsight 中的 Linux 之 Hadoop 上存取 YARN 應用程式記錄檔](hdinsight-hadoop-access-yarn-app-logs-linux.md)
-> 
+> 本文件中的資訊僅適用於 Windows 型 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。 如需存取 Linux 之 HDInsight 叢集上 YARN 記錄檔的相關資訊，請參閱 [在 HDInsight 中的 Linux 之 Hadoop 上存取 YARN 應用程式記錄檔](hdinsight-hadoop-access-yarn-app-logs-linux.md)
+>
 
 
 ### <a name="prerequisites"></a>必要條件
@@ -70,9 +70,9 @@ YARN 藉由將資源管理從應用程式排程/監視分離，支援多種程�
 
 
 ## <a name="yarn-resourcemanager-ui"></a>YARN ResourceManager UI
-YARN ResourceManager UI 是在叢集前端節點上執行，並可透過 Azure 入口網站的儀表板進行存取： 
+YARN ResourceManager UI 是在叢集前端節點上執行，並可透過 Azure 入口網站的儀表板進行存取：
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。 
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 在左側功能表中，依序按一下 [瀏覽]、[HDInsight 叢集] 和您想要存取 YARN 應用程式記錄檔的 Windows 型叢集。
 3. 在頂端功能表上，按一下 [儀表板]。 您會看到有頁面在新的瀏覽器索引標籤上開啟，其名稱為 **HDInsight 查詢主控台**。
 4. 在 [HDInsight 查詢主控台] 上，按一下 [Yarn UI]。

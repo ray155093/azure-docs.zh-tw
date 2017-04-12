@@ -16,9 +16,9 @@ ms.workload: big-compute
 ms.date: 10/13/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 1e1e3b405d752c459ecfc7f74fbdafc148c147b5
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: f46facee3e45704f74a13db7a18274f5ce90ceff
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -61,7 +61,7 @@ ms.lasthandoff: 03/27/2017
    ![私密和公開金鑰][keys]
 
 ### <a name="add-the-key-pair-to-the-hpc-pack-cluster"></a>將金鑰組新增至 HPC Pack 叢集
-1. 請使用您部署叢集時所提供的網域認證 (例如，hpc\clusteradmin) [由遠端桌面連線](../../virtual-machines-windows-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)到前端節點 VM。 您可以從前端節點管理叢集。
+1. 請使用您部署叢集時所提供的網域認證 (例如，hpc\clusteradmin) [由遠端桌面連線](../../windows/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)到前端節點 VM。 您可以從前端節點管理叢集。
 2. 您可以使用標準的 Windows Server 程序在叢集的 Active Directory 網域中建立網域使用者帳戶。 例如，在前端節點上使用 Active Directory 使用者和電腦工具。 本文中的範例假設您在 hpclab 網域中建立名為 hpcuser 的網域使用者 (hpclab\hpcuser)。
 3. 將網域使用者以叢集使用者身分加入 HPC Pack 叢集中。 如需指示，請參閱 [(Add or Remove Cluster Users) 新增或移除叢集使用者](https://technet.microsoft.com/library/ff919330.aspx)。
 4. 建立名為 C:\cred.xml 的檔案，並且將 RSA 金鑰資料複製到其中。 您可以在本文結尾處的範例檔案中找到範例。

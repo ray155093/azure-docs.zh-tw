@@ -15,15 +15,16 @@ ms.workload: infrastructure-services
 ms.date: 10/28/2016
 ms.author: amsriva
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 8efa8df1381c19aa00bd49bedb3f99086e01d9e2
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 32ca2e4b1dcf5715602b8e1e1f3026cb785fbe0c
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="vpn-gateway-classic-to-resource-manager-migration"></a>從傳統 VPN 閘道到 Resource Manager 移轉
 VPN 閘道現在可以用來從傳統移轉至 Resource Manager 部署模型。 您可以進一步了解 Azure Resource Manager [功能和優點](../azure-resource-manager/resource-group-overview.md)。 在本文中，我們會詳細說明如何從傳統部署移轉至較新的 Resource Manager 為基礎模型。 
 
-VPN 閘道會在從傳統至 Resource Manager 的移轉過程中做為 VNet 移轉。 此移轉是一次一個 VNet。 沒有其他工具或移轉的必要條件需求。 移轉步驟與現有的 VNet 移轉相同，且會記載在 [IaaS 資源移轉網頁](../virtual-machines/virtual-machines-windows-ps-migration-classic-resource-manager.md)。 在移轉期間沒有任何資料路徑停機時間，因此現有的工作負載在移轉期間會繼續運作而不會中斷內部部署連線。 與 VPN 閘道相關聯的公用 IP 位址在移轉程序期間不會變更。 這表示一旦移轉完成後，您將不需要重新設定內部部署路由器。  
+VPN 閘道會在從傳統至 Resource Manager 的移轉過程中做為 VNet 移轉。 此移轉是一次一個 VNet。 沒有其他工具或移轉的必要條件需求。 移轉步驟與現有的 VNet 移轉相同，且會記載在 [IaaS 資源移轉網頁](../virtual-machines/windows/migration-classic-resource-manager-ps.md)。 在移轉期間沒有任何資料路徑停機時間，因此現有的工作負載在移轉期間會繼續運作而不會中斷內部部署連線。 與 VPN 閘道相關聯的公用 IP 位址在移轉程序期間不會變更。 這表示一旦移轉完成後，您將不需要重新設定內部部署路由器。  
 
 Resource Manager 中的模型不同於傳統模型，是由虛擬網路閘道、區域網路閘道和連線資源所組成。 這些分別代表 VPN 閘道本身、代表內部部署位址空間的本機站台和兩者之間的連線能力。 移轉完成後，您的閘道不能使用傳統模型，且虛擬網路閘道、區域網路閘道及連線物件上的所有管理作業必須使用 Resource Manager 模式執行。
 
@@ -65,11 +66,6 @@ Resource Manager 中的模型不同於傳統模型，是由虛擬網路閘道、
 * 建立從受影響的 VNet 到代表內部部署位置之區域網路閘道的明確連接。 這也會需要變更內部部署路由器上的設定來建立及設定 IPsec 通道。
 
 ## <a name="next-steps"></a>後續步驟
-了解 VPN 閘道移轉支援之後，請移至[平台支援的 IaaS 資源移轉 (從傳統移轉至 Resource Manager)](../virtual-machines/virtual-machines-windows-ps-migration-classic-resource-manager.md) 以開始使用。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
+了解 VPN 閘道移轉支援之後，請移至[平台支援的 IaaS 資源移轉 (從傳統移轉至 Resource Manager)](../virtual-machines/windows/migration-classic-resource-manager-ps.md) 以開始使用。
 
 

@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/06/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 6ce490fb903d4ed2177b95145bb98fb3eeb0654f
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 71acfdc7748b85b64d4c46072d5c8ee61c0b1768
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -36,10 +36,10 @@ Hadoop 為 MapReduce 提供一個串流 API，可讓您以 Java 以外的語言�
 * HDInsight 叢集上的 Linux 型 Hadoop
 
   > [!IMPORTANT]
-  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 * 文字編輯器
-  
+
   > [!IMPORTANT]
   > 文字編輯器必須使用 LF 做為行尾結束符號。 如果使用 CRLF，在 Linux 型 HDInsight 叢集上執行 MapReduce 作業時會導致錯誤。 如果您不確定，請使用 [執行 MapReduce](#run-mapreduce) 一節中的選擇性步驟將所有 CRLF 轉換為 LF。
 
@@ -241,23 +241,23 @@ if __name__ == "__main__":
 使用下列步驟，從 SSH 工作階段連線到叢集並執行串流 MapReduce 作業。
 
 1. 使用 SSH 連線到叢集：
-   
+
    `ssh username@clustername-ssh.azurehdinsight.net`
-   
+
    > [!NOTE]
    > 如果您使用密碼保護 SSH 帳戶，系統會提示您輸入密碼。 如果您使用 SSH 金鑰，您可能必須使用 `-i` 參數和私密金鑰的路徑，例如 `ssh -i /path/to/private/key username@clustername-ssh.azurehdinsight.net`。
 
 2. (選擇性) 如果您建立 mapper.py 和 reducer.py 檔案時使用的文字編輯器是以 CRLF 做為行尾結束符號，或者，您不知道您的編輯器使用哪種行尾結束符號，請使用下列命令將 mapper.py 和 reducer.py 中出現的 CRLF 轉換為 LF。
-   
+
     `perl -pi -e 's/\r\n/\n/g' mappery.py`
     `perl -pi -e 's/\r\n/\n/g' reducer.py`
 
 3. 使用下列命令啟動 MapReduce 工作。
-   
+
     `yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input /example/data/gutenberg/davinci.txt -output /example/wordcountout`
-   
+
     此命令有下列幾個部分：
-   
+
    * **hadoop-streaming.jar**：執行串流 MapReduce 作業時使用。 它能連結 Hadoop 和您提供的外部 MapReduce 程式碼。
 
    * **-files**：告訴 Hadoop 此 MapReduce 工作需要指定的檔案，而且應複製到所有背景工作節點。
@@ -269,7 +269,7 @@ if __name__ == "__main__":
    * **-input**：要從中計算字數的輸入檔案。
 
    * **-output**：要將輸出寫入到的目錄。
-     
+
      > [!NOTE]
      > 該工作會建立此目錄。
 
@@ -309,7 +309,7 @@ if __name__ == "__main__":
 
     # Create the streaming job definition
     # Note: This assumes that the mapper.py and reducer.py
-    #       are in the root of default storage. If you put them in a 
+    #       are in the root of default storage. If you put them in a
     #       subdirectory, change the -Files parameter to the correct path.
     $jobDefinition = New-AzureRmHDInsightStreamingMapReduceJobDefinition `
         -Files "/mapper.py", "/reducer.py" `
@@ -457,5 +457,4 @@ wrinkling       2
 * [搭配 HDInsight 使用 Hivet](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [搭配 HDInsight 使用 MapReduce 工作](hdinsight-use-mapreduce.md)
-
 

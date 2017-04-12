@@ -17,9 +17,9 @@ ms.date: 02/07/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: bd3032b3df92c43b6cc6431eff19bd7cc0cc47bd
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: 6c92292a67d14ac43c0fe5dbe7e14672c74b216b
+ms.lasthandoff: 04/11/2017
 
 ---
 # <a name="analyze-flight-delay-data-by-using-hive-on-linux-based-hdinsight"></a>在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班延誤資料
@@ -27,7 +27,7 @@ ms.lasthandoff: 03/25/2017
 了解如何在以 Linux 為基礎的 HDInsight 上使用 Hive 分析航班延誤資料，然後使用 Sqoop 將資料匯出至 Azure SQL Database。
 
 > [!IMPORTANT]
-> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+> 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 ### <a name="prerequisites"></a>必要條件
 
@@ -42,44 +42,44 @@ ms.lasthandoff: 03/25/2017
 1. 瀏覽至[創新技術研究管理部運輸統計處][rita-website]。
 
 2. 在此頁面上選取下列值：
-   
+
    | 名稱 | 值 |
    | --- | --- |
    | 篩選年份 |2013 |
    | 篩選期間 |一月 |
    | 欄位 |Year、FlightDate、UniqueCarrier、Carrier、FlightNum、OriginAirportID、Origin、OriginCityName、OriginState、DestAirportID、Dest、DestCityName、DestState、DepDelayMinutes、ArrDelay、ArrDelayMinutes、CarrierDelay、WeatherDelay、NASDelay、SecurityDelay、LateAircraftDelay。 清除所有其他欄位 |
 
-3. 按一下 [下載] 。 
+3. 按一下 [下載] 。
 
 ## <a name="upload-the-data"></a>上傳資料
 
 1. 使用以下命令將 zip 檔案上傳到 HDInsight 叢集前端節點：
-   
+
     ```
     scp FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:
     ```
-   
+
     以 zip 檔案名稱取代 **FILENAME** 。 以 HDInsight 叢集的 SSH 登入取代 **USERNAME** 。 將 CLUSTERNAME 取代為 HDInsight 叢集的名稱。
-   
+
    > [!NOTE]
    > 如果您使用密碼來驗證您的 SSH 登入，系統會提示您輸入密碼。 如果您使用的是公開金鑰，您可能必須使用 `-i` 參數並指定對應的私密金鑰路徑。 例如， `scp -i ~/.ssh/id_rsa FILENAME.zip USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:`。
 
 2. 完成上傳之後，使用 SSH 連線到叢集：
-   
+
     ```ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net```
-   
+
     如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 3. 連線之後，請使用以下命令解壓縮 .zip 檔案：
-   
+
     ```
     unzip FILENAME.zip
     ```
-   
+
     此命令會解壓縮一個 .csv 檔案 (大小大約為 60MB)。
 
 4. 使用下列命令在 HDInsight 儲存體上建立目錄，然後將檔案複製到目錄︰
-   
+
     ```
     hdfs dfs -mkdir -p /tutorials/flightdelays/data
     hdfs dfs -put FILENAME.csv /tutorials/flightdelays/data/
@@ -90,13 +90,13 @@ ms.lasthandoff: 03/25/2017
 使用下列步驟將 CSV 檔案的資料匯入到名為 **Delays**的 Hive 資料表。
 
 1. 使用以下命令建立並編輯名為 **flightdelays.hql** 的新檔案：
-   
+
     ```
     nano flightdelays.hql
     ```
-   
+
     使用下列文字做為此檔案的內容：
-   
+
     ```hiveql
     DROP TABLE delays_raw;
     -- Creates an external table over the csv file
@@ -160,22 +160,22 @@ ms.lasthandoff: 03/25/2017
 2. 依序按 **Ctrl + X**，然後 **Y** 儲存檔案。
 
 3. 使用以下命令啟動 Hive 並執行 **flightdelays.hql** 檔案：
-   
+
     ```
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin -f flightdelays.hql
     ```
-   
+
    > [!NOTE]
    > 此範例會使用 `localhost`，因為您是連接到 HDInsight 叢集的前端節點，也就是 HiveServer2 執行所在位置。
 
 4. 當 __flightdelays.hql__指令碼執行完畢之後，請使用下列命令來開啟互動式 Beeline 工作階段：
-   
+
     ```
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
     ```
 
 5. 當您接收 `jdbc:hive2://localhost:10001/>` 提示字元時，請使用以下查詢從匯入的航班延誤資料中擷取資料。
-   
+
     ```hiveql
     INSERT OVERWRITE DIRECTORY '/tutorials/flightdelays/output'
     ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
@@ -185,7 +185,7 @@ ms.lasthandoff: 03/25/2017
     WHERE weather_delay IS NOT NULL
     GROUP BY origin_city_name;
     ```
-   
+
     此查詢會擷取因氣候因素而延誤的城市清單，以及平均延誤時間，並會儲存到 `/tutorials/flightdelays/output`。 稍後，Sqoop 會從此位置讀取該資料，並匯出到 Azure SQL Database。
 
 6. 若要結束 Beeline，請在提示字元中輸入 `!quit` 。
@@ -205,19 +205,19 @@ ms.lasthandoff: 03/25/2017
 1. 使用 SSH 連線到 Linux 型 HDInsight 叢集，並從 SSH 工作階段執行下列步驟。
 
 2. 使用下列命令來安裝 FreeTDS：
-   
+
     ```
     sudo apt-get --assume-yes install freetds-dev freetds-bin
     ```
 
 3. 安裝完成後，請使用下列命令來連接到 SQL Database 伺服器。 使用 SQL Database 伺服器名稱取代 **serverName** 。 使用 SQL Database 的登入取代 **adminLogin** 和 **adminPassword**。 使用資料庫名稱取代 **databaseName** 。
-   
+
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D <databaseName>
     ```
-   
+
     您會收到如以下文字的輸出：
-   
+
     ```
     locale is "en_US.UTF-8"
     locale charset is "UTF-8"
@@ -227,7 +227,7 @@ ms.lasthandoff: 03/25/2017
     ```
 
 4. 在 `1>` 提示字元輸入下列幾行：
-   
+
     ```
     CREATE TABLE [dbo].[delays](
     [origin_city_name] [nvarchar](50) NOT NULL,
@@ -236,18 +236,18 @@ ms.lasthandoff: 03/25/2017
     ([origin_city_name] ASC))
     GO
     ```
-   
+
     輸入 `GO` 陳述式後，將評估先前的陳述式。 這會建立名為 **delays** 的資料表，包含叢集索引。
-   
+
     使用下列命令來確認已建立資料表：
-   
+
     ```
     SELECT * FROM information_schema.tables
     GO
     ```
-   
+
     輸出大致如下：
-   
+
     ```
     TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
     databaseName       dbo     delays      BASE TABLE
@@ -258,34 +258,34 @@ ms.lasthandoff: 03/25/2017
 ## <a name="export-data-with-sqoop"></a>使用 Sqoop 匯出資料
 
 1. 使用下列命令以確認 Sqoop 看得見您的 SQL Database：
-   
+
     ```
     sqoop list-databases --connect jdbc:sqlserver://<serverName>.database.windows.net:1433 --username <adminLogin> --password <adminPassword>
     ```
-   
+
     此命令會傳回一份資料庫清單，包含您稍早在其中建立 delays 資料表的資料庫。
 
 2. 使用以下命令，將資料從 hivesampletable 匯出至 mobiledata 資料表：
-   
+
     ```
     sqoop export --connect 'jdbc:sqlserver://<serverName>.database.windows.net:1433;database=<databaseName>' --username <adminLogin> --password <adminPassword> --table 'delays' --export-dir '/tutorials/flightdelays/output' --fields-terminated-by '\t' -m 1
     ```
-   
+
     Sqoop 會連接到包含 delays 資料表的資料庫，並將資料從 `/tutorials/flightdelays/output` 目錄匯出至 delays 資料表。
 
 3. 在命令完成後，使用下列程式碼連接至使用 TSQL 的資料庫：
-   
+
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D <databaseName>
     ```
-   
+
     連線之後，使用下列陳述式來確認資料已匯出到 mobiledata 資料表：
-   
+
     ```
     SELECT * FROM delays
     GO
     ```
-    
+
     您應會看到資料表中的資料清單。 輸入 `exit` 以結束 tsql 公用程式。
 
 ## <a id="nextsteps"></a> 後續步驟
@@ -321,7 +321,4 @@ ms.lasthandoff: 03/25/2017
 [hadoop-hiveql]: https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL
 
 [technetwiki-hive-error]: http://social.technet.microsoft.com/wiki/contents/articles/23047.hdinsight-hive-error-unable-to-rename.aspx
-
-
-
 

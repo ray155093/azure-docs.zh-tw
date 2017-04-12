@@ -1,5 +1,8 @@
 Data Factory 中的複製活動會將資料從來源資料存放區複製到接收資料存放區。 Data Factory 支援下列資料存放區。 可將來自任何來源的資料寫入任何接收器。 按一下資料存放區，即可了解如何將資料複製到該存放區，以及從該存放區複製資料。
 
+> [!NOTE] 
+> 如果您需要將資料移入/移出「複製活動」不支援的資料存放區，請在 Data Factory 中使用 **自訂活動** 搭配您自己的邏輯來複製/移動資料。 如需有關建立及使用自訂活動的詳細資料，請參閱 [在 Azure Data Factory 管線中使用自訂活動](../articles/data-factory/data-factory-use-custom-activities.md)。
+
 | 類別 | 資料存放區 | 支援作為來源 | 支援作為接收器 |
 |:--- |:--- |:--- |:--- |
 | **Azure** |[Azure Blob 儲存體](../articles/data-factory/data-factory-azure-blob-connector.md) |✓  |✓  |

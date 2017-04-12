@@ -17,9 +17,9 @@ ms.workload: na
 ms.date: 11/14/2016
 ms.author: johnsta
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 65fc37a1fd1d1d0149b98767117f8faafb5dcd2b
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: acfba48585b960a1ce39b77e35d292189aa9732b
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -50,8 +50,8 @@ ms.lasthandoff: 03/18/2017
 >[!IMPORTANT]
 > 若要建立安全的叢集，請在呼叫 `az acs create` 時傳遞您的 SSH 公用金鑰檔案。 您可以使用 `--generate-ssh-keys` 選項，讓 Azure CLI 2.0 為您產生金鑰並同時進行傳遞，或者可以使用 `--ssh-key-value` 選項來傳遞您的金鑰路徑 (在 Linux 上的預設位置是 `~/.ssh/id_rsa.pub`，而在 Windows 上的預設位置是 `%HOMEPATH%\.ssh\id_rsa.pub`，但可加以變更)。
 <!---Loc Comment: What do you mean by "you pass your SSH public key file to pass"? Thank you.--->
-> 若要在 Linux 上建立 SSH 公開和私密金鑰檔案，請參閱[在 Linux 和 Mac 上建立 SSH 金鑰](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fcontainer-services%2ftoc.json)。 
-> 若要在 Windows 上建立 SSH 公開和私密金鑰檔案，請參閱[在 Windows 上建立 SSH 金鑰](../virtual-machines/virtual-machines-linux-ssh-from-windows.md?toc=%2fazure%2fcontainer-services%2ftoc.json)。 
+> 若要在 Linux 上建立 SSH 公開和私密金鑰檔案，請參閱[在 Linux 和 Mac 上建立 SSH 金鑰](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fcontainer-services%2ftoc.json)。 
+> 若要在 Windows 上建立 SSH 公開和私密金鑰檔案，請參閱[在 Windows 上建立 SSH 金鑰](../virtual-machines/linux/ssh-from-windows.md?toc=%2fazure%2fcontainer-services%2ftoc.json)。 
 
 1. 首先，在終端機視窗中輸入 [az login](/cli/azure/#login) 命令，以使用 Azure CLI 登入您的 Azure 訂用帳戶︰ 
 

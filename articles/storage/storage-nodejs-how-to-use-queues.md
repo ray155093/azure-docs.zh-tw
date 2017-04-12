@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 1fea38ed4caacfee0c69d024b1ea6dbdcbccaf1d
-ms.openlocfilehash: 0f558871b2dfc85d2713c3511829dcbf41aea17b
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: e30297bd0cc65105c92d6428035d2e6c156448af
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -55,7 +56,7 @@ ms.openlocfilehash: 0f558871b2dfc85d2713c3511829dcbf41aea17b
     +-- request@2.57.0 (caseless@0.10.0, aws-sign2@0.5.0, forever-agent@0.6.1, stringstream@0.0.4, oauth-sign@0.8.0, tunnel-agent@0.4.1, isstream@0.1.2, json-stringify-safe@5.0.1, bl@0.9.4, combined-stream@1.0.5, qs@3.1.0, mime-types@2.0.14, form-data@0.2.0, http-signature@0.11.0, tough-cookie@2.0.0, hawk@2.3.1, har-validator@1.8.0)
     ```
 
-3. 您可以手動執行 **ls** 命令，確認已建立 **node\_modules** 資料夾。 該資料夾中有 **azure-storage** 套件，當中包含存取儲存體所需的程式庫。
+3. 您可以手動執行 **ls** 命令，確認已建立 **node\_modules** 資料夾。 該資料夾中有 **azure-storage** 封裝，當中包含存取儲存體所需的程式庫。
 
 ### <a name="import-the-package"></a>匯入套件
 使用記事本或其他文字編輯器，將以下內容新增至您要使用儲存體之應用程式的 **server.js** 檔案頂端：
@@ -339,21 +340,11 @@ queueSAS = queueSvc.generateSharedAccessSignature('myqueue', { Id: 'user2' });
 [Azure Storage SDK for Node]: https://github.com/Azure/azure-storage-node
 [using the REST API]: http://msdn.microsoft.com/library/azure/hh264518.aspx
 [Azure Portal]: https://portal.azure.com
-[在 Azure App Service 中建立 Node.js Web 應用程式]: ../app-service-web/web-sites-nodejs-develop-deploy-mac.md
-[Node.js Cloud Service with Storage]: ../cloud-services/storage-nodejs-use-table-storage-cloud-service-app.md
+[在 Azure App Service 中建立 Node.js Web 應用程式]: ../app-service-web/app-service-web-get-started-nodejs.md
 [使用 Azure 表格服務的 Node.js Web 應用程式]: ../app-service-web/storage-nodejs-use-table-storage-web-site.md
 
-
-[Queue1]: ./media/storage-nodejs-how-to-use-queues/queue1.png
-[plus-new]: ./media/storage-nodejs-how-to-use-queues/plus-new.png
-[quick-create-storage]: ./media/storage-nodejs-how-to-use-queues/quick-storage.png
 
 [使用 Windows PowerShell 建立 Node.js 應用程式並部署至 Azure 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/
 [使用 Web Matrix 建立 Node.js Web 應用程式並部署至 Azure]: ../app-service-web/web-sites-nodejs-use-webmatrix.md
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

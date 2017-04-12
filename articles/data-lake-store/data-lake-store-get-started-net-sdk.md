@@ -15,9 +15,9 @@ ms.workload: big-data
 ms.date: 03/07/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 1fd8fe3847299d98a55a16ab400b43be074a5f33
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 0dbf6a121c07d7d1340898f51a38c3572e57b3a2
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -29,10 +29,11 @@ ms.lasthandoff: 03/22/2017
 > * [Java SDK](data-lake-store-get-started-java-sdk.md)
 > * [REST API](data-lake-store-get-started-rest-api.md)
 > * [Azure CLI](data-lake-store-get-started-cli.md)
+> * [Azure CLI 2.0](data-lake-store-get-started-cli-2.0.md)
 > * [Node.js](data-lake-store-manage-use-nodejs.md)
 > * [Python](data-lake-store-get-started-python.md)
 >
-> 
+>
 
 了解如何使用 [Azure Data Lake Store .NET SDK](https://msdn.microsoft.com/library/mt581387.aspx) 來執行基本作業，例如建立資料夾、上傳和下載資料檔案等等。如需有關 Data Lake 的詳細資訊，請參閱 [Azure Data Lake Store](data-lake-store-overview.md)。
 
@@ -49,7 +50,7 @@ ms.lasthandoff: 03/22/2017
 1. 開啟 Visual Studio，建立主控台應用程式。
 2. 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。
 3. 在 [ **新增專案**] 中，輸入或選取下列值：
-   
+
    | 屬性 | 值 |
    | --- | --- |
    | 類別 |範本/Visual C#/Windows |
@@ -57,35 +58,35 @@ ms.lasthandoff: 03/22/2017
    | 名稱 |CreateADLApplication |
 4. 按一下 [確定]  以建立專案。
 5. 將 Nuget 封裝新增至您的專案。
-   
+
    1. 在方案總管中以滑鼠右鍵按一下專案名稱，然後按一下 [ **管理 NuGet 封裝**]。
    2. 在 [Nuget 封裝管理員] 索引標籤中，確定 [封裝來源] 設為 [nuget.org]，且已選取 [包含發行前版本] 核取方塊。
    3. 搜尋並安裝下列 NuGet 封裝：
-      
+
       * `Microsoft.Azure.Management.DataLake.Store` - 本教學課程使用 v1.0.4。
       * `Microsoft.Azure.Management.DataLake.StoreUploader` - 本教學課程使用 v1.0.1-preview。
       * `Microsoft.Rest.ClientRuntime.Azure.Authentication` - 本教學課程使用 v2.2.11。
-        
+
         ![新增 Nuget 來源](./media/data-lake-store-get-started-net-sdk/ADL.Install.Nuget.Package.png "建立新的 Azure Data Lake 帳戶")
    4. 關閉 [ **Nuget 封裝管理員**]。
 6. 開啟 **Program.cs**，刪除現有的程式碼，然後納入下列陳述式以新增命名空間的參考。
-   
+
         using System;
         using System.IO;
     using System.Security.Cryptography.X509Certificates; // Required only if you are using an Azure AD application created with certificates      using System.Threading;
-   
+
         using Microsoft.Azure.Management.DataLake.Store;
     using Microsoft.Azure.Management.DataLake.Store.Models;  using Microsoft.Azure.Management.DataLake.StoreUploader;  using Microsoft.IdentityModel.Clients.ActiveDirectory;  using Microsoft.Rest.Azure.Authentication;
 
 7. 宣告如下所示的變數，並提供已存在的 Data Lake Store 名稱和資源群組名稱的值。 此外，請確定您在此處提供的本機路徑和檔案名稱必須存在於電腦。 將下列程式碼片段加在命名空間宣告之後。
-   
+
         namespace SdkSample
         {
             class Program
             {
                 private static DataLakeStoreAccountManagementClient _adlsClient;
                 private static DataLakeStoreFileSystemManagementClient _adlsFileSystemClient;
-   
+
                 private static string _adlsAccountName;
                 private static string _resourceGroupName;
                 private static string _location;
@@ -112,7 +113,7 @@ ms.lasthandoff: 03/22/2017
 
 ### <a name="if-you-are-using-end-user-authentication-recommended-for-this-tutorial"></a>如果您要使用使用者驗證 (本教學課程建議的驗證方式)
 
-使用這個項目與現有的 Azure AD 原生應用程式，**以互動方式**驗證您的應用程式，這表示系統會提示您輸入您的 Azure 認證。 
+使用這個項目與現有的 Azure AD 原生應用程式，**以互動方式**驗證您的應用程式，這表示系統會提示您輸入您的 Azure 認證。
 
 為了方便使用，下列程式碼片段會針對用戶端識別碼和重新導向 URI 使用預設值，這些項目會與任何 Azure 訂用帳戶搭配使用。 為了協助您更快完成本教學課程，建議您使用此方法。 在下列程式碼片段中，只須提供您的租用戶識別碼值。 您可以使用[建立 Active Directory 應用程式](data-lake-store-end-user-authenticate-using-active-directory.md)提供的指示來擷取它。
 
@@ -135,7 +136,7 @@ ms.lasthandoff: 03/22/2017
     // Service principal / appplication authentication with client secret / key
     // Use the client ID of an existing AAD "Web App" application.
     SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
-    
+
     var domain = "<AAD-directory-domain>";
     var webApp_clientId = "<AAD-application-clientid>";
     var clientSecret = "<AAD-application-client-secret>";
@@ -143,12 +144,13 @@ ms.lasthandoff: 03/22/2017
     var creds = await ApplicationTokenProvider.LoginSilentAsync(domain, clientCredential);
 
 ### <a name="if-you-are-using-service-to-service-authentication-with-certificate"></a>如果您要使用服務對服務驗證與憑證
-第三個選項，下列程式碼片段可供使用 Azure Active Directory 應用程式/服務主體的憑證，**以非互動方式**驗證您的應用程式。 請將此方法用於現有的 [Azure AD 與憑證](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)。
+
+第三個選項，下列程式碼片段可供使用 Azure Active Directory 應用程式/服務主體的憑證，**以非互動方式**驗證您的應用程式。 請將此方法用於現有的 [Azure AD 與憑證](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
 
     // Service principal / application authentication with certificate
     // Use the client ID and certificate of an existing AAD "Web App" application.
     SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
-    
+
     var domain = "<AAD-directory-domain>";
     var webApp_clientId = "<AAD-application-clientid>";
     var clientCert = <AAD-application-client-certificate>
@@ -204,7 +206,7 @@ ms.lasthandoff: 03/22/2017
 `DataLakeStoreUploader` 支援在本機檔案路徑與 Data Lake Store 檔案路徑之間進行遞迴上傳和下載。    
 
 ## <a name="get-file-or-directory-info"></a>取得檔案或目錄資訊
-下列程式碼片段顯示的 `GetItemInfo` 方法可用於擷取 Data Lake Store 中可用檔案或目錄的相關資訊。 
+下列程式碼片段顯示的 `GetItemInfo` 方法可用於擷取 Data Lake Store 中可用檔案或目錄的相關資訊。
 
     // Get file or directory info
     public static async Task<FileStatusProperties> GetItemInfo(string path)
@@ -222,7 +224,7 @@ ms.lasthandoff: 03/22/2017
     }
 
 ## <a name="concatenate-files"></a>串連檔案
-下列程式碼片段顯示的 `ConcatenateFiles` 方法可用於串連檔案。 
+下列程式碼片段顯示的 `ConcatenateFiles` 方法可用於串連檔案。
 
     // Concatenate files
     public static Task ConcatenateFiles(string[] srcFilePaths, string destFilePath)
@@ -261,5 +263,4 @@ ms.lasthandoff: 03/22/2017
 * [搭配 Data Lake Store 使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 * [Data Lake Store .NET SDK 參考](https://msdn.microsoft.com/library/mt581387.aspx)
 * [Data Lake Store REST 參考](https://msdn.microsoft.com/library/mt693424.aspx)
-
 

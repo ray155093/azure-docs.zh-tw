@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 10/28/2016
 ms.author: guybo
 translationtype: Human Translation
-ms.sourcegitcommit: 4818c0c036c7e462af5b8d99f1085f8d9025156c
-ms.openlocfilehash: 7b4db2f215b8f7369694a45533d0c862b8f8d08e
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: bd45a0fb99a77851aa7b91d23bd4b830b6f5cc7b
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.openlocfilehash: 7b4db2f215b8f7369694a45533d0c862b8f8d08e
 要考量的事項包括：
 
 * 每個 VM 擁有多少核心，以及您是否讓每個核心都有負載？
-  上述的範例 Azure 快速入門範本具有 do_work.php 指令碼，它會載入單一核心。 如果您使用大於單一核心大小類似 Standard_A1 或 D1 的 VM，則您需要多次執行此負載。 藉由檢閱 [Azure 中 Windows 虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+  上述的範例 Azure 快速入門範本具有 do_work.php 指令碼，它會載入單一核心。 如果您使用大於單一核心大小類似 Standard_A1 或 D1 的 VM，則您需要多次執行此負載。 藉由檢閱 [Azure 中 Windows 虛擬機器的大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * VM 擴展集中有多少 VM，您是否在每一個 VM 上執行工作？
   
     相應放大只會在擴展集中 **所有** VM 的平均 CPU，經過自動調整規則中定義的內部時間之後超過臨界值時發生。
@@ -67,11 +68,11 @@ ms.openlocfilehash: 7b4db2f215b8f7369694a45533d0c862b8f8d08e
     
     如果 Insights 服務無法讀取來自 VM 的資料，就會傳送電子郵件給您，例如，如果 VM 關閉，請查看您的電子郵件 (您在建立 Azure 帳戶所指定的電子郵件)。
     
-    您也可以自行前往並查看資料。 使用雲端總管查看 Azure 儲存體帳戶。 例如使用 [Visual Studio 雲端總管](https://visualstudiogallery.msdn.microsoft.com/aaef6e67-4d99-40bc-aacf-662237db85a2)、登入，並且挑選您使用的 Azure 訂用帳戶，以及您的部署範本中的診斷擴充定義中參考的診斷儲存體帳戶名稱..
+    您也可以自行前往並查看資料。 使用雲端總管查看 Azure 儲存體帳戶。 例如使用 [Visual Studio 雲端總管](https://visualstudiogallery.msdn.microsoft.com/aaef6e67-4d99-40bc-aacf-662237db85a2)、登入，並且挑選您使用的 Azure 訂用帳戶，以及您的部署範本中的診斷擴充定義中參考的診斷儲存體帳戶名稱.
     
     ![雲端總管][explorer]
     
-    您會在這裡看到許多資料表，在其中儲存每個 VM 的資料。 以 Linux 和 CPU 度量為例，查看最新的資料列。 Visual Studio 雲端總管支援一種查詢語言，因此您可以執行類似 “Timestamp gt datetime’2016-02-02T21:20:00Z’” 的查詢，以確定取得最新的事件 (假設時間是 UTC 格式)。 您在那裡看到的資料是否對應您設定的調整規則？ 在下列範例中，機器 20 的 CPU 在過去 5 分鐘開始增加到 100%..
+    您會在這裡看到許多資料表，在其中儲存每個 VM 的資料。 以 Linux 和 CPU 度量為例，查看最新的資料列。 Visual Studio 雲端總管支援一種查詢語言，因此您可以執行類似 “Timestamp gt datetime’2016-02-02T21:20:00Z’” 的查詢，以確定取得最新的事件 (假設時間是 UTC 格式)。 您在那裡看到的資料是否對應您設定的調整規則？ 在下列範例中，機器 20 的 CPU 在過去 5 分鐘開始增加到 100%.
     
     ![儲存體資料表][tables]
     
@@ -82,9 +83,4 @@ ms.openlocfilehash: 7b4db2f215b8f7369694a45533d0c862b8f8d08e
 [audit]: ./media/virtual-machine-scale-sets-troubleshoot/image3.png
 [explorer]: ./media/virtual-machine-scale-sets-troubleshoot/image1.png
 [tables]: ./media/virtual-machine-scale-sets-troubleshoot/image4.png
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

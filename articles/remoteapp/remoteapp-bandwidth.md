@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: 045410664ec70c846abbf32a36dcc8f70ac471be
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 8b5f4568fa4e505b28011134cc8669ea50e17cf6
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="estimate-azure-remoteapp-network-bandwidth-usage"></a>Estimate Azure RemoteApp network bandwidth usage (評估 Azure RemoteApp 網路頻寬使用量)
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -43,10 +44,5 @@ Azure RemoteApp 使用遠端桌面通訊協定 (RDP)，在 Azure 雲端中執行
 雖然我們討論裝置重新導向，但是我們未考慮已連接裝置 (例如儲存體、印表機、掃描器、網路攝影機和其他 USB 裝置) 所造成之網路流量的頻寬影響。 這些裝置通常會暫時導致頻寬需求變高，並在工作完成時回復正常。 但是，如果經常這樣做，則頻寬需求可能會相當可觀。
 
 我們也不會討論一位使用者對相同網路內的其他使用者的影響。 例如，在 100 MB/s 網路上使用 4K 視訊的一位使用者可能會大幅地影響該相同網路內嘗試執行相同工作的其他使用者。 不幸的是，越來越難判斷並行使用的影響，以提供有關系統整體效能的通用或全方位建議。 我們只能說基礎通訊協定技術會善用可用的網路頻寬，但有其限制。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

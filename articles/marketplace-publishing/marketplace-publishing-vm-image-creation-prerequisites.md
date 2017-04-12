@@ -15,15 +15,16 @@ ms.workload: na
 ms.date: 04/29/2016
 ms.author: hascipio; v-divte
 translationtype: Human Translation
-ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
-ms.openlocfilehash: 8c2dbd0a79a616e291c974c16d20d423cbb25ce2
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: af3e2ad623d8d7bfafe676411f9ae3fbee78aab8
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="technical-prerequisites-for-creating-a-virtual-machine-image-for-the-azure-marketplace"></a>建立 Azure Marketplace 虛擬機器映像的技術性必要條件
 開始之前，請先徹底閱讀程序，並且了解每個步驟執行的位置及原因。 在供應項目建立程序之前，您應該盡可能準備您的公司資訊和其他資料、下載必要的工具，和/或建立技術元件。 檢閱本文之後，您會更清楚這些項目。  
 
-## <a name="download-needed-tools-applications"></a>下載需要的工具和應用程式
+## <a name="download-needed-tools--applications"></a>下載需要的工具和應用程式
 開始程序之前，您應該先準備好下列項目：
 
 * 視您的目標作業系統而定，從 [Azure 下載](https://azure.microsoft.com/downloads/)頁面安裝 [Azure PowerShell Cmdlet](https://www.microsoft.com/web/handlers/webpi.ashx/getinstaller/WindowsAzurePowershellGet.3f.3f.3fnew.appids) 或 [Linux 命令列介面工具](https://go.microsoft.com/fwlink/?LinkId=253472&clcid=0x409)。
@@ -51,17 +52,5 @@ ms.openlocfilehash: 8c2dbd0a79a616e291c974c16d20d423cbb25ce2
 * 雲端開發表示所有開發步驟都會在 Azure 的 VHD 上遠端執行。
 * 內部部署開發則需要使用內部部署基礎結構下載 VHD 和開發。 雖然可行，但我們不建議您這麼做。 請注意，為內部部署的 Windows 或 SQL 開發時，需要有相關的內部部署授權金鑰。 建立 VM 之後即無法加入或安裝 SQL Server。 此外，您必須讓供應項目以 Azure 入口網站中核准的 SQL 映像為基礎。 如果您決定開發內部部署，必須執行一些不同於在雲端中開發的步驟。 您可以在 [建立內部部署 VM 映像](marketplace-publishing-vm-image-creation-on-premise.md)找到相關資訊。
 
-## <a name="next-steps"></a>後續步驟
-現在，您已經檢閱必要條件並完成必要的工作，即可如 [虛擬機器映像發佈指南](marketplace-publishing-vm-image-creation.md)中所詳述，繼續建立您的虛擬機器映像供應項目。
-
-## <a name="see-also"></a>另請參閱
-* [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
-* [在 Azure Preview 入口網站中建立執行 Windows 的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-
 [link-acct-creation]:marketplace-publishing-accounts-creation-registration.md
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

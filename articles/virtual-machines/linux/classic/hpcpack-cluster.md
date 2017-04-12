@@ -16,9 +16,9 @@ ms.workload: big-compute
 ms.date: 10/12/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 28426f048205e7cf836375d8b8855e06d5de807e
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 868026150e81347aa3a7914f63bc19c3a878c586
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 03/27/2017
 * **Azure Resource Manager 範本** - 使用來自 Azure Marketplace 的範本，或是來自社群的快速入門範本，在 Resource Manager 部署模型中自動建立叢集。 例如，Azure Marketplace 中的 [HPC Pack cluster for Linux workloads (處理 Linux 工作負載的 HPC Pack 叢集)](https://azure.microsoft.com/marketplace/partners/microsofthpc/newclusterlinuxcn/) 範本，會針對 Linux HPC 工作負載建立完整的 HPC Pack 叢集基礎結構。
 * **PowerShell 指令碼** - 使用 [Microsoft HPC Pack IaaS 部署指令碼](../../windows/classic/hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) (**New-HpcIaaSCluster.ps1**)，在傳統部署模型中自動化完整叢集部署作業。 此 Azure PowerShell 指令碼使用 Azure Marketplace 中的 HPC Pack VM 映像進行快速部署，並提供一組完整的組態參數以部署 Linux 計算節點。
 
-如需 Azure 中的 HPC Pack 叢集部署選項有關的詳細資訊，請參閱[使用 Microsoft HPC Pack 在 Azure 中建立及管理高效能運算 (HPC) 叢集的選項](../../virtual-machines-linux-hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+如需 Azure 中的 HPC Pack 叢集部署選項有關的詳細資訊，請參閱[使用 Microsoft HPC Pack 在 Azure 中建立及管理高效能運算 (HPC) 叢集的選項](../hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ### <a name="prerequisites"></a>必要條件
 * **Azure 訂用帳戶** - 您可以使用「Azure 全球」或「Azure 中國」服務中的訂用帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立 [免費帳戶](https://azure.microsoft.com/pricing/free-trial/) 。
@@ -52,7 +52,7 @@ ms.lasthandoff: 03/27/2017
   * **Ubuntu Server**：14.04 LTS、16.04 LTS
     
     > [!TIP]
-    > 若要使用 Azure RDMA 網路搭配其中一個支援 RDMA 的 VM 大小，請從 Azure Marketplace 指定 SUSE Linux Enterprise Server 12 HPC 或 CentOS 型 HPC 映像。 如需詳細資訊，請參閱 [關於 H 系列和計算密集型 A 系列 VM](../../virtual-machines-linux-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+    > 若要使用 Azure RDMA 網路搭配其中一個支援 RDMA 的 VM 大小，請從 Azure Marketplace 指定 SUSE Linux Enterprise Server 12 HPC 或 CentOS 型 HPC 映像。 如需詳細資訊，請參閱 [關於 H 系列和計算密集型 A 系列 VM](../a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
     > 
     > 
 
@@ -166,7 +166,7 @@ HPC Pack IaaS 部署指令碼會使用 XML 組態檔作為輸入，以描述 HPC
    > 
 
 ## <a name="connect-to-the-head-node"></a>連接至前端節點
-在 Azure 部署 HPC Pack 叢集之後，請使用您部署叢集時所提供的網域認證 (例如，*hpc\\clusteradmin*) [由遠端桌面連線](../../virtual-machines-windows-connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)到前端節點 VM。 您可以從前端節點管理叢集。
+在 Azure 部署 HPC Pack 叢集之後，請使用您部署叢集時所提供的網域認證 (例如，*hpc\\clusteradmin*) [由遠端桌面連線](../../windows/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)到前端節點 VM。 您可以從前端節點管理叢集。
 
 在前端節點上，啟動 HPC 叢集管理員來查看 HPC Pack 叢集的狀態。 您可以使用您處理 Windows 運算節點的相同方式，管理和監視 Linux 運算節點。 例如，您會看到 [資源管理] 中列出 Linux 節點 (這些節點都是以 **LinuxNode** 範本部署的)。
 
@@ -269,7 +269,7 @@ NFS 服務可讓您使用 SMB 通訊協定在執行 Windows Server 2012 作業�
 * HPC Web 入口網站
 * REST API
 
-透過 HPC Pack GUI 工具和 Web 入口網站將工作提交至 Azure 中的叢集，與提交至 Windows 運算節點相同。 請參閱 [HPC Pack Job Manager (HPC Pack 作業管理員)](https://technet.microsoft.com/library/ff919691.aspx) 與[如何從內部部署用戶端電腦提交作業](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+透過 HPC Pack GUI 工具和 Web 入口網站將工作提交至 Azure 中的叢集，與提交至 Windows 運算節點相同。 請參閱 [HPC Pack Job Manager (HPC Pack 作業管理員)](https://technet.microsoft.com/library/ff919691.aspx) 與[如何從內部部署用戶端電腦提交作業](../../windows/hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 若要透過 REST API 提交作業，請參閱 [在 Microsoft HPC Pack 中使用 REST API 建立和提交作業](http://social.technet.microsoft.com/wiki/contents/articles/7737.creating-and-submitting-jobs-by-using-the-rest-api-in-microsoft-hpc-pack-windows-hpc-server.aspx)。 若要從 Linux 用戶端提交作業，另請參閱 [HPC Pack SDK](https://www.microsoft.com/download/details.aspx?id=47756)中的 Python 範例。
 
@@ -299,7 +299,7 @@ HPC Pack [clusrun](https://technet.microsoft.com/library/cc947685.aspx) 工具�
 
 ## <a name="next-steps"></a>後續步驟
 * 嘗試擴大叢集中的節點數量，或嘗試在叢集上執行 Linux 工作負載。 如需範例，請參閱 [在 Azure 中的 Linux 計算節點以 Microsoft HPC Pack 執行 NAMD](hpcpack-cluster-namd.md)。
-* 請嘗試[具備 RDMA 功能、計算密集型 VM](../../virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 的叢集執行 MPI 工作負載。 如需範例，請參閱 [在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 OpenFOAM](hpcpack-cluster-openfoam.md)。
+* 請嘗試[具備 RDMA 功能、計算密集型 VM](../../windows/a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 的叢集執行 MPI 工作負載。 如需範例，請參閱 [在 Azure 中的 Linux RDMA 叢集以 Microsoft HPC Pack 執行 OpenFOAM](hpcpack-cluster-openfoam.md)。
 * 如果您有興趣在內部部署的 HPC Pack 叢集中使用 Linux 節點，請參閱 [TechNet guidance (TechNet 指引)](https://technet.microsoft.com/library/mt595803.aspx)。
 
 <!--Image references-->

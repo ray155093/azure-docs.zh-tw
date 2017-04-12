@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 3/10/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: 8ea8de916a36a1b5274f42513b0446f99707c179
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 2cbd477776329ef84ef615b6c28c56cfee12fc99
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -50,7 +50,7 @@ Amazon Web Services (AWS) 與 Azure AD 整合提供下列優點：
 ## <a name="scenario-description"></a>案例描述
 此教學課程的目標是讓您在測試環境中測試 Azure AD SSO。  
 
-本教學課程中說明的案例由三個主要建置組塊組成：
+本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 Amazon Web Services (AWS) 
 2. 設定並測試 Azure AD SSO

@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: a39ce143796408f8e44b0d2c877e631e92473462
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 7d8eb5972d35eac6cb55fc393090cfcc21ec341c
+ms.lasthandoff: 03/31/2017
 
 ---
 
@@ -25,58 +25,8 @@ ms.lasthandoff: 03/28/2017
 
 網路監看員是一項區域性服務，可讓您監視與診斷位於和進出 Azure 的網路案例層級條件。 案例層級監視可讓您在端對端網路層級檢視診斷問題。 網路監看員提供的網路診斷和視覺效果工具，可幫助您了解、診斷及洞悉您在 Azure 中的網路。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
-
-## <a name="register-the-preview-capability"></a>註冊預覽功能
-
-「網路監看員」目前為預覽版，若要使用「網路監看員」的功能，必須註冊該功能。 若要這麼做，請執行下列 PowerShell 範例：
-
-```powershell
-Register-AzureRmProviderFeature -FeatureName AllowNetworkWatcher -ProviderNamespace Microsoft.Network
-Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
-```
-
-若要確認註冊是否成功，請執行下列 Powershell 範例︰
-
-```powershell
-Get-AzureRmProviderFeature -FeatureName AllowNetworkWatcher -ProviderNamespace  Microsoft.Network
-```
-
-如果已正確註冊該功能，輸出應該會與以下相符︰
-
-```
-FeatureName         ProviderName      RegistrationState
------------         ------------      -----------------
-AllowNetworkWatcher Microsoft.Network Registered
-```
-
-### <a name="instructions-for-cli-10"></a>適用於 CLI 1.0 的指示
-
-進行註冊
-
-```CLI
-azure feature register  Microsoft.Network AllowNetworkWatcher
-azure provider register Microsoft.Network
-```
-
-若要確認註冊是否成功，請執行下列 CLI 命令︰
-
-```CLI
-azure feature show Microsoft.Network AllowNetworkWatcher
-```
-
-如果已正確註冊該功能，輸出應該會與以下相符︰
-
-```CLI
-info:    Executing command feature show
-data:    Feature Name:       AllowNetworkWatcher
-data:    Provider Name:      Microsoft.Network
-data:    Registration State: Registered
-info:    feature show command OK
-```
-
 > [!NOTE]
-> 網路監看員目前只支援 CLI 1.0，因此，建立新的網路監看員執行個體的指示是針對 CLI 1.0 所提供。 若要在 CLI 2.0 註冊提供者，請使用 `az feature register -n AllowNetworkWatcher --namespace Microsoft.Network`。
+> 網路監看員目前只支援 CLI 1.0，因此，建立新的網路監看員執行個體的指示是針對 CLI 1.0 所提供。
 
 ## <a name="create-a-network-watcher-in-the-portal"></a>在入口網站中建立網路監看員
 

@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: f6c8c895f406187f2bc525a60ca7e53f12e99d77
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 6bc820657da4a72455d76f38dbdb06fe50b0c895
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -162,8 +162,8 @@ Visual Studio 和 Eclipse 提供工具，可為您正在開發的專案設定正
 ## <a name="but-what-about"></a>但是，您認為...？
 * [隱私權和儲存體](app-insights-data-retention-privacy.md) - 您的遙測會保留於 Azure 安全伺服器上。
 * 效能 - 影響很低。 遙測會進行批次處理。
-* [支援](app-insights-get-dev-support.md) - 您可以利用 Azure 支援程式。 您可以在熱烈的論壇中，取得我們的開發人員所提供的解答。 而最後的辦法是，我們可以為您提供個別的協助。
 * [價格](app-insights-pricing.md) - 您可以開始免費使用，當您處於低用量期間可繼續使用。
+
 
 ## <a name="video"></a>影片
 

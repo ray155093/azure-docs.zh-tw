@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 3/12/2017
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 1dc2883056eab9764cda674b42fa40c517550ccd
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 61f09a6f103b9cedaf19f1128a21fa8d5df974a1
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -128,7 +128,7 @@ ms.lasthandoff: 03/27/2017
 
 還原作業完成之後，您可以︰
 * [使用範本自訂還原的 VM](#use-templates-to-customize-restore-vm)
-* [使用還原的磁碟連結至現有的虛擬機器](../virtual-machines/virtual-machines-windows-attach-disk-portal.md)
+* [使用還原的磁碟連結至現有的虛擬機器](../virtual-machines/windows/attach-disk-portal.md)
 * [使用 PowerShell 從還原的磁碟建立新的虛擬機器。](./backup-azure-vms-automation.md#restore-an-azure-vm)
 
 在 [還原組態] 刀鋒視窗上，按一下 [確定] 完成還原組態。 在 [還原] 刀鋒視窗上，按一下 [還原] 以觸發還原作業。
@@ -193,7 +193,7 @@ ms.lasthandoff: 03/27/2017
 * 如果您使用 cloud-init 型 Linux 散發套件 (例如 Ubuntu)，基於安全理由，還原後會封鎖密碼。 請在還原的 VM 上使用 VMAccess 擴充功能 [重設密碼](../virtual-machines/linux/classic/reset-access.md)。 建議您在這些散發套件上使用 SSH 金鑰，以避免在還原後重設密碼。
 * 出現在備份組態期間的擴充功能，將會安裝但不會啟用。 如果您看到任何問題，請重新安裝擴充功能。 
 * 如果備份的 VM 具有靜態 IP，還原後，還原的 VM 將會有動態 IP，以避免在建立還原的 VM 時發生衝突。 深入了解如何[將靜態 IP 加入至還原的 VM](../virtual-network/virtual-networks-reserved-private-ip.md#how-to-add-a-static-internal-ip-to-an-existing-vm)
-* 還原的 VM 不會有可用性設定值組。 從 PowerShell 建立 VM 或使用還原的磁碟建立範本時，我們建議使用還原磁碟選項和[新增可用性設定組](../virtual-machines/virtual-machines-windows-create-availability-set.md#use-powershell-to-create-an-availability-set)。 
+* 還原的 VM 不會有可用性設定值組。 從 PowerShell 建立 VM 或使用還原的磁碟建立範本時，我們建議使用還原磁碟選項和[新增可用性設定組](../virtual-machines/windows/create-availability-set.md#use-powershell-to-create-an-availability-set)。 
 
 ## <a name="backup-for-restored-vms"></a>備份已還原的 VM
 如果您已將 VM 還原至相同的資源群組，並使用與原始備份 VM 相同的名稱，則會在還原後於 VM 上繼續進行備份。 如果您已將 VM 還原至不同的資源群組，或為還原的 VM 指定不同名稱，系統會將該 VM 視為新 VM，因此您需要為還原 VM 設定備份。

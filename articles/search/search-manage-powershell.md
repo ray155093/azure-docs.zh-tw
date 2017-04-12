@@ -16,8 +16,9 @@ ms.tgt_pltfrm: powershell
 ms.date: 08/15/2016
 ms.author: seasa
 translationtype: Human Translation
-ms.sourcegitcommit: c6190a5a5aba325b15aef97610c804f5441ef7ad
-ms.openlocfilehash: 618d067bf3b4ab279c7d4fcc72454fe4e69d0364
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 76077d39f17df63abe6c08f91991095c53f5dbb8
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -25,7 +26,6 @@ ms.openlocfilehash: 618d067bf3b4ab279c7d4fcc72454fe4e69d0364
 > [!div class="op_single_selector"]
 > * [入口網站](search-manage.md)
 > * [PowerShell](search-manage-powershell.md)
-> * [REST API](search-get-started-management-api.md)
 > 
 > 
 
@@ -138,10 +138,5 @@ ms.openlocfilehash: 618d067bf3b4ab279c7d4fcc72454fe4e69d0364
 * [設定索引子以從其他服務載入資料](search-indexer-overview.md)
 * [如何以 .NET 使用 Azure 搜尋服務](search-howto-dotnet-sdk.md)
 * [分析 Azure 搜尋服務的流量](search-traffic-analytics.md)
-
-
-
-
-<!--HONumber=Feb17_HO3-->
 
 

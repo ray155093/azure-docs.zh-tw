@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 02/10/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 110f3aa9ce4848c9350ea2e560205aa762decf7a
-ms.openlocfilehash: 6fed646d81bf583a0c3ecefcd2bc716fe65ecdc6
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: cb994df3712798d9016401235d4eff09b3518584
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -32,12 +32,12 @@ ms.lasthandoff: 02/21/2017
 
 * Azure 訂用帳戶。
 
-* 設定要使用 Application Insights 的應用程式。 
+* 設定要使用 Application Insights 的應用程式。
 
 * 熟悉以 Linux 為基礎的 HDInsight 叢集的建立程序。 如需詳細資訊，請參閱[在 HDInsight 中建立 Spark](hdinsight-apache-spark-jupyter-spark-sql.md)。
-  
+
   > [!IMPORTANT]
-  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+  > 此文件中的步驟需要使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 * 網頁瀏覽器。
 
@@ -60,7 +60,7 @@ Application Insights 可以設定為持續將遙測資訊匯出到 blob。 HDIns
 * **位置**︰如果儲存體帳戶和 HDInsight 位於不同位置，可能就會增加延遲。 此外，將輸出費用套用到在區域間移動的資料時也會增加成本。
 * **blob 類型**：HDInsight 僅支援區塊 blob。 Application Insights 預設為使用區塊 blob，因此應該使用預設項目來搭配 HDInsight。
 * **存取權限**：如果您在 Application Insights 連續匯出和 HDInsight 的預設儲存體使用相同的儲存體帳戶，HDInsight 便會具有對 Application Insights 遙測資料的完整存取權。 這就表示可以刪除 HDInsight 叢集中的遙測資料。
-  
+
     相反地，建議您為 HDInsight 和 Application Insights 遙測使用不同的儲存體帳戶，並且 [使用共用存取簽章 (SAS) 來限制對 HDInsight 上資料的存取](hdinsight-storage-sharedaccesssignature-permissions.md)。 使用 SAS 可讓您授與對 HDInsight 遙測資料的唯讀存取權。
 
 ### <a name="data-schema"></a>資料結構描述
@@ -78,53 +78,53 @@ Application Insights 提供 [匯出資料模型](../application-insights/app-ins
 ## <a name="analyze-the-data-using-python-pyspark"></a>使用 Python 分析資料 (PySpark)
 
 1. 在 [Azure 入口網站](https://portal.azure.com)中選取您 HDInsight 叢集上的 Spark。 在 [快速連結] 區段中，選取 [叢集儀表板]，然後選取 [叢集儀表板] 刀鋒視窗中的 [Jupyter Notebook]。
-   
+
     ![叢集儀表板](./media/hdinsight-spark-analyze-application-insight-logs/clusterdashboards.png)
 
 2. 在 Jupyter 頁面右上角依序選取 [新增]、[PySpark]。 隨即開啟新的瀏覽器索引標籤，其中包含以 Python 為基礎的 Jupyter Notebook。
 
 3. 在頁面的第一個欄位 (稱為**儲存格**) 中，輸入下列文字：
-   
+
         sc._jsc.hadoopConfiguration().set('mapreduce.input.fileinputformat.input.dir.recursive', 'true')
-   
+
     這個程式碼會設定 Spark 以遞迴方式存取輸入資料的目錄結構。 Application Insights 遙測會記錄到類似 `/{telemetry type}/YYYY-MM-DD/{##}/` 的目錄結構中。
 
 4. 使用 **SHIFT + ENTER** 執行程式碼。 在儲存格左邊，方括號之間出現 '\*' 即表示正在執行此儲存格中的程式碼。 當執行完成之後，'\*' 就會變成數字，而儲存格下方會顯示類似以下文字的輸出：
-   
+
         Creating SparkContext as 'sc'
-   
+
         ID    YARN Application ID    Kind    State    Spark UI    Driver log    Current session?
         3    application_1468969497124_0001    pyspark    idle    Link    Link    ✔
-   
+
         Creating HiveContext as 'sqlContext'
         SparkContext and HiveContext created. Executing user code ...
 5. 新的儲存格會建立在第一個儲存格之下。 在新的儲存格中輸入下列文字。 將 **CONTAINER** 和 **STORAGEACCOUNT** 取代為您設定 Application Insights 連續匯出時所使用的 Azure 儲存體帳戶名稱和 blob 容器名稱。
-   
+
         %%bash
         hdfs dfs -ls wasb://CONTAINER@STORAGEACCOUNT.blob.core.windows.net/
-   
+
     使用 **SHIFT + ENTER** 執行程此儲存格。 您會看到類似以下文字的結果：
-   
+
         Found 1 items
         drwxrwxrwx   -          0 1970-01-01 00:00 wasb://appinsights@contosostore.blob.core.windows.net/contosoappinsights_2bededa61bc741fbdee6b556571a4831
-   
+
     傳回的 wasb 路徑是 Application Insights 遙測資料的位置。 將儲存格中的 `hdfs dfs -ls` 這一行變更為使用傳回的 wasb 路徑，然後使用 **SHIFT + ENTER** 再執行一次儲存格。 此時，結果應該會顯示包含遙測資料的目錄。
-   
+
    > [!NOTE]
    > 本節中步驟的其餘部分使用 `wasb://appinsights@contosostore.blob.core.windows.net/contosoappinsights_{ID}/Requests` 目錄。 您的目錄結構可能不同。
 
 6. 在下一個儲存格中輸入下列命令。 將 **WASB\_PATH** 取代為先前步驟中的路徑。
-   
+
         jsonFiles = sc.textFile('WASB_PATH')
         jsonData = sqlContext.read.json(jsonFiles)
-   
+
     這個程式碼會從連續匯出程序匯出的 JSON 檔案建立資料框架。 使用 **SHIFT + ENTER** 執行此儲存格。
 7. 在下一個儲存格中輸入並執行下列命令，以檢視 Spark 為 JSON 檔案建立的結構描述︰
-   
+
         jsonData.printSchema()
-   
+
     每種類型的遙測結構描述皆不同。 以下範例是針對 Web 要求產生的結構描述 (資料儲存在 `Requests` 子目錄中)：
-   
+
         root
         |-- context: struct (nullable = true)
         |    |-- application: struct (nullable = true)
@@ -186,19 +186,19 @@ Application Insights 提供 [匯出資料模型](../application-insights/app-ins
         |    |    |    |-- host: string (nullable = true)
         |    |    |    |-- protocol: string (nullable = true)
 8. 使用下列命令將資料框架註冊為暫存資料表，並針對資料執行查詢︰
-   
+
         jsonData.registerTempTable("requests")
         sqlContext.sql("select context.location.city from requests where context.location.city is not null")
-   
+
     此查詢會傳回 context.location.city 不是 null 的前 20 筆記錄的 city 資訊。
-   
+
    > [!NOTE]
    > context 結構會出現在 Application Insights 記錄的所有遙測中；不過，在您的記錄檔中可能不會填入 city 元素。 使用結構描述找出您可以查詢可能包含您的記錄檔資料的其他元素。
-   > 
-   > 
-   
+   >
+   >
+
     此查詢會傳回類似以下文字的資訊：
-   
+
         +---------+
         |     city|
         +---------+
@@ -211,52 +211,52 @@ Application Insights 提供 [匯出資料模型](../application-insights/app-ins
 
 ## <a name="analyze-the-data-using-scala"></a>使用 Scala 分析資料
 1. 在 [Azure 入口網站](https://portal.azure.com)中選取您 HDInsight 叢集上的 Spark。 在 [快速連結] 區段中，選取 [叢集儀表板]，然後選取 [叢集儀表板] 刀鋒視窗中的 [Jupyter Notebook]。
-   
+
     ![叢集儀表板](./media/hdinsight-spark-analyze-application-insight-logs/clusterdashboards.png)
 2. 在 Jupyter 頁面右上角依序選取 [新增]、[Scala]。 這會開啟新的瀏覽器索引標籤，其中包含以 Scala 為基礎的 Jupyter Notebook。
 3. 在頁面的第一個欄位 (稱為**儲存格**) 中，輸入下列文字：
-   
+
         sc.hadoopConfiguration.set("mapreduce.input.fileinputformat.input.dir.recursive", "true")
-   
+
     這個程式碼會設定 Spark 以遞迴方式存取輸入資料的目錄結構。 Application Insights 遙測會記錄到類似 `/{telemetry type}/YYYY-MM-DD/{##}/` 的目錄結構中。
 
 4. 使用 **SHIFT + ENTER** 執行程式碼。 在儲存格左邊，方括號之間出現 '\*' 即表示正在執行此儲存格中的程式碼。 當執行完成之後，'\*' 就會變成數字，而儲存格下方會顯示類似以下文字的輸出：
-   
+
         Creating SparkContext as 'sc'
-   
+
         ID    YARN Application ID    Kind    State    Spark UI    Driver log    Current session?
         3    application_1468969497124_0001    spark    idle    Link    Link    ✔
-   
+
         Creating HiveContext as 'sqlContext'
         SparkContext and HiveContext created. Executing user code ...
 5. 新的儲存格會建立在第一個儲存格之下。 在新的儲存格中輸入下列文字。 將 **CONTAINER** 和 **STORAGEACCOUNT** 取代為您設定 Application Insights 連續匯出時所使用的 Azure 儲存體帳戶名稱和 blob 容器名稱。
-   
+
         %%bash
         hdfs dfs -ls wasb://CONTAINER@STORAGEACCOUNT.blob.core.windows.net/
-   
+
     使用 **SHIFT + ENTER** 執行程此儲存格。 您會看到類似以下文字的結果：
-   
+
         Found 1 items
         drwxrwxrwx   -          0 1970-01-01 00:00 wasb://appinsights@contosostore.blob.core.windows.net/contosoappinsights_2bededa61bc741fbdee6b556571a4831
-   
+
     傳回的 wasb 路徑是 Application Insights 遙測資料的位置。 將儲存格中的 `hdfs dfs -ls` 這一行變更為使用傳回的 wasb 路徑，然後使用 **SHIFT + ENTER** 再執行一次儲存格。 此時，結果應該會顯示包含遙測資料的目錄。
-   
+
    > [!NOTE]
    > 本節中步驟的其餘部分使用 `wasb://appinsights@contosostore.blob.core.windows.net/contosoappinsights_{ID}/Requests` 目錄。 這個目錄可能不存在，除非您的遙測資料是用於 Web 應用程式。 如果您使用不包含要求目錄的遙測資料，請選取其他目錄，並將其餘的步驟調整為使用該目錄和儲存在其中之資料的結構描述。
-   > 
-   > 
+   >
+   >
 6. 在下一個儲存格中輸入下列命令。 將 **WASB\_PATH** 取代為先前步驟中的路徑。
-   
+
         jsonFiles = sc.textFile('WASB_PATH')
         jsonData = sqlContext.read.json(jsonFiles)
-   
+
     這個程式碼會從連續匯出程序匯出的 JSON 檔案建立資料框架。 使用 **SHIFT + ENTER** 執行此儲存格。
 7. 在下一個儲存格中輸入並執行下列命令，以檢視 Spark 為 JSON 檔案建立的結構描述︰
-   
+
         jsonData.printSchema
-   
+
     每種類型的遙測結構描述皆不同。 以下範例是針對 Web 要求產生的結構描述 (資料儲存在 `Requests` 子目錄中)：
-   
+
         root
         |-- context: struct (nullable = true)
         |    |-- application: struct (nullable = true)
@@ -318,19 +318,19 @@ Application Insights 提供 [匯出資料模型](../application-insights/app-ins
         |    |    |    |-- host: string (nullable = true)
         |    |    |    |-- protocol: string (nullable = true)
 8. 使用下列命令將資料框架註冊為暫存資料表，並針對資料執行查詢︰
-   
+
         jsonData.registerTempTable("requests")
         var city = sqlContext.sql("select context.location.city from requests where context.location.city is not null limit 10").show()
-   
+
     此查詢會傳回 context.location.city 不是 null 的前 20 筆記錄的 city 資訊。
-   
+
    > [!NOTE]
    > context 結構會出現在 Application Insights 記錄的所有遙測中；不過，在您的記錄檔中可能不會填入 city 元素。 使用結構描述找出您可以查詢可能包含您的記錄檔資料的其他元素。
-   > 
-   > 
-   
+   >
+   >
+
     此查詢會傳回類似以下文字的資訊：
-   
+
         +---------+
         |     city|
         +---------+
@@ -354,5 +354,4 @@ Application Insights 提供 [匯出資料模型](../application-insights/app-ins
 
 * [使用 Scala 來建立獨立的應用程式](hdinsight-apache-spark-create-standalone-application.md)
 * [利用 Livy 在 Spark 叢集上遠端執行工作](hdinsight-apache-spark-livy-rest-interface.md)
-
 

@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: 022a910e5acfe12c03348df4476cc17f13c5c1d3
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 304ba7c5057b27c459bccbb75d3a711567757675
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="troubleshoot-creating-remoteapp-cloud-collections"></a>建立 RemoteApp 雲端集合疑難排解
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -45,10 +46,5 @@ ms.openlocfilehash: 022a910e5acfe12c03348df4476cc17f13c5c1d3
     PlatformImageTrialModeOnly
 
 如果看到這個錯誤，通常表示您已經升級至付費帳戶，但您正在嘗試使用 Microsoft 提供的映像，而該映像只在服務的試用模式期間有效。 在此情況下，請嘗試再次建立您的雲端集合，但務必指定正確的映像。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

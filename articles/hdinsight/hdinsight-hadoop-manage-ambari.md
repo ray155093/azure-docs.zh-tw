@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/08/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: e80bf82df28fbce8a1019c6eb07cfcae4cbba930
-ms.openlocfilehash: 34f5c92dc565e644bd8c569bfbea65e92ace5a19
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 290271855ac54af8c99311ff675a08d1e6942d93
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -38,14 +38,14 @@ Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢�
 使用 Linux 作業系統的 HDInsight 叢集預設會提供 Ambari Web UI。
 
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。 
 
 ## <a name="connectivity"></a>連線能力
 
-Ambari Web UI 位在您的 HDInsight 叢集的 HTTPS://CLUSTERNAME.azurehdidnsight.net，其中 **CLUSTERNAME** 是您的叢集的名稱。 
+Ambari Web UI 位在您的 HDInsight 叢集的 HTTPS://CLUSTERNAME.azurehdidnsight.net，其中 **CLUSTERNAME** 是您的叢集的名稱。
 
 > [!IMPORTANT]
-> 連線到 HDInsight 上的 Ambari 需要 HTTPS。 您也必須使用系統管理員帳戶名稱 (預設值是 **admin**) 和建立叢集時所提供的密碼來驗證 Ambari。 
+> 連線到 HDInsight 上的 Ambari 需要 HTTPS。 您也必須使用系統管理員帳戶名稱 (預設值是 **admin**) 和建立叢集時所提供的密碼來驗證 Ambari。
 
 ## <a name="ssh-tunnel-proxy"></a>SSH 通道 (Proxy)
 
@@ -147,7 +147,7 @@ Ambari 提供許多警示，其可能狀態如下：
 
 > [!NOTE]
 > 選取任何服務的 [快速連結] 連結會導致「找不到伺服器」的錯誤，除非您是使用安全通訊端層 (SSL) 通道以 Proxy 將 Web 流量傳送到叢集。 這是因為用來顯示這項資訊的 Web 應用程式不會在網際網路上公開。
-> 
+>
 > 如需使用 SSL 通道搭配 HDInsight 的相關資訊，請參閱 [使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)
 
 ## <a name="management"></a>管理
@@ -171,7 +171,7 @@ Ambari 提供許多警示，其可能狀態如下：
 1. 選取您想要管理的主機。
 
 2. 使用 [ **動作** ] 功能表，選擇您想要執行的動作：
-   
+
    * **啟動所有元件** - 啟動主機上的所有元件。
 
    * **停止所有元件** - 停止主機上的所有元件。
@@ -189,12 +189,12 @@ Ambari 提供許多警示，其可能狀態如下：
    * **重新啟動** - 先停止再啟動主機上的 DataNode 或 NodeManagers。
 
    * **解除委任** - 從叢集中移除主機。
-     
+
      > [!NOTE]
      > 請勿在 HDInsight 叢集上使用此動作。
 
    * **重新委任** - 將先前已解除委任的主機加入到叢集中。
-     
+
      > [!NOTE]
      > 請勿在 HDInsight 叢集上使用此動作。
 
@@ -212,14 +212,14 @@ Ambari 提供許多警示，其可能狀態如下：
 1. 從 [儀表板] 或 [服務] 頁面選取服務。
 
 2. 從 [摘要] 索引標籤頂端，使用 [服務動作] 按鈕，然後選取要採取的動作。 這會重新啟動所有節點上的服務。
-   
+
     ![服務動作](./media/hdinsight-hadoop-manage-ambari/individual-service-actions.png)
-   
+
    > [!NOTE]
    > 在叢集執行時重新啟動某些服務可能會產生警示。 若要避免這個問題，您可以使用 [服務動作] 按鈕來啟用服務的 [維護模式]，然後再執行重新啟動。
 
 3. 一旦選取某個動作，頁面頂端的 [# 項作業] 項目便會遞增數字，指出正在進行背景作業。 如果設定為顯示，則會顯示背景作業的清單。
-   
+
    > [!NOTE]
    > 如果您已啟用服務的 [維護模式]，請記得在作業完成後使用 [服務動作] 按鈕來將它停用。
 
@@ -228,7 +228,7 @@ Ambari 提供許多警示，其可能狀態如下：
 1. 從 [儀表板] 或 [服務] 頁面選取服務。
 
 2. 選取 [ **設定** ] 索引標籤。 隨即會顯示目前的組態。 同時也會顯示先前組態的清單。
-   
+
     ![組態](./media/hdinsight-hadoop-manage-ambari/service-configs.png)
 
 3. 使用顯示的欄位修改組態，然後選取 [ **儲存**]。 或選取先前的組態，然後選取 [ **設為現用** ] 以回復到先前的設定。
@@ -242,5 +242,4 @@ Ambari 檢視可讓開發人員使用 [Ambari 檢視架構](https://cwiki.apache
 * Hive 檢視：Hive 檢視可讓您直接從網頁瀏覽器執行 Hive 查詢。 您可以儲存查詢、檢視結果、將結果儲存至叢集存放區，或將結果下載到您本機系統。 如需有關使用 Hive 檢視的詳細資訊，請參閱 [在 HDInsight 上使用 Hive 檢視](hdinsight-hadoop-use-hive-ambari-view.md)。
 
 * Tez 檢視：Tez 檢視可讓您透過檢視 Tez 工作執行方式及工作使用哪些資源的相關資訊，更深入了解工作以及將工作最佳化。
-
 

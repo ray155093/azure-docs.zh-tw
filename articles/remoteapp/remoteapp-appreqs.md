@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: 74bba898d2a4f5e35b2312dd28cb515a2e159df2
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: a9a305e4c07e2c348b1c1503d53f1da05da57966
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="app-requirements"></a>應用程式需求
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -59,10 +60,5 @@ Azure RemoteApp 支援來自 Windows Server 2012 R2 映像的資料流 32 位元
 * 若要最大化所有使用者的 CPU 可用性，請停用 [背景工作 ](https://msdn.microsoft.com/library/aa380665.aspx) 或建立不需要大量資源的高效率背景工作。
 * 您應該針對多使用者、多處理器環境微調和平衡應用程式 [執行緒使用量](https://msdn.microsoft.com/library/aa383520.aspx) 。
 * 若要最佳化效能，讓應用程式 [偵測](https://msdn.microsoft.com/library/aa380798.aspx) 它們是否正在用戶端工作階段中執行是個好方法。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

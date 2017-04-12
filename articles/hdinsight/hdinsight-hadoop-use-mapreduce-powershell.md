@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 03/21/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 9eafaca75bbf3db639a42c8206d2ac506c255273
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 936212bf634a0245ea70318fcad703a87bf63c5f
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -34,7 +34,7 @@ ms.lasthandoff: 03/22/2017
 * **Azure HDInsight (HDInsight 上的 Hadoop) 叢集**
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 * **具有 Azure PowerShell 的工作站**。
 
@@ -61,13 +61,13 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Ma
     [!code-powershell[主要](../../powershell_scripts/hdinsight/use-mapreduce/use-mapreduce.ps1?range=5-69)]
 
 2. 開啟新的 **Azure PowerShell** 命令提示字元。 將目錄變更至 **mapreducejob.ps1** 檔案的位置，然後使用下列命令來執行指令碼：
-   
+
         .\mapreducejob.ps1
-   
+
     當您執行指令碼時，系統會提示您的 HDInsight 叢集名稱和 HTTPS/管理帳戶名稱以及叢集的密碼。 系統可能也會提示您驗證 Azure 訂用帳戶。
 
 3. 在作業完成時，您會收到類似下列文字的輸出：
-    
+
         Cluster         : CLUSTERNAME
         ExitCode        : 0
         Name            : wordcount
@@ -77,12 +77,12 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Ma
         StatusDirectory : f1ed2028-afe8-402f-a24b-13cc17858097
         SubmissionTime  : 12/5/2014 8:34:09 PM
         JobId           : job_1415949758166_0071
-    
+
     此輸出表示工作已順利完成。
-    
+
     > [!NOTE]
     > 如果 **ExitCode** 的值不是 0，請參閱 [疑難排解](#troubleshooting)。
-    
+
     此範例也會將下載的檔案儲存到您執行指令碼所在目錄中的 **output.txt** 檔案。
 
 ### <a name="view-output"></a>檢視輸出
@@ -122,5 +122,4 @@ Get-AzureRmHDInsightJobOutput `
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
-
 

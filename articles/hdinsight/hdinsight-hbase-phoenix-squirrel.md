@@ -16,9 +16,9 @@ ms.date: 02/09/2017
 ms.author: jgao
 ROBOTS: NOINDEX
 translationtype: Human Translation
-ms.sourcegitcommit: cd7e8564d24e45bad291c3632021f96fb1584b6f
-ms.openlocfilehash: 730cf9be80be5c5381148f138c3a437beb95c340
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: de997066642c72a0a9e1d7210a96a3904580e6ed
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -30,7 +30,7 @@ ms.lasthandoff: 02/09/2017
 >
 
 > [!IMPORTANT]
-> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 如需在 Linux 型 HDInsight 上使用 Phoenix 的相關資訊，請參閱[在 HDinsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix](hdinsight-hbase-phoenix-squirrel-linux.md)。
+> 本文件的步驟只適用於 Windows 型 HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。 如需在 Linux 型 HDInsight 上使用 Phoenix 的相關資訊，請參閱[在 HDinsight 中搭配 Linux 型 HBase 叢集使用 Apache Phoenix](hdinsight-hbase-phoenix-squirrel-linux.md)。
 >
 
 
@@ -202,7 +202,7 @@ ms.lasthandoff: 02/09/2017
 4. 指定您具有寫入權限的路徑，然後按 [ **下一步**]。
 
   > [!NOTE]
-  > 預設的安裝資料夾位於 C:\Program Files\squirrel sql&3;.6 資料夾中。  若要寫入此路徑，必須將系統管理員權限授與安裝程式。 您可以系統管理員身分開啟命令提示字元、瀏覽至 Java 的 bin 資料夾，然後再執行：
+  > 預設的安裝資料夾位於 C:\Program Files\squirrel sql 3.6 資料夾中。  若要寫入此路徑，必須將系統管理員權限授與安裝程式。 您可以系統管理員身分開啟命令提示字元、瀏覽至 Java 的 bin 資料夾，然後再執行：
   >
   >     java.exe-jar [SQuirreL jar 檔案的路徑]
 5. 按一下 [ **確定** ] 以確認建立目標目錄。

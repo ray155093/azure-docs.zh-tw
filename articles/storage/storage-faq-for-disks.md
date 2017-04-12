@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/23/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 61610078ad5cefd513fdb758aec45d7489704817
-ms.openlocfilehash: b4cb40d81613c16558be1e0e2c10dbfa0265a6b7
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 1a462b8d557ad23bda912ddf9431195a8cfe909e
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -125,7 +125,7 @@ Azure 受控磁碟目前僅支援本地備援儲存體 (LRS)。
 
 **為什麼對於使用 Azure 受控磁碟的 VM 客戶必須解鎖通訊埠 8443 上的輸出流量？**
 
-Azure VM 代理程式會使用通訊埠 8443 向 Azure 平台報告每個 VM 擴充的狀態。 若是此通訊埠沒有解鎖，VM 代理程式就無法報告任何 VM 擴充的狀態。 如需有關 VM 代理程式的詳細資訊，請參閱 [Azure 虛擬機器代理程式概觀](../virtual-machines/virtual-machines-windows-agent-user-guide.md)。
+Azure VM 代理程式會使用通訊埠 8443 向 Azure 平台報告每個 VM 擴充的狀態。 若是此通訊埠沒有解鎖，VM 代理程式就無法報告任何 VM 擴充的狀態。 如需有關 VM 代理程式的詳細資訊，請參閱 [Azure 虛擬機器代理程式概觀](../virtual-machines/windows/agent-user-guide.md)。
 
 **若 VM 部署了擴充功能而通訊埠並未解除封鎖，會發生什麼事？**
 

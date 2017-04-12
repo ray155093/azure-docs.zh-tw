@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 07/11/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
-ms.openlocfilehash: 6533b1e6a40b7cbf7d3d6961523144b3d0e5263b
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 82a1888cca687ce60f811c2c3cec6b971d4a0461
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -31,21 +32,21 @@ ms.openlocfilehash: 6533b1e6a40b7cbf7d3d6961523144b3d0e5263b
 
 停用擴充功能或使用不同的瀏覽器。
 
-## <a name="a-namee-aa-unexpected-error"></a><a name="e-a"></a> 「未預期的錯誤」
+## <a name="e-a"></a> 「未預期的錯誤」
 ![[未預期的錯誤] 畫面](./media/app-insights-analytics-troubleshooting/010.png)
 
 在入口網站執行階段期間發生的內部錯誤 – 未處理的例外狀況。
 
 * 清除瀏覽器的快取。 
 
-## <a name="a-namee-ba403--please-try-to-reload"></a><a name="e-b"></a>403 ... 請嘗試重新載入
+## <a name="e-b"></a>403 ... 請嘗試重新載入
 ![403 ... 請嘗試重新載入](./media/app-insights-analytics-troubleshooting/020.png)
 
 發生驗證相關的錯誤 (在驗證期間或存取權杖產生期間)。 若未變更瀏覽器設定，入口網站可能無法復原。
 
 * 確認已在瀏覽器中 [啟用協力廠商 Cookie](#cookies) 。 
 
-## <a name="a-nameauthenticationa403--verify-security-zone"></a><a name="authentication"></a>403 ... 確認安全性區域
+## <a name="authentication"></a>403 ... 確認安全性區域
 ![403 ... 確認安全性區域](./media/app-insights-analytics-troubleshooting/030.png)
 
 發生驗證相關的錯誤 (在驗證期間或存取權杖產生期間)。 若未變更瀏覽器設定，入口網站可能無法復原。
@@ -68,12 +69,12 @@ ms.openlocfilehash: 6533b1e6a40b7cbf7d3d6961523144b3d0e5263b
      https://login.microsoftonline.com<br/>
      https://login.windows.net
 
-## <a name="a-namee-da404--resource-not-found"></a><a name="e-d"></a>404 ...找不到資源
+## <a name="e-d"></a>404 ...找不到資源
 ![404 ... 找不到資源](./media/app-insights-analytics-troubleshooting/040.png)
 
 應用程式資源已從 Application Insights 中刪除，且不再提供。 這可能會在您將 URL 儲存到 [分析] 頁面時發生。
 
-## <a name="a-namee-ea403--no-authorization"></a><a name="e-e"></a>403 ...沒有授權
+## <a name="e-e"></a>403 ...沒有授權
 ![403 ... 未獲授權](./media/app-insights-analytics-troubleshooting/050.png)
 
 您沒有權限可在分析中開啟此應用程式。
@@ -81,7 +82,7 @@ ms.openlocfilehash: 6533b1e6a40b7cbf7d3d6961523144b3d0e5263b
 * 您的連結是由其他人所提供嗎？ 要求他們確認您是 [這個資源群組的讀取者或參與者](app-insights-resources-roles-access-control.md)。
 * 您使用不同的認證來儲存連結嗎？ 開啟 [Azure 入口網站](https://portal.azure.com)、登出，然後提供正確的認證再試一次連結。
 
-## <a name="a-namehtml-storagea403--html5-storage"></a><a name="html-storage"></a>403 ...HTML5 儲存體
+## <a name="html-storage"></a>403 ...HTML5 儲存體
 我們的入口網站會使用 HTML5 localStorage 和 sessionStorage。
 
 * Chrome︰設定、隱私權、內容設定。
@@ -89,31 +90,24 @@ ms.openlocfilehash: 6533b1e6a40b7cbf7d3d6961523144b3d0e5263b
 
 ![403 ... 嘗試啟用 HTML5 儲存體](./media/app-insights-analytics-troubleshooting/060.png)
 
-## <a name="a-namee-ga404--subscription-not-found"></a><a name="e-g"></a>404 ...找不到訂用帳戶
+## <a name="e-g"></a>404 ...找不到訂用帳戶
 ![404 ...找不到訂用帳戶](./media/app-insights-analytics-troubleshooting/070.png)
 
 URL 無效。 
 
 * 開啟 [Application Insights 入口網站](https://portal.azure.com)中的應用程式資源。 然後使用 [分析] 按鈕。
 
-## <a name="a-namee-ha404--page-doesnt-exist"></a><a name="e-h"></a>404 ... 頁面不存在
+## <a name="e-h"></a>404 ... 頁面不存在
 ![404 ...頁面不存在](./media/app-insights-analytics-troubleshooting/080.png)
 
 URL 無效。
 
 * 開啟 [Application Insights 入口網站](https://portal.azure.com)中的應用程式資源。 然後使用 [分析] 按鈕。
 
-## <a name="a-namecookiesaenable-third-party-cookies"></a><a name="cookies"></a>啟用協力廠商 cookie
+## <a name="cookies"></a>啟用協力廠商 cookie
   請參閱 [如何停用協力廠商 Cookie](http://www.digitalcitizen.life/how-disable-third-party-cookies-all-major-browsers)，但請注意，我們需要 **啟用** 它們。
 
-## <a name="a-namee-xaif-all-else-fails"></a><a name="e-x"></a>如果這一切都失敗
-[連絡我們](app-insights-get-dev-support.md)。
 
 [!INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

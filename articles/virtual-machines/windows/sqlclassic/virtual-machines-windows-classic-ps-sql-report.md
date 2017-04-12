@@ -16,9 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 01/11/2017
 ms.author: asaxton
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 8f62547316e4ecc02da0341aab94010d880115f8
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 5e5c11251cd316e8161dbe362b300be76927ac01
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 03/25/2017
 * **Azure 訂用帳戶**：確認您的 Azure 訂用帳戶中可用的核心數量。 若要建立建議的 VM 大小 **A3**，將需要 **4** 個可用的核心。 若您採用 **A2** 的 VM 大小，則需要 **2** 個可用的核心。
   
   * 若要確認訂用帳戶的核心限制，請在 Azure 傳統入口網站中按一下左窗格中的 [設定]，然後按一下上層功能表中的 [使用方式]。
-  * 若要增加核心配額，請連絡 [Azure 支援](https://azure.microsoft.com/support/options/)。 如需 VM 大小的資訊，請參閱 [Azure 的虛擬機器大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+  * 若要增加核心配額，請連絡 [Azure 支援](https://azure.microsoft.com/support/options/)。 如需 VM 大小的資訊，請參閱 [Azure 的虛擬機器大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 * **Windows PowerShell 指令碼**：本主題假設您對 Windows PowerShell 已有基本的技術知識。 如需有關如何使用 Windows PowerShell 的詳細資訊，請參閱下列文章：
   
   * [在 Windows Server 上啟動 Windows PowerShell (英文)](https://technet.microsoft.com/library/hh847814.aspx)

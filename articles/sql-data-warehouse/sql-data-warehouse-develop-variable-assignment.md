@@ -12,11 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5ec9f7ad24dad833758d3b981fd4d8735119d813
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 045d5148cd3f12dac63c961ccf7c953d355ed725
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -67,19 +69,14 @@ SET     @v +=1;
 您無法使用 SELECT 或 UPDATE 進行變數指派。
 
 ## <a name="next-steps"></a>後續步驟
-如需更多開發秘訣，請參閱[開發概觀][開發概觀]。
+如需更多開發秘訣，請參閱[開發概觀][development overview]。
 
 <!--Image references-->
 
 <!--Article references-->
-[開發概觀]: sql-data-warehouse-overview-develop.md
+[development overview]: sql-data-warehouse-overview-develop.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

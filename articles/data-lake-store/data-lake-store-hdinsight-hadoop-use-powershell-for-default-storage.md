@@ -15,9 +15,9 @@ ms.workload: big-data
 ms.date: 03/02/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: e1101c92118e56768c668d19f6556517d5a79c51
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
+ms.openlocfilehash: fe8a84d7e6d88f11498c288e0424ba204d7f06fd
+ms.lasthandoff: 04/05/2017
 
 
 ---
@@ -49,7 +49,7 @@ ms.lasthandoff: 03/07/2017
 * **Azure Active Directory 服務主體**︰本教學課程說明如何在 Azure Active Directory (Azure AD) 中建立服務主體。 不過，您必須是 Azure AD 系統管理員，才能建立服務主體。 如果您是系統管理員，就可以略過這項先決條件並繼續進行本教學課程。
 
     >[!NOTE]
-    >唯有您是 Azure AD 系統管理員，才可以建立服務主體。 您的 Azure AD 系統管理員必須先建立服務主體，您才能建立搭配 Data Lake Store 的 HDInsight 叢集。 必須使用憑證來建立服務主體，如[使用憑證建立服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)所述。
+    >唯有您是 Azure AD 系統管理員，才可以建立服務主體。 您的 Azure AD 系統管理員必須先建立服務主體，您才能建立搭配 Data Lake Store 的 HDInsight 叢集。 必須使用憑證來建立服務主體，如[使用憑證建立服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md#create-service-principal-with-certificate-from-certificate-authority)所述。
     >
 
 ## <a name="create-a-data-lake-store-account"></a>建立 Data Lake Store 帳戶
@@ -71,7 +71,7 @@ ms.lasthandoff: 03/07/2017
 
     > [!NOTE]
     > 如果您註冊 Data Lake Store 資源提供者並收到類似 `Register-AzureRmResourceProvider : InvalidResourceNamespace: The resource namespace 'Microsoft.DataLakeStore' is invalid` 的錯誤，您的訂用帳戶可能不在 Data Lake Store 的允許清單中。 若要針對 Data Lake Store 公開預覽版來啟用 Azure 訂用帳戶，請遵循[透過 Azure 入口網站開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md)中的指示操作。
-    > 
+    >
 
 2. 當系統提示您登入時，請以其中一個訂用帳戶管理員或擁有者身分登入。
 3. Data Lake Store 帳戶與 Azure 資源群組相關聯。 從建立資源群組著手。

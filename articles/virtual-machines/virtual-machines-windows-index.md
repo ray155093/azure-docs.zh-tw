@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 02/13/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 4933d4ea33fd7299b220f90f8f904ae71c446e0c
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: b0f97779c2cf8bf3e7535afa8a2ab1ee45958ad1
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -29,13 +29,13 @@ ms.lasthandoff: 03/25/2017
 > Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 ## <a name="overview"></a>概觀
-[關於虛擬機器](virtual-machines-windows-about.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[關於虛擬機器](windows/about.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [關於以傳統部署模型建立之 Azure 虛擬機器的常見問題集](windows/classic/faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 [比較 VM、網站及雲端服務](../app-service-web/choose-web-site-cloud-service-vm.md)
 
-[Azure 中的虛擬機器和容器](virtual-machines-windows-containers.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[Azure 中的虛擬機器和容器](windows/containers.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="environment-setup"></a>環境設定
 [免費帳戶](https://azure.microsoft.com/free/)
@@ -54,13 +54,13 @@ ms.lasthandoff: 03/25/2017
 ## <a name="plan"></a>規劃
 [關於傳統虛擬機器的映像](windows/classic/about-images.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[虛擬機器的大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[虛擬機器的大小](windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[關於 H 系列和計算密集型 A 系列 VM](virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[關於 H 系列和計算密集型 A 系列 VM](windows/a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[Azure 虛擬機器的計劃性維護](virtual-machines-windows-planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[Azure 虛擬機器的計劃性維護](windows/planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[Azure 基礎結構服務實作指導方針](virtual-machines-windows-infrastructure-subscription-accounts-guidelines.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[Azure 基礎結構服務實作指導方針](windows/infrastructure-subscription-accounts-guidelines.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [建立虛擬機器的可用性設定組](windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
@@ -71,7 +71,7 @@ ms.lasthandoff: 03/25/2017
 
 [使用 PowerShell 建立並上傳傳統 Windows Server VHD](windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[使用 Chef 自動化 Azure 虛擬機器部署](virtual-machines-windows-chef-automation.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[使用 Chef 自動化 Azure 虛擬機器部署](windows/chef-automation.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [在 Azure PowerShell 中建立及設定傳統 Windows 虛擬機器](windows/classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
@@ -88,12 +88,12 @@ ms.lasthandoff: 03/25/2017
 
 [傳統 Windows 虛擬機器的自訂指令碼擴充功能](windows/classic/extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[平台支援的從傳統移轉至 Azure Resource Manager](virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
+[平台支援的從傳統移轉至 Azure Resource Manager](windows/migration-classic-resource-manager-deep-dive.md)
 
 ## <a name="configure"></a>設定
-[如何重設 Windows VM 的密碼或遠端桌面服務](virtual-machines-windows-reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[如何重設 Windows VM 的密碼或遠端桌面服務](windows/reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[有關虛擬機器擴充功能和功能](virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[有關虛擬機器擴充功能和功能](windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [如何在 Windows VM 上安裝和設定 Symantec Endpoint Protection](windows/classic/install-symantec.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
@@ -110,7 +110,7 @@ ms.lasthandoff: 03/25/2017
 
 [如何從傳統 Windows 虛擬機器卸離資料磁碟](windows/classic/detach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[使用 D 磁碟機做為 Windows VM 上的資料磁碟機](virtual-machines-windows-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[使用 D 磁碟機做為 Windows VM 上的資料磁碟機](windows/change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="networking"></a>網路
 [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)
@@ -131,7 +131,7 @@ ms.lasthandoff: 03/25/2017
 [Windows Server VM 上的 Django Hello World Web 應用程式](windows/classic/python-django-web-app.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="workloads"></a>工作負載
-[HPC Pack](virtual-machines-windows-hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[HPC Pack](windows/hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [MongoDB](windows/classic/install-mongodb.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
@@ -155,11 +155,11 @@ ms.lasthandoff: 03/25/2017
 [Azure 服務管理 PowerShell Cmdlet 參考文件](https://msdn.microsoft.com/library/azure/dn708504.aspx)
 
 ## <a name="troubleshooting"></a>疑難排解
-[疑難排解執行 Windows 之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[疑難排解執行 Windows 之 Azure 虛擬機器的遠端桌面連線](windows/troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[疑難排解在 Azure 虛擬機器上執行的應用程式存取](virtual-machines-windows-troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[疑難排解在 Azure 虛擬機器上執行的應用程式存取](windows/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[在 Azure 中建立、重新啟動或調整 VM 大小時，對配置失敗進行疑難排解](virtual-machines-windows-allocation-failure.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[在 Azure 中建立、重新啟動或調整 VM 大小時，對配置失敗進行疑難排解](windows/allocation-failure.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [針對在 Azure 中建立新 Windows 虛擬機器的傳統部署問題進行疑難排解](windows/classic/troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 

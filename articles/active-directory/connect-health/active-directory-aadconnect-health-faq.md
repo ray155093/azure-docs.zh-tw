@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/12/2017
+ms.date: 04/04/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 6ad2194a71e0d36ba4a0b9a46ca6dbcd58b619ff
-ms.openlocfilehash: 06a8b79f0740e902bb7f9412b449a98b2f0167ea
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: e22a1ccb958942cfa3c67194430af6bc74fdba64
+ms.openlocfilehash: 233691d19aa2553744f92af17f7ecf9fda2290e0
+ms.lasthandoff: 04/05/2017
 
 ---
 # <a name="azure-ad-connect-health-frequently-asked-questions"></a>Azure AD Connect Health 常見問題集
@@ -67,7 +67,7 @@ ms.lasthandoff: 02/16/2017
 
 以下的數字是近似值：
 
-* CPU 耗用量：增加約&1;-5%。
+* CPU 耗用量：增加約 1-5%。
 * 記憶體耗用量：最多 10% 的系統總記憶體。
 
 > [!NOTE]
@@ -75,7 +75,7 @@ ms.lasthandoff: 02/16/2017
 >
 >
 
-* Azure AD Connect Health 代理程式的本機緩衝區儲存體：約&20; MB。
+* Azure AD Connect Health 代理程式的本機緩衝區儲存體：約 20 MB。
 * 對於 AD FS 伺服器，建議您為 AD FS 稽核通道佈建 1024 MB (1 GB) 的磁碟空間，Azure AD Connect Health 代理程式才能在所有稽核資料遭到覆寫前加以處理。
 
 **問：在安裝 Azure AD Connect Health 代理程式期間，我是否需要重新啟動我的伺服器？**
@@ -123,7 +123,7 @@ Health 代理程式會因為下列可能原因而無法註冊：
 
 **問︰我收到有關「Health 服務資料不是最新狀態」的警示。我該如何進行解決這個問題？**
 
-當 Azure AD Connect Health 在過去&2; 小時沒有從伺服器收到所有資料點，就會產生此警示。 有很多原因都可能導致引發此警示。
+當 Azure AD Connect Health 在過去 2 小時沒有從伺服器收到所有資料點，就會產生此警示。 有很多原因都可能導致引發此警示。
 
 * 因為防火牆封鎖流量，代理程式無法與所需端點通訊。 在 Web 應用程式 Proxy 伺服器上尤其常見。 請確定您已允許針對所需端點和連接埠的輸出通訊。 如需詳細資訊，請參閱[需求](active-directory-aadconnect-health-agent-install.md#requirements)一節。
 * 輸出通訊會在網路層遇到 SSL 檢查。 這會導致代理程式所使用的憑證遭到檢查伺服器/實體所取代，而無法將資料上傳至 Azure AD Connect Health 服務。
@@ -138,22 +138,6 @@ Health 代理程式會因為下列可能原因而無法註冊：
 **問：Azure AD Connect Health 警示如何獲得解決？**
 
 Azure AD Connect Health 警示會在成功情況下獲得解決。 Azure AD Connect Health 代理程式會定期偵測成功情況，並向服務回報。 對於少數幾個警示，隱藏是以時間為基礎。 也就是說，如果在警示產生的 72 小時內未觀察到相同的錯誤狀況，就會自動解決警示。
-
-## <a name="migration-questions"></a>移轉問題
-
-本節僅適用於獲通知其 Azure AD Connect Health 資料即將移轉的客戶。
-
-**問︰移轉之後，我是否必須再次註冊我的代理程式，或重新設定我的通知設定？**
-
-否，在移轉過程中，代理程式註冊資訊和通知設定將會隨之移動。
-
-**問︰移轉之後需要多久，我才會在入口網站上開始看到資料？**
-
-資料將會開始在移轉之後的一小時內出現在入口網站中。
-
-**問︰我的現存作用中警示會發生什麼情況？**
-
-在移轉之後的一小時內，所有適用的警示都會重新啟動。
 
 ## <a name="related-links"></a>相關連結
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)

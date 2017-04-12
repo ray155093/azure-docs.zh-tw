@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/13/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: ccec356c653cf5d3c767fd273c37ea5685607135
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 6e03b6072b5244aca2810f704c485384de5aedf8
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -32,7 +32,7 @@ ms.lasthandoff: 03/25/2017
 ## <a name="scenario-diagram"></a>案例圖表
 在此案例中，外部使用者需要存取在加入網域的伺服器上執行的應用程式。 執行應用程式伺服器和複本 DC 的 VM 安裝在 Azure 虛擬網路中。 虛擬網路可透過[站對站 VPN](../vpn-gateway/vpn-gateway-site-to-site-create.md) 連線來連接到內部部署網路 (如下圖所示)，或者您也可以使用 [ExpressRoute](../expressroute/expressroute-locations-providers.md) 來進行更快速的連線。
 
-應用程式伺服器和 DC 會部署在個別的雲端服務中來分散計算處理工作，以及部署在[可用性設定組](../virtual-machines/virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中來改善容錯功能。
+應用程式伺服器和 DC 會部署在個別的雲端服務中來分散計算處理工作，以及部署在[可用性設定組](../virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中來改善容錯功能。
 網域控制站會使用 Active Directory 複寫功能，在彼此之間以及與內部部署網域控制站互相複寫。 不需要任何同步處理工具。
 
 ![Active Directory 網域控制器 Azure vnet 複本][1]

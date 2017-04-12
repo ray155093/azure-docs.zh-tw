@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 1/23/2017
 ms.author: trinadhk;markgal;
 translationtype: Human Translation
-ms.sourcegitcommit: 2224ddf52283d7da599b1b4842ca617d28b28668
-ms.openlocfilehash: 2149407ff4e04f6a52a45c419382617810a63633
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 284a1b64fbb15d0aa800182c6671d447e191b76a
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -107,16 +108,11 @@ ms.openlocfilehash: 2149407ff4e04f6a52a45c419382617810a63633
 
 如為 Linux VM：
 
-* 遵循[更新 Linux VM 代理程式](../virtual-machines/virtual-machines-linux-update-agent.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)上的指示進行。
+* 遵循[更新 Linux VM 代理程式](../virtual-machines/linux/update-agent.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)上的指示進行。
 
 ### <a name="validating-vm-agent-installation"></a>驗證 VM 代理程式安裝
 如何檢查 Windows VM 上的 VM 代理程式版本：
 
 1. 登入 Azure 虛擬機器，然後瀏覽至 *C:\WindowsAzure\Packages* 資料夾。 您應該會發現 WaAppAgent.exe 檔案已存在。
 2. 在該檔案上按一下滑鼠右鍵，前往 [屬性]，然後選取 [詳細資料] 索引標籤。 [產品版本] 欄位應為 2.6.1198.718 或更高版本
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

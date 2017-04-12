@@ -17,9 +17,9 @@ ms.date: 02/02/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 9f9908466dbfd471bc881387c0968c924140c67b
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 99292dedfd83c0adde6b7352e08e7ae3b0b14513
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -95,7 +95,7 @@ ms.lasthandoff: 03/21/2017
     },
     ```
 
-6. 請注意 **vmSize** 的值為 *Standard_DS3*。 只有特定的 VM 大小允許使用多個 NIC。 請參閱 [Windows Server VM 大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)和 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)文章，以確認哪些 VM 大小支援多個 NIC。
+6. 請注意 **vmSize** 的值為 *Standard_DS3*。 只有特定的 VM 大小允許使用多個 NIC。 請參閱 [Windows Server VM 大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)和 [Linux VM 大小](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)文章，以確認哪些 VM 大小支援多個 NIC。
 
 7. 向下捲動至 **resources** 並注意第一個元素。 它描述儲存體帳戶。 此儲存體帳戶將用來維護每個資料庫 VM 所使用的資料磁碟。 在此案例中，每部資料庫 VM 都有儲存在一般儲存體的作業系統磁碟，以及儲存在 SSD (進階) 儲存體的兩個資料磁碟。
 

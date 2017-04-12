@@ -15,15 +15,15 @@ ms.workload: identity
 ms.date: 12/27/2016
 ms.author: dugill;tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: 32f5959a9b96318208c46789ec406d614081bc8d
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
+ms.openlocfilehash: de1355a8dc4b0099dca3efc2109ccfb9facf7269
+ms.lasthandoff: 04/05/2017
 
 
 ---
 # <a name="use-resource-manager-authentication-api-to-access-subscriptions"></a>使用 Resource Manager 驗證 API 來存取訂用帳戶
 ## <a name="introduction"></a>簡介
-如果您是必須建立應用程式來管理客戶的 Azure 資源的軟體開發人員，本主題說明如何使用 Azure Resource Manager API 來進行驗證，並取得其他訂用帳戶中資源的存取權。 
+如果您是必須建立應用程式來管理客戶的 Azure 資源的軟體開發人員，本主題說明如何使用 Azure Resource Manager API 來進行驗證，並取得其他訂用帳戶中資源的存取權。
 
 您的應用程式可透過數種方式存取資源管理員 API︰
 
@@ -32,7 +32,7 @@ ms.lasthandoff: 03/07/2017
 
 本主題提供建立應用程式來運用這兩種授權方法的逐步指示。 它會說明如何使用 REST API 或 C# 執行每個步驟。 完整的 ASP.NET MVC 應用程式可在 [https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense](https://github.com/dushyantgill/VipSwapper/tree/master/CloudSense)取得。
 
-本主題的所有程式碼都會作為 Web 應用程式執行，您可以在 [http://vipswapper.azurewebsites.net/cloudsense](http://vipswapper.azurewebsites.net/cloudsense)上試用。 
+本主題的所有程式碼都會作為 Web 應用程式執行，您可以在 [http://vipswapper.azurewebsites.net/cloudsense](http://vipswapper.azurewebsites.net/cloudsense)上試用。
 
 ## <a name="what-the-web-app-does"></a>Web 應用程式的功用
 Web 應用程式：
@@ -69,11 +69,11 @@ Web 應用程式：
 ![連線訂用帳戶](./media/resource-manager-api-authentication/sample-ux-7.png)
 
 ## <a name="register-application"></a>註冊應用程式
-在開始撰寫程式碼之前，請先使用 Azure Active Directory (AD) 註冊 Web 應用程式。 應用程式註冊會為您在 Azure AD 中的應用程式建立中央身分識別。 它會保留您的應用程式的基本資訊，例如您的應用程式用來驗證和存取 Azure Resource Manager API 的 OAuth 用戶端識別碼、回覆 URL 和認證。 應用程式註冊也會記錄您的應用程式需要的各種委派權限，以便代表使用者存取 Microsoft API。 
+在開始撰寫程式碼之前，請先使用 Azure Active Directory (AD) 註冊 Web 應用程式。 應用程式註冊會為您在 Azure AD 中的應用程式建立中央身分識別。 它會保留您的應用程式的基本資訊，例如您的應用程式用來驗證和存取 Azure Resource Manager API 的 OAuth 用戶端識別碼、回覆 URL 和認證。 應用程式註冊也會記錄您的應用程式需要的各種委派權限，以便代表使用者存取 Microsoft API。
 
 由於應用程式會存取其他訂用帳戶，您必須將它設定為多租用戶應用程式。 為了通過驗證，請提供與 Active Directory 相關聯的網域。 若要查看與 Active Directory 相關聯的網域，請登入 [傳統入口網站](https://manage.windowsazure.com)。 選取您的 Active Directory，然後選取 [網域] 。
 
-下列範例示範如何使用 Azure PowerShell 註冊應用程式。 您必須擁有最新版 (2016 年 8 月) Azure PowerShell 才能讓此命令生效。 
+下列範例示範如何使用 Azure PowerShell 註冊應用程式。 您必須擁有最新版 (2016 年 8 月) Azure PowerShell 才能讓此命令生效。
 
     $app = New-AzureRmADApplication -DisplayName "{app name}" -HomePage "https://{your domain}/{app name}" -IdentifierUris "https://{your domain}/{app name}" -Password "{your password}" -AvailableToOtherTenants $true
 
@@ -81,7 +81,7 @@ Web 應用程式：
 
     $app.ApplicationId
 
-下列範例示範如何使用 Azure CLI 註冊應用程式。 
+下列範例示範如何使用 Azure CLI 註冊應用程式。
 
     azure ad app create --name {app name} --home-page https://{your domain}/{app name} --identifier-uris https://{your domain}/{app name} --password {your password} --available true
 
@@ -90,7 +90,7 @@ Web 應用程式：
 ### <a name="optional-configuration---certificate-credential"></a>選擇性組態 - 憑證認證
 Azure AD 也支援應用程式的憑證認證︰您建立自我簽署憑證、保留私密金鑰，然後將公開金鑰新增至 Azure AD 應用程式註冊。 若為驗證，您的應用程式會使用您的私密金鑰將小裝載傳送至簽署的 Azure AD，且 Azure AD 會使用您註冊的公開金鑰來驗證簽章。
 
-如需使用憑證建立 AD 應用程式的相關資訊，請參閱[使用 Azure PowerShell 建立用來存取資源的服務主體](resource-group-authenticate-service-principal.md#create-service-principal-with-certificate)或[使用 Azure CLI 建立用來存取資源的服務主體](resource-group-authenticate-service-principal-cli.md#create-service-principal-with-certificate)。
+如需使用憑證建立 AD 應用程式的相關資訊，請參閱[使用 Azure PowerShell 建立用來存取資源的服務主體](resource-group-authenticate-service-principal.md#create-service-principal-with-certificate-from-certificate-authority)或[使用 Azure CLI 建立用來存取資源的服務主體](resource-group-authenticate-service-principal-cli.md#create-service-principal-with-certificate)。
 
 ## <a name="get-tenant-id-from-subscription-id"></a>從訂用帳戶識別碼取得租用戶識別碼
 若要要求可用來呼叫 Resource Manager 的權杖，應用程式必須知道裝載 Azure 訂用帳戶之 Azure AD 租用戶的租用戶識別碼。 使用者很可能知道其訂用帳戶識別碼，但他們可能不知道其用於 Active Directory 的租用戶識別碼。 若要取得使用者的租用戶識別碼，請要求使用者提供訂用帳戶識別碼。 在傳送有關訂用帳戶的要求時，請提供該訂用帳戶識別碼：
@@ -135,7 +135,7 @@ Open ID Connect 回應的範例是︰
     code=AAABAAAAiL*****I4rDWd7zXsH6WUjlkIEQxIAA&id_token=eyJ0eXAiOiJKV1Q*****T3GrzzSFxg&state=M_12tMyKaM8&session_state=2d16bbce-d5d1-443f-acdf-75f6b0ce8850
 
 ### <a name="token-request-oauth20-code-grant-flow"></a>權杖要求 (OAuth2.0 程式碼授與流程)
-您的應用程式現在已從 Azure AD 收到授權碼，現在是取得 Azure Resource Manager 的存取權杖的時候了。  將 OAuth2.0 程式碼授與權杖要求張貼至 Azure AD 權杖端點︰ 
+您的應用程式現在已從 Azure AD 收到授權碼，現在是取得 Azure Resource Manager 的存取權杖的時候了。  將 OAuth2.0 程式碼授與權杖要求張貼至 Azure AD 權杖端點︰
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Token
 
@@ -152,7 +152,7 @@ Open ID Connect 回應的範例是︰
 
 使用憑證認證時，使用您的應用程式的憑證認證的私密金鑰來建立 JSON Web 權杖 (JWT) 和登入 (RSA SHA256)。 [JWT 權杖宣告](../active-directory/develop/active-directory-protocols-oauth-code.md#jwt-token-claims)會說明權杖的宣告類型。 如需參考，請參閱 [Active Directory 驗證程式庫 (.NET) 程式碼](https://github.com/AzureAD/azure-activedirectory-library-for-dotnet/blob/dev/src/ADAL.PCL.Desktop/CryptographyHelper.cs) 來簽署用戶端判斷提示 JWT 權杖。
 
-請參閱 [Open ID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) 來取得用戶端驗證的詳細資訊。 
+請參閱 [Open ID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) 來取得用戶端驗證的詳細資訊。
 
 下列範例顯示如何使用憑證認證來要求程式碼授與權杖：
 
@@ -163,14 +163,14 @@ Open ID Connect 回應的範例是︰
 
     grant_type=authorization_code&code=AAABAAAAiL9Kn2Z*****L1nVMH3Z5ESiAA&redirect_uri=http%3A%2F%2Flocalhost%3A62080%2FAccount%2FSignIn&client_id=a0448380-c346-4f9f-b897-c18733de9394&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJhbG*****Y9cYo8nEjMyA
 
-程式碼授與權杖回應的範例︰ 
+程式碼授與權杖回應的範例︰
 
     HTTP/1.1 200 OK
 
     {"token_type":"Bearer","expires_in":"3599","expires_on":"1432039858","not_before":"1432035958","resource":"https://management.core.windows.net/","access_token":"eyJ0eXAiOiJKV1Q****M7Cw6JWtfY2lGc5A","refresh_token":"AAABAAAAiL9Kn2Z****55j-sjnyYgAA","scope":"user_impersonation","id_token":"eyJ0eXAiOiJKV*****-drP1J3P-HnHi9Rr46kGZnukEBH4dsg"}
 
 #### <a name="handle-code-grant-token-response"></a>處理程式碼授與權杖回應
-成功的權杖回應會包含 Azure Resource Manager 的 (使用者 + 應用程式) 存取權杖。 應用程式會使用此存取權杖來代表使用者存取 Resource Manager。 Azure AD 所發出的存取權杖存留期是一小時。 Web 應用程式不太可能需要更新 (使用者 + 應用程式) 存取權杖。 如果需要更新存取權杖，請使用應用程式在權杖回應中收到的重新整理權杖。 將 OAuth2.0 權杖要求張貼至 Azure AD 權杖端點︰ 
+成功的權杖回應會包含 Azure Resource Manager 的 (使用者 + 應用程式) 存取權杖。 應用程式會使用此存取權杖來代表使用者存取 Resource Manager。 Azure AD 所發出的存取權杖存留期是一小時。 Web 應用程式不太可能需要更新 (使用者 + 應用程式) 存取權杖。 如果需要更新存取權杖，請使用應用程式在權杖回應中收到的重新整理權杖。 將 OAuth2.0 權杖要求張貼至 Azure AD 權杖端點︰
 
     https://login.microsoftonline.com/{tenant-id}/OAuth2/Token
 
@@ -188,7 +188,7 @@ Open ID Connect 回應的範例是︰
 雖然重新整理權杖可用來取得 Azure Resource Manager 的新存取權杖，但它們並不適合您的應用程式離線存取。 重新整理權杖存留期有限，且重新整理權杖會繫結至使用者。 如果使用者離開組織，使用重新整理權杖的應用程式會無法存取。 這個方法不適合小組用來管理其 Azure 資源的應用程式。
 
 ## <a name="check-if-user-can-assign-access-to-subscription"></a>檢查使用者是否可以指派訂用帳戶的存取權
-您的應用程式現在具有權杖，可代表使用者存取 Azure Resource Manager。 下一步是將應用程式連接到訂用帳戶。 在連接之後，即使使用者不存在 (長期離線存取)，您仍然可以管理這些訂用帳戶。 
+您的應用程式現在具有權杖，可代表使用者存取 Azure Resource Manager。 下一步是將應用程式連接到訂用帳戶。 在連接之後，即使使用者不存在 (長期離線存取)，您仍然可以管理這些訂用帳戶。
 
 針對每個要連接的訂用帳戶，請呼叫 [Resource Manager 列出權限](https://docs.microsoft.com/rest/api/authorization/permissions) API 來判斷使用者是否具有訂用帳戶的存取管理權限。
 
@@ -233,14 +233,14 @@ ASP.net MVC 範例應用程式的 [GetObjectIdOfServicePrincipalInOrganization](
 
 [要求存取權杖](../active-directory/develop/active-directory-protocols-oauth-service-to-service.md#request-an-access-token)主題說明適用於此要求的查詢字串參數。
 
-用戶端認證授與權杖要求範例︰ 
+用戶端認證授與權杖要求範例︰
 
     POST https://login.microsoftonline.com/62e173e9-301e-423e-bcd4-29121ec1aa24/oauth2/token HTTP/1.1
     Content-Type: application/x-www-form-urlencoded
     Content-Length: 187</pre>
     <pre>grant_type=client_credentials&client_id=a0448380-c346-4f9f-b897-c18733de9394&resource=https%3A%2F%2Fgraph.windows.net%2F &client_secret=olna8C*****Og%3D
 
-用戶端認證授與權杖回應範例︰ 
+用戶端認證授與權杖回應範例︰
 
     HTTP/1.1 200 OK
 
@@ -257,7 +257,7 @@ ASP.net MVC 範例應用程式的 [GetObjectIdOfServicePrincipalInOrganization](
 
     Authorization: Bearer eyJ0eXAiOiJK*****-kKorR-pg
 
-下列範例顯示應用程式的服務主體要求的回應 
+下列範例顯示應用程式的服務主體要求的回應
 
     HTTP/1.1 200 OK
 
@@ -285,7 +285,7 @@ ASP.net MVC 範例應用程式的 [GetRoleId](https://github.com/dushyantgill/Vi
 
     Authorization: Bearer eyJ0eXAiOiJKV*****fY2lGc5
 
-回應格式如下： 
+回應格式如下：
 
     HTTP/1.1 200 OK
 
@@ -314,7 +314,7 @@ ASP.net MVC 範例應用程式的 [GetRoleId](https://github.com/dushyantgill/Vi
 
 ASP.net MVC 範例應用程式的 [GrantRoleToServicePrincipalOnSubscription](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L170) 方法會實作這個呼叫。
 
-將 RBAC 角色指派給應用程式的要求範例︰ 
+將 RBAC 角色指派給應用程式的要求範例︰
 
     PUT https://management.azure.com/subscriptions/09cbd307-aa71-4aca-b346-5f253e6e3ebb/providers/microsoft.authorization/roleassignments/4f87261d-2816-465d-8311-70a27558df4c?api-version=2015-07-01 HTTP/1.1
 
@@ -333,7 +333,7 @@ ASP.net MVC 範例應用程式的 [GrantRoleToServicePrincipalOnSubscription](ht
 | acdd72a7-3385-48ef-bd42-f606fba81ae7 |讀取器角色的識別碼 |
 | 4f87261d-2816-465d-8311-70a27558df4c |為新角色指派建立的新 guid |
 
-回應格式如下： 
+回應格式如下：
 
     HTTP/1.1 201 Created
 
@@ -342,7 +342,7 @@ ASP.net MVC 範例應用程式的 [GrantRoleToServicePrincipalOnSubscription](ht
 ### <a name="get-app-only-access-token-for-azure-resource-manager"></a>取得 Azure Resource Manager 的僅限應用程式存取權杖
 若要驗證應用程式具有所需的訂用帳戶存取權，請使用僅限應用程式權杖對訂用帳戶執行測試工作。
 
-若要取得僅限應用程式存取權杖，請依照 [取得 Azure AD Graph API 的僅限應用程式存取權杖](#app-azure-ad-graph)一節的指示，為資源參數使用不同值︰ 
+若要取得僅限應用程式存取權杖，請依照 [取得 Azure AD Graph API 的僅限應用程式存取權杖](#app-azure-ad-graph)一節的指示，為資源參數使用不同值︰
 
     https://management.core.windows.net/
 
@@ -358,10 +358,10 @@ ASP.NET MVC 範例應用程式的 [ServicePrincipalHasReadAccessToSubscription](
 
 如果訂用帳戶擁有者使用傳統入口網站或命令列工具來移除應用程式的角色指派，您的應用程式便無法再存取該訂用帳戶。 在此情況下，您應該通知使用者：應用程式外部的訂用帳戶連線已中斷，然後提供他們 [修復] 連線的選項。 [修復] 只會重新建立離線刪除的角色指派。
 
-就像您讓使用者將訂用帳戶連接到您的應用程式，您也必須允許使用者中斷連線訂用帳戶。 從存取管理的觀點而言，中斷連線意味移除應用程式的服務主體已在訂用帳戶上的角色指派。 (選擇性) 也可能移除訂用帳戶的應用程式中的任何狀態。 只有在訂用帳戶上具有存取管理權限的使用者能夠中斷連線訂用帳戶。
+就像您讓使用者將訂用帳戶連接到您的應用程式，您也必須允許使用者中斷連線訂用帳戶。 從存取管理的觀點而言，中斷連線意味移除應用程式的服務主體已在訂用帳戶上的角色指派。 (選擇性) 也可能移除訂用帳戶的應用程式中的任何狀態。
+只有在訂用帳戶上具有存取管理權限的使用者能夠中斷連線訂用帳戶。
 
 ASP.net MVC 範例應用程式的 [RevokeRoleFromServicePrincipalOnSubscription 方法](https://github.com/dushyantgill/VipSwapper/blob/master/CloudSense/CloudSense/AzureResourceManagerUtil.cs#L200) 會實作這個呼叫。
 
 大功告成，使用者現在能使用您的應用程式來輕鬆連接及管理其 Azure 訂用帳戶。
-
 

@@ -15,13 +15,14 @@ ms.workload: NA
 ms.date: 02/17/2017
 ms.author: msfussell
 translationtype: Human Translation
-ms.sourcegitcommit: 6adb1dd25c24b18b834dd921c2586ef29d56dc81
-ms.openlocfilehash: 41acd377d456fa5e85e3a8ff0b12f7f6eff6cdfe
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 0379cd02fe663fbe9f024bc2f786186b0ea1358b
+ms.lasthandoff: 04/07/2017
 
 
 ---
 # <a name="partition-service-fabric-reliable-services"></a>分割 Service Fabric 可靠服務
-這篇文章介紹分割 Azure Service Fabric 可靠服務的基本概念。 [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/Services/AlphabetPartitions)上也提供本文中使用的原始碼。
+這篇文章介紹分割 Azure Service Fabric 可靠服務的基本概念。 [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions)上也提供本文中使用的原始碼。
 
 ## <a name="partitioning"></a>分割
 分割不是 Service Fabric 所獨有。 事實上，它是建置可調整服務的核心模式。 廣義上，我們可以將分割視為將狀態 (資料) 和計算分成較小的可存取單位來改善延展性和效能。 [資料分割][wikipartition]是一種知名的分割形式，也稱為分區化。
@@ -359,7 +360,7 @@ Service Fabric 有三個資料分割配置可選擇：
     
     ![瀏覽器螢幕擷取畫面](./media/service-fabric-concepts-partitioning/samplerunning.png)
 
-範例的完整原始程式碼位於 [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/Services/AlphabetPartitions)。
+範例的完整原始程式碼位於 [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions)。
 
 ## <a name="next-steps"></a>後續步驟
 如需 Service Fabric 概念的資訊，請參閱下列項目：
@@ -369,9 +370,4 @@ Service Fabric 有三個資料分割配置可選擇：
 * [Service Fabric 應用程式的容量規劃](service-fabric-capacity-planning.md)
 
 [wikipartition]: https://en.wikipedia.org/wiki/Partition_(database)
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

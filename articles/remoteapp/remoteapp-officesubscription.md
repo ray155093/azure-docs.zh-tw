@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: 4ad7970b94949bf105ddf549279d4d1bcbad5f40
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: c92eec471cf080a651d6f12e9db9fa391beabd2a
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="how-to-use-your-office-365-subscription-with-azure-remoteapp"></a>如何搭配 Azure RemoteApp 使用 Office 365 訂閱
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -117,10 +118,5 @@ RemoteApp 訂用帳戶中的 Office 365 ProPlus 映像包含 Visio Pro 和 Proje
 * [使用 Office 部署工具部署 Office 365 產品的隨選即用功能](https://technet.microsoft.com/library/JJ219423.aspx)
 * [使用 Office 部署工具部署及更新 Office 365 ProPlus](https://channel9.msdn.com/Events/Ignite/2015/BRK3168) (影片)
 * [設定 Office 365 ProPlus 的更新設定](https://technet.microsoft.com/library/dn761708.aspx)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

@@ -17,9 +17,9 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 53c54c490e7888edef0dc83d1657adbb3db0b745
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 06a67e4d2134baf54e88708d64981b897ecb74a0
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -112,7 +112,7 @@ SQL Database 彈性集區是簡單、符合成本效益的解決方案，可用�
 
 * 您可以使用 [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)、[PowerShell](sql-database-elastic-pool-manage-powershell.md)、[Transact-SQL](sql-database-elastic-pool-manage-tsql.md)、[C#](sql-database-elastic-pool-manage-csharp.md) 和 REST API 來建立及管理彈性集區。
 * 如需何時使用彈性集區的指引，請參閱[彈性集區指引](sql-database-elastic-pool-guidance.md)。
-* 若要觀賞影片，請參閱[有關 Azure SQL Database 彈性功能的 Microsoft Virtual Academy 視訊課程](https://mva.microsoft.com/en-US/training-courses/elastic-database-capabilities-with-azure-sql-db-16554)
+* 若要觀賞影片，請參閱[有關 Azure SQL Database 彈性功能的 Microsoft Virtual Academy 視訊課程](https://mva.microsoft.com/training-courses/elastic-database-capabilities-with-azure-sql-db-16554)
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-pool/databases.png

@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 01/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 2214315f084aec80986fe30ebcaff6813162c5f8
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 8458470ecdd787834d76767c9ed2c967c1c9b188
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 03/25/2017
 在本主題中，您將了解如何使用指令碼動作，在 Azure HDInsight 上安裝 Solr。 Solr 是強大的搜尋平台，可對 Hadoop 管理的資料執行企業級搜尋功能。 在 HDInsight 叢集上安裝 Solr 之後，您也將學習如何使用 Solr 搜尋資料。
 
 > [!IMPORTANT]
-> 本文件中的步驟需要一個使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+    > 本文件中的步驟需要一個使用 Linux 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 本主題中使用的範例指令碼會以特定組態建立 Solr 叢集。 如果您想要以不同的集合、分區、結構描述和複本等項目設定 Solr 叢集，則必須相應修改指令碼和 Solr 二進位檔。
 
@@ -36,10 +36,10 @@ ms.lasthandoff: 03/25/2017
 
 > [!WARNING]
 > 透過 HDInsight 叢集提供的元件會受到完整支援，且 Microsoft 支援服務將協助釐清與解決這些元件的相關問題。
-> 
+>
 > 自訂元件 (例如 Solr) 則獲得商務上合理的支援，協助您進一步對問題進行疑難排解。 如此可能會進而解決問題，或要求您利用可用管道，以找出開放原始碼技術，從中了解該技術的深度專業知識。 例如，有許多社群網站可以使用，像是：[HDInsight 的 MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight)、[http://stackoverflow.com](http://stackoverflow.com)。 另外，Apache 專案在 [http://apache.org](http://apache.org) 上有專案網站，例如 [Hadoop](http://hadoop.apache.org/)。
-> 
-> 
+>
+>
 
 ## <a name="what-the-script-does"></a>指令碼會執行哪些作業
 此指令碼可以對 HDInsight 叢集進行下列變更：
@@ -54,16 +54,16 @@ ms.lasthandoff: 03/25/2017
 
     https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh
 
-本節提供如何在使用 Azure 入口網站建立新叢集時使用範例指令碼的指示。 
+本節提供如何在使用 Azure 入口網站建立新叢集時使用範例指令碼的指示。
 
 > [!NOTE]
 > Azure PowerShell、Azure CLI、HDInsight .NET SDK 或 Azure Resource Manager 範本也可用來套用指令碼動作。 您也可以將指令碼動作套用到執行中的叢集上。 如需詳細資訊，請參閱 [使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
-> 
-> 
+>
+>
 
 1. 使用[佈建以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-create-linux-clusters-portal.md)中的步驟開始佈建叢集，但是不完成佈建。
 2. 在 [選用組態] 刀鋒視窗中，選取 [指令碼動作]，並提供下列資訊：
-   
+
    * **名稱**：輸入指令碼動作的易記名稱。
    * **SCRIPT URI**：https://hdiconfigactions.blob.core.windows.net/linuxsolrconfigactionv01/solr-installer-v01.sh
    * **HEAD**：勾選此選項
@@ -78,37 +78,37 @@ ms.lasthandoff: 03/25/2017
 您必須從以某些資料檔案編製 Solr 的索引來開始。 然後，您可以使用 Solr 來對已編製索引的資料執行搜尋查詢。 使用下列步驟以將某些範例資料新增至 Solr，然後查詢它：
 
 1. 使用 SSH 連線到 HDInsight 叢集
-   
+
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
-   
+
     如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
-     
+
      > [!IMPORTANT]
      > 本文件中稍後的步驟會使用 SSL 通道以連線至 Solr Web UI。 為了使用這些步驟，您必須建立 SSL 通道，然後設定您的瀏覽器以使用它。
-     > 
+     >
      > 如需詳細資訊，請參閱 [使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)
-     > 
-     > 
+     >
+     >
 2. 使用下列命令以具備 Solr 索引範例資料：
-   
+
         cd /usr/hdp/current/solr/example/exampledocs
         java -jar post.jar solr.xml monitor.xml
-   
+
     您會在主控台上看到下列輸出：
-   
+
         POSTing file solr.xml
         POSTing file monitor.xml
         2 files indexed.
         COMMITting Solr index changes to http://localhost:8983/solr/update..
         Time spent: 0:00:01.624
-   
+
     post.jar 公用程式使用 **solr.xml** 和 **monitor.xml** 這兩個範例文件對 Solr 編製索引。 這些項目會儲存在 Solr 內的 **collection1** 中。
 3. 使用下列項目以查詢 Solr 公開的 REST API：
-   
+
         curl "http://localhost:8983/solr/collection1/select?q=*%3A*&wt=json&indent=true"
-   
+
     這會對任何符合 **\*:\*** (在查詢字串中編碼為 \*%3A\*) 的文件針對 **collection1** 發出查詢，回應應該以 JSON 傳回。 回應看起來應該如下所示：
-   
+
             "response": {
                 "numFound": 2,
                 "start": 0,
@@ -167,37 +167,37 @@ Solr 儀表板是 Web UI，可讓您透過網頁瀏覽器使用 Solr。 Solr 儀
 一旦您建立 SSH 通道，請使用下列步驟以使用 Solr 儀表板：
 
 1. 決定主要前端節點的主機名稱：
-   
+
    1. 在連接埠 22 上使用 SSH 連接到叢集。 例如，`ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`，其中 **USERNAME** 是您的 SSH 使用者名稱，**CLUSTERNAME** 是您的叢集名稱。
-      
+
        如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
    2. 使用下列命令以取得完整主機名稱︰
-      
+
            hostname -f
-      
+
        此命令會傳回類似以下的名稱：
-      
+
            hn0-myhdi-nfebtpfdv1nubcidphpap2eq2b.ex.internal.cloudapp.net
-      
+
        這是應該用於下列步驟中的主機名稱。
-2. 在瀏覽器中，連接到 **http://HOSTNAME:8983/solr/#/**，其中 **HOSTNAME** 是您在先前步驟中決定的名稱。 
-   
+2. 在瀏覽器中，連接到 **http://HOSTNAME:8983/solr/#/**，其中 **HOSTNAME** 是您在先前步驟中決定的名稱。
+
     此要求應該會透過 SSH 通道路由傳送至您的 HDInsight 叢集的前端節點。 您應該會看到如下所示的頁面：
-   
+
     ![Solr 儀表板的映像](./media/hdinsight-hadoop-solr-install-linux/solrdashboard.png)
 3. 從左窗格使用 [核心選取器] 下拉式清單，以選取 [collection1]。 數個項目應該會出現在 **collection1** 底下。
 4. 從 **collection1** 底下的項目中，選取 [查詢]。 使用下列值來填入搜尋頁面：
-   
+
    * 在 [q] 文字方塊中輸入 **:**\*\*。 如此便會傳回已在 Solr 中編製索引的所有文件。 如果您想要搜尋文件內的特定字串，您可以在此輸入該字串。
    * 在 [ **wt** ] 文字方塊中，選取輸出格式。 預設值是 [ **json**]。
-     
+
      最後，選取搜尋頁面底部的 [執行查詢]  按鈕。
-     
+
      ![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-solr-install-linux/hdi-solr-dashboard-query.png)
-     
+
      輸出中會傳回兩個我們之前用於對 Solr 編製索引的文件。 輸出結果類似下面：
-     
+
            "response": {
                "numFound": 2,
                "start": 0,
@@ -261,14 +261,14 @@ Solr 儀表板是 Web UI，可讓您透過網頁瀏覽器使用 Solr。 Solr 儀
 您最好從 Solr 叢集節點將已編製索引的資料備份到 Azure Blob 儲存體。 請執行下列步驟來進行此作業：
 
 1. 使用 SSH 連線到叢集，然後使用下列命令來取得前端節點的主機名稱：
-   
+
         hostname -f
 2. 使用下列命令來建立已編製索引之資料的快照。 以上一個命令傳回的名稱取代 **HOSTNAME**：
-   
+
         curl http://HOSTNAME:8983/solr/replication?command=backup
-   
+
     您應該會看到如下所示的回應：
-   
+
         <?xml version="1.0" encoding="UTF-8"?>
         <response>
           <lst name="responseHeader">
@@ -278,21 +278,21 @@ Solr 儀表板是 Web UI，可讓您透過網頁瀏覽器使用 Solr。 Solr 儀
           <str name="status">OK</str>
         </response>
 3. 接下來，將目錄變更為 **/usr/hdp/current/solr/example/solr**。 在這裡每個集合會有子目錄。 每個集合目錄包含**資料**目錄，這是該集合的快照所在的位置。
-   
+
     例如，如果您使用先前的步驟來編製範例文件的索引，**/usr/hdp/current/solr/example/solr/collection1/data** 目錄現在應該包含一個名為 **snapshot.###########** 的目錄，其中 # 是快照的日期和時間。
 4. 使用如下的命令，建立快照資料夾的壓縮封存：
-   
+
         tar -zcf snapshot.20150806185338855.tgz snapshot.20150806185338855
-   
+
     這會建立名為 **snapshot.20150806185338855.tgz** 的新封存，其中包含 **snapshot.20150806185338855** 目錄的內容。
 5. 然後您可以使用下列命令，將封存儲存至叢集的主要儲存體：
-   
+
     hadoop fs -copyFromLocal snapshot.20150806185338855.tgz /example/data
-   
+
    > [!NOTE]
    > 您可能想要建立用來儲存 Solr 快照的專用目錄。 例如， `hadoop fs -mkdir /solrbackup`。
-   > 
-   > 
+   >
+   >
 
 如需有關使用 Solr 備份和還原的詳細資訊，請參閱 [製作和還原 SolrCores 的備份](https://cwiki.apache.org/confluence/display/solr/Making+and+Restoring+Backups+of+SolrCores)。
 

@@ -15,14 +15,14 @@ ms.topic: get-started-article
 ms.date: 05/12/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 9916000ddf38fdda1dcbdcf8818c5833a445efc8
-ms.openlocfilehash: 3f099db9f75466b5571aa732bb60343af7bd86da
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 34cccf6a0962f72e04a90516fa7643db2533d85d
+ms.lasthandoff: 04/06/2017
 
 
 ---
 # <a name="add-functionality-to-your-first-web-app"></a>在您的第一個 Web 應用程式中新增功能
-在[在&5; 分鐘內，將您的第一個 Web 應用程式部署至 Azure](app-service-web-get-started-cli-nodejs.md) 中，您已將範例 Web 應用程式部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。 在本文中，您將快速地在已部署的 Web 應用程式中新增一些很棒的功能。 您將在幾分鐘內︰
+在[在 5 分鐘內，將您的第一個 Web 應用程式部署至 Azure](app-service-web-get-started-dotnet.md) 中，您已將範例 Web 應用程式部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。 在本文中，您將快速地在已部署的 Web 應用程式中新增一些很棒的功能。 您將在幾分鐘內︰
 
 * 強制執行使用者驗證
 * 自動調整您的應用程式
@@ -129,7 +129,7 @@ App Service 會針對某些常見的驗證需求提供周全的解決方案，�
 
 恭喜，您現已接收警示。
 
-此警示設定會每隔&5; 分鐘檢查一次 CPU 使用率。 如果該數字高於 90%，您以及獲得授權的人員都會收到電子郵件警示。 若要查看有權接收警示的人員，請回到您應用程式的刀鋒視窗，然後按一下 [存取]  按鈕。  
+此警示設定會每隔 5 分鐘檢查一次 CPU 使用率。 如果該數字高於 90%，您以及獲得授權的人員都會收到電子郵件警示。 若要查看有權接收警示的人員，請回到您應用程式的刀鋒視窗，然後按一下 [存取]  按鈕。  
 ![查看有誰收到警示](./media/app-service-web-get-started/alert-rbac.png)
 
 您應該會看到 [訂用帳戶管理員] 已經是應用程式的 [擁有者]。 如果您是 Azure 訂用帳戶 (如您的試用訂用帳戶) 的帳戶管理員，您就包含在此群組中。 如需 Azure 角色型存取控制的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。

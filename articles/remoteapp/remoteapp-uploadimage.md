@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: ericor
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: b948a8c0394fffcfa63b5b48646639118cba8953
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: dcf897cfb03316312613a641f1758cd4636d06b7
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="upload-a-custom-image-for-azure-remoteapp"></a>上傳 Azure RemoteApp 的自訂映像
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -53,10 +54,5 @@ ms.openlocfilehash: b948a8c0394fffcfa63b5b48646639118cba8953
 * 請確定使用的是 Windows PowerShell，而不是 Azure PowerShell。 您必須安裝 Azure PowerShell 模組，因為上傳過程中會需要某些特定模組。
 * 切勿更改指令碼，該指令碼已提供驗證，方便您使用。
 * 如果 vhd 檔案在上傳期間遭到鎖定，請將檔案複製或移動到新位置，並再次嘗試上傳。 有些 Windows 程序可能會阻止上傳。  
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

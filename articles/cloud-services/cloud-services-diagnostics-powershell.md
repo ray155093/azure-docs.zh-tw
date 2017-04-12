@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 09/06/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 43eaec477ef5279631454edd584f22573e224977
-ms.openlocfilehash: b97a81cd516b6d3d20740609c064a13fb9f8622a
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 6c68ec173fad1800a63a827028ed5481a4e7f5c8
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -136,10 +137,5 @@ Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService" -Role "WebRole"
 ## <a name="next-steps"></a>後續步驟
 * 如需使用 Azure 診斷和其他技術疑難排解問題的詳細指引，請參閱 [在 Azure 雲端服務和虛擬機器中啟用診斷](cloud-services-dotnet-diagnostics.md)。
 * [診斷組態結構描述](https://msdn.microsoft.com/library/azure/dn782207.aspx) 說明診斷延伸模組的各種 XML 組態選項。
-* 若要了解如何啟用虛擬機器的診斷延伸模組，請參閱 [使用 Azure 資源管理員範本建立具有監控和診斷功能的 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
+* 若要了解如何啟用虛擬機器的診斷延伸模組，請參閱 [使用 Azure 資源管理員範本建立具有監控和診斷功能的 Windows 虛擬機器](../virtual-machines/windows/extensions-diagnostics-template.md)
 

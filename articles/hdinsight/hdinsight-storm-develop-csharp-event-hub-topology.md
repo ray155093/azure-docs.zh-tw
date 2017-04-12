@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: 23bdde763de6f437a0dec74c51722cbcfc19b141
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: bd44ba6795bc89ff4d250caf38520a72dd37c448
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -31,7 +31,7 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 * **EventHubWriter**：隨機產生資料並將資料寫入事件中樞
 * **EventHubReader**︰從事件中樞讀取資料並將資料記錄到 Storm 記錄檔
 
-> [!NOTE] 
+> [!NOTE]
 > 如需本專案的 Java 版本，請參閱[使用 Storm on HDInsight 處理 Azure 事件中樞的事件 (Java)](hdinsight-storm-develop-java-event-hub-topology.md)。
 
 ## <a name="scpnet"></a>SCP.NET
@@ -46,7 +46,7 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 專案所使用的 Microsoft.SCP.Net.SDK NuGet 封裝必須符合安裝在 HDInsight 上的 Storm 主要版本。 HDInsight 3.3 版及 3.4 版上的 Storm 使用 Storm 0.10.x 版，因此您必須搭配使用 SCP.NET 0.10.x.x 版與這些叢集。 HDInsight 3.5 使用 Storm 1.0.x，因此您必須搭配使用 SCP.NET 1.0.x.x 版與此叢集版本。
 
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 HDInsight 3.4 和更高版本使用單聲道來執行 C# 拓撲。 大多能搭配 Mono 正常運作。 不過您應該查看 [Mono 相容性](http://www.mono-project.com/docs/about-mono/compatibility/)文件，以了解是否可能有不相容之處。
 
@@ -198,12 +198,12 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
 事件中樞是此範例的資料來源。 請使用[開始使用事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)文件之**建立事件中樞**區段中的資訊。
 
 1. 在建立事件中樞之後，檢視 Azure 入口網站中的 [事件中樞] 刀鋒視窗，然後選取 [共用存取原則]。 選取 [+ 新增] 連結來新增下列原則︰
-   
+
    | 名稱 | 權限 |
    | --- | --- |
    | 寫入器 |傳送 |
    | 讀取器 |接聽 |
-   
+
     ![原則](./media/hdinsight-storm-develop-csharp-event-hub-topology/sas.png)
 
 2. 選取 [讀取器] 和 [寫入器] 原則。 複製並儲存這兩個原則的 [主索引鍵] 值，因為稍後將使用這些值。
@@ -215,7 +215,7 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
 2. 從 [eventhub-storm-hybrid](https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub) 下載方案。
 
 3. 在 **EventHubWriter** 專案中，開啟 **App.config** 檔案。 使用您稍早設定之事件中樞的資訊填入下列索引鍵的值︰
-   
+
    | 索引鍵 | 值 |
    | --- | --- |
    | EventHubPolicyName |寫入器 (如果您為具有*傳送*權限的原則使用了不同名稱，請改用該名稱。) |
@@ -231,7 +231,7 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
 1. 開啟 **EventHubReader** 專案。
 
 2. 開啟 **EventHubReader** 的 **App.config**。 使用您稍早設定之事件中樞的資訊填入下列索引鍵的值︰
-   
+
    | 索引鍵 | 值 |
    | --- | --- |
    | EventHubPolicyName |讀取器 (如果您為具有*接聽*權限的原則使用了不同名稱，請改用該名稱。) |
@@ -245,15 +245,15 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
 ## <a name="deploy-the-topologies"></a>部署拓撲
 
 1. 在**方案總管**中，以滑鼠右鍵按一下 [EventHubReader] 專案，然後選取 [提交到 Storm on HDInsight]。
-   
+
     ![提交到 Storm](./media/hdinsight-storm-develop-csharp-event-hub-topology/submittostorm.png)
 
 2. 在 [提交拓撲] 畫面中，選取您的 [Storm 叢集]。 展開 [其他組態]，依序選取 [Java 檔案路徑]、[...]，然後選取包含您稍早下載之 jar 檔的目錄。 最後，按一下 [提交]。
-   
+
     ![提交對話方塊的影像](./media/hdinsight-storm-develop-csharp-event-hub-topology/submit.png)
 
 3. 提交拓撲之後，[Storm 拓撲檢視器] 便會隨即出現。 若要檢視拓撲的相關資訊，請選取左窗格中的 **EventHubReader** 拓撲。
-   
+
     ![範例儲存體檢視](./media/hdinsight-storm-develop-csharp-event-hub-topology/topologyviewer.png)
 
 4. 在**方案總管**中，以滑鼠右鍵按一下 [EventHubWriter] 專案，然後選取 [提交到 Storm on HDInsight]。
@@ -267,7 +267,7 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
 8. 若要開啟 Bolt 的**元件摘要**，請按兩下圖表中的 **LogBolt** 元件。
 
 9. 在 [執行程式] 區段中，選取 [連接埠] 資料行內的其中一個連結。 這會顯示該元件記錄的資訊。 所記錄的資訊類似下列文字︰
-   
+
         2017-03-02 14:51:29.255 m.s.p.TaskHost [INFO] Received C# STDOUT: 2017-03-02 14:51:29,255 [1] INFO  EventHubReader_LogBolt [(null)] - Received data: {"deviceValue":1830978598,"deviceId":"8566ccbc-034d-45db-883d-d8a31f34068e"}
         2017-03-02 14:51:29.283 m.s.p.TaskHost [INFO] Received C# STDOUT: 2017-03-02 14:51:29,283 [1] INFO  EventHubReader_LogBolt [(null)] - Received data: {"deviceValue":1756413275,"deviceId":"647a5eff-823d-482f-a8b4-b95b35ae570b"}
         2017-03-02 14:51:29.313 m.s.p.TaskHost [INFO] Received C# STDOUT: 2017-03-02 14:51:29,312 [1] INFO  EventHubReader_LogBolt [(null)] - Received data: {"deviceValue":1108478910,"deviceId":"206a68fa-8264-4d61-9100-bfdb68ee8f0a"}
@@ -289,5 +289,4 @@ Spout 和 Bolt 會以名為 **eventhubs-storm-spout-#.#-jar-with-dependencies.ja
 * [使用 Visual Studio 開發 Apache Storm on HDInsight 的 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)
 * [SCP 程式設計指南](hdinsight-storm-scp-programming-guide.md)
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
-
 
