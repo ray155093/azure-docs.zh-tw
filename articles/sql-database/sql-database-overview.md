@@ -16,8 +16,9 @@ ms.workload: data-management
 ms.date: 11/28/2016
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 06639080dec485395d6821c371a4f792c7c02845
-ms.openlocfilehash: 5e3ac3a08ea3e5c72082dcc7faa209d848acf2fe
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: b986fc881a39ca3a28d6f5f968cefe19c05b5dc5
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -40,7 +41,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 - **SQL Database 防火牆**：為了協助保護您的資料，SQL Database 防火牆會防止對您的資料庫伺服器或其資料庫的所有存取，直到您指定哪些電腦擁有權限。 請參閱[防火牆](sql-database-firewall-configure.md)
 
 ## <a name="what-collations-are-supported"></a>支援哪些定序？
-Microsoft Azure SQL Database 使用的預設資料庫定序是 **SQL_LATIN1_GENERAL_CP1_CI_AS**，其中 **LATIN1_GENERAL** 是英文 (美國)，**CP1** 是代碼頁 1252，**CI** 不區分大小寫，**AS** 區分重音。 無法改變 V12 資料庫的定序。 如需如何設定定序的詳細資訊，請參閱＜ [COLLATE (Transact-SQL)](https://msdn.microsoft.com/library/ms184391.aspx)＞。
+Microsoft Azure SQL Database 使用的預設資料庫定序是 **SQL_LATIN1_GENERAL_CP1_CI_AS**，其中 **LATIN1_GENERAL** 是英文 (美國)，**CP1** 是代碼頁 1252，**CI** 不區分大小寫，**AS** 區分重音。 如需如何設定定序的詳細資訊，請參閱＜ [COLLATE (Transact-SQL)](https://msdn.microsoft.com/library/ms184391.aspx)＞。
 
 ## <a name="what-are-the-naming-requirements-for-database-objects"></a>資料庫物件的命名需求有哪些？
 
@@ -67,10 +68,5 @@ Microsoft Azure SQL Database 使用的預設資料庫定序是 **SQL_LATIN1_GENE
 - 如需根據您**服務層**的特定資源配額和限制。 如需服務層級的概觀，請參閱 [SQL Database 服務層級](sql-database-service-tiers.md)。
 - 如需安全性概觀，請參閱 [Azure SQL Database 安全性概觀](sql-database-security-overview.md)。
 - 如需驅動程式的可用性和 SQL Database 支援的相關資訊，請參閱＜ [SQL Database 與 SQL Server 的連線庫](sql-database-libraries.md)＞。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

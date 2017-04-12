@@ -16,9 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 03/17/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 8a6b48437eecd9f2f5c3fe8447b31192d8318149
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 65e3564111b1f291bead685ae0c831951460c827
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -76,7 +76,7 @@ ms.lasthandoff: 03/25/2017
 與內部部署、非虛擬化的 IT 基礎結構相較之下，Azure VM、儲存體和網路各有不同的作業特性。 若要在 Azure 中成功實作 HADR SQL Server 解決方案，您必須了解這些差異，並配合這些差異設計您的解決方案。
 
 ### <a name="high-availability-nodes-in-an-availability-set"></a>可用性設定組中的高可用性節點
-Azure 中的可用性設定組可讓您將高可用性節點分別放入容錯網域 (FD) 和更新網域 (UD)。 若要將 Azure VM 放入相同的可用性設定組中，您必須將其部署至相同的雲端服務中。 只有相同雲端服務內的節點可以參與相同的可用性設定組。 如需詳細資訊，請參閱 [管理虛擬機器的可用性](../../virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+Azure 中的可用性設定組可讓您將高可用性節點分別放入容錯網域 (FD) 和更新網域 (UD)。 若要將 Azure VM 放入相同的可用性設定組中，您必須將其部署至相同的雲端服務中。 只有相同雲端服務內的節點可以參與相同的可用性設定組。 如需詳細資訊，請參閱 [管理虛擬機器的可用性](../manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ### <a name="failover-cluster-behavior-in-azure-networking"></a>Azure 網路中的容錯移轉叢集行為
 由於您將重複的 IP 位址指派為叢集網路名稱 (例如，將相同的 IP 位址指派為其中一個叢集節點)，因此 Azure 中不符合 RFC 規範的 DHCP 服務可能會導致特定容錯移轉叢集組態的建立作業失敗。 這是您實作 Always On 可用性群組 (取決於 Windows 容錯移轉叢集功能) 時會發生的問題。

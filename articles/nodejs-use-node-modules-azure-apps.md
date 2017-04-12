@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/22/2016
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 2d57fc14803e273157151d24efb12c3f5dd15a61
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 4ef028e7dbacc126a94b383d0fb13e255bcedcaf
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -81,14 +81,11 @@ Azure App Service 不支援所有的原生模組，而且在編譯具有非常�
 > 
 
 ## <a name="next-steps"></a>後續步驟
-現在，您了解如何搭配使用 Node.js 模組與 Azure，接著了解如何[指定 Node.js 版本]、[建置與部署 Node.js Web 應用程式](app-service-web/web-sites-nodejs-develop-deploy-mac.md)，和[如何使用適用於 Mac 和 Linux 的 Azure 命令列介面]。
+現在，您了解如何搭配使用 Node.js 模組與 Azure，接著了解如何[指定 Node.js 版本]、[建置與部署 Node.js Web 應用程式](app-service-web/app-service-web-get-started-nodejs.md)，和[如何使用適用於 Mac 和 Linux 的 Azure 命令列介面]。
 
 如需詳細資訊，請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
 
 [指定 Node.js 版本]: nodejs-specify-node-version-azure-apps.md
 [如何使用適用於 Mac 和 Linux 的 Azure 命令列介面]:cli-install-nodejs.md
-[build and deploy a Node.js web app]: web-sites-nodejs-develop-deploy-mac.md
-[Node.js Web Application with Storage on MongoDB (MongoLab)]: store-mongolab-web-sites-nodejs-store-data-mongodb.md
-[Build and deploy a Node.js application to an Azure Cloud Service]: cloud-services-nodejs-develop-deploy-app.md
 [使用 Kudu 自訂網站部署指令碼]: /documentation/videos/custom-web-site-deployment-scripts-with-kudu/
 
