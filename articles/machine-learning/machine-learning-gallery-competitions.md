@@ -50,7 +50,7 @@ ms.lasthandoff: 02/21/2017
 
 ![已完成競賽](media/machine-learning-gallery-competitions/open-competition.png)
 
-如果競賽已不再開放，它在詳細資料頁面上的狀態將會是 [Completed] (已完成)，而 [Enter Competition] (進入競賽) 連結文字會變成 [Finished] (已完成)。
+如果競賽已不再開放，它在詳細資料頁面上的狀態將會是 [Completed] \(已完成)，而 [Enter Competition] \(進入競賽) 連結文字會變成 [Finished] \(已完成)。
 
 ![已完成競賽](media/machine-learning-gallery-competitions/completed-competition.png)
 
