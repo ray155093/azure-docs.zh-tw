@@ -11,20 +11,17 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/12/2017
+ms.date: 03/22/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 4b21bf6bc1be59facd503000a4f83a56189d55d3
-ms.openlocfilehash: aea1b35348bec0affe2288ff683e0320e2b0f714
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 6869453e0776405841890978eef97f549be97541
+ms.lasthandoff: 04/03/2017
 
 
 ---
 
 # <a name="network-topology-considerations-when-using-azure-active-directory-application-proxy"></a>使用 Azure Active Directory 應用程式 Proxy 時的網路拓撲考量
-> [!NOTE]
-> 應用程式 Proxy 是您升級至 Premium 或 Basic 版本的 Azure Active Directory 時才能使用的功能。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
->
 
 本文說明使用 Azure Active Directory 應用程式 Proxy 遠端發佈及存取您的應用程式時的網路拓撲考量。
 
@@ -88,7 +85,6 @@ ms.lasthandoff: 02/28/2017
 
 > [!NOTE]
 在某些情況下，您需要最佳化躍點 2 和躍點 3，以取得您想要的延遲特性。 例如，如果已在網路與 Azure 資料中心之間設定 VPN 或 ExpressRoute，您可以將這兩個躍點最佳化。
->
 
 ### <a name="pattern-2-take-advantage-of-expressroute-with-public-peering"></a>模式 2︰利用 ExpressRoute 與公用對等互連
 
@@ -110,7 +106,7 @@ ms.lasthandoff: 02/28/2017
 
 有愈來愈多的組織將其網路移至託管環境。 這可讓它們將自己的應用程式放在託管環境中，這也是其公司網路的一部分，並仍在網域內。 在此情況下，前幾節中所討論的模式可以套用至新的應用程式位置。
 
-請考慮使用連接器群組，以鎖定位於不同位置和網路的應用程式。 如果您正在考慮此選項，請參閱 [AD Domain Services](https://azure.microsoft.com/services/active-directory-ds)。
+請考慮使用連接器群組，以鎖定位於不同位置和網路的應用程式。 如果您正在考慮此選項，請參閱 [AD Domain Services](../active-directory-domain-services/active-directory-ds-overview.md)。
 
 ## <a name="common-scenarios"></a>常見案例
 
@@ -173,8 +169,9 @@ ms.lasthandoff: 02/28/2017
 ![顯示世界各洲的輪廓，以及躍點在此使用案例中排列方式的圖表](./media/application-proxy-network-topologies/application-proxy-pattern5c.png)
 
 ## <a name="next-steps"></a>後續步驟
-[啟用應用程式 Proxy](active-directory-application-proxy-enable.md)<br>
-[啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)<br>
-[啟用條件式存取](active-directory-application-proxy-conditional-access.md)<br>
-[使用應用程式 Proxy 疑難排解您遇到的問題](active-directory-application-proxy-troubleshoot.md)
+
+- [啟用應用程式 Proxy](active-directory-application-proxy-enable.md)
+- [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
+- [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
+- [使用應用程式 Proxy 疑難排解您遇到的問題](active-directory-application-proxy-troubleshoot.md)
 

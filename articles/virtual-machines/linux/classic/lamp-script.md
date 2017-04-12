@@ -16,15 +16,15 @@ ms.topic: article
 ms.date: 09/13/2016
 ms.author: guybo
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 3c1877f0dd560894099fb7c50c30846c2cc720b3
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 1c1591079bf09da6fbe50d848b05ec7791657e04
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="deploy-a-lamp-app-using-the-azure-customscript-extension-for-linux"></a>使用適用於 Linux 的 Azure CustomScript 延伸模組部署 LAMP 應用程式
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需使用 Resource Manager 模型部署 LAMP 堆疊的詳細資訊，請參閱[這裡](../../virtual-machines-linux-create-lamp-stack.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需使用 Resource Manager 模型部署 LAMP 堆疊的詳細資訊，請參閱[這裡](../create-lamp-stack.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 適用於 Linux 的 Microsoft Azure CustomScript 延伸模組提供一種方式，讓您可以執行使用該虛擬機器 (VM) 所支援的任何指令碼語言 (例如 Python 和 Bash) 所撰寫的任意程式碼來自訂 VM。 這提供極具彈性的方式，自動將應用程式部署到多部電腦。
 
@@ -105,6 +105,6 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
 
 [Azure Linux 延伸模組 (GitHub)](https://github.com/Azure/azure-linux-extensions)
 
-[Azure 上的 Linux 和開放原始碼運算](../../virtual-machines-linux-opensource-links.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+[Azure 上的 Linux 和開放原始碼運算](../opensource-links.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 

@@ -16,9 +16,9 @@ ms.date: 10/10/2016
 ms.author: richrund
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 5bb3a67c999c1d41c50b2b660a97a53125511633
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 87e888bf3d7355b36c42e8787abe9bf1cb191fcd
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 03/25/2017
 對於 Windows 虛擬機器，啟用 *Microsoft Monitoring Agent* 虛擬機器擴充功能。
 對於 Linux 虛擬機器，啟用 *OMS Agent for Linux* 虛擬機器擴充功能。
 
-深入了解 [Azure 虛擬機器擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)和 [Linux 代理程式](../virtual-machines/virtual-machines-linux-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+深入了解 [Azure 虛擬機器擴充功能](../virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)和 [Linux 代理程式](../virtual-machines/linux/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 如果您使用代理程式來收集記錄資料，則必須設定 [Log Analytics 中的資料來源](log-analytics-data-sources.md)，以指定您要收集的記錄和度量。
 
@@ -397,18 +397,18 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Templa
 6. 在虛擬機器上提高權限的 PowerShell 視窗中輸入下列命令，以檢視 Microsoft Monitoring Agent 的狀態 `  (New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg').GetCloudWorkspaces() | Format-List`
 7. 檢閱 `C:\Windows\System32\config\systemprofile\AppData\Local\SCOM\Logs` 中的 Microsoft Monitoring Agent 安裝記錄檔
 
-如需詳細資訊，請參閱[針對 Windows 擴充進行疑難排解](../virtual-machines/virtual-machines-windows-extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+如需詳細資訊，請參閱[針對 Windows 擴充進行疑難排解](../virtual-machines/windows/extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ### <a name="troubleshooting-linux-virtual-machines"></a>針對 Linux 虛擬機器進行疑難排解
 如果 *OMS Agent for Linux* VM 代理程式擴充未安裝或沒有回報，您可以執行下列步驟來排解這個問題。
 
 1. 如果擴充狀態是「未知」，請檢閱 VM 代理程式記錄檔 `/var/log/waagent.log`，以檢查 Azure VM 代理程式是否已安裝且正常運作
    * 如果記錄檔不存在，則表示未安裝 VM 代理程式。
-   * [在 Linux VM 上安裝 Azure VM 代理程式](../virtual-machines/virtual-machines-linux-agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+   * [在 Linux VM 上安裝 Azure VM 代理程式](../virtual-machines/linux/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 2. 若是其他不良狀態，請檢閱 `/var/log/azure/Microsoft.EnterpriseCloud.Monitoring.OmsAgentForLinux/*/extension.log` 和 `/var/log/azure/Microsoft.EnterpriseCloud.Monitoring.OmsAgentForLinux/*/CommandExecution.log` 中的 OMS Agent for Linux VM 擴充記錄檔
 3. 如果擴充狀態良好，但資料未上傳，請檢閱 `/var/opt/microsoft/omsagent/log/omsagent.log` 中的 OMS Agent for Linux 記錄檔
 
-如需詳細資訊，請參閱[針對 Linux 擴充進行疑難排解](../virtual-machines/virtual-machines-linux-extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+如需詳細資訊，請參閱[針對 Linux 擴充進行疑難排解](../virtual-machines/linux/extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ## <a name="next-steps"></a>後續步驟
 * 設定 [Log Analytics 中的資料來源](log-analytics-data-sources.md) 來指定要收集的記錄和計量。

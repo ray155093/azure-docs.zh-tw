@@ -10,14 +10,15 @@ tags: azure-service-management
 ms.assetid: 048f98aa-f708-44cb-9b9e-953f67dc6da8
 ms.service: app-service-web
 ms.workload: web
-ms.devlang: na
+ms.devlang: azurecli
+ms.tgt_pltfrm: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 10404f2814b167dfd54869f4b6e58f911adbdc8d
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
+ms.openlocfilehash: 76e82a217f3a48dc57f3a6e88507f89ed1936eaf
+ms.lasthandoff: 04/04/2017
 
 ---
 
@@ -25,9 +26,7 @@ ms.lasthandoff: 03/21/2017
 
 此範例指令碼會在 App Service 中建立 Web 應用程式及其相關資源，然後在本機 Git 存放庫中部署 Web 應用程式程式碼。
 
-您可以視需要使用 [Azure CLI 安裝指南 (英文)](https://docs.microsoft.com/cli/azure/install-azure-cli) 中的指示來安裝 Azure CLI，然後執行 `az login` 來建立與 Azure 的連線。 此外，應用程式程式碼必須認可到本機 Git 儲存機制。
-
-這個範例適用於 Bash 殼層。 如需在 Windows 用戶端上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../../virtual-machines/virtual-machines-windows-cli-options.md)。
+[!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 ## <a name="sample-script"></a>範例指令碼
 

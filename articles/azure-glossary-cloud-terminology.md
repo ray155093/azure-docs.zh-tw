@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 08/03/2016
 ms.author: monicar
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: cace64d3768b6ede44b8748a27de5e8574fa769b
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 1842d55e2275560581cf2766cdf74e0939e68c98
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -38,7 +38,7 @@ Azure 詞彙搭配上述兩個參考可提供適用於 Azure 和雲端產業的�
 
 ### <a name="availability-set"></a>可用性設定組
 可一起管理的虛擬機器集合，以提供應用程式備援能力和可靠性。 可用性設定組的用法可確保在預定進行或未預定進行的維護事件期間，至少有一部虛擬機器可以使用。  
-另請參閱[管理 Windows 虛擬機器的可用性](virtual-machines/virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[管理 Linux 虛擬機器的可用性](virtual-machines/virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+另請參閱[管理 Windows 虛擬機器的可用性](virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[管理 Linux 虛擬機器的可用性](virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="classic-model"></a>Azure 傳統部署模型
 您可以使用兩個 [部署模型](resource-manager-deployment-model.md) 之一來部署 Azure 中的資源 (新模型是 Azure Resource Manager)。 您可以將部分 Azure 資源部署於這其中一個模型中，而將其他資源部署於這兩個模型中。 適用於個別 Azure 資源的指引將詳細說明您可以使用哪些模型來部署資源。
@@ -55,7 +55,7 @@ Azure 詞彙搭配上述兩個參考可提供適用於 Azure 和雲端產業的�
 
 ### <a name="fault-domain"></a>容錯網域
 可用性設定組中可能會同時失敗的虛擬機器集合。 範例之一是位於一個機架中的電腦群組，這組電腦會共用通用電源和網路開關。 在 Azure 中，可用性設定組中的虛擬機器會自動分散於多個容錯網域中。  
-另請參閱[管理 Windows 虛擬機器的可用性](virtual-machines/virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[管理 Linux 虛擬機器的可用性](virtual-machines/virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)  
+另請參閱[管理 Windows 虛擬機器的可用性](virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[管理 Linux 虛擬機器的可用性](virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)  
 
 ### <a name="geo"></a>地區
 針對資料常駐定義且通常包含兩個以上區域的界限。 界限可能是在國界內或超出國界，並受到稅法所影響。 每個地理區域至少擁有一個區域。 地理區域的範例為亞太地區和日本。 也稱為 *地理位置*。  
@@ -67,7 +67,7 @@ Azure 詞彙搭配上述兩個參考可提供適用於 Azure 和雲端產業的�
 
 ### <a name="image"></a>映像
 包含作業系統和應用程式組態的檔案，可用來建立任意數目的虛擬機器。 在 Azure 中有兩種類型的映像：VM 映像和作業系統映像。 VM 映像包含作業系統和建立映像時所有連接至虛擬機器的磁碟。 作業系統映像只包含通用的作業系統且不含任何資料磁碟組態。  
-另請參閱 [使用 PowerShell 或 CLI 在 Azure 中瀏覽並選取 Windows 虛擬機器映像](virtual-machines/virtual-machines-windows-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+另請參閱 [使用 PowerShell 或 CLI 在 Azure 中瀏覽並選取 Windows 虛擬機器映像](virtual-machines/windows/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ### <a name="limits"></a>限制
 您可以建立的資源數目或可達到的效能評定。 限制通常會與訂用帳戶、服務和供應項目相關聯。  
@@ -125,7 +125,7 @@ Azure 方案一部分的項目。 每個 Azure 服務可讓您部署不同類型
 
 ### <a name="update-domain"></a>更新網域
 可用性設定組中會同時更新的虛擬機器集合。 同一個更新網域中的虛擬機器會在預定進行的維護期間一起重新啟動。 Azure 永遠不會一次重新啟動多個更新網域。 也稱為升級網域。  
-另請參閱[管理 Windows 虛擬機器的可用性](virtual-machines/virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[管理 Linux 虛擬機器的可用性](virtual-machines/virtual-machines-linux-manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)  
+另請參閱[管理 Windows 虛擬機器的可用性](virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或[管理 Linux 虛擬機器的可用性](virtual-machines/linux/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)  
 
 ### <a name="vm"></a>虛擬機器
 執行作業系統的實體電腦軟體實作。 同一個硬碟上可同時執行多部虛擬機器。 在 Azure 中，虛擬機器適用於各種大小。  
@@ -133,7 +133,7 @@ Azure 方案一部分的項目。 每個 Azure 服務可讓您部署不同類型
 
 ### <a name="vm-extension"></a>虛擬機器擴充功能
 一個實作行為或功能的資源，可協助其他程式運作，或提供與執行中電腦互動的能力。 例如，您可以使用 VM 存取擴充功能，來重設或修改 Azure 虛擬機器上的遠端存取值。  
-另請參閱[有關虛擬機器擴充功能和功能 (Windows)](virtual-machines/virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 或[有關虛擬機器擴充功能和功能 (Linux)](virtual-machines/virtual-machines-linux-extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+另請參閱[有關虛擬機器擴充功能和功能 (Windows)](virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 或[有關虛擬機器擴充功能和功能 (Linux)](virtual-machines/linux/extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="vnet"></a>虛擬網路
 一種網路，可提供與所有其他 Azure 租用戶隔離之 Azure 資源間的連線能力。 它可以透過 [Azure VPN 閘道](vpn-gateway/vpn-gateway-about-vpngateways.md)連接到其他 Azure 虛擬網路，以及使用[多個選項](vpn-gateway/vpn-gateway-plan-design.md)連接到內部部署網路。 您可以完全控制此網路內的 IP 位址區塊、DNS 設定、安全性原則和路由表。  

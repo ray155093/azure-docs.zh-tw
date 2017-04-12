@@ -139,7 +139,7 @@ ms.lasthandoff: 03/28/2017
   3. 在 [顯示名稱] 文字方塊中，輸入您的公司名稱。
    
     ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_003.png) 
-  4. 選取 [Allow RightScale-initiated SSO using a discovery hint] (允許使用 Discovery Hint 的 RightScale 起始 SSO)，然後在下方文字方塊中輸入您的**網域名稱**。
+  4. 選取 [Allow RightScale-initiated SSO using a discovery hint] \(允許使用 Discovery Hint 的 RightScale 起始 SSO)，然後在下方文字方塊中輸入您的**網域名稱**。
    
     ![設定單一登入](./media/active-directory-saas-rightscale-tutorial/tutorial_rightscale_004.png)
   5. 將 Azure AD 中的 SAML SSO URL 複製到 RightScale 中的 [SAML SSO 端點]。

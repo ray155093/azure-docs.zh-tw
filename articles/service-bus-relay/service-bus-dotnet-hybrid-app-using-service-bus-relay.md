@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 02/16/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: f92909e0098a543f99baf3df3197a799bc9f1edc
-ms.openlocfilehash: 6c59c98a400da0616762b2bd0c4217d97e22ab86
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: ed1db5521a17988d7936c53afcfe565cc7ba1a38
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -227,7 +227,7 @@ ms.lasthandoff: 03/01/2017
 
    ![][19]
 8. 按一下 [確定] 。
-9. 您現在必須設定新 Web 應用程式的 Azure 資源。 請遵循[建立 Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md#create-a-web-application)和[建立 Azure 資源](../app-service-web/web-sites-dotnet-get-started.md#create-the-azure-resources)中的所有步驟。 然後，回到本教學課程並繼續進行下一個步驟。
+9. 您現在必須設定新 Web 應用程式的 Azure 資源。 請遵循[建立 Web 應用程式](../app-service-web/app-service-web-get-started-dotnet.md)和[建立 Azure 資源](../app-service-web/app-service-web-get-started-dotnet.md)中的所有步驟。 然後，回到本教學課程並繼續進行下一個步驟。
 10. 在 [方案總管] 中，於 [模型] 上按一下滑鼠右鍵、按一下 [新增]，再按一下 [類別]。 在 [名稱] 方塊中，鍵入名稱 **Product.cs**。 然後按一下 [ **新增**]。
 
     ![][17]
@@ -395,7 +395,7 @@ ms.lasthandoff: 03/01/2017
 先關閉這兩個應用程式，才能繼續下一個步驟。
 
 ## <a name="deploy-the-productsportal-project-to-an-azure-web-app"></a>將 ProductsPortal 專案部署至 Azure Web 應用程式
-下一個步驟是將 **ProductsPortal** 前端轉換為 Azure Web 應用程式。 首先，部署 **ProductsPortal** 專案，並遵循[將 Web 專案部署至 Azure](../app-service-web/web-sites-dotnet-get-started.md#deploy-the-web-project-to-azure) 一節中的所有步驟。 部署完成後，回到本教學課程並繼續進行下一個步驟。
+下一個步驟是將 **ProductsPortal** 前端轉換為 Azure Web 應用程式。 首先，部署 **ProductsPortal** 專案，並遵循[將 Web 專案部署至 Azure](../app-service-web/app-service-web-get-started-dotnet.md) 一節中的所有步驟。 部署完成後，回到本教學課程並繼續進行下一個步驟。
 
 > [!NOTE]
 > 在部署後自動啟動 **ProductsPortal** Web 專案時，您可在瀏覽器視窗中看到錯誤訊息。 這是預期的，且因為 **ProductsServer** 應用程式尚未執行而出現。

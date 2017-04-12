@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 08/29/2016
 ms.author: kyliel
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 6b0d90724f4b7cc065eb186b06816ba818cdaa18
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 5311274867de6e0d863ac532a5b3a31cf964351e
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 03/27/2017
 本文說明如何建立及上傳包含 FreeBSD 作業系統的虛擬硬碟 (VHD)。 上傳之後，您可以使用它做為您自己的映像在 Azure 中建立虛擬機器 (VM)。
 
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需使用 Resource Manager 模型上傳 VHD 的詳細資訊，請參閱[這裡](../../virtual-machines-linux-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需使用 Resource Manager 模型上傳 VHD 的詳細資訊，請參閱[這裡](../upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ## <a name="prerequisites"></a>必要條件
 本文假設您具有下列項目：

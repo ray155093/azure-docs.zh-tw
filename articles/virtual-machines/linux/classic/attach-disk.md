@@ -16,15 +16,15 @@ ms.topic: article
 ms.date: 02/09/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: fc2a181a301ca56e41f586428e2994fcdf6d704d
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 017ba7197e11c2b222082833d5acabb9e542b762
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="how-to-attach-a-data-disk-to-a-linux-virtual-machine"></a>如何將資料磁碟連接至 Linux 虛擬機器
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 參閱如何[使用 Resource Manager 部署模型連接資料磁碟](../../virtual-machines-linux-add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 參閱如何[使用 Resource Manager 部署模型連接資料磁碟](../add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 您可以將空的磁碟和含有資料的磁碟連接到 Azure VM。 這兩種類型的磁碟都是位於 Azure 儲存體帳戶中的 .vhd 檔案。 就像將任何磁碟新增到 Linux 機器一樣，連接磁碟之後，您必須將磁碟初始化並格式化，它才可供使用。 本文將會詳細說明連接空的磁碟和連接含有資料的磁碟到 VM，以及初始化和格式化新磁碟的方法。
 
@@ -229,10 +229,10 @@ ms.lasthandoff: 03/27/2017
 * [如何登入執行 Linux 的虛擬機器][Logon]
 * [如何從 Linux 虛擬機器卸離磁碟](detach-disk.md)
 * [搭配傳統部署模型使用 Azuer CLI](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
-* [在 Azure 中的 Linux VM 上設定 RAID](../../virtual-machines-linux-configure-raid.md)
-* [設定 Azure 中 Linux VM 的 LVM](../../virtual-machines-linux-configure-lvm.md)
+* [在 Azure 中的 Linux VM 上設定 RAID](../configure-raid.md)
+* [設定 Azure 中 Linux VM 的 LVM](../configure-lvm.md)
 
 <!--Link references-->
-[Agent]:../../virtual-machines-linux-agent-user-guide.md
-[Logon]:../../virtual-machines-linux-mac-create-ssh-keys.md
+[Agent]:../agent-user-guide.md
+[Logon]:../mac-create-ssh-keys.md
 
