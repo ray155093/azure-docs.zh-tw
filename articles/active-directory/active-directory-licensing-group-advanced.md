@@ -127,24 +127,24 @@ ms.lasthandoff: 03/14/2017
 3. 在此範例中，我們想要查明哪些使用者的 Enterprise Mobility + Security 授權是直接指派、從群組指派或兩者都有。 您可以使用下列 PowerShell 指令碼。
   
   ```
-  \# Returns TRUE if the user has the license assigned directly
+  #Returns TRUE if the user has the license assigned directly
   function UserHasLicenseAssignedDirectly
   {
       Param([Microsoft.Online.Administration.User]$user, [string]$skuId)
       foreach($license in $user.Licenses)
       {
-          \# we look for the specific license SKU in all licenses assigned to the user
+          #we look for the specific license SKU in all licenses assigned to the user
           if ($license.AccountSkuId -ieq $skuId)
           {
-              \# GroupsAssigningLicense contains a collection of IDs of objects assigning the license
-              \# This could be a group object or a user object (contrary to what the name suggests)
-              \# If the collection is empty, this means the license is assigned directly. This is the case for users who have never been licensed via groups in the past
+              #GroupsAssigningLicense contains a collection of IDs of objects assigning the license
+              #This could be a group object or a user object (contrary to what the name suggests)
+              #If the collection is empty, this means the license is assigned directly. This is the case for users who have never been licensed via groups in the past
               if ($license.GroupsAssigningLicense.Count -eq 0)
               {
                   return $true
               }
-              \# If the collection contains the ID of the user object, this means the license is assigned directly
-              \# Note: the license may also be assigned through one or more groups in addition to being assigned directly
+              #If the collection contains the ID of the user object, this means the license is assigned directly
+              #Note: the license may also be assigned through one or more groups in addition to being assigned directly
               foreach ($assignmentSource in $license.GroupsAssigningLicense)
               {
                   if ($assignmentSource -ieq $user.ObjectId)
@@ -157,21 +157,21 @@ ms.lasthandoff: 03/14/2017
       }
       return $false
   }
-  \# Returns TRUE if the user is inheriting the license from a group
+  #Returns TRUE if the user is inheriting the license from a group
   function UserHasLicenseAssignedFromGroup
   {
     Param([Microsoft.Online.Administration.User]$user, [string]$skuId)
      foreach($license in $user.Licenses
      {
-        \# we look for the specific license SKU in all licenses assigned to the user
+        #we look for the specific license SKU in all licenses assigned to the user
         if ($license.AccountSkuId -ieq $skuId)
         {
-          \# GroupsAssigningLicense contains a collection of IDs of objects assigning the license
-          \# This could be a group object or a user object (contrary to what the name suggests)
+          #GroupsAssigningLicense contains a collection of IDs of objects assigning the license
+          #This could be a group object or a user object (contrary to what the name suggests)
             foreach ($assignmentSource in $license.GroupsAssigningLicense)
           {
-                  \# If the collection contains at least one ID not matching the user ID this means that the license is inherited from a group.
-                  \# Note: the license may also be assigned directly in addition to being inherited
+                  #If the collection contains at least one ID not matching the user ID this means that the license is inherited from a group.
+                  #Note: the license may also be assigned directly in addition to being inherited
                   if ($assignmentSource -ine $user.ObjectId)
 
             {
@@ -188,9 +188,9 @@ ms.lasthandoff: 03/14/2017
 4. 指令碼的其餘部分會取得所有使用者，並對每一個使用者執行這些函式。 然後將輸出格式化為資料表。
     
   ```
-  \# the license SKU we are interested in
+  #the license SKU we are interested in
   $skuId = "reseller-account:EMS"
-  \# find all users that have the SKU license assigned
+  #find all users that have the SKU license assigned
   Get-MsolUser -All | where {$_.isLicensed -eq $true -and $_.Licenses.AccountSKUID -eq $skuId} | select `
       ObjectId, `
       @{Name="SkuId";Expression={$skuId}}, `

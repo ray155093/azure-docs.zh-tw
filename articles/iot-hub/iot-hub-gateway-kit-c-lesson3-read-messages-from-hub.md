@@ -7,6 +7,8 @@ author: shizn
 manager: timtl
 tags: 
 keywords: "在雲端的資料, 雲端資料收集, iot 雲端服務, iot 資料"
+ROBOTS: NOINDEX
+redirect_url: /azure/iot-hub/iot-hub-gateway-kit-c-lesson1-set-up-nuc
 ms.assetid: cc88be24-b5c0-4ef2-ba21-4e8f77f3e167
 ms.service: iot-hub
 ms.devlang: c

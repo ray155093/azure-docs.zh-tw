@@ -7,6 +7,8 @@ author: shizn
 manager: timtl
 tags: 
 keywords: "ble 應用程式, 感應器監視應用程式, 感應器資料收集, 來自感應器的資料, 送至雲端的感應器資料"
+ROBOTS: NOINDEX
+redirect_url: /azure/iot-hub/iot-hub-gateway-kit-c-lesson1-set-up-nuc
 ms.assetid: b33e53a1-1df7-4412-ade1-45185aec5bef
 ms.service: iot-hub
 ms.devlang: c

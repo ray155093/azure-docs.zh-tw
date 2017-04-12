@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2016
+ms.date: 03/15/2017
 ms.author: kgremban
+ms.custom: end-user
 translationtype: Human Translation
 ms.sourcegitcommit: 3fd5b85f718313d8267157157e45965b2b21f2db
 ms.openlocfilehash: 60c84a5f5c675b012f2504f6fe222f35ce4d0646
-
+ms.lasthandoff: 02/03/2017
 
 ---
 # <a name="what-are-app-passwords-in-azure-multi-factor-authentication"></a>什麼是 Azure Multi-Factor Authentication 中的應用程式密碼？
@@ -116,9 +117,4 @@ ms.openlocfilehash: 60c84a5f5c675b012f2504f6fe222f35ce4d0646
 - [管理雙步驟驗證設定](multi-factor-authentication-end-user-manage-settings.md)
 
 - 試用 [Microsoft Authenticator 應用程式](microsoft-authenticator-app-how-to.md)，透過應用程式通知來驗證您的登入，而不是透過文字訊息或電話。 
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

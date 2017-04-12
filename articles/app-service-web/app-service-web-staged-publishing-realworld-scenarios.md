@@ -17,6 +17,7 @@ ms.author: sumuth
 translationtype: Human Translation
 ms.sourcegitcommit: 385eb87ec32f5f605b28cc8c76b1c89c7e90bfec
 ms.openlocfilehash: 5284022ea473db893800b0f64b5bf4f811d994aa
+ms.lasthandoff: 12/20/2016
 
 
 ---
@@ -164,7 +165,7 @@ ms.openlocfilehash: 5284022ea473db893800b0f64b5bf4f811d994aa
     * prefix. Only numbers, letters, and underscores please!
     */
     $table_prefix = getenv('DB_PREFIX');
-```
+    ```
 
 #### <a name="use-relative-paths"></a>使用相對路徑
 最後一件事是將 WordPress 應用程式設定為使用相對路徑。 WordPress 會在資料庫中儲存 URL 資訊。 這種儲存方式會使將內容從一個環境移至另一個環境變得更加困難。 每當您從本機移至預備環境，或是從預備環境移至生產環境時，都必須更新資料庫。 若要減少每次在不同環境間部署資料庫時可能造成問題的風險，請使用[相對根連結外掛程式 (英文)](https://wordpress.org/plugins/root-relative-urls/)，您可以使用 WordPress 管理員儀表板來安裝它。
@@ -442,9 +443,4 @@ require_once(ABSPATH. 'wp-settings.php');
 [針對 Azure App Service 中的 Web 應用程式設定預備環境](web-sites-staged-publishing.md)
 
 [封鎖對非生產部署位置的 Web 存取](http://ruslany.net/2014/04/azure-web-sites-block-web-access-to-non-production-deployment-slots/)
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

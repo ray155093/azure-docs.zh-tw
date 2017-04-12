@@ -96,23 +96,23 @@ Azure 虛擬機器組件庫涵蓋數個包含 Microsoft SQL Server 的映像。 
 ## <a name="InstallIPython"></a>安裝 IPython Notebook 和其他支援工具
 若要設定新的 SQL Server VM 做為 IPython Notebook 伺服器，並安裝其他的支援工具 (例如，AzCopy、Azure 儲存體總管、實用的資料科學 Python 封裝，以及其他工具)，系統為您提供了一個特殊的自訂指令碼。 若要安裝：
 
-* 以滑鼠右鍵按一下 Windows [開始] 圖示，然後按一下 [命令提示字元 (系統管理員)]
-* 複製下列命令並貼至命令提示字元。
+1. 以滑鼠右鍵按一下 Windows [開始] 圖示，然後按一下 [命令提示字元 (系統管理員)]
+2. 複製下列命令並貼至命令提示字元。
   
         set script='https://raw.githubusercontent.com/Azure/Azure-MachineLearning-DataScience/master/Misc/MachineSetup/Azure_VM_Setup_Windows.ps1'
         @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString(%script%))"
-* 出現提示時，輸入您為 IPython Notebook 伺服器選擇的密碼。
-* 自訂指令碼會自動執行數個後續安裝程序，包括：
-  * 安裝和設定 IPython Notebook 伺服器
-  * 在稍早建立之端點的 Windows 防火牆中開啟 TCP 連接埠：
-  * 適用於 SQL Server 遠端連線
-  * 適用於 IPython Notebook 伺服器遠端連線
-  * 擷取 IPython Notebook 範例和 SQL 指令碼
-  * 下載並安裝實用的資料科學 Python 封裝
-  * 下載並安裝 Azure 工具，例如 AzCopy 和 Azure 儲存體總管  
+3. 出現提示時，輸入您為 IPython Notebook 伺服器選擇的密碼。
+4. 自訂指令碼會自動執行數個後續安裝程序，包括：
+    * 安裝和設定 IPython Notebook 伺服器
+    * 在稍早建立之端點的 Windows 防火牆中開啟 TCP 連接埠：
+    * 適用於 SQL Server 遠端連線
+    * 適用於 IPython Notebook 伺服器遠端連線
+    * 擷取 IPython Notebook 範例和 SQL 指令碼
+    * 下載並安裝實用的資料科學 Python 封裝
+    * 下載並安裝 Azure 工具，例如 AzCopy 和 Azure 儲存體總管  
     <br>
-* 您可以使用 `https://<virtual_machine_DNS_name>:<port>`格式的 URL，從任何本機或遠端瀏覽器存取並執行 IPython Notebook，URL 格式中的 port 是您佈建虛擬機器時選取的 IPython 公用連接埠。
-* IPython Notebook 伺服器正以背景服務形式執行，而且將在您重新啟動虛擬機器時自動重新啟動。
+5. 您可以使用 `https://<virtual_machine_DNS_name>:<port>`格式的 URL，從任何本機或遠端瀏覽器存取並執行 IPython Notebook，URL 格式中的 port 是您佈建虛擬機器時選取的 IPython 公用連接埠。
+6. IPython Notebook 伺服器正以背景服務形式執行，而且將在您重新啟動虛擬機器時自動重新啟動。
 
 ## <a name="Optional"></a>視需要連接資料磁碟
 如果您的 VM 映像不包含資料磁碟，亦即，磁碟不是 C 磁碟機 (作業系統磁碟) 和 D 磁碟機 (暫存磁碟)，您就需要新增一或多個資料磁碟來儲存資料。 SQL Server 2012 SP2 Enterprise Optimized for DataWarehousing Workloads 的 VM 映像是使用其他磁碟預先設定的，可供 SQL Server 資料和記錄檔使用。
