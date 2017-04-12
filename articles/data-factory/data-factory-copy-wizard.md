@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 04/12/2017
 ms.author: spelluru
 translationtype: Human Translation
 ms.sourcegitcommit: 49545648a069f25820f6a6e483072be8410b091e
 ms.openlocfilehash: 0fc9eb7869ebe7316e4aed0d561638a05bc9a91c
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -89,10 +90,5 @@ Azure Data Factory 複製精靈會簡化內嵌資料的程序，這通常是端�
 
 ## <a name="next-steps"></a>後續步驟
 如需使用 Data Factory 複製精靈建立含複製活動之管線的快速逐步解說，請參閱 [教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線](data-factory-copy-data-wizard-tutorial.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 
