@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/30/2017
+ms.date: 04/11/2017
 ms.author: cherylmc
 translationtype: Human Translation
 ms.sourcegitcommit: b5bad71095e4b7e3b26df15780467526200ffa10
 ms.openlocfilehash: 68d94a6402b1497f65c4d03fb987ba800e86c2a3
+ms.lasthandoff: 01/31/2017
 
 
 ---
@@ -34,14 +35,20 @@ ms.openlocfilehash: 68d94a6402b1497f65c4d03fb987ba800e86c2a3
 
 ### <a name="log-in-to-your-azure-account"></a>登入您的 Azure 帳戶
 1. 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。
-   
-        Login-AzureRmAccount
+
+  ```powershell
+  Login-AzureRmAccount
+  ```
 2. 檢查帳戶的訂用帳戶。
-   
-        Get-AzureRmSubscription 
+
+  ```powershell
+  Get-AzureRmSubscription
+  ``` 
 3. 指定您要使用的訂用帳戶。
-   
-        Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+
+  ```powershell
+  Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+  ```
 
 ### <a name="verify-your-connection"></a>確認您的連接
 
@@ -56,27 +63,30 @@ ms.openlocfilehash: 68d94a6402b1497f65c4d03fb987ba800e86c2a3
 
 ### <a name="log-in-to-your-azure-account"></a>登入您的 Azure 帳戶
 1. 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。
-   
-        Login-AzureRmAccount
+
+  ```powershell
+  Login-AzureRmAccount
+  ```
 2. 檢查帳戶的訂用帳戶。
-   
-        Get-AzureRmSubscription 
+
+  ```powershell
+  Get-AzureRmSubscription 
+  ```
 3. 指定您要使用的訂用帳戶。
-   
-        Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+
+  ```powershell
+  Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+  ```
 4. 登入以使用適用於傳統部署模型的「服務管理」Cmdlet。
 
-        Add-AzureAccount
+  ```powershell
+  Add-AzureAccount
+  ```
 
 ### <a name="verify-your-connection"></a>確認您的連接
 [!INCLUDE [Classic PowerShell](../../includes/vpn-gateway-verify-connection-ps-classic-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
 * 您可以將虛擬機器加入您的虛擬網路。 請參閱 [建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 以取得相關步驟。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

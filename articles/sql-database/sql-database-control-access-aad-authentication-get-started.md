@@ -64,7 +64,7 @@ ms.lasthandoff: 03/10/2017
 2. 登入 [Azure 入口網站](https://portal.azure.com/)。
 3. 在 [登入]  頁面上，提供您訂用帳戶的認證。
    
-   ![Sign in](./media/sql-database-get-started/login.png)
+   ![Sign in](./media/sql-database-get-started-portal/login.png)
 
 
 <a name="create-logical-server-bk"></a>
@@ -99,7 +99,7 @@ ms.lasthandoff: 03/10/2017
 
 2. 安裝之後，在 Windows 搜尋方塊中輸入 **Microsoft SQL Server Management Studio**，然後按一下 **Enter** 來開啟 SSMS。
 
-   ![SQL Server Management Studio](./media/sql-database-get-started/ssms.png)
+   ![SQL Server Management Studio](./media/sql-database-connect-query-ssms/ssms.png)
 
 3. 在 [連線到伺服器] 對話方塊中，選取其中一個 Active Directory 驗證方法，然後提供適當的驗證資訊。 如需選擇方法的資訊，請參閱 [Azure Active Directory 驗證](sql-database-aad-authentication.md)和[適用於 Azure AD MFA 的 SSMS 支援](sql-database-ssms-mfa-authentication.md)。
 

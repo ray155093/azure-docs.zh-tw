@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/02/2017
+ms.date: 04/02/2017
 ms.author: kgremban
+ms.custom: end-user
 translationtype: Human Translation
 ms.sourcegitcommit: ec52f719f33db0d893d707b59293fa75a8ff4314
 ms.openlocfilehash: 033392783fd98cbdb23fd0254c93687754808286
 ms.lasthandoff: 02/10/2017
-
 
 ---
 # <a name="sign-in-with-your-phone-not-your-password"></a>使用您的電話而不是您的密碼登入

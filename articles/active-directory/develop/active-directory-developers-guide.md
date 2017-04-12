@@ -95,6 +95,7 @@ Azure Active Directory (AD) 是身分識別管理即服務 (IDMaaS) 平台，提
 > [!IMPORTANT]
 > 強烈建議您使用 [Microsoft Graph](https://graph.microsoft.io/) 取代 Azure AD Graph API 來存取 Azure Active Directory 資源。 我們的開發工作現在是針對 Microsoft Graph，並沒有針對 Azure AD Graph API 規劃的進一步增強功能 。 有極少數的案例可能仍適用 Azure AD Graph API；如需詳細資訊，請參閱 Office 開發人員中心的 [Microsoft Graph 或 Azure AD Graph](https://dev.office.com/blogs/microsoft-graph-or-azure-ad-graph) 部落格文章。
 > 
+
 * [Microsoft Graph](https://graph.microsoft.io/)：適用於 Microsoft Graph 的文件、參考、範例和 SDK。 
 * [Azure AD Graph API 參考](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog)：Azure Active Directory Graph API 的 REST 參考。 
 * [Azure AD Graph API 權限範圍](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes)：用以控制應用程式對租用戶中目錄資料存取權的 OAuth 2.0 權限範圍。

@@ -59,7 +59,7 @@ ms.lasthandoff: 03/10/2017
 2. 登入 [Azure 入口網站](https://portal.azure.com/)。
 3. 在 [登入]  頁面上，提供您訂用帳戶的認證。
    
-   ![Sign in](./media/sql-database-get-started/login.png)
+   ![Sign in](./media/sql-database-get-started-portal/login.png)
 
 
 <a name="create-logical-server-bk"></a>
@@ -84,11 +84,11 @@ ms.lasthandoff: 03/10/2017
 
 1. 開啟 SQL Server Management Studio，並使用 SQL Server 驗證和伺服器管理帳戶，以伺服器管理員身分連接到您的伺服器。
 
-   ![連接到伺服器](./media/sql-database-get-started/connect-to-server.png)
+   ![連接到伺服器](./media/sql-database-get-started-portal/connect-to-server.png)
 
 2. 按一下 [ **連接**]。
 
-   ![已連接到伺服器](./media/sql-database-get-started/connected-to-server.png)
+   ![已連接到伺服器](./media/sql-database-get-started-portal/connected-to-server.png)
 
 3. 在 [物件總管] 中，展開 [安全性]，然後展開 [登入]，檢視伺服器的現有登入 - 新伺服器上的唯一登入是伺服器管理帳戶的登入。
 

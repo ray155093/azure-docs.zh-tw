@@ -13,12 +13,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/15/2016
+ms.date: 03/15/2017
 ms.author: kgremban
+ms.custom: end-user
 translationtype: Human Translation
 ms.sourcegitcommit: 4ff028f88e984f28bc0f4a228aabed1fabc90560
 ms.openlocfilehash: 6dafec65b2e8091954cae39994d0013d9fd06558
-
+ms.lasthandoff: 12/22/2016
 
 ---
 # <a name="set-up-my-account-for-two-step-verification"></a>對我的帳戶進行雙步驟驗證設定
@@ -97,9 +98,4 @@ ms.openlocfilehash: 6dafec65b2e8091954cae39994d0013d9fd06558
 * 變更您慣用的選項並[管理您雙步驟驗證的設定](multi-factor-authentication-end-user-manage-settings.md)
 * 針對不支援雙步驟驗證的原生裝置應用程式，設定[應用程式密碼](multi-factor-authentication-end-user-app-passwords.md)。
 * 查看 [Microsoft 驗證器應用程式](microsoft-authenticator-app-how-to.md)，即使在您沒有行動服務時也能進行快速、安全的驗證。
-
-
-
-<!--HONumber=Dec16_HO4-->
-
 
