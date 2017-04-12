@@ -17,9 +17,9 @@ ms.workload: database
 ms.date: 03/07/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 8057747aea2725abf3b37481858c7902ff8fe4da
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: b864fd14b6341541302c13222a1650cb21da40af
+ms.lasthandoff: 04/06/2017
 
 ---
 
@@ -30,19 +30,19 @@ ms.lasthandoff: 03/30/2017
 | |  |
 |---|---|
 |**建立單一資料庫和彈性集區**||
-| [建立單一資料庫並設定防火牆規則](scripts/sql-database-create-and-configure-database-powershell.md?toc=%2fpowershell%2ftoc.json) | 建立單一 Azure SQL Database 並設定伺服器層級防火牆規則。 |
-| [建立彈性集區並移動集區資料庫](scripts/sql-database-move-database-between-pools-powershell.md?toc=%2fpowershell%2ftoc.json) | 建立彈性集區、移動集區資料庫，並變更效能層級。|
+| [建立單一資料庫並設定防火牆規則](scripts/sql-database-create-and-configure-database-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | 建立單一 Azure SQL Database 並設定伺服器層級防火牆規則。 |
+| [建立彈性集區並移動集區資料庫](scripts/sql-database-move-database-between-pools-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | 建立彈性集區、移動集區資料庫，並變更效能層級。|
 |**設定異地複寫和容錯移轉**||
-| [使用作用中異地複寫設定單一資料庫並進行容錯移轉](scripts/sql-database-setup-geodr-and-failover-database-powershell.md?toc=%2fpowershell%2ftoc.json)| 為單一 Azure SQL Database 設定作用中異地複寫，並將其容錯移轉到次要複本。 |
-| [使用作用中異地複寫設定集區資料庫並進行容錯移轉](scripts/sql-database-setup-geodr-and-failover-pool-powershell.md?toc=%2fpowershell%2ftoc.json)| 為彈性集區中的 Azure SQL Database 設定作用中異地複寫，並將其容錯移轉到次要複本。 |
+| [使用作用中異地複寫設定單一資料庫並進行容錯移轉](scripts/sql-database-setup-geodr-and-failover-database-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| 為單一 Azure SQL Database 設定作用中異地複寫，並將其容錯移轉到次要複本。 |
+| [使用作用中異地複寫設定集區資料庫並進行容錯移轉](scripts/sql-database-setup-geodr-and-failover-pool-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| 為彈性集區中的 Azure SQL Database 設定作用中異地複寫，並將其容錯移轉到次要複本。 |
 |**調整單一資料庫和彈性集區**||
-| [調整單一資料庫](scripts/sql-database-monitor-and-scale-database-powershell.md?toc=%2fpowershell%2ftoc.json) | 監視 Azure SQL Database 的效能度量、將其調整為較高的效能等級，並對其中一個效能度量建立警示規則。 |
-| [調整彈性集區](scripts/sql-database-monitor-and-scale-pool-powershell.md?toc=%2fpowershell%2ftoc.json) | 監視彈性集區的效能度量、將其調整為較高的效能等級，並對其中一個效能度量建立警示規則。  |
+| [調整單一資料庫](scripts/sql-database-monitor-and-scale-database-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | 監視 Azure SQL Database 的效能度量、將其調整為較高的效能等級，並對其中一個效能度量建立警示規則。 |
+| [調整彈性集區](scripts/sql-database-monitor-and-scale-pool-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json) | 監視彈性集區的效能度量、將其調整為較高的效能等級，並對其中一個效能度量建立警示規則。  |
 | **稽核與威脅偵測** |
-| [設定稽核與威脅偵測](scripts/sql-database-auditing-and-threat-detection-powershell.md?toc=%2fpowershell%2ftoc.json)| 設定 Azure SQL Database 的稽核與威脅偵測原則。 |
+| [設定稽核與威脅偵測](scripts/sql-database-auditing-and-threat-detection-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| 設定 Azure SQL Database 的稽核與威脅偵測原則。 |
 | **還原、複製和匯入資料庫**||
-| [還原資料庫](scripts/sql-database-restore-database-powershell.md?toc=%2fpowershell%2ftoc.json)| 從異地備援備份還原 Azure SQL Database，並將已刪除的 Azure SQL Database 還原為最新的備份。 |
-| [將資料庫複製到新伺服器](scripts/sql-database-copy-database-to-new-server-powershell.md?toc=%2fpowershell%2ftoc.json)| 在新的 Azure SQL Server 中建立現有 Azure SQL Database 的複本。 |
-| [從 bacpac 檔案匯入資料庫](scripts/sql-database-import-from-bacpac-powershell.md?toc=%2fpowershell%2ftoc.json)| 從 bacpac 檔案將資料庫匯入 Azure SQL Server。 |
+| [還原資料庫](scripts/sql-database-restore-database-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| 從異地備援備份還原 Azure SQL Database，並將已刪除的 Azure SQL Database 還原為最新的備份。 |
+| [將資料庫複製到新伺服器](scripts/sql-database-copy-database-to-new-server-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| 在新的 Azure SQL Server 中建立現有 Azure SQL Database 的複本。 |
+| [從 bacpac 檔案匯入資料庫](scripts/sql-database-import-from-bacpac-powershell.md?toc=%2fpowershell%2fmodule%2ftoc.json)| 從 bacpac 檔案將資料庫匯入 Azure SQL Server。 |
 |||
 

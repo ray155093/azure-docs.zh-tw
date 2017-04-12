@@ -16,9 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 01/09/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 16b659bf07cc44d56234bb5532f931d5ca6fb0a6
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: 7b7562f819ad4eb60336a3f5454e3b242fb7794b
+ms.lasthandoff: 04/04/2017
 
 
 ---
@@ -39,14 +39,14 @@ ms.lasthandoff: 03/25/2017
 | --- | --- |
 | [VM 大小](#vm-size-guidance) |SQL Enterprise Edition 的 [DS3](../../virtual-machines-windows-sizes-memory.md) 或更高版本。<br/><br/>SQL Standard 和 Web Edition 的 [DS2](../../virtual-machines-windows-sizes-memory.md) 或更高版本。 |
 | [儲存體](#storage-guidance) |使用[進階儲存體](../../../storage/storage-premium-storage.md)。 標準儲存體只建議用於開發/測試。<br/><br/>將[儲存體帳戶](../../../storage/storage-create-storage-account.md)和 SQL Server VM 置於同一個區域。<br/><br/>停用儲存體帳戶上的 Azure [異地備援儲存體](../../../storage/storage-redundancy.md) (異地複寫)。 |
-| [磁碟](#disks-guidance) |使用至少 2 個 [P30 磁碟](../../../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets) (1 個用於儲存記錄檔案，另 1 個用於儲存資料檔案和存放 TempDB)。<br/><br/>避免使用作業系統或暫存磁碟作為資料儲存體或進行記錄。<br/><br/>啟用裝載資料檔案和 TempDB 的磁碟上的 [讀取快取] 功能。<br/><br/>不要啟用裝載記錄檔案的磁碟上的 [快取] 功能。<br/><br/>重要事項︰變更 Azure VM 磁碟的快取設定時，停止 SQL Server 服務。<br/><br/>分割多個 Azure 資料磁碟，以提高 IO 輸送量。<br/><br/>以文件上記載的配置大小格式化。 |
+| [磁碟](#disks-guidance) |使用至少 2 個 [P30 磁碟](../../../storage/storage-premium-storage.md#scalability-and-performance-targets) (1 個用於儲存記錄檔案，另 1 個用於儲存資料檔案和存放 TempDB)。<br/><br/>避免使用作業系統或暫存磁碟作為資料儲存體或進行記錄。<br/><br/>啟用裝載資料檔案和 TempDB 的磁碟上的 [讀取快取] 功能。<br/><br/>不要啟用裝載記錄檔案的磁碟上的 [快取] 功能。<br/><br/>重要事項︰變更 Azure VM 磁碟的快取設定時，停止 SQL Server 服務。<br/><br/>分割多個 Azure 資料磁碟，以提高 IO 輸送量。<br/><br/>以文件上記載的配置大小格式化。 |
 | [I/O](#io-guidance) |啟用 [資料庫頁面壓縮] 功能　。<br/><br/>針對資料檔案，啟用 [立即檔案初始化] 功能。<br/><br/>限制資料庫上的 [自動成長] 功能，或停用。<br/><br/>停用資料庫上的 [自動壓縮] 功能。<br/><br/>將所有的資料庫 (包括系統資料庫) 移到資料磁碟。<br/><br/>將 SQL Server 的錯誤記錄檔和追蹤檔案目錄移至資料磁碟。<br/><br/>設定預設備份和資料庫檔案位置。<br/><br/>啟用鎖定的頁面。<br/><br/>套用 SQL Server 效能修正程式。 |
 | [特定功能](#feature-specific-guidance) |直接備份至 Blob 儲存體。 |
 
 如需有關「如何」和「為何」進行這些最佳化的詳細資訊，請檢閱下列各節提供的詳細資料與指引。
 
 ## <a name="vm-size-guidance"></a>VM 大小指引
-對於需要高效能的應用程式，建議您採用下列 [虛擬機器大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)：
+對於需要高效能的應用程式，建議您採用下列 [虛擬機器大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)：
 
 * **SQL Server Enterprise Edition**：DS3 或更高版本
 * **SQL Server Standard 和 Web Edition**：DS2 或更高版本
@@ -83,13 +83,13 @@ D 系列、Dv2 系列和 G 系列 VM 的暫存磁碟機皆為 SSD 式。 如果�
 對於支援「進階儲存體」的 VM (DS 系列、DSv2 系列與 GS 系列)，建議您將 TempDB 儲存在支援「進階儲存體」且啟用讀取快取的磁碟上。 這項建議有一個例外，如果 TempDB 使用方式是密集寫入，您可以將 TempDB 儲存在本機的 **D** 磁碟機 (在這些機器大小上也是 SSD 型) 上以達到更高的效能。
 
 ### <a name="data-disks"></a>資料磁碟
-* **將資料磁碟用於資料檔和記錄檔**：至少使用 2 個進階儲存體 [P30 磁碟](../../../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets)，一個磁碟包含記錄檔，另一個則包含資料和 TempDB 檔案。 每個進階儲存體磁碟會根據其大小提供數個 IOPS 和頻寬 (MB/s)，如下列文章所述：[針對磁碟使用進階儲存體](../../../storage/storage-premium-storage.md)。 
-* **磁碟等量分割**︰如需更多的輸送量，您可以新增其他資料磁碟，並使用「磁碟等量分割」。 為了判斷資料磁碟的數目，您需要分析記錄檔以及資料和 TempDB 檔案所需的 IOPS 和頻寬數目。 請注意，不同的 VM 大小在支援的 IOPS 和頻寬數目上有不同的限制，請參閱每個 [VM 大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)的 IOPS 相關表格。 請使用下列指引：
+* **將資料磁碟用於資料檔和記錄檔**：至少使用 2 個進階儲存體 [P30 磁碟](../../../storage/storage-premium-storage.md#scalability-and-performance-targets)，一個磁碟包含記錄檔，另一個則包含資料和 TempDB 檔案。 每個進階儲存體磁碟會根據其大小提供數個 IOPS 和頻寬 (MB/s)，如下列文章所述：[針對磁碟使用進階儲存體](../../../storage/storage-premium-storage.md)。 
+* **磁碟等量分割**︰如需更多的輸送量，您可以新增其他資料磁碟，並使用「磁碟等量分割」。 為了判斷資料磁碟的數目，您需要分析記錄檔以及資料和 TempDB 檔案所需的 IOPS 和頻寬數目。 請注意，不同的 VM 大小在支援的 IOPS 和頻寬數目上有不同的限制，請參閱每個 [VM 大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)的 IOPS 相關表格。 請使用下列指引：
 
   * 若為 Windows 8/Windows Server 2012 以上版本，請參閱 [儲存空間](https://technet.microsoft.com/library/hh831739.aspx)。 將 OLTP 工作負載的等量磁碟區大小設為 64 KB，資料倉儲的工作負載則設為 256 KB，以避免分割對齊錯誤影響效能。 此外，設定資料行計數 = 實體磁碟數量。 若要設定磁碟超過 8 個的儲存空間，您必須使用 PowerShell (非伺服器管理員 UI)，以明確地將資料行計數設定為符合磁碟的數量。 如需設定[儲存空間](https://technet.microsoft.com/library/hh831739.aspx)的詳細資訊，請參閱 [Windows PowerShell 中的儲存空間 Cmdlet](https://technet.microsoft.com/library/jj851254.aspx)
   * 對於 Windows 2008 R2 之前的版本，可以使用動態磁碟 (OS 分割的磁碟區)，且等量磁碟區的大小一律為 64 KB。 請注意，Windows 8/Windows Server 2012 已不再提供此選項。 如需相關資訊，請參閱 [虛擬磁碟服務正轉換為 Windows 存放管理 API](https://msdn.microsoft.com/library/windows/desktop/hh848071.aspx)中的支援聲明。
-  * 如果您的工作負載不需大量記錄及，且不需專屬於 IOP，您可以只設定一個儲存體集區。 否則，請建立兩個儲存體集區，一個用於儲存記錄檔案，另一個用於儲存資料檔案和存放 TempDB。 請根據您預期的負載量，決定與每個儲存體集區相關聯的磁碟數量。 請注意，各 VM 大小所允許連接的資料磁碟數量皆不同。 如需相關資訊，請參閱[虛擬機器的大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-  * 如果您不是使用「進階儲存體」(開發/測試案例)，建議您新增您 [VM 大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 所支援的最大數目資料磁碟，並使用「磁碟等量分割」。
+  * 如果您的工作負載不需大量記錄及，且不需專屬於 IOP，您可以只設定一個儲存體集區。 否則，請建立兩個儲存體集區，一個用於儲存記錄檔案，另一個用於儲存資料檔案和存放 TempDB。 請根據您預期的負載量，決定與每個儲存體集區相關聯的磁碟數量。 請注意，各 VM 大小所允許連接的資料磁碟數量皆不同。 如需相關資訊，請參閱[虛擬機器的大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+  * 如果您不是使用「進階儲存體」(開發/測試案例)，建議您新增您 [VM 大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 所支援的最大數目資料磁碟，並使用「磁碟等量分割」。
 * **快取原則**：針對「進階儲存體」資料磁碟，請只在裝載資料檔和 TempDB 的資料磁碟上啟用讀取快取。 如果您並非使用進階儲存體，請勿啟用任何資料磁碟上的任何快取功能。 如需有關設定磁碟快取功能的指示，請參閱下列主題：[Set-AzureOSDisk](https://msdn.microsoft.com/library/azure/jj152847) 和 [Set-AzureDataDisk](https://msdn.microsoft.com/library/azure/jj152851.aspx)。
 
   > [!WARNING]

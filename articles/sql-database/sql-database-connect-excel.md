@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 03/10/2017
 ms.author: jhubbard
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 0bab2cde451687311936ee74f304580a2a3b4b5e
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 26be621cb3190a69ca4a9bb26c2e4643e50474dd
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -29,7 +29,7 @@ ms.lasthandoff: 03/14/2017
 
 開始之前，Azure 中需要有 SQL Database。 如果您沒有，請參閱 [建立您的第一個 SQL Database](sql-database-get-started.md) 以取得包含範例資料的資料庫，並執行幾分鐘的時間。 在本文中，您會將該文章中的範例資料匯入 Excel 中，但是您可以依照類似的步驟並使用您自己的資料來執行。
 
-您也會需要 Excel。 本文使用 [Microsoft Excel 2016](https://products.office.com/en-US/)。
+您也會需要 Excel。 本文使用 [Microsoft Excel 2016](https://products.office.com/)。
 
 ## <a name="connect-excel-to-a-sql-database-and-create-an-odc-file"></a>將 Excel 連接到 SQL Database 並建立 odc 檔案
 1. 若要將 Excel 連接到 SQL Database，請開啟 Excel，然後建立新的活頁簿或開啟現有的 Excel 活頁簿。

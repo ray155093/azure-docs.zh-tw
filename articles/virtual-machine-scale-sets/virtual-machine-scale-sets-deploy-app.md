@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/07/2017
 ms.author: guybo
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: 9a92490239f22bd4c57c902ac53898aff1adf530
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: f39840ab2fb31775c9703799393d8c386a8451ee
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -32,7 +32,7 @@ ms.lasthandoff: 03/17/2017
 ## <a name="install-new-software-on-a-platform-image-at-deployment-time"></a>在部署階段，於平台映像上安裝新軟體
 此內容中的平台映像是來自 Azure Marketplace 的作業系統映像，例如 Ubuntu 16.04、Windows Server 2012 R2 等。
 
-您可以使用 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)在平台映像上安裝新軟體。 VM 擴充功能是在部署 VM 時執行的軟體。 您可以使用自訂指令碼擴充功能，在部署階段執行您想要的任何程式碼。 [這裡 (英文)](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) 是 Azure Resource Manager 範本範例，此範例使用 [Azure 期望狀態組態 (DSC) 延伸模組](virtual-machine-scale-sets-dsc.md)來安裝 IIS 以及已與 Azure 自動調整規模整合的 .NET MVC 應用程式。
+您可以使用 [VM 擴充功能](../virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)在平台映像上安裝新軟體。 VM 擴充功能是在部署 VM 時執行的軟體。 您可以使用自訂指令碼擴充功能，在部署階段執行您想要的任何程式碼。 [這裡 (英文)](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) 是 Azure Resource Manager 範本範例，此範例使用 [Azure 期望狀態組態 (DSC) 延伸模組](virtual-machine-scale-sets-dsc.md)來安裝 IIS 以及已與 Azure 自動調整規模整合的 .NET MVC 應用程式。
 
 此方法的優點是在您應用程式程式碼與 OS 之間有某種程度的分隔，而可以個別維護您的應用程式。 當然，這也意謂著有較多的移動組件，而且如果指令碼需要下載和設定的項目有很多，VM 部署時間也可能較長。
 
