@@ -14,39 +14,39 @@ ms.topic: article
 ms.date: 02/21/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 73739f4f154bebe271ce29bd285122ea7f56d769
-ms.openlocfilehash: bcf36cdec6c1dda7aa0213c42adf8d0281dc28d2
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 6c01fe7a791742d283505057a310891a075029ef
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="using-regular-expressions-to-filter-log-searches-in-log-analytics"></a>使用規則運算式在 Log Analytics 中篩選記錄搜尋
 
-[記錄搜尋](log-analytics-log-searches.md)可讓您從 Log Analytics 儲存機制中擷取資訊。  [篩選條件運算式](log-analytics-search-reference.md#filter-expression)可讓您根據特定準則篩選搜尋的結果。  **RegEx** 關鍵字可讓您指定此篩選器的規則運算式。  
+[記錄搜尋](log-analytics-log-searches.md)可讓您從 Log Analytics 儲存機制中擷取資訊。  [篩選條件運算式](log-analytics-search-reference.md#filter-expressions)可讓您根據特定準則篩選搜尋的結果。  **RegEx** 關鍵字可讓您指定此篩選器的規則運算式。  
 
 這篇文章提供 Log Analytics 所使用的規則運算式語法詳細資料。
 
 
 ## <a name="regex-keyword"></a>RegEx 關鍵字
 
-利用下列語法在記錄搜尋中使用 **RegEx** 關鍵字。  您可以使用本文中的其他區段來判斷規則運算式本身的語法。 
+利用下列語法在記錄搜尋中使用 **RegEx** 關鍵字。  您可以使用本文中的其他區段來判斷規則運算式本身的語法。
 
     field:Regex("Regular Expression")
     field=Regex("Regular Expression")
 
-例如，若要使用規則運算式來傳回「警告」或「錯誤」類型的警示記錄，您會使用下列的記錄搜尋。 
+例如，若要使用規則運算式來傳回「警告」或「錯誤」類型的警示記錄，您會使用下列的記錄搜尋。
 
     Type=Alert AlertSeverity=RegEx("Warning|Error")
 
 ## <a name="partial-matches"></a>部分符合結果
 請注意，規則運算式必須符合屬性的所有文字。  部分符合結果不會傳回任何記錄。  例如，如果您嘗試從名為 srv01.contoso.com 的電腦傳回記錄，下列的記錄搜尋**不會**傳回任何記錄。
 
-    Computer=RegEx("srv..") 
+    Computer=RegEx("srv..")
 
-這是因為只有名稱的第一個部分符合規則運算式。  下列兩個記錄搜尋會從這台電腦傳回記錄，因為它們符合完整名稱。 
+這是因為只有名稱的第一個部分符合規則運算式。  下列兩個記錄搜尋會從這台電腦傳回記錄，因為它們符合完整名稱。
 
     Computer=RegEx("srv..@")
-    Computer=RegEx("srv...contoso.com") 
+    Computer=RegEx("srv...contoso.com")
 
 ## <a name="characters"></a>字元
 指定不同的字元。

@@ -11,12 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/25/2017
+ms.date: 03/25/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 5818efb315a0452beea03cde1adc657a9520dcac
-ms.openlocfilehash: 1fe3f3a697618bec5d314c6ebf161da37efc1346
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 28f100276511c1ae978466870ff48f885dd53c28
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -27,13 +27,11 @@ ms.lasthandoff: 03/01/2017
 
 >[!NOTE]
 >在升級至 Premium 或 Basic 版本的 Azure Active Directory 後，才能使用應用程式 Proxy 功能。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
->
 
 使用 Azure AD PowerShell 模組，您可以定義執行個體的自訂首頁 URL，讓應用程式使用者抵達應用程式內的特定頁面，(例如 *https://expenseApp-contoso.msappproxy.net/login/login.aspx*)。
 
 >[!NOTE]
 >當您將已發佈應用程式的存取權提供給使用者時，應用程式會顯示在 [Azure AD 存取面板](active-directory-saas-access-panel-introduction.md)和 [Office 365 應用程式啟動器](https://blogs.office.com/2016/09/27/introducing-the-new-office-365-app-launcher)。
->
 
 當使用者啟動應用程式時，預設會將他們導向已發佈應用程式的根網域 URL。 登陸頁面通常設定為首頁 URL。 例如，對於後端應用程式 http://ExpenseApp，URL 會發佈為 *https://expenseApp-contoso.msappproxy.net*。 根據預設，首頁 URL 會設定為 *https://expenseApp-contoso.msappproxy.net*。
 
@@ -139,6 +137,6 @@ ms.lasthandoff: 03/01/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-[使用 Azure AD 應用程式 Proxy 啟用 SharePoint 的遠端存取](application-proxy-enable-remote-access-sharepoint.md)<br>
-[在 Azure 入口網站中啟用應用程式 Proxy](https://github.com/Microsoft/azure-docs-pr/blob/master/articles/active-directory/active-directory-application-proxy-enable.md)
+- [使用 Azure AD 應用程式 Proxy 啟用 SharePoint 的遠端存取](application-proxy-enable-remote-access-sharepoint.md)
+- [在 Azure 入口網站中啟用應用程式 Proxy](active-directory-application-proxy-enable.md)
 

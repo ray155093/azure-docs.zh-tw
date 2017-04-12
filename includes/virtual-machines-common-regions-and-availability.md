@@ -9,8 +9,6 @@ Azure 可讓您在定義的地理區域 (例如「美國西部」、「北歐」
 
 * **美國維吉尼亞州政府**和**美國愛荷華州政府**
   * 由經篩選的美國人士所操作、適用於美國政府機構及其合作夥伴的實體與邏輯網路隔離 Azure 執行個體。 包含其他法規遵循認證，例如 [FedRAMP](https://www.microsoft.com/en-us/TrustCenter/Compliance/FedRAMP) 和 [DISA](https://www.microsoft.com/en-us/TrustCenter/Compliance/DISA)。 深入了解 [Azure Government](https://azure.microsoft.com/features/gov/)。
-* **印度中部**、**印度南部**及**印度西部**
-  * 這些區域目前可供在印度當地註冊的大量授權客戶和合作夥伴使用。 在 2016 年，如果使用者購買直接線上訂用帳戶，就能存取它們。
 * **中國東部**和**中國北部**
   * 這些區域是透過 Microsoft 與 21Vianet 之間的唯一合作關係提供，其中 Microsoft 不會直接維護資料中心。 深入了解 [位於中國的 Microsoft Azure](http://www.windowsazure.cn/)。
 * **德國中部**和**德國東北部**

@@ -50,7 +50,7 @@
 ## 管理
 ### [服務匯流排管理程式庫](service-bus-management-libraries.md)
 ### [使用 Azure Resource Manager 範本](service-bus-resource-manager-overview.md)
-### [使用 PowerShell 佈建實體](service-bus-powershell-how-to-provision.md)
+### [使用 PowerShell 佈建實體](service-bus-manage-with-ps.md)
 
 # 參考
 ## .NET

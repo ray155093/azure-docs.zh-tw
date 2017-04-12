@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/02/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 1d010dd85ccf2dd708a7740eb8399fc06a603574
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: c306000e898f5fe0260ef3347988923266ed096e
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -65,7 +65,7 @@ ms.lasthandoff: 03/22/2017
 
 ## <a name="vm-availability-and-network-access"></a>VM 可用性和網路存取
 
-如果您的 VM 會執行需要具備高可用性的重要應用程式，則強烈建議您使用多個 VM。 如需更佳的可用性，請在[可用性設定組](../virtual-machines/virtual-machines-windows-infrastructure-availability-sets-guidelines.md)中至少建立兩個 VM。
+如果您的 VM 會執行需要具備高可用性的重要應用程式，則強烈建議您使用多個 VM。 如需更佳的可用性，請在[可用性設定組](../virtual-machines/windows/infrastructure-availability-sets-guidelines.md)中至少建立兩個 VM。
 
 [Azure Load Balancer](../load-balancer/load-balancer-overview.md) 也會要求已負載平衡的 VM 屬於同一個可用性設定組。 如果需要從網際網路存取這些 VM，您必須設定[網際網路面向的負載平衡器](../load-balancer/load-balancer-internet-overview.md)。
 
@@ -123,7 +123,7 @@ Azure 提供的原廠映像會定期更新，以包含最新一輪的 Windows Up
 
 當 VM 程序比所應消耗更多的資源時，可能會產生資源不當使用的問題。 VM 的效能問題可能會導致服務中斷，違反可用性的安全性原則。 因此，請務必了解，不只需要在發生問題時以反應性方式監視 VM 存取，還必須主動在正常作業期間如測量完成基準效能。
 
-藉由分析 [Azure 診斷記錄檔](https://azure.microsoft.com/en-us/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/)，您可以監視 VM 資源，並找出可能影響效能和可用性的潛在問題。 Azure 診斷擴充功能會在以 Windows 為基礎的 VM 上提供監視和診斷功能。 您可以將此擴充功能納入為 Azure Resource Manager [範本](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md)的一部分，藉以啟用這些功能。
+藉由分析 [Azure 診斷記錄檔](https://azure.microsoft.com/en-us/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/)，您可以監視 VM 資源，並找出可能影響效能和可用性的潛在問題。 Azure 診斷擴充功能會在以 Windows 為基礎的 VM 上提供監視和診斷功能。 您可以將此擴充功能納入為 Azure Resource Manager [範本](../virtual-machines/windows/extensions-diagnostics-template.md)的一部分，藉以啟用這些功能。
 
 您也可以使用 [Azure 監視器](../monitoring-and-diagnostics/monitoring-overview-metrics.md)來查看您的資源健康狀態。
 

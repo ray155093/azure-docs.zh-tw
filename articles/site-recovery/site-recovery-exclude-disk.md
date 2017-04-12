@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 1/24/2017
 ms.author: nisoneji
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: 66832a5d3f10f370ad486269c566fc948fd72234
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 6e52a647e817b64e331937c0b0f1d44f9f6c11a0
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -66,7 +66,7 @@ ms.lasthandoff: 03/07/2017
 >
 
 ### <a name="hyper-v-to-azure"></a>Hyper-V 至 Azure
-從 Azure Site Recovery 入口網站，依照[啟用複寫](site-recovery-hyper-v-site-to-azure.md#step-6-enable-replication)工作流程來保護虛擬機器。 在工作流程的第四個步驟中，使用 [要複寫的磁碟] 資料行，排除磁碟不要複寫。 依預設會選取所有磁碟進行複寫。 針對您想排除而不要複寫的磁碟清除核取方塊，然後完成步驟以啟用複寫。
+從 Azure Site Recovery 入口網站，依照[啟用複寫](site-recovery-hyper-v-site-to-azure.md#enable-replication)工作流程來保護虛擬機器。 在工作流程的第四個步驟中，使用 [要複寫的磁碟] 資料行，排除磁碟不要複寫。 依預設會選取所有磁碟進行複寫。 針對您想排除而不要複寫的磁碟清除核取方塊，然後完成步驟以啟用複寫。
 
 ![排除磁碟不要複寫，並針對 Hyper-V 到 Azure 容錯回復啟用複寫](./media/site-recovery-vmm-to-azure/enable-replication6-with-exclude-disk.png)
 
@@ -96,10 +96,10 @@ ms.lasthandoff: 03/07/2017
 **磁碟名稱** | **客體作業系統磁碟#** | **磁碟機代號** | **磁碟上的資料類型**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | 作業系統磁碟
-DB-Disk1| Disk1 | D:\ | SQL 系統資料庫和使用者資料庫&1;
+DB-Disk1| Disk1 | D:\ | SQL 系統資料庫和使用者資料庫 1
 DB-Disk2 (已排除磁碟不要保護) | Disk2 | E:\ | 暫存檔案
 DB-Disk3 (已排除磁碟不要保護) | Disk3 | F:\ | SQL tempdb 資料庫 (資料夾路徑 (F:\MSSQL\Data\) </br /> </br />容錯移轉之前記下資料夾路徑。
-DB-Disk4 | Disk4 |G:\ |使用者資料庫&2;
+DB-Disk4 | Disk4 |G:\ |使用者資料庫 2
 
 因為當您保護 SalesDB 虛擬機器時，虛擬機器上兩個磁碟的資料變換是暫時的，所以排除 Disk2 和 Disk3 不要複寫。 Azure Site Recovery 不會複寫這些磁碟。 在容錯移轉時，這些磁碟將不會出現在 Azure 上的容錯移轉虛擬機器上。
 
@@ -109,8 +109,8 @@ Azure 虛擬機器上的磁碟在容錯移轉之後如下所示︰
 --- | --- | ---
 DISK0 |    C:\ | 作業系統磁碟
 Disk1 |    E:\ | 暫存儲存體</br /> </br />Azure 會新增此磁碟，並指派第一個可用的磁碟機代號。
-Disk2 | D:\ | SQL 系統資料庫和使用者資料庫&1;
-Disk3 | G:\ | 使用者資料庫&2;
+Disk2 | D:\ | SQL 系統資料庫和使用者資料庫 1
+Disk3 | G:\ | 使用者資料庫 2
 
 因為已從 SalesDB 虛擬機器中排除 Disk2 和 Disk3，E: 是可用清單中的第一個磁碟機代號。 Azure 會將 E: 指派給暫時存放磁碟區。 對於所有複寫的磁碟，磁碟機代號維持不變。
 
@@ -173,8 +173,8 @@ Disk3，這是 SQL tempdb 磁碟 (tempdb 資料夾路徑 F:\MSSQL\Data\)，排�
 --- | --- | ---
 DISK0 | C:\ | 作業系統磁碟
 Disk1 |    E:\ | 暫存儲存體</br /> </br />Azure 會新增此磁碟，並指派第一個可用的磁碟機代號。
-Disk2 |    D:\ | SQL 系統資料庫和使用者資料庫&1;
-Disk3 |    G:\ | 使用者資料庫&2;
+Disk2 |    D:\ | SQL 系統資料庫和使用者資料庫 1
+Disk3 |    G:\ | 使用者資料庫 2
 
 
 #### <a name="vmware-to-azure"></a>VMware 至 Azure
@@ -185,8 +185,8 @@ Disk3 |    G:\ | 使用者資料庫&2;
 **客體作業系統磁碟#** | **磁碟機代號** | **磁碟上的資料類型**
 --- | --- | ---
 DISK0 | C:\ | 作業系統磁碟
-Disk1 |    D:\ | SQL 系統資料庫和使用者資料庫&1;
-Disk2 |    G:\ | 使用者資料庫&2;
+Disk1 |    D:\ | SQL 系統資料庫和使用者資料庫 1
+Disk2 |    G:\ | 使用者資料庫 2
 
 #### <a name="hyper-v-to-azure"></a>Hyper-V 至 Azure
 容錯回復至原始位置後，容錯回復虛擬機器磁碟組態與 Hyper-V 的原始虛擬機器磁碟組態維持相同。 從 Hyper-V 網站到 Azure 中排除的磁碟，不會出現在容錯回復虛擬機器上。
@@ -196,10 +196,10 @@ Disk2 |    G:\ | 使用者資料庫&2;
 **磁碟名稱** | **客體作業系統磁碟#** | **磁碟機代號** | **磁碟上的資料類型**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 |    C:\ | 作業系統磁碟
-DB-Disk1 | Disk1 | D:\ | SQL 系統資料庫和使用者資料庫&1;
+DB-Disk1 | Disk1 | D:\ | SQL 系統資料庫和使用者資料庫 1
 DB-Disk2 (排除的磁碟) | Disk2 | E:\ | 暫存檔案
 DB-Disk3 (排除的磁碟) | Disk3 | F:\ | SQL tempdb 資料庫 (資料夾路徑 (F:\MSSQL\Data\)
-DB-Disk4 | Disk4 | G:\ | 使用者資料庫&2;
+DB-Disk4 | Disk4 | G:\ | 使用者資料庫 2
 
 
 #### <a name="exclude-the-paging-file-pagefilesys-disk"></a>排除分頁檔 (pagefile.sys) 磁碟

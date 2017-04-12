@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/18/2017
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: f31a8347bf6bb36fa166d35f52915813394d85e9
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: e2d3a6725ee53dc6d6986b185fac143901ba6955
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -59,7 +59,7 @@ Azure 診斷擴充可以將這項資料傳送到 Azure 儲存體帳戶，或傳�
 
 * [搭配適用於雲端服務的 Application Insights 來使用 Azure 診斷](../application-insights/app-insights-cloudservices.md)
 * [使用 Azure 診斷追蹤雲端服務應用程式的流程](../cloud-services/cloud-services-dotnet-diagnostics-trace-flow.md)
-* [使用 PowerShell 在雲端服務上設定診斷](../virtual-machines/virtual-machines-windows-ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [使用 PowerShell 在雲端服務上設定診斷](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="virtual-machines-using-azure-diagnostics"></a>使用 Azure 診斷的虛擬機器
 * 如果您使用 Visual Studio，請參閱[使用 Visual Studio 來追蹤 Microsoft Azure 虛擬機器](../vs-azure-tools-debug-cloud-services-virtual-machines.md)來開始。 否則，請參閱
@@ -67,8 +67,8 @@ Azure 診斷擴充可以將這項資料傳送到 Azure 儲存體帳戶，或傳�
 
 如需更進階的主題，請參閱
 
-* [使用 PowerShell 在 Azure 虛擬機器上設定診斷](../virtual-machines/virtual-machines-windows-ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [使用 Azure Resource Manager 範本建立具有監視和診斷的 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [使用 PowerShell 在 Azure 虛擬機器上設定診斷](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [使用 Azure Resource Manager 範本建立具有監視和診斷的 Windows 虛擬機器](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="service-fabric-using-azure-diagnostics"></a>使用 Azure 診斷的 Service Fabric
 請參閱[監視 Service Fabric 應用程式](../service-fabric/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)來開始。 當您抵達這篇文章所在網頁時，可以利用左側的導覽樹狀目錄前往許多其他的 Service Fabric 診斷文章。

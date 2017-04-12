@@ -26,7 +26,7 @@
 ###[利用叢集來散發您的快取](cache-how-to-premium-clustering.md)
 ## 自動化
 ###[使用 Powershell 進行部署和管理](cache-howto-manage-redis-cache-powershell.md)
-###[使用 Azure CLI 進行部署和管理](cache-manage-cli.md)
+###[使用 Azure CLI 進行部署和管理](cli-samples.md)
 ###[佈建 Redis 快取](cache-redis-cache-arm-provision.md)
 ###[佈建 Web 應用程式和 Redis 快取](cache-web-app-arm-with-redis-cache-provision.md)
 ## 與 ASP.NET 整合

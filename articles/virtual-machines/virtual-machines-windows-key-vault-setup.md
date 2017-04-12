@@ -1,72 +1,10 @@
 ---
-title: "為 Azure Resource Manager 中的 Windows VM 設定 Key Vault | Microsoft Docs"
-description: "如何設定要與 Azure Resource Manager 虛擬機器搭配使用的金鑰保存庫。"
-services: virtual-machines-windows
-documentationcenter: 
-author: singhkays
-manager: timlt
-editor: 
-tags: azure-resource-manager
-ms.assetid: 33a483e2-cfbc-4c62-a588-5d9fd52491e2
-ms.service: virtual-machines-windows
-ms.workload: infrastructure-services
-ms.tgt_pltfrm: vm-windows
-ms.devlang: na
-ms.topic: article
-ms.date: 01/24/2017
-ms.author: kasing
+redirect_url: /azure/virtual-machines/windows/key-vault-setup
+redirect_document_id: true
 translationtype: Human Translation
-ms.sourcegitcommit: bcb347e8a2ebef14100e990ef71eac5362de5a48
-ms.openlocfilehash: 74124056ea77dc1007fb87853ceb10622c9ceaea
-ms.lasthandoff: 01/25/2017
-
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: b6fa209218a93d742edb2dedbeea8219ea387643
+ms.lasthandoff: 03/31/2017
 
 ---
-# <a name="set-up-key-vault-for-virtual-machines-in-azure-resource-manager"></a>為 Azure Resource Manager 中的虛擬機器設定金鑰保存庫
-
-[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
-
-在 Azure Resource Manager 堆疊中，密碼/憑證會被塑造成「金鑰保存庫資源提供者」所提供的資源。 若要深入了解「金鑰保存庫」，請參閱 [什麼是 Azure 金鑰保存庫？](../key-vault/key-vault-whatis.md)
-
-> [!NOTE]
-> 1. 為了讓「金鑰保存庫」能與 Azure Resource Manager 虛擬機器搭配使用，必須將「金鑰保存庫」上的 **EnabledForDeployment** 屬性設定為 true。 您可以在各種用戶端中執行這項操作。
-> 2. 「金鑰保存庫」必須建立在與「虛擬機器」相同的訂用帳戶和位置中。
-> 
-> 
-
-## <a name="use-powershell-to-set-up-key-vault"></a>使用 PowerShell 來設定金鑰保存庫
-若要使用 PowerShell 來建立「金鑰保存庫」，請參閱 [開始使用 Azure 金鑰保存庫](../key-vault/key-vault-get-started.md#vault)。
-
-針對新的「金鑰保存庫」，您可以使用下列 PowerShell Cmdlet：
-
-    New-AzureRmKeyVault -VaultName 'ContosoKeyVault' -ResourceGroupName 'ContosoResourceGroup' -Location 'East Asia' -EnabledForDeployment
-
-針對現有的「金鑰保存庫」，您可以使用下列 PowerShell Cmdlet：
-
-    Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -EnabledForDeployment
-
-## <a name="us-cli-to-set-up-key-vault"></a>使用 CLI 來設定金鑰保存庫
-若要使用命令列介面 (CLI) 來建立金鑰保存庫，請參閱 [使用 CLI 管理金鑰保存庫](../key-vault/key-vault-manage-with-cli.md#create-a-key-vault)。
-
-若使用 CLI，您必須在您指派部署原則之前建立金鑰保存庫。 您可以使用下列命令來達成目的：
-
-    azure keyvault set-policy ContosoKeyVault –enabled-for-deployment true
-
-## <a name="use-templates-to-set-up-key-vault"></a>使用範本來設定金鑰保存庫
-使用範本時，您需要將「金鑰保存庫」資源的 `enabledForDeployment` 屬性設定為 `true`。
-
-    {
-      "type": "Microsoft.KeyVault/vaults",
-      "name": "ContosoKeyVault",
-      "apiVersion": "2015-06-01",
-      "location": "<location-of-key-vault>",
-      "properties": {
-        "enabledForDeployment": "true",
-        ....
-        ....
-      }
-    }
-
-如需使用範本來建立金鑰保存庫時可以設定的其他選項，請參閱 [Create a Key Vault (建立金鑰保存庫)](https://azure.microsoft.com/documentation/templates/101-key-vault-create/)。
-
 

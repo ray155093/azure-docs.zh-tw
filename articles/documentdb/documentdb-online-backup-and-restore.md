@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: raprasa
 translationtype: Human Translation
-ms.sourcegitcommit: b5419efbaf51476cfc662c8aa814001e2757b4b7
-ms.openlocfilehash: db7b24c049153b6622f50fd9934611d48c98a1e8
-ms.lasthandoff: 02/07/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: e9b99a79adf445da8761ee399fb1e1a51f9224fc
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -28,7 +28,7 @@ Azure DocumentDB 可以定期自動備份您的所有資料。 自動備份的�
 本文開頭先回顧 DocumentDB 的資料備援和可用性，接著討論備份。 
 
 ## <a name="high-availability-with-documentdb---a-recap"></a>DocumentDB 的高可用性 - 回顧
-DocumentDB 設計為 [分散在全區域](documentdb-distribute-data-globally.md) – 可讓您調整多個 Azure 區域的輸送量以及原則導向的容錯移轉和透明多首頁的 API。 由於資料庫系統供應項目為 [99.99%可用性 SLA](https://azure.microsoft.com/support/legal/sla/documentdb/v1_0/)，本機磁碟會永久認可 DocumentDB 中的所有寫入，這是在用戶端認可之前，由本機資料中心內的複本仲裁認可。 請注意，DocumentDB 的高可用性仰賴本機儲存體，不需依賴任何外部儲存技術。 此外，如果您的資料庫帳戶與多個 Azure 區域相關聯，您的寫入也會在其他區域複寫。 若要在低延遲狀況下調整輸送量和存取資料，您可以有盡量多個與您的資料庫帳戶相關聯的讀取區域。 在每個讀取區域中，(複寫的) 資料會在複本集上永久保存。  
+DocumentDB 設計為 [分散在全區域](documentdb-distribute-data-globally.md) – 可讓您調整多個 Azure 區域的輸送量以及原則導向的容錯移轉和透明多首頁的 API。 由於資料庫系統供應項目為 [99.99%可用性 SLA](https://azure.microsoft.com/support/legal/sla/documentdb/v1_1/)，本機磁碟會永久認可 DocumentDB 中的所有寫入，這是在用戶端認可之前，由本機資料中心內的複本仲裁認可。 請注意，DocumentDB 的高可用性仰賴本機儲存體，不需依賴任何外部儲存技術。 此外，如果您的資料庫帳戶與多個 Azure 區域相關聯，您的寫入也會在其他區域複寫。 若要在低延遲狀況下調整輸送量和存取資料，您可以有盡量多個與您的資料庫帳戶相關聯的讀取區域。 在每個讀取區域中，(複寫的) 資料會在複本集上永久保存。  
 
 如下圖所示，單一 DocumentDB 集合是 [水平分割](documentdb-partition-data.md)。 圖中的一個一個圓圈是一個「分割」，透過複本集每個分割都有高可用性。 這是在單一 Azure 區域內的本機分散 (以 X 軸表示)。 再者，每個分割 (及其對應的複本集) 會全域分散在與您的資料庫帳戶相關聯的多個區域，例如，此圖中有三個區域 - 美國東部、美國西部和印度中部。 「分割集」是全域分散的實體，由您的資料在每個區域中的多個複本組成 (以 Y 軸表示)。 您可以替資料庫帳戶相關聯的區域指派優先順序，發生災害時 DocumentDB 會以透明方式容錯移轉至下一個區域。 您也可以手動模擬容錯移轉，以測試應用程式的端對端可用性。  
 

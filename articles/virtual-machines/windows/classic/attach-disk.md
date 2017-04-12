@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/21/2017
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 4debed5ceed2c94b2e5b666d6fcebec5667bfda7
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 806634bb66ebb538020f1ffa693704433fc43352
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -30,7 +30,7 @@ Refernce article:
 
 本文會示範如何使用 Azure 入口網站將傳統部署模型所建立之新的及現有的磁碟連接到 Windows 虛擬機器。
 
-您也可以[在 Azure 入口網站中將資料磁碟連接到 Linux VM](../../virtual-machines-linux-attach-disk-portal.md)。
+您也可以[在 Azure 入口網站中將資料磁碟連接到 Linux VM](../../linux/attach-disk-portal.md)。
 
 連接磁碟之前，請檢閱下列提示︰
 

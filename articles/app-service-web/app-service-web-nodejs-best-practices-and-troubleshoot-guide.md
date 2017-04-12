@@ -15,15 +15,16 @@ ms.topic: article
 ms.date: 06/06/2016
 ms.author: ranjithr;wadeh
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 802a6126302a30aefae5841f42d8b9d782065638
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 79e5329332c457c738c082277ee7b79eb8ead049
+ms.lasthandoff: 04/06/2017
 
 
 ---
 # <a name="best-practices-and-troubleshooting-guide-for-node-applications-on-azure-web-apps"></a>Azure Web Apps 上節點應用程式的最佳作法和疑難排解指南
 [!INCLUDE [tabs](../../includes/app-service-web-get-started-nav-tabs.md)]
 
-在本文中，您將了解在 Azure Web Apps 上執行之[節點應用程式](app-service-web-nodejs-get-started.md)的最佳作法和疑難排解步驟 (透過 [iisnode](https://github.com/azure/iisnode))。
+在本文中，您將了解在 Azure Web Apps 上執行之[節點應用程式](app-service-web-get-started-nodejs.md)的最佳作法和疑難排解步驟 (透過 [iisnode](https://github.com/azure/iisnode))。
 
 > [!WARNING]
 > 請小心在您的生產網站上使用疑難排解步驟。 建議在非生產安裝 (例如您的預備位置) 上對應用程式進行疑難排解，而當問題修正後，請切換您的預備位置與生產位置。
@@ -252,16 +253,11 @@ NODE.exe 內有名為 NODE\_PENDING\_PIPE\_INSTANCES 的設定。 根據預設�
 ## <a name="more-resources"></a>其他資源
 請遵循下列連結以深入了解 Azure App Service 上的 node.js 應用程式。
 
-* [在 Azure App Service 中開始使用 Node.js Web 應用程式](app-service-web-nodejs-get-started.md)
+* [在 Azure App Service 中開始使用 Node.js Web 應用程式](app-service-web-get-started-nodejs.md)
 * [如何在 Azure App Service 中偵錯 Node.js Web 應用程式](web-sites-nodejs-debug.md)
 * [使用 Node.js 模組與 Azure 應用程式搭配](../nodejs-use-node-modules-azure-apps.md)
 * [Azure App Service Web Apps：Node.js](https://blogs.msdn.microsoft.com/silverlining/2012/06/14/windows-azure-websites-node-js/)
 * [Node.js 開發人員中心](../nodejs-use-node-modules-azure-apps.md)
 * [探索神秘無比的 Kudu 偵錯主控台](https://azure.microsoft.com/documentation/videos/super-secret-kudu-debug-console-for-azure-web-sites/)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

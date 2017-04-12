@@ -17,9 +17,9 @@ ms.workload: na
 ms.date: 03/06/2017
 ms.author: chrande, glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 590cb831ad265d9b83713f573c92d8675e64db3d
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 7b4ae9281bca20949c37b2c797e4a1a677665929
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -55,7 +55,7 @@ ms.lasthandoff: 03/22/2017
 請注意：
 
 * 如 `path`，請參閱[命名模式](#pattern)以了解如何格式化 blob 名稱模式。
-* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定]()。 
+* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定](functions-how-to-use-azure-function-app-settings.md)。 
 
 在執行取用方案時，如果函式應用程式已進入閒置狀態，則處理新 Blob 時最多會有 10 分鐘的延遲。 如果函式應用程式正在執行，Blob 的處理速度會較快。 為了避免發生此初始延遲，您可以使用一般的 App Service 方案並啟用 [永遠開啟]，或使用其他機制來觸發 Blob 的處理，例如包含 Blob 名稱的佇列訊息。 
 
@@ -227,7 +227,7 @@ Azure 儲存體 blob 輸入繫結可讓您在函式中從儲存體容器使用 b
 請注意：
 
 * `path` 必須包含容器名稱和 blob 名稱。 例如，如果您在函數中有[佇列觸發程序](functions-bindings-storage-queue.md)，您可以使用 `"path": "samples-workitems/{queueTrigger}"` 以與觸發程序訊息中指定之 blob 名稱相符的名稱來指向 `samples-workitems` 容器中的 blob。   
-* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定]()。 
+* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定](functions-how-to-use-azure-function-app-settings.md)。 
 
 <a name="inputusage"></a>
 
@@ -340,7 +340,7 @@ Azure 儲存體 blob 輸出繫結可讓您在函式中將 blob 寫入儲存體�
 請注意：
 
 * `path` 必須包含容器名稱和要寫入的 blob 名稱。 例如，如果您在函數中有[佇列觸發程序](functions-bindings-storage-queue.md)，您可以使用 `"path": "samples-workitems/{queueTrigger}"` 以與觸發程序訊息中指定之 blob 名稱相符的名稱來指向 `samples-workitems` 容器中的 blob。   
-* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定]()。 
+* `connection` 必須包含儲存體連接字串的應用程式設定名稱。 在 Azure 入口網站中，當您建立儲存體帳戶或選取一個現有的儲存體帳戶時，[整合] 索引標籤中的標準編輯器可設定此應用程式設定。 若要手動建立此應用程式設定，請參閱[手動設定此應用程式設定](functions-how-to-use-azure-function-app-settings.md)。 
 
 <a name="outputusage"></a>
 

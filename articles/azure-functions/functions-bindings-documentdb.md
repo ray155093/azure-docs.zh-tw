@@ -17,9 +17,9 @@ ms.workload: na
 ms.date: 11/10/2016
 ms.author: chrande; glenga
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: e476a80a3846b8c80c35d6803d5518727f008824
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 2ac78606f851068fa0fb7dcab3bac1c629b9cdb3
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -153,7 +153,7 @@ DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。
 請注意：
 
 * 如果不存在，請將 `createIfNotExists` 設定為 `true` 來建立資料庫和集合。 預設值為 `false`。 新集合會使用保留的輸送量建立，其具有價格含意。 如需詳細資訊，請參閱 [DocumentDB 定價](https://azure.microsoft.com/pricing/details/documentdb/)。
-* `connection` 必須是指向 DocumentDB 帳戶端點的應用程式設定的名稱 (具有值 `AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>`)。 如果您透過 Functions 入口網站 UI 建立 DocumentDB 帳戶，帳戶建立程序會為您建立新的應用程式設定。 若要使用現有的 DocumentDB 帳戶，您需要[手動設定設定此應用程式]()。 
+* `connection` 必須是指向 DocumentDB 帳戶端點的應用程式設定的名稱 (具有值 `AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>`)。 如果您透過 Functions 入口網站 UI 建立 DocumentDB 帳戶，帳戶建立程序會為您建立新的應用程式設定。 若要使用現有的 DocumentDB 帳戶，您需要[手動設定設定此應用程式](functions-how-to-use-azure-function-app-settings.md)。 
 
 ## <a name="output-usage"></a>輸出使用方式
 本節說明如何在您的函式程式碼中使用您的 DocumentDB 輸出繫結。
@@ -166,8 +166,8 @@ DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。
 您可以使用下列任何類型來寫入輸出︰
 
 * 任何[物件](https://msdn.microsoft.com/library/system.object.aspx) - 適用於 JSON 序列化。
-  如果您宣告自訂輸出類型 (例如 `out FooType paramName`)，Azure Functions 會嘗試將物件序列化為 JSON。 如果函式結束時輸出參數為 Null，則函式的執行階段會建立 Blob 作為 Null 物件。
-* 字串 - (`out string paramName`) 適用於文字 Blob 資料。 當函式結束時，如果字串參數非 Null，就只會建立 Blob。
+  如果您宣告自訂輸出類型 (例如 `out FooType paramName`)，Azure Functions 會嘗試將物件序列化為 JSON。 如果函式結束時輸出參數為 null，則函式的執行階段會建立 blob 作為 null 物件。
+* 字串 - (`out string paramName`) 適用於文字 blob 資料。 當函式結束時，如果字串參數非 Null，就只會建立 Blob。
 
 在 C# 函式中，您也可以輸出至下列任何類型︰
 
