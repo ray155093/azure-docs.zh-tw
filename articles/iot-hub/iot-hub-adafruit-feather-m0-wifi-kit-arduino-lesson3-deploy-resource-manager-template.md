@@ -7,6 +7,8 @@ author: shizn
 manager: timtl
 tags: 
 keywords: "將資料儲存在雲端, 儲存在雲端的資料, iot 雲端服務"
+ROBOTS: NOINDEX
+redirect_url: /azure/iot-hub/iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started
 ms.assetid: 9c8f4cd1-9511-4601-ad7e-51761a986753
 ms.service: iot-hub
 ms.devlang: arduino
