@@ -39,6 +39,8 @@
     href: azure-vm-network-overview.md
   - name: "VM 擴展集"
     href: ../../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md
+  - name: "執行個體中繼資料服務" 
+    href: ../virtual-machines-instancemetadataservice-overview.md
   - name: "容器"
     href: containers.md
   - name: "資源管理員"

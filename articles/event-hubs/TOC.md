@@ -18,10 +18,13 @@
 
 # 作法
 ## 規劃和設計
+### [🔧 使用 Azure 服務的一般整合案例](event-hubs-common-integrations.md)
 ### [專用的事事件中樞](event-hubs-dedicated-overview.md)
 ### [驗證和安全性模型概觀](event-hubs-authentication-and-security-model-overview.md)
 ### [可用性和一致性](event-hubs-availability-and-consistency.md)
 ## 開發
+### [🔧處理錯誤和重試](event-hubs-handling-errors-retry.md)
+### [🔧管理效能和級別](event-hubs-performance-scale.md)
 ### [可用的 API](event-hubs-api-overview.md)
 #### [.NET Standard](event-hubs-dotnet-standard-api-overview.md)
 #### [.NET Framework](event-hubs-dotnet-framework-api-overview.md)
@@ -34,6 +37,7 @@
 #### [事件中樞封存](event-hubs-archive-overview.md)
 #### [使用範本啟用事件中樞封存](event-hubs-resource-manager-namespace-event-hub-enable-archive.md)
 #### [使用 Python 啟用事件中樞封存](event-hubs-archive-python.md)
+### [使用 PowerShell 佈建實體](event-hubs-manage-with-ps.md) 
 ### [使用事件中樞串流 Azure 診斷資料](event-hubs-streaming-azure-diags-data.md)
 ### [使用 Resource Manager 範本建立及部署事件中樞](event-hubs-resource-manager-namespace-event-hub.md)
 
@@ -58,8 +62,3 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=event-hubs)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-eventhub)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=event-hubs)
-
-
-<!--HONumber=Feb17_HO3-->
-
-

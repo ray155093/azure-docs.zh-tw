@@ -9,6 +9,7 @@
 ## 管理虛擬機器
 ### [作者虛擬機器優惠](./cloud-partner-portal-publish-virtual-machine.md)
 #### [必要條件](./cloud-partner-portal-publish-virtual-machine.md#what-are-pre-requisites-for-publishing-a-vm)
+#### [Microsoft 開發人員帳戶註冊](./cloud-partner-portal-dev-center-accounts-registration.md)
 #### [建立新 VM 優惠](./cloud-partner-portal-publish-virtual-machine.md#how-to-create-a-new-vm-offer)
 #### [優惠設定表單](./cloud-partner-portal-publish-virtual-machine.md#how-to-fill-out-the-offer-settings-form)
 #### [SKU 表單](./cloud-partner-portal-publish-virtual-machine.md#how-to-create-skus)
@@ -21,6 +22,7 @@
 ### [更新現有優惠](./cloud-partner-portal-update-existing-offer.md)
 ### [刪除 VM 優惠/SKU](./cloud-partner-portal-delete-an-offer.md)
 ### [移轉至雲端合作夥伴入口網站](./cloud-partner-portal-how-to-migrate-to-the-new-cloud-partner-portal.md)
+## [Azure Marketplace 賣方指南](./cloud-partner-portal-seller-guide.md)
 
 ## [行銷潛在客戶管理](./cloud-partner-portal-marketing-lead-management.md)
 ### [Azure 資料表](./cloud-partner-portal-lead-management-instructions-azure-table.md)

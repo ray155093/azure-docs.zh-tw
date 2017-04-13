@@ -8,6 +8,7 @@
 ## 開始使用
 ### [部署必要條件](azure-stack-deploy.md)
 ### [部署](azure-stack-run-powershell-script.md)
+### [啟動入口網站](azure-stack-run-powershell-script.md#activate-the-administrator-and-tenant-portals)
 ### [註冊](azure-stack-register.md)
 ## 作法
 ### [連接至 Azure Stack POC](azure-stack-connect-azure-stack.md)
@@ -56,6 +57,7 @@
 #### [Azure Stack 概觀上的 App Service](azure-stack-app-service-overview.md)
 #### [開始之前](azure-stack-app-service-before-you-get-started.md)
 #### [部署 App Service 資源提供者](azure-stack-app-service-deploy.md)
+#### [離線部署 App Service](azure-stack-app-service-deploy-offline.md)
 #### [新增更多 Web 背景工作角色](azure-stack-app-service-add-worker-roles.md)
 #### [設定部署來源](azure-stack-app-service-configure-deployment-sources.md)
 #### [在 Azure Stack 上的 App Service 中啟用 FTP](azure-stack-app-service-enable-ftp.md)
@@ -80,7 +82,7 @@
 ### [概觀](azure-stack-storage-overview.md)
 ### [差異與注意事項](azure-stack-acs-differences-tp2.md)
 ## 網路
-### [適用於 Azure Stack 的 iDNS](azure-stack-understanding-dns-in-tp2.md)
+### [適用於 Azure Stack 的 iDNS](azure-stack-understanding-dns.md)
 ### [Azure Stack 中的 DNS](azure-stack-dns.md)
 ### [了解站對站 VPN 連線](azure-stack-create-vpn-connection-one-node-tp2.md)
 ## 金鑰保存庫

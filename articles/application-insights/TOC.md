@@ -30,7 +30,6 @@
 # 作法
 ## 規劃和設計
 ### [深入診斷 Web Apps 和服務](app-insights-devops.md)
-### [使用 Application Insights 和 HockeyApp 的開發人員分析](app-insights-developer-analytics.md)
 ### [監視 Web 應用程式的效能](app-insights-web-monitor-performance.md)
 ### [使用 Application Insights 進行使用量分析](app-insights-overview-usage.md)
 ### [分隔 Application Insights 資源](app-insights-separate-resources.md)
@@ -39,6 +38,7 @@
 
 ## 設定
 ### Azure
+#### [分析工具](app-insights-profiler.md)
 #### [診斷](app-insights-azure-diagnostics.md)
 
 ### ASP.NET
@@ -139,11 +139,6 @@
 
 ## [價格](https://azure.microsoft.com/pricing/details/application-insights/)  
 
-## [範例和逐步解說](app-insights-code-samples.md)
-### [逐步解說：啟用 Microsoft Dynamics CRM Online 遙測](app-insights-sample-mscrm.md)
-### [逐步解說：使用串流分析匯出至 SQL](app-insights-code-sample-export-sql-stream-analytics.md)
-### [程式碼範例︰剖析匯出的資料](app-insights-code-sample-export-telemetry-sql-database.md)
-
 ## 新聞
 
 ### [部落格](https://azure.microsoft.com/blog/tag/application-insights/)
@@ -156,7 +151,7 @@
 ### [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=ApplicationInsights)  
 ### [Stack Overflow](http://stackoverflow.com/questions/tagged/az-application-insights)
 ### [使用者心聲 (英文)](https://visualstudio.uservoice.com/forums/357324-application-insights)
-### [支援](app-insights-get-dev-support.md)
+### [支援](https://azure.microsoft.com/support/)
 
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=application-insights)
 

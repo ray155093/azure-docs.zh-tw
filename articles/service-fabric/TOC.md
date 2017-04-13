@@ -17,6 +17,7 @@
 ### [在 Linux 上使用 Java](service-fabric-create-your-first-linux-application-with-java.md)
 ### [Linux 上的 C](service-fabric-create-your-first-linux-application-with-csharp.md)
 ## [在本機叢集上部署應用程式](service-fabric-get-started-with-a-local-cluster.md)
+## [建立獨立叢集](service-fabric-get-started-standalone-cluster.md)
 
 # 作法
 ## 建置應用程式
@@ -145,6 +146,7 @@
 ### 部署或移除應用程式
 #### [PowerShell](service-fabric-deploy-remove-applications.md)
 #### [Visual Studio](service-fabric-publish-app-remote-cluster.md)
+#### [FabricClient API](service-fabric-deploy-remove-applications-fabricclient.md)
 ### [應用程式升級概觀](service-fabric-application-upgrade.md)
 ### [設定應用程式升級](service-fabric-visualstudio-configure-upgrade.md)
 ### [應用程式升級參數](service-fabric-application-upgrade-parameters.md)
@@ -208,9 +210,9 @@
 ### [服務動作](service-fabric-cluster-resource-manager-movement-cost.md)
 
 # 參考
-## [PowerShell](//powershell/servicefabric/vlatest/servicefabric)
-## [Java API](/java/api/microsoft.servicefabric.services)
-## [.NET](/dotnet/api/microsoft.servicefabric.services)
+## [PowerShell](/powershell/module/ServiceFabric/)
+## [Java API](/java/api/)
+## [.NET](/dotnet/api/)
 ## [REST](/rest/api/servicefabric)
 
 # 資源

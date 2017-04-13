@@ -16,6 +16,11 @@
 ### [疑難排解和監視](troubleshooting-monitoring.md)
 ### [單一執行個體 SAP HANA](hana-get-started.md)
 ### [S/4 HANA 或 BW/4 HANA 部署指南](cal-s4h.md)
+### 備份
+#### [概觀](sap-hana-backup-guide.md)
+#### [檔案層級備份](sap-hana-backup-file-level.md)
+#### [儲存體快照集](sap-hana-backup-storage-snapshots.md)
+
 ## SAP Netweaver
 ### [概觀和架構](suse-quickstart.md)
 ### [方案和實作](planning-guide.md)
