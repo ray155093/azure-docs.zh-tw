@@ -16,6 +16,7 @@ ms.author: awills
 translationtype: Human Translation
 ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
 ms.openlocfilehash: 874e9abb7ae7e06808645ae2ab7cd5b3c0d36e04
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -24,7 +25,7 @@ ms.openlocfilehash: 874e9abb7ae7e06808645ae2ab7cd5b3c0d36e04
 
 您也可以撰寫程式碼來傳送自訂事件、例外狀況報告和追蹤。 如果您已經使用記錄架構 (例如 log4J、log4net、NLog 或 System.Diagnostics.Trace)，可以擷取這些記錄檔，並將它們包含在搜尋中。 這樣會較容易將使用者動作、例外狀況和其他事件與記錄追蹤相互關聯。
 
-## <a name="a-namesendabefore-you-write-custom-telemetry"></a><a name="send"></a>在您撰寫自訂遙測資料之前
+## <a name="send"></a>在您撰寫自訂遙測資料之前
 如果您尚未[針對專案安裝 Application Insights][start]，請立即安裝。
 
 執行應用程式時，會傳送一些遙測資料，而這些資料會出現在診斷搜尋中，其中包括由伺服器接收的要求、記錄在用戶端的頁面檢視，以及無法攔截的例外狀況。
@@ -40,7 +41,7 @@ ms.openlocfilehash: 874e9abb7ae7e06808645ae2ab7cd5b3c0d36e04
 ## <a name="sampling"></a>取樣
 如果您的應用程式傳送大量資料，且您是使用 Application Insights SDK for ASP.NET 版本 2.0.0-beta3 或更新版本，則調適性取樣功能可能會運作，並只傳送一部分的遙測資料。 [深入了解取樣。](app-insights-sampling.md)
 
-## <a name="a-nameeventsacustom-events"></a><a name="events"></a>自訂事件
+## <a name="events"></a>自訂事件
 自訂事件會同時顯示在[診斷搜尋][diagnostic]和[計量瀏覽器][metrics]中。 您可以從裝置、網頁和伺服器應用程式傳送這些事件。 這些事件可同時用於診斷及[了解使用模式][track]。
 
 每個自訂事件都有自己的名稱，並帶有可透過數值測量單位篩選的屬性。
@@ -95,7 +96,7 @@ ms.openlocfilehash: 874e9abb7ae7e06808645ae2ab7cd5b3c0d36e04
 
 ![](./media/app-insights-search-diagnostic-logs/appinsights-23-customevents-4.png)
 
-## <a name="a-namepagesa-page-views"></a><a name="pages"></a> 頁面檢視
+## <a name="pages"></a> 頁面檢視
 頁面檢視遙測資料是由[在網頁中插入之 JavaScript 程式碼片段][usage]中的 trackPageView() 呼叫所傳送。 此資料主要用途是提供您在概觀頁面看到的頁面檢視計數。
 
 通常它在每個 HTML 頁面中只會被呼叫一次，但是您可以插入多個呼叫 (例如，您有單頁應用程式，且想在使用者取得更多資料時記錄新頁面)。
@@ -108,7 +109,7 @@ ms.openlocfilehash: 874e9abb7ae7e06808645ae2ab7cd5b3c0d36e04
      {Game: currentGame.name, Difficulty: currentGame.difficulty});
 
 
-## <a name="a-nametracea-trace-telemetry"></a><a name="trace"></a> 追蹤遙測
+## <a name="trace"></a> 追蹤遙測
 追蹤遙測是專門用以建立診斷記錄檔而插入的程式碼。 
 
 例如，您可以插入這類呼叫：
@@ -133,7 +134,7 @@ ms.openlocfilehash: 874e9abb7ae7e06808645ae2ab7cd5b3c0d36e04
 
 NuGet 封裝會安裝必要的組件，並修改 web.config 或 app.config。
 
-#### <a name="a-namepepperainsert-diagnostic-log-calls"></a><a name="pepper"></a>插入診斷記錄呼叫
+#### <a name="pepper"></a>插入診斷記錄呼叫
 如果您使用 System.Diagnostics.Trace，典型的呼叫如下：
 
     System.Diagnostics.Trace.TraceWarning("Slow response - database01");
@@ -146,7 +147,7 @@ NuGet 封裝會安裝必要的組件，並修改 web.config 或 app.config。
 
 當您選取 [追蹤] 篩選器時，會看到 [診斷搜尋] 中的訊息。
 
-### <a name="a-nameexceptionsaexceptions"></a><a name="exceptions"></a>例外狀況
+### <a name="exceptions"></a>例外狀況
 Application Insights 中的「取得例外狀況報告」功能非常強大，尤其是您可以切換瀏覽失敗要求和例外狀況，以及讀取例外狀況堆疊。
 
 在某些情況下，您需要[插入數行程式碼][exceptions]，以確定系統會自動截取您的例外狀況。
@@ -246,24 +247,24 @@ VB
         .Add(new MyTelemetryInitializer());
     }
 
-### <a name="a-namerequestsa-server-web-requests"></a><a name="requests"></a> 伺服器 Web 要求
+### <a name="requests"></a> 伺服器 Web 要求
 當您[在 Web 伺服器上安裝狀態監視器][redfield]，或[將 Application Insights 加入您的 Web 專案][greenbrown]時，就會自動傳送要求遙測。 要求遙測也會在 [計量瀏覽器] 和 [概觀] 頁面中，將摘要填入要求和回應時間圖表。
 
 如果您想要傳送其他事件，可以使用 TrackRequest() API。
 
-## <a name="a-namequestionsaq--a"></a><a name="questions"></a>問與答
-### <a name="a-nameemptykeyai-get-an-error-instrumentation-key-cannot-be-empty"></a><a name="emptykey"></a>我收到「檢測金鑰不能是空白」的錯誤
+## <a name="questions"></a>問與答
+### <a name="emptykey"></a>我收到「檢測金鑰不能是空白」的錯誤
 您可能只安裝記錄配接器 Nuget 封裝，但未安裝 Application Insights。
 
 在 [方案總管] 中，以滑鼠右鍵按一下 `ApplicationInsights.config` ，然後選擇 [ **更新 Application Insights**]。 將會出現對話方塊邀請您登入 Azure，並建立 Application Insights 資源或重複使用現有的資源。 這樣應該可以解決。
 
-### <a name="a-namelimitsahow-much-data-is-retained"></a><a name="limits"></a>保留多少資料？
+### <a name="limits"></a>保留多少資料？
 每個應用程式每秒最多 500 個事件。 事件會保留七天。
 
 ### <a name="some-of-my-events-or-traces-dont-appear"></a>有些事件或追蹤沒有顯示出來
 如果您的應用程式傳送大量資料，且您是使用 Application Insights SDK for ASP.NET 版本 2.0.0-beta3 或更新版本，則調適性取樣功能可能會運作，並只傳送一部分的遙測資料。 [深入了解取樣。](app-insights-sampling.md)
 
-## <a name="a-nameaddanext-steps"></a><a name="add"></a>接續步驟
+## <a name="add"></a>接續步驟
 * [設定可用性和回應性測試][availability]
 * [疑難排解][qna]
 
@@ -278,12 +279,7 @@ VB
 [redfield]: app-insights-monitor-performance-live-website-now.md
 [start]: app-insights-overview.md
 [track]: app-insights-api-custom-events-metrics.md
-[usage]: app-insights-web-track-usage.md
+[usage]: app-insights-javascript.md
 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 
