@@ -119,10 +119,10 @@ SQL Database 中的彈性集區會結合租用戶隔離與租用戶資料庫之�
 | --- | --- |
 | 租用戶隔離與資源共用 |[彈性集區](sql-database-elastic-pool.md)︰配置 SQL Database 資源的集區，讓數個資料庫共用這些資源。 此外，個別資料庫可以依需要從集區汲取資源，以因應租用戶工作負載變化而造成的容量需求遽增。 彈性集區本身也可以視需要而相應放大或縮小。 彈性集區也支援在集區層級上輕鬆地管理、監視和進行疑難排解。 |
 | 跨資料庫簡化 DevOps |[彈性集區](sql-database-elastic-pool.md)︰如先前所述。 |
-| [彈性查詢](sql-database-elastic-query-horizontal-partitioning.md)︰跨資料庫查詢以進行報告或跨租用戶分析。 | |
-| [彈性作業](sql-database-elastic-jobs-overview.md)︰封裝資料庫維護作業或資料庫結構描述變更，然後可靠地部署到多個資料庫。 | |
-| [彈性交易](sql-database-elastic-transactions-overview.md)︰以不可部分完成和隔離的方式，處理多個資料庫的變更。 當應用程式在數個資料庫作業之間需要保證「全有或全無」時，就需要彈性交易。 | |
-| [彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)︰管理資料分佈並將租用戶對應到資料庫。 | |
+| | [彈性查詢](sql-database-elastic-query-horizontal-partitioning.md)︰跨資料庫查詢以進行報告或跨租用戶分析。 |
+| | [彈性作業](sql-database-elastic-jobs-overview.md)︰封裝資料庫維護作業或資料庫結構描述變更，然後可靠地部署到多個資料庫。 |
+| | [彈性交易](sql-database-elastic-transactions-overview.md)︰以不可部分完成和隔離的方式，處理多個資料庫的變更。 當應用程式在數個資料庫作業之間需要保證「全有或全無」時，就需要彈性交易。 |
+| | [彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)︰管理資料分佈並將租用戶對應到資料庫。 |
 
 ## <a name="shared-models"></a>共用的模型
 如先前所述，大多數 SaaS 提供者的共用模型方法可能會引起租用戶隔離問題，以及應用程式開發和維護的複雜性。 然而，對於直接提供服務給取用者的多租用戶應用程式，租用戶隔離需求的優先性可能敵不過降低成本。 他們能夠以高密度將租用戶封裝在一或多個資料庫中以降低成本。 使用單一資料庫或多個分區化資料庫的共用資料庫模型，可以提高資源共用和整體成本的效率。 Azure SQL Database 會提供一些功能，幫助取用者在資料層大規模建置隔離，以強化安全性和管理。
@@ -132,10 +132,10 @@ SQL Database 中的彈性集區會結合租用戶隔離與租用戶資料庫之�
 | 安全性隔離功能 |[資料列層級安全性](https://msdn.microsoft.com/library/dn765131.aspx) |
 | [資料庫結構描述](https://msdn.microsoft.com/library/dd207005.aspx) | |
 | 跨資料庫簡化 DevOps |[彈性查詢](sql-database-elastic-query-horizontal-partitioning.md) |
-| [彈性工作](sql-database-elastic-jobs-overview.md) | |
-| [彈性交易](sql-database-elastic-transactions-overview.md) | |
-| [彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md) | |
-| [彈性資料庫分割和合併](sql-database-elastic-scale-overview-split-and-merge.md) | |
+| | [彈性工作](sql-database-elastic-jobs-overview.md) |
+| | [彈性交易](sql-database-elastic-transactions-overview.md) |
+| | [彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md) |
+| | [彈性資料庫分割和合併](sql-database-elastic-scale-overview-split-and-merge.md) |
 
 ## <a name="summary"></a>摘要
 對於大多數 SaaS 多租用戶應用程式，租用戶隔離需求很重要。 提供隔離的最佳選項幾乎仰賴於「租用戶各有資料庫」方法。 其他兩種方法需要在複雜的應用程式層投入心力，並需要有熟練的開發人員來提供隔離，因而大幅增加成本與風險。 如果在服務開發初期不重視隔離需求，在前兩個模型中改造時會付出更大的代價。 「租用戶各有資料庫」模型的主要缺點在於，因為共用和維護不足，以及管理許多資料庫，導致雲端資源成本增加。 SaaS 應用程式開發人員經常掙扎於這些取捨之中。
