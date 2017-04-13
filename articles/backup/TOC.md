@@ -19,6 +19,7 @@
 ## Azure 備份伺服器
 ### [在 Azure 入口網站中準備 Azure 備份伺服器工作負載](backup-azure-microsoft-azure-backup.md)
 ### [在傳統入口網站中準備 Azure 備份伺服器工作負載](backup-azure-microsoft-azure-backup-classic.md)
+### [使用 Azure 備份伺服器備份 VMware 伺服器](backup-azure-backup-server-vmware.md)
 ### [使用 Azure 備份伺服器備份 Exchange](backup-azure-exchange-mabs.md)
 ### [使用 Azure 備份伺服器備份 SharePoint 陣列](backup-azure-backup-sharepoint-mabs.md)
 ### [使用 Azure 備份伺服器備份 SQL](backup-azure-sql-mabs.md)

@@ -14,7 +14,7 @@
 ## [路由需求](expressroute-routing.md)
 ## [NAT 需求](expressroute-nat.md)
 ## [QoS 需求](expressroute-qos.md)
-## [將電路從傳統移到 Resource Manager](expressroute-move.md)
+## [關於將線路從傳統移至 Resource Manager](expressroute-move.md)
 
 # 作法
 ## 建立及修改電路
@@ -29,6 +29,7 @@
 ## [為 ExpressRoute 設定虛擬網路閘道](expressroute-howto-add-gateway-resource-manager.md)
 ## [設定 ExpressRoute 和站對站並存連線](expressroute-howto-coexist-resource-manager.md)
 ## [將電路從傳統移到 Resource Manager](expressroute-howto-move-arm.md)
+## [將關聯的虛擬網路從傳統移至 Resource Manager](expressroute-migration-classic-resource-manager.md)
 ## 設定 ExpressRoute 的路由器
 ### [設定路由器](expressroute-config-samples-routing.md)
 ### [NAT 的路由設定範例](expressroute-config-samples-nat.md)

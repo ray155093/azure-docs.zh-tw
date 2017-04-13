@@ -29,13 +29,13 @@
 ##### [資料表繫結](functions-bindings-storage-table.md)
 #### [計時器觸發程序](functions-bindings-timer.md)
 #### [Twilio 輸出繫結](functions-bindings-twilio.md)
+### [定義函式 Proxy](functions-proxies.md)
 ### [從 Azure 入口網站建立函式應用程式](functions-create-function-app-portal.md) 
+### [執行排定的清除工作](functions-scenario-database-table-cleanup.md)
 ### [測試 Azure Functions](functions-test-a-function.md)
 ### [在本機開發及偵錯](functions-run-local.md)
 ### [Azure Functions 的最佳做法](functions-best-practices.md)
-### [使用 Azure Functions 執行排程的清除工作](functions-scenario-database-table-cleanup.md)
-### [建立 OpenAPI 定義 (預覽)](functions-api-definition-getting-started.md)
-#### [函式參考中的 OpenAPI 2.0](functions-api-definition.md)
+### [建立 OpenAPI 定義](functions-api-definition-getting-started.md)
 
 ## 管理
 ### [設定函式應用程式設定](functions-how-to-use-azure-function-app-settings.md)

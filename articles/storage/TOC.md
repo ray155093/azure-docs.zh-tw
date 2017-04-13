@@ -79,6 +79,7 @@
 ### [關於 Azure IaaS VM 磁碟 的常見問題](storage-faq-for-disks.md)
 ### 進階儲存體
 #### [VM 磁碟適用的高效能進階儲存體](storage-premium-storage.md)
+#### [使用 Azure Site Recovery 移轉到進階儲存體](storage-migrate-to-premium-storage-using-azure-site-recovery.md)
 #### [為高效能而設計](storage-premium-storage-performance.md)
 ### 標準儲存體
 #### [符合成本效益的標準儲存體和非受控和受控 VM 磁碟](storage-standard-storage.md)

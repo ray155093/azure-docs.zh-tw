@@ -1,6 +1,7 @@
 # 開始使用
 ## [避免非預期的成本](billing-getting-started.md)
 ## [使用 Office 365 帳戶註冊](billing-use-existing-office-365-account-azure-subscription.md)
+## [以 Azure 帳戶註冊 Office 365](billing-use-existing-azure-account-for-office-365-subscription.md)
 ## [限制和配額](../azure-subscription-service-limits.md?toc=/azure/billing/TOC.json)
 # 作法
 ## 監視使用情況和成本
@@ -33,8 +34,3 @@
 
 # 資源
 ## [請連絡支援人員](../azure-supportability/how-to-create-azure-support-request.md)
-
-
-<!--HONumber=Feb17_HO2-->
-
-

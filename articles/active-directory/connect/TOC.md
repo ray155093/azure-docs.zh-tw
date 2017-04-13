@@ -47,6 +47,7 @@
 ### [目錄延伸模組](active-directory-aadconnectsync-feature-directory-extensions.md)
 
 ### [變更 Azure AD 同步服務帳戶密碼](active-directory-aadconnectsync-change-serviceacct-pass.md)
+### [變更 AD DS 帳戶密碼](active-directory-aadconnectsync-change-addsacct-pass.md)
 ### [啟用 AD 資源回收筒](active-directory-aadconnectsync-recycle-bin.md)
 
 ### [同步處理服務管理員](active-directory-aadconnectsync-service-manager-ui.md)
@@ -58,6 +59,7 @@
 
 ## 管理同盟服務
 ### [管理和自訂](active-directory-aadconnect-federation-management.md)
+### [將多個 Azure AD 執行個體與單一 AD FS 執行個體同盟](active-directory-aadconnectfed-single-adfs-multitenant-federation.md)
 
 
 ## 疑難排解

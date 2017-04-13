@@ -103,6 +103,7 @@
 #### [Power BI 中的資料視覺效果](iot-hub-live-data-visualization-in-power-bi.md)
 #### [Web Apps 的資料視覺效果](iot-hub-live-data-visualization-in-web-apps.md)
 #### [使用 Azure Machine Learning 進行天氣預測](iot-hub-weather-forecast-machine-learning.md)
+#### [透過 iothub-explorer進行裝置管理](iot-hub-device-management-iothub-explorer.md)
 
 ### [Sparkfun ESP8266 Thing 開發人員](iot-hub-sparkfun-esp8266-thing-dev-get-started.md)
 #### [透過 iothub-explorer 管理雲端裝置傳訊](iot-hub-explorer-cloud-device-messaging.md)
@@ -110,6 +111,7 @@
 #### [Power BI 中的資料視覺效果](iot-hub-live-data-visualization-in-power-bi.md)
 #### [Web Apps 的資料視覺效果](iot-hub-live-data-visualization-in-web-apps.md)
 #### [使用 Azure Machine Learning 進行天氣預測](iot-hub-weather-forecast-machine-learning.md)
+#### [透過 iothub-explorer進行裝置管理](iot-hub-device-management-iothub-explorer.md)
 
 
 ### [Adafruit Feather M0](iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started.md)
@@ -138,54 +140,13 @@
 ### [在 Linux 上模擬](iot-hub-linux-gateway-sdk-get-started.md)
 ### [在 Windows 上模擬](iot-hub-windows-gateway-sdk-get-started.md)
 
+
 ## 使用 IoT 閘道入門套件
-### [模擬裝置](iot-hub-gateway-kit-c-sim-get-started.md)
-#### 第 1 課：設定 NUC
-##### [將 Intel NUC 設定為 IoT 閘道](iot-hub-gateway-kit-c-sim-lesson1-set-up-nuc.md)
+### 設定 IoT 閘道入門套件
+#### [將 Intel NUC 設定為 IoT 閘道](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
+#### [將 IoT 閘道連線至 IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
+#### [使用 IoT 閘道進行資料轉換](iot-hub-gateway-kit-c-use-iot-gateway-for-data-conversion.md)
 
-#### 第 2 課：建立 IoT 中樞
-##### [取得工具 (Windows 7+)](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-win32.md)
-##### [取得工具 (Ubuntu 16.04)](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-ubuntu.md)
-##### [1.2 取得工具 (macOS 10.10)](iot-hub-gateway-kit-c-sim-lesson2-get-the-tools-mac.md)
-##### [建立 IoT 中樞並登錄您的裝置](iot-hub-gateway-kit-c-sim-lesson2-register-device.md)
-
-#### 第 3 課：從模擬裝置接收訊息
-##### [設定和執行 BLE 範例應用程式](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md)
-##### [讀取來自 IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-sim-lesson3-read-messages-from-hub.md)
-
-#### 第 4 課︰將訊息儲存到 Azure 資料表儲存體
-##### [建立 Azure 函式應用程式與 Azure 儲存體帳戶](iot-hub-gateway-kit-c-sim-lesson4-deploy-resource-manager-template.md)
-##### [讀取保存在 Azure 表格儲存體中的訊息](iot-hub-gateway-kit-c-sim-lesson4-read-table-storage.md)
-
-#### [第 5 課：建立您的第一個 Azure IoT 閘道模組](iot-hub-gateway-kit-c-lesson5-create-gateway-module.md)
-
-#### [疑難排解](iot-hub-gateway-kit-c-sim-troubleshooting.md)
-
-### [SensorTag 裝置](iot-hub-gateway-kit-c-get-started.md)
-#### 第 1 課：設定 NUC
-##### [將 Intel NUC 設定為 IoT 閘道](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
-
-#### 第 2 課：建立 IoT 中樞
-##### [取得工具 (Windows 7+)](iot-hub-gateway-kit-c-lesson2-get-the-tools-win32.md)
-##### [取得工具 (Ubuntu 16.04)](iot-hub-gateway-kit-c-lesson2-get-the-tools-ubuntu.md)
-##### [1.2 取得工具 (macOS 10.10)](iot-hub-gateway-kit-c-lesson2-get-the-tools-mac.md)
-##### [建立 IoT 中樞並登錄您的裝置](iot-hub-gateway-kit-c-lesson2-register-device.md)
-
-#### 第 3 課：從模擬裝置接收訊息
-##### [設定和執行 BLE 範例應用程式](iot-hub-gateway-kit-c-lesson3-configure-ble-app.md)
-##### [讀取來自 IoT 中樞的傳入訊息](iot-hub-gateway-kit-c-lesson3-read-messages-from-hub.md)
-
-#### 第 4 課︰將訊息儲存到 Azure 資料表儲存體
-##### [建立 Azure 函式應用程式與 Azure 儲存體帳戶](iot-hub-gateway-kit-c-lesson4-deploy-resource-manager-template.md)
-##### [讀取保存在 Azure 表格儲存體中的訊息](iot-hub-gateway-kit-c-lesson4-read-table-storage.md)
-
-#### [第 5 課：建立您的第一個 Azure IoT 閘道模組](iot-hub-gateway-kit-c-lesson5-create-gateway-module.md)
-
-##### [疑難排解](iot-hub-gateway-kit-c-troubleshooting.md)
-
-## [使用適用於 C 的 IoT 裝置 SDK](iot-hub-device-sdk-c-intro.md)
-### [使用 IoTHubClient](iot-hub-device-sdk-c-iothubclient.md)
-### [使用序列化程式](iot-hub-device-sdk-c-serializer.md)
 
 # 作法
 ## 規劃
@@ -211,6 +172,9 @@
 #### [裝置與服務 SDK](iot-hub-devguide-sdks.md)
 #### [MQTT 支援](iot-hub-mqtt-support.md)
 #### [詞彙](iot-hub-devguide-glossary.md)
+### [使用適用於 C 的 IoT 裝置 SDK](iot-hub-device-sdk-c-intro.md)
+#### [使用 IoTHubClient](iot-hub-device-sdk-c-iothubclient.md)
+#### [使用序列化程式](iot-hub-device-sdk-c-serializer.md)
 ### 處理裝置到雲端的訊息
 #### [.NET](iot-hub-csharp-csharp-process-d2c.md)
 #### [Java](iot-hub-java-java-process-d2c.md)
@@ -268,8 +232,8 @@
 ## [Azure CLI 2.0 Preview](/cli/azure/iot)
 ## [.NET (服務)](/dotnet/api/microsoft.azure.devices)
 ## [.NET (裝置)](/dotnet/api/microsoft.azure.devices.client)
-## [Java (服務)](/java/api/com.microsoft.azure.iot.service.auth)
-## [Java (裝置)](/java/api/com.microsoft.azure.iothub)
+## [Java (服務)](/java/api/com.microsoft.azure.sdk.iot.service)
+## [Java (裝置)](/java/api/com.microsoft.azure.sdk.iot.device)
 ## [Azure IoT SDK](http://azure.github.io/azure-iot-sdks/)
 ## [閘道器 SDK](http://azure.github.io/azure-iot-gateway-sdk)
 ## [REST (資源提供者)](https://docs.microsoft.com/rest/api/iothub/iothubresource)

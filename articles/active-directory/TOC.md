@@ -81,6 +81,7 @@
 ### [具名網路](active-directory-known-networks-azure-portal.md)
 ### [報告移轉](active-directory-reporting-migration.md)
 ### [保留](active-directory-reporting-retention.md)
+### [延遲](active-directory-reporting-latencies-azure-portal.md)
 ### [常見問題集](active-directory-reporting-faq.md)
 ### 疑難排解
 #### [缺少稽核資料](active-directory-reporting-troubleshoot-missing-audit-data.md)
@@ -109,8 +110,9 @@
 ##### [異常登入](active-directory-reporting-users-with-anomalous-sign-in-activity.md)
 
 ## [管理密碼](active-directory-manage-passwords.md)
-### [更新自己的密碼](active-directory-passwords-update-your-own-password.md)
-### [設定自助密碼重設](active-directory-passwords.md)
+### [重設或變更您的密碼](active-directory-passwords-update-your-own-password.md)
+### [註冊自助式密碼重設](active-directory-passwords-reset-register.md)
+### [管理員啟用自助式密碼重設](active-directory-passwords.md)
 ### [了解密碼管理](active-directory-passwords-how-it-works.md)
 ### [了解原則和限制](active-directory-passwords-policy.md)
 ### 重設密碼
@@ -155,19 +157,12 @@
 ### [提供應用程式的遠端存取權](active-directory-application-proxy-get-started.md)
 #### [啟用應用程式 Proxy](active-directory-application-proxy-enable.md)
 #### [了解連接器](application-proxy-understand-connectors.md)
-
-#### 發佈應用程式
-##### [Azure 入口網站](application-proxy-publish-azure-portal.md)
-##### [傳統入口網站](active-directory-application-proxy-publish.md)
-
+#### [發佈應用程式](application-proxy-publish-azure-portal.md)
 #### [安全性](application-proxy-security-considerations.md)
 #### [網路](application-proxy-network-topology-considerations.md)
 #### [遠端桌面](application-proxy-publish-remote-desktop.md)
 #### [SharePoint](application-proxy-enable-remote-access-sharepoint.md)
-
-#### 在不同網路上發佈
-##### [Azure 入口網站](active-directory-application-proxy-connectors-azure-portal.md)
-##### [傳統入口網站](active-directory-application-proxy-connectors.md)
+#### [在不同網路上發佈](active-directory-application-proxy-connectors-azure-portal.md)
 #### [Proxy 伺服器](application-proxy-working-with-proxy-servers.md)
 #### [自訂網域](active-directory-application-proxy-custom-domains.md)
 #### [存取應用程式](active-directory-appssoaccess-whatis.md)
@@ -181,6 +176,11 @@
 #### [無訊息安裝](active-directory-application-proxy-silent-installation.md)
 #### [Microsoft Forefront](application-proxy-transition-from-uag-tmg.md)
 #### [疑難排解](active-directory-application-proxy-troubleshoot.md)
+#### 使用傳統入口網站
+##### [下載連接器](application-proxy-enable-classic-portal.md)
+##### [發佈應用程式](active-directory-application-proxy-publish.md)
+##### [使用連接器](active-directory-application-proxy-connectors.md)
+
 
 ### 管理企業應用程式
 #### [指派使用者](active-directory-coreapps-assign-user-azure-portal.md)
@@ -200,8 +200,21 @@
 #### [自助服務存取](active-directory-self-service-application-access.md)
 #### [SSO 憑證](active-directory-sso-certs.md)
 #### [租用戶限制](active-directory-tenant-restrictions.md)
+#### [使用 SCIM 佈建使用者](active-directory-scim-provisioning.md)
 
-### [使用 SCIM 佈建使用者](active-directory-scim-provisioning.md)
+### [疑難排解](active-directory-application-troubleshoot-content-map.md)
+#### 影片應用程式開發
+##### [設定和註冊](active-directory-application-dev-config-content-map.md)
+##### [開發](active-directory-application-dev-development-content-map.md)
+#### 應用程式管理
+##### [組態](active-directory-application-config-content-map.md)
+##### [登入](active-directory-application-sign-in-content-map.md)
+##### [佈建](active-directory-application-provisioning-content-map.md)
+##### [管理存取](active-directory-application-access-content-map.md)
+##### [存取面板](active-directory-application-access-panel-content-map.md)
+##### [應用程式 Proxy](active-directory-application-proxy-content-map.md)
+##### [條件式存取](active-directory-application-conditional-access-content-map.md)
+
 ### [文件庫](active-directory-apps-index.md)
 
 ## 管理您的目錄
@@ -315,6 +328,12 @@
 ### [變更簽章雜湊演算法](active-directory-federation-sha256-guidance.md)
 
 ## [疑難排解](active-directory-troubleshooting.md)
+
+## 部署 Azure AD 概念證明 (PoC)
+### [PoC 腳本：簡介](active-directory-playbook-intro.md)
+### [PoC 腳本：因素](active-directory-playbook-ingredients.md)
+### [PoC 腳本：實作](active-directory-playbook-implementation.md)
+### [PoC 腳本：建置區塊](active-directory-playbook-building-blocks.md)
 
 
 # 參考
