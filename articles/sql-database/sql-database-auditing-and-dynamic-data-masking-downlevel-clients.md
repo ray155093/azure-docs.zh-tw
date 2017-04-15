@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 4ef19ed1-e798-43a2-ad99-0e563f93ab53
 ms.service: sql-database
-ms.custom: secure and protect
+ms.custom: security-protect
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -25,7 +25,7 @@ ms.lasthandoff: 02/17/2017
 # <a name="sql-database----downlevel-clients-support-and-ip-endpoint-changes-for-auditing"></a>SQL Database - 下層用戶端支援與針對「稽核」的 IP 端點變更
 [資料庫稽核](sql-database-auditing.md)可自動與支援 TDS 重新導向的 SQL 用戶端搭配運作。 請注意，使用「Blob 稽核」方法時，不適用重新導向。
 
-## <a name="a-idsubheading-1adownlevel-clients-support"></a><a id="subheading-1"></a>舊版用戶端支援
+## <a id="subheading-1"></a>舊版用戶端支援
 實作 TDS 7.4 的任何用戶端應該也支援重新導向。 例外包括其中未完全支援重新導向功能的 JDBC 4.0，和其中未實作重新導向的 Tedious for Node.JS。
 
 對於「舊版用戶端」，也就是支援 TDS 7.3 版和以下版本 - 應該修改連接字串中的伺服器 FQDN：
@@ -43,7 +43,7 @@ ms.lasthandoff: 02/17/2017
 
 **備註：** 上述伺服器 FDQN 修改可能會對於套用 SQL Server 層級稽核原則有所助益，不需要每個資料庫中的組態步驟 (暫存緩和)。
 
-## <a name="a-idsubheading-2aip-endpoint-changes-when-enabling-auditing"></a><a id="subheading-2"></a>啟用稽核的 IP 端點變更
+## <a id="subheading-2"></a>啟用稽核的 IP 端點變更
 請注意，當您啟用「資料表稽核」時，您資料庫的 IP 端點將會變更。 如果您有嚴格的防火牆設定，請適當更新這些防火牆設定。
 
 新的資料庫 IP 端點將取決於資料庫區域：
