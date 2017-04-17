@@ -14,9 +14,9 @@ ms.topic: get-started-article
 ms.date: 02/07/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: 3b029b67e52b212d604e3d645fe7a451b5a60b3e
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 4c47041bb729a3ee1f3fb4c7baf7f988db226677
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -134,7 +134,6 @@ Application Insights 是 Microsoft Azure 中裝載的多項服務之一，而遙
   * [疑難排解][qna]
   * [MSDN 論壇](https://social.msdn.microsoft.com/Forums/vstudio/home?forum=ApplicationInsights)
   * [StackOverflow](http://stackoverflow.com/questions/tagged/ms-application-insights)
-  * [取得開發人員支援](app-insights-get-dev-support.md)
 * 您的建議：
   * [UserVoice](https://visualstudio.uservoice.com/forums/357324)
 * 部落格：
@@ -156,7 +155,7 @@ Application Insights 是 Microsoft Azure 中裝載的多項服務之一，而遙
 [greenbrown]: app-insights-asp-net.md
 [ios]: https://github.com/Microsoft/ApplicationInsights-iOS
 [java]: app-insights-java-get-started.md
-[knowUsers]: app-insights-overview-usage.md
+[knowUsers]: app-insights-web-track-usage.md
 [platforms]: app-insights-platforms.md
 [portal]: http://portal.azure.com/
 [qna]: app-insights-troubleshoot-faq.md
