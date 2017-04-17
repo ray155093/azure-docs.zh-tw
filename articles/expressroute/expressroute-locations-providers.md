@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 03/22/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: ccb33119c7fb87cf3d56c02d2a9ac727c347fed6
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: a888593f992913e31bbf04834c86b1d4a2f1b196
+ms.lasthandoff: 04/06/2017
 
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute 合作夥伴和對等互連位置
@@ -77,14 +77,14 @@ ms.lasthandoff: 03/22/2017
 | **達拉斯** |Aryaka Networks、AT&T NetBond、Cologix、Equinix、Level 3 Communications、Megaport、Verizon、Zayo Group+ |
 | **都柏林** |Colt、Telecity Group |
 | **香港** |British Telecom、China Telecom Global、Equinix、Megaport、Orange、PCCW Global Limited、Tata Communications、Verizon |
-| **倫敦** |AT&T NetBond、British Telecom、Colt、Equinix、InterCloud、Internet Solutions - Cloud Connect、Interxion、Jisc、Level 3 Communications、MTN、NTT Communications、Orange、Tata Communications、Telecity Group、Telehouse - KDDI、Telenor、Verizon、Vodafone、Zayo Group+ |
 | **拉斯維加斯** |Level 3 Communications+、Megaport |
+| **倫敦** |AT&T NetBond、British Telecom、Colt、Equinix、InterCloud、Internet Solutions - Cloud Connect、Interxion、Jisc、Level 3 Communications、MTN、NTT Communications、Orange、Tata Communications、Telecity Group、Telehouse - KDDI、Telenor、Verizon、Vodafone、Zayo Group+ |
 | **洛杉磯** |CoreSite、Equinix、Megaport、NTT、Zayo Group |
 | **墨爾本** |AARNet、Equinix、Megaport、NEXTDC、Telstra Corporation |
 | **紐約** |Coresite、Equinix、Megaport、Zayo Group |
 | **Newport(Wales)** |新一代資料 |
-| **蒙特婁** |Cologix |
-| **孟買** |Tata Communications |
+| **蒙特婁** |Bell Canada、Cologix |
+| **孟買** |Airtel+、Tata Communications |
 | **大阪** |Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank |
 | **巴黎** |Interxion、Equinix+ |
 | **魁北克市** | Megaport |
@@ -95,7 +95,7 @@ ms.lasthandoff: 03/22/2017
 | **新加坡** |Aryaka Networks、AT&T NetBond、British Telecom、Equinix、InterCloud、Level 3 Communications、Megaport、NTT Communications、Orange、SingTel、Tata Communications、Verizon |
 | **雪梨** |AARNet、AT&T NetBond、British Telecom、Equinix、Megaport、NEXTDC、Orange、Telstra Corporation、Verizon |
 | **東京** |Aryaka Networks、British Telecom、Colt、Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank、Verizon |
-| **多倫多** |Bell Canada、Cologix、Equinix、Megaport、Zayo Group |
+| **多倫多** |Bell Canada、Cologix、Console、Equinix、Megaport、Zayo Group |
 | **華盛頓** |Aryaka Networks、AT&T NetBond、British Telecom、Comcast、Equinix、InterCloud、Level 3 Communications、Megaport、NTT Communications、Orange、Tata Communications、Verizon、Zayo Group |
 
  **+** 表示即將推出
@@ -144,16 +144,23 @@ ms.lasthandoff: 03/22/2017
 
 | **位置** | **Exchange** | **連線提供者** |
 | --- | --- | --- |
-| **阿姆斯特丹** | Equinix | Eurofiber |
-| **達拉斯** | Equinix、Megaport | C3ntro、Data Foundry |
-| **倫敦** | Equinix | Exponential E、HSO、NexGen Networks |
-| **紐約** |Equinix |Lightower |
-| **Seattle** |Equinix |Alaska Communications |
-| **矽谷** |Equinix |XO Communications |
+| **阿姆斯特丹** | Equinix、Telecity | Eurofiber、Fastweb S.p.A、Nianet |
+| **芝加哥** | Equinix | Windstream |
+| **達拉斯** | Equinix、Megaport | C3ntro、Data Foundry、Transtelco |
+| **法蘭克福** | Telecity | Nianet、QSC AG |
+| **倫敦** | Equinix、euNetworks、Telecity | Bezeq International Ltd.、Exponential E、HSO、NexGen Networks、Tamares Telecom |
+| **洛杉磯** | Equinix |Transtelco |
+| **馬德里** | Level3 | Zertia |
+| **蒙特婁** | Cologix、Equinix | Airgate Technologies. Inc、Cogeco Peer 1 |
+| **紐約** |Equinix | Lightower |
+| **Seattle** |Equinix | Alaska Communications |
+| **矽谷** |Equinix | Windstream |
 | **新加坡** |Equinix |1CLOUDSTAR、Epsilon Telecommunications Limited |
+| **Slough** | Equinix | HSO|
 | **雪梨** | Megaport | Macquarie Telecom Group|
 | **東京** | Equinix | ARTERIA Networks Corporation |
-| **華盛頓** |Equinix | Lightower Masergy |
+| **多倫多** | Equinix | Airgate Technologies. Inc、Cogeco Peer 1 |
+| **華盛頓** |Equinix | Lightower、Masergy、Windstream |
 
 ## <a name="expressroute-system-integrators"></a>ExpressRoute 系統整合者
 根據您的網路規模，為符合您的需求而啟用私人連線可能有一定的難度。 您可以使用下表所列出的任何系統整合者來協助您開始使用 ExpressRoute。
@@ -161,9 +168,9 @@ ms.lasthandoff: 03/22/2017
 | **Continent** | **系統整合者** |
 | --- | --- |
 | **亞洲** |Avanade Inc.、OneAs1a |
-| **澳大利亞** | IT Consultancy |
-| **歐洲** |Avanade Inc.、Dotnet Solutions、MSG Services、Nelite、sol-tec |
-| **北美洲** |Avanade Inc.、Equinix Professional Services、Perficient、Project Leadership |
+| **澳大利亞** | IT Consultancy、Vigilant.IT |
+| **歐洲** |Avanade Inc.、Altogee、Bright Skies GmbH、Dotnet Solutions、MSG Services、Nelite、Orange Networks、sol-tec |
+| **北美洲** |Avanade Inc.、Equinix Professional Services、Presidio、Perficient、Project Leadership |
 | **南美洲** |Avanade Inc. |
 ## <a name="next-steps"></a>後續步驟
 * 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。

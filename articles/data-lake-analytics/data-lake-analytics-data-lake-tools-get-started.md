@@ -12,30 +12,30 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/17/2017
+ms.date: 04/06/2017
 ms.author: edmaca, yanacai
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: f5a27eba14560a56ad5020daf7741f37ac2cc6f2
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: c26ac89bd7ef494331ba309aacf87de03506ac4c
+ms.lasthandoff: 04/07/2017
 
 
 ---
 # <a name="tutorial-develop-u-sql-scripts-using-data-lake-tools-for-visual-studio"></a>教學課程：使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-了解如何安裝適用於 Visual Studio 的 Data Lake 工具，和使用適用於 Visual Studio 的 Data Lake 工具來撰寫和測試 U-SQL 指令碼。
+使用適用於 Visual Studio 的 Data Lake 工具撰寫及測試 U-SQL 指令碼。
 
 U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和分析在 Data Lake 的所有資料。 如需詳細資訊，請參閱 [U-SQL 參考](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
 
 ## <a name="prerequisites"></a>必要條件
-* **Visual Studio 2015 Update 3、Visual Studio 2013 Update 4 或 Visual Studio 2012。支援 Enterprise (Ultimate/Premium)、Professional、Community 版本；不支援 Express 版本。目前不支援 Visual Studio 2017。**
+* **Visual Studio 2017 (在資料儲存和處理工作負載下)、Visual Studio 2015 Update 3、Visual Studio 2013 Update 4 或 Visual Studio 2012。支援 Enterprise (Ultimate/Premium)、Professional、Community 版本；不支援 Express 版本。**
 * **Microsoft Azure SDK for .NET 2.7.1 版或更新版本**。  使用 [Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)來進行安裝。
 * **[Visual Studio 適用的 Data Lake 工具](http://aka.ms/adltoolsvs)**。
 
-    安裝 Visual Studio 適用的 Data Lake 工具之後，您會在 [伺服器總管] 中的 [Azure] 節點下看到 [Data Lake Analytics] 節點 (您可以按 Ctrl+Alt+S 開啟 [伺服器總管])。
+    安裝 Visual Studio 適用的 Data Lake 工具之後，您會在 [伺服器總管] 中的 [Azure] 節點下看到 [Data Lake Analytics] 節點 (按 Ctrl+Alt+S 開啟 [伺服器總管])。
 
-* **Data Lake Analytics 帳戶和範例資料** Data Lake Tools 不支援建立 Data Lake Analytics 帳戶。 您可以使用 Azure 入口網站、Azure PowerShell、.NET SDK 或 Azure CLI 建立帳戶建立帳戶。
+* **Data Lake Analytics 帳戶和範例資料** Data Lake Tools 不支援建立 Data Lake Analytics 帳戶。 使用 Azure 入口網站、Azure PowerShell、.NET SDK 或 Azure CLI 建立帳戶建立帳戶。
 為了方便起見，您可以在＜[附錄 A：準備教學課程所需的 PowerShell](data-lake-analytics-data-lake-tools-get-started.md#appx-a-powershell-sample-for-preparing-the-tutorial)＞一節中，找到用來建立 Data Lake Analytics 服務及上傳來源資料檔的 PowerShell 範例指令碼。
 
     (選擇性) 您可以完成[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md) 一文中的下列兩個小節，建立您的帳戶並以手動方式上傳資料：
@@ -44,7 +44,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
     2. [將 SearchLog.tsv 上傳到預設 Data Lake 儲存體帳戶](data-lake-analytics-get-started-portal.md#prepare-source-data)。
 
 ## <a name="connect-to-azure"></a>連接到 Azure
-**連接到 Data Lake Analytics**
+**連線至 Data Lake Analytics**
 
 1. 開啟 Visual Studio。
 2. 按一下 [檢視] 功能表的 [伺服器總管] 來開啟伺服器總管。 或是按下 **[CTRL] + [ALT] + S**。
@@ -54,7 +54,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 ## <a name="upload-source-data-files"></a>上傳來源資料檔案
 您已在本教學課程稍早的＜ **必要條件** ＞一節中上傳部分資料。  
 
-萬一您想要使用您自己的資料，以下是從 Data Lake 工具上傳資料的程序。
+若要使用您自己的資料，請遵循下列步驟來上傳 Data Lake 工具。
 
 **將檔案上傳至相依的 Azure Data Lake 帳戶**
 
@@ -76,7 +76,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 ## <a name="develop-u-sql-scripts"></a>開發 U-SQL 指令碼
 Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL，請參閱[開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
 
-**建立並提交 Data Lake Analytics 工作**
+**建立並提交 Data Lake Analytics 作業**
 
 1. 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。
 2. 選取 [U-SQL 專案]  類型。
@@ -128,9 +128,9 @@ Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL�
        名稱自動完成和成員會針對資料列集、類別、資料庫、結構描述和使用者定義物件 (UDO) 顯示。
 
        目錄實體的 IntelliSense (資料庫、結構描述、資料表、UDO 等等) 與您的計算帳戶相關。 您可以在頂端工具列中檢查目前作用中的計算帳戶、資料庫和結構描述，並且透過下拉式清單進行切換。
-   * **展開*資料行**
+   * **展開 * 資料行**
 
-       按一下 *的右邊，您應該會看到*下方的藍色底線。 將滑鼠游標移到藍色底線上，然後按一下向下箭號。
+       按一下 * 的右邊，您應該會看到 * 下方的藍色底線。 將滑鼠游標移到藍色底線上，然後按一下向下箭號。
        ![展開 Data Lake Visual Studio 工具 *](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-expand-asterisk.png)
 
        按一下 [展開資料行] ，然後工具將會用資料行名稱取代 *。

@@ -12,16 +12,16 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/04/2017
+ms.date: 04/06/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
-ms.openlocfilehash: 9a648ca8f91529bc5aaa7b8ffbcfddb40864f409
-ms.lasthandoff: 04/04/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 4b8627f3cdd13578f9b4c35297bf5d550dccfd07
+ms.lasthandoff: 04/06/2017
 
 
 ---
-# <a name="troubleshooting-you-cant-get-there-from-here-on-a-windows-device"></a>針對在 Windows 裝置上您無法從這裡前往該處進行疑難排解
+# <a name="you-cant-get-there-from-here-on-a-windows-device"></a>您無法在 Windows 裝置上從這裡前往該處
 
 例如，在嘗試存取貴組織的 SharePoint Online 內部網路期間，您可能會碰到一個頁面指出「您無法從這裡前往該處」。 您會看到此頁面，因為您的系統管理員已設定條件式存取原則，以防止在某些情況下存取貴組織的資源。 雖然可能需要連絡技術支援或系統管理員才能解決此問題，但您可以先自行嘗試幾件事。
 

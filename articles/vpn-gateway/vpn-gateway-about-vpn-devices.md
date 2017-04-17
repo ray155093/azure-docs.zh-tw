@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/03/2017
+ms.date: 04/11/2017
 ms.author: yushwang;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: ab0a0ecba9d9e930cbc0ec5d4b83e252d2e50f7b
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 03ba7f0df69da073fd876fc4c06121952e594a02
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 03/16/2017
 
 ###<a name="items-to-note-when-viewing-the-tables"></a>檢視表格時應注意的項目：
 
-* Azure VPN 閘道的名稱已經變更。 您可能二種詞彙都會看到。 只有變更名稱，功能未變更。
+* Azure VPN 閘道的名稱已經變更。 只有變更名稱，功能未變更。
   * 靜態路由 = 原則式
   * 動態路由 = 路由式
 * 除非另有說明，否則高效能 VPN 閘道和路由式 VPN 閘道的規格相同。 例如，已經驗證與路由式 VPN 閘道相容的 VPN 裝置，也能與 Azure 高效能 VPN 閘道相容。
@@ -45,7 +45,7 @@ ms.lasthandoff: 03/16/2017
 ## <a name="devicetable"></a>已經驗證的 VPN 裝置
 我們已與裝置廠商合作驗證一組標準 VPN 裝置。 在以下清單所含的裝置系列中，所有裝置應該都能與 Azure VPN 閘道搭配運作。 請參閱 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md) ，以確認您需要為欲設定之解決方案所建立的閘道類型。
 
-為了協助設定您的 VPN 裝置，請參閱對應到適當裝置系列的連結。 如需 VPN 裝置的支援，請連絡裝置製造商。
+為了協助設定您的 VPN 裝置，請參閱對應到適當裝置系列的連結。  會以最佳方式來提供組態指示的連結。 如需 VPN 裝置的支援，請連絡裝置製造商。
 
 |**廠商**          |**裝置系列**     |**作業系統最低版本** |**原則式** |**路由式** |
 | ---                | ---                  | ---                   | ---            | ---           |
@@ -59,7 +59,6 @@ ms.lasthandoff: 03/16/2017
 | Cisco |ASR |原則式：IOS 15.1<br>路由式：IOS 15.2 |[設定範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASR) |[設定範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ASR) |
 | Cisco |ISR |原則式：IOS 15.0<br>路由式*：IOS 15.1 |[設定範例](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |[設定範例*](https://github.com/Azure/Azure-vpn-config-samples/tree/master/Cisco/Current/ISR) |
 | Citrix |NetScaler MPX、SDX、VPX |10.1 和更新版本 |[設定指南](https://docs.citrix.com/en-us/netscaler/11-1/system/cloudbridge-connector-introduction/cloudbridge-connector-azure.html) |不相容 |
-| Dell SonicWALL |TZ 系列、NSA 系列<br>SuperMassive 系列<br>E-Class NSA 系列 |SonicOS 5.8.x<br>SonicOS 5.9.x<br>SonicOS 6.x |[SonicOS 6.2 設定指南](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646)<br>[SonicOS 5.9 設定指南](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |[SonicOS 6.2 設定指南](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646)<br>[SonicOS 5.9 設定指南](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |
 | F5 |BIG-IP 系列 |12.0 |[設定指南](https://devcentral.f5.com/articles/connecting-to-windows-azure-with-the-big-ip) |[設定指南](https://devcentral.f5.com/articles/big-ip-to-azure-dynamic-ipsec-tunneling) |
 | Fortinet |FortiGate |FortiOS 5.4.2 |[設定指南](http://cookbook.fortinet.com/ipsec-vpn-microsoft-azure-54) |[設定指南](http://cookbook.fortinet.com/ipsec-vpn-microsoft-azure-54) |
 | Internet Initiative Japan (IIJ) |SEIL 系列 |SEIL/X 4.60<br>SEIL/B1 4.60<br>SEIL/x86 3.20 |[設定指南](http://www.iij.ad.jp/biz/seil/ConfigAzureSEILVPN.pdf) |不相容 |
@@ -71,6 +70,7 @@ ms.lasthandoff: 03/16/2017
 | 開啟系統 AG |任務控制安全性閘道 |N/A |[設定指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |[設定指南](https://www.open.ch/_pdf/Azure/AzureVPNSetup_Installation_Guide.pdf) |
 | Openswan |Openswan |2.6.32 |(敬請期待) |不相容 |
 | Palo Alto Networks |所有執行 PAN-OS 的裝置 |PAN-OS<br>原則式：6.1.5 或更新版本<br>路由式：7.1.4 |[設定指南](https://live.paloaltonetworks.com/t5/Configuration-Articles/How-to-Configure-VPN-Tunnel-Between-a-Palo-Alto-Networks/ta-p/59065) |[設定指南](https://live.paloaltonetworks.com/t5/Integration-Articles/Configuring-IKEv2-VPN-for-Microsoft-Azure-Environment/ta-p/60340) |
+| SonicWall |TZ 系列、NSA 系列<br>SuperMassive 系列<br>E-Class NSA 系列 |SonicOS 5.8.x<br>SonicOS 5.9.x<br>SonicOS 6.x |[SonicOS 6.2 設定指南](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646)<br>[SonicOS 5.9 設定指南](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |[SonicOS 6.2 設定指南](http://documents.software.dell.com/sonicos/6.2/microsoft-azure-configuration-guide?ParentProduct=646)<br>[SonicOS 5.9 設定指南](http://documents.software.dell.com/sonicos/5.9/microsoft-azure-configuration-guide?ParentProduct=850) |
 | WatchGuard |全部 |Fireware XTM<br> 原則式：v11.11.x<br>路由式：v11.12.x |[設定指南](http://watchguardsupport.force.com/publicKB?type=KBArticle&SFDCID=kA2F00000000LI7KAM&lang=en_US) |[設定指南](http://watchguardsupport.force.com/publicKB?type=KBArticle&SFDCID=kA22A000000XZogSAG&lang=en_US)|
 
 (*) ISR 7200 系列路由器僅支援原則式 VPN。
@@ -100,11 +100,11 @@ ms.lasthandoff: 03/16/2017
 | &lt;SP_AzureGatewayIpAddress&gt; |此為您虛擬網路的特定資訊，位於管理入口網站中的 [閘道器 IP 位址] 。 |
 | &lt;SP_PresharedKey&gt; |此資訊專屬於您的虛擬網路，是 [管理入口網站] 中的管理金鑰。 |
 
-## <a name="IPSec"></a>IPsec/IKE 參數
+## <a name="ipsec"></a>IPsec/IKE 參數
 > [!NOTE]
-> 雖然 Azure VPN 閘道支援下表所列的值，但您目前沒有任何機制可指定，或從 Azure VPN 閘道選取演算法或參數的特定組合。 您必須指定內部部署 VPN 裝置的任何條件約束。
+> 雖然 Azure VPN 閘道支援下表所列的值，但您目前沒有任何機制可指定，或從 Azure VPN 閘道選取演算法或參數的特定組合。 您必須指定內部部署 VPN 裝置的任何條件約束。 此外，您必須將 **MSS** 固定在 **1350**。
 > 
-> 此外，您必須將 **MSS** 固定在 **1350**。
+>
 
 在下表中︰
 
@@ -182,6 +182,8 @@ ms.lasthandoff: 03/16/2017
 
 > [!IMPORTANT]
 > 協力廠商 VPN 裝置與 Azure VPN 閘道之間有已知的相容性問題。 Azure 小組正積極與廠商合作來解決這裡所列出的問題。 解決這些問題之後，就會更新此頁面來提供最新資訊。 請定期回來查看。
+>
+>
 
 ###<a name="feb-16-2017"></a>2017 年 2 月 16 日
 

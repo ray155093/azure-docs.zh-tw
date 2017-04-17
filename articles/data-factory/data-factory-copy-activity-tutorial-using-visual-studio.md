@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/02/2017
+ms.date: 04/11/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: 39824fa66dee9f1bd57687e59ece97f4f4636b7d
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 9716d18773fca8dd4612d681d1f9588106aacb14
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -148,10 +148,10 @@ ms.lasthandoff: 03/24/2017
    * **linkedServiceName** 設為 **AzureStorageLinkedService**。 您已在步驟 2 中建立此連結服務。
    * **folderPath** 設為 **adftutorial** 容器。 您也可以使用 **fileName** 屬性指定資料夾內 Blob 的名稱。 由於您未指定 Blob 的名稱，容器中所有 Blob 的資料都會被視為輸入資料。  
    * 格式 **type** 設為 **TextFormat**
-   * 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)    
-   * **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。 因此，Data Factory 會每小時都在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 
+   * 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (columnDelimiter)    
+   * **availability** 設定為**每小時**，且 (frequency 設定為小時，interval 設定為 1)。 因此，Data Factory 會每小時都在您指定之 Blob 容器 (adftutorial) 的根資料夾中尋找輸入資料。 
    
-   如果您未指定**輸入**資料集的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會被視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
+   如果您未指定**輸入**資料集的 **fileName**，則輸入資料夾 (folderPath) 中的所有檔案/Blob 都會被視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
    
    如果您未指定**輸出資料表**的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data.&lt;Guid&gt;.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt.)。
    
@@ -180,7 +180,7 @@ ms.lasthandoff: 03/24/2017
 2. 在 [新增新項目] 對話方塊中，選取 [Azure SQL]，然後按一下 [新增]。 
 3. 將 JSON 文字取代成下列 JSON 並儲存 **AzureSqlTableLocation1.json** 檔案。
 
-    ```json
+  ```json
     {
      "name": "OutputDataset",
      "properties": {
@@ -213,7 +213,7 @@ ms.lasthandoff: 03/24/2017
    * **linkedServiceName** 設為 **AzureSqlLinkedService** (您已在步驟 2 中建立此連結服務)。
    * **tablename** 設為 **emp**。
    * 資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。 ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
-   * **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
+   * **availability** 設定為**每小時**，且 (frequency 設定為小時，interval 設定為 1)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 
 > [!NOTE]
 > 如需 JSON 屬性的詳細資訊，請參閱 [在 Azure SQL Database 來回移動資料](data-factory-azure-sql-connector.md#linked-service-properties) 。
@@ -227,7 +227,7 @@ ms.lasthandoff: 03/24/2017
 2. 選取 [新增新項目] 對話方塊中的 [複製資料管線]，並按一下 [新增]。 
 3. 將 JSON 取代為下列 JSON 並儲存 **CopyActivity1.json** 檔案。
 
-    ```json   
+  ```json   
     {
      "name": "ADFTutorialPipeline",
      "properties": {
@@ -281,7 +281,7 @@ ms.lasthandoff: 03/24/2017
    
    開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2016-10-14T16:32:41Z。 **end** 時間為選擇性項目，但在本教學課程中會用到。 
    
-   如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。 若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。
+   如果您未指定 **end** 屬性的值，則會以 **start + 48 小時**計算。 若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。
    
    在上述範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
 

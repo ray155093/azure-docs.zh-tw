@@ -11,12 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/13/2017
+ms.date: 04/06/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 153a97154faf65598141f321bcd33c4503fa30b0
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: cfe70aa09b21aa914e3705bf7969583c7a1bbd52
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -51,7 +51,7 @@ Web 測試可分為兩種：
 * **URL** 必須可在公用網際網路上顯示。 它可以包含查詢字串 - 例如，您可以訓練一下您的資料庫。 如果 URL 解析為重新導向，我們會跟隨它，最多 10 個重新導向。
 * **剖析相依要求**：測試時會要求映像、指令碼、樣式檔和頁面的其他資源，而記錄的回應時間包含這些時間。 如果無法在逾時內為整個測試成功下載所有這些資源，則測試將會失敗。
 * **啟用重試**：當測試失敗時，就會在短時間內進行重試。 只有在連續三次重試失敗後，才會回報失敗。 後續測試則會以一般測試頻率執行。 重試會暫時停止，直到下次成功為止。 此規則可個別套用在每個測試位置。 (我們建議使用這個設定。 平均來說，大約 80%的失敗會在重試後消失。)
-* **測試頻率**：設定從每個測試位置執行測試的頻率。 頻率為&5; 分鐘且有五個測試位置，則您的網站平均每一分鐘會執行測試。
+* **測試頻率**：設定從每個測試位置執行測試的頻率。 頻率為 5 分鐘且有五個測試位置，則您的網站平均每一分鐘會執行測試。
 * **測試位置** 是我們的伺服器將 Web 要求傳送至您的 URL 的位置。 請選擇多個位置，以便區分網站問題與網路問題。 您最多可以選取 16 個位置。
 * **成功準則**：
 
@@ -241,7 +241,10 @@ Web 測試外掛程式提供將時間參數化的方法。
     我們會交替使用這兩個詞彙。
 * *我想要在位於防火牆後面執行的內部伺服器上使用可用性測試。*
 
-    設定防火牆以允許來自 [Web 測試代理程式的 IP 位址](app-insights-ip-addresses.md)所發出的要求。
+    有兩個可能的解決方案：
+    
+    * 設定防火牆以允許來自[我們 Web 測試代理程式的 IP 位址](app-insights-ip-addresses.md)所發出的內送要求。
+    * 撰寫您自己的程式碼以定期測試您的內部伺服器。 執行程式碼作為您防火牆後方測試伺服器上的背景處理序。 您的測試處理序可以使用核心 SDK 套件中的 [TrackAvailability()](https://docs.microsoft.com/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) API，將其結果傳送至 Application Insights。 這需要測試伺服器具有 Application Insights 內嵌端點的連出存取，但這比起替代的允許連入要求是較小的安全性風險。 結果不會出現在 [可用性 web 測試] 刀鋒視窗中，但會在分析、搜尋和計量瀏覽器中出現作為可用性結果。
 * *上傳多步驟 Web 測試失敗*
 
     有 300 K 的大小限制。
@@ -260,10 +263,6 @@ Web 測試外掛程式提供將時間參數化的方法。
 
     很抱歉，我們不支援此功能。
 
-## <a name="video"></a>影片
-> [!VIDEO https://channel9.msdn.com/Series/Application-Insights-on-Azure-Preview-Portal/Monitoring-Availability-with-Application-Insights/player]
->
->
 
 ## <a name="next"></a>接續步驟
 [搜尋診斷記錄][diagnostic]

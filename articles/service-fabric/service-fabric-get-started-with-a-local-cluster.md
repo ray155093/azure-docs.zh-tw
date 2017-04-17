@@ -12,12 +12,12 @@ ms.devlang: dotNet
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 03/15/2017
+ms.date: 04/07/2017
 ms.author: ryanwi;mikhegn
 translationtype: Human Translation
-ms.sourcegitcommit: eddca02c4fba88aee667216568beecc76ea65d7c
-ms.openlocfilehash: d1320daaf4b0bd8c1a7b7c8e37fa8b81c4a53e64
-ms.lasthandoff: 01/25/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: c0c5ab8a9db60ff375b7d823e40f83cbc4d2b4c3
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -30,7 +30,7 @@ Azure Service Fabric SDK 包含完整的本機開發環境，可讓您快速地�
 > 
 
 ## <a name="create-a-local-cluster"></a>建立本機叢集
-Service Fabric 叢集代表一組您可以部署應用程式的硬體資源。 通常，叢集是由任意數量的電腦 (從&5; 部到數千部) 所組成。 不過，Service Fabric SDK 包含可在一部電腦上執行的叢集組態。
+Service Fabric 叢集代表一組您可以部署應用程式的硬體資源。 通常，叢集是由任意數量的電腦 (從 5 部到數千部) 所組成。 不過，Service Fabric SDK 包含可在一部電腦上執行的叢集組態。
 
 請務必了解 Service Fabric 本機叢集不是模擬器。 它會執行在多部電腦的叢集上找到的相同平台程式碼。 唯一的差別在於它會在一部電腦上執行通常分散於五部電腦的平台程序。
 
@@ -77,7 +77,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
     ```powershell
     Connect-ServiceFabricCluster localhost:19000
     ```
-6. 使用 SDK 的部署命令來建立新的應用程式，並提供應用程式封裝的名稱和路徑。
+6. 使用 SDK 的部署命令來建立新的應用程式，並提供應用程式套件的名稱和路徑。
    
     ```powershell  
    Publish-NewServiceFabricApplication -ApplicationPackagePath c:\ServiceFabric\WordCountV1.sfpkg -ApplicationName "fabric:/WordCount"
@@ -90,7 +90,7 @@ Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的�
    
     ![部署應用程式 UI][deployed-app-ui]
    
-    WordCount 應用程式很簡單。 它包含的用戶端 JavaScript 程式碼可產生隨機五個字元的「單字」，這些字接著會透過 ASP.NET Web API 轉送至應用程式。 具狀態服務會追蹤已計算的字數。 這些單字會根據單字的第一個字元進行分割。 您可以在 [快速入門範例](https://azure.microsoft.com/documentation/samples/service-fabric-dotnet-getting-started/)中找到 WordCount 應用程式的原始程式碼。
+    WordCount 應用程式很簡單。 它包含的用戶端 JavaScript 程式碼可產生隨機五個字元的「單字」，這些字接著會透過 ASP.NET Web API 轉送至應用程式。 具狀態服務會追蹤已計算的字數。 這些單字會根據單字的第一個字元進行分割。 您可以在[傳統快速入門範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/WordCount)中找到 WordCount 應用程式的原始程式碼。
    
     我們所部署的應用程式包含四個資料分割。 所以開頭為 A 到 G 的單字會儲存在第一個磁碟分割中，而開頭為 N 到 H 的單字會儲存在第二個資料分割中，依此類推。
 
@@ -139,7 +139,7 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 
 新版的應用程式現在只會計算以母音開頭的單字。 進行升級時，我們會看到應用程式的行為出現兩項變更。 第一，計數成長的速率應該變慢，因為計算的單字比較少。 第二，由於第一個資料分割有兩個母音 (A 和 E)，而其他每個資料分割只包含一個母音，其計數最後應該會開始超越其他資料分割。
 
-1. [將 WordCount 第 2 版封裝下載](http://aka.ms/servicefabric-wordcountappv2) 到您下載第 1 版封裝的相同位置。
+1. [將 WordCount 第 2 版套件下載](http://aka.ms/servicefabric-wordcountappv2) 到您下載第 1 版套件的相同位置。
 2. 返回 PowerShell 視窗並使用 SDK 的升級命令在叢集中註冊新版本。 然後開始升級 fabric:/WordCount 應用程式。
    
     ```powershell
@@ -162,7 +162,7 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
    
     ![在升級後查詢應用程式服務][ps-getsfsvc-postupgrade]
    
-    此範例強調 Service Fabric 如何管理應用程式升級。 只會影響已變更的服務 (或這些服務中的程式碼/組態封裝) 集合，讓升級程序變得更快速且更可靠。
+    此範例強調 Service Fabric 如何管理應用程式升級。 只會影響已變更的服務 (或這些服務中的程式碼/組態套件) 集合，讓升級程序變得更快速且更可靠。
 5. 最後，返回瀏覽器來觀察新應用程式版本的行為。 如同預期，計數進度比較緩慢，而第一個磁碟分割最後會有稍微多一些的磁碟區。
    
     ![在瀏覽器中檢視新版的應用程式][deployed-app-ui-v2]
@@ -179,7 +179,7 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
     或者，從 Service Fabric Explorer 的 [動作] 功能表或左窗格中應用程式清單檢視的內容功能表來刪除應用程式。
    
     ![在 Service Fabric 總管中刪除應用程式][sfe-delete-application]
-2. 在叢集中刪除應用程式之後，將 WordCount 應用程式類型的 1.0.0 和 2.0.0 版取消註冊。 刪除作業會從叢集的映像存放區中移除應用程式封裝，包括程式碼和設定。
+2. 在叢集中刪除應用程式之後，將 WordCount 應用程式類型的 1.0.0 和 2.0.0 版取消註冊。 刪除作業會從叢集的映像存放區中移除應用程式套件，包括程式碼和設定。
    
     ```powershell
     Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 2.0.0
@@ -190,17 +190,17 @@ Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進�
 3. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]  。
 4. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]  。 此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。 只有在您計劃一陣子不使用本機叢集或者需要回收資源時，才將本機叢集移除。
 
-## <a name="one-node-and-five-node-cluster-mode"></a>1 個節點和&5; 個節點叢集模式
-開發應用程式時，您常會發現自己快速反覆撰寫程式碼、偵錯、變更程式碼和偵錯。 為了協助最佳化這個程序，本機叢集可以用兩種模式執行︰1 個節點或&5; 節點。 這兩個叢集模式各有優點。 5 個節點叢集模式可讓您使用實際的叢集。 您可以測試容錯移轉案例，使用更多您的服務的執行個體和複本。 1 個節點叢集模式已最佳化，可進行服務的快速部署和註冊，進而協助您使用 Service Fabric 執行階段快速驗證程式碼。
+## <a name="one-node-and-five-node-cluster-mode"></a>1 個節點和 5 個節點叢集模式
+開發應用程式時，您常會發現自己快速反覆撰寫程式碼、偵錯、變更程式碼和偵錯。 為了協助最佳化這個程序，本機叢集可以用兩種模式執行︰1 個節點或 5 節點。 這兩個叢集模式各有優點。 5 個節點叢集模式可讓您使用實際的叢集。 您可以測試容錯移轉案例，使用更多您的服務的執行個體和複本。 1 個節點叢集模式已最佳化，可進行服務的快速部署和註冊，進而協助您使用 Service Fabric 執行階段快速驗證程式碼。
 
-1 個節點叢集或&5; 個節點叢集模式皆不是模擬器。 本機開發叢集會執行在多部電腦的叢集上找到的相同平台程式碼。
+1 個節點叢集或 5 個節點叢集模式皆不是模擬器。 本機開發叢集會執行在多部電腦的叢集上找到的相同平台程式碼。
 
 > [!WARNING]
 > 變更叢集模式時，目前的叢集會從您的系統移除，而建立新的叢集。 當您變更叢集模式時，在叢集中儲存的資料會遭到刪除。
 > 
 > 
 
-若要將模式變更為&1; 個節點叢集，請選取 Service Fabric 本機叢集管理員中的**交換器叢集模式**。
+若要將模式變更為 1 個節點叢集，請選取 Service Fabric 本機叢集管理員中的**交換器叢集模式**。
 
 ![切換叢集模式][switch-cluster-mode]
 

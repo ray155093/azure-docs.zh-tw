@@ -18,22 +18,36 @@ ms.topic: hero-article
 ms.date: 03/17/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: fd5cb0d45d0955b7e4c471dc5ccecac65ad7400a
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: ff5d156ab2b701233c4cdbf08e3d6e517c01b9fb
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="azure-sql-database-use-visual-studio-code-to-connect-and-query-data"></a>Azure SQL Database︰使用 Visual Studio Code 連接及查詢資料
 
-[Visual Studio Code](https://code.visualstudio.com/docs) 是 Linux、macOS 及 Windows 適用的圖形化程式碼編輯器，可支援擴充功能。 使用 Visual Studio Code 搭配 [mssql 擴充功能](https://aka.ms/mssql-marketplace)來連接和查詢 Azure SQL Database。 本快速入門詳細說明如何使用 Visual Studio Code 連線至 Azure SQL Database，然後執行查詢、插入、更新和刪除陳述式。
+[Visual Studio Code](https://code.visualstudio.com/docs) 是一個圖形化程式碼編輯器，適用於支援擴充功能的 Linux、macOS 和 Windows，包括可供查詢 Microsoft SQL Server、Azure SQL Database 和 SQL 資料倉儲的 [mssql extension](https://aka.ms/mssql-marketplace)。 此快速入門示範如何使用 Visual Studio Code 來連線至 Azure SQL Database，然後使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。
 
 本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
 
-開始之前，確定您已安裝最新版的 [Visual Studio Code](https://code.visualstudio.com/Download) 並已載入 [mssql 擴充功能](https://aka.ms/mssql-marketplace)。 如需 mssql 擴充功能的安裝指引，請參閱[安裝 VS Code](https://docs.microsoft.com/sql/linux/sql-server-linux-develop-use-vscode#install-vs-code)。 
+開始之前，確定您已安裝最新版的 [Visual Studio Code](https://code.visualstudio.com/Download) 並已載入 [mssql 擴充功能](https://aka.ms/mssql-marketplace)。 如需 mssql 擴充功能的安裝指引，請參閱[安裝 VS Code](https://docs.microsoft.com/sql/linux/sql-server-linux-develop-use-vscode#install-vs-code)和[適用於 Visual Studio Code 的 mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql)。 
+
+## <a name="configure-vs-code-mac-os-only"></a>設定 VS Code (僅限 Mac OS)
+
+### <a name="mac-os"></a>**Mac OS**
+對於 macOS，您必須安裝 OpenSSL，這是 mssql 擴充功能使用之 DotNet Core 的必要條件。 開啟您的終端機，並輸入下列命令以安裝 **brew** 和 **OpenSSL***。 
+
+```bash
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew update
+brew install openssl
+mkdir -p /usr/local/lib
+ln -s /usr/local/opt/openssl/lib/libcrypto.1.0.0.dylib /usr/local/lib/
+ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
+```
 
 ## <a name="get-connection-information"></a>取得連線資訊
 
@@ -43,7 +57,7 @@ ms.lasthandoff: 03/29/2017
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
 3. 在 Azure 入口網站中您資料庫的 [基本資訊] 窗格中，找到後複製 [伺服器名稱] 以便稍後在本快速入門中使用。
 
-    <img src="./media/sql-database-connect-query-ssms/connection-information.png" alt="connection information" style="width: 780px;" />
+    <img src="./media/sql-database-connect-query-vscode/connection-information.png" alt="connection information" style="width: 780px;" />
 
 ## <a name="set-language-mode-to-sql"></a>將語言模式設定為 SQL
 
@@ -51,7 +65,7 @@ ms.lasthandoff: 03/29/2017
 
 1. 開啟新的 Visual Studio Code 視窗。 
 
-2. 按 **CTRL+K、M**，輸入 **SQL** 並且按 **ENTER**，將語言模式設定為 SQL。 
+2. 按 **⌘+K、M** 或 **CTRL+K、M** (分別為 Mac 和 Windows 選項)，輸入 **SQL** 並且按 **ENTER** 將語言模式設定為 SQL。 
 
 <img src="./media/sql-database-connect-query-vscode/vscode-language-mode.png" alt="SQL language mode" style="width: 780px;" />
 
@@ -61,13 +75,11 @@ ms.lasthandoff: 03/29/2017
 
 1. 在 VS Code 中，按 **CTRL+SHIFT+P** (或 **F1**) 以開啟命令選擇區。
 
-2. 輸入 **sqlcon** 並且按 **ENTER**。
+2. 輸入 **sqlcon** 並且按 **ENTER**，然後將您的語言設定為 **SQL**。
 
-3. 按一下 [是] 將語言設定為 **SQL**。
+3. 按 **ENTER** 以選取 [建立連線設定檔]。 這會為您的 SQL Server 執行個體建立連線設定檔。
 
-4. 按 **ENTER** 以選取 [建立連線設定檔]。 這會為您的 SQL Server 執行個體建立連線設定檔。
-
-5. 請依照提示指定新連線設定檔的連線屬性。 指定每個值之後，按 **ENTER** 繼續。 
+4. 請依照提示指定新連線設定檔的連線屬性。 指定每個值之後，按 **ENTER** 繼續。 
 
    下表說明連線設定檔屬性。
 
@@ -81,9 +93,9 @@ ms.lasthandoff: 03/29/2017
    | **儲存密碼？** | 選取 [是] 或 [否] |
    | **[選用] 輸入這個設定檔的名稱** | 輸入連線設定檔名稱，例如 **mySampleDatabase**。 
 
-6. 按 **ESC** 鍵來關閉通知已建立並連接設定檔的資訊訊息。
+5. 按 **ESC** 鍵來關閉通知已建立並連接設定檔的資訊訊息。
 
-7. 在狀態列中確認您的連線。
+6. 在狀態列中確認您的連線。
 
    <img src="./media/sql-database-connect-query-vscode/vscode-connection-status.png" alt="Connection status" style="width: 780px;" />
 
@@ -100,7 +112,7 @@ ms.lasthandoff: 03/29/2017
    ON pc.productcategoryid = p.productcategoryid;
    ```
 
-3. 按 **CTRL+SHIFT+E** 來擷取 Product 和 ProductCategory 資料表中的資料。
+2. 按 **CTRL+SHIFT+E** 來擷取 Product 和 ProductCategory 資料表中的資料。
 
     <img src="./media/sql-database-connect-query-vscode/query.png" alt="Query" style="width: 780px;" />
 
@@ -130,7 +142,7 @@ ms.lasthandoff: 03/29/2017
            ,GETDATE() );
    ```
 
-3. 按 **CTRL+SHIFT+E** 以在 Product 資料表中插入新資料列。
+2. 按 **CTRL+SHIFT+E** 以在 Product 資料表中插入新資料列。
 
 ## <a name="update-data"></a>更新資料
 
@@ -144,7 +156,7 @@ ms.lasthandoff: 03/29/2017
    WHERE Name = 'myNewProduct';
    ```
 
-3. 按 **CTRL+SHIFT+E** 以在 Product 資料表中更新指定的資料列。
+2. 按 **CTRL+SHIFT+E** 以在 Product 資料表中更新指定的資料列。
 
 ## <a name="delete-data"></a>刪除資料
 
@@ -157,10 +169,15 @@ ms.lasthandoff: 03/29/2017
    WHERE Name = 'myNewProduct';
    ```
 
-3. 按 **CTRL+SHIFT+E** 以在 Product 資料表中刪除指定的資料列。
+2. 按 **CTRL+SHIFT+E** 以在 Product 資料表中刪除指定的資料列。
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需 Visual Studio Code 的詳細資訊，請參閱 [Visual Studio Code](https://code.visualstudio.com/docs)
-- 如需使用 SQL Server Management Studio 查詢和編輯資料的詳細資訊，請參閱 [SSMS](https://msdn.microsoft.com/library/ms174173.aspx)。
+- 若要使用 SQL Server Management Studio 來連線和查詢，請參閱[使用 SSMS 連線及查詢](sql-database-connect-query-ssms.md)
+- 若要使用 .NET 進行連線和查詢，請參閱[使用 .NET 進行連線和查詢](sql-database-connect-query-dotnet.md)。
+- 若要使用 PHP 進行連線和查詢，請參閱[使用 PHP 進行連線和查詢](sql-database-connect-query-php.md)。
+- 若要使用 Node.js 進行連線和查詢，請參閱[使用 Node.js 進行連線和查詢](sql-database-connect-query-nodejs.md)。
+- 若要使用 Java 進行連線和查詢，請參閱[使用 Java 進行連線和查詢](sql-database-connect-query-java.md)。
+- 若要使用 Python 進行連線和查詢，請參閱[使用 Python 進行連線和查詢](sql-database-connect-query-python.md)。
+- 若要使用 Ruby 進行連線和查詢，請參閱[使用 Ruby 進行連線和查詢](sql-database-connect-query-ruby.md)。
 

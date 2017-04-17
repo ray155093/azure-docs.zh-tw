@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 02/24/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: f4b26aa9a4dd110eafb8f9f8d658cc0f530136ec
-ms.openlocfilehash: 4548d83525dba6024d1892950e3acbc6b857977a
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 44f40aebe8418b0cfcf2c2708469d586d1dd4c4c
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -32,7 +32,7 @@ Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應�
 * 如何透過備援和複寫來保持 Azure 儲存體資料的永久性
 * 若要打造第一個 Azure 儲存體應用程式下一步該怎麼做
 
-若要快速啟動並執行 Azure 儲存體，請參閱 [在&5; 分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)。
+若要快速啟動並執行 Azure 儲存體，請參閱 [在 5 分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)。
 
 如需使用 Azure 儲存體的工具、程式庫及其他資源的詳細資訊，請參閱下方的 [後續步驟](#next-steps) 。
 
@@ -49,13 +49,13 @@ Azure 儲存體使用自動分割系統，可自動根據流量負載平衡您�
 
 為了方便開發，Azure 儲存體支援使用各種作業系統 (包括 Windows 和 Linux) 和多種程式設計語言 (包括 .NET、Java、Node.js、Python、Ruby、PHP 和 C++ 及行動程式設計語言) 的用戶端。 Azure 儲存體還可透過簡單 REST API 公開資料資源，REST API 適用於任何能夠透過 HTTP/HTTPS 傳送與接收資料的用戶端。
 
-Azure Premium 儲存體對於 Azure 虛擬機器上執行的 I/O 密集工作負載提供高效能、低延遲磁碟支援。 透過 Azure Premium 儲存體，您可以將多個持續資料磁碟連接到虛擬機器，並設定這些磁碟符合您的效能需求。 各個資料磁碟都有 Azure Premium 儲存體的 SSD 磁碟做為備援，充分達到最大的 I/O 效能。 如需詳細資訊，請參閱 [Premium 儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md) 。
+Azure Premium 儲存體對於 Azure 虛擬機器上執行的 I/O 密集工作負載提供高效能、低延遲磁碟支援。 透過 Azure Premium 儲存體，您可以將多個持續資料磁碟連結至虛擬機器，並設定這些磁碟符合您的效能需求。 各個資料磁碟都有 Azure Premium 儲存體的 SSD 磁碟做為備援，充分達到最大的 I/O 效能。 如需詳細資訊，請參閱 [Premium 儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](storage-premium-storage.md) 。
 
 ## <a name="introducing-the-azure-storage-services"></a>Azure 儲存體服務簡介
 Azure 儲存體提供以下四個服務：Blob 儲存體、表格儲存體、佇列儲存體和檔案儲存體。
 
 * 「Blob 儲存體」可儲存非結構化物件資料。 Blob 可以是任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。 Blob 儲存體也稱為物件儲存體。
-* 「表格儲存體」可儲存結構化資料集。 資料表儲存體屬於 NoSQL 索引鍵屬性資料儲存，可允許快速開發和迅速存取大量資料。
+* 「表格儲存體」可儲存結構化資料集。 表格儲存體屬於 NoSQL 索引鍵屬性資料儲存，可允許快速開發和迅速存取大量資料。
 * 「佇列儲存體」可為工作流程處理及雲端服務元件間的通訊，提供可靠的訊息服務。
 * 「檔案儲存體」可為使用標準 SMB 通訊協定的舊版應用程式提供共用儲存體。 Azure 虛擬機器和雲端服務可以透過掛接的共用，在應用程式元件之間共用檔案資料，而內部部署應用程式可以透過檔案服務 REST API，存取共用中的檔案資料。
 
@@ -82,21 +82,21 @@ Azure 儲存體帳戶是可讓您存取 Azure 儲存體服務的安全帳戶。 
 Blob 儲存體提供三種類型的 Blob，包括區塊 Blob、附加 Blob 及分頁 Blob (磁碟)。
 
 * 區塊 Blob 已針對串流和儲存雲端物件進行最佳化，是儲存文件、媒體檔案、備份等的不錯選擇。
-* 附加 Blob 和區塊 Blob 類似，但已針對附加作業最佳化。 附加 Blob 只能透過在結尾加入新的區塊來更新。 對於如記錄等僅需要將新資料寫入 Blob 結尾的情況，附加 Blob 是不錯的選擇。
-* 頁面 Blob 已針對顯示 IaaS 磁碟與支援隨機寫入進行最佳化，且大小可能可以高達 1 TB。 Azure 虛擬機器網路附加 IaaS 磁碟是以頁面 Blob 方式儲存的 VHD。
+* 附加 Blob 和區塊 Blob 類似，但已針對附加作業最佳化。 附加 Blob 只能透過在結尾新增新的區塊來更新。 對於如記錄等僅需要將新資料寫入 Blob 結尾的情況，附加 Blob 是不錯的選擇。
+* 頁面 Blob 已針對顯示 IaaS 磁碟與支援隨機寫入進行最佳化，且大小可能可以高達 1 TB。 Azure 虛擬機器網路連結的 IaaS 磁碟是以頁面 Blob 方式儲存的 VHD。
 
 若是超大型資料集，網路限制會使得透過線路上傳或下載資料至 Blob 儲存體變得不切實際，您可以將硬碟送至 Microsoft，以便直接從資料中心匯入或匯出資料。 請參閱 [使用 Microsoft Azure 匯入/匯出服務將資料移轉至 Blob 儲存體](storage-import-export-service.md)。
 
-## <a name="table-storage"></a>資料表儲存體
-新式應用程式通常會要求以超越前幾代軟體需求的延伸性和彈性儲存資料。 資料表儲存體提供高可用性且可大幅擴充的儲存體，方便您的應用程式自動擴充以滿足使用者需求。 資料表儲存體屬於 Microsoft 的 NoSQL 索引鍵屬性儲存，它的無結構描述設計讓它有別於傳統的關聯式資料庫。 透過無結構描述資料儲存，便可輕易隨著應用程式發展需求改寫資料。 資料表儲存體非常容易使用，方便開發人員可以快速建立應用程式。 所有類型的應用程式都可以用快速且具成本效益的方式存取資料。  相較於類似資料量的傳統 SQL，資料表儲存體通常可大幅降低成本。
+## <a name="table-storage"></a>表格儲存體
+新式應用程式通常會要求以超越前幾代軟體需求的延伸性和彈性儲存資料。 表格儲存體提供高可用性且可大幅擴充的儲存體，方便您的應用程式自動擴充以滿足使用者需求。 表格儲存體屬於 Microsoft 的 NoSQL 索引鍵屬性儲存，它的無結構描述設計讓它有別於傳統的關聯式資料庫。 透過無結構描述資料儲存，便可輕易隨著應用程式發展需求改寫資料。 表格儲存體非常容易使用，方便開發人員可以快速建立應用程式。 所有類型的應用程式都可以用快速且具成本效益的方式存取資料。  相較於類似資料量的傳統 SQL，表格儲存體通常可大幅降低成本。
 
-資料表儲存體屬於索引鍵屬性儲存，代表資料表中的每個值會與具型別的屬性名稱一起儲存。 屬性名稱可用來篩選與指定選取條件。 一組屬性及其值就構成一個實體。 因為資料表儲存體沒有結構描述，因此相同資料表中的兩個實體可包含不同屬性集合，且這些屬性可以是不同類型。
+表格儲存體屬於索引鍵屬性儲存，代表資料表中的每個值會與具型別的屬性名稱一起儲存。 屬性名稱可用來篩選與指定選取條件。 一組屬性及其值就構成一個實體。 因為表格儲存體沒有結構描述，因此相同資料表中的兩個實體可包含不同屬性集合，且這些屬性可以是不同類型。
 
-您可以使用資料表儲存體來儲存具彈性的資料集，例如 Web 應用程式的使用者資料、通訊錄、裝置資訊，以及服務所需的任何其他中繼資料類型。  您可以在資料表中儲存任意數目的實體，且儲存體帳戶可包含任意數目的資料表，最高可達儲存體帳戶的容量限制。
+您可以使用表格儲存體來儲存具彈性的資料集，例如 Web 應用程式的使用者資料、通訊錄、裝置資訊，以及服務所需的任何其他中繼資料類型。  您可以在資料表中儲存任意數目的實體，且儲存體帳戶可包含任意數目的資料表，最高可達儲存體帳戶的容量限制。
 
 如同 Blob 和佇列，開發人員可以使用標準 REST 通訊協定來管理與存取表格儲存體，不過，表格儲存體也支援 OData 通訊協定的子集，進而簡化進階查詢功能，並啟用 JSON 和 AtomPub (以 XML 為基礎) 格式。
 
-在現今的網際網路架構應用程式中，NoSQL 資料庫 (如資料表儲存體) 提供傳統關聯式資料庫的熱門替代方式。
+在現今的網際網路架構應用程式中，NoSQL 資料庫 (如表格儲存體) 提供傳統關聯式資料庫的熱門替代方式。
 
 ## <a name="queue-storage"></a>佇列儲存體
 設計擴充性的應用程式時，會經常分離應用程式元件，以便進行個別擴充。 佇列儲存體針對應用程式元件間的非同步通訊，提供可靠的訊息服務解決方案，無論應用程式元件是在雲端、桌面、內部部署伺服器或行動裝置上執行。 佇列儲存體也支援管理非同步工作並建置處理工作流程。
@@ -174,7 +174,7 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 [!INCLUDE [storage-account-billing-include](../../includes/storage-account-billing-include.md)]
 
 ## <a name="storage-apis-libraries-and-tools"></a>儲存體 API、程式庫和工具
-任何可提出 HTTP/HTTPS 要求的語言皆可存取 Azure 儲存體資源。 另外，Azure 儲存體還提供了幾種熱門語言的程式設計程式庫。 這些程式庫可透過處理詳細資料 (例如同步和非同步叫用、進行批次操作、例外狀況管理、自動重試、運作方式等等) 來簡化使用 Azure 儲存體的許多項目。 程式庫目前適用於下列語言和平台，以及正在研發的其他語言和平台：
+任何可提出 HTTP/HTTPS 要求的語言皆可存取 Azure 儲存體資源。 另外，Azure 儲存體還提供了幾種熱門語言的程式設計程式庫。 這些程式庫可透過處理詳細資料 (例如同步和非同步叫用、進行批次作業、例外狀況管理、自動重試、運作方式等等) 來簡化使用 Azure 儲存體的許多項目。 程式庫目前適用於下列語言和平台，以及正在研發的其他語言和平台：
 
 ### <a name="azure-storage-data-services"></a>Azure 儲存體資料服務
 * [儲存體服務 REST API](http://msdn.microsoft.com/library/azure/dd179355.aspx)
@@ -225,28 +225,28 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 
 ### <a name="for-javaandroid-developers"></a>針對 Java/Android 開發人員
 * [如何使用 Java 的 Blob 儲存體](storage-java-how-to-use-blob-storage.md)
-* [如何使用 Java 的資料表儲存體](storage-java-how-to-use-table-storage.md)
+* [如何使用 Java 的表格儲存體](storage-java-how-to-use-table-storage.md)
 * [如何使用 Java 的佇列儲存體](storage-java-how-to-use-queue-storage.md)
 * [如何使用 Java 的檔案儲存體](storage-java-how-to-use-file-storage.md)
 
 ### <a name="for-nodejs-developers"></a>針對 Node.js 開發人員
 * [如何使用 Node.js 的 Blob 儲存體](storage-nodejs-how-to-use-blob-storage.md)
-* [如何使用 Node.js 的資料表儲存體](storage-nodejs-how-to-use-table-storage.md)
+* [如何使用 Node.js 的表格儲存體](storage-nodejs-how-to-use-table-storage.md)
 * [如何使用 Node.js 的佇列儲存體](storage-nodejs-how-to-use-queues.md)
 
 ### <a name="for-php-developers"></a>針對 PHP 開發人員
 * [如何使用 PHP 的 Blob 儲存體](storage-php-how-to-use-blobs.md)
-* [如何使用 PHP 的資料表儲存體](storage-php-how-to-use-table-storage.md)
+* [如何使用 PHP 的表格儲存體](storage-php-how-to-use-table-storage.md)
 * [如何使用 PHP 的佇列儲存體](storage-php-how-to-use-queues.md)
 
 ### <a name="for-ruby-developers"></a>針對 Ruby 開發人員
 * [如何使用 Ruby 的 Blob 儲存體](storage-ruby-how-to-use-blob-storage.md)
-* [如何使用 Ruby 的資料表儲存體](storage-ruby-how-to-use-table-storage.md)
+* [如何使用 Ruby 的表格儲存體](storage-ruby-how-to-use-table-storage.md)
 * [如何使用 Ruby 的佇列儲存體](storage-ruby-how-to-use-queue-storage.md)
 
 ### <a name="for-python-developers"></a>針對 Python 開發人員
 * [如何使用 Python 的 Blob 儲存體](storage-python-how-to-use-blob-storage.md)
-* [如何使用 Python 的資料表儲存體](storage-python-how-to-use-table-storage.md)
+* [如何使用 Python 的表格儲存體](storage-python-how-to-use-table-storage.md)
 * [如何使用 Python 的佇列儲存體](storage-python-how-to-use-queue-storage.md)
 * [如何使用 Python 的檔案儲存體](storage-python-how-to-use-file-storage.md)
 

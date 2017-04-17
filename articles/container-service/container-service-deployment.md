@@ -18,9 +18,9 @@ ms.date: 03/01/2017
 ms.author: rogardle
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 2e8ff5304d4ccc63f92567b22c0508e3fc7b9bcf
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 71903120a77aa4d8fd58ea600488d3464570b0cb
+ms.lasthandoff: 04/06/2017
 
 ---
 # <a name="deploy-a-docker-container-hosting-solution-using-the-azure-portal"></a>使用 Azure 入口網站部署 Docker 容器主控解決方案
@@ -36,7 +36,11 @@ Azure Container Service 支援快速部署常用的開放原始碼容器叢集�
 
 ## <a name="prerequisites"></a>必要條件
 
-* **Azure 訂用帳戶**：如果您沒有帳戶，請註冊[免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。 
+* **Azure 訂用帳戶**：如果您沒有帳戶，請註冊[免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。 針對較大的叢集，請考慮隨用隨付訂用帳戶或其他購買選項。
+
+    > [!NOTE]
+    > 您的 Azure 訂用帳戶使用量和[資源配額](../azure-subscription-service-limits.md)(例如核心配額) 可以限制您部署的叢集大小。 若要要求增加配額，可免費[開啟線上客戶支援要求](../azure-supportability/how-to-create-azure-support-request.md)。
+    >
 
 * **SSH RSA 公開金鑰**︰透過入口網站或其中一個 Azure 快速入門範本部署時，您必須提供公開金鑰，以便對 Azure Container Service 虛擬機器進行驗證。 若要建立安全殼層 (SSH) RSA 金鑰，請參閱 [OS X 和 Linux](../virtual-machines/linux/mac-create-ssh-keys.md) 和 [Windows](../virtual-machines/linux/ssh-from-windows.md)指引。 
 
@@ -109,7 +113,7 @@ Azure Container Service 支援快速部署常用的開放原始碼容器叢集�
 ## <a name="create-a-cluster-by-using-a-quickstart-template"></a>使用快速入門範本建立叢集
 Azure 快速入門範本可供在 Azure Container Service 中部署叢集。 提供的快速入門範本可以修改為包含其他或進階 Azure 組態。 若要使用 Azure 快速入門範本建立 Azure Container Service 叢集，您需要 Azure 訂用帳戶。 如果您沒有訂用帳戶，請註冊[免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。 
 
-請使用範本和 Azure CLI 2.0 並遵循下列步驟來部署叢集 (請參閱[安裝和設定指示](/cli/azure/install-az-cli2.md))。
+請使用範本和 Azure CLI 2.0 並遵循下列步驟來部署叢集 (請參閱[安裝和設定指示](/cli/azure/install-az-cli2))。
 
 > [!NOTE] 
 > 如果您在 Windows 系統上，可以使用 Azure PowerShell 並以類似的步驟來部署範本。 請參閱本節稍後的步驟。 您也可以透過[入口網站](../azure-resource-manager/resource-group-template-deploy-portal.md)或其他方法來部署範本。

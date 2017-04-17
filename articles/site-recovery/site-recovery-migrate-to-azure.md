@@ -12,12 +12,12 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/27/2017
+ms.date: 04/05/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 981155c38bdc8cb54639d2271be1f3bd3036125c
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 5348cedf369264defc5bb8417397aae046915ca7
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -49,9 +49,16 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
 
 ## <a name="migrate-on-premises-vms-and-physical-servers"></a>移轉內部部署 VM 和實體伺服器
 
-若要移轉內部部署 Hyper-V VM、VMware VM 和實體伺服器，您所需遵循的步驟幾乎和一般複寫時所使用的步驟相同。 您要設定復原服務保存庫、設定所需的管理伺服器 (視您要移轉的項目而定)、將它們新增至保存庫，並指定複寫設定。 為您想要移轉的機器啟用複寫，並執行快速的測試容錯移轉，以確保一切運作正常。
+若要移轉內部部署 Hyper-V VM、VMware VM 和實體伺服器，您所需遵循的步驟幾乎和一般複寫時所使用的步驟相同。
 
-確認複寫環境有用之後，您需要根據您的案例[所支援的項目](site-recovery-failover.md)使用計劃性或非計劃性容錯移轉。 若是進行移轉，您不需要認可容錯移轉。 相反地，您要為所要移轉的每一部機器選取**完成移轉**選項。 **完成移轉**動作會完成移轉程序、移除機器的複寫，並停止該機器的 Site Recovery 計費。
+1. 設定復原服務保存庫
+2. 設定所需的管理伺服器 (VMware、VMM、Hyper-V - 視您要移轉的項目而定)、將它們新增至保存庫，並指定複寫設定。
+3. 針對您想要移轉的電腦啟用複寫
+4. 在初始移轉之後，執行快速的測試容錯移轉，以確保一切運作正常。
+5. 確認複寫環境有用之後，您需要根據您的案例[所支援的項目](site-recovery-failover.md)使用計劃性或非計劃性容錯移轉。 我們建議您儘可能使用規劃的容錯移轉。
+6. 若要進行移轉，您不需要認可容錯移轉或刪除它。 相反地，您要為所要移轉的每一部機器選取**完成移轉**選項。
+     - 在 [複寫的項目] 中，以滑鼠右鍵按一下 VM，然後按一下 [完成移轉]。 按一下 [確定] 以完成。 您可以在 [Site Recovery 作業] 中監視 [完成移轉] 作業，以在 VM 屬性中追蹤進度。
+     - **完成移轉**動作會完成移轉程序、移除機器的複寫，並停止該機器的 Site Recovery 計費。
 
 ![完成移轉](./media/site-recovery-hyper-v-site-to-azure/migrate.png)
 

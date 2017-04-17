@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/17/2017
+ms.date: 04/11/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 4b29fd1c188c76a7c65c4dcff02dc9efdf3ebaee
-ms.openlocfilehash: 733c151012e3d896f720fbc64120432aca594bda
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 0664888dbb14aaa353d5d126cdf799b62711d71f
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -106,7 +106,7 @@ ms.lasthandoff: 02/03/2017
     ```PowerShell
     $azureAdApplication    
     ```
-    Note down the application ID (**applicationID** from the output).
+    記下輸出的應用程式識別碼 (applicationID)。
 
 您應會從這些步驟取得下列四個值︰
 
@@ -124,7 +124,7 @@ ms.lasthandoff: 02/03/2017
    5. 在 [名稱] 中輸入 **DataFactoryAPITestApp** 。
    6. 在 [位置] 中選取 **C:\ADFGetStarted**。
    7. 按一下 [確定]  以建立專案。
-2. 按一下 [工具]，指向 [Nuget 套件管理員]，然後按一下 [套件管理員主控台]。
+2. 按一下 [**工具**]，指向 [**NuGet 封裝管理員**]，然後按一下 [**封裝管理員主控台**]。
 3. 在 [Package Manager Console] 中，輸入下列命令：
    1. 執行以下命令安裝 Data Factory 套件：`Install-Package Microsoft.Azure.Management.DataFactories`
    2. 執行下列命令安裝 Azure Active Directory 套件 (您在程式碼中使用 Active Directory API)︰`Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`
@@ -184,7 +184,7 @@ ms.lasthandoff: 02/03/2017
    > [!IMPORTANT]
    > 以您的 Azure 資源群組名稱取代 **resourceGroupName** 的值。
    >
-   > 將 Data Factory 的名稱 (**dataFactoryName**) 更新成唯一的名稱。 Data Factory 的名稱必須是全域唯一的名稱。 請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md) 主題，以了解 Data Factory 成品的命名規則。
+   > 將 Data Factory 的名稱 (dataFactoryName) 更新成唯一的名稱。 Data Factory 的名稱必須是全域唯一的名稱。 請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md) 主題，以了解 Data Factory 成品的命名規則。
 
 7. 將下列會建立 **data Factory** 的程式碼新增至 **Main** 方法中。
 
@@ -473,7 +473,7 @@ ms.lasthandoff: 02/03/2017
     }
     ```
 
-15. 在 [方案總管] 中展開專案 (**DataFactoryAPITestApp**)，以滑鼠右鍵按一下 [參考]，然後按一下 [新增參考]。 選取 "**System.Configuration**" 組件的核取方塊，然後按一下 [確定]。
+15. 在 [方案總管] 中展開專案 (DataFactoryAPITestApp)，以滑鼠右鍵按一下 [參考]，然後按一下 [新增參考]。 選取 **System.Configuration** 組件的核取方塊。 然後按一下 [確定]。
 16. 建置主控台應用程式。 按一下功能表上的 [建置]，再按一下 [建置方案]。
 17. 確認您 Azure Blob 儲存體之 **adftutorial** 容器中至少有一個檔案。 如果沒有，請在「記事本」中以下列內容建立 **Emp.txt** 檔案，然後將它上傳至 adftutorial 容器。
 
@@ -486,7 +486,7 @@ ms.lasthandoff: 02/03/2017
    * 連結服務：**LinkedService_AzureStorage**
    * 資料集：**DatasetBlobSource** 和 **DatasetBlobDestination**。
    * 管線： **PipelineBlobSample**
-20. 確認在指定 Azure SQL Database 的 "**emp**" 資料表中建立兩筆員工記錄。
+20. 確認在指定 Azure SQL Database 的 **emp** 資料表中建立兩筆員工記錄。
 
 ## <a name="next-steps"></a>後續步驟
 | 主題 | 說明 |

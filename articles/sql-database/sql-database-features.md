@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.date: 03/03/2017
 ms.author: carlrab; jognanay
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: e052109ff10f21c3a737f336479fe43fb54e500e
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 7dc5210c073a3130bfc9ffdbc9ce33e19ca5bc1a
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -42,7 +42,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 
 下表列出 Azure SQL Database 和 SQL Server 的主要功能、指定其支援性，並提供每個平台上的功能詳細資訊連結。 針對 Transact-SQL 功能，請依照資料表中的連結以了解功能的類別。 另請參閱 [Azure SQL Database Transact-SQL 的差異](sql-database-transact-sql-information.md)，了解缺乏特定類型功能支援的原因詳細背景。
 
-我們持續新增 V12 的功能。 因此我們鼓勵您造訪我們的 Azure 服務更新網頁，並使用它的篩選條件：
+我們會持續新增 Azure SQL Database 的功能。 因此我們鼓勵您造訪我們的 Azure 服務更新網頁，並使用它的篩選條件：
 
 * 篩選出 [SQL Database 服務](https://azure.microsoft.com/updates/?service=sql-database)。
 * 篩選出 SQL Database 功能的「正式運作 [(GA)」公告](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability) 。
@@ -56,7 +56,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 | 主動式異地複寫 | 不支援 - 請參閱[啟用 AlwaysOn 可用性群組](https://msdn.microsoft.com/library/hh510230.aspx) | [支援](sql-database-geo-replication-overview.md)
 | 一律加密 | [支援](https://msdn.microsoft.com/library/mt163865.aspx) | [支援](sql-database-always-encrypted.md) |
 | AlwaysOn 可用性群組 | [支援](https://msdn.microsoft.com/library/hh510230.aspx) | 不支援 - 請參閱[主動式異地複寫](sql-database-geo-replication-overview.md) |
-| 連接資料庫 | [支援](https://msdn.microsoft.com/library/ms190209.aspx) | 不支援 |
+| 連結資料庫 | [支援](https://msdn.microsoft.com/library/ms190209.aspx) | 不支援 |
 | 應用程式角色 | [支援](https://msdn.microsoft.com/library/ms190998.aspx) | [支援](https://msdn.microsoft.com/library/ms190998.aspx) |
 | 自動調整 | 不支援 | [支援](sql-database-service-tiers.md) |
 | Azure Active Directory | 不支援 | [支援](sql-database-aad-authentication.md) |
@@ -65,7 +65,7 @@ Azure SQL Database 的每個資料庫會與邏輯伺服器相關聯。 資料庫
 | BACPAC 檔案 (匯出) | [支援](https://msdn.microsoft.com/library/hh213241.aspx) | [支援](sql-database-export.md) |
 | BACPAC 檔案 (匯入) | [支援](https://msdn.microsoft.com/library/hh710052.aspx) | [支援](sql-database-import-portal.md) |
 | 備份和還原陳述式 | [支援](https://msdn.microsoft.com/library/ff848768.aspx) | 不支援 |
-| 內建函數 | [支援](https://msdn.microsoft.com/library/ms174318.aspx) | [大部分](https://msdn.microsoft.com/library/ms174318.aspx) |
+| 內建函式 | [支援](https://msdn.microsoft.com/library/ms174318.aspx) | [大部分](https://msdn.microsoft.com/library/ms174318.aspx) |
 | 變更資料擷取 | [支援](https://msdn.microsoft.com/library/cc645937.aspx) | 不支援 |
 | 變更追蹤 | [支援](https://msdn.microsoft.com/library/bb933875.aspx) | [支援](https://msdn.microsoft.com/library/bb933875.aspx) |
 | 定序陳述式 | [支援](https://msdn.microsoft.com/library/ff848763.aspx) | [支援](https://msdn.microsoft.com/library/ff848763.aspx) |

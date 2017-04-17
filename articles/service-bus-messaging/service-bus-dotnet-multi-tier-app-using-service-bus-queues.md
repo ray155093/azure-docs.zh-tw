@@ -12,18 +12,18 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: get-started-article
-ms.date: 01/10/2017
+ms.date: 04/11/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: f92909e0098a543f99baf3df3197a799bc9f1edc
-ms.openlocfilehash: 76c884bfdfbfacf474489d41f1e388956e4daaa0
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 8b502f5ac5d89801d390a872e7a8b06e094ecbba
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="net-multi-tier-application-using-azure-service-bus-queues"></a>使用 Azure 服務匯流排佇列的 .NET 多層應用程式
 ## <a name="introduction"></a>簡介
-使用 Visual Studio 和免費 Azure SDK for .NET 開發 Microsoft Azure 很容易。 本教學課程將逐步引導您完成相關步驟，以建立在本機環境中執行、使用多個 Azure 資源的應用程式。 這些步驟假設您從未使用過 Azure。
+使用 Visual Studio 和免費 Azure SDK for .NET 開發 Microsoft Azure 很容易。 本教學課程將逐步引導您完成相關步驟，以建立在本機環境中執行、使用多個 Azure 資源的應用程式。
 
 您將了解下列內容：
 
@@ -34,16 +34,16 @@ ms.lasthandoff: 03/01/2017
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-在本教學課程中，您將在 Azure 雲端服務中建置和執行多層式應用程式。 前端為 ASP.NET MVC Web 角色，而後端為使用服務匯流排佇列的背景工作角色。 您可以建立相同的多層應用程式，並使其前端作為部署至 Azure 網站而非雲端服務的 Web 專案。 如需在 Azure 網站前端上進行不同作法的指示，請參閱[後續步驟](#nextsteps)一節。 您也可以試試 [.NET 內部部署/雲端混合式應用程式](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md)教學課程。
+在本教學課程中，您將在 Azure 雲端服務中建置和執行多層式應用程式。 前端為 ASP.NET MVC Web 角色，而後端為使用服務匯流排佇列的背景工作角色。 您可以建立相同的多層應用程式，並使其前端作為部署至 Azure 網站而非雲端服務的 Web 專案。 您也可以試試 [.NET 內部部署/雲端混合式應用程式](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md)教學課程。
 
 下列螢幕擷取畫面顯示完成的應用程式：
 
 ![][0]
 
 ## <a name="scenario-overview-inter-role-communication"></a>案例概觀：內部角色通訊
-為了提交訂單進行處理，Web 角色中執行的前端 UI 元件必須與背景工作角色中執行的中間層互動。 此範例使用由服務匯流排代理的傳訊，在各層之間進行通訊。
+為了提交訂單進行處理，Web 角色中執行的前端 UI 元件必須與背景工作角色中執行的中間層互動。 此範例使用服務匯流排傳訊在各層之間進行通訊。
 
-在 Web 層與中間層之間使用代理的通訊，可使這兩個元件彼此脫鉤。 相較於直接傳訊 (亦即，TCP 或 HTTP)，Web 層不會直接連線至中間層，而是透過訊息的形式，將工作單位推播至服務匯流排，而後者會可靠地保管工作單位，直到中間層準備好取用並處理這些工作單位為止。
+在 Web 層與中間層之間使用服務匯流排傳訊，可使這兩個元件彼此脫鉤。 相較於直接傳訊 (亦即，TCP 或 HTTP)，Web 層不會直接連線至中間層，而是透過訊息的形式，將工作單位推播至服務匯流排，而後者會可靠地保管工作單位，直到中間層準備好取用並處理這些工作單位為止。
 
 服務匯流排提供兩個實體來支援代理的傳訊，也就是：佇列和主題。 使用佇列時，每個傳送至佇列的訊息都是由單一接收者取用。 主題可支援發佈/訂用帳戶模式，亦即每個發佈的訊息會提供給在主題註冊的訂用帳戶。 每個訂閱在邏輯上會維護自己的訊息佇列。 訂用帳戶也可以設定成使用篩選規則，以將傳遞至訂用帳戶佇列的訊息限制為符合篩選條件的訊息。 下列範例使用服務匯流排佇列。
 
@@ -63,7 +63,7 @@ ms.lasthandoff: 03/01/2017
 在開始開發 Azure 應用程式之前，請取得工具，並設定開發環境：
 
 1. 從 SDK [下載頁面](https://azure.microsoft.com/downloads/)安裝 Azure SDK for .NET。
-2. 在 **.NET** 資料行中，按一下您所使用的 [Visual Studio](http://www.visualstudio.com) 版本。 本教學課程中的步驟使用 Visual Studio 2015。
+2. 在 **.NET** 資料行中，按一下您所使用的 [Visual Studio](http://www.visualstudio.com) 版本。 本教學課程中的步驟使用 Visual Studio 2015，但也可使用 Visual Studio 2017。
 3. 當系統提示您執行或儲存安裝程式時，按一下 [執行]。
 4. 在 **Web Platform Installer** 中，按一下 [安裝] 並繼續進行安裝。
 5. 完成安裝後，您將具有開始進行開發所需的一切。 SDK 包含可讓您在 Visual Studio 輕易開發 Azure 應用程式的工具。
@@ -78,7 +78,7 @@ ms.lasthandoff: 03/01/2017
 之後，新增程式碼以提交項目給服務匯流排佇列，並顯示佇列的狀態資訊。
 
 ### <a name="create-the-project"></a>建立專案
-1. 使用系統管理員權限，啟動 Microsoft Visual Studio。 若要以系統管理員權限啟動 Visual Studio，請在 **Visual Studio** 程式圖示上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。 這篇文章稍後討論的 Azure 計算模擬器需要 Visual Studio 以系統管理員權限啟動。
+1. 使用系統管理員權限啟動 Visual Studio：在 **Visual Studio** 程式圖示上按一下滑鼠右鍵，然後按一下 [以系統管理員身分執行]。 這篇文章稍後討論的 Azure 計算模擬器需要 Visual Studio 以系統管理員權限啟動。
    
    在 Visual Studio 的 [檔案] 功能表，按一下 [新增]，然後按一下 [專案]。
 2. 從 [已安裝的範本] 的 [Visual C#] 下，按一下 [雲端]，然後按一下 [Azure 雲端服務]。 將專案命名為 **MultiTierApp**。 然後按一下 [確定] 。
@@ -98,7 +98,7 @@ ms.lasthandoff: 03/01/2017
     ![][16]
 7. 回到 [新增 ASP.NET 專案] 對話方塊中，按一下 [確定] 以建立專案。
 8. 在 [方案總管] 的 [FrontendWebRole] 專案中，以滑鼠右鍵按一下 [參考]，然後按一下 [管理 NuGet 套件]。
-9. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。 按一下 [安裝] 並接受使用條款。
+9. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。 選取 **WindowsAzure.ServiceBus** 套件，按一下 [安裝]，然後接受使用規定。
    
    ![][13]
    
@@ -206,7 +206,7 @@ ms.lasthandoff: 03/01/2017
 
 1. 在 [方案總管] 中，於 [FrontendWebRole] 上按一下滑鼠右鍵 (在專案而非角色上按一下滑鼠右鍵)。 按一下 [新增]，然後按一下 [類別]。
 2. 將類別命名為 **QueueConnector.cs**。 按一下 [新增] 以建立類別。
-3. 現在，加入可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。 以下列程式碼取代 QueueConnector.cs 的整個內容，並將值輸入 `your Service Bus namespace` (命名空間名稱) 和 `yourKey`，後者是先前取自 Azure 入口網站的**主要金鑰**。
+3. 現在，新增可封裝連線資訊、並初始化與服務匯流排佇列連線的程式碼。 以下列程式碼取代 QueueConnector.cs 的整個內容，並將值輸入 `your Service Bus namespace` (命名空間名稱) 和 `yourKey`，後者是先前取自 Azure 入口網站的**主要金鑰**。
    
    ```csharp
    using System;
@@ -362,7 +362,7 @@ ms.lasthandoff: 03/01/2017
 ## <a name="next-steps"></a>後續步驟
 若要深入了解服務匯流排，請參閱下列資源：  
 
-* [Azure 服務匯流排][sbmsdn]  
+* [Azure 服務匯流排文件][sbdocs]  
 * [服務匯流排服務頁面][sbacom]  
 * [如何使用服務匯流排佇列][sbacomqhowto]  
 
@@ -370,7 +370,7 @@ ms.lasthandoff: 03/01/2017
 
 * [使用儲存體資料表、佇列與 Blob 的 .NET 多層式應用程式][mutitierstorage]  
 
-[0]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-01.png
+[0]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-app.png
 [1]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-100.png
 [2]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-101.png
 [9]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-10.png
@@ -381,8 +381,8 @@ ms.lasthandoff: 03/01/2017
 [14]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-33.png
 [15]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-34.png
 [16]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-14.png
-[17]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-36.png
-[18]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-37.png
+[17]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-app.png
+[18]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-app2.png
 
 [19]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-38.png
 [20]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-39.png
@@ -391,7 +391,7 @@ ms.lasthandoff: 03/01/2017
 [26]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/SBNewWorkerRole.png
 [28]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-40.png
 
-[sbmsdn]: http://msdn.microsoft.com/library/azure/ee732537.aspx  
+[sbdocs]: /azure/service-bus-messaging/  
 [sbacom]: https://azure.microsoft.com/services/service-bus/  
 [sbacomqhowto]: service-bus-dotnet-get-started-with-queues.md  
 [mutitierstorage]: https://code.msdn.microsoft.com/Windows-Azure-Multi-Tier-eadceb36

@@ -1,6 +1,6 @@
 ---
 title: "使用 .NET (C#) 連線到 Azure SQL Database | Microsoft Docs"
-description: "使用這個快速入門中的範例程式碼建置現代應用程式，這個應用程式使用 C#，並受到具有 Azure SQL Database 的雲端中之強大關聯式資料庫的支援。"
+description: "提供可用來連線及查詢 Azure SQL Database 的 .NET 程式碼範例"
 services: sql-database
 documentationcenter: 
 author: ajlam
@@ -8,37 +8,42 @@ manager: jhubbard
 editor: 
 ms.assetid: 7faca033-24b4-4f64-9301-b4de41e73dfd
 ms.service: sql-database
-ms.custom: quick start
+ms.custom: quick start connect
 ms.workload: drivers
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 03/28/2017
+ms.date: 04/05/2017
 ms.author: andrela;sstein;carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: c6c0c218b8d0456d37a4514238675fd8e75faf9d
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: c36c3a3f651bcee38b953b12e48cab8d93a34207
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="azure-sql-database-use-net-c-to-connect-and-query-data"></a>Azure SQL Database︰使用 .NET (C#) 連接及查詢資料
 
-使用 [C# and ADO.NET](https://msdn.microsoft.com/library/kb9s9ks0.aspx) 連接及查詢 Azure SQL Database。 本執行詳細說明如何使用 C# 連接到 Azure SQL Database，然後執行查詢、插入、更新和刪除陳述式。
+此快速入門示範如何使用 [C# 和 ADO.NET](https://msdn.microsoft.com/library/kb9s9ks0.aspx) 來連線至 Azure SQL Database，然後從 Windows、Mac OS 和 Ubuntu Linux 平台使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。
 
 本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
 
-## <a name="configure-development-environment"></a>設定開發環境
+## <a name="install-net"></a>安裝 .NET
 
-下列各節詳細說明如何設定您的現有 Mac OS、Linux(Ubuntu) 及 Windows 開發環境，以與 Azure SQL Database 搭配運作。
+### <a name="windows-net-framework-and-net-core"></a>**Windows .NET Framework 和 .NET Core**
+
+Visual Studio 2017 Community 是功能完整且可擴充的免費 IDE，用以建立適用於 Android、iOS、Windows 以及 Web 和資料庫應用程式和雲端服務的新式應用程式。 您可以安裝完整的 .NET Framework 或只安裝 .NET Core。 快速入門中的程式碼片段均可搭配使用。 如果您已在電腦上安裝 Visual Studio，請略過後續幾個步驟。
+
+1. 下載[安裝程式](https://go.microsoft.com/fwlink/?LinkId=691978)。 
+2. 執行安裝程式並依照安裝提示來完成安裝。
 
 ### <a name="mac-os"></a>**Mac OS**
 開啟您的終端機，然後瀏覽至您打算在其中建立 .NET Core 專案的目錄。 輸入下列命令以安裝 **brew**、**OpenSSL** 和 **.NET Core**。 
 
-```C#
+```bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 brew install openssl
@@ -52,20 +57,12 @@ ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 ### <a name="linux-ubuntu"></a>**Linux (Ubuntu)**
 開啟您的終端機，然後瀏覽至您打算在其中建立 .NET Core 專案的目錄。 輸入下列命令以安裝 **.NET Core**。
 
-```C#
+```bash
 sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
 sudo apt-get update
 sudo apt-get install dotnet-dev-1.0.1
 ```
-
-### <a name="windows"></a>**Windows**
-安裝 Visual Studio 2015 Community 版本和 .NET Framework。 如果您已在電腦上安裝 Visual Studio，請略過後續幾個步驟。
-
-Visual Studio 2015 Community 是功能完整且可擴充的免費 IDE，用以建立適用於 Android、iOS、Windows 以及 Web 和資料庫應用程式和雲端服務的新式應用程式。
-
-1. 下載[安裝程式](https://go.microsoft.com/fwlink/?LinkId=691978)。 
-2. 執行安裝程式並依照安裝提示來完成安裝。
 
 ## <a name="get-connection-information"></a>取得連線資訊
 
@@ -309,5 +306,11 @@ namespace ConsoleApplication1
 ## <a name="next-steps"></a>後續步驟
 
 - 如需 .NET 文件，請參閱 [.NET 文件](https://docs.microsoft.com/dotnet/)。
-- 如需使用 Visual Studio Code 查詢和編輯資料的詳細資訊，請參閱 [Visual Studio Code](https://code.visualstudio.com/docs)。
+- 若要使用 SQL Server Management Studio 來連線和查詢，請參閱[使用 SSMS 連線及查詢](sql-database-connect-query-ssms.md)
+- 若要使用 Visual Studio 進行連線和查詢，請參閱[使用 Visual Studio Code 進行連線和查詢](sql-database-connect-query-vscode.md)。
+- 若要使用 PHP 進行連線和查詢，請參閱[使用 PHP 進行連線和查詢](sql-database-connect-query-php.md)。
+- 若要使用 Node.js 進行連線和查詢，請參閱[使用 Node.js 進行連線和查詢](sql-database-connect-query-nodejs.md)。
+- 若要使用 Java 進行連線和查詢，請參閱[使用 Java 進行連線和查詢](sql-database-connect-query-java.md)。
+- 若要使用 Python 進行連線和查詢，請參閱[使用 Python 進行連線和查詢](sql-database-connect-query-python.md)。
+- 若要使用 Ruby 進行連線和查詢，請參閱[使用 Ruby 進行連線和查詢](sql-database-connect-query-ruby.md)。
 

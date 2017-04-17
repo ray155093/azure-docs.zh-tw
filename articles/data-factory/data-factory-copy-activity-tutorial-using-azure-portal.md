@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/14/2017
+ms.date: 04/11/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: a4658f1eee3cdd24b3da47b4c7319c61ea39cb34
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 079cb3e69954a9b02e26e005ad4bb1b7ef14c909
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -175,12 +175,12 @@ ms.lasthandoff: 03/24/2017
     ```   
     請注意下列幾點： 
    
-   * 資料集 **type** 設為 **AzureBlob**。
-   * **linkedServiceName** 設為 **AzureStorageLinkedService**。 您已在步驟 2 中建立此連結服務。
-   * **folderPath** 設為 **adftutorial** 容器。 您也可以使用 **fileName** 屬性指定資料夾內 Blob 的名稱。 由於您未指定 Blob 的名稱，容器中所有 Blob 的資料都會被視為輸入資料。  
-   * 格式 **type** 設為 **TextFormat**
-   * 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)    
-   * **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。 因此，Data Factory 會每小時都在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 
+    - 資料集 **type** 設為 **AzureBlob**。
+    - **linkedServiceName** 設為 **AzureStorageLinkedService**。 您已在步驟 2 中建立此連結服務。
+    - **folderPath** 設為 **adftutorial** 容器。 您也可以使用 **fileName** 屬性指定資料夾內 Blob 的名稱。 由於您未指定 Blob 的名稱，容器中所有 Blob 的資料都會被視為輸入資料。
+    - 格式 **type** 設為 **TextFormat**
+    - 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)
+    - **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。 因此，Data Factory 會每小時都在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 
      
      如果您未指定**輸入**資料集的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會被視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
      
@@ -240,11 +240,11 @@ ms.lasthandoff: 03/24/2017
     ```       
     請注意下列幾點： 
    
-   * 資料集 **type** 設為 **AzureSQLTable**。
-   * **linkedServiceName** 設為 **AzureSqlLinkedService** (您已在步驟 2 中建立此連結服務)。
-   * **tablename** 設為 **emp**。
-   * 資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。 ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
-   * **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
+    - 資料集 **type** 設為 **AzureSQLTable**。
+    - **linkedServiceName** 設為 **AzureSqlLinkedService** (您已在步驟 2 中建立此連結服務)。
+    - **tablename** 設為 **emp**。
+    - 資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。 ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
+    - **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 3. 按一下工具列上的 [部署]，以建立並部署 **OutputDataset** 資料集。 確認您已在樹狀檢視中看到 **OutputDataset** 。 
 
 > [!NOTE]
@@ -303,17 +303,17 @@ ms.lasthandoff: 03/24/2017
     
     請注意下列幾點：
    
-   * 在活動區段中，只會有一個 **type** 設為 **Copy** 的活動。
-   * 活動的輸入設定為 **InputDataset**，活動的輸出則設定為 **OutputDataset**。
-   * 在 **typeProperties** 區段中，來源類型指定為 **BlobSource**，接收類型指定為 **SqlSink**。
+    - 在活動區段中，只會有一個 **type** 設為 **Copy** 的活動。
+    - 活動的輸入設定為 **InputDataset**，活動的輸出則設定為 **OutputDataset**。
+    - 在 **typeProperties** 區段中，來源類型指定為 **BlobSource**，接收類型指定為 **SqlSink**。
      
-     將 **start** 屬性的值替換為目前日期，並將 **end**值替換為隔天的日期。 在日期時間中，您只指定日期部分，並略過時間部分。 例如，"2016-02-03"，這相當於 "2016-02-03T00:00:00Z"
+    將 **start** 屬性的值替換為目前日期，並將 **end**值替換為隔天的日期。 在日期時間中，您只指定日期部分，並略過時間部分。 例如，"2016-02-03"，這相當於 "2016-02-03T00:00:00Z"
      
-     開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2016-10-14T16:32:41Z。 **end** 時間為選擇性項目，但在本教學課程中會用到。 
+    開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2016-10-14T16:32:41Z。 **end** 時間為選擇性項目，但在本教學課程中會用到。 
      
-     如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。 若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。
+    如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。 若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。
      
-     在上述範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
+    在上述範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
 3. 按一下工具列上的 [部署]，建立並部署 **ADFTutorialPipeline**。 確認您在樹狀檢視中看到管線。 
 4. 現在，按一下 **X** 關閉 [編輯器] 刀鋒視窗。再次按一下 **X**，以查看 **ADFTutorialDataFactory** 的 **Data Factory** 首頁。
 

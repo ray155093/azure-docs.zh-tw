@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/17/2017
+ms.date: 04/11/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 4b29fd1c188c76a7c65c4dcff02dc9efdf3ebaee
-ms.openlocfilehash: c5049cbe98dbb04deae4a2b9dc098938aa65495a
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 003a32f2ef67f8aa63ed7be2553fa0f0c3afc08a
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -49,14 +50,14 @@ ms.openlocfilehash: c5049cbe98dbb04deae4a2b9dc098938aa65495a
   3. 取得 **租用戶識別碼**。 
   4. 將 **ADFCopyTutorialApp** 應用程式指派給 **Data Factory 參與者**角色。  
 * 安裝 [Azure PowerShell](/powershell/azureps-cmdlets-docs)。  
-* 啟動 **PowerShell** 並執行下列命令。 將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。 如果您關閉並重新開啟，則需要再次執行這些命令。
+* 啟動 **PowerShell** 並執行下列步驟。 將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。 如果您關閉並重新開啟，則需要再次執行這些命令。
   
-  1. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。
+  1. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼：
     
     ```PowerShell 
     Login-AzureRmAccount
     ```   
-  2. 執行下列命令以檢視此帳戶的所有訂用帳戶。
+  2. 執行下列命令以檢視此帳戶的所有訂用帳戶：
 
     ```PowerShell     
     Get-AzureRmSubscription
@@ -66,7 +67,7 @@ ms.openlocfilehash: c5049cbe98dbb04deae4a2b9dc098938aa65495a
     ```PowerShell
     Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
     ```
-  4. 在 PowerShell 中執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組。  
+  4. 在 PowerShell 中執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組：  
 
     ```PowerShell     
       New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
@@ -172,10 +173,10 @@ JSON 定義會定義名為 **AzureBlobInput**的資料集，以表示管線中�
 * **linkedServiceName** 設為 **AzureStorageLinkedService**。 
 * **folderPath** 設為 **adftutorial** 容器，而 **fileName** 設為 **emp.txt**。  
 * 格式 **type** 設為 **TextFormat**
-* 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)    
-* **availability** 設定為**每小時**，且 (frequency 設定為小時，interval 設定為 1)。 因此，Data Factory 會每小時都在指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 
+* 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (columnDelimiter)    
+* **availability** 設定為**每小時**，且 (frequency 設定為小時，interval 設定為 1)。 因此，Data Factory 會每小時都在指定之 Blob 容器 (adftutorial) 的根資料夾中尋找輸入資料。 
 
-如果您未指定輸入資料集的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會被視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
+如果您未指定輸入資料集的 **fileName**，則輸入資料夾 (folderPath) 中的所有檔案/Blob 都會被視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
 
 如果您未指定**輸出資料表**的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data.&lt;Guid&gt;.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt.)。
 
@@ -230,7 +231,7 @@ JSON 定義會定義名為 **AzureSqlOutput**的資料集，以表示管線中�
 * **linkedServiceName** 設為 **AzureSqlLinkedService**。
 * **tablename** 設為 **emp**。
 * 資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。 ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
-* **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
+* **availability** 設定為**每小時**，且 (frequency 設定為小時，interval 設定為 1)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 
 ### <a name="pipelinejson"></a>pipeline.json
 
@@ -316,7 +317,7 @@ $adf = "ADFCopyTutorialDF"
 ```
 
 ## <a name="authenticate-with-aad"></a>使用 AAD 驗證
-執行下列命令來驗證 Azure Active Directory (AAD)。 
+執行下列命令以驗證 Azure Active Directory (AAD)： 
 
 ```PowerShell
 $cmd = { .\curl.exe -X POST https://login.microsoftonline.com/$tenant/oauth2/token  -F grant_type=client_credentials  -F resource=https://management.core.windows.net/ -F client_id=$client_id -F client_secret=$client_secret };
@@ -326,7 +327,7 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
 (ConvertFrom-Json $responseToken) 
 ```
 
-## <a name="create-data-factory"></a>建立 Data Factory
+## <a name="create-data-factory"></a>建立資料處理站
 在此步驟中，您會建立名為 **ADFCopyTutorialDF**的 Azure Data Factory。 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源複製資料到目的地資料存放區。 HDInsight Hive 活動則是執行 Hive 指令碼轉換輸入資料以產生輸出資料。 執行以下命令以建立 Data Factory： 
 
 1. 將命令指派給名為 **cmd**的變數。 
@@ -360,7 +361,7 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
 * Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
 * 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰ 
   
-  * 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者。 
+  * 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者： 
 
     ```PowerShell    
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
@@ -428,7 +429,7 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
 * 建立文字檔 **emp.txt**，並以 Blob 形式上傳至 **adftutorial** 容器。 
 * 在 **AzureSqlLinkedService** 所指向的 Azure SQL Database中，建立名為 **emp** 的資料表。
 
-1. 啟動 [記事本]，貼上以下文字，並命名為 **emp.txt**，然後儲存至您硬碟上的 **C:\ADFGetStartedPSH** 資料夾。 
+1. 啟動 [記事本]。 複製以下文字，並命名為 **emp.txt**，然後儲存至您硬碟上的 **C:\ADFGetStartedPSH** 資料夾。 
 
     ```   
     John, Doe
@@ -456,7 +457,7 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
     如果不允許您的用戶端存取 Azure SQL Server，則必須將 Azure SQL Server 的防火牆設定成允許從您的電腦 (IP 位址) 存取。 請參閱 [本文](../sql-database/sql-database-configure-firewall-settings.md) 的步驟，為 Azure SQL Server 設定防火牆。
 
 ### <a name="create-input-dataset"></a>建立輸入資料集
-在此步驟中，您將在 **AzureStorageLinkedService** 連結服務所代表的 Azure 儲存體中，建立指向 Blob 容器的 **AzureBlobInput** 資料集。 此 Blob 容器 (**adftutorial**) 包含的輸入資料位於 **emp.txt** 檔案中。 
+在此步驟中，您將在 **AzureStorageLinkedService** 連結服務所代表的 Azure 儲存體中，建立指向 Blob 容器的 **AzureBlobInput** 資料集。 此 Blob 容器 (adftutorial) 包含的輸入資料位於：**emp.txt** 檔案中。 
 
 1. 將命令指派給名為 **cmd**的變數。 
 
@@ -475,7 +476,7 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
     ```
 
 ### <a name="create-output-dataset"></a>建立輸出資料集
-在此步驟中，您會建立名為 **AzureSqlOutput**的輸出資料表。 此資料集指向 Azure SQL Database 中 **AzureSqlLinkedService** 所代表的 SQL 資料表 (**emp**)。 管線會將輸入 Blob 中的資料複製到 **emp** 資料表。 
+在此步驟中，您會建立名為 **AzureSqlOutput**的輸出資料表。 此資料集指向 Azure SQL Database 中 **AzureSqlLinkedService** 所代表的 SQL 資料表 (emp)。 管線會將輸入 Blob 中的資料複製到 **emp** 資料表。 
 
 1. 將命令指派給名為 **cmd**的變數。
 
@@ -573,9 +574,4 @@ IF ((ConvertFrom-Json $results2).value -ne $NULL) {
 [image-data-factory-get-started-storage-explorer]: ./media/data-factory-copy-activity-tutorial-using-powershell/getstarted-storage-explorer.png
 
 [sql-management-studio]: ../sql-database/sql-database-manage-azure-ssms.md
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

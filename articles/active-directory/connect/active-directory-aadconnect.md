@@ -13,15 +13,16 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/07/2017
+ms.date: 04/11/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: bb500d4705c3b67de6b9b31fa5311967beffffc2
-ms.openlocfilehash: fe52867519aa65cabb62a876d5bfe57310b90fd6
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 209f8869e9ed681285865154bdd4d2d7a0f22456
+ms.lasthandoff: 04/12/2017
 
 
 ---
-# <a name="connect-active-directory-with-azure-active-directory"></a>使用 Azure Active Directory 連接 Active Directory。
+# <a name="integrate-your-on-premises-directories-with-azure-active-directory"></a>整合您的內部部署目錄與 Azure Active Directory
 Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。 這可讓您為與 Azure AD 整合之 Office 365、Azure 和 SaaS 應用程式的使用者提供通用身分識別。 本主題將引導您完成規劃、部署和作業步驟。 其中集結了與此領域相關的主題連結。
 
 > [!IMPORTANT]
@@ -155,10 +156,5 @@ ADFS 可以設定為支援 [多個網域](active-directory-aadconnect-multiple-d
 > [!VIDEO https://channel9.msdn.com/Events/Ignite/2015/BRK3862/player]
 > 
 > 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

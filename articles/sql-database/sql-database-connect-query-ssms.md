@@ -10,7 +10,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 7cd2a114-c13c-4ace-9088-97bd9d68de12
 ms.service: sql-database
-ms.custom: development
+ms.custom: quick start manage
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -18,15 +18,15 @@ ms.topic: hero-article
 ms.date: 03/15/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
-ms.openlocfilehash: 7ae47bcce700336206d532b414b7d0eea41d87c5
-ms.lasthandoff: 04/04/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: c173f1b6937739f662eb41aa1886e66cb06ed729
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="azure-sql-database-use-sql-server-management-studio-to-connect-and-query-data"></a>Azure SQL Database：使用 SQL Server Management Studio 連接及查詢資料
 
-使用 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS)，從使用者介面或在指令碼中建立和管理 SQL Server 資源。 這個快速入門詳細說明如何使用 SSMS 來連線至 Azure SQL Database，然後執行查詢、插入、更新和刪除陳述式。
+[SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS) 是一套管理工具，可在使用者介面或以指令碼中建立和管理 SQL Server 資源。 此快速入門示範如何使用 SSMS 來連線至 Azure SQL Database，然後使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。 
 
 本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
@@ -43,11 +43,16 @@ ms.lasthandoff: 04/04/2017
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
 3. 在 Azure 入口網站中您資料庫的 [基本資訊] 窗格中，找到後複製 [伺服器名稱]。
 
-    <img src="./media/sql-database-connect-query-ssms/connection-information.png" alt="connection information" style="width: 780px;" />
+   ![連線資訊](./media/sql-database-connect-query-ssms/connection-information.png) 
+
 
 ## <a name="connect-to-the-server-and-your-new-database"></a>連線至伺服器和新的資料庫
 
-使用 SQL Server Management Studio (SSMS) 建立對 Azure SQL Database 伺服器的連線。
+使用 SQL Server Management Studio (SSMS) 建立對 Azure SQL Database 伺服器的連線。 
+
+> [!IMPORTANT]
+> Azure SQL Database 邏輯伺服器會接聽連接埠 1433。 如果您嘗試從公司防火牆連線至 Azure SQL Database 邏輯伺服器，則必須在公司防火牆中開啟此連接埠，您才能成功連線。
+>
 
 1. 開啟 SQL Server Management Studio。
 
@@ -57,12 +62,16 @@ ms.lasthandoff: 04/04/2017
    - **驗證**：指定 SQL Server 驗證
    - **登入**︰輸入您的伺服器管理帳戶
    - **密碼**：輸入伺服器管理帳戶的密碼
- 
-    <img src="./media/sql-database-connect-query-ssms/connect.png" alt="connect to server" style="width: 780px;" />
 
-3. 按一下 [ **連接**]。 [物件總管] 視窗隨即在 SSMS 中開啟。 
+   ![連接到伺服器](./media/sql-database-connect-query-ssms/connect.png)  
 
-    <img src="./media/sql-database-connect-query-ssms/connected.png" alt="connected to server" style="width: 780px;" />
+3. 按一下 [選項] 。 在 [連線到資料庫] 區段中，輸入 **mySampleDatabase** 以連線至您先前建立的這個資料庫。
+
+   ![連線到伺服器上的 DB](./media/sql-database-connect-query-ssms/options-connect-to-db.png)  
+
+4. 按一下 [ **連接**]。 [物件總管] 視窗隨即在 SSMS 中開啟。 
+
+   ![已連接到伺服器](./media/sql-database-connect-query-ssms/connected.png)  
 
 4. 在 [物件總管] 中，展開 [資料庫]，然後展開 [mySampleDatabase] 以檢視範例資料庫中的物件。
 
@@ -88,8 +97,7 @@ ms.lasthandoff: 04/04/2017
 
 使用 [INSERT](https://msdn.microsoft.com/library/ms174335.aspx) Transact-SQL 陳述式在 Azure SQL Database 中插入資料。
 
-1. 在工具列上，按一下 [新增查詢]。 隨即開啟已連線到您資料庫的空白查詢視窗。
-2. 在查詢視窗中，輸入下列查詢︰
+1. 在查詢視窗中，以下列查詢取代先前的查詢︰
 
    ```sql
    INSERT INTO [SalesLT].[Product]
@@ -111,7 +119,7 @@ ms.lasthandoff: 04/04/2017
            ,GETDATE() );
    ```
 
-3. 在工具列上，按一下 [執行] 以在Product 資料表中插入新資料列。
+2. 在工具列上，按一下 [執行] 以在Product 資料表中插入新資料列。
 
     <img src="./media/sql-database-connect-query-ssms/insert.png" alt="insert" style="width: 780px;" />
 
@@ -119,8 +127,7 @@ ms.lasthandoff: 04/04/2017
 
 使用 [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx) Transact-SQL 陳述式在 Azure SQL Database 中更新資料。
 
-1. 在工具列上，按一下 [新增查詢]。 隨即開啟已連線到您資料庫的空白查詢視窗。
-2. 在查詢視窗中，輸入下列查詢︰
+1. 在查詢視窗中，以下列查詢取代先前的查詢︰
 
    ```sql
    UPDATE [SalesLT].[Product]
@@ -128,7 +135,7 @@ ms.lasthandoff: 04/04/2017
    WHERE Name = 'myNewProduct';
    ```
 
-3. 在工具列上，按一下 [執行] 以在Product 資料表中更新指定的資料列。
+2. 在工具列上，按一下 [執行] 以在Product 資料表中更新指定的資料列。
 
     <img src="./media/sql-database-connect-query-ssms/update.png" alt="update" style="width: 780px;" />
 
@@ -136,20 +143,25 @@ ms.lasthandoff: 04/04/2017
 
 使用 [DELETE](https://msdn.microsoft.com/library/ms189835.aspx) Transact-SQL 陳述式在 Azure SQL Database 中刪除資料。
 
-1. 在工具列上，按一下 [新增查詢]。 隨即開啟已連線到您資料庫的空白查詢視窗。
-2. 在查詢視窗中，輸入下列查詢︰
+1. 在查詢視窗中，以下列查詢取代先前的查詢︰
 
    ```sql
    DELETE FROM [SalesLT].[Product]
    WHERE Name = 'myNewProduct';
    ```
 
-3. 在工具列上，按一下 [執行] 以在Product 資料表中刪除指定的資料列。
+2. 在工具列上，按一下 [執行] 以在Product 資料表中刪除指定的資料列。
 
     <img src="./media/sql-database-connect-query-ssms/delete.png" alt="delete" style="width: 780px;" />
 
 ## <a name="next-steps"></a>後續步驟
 
 - 如需有關 SSMS 的資訊，請參閱 [使用 SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx)。
-- 如需使用 Visual Studio Code 查詢和編輯資料的詳細資訊，請參閱 [Visual Studio Code](https://code.visualstudio.com/docs)。
+- 若要使用 Visual Studio Code 進行連線和查詢，請參閱[使用 Visual Studio Code 進行連線和查詢](sql-database-connect-query-vscode.md)。
+- 若要使用 .NET 進行連線和查詢，請參閱[使用 .NET 進行連線和查詢](sql-database-connect-query-dotnet.md)。
+- 若要使用 PHP 進行連線和查詢，請參閱[使用 PHP 進行連線和查詢](sql-database-connect-query-php.md)。
+- 若要使用 Node.js 進行連線和查詢，請參閱[使用 Node.js 進行連線和查詢](sql-database-connect-query-nodejs.md)。
+- 若要使用 Java 進行連線和查詢，請參閱[使用 Java 進行連線和查詢](sql-database-connect-query-java.md)。
+- 若要使用 Python 進行連線和查詢，請參閱[使用 Python 進行連線和查詢](sql-database-connect-query-python.md)。
+- 若要使用 Ruby 進行連線和查詢，請參閱[使用 Ruby 進行連線和查詢](sql-database-connect-query-ruby.md)。
 
