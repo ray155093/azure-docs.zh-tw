@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 02/23/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: a8e5d36d31aabc9226206f52d8543566c5218494
-ms.openlocfilehash: 6c833cd40439fef1fe9cca2591d36a6c49630579
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 6508b5a5d7d654954c68f9390c62a7871c1f032c
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -75,7 +75,7 @@ ms.lasthandoff: 02/23/2017
 ## <a name="run-your-first-azure-storage-application-locally-against-the-azure-storage-emulator"></a>針對 Azure 儲存體模擬器在本機執行第一個 Azure 儲存體應用程式
 此 [Azure 儲存體模擬器](storage-use-emulator.md) 提供了模擬 Azure Blob、佇列和資料表服務的本機環境，以供進行開發。 您可以使用儲存體模擬器在本機測試儲存體應用程式，而不需建立 Azure 訂用帳戶或儲存體帳戶，也不會產生任何費用。
 
-若要試用，讓我們在 Visual Studio 中使用其中一個 Azure 快速啟動範例專案，建立簡單的 Azure 儲存體應用程式。 本教學課程著重於 **Azure Blob 儲存體**、**Azure 資料表儲存體**和 **Azure 佇列儲存體**範例專案：
+若要試用，讓我們在 Visual Studio 中使用其中一個 Azure 快速啟動範例專案，建立簡單的 Azure 儲存體應用程式。 本教學課程著重於 **Azure Blob 儲存體**、**Azure 表格儲存體**和 **Azure 佇列儲存體**範例專案：
 
 1. 啟動 Visual Studio。
 2. 從 [檔案] 功能表，按一下 [新增專案]。

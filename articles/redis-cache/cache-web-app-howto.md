@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 03/27/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: 02e30f7fcbe0782528460b542a75f1d11c7286a1
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 076a85b7b965f163255e919eb61700aef0d1fc18
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -70,7 +70,7 @@ ms.lasthandoff: 03/28/2017
 
     確保已針對 [驗證] 設定指定 [不需要驗證]。 視您的 Visual Studio 版本而言，預設值可能會設定為其他項目。 若要加以變更，請按一下 [變更驗證]，然後選取 [不需要驗證]。
 
-    如果您密切注意 Visual Studio 2015，請清除 [雲端中的主機] 核取方塊。 在本教學課程的後續步驟中，您將會[佈建 Azure 資源](#provision-the-azure-resources)和[發佈應用程式至 Azure](#publish-the-application-to-azure)。 如需在保持核取 [雲端中的主機]  的狀態下從 Visual Studio 佈建 App Service Web 應用程式的範例，請參閱 [使用 ASP.NET 和 Visual Studio 在 Azure App Service 中開始使用 Web Apps](../app-service-web/web-sites-dotnet-get-started.md)。
+    如果您密切注意 Visual Studio 2015，請清除 [雲端中的主機] 核取方塊。 在本教學課程的後續步驟中，您將會[佈建 Azure 資源](#provision-the-azure-resources)和[發佈應用程式至 Azure](#publish-the-application-to-azure)。 如需在保持核取 [雲端中的主機]  的狀態下從 Visual Studio 佈建 App Service Web 應用程式的範例，請參閱 [使用 ASP.NET 和 Visual Studio 在 Azure App Service 中開始使用 Web Apps](../app-service-web/app-service-web-get-started-dotnet.md)。
    
     ![選取專案範本][cache-select-template]
 4. 按一下 [確定]  以建立專案。
@@ -86,7 +86,7 @@ ms.lasthandoff: 03/28/2017
 ### <a name="add-the-entity-framework-nuget-package"></a>新增 Entity Framework NuGet 套件
 
 1. 按一下 [NuGet 套件管理員]、[工具] 功能表中的 [套件管理員主控台]。
-2. 從 `Package Manager Console` 視窗執行下列命令。
+2. 從 [Package Manager Console] 視窗中執行下列命令。
     
     ```
     Install-Package EntityFramework

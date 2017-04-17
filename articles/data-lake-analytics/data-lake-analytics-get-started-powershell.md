@@ -1,6 +1,6 @@
 ---
 title: "透過 Azure PowerShell 開始使用 Azure Data Lake Analytics | Microsoft Docs"
-description: "了解如何使用 Azure PowerShell 建立 Data Lake Analytics 帳戶、使用 U-SQL 建立 Data Lake Analytics 作業，以及提交作業。 "
+description: "使用 Azure PowerShell 建立 Data Lake Analytics 帳戶、使用 U-SQL 建立 Data Lake Analytics 作業，以及提交作業。 "
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -12,15 +12,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 09/21/2016
+ms.date: 04/06/2017
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 0994765e37dd8ee1fa6a639a2ed60c913cb170fe
-ms.openlocfilehash: a1244ee080d333338b1f0d9e49d1776822f535ed
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: 32f115a4d901a43abf1bf69d1c0c72b65ec7368c
+ms.lasthandoff: 04/07/2017
 
 
 ---
-# <a name="tutorial-get-started-with-azure-data-lake-analytics-using-azure-powershell"></a>教學課程：透過 Azure PowerShell 開始使用 Azure 資料湖分析
+# <a name="tutorial-get-started-with-azure-data-lake-analytics-using-azure-powershell"></a>教學課程：透過 Azure PowerShell 開始使用 Azure Data Lake Analytics
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
 了解如何透過 Azure PowerShell 建立 Azure Data Lake Analytics 帳戶、在 [U-SQL](data-lake-analytics-u-sql-get-started.md)中定義 Data Lake Analytics 作業，以及將工作提交至 Data Lake Analytics 帳戶。 如需 Data Lake Analytics 的詳細資訊，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
@@ -33,10 +34,10 @@ ms.openlocfilehash: a1244ee080d333338b1f0d9e49d1776822f535ed
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **具有 Azure PowerShell 的工作站**。 請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
 
-## <a name="create-data-lake-analytics-account"></a>建立資料湖分析帳戶
-您必須擁有資料湖分析帳戶，才能執行工作。 若要建立資料湖分析帳戶，您必須指定下列項目：
+## <a name="create-data-lake-analytics-account"></a>建立 Data Lake Analytics 帳戶
+您必須擁有 Data Lake Analytics 帳戶，才能執行工作。 若要建立 Data Lake Analytics 帳戶，您必須指定下列項目：
 
-* **Azure 資源群組**：資料湖分析帳戶必須建立在 Azure 資源群組內。 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 可讓您將應用程式中的資源做為群組使用。 您可以透過單一、協調的作業來部署、更新或刪除應用程式的所有資源。  
+* **Azure 資源群組**：Data Lake Analytics 帳戶必須建立在 Azure 資源群組內。 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 可讓您將應用程式中的資源做為群組使用。 您可以透過單一、協調的作業來部署、更新或刪除應用程式的所有資源。  
 
     若要列舉您訂用帳戶中的資源群組：
 
@@ -47,11 +48,11 @@ ms.openlocfilehash: a1244ee080d333338b1f0d9e49d1776822f535ed
         New-AzureRmResourceGroup `
             -Name "<Your resource group name>" `
             -Location "<Azure Data Center>" # For example, "East US 2"
-* **資料湖分析帳戶名稱**
-* **位置**：其中一個支援資料湖分析的 Azure 資料中心。
-* **預設資料湖帳戶**：每個資料湖分析帳戶都有一個預設的資料湖帳戶。
+* **Data Lake Analytics 帳戶名稱**
+* **位置**：其中一個支援 Data Lake Analytics 的 Azure 資料中心。
+* **預設 Data Lake A帳戶**：每個 Data Lake Analytics 帳戶都有一個預設的 Data Lake 帳戶。
 
-    若要建立新的資料湖帳戶：
+    若要建立新的 Data Lake 帳戶：
 
         New-AzureRmDataLakeStoreAccount `
             -ResourceGroupName "<Your Azure resource group name>" `
@@ -59,11 +60,11 @@ ms.openlocfilehash: a1244ee080d333338b1f0d9e49d1776822f535ed
             -Location "<Azure Data Center>"  # For example, "East US 2"
 
   > [!NOTE]
-  > 資料湖帳戶名稱只能包含小寫字母和數字。
+  > Data Lake 帳戶名稱只能包含小寫字母和數字。
   >
   >
 
-**建立資料湖分析帳戶**
+**建立 Data Lake Analytics 帳戶**
 
 1. 從您的 Windows 工作站開啟 PowerShell ISE。
 2. 執行下列指令碼：
@@ -96,10 +97,10 @@ ms.openlocfilehash: a1244ee080d333338b1f0d9e49d1776822f535ed
             -ResourceGroupName $resourceGroupName `
             -Name $dataLakeAnalyticsName  
 
-## <a name="upload-data-to-data-lake"></a>將資料上傳至資料湖
-在本教學課程中，您將會處理一些搜尋記錄檔。  搜尋記錄檔可以儲存在資料湖存放區或 Azure Blob 儲存體中。
+## <a name="upload-data-to-data-lake"></a>將資料上傳至 Data Lake
+在本教學課程中，您將會處理一些搜尋記錄檔。  搜尋記錄檔可以儲存在 Data Lake Store 或 Azure Blob 儲存體中。
 
-系統已將搜尋記錄檔範例複製到公用 Azure Blob 容器。 使用下列 PowerShell 指令碼將該檔案下載到您的工作站，然後再將其上傳到您資料湖分析帳戶的預設資料湖存放區帳戶中。
+系統已將搜尋記錄檔範例複製到公用 Azure Blob 容器。 使用下列 PowerShell 指令碼將該檔案下載到您的工作站，然後再將其上傳到您 Data Lake Analytics 帳戶的預設 Data Lake Store 帳戶中。
 
     $dataLakeStoreName = "<The default Data Lake Store account name>"
 
@@ -112,30 +113,30 @@ ms.openlocfilehash: a1244ee080d333338b1f0d9e49d1776822f535ed
 
     # Download the sample file from Azure Blob storage
     $context = New-AzureStorageContext -StorageAccountName $storageAccount -Anonymous
-    $blobs = Azure\Get-AzureStorageBlob -Container $container -Context $context
+    $$blobs = Get-AzureStorageBlob -Container $container -Context $context
     $blobs | Get-AzureStorageBlobContent -Context $context -Destination $localFolder
 
     # Upload the file to the default Data Lake Store account    
     Import-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path $localFolder"SearchLog.tsv" -Destination "/Samples/Data/SearchLog.tsv"
 
-下列 PowerShell 指令碼示範如何取得資料湖分析帳戶的預設資料湖存放區名稱：
+下列 PowerShell 指令碼示範如何取得 Data Lake Analytics 帳戶的預設 Data Lake Store 名稱：
 
     $resourceGroupName = "<ResourceGroupName>"
     $dataLakeAnalyticsName = "<DataLakeAnalyticsAccountName>"
-    $dataLakeStoreName = (Get-AzureRmDataLakeAnalyticsAccount -ResourceGroupName $resourceGroupName -Name $dataLakeAnalyticsName).Properties.DefaultDataLakeAccount
+    $dataLakeStoreName = (Get-AzureRmDataLakeAnalyticsAccount -ResourceGroupName $resourceGroupName -Name $dataLakeAnalyticsName).Properties.DefaultDataLakeStoreAccount
     echo $dataLakeStoreName
 
 > [!NOTE]
-> Azure 入口網站的使用者介面，可讓使用者將資料檔案範例複製到預設的資料湖存放區帳戶。 如需相關指示，請參閱 [使用 Azure 入口網站開始使用 Azure 資料湖分析](data-lake-analytics-get-started-portal.md#prepare-source-data)。
+> Azure 入口網站的使用者介面，可讓使用者將資料檔案範例複製到預設的 Data Lake Store 帳戶。 如需相關指示，請參閱 [使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md#prepare-source-data)。
 >
 >
 
-資料湖分析也可存取 Azure Blob 儲存體。  如需有關上傳資料至 Azure Blob 儲存體的資訊，請參閱 [搭配使用 Azure PowerShell 與 Azure 儲存體](../storage/storage-powershell-guide-full.md)。
+Data Lake Analytics 也可存取 Azure Blob 儲存體。  如需有關上傳資料至 Azure Blob 儲存體的資訊，請參閱 [搭配使用 Azure PowerShell 與 Azure 儲存體](../storage/storage-powershell-guide-full.md)。
 
-## <a name="submit-data-lake-analytics-jobs"></a>提交資料湖分析工作
-資料湖分析工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL，請參閱[開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
+## <a name="submit-data-lake-analytics-jobs"></a>提交 Data Lake Analytics 工作
+Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL，請參閱[開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
 
-**建立資料湖分析工作指令碼**
+**建立 Data Lake Analytics 工作指令碼**
 
 * 使用下列 U-SQL 指令碼建立文字檔，並將該檔案儲存到您的工作站：
 
@@ -156,9 +157,9 @@ ms.openlocfilehash: a1244ee080d333338b1f0d9e49d1776822f535ed
 
     此 U-SQL 指令碼會使用 **Extractors.Tsv()** 讀取來源資料檔案，然後使用 **Outputters.Csv()** 建立 csv 檔案。
 
-    除非您將來源檔案複製到其他位置，否則請勿修改這兩個路徑。  資料湖分析將建立輸出資料夾 (若尚未建立)。
+    除非您將來源檔案複製到其他位置，否則請勿修改這兩個路徑。  Data Lake Analytics 將建立輸出資料夾 (若尚未建立)。
 
-    使用儲存在預設資料湖帳戶中檔案的相對路徑，是比較容易的方法。 您也可以使用絕對路徑。  例如
+    使用儲存在預設 Data Lake 帳戶中檔案的相對路徑，是比較容易的方法。 您也可以使用絕對路徑。  例如
 
         adl://<Data LakeStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
 
@@ -201,14 +202,9 @@ ms.openlocfilehash: a1244ee080d333338b1f0d9e49d1776822f535ed
 
 ## <a name="see-also"></a>另請參閱
 * 若要使用其他工具檢視同一個教學課程，請按一下頁面最上方的索引標籤選取器。
-* 若要了解更複雜的查詢，請參閱 [使用 Azure 資料湖分析來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
-* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
-* 若要了解 U-SQL，請參閱 [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
-* 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure 資料湖分析](data-lake-analytics-manage-use-portal.md)。
-* 若要取得資料湖分析概觀，請參閱 [Azure 資料湖分析概觀](data-lake-analytics-overview.md)。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
+* 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
+* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
+* 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
+* 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
+* 若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 

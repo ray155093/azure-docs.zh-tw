@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 03/27/2017
 ms.author: renash
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: fcdeac53c79551000b48a47a1afc65e082bcc692
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: b835b04d6ef6d06e35add4f503e6800099e97383
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -245,7 +245,7 @@ example :
 net use z: \\samples.file.core.windows.net\logs /u:AZURE\samples <storage-account-key>
 ```
 
-您現在可以從虛擬機器使用檔案儲存體共用，就好像操作任何其他磁碟機一樣。 您可以從命令提示字元中發佈標準檔案命令，或從 [檔案總管] 中檢視掛接的共用及其內容。 您也可以使用標準 Windows 檔案 I/O API (例如 .NET Framework 中 [System.IO namespaces](http://msdn.microsoft.com/library/gg145019.aspx) 所提供的那些 API)，在可存取檔案共用的虛擬機器內執行程式碼。
+您現在可以從虛擬機器使用檔案儲存體共用，就好像作業任何其他磁碟機一樣。 您可以從命令提示字元中發佈標準檔案命令，或從 [檔案總管] 中檢視掛接的共用及其內容。 您也可以使用標準 Windows 檔案 I/O API (例如 .NET Framework 中 [System.IO namespaces](http://msdn.microsoft.com/library/gg145019.aspx) 所提供的那些 API)，在可存取檔案共用的虛擬機器內執行程式碼。
 
 您也可以從在 Azure 雲端服務上執行的角色來掛接檔案共用，方法是透過遠端進入此角色。
 
@@ -259,6 +259,16 @@ net use z: \\samples.file.core.windows.net\logs /u:AZURE\samples <storage-accoun
 > 有些網際網路服務提供者可能會封鎖連接埠 445，因此您可能需要連絡您的服務提供者。
 > 
 > 
+
+### <a name="unmount-the-file-share"></a>取消掛接檔案共用
+若要取消掛接檔案共用，您可以使用 `net use` 命令搭配 `/delete` 選項。
+
+```
+net use <drive-letter> /delete
+
+example :
+net use z: /delete
+```
 
 ## <a name="develop-with-file-storage"></a>使用檔案儲存體開發
 若要撰寫可呼叫檔案儲存體的程式碼，您可以使用 .NET 和 Java 適用的儲存體用戶端程式庫或 Azure 儲存體 REST API。 本節的範例將透過桌面上執行的簡單主控台應用程式，使用 [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://msdn.microsoft.com/library/mt347887.aspx) 來示範如何使用檔案共用。
@@ -276,15 +286,15 @@ net use z: \\samples.file.core.windows.net\logs /u:AZURE\samples <storage-accoun
 
 您可以在任何類型的 .NET 應用程式 (包括 Azure 雲端服務或 Web 應用程式和桌面與行動應用程式) 中使用 Azure Storage Client Library。 在本指南中，為求簡化，我們會使用主控台應用程式。
 
-### <a name="use-nuget-to-install-the-required-packages"></a>使用 NuGet 來安裝必要的封裝
-您必須在您的專案中參考下列兩個封裝，才能完成本教學課程︰
+### <a name="use-nuget-to-install-the-required-packages"></a>使用 NuGet 來安裝必要的套件
+您必須在您的專案中參考下列兩個套件，才能完成本教學課程︰
 
-* [適用於 .NET 的 Microsoft Azure 儲存體用戶端資源庫](https://www.nuget.org/packages/WindowsAzure.Storage/)︰此封裝可供以程式設計方式存取儲存體帳戶中的資料資源。
-* [適用於 .NET 的 Microsoft Azure Configuration Manager 程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)︰此封裝提供一個類別，無論您的應用程式於何處執行，均可用來剖析組態檔中的連接字串。
+* [適用於 .NET 的 Microsoft Azure 儲存體用戶端資源庫](https://www.nuget.org/packages/WindowsAzure.Storage/)︰此套件可供以程式設計方式存取儲存體帳戶中的資料資源。
+* [適用於 .NET 的 Microsoft Azure Configuration Manager 程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)︰此套件提供一個類別，無論您的應用程式於何處執行，均可用來剖析組態檔中的連接字串。
 
-您可以使用 NuGet 來取得這兩個封裝。 請遵循下列步驟：
+您可以使用 NuGet 來取得這兩個套件。 請遵循下列步驟：
 
-1. 在 [方案總管] 中以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。
+1. 在 [方案總管] 中以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 套件]。
 2. 在線上搜尋 "WindowsAzure.Storage"，然後按一下 [安裝]  以安裝 Storage Client Library 與其相依項目。
 3. 在線上搜尋 "WindowsAzure.ConfigurationManager"，然後按一下 [安裝]  以安裝 Azure Configuration Manager。
 
@@ -309,7 +319,7 @@ net use z: \\samples.file.core.windows.net\logs /u:AZURE\samples <storage-accoun
 > 
 
 ### <a name="add-using-directives"></a>新增 using 指示詞
-在 [方案總管] 中開啟 `Program.cs` 檔案，並在檔案的開頭處加入下列 using 指示詞。
+在 [方案總管] 中開啟 `Program.cs` 檔案，並在檔案的開頭處新增下列 using 指示詞。
 
 ```csharp
 using Microsoft.Azure; // Namespace for Azure Configuration Manager
@@ -321,7 +331,7 @@ using Microsoft.WindowsAzure.Storage.File; // Namespace for File storage
 [!INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
 ### <a name="access-the-file-share-programmatically"></a>以程式設計方式存取檔案共用
-接著，在 `Main()` 方法 (上述程式碼後面) 加入下列程式碼，以擷取連接字串。 此程式碼會取得稍早所建立檔案的參考，並將其內容輸出到主控台視窗。
+接著，在 `Main()` 方法 (上述程式碼後面) 新增下列程式碼，以擷取連接字串。 此程式碼會取得稍早所建立檔案的參考，並將其內容輸出到主控台視窗。
 
 ```csharp
 // Create a CloudFileClient object for credentialed access to File storage.
@@ -448,7 +458,7 @@ if (share.Exists())
 ### <a name="copy-files"></a>複製檔案
 從 Azure 儲存體用戶端程式庫 5.x 版開始，您可以將檔案複製到另一個檔案、將檔案複製到 Blob 或將 Blob 複製到檔案。 在後續各節中，我們將示範如何以程式設計方式執行這些複製作業。
 
-您也可以使用 AzCopy 將檔案複製到另一個檔案，或將 Blob 複製到檔案或反向操作。 請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。
+您也可以使用 AzCopy 將檔案複製到另一個檔案，或將 Blob 複製到檔案或反向作業。 請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。
 
 > [!NOTE]
 > 如果要將 Blob 複製到檔案，或將檔案複製到 Blob，您必須使用共用存取簽章 (SAS) 驗證來源物件，即使是在相同的儲存體帳戶內進行複製也一樣。
@@ -558,7 +568,7 @@ Azure 儲存體分析現在支援檔案儲存體的度量。 利用度量資料�
 
 下列程式碼範例會示範如何使用適用於 .NET 的儲存體用戶端程式庫，啟用檔案儲存體的計量。
 
-首先，將下列 `using` 指示詞加入您的 `Program.cs` 檔案中，連同上述所加入的陳述式︰
+首先，將下列 `using` 指示詞新增您的 `Program.cs` 檔案中，連同上述所新增的陳述式︰
 
 ```csharp
 using Microsoft.WindowsAzure.Storage.File.Protocol;
@@ -615,7 +625,7 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
    
     我們目前不支援 AD 式驗證或 ACL，但在我們的功能要求清單中卻有它。 目前，Azure 儲存體帳戶金鑰可用來提供檔案共用的驗證。 我們的確提供透過 REST API 或用戶端程式庫使用共用存取簽章 (SAS) 的因應措施。 使用 SAS 時，您可以產生在一段時間內都是有效的具有特定權限的權杖。 例如，您可以產生具有指定檔案的唯讀存取的權杖。 擁有此權杖的任何人，在其有效時具有該檔案的唯讀存取。
    
-    僅透過 REST API 或用戶端程式庫才支援 SAS。 當您透過 SMB 通訊協定掛接檔案共用時，您無法使用 SAS 來委派其內容的存取。 
+    僅透過 REST API 或用戶端程式庫才支援 SAS。 透過 SMB 通訊協定掛接檔案共用時，您無法使用 SAS 來委派其內容的存取。 
 
 2. **要如何提供透過網頁瀏覽器對特定檔案的存取權？**
    使用 SAS 時，您可以產生在一段時間內都是有效的具有特定權限的權杖。 例如，您可以產生可在一段特定時間內對特定檔案進行唯讀存取的權杖。 任何人只要擁有此 URL，就可以在其有效時間內，直接從任何網頁瀏覽器執行下載作業。 從儲存體總管之類的 UI 就能輕鬆產生 SAS 金鑰。
@@ -633,7 +643,7 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
     是。 如果流量位於相同區域則是免費的。
 7. **從內部部署虛擬機器連接到 Azure 檔案儲存體是否仰賴 Azure ExpressRoute？**
    
-    沒有。 如果沒有 ExpressRoute，您仍然可以從內部部署存取檔案共用，只要您將連接埠 445 (TCP 輸出) 開啟供網際網路存取。 不過，您可以搭配使用 ExpressRoute 與檔案儲存體 (如果需要)。
+    不可以。 如果沒有 ExpressRoute，您仍然可以從內部部署存取檔案共用，只要將連接埠 445 (TCP 輸出) 開啟供網際網路存取即可。 不過，您可以搭配使用 ExpressRoute 與檔案儲存體 (如果需要)。
 8. **容錯移轉叢集的「檔案共用見證」是Azure 檔案儲存體的其中一個使用案例？**
    
     這目前不受支援。
@@ -643,7 +653,7 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
 10. **何時能對 Azure 檔案儲存體使用現有的儲存體帳戶？**
    
     Azure 檔案儲存體現在已為所有儲存體帳戶啟用。
-11. **重新命名作業也會加入 REST API 嗎？**
+11. **重新命名作業也會新增至 REST API 嗎？**
    
     我們的 REST API 中尚未支援重新命名。
 12. **可以有巢狀共用，換句話說，共用下的共用嗎？**
@@ -666,11 +676,13 @@ Console.WriteLine(serviceProperties.MinuteMetrics.Version);
     您可以參考 [Azure 檔案疑難排解文章](storage-troubleshoot-file-connection-problems.md)以取得端對端疑難排解指引。               
 
 18. **如何啟用 Azure 檔案服務的伺服器端加密？**
+> [!NOTE]
+> Azure 檔案的[伺服器端加密](storage-service-encryption.md)目前為預覽狀態。 如果在預覽期間有所疑問，您可以連絡 [SSEDiscussion](mailto:ssediscussions@microsoft.com)。
 
-    Azure 檔案的[伺服器端加密](storage-service-encryption.md)目前為預覽狀態。 在預覽期間，您只可以使用 [Azure 入口網站](https://portal.azure.com)所建立的新 Azure Resource Manager 儲存體帳戶上啟用此功能。 此用此功能不會額外收費。 當您啟用 Azure 檔案儲存體的儲存體服務加密時，您的資料會自動加密。 
+    [Server Side Encryption](storage-service-encryption.md) for Azure Files is currently in preview. During preview, you can enable this feature only on new Azure Resource Manager storage accounts created by using the [Azure portal](https://portal.azure.com). There is no additional charge for enabling this feature. When you enable Storage Service Encryption for Azure File Storage, your data is automatically encrypted for you. 
     
-    我們打算在未來讓啟用檔案儲存體的加密支援 [Azure PowerShell](/powershell/resourcemanager/azurerm.storage/v2.7.0/azurerm.storage)、[Azure CLI](storage-azure-cli.md) 或 [Microsoft Azure 儲存體資源提供者 REST API](/rest/api/storagerp/storageaccounts)。 
-    如需有關在 Azure 儲存體中加密靜止的資訊，請參閱[儲存體服務加密](storage-service-encryption.md)，如果您在預覽期間有問題，也可以連絡 ssediscussions@microsoft.com。
+    We plan to support enabling encryption for file storage with [Azure PowerShell](/powershell/resourcemanager/azurerm.storage/v2.7.0/azurerm.storage), [Azure CLI](storage-azure-cli.md), and the [Azure Storage Resource Provider REST API](/rest/api/storagerp/storageaccounts) in the future. 
+    See [Storage Service Encryption](storage-service-encryption.md) for more information about encryption at rest in Azure Storage, and you can contact ssediscussions@microsoft.com if you have questions during the preview.
 
 ## <a name="next-steps"></a>後續步驟
 請參閱這些連結以取得 Azure 檔案儲存體的相關詳細資訊。

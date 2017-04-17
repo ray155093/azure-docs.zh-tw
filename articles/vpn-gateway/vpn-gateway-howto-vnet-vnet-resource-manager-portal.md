@@ -13,43 +13,39 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/27/2017
+ms.date: 04/11/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: c80ddbaf8c2c84735564e514ddaf4308c4aff303
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 4133e2e90f51d141044f2ac064c60df1263b498e
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="configure-a-vnet-to-vnet-connection-using-the-azure-portal"></a>使用 Azure 入口網站設定 VNet 對 VNet 連接
+
+將虛擬網路連接至另一個虛擬網路 (VNet 對 VNet)，類似於將 VNet 連接至內部部署網站位置。 這兩種連線類型都使用 VPN 閘道提供使用 IPsec/IKE 的安全通道。 您甚至可以將多網站連線組態與 VNet 對 VNet 通訊結合。 這可讓您建立結合了跨單位連線與內部虛擬網路連線的網路拓撲。
+
+![v2v 圖表](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/v2vrmps.png)
+
+本文逐步引導您使用 VPN 閘道和 Azure 入口網站在 Resource Manager 部署模型中建立 VNet 間的連接。 當您使用 Azure 入口網站來連接虛擬網路時，VNet 必須在相同的訂用帳戶中。 如果您的虛擬網路在不同的訂用帳戶中，您還是可以使用 [PowerShell](vpn-gateway-vnet-vnet-rm-ps.md) 步驟連接它們。
+
+[!INCLUDE [deployment models](../../includes/vpn-gateway-deployment-models-include.md)] 如果您想要在不同的部署模型之間使用不同的部署模型，或使用不同的部署工具建立一個 VNet 對 VNet 連線，您可以從下列文件下拉式清單中選取一個選項︰
+
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
 > * [傳統 - Azure 入口網站](vpn-gateway-howto-vnet-vnet-portal-classic.md)
-> * [傳統 - 傳統入口網站](virtual-networks-configure-vnet-to-vnet-connection.md)
-> 
-> 
-
-本文逐步引導您使用 VPN 閘道和 Azure 入口網站在 Resource Manager 部署模型中建立 VNet 間的連接。
-
-當您使用 Azure 入口網站來連接虛擬網路時，VNet 必須在相同的訂用帳戶中。 如果您的虛擬網路在不同的訂用帳戶中，您還是可以使用 [PowerShell](vpn-gateway-vnet-vnet-rm-ps.md) 步驟連接它們。
-
-![v2v 圖表](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/v2vrmps.png)
-
-### <a name="deployment-models-and-methods-for-vnet-to-vnet-connections"></a>VNet 對 VNet 連線的部署模型和方法
-[!INCLUDE [deployment models](../../includes/vpn-gateway-deployment-models-include.md)]
-
-下表顯示 VNet 對 VNet 組態目前可用的部署模型和方法。 當包含設定的文章推出時，我們會直接從此資料表連結至該文章。
-
-[!INCLUDE [vpn-gateway-table-vnet-vnet](../../includes/vpn-gateway-table-vnet-to-vnet-include.md)]
-
-**VNet 對等互連**
+> * [連線不同的部署模型 - Azure 入口網站](vpn-gateway-connect-different-deployment-models-portal.md)
+> * [連線不同的部署模型 - PowerShell](vpn-gateway-connect-different-deployment-models-powershell.md)
+>
+>
 
 [!INCLUDE [vpn-gateway-vnetpeeringlink](../../includes/vpn-gateway-vnetpeeringlink-include.md)]
 
+
 ## <a name="about-vnet-to-vnet-connections"></a>關於 VNet 對 VNet 連線
-將虛擬網路連接至另一個虛擬網路 (VNet 對 VNet)，類似於將 VNet 連接至內部部署網站位置。 這兩種連線類型都使用 Azure VPN 閘道提供使用 IPsec/IKE 的安全通道。 您所連線的 Vnet 可位於不同區域或不同訂用帳戶。
+將虛擬網路連接至另一個虛擬網路 (VNet 對 VNet)，類似於將 VNet 連接至內部部署網站位置。 這兩種連線類型都使用 Azure VPN 閘道提供使用 IPsec/IKE 的安全通道。 您所連線的 Vnet 可位於不同區域或不同訂用帳戶。 請注意，如果您的 Vnet 位於不同的訂用帳戶中，就無法在入口網站中建立連線。 您可以使用 [PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)。
 
 您甚至可以將多網站組態與 VNet 對 VNet 通訊結合。 這可讓您建立使用內部虛擬網路連線結合跨單位連線的網路拓撲，如下圖所示：
 
@@ -144,7 +140,7 @@ VNet 對 VNet 連線不需要 DNS。 不過，如果您想要對部署至虛擬�
 [!INCLUDE [vpn-gateway-add-dns-rm-portal](../../includes/vpn-gateway-add-dns-rm-portal-include.md)]
 
 ## <a name="VNetGateway"></a>5.建立虛擬網路閘道
-此步驟將帶您建立 VNet 的虛擬網路閘道。 此步驟可能需要 45 分鐘的時間才能完成。 如果您要練習建立此組態，您可以參考[範例設定](#values)。
+此步驟將帶您建立 VNet 的虛擬網路閘道。 建立閘道通常可能需要 45 分鐘或更久，視選取的閘道 SKU 而定。 如果您要練習建立此組態，您可以參考[範例設定](#values)。
 
 ### <a name="to-create-a-virtual-network-gateway"></a>建立虛擬網路閘道
 [!INCLUDE [vpn-gateway-add-gw-rm-portal](../../includes/vpn-gateway-add-gw-rm-portal-include.md)]
@@ -153,7 +149,7 @@ VNet 對 VNet 連線不需要 DNS。 不過，如果您想要對部署至虛擬�
 設定 TestVNet1 之後，請重複先前步驟來建立 TestVNet4，並換成 TestVNet4 的值。 您不需要等到 TestVNet1 的虛擬網路閘道建立完成後才設定 TestVNet4。 如果您使用自己的值，請確定位址空間沒有與任何您想要連接的 VNet 重疊。
 
 ## <a name="TestVNet1Connection"></a>7.設定 TestVNet1 連接
-當 TestVNet1 和 TestVNet4 的虛擬網路閘道完成後，您可以建立虛擬網路閘道連接。 本節中，您將建立從 VNet1 到 VNet4 的連接。
+當 TestVNet1 和 TestVNet4 的虛擬網路閘道完成後，您可以建立虛擬網路閘道連接。 本節中，您將建立從 VNet1 到 VNet4 的連接。 這些步驟只適用於相同的訂用帳戶中的 VNet。 如果您的 VNet 位於不同的訂用帳戶中，則必須使用 PowerShell 來進行連線。 請參閱 [PowerShell](vpn-gateway-vnet-vnet-rm-ps.md) 文件。
 
 1. 在 [所有資源] 中，瀏覽至 VNet 的虛擬網路閘道。 例如，**TestVNet1GW**。 按一下 [TestVNet1GW] 以開啟 [虛擬網路閘道] 刀鋒視窗。
    

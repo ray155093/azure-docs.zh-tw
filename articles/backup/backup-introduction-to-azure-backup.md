@@ -17,9 +17,9 @@ ms.date: 3/13/2017
 ms.author: markgal;trinadhk; anuragm
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
-ms.openlocfilehash: a2452b95c9355957b10477a6e457000f0eba6a9c
-ms.lasthandoff: 04/04/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 2e981f0f45bc5b338937839b74114e12db960927
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -90,9 +90,9 @@ Azure 備份是您可用來備份 (或保護) 和還原 Microsoft Cloud 資料�
 | 元件 | Linux (Azure 背書) 支援 |
 | --- | --- |
 | Azure 備份 (MARS) 代理程式 |否 (僅限 Windows 代理程式) |
-| System Center DPM |檔案一致性備份僅限 Hyper-V<br/> (無法用於 Azure VM) |
-| Azure 備份伺服器 |檔案一致性備份僅限 Hyper-V<br/> (無法用於 Azure VM) |
-| Azure IaaS VM 備份 |是 (使用[前置指令碼和後置指令碼架構](https://docs.microsoft.com/azure/backup/backup-azure-linux-app-consistent)的應用程式一致備份) |
+| System Center DPM |Hyper-V 和 VMWare 上 Linux 來賓 VM 的檔案一致性備份<br/> (無法用於 Azure VM)<br/> Hyper-V 和 VMWare Linux 來賓 VM 的 VM 還原 |
+| Azure 備份伺服器 |Hyper-V 和 VMWare 上 Linux 來賓 VM 的檔案一致性備份<br/> (無法用於 Azure VM)<br/> Hyper-V 和 VMWare Linux 來賓 VM 的 VM 還原 |
+| Azure IaaS VM 備份 |使用[前置指令碼和後置指令碼架構](https://docs.microsoft.com/azure/backup/backup-azure-linux-app-consistent)的應用程式一致備份<br/> [細微檔案復原](backup-azure-restore-files-from-vm.md)<br/> [還原所有的 VM 磁碟](https://docs.microsoft.com/azure/backup/backup-azure-arm-restore-vms#restore-backed-up-disks)<br/> [VM 還原](https://docs.microsoft.com/azure/backup/backup-azure-arm-restore-vms#create-a-new-vm-from-restore-point) |
 
 ## <a name="using-premium-storage-vms-with-azure-backup"></a>使用進階儲存體 VM 與 Azure 備份
 Azure 備份可保護進階儲存體 VM。 Azure 進階儲存體是一個以固態硬碟 (SSD) 為基礎的儲存體產品，專門設計用來支援需大量 I/O 的工作負載。 進階儲存體非常適合用於虛擬機器 (VM) 工作負載。 如需有關進階儲存體的詳細資訊，請參閱此文章：[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)。

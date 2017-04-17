@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/02/2017
+ms.date: 04/11/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: fbf77e9848ce371fd8d02b83275eb553d950b0ff
-ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 09d8634d8d1b16edb058d0bb259b089a54748279
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -53,7 +54,7 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
 | --- | --- |
 | [建立 Azure Data Factory](#create-data-factory) |在此步驟中，您會建立名為 **ADFTutorialDataFactoryPSH**的 Azure Data Factory。 |
 | [建立連結服務](#create-linked-services) |在此步驟中，您會建立兩個連結服務：**StorageLinkedService** 和 **AzureSqlLinkedService**。 StorageLinkedService 會連結 Azure 儲存體服務，而 AzureSqlLinkedService 會將 Azure SQL Database 連結至 ADFTutorialDataFactoryPSH。 |
-| [建立輸入和輸出資料集](#create-datasets) |在此步驟中，您會定義兩個資料集 (**EmpTableFromBlob** 和 **EmpSQLTable**)。 當您在下一個步驟中建立 ADFTutorialPipeline 時，這兩個資料集可做為**複製活動**的輸入和輸出資料表。 |
+| [建立輸入和輸出資料集](#create-datasets) |在此步驟中，您會定義兩個資料集 (EmpTableFromBlob 和 EmpSQLTable)。 當您在下一個步驟中建立 ADFTutorialPipeline 時，這兩個資料集可做為**複製活動**的輸入和輸出資料表。 |
 | [建立及執行管線](#create-pipeline) |在此步驟中，您會在 Data Factory ADFTutorialDataFactoryPSH 中建立名為 **ADFTutorialPipeline** 的管線。 此管線使用複製活動，將資料從 Azure Blob 複製到輸出 Azure 資料庫資料表。 |
 | [監視資料集和管線](#monitor-pipeline) |在此步驟中，您會使用 Azure PowerShell 來監視資料集和管線。 |
 
@@ -62,40 +63,57 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
 
 1. 啟動 **PowerShell**。 將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。 如果您關閉並重新開啟，則需要再次執行這些命令。
 
-   a. 執行下列命令，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼：
+    執行下列命令，並輸入您用來登入 Azure 入口網站的使用者名稱和密碼：
 
-           Login-AzureRmAccount   
-   b. 執行下列命令以檢視此帳戶的所有訂用帳戶：
+    ```PowerShell
+    Login-AzureRmAccount
+    ```   
+   
+    執行下列命令以檢視此帳戶的所有訂用帳戶：
 
-           Get-AzureRmSubscription
-   c. 執行下列命令以選取您要使用的訂用帳戶。 以您的 Azure 訂用帳戶名稱取代 **&lt;NameOfAzureSubscription**&gt;：
+    ```PowerShell
+    Get-AzureRmSubscription
+    ```
 
-           Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
+    執行下列命令以選取您要使用的訂用帳戶。 以您的 Azure 訂用帳戶名稱取代 **&lt;NameOfAzureSubscription**&gt;：
+
+    ```PowerShell
+    Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
+    ```
 2. 執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組：
 
-        New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
-
+    ```PowerShell
+    New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
+    ```
+    
     本教學課程的某些步驟會假設您使用名為 **ADFTutorialResourceGroup**的資源群組。 如果使用不同的資源群組，您必須以該群組取代本教學課程中的 ADFTutorialResourceGroup。
 3. 執行 **New-AzureRmDataFactory** Cmdlet，以建立名為 **ADFTutorialDataFactoryPSH** 的 Data Factory：  
 
-        New-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name ADFTutorialDataFactoryPSH –Location "West US"
-
+    ```PowerShell
+    New-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name ADFTutorialDataFactoryPSH –Location "West US"
+    ```
 請注意下列幾點：
 
 * Azure Data Factory 的名稱在全域必須是唯一的。 如果您收到錯誤，請變更名稱 (例如 yournameADFTutorialDataFactoryPSH)。 執行本教學課程中的步驟時，請使用此名稱來取代 ADFTutorialFactoryPSH。 請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md)，以了解 Data Factory 成品的命名規則。
 
-        Data factory name “ADFTutorialDataFactoryPSH” is not available
+    ```
+    Data factory name “ADFTutorialDataFactoryPSH” is not available
+    ```
 * 若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者或系統管理員。
 * Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
 * 您可能會收到下列錯誤︰「**未註冊此訂用帳戶，無法使用命名空間 Microsoft.DataFactory。**」 請執行下列其中一個動作，並試著重新發佈一次︰
 
   * 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者：
 
-          Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
+    ```PowerShell
+    Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
+    ```
 
-      執行下列命令來確認已註冊 Data Factory 提供者：
+    執行下列命令來確認已註冊 Data Factory 提供者：
 
-          Get-AzureRmResourceProvider
+    ```PowerShell
+    Get-AzureRmResourceProvider
+    ```
   * 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)。 請移至 Data Factory 刀鋒視窗，或在 Azure 入口網站中建立 Data Factory。 此動作會自動為您註冊提供者。
 
 ## <a name="create-linked-services"></a>建立連結服務
@@ -106,33 +124,34 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
 ### <a name="create-a-linked-service-for-an-azure-storage-account"></a>建立 Azure 儲存體帳戶的連結服務
 1. 在 **C:\ADFGetStartedPSH** 資料夾中，使用以下內容建立名為 **StorageLinkedService.json** 的 JSON 檔案。 (建立 ADFGetStartedPSH 資料夾 (如果不存在)。)
 
-         {
-               "name": "StorageLinkedService",
-               "properties": {
-                 "type": "AzureStorage",
-                 "typeProperties": {
-                       "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
-                 }
-               }
-         }
-
+    ```json
+    {
+        "name": "StorageLinkedService",
+        "properties": {
+            "type": "AzureStorage",
+            "typeProperties": {
+                "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
+            }
+        }
+     }
+    ```
    以 Azure 儲存體帳戶的名稱和金鑰取代 **accountname** 和 **accountkey**。
 2. 在 **Azure PowerShell** 中，切換到 **ADFGetStartedPSH** 資料夾。
 3. 您可以使用 **New-AzureRmDataFactoryLinkedService** Cmdlet 建立連結服務。 此 Cmdlet 和您在本教學課程中使用的其他 Data Factory Cmdlet，皆需要您將值傳給 **ResourceGroupName** 和 **DataFactoryName** 參數。 或者，您可以使用 **Get-AzureRmDataFactory** 取得 DataFactory 物件，並傳遞此物件，而不需要在每次執行 Cmdlet 時輸入 ResourceGroupName 和 DataFactoryName。 執行以下命令，將 **Get-AzureRmDataFactory** Cmdlet 的輸出指派給變數 **$df**：
 
-    ```   
+    ```PowerShell   
     $df=Get-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name ADFTutorialDataFactoryPSH
     ```
 
 4. 現在，執行 **New-AzureRmDataFactoryLinkedService** Cmdlet 建立連結的服務：**StorageLinkedService**。
 
-    ```
+    ```PowerShell
     New-AzureRmDataFactoryLinkedService $df -File .\StorageLinkedService.json
     ```
 
     如果您還沒執行 **Get-AzureRmDataFactory** Cmdlet 和指派輸出給 **$df** 變數，您就必須指定 ResourceGroupName 和 DataFactoryName 參數的值，如下所示。   
 
-    ```
+    ```PowerShell
     New-AzureRmDataFactoryLinkedService -ResourceGroupName ADFTutorialResourceGroup -DataFactoryName ADFTutorialDataFactoryPSH -File .\StorageLinkedService.json
     ```
 
@@ -141,20 +160,21 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
 ### <a name="create-a-linked-service-for-an-azure-sql-database"></a>建立 Azure SQL Database 的連結服務
 1. 使用以下內容建立名為 AzureSqlLinkedService.json 的 JSON 檔案：
 
-         {
-             "name": "AzureSqlLinkedService",
-             "properties": {
-                 "type": "AzureSqlDatabase",
-                 "typeProperties": {
-                       "connectionString": "Server=tcp:<server>.database.windows.net,1433;Database=<databasename>;User ID=<user>@<server>;Password=<password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30"
-                 }
-               }
-         }
-
+    ```json
+    {
+        "name": "AzureSqlLinkedService",
+        "properties": {
+            "type": "AzureSqlDatabase",
+            "typeProperties": {
+                "connectionString": "Server=tcp:<server>.database.windows.net,1433;Database=<databasename>;User ID=<user>@<server>;Password=<password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30"
+            }
+        }
+     }
+    ```
    將 **servername**、**databasename**、**username@servername** 和 **password** 替換為您的 Azure SQL 伺服器名稱、資料庫名稱、使用者帳戶和密碼。
 2. 執行以下命令建立連結服務：
 
-    ```
+    ```PowerShell
     New-AzureRmDataFactoryLinkedService $df -File .\AzureSqlLinkedService.json
     ```
 
@@ -180,64 +200,70 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
 2. 建立名為 **emp.txt** 的文字檔，並以 Blob 形式上傳至 **adftutorial** 容器。
 3. 在 **AzureSqlLinkedService** 所指向的 SQL Database 中，建立名為 **emp** 的資料表。
 
-4. 啟動 [記事本]，貼上以下文字，並命名為 **emp.txt**，然後儲存至您硬碟上的 **C:\ADFGetStartedPSH** 資料夾。
+4. 啟動 [記事本]。 複製以下文字，並命名為 **emp.txt**，然後儲存至您硬碟上的 **C:\ADFGetStartedPSH** 資料夾。
 
-        John, Doe
-        Jane, Doe
+    ```
+    John, Doe
+    Jane, Doe
+    ```
 5. 使用 [Azure 儲存體總管](https://azurestorageexplorer.codeplex.com/)這類的工具建立 **adftutorial** 容器，以及將 **emp.txt** 檔案上傳至該容器。
 
     ![Azure 儲存體總管](media/data-factory-copy-activity-tutorial-using-powershell/getstarted-storage-explorer.png)
 6. 使用以下 SQL 指令碼，在您的 SQL Database 中建立 **emp** 資料表。  
 
-        CREATE TABLE dbo.emp
-        (
-            ID int IDENTITY(1,1) NOT NULL,
-            FirstName varchar(50),
-            LastName varchar(50),
-        )
-        GO
+    ```sql
+    CREATE TABLE dbo.emp
+    (
+        ID int IDENTITY(1,1) NOT NULL,
+        FirstName varchar(50),
+        LastName varchar(50),
+    )
+    GO
 
-        CREATE CLUSTERED INDEX IX_emp_ID ON dbo.emp (ID);
+    CREATE CLUSTERED INDEX IX_emp_ID ON dbo.emp (ID);
+    ```
 
     如果您的電腦上已安裝 SQL Server 2014，請遵循[步驟 2：使用 SQL Server Management Studio 連接到管理 Azure SQL Database 的 SQL Database](../sql-database/sql-database-manage-azure-ssms.md)中的指示，連接到 SQL Database 伺服器並執行 SQL 指令碼。
 
     如果不允許您的用戶端存取 SQL Database 資料庫，則必須將 SQL Database 伺服器的防火牆設定成允許從您的電腦 (IP 位址) 存取。 如需相關步驟，請參閱[這篇文章](../sql-database/sql-database-configure-firewall-settings.md)。
 
 ### <a name="create-an-input-dataset"></a>建立輸入資料集
-資料表是矩形的資料集，並具有結構描述。 在此步驟中，您會建立名為 **EmpBlobTable** 的資料表。 此資料表會指向 **StorageLinkedService** 連結服務所代表之 Azure 儲存體中的 Blob 容器。 此 Blob 容器 (**adftutorial**) 包含的輸入資料位於 **emp.txt** 檔案中。
+資料表是矩形的資料集，並具有結構描述。 在此步驟中，您會建立名為 **EmpBlobTable** 的資料表。 此資料表會指向 **StorageLinkedService** 連結服務所代表之 Azure 儲存體中的 Blob 容器。 此 Blob 容器 (adftutorial) 包含的輸入資料位於 **emp.txt** 檔案中。
 
 1. 在 **C:\ADFGetStartedPSH** 資料夾中，使用下列內容建立名為 **EmpBlobTable.json** 的 JSON 檔案：
 
-         {
-           "name": "EmpTableFromBlob",
-           "properties": {
-             "structure": [
-               {
-                 "name": "FirstName",
-                 "type": "String"
-               },
-               {
-                 "name": "LastName",
-                 "type": "String"
-               }
-             ],
-             "type": "AzureBlob",
-             "linkedServiceName": "StorageLinkedService",
-             "typeProperties": {
-               "fileName": "emp.txt",
-               "folderPath": "adftutorial/",
-               "format": {
-                 "type": "TextFormat",
-                 "columnDelimiter": ","
-               }
-             },
-             "external": true,
-             "availability": {
-               "frequency": "Hour",
-               "interval": 1
-             }
-           }
-         }
+    ```json
+    {
+        "name": "EmpTableFromBlob",
+        "properties": {
+            "structure": [
+                {
+                    "name": "FirstName",
+                    "type": "String"
+                },
+                {
+                    "name": "LastName",
+                    "type": "String"
+                }
+            ],
+            "type": "AzureBlob",
+            "linkedServiceName": "StorageLinkedService",
+            "typeProperties": {
+                "fileName": "emp.txt",
+                "folderPath": "adftutorial/",
+                "format": {
+                    "type": "TextFormat",
+                    "columnDelimiter": ","
+                }
+            },
+            "external": true,
+            "availability": {
+                "frequency": "Hour",
+                "interval": 1
+            }
+        }
+     }
+    ```
 
    請注意下列幾點：
 
@@ -246,61 +272,65 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
    * **folderPath** 設為 **adftutorial** 容器。
    * **fileName** 設為 **emp.txt**。 如果您未指定 Blob 的名稱，容器中所有 Blob 的資料都會被視為輸入資料。  
    * 格式 **type** 設為 **TextFormat**。
-   * 文字檔中有兩個以逗號字元 (**columnDelimiter**) 分隔的欄位 (**FirstName** 和 **LastName**)。    
-   * **availability** 設定為**每小時** (**frequency** 設定為**小時**，**interval** 設定為 **1**)。 因此，Data Factory 會每小時在 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。
+   * 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (columnDelimiter)。    
+   * **availability** 設定為**每小時** (frequency 設定為小時，interval 設定為 1)。 因此，Data Factory 會每小時在 Blob 容器 (adftutorial) 的根資料夾中尋找輸入資料。
 
-   如果您未指定**輸入資料表**的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案和 Blob 都會視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案或 Blob 會被視為輸入。
+   如果您未指定**輸入資料表**的 **fileName**，則輸入資料夾 (folderPath) 中的所有檔案和 Blob 都會視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案或 Blob 會被視為輸入。
 
    如果您未指定**輸出資料表**的 **fileName**，**folderPath** 中產生的檔案會依照下列格式命名：Data.<Guid\>.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt.)。
 
    若要根據 **SliceStart** 時間動態設定 **folderPath** 和 **fileName**，請使用 **partitionedBy** 屬性。 在下列範例中，folderPath 使用 SliceStart (所處理配量的開始時間) 中的年、月和日，fileName 使用 SliceStart 中的小時。 例如，如果配量產生於 2016-10-20T08:00:00，folderName 設定為 wikidatagateway/wikisampledataout/2016/10/20，而 fileName 設定為 08.csv。
 
-         "folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
-         "fileName": "{Hour}.csv",
-         "partitionedBy":
-         [
-             { "name": "Year", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyy" } },
-             { "name": "Month", "value": { "type": "DateTime", "date": "SliceStart", "format": "MM" } },
-             { "name": "Day", "value": { "type": "DateTime", "date": "SliceStart", "format": "dd" } },
-             { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } }
-         ],
+    ```json
+     "folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
+     "fileName": "{Hour}.csv",
+     "partitionedBy":
+     [
+         { "name": "Year", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyy" } },
+         { "name": "Month", "value": { "type": "DateTime", "date": "SliceStart", "format": "MM" } },
+         { "name": "Day", "value": { "type": "DateTime", "date": "SliceStart", "format": "dd" } },
+         { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } }
+     ],
+    ```
 
    如需 JSON 屬性的詳細資料，請參閱 [JSON 指令碼參考](data-factory-data-movement-activities.md)。
 2. 執行以下命令建立 Data Factory 資料集。
 
-    ```  
+    ```PowerShell  
     New-AzureRmDataFactoryDataset $df -File .\EmpBlobTable.json
     ```
 
 ### <a name="create-an-output-dataset"></a>建立輸出資料表
-在此步驟中，您會建立名為 **EmpSQLTable**的輸出資料集。 此資料集指向 Azure SQL Database 中 **AzureSqlLinkedService** 所代表的 SQL 資料表 (**emp**)。 管線會將輸入 Blob 中的資料複製到 **emp** 資料表。
+在此步驟中，您會建立名為 **EmpSQLTable**的輸出資料集。 此資料集指向 Azure SQL Database 中 **AzureSqlLinkedService** 所代表的 SQL 資料表 (emp)。 管線會將輸入 Blob 中的資料複製到 **emp** 資料表。
 
 1. 在 **C:\ADFGetStartedPSH** 資料夾中，使用下列內容建立名為 **EmpSQLTable.json** 的 JSON 檔案：
 
-         {
-           "name": "EmpSQLTable",
-           "properties": {
-             "structure": [
-               {
-                 "name": "FirstName",
-                 "type": "String"
-               },
-               {
-                 "name": "LastName",
-                 "type": "String"
-               }
-             ],
-             "type": "AzureSqlTable",
-             "linkedServiceName": "AzureSqlLinkedService",
-             "typeProperties": {
-               "tableName": "emp"
-             },
-             "availability": {
-               "frequency": "Hour",
-               "interval": 1
-             }
-           }
-         }
+    ```json
+    {
+        "name": "EmpSQLTable",
+        "properties": {
+            "structure": [
+                {
+                    "name": "FirstName",
+                    "type": "String"
+                },
+                {
+                    "name": "LastName",
+                    "type": "String"
+                }
+            ],
+            "type": "AzureSqlTable",
+            "linkedServiceName": "AzureSqlLinkedService",
+            "typeProperties": {
+                "tableName": "emp"
+            },
+            "availability": {
+                "frequency": "Hour",
+                "interval": 1
+            }
+        }
+    }
+    ```
 
    請注意下列幾點：
 
@@ -308,10 +338,10 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
    * **linkedServiceName** 設為 **AzureSqlLinkedService**。
    * **tablename** 設為 **emp**。
    * 資料庫的 emp 資料表中有三個資料行：**ID**、**FirstName** 和 **LastName**。 ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
-   * **availability** 設定為**每小時** (**frequency** 設定為**小時**，**interval** 設定為 **1**)。 Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
+   * **availability** 設定為**每小時** (frequency 設定為小時，interval 設定為 1)。 Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 2. 執行下列命令來建立 Data Factory 資料集。
 
-    ```   
+    ```PowerShell   
     New-AzureRmDataFactoryDataset $df -File .\EmpSQLTable.json
     ```
 
@@ -320,48 +350,41 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
 
 1. 在 **C:\ADFGetStartedPSH** 資料夾中，使用下列內容建立名為 **ADFTutorialPipeline.json** 的 JSON 檔案：
 
-          {
-           "name": "ADFTutorialPipeline",
-           "properties": {
-             "description": "Copy data from a blob to Azure SQL table",
-             "activities": [
-               {
-                 "name": "CopyFromBlobToSQL",
-                 "description": "Push Regional Effectiveness Campaign data to Azure SQL database",
-                 "type": "Copy",
-                 "inputs": [
-                   {
-                     "name": "EmpTableFromBlob"
-                   }
-                 ],
-                 "outputs": [
-                   {
-                     "name": "EmpSQLTable"
-                   }
-                 ],
-                 "typeProperties": {
-                   "source": {
-                     "type": "BlobSource"
-                   },
-                   "sink": {
-                     "type": "SqlSink"
-                   }
-                 },
-                 "Policy": {
-                   "concurrency": 1,
-                   "executionPriorityOrder": "NewestFirst",
-                   "style": "StartOfInterval",
-                   "retry": 0,
-                   "timeout": "01:00:00"
-                 }
-               }
-             ],
-             "start": "2016-08-09T00:00:00Z",
-             "end": "2016-08-10T00:00:00Z",
-             "isPaused": false
-           }
-         }
-
+    ```json
+    {
+        "name": "ADFTutorialPipeline",
+        "properties": {
+            "description": "Copy data from a blob to Azure SQL table",
+            "activities": [
+                {
+                    "name": "CopyFromBlobToSQL",
+                    "description": "Push Regional Effectiveness Campaign data to Azure SQL database",
+                    "type": "Copy",
+                    "inputs": [{ "name": "EmpTableFromBlob" }],
+                    "outputs": [{ "name": "EmpSQLTable" }],
+                    "typeProperties": {
+                        "source": {
+                            "type": "BlobSource"
+                        },
+                        "sink": {
+                            "type": "SqlSink"
+                        }
+                    },
+                    "Policy": {
+                        "concurrency": 1,
+                        "executionPriorityOrder": "NewestFirst",
+                        "style": "StartOfInterval",
+                        "retry": 0,
+                        "timeout": "01:00:00"
+                    }
+                }
+            ],
+            "start": "2016-08-09T00:00:00Z",
+            "end": "2016-08-10T00:00:00Z",
+            "isPaused": false
+        }
+     }
+    ```
    請注意下列幾點：
 
    * 在活動區段中，只會有一個 **type** 設為 **Copy** 的活動。
@@ -374,10 +397,10 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
 
    在此範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
 
-   如需 JSON 屬性的詳細資料，請參閱 [JSON 指令碼參考](data-factory-data-movement-activities.md)。
+   如需 JSON 屬性的資訊，請參閱 [JSON 指令碼參考](data-factory-data-movement-activities.md)。
 2. 執行下列命令來建立 Data Factory 資料表。
 
-    ```   
+    ```PowerShell   
     New-AzureRmDataFactoryPipeline $df -File .\ADFTutorialPipeline.json
     ```
 
@@ -388,13 +411,13 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
 
 1. 執行 **Get-AzureRmDataFactory** 並將輸出指派給變數 $df。
 
-    ```  
+    ```PowerShell  
     $df=Get-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name ADFTutorialDataFactoryPSH
     ```
 
 2. 執行 **Get-AzureRmDataFactorySlice**，以取得 **EmpSQLTable** (管線的輸出資料表) 所有配量的詳細資料。  
 
-    ```   
+    ```PowerShell   
     Get-AzureRmDataFactorySlice $df -DatasetName EmpSQLTable -StartDateTime 2016-08-09T00:00:00
     ```
 
@@ -404,7 +427,7 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
 
    **範例輸出：**
 
-    ```   
+    ``` 
      ResourceGroupName : ADFTutorialResourceGroup
      DataFactoryName   : ADFTutorialDataFactoryPSH
      TableName         : EmpSQLTable
@@ -417,30 +440,30 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
     ```
 3. 執行 **Get-AzureRmDataFactoryRun**，以取得**特定**配量的活動執行詳細資料。 變更 **StartDateTime** 參數的值，以符合輸出中配量的 **Start** 時間。 **StartDateTime** 的值必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。
 
-    ```  
+    ```PowerShell  
     Get-AzureRmDataFactoryRun $df -DatasetName EmpSQLTable -StartDateTime 2016-08-09T00:00:00
     ```
 
    您應該會看到如下列範例所示的輸出：
 
-    ```   
-     Id                  : 3404c187-c889-4f88-933b-2a2f5cd84e90_635614488000000000_635614524000000000_EmpSQLTable
-     ResourceGroupName   : ADFTutorialResourceGroup
-     DataFactoryName     : ADFTutorialDataFactoryPSH
-     TableName           : EmpSQLTable
-     ProcessingStartTime : 8/9/2016 11:03:28 PM
-     ProcessingEndTime   : 8/9/2016 11:04:36 PM
-     PercentComplete     : 100
-     DataSliceStart      : 8/9/2016 10:00:00 PM
-     DataSliceEnd        : 8/9/2016 11:00:00 PM
-     Status              : Succeeded
-     Timestamp           : 8/9/2016 11:03:28 PM
-     RetryAttempt        : 0
-     Properties          : {}
-     ErrorMessage        :
-     ActivityName        : CopyFromBlobToSQL
-     PipelineName        : ADFTutorialPipeline
-     Type                : Copy
+    ```  
+    Id                  : 3404c187-c889-4f88-933b-2a2f5cd84e90_635614488000000000_635614524000000000_EmpSQLTable
+    ResourceGroupName   : ADFTutorialResourceGroup
+    DataFactoryName     : ADFTutorialDataFactoryPSH
+    TableName           : EmpSQLTable
+    ProcessingStartTime : 8/9/2016 11:03:28 PM
+    ProcessingEndTime   : 8/9/2016 11:04:36 PM
+    PercentComplete     : 100
+    DataSliceStart      : 8/9/2016 10:00:00 PM
+    DataSliceEnd        : 8/9/2016 11:00:00 PM
+    Status              : Succeeded
+    Timestamp           : 8/9/2016 11:03:28 PM
+    RetryAttempt        : 0
+    Properties          : {}
+    ErrorMessage        :
+    ActivityName        : CopyFromBlobToSQL
+    PipelineName        : ADFTutorialPipeline
+    Type                : Copy
     ```
 
 如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory Cmdlet 參考][cmdlet-reference]。
@@ -479,9 +502,4 @@ ms.openlocfilehash: a95e65db804f1c6cc2927901216ee7a287a911ee
 [image-data-factory-get-started-storage-explorer]: ./media/data-factory-copy-activity-tutorial-using-powershell/getstarted-storage-explorer.png
 
 [sql-management-studio]: ../sql-database/sql-database-manage-azure-ssms.md
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

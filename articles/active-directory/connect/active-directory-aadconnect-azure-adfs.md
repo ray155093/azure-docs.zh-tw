@@ -14,12 +14,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/27/2017
-ms.author: anandy;billmath
+ms.author: anandy; billmath
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: ed3b3b114af2844405779f65fa8c3e89ae6a6c35
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: a6a8300046a0f17061e74b793b254cdca1e1a265
+ms.lasthandoff: 04/10/2017
 
 ---
 # <a name="deploying-active-directory-federation-services-in-azure"></a>在 Azure 中部署 Active Directory 同盟服務
@@ -119,8 +119,8 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 | contosodcset |DC/ADFS |3 |5 |
 | contosowapset |WAP |3 |5 |
 
-### <a name="4----deploy-virtual-machines"></a>4.  部署虛擬機器
-下一個步驟是部署虛擬機器，在基礎結構中裝載不同角色。 每個可用性設定組中建議至少要有兩部機器。 基本部署需要建立六部虛擬機器。
+### <a name="4-deploy-virtual-machines"></a>4.部署虛擬機器
+下一個步驟是部署虛擬機器，在基礎結構中裝載不同角色。 每個可用性設定組中建議至少要有兩部機器。 基本部署需要建立四部虛擬機器。
 
 | 機器 | 角色 | 子網路 | 可用性設定組 | 儲存體帳戶 | IP 位址 |
 |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -146,8 +146,8 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 * 使用 DNS 將兩部伺服器升階為複本網域控制站
 * 使用伺服器管理員安裝 AD FS 角色來設定 AD FS 伺服器。
 
-### <a name="6----deploying-internal-load-balancer-ilb"></a>6.  部署內部負載平衡器 (ILB)
-**6.1.  建立 ILB**
+### <a name="6-deploying-internal-load-balancer-ilb"></a>6.部署內部負載平衡器 (ILB)
+**6.1.建立 ILB**
 
 若要部署 ILB，請在 Azure 入口網站選取負載平衡器，然後按一下新增 (+)。
 
@@ -172,7 +172,7 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 下一個步驟是設定後端集區和後端探查。
 
-**6.2.  設定 ILB 後端集區**
+**6.2.設定 ILB 後端集區**
 
 在 [負載平衡器] 面板中選取新建立的 ILB。 這會開啟 [設定] 面板。 
 
@@ -183,7 +183,7 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 ![設定 ILB 後端集區](./media/active-directory-aadconnect-azure-adfs/ilbdeployment3.png)
 
-**6.3.  設定探查**
+**6.3.設定探查**
 
 在 ILB 的 [設定] 面板中，選取 [探查]。
 
@@ -192,7 +192,7 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 ![設定 ILB 探查](./media/active-directory-aadconnect-azure-adfs/ilbdeployment4.png)
 
-**6.4.  建立負載平衡規則**
+**6.4.建立負載平衡規則**
 
 為了有效平衡流量，應該為 ILB 設定負載平衡規則。 若要建立負載平衡規則， 
 
@@ -202,23 +202,23 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 ![設定 ILB 平衡規則](./media/active-directory-aadconnect-azure-adfs/ilbdeployment5.png)
 
-**6.5.  更新 ILB 的 DNS**
+**6.5.更新 ILB 的 DNS**
 
 移至 DNS 伺服器，為 ILB 建立 CNAME。 CNAME 應適用於 IP 位址指向 ILB 的 IP 位址的同盟服務。 例如，如果 ILB DIP 位址是 10.3.0.8，而所安裝的同盟服務是 fs.contoso.com，則請為指向 10.3.0.8 的 fs.contoso.com 建立 CNAME。
 這可確保所有與 fs.contoso.com 有關的通訊都在 ILB 結束，並且會受到適當路由處理。
 
-### <a name="7----configuring-the-web-application-proxy-server"></a>7.  設定 Web 應用程式 Proxy 伺服器
-**7.1.  設定 Web 應用程式 Proxy 伺服器以連線到 AD FS 伺服器**
+### <a name="7-configuring-the-web-application-proxy-server"></a>7.設定 Web 應用程式 Proxy 伺服器
+**7.1.設定 Web 應用程式 Proxy 伺服器以連線到 AD FS 伺服器**
 
-為了確保 Web 應用程式 Proxy 伺服器能夠連線到 ILB 背後的 AD FS 伺服器，請在 %systemroot%\system32\drivers\etc\hosts 建立 ILB 的記錄。 請注意，辨別名稱 (DN) 應該是同盟服務名稱，例如 fs.contoso.com。 而且 IP 項目應該是 ILB 的 IP 位址 (如範例中的&10;.3.0.8) 的項目。
+為了確保 Web 應用程式 Proxy 伺服器能夠連線到 ILB 背後的 AD FS 伺服器，請在 %systemroot%\system32\drivers\etc\hosts 建立 ILB 的記錄。 請注意，辨別名稱 (DN) 應該是同盟服務名稱，例如 fs.contoso.com。 而且 IP 項目應該是 ILB 的 IP 位址 (如範例中的 10.3.0.8) 的項目。
 
-**7.2.  安裝 Web 應用程式 Proxy 角色**
+**7.2.安裝 Web 應用程式 Proxy 角色**
 
 在確定 Web 應用程式 Proxy 伺服器能夠連線到 ILB 背後的 AD FS 伺服器之後，您可以接著安裝 Web 應用程式 Proxy 伺服器。 Web 應用程式 Proxy 伺服器不可加入網域。 請選取「遠端存取」角色，將 Web 應用程式 Proxy 角色安裝在兩個 Web 應用程式 Proxy 伺服器上。 伺服器管理員會引導您完成 WAP 安裝。
 如需如何部署 WAP 的詳細資訊，請閱讀 [安裝和設定 Web 應用程式 Proxy 伺服器](https://technet.microsoft.com/library/dn383662.aspx)。
 
-### <a name="8----deploying-the-internet-facing-public-load-balancer"></a>8.  部署網際網路對向 (公用) 負載平衡器
-**8.1.  建立網際網路對向 (公用) 負載平衡器**
+### <a name="8--deploying-the-internet-facing-public-load-balancer"></a>8.部署網際網路對向 (公用) 負載平衡器
+**8.1.建立網際網路對向 (公用) 負載平衡器**
 
 在 Azure 入口網站中選取 [負載平衡器]，然後按一下 [新增]。 在 [建立負載平衡器] 面板中，輸入下列資訊
 
@@ -232,7 +232,7 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 ![負載平衡器清單](./media/active-directory-aadconnect-azure-adfs/elbdeployment2.png)
 
-**8.2.  對公用 IP 指派 DNS 標籤**
+**8.2.對公用 IP 指派 DNS 標籤**
 
 在 [負載平衡器] 面板中按一下新建立的負載平衡器項目，以顯示組態的面板。 遵循下列步驟來設定公用 IP 的 DNS 標籤︰
 
@@ -244,26 +244,26 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 ![設定網際網路對向負載平衡器 (DNS)](./media/active-directory-aadconnect-azure-adfs/elbdeployment4.png)
 
-**8.3.  設定網際網路對向 (公用) 負載平衡器的後端集區** 
+**8.3.設定網際網路對向 (公用) 負載平衡器的後端集區** 
 
 遵循和建立內部負載平衡器相同的步驟，將網際網路對向 (公用) 負載平衡器的後端集區設定為 WAP 伺服器的可用性設定組。 例如，contosowapset。
 
 ![設定網際網路對向負載平衡器的後端集區](./media/active-directory-aadconnect-azure-adfs/elbdeployment5.png)
 
-**8.4.  設定探查**
+**8.4.設定探查**
 
 遵循和設定內部負載平衡器相同的步驟來設定 WAP 伺服器後端集區的探查。
 
 ![設定網際網路對向負載平衡器的探查](./media/active-directory-aadconnect-azure-adfs/elbdeployment6.png)
 
-**8.5.  建立負載平衡規則**
+**8.5.建立負載平衡規則**
 
 遵循和 ILB 中相同的步驟來設定 TCP 443 的負載平衡規則。
 
 ![設定網際網路對向負載平衡器的平衡規則](./media/active-directory-aadconnect-azure-adfs/elbdeployment7.png)
 
-### <a name="9----securing-the-network"></a>9.  保護網路
-**9.1.  保護內部子網路**
+### <a name="9-securing-the-network"></a>9.保護網路
+**9.1.保護內部子網路**
 
 整體來說，您需要下列規則來有效率地保護內部子網路 (依如下所示順序)
 
@@ -276,7 +276,7 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 
 [註解]: <> (![INT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgintinbound.png)) [註解]: <> (![INT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgintoutbound.png))
 
-**9.2.  保護 DMZ 子網路**
+**9.2.保護 DMZ 子網路**
 
 | 規則 | 說明 | Flow |
 |:--- |:--- |:---:|
@@ -292,7 +292,7 @@ AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功�
 > 
 > 
 
-### <a name="10----test-the-ad-fs-sign-in"></a>10.  測試 AD FS 登入
+### <a name="10-test-the-ad-fs-sign-in"></a>10.測試 AD FS 登入
 要測試 AD FS，最簡單的方法是使用 IdpInitiatedSignon.aspx 網頁。 為了能夠執行此作業，必須在 AD FS 屬性上啟用 IdpInitiatedSignOn。 請遵循下列步驟來確認 AD FS 設定
 
 1. 使用 PowerShell 在 AD FS 伺服器上執行以下 Cmdlet，將它設定為啟用。

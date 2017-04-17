@@ -12,12 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 03/27/2016
+ms.date: 04/10/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: 7a9a28ce8be7587c84a1188d643c990cc4fb7355
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 0764d4cbcd618be54c8b6e71a632d24c5c3bfe67
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -26,15 +26,16 @@ ms.lasthandoff: 03/28/2017
 
 [!INCLUDE [storage-check-out-samples-dotnet](../../includes/storage-check-out-samples-dotnet.md)]
 
-## <a name="overview"></a>Overview
-Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服務。 表格儲存體是具有無結構描述設計的索引鍵/屬性存放區。 由於表格儲存體並無結構描述，因此可輕易隨著應用程式發展需求改寫資料。 所有類型的應用程式都可以用快速且具成本效益的方式存取資料。 相較於類似資料量的傳統 SQL，資料表儲存體通常可大幅降低成本。
+Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服務，並提供具有無結構描述設計的索引鍵/屬性存放區。 由於表格儲存體並無結構描述，因此可輕易隨著應用程式發展需求改寫資料。 相較於類似資料量的傳統 SQL，對許多類型的應用程式而言，表格儲存體資料可快速存取且符合成本效益，通常可降低成本。
 
-您可以使用資料表儲存體來儲存具彈性的資料集，例如 Web 應用程式的使用者資料、通訊錄、裝置資訊，以及服務所需的任何其他中繼資料類型。 您可以在資料表中儲存任意數目的實體，且儲存體帳戶可包含任意數目的資料表，最高可達儲存體帳戶的容量限制。
+您可以使用表格儲存體來儲存具彈性的資料集，例如 Web 應用程式的使用者資料、通訊錄、裝置資訊，以及服務所需的其他中繼資料類型。 您可以在資料表中儲存任意數目的實體，且儲存體帳戶可包含任意數目的資料表，最高可達儲存體帳戶的容量限制。
 
 ### <a name="about-this-tutorial"></a>關於本教學課程
-本教學課程說明如何使用 Azure 表格儲存體撰寫一些常見案例的 .NET 程式碼，包括建立和刪除表格以及插入、更新、刪除和查詢表格資料。
+本教學課程示範如何在一些常見的 Azure 表格儲存體案例中使用 [Azure Storage Client Library for .NET](https://www.nuget.org/packages/WindowsAzure.Storage/)。 這些案例會使用 C# 作為範例，以建立和刪除資料表，並插入、更新、刪除及查詢資料表資料。
 
-**必要條件：**
+## <a name="prerequisites"></a>必要條件
+
+您需要下列項目才能成功完成此教學課程︰
 
 * [Microsoft Visual Studio](https://www.visualstudio.com/visual-studio-homepage-vs.aspx)
 * [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
@@ -44,7 +45,7 @@ Azure 表格儲存體是可將結構化的 NoSQL 資料儲存在雲端中的服�
 [!INCLUDE [storage-dotnet-client-library-version-include](../../includes/storage-dotnet-client-library-version-include.md)]
 
 ### <a name="more-samples"></a>更多範例
-如需使用表格儲存體的其他範例，請參閱 [在 .NET 中開始使用 Azure 資料表儲存體](https://azure.microsoft.com/documentation/samples/storage-table-dotnet-getting-started/)。 您可以下載範例應用程式並加以執行，或瀏覽 GitHub 上的程式碼。
+如需使用表格儲存體的其他範例，請參閱 [在 .NET 中開始使用 Azure 表格儲存體](https://azure.microsoft.com/documentation/samples/storage-table-dotnet-getting-started/)。 您可以下載範例應用程式並加以執行，或瀏覽 GitHub 上的程式碼。
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
@@ -65,7 +66,7 @@ using Microsoft.WindowsAzure.Storage.Table; // Namespace for Table storage types
 [!INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
 ### <a name="create-the-table-service-client"></a>建立表格服務用戶端
-**CloudTableClient** 類別可讓您擷取表格儲存體中儲存的資料表。 以下是建立服務用戶端的其中一種方式：
+[CloudTableClient][dotnet_CloudTableClient] 類別可讓您擷取表格儲存體中儲存的資料表。 以下是建立表格服務用戶端的其中一種方式：
 
 ```csharp
 // Create the table client.
@@ -92,9 +93,8 @@ CloudTable table = tableClient.GetTableReference("people");
 table.CreateIfNotExists();
 ```
 
-## <a name="add-an-entity-to-a-table"></a>將實體加入至資料表
-使用衍生自 **TableEntity**的自訂類別，將實體對應至 C\# 物件。 若要將實體新增至資料表，請建立一個類別來定義實體的屬性。 下列程式碼會定義一個使用客戶名字作為資料列索引鍵、並使用姓氏作為資料分割索引鍵的實體類別。 實體的資料分割索引鍵和資料列索引鍵共同唯一識別資料表中的實體。 查詢具有相同分割區索引鍵的實體，其速度快於查詢具有不同分割區索引鍵的實體，但使用不同的資料分割索引鍵可提供更佳的延展性或平行作業。 應該儲存在資料表服務中的任何屬性，都必須是公開設定和擷取值之支援類型的公用屬性。
-此外，您的實體類型「必須」  公開無參數建構函式。
+## <a name="add-an-entity-to-a-table"></a>將實體新增至資料表
+使用衍生自 [TableEntity][dotnet_TableEntity] 的自訂類別，將實體對應至 C# 物件。 若要將實體新增至資料表，請建立一個類別來定義實體的屬性。 下列程式碼會定義一個使用客戶名字作為資料列索引鍵、並使用姓氏作為資料分割索引鍵的實體類別。 系統會在資料表中以實體的資料分割和資料列索引鍵共同針對實體進行唯一識別。 查詢具有相同分割區索引鍵的實體，其速度快於查詢具有不同分割區索引鍵的實體，但使用不同的資料分割索引鍵可提供更佳的延展性或平行作業。 要儲存在資料表中的實體都必須屬於支援的類型，例如衍生自 [TableEntity][dotnet_TableEntity] 類別。 您想要儲存在資料表中的實體屬性必須是該類型的公用屬性，而且同時支援值的取得和設定。 此外，您的實體類型「必須」  公開無參數建構函式。
 
 ```csharp
 public class CustomerEntity : TableEntity
@@ -113,7 +113,7 @@ public class CustomerEntity : TableEntity
 }
 ```
 
-包含實體的資料表作業將會透過您先前在＜建立資料表＞一節建立的 **CloudTable** 物件執行。 要執行的操作是以 **TableOperation** 物件代表。  下列程式碼範例會依序建立 **CloudTable** 物件及 **CustomerEntity** 物件。  為了準備作業，已建立 **TableOperation** 物件以將客戶實體插入資料表。  最後，其呼叫了 **CloudTable.Execute**來執行操作。
+包含實體的資料表作業會透過您先前在＜建立資料表＞一節建立的 [CloudTable][dotnet_CloudTable] 物件執行。 要執行的作業是以 [TableOperation][dotnet_TableOperation] 物件代表。 下列程式碼範例示範如何依序建立 [CloudTable][dotnet_CloudTable] 物件及 **CustomerEntity** 物件。 為了準備作業，已建立 [TableOperation][dotnet_TableOperation] 物件以將客戶實體插入資料表。 最後，其呼叫了 [CloudTable][dotnet_CloudTable].[Execute][dotnet_CloudTable_Execute] 來執行作業。
 
 ```csharp
 // Retrieve the storage account from the connection string.
@@ -139,15 +139,14 @@ table.Execute(insertOperation);
 ```
 
 ## <a name="insert-a-batch-of-entities"></a>插入實體批次
-您可以在單一寫入操作中，插入實體批次至資料表。 以下是批次操作的其他一些注意事項：
+您可以在單一寫入作業中，插入實體批次至資料表。 以下是批次作業的其他一些注意事項：
 
-* 您可以在同一批次操作中執行更新、刪除和插入。
-* 單一批次操作最多可包含 100 個實體。
-* 單一批次操作中的所有實體必須具有相同的資料分割索引鍵。
-* 雖然可以單一批次操作的形式來執行查詢，但該查詢必須是批次中的唯一操作。
+* 您可以在同一批次作業中執行更新、刪除和插入。
+* 單一批次作業最多可包含 100 個實體。
+* 單一批次作業中的所有實體必須具有相同的資料分割索引鍵。
+* 雖然可以單一批次作業的形式來執行查詢，但該查詢必須是批次中的唯一作業。
 
-<!-- -->
-下列程式碼範例會建立兩個實體物件，並使用 **Insert** 方法將每個物件新增至 **TableBatchOperation**。 然後會呼叫 **CloudTable.Execute** 以執行作業。
+下列程式碼範例會建立兩個實體物件，並使用 [Insert][dotnet_TableBatchOperation_Insert] 方法將每個物件新增至 [TableBatchOperation][dotnet_TableBatchOperation]。 然後會呼叫 [CloudTable][dotnet_CloudTable].[ExecuteBatch][dotnet_CloudTable_ExecuteBatch] 以執行作業。
 
 ```csharp
 // Retrieve the storage account from the connection string.
@@ -182,8 +181,7 @@ table.ExecuteBatch(batchOperation);
 ```
 
 ## <a name="retrieve-all-entities-in-a-partition"></a>擷取資料分割中的所有實體
-若要向資料表查詢資料分割中的所有實體，請使用 **TableQuery** 物件。
-下列程式碼範例會指定篩選器來篩選出資料分割索引鍵為 'Smith' 的實體。 此範例會將查詢結果中每個實體的欄位列印至主控台。
+若要向資料表查詢資料分割中的所有實體，請使用 [TableQuery][dotnet_TableQuery] 物件。 下列程式碼範例會指定篩選器來篩選出資料分割索引鍵為 'Smith' 的實體。 此範例會將查詢結果中每個實體的欄位列印至主控台。
 
 ```csharp
 // Retrieve the storage account from the connection string.
@@ -237,9 +235,7 @@ foreach (CustomerEntity entity in table.ExecuteQuery(rangeQuery))
 ```
 
 ## <a name="retrieve-a-single-entity"></a>擷取單一實體
-您可以撰寫查詢來擷取單一特定實體。 下列程式碼會使用 **TableOperation** 來指定客戶 'Ben Smith'。
-這個方法只會傳回一個實體而不是集合，而且所傳回的 **TableResult.Result** 值是 **CustomerEntity** 物件。
-若要從資料表服務中擷取單一實體，最快的方法是在查詢中同時指定資料分割索引鍵和資料列索引鍵。
+您可以撰寫查詢來擷取單一特定實體。 下列程式碼會使用 [TableOperation][dotnet_TableOperation] 來指定客戶 'Ben Smith'。 這個方法只會傳回一個實體而不是集合，而且所傳回的 [TableResult][dotnet_TableResult].[Result][dotnet_TableResult_Result] 值是 **CustomerEntity** 物件。 若要從資料表服務中擷取單一實體，最快的方法是在查詢中同時指定資料分割索引鍵和資料列索引鍵。
 
 ```csharp
 // Retrieve the storage account from the connection string.
@@ -270,7 +266,7 @@ else
 ```
 
 ## <a name="replace-an-entity"></a>取代實體
-若要更新實體，從資料表服務擷取實體、修改實體物件，然後將變更儲存回資料表服務。 下列程式碼會變更現有客戶的電話號碼。 此程式碼不會呼叫 **Insert**，而是使用 **Replace**。 如此會完全取代伺服器上的實體，但如果伺服器上的實體自擷取後產生變化，操作就會失敗。  如此會造成失敗，是為了防止應用程式意外覆寫該應用程式的其他元件在擷取後到更新前的這段期間所做的變更。  正確處理此失敗的方式為重新擷取實體、進行變更 (如果仍然有效)，然後再執行一次 **Replace** 操作。  下一節將示範如何覆寫此行為。
+若要更新實體，從資料表服務擷取實體、修改實體物件，然後將變更儲存回資料表服務。 下列程式碼會變更現有客戶的電話號碼。 此程式碼不會呼叫 [Insert][dotnet_TableOperation_Insert]，而是使用 [Replace][dotnet_TableOperation_Replace]。 [Replace][dotnet_TableOperation_Replace] 會完全取代伺服器上的實體，但如果伺服器上的實體自擷取後產生變化，作業就會失敗。 如此會造成失敗，是為了防止應用程式意外覆寫該應用程式的其他元件在擷取後到更新前的這段期間所做的變更。 正確處理此失敗的方式為重新擷取實體、進行變更 (如果仍然有效)，然後再執行一次 [Replace][dotnet_TableOperation_Replace] 作業。 下一節將示範如何覆寫此行為。
 
 ```csharp
 // Retrieve the storage account from the connection string.
@@ -312,8 +308,9 @@ else
 ```
 
 ## <a name="insert-or-replace-an-entity"></a>插入或取代實體
-**Replace** 操作將失敗。  此外，您必須先從伺服器擷取實體， **Replace** 作業才會成功。
-不過有時候，您不知道實體是否存在於伺服器上且其中所儲存的值是否無關。 您的更新應該將其全部覆寫。  若要達到此目標，您可以使用 **InsertOrReplace** 操作。  此操作會插入實體 (如果其目前並不存在) 或取代實體 (如果其已存在)，不論上次是何時更新。  在下列程式碼範例中，仍會擷取 Ben Smith 的客戶實體，但它接著會透過 **InsertOrReplace**儲存回伺服器。  針對擷取和更新作業之間的實體所做的任何更新將會被覆寫。
+如果從伺服器擷取的實體自擷取後發生變化，[Replace][dotnet_TableOperation_Replace] 作業將失敗。 此外，您必須先從伺服器擷取實體，[Replace][dotnet_TableOperation_Replace] 作業才會成功。 不過有時候，您不知道實體是否存在於伺服器上且其中所儲存的值是否無關。 您的更新應該將其全部覆寫。 若要達到此目標，您可以使用 [InsertOrReplace][dotnet_TableOperation_InsertOrReplace] 作業。 此作業會插入實體 (如果其目前並不存在) 或取代實體 (如果其已存在)，不論上次是何時更新。
+
+在下列程式碼範例中，'Fred Jones' 的客戶實體會建立並插入 'people' 資料表中。 接下來，我們使用 [InsertOrReplace][dotnet_TableOperation_InsertOrReplace] 作業，將具有相同資料分割索引鍵 (Jones) 和資料列索引鍵 (Fred) 的實體儲存到伺服器，但這次使用不同的 PhoneNumber 屬性值。 因為我們使用 [InsertOrReplace][dotnet_TableOperation_InsertOrReplace]，其所有的屬性值都會被取代。 不過，如果 'Fred Jones' 實體尚未存在於資料表中，則會予以插入。
 
 ```csharp
 // Retrieve the storage account from the connection string.
@@ -326,36 +323,37 @@ CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 // Create the CloudTable object that represents the "people" table.
 CloudTable table = tableClient.GetTableReference("people");
 
-// Create a retrieve operation that takes a customer entity.
-TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
+// Create a customer entity.
+CustomerEntity customer3 = new CustomerEntity("Jones", "Fred");
+customer3.Email = "Fred@contoso.com";
+customer3.PhoneNumber = "425-555-0106";
+
+// Create the TableOperation object that inserts the customer entity.
+TableOperation insertOperation = TableOperation.Insert(customer3);
 
 // Execute the operation.
-TableResult retrievedResult = table.Execute(retrieveOperation);
+table.Execute(insertOperation);
 
-// Assign the result to a CustomerEntity object.
-CustomerEntity updateEntity = (CustomerEntity)retrievedResult.Result;
+// Create another customer entity with the same partition key and row key.
+// We've already created a 'Fred Jones' entity and saved it to the
+// 'people' table, but here we're specifying a different value for the
+// PhoneNumber property.
+CustomerEntity customer4 = new CustomerEntity("Jones", "Fred");
+customer4.Email = "Fred@contoso.com";
+customer4.PhoneNumber = "425-555-0107";
 
-if (updateEntity != null)
-{
-    // Change the phone number.
-    updateEntity.PhoneNumber = "425-555-1234";
+// Create the InsertOrReplace TableOperation.
+TableOperation insertOrReplaceOperation = TableOperation.InsertOrReplace(customer4);
 
-    // Create the InsertOrReplace TableOperation.
-    TableOperation insertOrReplaceOperation = TableOperation.InsertOrReplace(updateEntity);
-
-    // Execute the operation.
-    table.Execute(insertOrReplaceOperation);
-
-    Console.WriteLine("Entity was updated.");
-}
-else
-{
-    Console.WriteLine("Entity could not be retrieved.");
-}
+// Execute the operation. Because a 'Fred Jones' entity already exists in the
+// 'people' table, its property values will be overwritten by those in this
+// CustomerEntity. If 'Fred Jones' didn't already exist, the entity would be
+// added to the table.
+table.Execute(insertOrReplaceOperation);
 ```
 
 ## <a name="query-a-subset-of-entity-properties"></a>查詢實體屬性的子集
-一項資料表查詢可以只擷取實體的少數屬性而非所有屬性。 這項稱為「投射」的技術可減少頻寬並提高查詢效能 (尤其是對大型實體而言)。 下列程式碼中的查詢只會傳回資料表中各實體的電子郵件地址。 這是使用 **DynamicTableEntity** 以及 **EntityResolver** 的查詢所完成的。 您可以在[更新插入和查詢投影簡介的部落格文章][Introducing Upsert and Query Projection blog post]中進一步了解投影。 請注意在本機儲存體模擬器上並不支援投影，因此此程式碼只有在資料表服務上使用帳戶時才會執行。
+一項資料表查詢可以只擷取實體的少數屬性而非所有屬性。 這項稱為「投射」的技術可減少頻寬並提高查詢效能 (尤其是對大型實體而言)。 下列程式碼中的查詢只會傳回資料表中各實體的電子郵件地址。 這是使用 [DynamicTableEntity][dotnet_DynamicTableEntity] 以及 [EntityResolver][dotnet_EntityResolver] 的查詢所完成的。 您可以在[更新插入和查詢投影簡介的部落格文章][blog_post_upsert]中進一步了解投影。 儲存體模擬器並不支援投影，因此此程式碼只有在資料表服務中使用帳戶時才會執行。
 
 ```csharp
 // Retrieve the storage account from the connection string.
@@ -381,7 +379,7 @@ foreach (string projectedEmail in table.ExecuteQuery(projectionQuery, resolver, 
 ```
 
 ## <a name="delete-an-entity"></a>刪除實體
-使用更新實體時所展示的相同方法，輕鬆地在擷取實體後將其刪除。  下列程式碼會擷取並刪除客戶實體。
+使用更新實體時所展示的相同方法，輕鬆地在擷取實體後將其刪除。 下列程式碼會擷取並刪除客戶實體。
 
 ```csharp
 // Retrieve the storage account from the connection string.
@@ -465,9 +463,9 @@ do
 ```
 
 ## <a name="next-steps"></a>後續步驟
-現在您已經了解資料表儲存體的基本概念，請參考下列連結以了解更複雜的儲存體工作：
+現在您已經了解表格儲存體的基本概念，請參考下列連結以了解更複雜的儲存體工作：
 
-* 如需更多表格儲存體範例，請參閱 [在 .NET 中開始使用 Azure 資料表儲存體](https://azure.microsoft.com/documentation/samples/storage-table-dotnet-getting-started/)
+* 如需更多表格儲存體範例，請參閱 [在 .NET 中開始使用 Azure 表格儲存體](https://azure.microsoft.com/documentation/samples/storage-table-dotnet-getting-started/)
 * 如需可用 API 的完整詳細資訊，請檢視資料表服務參考文件：
   * [Storage Client Library for .NET 參考資料](http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409)
   * [REST API 參考資料](http://msdn.microsoft.com/library/azure/dd179355)
@@ -479,18 +477,23 @@ do
 [Download and install the Azure SDK for .NET]: /develop/net/
 [Creating an Azure Project in Visual Studio]: http://msdn.microsoft.com/library/azure/ee405487.aspx
 
-[Blob5]: ./media/storage-dotnet-how-to-use-table-storage/blob5.png
-[Blob6]: ./media/storage-dotnet-how-to-use-table-storage/blob6.png
-[Blob7]: ./media/storage-dotnet-how-to-use-table-storage/blob7.png
-[Blob8]: ./media/storage-dotnet-how-to-use-table-storage/blob8.png
-[Blob9]: ./media/storage-dotnet-how-to-use-table-storage/blob9.png
+[blog_post_upsert]: http://blogs.msdn.com/b/windowsazurestorage/archive/2011/09/15/windows-azure-tables-introducing-upsert-and-query-projection.aspx
 
-[Introducing Upsert and Query Projection blog post]: http://blogs.msdn.com/b/windowsazurestorage/archive/2011/09/15/windows-azure-tables-introducing-upsert-and-query-projection.aspx
-[.NET Client Library reference]: http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409
-[Azure Storage Team blog]: http://blogs.msdn.com/b/windowsazurestorage/
-[Configure Azure Storage connection strings]: http://msdn.microsoft.com/library/azure/ee758697.aspx
-[OData]: http://nuget.org/packages/Microsoft.Data.OData/5.0.2
-[Edm]: http://nuget.org/packages/Microsoft.Data.Edm/5.0.2
-[Spatial]: http://nuget.org/packages/System.Spatial/5.0.2
-[How to: Programmatically access Table storage]: #tablestorage
+[dotnet_api_ref]: https://msdn.microsoft.com/library/azure/mt347887.aspx
+[dotnet_CloudTableClient]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.cloudtableclient.aspx
+[dotnet_CloudTable]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.cloudtable.aspx
+[dotnet_CloudTable_Execute]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.cloudtable.execute.aspx
+[dotnet_CloudTable_ExecuteBatch]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.cloudtable.executebatch.aspx
+[dotnet_DynamicTableEntity]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.dynamictableentity.aspx
+[dotnet_EntityResolver]: https://msdn.microsoft.com/library/jj733144.aspx
+[dotnet_TableBatchOperation]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.tablebatchoperation.aspx
+[dotnet_TableBatchOperation_Insert]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.tablebatchoperation.insert.aspx
+[dotnet_TableEntity]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.tableentity.aspx
+[dotnet_TableOperation]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.tableoperation.aspx
+[dotnet_TableOperation_Insert]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.tableoperation.insert.aspx
+[dotnet_TableOperation_InsertOrReplace]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.tableoperation.insertorreplace.aspx
+[dotnet_TableOperation_Replace]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.tableoperation.replace.aspx
+[dotnet_TableQuery]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.tablequery.aspx
+[dotnet_TableResult]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.tableresult.aspx
+[dotnet_TableResult_Result]: https://msdn.microsoft.com/library/microsoft.windowsazure.storage.table.tableresult.result.aspx
 

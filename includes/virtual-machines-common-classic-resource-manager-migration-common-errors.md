@@ -18,6 +18,7 @@
 | HostedService {hosted-service-name} 中的部署 {deployment-name} 包含具有資料磁碟 {data-disk-name} 的 VM {vm-name}，其實體 blob 大小 {size-of-the-vhd-blob-backing-the-data-disk} 個位元組不符合 VM 資料磁碟邏輯大小 {size-of-the-data-disk-specified-in-the-vm-api} 個位元組。 移轉會繼續進行，但不需指定 Azure Resource Manager VM 的資料磁碟大小。 如果您想要在繼續移轉之前，先更正資料磁碟大小，請造訪 https://aka.ms/vmdiskresize。 | 如果您已調整 VHD blob 的大小，但未更新 VM API 模型中的大小，則會發生此錯誤。 詳細的緩和步驟說明[如下](#vm-with-data-disk-whose-physical-blob-size-bytes-does-not-match-the-vm-data-disk-logical-size-bytes)。|
 | 驗證具有雲端服務 {Cloud Service name} 中 VM {VM name} 之媒體連結 {data disk Uri} 的資料磁碟 {data disk name} 時發生儲存體例外狀況。 請確定此虛擬機器的 VHD 媒體連結可供存取 | 如果 VM 的磁碟已被刪除或不再可供存取，就可能發生此錯誤。 請確定 VM 的磁碟存在。|
 | HostedService {cloud-service-name} 中的 VM {vm-name} 包含 Disk with MediaLink {vhd-uri}，其具有 Azure Resource Manager 不支援的 blob 名稱 {vhd-blob-name}。 | 當 blob 的名稱包含計算資源提供者目前不支援的 "/" 時，就會發生此錯誤。 |
+| HostedService {cloud-service-name} 中的 Deployment {deployment-name} 不允許移轉，因為它不在區域範圍中。 請參閱 http://aka.ms/regionalscope 以便將此部署移到區域範圍。 | 在 2014 年，Azure 宣布網路資源會從叢集層級範圍移到區域範圍。 請參閱 [http://aka.ms/regionalscope] 以取得詳細資訊 (http://aka.ms/regionalscope)。 當正在移轉的部署還沒有可自動將它移至區域範圍的更新作業時，就會發生此錯誤。 最佳的解決方法是將端點新增至 VM 或將資料磁碟新增至 VM，然後再試一次移轉。 <br> 請參閱[如何在 Azure 中的傳統 Windows 虛擬機器上設定端點](../articles/virtual-machines/windows/classic/setup-endpoints.md#create-an-endpoint)或[將資料磁碟連結至使用傳統部署模型建立的 Windows 虛擬機器](../articles/virtual-machines/windows/classic/attach-disk.md)|
 
 
 ## <a name="detailed-mitigations"></a>詳細的緩和措施

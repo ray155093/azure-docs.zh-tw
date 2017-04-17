@@ -1,5 +1,5 @@
 ---
-title: "Azure AD 網域服務：更新 Azure 虛擬網路的 DNS 設定 | Microsoft Docs"
+title: "Azure Active Directory Domain Services：更新 Azure 虛擬網路的 DNS 設定 | Microsoft Docs"
 description: "開始使用 Azure Active Directory 網域服務"
 services: active-directory-ds
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.topic: get-started-article
 ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 16a0019990d4839a15acb4dcac747147a6d55e1d
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: abb27292d4b5533fe6f3d66d6921fea8c82f18dd
+ms.lasthandoff: 04/12/2017
 
 
 ---
-# <a name="azure-ad-domain-services---update-dns-settings-for-the-azure-virtual-network"></a>Azure AD 網域服務 - 更新 Azure 虛擬網路的 DNS 設定
+# <a name="update-dns-settings-for-the-azure-virtual-network"></a>更新 Azure 虛擬網路的 DNS 設定
 ## <a name="task-4-update-dns-settings-for-the-azure-virtual-network"></a>工作 4 - 更新 Azure 虛擬網路的 DNS 設定
-在先前的組態工作中，您已成功為目錄啟用 Azure AD 網域服務。 下一個工作是確保虛擬網路內的電腦可以連線並取用這些服務。 更新虛擬網路的 DNS 伺服器設定，以指向虛擬網路上可以使用 Azure AD 網域服務的兩個 IP 位址。
+在先前的組態工作中，您已成功為目錄啟用 Azure Active Directory Domain Services。 下一個工作是確保虛擬網路內的電腦可以連線並取用這些服務。 在本文中，您可以更新虛擬網路的 DNS 伺服器設定，以指向虛擬網路上可以使用 Azure Active Directory Domain Services 的兩個 IP 位址。
 
 > [!NOTE]
-> 在您已啟用目錄的 Azure AD 網域服務之後，請記下在您目錄的 [設定] 索引標籤上顯示之 Azure AD 網域服務的 IP 位址。
+> 在您已啟用目錄的 Azure Active Directory Domain Services 之後，請記下在您目錄的 [設定] 索引標籤上顯示之 Azure Active Directory Domain Services 的 IP 位址。
 >
 >
 
-執行下列組態步驟，以便為已啟用 Azure AD 網域服務的虛擬網路更新 DNS 伺服器設定。
+若要為已啟用 Azure Active Directory Domain Services 的虛擬網路更新 DNS 伺服器設定，請執行下列作業︰
 
-1. 瀏覽到 **Azure 傳統入口網站** ([https://manage.windowsazure.com](https://manage.windowsazure.com))。
-2. 在左窗格中選取 [網路]  節點。
+1. 前往 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+2. 在左側窗格中，選取 [網路]。  
+    隨即開啟 [網路] 視窗。
 
-    ![虛擬網路節點](./media/active-directory-domain-services-getting-started/virtual-network-select.png)
-3. 在 [虛擬網路]  索引標籤中，選取已啟用 Azure AD 網域服務的虛擬網路，以檢視其內容。
+    ![虛擬網路視窗](./media/active-directory-domain-services-getting-started/virtual-network-select.png)
+3. 在 [虛擬網路] 索引標籤上，選取已啟用 Azure Active Directory Domain Services 的虛擬網路，以檢視其內容。
 4. 按一下 [設定]  索引標籤。
 
-    ![虛擬網路節點](./media/active-directory-domain-services-getting-started/virtual-network-configure-tab.png)
-5. 在 [DNS 伺服器]  區段中，輸入 Azure AD 網域服務的 IP 位址。
-6. 確定您同時輸入已在 [網域服務] 區段 (位於您目錄的 [設定] 索引標籤上) 中顯示的 IP 位址。
-7. 若要儲存此虛擬網路的 DNS 伺服器設定，請按一下頁面底部之工作窗格上的 [儲存]  。
+    ![虛擬網路視窗](./media/active-directory-domain-services-getting-started/virtual-network-configure-tab.png)
+5. 已在 [DNS 伺服器] 區段中，輸入您目錄的 [設定] 索引標籤之 [網域服務] 中所顯示的兩個 IP 位址。
+6. 若要儲存此虛擬網路的 DNS 伺服器設定，請在頁面底部之工作窗格上按一下 [儲存]。
 
-   ![更新虛擬網路的 DNS 伺服器設定。](./media/active-directory-domain-services-getting-started/update-dns.png)
+   ![更新虛擬網路的 DNS 伺服器設定](./media/active-directory-domain-services-getting-started/update-dns.png)
 
 > [!NOTE]
-> 在更新虛擬網路的 DNS 伺服器設定之後，可能需要一段時間，網路上的虛擬機器才能取得已更新的 DNS 組態。 如果虛擬機器無法連線到網域，您可以排清虛擬機器上的 DNS 快取 (例如， 'ipconfig /flushdns')。 此命令會強制重新整理虛擬機器上的 DNS 設定。
+> 在更新虛擬網路的 DNS 伺服器設定之後，可能需要一段時間，網路上的虛擬機器才能取得已更新的 DNS 組態。 如果虛擬機器無法連線到網域，您可以排清虛擬機器上的 DNS 快取 ('ipconfig /flushdns')。 此命令會強制重新整理虛擬機器上的 DNS 設定。
 >
 >
 
-## <a name="task-5---enable-password-synchronization-to-azure-ad-domain-services"></a>工作 5 - 啟用 Azure AD 網域服務的密碼同步處理
-下一個組態工作是 [啟用 Azure AD 網域服務的密碼同步處理](active-directory-ds-getting-started-password-sync.md)。
+## <a name="next-steps"></a>後續步驟
+工作 5：[啟用 Azure Active Directory Domain Services 的密碼同步處理](active-directory-ds-getting-started-password-sync.md)
 

@@ -10,13 +10,13 @@ ms.service: azure-portal
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 03/14/2017
+ms.topic: get-started-article
+ms.date: 03/30/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: d7a8d669e75991f6707641e4ce53c9b63d04853c
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 8d9d39d63209b8ab6884ddeff569687b55591f95
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -52,6 +52,8 @@ ms.lasthandoff: 03/16/2017
 Application Insights 可以提供更詳細的遙測，方法是將 SDK 安裝至您的 App。 特別是，您可以收集追蹤記錄檔、[撰寫自訂遙測](app-insights-api-custom-events-metrics.md)，並取得更詳細的例外狀況報告。
 
 1. **在 Visual Studio 中** (2013 Update 2 或更新版本)，為專案設定 Application Insights。
+
+    以滑鼠右鍵按一下 web 專案，然後選擇 [新增 > Application Insights] 或 [設定 Application Insights]。
    
     ![以滑鼠右鍵按一下 Web 專案，然後選擇 [新增或設定 Application Insights]。](./media/app-insights-azure-web-apps/03-add.png)
    
@@ -91,11 +93,17 @@ Application Insights 可以提供更詳細的遙測，方法是將 SDK 安裝至
 
 透過您的遙測功能更強大的搜尋，請使用 [Analytics 查詢語言](app-insights-analytics-tour.md)。
 
+## <a name="more-telemetry"></a>更多遙測
+
+* [網頁載入資料](app-insights-javascript.md)
+* [自訂遙測](app-insights-api-custom-events-metrics.md)
+
 ## <a name="video"></a>影片
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
 
 ## <a name="next-steps"></a>後續步驟
+* [在即時應用程式上執行分析工具](app-insights-profiler.md)。
 * [能夠讓 Azure 診斷](app-insights-azure-diagnostics.md) 傳送至 Application Insights。
 * [監視服務健康狀態計量](../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md)，確保您的服務可用且回應正常。
 * 每當發生作業事件或計量超過臨界值時，[接收警示通知](../monitoring-and-diagnostics/insights-receive-alert-notifications.md)。

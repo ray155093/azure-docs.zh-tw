@@ -12,21 +12,21 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/28/2017
+ms.date: 04/04/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 280a17677714a522ca978a6eb6baf3e70f853d7a
-ms.openlocfilehash: 5b0865310076557c8f7ce6f9d9b553950854407c
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
+ms.openlocfilehash: 2fc966e7c93e44007f15c3129fbe709beddb21af
+ms.lasthandoff: 04/05/2017
 
 
 ---
-# <a name="expressroute-technical-overview"></a>ExpressRoute 技術概觀
+# <a name="expressroute-overview"></a>ExpressRoute 概欟
 Microsoft Azure ExpressRoute 可讓您透過連線提供者所提供的專用私人連線，將內部部署網路擴充至 Microsoft 雲端。 透過 ExpressRoute，您可以建立 Microsoft 雲端服務的連線，例如 Microsoft Azure、Office 365 和 CRM Online。 
 
 從任意點對任意點 (IP VPN) 網路、點對點乙太網路，或在共置設施上透過連線提供者的虛擬交叉連接，都可以進行連線。 ExpressRoute 連線不會經過公用網際網路。 相較於一般網際網路連線，這可讓 ExpressRoute 連線提供更可靠、更快速、延遲更短和更安全的連線。 如需如何使用 ExpressRoute 將您的網路連接至 Microsoft 的詳細資訊，請參閱 [ExpressRoute 連線模型](expressroute-connectivity-models.md)。
 
-![](./media/expressroute-introduction/expressroute-connection-overview-diagram.png)
+![](./media/expressroute-introduction/expressroute-connection-overview.png)
 
 ## <a name="key-benefits"></a>主要權益
 
@@ -46,7 +46,7 @@ Microsoft Azure ExpressRoute 可讓您透過連線提供者所提供的專用私
 Microsoft 採用業界標準動態路由通訊協定 (BGP)，在您的內部部署網路、Azure 中的執行個體和 Microsoft 公用位址之間交換路由。  我們會針對不同的流量設定檔，與您的網路建立多個 BGP 工作階段。 如需詳細資訊，請參閱 [ExpressRoute 線路和路由網域](expressroute-circuit-peerings.md) 一文。
 
 ### <a name="redundancy"></a>備援性
-每個 ExpressRoute 線路有兩條連線，從連線提供者 / 您的網路邊緣連接到兩個 Microsoft Enterprise 邊緣路由器 (MSEE) 。 Microsoft 需要有來自連線提供者 / 您這端的雙重 BGP 連線 – 各連接到每個 MSEE。 您可以選擇不要在您這端部署備援裝置 / 乙太網路線路。 不過，連線提供者會使用備援裝置，確保以備援方式將您的連線交給 Microsoft。 備援第 3 層連線組態是我們的 [SLA](https://azure.microsoft.com/support/legal/sla/) 生效的條件。 
+每個 ExpressRoute 線路有兩條連線，從連線提供者 / 您的網路邊緣連接到兩個 Microsoft Enterprise 邊緣路由器 (MSEE) 。 Microsoft 需要有來自連線提供者/您這端的雙重 BGP 連線 – 每個連線皆各自連線至每個 MSEE。 您可以選擇不要在您這端部署備援裝置 / 乙太網路線路。 不過，連線提供者會使用備援裝置，確保以備援方式將您的連線交給 Microsoft。 備援第 3 層連線組態是我們的 [SLA](https://azure.microsoft.com/support/legal/sla/) 生效的條件。
 
 ### <a name="connectivity-to-microsoft-cloud-services"></a>連線到 Microsoft 雲端服務
 [!INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
@@ -62,7 +62,7 @@ Microsoft 採用業界標準動態路由通訊協定 (BGP)，在您的內部部�
 ### <a name="connectivity-to-all-regions-within-a-geopolitical-region"></a>連線到地理政治區域內的所有區域
 您可以在我們的其中一個 [對等位置](expressroute-locations.md) 中連接到 Microsoft，就能夠存取地理政治區域內的所有區域。 
 
-例如，如果您在阿姆斯特丹透過 ExpressRoute 連接到 Microsoft，您就能夠存取在北歐和西歐裝載的所有 Microsoft 雲端服務。 如需地理政治地區、相關聯的 Microsoft 雲端區域和對應的 ExpressRoute 對等位置的概觀，請參閱 [ExpressRoute 合作夥伴和對等位置](expressroute-locations.md)一文。
+例如，如果您在阿姆斯特丹透過 ExpressRoute 連線至 Microsoft，您就能夠存取在北歐和西歐託管的所有 Microsoft 雲端服務。 如需地理政治地區、相關聯的 Microsoft 雲端區域和對應的 ExpressRoute 對等位置的概觀，請參閱 [ExpressRoute 合作夥伴和對等位置](expressroute-locations.md)一文。
 
 ### <a name="global-connectivity-with-expressroute-premium-add-on"></a>使用 ExpressRoute Premium 附加元件從全球連線
 您可以啟用 ExpressRoute Premium 附加功能，將連線能力延伸到跨越地理政治的界限。 例如，如果您在阿姆斯特丹透過 ExpressRoute 連接到 Microsoft，您就能夠存取全球所有區域裝載的所有 Microsoft 雲端服務 (不包括國家雲端)。 就像存取北歐和西歐區域一樣，您也可以存取部署在南美洲或澳大利亞的服務。
@@ -74,7 +74,7 @@ ExpressRoute 的連線提供者和 SI 合作夥伴生態系統持續成長茁壯
 Microsoft 為特殊的地理政治地區和客戶群提供隔離的雲端環境。 如需國家雲端和提供者的清單，請參閱 [ExpressRoute 提供者和位置](expressroute-locations.md) 頁面。
 
 ### <a name="bandwidth-options"></a>頻寬選項
-您可以購買各種頻寬的 ExpressRoute 線路。 支援的頻寬清單如下。 請務必洽詢您的連線提供者，以判斷他們支援的頻寬清單。
+您可以購買各種頻寬的 ExpressRoute 線路。 支援的頻寬如下所列。 請務必洽詢您的連線提供者，以判斷他們支援的頻寬清單。
 
 * 50 Mbps
 * 100 Mbps
@@ -107,6 +107,6 @@ Microsoft 為特殊的地理政治地區和客戶群提供隔離的雲端環境�
 * 請參閱[路由](expressroute-routing.md)、[NAT](expressroute-nat.md) 和 [QoS](expressroute-qos.md) 的需求。
 * 設定 ExpressRoute 連線。
   * [建立 ExpressRoute 線路](expressroute-howto-circuit-portal-resource-manager.md)
-  * [設定路由](expressroute-howto-routing-portal-resource-manager.md)
-  * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-portal-resource-manager.md)
+  * [設定 ExpressRoute 線路的對等互連](expressroute-howto-routing-portal-resource-manager.md)
+  * [將虛擬網路連線到 ExpressRoute 線路](expressroute-howto-linkvnet-portal-resource-manager.md)
 

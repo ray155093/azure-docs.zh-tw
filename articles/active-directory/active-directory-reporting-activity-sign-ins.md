@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/22/2017
+ms.date: 04/06/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 78617dc7e3a4b6eb4fc32d32b6850b8c0832d6d8
-ms.openlocfilehash: 9819c5f6a3aea53664d86e3a23b25946c0f2b731
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: a63514af636696d168931150cbda2fd30e0b32ce
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -44,17 +44,99 @@ Azure Active Directory 中的報告架構包含下列元件：
 * 一週內有多少使用者登入？
 * 這些登入的狀態為何？
 
+所有登入活動資料的第一個進入點是 [Azure Active] 的 [活動] 區段中的 [登入]。 Directory。
+
+
+![登入活動](./media/active-directory-reporting-activity-sign-ins/61.png "登入活動")
+
+
+稽核記錄的預設清單檢視顯示︰
+
+- 相關的使用者
+- 使用者已登入的應用程式
+- 登入狀態
+- 登入時間
+
+![登入活動](./media/active-directory-reporting-activity-sign-ins/41.png "登入活動")
+
+您可以按一下工具列中的 [資料行] 來自訂清單檢視。
+
+![登入活動](./media/active-directory-reporting-activity-sign-ins/19.png "登入活動")
+
+這可讓您顯示其他欄位，或移除已顯示的欄位。
+
+![登入活動](./media/active-directory-reporting-activity-sign-ins/42.png "登入活動")
+
+按一下清單檢視中的項目，即可取得所有可用的詳細資料。
+
+![登入活動](./media/active-directory-reporting-activity-sign-ins/43.png "登入活動")
+
+
+## <a name="filtering-sign-in-activities"></a>篩選登入活動
+
+若要將報告的資料縮小至您適用的層級，您可以使用下列欄位篩選登入資料︰
+
+- 時間間隔
+- User
+- 應用程式
+- 用戶端
+- 登入狀態
+
+![登入活動](./media/active-directory-reporting-activity-sign-ins/44.png "登入活動")
+
+
+**時間間隔**篩選條件可讓您定義傳回資料的時間範圍。  
+可能的值包括：
+
+- 1 個月
+- 7 天
+- 24 小時
+- 自訂
+
+當您選取自訂時間範圍時，可以設定開始時間和結束時間。
+
+**使用者**篩選條件可讓您指定您關心的使用者之名稱或使用者主體名稱 (UPN)。
+
+**應用程式**應用程式可讓您指定您關心的應用程式之名稱。
+
+**用戶端**篩選條件可讓您指定您關心的裝置之相關資訊。
+
+**登入狀態**篩選條件可讓您選取下列其中一個篩選條件︰
+
+- 全部
+- 成功
+- 失敗
+
+
+## <a name="sign-in-activities-shortcuts"></a>登入活動捷徑
+
+除了 Azure Active Directory 之外，Azure 入口網站可提供您登入活動資料的兩個額外進入點︰
+
+- 使用者和群組
+- 企業應用程式
+
+
+### <a name="users-and-groups-sign-ins-activities"></a>使用者和群組登入活動
+
+利用使用者登入報告所提供的資訊，您可以找到下列問題的解答︰
+
+- 使用者的登入模式為何？
+- 一週內有多少使用者登入？
+- 這些登入的狀態為何？
+
+
+
 此資料的進入點是 [使用者和群組] 之下 [概觀] 區段中的使用者登入圖。
 
- ![報告](./media/active-directory-reporting-activity-sign-ins/05.png "報告")
+![登入活動](./media/active-directory-reporting-activity-sign-ins/45.png "登入活動")
 
 使用者登入圖會顯示在指定的時間週期中所有使用者的每週登入彙總。 時間週期的預設值是 30 天。
 
-![報告](./media/active-directory-reporting-activity-sign-ins/02.png "報告")
+![登入活動](./media/active-directory-reporting-activity-sign-ins/46.png "登入活動")
 
-當您按一下登入圖中的某一天時，您會取得登入活動的詳細清單。
+當您按一下登入圖中的某一天時，您會取得當日登入活動的詳細清單。
 
-![報告](./media/active-directory-reporting-activity-sign-ins/03.png "報告")
+![登入活動](./media/active-directory-reporting-activity-sign-ins/41.png "登入活動")
 
 登入活動清單中的每一列會提供有關所選登入的詳細資訊，例如︰
 
@@ -63,6 +145,12 @@ Azure Active Directory 中的報告架構包含下列元件：
 * 哪個應用程式是登入的目標？
 * 登入的 IP 位址為何？
 * 登入的狀態為何？
+
+[登入] 選項會提供您所有使用者登入的完整概觀。
+
+![登入活動](./media/active-directory-reporting-activity-sign-ins/51.png "登入活動")
+
+
 
 ## <a name="usage-of-managed-applications"></a>受管理應用程式的使用情況
 
@@ -74,43 +162,27 @@ Azure Active Directory 中的報告架構包含下列元件：
 
 此資料的進入點是在 [企業應用程式] 之下 [概觀] 區段中的最近 30 天報告內您的組織中排名前 3 個應用程式。
 
- ![報告](./media/active-directory-reporting-activity-sign-ins/06.png "報告")
+![登入活動](./media/active-directory-reporting-activity-sign-ins/64.png "登入活動")
 
 應用程式使用圖會顯示在指定的時間週期中排名前 3 個應用程式的每週登入彙總。 時間週期的預設值是 30 天。
 
-![報告](./media/active-directory-reporting-activity-sign-ins/78.png "報告")
+![登入活動](./media/active-directory-reporting-activity-sign-ins/47.png "登入活動")
 
 如果您想要，您可以將焦點設在特定的應用程式。
+
 
 ![報告](./media/active-directory-reporting-activity-sign-ins/single_spp_usage_graph.png "報告")
 
 當您按一下應用程式使用圖中的某一天時，您會取得登入活動的詳細清單。
 
-![報告](./media/active-directory-reporting-activity-sign-ins/top_app_sign_ins.png "報告")
+
+![登入活動](./media/active-directory-reporting-activity-sign-ins/48.png "登入活動")
+
 
 [登入]  選項會提供您的應用程式的所有登入事件的完整概觀。
 
-![報告](./media/active-directory-reporting-activity-sign-ins/85.png "報告")
+![登入活動](./media/active-directory-reporting-activity-sign-ins/49.png "登入活動")
 
-使用欄位選擇器，可以選取您想要顯示的資料欄位。
-
-![報告](./media/active-directory-reporting-activity-sign-ins/column_chooser.png "報告")
-
-## <a name="filtering-sign-ins"></a>篩選登入
-您可以篩選登入，以使用下列欄位限制顯示的資料量：
-
-* 日期和時間 
-* 使用者的使用者主體名稱
-* 應用程式名稱
-* 用戶端名稱
-* 登入狀態
-
-![報告](./media/active-directory-reporting-activity-sign-ins/293.png "報告")
-
-篩選登入活動項目的另一種方法是搜尋特定項目。
-此搜尋方法可讓您將登入的範圍設定為特定**使用者**、**群組**或**應用程式**。
-
-![報告](./media/active-directory-reporting-activity-sign-ins/84.png "報告")
 
 
 ## <a name="next-steps"></a>後續步驟

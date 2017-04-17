@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/07/2017
+ms.date: 03/30/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 6c26fdd11031ab482d12611ca338df5c90a14193
-ms.openlocfilehash: a482e20bdbf60889f93f4532ed042b41ec51b81e
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 06f81b11205085357ba4ba4e2f0d2e1e4c0e940a
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -40,7 +40,7 @@ ms.lasthandoff: 02/15/2017
 | 選用組態 | 說明 |
 | --- | --- |
 | 使用現有的 SQL Server |可讓您指定 SQL Server 名稱和執行個體名稱。 如果您已經有想要使用的 ad 資料庫伺服器，請選擇這個選項。 如果您的 SQL Server 未啟用瀏覽，請在 [執行個體名稱]  中輸入執行個體名稱加上逗號及連接埠號碼。 |
-| 使用現有的服務帳戶 |Azure AD Connect 預設會建立本機服務帳戶，以供同步處理服務使用。 密碼是自動產生的，但安裝 Azure AD Connect 的人員並不知道。 如果您使用遠端 SQL Server 或使用需要驗證的 Proxy，您需要在網域中有一個服務帳戶並知道密碼。 在這類情況下，請輸入要使用的服務帳戶。 請確定執行安裝的使用者為 SQL 中的 SA，才可建立服務帳戶的登入。 請參閱 [Azure AD Connect 帳戶與權限](active-directory-aadconnect-accounts-permissions.md#custom-settings-installation) |
+| 使用現有的服務帳戶 |Azure AD Connect 預設會使用虛擬服務帳戶，以供同步處理服務使用。 如果您是使用遠端 SQL Server 或需要驗證的 Proxy，則需要使用**受管理的服務帳戶**，或使用網域中知道密碼的服務帳戶。 在這類情況下，請輸入要使用的帳戶。 請確定執行安裝的使用者為 SQL 中的 SA，才可建立服務帳戶的登入。 請參閱 [Azure AD Connect 帳戶與權限](active-directory-aadconnect-accounts-permissions.md#azure-ad-connect-sync-service-account) |
 | 指定自訂同步群組 |Azure AD Connect 預設會在安裝同步處理服務時，建立四個伺服器的本機群組。 這些群組如下：[系統管理員] 群組、[操作員] 群組、[瀏覽] 群組和 [密碼重設群組]。 您可以在此指定自己的群組。 群組必須位於伺服器本機上，不能位於網域中。 |
 
 ### <a name="user-sign-in"></a>使用者登入
@@ -120,7 +120,7 @@ ms.lasthandoff: 02/15/2017
 | sAMAccountName 與 MailNickName |此選項會在預期可以找到使用者登入 ID 的屬性中聯結。 |
 | 特定的屬性 |此選項可讓您選取您的屬性。 **限制：** 確定選擇的是已可在 Metaverse 中找到的屬性。 如果您選擇自訂屬性 (並非在 Metaverse 中)，精靈將無法完成。 |
 
-**來源錨點** ：屬性 sourceAnchor 是使用者物件存留期間都不會變更的屬性。 它是連結內部部署使用者與 Azure AD 中使用者的主要金鑰。 因為無法改變屬性，所以您必須規劃並使用好的屬性。 objectGUID 就是不錯的選項。 只要使用者帳戶沒有在樹系/網域之間移動，此屬性就不會改變。 若在多樹系環境中，您會在樹系間移動帳戶時，就必須使用另一個屬性，例如 employeeID 屬性。 請避免使用會在某人結婚或變更指派時改變的屬性。 因為不可以使用帶有 @-sign, 的屬性，所以無法使用 email 和 userPrincipalName。 屬性也有區分大小寫，因此在樹系間移動物件時，請務必保留大寫/小寫。 二進位屬性會以 base64 編碼，但其他屬性類型則會維持未編碼狀態。 在同盟情況以及部分 Azure AD 介面中，此屬性也稱為 immutableID。 您可以在[設計概念](active-directory-aadconnect-design-concepts.md#sourceanchor)中找到關於來源錨點的詳細資訊。
+**來源錨點** ：屬性 sourceAnchor 是使用者物件存留期間都不會變更的屬性。 它是連結內部部署使用者與 Azure AD 中使用者的主要金鑰。 因為無法改變屬性，所以您必須規劃並使用好的屬性。 objectGUID 就是不錯的選項。 只要使用者帳戶沒有在樹系/網域之間移動，此屬性就不會改變。 若在多樹系環境中，您會在樹系間移動帳戶時，就必須使用另一個屬性，例如 employeeID 屬性。 請避免使用會在某人結婚或變更指派時改變的屬性。 因為不可以使用帶有 @-sign 的屬性，所以無法使用 email 和 userPrincipalName。 屬性也有區分大小寫，因此在樹系間移動物件時，請務必保留大寫/小寫。 二進位屬性會以 base64 編碼，但其他屬性類型則會維持未編碼狀態。 在同盟情況以及部分 Azure AD 介面中，此屬性也稱為 immutableID。 您可以在[設計概念](active-directory-aadconnect-design-concepts.md#sourceanchor)中找到關於來源錨點的詳細資訊。
 
 ### <a name="sync-filtering-based-on-groups"></a>根據群組進行同步處理篩選
 篩選群組功能可讓您只同步處理一小部分的物件來進行試驗。 若要使用這項功能，請在內部部署 Active Directory 中建立此目的專用的群組。 然後新增應該同步處理至 Azure AD 做為直接成員的使用者和群組。 您稍後可以在此群組中新增和移除使用者，藉此維護應該要顯示在 Azure AD 中的物件清單。 所有您想要同步處理的物件，都必須是直接隸屬於群組的成員。 使用者、群組、連絡人及電腦/裝置全都必須是直接成員。 系統不會解析巢狀群組成員資格。 當您新增群組做為成員時，只會新增群組本身而不會新增其成員。

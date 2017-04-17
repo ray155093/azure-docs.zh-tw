@@ -12,12 +12,12 @@ ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 03/22/2017
+ms.date: 04/07/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: 48d9d8ae97eb763932dd6a59a7df01ae92c92eff
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: d9ba200dba2b1460a9d3c9ba07e2bca54c30b53a
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -33,7 +33,7 @@ StorSimple 虛擬裝置可以在兩種模型中使用，標準 8010 (前身為 1
 | **最大容量** |30 TB |64 TB |
 | **Azure VM** |Standard_A3 (4 核心、7 GB 記憶體) |Standard_DS3 (4 核心、14 GB 記憶體) |
 | **版本相容性** |執行 Update 2 之前或更新版本的版本 |執行 Update 2 或更新版本的版本 |
-| **區域可用性** |所有 Azure 區域 |支援進階儲存體的所有 Azure 區域<br></br> 進階儲存體區域是對應到[依地區的 Azure 服務](https://azure.microsoft.com/en-us/regions/services)清單中的*磁碟儲存體*資料列的區域。 |
+| **區域可用性** |所有 Azure 區域 |支援進階儲存體和 DS3 Azure VM 的所有 Azure 區域<br></br> 使用[這份清單](https://azure.microsoft.com/en-us/regions/services)，查看您的區域是否提供「虛擬機器 > DS 系列」和「儲存體 > 磁碟儲存體」。 |
 | **儲存體類型** |將 Azure 標準儲存體使用於本機磁碟<br></br> 了解如何 [建立標準儲存體帳戶](../storage/storage-create-storage-account.md) |將 Azure 進階儲存體使用於本機磁碟<sup>2</sup> <br></br>了解如何[建立進階儲存體帳戶](../storage/storage-premium-storage.md) |
 | **工作負載指引** |從備份的檔案的項目層級擷取 |雲端開發和測試案例、低延遲、較高效能工作負載 <br></br>災害復原的次要裝置 |
 

@@ -12,12 +12,12 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/06/2017
+ms.date: 04/05/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: 5da00d1d64b258773fa485baa804b283fde731c3
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 1b0d278c102497eca978d8cd3fa29cd2527f186c
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -148,11 +148,63 @@ Windows 使用動態連結程式庫 (DLL) 允許軟體使用通用 Windows 系�
 ![可疑的處理序警示](./media/security-center-alerts-type/security-center-alerts-type-fig6-new.png)
 
 ### <a name="multiple-domain-accounts-queried"></a>已查詢多個網域帳戶
-資訊安全中心可以偵測多次查詢網域帳戶的嘗試，這通常是由攻擊者在網路偵察期間所執行。 攻擊者可以利用這項技術來查詢網域，以識別使用者、識別網域管理帳戶、識別當作網域控制站的電腦，以及識別與其他網域的潛在網域信任關係。
+資訊安全中心可以偵測多次嘗試查詢 Active Directory 網域帳戶的動作，這通常是由攻擊者在網路偵察期間所執行。 攻擊者可以利用這項技術來查詢網域，以識別使用者、識別網域管理帳戶、識別當作網域控制站的電腦，以及識別與其他網域的潛在網域信任關係。
 
 以下是本類型之警示的範例：
 
 ![多個網域帳戶警示](./media/security-center-alerts-type/security-center-alerts-type-fig7-new.png)
+
+### <a name="local-administrators-group-members-were-enumerated"></a>已列舉本機系統管理員群組成員
+
+在 Windows Server 2016 和 Windows 10 中，資訊安全中心即將在安全性事件 4798 觸發時觸發警示。 這種情況會發生在本機系統管理員群組列舉時，通常是由攻擊者在網路偵察期間所執行。 攻擊者可以利用這項技巧來查詢具有系統管理權限的使用者身分識別。
+
+以下是本類型之警示的範例：
+
+![本機系統管理員](./media/security-center-alerts-type/security-center-alerts-type-fig14-new.png)
+
+### <a name="anomalous-mix-of-upper-and-lower-case-characters"></a>異常混用大寫和小寫字元
+
+資訊安全中心將會在偵測到命令列混合使用大寫和小寫字元時觸發警示。 某些攻擊者可能會使用此技巧來規避區分大小寫或雜湊型電腦規則。
+
+以下是本類型之警示的範例：
+
+![異常混用](./media/security-center-alerts-type/security-center-alerts-type-fig15-new.png)
+
+### <a name="suspected-kerberos-golden-ticket-attack"></a>可疑的 Kerberos 黃金票證攻擊
+
+攻擊者可能會使用洩漏的 [krbtgt](https://technet.microsoft.com/library/dn745899.aspx) 金鑰來建立 Kerberos「黃金票證」，讓攻擊者模擬他們想要的任何使用者。 資訊安全中心會在偵測到這類型的活動時觸發警示。
+
+> [!NOTE] 
+> 如需 Kerberos 黃金票證的詳細資訊，請參閱 [Windows 10 認證竊取風險降低指南](http://download.microsoft.com/download/C/1/4/C14579CA-E564-4743-8B51-61C0882662AC/Windows%2010%20credential%20theft%20mitigation%20guide.docx)。
+
+以下是本類型之警示的範例：
+
+![黃金票證](./media/security-center-alerts-type/security-center-alerts-type-fig16-new.png)
+
+### <a name="suspicious-account-created"></a>已建立可疑帳戶
+
+若建立與現有內建系統管理權限帳戶非常相似的帳戶，資訊安全中心就會觸發警示。 攻擊者可以使用這項技巧來建立 Rouge 帳戶，以避免被人為驗證所察覺。
+ 
+以下是本類型之警示的範例：
+
+![可疑的帳戶](./media/security-center-alerts-type/security-center-alerts-type-fig17-new.png)
+
+### <a name="suspicious-firewall-rule-created"></a>已建立可疑的防火牆規則
+
+攻擊者可能會嘗試規避主機安全性，其方法是建立自訂防火牆規則來允許惡意應用程式與命令和控制項通訊，或經由遭入侵的主應用透過網路發動攻擊。 資訊安全中心偵測到從可疑位置的可執行檔建立的新防火牆規則時，就會觸發警示。
+ 
+以下是本類型之警示的範例：
+
+![防火牆規則](./media/security-center-alerts-type/security-center-alerts-type-fig18-new.png)
+
+### <a name="suspicious-combination-of-hta-and-powershell"></a>可疑的 HTA 和 PowerShell 組合
+
+資訊安全中心偵測到 Microsoft HTML 應用程式主機 (HTA) 正在啟動 PowerShell 命令時會觸發警示。 這是攻擊者用來啟動惡意 PowerShell 指令碼的技巧。
+ 
+以下是本類型之警示的範例：
+
+![HTA 和 PS](./media/security-center-alerts-type/security-center-alerts-type-fig19-new.png)
+
 
 ## <a name="network-analysis"></a>網路分析
 資訊安全中心網路威脅偵測的運作方式如下：從 Azure IPFIX (Internet Protocol Flow Information Export) 流量自動收集安全性資訊。 它會分析這項資訊 (通常是來自多個來源的相互關聯資訊) 以識別威脅。

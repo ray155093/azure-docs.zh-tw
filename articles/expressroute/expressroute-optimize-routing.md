@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/24/2017
+ms.date: 04/06/2017
 ms.author: charwen
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: f03099391600bc3b918eb3a8c866c16a02052b7a
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: c3a85b9445d69330c3f6c7d298169efddb6ecca0
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -67,7 +67,7 @@ ms.lasthandoff: 03/25/2017
 ![ExpressRoute 案例 3 - 虛擬網路之間的次佳化路由](./media/expressroute-optimize-routing/expressroute-case3-problem.png)
 
 ### <a name="solution-assign-a-high-weight-to-local-connection"></a>解決方案︰對本機連線指派高權數
-解決方法很簡單。 既然您知道 VNet 與線路在哪，您可以告訴我們每個 VNet 應該偏好使用的路徑。 具體來說，在此範例中，您可以對本機連線指派比遠端連線更高的權數。 當 VNet 在多個連線上收到另一個 VNet 的前置詞時，它會偏好使用權數最高的連線，來傳送以該前置詞為目的地的流量。
+解決方法很簡單。 既然您知道 VNet 與線路在哪，您可以告訴我們每個 VNet 應該偏好使用的路徑。 具體來說，在此範例中，您可以對本機連線指派比遠端連線更高的權數 (請參閱[這裡](expressroute-howto-linkvnet-arm.md#modify-a-virtual-network-connection)的組態範例)。 當 VNet 在多個連線上收到另一個 VNet 的前置詞時，它會偏好使用權數最高的連線，來傳送以該前置詞為目的地的流量。
 
 ![ExpressRoute 案例 3 解決方案 - 對本機連線指派高權數](./media/expressroute-optimize-routing/expressroute-case3-solution.png)
 
@@ -75,3 +75,4 @@ ms.lasthandoff: 03/25/2017
 > 如果您有多個 ExpressRoute 線路，您也可以影響從 VNet 到內部部署網路的路由，方法是設定連線的權數而非套用 AS PATH 前置，後面這個技巧已在上面的第二個案例中做過說明。 對於每個前置詞，當我們在決定如何傳送流量時，一律會先查看連線權數再看 AS 路徑長度。
 >
 >
+

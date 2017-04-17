@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 2/21/2017
 ms.author: nisoneji
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 431f73e1be45dec9aa0fe186cb22078f8d95588d
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 07c6836c9279ed2f28730a49d131c064891de1b1
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -90,9 +90,9 @@ Site Recovery Deployment Planner 公開預覽版本是一項命令列工具，�
 
     範例：  
     將 .zip 檔案複製到 E:\ 磁碟機並將它解壓縮。
-   E:\ASR Deployment Planner-Preview_v1.1.zip
+   E:\ASR Deployment Planner-Preview_v1.2.zip
 
-    E:\ASR Deployment Planner-Preview_v1.1\ ASR Deployment Planner-Preview_v1.1\ ASRDeploymentPlanner.exe
+    E:\ASR Deployment Planner-Preview_v1.2\ ASR Deployment Planner-Preview_v1.2\ ASRDeploymentPlanner.exe
 
 ## <a name="capabilities"></a>功能
 您可以在下列任何模式 (共三種) 中執行命令列工具 (ASRDeploymentPlanner.exe)：
@@ -145,6 +145,8 @@ ASRDeploymentPlanner.exe -Operation StartProfiling /?
 | -Password | (選用) 用來連線至 vCenter Server/vSphere ESXi 主機的密碼。 如果現在未指定密碼，系統將會在命令執行時提示您輸入密碼。|
 | -StorageAccountName | (選用) 儲存體帳戶名稱，用於找出從內部部署至 Azure 的資料複寫可達成的輸送量。 此工具會將測試資料上傳到此儲存體帳戶，以計算輸送量。|
 | -StorageAccountKey | (選用) 用來存取儲存體帳戶的儲存體帳戶金鑰。 移至 Azure 入口網站 > 儲存體帳戶 > <儲存體帳戶名稱> > 設定 > 存取金鑰 > Key1 (或傳統儲存體帳戶的主要存取金鑰)。 |
+| -Environment | (選擇性) 這是您的目標 Azure 儲存體帳戶環境。 可以是下列三個值之一 - AzureCloud、AzureUSGovernment、AzureChinaCloud。 預設值為 AzureCloud。 當目標 Azure 區域是 Azure US Government 或 Azure China 雲端時，請使用此參數。 |
+
 
 我們建議至少剖析您的 VM 15 到 30 天。 在剖析期間，ASRDeploymentPlanner.exe 會持續執行。 此工具會採用剖析階段輸入 (以天為單位)。 如果您想要剖析數小時或數分鐘的時間，以便進行工具的快速測試，在公開預覽版本中，您必須將時間轉換成相等的天數量值。 例如，若要剖析 30 分鐘，輸入必須是 30/(60*24) = 0.021 天。 允許的最小剖析時間為 30 分鐘。
 
@@ -281,11 +283,12 @@ ASRDeploymentPlanner.exe -Operation GenerateReport -Server vCenter1.contoso.com 
 
 |參數名稱 | 說明 |
 |-|-|
-| -operation | GetThroughput |
+| -Operation | GetThroughput |
 | -Directory | (選用) 儲存剖析資料 (剖析期間產生的檔案) 的 UNC 或本機目錄路徑。 產生報告時需要這項資料。 如未指定目錄，則會使用 ‘ProfiledData’ 目錄。 |
 | -StorageAccountName | 儲存體帳戶名稱，用於找出從內部部署至 Azure 的資料複寫所耗用的頻寬。 此工具會將測試資料上傳到此儲存體帳戶，以找出所耗用的頻寬。 |
 | -StorageAccountKey | 用來存取儲存體帳戶的儲存體帳戶金鑰。 移至 Azure 入口網站 > 儲存體帳戶 > <儲存體帳戶名稱> > 設定 > 存取金鑰 > Key1 (或傳統儲存體帳戶的主要存取金鑰)。 |
 | -VMListFile | 包含要剖析之 VM 清單的檔案，以便計算所耗用的頻寬。 此檔案路徑可以是絕對或相對路徑。 此檔案的每一行應包含一個 VM 名稱/IP 位址。 檔案中指定的 VM 名稱應該與 vCenter Server/vSphere ESXi 主機上的 VM 名稱相同。<br>例如，VMList.txt 檔案包含下列 VM︰<ul><li>VM_A</li><li>10.150.29.110</li><li>VM_B</li></ul>|
+| -Environment | (選擇性) 這是您的目標 Azure 儲存體帳戶環境。 可以是下列三個值之一 - AzureCloud、AzureUSGovernment、AzureChinaCloud。 預設值為 AzureCloud。 當目標 Azure 區域是 Azure US Government 或 Azure China 雲端時，請使用此參數。 |
 
 此工具會在指定的目錄中建立數個 64MB asrvhdfile<#>.vhd 檔案 (其中 # 是檔案數目)。 此工具會將這些檔案上傳至儲存體帳戶，以找出輸送量。 測量輸送量之後，此工具會從儲存體帳戶和本機伺服器中刪除所有這類檔案。 如果此工具在計算輸送量時因為任何原因而終止，它不會從儲存體或本機伺服器中刪除檔案。 您必須手動加以刪除。
 
@@ -477,6 +480,10 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 
 **NIC**：VM 上的 NIC 數目。
 
+**開機類型**︰這是 VM 的開機類型。 可以是 BIOS 或 EFI。 Azure Site Recovery 目前僅支援 BIOS 開機類型。 EFI 開機類型的所有虛擬機器會列在不相容的 VM 工作表中。 
+
+**OS 類型**：這是 VM 的 OS 類型。 可以是 Windows 或 Linux 或其他。
+
 ## <a name="incompatible-vms"></a>不相容的 VM
 
 ![不相容 VM 的 Excel 試算表](./media/site-recovery-deployment-planner/incompatible-vms.png)
@@ -486,6 +493,7 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 **VM 相容性**：指出為何指定的 VM 不適合與 Site Recovery 搭配使用。 相關原因會針對 VM 的每個不相容磁碟進行說明，且根據發佈的[儲存體限制](https://aka.ms/azure-storage-scalbility-performance)，原因可能是下列其中一項：
 
 * 磁碟大小 > 1023 GB。 Azure 儲存體目前不支援大於 1 TB 的磁碟大小。
+* 啟動類型為 EFI。 Azure Site Recovery 目前僅支援 BIOS 開機類型虛擬機器。
 
 * VM 大小總計 (複寫 + TFO) 超過支援的儲存體帳戶大小限制 (35 TB)。 當 VM 中單一磁碟的效能特性超過標準儲存體支援的最大 Azure 或 Site Recovery 限制，通常會發生此不相容情況。 這類情況會將 VM 推送到進階儲存體區域中。 不過，進階儲存體帳戶支援的大小上限為 35 TB，而單一的受保護 VM 無法跨多個儲存體帳戶受到保護。 也請注意，在受保護的 VM 上執行測試容錯移轉時，它會在正在進行複寫的相同儲存體帳戶中執行。 在此例中，設定 2 倍的磁碟大小，以便進行複寫並以平行方式繼續進行測試容錯移轉。
 * 來源 IOPS 超過支援的儲存體 IOPS 限制 (每個磁碟 5000)。
@@ -508,6 +516,10 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 **記憶體 (MB)**：VM 上的 RAM 數量。
 
 **NIC**：VM 上的 NIC 數目。
+
+**開機類型**︰這是 VM 的開機類型。 可以是 BIOS 或 EFI。 Azure Site Recovery 目前僅支援 BIOS 開機類型。 EFI 開機類型的所有虛擬機器會列在不相容的 VM 工作表中。 
+
+**OS 類型**：這是 VM 的 OS 類型。 可以是 Windows 或 Linux 或其他。
 
 
 ## <a name="site-recovery-limits"></a>Site Recovery 限制
@@ -546,6 +558,18 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 
 
 ## <a name="version-history"></a>版本歷程記錄
+### <a name="12"></a>1.2
+更新日期：2017 年 4 月 7 日
+
+已新增下列修正程式︰
+
+* 已新增每部虛擬機器的開機類型 (BIOS 或 EFI) 檢查，用以判斷虛擬機器是否與保護相容。
+* 已在相容的 VM 和不相容的 VM 工作表中新增每部虛擬機器的 OS 類型資訊。
+* US Government 和 China Microsoft Azure 區域現在支援 GetThroughput 作業。
+* 已針對 vCenter 和 ESXi 伺服器新增更多必要條件檢查。
+* 地區設定若為非英文，則會產生不正確的報告。
+
+
 ### <a name="11"></a>1.1
 更新日期：2017 年 3 月 9 日
 

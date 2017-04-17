@@ -12,13 +12,13 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 03/08/2017
+ms.date: 03/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: f323afdea34e973f3ecdd54022f04b3f0d86afb1
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: c7090940192d9bd07fce96ad475b2239f5e9f2e8
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -46,7 +46,7 @@ ms.lasthandoff: 04/03/2017
 下列各節討論可達成分散式計算案例的 Batch 資源。
 
 > [!NOTE]
-> 您需要有 [Batch 帳戶](batch-account-create-portal.md)才能使用 Batch 服務。 此外，幾乎所有解決方案都會使用 [Azure 儲存體][azure_storage]帳戶來儲存和擷取檔案。 Batch 目前僅支援**一般用途**的儲存體帳戶類型，如關於 [Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)的步驟 5 所述。
+> 您需要有 [Batch 帳戶](#account)才能使用 Batch 服務。 此外，幾乎所有解決方案都會使用 [Azure 儲存體][azure_storage]帳戶來儲存和擷取檔案。 Batch 目前僅支援**一般用途**的儲存體帳戶類型，如關於 [Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)的步驟 5 所述。
 >
 >
 
@@ -69,7 +69,16 @@ ms.lasthandoff: 04/03/2017
 * [應用程式封裝](#application-packages)
 
 ## <a name="account"></a>帳戶
-批次帳戶是批次服務內唯一識別的實體。 所有處理都與 Batch 帳戶相關聯。 當您使用 Batch 服務執行作業時，需要帳戶名稱以及其中一個帳戶金鑰。 您可以 [使用 Azure 入口網站建立 Azure Batch 帳戶](batch-account-create-portal.md)。
+批次帳戶是批次服務內唯一識別的實體。 所有處理都與 Batch 帳戶相關聯。
+
+您可以使用 [Azure 入口網站](batch-account-create-portal.md)或以程式設計的方式建立 Azure Batch 帳戶，例如使用 [Batch管理 .NET 程式庫](batch-management-dotnet.md)。 建立帳戶時，您可以將 Azure 儲存體帳戶產生關聯。
+
+Batch 支援兩個帳戶設定，根據集區配置模式屬性。 兩個組態提供不同的選項，可驗證 Batch 服務及佈建和管理 Batch [集區](#pool) (請參閱本文稍後的部分)。 
+
+
+* **Batch 服務**(預設值)︰您可以使用共用金鑰驗證或 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API。 Batch 計算資源會在 Azure 受管理帳戶中配置於幕後。   
+* **使用者訂用帳戶**︰您只能使用 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API。 Batch 計算資源會直接配置在您的 Azure 訂用帳戶中。 此模式可提供您更多彈性來設定計算節點，並與其他服務整合。 這個模式會要求您設定 Batch 帳戶的其他 Azure Key Vault。
+ 
 
 ## <a name="compute-node"></a>計算節點
 計算節點是一部 Azure 虛擬機器 (VM)，專門用來處理您應用程式的部分工作負載。 節點大小決定配置給節點的 CPU 核心數目、記憶體容量，以及本機檔案系統大小。 您可以使用 Azure 雲端服務或虛擬機器 Marketplace 的映像來建立 Windows 或 Linux 節點集區。 如需這些選項的詳細資訊，請參閱下列 [集區](#pool) 。
@@ -89,13 +98,16 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
 
 系統會指派唯一的名稱及 IP 位址給新增至集區的每個節點。 當節點從集區中移除時，就會失去對作業系統或檔案所做的任何變更，且其名稱及 IP 位址都會釋出供未來使用。 當節點離開集區時，其存留期就結束。
 
-當您建立集區時，您可以指定下列屬性：
+當您建立集區時，可以指定下列屬性。 根據 Batch [帳戶](#account)的集區配置模式，部分設定會有所不同。
 
 * 計算節點**作業系統**和**版本**
 
-    針對集區中的節點選取作業系統時，您有兩個選項︰**虛擬機器組態**和**雲端服務組態**。
+    > [!NOTE]
+    > 在 Batch 服務集區配置模式中，針對集區中的節點選取作業系統時，您有兩個選項︰[虛擬機器組態] 和 [雲端服務組態]。 在使用者訂用帳戶模式中，您只可以使用虛擬機器組態。
+    >
 
-    **虛擬機器組態**可從 [Azure 虛擬機器 Marketplace][vm_marketplace] 提供適用於計算節點的 Linux 和 Windows 映像。
+    **虛擬機器組態**可從 [Azure 虛擬機器 Marketplace][vm_marketplace] 提供適用於計算節點的 Linux 和 Windows 映像，而在使用者訂用帳戶配置模式中，則提供使用自訂 VM 映像的選項。
+
     建立包含虛擬機器組態節點的集區時，您不僅需指定節點的大小，也必須在節點上安裝**虛擬機器映像參考**和 Batch **節點代理程式 SKU**。 如需指定這些集區屬性的詳細資訊，請參閱 [在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
 
     **雲端服務組態**「只」提供 Windows 計算節點。 雲端服務組態集區可用的作業系統列於 [Azure 客體 OS 版次與 SDK 相容性矩陣](../cloud-services/cloud-services-guestos-update-matrix.md)。 建立包含雲端服務節點的集區時，您只需指定節點大小及其「作業系統系列」 。 建立 Windows 計算節點集區時，最常使用的是雲端服務。
@@ -313,17 +325,27 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 ## <a name="pool-network-configuration"></a>集區網路組態
 
-當您在 Azure Batch 中建立計算節點的集區時，您可以指定應在其中建立集區計算節點之 Azure [虛擬網路 (VNet)](https://azure.microsoft.com/documentation/articles/virtual-networks-overview/) 的識別碼。
-
-* 只有 [雲端服務組態] 集區可以指派 VNet。
+當您在 Azure Batch 中建立計算節點的集區時，您可以使用 API 來指定應在其中建立集區計算節點之 Azure [虛擬網路 (VNet)](../virtual-network/virtual-networks-overview.md) 的識別碼。
 
 * VNet 必須：
 
    * 與 Azure Batch 帳戶位於相同的 Azure **區域**中。
    * 與 Azure Batch 帳戶在相同的**訂用帳戶**中。
-   * **傳統**的 VNet。 不支援使用 Azure Resource Manager 部署模型建立的 VNet。
 
 * VNet 應該擁有足夠的可用 **IP 位址**以配合集區的 `targetDedicated` 屬性。 如果子網路沒有足夠的可用 IP 位址，Batch 服務會配置集區中部分的計算節點，並傳回調整大小錯誤。
+
+* 指定的子網路必須允許來自 Batch 服務的通訊，才能在計算節點上排程工作。 如果對計算節點的通訊遭到與 VNet 相關聯的「網路安全性群組 (NSG)」拒絕，則 Batch 服務會將計算節點的狀態設為 [無法使用]。 
+
+* 如果指定之 VNet 有任何相關聯的 NSG，必須啟用輸入通訊。 針對 Linux 集區，必須啟用連接埠 29876、29877 和 22。 針對 Windows 集區，必須啟用連接埠 3389。
+
+根據 Batch 帳戶的集區配置模式，會有額外的設定。
+
+### <a name="vnets-for-pools-provisioned-in-the-batch-service"></a>在 Batch 服務中佈建的集區 VNet
+
+在 Batch 服務配置模式中，只有 [雲端服務組態] 集區可以指派 VNet。 此外，指定的 VNet 必須為**傳統** VNet。 不支援使用 Azure Resource Manager 部署模型建立的 VNet。
+   
+
+
 * 針對指定的 VNet，*MicrosoftAzureBatch* 服務主體必須有[傳統虛擬機器參與者](../active-directory/role-based-access-built-in-roles.md#classic-virtual-machine-contributor)角色型存取控制 (RBAC) 角色。 在 Azure 入口網站中：
 
   * 依序選取 VNet、[存取控制 (IAM)] > [角色] > [傳統虛擬機器參與者] > [新增]
@@ -331,7 +353,13 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
   * 選取 [MicrosoftAzureBatch] 核取方塊
   * 選取 [選取] 按鈕
 
-* 如果對計算節點的通訊遭到與 VNet 相關聯的「網路安全性群組 (NSG)」拒絕，則 Batch 服務會將計算節點的狀態設為 [無法使用]。 子網路必須允許來自 Azure Batch 服務的通訊，才能在計算節點上排程工作。
+
+
+### <a name="vnets-for-pools-provisioned-in-a-user-subscription"></a>在使用者訂用帳戶中佈建的集區 VNet
+
+在使用者訂用帳戶配置模式中，只有**虛擬機器組態**集區受支援且可指派 VNet。 此外，指定的 VNet 必須為 **Resource Manager** 型的 VNet。 不支援使用傳統部署模型建立的 VNet。
+
+
 
 ## <a name="scaling-compute-resources"></a>調整計算資源
 透過 [自動調整](batch-automatic-scaling.md)功能，您可以讓 Batch 服務根據計算案例的目前工作負載和資源使用狀況，動態調整集區中的計算節點數目。 這樣一來，您只會使用所需資源並可釋放不需要的資源，因而能夠降低應用程式的整體執行成本。
