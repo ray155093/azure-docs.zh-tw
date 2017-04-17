@@ -263,7 +263,7 @@ Type=Perf Computer=chorizo*
 Syslog 是與 Windows 事件記錄檔類似的事件記錄通訊協定 (在 OMS 中顯示時，兩者的運作方式類似)。
 
 ### <a name="to-add-a-new-linux-syslog-facility-in-oms"></a>在 OMS 中加入新的 Linux syslog 設備
-1. 在 [設定] 頁面的 [資料]****下方，按一下 [Syslog]****，然後在加號圖示左邊，輸入您想要新增的 syslog 設備名稱。
+1. 在 **[設定]** 頁面的 **[資料]**下方，按一下**[Syslog]** ，然後在加號圖示左邊，輸入您想要新增的 syslog 設備名稱。
     ![Linux syslog](./media/log-analytics-linux-agents/oms-linuxsyslog01.png)
 2. 如果您不知道設備的完整名稱，可以開始輸入局部名稱，並會出現可用的 syslog 設備清單。 當您找到想要加入的 syslog 設備時，請按一下清單中的名稱，然後按一下加號圖示加入 syslog 設備。
 3. 設備在加入之後會出現在以彩色列反白顯示的清單中。 接下來，選擇您想要收集的嚴重性 (syslog 設備資訊的類別)。
