@@ -191,7 +191,7 @@ Service Fabric 有助於在基礎結構失敗時讓應用程式繼續執行，�
   ServiceRuntime.RegisterServiceAsync("StatelessType", context => new Stateless(context, Log.Logger)).GetAwaiter().GetResult();
   ```
 
-4. 在服務建構函式中，新增下列程式碼。 此程式碼為服務的 **ServiceTypeName**、**ServiceName**、**PartitionId** 和 **InstanceId ** 屬性建立屬性豐富器。 它也會將屬性豐富器新增至 ASP.NET Core 記錄工廠，讓您在程式碼中使用 Microsoft.Extensions.Logging.ILogger。
+4. 在服務建構函式中，新增下列程式碼。 此程式碼為服務的 **ServiceTypeName**、**ServiceName**、**PartitionId** 和 **InstanceId** 屬性建立屬性豐富器。 它也會將屬性豐富器新增至 ASP.NET Core 記錄工廠，讓您在程式碼中使用 Microsoft.Extensions.Logging.ILogger。
 
   ```csharp
   public Stateless(StatelessServiceContext context, Serilog.ILogger serilog)
