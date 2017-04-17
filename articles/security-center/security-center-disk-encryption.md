@@ -92,7 +92,7 @@ Azure 磁碟加密先決條件組態指令碼會設定用來加密 Azure 虛擬�
 
 1. 如果您已關閉 PowerShell ISE，請開啟已提升權限的 PowerShell ISE 執行個體。 如果尚未開啟 PowerShell ISE，請遵循本文稍早的指示。 如果您已關閉指令碼，請開啟 **ADEPrereqScript.ps1**，方法是依序按一下 [檔案] 和 [開啟]，然後選取 **c:\AzureADEScript** 資料夾中的指令碼。 如果您從一開始就遵循本文的指示進行，請直接移至下一個步驟。
 2. 在 PowerShell ISE 的主控台 (PowerShell ISE 的下方窗格) 中，將焦點變更至指令碼的本機位置，方法是輸入 **cd c:\AzureADEScript**，然後按 **ENTER** 鍵。
-3. 設定機器的執行原則以便可以執行指令碼。 在主控台輸入 **Set-ExecutionPolicy Unrestricted** ，然後按 ENTER 鍵。 如果出現對話方塊指出執行原則變更所帶來的影響，請按一下 **[全部都是]** 或 [是] (如果有看到 [全部都是]，請選取該選項；如果沒看到 [全部都是]，則請按一下 [是])。
+3. 設定機器的執行原則以便可以執行指令碼。 在主控台輸入 **Set-ExecutionPolicy Unrestricted** ，然後按 ENTER 鍵。 如果出現對話方塊指出執行原則變更所帶來的影響，請按一下 **[全部都是]** 或 **[是]** \(如果有看到 **[全部都是]**，請選取該選項；如果沒看到 **[全部都是]**，則請按一下 **[是]**)。
 4. 登入 Azure 帳戶。 在主控台中輸入 **Login-AzureRmAccount**，然後按 **ENTER** 鍵。 隨即會出現對話方塊供您輸入認證 (請確定您有變更虛擬機器的權限；如果沒有權限，就無法將其加密。 如果不能確定，請詢問訂用帳戶擁有者或系統管理員)。 您應該會看到您 **Environment**、**Account**、**TenantId**、**SubscriptionId** 和 **CurrentStorageAccount** 的相關資訊。 請將 **SubscriptionId** 複製到 [記事本]。 步驟 6 會用到此資訊。
 5. 尋找虛擬機器所隸屬的訂用帳戶以及虛擬機器的位置。 移至 [https://portal.azure.com](ttps://portal.azure.com) 並登入。  在頁面左側按一下 [虛擬機器] 。 您將會看到虛擬機器和其所屬訂用帳戶的清單。
 
