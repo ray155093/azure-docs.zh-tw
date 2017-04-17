@@ -82,7 +82,7 @@ Azure 行動應用程式的離線功能可讓您在離線狀態時，仍可與�
 
 * **[PushAsync]** 因為這個方法是 [IMobileServicesSyncContext] 的成員，因此所有資料表的變更都會推送至後端。 只有具有本機變更的記錄會傳送到伺服器。
 * **[PullAsync]**
-   從 [IMobileServiceSyncTable] 開始提取。 當資料表中有追蹤的變更時，便會執行隱含推送，以確定本機存放區中的所有資料表和關聯性都維持一致。 pushOtherTables  參數會控制是否在隱含推送中推送內容中的其他資料表。 query** 參數會採用 [IMobileServiceTableQuery<T>][IMobileServiceTableQuery]
+   從 [IMobileServiceSyncTable] 開始提取。 當資料表中有追蹤的變更時，便會執行隱含推送，以確定本機存放區中的所有資料表和關聯性都維持一致。 pushOtherTables  參數會控制是否在隱含推送中推送內容中的其他資料表。 *query* 參數會採用 [IMobileServiceTableQuery<T>][IMobileServiceTableQuery]
    或 OData 查詢字串來篩選傳回的資料。 queryId  參數可用來定義增量同步處理。 如需詳細資訊，請參閱  [Azure Mobile Apps 中的離線資料同步處理](app-service-mobile-offline-data-sync.md#how-sync-works)。
 * **[PurgeAsync]** 您的應用程式應定期呼叫這個方法，以清除本機存放區中的過時資料。 當您需要清除任何尚未同步處理的變更時，請使用 force  參數。
 
