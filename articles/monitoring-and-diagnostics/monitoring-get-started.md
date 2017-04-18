@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 10/19/2016
 ms.author: johnkem
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 692a0086bd8e0dd6b57de1db0f4e2a9b4f2f0bda
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 6e1a1f522b9632c7d162d36ad5baa23d6130f8b6
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -29,11 +30,6 @@ Azure 監視器是平台服務，提供監視 Azure 資源的單一來源。 您
 2. 按一下 [監視] 選項來開啟 [監視] 刀鋒視窗。 此刀鋒視窗會將您所有的監視設定和資料結合成一個彙總檢視。 它會先開啟 [活動記錄檔]  區段。
    
     ![監視刀鋒視窗瀏覽](./media/monitoring-get-started/monitor-blade-nav.png)
-   
-   > [!WARNING]
-   > 上方所顯示的 [服務通知] 和 [通知群組] 選項為私人預覽，僅針對已加入私人預覽這些功能的人員顯示。
-   > 
-   > 
    
     Azure 監視器有三個監視資料的基本類別︰[活動記錄檔]、[度量] 和 [診斷紀錄]。
 3. 按一下 [活動記錄檔]  確認已顯示活動記錄檔區段。
@@ -88,7 +84,7 @@ Azure 監視器是平台服務，提供監視 Azure 資源的單一來源。 您
     
     ![公用警示刀鋒視窗](./media/monitoring-get-started/monitor-alerts-nopp.png)
     
-    您可以在這裡管理 Azure 資源上的所有[**警示**](monitoring-overview-alerts.md)。 這包括度量、活動記錄事件 (私人預覽)、Application Insights Web 測試 (位置) 和 Application Insights 主動診斷的警示。 警示可以觸發將電子郵件或 HTTP POST 傳送到 webhook。
+    您可以在這裡管理 Azure 資源上的所有[**警示**](monitoring-overview-alerts.md)。 這包括計量、活動記錄事件、Application Insights Web 測試 (位置) 和 Application Insights 主動診斷的警示。 警示可以觸發將電子郵件或 HTTP POST 傳送到 webhook。
 13. 按一下 [新增度量警示]  建立警示。
     
     ![新增度量警示](./media/monitoring-get-started/monitor-alerts-add.png)
@@ -103,10 +99,5 @@ Azure 監視器是平台服務，提供監視 Azure 資源的單一來源。 您
 
 ## <a name="next-steps"></a>後續步驟
 * 閱讀 [的概觀](monitoring-overview.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

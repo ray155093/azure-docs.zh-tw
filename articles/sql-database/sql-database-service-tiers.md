@@ -17,9 +17,9 @@ ms.workload: data-management
 wms.date: 03/06/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: ab637f9910523cc8d8967dd1507dbcfad9f7ae88
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: 827394be9485685388879c1eb4cee4d79ef9fe51
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -127,29 +127,30 @@ ms.lasthandoff: 03/28/2017
 
 若現有的 P11 和 P15 資料庫位於其中一個受支援區域，您可以將 maxsize 儲存體增加為 4 TB。 在 Azure 入口網站中、PowerShell 中或使用 Transact-SQL 都能完成此操作。 下列範例示範正在使用 ALTER DATABASE 命令變更 maxsize 的情形︰
 
-```ALTER DATABASE <DatabaseName> MODIFY (MAXSIZE = 4096 GB);
+ ```t-sql
+ALTER DATABASE <myDatabaseName> 
+   MODIFY (MAXSIZE = 4096 GB);
 ```
 
-Upgrading an existing P11 or P15 database can only be performed by a server-level principal login or by members of the dbmanager database role. 
-If executed in a supported region the configuration will be updated immediately. This can be checked using the [SELECT DATABASEPROPERTYEX](https://msdn.microsoft.com/library/ms186823.aspx) or by inspecting the database size in the Azure portal. The database will remain online during the upgrade process. However, you will not be able to utilize the full 4 TB of storage until the actual database files have been upgraded to the new maxsize. The length of time required depends upon on the size of the database being upgraded.  
+只有伺服器層級的主要登入或 dbmanager 資料庫角色的成員，才能執行現有的 P11 或 P15 資料庫升級。 如果是在支援的區域中執行，則會立即更新組態。 您可以使用 [SELECT DATABASEPROPERTYEX](https://msdn.microsoft.com/library/ms186823.aspx)，或檢查 Azure 入口網站中的資料庫大小加以確認。 資料庫在升級過程中會保持離線狀態。 但是，在將實際的資料庫檔案升級至新的大小上限前，您無法完整的使用 4TB 儲存體。 所需的時間長短依進行升級的資料庫大小而定。  
 
-### Error messages
-When creating or upgrading an P11/P15 database in an unsupported region, the create or upgrade operation will fail with the following error message: **P11 and P15 database with up to 4TB of storage are available in US East 2, West US, South East Asia, West Europe, Canada East, Canada Central, Japan East, and Australia East.**
+### <a name="error-messages"></a>錯誤訊息
+在不受支援的區域中建立或升級 P11/P15 資料庫時，該建立或升級作業會失敗，並且顯示下列錯誤訊息：**具備最多 4TB 儲存體的 P11 和 P15 資料庫僅供美國東部 2、美國西部、東南亞、西歐、加拿大東部、加拿大中部、日本東部和澳大利亞東部使用。**
 
-## Current limitations of P11 and P15 databases with 4 TB maxsize
+## <a name="current-limitations-of-p11-and-p15-databases-with-4-tb-maxsize"></a>P11 和 P15 資料庫目前的限制大小上限為 4TB
 
-- When creating or updating a P11 or P15 database, you can only chose between 1 TB and 4 TB maxsize. Intermediate storage sizes are not currently supported.
-- The 4 TB database maxsize cannot be changed to 1 TB even if the actual storage used is below 1 TB. Thus, you cannot downgrade a P11-4TB/P15-4TB to a P11-1TB/P15-1TB or a lower performance tier (e.g., to P1-P6) until we are providing additional storage options for the rest of the performance tiers. This restriction also applies to the restore and copy scenarios including point-in-time, geo-restore, long-term-backup-retention, and database copy. Once a database is configured with the 4 TB option, all restore operations of this database must be into a P11/P15 with 4 TB maxsize.
-- For Active Geo-Replication scenarios:
-   - Setting up a geo-replication relationship: If the primary database is P11 or P15, the secondary(ies) must also be P11 or P15; lower performance tiers will be rejected as secondaries since they are not capable of supporting 4 TB.
-   - Upgrading the primary database in a geo-replication relationship: Changing the maxsize to 4 TB on a primary database will trigger the same change on the secondary database. Both upgrades must be successful for the change on the primary to take effect. Region limitations for the 4TB option apply (see above). If the secondary is in a region that does not support 4 TB, the primary will not be upgraded.
-- Using the Import/Export service for loading P11-4TB/P15-4TB databases is not supported. Use SqlPackage.exe to [import](sql-database-import-sqlpackage.md) and [export](sql-database-export-sqlpackage.md) data.
+- 建立或更新 P11 或 P15 資料庫時，您只能在 1TB 和 4TB 的大小上限之間選擇。 目前不支援中繼儲存體大小。
+- 即使實際使用的儲存體不足 1TB，您也無法將 4TB 的資料庫大小上限變更為 1TB。 因此，在我們為其他效能層級提供額外的儲存體選項前，您無法將 P11-4TB/P15-4TB 降級為 P11-1TB/P15-1TB 或更低的效能層級 (例如降為 P1-P6)。 這項限制也適用於包括時間點、異地還原、長期備份保留期和資料庫備份等還原和複製案例。 一旦將資料庫設定為 4TB 的選項，此資料庫的所有還原作業都必須以 4TB 大小上限的 P11/P15 進行。
+- 若是作用中異地複寫案例：
+   - 設定異地複寫關聯性：如果 P11 或 P15 為主要資料庫，則次要資料庫也必須是 P11 或 P15；系統會拒絕使用較低的效能層級作為次要資料庫，因為這些資料庫無法支援 4TB 的大小。
+   - 在異地複寫關聯性中升級主要資料庫：將主要資料庫的大小上限變更為 4TB 會在次要資料庫中觸發相同的變更。 這兩種升級方式都必須成功，在主要資料庫中的變更才會生效。 適用於 4TB 選項的區域限制 (請參閱上述內容)。 如果次要資料庫位於不支援 4TB 大小的區域，就無法升級主要資料庫。
+- 不支援使用匯入/匯出服務載入 P11-4TB/P15-4TB 資料庫的功能。 使用 SqlPackage.exe 來[匯入](sql-database-import-sqlpackage.md)和[匯出](sql-database-export.md)資料。
 
-## Next steps
+## <a name="next-steps"></a>後續步驟
 
-* Learn the details of [elastic pools](sql-database-elastic-pool-guidance.md) and [price and performance considerations for elastic pools](sql-database-elastic-pool-guidance.md).
-* Learn how to [Monitor, manage, and resize elastic pools](sql-database-elastic-pool-manage-portal.md) and [Monitor the performance of single databases](sql-database-single-database-monitor.md).
-* Now that you know about the SQL Database tiers, try them out with a [free account](https://azure.microsoft.com/pricing/free-trial/) and learn [how to create your first SQL database](sql-database-get-started.md).
-* For migration scenarios, use the [DTU Calculator](http://dtucalculator.azurewebsites.net/) to approximate the number of DTUs needed. 
+* 深入了解[彈性集區](sql-database-elastic-pool-guidance.md)和[彈性集區](sql-database-elastic-pool-guidance.md)的價格與效能考量。
+* 了解如何[監視、管理彈性集區和調整其大小](sql-database-elastic-pool-manage-portal.md)和[監視單一資料庫的效能](sql-database-single-database-monitor.md)。
+* 如果您認識了 SQL Database 各個層，可以透過[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)親身體驗，然後了解[如何建立您的第一個 SQL Database](sql-database-get-started.md)。
+* 若要進行移轉，請使用 [DTU 計算機](http://dtucalculator.azurewebsites.net/)估計所需的 DTU 數目。 
 
 

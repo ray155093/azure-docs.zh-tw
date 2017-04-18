@@ -55,7 +55,7 @@ Passport 是 Node.js 的驗證中介軟體。 您可以暗中將極具彈性且�
 5. 遵照提示建立 **Web 應用程式**和/或 **Web API**。
   * 應用程式的 [名稱] 對使用者說明您的應用程式。
 
-  * [ **登入 URL** ] 是指應用程式的基底 URL。  基本架構的預設值是`http://localhost:3000/auth/openid/return``。
+  * [ **登入 URL** ] 是指應用程式的基底 URL。  基本架構的預設值是 `http://localhost:3000/auth/openid/return`` 。
 
 6. 註冊之後，Azure AD 會指派唯一的應用程式識別碼給您的應用程式。 您會在後續章節中用到這個值，所以請從應用程式頁面中複製此值。
 7. 從應用程式的 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI。 [ **應用程式識別碼 URI** ] 是指應用程式的唯一識別碼。 慣例是使用 `https://<tenant-domain>/<app-name>` 格式，例如：`https://contoso.onmicrosoft.com/my-first-aad-app`。
