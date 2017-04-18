@@ -13,10 +13,11 @@ ms.tgt_pltfrm: mobile-ios
 ms.devlang: objective-c
 ms.topic: article
 ms.date: 01/07/2017
-ms.author: brandwe
+ms.author: xerners
 translationtype: Human Translation
 ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
 ms.openlocfilehash: c74e63621d422f8fa13bc1dd2730ec2c3325a46a
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -233,10 +234,5 @@ ADAL 可讓您輕鬆地將這些常見的身分識別功能全部納入您的應
 * 了解 [如何使用 ADAL 在 iOS 上啟用跨應用程式的 SSO](active-directory-sso-ios.md)  
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 
