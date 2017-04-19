@@ -2,8 +2,3 @@
 
 * [媒體服務即時串流工作流程](https://azure.microsoft.com/documentation/learning-paths/media-services-streaming-live/)
 * [媒體服務隨選串流工作流程](https://azure.microsoft.com/documentation/learning-paths/media-services-streaming-on-demand/)
-
-
-<!--HONumber=Feb17_HO3-->
-
-

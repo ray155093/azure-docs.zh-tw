@@ -18,7 +18,7 @@ ms.author: garye
 translationtype: Human Translation
 ms.sourcegitcommit: 21d2c20a3ac8dc4fee0680028d6c004c80a3ae38
 ms.openlocfilehash: 2835e4e8be2a11b659118f836d53c84a2c021263
-ms.lasthandoff: 03/02/2017
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -103,7 +103,7 @@ Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的�
 * 當反覆運算數目非常大時的交叉驗證、微調模型超參數、序數迴歸和一對多的多類別
 
 #### <a id="UploadLimit"></a>資料上傳的限制為何？
-針對大於&2; GB 的資料集，請將資料上傳至 Azure 儲存體或 Azure SQL Database，或是使用 Azure HDInsight，而不要直接從本機檔案上傳。
+針對大於 2 GB 的資料集，請將資料上傳至 Azure 儲存體或 Azure SQL Database，或是使用 Azure HDInsight，而不要直接從本機檔案上傳。
 
 **可以從 Amazon S3 讀取資料嗎？**
 
@@ -132,7 +132,7 @@ Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的�
 
 **在我的實驗中可以平行執行多少個模組？**  
 
-您可以在實驗中最多平行執行&4; 個模組。
+您可以在實驗中最多平行執行 4 個模組。
 
 ### <a name="data-processing"></a>資料處理
 **有能力在實驗內將資料以互動方式視覺化嗎 (R 視覺效果外)？**
@@ -545,7 +545,7 @@ Machine Learning 服務是多租用戶服務。 後端實際使用的計算資�
 ### <a name="guest-access"></a>來賓存取
 **何謂 Azure 機器學習 Studio 的來賓存取？**
 
-「來賓存取」是有限制的試用經驗。 您可以在不經驗證的情況下，於 Azure Machine Learning Studio 中免費建立及執行實驗。 來賓工作階段為非持續性工作階段 (無法儲存) 且僅限&8; 小時。 其他限制包括缺少 R 和 Python 支援、缺少預備 API，以及有限的資料集大小和儲存體容量。 透過比較，選擇以 Microsoft 帳戶登入的使用者享有前述 Machine Learning Studio 免費層的完整存取權，包括持續性工作區和更全面的功能。 若要選擇免費的 Machine Learning 體驗，請在 [https://studio.azureml.net](https://studio.azureml.net) 上按一下 [開始使用]，然後選取**來賓存取**或以 Microsoft 帳戶登入。
+「來賓存取」是有限制的試用經驗。 您可以在不經驗證的情況下，於 Azure Machine Learning Studio 中免費建立及執行實驗。 來賓工作階段為非持續性工作階段 (無法儲存) 且僅限 8 小時。 其他限制包括缺少 R 和 Python 支援、缺少預備 API，以及有限的資料集大小和儲存體容量。 透過比較，選擇以 Microsoft 帳戶登入的使用者享有前述 Machine Learning Studio 免費層的完整存取權，包括持續性工作區和更全面的功能。 若要選擇免費的 Machine Learning 體驗，請在 [https://studio.azureml.net](https://studio.azureml.net) 上按一下 [開始使用]，然後選取**來賓存取**或以 Microsoft 帳戶登入。
 
 <!-- Module References -->
 [image-reader]: https://msdn.microsoft.com/library/azure/893f8c57-1d36-456d-a47b-d29ae67f5d84/

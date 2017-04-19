@@ -3,8 +3,3 @@
 
 以關鍵字 `azure-functions`標示問題。 - [瀏覽 Stack Overflow](http://stackoverflow.com/questions/tagged/azure-functions)
 
-
-
-<!--HONumber=Nov16_HO2-->
-
-
