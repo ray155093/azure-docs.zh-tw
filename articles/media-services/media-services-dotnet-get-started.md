@@ -17,7 +17,7 @@ ms.author: juliako
 translationtype: Human Translation
 ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
 ms.openlocfilehash: 124eff2edccb6b4ad56ee39a2b37e892ef8c6cb4
-ms.lasthandoff: 03/03/2017
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -184,7 +184,7 @@ ms.lasthandoff: 03/03/2017
 
 * **None** - 不使用加密。 這是預設值。 請注意，使用此選項時，您的內容在傳輸或儲存體中靜止時不會受到保護。
   如果您計劃使用漸進式下載傳遞 MP4，請使用此選項。
-* **StorageEncrypted** - 請使用此選項來利用進階加密標準 (AES)&256; 位元加密，對您的純文字內容進行本機加密，然後會將它上傳到已靜止加密儲存的 Azure 儲存體。 以儲存體加密保護的資產會自動解除加密並在編碼前放置在加密的檔案系統中，並且會在上傳為新輸出資產之前選擇性地重新編碼。 儲存體加密的主要使用案例是讓您可以使用強式加密來保護磁碟中靜止的高品質輸入媒體檔。
+* **StorageEncrypted** - 請使用此選項來利用進階加密標準 (AES) 256 位元加密，對您的純文字內容進行本機加密，然後會將它上傳到已靜止加密儲存的 Azure 儲存體。 以儲存體加密保護的資產會自動解除加密並在編碼前放置在加密的檔案系統中，並且會在上傳為新輸出資產之前選擇性地重新編碼。 儲存體加密的主要使用案例是讓您可以使用強式加密來保護磁碟中靜止的高品質輸入媒體檔。
 * **CommonEncryptionProtected** - 如果您要上傳已經使用一般加密或 PlayReady DRM (例如使用 PlayReady DRM 保護的 Smooth Streaming) 加密及保護的內容，請使用這個選項。
 * **EnvelopeEncryptionProtected** – 如果您要上傳使用 AES 加密的 HLS，請使用這個選項。 請注意，檔案必須已由 Transform Manager 編碼和加密。
 

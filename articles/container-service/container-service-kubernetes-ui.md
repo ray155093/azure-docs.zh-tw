@@ -58,7 +58,7 @@ $ az acs kubernetes install-cli
 您可以藉由執行下列操作啟動 Kubernetes Web UI：
 
 ```console
-$ az acs kubernetes browse
+$ az acs kubernetes browse -g [Resource Group] -n [Container service instance name]
 ```
 
 這應該會開啟網頁瀏覽器，設定與安全 proxy (將您的本機電腦連接至 Kubernetes Web UI) 通訊。

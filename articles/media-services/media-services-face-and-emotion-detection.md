@@ -12,11 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 02/09/2017
+ms.date: 04/17/2017
 ms.author: milanga;juliako;
 translationtype: Human Translation
 ms.sourcegitcommit: adaf2a71e022d6d29493ab0a679bd593ea40195e
 ms.openlocfilehash: acb3b4d4a14ea546e94ccc38806251460e21a6bc
+ms.lasthandoff: 02/10/2017
 
 
 ---
@@ -48,7 +49,7 @@ ms.openlocfilehash: acb3b4d4a14ea546e94ccc38806251460e21a6bc
 
 已偵測並追蹤的臉部將會搭配能以像素為單位表示臉部在影像中位置的座標 (左側、上方、寬度和高度)，以及表示對該人員進行追蹤的臉部識別碼。 臉部識別碼很容易在正面臉部長時間於畫面中遺失或重疊的情況下重設，導致某些人員被指派多個識別碼。
 
-### <a name="a-idoutputelementsaelements-of-the-output-json-file"></a><a id="output_elements"></a>輸出 JSON 檔案的元素
+### <a id="output_elements"></a>輸出 JSON 檔案的元素
 針對臉部偵測和追蹤作業，輸出結果會以 JSON 格式包含指定檔案內臉部的中繼資料。
 
 臉部偵測和追蹤 JSON 包括下列屬性：
@@ -82,7 +83,7 @@ ms.openlocfilehash: acb3b4d4a14ea546e94ccc38806251460e21a6bc
 以 **Azure 媒體臉部偵測器**建立工作時，您必須指定設定預設值。 下列設定預設值僅適用於臉部偵測。
 
     {
-      "version":"1.0"
+      "version":"1.0",
       "options":{
           "TrackingMode": "Faster"
       }
@@ -521,10 +522,5 @@ ms.openlocfilehash: acb3b4d4a14ea546e94ccc38806251460e21a6bc
 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

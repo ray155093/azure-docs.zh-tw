@@ -18,14 +18,14 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 6971e123b388eab689e02a5c67809509c2ad29c6
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
+ms.openlocfilehash: 72206e299c245187731e4397610bbcfb01f5311c
+ms.lasthandoff: 04/18/2017
 
 
 ---
 # <a name="use-interactive-hive-in-hdinsight-preview"></a>在 HDInsight 中使用互動式 Hive (預覽)
-互動式 Hive (又稱為 [Live Long and Process](https://cwiki.apache.org/confluence/display/Hive/LLAP)) 為新的 HDInsight [叢集類型](hdinsight-hadoop-provision-linux-clusters.md#cluster-types)。 [Live Long and Process](https://cwiki.apache.org/confluence/display/Hive/LLAP)) is a new HDInsight [cluster type](hdinsight-hadoop-provision-linux-clusters.md#cluster-types).  互動式 Hive 允許記憶體內快取，可讓 Hive 查詢更具互動性且速度更快。 這項新功能讓 HDInsight 成為全世界效能、彈性和開放性最佳的雲端巨量資料方案之一，因其具有記憶體內快取 (使用 Hive 和 Spark) 與進階分析功能，而這些功能是透過與 R 服務深入整合而來。 
+互動式 Hive (又稱為. [Live Long and Process](https://cwiki.apache.org/confluence/display/Hive/LLAP)) 為新的 HDInsight [叢集類型](hdinsight-hadoop-provision-linux-clusters.md#cluster-types)。  互動式 Hive 允許記憶體內快取，可讓 Hive 查詢更具互動性且速度更快。 這項新功能讓 HDInsight 成為全世界效能、彈性和開放性最佳的雲端巨量資料方案之一，因其具有記憶體內快取 (使用 Hive 和 Spark) 與進階分析功能，而這些功能是透過與 R 服務深入整合而來。 
 
 互動式 Hive 叢集與 Hadoop 叢集不同。 它只包含 Hive 服務。 
 

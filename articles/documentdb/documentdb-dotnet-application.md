@@ -18,7 +18,7 @@ ms.author: syamk
 translationtype: Human Translation
 ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
 ms.openlocfilehash: 44307f258ea05635addf85bf9c59cd78b2ac0f1e
-ms.lasthandoff: 03/08/2017
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -559,7 +559,7 @@ ms.lasthandoff: 03/08/2017
     - 區域：選取最接近應用程式使用者的區域
     - 資料庫伺服器︰按一下無資料庫，然後按一下 [建立]。 
 
-4. 在 [todo-net-app *] 畫面中，按一下 [驗證連線]**。在驗證連線之後，按一下 [發佈]**。 
+4. 在 [todo-net-app *] 畫面中，按一下 [驗證連線]。 在驗證連線之後，按一下 [發佈]。 
     
     應用程式隨即會顯示在瀏覽器中。
 

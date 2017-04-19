@@ -18,7 +18,7 @@ ms.author: dobett
 translationtype: Human Translation
 ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
 ms.openlocfilehash: e68815c2dafc596c3560ad3fcb2a7bf96d29182b
-ms.lasthandoff: 03/06/2017
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -123,11 +123,11 @@ Azure IoT 套件[預先設定的解決方案][lnk-preconfigured-solutions]結合
 
 1. 呼叫作業**變更遙測間隔**。
 
-1. 將**所需屬性**名稱 **desired.Config.TelemetryInterval** 的值變更為&5; 秒。
+1. 將**所需屬性**名稱 **desired.Config.TelemetryInterval** 的值變更為 5 秒。
 
 1. 選擇 [排程]。
 
-    ![將 TelemetryInterval 屬性變更為&5; 秒][img-change-interval]
+    ![將 TelemetryInterval 屬性變更為 5 秒][img-change-interval]
 
 1. 您可以在入口網站中的 [管理作業] 頁面上，監視作業的進度。
 
