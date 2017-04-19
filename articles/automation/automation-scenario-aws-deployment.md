@@ -4,7 +4,7 @@ description: "本文示範如何使用 Azure 自動化來自動化 Amazon Web �
 services: automation
 documentationcenter: 
 author: mgoedtel
-manager: jwhit
+manager: carmonm
 editor: 
 ms.assetid: 1d85c01a-d795-4523-8194-84fc15b53838
 ms.service: automation
@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/13/2017
+ms.date: 04/14/2017
 ms.author: tiandert; bwren
 translationtype: Human Translation
-ms.sourcegitcommit: ff1acafaacc40dd8a04b008df7cd479c811a7af0
-ms.openlocfilehash: 62b6c09f749aa36307206e23d36bd86b5b8ce455
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: e0b784006b4933fe986890c09afa965934511784
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 11/17/2016
 在本文中，我們會示範如何利用 Azure 自動化在 Amazon Web Service (AWS) 訂用帳戶中佈建虛擬機器，並且提供該 VM 的特定名稱 (AWS 稱為「標記」VM)。
 
 ## <a name="prerequisites"></a>必要條件
-基於本文的目的，您需要擁有 Azure 自動化帳戶和 AWS 訂用帳戶。 如需設定 Azure 自動化帳戶以及使用 AWS 訂用帳戶認證進行設定的詳細資訊，請檢閱[使用 Amazon Web Services 設定驗證](automation-sec-configure-aws-account.md)。  繼續之前，應該使用您的 AWS 訂用帳戶認證來建立或更新此帳戶，因為我們將在下列步驟中參考此帳戶。
+基於本文的目的，您需要擁有 Azure 自動化帳戶和 AWS 訂用帳戶。 如需設定 Azure 自動化帳戶以及使用 AWS 訂用帳戶認證進行設定的詳細資訊，請檢閱[使用 Amazon Web Services 設定驗證](automation-configure-aws-account.md)。  繼續之前，應該使用您的 AWS 訂用帳戶認證來建立或更新此帳戶，因為我們將在下列步驟中參考此帳戶。
 
 ## <a name="deploy-amazon-web-services-powershell-module"></a>部署 Amazon Web Services PowerShell 模組
 我們的 VM 佈建 Runbook 將會利用 AWS PowerShell 模組來執行其工作。 執行下列步驟，將模組新增至使用 AWS 訂用帳戶認證所設定的自動化帳戶。  

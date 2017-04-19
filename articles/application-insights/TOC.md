@@ -31,7 +31,7 @@
 ## 規劃和設計
 ### [深入診斷 Web Apps 和服務](app-insights-devops.md)
 ### [監視 Web 應用程式的效能](app-insights-web-monitor-performance.md)
-### [使用 Application Insights 進行使用量分析](app-insights-overview-usage.md)
+### [使用 Application Insights 進行使用量分析](app-insights-web-track-usage.md)
 ### [分隔 Application Insights 資源](app-insights-separate-resources.md)
 ### [我如何在 Application Insights 中...？](app-insights-how-do-i.md)
 
@@ -49,7 +49,6 @@
 #### [相依項目](app-insights-asp-net-dependencies.md)
 #### [版本註解](app-insights-annotations.md)
 #### [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)
-#### [常見問題集](app-insights-troubleshoot-faq.md)
 
 
 ### J2EE
@@ -92,6 +91,7 @@
 #### [教學](app-insights-analytics-tour.md)
 #### [使用](app-insights-analytics-using.md)
 #### [匯入](app-insights-analytics-import.md)
+#### [診斷](app-insights-analytics-diagnostics.md)
 
 ## 自動化
 
@@ -146,6 +146,7 @@
 ### [SDK 版本資訊](app-insights-release-notes.md)
 ### [開發人員分析工具的版本資訊](app-insights-release-notes-vsix.md)
 
+## [常見問題集](app-insights-troubleshoot-faq.md)
 
 ## 說明
 ### [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=ApplicationInsights)  

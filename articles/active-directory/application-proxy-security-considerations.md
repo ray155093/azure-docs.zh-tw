@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 01/12/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 5d741836f5defd5d9287b90e53e71aeea439a1df
-ms.openlocfilehash: 81a7a57e6b025710660f7d55145ee286b71acf24
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 4019b379939e43e4e974552f1f0be245c5b1d33e
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -38,7 +38,7 @@ Azure AD 應用程式 Proxy 提供下列安全性優點︰
 **條件式存取︰**在建立您的網路連線之前，先套用更豐富的原則控制。
 
 * 使用條件式存取，就可以進一步定義允許哪些流量存取後端應用程式上的限制。 您可以根據位置、驗證強度和使用者風險狀況來定義限制。
-* 此功能可使攻擊者受到其他障礙。 如需有關條件式存取的詳細資訊，請參閱[開始使用 Azure AD 條件式存取](https://azure.microsoft.com/en-us/documentation/articles/active-directory-conditional-access-azuread-connected-apps)。
+* 此功能可使攻擊者受到其他障礙。 如需有關條件式存取的詳細資訊，請參閱[開始使用 Azure AD 條件式存取](https://azure.microsoft.com/documentation/articles/active-directory-conditional-access-azuread-connected-apps)。
 
 **流量終止︰**終止雲端中所有的流量。
 
@@ -53,14 +53,14 @@ Azure AD 應用程式 Proxy 提供下列安全性優點︰
 
 * Azure AD Identity Protection 的機器學習導向智慧所使用之資料是來自我們的數位犯罪防治中心和 Microsoft 安全性回應中心。 我們共同主動識別遭入侵的帳戶，並提供來自高風險登入的即時防護。 我們考慮許多因素，例如來自受感染裝置、透過匿名網路以及來自非典型與假位置的存取。
 * 這些報告和事件中有許多已可透過 API 與安全性資訊和事件管理 (SIEM) 系統整合。
-* 如需詳細資訊，請參閱 [Azure AD Identity Protection](https://azure.microsoft.com/en-us/documentation/articles/active-directory-identityprotection)。
+* 如需詳細資訊，請參閱 [Azure AD Identity Protection](https://azure.microsoft.com/documentation/articles/active-directory-identityprotection)。
 
 **遠端存取即服務︰**您不必擔心維護及修補內部部署伺服器的事宜。
 
 * Azure AD 應用程式 Proxy 是 Microsoft 自有的網際網路級服務，因此請放心，您永遠會獲得最新的安全性修補程式和升級。
 * 未更新的軟體仍需負責處理大量攻擊。 使用我們的服務模型，您不必再承擔邊緣伺服器的管理工作。
 
-依據 [Azure 信任中心](https://azure.microsoft.com/en-us/support/trust-center)所概述之指導方針和標準，使用 Azure AD 運作所提供的遠端存取服務。
+依據 [Azure 信任中心](https://azure.microsoft.com/support/trust-center)所概述之指導方針和標準，使用 Azure AD 運作所提供的遠端存取服務。
 
 下圖顯示 Azure AD 如何讓您在內部部署應用程式實現安全的遠端存取。
 

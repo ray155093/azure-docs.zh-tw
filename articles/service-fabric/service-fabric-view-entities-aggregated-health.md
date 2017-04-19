@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 04/12/2017
 ms.author: oanapl
 translationtype: Human Translation
-ms.sourcegitcommit: 2573f300231ceb080343dad5c1c2aa65cc31c59e
-ms.openlocfilehash: f62a7a8f594c67cac687159d72bfdb00a3355025
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: add30a2b1b521bf1d1af49590ba4b71ab772e319
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -93,7 +93,7 @@ Service Fabric 會針對每種支援的 [實體類型](service-fabric-health-int
 * [選擇性] 事件、節點和應用程式的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件、節點及應用程式都會用來評估實體彙總健全狀況，不論篩選器為何。
 
 ### <a name="api"></a>API
-若要取得叢集健康情況，請建立 `FabricClient` ，並在其 [HealthManager](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.healthclient.getclusterhealthasync.aspx) 上呼叫 **GetClusterHealthAsync**方法。
+若要取得叢集健康情況，請建立 `FabricClient` ，並在其 [HealthManager](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthasync) 上呼叫 **GetClusterHealthAsync**方法。
 
 下列呼叫會取得叢集健全狀況︰
 
@@ -101,7 +101,7 @@ Service Fabric 會針對每種支援的 [實體類型](service-fabric-health-int
 ClusterHealth clusterHealth = await fabricClient.HealthManager.GetClusterHealthAsync();
 ```
 
-以下程式碼使用自訂的叢集健全狀況原則和針對節點與應用程式的篩選，取得叢集健全狀況。 這會建立包含輸入資訊的 [ClusterHealthQueryDescription](https://msdn.microsoft.com/library/azure/system.fabric.description.clusterhealthquerydescription.aspx)。
+以下程式碼使用自訂的叢集健全狀況原則和針對節點與應用程式的篩選，取得叢集健全狀況。 這會建立包含輸入資訊的 [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthquerydescription)。
 
 ```csharp
 var policy = new ClusterHealthPolicy()
@@ -127,7 +127,7 @@ ClusterHealth clusterHealth = await fabricClient.HealthManager.GetClusterHealthA
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得叢集健康情況的 Cmdlet 是 [Get-ServiceFabricClusterHealth](https://msdn.microsoft.com/library/mt125850.aspx)。 首先會使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx) Cmdlet 連接到叢集。
+取得叢集健康情況的 Cmdlet 是 [Get-ServiceFabricClusterHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealth)。 首先會使用 [Connect-ServiceFabricCluster](https://docs.microsoft.com/powershell/module/servicefabric/connect-servicefabriccluster) Cmdlet 連接到叢集。
 
 叢集的狀態是五個節點、系統應用程式和依所述設定的 fabric:/WordCount。
 
@@ -213,7 +213,7 @@ HealthEvents            : None
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://msdn.microsoft.com/library/azure/dn707669.aspx)或 [POST 要求](https://msdn.microsoft.com/library/azure/dn707696.aspx) (含有其本文中所述的健康狀態原則) 取得叢集健全狀況。
+您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得叢集健全狀況。
 
 ## <a name="get-node-health"></a>取得節點的健康情況
 傳回節點實體的健全狀況，並且包含節點上報告的健康狀態事件。 輸入：
@@ -223,7 +223,7 @@ HealthEvents            : None
 * [選擇性] 事件的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件都會用來評估實體彙總健全狀況，不論篩選器為何。
 
 ### <a name="api"></a>API
-若要透過 API 取得節點健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetNodeHealthAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.healthclient.getnodehealthasync.aspx) 方法。
+若要透過 API 取得節點健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetNodeHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getnodehealthasync) 方法。
 
 以下程式碼會取得指定節點名稱的節點健全狀況：
 
@@ -231,7 +231,7 @@ HealthEvents            : None
 NodeHealth nodeHealth = await fabricClient.HealthManager.GetNodeHealthAsync(nodeName);
 ```
 
-以下程式碼會透過 [NodeHealthQueryDescription](https://msdn.microsoft.com/library/azure/system.fabric.description.nodehealthquerydescription.aspx)傳入事件篩選和自訂原則，取得指定節點名稱的節點健全狀況：
+以下程式碼會透過 [NodeHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.nodehealthquerydescription)傳入事件篩選和自訂原則，取得指定節點名稱的節點健全狀況：
 
 ```csharp
 var queryDescription = new NodeHealthQueryDescription(nodeName)
@@ -244,7 +244,7 @@ NodeHealth nodeHealth = await fabricClient.HealthManager.GetNodeHealthAsync(quer
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得節點健全狀況的 Cmdlet 是 [Get-ServiceFabricNodeHealth](https://msdn.microsoft.com/library/mt125937.aspx)。 首先會使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx) Cmdlet 連接到叢集。
+取得節點健全狀況的 Cmdlet 是 [Get-ServiceFabricNodeHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnodehealth)。 首先會使用 [Connect-ServiceFabricCluster](https://docs.microsoft.com/powershell/module/servicefabric/connect-servicefabriccluster) Cmdlet 連接到叢集。
 以下 Cmdlet 會使用預設的健康情況原則，取得節點健康情況：
 
 ```powershell
@@ -282,7 +282,7 @@ _Node_4                     Ok
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://msdn.microsoft.com/library/azure/dn707650.aspx)或 [POST 要求](https://msdn.microsoft.com/library/azure/dn707665.aspx) (含有其本文中所述的健康狀態原則) 取得節點健全狀況。
+您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得節點健全狀況。
 
 ## <a name="get-application-health"></a>取得應用程式健康情況
 傳回應用程式實體的健康情況。 包含已部署應用程式和服務子系的健康情況狀態。 輸入：
@@ -292,7 +292,7 @@ _Node_4                     Ok
 * [選擇性] 事件、服務和已部署應用程式的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件、服務及已部署應用程式都會用來評估實體彙總健全狀況，不論篩選器為何。
 
 ### <a name="api"></a>API
-若要取得應用程式健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetApplicationHealthAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.healthclient.getapplicationhealthasync.aspx) 方法。
+若要取得應用程式健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getapplicationhealthasync) 方法。
 
 以下程式碼會取得指定應用程式名稱 (URI) 的應用程式健全狀況：
 
@@ -300,7 +300,7 @@ _Node_4                     Ok
 ApplicationHealth applicationHealth = await fabricClient.HealthManager.GetApplicationHealthAsync(applicationName);
 ```
 
-以下程式碼會透過 [ApplicationHealthQueryDescription](https://msdn.microsoft.com/library/azure/system.fabric.description.applicationhealthquerydescription.aspx)指定篩選和自訂原則，取得指定應用程式名稱 (URI) 的應用程式健全狀況。
+以下程式碼會透過 [ApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.applicationhealthquerydescription)指定篩選和自訂原則，取得指定應用程式名稱 (URI) 的應用程式健全狀況。
 
 ```csharp
 HealthStateFilter warningAndErrors = HealthStateFilter.Error | HealthStateFilter.Warning;
@@ -329,7 +329,7 @@ ApplicationHealth applicationHealth = await fabricClient.HealthManager.GetApplic
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得應用程式健全狀況的 Cmdlet 是 [Get-ServiceFabricApplicationHealth](https://msdn.microsoft.com/library/mt125976.aspx)。 首先會使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx) Cmdlet 連接到叢集。
+取得應用程式健全狀況的 Cmdlet 是 [Get-ServiceFabricApplicationHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricapplicationhealth)。 首先會使用 [Connect-ServiceFabricCluster](https://docs.microsoft.com/powershell/module/servicefabric/connect-servicefabriccluster) Cmdlet 連接到叢集。
 
 以下 Cmdlet 會傳回 **fabric:/WordCount** 應用程式的健全狀況：
 
@@ -428,7 +428,7 @@ HealthEvents                    : None
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://msdn.microsoft.com/library/azure/dn707681.aspx)或 [POST 要求](https://msdn.microsoft.com/library/azure/dn707643.aspx) (含有其本文中所述的健康狀態原則) 取得應用程式健全狀況。
+您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application-by-using-an-application-health-policy) (含有其本文中所述的健康狀態原則) 取得應用程式健全狀況。
 
 ## <a name="get-service-health"></a>取得服務健康情況
 傳回服務實體的健康情況。 包含分割區的健康情況狀態。 輸入：
@@ -438,7 +438,7 @@ HealthEvents                    : None
 * [選擇性] 事件和分割區的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件和分割區都會用來評估實體彙總健全狀況，不論篩選器為何。
 
 ### <a name="api"></a>API
-若要透過 API 取得服務健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetServiceHealthAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.healthclient.getservicehealthasync.aspx) 方法。
+若要透過 API 取得服務健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetServiceHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getservicehealthasync) 方法。
 
 以下範例會使用指定的服務名稱 (URI)，取得服務的健康情況：
 
@@ -446,7 +446,7 @@ HealthEvents                    : None
 ServiceHealth serviceHealth = await fabricClient.HealthManager.GetServiceHealthAsync(serviceName);
 ```
 
-以下程式碼會透過 [ServiceHealthQueryDescription](https://msdn.microsoft.com/library/azure/system.fabric.description.servicehealthquerydescription.aspx)指定篩選和自訂原則，取得指定服務名稱 (URI) 的服務健全狀況：
+以下程式碼會透過 [ServiceHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.servicehealthquerydescription)指定篩選和自訂原則，取得指定服務名稱 (URI) 的服務健全狀況：
 
 ```csharp
 var queryDescription = new ServiceHealthQueryDescription(serviceName)
@@ -459,7 +459,7 @@ ServiceHealth serviceHealth = await fabricClient.HealthManager.GetServiceHealthA
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得服務健全狀況的 Cmdlet 是 [Get-ServiceFabricServiceHealth](https://msdn.microsoft.com/library/mt125984.aspx)。 首先會使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx) Cmdlet 連接到叢集。
+取得服務健全狀況的 Cmdlet 是 [Get-ServiceFabricServiceHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricservicehealth)。 首先會使用 [Connect-ServiceFabricCluster](https://docs.microsoft.com/powershell/module/servicefabric/connect-servicefabriccluster) Cmdlet 連接到叢集。
 
 以下 Cmdlet 會使用預設的健康情況原則，取得服務健康情況：
 
@@ -530,7 +530,7 @@ HealthEvents          :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://msdn.microsoft.com/library/azure/dn707609.aspx)或 [POST 要求](https://msdn.microsoft.com/library/azure/dn707646.aspx) (含有其本文中所述的健康狀態原則) 取得服務健全狀況。
+您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得服務健全狀況。
 
 ## <a name="get-partition-health"></a>取得分割區健康情況
 傳回分割區實體的健康情況。 包含複本的健康情況狀態。 輸入：
@@ -540,14 +540,14 @@ HealthEvents          :
 * [選擇性] 事件和複本的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件和複本都會用來評估實體彙總健全狀況，不論篩選器為何。
 
 ### <a name="api"></a>API
-若要透過 API 取得分割區健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetPartitionHealthAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.healthclient.getpartitionhealthasync.aspx) 方法。 若要指定選擇性參數，請建立 [PartitionHealthQueryDescription](https://msdn.microsoft.com/library/azure/system.fabric.description.partitionhealthquerydescription.aspx)。
+若要透過 API 取得分割區健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetPartitionHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getpartitionhealthasync) 方法。 若要指定選擇性參數，請建立 [PartitionHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.partitionhealthquerydescription)。
 
 ```csharp
 PartitionHealth partitionHealth = await fabricClient.HealthManager.GetPartitionHealthAsync(partitionId);
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得分割區健全狀況的 Cmdlet 是 [Get-ServiceFabricPartitionHealth](https://msdn.microsoft.com/library/mt125869.aspx)。 首先會使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx) Cmdlet 連接到叢集。
+取得分割區健全狀況的 Cmdlet 是 [Get-ServiceFabricPartitionHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricpartitionhealth)。 首先會使用 [Connect-ServiceFabricCluster](https://docs.microsoft.com/powershell/module/servicefabric/connect-servicefabriccluster) Cmdlet 連接到叢集。
 
 以下 Cmdlet 會取得 **fabric:/WordCount/WordCountService** 服務之所有分割區的健全狀況：
 
@@ -591,7 +591,7 @@ HealthEvents          :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://msdn.microsoft.com/library/azure/dn707683.aspx)或 [POST 要求](https://msdn.microsoft.com/library/azure/dn707680.aspx) (含有其本文中所述的健康狀態原則) 取得分割區健全狀況。
+您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得分割區健全狀況。
 
 ## <a name="get-replica-health"></a>取得複本健康情況
 傳回可設定具狀態服務複本或無狀態服務執行個體的健康狀態。 輸入：
@@ -601,14 +601,14 @@ HealthEvents          :
 * [選擇性] 事件的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件都會用來評估實體彙總健全狀況，不論篩選器為何。
 
 ### <a name="api"></a>API
-若要透過 API 取得複本健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetReplicaHealthAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.healthclient.getreplicahealthasync.aspx) 方法。 若要指定進階參數，請使用 [ReplicaHealthQueryDescription](https://msdn.microsoft.com/library/azure/system.fabric.description.replicahealthquerydescription.aspx)。
+若要透過 API 取得複本健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetReplicaHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getreplicahealthasync) 方法。 若要指定進階參數，請使用 [ReplicaHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.replicahealthquerydescription)。
 
 ```csharp
 ReplicaHealth replicaHealth = await fabricClient.HealthManager.GetReplicaHealthAsync(partitionId, replicaId);
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得複本健全狀況的 Cmdlet 是 [Get-ServiceFabricReplicaHealth](https://msdn.microsoft.com/library/mt125808.aspx)。 首先會使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx) Cmdlet 連接到叢集。
+取得複本健全狀況的 Cmdlet 是 [Get-ServiceFabricReplicaHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricreplicahealth)。 首先會使用 [Connect-ServiceFabricCluster](https://docs.microsoft.com/powershell/module/servicefabric/connect-servicefabriccluster) Cmdlet 連接到叢集。
 
 以下 Cmdlet 會針對服務的所有分割區取得主要複本健康情況：
 
@@ -634,7 +634,7 @@ HealthEvents          :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://msdn.microsoft.com/library/azure/dn707673.aspx)或 [POST 要求](https://msdn.microsoft.com/library/azure/dn707641.aspx) (含有其本文中所述的健康狀態原則) 取得複本健全狀況。
+您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得複本健全狀況。
 
 ## <a name="get-deployed-application-health"></a>取得已部署應用程式的健康情況
 傳回部署在節點實體上的應用程式健康情況。 包含已部署的服務封裝健康情況狀態。 輸入：
@@ -644,7 +644,7 @@ HealthEvents          :
 * [選擇性] 事件和已部署服務封裝的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件和已部署服務封裝都會用來評估實體彙總健全狀況，不論篩選器為何。
 
 ### <a name="api"></a>API
-若要透過 API 取得部署在節點上之應用程式的健全狀況，請建立 `FabricClient` 並在其 HealthManager 上呼叫 [GetDeployedApplicationHealthAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.healthclient.getdeployedapplicationhealthasync.aspx) 方法。 若要指定選擇性參數，請使用 [DeployedApplicationHealthQueryDescription](https://msdn.microsoft.com/library/azure/system.fabric.description.deployedapplicationhealthquerydescription.aspx)。
+若要透過 API 取得部署在節點上之應用程式的健全狀況，請建立 `FabricClient` 並在其 HealthManager 上呼叫 [GetDeployedApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedapplicationhealthasync) 方法。 若要指定選擇性參數，請使用 [DeployedApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedapplicationhealthquerydescription)。
 
 ```csharp
 DeployedApplicationHealth health = await fabricClient.HealthManager.GetDeployedApplicationHealthAsync(
@@ -652,7 +652,7 @@ DeployedApplicationHealth health = await fabricClient.HealthManager.GetDeployedA
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得已部署應用程式健全狀況的 Cmdlet 是 [Get-ServiceFabricDeployedApplicationHealth](https://msdn.microsoft.com/library/mt163523.aspx)。 首先會使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx) Cmdlet 連接到叢集。 若要找出應用程式的部署位置，請執行 [Get-ServiceFabricApplicationHealth](https://msdn.microsoft.com/library/mt125976.aspx) ，並查看部署的應用程式子系。
+取得已部署應用程式健全狀況的 Cmdlet 是 [Get-ServiceFabricDeployedApplicationHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth)。 首先會使用 [Connect-ServiceFabricCluster](https://docs.microsoft.com/powershell/module/servicefabric/connect-servicefabriccluster) Cmdlet 連接到叢集。 若要找出應用程式的部署位置，請執行 [Get-ServiceFabricApplicationHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricapplicationhealth) ，並查看部署的應用程式子系。
 
 以下 Cmdlet 會取得部署在 **_Node_2** 節點上的 **fabric:/WordCount** 應用程式健康情況。
 
@@ -687,7 +687,7 @@ HealthEvents                       :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://msdn.microsoft.com/library/azure/dn707644.aspx)或 [POST 要求](https://msdn.microsoft.com/library/azure/dn707688.aspx) (含有其本文中所述的健康狀態原則) 取得已部署應用程式健全狀況。
+您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得已部署應用程式健全狀況。
 
 ## <a name="get-deployed-service-package-health"></a>取得已部署服務封裝的健康情況
 傳回已部署服務封裝實體的健康情況。 輸入：
@@ -697,7 +697,7 @@ HealthEvents                       :
 * [選擇性] 事件的篩選，指定對那些項目感到興趣，並且應該在結果中傳回 (例如，僅限錯誤、或警告和錯誤)。 所有事件都會用來評估實體彙總健全狀況，不論篩選器為何。
 
 ### <a name="api"></a>API
-若要透過 API 取得已部署服務套件的健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetDeployedServicePackageHealthAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.healthclient.getdeployedservicepackagehealthasync.aspx) 方法。 若要指定選擇性參數，請使用 [DeployedServicePackageHealthQueryDescription](https://msdn.microsoft.com/library/azure/system.fabric.description.deployedservicepackagehealthquerydescription.aspx)。
+若要透過 API 取得已部署服務套件的健全狀況，請建立 `FabricClient` ，並在其 HealthManager 上呼叫 [GetDeployedServicePackageHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedservicepackagehealthasync) 方法。 若要指定選擇性參數，請使用 [DeployedServicePackageHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedservicepackagehealthquerydescription)。
 
 ```csharp
 DeployedServicePackageHealth health = await fabricClient.HealthManager.GetDeployedServicePackageHealthAsync(
@@ -705,7 +705,7 @@ DeployedServicePackageHealth health = await fabricClient.HealthManager.GetDeploy
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得已部署服務套件健全狀況的 Cmdlet 是 [Get-ServiceFabricDeployedServicePackageHealth](https://msdn.microsoft.com/library/mt163525.aspx)。 首先會使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx) Cmdlet 連接到叢集。 若要查看應用程式的部署位置，請執行 [Get-ServiceFabricApplicationHealth](https://msdn.microsoft.com/library/mt125976.aspx) ，並查看部署的應用程式。 若要查看應用程式中的服務封裝件為何，請檢視 [Get-ServiceFabricDeployedApplicationHealth](https://msdn.microsoft.com/library/mt163523.aspx) 輸出中已部署服務封裝的子系。
+取得已部署服務套件健全狀況的 Cmdlet 是 [Get-ServiceFabricDeployedServicePackageHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicepackagehealth)。 首先會使用 [Connect-ServiceFabricCluster](https://docs.microsoft.com/powershell/module/servicefabric/connect-servicefabriccluster) Cmdlet 連接到叢集。 若要查看應用程式的部署位置，請執行 [Get-ServiceFabricApplicationHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricapplicationhealth) ，並查看部署的應用程式。 若要查看應用程式中的服務封裝件為何，請檢視 [Get-ServiceFabricDeployedApplicationHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth) 輸出中已部署服務封裝的子系。
 
 以下 Cmdlet 會取得部署在 **_Node_2** 節點上 **fabric:/WordCount** 應用程式的 **WordCountServicePkg** 服務套件健全狀況。 此實體的 **System.Hosting** 報告具有成功的服務封裝和進入點啟用，以及成功的服務類型註冊。
 
@@ -756,7 +756,7 @@ HealthEvents          :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://msdn.microsoft.com/library/azure/dn707677.aspx)或 [POST 要求](https://msdn.microsoft.com/library/azure/dn707689.aspx) (含有其本文中所述的健康狀態原則) 取得已部署服務封裝的健全狀況。
+您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package-by-using-a-health-policy) (含有其本文中所述的健康狀態原則) 取得已部署服務封裝的健全狀況。
 
 ## <a name="health-chunk-queries"></a>健全狀況區塊查詢
 健全狀況區塊查詢可以傳回每個輸入篩選器的多層級叢集子系 (以遞迴方式)。 它支援進階的篩選器，可提供許多彈性來表示要由唯一識別碼或其他群組識別碼及/或健康狀態傳回與識別的特定子系。 根據預設，沒有子系包含在內，不同於永遠包含第一個層級子系的健全狀況命令。
@@ -784,14 +784,14 @@ HealthEvents          :
 * [選擇性] 用來評估節點和叢集事件的叢集健康狀態原則。
 * [選擇性] 應用程式健康情況原則對應，加上用來覆寫應用程式資訊清單原則的健康情況原則。
 * [選擇性] 節點和應用程式的篩選器，指定對那些項目感到興趣，並且應該在結果中傳回。 篩選器專屬於實體的實體/群組，或適用於該層級的所有實體。 篩選器清單可包含一個一般篩選器及/或由查詢傳回之細微實體的特定識別碼篩選器。 如果子系是空的，依預設不會傳回子系。
-  如需深入了解篩選器，請參閱 [NodeHealthStateFilter](https://msdn.microsoft.com/library/azure/system.fabric.health.nodehealthstatefilter.aspx) 和 [ApplicationHealthStateFilter](https://msdn.microsoft.com/library/azure/system.fabric.health.applicationhealthstatefilter.aspx)。 應用程式篩選器可以遞迴方式指定進階的篩選器給子系。
+  如需深入了解篩選器，請參閱 [NodeHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.nodehealthstatefilter) 和 [ApplicationHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthstatefilter)。 應用程式篩選器可以遞迴方式指定進階的篩選器給子系。
 
 區塊結果包含採用篩選器的子系。
 
 區塊查詢目前不會傳回狀況不良的評估或實體事件。 該額外資訊可使用現有的叢集健全狀況查詢取得。
 
 ### <a name="api"></a>API
-若要取得叢集健康區塊，請建立 `FabricClient` ，並在其 [HealthManager](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.healthclient.getclusterhealthchunkasync.aspx) 上呼叫 **GetClusterHealthChunkAsync**方法。 您可以傳入 [ClusterHealthQueryDescription](https://msdn.microsoft.com/library/azure/system.fabric.description.clusterhealthchunkquerydescription.aspx) 來描述健全狀況原則和進階篩選器。
+若要取得叢集健康區塊，請建立 `FabricClient` ，並在其 [HealthManager](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthchunkasync) 上呼叫 **GetClusterHealthChunkAsync**方法。 您可以傳入 [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthchunkquerydescription) 來描述健全狀況原則和進階篩選器。
 
 下列程式碼使用進階篩選器取得叢集健全狀況區塊。
 
@@ -837,7 +837,7 @@ var result = await fabricClient.HealthManager.GetClusterHealthChunkAsync(queryDe
 ```
 
 ### <a name="powershell"></a>PowerShell
-取得叢集健全狀況的 Cmdlet 是 [Get-ServiceFabricClusterChunkHealth](https://msdn.microsoft.com/library/mt644772.aspx)。 首先會使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx) Cmdlet 連接到叢集。
+取得叢集健全狀況的 Cmdlet 是 [Get-ServiceFabricClusterChunkHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealthchunk)。 首先會使用 [Connect-ServiceFabricCluster](https://docs.microsoft.com/powershell/module/servicefabric/connect-servicefabriccluster) Cmdlet 連接到叢集。
 
 下列程式碼只有在錯誤時才會取得節點，只有一個特定節點例外，應該一律將其傳回。
 
@@ -986,7 +986,7 @@ ApplicationHealthStateChunks :
 ```
 
 ### <a name="rest"></a>REST
-您可以使用 [GET 要求](https://msdn.microsoft.com/library/azure/mt656722.aspx)或 [POST 要求](https://msdn.microsoft.com/library/azure/mt656721.aspx) (含有其本文中所述的健康狀態原則和進階篩選) 取得叢集健全狀況區塊。
+您可以使用 [GET 要求](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-using-health-chunks)或 [POST 要求](https://docs.microsoft.com/rest/api/servicefabric/health-of-cluster) (含有其本文中所述的健康狀態原則和進階篩選) 取得叢集健全狀況區塊。
 
 ## <a name="general-queries"></a>一般查詢
 一般查詢會傳回指定類型的 Service Fabric 實體清單。 這些查詢會透過 API (透過 **FabricClient.QueryManager**上的方法)、Powershell Cmdlet 和 REST 來公開。 這些查詢會從多個元件彙總子查詢。 其中一個元件是 [健康狀態資料存放區](service-fabric-health-introduction.md#health-store)，它會針對每個查詢結果填入彙總健全狀況狀態。  
@@ -1001,29 +1001,29 @@ ApplicationHealthStateChunks :
 包含實體 **HealthState** 的查詢為：
 
 * 節點清單：傳回叢集中的節點清單 (已分頁)。
-  * API： [FabricClient.QueryClient.GetNodeListAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.queryclient.getnodelistasync.aspx)
+  * API： [FabricClient.QueryClient.GetNodeListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getnodelistasync)
   * PowerShell：Get-ServiceFabricNode
 * 應用程式清單：傳回叢集中的應用程式清單 (已分頁)。
-  * API： [FabricClient.QueryClient.GetApplicationListAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.queryclient.getapplicationlistasync.aspx)
+  * API： [FabricClient.QueryClient.GetApplicationListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getapplicationlistasync)
   * PowerShell：Get-ServiceFabricApplication
 * 服務清單：傳回應用程式中的服務清單 (已分頁)。
-  * API： [FabricClient.QueryClient.GetServiceListAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.queryclient.getservicelistasync.aspx)
+  * API： [FabricClient.QueryClient.GetServiceListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getservicelistasync)
   * PowerShell：Get-ServiceFabricService
 * 分割區清單：傳回服務中的分割區清單 (已分頁)。
-  * API： [FabricClient.QueryClient.GetPartitionListAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.queryclient.getpartitionlistasync.aspx)
+  * API： [FabricClient.QueryClient.GetPartitionListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getpartitionlistasync)
   * PowerShell：Get-ServiceFabricPartition
 * 複本清單：傳回分割區中的複本清單 (已分頁)。
-  * API： [FabricClient.QueryClient.GetReplicaListAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.queryclient.getreplicalistasync.aspx)
+  * API： [FabricClient.QueryClient.GetReplicaListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getreplicalistasync)
   * PowerShell：Get-ServiceFabricReplica
 * 已部署應用程式清單：傳回節點上已部署應用程式的清單。
-  * API： [FabricClient.QueryClient.GetDeployedApplicationListAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.queryclient.getdeployedapplicationlistasync.aspx)
+  * API： [FabricClient.QueryClient.GetDeployedApplicationListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getdeployedapplicationlistasync)
   * PowerShell：Get-ServiceFabricDeployedApplication
 * 已部署服務封裝清單：傳回已部署應用程式中的服務封裝清單。
-  * API： [FabricClient.QueryClient.GetDeployedServicePackageListAsync](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.queryclient.getdeployedservicepackagelistasync.aspx)
+  * API： [FabricClient.QueryClient.GetDeployedServicePackageListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getdeployedservicepackagelistasync)
   * PowerShell：Get-ServiceFabricDeployedApplication
 
 > [!NOTE]
-> 有些查詢會傳回已分頁的結果。 這些查詢的傳回內容是衍生自 [PagedList<T>](https://msdn.microsoft.com/library/azure/mt280056.aspx) 的清單。 如果結果不符合訊息，只會傳回頁面，且 ContinuationToken 會追蹤列舉停止之處。 您應該繼續呼叫相同的查詢，並從先前的查詢傳入接續權杖以取得後續結果。
+> 有些查詢會傳回已分頁的結果。 這些查詢的傳回內容是衍生自 [PagedList<T>](https://docs.microsoft.com/dotnet/api/system.fabric.query.pagedlist-1) 的清單。 如果結果不符合訊息，只會傳回頁面，且 ContinuationToken 會追蹤列舉停止之處。 您應該繼續呼叫相同的查詢，並從先前的查詢傳入接續權杖以取得後續結果。
 >
 >
 

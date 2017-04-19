@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: f497366f8e66ba79b0e5978fde54d0b33048aa8d
-ms.openlocfilehash: 898b93ad95ab812b8b6a538048a86a8cc8951101
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 0a4dba58445cf0fd9fd8f51d443576bacd92251b
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -61,7 +61,7 @@ ms.lasthandoff: 01/24/2017
 | Windshield_wiper_status |指出擋風玻璃雨刷是否啟動 |True 或 False |
 | ABS |指出 ABS 是否發揮作用 |True 或 False |
 | Timestamp |建立資料點時的時間戳記 |Date |
-| City |車輛的位置 |此方案中有&4; 個城市：Bellevue、Redmond、Sammamish、Seattle |
+| City |車輛的位置 |此方案中有 4 個城市：Bellevue、Redmond、Sammamish、Seattle |
 
 車型參考資料集包含 VIN 至車型的對應。 
 
@@ -97,11 +97,6 @@ ms.lasthandoff: 01/24/2017
 | XUF99EW9OIQOMV7Q7 |家庭房車 |
 | 8OMCL3LGI7XNCC21U |敞篷車 |
 | ……. | |
-
-### <a name="to-generate-simulated-data"></a>產生模擬資料
-1. 若要下載資料模擬器封裝，請按一下 [車輛遠程資訊服務模擬器] 節點右上方的箭號。 將檔案儲存在本機電腦上並解壓縮。 ![車輛遙測分析解決方案藍圖](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig2-vehicle-telemetry-blueprint.png)*圖 2 – 車輛遙測分析解決方案藍圖*
-2. 在本機電腦上，移至您解壓縮「車輛遠程資訊服務模擬器」封裝的資料夾。 ![車輛遠程資訊服務模擬器資料夾](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig3-vehicle-telematics-simulator-folder.png)圖 3 – 車輛遠程資訊服務模擬器資料夾
-3. 執行應用程式 **CarEventGenerator.exe**。
 
 ### <a name="references"></a>參考
 [Vehicle Telematics Simulator Visual Studio 方案](http://go.microsoft.com/fwlink/?LinkId=717075) 
@@ -393,11 +388,9 @@ PartitionConnectedCarEvents Hive 指令碼
 按一下 [RealtimeDashboardApp 下載](http://go.microsoft.com/fwlink/?LinkId=717078) 下載 RealtimeDashboardApp Visual Studio 方案來自訂。 
 
 **執行即時儀表板應用程式**
-
-1. 按一下圖表檢視上的 PowerBI 節點，然後按一下屬性窗格上的 [下載即時儀表板應用程式] 連結。 ![Power BI 儀表板安裝指示](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig15-vehicle-telematics-powerbi-dashboard-setup.png)圖 15 – Power BI 儀表板安裝指示
-2. 在本機擷取並儲存 ![RealtimeDashboardApp 資料夾](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig16-vehicle-telematics-realtimedashboardapp-folder.png)圖 16 – RealtimeDashboardApp 資料夾  
-3. 執行應用程式 RealtimeDashboardApp.exe
-4. 提供有效的 Power BI 認證、登入，然後按一下 [接受] ![即時儀表板應用程式登入 Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig17a-vehicle-telematics-realtimedashboardapp-sign-in-to-powerbi.png) ![即時儀表板應用程式完成登入 Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig17b-vehicle-telematics-realtimedashboardapp-sign-in-to-powerbi.png) 
+1. 在本機擷取並儲存 ![RealtimeDashboardApp 資料夾](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig16-vehicle-telematics-realtimedashboardapp-folder.png)圖 16 – RealtimeDashboardApp 資料夾  
+2. 執行應用程式 RealtimeDashboardApp.exe
+3. 提供有效的 Power BI 認證、登入，然後按一下 [接受] ![即時儀表板應用程式登入 Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig17a-vehicle-telematics-realtimedashboardapp-sign-in-to-powerbi.png) ![即時儀表板應用程式完成登入 Power BI](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig17b-vehicle-telematics-realtimedashboardapp-sign-in-to-powerbi.png) 
 
 圖 17 – RealtimeDashboardApp：登入 Power BI
 

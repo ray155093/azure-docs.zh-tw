@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 05/26/2016
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 78daa5a75b3414e2761333ea6ad91945596553c8
-ms.openlocfilehash: e1863b43706ffc200bb94c4a26ae75080a6dd857
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 37d25c8c7b47bf8ef3b4d5c6d3978b13c52329c3
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -47,7 +48,7 @@ ms.openlocfilehash: e1863b43706ffc200bb94c4a26ae75080a6dd857
    請使用您在上一個步驟記下的連線 URL。 您會看到錯誤訊息，指出網站的安全性憑證有問題。 請按一下 [繼續瀏覽此網頁] 。
    
    ![](./media/storsimple-ova-deploy3-fs-setup/image2.png)
-2. 以 **StorSimpleAdmin**的帳戶名稱登入虛擬裝置的 Web UI。 請輸入您於[在 Hyper-V 中佈建 StorSimple Virtual Array](storsimple-ova-deploy2-provision-hyperv.md) 或[在 VMware 中佈建 StorSimple Virtual Array](storsimple-ova-deploy2-provision-vmware.md) 的「步驟 3：啟動虛擬裝置」中所變更的裝置系統管理員密碼。
+2. 以 **StorSimpleAdmin**的帳戶名稱登入虛擬裝置的 Web UI。 請輸入您於[在 Hyper-V 中佈建 StorSimple Virtual Array](storsimple-ova-deploy2-provision-hyperv.md) 或[在 VMware 中佈建 StorSimple Virtual Array](storsimple-ova-deploy2-provision-vmware.md) 的「步驟 3：啟動虛擬裝置」中所變更的裝置系統管理員密碼。 預設使用者為 *StorSimpleAdmin*，預設密碼為 *Password1*。
    
    ![](./media/storsimple-ova-deploy3-fs-setup/image3.png)
 3. 您將會進入 [首頁]  頁面。 此頁面說明各種需要用來設定虛擬裝置的設定，以及為虛擬裝置向 StorSimple Manager 服務註冊的設定。 請注意，[網路設定]、[Web Proxy 設定] 及 [時間設定] 是可省略的。 只有 [裝置設定] 及 [雲端設定] 是必要的設定。
@@ -183,10 +184,5 @@ ms.openlocfilehash: e1863b43706ffc200bb94c4a26ae75080a6dd857
 
 ## <a name="next-steps"></a>後續步驟
 了解如何使用本機 Web UI 來 [管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

@@ -16,14 +16,15 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: genemi
 translationtype: Human Translation
-ms.sourcegitcommit: fdbe5ff497b7acc9d8521b8ba1a016ae11bc69d2
-ms.openlocfilehash: 26140426eb2a5376af003248a0de6685999ac5a2
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: b42d2bd64dbaf44f1be85d687b27ffe47eb0db53
+ms.lasthandoff: 04/15/2017
 
 
 ---
 # <a name="connection-libraries-for-sql-database-and-sql-server"></a>SQL Database 和 SQL Server 的連線庫
 
-本主題列出用戶端程式在連線到 Azure SQL Database 或 Microsoft SQL Server 時可使用的每個程式庫或*驅動程式*。
+本主題列出用戶端程式在連線到 Azure SQL Database 或 Microsoft SQL Server 時可使用的每個程式庫或*驅動程式*。 
 
 | 語言 | 平台 | 其他資源 | 下載 |
 |:--- |:--- |:--- |:--- |
@@ -38,13 +39,10 @@ ms.openlocfilehash: 26140426eb2a5376af003248a0de6685999ac5a2
 ## <a name="related-links"></a>相關連結
 
 - [SQL Server 驅動程式](https://docs.microsoft.com/sql/connect/sql-server-drivers/)，以便從用戶端連接
-- [使用 .NET (C#) 連接到 SQL Database](sql-database-develop-dotnet-simple.md), ADO.NET
-- [使用 Node.js 連接到 SQL Database](sql-database-develop-nodejs-simple.md)
-- [使用 Python 連接到 SQL Database](sql-database-develop-python-simple.md), pymssql
-- [使用 Ruby 連接到 SQL Database](sql-database-develop-ruby-simple.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
+- [使用 .NET (C#) 連接到 SQL Database](sql-database-connect-query-dotnet.md)
+- [使用 PHP 連接到 SQL Database](sql-database-connect-query-php.md)
+- [使用 Node.js 連接到 SQL Database](sql-database-connect-query-nodejs.md)
+- [使用 Java 連接到 SQL Database](sql-database-connect-query-java.md)
+- [使用 Python 連接到 SQL Database](sql-database-connect-query-python.md)
+- [使用 Ruby 連接到 SQL Database](sql-database-connect-query-ruby.md)
 

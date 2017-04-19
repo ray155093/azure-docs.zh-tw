@@ -10,7 +10,7 @@ editor:
 tags: 
 ms.assetid: 0a65a93f-d5dc-424b-a774-7ed62d996f8c
 ms.service: sql-database
-ms.custom: authentication and authorization
+ms.custom: security-access
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -18,8 +18,9 @@ ms.workload: data-management
 ms.date: 01/23/2017
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: 5eccb4705cd6c8f6170a48f3b3591518688651f1
-ms.openlocfilehash: c3a45973a04d5082bee777a98f8204ceedc888a5
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: f29b2c1da0d9b761634370f5f08ea942b66d9f1f
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -56,10 +57,8 @@ ms.openlocfilehash: c3a45973a04d5082bee777a98f8204ceedc888a5
 - 這些帳戶可以新增和移除 `dbmanager` 和 `loginmanager` 角色的成員。
 - 這些帳戶可以檢視 `sys.sql_logins` 系統資料表。
 
-
-
 ### <a name="configuring-the-firewall"></a>設定防火牆
-已設定個別 IP 位址或範圍的伺服器層級防火牆時，**SQL Database 管理員**和 **Azure Active Directory 管理員**可以連接到 master 資料庫和所有使用者資料庫。 透過 [Azure 入口網站](sql-database-configure-firewall-settings.md) 並使用 [PowerShell](sql-database-configure-firewall-settings-powershell.md) 或使用 [REST API](sql-database-configure-firewall-settings-rest.md) 即可設定初始伺服器層級防火牆。 建立連線之後，也可以藉由使用 [Transact-SQL](sql-database-configure-firewall-settings-tsql.md) 來設定其他伺服器層級防火牆規則。
+已設定個別 IP 位址或範圍的伺服器層級防火牆時，**SQL Database 管理員**和 **Azure Active Directory 管理員**可以連接到 master 資料庫和所有使用者資料庫。 透過 [Azure 入口網站](sql-database-get-started-portal.md) 並使用 [PowerShell](sql-database-get-started-powershell.md) 或使用 [REST API](https://msdn.microsoft.com/library/azure/dn505712.aspx) 即可設定初始伺服器層級防火牆。 建立連線之後，也可以藉由使用 [Transact-SQL](sql-database-configure-firewall-settings.md) 來設定其他伺服器層級防火牆規則。
 
 ### <a name="administrator-access-path"></a>系統管理員存取路徑
 正確設定伺服器層級防火牆後，**SQL Database 管理員**和 **Azure Active Directory 管理員**可以使用用戶端工具 (例如 SQL Server Management Studio 或 SQL Server Data Tools) 進行連接。 只有最新的工具會提供所有的功能。 下圖顯示兩個系統管理員帳戶的一般組態。
@@ -69,7 +68,7 @@ ms.openlocfilehash: c3a45973a04d5082bee777a98f8204ceedc888a5
 在伺服器層級防火牆中使用開啟的連接埠時，系統管理員可以連接到任何 SQL Database。
 
 ### <a name="connecting-to-a-database-by-using-sql-server-management-studio"></a>使用 SQL Server Management Studio 連接到資料庫
-如需建立伺服器、資料庫、伺服器層級防火牆規則，以及使用 SQL Server Management Studio 來查詢資料庫的逐步解說，請參閱[透過 Azure 入口網站和 SQL Server Management Studio 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started.md)。
+如需建立伺服器、資料庫、伺服器層級防火牆規則，以及使用 SQL Server Management Studio 來查詢資料庫的逐步解說，請參閱[透過 Azure 入口網站和 SQL Server Management Studio 來開始使用 Azure SQL Database 伺服器、資料庫和防火牆規則](sql-database-get-started-portal.md)。
 
 > [!IMPORTANT]
 > 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。 [更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
@@ -196,9 +195,4 @@ GRANT ALTER ANY USER TO Mary;
 - 如需授與資料庫物件存取權的相關資訊，請參閱[授與資料庫物件的存取權](https://msdn.microsoft.com/library/ms365327.aspx)
 - 如需使用 SQL Server 驗證的教學課程，請參閱[教學課程︰SQL Server 驗證](sql-database-control-access-sql-authentication-get-started.md)。
 - 如需使用 Azure Active Directory 驗證的教學課程，請參閱[教學課程：AAD 驗證](sql-database-control-access-aad-authentication-get-started.md)。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

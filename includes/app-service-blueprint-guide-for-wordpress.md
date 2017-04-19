@@ -6,7 +6,7 @@
 * [使用 MySQL 複寫叢集部署 WordPress Web 應用程式後端](/documentation/templates/wordpress-mysql-replication/)
 * [使用 Percona 叢集建立自己的 Master-Master MySQL 叢集](/documentation/templates/mysql-ha-pxc/)，並[深入了解如何管理叢集](https://github.com/fanjeffrey/axiom.articles/tree/master/pxc)
 * [使用包含主要-附屬組態之 MySQL 複寫叢集部署 WordPress 後端](/documentation/templates/mysql-replication/)
-* [使用 ProjectNami 管理的 SQL Azure DB 部署 WordPress 應用程式後端](/marketplace/partners/projectnami/projectnami/)
+* [使用 ProjectNami 管理的 SQL Azure DB 部署 WordPress 應用程式後端](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/ProjectNami.ProjectNami?tab=Overview)
 
 ## <a name="troubleshooting-wordpress-application"></a>疑難排解 WordPress 應用程式
 * [如何疑難排解 WordPress 應用程式](https://sunithamk.wordpress.com/2014/09/04/wordpress-troubleshooting-techniques-on-azure-websites/)

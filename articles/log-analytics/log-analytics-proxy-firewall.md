@@ -12,12 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/10/2017
+ms.date: 04/12/2017
 ms.author: banders;magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 6a527fa303f1e2bd06ac662e545d6b6a1d299fb4
-ms.openlocfilehash: cd06dfd498540970dc8ed29650f4d9e3ca57939b
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: cc3ff1ca5e638896df155b55145b300f70f7540a
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -41,7 +41,6 @@ OMS 閘道需要能夠存取網際網路。 請針對 OMS 閘道使用和您用�
 | \*.oms.opinsights.azure.com |443 |是 |
 | \*.blob.core.windows.net |443 |是 |
 | \*.azure-automation.net |443 |是 |
-| ods.systemcenteradvisor.com |443 | |
 
 您可以使用以下程序來使用控制台為 Microsoft Monitoring Agent 設定 Proxy 設定。 您將需要針對每部伺服器使用此程序。 如果您需要設定許多伺服器，使用指令碼將此程序自動化會比較容易。 如果是，請參閱下一個程序 [使用指令碼設定 Microsoft Monitoring Agent 的 Proxy 設定](#to-configure-proxy-settings-for-the-microsoft-monitoring-agent-using-a-script)。
 
@@ -102,7 +101,6 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 | \*.ods.opinsights.azure.com |443 |
 | \*.oms.opinsights.azure.com |443 |
 | \*.blob.core.windows.net/\* |443 |
-| ods.systemcenteradvisor.com |443 |
 
 <br>
 以下是管理伺服器資源和連接埠的清單︰<br>
@@ -112,8 +110,6 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 | service.systemcenteradvisor.com |443 | |
 | \*.service.opinsights.azure.com |443 | |
 | \*.blob.core.windows.net |443 |是 |
-| data.systemcenteradvisor.com |443 | |
-| ods.systemcenteradvisor.com |443 | |
 | \*.ods.opinsights.azure.com |443 |是 |
 | \*.azure-automation.net |443 |是 |
 

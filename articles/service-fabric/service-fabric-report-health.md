@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 04/12/2017
 ms.author: oanapl
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d986275612b3e5c97636936a5e448dd6d0fcfc4e
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 0e8152e2c26cdb8f1dd96eca781f8e22ca15d9b2
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -47,7 +47,7 @@ Service Fabric 報告程式可監控感興趣的已識別條件。 它們會依�
 > 
 > 
 
-一旦健康狀態報告設計清楚，即可輕鬆傳送健康狀態報告。 如果叢集不[安全](service-fabric-cluster-security.md)，或者網狀架構用戶端有系統管理員權限，您就可以使用 [FabricClient](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.aspx) 來回報健康狀態。 透過 API (使用 [FabricClient.HealthManager.ReportHealth](https://msdn.microsoft.com/library/system.fabric.fabricclient.healthclient.reporthealth.aspx))、透過 Powershell 或透過 REST 即可完成。 組態旋鈕批次報告可提升效能。
+一旦健康狀態報告設計清楚，即可輕鬆傳送健康狀態報告。 如果叢集不[安全](service-fabric-cluster-security.md)，或者網狀架構用戶端有系統管理員權限，您就可以使用 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient) 來回報健康狀態。 透過 API (使用 [FabricClient.HealthManager.ReportHealth](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.reporthealth))、透過 Powershell 或透過 REST 即可完成。 組態旋鈕批次報告可提升效能。
 
 > [!NOTE]
 > 報告健康狀態會同步處理，且只代表用戶端上的驗證工作。 健康狀態用戶端或是 `Partition` 或 `CodePackageActivationContext` 物件接受報告的這項事實，並不表示該報告會在存放區中套用。 它會以非同步方式傳送並可能與其他報告進行批次處理。 在伺服器上處理仍可能會失敗：序號過時、必須套用報告的實體已被刪除等。
@@ -67,7 +67,7 @@ Service Fabric 報告程式可監控感興趣的已識別條件。 它們會依�
 > 
 
 用戶端上的緩衝會將報告的唯一性納入考量。 例如，如果特定的錯誤報告程式在相同實體的相同屬性上每秒產生 100 個報告，則會以最後一個版本取代報告。 最多只有一份這類報告存在於用戶端佇列中。 如果設定批次處理，則傳送至健康狀態存放區的報告數目為每次傳送間隔一份報告。 這是最後新增的報告，可反映實體的最新狀態。
-建立 `FabricClient` 時，藉由傳遞 [FabricClientSettings](https://msdn.microsoft.com/library/azure/system.fabric.fabricclientsettings.aspx) 以及健康狀態相關項目所需的值，即可指定所有組態參數。
+建立 `FabricClient` 時，藉由傳遞 [FabricClientSettings](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclientsettings) 以及健康狀態相關項目所需的值，即可指定所有組態參數。
 
 以下會建立網狀架構用戶端，並指定新增報告後就應該傳送報告。 在可重試的錯誤或逾時發生時，會每 40 秒重試一次。
 
@@ -117,12 +117,12 @@ GatewayInformation   : {
 ## <a name="report-from-within-low-privilege-services"></a>在低權限的服務內進行報告
 在不具叢集系統管理員存取權限的 Service Fabric 服務內，您可以透過 `Partition` 或 `CodePackageActivationContext`，回報來自目前內容之實體的健康狀態。
 
-* 針對無狀態服務，使用 [IStatelessServicePartition.ReportInstanceHealth](https://msdn.microsoft.com/library/system.fabric.istatelessservicepartition.reportinstancehealth.aspx) 來回報目前服務執行個體的健康狀態。
-* 針對具狀態服務，使用 [IStatefulServicePartition.ReportReplicaHealth](https://msdn.microsoft.com/library/system.fabric.istatefulservicepartition.reportreplicahealth.aspx) 來回報目前複本的健康狀態。
-* 使用 [IServicePartition.ReportPartitionHealth](https://msdn.microsoft.com//library/system.fabric.iservicepartition.reportpartitionhealth.aspx) 來回報目前分割區實體的健康狀態。
-* 使用 [CodePackageActivationContext.ReportApplicationHealth](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.reportapplicationhealth.aspx) 來回報目前應用程式的健康狀態。
-* 使用 [CodePackageActivationContext.ReportDeployedApplicationHealth](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.reportdeployedapplicationhealth.aspx) ，來回報現在部署於目前節點上的應用程式健康狀態。
-* 使用 [CodePackageActivationContext.ReportDeployedServicePackageHealth](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.reportdeployedservicepackagehealth.aspx) ，來回報現在部署於目前節點上之應用程式的服務封裝健康狀態。
+* 針對無狀態服務，使用 [IStatelessServicePartition.ReportInstanceHealth](https://docs.microsoft.com/dotnet/api/system.fabric.istatelessservicepartition.reportinstancehealth) 來回報目前服務執行個體的健康狀態。
+* 針對具狀態服務，使用 [IStatefulServicePartition.ReportReplicaHealth](https://docs.microsoft.com/dotnet/api/system.fabric.istatefulservicepartition.reportreplicahealth) 來回報目前複本的健康狀態。
+* 使用 [IServicePartition.ReportPartitionHealth](https://docs.microsoft.com/dotnet/api/system.fabric.iservicepartition.reportpartitionhealth) 來回報目前分割區實體的健康狀態。
+* 使用 [CodePackageActivationContext.ReportApplicationHealth](https://docs.microsoft.com/dotnet/api/system.fabric.codepackageactivationcontext.reportapplicationhealth) 來回報目前應用程式的健康狀態。
+* 使用 [CodePackageActivationContext.ReportDeployedApplicationHealth](https://docs.microsoft.com/dotnet/api/system.fabric.codepackageactivationcontext.reportdeployedapplicationhealth) ，來回報現在部署於目前節點上的應用程式健康狀態。
+* 使用 [CodePackageActivationContext.ReportDeployedServicePackageHealth](https://docs.microsoft.com/dotnet/api/system.fabric.codepackageactivationcontext.reportdeployedservicepackagehealth) ，來回報現在部署於目前節點上之應用程式的服務封裝健康狀態。
 
 > [!NOTE]
 > 就內部而言，`Partition` 和 `CodePackageActivationContext` 會保存使用預設值設定的健康狀態用戶端。 適用針對 [健康狀態用戶端](service-fabric-report-health.md#health-client) 所說明的相同考量 - 要求會在計時器上進行批次處理並加以傳送，因此物件應該保持運作，以便有機會傳送報告。
@@ -291,7 +291,7 @@ HealthEvents          :
 ```
 
 ### <a name="rest"></a>REST
-透過 REST 並利用 POST 要求傳送健康狀態報告，這些要求會傳送至所需的實體，且其本文中含有健康狀態報告描述。 例如，請參閱如何傳送 REST [叢集健康狀態報告](https://msdn.microsoft.com/library/azure/dn707640.aspx)或[服務健康狀態報告](https://msdn.microsoft.com/library/azure/dn707640.aspx)。 支援所有實體。
+透過 REST 並利用 POST 要求傳送健康狀態報告，這些要求會傳送至所需的實體，且其本文中含有健康狀態報告描述。 例如，請參閱如何傳送 REST [叢集健康狀態報告](https://docs.microsoft.com/rest/api/servicefabric/report-the-health-of-a-cluster)或[服務健康狀態報告](https://docs.microsoft.com/rest/api/servicefabric/report-the-health-of-a-service)。 支援所有實體。
 
 ## <a name="next-steps"></a>後續步驟
 根據健康狀態資料，服務寫入器和叢集/應用程式管理員可想出使用該資訊的多種方式。 例如，他們可以依據健康狀態為基礎設定警示，以便於嚴重問題誘發中斷前加以攔截。 系統管理員也可以設定修復系統來自動修復問題。

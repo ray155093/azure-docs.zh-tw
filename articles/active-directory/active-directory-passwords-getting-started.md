@@ -16,15 +16,15 @@ ms.topic: get-started-article
 ms.date: 03/08/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: c2c46637ccccd01c1c3056d6a25ef605cfd68f2d
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: d1094e1b350883c206a9180ff71bd8613156360a
+ms.lasthandoff: 04/13/2017
 
 
 ---
 # <a name="getting-started-with-password-management"></a>開始使用密碼管理
 > [!IMPORTANT]
-> **您有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
+> **您有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-my-password)。
 >
 >
 
@@ -69,9 +69,9 @@ ms.lasthandoff: 03/29/2017
 * [**秘訣 9：疑難排解** - 如果您仍然需要協助，請包含足夠的資訊以供我們協助您](#tip-9-troubleshoot---if-you-still-need-help-include-enough-information-for-us-to-assist-you)
 
 ### <a name="top-tip-documentation-navigation---use-our-table-of-contents-and-your-browsers-find-feature-to-find-answers"></a>最佳秘訣︰文件導覽 - 使用我們的目錄及您瀏覽器的尋找功能來尋找解答
-如果您使用我們任何的文件，我們在目錄中已盡力提供快速連結至可供系統管理員學習的所有有趣地方。 
+如果您使用我們任何的文件，我們在目錄中已盡力提供快速連結至可供系統管理員學習的所有有趣地方。
 
-請查看下列目錄︰ 
+請查看下列目錄︰
 * [Azure AD 密碼重設︰文件目錄](https://docs.microsoft.com/azure/active-directory/active-directory-passwords)
 
 ### <a name="tip-1-licensing---make-sure-you-understand-the-licensing-requirements"></a>秘訣 1︰授權 - 確定您了解授權需求
@@ -93,9 +93,9 @@ ms.lasthandoff: 03/29/2017
  * ...在試用版開始建立前 30 天後**或**
  * ...當虛名網域不存在時**以及** Azure AD Connect 不會同步處理身分識別
  * **_需要_**︰任何**一個**驗證電子郵件、備用電子郵件、驗證電話、行動電話或辦公室電話以顯示目前的值
-* **兩個閘道原則適用於...** 
+* **兩個閘道原則適用於...**
  * ...試用版已經過前 30 天**或**
- * ...當虛名網域存在時**或** 
+ * ...當虛名網域存在時**或**
  * ...您已啟用 Azure AD Connect 同步處理來自內部部署環境的身分識別
  * _**需要**_︰任何**兩個**驗證電子郵件、備用電子郵件、驗證電話、行動電話或辦公室電話以顯示目前的值
 
@@ -145,7 +145,7 @@ Azure AD Connect 應用程式事件記錄包含一組豐富的記錄資訊，即
 * [回寫部署 - 步驟 3︰設定您的防火牆](#step-3-configure-your-firewall)
 * [回寫部署 - 步驟 4：設定適當的權限](#step-4-set-up-the-appropriate-active-directory-permissions)
 
-### <a name="tip-7-reporting---see-who-is-registering-or-resetting-passwords-with-the-azure-ad-sspr-audit-logs"></a>提示 7：報告 - 查看正在使用 Azure AD SSPR 稽核記錄註冊或重設密碼的人員 
+### <a name="tip-7-reporting---see-who-is-registering-or-resetting-passwords-with-the-azure-ad-sspr-audit-logs"></a>提示 7：報告 - 查看正在使用 Azure AD SSPR 稽核記錄註冊或重設密碼的人員
 一旦密碼重設部署且使用時，下一步是查看它的運作並分析仍然需要註冊的人員、使用者重設時常見的問題，以及您未來的投資報酬率。
 
 使用 Azure AD 密碼重設稽核記錄，您可以從 Azure 入口網站、PowerBI、Azure AD 報告事件 API，或從 PowerShell 進行此動作及更多動作。  若要深入了解如何使用這些報告功能，請參閱︰
@@ -495,7 +495,7 @@ Azure AD Connect 工具會傳送定期 ping/keepalives 至服務匯流排端點�
 ## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-my-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
 * [**最佳作法**](active-directory-passwords-best-practices.md) - 了解如何快速部署且有效管理組織的密碼
