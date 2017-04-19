@@ -12,9 +12,9 @@ ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 51c3caba1ca77c678dff316ef91e547b8190d632
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: af1b164891a6d8af27b05578a975d1fa54e2d408
+ms.lasthandoff: 04/17/2017
 
 ---
 <div class="content">
@@ -47,7 +47,7 @@ ms.lasthandoff: 04/12/2017
         <h2 style="margin-top: 36px">教學課程</h2>
         <p>建置並部署 Linux 虛擬機器。</p>
         <ul class="spaced">
-            <li><a href="/azure/virtual-machines/linux/tutorial-manage-vm">建立並管理 Windows VM</a></li>
+            <li><a href="/azure/virtual-machines/linux/tutorial-manage-vm">建立並管理 Linux VM</a></li>
             <li><a href="/azure/virtual-machines/linux/tutorial-load-balance-nodejs">負載平衡高可用性 VM</a></li>
             <li><a href="/azure/virtual-machines/linux/tutorial-create-vmss">建立 VM 擴展集</a></li>
         </ul>

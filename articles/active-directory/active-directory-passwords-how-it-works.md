@@ -16,15 +16,15 @@ ms.date: 02/28/2017
 ms.author: joflore
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: 24c94f80afdb3d3330a835fae2f77ecb213a9ae5
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: b9f7c86415a2606cb969427a362b4d2feef183fb
+ms.lasthandoff: 04/13/2017
 
 
 ---
 # <a name="how-password-management-works-in-azure-active-directory"></a>Azure Active Directory 中的密碼管理運作方式
 > [!IMPORTANT]
-> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-my-password)。
 
 Azure Active Directory (Azure AD) 中的密碼管理由下列邏輯元件組成：
 
@@ -116,7 +116,7 @@ Azure Active Directory (Azure AD) 中的密碼管理由下列邏輯元件組成�
 
 若要深入了解，請參閱下列 Azure AD 密碼重設頁面︰
 
-* **您來到此處是因為有登入問題嗎？** 若是如此，請[變更和重設您自己的密碼](active-directory-passwords-update-your-own-password.md#reset-your-password)。
+* **您來到此處是因為有登入問題嗎？** 若是如此，請[變更和重設您自己的密碼](active-directory-passwords-update-your-own-password.md#reset-my-password)。
 * [**開始使用**](active-directory-passwords-getting-started.md)：了解如何讓使用者重設和變更雲端或內部部署密碼。
 * [**自訂**](active-directory-passwords-customize.md)：了解如何依照組織的需求自訂服務的外觀和行為。
 * [**最佳作法**](active-directory-passwords-best-practices.md)：了解如何在組織中快速部署和有效管理密碼。

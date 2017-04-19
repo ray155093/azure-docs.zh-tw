@@ -16,9 +16,9 @@ ms.workload: NA
 ms.date: 09/26/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: bd3aea04266baebbba1b953d5a2b7c4b2fb41a87
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 8d8743529f4f0b9e8c036d328d63bea247279fe3
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -29,11 +29,11 @@ ms.lasthandoff: 03/28/2017
 > 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。 在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
 >  
 
- 您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md)、[Transact-SQL](sql-database-geo-replication-transact-sql.md) 或 [REST API - 建立或更新資料庫](https://msdn.microsoft.com/library/azure/mt163685.aspx)來設定主動式異地複寫。
+ 您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)、[Transact-SQL](sql-database-geo-replication-transact-sql.md) 或 [REST API - 建立或更新資料庫](https://msdn.microsoft.com/library/azure/mt163685.aspx)來設定主動式異地複寫。
 
 若您的主要資料庫因為任何原因而失敗，或只需要離線，您可以「容錯移轉」  至任何次要資料庫。 容錯移轉至其中一個次要資料庫啟動時，所有其他次要複本會自動連結至新的主要複本。
 
-您可以使用 [Azure 入口網站](sql-database-geo-replication-failover-portal.md)、[PowerShell](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)、[Transact-SQL](sql-database-geo-replication-failover-transact-sql.md)、[REST API - 計劃的容錯移轉](https://msdn.microsoft.com/library/mt575007.aspx) 或 [REST API - 非計劃的容錯移轉](https://msdn.microsoft.com/library/mt582027.aspx)，容錯移轉至次要資料庫。
+您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)、[Transact-SQL](sql-database-geo-replication-failover-transact-sql.md)、[REST API - 計劃的容錯移轉](https://msdn.microsoft.com/library/mt575007.aspx) 或 [REST API - 非計劃的容錯移轉](https://msdn.microsoft.com/library/mt582027.aspx)，容錯移轉至次要資料庫。
 
 容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。 如需詳細資訊，請參閱 [災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
 
@@ -85,7 +85,7 @@ ms.lasthandoff: 03/28/2017
 ## <a name="programmatically-managing-active-geo-replication"></a>以程式設計方式管理主動式異地複寫
 如前所述，主動式異地複寫可使用 Azure PowerShell 和 REST API，以程式設計的方式管理。 下表描述可用的命令集。
 
-* **Azure Resource Manager API 和角色型安全性**︰主動式異地複寫包含一組可管理的 [Azure Resource Manager API](https://msdn.microsoft.com/library/azure/mt163571.aspx)，包括[以 Azure Resource Manager 為基礎的 PowerShell Cmdlet](sql-database-geo-replication-powershell.md)。 這些 API 需要使用資源群組，並支援以角色為基礎的安全性 (RBAC)。 如需如何實作存取角色的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
+* **Azure Resource Manager API 和角色型安全性**︰主動式異地複寫包含一組可管理的 [Azure Resource Manager API](https://msdn.microsoft.com/library/azure/mt163571.aspx)，包括[以 Azure Resource Manager 為基礎的 PowerShell Cmdlet](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)。 這些 API 需要使用資源群組，並支援以角色為基礎的安全性 (RBAC)。 如需如何實作存取角色的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
 > [!NOTE]
 > 只有在使用以 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 為基礎的 [Azure SQL REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx) 和 [Azure SQL Database PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx) 時，才支援主動式異地複寫的許多新功能。 [(傳統) REST API](https://msdn.microsoft.com/library/azure/dn505719.aspx) 和 [Azure SQL Database (傳統) Cmdlet](https://msdn.microsoft.com/library/azure/dn546723.aspx) 支援回溯相容性，因此建議使用以 Azure Resource Manager 為基礎的 API。 

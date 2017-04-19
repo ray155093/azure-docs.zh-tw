@@ -4,7 +4,7 @@ description: "如何取得 Azure Active Directory 租用戶，以供註冊及建
 services: active-directory
 documentationcenter: 
 author: dstrockis
-manager: terrylan
+manager: mbaldwin
 editor: 
 ms.assetid: 1f4b24eb-ab4d-4baa-a717-2a0e5b8d27cd
 ms.service: active-directory
@@ -15,8 +15,9 @@ ms.topic: hero-article
 ms.date: 09/28/2015
 ms.author: dastrock
 translationtype: Human Translation
-ms.sourcegitcommit: 146d1377a017becdcdcd7fed7b97f07c2cb2bb39
-ms.openlocfilehash: 151b9bd8f29a1112c9ad839f2729309dba97c283
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: b4232f2d27624e44a720047ad44991059316413e
+ms.lasthandoff: 04/14/2017
 
 
 ---
@@ -47,7 +48,7 @@ ms.openlocfilehash: 151b9bd8f29a1112c9ad839f2729309dba97c283
 3. 您應該會自動登入「預設目錄」，如果未自動登入，您可以按一下右上角的帳戶名稱切換目錄。
 4. 從 [快速工作] 區段中，選擇 [新增使用者]。
 5. 在 [新增使用者表單] 中，請提供下列詳細資料：
-   
+
    * 名稱：(選擇適當的值)
    * 使用者名稱：(為此系統管理員選擇一個使用者名稱)
    * 設定檔：(在名字、姓氏、職稱和部門中填入適當的值)
@@ -57,16 +58,10 @@ ms.openlocfilehash: 151b9bd8f29a1112c9ad839f2729309dba97c283
 8. 若要變更暫時密碼，請使用這個新使用者帳戶登入 [https://login.microsoftonline.com](https://login.microsoftonline.com)變更密碼。
 
 ## <a name="use-an-organizational-azure-subscription"></a>使用組織的 Azure 訂用帳戶
-如果您先前已使用組織帳戶註冊 Azure 訂用帳戶，則您已經有一個租用戶！  在 [Azure 入口網站](https://portal.azure.com)中，當您瀏覽至 [更多服務] 和 [Azure Active Directory] 時應該會找到租用戶。  您可以視需要任意使用此租用戶。 
+如果您先前已使用組織帳戶註冊 Azure 訂用帳戶，則您已經有一個租用戶！  在 [Azure 入口網站](https://portal.azure.com)中，當您瀏覽至 [更多服務] 和 [Azure Active Directory] 時應該會找到租用戶。  您可以視需要任意使用此租用戶。
 
 ## <a name="start-from-scratch"></a>從頭開始
 如果上述對您沒有太大的意義，別擔心。  您只需造訪 [https://account.windowsazure.com/organization](https://account.windowsazure.com/organization) ，並以新的組織身分註冊 Azure。  完成此程序時，您將會有自己專屬的 Azure AD 租用戶，並且它會有您在註冊時選擇的網域名稱。  在 [Azure 入口網站](https://portal.azure.com)中，您可以透過瀏覽至左側導覽中的 [Azure Active Directory] 找到租用戶。
 
 註冊 Azure 的過程中，您將需要提供信用卡的詳細資料。  您可以放心繼續執行，您將不會被收取在 Azure AD 中發佈應用程式或建立新租用戶的費用。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

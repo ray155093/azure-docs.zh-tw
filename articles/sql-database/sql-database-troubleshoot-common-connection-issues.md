@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/03/2017
 ms.author: daleche
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: 7e48069b84c1048617a86fbc334a04462b52deda
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 914084ff790ceb2e11852c5dae757b935f813062
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -80,20 +80,6 @@ Error code 40613: "Database <x> on server <y> is not currently available. Please
 2. 在用戶端與網際網路之間的所有防火牆上，請確定開放連接埠 1433 供輸出連線使用。 檢閱[設定 Windows 防火牆以允許 SQL Server 存取](https://msdn.microsoft.com/library/cc646023.aspx)與[混合式身分識別所需的連接埠與通訊協定 (英文)](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect-ports) 以取得有關必須針對 Azure Active Directory 驗證開放之其他連接埠的其他詳細資訊。
 3. 請確認您的連接字串和其他連線設定。 請參閱 [連線能力問題主題](sql-database-connectivity-issues.md#connections-to-azure-sql-database)中的「連接字串」一節。
 4. 檢查儀表板中的服務健全狀況。 如果您認為沒有區域性停電，請參閱 [從中斷復原](sql-database-disaster-recovery.md) 以了解復原到新區域的步驟。
-
-## <a name="all-topics-for-azure-sql-database-connection-problems"></a>所有 Azure SQL Database 連線問題的主題
-下表列出每一個直接適用於 Azure SQL Database 服務的連線問題主題。
-
-| &nbsp; | 課程名稱 | 說明 |
-| ---:|:--- |:--- |
-| 1 |[針對 Azure SQL Database 連線問題進行疑難排解](sql-database-troubleshoot-common-connection-issues.md) |這是針對 Azure SQL Database 中的連線問題進行疑難排解的登陸頁面。 說明如何識別並解決 Azure SQL Database 中的暫時性錯誤及持續性或非暫時性錯誤。 |
-| 2 |[排解、診斷和防止 SQL Database 的 SQL 連接錯誤和暫時性錯誤](sql-database-connectivity-issues.md) |了解如何在 Azure SQL Database 中排解、診斷和防止 SQL 連接錯誤或暫時性錯誤。 |
-| 3 |[一般暫時性錯誤處理指引](../best-practices-retry-general.md) |提供連線到 Azure SQL Database 時的暫時性錯誤處理指引。 |
-| 4 |[針對 Microsoft Azure SQL Database 的連線問題進行疑難排解](https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database) |此工具可協助識別您的問題並解決連線錯誤。 |
-| 5 |[為「伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt; 目前無法使用」的問題進行疑難排解。請稍後重試連接」錯誤](sql-database-troubleshoot-connection.md) |說明如何識別並解決 40613 錯誤：「目前無法使用伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt;。 請稍後重試連接。」 |
-| 6 |[SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md) |提供 SQL Database 用戶端應用程式的 SQL 錯誤碼相關資訊，例如常見的資料庫連線錯誤、資料庫複製問題，以及一般錯誤。 |
-| 7 |[單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md) |提供可協助您判斷哪個服務層是最適合您應用程式的指引。 同時也提供微調應用程式以充分運用您 Azure SQL Database 的建議。 |
-| 8 |[SQL Database 開發概觀](sql-database-develop-overview.md) |提供各種技術之程式碼範例的連結，可用來連接到 Azure SQL Database 並與其互動。 |
 
 ## <a name="next-steps"></a>後續步驟
 * [針對 Azure SQL Database 效能問題進行疑難排解](sql-database-troubleshoot-performance.md)

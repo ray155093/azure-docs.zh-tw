@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 02/03/2017
 ms.author: genemi
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 4421506f516e6a65b7ff9207ce13dfb86e7c3540
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: dcd7aef734da26a4357d11ff3da9501f55963a00
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -50,7 +50,7 @@ ms.lasthandoff: 11/17/2016
 * Azure 帳戶和訂用帳戶。 您可以註冊 [免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * 您可以在當中建立資料表的任何資料庫。
   
-  * 您可以選擇性快速[建立 **AdventureWorksLT** 示範資料庫](sql-database-get-started.md)。
+  * 您可以選擇性快速[建立 **AdventureWorksLT** 示範資料庫](sql-database-get-started-portal.md)。
 * SQL Server Management Studio (ssms.exe)，最好是最新的每月更新版本。 
   您可以從下列位置下載最新的 ssms.exe：
   

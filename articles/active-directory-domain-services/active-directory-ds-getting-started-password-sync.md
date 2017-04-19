@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 6ed35ca1b83f5f7221824d99817800c1e42e68c1
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: 51e4665b6372859021237144a0bf7f6763a2638b
+ms.lasthandoff: 04/14/2017
 
 
 ---
@@ -55,7 +55,7 @@ ms.lasthandoff: 04/12/2017
    > 如果在 [存取面板] 視窗中未顯示 [變更密碼] 選項，請確定您的組織已設定 [Azure AD 中的密碼管理](../active-directory/active-directory-passwords-getting-started.md)。
    >
    >
-4. 在 [變更密碼] 頁面上，輸入您現有 (舊的) 密碼，然後輸入新密碼並加以確認。 
+4. 在 [變更密碼] 頁面上，輸入您現有 (舊的) 密碼，然後輸入新密碼並加以確認。
 
     ![建立適用於 Azure AD 網域服務的虛擬網路。](./media/active-directory-domain-services-getting-started/user-change-password2.png)
 
@@ -64,7 +64,7 @@ ms.lasthandoff: 04/12/2017
 當您變更密碼幾分鐘之後，新的密碼就能在 Azure Active Directory Domain Services 中使用。 再幾分鐘 (通常大約 20 分鐘) 之後，您就能使用最近變更的密碼來登入已加入受管理網域的電腦。
 
 ## <a name="next-steps"></a>後續步驟
-* [如何更新自己的密碼](../active-directory/active-directory-passwords-update-your-own-password.md#reset-your-password)
+* [如何更新自己的密碼](../active-directory/active-directory-passwords-update-your-own-password.md#reset-my-password)
 * [在 Azure AD 中開始使用密碼管理](../active-directory/active-directory-passwords-getting-started.md)
 * [為同步處理的 Azure AD 租用戶啟用 Azure Active Directory Domain Services 的密碼同步處理](active-directory-ds-getting-started-password-sync-synced-tenant.md)
 * [受 Azure Active Directory Domain Services 管理的網域](active-directory-ds-admin-guide-administer-domain.md)

@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: 9faa28a86c9427a83e8ca4485ebcdc8e8dacd93d
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 0288d70bb5c0094b5c738b2d0c597e4c6d38a5aa
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -69,7 +69,7 @@ ms.lasthandoff: 03/03/2017
 #### <a name="verify"></a>Verify
 1. 啟動 CMD 命令提示字元並移至 `%ProgramFiles%\Microsoft Azure AD Sync\bin`
 2. 執行：`csexport "Name of Connector" %temp%\export.xml /f:x` 連接器名稱可以在同步處理服務中找到。 它的名稱類似 Azure AD 的 "contoso.com – AAD"。
-3. 從 [CSAnalyzer](#Appendix-CSAnalyzer) 區段將 PowerShell 指令碼複製到名為 `csanalyzer.ps1` 的檔案。
+3. 從 [CSAnalyzer](#appendix-csanalyzer) 區段將 PowerShell 指令碼複製到名為 `csanalyzer.ps1` 的檔案。
 4. 開啟 PowerShell 視窗，然後瀏覽至您建立 PowerShell 指令碼的資料夾。
 5. 執行：`.\csanalyzer.ps1 -xmltoimport %temp%\export.xml`。
 6. 您現在已有一個可在 Microsoft Excel 中檢查的名為 **processedusers1.csv** 的檔案。 您可以在此檔案中找到所有已暫存而要匯出到 Azure AD 的變更。

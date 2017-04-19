@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/06/2017
 ms.author: tobiast
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: d15ab88be778b8cc081e07fb95fbd99164f18ba1
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 713e4a29550f37b03af3547bead42146a84a417f
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -41,7 +41,7 @@ Azure 目前有兩個裝載 SQL Server 工作負載的選項︰Azure SQL Databas
 連接到 Azure SQL 資料庫並無不同，目前有兩種方式可連接到資料庫︰ODBC (開放式資料庫連接) 和 OLE DB (物件連結與嵌入資料庫)。 近年來，Microsoft 已配合 [ODBC 進行原生關聯式資料存取](https://blogs.msdn.microsoft.com/sqlnativeclient/2011/08/29/microsoft-is-aligning-with-odbc-for-native-relational-data-access/)。 ODBC 相當簡單，而且也比 OLE DB 更快速。 唯一必須注意的是 ODBC 會使用舊的 C 樣式 API。 
 
 ## <a id="Create"></a>步驟 1：建立 Azure SQL Database
-請參閱 [快速入門頁面](sql-database-get-started.md) ，以了解如何建立範例資料庫。  或者，您可以依照此[兩分鐘短片](https://azure.microsoft.com/documentation/videos/azure-sql-database-create-dbs-in-seconds/)使用 Azure 入口網站建立 Azure SQL Database。
+請參閱 [快速入門頁面](sql-database-get-started-portal.md) ，以了解如何建立範例資料庫。  或者，您可以依照此[兩分鐘短片](https://azure.microsoft.com/documentation/videos/azure-sql-database-create-dbs-in-seconds/)使用 Azure 入口網站建立 Azure SQL Database。
 
 ## <a id="ConnectionString"></a>步驟 2：取得連接字串
 在您佈建 Azure SQL Database 之後，需要執行下列步驟來判斷連接資訊，並新增您防火牆存取的用戶端 IP。 

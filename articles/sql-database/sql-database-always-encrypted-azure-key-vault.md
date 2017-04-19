@@ -9,7 +9,7 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 6ca16644-5969-497b-a413-d28c3b835c9b
 ms.service: sql-database
-ms.custom: secure and protect
+ms.custom: security-protect
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 03/06/2017
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: aa3f2bc04fe33466ca44abd7331a4b3aa7be26fc
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: bc60fde6c299bc98aa4ee3a207cd57b6b050765f
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -94,7 +94,7 @@ ms.lasthandoff: 03/07/2017
 ## <a name="create-a-blank-sql-database"></a>建立空白 SQL Database
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 移至 [新增]  >  [資料 + 儲存體]  >  [SQL Database]。
-3. 在新的或現有伺服器上建立名稱為 **Clinic** (診所) 的**空白**資料庫。 如需有關如何在 Azure 入口網站中建立資料庫的詳細指示，請參閱[您的第一個 SQL Database](sql-database-get-started.md)。
+3. 在新的或現有伺服器上建立名稱為 **Clinic** (診所) 的**空白**資料庫。 如需有關如何在 Azure 入口網站中建立資料庫的詳細指示，請參閱[您的第一個 SQL Database](sql-database-get-started-portal.md)。
    
     ![建立空白資料庫](./media/sql-database-always-encrypted-azure-key-vault/create-database.png)
 

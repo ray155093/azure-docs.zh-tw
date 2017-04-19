@@ -48,6 +48,7 @@
 ### [警示管理解決方案](log-analytics-solution-alert-management.md)
 ## 使用解決方案
 ### [解決方案概觀](log-analytics-add-solutions.md)
+### [活動 Log Analytics](log-analytics-activity.md)
 ### [AD 評估](log-analytics-ad-assessment.md)
 ### [AD 複寫狀態](log-analytics-ad-replication-status.md)
 ### [警示管理](log-analytics-solution-alert-management.md)
