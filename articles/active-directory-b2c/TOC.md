@@ -1,7 +1,7 @@
 # 概觀
 ## [概觀](active-directory-b2c-overview.md)
 ## [應用程式類型](active-directory-b2c-apps.md)
-## [生產級別租用戶與預覽 B2C 租用戶](active-directory-b2c-reference-tenant-type.md)
+## [區域可用性與資料常駐](active-directory-b2c-reference-tenant-type.md)
 
 # 開始使用
 ## [建立 Azure AD B2C 目錄](active-directory-b2c-get-started.md)

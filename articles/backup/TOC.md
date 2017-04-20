@@ -76,6 +76,7 @@
 ## [刪除 Azure 備份保存庫](backup-azure-delete-vault.md)
 ## [設定離線備份](backup-azure-backup-import-export.md)
 ## [取代您的磁帶程式庫](backup-azure-backup-cloud-as-tape.md)
+## [Linux VM 的應用程式一致備份](backup-azure-linux-app-consistent.md)
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.recoveryservices.backup/v2.3.0/azurerm.recoveryservices.backup)

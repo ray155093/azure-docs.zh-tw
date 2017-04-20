@@ -5,7 +5,7 @@
 ## [應用程式案例](service-fabric-application-scenarios.md)
 ## [架構](service-fabric-architecture.md)
 ## [術語](service-fabric-technical-overview.md)
-## [內容藍圖](service-fabric-content-roadmap.md)
+## [門](service-fabric-content-roadmap.md)
 
 # 開始使用
 ## 設定開發環境
@@ -17,7 +17,8 @@
 ### [在 Linux 上使用 Java](service-fabric-create-your-first-linux-application-with-java.md)
 ### [Linux 上的 C](service-fabric-create-your-first-linux-application-with-csharp.md)
 ## [在本機叢集上部署應用程式](service-fabric-get-started-with-a-local-cluster.md)
-## [建立獨立叢集](service-fabric-get-started-standalone-cluster.md)
+## [在 Azure 上建立您的第一個叢集](service-fabric-get-started-azure-cluster.md)
+## [建立您的第一個獨立叢集](service-fabric-get-started-standalone-cluster.md)
 
 # 作法
 ## 建置應用程式
@@ -124,7 +125,6 @@
 #### [存取控制](service-fabric-cluster-security-roles.md)
 #### [設定叢集](service-fabric-cluster-fabric-settings.md)
 #### [新增或變換叢集憑證](service-fabric-cluster-security-update-certs-azure.md) 
-#### [免費試用 Party Cluster](http://aka.ms/tryservicefabric)
 
 ### 獨立叢集
 #### [規劃並準備部署](service-fabric-cluster-standalone-deployment-preparation.md)

@@ -42,15 +42,15 @@
 ### [使用 Resource Manager 範本建立及部署事件中樞](event-hubs-resource-manager-namespace-event-hub.md)
 
 # 參考
+## Java
+### [com.microsoft.azure.eventhubs](/java/api/com.microsoft.azure.eventhubs)
+### [com.microsoft.azure.eventprocessorhost](/java/api/com.microsoft.azure.eventprocessorhost)
 ## .NET
 ### [Microsoft.Azure.EventHubs](/dotnet/api/microsoft.azure.eventhubs)
 ### [Microsoft.Azure.EventHubs.Processor](/dotnet/api/microsoft.azure.eventhubs.processor)
 ### [Microsoft.ServiceBus.Messaging](/dotnet/api/microsoft.servicebus.messaging)
-### [Microsoft.Azure.ServiceBus.EventProcessorHost](/dotnet/api/microsoft.azure.servicebus.eventprocessorhost)
+### [Microsoft.ServiceBus.Messaging.EventProcessorHost](/dotnet/api/microsoft.servicebus.messaging.eventprocessorhost)
 ### [Microsoft.Azure.Management.EventHub](/dotnet/api/microsoft.azure.management.eventhub)
-## Java
-### [com.microsoft.azure.eventhubs](/java/api/com.microsoft.azure.eventhubs)
-### [com.microsoft.azure.eventprocessorhost](/java/api/com.microsoft.azure.eventprocessorhost)
 ## [REST](/rest/api/eventhub)
 ## [例外狀況](event-hubs-messaging-exceptions.md)
 ## [配額](event-hubs-quotas.md)

@@ -1,17 +1,20 @@
 # 概觀
 ## [什麼是 Azure 自動化？](automation-intro.md)
 # 開始使用
+## [開始使用 Azure 自動化](automation-offering-get-started.md)
 ## Runbook 教學課程
 ### [建立圖形化 Runbook](automation-first-runbook-graphical.md)
 ### [建立 PowerShell Runbook](automation-first-runbook-textual-powershell.md)
 ### [建立 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 # 作法
 ## 驗證和安全性
-### [Azure 自動化中的驗證](automation-security-overview.md)
-### [管理 Azure 執行身分帳戶](automation-sec-configure-azure-runas-account.md)
-### [設定 Azure AD 使用者帳戶](automation-sec-configure-aduser-account.md)
-### [透過 AWS 設定驗證](automation-sec-configure-aws-account.md)
+### [建立獨立的自動化帳戶](automation-create-standalone-account.md)
+### [建立 Azure AD 使用者帳戶](automation-create-aduser-account.md)
+### [透過 AWS 設定驗證](automation-config-aws-account.md)
+### [透過 PowerShell 建立 Azure 執行身分帳戶](automation-update-account-powershell.md)
+### [驗證自動化帳戶組態](automation-verify-runas-authentication.md)
 ### [管理角色型存取控制](automation-role-based-access-control.md)
+### [管理自動化帳戶](automation-manage-account.md)
 ## 建立 Runbook
 ### [Runbook 類型](automation-runbook-types.md)
 ### [建立和匯入 Runbook](automation-creating-importing-runbook.md)
@@ -71,7 +74,7 @@
 ## [PowerShell](/powershell/resourcemanager/azurerm.automation/v2.3.0/azurerm.automation)
 ## [PowerShell (傳統)](/powershell/servicemanagement/azure.automation/v3.1.0/azure.automation)
 ## [.NET](/dotnet/api/microsoft.azure.management.automation)
-## [REST](https://msdn.microsoft.com/library/azure/mt662285.aspx)
+## [REST](/rest/api/automation)
 ## [REST (傳統)](https://msdn.microsoft.com/library/azure/mt163781)
 # 資源
 ## [版本資訊](https://azure.microsoft.com/updates/?product=automation)

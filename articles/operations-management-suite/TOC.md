@@ -3,15 +3,9 @@
 ## [OMS 架構](operations-management-suite-architecture.md)
 
 # 開始使用
-## 深入解析與分析
-### [註冊 Log Analytics](../log-analytics/log-analytics-get-started.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
-## 自動化與控制
-### [我的第一個 Runbook](../automation/automation-first-runbook-graphical.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
-## 保護和復原
-### [Azure 備份的簡介](../backup/backup-introduction-to-azure-backup.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
-## 安全性與法規遵循
-### [安全性和稽核](oms-security-getting-started.md)
-### [資料安全性](oms-security-data-security.md)
+## 逐步解說
+### [服務對應](operations-management-suite-walkthrough-servicemap.md)
+
 
 # 作法
 

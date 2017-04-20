@@ -25,6 +25,16 @@
 ### [Batch PowerShell Cmdlet](batch-powershell-cmdlets-get-started.md)
 ### [Azure CLI](batch-cli-get-started.md)
 ### [Batch 診斷記錄](batch-diagnostics.md)
+### [Batch 分析](batch-analytics.md)
+#### [集區建立事件](batch-pool-create-event.md)
+#### [集區刪除啟動事件](batch-pool-delete-start-event.md)
+#### [集區刪除完成事件](batch-pool-delete-complete-event.md)
+#### [調整集區大小啟動事件](batch-pool-resize-start-event.md)
+#### [調整集區大小完成事件](batch-pool-resize-complete-event.md)
+#### [工作開始事件](batch-task-start-event.md)
+#### [工作完成事件](batch-task-complete-event.md)
+#### [工作失敗事件](batch-task-fail-event.md)
+### [Azure Batch 計算節點環境變數](batch-compute-node-environment-variables.md)
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.batch/v2.5.0/azurerm.batch)
