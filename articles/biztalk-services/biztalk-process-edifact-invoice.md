@@ -17,6 +17,7 @@ ms.author: deonhe
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: b7ad7b91c6b836f26b45959ef65a99666a4bf69a
+ms.lasthandoff: 12/08/2016
 
 
 ---
@@ -118,7 +119,7 @@ ms.openlocfilehash: b7ad7b91c6b836f26b45959ef65a99666a4bf69a
       
       1. 提供 [規則名稱]、[路由規則] 和 [路由目的地] 的值 (如上圖所示)。
       2. 按一下 [儲存] 。
-   5. 再次在 [路由] 索引標籤中，指定要將擱置的通知 (在處理期間失敗的通知) 傳送到哪裡。 將傳輸類型設為 [Azure 服務匯流排]、將路由目的地類型設為 [佇列]、將驗證類型設為 [共用存取簽章] (SAS)、提供服務匯流排命名空間的 SAS 連接字串，然後在佇列名稱中輸入 **suspended**。
+   5. 再次在 [路由] 索引標籤中，指定要將擱置的通知 (在處理期間失敗的通知) 傳送到哪裡。 將傳輸類型設為 [Azure 服務匯流排]、將路由目的地類型設為 [佇列]、將驗證類型設為 [共用存取簽章] \(SAS)、提供服務匯流排命名空間的 SAS 連接字串，然後在佇列名稱中輸入 **suspended**。
 5. 最後，按一下 [部署]  來部署協議。 請記下傳送和接收協議部署所在的端點。
    
    * 在 [傳送設定] 索引標籤的 [輸入 URL] 底下，記下該端點。 若要使用 EDI 傳送橋接器將訊息從 Contoso 傳送至 Northwind，您必須傳送訊息給此端點。
@@ -277,10 +278,5 @@ BizTalk 服務 EDI 橋接器也支援批次處理傳出訊息。 對於想要接
 [16]: ./media/biztalk-process-edifact-invoice/process-edifact-invoices-with-auzure-bts-16.PNG  
 [17]: ./media/biztalk-process-edifact-invoice/process-edifact-invoices-with-auzure-bts-17.PNG  
 [18]: ./media/biztalk-process-edifact-invoice/process-edifact-invoices-with-auzure-bts-18.PNG
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 
