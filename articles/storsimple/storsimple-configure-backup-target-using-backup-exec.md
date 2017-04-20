@@ -17,6 +17,7 @@ ms.author: hkanna
 translationtype: Human Translation
 ms.sourcegitcommit: 83dc91972ad5fec85e562e45227747568b1fea75
 ms.openlocfilehash: db05fb35fdcbcf6691cc3ffc99d201383706592f
+ms.lasthandoff: 01/26/2017
 
 ---
 
@@ -446,7 +447,7 @@ StorSimple 雲端快照集可保護位於 StorSimple 裝置中的資料。 建�
 
 1.  [安裝 Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azureps-cmdlets-docs/)。
 2.  [下載和匯入發佈設定和訂用帳戶資訊](https://msdn.microsoft.com/library/dn385850.aspx)。
-3.  在 Azure 傳統入口網站中，取得 StorSimple Manager 服務的資源名稱和註冊金鑰[](storsimple-deployment-walkthrough-u2.md#step-2-get-the-service-registration-key)。
+3.  在 Azure 傳統入口網站中，[取得 StorSimple Manager](storsimple-deployment-walkthrough-u2.md#step-2-get-the-service-registration-key) 服務的資源名稱和註冊金鑰。
 4.  在執行指令碼的伺服器上，以系統管理員身分執行 PowerShell。 輸入此命令：
 
     `Get-AzureStorSimpleDeviceBackupPolicy –DeviceName <device name>`
@@ -523,9 +524,4 @@ StorSimple 雲端快照集可保護位於 StorSimple 裝置中的資料。 建�
 
 - 深入了解如何[從備份集還原](storsimple-restore-from-backup-set-u2.md)。
 - 深入了解如何執行[裝置容錯移轉和災害復原](storsimple-device-failover-disaster-recovery.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 
