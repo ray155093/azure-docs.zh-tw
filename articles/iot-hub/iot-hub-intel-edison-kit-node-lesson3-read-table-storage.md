@@ -7,6 +7,8 @@ author: shizn
 manager: timtl
 tags: 
 keywords: "在雲端的資料, 雲端資料收集, iot 雲端服務, iot 資料"
+ROBOTS: NOINDEX
+redirect_url: /azure/iot-hub/iot-hub-intel-edison-kit-node-get-started
 ms.assetid: fa2c7efe-7e34-4e39-bb70-015c15ac69ed
 ms.service: iot-hub
 ms.devlang: nodejs

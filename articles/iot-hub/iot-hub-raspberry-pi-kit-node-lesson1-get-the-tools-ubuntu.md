@@ -7,6 +7,8 @@ author: shizn
 manager: timlt
 tags: 
 keywords: "iot 開發, iot 軟體, 物聯網軟體, 在 ubuntu 上安裝 git, gulp 執行, 安裝 node js ubuntu"
+ROBOTS: NOINDEX
+redirect_url: /azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started
 ms.assetid: 4d5e45c0-1db9-4662-a039-99ba26333085
 ms.service: iot-hub
 ms.devlang: node

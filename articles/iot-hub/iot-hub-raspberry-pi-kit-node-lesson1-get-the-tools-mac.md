@@ -7,6 +7,8 @@ author: shizn
 manager: timlt
 tags: 
 keywords: "iot 開發, iot 軟體, 物聯網軟體, 安裝 python mac, 在 mac 上安裝 git, gulp 執行, 安裝 node js mac"
+ROBOTS: NOINDEX
+redirect_url: /azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started
 ms.assetid: 2ea6d211-c0e8-4ade-ac69-d1c2261d78c4
 ms.service: iot-hub
 ms.devlang: node
