@@ -153,7 +153,7 @@ VM 的必要條件和 Azure Site Recovery [文件](site-recovery-vmware-to-azure
 ### <a name="step-2-access-tenant-account"></a>步驟 2︰存取租用戶帳戶
 
 1.    您可以透過儀表板從 [客戶] 頁面存取租用戶的訂用帳戶，如步驟 1 中所述。 在此頁面瀏覽，然後按一下剛才建立的租用戶帳戶的名稱。
-2.    這會開啟租用戶帳戶的 [訂用帳戶] 區段，您可以在此監視該帳戶現有的訂用帳戶，並且視需要新增更多訂用帳戶。 若要管理租用戶的 DR 作業，請選取頁面右側的 [所有資源] (Azure 入口網站) 選項。
+2.    這會開啟租用戶帳戶的 [訂用帳戶] 區段，您可以在此監視該帳戶現有的訂用帳戶，並且視需要新增更多訂用帳戶。 若要管理租用戶的 DR 作業，請選取頁面右側的 [所有資源] \(Azure 入口網站) 選項。
 
     ![all-resources](./media/site-recovery-multi-tenant-support-vmware-using-csp/all-resources-select.png)
 
