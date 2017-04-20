@@ -48,7 +48,7 @@ ms.lasthandoff: 12/10/2016
 ### <a name="things-to-note"></a>注意事項
 1. 您只能以這樣的方式複製屬於相同區域工作區之間的實驗。 如果您需要在不同區域中跨工作區複製實驗，您可以使用 [PowerShell](http://aka.ms/amlps) commandlet [*Copy-AmlExperiment*](https://github.com/hning86/azuremlps/blob/master/README.md#copy-amlexperiment) 來完成。 另一個解決方法是使用未列出的模式將實驗發佈至組件庫，然後在其他區域的工作區中開啟。
 2. 區域選取器一次只會顯示一個區域的工作區。  
-3. 免費工作區或 [來賓存取] (匿名) 工作區會在美國中南部建立並裝載。  
+3. 免費工作區或 [來賓存取] \(匿名) 工作區會在美國中南部建立並裝載。  
 4. 從位於東南亞的工作區部署的 Web 服務也會裝載於東南亞。  
 
 ## <a name="more-information"></a>詳細資訊
