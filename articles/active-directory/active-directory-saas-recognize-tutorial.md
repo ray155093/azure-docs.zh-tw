@@ -121,13 +121,13 @@ ms.lasthandoff: 03/01/2017
    
     ![設定單一登入](./media/active-directory-saas-recognize-tutorial/tutorial_recognize_05.png)
 5. 在不同的網頁瀏覽器視窗中，以管理員身分登入您的 Recognize 租用戶。
-6. 按一下右上角的 [功能表]。 移至 [Company Admin] (公司管理員)。
+6. 按一下右上角的 [功能表]。 移至 [Company Admin] \(公司管理員)。
    
     ![在應用程式端設定單一登入](./media/active-directory-saas-recognize-tutorial/tutorial_recognize_000.png)
 7. 在左側的導覽窗格上，按一下 [設定] 。
    
     ![在應用程式端設定單一登入](./media/active-directory-saas-recognize-tutorial/tutorial_recognize_001.png)
-8. 在 [SSO Settings] (SSO 設定) 區段下執行下列步驟。
+8. 在 [SSO Settings] \(SSO 設定) 區段下執行下列步驟。
    
     ![在應用程式端設定單一登入](./media/active-directory-saas-recognize-tutorial/tutorial_recognize_002.png)
  1. 將 **[啟用 SSO]** 選取為 **ON**。
@@ -197,14 +197,14 @@ ms.lasthandoff: 03/01/2017
 **若要佈建使用者帳戶，請執行下列步驟：**
 
 1. 以管理員身分登入您的 Recognize 公司網站。
-2. 按一下右上角的 [功能表]。 移至 [Company Admin] (公司管理員)。
+2. 按一下右上角的 [功能表]。 移至 [Company Admin] \(公司管理員)。
 3. 在左側的導覽窗格上，按一下 [設定] 。
 4. 在 [使用者同步處理] 區段中執行下列步驟。
    
    ![新增使用者](./media/active-directory-saas-recognize-tutorial/tutorial_recognize_005.png "新增使用者")   
  1. 對於 [已啟用同步處理] 選取 **ON**。 
- 2. 對於 [Choose sync provider] (選擇同步處理提供者)，選取 [Microsoft / Office 365]。 
- 3. 按一下 [Run User Sync] (執行使用者同步處理)。
+ 2. 對於 [Choose sync provider] \(選擇同步處理提供者)，選取 [Microsoft / Office 365]。 
+ 3. 按一下 [Run User Sync] \(執行使用者同步處理)。
 
 ### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 本節目標是授與 Britta Simon 對 Recognize 的存取權，讓她能夠使用 Azure 單一登入。
