@@ -23,7 +23,7 @@
 ### [刪除 VM 優惠/SKU](./cloud-partner-portal-delete-an-offer.md)
 ### [移轉至雲端合作夥伴入口網站](./cloud-partner-portal-how-to-migrate-to-the-new-cloud-partner-portal.md)
 
-## [行銷潛在客戶管理](../../cloud-partner-portal/cloud-partner-portal-marketing-lead-management.md)
+## [取得潛在客戶](./cloud-partner-portal-get-customer-leads.md)
 ### [Azure 資料表](../../cloud-partner-portal/cloud-partner-portal-lead-management-instructions-azure-table.md)
 ### [Dynamics CRM online](../../cloud-partner-portal/cloud-partner-portal-lead-management-instructions-dynamics.md)
 ### [Salesforce](../../cloud-partner-portal/cloud-partner-portal-lead-management-instructions-salesforce.md)
@@ -31,5 +31,4 @@
 
 ## [管理發行者設定檔](./cloud-partner-portal-manage-publisher-profile.md)
 ## [管理使用者](./cloud-partner-portal-manage-users.md)
-## [提供意見反應](./cloud-partner-portal-give-feedback.md)
 ## [取得支援](./cloud-partner-portal-support-for-cloud-partner-portal.md)

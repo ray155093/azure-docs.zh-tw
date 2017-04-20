@@ -14,12 +14,15 @@
 ## 建立範本
 ### [範本的最佳做法](resource-manager-template-best-practices.md)
 ### [範本區段](resource-group-authoring-templates.md)
+### [連結至其他範本](resource-group-linked-templates.md)
 ### [定義資源間的相依性](resource-group-define-dependencies.md)
+### 複製迴圈以建立多個執行個體
+#### [基本語法](resource-group-create-multiple.md)
+#### [循序迴圈](resource-manager-sequential-loop.md)
+#### [屬性複本](resource-manager-property-copy.md)
 ### [設定位置](resource-manager-template-location.md)
 ### [指派標記](resource-manager-template-tags.md)
 ### [設定子資源名稱與類型](resource-manager-template-child-resource.md)
-### [建立資源類型的多個執行個體](resource-group-create-multiple.md)
-### [連結至其他範本](resource-group-linked-templates.md)
 ### [在連結的範本間共用狀態](best-practices-resource-manager-state.md)
 ### [設計範本的模式](best-practices-resource-manager-design-templates.md)
 ## 部署

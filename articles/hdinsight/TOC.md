@@ -28,7 +28,6 @@
 ## 使用 Hadoop 進行批次查詢
 ### [使用 Hadoop 的 Hive](hdinsight-use-hive.md)
 #### [使用 Hive 檢視](hdinsight-hadoop-use-hive-ambari-view.md)
-#### [使用 SSH](hdinsight-hadoop-use-hive-ssh.md)
 #### [使用 BeeLine](hdinsight-hadoop-use-hive-beeline.md)
 #### [使用 cURL](hdinsight-hadoop-use-hive-curl.md)
 #### [使用 PowerShell](hdinsight-hadoop-use-hive-powershell.md)
@@ -109,6 +108,7 @@
 ### [使用 Spark](hdinsight-apache-spark-with-kafka.md)
 ### [使用 Storm](hdinsight-apache-storm-with-kafka.md)
 ## 開發
+### [開發 C# 串流 MapReduce 程式](hdinsight-hadoop-dotnet-csharp-mapreduce-streaming.md)
 ### [開發 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce-linux.md)
 ### [開發 Scalding MapReduce 工作](hdinsight-hadoop-mapreduce-scalding.md)
 ### [使用 HDInsight 工具建立 Spark 應用程式](hdinsight-apache-spark-eclipse-tool-plugin.md)
@@ -199,6 +199,7 @@
 # 相關參考
 ## Windows 叢集
 ### [將 Windows 叢集移轉到 Linux 叢集](hdinsight-migrate-from-windows-to-linux.md)
+### [將 .NET 解決方案移轉至 Linux 叢集](hdinsight-hadoop-migrate-dotnet-to-linux.md)
 ### [執行 Hadoop MapReduce 範例](hdinsight-run-samples.md)
 ### [叢集上的 Solr](hdinsight-hadoop-solr-install-linux.md)
 ### [使用 Giraph 處理大規模圖形](hdinsight-hadoop-giraph-install.md)

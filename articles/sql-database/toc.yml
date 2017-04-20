@@ -4,8 +4,6 @@
   items:
   - name: "關於 SQL DB"
     href: sql-database-technical-overview.md
-  - name: "比較 SQL DB"
-    href: sql-database-features.md
 - name: "快速入門"
   expanded: true
   items:
@@ -69,8 +67,12 @@
       href: sql-database-benchmark-overview.md
     - name: "限制"
       href: sql-database-resource-limits.md
-  - name: "工具"
-    href: sql-database-manage-overview.md
+    - name: "PaaS 或 IaaS"
+      href: sql-database-paas-vs-sql-server-iaas.md  
+    - name: "特性"
+      href: sql-database-features.md
+    - name: "工具"
+      href: sql-database-manage-overview.md
   - name: "分割資料"
     items:
     - name: "分區化資料庫"
@@ -231,10 +233,6 @@
     items:
     - name: "Azure AD 驗證"
       href: sql-database-aad-authentication-configure.md
-    - name: "稽核"
-      href: sql-database-auditing-portal.md
-    - name: "威脅偵測"
-      href: sql-database-threat-detection-portal.md
     - name: "加密 - 憑證存放區"
       href: sql-database-always-encrypted.md
     - name: "加密 - 金鑰保存庫"
@@ -388,6 +386,8 @@
   items:
   - name: "常見問題集"
     href: sql-database-faq.md
+  - name: "公用資料集"
+    href: sql-database-public-data-sets.md  
   - name: "針對連線問題進行疑難排解"
     href: https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database
   - name: "價格"
@@ -414,3 +414,5 @@
       href: https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools
     - name: "彈性集區自訂儀表板"
       href: https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools-custom-dashboard
+
+

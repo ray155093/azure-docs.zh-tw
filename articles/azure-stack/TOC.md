@@ -15,7 +15,6 @@
 ### [新增預設映像](azure-stack-add-default-image.md)
 ### [佈建虛擬機器](azure-stack-provision-vm.md)
 ### [建立儲存體帳戶](azure-stack-provision-storage-account.md)
-### [新增 Azure Stack 租用戶](azure-stack-add-new-user-aad.md)
 ### [重新部署 Azure Stack POC](azure-stack-redeploy.md)
 
 # 管理
@@ -31,15 +30,17 @@
 ## 作法
 ### [管理更新](azure-stack-updates.md)
 ### [監視健全狀況和警示](azure-stack-monitor-health.md)
-### [管理網路資源](azure-stack-viewing-public-ip-address-consumption-in-tp2.md)
+### [管理網路資源](azure-stack-viewing-public-ip-address-consumption.md)
 ### [管理儲存體資源](azure-stack-manage-storage-accounts.md)
 ### [管理 Windows Azure 套件 VM](azure-stack-manage-windows-azure-pack.md)
 
 # 安全性與法規遵循
 ## 作法
 ### [管理 RBAC](azure-stack-manage-permissions.md)
+### [為 Azure AD 新增使用者](azure-stack-add-new-user-aad.md)
 ### [為 AD FS 新增使用者](azure-stack-add-users-adfs.md)
 ### [建立服務主體](Azure-stack-create-service-principals.md)
+### [啟用多租用戶](azure-stack-enable-multitenancy.md)
 
 # 優惠服務
 ## 開始使用
