@@ -7,6 +7,8 @@ author: shizn
 manager: timtl
 tags: 
 keywords: "iot 雲端服務, arduino 傳送資料到雲端"
+ROBOTS: NOINDEX
+redirect_url: /azure/iot-hub/iot-hub-intel-edison-kit-c-get-started
 ms.assetid: 12672b64-795a-4dfc-86fd-df53ed3eeef7
 ms.service: iot-hub
 ms.devlang: c

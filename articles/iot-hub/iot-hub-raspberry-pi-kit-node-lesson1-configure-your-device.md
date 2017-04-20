@@ -7,6 +7,8 @@ author: shizn
 manager: timlt
 tags: 
 keywords: "安裝 raspbian, raspbian 下載, 如何安裝 raspbian, raspbian 安裝程式, raspberry pi 安裝 raspbian, raspberry pi 安裝 os, raspberry pi sd 記憶卡安裝, raspberry pi 連線, 連線至 raspberry pi, raspberry pi 連線能力"
+ROBOTS: NOINDEX
+redirect_url: /azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started
 ms.assetid: 43f7c2cf-f1a5-4dd5-93f0-7e546c6dc91e
 ms.service: iot-hub
 ms.devlang: node

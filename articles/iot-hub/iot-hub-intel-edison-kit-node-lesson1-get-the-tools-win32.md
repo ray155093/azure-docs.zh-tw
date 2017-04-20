@@ -7,6 +7,8 @@ author: shizn
 manager: timtl
 tags: 
 keywords: "arduino 開發工具, iot 開發, iot 軟體, 物聯網軟體, 在 windows 上安裝 git, 在 windows 上安裝 node js"
+ROBOTS: NOINDEX
+redirect_url: /azure/iot-hub/iot-hub-intel-edison-kit-node-get-started
 ms.assetid: 4164b5a1-5a42-4d8a-9ff6-441e79fcc936
 ms.service: iot-hub
 ms.devlang: nodejs

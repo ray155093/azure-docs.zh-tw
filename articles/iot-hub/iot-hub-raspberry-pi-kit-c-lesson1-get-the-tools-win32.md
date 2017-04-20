@@ -7,6 +7,8 @@ author: shizn
 manager: timtl
 tags: 
 keywords: "iot 開發, iot 軟體, 物聯網軟體, 在 windows 上安裝 git, 安裝 node js windows, 在 windows 上安裝 npm"
+ROBOTS: NOINDEX
+redirect_url: /azure/iot-hub/iot-hub-raspberry-pi-kit-c-get-started
 ms.assetid: bd765ddd-65b7-4241-a391-dc77cb3af1c0
 ms.service: iot-hub
 ms.devlang: c
