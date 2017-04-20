@@ -17,6 +17,7 @@ ms.author: magoedte;bwren
 translationtype: Human Translation
 ms.sourcegitcommit: e6033f089152c27713f98f12634c53012f5ff070
 ms.openlocfilehash: 04cfafc9e7a037d915f63723fd0b67a07954460b
+ms.lasthandoff: 12/16/2016
 
 
 ---
@@ -65,7 +66,7 @@ Microsoft 鼓勵您將您認為可能有助於其他客戶的 Runbook 新增至 
 
 * 您必須針對 [類別] 指定 [Windows Azure]，針對 [子類別] 指定[自動化]，讓 Runbook 顯示在精靈中。  
 * 上傳必須是單一 .ps1 或 .graphrunbook 檔案。  如果 Runbook 需要任何模組、子 Runbook 或資產，則您應該在提交的說明中和 Runbook 的註解區段中列出。  如果您有需要多個 Runbook 的案例，則分別將每個上傳並且在各自的說明中列出相關 Runbook 的名稱。 請確定您使用相同的標記，這樣它們就會在相同的類別中顯示。 使用者必須閱讀說明，以得知案例需要其他 Runbook 才能運作。
-* 如果您要發佈 [圖形化 Runbook]  (而非圖形化工作流程)，請新增 "GraphicalPS" 標籤。 
+* 如果您要發佈 [圖形化 Runbook]  \(而非圖形化工作流程)，請新增 "GraphicalPS" 標籤。 
 * 使用 [ **插入程式碼區段** ] 圖示將 PowerShell 或 PowerShell 工作流程程式碼片段插入說明中。
 * 上傳的摘要會顯示在 Runbook 資源庫結果，因此您應該提供詳細資訊，幫助使用者識別 Runbook 的功能。
 * 您應該對上傳項目指派 1 到 3 個下列標記。  Runbook 會列在精靈中符合其標記的類別底下。  精靈會略過不在此清單上的任何標記。 如果您未指定任何相符的標記，Runbook 會列在 [其他] 類別底下。
@@ -121,10 +122,5 @@ PowerShell 模組包含您可以在 Runbook 中使用的 Cmdlet，您可以安�
 ## <a name="next-steps"></a>後續步驟
 * 若要開始使用 Runbook，請參閱 [在 Azure 自動化中建立或匯入 Runbook](automation-creating-importing-runbook.md)
 * 若要了解含有 Runbook 的 PowerShell 和 PowerShell 工作流程之間的差異，請參閱 [了解 PowerShell 工作流程](automation-powershell-workflow.md)
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 
