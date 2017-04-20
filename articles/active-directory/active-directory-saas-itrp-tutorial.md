@@ -143,11 +143,11 @@ ms.lasthandoff: 03/28/2017
    
     ![人員](./media/active-directory-saas-itrp-tutorial/IC775587.png "人員")
 
-4. 按一下 [新增人員]  (“+”)。
+4. 按一下 [新增人員]  \(“+”)。
    
     ![管理](./media/active-directory-saas-itrp-tutorial/IC775576.png "管理")
 
-5. 在 [新增人員] 對話方塊上，執行下列步驟：
+5. 在 新增人員 對話方塊上，執行下列步驟：
    
     ![使用者](./media/active-directory-saas-itrp-tutorial/IC775577.png "使用者")   
   1. 輸入您想要佈建之有效 AAD 帳戶的 [名稱]、[電子郵件]。
