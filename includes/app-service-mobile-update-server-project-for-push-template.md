@@ -2,9 +2,9 @@
 
 請選擇下列其中一個符合您後端專案類型(&mdash;[.NET 後端](#dotnet)或 [Node.js 後端](#nodejs))的程序。
 
-### <a name="a-namedotnetanet-back-end-project"></a><a name="dotnet"></a>.NET 後端專案
+### <a name="dotnet"></a>.NET 後端專案
 1. 在 Visual Studio 中，以滑鼠右鍵按一下伺服器專案並按一下 [管理 NuGet 套件]。 搜尋 `Microsoft.Azure.NotificationHubs`，然後按一下 [安裝]。 這會安裝通知中樞程式庫，以便從後端傳送通知。
-2. 在伺服器專案中，開啟 **Controllers** >  ** TodoItemController.cs**，並新增下列 using 陳述式：
+2. 在伺服器專案中，開啟 **Controllers** >  **TodoItemController.cs**，並新增下列 using 陳述式：
 
         using System.Collections.Generic;
         using Microsoft.Azure.NotificationHubs;
@@ -48,7 +48,7 @@
     插入新的項目時，這會傳送包含 item.Text 的範本通知。
 4. 發佈伺服器專案。
 
-### <a name="a-namenodejsanodejs-back-end-project"></a><a name="nodejs"></a>Node.js 後端專案
+### <a name="nodejs"></a>Node.js 後端專案
 1. 如果您還沒這麼做，請[下載快速入門後端專案](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor)或使用 [Azure 入口網站中的線上編輯器](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart)。
 2. 在 todoitem.js 中，以下列程式碼取代現有的程式碼：
 
@@ -93,8 +93,3 @@
 
     插入新的項目時，這會傳送包含 item.Text 的範本通知。
 3. 當您在本機電腦上編輯檔案時，請重新發佈伺服器專案。
-
-
-<!--HONumber=Dec16_HO2-->
-
-
