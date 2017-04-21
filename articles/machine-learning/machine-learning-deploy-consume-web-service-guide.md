@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/11/2017
+ms.date: 04/19/2017
 ms.author: v-donglo
 translationtype: Human Translation
 ms.sourcegitcommit: c10a35e4828e8da427f324ef3c3892e7e24cc72d
 ms.openlocfilehash: 489037b0ff43c7041f3e12a49525184e7eda0290
+ms.lasthandoff: 12/19/2016
 
 
 ---
@@ -96,9 +97,4 @@ Machine Learning Studio 和 Microsoft Azure Machine Learning Web 服務入口網
 
 ### <a name="from-a-rest-based-client"></a>從以 REST 為基礎的用戶端
 Azure Machine Learning Web 服務是 RESTful API。 您可以從 .NET、Python、R、Java 等各種平台使用這些 API。在 [Microsoft Azure Machine Learning Web 服務入口網站](https://services.azureml.net)上，您的 Web 服務的 [取用] 頁面有提供範例程式碼，可協助您開始使用。 如需詳細資訊，請參閱[如何使用已從機器學習服務實驗部署的 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

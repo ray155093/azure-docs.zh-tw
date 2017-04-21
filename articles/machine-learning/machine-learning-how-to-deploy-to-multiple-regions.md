@@ -12,11 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/11/2017
+ms.date: 04/19/2017
 ms.author: v-donglo
 translationtype: Human Translation
 ms.sourcegitcommit: 0b7c4c95328eb3ca573694b8eca0b0abda646fc5
 ms.openlocfilehash: ba27d4adf73b4d5d3747567b54aeb5f0d06f8243
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -48,10 +49,5 @@ ms.openlocfilehash: ba27d4adf73b4d5d3747567b54aeb5f0d06f8243
 9. 從 [儲存體帳戶]  下拉式清單中，選取要儲存 Web 服務的儲存體帳戶。
 10. 從 [價格方案]  下拉式清單中，在您在步驟 8 選取的區域中選取方案。
 11. 按一下 [複製] 。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

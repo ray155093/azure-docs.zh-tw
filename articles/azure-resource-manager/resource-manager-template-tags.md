@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/03/2017
+ms.date: 04/20/2017
 ms.author: tomfitz
 translationtype: Human Translation
 ms.sourcegitcommit: cec255f5bf017c98fbd1f198a78dfb963acc3cd0
 ms.openlocfilehash: 7d4d325cc1b2d953c766f5381a2e6d4b5805b90c
+ms.lasthandoff: 02/06/2017
 
 
 ---
@@ -30,10 +31,5 @@ ms.openlocfilehash: 7d4d325cc1b2d953c766f5381a2e6d4b5805b90c
 ## <a name="next-steps"></a>後續步驟
 * 如需管理標籤的詳細資訊，請參閱 [使用標記來組織您的 Azure 資源](resource-group-using-tags.md)。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 
