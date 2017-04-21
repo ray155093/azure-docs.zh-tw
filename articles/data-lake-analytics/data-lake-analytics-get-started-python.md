@@ -73,7 +73,8 @@ azure-mgmt-datalake-store 模組包括 Azure Data Lake Store 帳戶管理作業�
         from azure.datalake.store import core, lib, multithread
 
         ## Required for Azure Data Lake Analytics account management
-        from azure.mgmt.datalake.analytics.account.models import DataLakeAnalyticsAccount, DataLakeAnalyticsAccountProperties, DataLakeStoreAccountInfo
+        from azure.mgmt.datalake.analytics.account import DataLakeAnalyticsAccountManagementClient
+        from azure.mgmt.datalake.analytics.account.models import DataLakeAnalyticsAccount, DataLakeStoreAccountInfo
 
         ## Required for Azure Data Lake Analytics job management
         from azure.mgmt.datalake.analytics.job import DataLakeAnalyticsJobManagementClient
