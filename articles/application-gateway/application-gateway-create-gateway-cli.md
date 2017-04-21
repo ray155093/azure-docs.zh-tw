@@ -32,7 +32,7 @@ ms.lasthandoff: 03/01/2017
 > * [Azure CLI 1.0](application-gateway-create-gateway-cli.md)
 > * [Azure CLI 2.0](application-gateway-create-gateway-cli.md)
 
-Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道具有下列應用程式傳遞功能：HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、「安全通訊端層」(SSL) 卸載、自訂健康狀態探查，以及多站台支援。
+Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道具有下列應用程式傳遞功能：HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、「安全通訊端層」(SSL) 卸載、自訂健康狀態探查，以及多站台支援。
 
 ## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
 
