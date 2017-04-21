@@ -107,7 +107,7 @@ ms.lasthandoff: 01/24/2017
             "heartbeat_retry_seconds": 1
 
     >[!TIP]
-    >傳送活動訊號可確保不會流失工作階段。 請注意，當電腦進入睡眠狀態或關機時，將不會傳送活動訊號，所以會清除工作階段。 若為叢集&3;.4 版，如果想要停用此行為，您可以從 Ambari UI 將 Livy 組態 `livy.server.interactive.heartbeat.timeout` 設定為 `0`。 若為叢集 3.5 版，如果您未設定上述的 3.5 組態，則不會刪除工作階段。
+    >傳送活動訊號可確保不會流失工作階段。 請注意，當電腦進入睡眠狀態或關機時，將不會傳送活動訊號，所以會清除工作階段。 若為叢集 3.4 版，如果想要停用此行為，您可以從 Ambari UI 將 Livy 組態 `livy.server.interactive.heartbeat.timeout` 設定為 `0`。 若為叢集 3.5 版，如果您未設定上述的 3.5 組態，則不會刪除工作階段。
 
 6. 啟動 Jupyter。 從命令提示字元使用下列命令。
 
