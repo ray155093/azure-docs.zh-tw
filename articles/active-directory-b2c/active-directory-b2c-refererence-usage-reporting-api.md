@@ -34,7 +34,7 @@ Azure Active Directory B2C 提供登入和 MFA 式驗證，可以跨身分識別
 開始之前，您必須先完成[存取 Azure AD 報告 API 的必要條件](https://azure.microsoft.com/documentation/articles/active-directory-reporting-api-getting-started/)。  建立應用程式、取得密碼，並授與對您的 Azure AD B2C 租用戶報告的存取權限。 這裡也提供了 Bash 指令碼和 Python 指令碼的範例。
 
 ## <a name="powershell-script"></a>PowerShell 指令碼
-此指令碼示範使用 **TimeStamp** 參數和 **-ApplicationId** 篩選器的&4; 個使用報告。
+此指令碼示範使用 **TimeStamp** 參數和 **-ApplicationId** 篩選器的 4 個使用報告。
 
 ```
 # This script will require the Web Application and permissions setup in Azure Active Directory
