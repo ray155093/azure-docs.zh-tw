@@ -132,7 +132,7 @@ ms.lasthandoff: 03/06/2017
 請務必依照這篇文章結尾處＜清理您的 Azure 帳戶＞一節中的步驟來進行，讓您能充分利用您 $200 美元的免費 Azure 點數。
 
 ## <a name="provision-azure-resources-required-for-the-tutorial"></a>佈建本教學課程所需的 Azure 資源
-本教學課程將需要&2; 個事件中樞，來接收 *entry* 及 *exit* 資料流。 Azure SQL Database 會輸出串流分析工作的結果。 Azure 儲存體會儲存車輛登記的相關參考資料。
+本教學課程將需要 2 個事件中樞，來接收 *entry* 及 *exit* 資料流。 Azure SQL Database 會輸出串流分析工作的結果。 Azure 儲存體會儲存車輛登記的相關參考資料。
 
 您可以使用 GitHub 上 TollApp 資料夾中的 Setup.ps1 指令碼來建立所有必要的資源。 為了節省時間，我們建議您執行這個指令碼。 如果您想要深入了解如何在 Azure 入口網站中設定這些資源，請參閱＜在 Azure 入口網站中設定教學課程資源＞附錄。
 
@@ -180,7 +180,7 @@ ms.lasthandoff: 03/06/2017
 
 ![服務匯流排](media/stream-analytics-build-an-iot-solution-using-stream-analytics/image8.png)
 
-按一下開頭為 tolldata 的項目。 按一下 [事件中樞] 索引標籤。 您會在這個命名空間中看到&2; 個已建立的事件中樞，分別名為 *entry* 和 *exit*。
+按一下開頭為 tolldata 的項目。 按一下 [事件中樞] 索引標籤。 您會在這個命名空間中看到 2 個已建立的事件中樞，分別名為 *entry* 和 *exit*。
 
 ![傳統入口網站中的事件中樞索引標籤](media/stream-analytics-build-an-iot-solution-using-stream-analytics/image9.png)
 
@@ -221,7 +221,7 @@ ms.lasthandoff: 03/06/2017
 8. 開啟 [伺服器總管]。
    
     ![Server Explorer](media/stream-analytics-build-an-iot-solution-using-stream-analytics/image18.png)
-9. 在 TollDataDB 資料庫中看到&4; 個資料表。
+9. 在 TollDataDB 資料庫中看到 4 個資料表。
    
     ![TollDataDB 資料庫中的資料表](media/stream-analytics-build-an-iot-solution-using-stream-analytics/image19.jpg)
 
@@ -255,7 +255,7 @@ PowerShell 指令碼會自動利用 TollApp 範例應用程式來開始傳送事
 6. [來源] 是 [事件中樞]。
 7. [服務匯流排命名空間] 應該是下拉式清單中的 TollData。
 8. [事件中樞名稱] 應該設定為**進入**。
-9. [事件中樞原則名稱]** 是 **RootManageSharedAccessKey*  (預設值)。
+9. [事件中樞原則名稱]**是**RootManageSharedAccessKey*  (預設值)。
 10. 選取 [JSON] 做為 [事件序列化格式]，並選取 [UTF8] 做為 [編碼] 格式。
    
     您的設定將看起來會像是：
@@ -434,7 +434,7 @@ Azure 串流分析是設計成能進行彈性調整，以便於處理大量資�
 ## <a name="clean-up-your-azure-account"></a>清理您的 Azure 帳戶
 1. 從 Azure 入口網站停止串流分析工作。
    
-    Setup.ps1 指令碼會建立&2; 個事件中樞，以及&1; 個 SQL Database。 下列指示將協助您在本教學課程結束時清理資源。
+    Setup.ps1 指令碼會建立 2 個事件中樞，以及 1 個 SQL Database。 下列指示將協助您在本教學課程結束時清理資源。
 2. 請在 PowerShell 視窗中輸入 **.\\Cleanup.ps1**，來啟動會刪除本教學課程所使用資源的指令碼。
    
    > [!NOTE]
