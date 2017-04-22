@@ -500,7 +500,7 @@ GROUP BY
     GROUP BY HOPPINGWINDOW(second, 300, 5)
 
 
-**說明**：此查詢會每隔 5 秒產生事件，並且會輸出之前收到的最後一個事件。 [跳動視窗](https://msdn.microsoft.com/library/dn835041.aspx "跳動視窗 - Azure Stream Analytics") 持續時間會決定查詢回溯到多久之前以找出最新的事件 (在此範例中為&300; 秒)。
+**說明**：此查詢會每隔 5 秒產生事件，並且會輸出之前收到的最後一個事件。 [跳動視窗](https://msdn.microsoft.com/library/dn835041.aspx "跳動視窗 - Azure Stream Analytics") 持續時間會決定查詢回溯到多久之前以找出最新的事件 (在此範例中為 300 秒)。
 
 ## <a name="get-help"></a>取得說明
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
