@@ -138,7 +138,7 @@ SQL 資料倉儲是一種特殊類型的資料庫，其設計用來進行大量�
 
     ![主要資料庫上的新增查詢](./media/sql-data-warehouse-get-started-tutorial/query-on-server.png)
 
-    ![主要資料庫上的新增查詢&1;](./media/sql-data-warehouse-get-started-tutorial/query-on-master.png)
+    ![主要資料庫上的新增查詢 1](./media/sql-data-warehouse-get-started-tutorial/query-on-master.png)
 
 2. 在查詢視窗中，執行此 T-SQL 命令來建立名為 MedRCLogin 的登入以及名為 LoadingUser 的使用者。 此登入可以連接到邏輯 SQL Server。
 
@@ -568,7 +568,7 @@ SQL 資料倉儲支援稱為 CREATE TABLE AS SELECT (CTAS) 的重要陳述式。
     > 變更規模時無法執行查詢。 調整會**刪除**目前執行的查詢。 您可以在作業完成時重新啟動查詢。
     >
     
-5. 對車程資料執行掃描作業，選取所有資料行的前&1; 百萬個項目。 如果您想要進展快一點，可放心地選取較少的資料列。 記下執行這項作業所花費的時間。
+5. 對車程資料執行掃描作業，選取所有資料行的前 1 百萬個項目。 如果您想要進展快一點，可放心地選取較少的資料列。 記下執行這項作業所花費的時間。
 
     ```sql
     SELECT TOP(1000000) * FROM dbo.[Trip]
