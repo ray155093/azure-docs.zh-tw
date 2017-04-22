@@ -38,7 +38,7 @@ Azure HDInsight 中的每個 Hadoop 叢集都有一個 Azure 儲存體帳戶作�
 * ambariserverlog
 * ambariagentlog
 
-針對 Windows 型叢集建立&3; 個資料表：
+針對 Windows 型叢集建立 3 個資料表：
 
 * setuplog：佈建/設定 HDInsight 叢集時發生的事件/例外狀況的記錄檔。
 * hadoopinstalllog：在叢集上安裝 Hadoop 時發生的事件/例外狀況的記錄檔。 針對以自訂參數建立的叢集，此資料表適用於相關問題的偵錯。
