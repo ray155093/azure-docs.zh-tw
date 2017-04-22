@@ -243,7 +243,7 @@ System Center Operations Manager 評定解決方案的管理套件包含名為�
 
 ### <a name="to-verify-that-recommendations-are-ignored"></a>驗證已忽略建議
 
-1. 在執行下一個排定的評估之後 (依預設是每隔&7; 天)，指定的建議會標示為 [已略過]，且不會出現在評定儀表板中。
+1. 在執行下一個排定的評估之後 (依預設是每隔 7 天)，指定的建議會標示為 [已略過]，且不會出現在評定儀表板中。
 2. 您可以使用下列記錄搜尋查詢列出所有已忽略的建議。
 
     ```
@@ -262,13 +262,13 @@ System Center Operations Manager 評定解決方案的管理套件包含名為�
 
 *是否有設定評估執行頻率的方法？* 是。 請參閱[設定執行頻率](#configure-the-run-frequency)。
 
-如果在我新增 System Center Operations Manager 評定解決方案之後探索到另一部伺服器，也會評估這部伺服器嗎？ 是，在探索之後，從那時起也會評估它 -- 預設是每隔&7; 天。
+如果在我新增 System Center Operations Manager 評定解決方案之後探索到另一部伺服器，也會評估這部伺服器嗎？ 是，在探索之後，從那時起也會評估它 -- 預設是每隔 7 天。
 
 *負責收集資料之處理序的名稱為何？* AdvisorAssessment.exe
 
 AdvisorAssessment.exe 程序在哪裡執行？ AdvisorAssessment.exe 會在啟用評定規則的管理伺服器的 HealthService 之下執行。 使用這個程序時，將會透過遠端資料收集來探索您的整個環境。
 
-收集資料需要花費多少時間？ 在伺服器上資料收集需要花費約&1; 小時。 在有許多 Operations Manager 執行個體或資料庫的環境中可能更久。
+收集資料需要花費多少時間？ 在伺服器上資料收集需要花費約 1 小時。 在有許多 Operations Manager 執行個體或資料庫的環境中可能更久。
 
 如果我將評定間隔設為少於 1440 分鐘會怎樣？ 評定已預先設定為最多一天執行一次。 如果您將間隔值覆寫為少於 1440 分鐘的值，則評定會使用 1440 分鐘做為間隔值。
 

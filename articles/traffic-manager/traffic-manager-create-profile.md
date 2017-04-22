@@ -12,7 +12,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/21/2017
+ms.date: 04/21/2017
 ms.author: kumud
 translationtype: Human Translation
 ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
@@ -39,7 +39,7 @@ ms.lasthandoff: 03/22/2017
     6. 按一下 [建立] 。
     7. 當流量管理員設定檔的全球部署完成時，它會列為個別資源群組的其中一個資源。
 
-![建立流量管理員設定檔](./media/traffic-manager-create-profile/Create-traffic-manager-profile.png)
+    ![建立流量管理員設定檔](./media/traffic-manager-create-profile/Create-traffic-manager-profile.png)
 
 ## <a name="add-traffic-manager-endpoints"></a>新增流量管理員端點
 
@@ -57,7 +57,7 @@ ms.lasthandoff: 03/22/2017
 5.    針對下一個 Azure Web Apps 端點，重複步驟 3 和 4。 新增它時務必將 [優先順序] 值設為 [2]。
 6.    這兩個端點新增完畢後，它們會顯示在 [流量管理員設定檔] 刀鋒視窗中，而且監視狀態是 [線上]。
 
-![新增流量管理員端點](./media/traffic-manager-create-profile/add-traffic-manager-endpoint.png)
+    ![新增流量管理員端點](./media/traffic-manager-create-profile/add-traffic-manager-endpoint.png)
 
 ## <a name="use-the-traffic-manager-profile"></a>使用流量管理員設定檔
 1.    在入口網站的搜尋列中，搜尋您在上一節建立的**流量管理員設定檔**名稱。 在顯示的結果中，按一下流量管理員設定檔。

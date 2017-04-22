@@ -82,7 +82,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 | 使用者類型 | 到期時間 |
 |:--- |:--- |
 | 不受 Azure Active Directory 管理的使用者帳戶 (@hotmail.com、@live.com 等) |12 小時 |
-| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的&14; 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
+| 受 Azure Active Directory (AAD) 管理的使用者帳戶 |最後一次執行配量後的 14 天。 <br/><br/>如果以 OAuth 式連結服務為基礎的配量至少每 14 天執行一次，則為 90 天。 |
 
 如果要避免/解決此錯誤，請在**權杖到期**時使用 [授權] 按鈕重新授權，然後重新部署連結服務。 您也可以使用下一節中的程式碼以程式設計方式產生 **sessionId** 和 **authorization** 屬性的值。 
 

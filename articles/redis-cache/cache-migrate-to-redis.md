@@ -44,12 +44,12 @@ Azure 受管理的快取服務與 Azure Redis 快取類似，但兩者在實作�
 
 | 受管理的快取服務功能 | 受管理的快取服務支援 | Azure Redis 快取支援 |
 | --- | --- | --- |
-| 具名快取 |會設定預設快取，而在標準版和進階版快取服務中，還可以視需要額外設定多達&9; 個具名快取。 |Azure Redis 快取具有可供用來對具名快取實作類似功能的可設定數目資料庫 (預設值為 16 個)。 如需詳細資訊，請參閱[什麼是 Redis 資料庫？](cache-faq.md#what-are-redis-databases)和[預設 Redis 伺服器組態](cache-configure.md#default-redis-server-configuration)。 |
+| 具名快取 |會設定預設快取，而在標準版和進階版快取服務中，還可以視需要額外設定多達 9 個具名快取。 |Azure Redis 快取具有可供用來對具名快取實作類似功能的可設定數目資料庫 (預設值為 16 個)。 如需詳細資訊，請參閱[什麼是 Redis 資料庫？](cache-faq.md#what-are-redis-databases)和[預設 Redis 伺服器組態](cache-configure.md#default-redis-server-configuration)。 |
 | 高可用性 |在標準版和進階版快取服務中，會針對快取中的項目提供高可用性。 如果因為失敗而導致項目遺失，快取中的項目仍有備份複本可供使用。 次要快取的寫入作業是以同步方式進行。 |標準版和進階版快取服務有提供高可用性，其具有雙節點的主要/複本設定 (進階版快取的每個分區都有主要/複本配對)。 複本的寫入作業是以非同步方式進行。 如需詳細資訊，請參閱 [Azure Redis 快取定價](https://azure.microsoft.com/pricing/details/cache/)。 |
 | 通知 |當具名快取上發生各種快取作業時，允許用戶端接收非同步通知。 |用戶端應用程式可以使用 Redis 發行/訂閱或 [Keyspace 通知](cache-configure.md#keyspace-notifications-advanced-settings) 來達成和通知類似的功能。 |
 | 本機快取 |在用戶端本機上儲存快取物件的複本，以利快速存取。 |用戶端應用程式必須使用字典或類似的資料結構來實作這項功能。 |
 | 收回原則 |無或 LRU。 預設原則是 LRU。 |Azure Redis 快取支援下列收回原則：volatile-lru、allkeys-lru、volatile-random、allkeys-random、volatile-ttl、noeviction。 預設原則是 volatile-lru。 如需詳細資訊，請參閱 [預設 Redis 伺服器組態](cache-configure.md#default-redis-server-configuration)。 |
-| 到期原則 |預設的到期原則為 [絕對]，預設的到期間隔為&10; 分鐘。 另外也提供 [滑動] 和 [永不] 原則。 |依預設，快取中的項目不會到期，但可以使用快取集多載，對每筆寫入作業設定到期時間。 如需詳細資訊，請參閱 [從快取加入和擷取物件](cache-dotnet-how-to-use-azure-redis-cache.md#add-and-retrieve-objects-from-the-cache)。 |
+| 到期原則 |預設的到期原則為 [絕對]，預設的到期間隔為 10 分鐘。 另外也提供 [滑動] 和 [永不] 原則。 |依預設，快取中的項目不會到期，但可以使用快取集多載，對每筆寫入作業設定到期時間。 如需詳細資訊，請參閱 [從快取加入和擷取物件](cache-dotnet-how-to-use-azure-redis-cache.md#add-and-retrieve-objects-from-the-cache)。 |
 | 區域和標記 |區域是快取項目的子群組。 區域也支援以稱為標記的額外描述性字串，來為快取項目加上註解。 區域支援對該區域內的任何標記項目執行搜尋作業的能力。 區域內的所有項目都位於單一快取叢集節點內。 |Redis 快取是由單一節點所組成 (除非已啟用 Redis 叢集)，因此不適用受管理的快取服務區域的概念。 Redis 支援在擷取索引鍵時執行搜尋和萬用字元作業，讓描述性標記可以內嵌在索引鍵名稱內並於稍後用來擷取項目。 如需使用 Redis 實作標記解決方案的範例，請參閱 [使用 Redis 實作快取標記](http://stackify.com/implementing-cache-tagging-redis/)。 |
 | 序列化 |受管理的快取支援 NetDataContractSerializer 和 BinaryFormatter，也支援使用自訂序列化程式。 預設值為 NetDataContractSerializer。 |由用戶端應用程式負責先將 .NET 物件序列化再將它們放入快取中，至於要選擇使用哪個序列化程式則由用戶端應用程式的開發人員決定。 如需詳細資訊和範例程式碼，請參閱 [在快取中使用 .NET 物件](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache)。 |
 | 快取模擬器 |受管理的快取提供本機快取模擬器。 |Azure Redis 快取沒有模擬器，但您可以 [在本機執行 redis-server.exe 的 MSOpenTech 組建](cache-faq.md#cache-emulator) 提供模擬器體驗。 |

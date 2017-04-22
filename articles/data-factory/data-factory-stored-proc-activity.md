@@ -189,7 +189,7 @@ ms.lasthandoff: 03/14/2017
 2. 在 [圖表檢視] 中，您會看到管線的概觀，以及在本教學課程中使用的資料集。
 
     ![圖表圖格](media/data-factory-stored-proc-activity/data-factory-diagram-view.png)
-3. 在 [圖表檢視] 中，按兩下 `sprocsampleout` 資料集。 您會看到就緒狀態的配量。 由於配量是針對 JSON 的開始時間和結束時間之間的每一個小時所產生，因此，應該會有&5; 個配量。
+3. 在 [圖表檢視] 中，按兩下 `sprocsampleout` 資料集。 您會看到就緒狀態的配量。 由於配量是針對 JSON 的開始時間和結束時間之間的每一個小時所產生，因此，應該會有 5 個配量。
 
     ![圖表圖格](media/data-factory-stored-proc-activity/data-factory-slices.png)
 4. 當配量處於**就緒**狀態時，請對 Azure SQL Database 執行 `select * from sampletable` 查詢，以驗證預存程序已將資料插入資料表。
