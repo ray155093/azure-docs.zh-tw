@@ -217,7 +217,7 @@ TCP 通訊協定會要求 TCP 封包傳送至目的地連接埠。 NPM 代理程
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows |![是](./media/log-analytics-network-performance-monitor/oms-bullet-green.png) |![是](./media/log-analytics-network-performance-monitor/oms-bullet-green.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |![否](./media/log-analytics-network-performance-monitor/oms-bullet-red.png) |TCP 交握/ICMP ECHO 訊息會每 5 秒進行一次，而資料會每 3 分鐘傳送一次 |
 
-此方案會使用綜合交易來評估網路的健全狀況。 OMS 代理程式已安裝在網路交換 TCP 封包或 ICMP Echo (取決於已選取要監視的通訊協定) 各種點。 在過程中，代理程式會了解來回行程時間和封包遺失 (如果有的話)。 此外，每個代理程式也會定期執行其他代理程式的路徑追蹤，以找出網路中必須測試的所有各種路由。 使用這項資料，代理程式就能夠推論網路延遲和封包遺失數字。 測試會每&5; 秒重複一次，而代理程式會先彙總三分鐘的資料，再將資料上傳至 Log Analytics 服務。
+此方案會使用綜合交易來評估網路的健全狀況。 OMS 代理程式已安裝在網路交換 TCP 封包或 ICMP Echo (取決於已選取要監視的通訊協定) 各種點。 在過程中，代理程式會了解來回行程時間和封包遺失 (如果有的話)。 此外，每個代理程式也會定期執行其他代理程式的路徑追蹤，以找出網路中必須測試的所有各種路由。 使用這項資料，代理程式就能夠推論網路延遲和封包遺失數字。 測試會每 5 秒重複一次，而代理程式會先彙總三分鐘的資料，再將資料上傳至 Log Analytics 服務。
 
 > [!NOTE]
 > 雖然代理程式會經常彼此通訊，但是在進行測試時不會產生大量網路流量。 代理程式只依賴 TCP SYN-SYNACK-ACK 交握封包來判斷遺失和延遲 - 不會交換任何資料封包。 在此過程中，代理程式只會在需要時彼此通訊，而且代理程式通訊拓撲已最佳化以減少網路流量。

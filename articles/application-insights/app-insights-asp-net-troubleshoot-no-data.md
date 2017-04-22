@@ -180,7 +180,7 @@ ApplicationInsights.config 中的檢測金鑰會控制遙測傳送的位置。 �
 城市、區域和國家/地區維度衍生自 IP 位址，而且不一定準確。
 
 ## <a name="exception-method-not-found-on-running-in-azure-cloud-services"></a>在 Azure 雲端服務中執行時發生的「找不到方法」例外狀況
-您是否已針對 .NET 4.6 組建？ Azure 雲端服務角色不自動支援&4;.6。 [在每個角色上安裝 4.6](../cloud-services/cloud-services-dotnet-install-dotnet.md) ，再執行您的 App。
+您是否已針對 .NET 4.6 組建？ Azure 雲端服務角色不自動支援 4.6。 [在每個角色上安裝 4.6](../cloud-services/cloud-services-dotnet-install-dotnet.md) ，再執行您的 App。
 
 ## <a name="still-not-working"></a>仍然無法運作...
 * [Application Insights 論壇](https://social.msdn.microsoft.com/Forums/vstudio/en-US/home?forum=ApplicationInsights)

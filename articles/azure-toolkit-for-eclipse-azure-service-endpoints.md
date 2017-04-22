@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 12/22/2016
+ms.date: 04/14/2017
 ms.author: robmcm
 translationtype: Human Translation
 ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
 ms.openlocfilehash: 9f664b07566fe78d93b1e35a2e0f7e5513960fad
+ms.lasthandoff: 01/05/2017
 
 
 ---
@@ -31,14 +32,23 @@ Azure 服務端點會判斷您的應用程式是否已部署至全域 Azure 平�
 在 [ **服務端點** ] 對話方塊中，執行下列其中一個動作：
 
 * 如果想使用全域 Azure 平台，請從 [作用中設定] 下拉式清單中，選取 [windowsazure.com]，並按一下 [確定]。
+
 * 如果想使用由位於中國的 21Vianet 所運作的 Azure，請從 [作用中設定] 下拉式清單中，選取 [windowsazure.cn (中國)]，並按一下 [確定]。
+
 * 如果想使用私人 Azure 平台：
+
   1. 按一下 [ **編輯**]。
+
   2. 隨即會開啟一個對話方塊，告知您 [ **服務端點** ] 對話方塊將關閉，喜好設定檔案將開啟。 按一下 [確定] 。
+
   3. 在 preferencesets.xml 檔案中，建立新的 `preferenceset` 元素。 針對此新元素，建立 `name`、`blob`、`management`、`portalURL` 和 `publishsettings` 屬性，再為其新增對應至私人 Azure 平台的值。 您可使用為現有 `preferenceset` 元素所提供的值作為範本。 **注意**：用於 `blob` 屬性的值必須在 URL 中包含 "blob" 文字。
+
   4. 儲存並關閉 preferencesets.xml。
+
   5. 重新開啟 [ **服務端點** ] 對話方塊。
+
   6. 從 [作用中設定] 下拉式清單中，選取您建立的作用中設定，然後按一下 [確定]。
+
   7. 建立私人 Azure 平台 `preferenceset` 元素後，您可以按一下 [服務端點] 對話方塊中的 [編輯] 按鈕，變更指派給該元素的值。 如有需要，也可以建立多個私人 Azure 平台 `preferenceset` 元素。
 
 ## <a name="see-also"></a>另請參閱
@@ -62,9 +72,4 @@ Azure 服務端點會判斷您的應用程式是否已部署至全域 Azure 平�
 [ic719493]: ./media/azure-toolkit-for-eclipse-azure-service-endpoints/ic719493.png
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/dn268600.aspx -->
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

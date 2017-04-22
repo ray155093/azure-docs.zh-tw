@@ -610,7 +610,7 @@ POSIXct 時間序列類別是常用且相對簡單的類別。 此時間序列�
 <!-- Additional information on R time series objects is provided in the references in Section 5.7. [commenting because this section doesn't exist, even in the original] -->
 
 ### <a name="time-series-object-example"></a>時間序列物件範例
-讓我們開始進行我們的範例。 請將**新的**[執行 R 指令碼][execute-r-script]模組拖放到您的實驗中。 將現有[執行 R 指令碼][execute-r-script]模組的 [結果資料集&1;] 輸出連接埠連接到新的[執行 R 指令碼][execute-r-script]模組的 [資料集&1;] 輸入連接埠。
+讓我們開始進行我們的範例。 請將**新的**[執行 R 指令碼][execute-r-script]模組拖放到您的實驗中。 將現有[執行 R 指令碼][execute-r-script]模組的 [結果資料集 1] 輸出連接埠連接到新的[執行 R 指令碼][execute-r-script]模組的 [資料集 1] 輸入連接埠。
 
 如同我為前幾個範例所做的，隨著我們循序進行此範例，在某些點，我將只會示範在每個步驟累加的額外 R 程式碼行。  
 
@@ -1249,7 +1249,7 @@ Paul Cowpertwait 與 Andrew Metcalfe 所著的 《Introductory Time Series with 
 * DataCamp：DataCamp 利用視訊課程和程式碼撰寫練習在瀏覽器中輕鬆教導 R。 最新 R 技巧和封裝均有互動式教學課程。 請至 https://www.datacamp.com/courses/introduction-to-r 觀看免費的互動式 R 教學課程
 * 有關從 Programiz 開始使用 R 的指南：https://www.programiz.com/r-programming
 * Clarkson 大學 Kelly Black 提供的快速 R 教學課程：http://www.cyclismo.org/tutorial/R/
-* http://www.computerworld.com/article/2497464/business-intelligence-60-r-resources-to-improve-your-data-skills.html 列出&60; 個以上的 R 資源
+* http://www.computerworld.com/article/2497464/business-intelligence-60-r-resources-to-improve-your-data-skills.html 列出 60 個以上的 R 資源
 
 <!--Image references-->
 [1]: ./media/machine-learning-r-quickstart/fig1.png

@@ -67,7 +67,7 @@ ms.lasthandoff: 03/10/2017
 ![Service Fabric 專案結構][2]
 
 ## <a name="reliable-actors-basic-building-blocks"></a>Reliable Actors 項目基本建置組塊
-典型的 Reliable Actors 方案是由&3; 個專案組成：
+典型的 Reliable Actors 方案是由 3 個專案組成：
 
 * **應用程式專案 (MyActorApplication)**。 此專案會將所有的服務封裝在一起部署。 其包含了用於管理應用程式的 ApplicationManifest.xml  與 PowerShell 指令碼。
 * **介面專案 (MyActor.Interfaces)**。 此專案包含動作項目的介面定義。 在 MyActor.Interfaces 專案中，您可以定義將由方案中的動作項目使用者介面。 可以在任何專案中使用任何名稱定義動作項目介面，不過該介面會定義由動作項目實作與呼叫動作項目的用戶端所共用的動作項目合約，因此通常適合在不同於動作項目實作的組件中定義該合約，並可由多個其他專案共用。

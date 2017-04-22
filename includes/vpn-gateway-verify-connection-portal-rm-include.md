@@ -5,9 +5,3 @@
 3. 按一下您要驗證的連線名稱以開啟 **Essentials**。 在 Essentials 中，您可以檢視連線的相關詳細資訊。 當您成功建立連線時，[狀態]會是 [成功] 和 [已連線]。
    
     ![使用 Azure 入口網站驗證 VPN 閘道連線](./media/vpn-gateway-verify-connection-portal-rm-include/connectionsucceeded.png)
-
-
-
-<!--HONumber=Jan17_HO5-->
-
-
