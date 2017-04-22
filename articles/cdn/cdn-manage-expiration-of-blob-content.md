@@ -31,7 +31,7 @@ ms.lasthandoff: 03/21/2017
 [Azure 儲存體](../storage/storage-introduction.md)中的 [Blob 服務](../storage/storage-introduction.md#blob-storage)是數個已與 Azure CDN 整合之 Azure 型來源的其中一個。  任何可公開存取的 Blob 內容均可在 Azure CDN 中加以快取，直到其存留時間 (TTL) 結束。  TTL 是由來自 Azure 儲存體之 HTTP 回應中的 [ 標頭](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9) 所決定。
 
 > [!TIP]
-> 您可以選擇不對 Blob 設定任何 TTL。  在此情況下，Azure CDN 會自動套用預設為期&7; 天的 TTL。
+> 您可以選擇不對 Blob 設定任何 TTL。  在此情況下，Azure CDN 會自動套用預設為期 7 天的 TTL。
 > 
 > 如需 Azure CDN 如何運作以加快對 Blob 和其他檔案存取速度的詳細資訊，請參閱 [Azure CDN 概觀](cdn-overview.md)。
 > 
