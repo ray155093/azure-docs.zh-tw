@@ -144,7 +144,7 @@ ms.lasthandoff: 04/06/2017
 
 ### <a name="analysis"></a>分析
 
-* **在 Visual Studio 中使用 Application Insights[](app-insights-visual-studio.md)**<br/>包括使用遙測來偵錯、診斷搜尋及鑽研程式碼的相關資訊。
+* **[在 Visual Studio 中使用 Application Insights](app-insights-visual-studio.md)**<br/>包括使用遙測來偵錯、診斷搜尋及鑽研程式碼的相關資訊。
 * **[使用 Application Insights 入口網站](app-insights-dashboards.md)**<br/> 包括儀表板、功能強大的診斷和分析工具、警示、即時的應用程式相依性對應，以及遙測匯出的相關資訊。
 * **[分析 - ](app-insights-analytics-tour.md)** - 功能強大的查詢語言。
 
