@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 04/07/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
-ms.openlocfilehash: aef5bce6f440f4a0a57763f915d307297f50281b
-ms.lasthandoff: 04/10/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: d88f8bed0cbd14ee49986d6749396731a810034b
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -73,8 +73,7 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 若要將報告的資料縮小至您適用的層級，您可以使用下列欄位篩選稽核資料︰
 
 - 日期範圍
-- 啟動者
-- 類別
+- 啟動者 (執行者)
 - 類別
 - 活動資源類型
 - 活動
@@ -311,7 +310,7 @@ Azure Active Directory 中的稽核記錄會提供符合規範的系統活動記
 * 應用程式的名稱已變更嗎？
 * 誰已同意應用程式？
 
-如果您只想檢閱應用程式相關的稽核資料，您可以在 [企業應用程式] 刀鋒視窗的 [活動] 區段中的 [稽核記錄] 之下找到篩選過的檢視。 此進入點將 [應用程式] 作為預先選取的 [活動資源類型]。
+如果您只想檢閱應用程式相關的稽核資料，您可以在 [企業應用程式] 刀鋒視窗的 [活動] 區段中的 [稽核記錄] 之下找到篩選過的檢視。 此進入點將 [企業應用程式] 當作預先選取的 [活動資源類型]。
 
 ![稽核記錄檔](./media/active-directory-reporting-activity-audit-logs/134.png "稽核記錄檔")
 

@@ -28,6 +28,8 @@ Azure VPN 閘道會通告下列路由至您的內部部署 BGP 裝置︰
 ### <a name="can-i-advertise-default-route-00000-to-azure-vpn-gateways"></a>可以公告 Azure VPN 閘道的預設路由 (0.0.0.0/0) 嗎？
 是。
 
+請注意，這會強制所有 VNet 輸出流量流向您的內部部署站台，而且會阻礙 VNet VM 直接接受來自網際網路的公用通訊，例如從網際網路到 VM 的 RDP 或 SSH。
+
 ### <a name="can-i-advertise-the-exact-prefixes-as-my-virtual-network-prefixes"></a>可以公告確切的前置詞做為我的虛擬網路前置詞嗎？
 
 是，公告相同的前置詞做為任何一個虛擬網路位址前置詞，將由 Azure 平台進行封鎖或篩選。 不過，您可以公告一個前置詞，也就是您在虛擬網路內已有的超集。 
@@ -65,9 +67,4 @@ Azure 區域網路閘道會指定內部部署網路的起始位址首碼。 若�
 
 ### <a name="what-should-i-add-to-my-on-premises-vpn-device-for-the-bgp-peering-session"></a>我應該將什麼加入我的 BGP 對等互連工作階段的內部部署 VPN 裝置？
 您應該在指向 IPsec S2S VPN 通道的 VPN 裝置上加入 Azure BGP 對等互連 IP 位址的主機路由。 例如，如果 Azure VPN 對等互連 IP 是「10.12.255.30」，您應該加入 VPN 裝置上具有比對 IPsec 通道介面的躍點介面的「10.12.255.30」主機路由。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 02/14/2017
+ms.date: 04/17/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 15ac382f72cab455246ffcc05f08c8aba5876c8f
-ms.openlocfilehash: c90bb4f41661aedec2bde53abe035fe9bcc80320
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 49aeb711de73bf967f330ec54385fb8bb36dd7ca
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -35,18 +35,18 @@ ms.lasthandoff: 02/15/2017
 ### <a name="what-are-my-cross-premises-connection-options"></a>有哪些跨單位連線選項？
 支援下列跨單位連線：
 
-* [網站間](vpn-gateway-howto-site-to-site-resource-manager-portal.md) – 透過 IPsec (IKE v1 和 IKE v2) 的 VPN 連線。 此類型的連線需要 VPN 裝置或 RRAS。
-* [點對站台](vpn-gateway-howto-point-to-site-resource-manager-portal.md) – 透過 SSTP (安全通訊端通道通訊協定) 的 VPN 連線。 此連線不需要 VPN 裝置。
-* [VNet 對 VNet](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md) - 此類型的連線與網站間組態相同。 VNet 對 VNet 是透過 IPsec (IKE v1 和 IKE v2) 的 VPN 連線， 並不需要 VPN 裝置。
-* [多網站](vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md) - 這是網站間組態的變體，可讓您將多個內部部署網站連接到虛擬網路。
-* [ExpressRoute](../expressroute/expressroute-introduction.md) - ExpressRoute 是從 WAN 到 Azure 的直接連線，不透過公用網際網路。 如需詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)和 [ExpressRoute 常見問題集](../expressroute/expressroute-faqs.md)。
+* 站對站 – 透過 IPsec (IKE v1 和 IKE v2) 的 VPN 連線。 此類型的連線需要 VPN 裝置或 RRAS。 如需詳細資訊，請參閱[站對站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)。
+* 點對站 – 透過 SSTP (安全通訊端通道通訊協定) 的 VPN 連線。 此連線不需要 VPN 裝置。 如需詳細資訊，請參閱[點對站](vpn-gateway-howto-point-to-site-resource-manager-portal.md)。
+* VNet 對 VNet – 此類型的連線與站對站組態相同。 VNet 對 VNet 是透過 IPsec (IKE v1 和 IKE v2) 的 VPN 連線， 並不需要 VPN 裝置。 如需詳細資訊，請參閱 [VNet 對 VNet](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)。
+* 多網站 - 這是站對站組態的變體，可讓您將多個內部部署網站連線至虛擬網路。 如需詳細資訊，請參閱[多網站](vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)。
+* ExpressRoute - ExpressRoute 是從 WAN 到 Azure 的直接連線，而不是透過公用網際網路的 VPN 連線。 如需詳細資訊，請參閱 [ExpressRoute 技術概觀](../expressroute/expressroute-introduction.md)和 [ExpressRoute 常見問題集](../expressroute/expressroute-faqs.md)。
 
 如需 VPN 閘道連線的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
 
 ### <a name="what-is-the-difference-between-a-site-to-site-connection-and-point-to-site"></a>網站間連線和點對站台之間的差異為何？
-**站對站**組態介於內部部署位置與 Azure 之間。 這表示視您選擇如何設定路由而定﹐您可以從任何位於您內部部署的電腦連接到虛擬網路內的任何虛擬機器或角色執行個體。 對於永遠可用的跨單位連線而言，這是不錯的選項，而且非常適合於混合式組態。 這種類型的連線依賴 IPsec VPN 應用裝置 (硬體或軟體應用裝置)，而此應用裝置必須部署在網路的邊緣。 若要建立此類型的連線，您必須擁有必要的 VPN 硬體以及對外公開的 IPv4 位址。
+**站對站**(IPsec/IKE VPN 通道) 介於內部部署位置與 Azure 之間。 這表示視您選擇如何設定路由和權限而定﹐您可以從任何位於您內部部署的電腦連線至虛擬網路內的任何虛擬機器或角色執行個體。 對於永遠可用的跨單位連線而言，這是不錯的選項，而且非常適合於混合式組態。 這種類型的連線依賴 IPsec VPN 應用裝置 (硬體裝置或軟體應用裝置)，而此應用裝置必須部署在網路的邊緣。 若要建立此類型的連線，您必須擁有不在 NAT 之後的對外公開 IPv4 位址。
 
-**點對站**組態可讓您從任何地方的單一電腦連線到位於虛擬網路的任何項目。 並會使用 Windows 內建的 VPN 用戶端。 做為點對站台組態的一部分，您會安裝憑證和 VPN 用戶端組態封裝，其中包含可讓您的電腦連接到虛擬網路內任何虛擬機器或角色執行個體的設定。 當您想要連接到不在內部部署的虛擬網路時，這樣做很有用。 當您無權存取 VPN 硬體或對外公開的 IPv4 位址時也是不錯的選項，因為這兩者都是網站間連線的必要項目。
+**點對站** (VPN over SSTP) 組態可讓您從任何地方的單一電腦連線到位於虛擬網路的任何項目。 並會使用 Windows 內建的 VPN 用戶端。 做為點對站台組態的一部分，您會安裝憑證和 VPN 用戶端組態封裝，其中包含可讓您的電腦連接到虛擬網路內任何虛擬機器或角色執行個體的設定。 當您想要連接到不在內部部署的虛擬網路時，這樣做很有用。 當您無權存取 VPN 硬體或對外公開的 IPv4 位址時也是不錯的選項，因為這兩者都是網站間連線的必要項目。
 
 您可以將虛擬網路設定為同時使用網站間和點對站台，只要您使用路由式 VPN 類型來為閘道建立網站間連線即可。 路由式 VPN 類型在傳統部署模型中稱為「動態閘道」。
 
@@ -64,7 +64,7 @@ VPN 閘道是一種虛擬網路閘道。 VPN 閘道可透過公用連線在您�
 ### <a name="do-i-need-a-gatewaysubnet"></a>是否需要 'GatewaySubnet'？
 是。 閘道子網路包含虛擬網路閘道服務使用的 IP 位址。 若要設定虛擬網路閘道，您必須為 VNet 建立閘道子網路。 所有閘道子網路都必須命名為 'GatewaySubnet' 才能正常運作。 請勿將閘道子網路命名為其他名稱。 請勿對閘道子網路部署 VM 或任何其他項目。
 
-當您建立閘道子網路時，您可指定子網路包含的 IP 位址數目。 閘道子網路中的 IP 位址會配置給閘道服務。 某些組態要求將較多 IP 位址配置給閘道服務 (相較於其他服務)。 您想要確定您的閘道子網路包含足夠的 IP 位址，以因應未來成長及可能的其他新連線組態。 所以﹐您可以建立像 /29 這麼小的閘道子網路，但建議您建立 /28 或更大 (/28、/27、/26 等) 的閘道子網路。 查看您想要建立的組態需求﹐並確認您擁有的閘道子網路將符合這些需求。
+當您建立閘道子網路時，您可指定子網路包含的 IP 位址數目。 閘道子網路中的 IP 位址會配置給閘道服務。 某些組態要求將較多 IP 位址配置給閘道服務 (相較於其他服務)。 您想要確定您的閘道子網路包含足夠的 IP 位址，以因應未來成長及可能的其他新連線組態。 所以﹐您可以建立像 /29 這麼小的閘道子網路，但建議您建立 /27 或更大 (/27、/26、/25 等) 的閘道子網路。 查看您想要建立的組態需求﹐並確認您擁有的閘道子網路將符合這些需求。
 
 ### <a name="can-i-deploy-virtual-machines-or-role-instances-to-my-gateway-subnet"></a>是否可以將虛擬機器或角色執行個體部署到閘道子網路？
 否。
@@ -96,7 +96,7 @@ Azure VPN 使用 PSK (預先共用金鑰) 驗證。 當建立 VPN 通道時，�
 是。 請參閱 [設定強制通道](vpn-gateway-about-forced-tunneling.md)。
 
 ### <a name="can-i-set-up-my-own-vpn-server-in-azure-and-use-it-to-connect-to-my-on-premises-network"></a>是否可以在 Azure 中設定自己的 VPN 伺服器，並用來連接到內部部署網路？
-是，您可以從 Azure Marketplace 或建立自己的 VPN 路由器，在 Azure 中部署自己的 VPN 閘道或伺服器。 您將需要在虛擬網路中設定使用者定義的路由，以確保在您的內部部署網路與虛擬網路子網路之間適當地路由傳送流量。
+是，您可以從 Azure Marketplace 或建立自己的 VPN 路由器，在 Azure 中部署自己的 VPN 閘道或伺服器。 您需要在虛擬網路中設定使用者定義的路由，以確保在您的內部部署網路與虛擬網路子網路之間適當地路由傳送流量。
 
 ### <a name="why-are-certain-ports-opened-on-my-vpn-gateway"></a>為什麼 VPN 閘道上的某些連接埠已開啟？
 Azure 基礎結構通訊需要這些連接埠。 它們受到 Azure 憑證的保護 (鎖定)。 若沒有適當的憑證，外部實體 (包括這些閘道的客戶) 將無法對這些端點造成任何影響。
@@ -107,11 +107,23 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 如需詳細資訊，請參閱[關於 VPN 閘道組態設定](vpn-gateway-about-vpn-gateway-settings.md)。
 
 ## <a name="site-to-site-connections-and-vpn-devices"></a>網站間連線和 VPN 裝置
-### <a name="what-should-i-consider-when-selecting-a-vpn-device"></a>選取 VPN 裝置時應該考慮什麼？
-我們已與裝置廠商合作驗證一組標準網站間 VPN 裝置。 可在 [這裡](vpn-gateway-about-vpn-devices.md)找到已知的相容 VPN 裝置、其對應組態指示或範例和裝置規格的清單。 裝置系列中列為已知相容裝置的所有裝置應該使用虛擬網路。 為了協助設定 VPN 裝置，請參閱裝置組態範例或對應到適當裝置系列的連結。
 
-### <a name="what-do-i-do-if-i-have-a-vpn-device-that-isnt-in-the-known-compatible-device-list"></a>如果我有不在已知相容裝置清單的 VPN 裝置，該怎麼辦？
-如果未看到您的裝置列為已知的相容 VPN 裝置，而且想要使用它進行 VPN 連線，則您將需要確認其符合支援的 IPsec/IKE 組態選項和參數 (在 [這裡](vpn-gateway-about-vpn-devices.md)列出)。 符合最低需求的裝置也應該適合使用 VPN 閘道。 如需額外支援和設定指示，請連絡裝置製造商。
+### <a name="what-should-i-consider-when-selecting-a-vpn-device"></a>選取 VPN 裝置時應該考慮什麼？
+我們已與裝置廠商合作驗證一組標準網站間 VPN 裝置。 在[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)一文中可找到已知的相容 VPN 裝置、其對應組態指示或範例和裝置規格的清單。 裝置系列中列為已知相容裝置的所有裝置應該使用虛擬網路。 為了協助設定 VPN 裝置，請參閱裝置組態範例或對應到適當裝置系列的連結。
+
+### <a name="where-can-i-find-configuration-settings-for-vpn-devices"></a>哪裡可以找到 VPN 裝置的組態設定？
+
+如需裝置組態設定的連結，請參閱[已經驗證的 VPN 裝置](vpn-gateway-about-vpn-devices.md#devicetable)。 會以最佳方式來提供裝置組態連結。 建議您時常詢問您的裝置製造商以取得最新的組態資訊。
+
+請在設定 VPN 裝置之前，檢查您要使用的 VPN 裝置是否有任何[已知裝置相容性問題](vpn-gateway-about-vpn-devices.md#known)。
+
+### <a name="how-do-i-edit-vpn-device-configuration-samples"></a>如何編輯 VPN 裝置組態範例？
+
+如需編輯裝置組態範例的相關資訊，請參閱[編輯範例](vpn-gateway-about-vpn-devices.md#editing)。
+
+### <a name="where-do-i-find-ipsec-and-ike-parameters"></a>哪裡可以找到 IPsec 和 IKE 參數？
+
+如需 IPsec/IKE 參數，請參閱[參數](vpn-gateway-about-vpn-devices.md#ipsec)。
 
 ### <a name="why-does-my-policy-based-vpn-tunnel-go-down-when-traffic-is-idle"></a>為什麼我的原則型 VPN 通道會在流量閒置時終止？
 這是原則型 (也稱為靜態路由) VPN 閘道的預期行為。 當通道上的流量閒置超過 5 分鐘時，通道就會終止。 當流量開始流向任何一個方向時，便會立即重新建立通道。
@@ -121,11 +133,11 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 
 其他軟體 VPN 解決方案只要符合業界標準 IPsec 實作，應該就能使用我們的閘道。 如需設定和支援指示，請連絡軟體供應商。
 
-## <a name="a-namep2sapoint-to-site-connections"></a><a name="P2S"></a>點對站連線
+## <a name="P2S"></a>點對站連線
 
 [!INCLUDE [vpn-gateway-point-to-site-faq-include](../../includes/vpn-gateway-point-to-site-faq-include.md)]
 
-## <a name="a-namev2vmultiavnet-to-vnet-and-multi-site-connections"></a><a name="V2VMulti"></a>VNet 對 VNet 和多站台連線
+## <a name="V2VMulti"></a>VNet 對 VNet 和多站台連線
 
 [!INCLUDE [vpn-gateway-vnet-vnet-faq-include](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
 
@@ -152,7 +164,7 @@ VPN 閘道基本上是一個多重主目錄的裝置，擁有一個使用客戶�
 ### <a name="can-i-connect-a-virtual-network-with-ipsec-vpns-to-my-expressroute-circuit"></a>是否可以將使用 IPsec VPN 的虛擬網路連接到我的 ExpressRoute 線路？
 是，支援此做法。 如需詳細資訊，請參閱 [設定並存的 ExpressRoute 和網站間 VPN 連線](../expressroute/expressroute-howto-coexist-classic.md)。
 
-## <a name="a-namebgpabgp"></a><a name="bgp"></a>BGP
+## <a name="bgp"></a>BGP
 [!INCLUDE [vpn-gateway-bgp-faq-include](../../includes/vpn-gateway-bpg-faq-include.md)]
 
 ## <a name="cross-premises-connectivity-and-vms"></a>跨單位連線與 VM

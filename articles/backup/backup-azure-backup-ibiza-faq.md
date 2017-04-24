@@ -16,9 +16,9 @@ ms.topic: get-started-article
 ms.date: 10/21/2016
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: e12d533ac5befe020c0aad4aa64ca9ed50349c3d
-ms.openlocfilehash: 271f447a36f42330ed7b8dea78b32c06eebdeda6
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: e5ef305d926a57e32cdebd44f3dbe2185c735dd4
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -40,6 +40,7 @@ ms.lasthandoff: 02/17/2017
 當您將 VM 從傳統移轉至 Resource Manager 模式，備份保存庫中傳統 VM 的備份將不會自動移轉至復原服務保存庫。 請遵循下列步驟進行 VM 備份的移轉︰
 
 1. 在備份保存庫中，請移至 [受保護的項目]  索引標籤並選取 VM。 按一下 [停止保護](backup-azure-manage-vms-classic.md#stop-protecting-virtual-machines)。 讓 [刪除相關聯的備份資料] 選項保持 [未核取] 狀態。
-2. 將虛擬機器從傳統模式移轉至 Resource Manager 模式。 確定虛擬機器對應的儲存體和網路也會移轉至 Resource Manager 模式。
-3. 建立復原服務保存庫，並利用保存庫儀表板上的 [備份]  動作，在移轉的虛擬機器上設定備份。 深入了解如何 [在復原服務保存庫中啟用備份](backup-azure-vms-first-look-arm.md)
+2. 在 [Azure 入口網站](https://portal.azure.com)中，移至 VM 的[擴充] 功能表並將 **VMSnapshot/VMSnapshotLinux** 擴充功能解除安裝。
+3. 將虛擬機器從傳統模式移轉至 Resource Manager 模式。 確定虛擬機器對應的儲存體和網路也會移轉至 Resource Manager 模式。
+4. 建立復原服務保存庫，並利用保存庫儀表板上的 [備份]  動作，在移轉的虛擬機器上設定備份。 深入了解如何 [在復原服務保存庫中啟用備份](backup-azure-vms-first-look-arm.md)
 

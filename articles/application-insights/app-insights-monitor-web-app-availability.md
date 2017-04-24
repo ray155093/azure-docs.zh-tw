@@ -11,12 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/06/2017
+ms.date: 04/12/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: cfe70aa09b21aa914e3705bf7969583c7a1bbd52
-ms.lasthandoff: 04/07/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 5893f8126b0f18ac0d56e434a8e495380bd605d5
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -34,23 +34,26 @@ Web 測試可分為兩種：
 
 每個應用程式資源最多可以建立 10 個 Web 測試。
 
-## <a name="create"></a>1.建立測試報告的資源
-如果您已經為這個應用程式[設定 Application Insights 資源][start]，而且想要在相同位置中查看可用性報告，請略過此步驟。
+## <a name="create"></a>1.開啟 Web 測試報告的資源
 
-註冊 [Microsoft Azure](http://azure.com)，移至 [Azure 入口網站](https://portal.azure.com)，然後建立 Application Insights 資源。
+**如果您已針對應用程式設定 Application Insights**，請在 [Azure 入口網站](https://portal.azure.com)中開啟其 Application Insights 資源。
+
+**或者，如果您想要在新的資源中查看報告，**請註冊 [Microsoft Azure](http://azure.com)，並移至 [Azure 入口網站](https://portal.azure.com)，然後建立 Application Insights 資源。
 
 ![New > Application Insights](./media/app-insights-monitor-web-app-availability/11-new-app.png)
 
 按一下 [所有資源]  ，以開啟新資源的 [概觀] 刀鋒視窗。
 
 ## <a name="setup"></a>2.建立 URL Ping 測試
-在您的 Application Insights 資源中，尋找 [可用性] 圖格。 按一下以開啟應用程式的 [Web 測試] 刀鋒視窗，然後新增 Web 測試。
+開啟 [可用性] 刀鋒視窗並新增一個 Web 測試。
 
 ![Fill at least the URL of your website](./media/app-insights-monitor-web-app-availability/13-availability.png)
 
-* **URL** 必須可在公用網際網路上顯示。 它可以包含查詢字串 - 例如，您可以訓練一下您的資料庫。 如果 URL 解析為重新導向，我們會跟隨它，最多 10 個重新導向。
-* **剖析相依要求**：測試時會要求映像、指令碼、樣式檔和頁面的其他資源，而記錄的回應時間包含這些時間。 如果無法在逾時內為整個測試成功下載所有這些資源，則測試將會失敗。
-* **啟用重試**：當測試失敗時，就會在短時間內進行重試。 只有在連續三次重試失敗後，才會回報失敗。 後續測試則會以一般測試頻率執行。 重試會暫時停止，直到下次成功為止。 此規則可個別套用在每個測試位置。 (我們建議使用這個設定。 平均來說，大約 80%的失敗會在重試後消失。)
+* **URL** 可以是您想要測試的任何網頁，但必須可從公用網際網路看見它。 URL 可以包含查詢字串 - 例如，您可以訓練一下您的資料庫。 如果 URL 解析為重新導向，我們會跟隨它，最多 10 個重新導向。
+* **剖析相依要求**︰若已核取這個選項，測試將會要求影像、指令碼、樣式檔案以及其他屬於受測試網頁的檔案。 記錄的回應時間包含取得這些檔案所需的時間。 如果無法在逾時內為整個測試成功下載所有這些資源，則測試將會失敗。 
+
+    如果未核取這個選項，測試只會要求您指定之 URL 中的檔案。
+* **啟用重試**：若已核取這個選項，就會在短時間內進行重試。 只有在連續三次重試失敗後，才會回報失敗。 後續測試則會以一般測試頻率執行。 重試會暫時停止，直到下次成功為止。 此規則可個別套用在每個測試位置。 我們建議使用這個選項。 平均來說，大約 80% 失敗會在重試後消失。
 * **測試頻率**：設定從每個測試位置執行測試的頻率。 頻率為 5 分鐘且有五個測試位置，則您的網站平均每一分鐘會執行測試。
 * **測試位置** 是我們的伺服器將 Web 要求傳送至您的 URL 的位置。 請選擇多個位置，以便區分網站問題與網路問題。 您最多可以選取 16 個位置。
 * **成功準則**：
@@ -67,14 +70,23 @@ Web 測試可分為兩種：
 ### <a name="test-more-urls"></a>測試更多 URL
 加入更多測試。 例如，除了測試首頁，您也可以測試搜尋的 URL 來確定資料庫在執行中。
 
+
 ## <a name="monitor"></a>3.查看 Web 測試結果
-1-2 分鐘後，結果會出現在 [Web 測試] 刀鋒視窗中。
+
+5 分鐘之後，按一下 [重新整理] 來查看測試結果。 
 
 ![Summary results on the home blade](./media/app-insights-monitor-web-app-availability/14-availSummary.png)
 
 按一下摘要圖表上的任何橫條，以取得該時段的更詳細檢視。
 
-這些圖表會結合此應用程式的所有 Web 測試的結果。
+## <a name="edit"></a> 檢查和編輯測試
+
+從摘要頁面中，選取特定測試。 您可以在該頁面中看見其特定結果，並加以編輯或暫時將它停用。
+
+![Edit or disable a web test](./media/app-insights-monitor-web-app-availability/19-availEdit.png)
+
+當您在服務上進行維護時，您可能會想要停用 Web 測試。
+
 
 ## <a name="failures"></a>如果您看到失敗
 按一下一個紅點。
@@ -103,7 +115,9 @@ Web 測試可分為兩種：
 
 若要建立多重步驟測試，您可以使用 Visual Studio Enterprise 來記錄案例，然後將記錄結果上傳至 Application Insights。 Application Insights 會不時地重新執行案例，並確認回應。
 
-請注意，您無法在測試中使用編碼的函式：做為 .webtest 檔案中的指令碼必須包含案例步驟。
+> [!NOTE]
+> 您無法在測試中使用已編碼的函式或迴圈。 測試必須完全包含於 .webtest 指令碼中。 不過，您可以使用標準外掛程式。
+>
 
 #### <a name="1-record-a-scenario"></a>1.記錄案例
 使用 Visual Studio Enterprise 來記錄 Web 工作階段。
@@ -144,13 +158,19 @@ Web 測試可分為兩種：
 
     以進行 ping 測試的相同方式設定測試位置、頻率及警示參數。
 
-就像在單一 url 測試中一樣，以相同的方式檢視您的測試結果和任何失敗。
+#### <a name="3-see-the-results"></a>3.查看結果
 
-失敗的常見原因是在測試執行太長。 不可執行超過兩分鐘。
+就像在單一 URL 測試中一樣，以相同的方式檢視您的測試結果和任何失敗項目。
 
-別忘了，必須正確載入頁面的所有資源，測試才能成功 (包括指令碼、樣式表、映像等等)。
+此外，您可以下載測試結果，以在 Visual Studio 中檢視。
 
-請注意，Web 測試必須完全包含在 .webtest 檔案中：您無法在測試中使用編碼的函式。
+#### <a name="too-many-failures"></a>太多失敗項目？
+
+* 失敗的常見原因是在測試執行太長。 不可執行超過兩分鐘。
+
+* 別忘了，必須正確載入頁面的所有資源，測試才能成功 (包括指令碼、樣式表、映像等等)。
+
+* Web 測試必須完全包含在 .webtest 指令碼中：您無法在測試中使用編碼的函式。
 
 ### <a name="plugging-time-and-random-numbers-into-your-multi-step-test"></a>將時間和隨機數字插入多重步驟測試中
 假設您要測試的工具會從外部來源取得與時間相關的資料 (例如股票)。 當您記錄 Web 測試時，您必須使用特定的時間，但您將它們設為測試的參數：StartTime 和 EndTime。
@@ -211,12 +231,6 @@ Web 測試外掛程式提供將時間參數化的方法。
 * 將權杖參數化，當驗證器傳回權杖時設定參數，然後在查詢網站時使用參數。
   (Visual Studio 會嘗試將測試參數化，但不會正確地將權杖參數化。)
 
-## <a name="edit"></a> 編輯或停用測試
-開啟個別測試來編輯或停用。
-
-![Edit or disable a web test](./media/app-insights-monitor-web-app-availability/19-availEdit.png)
-
-當您在服務上進行維護時，您可能會想要停用 Web 測試。
 
 ## <a name="performance-tests"></a>效能測試
 您可以在網站上執行負載測試。 例如可用性測試，您可以從我們在全球各地的點傳送簡單要求或多個步驟的要求。 不同於可用性測試，許多要求傳送時會同時模擬多位使用者。
@@ -229,7 +243,7 @@ Web 測試外掛程式提供將時間參數化的方法。
 * [使用 PowerShell 指令碼自動設定 Web 測試](app-insights-powershell.md#add-an-availability-test) 。
 * 設定會在產生警示時呼叫的 [webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md)。
 
-## <a name="questions-problems"></a>有疑問嗎？ 有問題嗎？
+## <a name="qna"></a>有疑問嗎？ 有問題嗎？
 * *可以從我的 Web 測試呼叫程式碼嗎？*
 
     否。 測試步驟必須在 .webtest 檔案中。 而且您不能呼叫其他 Web 測試或使用迴圈。 但是這裡有一些您會覺得有用的外掛程式。

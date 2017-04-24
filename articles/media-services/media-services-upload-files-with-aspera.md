@@ -12,12 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/22/2017
+ms.date: 04/17/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 44fe2f5c0a3f050a93368589d9ea6b8ea3e35d26
-ms.openlocfilehash: 60a35bbda79a45bd0ac24e76b0a20720afe79774
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 86cb6a979d3aa429c0f501a5ebf37db4bff8ba99
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -31,6 +31,7 @@ ms.lasthandoff: 02/23/2017
 
 本教學課程將引導您逐步進行以下步驟：使用 Azure 上的 **Aspera Server On Demand** 服務，將檔案上傳到與媒體服務帳戶相關聯的儲存體帳戶。 
 
+您可以在[這裡](https://github.com/Azure-Samples/media-services-dotnet-functions-integration/tree/master/103-aspera-ingest)找到一個範例，其顯示如何使用 Azure Functions 搭配 Aspera 與媒體服務。
 
 >[!NOTE]
 >對於支援使用 Azure 媒體服務媒體處理器 (Mp) 來進行處理的檔案大小有所限制。 請參閱[此](media-services-quotas-and-limitations.md)主題，以取得有關檔案大小限制的詳細資料。

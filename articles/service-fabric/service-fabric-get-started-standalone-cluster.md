@@ -15,18 +15,18 @@ ms.workload: NA
 ms.date: 04/11/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 6da8b21014966edd9f4cea0fd27f6973b2b820f0
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 5e32f1e534057b5e8e0ed6d5c0a4631f9fefbca5
+ms.lasthandoff: 04/17/2017
 
 
 ---
 
 # <a name="create-your-first-service-fabric-standalone-cluster"></a>建立您的第一個 Service Fabric 獨立叢集
-您可以在內部部署環境或雲端上，在執行 Windows Server 2012 R2 或 Windows Server 2016 的虛擬機器或電腦上建立 Service Fabric 獨立叢集。 本快速入門可協助您在短短幾分鐘內建立開發獨立叢集。  當您完成時，會具備有一個包含三個節點的叢集，其在您可部署應用程式的單一電腦上執行。
+您可以在內部部署環境或雲端上，在執行 Windows Server 2012 R2 或 Windows Server 2016 的虛擬機器或電腦上建立 Service Fabric 獨立叢集。 本快速入門可協助您在短短幾分鐘內建立開發獨立叢集。  當您完成時，您會具備有一個包含三個節點的叢集，其在您可部署應用程式的單一電腦上執行。
 
 ## <a name="before-you-begin"></a>開始之前
-Service Fabric 會提供一個安裝套件以建立 Service Fabric 獨立叢集。  [下載安裝套件](http://go.microsoft.com/fwlink/?LinkId=730690)。  在您設定開發叢集的電腦或虛擬機器上，將它解壓縮到資料夾，例如 *C:\temp\Microsoft.Azure.ServiceFabric.WindowsServer*。  [這裡](service-fabric-cluster-standalone-package-contents.md)有安裝套件內容的詳細說明。
+Service Fabric 會提供一個安裝套件以建立 Service Fabric 獨立叢集。  [下載安裝套件](http://go.microsoft.com/fwlink/?LinkId=730690)。  將安裝套件解壓縮至您在其中設定開發叢集之電腦或虛擬機器上的資料夾。  [這裡](service-fabric-cluster-standalone-package-contents.md)有安裝套件內容的詳細說明。
 
 部署和設定叢集的叢集系統管理員必須具有電腦的系統管理員權限。 您無法在網域控制站上安裝 Service Fabric。
 
@@ -37,7 +37,9 @@ Service Fabric 會提供一個安裝套件以建立 Service Fabric 獨立叢集�
 .\TestConfiguration.ps1 -ClusterConfigFilePath .\ClusterConfig.Unsecure.DevCluster.json
 ```
 ## <a name="create-the-cluster"></a>建立叢集
-已使用安裝套件安裝數個範例叢集組態檔。 *ClusterConfig.Unsecure.DevCluster.json* 是最簡單的叢集組態︰在單一電腦上執行的不安全叢集 (包含三個節點)。 您不需要修改本教學課程的任何預設組態設定。  其他組態檔說明使用 X.509 憑證或 Windows 安全性保護之單一或多重電腦的叢集。  若要深入了解 Service Fabric 叢集安全性，請閱讀[保護叢集](service-fabric-cluster-security.md)。 
+已使用安裝套件安裝數個範例叢集組態檔。 *ClusterConfig.Unsecure.DevCluster.json* 是最簡單的叢集組態︰在單一電腦上執行的不安全叢集 (包含三個節點)。  其他組態檔說明使用 X.509 憑證或 Windows 安全性保護之單一或多重電腦的叢集。  您不需要修改本教學課程的任何預設組態設定，但請瀏覽組態檔並熟悉設定。  **nodes** 區段描述叢集中的三個節點︰名稱、IP 位址、[節點類型、容錯網域和升級網域](service-fabric-cluster-manifest.md#nodes-on-the-cluster)。  **properties** 區段定義叢集的[安全性、可靠性層級、診斷集合和節點類型](service-fabric-cluster-manifest.md#cluster-properties)。
+
+此叢集並不安全。  任何人都可以匿名方式連線並執行管理作業，所以一律要使用 X.509 憑證或 Windows 安全性來保護生產叢集。  只有在建立叢集時才會設定安全性，而且不可能在叢集建立之後啟用安全性。  若要深入了解 Service Fabric 叢集安全性，請閱讀[保護叢集](service-fabric-cluster-security.md)。  
 
 若要建立包含三個節點的開發叢集，請從系統管理員 PowerShell 工作階段執行 *CreateServiceFabricCluster.ps1* 指令碼：
 
@@ -88,7 +90,7 @@ NodeDeactivationInfo NodeName IpAddressOrFQDN NodeType  CodeVersion ConfigVersio
 ```
 
 ## <a name="next-steps"></a>後續步驟
-您已設定好開發獨立叢集，請嘗試下列作業︰
+您已設定好開發獨立叢集，請嘗試下列文章︰
 * [設定包含多部電腦的獨立叢集](service-fabric-cluster-creation-for-windows-server.md)並啟用安全性。
 * [使用 PowerShell 部署應用程式](service-fabric-deploy-remove-applications.md)
 

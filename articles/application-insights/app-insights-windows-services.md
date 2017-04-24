@@ -14,9 +14,9 @@ ms.topic: get-started-article
 ms.date: 11/01/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 97d750035e79d4780738e660d05e1a41085d51f1
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 29598f052778759ed362e3aa4b997acb799717ef
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -115,10 +115,7 @@ Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務�
 以偵錯模式執行時，系統會透過管線迅速傳送遙測資料，因此您應該可以在幾秒內看見資料。 以發行組態部署應用程式時，資料累積會較為緩慢。
 
 #### <a name="no-data-after-you-publish-to-your-server"></a>發佈資料到伺服器之後，卻沒有資料？
-請在您的伺服器防火牆中，開啟這些連出流量的連接埠：
-
-* `dc.services.visualstudio.com:443`
-* `f5.services.visualstudio.com:443`
+請在您的伺服器防火牆中，開啟連出流量的連接埠。 請參閱[本頁](https://docs.microsoft.com/azure/application-insights/app-insights-ip-addresses)以取得必要位址清單 
 
 #### <a name="trouble-on-your-build-server"></a>組建伺服器發生問題？
 請參閱 [此疑難排解項目](app-insights-asp-net-troubleshoot-no-data.md#NuGetBuild)。

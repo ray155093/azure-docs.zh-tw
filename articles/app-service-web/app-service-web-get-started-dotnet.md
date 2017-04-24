@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 03/27/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
-ms.openlocfilehash: b575e92d2140ecc0e0f30186302e7733e08d0415
-ms.lasthandoff: 04/04/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 24ddf0d81e52960bd582861d324585b8ba0ca357
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -159,13 +159,13 @@ URL 會使用您稍早指定的 Web 應用程式名稱，其格式為 `http://<a
 
 若要這麼做，請登入 [https://portal.azure.com](https://portal.azure.com)。
 
-按一下左側功能表中的 [App Service]，然後按一下 Azure Web 應用程式的名稱。
+按一下左側功能表中的 [應用程式服務]，然後按一下 Azure Web 應用程式的名稱。
 
 ![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-get-started-dotnet/access-portal.png)
 
 您已進入 Web 應用程式的_刀鋒視窗_ (水平開啟的入口網站頁面)。 
 
-根據預設，Web 應用程式的刀鋒視窗會顯示 [概觀] 頁面。 此頁面可讓您檢視應用程式的執行方式。 在這裡，您也可以執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 刀鋒視窗左側的索引標籤會顯示您可以開啟的不同設定頁面。 
+根據預設，Web 應用程式的刀鋒視窗會顯示 [概觀] 頁面。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 刀鋒視窗左側的索引標籤會顯示您可開啟的各種設定頁面。 
 
 ![Azure 入口網站中的 App Service 刀鋒視窗](./media/app-service-web-get-started-dotnet/web-app-blade.png)
 

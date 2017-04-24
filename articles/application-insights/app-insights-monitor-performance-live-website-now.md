@@ -14,9 +14,9 @@ ms.topic: get-started-article
 ms.date: 02/08/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: a0340359dff470551a08a8213f3a704f15f78794
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 88abdb41a403f9c1dc85e574c655c532ee9b1eb5
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -184,6 +184,54 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 
 * 將最新的 Application Insights SDK 下載至伺服器。
 
+## <a name="questions"></a>狀態監視器的相關問題
+
+### <a name="what-is-status-monitor"></a>什麼是狀態監視器？
+
+您在 IIS Web 伺服器中安裝的桌面應用程式。 它可協助您檢測和設定 Web 應用程式。 
+
+### <a name="when-do-i-use-status-monitor"></a>如何使用狀態監視器？
+
+* 檢測在 IIS 伺服器上執行的任何 Web 應用程式 - 即使它已在執行中。
+* 針對已在編譯階段[使用 Application Insights SDK 建置](app-insights-asp-net.md)的 Web 應用程式，啟用其他遙測。 
+
+### <a name="can-i-close-it-after-it-runs"></a>是否可以在執行之後將它關閉？
+
+是。 檢測您選取的網站之後，您可以將它關閉。
+
+它本身不會收集遙測資料。 它只會設定 Web 應用程式和設定一些權限。
+
+### <a name="what-does-status-monitor-do"></a>狀態監視器有何作用？
+
+當您選取 Web 應用程式以供狀態監視器檢測時︰
+
+* 下載 Application Insights 組件和 .config 檔案並且放置於 Web 應用程式的 binaries 資料夾中。
+* 修改 `web.config` 以新增 Application Insights HTTP 追蹤模組。
+* 啟用 CLR 剖析以收集相依性呼叫。
+
+### <a name="do-i-need-to-run-status-monitor-whenever-i-update-the-app"></a>每次更新應用程式時，是否需要執行狀態監視器？
+
+如果您是以累加方式重新部署，則不需要。 
+
+如果您在發佈程序中選取 [刪除現有的檔案] 選項，則必須重新執行狀態監視器才能設定 Application Insights。
+
+### <a name="what-telemetry-is-collected"></a>會收集哪些遙測資料？
+
+對於只會在執行階段使用狀態監視器檢測的應用程式︰
+
+* HTTP 要求
+* 相依性呼叫
+* 例外狀況
+* 效能計數器
+
+對於在編譯階段已經過檢測的應用程式︰
+
+ * 處理程序計數器。
+ * 相依性呼叫 (.NET 4.5)；在相依性呼叫中傳回值 (.NET 4.6)。
+ * 例外狀況堆疊追蹤值。
+
+[深入了解](http://apmtips.com/blog/2016/11/18/how-application-insights-status-monitor-not-monitors-dependencies/)
+
 ## <a name="video"></a>影片
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
@@ -212,5 +260,5 @@ IIS 支援：IIS 7、7.5、8、8.5 (需要有 IIS)
 [greenbrown]: app-insights-asp-net.md
 [qna]: app-insights-troubleshoot-faq.md
 [roles]: app-insights-resources-roles-access-control.md
-[usage]: app-insights-web-track-usage.md
+[usage]: app-insights-javascript.md
 

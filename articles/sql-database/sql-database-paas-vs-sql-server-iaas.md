@@ -9,7 +9,7 @@ manager: jhubbard
 editor: cjgronlund
 ms.assetid: 7467f422-b77d-4b60-9cb5-0f1ec17ec565
 ms.service: sql-database
-ms.custom: overview
+ms.custom: compare
 ms.workload: data-management
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.devlang: na
@@ -17,9 +17,9 @@ ms.topic: get-started-article
 ms.date: 02/01/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 28edde3e70bca833d888cdf9831c1544d8cdd4bb
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 48e95d51cb9414fb5ff50e587645ee6fd46abd5b
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -82,7 +82,7 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 #### <a name="billing-and-licensing-basics"></a>計費和授權基本概念
 **SQL Database** 以服務形式銷售給客戶，不含授權。  [Azure VM 上的 SQL Server](../virtual-machines/windows/sql/virtual-machines-windows-sql-server-iaas-overview.md) 銷售包含您以每分鐘支付的授權。 如果您有現有的授權也可以使用。  
 
-目前，我們在數個服務層中提供 **SQL Database** ，並根據您所選擇的服務層和效能層級，以固定費率計算每小時的費用。 此外，傳出的網際網路流量也會以一般 [資料傳輸費率](https://azure.microsoft.com/pricing/details/data-transfers/)計費。 基本、標準和高階服務層的設計目的在於提供多個效能層級的可預測效能，以滿足應用程式的尖峰需求。 您可以在服務層和效能層級之間進行變更，以滿足應用程式的不同輸送量需求。 如果您的資料庫具有高交易量，且必須支援許多並行使用者，建議使用高階服務層。 如需目前支援的服務層最新資訊，請參閱 [Azure SQL Database 服務層](sql-database-service-tiers.md)。 您也可以建立 [彈性集區](sql-database-elastic-pool.md) 與資料庫執行個體共用效能資源。
+目前，我們在數個服務層中提供 **SQL Database** ，並根據您所選擇的服務層和效能層級，以固定費率計算每小時的費用。 此外，傳出的網際網路流量也會以一般 [資料傳輸費率](https://azure.microsoft.com/pricing/details/data-transfers/)計費。 基本、標準和進階 RS 服務層的設計目的在於提供多個效能層級的可預測效能，以滿足應用程式的尖峰需求。 您可以在服務層和效能層級之間進行變更，以滿足應用程式的不同輸送量需求。 如果您的資料庫具有高交易量，且必須支援許多並行使用者，建議使用高階服務層。 如需目前支援的服務層最新資訊，請參閱 [Azure SQL Database 服務層](sql-database-service-tiers.md)。 您也可以建立 [彈性集區](sql-database-elastic-pool.md) 與資料庫執行個體共用效能資源。
 
 有了 **SQL Database**，Microsoft 便會自動設定、修補和升級資料庫軟體，以降低您的系統管理成本。 此外，它 [內建的備份](sql-database-automated-backups.md) 功能可協助您達到有效節省成本，尤其是當您擁有為數眾多的資料庫時效果更為顯著。
 
@@ -120,7 +120,7 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 ### <a name="service-level-agreement-sla"></a>服務等級協定 (SLA)
 對於許多 IT 部門而言，達到服務等級協定 (SLA) 的正常運作時間義務是首要任務。 在本節中，我們將瞭解 SLA 對每個資料庫主控選項的作用。
 
-對於 **SQL Database** 基本、標準和高階服務層，Microsoft 提供 99.99% 的可用性 SLA。 如需最新資訊，請參閱 [服務等級協定](https://azure.microsoft.com/support/legal/sla/sql-database/)。 如需 SQL Database 服務層和支援的業務持續性方案最新資訊，請參閱 [服務層](sql-database-service-tiers.md)。
+對於 **SQL Database** 基本、標準和進階 RS 服務層，Microsoft 提供 99.99% 的可用性 SLA。 如需最新資訊，請參閱 [服務等級協定](https://azure.microsoft.com/support/legal/sla/sql-database/)。 如需 SQL Database 服務層和支援的業務持續性方案最新資訊，請參閱 [服務層](sql-database-service-tiers.md)。
 
 對於 **Azure VM 上執行的 SQL Server**，Microsoft 提供 99.95% 的可用性 SLA (僅涵蓋虛擬機器)。 本 SLA 未涵蓋在 VM 上執行的程序 (例如 SQL Server)，而且您必須裝載一個可用性設定組中的至少兩個 VM 執行個體。 如需最新資訊，請參閱 [VM SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。 如需 VM 內的資料庫高可用性 (HA)，您應在 SQL Server 中設定其中一個支援的高可用性選項，例如 [AlwaysOn 可用性群組](http://blogs.technet.com/b/dataplatforminsider/archive/2014/08/25/sql-server-alwayson-offering-in-microsoft-azure-portal-gallery.aspx)。 使用支援的高可用性選項並不提供額外的 SLA，但可讓您達成 >99.99% 的資料庫可用性。
 
@@ -143,7 +143,7 @@ Azure 有兩個選項可在 Microsoft Azure 主控 SQL Server 工作負載：
 * 您有現有的 IT 資源，且最終可以擁有修補、備份和資料庫高可用性。 請注意，某些自動化功能大幅簡化了這些作業。 
 
 ## <a name="next-steps"></a>後續步驟
-* 若要開始使用 SQL Database，請參閱[您的第一個 Azure SQL Database](sql-database-get-started.md)。
+* 若要開始使用 SQL Database，請參閱[您的第一個 Azure SQL Database](sql-database-get-started-portal.md)。
 * 請參閱 [SQL Database 價格](https://azure.microsoft.com/pricing/details/sql-database/)。
 * 請參閱 [在 Azure 中佈建 SQL Server 虛擬機器](../virtual-machines/windows/sql/virtual-machines-windows-portal-sql-server-provision.md) 以開始使用 Azure VM 上的 SQL Server。
 

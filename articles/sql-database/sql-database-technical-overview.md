@@ -17,9 +17,9 @@ ms.workload: data-management
 ms.date: 03/17/2017
 ms.author: shkurhek
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: c505844cc2b7c745a1106b3c446833fb206ca98a
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: a139b97e20685a5ced513c1fd180a74e91c497a7
+ms.lasthandoff: 04/15/2017
 
 ---
 # <a name="what-is-sql-database-introduction-to-sql-database"></a>什麼是 SQL Database？ SQL Database 簡介
@@ -35,7 +35,7 @@ SQL Database 是 Microsoft Cloud 中以領先市場的 Microsoft SQL Server 引�
  - [Azure SQL Database 的 Azure PowerShell 範例](sql-database-powershell-samples.md)
 
 ## <a name="adjust-performance-and-scale-without-downtime"></a>無須停機即可調整效能和規模
-SQL Database 提供三個服務層：基本、標準和進階。 每個服務層提供[不同層級的效能和功能](sql-database-service-tiers.md)，以支援輕量到重量級的資料庫工作負載。 您可以在小型資料庫中建置第一個應用程式，一個月只需少許花費。接著可隨時以手動或程式設計方式[變更其服務層](sql-database-service-tiers.md)，以符合您的方案需求。 當您這麼做的時候，您的應用程式或客戶皆無須停機。 動態延展性可讓您的資料庫以透明的方式回應快速變化的資源需求，並且讓您只需支付您所需的資源費用。
+SQL Database 提供四個服務層：基本、標準、進階和進階 RS。 每個服務層提供[不同層級的效能和功能](sql-database-service-tiers.md)，以支援輕量到重量級的資料庫工作負載。 您可以在小型資料庫中建置第一個應用程式，一個月只需少許花費。接著可隨時以手動或程式設計方式[變更其服務層](sql-database-service-tiers.md)，以符合您的方案需求。 當您這麼做的時候，您的應用程式或客戶皆無須停機。 動態延展性可讓您的資料庫以透明的方式回應快速變化的資源需求，並且讓您只需支付您所需的資源費用。
 
 ## <a name="elastic-pools-to-maximize-resource-utilization"></a>可將資源使用量最大化的彈性集區
 對於許多企業和應用程式而言，只要能夠建立單一資料庫，並依需求調高或調低的效能即可，尤其是當使用模式相當容易預測時更是如此。 但如果您有無法預測的使用模式，則管理成本和商務模式就會變得相當困難。 [彈性集區](sql-database-elastic-pool.md)的設計可解決此問題。 概念很簡單。 您可將效能資源配置到集區，而非個別的資料庫，並支付該集區的集體效能資源，而非單一資料庫效能的費用。 使用彈性集區，您就不必隨著資源的需求波動，專注於調高或調低資料庫效能。 集區中的資料庫會視需要取用彈性集區的效能資源。 集區中的資料庫會取用集區的資源，但不會超過其限制，因此您的成本可在個別資料庫使用情形無法預測的狀況下維持可預測性。 此外，您還可以 [將資料庫移入/移出集區](sql-database-elastic-pool-manage-portal.md)，並將您的應用程式從數個資料庫擴充至數千個，而且全都在您可掌控的預算之內。 最後，您也可以控制集區中資料庫可用的資源上限和下限，以確保集區中不會有任一資料庫使用所有的集區資源，且集區中的每個資料庫都有保證的資源數量下限。 若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱 [採用 Azure SQL Database 的多租用戶 SaaS 應用程式的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
@@ -61,6 +61,6 @@ SQL Server 的資料安全性傳統是 SQL Database 支援多項功能，可限�
 
 * 如需單一資料庫及彈性資料庫的成本比較和計算機，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/sql-database/)。
 * 深入了解 [彈性集區](sql-database-elastic-pool.md)。
-* 從 [建立您的第一個資料庫](sql-database-get-started.md)開始。
+* 從 [建立您的第一個資料庫](sql-database-get-started-portal.md)開始。
 * 以 C#、Java、Node.js、PHP、Python 或 Ruby 建置您的第一個應用程式： [SQL Database 和 SQL Server 的連接庫](sql-database-libraries.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "針對在 Windows 裝置的 Azure 入口網站上您無法從這裡前往該處進行疑難排解 | Microsoft Docs"
-description: "了解存取組織線上資源發生問題時可採取的解決步驟。"
+title: "在 Windows 裝置的 Azure 入口網站上您無法從這裡前往該處 | Microsoft Docs"
+description: "了解您無法從這裡前往該處的原因，以及可以查看哪些內容來避免產生此對話方塊。"
 services: active-directory
 keywords: "裝置型條件式存取、裝置註冊、啟用裝置註冊、裝置註冊和 MDM"
 documentationcenter: 
@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/06/2017
+ms.date: 04/11/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 4b8627f3cdd13578f9b4c35297bf5d550dccfd07
-ms.lasthandoff: 04/06/2017
+ms.sourcegitcommit: 0d9afb1554158a4d88b7f161c62fa51c1bf61a7d
+ms.openlocfilehash: 42dcc653b50698cf8ce8145dfb51f27be7ece440
+ms.lasthandoff: 04/12/2017
 
 
 ---

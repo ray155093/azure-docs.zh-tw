@@ -9,7 +9,7 @@
 * [針對備援在可用性設定組中設定多部虛擬機器]
 * [將每個應用程式層設定至不同的可用性設定組中]
 * [將負載平衡器與可用性設定組結合]
-* [針對每個可用性設定組使用多個儲存體帳戶]
+* [將受控磁碟使用於可用性設定組中的 VM]
 
 ## <a name="configure-multiple-virtual-machines-in-an-availability-set-for-redundancy"></a>針對備援在可用性設定組中設定多部虛擬機器
 若要為應用程式提供備援，建議您在可用性設定組中，將兩部以上的虛擬機器組成群組。 這項組態可以確保在規劃或未規劃的維護事件發生期間，至少有一部虛擬機器可以使用，且符合 99.95% 的 Azure SLA。 如需相關資訊，請參閱 [虛擬機器的 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/)。
@@ -41,24 +41,21 @@
 
 若負載平衡器沒有設定為平衡多部虛擬機器之間的流量，則所有計劃性維護事件都只會影響處理流量的虛擬機器，並導致應用程式層中斷。 將同一個層的多部虛擬機器放在相同的負載平衡器和可用性設定組下，可讓至少一個執行個體持續處理流量。
 
-## <a name="use-multiple-storage-accounts-for-each-availability-set"></a>針對每個可用性設定組使用多個儲存體帳戶
-如果您使用 Azure 受控磁碟，您可以略過下列指導方針。 Azure 受控磁碟天生就會提供高可用性和備援能力，因為磁碟會儲存在與 VM 可用性設定組配合的容錯網域中。 如需詳細資訊，請參閱 [Azure 受控磁碟概觀](../articles/storage/storage-managed-disks-overview.md)。
+## <a name="use-managed-disks-for-vms-in-availability-set"></a>將受控磁碟使用於可用性設定組中的 VM
+如果您目前使用 VM 搭配非受控磁碟，強烈建議您[將可用性設定組中的 VM 轉換為受控磁碟](../articles/virtual-machines/windows/convert-unmanaged-to-managed-disks.md#convert-vms-in-an-availability-set-to-managed-disks-in-a-managed-availability-set)。
 
-如果您使用非受控磁碟，關於 VM 內虛擬硬碟 (VHD) 所使用的儲存體帳戶，有最佳做法可供遵循。 每個磁碟 (VHD) 是 Azure 儲存體帳戶中的分頁 Blob。 請務必確定在儲存體帳戶之間擁有備援和隔離，以便為可用性設定組中的 VM 提供高可用性。
+[受控磁碟](../articles/storage/storage-managed-disks-overview.md)可確保可用性設定組中的 VM 磁碟彼此充分隔離，以避免單一失敗點，為可用性設定組提供更高的可靠性。 它的作法是自動以不同的儲存體縮放單位 (戳記) 來放置磁碟。 如果因為硬體或軟體失敗造成戳記失敗，則只有磁碟在這些戳記上的 VM 執行個體才會失敗。 
+
+如果您打算使用 VM 搭配[非受控磁碟](../articles/storage/storage-about-disks-and-vhds-windows.md#types-of-disks)，請針對 VM 的虛擬硬碟 (VHD) 在其中儲存為[分頁 Blob](https://docs.microsoft.com/rest/api/storageservices/fileservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs#about-page-blobs) 的儲存體帳戶，遵循以下的最佳做法。 
 
 1. **將與 VM 相關聯的所有磁碟 (OS 和資料) 保留於相同的儲存體帳戶中**
-2. 將更多 VHD 加入至儲存體帳戶時，應將**儲存體帳戶[限制](../articles/storage/storage-scalability-targets.md)納入考量**
-3. **針對可用性設定組中的每個 VM 使用個別的儲存體帳戶。** 位於相同可用性設定組的多個 VM 絕對不能共用儲存體帳戶。 只要遵循上述最佳做法，便可以讓位於不同可用性設定組的 VM 共用儲存體帳戶
+2. 將更多VHD 新增至儲存體帳戶之前，**請檢閱儲存體帳戶中非受控磁碟數目的[限制](../articles/storage/storage-scalability-targets.md)**
+3. **針對可用性設定組中的每個 VM 使用個別的儲存體帳戶。** 請勿與相同可用性設定組中的多個 VM 共用儲存體帳戶。 如果遵循上述最佳做法，即可接受位於不同可用性設定組的 VM 共用儲存體帳戶。
 
 <!-- Link references -->
 [針對備援在可用性設定組中設定多部虛擬機器]: #configure-multiple-virtual-machines-in-an-availability-set-for-redundancy
 [將每個應用程式層設定至不同的可用性設定組中]: #configure-each-application-tier-into-separate-availability-sets
 [將負載平衡器與可用性設定組結合]: #combine-a-load-balancer-with-availability-sets
 [Avoid single instance virtual machines in availability sets]: #avoid-single-instance-virtual-machines-in-availability-sets
-[針對每個可用性設定組使用多個儲存體帳戶]: #use-multiple-storage-accounts-for-each-availability-set
-
-
-
-<!--HONumber=Feb17_HO2-->
-
+[將受控磁碟使用於可用性設定組中的 VM]: #use-managed-disks-for-vms-in-availability-set
 

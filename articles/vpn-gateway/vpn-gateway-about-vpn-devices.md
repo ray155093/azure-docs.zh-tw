@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 04/11/2017
 ms.author: yushwang;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 03ba7f0df69da073fd876fc4c06121952e594a02
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: d7c4c5b118dade39bd47ae2c7836157589fcb45a
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -33,21 +33,21 @@ ms.lasthandoff: 04/12/2017
 
 ###<a name="items-to-note-when-viewing-the-tables"></a>檢視表格時應注意的項目：
 
-* Azure VPN 閘道的名稱已經變更。 只有變更名稱，功能未變更。
+* Azure VPN 閘道的名稱已經變更。 功能未變更。 只有名稱會變更。
   * 靜態路由 = 原則式
   * 動態路由 = 路由式
 * 除非另有說明，否則高效能 VPN 閘道和路由式 VPN 閘道的規格相同。 例如，已經驗證與路由式 VPN 閘道相容的 VPN 裝置，也能與 Azure 高效能 VPN 閘道相容。
 
 > [!NOTE]
-> 設定站對站連線時，您的 VPN 裝置需要公開的 IPv4 IP 位址。                                                                                                                                                                               
+> 設定站對站連線時，您的 VPN 裝置需要公開的 IPv4 IP 位址。
+>                
 
-
-## <a name="devicetable"></a>已經驗證的 VPN 裝置
+## <a name="devicetable"></a>已經驗證的 VPN 裝置及裝置設定指南
 我們已與裝置廠商合作驗證一組標準 VPN 裝置。 在以下清單所含的裝置系列中，所有裝置應該都能與 Azure VPN 閘道搭配運作。 請參閱 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md) ，以確認您需要為欲設定之解決方案所建立的閘道類型。
 
-為了協助設定您的 VPN 裝置，請參閱對應到適當裝置系列的連結。  會以最佳方式來提供組態指示的連結。 如需 VPN 裝置的支援，請連絡裝置製造商。
+為了協助設定您的 VPN 裝置，請參閱對應到適當裝置系列的連結。 會以最佳方式來提供組態指示的連結。 如需 VPN 裝置的支援，請連絡裝置製造商。
 
-|**廠商**          |**裝置系列**     |**作業系統最低版本** |**原則式** |**路由式** |
+|**廠商**          |**裝置系列**     |**作業系統最低版本** |**原則式設定指示** |**路由式設定指示** |
 | ---                | ---                  | ---                   | ---            | ---           |
 | A10 Networks, Inc. |Thunder CFW           |ACOS 4.1.1             |不相容  |[設定指南](https://www.a10networks.com/resources/deployment-guides/a10-thunder-cfw-ipsec-vpn-interoperability-azure-vpn-gateways)|
 | Allied Telesis     |AR 系列 VPN 路由器 |2.9.2                  |敬請期待     |不相容  |
@@ -81,7 +81,7 @@ ms.lasthandoff: 04/12/2017
 ## <a name="editing"></a>編輯裝置組態範本
 下載提供的 VPN 裝置組態範本之後，您將需要取代其中一些值，以反映您環境的設定。
 
-###<a name="to-edit-a-sample"></a>編輯範本：
+### <a name="to-edit-a-sample"></a>編輯範本：
 
 1. 使用 [記事本] 開啟範本。
 2. 搜尋所有 <文字> 字串並使用適合您環境的值加以取代。 請務必加上 < 和 >。 當有指定名稱時，您選取的名稱應該是唯一名稱。 如果命令無法運作，請參閱裝置製造商文件。
@@ -106,7 +106,7 @@ ms.lasthandoff: 04/12/2017
 > 
 >
 
-在下表中︰
+在下列資料表中：
 
 * SA = 安全性關聯
 * IKE 階段 1 也稱為「主要模式」
@@ -185,7 +185,7 @@ ms.lasthandoff: 04/12/2017
 >
 >
 
-###<a name="feb-16-2017"></a>2017 年 2 月 16 日
+### <a name="feb-16-2017"></a>2017 年 2 月 16 日
 
 適用於 Azure 路由式 VPN 但**版本比 7.1.4 舊的 Palo Alto Networks 裝置**：如果您使用來自 Palo Alto Networks、PAN-OS 版本比 7.1.4 舊的 VPN 裝置，而在連線到 Azure 路由式 VPN 閘道時發生問題，請執行下列步驟：
 

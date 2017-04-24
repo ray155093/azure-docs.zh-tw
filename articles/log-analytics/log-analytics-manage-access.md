@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 04/12/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: ace5d18cd88d55d167f8447d18d65ca21818ff62
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 0a6b5115a4eebfcce14094d82cdcc9579f80def6
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -60,7 +60,7 @@ ms.lasthandoff: 03/10/2017
 
 您可以在 Azure 入口網站中檢視工作區的相關詳細資料。 您也可以在 OMS 入口網站中檢視詳細資料。
 
-#### <a name="view-workspace-information-the-azure-portal"></a>在 Azure 入口網站中檢視工作區資訊
+#### <a name="view-workspace-information-in-the-azure-portal"></a>在 Azure 入口網站中檢視工作區資訊
 
 1. 如果您尚未這麼做，請使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在 [中樞] 功能表上按一下 [更多服務]，然後在資源清單中輸入 **Log Analytics**。 當您開始輸入時，清單會根據您輸入的文字進行篩選。 按一下 [Log Analytics]。  
@@ -177,7 +177,7 @@ Log Analytics 入口網站中的下列活動也需要 Azure 權限︰
 4. 在確認對話方塊中，按一下 [是]。
 
 ### <a name="remove-a-user-from-a-workspace"></a>從工作區移除使用者
-使用下列步驟，從工作區移除使用者。 移除使用者並不會關閉工作區。 而會移除使用者與工作區之間的關聯。 如果使用者與多個工作區相關聯，該使用者還是可以登入 OMS，並看到其他工作區。
+使用下列步驟，從工作區移除使用者。 移除使用者並不會關閉工作區。 而會移除使用者與工作區之間的關聯。 如果使用者與多個工作區相關聯，該使用者還是可以登入 OMS 並可看自己的其他工作區。
 
 1. 在 OMS 入口網站中，按一下 [設定] 圖格。
 2. 按一下 [帳戶] 索引標籤，然後按一下 [管理使用者] 索引標籤。
@@ -202,9 +202,6 @@ Log Analytics 入口網站中的下列活動也需要 Azure 權限︰
     > [!IMPORTANT]
     > 若要連結工作區，您的 Azure 帳戶必須已經能夠存取您想要連結的工作區。  換句話說，您用來存取 Azure 入口網站的帳戶必須與用來存取工作區的帳戶**相同**。 否則，請參閱[將使用者新增至現有工作區](#add-a-user-to-an-existing-workspace)。
 
-
-
-
 ### <a name="to-link-a-workspace-to-an-azure-subscription-in-the-azure-portal"></a>在 Azure 入口網站中將工作區連結到 Azure 訂用帳戶
 1. 登入 [Azure 入口網站](http://portal.azure.com)。
 2. 瀏覽 **Log Analytics**，然後加以選取。
@@ -225,7 +222,7 @@ Log Analytics 入口網站中的下列活動也需要 Azure 權限︰
 8. 按一下 [確定] 。 工作區現在已連結到您的 Azure 帳戶。
 
 > [!NOTE]
-> 如果您看不到想要連結的工作區，則您的 Azure 訂用帳戶沒有使用 OMS 網站建立之工作區的存取權。  若要從 OMS 入口網站授與此帳戶的存取權，請參閱[將使用者新增至現有的工作區](#add-a-user-to-an-existing-workspace)。
+> 如果您看不到想要連結的工作區，則您的 Azure 訂用帳戶沒有使用 OMS 入口網站建立之工作區的存取權。  若要從 OMS 入口網站授與此帳戶的存取權，請參閱[將使用者新增至現有的工作區](#add-a-user-to-an-existing-workspace)。
 >
 >
 
@@ -250,7 +247,7 @@ OMS 有三種工作區方案類型：[免費]、[獨立] 和 [OMS]。  如果您
 在 Azure 或 OMS 入口網站中看不到 OMS 訂用帳戶權利。 您可以看到企業版入口網站中的權利和使用量。  
 
 如果需要變更工作區所連結的 Azure 訂用帳戶，則可以使用 Azure PowerShell [Move-AzureRmResource](https://msdn.microsoft.com/library/mt652516.aspx) Cmdlet。
-to
+
 ### <a name="using-azure-commitment-from-an-enterprise-agreement"></a>透過 Enterprise 合約使用 Azure 承諾
 如果您沒有 OMS 訂用帳戶，則會分別支付 OMS 的每個元件，而且使用量會出現在您的 Azure 帳單上。
 

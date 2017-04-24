@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 11/18/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 0550f5fecd83ae9dc0acb2770006156425baddf3
-ms.openlocfilehash: 0617d2e668fe719d6002254b6d13ca729887c0e3
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 07b62cd6f6deb0cf3ff1c806204ebc26c773a164
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -57,6 +58,67 @@ Microsoft Azure 儲存體總管 (預覽) 是一個獨立應用程式，可讓您
 4. 左窗格會顯示與所選 Azure 訂用帳戶相關聯的儲存體帳戶。
 
     ![已選取的 Azure 訂用帳戶][4]
+
+## <a name="connect-to-an-azure-stack-subscription"></a>連線到 Azure Stack 訂用帳戶
+
+1. 儲存體總管需要有 VPN 連線才能從遠端存取 Azure Stack 訂用帳戶。 若要深入了解如何設定 Azure Stack 的 VPN 連線，請參閱[使用 VPN 連線到 Azure Stack](azure-stack/azure-stack-connect-azure-stack.md#connect-with-vpn)
+
+2. 對於 Azure Stack POC，您必須匯出 Azure Stack 授權單位根憑證。 在 MAS-CON01、Azure Stack 主機電腦或具有 Azure Stack 之 VPN 連線的本機電腦上開啟 `mmc.exe`。 在 [檔案] 中，選取 [新增/移除嵌入式管理單元]，新增 [憑證] 以管理 [本機電腦]的 [電腦帳戶]。
+
+   ![透過 mmc.exe 載入 Azure Stack 根憑證][25]   
+
+   在 **Console Root\Certificated (Local Computer)\Trusted Root Certification Authorities\Certificates** 之下尋找 **AzureStackCertificationAuthority**。 在項目上按一下滑鼠右鍵，選取 [所有工作] -> [匯出]。 依照對話方塊執行，使用 **Base-64 編碼的 X.509 (.CER)** 匯出憑證。 下一個步驟中會使用所匯出的憑證。   
+
+   ![匯出根 Azure Stack 授權單位的根憑證][26]   
+
+3. 在儲存體總管 (預覽) 中，依序選取 [編輯] 功能表、[SSL 憑證] 和 [匯入憑證]。 使用檔案選擇器對話方塊來尋找和開啟您在上一個步驟中瀏覽的憑證。 匯入之後，系統會提示您重新啟動儲存體總管。
+
+   ![將憑證匯入儲存體總管 (預覽) 中][27]
+
+4. 一旦儲存體總管 (預覽) 重新啟動，請選取 [編輯] 功能表，並確保已核取 [目標 Azure Stack]。 若未核取，請加以核取，然後重新啟動儲存體總管，變更才會生效。 不需要進行此設定，即可相容於 Azure Stack 環境。
+
+   ![確保已選取目標 Azure Stack][28]
+
+5. 在左側邊欄上選取 [管理帳戶]。 左窗格會顯示您已登入的所有 Microsoft 帳戶。 若要連線到 Azure Stack 帳戶，請選取 [新增帳戶]。
+
+   ![新增 Azure Stack 帳戶][29]
+
+6. 在 [新增帳戶] 對話方塊中選擇 [Azure 環境] 之下的 [建立自訂環境]，然後按 [下一步]。
+
+7. 輸入 Azure Stack 自訂環境的所有必要資訊，然後按一下 [登入]。  填寫 [登入自訂雲端環境] 對話方塊，以使用至少與一個作用中 Azure Stack 訂用帳戶相關聯的 Azure Stack 帳戶進行登入。 此對話方塊上每個欄位的詳細資料如下所示︰
+
+    * **環境名稱** – 使用者可以自訂此欄位。
+    * **授權單位** – 此值應該是 https://login.windows.net。 若為 Azure 中國 (Mooncake)，請使用 https://login.chinacloudapi.cn。
+    * **登入資源識別碼** – 藉由執行下列 PowerShell 來擷取此值︰
+
+    如果您是雲端系統管理員︰
+
+    ```powershell
+    PowerShell (Invoke-RestMethod -Uri https://adminmanagement.local.azurestack.external/metadata/endpoints?api-version=1.0 -Method Get).authentication.audiences[0]
+    ```
+
+    如果您是租用戶︰
+
+    ```powershell
+    PowerShell (Invoke-RestMethod -Uri https://management.local.azurestack.external/metadata/endpoints?api-version=1.0 -Method Get).authentication.audiences[0]
+    ```
+
+    * **圖表端點** – 此值應該是 https://login.windows.net。 若為 Azure 中國 (Mooncake)，請使用 https://graph.chinacloudapi.cn。
+    * **ARM 資源識別碼** – 使用相同的值作為登入資源識別碼。
+    * **ARM 資源端點** – ARM 資源端點的範例︰
+
+    若為雲端系統管理員：https://adminmanagement.local.azurestack.external   
+    若為租用戶：https://management.local.azurestack.external
+ 
+    * **租用戶識別碼** – 選擇性。 只有在必須指定目錄時，才會提供此值。
+
+8. 成功使用 Azure Stack 帳戶登入後，左窗格會填入與該帳戶相關聯的 Azure Stack 訂用帳戶。 選取您想要使用的 Azure Stack 訂用帳戶，然後選取 [套用]。 (選取 [所有訂用帳戶] 切換方塊，可選取全部或不選取任何列出的 Azure Stack 訂用帳戶。)
+
+   ![在填妥 [自訂雲端環境] 對話方塊後選取 Azure Stack 訂用帳戶][30]
+
+9. 左窗格會顯示與所選 Azure Stack 訂用帳戶相關聯的儲存體帳戶。
+
+   ![包含 Azure Stack 訂用帳戶的儲存體帳戶清單][31]
 
 ## <a name="work-with-local-development-storage"></a>使用本機開發儲存體
 儲存體 Explorer (預覽) 可讓您使用 Azure 儲存體模擬器處理本機儲存體。 這可讓您撰寫程式碼並測試儲存體，而不需在 Azure 上部署儲存體帳戶 (因為 Azure 儲存體模擬器正在模擬儲存體帳戶)。
@@ -207,9 +269,11 @@ Microsoft Azure 儲存體總管 (預覽) 是一個獨立應用程式，可讓您
 [22]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/download-storage-emulator.png
 [23]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-azure-storage-icon.png
 [24]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-azure-storage-next.png
-
-
-
-<!--HONumber=Jan17_HO3-->
-
+[25]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/add-certificate-azure-stack.png
+[26]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/export-root-cert-azure-stack.png
+[27]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/import-azure-stack-cert-storage-explorer.png
+[28]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/select-target-azure-stack.png
+[29]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/add-azure-stack-account.png
+[30]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/select-accounts-azure-stack.png
+[31]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/azure-stack-storage-account-list.png
 
