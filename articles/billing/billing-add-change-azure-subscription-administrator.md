@@ -99,9 +99,9 @@ ms.lasthandoff: 02/21/2017
 
 | 管理角色 | 限制 | 說明 |
 | --- | --- | --- |
-| 帳戶管理員 (AA) |每個 Azure 帳戶&1; 名 |這就是註冊或購買 Azure 訂用帳戶，且經過授權可存取 [帳戶中心](https://account.windowsazure.com/Home/Index) 及執行各種管理工作的那個人。 包括能夠建立訂用帳戶、取消訂用帳戶、變更訂用帳戶的計費方式以及變更服務管理員。 |
-| 服務管理員 (SA) |每個 Azure 訂用帳戶&1; 名 |此角色經過授權，可管理 [Azure 入口網站](https://portal.azure.com)上的服務。 根據預設，新訂用帳戶的帳戶管理員也是服務管理員。 |
-| [Azure 傳統入口網站](https://manage.windowsazure.com) |每個訂用帳戶&200; 名 |此角色的存取權限與服務管理員相同，但無法變更訂用帳戶與 Azure 目錄的關聯。 |
+| 帳戶管理員 (AA) |每個 Azure 帳戶 1 名 |這就是註冊或購買 Azure 訂用帳戶，且經過授權可存取 [帳戶中心](https://account.windowsazure.com/Home/Index) 及執行各種管理工作的那個人。 包括能夠建立訂用帳戶、取消訂用帳戶、變更訂用帳戶的計費方式以及變更服務管理員。 |
+| 服務管理員 (SA) |每個 Azure 訂用帳戶 1 名 |此角色經過授權，可管理 [Azure 入口網站](https://portal.azure.com)上的服務。 根據預設，新訂用帳戶的帳戶管理員也是服務管理員。 |
+| [Azure 傳統入口網站](https://manage.windowsazure.com) |每個訂用帳戶 200 名 |此角色的存取權限與服務管理員相同，但無法變更訂用帳戶與 Azure 目錄的關聯。 |
 
 Azure Active Directory 角色型存取控制 (RBAC) 能讓使用者擁有多個角色。 如需詳細資訊，請參閱 [Azure Active Directory 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
