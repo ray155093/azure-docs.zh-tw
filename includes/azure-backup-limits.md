@@ -10,8 +10,3 @@
 
 * <sup>1</sup>54400 GB 上限並不適用於 IaaS VM 備份。
 
-
-
-<!--HONumber=Feb17_HO3-->
-
-
