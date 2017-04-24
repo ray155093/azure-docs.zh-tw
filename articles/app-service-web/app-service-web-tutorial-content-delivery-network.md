@@ -9,9 +9,9 @@ ms.topic: hero-article
 ms.service: app-service-web
 manager: erikre
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: a12eab1f7bc4177f659771d58a58f749507c994c
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 8194e669f943a6c47f02ae0d2a55e0e720420489
+ms.lasthandoff: 04/18/2017
 
 ---
 # <a name="connect-a-web-app-to-a-content-delivery-network"></a>將 Web 應用程式連線至內容傳遞網路
@@ -28,7 +28,7 @@ ms.lasthandoff: 04/12/2017
 
 ## <a name="step-2---create-a-cdn-profile"></a>步驟 2 - 建立 CDN 設定檔
 
-按一下左側導覽中的 `+ New` 按鈕，按一下 [Web + Mobile]。 在 [Web + 行動] 類別之下，選取 [CDN]。
+按一下左側導覽中的 [+ 新增] 按鈕，再按一下 [Web + 行動]。 在 [Web + 行動] 類別之下，選取 [CDN]。
 
 指定 [名稱]、[位置]、[資源群組]、[定價層]，然後按一下 [建立]。
 
@@ -38,7 +38,7 @@ ms.lasthandoff: 04/12/2017
 
 ## <a name="step-3---create-a-cdn-endpoint"></a>步驟 3 - 建立 CDN 端點
 
-按一下搜尋方塊旁邊命令中的 `+ Endpoint`，這會啟動端點建立刀鋒視窗。
+按一下搜尋方塊旁命令中的 [+ 端點]，這會啟動端點建立刀鋒視窗。
 
 指定 [名稱]、[原始類型]、[原始主機名稱]，然後按一下 [新增]。
 

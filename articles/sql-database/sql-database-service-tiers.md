@@ -9,7 +9,7 @@ manager: jhubbard
 editor: 
 ms.assetid: f5c5c596-cd1e-451f-92a7-b70d4916e974
 ms.service: sql-database
-ms.custom: overview
+ms.custom: resources
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -17,15 +17,15 @@ ms.workload: data-management
 wms.date: 03/06/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
-ms.openlocfilehash: 827394be9485685388879c1eb4cee4d79ef9fe51
-ms.lasthandoff: 04/07/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 85b7336958c90b477eea8ea185a69bab2bd87a79
+ms.lasthandoff: 04/15/2017
 
 
 ---
 # <a name="sql-database-options-and-performance-understand-whats-available-in-each-service-tier"></a>SQL Database 選項和效能：了解每個服務層中可用的項目
 
-[Azure SQL Database](sql-database-technical-overview.md) 提供四個服務層：**基本**、**標準**、**進階**和**進階 RS**。 每個服務層都有多個效能等級可處理不同的工作負載。 較高的效能等級會提供額外的資源，旨在提供愈來愈高的輸送量。 您可以動態變更服務層和效能層級而不需要停機。 基本、標準和高階服務層都具備 99.99% 的執行時間 SLA、彈性的商務持續性選項、安全性功能，以及按小時計費。 進階 RS 層會提供和進階層相同的效能等級、安全性功能和商務持續性功能，但 SLA 會降低。
+[Azure SQL Database](sql-database-technical-overview.md) 提供四個服務層：**基本**、**標準**、**進階**和**進階 RS**。 每個服務層都有多個效能等級可處理不同的工作負載。 較高的效能等級會提供額外的資源，旨在提供愈來愈高的輸送量。 您可以動態變更服務層和效能層級而不需要停機。 基本、標準、進階和進階 RS 服務層都具備 99.99% 的執行時間 SLA、彈性的商務持續性選項、安全性功能，以及按小時計費。 進階 RS 層會提供和進階層相同的效能等級、安全性功能和商務持續性功能，但 SLA 會降低。
 
 > [!IMPORTANT]
 > 進階 RS 資料庫在執行時所用的備援複本數，比進階或標準資料庫所用的少。 因此，當服務失敗時，最慢可能會延遲 5 分鐘才能從備份中復原資料庫。
@@ -61,7 +61,7 @@ ms.lasthandoff: 04/07/2017
 一旦決定最低服務層之後，接下來要決定資料庫的效能層級 (DTU 數目)。 標準 S2 和 S3 效能層級通常是不錯的起點。 而對於具有高 CPU 或 IO 需求的資料庫，高階效能層級才是正確的起點。 比起 [標準] 效能層級，[高階] 提供更多的 CPU 以及多了 10 倍的 IO。
 
 ## <a name="single-database-service-tiers-and-performance-levels"></a>單一資料庫服務層和效能等級
-若為單一資料庫，每個服務層內會有多個效能等級。 您可以使用 [Azure 入口網站](sql-database-manage-single-databases-portal.md)、[PowerShell](scripts/sql-database-monitor-and-scale-database-powershell.md)、[Transact-SQL](sql-database-manage-single-databases-tsql.md)、C# 和 REST API，有彈性地選擇最符合工作負載需求的層級。 
+若為單一資料庫，每個服務層內會有多個效能等級。 您可以使用 Azure 入口網站、[PowerShell](scripts/sql-database-monitor-and-scale-database-powershell.md)、[Transact-SQL](https://docs.microsoft.com/sql/t-sql/statements/alter-database-azure-sql-database)、C# 和 REST API，有彈性地選擇最符合工作負載需求的層級。  
 
 無論裝載的資料庫數目，您的資料庫都保證會有一組資源，且您資料庫的預期效能特性不會受到影響。
 
@@ -73,7 +73,7 @@ ms.lasthandoff: 04/07/2017
 
 ## <a name="scaling-up-or-scaling-down-a-single-database"></a>相應放大或相應縮小單一資料庫
 
-一開始挑選服務層和效能層級後，您可以根據實際經驗，動態放大或縮小單一資料庫。 如果您需要相應增加或相應減少，使用 [Azure 入口網站](sql-database-manage-single-databases-portal.md)、[PowerShell](scripts/sql-database-monitor-and-scale-database-powershell.md)、[Transact-SQL](sql-database-manage-single-databases-tsql.md)、C# 和 REST API 即可輕鬆變更資料庫層級。 
+一開始挑選服務層和效能層級後，您可以根據實際經驗，動態放大或縮小單一資料庫。 如果您需要相應增加或相應減少，使用 Azure 入口網站、[PowerShell](scripts/sql-database-monitor-and-scale-database-powershell.md)、[Transact-SQL](https://docs.microsoft.com/sql/t-sql/statements/alter-database-azure-sql-database)、C# 和 REST API 即可輕鬆變更資料庫層級。 
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-dynamically-scale-up-or-scale-down/player]
 >
@@ -87,10 +87,6 @@ ms.lasthandoff: 04/07/2017
 * 從高階服務層降級時，您必須先終止所有的「異地複寫」關聯性。 您可以遵循 [從中斷情況復原](sql-database-disaster-recovery.md) 主題所述的步驟，停止主要資料庫與作用中次要資料庫之間的複寫程序。
 * 還原服務會針對各種服務層提供不同的選項。 降級後您可能會無法還原至某個時間點，或具有較短的備份保留期限。 如需詳細資訊，請參閱 [Azure SQL Database 備份和還原](sql-database-business-continuity.md)。
 * 完成變更之前，不會將新屬性套用至資料庫。
-
-> [!IMPORTANT]
-> 如需詳細步驟，請參閱[在 Azure 入口網站中管理單一資料庫](sql-database-manage-single-databases-portal.md)、[使用 Powershell 管理單一資料庫](scripts/sql-database-monitor-and-scale-database-powershell.md)或[使用 Transact-SQL 管理單一資料庫](sql-database-manage-single-databases-tsql.md)。
->
 
 ## <a name="elastic-pool-service-tiers-and-performance-in-edtus"></a>eDTU 中的彈性集區服務層和效能
 
@@ -127,7 +123,7 @@ ms.lasthandoff: 04/07/2017
 
 若現有的 P11 和 P15 資料庫位於其中一個受支援區域，您可以將 maxsize 儲存體增加為 4 TB。 在 Azure 入口網站中、PowerShell 中或使用 Transact-SQL 都能完成此操作。 下列範例示範正在使用 ALTER DATABASE 命令變更 maxsize 的情形︰
 
- ```t-sql
+ ```sql
 ALTER DATABASE <myDatabaseName> 
    MODIFY (MAXSIZE = 4096 GB);
 ```
@@ -144,13 +140,13 @@ ALTER DATABASE <myDatabaseName>
 - 若是作用中異地複寫案例：
    - 設定異地複寫關聯性：如果 P11 或 P15 為主要資料庫，則次要資料庫也必須是 P11 或 P15；系統會拒絕使用較低的效能層級作為次要資料庫，因為這些資料庫無法支援 4TB 的大小。
    - 在異地複寫關聯性中升級主要資料庫：將主要資料庫的大小上限變更為 4TB 會在次要資料庫中觸發相同的變更。 這兩種升級方式都必須成功，在主要資料庫中的變更才會生效。 適用於 4TB 選項的區域限制 (請參閱上述內容)。 如果次要資料庫位於不支援 4TB 大小的區域，就無法升級主要資料庫。
-- 不支援使用匯入/匯出服務載入 P11-4TB/P15-4TB 資料庫的功能。 使用 SqlPackage.exe 來[匯入](sql-database-import-sqlpackage.md)和[匯出](sql-database-export.md)資料。
+- 不支援使用匯入/匯出服務載入 P11-4TB/P15-4TB 資料庫的功能。 使用 SqlPackage.exe 來[匯入](sql-database-import.md)和[匯出](sql-database-export.md)資料。
 
 ## <a name="next-steps"></a>後續步驟
 
 * 深入了解[彈性集區](sql-database-elastic-pool-guidance.md)和[彈性集區](sql-database-elastic-pool-guidance.md)的價格與效能考量。
 * 了解如何[監視、管理彈性集區和調整其大小](sql-database-elastic-pool-manage-portal.md)和[監視單一資料庫的效能](sql-database-single-database-monitor.md)。
-* 如果您認識了 SQL Database 各個層，可以透過[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)親身體驗，然後了解[如何建立您的第一個 SQL Database](sql-database-get-started.md)。
+* 如果您認識了 SQL Database 各個層，可以透過[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)親身體驗，然後了解[如何建立您的第一個 SQL Database](sql-database-get-started-portal.md)。
 * 若要進行移轉，請使用 [DTU 計算機](http://dtucalculator.azurewebsites.net/)估計所需的 DTU 數目。 
 
 

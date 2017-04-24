@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 04/03/2017
+ms.date: 04/13/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 17fb538b33a4a4a2b333ff501e6e729f6000f623
-ms.lasthandoff: 04/06/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 8a86cf64dcd65e74285a1073f7494eba0708ddcd
+ms.lasthandoff: 04/15/2017
 
 ---
 
@@ -26,7 +26,7 @@ ms.lasthandoff: 04/06/2017
 
 您可以透過 Azure 入口網站建立 Azure 虛擬機器。 此方法可提供以瀏覽器為基礎的使用者介面，以便建立和設定虛擬機器，以及所有相關的資源。 本快速入門會逐步說明如何使用 Azure 入口網站建立虛擬機器。 部署完成後，我們會連線至伺服器並安裝 IIS。
 
-[!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
+如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/en-us/free/?WT.mc_id=A261C142F) 。
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
@@ -42,7 +42,9 @@ ms.lasthandoff: 04/06/2017
 
     ![在入口網站刀鋒視窗中輸入 VM 的基本資訊](./media/quick-create-portal/create-windows-vm-portal-basic-blade.png)  
 
-5. 選擇 VM 大小，然後按一下 [選取]。
+5. 選擇 VM 的大小。 若要查看更多大小，請選取 [檢視全部] 或變更 [支援的磁碟類型] 篩選條件。 
+
+    ![顯示 VM 大小的螢幕擷取畫面](./media/quick-create-portal/create-windows-vm-portal-sizes.png)  
 
 6. 在 [設定] 刀鋒視窗中，選取 [使用受控磁碟] 之下的 [是]，保留其餘設定的預設值，然後按一下 [確定]。
 
@@ -58,7 +60,7 @@ ms.lasthandoff: 04/06/2017
 2. 在資源群組刀鋒視窗中，按一下資源清單中的 [網路安全性群組]。 NSG 名稱應該是 VM 名稱結尾附加 -nsg。
 3. 按一下 [輸入安全性規則] 標題，以開啟輸入規則清單。 您應會看到清單中已經有 RDP 的規則。
 4. 按一下 [+ 新增] 以開啟 [新增輸入安全性規則] 刀鋒視窗。
-5. 在 [名稱] 中輸入 **IIS**，並確定 [連接埠範圍] 已設為 80 且 [動作] 已設為 [允許]，然後按一下 [確定]。
+5. 在 [名稱] 中輸入 **IIS**。 確定 [連接埠範圍] 已設為 80 且 [動作] 已設為 [允許]。 按一下 [確定] 。
 
 
 ## <a name="connect-to-virtual-machine"></a>連線至虛擬機器
@@ -78,7 +80,7 @@ ms.lasthandoff: 04/06/2017
 
 ## <a name="install-iis-using-powershell"></a>使用 PowerShell 安裝 IIS
 
-您現已登入 Azure VM，可使用一行 PowerShell 來安裝 IIS，並啟用本機防火牆規則以允許 Web 流量通過。  開啟 PowerShell 提示字元並執行下列命令：
+在虛擬機器上，開啟 PowerShell 提示字元並執行下列命令來安裝 IIS，並啟用本機防火牆規則以允許 Web 流量通過：
 
 ```powershell
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
@@ -90,13 +92,6 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
 ![IIS 預設網站](./media/quick-create-powershell/default-iis-website.png) 
 
-## <a name="delete-virtual-machine"></a>刪除虛擬機器
-
-若不再需要，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
-
-```powershell
-Remove-AzureRmResourceGroup -Name myResourceGroup
-```
 ## <a name="delete-virtual-machine"></a>刪除虛擬機器
 
 若不再需要，可刪除資源群組、虛擬機器和所有相關資源。 若要這樣做，請選取虛擬機器刀鋒視窗中的資源群組，然後按一下 [刪除]。

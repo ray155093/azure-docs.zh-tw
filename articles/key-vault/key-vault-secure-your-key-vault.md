@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: ambapat
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: a28e325e8a7e902a64f8cc267e2f0d3be151bcb3
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: c344941c59c52d260999c29f448bb94df24fba1d
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -31,7 +31,7 @@ Azure 金鑰保存庫是用來保護雲端應用程式加密金鑰和密碼 (例
 
 以下是所涵蓋主題的簡短概觀︰
 
-[使用 Azure Active Directory 進行驗證](#authentication-using-azure-active-direcrory) - 本節說明呼叫者如何使用 Azure Active Directory 進行驗證，以透過管理平面和資料平面存取金鑰保存庫。 
+[使用 Azure Active Directory 進行驗證](#authentication-using-azure-active-directory) - 本節說明呼叫者如何使用 Azure Active Directory 進行驗證，以透過管理平面和資料平面存取金鑰保存庫。 
 
 [管理平面和資料平面](#management-plane-and-data-plane) - 管理平面和資料平面是用來存取金鑰保存庫的兩個存取平面。 這兩個存取平面各支援特定作業。 本節描述各個平面所使用的存取端點、所支援作業和存取控制方法。 
 

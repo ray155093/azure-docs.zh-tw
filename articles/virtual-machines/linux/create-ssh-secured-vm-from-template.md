@@ -11,19 +11,19 @@ ms.assetid: 721b8378-9e47-411e-842c-ec3276d3256a
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
-ms.devlang: na
+ms.devlang: azurecli
 ms.topic: hero-article
 ms.date: 10/24/2016
 ms.author: v-livech
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: c8b4c8cd7e6e6e07efbaae7ac024160e1e0a3568
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: c268d87faf45d3ea02154b46903a73478a2a1f2f
+ms.lasthandoff: 04/14/2017
 
 
 ---
-# <a name="how-to-create-a-linux-vm-using-an-azure-resourec-manager-template"></a>如何使用 Azure Resource Manager 範本建立 Linux VM
+# <a name="how-to-create-a-linux-vm-using-an-azure-resource-manager-template"></a>如何使用 Azure Resource Manager 範本建立 Linux VM
 本文示範如何使用 Azure 範本，在 Azure 上快速部署 Linux 虛擬機器。  本文需要：
 
 * 一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))。

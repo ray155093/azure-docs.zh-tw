@@ -18,9 +18,9 @@ ms.topic: hero-article
 ms.date: 03/15/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: c173f1b6937739f662eb41aa1886e66cb06ed729
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: a08fe566f4962684bc4aad220687e9cd36fc4abf
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -41,12 +41,13 @@ ms.lasthandoff: 04/12/2017
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
-3. 在 Azure 入口網站中您資料庫的 [基本資訊] 窗格中，找到後複製 [伺服器名稱]。
+3. 在您資料庫的 [概觀] 窗格上，檢閱如下圖所示的完整伺服器名稱。 您可以將滑鼠移至伺服器名稱上，以帶出 [按一下以複製] 選項。
 
    ![連線資訊](./media/sql-database-connect-query-ssms/connection-information.png) 
 
+4. 如果您忘記 Azure SQL Database 伺服器的登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。 
 
-## <a name="connect-to-the-server-and-your-new-database"></a>連線至伺服器和新的資料庫
+## <a name="connect-to-your-database-in-the-sql-database-logical-server"></a>在 SQL Database 邏輯伺服器中連線至您的資料庫
 
 使用 SQL Server Management Studio (SSMS) 建立對 Azure SQL Database 伺服器的連線。 
 
@@ -65,7 +66,7 @@ ms.lasthandoff: 04/12/2017
 
    ![連接到伺服器](./media/sql-database-connect-query-ssms/connect.png)  
 
-3. 按一下 [選項] 。 在 [連線到資料庫] 區段中，輸入 **mySampleDatabase** 以連線至您先前建立的這個資料庫。
+3. 按一下 [連接到伺服器] 對話方塊中的 [選項]。 在 [連線到資料庫] 區段中，輸入 **mySampleDatabase** 以連線到這個資料庫。
 
    ![連線到伺服器上的 DB](./media/sql-database-connect-query-ssms/options-connect-to-db.png)  
 
@@ -73,7 +74,7 @@ ms.lasthandoff: 04/12/2017
 
    ![已連接到伺服器](./media/sql-database-connect-query-ssms/connected.png)  
 
-4. 在 [物件總管] 中，展開 [資料庫]，然後展開 [mySampleDatabase] 以檢視範例資料庫中的物件。
+5. 在 [物件總管] 中，展開 [資料庫]，然後展開 [mySampleDatabase] 以檢視範例資料庫中的物件。
 
 ## <a name="query-data"></a>查詢資料
 
@@ -91,7 +92,7 @@ ms.lasthandoff: 04/12/2017
 
 3. 在工具列上，按一下 [執行] 來擷取 Product 和 ProductCategory 資料表中的資料。
 
-    <img src="./media/sql-database-connect-query-ssms/query.png" alt="query" style="width: 780px;" />
+    ![query](./media/sql-database-connect-query-ssms/query.png)
 
 ## <a name="insert-data"></a>插入資料
 

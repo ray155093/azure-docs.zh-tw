@@ -15,12 +15,12 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 03/17/2017
+ms.date: 04/17/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: ff5d156ab2b701233c4cdbf08e3d6e517c01b9fb
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 5b623c78f8b8eac846c5ca244f1e0b25ee4f400f
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -38,7 +38,7 @@ ms.lasthandoff: 04/12/2017
 ## <a name="configure-vs-code-mac-os-only"></a>設定 VS Code (僅限 Mac OS)
 
 ### <a name="mac-os"></a>**Mac OS**
-對於 macOS，您必須安裝 OpenSSL，這是 mssql 擴充功能使用之 DotNet Core 的必要條件。 開啟您的終端機，並輸入下列命令以安裝 **brew** 和 **OpenSSL***。 
+對於 macOS，您必須安裝 OpenSSL，這是 mssql 擴充功能使用之 DotNet Core 的必要條件。 開啟您的終端機，並輸入下列命令以安裝 **brew** 和 **OpenSSL**。 
 
 ```bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -55,9 +55,11 @@ ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
-3. 在 Azure 入口網站中您資料庫的 [基本資訊] 窗格中，找到後複製 [伺服器名稱] 以便稍後在本快速入門中使用。
+3. 在您資料庫的 [概觀] 頁面上，檢閱如下圖所示的完整伺服器名稱。 您可以將滑鼠移至伺服器名稱上，以帶出 [按一下以複製] 選項。
 
-    <img src="./media/sql-database-connect-query-vscode/connection-information.png" alt="connection information" style="width: 780px;" />
+   ![連線資訊](./media/sql-database-connect-query-ssms/connection-information.png) 
+
+4. 如果您忘記 Azure SQL Database 伺服器的登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。 
 
 ## <a name="set-language-mode-to-sql"></a>將語言模式設定為 SQL
 
@@ -65,17 +67,22 @@ ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 
 1. 開啟新的 Visual Studio Code 視窗。 
 
-2. 按 **⌘+K、M** 或 **CTRL+K、M** (分別為 Mac 和 Windows 選項)，輸入 **SQL** 並且按 **ENTER** 將語言模式設定為 SQL。 
+2. 按一下狀態列右下角的 [純文字]。
+3. 在開啟的 [選取語言模式] 下拉式功能表中，輸入 **SQL**，然後按 **ENTER** 將語言模式設定為 SQL。 
 
-<img src="./media/sql-database-connect-query-vscode/vscode-language-mode.png" alt="SQL language mode" style="width: 780px;" />
+   ![SQL 語言模式](./media/sql-database-connect-query-vscode/vscode-language-mode.png)
 
-## <a name="connect-to-the-server"></a>連接到伺服器
+## <a name="connect-to-your-database-in-the-sql-database-logical-server"></a>在 SQL Database 邏輯伺服器中連線至您的資料庫
 
 使用 Visual Studio Code 建立對 Azure SQL Database 伺服器的連線。
 
+> [!IMPORTANT]
+> 在繼續之前，確定您已備妥伺服器、資料庫和登入資訊。 開始輸入連線設定檔資訊後，如果您的焦點變換自 Visual Studio Code，則必須重新開始建立連線設定檔。
+>
+
 1. 在 VS Code 中，按 **CTRL+SHIFT+P** (或 **F1**) 以開啟命令選擇區。
 
-2. 輸入 **sqlcon** 並且按 **ENTER**，然後將您的語言設定為 **SQL**。
+2. 輸入 **sqlcon** 並且按 **ENTER**。
 
 3. 按 **ENTER** 以選取 [建立連線設定檔]。 這會為您的 SQL Server 執行個體建立連線設定檔。
 
@@ -97,7 +104,7 @@ ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 
 6. 在狀態列中確認您的連線。
 
-   <img src="./media/sql-database-connect-query-vscode/vscode-connection-status.png" alt="Connection status" style="width: 780px;" />
+   ![連線狀態](./media/sql-database-connect-query-vscode/vscode-connection-status.png)
 
 ## <a name="query-data"></a>查詢資料
 
@@ -114,7 +121,7 @@ ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 
 2. 按 **CTRL+SHIFT+E** 來擷取 Product 和 ProductCategory 資料表中的資料。
 
-    <img src="./media/sql-database-connect-query-vscode/query.png" alt="Query" style="width: 780px;" />
+    ![查詢](./media/sql-database-connect-query-vscode/query.png)
 
 ## <a name="insert-data"></a>插入資料
 

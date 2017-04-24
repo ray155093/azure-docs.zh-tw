@@ -14,12 +14,12 @@ ms.workload: data-management
 ms.tgt_pltfrm: portal
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 04/03/2017
+ms.date: 04/17/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 58af25d90b419b3ddb986118a8c9ba3b42aa95a6
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 3366348e6ea3ae296bc249090e75c16ebe9fc1fb
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -50,18 +50,26 @@ Azure SQL Database 會使用一組定義的[計算和儲存體資源](sql-databa
    - 資源群組︰**myResourceGroup**
    - 來源︰**範例 (AdventureWorksLT)**
 
-4. 按一下 [伺服器] 為您的新資料庫建立及設定伺服器。 填寫指定全域唯一伺服器名稱的**新伺服器表單**提供伺服器系統管理員登入的名稱，然後指定您所選擇的密碼。 
+   > [!IMPORTANT]
+   > 您必須在此表單上選取範例資料庫，因為它會用於本快速入門的其餘部分。
+   > 
+
+4. 按一下 [伺服器] 並填寫指定全域唯一伺服器名稱的**新伺服器表單**，提供伺服器系統管理員登入的名稱，然後指定您所選擇的密碼。 
+
+   > [!IMPORTANT]
+   > 需要伺服器系統管理員登入以及您在此處指定的密碼，稍後才能在本快速入門中登入伺服器及其資料庫。 請記住或記錄此資訊，以供稍後使用。 
+   >  
 
     ![建立資料庫伺服器](./media/sql-database-get-started-portal/create-database-server.png)
-5. 按一下 [選取] 。
+5. 完成表單後，按一下 [選取]。
 
-6. 按一下 [定價層] 指定新資料庫的服務層和效能等級。 針對此快速入門，選取 [20 個 DTU] 和 [250] GB 的儲存體
+6. 按一下 [定價層] 指定新資料庫的服務層和效能等級。 使用滑桿來選取 [20 個 DTU] 和 [250] GB 的儲存體。 如需 DTU 的詳細資訊，請參閱[什麼是 DTU？](sql-database-what-is-a-dtu.md)。
 
     ![建立資料庫-s1](./media/sql-database-get-started-portal/create-database-s1.png)
 
-7. 按一下 [套用]。  
+7. 選取 DTU 數量之後，按一下 [套用]。  
 
-8. 按一下 [建立] 即可佈建資料庫。 佈建需要幾分鐘的時間。 
+8. 您現在已完成 SQL Database 表單，請按一下 [建立] 來佈建資料庫。 佈建需要幾分鐘的時間。 
 
 9. 在工具列上，按一下 [通知] 以監視部署程序。
 
@@ -72,13 +80,26 @@ Azure SQL Database 會使用一組定義的[計算和儲存體資源](sql-databa
 
 SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程式和工具連線到伺服器或伺服器上的任何資料庫，除非建立防火牆規則以針對特定的 IP 位址開啟防火牆。 請遵循下列步驟來為您用戶端的 IP 位址建立 [SQL Database 伺服器層級防火牆規則](sql-database-firewall-configure.md)，並讓外部連線僅能夠穿過您 IP 位址的 SQL Database 防火牆。 
 
-1. 部署完成之後，按一下左側功能表中的 [SQL Database]，然後按一下 [SQL Database] 頁面上的資料庫。 資料庫的 [概觀] 頁面隨即開啟，其中會顯示完整伺服器名稱 (例如 **mynewserver20170327.database.windows.net**)，並提供進一步的組態選項。
+> [!NOTE]
+> SQL Database 會透過連接埠 1433 通訊。 如果您嘗試從公司網路進行連線，您網路的防火牆可能不允許透過連接埠 1433 的輸出流量。 若是如此，除非 IT 部門開啟連接埠 1433，否則將無法連線至 Azure SQL Database 伺服器。
+>
 
-      ![伺服器防火牆規則](./media/sql-database-get-started-portal/server-firewall-rule.png) 
+1. 部署完成之後，按一下左側功能表中的 [SQL Database]，然後按一下 [SQL Database] 頁面上的 **mySampleDatabase**。 資料庫的 [概觀] 頁面隨即開啟，其中會顯示完整伺服器名稱 (例如 **mynewserver20170411.database.windows.net**)，並提供進一步的組態選項。
+
+   > [!IMPORTANT]
+   > 在後續快速入門中，您需要此完整伺服器名稱才能連接到伺服器及其資料庫。
+   > 
+
+      ![伺服器名稱](./media/sql-database-get-started-portal/server-name.png) 
 
 2. 如先前映像所示，按一下工具列上的 [設定伺服器防火牆]。 SQL Database 伺服器的 [防火牆設定] 頁面隨即開啟。 
 
-3. 依據按一下工具列上的 [新增用戶端 IP] 和 [儲存]。 系統便會為目前的 IP 位址建立伺服器層級防火牆規則。
+      ![伺服器防火牆規則](./media/sql-database-get-started-portal/server-firewall-rule.png) 
+
+
+3. 按一下工具列上的 [新增用戶端 IP]，將目前的 IP 位址新增至新的防火牆規則。 防火牆規則可以針對單一 IP 位址或 IP 位址範圍開啟連接埠 1433。
+
+4. 按一下 [儲存] 。 系統便會為目前的 IP 位址建立伺服器層級防火牆規則，以便在邏輯伺服器上開啟連接埠 1433。
 
       ![設定伺服器防火牆規則](./media/sql-database-get-started-portal/server-firewall-rule-set.png) 
 
@@ -86,13 +107,12 @@ SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程�
 
 您現在可以利用 SQL Server Management Studio 或選擇的其他工具，使用先前建立的伺服器管理帳戶從這個 IP 位址連線至 SQL Database 伺服器及其資料庫。
 
-> [!NOTE]
-> SQL Database 會透過連接埠 1433 通訊。 如果您嘗試從公司網路進行連線，您網路的防火牆可能不允許透過連接埠 1433 的輸出流量。 若是如此，除非 IT 部門開啟連接埠 1433，否則將無法連線至 Azure SQL Database 伺服器。
->
+> [!IMPORTANT]
+> 根據預設，已對所有 Azure 服務啟用透過 SQL Database 防火牆存取。 按一下此頁面上的 [關閉] 即可對所有 Azure 服務停用。
 
 ## <a name="query-the-sql-database"></a>查詢 SQL Database
 
-當我們建立 SQL Database 時，我們會以 **AdventureWorksLT** 範例資料庫填入它 (這是我們稍早在本快速入門的建立 UI 中所選取的其中一個選項)。 現在讓我們使用 Azure 入口網站的內建查詢工具來查詢資料。 
+您現在已在 Azure 中建立範例資料庫，讓我們使用 Azure 入口網站內建的查詢工具來確認您可以連線到資料庫並查詢資料。 
 
 1. 在資料庫的 [SQL Database] 頁面上，按一下工具列上的 [工具]。 [工具] 頁面隨即開啟。
 
