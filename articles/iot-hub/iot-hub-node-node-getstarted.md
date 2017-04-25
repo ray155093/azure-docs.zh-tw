@@ -107,6 +107,7 @@ ms.lasthandoff: 03/17/2017
 > 
 > 
 
+<a id="D2C_node"></a>
 ## <a name="receive-device-to-cloud-messages"></a>接收裝置到雲端的訊息
 在本節中，您會建立 Node.js 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 [處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程會說明如何大規模處理裝置到雲端訊息。 [開始使用事件中樞][lnk-eventhubs-tutorial]教學課程提供進一步的資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
 

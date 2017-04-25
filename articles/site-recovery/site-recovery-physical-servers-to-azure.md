@@ -107,7 +107,7 @@ Azure 用來建立和處理資源的[部署模型](../azure-resource-manager/res
     ![設定來源](./media/site-recovery-vmware-to-azure/set-source1.png)
 3. 在 [新增伺服器] 中，檢查 [組態伺服器] 是否出現在 [伺服器類型] 中。
 4. 下載 Site Recovery 統一安裝的安裝檔案。
-5. 下載保存庫註冊金鑰。 您會在執行統一安裝時用到此金鑰。 該金鑰在產生後會維持&5; 天有效。
+5. 下載保存庫註冊金鑰。 您會在執行統一安裝時用到此金鑰。 該金鑰在產生後會維持 5 天有效。
 
    ![設定來源](./media/site-recovery-vmware-to-azure/set-source2.png)
 6. 在組態伺服器 VM 上，請確定系統時鐘與[時間伺服器](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service)同步，然後執行「整合安裝」來安裝組態伺服器、處理序伺服器和主要目標伺服器。
