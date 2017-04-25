@@ -102,7 +102,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
 若要設定 token 限制選項，您需要使用 XML 來描述權杖的授權需求。 token 限制組態 XML 必須符合下列 XML 結構描述。
 
-#### <a name="a-idschemaatoken-restriction-schema"></a><a id="schema"></a>Token 限制結構描述
+#### <a id="schema"></a>Token 限制結構描述
     <?xml version="1.0" encoding="utf-8"?>
     <xs:schema xmlns:tns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/TokenRestrictionTemplate/v1" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/TokenRestrictionTemplate/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="TokenClaim">
@@ -209,7 +209,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
         return TokenRestrictionTemplateSerializer.Serialize(template);
     }
 
-#### <a name="a-idtestatest-token"></a><a id="test"></a>測試權杖
+#### <a id="test"></a>測試權杖
 若要取得根據用於金鑰授權原則之權杖限制的測試權杖，請執行下列動作。
 
     // Deserializes a string containing an Xml representation of a TokenRestrictionTemplate
@@ -390,8 +390,8 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
 
 若要取得根據用於金鑰授權原則之權杖限制的測試權杖，請參閱 [此](#test) 節。 
 
-## <a name="a-idtypesatypes-used-when-defining-contentkeyauthorizationpolicy"></a><a id="types"></a>定義 ContentKeyAuthorizationPolicy 時使用的類型
-### <a name="a-idcontentkeyrestrictiontypeacontentkeyrestrictiontype"></a><a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType
+## <a id="types"></a>定義 ContentKeyAuthorizationPolicy 時使用的類型
+### <a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType
     public enum ContentKeyRestrictionType
     {
         Open = 0,
@@ -399,7 +399,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
         IPRestricted = 2,
     }
 
-### <a name="a-idcontentkeydeliverytypeacontentkeydeliverytype"></a><a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType
+### <a id="ContentKeyDeliveryType"></a>ContentKeyDeliveryType
     public enum ContentKeyDeliveryType
     {
       None = 0,
@@ -408,7 +408,7 @@ Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 �
       Widevine = 3
     }
 
-### <a name="a-idtokentypeatokentype"></a><a id="TokenType"></a>TokenType
+### <a id="TokenType"></a>TokenType
     public enum TokenType
     {
         Undefined = 0,
