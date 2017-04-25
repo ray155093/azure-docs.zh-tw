@@ -42,7 +42,7 @@ vSphere ESXi 主機 5.5 和 6.0
 ### <a name="configure-syslog-collection"></a>設定 syslog 收集
 1. 設定 VSphere 的 syslog 轉送。 如需詳細資訊來協助您設定 syslog 轉送，請參閱[設定 ESXi 5.x 和 6.0 上的 syslog (2003322)](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2003322)。 移至 [ESXi 主機組態]  >  [軟體]  >  [進階設定]  >  [Syslog]。
    ![vsphereconfig](./media/log-analytics-vmware/vsphere1.png)  
-2. 在 [Syslog.global.logHost] 欄位中，新增您的 Linux 伺服器和連接埠號碼&1514;。 例如，`tcp://hostname:1514` 或 `tcp://123.456.789.101:1514`。
+2. 在 [Syslog.global.logHost] 欄位中，新增您的 Linux 伺服器和連接埠號碼 1514。 例如，`tcp://hostname:1514` 或 `tcp://123.456.789.101:1514`。
 3. 為 syslog 開啟 ESXi 主機防火牆。 [ESXi 主機組態]  >  [軟體]  >  [安全性設定檔]  >  [防火牆]，然後開啟 [屬性]。  
 
     ![vspherefw](./media/log-analytics-vmware/vsphere2.png)  
