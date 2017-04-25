@@ -37,7 +37,7 @@ ms.lasthandoff: 02/10/2017
 
 * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 分 14 秒)*
 * 影片 2： [您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) *(4 分 56 秒)*
-* 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)* (4 分 17 秒)*
+* 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)*(4 分 17 秒)*
 * 影片 4：利用簡單模型預測答案
 * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 分 18 秒)*
 
@@ -76,7 +76,7 @@ ms.lasthandoff: 02/10/2017
 
 我們現在將利用這個資料，並將它變成「散佈圖」 。 這是以視覺化方式檢視數值資料集的好方法。
 
-針對第一個資料點，我們在 1.01 克拉處仔細打量出一條垂直線。 然後，在&7;,366 美元處仔細打量出一條水平線。 接著在它們的交會處畫上一點。 這代表我們的第一顆鑽石。
+針對第一個資料點，我們在 1.01 克拉處仔細打量出一條垂直線。 然後，在 7,366 美元處仔細打量出一條水平線。 接著在它們的交會處畫上一點。 這代表我們的第一顆鑽石。
 
 現在逐一取得此清單上的每一顆鑽石，然後執行相同動作。 完成之後，這就是我們所得到的結果：一連串的點，每一個都代表一顆鑽石。
 
