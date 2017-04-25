@@ -37,7 +37,7 @@ ms.lasthandoff: 02/10/2017
 
 * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 分 14 秒)*
 * 影片 2：您的資料已經可以進行資料科學了嗎？
-* 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)* (4 分 17 秒)*
+* 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)*(4 分 17 秒)*
 * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) *(7 分 42 秒)*
 * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 分 18 秒)*
 
@@ -81,7 +81,7 @@ ms.lasthandoff: 02/10/2017
 不過，右邊是完整且完全的表格 - 連貫的資料範例。
 
 ## <a name="is-your-data-accurate"></a>是您的資料精確嗎？
-下一個我們所需的要素是精確度。 以下是我們想要用箭射中的&4; 個目標。
+下一個我們所需的要素是精確度。 以下是我們想要用箭射中的 4 個目標。
 
 ![準確的資料與不準確的資料 - 資料準則](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-inaccurate-vs-accurate-data.png)
 
@@ -106,7 +106,7 @@ ms.lasthandoff: 02/10/2017
 
 利用相關、連結、準確及足夠的資料，我們擁有需要的所有要素，來進行一些高品質資料科學。
 
-請務必查看 Microsoft Azure Machine Learning 中「適用於初學者的資料科學」的其他&4; 部影片。
+請務必查看 Microsoft Azure Machine Learning 中「適用於初學者的資料科學」的其他 4 部影片。
 
 ## <a name="next-steps"></a>後續步驟
 * [嘗試使用 Machine Learning Studio 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
