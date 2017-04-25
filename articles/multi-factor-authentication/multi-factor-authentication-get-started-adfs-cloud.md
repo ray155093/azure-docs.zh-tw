@@ -17,6 +17,7 @@ ms.author: kgremban
 translationtype: Human Translation
 ms.sourcegitcommit: 60e8bf883a09668100df8fb51572f9ce0856ccb3
 ms.openlocfilehash: 9eb32ac7936ad54d487dc15d3ef320ec279ce0bc
+ms.lasthandoff: 02/10/2017
 
 ---
 
@@ -94,9 +95,4 @@ ms.openlocfilehash: 9eb32ac7936ad54d487dc15d3ef320ec279ce0bc
 8. 套用更新之後，請按一下 [關閉]。
 
 這樣就大功告成了！ 現在，當宣告來自公司內部網路之外時，Office 365 使用者同盟只需要使用 MFA。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
