@@ -45,7 +45,7 @@ ms.lasthandoff: 04/14/2017
 ### <a name="enable-ntlm-and-kerberos-credential-hash-generation-for-a-cloud-only-azure-ad-tenant"></a>為僅限雲端的 Azure AD 租用戶啟用 NTLM 和 Kerberos 認證雜湊產生功能
 以下是您需要提供使用者才能變更其密碼的指示：
 
-1. 移至貴組織的 [Azure AD 存取面板][](http://myapps.microsoft.com) 頁面。
+1. 移至貴組織的 [Azure AD 存取面板](http://myapps.microsoft.com) 頁面。
 2. 在 [存取面板] 視窗中，選取 [設定檔] 索引標籤。
 3. 按一下 [變更密碼] 圖格。
 
