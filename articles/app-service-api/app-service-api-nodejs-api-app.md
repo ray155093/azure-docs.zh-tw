@@ -162,7 +162,7 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
    
     ![Swagger Ui](media/app-service-api-nodejs-api-app/swagger-ui.png)
 
-## <a name="a-idcreateapiappa-create-a-new-api-app"></a><a id="createapiapp"></a> 建立新的 API 應用程式
+## <a id="createapiapp"></a> 建立新的 API 應用程式
 在本節中，您會使用 Azure 入口網站在 Azure 中建立新的 API 應用程式。 此 API 應用程式代表 Azure 所提供來執行程式碼的計算資源。 在後續幾節中，您會將程式碼部署到新的 API 應用程式。
 
 1. 瀏覽至 [Azure 入口網站](https://portal.azure.com/)。 
@@ -202,7 +202,7 @@ App Service 支援多種將程式碼部署至 API 應用程式的方式，而本
     入口網站會顯示 [API 應用程式] 和 [設定] 刀鋒視窗。
    
     ![入口網站的 API 應用程式和設定刀鋒視窗](media/app-service-api-nodejs-api-app/portalapiappblade.png)
-2. 在 [設定]** 刀鋒視窗中，向下捲動至 [發佈]**** 區段，然後按一下 [部署認證]**。
+2. 在 [設定]**刀鋒視窗中，向下捲動至 [發佈]**** 區段，然後按一下 [部署認證]**。
 3. 在 [設定部署認證] 刀鋒視窗中輸入使用者名稱和密碼，然後按一下 [儲存]。
    
     您將使用這些認證將 Node.js 程式碼發佈至 API 應用程式。 
