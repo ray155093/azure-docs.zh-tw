@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 10/18/2016
 ms.author: aungoo
 translationtype: Human Translation
-ms.sourcegitcommit: 1cb57e5156dab976599ddfa9a58f26ca8ef1ee0e
-ms.openlocfilehash: 69fbac5acdc812917d1e022d19768a8d72955783
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 0efa2fdb2b78086e89e77429f8fac813ae1cf1a4
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -187,7 +187,7 @@ IO 大小是其中一個很重要的因素。 IO 大小是指應用程式所產�
 | Standard_DS14 |16 |112 GB |作業系統 = 1023 GB  <br> 本機 SSD = 224 GB |32 |576 GB |50,000 IOPS  <br> 每秒 512 MB |4,000 IOPS 和每秒 33 MB |
 | Standard_GS5 |32 |448 GB |作業系統 = 1023 GB  <br> 本機 SSD = 896 GB |64 |4224 GB |80,000 IOPS  <br> 每秒 2,000 MB |5,000 IOPS 和每秒 50 MB |
 
-若要檢視所有可用的 Azure VM 大小的完整清單，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 選擇可以符合並調整為期望的應用程式效能需求的 VM 大小。 此外，選擇 VM 大小時，請將下列重要因素納入考量。
+若要檢視所有可用的 Azure VM 大小的完整清單，請參閱 [Windows VM 大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或 [Linux VM 大小](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 選擇可以符合並調整為期望的應用程式效能需求的 VM 大小。 此外，選擇 VM 大小時，請將下列重要因素納入考量。
 
 *調整限制*  
 每個 VM 和每個磁碟的最大 IOPS 限制都不同且各自獨立。 請確定應用程式在 VM 及它連接的高階磁碟的限制內推動 IOPS。 否則，應用程式效能會發生節流現象。
@@ -211,7 +211,7 @@ IO 大小是其中一個很重要的因素。 IO 大小是指應用程式所產�
 
 *Linux 散發版本*  
 
-Azure 進階儲存體可讓執行 Windows 和 Linux 的 VM 達到相同層級的效能。 我們支援許多種 Linux 散發版本，您可以在 [這裡](../virtual-machines/virtual-machines-linux-endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)看到完整清單。 務必注意，針對不同類型的工作負載，不同的散發版本會更適合。 根據執行工作負載的散發版本而定，您會看到不同層級的效能。 請以您的應用程式來測試 Linux 散發版本，選擇最適合的散發版本。
+Azure 進階儲存體可讓執行 Windows 和 Linux 的 VM 達到相同層級的效能。 我們支援許多種 Linux 散發版本，您可以在 [這裡](../virtual-machines/linux/endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)看到完整清單。 務必注意，針對不同類型的工作負載，不同的散發版本會更適合。 根據執行工作負載的散發版本而定，您會看到不同層級的效能。 請以您的應用程式來測試 Linux 散發版本，選擇最適合的散發版本。
 
 搭配進階儲存體執行 Linux 時，請檢查所需驅動程式的最新更新，以確保達到較高效能。
 
@@ -292,7 +292,7 @@ Azure 進階儲存體目前提供三種磁碟大小。 對於 IOPS、頻寬和�
 
 重要事項：您可以使用伺服器管理員 UI，將一個等量磁碟區的總欄數最多設定為 8 個。 當連接 8 個以上的磁碟時，請使用 PowerShell 來建立磁碟區。 您可以使用 PowerShell 將欄數設定為等於磁碟數量。 例如，如果單一等量磁碟區中有 16 個磁碟，請在 *New-VirtualDisk* PowerShell Cmdlet 的 *NumberOfColumns* 參數中指定 16 欄。
 
-在 Linux 上，請使用 MDADM 公用程式將磁碟串接在一起。 如需有關在 Linux 上等量分割磁碟的詳細步驟，請參閱 [在 Linux 上設定軟體 RAID](../virtual-machines/virtual-machines-linux-configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+在 Linux 上，請使用 MDADM 公用程式將磁碟串接在一起。 如需有關在 Linux 上等量分割磁碟的詳細步驟，請參閱 [在 Linux 上設定軟體 RAID](../virtual-machines/linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 *等量大小*  
 磁碟串接時一項重要設定是等量大小。 等量大小或區塊大小是指應用程式在等量磁碟區上可定址的最小資料區塊。 您設定的等量大小取決於應用程式的類型及其要求模式。 如果您選擇錯誤的等量大小，可能會導致 IO 對齊錯錯，進而導致應用程式的效能降低。
@@ -333,7 +333,7 @@ Azure 已將進階儲存體平台設計為大規模平行。 因此，多執行�
 
 通常，當每個連接的磁碟上有 8-16+ 個未完成的 IO 時，應用程式可以達到最大輸送量。 如果佇列深度是一，則應用程式不會將足夠的 IO 推送至系統，因此在指定期間內處理的數量會較少。 換句話說，輸送量較少。
 
-例如，在 SQL Server 中，將查詢的 MAXDOP 值設為 "4"，就是向 SQL Server 表示它最多可以使用四個核心來執行查詢。 SQL Server 會決定查詢執行的最佳佇列深度值和核心數目。
+例如，在 SQL Server 中，將查詢的 MAXDOP 值設為 "4"，會向 SQL Server 表示它最多可以使用四個核心來執行查詢。 SQL Server 會決定查詢執行的最佳佇列深度值和核心數目。
 
 *最佳佇列深度*  
 佇列深度值太高也有其缺點。 如果佇列深度值太高，應用程式會嘗試推動非常高的 IOPS。 除非應用程式的永續性磁碟已佈建足夠的 IOPS，否則這可能對應用程式延遲造成負面影響。 下列公式顯示 IOPS、延遲和佇列深度之間的關聯性。  
@@ -353,7 +353,7 @@ Azure 進階儲存體會根據您選擇的 VM 大小和磁碟大小，佈建指�
 
 我們分別在 Windows 和 Linux 上使用一般效能評定工具 Iometer 和 FIO。 這些工具會繁衍多個執行緒來模擬類似實際執行的工作負載，並測量系統效能。 您也可以使用這些工具來設定參數，例如區塊大小和佇列深度，您通常無法在應用程式中變更這些參數。 針對不同類型的應用程式工作負載，這可讓您在以高階磁碟佈建的高延展性 VM 上，更靈活地發揮最大效能。 若要深入了解每個效能評定工具，請參閱 [Iometer](http://www.iometer.org/) 和 [FIO](http://freecode.com/projects/fio)。
 
-若要執行下列範例，請建立標準 DS14 VM，並將 11 個進階儲存體磁碟連接至 VM。 在 11 磁碟中，以快取「無」來設定 10 個磁碟，並將它們串接成一個磁碟區，稱為 NoCacheWrites。 在剩餘的磁碟上，將主機快取設定為「唯讀」，並使用此磁碟建立一個磁碟區，稱為 CacheReads。 根據此設定，您可以看到標準 DS14 VM 發揮最大的讀取和寫入效能。 如需有關以進階磁碟建立 DS14 VM 的詳細步驟，請移至[為虛擬機器資料磁碟建立和使用進階儲存體帳戶](storage-premium-storage.md)。
+若要執行下列範例，請建立標準 DS14 VM，並將 11 個進階儲存體磁碟連接至 VM。 在 11 個磁碟中，將 10 個磁碟的主機快取設定為「無」，並將它們串接成一個稱為 NoCacheWrites 的磁碟區。 在剩下的磁碟上，將主機快取設定為「唯讀」，並使用此磁碟建立一個稱為 CacheReads 的磁碟區。 根據此設定，您可以看到標準 DS14 VM 發揮最大的讀取和寫入效能。 如需有關以進階磁碟建立 DS14 VM 的詳細步驟，請移至[為虛擬機器資料磁碟建立和使用進階儲存體帳戶](storage-premium-storage.md)。
 
 *準備快取*  
 設有「唯讀」主機快取的磁碟能夠提供高於磁碟限制的 IOPS。 若要從主機快取獲得這種最高的讀取效能，您必須先準備此磁碟的快取。 如此可確保效能評定工具在 CacheReads 磁碟區上推動的讀取 IO 實際上是命中快取，而非直接觸及磁碟。 快取命中會讓已啟用快取的單一磁碟產生更多 IOPS。
@@ -370,7 +370,7 @@ Azure 進階儲存體會根據您選擇的 VM 大小和磁碟大小，佈建指�
 在您執行效能評定測試的磁碟區上，Iometer 會使用此磁碟區上儲存的一個測試檔案。 它會對此測試檔案推動讀取和寫入，以測量磁碟 IOPS 和輸送量。 如果您沒有提供此測試檔案，Iometer 會建立測試檔案。 在 CacheReads 和 NoCacheWrites 磁碟區上，建立一個稱為 iobw.tst 的 200GB 測試檔案。
 
 *存取規格*  
-在 Iometer 中可使用 [存取規格] 索引標籤，設定要求 IO 大小、% 讀取/寫入、% 隨機/循序等規格。 為以下說明的每個案例建立存取規格。 建立存取規格並「儲存」為適當的名稱，例如 RandomWrites\_8K、RandomReads\_8K。 執行測試案例時選取對應的規格。
+規格 (要求 IO 大小、% 讀取/寫入、% 隨機/循序) 是在 Iometer 中可使用 [存取規格] 索引標籤設定。 為以下說明的每個案例建立存取規格。 建立存取規格並「儲存」為適當的名稱，例如 RandomWrites\_8K、RandomReads\_8K。 執行測試案例時選取對應的規格。
 
 以下顯示最大寫入 IOPS 案例的存取規格範例，  
     ![](media/storage-premium-storage-performance/image8.png)
@@ -400,12 +400,12 @@ Azure 進階儲存體會根據您選擇的 VM 大小和磁碟大小，佈建指�
    | --- | --- | --- | --- |
    | RandomWrites\_1MB |1MB |100 |0 |
    | RandomReads\_1MB |1MB |100 |100 |
-2. 執行 Iometer 測試，使用下列參數初始化快取磁碟。 對目標磁碟區使用三個背景工作執行緒，佇列深度為 128。 在 [Test Setup] 索引標籤上，將測試的 [Run time] 期間設為 2 小時。
+2. 執行 Iometer 測試，使用下列參數初始化快取磁碟。 對目標磁碟區使用三個背景工作執行緒，佇列深度為 128。 在 [測試安裝程式] 索引標籤上，將測試的「執行階段」期間設為 2 小時。
 
    | 案例 | 目標磁碟區 | 名稱 | 持續時間 |
    | --- | --- | --- | --- |
    | 初始化快取磁碟 |CacheReads |RandomWrites\_1MB |2 小時 |
-3. 執行 Iometer 測試，使用下列參數來準備快取。 對目標磁碟區使用三個背景工作執行緒，佇列深度為 128。 在 [Test Setup] 索引標籤上，將測試的 [Run time] 期間設為 2 小時。
+3. 執行 Iometer 測試，使用下列參數來準備快取。 對目標磁碟區使用三個背景工作執行緒，佇列深度為 128。 在 [測試安裝程式] 索引標籤上，將測試的「執行階段」期間設為 2 小時。
 
    | 案例 | 目標磁碟區 | 名稱 | 持續時間 |
    | --- | --- | --- | --- |
@@ -446,7 +446,7 @@ apt-get install fio
 我們將在磁碟上使用四個背景工作執行緒來推動讀取作業，並使用四個背景工作執行緒來推動讀取作業。 「寫入」背景工作角色會在 "nocache" 磁碟區上推動流量，此磁碟區有 10 個將快取設為「無」的磁碟。 「讀取」背景工作角色會在 "readcache" 磁碟區上推動流量，此磁碟區有 1 個將快取設為「唯讀」的磁碟。
 
 *最大寫入 IOPS*  
-使用下列規格建立作業檔案，以產生最大寫入 IOPS。 它命名為 "fiowrite.ini"。
+使用下列規格建立作業檔案，以產生最大寫入 IOPS。 將它命名為 "fiowrite.ini"。
 
 ```
 [global]
@@ -486,7 +486,7 @@ sudo fio --runtime 30 fiowrite.ini
     ![](media/storage-premium-storage-performance/image11.png)
 
 *最大讀取 IOPS*  
-使用下列規格建立作業檔案，以產生最大讀取 IOPS。 它命名為 "fioread.ini"。
+使用下列規格建立作業檔案，以產生最大讀取 IOPS。 將它命名為 "fioread.ini"。
 
 ```
 [global]
@@ -526,7 +526,7 @@ sudo fio --runtime 30 fioread.ini
     ![](media/storage-premium-storage-performance/image12.png)
 
 *最大讀取和寫入 IOPS*  
-使用下列規格建立作業檔案，以產生最大讀取和寫入 IOPS。 它命名為 "fioreadwrite.ini"。
+使用下列規格建立作業檔案，以產生最大讀取和寫入 IOPS。 將它命名為 "fioreadwrite.ini"。
 
 ```
 [global]

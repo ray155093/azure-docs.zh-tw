@@ -13,13 +13,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 3/17/2017
+ms.date: 4/10/2017
 ms.author: negat
 ms.custom: na
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: e207ace4eb5722e08f2020078dfea9129ef1deb8
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 1c7b4c4b7675bfc33e102c9abb4f942a1dd33ad4
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -538,6 +538,28 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 
 
 
+## <a name="patching-and-operations"></a>修補和作業
+
+### <a name="how-do-i-create-a-scale-set-in-an-existing-resource-group"></a>我如何在現有資源群組中建立擴展集？
+
+您尚無法從 Azure 入口網站在現有資源群組中建立擴展集，但您從 Azure Resource Manager 範本部署擴展集時，可以指定現有的資源群組。 您也可以在使用 Azure PowerShell 或 CLI 建立擴展集時，指定現有的資源群組。
+
+### <a name="can-we-move-a-scale-set-to-another-resource-group"></a>是否可以將擴展集移至另一個資源群組？
+
+是，您可以將擴展集資源移至新的訂用帳戶或資源群組。
+
+### <a name="how-to-i-update-my-virtual-machine-scale-set-to-a-new-image-how-do-i-manage-patching"></a>如何將虛擬機器擴展集更新為新的映像？ 如何管理修補？
+
+若要將虛擬機器擴展集更新為新的映像，以及管理修補，請參閱[升級虛擬機器擴展集](https://docs.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set)。
+
+### <a name="can-i-use-the-reimage-operation-to-reset-a-vm-without-changing-the-image-that-is-i-want-reset-a-vm-to-factory-settings-rather-than-to-a-new-image"></a>是否可以使用重新安裝映像作業來重設 VM，而不變更映像？ (也就是，我想要將 VM 重設為原廠設定，而不是新的映像。)
+
+是，您可以使用重新安裝映像作業來重設 VM，而不需變更映像。 不過，如果虛擬機器擴展集參考 `version = latest` 的平台映像，當您呼叫 `reimage` 時，您的 VM 可以更新為較新版本的 OS 映像。
+
+如需詳細資訊，請參閱[管理虛擬機器擴展集中的所有 VM](https://docs.microsoft.com/rest/api/virtualmachinescalesets/manage-all-vms-in-a-set)。
+
+
+
 ## <a name="troubleshooting"></a>疑難排解
 
 ### <a name="how-do-i-turn-on-boot-diagnostics"></a>如何開啟開機診斷？
@@ -561,21 +583,6 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
     "serialConsoleLogBlobUri": "https://o0sz3nhtbmkg6geswarm5.blob.core.windows.net/bootdiagnostics-swarmagen-4157d838-8335-4f78-bf0e-b616a99bc8bd/swarm-agent-9574AE92vmss-0_2.4157d838-8335-4f78-bf0e-b616a99bc8bd.serialconsole.log"
   }
 ```
-
- 
-
-## <a name="updates"></a>更新
-
-### <a name="how-to-i-update-my-virtual-machine-scale-set-to-a-new-image-how-do-i-manage-patching"></a>如何將虛擬機器擴展集更新為新的映像？ 如何管理修補？
-
-若要將虛擬機器擴展集更新為新的映像，以及管理修補，請參閱[升級虛擬機器擴展集](https://docs.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set)。
-
-### <a name="can-i-use-the-reimage-operation-to-reset-a-vm-without-changing-the-image-that-is-i-want-reset-a-vm-to-factory-settings-rather-than-to-a-new-image"></a>是否可以使用重新安裝映像作業來重設 VM，而不變更映像？ (也就是，我想要將 VM 重設為原廠設定，而不是新的映像。)
-
-是，您可以使用重新安裝映像作業來重設 VM，而不需變更映像。 不過，如果虛擬機器擴展集參考 `version = latest` 的平台映像，當您呼叫 `reimage` 時，您的 VM 可以更新為較新版本的 OS 映像。
-
-如需詳細資訊，請參閱[管理虛擬機器擴展集中的所有 VM](https://docs.microsoft.com/rest/api/virtualmachinescalesets/manage-all-vms-in-a-set)。
-
 
 
 ## <a name="virtual-machine-properties"></a>虛擬機器屬性

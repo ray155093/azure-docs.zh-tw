@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 09/06/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 77b8b8960fb0e5e5340b65dae03f95b456832a07
-ms.openlocfilehash: 1765e009438684373c89dc8364efd20dd1b7c84b
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 12f84f7ee418955f34316686c836a8697be94ea2
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -37,7 +37,7 @@ Azure SQL database 的彈性資料庫工作 (預覽) 可讓您跨越多個資料
    ![命令提示字元](./media/sql-database-elastic-query-getting-started/cmd-prompt.png)
 
 2. 在命令視窗中，輸入 "1"，然後按 **Enter**。 這會建立分區對應管理員，並加入兩個分區到伺服器。 接著輸入 "3"，然後按 **Enter**；重複此動作四次。 這會在您的分區中插入範例資料列。
-3. [Azure 入口網站](https://portal.azure.com) 應該會在您的 v12 伺服器中顯示三個新的資料庫：
+3. [Azure 入口網站](https://portal.azure.com)應該會顯示三個新的資料庫：
 
    ![Visual Studio 確認](./media/sql-database-elastic-query-getting-started/portal.png)
 

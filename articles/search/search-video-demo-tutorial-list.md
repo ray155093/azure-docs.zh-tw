@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 02/28/2017
+ms.date: 03/31/2017
 ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: 0925318a483d9a5e72015d33ee0868f41ae4bedd
-ms.openlocfilehash: 4d883d96a2a45f27e847c51c973d5ca7d0e267a8
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 70b04cde5fe877355c1dea29c78df3dcb8277973
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -31,13 +31,13 @@ ms.lasthandoff: 03/01/2017
 
 | 標題 | 描述 | 日期 |
 |-------|-------------|------|
-| [觀賞此影片介紹 (英文)](https://channel9.msdn.com/Events/Connect/2016/138) | 歷時&9; 分&38; 秒的功能、服務建立及查詢介紹。 | 2016 年 11 月 |
+| [觀賞此影片介紹 (英文)](https://channel9.msdn.com/Events/Connect/2016/138) | 歷時 9 分 38 秒的功能、服務建立及查詢介紹。 | 2016 年 11 月 |
 | [ 建立服務](search-get-started-portal.md) | 在入口網站中設定 Azure 搜尋服務的步驟。 | 2017 年 2 月 |
 | [查詢索引](search-get-started-portal.md) | 使用內建的範例資料建立及查詢索引。 入口網站中的工具是了解查詢類型和搜尋參數的快速方法。 | 2017 年 2 月 |
 | [後續步驟：<br/>.NET 中的程式碼](search-howto-dotnet-sdk.md) | 此 C# 逐步解說說明使用 Azure 搜尋服務 .NET 程式庫來連接、編製索引及查詢的方式。 | 2016 年 11 月 |
 | [後續步驟：<br/>REST 中的程式碼](search-create-index-rest-api.md) | 檢閱使用任何平台和程式設計語言建立 Azure 搜尋服務索引的 REST 呼叫和 JSON 承載。 | 2016 年 12 月 |
 
-## <a name="practice"></a>作法
+## <a name="code-samples"></a>程式碼範例
 
 透過範例和逐步解說的程式碼式探索。
 
@@ -45,10 +45,19 @@ ms.lasthandoff: 03/01/2017
 |-------|-------------|
 | [開始使用 .NET 用戶端程式庫 (英文)](https://github.com/Azure-Samples/search-dotnet-getting-started) | 使用 .NET 用戶端程式庫的 ASP.NET MVC 5 應用程式。 |
 | [開始使用 REST API (英文)](https://github.com/Azure-Samples/search-rest-api-getting-started) | REST API 程式碼範例。 |
-| [示範：紐約市求職網站 (英文)](https://github.com/Azure-Samples/search-dotnet-asp-net-mvc-jobs) | 針對紐約市求職資料，使用 ASP.NET MVC 的即時示範 Azure 搜尋服務網站的原始檔。 |
-| [示範：泰特美術館 (英文)](https://github.com/liamca/azure-search-tate-art-gallery/) | 針對美術館資料的即時示範 Azure 搜尋服務網站的原始檔，顯示「集合」資料類型和巢狀資料結構、Facet 和篩選器、人員名稱，以及縮圖影像。|
+| [來源：紐約市求職網站示範 (英文)](https://github.com/Azure-Samples/search-dotnet-asp-net-mvc-jobs) | 針對紐約市求職資料，使用 ASP.NET MVC 的即時示範 Azure 搜尋服務網站的原始檔。 |
+| [來源：泰特美術館示範 (英文)](https://github.com/liamca/azure-search-tate-art-gallery/) | 針對美術館資料的即時示範 Azure 搜尋服務網站的原始檔，顯示「集合」資料類型和巢狀資料結構、Facet 和篩選器、人員名稱，以及縮圖影像。|
 
 尋找更多適用於特定功能組合與案例的程式碼範例：[**Azure 範例 > Azure 搜尋服務 (英文)**](https://github.com/azure-samples?utf8=%E2%9C%93&query=search).
+
+## <a name="online-demos"></a>線上示範
+使用 Azure 搜尋服務來提供搜尋體驗的全功能 Web 應用程式。 這些連結能提供使用 Azure 搜尋服務之應用程式的實際操作體驗。
+
+| 連結 | 描述 |
+|-------|-------------|
+|[Azure 搜尋服務的紐約市求職入口網站示範 (英文)](http://aka.ms/azjobsdemo) | 使用來自紐約市開放資料計畫 (NYC Open Data Initiative) 的資料，示範 Azure 搜尋服務能力的作用中 ASP.NET 網站。 此應用程式使用[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)。 您可以修改程式碼來試用 [Lucene 語法](https://msdn.microsoft.com/library/azure/mt589323.aspx)。 |
+|[泰特美術館示範 (英文)](https://rawgit.com/liamca/azure-search-tate-art-gallery/master/Demo/index.html) | 使用泰特美術館範例資料的託管 ASP.NET 網站。 做為開始，請搜尋 "modern"、"photo" 及 "portrait" 等詞彙。
+|[Azure 搜尋服務示範網站](https://searchsamples.azurewebsites.net/#/) | Azure 搜尋服務的一系列示範應用程式。 使用 Azure 搜尋服務測試媒體搜尋、地理搜尋和產品庫存應用程式。 |
 
 ## <a name="courseware"></a>課程工具
 
@@ -58,14 +67,6 @@ Azure 搜尋服務的多重工作階段示範和實驗室。
 |------|-------------|------|
 [使用 Xamarin 和 Azure 搜尋服務建置智慧跨平台行動裝置應用程式 (英文)](https://mva.microsoft.com/en-US/training-courses/building-intelligent-crossplatform-mobile-applications-using-xamarin-and-azure-search-16890) | Typeahead, full text search and paging, filtering, lookup, moreLikeThis, machine learning, scoring and tuning, analytics, 自動提示, 全文檢索搜尋及分頁, 篩選, 查詢, 機器學習, 評分及調整, 分析 | 2016 年 12 月 |
 [使用 Windows Azure 搜尋服務 (英文)](https://mva.microsoft.com/en-US/training-courses/using-windows-azure-search-10540) | 針對級別、地理空間搜尋、語言分析、Cortana 語音辨識之較舊卻仍然相關的向下鑽研 | 2015 年 5 月 | 
-
-## <a name="online-demos"></a>線上示範
-使用 Azure 搜尋服務來提供搜尋體驗的全功能 Web 應用程式。 
-
-| 連結 | 描述 |
-|-------|-------------|
-|[Azure 搜尋服務的紐約市求職入口網站示範 (英文)](http://aka.ms/azjobsdemo) | 使用來自紐約市開放資料計畫 (NYC Open Data Initiative) 的資料，示範 Azure 搜尋服務能力的作用中 ASP.NET 網站。 此應用程式使用[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)。 您可以修改程式碼來試用 [Lucene 語法](https://msdn.microsoft.com/library/azure/mt589323.aspx)。 |
-|[Azure 搜尋服務示範網站](https://searchsamples.azurewebsites.net/#/) | Azure 搜尋服務的一系列示範應用程式。 使用 Azure 搜尋服務測試媒體搜尋、地理搜尋和產品庫存應用程式。 |
 
 ## <a name="video-archive"></a>影片封存
 
@@ -98,6 +99,5 @@ Azure 搜尋服務的多重工作階段示範和實驗室。
 | [如何將建議加入您的搜尋應用程式中](https://azure.microsoft.com/blog/2015/01/20/azure-search-how-to-add-suggestions-auto-complete-to-your-search-applications/) |了解如何實作建議，其通常稱作自動完成。 這段示範影片逐步解說的數個主題，包括建立善用 Azure 搜尋服務建議的 MVC4 應用程式、使用 Twitter typeahead.js 程式庫在 JavaScript 中建置有效的自動建議元件，以及使用模糊建議以便您在使用者拼錯字時仍可回傳建議。 |
 | [TechNet 虛擬實驗室：建置 Microsoft Azure 搜尋應用程式](http://go.microsoft.com/?linkid=9874663) |提供開發環境、工具、文件和資料的虛擬實驗室。 您將需要 Azure 帳戶 (試用版訂用帳戶或您個人的 Azure 訂用帳戶皆可) 來完成實驗室。 |
 | [以 Azure 搜尋同步處理 SQL Server 資料](https://azure.microsoft.com/blog/2014/11/10/how-to-sync-sql-server-data-with-azure-search/) |說明如何將資料從 SQL 伺服器關聯式資料庫載入至 Azure 搜尋索引的部落格文章。 |
-| [Azure 搜尋管理 REST API 教學課程](search-get-started-management-api.md) |如何使用管理 REST API 來佈建服務和管理系統管理員或查詢 API 金鑰。 |
 
 

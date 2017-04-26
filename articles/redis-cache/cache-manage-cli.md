@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: ae8e531c32b49e121b1c43b15071c138aaacf498
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: ba078a870a3998568170cc197bd6698b97b7fadb
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -29,6 +29,11 @@ ms.lasthandoff: 03/21/2017
 >
 
 Azure CLI 是從任何平台管理 Azure 基礎結構的一個好方法。 本文將說明如何使用 Azure CLI 建立並管理 Azure Redis 快取執行個體。
+
+> [!NOTE]
+> 此文章適用於舊版 Azure CLI。 對於最新的 Azure CLI 2.0 範例指令碼，請參閱 [Azure CLI Redis 快取範例](cli-samples.md)。
+> 
+> 
 
 ## <a name="prerequisites"></a>必要條件
 若要使用 Azure CLI 建立並管理 Azure Redis 快取執行個體，您必須完成下列步驟：

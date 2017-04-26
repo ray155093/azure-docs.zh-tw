@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/20/2017
+ms.date: 02/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 04a045f41965b093aab71e59cd9b5f328b44de84
-ms.openlocfilehash: 8290d90f22a80d5c585192b17cfa0aeba00aa891
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: ecd58d8f1df60aff99d9ac2e0245d06f61e0b6bb
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -33,13 +33,13 @@ ms.lasthandoff: 02/03/2017
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 PolicyStat 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
 ![案例](./media/active-directory-saas-policystat-tutorial/IC808662.png "案例")
 
-## <a name="enabling-the-application-integration-for-policystat"></a>啟用 PolicyStat 的應用程式整合
+## <a name="enable-the-application-integration-for-policystat"></a>啟用 PolicyStat 的應用程式整合
 本節的目的是要說明如何啟用 PolicyStat 的應用程式整合。
 
 **若要啟用 PolicyStat 的應用程式整合，請執行下列步驟：**
@@ -64,7 +64,7 @@ ms.lasthandoff: 02/03/2017
    
    ![PolicyStat](./media/active-directory-saas-policystat-tutorial/IC810430.png "PolicyStat")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 PolicyStat 中進行驗證。  
 
@@ -127,19 +127,18 @@ PolicyStat 應用程式需要特定格式的 SAML 判斷提示，需要您加入
    4. 從 [郵件] 清單選取 [User.mail]。
    5. 按一下頁面底部的 [新增] 。
 
-##<a name="configuring-user-provisioning"></a>設定使用者佈建
+##<a name="configure-user-provisioning"></a>設定使用者佈建
 
 為了讓 Azure AD 使用者能夠登入 PolicyStat，必須將他們佈建到 PolicyStat。  
 
-PolicyStat 支援即時使用者佈建。 這表示您不需要手動將使用者新增至 PolicyStat。  
-使用者第一次透過單一登入登入時就會被自動新增。
+PolicyStat 支援即時使用者佈建。 這表示您不需要手動將使用者新增至 PolicyStat。 使用者第一次透過 SSO 登入時就會被自動新增。
 
-> [!NOTE]
-> 您可以使用任何其他的 PolicyStat 使用者帳戶建立工具或 PolicyStat 提供的 API，佈建 AAD 使用者帳戶。
+>[!NOTE]
+>您可以使用任何其他的 PolicyStat 使用者帳戶建立工具或 PolicyStat 提供的 API，佈建 AAD 使用者帳戶。
 > 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 **若要指派使用者給 PolicyStat，請執行下列步驟：**
@@ -152,6 +151,6 @@ PolicyStat 支援即時使用者佈建。 這表示您不需要手動將使用�
    
    ![是](./media/active-directory-saas-policystat-tutorial/IC767830.png "是")
 
-如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的 SSO 設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 

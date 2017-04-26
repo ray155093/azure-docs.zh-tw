@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: fced31b28b4b8e5835033243719e6eb87aa3f0d4
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 3b9d6eb9bcc4afe0e68920bbd5da7c259ceb0c67
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -33,12 +33,12 @@ ms.lasthandoff: 03/24/2017
 讓我們看看 VM 如何使用磁碟。
 
 ### <a name="operating-system-disk"></a>作業系統磁碟
-每個虛擬機器都有一個連接的作業系統磁碟。 它是註冊為 SATA 磁碟機，並預設標示為 C: 磁碟機。 此磁碟的最大容量為 1023 GB。 
+每個虛擬機器都有一個連接的作業系統磁碟。 它會註冊為 SATA 磁碟機，並預設標示為 C: 磁碟機。 此磁碟的最大容量為 1023 GB。 
 
 ### <a name="temporary-disk"></a>暫存磁碟
-每個 VM 都包含一個暫存磁碟。 暫存磁碟為應用程式和處理程序提供短期的儲存空間，且僅供用來儲存分頁檔之類的資料。 暫存磁碟上的資料可能會在[維護事件](../virtual-machines/virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#understand-planned-vs-unplanned-maintenance)期間或當您[重新佈署 VM](../virtual-machines/virtual-machines-windows-redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 時遺失。 在 VM 的標準重新開機期間，暫存磁碟上的資料會保留。
+每個 VM 都包含一個暫存磁碟。 暫存磁碟為應用程式和處理程序提供短期的儲存空間，且僅供用來儲存分頁檔之類的資料。 暫存磁碟上的資料可能會在[維護事件](../virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#understand-planned-vs-unplanned-maintenance)期間或當您[重新佈署 VM](../virtual-machines/windows/redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 時遺失。 在 VM 的標準重新開機期間，暫存磁碟上的資料會保留。
 
-暫存磁碟預設會標示為 D: 磁碟機，並用於儲存 pagefile.sys。 若要將此磁碟重新對應至不同的磁碟機代號，請參閱 [變更 Windows 暫存磁碟的磁碟機代號](../virtual-machines/virtual-machines-windows-change-drive-letter.md)。 暫存磁碟的大小會依據虛擬機器的大小而改變。 如需詳細資訊，請參閱 [Windows 虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md)。
+暫存磁碟預設會標示為 D: 磁碟機，並用於儲存 pagefile.sys。 若要將此磁碟重新對應至不同的磁碟機代號，請參閱 [變更 Windows 暫存磁碟的磁碟機代號](../virtual-machines/windows/change-drive-letter.md)。 暫存磁碟的大小會依據虛擬機器的大小而改變。 如需詳細資訊，請參閱 [Windows 虛擬機器的大小](../virtual-machines/windows/sizes.md)。
 
 如需有關 Azure 如何使用暫存磁碟的詳細資訊，請參閱 [Understanding the temporary drive on Microsoft Azure Virtual Machines (了解 Microsoft Azure 虛擬機器上的暫存磁碟機)](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
 
@@ -47,12 +47,12 @@ ms.lasthandoff: 03/24/2017
 資料磁碟是連接至虛擬機器的 VHD，用來儲存應用程式資料或其他您需要保留的資料。 資料磁碟註冊為 SCSI 磁碟機，並以您選擇的字母標示。 每個資料磁碟的最大容量為 1023 GB。 虛擬機器的大小會決定您可以連接之磁碟的數量，以及您可以用來裝載磁碟的儲存體類型。
 
 > [!NOTE]
-> 如需有關虛擬機器容量的詳細資訊，請參閱 [Windows 虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md)。
+> 如需有關虛擬機器容量的詳細資訊，請參閱 [Windows 虛擬機器的大小](../virtual-machines/windows/sizes.md)。
 > 
 
 當您從映像建立虛擬機器時，Azure 會建立作業系統磁碟。 如果您使用包含資料磁碟映像時，Azure 建立虛擬機器時也會建立資料磁碟。 若沒有，則您可以建立虛擬機器後再新增資料磁碟。
 
-您可以隨時將資料磁碟「連接」  到虛擬機器來將該磁碟新增到虛擬機器中。 您可以使用您已上傳或複製到儲存體帳戶的 VHD，或 Azure 提供的 VHD。 連接資料磁碟時，會透過在 VHD 上加上「租約」將 VHD 檔案與 VM 關聯，如此一來，當它仍處於連接狀態時，就無法將它從儲存體中刪除。
+您可以隨時將資料磁碟「連接」  到虛擬機器來將該磁碟新增到虛擬機器中。 您可以使用您已上傳或複製到儲存體帳戶的 VHD，或是 Azure 為您建立的 VHD。 附加資料磁碟時，會透過在 VHD 上加上「租約」，來將 VHD 檔案與 VM 關聯，如此一來，當它仍處於附加狀態時，就無法將它從儲存體中刪除。
 
 
 [!INCLUDE [storage-about-vhds-and-disks-windows-and-linux](../../includes/storage-about-vhds-and-disks-windows-and-linux.md)]
@@ -75,8 +75,8 @@ fsutil behavior set DisableDeleteNotify 0
 
 <!-- Might want to match next-steps from overview of managed disks -->
 ## <a name="next-steps"></a>後續步驟
-* [連接磁碟](../virtual-machines/virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來為您的 VM 新增額外的儲存空間。
-* [將 Windows VM 映像上傳至 Azure](../virtual-machines/virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) ，以在建立新的 VM 時使用。
-* [變更 Windows 暫存磁碟的磁碟機代號](../virtual-machines/virtual-machines-windows-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) ，讓您的應用程式可以使用 D: 磁碟機來儲存資料。
+* [連接磁碟](../virtual-machines/windows/attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來為您的 VM 新增額外的儲存空間。
+* [將 Windows VM 映像上傳至 Azure](../virtual-machines/windows/upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) ，以在建立新的 VM 時使用。
+* [變更 Windows 暫存磁碟的磁碟機代號](../virtual-machines/windows/change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) ，讓您的應用程式可以使用 D: 磁碟機來儲存資料。
 
 

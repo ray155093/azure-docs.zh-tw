@@ -12,12 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/26/2016
+ms.date: 03/29/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a90e56bb2b7db0bb964684f9cac04096a6577adc
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 5ef6e368a170816b7000c23cdf686644690fca45
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -27,7 +27,8 @@ Azure 媒體服務現在可讓您設定和要求 Widevine 授權。 使用者播
 
 Widevine 授權要求會格式化為 JSON 訊息。  
 
-請注意，您可以選擇建立不帶值而只有 "{}" 的空訊息，如此會建立具有所有預設值的授權範本。  
+>[!NOTE]
+> 您可以選擇建立不帶值而只有 "{}" 的空訊息，如此會建立具有所有預設值的授權範本。 大部分案例的預設工作。 例如，一律必須使用預設值的 MS 型授權遞送案例。 若需要設定 "provider" 與 "content_id" 值，提供者必須符合 Google 的 Widevine 認證。
 
     {  
        “payload”:“<license challenge>”,
@@ -63,7 +64,7 @@ Widevine 授權要求會格式化為 JSON 訊息。
 | --- | --- | --- |
 | payload |Base64 編碼的字串 |用戶端傳送的授權要求。 |
 | content_id |Base64 編碼的字串 |用來針對每個 content_key_specs.track_type 衍生 KeyId(s) 與內容金鑰的識別碼。 |
-| provider |string |用來查閱內容金鑰和原則。 必要。 |
+| provider |string |用來查閱內容金鑰和原則。 若將 MS 金鑰遞送用於 Widevine 授權遞送，系統會忽略此參數。 |
 | policy_name |string |先前已登錄原則的名稱。 選用 |
 | allowed_track_types |列舉 |SD_ONLY 或 SD_HD。 控制授權中應該包含的內容金鑰 |
 | content_key_specs |JSON 結構的陣列，請參閱下方的 **內容金鑰規格** |更細部控制要傳回的內容金鑰。 如需詳細資料，請參閱以下的內容金鑰規格。  只可以指定 allowed_track_types 和 content_key_specs 中的一個。 |
@@ -80,7 +81,7 @@ Widevine 授權要求會格式化為 JSON 訊息。
 | 名稱 | 值 | 說明 |
 | --- | --- | --- |
 | content_key_specs track_type |字串 |追蹤類型名稱。 如果授權要求中指定 content_key_specs，則請務必明確指定所有追蹤類型。 未這樣做會導致無法播放過去 10 秒。 |
-| content_key_specs  <br/> security_level |uint32 |定義用戶端對於播放的穩健性需求。 <br/>  1 - 以軟體為基礎白箱加密是必要的。 <br/>  2 - 軟體加密和模糊化的解碼器是必要的。 <br/>  3 - 金鑰資料和加密作業必須在支援硬體的受信任執行環境中執行。 <br/>  4 - 內容的加密和解密必須在支援硬體的受信任執行環境中執行。  <br/>  5 - 加密、解密和媒體 (壓縮和未壓縮) 的所有處理必須在支援硬體的受信任執行環境中處理。 |
+| content_key_specs  <br/> security_level |uint32 |定義用戶端對於播放的穩健性需求。 <br/> 1 - 以軟體為基礎白箱加密是必要的。 <br/> 2 - 軟體加密和模糊化的解碼器是必要的。 <br/> 3 - 金鑰資料和加密作業必須在支援硬體的受信任執行環境中執行。 <br/> 4 - 內容的加密和解密必須在支援硬體的受信任執行環境中執行。  <br/> 5 - 加密、解密和媒體 (壓縮和未壓縮) 的所有處理必須在支援硬體的受信任執行環境中處理。 |
 | content_key_specs <br/> required_output_protection.hdc |字串 - 以下項目的其中一個：HDCP_NONE、HDCP_V1、HDCP_V2 |指出是否需要 HDCP |
 | content_key_specs <br/>索引鍵 |Base64  <br/>編碼的字串 |要用於此追蹤的內容金鑰。 如果指定，則需要 track_type 或 key_id。  此選項可讓內容提供者插入此追蹤的內容金鑰，而不是讓 Widevine 授權伺服器產生或查閱金鑰。 |
 | content_key_specs.key_id |Base64 編碼的二進位字串，16 位元組 |金鑰的唯一識別碼。 |

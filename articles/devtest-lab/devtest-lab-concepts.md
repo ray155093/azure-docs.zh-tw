@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 11/25/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 236d38fcda90643992f66c9b2f4d92180e4463f5
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 79a880ed30b1fd50e7d4f232f03629c228a72a2e
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -91,10 +91,10 @@ Azure 可宣告 VM 是可供任何具有權限的實驗室使用者使用的虛�
 
 由於範圍是階層形式，當使用者擁有特定範圍的權限時，就會自動獲得該範圍所包含的每個較低層級範圍的權限。 例如，如果有使用者指派給訂用帳戶擁有者角色，他們就可以存取訂用帳戶中的所有資源，其中包括所有虛擬機器、所有虛擬網路和所有實驗室。 因此，訂用帳戶擁有者會自動繼承實驗室擁有者角色。 不過，若情形顛倒過來就不成立。 實驗室擁有者可存取實驗室，而實驗室是比訂用帳戶層級還低的範圍。 因此，實驗室擁有者將無法看到實驗室以外的虛擬機器、虛擬網路或任何資源。
 
-## <a name="arm-templates"></a>ARM 範本
-本文所討論的所有概念可以使用 Azure Resource Manager (ARM) 範本來設定。 ARM 範本可讓您定義 Azure 方案的基礎結構/組態，並且以一致的狀態重複部署它。
+## <a name="azure-resource-manager-templates"></a>Azure 資源管理員範本
+此文章中討論的所有概念都可以使用 Azure Resource Manager 範本來設定，範本可以讓您定義 Azure 解決方案的基礎結構/設定，並重複以一致的狀態來部署。
 
-[ARM 範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates#template-format)描述 Azure Resource Manager 範本的結構，以及範本的各區段中可用的屬性。
+[了解 Azure Resource Manager 範本的結構和語法](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates#template-format)描述 Azure Resource Manager 範本的結構，以及範本的各區段中可用的屬性。
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 

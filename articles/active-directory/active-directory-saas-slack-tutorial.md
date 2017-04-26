@@ -11,16 +11,16 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/25/2017
+ms.date: 03/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 9c027decf5d982519bc9f41aa9588fa431ef3975
-ms.openlocfilehash: 17ad8938cbee539e74f87210077a12c72e777edc
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: a1d7c2f01d3bf345f63077c4d42d79476235e941
+ms.lasthandoff: 04/07/2017
 
 
 ---
-# <a name="tutorial-azure-ad-integration-with-slack"></a>教學課程：Azure AD 與 Slack 整合
+# <a name="tutorial-azure-active-directory-integration-with-slack"></a>教學課程：Azure Active Directory 與 Slack 整合
 
 在本教學課程中，您會了解如何整合 Slack 與 Azure Active Directory (Azure AD)。
 
@@ -39,8 +39,10 @@ ms.lasthandoff: 02/24/2017
 * Azure AD 訂用帳戶
 * 已啟用 Slack SSO 的訂用帳戶
 
-> [!NOTE]
-> 我們不建議使用生產環境測試本教學課程中的步驟。
+>[!NOTE]
+>我們不建議使用生產環境測試本教學課程中的步驟。
+>
+>
 
 若要測試本教學課程中的步驟，請遵循下列建議：
 
@@ -76,7 +78,7 @@ ms.lasthandoff: 02/24/2017
 
 6. 在結果窗格中，選取 [Slack]，然後按一下 [新增] 按鈕以新增應用程式。
 
-    ![在結果窗格中選取 [Slack]](./media/active-directory-saas-slack-tutorial/tutorial_slack_0001.png)
+     ![在結果窗格中選取 [Slack]](./media/active-directory-saas-slack-tutorial/tutorial_slack_0001.png)
 
 ## <a name="configure-and-test-azure-ad-sso"></a>設定並測試 Azure AD SSO
 在本節中，您會以測試使用者 "Britta Simon" 使用 Slack 設定及測試 Azure AD SSO。
@@ -85,13 +87,13 @@ ms.lasthandoff: 02/24/2017
 
 若要設定及測試與 Slack 搭配運作的 Azure AD SSO，請完成下列建置組塊：
 
-1. [設定 Azure AD SSO](#configuring-azure-ad-single-sign-on)，讓使用者能夠使用這項功能。
+1. [設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)，讓您的使用者能夠使用此功能。
 2. [建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)，以使用者 Britta Simon 測試 Azure AD SSO。
 3. [建立 Slack 測試使用者](#creating-a-slack-test-user)，讓 Azure AD 使用者 Britta Simon 獲得可供連結的 Slack 對應身分。
 4. [指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)，讓使用者 Britta Simon 能夠使用 Azure AD SSO。
-5. [測試 SSO](#testing-single-sign-on)，以驗證組態是否能運作。
+5. [測試單一登入](#testing-single-sign-on)，以驗證組態是否能運作。
 
-### <a name="configure-azure-ad-sso"></a>設定 Azure AD SSO
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
 在本節中，您會執行下列步驟，在 Azure 入口網站中啟用 Azure AD SSO，並在 Slack 應用程式中設定 SSO：
 
@@ -106,13 +108,13 @@ ms.lasthandoff: 02/24/2017
 3. 在 [Slack 網域與 URL] 下，執行下列步驟：
 
     ![[單一登入] 對話方塊](./media/active-directory-saas-slack-tutorial/tutorial_slack_02.png)
+  1. 在 [登入 URL] 方塊中，輸入使用命名慣例「https://<company name>.slack.com」的 URL。
+  2. 在 [識別碼] 方塊中，輸入 **https://slack.com**。
 
-    a. 在 [登入 URL] 方塊中，輸入使用命名慣例「https://<company name>.slack.com」的 URL。
-
-    b. 在 [識別碼] 方塊中，輸入 **https://slack.com**。
-
-    > [!NOTE]
-    > 上述值並非真正的值。 在此，我們建議您使用唯一的 URL 和識別碼值。 稍候，您會使用實際的 URL 和識別碼更新這兩個值。 若要取得這兩個值，請連絡 [Slack 支援小組](https://slack.com/help/contact)。
+     >[!NOTE]
+     >上述值並非真正的值。 在此，我們建議您使用唯一的 URL 和識別碼值。 稍候，您會使用實際的 URL 和識別碼更新這兩個值。 若要取得這兩個值，請連絡 [Slack 支援小組](https://slack.com/help/contact)。
+     >
+     >
 
 4. Slack 應用程式需要以特定格式顯示的安全性聲明標記語言 (SAML) 判斷提示。 請在 Slack 應用程式整合頁面的 [使用者屬性] 區段中設定宣告並管理屬性值，如下列螢幕擷取畫面所示︰
 
@@ -127,19 +129,15 @@ ms.lasthandoff: 02/24/2017
     | last_name | user.surname |
     | User.Username | extractmailprefix([userprincipalname]) |
 
-    a. 按一下 [新增屬性] 按鈕。
+    1. 按一下 [新增屬性] 按鈕。
 
     ![設定單一登入](./media/active-directory-saas-slack-tutorial/tutorial_slack_04.png)
-
-    b. 在 [新增屬性] 對話方塊的 [名稱] 方塊中，輸入上表中 [屬性名稱] 欄的名字。
+    2. 在 [新增屬性] 對話方塊的 [名稱] 方塊中，輸入上表中 [屬性名稱] 欄的名字。
 
     ![設定單一登入](./media/active-directory-saas-slack-tutorial/tutorial_slack_05.png)
-
-    c. 在 [值] 方塊中，輸入上表中 [屬性值] 欄的第一個值。
-
-    d. 按一下 [確定] 。
-
-    e. 針對隨後的三個表格列，重複步驟 "a" 到 "d"。
+    3. 在 [值] 方塊中，輸入上表中 [屬性值] 欄的第一個值。
+    4. 按一下 [確定] 。
+    5. 針對隨後的三個表格列，重複步驟 "a" 到 "d"。
 
 6. 在 [SAML 簽署憑證] 之下，按一下 [建立新憑證]。
 
@@ -180,24 +178,15 @@ ms.lasthandoff: 02/24/2017
 15. 在 [SAML 驗證設定] 對話方塊中，執行下列步驟：
 
     ![[SAML 驗證設定] 對話方塊](./media/active-directory-saas-slack-tutorial/tutorial_slack_003.png)
-
-    a. 在 [SAML 2.0 端點 (HTTP)] 方塊中，輸入來自 Azure AD 應用程式組態視窗的 [SAML 單一登入服務 URL] 值。
-
-    b. 在 [識別提供者簽發者] 方塊中，輸入得自 Azure AD 應用程式組態視窗的 [SAML 實體識別碼] 值。
-
-    c. 在記事本中開啟下載的憑證，複製其內容，然後貼到 [公開憑證] 方塊中。
-
-    d. 針對您的 Slack 小組適當地設定上述三個設定。 如需設定的詳細資訊，請參閱 [Slack 單一登入指南](https://get.slack.help/hc/en-us/articles/220403548-Guide-to-single-sign-on-with-Slack)。
-
-    e. 按一下 [儲存組態] 。
-
-    <!-- 取消選取 [允許使用者變更其電子郵件地址] 。
-
-    e. 選取 [允許使用者選擇自己的使用者名稱] 。
-
-    f. 針對 [必須使用您的小組的驗證]，選取 [此為選擇性]。 -->
-
-
+  1. 在 [SAML 2.0 端點 (HTTP)] 方塊中，輸入來自 Azure AD 應用程式組態視窗的 [SAML 單一登入服務 URL] 值。
+  2. 在 [識別提供者簽發者] 方塊中，輸入得自 Azure AD 應用程式組態視窗的 [SAML 實體識別碼] 值。
+  3. 在記事本中開啟下載的憑證，複製其內容，然後貼到 [公開憑證] 方塊中。
+  4. 針對您的 Slack 小組適當地設定上述三個設定。 如需設定的詳細資訊，請參閱 [Slack 單一登入指南](https://get.slack.help/hc/en-us/articles/220403548-Guide-to-single-sign-on-with-Slack)。
+  5. 按一下 [儲存組態] 。
+  6. 取消選取 [允許使用者變更其電子郵件地址] 。
+  7. 選取 [允許使用者選擇自己的使用者名稱] 。
+  8. 針對 [必須使用您的小組的驗證]，選取 [此為選擇性]。
+  
 ### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會執行下列步驟，在 Azure 入口網站中建立名稱為 Britta Simon 的測試使用者：
 
@@ -216,14 +205,10 @@ ms.lasthandoff: 02/24/2017
 4. 在 [使用者] 對話方塊中，輸入下列資訊：
 
     ![[使用者] 對話方塊](./media/active-directory-saas-slack-tutorial/create_aaduser_04.png)
-
-    a. 在 [名稱] 方塊中，輸入 **BrittaSimon**。
-
-    b. 在 [使用者名稱] 方塊中，輸入使用者 Britta Simon 的電子郵件地址。
-
-    c. 選取 [顯示密碼] 核取方塊，然後記下 [密碼] 方塊中顯示的值。
-
-    d. 按一下 [建立] 。
+  1. 在 [名稱] 方塊中，輸入 **BrittaSimon**。
+  2. 在 [使用者名稱] 方塊中，輸入使用者 Britta Simon 的電子郵件地址。
+  3. 選取 [顯示密碼] 核取方塊，然後記下 [密碼] 方塊中顯示的值。
+  4. 按一下 [建立] 。
 
 ### <a name="create-a-slack-test-user"></a>建立 Slack 測試使用者
 
@@ -231,8 +216,10 @@ ms.lasthandoff: 02/24/2017
 
 在這一節沒有您需要進行的動作項目。 如果 Slack 中還沒有該使用者，當您嘗試存取 Slack 時，就會建立新的使用者。
 
-> [!NOTE]
-> 如果您需要手動建立使用者，請連絡 [Slack 支援小組](https://slack.com/help/contact)。
+>[!NOTE]
+>如果您需要手動建立使用者，請連絡 [Slack 支援小組](https://slack.com/help/contact)。
+>
+>
 
 ### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
@@ -264,7 +251,7 @@ ms.lasthandoff: 02/24/2017
 
 7. 在 [新增指派] 刀鋒視窗上，按一下 [指派] 按鈕。
 
-### <a name="test-sso"></a>測試 SSO
+### <a name="test-single-sign-on"></a>測試單一登入
 
 在本節中，您會使用存取面板來測試您的 Azure AD SSO 組態。
 

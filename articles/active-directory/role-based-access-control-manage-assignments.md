@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 3/01/2017
+ms.date: 3/21/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 55baaf0984e01f3cbca7b2296f0b24661e70e7b5
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 82f084b220ba321945975c8d1a6d22e419acf5e4
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 03/04/2017
 * **範圍︰** RBAC 角色指派範圍設定為特定的訂用帳戶、資源群組或資源。 取得單一資源存取權的使用者無法在相同的訂用帳戶中存取任何其他資源。
 * **角色︰** 在指派的範圍內，會指派角色以進一步縮小存取範圍。 角色可為高層級，例如擁有者或特定，例如虛擬機器讀取器。
 
-只能從指派範圍內的訂用帳戶、資源群組或資源指派角色。 但是，您可以在單一位置檢視指定使用者或群組的存取權指派。
+只能從指派範圍內的訂用帳戶、資源群組或資源指派角色。 但是，您可以在單一位置檢視指定使用者或群組的存取權指派。 您在每個訂用帳戶中可以有最多 2000 個角色指派。 
 
 取得 [使用角色指派來管理 Azure 訂用帳戶資源的存取權](role-based-access-control-configure.md)的詳細資訊。
 

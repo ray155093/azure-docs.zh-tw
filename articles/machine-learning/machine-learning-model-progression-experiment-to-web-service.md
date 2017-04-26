@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 66fb3dc316ce25aea4dff4add5c25b7f0f56ad7a
-ms.openlocfilehash: 8c5a3ca30ae0539cded6cf9cd93ba1a42e19ba58
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 209d1cbe4f1ad08a98caf0a8d16f5b0ee45468ca
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -66,7 +66,7 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 在此轉換程序中不會捨棄訓練實驗。 程序完成時您在 Studio 中將有兩個索引標籤：一個用於訓練實驗，而一個用於預測實驗。 以此方式，在部署您的 Web 服務之前，您可以對訓練實驗進行變更，並重建預測實驗。 或者您可以儲存一份訓練實驗，以開始另一行的實驗。
 
 > [!NOTE]
-> 按一下 [預測性 Web 服務] 時，就會開始自動化的程序，將訓練實驗轉換為預測實驗，而且這在大部分的情況下可正常運作。 如果訓練實驗很複雜 (例如，聯結在一起的訓練有多個路徑)，您可能會想要手動進行這項轉換。 如需詳細資訊，請參閱[將 Machine Learning 訓練實驗轉換成預測實驗](machine-learning-convert-training-experiment-to-scoring-experiment.md)。
+> 按一下 [預測性 Web 服務] 時，就會開始自動化的程序，將訓練實驗轉換為預測實驗，而且這在大部分的情況下可正常運作。 如果訓練實驗很複雜 (例如，聯結在一起的訓練有多個路徑)，您可能會想要手動進行這項轉換。 如需詳細資訊，請參閱[如何準備您的模型以在 Azure Machine Learning Studio 中部署](machine-learning-convert-training-experiment-to-scoring-experiment.md)。
 > 
 > 
 
@@ -111,7 +111,7 @@ Azure Machine Learning Studio 提供互動式畫布，可讓您開發、執行�
 ## <a name="next-steps"></a>後續步驟
 如需開發和實驗程序的詳細資訊，請參閱下列文章︰
 
-* 轉換實驗 - [將機器學習服務訓練實驗轉換成預測性實驗](machine-learning-convert-training-experiment-to-scoring-experiment.md)
+* 轉換實驗 - [如何準備您的模型以在 Azure Machine Learning Studio 中部署](machine-learning-convert-training-experiment-to-scoring-experiment.md)
 * 部署 Web 服務 - [部署 Azure Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)
 * 重新定型模型 - [以程式設計方式重新定型機器學習服務模型](machine-learning-retrain-models-programmatically.md)
 

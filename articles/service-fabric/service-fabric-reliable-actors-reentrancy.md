@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 02/10/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
-ms.openlocfilehash: 7f6ac80472d3e4fab390b9aa69105e19dca7b947
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: eb1738296844aec0066496a368b9e896ba63cfa8
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -35,7 +36,13 @@ public enum ActorReentrancyMode
     Disallowed = 2
 }
 ```
-
+```Java
+public enum ActorReentrancyMode
+{
+    LogicalCallContext(1),
+    Disallowed(2)
+}
+```
 可在註冊期間在 `ActorService`的設定中設定重新進入。 此設定適用於動作項目服務中建立的所有動作項目執行個體。
 
 下列範例會示範動作項目服務如何將重新進入模式設定為 `ActorReentrancyMode.Disallowed`。 在此情況下，如果動作項目傳送可重新進入的訊息給另一個動作項目類型，就會擲回 `FabricException` 類型的例外狀況。
@@ -49,8 +56,8 @@ static class Program
         {
             ActorRuntime.RegisterActorAsync<Actor1>(
                 (context, actorType) => new ActorService(
-                    context, 
-                    actorType, () => new Actor1(), 
+                    context,
+                    actorType, () => new Actor1(),
                     settings: new ActorServiceSettings()
                     {
                         ActorConcurrencySettings = new ActorConcurrencySettings()
@@ -70,15 +77,42 @@ static class Program
     }
 }
 ```
+```Java
+static class Program
+{
+    static void Main()
+    {
+        try
+        {
+            ActorConcurrencySettings actorConcurrencySettings = new ActorConcurrencySettings();
+            actorConcurrencySettings.setReentrancyMode(ActorReentrancyMode.Disallowed);
+
+            ActorServiceSettings actorServiceSettings = new ActorServiceSettings();
+            actorServiceSettings.setActorConcurrencySettings(actorConcurrencySettings);
+
+            ActorRuntime.registerActorAsync(
+                Actor1.getClass(),
+                (context, actorType) -> new FabricActorService(
+                    context,
+                    actorType, () -> new Actor1(),
+                    null,
+                    stateProvider,
+                    actorServiceSettings, timeout);
+
+            Thread.sleep(Long.MAX_VALUE);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
+}
+```
+
 
 ## <a name="next-steps"></a>後續步驟
 * [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
 * [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
-* [範例程式碼](https://github.com/Azure/servicefabric-samples)
-
-
-
-
-<!--HONumber=Jan17_HO4-->
-
+* [C# 範例程式碼 (英文)](https://github.com/Azure/servicefabric-samples)
+* [Java 範例程式碼 (英文)](http://github.com/Azure-Samples/service-fabric-java-getting-started)
 

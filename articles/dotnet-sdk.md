@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 06/30/2016
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 94c4929c84a671eca210a0e6b53eda5019cc0951
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: f8d441a4945ff7b33da73d683749a9a581bc80ca
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -91,7 +91,7 @@ Azure PowerShell 可讓您 [將 Azure 環境的建立及部署自動化](http://
 ### <a id="wte"></a>Microsoft App Service Tools for Visual Studio
 這可讓您使用 Azure 網站：
 
-* [發行 Web 專案至 Azure 網站](app-service-web/web-sites-dotnet-get-started.md)(英文)。
+* [發行 Web 專案至 Azure App Service](app-service-web/app-service-web-get-started-dotnet.md)。
 * [發行主控台應用程式專案至 Azure WebJobs](app-service-web/websites-dotnet-deploy-webjobs.md)(英文)。
 * [在建立新的 Web 專案或發行 Web 專案時，建立 Azure 網站和 SQL Database 資源](app-service-web/web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md)(英文)。
 * [使用 Windows PowerShell 指令碼來發行至開發和測試環境](http://msdn.microsoft.com/library/dn642480.aspx)。

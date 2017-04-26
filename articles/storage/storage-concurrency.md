@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: jahogg
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 7519ff07efd5bb450362fca8d54e4d9e3be8f0df
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: b5b8346c6a645ae18fd0c23a8956274f764710e0
+ms.lasthandoff: 04/06/2017
 
 
 ---
 # <a name="managing-concurrency-in-microsoft-azure-storage"></a>管理 Microsoft Azure 儲存體中的並行存取
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 現代以網際網路為基礎的應用程式通常會有多個使用者同時檢視及更新資料。 這使得應用程式開發人員不得不認真思考如何為其使用者提供可預測的使用經驗，尤其是有多個使用者可更新相同資料的案例。 開發人員通常會考量三個主要的資料並行存取策略：  
 
 1. 開放式並行存取 – 執行更新的應用程式將在其更新的過程中，驗證在應用程式上次讀取資料後，該資料是否有所變更。 例如，如果兩個檢視 wiki 頁面的使用者對相同的頁面進行更新，則 wiki 平台必須確定第二個更新並未覆寫第一個更新，並確定兩個使用者都了解其更新是否成功。 此策略最常用在 Web 應用程式中。
@@ -40,7 +40,7 @@ Azure 儲存體服務對這三種策略都可支援，但此服務依其設計�
 您可以選擇使用開放式或封閉式並行存取模型，來管理對 Blob 服務中的 Blob 和容器的存取。 如果您未明確指定策略，依預設會採用「最後寫入為準」。  
 
 ### <a name="optimistic-concurrency-for-blobs-and-containers"></a>Blob 和容器的開放式並行存取
-儲存體服務會為每個儲存的物件指派識別碼。 此識別碼會在每次對物件執行更新作業時更新。 此識別碼會使用在 HTTP 通訊協定內定義的 ETag (實體標記) 標頭，隨附在 HTTP GET 回應中傳回至用戶端。 對此類物件執行更新的使用者可將原始 ETag 連同條件式標頭一併傳入，以確保只有在符合特定條件時才會執行更新 – 在此案例中，條件是會要求儲存體服務必須確定在更新要求中指定的 ETag 值與儲存體服務中儲存的值相同的 “If-Match” 標頭。  
+儲存體服務會為每個儲存的物件指派識別碼。 此識別碼會在每次對物件執行更新作業時更新。 此識別碼會使用在 HTTP 通訊協定內定義的 ETag (實體標記) 標頭，隨附在 HTTP GET 回應中傳回至用戶端。 對此類物件執行更新的使用者可將原始 ETag 連同條件式標頭一併傳入，以確保只有在符合特定條件時才會執行更新。在此案例中，條件是 "If-Match" 標頭，它會要求儲存體服務必須確定在更新要求中指定的 ETag 值，與儲存體服務中儲存的值是相同的。  
 
 此程序大致如下：  
 
@@ -131,7 +131,7 @@ catch (StorageException ex)
 
 租用可讓不同的同步處理策略獲得支援，包括獨佔寫入/共用讀取、獨佔寫入/獨佔讀取和共用寫入/獨佔讀取。 只要有租用存在，儲存體服務就會強制執行獨佔寫入 (放置、設定和刪除作業)，但要確保讀取作業的獨佔性，開發人員必須確定所有的用戶端應用程式都使用同一個租用識別碼，並確定同一時間只有一個用戶端具有有效的租用識別碼。 未包含租用識別碼的讀取作業將會導致共用讀取。  
 
-下列 C# 程式碼片段說明對某個 Blob 取得獨佔租用 30 秒、更新該 Blob 的內容，然後釋放租用的範例。 如果當您嘗試取得新租用時已有對 Blob 的有效租用存在，Blob 服務將會傳回「HTTP (409) 衝突」狀態結果。 下列程式碼片段在要求更新儲存體服務中的 Blob 時，使用 **AccessCondition** 物件封裝租用資訊。  此處可下載完整的範例： [使用 Azure 儲存體管理並行存取](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)。
+下列 C# 程式碼片段說明對某個 Blob 取得獨佔租用 30 秒、更新該 Blob 的內容，然後釋放租用的範例。 當您嘗試取得新租用時，若 Blob 上已存在有效租用，則 Blob 服務會傳回「HTTP (409) 衝突」狀態結果。 下列程式碼片段在要求更新儲存體服務中的 Blob 時，使用 **AccessCondition** 物件封裝租用資訊。  此處可下載完整的範例： [使用 Azure 儲存體管理並行存取](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)。
 
 ```csharp
 // Acquire lease for 15 seconds
@@ -232,7 +232,7 @@ catch (StorageException ex)
 }  
 ```
 
-若要明確停用並行存取檢查，您應在執行取代作業之前，將 **employee** 物件的 **ETag** 屬性設為 “*”。  
+若要明確停用並行存取檢查，您應在執行取代作業之前，將 **employee** 物件的 **ETag** 屬性設為 "*"。  
 
 ```csharp
 customer.ETag = "*";  

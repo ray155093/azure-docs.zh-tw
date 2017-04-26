@@ -16,9 +16,9 @@ ms.date: 02/21/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 53fa0876ce1e3e2b2ac47316f37c5a0de2591d41
-ms.openlocfilehash: 404c4c4012eb5b6f8e7acdd7f985009b9f13b9f3
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: bb8d390a6ab045dc418bf80ec4fc218e0a35282b
+ms.lasthandoff: 04/11/2017
 
 ---
 # <a name="built-in-roles-for-azure-role-based-access-control"></a>Azure 角色型存取控制的內建角色
@@ -48,6 +48,8 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | [DNS 區域參與者](#dns-zone-contributor) |可以管理 DNS 區域和記錄 |
 | [DocumentDB 帳戶參與者](#documentdb-account-contributor) |可以管理 DocumentDB 帳戶 |
 | [Intelligent Systems 帳戶參與者](#intelligent-systems-account-contributor) |可以管理 Intelligent Systems 帳戶 |
+| [監視讀取器](#monitoring-reader) |可以讀取所有監視資料 |
+| [監視參與者](#monitoring-contributor) |可以讀取監視資料並編輯監視設定 |
 | [網路參與者](#network-contributor) |可以管理網路資源 |
 | [New Relic APM 帳戶參與者](#new-relic-apm-account-contributor) |可以管理 New Relic 應用程式效能管理帳戶和應用程式 |
 | [擁有者](#owner) |可以管理所有項目，包括存取 |
@@ -336,6 +338,36 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
+
+### <a name="monitoring-reader"></a>監視讀取器
+可以讀取所有監視資料 (計量、記錄檔等等)。 請參閱[開始使用 Azure 監視器的角色、權限和安全性](/monitoring-and-diagnostics/monitoring-roles-permissions-security.md#built-in-monitoring-roles)。
+
+| **動作** |  |
+| --- | --- |
+| */read |讀取密碼以外的所有類型的資源。 |
+| Microsoft.OperationalInsights/workspaces/search/action |搜尋 Log Analytics 資料 |
+| Microsoft.Support/* |建立和管理支援票證 |
+
+### <a name="monitoring-contributor"></a>監視參與者
+可以讀取所有監視資料並編輯監視設定。 請參閱[開始使用 Azure 監視器的角色、權限和安全性](/monitoring-and-diagnostics/monitoring-roles-permissions-security.md#built-in-monitoring-roles)。
+
+| **動作** |  |
+| --- | --- |
+| */read |讀取密碼以外的所有類型的資源。 |
+| Microsoft.Insights/AlertRules/* |讀取/寫入/刪除警示規則。 |
+| Microsoft.Insights/components/* |讀取/寫入/刪除 Application Insights 元件。 |
+| Microsoft.Insights/DiagnosticSettings/* |讀取/寫入/刪除診斷設定。 |
+| Microsoft.Insights/eventtypes/* |列出訂用帳戶中的活動記錄檔事件 (管理事件)。 此權限適用於以程式設計方式存取和入口網站存取活動記錄檔。 |
+| Microsoft.Insights/LogDefinitions/* |此為使用者需要透過入口網站存取活動記錄檔時所需的權限。 列出活動記錄檔中的記錄檔分類。 |
+| Microsoft.Insights/MetricDefinitions/* |讀取度量定義 (可用資源的度量類型清單)。 |
+| Microsoft.Insights/Metrics/* |讀取資源的度量。 |
+| Microsoft.Insights/Register/Action |註冊 Microsoft Insights 提供者。 |
+| Microsoft.Insights/webtests/* |讀取/寫入/刪除 Application Insights Web 測試。 |
+| Microsoft.OperationalInsights/workspaces/intelligencepacks/* |讀取/寫入/刪除 Log Analytics 解決方案套件。 |
+| Microsoft.OperationalInsights/workspaces/savedSearches/* |讀取/寫入/刪除 Log Analytics 已儲存的搜尋。 |
+| Microsoft.OperationalInsights/workspaces/search/action |搜尋 Log Analytics 工作區。 |
+| Microsoft.OperationalInsights/workspaces/sharedKeys/action |列出 Log Analytics 工作區的金鑰。 |
+| Microsoft.OperationalInsights/workspaces/storageinsightconfigs/* |讀取/寫入/刪除 Log Analytics 儲存體深入解析設定。 |
 
 ### <a name="network-contributor"></a>網路參與者
 可以管理網路資源

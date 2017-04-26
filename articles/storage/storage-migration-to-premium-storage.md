@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: yuemlu
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 2703a7ae9274e6bef38e530839c1a7c5ad69fb88
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: cbf4f1a3bce53844e032c49637d4cfd9dd722679
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -49,13 +49,13 @@ ms.lasthandoff: 03/27/2017
 ### <a name="prerequisites"></a>必要條件
 * 您將需要 Azure 訂用帳戶。 如果您沒有訂用帳戶，可以建立一個月的[免費試用](https://azure.microsoft.com/pricing/free-trial/)訂用帳戶，或造訪 [Azure 價格](https://azure.microsoft.com/pricing/)以了解其他選項。
 * 若要執行 PowerShell Cmdlet，您將需要 Microsoft Azure PowerShell 模組。 如需安裝點和安裝指示的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
-* 當您計劃使用在進階儲存體上執行的 Azure VM 時，您需要使用可支援進階儲存體的 VM。 您可以將「標準」和「進階」儲存體磁碟與支援「進階儲存體」的 VM 搭配使用。 未來進階儲存體磁碟將可搭配更多 VM 類型使用。 如需所有可用 Azure VM 磁碟類型和大小的詳細資訊，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)和[雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。
+* 當您計劃使用在進階儲存體上執行的 Azure VM 時，您需要使用可支援進階儲存體的 VM。 您可以將「標準」和「進階」儲存體磁碟與支援「進階儲存體」的 VM 搭配使用。 未來進階儲存體磁碟將可搭配更多 VM 類型使用。 如需所有可用 Azure VM 磁碟類型和大小的詳細資訊，請參閱[虛擬機器的大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)和[雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。
 
 ### <a name="considerations"></a>考量
 Azure VM 支援連接數個「進階儲存體」磁碟，讓您應用程式的每一 VM 最多可擁有 64 TB 的儲存體。 使用「進階儲存體」時，您應用程式的每一 VM 可達到 80,000 IOPS (每秒輸入/輸出作業)，而每一 VM 的每秒磁碟輸送量為 2000 MB，且讀取作業的延遲極低。 您有各種 VM 和磁碟的選項。 這一節協助您尋找最適合您工作負載的選項。
 
 #### <a name="vm-sizes"></a>VM 大小
-Azure VM 大小的規格已列在 [虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)一文中。 請檢閱使用於進階儲存體的虛擬機器效能特性，然後選擇最適合您的工作負載的 VM 大小。 確定 VM 上有足夠的磁碟流量頻寬。
+Azure VM 大小的規格已列在 [虛擬機器的大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)一文中。 請檢閱使用於進階儲存體的虛擬機器效能特性，然後選擇最適合您的工作負載的 VM 大小。 確定 VM 上有足夠的磁碟流量頻寬。
 
 #### <a name="disk-sizes"></a>磁碟大小
 有三種類型的磁碟可以搭配您的 VM 使用，而且每種都有特定的 IOP 和輸送量限制。 為您的 VM 選擇磁碟類型時，請根據應用程式在容量、效能、延展性以及尖峰負載方面的需求，將這些限制考量進去。
@@ -66,7 +66,7 @@ Azure VM 大小的規格已列在 [虛擬機器的大小](../virtual-machines/vi
 | 每一磁碟的 IOPS |500 |2300 |5000 |
 | 每一磁碟的輸送量 |每秒 100 MB |每秒 150 MB |每秒 200 MB |
 
-根據您的工作負載，決定您的 VM 是否需要額外的資料磁碟。 您可以將數個持續性資料磁碟連接至您的 VM。 如有需要，您可以跨磁碟等量磁碟區以增加磁碟區的容量和效能。 (請參閱[這裡](storage-premium-storage-performance.md#disk-striping)的磁碟等量化說明。)如果您使用[儲存空間][4]等量進階儲存體資料磁碟，應該對所使用的每個磁碟中的每個資料行進行設定。 否則，等量磁碟區的整體效能可能會因為磁碟之間的流量分配不平均而低於預期。 而對於 Linux VM，您可以使用 *mdadm* 公用程式來達到相同的效果。 如需詳細資訊，請參閱文章 [在 Linux 上設定軟體 RAID](../virtual-machines/virtual-machines-linux-configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
+根據您的工作負載，決定您的 VM 是否需要額外的資料磁碟。 您可以將數個持續性資料磁碟連接至您的 VM。 如有需要，您可以跨磁碟等量磁碟區以增加磁碟區的容量和效能。 (請參閱[這裡](storage-premium-storage-performance.md#disk-striping)的磁碟等量化說明。)如果您使用[儲存空間][4]等量進階儲存體資料磁碟，應該對所使用的每個磁碟中的每個資料行進行設定。 否則，等量磁碟區的整體效能可能會因為磁碟之間的流量分配不平均而低於預期。 而對於 Linux VM，您可以使用 *mdadm* 公用程式來達到相同的效果。 如需詳細資訊，請參閱文章 [在 Linux 上設定軟體 RAID](../virtual-machines/linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。
 
 #### <a name="storage-account-scalability-targets"></a>儲存體帳戶延展性目標
 進階儲存體帳戶除了 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)之外，還有以下延展性目標。 如果您的應用程式需求超出單一儲存體帳戶的延展性目標，請建置使用多個儲存體帳戶的應用程式，並將資料分散到那些儲存體帳戶中。
@@ -75,7 +75,7 @@ Azure VM 大小的規格已列在 [虛擬機器的大小](../virtual-machines/vi
 |:--- |:--- |
 | 磁碟容量：35 TB<br />快照容量：10 TB |每秒最多 50 Gbps (輸入 + 輸出) |
 
-如需有關「進階儲存體」規格的詳細資訊，請查看[使用進階儲存體時的延展性和效能目標](storage-premium-storage.md#premium-storage-scalability-and-performance-targets)。
+如需有關「進階儲存體」規格的詳細資訊，請查看[使用進階儲存體時的延展性和效能目標](storage-premium-storage.md#scalability-and-performance-targets)。
 
 #### <a name="disk-caching-policy"></a>磁碟快取原則
 根據預設，所有 Premium 資料磁碟的磁碟快取原則都是*唯讀*，而連接至 VM 的 Premium 作業系統磁碟的磁碟快取原則則是*讀寫*。 為使應用程式的 IO 達到最佳效能，建議使用此組態設定。 對於頻繁寫入或唯寫的資料磁碟 (例如 SQL Server 記錄檔)，停用磁碟快取可獲得更佳的應用程式效能。 而您可以使用 [Azure 入口網站](https://portal.azure.com)或 *Set-AzureDataDisk* Cmdlet 的 *-HostCaching* 參數來更新現有資料磁碟的快取設定。
@@ -185,11 +185,11 @@ VM 必須完全關閉，才能以全新狀態移轉。 在移轉完成之前會�
 
     以下是有關用於 AzCopy 命令中之參數的描述：
 
-   * **/Source:*&lt;來源&gt;：*** 資料夾的位置，或包含 VHD 的儲存體容器 URL。
-   * **/SourceKey:*&lt;source-account-key&gt;：*** 來源儲存體帳戶的儲存體帳戶金鑰。
-   * **/Dest:*&lt;目的地&gt;：*** 儲存複製的 VHD 的目的地儲存體容器 URL。
-   * **/DestKey:*&lt;dest-account-key&gt;：*** 目的地儲存體帳戶的儲存體帳戶金鑰。
-   * **/Pattern:*&lt;file-name&gt;：*** 指定 VHD 複製目的地的檔案名稱。
+   * **/Source: *&lt;source&gt;：***包含 VHD 的資料夾或儲存體容器 URL 的位置。
+   * **/SourceKey: *&lt;source-account-key&gt;：***來源儲存體帳戶的儲存體帳戶金鑰。
+   * **/Dest: *&lt;destination&gt;：***要複製 VHD 的目的地儲存體容器 URL。
+   * **/DestKey: *&lt;dest-account-key&gt;：***目的地儲存體帳戶的儲存體帳戶金鑰。
+   * **/Pattern: *&lt;file-name&gt;：***指定要複製 VHD 的目標檔案名稱。
 
 如需使用 AzCopy 工具的詳細資訊，請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)》\。
 
@@ -238,7 +238,7 @@ C:\PS> Start-AzureStorageBlobCopy -srcUri $sourceBlobUri -SrcContext $sourceCont
 如果您將 VHD 從非 Azure 雲端儲存體移轉至 Azure，您必須先將 VHD 匯出至本機目錄。 複製儲存 VHD 所在本機目錄的完整來源路徑。
 
 ##### <a name="copy-a-vhd-from-on-premise"></a>從內部部署複製 VHD
-如果您要從內部部署環境移轉 VHD，需要儲存 VHD 的完整來源路徑。 來源路徑可能是伺服器位置或檔案共用。
+如果您要從內部部署環境移轉 VHD，將需要儲存 VHD 的完整來源路徑。 來源路徑可能是伺服器位置或檔案共用。
 
 #### <a name="step-2-create-the-destination-for-your-vhd"></a>步驟 2. 為您的 VHD 建立目的地
 建立儲存體帳戶來維護您的 VHD。 規劃儲存 VHD 的位置時，請考量下列幾點：
@@ -270,7 +270,7 @@ Add-AzureVhd [-Destination] <Uri> [-LocalFilePath] <FileInfo>
     ```azcopy
     AzCopy /Source: <source> /SourceKey: <source-account-key> /Dest: <destination> /DestKey: <dest-account-key> /BlobType:page /Pattern: <file-name>
     ```
-    
+
     範例：
 
     ```azcopy
@@ -279,12 +279,12 @@ Add-AzureVhd [-Destination] <Uri> [-LocalFilePath] <FileInfo>
 
     以下是有關用於 AzCopy 命令中之參數的描述：
 
-   * **/Source:*&lt;來源&gt;：*** 資料夾的位置，或包含 VHD 的儲存體容器 URL。
-   * **/SourceKey:*&lt;source-account-key&gt;：*** 來源儲存體帳戶的儲存體帳戶金鑰。
-   * **/Dest:*&lt;目的地&gt;：*** 儲存複製的 VHD 的目的地儲存體容器 URL。
-   * **/DestKey:*&lt;dest-account-key&gt;：*** 目的地儲存體帳戶的儲存體帳戶金鑰。
+   * **/Source: *&lt;source&gt;：***包含 VHD 的資料夾或儲存體容器 URL 的位置。
+   * **/SourceKey: *&lt;source-account-key&gt;：***來源儲存體帳戶的儲存體帳戶金鑰。
+   * **/Dest: *&lt;destination&gt;：***要複製 VHD 的目的地儲存體容器 URL。
+   * **/DestKey: *&lt;dest-account-key&gt;：***目的地儲存體帳戶的儲存體帳戶金鑰。
    * **/BlobType: page:** 將目的地指定為分頁 Blob。
-   * **/Pattern:*&lt;file-name&gt;：*** 指定 VHD 複製目的地的檔案名稱。
+   * **/Pattern: *&lt;file-name&gt;：***指定要複製 VHD 的目標檔案名稱。
 
 如需使用 AzCopy 工具的詳細資訊，請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)》\。
 
@@ -459,14 +459,14 @@ Update-AzureVM  -VM $vm
     .Terms of Use
     Copyright © 2015 Microsoft Corporation.  All rights reserved.
 
-    THIS CODE AND ANY ASSOCIATED INFORMATION ARE PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND,
+    THIS CODE AND ANY ASSOCIATED INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
     EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY
     AND/OR FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK OF USE, INABILITY TO USE, OR
     RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 
     .Example (Save this script as Migrate-AzureVM.ps1)
 
-    .\Migrate-AzureVM.ps1 -SourceServiceName CurrentServiceName -SourceVMName CurrentVMName –DestStorageAccount newpremiumstorageaccount -DestServiceName NewServiceName -DestVMName NewDSVMName -DestVMSize "Standard_DS2" –Location “Southeast Asia”
+    .\Migrate-AzureVM.ps1 -SourceServiceName CurrentServiceName -SourceVMName CurrentVMName –DestStorageAccount newpremiumstorageaccount -DestServiceName NewServiceName -DestVMName NewDSVMName -DestVMSize "Standard_DS2" –Location "Southeast Asia"
 
     .Link
     To find more information about how to set up Azure PowerShell, refer to the following links.
@@ -581,7 +581,7 @@ Update-AzureVM  -VM $vm
     # check if VM is shut down
     if ( $sourceVM.Status -notmatch "Stopped" )
     {
-        Write-Host "[Warning] - Stopping the VM is a required step so that the file system is consistent when you do the copy operation. Azure does not support live migration at this time. If you’d like to create a VM from a generalized image, sys-prep the Virtual Machine before stopping it." -ForegroundColor Yellow
+        Write-Host "[Warning] - Stopping the VM is a required step so that the file system is consistent when you do the copy operation. Azure does not support live migration at this time. If you'd like to create a VM from a generalized image, sys-prep the Virtual Machine before stopping it." -ForegroundColor Yellow
         $ContinueAnswer = Read-Host "`n`tDo you wish to stop $SourceVMName now? Input 'N' if you want to shut down the VM manually and come back later.(Y/N)"
         If ($ContinueAnswer -ne "Y") { Write-Host "`n Exiting." -ForegroundColor Red;Exit }
         $sourceVM | Stop-AzureVM

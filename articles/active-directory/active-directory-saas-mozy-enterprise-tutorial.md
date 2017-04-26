@@ -11,16 +11,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/26/2017
+ms.date: 03/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 991a7d112bc0cd65466be394dbb1aad9ca823681
-ms.openlocfilehash: 726880186693756941538f767dfba40c54ac9fd9
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: b4c69228bd768a1f8b129338280a0baf5f980f0f
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-mozy-enterprise"></a>教學課程：Azure Active Directory 與 Mozy Enterprise 整合
 本教學課程的目的是要示範 Azure 與 Mozy Enterprise 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂閱
@@ -31,7 +33,7 @@ ms.openlocfilehash: 726880186693756941538f767dfba40c54ac9fd9
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 Mozy Enterprise 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
@@ -62,7 +64,7 @@ ms.openlocfilehash: 726880186693756941538f767dfba40c54ac9fd9
    
    ![Mozy Enterprise](./media/active-directory-saas-mozy-enterprise-tutorial/IC777310.png "Mozy Enterprise")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Mozy Enterprise 中進行驗證。  
 
@@ -98,8 +100,10 @@ ms.openlocfilehash: 726880186693756941538f767dfba40c54ac9fd9
    6. 從您下載的憑證建立 **Base-64 編碼** 檔案。  
    
       >[!TIP]
-      >如需詳細資訊，請參閱 [如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
-      >  
+      >如需詳細資訊，請參閱 [如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+      >
+      >
+
    7. 在記事本中開啟您的 base-64 編碼的憑證，將它的內容複製到您的剪貼簿，然後將整個憑證貼至 [SAML 憑證]  文字方塊中。
    8. 選取 [針對管理員啟用 SSO 以使用其網路認證登入] 。
    9. 按一下 [儲存變更] 。
@@ -107,9 +111,10 @@ ms.openlocfilehash: 726880186693756941538f767dfba40c54ac9fd9
    
    ![設定單一登入](./media/active-directory-saas-mozy-enterprise-tutorial/IC777316.png "設定單一登入")
    
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
-為了讓 Azure AD 使用者能夠登入 Mozy Enterprise，必須將他們佈建到 Mozy Enterprise 中。  
+為了讓 Azure AD 使用者能夠登入 Mozy Enterprise，必須將他們佈建到 Mozy Enterprise 中。
+
 在 Mozy Enterprise 的情況下，需以手動方式佈建。
 
 **若要佈建使用者帳戶，請執行下列步驟：**
@@ -119,8 +124,9 @@ ms.openlocfilehash: 726880186693756941538f767dfba40c54ac9fd9
    
    ![使用者](./media/active-directory-saas-mozy-enterprise-tutorial/IC777317.png "使用者")
    
-   > [!NOTE]
-   > 只有在 [驗證原則] 底下選取 [Mozy] 做為提供者時，才會顯示 [新增使用者] 選項。 如果已設定 SAML 驗證，則會在使用者透過單一登入第一次登入時自動新增他們。
+   >[!NOTE]
+   >只有在 [驗證原則] 底下選取 [Mozy] 做為提供者時，才會顯示 [新增使用者] 選項。 如果已設定 SAML 驗證，則會在使用者透過單一登入第一次登入時自動新增他們。
+   >
    > 
     
 3. 在 [新增使用者] 對話方塊上，執行下列步驟：
@@ -133,16 +139,18 @@ ms.openlocfilehash: 726880186693756941538f767dfba40c54ac9fd9
   4. 在 [電子郵件]  文字方塊中，輸入 Azure AD 使用者的電子郵件地址。
   5. 選取 [傳送使用者指示電子郵件] 。
   6. 按一下 [新增使用者] 。
-   > [!NOTE]
-   > 建立使用者之後，會寄送一封電子郵件給 Azure AD 使用者，其中包含在帳戶變成作用中之前確認帳戶的連結。
 
+     >[!NOTE]
+     > 建立使用者之後，會寄送一封電子郵件給 Azure AD 使用者，其中包含在帳戶變成作用中之前確認帳戶的連結。
+     > 
+     > 
 
-> [!NOTE]
-> 您可以使用任何其他的 Mozy Enterprise 使用者帳戶建立工具或 Mozy Enterprise 提供的 API 來佈建 AAD 使用者帳戶。
+>[!NOTE]
+>您可以使用任何其他的 Mozy Enterprise 使用者帳戶建立工具或 Mozy Enterprise 提供的 API 來佈建 AAD 使用者帳戶。
 > 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 **若要將使用者指派給 Mozy Enterprise，請執行下列步驟：**
@@ -155,11 +163,11 @@ ms.openlocfilehash: 726880186693756941538f767dfba40c54ac9fd9
    
    ![是](./media/active-directory-saas-mozy-enterprise-tutorial/IC767830.png "是")
 
-如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的 SSO 設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 
+## <a name="additional-resources"></a>其他資源
 
-
-<!--HONumber=Feb17_HO1-->
-
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md
 

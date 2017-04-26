@@ -12,17 +12,24 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/13/2016
+ms.date: 03/31/2017
 ms.author: jeannt
 translationtype: Human Translation
-ms.sourcegitcommit: 8ea727f7b8d93401b35a7b9dbd2f00a5534c3072
-ms.openlocfilehash: e54c37f688e8d107f5323125ea42d63ec91a4c84
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 965c60ffde55041cc3864d06d81f5590c7ea1c11
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="guide-to-net-neural-network-specification-language-for-azure-machine-learning"></a>適用於 Azure Machine Learning 的 Net# 類神經規格語言指南
 ## <a name="overview"></a>概觀
-Net# 是由 Microsoft 所開發的語言，可用來定義類神經網路架構。 您可以在 Microsoft Azure Machine Learning 的類神經網路模組或在 [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml) 的 `rxNeuralNetwork()` 函式中使用 Net#。 
+Net# 是由 Microsoft 所開發的語言，可用來定義類神經網路架構。 您可以在 Microsoft Azure Machine Learning 的類神經網路模組中使用 Net#。
+
+<!-- This function doesn't currentlyappear in the MicrosoftML documentation. If it is added in a future update, we can uncomment this text.
+
+, or in the `rxNeuralNetwork()` function in [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml). 
+
+-->
 
 在本文中，您將了解開發自訂類神經網路所需的基本概念︰ 
 
@@ -396,22 +403,17 @@ Net# 可選擇性地支援以共用加權定義多個套組的作業。 任何�
 * 網路具有第三個隱藏層 *Hid3*，與第二個隱藏層 *Conv2* 完全相連。
 * 輸出層 *Digit* 僅連接到第三個隱藏層 *Hid3*。 關鍵字 **all** 指出輸出層與 *Hid3* 完全相連。
 * 迴旋的 Arity 為三 (Tuple **InputShape**、**KernelShape**、**Stride** 和 **Sharing** 的長度)。 
-* 每個核心的加權數為 *1 + **KernelShape**\[0] * **KernelShape**\[1]  *KernelShape**\[2] = 1 + 1 * 5 * 5 = 26。或是 26 * 50 = 1300。
+* 每個核心的加權數目為 *1 + **KernelShape**\[0] * **KernelShape**\[1] * **KernelShape**\[2] = 1 + 1 * 5 * 5 = 26。或是 26 * 50 = 1300*。
 * 您可以用下列方式計算每個隱藏層中的節點數：
   * **NodeCount**\[0] = (5 - 1) / 1 + 1 = 5.
   * **NodeCount**\[1] = (13 - 5) / 2 + 1 = 5。 
   * **NodeCount**\[2] = (13 - 5) / 2 + 1 = 5。 
-* 節點總數可使用該層的宣告維度 [50, 5, 5] 來計算，如下所示：***MapCount** * **NodeCount**\[0]  *NodeCount**\[1] * **NodeCount**\[2] = 10 * 5 * 5 * 5*
+* 節點總數可使用該層的宣告維度 [50, 5, 5] 來計算，如下所示：***MapCount** * **NodeCount**\[0] * **NodeCount**\[1] * **NodeCount**\[2] = 10 * 5 * 5 * 5*
 * 由於只有 *d == 0* 時，**Sharing**[d] 才會是 False，因此核心數為 ***MapCount** * **NodeCount**\[0] = 10 * 5 = 50*。 
 
 ## <a name="acknowledgements"></a>通知
 自訂類神經網路架構的 Net# 語言是由 Shon Katzenberger (架構、機器學習服務) 和 Alexey Kamenev (軟體工程師、Microsoft Research) 在 Microsoft 開發。 它在內部用於機器學習服務專案與應用程式，範圍從映像偵測到文字分析。 如需詳細資訊，請參閱 [Azure ML 中的類神經網路 - Net# 簡介](http://blogs.technet.com/b/machinelearning/archive/2015/02/16/neural-nets-in-azure-ml-introduction-to-net.aspx)
 
 [1]:./media/machine-learning-azure-ml-netsharp-reference-guide/formula_large.gif
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

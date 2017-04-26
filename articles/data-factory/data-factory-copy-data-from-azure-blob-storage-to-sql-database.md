@@ -16,13 +16,13 @@ ms.topic: article
 ms.date: 04/03/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 2dcba235353f2b1bd2b42d93066a91071f0ea1a1
-ms.openlocfilehash: 8b9afcd62ad318e181e2d210af58dcb412eefaaf
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 393bc1ad782b072f3b27eeeb3e4149ec8ab64252
+ms.lasthandoff: 04/12/2017
 
 
 ---
-# <a name="copy-data-from-blob-storage-to-sql-database-using-data-factory"></a>使用 Data Factory 將資料從 Blob 儲存體複製到 SQL Database
+# <a name="tutorial-copy-data-from-blob-storage-to-sql-database-using-data-factory"></a>教學課程：使用 Data Factory 將資料從 Blob 儲存體複製到 SQL Database
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -32,8 +32,6 @@ ms.lasthandoff: 02/22/2017
 > * [Azure Resource Manager 範本](data-factory-copy-activity-tutorial-using-azure-resource-manager-template.md)
 > * [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 > * [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
->
->
 
 在本教學課程中，您會建立 Data Factory 與管線，以將資料從 Blob 儲存體複製到 SQL Database。
 
@@ -45,7 +43,7 @@ ms.lasthandoff: 02/22/2017
 >
 
 ## <a name="prerequisites-for-the-tutorial"></a>教學課程的必要條件
-開始進行本教學課程之前，您必須具備下列條件：
+開始進行本教學課程之前，您必須具備下列必要條件：
 
 * **Azure 訂用帳戶**。  如果您沒有訂用帳戶，則只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [免費試用](http://azure.microsoft.com/pricing/free-trial/) 一文。
 * **Azure 儲存體帳戶**。 在本教學課程中，您會使用 Blob 儲存體做為 **來源** 資料存放區。 如果您沒有 Azure 儲存體帳戶，請參閱 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account) 一文以取得建立步驟。
@@ -87,7 +85,7 @@ ms.lasthandoff: 02/22/2017
 ## <a name="prepare-blob-storage-and-sql-database"></a>準備 Blob 儲存體和 SQL Database
 現在，請執行下列步驟，準備本教學課程中的 Azure Blob 儲存體和 Azure SQL Database。  
 
-1. 啟動 [記事本]，並貼上下列文字，然後將它以 **emp.txt** 的形式儲存至您硬碟上的 **C:\ADFGetStarted** 資料夾。
+1. 啟動 [記事本]。 複製以下文字，並命名為 **emp.txt**，然後儲存至您硬碟上的 **C:\ADFGetStarted** 資料夾。
 
     ```
     John, Doe

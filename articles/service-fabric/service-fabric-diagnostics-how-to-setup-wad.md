@@ -3,7 +3,7 @@ title: "使用 Azure 診斷收集記錄檔 | Microsoft Docs"
 description: "本文將說明如何設定 Azure 診斷從 Azure 中執行的 Service Fabric 叢集收集記錄檔"
 services: service-fabric
 documentationcenter: .net
-author: ms-toddabel
+author: dkkapur
 manager: timlt
 editor: 
 ms.assetid: 9f7e1fa5-6543-4efd-b53f-39510f18df56
@@ -13,10 +13,11 @@ ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/17/2017
-ms.author: toddabel
+ms.author: dekapur
 translationtype: Human Translation
-ms.sourcegitcommit: 1b4599848f44a7200f13bd6ddf4e82e96a75e069
-ms.openlocfilehash: 41343990d3379aabd129af437ff2edbbd2134dcc
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: d733c0643479f2f73ffeae716daecf06c75598a8
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -38,7 +39,7 @@ ms.openlocfilehash: 41343990d3379aabd129af437ff2edbbd2134dcc
 * [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)
 * [Azure PowerShell](/powershell/azureps-cmdlets-docs)
 * [Azure Resource Manager 用戶端](https://github.com/projectkudu/ARMClient)
-* [Azure Resource Manager 範本](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Azure Resource Manager 範本](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="log-sources-that-you-might-want-to-collect"></a>您可能想要收集的記錄來源
 * **Service Fabric 記錄檔**：由平台發出到標準 Windows 事件追蹤 (ETW) 和 EventSource 通道。 記錄檔可以是下列其中一種類型：
@@ -193,7 +194,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
 
 如所述修改 template.json 檔案之後，將 Resource Manager 範本重新發佈。 如果已匯出範本，執行 deploy.ps1 檔案將會重新發佈範本。 部署之後，請確認 **ProvisioningState** 為 **Succeeded**。
 
-## <a name="update-diagnostics-to-collection-health-and-load-events"></a>更新診斷以收集健康情況和負載事件
+## <a name="update-diagnostics-to-collect-health-and-load-events"></a>更新診斷以收集健康情況和負載事件
 
 從 Service Fabric 5.4 版開始，健康情況和負載計量事件均可供收集。 這些事件可藉由使用健康情況或負載報告 API (例如 [ReportPartitionHealth](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportpartitionhealth.aspx) 或 [ReportLoad](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportload.aspx))，反映系統或程式碼所產生的事件。 這可讓您彙總及檢視一段時間的系統健康情況，以及根據健康情況或負載事件發出警示。 若要在 Visual Studio 的「診斷事件檢視器」中檢視這些事件，請將 "Microsoft-ServiceFabric:4:0x4000000000000008" 新增到 ETW 提供者清單中。
 
@@ -229,18 +230,13 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
         }
 ```
 
-若要收集效能計數器或事件記錄檔，請以[使用 Azure Resource Manager 範本建立具有監視和診斷的 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中提供的範例來修改 Resource Manager 範本。 然後請重新發佈 Resource Manager 範本。
+若要收集效能計數器或事件記錄檔，請以[使用 Azure Resource Manager 範本建立具有監視和診斷的 Windows 虛擬機器](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中提供的範例來修改 Resource Manager 範本。 然後請重新發佈 Resource Manager 範本。
 
 ## <a name="next-steps"></a>後續步驟
 若要更詳細了解進行問題移難排解時應該注意的事件，請查看針對 [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) 和 [Reliable Services](service-fabric-reliable-services-diagnostics.md) 所發出的診斷事件。
 
 ## <a name="related-articles"></a>相關文章
-* [了解如何使用診斷擴充功能收集效能計數器或記錄檔](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [了解如何使用診斷擴充功能收集效能計數器或記錄檔](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [Log Analytics 中的 Service Fabric 解決方案](../log-analytics/log-analytics-service-fabric.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

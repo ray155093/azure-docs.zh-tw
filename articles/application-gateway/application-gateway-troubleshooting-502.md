@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 12/16/2016
 ms.author: amsriva
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: d61e50b7440dcd107df3e5dd085a36b149779553
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 178cd0e1c20947c952a2abb4bad253272da9fcd4
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -132,6 +132,8 @@ BackendAddressPoolsText：
 * 確定已根據 [指南](application-gateway-create-probe-ps.md)正確指定探查。
 * 如果已將應用程式閘道設定為單一站台，根據預設，除非已在自訂探查中加以設定，否則應將主機名稱指定為 '127.0.0.1'。
 * 確定對 http://\<主機\>:\<連接埠\>\<路徑\> 的呼叫會傳回 HTTP 結果碼 200。
+* 確定 Interval、Time-out 和 UnhealtyThreshold 皆在可接受的範圍內。
+* 若使用 HTTPS 探查，請在後端伺服器本身設定後援憑證，以確定後端伺服器不會要求您提供 SNI。 
 * 確定 Interval、Time-out 和 UnhealtyThreshold 皆在可接受的範圍內。
 
 ## <a name="request-time-out"></a>要求逾時

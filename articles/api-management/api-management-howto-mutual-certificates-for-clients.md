@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 02/01/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 06f274fe3febd4c3d6d3da90b361c3137ec795b9
-ms.openlocfilehash: e6514465db0d01b248bdb9e5113450e2bd3d2346
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 7f1d55b90af4e5397d74a8e37b44b5a88530897d
+ms.lasthandoff: 03/31/2017
 
 ---
 
@@ -26,19 +26,46 @@ API 管理提供以用戶端憑證保護對 API 之存取 (例如，用戶端對
 
 如需有關如何使用用戶端憑證保護對 API 後端服務之存取 (例如，API 管理到後端) 的資訊，請參閱[如何使用用戶端憑證驗證來保護後端服務](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
 
-## <a name="checking-a-thumbprint-against-a-desired-value"></a>檢查指紋是否符合想要的值
+## <a name="checking-the-expiration-date"></a>檢查到期日
+
+您可以設定下面的原則來檢查憑證是否已到期：
+
+```
+<choose>
+    <when condition="@(context.Request.Certificate == null || context.Request.Certificate.NotAfter > DateTime.Now)" >
+        <return-response>
+            <set-status code="403" reason="Invalid client certificate" />
+        </return-response>
+    </when>
+</choose>
+```
+
+## <a name="checking-the-issuer-and-subject"></a>檢查簽發者和主旨
+
+您可以設定下面的原則來檢查用戶端憑證的簽發者和主旨：
+
+```
+<choose>
+    <when condition="@(context.Request.Certificate == null || context.Request.Certificate.Issuer != "trusted-issuer" || context.Request.Certificate.SubjectName != "expected-subject-name")" >
+        <return-response>
+            <set-status code="403" reason="Invalid client certificate" />
+        </return-response>
+    </when>
+</choose>
+```
+
+## <a name="checking-the-thumbprint"></a>檢查指紋
 
 您可以設定下面的原則來檢查用戶端憑證的指紋：
 
 ```
 <choose>
-    <when condition="@(context.Request.Certificate == null || context.Request.Certificate.Thumbprint != "desired-thumbprint-to-validate")" >
+    <when condition="@(context.Request.Certificate == null || context.Request.Certificate.Thumbprint != "desired-thumbprint")" >
         <return-response>
-            <set-status code="401" reason="Invalid client certificate" />
+            <set-status code="403" reason="Invalid client certificate" />
         </return-response>
     </when>
 </choose>
-
 ```
 
 ## <a name="checking-a-thumbprint-against-certificates-uploaded-to-api-management"></a>檢查指紋是否符合已上傳到 API 管理的憑證
@@ -47,9 +74,9 @@ API 管理提供以用戶端憑證保護對 API 之存取 (例如，用戶端對
 
 ```
 <choose>
-    <when condition="@(context.Request.Certificate == null || context.Deployment.Certificates.Any(c => c.Value.Thumbprint == context.Request.Certificate.Thumbprint))" >
+    <when condition="@(context.Request.Certificate == null || !context.Deployment.Certificates.Any(c => c.Value.Thumbprint == context.Request.Certificate.Thumbprint))" >
         <return-response>
-            <set-status code="401" reason="Invalid client certificate" />
+            <set-status code="403" reason="Invalid client certificate" />
         </return-response>
     </when>
 </choose>

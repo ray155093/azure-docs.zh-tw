@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/02/2017
+ms.date: 03/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: d87f6068cef7630ca7d9e8929b43449d28d11f78
-ms.openlocfilehash: 9d9074c986c7210e7d7a345ad5d761ac781be3c1
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: d47cb9ae48034c73ccb20bd1872a6b50eebb27d7
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 02/17/2017
 
 ![案例](./media/active-directory-saas-logicmonitor-tutorial/IC790045.png "案例")
 
-## <a name="enabling-the-application-integration-for-logicmonitor"></a>啟用 LogicMonitor 的應用程式整合
+## <a name="enable-the-application-integration-for-logicmonitor"></a>啟用 LogicMonitor 的應用程式整合
 本節的目的是要說明如何啟用 LogicMonitor 的應用程式整合。
 
 **若要啟用 LogicMonitor 的應用程式整合，請執行下列步驟：**
@@ -62,7 +62,7 @@ ms.lasthandoff: 02/17/2017
    
    ![LogicMonitor](./media/active-directory-saas-logicmonitor-tutorial/IC790047.png "LogicMonitor")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 LogicMonitor 中進行驗證。
 
@@ -99,7 +99,7 @@ ms.lasthandoff: 02/17/2017
    
    ![設定單一登入](./media/active-directory-saas-logicmonitor-tutorial/IC790055.png "設定單一登入")
    
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
 若要讓 AAD 使用者能夠登入，必須使用他們的 Azure Active Directory 使用者名稱將他們佈建到 LogicMonitor 應用程式。
 
@@ -122,7 +122,7 @@ ms.lasthandoff: 02/17/2017
 >您可以使用任何其他的 LogicMonitor 使用者帳戶建立工具或 LogicMonitor 提供的 API，佈建 Azure Active Directory 使用者帳戶。 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 **若要將使用者指派給 LogicMonitor，請執行下列步驟：**

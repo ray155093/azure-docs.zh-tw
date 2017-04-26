@@ -12,16 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 2/15/2017
+ms.date: 3/31/2017
 ms.author: ruturajd
 translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: 845a950f02ba95a100ffedbb07e4d1491b22a2da
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 8746abc957816f103abe6c33308af2a584e35485
+ms.lasthandoff: 03/31/2017
 
 
 ---
-# <a name="failback-in-site-recovery"></a>在 Site Recovery 中容錯移轉
+
+# <a name="failback-in-site-recovery-for-hyper-v-virtual-machines"></a>在 Site Recovery 中容錯回復 Hyper-V 虛擬機器
+
 > [!div class="op_single_selector"]
 > * [從 Azure 容錯回復 VMware/實體機器](site-recovery-failback-azure-to-vmware.md)
 > * [從 Azure 容錯回復 Hyper-V VM](site-recovery-failback-from-azure-to-hyper-v.md)
@@ -44,7 +46,7 @@ Azure 是高可用性環境，虛擬機器永遠可用。 錯誤回復是計劃�
 從主要位置容錯移轉至次要位置之後，複寫的虛擬機器就不會受到 Site Recovery 所保護，而次要位置現在會成為使用中位置。 請遵循這些程序，以容錯回復到原始的主要站台。 此程序說明如何針對復原方案執行計劃性容錯移轉。 或者，您可以在 [虛擬機器]  索引標籤上針對單一虛擬機器執行容錯移轉。
 
 1. 選取 [復原方案]  >  *recoveryplan_name*。 按一下 [容錯移轉] **容錯移轉** > **Planned 容錯移轉**中張貼意見或問題。
-2. 在 [確認計劃性容錯移轉] 頁面上，選擇來源與目標位置。 記下容錯移轉方向。 如果來自主要位置的容錯移轉會如預期般運作，且所有虛擬機器均位於次要位置，則這僅供參考。
+2. 在 [確認計劃性容錯移轉]**** 頁面上，選擇來源與目標位置。 記下容錯移轉方向。 如果來自主要位置的容錯移轉會如預期般運作，且所有虛擬機器均位於次要位置，則這僅供參考。
 3. 如果您正從 Azure 進行容錯回復，請選取 [資料同步處理] 中的設定：
 
    * **在容錯移轉前同步處理資料 (僅同步處理差異變更)** - 這個選項可將虛擬機器的停機時間縮到最短，因為不需關閉虛擬機器即可進行同步處理。 它具有下列功能：

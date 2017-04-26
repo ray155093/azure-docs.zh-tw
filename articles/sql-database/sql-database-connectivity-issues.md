@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 01/20/2017
 ms.author: daleche
 translationtype: Human Translation
-ms.sourcegitcommit: a6489fd5ff5e60bc3a1c06485d330556250c21cd
-ms.openlocfilehash: eddbdda847d7d0cc12f3e1c6128ce76d15f6f39f
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 608cbc0fd1cc1d73d28056909ed06618457bd9c0
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -167,7 +167,7 @@ ms.lasthandoff: 03/02/2017
 
 如果您忘了設定 IP 位址，您的程式將會失敗並出現一個好用的錯誤訊息，陳述必要的 IP 位址。
 
-[!INCLUDE [sql-database-include-ip-address-22-v12portal](../../includes/sql-database-include-ip-address-22-v12portal.md)]
+[!INCLUDE [sql-database-include-ip-address-22-portal](../../includes/sql-database-include-ip-address-22-v12portal.md)]
 
 如需詳細資訊，請參閱： [作法：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)
 
@@ -186,7 +186,7 @@ ms.lasthandoff: 03/02/2017
 6. &gt;動作
 7. &gt;新增規則
 
-如果您的用戶端程式裝載在 Azure 虛擬機器 (VM) 上，您應該閱讀：<br/>[1433 以外供 ADO，告知您的程式發生暫時性錯誤。NET 4，告知您的程式發生暫時性錯誤。5 和 SQL Database V12 使用的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)，告知您的程式發生暫時性錯誤。
+如果您的用戶端程式裝載在 Azure 虛擬機器 (VM) 上，您應該閱讀：<br/>[針對 ADO.NET 4.5 及 SQL Database 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)。
 
 如需設定連接埠及 IP 位址的背景資訊，請參閱： [Azure SQL Database 防火牆](sql-database-firewall-configure.md)
 
@@ -335,7 +335,7 @@ Enterprise Library 6 (EntLib60) 是 .NET 類別的架構，可協助您實作雲
 ### <a name="entlib60-classes-for-transient-errors-and-retry"></a>用於暫時性錯誤和重試的 EntLib60 類別
 下列 EntLib60 類別特別有助於重試邏輯。 這些全部都在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** 中，或進一步位於其下：
 
-*在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling**中，或進一步位於其下：*
+*在命名空間 **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** 中：*
 
 * **RetryPolicy** 類別
   

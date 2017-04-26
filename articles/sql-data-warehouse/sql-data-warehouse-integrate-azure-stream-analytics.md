@@ -12,21 +12,23 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: integrate
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: f0d7faede5df839c699f562b3aa21b8bb9836a3b
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: d1c328ec609cc27a42fb6b30897d7f0b466134e7
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="use-azure-stream-analytics-with-sql-data-warehouse"></a>搭配使用 Azure 串流分析與 SQL 資料倉儲
-Azure 串流分析是完全受管理的服務，可用來對雲端中的串流資料進行低延遲、高可用性、可延展的複雜事件處理。 如需基本概念，請參閱 [Azure Stream Analytics 介紹][Azure Stream Analytics 介紹]。 您可以接著依照 [開始使用 Azure 資料流分析][開始使用 Azure 資料流分析]教學課程，了解如何使用資料流分析建立端對端解決方案。
+Azure 串流分析是完全受管理的服務，可用來對雲端中的串流資料進行低延遲、高可用性、可延展的複雜事件處理。 如需基本概念，請參閱 [Azure 串流分析簡介][Introduction to Azure Stream Analytics]。 您可以接著依照[開始使用 Azure 串流分析][Get started using Azure Stream Analytics]教學課程，了解如何使用串流分析建立端對端解決方案。
 
 在本文中，您將學習如何使用 Azure SQL 資料倉儲資料庫做為串流分析工作的輸出接收器。
 
 ## <a name="prerequisites"></a>必要條件
-首先，執行[開始使用 Azure 資料流分析][開始使用 Azure 資料流分析]教學課程的下列步驟。  
+首先，執行[開始使用 Azure 串流分析][Get started using Azure Stream Analytics]教學課程中的下列步驟。  
 
 1. 建立事件中樞輸入
 2. 設定並啟動事件產生器應用程式
@@ -70,9 +72,9 @@ Azure 串流分析是完全受管理的服務，可用來對雲端中的串流�
 成功連接到資料庫時，您將會在入口網站的底部看到通知。 您可以按一下底部的 [測試連線]，以測試資料庫的連線。
 
 ## <a name="next-steps"></a>後續步驟
-如需整合概觀，請參閱 [SQL 資料倉儲整合概觀][SQL 資料倉儲整合概觀]。
+如需整合概觀，請參閱 [SQL 資料倉儲整合概觀][SQL Data Warehouse integration overview]。
 
-如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL 資料倉儲開發概觀]。
+如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL Data Warehouse development overview]。
 
 <!--Image references-->
 
@@ -83,18 +85,13 @@ Azure 串流分析是完全受管理的服務，可用來對雲端中的串流�
 
 <!--Article references-->
 
-[Azure Stream Analytics 介紹]: ../stream-analytics/stream-analytics-introduction.md
-[開始使用 Azure 資料流分析]: ../stream-analytics/stream-analytics-get-started.md
-[SQL 資料倉儲開發概觀]:  ./sql-data-warehouse-overview-develop.md
-[SQL 資料倉儲整合概觀]:  ./sql-data-warehouse-overview-integrate.md
+[Introduction to Azure Stream Analytics]: ../stream-analytics/stream-analytics-introduction.md
+[Get started using Azure Stream Analytics]: ../stream-analytics/stream-analytics-get-started.md
+[SQL Data Warehouse development overview]:  ./sql-data-warehouse-overview-develop.md
+[SQL Data Warehouse integration overview]:  ./sql-data-warehouse-overview-integrate.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
-[Azure 串流分析文件]: http://azure.microsoft.com/documentation/services/stream-analytics/
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+[Azure Stream Analytics documentation]: http://azure.microsoft.com/documentation/services/stream-analytics/
 

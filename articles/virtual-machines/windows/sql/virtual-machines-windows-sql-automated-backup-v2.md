@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 01/30/2017
+ms.date: 04/05/2017
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 253c504fa433c7ca37c0065ebf01d13dafc76231
-ms.openlocfilehash: 303d6768611fbe21ecf5a72a9e071436ad8b9cc9
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: dbf4b04ad92d9339b15d7f247b947dd58b17daa5
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -67,7 +68,7 @@ ms.openlocfilehash: 303d6768611fbe21ecf5a72a9e071436ad8b9cc9
 | --- | --- | --- |
 | **自動備份** | 啟用/停用 (已停用) | 針對執行 SQL Server 2016 Standard 或 Enterprise 的 Azure VM，啟用或停用「自動備份」。 |
 | **保留期限** | 1-30 天 (30 天) | 保留備份的天數。 |
-| **儲存體帳戶** | Azure 儲存體帳戶 | 將自動備份檔案儲存在 Blob 儲存體中時，所使用的 Azure 儲存體帳戶。 這個位置會建立一個容器來儲存所有備份檔案。 備份檔案命名慣例包括日期、時間和電腦名稱。 |
+| **儲存體帳戶** | Azure 儲存體帳戶 | 將自動備份檔案儲存在 Blob 儲存體中時，所使用的 Azure 儲存體帳戶。 這個位置會建立一個容器來儲存所有備份檔案。 備份檔案命名慣例包括日期、時間和資料庫 GUID。 |
 | **加密** |啟用/停用 (已停用) | 啟用或停用加密。 啟用加密時，用來還原備份的憑證會使用相同的命名慣例，放在指定的儲存體帳戶內相同的 **automaticbackup** 容器中。 如果密碼變更，就會以該密碼產生新的憑證，但是舊的憑證還是會保留，以還原先前的備份。 |
 | **密碼** |密碼文字 | 加密金鑰的密碼。 唯有啟用加密時，才需要此密碼。 若要還原加密的備份，您必須要有建立備份時所使用的正確密碼和相關憑證。 |
 
@@ -322,10 +323,5 @@ Set-AzureRmVMSqlServerExtension -AutoBackupSettings $autobackupconfig `
 如需有關其他可用之自動化工作的資訊，請參閱 [SQL Server IaaS 代理程式擴充功能](virtual-machines-windows-sql-server-agent-extension.md)。
 
 如需有關在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/06/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 247d370c1f80729856e53690045991127ad54351
-ms.openlocfilehash: fa62c0883b8230e514f60626b59fa3b3b20a6784
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 5bcdb2cd11ffa633bce4e0faee4f49d9053a662b
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -51,7 +51,7 @@ Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決
 
 ![轉換為評分實驗](./media/machine-learning-publish-a-machine-learning-web-service/figure-1.png)
 
-如需如何執行此轉換的詳細資訊，請參閱[將機器學習服務訓練實驗轉換成預測實驗](machine-learning-convert-training-experiment-to-scoring-experiment.md)。
+如需有關如何執行此對話的詳細資訊，請參閱[如何準備您的模型以在 Azure Machine Learning Studio 中部署](machine-learning-convert-training-experiment-to-scoring-experiment.md)。
 
 下列步驟說明將預測實驗部署為新式 Web 服務。 您也可以將實驗部署為傳統 Web 服務。
 

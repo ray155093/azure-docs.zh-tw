@@ -17,14 +17,14 @@ ms.workload: iaas-sql-server
 ms.date: 03/17/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 81de52ac95aaf1b6d02572a70a4c1a84fb541401
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 67663af0913a03f2001b4cce6f9f49ee91195026
+ms.lasthandoff: 04/06/2017
 
 
 ---
 
-# <a name="create-always-on-availability-group-to-improve-availability-and-disaster-recovery"></a>建立 Always On 可用性群組以改善可用性和災害復原
+# <a name="configure-always-on-availability-group-in-azure-vm-manually"></a>在 Azure VM 中手動設定 Always On 可用性群組
 
 本教學課程說明如何在「Azure 虛擬機器」上建立「SQL Server Always On 可用性群組」。 整個教學課程會建立一個在兩部 SQL Server 上都有一份資料庫複本的「可用性群組」。
 
@@ -297,7 +297,7 @@ Repeat these steps on the second SQL Server.
 
     ![新增 AG 精靈：選取初始資料同步處理](./media/virtual-machines-windows-portal-sql-availability-group-tutorial/66-endpoint.png)
 
-8. 在 [選取初始資料同步處理] 頁面中，選取 [完整]，然後指定一個共用網路位置。 針對位置，請使用[您所建立的備份共用](#backupshare)。 在此範例中是 **\\\\\<第一部 SQL 電腦\>\Backup\**。按 [下一步]**。
+8. 在 [選取初始資料同步處理] 頁面中，選取 [完整]，然後指定一個共用網路位置。 針對位置，請使用[您所建立的備份共用](#backupshare)。 在此範例中是 **\\\\\<第一部 SQL Server\>\Backup\**。 按 [下一步] 。
 
    >[!NOTE]
    >完整同步處理會完整備份第一個 SQL Server 執行個體上的資料庫，然後將它還原到第二個執行個體。 就大型資料庫而言，不建議進行完整同步處理，因為可能費時很久。 您可以手動備份並使用 `NO RECOVERY` 來還原備份，以縮短此時間。 如果在設定「可用性群組」之前已經使用 `NO RECOVERY` 在第二部 SQL Server 上還原資料庫，請選擇 [僅聯結]。 如果您想要在設定「可用性群組」之後進行備份，請選擇 [略過初始資料同步處理]。

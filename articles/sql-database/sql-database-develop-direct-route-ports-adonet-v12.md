@@ -1,6 +1,6 @@
 ---
 title: "SQL Database 1433 以外的連接埠 | Microsoft Docs"
-description: "從 ADO.NET 至 Azure SQL Database V12 的用戶端連線有時會略過 Proxy 並直接與資料庫互動。 1433 以外的連接埠變得重要。"
+description: "從 ADO.NET 至 Azure SQL Database 的用戶端連線有時會略過 Proxy 並直接與資料庫互動。 1433 以外的連接埠變得重要。"
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 08/17/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 1df9f3549db8417445a5a012d31ed662977a9990
-ms.openlocfilehash: 961b8b4eeeb8543c2adec60ff958a7f420c785b5
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: e47d8f71fbfe95027e1fbfebb0b7e91ffe653c62
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -41,7 +42,7 @@ ms.openlocfilehash: 961b8b4eeeb8543c2adec60ff958a7f420c785b5
 2. 然後 ADO.NET 會直接連線到 SQL Database 伺服器，中間沒有中介軟體。
 3. 查詢會直接傳送到資料庫，結果會直接傳回至用戶端。
 
-請確定 Azure 用戶端電腦上 11000-11999 及 14000-14999 的連接埠範圍已保留可供 ADO.NET 4.5 用戶端與 SQL Database V12 互動。
+請確定已保留 Azure 用戶端電腦上的 11000-11999 及 14000-14999 連接埠範圍，以供 ADO.NET 4.5 用戶端與 SQL Database 進行互動使用。
 
 * 特別是範圍中的連接埠必須沒有其他任何輸出封鎖器。
 * 在您的 Azure VM 上， **具有進階安全性的 Windows 防火牆** 會控制此連接埠設定。
@@ -64,10 +65,5 @@ ms.openlocfilehash: 961b8b4eeeb8543c2adec60ff958a7f420c785b5
 * [SQL Database 開發概觀](sql-database-develop-overview.md)
 * [Azure SQL Database 防火牆](sql-database-firewall-configure.md)
 * [如何：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)
-
-
-
-
-<!--HONumber=Jan17_HO5-->
 
 

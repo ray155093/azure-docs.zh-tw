@@ -13,19 +13,19 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/06/2017
+ms.date: 04/12/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: f06af80b14b439a223607e91c031a887c200d88d
-ms.openlocfilehash: 11da3f4ff55e8d52a1d0cecb0e275a8af80727ea
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 469bd1d023ad51fc957aecca480eb192afc544a4
+ms.lasthandoff: 04/12/2017
 
 
 ---
 
 # <a name="delegate-invitations-for-azure-active-directory-b2b-collaboration"></a>委派 Azure Active Directory B2B 共同作業邀請
 
-使用 Azure Active Directory (Azure AD) 企業對企業 (B2B) 共同作業公開預覽刷新版時，您不需要是全域系統管理員即可傳送邀請。 相反地，您可以使用相關原則並將邀請委派給其角色允許他們傳送邀請的使用者。 委派來賓使用者邀請的一個重要新方式是透過「來賓邀請者」角色。
+使用 Azure Active Directory (Azure AD) 企業對企業 (B2B) 共同作業時，您不需要是全域系統管理員即可傳送邀請。 相反地，您可以使用相關原則並將邀請委派給其角色允許他們傳送邀請的使用者。 委派來賓使用者邀請的一個重要新方式是透過「來賓邀請者」角色。
 
 ## <a name="guest-inviter-role"></a>來賓邀請者角色
 我們可以將使用者指派到「來賓邀請者」角色以傳送邀請。 您不需要是全域系統管理員角色的成員即可傳送邀請。 根據預設，一般使用者也可叫用邀請 API，除非全域系統管理員已停用一般使用者的邀請功能。 您可以使用 Azure 入口網站或 PowerShell 來執行這項工作。

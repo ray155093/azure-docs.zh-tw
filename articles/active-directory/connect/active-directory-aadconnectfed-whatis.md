@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/31/2016
+ms.date: 4/9/2016
 ms.author: anandy
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: 28df9bfec4db8e3f57db61eecc631545e389085a
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 589c37d4bb59ceeb37742163fad21d465b3d3827
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -34,19 +34,22 @@ Azure Active Directory (Azure AD) Connect 可讓您使用內部部署 Active Dir
 | **使用 Azure AD Connect 安裝 AD FS** | |
 | [必要條件](active-directory-aadconnect-get-started-custom.md#ad-fs-configuration-pre-requisites) |請查看透過 Azure AD Connect 成功安裝 AD FS 安裝的必要條件。 |
 | [設定 AD FS 伺服器陣列](active-directory-aadconnect-get-started-custom.md#configuring-federation-with-ad-fs) |使用 Azure AD Connect 安裝新的 AD FS 伺服器陣列。 |
+| [使用替代登入識別碼與 Azure AD 建立同盟關係](active-directory-aadconnect-federation-management.md#alternateid) | 使用替代登入識別碼設定同盟  |
 | **修改 AD FS 組態** | |
 | [修復信任](active-directory-aadconnect-federation-management.md#repairthetrust) |修復內部部署 AD FS 和 Office 365/Azure 之間目前的信任。 |
 | [新增 AD FS 伺服器](active-directory-aadconnect-federation-management.md#addadfsserver) |在初始安裝之後，增加 AD FS 伺服器來擴充 AD FS 伺服器陣列。 |
 | [新增 AD FS WAP 伺服器](active-directory-aadconnect-federation-management.md#addwapserver) |在初始安裝之後，增加 Web 應用程式 Proxy (WAP) 伺服器來擴充 AD FS 伺服器陣列。 |
 | [新增新的同盟網域](active-directory-aadconnect-federation-management.md#addfeddomain) |新增要與 Azure AD 同盟的其他網域。 |
 | [更新 SSL 憑證](active-directory-aadconnectfed-ssl-update.md)| 更新 AD FS 伺服器陣列的 SSL 憑證。 |
-| **後續安裝工作** | |
+| **其他同盟組態** | |
+| [將多個 Azure AD 執行個體與單一 AD FS 執行個體同盟](active-directory-aadconnectfed-single-adfs-multitenant-federation.md) | 將多個 Azure AD 和單一 AD FS 伺服器陣列建立同盟關係| 
 | [新增自訂公司標誌/圖例](active-directory-aadconnect-federation-management.md#customlogo) |指定要顯示於 AD FS 登入頁面的自訂標誌來修改登入體驗。 |
 | [新增登入說明](active-directory-aadconnect-federation-management.md#addsignindescription) |變更 AD FS 登入頁面上的登入說明。 |
 | [修改 AD FS 宣告規則](active-directory-aadconnect-federation-management.md#modclaims) |修改或新增對應至 Azure AD Connect 同步組態之 AD FS 中的宣告規則。 |
 
+
 ## <a name="additional-resources"></a>其他資源
-* [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+* [將兩個 Azure AD 和單一 AD FS 建立同盟關係](active-directory-aadconnectfed-single-adfs-multitenant-federation.md)
 * [Azure 中的 AD FS 部署](active-directory-aadconnect-azure-adfs.md)
 * [使用 Azure 流量管理員在 Azure 中部署高可用性跨地區 AD FS](../active-directory-adfs-in-azure-with-azure-traffic-manager.md)
 

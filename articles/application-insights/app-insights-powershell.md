@@ -11,12 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 03/17/2017
+ms.date: 04/02/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 0ca485599d159fd4e7e001b68e4d4b41b6b2043f
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: e1ceaf7baef021f97f70a6b1a5203e178db613db
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -173,6 +173,16 @@ ms.lasthandoff: 03/29/2017
 
 您可以新增其他參數 - 可在範本的參數區段中找到其描述。
 
+## <a name="to-get-the-instrumentation-key"></a>取得檢測金鑰
+建立應用程式資源之後，您會想要檢測金鑰： 
+
+```PS
+    $resource = Find-AzureRmResource -ResourceNameEquals "<YOUR APP NAME>"
+    $details = Get-AzureRmResource -ResourceId $resource.ResourceId
+    $ikey = $details.Properties.InstrumentationKey
+```
+
+
 <a id="price"></a>
 ## <a name="set-the-price-plan"></a>設定價格方案
 
@@ -193,17 +203,11 @@ ms.lasthandoff: 03/29/2017
 |2|Enterprise|
 
 * 如果您只想要使用預設基本價格方案，您可以從範本中省略 CurrentBillingFeatures 資源。
+* 如果您想在建立元件資源之後變更價格方案，可以使用省略 "microsoft.insights/components" 資源的範本。 此外，也從計費資源省略 `dependsOn` 節點。 
+
+若要驗證更新的價格方案，請在瀏覽器中查看 [功能與定價] 刀鋒視窗。 「重新整理瀏覽器檢視」以確保您看到的是最新的狀態。
 
 
-## <a name="to-get-the-instrumentation-key"></a>取得檢測金鑰
-建立應用程式資源之後，您會想要 iKey： 
-
-```PS
-
-    $resource = Get-AzureRmResource -ResourceId "/subscriptions/<YOUR SUBSCRIPTION ID>/resourceGroups/<YOUR RESOURCE GROUP>/providers/Microsoft.Insights/components/<YOUR APP NAME>"
-
-    $resource.Properties.InstrumentationKey
-```
 
 ## <a name="add-a-metric-alert"></a>新增度量警示
 

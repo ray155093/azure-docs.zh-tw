@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: af3ba5a4d1bd457f19038b9917ce55920e5e882b
-ms.openlocfilehash: 7d97e0f8be183c8858520d795ac28b7ad63a6dae
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: f8ecb68fddf4293592e546c0c10d0c86664bd090
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -29,7 +29,7 @@ ms.lasthandoff: 02/22/2017
 [!INCLUDE [storage-file-overview-include](../../includes/storage-file-overview-include.md)]
 
 ## <a name="about-this-tutorial"></a>關於本教學課程
-在本教學課程中，您將學習如何對 Microsoft Azure 檔案儲存體服務執行基本作業。 透過以 C++ 撰寫的範例，您將學習如何建立共用和目錄、上傳、列出及刪除檔案。 如果您是 Microsoft Azure 檔案儲存體服務的新手，透過下列各節中的概念對於了解範例很有幫助。
+在本教學課程中，您將學習如何對 Microsoft Azure 檔案儲存體服務執行基本作業。 透過以 C++ 撰寫的範例，您將學習如何建立共用和目錄、上傳、列出及刪除檔案。 如果您是 Microsoft Azure 檔案儲存體服務的新手，閱讀下列各節中的概念，對於了解範例很有幫助。
 
 [!INCLUDE [storage-file-concepts-include](../../includes/storage-file-concepts-include.md)]
 
@@ -56,7 +56,7 @@ Install-Package wastorage
 ```
 
 ## <a name="set-up-an-azure-storage-connection-string"></a>設定 Azure 儲存體連接字串
-若要使用檔案儲存體，您必須連接到您的 Azure 儲存體帳戶。 第一個步驟是設定連接字串，我們將用來連線至您的儲存體帳戶。 讓我們定義靜態變數以便進行。
+若要使用檔案儲存體，您必須連接到您的 Azure 儲存體帳戶。 第一個步驟是設定連接字串，我們將用它來連線至您的儲存體帳戶。 讓我們定義靜態變數以便進行。
 
 ```cpp
 // Define the connection-string with your values.

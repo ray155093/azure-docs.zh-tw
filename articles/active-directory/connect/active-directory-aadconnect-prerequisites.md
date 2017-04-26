@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/17/2017
+ms.date: 03/30/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 9ee7213aa30a11b13d4aa091b403b8b27fb78197
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: bb6f3a7710c52a210ea8014430285ba8917cc895
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -31,9 +31,10 @@ ms.lasthandoff: 03/18/2017
 * Azure 訂用帳戶或 [Azure 試用版訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)。 此訂閱僅需要用來存取 Azure 入口網站，而不會用於 Azure AD Connect。 如果您正在使用 PowerShell 或 Office 365，則不需要 Azure 訂用帳戶來使用 Azure AD Connect。 如果您有 Office 365 授權，也可以使用 Office 365 入口網站。 使用付費的 Office 365 授權，您也可以從 Office 365 入口網站登入 Azure 入口網站。
   * 您也可以在 [Azure 入口網站](https://portal.azure.com)中使用 Azure AD 預覽功能。 此入口網站不需要 Azure 授權。
 * [新增並驗證](../active-directory-add-domain.md) 您計畫使用於 Azure AD 中的網域。 例如，如果您計畫讓使用者使用 contoso.com，請確定此網域已經過驗證，而且您不是只使用 contoso.onmicrosoft.com 預設網域。
-* Azure AD 租用戶預設允許 5 萬個物件。 當您驗證網域後，此限額會增加到 30 萬個物件。 如果您在 Azure AD 中需要更多的物件，您必須洽詢支援人員以增加此限額。 如果您需要 50 萬個以上的物件，您需要如 Office 365、Azure AD Basic、Azure AD Premium 或 Enterprise Mobility Suite 等授權。
+* Azure AD 租用戶預設允許 5 萬個物件。 當您驗證網域後，此限額會增加到 30 萬個物件。 如果您在 Azure AD 中需要更多的物件，您必須洽詢支援人員以增加此限額。 如果您需要 50 萬個以上的物件，您需要如 Office 365、Azure AD Basic、Azure AD Premium 或 Enterprise Mobility + Security 等授權。
 
 ### <a name="prepare-your-on-premises-data"></a>準備您的內部部署資料
+* 在同步至 Azure AD 和 Office 365 之前，使用 [IdFix](https://support.office.com/article/Install-and-run-the-Office-365-IdFix-tool-f4bd2439-3e41-4169-99f6-3fabdfa326ac) 來識別目錄中如重複項目和格式問題等的錯誤。
 * 檢閱 [您可在 Azure AD 中啟用的選用同步處理功能](active-directory-aadconnectsyncservice-features.md) ，並評估您應該啟用哪些功能。
 
 ### <a name="on-premises-active-directory"></a>內部部署 Active Directory
@@ -42,13 +43,15 @@ ms.lasthandoff: 03/18/2017
 * Azure AD 使用的網域控制站必須為可寫入。 **不**支援使用 RODC (唯讀網域控制站)，且 Azure AD Connect 不會追蹤任何寫入重新導向。
 * **不**支援使用內部部署樹系/使用 SLD (單一標籤網域) 的網域。
 * **不**支援使用內部部署樹系/帶點 (名稱包含句點 ".") 的 NetBios 名稱的網域。
+* 建議您[啟用 Active Directory 資源回收筒](active-directory-aadconnectsync-recycle-bin.md)。
 
 ### <a name="azure-ad-connect-server"></a>Azure AD Connect 伺服器
 * Azure AD Connect 無法安裝至 Small Business Server 或 Windows Server Essentials。 伺服器必須使用 Windows Server Standard 或以上版本。
 * Azure AD Connect 伺服器必須已安裝完整的 GUI。 **不**支援在伺服器核心上安裝。
 * Azure AD Connect 必須安裝於 Windows Server 2008 或更新版本上。 此伺服器可以是網域控制站或成員伺服器 (使用快速設定時)。 如果您使用自訂設定，伺服器也可以是獨立伺服器，而且不需加入網域。
-* 如果您要在 Windows Server 2008 上安裝 Azure AD Connect，請務必套用來自 Windows Update 的最新 Hotfix。 無法在未修補的伺服器上開始進行安裝。
+* 如果您要在 Windows Server 2008 或 Windows Server 2008 R2 上安裝 Azure AD Connect，請務必套用來自 Windows Update 的最新 Hotfix。 無法在未修補的伺服器上開始進行安裝。
 * 如果您打算使用「密碼同步處理」 功能，Azure AD Connect 伺服器必須是 Windows Server 2008 R2 SP1 或更新版本。
+* 如果您計畫使用「群組受管理的服務帳戶」，則 Azure AD Connect 伺服器必須位於 Windows Server 2012 或更新版本上。
 * Azure AD Connect 伺服器必須已安裝 [.NET Framework 4.5.1](#component-prerequisites) 或更新的版本及 [Microsoft PowerShell 3.0](#component-prerequisites) 或更新的版本。
 * 如果部署的是 Active Directory Federation Services，則安裝 AD FS 或 Web 應用程式 Proxy 的伺服器必須是 Windows Server 2012 R2 或更新版本。 [Windows 遠端管理](#windows-remote-management) ，才能執行遠端安裝。
 * 如果部署的是 Active Directory 同盟服務，則您需要 [SSL 憑證](#ssl-certificate-requirements)。
@@ -56,7 +59,7 @@ ms.lasthandoff: 03/18/2017
 * 如果全域系統管理員已啟用 MFA，URL **https://secure.aadcdn.microsoftonline-p.com** 就必須在信任的網站清單中。 在顯示 MFA 挑戰提示時，如果您尚未將此 URL 新增到信任的網站清單，系統會先提示您將它新增到清單。 您可以使用 Internet Explorer 將它新增到信任的網站。
 
 ### <a name="sql-server-used-by-azure-ad-connect"></a>Azure AD Connect 使用的 SQL Server
-* Azure AD Connect 需要 SQL Server 資料庫來儲存身分識別資料。 預設會安裝 SQL Server 2012 Express LocalDB (輕量版的 SQL Server Express)，並且在本機電腦上建立服務的服務帳戶。 SQL Server Express 有 10 GB 的大小限制，可讓您管理大約 100,000 個物件。 如果您需要管理更多數量的目錄物件，則必須將安裝精靈指向不同的 SQL Server 安裝。
+* Azure AD Connect 需要 SQL Server 資料庫來儲存身分識別資料。 預設會安裝 SQL Server 2012 Express LocalDB (SQL Server Express 的精簡版)。 SQL Server Express 有 10 GB 的大小限制，可讓您管理大約 100,000 個物件。 如果您需要管理更多數量的目錄物件，則必須將安裝精靈指向不同的 SQL Server 安裝。
 * 如果您使用個別的 SQL Server，這些需求適用於：
   * Azure AD Connect 支援各種 Microsoft SQL Server 版本，從 SQL Server 2008 (含最新的 Service Pack) 到 SQL Server 2016 都包含在內。 **不支援** 使用 Microsoft Azure SQL Database 作為資料庫。
   * 您必須使用不區分大小寫的 SQL 定序。 這些定序是在其名稱中使用 \_CI_ 來識別。 **不支援**使用區分大小寫的定序 (在其名稱中以 \_CS_ 來識別)。
@@ -87,7 +90,7 @@ ms.lasthandoff: 03/18/2017
     </system.net>
 ```
 
-* 如果您的 Proxy 伺服器需要驗證，則[服務帳戶](active-directory-aadconnect-accounts-permissions.md#azure-ad-connect-sync-service-accounts)必須位於網域中，且您必須使用自訂的設定安裝路徑來指定[自訂服務帳戶](active-directory-aadconnect-get-started-custom.md#install-required-components)。 您也需要對 machine.config 進行不同的變更。 在 machine.config 中進行這項變更之後，安裝精靈和同步處理引擎就會回應來自 Proxy 伺服器的驗證要求。 在所有安裝精靈頁面中 ([設定]  頁面除外)，都會使用已登入之使用者的認證。 在安裝精靈結尾的 [設定] 頁面上，內容會切換到您建立的[服務帳戶](active-directory-aadconnect-accounts-permissions.md#azure-ad-connect-sync-service-accounts)。 Machine.config 區段應該看起來像這樣。
+* 如果您的 Proxy 伺服器需要驗證，則[服務帳戶](active-directory-aadconnect-accounts-permissions.md#azure-ad-connect-sync-service-account)必須位於網域中，且您必須使用自訂的設定安裝路徑來指定[自訂服務帳戶](active-directory-aadconnect-get-started-custom.md#install-required-components)。 您也需要對 machine.config 進行不同的變更。 在 machine.config 中進行這項變更之後，安裝精靈和同步處理引擎就會回應來自 Proxy 伺服器的驗證要求。 在所有安裝精靈頁面中 ([設定]  頁面除外)，都會使用已登入之使用者的認證。 在安裝精靈結尾的 [設定] 頁面上，內容會切換到您建立的[服務帳戶](active-directory-aadconnect-accounts-permissions.md#azure-ad-connect-sync-service-account)。 Machine.config 區段應該看起來像這樣。
 
 ```
     <system.net>

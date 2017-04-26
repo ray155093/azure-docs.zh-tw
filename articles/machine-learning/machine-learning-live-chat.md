@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/20/2017
+ms.date: 04/10/2017
 ms.author: garye
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 1dd817c9b3160c47463a3a88380d550d127d898e
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: f8e624b54578009e55921606a9e37f884faf50c7
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -32,7 +32,8 @@ ms.lasthandoff: 03/22/2017
 
 ![Azure ML 聊天對話方塊](./media/machine-learning-live-chat/AzureMLChat.png)
 
-## <a name="dont-see-the-live-chat-icon"></a>看不到即時聊天圖示嗎？
+**看不到即時聊天圖示嗎？**
+
 即時聊天由 Machine Learning 小組的成員參與。 如果您看不到即時聊天圖示，是因為該小組的人員目前無法參與聊天。 例如，可能不是正常上班時間。 
 
 您隨時都能將問題張貼於 [Machine Learning 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning)上，讓 Machine Learning 小組的成員和其他具有豐富經驗的科學家和開發人員能夠看見它們。

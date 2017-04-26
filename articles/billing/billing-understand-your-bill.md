@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/03/2017
+ms.date: 04/07/2017
 ms.author: erihur;genli
 translationtype: Human Translation
-ms.sourcegitcommit: 29a6290a19186d5bc8a07d87617b47d21529d6b7
-ms.openlocfilehash: 2e99332e2a2b023c00669b3ad5ea07f0c791a805
-ms.lasthandoff: 02/14/2017
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: 6db1fedad08ee33f3468fb98f59071a1521921db
+ms.lasthandoff: 04/11/2017
 
 
 ---
@@ -29,7 +29,7 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。 某些費率方
 
 在上一個計費期間結束時，最多可能會有 24 小時的使用量顯示在您目前的帳單中。 此外，針對國際客戶而列在帳單明細上的費用僅為估算用途， 因為銀行換匯的費用不同。
 
-## <a name="a-namepdfa-understand-your-invoice-pdf"></a><a name="pdf"></a> 了解發票 (.pdf)
+## <a name="pdf"></a> 了解發票 (.pdf)
 發票會提供費用的摘要。 您可以從 [Azure 入口網站](https://portal.azure.com)下載可攜式文件格式 (.pdf) 的發票。 如需詳細資訊，請參閱[如何取得您的 Azure 帳單發票和每日使用量資料](billing-download-azure-invoice-daily-usage-date.md)。 
 
 下列各節列出您在發票上看到的大部分詞彙以及每個詞彙的說明。
@@ -77,10 +77,10 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。 某些費率方
 
 | 詞彙 | 說明 |
 | --- | --- |
-| 買方 |這會預先填入帳戶的設定檔地址。 如果您需要變更這個地址，請參閱[如何變更連絡人電子郵件、地址和電話號碼等 Azure 帳戶的設定檔資訊](billing-how-to-change-azure-account-profile.md)。 |
-| 付款指示 |如果您的付款方法是發票，這就是指示寄送支票、電匯或隔天送達支票的位置。 如需詳細資訊，請參閱 [Azure 帳單 - 如何開立發票](https://azure.microsoft.com/pricing/invoicing/) |
+| 買方 | 帳戶上的設定檔地址。 如果您需要變更地址，請參閱[如何變更連絡人電子郵件、地址和電話號碼等 Azure 帳戶的設定檔資訊](billing-how-to-change-azure-account-profile.md)。 |
+| 付款指示 | 如果您依發票付款，這些指示會告訴您要將支票寄到何處、要使用電匯或隔夜支票。 如需詳細資訊，請參閱 [Azure 帳單 - 如何開立發票](https://azure.microsoft.com/pricing/invoicing/) |
 
-## <a name="a-namecsva-understand-detailed-usage-charges-csv"></a><a name="csv"></a> 了解詳細的使用量費用 (.csv)
+## <a name="csv"></a> 了解詳細的使用量費用 (.csv)
 使用量檔案會顯示在目前的計費期間內每個資源的使用量。 此檔案以逗號分隔值 (.csv) 檔案格式提供，您可以使用試算表應用程式開啟這個檔案。 如果您看到兩個可用版本，請下載第 2 個版本。 這是最新的檔案格式。 如需詳細資訊，請參閱[如何取得您的 Azure 帳單發票和每日使用量資料](billing-download-azure-invoice-daily-usage-date.md)。
 
 使用量費用是訂用帳戶的**每月**總費用減去任何信用額度或折扣。 我們會根據您過去一個月的使用量向您收取費用。  
@@ -102,10 +102,10 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。 某些費率方
 |已耗用的數量 |計費期間所使用之資源的數量。 |
 |已包括的數量 |目前計費期間免費提供之支援的數量。 |
 |超額數量 |顯示「已耗用的數量」和「已包括的數量」之間的差額。 我們會針對此數量向您收費。 對於不提供優惠所含數量的隨收隨付優惠，這個總數會與「已耗用的數量」相同。 |
-|承諾用量期間 |顯示從您的 6 或 12 個月優惠相關承諾用量中減去的資源費用。 資源費用得依時間順序減去。 |
+|承諾用量期間 |顯示從您的 6 或 12 個月供應項目相關承諾用量中減去的資源費用。 資源費用得依時間順序減去。 |
 |貨幣 |目前計費期間所使用的貨幣。 |
-|超額部分 |顯示超過您的 6 或 12 個月優惠相關承諾用量的資源費用。 |
-|承諾用量費率 |顯示根據您的 6 或 12 個月優惠相關總承諾用量的承諾用量費率。 |
+|超額部分 |顯示超過您的 6 或 12 個月供應項目相關承諾用量的資源費用。 |
+|承諾用量費率 |顯示根據您的 6 或 12 個月供應項目相關總承諾用量的承諾用量費率。 |
 |費率 |每個計費單位向您收取的費率。 |
 |值 |顯示 [超額數量] 資料行和 [費率] 資料行兩者相乘的結果。 如果「已耗用的數量」沒有超過「已包括的數量」，則此資料行中沒有任何費用。 |
 
@@ -117,7 +117,7 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。 某些費率方
 | --- | --- |
 |使用日期 |使用資源的日期。 |
 |計量類別 |識別這個使用所屬的最上層服務。 |
-|計量識別碼 |計費的計量識別碼。 這是用於價格計費使用量的識別碼。 |
+|計量識別碼 |用於訂定計費使用狀況價格的計費計量識別碼。 |
 |計量子類別 |定義可能會影響費率的 Azure 服務類型。 |
 |計量名稱 |識別耗用資源的度量單位。 |
 |計量區域|針對根據資料中心位置定價的某些服務，識別資料中心的位置。 |
@@ -130,11 +130,9 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。 某些費率方
 |標記 |您指派給資源的標記。 使用標記為帳單記錄分組。 例如，您可以使用標記，根據使用資源的部門散發成本。 支援發出標記的服務為虛擬機器、儲存體，以及使用 [Azure Resource Manager API](/rest/api/resources/resources) 佈建的網路服務。 如需詳細資訊，請參閱[使用標記組織您的 Azure 資源](http://azure.microsoft.com/updates/organize-your-azure-resources-with-tags/)。 |
 |其他資訊 |服務專屬的中繼資料。 例如，虛擬機器的影像類型。 |
 |服務資訊 1 |服務在訂用帳戶上所屬的專案名稱。 |
-|服務資訊 2 |這是舊版欄位，可擷取選擇性服務的特定中繼資料。 |
+|服務資訊 2 |舊版欄位，可擷取選擇性的服務特定中繼資料。 |
 
 ## <a name="tips-for-cost-management"></a>成本管理的秘訣
-您最好主動控制您的成本︰
-
 - 使用[價格計算機](https://azure.microsoft.com/pricing/calculator/)、[擁有權總成本計算機](https://aka.ms/azure-tco-calculator)，以及新增服務的時間預估成本
 - [設定帳務警示](billing-set-up-alerts.md)
 - [定期在 Azure 入口網站檢閱您的使用量和成本](billing-getting-started.md#costs)
@@ -142,13 +140,13 @@ Microsoft Azure 訂用帳戶的費用會因費率方案而異。 某些費率方
 若要深入了解，請參閱[開始使用 Azure 計費與成本管理](billing-getting-started.md)。
 
 ## <a name="how-do-i-make-a-payment"></a>我要如何進行付款？
-如果您設定信用卡或轉帳卡做為付款方法，則會自動扣款。 如果您設定為使用 [發票付款方法](https://azure.microsoft.com/pricing/invoicing/)，請將您的付款交付至您發票底部所列的位置。 如需詳細說明，請 [連絡支援服務](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
+如果您設定信用卡或轉帳卡做為付款方法，則會自動扣款。 如果您使用[發票付款方法](https://azure.microsoft.com/pricing/invoicing/)，請將您的款項匯到發票底部所列的位置。 如需詳細說明，請[連絡客戶支援](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
 ## <a name="how-do-i-check-the-status-of-a-payment-made-by-credit-card"></a>如何檢查信用卡付款的狀態？
 [建立支援票證](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以要求查看付款的狀態。 
 
 ## <a name="what-about-marketplace-orders-or-external-service-charges"></a>那 Marketplace 訂單或外部服務費用呢？
-外部服務先前稱為 Marketplace 訂單。 外部服務是由獨立的服務廠商所提供，不過已整合在 Azure 生態系統中。 若要深入了解，請參閱[了解您的 Azure 外部服務費用](billing-understand-your-azure-marketplace-charges.md)。
+外部服務先前稱為 Marketplace 訂單。 外部服務是由獨立的服務廠商所提供，不過已整合在 Azure 中。 若要深入了解，請參閱[了解您的 Azure 外部服務費用](billing-understand-your-azure-marketplace-charges.md)。
 
 ## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。 
 如果仍需要協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。

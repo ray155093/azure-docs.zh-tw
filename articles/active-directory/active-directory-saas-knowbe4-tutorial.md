@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2017
+ms.date: 03/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: ed2fc2b34ff10acc806daec84986f8db58e713c3
-ms.openlocfilehash: bc7ce4867180dd9f896b894b56a02bf033ed6bbb
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: deb4916d69ad9a447836b33711864c242e5c5dec
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 02/17/2017
 將 KnowBe4 與 Azure AD 整合可提供下列優點：
 
 * 您可以在 Azure AD 中管控可存取 KnowBe4 的人員
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 KnowBe4 (單一登入)
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 KnowBe4 單一登入 (SSO)
 * 您可以在 Azure Active Directory 入口網站集中管理您的帳戶。
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -46,7 +46,7 @@ ms.lasthandoff: 02/17/2017
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
 此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。  
@@ -54,7 +54,7 @@ ms.lasthandoff: 02/17/2017
 本教學課程中說明的案例由二個主要建置組塊組成：
 
 * 從資源庫加入 KnowBe4
-* 設定並測試 Azure AD 單一登入
+* 設定並測試 Azure AD SSO
 
 ## <a name="add-knowbe4-from-the-gallery"></a>從資源庫加入 KnowBe4
 若要設定 KnowBe4 與 Azure AD 的整合作業，您需要從資源庫將 KnowBe4 新增至受管理的 SaaS 應用程式清單。
@@ -88,11 +88,11 @@ ms.lasthandoff: 02/17/2017
 
 若要設定及測試與 KnowBe4 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)**，讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
 3. **[建立 KnowBe4 測試使用者](#creating-a-KnowBe4-test-user)** - 在 KnowBe4 中建立一個 Britta Simon 對應項目，其要與 Azure AD 中代表她的項目連結。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
+5. **[測試單一登入](#testing-single-sign-on)**，驗證組態是否能運作。
 
 ### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 本節的目標是要在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 KnowBe4 應用程式中設定單一登入。
@@ -180,7 +180,7 @@ ms.lasthandoff: 02/17/2017
 ### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 本節的目標是要將 KnowBe4 的存取權授與 Britta Simon ，讓她能夠使用 Azure 單一登入。
 
-    ![Assign User][200] 
+   ![指派使用者][200] 
 
 **若要將 Britta Simon 指派至 KnowBe4，請執行下列步驟：**
 

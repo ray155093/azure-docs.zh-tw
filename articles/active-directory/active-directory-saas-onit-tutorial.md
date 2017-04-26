@@ -11,35 +11,36 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/26/2017
+ms.date: 03/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: b1c18ac614e17cbd25691dc92dbd14a781e4d8ab
-ms.openlocfilehash: ee656180676450834940b996bccf93c26190f9d6
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 84962c04e15bd010357f96da7dbf418cc68adab1
+ms.lasthandoff: 04/03/2017
 
 
 ---
 
 # <a name="tutorial-azure-active-directory-integration-with-onit"></a>教學課程：Azure Active Directory 與 Onit 整合
 本教學課程的目的是要示範 Azure 與 Onit 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
-* 有效的 Azure 訂閱
-* 啟用 Onit 單一登入的訂用帳戶
+* 有效的 Azure 訂用帳戶
+* 已啟用 Onit 單一登入 (SSO) 的訂用帳戶
 
 完成本教學課程之後，您指派給 Onit 的 Azure AD 使用者就能夠以單一登入 (SSO) 方式登入 Onit 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 Onit 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
 ![案例](./media/active-directory-saas-onit-tutorial/IC791166.png "案例")
 
-## <a name="enabling-the-application-integration-for-onit"></a>啟用 Onit 的應用程式整合
+## <a name="enable-the-application-integration-for-onit"></a>啟用 Onit 的應用程式整合
 本節的目的是要說明如何啟用 Onit 的應用程式整合。
 
 **若要啟用 Onit 的應用程式整合，請執行下列步驟：**
@@ -64,20 +65,21 @@ ms.lasthandoff: 02/03/2017
    
    ![Onit](./media/active-directory-saas-onit-tutorial/IC795325.png "Onit")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Onit 中進行驗證。  
 
-設定 Onit 的單一登入需要您從憑證抓取指紋值。  
-如果您不熟悉這個程序，請參閱 [如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+設定 Onit 的 SSO 需要您從憑證擷取指紋值。
 
-Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂屬性對應到您的 **saml token 屬性** 設定。  
+如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+
+Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂屬性對應到您的 **saml token 屬性**設定。  
 
 以下螢幕擷取畫面顯示上述的範例。
 
 ![單一登入](./media/active-directory-saas-onit-tutorial/IC791168.png "單一登入")
 
-**若要設定單一登入，請執行下列步驟：**
+**若要設定 SSO，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站的 [Onit] 應用程式整合頁面中，按一下最上面功能表中的 [屬性] 來開啟 [SAML Token 屬性] 對話方塊。
    
@@ -89,10 +91,10 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
    |名稱|User.userprincipalname|
    |電子郵件|User.mail|
 
-   1.  針對上表中的每個資料列，按一下 [新增使用者屬性] 。
-   2.  在 [屬性名稱]  文字方塊中，輸入該資料列所顯示的屬性名稱。
-   3.  在 [屬性值]  清單中，選取該資料列所顯示的屬性名稱。
-   4.  按一下 [完成] 。
+   1. 針對上表中的每個資料列，按一下 [新增使用者屬性] 。
+   2. 在 [屬性名稱]  文字方塊中，輸入該資料列所顯示的屬性名稱。
+   3. 在 [屬性值]  清單中，選取該資料列所顯示的屬性名稱。
+   4. 按一下 [完成] 。
 
 3. 按一下 [套用變更] 。
 4. 在您的瀏覽器中，按一下 [返回] 以再次開啟 [快速啟動] 對話方塊。
@@ -139,7 +141,7 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
     
     ![設定單一登入](./media/active-directory-saas-onit-tutorial/IC791179.png "設定單一登入")
     
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
 為了讓 Azure AD 使用者能夠登入 Onit，必須將他們佈建到 Onit。  
 
@@ -155,20 +157,21 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
    
    ![新增使用者](./media/active-directory-saas-onit-tutorial/IC791181.png "新增使用者")
    
-   1. 在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶的 [名稱] 與 [電子郵件地址]。
-   2. 按一下 [建立] 。    
+  1. 在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶的 [名稱] 與 [電子郵件地址]。
+  2. 按一下 [建立] 。    
    
       >[!NOTE]
       >帳戶擁有者會收到一封電子郵件，其中中包含在帳戶變成作用中之前確認帳戶的連結。
-      > 
-       
+      >
+      >
+     
 
 > [!NOTE]
 > 您可以使用任何其他的 Onit 使用者帳戶建立工具或 Onit 提供的 API，佈建 AAD 使用者帳戶。
 > 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
@@ -182,6 +185,10 @@ Onit 應用程式需要特定格式的 SAML 判斷提示，需要您加入自訂
    
    ![是](./media/active-directory-saas-onit-tutorial/IC767830.png "是")
 
-如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的 SSO 設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
+## <a name="additional-resources"></a>其他資源
+
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 

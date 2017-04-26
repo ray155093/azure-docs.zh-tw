@@ -16,20 +16,21 @@ ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: af2dde245fdef2984465f0c8447b558a2c770618
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 4c6b70d793a7d734f5a29139e1f0b91f0d41e73a
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="set-up-intel-nuc-as-an-iot-gateway"></a>將 Intel NUC 設定為 IoT 閘道器
+[!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
 ## <a name="what-you-will-do"></a>將執行的作業
 
 - 將 Intel NUC 設定為 IoT 閘道器。
 - 在 Intel NUC 上安裝 Azure IoT 閘道 SDK 封裝。
 - 在 Intel NUC 上執行 "hello_world" 範例應用程式，以確認閘道功能。
-    
+
   > 如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-troubleshooting.md)尋求解決方案。
 
 ## <a name="what-you-will-learn"></a>學習目標
@@ -97,9 +98,12 @@ Azure IoT 閘道器 SDK 套件包含預先編譯的 SDK 二進位檔及其相依
 1. 在終端機視窗中執行下列命令，新增 IoT 雲端存放庫：
 
    ```bash
-   rpm --import http://iotdk.intel.com/misc/iot_pub.key
+   rpm --import https://iotdk.intel.com/misc/iot_pub2.key
    smart channel --add IoT_Cloud type=rpm-md name="IoT_Cloud" baseurl=http://iotdk.intel.com/repos/iot-cloud/wrlinux7/rcpl13/ -y
+   smart channel --add WR_Repo type=rpm-md baseurl=https://distro.windriver.com/release/idp-3-xt/public_feeds/WR-IDP-3-XT-Intel-Baytrail-public-repo/RCPL13/corei7_64/
    ```
+
+   > 若系統顯示 [包括此通道?] 提示，請輸入 'y'。
 
    `rpm` 命令會匯入 rpm 索引鍵。 `smart channel` 命令會將 rpm 通道新增至智慧型套件管理員。 執行 `smart update` 命令前，您將會看到如下的輸出。
 
@@ -119,14 +123,14 @@ Azure IoT 閘道器 SDK 套件包含預先編譯的 SDK 二進位檔及其相依
 
    `packagegroup-cloud-azure` 是套件的名稱。 `smart install` 命令是用於安裝套件。
 
-
     > 如果您看到此錯誤，請執行下列命令：「無法使用公用金鑰」
 
     ```bash
     smart config --set rpm-check-signatures=false
     smart install packagegroup-cloud-azure -y
     ```
-   
+    > 若您看到下列錯誤，請將 Intel NUC 重新開機：「沒有任何套件提供 util-linux-dev」
+
    安裝封裝之後，Intel NUC 就已準備好當做閘道運作。
 
 ## <a name="run-the-azure-iot-gateway-sdk-helloworld-sample-application"></a>執行 Azure IoT 閘道器 SDK "hello_world" 範例應用程式
@@ -163,5 +167,6 @@ vim log.txt
 恭喜！ 您已完成將 Intel NUC 設定為閘道器。 現在您可以開始進行下一課，來設定主機電腦、建立 Azure IoT 中樞，並註冊您的 Azure IoT 中樞邏輯裝置。
 
 ## <a name="next-steps"></a>後續步驟
-[準備好您的主機電腦和 Azure IoT 中樞](iot-hub-gateway-kit-c-lesson2-get-the-tools-win32.md)
+[使用 IoT 閘道將裝置連線到 Azure IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
+
 

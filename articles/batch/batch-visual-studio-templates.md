@@ -16,9 +16,9 @@ ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 53c9b75599af48be82c63bc7a9df31d4c2de13a3
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: da77ce827c65deb18d9d84ce5cf768d89788e205
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -55,7 +55,7 @@ Batch 的**作業管理員**和**工作處理器 Visual Studio 範本**提供了
 ## <a name="prerequisites"></a>必要條件
 若要使用 Batch 範本，您需要下列項目︰
 
-* 已安裝 Visual Studio 2015 或更新版本的電腦。
+* 已安裝 Visual Studio 2015 的電腦。 目前只有針對 Visual Studio 2015 支援批次範本。
 * Batch 範本，可從 [Visual Studio 資源庫][vs_gallery]取得作為 Visual Studio 擴充。 有兩種方式可取得範本︰
   
   * 在 Visual Studio 中，使用 [擴充功能和更新] 對話方塊安裝範本 (如需詳細資訊，請參閱[尋找及使用 Visual Studio 擴充][vs_find_use_ext])。 在 [擴充功能和更新]  對話方塊中，搜尋和下載下列兩個延伸模組︰

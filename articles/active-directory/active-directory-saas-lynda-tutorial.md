@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/02/2017
+ms.date: 03/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 07b9df5ab5c7df0089f001a26200bb9c3fb1c508
-ms.openlocfilehash: 7f4f1c22e0b3382a9de770800ccb733c61d4f5b0
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: e7b71bec34aa9507d312eead52060d2c4b774432
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 02/17/2017
 
 ![案例](./media/active-directory-saas-lynda-tutorial/IC781046.png "案例")
 
-## <a name="enabling-the-application-integration-for-lyndacom"></a>啟用 Lynda.com 的應用程式整合
+## <a name="enable-the-application-integration-for-lyndacom"></a>啟用 Lynda.com 的應用程式整合
 本節的目的是要說明如何啟用 Lynda.com 的應用程式整合。
 
 **若要啟用 Lynda.com 的應用程式整合，請執行下列步驟：**
@@ -64,7 +64,7 @@ ms.lasthandoff: 02/17/2017
    
    ![Lynda.com](./media/active-directory-saas-lynda-tutorial/IC777525.png "Lynda.com")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶在 Lynda.com 中進行驗證。
 
@@ -91,7 +91,7 @@ ms.lasthandoff: 02/17/2017
    
    ![設定單一登入](./media/active-directory-saas-lynda-tutorial/IC777530.png "設定單一登入")
    
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
 沒有動作項目可讓您設定 Lynda.com 使用者佈建。  
 當指派的使用者嘗試使用存取面板登入 Lynda.com 時，Lynda.com 會檢查使用者是否存在。  
@@ -102,7 +102,7 @@ ms.lasthandoff: 02/17/2017
 >您可以使用 Lynda.com 提供的任何其他 Lynda.com 使用者帳戶建立工具或 API，佈建 AAD 使用者帳戶。 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 **若要將使用者指派給 Lynda.com，請執行下列步驟：**

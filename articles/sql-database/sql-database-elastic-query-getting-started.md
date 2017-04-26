@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 05/23/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 531fdbbeab09a67be9636b3a70eabbb4148f7400
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: b817577d835f2f4a912356366ab24d1f812e1e11
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -38,7 +38,7 @@ ms.lasthandoff: 03/21/2017
 
     ![命令提示字元][1]
 2. 在命令視窗中，輸入 "1"，然後按 **Enter**。 這會建立分區對應管理員，並加入兩個分區到伺服器。 然後輸入 "3"，然後按 **Enter**；重複此動作四次。 這會在您的分區中插入範例資料列。
-3. [Azure 入口網站](https://portal.azure.com)應該會在您的 v12 伺服器中顯示三個新的資料庫：
+3. [Azure 入口網站](https://portal.azure.com)應該會在您的伺服器中顯示三個新的資料庫：
 
    ![Visual Studio 確認][2]
 

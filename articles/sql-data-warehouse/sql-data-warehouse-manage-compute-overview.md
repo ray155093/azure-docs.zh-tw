@@ -16,9 +16,9 @@ ms.custom: manage
 ms.date: 03/22/2017
 ms.author: elbutter
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: f4a79413bc5e660504b4b6b48fcf496fb0f08ade
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: abe22f542a79714f6e894870872ee6b76ffe7633
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -39,7 +39,7 @@ SQL 資料倉儲的架構分隔儲存體和計算功能，可單獨進行調整�
 ## <a name="how-compute-management-operations-work-in-sql-data-warehouse"></a>計算管理作業如何在 SQL 資料倉儲中運作
 SQL 資料倉儲架構是由控制節點、計算節點及分散到 60 個散發套件的儲存層所組成。 
 
-在 SQL 資料倉儲中的正常作用中工作階段期間，管理中繼資料及包含分散式查詢最佳化工具的系統前端節點。 此前端節點以下為計算節點和儲存層。 針對 DWU 400，您的系統有一個前端節點、四個計算節點和儲存層，其中包含 60 個散發套件。 
+在 SQL 資料倉儲中的正常作用中工作階段期間，您系統的前端節點會管理中繼資料並包含分散式查詢最佳化工具。 此前端節點以下為計算節點和儲存層。 針對 DWU 400，您的系統有一個前端節點、四個計算節點和儲存層，其中包含 60 個散發套件。 
 
 在進行調整或暫停作業時，系統會先刪除所有傳入的查詢，並會復原交易，以確保一致的狀態。 針對調整作業，僅在這個交易回復完成後調整才會發生。 相應增加作業中，系統會佈建計算節點的額外所需數目，然後開始將計算節點重新附加至儲存層。 相應減少作業中，會釋放不需要的節點，其餘的計算節點會將其本身重新附加至適當數目的散發套件。 暫停作業中，會釋放所有的計算節點，而且您的系統會經歷各種中繼資料作業以將最後系統保持在穩定的狀態。
 
@@ -171,7 +171,7 @@ DWU 調整時機的建議︰
 ## <a name="next-steps"></a>後續步驟
 請參閱下列文章，以瞭解其他一些關鍵效能概念：
 
-* [工作負載和並行存取管理][工作負載和並行存取管理]
+* [工作負載和並行管理][Workload and concurrency management]
 * [資料表設計概觀][Table design overview]
 * [資料表散發][Table distribution]
 * [索引資料表的編製][Table indexing]

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/25/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 3ab6d21263ee2f4082cae8d772e715ed04d7d7c0
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 70c7e2334336be78d26784815fb988ce1d22eb12
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -54,7 +54,7 @@ ms.lasthandoff: 03/29/2017
 下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 SQL Server 特有的 Data Factory 實體： 
 
 ## <a name="linked-service-properties"></a>連結服務屬性
-範例中使用 **OnPremisesSqlServer** 類型的連結服務將內部部署 SQL Server 資料庫連結至 Data Factory。 下表提供內部部署 SQL Server 連結服務專屬 JSON 元素的描述。
+您可以建立 **OnPremisesSqlServer** 類型的連結服務，以將內部部署 SQL Server 資料庫連結至資料處理站。 下表提供內部部署 SQL Server 連結服務專屬 JSON 元素的描述。
 
 下表提供 SQL Server 連結服務專屬 JSON 元素的描述。
 
@@ -80,7 +80,7 @@ ms.lasthandoff: 03/29/2017
     "name": "MyOnPremisesSQLDB",
     "properties":
     {
-        "type": "OnPremisesSqlLinkedService",
+        "type": "OnPremisesSqlServer",
         "typeProperties": {
             "connectionString": "Data Source=<servername>;Initial Catalog=MarketingCampaigns;Integrated Security=False;User ID=<username>;Password=<password>;",
             "gatewayName": "<gateway name>"
@@ -97,7 +97,7 @@ ms.lasthandoff: 03/29/2017
      "Name": " MyOnPremisesSQLDB",
      "Properties":
      {
-         "type": "OnPremisesSqlLinkedService",
+         "type": "OnPremisesSqlServer",
          "typeProperties": {
              "ConnectionString": "Data Source=<servername>;Initial Catalog=MarketingCampaigns;Integrated Security=True;",
              "username": "<domain\\username>",
@@ -135,7 +135,7 @@ ms.lasthandoff: 03/29/2017
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
 | SqlReaderQuery |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如：select * from MyTable。 可以參考輸入資料集所參考資料庫中的多個資料表。 如果未指定，執行的 SQL 陳述式：select from MyTable。 |否 |
-| sqlReaderStoredProcedureName |從來源資料表讀取資料的預存程序名稱。 |預存程序的名稱。 |否 |
+| sqlReaderStoredProcedureName |從來源資料表讀取資料的預存程序名稱。 |預存程序的名稱。 最後一個 SQL 陳述式必須是預存程序中的 SELECT 陳述式。 |否 |
 | storedProcedureParameters |預存程序的參數。 |名稱/值組。 參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 |否 |
 
 如果已為 SqlSource 指定 **sqlReaderQuery** ，複製活動會針對 SQL Server 資料庫來源執行這項查詢以取得資料。

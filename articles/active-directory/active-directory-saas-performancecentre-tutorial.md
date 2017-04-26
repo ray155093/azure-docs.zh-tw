@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/20/2017
+ms.date: 03/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 04a045f41965b093aab71e59cd9b5f328b44de84
-ms.openlocfilehash: 801c0f7085034cc3a3ed74722a11204f6421c27d
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 3b1a347322e2307aadbd287cb2235e39e11f1e79
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 801c0f7085034cc3a3ed74722a11204f6421c27d
 PerformanceCentre 與 Azure AD 整合提供下列優點： 
 
 * 您可以在 Azure AD 中控制可存取 PerformanceCentre 的人員 
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 PerformanceCentre (單一登入)
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 PerformanceCentre 單一登入 (SSO)
 * 您可以在 Azure Active Directory 傳統入口網站集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -35,27 +36,27 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 PerformanceCentre 整合，您需要以下項目：
 
 * Azure AD 訂用帳戶
-* 啟用 PerformanceCentre 單一登入的訂用帳戶
+* 已啟用 PerformanceCentre 單一登入 (SSO) 的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。
 > 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。 
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。 
 
 ## <a name="scenario-description"></a>案例描述
-此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。  
+此教學課程的目標是讓您在測試環境中測試 Azure AD SSO。  
 
 本教學課程中說明的案例由三個主要部分組成：
 
 *  從資源庫加入 PerformanceCentre 
-*  設定並測試 Azure AD 單一登入
+*  設定並測試 Azure AD SSO
 
-## <a name="adding-performancecentre-from-the-gallery"></a>從資源庫加入 PerformanceCentre
+## <a name="add-performancecentre-from-the-gallery"></a>從資源庫加入 PerformanceCentre
 若要設定 PerformanceCentre 與 Azure AD 整合，您需要從資源庫將 PerformanceCentre 加入受管理 SaaS 應用程式的清單。
 
 **若要從資源庫加入 PerformanceCentre，請執行下列步驟：**
@@ -80,10 +81,10 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
    
     ![應用程式][500]
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-本節的目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，使用 PerformanceCentre 來設定及測試 Azure AD 單一登入。
+## <a name="configure-and-test-azure-ad-sso"></a>設定並測試 Azure AD SSO
+本節的目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 PerformanceCentre 搭配運作的 Azure AD SSO。
 
-單一登入若要運作，Azure AD 必須知道 PerformanceCentre 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 PerformanceCentre 中的相關使用者之間，建立連結關聯性。  
+若要讓 SSO 運作，Azure AD 必須知道 PerformanceCentre 中與 Azure AD 互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 PerformanceCentre 中的相關使用者之間，建立連結關聯性。  
 
 建立此連結關聯性的方法，就是將 Azure AD 中 [使用者名稱] 的值指定為 PerformanceCentre 中 [Username] 的值。
 
@@ -95,10 +96,10 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-本節的目標是在 Azure AD 傳統入口網站啟用 Azure AD 單一登入，並在您的 PerformanceCentre 應用程式中設定單一登入。
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+本節的目標是要在 Azure 傳統入口網站中啟用 Azure AD SSO，並在您的 PerformanceCentre 應用程式中設定 SSO。
 
-**若要使用 PerformanceCentre 設定 Azure AD 單一登入，請執行下列步驟：**
+**若要搭配 PerformanceCentre 設定 Azure AD SSO，請執行下列步驟：**
 
 1. 在 Azure AD 傳統入口網站的 [PerformanceCentre] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
@@ -140,8 +141,8 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
     
      ![Azure AD 單一登入][16]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。  
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。  
 
 ![建立 Azure AD 使用者][20]
 
@@ -182,10 +183,10 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-performancecentre-tutorial/create_aaduser_08.png) 
    
-    1. 記下 [新密碼] 的值。
-    2. 按一下 [完成]。   
+   1. 記下 [新密碼] 的值。
+   2. 按一下 [完成]。   
 
-### <a name="creating-a-performancecentre-test-user"></a>建立 PerformanceCentre 測試使用者
+### <a name="create-a-performancecentre-test-user"></a>建立 PerformanceCentre 測試使用者
 本節的目標是在 PerformanceCentre 中建立名為 Britta Simon 的使用者。
 
 **若要在 PerformanceCentre 中建立名為 Britta Simon 的使用者，請執行以下步驟：**
@@ -199,17 +200,18 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
     ![建立使用者][401]
    
    1. 在相關的文字方塊中為 Britta Simon 輸入必要的屬性。
-   > [!IMPORTANT]
-   > 在 PerformanceCentre 中，Britta 的使用者名稱屬性必須與 Azure AD 中的使用者名稱相同。
-   > 
-   > 
+
+    >[!IMPORTANT]
+    >在 PerformanceCentre 中，Britta 的使用者名稱屬性必須與 Azure AD 中的使用者名稱相同。
+    > 
+    > 
  
    2. 對 [選擇角色] 選取 [用戶端系統管理員]。
    3. 按一下 [儲存] 。   
 
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-本節的目標是要將 PerformanceCentre 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+本節的目標是將對 PerformanceCentre 的存取權授與 Britta Simon，使她能夠使用 Azure SSO。
 
 ![指派使用者][200] 
 
@@ -229,8 +231,8 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。  
+### <a name="test-single-sign-on"></a>測試單一登入
+本節的目標是要使用「存取面板」來測試您的 Azure AD SSO 組態。  
 
 當您在存取面板中按一下 PerformanceCentre 磚時，應該會自動登入您的 PerformanceCentre 應用程式。
 
@@ -275,10 +277,5 @@ PerformanceCentre 與 Azure AD 整合提供下列優點：
 [402]: ./media/active-directory-saas-performancecentre-tutorial/tutorial_performancecentre_402.png
 
 
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

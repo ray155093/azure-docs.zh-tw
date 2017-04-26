@@ -1,22 +1,22 @@
 ---
-title: "我如何在 Application Insights 中... | Microsoft Docs"
+title: "我如何在 Azure Application Insights 中... | Microsoft Docs"
 description: "Application Insights 中的常見問題集。"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 48b2b644-92e4-44c3-bc14-068f1bbedd22
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 02/05/2016
+ms.date: 04/04/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
-ms.openlocfilehash: 9e54ee2d67a8dfb5b480db01219e128607e26f51
-ms.lasthandoff: 02/02/2017
+ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
+ms.openlocfilehash: d7795a494fbe8d3a850d7d8805cf059a86965a64
+ms.lasthandoff: 04/05/2017
 
 
 ---
@@ -207,3 +207,21 @@ ms.lasthandoff: 02/02/2017
 * 首先， [新增圖表](app-insights-metrics-explorer.md) ，並查看計數器是否位於我們提供的基本組合中。
 * 如果沒有，請[將計數器加入效能計數器模組所收集的組合中](app-insights-performance-counters.md)。
 
+## <a name="version-and-release-tracking"></a>版本和版次追蹤
+若要追蹤應用程式版本，請確定您的 Microsoft Build Engine 程序已產生 `buildinfo.config`。 在您的 .csproj 檔案中加入：  
+
+```XML
+
+    <PropertyGroup>
+      <GenerateBuildInfoConfigFile>true</GenerateBuildInfoConfigFile>    <IncludeServerNameInBuildInfo>true</IncludeServerNameInBuildInfo>
+    </PropertyGroup>
+```
+
+當它有組建資訊時，Application Insights Web 模組會自動新增 **應用程式版本** ，做為每個遙測項目的屬性。 如此可讓您在執行[診斷搜尋](app-insights-diagnostic-search.md)或在[探索計量](app-insights-metrics-explorer.md)時，依據版本來篩選。
+
+但請注意，組建版本號碼只由 Microsoft Build Engine 產生，而不是由 Visual Studio 中的開發人員組建產生。
+
+### <a name="release-annotations"></a>版本註解
+如果您使用 Visual Studio Team Services，您可以[取得註解標記](app-insights-annotations.md) (每當發行新版本時，這會新增至您的圖表)。 下圖顯示此標記的顯示方式。
+
+![圖表上版本註解範例的螢幕擷取畫面](./media/app-insights-asp-net/release-annotation.png)

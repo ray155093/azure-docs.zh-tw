@@ -1,6 +1,6 @@
 ---
 title: "Azure 服務匯流排管理程式庫| Microsoft Docs"
-description: "從 .NET 管理服務匯流排命名空間和實體"
+description: "從 .NET 管理服務匯流排命名空間和傳訊實體"
 services: service-bus-messaging
 cloud: na
 documentationcenter: na
@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 1/6/2017
+ms.date: 04/03/2017
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: dfd1ae52cc56a4d4b4c7ee3f69f0c454be607401
-ms.openlocfilehash: 7b04227327235f788ecf4018b6c159d33113b63d
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: ec9f2fa3d88f59172d320b58287208deb084856f
+ms.lasthandoff: 04/11/2017
 
 
 ---
@@ -36,17 +37,17 @@ ms.openlocfilehash: 7b04227327235f788ecf4018b6c159d33113b63d
 
 若要開始使用服務匯流排管理程式庫，您必須使用 Azure Active Directory (AAD) 來驗證。 AAD 會要求您以提供 Azure 資源存取權的服務主體來進行驗證。 如需建立服務主體的詳細資訊，請參閱以下其中一篇文章：  
 
-* [使用 Azure 入口網站來建立可存取資源的 Active Directory 應用程式和服務主體](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
-* [使用 Azure PowerShell 建立用來存取資源的服務主體](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authenticate-service-principal)
-* [使用 Azure CLI 建立用來存取資源的服務主體](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
+* [使用 Azure 入口網站來建立可存取資源的 Active Directory 應用程式和服務主體](/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+* [使用 Azure PowerShell 建立用來存取資源的服務主體](/azure/azure-resource-manager/resource-group-authenticate-service-principal)
+* [使用 Azure CLI 建立用來存取資源的服務主體](/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
 
-這些教學課程將提供您 `AppId` (用戶端識別碼)、`TenantId` 和 `ClientSecret` (驗證金鑰)，全部由管理程式庫用於驗證。 針對您想要執行的資源群組，您必須具備「擁有者」權限。
+這些教學課程會提供您 `AppId` (用戶端識別碼)、`TenantId` 和 `ClientSecret` (驗證金鑰)，全部由管理程式庫用於驗證。 針對您想要執行的資源群組，您必須具備「擁有者」權限。
 
 ## <a name="programming-pattern"></a>程式設計模式
 
 操控任何服務匯流排資源的模式，都會遵循共通的協定：
 
-1. 使用 `Microsoft.IdentityModel.Clients.ActiveDirectory` 程式庫從 Azure Active Directory 取得權杖。
+1. 使用 **Microsoft.IdentityModel.Clients.ActiveDirectory** 程式庫從 Azure Active Directory 取得權杖。
     ```csharp
     var context = new AuthenticationContext($"https://login.windows.net/{tenantId}");
 
@@ -65,7 +66,7 @@ ms.openlocfilehash: 7b04227327235f788ecf4018b6c159d33113b63d
     };
     ```
 
-1. 將 CreateOrUpdate 參數設為您指定的值。
+1. 將 `CreateOrUpdate` 參數設定為您指定的值。
     ```csharp
     var queueParams = new QueueCreateOrUpdateParameters()
     {
@@ -82,9 +83,4 @@ ms.openlocfilehash: 7b04227327235f788ecf4018b6c159d33113b63d
 ## <a name="next-steps"></a>後續步驟
 * [.NET 管理範例](https://github.com/Azure-Samples/service-bus-dotnet-management/)
 * [Microsoft.Azure.Management.ServiceBus Reference](/dotnet/api/Microsoft.Azure.Management.ServiceBus)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

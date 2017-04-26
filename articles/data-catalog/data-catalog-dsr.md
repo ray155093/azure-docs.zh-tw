@@ -16,9 +16,9 @@ ms.workload: data-catalog
 ms.date: 03/14/2017
 ms.author: maroche
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: b92db8dd81af0c58861644cc02ca9e56b6a6a832
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: d68ed62022834c9417d820a7a64e30b47f71a1bd
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -417,6 +417,24 @@ ms.lasthandoff: 03/17/2017
     <tr>
       <td>Azure DocumentDB 集合</td>
       <td>✓</td>
+      <td>✓ </td>
+      <td>✓ </td>
+      <td><font size=2></font></td>
+      <td><font size=2></font></td>
+    </tr>
+
+    <tr>
+      <td>一般 ODBC 資料表</td>
+      <td>✓ </td>
+      <td>✓ </td>
+      <td>✓ </td>
+      <td><font size=2></font></td>
+      <td><font size=2></font></td>
+    </tr>
+
+    <tr>
+      <td>一般 ODBC 檢視</td>
+      <td>✓ </td>
       <td>✓ </td>
       <td>✓</td>
       <td><font size=2></font></td>
@@ -918,6 +936,22 @@ ms.lasthandoff: 03/17/2017
       <td>集合</td>
       <td>
         <font size=2> 通訊協定︰document-db <br>驗證：{azure-access-key} <br>位址： <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; url <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; database <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 集合 </font>
+      </td>
+    </tr>
+    <tr>
+      <td>一般 ODBC</td>
+      <td>容器</td>
+      <td>資料庫</td>
+      <td>
+        <font size=2>通訊協定：odbc <br>驗證：{基本、windows} <br>位址： <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 選項 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; database </font>
+      </td>
+    </tr>
+    <tr>
+      <td>一般 ODBC</td>
+      <td>資料表</td>
+      <td>資料表、檢視</td>
+      <td>
+        <font size=2>通訊協定：odbc <br>驗證：{基本、windows} <br>位址： <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 選項 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; database <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; object <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; schema </font>
       </td>
     </tr>
     <tr>

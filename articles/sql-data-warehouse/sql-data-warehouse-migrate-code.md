@@ -12,11 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: migrate
 ms.date: 01/30/2017
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: d9436796373af55a18c0b6fbfc036bd6616bbe4f
-ms.openlocfilehash: 0c9a7792331b4662a93a78fe5dd08ab037b466db
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 3fd5224983c723faefb8001888ae20e78acdb8ce
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -31,7 +33,8 @@ ms.openlocfilehash: 0c9a7792331b4662a93a78fe5dd08ab037b466db
 * [merge 陳述式][merge statement]
 * 跨資料庫聯結
 * [資料指標][cursors]
-* [INSERT..EXEC][INSERT..EXEC]
+* <seg>
+  [INSERT..EXEC][INSERT..EXEC]</seg>
 * output 子句
 * 內嵌使用者定義函數
 * 多重陳述式函式
@@ -90,8 +93,8 @@ SQL 資料倉儲並不支援遞迴 CTE。  針對遞迴 CTE 的移轉可以取�
 
 這些問題中有部分可以解決。
 
-## <a name="rowcount-workaround"></a>@@ROWCOUNT因應措施
-若要解決缺少 @@ROWCOUNT, 支援的問題，請建立會從 sys.dm_pdw_request_steps 擷取最後一個資料列計數的預存程序，然後在 DML 陳述式之後執行 `EXEC LastRowCount`。
+## <a name="rowcount-workaround"></a>@@ROWCOUNT 因應措施
+若要解決缺乏 @@ROWCOUNT 支援的問題，請建立會從 sys.dm_pdw_request_steps 擷取最後一個資料列計數的預存程序，然後在 DML 陳述式之後執行 `EXEC LastRowCount`。
 
 ```sql
 CREATE PROCEDURE LastRowCount AS
@@ -135,9 +138,4 @@ SELECT TOP 1 row_count FROM LastRequestRowCounts ORDER BY step_index DESC
 <!--MSDN references-->
 
 <!--Other Web references-->
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

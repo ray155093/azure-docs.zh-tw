@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/20/2016
+ms.date: 04/03/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 7b5df25f46a2824acb361401ab90c960b8e5978f
-ms.openlocfilehash: 8ce47dd649d1d945df506ed65c871cf3afe2f004
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 0c3a11e9a86767641533b16de1b96b4c59bfdf51
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -28,10 +29,9 @@ ms.openlocfilehash: 8ce47dd649d1d945df506ed65c871cf3afe2f004
 ## <a name="available-sql-service-and-data-recommendations"></a>可用的 SQL 服務和資料建議
 | 建議 | 說明 |
 | --- | --- |
-| [啟用伺服器 SQL 稽核](security-center-enable-auditing-on-sql-servers.md) |建議您針對 Azure SQL 伺服器開啟稽核 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。 |
-| [啟用資料庫 SQL 稽核](security-center-enable-auditing-on-sql-databases.md) |建議您針對 Azure SQL 資料庫開啟稽核 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。 |
+| [在 SQL Server 上啟用稽核與威脅偵測](security-center-enable-auditing-on-sql-servers.md) |建議您針對 Azure SQL Server 開啟稽核與威脅偵測 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。 |
+| [在 SQL 資料庫上啟用稽核與威脅偵測](security-center-enable-auditing-on-sql-databases.md) |建議您針對 Azure SQL Database 開啟稽核與威脅偵測 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。 |
 | [在 SQL 資料庫上啟用透明資料加密](security-center-enable-transparent-data-encryption.md) |建議您針對 SQL 資料庫啟用加密 (僅適用於 Azure SQL 服務)。 |
-| [為 Azure 儲存體帳戶啟用加密](security-center-enable-encryption-for-storage-account.md) | 建議您為待用資料啟用「Azure 儲存體服務加密」。 「儲存體服務加密」(SSE) 會在資料被寫入 Azure 儲存體時加密資料，並於擷取資料之前將其解密。 SSE 目前僅適用於 Azure Blob 服務，可用於區塊 Blob、分頁 Blob 和附加 Blob。 若要深入了解，請參閱[待用資料的儲存體服務加密](../storage/storage-service-encryption.md)。</br>只有在 Resource Manager 儲存體帳戶上才支援 SSE。 目前不支援傳統儲存體帳戶。 若要了解傳統和 Resource Manager 部署模型，請參閱 [Azure 部署模型](../azure-classic-rm.md)。 |
 
 ## <a name="see-also"></a>另請參閱
 若要深入了解適用於其他 Azure 資源類型的建議，請參閱下列文章︰
@@ -45,9 +45,4 @@ ms.openlocfilehash: 8ce47dd649d1d945df506ed65c871cf3afe2f004
 * [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) -- 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
 * [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
 * [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

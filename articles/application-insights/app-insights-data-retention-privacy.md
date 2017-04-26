@@ -1,21 +1,22 @@
 ---
-title: "Application Insights 中的資料保留和儲存"
+title: "Azure Application Insights 中的資料保留和儲存 | Microsoft Docs"
 description: "保留和隱私權原則聲明"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: a6268811-c8df-42b5-8b1b-1d5a7e94cbca
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 11/16/2016
+ms.date: 04/07/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 3dc6373c9aaa01000a7da282e48557f175f040e7
-ms.openlocfilehash: a6588718fdc0b561a70f25ac4d674c5edf08d8cb
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: d82f27c9a657a97f23b60ade352e4d2a87166233
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -67,7 +68,7 @@ Application Insights SDK 可用於多種應用程式類型：裝載於您自己�
 * [例外狀況](app-insights-asp-net-exceptions.md) 和當機 - **堆疊傾印**、組建識別碼、CPU 類型。 
 * [相依性](app-insights-asp-net-dependencies.md) - 對外部服務的呼叫，例如 REST、SQL、AJAX。 URI 或連接字串、持續時間、成功、命令。
 * [可用性測試](app-insights-monitor-web-app-availability.md) - 測試的持續時間、步驟、回應。
-* [追蹤記錄檔](app-insights-search-diagnostic-logs.md)和[自訂遙測](app-insights-api-custom-events-metrics.md) - **任何您以程式碼撰寫到記錄檔或遙測中的項目**。
+* [追蹤記錄檔](app-insights-asp-net-trace-logs.md)和[自訂遙測](app-insights-api-custom-events-metrics.md) - **任何您以程式碼撰寫到記錄檔或遙測中的項目**。
 
 [詳細資訊](#data-sent-by-application-insights)。
 
@@ -198,16 +199,7 @@ Application Insights 不會篩選或刪除資料。 您應該適當地管理資�
 ## <a name="credits"></a>學分
 此產品包含由 MaxMind 建立的 GeoLite2 資料，可從 [http://www.maxmind.com](http://www.maxmind.com)取得。
 
-## <a name="a-namevideoavideos"></a><a name="video"></a>影片
-#### <a name="introduction"></a>簡介
-> [!VIDEO https://channel9.msdn.com/Series/Application-Insights-on-Azure-Preview-Portal/Application-Insights-Introduction/player]
-> 
-> 
 
-#### <a name="get-started"></a>開始使用
-> [!VIDEO https://channel9.msdn.com/Series/Application-Insights-on-Azure-Preview-Portal/Getting-Started-with-Application-Insights/player]
-> 
-> 
 
 <!--Link references-->
 
@@ -221,10 +213,5 @@ Application Insights 不會篩選或刪除資料。 您應該適當地管理資�
 [pricing]: http://azure.microsoft.com/pricing/details/application-insights/
 [redfield]: app-insights-monitor-performance-live-website-now.md
 [start]: app-insights-overview.md
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

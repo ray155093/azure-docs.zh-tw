@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 5f31b24a0d46b9d557a55b3c9d0cd7748ecb9c33
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 941a795c4c83e05ec3c5bb55790f8fcc72829a65
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -46,7 +46,7 @@ ms.lasthandoff: 03/21/2017
 
 ## <a name="creating-an-azure-function-and-overview"></a>建立 Azure 函式與概觀
 
-第一個步驟是建立 Azure 函式來處理警示，以及建立封包擷取。 
+第一個步驟是建立 Azure 函式來處理警示，以及建立封包擷取。
 
 下列清單是所進行工作流程的概觀。
 
@@ -65,7 +65,7 @@ ms.lasthandoff: 03/21/2017
 
 ## <a name="adding-modules"></a>新增模組
 
-若要使用網路監看員 PowerShell Cmdlet，您必須將最新的 PowerShell 模組上傳至函式應用程式。
+若要使用網路監看員 PowerShell Cmdlet，您必須將最新的 PowerShell 模組上傳至函數應用程式。
 
 1. 在已安裝最新 Azure PowerShell 模組的本機電腦上，執行下列 PowerShell 命令︰
 
@@ -73,7 +73,7 @@ ms.lasthandoff: 03/21/2017
     (Get-Module AzureRM.Network).Path
     ```
 
-    這可讓您獲得 Azure PowerShell 模組的本機路徑。 在接下來的步驟中會用到這些資料夾。 此案例中使用的模組有︰
+    此範例會提供您 Azure PowerShell 模組的本機路徑。 在接下來的步驟中會用到這些資料夾。 此案例中使用的模組有︰
 
     * AzureRM.Network
 
@@ -107,9 +107,9 @@ ms.lasthandoff: 03/21/2017
 
 ## <a name="authentication"></a>驗證
 
-若要使用 PowerShell Cmdlet，您必須進行驗證。 函式應用程式中必須設定驗證機制。 為此，您必須設定環境變數，並將加密金鑰檔案上傳至函式應用程式。
+若要使用 PowerShell Cmdlet，您必須進行驗證。 函式應用程式中必須設定驗證機制。 若要設定驗證，您必須設定環境變數，並將加密金鑰檔案上傳至函數應用程式。
 
-> [!note]
+> [!NOTE]
 > 此案例只是提供了其中一種如何對 Azure Functions 實作驗證的範例，能夠執行這項操作的方法不只這一種。
 
 ### <a name="encrypted-credentials"></a>加密的認證
@@ -139,7 +139,7 @@ $Encryptedpassword
 
 ### <a name="retrieving-values-for-environment-variables"></a>擷取環境變數的值
 
-所需進行的最後設定是設定所需的環境變數，以存取驗證值。 以下是所建立之環境變數的清單。
+所需進行的最後設定是設定所需的環境變數，以存取驗證值。 下列清單列出所建立的環境變數：
 
 * AzureClientID
 
@@ -303,7 +303,7 @@ if($requestBody.context.resourceType -eq "Microsoft.Compute/virtualMachines")
 ![新增 VM 警示規則至虛擬機器][1]
 
 > [!NOTE]
-> 預設不會啟用計量。 深入了解如何啟用新增計量，請造訪[啟用監視和診斷](../monitoring-and-diagnostics/insights-how-to-use-diagnostics.md)
+> TCP 區段計量預設不會啟用。 若要深入了解如何啟用其他的計量，請造訪[啟用監視和診斷](../monitoring-and-diagnostics/insights-how-to-use-diagnostics.md)
 
 最後從上一個步驟將 URL 貼製警示的 [webhook] 文字方塊中。 按一下 [確定] 以儲存警示規則。
 

@@ -3,7 +3,7 @@ title: "將資料從 SQL Server 載入 Azure SQL 資料倉儲 (SSIS) | Microsoft
 description: "示範如何建立 SQL Server Integration Services (SSIS) 封裝，以將資料從各種資料來源移至 SQL 資料倉儲。"
 services: sql-data-warehouse
 documentationcenter: NA
-author: barbkess
+author: douglaslms
 manager: jhubbard
 editor: 
 ms.assetid: e2c252e9-0828-47c2-a808-e3bea46c134a
@@ -12,13 +12,14 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 10/31/2016
-ms.author: barbkess
 ms.custom: loading
+ms.date: 03/30/2017
+ms.author: douglasl;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: a8c557ea07cbccb913bc47c510f6759dd832c861
-ms.lasthandoff: 12/08/2016
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: d208f783e5b4e7786350706d8025e6e13f45f0d2
+ms.lasthandoff: 04/03/2017
+
 
 
 ---
@@ -55,14 +56,14 @@ SQL Server Integration Services (SSIS) 是彈性的工具組合，提供連接�
 若要逐步執行本教學課程，您需要：
 
 1. **SQL Server Integration Services (SSIS)**。 SSIS 是 SQL Server 的元件，需有試用版或授權版的 SQL Server。 若要取得 SQL Server 2016 Preview 的試用版，請參閱 [SQL Server 試用版][SQL Server Evaluations]。
-2. **Visual Studio**。 若要取得免費的 Visual Studio 2015 Community Edition，請參閱 [Visual Studio Community][Visual Studio Community]。
-3. **SQL Server Data Tools for Visual Studio (SSDT)**。 若要取得 Visual Studio 2015 的 SQL Server Data Tools，請參閱覽[下載 SQL Server Data Tools (SSDT)][Download SQL Server Data Tools (SSDT)]。
+2. **Visual Studio**。 若要取得免費的 Visual Studio Community Edition，請參閱 [Visual Studio Community][Visual Studio Community]。
+3. **SQL Server Data Tools for Visual Studio (SSDT)**。 若要取得適用於 Visual Studio 的 SQL Server Data Tools，請參閱[下載 SQL Server Data Tools (SSDT)][Download SQL Server Data Tools (SSDT)]。
 4. **範例資料**。 本教學課程會使用 AdventureWorks 範例資料庫中儲存在 SQL Server 中的範例資料，做為要載入 SQL 資料倉儲的來源資料。 若要取得 AdventureWorks 範例資料庫，請參閱 [AdventureWorks 2014 範例資料庫][AdventureWorks 2014 Sample Databases]。
 5. **SQL 資料倉儲資料庫和權限**。 本教學課程會連接到 SQL 資料倉儲執行個體，並載入資料至執行個體。 您必須具有建立資料表以及載入資料的權限。
 6. **防火牆規則**。 您必須先在使用您本機電腦 IP 位址的 SQL 資料倉儲上建立防火牆規則，才您可以將資料上傳到此 SQL 資料倉儲。
 
 ## <a name="step-1-create-a-new-integration-services-project"></a>步驟 1：建立新的 Integration Services 專案
-1. 啟動 Visual Studio 2015。
+1. 啟動 Visual Studio。
 2. 從 [檔案] 功能表中，選取 [新增 | 專案]。
 3. 瀏覽至 [安裝 |範本 |商務智慧 |整合服務]  專案類型。
 4. 選取 [整合服務專案] 。 提供 [名稱] 和 [位置] 的值，然後選取 [確定]。

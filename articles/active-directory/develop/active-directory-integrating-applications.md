@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 02/08/2017
 ms.author: mbaldwin;bryanla
 translationtype: Human Translation
-ms.sourcegitcommit: 57383c11682342cb0a6446c79e603843a698fc8c
-ms.openlocfilehash: 835e1c494de59576fd8ac529240729cb33eaa50b
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: e8cc9b790224891a0770b18fe2edb8e1bbfd5b72
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -58,7 +58,7 @@ ms.lasthandoff: 03/01/2017
 ### <a name="overview-of-the-consent-framework"></a>同意架構的概觀
 Azure AD 的同意架構可讓您輕鬆地開發需要存取由 Azure AD 租用戶保護的多租用戶 Web 和原生用戶端應用程式 (不同於註冊用戶端應用程式的架構)。 除了自己的 Web API 之外，這些 Web API 包括 Microsoft Graph API (用以存取 Azure Active Directory、Intune 及 Office 365 中的服務) 和其他 Microsoft 服務 API。 此架構以使用者或系統管理員為根據，他們可同意讓應用程式在他們的目錄中註冊，並可能包括存取目錄資料。
 
-例如，如果 Web 用戶端應用程式需要從 Office 365 讀取有關使用者的行事曆資訊，該使用者必須同意此用戶端應用程式。 取得同意之後，用戶端應用程式可以代表使用者呼叫 Microsoft Graph API，並視需要使用行事曆資訊。 [Microsoft Graph API](https://graph.microsoft.io) 可供存取 Office 365 中的資料 (例如 Exchange 中的行事曆和訊息、SharePoint 中的網站和清單、OneDrive 中的文件、OneNote 中的筆記本、Planner 中的工作、Excel 中的活頁簿等等)，以及 Azure AD 中的使用者和群組和多項 Microsoft 雲端服務中的其他資料物件。 
+例如，如果 Web 用戶端應用程式需要從 Office 365 讀取有關使用者的行事曆資訊，該使用者必須同意此用戶端應用程式。 取得同意之後，用戶端應用程式可以代表使用者呼叫 Microsoft Graph API，並視需要使用行事曆資訊。 [Microsoft Graph API (英文)](https://graph.microsoft.io) 可供存取 Office 365 中的資料 (例如 Exchange 中的行事曆和訊息、SharePoint 中的網站和清單、OneDrive 中的文件、OneNote 中的筆記本、Planner 中的工作、Excel 中的活頁簿等等)，以及 Azure AD 中的使用者和群組和多項 Microsoft 雲端服務中的其他資料物件。 
 
 同意架構建置在 OAuth 2.0 和各種不同流程上，例如授權碼授與和用戶端認證授與，使用公用或機密的用戶端。 藉由使用 OAuth 2.0，Azure AD 就可以建置許多不同類型的用戶端應用程式，例如在電話、平板電腦、伺服器或 web 應用程式上，並且存取所需的資源。
 

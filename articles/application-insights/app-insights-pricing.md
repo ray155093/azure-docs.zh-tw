@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/17/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 3f0c890056c2ee00151ebc4cc74106368a56ba2f
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 229dd21f3ab1ae716cd49611e720450ae5939eb8
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -123,9 +123,16 @@ Application Insights 費用會加到您的 Azure 帳單中。 您可以在 Azure
 * 藉由 [編輯 ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)來關閉您不需要的集合模組。 例如，您可能會決定效能計數器或相依性資料是不必要的。
 * 分割您的遙測，以區隔檢測金鑰。 
 * 預先彙總度量。 如果您在應用程式中呼叫 TrackMetric，您可以使用接受批次測量之平均及標準差計算的多載來減少流量。 您也可以使用 [預先彙總套件](https://www.myget.org/gallery/applicationinsights-sdk-labs)。
-* 最後，您可以降低每日用量上限，限制收集的資料，但這會造成當天剩餘的時間內的資料遺失。 若要變更它，請開啟 [功能與定價]、[資料管理]。
 
-    ![調整每日遙測資料量上限](./media/app-insights-pricing/daily-cap.png) 
+## <a name="managing-the-maximum-daily-data-volume"></a>管理最大每日資料量
+
+您可以使用每日用量上限來限制收集的資料量，但如果達到該上限，您便會失去當天接下來所有來自應用程式的遙測。 我們「不建議」讓您的應用程式達到每日上限，因為在達到該上限後，您將無法追蹤應用程式的健康狀態和效能。 
+
+請改為使用[取樣](app-insights-sampling.md)來將資料量調整到您所需的程度，並只將每日上限做為「最後的手段」，以防您的應用程式開始未預期地傳送大量遙測。 
+
+若要變更每日上限，請依序開啟 [功能與定價] 和 [資料管理]。
+
+![調整每日遙測資料量上限](./media/app-insights-pricing/daily-cap.png) 
 
 ## <a name="sampling"></a>取樣
 [取樣](app-insights-sampling.md) 可以降低將遙測傳送到您 App 的速率，同時仍保留在診斷搜尋時尋找相關事件的功能，並保有正確的事件計數。 

@@ -13,12 +13,12 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 03/15/2017
+ms.date: 04/11/2017
 ms.author: glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: f9eea56f7f7b4f8f47a159c0c444d0d0aacc99cc
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 60c387331f0d47ddcc0dd2da8831911618c002b7
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -34,11 +34,13 @@ Azure 函數應用程式使用 Azure App Service 基礎結構。 本主題說明
 
 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。 儲存體帳戶名稱必須在 Azure 中是獨一無二的。 
 
-函數應用程式建立之後，您可以使用一或多個不同的語言建立個別的函式。 使用[入口網站](functions-create-first-azure-function-azure-portal.md#create-a-function)、[連續部署](functions-continuous-deployment.md)或者[透過 FTP 上傳](https://github.com/projectkudu/kudu/wiki/Accessing-files-via-ftp)來建立函式。  
+函數應用程式建立之後，您可以使用一或多個不同的語言建立個別的函式。 使用[入口網站](functions-create-first-azure-function.md#create-a-function)、[連續部署](functions-continuous-deployment.md)或者[透過 FTP 上傳](https://github.com/projectkudu/kudu/wiki/Accessing-files-via-ftp)來建立函式。  
 
 ## <a name="service-plans"></a>服務方案
 
 Azure Functions 有兩個不同的服務方案︰取用方案和 App Service 方案。 取用方案會在您的程式碼執行時自動配置計算能力、視需要相應放大來處理負載，然後在程式碼未執行時相應縮小。 App Service 方案可讓您的函數應用程式存取 App Service 的所有功能。 建立您的函數應用程式時，您必須選擇您的服務方案，且目前無法變更。 如需詳細資訊，請參閱[選擇 Azure Functions 主控方案](functions-scale.md)。
+
+若計畫在 App Service 方案上執行 JavaScript 函式，您應該選擇核心數目較少的方案。 如需詳細資訊，請參閱 [JavaScript 函式參考資料](functions-reference-node.md#choose-single-core-app-service-plans)。 
 
 ## <a name="storage-account-requirements"></a>儲存體帳戶需求
 

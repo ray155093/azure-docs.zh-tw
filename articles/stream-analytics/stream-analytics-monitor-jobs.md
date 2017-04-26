@@ -13,19 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 03/28/2017
+ms.date: 04/04/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 37797743df0e2ce029b65f267a7cea5c8d793773
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: dc19bec960edff15feffc41bee1bbc63eeff5c6d
+ms.lasthandoff: 04/04/2017
 
 
 ---
 # <a name="programmatically-create-a-stream-analytics-job-monitor"></a>以程式設計方式來建立串流分析工作監視
- 本文示範如何為串流分析工作啟用監視。 透過 REST API、Azure SDK 或 PowerShell 建立的串流分析工作預設不會啟用監視。  您可以在 Azure 入口網站中，瀏覽到該工作的 [監視] 頁面，然後按一下 [啟用] 按鈕來手動啟用，或是按照本文中的步驟執行，將此程序自動化。 串流分析工作的監視資料將會顯示在 Azure 入口網站的 [監視] 索引標籤中。
-
-![工作監視 [工作] 索引標籤](./media/stream-analytics-monitor-jobs/stream-analytics-monitor-jobs-tab.png)
+ 本文示範如何為串流分析工作啟用監視。 透過 REST API、Azure SDK 或 PowerShell 建立的串流分析工作預設不會啟用監視。  您可以在 Azure 入口網站中瀏覽到該工作的 [監視] 頁面，然後按一下 [啟用] 按鈕來手動啟用，或是按照本文中的步驟執行，將此程序自動化。 串流分析工作的監視資料將會顯示在 Azure 入口網站的 [計量] 區域中。
 
 ## <a name="prerequisites"></a>必要條件
 開始閱讀本文之前，您必須符合下列必要條件：
@@ -34,7 +32,7 @@ ms.lasthandoff: 03/06/2017
 * 下載並安裝 [Azure .NET SDK](https://azure.microsoft.com/downloads/)。
 * 一項需要啟用監視的現有串流分析工作。
 
-## <a name="setup-a-project"></a>設定專案
+## <a name="create-a-project"></a>建立專案
 1. 建立 Visual Studio C# .Net 主控台應用程式。
 2. 在 Package Manager Console 中，執行下列命令以安裝 NuGet 封裝。 第一個是 Azure 串流分析管理 .NET SDK。 第二個是將用來啟用監視功能的 Azure 監視器 SDK。 最後一個是驗證要使用的 Azure Active Directory 用戶端。
    
@@ -142,7 +140,7 @@ ms.lasthandoff: 03/06/2017
 下列程式碼將為「現有」  串流分析工作啟用監視。 程式碼的第一部分會對串流分析服務執行 GET 要求，以擷取特定串流分析工作的相關資訊。 在程式碼的第二部分使用  “Id” 屬性 (擷取自 GET 要求) 當成 Put 方法的參數，將 PUT 要求傳送至 Insights 服務，來為串流分析工作啟用監視。
 
 > [!WARNING]
-> 如果您先前已經為不同的串流分析工作啟用監視 (不論是透過 Azure 入口網站，還是以程式設計方式透過以下的程式碼)， **建議您提供先前啟用監視時所提供的相同儲存體帳戶名稱。**
+> 如果您先前已經為不同的串流分析工作啟用監視 (不論是透過 Azure 入口網站，還是以程式設計方式透過以下的程式碼)，建議您提供先前啟用監視時所提供的相同儲存體帳戶名稱。
 > 
 > 儲存體帳戶會連結到您建立串流分析工作所在的區域，而不是明確地連結到工作本身。
 > 

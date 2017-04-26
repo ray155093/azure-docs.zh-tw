@@ -15,9 +15,9 @@ ms.date: 02/27/2017
 ms.author: markvi
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: d6330397b6e74b62836a2e864b1c37ab172d0028
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: c5a0f3f958d42d514a95477c1e39f02c78307d4d
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -60,7 +60,7 @@ ms.lasthandoff: 03/15/2017
 ## <a name="web-browser-requirements"></a>網頁瀏覽器需求
 存取面板至少需要有支援 JavaScript 且啟用 CSS 的瀏覽器。 若要讓使用者透過密碼單一登入 (SSO) 登入應用程式，必須在使用者的瀏覽器中安裝存取面板延伸模組。 當使用者選取已設定密碼 SSO 的應用程式時，就會自動下載此存取面板延伸模組。
 
-存取面板延伸模組目前適用於 Internet Explorer 8 和更新版本、Chrome 及 Firefox 瀏覽器。
+存取面板延伸模組目前適用於 Internet Explorer 8 和更新版本、Edge、Chrome 與 Firefox 瀏覽器。
 
 ## <a name="mobile-app-support"></a>行動應用程式支援
 Azure Active Directory 團隊發行「我的應用程式」行動應用程式。 當使用者安裝此應用程式時，可以在 iOS 和 Android 裝置上登入密碼 SSO 應用程式。

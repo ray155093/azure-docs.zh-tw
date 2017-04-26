@@ -18,9 +18,9 @@ ms.date: 02/28/2017
 ms.author: genli
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 0ec56111847300833ba92cc9149e8a276ba2c6c1
-ms.openlocfilehash: af7cabf3d5286dc3cd368db191bc5218cd9c5893
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: e64c0336578be2c1a1126f7459775f47d73f9d6e
+ms.lasthandoff: 04/07/2017
 
 ---
 # <a name="transfer-ownership-of-an-azure-subscription-to-another-account"></a>將 Azure 訂用帳戶的擁有權轉移給另一個帳戶
@@ -95,11 +95,11 @@ ms.lasthandoff: 03/02/2017
 
 * **所有項目都會轉送嗎？包括資源群組、VM、磁碟和其他執行中的服務？**
 
-  是，VM、磁碟和網站等所有資源都會轉移給新的擁有者。 不過，不會轉送您所設定的任何[管理員角色](billing-add-change-azure-subscription-administrator.md)和[角色型存取控制 (RBAC)](../active-directory/role-based-access-control-configure.md) 原則。 
+  是，VM、磁碟和網站等所有資源都會轉移給新的擁有者。 不過，不會跨不同目錄轉送您所設定的任何[系統管理員角色](billing-add-change-azure-subscription-administrator.md)和[角色型存取控制 (RBAC)](../active-directory/role-based-access-control-configure.md) 原則。
 
 * <a id="no-button"></a>為何沒看到 [轉送訂用帳戶] 按鈕？
 
-  如果您沒看到 [轉送訂用帳戶] 按鈕，則表示您的優惠不支援訂用帳戶轉送。 [連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
+  如果您沒看到 [轉送訂用帳戶] 按鈕，則表示您的優惠不支援訂用帳戶轉送。 [連絡客戶支援](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
 * **訂用帳戶移轉會造成服務中斷嗎？**
 

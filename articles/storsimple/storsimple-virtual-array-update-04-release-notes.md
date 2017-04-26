@@ -12,11 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/07/2017
+ms.date: 04/05/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: 9797df57e6efcba689e6d2f13fed165ee0cc0755
-ms.openlocfilehash: 2b51cdf8ef55c2ee80e3f660a1073419e353ec3a
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: cc2b025b7f3e28954c7f95409ffab03e5cbcf13d
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -80,6 +81,8 @@ Update 0.4 是主要的錯誤修正組建，而且包含一些加強功能。 �
 | **12.** |CHAP |CHAP 認證一經建立，即無法移除。 此外，如果您修改 CHAP 認證，就必須先讓磁碟區離線再上線，變更才會生效。 |新版本將會解決此問題。 |
 | **13.** |iSCSI 伺服器 |顯示在 iSCSI 磁碟區的 [使用的儲存體] 在 StorSimple Manager 服務與 iSCSI 主機中可能不同。 |ISCSI 主機具有檔案系統檢視。<br></br>裝置會在達到磁碟區大小上限時，看到所配置的區塊。 |
 | **14.** |檔案伺服器 |如果資料夾中的檔案中有與其相關聯的替代資料流 (ADS)，就不會透過災害復原、複製和項目層級復原來備份或還原 ADS。 | |
+| **15.** |檔案伺服器 |不支援符號連結。 | |
+| **16.** |檔案伺服器 |如果將 Windows 加密檔案系統 (EFS) 保護的檔案複製或儲存到 StorSimple 虛擬陣列檔案伺服器，將會導致不支援的組態。  | |
 
 ## <a name="next-step"></a>後續步驟
 在您的 StorSimple Virtual Array 上[安裝 Update 0.4](storsimple-virtual-array-install-update-04.md)。
@@ -90,10 +93,5 @@ Update 0.4 是主要的錯誤修正組建，而且包含一些加強功能。 �
 * [StorSimple Virtual Array Update 0.3 版本資訊](storsimple-ova-update-03-release-notes.md)
 * [StorSimple Virtual Array Update 0.1 和 0.2 版本資訊](storsimple-ova-update-01-release-notes.md)
 * [StorSimple Virtual Array 正式運作版版本資訊](storsimple-ova-pp-release-notes.md)
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

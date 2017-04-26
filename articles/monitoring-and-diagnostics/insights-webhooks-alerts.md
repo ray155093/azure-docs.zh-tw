@@ -12,12 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/07/2017
+ms.date: 04/03/2017
 ms.author: ashwink
 translationtype: Human Translation
-ms.sourcegitcommit: c0d101266fecf04a84b5717c1b81cefed90cab40
-ms.openlocfilehash: 440bd939f0c7d235d7be210c7fee9f2bc122718c
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 7282de704a1053e2052a189990fb2b30b2adad6f
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -34,10 +34,7 @@ Azure 警示會將警示內容以 JSON 格式 (定義如下的結構描述) HTTP
 您也可以使用 [Azure PowerShell Cmdlet](insights-powershell-samples.md#create-alert-rules)、[跨平台 CLI](insights-cli-samples.md#work-with-alerts) 或 [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx) 設定警示以張貼至 Webhook URI。
 
 ## <a name="authenticating-the-webhook"></a>驗證 Webhook
-Webhook 可使用下列其中一種方法來進行驗證︰
-
-1. **權杖型授權** - 所儲存的 Webhook URI 具有權杖識別碼，例如  `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
-2. **密碼型授權** - 所儲存的 Webhook URI 具有使用者名稱和密碼，例如  `https://userid:password@mysamplealert/webcallback?someparamater=somevalue&foo=bar`
+Webhook 可以使用權杖型授權來驗證。 Webhook URI 是以權杖識別碼儲存，例如 `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
 
 ## <a name="payload-schema"></a>承載結構描述
 POST 作業對於所有以計量為基礎的警示會包含下列 JSON 承載和結構描述。

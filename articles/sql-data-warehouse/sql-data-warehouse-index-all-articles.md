@@ -12,11 +12,13 @@ ms.workload: sql-data-warehouse
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/31/2016
+ms.custom: reference
+ms.date: 03/30/2017
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ab5b0c283d1bd3fd1b734082d5ccffa4125f6de4
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 9fe41f12960dc099700e01573b4f03ebf63f8749
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -34,7 +36,7 @@ ms.openlocfilehash: ab5b0c283d1bd3fd1b734082d5ccffa4125f6de4
 | &nbsp; | 文章 | 更新的文字、程式碼片段 | 更新時機 |
 | ---:|:--- |:--- |:--- |
 | 2 |[從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md) |/- 若要追蹤位元組和檔案 SELECT  r.command,  s.request_id,  r.status,  count(distinct input_name) as nbr_files,  sum(s.bytes_processed)/1024/1024 as gb_processed FROM  sys.dm_pdw_exec_requests r  inner join sys.dm_pdw_dms_external_work s  on r.request_id = s.request_id WHERE  r. label  = 'CTAS : Load  cso . DimProduct  '  OR r. label  = 'CTAS : Load  cso . FactOnlineSales  ' GROUP BY  r.command,  s.request_id,  r.status ORDER BY  nbr_files desc,  gb_processed desc; |2016-09-07 |
-| 3 |[SQL 資料倉儲還原](sql-data-warehouse-restore-database-overview.md) |**可以還原暫停的資料倉儲嗎？** 若要還原已經暫停的資料倉儲，您需要先讓它恢復上限。 在資料倉儲恢復上線之後，您有七天的還原點可以選擇。 **還原到異地備援區域** 如果您正在使用異地備援儲存體，您可以將資料倉儲還原到您位於不同地理區域的付費資料中心。 資料倉儲已經從上次每日備份還原。 **還原時間軸** 您可以將資料庫還原到過去七天內的任何還原點。 快照集每四到八個小時會啟動，並且可供使用七天。 當快照集存在時間超過七天，它就會過期，而且無法再使用其還原點。 **還原成本** 針對已還原資料倉儲所做的還原變更會以 Azure 進階儲存體費率收費。 如果您將已還原的資料倉儲暫停，會依據 Azure 進階儲存體費率向您收取儲存體費用。 暫停的好處是您不會被收取費用 |2016-09-29 |
+| 3 |[SQL 資料倉儲還原](sql-data-warehouse-restore-database-overview.md) |**是否可以還原暫停的資料倉儲？** 若要還原已經暫停的資料倉儲，您需要先讓它恢復上線。 在資料倉儲恢復上線之後，您有七天的還原點可以選擇。 **還原到異地備援區域** 如果您正在使用異地備援儲存體，您可以將資料倉儲還原到您位於不同地理區域的已配對資料中心。 資料倉儲已經從上次每日備份還原。 **還原時間軸** 您可以將資料庫還原到過去七天內的任何還原點。 快照集每四到八個小時會啟動，並且可供使用七天。 當快照集存在時間超過七天，它就會過期，而且無法再使用其還原點。 **還原成本** 針對已還原資料倉儲的儲存體費用，會以 Azure 進階儲存體費率收費。 如果您將已還原的資料倉儲暫停，會依據 Azure 進階儲存體費率向您收取儲存體費用。 暫停的好處是您不會被收取費用 |2016-09-29 |
 
 ## <a name="get-started"></a>開始使用
 | &nbsp; | 課程名稱 | 說明 |
@@ -158,15 +160,10 @@ ms.openlocfilehash: ab5b0c283d1bd3fd1b734082d5ccffa4125f6de4
 ## <a name="miscellaneous"></a>其他資訊
 | &nbsp; | 課程名稱 | 說明 |
 | ---:|:--- |:--- |
-| 83 |[安裝適用於 SQL 資料倉儲的 Visual Studio 2015 和 SSDT](sql-data-warehouse-install-visual-studio.md) |安裝適用於 Azure SQL 資料倉儲的 Visual Studio 和 SQL Server Development Tools (SSDT) |
+| 83 |[安裝適用於 SQL 資料倉儲的 Visual Studio 和 SSDT](sql-data-warehouse-install-visual-studio.md) |安裝適用於 Azure SQL 資料倉儲的 Visual Studio 和 SQL Server Development Tools (SSDT) |
 | 84 |[移轉至進階儲存體詳細資料](sql-data-warehouse-migrate-to-premium-storage.md) |將現有「SQL 資料倉儲」移轉到進階儲存體的指示 |
 | 85 |[開始使用威脅偵測](sql-data-warehouse-security-threat-detection.md) |如何開始使用威脅偵測 |
 | 86 |[SQL 資料倉儲容量限制](sql-data-warehouse-service-capacity-limits.md) |SQL 資料倉儲的連接、資料庫、資料表及查詢最大值。 |
 | 87 |[針對 Azure SQL 資料倉儲問題進行疑難排解](sql-data-warehouse-troubleshoot.md) |針對 Azure SQL 資料倉儲問題進行疑難排解。 |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

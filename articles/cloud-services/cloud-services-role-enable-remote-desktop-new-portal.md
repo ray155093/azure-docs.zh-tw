@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 11/28/2016
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: b478251715076a254fe87abee1d709f47e2b3886
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: fc9b84d151144ae9cb49beacdf525fdc356818a6
+ms.lasthandoff: 04/11/2017
 
 
 ---
@@ -67,7 +67,7 @@ Azure 入口網站會使用遠端桌面延伸模組方法，因此即使在應�
 4. 按一下 [開啟]，然後按一下 [連接] 以啟動遠端桌面連線。
 
 >[!NOTE]
-> 如果您的雲端服務設置在 NSG 之後，您可能需要建立規則以開啟連接埠 **20000**。
+> 如果您的雲端服務設置在 NSG 後方，您可能需要建立規則以允許連接埠 **3389** 和 **20000** 上的流量。  遠端桌面使用者連接埠 **3389**。  系統已為雲端服務執行個體進行負載平衡，因此您無法直接控制要連線的執行個體。  *RemoteForwarder* 與 *RemoteAccess* 代理程式會管理 RDP 流量，並允許用戶端傳送 RDP Cookie 並指定要連線的個別執行個體。  *RemoteForwarder* 與 *RemoteAccess* 代理程式要求您必須開啟連接埠 **20000***，這在您使用 NSG 的情況下可能是封鎖的。
 
 ## <a name="additional-resources"></a>其他資源
 

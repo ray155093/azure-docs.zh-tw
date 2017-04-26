@@ -1,30 +1,30 @@
 ---
-title: "將 ExpressRoute 線路和相關聯的虛擬網路從傳統移轉至 Resource Manager：Azure | Microsoft Docs"
-description: "本頁面描述如何將傳統線路與相關聯的虛擬網路移轉至 Resource Manager。"
+title: "將 ExpressRoute 關聯的虛擬網路從傳統移轉至 Resource Manager：Azure：PowerShell | Microsoft Docs"
+description: "此頁面描述如何在移動線路之後將關聯的虛擬網路移轉至 Resource Manager。"
 documentationcenter: na
 services: expressroute
 author: ganesr
 manager: timlt
 editor: 
 tags: azure-resource-manager
-ms.assetid: 08152836-23e7-42d1-9a56-8306b341cd91
+ms.assetid: 
 ms.service: expressroute
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/22/2017
+ms.date: 04/11/2017
 ms.author: ganesr;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 9a3ad5be7cc12f1c82eab4a8b3089276a434c234
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 5cebc3c5f2bcfb89f939b98391ffd072263c3e08
+ms.lasthandoff: 04/12/2017
 
 
 ---
-# <a name="migrate-expressroute-circuits-and-associated-virtual-networks-from-the-classic-to-the-resource-manager-deployment-model"></a>將 ExpressRoute 線路和相關聯的虛擬網路從傳統部署模型移轉至 Resource Manager 部署模型
+# <a name="migrate-expressroute-associated-virtual-networks-from-classic-to-resource-manager"></a>將 ExpressRoute 關聯的虛擬網路從傳統移至 Resource Manager
 
-本文說明如何將 Azure ExpressRoute 線路與相關聯的虛擬網路從傳統部署模型移轉至 Azure Resource Manager 部署模型。 
+此文章說明如何在移動您的 ExpressRoute 線路之後將 Azure ExpressRoute 關聯的虛擬網路從傳統部署模型移轉至 Azure Resource Manager 部署模型。 
 
 
 ## <a name="before-you-begin"></a>開始之前
@@ -38,11 +38,11 @@ ms.lasthandoff: 03/29/2017
     * [平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager)](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)
     * [平台支援的從傳統移轉至 Azure Resource Manager 的技術深入探討](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
     * [常見問題集：平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager)](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)
-    * [從傳統到 Azure Resource Manager 移轉的常見錯誤](../virtual-machines/virtual-machines-migration-errors.md)
+    * [檢閱最常見的移轉錯誤和避免方式](../virtual-machines/windows/migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="supported-and-unsupported-scenarios"></a>支援和不支援的案例
 
-* ExpressRoute 線路可以從傳統移轉至 Resource Manager 環境，而不需要停機。 您可以將任何 ExpressRoute 線路從傳統移轉至 Resource Manager 環境，而不需要停機。 請遵循[使用 PowerShell 將 ExpressRoute 線路從傳統部署模型移至 Resource Manager 部署模型](expressroute-howto-move-arm.md)中的指示。 這是將所連接資源移至虛擬網路的必要條件。
+* ExpressRoute 線路可以從傳統移轉至 Resource Manager 環境，而不需要停機。 您可以將任何 ExpressRoute 線路從傳統移轉至 Resource Manager 環境，而不需要停機。 請依照[使用 PowerShell 將 ExpressRoute 線路從傳統部署模型移至 Resource Manager 部署模型](expressroute-howto-move-arm.md)中的指示執行。 這是將所連接資源移至虛擬網路的必要條件。
 * 虛擬網路、閘道，以及虛擬網路中連結至相同訂用帳戶中 ExpressRoute 線路的相關聯部署，都可以移轉至 Resource Manager 環境，而不需要停機。 您可以依照稍後描述的步驟來移轉資源，例如虛擬網路、閘道，以及虛擬網路中部署的虛擬機器。 您必須確保虛擬網路在移轉之前都已正確設定。 
 * 虛擬網路、閘道，以及虛擬網路內與 ExpressRoute 線路位於不同訂用帳戶的相關聯部署，都需要一些停機時間，才能完成移轉。 本文件的最後一節描述移轉資源所需遵循的步驟。
 
@@ -58,12 +58,15 @@ ms.lasthandoff: 03/29/2017
 ## <a name="prepare-your-virtual-network-for-migration"></a>準備虛擬網路以便移轉
 您必須確保所要移轉之虛擬網路的網路沒有不必要的構件。 若要下載您的虛擬網路組態並視需要加以更新，請執行下列 PowerShell Cmdlet：
 
-    Add-AzureAccount
-    Select-AzureSubscription -SubscriptionName <VNET Subscription>
-    Get-AzureVNetConfig -ExportToFile C:\virtualnetworkconfig.xml
+```powershell
+Add-AzureAccount
+Select-AzureSubscription -SubscriptionName <VNET Subscription>
+Get-AzureVNetConfig -ExportToFile C:\virtualnetworkconfig.xml
+```
       
 您必須確保 <ConnectionsToLocalNetwork> 的所有參考都會從所要移轉的虛擬網路中移除。 下列程式碼片段顯示網路設定範例︰
 
+```
     <VirtualNetworkSite name="MyVNet" Location="East US">
         <AddressSpace>
             <AddressPrefix>10.0.0.0/8</AddressPrefix>
@@ -81,89 +84,111 @@ ms.lasthandoff: 03/29/2017
             </ConnectionsToLocalNetwork>
         </Gateway>
     </VirtualNetworkSite>
+```
  
 如果 <ConnectionsToLocalNetwork> 不是空的，請刪除其下的參考並重新提交您的網路組態。 您可以藉由執行下列 PowerShell Cmdlet 來這項作業：
 
-    Set-AzureVNetConfig -ConfigurationPath c:\virtualnetworkconfig.xml
+```powershell
+Set-AzureVNetConfig -ConfigurationPath c:\virtualnetworkconfig.xml
+```
 
-## <a name="migrate-virtual-networks-gateways-and-associated-deployments-in-the-same-subscription-as-the-expressroute-circuit"></a>移轉虛擬網路、閘道，以及與 ExpressRoute 線路位於相同訂用帳戶的相關聯部署。
+## <a name="migrate-virtual-networks-gateways-and-associated-deployments"></a>移轉虛擬網路、閘道與關聯的部署
+
+移轉步驟取決於您的資源位於相同訂用帳戶、位於不同訂用帳戶，或混合兩者的情況。
+
+### <a name="migrate-virtual-networks-gateways-and-associated-deployments-in-the-same-subscription-as-the-expressroute-circuit"></a>移轉虛擬網路、閘道，以及與 ExpressRoute 線路位於相同訂用帳戶的相關聯部署。
 這一節說明移轉虛擬網路、閘道，以及與 ExpressRoute 線路位於相同訂用帳戶的相關聯部署所需遵循的步驟。 這項移轉不需要停機。 您可以透過移轉程序繼續使用所有資源。 管理平面會在移轉進行時遭到封鎖。 
 
 1. 確保 ExpressRoute 線路已從傳統移至 Resource Manager 環境。
 2. 確保已為了移轉適當地準備虛擬網路。
-3. 註冊您的訂用帳戶以便移轉資源。 若要註冊您的訂用帳戶以便移轉資源，請使用下列 PowerShell 程式碼片段︰ 
-    ```
-    Select-AzureRmSubscription -SubscriptionName <Your Subscription Name>
-    Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
-    Get-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
-    ```
+3. 註冊您的訂用帳戶以便移轉資源。 若要註冊您的訂用帳戶以便移轉資源，請使用下列 PowerShell 程式碼片段︰
+
+  ```powershell 
+  Select-AzureRmSubscription -SubscriptionName <Your Subscription Name>
+  Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
+  Get-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
+  ```
 4. 驗證、準備和移轉。 若要移轉虛擬網路，請使用下列 PowerShell 程式碼片段︰
-    ```
-    Move-AzureVirtualNetwork -Prepare $vnetName  
-    Move-AzureVirtualNetwork -Commit $vnetName
-    ```
-    您也可以執行下列 PowerShell Cmdlet 來中止移轉：
-    ```
-    Move-AzureVirtualNetwork -Abort $vnetName
-    ``` 
-## <a name="migrate-virtual-networks-gateways-and-associated-deployments-in-a-different-subscription-from-that-of-the-expressroute-circuit"></a>移轉虛擬網路、閘道，以及與 ExpressRoute 線路位於不同訂用帳戶的相關聯部署。
+
+  ```powershell
+  Move-AzureVirtualNetwork -Prepare $vnetName  
+  Move-AzureVirtualNetwork -Commit $vnetName
+  ```
+
+  您也可以執行下列 PowerShell Cmdlet 來中止移轉：
+
+  ```powershell
+  Move-AzureVirtualNetwork -Abort $vnetName
+  ```
+
+### <a name="migrate-virtual-networks-gateways-and-associated-deployments-in-a-different-subscription-from-that-of-the-expressroute-circuit"></a>移轉虛擬網路、閘道，以及與 ExpressRoute 線路位於不同訂用帳戶的相關聯部署。
 
 1. 確保 ExpressRoute 線路已從傳統移至 Resource Manager 環境。
 2. 確保已為了移轉適當地準備虛擬網路。
-3. 確保 ExpressRoute 線路可以在傳統與 Resource Manager 環境中運作。 若要允許此線路同時使用於傳統和 Resource Manager 環境中，請使用下列 PowerShell 指令碼︰ 
-    ```
-    Login-AzureRmAccount
-    Select-AzureRmSubscription -SubscriptionName <My subscription>
-    $circuit = Get-AzureRmExpressRouteCircuit -Name <CircuitName> -ResourceGroupName <ResourceGroup Name> 
-    $circuit.AllowClassicOperations = $true
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $circuit
-    ```
+3. 確保 ExpressRoute 線路可以在傳統與 Resource Manager 環境中運作。 若要允許此線路同時使用於傳統和 Resource Manager 環境中，請使用下列 PowerShell 指令碼︰
+
+  ```powershell
+  Login-AzureRmAccount
+  Select-AzureRmSubscription -SubscriptionName <My subscription>
+  $circuit = Get-AzureRmExpressRouteCircuit -Name <CircuitName> -ResourceGroupName <ResourceGroup Name> 
+  $circuit.AllowClassicOperations = $true
+  Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $circuit
+  ```
 4. 在 Resource Manager 環境中建立授權。 若要了解如何建立授權，請參閱[如何將虛擬網路連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)。 若要建立授權，請使用下列 PowerShell 程式碼片段︰
-    ```
-    circuit = Get-AzureRmExpressRouteCircuit -Name <CircuitName> -ResourceGroupName <ResourceGroup Name> 
-    Add-AzureRmExpressRouteCircuitAuthorization -ExpressRouteCircuit $circuit -Name "AuthorizationForMigration"
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $circuit
-    $circuit = Get-AzureRmExpressRouteCircuit -Name MigrateCircuit -ResourceGroupName MigrateRGWest
 
-    $id = $circuit.id 
-    $auth1 = Get-AzureRmExpressRouteCircuitAuthorization -ExpressRouteCircuit $circuit -Name "AuthorizationForMigration"
+  ```powershell
+  circuit = Get-AzureRmExpressRouteCircuit -Name <CircuitName> -ResourceGroupName <ResourceGroup Name> 
+  Add-AzureRmExpressRouteCircuitAuthorization -ExpressRouteCircuit $circuit -Name "AuthorizationForMigration"
+  Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $circuit
+  $circuit = Get-AzureRmExpressRouteCircuit -Name MigrateCircuit -ResourceGroupName MigrateRGWest
 
-    $key=$auth1.AuthorizationKey 
-    ```
+  $id = $circuit.id 
+  $auth1 = Get-AzureRmExpressRouteCircuitAuthorization -ExpressRouteCircuit $circuit -Name "AuthorizationForMigration"
+
+  $key=$auth1.AuthorizationKey 
+ ```
+
     請記下線路識別碼與授權金鑰。 移轉完成之後，這些元素用於將線路連接到虛擬網路。
   
-5. 刪除與虛擬網路相關聯的專用線路連結。 若要移除傳統環境中的線路連結，請使用下列 Cmdlet： 
-    ```
-    $skey = Get-AzureDedicatedCircuit | select ServiceKey
-    Remove-AzureDedicatedCircuitLink -ServiceKey $skey -VNetName $vnetName
-    ```  
+5. 刪除與虛擬網路相關聯的專用線路連結。 若要移除傳統環境中的線路連結，請使用下列 Cmdlet：
 
-6. 註冊您的訂用帳戶以便移轉資源。 若要註冊您的訂用帳戶以便移轉資源，請使用下列 PowerShell 程式碼片段︰ 
-    ```
-    Select-AzureRmSubscription -SubscriptionName <Your Subscription Name>
-    Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
-    Get-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
-    ```
+  ```powershell
+  $skey = Get-AzureDedicatedCircuit | select ServiceKey
+  Remove-AzureDedicatedCircuitLink -ServiceKey $skey -VNetName $vnetName
+  ```  
+
+6. 註冊您的訂用帳戶以便移轉資源。 若要註冊您的訂用帳戶以便移轉資源，請使用下列 PowerShell 程式碼片段︰
+
+  ```powershell
+  Select-AzureRmSubscription -SubscriptionName <Your Subscription Name>
+  Register-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
+  Get-AzureRmResourceProvider -ProviderNamespace Microsoft.ClassicInfrastructureMigrate
+  ```
 7. 驗證、準備和移轉。 若要移轉虛擬網路，請使用下列 PowerShell 程式碼片段︰
-    ```
-    Move-AzureVirtualNetwork -Prepare $vnetName  
-    Move-AzureVirtualNetwork -Commit $vnetName
-    ```
-    您也可以執行下列 PowerShell Cmdlet 來中止移轉：
-    ```
-    Move-AzureVirtualNetwork -Abort $vnetName
-    ```
-8. 將虛擬網路連回至 ExpressRoute 線路。 下列 PowerShell 程式碼片段會在虛擬網路建立所在的訂用帳戶內容中執行。 您不必在線路建立所在的訂用帳戶中執行此程式碼片段。 使用線路識別碼做為 PeerID 和步驟 4 中記下的授權金鑰。
-    ```
-    Select-AzureRMSubscription –SubscriptionName <customer subscription>  
-    $gw = Get-AzureRmVirtualNetworkGateway -Name $vnetName-Default-Gateway -ResourceGroupName ($vnetName + "-Migrated")
-    $vnet = Get-AzureRmVirtualNetwork -Name $vnetName -ResourceGroup  ($vnetName + "-Migrated")  
 
-    New-AzureRmVirtualNetworkGatewayConnection -Name  ($vnetName + "-GwConn") -ResourceGroupName ($vnetName + "-Migrated")  -Location $vnet.Location -VirtualNetworkGateway1 $gw -PeerId $id -ConnectionType ExpressRoute -AuthorizationKey $key
-    ```
+  ```powershell
+  Move-AzureVirtualNetwork -Prepare $vnetName  
+  Move-AzureVirtualNetwork -Commit $vnetName
+  ```
+
+    您也可以執行下列 PowerShell Cmdlet 來中止移轉：
+
+  ```powershell
+  Move-AzureVirtualNetwork -Abort $vnetName
+  ```
+8. 將虛擬網路連回至 ExpressRoute 線路。 下列 PowerShell 程式碼片段會在虛擬網路建立所在的訂用帳戶內容中執行。 您不必在線路建立所在的訂用帳戶中執行此程式碼片段。 使用線路識別碼做為 PeerID 和步驟 4 中記下的授權金鑰。
+
+  ```powershell
+  Select-AzureRMSubscription –SubscriptionName <customer subscription>  
+  $gw = Get-AzureRmVirtualNetworkGateway -Name $vnetName-Default-Gateway -ResourceGroupName ($vnetName + "-Migrated")
+  $vnet = Get-AzureRmVirtualNetwork -Name $vnetName -ResourceGroup  ($vnetName + "-Migrated")  
+
+  New-AzureRmVirtualNetworkGatewayConnection -Name  ($vnetName + "-GwConn") -ResourceGroupName ($vnetName + "-Migrated")  -Location $vnet.Location -VirtualNetworkGateway1 $gw -PeerId $id -ConnectionType ExpressRoute -AuthorizationKey $key
+  ```
+
 ## <a name="next-steps"></a>後續步驟
 * [平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager)](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)
 * [平台支援的從傳統移轉至 Azure Resource Manager 的技術深入探討](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
 * [常見問題集：平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager)](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)
-* [從傳統到 Azure Resource Manager 移轉的常見錯誤](../virtual-machines/virtual-machines-migration-errors.md)
+* [檢閱最常見的移轉錯誤和避免方式](../virtual-machines/windows/migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 

@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/09/2017
 ms.author: TomSh
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 71e0d74f0e4787393e3184a3a5b553c4935cf785
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 659304937eebb1b2fe6faf019dfef63e1e29bcd4
+ms.lasthandoff: 04/12/2017
 
 
 ---

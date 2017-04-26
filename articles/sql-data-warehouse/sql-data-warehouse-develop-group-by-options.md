@@ -12,16 +12,18 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: e8c486ca190ae2af650a7fa17843c84538dde8d9
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: da71cb834c13da5d0f5690f471efc6c696163f30
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="group-by-options-in-sql-data-warehouse"></a>根據 SQL 資料倉儲中的選項分組
-[GROUP BY][GROUP BY] 子句可用來彙總資料以摘要一組資料列。 它也具有一些擴充其功能的選項，這些選項都需要克服，因為 Azure SQL 資料倉儲並不直接支援這些選項。
+[GROUP BY][GROUP BY] 子句是用來將資料彙總至摘要的一組資料列。 它也具有一些擴充其功能的選項，這些選項都需要克服，因為 Azure SQL 資料倉儲並不直接支援這些選項。
 
 可用選項包括
 
@@ -181,22 +183,17 @@ ORDER BY 1,2,3
 將程式碼分成區段，並產生迴圈建構，程式碼就會變得更容易管理及維護。
 
 ## <a name="next-steps"></a>後續步驟
-如需更多開發秘訣，請參閱[開發概觀][開發概觀]。
+如需更多開發秘訣，請參閱[開發概觀][development overview]。
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-develop-group-by-options/sql-data-warehouse-develop-group-by-cube.png
 
 <!--Article references-->
-[開發概觀]: sql-data-warehouse-overview-develop.md
+[development overview]: sql-data-warehouse-overview-develop.md
 
 <!--MSDN references-->
 [GROUP BY]: https://msdn.microsoft.com/library/ms177673.aspx
 
 
 <!--Other Web references-->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

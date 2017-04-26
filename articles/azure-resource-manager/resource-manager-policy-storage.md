@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/09/2017
+ms.date: 03/30/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 5ea75843bf671ad4d879c01cdd20d5bbc5e889c2
-ms.openlocfilehash: 08c991e9f217c49828889d0b806888e193b245a8
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 75685a21ce4a212638016be62640badd4870454a
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -114,7 +114,7 @@ ms.lasthandoff: 02/15/2017
 此原則規則也可做為具有資源識別碼 `/providers/Microsoft.Authorization/policyDefinitions/7c5a74bf-ae94-4a74-8fcf-644d1e0e6e6f` 的內建原則定義。
 
 ## <a name="next-steps"></a>後續步驟
-* 定義原則規則 (如上述範例所示) 之後，您必須建立原則定義，並將它指派到某個範圍。 範圍可以是訂用帳戶、資源群組或資源。 如需建立和指派原則的範例，請參閱[指派和管理原則](resource-manager-policy-create-assign.md)。 
+* 定義原則規則 (如上述範例所示) 之後，您必須建立原則定義，並將它指派到某個範圍。 範圍可以是訂用帳戶、資源群組或資源。 若要透過入口網站來指派原則，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)。 若要透過 REST API、PowerShell 或 Azure CLI 來指派原則，請參閱[透過指令碼來指派和管理原則](resource-manager-policy-create-assign.md)。 
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
 
 

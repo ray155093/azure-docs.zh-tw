@@ -11,12 +11,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 03/09/2017
+ms.date: 03/22/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: b850264ef2b89ad1679ae1e956a58cc849e63c84
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 7f6c71056bca7beebc02313409aabe386d191e23
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -824,7 +824,7 @@ requests
 * 在 regex 剖析中，規則運算式可以使用最少的運算子 '?'，以儘速移至下一個符合項目。
 * 具有類型的資料行名稱會將文字剖析為指定的類型。 除非 kind=relaxed，不成功的剖析會使比對整個模式失效。
 * 不具類型或具有類型 'string' 的資料行名稱，會複製最小字元數以前往下一個符合項目。
-* ' *' 會略過最小字元數以前往下一個符合項目。您可以在模式的開始和結尾，或在字串以外的類型之後，或字串相符項目之間使用 '*'。
+* ' * ' 會略過最小字元數以前往下一個符合項目。 您可以在模式的開始和結尾，或在字串以外的類型之後，或字串相符項目之間使用 '*'。
 
 剖析模式中的所有元素必須正確地符合；否則將不會產生任何結果。 此規則的例外狀況是，當 kind=relaxed 時，如果剖析具類型的變數失敗，剖析的其餘部分會繼續。
 
@@ -1036,9 +1036,13 @@ range timestamp from ago(4h) to now() step 1m
 | 巴黎 |27163 |
 
 ### <a name="render-directive"></a>Render 指示詞
-    T | render [ table | timechart  | barchart | piechart ]
+    T | render [ table | timechart  | barchart | piechart | areachart | scatterchart ] 
+        [kind= default|stacked|stacked100|unstacked]
 
 Render 會指示展示層顯示資料表的方式。 它應該是管道的最後一個元素。 這是在顯示器上使用控制項的便利替代項目，讓您能夠以特定的呈現方法來儲存查詢。
+
+針對某些圖表類型，`kind` 能提供其他選項。 例如，`stacked` 橫條圖繪以指定的維度將每個橫條分段，顯示維度的不同值對總計所做出的比重。 在 `stacked100` 圖表中，每個橫條都具有相同的 100% 高度，讓您可以比較相對的比重。
+
 
 ### <a name="restrict-clause"></a>restrict 子句
 指定可供後續運算子使用的資料表名稱集。 例如：
@@ -1765,6 +1769,12 @@ traces
     iff(notnull(todouble(customDimensions.myValue)),
        ..., ...)
 
+
+
+
+
+
+
 ### <a name="scalar-comparisons"></a>純量比較
 |  |  |
 | --- | --- |
@@ -2097,6 +2107,12 @@ true 或 false，取決於值是 null 或不是 null。
 ## <a name="date-and-time"></a>日期和時間
 [ago](#ago) | [dayofmonth](#dayofmonth) | [dayofweek](#dayofweek) |  [dayofyear](#dayofyear) |[datepart](#datepart) | [endofday](#endofday) | [endofmonth](#endofmonth) | [endofweek](#endofweek) | [endofyear](#endofyear) | [getmonth](#getmonth)|  [getyear](#getyear) | [now](#now) | [startofday](#startofday) | [startofmonth](#startofmonth) | [startofweek](#startofweek) | [startofyear](#startofyear) | [todatetime](#todatetime) | [totimespan](#totimespan) | [weekofyear](#weekofyear)
 
+Timespan 代表時間間隔，例如 3 小時或 1 年。
+
+Datetime 代表特定的行事曆/時鐘日期和時間 (UTC 時區)。
+
+沒有個別的 ’date’ 類型。 若要從 datetime 移除時間，請使用 `bin(timestamp, 1d)` 之類的運算式。
+
 ### <a name="date-and-time-literals"></a>日期和時間常值
 |  |  |
 | --- | --- |
@@ -2119,22 +2135,22 @@ true 或 false，取決於值是 null 或不是 null。
 | `time("0.12:34:56.7")` |`0d+12h+34m+56.7s` |
 
 ### <a name="date-and-time-expressions"></a>日期和時間運算式
-| 運算是 | 結果 |
-| --- | --- |
-| `datetime("2015-01-02") - datetime("2015-01-01")` |`1d` |
-| `datetime("2015-01-01") + 1d` |`datetime("2015-01-02")` |
-| `datetime("2015-01-01") - 1d` |`datetime("2014-12-31")` |
-| `2h * 24` |`2d` |
-| `2d` / `2h` |`24` |
-| `datetime("2015-04-15T22:33") % 1d` |`timespan("22:33")` |
-| `bin(datetime("2015-04-15T22:33"), 1d)` |`datetime("2015-04-15T00:00")` |
-|  | |
-| `<` |小於 |
-| `<=` |小於或等於 |
-| `>` |大於 |
-| `>=` |大於或等於 |
-| `<>` |不等於 |
-| `!=` |不等於 |
+| 運算是 | 結果 |效果|
+| --- | --- |---|
+| `datetime("2015-01-02") - datetime("2015-01-01")` |`1d` | 時間差異|
+| `datetime("2015-01-01") + 1d` |`datetime("2015-01-02")` | 加上天數 |
+| `datetime("2015-01-01") - 1d` |`datetime("2014-12-31")` | 減去天數|
+| `2h * 24` |`2d` |Timespan 相乘|
+| `2d` / `2h` |`24` |Timespan 相除|
+| `datetime("2015-04-15T22:33") % 1d` |`timespan("22:33")` |Datetime 中的時間|
+| `bin(datetime("2015-04-15T22:33"), 1d)` |`datetime("2015-04-15T00:00")` |Datetime 中的日期|
+|  | ||
+| `<` ||小於 |
+| `<=` ||小於或等於 |
+| `>` ||大於 |
+| `>=` ||大於或等於 |
+| `<>` ||不等於 |
+| `!=` ||不等於 |
 
 ### <a name="ago"></a>ago
 從目前的 UTC 時鐘時間減去指定的時間範圍。 和 `now()`一樣，此函式可在陳述式中多次使用，而且所參考的 UTC 時鐘時間在所有具現化中皆相同。

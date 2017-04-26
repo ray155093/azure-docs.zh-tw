@@ -12,11 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ed017b542de11a5e8abe46e1651b04cb61c77265
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: f9f19d75a37351b3562ce8c2f3629df14c5437c6
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -87,7 +89,7 @@ Azure SQL 資料倉儲認可使用交易記錄檔之資料庫的變更。 每個
 利用叢集索引將資料載入非空白資料表中，通常會混合包含完整記錄和最低限度記錄資料列。 叢集索引是頁面的平衡樹狀結構 (b 型樹狀目錄)。 如果寫入的頁面中已包含另一個交易的資料列，則這些寫入將會完整記錄。 不過，如果頁面是空的，則該頁面的寫入將會以最低限度記錄。
 
 ## <a name="optimizing-deletes"></a>最佳化刪除
-`DELETE` 是完整記錄的作業。  如果您需要刪除資料表或分割中的大量資料，比較理想的做法通常是 `SELECT` 您想要保留的資料，這可以最低限度記錄作業來執行。  若要達成此目的，可使用 [CTAS][CTAS] 來建立新的資料表。  建立之後，使用 [RENAME][RENAME] 來交換您的舊資料表與新建立的資料表。
+`DELETE` 是完整記錄的作業。  如果您需要刪除資料表或分割中的大量資料，比較理想的做法通常是 `SELECT` 您想要保留的資料，這可以最低限度記錄作業來執行。  若要達成此目的，請使用 [CTAS][CTAS] 建立新的資料表。  建立之後，請使用 [RENAME][RENAME] 來交換您的舊資料表與新建立的資料表。
 
 ```sql
 -- Delete all sales transactions for Promotions except PromotionKey 2.
@@ -118,7 +120,7 @@ RENAME OBJECT [dbo].[FactInternetSales_d] TO [FactInternetSales];
 ```
 
 ## <a name="optimizing-updates"></a>最佳化更新
-`UPDATE` 是完整記錄的作業。  如果您需要更新資料表或分割中的大量資料列，更有效率的方法通常是使用最低限度記錄作業，例如利用 [CTAS][CTAS] 來達成此目的。
+`UPDATE` 是完整記錄的作業。  如果您需要更新資料表或分割中的大量資料列，通常更有效率的方法是使用最低限度記錄作業 (例如 [CTAS][CTAS]) 來達成此目的。
 
 在下列範例中，完整的資料表更新已轉換成 `CTAS` ，以便進行最低限度記錄。
 
@@ -179,12 +181,12 @@ DROP TABLE [dbo].[FactInternetSales_old]
 ```
 
 > [!NOTE]
-> 使用 SQL 資料倉儲工作負載管理功能有助於重新建立大型資料表。 如需詳細資料，請參閱[並行][並行]一文中的工作負載管理一節。
+> 使用 SQL 資料倉儲工作負載管理功能有助於重新建立大型資料表。 如需詳細資料，請參閱[並行][concurrency]一文中的工作負載管理一節。
 > 
 > 
 
 ## <a name="optimizing-with-partition-switching"></a>利用分割切換進行最佳化
-面臨 [資料表分割][資料表分割]內部的大規模修改時，分割切換模式相當實用。 如果大量修改資料而且跨越多個分割，則只逐一查看分割也可達到相同的結果。
+面臨[資料表分割][table partition]內部的大規模修改時，分割切換模式相當實用。 如果大量修改資料而且跨越多個分割，則只逐一查看分割也可達到相同的結果。
 
 執行分割切換的步驟如下︰
 
@@ -416,30 +418,25 @@ Azure SQL 資料倉儲可讓您暫停、繼續及調整需要的資料倉儲。 
 
 最佳案例是在暫停或調整 SQL 資料倉儲之前，讓進行中的資料修改交易完成。 但是，這不一定都可行。 若要降低長時間回復的風險，請考慮下列其中一個選項：
 
-* 使用 [CTAS][CTAS]重新撰寫長時間執行的作業
+* 使用 [CTAS][CTAS] 重新撰寫長時間執行的作業
 * 將作業分成多個區塊；在資料列子集上運作
 
 ## <a name="next-steps"></a>後續步驟
-若要進一步了解隔離等級和交易式的限制，請參閱 [SQL 資料倉儲中的交易][SQL 資料倉儲中的交易]。  如需其他最佳做法的概觀，請參閱 [SQL Data 資料倉儲最佳做法][SQL Data 資料倉儲最佳做法]。
+若要進一步了解隔離等級和交易限制，請參閱 [SQL 資料倉儲中的交易][Transactions in SQL Data Warehouse]。  如需其他最佳做法的概觀，請參閱 [SQL 資料倉儲最佳做法][SQL Data Warehouse Best Practices]。
 
 <!--Image references-->
 
 <!--Article references-->
-[SQL 資料倉儲中的交易]: ./sql-data-warehouse-develop-transactions.md
-[資料表分割]: ./sql-data-warehouse-tables-partition.md
-[並行]: ./sql-data-warehouse-develop-concurrency.md
+[Transactions in SQL Data Warehouse]: ./sql-data-warehouse-develop-transactions.md
+[table partition]: ./sql-data-warehouse-tables-partition.md
+[Concurrency]: ./sql-data-warehouse-develop-concurrency.md
 [CTAS]: ./sql-data-warehouse-develop-ctas.md
-[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
+[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
 
 <!--MSDN references-->
 [alter index]:https://msdn.microsoft.com/library/ms188388.aspx
 [RENAME]: https://msdn.microsoft.com/library/mt631611.aspx
 
 <!-- Other web references -->
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 3440d7e80e6a806c4119dff687fb9c590b8f0d14
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: bdeac373aa8270bd9de8f135ec7166d744fd83ae
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -59,7 +59,7 @@ ms.lasthandoff: 03/30/2017
 
 請遵循下列步驟來取得寄送位置︰
 
--   識別儲存體帳戶位置的名稱。 您可以在傳統入口網站中儲存體帳戶的**儀表板**的 [位置] 欄位下找到此值，或使用服務管理 API 作業 [取得儲存體帳戶屬性](/rest/api/storagerp/storageaccounts#StorageAccounts_GetProperties)來查詢。
+-   識別儲存體帳戶位置的名稱。 您可以在傳統入口網站中儲存體帳戶「儀表板」上的 [位置] 欄位下找到此值，或使用服務管理 API 作業[取得儲存體帳戶屬性](/rest/api/storagerp/storageaccounts#StorageAccounts_GetProperties)來查詢此值。
 
 -   藉由呼叫 `Get Location` 作業來擷取可用來處理此儲存體帳戶的位置。
 

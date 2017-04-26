@@ -12,36 +12,39 @@ ms.devlang: cpp
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
+ms.date: 03/28/2017
 ms.author: andbuc
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 37b2a82d7f6043224e68219fde753eef73078ffd
-ms.openlocfilehash: 4b6cb52c3dcc34c70fd3b86031af48a12573cb8b
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: f3cc32daac5059e816c885c88f4a7d36b6fc897e
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="explore-the-iot-gateway-sdk-architecture-on-windows"></a>探索 Windows 上的 IoT 閘道 SDK 架構
+
 [!INCLUDE [iot-hub-gateway-sdk-getstarted-selector](../../includes/iot-hub-gateway-sdk-getstarted-selector.md)]
 
 ## <a name="how-to-build-the-sample"></a>如何建置範例
+
 開始之前，您必須[設定開發環境][lnk-setupdevbox]以在 Windows 上使用 SDK。
 
-1. 開啟 [VS2015 的開發人員命令提示字元]  命令提示字元。
-2. 瀏覽至 **azure-iot-gateway-sdk** 儲存機制本機複本中的根資料夾。
-3. 執行 **tools\\build.cmd** 指令碼。 此指令碼會建立 Visual Studio 方案檔及建置方案。 您可以在 **azure-iot-gateway-sdk** 存放庫本機複本的 **build** 資料夾中找到此 Visual Studio 方案。 您可以為指令碼指定其他參數，以建置並執行單元測試和端對端測試。 這些參數分別是 **--run-unittests** 和 **--run-e2e-tests**。 
+1. 開啟「VS 2015 開發人員命令提示字元」或「VS 2017 開發人員命令提示字元」命令提示字元。
+1. 瀏覽至 **azure-iot-gateway-sdk** 儲存機制本機複本中的根資料夾。
+1. 執行 **tools\\build.cmd** 指令碼。 此指令碼會建立 Visual Studio 方案檔及建置方案。 您可以在 **azure-iot-gateway-sdk** 存放庫本機複本的 **build** 資料夾中找到此 Visual Studio 方案。 您可以為指令碼指定其他參數，以建置並執行單元測試和端對端測試。 這些參數分別是 **--run-unittests** 和 **--run-e2e-tests**。
 
 ## <a name="how-to-run-the-sample"></a>如何執行範例
+
 1. **build.cmd** 指令碼會在存放庫本機複本中建立稱為 **build** 的資料夾。 此資料夾包含在此範例中使用的兩個模組。
-   
-    build 指令碼會將 **logger.dll** 放在 **build\\modules\\logger\\Debug** 資料夾中，並將 **hello_world.dll** 放在 **build\\modules\\hello_world\\Debug** 資料夾中。 使用這些路徑作為**模組路徑**值 (如下列 JSON 設定檔所示)。
-2. Hello_world_sample 程序會採用 JSON 組態檔的路徑，並做為命令列的引數。 我們已在 **azure-iot-gateway-sdk\samples\hello_world\src\hello_world_win.json** 以部分儲存機制的形式提供下列範例 JSON 檔。 除非您修改 build 指令碼以將模組或範例可執行檔放置在非預設位置，否則它將保有原始功能。 
+
+    build 指令碼會將 **logger.dll** 放在 **build\\modules\\logger\\Debug** 資料夾中，並將 **hello\_world.dll** 放在 **build\\modules\\hello_world\\Debug** 資料夾中。 使用這些路徑作為**模組路徑**值，如下列 JSON 設定檔所示。
+1. hello\_world\_sample 程序會採用 JSON 組態檔的路徑作為命令列引數。 下列範例 JSON 檔案提供於 SDK 存放庫中 (位於 **samples\\hello\_world\\src\\hello\_world\_win.json**)。 除非您修改 build 指令碼以將模組或範例可執行檔放置在非預設位置，否則此組態檔將保有原始功能。
 
    > [!NOTE]
-   > 模組路徑是相對於 hello_world_sample.exe 所在的目錄。 範例 JSON 組態檔的預設值為在目前的工作目錄中寫入 'log.txt'。
-   
-    ```
+   > 模組路徑是相對於 hello\_world\_sample.exe 所在的目錄。 範例 JSON 組態檔的預設值為在目前的工作目錄中寫入 'log.txt'。
+
+    ```json
     {
       "modules": [
         {
@@ -73,13 +76,12 @@ ms.lasthandoff: 03/02/2017
       ]
     }
     ```
-3. 瀏覽至 **azure-iot-gateway-sdk** 儲存機制本機複本的根資料夾。
 
-4. 執行以下命令：
-   
-   ```
-   build\samples\hello_world\Debug\hello_world_sample.exe samples\hello_world\src\hello_world_win.json
-   ```
+1. 瀏覽至 **azure-iot-gateway-sdk** 儲存機制本機複本的根資料夾。
+
+1. 執行以下命令：
+
+   `build\samples\hello_world\Debug\hello_world_sample.exe samples\hello_world\src\hello_world_win.json`
 
 [!INCLUDE [iot-hub-gateway-sdk-getstarted-code](../../includes/iot-hub-gateway-sdk-getstarted-code.md)]
 

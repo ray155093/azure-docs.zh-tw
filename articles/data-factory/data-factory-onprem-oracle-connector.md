@@ -12,19 +12,19 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/27/2017
+ms.date: 03/29/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 80ad4ee51dc03c588e9da6a3277120c685839a2b
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 750dfb2ff8b4d82b2f42518c3873a32d6be0bc20
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="move-data-tofrom-on-premises-oracle-using-azure-data-factory"></a>使用 Azure Data Factory 對內部部署的 Oracle 往返移動資料
-本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出內部部署的 Oracle 資料庫。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。 
+本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出內部部署的 Oracle 資料庫。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。
 
-您可以將資料從任何支援的來源資料存放區複製到 Oracle 資料庫，或從 Oracle 資料庫複製到任何支援的接收資料存放區。 如需複製活動所支援作為來源或接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 
+您可以將資料從任何支援的來源資料存放區複製到 Oracle 資料庫，或從 Oracle 資料庫複製到任何支援的接收資料存放區。 如需複製活動所支援作為來源或接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。
 
 ## <a name="prerequisites"></a>必要條件
 Data Factory 支援使用資料管理閘道連接至內部部署 Oracle 來源。 請參閱[資料管理閘道](data-factory-data-management-gateway.md)一文來了解資料管理閘道，以及[將資料從內部部署移動到雲端](data-factory-move-data-between-onprem-and-cloud.md)一文來取得設定資料管線的閘道以移動資料的逐步指示。
@@ -35,36 +35,38 @@ Data Factory 支援使用資料管理閘道連接至內部部署 Oracle 來源�
 > 如需連接/閘道器相關問題的疑難排解秘訣，請參閱 [針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) 。
 
 ## <a name="supported-versions-and-installation"></a>支援的版本和安裝
-Oracle 連接器支援兩種驅動程式版本︰
+此 Oracle 連接器支援兩種驅動程式版本︰
 
-- **適用於 Oracle 的 Microsoft 驅動程式**自 2.7 版起即隨附於資料管理閘道。 **建議**您使用此驅動程式。 除了連線到 Oracle 所需的閘道之外，您不需要安裝任何其他項目，而且您也能夠體驗更好的複製效能。 支援 Oracle Database 10g Release 2 版或更新版本。
+- **適用於 Oracle 的 Microsoft 驅動程式 (建議)**：從資料管理閘道 2.7 版開始，適用於 Oracle 的 Microsoft 驅動程式會自動隨閘道安裝，因此您不需要另行處理驅動程式，即能建立與 Oracle 的連線，而且使用此驅動程式時您也可以體驗到更好的複製效能。 支援 Oracle Database 10g Release 2 版或更新版本。
 
-    > [!NOTE]
+    > [!IMPORTANT]
     > 目前適用於 Oracle 的 Microsoft 驅動程式僅支援從 Oracle 複製資料，但不支援將資料寫入 Oracle。 請注意，[資料管理閘道診斷] 索引標籤中的測試連線功能不支援此驅動程式。 您可以選擇使用複製精靈來驗證連線。
     >
 
 - **.NET 的 Oracle 資料提供者︰**您也可以選擇使用 Oracle 資料提供者，從 Oracle 複製資料/將資料複製到 Oracle。 此元件包含於 [適用於 Windows 的 Oracle 資料存取元件](http://www.oracle.com/technetwork/topics/dotnet/downloads/)中。 在安裝閘道的電腦上安裝適當版本 (32/64 位元)。 [Oracle Data Provider .NET 12.1](http://docs.oracle.com/database/121/ODPNT/InstallSystemRequirements.htm#ODPNT149) 可以存取 Oracle Database 10g Release 2 或更新版本。
 
     如果您選擇「XCopy 安裝」，請依照 readme.htm 中的步驟進行。 建議您選擇含有 UI 的安裝程式 (非 XCopy 安裝)。
-    
+
     安裝提供者之後，請使用 [服務] 小程式 (或) 資料管理閘道組態管理員，「重新啟動」您電腦上的資料管理閘道主機服務。  
+
+若使用複製精靈來建立複製管線，系統將會自動決定驅動程式類型。 預設將會使用 Microsoft 驅動程式，除非您的閘道版本低於 2.7 或您選擇使用 Oracle 作為接收 (Sink)。
 
 ## <a name="getting-started"></a>開始使用
 您可以藉由使用不同的工具/API，建立內含複製活動的管線，以將資料移進/移出內部部署的 Oracle 資料庫。
 
 建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
 
-您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API**及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
+您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
-不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線： 
+不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線：
 
-1. 建立「已連結的服務」，以將輸入和輸出資料存放區連結到 Data Factory。
-2. 建立「資料集」，以代表複製作業的輸入和輸出資料。 
-3. 建立「管線」，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
+1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
+2. 建立**資料集**，代表複製作業的輸入和輸出資料。
+3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到內部部署 Oracle 資料庫 (或從內部部署 Oracle 資料庫複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples)一節。 
+使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到內部部署 Oracle 資料庫 (或從內部部署 Oracle 資料庫複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples)一節。
 
-下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 Data Factory 實體： 
+下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 Data Factory 實體：
 
 ## <a name="linked-service-properties"></a>連結服務屬性
 下表提供 Oracle 連結服務專屬 JSON 元素的描述。

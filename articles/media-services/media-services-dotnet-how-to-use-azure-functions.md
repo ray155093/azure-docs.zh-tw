@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/21/2017
 ms.author: juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 0cde1f36af2d41697fa956c62cc882e5429707e8
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: ca7c89dc5f56f1bf4c300874111e65048e88abcf
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -36,11 +36,15 @@ ms.lasthandoff: 03/29/2017
 - 了解[如何使用 Azure Functions](../azure-functions/functions-overview.md)。 此外，請參閱：
     - [Azure Functions HTTP 和 Webhook 繫結](../azure-functions/functions-triggers-bindings.md)
     - [如何設定 Azure Functions 應用程式設定](../azure-functions/functions-how-to-use-azure-function-app-settings.md)
+    
+## <a name="considerations"></a>考量
+
+-  在 Consumption 方案下執行的 Azure Functions 有 5 分鐘的逾時限制。
 
 ## <a name="create-a-function-app"></a>建立函數應用程式
 
 1. 移至 [Azure 入口網站](http://portal.azure.com) ，然後以您的 Azure 帳戶登入。
-2. 如[這裡](../azure-functions/functions-create-first-azure-function-azure-portal.md#create-a-function-app)所述建立函式應用程式。
+2. 如[這裡](../azure-functions/functions-create-function-app-portal.md)所述建立函式應用程式。
 
 >[!NOTE]
 > 您在 **StorageConnection** 環境變數中指定的儲存體帳戶 (請見上一個步驟) 應該與您的應用程式位於相同的區域。

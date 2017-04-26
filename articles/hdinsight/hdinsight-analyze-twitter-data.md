@@ -16,9 +16,9 @@ ms.date: 02/06/2017
 ms.author: jgao
 ROBOTS: NOINDEX
 translationtype: Human Translation
-ms.sourcegitcommit: 6407c371bc51461a05429fabaf38d3f9bc80d32c
-ms.openlocfilehash: a90c412d2d66834cd0df3f348fa488b6ce10c898
-ms.lasthandoff: 02/07/2017
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: 159e41f3d1b43abc830b79e1ea0bed05e05505a2
+ms.lasthandoff: 04/11/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 02/07/2017
 在本教學課程中，您將使用 Twitter 串流 API 取得推文，然後使用 Apache Hive on Azure HDInsight 取得傳送了最多內含特定文字之推文的 Twitter 使用者清單。
 
 > [!IMPORTANT]
-> 此文件中的步驟需要 Windows 型 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。 如需 Linux 型叢集的特定步驟，請參閱 [在 HDInsight (Linux) 中使用 Hive 分析 Twitter 資料](hdinsight-analyze-twitter-data-linux.md)。
+> 此文件中的步驟需要 Windows 型 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。 如需 Linux 型叢集的特定步驟，請參閱 [在 HDInsight (Linux) 中使用 Hive 分析 Twitter 資料](hdinsight-analyze-twitter-data-linux.md)。
 
 ## <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前，您必須具備下列條件：

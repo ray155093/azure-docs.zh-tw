@@ -15,9 +15,9 @@ ms.workload: required
 ms.date: 02/22/2017
 ms.author: ruturajd@microsoft.com
 translationtype: Human Translation
-ms.sourcegitcommit: ac56273cf85aff550febecf0d75ec87d5c6dbbca
-ms.openlocfilehash: 26547135548dde96e9da601f2e0ccfe96c626880
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 198caeea693fbc48b6e0eb1c9c8ee559e0553261
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -238,25 +238,15 @@ ms.lasthandoff: 02/23/2017
 您可以將相同的指令碼用於不同的復原方案，將對應至不同復原方案的儲存儲存在不同變數中，就能提供不同的參數。
 
 ## <a name="sample-scripts"></a>範例指令碼
-如需您可以直接匯入自動化帳戶中的指令碼儲存機制，請參閱 [Kristian Nese 的 OMS 指令碼儲存機制](https://github.com/krnese/AzureDeploy/tree/master/OMS/MSOMS/Solutions/asrautomation)
+使用下面的 [部署至 Azure] 按鈕將範例指令碼部署至您的自動化帳戶。
 
-這裡的指令碼是會部署以下所有指令碼的 Azure Resource Manager 範本
+[![部署至 Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/c4803408-340e-49e3-9a1f-0ed3f689813d.png)](https://aka.ms/asr-automationrunbooks-deploy)
 
-* NSG
+同時請觀賞有關將兩層式 WordPress 應用程式復原至 Azure 的簡短影片。
 
-NSG Runbook 會指派公用 IP 位址給復原方案內的每個 VM，並將其虛擬網路介面卡連接至允許預設通訊的網路安全性群組
+> [!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/One-click-failover-of-a-2-tier-WordPress-application-using-Azure-Site-Recovery/player]
 
-* PublicIP
 
-公用 IP Runbook 會指派公用 IP 位址給復原方案內的每個 VM。 是否能夠存取機器和應用程式，將取決於每個客體內的防火牆設定
-
-* CustomScript
-
-CustomScript Runbook 會指派公用 IP 位址給復原方案內的每個 VM，並安裝一個自訂指令碼擴充功能，此擴充功能會提取您在部署範本期間所參考的指令碼
-
-* NSGwithCustomScript
-
-NSGwithCustomScript Runbook 會指派公用 IP 位址給復原方案內的每個 VM、使用擴充功能來安裝自訂指令碼，以及將虛擬網路介面卡連接至允許遠端存取之預設連入和連出通訊的 NSG
 
 ## <a name="additional-resources"></a>其他資源
 [Azure 自動化服務執行身分帳戶](../automation/automation-sec-configure-azure-runas-account.md)

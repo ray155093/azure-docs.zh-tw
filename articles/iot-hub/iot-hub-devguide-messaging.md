@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/31/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: e9e1649e4329d10ca8b87c730ad8c6beb3be818f
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: ac3f4d2220c1902f00049ce237468ddee992209d
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -191,8 +191,8 @@ IoT 中樞也可讓您管理內建裝置對雲端接收端點上的取用者群�
 | --- | --- |
 | EnqueuedTimeUtc |指出訊息的結果出現時的時間戳記。 例如，完成已裝置或訊息已到期。 |
 | OriginalMessageId |**MessageId** 。 |
-| StatusCode |必須是整數。 用於 IoT 中樞所產生的回饋訊息中。 <br/> 0 = 成功 <br/> 1 = 訊息過期 <br/> 2 = 超過最大傳遞計數 <br/> 3 = 訊息被拒 |
-| 說明 |**StatusCode**的字串值。 |
+| StatusCode |必要字串。 用於 IoT 中樞所產生的回饋訊息中。 <br/> 「成功」 <br/> 「已過期」 <br/> 「DeliveryCountExceeded」 <br/> 「已拒絕」 <br/> 「已清除」 |
+| 描述 |**StatusCode**的字串值。 |
 | deviceId |**DeviceId** 。 |
 | DeviceGenerationId |**DeviceGenerationId** 。 |
 

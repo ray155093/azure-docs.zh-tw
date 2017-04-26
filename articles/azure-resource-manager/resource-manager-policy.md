@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/10/2017
+ms.date: 03/30/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 6d459e37b8b39f5d76c4ec86ebb7351c783b81fb
-ms.openlocfilehash: 64cb4be184e02519a6c496f8639035201ebb60f8
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: d75088bd83b0b70c889388c95331bb56fe9ba15b
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -29,7 +29,7 @@ ms.lasthandoff: 02/15/2017
 * 原則定義 - 您說明何時會強制執行原則及要採取的動作
 * 原則指派 - 您將原則定義套用至範圍 (訂用帳戶或資源群組)
 
-本主題著重於原則定義。 如需原則指派的詳細資訊，請參閱[指派和管理原則](resource-manager-policy-create-assign.md)。
+本主題著重於原則定義。 如需原則指派的相關資訊，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)或[透過指令碼來指派和管理原則](resource-manager-policy-create-assign.md)。
 
 Azure 提供一些內建原則定義，可能會降低您需要定義的原則數目。 如果內建的原則定義適用於您的案例，則在指派給範圍時使用該定義。
 
@@ -239,7 +239,7 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 
 * 如需標籤原則的範例，請參閱[套用標籤的資源原則](resource-manager-policy-tags.md)。
 * 如需儲存體原則的範例，請參閱[將資源原則套用至儲存體帳戶](resource-manager-policy-storage.md)。
-* 如需虛擬機器原則的範例，請參閱[將資源原則套用至 Linux VM](../virtual-machines/virtual-machines-linux-policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json) 和[將資源原則套用至 Windows VM](../virtual-machines/virtual-machines-windows-policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+* 如需虛擬機器原則的範例，請參閱[將資源原則套用至 Linux VM](../virtual-machines/linux/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json) 和[將資源原則套用至 Windows VM](../virtual-machines/windows/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 
 ### <a name="allowed-resource-locations"></a>允許的資源位置
 若要指定允許的位置，請參閱[原則定義結構](#policy-definition-structure)一節中的範例。 若要指派此原則定義，請使用包含資源識別碼 `/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c` 的內建原則。
@@ -326,7 +326,7 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* 在定義原則規則後，將它指派給範圍。 如需原則指派的詳細資訊，請參閱[指派和管理原則](resource-manager-policy-create-assign.md)。
+* 在定義原則規則後，將它指派給範圍。 若要透過入口網站來指派原則，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)。 若要透過 REST API、PowerShell 或 Azure CLI 來指派原則，請參閱[透過指令碼來指派和管理原則](resource-manager-policy-create-assign.md)。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
 * 原則結構描述會發佈於 [http://schema.management.azure.com/schemas/2015-10-01-preview/policyDefinition.json](http://schema.management.azure.com/schemas/2015-10-01-preview/policyDefinition.json)。 
 

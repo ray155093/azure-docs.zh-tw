@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/27/2017
+ms.date: 04/05/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: b5153d2339f688b22796789d74cb9117985a43d2
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 52c3e88689441045c3bd34ea3ab17a8a1d270f23
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -51,7 +51,7 @@ Microsoft 雲端服務 (例如 Office 365、Enterprise Mobility + Security、Dyn
 
 - 在某些情況下，授權無法指派給使用者。 比方說，租用戶可能沒有足夠可用的授權，或可能同時指派衝突的服務。 對於 Azure AD 無法完整處理群組授權的使用者，系統管理員可以存取這些使用者的相關資訊。 然後，他們可以根據該資訊採取更正動作。
 
-- 在公開預覽期間，租用戶中必須要有 Azure AD Basic 或 Premium 版本的付費或試用訂用帳戶，才能使用群組型授權管理。 此外，從群組繼承任何授權的每位使用者，都必須獲指派付費 Azure AD 版本授權。
+- 在公開預覽期間，租用戶中必須要有 Azure AD Basic 或 Premium 版本的付費或試用訂用帳戶，才能使用群組型授權管理。
 
 ## <a name="next-steps"></a>後續步驟
 

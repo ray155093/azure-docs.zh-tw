@@ -1,6 +1,6 @@
 ---
-title: "開始使用佇列儲存體和 Visual Studio 已連接服務 (ASP.NET 5) | Microsoft Docs"
-description: "如何開始在 Visual Studio 的 ASP.NET 5 專案中使用 Azure 佇列儲存體"
+title: "開始使用佇列儲存體和 Visual Studio 已連接服務 (ASP.NET Core) | Microsoft Docs"
+description: "如何開始在 Visual Studio 的 ASP.NET Core 專案中使用 Azure 佇列儲存體"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -15,22 +15,23 @@ ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b166ced70b845dd297a1eb87aaec5456ec3e0b31
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 4622496544ce6e1057ac68a2e9946917573e997e
+ms.lasthandoff: 03/31/2017
 
 
 ---
-# <a name="get-started-with-queue-storage-and-visual-studio-connected-services-aspnet-5"></a>開始使用佇列儲存體和 Visual Studio 已連接服務 (ASP.NET 5)
+# <a name="get-started-with-queue-storage-and-visual-studio-connected-services-aspnet-core"></a>開始使用佇列儲存體和 Visual Studio 已連接服務 (ASP.NET Core)
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
 ## <a name="overview"></a>概觀
-本文說明如何在您使用 Visual Studio 的 [新增連接的服務]  對話方塊建立或參考了 ASP.NET 5 專案中的 Azure 儲存體帳戶之後，開始在 Visual Studio 使用 Azure 佇列儲存體。 [新增連接的服務]  作業會安裝適當的 NuGet 套件，以存取專案中的 Azure 儲存體，並將儲存體帳戶的連接字串新增至您的專案設定檔。
+本文說明如何在您使用 Visual Studio 的 [新增已連接服務]  對話方塊建立或參考了 ASP.NET Core 專案中的 Azure 儲存體帳戶之後，開始在 Visual Studio 使用 Azure 佇列儲存體。 [新增連接的服務]  作業會安裝適當的 NuGet 套件，以存取專案中的 Azure 儲存體，並將儲存體帳戶的連接字串新增至您的專案設定檔。
 
 Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方都可利用 HTTP 或 HTTPS 並透過驗證的呼叫來存取這些訊息。 單一佇列訊息的大小上限為 64 KB，而一個佇列可以包含數百萬個訊息，以儲存體帳戶的總容量為限。
 
 若要開始，首先您必須在儲存體帳戶中建立 Azure 佇列。 我們將會示範如何在程式碼中建立佇列。 我們也將顯示如何執行基本的佇列作業，例如新增、修改、讀取和移除佇列訊息。 這些範例均以 C\# 程式碼撰寫，並使用 Azure Storage Client Library for .NET。 如需 ASP.NET 的詳細資訊，請參閱 [ASP.NET](http://www.asp.net)。
 
-**注意：** 有一些 API會以非同步方式對 ASP.NET 5 中 Azure 儲存體執行呼叫。 如需詳細資訊，請參閱 [使用 Async 及 Await 進行非同步程式設計](http://msdn.microsoft.com/library/hh191443.aspx) 。 以下程式碼假設使用非同步程式設計方法。
+**注意：**對 ASP.NET Core 中的 Azure 儲存體執行呼叫的部分 API 是非同步的。 如需詳細資訊，請參閱 [使用 Async 和 Await 進行非同步程式設計](http://msdn.microsoft.com/library/hh191443.aspx) 。 以下程式碼假設使用非同步程式設計方法。
 
 * 如需以程式設計方式處理佇列的詳細資訊，請參閱 [以 .NET 開始使用 Azure 佇列儲存體](storage-dotnet-how-to-use-queues.md) 。
 * 如需 Azure 儲存體的一般資訊，請參閱 [儲存體文件](https://azure.microsoft.com/documentation/services/storage/) 。
@@ -38,7 +39,7 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
 * 若需要如何編寫 ASP.NET 應用程式的詳細資訊，請參閱 [ASP.NET](http://www.asp.net) 。
 
 ## <a name="access-queues-in-code"></a>在程式碼中存取佇列
-若要存取 ASP.NET 5 專案中的佇列，您需要將下列項目併入至存取 Azure 佇列儲存體的任何 C# 原始程式檔。
+若要存取 ASP.NET Core 專案中的佇列，您需要將下列項目包含在存取 Azure 佇列儲存體的任何 C# 原始程式檔中。
 
 1. 請確定 C# 檔案頂端的命名空間宣告包含這些 **using** 陳述式。
    
@@ -153,10 +154,5 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [vs-storage-dotnet-queues-next-steps](../../includes/vs-storage-dotnet-queues-next-steps.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

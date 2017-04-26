@@ -14,13 +14,13 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 03/14/2017
+ms.date: 04/04/2017
 ms.author: dariagrigoriu, glenga
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: 4eb138348686e9d7befe4d5433d174374977c2a1
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: cea92fe434288012a398f6821bc9cd7ab85b7d3e
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -44,11 +44,13 @@ Azure Functions 有兩個不同的服務方案︰取用方案和 App Service 方
 
 在 **App Service 方案**中，您的函式應用程式會在專用 VM 上執行，就像現在的 Web Apps 針對基本、標準或進階 SKU 運作一樣。 系統會將專用 VM 配置給您的 App Service 應用程式和函式應用程式，而且不論程式碼是否正在主動執行，都可以使用。 如果您的現有、使用量過低的 VM 已經執行其他程式碼，或者預期會持續執行函數或近乎持續執行函數，這會是不錯的選擇。 VM 會減少執行階段和記憶體大小的成本。 如此一來，您就可以將許多長時間執行函式的成本，侷限在函式執行所在 VM 所需的成本。 如需 App Service 方案運作方式的詳細資訊，請參閱 [Azure App Service 方案深入概觀](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。 
 
+使用 App Service 方案時，您可以透過手動加入更多單一核心 VM 執行個體來相應放大，或者您可以啟用自動規模調整。 如需詳細資訊，請參閱[手動或自動調整執行個體計數規模](../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service-web%2ftoc.json)。 您也可以透過選擇不同的 App Service 方案來相應增加。 如需詳細資訊，請參閱[在 Azure 中為應用程式進行相應增加](../app-service-web/web-sites-scale.md)。 若計畫在 App Service 方案上執行 JavaScript 函式，您應該選擇核心數目較少的方案。 如需詳細資訊，請參閱 [JavaScript 函式參考資料](functions-reference-node.md#choose-single-core-app-service-plans)。  
+
 ## <a name="how-the-consumption-plan-works"></a>取用方案的運作方式
 
 使用情況方案會根據函數應用程式中執行函式的需求來新增額外的處理執行個體，藉此自動調整 CPU 和記憶體資源。 每個函式應用程式處理執行個體最多可配置 1.5 GB 的記憶體資源。
 
-在執行取用方案時，如果函式應用程式已進入閒置狀態，則處理新 Blob 時最多會有 10 分鐘的延遲。 如果函式應用程式正在執行，Blob 的處理速度會較快。 為了避免發生此初始延遲，您可以使用一般的 App Service 方案並啟用 [永遠開啟]，或使用其他機制來觸發 Blob 的處理，例如包含 Blob 名稱的佇列訊息。 
+在執行取用方案時，如果函數應用程式已進入閒置狀態，則處理新 Blob 時最多會有 10 分鐘的延遲。 如果函式應用程式正在執行，Blob 的處理速度會較快。 為了避免發生此初始延遲，您可以使用一般的 App Service 方案並啟用 [永遠開啟]，或使用其他機制來觸發 Blob 的處理，例如包含 Blob 名稱的佇列訊息。 
 
 建立「函數應用程式」時，您必須建立或連結支援 Blob、「佇列」及「表格」儲存體的一般用途「Azure 儲存體」帳戶。 Azure Functions 會在內部使用「Azure 儲存體」來進行作業，例如管理觸發程序和記錄函數執行。 有些儲存體帳戶並不支援佇列和表格，例如僅限 Blob 的儲存體帳戶 (包括進階儲存體) 和搭配 ZRS 複寫的一般用途儲存體帳戶。 建立「函數應用程式」時，[儲存體帳戶] 刀鋒視窗中會過濾掉這些帳戶。
 

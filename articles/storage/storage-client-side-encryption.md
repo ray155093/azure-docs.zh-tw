@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 223a7f808ae21ddf8e237e7c5ec2d7ba035e38e8
-ms.openlocfilehash: 82d91881e7f744471f4e60d1c6571e0ae2f7ee4e
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 5413e86ac3c83947566b2686392612bd33c4483f
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -50,14 +50,14 @@ ms.lasthandoff: 11/17/2016
 
 1. 用戶端程式庫假設使用者在本機或 Azure 金鑰保存庫中管理金鑰加密金鑰 (KEK)。 使用者不必知道用於加密的特定金鑰。 相反地，可以設定並使用金鑰解析程式，將不同的金鑰識別碼解析成金鑰。
 2. 用戶端程式庫會下載加密的資料，以及儲存在服務上的任何加密資料。
-3. 然後，使用金鑰加密金鑰 (KEK) 將已包裝的內容加密金鑰 (CEK) 解除包裝 (解密)。 同樣地，用戶端程式庫在此沒有 KEK 的存取權。 它只會叫用自訂或金鑰保存庫提供者的解除包裝演算法。
+3. 然後，使用金鑰加密金鑰 (KEK) 將已包裝的內容加密金鑰 (CEK) 解除包裝 (解密)。 同樣地，用戶端程式庫在此沒有 KEK 的存取權。 它只會叫用自訂或 Key Vault 提供者的解除包裝演算法。
 4. 然後，使用內容加密金鑰 (CEK) 解密已加密的使用者資料。
 
 ## <a name="encryption-mechanism"></a>加密機制
 儲存體用戶端程式庫會使用 [AES](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) 來加密使用者資料。 具體來說，就是 [加密區塊鏈結 (CBC)](http://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher-block_chaining_.28CBC.29) 模式搭配 AES。 每個服務的運作方式稍有不同，我們將在這裡討論每個服務。
 
 ### <a name="blobs"></a>Blob
-用戶端程式庫目前僅支援整個 Blob 的加密。 尤其支援使用者使用 **UploadFrom** 方法或 OpenWrite 方法時的加密。 針對下載，則皆支援完整與範圍下載。
+用戶端程式庫目前僅支援整個 Blob 的加密。 更明確地說，會在使用者使用 **UploadFrom*** 方法或 **OpenWrite** 方法時支援加密。 針對下載，則皆支援完整與範圍下載。
 
 在加密期間，用戶端程式庫會產生 16 位元組的隨機初始化向量 (IV)，以及 32 位元組的隨機內容加密金鑰 (CEK)，並使用這項資訊執行 blob 資料的信封加密。 然後，已包裝的 CEK 和一些其他加密中繼資料會儲存為 blob 中繼資料，並連同加密的 blob 一起儲存在服務上。
 

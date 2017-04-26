@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: dineshm
 translationtype: Human Translation
-ms.sourcegitcommit: c5fedb8c4a6e3722e2f37dd432cec60513c73e0d
-ms.openlocfilehash: f14ed08473ba9c424acf39d3fe98d4a11adf9948
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: d234dd87919f4906628014156708489bd1efab6c
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -58,7 +58,7 @@ list_blob_item_segment list_blobs_segmented(const continuation_token& token) con
 如果您正在使用多個執行緒的應用程式或服務，建議您直接使用非同步 API，而不是建立執行緒來呼叫同步 API，這會大幅影響您的效能。
 
 ## <a name="segmented-listing"></a>分段列表
-雲端儲存體的級別需要分段列表。 例如，在 Azure blob 容器中可有超過&100; 萬個 Blob，或在 Azure 資料表中可有超過&10; 億個實體。 這些不是理論上的數字，而是實際的客戶使用量案例。
+雲端儲存體的級別需要分段列表。 例如，在 Azure blob 容器中可有超過 100 萬個 Blob，或在 Azure 資料表中可有超過 10 億個實體。 這些不是理論上的數字，而是實際的客戶使用量案例。
 
 因此，列出單一回應中的所有物件並不切實際。 反而，您可以使用分頁列出物件。 每個列表 API 都有 *分段* 多載。
 

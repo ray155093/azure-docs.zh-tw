@@ -15,15 +15,16 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: sumedhb;aglick
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d2fb323e8cf6d14d0b5cf10071475cf4669545ed
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 6419d54c54e7d19103419262b79e7a5268b2268c
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="azure-key-vault-availability-and-redundancy"></a>Azure 金鑰保存庫的可用性與備援
 Azure 金鑰保存庫具備多層備援功能，以確保您的金鑰和密碼會保持可供應用程式使用，甚至在服務的個別元件失敗時也是如此。
 
-金鑰保存庫的內容會在區域內複寫，以及複寫到至少距離 150 英哩但位於相同地理位置內的次要區域。 這可維持您金鑰和密碼的高持久性。
+金鑰保存庫的內容會在區域內複寫，以及複寫到至少距離 150 英哩但位於相同地理位置內的次要區域。 這可維持您金鑰和密碼的高持久性。 請參閱 [Azure 配對的區域](https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions)文件，以取得特定區域配對的詳細資料。
 
 如果金鑰保存庫服務內的個別元件失敗，則區域內的替代元件會接替來處理您的要求，以確保不會導致功能的效能降低。 您不需要採取任何動作以觸發這項功能。 它會以您無法察覺的方式自動發生。
 
@@ -47,10 +48,5 @@ Azure 金鑰保存庫具備多層備援功能，以確保您的金鑰和密碼�
   * 簽署
   * 備份
 * 在容錯移轉進行容錯回復之後，所有要求類型 (包括讀取「和」寫入要求) 都會可供使用。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

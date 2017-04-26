@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/02/2017
 ms.author: johnkem
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 4ec026a5b95170d0eba244123c37cd3c8fab150a
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: f41fbee742daf2107b57caa528e53537018c88c6
+ms.openlocfilehash: c123b76b0e4c95cfebcc79063fb1c3a27efc8646
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -47,9 +47,9 @@ ms.lasthandoff: 03/09/2017
 ![Azure 活動記錄](./media/monitoring-overview-activity-logs/Activity_Log_Overview_v3.png)
 
 
-* [建立電子郵件或可觸發關閉活動記錄檔事件的 webhook 警示。](insights-auditlog-to-webhook-email.md)
+* [建立能以活動記錄事件觸發的警示](monitoring-activity-log-alerts.md)。
 * [將活動記錄檔串流至**事件中樞**](monitoring-stream-activity-logs-event-hubs.md)，以利第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
-* 使用 [**PowerBI 內容套件**](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-audit-logs/)在 PowerBI 中分析活動記錄檔。
+* 使用 [**PowerBI 內容套件**](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs/)在 PowerBI 中分析活動記錄檔。
 * [將活動記錄檔儲存到**儲存體帳戶**以供封存或手動檢查](monitoring-archive-activity-log.md)。 您可以使用 **記錄檔設定檔**指定保留時間 (以天為單位)。
 * 在 **Azure 入口網站**中查詢和檢視活動記錄檔。
 * 透過 PowerShell Cmdlet、CLI 或 REST API 查詢活動記錄。
@@ -64,7 +64,7 @@ ms.lasthandoff: 03/09/2017
 * 應該要傳送何種事件分類 (Write、Delete、Action)。 *「類別」一詞在記錄設定檔和活動記錄事件中的意義並不相同。在記錄設定檔中，「類別」代表作業類型 (寫入、刪除、動作)。在活動記錄事件中，「類別」屬性代表事件的來源或類型 (例如，管理、ServiceHealth、警示等等)。*
 * 應該要匯出哪一個區域 (Locations)
 * 活動記錄應該在儲存體帳戶中保留多久。
-    - 保留期為&0; 天表示會永遠保留記錄。 否則，此值可以是 1 到 2147483647 之間的任意天數。
+    - 保留期為 0 天表示會永遠保留記錄。 否則，此值可以是 1 到 2147483647 之間的任意天數。
     - 如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
     - 保留原則是每天套用，因此在一天結束時 (UTC)，這一天超過保留原則的記錄會被刪除。 例如，如果您的保留原則為一天，在今天一開始，昨天之前的記錄檔會被刪除。
 
@@ -80,11 +80,10 @@ ms.lasthandoff: 03/09/2017
 
     ![入口網站中的匯出按鈕](./media/monitoring-overview-activity-logs/activity-logs-portal-export.png)
 3. 在出現的刀鋒視窗中，您可以選取︰  
-
-   * 您要匯出事件的區域
-   * 您要儲存事件的儲存體帳戶
-   * 您想要在儲存體中保留這些事件的天數。 如果設定為 0 天會永遠保留記錄檔。
-   * 服務匯流排命名空間，您要在其中建立事件中樞以對這些事件進行串流處理。
+  * 您要匯出事件的區域
+  * 您要儲存事件的儲存體帳戶
+  * 您想要在儲存體中保留這些事件的天數。 如果設定為 0 天會永遠保留記錄檔。
+  * 服務匯流排命名空間，您要在其中建立事件中樞以對這些事件進行串流處理。
 
      ![匯出活動記錄檔刀鋒視窗](./media/monitoring-overview-activity-logs/activity-logs-portal-export-blade.png)
 4. 按一下 [儲存]  來儲存這些設定。 您的訂用帳戶時會立即套用設定。
@@ -106,7 +105,7 @@ Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/r
 | StorageAccountId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
 | serviceBusRuleId |否 |服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。 將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
 | 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
-| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為&0; 會無限期地 (永遠) 儲存記錄檔。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期地 (永遠) 儲存記錄檔。 |
 | 類別 |否 |以逗號分隔的類別清單，其中列出應該收集的事件類別。 可能的值有 Write、Delete、Action。 |
 
 #### <a name="remove-a-log-profile"></a>移除記錄檔設定檔
@@ -135,7 +134,7 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 | storageId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
 | serviceBusRuleId |否 |服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。 將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
 | 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
-| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為&0; 會無限期地 (永遠) 儲存記錄檔。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。 值為 0 會無限期地 (永遠) 儲存記錄檔。 |
 | 類別 |否 |以逗號分隔的類別清單，其中列出應該收集的事件類別。 可能的值有 Write、Delete、Action。 |
 
 #### <a name="remove-a-log-profile"></a>移除記錄檔設定檔

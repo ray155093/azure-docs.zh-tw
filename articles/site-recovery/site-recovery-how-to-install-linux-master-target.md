@@ -15,9 +15,9 @@ ms.workload:
 ms.date: 02/13/2017
 ms.author: ruturajd
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: ef4324ebf3c24cdf2ebed58e4938f401b66b9c95
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: c75a3a2477f113f17aab7a3e1969f15a4ec88a02
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -37,6 +37,13 @@ ms.lasthandoff: 03/22/2017
 * 主要目標應位於可與處理序伺服器及組態伺服器通訊的網路上。
 * 主要目標的版本必須等於或早於處理序伺服器和組態伺服器的版本。 例如，若組態伺服器的版本是 9.4，則主要目標的版本可以是 9.4 或 9.3，但不能是 9.5。
 * 主要目標只能是 VMware 虛擬機器，不能是實體伺服器。
+* 主要目標必須遵循下列針對大小的指導方針
+    * 記憶體：6GB 或更多
+    * OS 磁碟大小：50GB 或更多 (以安裝 CentOS6.6)
+    * 用於保留磁碟機的額外磁碟大小：1TB
+    * CPU 核心：4 核心或更多
+
+
 
 
 ## <a name="steps-to-deploy-the-master-target-server"></a>主要目標伺服器的部署步驟
@@ -401,5 +408,6 @@ wget https://aka.ms/latestlinuxmobsvc -O latestlinuxmobsvc.tar.gz
 
 * 請確定您未在任何管理元件 (例如主要目標) 上啟動 Storage vMotion。 如果在成功重新保護之後主要目標有移動，則無法中斷連結虛擬機器磁碟 (VMDK)，而且容錯回復會失敗。
 * 主要目標在虛擬機器上不應該有任何快照集。 如果有快照集，容錯回復會失敗。
-* 由於某些客戶會有一些自訂 NIC 組態，因此啟動期間會停用網路介面，導致主要目標代理程式無法初始化。 請確定已正確設定下列屬性。 在乙太網路卡檔案的 /etc/sysconfig/network-scripts/ifcfg-eth* 中檢查這兩個屬性。      * BOOTPROTO=dhcp * ONBOOT=yes
+* 由於某些客戶會有一些自訂 NIC 組態，因此啟動期間會停用網路介面，導致主要目標代理程式無法初始化。 請確定已正確設定下列屬性。 在乙太網路卡檔案的 /etc/sysconfig/network-scripts/ifcfg-eth* 中檢查這些屬性。
+        * BOOTPROTO=dhcp * ONBOOT=yes
 

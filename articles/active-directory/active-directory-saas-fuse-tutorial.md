@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/25/2017
+ms.date: 03/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: cb7a8a505122f0b6d2e5744c31a48018c2c05351
-ms.openlocfilehash: 10a51c8b272a8e8460079f8beb8a23dc40d3701d
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: afc9719a41e9ecb9a690edc7f16d392450fbb932
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -36,27 +37,27 @@ Fuse 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 Fuse 整合，您需要下列項目：
 
 - Azure AD 訂用帳戶
-- 啟用 Fuse 單一登入的訂用帳戶
+- 已啟用 Fuse 單一登入 (SSO) 的訂用帳戶
 
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。
+>
+>
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+- 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 
 ## <a name="scenario-description"></a>案例描述
-在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
+在本教學課程中，您會在測試環境中測試 Azure AD SSO。 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 Fuse
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Azure AD SSO
 
-
-## <a name="adding-fuse-from-the-gallery"></a>從資源庫新增 Fuse
+## <a name="add-fuse-from-the-gallery"></a>從資源庫新增 Fuse
 若要設定將 Fuse 整合到 Azure AD 中，您需要從資源庫將 Fuse 新增到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫新增 Fuse，請執行下列步驟：**
@@ -81,27 +82,26 @@ Fuse 與 Azure AD 整合提供下列優點：
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_0001.png)
 
+##  <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
+在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Fuse 搭配運作的 Azure AD SSO。
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Fuse 設定及測試 Azure AD 單一登入。
-
-若要讓單一登入運作，Azure AD 必須知道 Fuse 與 Azure AD 中互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 Fuse 中相關使用者之間的連結關聯性。
+若要讓 SSO 運作，Azure AD 必須知道 Fuse 中與 Azure AD 互相對應的使用者。 換句話說，必須建立 Azure AD 使用者和 Fuse 中相關使用者之間的連結關聯性。
 
 建立此連結關聯性的方法，是將 Azure AD 中**使用者名稱**的值，指派為 Fuse 中 **Username** 的值。
 
-若要設定及測試與 Fuse 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
+若要設定及測試與 Fuse 搭配運作的 Azure AD SSO，您需要完成下列建置組塊：
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
 3. **[建立 Fuse 測試使用者](#creating-a-fuse-test-user)** - 在 Fuse 中建立 Britta Simon 的對應項目，且該項目與 Azure AD 中代表 Britta Simon 的項目連結。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
+5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
-在本節中，您會在 Azure 管理入口網站中啟用 Azure AD 單一登入，並在您的 Fuse 中設定單一登入。
+在本節中，您會在 Azure 管理入口網站中啟用 Azure AD SSO，並在您的 Fuse 應用程式中設定 SSO。
 
-**若要設定與 Fuse 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
+**若要設定與 Fuse 搭配運作的 Azure AD SSO，請執行下列步驟：**
 
 1. 在 Azure 管理入口網站的 [Fuse] 應用程式整合頁面上，按一下 [單一登入]。
 
@@ -114,17 +114,17 @@ Fuse 與 Azure AD 整合提供下列優點：
 3. 在 [Fuse 網域與 URL] 區段中，執行下列步驟：
 
     ![設定單一登入](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_02.png)
+  1. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://<tenant name>.fusion-universal.com/`
+  2. 在 [識別碼] 文字方塊中，使用下列模式輸入 URL：`https://<tenant name>.fusion-universal.com`
 
-    a. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://<tenant name>.fusion-universal.com/`
-
-    b.這是另一個 C# 主控台應用程式。 在 [識別碼] 文字方塊中，使用下列模式輸入 URL：`https://<tenant name>.fusion-universal.com`
-
-    > [!NOTE] 
-    > 請注意這些不是真正的值。 您必須使用實際的「登入 URL」及「識別碼」來更新這些值。 請連絡 [Fuse 支援小組](mailto:support@fusion-universal.com) 以取得這些值。 
+      >[!NOTE] 
+      >這些不是真正的值。 您必須使用實際的「登入 URL」及「識別碼」來更新這些值。 請連絡 [Fuse 支援小組](mailto:support@fusion-universal.com) 以取得這些值。 
+      >
+      >
 
 4. 在 [SAML 簽署憑證] 區段中，按一下 [建立新憑證]。
 
-    ![設定單一登入](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_03.png)   
+    ![設定單一登入](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_03.png)     
 
 5. 在 [建立新憑證] 對話方塊中，按一下行事曆圖示並選取 [到期日]。 然後按一下 [儲存] 按鈕。
 
@@ -138,7 +138,7 @@ Fuse 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-fuse-tutorial/tutorial_general_400.png)
 
-8. 在 [SAML 簽章憑證] 區段中，按一下 [憑證 (原始)]，然後將憑證檔案儲存在您的電腦上。
+8. 在 [SAML 簽署憑證] 區段上，按一下 [憑證 (原始)]，然後將憑證檔案儲存在您的電腦上。
 
     ![設定單一登入](./media/active-directory-saas-fuse-tutorial/tutorial_fuse_05.png) 
 
@@ -150,16 +150,9 @@ Fuse 與 Azure AD 整合提供下列優點：
 
 10. 若要為您的應用程式設定 SSO，請聯絡 [Fuse 支援小組](mailto:support@fusion-universal.com)，並提供下列資訊： 
 
-    •  下載的**憑證檔案**
-
-    •  **SAML 單一登入服務 URL**
-
-    •  **SAML 實體識別碼**
-
-    •  **登出 URL**
+    • 已下載的**憑證檔案** • **SAML 單一登入服務 URL** • **SAML 實體識別碼** • **登出 URL**
   
-
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 本節目標是在 Azure 管理入口網站中建立名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][100]
@@ -181,23 +174,16 @@ Fuse 與 Azure AD 整合提供下列優點：
 4. 在 [使用者]  對話頁面上，執行下列步驟：
  
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-fuse-tutorial/create_aaduser_04.png) 
+  1. 在 [名稱] 文字方塊中，輸入 **BrittaSimon**。
+  2. 在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。
+  3. 選取 [顯示密碼] 並記下 [密碼] 的值。
+  4. 按一下 [建立] 。 
 
-    a. 在 [名稱] 文字方塊中，輸入 **BrittaSimon**。
-
-    b.這是另一個 C# 主控台應用程式。 在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。
-
-    c. 選取 [顯示密碼] 並記下 [密碼] 的值。
-
-    d. 按一下頁面底部的 [新增] 。 
-
-
-
-### <a name="creating-a-fuse-test-user"></a>建立 Fuse 測試使用者
+### <a name="create-a-fuse-test-user"></a>建立 Fuse 測試使用者
 
 在本節中，您要在 Fuse 中建立名為 Britta Simon 的使用者。 請與 [Fuse 支援小組](mailto:support@fusion-universal.com) 合作，在 Fuse 平台中加入使用者。
 
-
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
 在本節中，您會將 Fuse 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
@@ -227,11 +213,9 @@ Fuse 與 Azure AD 整合提供下列優點：
 
 7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
     
+### <a name="test-single-sign-on"></a>測試單一登入
 
-
-### <a name="testing-single-sign-on"></a>測試單一登入
-
-在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
+在本節中，您會使用存取面板來測試您的 Azure AD SSO 組態。
 
 當您在「存取面板」中按一下 [Fuse] 磚時，應該會自動登入您的 Fuse 應用程式。
 
@@ -256,8 +240,4 @@ Fuse 與 Azure AD 整合提供下列優點：
 [201]: ./media/active-directory-saas-fuse-tutorial/tutorial_general_201.png
 [202]: ./media/active-directory-saas-fuse-tutorial/tutorial_general_202.png
 [203]: ./media/active-directory-saas-fuse-tutorial/tutorial_general_203.png
-
-
-<!--HONumber=Jan17_HO4-->
-
 

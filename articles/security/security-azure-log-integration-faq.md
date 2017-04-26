@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/07/2017
 ms.author: TomSh
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: 2d5201a335e96cc8595de834858750f6aac884a3
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: f539fc2945b9c6646660d50713d11dd7d822d06f
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -25,7 +25,11 @@ ms.lasthandoff: 03/17/2017
 此常見問題集會回答有關 Azure 記錄整合的問題，這是種服務，可讓您將來自 Azure 資源的未經處理記錄，整合到內部部署安全性資訊及事件管理 (SIEM) 系統內。 這項整合提供您內部部署或在雲端中所有資產統一的儀表板，以便您彙總、相互關聯、分析和警示與應用程式相關聯的安全性事件。
 
 ## <a name="is-the-azure-log-integration-software-free"></a>Azure 記錄整合軟體是否為免費？
-是。 Azure 記錄整合軟體不需任何費用。 
+是。 Azure 記錄整合軟體不需任何費用。
+
+## <a name="where-is-azure-log-integration-available"></a>哪裡有提供 Azure 記錄整合？
+
+它目前於 Azure 商務環境和 Azure Government 中提供，且無法在中國或德國使用。
 
 ## <a name="how-can-i-see-the-storage-accounts-from-which-azure-log-integration-is-pulling-azure-vm-logs-from"></a>如何查看 Azure 記錄整合從中提取 Azure VM 記錄檔的儲存體帳戶？
 執行 **azlog source list**命令。
@@ -82,7 +86,7 @@ Error:
 請參閱 [管理及回應 Azure 資訊安全中心的安全性警示](../security-center/security-center-managing-and-responding-alerts.md)。
 
 ## <a name="how-can-i-modify-what-is-collected-with-vm-diagnostics"></a>如何修改 VM 診斷會收集什麼？
-如需如何取得、修改和設定 Windows Azure 診斷 [(WAD)](../virtual-machines/virtual-machines-windows-ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 組態的詳細資訊，請參閱 *使用 PowerShell 在執行 Windows 的虛擬機器中啟用 Azure 診斷* 。 以下是範例︰
+如需如何取得、修改和設定 Windows Azure 診斷 [(WAD)](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 組態的詳細資訊，請參閱 *使用 PowerShell 在執行 Windows 的虛擬機器中啟用 Azure 診斷* 。 以下是範例︰
 
 ### <a name="get-the-wad-config"></a>取得 WAD 設定
     -AzureRmVMDiagnosticsExtension -ResourceGroupName AzLog-Integration -VMName AzlogClient
@@ -107,7 +111,7 @@ Error:
 
 完成變更之後，請檢查儲存體帳戶，以確保會收集正確的事件。
 
-如果您在安裝和設定期間遇到任何問題，請開啟[支援要求](https://docs.microsoft.com/en-us/azure/azure-supportability/how-to-create-azure-support-request)，選取「記錄整合」作為您要求支援的服務。
+如果您在安裝和設定期間遇到任何問題，請開啟[支援要求](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request)，選取 [記錄整合] 做為您要求支援的服務。
 
 
 <!--Image references-->

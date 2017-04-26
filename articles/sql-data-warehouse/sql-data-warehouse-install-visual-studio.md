@@ -12,16 +12,18 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 10/31/2016
+ms.custom: connect
+ms.date: 03/30/2017
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 9c44f417d465aedcbbc731757282e18985b0435c
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: ae025ee2e6865b225efc5e225e261ac579a339aa
+ms.lasthandoff: 04/03/2017
 
 
 ---
-# <a name="install-visual-studio-2015-and-ssdt-for-sql-data-warehouse"></a>安裝適用於 SQL 資料倉儲的 Visual Studio 2015 和 SSDT
-若要開發 SQL 資料倉儲的應用程式，建議使用 Visual Studio 2015 並搭配最新版本的 SQL Server Data Tools (SSDT)。  Visual Studio 2013 Update 5 搭配 SSDT 也支援回溯相容性。  
+# <a name="install-visual-studio-and-ssdt-for-sql-data-warehouse"></a>安裝適用於 SQL 資料倉儲的 Visual Studio 和 SSDT
+若要開發 SQL 資料倉儲的應用程式，建議使用最新版本的 Visual Studio，搭配最新版本的 SQL Server Data Tools (SSDT)。  Visual Studio 2013 Update 5 搭配 SSDT 也支援回溯相容性。  
 
 搭配使用 Visual Studio 和 SSDT 可讓您使用 SQL Server 物件總管，經由視覺化方式瀏覽資料表、檢視、預存程序和 SQL 資料倉儲中的其他許多物件，以及執行查詢。
 
@@ -30,10 +32,10 @@ ms.openlocfilehash: 9c44f417d465aedcbbc731757282e18985b0435c
 > 
 > 
 
-## <a name="step-1-install-visual-studio-2015"></a>步驟 1：安裝 Visual Studio 2015
-遵循下列連結來下載並安裝 Visual Studio 2015。 如果已安裝 Visual Studio 2013 或 2015，可以跳至步驟 2 安裝 SSDT。
+## <a name="step-1-install-visual-studio"></a>步驟 1：安裝 Visual Studio
+遵循下列連結來下載並安裝 Visual Studio。 如果已安裝 Visual Studio 2013 或更新版本，可以跳至步驟 2 安裝 SSDT。
 
-1. [下載 Visual Studio 2015][Download Visual Studio 2015]。
+1. [下載 Visual Studio][]。
 2. 依照 MSDN 上的[安裝 Visual Studio][Installing Visual Studio] 指南並選擇預設組態。
 
 ## <a name="step-2-install-ssdt"></a>步驟 2：安裝 SSDT
@@ -55,12 +57,7 @@ ms.openlocfilehash: 9c44f417d465aedcbbc731757282e18985b0435c
 [connect]: ./sql-data-warehouse-query-visual-studio.md
 
 <!--Other-->
-[Download Visual Studio 2015]: https://www.visualstudio.com/downloads/
+[下載 Visual Studio]: https://www.visualstudio.com/downloads/
 [Installing Visual Studio]: https://msdn.microsoft.com/library/e2h7fzkw.aspx
 [SSDT Download]: https://msdn.microsoft.com/library/mt204009.aspx
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

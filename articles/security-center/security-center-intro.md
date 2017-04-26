@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/24/2017
+ms.date: 04/05/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: caa4f001871beeb83cc0406bd2f89c5aa026cd97
-ms.lasthandoff: 12/08/2016
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 3155990d977d8b0849c9e0be92db11ad6567cd6e
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -49,7 +49,7 @@ ms.lasthandoff: 12/08/2016
 | 回應 | 建議停止目前攻擊及協助避免未來攻擊的方法 |
 
 ## <a name="introductory-walkthrough"></a>逐步解說介紹
- 您可以從 [Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)存取資訊安全中心。 請[登入入口網站](https://portal.azure.com)，並選取 [瀏覽]，然後捲動至 [資訊安全中心] 選項，或選取之前釘選到入口網站儀表板的 [資訊安全中心] 圖格。
+ 您可以從 [Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)存取資訊安全中心。 [登入入口網站](https://portal.azure.com)。 在主要入口網站功能表下，捲動至 [資訊安全中心] 選項，或選取之前釘選到入口網站儀表板的 [資訊安全中心] 圖格。
 
 ![Azure 入口網站中的安全性磚][1]
 
@@ -83,7 +83,7 @@ ms.lasthandoff: 12/08/2016
 >
 >
 
-選取 [防止原則] \(見上文) 以開啟 [防止原則] 刀鋒視窗。  可讓您選擇想要監視的安全性控制項，並根據訂用帳戶內的資源安全性需求提出建議。
+選取 [防止原則] \(見上文) 以開啟 [防止原則] 刀鋒視窗。 [顯示建議] 可讓您選擇想要監視的安全性控制項，以及您想要根據訂用帳戶內的資源安全性需求而看見的建議。
 
 接下來，選取要加以檢視原則詳細資訊的資源群組。
 
@@ -115,7 +115,7 @@ ms.lasthandoff: 12/08/2016
 ### <a name="resource-health"></a>資源健康情況
 [資源全性健康狀態] 圖格會依資源類型顯示環境的整體安全性狀態，包括 VM、Web 應用程式和其他資源。   
 
-在 [資源安全性健康情況] 圖格上選取資源類型來檢視詳細資訊，包括一份任何已識別潛在安全性弱點的清單。 (下面的範例已選取**虛擬機器**)。
+在 [資源安全性健康情況] 圖格上選取資源類型來檢視詳細資訊，包括一份任何已識別潛在安全性弱點的清單。 (下面的範例已選取 [計算])。
 
 ![資源健康狀態磚][6]
 

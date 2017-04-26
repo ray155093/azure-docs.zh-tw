@@ -12,22 +12,23 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/25/2017
+ms.date: 02/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 04a045f41965b093aab71e59cd9b5f328b44de84
-ms.openlocfilehash: bb140097831453d46f6bfef1c9fbe569eefb3020
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 8ab2dd16940f36411cf9a9f244bd3ec6eaf9749b
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-tangoe-command-premium-mobile"></a>教學課程：Azure Active Directory 整合 Tangoe 命令高階行動裝置
+
 在本教學課程中，您會了解如何整合 Tangoe 命令高階行動裝置與 Azure Active Directory (Azure AD)。
 
 Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制可存取 Tangoe 命令高階行動裝置的人員
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Tangoe 命令高階行動裝置 (單一登入)
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Tangoe 命令高階行動裝置單一登入 (SSO)
 * 您可以使用 Azure 傳統入口網站集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -38,15 +39,15 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 * Azure 訂用帳戶
 * Tangoe 命令高階行動裝置單一登入 (SSO) 啟用的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。
 > 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 
@@ -54,7 +55,7 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫新增 Tangoe 命令高階行動裝置
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Azure AD SSO
 
 ## <a name="adding-tangoe-command-premium-mobile-from-the-gallery"></a>從資源庫新增 Tangoe 命令高階行動裝置
 若要設定 Tangoe 命令高階行動裝置與 Azure AD 整合，您需要從資源庫將 Tangoe 命令高階行動裝置新增到受管理的 SaaS 應用程式清單。
@@ -81,14 +82,14 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 
 ![建立 Azure AD 測試使用者](./media/active-directory-saas-tangoe-tutorial/tutorial_tangoe_02.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-在本節中，您會以名為 "Britta Simon" 的測試使用者身分，使用 Tangoe 命令高階行動裝置設定及測試 Azure AD 單一登入。
+## <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
+在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，使用 Tangoe 命令高階行動裝置設定及測試 Azure AD SSO。
 
-若要讓單一登入運作，Azure AD 必須知道 Tangoe 命令高階行動裝置與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 Tangoe 命令高階行動裝置中的相關使用者之間建立連結關聯性。
+若要讓 SSO 運作，Azure AD 必須知道 Tangoe 命令高階行動裝置中與 Azure AD 互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 Tangoe 命令高階行動裝置中的相關使用者之間建立連結關聯性。
 
 建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指派為 Tangoe 命令高階行動裝置中 **Username** 的值。
 
-若要設定及測試對 Tangoe 命令高階行動裝置的 Azure AD 單一登入，您需要完成下列建置組塊：
+若要設定及測試對 Tangoe 命令高階行動裝置的 Azure AD SSO，您需要完成下列建置組塊：
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
@@ -96,10 +97,10 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，並在您的 Tangoe 命令高階行動裝置中設定單一登入。
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+在本節中，您會在傳統入口網站中啟用 Azure AD SSO，並在您的 Tangoe 命令高階行動裝置應用程式中設定 SSO。
 
-**若要設定透過 Tangoe 命令高階行動裝置使用 Azure AD 單一登入功能，請執行下列步驟：**
+**若要設定透過 Tangoe 命令高階行動裝置使用 Azure AD SSO，請執行下列步驟：**
 
 1. 在傳統入口網站的 [Tangoe 命令高階行動裝置] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
@@ -115,16 +116,15 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 
    2. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：**"https://sso.tangoe.com/sp/ACS.saml2"**
 
-    > [!NOTE]  
-    > 如果您不知道 URL 的正確值，您可以使用上述的值做為預留位置，並向 Tangoe 客戶支援部門要求正確的值。
-    >
+     >[!NOTE]  
+     >如果您不知道 URL 的正確值，您可以使用上述的值做為預留位置，並向 Tangoe 客戶支援部門要求正確的值。
+     >
 
 4. 在 [在 Tangoe 命令高階行動裝置設定單一登入]  頁面上，執行下列步驟：
    
     ![設定單一登入](./media/active-directory-saas-tangoe-tutorial/tutorial_tangoe_05.png) 
-   
-   1. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
-   2. 按 [下一步] 。
+  1. 按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
+  2. 按 [下一步] 。
 
 5. 若要為應用程式設定 SSO，請連絡 Tangoe 客戶支援部門，並提供下列資訊：
 
@@ -140,7 +140,7 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
 * 在 [使用者] 清單中，選取 [Britta Simon] 。
@@ -162,12 +162,9 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 5. 在 [告訴我們這位使用者]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-tangoe-tutorial/create_aaduser_05.png) 
-   
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+  1. 針對 [使用者類型]，選取 [您組織中的新使用者]。 
+  2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+  3. 按 [下一步] 。
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
    ![建立 Azure AD 測試使用者](./media/active-directory-saas-tangoe-tutorial/create_aaduser_06.png) 
@@ -187,14 +184,17 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
   1. 記下 [新密碼] 的值。
   2. 按一下頁面底部的 [新增] 。   
 
-### <a name="creating-an-tangoe-command-premium-mobile-test-user"></a>建立 Tangoe 命令高階行動裝置測試使用者
-在本節中，您要在 Tangoe 命令高階行動裝置中建立名為 Britta Simon 的使用者。 Tangoe 命令高階行動裝置應用程式需要在應用程式中佈建所有使用者才能執行單一登入。 因此，請利用 Tangoe 客戶支援部門將所有使用者佈建到應用程式。 
+### <a name="create-an-tangoe-command-premium-mobile-test-user"></a>建立 Tangoe 命令高階行動裝置測試使用者
+在本節中，您要在 Tangoe 命令高階行動裝置中建立名為 Britta Simon 的使用者。 
 
-> [!NOTE]
-> 如果您需要手動建立使用者或使用者批次，您必須連絡 Tangoe 命令高階行動裝置支援小組。
-> 
+Tangoe 命令高階行動裝置應用程式需要在應用程式中佈建所有使用者才能執行單一登入。 因此，請利用 Tangoe 客戶支援部門將所有使用者佈建到應用程式。 
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+>[!NOTE]
+>如果您需要手動建立使用者或使用者批次，您必須連絡 Tangoe 命令高階行動裝置支援小組。
+>
+>
+
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 在本節中，您會把 Tangoe 命令高階行動裝置的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
@@ -218,8 +218,8 @@ Tangoe 命令高階行動裝置與 Azure AD 整合提供下列優點：
 
 ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
-在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
+### <a name="test-single-sign-on"></a>測試單一登入
+在本節中，您會使用存取面板來測試您的 Azure AD SSO 組態。
 
 當您按一下存取面版中的 [Tangoe 命令高階行動裝置] 圖格，您應該會自動登入 Tangoe 命令高階行動裝置應用程式。
 

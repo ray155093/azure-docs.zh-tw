@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/14/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 8e1fccf953579beb138d47d1897bf702461fc39a
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 203648d999032d86dca10f9b47c40a2208ab79e9
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -219,7 +219,7 @@ DocumentDB 集合可使用兩個維度來散發 – 區域內和跨區域。 方
 
 透過回應相當靈敏的資料分割管理、負載平衡及嚴格的資源管理，DocumentDB 可讓您彈性地調整 DocumentDB 集合上數個 Azure 區域的輸送量。 變更集合上的輸送量是 DocumentDB 中的執行階段作業 - 和其他資料庫作業一樣，DocumentDB 可為變更輸送量的要求保證其延遲絕對時間上限。 例如，下圖顯示的客戶集合會根據需求彈性地佈建輸送量 (在兩個區域有每秒 1M-10M 個要求)。
  
-**彈性地佈建輸送量的客戶集合 (每秒&1;M-10M 個要求)**
+**彈性地佈建輸送量的客戶集合 (每秒 1M-10M 個要求)**
 
 ![Azure DocumentDB 可彈性佈建輸送量](./media/documentdb-distribute-data-globally/documentdb-elastic-throughput.png)
 
@@ -252,12 +252,12 @@ DocumentDB 會直接公開輸送量、延遲、一致性和可用性計量。 �
 
 ## <a id="References"></a>參考
 1. Eric Brewer。 [面對健全的分散式系統 (英文)](https://people.eecs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf)
-2. Eric Brewer。 [CAP&12; 年後 - 規則如何變化(英文)](http://informatik.unibas.ch/fileadmin/Lectures/HS2012/CS341/workshops/reportsAndSlides/PresentationKevinUrban.pdf)
+2. Eric Brewer。 [CAP 12 年後 - 規則如何變化(英文)](http://informatik.unibas.ch/fileadmin/Lectures/HS2012/CS341/workshops/reportsAndSlides/PresentationKevinUrban.pdf)
 3. Gilbert、Lynch。 - [一致、可用、資料分割容錯 Web 服務的布魯爾推測和可行性 (英文)](http://www.glassbeam.com/sites/all/themes/glassbeam/images/blog/10.1.1.67.6951.pdf)
 4. Daniel Abadi。 [現代分散式資料庫系統設計的一致性取捨 (英文)](http://cs-www.cs.yale.edu/homes/dna/papers/abadi-pacelc.pdf)
 5. Martin Kleppmann。 [不要再以 CP 或 AP 來稱呼資料庫 (英文)](https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html)
 6. Peter Bailis et al。[實際部分仲裁的隨機限定過期 (PBS) (英文)](http://vldb.org/pvldb/vol5/p776_peterbailis_vldb2012.pdf)
 7. Naor 和 Wool。 [仲裁系統的負載、容量及可用性 (英文)](http://www.cs.utexas.edu/~lorenzo/corsi/cs395t/04S/notes/naor98load.pdf)
 8. Herlihy 和 Wing。 [線性：並行物件的正確性條件 (英文)](http://cs.brown.edu/~mph/HerlihyW90/p463-herlihy.pdf)
-9. Azure DocumentDB SLA (上次於 2016 年 12 月更新)
+9. [Azure DocumentDB SLA](https://azure.microsoft.com/support/legal/sla/documentdb/v1_1/)
 

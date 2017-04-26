@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/17/2017
+ms.date: 03/30/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 9702f179a65754be88646987f868385b02a9f2d7
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: eeaab56b376ffd3123efb95a1223b7344dd6d187
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -868,20 +868,18 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為： **adf-pooln
 1. 在 **inputfolder**中新增下列子資料夾，然後將輸入檔案放入這些資料夾中：2015-11-16-05、2015-11-16-06、201-11-16-07、2011-11-16-08、2015-11-16-09。 將管線的結束時間從 `2015-11-16T05:00:00Z` 變更為 `2015-11-16T10:00:00Z`。 在 [圖表檢視] 中，按兩下 **InputDataset**，並確認輸入配量已就緒。 按兩下 **OuptutDataset** ，以查看輸出配量的狀態。 如果它們都處於 [就緒] 狀態，請在 outputfolder 中查看輸出檔案。
 2. 增加或減少**並行**設定，以了解它對您解決方案的效能有何影響，尤其是在 Azure Batch 上執行的處理。 (請參閱「步驟 4：建立並執行管線」，以進一步了解**並行**設定。)
 3. 建立 [每個 VM 的工作數上限] 較低/較高的集區。 若要使用您所建立的新集區，請更新 Data Factory 解決方案中的 Azure Batch 連結服務。 (請參閱「步驟 4：建立並執行管線」，以進一步了解 [每個 VM 的工作數上限] 設定。)
-4. 建立具有 **自動調整** 功能的 Azure Batch 集區。 自動調整 Azure Batch 集區中的計算節點就是動態調整應用程式所使用的處理能力。 例如，您可以用 0 專用 VM 和依據暫止工作數目自動調整的公式，建立 Azure Batch 集區︰
+4. 建立具有 **自動調整** 功能的 Azure Batch 集區。 自動調整 Azure Batch 集區中的計算節點就是動態調整應用程式所使用的處理能力。 
 
-   每個暫止工作一次一個 VM (例如︰5 個暫止工作 -> 5 個 VM)：
-    
-    ```
-    pendingTaskSampleVector=$PendingTasks.GetSample(600 * TimeInterval_Second);
-    $TargetDedicated = max(pendingTaskSampleVector);
-    ```
+    這裡的範例公式會有下列行為：當集區一開始建立時，它會以 1 部 VM 啟動。 $PendingTasks 計量會定義執行中 + 作用中 (已排入佇列) 狀態的工作數目。  公式會尋找過去 180 秒內的平均擱置中工作數目，並據以設定 TargetDedicated。 它會確保 TargetDedicated 一律不會超過 25 部 VM。 因此，當提交新工作時，集區會自動成長而且工作會完成，VM 會依序成為可用，而且自動調整規模功能會壓縮那些 VM。 您可以視需要調整 startingNumberOfVMs and maxNumberofVMs。
+ 
+    自動調整公式：
 
-   無論暫止工作的數目為何，一次最多一個 VM︰
-
-    ```
-    pendingTaskSampleVector=$PendingTasks.GetSample(600 * TimeInterval_Second);
-    $TargetDedicated = (max(pendingTaskSampleVector)>0)?1:0;
+    ``` 
+    startingNumberOfVMs = 1;
+    maxNumberofVMs = 25;
+    pendingTaskSamplePercent = $PendingTasks.GetSamplePercent(180 * TimeInterval_Second);
+    pendingTaskSamples = pendingTaskSamplePercent < 70 ? startingNumberOfVMs : avg($PendingTasks.GetSample(180 * TimeInterval_Second));
+    $TargetDedicated=min(maxNumberofVMs,pendingTaskSamples);
     ```
 
    如需詳細資訊，請參閱 [自動調整 Azure Batch 集區中的計算節點](../batch/batch-automatic-scaling.md) 。

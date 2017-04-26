@@ -13,13 +13,13 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/21/2017
+ms.date: 03/29/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 183425e296f91bba47094c9b35be67fb6299c569
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: 7418544c43afee41a1c20058f53cf626aed17147
+ms.lasthandoff: 04/07/2017
 
 ---
 # <a name="use-maven-to-develop-a-java-based-word-count-topology-for-storm-on-hdinsight"></a>使用 Maven 開發 Storm on HDInsight 的以 Java 為基礎字數統計拓撲
@@ -83,23 +83,62 @@ ms.lasthandoff: 03/22/2017
 * **src\test\java\com\microsoft\example\AppTest.java**
 * **src\main\java\com\microsoft\example\App.java**
 
+## <a name="add-repositories"></a>加入存放庫
+
+因為 HDInsight 是以 Hortonworks Data Platform (HDP) 為基礎，所以我們建議您使用 Hortonworks 存放庫來為您的 HDInsight 專案下載相依性項目。 在 __pom.xml__ 檔案中，在 `<url>http://maven.apache.org</url>` 行後加入下列文字：
+
+```xml
+<repositories>
+    <repository>
+        <releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+        <id>HDPReleases</id>
+        <name>HDP Releases</name>
+        <url>http://repo.hortonworks.com/content/repositories/releases/</url>
+        <layout>default</layout>
+    </repository>
+    <repository>
+        <releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+        <id>HDPJetty</id>
+        <name>Hadoop Jetty</name>
+        <url>http://repo.hortonworks.com/content/repositories/jetty-hadoop/</url>
+        <layout>default</layout>
+    </repository>
+</repositories>
+```
+
 ## <a name="add-properties"></a>加入屬性
 
-Maven 可讓您定義稱為屬性的專案層級值。 將以下文字加到 `<url>http://maven.apache.org</url>` 行之後：
+Maven 可讓您定義稱為屬性的專案層級值。 在 __pom.xml__ 中，在 `</repositories>` 行後加入下列文字：
 
 ```xml
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!--
-    Storm 0.10.0 is for HDInsight 3.3 and 3.4.
-    To find the version information for earlier HDInsight cluster
-    versions, see https://azure.microsoft.com/en-us/documentation/articles/hdinsight-component-versioning/
+    This is a version of Storm from the Hortonworks repository that is compatible with HDInsight.
     -->
-    <storm.version>0.10.0</storm.version>
+    <storm.version>1.0.1.2.5.3.0-37</storm.version>
 </properties>
 ```
 
-現在，您可以在 `pom.xml` 的其他區段中使用這些值。 例如，在指定 Storm 元件的版本時，您可以使用 `${storm.version}` 而不是將值硬式編碼。
+現在，您可以在 `pom.xml` 的其他區段中使用此值。 例如，在指定 Storm 元件的版本時，您可以使用 `${storm.version}` 而不是將值硬式編碼。
 
 ## <a name="add-dependencies"></a>新增相依性
 
@@ -157,6 +196,7 @@ Maven 外掛程式可讓您自訂專案的建置階段 (例如，如何編譯專
     <includePluginDependencies>false</includePluginDependencies>
     <classpathScope>compile</classpathScope>
     <mainClass>${storm.topology}</mainClass>
+    <cleanupDaemonThreads>false</cleanupDaemonThreads> 
     </configuration>
 </plugin>
 ```
@@ -297,7 +337,7 @@ Bolt 會處理資料的處理。 此拓撲會使用兩個 Bolt：
 > [!NOTE]
 > Bolt 幾乎可以包辦任何作業，例如計算、持續性或與外部元件交談。
 
-在 `src\main\java\com\microsoft\example` 目錄中建立兩個新檔案 `SplitSentence.java` 和 `WordCount.Java`。 使用下列文字做為檔案的內容：
+在 `src\main\java\com\microsoft\example` 目錄中建立兩個新檔案 `SplitSentence.java` 和 `WordCount.java`。 使用下列文字做為檔案的內容：
 
 **SplitSentence**
 

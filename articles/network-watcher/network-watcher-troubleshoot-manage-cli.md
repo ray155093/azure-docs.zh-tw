@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: 0dcc02e4f3b1e512a2c9e4b96894324414182af9
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: a213c146a9ea1bb6c23bbcbfb6353372f2e4cbfc
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -55,7 +55,7 @@ azure network vpn-connection list -g resourceGroupName
 azure network vpn-connection list -s subscription
 ```
 
-在取得儲存體帳戶的名稱之後，您可以執行此命令來取得其資源識別碼︰
+在取得連線的名稱之後，您可以執行此命令來取得其資源識別碼︰
 
 ```azurecli
 azure network vpn-connection show -g resourceGroupName -n connectionName
@@ -65,9 +65,23 @@ azure network vpn-connection show -g resourceGroupName -n connectionName
 
 資源疑難排解會傳回資源健全狀況的相關資料，它也會將記錄儲存到儲存體帳戶以供檢閱。 在此步驟中，我們會建立儲存體帳戶，如果已有現有的儲存體帳戶，您也可以使用它。
 
-```azurecli
-azure storage account create -n storageAccountName -l location -g resourceGroupName
-```
+1. 建立儲存體帳戶
+
+    ```azurecli
+    azure storage account create -n storageAccountName -l location -g resourceGroupName
+    ```
+
+1. 取得儲存體帳戶金鑰
+
+    ```azurecli
+    azure storage account keys list storageAccountName -g resourcegroupName
+    ```
+
+1. 建立容器
+
+    ```azurecli
+    azure storage container create --account-name storageAccountName -g resourcegroupName --acount-key {storageAccountKey} --container logs
+    ```
 
 ## <a name="run-network-watcher-resource-troubleshooting"></a>執行網路監看員資源疑難排解
 

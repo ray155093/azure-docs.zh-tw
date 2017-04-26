@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/20/2016
+ms.date: 04/03/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 51a882d82793e5e284cfaeec9271ff3719385fcc
-ms.openlocfilehash: 4bebc8267040a52fabc12fa96d38f96f0a0eb993
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: b16d8607ca0dbb08421b332df11e462267eb80f5
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -84,8 +85,8 @@ ms.openlocfilehash: 4bebc8267040a52fabc12fa96d38f96f0a0eb993
 | [解決端點保護健全狀況警示](security-center-resolve-endpoint-protection-health-alerts.md) |建議您先解決端點保護失敗。 |
 | [啟用子網路/虛擬機器上的網路安全性群組](security-center-enable-network-security-groups.md) |建議您在子網路或 VM 上啟用 NSG。 |
 | [透過網際網路面向端點限制存取](security-center-restrict-access-through-internet-facing-endpoints.md) |建議您為 NSG 設定輸入流量規則。 |
-| [啟用伺服器 SQL 稽核](security-center-enable-auditing-on-sql-servers.md) |建議您開啟 Azure SQL 伺服器的稽核功能。 (僅限 Azure SQL 服務。 不包含在虛擬機器上執行的 SQ。) |
-| [啟用資料庫 SQL 稽核](security-center-enable-auditing-on-sql-databases.md) |建議您開啟 Azure SQL Database 的稽核功能。 (僅限 Azure SQL 服務。 不包含在虛擬機器上執行的 SQ。) |
+| [在 SQL Server 上啟用稽核與威脅偵測](security-center-enable-auditing-on-sql-servers.md) |建議您針對 Azure SQL Server 開啟稽核與威脅偵測。 (僅限 Azure SQL 服務。 不包含在虛擬機器上執行的 SQ。) |
+| [在 SQL 資料庫上啟用稽核與威脅偵測](security-center-enable-auditing-on-sql-databases.md) |建議您針對 Azure SQL Database 開啟稽核與威脅偵測。 (僅限 Azure SQL 服務。 不包含在虛擬機器上執行的 SQ。) |
 | [在 SQL 資料庫上啟用透明資料加密](security-center-enable-transparent-data-encryption.md) |建議您針對 SQL Database 啟用加密功能。 (僅限 Azure SQL 服務。) |
 | [啟用 VM 代理程式](security-center-enable-vm-agent.md) |可讓您查看哪些 VM 需要「VM 代理程式」。 為了佈建修補程式掃描、基準掃描及反惡意程式碼程式，必須在 VM 上安裝「VM 代理程式」。 預設會為從 Azure Marketplace 部署的 VM 安裝「VM 代理程式」。 如需如何安裝 VM 代理程式的相關資訊，請參閱 [VM 代理程式和擴充功能 – 第 2 部分](http://azure.microsoft.com/blog/2014/04/15/vm-agent-and-extensions-part-2/) 。 |
 | [套用磁碟加密](security-center-apply-disk-encryption.md) |建議您使用 Azure 磁碟加密來加密您的 VM 磁碟 (Windows 和 Linux VM)。 建議您的 VM 上的作業系統和資料磁碟區都進行加密。 |
@@ -123,9 +124,4 @@ ms.openlocfilehash: 4bebc8267040a52fabc12fa96d38f96f0a0eb993
 [1]: ./media/security-center-recommendations/recommendations-tile.png
 [2]: ./media/security-center-recommendations/filter-recommendations.png
 [3]: ./media/security-center-recommendations/dismiss-recommendations.png
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

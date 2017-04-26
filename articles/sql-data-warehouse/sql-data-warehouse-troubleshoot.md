@@ -12,12 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 03/03/2017
+ms.custom: manage
+ms.date: 03/30/2017
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 73f10984b7fe2636f5b9f664b831adc910e7ac7a
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: adbd994022f7585676bcbd0c4e4b040e9160c679
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -31,12 +32,13 @@ ms.lasthandoff: 03/04/2017
 | 伺服器主體 "MyUserName" 在目前的資訊安全內容下無法存取「主要」資料庫。 無法開啟使用者預設資料庫。 登入失敗。 使用者 'MyUserName' 登入失敗。 (Microsoft SQL Server，錯誤：916) |當 AAD 使用者嘗試連線到主要資料庫，但主要資料庫中沒有使用者時，就會發生此錯誤。  若要修正此問題，請在連線時指定您想要連接的 SQL 資料倉儲，或將使用者新增到主要資料庫。  如需詳細資訊，請參閱[安全性概觀][Security overview]一文。 |
 | CTAIP 錯誤 |若已在 SQL Server Master 資料庫上建立登入，但未在 SQL 資料倉儲資料庫上建立，則會發生這個錯誤。  如果您遇到這個錯誤，請查看[安全性概觀][Security overview]一文。  這篇文章說明如何在主要資料庫上建立登入和使用者，接著如何在 SQL 資料倉儲資料庫上建立使用者。 |
 | 遭到防火牆封鎖 |為確保只有已知的 IP 位址擁有資料庫的存取權限，Azure SQL 資料庫受到伺服器及資料庫層級的防火牆所保護。 防火牆預設將會受到保護，因此您在可以連線之前，必須明確啟用單一 IP 位址或位址範圍。  若要設定防火牆的存取，請遵循[佈建指示][Provisioning instructions]中[設定用戶端 IP 的伺服器防火牆存取][Configure server firewall access for your client IP]的步驟。 |
-| 無法與工具或驅動程式連線 |SQL 資料倉儲建議使用 [SSMS][SSMS]、[SSDT for Visual Studio 2015][SSDT for Visual Studio 2015] 或 [sqlcmd][sqlcmd] 來查詢您的資料。 如需驅動程式和連接到 SQL 資料倉儲的詳細資訊，請參閱 [Azure SQL 資料倉儲的驅動程式][Drivers for Azure SQL Data Warehouse]和[連接到 Azure SQL 資料倉儲][Connect to Azure SQL Data Warehouse]文章。 |
+| 無法與工具或驅動程式連線 |SQL 資料倉儲建議使用 [SSMS][SSMS]、[適用於 Visual Studio 的 SSDT][SSDT for Visual Studio] 或 [sqlcmd][sqlcmd] 來查詢您的資料。 如需驅動程式和連接到 SQL 資料倉儲的詳細資訊，請參閱 [Azure SQL 資料倉儲的驅動程式][Drivers for Azure SQL Data Warehouse]和[連接到 Azure SQL 資料倉儲][Connect to Azure SQL Data Warehouse]文章。 |
 
 ## <a name="tools"></a>工具
 | 問題 | 解決方案 |
 |:--- |:--- |
 | Visual Studio 物件總管中遺漏 AAD 使用者 |這是已知的問題。  解決方法是在 [sys.database_principals][sys.database_principals] 中檢視使用者。  若要深入了解使用 Azure Active Directory 與 SQL 資料倉儲，請參閱[適用於 Azure SQL 資料倉儲的驗證][Authentication to Azure SQL Data Warehouse]。 |
+|手動撰寫指令碼、使用指令碼精靈，或透過 SSMS 連線很緩慢、無回應或產生錯誤| 請確定使用者是在主要資料庫中建立。 在指令碼選項中，也請確定引擎版本已設定為 [Microsoft Azure SQL 資料倉儲版本]，且引擎類型為 [Microsoft Azure SQL Database]。|
 
 ## <a name="performance"></a>效能
 | 問題 | 解決方案 |
@@ -54,6 +56,7 @@ ms.lasthandoff: 03/04/2017
 | 訊息 40847：無法執行這項作業，因為伺服器可能會超過允許的資料庫交易單位配額 45000。 |減少您正在嘗試建立的資料庫 [DWU][DWU]，或是[要求增加配額][request a quota increase]。 |
 | 調查空間使用量 |請參閱[資料表大小][Table sizes]，以了解您系統的空間使用量。 |
 | 協助管理資料表 |請參閱[資料表概觀][Overview]一文，以協助管理您的資料表。  本文還包含更詳細主題的連結，例如[資料表的資料類型][Data types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]、[維護資料表統計資料][Statistics]和[暫存資料表][Temporary]。 |
+|Azure 入口網站中的透明資料加密 (TDE) 進度列不會更新|您可以透過 [PowerShell (英文)](https://docs.microsoft.com/powershell/module/azurerm.sql/get-azurermsqldatabasetransparentdataencryption?view=azurermps-3.7.0) 檢視 TDE 的狀態。|
 
 ## <a name="polybase"></a>Polybase
 | 問題 | 解決方案 |
@@ -88,7 +91,7 @@ ms.lasthandoff: 03/04/2017
 <!--Article references-->
 [Security overview]: ./sql-data-warehouse-overview-manage-security.md
 [SSMS]: https://msdn.microsoft.com/library/mt238290.aspx
-[SSDT for Visual Studio 2015]: ./sql-data-warehouse-install-visual-studio.md
+[SSDT for Visual Studio]: ./sql-data-warehouse-install-visual-studio.md
 [Drivers for Azure SQL Data Warehouse]: ./sql-data-warehouse-connection-strings.md
 [Connect to Azure SQL Data Warehouse]: ./sql-data-warehouse-connect-overview.md
 [建立支援票證]: ./sql-data-warehouse-get-started-create-support-ticket.md

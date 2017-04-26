@@ -14,12 +14,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/10/2017
+ms.date: 04/05/2017
 ms.author: ankshah
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 7acbdda2e8179219c21370d20d30a94feb405fce
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 7b4f397e4abb66933f05e5d5ba4afeb8c2c00d5f
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -61,6 +61,16 @@ ms.lasthandoff: 03/11/2017
 ![顯示如何在 Azure 入口網站中開啟 [防火牆] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-firewall-support/documentdb-azure-portal-firewall.png)
 
 在新窗格中，指定 Azure 入口網站是否可以存取帳戶，並適當地新增其他地址和範圍，然後按一下 [儲存]。  
+
+> [!NOTE]
+> 當您啟用 IP 存取控制原則時，您必須加入您 Azure 入口網站的 IP 位址以維持存取權。 入口網站 IP 位址是：
+> |區域|IP 位址|
+> |------|----------|
+> |所有區域 (下面指定的區域除外)| 104.42.195.92|
+> |德國|51.4.229.218|
+> |中國|139.217.8.252|
+> |美國政府亞利桑那州|52.244.48.71|
+>
 
 ![顯示如何在 Azure 入口網站中進行防火牆設定的螢幕擷取畫面](./media/documentdb-firewall-support/documentdb-azure-portal-firewall-configure.png)
 

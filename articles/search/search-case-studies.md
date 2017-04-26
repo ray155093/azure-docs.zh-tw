@@ -16,8 +16,9 @@ ms.tgt_pltfrm: na
 ms.date: 08/29/2016
 ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 197e5eba551d60ec33bcb5705bfa13f145554b74
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: e7cbbdc606920b9698b30e4b7a9c3325a0f866e2
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -42,8 +43,8 @@ Medihoo 是一家新公司，對於其醫療保健搜尋網站有重大計劃，
 ## <a name="weichert-realtorshttpscustomersmicrosoftcompagescustomerstoryaspxrecid21252"></a>[Weichert Realtors](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=21252)
 Weichert Realtors 正移向雲端，這會導致該公司完全改變其業務的進行方式。 移轉至 Microsoft Azure 已讓該公司在捨棄昂貴的內部部署硬體和軟體之後，降低了 60% 的營運成本，透過強大的搜尋功能完全改造其 CRM 解決方案，以及提供對未來業務極為重要的各種新資料服務。 [深入了解...](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=21252)
 
-## <a name="whattopediacomsearch-dev-case-study-whattopediamd"></a>[Whattopedia.com](search-dev-case-study-whattopedia.md)
-了解一家新的瑞典公司是如何建置資訊媒體入口網站，以透過高相關、範圍內搜尋的體驗連結購物者與零售商，就像遊客在未知的領域時，旅遊入口網站幫忙匹配飯店、餐廳和娛樂項目一樣。[深入了解...](search-dev-case-study-whattopedia.md)
+## <a name="whattopediacom"></a>Whattopedia.com
+了解一家新的瑞典公司是如何建置資訊媒體入口網站，以透過高相關、範圍內搜尋的體驗連結購物者與零售商，就像遊客在不熟悉的地點時，旅遊入口網站幫忙匹配飯店、餐廳和娛樂項目一樣。
 
 <!--Image References -- here for future reference. Had to -->
 [1]: ./media/search-case-studies/autotrader_m.png
@@ -52,9 +53,4 @@ Weichert Realtors 正移向雲端，這會導致該公司完全改變其業務�
 [4]: ./media/search-case-studies/medihoo_m.png
 [5]: ./media/search-case-studies/weichert_m.png
 [xomni]: ./media/search-case-studies/xomni_m.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

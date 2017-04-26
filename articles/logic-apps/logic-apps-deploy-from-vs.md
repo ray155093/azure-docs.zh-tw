@@ -16,9 +16,9 @@ ms.custom: H1Hack27Feb2017
 ms.date: 2/14/2017
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 5dfff8620d66eca0d54763efbc5702e4b4d122d1
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: ad18896548449d85e2af8a91ddd90c8192db1ab2
+ms.lasthandoff: 04/06/2017
 
 ---
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 03/14/2017
 
 ### <a name="prerequisites"></a>必要條件
 
-* [Visual Studio 2015](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
+* [Visual Studio 2017](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx) 或 Visual Studio 2015
 * [最新的 Azure SDK](https://azure.microsoft.com/downloads/) (2.9.1 或更新版本)
 * [Azure PowerShell](https://github.com/Azure/azure-powershell#installation)
 * Web 的存取權 (若使用內嵌的設計工具)
@@ -50,7 +50,7 @@ ms.lasthandoff: 03/14/2017
 5. 在安裝好之後重新啟動 Visual Studio。
 
 > [!NOTE]
-> 您也可以直接從 [Visual Studio Marketplace](https://visualstudiogallery.msdn.microsoft.com/e25ad307-46cf-412e-8ba5-5b555d53d2d9) 下載 Azure Logic Apps Tools for Visual Studio。
+> 您也可以直接從 Visual Studio Marketplace 下載 [Azure Logic Apps Tools for Visual Studio 2017](https://marketplace.visualstudio.com/items?itemName=VinaySinghMSFT.AzureLogicAppsToolsforVisualStudio-18551) 與 [Azure Logic Apps Tools for Visual Studio 2015](https://marketplace.visualstudio.com/items?itemName=VinaySinghMSFT.AzureLogicAppsToolsforVisualStudio)。
 
 完成安裝之後，您就可以搭配使用 Azure 資源群組專案與邏輯應用程式設計工具。
 

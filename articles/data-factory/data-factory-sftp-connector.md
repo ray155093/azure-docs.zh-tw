@@ -11,12 +11,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/22/2017
+ms.date: 03/30/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 1a3b78575b2b7f8d36178d41975690e984277a29
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 454957b439e327b08dcd6e7f4acee37963970458
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -24,6 +24,9 @@ ms.lasthandoff: 03/29/2017
 本文概述如何使用 Azure Data Factory 中的複製活動，將內部部署/雲端 SFTP 伺服器中的資料移動到支援的接收資料存放區。 本文是根據 [資料移動活動](data-factory-data-movement-activities.md)一文，該文呈現使用複製活動移動資料的一般概觀以及支援作為來源/接收的資料存放區清單。
 
 資料處理站目前只支援將資料從 SFTP 伺服器移到其他資料存放區，而不支援將資料從其他資料存放區移到 SFTP 伺服器。 它支援內部部署和雲端 SFTP 伺服器。
+
+> [!NOTE]
+> 來源檔案成功複製至目的地後，「複製活動」不會將它刪除。 如果您需要在成功複製後刪除來源檔案，請建立自訂活動來刪除檔案，並在管道中使用該活動。 
 
 ## <a name="supported-scenarios-and-authentication-types"></a>支援的案例和驗證類型
 您可以使用此 SFTP 連接器，從**雲端 SFTP 伺服器和內部部署 SFTP 伺服器**複製資料。 連線至 SFTP 伺服器時支援 **Basic** 和 **SshPublicKey** 驗證類型。
@@ -209,6 +212,8 @@ ms.lasthandoff: 03/29/2017
 
 [!INCLUDE [data-factory-file-system-source](../../includes/data-factory-file-system-source.md)]
 
+## <a name="supported-file-and-compression-formats"></a>支援的檔案和壓縮格式
+請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md)文章以了解詳細資訊。
 
 ### <a name="json-example-copy-data-from-sftp-server-to-azure-blob"></a>JSON 範例：將資料從 SFTP 伺服器複製到 Azure Blob
 下列範例提供您使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 來建立管線時，可使用的範例 JSON 定義。 這些範例示範如何將資料從 SFTP 來源複製到 Azure Blob 儲存體。 不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源 **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。

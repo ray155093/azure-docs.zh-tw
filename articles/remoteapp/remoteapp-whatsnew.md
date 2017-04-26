@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: e4d94d3f9736378d93e93be6645ed04ade763ca3
-ms.openlocfilehash: 05487c4bbdce24ea9f31ed451026531c16ead7c4
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 6720bb6471ef36179042562c751e1a501979f02b
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="whats-new-in-azure-remoteapp"></a>Azure RemoteApp 有哪些新功能？
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -43,7 +44,7 @@ Azure RemoteApp 的優點之一是我們不斷地努力改進 RemoteApp。 每�
 8 月的重大變更 - 以下是重點：
 
 * 您現在可以使用 Azure VNET 搭配雲端集合！ 參閱 [雲端建立指示](remoteapp-create-cloud-deployment.md) 以取得新步驟。
-* 讓新增應用程式至 Windows RemoteApp 用戶端的 [開始] 功能表成為可能。 應用程式會顯示在應用程式清單中，您可以將它們釘選至 Windows 中的 [開始] 功能表。
+* 使應用程式可以新增至 Windows RemoteApp 用戶端的 [開始]**** 功能表。 應用程式會顯示在應用程式清單中，您可以將它們釘選至 Windows 中的 [開始]**** 功能表。
 * 將新的映像新增至 Azure VM 資源庫 - Windows Server 遠端桌面工作階段主機與 Microsoft Office 365 ProPlus。
 * 修正 Mac 用戶端，讓具有強制回應視窗的應用程式停止凍結。
 * 說明如何搭配 Azure RemoteApp 使用 [Office 365 ProPlus](remoteapp-officesubscription.md) 訂用帳戶。
@@ -87,10 +88,5 @@ Azure RemoteApp 的優點之一是我們不斷地努力改進 RemoteApp。 每�
 
 ### <a name="help-us-help-you"></a>幫我們來協助您
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯]  以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

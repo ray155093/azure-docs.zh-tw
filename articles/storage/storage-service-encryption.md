@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: cd727a02716323c54d1c54a23cd4edd8f4940da1
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: aaada39283b19015e460768b072d0164b0d22bae
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -44,7 +44,7 @@ SSE 運作方式是在資料寫入 Azure 儲存體時進行加密，並可使用
 若要深入了解，請參閱常見問題集。
 
 ### <a name="availability-for-file-storage"></a>檔案儲存體的可用性
-檔案儲存體的儲存體服務加密目前在美國東部、美國東部&2;、美國中部、美國中北部、美國中南部、美國中西部、美國西部、美國西部&2;、東亞、北歐、西歐、澳大利亞東部和澳大利亞東南部等地區提供。
+檔案儲存體的儲存體服務加密目前在所有 Azure 區域提供。
 
 
 若要針對儲存體帳戶啟用或停用儲存體服務加密，請登入 [Azure 入口網站](https://azure.portal.com)並選取儲存體帳戶。 在 [設定] 刀鋒視窗上，尋找此螢幕擷取畫面所示的 [Blob 服務] 區段，並按一下 [加密]。
@@ -74,7 +74,7 @@ SSE 有下列限制：
 * 不支援傳統儲存體帳戶的加密。
 * 只有針對 Blob 服務才支援加密已移轉到 Resource Manager 儲存體帳戶的傳統儲存體帳戶，針對檔案服務則不支援。
 * 只有針對新建立的儲存體帳戶才支援加密檔案儲存體。
-* 現有資料 - SSE 只會加密啟用加密之後新建立的資料。 例如，如果您建立新的 Resource Manager 儲存體帳戶但是未開啟加密，然後您將 blob 或封存 VHD 上傳至該儲存體帳戶，然後開啟 SSE，那些 blob 將不會加密，除非它們重新寫入或複製。
+* 現有資料 - SSE 只會加密啟用加密之後新建立的資料。 例如，如果您建立新的 Resource Manager 儲存體帳戶但是未開啟加密，然後您將 Blob 或封存的 VHD 上傳至該儲存體帳戶並開啟 SSE，則那些 Blob 將不會加密，除非它們被重新寫入或複製。
 * Marketplace 支援 - 允許使用 [Azure 入口網站](https://portal.azure.com)、PowerShell 及 Azure CLI 來加密從 Marketplace 建立的 VM。 VHD 基底影像將保持未加密狀態；不過，在 VM 啟動之後完成的任何寫入將會加密。
 * 系統不會將資料表和佇列資料加密。
 
@@ -143,7 +143,7 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 
 答︰您可以在 Resource Manager 儲存體帳戶中隨時啟用 SSE。 不過，不會加密已經存在的 Blob。 若要加密這些 Blob，您可以將它們複製到另一個名稱或另一個容器，然後移除未加密的版本。尚未針對檔案儲存體預覽支援此功能
 
-**問︰我使用進階儲存體，可以使用 SSE 嗎？**
+**問︰我正在使用進階儲存體，我是否可以使用 SSE？**
 
 答：是，標準儲存體與進階儲存體都支援 SSE。尚未針對檔案儲存體預覽支援此功能。
 

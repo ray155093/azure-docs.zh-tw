@@ -9,7 +9,7 @@ editor:
 tags: 
 ms.assetid: 8e71b04c-bc38-4153-8f83-f2b14faa31d9
 ms.service: sql-database
-ms.custom: overview
+ms.custom: security-access
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -17,9 +17,9 @@ ms.workload: data-management
 ms.date: 02/06/2017
 ms.author: rickbyh
 translationtype: Human Translation
-ms.sourcegitcommit: ae230c012a17eb73c8993a32197c844c6abaa2a4
-ms.openlocfilehash: 8b9b9b70cc7b6a9b89a52523f713b43b74713042
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: e3bafbd9f010550f8b7117de27495b21cadbd3c1
+ms.lasthandoff: 04/10/2017
 
 ---
 # <a name="azure-sql-database-access-control"></a>Azure SQL Database 存取控制
@@ -33,7 +33,7 @@ Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提�
 
 Azure SQL Database 服務唯有透過 TCP 通訊埠 1433 才能使用。 若要從您的電腦存取 SQL Database，請務必確認您的用戶端電腦防火牆允許 TCP 連接埠 1433 上的傳出 TCP 通訊。 如果其他應用程式不需要，請封鎖 TCP 通訊埠 1433 的傳入連線。 
 
-連接程序當中，從 Azure 虛擬機器的連接會被重新導向到不同的 IP 位址和連接埠，針對每個背景工作角色都是唯一。 連接埠號碼的範圍從 11000 到 11999。 如需 TCP 連接埠的詳細資訊，請參閱 [適用於 ADO.NET 4.5 及 SQL Database V12 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)。
+連接程序當中，從 Azure 虛擬機器的連接會被重新導向到不同的 IP 位址和連接埠，針對每個背景工作角色都是唯一。 連接埠號碼的範圍從 11000 到 11999。 如需 TCP 連接埠的詳細資訊，請參閱[適用於 ADO.NET 4.5 及 SQL Database 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)。
 
 ## <a name="authentication"></a>驗證
 

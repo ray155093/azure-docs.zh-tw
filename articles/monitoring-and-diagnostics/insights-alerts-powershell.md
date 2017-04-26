@@ -15,13 +15,13 @@ ms.topic: article
 ms.date: 10/20/2016
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
-ms.openlocfilehash: 62faba3827e9fc33e9788cd2d487adf04d760791
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: f41fbee742daf2107b57caa528e53537018c88c6
+ms.openlocfilehash: 50127242cdf156771d0610e58cf2fc41281adae7
+ms.lasthandoff: 03/31/2017
 
 
 ---
-# <a name="create-alerts-in-azure-monitor-for-azure-services---powershell"></a>在 Azure 服務的 Azure 監視器中建立警示 - PowerShell 
+# <a name="create-metric-alerts-in-azure-monitor-for-azure-services---powershell"></a>在 Azure 監視器中為 Azure 服務建立計量警示 - PowerShell
 > [!div class="op_single_selector"]
 > * [入口網站](insights-alerts-portal.md)
 > * [PowerShell](insights-alerts-powershell.md)
@@ -29,15 +29,15 @@ ms.lasthandoff: 03/15/2017
 >
 >
 
-## <a name="overview"></a>Overview
-本文說明如何使用PowerShell 設定 Azure 警示。  
+## <a name="overview"></a>概觀
+此文章說明如何使用 PowerShell 設定 Azure 計量警示。  
 
 您可以收到以您 Azure 服務的監視計量或事件為基礎的警示。
 
 * **計量值** - 當指定的計量值超出您在任一方向指派的臨界值時會觸發警示。 也就是說，當先符合條件而之後該條件不再符合時，兩方面皆會觸發。    
-* **活動記錄檔事件** - 警示可觸發*每一個*事件，或是僅在發生特定事件數目時才觸發。
+* **活動記錄檔事件** - 警示可在*每一個*事件上觸發，或是僅在發生特定事件時才觸發。 若要深入了解活動記錄檔警示，請[按一下這裡](monitoring-activity-log-alerts.md)
 
-您可以在警示觸發時，設定警示執行下列動作︰
+您可以設定當計量警示觸發時執行下列動作︰
 
 * 傳送電子郵件給服務管理員和共同管理員
 * 傳送電子郵件至您指定的其他電子郵件
@@ -74,8 +74,8 @@ ms.lasthandoff: 03/15/2017
    ```
 4. 若要建立規則，您需要先取得幾項重要資訊：
 
-   * 您想要為其設定警示的 **資源識別碼**
-   * 該資源可使用的 **計量定義**
+  * 您想要為其設定警示的 **資源識別碼**
+  * 該資源可使用的 **計量定義**
 
      取得資源識別碼的方法之一，是使用 Azure 入口網站。 假設已建立資源，在入口網站中選取它。 然後在下一個刀鋒視窗中，選取 [設定] 區段下的 [屬性]。 [資源識別碼] 是下一個刀鋒視窗中的欄位。 另一種方法是使用 [Azure 資源總管](https://resources.azure.com/)。
 
@@ -113,27 +113,14 @@ ms.lasthandoff: 03/15/2017
     Add-AzureRmMetricAlertRule -Name myMetricRuleWithWebhookAndEmail -Location "East US" -ResourceGroup myresourcegroup -TargetResourceId /subscriptions/dededede-7aa0-407d-a6fb-eb20c8bd1192/resourceGroups/myresourcegroupname/providers/Microsoft.Web/sites/mywebsitename -MetricName "BytesReceived" -Operator GreaterThan -Threshold 2 -WindowSize 00:05:00 -TimeAggregationOperator Total -Actions $actionEmail, $actionWebhook -Description "alert on any website activity"
     ```
 
-
-1. 若要建立活動記錄檔中特定條件發生時就會觸發的警示，使用此格式的命令︰
-
-    ```PowerShell
-    $actionEmail = New-AzureRmAlertRuleEmail -CustomEmail myname@company.com
-    $actionWebhook = New-AzureRmAlertRuleWebhook -ServiceUri https://www.contoso.com?token=mytoken
-
-    Add-AzureRmLogAlertRule -Name myLogAlertRule -Location "East US" -ResourceGroup myresourcegroup -OperationName microsoft.web/sites/start/action -Status Succeeded -TargetResourceGroup resourcegroupbeingmonitored -Actions $actionEmail, $actionWebhook
-    ```
-
-    -OperationName 對應到活動記錄檔中的事件類型。 範例包括 *Microsoft.Compute/virtualMachines/delete* 和 *microsoft.insights/diagnosticSettings/write*。
-
-    您可以使用 PowerShell 命令 [Get AzureRmProviderOperation](https://msdn.microsoft.com/library/mt603720.aspx) 取得 operationName 的可能值清單。 或者，您可以使用 Azure 入口網站來查詢活動記錄檔，並尋找您想要建立其警示的特定過去作業。 作業會顯示在名稱好記的圖形記錄檔檢視中。 查看項目的 JSON，並拉出 OperationName 的值。   
-2. 查看個別規則，確認您已正確建立警示。
+7. 查看個別規則，以確認您已正確建立警示。
 
     ```PowerShell
     Get-AzureRmAlertRule -Name myMetricRuleWithWebhookAndEmail -ResourceGroup myresourcegroup -DetailedOutput
 
     Get-AzureRmAlertRule -Name myLogAlertRule -ResourceGroup myresourcegroup -DetailedOutput
     ```
-3. 刪除您的警示。 這些命令會刪除本文中先前建立的規則。
+8. 刪除您的警示。 這些命令會刪除本文中先前建立的規則。
 
     ```PowerShell
     Remove-AzureRmAlertRule -ResourceGroup myresourcegroup -Name myrule
@@ -144,6 +131,7 @@ ms.lasthandoff: 03/15/2017
 ## <a name="next-steps"></a>後續步驟
 * [取得 Azure 監視的概觀](monitoring-overview.md) 中說明您可以收集和監視的資訊類型。
 * 深入了解 [在警示中設定 webhook](insights-webhooks-alerts.md)。
+* 深入了解[在活動記錄檔事件上設定警示](monitoring-activity-log-alerts.md)。
 * 深入了解 [Azure 自動化 Runbook](../automation/automation-starting-a-runbook.md)。
 * 依照 [收集診斷記錄檔概觀](monitoring-overview-of-diagnostic-logs.md) 中的做法，收集您服務中詳細的高頻率計量。
 * 依照 [計量集合概觀](insights-how-to-customize-monitoring.md) 中的做法，確保您的服務可使用且有回應。

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/21/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 2c41c2df135caaead328d8fe05407cfa75cbcb91
-ms.openlocfilehash: a486fbe46f9892f6f70dcdcf27edbac63728af6e
-ms.lasthandoff: 02/14/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 223edfde090c9b77467e032198c2150fbaa56a5b
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -74,7 +74,7 @@ Data Factory 的 [圖表] 檢視提供單一窗格，可用來監視和管理 Da
 1. 在管線上按一下滑鼠右鍵，然後按一下 [開啟管線]，就能查看所有管線中的活動，以及活動的輸入和輸出資料集。 當您的管線有超過一個的活動且您想了解單一管線的作業歷程時，這個功能會非常有用。
 
     ![開啟管線功能表](./media/data-factory-monitor-manage-pipelines/open-pipeline-menu.png)     
-2. 在下列範例中，您會看到管線中的兩個活動及其輸入和輸出。 本管線範例內的兩個活動名為 **JoinData** HDInsight Hive 活動類型和 **EgressDataAzure** 複製活動類型。
+2. 在下列範例中，您會在具有輸入與輸出的管線中看到複製活動。 
 
     ![管線中的活動](./media/data-factory-monitor-manage-pipelines/activities-inside-pipeline.png)
 3. 您可以按一下左上角階層連結中的 [Data Factory] 連結，瀏覽回 Data Factory 首頁。
@@ -84,11 +84,9 @@ Data Factory 的 [圖表] 檢視提供單一窗格，可用來監視和管理 Da
 ### <a name="view-the-state-of-each-activity-inside-a-pipeline"></a>管線中每個活動的檢視狀態
 您可以藉由檢視活動所產生的任何資料集的狀態，查看活動的目前狀態。
 
-在下列範例中，**BlobPartitionHiveActivity** 已順利執行並產生名為 **PartitionedProductsUsageTable** 的資料集，其狀態為**就緒**。
+按兩次 [圖表] 中的 **OutputBlobTable**，您就會看到管線中不同活動執行時所產生的所有配量。 您可以看到複製活動在過去八個月來每個月都執行成功，且所產生的配量都處於「就緒」狀態。  
 
 ![管線的狀態](./media/data-factory-monitor-manage-pipelines/state-of-pipeline.png)
-
-按兩次 [圖表] 中的 **PartitionedProductsUsageTable**，您就會看到管線中不同活動執行時所產生的所有配量。 您可以看到 **BlobPartitionHiveActivity** 過去八個月來每個月都執行成功，所產生的配量都處於**就緒**狀態。
 
 Data Factory 中的資料集配量可以有下列狀態之一：
 

@@ -11,17 +11,16 @@ ms.service: batch
 ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
-ms.workload: big-compute
-ms.date: 02/27/2017
+ms.workload: 3/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: a23ae729e20dcf79ada73f7545861356e31b957e
-ms.lasthandoff: 03/09/2017
-
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: d533dc2c49974f2ce4ef1d1f6dc12e23ec18877f
+ms.lasthandoff: 04/03/2017
 
 ---
+
 # <a name="use-multi-instance-tasks-to-run-message-passing-interface-mpi-applications-in-batch"></a>在 Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式
 
 多重執行個體工作可讓您在多個計算節點上同時執行 Azure Batch 工作。 這些工作可以在 Batch 中實現高效能運算案例，例如訊息傳遞介面 (MPI) 應用程式。 在本文中，您將了解如何使用 [Batch .NET][api_net] 程式庫來執行多重執行個體工作。
@@ -50,7 +49,9 @@ ms.lasthandoff: 03/09/2017
 >
 
 ## <a name="requirements-for-multi-instance-tasks"></a>多重執行個體工作的需求
-多重執行個體工作需要有**已啟用節點間通訊**和**已停用並行工作執行**的集區。 如果您嘗試在已停用節點間通訊，或「maxTasksPerNode」  值大於 1 的集區中執行多重執行個體工作，則永遠不會排定工作--它會無限期停留在「作用中」狀態。 此程式碼片段顯示如何使用 Batch .NET 程式庫建立這種集區。
+多重執行個體工作需要有**已啟用節點間通訊**和**已停用並行工作執行**的集區。 若要停用並行工作執行，請將 [CloudPool.MaxTasksPerComputeNode](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool#Microsoft_Azure_Batch_CloudPool_MaxTasksPerComputeNode) 屬性設定為 1。
+
+此程式碼片段會顯示如何使用批次 .NET 程式庫來建立要供多重執行個體工作使用的集區。
 
 ```csharp
 CloudPool myCloudPool =
@@ -66,7 +67,12 @@ myCloudPool.InterComputeNodeCommunicationEnabled = true;
 myCloudPool.MaxTasksPerComputeNode = 1;
 ```
 
-此外，多重執行個體工作「只」可以在 **2015 年 12 月 14 日後建立之集區**中的節點上執行。
+> [!NOTE]
+> 如果您嘗試在已停用節點間通訊，或「maxTasksPerNode」  值大於 1 的集區中執行多重執行個體工作，則永遠不會排定工作--它會無限期停留在「作用中」狀態。 
+>
+> 多重執行個體工作只可以在 2015 年 12 月 14 日後建立之集區中的節點上執行。
+>
+>
 
 ### <a name="use-a-starttask-to-install-mpi"></a>使用 StartTask 安裝 MPI
 若要執行具有多重執行個體工作的 MPI 應用程式，您必須先在集區的計算節點上安裝 MPI 實作 (例如 MS-MPI 或 Intel MPI)。 這是使用 [StartTask][net_starttask] 的好時機，每當節點加入集區或重新啟動時，它就會執行。 此程式碼片段會建立 StartTask，指定 MS-MPI 安裝套件來做為[資源檔][net_resourcefile]。 資源檔下載至節點後，便會執行啟動工作的命令列。 在此案例中，命令列會執行 MS-MPI 的自動安裝。
@@ -89,7 +95,7 @@ await myCloudPool.CommitAsync();
 ```
 
 ### <a name="remote-direct-memory-access-rdma"></a>遠端直接記憶體存取 (RDMA)
-當您在 Batch 集區中選擇 [支援 RDMA 大小](../virtual-machines/virtual-machines-windows-a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (如 A9 計算節點) 時，MPI 應用程式可以利用 Azure 高效能、低延遲的遠端直接記憶體存取 (RDMA) 網路。
+當您在 Batch 集區中選擇 [支援 RDMA 大小](../virtual-machines/windows/a8-a9-a10-a11-specs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (如 A9 計算節點) 時，MPI 應用程式可以利用 Azure 高效能、低延遲的遠端直接記憶體存取 (RDMA) 網路。
 
 在下列文章中尋找指定為「支援 RDMA」的大小︰
 
@@ -98,8 +104,8 @@ await myCloudPool.CommitAsync();
   * [雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md) (僅限 Windows)
 * **VirtualMachineConfiguration** 集區
 
-  * [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (Linux)
-  * [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Windows)
+  * [Azure 中的虛擬機器大小](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) (Linux)
+  * [Azure 中的虛擬機器大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Windows)
 
 > [!NOTE]
 > 若要在 [Linux 計算節點](batch-linux-nodes.md)上利用 RDMA，您必須在節點上使用 **Intel MPI**。 如需 CloudServiceConfiguration 和 VirtualMachineConfiguration 集區的詳細資訊，請參閱 [Batch 功能概觀](batch-api-basics.md)的＜集區＞一節。

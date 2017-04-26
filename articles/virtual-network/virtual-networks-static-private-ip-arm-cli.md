@@ -17,9 +17,9 @@ ms.date: 02/16/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 63f2f6dde56c1b5c4b3ad2591700f43f6542874d
-ms.openlocfilehash: ea54b413b92a4d4e312b741ce42090c77de0e6f5
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: 071156367c1f819a00d31f1d0335e301391fda81
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -48,7 +48,7 @@ ms.lasthandoff: 02/28/2017
 
 ## <a name="specify-a-static-private-ip-address-when-creating-a-vm"></a>建立 VM 時指定靜態私人 IP 位址
 
-若要在名為 TestVNet 之 VNet 的FrontEnd子網路中建立名為 DNS01 且其靜態私人 IP 為&192;.168.1.101 的 VM，請遵循下列步驟：
+若要在名為 TestVNet 之 VNet 的FrontEnd子網路中建立名為 DNS01 且其靜態私人 IP 為 192.168.1.101 的 VM，請遵循下列步驟：
 
 1. 安裝及設定最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) (若您尚未這麼做)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。 
 
@@ -127,15 +127,15 @@ ms.lasthandoff: 02/28/2017
             "resourceGuid": "<guid>"
         }
     }
-        ```
+    ```
     
-    Parameters:
+    參數：
 
-    * `--private-ip-address`: Static private IP address for the NIC.
-    * `--vnet-name`: Name of the VNet in wihch to create the NIC.
-    * `--subnet`: Name of the subnet in which to create the NIC.
+    * `--private-ip-address`：NIC 的靜態私人 IP 位址。
+    * `--vnet-name`：要在其中建立 NIC 之 VNet 的名稱。
+    * `--subnet`：要在其中建立 NIC 之子網路的名稱。
 
-4. Run the [azure vm create](/cli/azure/vm/nic#create) command to create the VM using the public IP and NIC created above. The list shown after the output explains the parameters used.
+4. 執行 [azure vm create](/cli/azure/vm/nic#create) 命令來使用上面建立的公用 IP 和 NIC 來建立 VM。 輸出後顯示的清單可說明所使用的參數。
    
     ```azurecli
     az vm create \

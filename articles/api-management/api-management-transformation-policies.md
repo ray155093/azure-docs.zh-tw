@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 56eb95f5c8dfb34c0dbaec75efc5509f0c930ec3
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: c46a85aaf5237a2a7643cc9069255bdad9ab1d69
+ms.lasthandoff: 04/07/2017
 
 ---
 # <a name="api-management-transformation-policies"></a>API 管理轉換原則
@@ -284,7 +284,7 @@ ms.lasthandoff: 03/06/2017
 <set-body>Hello world!</set-body>  
 ```  
   
-#### <a name="example-accessing-the-body-as-a-string"></a>存取本文為字串範例  
+#### <a name="example-accessing-the-body-as-a-string-note-that-we-are-preserving-the-original-request-body-so-that-we-can-access-it-later-in-the-pipeline"></a>以字串存取本文的範例。 請注意，我們會保留原始要求本文，以在稍後於管線中存取它。
   
 ```xml  
 <set-body>  
@@ -298,7 +298,7 @@ ms.lasthandoff: 03/06/2017
 </set-body>  
 ```  
   
-#### <a name="example-accessing-the-body-as-a-jobject"></a>存取本文為 JObject 範例  
+#### <a name="example-accessing-the-body-as-a-jobject-note-that-since-we-are-not-reserving-the-original-request-body-accesing-it-later-in-the-pipeline-will-result-in-an-exception"></a>以 JObject 存取本文的範例。 請注意，由於我們不會保留原始要求本文，若在稍後於管線中存取它，將會導致例外狀況。  
   
 ```xml  
 <set-body>   
@@ -380,18 +380,40 @@ ms.lasthandoff: 03/06/2017
 
 為了存取要求與回應的相關資訊，Liquid 範本可以繫結至具有下列屬性的內容物件： <br />
 <pre>context.
-Request.
-Url Method OriginalMethod OriginalUrl IpAddress MatchedParameters HasBody ClientCertificates Headers
+    Request.
+        Url
+        Method
+        OriginalMethod
+        OriginalUrl
+        IpAddress
+        MatchedParameters
+        HasBody
+        ClientCertificates
+        Headers
 
     Response.
         StatusCode
         Method
         Headers
 Url.
-Scheme Host Port Path Query QueryString ToUri ToString
+    Scheme
+    Host
+    Port
+    Path
+    Query
+    QueryString
+    ToUri
+    ToString
 
 OriginalUrl.
-Scheme Host Port Path Query QueryString ToUri ToString
+    Scheme
+    Host
+    Port
+    Path
+    Query
+    QueryString
+    ToUri
+    ToString
 </pre>
 
 

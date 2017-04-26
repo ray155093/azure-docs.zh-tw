@@ -15,14 +15,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 15430904979108cbebe4a64a8ae07f2f01b82690
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: ae8c26069503a24f3ba17a86160801c60a68d668
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="how-to-create-a-hybrid-collection-for-azure-remoteapp"></a>如何建立 Azure RemoteApp 的混合式收藏
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -52,7 +53,7 @@ Azure RemoteApp 收藏分成兩種：
 * 在 Active Directory 中建立使用者帳戶，做為 Azure RemoteApp 服務的帳戶。 限制此帳戶的權限，使其只能將機器加入網域中。
 * 收集內部部署網路的相關資訊：IP 位址資訊和 VPN 裝置詳細資料。
 * 安裝 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 模組。
-* 收集您想授與存取權之使用者的相關資訊。 您將需要每個使用者的 Azure Active Directory 使用者主體名稱 (例如，name@contoso.com))。 請確定 UPN 符合 Azure AD 和 Active Directory。
+* 收集您想授與存取權之使用者的相關資訊。 您將需要每個使用者的 Azure Active Directory 使用者主體名稱 (例如，name@contoso.com)。 請確定 UPN 符合 Azure AD 和 Active Directory。
 * 選擇範本映像。 Azure RemoteApp 範本映像包含您要為使用者發佈的應用程式與程式。 如需詳細資訊，請參閱 [Azure RemoteApp 映像選項](remoteapp-imageoptions.md) 。
 * 想要使用 Office 365 ProPlus 的映像嗎？ 請在 [這裡](remoteapp-officesubscription.md)查看資訊。
 * [設定 RemoteApp 的 Azure Active Directory](remoteapp-ad.md)。
@@ -136,10 +137,5 @@ Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式�
 
 ### <a name="help-us-help-you"></a>幫我們來協助您
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯]  以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 04/03/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: fd5960a4488f2ecd93ba117a7d775e78272cbffd
-ms.openlocfilehash: e92c33b81aa1b69da0336bec1260cbda96c7a72e
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: df167435757b2d9d2d25b58b1b548a811b490eb5
+ms.lasthandoff: 04/04/2017
 
 
 ---
@@ -27,9 +28,9 @@ ms.openlocfilehash: e92c33b81aa1b69da0336bec1260cbda96c7a72e
 > * [Azure 入口網站](application-gateway-create-url-route-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-create-url-route-arm-ps.md)
 
-URL 路徑型路由可讓您根據 Http 要求的 URL 路徑來關聯路由。 它會檢查是否有路由連至針對應用程式閘道中的 URL 清單設定的後端集區，並將網路流量傳送至定義的後端集區。 URL 型路由的常見用法是將不同內容類型的要求負載平衡至不同的後端伺服器集區。
+URL 路徑型路由可讓您根據 Http 要求的 URL 路徑來關聯路由。 它會檢查是否有路由連至針對「應用程式閘道」中的 URL 清單設定的後端集區，並將網路流量傳送至定義的後端集區。 URL 型路由的常見用法是將不同內容類型的要求負載平衡至不同的後端伺服器集區。
 
-URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘道具有&2; 種規則類型：基本和路徑型規則。 基本規則類型會針對後端集區提供循環配置資源服務，而路徑型規則除了循環配置資源發佈之外，也會在選擇後端集區時將要求 URL 的路徑模式納入考慮。
+URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘道具有兩種規則類型：基本和路徑型規則。 基本規則類型會針對後端集區提供循環配置資源服務，而路徑型規則除了循環配置資源發佈之外，也會在選擇適當的後端集區時將要求 URL 的路徑模式納入考慮。
 
 ## <a name="scenario"></a>案例
 
@@ -38,7 +39,7 @@ URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘
 
 ![URL 路由][scenario]
 
-## <a name="a-namecreateruleacreate-the-path-based-rule"></a><a name="createrule"></a>建立路徑型規則
+## <a name="createrule"></a>建立路徑型規則
 
 路徑型規則需要自己的接聽程式，在建立此規則之前，請務必確認您有接聽程式可供使用。
 
@@ -79,6 +80,8 @@ URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘
 
 ![新增其他路徑型規則][3]
 
+這會設定路徑型路由。 請務必了解系統不會重寫要求，應用程式閘道會在收到要求時檢查要求，並根據 URL 模式將要求傳送到適當的後端。
+
 ## <a name="next-steps"></a>後續步驟
 
 若要了解如何設定與「Azure 應用程式閘道」搭配運作的「SSL 卸載」，請參閱 [設定 SSL 卸載](application-gateway-ssl-portal.md)
@@ -87,9 +90,4 @@ URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘
 [2]: ./media/application-gateway-create-url-route-portal/figure2.png
 [3]: ./media/application-gateway-create-url-route-portal/figure3.png
 [scenario]: ./media/application-gateway-create-url-route-portal/scenario.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

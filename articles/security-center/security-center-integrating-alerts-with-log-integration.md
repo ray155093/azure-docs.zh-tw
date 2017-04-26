@@ -15,22 +15,22 @@ ms.workload: na
 ms.date: 03/23/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: fcd14b6b0afe08db82f2b8050beaf03ece7fd212
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: d13e5b87c446e587091551b22d80fe568d5d8093
+ms.lasthandoff: 04/07/2017
 
 
 ---
 # <a name="integrating-azure-security-center-alerts-with-azure-log-integration"></a>整合 Azure 資訊安全中心警示與 Azure 記錄整合
-許多安全性作業和事件回應小組依賴安全性資訊及事件管理 (SIEM) 方案對安全性警示進行分級和調查做為起點。 利用 Azure 記錄整合，客戶可以將資訊安全中心警示，以及 Azure 診斷和 Azure 稽核記錄檔所收集的虛擬機器安全性事件，與其 Log Analytics 或 SIEM 方案以接近即時的方式進行同步處理。
+許多安全性作業和事件回應小組依賴安全性資訊及事件管理 (SIEM) 方案對安全性警示進行分級和調查做為起點。 透過 Azure 記錄整合，您可以將 Azure 資訊安全中心的警示與您的 SIEM 方案整合。
 
-Azure 記錄整合可與 HP ArcSight、Splunk、IBM QRadar 等等搭配運作。
+Azure 記錄整合目前支援 HP ArcSight、Splunk 及 IBM QRadar。
 
 ## <a name="what-logs-can-i-integrate"></a>可以整合哪些記錄檔？
 Azure 會為每項服務產生大量記錄。 這些記錄檔會分類為︰
 
-* **控制/管理記錄檔**：可讓您看到 Azure Resource Manager 的 CREATE、UPDATE 和 DELETE 作業。
-* **資料平面記錄檔**：可讓您看到使用 Azure 資源時所引發的事件。 其中一例就是 Windows 事件記錄檔，這是虛擬機器中的安全性和應用程式記錄檔。
+* **控制/管理記錄檔**：可讓您看到 Azure Resource Manager 的 CREATE、UPDATE 和 DELETE 作業。 這些控制平面事件會顯示在 Azure 活動記錄中
+* **資料平面記錄檔**：可讓您看到使用 Azure 資源時所引發的事件。 Windows 事件記錄檔是其中一個範例，您可以從事件檢視器的安全性通道取得安全性事件資訊。 資料平面事件 (由虛擬機器或 Azure 服務所產生) 會由 Azure 診斷記錄顯示。
 
 Azure 記錄檔整合目前支援下列項目的整合︰
 
@@ -78,15 +78,12 @@ Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。  
 
    * **c:\Users\azlog\ AzureSecurityCenterJson**
    * **c:\Users\azlog\AzureSecurityCenterJsonLD**
-6. 將標準的 SIEM 檔案轉寄站連接器指向適當資料夾，以透過管線將資料傳送至 SIEM 執行個體。 請參閱 [SIEM 組態](https://azsiempublicdrops.blob.core.windows.net/drops/ALL.htm) 以取得您的 SIEM 組態。
-
-如果您有關於「Azure 記錄整合」的問題，請傳送電子郵件給 [AzSIEMteam@microsoft.com](mailto:AzSIEMteam@microsoft.com)。
+6. 將 SIEM 檔案轉寄站連接器設定至適當的資料夾。 程序會視您所使用的 SIEM 而有所不同。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解 Azure 稽核記錄檔和屬性定義，請參閱︰
+若要深入了解 Azure 活動記錄和屬性定義，請參閱︰
 
 * [使用 Resource Manager 來稽核作業](../azure-resource-manager/resource-group-audit.md)
-* [列出訂用帳戶中的管理事件](https://msdn.microsoft.com/library/azure/dn931934.aspx) - 以擷取稽核記錄檔事件。
 
 如要深入了解資訊安全中心，請參閱下列主題：
 

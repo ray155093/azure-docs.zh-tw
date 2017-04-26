@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/15/2017
+ms.date: 03/30/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: 5560b22f3f92a8e0a7cb8b973ef2e4c66bc32c06
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: fd15cbc8f6efa788ddaeaee4ab39ce1410c4be5a
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 03/16/2017
 
 Azure 提供了一些預先定義的原則，可能會降低您需要定義的原則數目。 如果預先定義的原則適用於您的案例，請略過前兩個步驟，並將預先定義的原則指派給範圍。
 
-本主題著重於建立原則定義，然後將該定義指派至範圍。 它不著重於建立原則定義的語法。 如需原則語法的詳細資訊，請參閱[資源原則概觀](resource-manager-policy.md)。
+本文著重於建立原則定義，然後透過 REST API、PowerShell 或 Azure CLI 將該定義指派至範圍的步驟。 如果您想要使用入口網站來指派原則，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)。 本文並不會著重於建立原則定義的語法。 如需原則語法的詳細資訊，請參閱[資源原則概觀](resource-manager-policy.md)。
 
 ## <a name="rest-api"></a>REST API
 

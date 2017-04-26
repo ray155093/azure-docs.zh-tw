@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 02/14/2017
 ms.author: clemensv;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 6d08aacf43126011ed8ad3ce708485a188b67c3b
-ms.openlocfilehash: 4576340ef268a10014124d0d76c70eca941a90c8
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
+ms.openlocfilehash: 2b118f285f822d6cba3a2db4130539e62aabd342
+ms.lasthandoff: 04/04/2017
 
 
 ---
@@ -68,6 +68,7 @@ ms.lasthandoff: 02/15/2017
 
 - 訊息會通過 3 個以上[鏈結在一起](service-bus-auto-forwarding.md)的佇列或主題。
 - 目的地佇列或主題已停用或刪除。
+- 目的地佇列或主題超過最大實體大小。
 
 若要擷取這些寄不出的信件訊息，您可以使用 [FormatTransferDeadletterPath](/dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_FormatTransferDeadLetterPath_System_String_) 公用程式方法來建立接收者。
 

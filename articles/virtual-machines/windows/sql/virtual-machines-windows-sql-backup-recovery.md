@@ -16,18 +16,19 @@ ms.workload: iaas-sql-server
 ms.date: 11/15/2016
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 7402249aa87ffe985ae13f28a701e22af3afd450
-ms.openlocfilehash: 0d2310748c65a25ead71f7c0859919b7241d9f6c
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: f05ef18fb33942883ba164985721ce2d4f79d3fa
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="backup-and-restore-for-sql-server-in-azure-virtual-machines"></a>Azure 虛擬機器中的 SQL Server 備份和還原
 ## <a name="overview"></a>概觀
-為防止因為應用程式或使用者錯誤而遺失資料，備份 SQL Server 資料庫的資料是該保護措施中的重要一環。 這同樣適用於執行 Azure 虛擬機器 (VM) 上的 SQL Server。
+Azure 儲存體會針對每個 Azure VM 磁碟維護 3 個複本，以確保針對資料遺失或實體資料損毀的保護。 因此，您並不需要和內部部署一樣地擔心上述問題。 不過，您仍然應該備份 SQL Server 資料庫，以避免應用程式或使用者錯誤 (例如插入錯誤資料或刪除資料表)，並能夠還原至某個時間點。
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-both-include.md)]
 
-針對在 Azure VM 中執行的 SQL Server，您可以藉助備份檔案目的地的連接磁碟，使用原生備份和還原技術。 不過，根據該 [虛擬機器的大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)而定，您可以連接到 Azure 虛擬機器的磁碟數有所限制。 磁碟管理的負擔也需要加以考量。
+針對在 Azure VM 中執行的 SQL Server，您可以藉助備份檔案目的地的連接磁碟，使用原生備份和還原技術。 不過，根據該 [虛擬機器的大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)而定，您可以連接到 Azure 虛擬機器的磁碟數有所限制。 磁碟管理的負擔也需要加以考量。
 
 從 SQL Server 2014 開始，您可以備份和還原至 Microsoft Azure Blob 儲存體。 SQL Server 2016 也提供這個選項的增強功能。 此外，針對儲存在 Microsoft Azure Blob 儲存體的資料庫檔案，SQL Server 2016 提供的選項，可使用 Azure 的快照集，用於幾乎即時的備份和快速的還原作業。 本文章提供這些選項的概觀，而您可以在 [SQL Server 備份及還原與 Microsoft Azure Blob 儲存體服務](https://msdn.microsoft.com/library/jj919148.aspx)中找到其他資訊。
 
@@ -87,10 +88,5 @@ SQL Server 2014 包含下列增強功能：
 雖然備份和還原可用來將資料移轉，但對於移轉到 Azure VM 上的 SQL Server，可能仍有更容易的資料移轉路徑。 如需移轉選項和建議的完整討論，請參閱 [將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-migrate-sql.md)。
 
 請檢閱其他 [在 Azure 虛擬機器中執行 SQL Server 的資源](virtual-machines-windows-sql-server-iaas-overview.md)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

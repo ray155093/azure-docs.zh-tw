@@ -12,11 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 103b3ad93c6bb99f1781e9b3c485caa6042ae0a3
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: e42d80f0ca35f3fbb67389c66d072bc40d8a8d2c
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -63,7 +65,7 @@ GO
 EXEC prc_nesting
 ```
 
-請注意，SQL 資料倉儲目前不支援 @@NESTLEVEL.，您必須自行保持追蹤您的巢狀層級。 您不太可能會達到 8 個巢狀層級的限制，但如果達到，您必須重新處理您的程式碼並將其「壓平合併」，使其符合這項限制。
+請注意，SQL 資料倉儲目前不支援 @@NESTLEVEL。 您必須自行追蹤您的巢狀層級。 您不太可能會達到 8 個巢狀層級的限制，但如果達到，您必須重新處理您的程式碼並將其「壓平合併」，使其符合這項限制。
 
 ## <a name="insertexecute"></a>INSERT..EXECUTE
 SQL 資料倉儲不允許您透過 INSERT 陳述式取用預存程序的結果集。 不過，您可以使用另一個方法。
@@ -88,21 +90,16 @@ SQL 資料倉儲不允許您透過 INSERT 陳述式取用預存程序的結果�
 * return 陳述式
 
 ## <a name="next-steps"></a>後續步驟
-如需更多開發秘訣，請參閱[開發概觀][開發概觀]。
+如需更多開發秘訣，請參閱[開發概觀][development overview]。
 
 <!--Image references-->
 
 <!--Article references-->
 [暫存資料表]: ./sql-data-warehouse-tables-temporary.md#modularizing-code
-[開發概觀]: ./sql-data-warehouse-overview-develop.md
+[development overview]: ./sql-data-warehouse-overview-develop.md
 
 <!--MSDN references-->
-[巢狀層級]: https://msdn.microsoft.com/library/ms187371.aspx
+[nest level]: https://msdn.microsoft.com/library/ms187371.aspx
 
 <!--Other Web references-->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

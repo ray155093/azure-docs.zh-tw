@@ -1,5 +1,5 @@
 ---
-title: "使用角色管理存取權與權限 - Azure RBAC | Microsoft Docs"
+title: "使用 RBAC 管理存取權與權限 - Azure RBAC | Microsoft Docs"
 description: "在 Azure 入口網站中使用 Azure 角色型存取控制開始進行存取管理。 使用角色指派在您的目錄中指派權限。"
 services: active-directory
 documentationcenter: 
@@ -12,16 +12,16 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/23/2017
+ms.date: 04/03/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: d00ba4e6d1abd62e5a0d5a9d5bb229d3fa64b473
-ms.openlocfilehash: fb12fb78d4257fc8264bd476de70671eb8264323
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: aa31b373e67d4742f7697e2ec6958e108535f746
+ms.lasthandoff: 04/07/2017
 
 
 ---
-# <a name="get-started-with-access-management-in-the-azure-portal"></a>開始在 Azure 入口網站中使用存取管理
+# <a name="get-started-with-role-based-access-control-in-the-azure-portal"></a>在 Azure 入口網站中開始使用角色型存取控制
 安全性導向公司應該將焦點放在提供員工所需的確切權限。 權限太多會讓帳戶暴露在攻擊者的威脅下。 權限太少則會讓員工無法有效率地完成工作。 Azure「角色型存取控制」(RBAC) 可以為 Azure 提供更細緻的存取管理來協助解決這個問題。
 
 RBAC 可讓您區隔小組內的職責，而僅授與使用者執行作業所需的存取權。 您可以不授與每個人 Azure 訂用帳戶或資源中無限制的權限，而是只允許執行特定的動作。 例如，使用 RBAC 讓一位員工管理某個訂用帳戶中的虛擬機器，而讓另一位員工管理相同訂用帳戶中的 SQL 資料庫。

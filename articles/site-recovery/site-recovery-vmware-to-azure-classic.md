@@ -12,15 +12,18 @@ ms.workload: backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 04/05/2017
 ms.author: raynew
+ROBOTS: NOINDEX, NOFOLLOW
+redirect_url: site-recovery-vmware-to-azure
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 03178e1b933f5681caf6efbeb5a89d56727ae743
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 5c597e94f524a7ecbb9e4269adbbbd735a90aa14
+ms.lasthandoff: 04/06/2017
 
 
 ---
+
 # <a name="replicate-vmware-virtual-machines-and-physical-servers-to-azure-with-azure-site-recovery"></a>使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](site-recovery-vmware-to-azure.md)
@@ -579,7 +582,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 3. 您可以變更這些設定：
 
    * **Azure VM 名稱**：這是將在容錯移轉之後提供給 Azure 中機器的名稱。 名稱必須符合 Azure 需求。
-   * **Azure VM 大小**：網路介面卡的數目取決於您為目標虛擬機器指定的大小。 如需大小和介面卡的詳細資訊，請參閱[大小資料表](../virtual-machines/virtual-machines-linux-sizes.md)。 請注意：
+   * **Azure VM 大小**：網路介面卡的數目取決於您為目標虛擬機器指定的大小。 如需大小和介面卡的詳細資訊，請參閱[大小資料表](../virtual-machines/linux/sizes.md)。 請注意：
 
      * 在您修改虛擬機器的大小並儲存設定之後，下次您開啟 [設定] 索引標籤時，網路介面卡的數目將會改變。 目標虛擬機器上的網路介面卡最小數目，等於來源虛擬機器上的網路介面卡最小數目。 網路介面卡的最大數目取決於虛擬機器的大小。
        * 如果來源電腦上的網路介面卡數目小於或等於針對目標機器大小所允許的介面卡數目，則目標將具備與來源相同的介面卡數目。
@@ -709,7 +712,7 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 | --- | --- | --- |
 | Azure_Site_Recovery 角色 |VMware VM 探索 |針對 v-Center 伺服器指派這些權限：<br/><br/>資料存放區：配置空間、瀏覽資料存放區、低階檔案作業、移除檔案、更新虛擬機器檔案<br/><br/>網路：網路指派<br/><br/>資源：指派虛擬機器至資源集區、移轉已關閉的虛擬機器、移轉已啟動的虛擬機器<br/><br/>工作：建立工作、更新工作<br/><br/>虛擬機器  > 組態<br/><br/>虛擬機器 > 互動 > 回答問題、裝置連接、設定 CD 媒體、設定磁碟片媒體、關閉電源、開啟電源、VMware 工具安裝<br/><br/>虛擬機器 > 清查 > 建立、註冊、取消註冊<br/><br/>虛擬機器 > 佈建 > 允許虛擬機器下載、允許虛擬機器檔案上傳<br/><br/>虛擬機器 > 快照集 > 移除快照集 |
 | vCenter 使用者角色 |VMware VM 探索/容錯移轉而不關閉來源 VM |針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 > 傳播至子物件、role=Read-only <br/><br/>由於是在資料中心層級指派使用者，因此使用者能夠存取資料中心內的所有物件。 如果您想要限制存取權，請將具備 [傳播至子物件] 權限的 [沒有存取權] 角色指派給子物件 (ESX 主機、資料存放區、VM 及網路)。 |
-| vCenter 使用者角色 |容錯移轉和容錯回復 |針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、role=Azure_Site_Recovery<br/><br/>由於是在資料中心層級指派使用者，因此使用者能夠存取資料中心內的所有物件。  如果您想要限制存取權，請將具備 [傳播至子物件] 權限的 [沒有存取權] 角色指派給子物件 (ESX 主機、資料存放區、VM 及網路)。 |
+| vCenter 使用者角色 |容錯移轉和容錯回復 |針對 v-Center 伺服器指派這些權限：<br/><br/>資料中心物件 –> 傳播至子物件、role=Azure_Site_Recovery<br/><br/>由於是在資料中心層級指派使用者，因此使用者能夠存取資料中心內的所有物件。  如果您想要限制存取權，請將具備 [傳播至子物件] 權限的 [沒有存取權]**** 角色指派給子物件 (ESX 主機、資料存放區、VM 及網路)。 |
 
 ## <a name="third-party-software-notices-and-information"></a>第三方廠商軟體注意事項和資訊
 <!--Do Not Translate or Localize-->

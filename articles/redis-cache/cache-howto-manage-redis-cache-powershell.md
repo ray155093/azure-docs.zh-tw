@@ -12,11 +12,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 02/14/2017
+ms.date: 04/03/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 9d76e82b1658c3ea4dd6631bae232d17f375ab33
-ms.openlocfilehash: 61c0fd56aad1cc589138aa02ea43ef315edf9baf
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 715f76377947baaf1a72871cfe291f17e1cc0baf
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -65,7 +66,7 @@ ms.openlocfilehash: 61c0fd56aad1cc589138aa02ea43ef315edf9baf
 
     Get-Help New-AzureRmRedisCache -Detailed
 
-### <a name="how-to-connect-to-azure-government-cloud-or-azure-china-cloud"></a>如何連線至 Azure Government 雲端或 Azure 中國雲端
+### <a name="how-to-connect-to-other-clouds"></a>如何連線到其他雲端
 根據預設，Azure 環境是 `AzureCloud`，其代表全域 Azure 雲端執行個體。 若要連線至不同的執行個體，請使用 `Add-AzureRmAccount` 命令搭配 `-Environment` 或使用 -`EnvironmentName` 命令列參數搭配所需的環境或環境名稱。
 
 若要查看可用環境的清單，請執行 `Get-AzureRmEnvironment` Cmdlet。
@@ -102,6 +103,23 @@ ms.openlocfilehash: 61c0fd56aad1cc589138aa02ea43ef315edf9baf
 
 如需 Azure 中國雲端的詳細資訊，請參閱 [由中國的世紀互聯營運的 Azure 中國雲端](http://www.windowsazure.cn/)。
 
+### <a name="to-connect-to-microsoft-azure-germany"></a>連線到 Microsoft Azure (德國)
+若要連線到 Microsoft Azure (德國)，請使用下列其中一個命令。
+
+    Add-AzureRMAccount -EnvironmentName AzureGermanCloud
+
+
+或
+
+    Add-AzureRmAccount -Environment (Get-AzureRmEnvironment -Name AzureGermanCloud)
+
+若要在 Microsoft Azure (德國) 中建立快取，請使用下列其中一個位置。
+
+* 德國中部
+* 德國東北部
+
+如需有關 Microsoft Azure (德國) 的詳細資訊，請參閱 [Microsoft Azure (德國)](https://azure.microsoft.com/overview/clouds/germany/)。
+
 ### <a name="properties-used-for-azure-redis-cache-powershell"></a>用於 Azure Redis 快取 PowerShell 的屬性
 下表為使用 Azure PowerShell 建立和管理 Azure Redis 快取執行個體時，常用參數的屬性和說明。
 
@@ -125,8 +143,8 @@ ms.openlocfilehash: 61c0fd56aad1cc589138aa02ea43ef315edf9baf
 | 屬性 | 說明 | 定價層 |
 | --- | --- | --- |
 | rdb-backup-enabled |是否已啟用 [Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
-| rdb-storage-connection-string | [Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
-| rdb-backup-frequency | [Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
+| rdb-storage-connection-string |[Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
+| rdb-backup-frequency |[Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
 | maxmemory-reserved |設定非快取程序的 [保留記憶體](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) |標準和進階 |
 | maxmemory-policy |設定快取的 [收回原則](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) |所有定價層 |
 | notify-keyspace-events |設定 [Keyspace 通知](cache-configure.md#keyspace-notifications-advanced-settings) |標準和進階 |
@@ -763,15 +781,10 @@ ms.openlocfilehash: 61c0fd56aad1cc589138aa02ea43ef315edf9baf
 若要深入了解如何將 Windows PowerShell 與 Azure 搭配使用，請參閱下列資源：
 
 * [MSDN 上的 Azure Redis 快取 Cmdlet 文件](https://msdn.microsoft.com/library/azure/mt634513.aspx)
-* [Azure 資源管理員 Cmdlet](http://go.microsoft.com/fwlink/?LinkID=394765)：深入了解在 AzureResourceManager 模組中使用 Cmdlet。
+* [Azure Resource Manager Cmdlet](http://go.microsoft.com/fwlink/?LinkID=394765)：了解如何使用 Azure Resource Manager 模組中的 Cmdlet。
 * [使用資源群組管理 Azure 資源](../azure-resource-manager/resource-group-template-deploy-portal.md)：了解如何在 Azure 入口網站中建立和管理資源群組。
 * [Azure 部落格](http://blogs.msdn.com/windowsazure)：深入了解 Azure 的新功能。
 * [Windows PowerShell 部落格](http://blogs.msdn.com/powershell)：深入了解 Windows PowerShell 的新功能。
 * ["Hey, Scripting Guy!"部落格](http://blogs.technet.com/b/heyscriptingguy/)：從 Windows PowerShell 社群中取得實際的秘訣及訣竅。
-
-
-
-
-<!--HONumber=Nov16_HO5-->
 
 
