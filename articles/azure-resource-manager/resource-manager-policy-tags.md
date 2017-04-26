@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/09/2017
+ms.date: 03/30/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 72d398c529fc7dd5eef450da0e134dcdab534ac5
-ms.openlocfilehash: 375a8df763eb6b4b8f7349e0061ab39c076ebfc6
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 6e71fd9eda822478fa0555aa44908a4094fe8de2
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -174,7 +174,7 @@ foreach($r in $resources)
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* 定義原則規則 (如上述範例所示) 之後，您必須建立原則定義，並將它指派到某個範圍。 範圍可以是訂用帳戶、資源群組或資源。 如需建立和指派原則的範例，請參閱[指派和管理原則](resource-manager-policy-create-assign.md)。 
+* 定義原則規則 (如上述範例所示) 之後，您必須建立原則定義，並將它指派到某個範圍。 範圍可以是訂用帳戶、資源群組或資源。 若要透過入口網站來指派原則，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)。 若要透過 REST API、PowerShell 或 Azure CLI 來指派原則，請參閱[透過指令碼來指派和管理原則](resource-manager-policy-create-assign.md)。
 * 如需資源原則的簡介，請參閱[資源原則概觀](resource-manager-policy.md)。
 * 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
 

@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 03/31/2017
 ms.author: roopalik;garye
 translationtype: Human Translation
-ms.sourcegitcommit: 262ee4f092efa11150de61168e6b03c0477f0543
-ms.openlocfilehash: 1573ae126f8b76983abe98b37b9ac4072e70d9d0
-ms.lasthandoff: 01/10/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: ff7d5c372500c2cd392ed65a921d8a994b090f23
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -46,7 +46,7 @@ ms.lasthandoff: 01/10/2017
 ## <a name="download"></a>下載
 您可以從 Gallery 將任何 Notebook 的複本下載到 Machine Learning Studio 工作區。
 
-### <a name="from-the-gallery"></a>從 Gallery
+### <a name="download-from-the-gallery"></a>從資源庫下載
 若要從 Gallery 下載 Notebook 複本︰
 
 1. 在 Gallery 中開啟 Notebook 的詳細資料頁面
@@ -57,7 +57,7 @@ ms.lasthandoff: 01/10/2017
 
 當您按一下 [在 Studio 中開啟]，Notebook 會載入到 Machine Learning Studio 工作區並加以開啟 (如果您尚未登入 Studio，系統會提示您先使用 Microsoft 帳戶登入，然後才會將 Notebook 複製到工作區)。 您可以在稍後按一下 Studio 首頁左邊的 **Notebooks**，重新尋找 Notebook。
 
-### <a name="in-machine-learning-studio"></a>在 Machine Learning Studio 中
+### <a name="download-in-machine-learning-studio"></a>Machine Learning Studio 中的下載
 您也可以在 Machine Learning Studio 中工作的同時開啟任何相同的 Gallery Notebook︰
 
 1. 在 Machine Learning Studio 中，按一下 [+新增]

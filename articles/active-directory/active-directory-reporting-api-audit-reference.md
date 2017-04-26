@@ -3,7 +3,7 @@ title: "Azure Active Directory 稽核 API 參考 | Microsoft Docs"
 description: "如何開始使用 Azure Active Directory 稽核 API"
 services: active-directory
 documentationcenter: 
-author: dhanyahk
+author: markusvi
 manager: femila
 editor: 
 ms.assetid: 44e46be8-09e5-4981-be2b-d474aaa92792
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/16/2016
+ms.date: 04/05/2017
 ms.author: dhanyahk;markvi
 translationtype: Human Translation
-ms.sourcegitcommit: b1de516d907826d3e6ede0783649f6101b381852
-ms.openlocfilehash: 261cce0b8424f73df4c7ca86784a14e95a8336f1
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 87c7990834eaf2aa6c4aff0c341150ba9bd9eed4
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -75,6 +76,8 @@ Azure AD 稽核 API (使用 OData 分頁) 傳回的記錄筆數沒有任何限�
 若要指定您關心的記錄類型，您可以建立一個篩選陳述式，該陳述式可包含下列其中一個篩選欄位或其組合︰
 
 * [activityDate](#activitydate) - 定義日期或日期範圍
+* [category](#category) - 定義您想要篩選的類別。
+* [activityStatus](#activitystatus) - 定義活動狀態
 * [activityType](#activitytype) - 定義活動類型
 * [activity](#activity) - 將活動定義為字串  
 * [actor/name](#actorname) - 以動作項目的名稱形式定義動作項目
@@ -97,6 +100,45 @@ Azure AD 稽核 API (使用 OData 分頁) 傳回的記錄筆數沒有任何限�
 datetime 應採用 UTC 格式
 
 - - -
+### <a name="category"></a>category
+
+**支援的值**：
+
+| 類別                         | 值     |
+| :--                              | ---       |
+| 核心目錄                   | 目錄 |
+| 自助式密碼管理 | SSPR      |
+| 自助式群組管理    | SSGM      |
+| 帳戶佈建             | Sync      |
+| 自動密碼變換      | 自動密碼變換 |
+| 身分識別保護              | IdentityProtection |
+| 受邀的使用者                    | 受邀的使用者 |
+| MIM 服務                      | MIM 服務 |
+
+
+
+**支援的運算子**：eq
+
+**範例**：
+
+    $filter=category eq 'SSPR'
+- - -
+### <a name="activitystatus"></a>activityStatus
+
+**支援的值**：
+
+| 活動狀態 | 值 |
+| :--             | ---   |
+| 成功         | 0     |
+| 失敗         | - 1   |
+
+**支援的運算子**：eq
+
+**範例**：
+
+    $filter=activityStatus eq -1    
+
+---
 ### <a name="activitytype"></a>activityType
 **支援的運算子**：eq
 
@@ -139,6 +181,7 @@ datetime 應採用 UTC 格式
 **範例**：
 
     $filter=actor/objectId eq 'e8096343-86a2-4384-b43a-ebfdb17600ba'    
+
 
 - - -
 ### <a name="targetname"></a>target/name
@@ -190,10 +233,5 @@ datetime 應採用 UTC 格式
 ## <a name="next-steps"></a>後續步驟
 * 您想要查看篩選過的系統活動範例嗎？ 請查看 [Azure Active Directory 稽核 API 範例](active-directory-reporting-api-audit-samples.md)。
 * 您想要深入了解 Azure AD 報告 API 嗎？ 請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

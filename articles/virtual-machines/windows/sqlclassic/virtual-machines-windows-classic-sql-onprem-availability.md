@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 07/12/2016
+ms.date: 04/03/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 38728a20527be060e63d2dbdea923263b3d6c7fa
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 59ca9514c4cac97e8dd6dafc7a59406925b7b2df
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -38,6 +38,9 @@ Always On 可用性群組可透過新增次要複本，為資料庫群組提供�
 
 ## <a name="add-azure-replica-wizard"></a>加入 Azure 複本精靈
 本章節將說明如何使用 [加入 Azure 複本精靈]  延伸您的 Always On 可用性群組解決方案使其包含 Azure 複本。
+
+> [!IMPORTANT]
+> [加入 Azure 複本精靈] 僅支援以傳統部署模型建立的虛擬機器。 新的 VM 部署應該使用較新的 Resource Manager 模型。 如果您是使用搭配 Resource Manager 的 VM，您應該使用 Transact-SQL 命令 (未顯示於此) 手動新增次要 Azure 複本。 此精靈並無法在 Resource Manager 的案例中運作。
 
 1. 在 SQL Server Management Studio 中，依序展開 [Always On 高可用性] > [可用性群組] > [您的可用性群組名稱]。
 2. 以滑鼠右鍵按一下 [可用性複本]，然後按一下 [新增複本]。

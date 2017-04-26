@@ -17,13 +17,14 @@ ms.workload: na
 ms.date: 07/11/2016
 ms.author: rogardle
 translationtype: Human Translation
-ms.sourcegitcommit: 0aa9b3ae14f586fc79e6ebee898e794d526c19bd
-ms.openlocfilehash: 27ad7100f6203db3ba3dcc88ffdc191b9b9d45cb
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: f8a001350c9e1ac50641c3ee4430849023233c60
+ms.lasthandoff: 04/06/2017
 
 
 ---
 # <a name="load-balance-containers-in-an-azure-container-service-dcos-cluster"></a>Azure Container Service DC/OS 叢集中容器的負載平衡
-在本文中，我們將探討如何在 DC/OS 管理的 Azure Container Service 中使用 Marathon-LB 建立內部負載平衡器。 這可讓您以水平方式調整應用程式。 也可讓您在將負載平衡器放在公用叢集上，並將應用程式容器放在私用叢集上，藉此利用公用和私用代理程式叢集。
+在此文章中，我們將探討如何在 DC/OS 管理的 Azure Container Service 中使用 Marathon-LB 建立內部負載平衡器。 這可讓您以水平方式調整應用程式。 也可讓您在將負載平衡器放在公用叢集上，並將應用程式容器放在私用叢集上，藉此利用公用和私用代理程式叢集。
 
 ## <a name="prerequisites"></a>必要條件
 [部署 Azure Container Service 的執行個體](container-service-deployment.md) (其 Orchestrator 類型為 DCOS)，並[確保您的用戶端可以連線至您的叢集](container-service-connect.md)。 
@@ -53,7 +54,7 @@ Marathon Load Balancer 會根據您所部署的容器以動態方式重新設定
 dcos package install marathon-lb
 ```
 
-此命令會在公用代理程式叢集上自動安裝負載平衡器。
+此命令會自動在公用代理程式叢集上安裝負載平衡器。
 
 ## <a name="deploy-a-load-balanced-web-application"></a>部署負載平衡 Web 應用程式
 我們現在有 marathon-lb 套件，可以部署希望平衡負載的應用程式容器。 在此範例中，我們將使用下列組態來部署簡單的 Web 伺服器：
@@ -93,19 +94,19 @@ dcos package install marathon-lb
 
 ```
 
-* 將 `HAProxy_0_VHOST` 的值設為您代理程式負載平衡器的 FQDN。 其格式為 `<acsName>agents.<region>.cloudapp.azure.com`。 例如，如果您在 `West US` 區域中使用名稱 `myacs` 建立 Container Service 叢集，FQDN 會是 `myacsagents.westus.cloudapp.azure.com`。 在 [Azure 入口網站](https://portal.azure.com)中瀏覽您為 Container Service 在資源群組中建立的資源時，尋找名稱中有 "agent" 的負載平衡器，也可以找到此 FQDN。
-* 將 servicePort 設定為連接埠 > = 10,000。 這可識別正在此容器中執行的服務 -- marathon-lb 會以此識別它應該平衡負載的服務。
+* 將 `HAPROXY_0_VHOST` 的值設為您代理程式負載平衡器的 FQDN。 其格式為 `<acsName>agents.<region>.cloudapp.azure.com`。 例如，如果您在 `West US` 區域中使用名稱 `myacs` 建立 Container Service 叢集，FQDN 會是 `myacsagents.westus.cloudapp.azure.com`。 在 [Azure 入口網站](https://portal.azure.com)中瀏覽您為 Container Service 在資源群組中建立的資源時，尋找名稱中有 "agent" 的負載平衡器，也可以找到此 FQDN。
+* 將 `servicePort` 設定為 >= 10,000 的連接埠。 這可識別正在此容器中執行的服務 -- marathon-lb 會以此識別它應該平衡負載的服務。
 * 將 `HAPROXY_GROUP` 標籤設定為 [外部]。
 * 將 `hostPort` 設定為 0。 這意味著 Marathon 將任意配置可用的通訊埠。
 * 將 `instances` 設定為您想要建立的執行個體數目。 您稍後一律可以相應增加和相應減少這些數目。
 
-值得注意的是，Marathon 預設會部署到私人叢集，這表示只能透過您的負載平衡器存取上述部署，而這通常是我們想進行的行為。
+值得注意的是，Marathon 預設會部署到私人叢集，這表示將只能透過您的負載平衡器存取上述部署，而這通常是我們想要的行為。
 
 ### <a name="deploy-using-the-dcos-web-ui"></a>使用 DC/OS Web UI 進行部署
-1. 請造訪位於 http://localhost/marathon 的 Marathon 頁面 (設定您的 [SSH 通道](container-service-connect.md)之後) 並按一下 `Create Appliction`
+1. 請瀏覽位於 http://localhost/marathon 的 Marathon 頁面 (設定您的 [SSH 通道](container-service-connect.md)之後) 並按一下 `Create Application`
 2. 在 `New Application` 對話方塊中，按一下右上角的 `JSON Mode`
 3. 將上述 JSON 貼到編輯器中
-4. 按一下 `Create Appliction`
+4. 按一下 `Create Application`
 
 ### <a name="deploy-using-the-dcos-cli"></a>使用 DC/OS CLI 進行部署
 若要使用 DC/OS CLI 部署此應用程式，只要將上述 JSON 複製到名為 `hello-web.json` 的檔案，並執行︰
@@ -132,10 +133,5 @@ Azure lb:8080 -> marathon-lb:1002 -> mycontainer2:33432
 
 ## <a name="next-steps"></a>後續步驟
 如需 [marathon-lb](https://dcos.io/docs/1.7/usage/service-discovery/marathon-lb/)的詳細資訊，請參閱 DC/OS 文件。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

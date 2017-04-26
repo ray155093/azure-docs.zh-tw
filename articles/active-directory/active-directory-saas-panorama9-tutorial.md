@@ -11,34 +11,35 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/25/2017
+ms.date: 03/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 12868706693a076ead3cfc13ce5901bbc56d588b
-ms.openlocfilehash: 961aef8496a7de264c5d57c7a990c69996c1527e
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 66d68ef805a28552c5d161b4761e2aa3052c118c
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-panorama9"></a>教學課程：Azure Active Directory 與 Panorama9 整合
 本教學課程的目的是要示範 Azure 與 Panorama9 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
-* 有效的 Azure 訂閱
-* 啟用 Panorama9 單一登入的訂用帳戶
+* 有效的 Azure 訂用帳戶
+* 已啟用 Panorama9 單一登入 (SSO) 的訂用帳戶
 
 完成本教學課程之後，您指派給 Panorama9 的 Azure AD 使用者就能夠從您的 Panorama9 公司網站 (服務提供者起始登入)，或使用 [存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
 
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 Panorama9 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
 ![案例](./media/active-directory-saas-panorama9-tutorial/IC790016.png "案例")
 
-## <a name="enabling-the-application-integration-for-panorama9"></a>啟用 Panorama9 的應用程式整合
+## <a name="enable-the-application-integration-for-panorama9"></a>啟用 Panorama9 的應用程式整合
 本節的目的是要說明如何啟用 Panorama9 的應用程式整合。
 
 **若要啟用 Panorama9 的應用程式整合，請執行下列步驟：**
@@ -63,15 +64,15 @@ ms.lasthandoff: 02/03/2017
    
    ![Panorama9](./media/active-directory-saas-panorama9-tutorial/IC790018.png "Panorama9")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Panorama9 中進行驗證。  
 
-設定 Panorama9 的單一登入需要您從憑證抓取憑證指紋值。  
+設定 Panorama9 的 SSO 需要您從憑證擷取指紋值。  
 
-如果您不熟悉這個程序，請參閱 [如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-**若要設定單一登入，請執行下列步驟：**
+**若要設定 SSO，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站的 [Panorama9] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
@@ -108,30 +109,31 @@ ms.lasthandoff: 02/03/2017
    
    ![設定單一登入](./media/active-directory-saas-panorama9-tutorial/IC790026.png "設定單一登入")
    
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
 若要讓 Azure AD 使用者能夠登入 Panorama9，必須將他們佈建到 Panorama9。  
-Panorama9 需以手動的方式佈建。
+
+* Panorama9 需以手動的方式佈建。
 
 **若要設定使用者佈建，請執行下列步驟：**
 1. 以系統管理員身分登入您的 **Panorama9** 公司網站。
 2. 在頂端的功能表中，按一下 [管理]，然後按一下 [使用者]。
    
-   ![使用者](./media/active-directory-saas-panorama9-tutorial/IC790027.png "使用者")
+  ![使用者](./media/active-directory-saas-panorama9-tutorial/IC790027.png "使用者")
 3. 按一下頁面底部的 [新增] **+**來單一登入應用程式。
 4. 在 [使用者資料] 區段中，執行下列步驟：
    
-   ![使用者](./media/active-directory-saas-panorama9-tutorial/IC790028.png "使用者")
-   
-   1. 在 [電子郵件]  文字方塊中輸入您想要佈建的有效 Azure Active Directory 使用者電子郵件地址。
-   2. 按一下 [儲存] 。
+  ![使用者](./media/active-directory-saas-panorama9-tutorial/IC790028.png "使用者")
 
-> [!NOTE]
-> 您可以使用任何其他的 Panorama9 使用者帳戶建立工具或 Panorama9 提供的 API，佈建 AAD 使用者帳戶。
-> 
+  1. 在 [電子郵件]  文字方塊中輸入您想要佈建的有效 Azure Active Directory 使用者電子郵件地址。
+  2. 按一下 [儲存] 。
 
+>[!NOTE]
+>您可以使用任何其他的 Panorama9 使用者帳戶建立工具或 Panorama9 提供的 API，佈建 AAD 使用者帳戶。
+>
+>
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 **若要將使用者指派給 Panorama9，請執行下列步驟：**
@@ -144,6 +146,6 @@ Panorama9 需以手動的方式佈建。
    
    ![是](./media/active-directory-saas-panorama9-tutorial/IC767830.png "是")
 
-如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的 SSO 設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 

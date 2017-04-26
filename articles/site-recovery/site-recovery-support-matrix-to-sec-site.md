@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 02/08/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 2541236d84100ed7889d06f9b0580fcbc55ecfdb
-ms.openlocfilehash: f9443b633601272c79739c92995d53ba1a7d2b4e
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: d53d4cfdc7b673d2816fa9372dedbed540380cce
+ms.lasthandoff: 04/04/2017
 
 
 ---
@@ -31,11 +31,11 @@ ms.lasthandoff: 02/10/2017
 
 ## <a name="deployment-options"></a>部署選項
 
-**部署** | **VMware/實體伺服器** | **Hyper-V (無 VMM)** | **Hyper-V (含 VMM)**
+**部署** | **VMware/實體伺服器** | **Hyper-V (含/不含 SCVMM)
 --- | --- | --- | ---
-**Azure 入口網站** | 內部部署 VMware VM 至次要 VMware 網站。<br/><br/> 下載 [InMage Scout 使用者指南](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf) (Azure 入口網站不提供)。 | 不支援 | VMM 雲端中的內部部署 Hyper-V VM 至次要 VMM 雲端。<br/><br/> 僅限標準 Hyper-V 複寫。 不支援 SAN。
-**傳統入口網站** | 僅限使用維護模式。 無法建立新的保存庫。 | 不支援 | 僅限使用維護模式
-**PowerShell** | 不支援 | 不支援 | 支援
+**Azure 入口網站** | 內部部署 VMware VM 至次要 VMware 網站。<br/><br/> 下載 [InMage Scout 使用者指南](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf) (Azure 入口網站不提供)。 | VMM 雲端中的內部部署 Hyper-V VM 至次要 VMM 雲端。<br></br> 不支援沒有 SCVMM 的情況  <br/><br/> 僅限標準 Hyper-V 複寫。 不支援 SAN。
+**傳統入口網站** | 僅限使用維護模式。 無法建立新的保存庫。 | 僅限使用維護模式<br></br> 不支援沒有 SCVMM 的情況
+**PowerShell** | 不支援 | 支援<br></br> 不支援沒有 SCVMM 的情況
 
 ## <a name="on-premises-servers"></a>內部部署伺服器
 
@@ -120,7 +120,7 @@ RDM | 是 | N/A
 使用等量磁碟的磁碟區 > 1 TB<br/><br/> LVM | 是 | 是
 儲存空間 | 否 | 是
 熱新增/移除磁碟 | 否 | 否
-排除磁碟 | 否 | 否
+排除磁碟 | 否 | 是
 多重路徑 (MPIO) | N/A | 是
 
 ## <a name="vaults"></a>保存庫

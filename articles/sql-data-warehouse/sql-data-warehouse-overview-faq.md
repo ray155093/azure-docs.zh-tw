@@ -12,12 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: overview
 ms.date: 3/1/2017
 ms.author: elbutter
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 7a752bfb349d2730537538f6856fe431204d3329
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 49cbfca4f733356548b6c8f491fead9e2d7fdf5c
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -33,7 +34,7 @@ A. SQL DW 提供數個解決方案來保護資料，例如 TDE 和稽核。 如�
 問： 哪裡可以了解 SQL DW 符合規範的法規或企業標準？
 
 A. 請造訪 [Microsoft 合規性]頁面，依產品取得不同的合規性供應項目，例如 SOC 和 ISO。 首先依「合規性」標題選擇，然後在頁面右側的 [Microsoft 範圍內雲端服務] 區段中展開 [Azure]，以查看 Azure 服務符合規範的服務。
- 
+
 問： 可以連接 PowerBI 嗎？
 
 A. 可以！ 雖然 PowerBI 針對 SQL DW 支援直接查詢，但它並不適用於具有大量使用者或即時資料的情況。 針對 PowerBI 的生產用途，建議您在 Azure Analysis Services 或 Analysis Service IaaS 之上使用 PowerBI。 
@@ -41,6 +42,10 @@ A. 可以！ 雖然 PowerBI 針對 SQL DW 支援直接查詢，但它並不適�
 問： SQL 資料倉儲的容量限制為何？
 
 A. 請參閱我們目前的[容量限制]頁面。 
+
+問： 為何我的延展/暫停/繼續需要花很久的時間？
+
+A. 有很多因素可能會影響計算管理作業的時間。 一個導致長時間執行作業的常見原因是交易式回復。 初始化延展或暫停作業時，系統會封鎖所有傳入的工作階段，並清空查詢。 為了使系統能處於穩定的狀態，必須先回復交易才能開始作業。 交易數目越多，或是交易記錄檔的大小越大，將系統還原至穩定的狀態所需的時間便越長，因此使作業停止的時間變得更久。
 
 ## <a name="user-support"></a>使用者支援
 
@@ -113,7 +118,7 @@ A. 如需 DW 的驅動程式支援，請參閱[連接字串]頁面
 [容量限制]: ./sql-data-warehouse-service-capacity-limits.md
 [資料類型]: ./sql-data-warehouse-tables-data-types.md
 [不支援的資料表功能]: ./sql-data-warehouse-tables-overview.md#unsupported-table-features
-[Azure Data Lake Store]: ./sql-data-warehouse-load-from-azure-data-lake-store.md 
+[Azure Data Lake Store]: ./sql-data-warehouse-load-from-azure-data-lake-store.md
 [Azure 儲存體 Blob]: ./sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md
 [資料庫專案功能要求]: https://feedback.azure.com/forums/307516-sql-data-warehouse/suggestions/13313247-database-project-from-visual-studio-to-support-azu
 [MSDN]: https://msdn.microsoft.com/en-us/library/azure/mt163685.aspx

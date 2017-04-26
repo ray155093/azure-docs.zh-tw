@@ -14,12 +14,12 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/12/2017
+ms.date: 04/03/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 110f3aa9ce4848c9350ea2e560205aa762decf7a
-ms.openlocfilehash: 163bf5b8d2884f678f7fea2207055eeb78b4e8ba
-ms.lasthandoff: 02/21/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 9662ff49e38d65fcba307bc3fc7a8ec699b13202
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -36,7 +36,7 @@ Mahout 是 Apache Hadoop 的[機器學習服務][ml]程式庫。 Mahout 包含�
 * 以 Linux 為基礎的 HDInsight 叢集。 如需有關建立叢集的資訊，請參閱[開始在 HDInsight 中使用以 Linux 為基礎的 Hadoop][getstarted]。
 
 > [!IMPORTANT]
-> Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.2 和 3.4 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 ## <a name="mahout-versioning"></a>Mahout 版本控制
 
@@ -82,34 +82,34 @@ mahout recommenditembased -s SIMILARITY_COOCCURRENCE -i /HdiSamples/HdiSamples/M
 ## <a name="view-the-output"></a>檢視輸出
 
 1. 工作完成後，使用以下命令來檢視所產生的輸出：
-    
+
     ```bash
     hdfs dfs -text /example/data/mahoutout/part-r-00000
     ```
 
     輸出看起來會像下面這樣：
-   
+
         1    [234:5.0,347:5.0,237:5.0,47:5.0,282:5.0,275:5.0,88:5.0,515:5.0,514:5.0,121:5.0]
         2    [282:5.0,210:5.0,237:5.0,234:5.0,347:5.0,121:5.0,258:5.0,515:5.0,462:5.0,79:5.0]
         3    [284:5.0,285:4.828125,508:4.7543354,845:4.75,319:4.705128,124:4.7045455,150:4.6938777,311:4.6769233,248:4.65625,272:4.649266]
         4    [690:5.0,12:5.0,234:5.0,275:5.0,121:5.0,255:5.0,237:5.0,895:5.0,282:5.0,117:5.0]
-   
+
     第一欄是 `userID`。 '[' 和 ']' 中包含的值是 `movieId`:`recommendationScore`。
 
 2. 您可以使用輸出和 moviedb.txt，來顯示更多建議的相關資訊。 首先，我們需要使用下列命令將檔案複製到本機上︰
 
-   ```bash
-   hdfs dfs -get /example/data/mahoutout/part-r-00000 recommendations.txt
-   hdfs dfs -get /HdiSamples/HdiSamples/MahoutMovieData/* .
-   ```
+    ```bash
+    hdfs dfs -get /example/data/mahoutout/part-r-00000 recommendations.txt
+    hdfs dfs -get /HdiSamples/HdiSamples/MahoutMovieData/* .
+    ```
 
     這個命令會將輸出資料和影片資料檔一起複製到目前目錄中名為 **recommendations.txt** 的檔案中。
 
 3. 使用下列命令來建立 Python 指令碼，該指令碼會在建議輸出資料中查閱影片名稱：
 
-   ```bash
-   nano show_recommendations.py
-   ```
+    ```bash
+    nano show_recommendations.py
+    ```
 
     開啟編輯器時，請使用下列文字做為檔案的內容：
 
@@ -164,75 +164,32 @@ mahout recommenditembased -s SIMILARITY_COOCCURRENCE -i /HdiSamples/HdiSamples/M
        print "%s, score=%s" % (movieById[movieId][0], score)
    print "------------------------"
    ```
-   
+
     按下 **CTRL-X**、**Y**，最後再按 **Enter** 鍵儲存資料。
 
 4. 使用下列命令，讓檔案可以執行：
-   
-   ```bash
-   chmod +x show_recommendations.py
-   ```
+
+    ```bash
+    chmod +x show_recommendations.py
+    ```
 
 5. 執行 Python 指令碼。 以下命令假設您已在所有檔案的下載目錄中︰
-   
-   ```bash
-   ./show_recommendations.py 4 user-ratings.txt moviedb.txt recommendations.txt
-   ```
-    
+
+    ```bash
+    ./show_recommendations.py 4 user-ratings.txt moviedb.txt recommendations.txt
+    ```
+
     此命令會查看為使用者 ID 4 所產生的建議。
-   
-   * **user-ratings.txt** 檔案可用來擷取已評分的影片。
 
-   * **moviedb.txt** 檔案用來擷取影片名稱。
+    * **user-ratings.txt** 檔案可用來擷取已評分的影片。
 
-   * **recommendations.txt** 用來擷取這位使用者的電影建議。
-     
+    * **moviedb.txt** 檔案用來擷取影片名稱。
+
+    * **recommendations.txt** 用來擷取這位使用者的電影建議。
+
      此命令的輸出類似下列文字︰
-     
-     ```
-       Reading Movies Descriptions
-       Reading Rated Movies
-       Reading Recommendations
-     
-     ##   Rated Movies
-       Mimic (1997), rating=3
-       Ulee's Gold (1997), rating=5
-       Incognito (1997), rating=5
-       One Flew Over the Cuckoo's Nest (1975), rating=4
-       Event Horizon (1997), rating=4
-       Client, The (1994), rating=3
-       Liar Liar (1997), rating=5
-       Scream (1996), rating=4
-       Star Wars (1977), rating=5
-       Wedding Singer, The (1998), rating=5
-       Starship Troopers (1997), rating=4
-       Air Force One (1997), rating=5
-       Conspiracy Theory (1997), rating=3
-       Contact (1997), rating=5
-       Indiana Jones and the Last Crusade (1989), rating=3
-       Desperate Measures (1998), rating=5
-       Seven (Se7en) (1995), rating=4
-       Cop Land (1997), rating=5
-       Lost Highway (1997), rating=5
-       Assignment, The (1997), rating=5
-       Blues Brothers 2000 (1998), rating=5
-       Spawn (1997), rating=2
-       Wonderland (1997), rating=5
-     
-     ##   In & Out (1997), rating=5
-     ##   Recommended Movies
-       Seven Years in Tibet (1997), score=5.0
-       Indiana Jones and the Last Crusade (1989), score=5.0
-       Jaws (1975), score=5.0
-       Sense and Sensibility (1995), score=5.0
-       Independence Day (ID4) (1996), score=5.0
-       My Best Friend's Wedding (1997), score=5.0
-       Jerry Maguire (1996), score=5.0
-       Scream 2 (1997), score=5.0
-       Time to Kill, A (1996), score=5.0
-     
-     ##   Rock, The (1996), score=5.0
-     ```
+
+        Seven Years in Tibet (1997), score=5.0   Indiana Jones and the Last Crusade (1989), score=5.0   Jaws (1975), score=5.0   Sense and Sensibility (1995), score=5.0   Independence Day (ID4) (1996), score=5.0   My Best Friend's Wedding (1997), score=5.0   Jerry Maguire (1996), score=5.0   Scream 2 (1997), score=5.0   Time to Kill, A (1996), score=5.0
 
 ## <a name="delete-temporary-data"></a>刪除暫存資料
 
@@ -244,8 +201,8 @@ hdfs dfs -rm -f -r /temp/mahouttemp
 
 > [!WARNING]
 > 如果您要再次執行該命令，您必須也刪除輸出目錄。 使用以下命令刪除此目錄：
-> 
-> ```hdfs dfs -rm -f -r /example/data/mahoutout```
+>
+> `hdfs dfs -rm -f -r /example/data/mahoutout`
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -268,5 +225,4 @@ hdfs dfs -rm -f -r /temp/mahouttemp
 [connect]: ./media/hdinsight-mahout/connect.png
 [hadoopcli]: ./media/hdinsight-mahout/hadoopcli.png
 [tools]: https://github.com/Blackmist/hdinsight-tools
-
 

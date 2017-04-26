@@ -13,17 +13,18 @@ ms.devlang: na
 ms.topic: 
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/20/2017
+ms.date: 04/12/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 3032b09d06a103f9cd915e3803355199243488f9
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: d2bb2422a8458f1577c14bad8d24d8c9cb3ead1b
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="delete-a-virtual-network-gateway-using-powershell"></a>使用 PowerShell 刪除虛擬網路閘道
 > [!div class="op_single_selector"]
+> * [Resource Manager - Azure 入口網站](vpn-gateway-delete-vnet-gateway-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-delete-vnet-gateway-powershell.md)
 > * [傳統 - PowerShell](vpn-gateway-delete-vnet-gateway-classic-powershell.md)
 >
@@ -31,11 +32,11 @@ ms.lasthandoff: 03/21/2017
 
 如果您想要刪除 VPN 閘道組態的虛擬網路閘道，您可以採取幾種不同的方法。
 
-- 如果您想要刪除所有內容並重頭開始，如同在測試環境中，您可以刪除整個資源群組。 刪除資源群組時，會一併刪除群組內的所有資源。 只有在您不想保留資源群組中的任何資源時，才建議這麼做。 您無法使用這種方法，選擇性地只刪除一些資源。
+- 如果您想要刪除所有內容並重頭開始 (例如使用測試環境的情況)，您可以刪除資源群組。 刪除資源群組時，會一併刪除群組內的所有資源。 只有在您不想保留資源群組中的任何資源時，才建議使用此方法。 您無法使用這種方法，選擇性地只刪除一些資源。
 
 - 如果您想要保留資源群組中的部分資源，刪除虛擬網路閘道會變得稍微複雜一點。 您必須先刪除任何相依於閘道的資源，才可以刪除虛擬網路閘道。 您遵循的步驟取決於您所建立的連線類型以及每個連線的相依資源。
 
-##<a name="before-beginning"></a>開始之前
+## <a name="before-beginning"></a>開始之前
 
 ### <a name="1-download-the-latest-azure-resource-manager-powershell-cmdlets"></a>1.下載最新版的 Azure Resource Manager PowerShell Cmdlet。
 下載並安裝最新版的 Azure Resource Manager PowerShell Cmdlet。 如需下載和安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
@@ -43,19 +44,25 @@ ms.lasthandoff: 03/21/2017
 ### <a name="2-connect-to-your-azure-account"></a>2.連線至您的 Azure 帳戶。 
 開啟 PowerShell 主控台並連接到您的帳戶。 使用下列範例來協助您連接：
 
-    Login-AzureRmAccount
+```powershell
+Login-AzureRmAccount
+```
 
 檢查帳戶的訂用帳戶。
 
-    Get-AzureRmSubscription
+```powershell
+Get-AzureRmSubscription
+```
 
 如果您有多個訂用帳戶，請指定您要使用的訂用帳戶。
 
-    Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+```powershell
+Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+```
 
-##<a name="S2S"></a>刪除站對站 VPN 閘道
+## <a name="S2S"></a>刪除站對站 VPN 閘道
 
-若要刪除 S2S 組態的虛擬網路閘道，您必須先刪除虛擬網路閘道的每個相關資源。 由於相依性，您必須依照特定順序刪除資源。 使用下面的範例時，必須特別指出某些值，而其他值則為輸出結果。 我們在範例中使用下列特定值，做為示範之用︰
+若要刪除 S2S 組態的虛擬網路閘道，您必須先刪除虛擬網路閘道的每個相關資源。 由於相依性，您必須依照特定順序刪除資源。 使用下面的範例時，某些值必須特別指定，而其他值則為輸出結果。 我們在範例中使用下列特定值，做為示範之用︰
 
 VNet 名稱︰VNet1<br>
 資源群組名稱：GW1<br>
@@ -63,30 +70,40 @@ VNet 名稱︰VNet1<br>
 
 下列步驟適用於 Resource Manager 部署模型。
 
-###<a name="1-get-the-virtual-network-gateway-that-you-want-to-delete"></a>1.取得您想要刪除的虛擬網路閘道。
+### <a name="1-get-the-virtual-network-gateway-that-you-want-to-delete"></a>1.取得您想要刪除的虛擬網路閘道。
 
-    $Gateway=get-azurermvirtualnetworkgateway -Name "GW1" -ResourceGroupName "RG1"
+```powershell
+$Gateway=get-azurermvirtualnetworkgateway -Name "GW1" -ResourceGroupName "RG1"
+```
 
-###<a name="2-check-to-see-if-the-virtual-network-gateway-has-any-connections"></a>2.查看虛擬網路閘道是否有任何連線。
+### <a name="2-check-to-see-if-the-virtual-network-gateway-has-any-connections"></a>2.查看虛擬網路閘道是否有任何連線。
 
-    get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "RG1" | where-object {$_.VirtualNetworkGateway1.Id -eq $GW.Id}
-    $Conns=get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "RG1" | where-object {$_.VirtualNetworkGateway1.Id -eq $GW.Id}
+```powershell
+get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "RG1" | where-object {$_.VirtualNetworkGateway1.Id -eq $GW.Id}
+$Conns=get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "RG1" | where-object {$_.VirtualNetworkGateway1.Id -eq $GW.Id}
+```
 
-###<a name="3-delete-all-connections"></a>3.刪除所有連線。
+### <a name="3-delete-all-connections"></a>3.刪除所有連線。
 系統可能會提示您確認刪除每個連線。
 
-    $Conns | ForEach-Object {Remove-AzureRmVirtualNetworkGatewayConnection -Name $_.name -ResourceGroupName $_.ResourceGroupName}
+```powershell
+$Conns | ForEach-Object {Remove-AzureRmVirtualNetworkGatewayConnection -Name $_.name -ResourceGroupName $_.ResourceGroupName}
+```
 
-###<a name="4-get-the-list-of-the-corresponding-local-network-gateways"></a>4.取得對應區域網路閘道的清單。
+### <a name="4-get-the-list-of-the-corresponding-local-network-gateways"></a>4.取得對應區域網路閘道的清單。
 
-    $LNG=Get-AzureRmLocalNetworkGateway -ResourceGroupName "RG1" | where-object {$_.Id -In $Conns.LocalNetworkGateway2.Id}
+```powershell
+$LNG=Get-AzureRmLocalNetworkGateway -ResourceGroupName "RG1" | where-object {$_.Id -In $Conns.LocalNetworkGateway2.Id}
+```
     
-###<a name="5-delete-the-local-network-gateways"></a>5.刪除區域網路閘道。
+### <a name="5-delete-the-local-network-gateways"></a>5.刪除區域網路閘道。
 系統可能會提示您確認刪除每個區域網路閘道。
 
-    $LNG | ForEach-Object {Remove-AzureRmLocalNetworkGateway -Name $_.Name -ResourceGroupName $_.ResourceGroupName}
+```powershell
+$LNG | ForEach-Object {Remove-AzureRmLocalNetworkGateway -Name $_.Name -ResourceGroupName $_.ResourceGroupName}
+```
 
-###<a name="6-delete-the-virtual-network-gateway"></a>6.刪除虛擬網路閘道。
+### <a name="6-delete-the-virtual-network-gateway"></a>6.刪除虛擬網路閘道。
 系統可能會提示您確認刪除閘道。
 
 >[!NOTE]
@@ -94,29 +111,39 @@ VNet 名稱︰VNet1<br>
 >
 >
 
-    Remove-AzureRmVirtualNetworkGateway -Name "GW1" -ResourceGroupName "RG1"
+```powershell
+Remove-AzureRmVirtualNetworkGateway -Name "GW1" -ResourceGroupName "RG1"
+```
 
-###<a name="7-get-the-ip-configurations-of-the-virtual-network-gateway"></a>7.取得虛擬網路閘道的 IP 組態。
+### <a name="7-get-the-ip-configurations-of-the-virtual-network-gateway"></a>7.取得虛擬網路閘道的 IP 組態。
 
-    $GWIpConfigs = $Gateway.IpConfigurations
+```powershell
+$GWIpConfigs = $Gateway.IpConfigurations
+```
 
-###<a name="8-get-the-list-of-public-ip-addresses-used-for-this-virtual-network-gateway"></a>8.取得用於此虛擬網路閘道的公用 IP 位址清單 
+### <a name="8-get-the-list-of-public-ip-addresses-used-for-this-virtual-network-gateway"></a>8.取得用於此虛擬網路閘道的公用 IP 位址清單 
 如果虛擬網路閘道為主動-主動，您會看到兩個公用 IP 位址。
 
-    $PubIP=Get-AzureRmPublicIpAddress | where-object {$_.Id -In $GWIpConfigs.PublicIpAddress.Id}
+```powershell
+$PubIP=Get-AzureRmPublicIpAddress | where-object {$_.Id -In $GWIpConfigs.PublicIpAddress.Id}
+```
 
-###<a name="9-delete-the-public-ips"></a>9.刪除公用 IP。
+### <a name="9-delete-the-public-ips"></a>9.刪除公用 IP。
 
-    $PubIP | foreach-object {remove-azurermpublicIpAddress -Name $_.Name -ResourceGroupName "RG1"}
+```powershell
+$PubIP | foreach-object {remove-azurermpublicIpAddress -Name $_.Name -ResourceGroupName "RG1"}
+```
 
-###<a name="10-delete-the-gateway-subnet-and-set-the-configuration"></a>10.刪除閘道子網路並設定組態。
+### <a name="10-delete-the-gateway-subnet-and-set-the-configuration"></a>10.刪除閘道子網路並設定組態。
 
-    $GWSub = Get-AzureRmVirtualNetwork -ResourceGroupName "RG1" -Name "VNet1" | Remove-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet"
-    Set-AzureRmVirtualNetwork -VirtualNetwork $GWSub
+```powershell
+$GWSub = Get-AzureRmVirtualNetwork -ResourceGroupName "RG1" -Name "VNet1" | Remove-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet"
+Set-AzureRmVirtualNetwork -VirtualNetwork $GWSub
+```
 
-##<a name="v2v"></a>刪除 VNet 對 VNet VPN 閘道
+## <a name="v2v"></a>刪除 VNet 對 VNet VPN 閘道
 
-若要刪除 V2V 組態的虛擬網路閘道，您必須先刪除虛擬網路閘道的每個相關資源。 由於相依性，您必須依照特定順序刪除資源。 使用下面的範例時，必須特別指出某些值，而其他值則為輸出結果。 我們在範例中使用下列特定值，做為示範之用︰
+若要刪除 V2V 組態的虛擬網路閘道，您必須先刪除虛擬網路閘道的每個相關資源。 由於相依性，您必須依照特定順序刪除資源。 使用下面的範例時，某些值必須特別指定，而其他值則為輸出結果。 我們在範例中使用下列特定值，做為示範之用︰
 
 VNet 名稱︰VNet1<br>
 資源群組名稱：GW1<br>
@@ -124,34 +151,46 @@ VNet 名稱︰VNet1<br>
 
 下列步驟適用於 Resource Manager 部署模型。
 
-###<a name="1-get-the-virtual-network-gateway-that-you-want-to-delete"></a>1.取得您想要刪除的虛擬網路閘道。
+### <a name="1-get-the-virtual-network-gateway-that-you-want-to-delete"></a>1.取得您想要刪除的虛擬網路閘道。
 
-    $Gateway=get-azurermvirtualnetworkgateway -Name "GW1" -ResourceGroupName "RG1"
+```powershell
+$Gateway=get-azurermvirtualnetworkgateway -Name "GW1" -ResourceGroupName "RG1"
+```
 
-###<a name="2-check-to-see-if-the-virtual-network-gateway-has-any-connections"></a>2.查看虛擬網路閘道是否有任何連線。
+### <a name="2-check-to-see-if-the-virtual-network-gateway-has-any-connections"></a>2.查看虛擬網路閘道是否有任何連線。
 
-    get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "RG1" | where-object {$_.VirtualNetworkGateway1.Id -eq $GW.Id}
+```powershell
+get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "RG1" | where-object {$_.VirtualNetworkGateway1.Id -eq $GW.Id}
+```
  
 可能屬於不同的資源群組的其他連線至虛擬網路閘道。 檢查其他每個資源群組中的其他連線。 在此範例中，我們會檢查來自 RG2 的連線。 針對可能連線至虛擬網路閘道的每個資源群組，執行此作業。
 
-    get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "RG2" | where-object {$_.VirtualNetworkGateway2.Id -eq $GW.Id}
+```powershell
+get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "RG2" | where-object {$_.VirtualNetworkGateway2.Id -eq $GW.Id}
+```
 
-###<a name="3-get-the-list-of-connections-in-both-directions"></a>3.取得雙向連線清單。
+### <a name="3-get-the-list-of-connections-in-both-directions"></a>3.取得雙向連線清單。
 因為這是 VNet 對 VNet 組態，所以您需要雙向連線清單。
 
-    $ConnsL=get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "RG1" | where-object {$_.VirtualNetworkGateway1.Id -eq $GW.Id}
+```powershell
+$ConnsL=get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "RG1" | where-object {$_.VirtualNetworkGateway1.Id -eq $GW.Id}
+```
  
 在此範例中，我們會檢查來自 RG2 的連線。 針對可能連線至虛擬網路閘道的每個資源群組，執行此作業。
- 
-    $ConnsR=get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "<NameOfResourceGroup2>" | where-object {$_.VirtualNetworkGateway2.Id -eq $GW.Id}
 
-###<a name="4-delete-all-connections"></a>4.刪除所有連線。
+```powershell
+ $ConnsR=get-azurermvirtualnetworkgatewayconnection -ResourceGroupName "<NameOfResourceGroup2>" | where-object {$_.VirtualNetworkGateway2.Id -eq $GW.Id}
+ ```
+
+### <a name="4-delete-all-connections"></a>4.刪除所有連線。
 系統可能會提示您確認刪除每個連線。
 
-    $ConnsL | ForEach-Object {Remove-AzureRmVirtualNetworkGatewayConnection -Name $_.name -ResourceGroupName $_.ResourceGroupName}
-    $ConnsR | ForEach-Object {Remove-AzureRmVirtualNetworkGatewayConnection -Name $_.name -ResourceGroupName $_.ResourceGroupName}
+```powershell
+$ConnsL | ForEach-Object {Remove-AzureRmVirtualNetworkGatewayConnection -Name $_.name -ResourceGroupName $_.ResourceGroupName}
+$ConnsR | ForEach-Object {Remove-AzureRmVirtualNetworkGatewayConnection -Name $_.name -ResourceGroupName $_.ResourceGroupName}
+```
 
-###<a name="5-delete-the-virtual-network-gateway"></a>5.刪除虛擬網路閘道。
+### <a name="5-delete-the-virtual-network-gateway"></a>5.刪除虛擬網路閘道。
 系統可能會提示您確認刪除虛擬網路閘道。
 
 >[!NOTE]
@@ -159,30 +198,41 @@ VNet 名稱︰VNet1<br>
 >
 >
 
-    Remove-AzureRmVirtualNetworkGateway -Name "GW1" -ResourceGroupName "RG1"
 
-###<a name="6-get-the-ip-configurations-of-the-virtual-network-gateway"></a>6.取得虛擬網路閘道的 IP 組態。
+```powershell
+Remove-AzureRmVirtualNetworkGateway -Name "GW1" -ResourceGroupName "RG1"
+```
 
-    $GWIpConfigs = $Gateway.IpConfigurations
+### <a name="6-get-the-ip-configurations-of-the-virtual-network-gateway"></a>6.取得虛擬網路閘道的 IP 組態。
 
-###<a name="7-get-the-list-of-public-ip-addresses-used-for-this-virtual-network-gateway"></a>7.取得用於此虛擬網路閘道的公用 IP 位址清單。 
+```powershell
+$GWIpConfigs = $Gateway.IpConfigurations
+```
+
+### <a name="7-get-the-list-of-public-ip-addresses-used-for-this-virtual-network-gateway"></a>7.取得用於此虛擬網路閘道的公用 IP 位址清單。 
 如果虛擬網路閘道為主動-主動，您會看到兩個公用 IP 位址。
 
-    $PubIP=Get-AzureRmPublicIpAddress | where-object {$_.Id -In $GWIpConfigs.PublicIpAddress.Id}
+```powershell
+$PubIP=Get-AzureRmPublicIpAddress | where-object {$_.Id -In $GWIpConfigs.PublicIpAddress.Id}
+```
 
-###<a name="8-delete-the-public-ips"></a>8.刪除公用 IP。
+### <a name="8-delete-the-public-ips"></a>8.刪除公用 IP。
 系統可能會提示您確認刪除公用 IP。
 
-    $PubIP | foreach-object {remove-azurermpublicIpAddress -Name $_.Name -ResourceGroupName "<NameOfResourceGroup1>"}
+```powershell
+$PubIP | foreach-object {remove-azurermpublicIpAddress -Name $_.Name -ResourceGroupName "<NameOfResourceGroup1>"}
+```
 
-###<a name="9-delete-the-gateway-subnet-and-set-the-configuration"></a>9.刪除閘道子網路並設定組態。
- 
-    $GWSub = Get-AzureRmVirtualNetwork -ResourceGroupName "RG1" -Name "VNet1" | Remove-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet"
-    Set-AzureRmVirtualNetwork -VirtualNetwork $GWSub
+### <a name="9-delete-the-gateway-subnet-and-set-the-configuration"></a>9.刪除閘道子網路並設定組態。
 
-##<a name="deletep2s"></a>刪除點對站 VPN 閘道
+```powershell
+$GWSub = Get-AzureRmVirtualNetwork -ResourceGroupName "RG1" -Name "VNet1" | Remove-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet"
+Set-AzureRmVirtualNetwork -VirtualNetwork $GWSub
+```
 
-若要刪除 P2S 組態的虛擬網路閘道，您必須先刪除每個與虛擬網路閘道相關的資源。 由於相依性，您必須依照特定順序刪除資源。 使用下面的範例時，必須特別指出某些值，而其他值則為輸出結果。 我們在範例中使用下列特定值，做為示範之用︰
+## <a name="deletep2s"></a>刪除點對站 VPN 閘道
+
+若要刪除 P2S 組態的虛擬網路閘道，您必須先刪除每個與虛擬網路閘道相關的資源。 由於相依性，您必須依照特定順序刪除資源。 使用下面的範例時，某些值必須特別指定，而其他值則為輸出結果。 我們在範例中使用下列特定值，做為示範之用︰
 
 VNet 名稱︰VNet1<br>
 資源群組名稱：GW1<br>
@@ -196,65 +246,82 @@ VNet 名稱︰VNet1<br>
 >
 >
 
-###<a name="1-get-the-virtual-network-gateway-that-you-want-to-delete"></a>1.取得您想要刪除的虛擬網路閘道。
+### <a name="1-get-the-virtual-network-gateway-that-you-want-to-delete"></a>1.取得您想要刪除的虛擬網路閘道。
 
-    $Gateway=get-azurermvirtualnetworkgateway -Name "GW1" -ResourceGroupName "RG1"
+```powershell
+$Gateway=get-azurermvirtualnetworkgateway -Name "GW1" -ResourceGroupName "RG1"
+```
 
-###<a name="2-delete-the-virtual-network-gateway"></a>2.刪除虛擬網路閘道。
+### <a name="2-delete-the-virtual-network-gateway"></a>2.刪除虛擬網路閘道。
 系統可能會提示您確認刪除虛擬網路閘道。
 
-    Remove-AzureRmVirtualNetworkGateway -Name "GW1" -ResourceGroupName "RG1"
+```powershell
+Remove-AzureRmVirtualNetworkGateway -Name "GW1" -ResourceGroupName "RG1"
+```
 
-###<a name="3-get-the-ip-configurations-of-the-virtual-network-gateway"></a>3.取得虛擬網路閘道的 IP 組態。
+### <a name="3-get-the-ip-configurations-of-the-virtual-network-gateway"></a>3.取得虛擬網路閘道的 IP 組態。
 
-    $GWIpConfigs = $Gateway.IpConfigurations
+```powershell
+$GWIpConfigs = $Gateway.IpConfigurations
+```
 
-###<a name="4-get-the-list-of-public-ip-addresses-used-for-this-virtual-network-gateway"></a>4.取得用於此虛擬網路閘道的公用 IP 位址清單。 
+### <a name="4-get-the-list-of-public-ip-addresses-used-for-this-virtual-network-gateway"></a>4.取得用於此虛擬網路閘道的公用 IP 位址清單。 
 如果虛擬網路閘道為主動-主動，您會看到兩個公用 IP 位址。
 
-    $PubIP=Get-AzureRmPublicIpAddress | where-object {$_.Id -In $GWIpConfigs.PublicIpAddress.Id}
+```powershell
+$PubIP=Get-AzureRmPublicIpAddress | where-object {$_.Id -In $GWIpConfigs.PublicIpAddress.Id}
+```
 
-###<a name="5-delete-the-public-ips"></a>5.刪除公用 IP。
+### <a name="5-delete-the-public-ips"></a>5.刪除公用 IP。
 系統可能會提示您確認刪除公用 IP。
 
-    $PubIP | foreach-object {remove-azurermpublicIpAddress -Name $_.Name -ResourceGroupName "<NameOfResourceGroup1>"}
+```powershell
+$PubIP | foreach-object {remove-azurermpublicIpAddress -Name $_.Name -ResourceGroupName "<NameOfResourceGroup1>"}
+```
 
-###<a name="6-delete-the-gateway-subnet-and-set-the-configuration"></a>6.刪除閘道子網路並設定組態。
- 
-    $GWSub = Get-AzureRmVirtualNetwork -ResourceGroupName "RG1" -Name "VNet1" | Remove-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet"
-    Set-AzureRmVirtualNetwork -VirtualNetwork $GWSub
+### <a name="6-delete-the-gateway-subnet-and-set-the-configuration"></a>6.刪除閘道子網路並設定組態。
 
-##<a name="delete"></a>藉由刪除資源群組來刪除 VPN 閘道
+```powershell
+$GWSub = Get-AzureRmVirtualNetwork -ResourceGroupName "RG1" -Name "VNet1" | Remove-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet"
+Set-AzureRmVirtualNetwork -VirtualNetwork $GWSub
+```
 
-如果您不在意保留任何資源，而只想要從頭開始，您可以刪除整個資源群組。 這是移除所有項目的快速方法。 當您刪除整個資源群組時，您刪除的資源沒有選擇性。 因此確定在執行此範例之前，這是您想要做的。
+## <a name="delete"></a>藉由刪除資源群組來刪除 VPN 閘道
 
-下列步驟適用於 Resource Manager 部署模型。
+如果您不在乎保留資源群組中任何資源，而只想要從頭開始，您可以刪除整個資源群組。 這是移除所有項目的快速方法。 下列步驟僅適用於 Resource Manager 部署模型。
 
 ### <a name="1-get-a-list-of-all-the-resource-groups-in-your-subscription"></a>1.取得訂用帳戶中的所有資源群組。
 
-    Get-AzureRmResourceGroup
+```powershell
+Get-AzureRmResourceGroup
+```
+
 ### <a name="2-locate-the-resource-group-that-you-want-to-delete"></a>2.找出您想要刪除的資源群組。
 找出您想要刪除的資源群組，並檢視該資源群組中的資源清單。 在此範例中，資源群組的名稱為 RG1。 修改範例，以擷取所有資源的清單。
 
-    Find-AzureRmResource -ResourceGroupNameContains RG1
+```powershell
+Find-AzureRmResource -ResourceGroupNameContains RG1
+```
 
 ### <a name="3-verify-the-resources-in-the-list"></a>3.確認清單中的資源。
-清單傳回後，請加以檢閱，確認您想要刪除資源群組中的所有資源，以及資源群組本身。 
+清單傳回後，請加以檢閱，確認您想要刪除資源群組中的所有資源，以及資源群組本身。 如果您想要保留資源群組中的某些資源，請使用本文先前小節中的步驟來刪除您的閘道。
 
 ### <a name="4-delete-the-resource-group-and-resources"></a>4.刪除資源群組和資源。
 若要刪除資源群組和資源群組內含的所有資源，請修改範例並執行。
 
-    Remove-AzureRmResourceGroup -Name RG1
+```powershell
+Remove-AzureRmResourceGroup -Name RG1
+```
 
 ### <a name="5-check-the-status"></a>5.檢查狀態。
 Azure 需花一些時間刪除所有資源。 您可以使用 Cmdlet 檢查資源群組的狀態。
 
-    Get-AzureRmResourceGroup -ResourceGroupName RG1
+```powershell
+Get-AzureRmResourceGroup -ResourceGroupName RG1
+```
 
 傳回的結果顯示「成功」。
 
     ResourceGroupName : RG1
     Location          : eastus
     ProvisioningState : Succeeded
-
-

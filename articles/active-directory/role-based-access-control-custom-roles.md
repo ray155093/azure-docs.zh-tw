@@ -12,17 +12,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/21/2017
+ms.date: 03/21/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 53fa0876ce1e3e2b2ac47316f37c5a0de2591d41
-ms.openlocfilehash: c8189af2ebd9cabfa3e20e6b3520ba347d6147ff
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: e7a85813ae5e26f402837774a40fa3630a436bee
+ms.lasthandoff: 03/31/2017
 
 ---
 # <a name="create-custom-roles-for-azure-role-based-access-control"></a>建立 Azure 角色型存取控制的自訂角色
 如果內建角色都不符合您的特定存取需求，請在 Azure 角色型存取控制 (RBAC) 中建立自訂角色。 使用 [Azure PowerShell](role-based-access-control-manage-access-powershell.md)、[Azure 命令列介面](role-based-access-control-manage-access-azure-cli.md) (CLI) 和 [REST API](role-based-access-control-manage-access-rest.md)，可以建立自訂角色。 就像內建角色一樣，可以將自訂角色指派給訂用帳戶、資源群組和資源範圍的使用者、群組和應用程式。 自訂角色會儲存在 Azure AD 租用戶中，而且可以在所有訂用帳戶之間共用，而這些訂用帳戶使用該租用戶做為訂用帳戶的 Azure AD 目錄。
+
+每個租用戶可以建立最多 2000 個自訂角色。 
 
 以下是可以監視和重新啟動虛擬機器的自訂角色範例：
 

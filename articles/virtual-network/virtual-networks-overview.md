@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/23/2017
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 186b8331d2fcfc16bd41eb08badb200e2abf9e30
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: e22a1ccb958942cfa3c67194430af6bc74fdba64
+ms.openlocfilehash: 1072148f11052a643bdc70239029a651d9d71dda
+ms.lasthandoff: 04/05/2017
 
 
 ---
@@ -39,12 +39,12 @@ Azure 虛擬網路服務可讓 Azure 資源與虛擬網路 (VNet) 安全地彼�
 
 ## <a name = "isolation"></a>網路隔離和分割
 
-您可以實作每個 Azure 訂用帳戶和 Azure 區域內的多個 VNet。 每個 VNet 會與其他 VNet 隔離。 對於每個 VNet，您可以︰
+您可以在每個 Azure [訂用帳戶](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#subscription)和 Azure [區域](../azure-glossary-cloud-terminology.md?toc=%2fazure%2fvirtual-network%2ftoc.json#region)內實作多個 VNet。 每個 VNet 會與其他 VNet 隔離。 對於每個 VNet，您可以︰
 - 使用公用和私人 (RFC 1918) 位址指定自訂私人 IP 位址空間。 Azure 會從您指派的位址空間，將私人 IP 位址指派給連線至 VNet 的資源。
 - 將 VNet 分成一或多個子網路，並將 VNet 位址空間的一部分配置給每個子網路。
 - 使用 Azure 提供的名稱解析，或指定自有的 DNS 伺服器以供連線至 VNet 的資源使用。 若要深入了解 VNet 中的名稱解析，請閱讀 [VM 和雲端服務的名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)一文。
 
-## <a name = "internet"></a>連線到網際網路
+## <a name = "internet"></a>連線至網際網路
 根據預設，連線至 VNet 的所有資源都具有網際網路的輸出連線能力。 資源的私人 IP 位址會由 Azure 基礎結構進行來源網路位址轉譯 (SNAT) 成為公用 IP 位址。 若要深入了解輸出網際網路連線能力，請閱讀[了解 Azure 中的輸出連線](..\load-balancer\load-balancer-outbound-connections.md?toc=%2fazure%2fvirtual-network%2ftoc.json#standalone-vm-with-no-instance-level-public-ip-address)一文。 您可以實作自訂路由和流量篩選，以變更預設連線能力。
 
 若要進行從網際網路通對 Azure 資源的輸入通訊，或進行對網際網路的輸出通訊 (未經 SNAT)，則必須指派公用 IP 位址給資源。 若要深入了解公用 IP 位址，請閱讀[公用 IP 位址](virtual-network-public-ip-address.md)一文。
@@ -68,13 +68,11 @@ Azure 虛擬網路服務可讓 Azure 資源與虛擬網路 (VNet) 安全地彼�
 若要深入了解所有先前的連線選項，請閱讀[連線拓撲圖](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#a-namediagramsaconnection-topology-diagrams)一文。
 
 ## <a name="filtering"></a>篩選網路流量
-<!---Get confirmation that a UDR on the gateway subnet is supported. Need to provide some additional info as to the key differences between the two options.--->
-
 您可以使用下列一個或兩個選項，篩選子網路之間的網路流量︰
 - **網路安全性群組 (NSG)：**每個 NSG 可以包含多個輸入和輸出安全性規則，讓您依照來源和目的地 IP 位址、連接埠和通訊協定篩選流量。 您可以將 NSG 套用至 VM 中的每個 NIC。 您也可以將 NSG 套用至 NIC 或其他 Azure 資源所連線的子網路。 若要深入了解 NSG，請閱讀[網路安全性群組](virtual-networks-nsg.md)一文。
 - **網路虛擬裝置 (NVA)：**NVA 是可執行以下軟體的 VM：執行防火牆等網路功能的軟體。 請檢視 [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/category/networking?page=1&subcategories=appliances) 中可用的 NVA 清單。 此外，也可取得提供 WAN 最佳化和其他網路流量功能的 NVA。 NVA 通常使用於使用者定義或 BGP 路由。 您也可以使用 NVA 來篩選 VNet 之間的流量。
 
-## <a name="routing"></a>路由傳送網路流量
+## <a name="routing"></a>路由網路流量
 
 根據預設，Azure 會建立路由表，讓連線至任何 VNet 中任何子網路的資源彼此通訊。 您可以實作下列一個或兩個選項，覆寫 Azure 所建立的預設路由︰
 - **使用者定義的路由︰**您可以建立自訂路由表，其中的路由可控制每個子網路的流量會路由傳送至的位置。 若要深入了解使用者定義的路由，請閱讀[使用者定義的路由](virtual-networks-udr-overview.md)文章。

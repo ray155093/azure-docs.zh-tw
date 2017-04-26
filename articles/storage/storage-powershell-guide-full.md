@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/03/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 8b9e174523b3d08be20a4d30cc83c11f5bc93cd5
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: a47a806856be9e2daa9bcac8ce23da4d15386cc8
+ms.lasthandoff: 04/06/2017
 
 ---
 
@@ -24,7 +24,7 @@ ms.lasthandoff: 03/06/2017
 ## <a name="overview"></a>Overview
 Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows PowerShell 管理 Azure。 它是以工作為基礎的命令列殼層和指令碼語言，特別為系統管理所設計。 使用 PowerShell，您可以輕鬆控制和自動執行 Azure 服務和應用程式的管理。 例如，您可透過 [Azure 入口網站](https://portal.azure.com)執行的工作，大多也可使用 Cmdlet 來執行。
 
-在本指南中，我們將探討如何使用 [Azure 儲存體 Cmdlet](https://msdn.microsoft.com/library/azure/mt269418.aspx) ，以 Azure 儲存體執行各種開發和管理工作。
+在本指南中，我們將探討如何使用 [Azure 儲存體 Cmdlet (英文)](https://msdn.microsoft.com/library/azure/mt269418.aspx)，來使用 Azure 儲存體執行各種開發和管理工作。
 
 本指南假設您過去有使用 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/)和 [Windows PowerShell](http://technet.microsoft.com/library/bb978526.aspx) 的經驗。 本指南提供的一些指令碼示範如何搭配使用 PowerShell 與 Azure 儲存體。 您應該在執行每個指令碼之前，先根據您的組態更新指令碼變數。
 
@@ -123,7 +123,7 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
    * **$Location：** 使用指令碼中指定的「美國西部」，或選擇其他的 Azure 地點，例如美國東部、北歐等。
    * **$ContainerName：** 使用指令碼中的指定名稱，或是為容器輸入新名稱。
    * **$ImageToUpload：**輸入位於本機電腦上的圖片路徑，例如 "C:\Images\HelloWorld.png"。
-   * **$DestinationFolder：**輸入本機目錄的路徑，以儲存從 Azure 儲存體下載的檔案，例如 “C:\DownloadImages”。
+   * **$DestinationFolder：**輸入本機目錄的路徑，以儲存從 Azure 儲存體下載的檔案，例如 "C:\DownloadImages"。
 8. 更新 "mystoragescript.ps1" 檔案中的指令碼變數之後，請按一下 [檔案]  >  [儲存]。 按一下 [偵錯]  > 執行或按 [F5]，以執行指令碼。  
 
 在指令碼執行之後，您應該有包含下載的映像檔案的本機目的資料夾。 以下螢幕擷取畫面顯示範例輸出︰
@@ -154,7 +154,7 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
     Add-AzureAccount
     ```
 
-2. 在 [登入 Microsoft Azure] 視窗中，輸入與您的帳戶相關聯的電子郵件地址和密碼。 Azure 會驗證並儲存認證資訊，然後關閉視窗。
+2. 在 [登入 Microsoft Azure] 視窗中，輸入與您的帳戶相關聯的電子郵件地址及密碼。 Azure 會驗證並儲存認證資訊，然後關閉視窗。
 
 3. 接著，執行下列命令以檢視本機 PowerShell 環境的 Azure 帳戶，並確認您的帳戶已列出：
    
@@ -284,9 +284,9 @@ Get-AzureStorageKey -StorageAccountName "yourstorageaccount"
 如果您想要重新產生金鑰，請使用下列 Cmdlet。 -KeyType 的有效值為 "Primary" 和 "Secondary"
 
 ```powershell
-New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType “Primary”
+New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType "Primary"
     
-New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType “Secondary”
+New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType "Secondary"
 ```
 
 ## <a name="how-to-manage-azure-blobs"></a>如何管理 Azure blob
@@ -497,7 +497,7 @@ Remove-AzureStorageTable –Name $tabName –Context $Ctx
 
 您可以為每個實體最多定義 252 個自訂屬性。 如需詳細資訊，請參閱 [了解表格服務資料模型](http://msdn.microsoft.com/library/azure/dd179338.aspx)。
 
-下列範例示範如何將實體加入至資料表。 此範例示範如何擷取員工資料表並在其中加入數個項實體。 首先，它會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，再使用 [Get-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 擷取指定的資料表。 如果資料表不存在，可使用 [New-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806417.aspx) Cmdlet 在 Azure 儲存體中建立資料表。 接下來，此範例會定義 Add-Entity 自訂函數，經由指定每個實體的磁碟分割和資料列索引鍵，將實體加入至資料表。 Add-Entity 函數會在 [Microsoft.WindowsAzure.Storage.Table.DynamicTableEntity](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.dynamictableentity.aspx) 類別上呼叫 [New-Object](http://technet.microsoft.com/library/hh849885.aspx) Cmdlet，以建立實體物件。 之後，此範例會在此實體物件上呼叫 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Insert](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.insert.aspx) 方法，以將它加入資料表中。
+下列範例示範如何將實體加入至資料表。 此範例示範如何擷取員工資料表並在其中加入數個項實體。 首先，它會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，再使用 [Get-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 擷取指定的資料表。 如果資料表不存在，可使用 [New-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806417.aspx) Cmdlet 在 Azure 儲存體中建立資料表。 接下來，此範例會定義 Add-Entity 自訂函數，經由指定每個實體的分割區和資料列索引鍵，將實體加入至資料表。 Add-Entity 函數會在 [Microsoft.WindowsAzure.Storage.Table.DynamicTableEntity](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.dynamictableentity.aspx) 類別上呼叫 [New-Object](http://technet.microsoft.com/library/hh849885.aspx) Cmdlet，以建立實體物件。 之後，此範例會在此實體物件上呼叫 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Insert](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.insert.aspx) 方法，以將它加入資料表中。
 
 ```powershell
 #Function Add-Entity: Adds an employee entity to a table.
@@ -541,7 +541,7 @@ Add-Entity -Table $table -PartitionKey Partition2 -RowKey Row2 -Name Steven -Id 
 ```
 
 #### <a name="how-to-query-table-entities"></a>如何查詢資料表實體
-若要查詢資料表，請使用 [Microsoft.WindowsAzure.Storage.Table.TableQuery](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tablequery.aspx) 類別。 下列範例假設您已執行本指南的「如何新增實體」一節中提供的指令碼。 此範例會先使用儲存體內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，再使用 [Get-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 嘗試擷取先前建立的「員工」資料表。 在 Microsoft.WindowsAzure.Storage.Table.TableQuery 類別上呼叫 [New-Object](http://technet.microsoft.com/library/hh849885.aspx) Cmdlet，可建立新的查詢物件。 此範例會尋找 'ID' 資料行的值為 1 (如字串篩選條件中指定) 的實體。 如需詳細資訊，請參閱 [查詢資料表和實體](http://msdn.microsoft.com/library/azure/dd894031.aspx)。 當您執行此查詢時，它會傳回所有符合篩選準則的所有實體。
+若要查詢資料表，請使用 [Microsoft.WindowsAzure.Storage.Table.TableQuery](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tablequery.aspx) 類別。 下列範例假設您已執行本指南＜如何新增實體＞一節中所提供的指令碼。 此範例會先使用儲存體內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，它會使用 [Get-AzureStorageTable (英文)](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 嘗試擷取先前建立的「員工」資料表。 在 Microsoft.WindowsAzure.Storage.Table.TableQuery 類別上呼叫 [New-Object](http://technet.microsoft.com/library/hh849885.aspx) Cmdlet，可建立新的查詢物件。 此範例會尋找 'ID' 資料行的值為 1 (如字串篩選條件中指定) 的實體。 如需詳細資訊，請參閱 [查詢資料表和實體](http://msdn.microsoft.com/library/azure/dd894031.aspx)。 當您執行此查詢時，它會傳回所有符合篩選準則的所有實體。
 
 ```powershell
 #Define the storage account and context.
@@ -575,7 +575,7 @@ $entities  | Format-Table PartitionKey, RowKey, @{ Label = "Name"; Expression={$
 ```
 
 #### <a name="how-to-delete-table-entities"></a>如何刪除資料表實體
-您可以使用實體的資料分割和資料列索引鍵來刪除實體。 下列範例假設您已執行本指南的「如何新增實體」一節中提供的指令碼。 此範例會先使用儲存體內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，再使用 [Get-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 嘗試擷取先前建立的「員工」資料表。 如果資料表已存在，則會呼叫 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Retrieve](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.retrieve.aspx) 方法，根據資料分割及資料列索引鍵的值擷取實體。 然後，將實體傳遞至 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Delete](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.delete.aspx) 方法加以刪除。
+您可以使用實體的資料分割和資料列索引鍵來刪除實體。 下列範例假設您已執行本指南＜如何新增實體＞一節中所提供的指令碼。 此範例會先使用儲存體內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，它會使用 [Get-AzureStorageTable (英文)](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 嘗試擷取先前建立的「員工」資料表。 如果資料表已存在，則會呼叫 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Retrieve](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.retrieve.aspx) 方法，根據資料分割及資料列索引鍵的值擷取實體。 然後，將實體傳遞至 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Delete](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.delete.aspx) 方法加以刪除。
 
 ```powershell
 #Define the storage account and context.
@@ -608,7 +608,7 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
 本節將示範如何使用 Azure PowerShell 來管理 Azure 佇列儲存體服務。 涵蓋的狀況包括**插入**和**刪除**佇列訊息，以及**建立**、**刪除**和**擷取**佇列。
 
 ### <a name="how-to-create-a-queue"></a>如何建立佇列
-下列範例會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著再呼叫 [New-AzureStorageQueue](http://msdn.microsoft.com/library/azure/dn806382.aspx) Cmdlet 以建立名為 ‘queuename’ 的佇列。
+下列範例會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，它會呼叫 [New-AzureStorageQueue (英文)](http://msdn.microsoft.com/library/azure/dn806382.aspx) Cmdlet 以建立名為 'queuename' 的佇列。
 
 ```powershell
 #Define the storage account and context.

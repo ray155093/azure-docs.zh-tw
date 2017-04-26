@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/27/2017
 ms.author: padmavc
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 75eeca842cc31be6807dd6071de6d9a5c327fad3
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 507fb3200fe62aaa813464e5d6152a79907fdef7
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -64,11 +64,11 @@ ms.lasthandoff: 03/10/2017
 
     ![整合帳戶連線已建立](media/logic-apps-enterprise-integration-edifact-encode/edifactencodeimage4.png)
 
-#### <a name="encode-edifact-message-by-agreement-name"></a>由合約名稱編碼 EDIFACT 訊息
+#### <a name="encode-edifact-message-by-agreement-name"></a>依協議名稱將 EDIFACT 訊息編碼
 
-如果您選擇依照合約名稱將 EDIFACT 訊息編碼，請開啟 [X12 合約名稱] 清單，輸入或選取您的 EDIFACT 合約名稱。 輸入 XML 訊息進行編碼。
+如果您選擇依協議名稱將 EDIFACT 訊息編碼，請開啟 [EDIFACT 協議名稱] 清單，輸入或選取您的 EDIFACT 協議名稱。 輸入 XML 訊息進行編碼。
 
-![輸入 EDIFACT 合約名稱和 XML 訊息進行編碼](media/logic-apps-enterprise-integration-edifact-encode/edifactencodeimage6.png)
+![輸入 EDIFACT 協議名稱和 XML 訊息進行編碼](media/logic-apps-enterprise-integration-edifact-encode/edifactencodeimage6.png)
 
 #### <a name="encode-edifact-message-by-identities"></a>由身分識別編碼 EDIFACT 訊息
 

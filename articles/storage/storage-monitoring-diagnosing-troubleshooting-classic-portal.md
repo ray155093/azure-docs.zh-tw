@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: jahogg
 translationtype: Human Translation
-ms.sourcegitcommit: 28dfc25fc58afda13732aa8608c42f7e42c649d6
-ms.openlocfilehash: e51c843a59e8a59de68ee5370cb33d9bef206c19
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 84ecd480b57a8ef12440f5e5cd98a78c4bf09059
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 03/01/2017
 [!INCLUDE [storage-selector-portal-monitoring-diagnosing-troubleshooting](../../includes/storage-selector-portal-monitoring-diagnosing-troubleshooting.md)]
 
 ## <a name="overview"></a>Overview
-與傳統環境相比，託管於雲端環境的分散式應用程式一旦發生問題，無論要為其進行診斷或疑難排解，都更加複雜。 應用程式可以部署在 PaaS 或 IaaS 基礎架構、內部部署環境、行動裝置或是這幾種環境的組合上。 一般來說，您的應用程式網路流量可能會跨越公共與私有網路，而您的應用程式有可能使用多項儲存技術，例如 Microsoft Azure 儲存體資料表、Blob、佇列或是檔案，乃至於關聯式資料庫與文件資料庫之類的其他資料存放區。
+與傳統環境相比，託管於雲端環境的分散式應用程式一旦發生問題，無論要為其進行診斷或疑難排解，都更加複雜。 應用程式可以部署在 PaaS 或 IaaS 基礎架構、內部部署環境、行動裝置或是這幾種環境的組合上。 一般來說，您的應用程式網路流量可能會跨越公共與私有網路，而您的應用程式有可能使用多項儲存技術，例如 Microsoft Azure 儲存體資料表、Blob、佇列或是檔案服務，以及關聯式資料庫與文件資料庫之類的其他資料存放區。
 
 若要成功管理這類應用程式，您除了需要主動監視它們之外，還需要了解如何為其各層面與相依技術進行診斷與疑難排解。 身為 Azure 儲存體服務的使用者，您應持續監視應用程式所使用的儲存體服務，以預防發生非預期的行為改變 (例如，回應速度明顯比平時慢)，並使用記錄功能來收集更多的詳細資料，同時深入分析問題的成因。 從監視與記錄手段中取得的診斷資訊，將在應用程式遭遇問題時，協助您判斷根本原因。 接著才能為問題進行疑難排解，並決定該採取哪些合宜的步驟來加以矯正。 Azure 儲存體是 Azure 的核心服務之一，更在客戶部署至 Azure 基礎結構的主要解決方案之中扮演著重要的環節。 Azure 儲存體會在您的雲端架構應用程式裡加入各項功能，從而簡化儲存體問題的監視、診斷與疑難排解程序。
 
@@ -364,7 +364,7 @@ catch (StorageException storageException)
 #### <a name="investigating-client-performance-issues"></a>調查用戶端效能問題
 用戶端回應速度緩慢的可能原因，包括可用的連線或執行緒數量有限。 您可以試著將用戶端程式碼修改得更有效率 (例如對儲存體服務使用非同步呼叫) 或是使用較大型的虛擬機器 (核心數量增加，記憶體容量加大) 來解決這個問題。
 
-對於資料表和佇列服務，Nagle 演算法也可能導致相較於 **AverageServerLatency** 的高 **AverageE2ELatency**。如需詳細資訊，請參閱 Microsoft Azure 儲存體小組部落格上的文章 <a href="http://blogs.msdn.com/b/windowsazurestorage/archive/2010/06/25/nagle-s-algorithm-is-not-friendly-towards-small-requests.aspx" target="_blank">Nagle 演算法不適用於小型要求</a>。 您可以在 **System.Net** 命名空間中使用 **ServicePointManager** 類別，來停用程式碼中的 Nagle 演算法。 由於這麼做會影響已經開啟的連線，因此在對應用程式裡的資料表或佇列服務進行任何呼叫之前，請先完成這個動作。 以下範例來自背景工作角色裡的 **Application_Start** 方法。
+對於資料表和佇列服務，Nagle 演算法也可能導致相較於 **AverageServerLatency** 的高 **AverageE2ELatency**。如需詳細資訊，請參閱 Microsoft Azure 儲存體小組部落格上的 <a href="http://blogs.msdn.com/b/windowsazurestorage/archive/2010/06/25/nagle-s-algorithm-is-not-friendly-towards-small-requests.aspx" target="_blank">Nagle 演算法不適用於小型要求 (英文)</a> 一文。 您可以在 **System.Net** 命名空間中使用 **ServicePointManager** 類別，來停用程式碼中的 Nagle 演算法。 由於這麼做會影響已經開啟的連線，因此在對應用程式裡的資料表或佇列服務進行任何呼叫之前，請先完成這個動作。 以下範例來自背景工作角色裡的 **Application_Start** 方法。
 
 ```csharp
 var storageAccount = CloudStorageAccount.Parse(connStr);
@@ -438,7 +438,7 @@ queueServicePoint.UseNagleAlgorithm = false;
 
 如果您將所有交易分散到多個資料分割，您必須同時注意儲存體帳戶所設定的延展性限制。 舉例來說，當您使用 10 個佇列，而每個佇列每秒鐘最多可處理 2,000 個 1KB 大小的訊息時，儲存體帳戶的總體限制將為每秒鐘 20,000 則訊息。 當您每秒鐘需要處理超過 20,000 個實體時，請考慮使用多個儲存體帳戶。 請同時注意，您的要求與實體大小會對儲存體服務何時節流您的用戶端產生影響：如果您有較大型的要求與實體，則會較優先進行節流。
 
-當查詢設計不敷使用時，也會導致資料表分割到達延展性限制。 舉例來說，當查詢中的篩選器只會選取資料分割中實體的&1;%，但卻會掃描資料分割中所有實體時，需要存取每個實體。 每個實體讀取動作都會記入該資料分割的總交易數，因此，您可以輕鬆地達到延展性目標。
+當查詢設計不敷使用時，也會導致資料表分割到達延展性限制。 舉例來說，當查詢中的篩選器只會選取資料分割中實體的 1%，但卻會掃描資料分割中所有實體時，需要存取每個實體。 每個實體讀取動作都會記入該資料分割的總交易數，因此，您可以輕鬆地達到延展性目標。
 
 > [!NOTE]
 > 您的效能測試作業應該會顯示應用程式中任何不敷使用的查詢設計。
@@ -470,12 +470,12 @@ queueServicePoint.UseNagleAlgorithm = false;
 | 來源 | 詳細程度 | 詳細程度 | 用戶端要求 ID | 作業內容 |
 | --- | --- | --- | --- | --- |
 | Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab-… |從主要位置開始作業 (依據位置模式 PrimaryOnly)。 |
-| Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |開始將要求同步至 https://domemaildist.blob.core.windows.netazureimblobcontainer/blobCreatedViaSAS.txt?sv=2014-02-14&amp;sr=c&amp;si=mypolicy&amp;sig=OFnd4Rd7z01fIvh%2BmcR6zbudIH2F5Ikm%2FyhNYZEmJNQ%3D&amp;api-version=2014-02-14 。 |
+| Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |開始將要求同步至 https://domemaildist.blob.core.windows.netazureimblobcontainer/blobCreatedViaSAS.txt?sv=2014-02-14&amp;sr=c&amp;si=mypolicy&amp;sig=OFnd4Rd7z01fIvh%2BmcR6zbudIH2F5Ikm%2FyhNYZEmJNQ%3D&amp;api-version=2014-02-14  |
 | Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |等候回應。 |
 | Microsoft.WindowsAzure.Storage |警告 |2 |85d077ab -… |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(403) 禁止... |
 | Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |收到回應。 狀態碼 = 403，要求 ID = 9d67c64a-64ed-4b0d-9515-3b14bbcdc63d，Content-MD5 =，ETag = . |
 | Microsoft.WindowsAzure.Storage |警告 |2 |85d077ab -… |作業期間擲回例外狀況：遠端伺服器傳回錯誤：(403) 禁止... |
-| Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |檢查是否應該重試作業。 重試計數 = 0，HTTP 狀態碼 = 403，例外狀況 = 遠端伺服器傳回錯誤：(403) 禁止.. |
+| Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |檢查是否應該重試作業。 重試計數 = 0，HTTP 狀態碼 = 403，例外狀況 = 遠端伺服器傳回錯誤：(403) 禁止. |
 | Microsoft.WindowsAzure.Storage |資訊 |3 |85d077ab -… |以下位置已經設為「主要」(依據位置模式)。 |
 | Microsoft.WindowsAzure.Storage |錯誤 |1 |85d077ab -… |重試原則不允許重試。 失敗時遠端伺服器傳回錯誤：(403) 禁止。 |
 
@@ -535,7 +535,7 @@ queueServicePoint.UseNagleAlgorithm = false;
 | de8b1c3c-... |開始將要求同步至 https://domemaildist.blob.core.windows.net/azuremmblobcontainer/blobCreated.txt。 |
 | de8b1c3c-... |StringToSign = PUT...64.qCmF+TQLPhq/YYK50mP9ZQ==........x-ms-blob-type:BlockBlob.x-ms-client-request-id:de8b1c3c-....x-ms-date:Tue, 03 Jun 2014 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer/blobCreated.txt. |
 | de8b1c3c-... |正在準備寫入要求資料。 |
-| e2d06d78-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到.. |
+| e2d06d78-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到. |
 | e2d06d78-... |收到回應。 狀態碼 = 404，要求 ID = 353ae3bc-...，Content-MD5 = ，ETag = . |
 | e2d06d78-... |回應標頭已成功處理完畢，並繼續剩下的作業。 |
 | e2d06d78-... |正在下載回應內文。 |
@@ -545,14 +545,14 @@ queueServicePoint.UseNagleAlgorithm = false;
 | e2d06d78-... |等候回應。 |
 | de8b1c3c-... |正在寫入要求資料。 |
 | de8b1c3c-... |等候回應。 |
-| e2d06d78-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(409) 衝突.. |
+| e2d06d78-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(409) 衝突. |
 | e2d06d78-... |收到回應。 狀態碼 = 409，要求 ID = c27da20e-...，Content-MD5 = ，ETag = . |
 | e2d06d78-... |正在下載錯誤回應內文。 |
-| de8b1c3c-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到.. |
+| de8b1c3c-... |等候回應時擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到. |
 | de8b1c3c-... |收到回應。 狀態碼 = 404，回應 ID = 0eaeab3e-...，Content-MD5 = ，ETag = . |
-| de8b1c3c-... |作業期間擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到.. |
-| de8b1c3c-... |重試原則不允許重試。 失敗時遠端伺服器傳回錯誤：(404) 找不到.. |
-| e2d06d78-... |重試原則不允許重試。 失敗時遠端伺服器傳回錯誤：(409) 衝突.. |
+| de8b1c3c-... |作業期間擲回例外狀況：遠端伺服器傳回錯誤：(404) 找不到. |
+| de8b1c3c-... |重試原則不允許重試。 失敗時遠端伺服器傳回錯誤：(404) 找不到. |
+| e2d06d78-... |重試原則不允許重試。 失敗時遠端伺服器傳回錯誤：(409) 衝突. |
 
 在此範例中，記錄顯示用戶端正將來自 **UploadFromStream** 方法的要求 (de8b1c3c-...) 穿插到來自 **CreateIfNotExists** 方法 (要求 ID e2d06d78…) 的要求；而這種現象是因為用戶端應用程式正以非同步方式叫用這些方法所致。 您應該修改用戶端裡的非同步程式碼，確保該程式碼在嘗試將任何資料上傳至容器的 Blob 之前，先建立該容器。 理想的情況是，您應該事先建立所有容器。
 

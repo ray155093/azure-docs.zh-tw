@@ -12,12 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 04/07/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 2e522fabf9be5af7477e556ee0c2bf66f41c28fe
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 78d7ce3bbd3205fd995ba331af08d830097c8156
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -32,10 +32,10 @@ ms.lasthandoff: 03/30/2017
 
 |位置|說明|資料大小|
 |--------------|-----------------|-----|
-|H:\Video|視訊集合|12 TB|
-|H:\Photo|相片集合|30 GB|
+|H:\Video\ |視訊集合|12 TB|
+|H:\Photo\ |相片集合|30 GB|
 |K:\Temp\FavoriteMovie.ISO|藍光 (Blu-Ray™) 磁碟映像|25 GB|
-|\\\bigshare\john\music|網路共用上的音樂檔案集合|10 GB|
+|\\\bigshare\john\music\|網路共用上的音樂檔案集合|10 GB|
 
 ## <a name="storage-account-destinations"></a>儲存體帳戶目的地
 
@@ -43,10 +43,10 @@ ms.lasthandoff: 03/30/2017
 
 |來源|目的地虛擬目錄或 Blob|
 |------------|-------------------------------------------|
-|H:\Video|https://mystorageaccount.blob.core.windows.net/video|
-|H:\Photo|https://mystorageaccount.blob.core.windows.net/photo|
-|K:\Temp\FavoriteMovie.ISO|https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO|
-|\\\bigshare\john\music|https://mystorageaccount.blob.core.windows.net/music|
+|H:\Video\ |video/|
+|H:\Photo\ |photo/|
+|K:\Temp\FavoriteMovie.ISO|favorite/FavoriteMovies.ISO|
+|\\\bigshare\john\music\ |music|
 
 透過此對應，檔案 `H:\Video\Drama\GreatMovie.mov` 將會匯入 Blob `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`。
 
@@ -56,27 +56,24 @@ ms.lasthandoff: 03/30/2017
 
 `12TB + 30GB + 25GB + 10GB = 12TB + 65GB`
 
-針對此範例，兩個 8TB 的硬碟應該就已足夠。 不過，由於來源目錄 `H:\Video` 具有 12TB 的資料，而您的單一硬碟容量只有 8TB，您將可以在 **dataset.csv** 檔案中以下列方法指定這個情況：
-
-```
-BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
-H:\Video\,https://mystorageaccount.blob.core.windows.net/video/,BlockBlob,rename,None,H:\mydirectory\properties.xml
-H:\Photo\,https://mystorageaccount.blob.core.windows.net/photo/,BlockBlob,rename,None,H:\mydirectory\properties.xml
-K:\Temp\FavoriteVideo.ISO,https://mystorageaccount.blob.core.windows.net/favorite/FavoriteVideo.ISO,BlockBlob,rename,None,H:\mydirectory\properties.xml
-\\myshare\john\music\,https://mystorageaccount.blob.core.windows.net/music/,BlockBlob,rename,None,H:\mydirectory\properties.xml
-```
-
-## <a name="attach-drives-and-configure-the-job"></a>附加磁碟並設定作業
-
-您將兩個磁碟連接到機器，並建立磁碟區。 然後撰寫 **driveset.csv** 檔案：
+針對此範例，兩個 8TB 的硬碟應該就已足夠。 不過，由於來源目錄 `H:\Video` 具有 12TB 的資料，而您的單一硬碟容量只有 8TB，您將可以在 **driveset.csv** 檔案中以下列方法指定這個情況：
 
 ```
 DriveLetter,FormatOption,SilentOrPromptOnFormat,Encryption,ExistingBitLockerKey
 X,Format,SilentMode,Encrypt,
 Y,Format,SilentMode,Encrypt,
 ```
-
 該工具將會把資料以最佳化的方式分散到兩個硬碟。
+
+## <a name="attach-drives-and-configure-the-job"></a>附加磁碟並設定作業
+您將兩個磁碟連接到機器，並建立磁碟區。 然後撰寫 **dataset.csv** 檔案：
+```
+BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
+H:\Video\,video/,BlockBlob,rename,None,H:\mydirectory\properties.xml
+H:\Photo\,photo/,BlockBlob,rename,None,H:\mydirectory\properties.xml
+K:\Temp\FavoriteVideo.ISO,favorite/FavoriteVideo.ISO,BlockBlob,rename,None,H:\mydirectory\properties.xml
+\\myshare\john\music\,music/,BlockBlob,rename,None,H:\mydirectory\properties.xml
+```
 
 除此之外，您可以針對所有檔案設定下列中繼資料：
 

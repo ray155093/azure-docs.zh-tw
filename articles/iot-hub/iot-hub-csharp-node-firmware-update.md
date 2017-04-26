@@ -12,11 +12,12 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/06/2017
+ms.date: 03/17/2017
 ms.author: juanpere
 translationtype: Human Translation
-ms.sourcegitcommit: 4ba60cee8848079935111ed3de480081a4aa58f6
-ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: c2192328a152e955d182c4a07b391c98a5960964
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -39,7 +40,7 @@ ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
 
 若要完成此教學課程，您需要下列項目：
 
-* Microsoft Visual Studio 2015。
+* Visual Studio 2015 或 Visual Studio 2017。
 * Node.js 0.12.x 版或更新版本， <br/>  [準備您的開發環境][lnk-dev-setup]說明如何在 Windows 或 Linux 上安裝本教學課程的 Node.js。
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
@@ -56,16 +57,16 @@ ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
 
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
 
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **TriggerFWUpdate** 專案，然後按一下 [管理 NuGet 套件]。
-3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 [TriggerFWUpdate] 專案，然後按一下 [管理 NuGet 套件]。
+1. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
 
     ![NuGet 封裝管理員視窗][img-servicenuget]
-4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
+1. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
         using Microsoft.Azure.Devices.Shared;
         
-5. 將下列欄位新增到 **Program** 類別。 將多個預留位置值取代為您在上一節中為中樞所建立的 IoT 中樞連接字串與您的裝置識別碼。
+1. 將下列欄位新增到 **Program** 類別。 將多個預留位置值取代為您在上一節中為中樞所建立的 IoT 中樞連接字串與您的裝置識別碼。
    
         static RegistryManager registryManager;
         static string connString = "{iot hub connection string}";
@@ -73,7 +74,7 @@ ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
         static JobClient jobClient;
         static string targetDevice = "{deviceIdForTargetDevice}";
         
-6. 將下列方法加入至 **Program** 類別：
+1. 將下列方法加入至 **Program** 類別：
    
         public static async Task QueryTwinFWUpdateReported()
         {
@@ -81,7 +82,7 @@ ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
             Console.WriteLine(twin.Properties.Reported.ToJson());
         }
         
-7. 將下列方法加入至 **Program** 類別：
+1. 將下列方法加入至 **Program** 類別：
 
         public static async Task StartFirmwareUpdate()
         {
@@ -98,7 +99,7 @@ ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
             Console.WriteLine("Invoked firmware update on device.");
         }
 
-7. 最後，將下列幾行加入至 **Main** 方法：
+1. 最後，將下列幾行加入至 **Main** 方法：
    
         registryManager = RegistryManager.CreateFromConnectionString(connString);
         StartFirmwareUpdate().Wait();
@@ -106,7 +107,9 @@ ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
         Console.WriteLine("Press ENTER to exit.");
         Console.ReadLine();
         
-8. 建置方案。
+1. 在 [方案總管] 中，開啟 [設定起始專案]，並確定 **TriggerFWUpdate** 專案的 [動作] 是 [起始]。
+
+1. 建置方案。
 
 [!INCLUDE [iot-hub-device-firmware-update](../../includes/iot-hub-device-firmware-update.md)]
 
@@ -122,6 +125,8 @@ ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
 
 3. 您會在主控台中看到直接方法的裝置回應。
 
+    ![已順利更新韌體][img-fwupdate]
+
 ## <a name="next-steps"></a>後續步驟
 在此教學課程中，您使用直接方法來觸發裝置上的遠端韌體更新，並且使用回報的屬性追蹤韌體更新的進度。
 
@@ -130,6 +135,7 @@ ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-node-firmware-update/servicesdknuget.png
 [img-createapp]: media/iot-hub-csharp-node-firmware-update/createnetapp.png
+[img-fwupdate]: media/iot-hub-csharp-node-firmware-update/fwupdated.png
 
 [lnk-devtwin]: iot-hub-devguide-device-twins.md
 [lnk-c2dmethod]: iot-hub-devguide-direct-methods.md
@@ -141,8 +147,3 @@ ms.openlocfilehash: a586d437ed7636874d324c9d3fc5274fe9001627
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
 [lnk-rpi-implementation]: https://github.com/Azure/azure-iot-sdk-c/tree/master/iothub_client/samples/iothub_client_sample_mqtt_dm/pi_device
 [lnk-nuget-service-sdk]: https://www.nuget.org/packages/Microsoft.Azure.Devices/
-
-
-<!--HONumber=Feb17_HO1-->
-
-

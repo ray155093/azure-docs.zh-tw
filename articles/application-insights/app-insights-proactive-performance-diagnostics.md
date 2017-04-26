@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 63c901529b81c75f46f1b21219054817c148063a
-ms.openlocfilehash: 1c46c40b09ca1923190d3c7109d25bd7525cb577
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 843a3cafd5a00dd4b4de04a43f18d58e60a48b29
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -58,7 +59,7 @@ ms.openlocfilehash: 1c46c40b09ca1923190d3c7109d25bd7525cb577
 
   * 尚未提供。 但是您可以：
   * [設定警示](app-insights-alerts.md)，使其在計量超出臨界值時通知您。
-  * [匯出遙測](app-insights-export-telemetry.md)至[資料庫](app-insights-code-sample-export-sql-stream-analytics.md)或[至 PowerBI](app-insights-export-power-bi.md) 或[其他](app-insights-code-sample-export-telemetry-sql-database.md)工具以自行分析。
+  * [將遙測匯出](app-insights-export-telemetry.md)至[資料庫](app-insights-code-sample-export-sql-stream-analytics.md)或[至 PowerBI](app-insights-export-power-bi.md)，以自行分析它。
 * *執行分析的頻率為何？*
 
   * 我們每天都會根據前一天的遙測執行分析。
@@ -136,9 +137,4 @@ Web 上有改善您的伺服器回應和頁面載入時間的完整建議，因�
 
 * [手動設定的度量警示](app-insights-alerts.md)
 * [可用性 Web 測試](app-insights-monitor-web-app-availability.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

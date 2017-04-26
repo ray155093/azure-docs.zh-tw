@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/18/2017
 ms.author: yuemlu
 translationtype: Human Translation
-ms.sourcegitcommit: 36fa9cd757b27347c08f80657bab8a06789a3c2f
-ms.openlocfilehash: c208f44045ba414be2034f577435ae02ea4456cf
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 77e48af7ba59ed1e5b2ebcda0760e0eda1f407df
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 02/27/2017
 
 **非受控磁碟**︰這是原始方法，由您管理儲存對應至 VM 磁碟的 VHD 檔案時所用的儲存體帳戶。 VHD 檔案會以分頁 Blob 的形式儲存在儲存體帳戶中。 非受控磁碟可以附加至任何 Azure VM 大小，包括主要使用進階儲存體的 VM，例如 DSv2 和 GS 系列。 Azure VM 支援附加數個標準磁碟，每個 VM 最多可以有 64 TB 的儲存體。
 
-[**Azure 受控磁碟**](storage-managed-disks-overview.md)︰這項功能會為您管理用於 VM 磁碟的儲存體帳戶。 您只需要指定類型 (進階或標準)，還有您需要的磁碟大小，Azure 就會替您建立並管理磁碟。 您不必擔心將磁碟分配至多個儲存體帳戶，以確保維持在儲存體帳戶的延展性限制內 - Azure 會為您處理。
+[**Azure 受控磁碟**](storage-managed-disks-overview.md)︰這項功能會為您管理用於 VM 磁碟的儲存體帳戶。 您只需要指定類型 (進階或標準)，還有您需要的磁碟大小，Azure 就會替您建立並管理磁碟。 您不必擔心需要將磁碟分配至多個儲存體帳戶，才能維持在儲存體帳戶的延展性限制內。這個部分 Azure 會為您處理。
 
 即使這兩種磁碟都可用，我們建議您使用受控磁碟，以利用它的許多功能。
 
@@ -42,7 +42,7 @@ ms.lasthandoff: 02/27/2017
 如需有關如何以受控磁碟建立 VM 的資訊，請參閱下列其中一份文件。
 
 * [使用 Resource Manager 和 PowerShell 建立 VM](../virtual-machines/virtual-machines-windows-ps-create.md)
-* [使用 Azure CLI 2.0 來建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
+* [使用 Azure CLI 2.0 來建立 Linux VM](../virtual-machines/linux/quick-create-cli.md)
 
 ## <a name="standard-storage-features"></a>標準儲存體功能 
 
@@ -153,4 +153,4 @@ ms.lasthandoff: 02/27/2017
 
 * [使用 Resource Manager 和 PowerShell 建立 VM](../virtual-machines/virtual-machines-windows-ps-create.md)
 
-* [使用 Azure CLI 2.0 來建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
+* [使用 Azure CLI 2.0 來建立 Linux VM](../virtual-machines/linux/quick-create-cli.md)

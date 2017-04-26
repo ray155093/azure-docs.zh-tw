@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 09/30/2016
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 44169ba74f6af2b1c27ea4c2a8fd0214892f90d5
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 1eacd13562adcff96fdd0dd3fd91c78ef6a26dbf
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -171,6 +171,11 @@ IoT 中樞允許擷取使用任意條件進行的裝置對應項篩選。 例如
 請注意，查詢物件會公開多個 **Next\*** (視查詢所需的還原序列化選項，例如裝置對應項或作業物件，或使用投影時要使用的一般 JSON 而定)。
 
 ### <a name="limitations"></a>限制
+> [!IMPORTANT]
+> 根據裝置對應項中的最新值，查詢結果可能會有數分鐘的延遲。 若依識別碼查詢個別裝置對應項，建議您一律使用抓取裝置對應項 API，這一律包含最新的值，而且有較高的節流處理限制。
+>
+>
+
 目前僅支援在基本類型 (沒有物件) 之間進行比較，例如 `... WHERE properties.desired.config = properties.reported.config` 只會在這些屬性具有基本值時才受到支援。
 
 ## <a name="get-started-with-jobs-queries"></a>開始使用作業查詢

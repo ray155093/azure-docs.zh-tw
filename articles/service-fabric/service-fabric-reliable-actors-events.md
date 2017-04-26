@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 03/02/2017
 ms.author: amanbha
 translationtype: Human Translation
-ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
-ms.openlocfilehash: 92df9505416c5b4326f007dbf4b920f2c7ec3bd8
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: b598b59dc3fa5b629b31f235fc0ea830338b1f84
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -34,7 +34,12 @@ public interface IGameEvents : IActorEvents
     void GameScoreUpdated(Guid gameId, string currentScore);
 }
 ```
-
+```Java
+public interface GameEvents implements ActorEvents
+{
+    void gameScoreUpdated(UUID gameId, String currentScore);
+}
+```
 宣告由動作項目介面中動作項目發佈的事件。
 
 ```csharp
@@ -45,7 +50,14 @@ public interface IGameActor : IActor, IActorEventPublisher<IGameEvents>
     Task<string> GetGameScore();
 }
 ```
+```Java
+public interface GameActor extends Actor, ActorEventPublisherE<GameEvents>
+{
+    CompletableFuture<?> updateGameStatus(GameStatus status);
 
+    CompletableFuture<String> getGameScore();
+}
+```
 在用戶端上，實作事件處理常式。
 
 ```csharp
@@ -54,6 +66,15 @@ class GameEventsHandler : IGameEvents
     public void GameScoreUpdated(Guid gameId, string currentScore)
     {
         Console.WriteLine(@"Updates: Game: {0}, Score: {1}", gameId, currentScore);
+    }
+}
+```
+
+```Java
+class GameEventsHandler implements GameEvents {
+    public void gameScoreUpdated(UUID gameId, String currentScore)
+    {
+        System.out.println("Updates: Game: "+gameId+" ,Score: "+currentScore);
     }
 }
 ```
@@ -67,6 +88,12 @@ var proxy = ActorProxy.Create<IGameActor>(
 await proxy.SubscribeAsync<IGameEvents>(new GameEventsHandler());
 ```
 
+```Java
+GameActor actorProxy = ActorProxyBase.create<GameActor>(GameActor.class, new ActorId(UUID.fromString(args)));
+
+return ActorProxyEventUtility.subscribeAsync(actorProxy, new GameEventsHandler());
+```
+
 發生容錯移轉時，動作項目會容錯移轉至不同的程序或節點。 動作項目 Proxy 會管理使用中的訂用帳戶，並自動重新訂閱。 您可以透過 `ActorProxyEventExtensions.SubscribeAsync<TEvent>` API 控制重新訂閱間隔。 若要取消訂閱，請使用 `ActorProxyEventExtensions.UnsubscribeAsync<TEvent>` API。
 
 在動作項目上，當事件發生時只發佈事件。 如果有訂閱者訂閱事件，動作項目執行階段會將事件傳送至通知。
@@ -75,10 +102,16 @@ await proxy.SubscribeAsync<IGameEvents>(new GameEventsHandler());
 var ev = GetEvent<IGameEvents>();
 ev.GameScoreUpdated(Id.GetGuidId(), score);
 ```
+```Java
+GameEvents event = getEvent<GameEvents>(GameEvents.class);
+event.gameScoreUpdated(Id.getUUIDId(), score);
+```
+
 
 ## <a name="next-steps"></a>後續步驟
 * [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
 * [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
 * [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
-* [範例程式碼](https://github.com/Azure/servicefabric-samples)
+* [C# 範例程式碼 (英文)](https://github.com/Azure/servicefabric-samples)
+* [Java 範例程式碼 (英文)](http://github.com/Azure-Samples/service-fabric-java-getting-started)
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 3152a1306f2c3eeb42dd3b21cff62b696ed01e5d
-ms.openlocfilehash: 75ea0486a1b5abc71df3b7d9e8385717954b89f4
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: d96dde8c74141d000c1f7c5fd9ef624ff5e46953
+ms.lasthandoff: 04/07/2017
 
 ---
 # <a name="api-management-policy-expressions"></a>API 管理原則運算式
@@ -186,7 +186,7 @@ ms.lasthandoff: 03/01/2017
 |context.User|電子郵件︰字串<br /><br /> FirstName︰字串<br /><br /> 群組︰IEnumerable<IGroup\><br /><br /> 識別碼︰字串<br /><br /> 身分識別︰IEnumerable<IUserIdentity\><br /><br /> LastName︰字串<br /><br /> 附註︰字串<br /><br /> RegistrationDate︰DateTime|  
 |IApi|識別碼︰字串<br /><br /> 名稱︰字串<br /><br /> 路徑︰字串<br /><br /> 通訊協定︰IEnumerable<string\><br /><br /> ServiceUrl：IUrl<br /><br /> SubscriptionKeyParameterNames︰ISubscriptionKeyParameterNames|  
 |IGroup|識別碼︰字串<br /><br /> 名稱︰字串|  
-|IMessageBody|As<T\>(preserveContent: bool = false)：其中 T：字串、JObject、JToken、JArray、XNode、XElement、XDocument<br /><br /> `context.Request.Body.As<T>` 和 `context.Request.Body.As<T>` 方法可用來以其中一種指定格式讀取要求或回應訊息本文。 請注意，根據預設，當您存取訊息本文時，原始訊息本文會遺失，且必須在讀取本文的運算式中傳回本文來加以設定。 若要保留本文內容，存取訊息時將 `preserveContent` 參數設為 `true`。 `preserveContent` 的預設值為 `false`。 如果 `preserveContent` 設為 `true`，且運算式傳回本文，則會使用傳回的本文。 如需詳細資訊，請參閱[設定本文](api-management-transformation-policies.md#SetBody)原則。|  
+|IMessageBody|As<T\>(preserveContent: bool = false)：其中 T：字串、JObject、JToken、JArray、XNode、XElement、XDocument<br /><br /> `context.Request.Body.As<T>` 和 `context.Response.Body.As<T>` 方法是用來讀取指定類型 `T` 的要求和回應訊息主體。 根據預設，該方法會使用原始訊息本文資料流，並使它在傳回後無法使用。 若要避免那種情況，並讓方法在本文資料流的複本上進行操作，請將 `preserveContent` 參數設定為 `true`。 請移至[這裡](api-management-transformation-policies.md#SetBody)來查看範例。|  
 |IUrl|主機︰字串<br /><br /> 路徑︰字串<br /><br /> 連接埠︰int<br /><br /> 查詢：IReadOnlyDictionary<string, string[]><br /><br /> QueryString︰字串<br /><br /> 配置︰字串|  
 |IUserIdentity|識別碼︰字串<br /><br /> 提供者︰字串|  
 |ISubscriptionKeyParameterNames|標頭︰字串<br /><br /> 查詢︰字串|  

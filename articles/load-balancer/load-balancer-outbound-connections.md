@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 10/31/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: f02e17bb413f250fc4d980c62cfb46bc5359f7fb
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: 3d2ba1d63f4bb89ff51275044922fb86b5f70365
+ms.lasthandoff: 04/11/2017
 
 ---
 
@@ -70,4 +70,6 @@ SNAT 連接埠是可能會耗盡的有限資源。 請務必了解取用的方�
 ## <a name="limitations"></a>限制
 
 雖然不提供保證，但目前可供使用的 SNAT 連接埠數目上限是 64,511 個 (65,535 個 - 1024 個具特殊權限的連接埠)。  這不會直接轉譯為連線數目，如需何時及如何配置 SNAT 連接埠以及如何管理這個可耗盡資源的詳細資料，請參閱上述內容。
+
+若[多個 (公用) IP 位址與負載平衡器關聯](load-balancer-multivip-overview.md)這些公用 IP 位址中的任一位址都可以是輸出流程的候選項。
 

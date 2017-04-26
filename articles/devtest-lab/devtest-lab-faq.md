@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/22/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 5c427ddbe408fc42403eb6738d1983c220e899a7
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 7a9b8037967f0180d2f7d2a7d100d0cc3ad9e4a2
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -258,7 +258,7 @@ Microsoft 帳戶是您使用 Microsoft 裝置和服務來執行幾乎所有作�
 ### <a name="why-do-i-get-a-parent-resource-not-found-error-when-provisioning-a-vm-from-powershell"></a>為何我從 PowerShell 佈建 VM 時遇到「找不到父資源」錯誤？
 當某資源為另一個資源的父資源時，父資源必須在建立子資源之前就存在。 如果不存在，您會收到 **ParentResourceNotFound** 錯誤。 如果您尚未於父資源上指定相依性，子資源可能會在父資源之前進行部署。
 
-VM 是資源群組中實驗室下的子資源。 當您使用 Azure 資源範本透過 PowerShell 部署時，PowerShell 指令碼中提供的資源群組名稱應該是實驗室的資源群組名稱。 如需詳細資訊，請參閱[對常見的 Azure 部署錯誤進行疑難排解](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-common-deployment-errors#parentresourcenotfound)。
+VM 是資源群組中實驗室下的子資源。 當您使用 Azure Resource Manager 範本透過 PowerShell 部署時，在 PowerShell 指令碼中提供的資源群組名稱應該是實驗室的資源群組名稱。 如需詳細資訊，請參閱[對常見的 Azure 部署錯誤進行疑難排解](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-common-deployment-errors#parentresourcenotfound)。
 
 ### <a name="where-can-i-find-more-error-information-if-a-vm-deployment-fails"></a>當 VM 部署失敗時，我可以在哪裡找到更多錯誤資訊？
 VM 部署錯誤會擷取至活動記錄中。 您可以透過實驗室 VM 刀鋒視窗 (在您從 [我的虛擬機器] 清單中選取 VM 之後所顯示的刀鋒視窗) 中資源功能表上的 [稽核記錄] 或 [虛擬機器診斷] 來找到實驗室 VM 活動記錄。

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/11/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: f7656382500682898cd3ed6372630afa3c3f6350
-ms.openlocfilehash: 5c595bd2175f1cbc650bd1a757eeacc80cf39e23
-ms.lasthandoff: 01/12/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 407d50afe3470f5a9e84026eaa2dcccea4d06641
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -43,10 +43,10 @@ ms.lasthandoff: 01/12/2017
 1. 瀏覽至包含構件定義的 GitHub 儲存機制首頁。
 2. 選取 [複製或下載] 。
 3. 選取將 **HTTPS 複製 URL** 複製到剪貼簿的按鈕，並儲存該 URL 供稍後使用。
-4. 選取 GitHub 右上角的設定檔影像，然後選取 [設定] 。
+4. 選取 GitHub 右上角的設定檔影像，然後選取 [設定]。
 5. 在左側的 [個人設定] 功能表上，選取 [個人存取權杖]。
-6. 選取 [產生新的權杖] 。
-7. 在 [新增個人存取權杖] 頁面上，輸入 [權杖描述]、接受 [選取範圍] 中的預設項目，然後選擇 [產生權杖]。
+6. 選取 [產生新的權杖]。
+7. 在 [新增個人存取權杖] 頁面上，在 [權杖描述] 中輸入描述。 若它是公用存放庫，請接受 [選取範圍] 中的預設項目；否則，請選取 [存放庫] 範圍。 接著，選擇 [產生權杖]。 [深入了解 GitHub 中的 OAuth 範圍 (英文)](https://developer.github.com/v3/oauth/#scopes)。
 8. 儲存產生的權杖，因為您稍後需要用到。
 9. 您現在可以關閉 GitHub。   
 10. 繼續 [將您的實驗室連接至構件儲存機制](#connect-your-lab-to-the-artifact-repository) 一節。

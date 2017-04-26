@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.date: 07/12/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
-ms.openlocfilehash: 28c847137bda93886a2ae80151e3834f149a4858
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 62e8e0299aff517f45c89349ed836ec8a6dabd2b
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -45,7 +45,7 @@ ms.lasthandoff: 01/13/2017
 ## <a name="batching-strategies"></a>批次處理策略
 ### <a name="note-about-timing-results-in-this-topic"></a>有關本主題中計時結果的注意事項
 > [!NOTE]
-> 結果並不是基準，主要是示範 **相對效能**。 計時至少根據 10 個測試回合的平均值。 作業插入至空的資料表。 這些測試是在 V12 以前的版本中測量，不見得符合您在 V12 資料庫中使用新的 [服務層](sql-database-service-tiers.md)時可能遇過的輸送量。 批次處理技術的相對優點應該類似。
+> 結果並不是基準，主要是示範 **相對效能**。 計時至少根據 10 個測試回合的平均值。 作業插入至空的資料表。 這些測試是在相當久之前測量的，因此不見得會符合您現在所遇到的輸送量。 批次處理技術的相對優點應該類似。
 > 
 > 
 
@@ -586,7 +586,7 @@ PurchaseOrderDetail 資料表中的 OrderID 資料行必須參考 PurchaseOrder 
       SocialSecurityNumber NVARCHAR(50) );
     GO
 
-接下來，建立預存程序或撰寫程式碼，使用 MERGE 陳述式來執行更新和插入。 下列範例對 EmployeeTableType 類型的資料表值參數 @employees, 使用 MERGE 陳述式。 此處未顯示 @employees 資料表的內容。
+接下來，建立預存程序或撰寫程式碼，使用 MERGE 陳述式來執行更新和插入。 下列範例對 EmployeeTableType 類型的資料表值參數 @employees 使用 MERGE 陳述式。 此處未顯示 @employees 資料表的內容。
 
     MERGE Employee AS target
     USING (SELECT [FirstName], [LastName], [SocialSecurityNumber] FROM @employees) 

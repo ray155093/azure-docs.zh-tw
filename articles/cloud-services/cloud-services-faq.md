@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/16/2016
+ms.date: 04/19/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 7287cb1709b7c863cd046edfb995e23455398ec2
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: a0fd75e0797319aecac29b48df75e7a268063e04
+ms.lasthandoff: 04/11/2017
 
 
 ---
@@ -95,5 +95,5 @@ Azure 會防止您移除使用中的憑證。 您必須刪除使用憑證的部�
 
 ## <a name="remote-desktop"></a>遠端桌面
 ### <a name="how-do-i-remote-desktop-when-i-have-an-nsg"></a>當我有 NSG 時，應如何設定遠端桌面？
-在 NSG 加入轉送連接埠 **20000** 的規則。
+將規則加入到 NSG，以允許連接埠 **3389** 和 **20000** 上的流量。  遠端桌面使用者連接埠 **3389**。  系統已為雲端服務執行個體進行負載平衡，因此您無法直接控制要連線的執行個體。  *RemoteForwarder* 與 *RemoteAccess* 代理程式會管理 RDP 流量，並允許用戶端傳送 RDP Cookie 並指定要連線的個別執行個體。  *RemoteForwarder* 與 *RemoteAccess* 代理程式要求您必須開啟連接埠 **20000***，這在您使用 NSG 的情況下可能是封鎖的。
 

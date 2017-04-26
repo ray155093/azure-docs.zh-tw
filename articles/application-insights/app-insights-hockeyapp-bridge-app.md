@@ -1,29 +1,30 @@
 ---
-title: "在 Application Insights 中探索 HockeyApp 資料 | Microsoft Docs"
+title: "在 Azure Application Insights 中探索 HockeyApp 資料 | Microsoft Docs"
 description: "使用 Application Insights 分析 Azure 應用程式的使用量和效能。"
 services: application-insights
 documentationcenter: windows
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 97783cc6-67d6-465f-9926-cb9821f4176e
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 08/25/2016
+ms.date: 03/30/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 41ce9b0e323c0938b6db98b99d8d687d1ed0f0ef
-ms.openlocfilehash: b83f9c59e44348cb23a4786da907f3c6d8530683
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 7ea28b4989ad889ff0427e221cc26ac5ebc41f93
+ms.lasthandoff: 04/07/2017
 
 
 ---
 # <a name="exploring-hockeyapp-data-in-application-insights"></a>在 Application Insights 中探索 HockeyApp 資料
-[HockeyApp](https://azure.microsoft.com/services/hockeyapp/) 是監視即時桌面和行動應用程式的建議平台。 您可以從 HockeyApp 傳送自訂和追蹤遙測，以便監視使用情況和協助診斷 (除了取得損毀資料以外)。 使用 [Azure Application Insights](app-insights-overview.md) 的強大[分析](app-insights-analytics.md)功能，即可查詢此遙測資料流。 此外，您可以 [匯出自訂和追蹤遙測](app-insights-export-telemetry.md)。 若要啟用這些功能，您可設定橋接器，以將 HockeyApp 資料轉送至 Application Insights。
+[HockeyApp](https://azure.microsoft.com/services/hockeyapp/) 是監視即時桌面和行動應用程式的建議平台。 您可以從 HockeyApp 傳送自訂和追蹤遙測，以便監視使用情況和協助診斷 (除了取得損毀資料以外)。 使用 [Azure Application Insights](app-insights-overview.md) 的強大[分析](app-insights-analytics.md)功能，即可查詢此遙測資料流。 此外，您可以 [匯出自訂和追蹤遙測](app-insights-export-telemetry.md)。 若要啟用這些功能，您可設定橋接器，以將 HockeyApp 自訂資料轉送至 Application Insights。
 
 ## <a name="the-hockeyapp-bridge-app"></a>HockeyApp 橋接器應用程式
-HockeyApp 橋接器應用程式是一項核心功能，可讓您透過分析和連續匯出功能來存取 Application Insights 中的 HockeyApp 資料。 經由上述這些功能，可以存取 HockeyApp 在 HockeyApp 橋接器應用程式建立後所收集的任何資料。 我們一起看看如何設定其中一個橋接器應用程式。
+HockeyApp 橋接器應用程式是一項核心功能，可讓您透過分析和連續匯出功能來存取 Application Insights 中的 HockeyApp 自訂和追蹤遙測。 經由上述這些功能，可以存取 HockeyApp 在 HockeyApp 橋接器應用程式建立後所收集的自訂和追蹤事件。 我們一起看看如何設定其中一個橋接器應用程式。
 
 在 HockeyApp 中，開啟 [帳戶設定]、 [API 權杖](https://rink.hockeyapp.net/manage/auth_tokens)。 建立新的權杖，或重複使用現有的權杖。 所需的最小權限是「唯讀」。 取得 API 權杖的複本。
 
@@ -47,7 +48,7 @@ HockeyApp 橋接器欄位隨即出現。
 
 ![等候資料的 Application Insights 資源](./media/app-insights-hockeyapp-bridge-app/04.png)
 
-這樣就大功告成了！ 在 HockeyApp 檢測的應用程式中收集的任何資料，從現在開始也可供您在 Application Insights 的分析和連續匯出功能中使用。
+這樣就大功告成了！ 從現在開始在 HockeyApp 檢測的應用程式中收集的自訂和追蹤資料，也可供您在 Application Insights 的分析和連續匯出功能中使用。
 
 讓我們簡短地回顧一下您現在可以使用的功能。
 
@@ -57,8 +58,6 @@ HockeyApp 橋接器欄位隨即出現。
 ![分析](./media/app-insights-hockeyapp-bridge-app/05.png)
 
 * [深入了解分析](app-insights-analytics-tour.md)
-* [簡介影片](https://channel9.msdn.com/events/Build/2016/T666)
-* [進階概念影片](https://channel9.msdn.com/Events/Build/2016/P591)
 
 ## <a name="continuous-export"></a>連續匯出
 連續匯出可讓您將資料匯出至 Azure Blob 儲存體容器。 如果您的資料所需的保留時間超過 Application Insights 目前提供的保留期間，這就非常有用。 您可以將資料保留在 Blob 儲存體中，將它處理到 SQL Database 或您慣用的資料倉儲解決方案中。
@@ -67,10 +66,5 @@ HockeyApp 橋接器欄位隨即出現。
 
 ## <a name="next-steps"></a>後續步驟
 * [將分析套用到資料](app-insights-analytics-tour.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

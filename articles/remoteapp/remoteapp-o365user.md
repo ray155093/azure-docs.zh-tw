@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: 8744c5a133738fc60b86e7abd4b0d4b1cb28314c
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 532382c7e15ad9b67915e05e7c980a4123036a0f
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="how-to-use-azure-remoteapp-with-office-365-user-accounts"></a>如何搭配 Office 365 使用者帳戶使用 Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -44,16 +45,11 @@ ms.openlocfilehash: 8744c5a133738fc60b86e7abd4b0d4b1cb28314c
 請遵循 [變更 Azure RemoteApp 中的 Azure Active Directory 租用戶](remoteapp-changetenant.md)中說明的指示。 請特別注意下列步驟：
 
 * 步驟 1：如果您已在此訂用帳戶中部署 Azure RemoteApp (ARA)，在嘗試執行任何動作之前，請先確定您會從任何 ARA 集合中移除所有的 Azure AD 使用者帳戶。 或者，您可以考慮刪除任何現有的集合。
-* 步驟 2：這是一個重要的步驟。 您必須使用 Microsoft 帳戶 (例如 @outlook.com)) 做為訂用帳戶上的服務管理員。這是因為我們不能將任何來自現有 Azure AD 的使用者帳戶附加到訂用帳戶，如果這樣做，就無法將它移至不同的 Azure AD。
+* 步驟 2：這是一個重要的步驟。 您必須使用 Microsoft 帳戶 (例如 @outlook.com) 做為訂用帳戶上的服務管理員。這是因為我們不能將任何來自現有 Azure AD 的使用者帳戶附加到訂用帳戶，如果這樣做，就無法將它移至不同的 Azure AD。
 * 步驟 4：加入現有的目錄時，系統將要求您使用該目錄的系統管理員帳戶登入。 請務必使用階段 1 的系統管理員帳戶。
 * 步驟 5：將訂用帳戶的上層目錄變更為 Office 365 目錄。 最後的結果應該會在 [設定] -> 您的訂用帳戶列出 Office 365 目錄的 [訂用帳戶] 下方。 
   ![變更訂用帳戶的上層目錄](./media/remoteapp-o365user/settings.png)
 
 此時您的 Azure RemoteApp 訂用帳戶會與您的 Office 365 Azure AD 產生關聯；您可以搭配 Azure RemoteApp 使用現有的 Office 365 使用者帳戶！
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

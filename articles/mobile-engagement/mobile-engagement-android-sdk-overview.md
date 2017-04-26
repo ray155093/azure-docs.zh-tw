@@ -12,11 +12,12 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-android
 ms.devlang: Java
 ms.topic: article
-ms.date: 08/12/2016
+ms.date: 03/30/2017
 ms.author: piyushjo;ricksal
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 2b89a13230439698854656f0bb5367f1ed35ce1c
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 1438b9479b3bbb8b7599d7d05b48e4cd6d981e0c
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -52,18 +53,12 @@ ms.openlocfilehash: 2b89a13230439698854656f0bb5367f1ed35ce1c
 [如何在 Android 應用程式中使用進階 Mobile Engagement 標記 API](mobile-engagement-android-use-engagement-api.md)
 
 ## <a name="release-notes"></a>版本資訊
-### <a name="423-08102016"></a>4.2.3 (08/10/2016)
-* 不會再鎖定 WIFI。
-* 修正在 init 之前呼叫 getDeviceId 時的死結問題 (4.2.0 中引進的錯誤)。
+### <a name="424-03302017"></a>4.2.4 (03/30/2017)
+* 修正 Android 7 上的應用程式內通知文字色彩，使其與舊版 Android 上的色彩相同。
 
 如需所有版本，請參閱 [完整版本資訊](mobile-engagement-android-release-notes.md)。
 
 ## <a name="upgrade-procedures"></a>升級程序
 如果您已經將較舊版的 SDK 整合到應用程式中，請參閱 [升級程序](mobile-engagement-android-upgrade-procedure.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

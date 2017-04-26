@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 0b81ef8425e44a9813fc0220f0ab314a3110f265
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 4cd4d35f44320ac57f015b5444985e8b4976ccf0
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="how-to-publish-an-app-in-remoteapp"></a>如何在 RemoteApp 中發佈應用程式
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -35,17 +36,12 @@ ms.openlocfilehash: 0b81ef8425e44a9813fc0220f0ab314a3110f265
 在入口網站的 [發佈] 索引標籤中，按一下 [發佈]。 您可以從您範本映像的 [ **開始** ] 功能表新增應用程式，或是在範本映像提供安裝程式的路徑。 如果您選擇從 [開始]  功能表新增，請從清單中選擇要發佈的 App。 如果您選擇提供應用程式的路徑，請輸入應用程式的名稱和應用程式路徑。 請在路徑中使用變數，例如 "%systemdrive%" 而非 "c:\"。
 
 > [!NOTE]
-> 如果您想要從 [開始] 功能表新增您的應用程式，就必須先在您範本映像上將該應用程式新增至 [開始] 功能表。 否則，RemoteApp 只會看到在 [開始] 功能表上的項目，而您會覺得很困惑。 
+> 如果您想要從 [開始] 功能表新增您的應用程式，就必須先「在您的範本映像上將該應用程式新增至 [開始] 功能表」。 否則，RemoteApp 只會看到在 [開始] 功能表上的項目，而您會覺得很困惑。 
 > 
 > 若要確定您的 App 位於 [開始] 功能表，請將捷徑檔案 (**.lnk**) 置於 %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs 資料夾內。
 > 
 > 如果您忘記在建立範本時將應用程式新增到 [開始] 功能表，請選擇新增路徑到應用程式。 (或者重新建立您的範本映像，但是這會比較費工。)
 > 
 > 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

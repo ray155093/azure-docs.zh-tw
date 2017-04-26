@@ -16,9 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 11/28/2016
 ms.author: jroth
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: d055a859ec89ef7fec23db9bf1d574dd8cb76293
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: aba69b95db8313dd9ce711ddc6c26e5df55d79a4
+ms.lasthandoff: 04/04/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 03/25/2017
 ## <a name="overview"></a>概觀
 [Azure 進階儲存體](../../../storage/storage-premium-storage.md) 是新一代儲存體，可提供低延遲和高輸送量 IO。 它最適合用於需要大量 IO 的重要工作負載，例如，IaaS [虛擬機器](https://azure.microsoft.com/services/virtual-machines/)上的 SQL Server。
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
 本文提供移轉執行 SQL Server 的虛擬機器來執行進階儲存體的規劃與指導方針。 這包括 Azure 基礎結構 (網路功能、儲存體) 和客體 Windows VM 步驟。 [附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage) 中的範例示範一個全方位的端對端移轉，說明如何透過 PowerShell 來移動更大的 VM，以利用改進的本機 SSD 儲存體。
@@ -47,7 +47,7 @@ ms.lasthandoff: 03/25/2017
 使用進階儲存體之前，必須具備數個必要條件。
 
 ### <a name="machine-size"></a>機器大小
-若要使用進階儲存體，您必須使用 DS 系列的虛擬機器 (VM)。 如果您先前未曾在雲端服務中使用過 DS 系列的機器，就必須刪除現有的 VM、保留連結的磁碟，接著先建立新的雲端服務，然後再將 VM 重新建立為 DS* 角色大小。 如需虛擬機器大小的詳細資訊，請參閱 [Azure 的虛擬機器和雲端服務大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+若要使用進階儲存體，您必須使用 DS 系列的虛擬機器 (VM)。 如果您先前未曾在雲端服務中使用過 DS 系列的機器，就必須刪除現有的 VM、保留連結的磁碟，接著先建立新的雲端服務，然後再將 VM 重新建立為 DS* 角色大小。 如需虛擬機器大小的詳細資訊，請參閱 [Azure 的虛擬機器和雲端服務大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ### <a name="cloud-services"></a>雲端服務
 如果 DS* VM 和進階儲存體是建立在新的雲端服務中，則您只能搭配使用它們。 如果您正在 Azure 中使用 SQL Server Always On，Always On 接聽程式將參考與雲端服務相關聯的 Azure 內部或外部負載平衡器 IP 位址。 本文會將重點放在如何於此案例中進行移轉的同時還保有可用性。
@@ -142,9 +142,9 @@ ms.lasthandoff: 03/25/2017
 將 VHD 對應到儲存集區中的實體磁碟之後，接著就可以中斷連結，並將它們複製到進階儲存體帳戶，然後使用正確的快取設定來連結它們。 請參閱 [附錄](#appendix-migrating-a-multisite-alwayson-cluster-to-premium-storage)中的範例，步驟 8 到 12。 這些步驟示範如何將與 VM 連結的 VHD 磁碟設定擷取至 CSV 檔案、複製 VHD、更改磁碟設定快取設定，最後重新部署 VM 成為含有所有連結磁碟的 DS 系列 VM。
 
 ### <a name="vm-storage-bandwidth-and-vhd-storage-throughput"></a>VM 儲存體頻寬和 VHD 儲存體輸送量
-儲存體效能的程度取決於指定的 DS* VM 大小與 VHD 大小。 VM 對於連結的 VHD 數量以及它們將支援的最大頻寬 (MB/秒) 有不同的容許程度。 如需特定頻寬數，請參閱 [Azure 的虛擬機器和雲端服務大小](../../virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+儲存體效能的程度取決於指定的 DS* VM 大小與 VHD 大小。 VM 對於連結的 VHD 數量以及它們將支援的最大頻寬 (MB/秒) 有不同的容許程度。 如需特定頻寬數，請參閱 [Azure 的虛擬機器和雲端服務大小](../sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-提高 IOPS 可透過更大的磁碟大小來達成。 當您考量移轉路徑時，應將這點納入考慮。 如需詳細資訊，請參閱 [適用於 IOPS 和磁碟類型的表格](../../../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets)。
+提高 IOPS 可透過更大的磁碟大小來達成。 當您考量移轉路徑時，應將這點納入考慮。 如需詳細資訊，請參閱 [適用於 IOPS 和磁碟類型的表格](../../../storage/storage-premium-storage.md#scalability-and-performance-targets)。
 
 最後，請考量 VM 對於所有連結磁碟支援的磁碟頻寬上限各有不同。 在高負載下，您可針對該 VM 角色大小充分使用可用的最大磁碟頻寬。 例如，Standard_DS14 最多將支援 512MB/秒；因此，透過三個 P30 磁碟，您就能充分使用 VM 的磁碟頻寬。 但在此範例中，根據讀取和寫入 IO 的組合而定，可能會超過輸送量限制。
 
@@ -271,7 +271,7 @@ ms.lasthandoff: 03/25/2017
 
 
 #### <a name="step-3-use-existing-image"></a>步驟 3：使用現有的映像
-您可以使用現有的映像。 或者，您可以 [取得現有機器的映像](../classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 請注意，您取得映像的機器並不需要是 DS*機器。一旦取得映像之後，下列步驟示範如何使用 Start-AzureStorageBlobCopy** PowerShell commandlet，將它複製到進階儲存體帳戶。
+您可以使用現有的映像。 或者，您可以 [取得現有機器的映像](../classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。 請注意，您取得映像的機器並不需要是 DS* 機器。 一旦取得映像之後，下列步驟示範如何使用 **Start-AzureStorageBlobCopy** PowerShell Commandlet，將它複製到進階儲存體帳戶。
 
     #Get storage account keys:
     #Standard Storage account

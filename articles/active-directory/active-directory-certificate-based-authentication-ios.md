@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/15/2017
+ms.date: 03/30/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: 28c2ef4878305d5cdb37ab8c0802644b1f236337
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 754fad938fef321c07b95ddb5727ffdb2b0eaa2c
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -29,7 +29,7 @@ ms.lasthandoff: 03/07/2017
 
 設定這項功能之後，就不需要在行動裝置上的特定郵件和 Microsoft Office 應用程式中，輸入使用者名稱和密碼的組合。 
 
-本主題提供 Office 365 企業版、商務版、教育訓練版及美國政府機關方案的租用戶使用者，在 Android 裝置上設定 CBA 的需求和支援案例。 
+本主題提供 Office 365 企業版、商務版、教育訓練版及美國政府機關方案的租用戶使用者，在 iOS 裝置上設定 CBA 的需求和支援案例。 
 
 在 Office 365 US Government Defense 和 Federal 方案中，這項功能處於預覽版。
 

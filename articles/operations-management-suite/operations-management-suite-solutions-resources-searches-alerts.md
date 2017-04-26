@@ -15,9 +15,9 @@ ms.date: 03/20/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: e47aacd1a188649a3b424981c20a6c2b736b2d89
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 35264f1ec5df5a3e171f7631e0d3b46bf9c0b8e7
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -82,7 +82,7 @@ Log Analytics 中的所有資源都包含於[工作區](../log-analytics/log-ana
 
 - **儲存的搜尋。**  定義將執行的記錄搜尋。  多個警示規則可以共用單一儲存的搜尋。
 - **排程。**  定義記錄搜尋的執行頻率。  每個警示規則必須且只能有一個排程。
-- **警示動作。**  每個警示規則都會有一個類型為**警示**的動作資源，其會定義警示的詳細資料，像是何時將建立警示記錄，以及警示的嚴重性等這類準則。  動作資源將會選擇性地定義郵件和 runbook 回應。
+- **警示動作。**  每個警示規則都會有一個具有一種**警示**類型的動作資源，該類型會定義警示的詳細資料，像是建立警示記錄的時機及警示的嚴重性等準則。  動作資源將會選擇性地定義郵件和 runbook 回應。
 - **Webhook 動作 (選擇性)。**  如果警示規則將會呼叫 webhook，則它需要執行類型為 **Webhook** 的其他動作資源。    
 
 儲存的搜尋資源如上所述。  其他資源將在後續內容中加以說明。
@@ -229,7 +229,7 @@ Log Analytics 中的所有資源都包含於[工作區](../log-analytics/log-ana
 
 Webhook 動作會呼叫 URL 並選擇性地提供要傳送的承載，以啟動處理序。 這些動作類似於「補救」動作，不同之處在於它們用於可能叫用 Azure 自動化 Runbook 以外之處理序的 webhook。 它們還提供另一個選項，可指定要傳遞到遠端處理序的承載。
 
-如果您的警示會呼叫 webhook，則除了**警示**動作資源之外，還需要類型為 **Webhook** 的動作資源。  
+如果您的警示會呼叫 webhook，則除了**警示**動作資源之外，還需要一種 **Webhook** 類型的動作資源。  
 
     {
         "name": "<name-of-the-action>",
@@ -248,7 +248,7 @@ Webhook 動作會呼叫 URL 並選擇性地提供要傳送的承載，以啟動�
         }
     }
 
-下表會說明警示動作資源的屬性。
+下表會說明 Webhook 動作資源的屬性。
 
 | 元素名稱 | 必要 | 說明 |
 |:--|:--|:--|

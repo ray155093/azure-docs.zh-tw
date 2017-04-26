@@ -12,12 +12,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: article
-ms.date: 09/06/2016
+ms.date: 04/05/2017
 ms.author: lmazuel
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 579015f419ac0ee886f8e8497760a562ab324c24
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 90f417768d58c42df9b786b5c50d96970f133548
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -38,13 +38,13 @@ ms.lasthandoff: 03/27/2017
 Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是一種 REST API。 所有 API 作業都會透過 SSL 而執行，並可使用 X.509 v3 憑證相互驗證。 管理服務可從執行於 Azure 的服務內存取，或直接透過網際網路，從任何可傳送 HTTPS 要求和接收 HTTPS 回應的應用程式存取。
 
 ## <a name="Installation"> </a>安裝
-本文中所述的所有功能都可在 `azure-servicemanagement-legacy` 封裝中找到，您可以使用 pip 來安裝此封裝。 如需安裝 (例如，若您不熟悉 Python) 的詳細資訊，請參閱這篇文章︰ [安裝 Python 和 Azure SDK](../python-how-to-install.md)
+本文中所述的所有功能都可在 `azure-servicemanagement-legacy` 封裝中找到，您可以使用 pip 來安裝此封裝。 如需安裝 (例如，若您不熟悉 Python) 的詳細資訊，請參閱此文章︰[安裝 Python 和 Azure SDK](../python-how-to-install.md)
 
 ## <a name="Connect"> </a>作法：連線到服務管理
 若要連接到服務管理端點，您必須具備 Azure 訂用帳戶 ID 和有效的管理憑證。 您可以透過 [Azure 傳統入口網站][management-portal]取得訂用帳戶 ID。
 
 > [!NOTE]
-> 從 Azure SDK for Python v0.8.0 開始，目前在 Windows 上執行時就能使用以 OpenSSL 建立的憑證。  這需要使用 Python 2.7.4 或更新版本。 建議使用者使用 OpenSSL 而非 .pfx，因為未來可能會移除 .pfx 憑證的支援。
+> 目前在 Windows 上執行時，可以使用以 OpenSSL 建立的憑證。  這需要使用 Python 2.7.4 或更新版本。 建議使用者使用 OpenSSL 而非 .pfx，因為未來可能會移除 .pfx 憑證的支援。
 > 
 > 
 

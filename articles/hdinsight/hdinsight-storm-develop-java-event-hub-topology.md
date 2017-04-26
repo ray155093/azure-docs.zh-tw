@@ -13,12 +13,12 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/17/2017
+ms.date: 04/03/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: fcca957dc365d8c38b5a08991939860c5af96813
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: e650731c3186b47adeb0e799a852961c30338550
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -31,22 +31,22 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 ## <a name="prerequisites"></a>必要條件
 
 * Apache Storm on HDInsight cluster 3.5 版。 如需詳細資訊，請參閱[開始使用 Storm on HDInsight cluster](hdinsight-apache-storm-tutorial-get-started-linux.md)。
-    
+
     > [!IMPORTANT]
-    > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+    > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.3 和 3.4 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 * [Azure 事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)。
 
-* [Oracle Java Developer Kit (JDK) 第 7版](https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)或同等版本，例如 [OpenJDK](http://openjdk.java.net/)。
+* [Oracle Java Developer Kit (JDK) 第 8 版](http://www.oracle.com/technetwork/java/javase/downloads/index.html)或同等版本，例如 [OpenJDK](http://openjdk.java.net/)。
 
 * [Maven](https://maven.apache.org/download.cgi)：Maven 是 Java 專案的專案建置系統。
 
 * 文字編輯器或整合開發環境 (IDE)。
-  
-  > [!NOTE]
-  > 您的編輯器或 IDE 可能具有處理 Maven 的特定功能，但未記載在這份文件中。 如需編輯環境功能的詳細資訊，請參閱所使用產品的文件。
-  
-  * SSH 用戶端。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+
+    > [!NOTE]
+    > 您的編輯器或 IDE 可能具有處理 Maven 的特定功能，但未記載在這份文件中。 如需編輯環境功能的詳細資訊，請參閱所使用產品的文件。
+
+    * SSH 用戶端。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 * SCP 用戶端。 所有 Linux、Unix、OS X 系統 (包括 Bash on Windows 10) 皆提供 `scp` 命令。針對沒有 `scp` 命令的 Windows 系統，我們建議使用 PSCP。 可從 [PuTTY 下載頁面](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) 取得 PSCP。
 
@@ -64,7 +64,48 @@ Azure 事件中樞可讓您從網站、應用程式和裝置處理巨量資料�
 
 ### <a name="project-configuration"></a>專案組態
 
-**POM.xml** 檔案包含此 Maven 專案的組態資訊。 有趣的部分是：
+`POM.xml` 檔案包含此 Maven 專案的組態資訊。 有趣的部分是：
+
+#### <a name="hortonworks-repository"></a>Hortonworks 存放庫
+
+HDInsight 是以 Hortonworks Data Platform 為基礎。 為確定您的專案與搭配 HDInsight 3.5 使用的 Storm 和 Hadoop 版本相容，下一節會設定專案以使用來自 Hortonworks 的資料：
+
+```xml
+<repositories>
+    <repository>
+        <releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+        <id>HDPReleases</id>
+        <name>HDP Releases</name>
+        <url>http://repo.hortonworks.com/content/repositories/releases/</url>
+        <layout>default</layout>
+    </repository>
+    <repository>
+        <releases>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+            <updatePolicy>never</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+        </snapshots>
+        <id>HDPJetty</id>
+        <name>Hadoop Jetty</name>
+        <url>http://repo.hortonworks.com/content/repositories/jetty-hadoop/</url>
+        <layout>default</layout>
+    </repository>
+</repositories>
+```
 
 #### <a name="the-eventhubs-storm-spout-dependency"></a>EventHubs Storm Spout 相依性
 
@@ -90,33 +131,18 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 <dependency>
     <groupId>org.apache.storm</groupId>
     <artifactId>storm-hdfs</artifactId>
+    <!-- exclude these storm-hdfs dependencies since they are on the server -->
     <exclusions>
-    <exclusion>
-        <groupId>org.apache.hadoop</groupId>
-        <artifactId>hadoop-client</artifactId>
-    </exclusion>
-    <exclusion>
-        <groupId>org.apache.hadoop</groupId>
-        <artifactId>hadoop-hdfs</artifactId>
-    </exclusion>
+        <exclusion>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+        </exclusion>
     </exclusions>
     <version>${storm.version}</version>
-</dependency>
-<!--So HdfsBolt knows how to talk to WASB -->
-<dependency>
-    <groupId>org.apache.hadoop</groupId>
-    <artifactId>hadoop-client</artifactId>
-    <version>${hadoop.version}</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.hadoop</groupId>
-    <artifactId>hadoop-hdfs</artifactId>
-    <version>${hadoop.version}</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.hadoop</groupId>
-    <artifactId>hadoop-azure</artifactId>
-    <version>${hadoop.version}</version>
 </dependency>
 <dependency>
     <groupId>org.apache.hadoop</groupId>
@@ -248,7 +274,7 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 
 * **JAVA_HOME** - 應該指向已安裝 Java 執行階段環境 (JRE) 的目錄。 例如，在 Unix 或 Linux 散發套件上，它的值應該類似 `/usr/lib/jvm/java-7-oracle` 在 Windows 中，它的值應該類似 `c:\Program Files (x86)\Java\jre1.7`
 * **PATH** - 應該包含下列路徑：
-  
+
   * **JAVA_HOME** (或對等的路徑)
   * **JAVA_HOME\bin** (或對等的路徑)
   * 已安裝 Maven 的目錄
@@ -258,9 +284,9 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 1. 從 [https://000aarperiscus.blob.core.windows.net/certs/storm-eventhubs-1.0.2-jar-with-dependencies.jar](https://000aarperiscus.blob.core.windows.net/certs/storm-eventhubs-1.0.2-jar-with-dependencies.jar) 下載 `storm-eventhubs-1.0.2-jar-with-dependencies.jar`。 這個檔案包含從 EventHubs 讀取和寫入的 Spout 和 Bolt 元件。
 
 2. 在您的本機 Maven 儲存機制中使用下列命令註冊元件︰
-    
+
         mvn install:install-file -Dfile=storm-eventhubs-1.0.2-jar-with-dependencies.jar -DgroupId=com.microsoft -DartifactId=eventhubs -Dversion=1.0.2 -Dpackaging=jar
-    
+
     將 `-Dfile=` 參數修改為指向下載的檔案位置。
 
     此命令會將檔案安裝在本機 Maven 儲存機制，Maven 可在編譯時期找到 它。
@@ -272,27 +298,27 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 1. 從 [Azure 傳統入口網站](https://manage.windowsazure.com)選取 [新增]  >  [服務匯流排]  >  [事件中樞]  > [自訂建立]。
 
 2. 在 [新增事件中樞] 畫面上，輸入 [事件中樞名稱]。 選取要建立中樞的 [區域]，然後建立新的命名空間或選取現有的命名空間。 最後，按一下**箭頭**進行下一步。
-   
+
     ![精靈頁面 1](./media/hdinsight-storm-develop-csharp-event-hub-topology/wiz1.png)
-   
+
    > [!NOTE]
    > 選取與 Storm on HDInsight 伺服器相同的 [位置]，可降低延遲和成本。
 
 3. 在 [設定事件中樞] 畫面中，輸入 [資料分割計數] 及 [訊息保留] 值。 在此範例中，資料分割計數使用 10，訊息保留使用 1。 請記下資料分割計數，因為您稍後會用到這個值。
-   
+
     ![精靈頁面 2](./media/hdinsight-storm-develop-csharp-event-hub-topology/wiz2.png)
 
 4. 建立事件中樞之後，依序選取命名空間、[事件中樞] ，然後選取您先前建立的事件中樞。
 5. 選取 [設定]，然後使用下列資訊建立兩個新的存取原則：
-   
+
     <table>
     <tr><th>名稱</th><th>權限</th></tr>
     <tr><td>寫入器</td><td>傳送</td></tr>
     <tr><td>讀取者</td><td>接聽</td></tr>
     </table>
-   
+
     建立權限之後，在頁面底部選取 **儲存** 圖示。 這些共用的存取原則是用來讀取和寫入事件中樞。
-   
+
     ![原則](./media/hdinsight-storm-develop-csharp-event-hub-topology/policy.png)
 
 6. 儲存原則之後，請使用頁面底部的 [共用存取金鑰產生器] 來擷取 [寫入器] 和 [讀取器] 原則的金鑰。 儲存這些金鑰。
@@ -302,9 +328,9 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 1. 從 GitHub 下載專案： [hdinsight-java-storm-eventhub](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub)。 您可以將封裝下載為 zip 封存，或使用 [git](https://git-scm.com/) 以在本機複製專案。
 
 2. 使用下列項目建置和封裝專案：
-   
+
         mvn package
-   
+
     這個命令會下載必要的相依性、進行建置，然後封裝專案。 輸出會在 **/target** 目錄儲存為 **EventHubExample-1.0-SNAPSHOT.jar**。
 
 ## <a name="deploy-the-topologies"></a>部署拓撲
@@ -312,62 +338,50 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 此專案所建立的 jar 包含兩種拓撲；**com.microsoft.example.EventHubWriter** 和 **com.microsoft.example.EventHubReader**。 應該先啟動 EventHubWriter 拓撲，因為它會將事件寫入事件中樞，然後由 EventHubReader 讀取。
 
 1. 使用 SCP 將 jar 封裝複製到您的 HDInsight 叢集。 將 USERNAME 取代為用於您的叢集的 SSH 使用者。 將 CLUSTERNAME 取代為 HDInsight 叢集的名稱：
-   
+
         scp ./target/EventHubExample-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:.
-   
+
     如果您針對 SSH 帳戶使用密碼，系統會提示您輸入密碼。 如果您搭配帳戶使用 SSH 金鑰，可能需要使用 `-i` 參數來指定金鑰檔的路徑。 例如， `scp -i ~/.ssh/id_rsa ./target/EventHubExample-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:.`。
-   
-   > [!NOTE]
-   > 如果您的用戶端是 Windows 工作站，您可能沒有安裝 SCP 命令。 我們建議 PSCP，它可從 [PuTTY 下載頁面](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)下載。
-   
+
     此命令會將檔案複製到叢集上 SSH 使用者的主目錄中。
 
 2. 完成上傳檔案之後，使用 SSH 以連接到 HDInsight 叢集。 將 **USERNAME** 取代為您的 SSH 登入名稱。 將 **CLUSTERNAME** 取代為 HDInsight 叢集名稱：
-   
+
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
-   
-   > [!NOTE]
-   > 如果您針對 SSH 帳戶使用密碼，系統會提示您輸入密碼。 如果您搭配帳戶使用 SSH 金鑰，可能需要使用 `-i` 參數來指定金鑰檔的路徑。 下列範例會從 `~/.ssh/id_rsa` 載入私密金鑰：
-   > 
-   > `ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`
-   
-    如果您使用 PuTTY，在 [主機名稱 (或 IP 位址)] 欄位輸入 `CLUSTERNAME-ssh.azurehdinsight.net`，然後再按一下 [開啟] 以連接。 系統會提示您輸入 SSH 帳戶名稱。
-   
-   > [!NOTE]
-   > 如果您針對 SSH 帳戶使用密碼，系統會提示您輸入密碼。 如果您搭配帳戶使用 SSH 金鑰，可能需要使用下列步驟來選取金鑰：
-   > 
-   > 1. 在 [類別] 中，依序展開 [連接] 和 [SSH]，然後選取 [驗證]。
-   > 2. 按一下 [瀏覽]  ，然後選取內含私密金鑰的 .ppk 檔案。
-   > 3. 按一下 [開啟]  以連接。
+
+    > [!NOTE]
+    > 如果您針對 SSH 帳戶使用密碼，系統會提示您輸入密碼。 如果您搭配帳戶使用 SSH 金鑰，可能需要使用 `-i` 參數來指定金鑰檔的路徑。 下列範例會從 `~/.ssh/id_rsa` 載入私密金鑰：
+    >
+    > `ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`
 
 3. 使用下列命令以啟動拓撲：
-   
+
         storm jar EventHubExample-1.0-SNAPSHOT.jar com.microsoft.example.EventHubWriter writer
         storm jar EventHubExample-1.0-SNAPSHOT.jar com.microsoft.example.EventHubReader reader
-   
+
     這些命令會使用易記名稱 "reader" 和 "writer" 啟動拓撲。
 
 4. 等候一分鐘讓拓樸產生資料。 使用下列命令來確認資料是否已寫入 HDInsight 儲存體：
-   
-        hadoop fs -ls /devicedata
-   
+
+        hdfs dfs fs -ls /devicedata
+
     此命令會傳回檔案清單，類似以下文字：
-   
+
         -rw-r--r--   1 storm supergroup      10283 2015-08-11 19:35 /devicedata/wasbbolt-14-0-1439321744110.txt
         -rw-r--r--   1 storm supergroup      10277 2015-08-11 19:35 /devicedata/wasbbolt-14-1-1439321748237.txt
         -rw-r--r--   1 storm supergroup      10280 2015-08-11 19:36 /devicedata/wasbbolt-14-10-1439321760398.txt
         -rw-r--r--   1 storm supergroup      10267 2015-08-11 19:36 /devicedata/wasbbolt-14-11-1439321761090.txt
         -rw-r--r--   1 storm supergroup      10259 2015-08-11 19:36 /devicedata/wasbbolt-14-12-1439321762679.txt
-   
+
    > [!NOTE]
    > 某些檔案可能會顯示大小為 0，因為它們是由 EventHubReader 建立，但是資料尚未儲存至該處。
-   
+
     您可以使用下列命令檢視這些檔案的內容：
-   
-        hadoop fs -text /devicedata/*.txt
-   
+
+        hdfs dfs -text /devicedata/*.txt
+
     這會傳回類似以下文字的資料︰
-   
+
         3409e622-c85d-4d64-8622-af45e30bf774,848981614
         c3305f7e-6948-4cce-89b0-d9fbc2330c36,-1638780537
         788b9796-e2ab-49c4-91e3-bc5b6af1f07e,-1662107246
@@ -375,11 +389,11 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
         d7c7f96c-581a-45b1-b66c-e32de6d47fce,543829859
         9a692795-e6aa-4946-98c1-2de381b37593,1857409996
         3c8d199b-0003-4a79-8d03-24e13bde7086,-1271260574
-   
+
     第一個資料行包含裝置識別碼值，第二個資料行是裝置值。
 
 5. 使用下列命令以停止拓撲：
-   
+
         storm kill reader
         storm kill writer
 
@@ -400,5 +414,4 @@ HdfsBolt 一般是用來將資料儲存至 Hadoop 分散式檔案系統 HDFS。 
 ## <a name="next-steps"></a>後續步驟
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
-
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: aungoo
 translationtype: Human Translation
-ms.sourcegitcommit: bfb29928783283336b6116f198d70b0b7117750d
-ms.openlocfilehash: 880b1c2ca069e3e4a5ce9cb2af881b95e84687f4
-ms.lasthandoff: 02/08/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 7b08ce207b2a3cc2dd3d3559765def6af42a844a
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -61,7 +61,7 @@ Blob 快照是在某個時間點擷取的 Blob 唯讀版本。 一旦建立快�
 
 前提是符合下列條件，
 
-* Blob 是在&2016; 年&1; 月&1; 日或之後建立。
+* Blob 是在 2016 年 1 月 1 日或之後建立。
 * 在兩個快照集之間，Blob 不會覆寫為 [PutPage](https://msdn.microsoft.com/library/azure/ee691975.aspx) 或[複製 Blob](https://msdn.microsoft.com/library/azure/dd894037.aspx)。
 
 **注意**︰此功能適用於進階和標準 Azure 分頁 Blob。
@@ -105,7 +105,7 @@ Blob 快照是在某個時間點擷取的 Blob 唯讀版本。 一旦建立快�
 ## <a name="steps-to-restore-a-disk-from-snapshots"></a>從快照還原磁碟的步驟
 以下所述的步驟會將進階磁碟 *mypremiumdisk* 從備份儲存體帳戶 *mybackupstdaccount* 還原至先前的快照集。
 
-1. 識別您要將進階磁碟還原到哪個時間點。 讓我們假設這是儲存在備份儲存體帳戶 *mybackupstdaccount* 中的快照集 *mybackupstdpageblob_ss2*。
+1. 識別您要將進階磁碟還原到哪個時間點。 我們假設是儲存在備份儲存體帳戶 *mybackupstdaccount* 中的快照集 *mybackupstdpageblob_ss2*。
 2. 在 mybackupstdaccount 中，將快照集 *mybackupstdpageblob_ss2* 升級為新的備份基底分頁 Blob *mybackupstdpageblobrestored*。
 3. 建立稱為 *mybackupstdpageblobrestored_ss1* 的這個已還原備份分頁 Blob 的快照集。
 4. 將已還原分頁 Blob *mybackupstdpageblobrestored* 從 *mybackupstdaccount* 複製到 *mypremiumaccount*，作為新的進階磁碟 *mypremiumdiskrestored*。

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Resource Manager 範本建立多個 VM 環境 | Microsoft Docs"
-description: "了解如何從 Azure Resource Manager 範本在 Azure DevTest Labs 中建立多個 VM 環境"
+title: "使用 Azure Resource Manager 範本建立多個 VM 環境和 PaaS 資源 | Microsoft Docs"
+description: "了解如何從 Azure Resource Manager 範本在 Azure DevTest Labs 中建立多個 VM 環境和 PaaS 資源"
 services: devtest-lab,virtual-machines,visual-studio-online
 documentationcenter: na
 author: tomarcher
@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 01/31/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: c17ea1f078c424d855109da07113a4c2f8f84ab3
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 0fbe1af87594aacd2eee4f706429e3674548d3fd
+ms.lasthandoff: 04/07/2017
 
 
 ---
 
-# <a name="create-multi-vm-environments-with-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本建立多個 VM 環境
+# <a name="create-multi-vm-environments-and-paas-resources-with-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本建立多個 VM 環境和 PaaS 資源
 
 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)可讓您輕鬆地[建立，並將 VM 新增至實驗室](./devtest-lab-add-vm-with-artifacts.md)。 這適用於一次建立一個 VM。 不過，如果環境包含多個 VM，則每個 VM 都必須分別建立。 針對多層式 Web 應用程式或 SharePoint 伺服器陣列的情況，需要有機制以允許在單一步驟中建立多個 VM。 使用 Azure Resource Manager 範本，您現在可以定義 Azure 方案的基礎結構和組態，並在一致的狀態中重複部署多個 VM。 此功能可提供下列優點：
 

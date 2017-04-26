@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/31/2017
+ms.date: 04/10/2017
 ms.author: haining;garye
 translationtype: Human Translation
-ms.sourcegitcommit: de2c4d3d354ef3665134302655f602b043aa8ab0
-ms.openlocfilehash: 106efcd5580f91d6d1ed926b19c142d8ea0b0c7c
-ms.lasthandoff: 12/20/2016
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 4ed387d9ef595312d4fcde78b2fdc3644e96ee27
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -50,7 +50,7 @@ Microsoft Cortana Intelligence 競賽可讓我們透過共同解決一些全世�
 
 **我是否可以使用開放原始碼工具參與這些競賽？**
 
-參賽者必須使用 Azure Machine Learning Studio (Cortana Intelligence Suite 內的雲端式服務) 開發資料科學模型，並建立要提交的參賽作品。 Machine Learning Studio 不僅提供 GUI 介面來建構機器學習服務實驗，還可讓您帶著自己的 R 和/或 Python 指令碼，在本機上執行。 Studio 中的 R 和 Python 執行階段隨附一組豐富的開放原始碼 R/Python 套件，而且您也可以匯入自己的套件，當做實驗的一部分。 Studio 也有內建的 Jupyter Notebook 服務，讓您瀏覽任意樣式的資料。 當然，您永遠可以下載競賽中使用的資料集，並使用 Machine Learning Studio 以外您最喜愛的工具來瀏覽它。 
+參賽者必須使用 Azure Machine Learning Studio (Cortana Intelligence Suite 內的雲端式服務) 開發資料科學模型，並建立要提交的參賽作品。 Machine Learning Studio 不僅提供 GUI 介面來建構機器學習服務實驗，還可讓您帶著自己的 R 和/或 Python 指令碼，在本機上執行。 Studio 中的 R 和 Python 執行階段隨附一組豐富的開放原始碼 R/Python 套件，而且您也可以匯入自己的套件，當做實驗的一部分。 Studio 也有內建的 Jupyter Notebook 服務，讓您瀏覽任意樣式的資料。 當然，您永遠可以下載競賽中使用的資料集，並使用 Machine Learning Studio 以外您最喜愛的工具來探索它。 
 
 **我需要是資料科學家才能參加嗎？**
 
@@ -95,7 +95,7 @@ Microsoft Cortana Intelligence 競賽可讓我們透過共同解決一些全世�
 
 Microsoft 將會驗證私人排行榜的結果，然後我們會與您連絡。 請確定您使用者設定檔中的電子郵件地址為最新狀態。
 
-**如果我贏得競賽，要領取獎金？**
+**如果我贏得競賽，要如何領取獎金？**
 
 如果您是競賽的優勝者，您必須簽署一份資格、授權及發行的宣告。 這份表單會重述「競賽規則」。 如果得獎者不是美國納稅人，則必須填寫美國稅務表單 W-9，或表單 W-8BEN。 我們的獎勵發放程序是使用註冊電子郵件連絡所有的優勝者。 如需其他詳細資訊，請參閱我們的 [條款及條件](http://aka.ms/comptermsandconditions) 。
 
@@ -105,7 +105,7 @@ Microsoft 將會驗證私人排行榜的結果，然後我們會與您連絡。 
 
 **我是否可以使用來賓工作區參賽？**
 
-不需要。 您必須使用免費工作區或標準工作區參賽。 您可以在來賓工作區中開啟競賽入門實驗，但您將無法在該工作區中建立可提交的有效項目。 
+沒有。 您必須使用免費工作區或標準工作區參賽。 您可以在來賓工作區中開啟競賽入門實驗，但您將無法在該工作區中建立可提交的有效項目。 
 
 **我是否可以使用任何 Azure 區域中的工作區參賽？**
 

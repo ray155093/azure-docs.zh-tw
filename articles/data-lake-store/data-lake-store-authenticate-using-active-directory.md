@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/02/2017
+ms.date: 03/30/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: ae2280f7bd7945f723d88dc6ce3f9a117074e93f
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 7c1532db4d58673add9b8076154c471554810614
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -76,7 +76,22 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
     如需有關 Data Lake Store 中的權限及預設/存取 ACL 的詳細資訊，請參閱 [Data Lake Store 中的存取控制](data-lake-store-access-control.md)。
 7. 在 [新增自訂存取] 刀鋒視窗中，按一下 [確定]。 具有相關權限的新增群組現在會列在 [存取]  刀鋒視窗中。
    
-    ![將權限指派至群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.5.png "將權限指派至群組")    
+    ![將權限指派至群組](./media/data-lake-store-authenticate-using-active-directory/adl.acl.5.png "將權限指派至群組")
+
+## <a name="step-4-get-the-oauth-20-token-endpoint-only-for-java-based-applications"></a>步驟 4：取得 OAuth 2.0 權杖端點 (只適用於 Java 型應用程式)
+
+1. 登入新的 [Azure 入口網站](https://portal.azure.com)，然後按一下左窗格中的 [Active Directory]。
+
+2. 從左窗格，按一下 [應用程式註冊]。
+
+3. 從 [應用程式註冊] 刀鋒視窗頂端，按一下 [端點]。
+
+    ![OAuth 權杖端點](./media/data-lake-store-authenticate-using-active-directory/oauth-token-endpoint.png "OAuth 權杖端點")
+
+4. 從端點清單，複製 OAuth 2.0 權杖端點。
+
+
+     ![OAuth 權杖端點](./media/data-lake-store-authenticate-using-active-directory/oauth-token-endpoint-1.png "OAuth 權杖端點")   
 
 ## <a name="next-steps"></a>後續步驟
 在本文中，您已建立 Azure AD Web 應用程式，並收集您使用 .NET SDK、Java SDK 等撰寫的用戶端應用程式中所需的資訊。您現在可以繼續進行下列文章，這些文章說明如何使用 Azure AD Web 應用程式先以 Data Lake Store 進行驗證，然後再於存放區上執行其他作業。

@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 03/14/2017
+ms.date: 04/12/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 66c0084c89b5c7510196142afd27b58953d0dc86
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: ccd7bb3cab65f95c53489de07479c9750e860040
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -27,9 +27,6 @@ ms.lasthandoff: 03/15/2017
 
 以下是 Azure Active Directory (Azure AD) B2B 共同作業常見問題的補救方式。
 
-## <a name="i-cant-create-an-external-user-due-to-an-existing-contact"></a>由於現有的連絡人，我無法建立外部使用者
-
-若您要邀請的外部使用者已經有連絡人物件，在您解決衝突之前 (通常是透過移除該連絡人物件)，您將無法邀請該使用者。 在 B2B 共同作業正式推出之前，您必須以手動方式解決衝突。
 
 ## <a name="ive-added-an-external-user-but-do-not-see-them-in-my-global-address-book-or-in-the-people-picker"></a>我已新增外部使用者，但在我的全域通訊錄或人員選擇器中未看到他們
 
@@ -66,7 +63,7 @@ ms.lasthandoff: 03/15/2017
 
 ## <a name="how-does--which-is-not-normally-a-valid-character-sync-with-azure-ad"></a>‘\#’ (通常是無效的字元) 如何與 Azure AD 同步？
 
-“\#” 是 Azure AD B2B 共同作業中的 UPN 或外部使用者保留字元 (亦即，若邀請 &lt;user@contoso.com&gt;，它會變成 &lt;user_contoso.com#EXT@fabrikam.onmicrosoft.com&gt;)，因此來自內部部署之 UPN 中的 \# 不允許登入 Azure 入口網站。
+“\#” 是 Azure AD B2B 共同作業或外部使用者之 UPN 中的保留字元 (亦即，若邀請 user@contoso.com，它會變成 user_contoso.com#EXT@fabrikam.onmicrosoft.com)，因此來自內部部署之 UPN 中的 \# 不被允許登入 Azure 入口網站。
 
 ## <a name="i-receive-an-error-when-adding-external-users-to-a-synchronized-group"></a>我在將外部使用者新增到已同步的群組時遇到錯誤
 
@@ -74,11 +71,11 @@ ms.lasthandoff: 03/15/2017
 
 ## <a name="my-external-user-did-not-receive-an-email-to-redeem"></a>我的外部使用者未收到兌換電子郵件
 
-受邀者應該連絡其 ISP 或檢查其垃圾郵件篩選設定，以確定下列地址在允許清單中：&lt;Invites@microsoft.com&gt;
+受邀者應該連絡其 ISP 或檢查其垃圾郵件篩選設定，以確定下列地址在允許清單中：Invites@microsoft.com
 
-## <a name="my-recipient-received-multiple-emails-from-me"></a>我的收件者收到來自我的多封電子郵件
+## <a name="i-notice-that-the-custom-message-does-not-get-included-with-invitation-messages-at-times"></a>我注意到自訂訊息有時候不會包含在邀請訊息中
 
-在某些邀請收件者的帳戶有多個別名的情況下，他們可能會收到兩個邀請。 在這些情況下，第一個兌換的連結是會建立的帳戶，而第二個兌換連結會失效。
+為了符合隱私權法律，當邀請者在資源組織 (也稱為邀請租用) 中沒有電子郵件地址時，或在邀請是由應用程式服務主體傳送時，我們的 API 將不會在電子郵件邀請中包含自訂訊息。 如果此案例對您很重要，您可以抑制我們的 API 以使它無法傳送邀請電子郵件，然後透過您偏好的電子郵件機制傳送邀請電子郵件。 請務必諮詢貴組織的法律顧問，以確定透過此方式傳送的電子郵件能符合隱私權法律。
 
 ## <a name="next-steps"></a>後續步驟
 

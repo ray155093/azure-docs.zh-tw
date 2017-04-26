@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 5e508e97f65ecd2d5ba0686b1e089246a9436dff
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: e154c81ef3765a3c006b3c27a979be881f14d0ee
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.openlocfilehash: 5e508e97f65ecd2d5ba0686b1e089246a9436dff
 
 Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量非結構化資料的服務，全球任何地方都可透過 HTTP 或 HTTPS 來存取這些資料。 單一 Blob 可以是任何大小。 Blob 可以是影像、音訊和視訊檔、原始資料及文件檔案。
 
-就像檔案在資料夾中一樣，儲存體 Blob 位於容器中。 在您已建立儲存體之後，您會在儲存體中建立一個或多個容器。 例如，在稱為 “Scrapbook” 的儲存體中，您可以在此儲存體中建立稱為 “images” 的容器來儲存圖片，以及建立另一個稱為 “audio” 的容器來儲存音訊檔。 建立容器之後，就可以將個別的 Blob 檔案上傳至這些容器。
+就像檔案在資料夾中一樣，儲存體 Blob 位於容器中。 在您已建立儲存體之後，您會在儲存體中建立一個或多個容器。 例如，在稱為 "Scrapbook" 的儲存體中，您可以在儲存體中建立稱為 "images" 的容器來儲存圖片，並建立稱為 "audio" 的容器來儲存音訊檔。 建立容器之後，就可以將個別的 Blob 檔案上傳至這些容器。
 
 * 如需以程式設計方式處理 Blob 的詳細資訊，請參閱 [以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)。
 * 如需 Azure 儲存體的一般資訊，請參閱 [儲存體文件](https://azure.microsoft.com/documentation/services/storage/)。
@@ -55,7 +56,7 @@ Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量�
         CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 4. 取得 **CloudBlobContainer** 物件，以參考特定的 Blob 容器。
    
-        // Get a reference to a container named “mycontainer.”
+        // Get a reference to a container named "mycontainer."
         CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
 > [!NOTE]
@@ -71,7 +72,7 @@ Azure 二進位大型物件 (Microsoft Azure Blob) 儲存是一項儲存大量�
 
 若要在儲存體帳戶中建立容器，您只需要新增對 **CreateIfNotExistsAsync** 的呼叫，如下列程式碼所示：
 
-    // If “mycontainer” doesn’t exist, create it.
+    // If "mycontainer" doesn't exist, create it.
     await container.CreateIfNotExistsAsync();
 
 
@@ -238,10 +239,5 @@ Azure 儲存體支援區塊 Blob 和頁面 Blob。 在大多數情況下，建�
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [vs-storage-dotnet-blobs-next-steps](../../includes/vs-storage-dotnet-blobs-next-steps.md)]
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

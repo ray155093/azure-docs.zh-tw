@@ -12,23 +12,25 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: tables
 ms.date: 10/31/2016
 ms.author: barbkess;jrj
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: fe62d672ebd4c6d9f5e161e337dbace0c80f67a5
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 914d85267e82ce6a2e60f3841889935046f17c87
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="overview-of-tables-in-sql-data-warehouse"></a>SQL 資料倉儲中的資料表概觀
 > [!div class="op_single_selector"]
-> * [概觀][概觀]
-> * [資料類型][資料類型]
-> * [散發][散發]
-> * [Index][Index]
-> * [資料分割][資料分割]
-> * [統計資料][統計資料]
-> * [暫存][暫存]
+> * [概觀][Overview]
+> * [資料類型][Data Types]
+> * [散發][Distribute]
+> * [索引][Index]
+> * [資料分割][Partition]
+> * [統計資料][Statistics]
+> * [暫存][Temporary]
 > 
 > 
 
@@ -40,42 +42,42 @@ CREATE TABLE Customers (FirstName VARCHAR(25), LastName VARCHAR(25))
 
 上述範例會建立名為 Customers 的資料表，其中包含 FirstName 和 LastName 兩個資料行。  每個資料行的資料類型均定義為 VARCHAR(25)，這會將資料限制為 25 個字元。  資料表的這些基本屬性以及其他屬性，大多與其他資料庫相同。  每個資料行都會定義資料類型，以確保資料的完整性。  加入索引，即可藉由降低 I/O 來改善效能。  加入資料分割，可改善您需要修改資料時的效能。
 
-[RENAME][RENAME] SQL 資料倉儲資料表的方式如下所示：
+[重新命名][RENAME] SQL 資料倉儲資料表的方式如下：
 
 ```sql  
 RENAME OBJECT Customer TO CustomerOrig; 
  ```
 
 ## <a name="distributed-tables"></a>分散式資料表
-**散發資料行**是 SQL 資料倉儲等分散式系統所導入的新基本屬性。  散發資料行名符其實。  此資料行可決定如何在幕後散發或分割您的資料。  當您建立資料表，但不指定散發資料行時，系統會使用 **循環配置資源**自動散發資料表。  雖然在某些情況下，循環配置資源資料表可能已足夠，但定義散發資料行可大幅減少期間查詢的資料移動，因而讓效能達到最佳化。  若要深入了解如何選取散發資料行，請參閱 [散發資料表][散發] 。
+**散發資料行**是 SQL 資料倉儲等分散式系統所導入的新基本屬性。  散發資料行名符其實。  此資料行可決定如何在幕後散發或分割您的資料。  當您建立資料表，但不指定散發資料行時，系統會使用 **循環配置資源**自動散發資料表。  雖然在某些情況下，循環配置資源資料表可能已足夠，但定義散發資料行可大幅減少期間查詢的資料移動，因而讓效能達到最佳化。  若要深入了解如何選取散發資料行，請參閱[散發資料表][Distribute]。
 
 ## <a name="indexing-and-partitioning-tables"></a>編製資料表的索引和分割資料表
-隨著您更加擅長使用 SQL 資料倉儲並想要讓效能達到最佳化，您會想要深入了解資料表設計。  若要深入了解，請參閱[資料表資料類型][資料類型]、[散發資料表][散發]、[編製資料表的索引][Index]和[分割資料表][資料分割]等文章。
+隨著您更加擅長使用 SQL 資料倉儲並想要讓效能達到最佳化，您會想要深入了解資料表設計。  若要深入了解，請參閱[資料表資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]和[分割資料表][Partition]等文章。
 
 ## <a name="table-statistics"></a>資料表統計資料
-為了讓 SQL 資料倉儲達到最佳效能，統計資料極為重要。  由於 SQL 資料倉儲尚未為您自動建立和更新統計資料 (如同您在 Azure SQL Database 中所預期)，我們的[統計資料][統計資料]文章可能是您所閱讀的最重要文章之一，可確保您的查詢獲得最佳效能。
+為了讓 SQL 資料倉儲達到最佳效能，統計資料極為重要。  由於 SQL 資料倉儲尚無法為您自動建立和更新統計資料 (如同您在 Azure SQL Database 中所預期)，我們的[統計資料][Statistics]一文可能是您所閱讀的其中一篇最重要的文章，它可以確保您在查詢上獲得最佳效能。
 
 ## <a name="temporary-tables"></a>暫存資料表
-暫存資料表只存在於您的登入期間，其他使用者看不到此種資料表。  暫存資料表可以防止其他人看見暫存結果，也會減少清除的需求。  由於暫存資料表也會使用本機儲存體，所以可為某些作業提供更快的效能。  如需有關暫存資料表的詳細資訊，請參閱 [暫存資料表][暫存] 文章。
+暫存資料表只存在於您的登入期間，其他使用者看不到此種資料表。  暫存資料表可以防止其他人看見暫存結果，也會減少清除的需求。  由於暫存資料表也會使用本機儲存體，所以可為某些作業提供更快的效能。  如需有關暫存資料表的詳細資料，請參閱[暫存資料表][Temporary]一文。
 
 ## <a name="external-tables"></a>外部資料表
-外部資料表 (也稱為 Polybase 資料表) 是可從 SQL 資料倉儲查詢的資料表，但會指向 SQL 資料倉儲外部的資料。  例如，您可以建立指向 Azure Blob 儲存體上檔案的外部資料表。  如需有關如何建立及查詢外部資料表的詳細資訊，請參閱 [使用 Polybase 載入資料][使用 Polybase 載入資料]。  
+外部資料表 (也稱為 Polybase 資料表) 是可從 SQL 資料倉儲查詢的資料表，但會指向 SQL 資料倉儲外部的資料。  例如，您可以建立指向 Azure Blob 儲存體上檔案的外部資料表。  如需有關如何建立及查詢外部資料表的詳細資料，請參閱[使用 Polybase 載入資料][Load data with Polybase]。  
 
 ## <a name="unsupported-table-features"></a>不支援的資料表功能
 雖然 SQL 資料倉儲包含其他資料庫所提供的許多相同資料表功能，但仍有一些功能尚未提供支援。  以下是一些尚未支援的資料表功能清單。
 
 | 不支援的功能 |
 | --- |
-| [身分識別屬性][身分識別屬性] (請參閱 [指派 Surrogate 索引鍵因應措施][指派 Surrogate 索引鍵因應措施]) |
-| 主索引鍵、外部索引鍵、唯一和檢查[資料表條件約束][資料表條件約束] |
-| [唯一索引][唯一索引] |
-| [計算資料行][計算資料行] |
-| [疏鬆資料行][疏鬆資料行] |
-| [使用者定義的類型][使用者定義的類型] |
-| [順序][順序] |
-| [觸發程序][觸發程序] |
-| [索引檢視表][索引檢視表] |
-| [同義字][同義字] |
+| [身分識別屬性][Identity Property] (請參閱[指派 Surrogate 索引鍵因應措施][Assigning Surrogate Key Workaround]) |
+| 主索引鍵、外部索引鍵、唯一和檢查[資料表條件約束][Table Constraints] |
+| [唯一索引][Unique Indexes] |
+| [計算資料行][Computed Columns] |
+| [疏鬆資料行][Sparse Columns] |
+| [使用者定義的類型][User-Defined Types] |
+| [順序][Sequence] |
+| [觸發程序][Triggers] |
+| [索引檢視表][Indexed Views] |
+| [同義字][Synonyms] |
 
 ## <a name="table-size-queries"></a>資料表大小查詢
 識別資料表在每個散發 (共 60 個) 中所耗用的空間和資料列數的其中一種簡單方式，就是使用 [DBCC PDW_SHOWSPACEUSED][DBCC PDW_SHOWSPACEUSED]。
@@ -273,41 +275,36 @@ ORDER BY    distribution_id
 ```
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解，請參閱[資料表資料類型][資料類型]、[散發資料表][散發]、[編製資料表的索引][Index]、[分割資料表][資料分割]、[維護資料表統計資料][統計資料]及[暫存資料表][暫存]等文章。  如需最佳做法的詳細資訊，請參閱 [SQL Data 資料倉儲最佳做法][SQL Data 資料倉儲最佳做法]。
+若要深入了解，請參閱[資料表資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]、[維護資料表統計資料][Statistics]及[暫存資料表][Temporary]等文章。  若要深入了解最佳作法，請參閱 [SQL Data 資料倉儲最佳作法][SQL Data Warehouse Best Practices]。
 
 <!--Image references-->
 
 <!--Article references-->
-[概觀]: ./sql-data-warehouse-tables-overview.md
-[資料類型]: ./sql-data-warehouse-tables-data-types.md
-[散發]: ./sql-data-warehouse-tables-distribute.md
+[Overview]: ./sql-data-warehouse-tables-overview.md
+[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[Distribute]: ./sql-data-warehouse-tables-distribute.md
 [Index]: ./sql-data-warehouse-tables-index.md
-[資料分割]: ./sql-data-warehouse-tables-partition.md
-[統計資料]: ./sql-data-warehouse-tables-statistics.md
-[暫存]: ./sql-data-warehouse-tables-temporary.md
-[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
-[使用 Polybase 載入資料]: ./sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md
+[Partition]: ./sql-data-warehouse-tables-partition.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[Temporary]: ./sql-data-warehouse-tables-temporary.md
+[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
+[Load data with Polybase]: ./sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md
 
 <!--MSDN references-->
 [CREATE TABLE]: https://msdn.microsoft.com/library/mt203953.aspx
 [RENAME]: https://msdn.microsoft.com/library/mt631611.aspx
 [DBCC PDW_SHOWSPACEUSED]: https://msdn.microsoft.com/library/mt204028.aspx
-[身分識別屬性]: https://msdn.microsoft.com/library/ms186775.aspx
-[指派 Surrogate 索引鍵因應措施]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/18/assigning-surrogate-key-to-dimension-tables-in-sql-dw-and-aps/
-[資料表條件約束]: https://msdn.microsoft.com/library/ms188066.aspx
-[計算資料行]: https://msdn.microsoft.com/library/ms186241.aspx
-[疏鬆資料行]: https://msdn.microsoft.com/library/cc280604.aspx
-[使用者定義的類型]: https://msdn.microsoft.com/library/ms131694.aspx
-[順序]: https://msdn.microsoft.com/library/ff878091.aspx
-[觸發程序]: https://msdn.microsoft.com/library/ms189799.aspx
-[索引檢視表]: https://msdn.microsoft.com/library/ms191432.aspx
-[同義字]: https://msdn.microsoft.com/library/ms177544.aspx
-[唯一索引]: https://msdn.microsoft.com/library/ms188783.aspx
+[Identity Property]: https://msdn.microsoft.com/library/ms186775.aspx
+[Assigning Surrogate Key Workaround]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/18/assigning-surrogate-key-to-dimension-tables-in-sql-dw-and-aps/
+[Table Constraints]: https://msdn.microsoft.com/library/ms188066.aspx
+[Computed Columns]: https://msdn.microsoft.com/library/ms186241.aspx
+[Sparse Columns]: https://msdn.microsoft.com/library/cc280604.aspx
+[User-Defined Types]: https://msdn.microsoft.com/library/ms131694.aspx
+[Sequence]: https://msdn.microsoft.com/library/ff878091.aspx
+[Triggers]: https://msdn.microsoft.com/library/ms189799.aspx
+[Indexed Views]: https://msdn.microsoft.com/library/ms191432.aspx
+[Synonyms]: https://msdn.microsoft.com/library/ms177544.aspx
+[Unique Indexes]: https://msdn.microsoft.com/library/ms188783.aspx
 
 <!--Other Web references-->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

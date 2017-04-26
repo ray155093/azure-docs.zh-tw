@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure Toolkit for IntelliJ 建立適用於 Spark 的 Scala 應用程式 | Microsoft Docs"
-description: "了解如何建立在 HDInsight Spark 叢集上執行的獨立 Spark 應用程式。"
+description: "使用 HDInsight 工具 (位於 IntelliJ 的 Azure 工具組中) 來開發以 Scala 撰寫的 Spark 應用程式，並將它們提交到 HDInsight Spark 叢集。"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -17,14 +17,15 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: 6c513def2abc8c99b84b2eb48848de76e12e69c7
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 494545ae20e0b766a3787ae462d5d0f4331853b1
+ms.lasthandoff: 04/06/2017
 
 
 ---
-# <a name="use-hdinsight-tools-in-azure-toolkit-for-intellij-to-create-spark-applications-for-hdinsight-spark-linux-cluster"></a>使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具建立 HDInsight Spark Linux 叢集的 Spark 應用程式
-本文將逐步指引您開發以 Scala 撰寫的 Spark 應用程式，以及使用適用於 IntelliJ 的 Azure 工具組中的 HDInsight 工具，將它提交給 HDInsight Spark 叢集。  您可以利用數個不同的方式來使用此工具：
+# <a name="use-azure-toolkit-for-intellij-to-create-spark-applications-for-hdinsight-cluster"></a>使用 IntelliJ 的 Azure 工具組建立適用於 HDInsight 叢集的 Spark 應用程式
+
+使用 HDInsight 工具 (位於 IntelliJ 的 Azure 工具組中) 來開發以 Scala 撰寫的 Spark 應用程式，並直接從 IntelliJ IDE 將它們提交到 HDInsight Spark 叢集。 您能以數種不同的方式使用 HDInsight 工具外掛程式：
 
 * 在 HDInsight Spark 叢集上開發並提交 Scala Spark 應用程式
 * 存取您的 Azure HDInsight Spark 叢集資源
@@ -91,7 +92,7 @@ ms.lasthandoff: 01/24/2017
        ![建立 JAR](./media/hdinsight-apache-spark-intellij-tool-plugin/default-artifact.png)
       
       您也可以建立自己的構件，方法是按一下上圖中強調顯示的 [+] **+** 圖示。
-4. 在 [專案結構] 對話方塊中，按一下 [專案]。 如果 [專案 SDK] 設定為 1.8，請確定 [專案語言層級] 設為 [7 - Diamonds、ARM、Multi-Catch 等] (對 Spark 2.0 叢集而言為選擇性)。
+4. 在 [專案結構] 對話方塊中，按一下 [專案]。 如果 [專案 SDK] 設定為 1.8，請確定 [專案語言層級] 設為 [7 - Diamonds、ARM、Multi-Catch 等] \(對 Spark 2.0 叢集而言為選擇性)。
    
     ![設定專案語言層級](./media/hdinsight-apache-spark-intellij-tool-plugin/set-project-language-level.png)
 5. 新增應用程式的原始程式碼。
@@ -139,7 +140,7 @@ ms.lasthandoff: 01/24/2017
         
           ![提交 Spark 應用程式](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-submit-spark-app-2.png)
       * 按一下 [提交] 。
-   3. 視窗底部的 [Spark Submission (提交 Spark)]  索引標籤應會開始顯示進度。 您也可以按一下 [Spark Submission] (提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
+   3. 視窗底部的 [Spark Submission (提交 Spark)]  索引標籤應會開始顯示進度。 您也可以按一下 [Spark Submission] \(提交 Spark) 視窗中的紅色按鈕，即可停止應用程式。
       
        ![Spark 應用程式結果](./media/hdinsight-apache-spark-intellij-tool-plugin/hdi-spark-app-result.png)
       
@@ -154,7 +155,7 @@ ms.lasthandoff: 01/24/2017
    
     ![存取作業檢視](./media/hdinsight-apache-spark-intellij-tool-plugin/view-job-logs.png)
 3. 適用於 [錯誤訊息]、[作業輸出]、[Livy 作業記錄] 及 [Spark 驅動程式記錄] 的方塊都會根據您選取的應用程式來填入。
-4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark 歷程記錄 UI] 和 [YARN UI] (應用程式層級)。
+4. 您也可以按一下畫面頂端的個別按鈕來開啟 [Spark 歷程記錄 UI] 和 [YARN UI] \(應用程式層級)。
 
 ### <a name="access-the-spark-history-server"></a>存取 Spark 歷程記錄伺服器
 1. 從 [Azure Explorer] 中，展開 [HDInsight]、以滑鼠右鍵按一下您的 Spark 叢集名稱，然後選取 [開啟 Spark 歷程記錄 UI]。 出現提示時，輸入叢集的系統管理員認證。 在佈建叢集時，您必須已指定這些項目。

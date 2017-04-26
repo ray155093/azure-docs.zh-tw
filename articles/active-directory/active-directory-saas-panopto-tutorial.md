@@ -11,17 +11,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/25/2017
+ms.date: 03/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 41e04425a291c9f89bc58341c6bad22ad1bdb8ef
-ms.openlocfilehash: 90f962fbd19f125cfb609e439f157c4822acfce4
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 078a2ea0db006cf976f89a55c65a536a7b9f04aa
+ms.lasthandoff: 04/03/2017
 
 
 ---
 
 # <a name="tutorial-azure-active-directory-integration-with-panopto"></a>教學課程：Azure Active Directory 與 Panopto 整合
-本教學課程的目的是要示範 Azure 與 Panopto 的整合。 本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 Panopto 的整合。 
+
+本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂閱
 * Panopto 租用戶
@@ -31,13 +34,13 @@ ms.openlocfilehash: 90f962fbd19f125cfb609e439f157c4822acfce4
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 Panopto 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
 ![案例](./media/active-directory-saas-panopto-tutorial/IC777665.png "案例")
 
-## <a name="enabling-the-application-integration-for-panopto"></a>啟用 Panopto 的應用程式整合
+## <a name="enable-the-application-integration-for-panopto"></a>啟用 Panopto 的應用程式整合
 本節的目的是要說明如何啟用 Panopto 的應用程式整合。
 
 **若要啟用 Panopto 的應用程式整合，請執行下列步驟：**
@@ -66,10 +69,11 @@ ms.openlocfilehash: 90f962fbd19f125cfb609e439f157c4822acfce4
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Panopto 中進行驗證。  
 
-在此程序中，您必須建立 Base-64 編碼的憑證檔案。  
+在此程序中，您必須建立 Base-64 編碼的憑證檔案。 
+
 如果您不熟悉此程序，請參閱 [如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-**若要設定單一登入，請執行下列步驟：**
+**若要設定 SSO，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站的 [Panopto] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
@@ -111,21 +115,21 @@ ms.openlocfilehash: 90f962fbd19f125cfb609e439f157c4822acfce4
  ![儲存](./media/active-directory-saas-panopto-tutorial/IC777673.png "儲存")
 9. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
-   ![設定單一登入](./media/active-directory-saas-panopto-tutorial/IC777674.png "設定單一登入")
+  ![設定單一登入](./media/active-directory-saas-panopto-tutorial/IC777674.png "設定單一登入")
    
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
 沒有動作項目可讓您設定 Panopto 使用者佈建。  
 當指派的使用者嘗試使用存取面板登入 Panopto 時，Panopto 會檢查使用者是否存在。  
 
 如果尚無可用的使用者帳戶，Panopto 會自動予以建立。
 
-> [!NOTE]
-> 您可以使用任何其他的 Panopto 使用者帳戶建立工具或 Panopto 提供的 API，佈建 Azure AD 使用者帳戶。
-> 
+>[!NOTE]
+>您可以使用任何其他的 Panopto 使用者帳戶建立工具或 Panopto 提供的 API，佈建 Azure AD 使用者帳戶。
+>
+>
 
-
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 **若要將使用者指派給 Panopto，請執行下列步驟：**
@@ -138,11 +142,6 @@ ms.openlocfilehash: 90f962fbd19f125cfb609e439f157c4822acfce4
    
    ![是](./media/active-directory-saas-panopto-tutorial/IC767830.png "是")
 
-如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
+如果要測試您的 SSO 設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 

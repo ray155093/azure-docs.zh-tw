@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 7018320e601c1e8762e1c8fc409813a113a35044
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 20f60ccd9108a7473705c2368f28d3152d0dd614
+ms.lasthandoff: 04/07/2017
 
 ---
 
@@ -29,7 +29,7 @@ ms.lasthandoff: 03/06/2017
 
 ## <a name="scenario"></a>案例
 
-在本文中，我們將設定一個解決方案，讓您使用「彈性堆疊」將網路安全性群組流量記錄視覺化。  Logstash 輸入外掛程式會直接從為了容納流量記錄而設定的儲存體 blob 取得流量記錄。 然後，使用「彈性堆疊」，替流量記錄編製索引並用來建立 Kibana 儀表板，以將資訊視覺化。
+在本文中，我們將設定一個解決方案，讓您使用「彈性堆疊」將網路安全性群組流量記錄視覺化。  Logstash 輸入外掛程式會直接從為了容納流量記錄而設定的儲存體 Blob 取得流量記錄。 然後，使用「彈性堆疊」，替流量記錄編製索引並用來建立 Kibana 儀表板，以將資訊視覺化。
 
 ![案例][scenario]
 
@@ -88,7 +88,7 @@ ms.lasthandoff: 03/06/2017
     curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-5.2.0.deb
     sudo dpkg -i logstash-5.2.0.deb
     ```
-1. 接下來我們需要設定 Logstash 以從 eve.json 檔案的輸出讀取。 建立 logstash.conf 檔案，使用︰
+1. 接下來，我們必須設定 Logstash 以存取並剖析流量記錄。 建立 logstash.conf 檔案，使用︰
 
     ```
     sudo touch /etc/logstash/conf.d/logstash.conf
@@ -156,7 +156,7 @@ ms.lasthandoff: 03/06/2017
 
 ### <a name="install-the-logstash-input-plugin-for-azure-blob-storage"></a>安裝 Azure blob 儲存體的 Logstash 輸入外掛程式
 
-此 Logstash 外掛程式可讓您直接從指定的儲存體帳戶存取流量記錄。 若要安裝此外掛程式，請從預設的 Logstash 安裝目錄 (在此案例中為 /usr/share/logstash/bin) 執行下列命令：
+此 Logstash 外掛程式可讓您直接從流量記錄的指定儲存體帳戶存取它們。 若要安裝此外掛程式，請從預設的 Logstash 安裝目錄 (在此案例中為 /usr/share/logstash/bin) 執行下列命令：
 
 ```
 logstash-plugin install logstash-input-azureblob
@@ -168,7 +168,7 @@ logstash-plugin install logstash-input-azureblob
 sudo /etc/init.d/logstash start
 ```
 
-如需此外掛程式的詳細資訊，請參閱[這裡](https://github.com/Azure/azure-diagnostics-tools/tree/master/Logstash/logstash-input-azureblob)的文件。
+如需此外掛程式的詳細資訊，請參閱[這裡 (英文)](https://github.com/Azure/azure-diagnostics-tools/tree/master/Logstash/logstash-input-azureblob) 的文件
 
 ### <a name="install-kibana"></a>安裝 Kibana
 
@@ -209,27 +209,27 @@ sudo /etc/init.d/logstash start
 
 1. 一段時間各決策/方向的流量 - 顯示一段期間內流量數目的時間序列圖。 您可以編輯這些視覺效果的時間單位和範圍。 「各決策的流量」顯示允許或拒絕所做決策的比例，而「各方向的流量」則顯示輸入和輸出流量的比例。 使用這些視覺效果，您可以檢查一段時間的流量趨勢，並尋找任何突增狀況或不尋常的模式。
 
-  ![圖&2;][2]
+  ![圖 2][2]
 
 1. 各目的地/來源連接埠的流量 – 圓形圖，可顯示個別連接埠的流量分解。 在此檢視中，您可以查看最常使用的連接埠。 如果您按一下圓形圖內的特定連接埠，則儀表板的其餘部分會進一步篩選至該連接埠的流量。
 
-  ![圖&3;][3]
+  ![圖 3][3]
 
 1. 流量數目和最早記錄時間 – 顯示已記錄流量數目和最舊記錄擷取日期之計量。
 
-  ![圖&4;][4]
+  ![圖 4][4]
 
 1. 各 NSG 和規則的流量 – 長條圖，可顯示每個 NSG 內的流量分布，以及每個 NSG 內的規則。 您可以在這裡查看哪些 NSG 和規則產生最多流量。
 
-  ![圖&5;][5]
+  ![圖 5][5]
 
 1. 前 10 個來源/目的地 IP – 長條圖，可顯示前 10 個來源和目的地 IP。 您可以調整這些圖表以顯示更多或更少的 IP 排名。 您可以在這裡查看最常出現的 IP，以及針對每個 IP 進行的流量決策 (允許或拒絕)。
 
-  ![圖&6;][6]
+  ![圖 6][6]
 
 1. 流量 Tuple – 下表顯示每個流量 Tuple 內含的資訊，以及其對應的 NGS 和規則。
 
-  ![圖&7;][7]
+  ![圖 7][7]
 
 使用儀表板頂端的查詢列，您可以根據任何流量參數 (例如訂用帳戶識別碼、資源群組、規則或任何其他感興趣的變數)，進一步篩選儀表板。 如需 Kibana 查詢與篩選器的詳細資訊，請參閱[正式文件](https://www.elastic.co/guide/en/beats/packetbeat/current/kibana-queries-filters.html)
 

@@ -13,18 +13,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/24/2017
+ms.date: 03/30/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 25e266441e902a06d980b3b51abdd4fcf668d4d2
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 62586434f233b1d40b8a9efd539d1fcdca3bdec7
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="move-data-by-using-copy-activity"></a>使用複製活動來移動資料
 ## <a name="overview"></a>概觀
-在 Azure Data Factory 中，您可以使用「複製活動」將不同型態的資料從各種內部部署和雲端資料來源複製到 Azure。 複製資料之後，可以將它進一步轉換及進行分析。 您也可以使用「複製活動」來發佈商業智慧 (BI) 及應用程式使用情況的轉換和分析結果。
+在 Azure Data Factory 中，您可以使用「複製活動」在內部部署與雲端資料存放區之間複製資料。 複製資料之後，可以將它進一步轉換及進行分析。 您也可以使用「複製活動」來發佈商業智慧 (BI) 及應用程式使用情況的轉換和分析結果。
 
 ![複製活動的角色](media/data-factory-data-movement-activities/copy-activity.png)
 
@@ -62,17 +62,17 @@ ms.lasthandoff: 03/27/2017
 ## <a name="supported-data-stores-and-formats"></a>支援的資料存放區和格式
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
-如果您需要將資料移入/移出「複製活動」不支援的資料存放區，請在 Data Factory 中使用 **自訂活動** 搭配您自己的邏輯來複製/移動資料。 如需有關建立及使用自訂活動的詳細資料，請參閱 [在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)。
-
 ### <a name="supported-file-formats"></a>支援的檔案格式
-您可以使用「複製活動」在兩個檔案型資料存放區 (例如 Azure Blob、Azure Data Lake Store、Amazon S3、FTP、檔案系統及 HDFS) 之間**原封不動地複製檔案**。 若要這樣做，您可以略過輸入和輸出資料集定義中的 [format 區段](data-factory-create-datasets.md) 。 系統會有效率地複製資料，而不會進行任何序列化/還原序列化。
+您可以使用「複製活動」在兩個以檔案為基礎的資料存放區之間**依原樣複製檔案**，您可以在輸入和輸出資料集定義中略過[格式區段](data-factory-create-datasets.md)。 系統會有效率地複製資料，而不會進行任何序列化/還原序列化。
 
-複製活動也會以指定的格式讀取和寫入檔案：**文字、Avro、ORC、Parquet 和 JSON**，並支援 **GZip、Deflate、BZip2 和 ZipDeflate** 壓縮轉碼器。 您可以執行下列複製活動，例如：
+「複製活動」也會以指定的格式讀取和寫入檔案：**文字、JSON、Avro、ORC 和 Parquet**，並支援 **GZip、Deflate、BZip2 和 ZipDeflate** 壓縮轉碼器。 如需詳細資訊，請參閱[支援的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md)。
 
-* 從 Azure Blob 複製 GZip 壓縮文字 (CSV) 格式的資料，然後寫入 Azure SQL Database 中。
-* 從內部部署檔案系統複製文字 (CSV) 格式的檔案，然後以 Avro 格式寫入 Azure Blob 中。
+例如，您可以執行下列複製活動：
+
 * 複製內部部署 SQL Server 中的資料，然後以 ORC 格式寫入 Azure Data Lake Store。
+* 從內部部署檔案系統複製文字 (CSV) 格式的檔案，然後以 Avro 格式寫入 Azure Blob 中。
 * 從內部部署檔案系統複製壓縮檔，然後解壓縮到 Azure Data Lake Store。
+* 從 Azure Blob 複製 GZip 壓縮文字 (CSV) 格式的資料，然後寫入 Azure SQL Database 中。
 
 ## <a name="global"></a>全域可用的資料移動
 Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用。 不過，支援複製活動的服務可在下列區域和地理位置全域提供使用。 全域可用的拓撲可確保進行有效率的資料移動，通常可避免發生跨區域躍點的情況。 如需了解某區域中是否有 Data Factory 和「資料移動」可供使用，請參閱 [依區域提供的服務](https://azure.microsoft.com/regions/#services) 。
@@ -107,7 +107,7 @@ Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用�
 | &nbsp; | 印度西部 | 印度中部 |
 | &nbsp; | 印度南部 | 印度中部 |
 
-或者，您可以明確指出要用來執行複製的 Data Factory 服務區域，方法是指定複製活動 `typeProperties` 底下的 `executionLocation`屬性。 這個屬性支援的值詳列於上述**用於資料移動的區域**資料行。 請注意您的資料在複製期間會透過網路通過該區域。 例如，若要在韓國的 Azure 存放區之間複製，您可以將 `"executionLocation": "Japan East"` 指定為經過日本區域 (請參考[範例 JSON](#by-using-json-scripts))。
+或者，您可以明確指出要用來執行複製的 Data Factory 服務區域，方法是指定複製活動 `typeProperties` 底下的 `executionLocation`屬性。 這個屬性支援的值詳列於上述**用於資料移動的區域**資料行。 請注意，您的資料在複製期間會透過網路通過該區域。 例如，若要在韓國的 Azure 存放區之間複製，您可以將 `"executionLocation": "Japan East"` 指定為經過日本區域 (請參考[範例 JSON](#by-using-json-scripts))。
 
 > [!NOTE]
 > 如果目的地資料存放區的區域不在上述清單中，除非指定 `executionLocation`，否則「複製活動」預設將會失敗而不會搜查替代區域。 支援的區域清單將會隨著時間擴展。

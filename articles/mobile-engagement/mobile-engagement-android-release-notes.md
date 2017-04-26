@@ -12,16 +12,20 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-android
 ms.devlang: Java
 ms.topic: article
-ms.date: 08/10/2016
+ms.date: 03/30/2017
 ms.author: piyushjo
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: af776804affea5abe599594d7b486bbead982f3e
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: e50c1c70a4378560f8ce3182069cba4832fa4d22
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="release-notes"></a>版本資訊
+
+## <a name="424-03302017"></a>4.2.4 (03/30/2017)
+* 修正 Android 7 上的應用程式內通知文字色彩，使其與舊版 Android 上的色彩相同。
+
 ## <a name="423-08102016"></a>4.2.3 (08/10/2016)
 * 不會再鎖定 WIFI。
 * 修正在 init 之前呼叫 getDeviceId 時的死結問題 (4.2.0 中引進的錯誤)。

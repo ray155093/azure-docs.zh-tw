@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/03/2017
 ms.author: alainl
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 5649895d1ae39d9a7fa863407b5341f1cdf567ee
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: a5e84ded4e7b574a24583be507902f9537328153
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -29,10 +29,10 @@ Azure SQL Database 會在許多不同的相容性層級上以透明方式執行�
 
 當作歷程記錄的提醒，預設相容性層級的 SQL 版本比對如下︰
 
-* 100：在 SQL Server 2008 和 Azure SQL Database V11 中。
-* 110：在 SQL Server 2012 和 Azure SQL Database V11 中。
-* 120：在 SQL Server 2014 和 Azure SQL Database V12 中。
-* 130：在 SQL Server 2016 和 Azure SQL Database V12 中。
+* 100：在 SQL Server 2008 和 Azure SQL Database 中。
+* 110：在 SQL Server 2012 和 Azure SQL Database 中。
+* 120：在 SQL Server 2014 和 Azure SQL Database 中。
+* 130：在 SQL Server 2016 和 Azure SQL Database 中。
 
 > [!IMPORTANT]
 > **新建**資料庫的預設相容性層級為 130。
@@ -63,7 +63,7 @@ SELECT compatibility_level
   * 具有資料行存放區索引的資料表現在會以批次模式排序。
   * 時間範圍彙總現在以批次模式運作，例如 T-SQL LAG/LEAD 陳述式。
   * 具有多個不同子句的資料行存放區資料表會以批次模式進行查詢。
-  * 在 DOP =&1; 之下執行或具有序列計劃的查詢也會以批次模式執行。
+  * 在 DOP = 1 之下執行或具有序列計劃的查詢也會以批次模式執行。
 * 最後，基數估計改進將伴隨著相容性層級 120，但如果您是在較低的相容性層級 (也就是 100 或 110) 執行，移到相容性層級 130 也會帶來這些改進，而這些改進也有益於您應用程式的查詢效能。
 
 ## <a name="practicing-compatibility-level-130"></a>演練相容性層級 130
@@ -414,7 +414,7 @@ SET STATISTICS XML OFF;
 
 1. 請移到相容性層級 130，並查看如何執行動作。 如果您發現一些效能衰退，請將相容性層級設回其原始層級，或保留 130，而只讓基數估計回復到舊版模式 (如前文所述，這可獨力處理此問題)。
 2. 在正式推出前，您可在類似的生產負載之下徹底測試現有的應用程式、進行微調，以及驗證效能。 若有任何問題，如先前所述，您可以隨時回到原始的相容性層級，或讓基數估計回復到舊版模式。
-3. 做為處理這些問題的最後一個選項，最新的方法是使用「查詢存放區」。 這是現今的建議選項！ 為了協助分析在相容性層級 120 或更低層級與相容性層級 130 之下的查詢，我們非常鼓勵您使用查詢存放區。 查詢存放區適用於最新版的 Azure SQL Database V12，而且其設計用來協助您進行查詢效能疑難排解。 將查詢存放區視為您的資料庫的飛行資料記錄器，其可收集和呈現關於所有查詢的詳細歷程記錄資訊。 這可減少診斷和解決問題所需的時間，進而大幅簡化效能鑑識。 如需詳細資訊，請參閱 [查詢存放區︰您的資料庫的飛行資料記錄器](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database/)。
+3. 做為處理這些問題的最後一個選項，最新的方法是使用「查詢存放區」。 這是現今的建議選項！ 為了協助分析在相容性層級 120 或更低層級與相容性層級 130 之下的查詢，我們非常鼓勵您使用查詢存放區。 查詢存放區於最新版的 Azure SQL Database 中提供，而且是設計用來協助您進行查詢效能疑難排解。 將查詢存放區視為您的資料庫的飛行資料記錄器，其可收集和呈現關於所有查詢的詳細歷程記錄資訊。 這可減少診斷和解決問題所需的時間，進而大幅簡化效能鑑識。 如需詳細資訊，請參閱 [查詢存放區︰您的資料庫的飛行資料記錄器](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database/)。
 
 概括而言，如果您已經有一組在相容性層級 120 或更低層級執行的資料庫，並規劃將其中一些資料庫移到 130，或因為您的工作負載自動佈建預設為 130 的新資料庫，請考慮下列各項︰
 
@@ -432,7 +432,7 @@ SET STATISTICS XML OFF;
 * [部落格︰查詢存放區︰您的資料庫的飛行資料記錄器 (Borko Novakovic，2016 年 6 月 8 日)](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database/)
 * [ALTER DATABASE 相容性層級 (Transact-SQL)](https://msdn.microsoft.com/library/bb510680.aspx)
 * [ALTER DATABASE SCOPED CONFIGURATION](https://msdn.microsoft.com/library/mt629158.aspx)
-* [Azure SQL Database V12 的相容性層級 130](https://azure.microsoft.com/updates/compatibility-level-130-for-azure-sql-database-v12/)
+* [Azure SQL Database 的相容性層級 130](https://azure.microsoft.com/updates/compatibility-level-130-for-azure-sql-database-v12/)
 * [使用 SQL Server 2014 基數估計器 (CE) 來最佳化查詢計劃](https://msdn.microsoft.com/library/dn673537.aspx)
 * [資料行存放區索引指南](https://msdn.microsoft.com/library/gg492088.aspx)
 * [落格︰改善 Azure SQL Database 中相容性層級 130 的查詢效能 (Alain Lissoir，2016 年 5 月 6 日)](https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/05/06/improved-query-performance-with-compatibility-level-130-in-azure-sql-database/)

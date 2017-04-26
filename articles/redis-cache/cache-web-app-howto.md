@@ -718,7 +718,7 @@ ms.lasthandoff: 04/06/2017
 ![部署至 Azure][cache-deploy-to-azure-step-1]
 
 1. 在 [基本] 區段中，選取要使用的 Azure 訂用帳戶，然後選取現有資源群組或建立新的資源群組，並指定資源群組的位置。
-2. 在 [設定] 區段中，指定 [系統管理員登入] (請勿使用 **admin**)、[系統管理員登入密碼] 和 [資料庫名稱]。 其他參數則針對免費的 App Service 主控方案進行設定，至於 SQL Database 和 Azure Redis 快取請設定較低成本選項，因為免費層不提供這兩種服務。
+2. 在 [設定] 區段中，指定 [系統管理員登入] \(請勿使用 **admin**)、[系統管理員登入密碼] 和 [資料庫名稱]。 其他參數則針對免費的 App Service 主控方案進行設定，至於 SQL Database 和 Azure Redis 快取請設定較低成本選項，因為免費層不提供這兩種服務。
 
     ![部署至 Azure][cache-deploy-to-azure-step-2]
 
@@ -802,7 +802,7 @@ ms.lasthandoff: 04/06/2017
 一旦您選取或建立了要使用的快取，請瀏覽至 Azure 入口網站中的快取，並擷取快取的[主機名稱](cache-configure.md#properties)和[存取金鑰](cache-configure.md#access-keys)。 如需相關指示，請參閱 [設定 Redis 快取設定](cache-configure.md#configure-redis-cache-settings)。
 
 1. 使用您選擇的編輯器開啟本教學課程的[設定應用程式以使用 Redis 快取](#configure-the-application-to-use-redis-cache)步驟期間建立的 `WebAppPlusCacheAppSecrets.config` 檔案。
-2. 編輯 `value` 屬性，並將 `MyCache.redis.cache.windows.net` 取代為快取的[](cache-configure.md#properties)，然後將快取的[主要或次要金鑰](cache-configure.md#access-keys)指定為密碼。
+2. 編輯 `value` 屬性，並將 `MyCache.redis.cache.windows.net` 取代為快取的[主機名稱](cache-configure.md#properties)，然後將快取的[主要或次要金鑰](cache-configure.md#access-keys)指定為密碼。
 
     ```xml
     <appSettings>

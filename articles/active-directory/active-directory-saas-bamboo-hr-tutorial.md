@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/10/2017
+ms.date: 03/23/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 308c9f4d59f6c6981af74f4208c9963e3d0102dd
-ms.openlocfilehash: 6644afc1de68230ccca089529b32195c4c8ddfe7
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: e190cfdf6d7a9dee86ed7b9072dc51ca8c993d32
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 02/17/2017
 本教學課程中說明的案例由下列建置組塊組成：
 
 * 啟用 BambooHR 的應用程式整合
-* 設定單一登入
+* 設定單一登入 (SSO)
 * 設定使用者佈建
 * 指派使用者
 
@@ -96,10 +96,10 @@ ms.lasthandoff: 02/17/2017
    ![SAML 單一登入](./media/active-directory-saas-bamboo-hr-tutorial/IC796692.png "SAML 單一登入")
    
    1. 在 Azure 傳統入口網站的 [在 BambooHR 設定單一登入] 對話頁面上，複製 [單一登入服務 URL] 值，然後將它貼至 [SSO 登入 URL] 文字方塊中。
-   2. 從您下載的憑證建立「Base-64 編碼」  檔案。  
+   2. 從您下載的憑證建立「Base-64 編碼」檔案。  
    
       >[!TIP]
-      >如需詳細資訊，請參閱 [如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。 
+      >如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。 
       > 
    3. 在記事本中開啟您的 base-64 編碼的憑證，將其內容複製到您的剪貼簿，然後貼到 [X.509 憑證]  文字方塊中
    4. 按一下 [儲存] 。
@@ -128,7 +128,7 @@ ms.lasthandoff: 02/17/2017
 >您可以使用任何其他的 BambooHR 使用者帳戶建立工具或 BambooHR 提供的 API 來佈建 AAD 使用者帳戶。 
 > 
 
-## <a name="assig-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 **若要指派使用者給 BambooHR，請執行下列步驟：**
@@ -141,6 +141,6 @@ ms.lasthandoff: 02/17/2017
    
    ![是](./media/active-directory-saas-bamboo-hr-tutorial/IC767830.png "是")
 
-如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的 SSO 設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 

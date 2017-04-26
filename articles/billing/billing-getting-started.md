@@ -1,6 +1,6 @@
 ---
-title: "Azure 計費與成本管理指引 | Microsoft Docs"
-description: "深入了解最佳化帳單的最佳做法與首要措施"
+title: "避免意外的成本、管理計費 - Azure | Microsoft Docs"
+description: "了解如何避免 Azure 帳單上的意外費用。 使用 Microsoft Azure 訂用帳戶的成本追蹤與管理功能。"
 services: 
 documentationcenter: 
 author: jlian
@@ -16,9 +16,9 @@ ms.workload: na
 ms.date: 03/20/2017
 ms.author: jlian
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: af53cea83d2e348b2c73e56cf4b6ce5a875bce18
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: c69334279e79352e3f7ad58d356f6891dd060b0a
+ms.lasthandoff: 04/03/2017
 
 
 ---

@@ -12,12 +12,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 03/21/2017
+ms.date: 04/12/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: afdbd737be96acbcf2883c644bfbbb741fe94179
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 831ce961992747de87706c3dde24b812a281c23a
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -50,7 +50,7 @@ ms.lasthandoff: 03/22/2017
 * [Azure Redis 快取效能](#azure-redis-cache-performance)
 * [我應該在哪個區域找到快取？](#in-what-region-should-i-locate-my-cache)
 * [Azure Redis 快取如何收費？](#how-am-i-billed-for-azure-redis-cache)
-* [是否可以搭配使用 Azure Redis 快取與 Azure Government 雲端或 Azure 中國雲端？](#can-i-use-azure-redis-cache-with-azure-government-cloud-or-azure-china-cloud)
+* [是否可以搭配 Azure Government 雲端、Azure 中國雲端或 Microsoft Azure (德國) 使用 Azure Redis 快取？](#can-i-use-azure-redis-cache-with-azure-government-cloud-azure-china-cloud-or-microsoft-azure-germany)
 
 ## <a name="development-faqs"></a>開發常見問題集
 * [StackExchange.Redis 設定選項的作用為何？](#what-do-the-stackexchangeredis-configuration-options-do)
@@ -162,15 +162,29 @@ Azure Redis 快取是以常用的開放原始碼 [Redis 快取](http://redis.io)
 ### <a name="how-am-i-billed-for-azure-redis-cache"></a>Azure Redis 快取如何收費？
 [此處](https://azure.microsoft.com/pricing/details/cache/)提供 Azure Redis 快取價格。 定價頁面所列的價格為每小時的費率。 快取是根據從建立快取到刪除快取的時間，以分鐘為單位來收費。 沒有用於停止或暫停快取收費的選項。
 
-## <a name="can-i-use-azure-redis-cache-with-azure-government-cloud-or-azure-china-cloud"></a>是否可以搭配使用 Azure Redis 快取與 Azure Government 雲端或 Azure 中國雲端？
-是，Azure Government 雲端和 Azure 中國雲端皆可以使用 Azure Redis 快取。 相較於 Azure 公用雲端，Azure Government 雲端和 Azure 中國雲端中用來存取和管理 Azure Redis 快取的 URL 並不相同。 如需搭配使用 Azure Redis 快取與 Azure Government 雲端及 Azure 中國雲端時的考量詳細資訊，請參閱 [Azure Government 資料庫 - Azure Redis 快取](../azure-government/documentation-government-services-database.md#azure-redis-cache)和 [Azure 中國雲端 - Azure Redis 快取](https://www.azure.cn/documentation/services/redis-cache/)。
+### <a name="can-i-use-azure-redis-cache-with-azure-government-cloud-azure-china-cloud-or-microsoft-azure-germany"></a>是否可以搭配 Azure Government 雲端、Azure 中國雲端或 Microsoft Azure (德國) 使用 Azure Redis 快取？
+是，Azure Government 雲端、Azure 中國雲端與 Microsoft Azure (德國) 提供 Azure Redis 快取。 相較於 Azure 公用雲端，這些雲端中用來存取及管理 Azure Redis 快取的 URL 並不相同。 
 
-如需在 Azure Government 雲端和 Azure 中國雲端中搭配使用 Azure Redis 快取和 PowerShell 的資訊，請參閱[如何連線至 Azure Government 雲端或 Azure 中國雲端](cache-howto-manage-redis-cache-powershell.md#how-to-connect-to-azure-government-cloud-or-azure-china-cloud)。
+| 雲端   | Redis 的 DNS 尾碼            |
+|---------|---------------------------------|
+| 公開  | *.redis.cache.windows.net       |
+| US Gov  | *.redis.cache.usgovcloudapi.net |
+| 德國 | *.redis.cache.cloudapi.de       |
+| 中國   | *.redis.cache.chinacloudapi.cn  |
+
+如需搭配其他雲端使用 Azure Redis 快取的考量，請參閱下列連結。
+
+- [Azure Government 資料庫 - Azure Redis 快取](../azure-government/documentation-government-services-database.md#azure-redis-cache)
+- [Azure 中國雲端 - Azure Redis 快取](https://www.azure.cn/documentation/services/redis-cache/)
+- [Microsoft Azure (德國)](https://azure.microsoft.com/overview/clouds/germany/)
+
+如需有關在 Azure Government 雲端、Azure 中國雲端或 Microsoft Azure (德國) 中搭配 PowerShell 使用 Azure Redis 快取的詳細資訊，請參閱[如何連線到其他雲端 - Azure Redis 快取 PowerShell](cache-howto-manage-redis-cache-powershell.md#how-to-connect-to-other-clouds)。
+
 
 <a name="cache-configuration"></a>
 
 ### <a name="what-do-the-stackexchangeredis-configuration-options-do"></a>StackExchange.Redis 設定選項的作用為何？
-StackExchange.Redis 有許多選項。 本節談論一些常見設定。 如需 StackExchange.Redis 選項的詳細資訊，請參閱 [StackExchange.Redis 設定](https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Configuration.md)。
+StackExchange.Redis 有許多選項。 本節談論一些常見設定。 如需 StackExchange.Redis 選項的詳細資訊，請參閱 [StackExchange.Redis 設定](https://stackexchange.github.io/StackExchange.Redis/Configuration)。
 
 | ConfigurationOptions | 說明 | 建議 |
 | --- | --- | --- |

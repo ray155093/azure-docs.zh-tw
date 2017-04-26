@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 2/24/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 02d810db5433370802b866424c24464d64171ef0
-ms.openlocfilehash: 6921965c3286209e024ba59637da0c485b4a0c71
-ms.lasthandoff: 02/01/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 14b7900a8b4fbf86e8a814def6fa8c7915832376
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -45,7 +45,7 @@ Data Factory 可在**美國西部**和**北歐**地區使用。 資料處理站�
 請參閱〈 **Azure 訂用帳戶和服務限制、配額及條件約束** 〉中的〈 [Azure Data Factory 限制](../azure-subscription-service-limits.md#data-factory-limits) 〉章節。
 
 ### <a name="what-is-the-authoringdeveloper-experience-with-azure-data-factory-service"></a>Azure Data Factory 服務的撰寫/開發人員經驗為何？
-您可以使用下列其中一項來撰寫/建立資料處理站：
+您可以使用下列其中一個工具/SDK 來製作/建立資料處理站：
 
 * **Azure 入口網站**
     Azure 入口網站中的 Data Factory 刀鋒視窗提供豐富的使用者介面，可讓您建立 Data Factory 和連結的服務。 **Data Factory 編輯器**也是入口網站的一部分，讓您透過指定成品的 JSON 定義，輕鬆建立連結服務、資料表、資料集和管線。 如需使用入口網站/編輯器來建立和部署 Data Factory 的範例，請參閱 [使用 Azure 入口網站建置您的第一個資料管線](data-factory-build-your-first-pipeline-using-editor.md) 。
@@ -64,7 +64,7 @@ Data Factory 可在**美國西部**和**北歐**地區使用。 資料處理站�
 否。 和其他 Azure 資源一樣，您無法變更 Azure Data Factory 的名稱。
 
 ### <a name="can-i-move-a-data-factory-from-one-azure-subscription-to-another"></a>我是否可以將 Data Factory 從一個 Azure 訂用帳戶移至另一個訂用帳戶？
-是。 請使用您 Data Factory 刀鋒視窗上的 [移動]  按鈕，如下圖所示。
+是。 請使用您資料處理站刀鋒視窗上的 [移動] 按鈕，如下圖所示：
 
 ![移動 Data Factory](media/data-factory-faq/move-data-factory.png)
 
@@ -76,8 +76,11 @@ Data Factory 可在**美國西部**和**北歐**地區使用。 資料處理站�
 | [隨選 HDInsight 叢集](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)或[您自己的 HDInsight 叢集](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) |[DotNet](data-factory-use-custom-activities.md)、[Hive](data-factory-hive-activity.md)、[Pig](data-factory-pig-activity.md)、[MapReduce](data-factory-map-reduce.md)、[Hadoop 串流](data-factory-hadoop-streaming-activity.md) |
 | [Azure Batch](data-factory-compute-linked-services.md#azure-batch-linked-service) |[DotNet](data-factory-use-custom-activities.md) |
 | [Azure Machine Learning](data-factory-compute-linked-services.md#azure-machine-learning-linked-service) |[Machine Learning 活動︰批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) |
-| [Azure 資料湖分析](data-factory-compute-linked-services.md#azure-data-lake-analytics-linked-service) |[資料湖分析 U-SQL](data-factory-usql-activity.md) |
+| [Azure Data Lake Analytics](data-factory-compute-linked-services.md#azure-data-lake-analytics-linked-service) |[Data Lake Analytics U-SQL](data-factory-usql-activity.md) |
 | [Azure SQL](data-factory-compute-linked-services.md#azure-sql-linked-service)、[Azure SQL 資料倉儲](data-factory-compute-linked-services.md#azure-sql-data-warehouse-linked-service)、[SQL Server](data-factory-compute-linked-services.md#sql-server-linked-service) |[預存程序](data-factory-stored-proc-activity.md) |
+
+### <a name="how-does-azure-data-factory-compare-with-sql-server-integration-services-ssis"></a>Azure Data Factory 相較於 SQL Server Integration Services (SSIS) 有何異同？ 
+請參閱由我們的 MVP (最有價值專家) Reza Rad 所撰寫的 [Azure Data Factory 與SSIS 的比較 (英文)](http://www.sqlbits.com/Sessions/Event15/Azure_Data_Factory_vs_SSIS)。 Data Factory 中的某些最近變更可能未列於投影片組中。 我們會持續新增更多功能到 Azure Data Factory。 我們會持續新增更多功能到 Azure Data Factory。 我們會在今年將這些更新整合到 Microsoft 的資料整合技術比較中。   
 
 ## <a name="activities---faq"></a>活動 - 常見問題集
 ### <a name="what-are-the-different-types-of-activities-you-can-use-in-a-data-factory-pipeline"></a>您可以在 Data Factory 管線中使用的不同類型活動有哪些？
@@ -158,7 +161,7 @@ Pipeline 1: dataset4->activity4->dataset5
     "offset": "06:00:00"
 }
 ```
-每日配量於 **上午&6; 點** (而非預設的午夜) 開始。     
+每日配量於 **上午 6 點** (而非預設的午夜) 開始。     
 
 ### <a name="how-can-i-rerun-a-slice"></a>如何重新執行配量？
 您可以利用下列方式之一來重新執行配量：

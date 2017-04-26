@@ -13,13 +13,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/07/2017
+ms.date: 03/27/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 0051bbeaac458e8df07e5c7aa186fbefb526f50e
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: f02fbbfb0e8704445d9bfdaba634dbf558ceef02
+ms.lasthandoff: 04/07/2017
 
 ---
 
@@ -30,7 +30,7 @@ ms.lasthandoff: 03/15/2017
 * 開啟 [Windows 服務] 主控台並確認 [Microsoft AAD 應用程式 Proxy 連接器]  服務已啟用並在執行中。 您也可以查看應用程式 Proxy 服務屬性頁面，如下圖所示：  
   ![[Microsoft AAD 應用程式 Proxy 連接器屬性] 視窗螢幕擷取畫面](./media/active-directory-application-proxy-troubleshoot/connectorproperties.png)
 * 開啟 [事件檢視器]，然後在 [應用程式及服務記錄檔] > [Microsoft] > [AadApplicationProxy] > [Connector] > [Admin] 中尋找「應用程式 Proxy」連接器事件。
-* 如有需要，開啟分析和偵錯記錄檔及開啟應用程式 Proxy 連接器工作階段記錄檔，即可取得更詳細的記錄檔。
+* 如有需要，請透過[開啟應用程式 Proxy 連接器工作階段記錄檔](application-proxy-understand-connectors.md#under-the-hood)，來取得更詳細的記錄檔。
 
 如需 Azure AD 疑難排解工具的詳細資訊，請參閱[用於驗證連接器網路必要條件的疑難排解工具](https://blogs.technet.microsoft.com/applicationproxyblog/2015/09/03/troubleshooting-tool-to-validate-connector-networking-prerequisites)。
 

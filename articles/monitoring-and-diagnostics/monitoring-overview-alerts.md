@@ -16,9 +16,9 @@ ms.date: 03/02/2017
 ms.author: robb
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: c9065c3346c924ea21060c9e7e5b297a3cb26941
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 76c8feb077cca27dc96f43e708cdef4fbb0f824c
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -44,9 +44,9 @@ ms.lasthandoff: 03/09/2017
 您可能會根據下列條件收到警示︰
 
 * **度量值**：當指定的度量值超出您在任一方向指派的閾值時會觸發這個警示。 也就是說，當先符合條件而之後該條件不再符合時，兩方面皆會觸發。 Azure 監視器所支援的可用度量清單會不斷成長，如需此清單，請參閱 [Azure 監視器上支援的度量清單](monitoring-supported-metrics.md)。
-* **活動記錄事件**：這個警示可觸發每一個事件，或是僅在發生特定事件數目時才觸發。
+* **活動記錄事件**：此警示可以在特定事件於資源上發生時觸發，或是在服務通知張貼至您的訂用帳戶時觸發。
 
-## <a name="what-can-alerts-do"></a>警示可執行的作業為何？
+## <a name="what-can-metric-alerts-do"></a>計量警示可以做什麼？
 您可以設定警示來執行下列動作︰
 
 * 將電子郵件通知傳送至服務管理員、共同管理員或您指定的其他電子郵件。
@@ -56,12 +56,27 @@ ms.lasthandoff: 03/09/2017
     - Azure 邏輯應用程式
     - 第三方服務
 
+## <a name="what-can-activity-log-alerts-do"></a>活動記錄警示可以做什麼？
+您可以設定警示來執行下列動作︰
+* 在特定事件於您訂用帳戶下的其中一個資源上發生時觸發
+* 在服務通知張貼至您的訂用帳戶時觸發
+* 透過下列方式對動作群組的成員發出警示：
+    * sms
+    * 電子郵件
+    * Webhook
 
 ## <a name="next-steps"></a>後續步驟
 使用下列項目取得有關警示規則和設定這些規則的資訊：
 
-* [Azure 入口網站](insights-alerts-portal.md)
-* [PowerShell](insights-alerts-powershell.md)
-* [命令列介面 (CLI)](insights-alerts-command-line-interface.md)
-* [Azure 監視器 REST API](https://msdn.microsoft.com/library/azure/dn931945.aspx)
+* 深入了解[計量](monitoring-overview-metrics.md)
+* [透過 Azure 入口網站設定計量警示](insights-alerts-portal.md)
+* [透過 PowerShell 設定計量警示](insights-alerts-powershell.md)
+* [透過命令列介面 (CLI) 設定計量警示](insights-alerts-command-line-interface.md)
+* [透過 Azure 監視器 REST API 設定計量警示](https://msdn.microsoft.com/library/azure/dn931945.aspx)
+* 深入了解[活動記錄](monitoring-overview-activity-logs.md)
+* [透過 Azure 入口網站設定活動記錄警示](monitoring-activity-log-alerts.md)
+* [透過 Resource Manager 設定活動記錄警示](monitoring-create-activity-log-alerts-with-resource-manager-template.md)
+* 檢閱[活動記錄警示 webhook 結構描述](monitoring-activity-log-alerts-webhook.md)
+* 深入了解[服務通知](monitoring-service-notifications.md)
+* 深入了解[動作群組](monitoring-action-groups.md)
 

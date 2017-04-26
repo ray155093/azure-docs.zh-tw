@@ -14,14 +14,15 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
-ms.openlocfilehash: 3cd588751346517f9359f760561839339b0f9edb
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 2e1915f017db8286b8a381aacf62205f3d34bcc9
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="securing-access-to-azure-remoteapp-and-beyond"></a>保護 Azure RemoteApp 的存取，且後續將會推出更多功能
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
@@ -34,7 +35,7 @@ ms.openlocfilehash: 3cd588751346517f9359f760561839339b0f9edb
 請繼續閱讀後續內容以了解相關資訊和上述問題的解答。
 
 ## <a name="who-can-access-the-collection"></a>誰可以存取集合？
-系統管理員必須選擇可存取集合中的遠端應用程式的使用者。 您可以使用 Azure Active Directory (Azure AD) 的工作或學校帳戶 (先前稱為「組織帳戶」) 或 Microsoft 帳戶 (例如 @outlook.com).大多數企業案例使用 Azure AD 帳戶，此帳戶可讓您使用稍後會討論到的條件式存取功能，而且也是已加入網域之集合唯一能選擇的帳戶。 本文其餘部分假設您使用 Azure AD 帳戶和 Azure RemoteApp。
+系統管理員必須選擇可存取集合中的遠端應用程式的使用者。 您可以使用 Azure Active Directory (Azure AD) 的公司或學校帳戶 (先前稱為「組織帳戶」) 或 Microsoft 帳戶 (例如 @outlook.com)。 大多數企業案例是使用 Azure AD 帳戶，此帳戶可讓您使用稍後會討論到的條件式存取功能，也是已加入網域之集合唯一能選擇的帳戶。 本文其餘部分假設您使用 Azure AD 帳戶和 Azure RemoteApp。
 
 **我們已完成的工作：**
 
@@ -115,10 +116,5 @@ Azure RemoteApp 支援兩種集合部署類型，您可以在其中提供您自�
 下圖顯示完整的解決方案，我們在其中建置了起自使用者、經過 Azure RemoteApp (ARA)，並於最後進入後端資源的安全存取通道。
 ![保護 Azure RemoteApp](./media/remoteapp-secureaccess/ra-secureoverview.png) 在階段 1 中，我們已選取使用者，並建立了控制 ARA 存取方式的存取規則。 在下面的範例中，我們只允許從公司網路進行工作的使用者進行存取。 不符合此規定的使用者將完全無法存取 ARA 環境。
 在「階段 2」中，我們公開了後端資源，但只能透過我們所控制的 VNet/VPN 組態來存取。 Azure RemoteApp 已放置於相同的 VNet。 最終結果是只能透過 ARA 環境存取資源。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

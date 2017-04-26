@@ -13,12 +13,12 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 03/05/2017
+ms.date: 04/05/2017
 ms.author: heidist
 translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: e0de3b12b98bf9bf361607dac4b087e4eacabf1e
-ms.lasthandoff: 03/06/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: ab914153df01c6d8135732bc772b78066e14d1d1
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -26,9 +26,8 @@ ms.lasthandoff: 03/06/2017
 > [!div class="op_single_selector"]
 > * [入口網站](search-manage.md)
 > * [PowerShell](search-manage-powershell.md)
-> * [REST API](search-get-started-management-api.md)
-> 
-> 
+> * [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.management.search)
+> * [Python (英文)](https://pypi.python.org/pypi/azure-mgmt-search/0.1.0)> 
 
 Azure 搜尋服務是完全受管理、以雲端為基礎的搜尋服務，用來在自訂應用程式內建置豐富的搜尋經驗。 本文章涵蓋服務管理  工作，可供您在 [Azure 入口網站](https://portal.azure.com)中針對已佈建的搜尋服務執行。 *Service administration* 原先的設計是輕量級的，限制為下列工作︰
 
@@ -74,7 +73,7 @@ Azure 搜尋服務不會透過入口網站或程式設計介面公開個別服�
 就關於您服務的一般資訊而言，您可以透過下列方式取得資訊︰
 
 * 在入口網站中、在服務儀表板上、透過通知、屬性和狀態訊息。
-* 使用 [PowerShell](search-manage-powershell.md) 或 [Management REST API](https://msdn.microsoft.com/library/azure/dn832684.aspx) 來[取得服務屬性](https://msdn.microsoft.com/library/azure/dn832694.aspx)，或索引資源使用狀況的狀態。
+* 使用 [PowerShell](search-manage-powershell.md) 或 [Management REST API](https://docs.microsoft.com/rest/api/searchmanagement/) 來[取得服務屬性](https://docs.microsoft.com/rest/api/searchmanagement/services)，或索引資源使用狀況的狀態。
 * 如先前所述，透過[搜尋流量分析](search-traffic-analytics.md)。
 
 <a id="manage-keys"></a>
@@ -89,7 +88,7 @@ API 金鑰是由隨機產生的數字和字母所組成的字串。 它僅會由
 * 管理員 (適用於服務的任何讀寫作業)
 * 查詢 (適用於唯讀作業，例如針對索引的查詢)
 
-與當佈建服務時會建立管理員 API 金鑰。 有兩個管理員金鑰，指定為主要和次要以將它們保持在各自的位置，但事實上，它們是可互換。 每個服務有兩個管理員金鑰，以便您在轉換其中一個時不會無法存取您的服務。 您可以重新產生任何一種管理員金鑰，但您無法增加管理員金鑰的總數量。 每個搜尋服務最多有&2; 個管理員金鑰。
+與當佈建服務時會建立管理員 API 金鑰。 有兩個管理員金鑰，指定為主要和次要以將它們保持在各自的位置，但事實上，它們是可互換。 每個服務有兩個管理員金鑰，以便您在轉換其中一個時不會無法存取您的服務。 您可以重新產生任何一種管理員金鑰，但您無法增加管理員金鑰的總數量。 每個搜尋服務最多有 2 個管理員金鑰。
 
 查詢金鑰是專為直接呼叫搜尋的用戶端應用程式所設計。 您最多可以建立 50 個查詢金鑰。 在應用程式程式碼中，您可以指定搜尋 URL 和查詢 API 金鑰以允許唯讀存取服務。 應用程式程式碼也會指定應用程式所使用的索引。 端點、可供唯讀存取的 API 金鑰以及目標索引共同定義來自用戶端應用程式連接的範圍和存取層級。
 
@@ -116,8 +115,8 @@ API 金鑰是由隨機產生的數字和字母所組成的字串。 它僅會由
 
 使用搜尋服務 API 可取得文件和索引的計數。 根據價格層不同，會有些與這些計數相關聯的固定限制。 如需詳細資訊，請參閱[搜尋服務限制](search-limits-quotas-capacity.md)。 
 
-* [取得索引統計資料](http://msdn.microsoft.com/library/dn798942.aspx)
-* [文件計數](http://msdn.microsoft.com/library/dn798924.aspx)
+* [取得索引統計資料](https://docs.microsoft.com/rest/api/searchservice/Get-Index-Statistics)
+* [文件計數](https://docs.microsoft.com/rest/api/searchservice/count-documents)
 
 > [!NOTE]
 > 快取行為可暫時放寬限制。 例如，使用共用服務時，您可能會看到文件計數超過固定限制的 10,000 份文件。 這種「超出限制」是暫時的，並且將會在下一次的限制強制檢核中偵測出來。 
@@ -170,7 +169,7 @@ API 金鑰是由隨機產生的數字和字母所組成的字串。 它僅會由
 
 沒有任何偵測方法可告訴您哪個索引分區儲存在哪個特定資料分割中。 每個資料分割提供大約 25 GB 的儲存體，因此您需要將儲存體減少至可讓您擁有的資料分割數量所能容納的大小。 如果您想還原成一個資料分割，所有 12 個分區皆要能符合。
 
-若要協助進行未來規劃，您可能需要檢查儲存體 (使用[取得索引統計資料](http://msdn.microsoft.com/library/dn798942.aspx)) 以了解實際上您可以使用的空間大小。 
+若要協助進行未來規劃，您可能需要檢查儲存體 (使用[取得索引統計資料](https://docs.microsoft.com/rest/api/searchservice/Get-Index-Statistics)) 以了解實際上您可以使用的空間大小。 
 
 <a id="advanced-deployment"></a>
 
@@ -187,7 +186,6 @@ API 金鑰是由隨機產生的數字和字母所組成的字串。 它僅會由
 一旦您了解服務管理相關的作業類型後，請考慮適用於服務管理的各種方法︰
 
 * [PowerShell](search-manage-powershell.md)
-* [管理 REST API](search-get-started-management-api.md)
 
 此外，如果您還沒有這麼做，請看看[效能與最佳化文章](search-performance-optimization.md)，並選擇性地觀看如前一節所述的影片，以取得建議技術的深入探討和示範。
 

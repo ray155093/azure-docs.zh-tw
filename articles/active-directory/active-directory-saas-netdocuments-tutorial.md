@@ -11,11 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/26/2017
+ms.date: 03/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: bd503bb141b5686f149c5fb46ba069db070d5fae
-ms.openlocfilehash: 99dbb3deefb066b619b839aa709fe5e9b804eb27
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: a6ca819329de130257ec67e63a53f87cbca9f39b
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -30,7 +31,7 @@ ms.openlocfilehash: 99dbb3deefb066b619b839aa709fe5e9b804eb27
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 NetDocuments 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
@@ -61,13 +62,13 @@ ms.openlocfilehash: 99dbb3deefb066b619b839aa709fe5e9b804eb27
    
    ![NetDocuments](./media/active-directory-saas-netdocuments-tutorial/IC795042.png "NetDocuments")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 NetDocuments 中進行驗證。  
 
-設定 NetDocuments 的單一登入需要您從憑證抓取指紋值。 如果您不熟悉這個程序，請參閱 [如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
+設定 NetDocuments 的 SSO 需要您從憑證擷取指紋值。 如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-**若要設定單一登入，請執行下列步驟：**
+**若要設定 SSO，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站的 [NetDocuments] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
@@ -82,10 +83,11 @@ ms.openlocfilehash: 99dbb3deefb066b619b839aa709fe5e9b804eb27
    1. 在 [登入 URL] 文字方塊中輸入使用者用來登入 NetDocuments 應用程式的 URL (例如："*https://vault.netvoyage.com/neWeb2/docCent.aspx?whr=CA-JI1BG3H1*")。
    2. 在 [NetDocuments 回覆 URL] 文字方塊中，輸入您在 [登入 URL] 文字方塊中輸入的相同值。  
       
-      > [!NOTE]
-      > 您可以在 [同盟識別身分] 對話方塊結尾找到正確值 (請參閱步驟 9 的螢幕擷取畫面)。
-      > 
-      
+      >[!NOTE]
+      >您可以在 [同盟識別身分] 對話方塊結尾找到正確值 (請參閱步驟 9 的螢幕擷取畫面)。
+      >
+      >
+     
    3. 按 [下一步] 。
 4. 在 [設定在 NetDocuments 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在本機電腦上。
    
@@ -109,7 +111,7 @@ ms.openlocfilehash: 99dbb3deefb066b619b839aa709fe5e9b804eb27
     
     ![設定單一登入](./media/active-directory-saas-netdocuments-tutorial/IC795050.png "設定單一登入")
     
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
 為了讓 Azure AD 使用者能夠登入 NetDocuments，必須將他們佈建到 NetDocuments 中。 在 NetDocuments 的情況下，需以手動方式佈建。
 
@@ -126,33 +128,32 @@ ms.openlocfilehash: 99dbb3deefb066b619b839aa709fe5e9b804eb27
    
    ![電子郵件地址](./media/active-directory-saas-netdocuments-tutorial/IC795053.png "電子郵件地址")
    
-   > [!NOTE]
-   > Azure Active Directory 帳戶的持有者會收到一封電子郵件，其中中包含在帳戶變成作用中之前確認帳戶的連結。
+   >[!NOTE]
+   >Azure Active Directory 帳戶的持有者會收到一封電子郵件，其中中包含在帳戶變成作用中之前確認帳戶的連結。
    > 
    > 
 
-> [!NOTE]
-> 您可以使用任何其他的 NetDocuments 使用者帳戶建立工具或 NetDocuments 提供的 API 來佈建 AAD 使用者帳戶。
-> 
+>[!NOTE]
+>您可以使用任何其他的 NetDocuments 使用者帳戶建立工具或 NetDocuments 提供的 API 來佈建 AAD 使用者帳戶。
+>
+>
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 **若要將使用者指派給 NetDocuments，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站中建立測試帳戶。
-2. 在 [NetDocuments] 應用程式整合頁面，按一下 [指派使用者]。
+2. 在 [NetDocuments] 應用程式整合頁面上，按一下 [指派使用者]。
    
    ![指派使用者](./media/active-directory-saas-netdocuments-tutorial/IC795054.png "指派使用者")
 3. 選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
    
    ![是](./media/active-directory-saas-netdocuments-tutorial/IC767830.png "是")
 
-如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的 SSO 設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
+## <a name="additional-resources"></a>其他資源
 
-
-
-<!--HONumber=Feb17_HO1-->
-
-
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)

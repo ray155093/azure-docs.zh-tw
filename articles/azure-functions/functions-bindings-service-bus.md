@@ -14,19 +14,19 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 10/31/2016
+ms.date: 04/01/2017
 ms.author: chrande; glenga
 translationtype: Human Translation
-ms.sourcegitcommit: 6aed248b91d25572c4eae691f4e5392e37c01400
-ms.openlocfilehash: e2d81d140c194a33ea6f1462effb09a9e283d3af
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 6644f6b879e48787249111c5e02b75b963f1e1cd
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="azure-functions-service-bus-bindings"></a>Azure Functions 服務匯流排繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-這篇文章說明如何在 Azure Functions 中為 Azure 服務匯流排繫結進行設定及撰寫程式碼。 Azure Functions 支援通知中樞佇列和主題的觸發程序和輸出繫結。
+此文章說明如何在 Azure Functions 中設定及使用 Azure 服務匯流排繫結。 Azure Functions 支援服務匯流排佇列和主題的觸發程序和輸出繫結。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -35,7 +35,7 @@ ms.lasthandoff: 02/22/2017
 ## <a name="service-bus-trigger"></a>服務匯流排觸發程序
 使用服務匯流排觸發程序來回應來自服務匯流排佇列或主題的訊息。 
 
-函式的通知中樞佇列和主題觸發程序會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+服務匯流排佇列和主題觸發程序是由 function.json 之 `bindings` 陣列中的 JSON 物件定義的:
 
 * *佇列*觸發程序︰
 
@@ -66,10 +66,10 @@ ms.lasthandoff: 02/22/2017
 
 請注意：
 
-* 針對 `connection`，[在您的函式應用程式中建立應用程式設定]()，其中包含您的服務中樞命名空間的連接字串，然後在觸發程序的 `connection` 屬性中指定應用程式設定的名稱。 您會遵循[取得管理認證](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials)中顯示的步驟來取得連接字串。
+* 針對 `connection`，[在您的函式應用程式中建立應用程式設定](functions-how-to-use-azure-function-app-settings.md)，其中包含您的服務中樞命名空間的連接字串，然後在觸發程序的 `connection` 屬性中指定應用程式設定的名稱。 您會遵循[取得管理認證](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials)中顯示的步驟來取得連接字串。
   連接字串必須是用於服務匯流排命名空間，而不限於特定佇列或主題。
   如果您將 `connection` 保留空白，觸發程序會假設預設的服務匯流排連接字串已在名為 `AzureWebJobsServiceBus` 的應用程式設定中指定。
-* 針對 `accessRights`，可用值為 `manage` 和 `listen`。 預設值是 `manage`，這表示 `connection` 已具備**管理**權限。 如果您使用沒有**管理**權限的連接字串，請將 `accessRights` 設定為 `listen`。 否則，Functions 執行階段可能會嘗試，但卻無法執行需要管理權限的作業。
+* 針對 `accessRights`，可用值為 `manage` 和 `listen`。 預設值是 `manage`，這表示 `connection` 已具備**管理**權限。 如果您使用沒有**管理**權限的連接字串，請將 `accessRights` 設定為 `listen`。 否則，Functions 執行階段在嘗試執行需要管理權限的作業時可能會失敗。
 
 ## <a name="trigger-behavior"></a>觸發程序行為
 * **單一執行緒** - Functions 執行階段預設會並行處理多個訊息。 若要指示執行階段一次只處理一個佇列或主題訊息，請在 *host.json* 檔案中將 `serviceBus.maxConcurrentCalls` 設定為 1。 
@@ -88,10 +88,10 @@ ms.lasthandoff: 02/22/2017
 * `string` - 適用於字串訊息
 * `byte[]` - 適用於二進位資料
 * 任何[物件](https://msdn.microsoft.com/library/system.object.aspx) - 適用於 JSON 序列化的資料。
-  如果您宣告自訂輸入類型 (例如 `FooType`)，Azure Functions 會嘗試將 JSON 資料還原序列化為您指定的類型。
+  如果您宣告自訂輸入類型 (例如 `CustomType`)，Azure Functions 會嘗試將 JSON 資料還原序列化為您指定的類型。
 * `BrokeredMessage` - 利用 [BrokeredMessage.GetBody<T>()](https://msdn.microsoft.com/library/hh144211.aspx) 方法提供您還原序列化的訊息。
 
-在 Node.js 中，服務匯流排觸發程序訊息會傳遞至函式作為字串 (或在 JSON 訊息的情況下，作為 JavaScript 物件)。
+在 Node.js 中，服務匯流排觸發程序訊息會以字串或 JSON 物件的形式傳遞至函式。
 
 <a name="triggersample"></a>
 
@@ -153,7 +153,7 @@ module.exports = function(context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="service-bus-output-binding"></a>服務匯流排輸出繫結
-函式的通知中樞佇列和主題輸出會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+函式的服務匯流排佇列和主題輸出會使用 function.json 之 `bindings` 陣列中的下列 JSON 物件︰
 
 * *佇列*輸出︰
 
@@ -162,7 +162,7 @@ module.exports = function(context, myQueueItem) {
         "name" : "<Name of output parameter in function signature>",
         "queueName" : "<Name of the queue>",
         "connection" : "<Name of app setting that has your queue's connection string - see below>",
-        "accessRights" : "<Access rights for the connection string - see below>"
+        "accessRights" : "<Access rights for the connection string - see below>",
         "type" : "serviceBus",
         "direction" : "out"
     }
@@ -183,10 +183,10 @@ module.exports = function(context, myQueueItem) {
 
 請注意：
 
-* 針對 `connection`，[在您的函式應用程式中建立應用程式設定]()，其中包含您的服務中樞命名空間的連接字串，然後在輸出繫結的 `connection` 屬性中指定應用程式設定的名稱。 您會遵循[取得管理認證](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials)中顯示的步驟來取得連接字串。
+* 針對 `connection`，[在您的函式應用程式中建立應用程式設定](functions-how-to-use-azure-function-app-settings.md)，其中包含您的服務中樞命名空間的連接字串，然後在輸出繫結的 `connection` 屬性中指定應用程式設定的名稱。 您會遵循[取得管理認證](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials)中顯示的步驟來取得連接字串。
   連接字串必須是用於服務匯流排命名空間，而不限於特定佇列或主題。
   如果您將 `connection` 保留空白，輸出繫結會假設預設的服務匯流排連接字串已在名為 `AzureWebJobsServiceBus` 的應用程式設定中指定。
-* 針對 `accessRights`，可用值為 `manage` 和 `listen`。 預設值是 `manage`，這表示 `connection` 已具備**管理**權限。 如果您使用沒有**管理**權限的連接字串，請將 `accessRights` 設定為 `listen`。 否則，Functions 執行階段可能會嘗試，但卻無法執行需要管理權限的作業。
+* 針對 `accessRights`，可用值為 `manage` 和 `listen`。 預設值是 `manage`，這表示 `connection` 已具備**管理**權限。 如果您使用沒有**管理**權限的連接字串，請將 `accessRights` 設定為 `listen`。 否則，Functions 執行階段在嘗試執行需要管理權限的作業時可能會失敗。
 
 <a name="outputusage"></a>
 

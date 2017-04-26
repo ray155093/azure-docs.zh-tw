@@ -13,19 +13,19 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: getting-started
-ms.date: 2/14/2017
+ms.date: 4/4/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 9a0e7a9aadf6ca12915635408653a37241dbb321
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 8a903cd870f01f9ca6224efd1386b68c63e3aa98
+ms.lasthandoff: 04/06/2017
 
 
 ---
 
 # <a name="deploy-an-autoscaling-app-using-a-template"></a>使用範本部署自動調整應用程式
 
-[Azure Resource Manager 範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment)是部署相關資源群組的絕佳方式。 本教學課程是以[部屬簡單的擴展集](virtual-machine-scale-sets-mvss-start.md)為基礎，並說明如何使用 Azure Resource Manager 範本，在擴展集上部署簡單的自動調整應用程式。
+[Azure Resource Manager 範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment)是部署相關資源群組的絕佳方式。 本教學課程是以[部屬簡單的擴展集](virtual-machine-scale-sets-mvss-start.md)為基礎，並說明如何使用 Azure Resource Manager 範本，在擴展集上部署簡單的自動調整應用程式。  您也可以使用 PowerShell、CLI 或入口網站設定自動調整。 如需詳細資訊，請參閱[自動調整概觀](virtual-machine-scale-sets-autoscale-overview.md)。
 
 ## <a name="two-quickstart-templates"></a>兩個快速入門範本
 當您部署擴展集時，您可以使用 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md)在平台映像上安裝新軟體。 VM 擴充功能是小型的應用程式，可在 Azure 虛擬機器上提供部署後設定和自動化工作，例如部署應用程式。 [Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) 中會提供兩個不同的範例範本，其顯示如何使用 VM 擴充功能在擴展集上部署自動調整應用程式。

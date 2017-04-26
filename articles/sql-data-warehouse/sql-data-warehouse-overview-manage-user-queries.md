@@ -12,11 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: performance
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9e557ff1d3faad244d660d9d98bc6d889e59f13c
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 54346a8e6f42fc81cd727db03c02f0e935db07d3
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -25,26 +27,21 @@ ms.openlocfilehash: 9e557ff1d3faad244d660d9d98bc6d889e59f13c
 
 | 類別 | 工作或考量 | 說明 |
 |:--- |:--- |:--- |
-| 效能變慢 |尋找長時間執行的使用者查詢 |[尋找長時間執行的查詢][尋找長時間執行的查詢] |
-| 並行 |指派並行資源給使用者查詢 |[並行存取和工作負載管理][並行存取和工作負載管理] |
+| 效能變慢 |尋找長時間執行的使用者查詢 |[尋找長時間執行的查詢][Find long-running queries] |
+| 並行 |指派並行資源給使用者查詢 |[並行和工作負載管理][Concurrency and workload management] |
 
 ## <a name="next-steps"></a>後續步驟
-如需更多管理祕訣，請移至[管理概觀][管理概觀]。
+如需更多管理祕訣，請移至[管理概觀][Management overview]。
 
 <!--Image references-->
 
 <!--Article references-->
-[尋找長時間執行的查詢]: sql-data-warehouse-manage-monitor.md
-[並行存取和工作負載管理]: sql-data-warehouse-develop-concurrency.md
-[管理概觀]: sql-data-warehouse-overview-manage.md
+[Find long-running queries]: sql-data-warehouse-manage-monitor.md
+[Concurrency and workload management]: sql-data-warehouse-develop-concurrency.md
+[Management overview]: sql-data-warehouse-overview-manage.md
 
 <!--MSDN references-->
 
 
 <!--Other Web references-->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

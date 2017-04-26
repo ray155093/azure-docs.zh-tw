@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/29/2017
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 4676e0da4309b1460e471f94946161fa22d46226
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
+ms.openlocfilehash: 0b6e118cb13ab8185d8eeb42bec6147155967967
+ms.lasthandoff: 04/04/2017
 
 ---
 # <a name="create-a-real-time-customer-insights-dashboard-with-azure-logic-apps-and-azure-functions"></a>使用 Azure Logic Apps 與 Azure Functions 來建立即時的客戶深入解析儀表板
@@ -35,17 +35,17 @@ Logic Apps 是雲端中的無伺服器工作流程引擎。  它可跨無伺服�
 
 整個解決方案可以[建置在 Visual Studio 中](logic-apps-deploy-from-vs.md)，也可[部署為資源範本的一部分](logic-apps-create-deploy-template.md)。  另外，[Channel 9 上](http://aka.ms/logicappsdemo)還有影片來逐步解說此案例。
 
-## <a name="building-the-logic-app-to-trigger-on-customer-data"></a>建置會針對客戶資料而觸發的邏輯應用程式
+## <a name="build-the-logic-app-to-trigger-on-customer-data"></a>建置會針對客戶資料觸發的邏輯應用程式
 
 在 Visual Studio 或 Azure 入口網站中[建立邏輯應用程式](logic-apps-create-a-logic-app.md)之後︰
 
 1. 針對來自 Twitter 的**新推文**新增觸發程序
-1. 設定觸發程序來接聽推文上的關鍵字或雜湊標記。
+2. 設定觸發程序來接聽推文上的關鍵字或雜湊標記。
 
-> [!NOTE]
-> 觸發程序的循環屬性會決定邏輯應用程式檢查輪詢式觸發程序上是否有新項目的頻率
+   > [!NOTE]
+   > 觸發程序的循環屬性會決定邏輯應用程式檢查輪詢式觸發程序上是否有新項目的頻率
 
-![Twitter 觸發程序的範例][1]
+   ![Twitter 觸發程序的範例][1]
 
 此應用程式現在會針對所有新推文引發。  然後，我們可以取得該推文資料，並了解其中所表達的更多情緒。  為此，我們使用 [Azure 辨識服務](https://azure.microsoft.com/services/cognitive-services/)來偵測文字的情緒。
 
@@ -99,7 +99,7 @@ Azure Function 也可用來根據資料執行更多的自訂計算。
 
 Azure Functions 也可納入部署範本中，因此，您可以將整個解決方案與所有相依性當作單一範本來管理。  函式部署範本的範例可在 [Azure 快速入門範本儲存機制](https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic)中找到。
 
-## <a name="whats-next"></a>接下來
+## <a name="next-steps"></a>後續步驟
 
 * [查看 Azure Logic Apps 的其他範例和案例](logic-apps-examples-and-scenarios.md)
 * [觀看關於完整建立此解決方案的影片逐步解說](http://aka.ms/logicappsdemo)

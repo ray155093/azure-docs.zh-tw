@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/08/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 94f0a741be663aae9f2ec4ee221a4b2b58e390e2
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 73cd37a83ba31f428b3d0262230e4c650692a842
+ms.lasthandoff: 04/10/2017
 
 ---
 
@@ -34,13 +34,13 @@ ms.lasthandoff: 03/27/2017
 
 建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
 
-您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API**及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
+您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
 
 不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線： 
 
-1. 建立「已連結的服務」，以將輸入和輸出資料存放區連結到 Data Factory。
-2. 建立「資料集」，以代表複製作業的輸入和輸出資料。 
-3. 建立「管線」，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
+1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
+2. 建立**資料集**，代表複製作業的輸入和輸出資料。 
+3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
 
 使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到「Azure 搜尋」索引之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例：將資料從內部部署 SQL Server 複製到 Azure 搜尋索引](#json-example-copy-data-from-on-premises-sql-server-to-azure-search-index)一節。 
 
@@ -67,11 +67,11 @@ ms.lasthandoff: 03/27/2017
 
 
 ## <a name="copy-activity-properties"></a>複製活動屬性
-如需定義活動的區段和屬性完整清單，請參閱 [建立管線](data-factory-create-pipelines.md) 一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及各種原則) 適用於所有類型的活動。 另一方面，活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
+如需定義活動的區段和屬性完整清單，請參閱 [建立管線](data-factory-create-pipelines.md) 一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及各種原則) 適用於所有類型的活動。 而 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
 
-就「複製活動」而言，如果來源的類型為 **AzureSearchIndexSink**，則 typeProperties 區段會有下列可用屬性：
+對於「複製活動」，當接收的類型為 **AzureSearchIndexSink** 時，typeProperties 區段中會有下列可用屬性：
 
-| 屬性 | 說明 | 允許的值 | 必要 |
+| 屬性 | 描述 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
 | WriteBehavior | 指定若文件已經存在於索引中，是否要合併或取代。 請參閱 [WriteBehavior 屬性](#writebehavior-property)。| 合併 (預設值)<br/>上傳| 否 |
 | WriteBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料上傳至 Azure 搜尋服務中。 如需詳細資訊，請參閱 [WriteBatchSize 屬性](#writebatchsize-property)。 | 1 到 1000。 預設值為 1000。 | 否 |
@@ -250,7 +250,7 @@ Azure 搜尋服務支援批次寫入文件。 一個批次可包含 1 到 1,000 
 }
 ```
 
-如果您從雲端資料存放區將資料複製到 Azure 搜尋服務，則 `executionLocation` 是必要屬性。 以下顯示在複製活動 `typeProperties` 做為範例底下所需的變更。 參閱[在雲端資料存放區之間複製資料](data-factory-data-movement-activities.md#global)一節以取得支援的值和更多詳細資料。
+如果您從雲端資料存放區將資料複製到 Azure 搜尋服務，則 `executionLocation` 是必要屬性。 下列 JSON 程式碼片段顯示必須在「複製活動」的 `typeProperties` 下進行的變更。 參閱[在雲端資料存放區之間複製資料](data-factory-data-movement-activities.md#global)一節以取得支援的值和更多詳細資料。
 
 ```JSON
 "typeProperties": {
@@ -266,7 +266,7 @@ Azure 搜尋服務支援批次寫入文件。 一個批次可包含 1 到 1,000 
 
 
 ## <a name="copy-from-a-cloud-source"></a>從雲端來源複製
-如果您從雲端資料存放區將資料複製到 Azure 搜尋服務，則 `executionLocation` 是必要屬性。 以下顯示在複製活動 `typeProperties` 做為範例底下所需的變更。 參閱[在雲端資料存放區之間複製資料](data-factory-data-movement-activities.md#global)一節以取得支援的值和更多詳細資料。
+如果您從雲端資料存放區將資料複製到 Azure 搜尋服務，則 `executionLocation` 是必要屬性。 下列 JSON 程式碼片段顯示必須在「複製活動」的 `typeProperties` 下進行的變更。 參閱[在雲端資料存放區之間複製資料](data-factory-data-movement-activities.md#global)一節以取得支援的值和更多詳細資料。
 
 ```JSON
 "typeProperties": {

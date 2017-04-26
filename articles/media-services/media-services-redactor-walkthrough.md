@@ -12,11 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 11/30/2016
+ms.date: 04/03/2017
 ms.author: rli; juliako;
 translationtype: Human Translation
-ms.sourcegitcommit: 8d8575decb177001cefbb7f159841b64c3f84f41
-ms.openlocfilehash: d9bb513a7f5acc0ba41902795b159564b2562842
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: b34502aa75d94da1abcda880bb1a251a8455f3f8
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -90,12 +91,12 @@ ms.openlocfilehash: d9bb513a7f5acc0ba41902795b159564b2562842
 
 ### <a name="set-up-the-tool"></a>設定工具
 
-1.  下載和建置整個方案。 
+1.    下載和建置整個方案。 
 
     ![臉部修訂](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough009.png)
 
-2.  從[這裡](https://ffmpeg.org/download.html)下載 FFMPEG。 此專案原先是使用含靜態連結的版本 be1d324 (2016-10-04) 所開發。 
-3.  將 ffmpeg.exe 和 ffprobe.exe 複製到和 AzureMediaRedactor.exe 相同的輸出資料夾。 
+2.    從[這裡](https://ffmpeg.org/download.html)下載 FFMPEG。 此專案原先是使用含靜態連結的版本 be1d324 (2016-10-04) 所開發。 
+3.    將 ffmpeg.exe 和 ffprobe.exe 複製到和 AzureMediaRedactor.exe 相同的輸出資料夾。 
 
     ![臉部修訂](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough010.png)
 
@@ -113,9 +114,13 @@ ms.openlocfilehash: d9bb513a7f5acc0ba41902795b159564b2562842
     
     ![臉部修訂](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough012.png)
 
-5.  下方的文字欄位會更新為臉部識別碼。 建立名為 "idlist.txt" 的檔案，其中包含這些識別碼清單 (以新行分隔)。 
-6.  將這個檔案上傳到步驟 1 中的輸出資產。 另將原始的視訊上傳到這個資產，並設為主要資產。 
-7.  在這個資產上使用「修訂」模式執行「修訂」工作，以取得最終修訂的視訊。 
+5.    下方的文字欄位會更新為臉部識別碼。 建立名為 "idlist.txt" 的檔案，其中包含這些識別碼清單 (以新行分隔)。 
+
+    >[!NOTE]
+    > idlist.txt 應該以 ANSI 格式儲存。 您可以使用 [記事本] 來儲存為 ANSI 格式。
+    
+6.    將這個檔案上傳到步驟 1 中的輸出資產。 另將原始的視訊上傳到這個資產，並設為主要資產。 
+7.    在這個資產上使用「修訂」模式執行「修訂」工作，以取得最終修訂的視訊。 
 
 ## <a name="next-steps"></a>後續步驟 
 
@@ -129,9 +134,5 @@ ms.openlocfilehash: d9bb513a7f5acc0ba41902795b159564b2562842
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
 
-
-
-
-<!--HONumber=Dec16_HO1-->
-
+[宣布推出適用於 Azure 媒體分析的臉部修訂功能](https://azure.microsoft.com/blog/azure-media-redactor/)
 

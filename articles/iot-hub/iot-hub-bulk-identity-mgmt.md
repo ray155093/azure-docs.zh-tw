@@ -12,16 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/04/2017
+ms.date: 04/06/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 79004e91c9e22b085b04e446999d4efe05426436
-ms.openlocfilehash: 512c4dc5f77d5f730720909628364c5c9d8b3174
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 6d878b00094f573adc440d2384c426506fea0a40
+ms.lasthandoff: 04/06/2017
 
 
 ---
 # <a name="manage-your-iot-hub-device-identities-in-bulk"></a>管理大量的 IoT 中樞裝置身分識別
+
 每個 IoT 中樞都有一個身分識別登錄，您可用來在服務中建立各裝置的資源 (例如含有傳送中雲端到裝置訊息的佇列)。 身分識別登錄也可讓您控制裝置面向端點的存取權。 本文說明如何在身分識別登錄中大量匯入和匯出裝置身分識別。
 
 匯入和匯出操作會在「作業」的內容中進行，其可讓您對 IoT 中樞執行大量服務操作。
@@ -29,16 +30,17 @@ ms.lasthandoff: 02/23/2017
 **RegistryManager** 類別包含使用**作業**架構的 **ExportDevicesAsync** 和 **ImportDevicesAsync** 方法。 這些方法可讓您匯出、匯入和同步處理整個 IoT 中樞身分識別登錄。
 
 ## <a name="what-are-jobs"></a>什麼是作業？
+
 身分識別登錄操作會使用**作業** 系統的前提是操作符合下列條件時：
 
-* 相較於標準執行階段作業，執行時間可能很長，或者
+* 相較於標準執行階段作業，執行時間可能很長。
 * 會傳回大量資料給使用者。
 
 在這些情況下，與其讓單一 API 呼叫等候或封鎖操作的結果，操作會以非同步方式建立該 IoT 中樞的**作業**。 然後操作會立即傳回 **JobProperties** 物件。
 
 下列 C# 程式碼片段示範如何建立匯出作業：
 
-```
+```csharp
 // Call an export job on the IoT Hub to retrieve all devices
 JobProperties exportJob = await registryManager.ExportDevicesAsync(containerSasUri, false);
 ```
@@ -47,11 +49,11 @@ JobProperties exportJob = await registryManager.ExportDevicesAsync(containerSasU
 > 若要在 C# 程式碼中使用 **RegistryManager** 類別，請將 **Microsoft.Azure.Devices** NuGet 套件新增至您的專案。 **RegistryManager** 類別位於 **Microsoft.Azure.Devices** 命名空間。
 
 
-然後您可以使用 **RegistryManager** 類別來查詢使用所傳回 **JobProperties** 中繼資料之**作業**的狀態。
+您可以使用 **RegistryManager** 類別來查詢**作業**的狀態 (使用所傳回的 **JobProperties** 中繼資料)。
 
 下列 C# 程式碼片段示範如何每五秒輪詢一次以查看作業是否已執行完成：
 
-```
+```csharp
 // Wait until job is finished
 while(true)
 {
@@ -69,22 +71,24 @@ while(true)
 ```
 
 ## <a name="export-devices"></a>匯出裝置
-使用 **ExportDevicesAsync** 方法將整個 IoT 中樞身分識別登錄匯出到使用[共用存取簽章](https://msdn.microsoft.com/library/ee395415.aspx)的 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器。
+
+使用 **ExportDevicesAsync** 方法將整個 IoT 中樞身分識別登錄匯出到使用[共用存取簽章](../storage/storage-security-guide.md#data-plane-security)的 [Azure 儲存體](../storage/index.md) Blob 容器。
 
 這個方法可讓您在所控制的 Blob 容器中建立可靠的裝置資訊備份。
 
 **ExportDevicesAsync** 方法需要兩個參數：
 
 * 包含 Blob 容器 URI 的「字串」 。 此 URI 必須包含可授與容器寫入權限的 SAS 權杖。 作業會在這個容器中建立用來儲存序列化匯出裝置資料的區塊 Blob。 SAS 權杖必須包含這些權限：
-  
-   ```
+
+   ```csharp
    SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Delete
    ```
+
 * 指出是否要在匯出資料中排除驗證金鑰的 *布林值* 。 若為 **false**，驗證金鑰就會包含在匯出輸出中。 否則，會將金鑰匯出為 **null**。
 
 下列 C# 程式碼片段示範如何啟動在匯出資料中包含裝置驗證金鑰的匯出作業，然後執行輪詢以完成作業：
 
-```
+```csharp
 // Call an export job on the IoT Hub to retrieve all devices
 JobProperties exportJob = await registryManager.ExportDevicesAsync(containerSasUri, false);
 
@@ -108,7 +112,7 @@ while(true)
 
 下列範例顯示輸出資料：
 
-```
+```json
 {"id":"Device1","eTag":"MA==","status":"enabled","authentication":{"symmetricKey":{"primaryKey":"abc=","secondaryKey":"def="}}}
 {"id":"Device2","eTag":"MA==","status":"enabled","authentication":{"symmetricKey":{"primaryKey":"abc=","secondaryKey":"def="}}}
 {"id":"Device3","eTag":"MA==","status":"disabled","authentication":{"symmetricKey":{"primaryKey":"abc=","secondaryKey":"def="}}}
@@ -118,7 +122,7 @@ while(true)
 
 如果您需要存取程式碼中的這項資料，可以使用 **ExportImportDevice** 類別輕鬆地將此資料還原序列化。 下列 C# 程式碼片段示範如何讀取先前匯出至區塊 Blob 的裝置資訊：
 
-```
+```csharp
 var exportedDevices = new List<ExportImportDevice>();
 
 using (var streamReader = new StreamReader(await blob.OpenReadAsync(AccessCondition.GenerateIfExistsCondition(), RequestOptions, null), Encoding.UTF8))
@@ -134,44 +138,40 @@ using (var streamReader = new StreamReader(await blob.OpenReadAsync(AccessCondit
 
 > [!NOTE]
 > 您也可以使用 **RegistryManager** 類別的 **GetDevicesAsync** 方法，來擷取裝置清單。 不過，這個方法有所傳回的裝置物件數目最多只能有 1000 個的上限。 **GetDevicesAsync** 方法的預期使用案例適用於開發案例，其目的是要協助偵錯，因此不建議用於生產工作負載。
-> 
-> 
 
 ## <a name="import-devices"></a>匯入裝置
+
 **RegistryManager** 類別中的 **ImportDevicesAsync** 方法可讓您在 IoT 中樞身分識別登錄中執行大量匯入和同步處理操作。 與 **ExportDevicesAsync** 方法相同，**ImportDevicesAsync** 方法會使用**作業**架構。
 
 請謹慎使用 **ImportDevicesAsync** 方法，因為除了在身分識別登錄中佈建新裝置外，此方法也會更新和刪除現有裝置。
 
 > [!WARNING]
 > 匯入操作是無法復原的。 請一律先使用 **ExportDevicesAsync** 方法將現有資料備份到另一個 Blob 容器，再對身分識別登錄進行大量變更。
-> 
-> 
 
 **ImportDevicesAsync** 方法會採用兩個參數：
 
-* 包含 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器 URI 以作為作業之「輸入」的「字串」。 此 URI 必須包含可授與容器讀取權限的 SAS 權杖。 此容器必須包含名稱為 **devices.txt** 的 Blob，而此 Blob 包含要匯入到身分識別登錄的序列化裝置資料。 匯入資料必須包含 **ExportImportDevice** 作業建立 **devices.txt** Blob 時所使用之相同 JSON 格式的裝置資訊。 SAS 權杖必須包含這些權限：
-  
-   ```
+* 包含 [Azure 儲存體](../storage/index.md) Blob 容器 URI 以作為作業之「輸入」的「字串」。 此 URI 必須包含可授與容器讀取權限的 SAS 權杖。 此容器必須包含名稱為 **devices.txt** 的 Blob，而此 Blob 包含要匯入到身分識別登錄的序列化裝置資料。 匯入資料必須包含 **ExportImportDevice** 作業建立 **devices.txt** Blob 時所使用之相同 JSON 格式的裝置資訊。 SAS 權杖必須包含這些權限：
+
+   ```csharp
    SharedAccessBlobPermissions.Read
    ```
 * 包含 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器 URI 以作為作業之「輸出」的「字串」。 作業會在此容器中建立區塊 Blob，以儲存來自已完成之匯入 **作業**的任何錯誤資訊。 SAS 權杖必須包含這些權限：
-  
-   ```
+
+   ```csharp
    SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Delete
    ```
 
 > [!NOTE]
 > 這兩個參數可以指向相同的 Blob 容器。 參數不同只會讓您更能掌控資料，因為輸出容器需要其他權限。
-> 
-> 
 
 下列 C# 程式碼片段示範如何啟動匯入作業：
 
-```
+```csharp
 JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasUri, containerSasUri);
 ```
 
 ## <a name="import-behavior"></a>匯入行為
+
 您可以使用 **ImportDevicesAsync** 方法，在您的身分識別登錄中執行下列大量作業：
 
 * 大量註冊新裝置
@@ -196,17 +196,16 @@ JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasU
 
 > [!NOTE]
 > 如果序列化資料未明確定義裝置的 **importMode** 旗標，則會在匯入作業期間預設為 **createOrUpdate**。
-> 
-> 
 
 ## <a name="import-devices-example--bulk-device-provisioning"></a>匯入裝置範例 - 大量裝置佈建
+
 下列 C# 程式碼範例說明如何產生多個裝置身分識別，以便：
 
 * 包含驗證金鑰。
 * 將該裝置資訊寫入至區塊 Blob。
 * 將裝置匯入至身分識別登錄。
 
-```
+```csharp
 // Provision 1,000 more devices
 var serializedDevices = new List<string>();
 
@@ -268,9 +267,10 @@ while(true)
 ```
 
 ## <a name="import-devices-example--bulk-deletion"></a>匯入裝置範例 - 大量刪除
+
 下列程式碼範例示範如何刪除使用前一個程式碼範例所新增的裝置：
 
-```
+```csharp
 // Step 1: Update each device's ImportMode to be Delete
 sb = new StringBuilder();
 serializedDevices.ForEach(serializedDevice =>
@@ -317,10 +317,11 @@ while(true)
 
 ```
 
-## <a name="getting-the-container-sas-uri"></a>取得容器 SAS URI
+## <a name="get-the-container-sas-uri"></a>取得容器 SAS URI
+
 下列程式碼範例示範如何產生具有 Blob 容器之讀取、寫入和刪除權限的 [SAS URI](../storage/storage-dotnet-shared-access-signature-part-2.md)：
 
-```
+```csharp
 static string GetContainerSasUri(CloudBlobContainer container)
 {
   // Set the expiry time and permissions for the container.
@@ -345,6 +346,7 @@ static string GetContainerSasUri(CloudBlobContainer container)
 ```
 
 ## <a name="next-steps"></a>後續步驟
+
 在本文中，您已了解如何對 IoT 中樞內的身分識別登錄執行大量操作。 遵循下列連結以深入了解如何管理 Azure IoT 中樞：
 
 * [IoT 中樞度量][lnk-metrics]

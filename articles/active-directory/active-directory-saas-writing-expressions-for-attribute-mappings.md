@@ -11,11 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/10/2017
+ms.date: 04/06/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d49236c634be8260cb0fb24a0ee08cd71353f6ba
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: d2d7f5b00039cd1beab009b78b273ec4dffaab47
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -53,7 +54,7 @@ ms.openlocfilehash: d49236c634be8260cb0fb24a0ee08cd71353f6ba
 
 - - -
 ### <a name="formatdatetime"></a>FormatDateTime
-**函式：**<br>  FormatDateTime(source, inputFormat, outputFormat)
+**函式：**<br> FormatDateTime(source, inputFormat, outputFormat)
 
 **說明：**<br> 從一種格式取出日期字串，並將它轉換成不同的格式。
 
@@ -236,10 +237,5 @@ ms.openlocfilehash: d49236c634be8260cb0fb24a0ee08cd71353f6ba
 * [使用 SCIM 以啟用從 Azure Active Directory 到應用程式的使用者和群組自動佈建](active-directory-scim-provisioning.md)
 * [帳戶佈建通知](active-directory-saas-account-provisioning-notifications.md)
 * [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

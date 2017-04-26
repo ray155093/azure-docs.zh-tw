@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/29/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: cc177695f73805940f6a0229c94e391bf3899f09
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 325d669f11891bf070d9bbb468af7427adda46d3
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -36,7 +36,8 @@ User | 可以還原他們所擁有的任何已刪除的 Office 365 群組
 
 
 ## <a name="how-to-view-deleted-office-365-groups-that-are-available-to-restore"></a>如何檢視可供還原之已刪除的 Office 365 群組
-您可以使用下列 Cmdlet 來檢視已刪除的群組，以確認您感興趣的一或多個群組尚未被永久清除。 這些 Cmdlet 是 [Azure Active Directory PowerShell V2 預覽版模組](https://www.powershellgallery.com/packages/AzureADPreview) (下載連結) 的一部分。 如需此模組的詳細資訊，請參閱 [Azure Active Directory PowerShell 第 2 版](https://docs.microsoft.com/powershell/azuread/)一文。
+您可以使用下列 Cmdlet 來檢視已刪除的群組，以確認您感興趣的一或多個群組尚未被永久清除。 這些 Cmdlet 是 [Azure Active Directory PowerShell V2 預覽版模組 (英文)](https://www.powershellgallery.com/packages/AzureADPreview) 的一部分。 如需此模組的詳細資訊，請參閱 [Azure Active Directory PowerShell 第 2 版](https://docs.microsoft.com/powershell/azuread/)一文。
+請注意，用於管理虛刪除和復原的 Cmdlet 正處於公開預覽，而我們有時候會需要對預覽 Cmdlet 做出重大變更。 因此，我們不建議在生產環境中使用這些 Cmdlet。
 
 1.    執行下列 Cmdlet，以顯示租用戶中所有已刪除但仍可供還原的 Office 365 群組。
   ```
@@ -80,3 +81,4 @@ User | 可以還原他們所擁有的任何已刪除的 Office 365 群組
 * [管理群組的成員](active-directory-groups-members-azure-portal.md)
 * [管理群組的成員資格](active-directory-groups-membership-azure-portal.md)
 * [管理群組中使用者的動態規則](active-directory-groups-dynamic-membership-azure-portal.md)
+

@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/10/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: c233439b78fb01beaa3183b79ab633aeb9357ef0
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 773043f2841ec7539b0d49357dec6bcb9f4f78a1
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -44,8 +44,8 @@ ms.lasthandoff: 03/22/2017
 ## <a name="why-would-i-request-an-ilpip"></a>為什麼我要要求 ILPIP？
 如果想要透過直接指派 IP 位址的方式連接到 VM 或角色執行個體，而不是使用雲端服務 VIP:&lt;連接埠號碼&gt;，請為 VM 或角色執行個體要求 ILPIP。
 
-* **被動式 FTP**：透過將 ILPIP 指派給 VM，VM 就可以在幾乎所有的連接埠上接收流量。 VM 不需要端點就可以接收流量。 ILPIP 會啟用動態選擇連接埠的案例，如被動式 FTP 等。
-* **輸出 IP**：源自 VM 的輸出流量是以 ILPIP 往外傳送，因為來源與 ILPIP 可向外部實體唯一識別 VM。
+* **主動式 FTP**：透過將 ILPIP 指派給 VM，VM 就可以在所有的連接埠上接收流量。 VM 不需要端點就可以接收流量。  請參閱 (https://en.wikipedia.org/wiki/File_Transfer_Protocol#Protocol_overview)[FTP 通訊協定概觀 (英文)] 以取得 FTP 通訊協定的詳細資料。
+* **輸出 IP**：源自 VM 的輸出流量會對應至 ILPIP，因為來源與 ILPIP 可向外部實體唯一識別 VM。
 
 > [!NOTE]
 > ILPIP 過去被稱為公用 IP (PIP) 位址。

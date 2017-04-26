@@ -12,11 +12,12 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 10/17/2016
+ms.date: 04/02/2017
 ms.author: liamca
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 9024c47e7d483129d66105012e0d67cfa9700cb9
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 56eeed7634fca840172ab828be5f202d80f3f4fb
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.openlocfilehash: 9024c47e7d483129d66105012e0d67cfa9700cb9
 1. 挑選完成一般搜尋要求所應花費的目標延遲 (或最大時間量)。
 2. 針對您的搜尋服務，使用實際資料集來建立和測試真正的工作負載，以衡量這些延遲率。
 3. 從較低的每秒查詢數目 (QPS) 開始，持續增加在測試中執行的數目，直到查詢延遲低於定義的目標延遲為止。  這是很重要的效能評定，可協助您規劃應用程式將在使用量方面成長的規模。
-4. 如果可能，請重複使用 HTTP 連接。  如果您使用 Azure 搜尋服務 .NET SDK，這表示您應該重複使用執行個體或 [SearchIndexClient](https://msdn.microsoft.com/library/azure/microsoft.azure.search.searchindexclient.aspx) 執行個體，而且如果您使用 REST API，就應該重複使用單一的 HttpClient。
+4. 如果可能，請重複使用 HTTP 連接。  如果您使用 Azure 搜尋服務 .NET SDK，這表示您應該重複使用執行個體或 [SearchIndexClient](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.searchindexclient) 執行個體，而且如果您使用 REST API，就應該重複使用單一的 HttpClient。
 
 建立這些測試工作負載時，有一些要牢記的 Azure 搜尋服務特性：
 
@@ -46,7 +47,7 @@ ms.openlocfilehash: 9024c47e7d483129d66105012e0d67cfa9700cb9
 ## <a name="scaling-azure-search-for-high-query-rates-and-throttled-requests"></a>調整 Azure 搜尋服務以提供高速查詢和節流要求
 當您收到太多節流要求或增加的查詢負載已超過目標延遲率時，您可以使用下列其中一種方式來查看以降低延遲率：
 
-1. **增加複本︰**複本就像是您的資料複本，允許 Azure 搜尋服務針對多個複本進行要求的負載平衡。  在複本之間針對資料進行的所有負載平衡和複寫都是由 Azure 搜尋服務所管理，而您可以隨時變更配置給服務的複本數目。  您最多可在標準搜尋服務中配置 12 個複本，並在基本搜尋服務中配置 3 個複本。  您可以從 [Azure 入口網站](search-create-service-portal.md)或使用 [Azure 搜尋服務管理 API](search-get-started-management-api.md) 來調整複本。
+1. **增加複本︰**複本就像是您的資料複本，允許 Azure 搜尋服務針對多個複本進行要求的負載平衡。  在複本之間針對資料進行的所有負載平衡和複寫都是由 Azure 搜尋服務所管理，而您可以隨時變更配置給服務的複本數目。  您最多可在標準搜尋服務中配置 12 個複本，並在基本搜尋服務中配置 3 個複本。 您可以從 [Azure 入口網站](search-create-service-portal.md)或 [PowerShell](search-manage-powershell.md) 來調整複本。
 2. **增加搜尋服務層︰**Azure 搜尋服務來自[層數](https://azure.microsoft.com/pricing/details/search/)，而這其中的每一層都會提供不同等級的效能。  在某些情況下，您可能會有這麼多查詢，即使當複本超量時，您所在的層仍不足以提供低延遲率。  在此情況下，您可能要考慮使用較高的搜尋層，例如 Azure 搜尋服務 S3 層，這非常適合具有大量文件且有極高查詢工作負載的案例。
 
 ## <a name="scaling-azure-search-for-slow-individual-queries"></a>針對速度較慢的個別查詢調整 Azure 搜尋服務
@@ -54,7 +55,7 @@ ms.openlocfilehash: 9024c47e7d483129d66105012e0d67cfa9700cb9
 
 1. **增加分割區** 分割區是一種機制，可分割資料以分散到額外的資源上。  基於這個理由，當您新增第二個分割區時，您的資料就會一分為二。  第三個分割區會將您的索引分成三等份，依此類推。這也會產生效果，在某些情況下，速度較慢的查詢會因為平行處理計算而執行得更快。  我們可以在一些範例中看見這個平行處理搭配具有低度選擇性查詢的查詢時運作得非常好。  這其中包括符合許多文件的查詢，或者當設定 Facet 需要提供超過大量文件的計數時。  由於有許多需要調整文件相關性或計算文件數目所需的計算，因此，新增額外的分割區有助於提供其他計算。  
    
-   在標準搜尋服務中最多可有 12 個分割區，在基本搜尋服務中則為 1 個分割區。  您可以從 [Azure 入口網站](search-create-service-portal.md)或使用 [Azure 搜尋服務管理 API](search-get-started-management-api.md) 來調整分割區。
+   在標準搜尋服務中最多可有 12 個分割區，在基本搜尋服務中則為 1 個分割區。  您可以從 [Azure 入口網站](search-create-service-portal.md)或 [PowerShell](search-manage-powershell.md) 來調整分割區。
 2. **限制高基數欄位︰** 高基數欄位包含具有大量唯一值的可 Facet 或可篩選欄位，因此，會取得許多要在其上計算結果的資源。   例如，將 [產品識別碼] 或 [說明] 欄位設定為可 Facet 或可篩選的會導致高基數，因為文件彼此間大多數值都是唯一的。 如果可能，請限制高基數欄位數目。
 3. **增加搜尋服務層︰**另一種方式是往上移動到更高的 Azure 搜尋服務層，可為速度較慢的查詢改善效能。  每一個較高的層也會提供更快速的 CPU 和更多記憶體，可以對查詢效能產生正面的影響。
 
@@ -76,7 +77,7 @@ ms.openlocfilehash: 9024c47e7d483129d66105012e0d67cfa9700cb9
    ![依區域交叉分析服務][1]
 
 ### <a name="keeping-data-in-sync-across-multiple-azure-search-services"></a>跨多個 Azure 搜尋服務，讓資料維持同步
-有兩個選項可讓分散的搜尋服務維持同步，包括使用 [Azure 搜尋服務索引子](search-indexer-overview.md) 或推送 API (也稱為 [Azure 搜尋服務 REST API](https://msdn.microsoft.com/library/dn798935.aspx))。  
+有兩個選項可讓分散的搜尋服務維持同步，包括使用 [Azure 搜尋服務索引子](search-indexer-overview.md) 或推送 API (也稱為 [Azure 搜尋服務 REST API](https://docs.microsoft.com/rest/api/searchservice/))。  
 
 ### <a name="azure-search-indexers"></a>Azure 搜尋服務索引子
 如果您正在使用 Azure 搜尋服務索引子，您就已經從中央資料存放區 (例如 Azure SQL DB 或 DocumentDB) 匯入資料變更。 當您建立新的搜尋服務時，針對指向這個相同資料存放區的服務，也只需要建立新的 Azure 搜尋服務索引子。 這樣一來，每當新的變更出現在資料存放區時，接著將會透過各種索引子為它們編製索引。  
@@ -86,7 +87,7 @@ ms.openlocfilehash: 9024c47e7d483129d66105012e0d67cfa9700cb9
    ![具有分散式索引子和服務組合的單一資料來源][2]
 
 ### <a name="push-api"></a>推送 API
-如果您正在使用 Azure 搜尋推送 API 來 [更新 Azure 搜尋服務索引的內容](https://msdn.microsoft.com/library/dn798930.aspx)，您可以在需要更新時，將變更推送到所有搜尋服務，藉以讓各種搜尋服務維持同步。  執行這項操作時，務必確定會處理某一個搜尋服務更新失敗且有一或多個更新成功時的情況。
+如果您正在使用 Azure 搜尋推送 API 來 [更新 Azure 搜尋服務索引的內容](https://docs.microsoft.com/rest/api/searchservice/update-index)，您可以在需要更新時，將變更推送到所有搜尋服務，藉以讓各種搜尋服務維持同步。  執行這項操作時，務必確定會處理某一個搜尋服務更新失敗且有一或多個更新成功時的情況。
 
 ## <a name="leveraging-azure-traffic-manager"></a>運用 Azure 流量管理員
 [Azure 流量管理員](../traffic-manager/traffic-manager-overview.md) 可讓您將要求路由傳送至位於多個地理位置的網站，然後透過多個 Azure 搜尋服務進行備份。  流量管理員的一個優點是，它可以探查 Azure 搜尋服務，以確保它可供使用，並在發生停機時將使用者路由傳送至替代的搜尋服務。  此外，如果您透過 Azure 網站路由傳送搜尋要求，Azure 流量管理員可讓您在網站已啟動，但 Azure 搜尋服務沒有的情況下進行負載平衡。  以下範例為運用流量管理員的架構。
@@ -113,9 +114,4 @@ STA 是可從 Azure 搜尋服務觀點了解延遲率的寶貴工具。  由於�
 [1]: ./media/search-performance-optimization/geo-redundancy.png
 [2]: ./media/search-performance-optimization/scale-indexers.png
 [3]: ./media/search-performance-optimization/geo-search-traffic-mgr.png
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

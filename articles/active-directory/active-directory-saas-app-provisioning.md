@@ -15,8 +15,9 @@ ms.workload: identity
 ms.date: 02/09/2016
 ms.author: asmalser
 translationtype: Human Translation
-ms.sourcegitcommit: 6b77e338e1c7f0f79ea3c25b0b073296f7de0dcf
-ms.openlocfilehash: 1bee9573e23e1c814626d19a3df1eb7ab12486ab
+ms.sourcegitcommit: f41fbee742daf2107b57caa528e53537018c88c6
+ms.openlocfilehash: 39714145f84f5f9229dbf4bbe136103d4d102bed
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -86,23 +87,11 @@ Azure AD 會藉由連接到每個應用程式廠商所提供的佈建端點，�
 如需有關如何在 Azure AD 和 SaaS 應用程式之間對應屬性的詳細資訊，請參閱 [自訂屬性對應](active-directory-saas-customizing-attribute-mappings.md)上的文章。
 
 ## <a name="list-of-apps-that-support-automated-user-provisioning"></a>支援自動化使用者佈建的應用程式清單
-按一下應用程式以查看如何為其設定自動化佈建的教學課程：
-
-* [Box](http://go.microsoft.com/fwlink/?LinkId=286016)
-* [Citrix GoToMeeting](http://go.microsoft.com/fwlink/?LinkId=309580)
-* [Concur](http://go.microsoft.com/fwlink/?LinkId=309575)
-* [Docusign](http://go.microsoft.com/fwlink/?LinkId=403254)
-* [Dropbox for Business](http://go.microsoft.com/fwlink/?LinkId=309581)
-* [Google Apps](http://go.microsoft.com/fwlink/?LinkId=309577)
-* [Jive](http://go.microsoft.com/fwlink/?LinkId=309591)
-* [Salesforce](http://go.microsoft.com/fwlink/?LinkId=286017)
-* [Salesforce Sandbox](http://go.microsoft.com/fwlink/?LinkId=327869)
-* [ServiceNow](http://go.microsoft.com/fwlink/?LinkId=309587)
-* [Workday](http://go.microsoft.com/fwlink/?LinkId=690250) (輸入佈建)
+Azure AD 應用程式資源庫中的所有「精選」應用程式都支援自動化使用者佈建。 [精選應用程式的清單可以在此檢視̂。](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps?page=1&subcategories=featured)
 
 為了讓應用程式支援自動化使用者佈建，它必須先提供必要的端點，讓外部程式自動化建立、維護及移除使用者。 因此，並非所有 SaaS 應用程式都與此功能相容。 針對支援此功能的應用程式，Azure AD 工程小組則是能夠建置與這些應用程式的佈建連接器，這項工作是以目前和潛在客戶的需求來排定優先順序。
 
-若要連絡 Azure AD 工程小組以要求對於其他應用程式的佈建支援，請透過 [Azure Active Directory 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/)提交訊息。
+若要連絡 Azure AD 工程小組以要求對於其他應用程式的佈建支援，請透過 [Azure Active Directory 意見反應論壇](https://feedback.azure.com/forums/374982-azure-active-directory-application-requests/category/172035-user-provisioning)提交訊息。
 
 ## <a name="related-articles"></a>相關文章
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
@@ -112,10 +101,5 @@ Azure AD 會藉由連接到每個應用程式廠商所提供的佈建端點，�
 * [使用 SCIM 以啟用從 Azure Active Directory 到應用程式的使用者和群組自動佈建](active-directory-scim-provisioning.md)
 * [帳戶佈建通知](active-directory-saas-account-provisioning-notifications.md)
 * [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

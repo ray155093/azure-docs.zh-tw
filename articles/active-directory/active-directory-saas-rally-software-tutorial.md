@@ -11,16 +11,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/03/2017
+ms.date: 03/23/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 9a653ac435198e89a527070a0174a1adaf830dc3
-ms.openlocfilehash: 504a5723f025d7383dbec78cdd268b7c1b94a1e5
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 8d913c024fce9945cfd5eaf336deed259dfbef50
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-rally-software"></a>教學課程：Azure Active Directory 與 Rally Software 整合
 本教學課程的目的是要示範 Azure 與 Rally Software 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂用帳戶
@@ -29,16 +31,17 @@ ms.openlocfilehash: 504a5723f025d7383dbec78cdd268b7c1b94a1e5
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 Rally Software 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
 ![案例](./media/active-directory-saas-rally-software-tutorial/IC769525.png "案例")
 
-## <a name="enabling-the-application-integration-for-rally-software"></a>啟用 Rally Software 的應用程式整合
+## <a name="enable-the-application-integration-for-rally-software"></a>啟用 Rally Software 的應用程式整合
 本節的目的是要說明如何啟用 Rally Software 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-rally-software-perform-the-following-steps"></a>若要啟用 Rally Software 的應用程式整合，請執行下列步驟：
+**若要啟用 Rally Software 的應用程式整合，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
     ![Active Directory](./media/active-directory-saas-rally-software-tutorial/IC700993.png "Active Directory")
@@ -65,12 +68,14 @@ ms.openlocfilehash: 504a5723f025d7383dbec78cdd268b7c1b94a1e5
    
     ![Rally Software](./media/active-directory-saas-rally-software-tutorial/IC769527.png "Rally Software")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 Rally Software。  
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 Rally Software。
+
 在此程序中，您必須將憑證上傳至 Rally Software。
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
+**若要設定單一登入，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站的 [Rally Software] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
     ![設定單一登入](./media/active-directory-saas-rally-software-tutorial/IC749323.png "設定單一登入")
@@ -99,21 +104,20 @@ ms.openlocfilehash: 504a5723f025d7383dbec78cdd268b7c1b94a1e5
    
     ![驗證](./media/active-directory-saas-rally-software-tutorial/IC769542.png "驗證")
    
-    1. 從 [驗證] 下拉式清單中選取 [Rally 或 SSO 驗證]  。
- 
-    2. 在 Azure 傳統入口網站中的 [設定在 Rally Software 單一登入] 對話方塊頁面上，複製 [識別提供者 ID] 值，然後將它貼至 [識別提供者 URL] 文字方塊中
-
-    3. 在 Azure 傳統入口網站中的 [設定在 Rally Software 單一登入] 對話方塊頁面上，複製 [遠端登出 URL] 值。
+  1. 從 [驗證] 下拉式清單中選取 [Rally 或 SSO 驗證]。
+  2. 在 Azure 傳統入口網站中的 [設定在 Rally Software 單一登入] 對話方塊頁面上，複製 [識別提供者 ID] 值，然後將它貼至 [識別提供者 URL] 文字方塊中。
+  3. 在 Azure 傳統入口網站中的 [設定在 Rally Software 單一登入] 對話方塊頁面上，複製 [遠端登出 URL] 值。
 
 9. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
     ![設定單一登入](./media/active-directory-saas-rally-software-tutorial/IC769547.png "設定單一登入")
    
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
 若要讓 AAD 使用者可以登入，則必須使用他們的 Azure Active Directory 使用者名稱將其佈建至 Rally Software 應用程式。
 
-### <a name="to-configure-user-provisioning-perform-the-following-steps"></a>若要設定使用者佈建，請執行下列步驟：
+**若要設定使用者佈建，請執行下列步驟：**
+
 1. 登入您的 Rally Software 租用戶。
 
 2. 按一下 [設定] \> [使用者]，然後按一下 [新增使用者]。
@@ -126,21 +130,20 @@ ms.openlocfilehash: 504a5723f025d7383dbec78cdd268b7c1b94a1e5
    
     ![建立使用者](./media/active-directory-saas-rally-software-tutorial/IC781040.png "建立使用者")
    
-    1. 在 [使用者名稱]  文字方塊中，輸入您要佈建的 Azure AD 帳戶名稱。
+   1. 在 [使用者名稱]  文字方塊中，輸入您要佈建的 Azure AD 帳戶名稱。
+   2. 在 [電子郵件地址]  文字方塊中，輸入您要佈建的 Azure AD 的電子郵件地址。
+   3. 按一下 [儲存並關閉]。
 
-    2. 在 [電子郵件地址]  文字方塊中，輸入您要佈建的 Azure AD 的電子郵件地址。
-
-    3. 按一下 [儲存並關閉]。
-
-> [!NOTE]
-> 您可以使用任何其他的 Rally Software 使用者帳戶建立工具或 Rally Software 提供的 API 來佈建 AAD 使用者帳戶。
+>[!NOTE]
+>您可以使用任何其他的 Rally Software 使用者帳戶建立工具或 Rally Software 提供的 API 來佈建 AAD 使用者帳戶。
 > 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-rally-software-perform-the-following-steps"></a>若要將使用者指派給 Rally Software，請執行下列步驟：
+**若要將使用者指派給 Rally Software，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 
 2. 在 [Rally Software] 應用程式整合頁面上，按一下 [指派使用者]。
@@ -151,11 +154,6 @@ ms.openlocfilehash: 504a5723f025d7383dbec78cdd268b7c1b94a1e5
    
     ![是](./media/active-directory-saas-rally-software-tutorial/IC767830.png "是")
 
-如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
-
-
-
-
-<!--HONumber=Jan17_HO1-->
+如果要測試您的 SSO 設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 

@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 211c33ceb8e3b9adc9ad75cf18aa459ad5523c18
-ms.openlocfilehash: 1478e5bb08b29e083861b63e4ca999a38fab8452
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: dde3d1b1b0708d49ac713e18242c3376d301c675
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -26,14 +26,10 @@ ms.lasthandoff: 02/22/2017
 
 網路監看員變數封包擷取可讓您建立封包擷取工作階段來追蹤虛擬機器的流入和流出流量。 封包擷取有助於被動和主動地診斷網路異常。 其他用途包括收集網路統計資料、取得有關網路入侵的資訊，以及偵錯用戶端與伺服器間的通訊等等。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
-
-封包擷取是透過網路監看員從遠端啟動的虛擬機器擴充功能。 這項功能可以減輕在所需虛擬機器上手動執行封包擷取的工作負擔，進而省下寶貴的時間。 可以透過入口網站、PowerShell、CLI 或 REST API 觸發封包擷取。 觸發封包擷取方式的其中一個範例是使用虛擬機器警示。 系統會為擷取工作階段提供篩選器，以確保您擷取到您想要監視的流量。 篩選是根據 5 個 Tuple (通訊協定、本機 IP 位址、遠端 IP 位址、本機連接埠，以及遠端連接埠) 的資訊。 擷取的資料會儲存在本機磁碟或儲存體 blob。
-
-![封包擷取概觀][1]
+封包擷取是透過網路監看員從遠端啟動的虛擬機器擴充功能。 這項功能可以減輕在所需虛擬機器上手動執行封包擷取的工作負擔，進而省下寶貴的時間。 可以透過入口網站、PowerShell、CLI 或 REST API 觸發封包擷取。 觸發封包擷取方式的其中一個範例是使用虛擬機器警示。 系統會為擷取工作階段提供篩選器，以確保您擷取到您想要監視的流量。 篩選是根據 5 個 Tuple (通訊協定、本機 IP 位址、遠端 IP 位址、本機連接埠，以及遠端連接埠) 的資訊。 擷取的資料會儲存在本機磁碟或儲存體 blob。 每個訂用帳戶在每個區域皆有 10 個封包擷取工作階段的限制。 此限制僅適用於工作階段，且不會套用到已儲存的封包擷取檔案，無論該檔案是位於 VM 本機上還是位於儲存體帳戶中。
 
 > [!IMPORTANT]
-> 封包擷取需要虛擬機器擴充功能 `AzureNetworkWatcherExtension`。 若要在 Windows VM 上安裝擴充功能，請瀏覽[適用於 Windows 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/virtual-machines-windows-extensions-nwa.md)，若要在 Linux VM 上安裝，則請瀏覽[適用於 Linux 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/virtual-machines-linux-extensions-nwa.md)。
+> 封包擷取需要虛擬機器擴充功能 `AzureNetworkWatcherExtension`。 若要在 Windows VM 上安裝擴充功能，請瀏覽[適用於 Windows 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/windows/extensions-nwa.md)，若要在 Linux VM 上安裝，則請瀏覽[適用於 Linux 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/linux/extensions-nwa.md)。
 
 若要將擷取的資訊減少為只有您想要的資訊，可以針對封包擷取工作階段使用下列選項︰
 

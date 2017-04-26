@@ -4,7 +4,7 @@ description: "本文將逐步引導您設定虛擬網路 VPN 閘道，以及變�
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
-manager: carmonm
+manager: timlt
 editor: 
 tags: azure-service-management
 ms.assetid: fbe59ba8-b11f-4d21-9bb1-225ec6c6d351
@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/09/2017
+ms.date: 04/04/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: b6f001345daf411497295357ab43d01635ae743e
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: 2ea4e6bb86b1ba6f7b501b193d0713d3901457af
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -62,21 +62,25 @@ ms.lasthandoff: 03/25/2017
 如果您要建立站對站連接，請在閘道建立之後，收集您 VPN 裝置組態的資訊。 這項資訊位於虛擬網路的 [ **儀表板** ] 頁面：
 
 1. **閘道 IP 位址 -** IP 位址可在 [儀表板] 頁面中找到。 您必須在閘道建立完成之後才能看見 IP。
-2. **共用金鑰 -** 按一下畫面底部的 [管理金鑰]。 按一下金鑰旁邊的圖示以將它複製到剪貼簿，然後貼上並儲存金鑰。 此按鈕僅在有單一 S2S VPN 通道時才能正常運作。 如果您有多個 S2S VPN 通道，請使用「取得虛擬網路閘道共用金鑰」 API 或 PowerShell Cmdlet。
+2. **共用金鑰 -** 按一下畫面底部的 [管理金鑰]。 按一下金鑰旁邊的圖示以將它複製到剪貼簿，然後貼上並儲存金鑰。 此按鈕僅在有單一 S2S VPN 通道時才能正常運作。 如果您有多個 S2S VPN 通道，請使用「取得虛擬網路閘道共用金鑰」API 或 PowerShell Cmdlet。
 
 ![管理金鑰](./media/vpn-gateway-configure-vpn-gateway-mp/IC717029.png)
 
 ### <a name="step-2--configure-your-vpn-device"></a>步驟 2.  設定 VPN 裝置
-就站對站連接而言，在完成先前的步驟之後，您或您的網路管理員將必須設定 VPN 裝置，才能建立連線。 請參閱＜ [關於虛擬網路連線的 VPN 裝置](vpn-gateway-about-vpn-devices.md) ＞以取得 VPN 裝置的詳細資訊。
+內部部署網路的站對站連線需要 VPN 裝置。 雖然我們不會提供所有 VPN 裝置的組態步驟，但您可能會發現下列連結中的資訊很有幫助︰
+
+- 如需有關相容的 VPN 裝置資訊，請參閱[ VPN 裝置](vpn-gateway-about-vpn-devices.md)。 
+- 如需裝置組態設定的連結，請參閱[已經驗證的 VPN 裝置](vpn-gateway-about-vpn-devices.md#devicetable)。 這些連結會以最佳方式來提供。 建議您時常詢問您的裝置製造商以取得最新的組態資訊。
+- 如需編輯裝置組態範例的相關資訊，請參閱[編輯範例](vpn-gateway-about-vpn-devices.md#editing)。
+- 如需 IPsec/IKE 參數，請參閱[參數](vpn-gateway-about-vpn-devices.md#ipsec)。
+- 請在設定 VPN 裝置之前，檢查您要使用的 VPN 裝置是否有任何[已知裝置相容性問題](vpn-gateway-about-vpn-devices.md#known)。
+
+在設定 VPN 裝置時，您需要下列項目：
+
+- 虛擬網路閘道的公用 IP 位址。 移至您虛擬網路的 [概觀] 刀鋒視窗，即可找到此位址。
+- 共用金鑰。 這個共同金鑰與您建立站對站 VPN 連線時指定的共用金鑰相同。 在我們的範例中，我們會使用非常基本的共用金鑰。 您應該產生更複雜的金鑰來使用。
 
 設定 VPN 裝置之後，您可以在 VNet 的 [儀表板] 頁面上檢視更新的連接資訊。
-
-您也可以執行下列任一命令以測試連接：
-
-|  | Cisco ASA | Cisco ISR/ASR | Juniper SSG/ISG | Juniper SRX/J |
-| --- | --- | --- | --- | --- |
-| **檢查主要模式 SA** |show crypto isakmp sa |show crypto isakmp sa |get ike cookie |show security ike security-association |
-| **檢查快速模式 SA** |show crypto ipsec sa |show crypto ipsec sa |get sa |show security ipsec security-association |
 
 ### <a name="step-3-verify-your-local-network-ranges-and-vpn-gateway-ip-address"></a>步驟 3. 驗證您的區域網路範圍和 VPN 閘道 IP 位址
 #### <a name="verify-your-vpn-gateway-ip-address"></a>驗證您的 VPN 閘道 IP 位址

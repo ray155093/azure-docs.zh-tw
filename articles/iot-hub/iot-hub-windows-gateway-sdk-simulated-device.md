@@ -12,11 +12,12 @@ ms.devlang: cpp
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/08/2017
+ms.date: 03/29/2017
 ms.author: andbuc
 translationtype: Human Translation
-ms.sourcegitcommit: 5edf2f4c7d9d2e8e8ceb2e8de9ae7cef4c9fd02e
-ms.openlocfilehash: 446e7361b5817ce888105fbb78f329affa7de6e6
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 458984f75eed3a7a3102c288798b55664afaa37d
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -27,12 +28,12 @@ ms.openlocfilehash: 446e7361b5817ce888105fbb78f329affa7de6e6
 開始之前，您必須：
 
 * [設定開發環境][lnk-setupdevbox]以在 Windows 上使用 SDK。
-* 於 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]時，您將需要中樞名稱才能完成此逐步解說。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
+* 於 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]時，您需要中樞名稱才能完成此逐步解說。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
 * 將兩個裝置加入 IoT 中樞中，並記下其識別碼和裝置金鑰。 您可以使用[裝置總管][lnk-device-explorer]或 [iothub-explorer][lnk-iothub-explorer] 工具，將您的裝置新增到在上一個步驟中建立的 IoT 中樞並擷取其金鑰。
 
 建置範例：
 
-1. 開啟 [VS2015 的開發人員命令提示字元]  命令提示字元。
+1. 開啟「VS 2015 開發人員命令提示字元」或「VS 2017 開發人員命令提示字元」命令提示字元。
 2. 瀏覽至 **azure-iot-gateway-sdk** 儲存機制本機複本中的根資料夾。
 3. 執行 **tools\\build.cmd** 指令碼。 此指令碼會建立 Visual Studio 方案檔及建置方案。 您可以在 **azure-iot-gateway-sdk** 存放庫本機複本的 **build** 資料夾中找到此 Visual Studio 方案。 您可以為指令碼指定其他參數，以建置並執行單元測試和端對端測試。 這些參數分別是 **--run-unittests** 和 **--run-e2e-tests**。
 
@@ -40,11 +41,11 @@ ms.openlocfilehash: 446e7361b5817ce888105fbb78f329affa7de6e6
 
 在文字編輯器中，開啟 **azure-iot-gateway-sdk** 存放庫本機複本中的 **samples\\simulated_device_cloud_upload\\src\\simulated_device_cloud_upload_win.json** 檔案。 這個檔案設定範例閘道中的模組︰
 
-* **IoTHub** 模組會連接至您的 IoT 中樞。 您必須設定它，以將資料傳送至您的 IoT 中樞。 特別是將 **IoTHubName** 值設定為 IoT 中樞的名稱，並將 **IoTHubSuffix** 值設定為 **azure-devices.net**。 將 **Transport** 值設定為 "HTTP"、"AMQP" 或 "MQTT" 其中一個。 請注意，目前只有 "HTTP" 會在所有裝置訊息共用一個 TCP 連線。 如果您設定為 "AMQP" 或 "MQTT" 值時，閘道會維持每個裝置有一個連至 IoT 中樞的個別 TCP 連線。
+* **IoTHub** 模組會連接至您的 IoT 中樞。 您必須設定它，以將資料傳送至您的 IoT 中樞。 特別是將 **IoTHubName** 值設定為 IoT 中樞的名稱，並將 **IoTHubSuffix** 值設定為 **azure-devices.net**。 將 **Transport** 值設定為 "HTTP"、"AMQP" 或 "MQTT" 其中一個。 目前只有 "HTTP" 會為所有裝置訊息共用一個 TCP 連線。 如果您將值設定為 "AMQP" 或 "MQTT"，閘道會為每個裝置維持一個連至 IoT 中樞的個別 TCP 連線。
 * **mapping** 模組會將您模擬裝置的 MAC 位址對應到您 IoT 中樞裝置識別碼。 請確定 **deviceId** 值符合您新增至 IoT 中樞之兩個裝置的識別碼，而且 **deviceKey** 值包含這兩個裝置的金鑰。
-* **BLE1** 和 **BLE2** 模組是模擬裝置。 請注意，其 MAC 位址如何符合 **mapping** 模組中的 MAC 位址。
+* **BLE1** 和 **BLE2** 模組是模擬裝置。 請注意模組 MAC 位址如何符合 **mapping** 模組中的 MAC 位址。
 * **Logger** 模組會將閘道活動記錄到檔案。
-* 下面顯示的 **module path** 值假設您已將「IoT 閘道 SDK」儲存機制複製到 **C:** 磁碟機的根目錄。 如果您已將它下載到另一個位置，則需要據此調整「模組路徑」  值。
+* 下列範例中顯示的「模組路徑」值假設您已將「IoT 閘道 SDK」存放庫複製到 **C:** 磁碟機的根目錄。 如果您已將它下載到另一個位置，則需要據此調整「模組路徑」  值。
 * JSON 檔案底部的 **links** 陣列會將 **BLE1** 和 **BLE2** 模組連接至 **mapping** 模組，再將 **mapping** 模組連接至 **IoTHub** 模組。 它也可確保 **Logger** 模組會記錄所有訊息。
 
 ```
@@ -166,9 +167,4 @@ ms.openlocfilehash: 446e7361b5817ce888105fbb78f329affa7de6e6
 
 [lnk-devguide]: iot-hub-devguide.md
 [lnk-create-hub]: iot-hub-create-through-portal.md
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

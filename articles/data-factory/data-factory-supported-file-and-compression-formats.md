@@ -12,17 +12,19 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/21/2017
+ms.date: 03/29/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: edef5fbc015f6b6ba01aa2bfc3d908e6f11159cc
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 06f7b38f5d08f2182f08d38a11dec526042c1828
+ms.lasthandoff: 03/31/2017
 
 
 ---
 
 # <a name="file-and-compression-formats-supported-by-azure-data-factory"></a>了解 Azure Data Factory 所支援的檔案和壓縮格式
+*此主題適用於下列連接器：[Amazon S3](data-factory-amazon-simple-storage-service-connector.md)、[Azure Blob](data-factory-azure-blob-connector.md), [Azure Data Lake Store](data-factory-azure-datalake-connector.md)、[檔案系統](data-factory-onprem-file-system-connector.md)、[FTP](data-factory-ftp-connector.md)、[HDFS](data-factory-hdfs-connector.md)、[HTTP](data-factory-http-connector.md) 與 [SFTP](data-factory-sftp-connector.md)。*
+
 Azure Data Factory 支援下列檔案格式類型：
 
 * [文字格式](#text-format)
@@ -47,7 +49,7 @@ Azure Data Factory 支援下列檔案格式類型：
 | treatEmptyAsNull |指定從輸入檔讀取資料時，是否將 null 或空字串視為 null 值。 |**True (預設值)**<br/>False |否 |
 
 ### <a name="textformat-example"></a>TextFormat 範例
-在以下的資料集 JSON 定義中，已指定一些選擇性屬性。 
+在以下的資料集 JSON 定義中，已指定一些選擇性屬性。
 
 ```json
 "typeProperties":
@@ -80,7 +82,7 @@ Azure Data Factory 支援下列檔案格式類型：
 * 您正從文字檔複製，並想略過不包含資料或標頭資訊的開頭幾行。 指定 `skipLineCount` 以表示要略過的行數。 如果檔案其餘部分包含標頭行，您也可以指定 `firstRowAsHeader`。 如果 `skipLineCount` 和 `firstRowAsHeader` 都指定，則會先略過那幾行，再從輸入檔讀取標頭資訊
 
 ## <a name="json-format"></a>JSON 格式
-若要**將 JSON 檔案原封不動匯入到 DocumentDB 或從中匯出**，請參閱[將資料移進/移出 Azure DocumentDB](data-factory-azure-documentdb-connector.md) 一文中的[匯入/匯出 JSON 文件](data-factory-azure-documentdb-connector.md#importexport-json-documents)一節。 
+若要**將 JSON 檔案原封不動匯入到 DocumentDB 或從中匯出**，請參閱[將資料移進/移出 Azure DocumentDB](data-factory-azure-documentdb-connector.md) 一文中的[匯入/匯出 JSON 文件](data-factory-azure-documentdb-connector.md#importexport-json-documents)一節。
 
 如果您想要剖析 JSON 檔案，或以 JSON 格式寫入資料，請將 `format` 區段中的 `type` 屬性設定成 **JsonFormat**。 您也可以在 `format` 區段中指定下列**選擇性**屬性。 關於如何設定，請參閱 [JsonFormat 範例](#jsonformat-example)一節。
 
@@ -452,7 +454,7 @@ Azure Data Factory 支援下列檔案格式類型：
 * 不支援複雜資料類型 (MAP、LIST)
 * Parquet 檔案已有下列壓縮相關選項：NONE、SNAPPY、GZIP 和 LZO。 Data Factory 支援以這些壓縮格式的任一項從 ORC 檔案讀取資料。 它會使用中繼資料裡的壓縮轉碼器來讀取資料。 不過，寫入 Parquet 檔案時，Data Factory 會選擇 SNAPPY，這是 Parquet 格式的預設值。 目前沒有任何選項可覆寫這個行為。
 
-## <a name="compression-support"></a>壓縮支援 
+## <a name="compression-support"></a>壓縮支援
 處理大型資料集可能會導致 I/O 和網路瓶頸。 因此，存放區中的壓縮資料不但可以跨網路加速資料傳輸和節省磁碟空間，也能在處理巨量資料時帶來顯著的效能提升。 目前，Azure Blob 或內部部署檔案系統等以檔案為基礎的資料存放區支援壓縮。  
 
 若要指定資料集的壓縮，請使用資料集 JSON 中的 **壓縮** 屬性，如下列範例所示：   
@@ -511,3 +513,4 @@ Azure Data Factory 支援下列檔案格式類型：
 - [HDFS](data-factory-hdfs-connector.md)
 - [檔案系統](data-factory-onprem-file-system-connector.md)
 - [Amazon S3](data-factory-amazon-simple-storage-service-connector.md)
+

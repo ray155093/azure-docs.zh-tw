@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 02/21/2017
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 2b5e2c2d5cc572ba951a61fd1eb78613c43ec453
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 305f02bb120a1096c46de94d103a5700dabdc8ba
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -193,7 +193,7 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
 >
 >
 
-1. 在保護群組的 [機器] 索引標籤上，按一下 [將虛擬機器加入保護群組以啟用保護]。
+1. 在保護群組的 [機器] 索引標籤上，按一下 [將虛擬機器加入保護群組以啟用保護]****。
 2. 在 [啟用虛擬機器保護]  頁面上，選取要保護的虛擬機器。
 
     ![啟用虛擬機器保護](./media/site-recovery-hyper-v-site-to-azure-classic/add-vm.png)
@@ -208,9 +208,9 @@ Azure 用來建立和處理資源的[部署模型](../resource-manager-deploymen
      * **大小**：要容錯移轉之虛擬機器的目標大小。
 
        ![設定虛擬機器屬性](./media/site-recovery-hyper-v-site-to-azure-classic/vm-properties.png)
-   * 在 [受保護的項目]* > * [保護群組]* > *protectiongroup_name* > * [虛擬機器]virtual_machine_name*  >  *[設定]* 中，設定其他虛擬機器設定，包括：
+   * 在 [受保護的項目]* > [保護群組] > *protectiongroup_name* > [虛擬機器] *virtual_machine_name* > [設定] 中，設定其他虛擬機器設定，包括：
 
-     * **網路介面卡**：網路介面卡的數目取決於您針對目標虛擬機器所指定的大小。 查看 [虛擬機器大小規格](../virtual-machines/virtual-machines-linux-sizes.md) ，了解虛擬機器大小所支援的 NIC 數目。
+     * **網路介面卡**：網路介面卡的數目取決於您針對目標虛擬機器所指定的大小。 查看 [虛擬機器大小規格](../virtual-machines/linux/sizes.md) ，了解虛擬機器大小所支援的 NIC 數目。
 
        在修改虛擬機器的大小並儲存設定之後，當您下次開啟 [設定]  頁面時，網路介面卡的數量將會改變。 目標虛擬機器的網路介面卡數目，是來源虛擬機器上的網路介面卡數目下限，以及所選虛擬機器大小支援的網路介面卡數目上限。 其說明如下：
 

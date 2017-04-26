@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: d36b4c1391dad88603ad823055e11c0a4a329c3c
-ms.openlocfilehash: 89e97cb903e04efa77cfc6b02484d28a9ccfe6fb
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 69f1850bfed90392e9a4695e2443ffaa6bfc746d
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -62,7 +62,7 @@ ms.lasthandoff: 01/13/2017
 ## <a name="connect-remotely-to-the-newly-provisioned-linux-virtual-machine"></a>遠端連線到新佈建的 Linux 虛擬機器
 RHEL 7.2 虛擬機器已佈建在 Azure 中。 下一個工作是從遠端連線至虛擬機器。
 
-**連線到 RHEL 7.2 虛擬機器** 依照[如何登入執行 Linux 的虛擬機器](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)一文中的指示操作。
+**連線到 RHEL 7.2 虛擬機器** 依照[如何登入執行 Linux 的虛擬機器](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)一文中的指示操作。
 
 剩餘步驟是假設您使用 PuTTY SSH 用戶端來連線到 RHEL 虛擬機器。 如需詳細資訊，請參閱 [PuTTY 下載頁面](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
@@ -153,7 +153,7 @@ RHEL 7.2 虛擬機器已佈建在 Azure 中。 下一個工作是從遠端連線
 ## <a name="related-content"></a>相關內容
 * [Azure AD Domain Services - 入門指南](active-directory-ds-getting-started.md)
 * [將 Windows Server 虛擬機器加入 Azure AD 網域服務受管理的網域](active-directory-ds-admin-guide-join-windows-vm.md)
-* [如何登入執行 Linux 的虛擬機器](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+* [如何登入執行 Linux 的虛擬機器](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 * [安裝 Kerberos](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Managing_Smart_Cards/installing-kerberos.html)
 * [Red Hat Enterprise Linux 7 - Windows 整合指南](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Windows_Integration_Guide/index.html)
 

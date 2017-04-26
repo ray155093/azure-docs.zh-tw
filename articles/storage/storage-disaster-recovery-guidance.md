@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 1/19/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 64650bf7baf46b0f5473deb1a9b4ec329979d153
-ms.openlocfilehash: 0fc78521abb0fce2a38b14d1411dad42b3580df2
-ms.lasthandoff: 01/21/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 83ab487f382eb84aa64b927bdf5560eec5cbbd6d
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -49,17 +49,17 @@ ms.lasthandoff: 01/21/2017
 ## <a name="what-to-expect-if-a-storage-failover-occurs"></a>如果發生儲存體容錯移轉該預期什麼
 如果您選擇[異地備援儲存體 (GRS)](storage-redundancy.md#geo-redundant-storage) 或[讀取權限異地備援儲存體 (RA-GRS)](storage-redundancy.md#read-access-geo-redundant-storage) (建議)，Azure 儲存體會將您的資料持久保留在兩個區域 (主要和次要)。 在兩個區域中，Azure 儲存體會持續維護多個您資料的複本。
 
-當您的主要區域受到區域性災害影響時，我們會先嘗試還原該區域內的服務。 視災害的本質及其影響而定，在某些罕見的情況下我們可能無法還原主要區域。 這時候，我們會執行異地複寫容錯移轉。 跨區域資料複寫是非同步的程序，因此可能會有延遲，而且可能會遺失尚未複寫到次要地區的變更。 您可以查詢 [儲存體帳戶的「上次同步處理時間」](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/) ，以取得複寫狀態的詳細資料。
+當您的主要區域受到區域性災害影響時，我們會先嘗試還原該區域內的服務。 視災害的本質及其影響而定，在某些罕見的情況下我們可能無法還原主要區域。 這時候，我們會執行異地複寫容錯移轉。 跨區域資料複寫是非同步的程序，因此可能會有延遲，而且可能會遺失尚未複寫到次要地區的變更。 您可以查詢[儲存體帳戶的「上次同步處理時間」(英文)](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/)，以取得複寫狀態的詳細資料。
 
 關於儲存體異地複寫容錯移轉體驗有幾點事項：
 
 * 儲存體異地複寫容錯移轉只會由 Azure 儲存體團隊發動 – 客戶無須採取行動。
 * 您現有的 Blob、資料表、佇列及檔案之儲存體服務端點，在容錯移轉後都會維持原狀；需要更新 DNS 以從主要區域切換到次要地區。
-* 由於災害的影響，在異地複寫容錯移轉的之前與期間內，您將沒有您的儲存體帳戶的寫入權限，如果您的儲存體帳戶已設為 RA-GRS，則您仍然可以從次要地區讀取資料。
+* 由於災害的影響，在異地複寫容錯移轉之前與期間內，您將不會有您儲存體帳戶的寫入權限，但如果您的儲存體帳戶已設為 RA-GRS，您仍然可以從次要區域讀取資料。
 * 當異地複寫容錯移轉已完成且 DNS 變更已傳播時，您對儲存體帳戶的讀取和寫入權限將會恢復；這會指向先前用來做為您次要端點的項目。 
 * 請注意，如果您已為儲存體帳戶設定 GRS 或 RA-GRS，則您將會有寫入權限。 
-* 您可以查詢 [儲存體帳戶的「上次異地複寫容錯移轉時間」](https://msdn.microsoft.com/library/azure/ee460802.aspx) 以取得詳細資料。
-* 容錯移轉之後，您的儲存體帳戶就會正常運作，不過是處於「降級」狀態，因為它是裝載在沒有異地複寫之可能性的獨立區域。 為了降低此風險，我們將會還原原始的主要區域，然後進行異地容錯回復以還原為原始狀態。 如果無法復原為主要區域的原始狀態，我們會配置另一個次要地區。
+* 您可以查詢[儲存體帳戶的「上次異地複寫容錯移轉時間」(英文)](https://msdn.microsoft.com/library/azure/ee460802.aspx) 以取得詳細資料。
+* 容錯移轉之後，您的儲存體帳戶就會正常運作，不過是處於「降級」狀態，因為它是裝載在無法進行異地複寫的獨立區域中。 為了降低此風險，我們將會還原原始的主要區域，然後進行異地容錯回復以還原為原始狀態。 如果無法復原為主要區域的原始狀態，我們會配置另一個次要地區。
   如需 Azure 儲存體異地複寫的詳細資訊，請參閱儲存體團隊部落格上關於 [備援選項和 RA-GRS](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/)的文章。
 
 ## <a name="best-practices-for-protecting-your-data"></a>保護資料的最佳做法

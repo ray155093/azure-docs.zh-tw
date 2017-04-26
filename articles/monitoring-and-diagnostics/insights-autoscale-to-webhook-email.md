@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/19/2016
+ms.date: 04/03/2017
 ms.author: ashwink
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: d5fb08bbeb5564566808cd8ff6d2e83dec89de6c
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: f0ab9d4bea3a3f7f1e1a0af2206e7b5641be1288
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -75,10 +76,7 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 | properties |yes |值必須是空的 {}，或可以包含索引鍵-值組 |
 
 ## <a name="authentication-in-webhooks"></a>Webhook 中的驗證
-有兩種驗證 URI 形式︰
-
-1. 權杖型驗證，在其中儲存 webhook URI 和權杖識別碼做為查詢參數。 例如，https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue
-2. 基本驗證，在其中使用使用者識別碼和密碼。 例如， https://userid:password@mysamplealert/webcallback?someparamater=somevalue&parameter=value
+Webhook 可以使用權杖型驗證來驗證，您會在其中儲存 Webhook URI 並以權杖識別碼做為查詢參數。 例如，https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue
 
 ## <a name="autoscale-notification-webhook-payload-schema"></a>自動調整通知 Webhook 承載結構描述
 產生自動調整通知時，Webhook 承載會包含下列中繼資料︰
@@ -128,10 +126,5 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 | oldCapacity |yes |自動調整進行調整動作時的當前 (舊) 執行個體計數 |
 | newCapacity |yes |自動調整要將資源調整為此數目的新執行個體計數 |
 | properties |否 |選用。 <索引鍵, 值> 組 (例如，字典 <字串, 字串>)。 properties 欄位是選擇性的。 在自訂 UI 或邏輯應用程式的工作流程中，您可以輸入可使用承載傳遞的索引鍵和值。 另一個將自訂屬性傳回給連出 Webhook 呼叫的替代做法，是使用 Webhook URI 本身 (做為查詢參數) |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

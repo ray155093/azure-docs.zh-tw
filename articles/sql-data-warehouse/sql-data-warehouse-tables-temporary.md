@@ -12,23 +12,25 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: tables
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 83b12c6daf5422039f3dd95eb9b177b972fad840
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 091ad6068c64bfe06c090430874d23f6ca497b34
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="temporary-tables-in-sql-data-warehouse"></a>SQL 資料倉儲中的暫存資料表
 > [!div class="op_single_selector"]
-> * [概觀][概觀]
-> * [資料類型][資料類型]
-> * [散發][散發]
-> * [Index][Index]
-> * [資料分割][資料分割]
-> * [統計資料][統計資料]
-> * [暫存][暫存]
+> * [概觀][Overview]
+> * [資料類型][Data Types]
+> * [散發][Distribute]
+> * [索引][Index]
+> * [資料分割][Partition]
+> * [統計資料][Statistics]
+> * [暫存][Temporary]
 > 
 > 
 
@@ -231,26 +233,21 @@ DROP TABLE #stats_ddl;
 SQL 資料倉儲在實作暫存資料表時的確有一些限制。  目前，僅支援工作階段範圍內的暫存資料表。  不支援全域暫存資料表。  此外，無法在暫存資料表上建立檢視。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解，請參閱[資料表概觀][概觀]、[資料表資料類型][資料類型]、[散發資料表][散發]、[編製資料表的索引][Index]、[分割資料表][資料分割]及[維護資料表統計資料][統計資料]等文章。  如需最佳做法的詳細資訊，請參閱 [SQL Data 資料倉儲最佳做法][SQL Data 資料倉儲最佳做法]。
+若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]及[維護資料表統計資料][Statistics]等文章。  若要深入了解最佳作法，請參閱 [SQL Data 資料倉儲最佳作法][SQL Data Warehouse Best Practices]。
 
 <!--Image references-->
 
 <!--Article references-->
-[概觀]: ./sql-data-warehouse-tables-overview.md
-[資料類型]: ./sql-data-warehouse-tables-data-types.md
-[散發]: ./sql-data-warehouse-tables-distribute.md
+[Overview]: ./sql-data-warehouse-tables-overview.md
+[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[Distribute]: ./sql-data-warehouse-tables-distribute.md
 [Index]: ./sql-data-warehouse-tables-index.md
-[資料分割]: ./sql-data-warehouse-tables-partition.md
-[統計資料]: ./sql-data-warehouse-tables-statistics.md
-[暫存]: ./sql-data-warehouse-tables-temporary.md
-[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
+[Partition]: ./sql-data-warehouse-tables-partition.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[Temporary]: ./sql-data-warehouse-tables-temporary.md
+[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

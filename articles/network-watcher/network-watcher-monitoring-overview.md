@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: f9e4fededc2bbb069cc653791137f248a7dc3fe8
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: aabc0cf743487752312f5e1b078837545169e964
+ms.lasthandoff: 03/31/2017
 
 ---
 
@@ -36,8 +36,6 @@ ms.lasthandoff: 03/04/2017
 
 網路監看員是一項區域性服務，可讓您監視與診斷位於和進出 Azure 的網路案例層級條件。 網路監看員提供的網路診斷和視覺效果工具，可幫助您了解、診斷及洞悉您在 Azure 中的網路。
 
-[!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
-
 網路監看員目前具有下列功能︰
 
 * **[拓撲](network-watcher-topology-overview.md)** - 提供網路層級檢視，顯示資源群組中的網路資源之間的各種相互連線和關聯。
@@ -52,7 +50,7 @@ ms.lasthandoff: 03/04/2017
 
 ### <a name="role-based-access-control-rbac-in-network-watcher"></a>網路監看員的角色型存取控制 (RBAC)
 
-網路監看員使用 [Azure 角色型存取控制 (RBAC) 模型](../active-directory/role-based-access-control-what-is.md)。 預覽版「網路監看員」需要下列權限。 請務必確定用來起始網路監看員 API 或從入口網站使用網路監看員的角色具有所需存取權。
+網路監看員使用 [Azure 角色型存取控制 (RBAC) 模型](../active-directory/role-based-access-control-what-is.md)。 網路監看員需要下列權限。 請務必確定用來起始網路監看員 API 或從入口網站使用網路監看員的角色具有所需存取權。
 
 |資源| 權限|
 |---|---|

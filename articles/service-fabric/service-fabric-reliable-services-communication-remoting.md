@@ -1,5 +1,5 @@
 ---
-title: "Service Fabric 的服務遠端處理 | Microsoft Docs"
+title: "Azure Service Fabric 的服務遠端處理 | Microsoft Docs"
 description: "Service Fabric 遠端處理可讓用戶端和服務使用遠端程序呼叫與服務進行通訊。"
 services: service-fabric
 documentationcenter: .net
@@ -15,18 +15,25 @@ ms.workload: required
 ms.date: 02/10/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: c568e44ac4008d4252ef2e889150506307cc7a92
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 8e06b3f2f6347468b197f2e90912a5d0facc5404
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="service-remoting-with-reliable-services"></a>使用 Reliable Services 的遠端服務
+> [!div class="op_single_selector"]
+> * [Windows 上的 C# ](service-fabric-reliable-services-communication-remoting.md)
+> * [在 Linux 上使用 Java](service-fabric-reliable-services-communication-remoting-java.md)
+>
+>
+
 對於未繫結至特定通訊協定或堆疊 (例如 WebAPI、Windows Communication Foundation (WCF) 或其他項目) 的服務，Reliable Services 架構會提供遠端機制，以便快速且輕鬆設定服務遠端程序呼叫。
 
 ## <a name="set-up-remoting-on-a-service"></a>設定在服務上的遠端處理
 只要兩個簡單步驟，就能設定服務的遠端處理：
 
-1. 建立服務實作的介面。 這個介面會定義方法，可在您的服務上用於遠端程序呼叫。 方法也必須是傳回工作的非同步方法。 此介面必須實作 `Microsoft.ServiceFabric.Services.Remoting.IService` ，表示服務具有遠端處理介面。
+1. 建立服務實作的介面。 這個介面會定義可在您的服務上用於遠端程序呼叫的方法。 方法也必須是傳回工作的非同步方法。 此介面必須實作 `Microsoft.ServiceFabric.Services.Remoting.IService` ，表示服務具有遠端處理介面。
 2. 在您的服務中使用遠端接聽程式。 這是提供遠端功能的 `ICommunicationListener` 實作。 `Microsoft.ServiceFabric.Services.Remoting.Runtime` 命名空間包含一個適用於無狀態與具狀態服務的擴充方法 `CreateServiceRemotingListener`，可用於建立使用預設遠端傳輸通訊協定的遠端接聽程式。
 
 例如，下列無狀態服務服務會公開單一方法，透過遠端程序呼叫取得 "Hello World"。
@@ -56,15 +63,15 @@ class MyService : StatelessService, IMyService
 
     protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
     {
-        return new[] { new ServiceInstanceListener(context => 
+        return new[] { new ServiceInstanceListener(context =>
             this.CreateServiceRemotingListener(context)) };
     }
 }
 ```
 > [!NOTE]
 > 服務介面中的引數和傳回類型可以是任何簡單、複雜或自訂的類型，但必須可由 .NET [DataContractSerializer](https://msdn.microsoft.com/library/ms731923.aspx)序列化。
-> 
-> 
+>
+>
 
 ## <a name="call-remote-service-methods"></a>呼叫遠端服務方法
 透過 `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` 類別使用連至服務的本機 Proxy，可以在服務上使用遠端堆疊呼叫方法。 `ServiceProxy` 方法會使用該服務所實作的相同介面，建立本機 Proxy。 您可以使用該 Proxy 直接在介面上遠端呼叫方法。
@@ -83,10 +90,4 @@ string message = await helloWorldClient.HelloWorldAsync();
 * [在 Reliable Services 中搭配 OWIN 使用 Web API](service-fabric-reliable-services-communication-webapi.md)
 * [使用 Reliable Services 的 WCF 通訊](service-fabric-reliable-services-communication-wcf.md)
 * [Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: 77fd7b5b339a8ede8a297bec96f91f0a243cc18d
-ms.openlocfilehash: 848d25efcae78280b090d3725eb3581c5082efb7
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 3c633d54e6b81576a2fbd1adfc69775ca1bdd09d
+ms.lasthandoff: 04/07/2017
 
 ---
 # <a name="azure-api-management-template-resources"></a>Azure API 管理中的範本資源
@@ -26,7 +27,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
   
 -   [圖像資源](#glyphs)  
   
-##  <a name="a-namestringsa-string-resources"></a><a name="strings"></a> 字串資源  
+##  <a name="strings"></a> 字串資源  
  Azure API 管理提供一整套完整的字串資源，可在開發人員入口網站中使用。 這些資源已當地語系化，提供 API 管理支援的所有語言版本。 預設範本集將這些資源使用在頁首、標籤、及在開發人員入口網站中會顯示的任何恆常字串。 若要在範本中使用字串資源，需提供資源字串前置詞，後面接著字串名稱，如下列範例所示。  
   
 ```  
@@ -83,13 +84,13 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
   
 -   [UserProfile](#UserProfile)  
   
-###  <a name="a-nameapisstringsa-apisstrings"></a><a name="ApisStrings"></a> ApisStrings  
+###  <a name="ApisStrings"></a> ApisStrings  
   
 |名稱|文字|  
 |----------|----------|  
 |PageTitleApis|API|  
   
-###  <a name="a-nameappdetailsstringsa-appdetailsstrings"></a><a name="AppDetailsStrings"></a> AppDetailsStrings  
+###  <a name="AppDetailsStrings"></a> AppDetailsStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -98,7 +99,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |WebApplicationsScreenshotAlt|螢幕擷取畫面|  
 |WebApplicationsScreenshotsHeader|螢幕擷取畫面|  
   
-###  <a name="a-nameapplicationliststringsa-applicationliststrings"></a><a name="ApplicationListStrings"></a> ApplicationListStrings  
+###  <a name="ApplicationListStrings"></a> ApplicationListStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -114,13 +115,13 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |WebDevelopersSubmitLink|提交|  
 |WebDevelopersYourApplicationsHeader|您的應用程式|  
   
-###  <a name="a-nameappstringsa-appstrings"></a><a name="AppStrings"></a> AppStrings  
+###  <a name="AppStrings"></a> AppStrings  
   
 |名稱|文字|  
 |----------|----------|  
 |WebApplicationsHeader|應用程式|  
   
-###  <a name="a-namecommonresourcesa-commonresources"></a><a name="CommonResources"></a> CommonResources  
+###  <a name="CommonResources"></a> CommonResources  
   
 |名稱|文字|  
 |----------|----------|  
@@ -131,7 +132,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |AzureActiveDirectory|Azure Active Directory|  
 |HttpLargeRequestMessage|HTTP 要求本文太大。|  
   
-###  <a name="a-namecommonstringsa-commonstrings"></a><a name="CommonStrings"></a> CommonStrings  
+###  <a name="CommonStrings"></a> CommonStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -155,7 +156,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |TablePlaceholderNothingToDisplay|選取的期間和範圍中沒有資料|  
 |ButtonLabelClose|關閉|  
   
-###  <a name="a-namedocumentationa-documentation"></a><a name="Documentation"></a> Documentation  
+###  <a name="Documentation"></a> Documentation  
   
 |名稱|文字|  
 |----------|----------|  
@@ -285,11 +286,11 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |OAuth2AuthorizationServerCommunicationException|無法建立連接至授權伺服器的 HTTP 連線，或連線已意外關閉。|  
 |WebDocumentationOAuth2GeneralErrorMessage|發生未預期的錯誤。|  
 |AuthorizationServerCommunicationException|發生授權伺服器通訊的例外狀況。 請連絡系統管理員。|  
-|TextblockSubscriptionKeyHeaderDescription|訂用帳戶金鑰，可讓您存取此 API。 可在您的 `<a href='/developer'\>Profile</a\>` 中找到。|  
+|TextblockSubscriptionKeyHeaderDescription|訂用帳戶金鑰，可讓您存取此 API。 可在您的<a href='/developer'\>設定檔</a\>中找到。|  
 |TextblockOAuthHeaderDescription|自 <i\>{0}</i\> 取得的 OAuth 2.0 存取權杖。 支援的授與類型︰<i\>{1}</i\>。|  
 |TextblockContentTypeHeaderDescription|傳送至 API 的本文媒體類型。|  
-|ErrorMessageApiNotAccessible|您嘗試呼叫的 API 目前無法使用。 請連絡 API 發行者 `<a href="/issues"\>here</a\>`。|  
-|ErrorMessageApiTimedout|您嘗試呼叫的 API 所花的時間比正常收到回應的時間更久。 請連絡 API 發行者 `<a href="/issues"\>here</a\>`。|  
+|ErrorMessageApiNotAccessible|您嘗試呼叫的 API 目前無法使用。 請從<a href="/issues"\>這裡</a\>連絡 API 發行者。|  
+|ErrorMessageApiTimedout|您嘗試呼叫的 API 所花的時間比正常收到回應的時間更久。 請從<a href="/issues"\>這裡</a\>連絡 API 發行者。|  
 |BadRequestParameterExpected|「預期收到 '{0}' 參數」|  
 |TooltipTextDoubleClickToSelectAll|按兩下以全部選取。|  
 |TooltipTextHideRevealSecret|顯示/隱藏|  
@@ -303,7 +304,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |SectionHeadingCodeSamples|程式碼範例|  
 |TextblockOpenidConnectHeaderDescription|自 <i\>{0}</i\> 取得的 OpenID 連接識別碼。 支援的授與類型︰<i\>{1}</i\>。|  
   
-###  <a name="a-nameerrorpagestringsa-errorpagestrings"></a><a name="ErrorPageStrings"></a> ErrorPageStrings  
+###  <a name="ErrorPageStrings"></a> ErrorPageStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -321,7 +322,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |TitlePotentialCause|可能的原因|  
 |TitlePotentialSolution|可能只是暫時性的問題，可嘗試一些動作|  
   
-###  <a name="a-nameissuesstringsa-issuesstrings"></a><a name="IssuesStrings"></a> IssuesStrings  
+###  <a name="IssuesStrings"></a> IssuesStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -332,7 +333,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |WebIssuesSignIn|登入|  
 |WebIssuesStatusReportedBy|狀態︰{0} &#124；由 {1} 報告|  
   
-###  <a name="a-namenotfoundstringsa-notfoundstrings"></a><a name="NotFoundStrings"></a> NotFoundStrings  
+###  <a name="NotFoundStrings"></a> NotFoundStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -347,7 +348,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |TitlePotentialCause|可能的原因|  
 |TitlePotentialSolution|可能的解決辦法|  
   
-###  <a name="a-nameproductdetailsstringsa-productdetailsstrings"></a><a name="ProductDetailsStrings"></a> ProductDetailsStrings  
+###  <a name="ProductDetailsStrings"></a> ProductDetailsStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -369,13 +370,13 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |TextblockSubscriptionDescription|已建立新的訂用帳戶如下:|  
 |TextblockSubscriptionLimitReached|已達到訂用帳戶限制。|  
   
-###  <a name="a-nameproductsstringsa-productsstrings"></a><a name="ProductsStrings"></a> ProductsStrings  
+###  <a name="ProductsStrings"></a> ProductsStrings  
   
 |名稱|文字|  
 |----------|----------|  
 |PageTitleProducts|產品|  
   
-###  <a name="a-nameproviderinfostringsa-providerinfostrings"></a><a name="ProviderInfoStrings"></a> ProviderInfoStrings  
+###  <a name="ProviderInfoStrings"></a> ProviderInfoStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -383,7 +384,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |TextboxExternalIdentitiesSigninInvitation|或者，以此登入|  
 |TextboxExternalIdentitiesSigninInvitationPrimary|以此登入:|  
   
-###  <a name="a-namesigninresourcesa-signinresources"></a><a name="SigninResources"></a> SigninResources  
+###  <a name="SigninResources"></a> SigninResources  
   
 |名稱|文字|  
 |----------|----------|  
@@ -479,7 +480,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |DialogHeadingTermsOfUse|使用條款|  
 |ValidationMessageConsentNotAccepted|您必須同意使用條款才可以繼續。|  
   
-###  <a name="a-namesigninstringsa-signinstrings"></a><a name="SigninStrings"></a> SigninStrings  
+###  <a name="SigninStrings"></a> SigninStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -491,7 +492,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |WebAuthenticationSigninTitle|登入|  
 |WebAuthenticationSignUpNow|立即註冊|  
   
-###  <a name="a-namesignupstringsa-signupstrings"></a><a name="SignupStrings"></a> SignupStrings  
+###  <a name="SignupStrings"></a> SignupStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -501,7 +502,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |WebAuthenticationSigninNow|立即登入|  
 |ButtonLabelSignup|註冊|  
   
-###  <a name="a-namesubscriptionliststringsa-subscriptionliststrings"></a><a name="SubscriptionListStrings"></a> SubscriptionListStrings  
+###  <a name="SubscriptionListStrings"></a> SubscriptionListStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -524,7 +525,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |PageTitleRenameSubscription|重新命名訂用帳戶|  
 |SubscriptionPropertyLabelName|訂用帳戶名稱|  
   
-###  <a name="a-namesubscriptionstringsa-subscriptionstrings"></a><a name="SubscriptionStrings"></a> SubscriptionStrings  
+###  <a name="SubscriptionStrings"></a> SubscriptionStrings  
   
 |名稱|文字|  
 |----------|----------|  
@@ -535,14 +536,14 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |InformationMessageKeyWasRegenerated|確定要重新產生此索引鍵嗎?|  
 |ButtonLabelShowKey|顯示|  
   
-###  <a name="a-nameupdateprofilestringsa-updateprofilestrings"></a><a name="UpdateProfileStrings"></a> UpdateProfileStrings  
+###  <a name="UpdateProfileStrings"></a> UpdateProfileStrings  
   
 |名稱|文字|  
 |----------|----------|  
 |ButtonLabelUpdateProfile|更新設定檔|  
 |PageTitleUpdateProfile|變更帳戶資訊|  
   
-###  <a name="a-nameuserprofilea-userprofile"></a><a name="UserProfile"></a> UserProfile  
+###  <a name="UserProfile"></a> UserProfile  
   
 |名稱|文字|  
 |----------|----------|  
@@ -566,7 +567,7 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 |ValidationMessageSubscriptionNameRequired|訂用帳戶名稱不可為空白。|  
 |ApiManagementUserLimitReached|您已達到允許的使用者數目上限。 請升級至更高的定價層。|  
   
-##  <a name="a-nameglyphsa-glyph-resources"></a><a name="glyphs"></a> 圖像資源  
+##  <a name="glyphs"></a> 圖像資源  
  API 管理的開發人員入口網站範本可以使用 [Bootstrap 中的 Glyphicons](http://getbootstrap.com/components/#glyphicons) 中的圖像。 這一套圖像包含超過 250 個 [Glyphicon](http://glyphicons.com/) Halfling 集字型格式的圖像。 若要使用此圖像集中的圖像，使用下列語法。  
   
 ```html  
@@ -577,8 +578,4 @@ Azure API 管理提供下列類型的資源，用於開發人員入口網站的�
 
 ## <a name="next-steps"></a>後續步驟
 如需有關使用範本的詳細資訊，請參閱[如何使用範本自訂 API 管理開發人員入口網站](api-management-developer-portal-templates.md)。
-
-
-<!--HONumber=Jan17_HO2-->
-
 

@@ -12,23 +12,25 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
+ms.custom: tables
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 5a101aa78dbac4f1a0edb7f414b44c14db392652
-ms.openlocfilehash: 4becdace365fce1fb70e9e870dd4c8b81d1c7496
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: fe47cc1e5489d094f08b771cc8ec89de84509972
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="distributing-tables-in-sql-data-warehouse"></a>在 SQL 資料倉儲中散發資料表
 > [!div class="op_single_selector"]
-> * [概觀][概觀]
-> * [資料類型][資料類型]
-> * [散發][散發]
-> * [Index][Index]
-> * [資料分割][資料分割]
-> * [統計資料][統計資料]
-> * [暫存][暫存]
+> * [概觀][Overview]
+> * [資料類型][Data Types]
+> * [散發][Distribute]
+> * [索引][Index]
+> * [資料分割][Partition]
+> * [統計資料][Statistics]
+> * [暫存][Temporary]
 >
 >
 
@@ -180,7 +182,7 @@ WITH
 DBCC PDW_SHOWSPACEUSED('dbo.FactInternetSales');
 ```
 
-不過，如果您查詢 Azure SQL 資料倉儲動態管理檢視 (DMV)，則可以執行更詳細的分析。  若要開始，請使用[資料表概觀][概觀]一文中的 SQL 建立 [dbo.vTableSizes][dbo.vTableSizes] 檢視。  建立檢視後，請執行此查詢來識別哪些資料表有 10% 以上的資料扭曲。
+不過，如果您查詢 Azure SQL 資料倉儲動態管理檢視 (DMV)，則可以執行更詳細的分析。  若要開始，請使用[資料表概觀][Overview]一文中的 SQL 建立 [dbo.vTableSizes][dbo.vTableSizes] 檢視。  建立檢視後，請執行此查詢來識別哪些資料表有 10% 以上的資料扭曲。
 
 ```sql
 select *
@@ -198,7 +200,7 @@ order by two_part_name, row_count
 ```
 
 ### <a name="resolving-data-skew"></a>解決資料扭曲
-並非所有的扭曲都足以批准修正。  在某些情況下，某些查詢中的資料表效能可以超越資料扭曲的傷害。  若要決定是否應該解決資料表中的資料扭曲，您應該盡可能了解工作負載中的資料磁區和查詢。   查看扭曲影響的方法之一是使用[查詢監視][查詢監視]一文中的步驟，監視扭曲對於查詢效能的影響，尤其是在個別散發上完成查詢所需時間的影響。
+並非所有的扭曲都足以批准修正。  在某些情況下，某些查詢中的資料表效能可以超越資料扭曲的傷害。  若要決定是否應該解決資料表中的資料扭曲，您應該盡可能了解工作負載中的資料磁區和查詢。   查看扭曲影響的方法之一是使用[查詢監視][Query Monitoring]一文中的步驟，監視扭曲對於查詢效能的影響，尤其是對在個別散發上完成查詢所需時間的影響。
 
 散發資料就是找出將資料扭曲降至最低與將資料移動降至最低兩者之間的正確平衡點。 這些可能是相反的目標，有時候您會想要保留資料扭曲，以減少資料移動。 比方說，當散發資料行經常是聯結和彙總中的共用資料行時，您便會將資料移動降至最低。 擁有最少的資料移動，所帶來的好處可能勝過具有資料扭曲的影響。
 
@@ -283,31 +285,26 @@ RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] TO [FactInternetSales];
 ```
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解資料表設計，請參閱[散發][散發]、[Index][Index]、[資料分割][資料分割]、[資料類型][資料類型]、[統計資料][統計資料] 和 [暫存][暫存]等文章。
+若要深入了解資料表設計，請參閱[散發][Distribute]、[索引][Index]、[資料分割][Partition]、[資料類型][Data Types]、[統計資料][Statistics] 和 [暫存資料表][Temporary]等文章。
 
-如需最佳做法的概觀，請參閱 [SQL 資料倉儲最佳做法][SQL 資料倉儲最佳做法]。
+如需最佳做法的概觀，請參閱 [SQL 資料倉儲最佳做法][SQL Data Warehouse Best Practices]。
 
 <!--Image references-->
 
 <!--Article references-->
-[概觀]: ./sql-data-warehouse-tables-overview.md
-[資料類型]: ./sql-data-warehouse-tables-data-types.md
-[散發]: ./sql-data-warehouse-tables-distribute.md
+[Overview]: ./sql-data-warehouse-tables-overview.md
+[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[Distribute]: ./sql-data-warehouse-tables-distribute.md
 [Index]: ./sql-data-warehouse-tables-index.md
-[資料分割]: ./sql-data-warehouse-tables-partition.md
-[統計資料]: ./sql-data-warehouse-tables-statistics.md
-[暫存]: ./sql-data-warehouse-tables-temporary.md
-[SQL 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
-[查詢監視]: ./sql-data-warehouse-manage-monitor.md
+[Partition]: ./sql-data-warehouse-tables-partition.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[Temporary]: ./sql-data-warehouse-tables-temporary.md
+[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
+[Query Monitoring]: ./sql-data-warehouse-manage-monitor.md
 [dbo.vTableSizes]: ./sql-data-warehouse-tables-overview.md#table-size-queries
 
 <!--MSDN references-->
 [DBCC PDW_SHOWSPACEUSED()]: https://msdn.microsoft.com/library/mt204028.aspx
 
 <!--Other Web references-->
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

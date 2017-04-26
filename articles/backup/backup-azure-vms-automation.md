@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 02/09/2017
+ms.date: 04/05/2017
 ms.author: markgal;trinadhk
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 82b7541ab1434179353247ffc50546812346bda9
-ms.openlocfilehash: 754ad53c46fd6bc00be0282138480e73d560fdc6
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: b179588d29c5dd8cc5bd2469e7f1dfe669027eca
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -105,12 +105,12 @@ PowerShell 可以自動化下列工作：
     ```
     PS C:\> Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"
     ```
-2. 復原服務保存庫是一項 Resource Manager 資源，因此您必須將它放在資源群組內。 您可以使用現有的資源群組，或使用 **[New-AzureRmResourceGroup](https://msdn.microsoft.com/library/mt678985.aspx)** Cmdlet 建立新的資源群組。 建立新的資源群組時，請指定資源群組的名稱和位置。  
+2. 復原服務保存庫是一項 Resource Manager 資源，因此您必須將它放在資源群組內。 您可以使用現有的資源群組，或使用 **[New-AzureRmResourceGroup](https://msdn.microsoft.com/library/mt678985.aspx)** Cmdlet 建立資源群組。 建立資源群組時，請指定資源群組的名稱與位置。  
 
     ```
     PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "West US"
     ```
-3. 使用 **[New-AzureRmRecoveryServicesVault](https://msdn.microsoft.com/library/mt643910.aspx)** Cmdlet 來建立新的保存庫。 請務必為保存庫指定與用於資源群組相同的位置。
+3. 使用 **[New-AzureRmRecoveryServicesVault](https://msdn.microsoft.com/library/mt643910.aspx)** Cmdlet 來建立保存庫。 請務必為保存庫指定與用於資源群組相同的位置。
 
     ```
     PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "West US"
@@ -154,7 +154,7 @@ PS C:\> Get-AzureRmRecoveryServicesVault -Name testvault | Set-AzureRmRecoverySe
 ```
 
 ### <a name="create-a-protection-policy"></a>建立保護原則
-當您建立新的保存庫時，它會隨附預設原則。 此原則就會每天在指定時間觸發備份工作。 根據預設原則，備份快照會保留 30 天。 您可以使用預設原則來快速地保護 VM，並在之後編輯原則的各種詳細資料。
+當您建立保存庫時，它會隨附預設原則。 此原則就會每天在指定時間觸發備份工作。 根據預設原則，備份快照會保留 30 天。 您可以使用預設原則來快速地保護 VM，並在之後編輯原則的各種詳細資料。
 
 使用 **[Get-AzureRmRecoveryServicesBackupProtectionPolicy](https://msdn.microsoft.com/library/mt723300.aspx)** 來檢視保存庫中可用的原則清單：
 
@@ -214,7 +214,7 @@ PS C:\>  Enable-AzureRmRecoveryServicesBackupProtection -Policy $pol -Name "V1VM
 ```
 
 ### <a name="modify-a-protection-policy"></a>修改保護原則
-若要修改原則，請修改 BackupSchedulePolicyObject 或 BackupRetentionPolicy 物件，以及使用 Set-AzureRmRecoveryServicesBackupProtectionPolicy 修改原則
+若要修改原則，請修改 BackupSchedulePolicyObject 或 BackupRetentionPolicy 物件，並使用 Set-AzureRmRecoveryServicesBackupProtectionPolicy 修改原則
 
 以下範例會將保留計數變更為 365。
 
@@ -243,7 +243,7 @@ V2VM              Backup               InProgress            4/23/2016 5:00:30 P
 >
 
 ## <a name="monitoring-a-backup-job"></a>監視備份工作
-Azure 備份中長時間執行的大部分作業都模擬成工作。 如此就很容易追蹤進度，而不需要一直開啟 Azure 入口網站。
+Azure 備份中長時間執行的大部分作業都以作業形式執行。 如此就很容易追蹤進度，而不需要讓 Azure 入口網站一直維持開啟。
 
 若要取得進行中作業的最新狀態，請使用 Get-AzureRmRecoveryservicesBackupJob Cmdlet。
 
@@ -273,7 +273,7 @@ PS C:\> Wait-AzureRmRecoveryServicesBackupJob -Job $joblist[0] -Timeout 43200
 
 ![顯示 BackupContainer 的復原服務物件階層](./media/backup-azure-vms-arm-automation/backuprecoverypoint-only.png)
 
-若要還原備份資料，請識別備份的「項目」和保存時間點資料的「復原點」。 然後使用 **[Restore-AzureRmRecoveryServicesBackupItem](https://msdn.microsoft.com/library/mt723316.aspx)**，將資料從保存庫還原至客戶的帳戶。
+若要還原備份資料，請識別已備份的項目和保存時間點資料的復原點。 然後使用 **[Restore-AzureRmRecoveryServicesBackupItem](https://msdn.microsoft.com/library/mt723316.aspx)**，將資料從保存庫還原至客戶的帳戶。
 
 ### <a name="select-the-vm"></a>選取 VM
 若要取得可識別正確備份項目的 PowerShell 物件，請從保存庫中的容器開始，向下深入物件階層。 若要選取代表 VM 的容器，請使用 **[Get-AzureRmRecoveryServicesBackupContainer](https://msdn.microsoft.com/library/mt723319.aspx)** Cmdlet，並透過管道將它傳送到 **[Get-AzureRmRecoveryServicesBackupItem](https://msdn.microsoft.com/library/mt723305.aspx)** Cmdlet。
@@ -378,11 +378,13 @@ PS C:\> $details = Get-AzureRmRecoveryServicesBackupJobDetails -Job $restorejob
        $vm = Add-AzureRmVMDataDisk -VM $vm -Name "datadisk1" -VhdUri $dd.VirtualHardDisk.Uri -DiskSizeInGB 127 -Lun $dd.Lun -CreateOption Attach
        }
        ```
+       
       For encrypted VMs, you need to specify [Key vault information](https://msdn.microsoft.com/library/dn868052.aspx) before you can attach disks.
 
       ```
       PS C:\> Set-AzureRmVMOSDisk -VM $vm -Name "osdisk" -VhdUri $obj.StorageProfile.OSDisk.VirtualHardDisk.Uri -DiskEncryptionKeyUrl "https://ContosoKeyVault.vault.azure.net:443/secrets/ContosoSecret007" -DiskEncryptionKeyVaultId "/subscriptions/abcdedf007-4xyz-1a2b-0000-12a2b345675c/resourceGroups/ContosoRG108/providers/Microsoft.KeyVault/vaults/ContosoKeyVault" -KeyEncryptionKeyUrl "https://ContosoKeyVault.vault.azure.net:443/keys/ContosoKey007" -KeyEncryptionKeyVaultId "/subscriptions/abcdedf007-4xyz-1a2b-0000-12a2b345675c/resourceGroups/ContosoRG108/providers/Microsoft.KeyVault/vaults/ContosoKeyVault" -CreateOption "Attach" -Windows    PS C:\> $vm.StorageProfile.OsDisk.OsType = $obj.StorageProfile.OSDisk.OperatingSystemType    PS C:\> foreach($dd in $obj.StorageProfile.DataDisks)     {     $vm = Add-AzureRmVMDataDisk -VM $vm -Name "datadisk1" -VhdUri $dd.VirtualHardDisk.Uri -DiskSizeInGB 127 -Lun $dd.Lun -CreateOption Attach     }
        ```
+       
 5. 設定網路設定。
 
     ```
@@ -399,5 +401,5 @@ PS C:\> $details = Get-AzureRmRecoveryServicesBackupJobDetails -Job $restorejob
     ```
 
 ## <a name="next-steps"></a>後續步驟
-如果您偏好使用 PowerShell 來與您的 Azure 資源交流，請參閱保護 Windows Server 的 PowerShell 文章：[部署和管理 Windows Server 的備份](backup-client-automation.md)。 另請參閱管理 DPM 備份的 PowerShell 文章：[部署和管理 DPM 的備份](backup-dpm-automation.md)。 這兩篇文章都有適用於 Resource Manager 部署以及傳統部署的版本。  
+如果您偏好使用 PowerShell 來與您的 Azure 資源交流，請參閱保護 Windows Server 的 PowerShell 文章：[部署和管理 Windows Server 的備份](backup-client-automation.md)。 另請參閱管理 DPM 備份的 PowerShell 文章：[部署和管理 DPM 的備份](backup-dpm-automation.md)。 這兩篇文章都有適用於 Resource Manager 部署和傳統部署的版本。  
 

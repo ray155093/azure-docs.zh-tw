@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 02/09/2017
 ms.author: sethm;jotaub
 translationtype: Human Translation
-ms.sourcegitcommit: da7f8e3e61705cf07ff65c9dd1d8f292f4fb9f62
-ms.openlocfilehash: 9061829e42ed5563d64860774aa7d80f2ab011bd
-ms.lasthandoff: 02/10/2017
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: cbbef00cb4c54f4df2634fbe7b3dacbd34a175bd
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -68,40 +68,15 @@ ms.lasthandoff: 02/10/2017
 不會，服務匯流排不會收取儲存體費用。 不過，有配額會限制每個佇列/主題可保存的資料數量上限。 請參閱下一個常見問題。
 
 ## <a name="quotas"></a>配額
-如需服務匯流排的限制和配額清單，請參閱[配額概觀][Quotas overview]。
+
+如需服務匯流排限制和配額的清單，請參閱[服務匯流排配額概觀][Quotas overview]。
 
 ### <a name="does-service-bus-have-any-usage-quotas"></a>服務匯流排是否有任何使用量配額？
-根據預設，對於所有雲端服務，Microsoft 會設定針對所有客戶的訂用帳戶計算的彙總每月使用量配額。 因為我們了解您的需求可能超過這些限制，請隨時連絡客戶服務部門，讓我們能夠了解您的需求並適當地調整這些限制。 針對服務匯流排，整體使用量配額會為每個月 5 億個訊息。
+根據預設，對於所有雲端服務，Microsoft 會設定針對所有客戶的訂用帳戶計算的彙總每月使用量配額。 因為我們了解您的需求可能超過這些限制，請隨時連絡客戶服務部門，讓我們能夠了解您的需求並適當地調整這些限制。 針對服務匯流排，彙總使用量配額為每個月 50 億則訊息。
 
 雖然我們有權停用在指定的月份內超出其使用量配額的客戶帳戶，但我們將提供電子郵件通知並且在採取任何動作之前多次嘗試連絡客戶。 超出這些配額的客戶仍需負責支付超出配額的費用。
 
 如同 Azure 上的其他服務，服務匯流排會強制執行一組特定的配額，以確保公平的資源使用量。 以下是此服務會強制執行的使用量配額：
-
-#### <a name="queuetopic-size"></a>佇列/主題大小
-您會在建立佇列或主題時指定佇列或主題大小上限。 此配額的值可以是 1、2、3、4 或 5 GB。 如果達到大小上限，其他內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。
-
-#### <a name="naming-restrictions"></a>命名限制
-服務匯流排命名空間的名稱長度只能介於 6 到 50 個字元之間。 對於每個佇列、主題或訂用帳戶，字元數限制為 1 到 50 個字元之間。
-
-#### <a name="number-of-concurrent-connections"></a>並行連線數目
-佇列/主題/訂用帳戶 -佇列/主題/訂用帳戶上並行 TCP 連線數目的限制為 100。 如果達到這個配額，其他連接的後續要求將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 對於每個訊息工廠而言，如果該訊息工廠所建立的任何用戶端有作用中的作業擱置，或在少於 60 秒之前完成作業，則服務匯流排會維持一個 TCP 連線。 REST 作業不會計入並行 TCP 連線內。
-
-#### <a name="number-of-topicsqueues-per-service-namespace"></a>每個服務命名空間的主題/佇列數目
-服務命名空間上的主題/佇列 (持久型儲存體支援的實體) 數目上限為 10,000。 如果達到此配額，後續要求在服務命名空間上建立新主題/佇列將會遭到拒絕。 在此情況下，視建立嘗試是透過入口網站或在用戶端程式碼中完成而定，Azure 傳統入口網站將會顯示一則錯誤訊息，或呼叫端程式碼將會收到例外狀況。
-
-### <a name="message-size-quotas"></a>訊息大小配額
-#### <a name="queuetopicsubscription"></a>佇列/主題/訂用帳戶
-**訊息大小** – 每則訊息的大小總計限制為 256KB，包含訊息標頭。
-
-**訊息標頭大小** – 每個訊息標頭的限制為 64 KB。
-
-超出這些大小配額的訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。
-
-**每個主題的訂用帳戶數目** – 每個主題的訂用帳戶數目上限為 2,000。 如果達到此配額，將會拒絕建立主題的其他訂用帳戶的後續要求。 在此情況下，視建立嘗試是透過入口網站或在用戶端程式碼中完成而定，Azure 傳統入口網站將會顯示一則錯誤訊息，或呼叫端程式碼將會收到例外狀況。
-
-**每個主題的 SQL 篩選器數目** – 每個主題的 SQL 篩選器數目上限為 2,000。 如果達到這個配額，則在主題上建立其他篩選器的後續要求都會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。
-
-**每個主題的相互關聯篩選器數目** – 每個主題的相互關聯篩選器數目上限為 100,000。 如果達到這個配額，則在主題上建立其他篩選器的後續要求都會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。
 
 ## <a name="troubleshooting"></a>疑難排解
 ### <a name="what-are-some-of-the-exceptions-generated-by-azure-service-bus-apis-and-their-suggested-actions"></a>Azure 服務匯流排 API 所產生的例外狀況有哪些，其建議的動作為何？
@@ -141,5 +116,5 @@ Move-AzureRmResource -DestinationResourceGroupName 'targetRG' -DestinationSubscr
 [Pricing overview]: https://azure.microsoft.com/pricing/details/service-bus/
 [Quotas overview]: service-bus-quotas.md
 [Exceptions overview]: service-bus-messaging-exceptions.md
-[Shared Access Signatures]: service-bus-sas-overview.md
+[Shared Access Signatures]: service-bus-sas.md
 

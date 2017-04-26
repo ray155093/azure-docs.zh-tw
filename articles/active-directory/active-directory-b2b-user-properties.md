@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/18/2017
+ms.date: 04/12/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: eb0482d0dec3121710cc2ee56ab538cd66cb03c9
-ms.openlocfilehash: eaf7fabc243b3dfa37d974f4315a378bec9356b7
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 3d7801d8a53ac048333e43ee64724c11c25bf6a8
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -31,7 +31,7 @@ Azure Active Directory (Azure AD) 企業對企業 (B2B) 共同作業使用者是
 
 - 狀態 1：位於 Azure AD 的外部執行個體並表示為主機組織中的來賓使用者。 在此情況下，B2B 使用者會使用屬於其家用租用的 Azure AD 帳戶登入。 如果使用者之外部組織在邀請時不使用 Azure AD，則 Azure AD 的來賓使用者會在使用者兌換其邀請時且 Azure AD 驗證其電子郵件地址之後建立。 這也稱為只是及時 (JIT) 租用或病毒式租用。
 
-- 狀態 2：位於 Microsoft 帳戶並表示為主機組織中的來賓使用者。 在此情況下，來賓使用者會以 Microsoft 帳戶登入。 在 Azure AD 公開預覽刷新版中，受邀使用者的社交身分識別 (google.com 或類似項目，但不是 Microsoft 帳戶) 會在優惠兌換期間建立為 Microsoft 帳戶。
+- 狀態 2：位於 Microsoft 帳戶並表示為主機組織中的來賓使用者。 在此情況下，來賓使用者會以 Microsoft 帳戶登入。 受邀使用者的社交身分識別 (google.com 或類似項目，但不是 Microsoft 帳戶) 會在優惠兌換期間建立為 Microsoft 帳戶。
 
 - 狀態 3：位於主機組織的內部部署 Active Directory 並與主機組織的 Azure AD 同步處理。 在此版本中，您必須使用 PowerShell 手動變更雲端中這類使用者的 UserType。
 

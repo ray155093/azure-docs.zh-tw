@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/08/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 9b88b18e32e6a5ef6c0a0195e649fe2862583a0b
-ms.openlocfilehash: c2c50ff6e92cf42a7d309afafb01210c4edabbe0
-ms.lasthandoff: 01/05/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 5082ed8d2f41e72fa979b978e2ac0b0840fdcdac
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -89,7 +89,19 @@ ms.lasthandoff: 01/05/2017
 | **裝置**：您已連接的共用印表機 |X |X |其他 |
 | **Edge 瀏覽器**：閱讀清單 |sync |sync |內部 |
 | **Edge 瀏覽器**：我的最愛 |sync |sync |內部 |
-| **Edge 瀏覽器**：所有其他 Edge 設定 |X |X | |
+| **Edge 瀏覽器**：熱門網站 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：輸入的 URL <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：我的最愛列設定 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：顯示 [首頁] 按鈕 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：封鎖快顯 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：詢問我要如何處理每個下載的項目 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：提供儲存密碼 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：傳送「不要追蹤」要求 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：儲存表單項目 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：在我輸入的同時顯示搜尋與網站建議 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：Cookie 喜好設定 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：讓網站在我的裝置上儲存受保護的媒體授權 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
+| **Edge 瀏覽器**：螢幕助讀程式設定 <sup>[[1]](#footnote-1)</sup> |sync |sync |內部 |
 | **高對比**：開啟或關閉 |sync |X |輕鬆存取 |
 | **高對比**：佈景主題設定 |sync |X |輕鬆存取 |
 | **Internet Explorer**：開啟索引標籤 (URL 和標題) |sync |sync |Internet Explorer |
@@ -158,6 +170,9 @@ ms.lasthandoff: 01/05/2017
 | **輸入**：在我輸入時播放按鍵音 |sync |backup |語言 |
 | **輸入**：觸控式鍵盤的個人化資料 |sync |backup |語言 |
 | **Wi-Fi**：Wi-Fi 設定檔 (僅限 WPA) |sync |sync |密碼 |
+
+###### <a name="footnote-1"></a>註腳 1
+最低支援的 OS 版本為 Windows Creators Update (組建 15063)。 
 
 ## <a name="related-topics"></a>相關主題
 * [企業狀態漫遊概觀](active-directory-windows-enterprise-state-roaming-overview.md)

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/02/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 15858f7b7436536e6bae7fcfd6a50c722d2d04a2
-ms.openlocfilehash: be00cb9b1e8ba5d9d8368695ca8d448d466e8f47
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: b1db5cd0149374842b0201cd6b820436f3822325
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 11/17/2016
 網路資料是來自具有 OMS 代理程式 (包括 Operations Manager 和 Windows 連線的代理程式) 的電腦的網路和效能彙總資料。 網路資料結合記錄資料可協助您將資料相互關聯。 IT 基礎結構中安裝的 OMS 代理程式會監視往返於這些電腦傳送的網路資料 (屬於 [OSI 模型](https://en.wikipedia.org/wiki/OSI_model) 中的網路層級 2-3)，包括使用的各種通訊協定和連接埠。
 
 > [!NOTE]
-> 目前無法將連線資料方案加入至工作區。 已啟用連線資料方案的客戶可以繼續使用連線資料方案。
+> 目前無法將 Wire Data 1.0 方案加入至工作區。 已啟用 Wire Data 1.0 方案的客戶可以繼續使用 Wire Data 1.0 方案。 然而，新客戶應該改為使用 [Wire Data 2.0](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.WireData2OMS?tab=Overview) 方案。
 >
 >
 

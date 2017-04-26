@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 02/03/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 09c18ca6a967c2930ddd2b16d37f0bc606712ea1
-ms.openlocfilehash: fc1c8cb6b7c186e189658cacf218ec7e9261472a
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: 05e23ad6bc07293f53e081b905c3a9ce1c91e6f9
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -31,16 +32,22 @@ ms.openlocfilehash: fc1c8cb6b7c186e189658cacf218ec7e9261472a
 * 使用不同的網際網路瀏覽器。
 * 如果您使用的是 Microsoft Internet Explorer，請使用「InPrivate 瀏覽」模式來瀏覽至 Azure 入口網站。 
   
-  A.    按一下 [工具] ![工具按鈕](./media/billing-cannot-login-subscription/Toolsbutton.png) > [安全性] > [InPrivate 瀏覽]。
+  A. 按一下 [工具] ![工具按鈕](./media/billing-cannot-login-subscription/Toolsbutton.png) > [安全性] > [InPrivate 瀏覽]。
   
-  B.    瀏覽至 [Azure 入口網站](https://portal.azure.com)，然後登入入口網站。
+  B. 瀏覽至 [Azure 入口網站](https://portal.azure.com)，然後登入入口網站。
 
 ## <a name="error-message-no-subscriptions-found"></a>錯誤訊息「找不到任何訂用帳戶」
 如果您的帳戶沒有足夠的權限，可能會看到**找不到訂用帳戶**錯誤訊息。 請確定您以正確的系統管理員身分登入。 帳戶管理員只能存取[帳戶中心](https://account.windowsazure.com/Subscriptions)。 服務管理員 (SA) 和共同管理員 (CA) 只能存取 [Azure 入口網站](https://portal.azure.com)或 Azure 傳統入口網站。
 
 **案例 1：在 [Azure 入口網站](https://portal.azure.com)收到錯誤訊息**
 
-若要解決此問題，請為帳戶 [新增共同管理員或擁有者角色](billing-add-change-azure-subscription-administrator.md) 。
+若要修正此問題：
+
+* 確定您已按一下右上角的帳戶名稱，以選取正確的 Azure 目錄。
+
+![選取 Azure 入口網站右上角的目錄](./media/billing-cannot-login-subscription/directory-switch.png)
+
+* 若已選取正確的 Azure 目錄，但您仍遇到錯誤，請[將您的帳戶新增為擁有者](billing-add-change-azure-subscription-administrator.md)。
 
 **案例 2：在 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)收到錯誤訊息**
 
@@ -62,10 +69,5 @@ ms.openlocfilehash: fc1c8cb6b7c186e189658cacf218ec7e9261472a
 
 ## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
 如果仍需要協助，請[連絡支援人員](http://go.microsoft.com/fwlink/?linkid=544831&clcid=0x409)以快速解決您的問題。 
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

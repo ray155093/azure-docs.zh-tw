@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 02/03/2017
 ms.author: genemi
 translationtype: Human Translation
-ms.sourcegitcommit: 1f1c6c89c492d18e0678fa4650b6c5744dc9f7d1
-ms.openlocfilehash: 6766242bef4e6f976a621547941e8e34a4915c6c
-ms.lasthandoff: 02/07/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 8c94c8789696507d89e08a637067ca040d45246a
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 02/07/2017
 
 本主題說明與 Microsoft SQL server 中的擴充事件相比，Azure SQL Database 中的擴充事件實作有何些微不同。
 
-- SQL Database V12 在 2015 年行事曆下半年度獲得擴充事件功能。
+- SQL Database 在 2015 年下半年度獲得擴充事件功能。
 - SQL Server 自 2008 開始即具有擴充事件。
 - SQL Database 上的擴充事件功能集是強大的 SQL Server 功能子集。
 

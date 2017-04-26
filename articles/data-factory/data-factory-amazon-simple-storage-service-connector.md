@@ -12,17 +12,17 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 03/30/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 23d0092915c98da54ed486aed22afba4839befd1
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 27f37b3fb441f1269cc8df5b7d60446ce9aade9a
+ms.lasthandoff: 03/31/2017
 
 
 ---
 # <a name="move-data-from-amazon-simple-storage-service-using-azure-data-factory"></a>使用 Azure Data Factory 從 Amazon Simple Storage Service 移動資料
-本文說明如何使用 Azure Data Factory 中的「複製活動」，從 Amazon Simple Storage Service (S3) 移動資料。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。 
+本文說明如何使用 Azure Data Factory 中的「複製活動」，從 Amazon Simple Storage Service (S3) 移動資料。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。
 
 您可以將資料從 Amazon Simple Storage Service (S3) 複製到任何支援的接收資料存放區。 如需複製活動所支援作為接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 Data Factory 目前只支援將資料從 Amazon S3 移到其他資料存放區，而不支援將資料從其他資料存放區移到 Amazon S3。
 
@@ -39,17 +39,17 @@ ms.lasthandoff: 03/29/2017
 
 建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
 
-您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API**及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
+您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
-不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線： 
+不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線：
 
-1. 建立「已連結的服務」，以將輸入和輸出資料存放區連結到 Data Factory。
-2. 建立「資料集」，以代表複製作業的輸入和輸出資料。 
-3. 建立「管線」，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
+1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
+2. 建立**資料集**，代表複製作業的輸入和輸出資料。
+3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來從 Amazon S3 資料存放區複製資料之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例：將資料從 Amazon S3 複製到 Azure Blob](#json-example-copy-data-from-amazon-s3-to-azure-blob) 一節。 
+使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來從 Amazon S3 資料存放區複製資料之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例：將資料從 Amazon S3 複製到 Azure Blob](#json-example-copy-data-from-amazon-s3-to-azure-blob) 一節。
 
-下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 Amazon S3 特定的 Data Factory 實體： 
+下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 Amazon S3 特定的 Data Factory 實體：
 
 ## <a name="linked-service-properties"></a>連結服務屬性
 已連結的服務會將資料存放區連結到 Data Factory。 您需建立 **AwsAccessKey** 類型的已連結服務，以將 Amazon S3 資料存放區連結到 Data Factory。 下表提供 Amazon S3 (AwsAccessKey) 已連結服務專屬 JSON 元素的描述。
@@ -59,7 +59,7 @@ ms.lasthandoff: 03/29/2017
 | accessKeyID |密碼存取金鑰的識別碼。 |string |是 |
 | secretAccessKey |密碼存取金鑰本身。 |加密的密碼字串 |是 |
 
-下列是一個範例： 
+下列是一個範例：
 
 ```json
 {
@@ -162,9 +162,11 @@ ms.lasthandoff: 03/29/2017
 | --- | --- | --- | --- |
 | 遞迴 |指定是否要以遞迴方式列出目錄下的 S3 物件。 |true/false |否 |
 
+## <a name="supported-file-and-compression-formats"></a>支援的檔案和壓縮格式
+請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md)文章以了解詳細資訊。
 
 ## <a name="json-example-copy-data-from-amazon-s3-to-azure-blob"></a>JSON 範例：將資料從 Amazon S3 複製到 Azure Blob
-此範例示範如何將資料從 Amazon S3 複製到「Azure Blob 儲存體」。 不過，您可以在 Azure Data Factory 中使用複製活動， **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。 
+此範例示範如何將資料從 Amazon S3 複製到「Azure Blob 儲存體」。 不過，您可以在 Azure Data Factory 中使用複製活動， **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。
 
 此範例提供下列 Data Factory 實體的 JSON 定義。 您可以透過 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)，使用這些定義來建立管線，以將資料從 Amazon S3 複製到「Azure Blob 儲存體」。   
 

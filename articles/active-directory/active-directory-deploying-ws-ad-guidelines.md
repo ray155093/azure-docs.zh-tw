@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 02/22/2017
 ms.author: femila
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: c6d26aca309597cf9552e97a22e84b6c122fe58b
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 0bcde69385b74fa62a629159abfff4bb16d9da89
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 03/08/2017
 * 部署、設定及管理可以使用 Windows Server AD FS 權杖的信賴憑證者應用程式 (網站和 Web 服務)
 * 一般虛擬機器的概念，例如如何設定虛擬機器、虛擬磁碟和虛擬網路
 
-本文強調混合式部署案例的需求，其中 Windows Server AD DS 或 AD FS 是一部分內部部署，一部分則部署在 Azure 虛擬機器上。 本文首先涵蓋在 Azure 虛擬機器上執行 Windows Server AD DS 和 AD FS 與在內部部署執行之間的重大差異，以及影響設計和部署的重要決策。 本文的其餘部分更詳細說明每個決策點的指導方針，以及如何將指導方針套用到各種部署案例。
+本文強調混合式部署案例的需求，其中 Windows Server AD DS 或 AD FS 是一部分內部部署，一部分則部署在 Azure 虛擬機器上。 本文首先涵蓋在 Azure 虛擬機器上執行 Windows Server AD DS 和 AD FS 與在內部部署執行之間的重大差異，以及影響設計和部署的重要決策點。 本文的其餘部分更詳細說明每個決策點的指導方針，以及如何將指導方針套用到各種部署案例。
 
 本文不會討論 [Azure Active Directory](http://azure.microsoft.com/services/active-directory/)的組態，它是以 REST 為基礎的服務，可為雲端應用程式提供身分識別管理和存取控制功能。 但是，Azure Active Directory (Azure AD) 和 Windows Server AD DS 是設計為一起運作，為現今的混合式 IT 環境和現代化應用程式提供身分識別與存取管理解決方案。 為了協助了解 Windows Server AD DS 與 Azure AD 之間的差異和關聯性，請考慮下列各項︰
 

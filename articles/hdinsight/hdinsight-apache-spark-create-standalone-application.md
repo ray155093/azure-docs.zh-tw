@@ -1,6 +1,6 @@
 ---
-title: "建立在 Azure Spark 叢集上執行的獨立 Scala 應用程式 | Microsoft Docs"
-description: "了解如何建立在 HDInsight Spark 叢集上執行的獨立 Spark 應用程式。"
+title: "建立在 Azure Spark 叢集上執行的 Scala Maven 應用程式 | Microsoft Docs"
+description: "了解如何使用 Maven 建立在 HDInsight Spark 叢集上執行的獨立 Spark 應用程式。"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -17,15 +17,15 @@ ms.topic: article
 ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: 153b1ea4ec3d326fb533817cdb74d3489135f7d9
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
+ms.openlocfilehash: c435e8ec21b568afcadaa1af95964753d36d0ccb
+ms.lasthandoff: 04/06/2017
 
 
 ---
-# <a name="create-a-standalone-scala-application-to-run-on-apache-spark-cluster-on-hdinsight"></a>建立在 HDInsight 中的 Apache Spark 叢集上執行的獨立 Scala 應用程式
+# <a name="create-a-scala-maven-application-to-run-on-apache-spark-cluster-on-hdinsight"></a>建立在 HDInsight 中的 Apache Spark 叢集上執行的 Scala Maven 應用程式
 
-本文提供相關的逐步指引，說明如何使用 Maven 與 IntelliJ IDEA 開發以 Scala 撰寫的獨立 Spark 應用程式。 本文以 Apache Maven 作為建置系統，並且以 IntelliJ IDEA 為 Scala 提供的現有 Maven 原型作為起始點。  概括來說，要在 IntelliJ IDEA 中建立 Scala 應用程式，必須執行下列步驟：
+了解如何使用 Maven 搭配 IntelliJ IDEA 來建立以 Scala 撰寫的 Spark 應用程式。 本文以 Apache Maven 作為建置系統，並且以 IntelliJ IDEA 為 Scala 提供的現有 Maven 原型作為起始點。  要在 IntelliJ IDEA 中建立 Scala 應用程式，必須執行下列步驟：
 
 * 以 Maven 做為建置系統。
 * 更新專案物件模型 (POM) 檔案，以解析 Spark 模組相依性。
@@ -38,7 +38,7 @@ ms.lasthandoff: 01/24/2017
 > 
 > 
 
-**必要條件**
+## <a name="prerequisites"></a>必要條件
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。

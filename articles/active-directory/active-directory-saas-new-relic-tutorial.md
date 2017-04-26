@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/26/2017
+ms.date: 03/24/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 04a045f41965b093aab71e59cd9b5f328b44de84
-ms.openlocfilehash: 5ae6afea4d55eb03624602f483a2dc9620e33bb7
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 84f9c9745cc0c95fc5134dcc7e659e7ace11b188
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -25,13 +25,13 @@ ms.lasthandoff: 02/03/2017
 
 本教學課程中說明的案例假設您已經具有下列項目：
 
-* 有效的 Azure 訂閱
-* 啟用 New Relic 單一登入的訂閱
+* 有效的 Azure 訂用帳戶
+* 已啟用 New Relic 單一登入 (SSO) 的訂閱
 
-完成本教學課程之後，您指派給 New Relic 的 Azure Active Directory 使用者將能夠使用 [AAD 存取面板] 進行單一登入。
+完成本教學課程之後，您已指派給 New Relic 的 Azure Active Directory 使用者將能夠使用 [AAD 存取面板] 進行 SSO。
 
 1. 啟用 New Relic 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
@@ -62,11 +62,11 @@ ms.lasthandoff: 02/03/2017
    
    ![New Relic](./media/active-directory-saas-new-relic-tutorial/IC797032.png "New Relic")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure Active Directory 帳戶在 New Relic 中進行驗證。
 
-**若要設定單一登入，請執行下列步驟：**
+**若要設定 SSO，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站的 [New Relic] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
@@ -101,7 +101,7 @@ ms.lasthandoff: 02/03/2017
    
    ![設定單一登入](./media/active-directory-saas-new-relic-tutorial/IC797039.png "設定單一登入")
    
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
 為了讓 Azure Active Directory 使用者登入 New Relic，他們必須佈建到 New Relic 中。 在 New Relic 的情況下，需以手動方式佈建。
 
@@ -122,12 +122,12 @@ ms.lasthandoff: 02/03/2017
    2. 針對 [角色]，選取 [使用者]。
    3. 按一下 [新增此使用者] 。
 
-> [!NOTE]
-> 您可以使用任何其他的 New Relic 使用者帳戶建立工具或 New Relic 提供的 API 來佈建 AAD 使用者帳戶。
+>[!NOTE]
+>您可以使用任何其他的 New Relic 使用者帳戶建立工具或 New Relic 提供的 API 來佈建 AAD 使用者帳戶。
 > 
 > 
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
 **若要將使用者指派給 New Relic，請執行下列步驟：**
@@ -140,6 +140,9 @@ ms.lasthandoff: 02/03/2017
    
    ![是](./media/active-directory-saas-new-relic-tutorial/IC767830.png "是")
 
-如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的 SSO 設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
+## <a name="additional-resources"></a>其他資源
 
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)

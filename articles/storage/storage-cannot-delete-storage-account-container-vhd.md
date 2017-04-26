@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: d3d59e19ff654a953be43706dce926c4450c6179
-ms.openlocfilehash: 6493230295dbfc939df3daf8504a7d8662083f51
-ms.lasthandoff: 02/08/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 64f875581dccd2ad1215a82eba1e2659fe01d191
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 02/08/2017
 
 當您嘗試刪除 [Azure 入口網站](https://portal.azure.com/)或 [Azure 傳統入口網站](https://manage.windowsazure.com/)中的 Azure 儲存體帳戶、容器或 VHD 時，可能會收到錯誤。 下列情況可能造成問題︰
 
-* 當您刪除 VM 時，磁碟和 VHD 不會自動刪除。 這可能是儲存體帳戶刪除失敗的原因。 我們不會刪除磁碟，所以您可以使用磁碟來裝載另一個 VM。
+* 當您刪除 VM 時，磁碟和 VHD 不會自動刪除。 這可能是儲存體帳戶刪除失敗的原因。 我們不會刪除磁碟，讓您可以使用該磁碟來裝載另一個 VM。
 * 磁碟上仍有租用或有與磁碟相關聯的 blob。
 * 仍有正在使用 Blob、容器或儲存體帳戶的 VM 映像。
 
@@ -69,7 +69,7 @@ ms.lasthandoff: 02/08/2017
 
 或
 
-「Blob ‘BlobName.vhd’ 正當作虛擬機器磁碟 ‘VirtualMachineDiskName’ 使用，因此無法刪除。」
+「Blob 'BlobName.vhd' 正當做虛擬機器磁碟 'VirtualMachineDiskName' 使用，因此無法刪除。」
 
 ## <a name="solution"></a>方案
 若要解決最常見的問題，請嘗試下列方法︰

@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 03/02/2017
 ms.author: amanbha
 translationtype: Human Translation
-ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
-ms.openlocfilehash: 22f906de37ad7ae2a48acf26be26f2af1e3bde7a
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 0d942fa9f4a3b9094d8122e4745c0450f507ea16
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -29,14 +29,14 @@ ms.lasthandoff: 01/24/2017
 
 * 當動作項目有呼叫卻尚未為使用中時，會建立新的動作項目。
 * 載入動作項目狀態 (如果正在維護狀態)
-* 呼叫 `OnActivateAsync` 方法 (在動作項目實作中會被覆寫)。
+* 會呼叫 `OnActivateAsync` (C#) 或 `onActivateAsync` (Java) 方法 (可在動作項目實作中被覆寫)。
 * 動作項目現在被視為作用中。
 
 ## <a name="actor-deactivation"></a>停用動作項目
 停用動作項目後，會發生下列情況︰
 
 * 動作項目若一段時間未使用，便會從使用中動作項目資料表移除。
-* 呼叫 `OnDeactivateAsync` 方法 (在動作項目實作中會被覆寫)。 這會清除動作項目的所有計時器。 您不應該從此方法呼叫動作項目作業 (例如狀態變更)。
+* 會呼叫 `OnDeactivateAsync` (C#) 或 `onDeactivateAsync` (Java) 方法 (可在動作項目實作中被覆寫)。 這會清除動作項目的所有計時器。 您不應該從此方法呼叫動作項目作業 (例如狀態變更)。
 
 > [!TIP]
 > 網狀架構動作項目的執行階段會發出某些[與動作項目啟用和停用相關的事件](service-fabric-reliable-actors-diagnostics.md#list-of-events-and-performance-counters)。 這些項目對於診斷與效能監視很有幫助。
@@ -44,7 +44,7 @@ ms.lasthandoff: 01/24/2017
 >
 
 ### <a name="actor-garbage-collection"></a>動作項目記憶體回收
-停用動作項目後，動作項目物件的參考會釋出，而且通常由 Common Language Runtime (CLR) 記憶體回收行程進行記憶體回收。 記憶體回收只會清除動作項目物件；它 **不會** 移除動作項目的狀態管理員中儲存的狀態。 下次啟用動作項目時，會建立新的動作項目物件並還原其狀態。
+停用動作項目後，動作項目物件的參考會釋出，而且通常可由 Common Language Runtime (CLR) 或 Java 虛擬機器 (JVM) 記憶體回收行程進行記憶體回收。 記憶體回收只會清除動作項目物件；它 **不會** 移除動作項目的狀態管理員中儲存的狀態。 下次啟用動作項目時，會建立新的動作項目物件並還原其狀態。
 
 就停用和記憶體回收的用途而言，什麼算是「一直在使用中」？
 
@@ -82,6 +82,18 @@ public class Program
 }
 ```
 
+```Java
+public class Program
+{
+    public static void main(String[] args)
+    {
+        ActorRuntime.registerActorAsync(
+                MyActor.class,
+                (context, actorTypeInfo) -> new FabricActorService(context, actorTypeInfo),
+                timeout);
+    }
+}
+```
 對於每個作用中動作項目，動作項目執行階段會持續追蹤動作項目已閒置 (亦即未使用) 的時間。 動作項目執行階段每隔 `ScanIntervalInSeconds` 就會檢查每個動作項目，查看其是否可進行記憶體回收，如果已閒置 `IdleTimeoutInSeconds`，就會將其回收。
 
 只要使用動作項目，其閒置時間就會重設為 0。 在此之後，只有當動作項目再次閒置達 `IdleTimeoutInSeconds`時，才會將動作項目作為記憶體回收。 請回想一下，當動作項目介面方法或動作項目提醒回撥執行時，動作項目會視為已使用。 如果動作項目的計時器回撥執行時， **不會** 將動作項目視為已使用。
@@ -114,6 +126,14 @@ IActorService myActorServiceProxy = ActorServiceProxy.Create(
 
 await myActorServiceProxy.DeleteActorAsync(actorToDelete, cancellationToken)
 ```
+```Java
+ActorId actorToDelete = new ActorId(id);
+
+ActorService myActorServiceProxy = ActorServiceProxy.create(
+    new Uri("fabric:/MyApp/MyService"), actorToDelete);
+
+myActorServiceProxy.deleteActorAsync(actorToDelete);
+```
 
 根據動作項目目前是否作用中而定，刪除動作項目具有下列效果︰
 
@@ -131,7 +151,8 @@ await myActorServiceProxy.DeleteActorAsync(actorToDelete, cancellationToken)
 * [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
 * [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
 * [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
-* [範例程式碼](https://github.com/Azure/servicefabric-samples)
+* [C# 範例程式碼 (英文)](https://github.com/Azure/servicefabric-samples)
+* [Java 範例程式碼 (英文)](http://github.com/Azure-Samples/service-fabric-java-getting-started)
 
 <!--Image references-->
 [1]: ./media/service-fabric-reliable-actors-lifecycle/garbage-collection.png

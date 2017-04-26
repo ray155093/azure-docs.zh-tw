@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/05/2017
+ms.date: 04/07/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: aadbee1388e2c2aafaf0a5c50d2af195284d2bec
-ms.lasthandoff: 12/07/2016
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: b1e32eef393aa213cac6af68821ad0572e4a3c92
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -26,13 +26,14 @@ ms.lasthandoff: 12/07/2016
 [!INCLUDE [iot-hub-file-upload-selector](../../includes/iot-hub-file-upload-selector.md)]
 
 ## <a name="file-upload"></a>檔案上傳
+
 若要使用 [IoT 中樞的檔案上傳功能][lnk-upload]，您必須先將 Azure 儲存體帳戶與您的中樞建立關聯。 選取 [檔案上傳]  設定，即可顯示正在修改之 IoT 中樞的檔案上傳屬性清單。
 
-![][13]
+![在入口網站中檢視 IoT 中樞檔案上傳設定][13]
 
 **儲存體容器**︰使用 Azure 入口網站在您目前的 Azure 訂用帳戶中選取 Azure 儲存體帳戶中的 blob 容器，來與您的 IoT 中樞建立關聯。 如果有需要，您可以在 [儲存體帳戶] 刀鋒視窗上建立 Azure 儲存體帳戶，並在 [容器] 刀鋒視窗上建立 Blob 容器。 IoT 中樞會自動產生具有此 Blob 容器寫入權限的 SAS URI，以供裝置上傳檔案時使用。
 
-![][14]
+![在入口網站中檢視檔案上傳的儲存體容器][14]
 
 **接收已上傳檔案的通知**︰透過切換來啟用或停用檔案上傳通知。
 
@@ -42,9 +43,10 @@ ms.lasthandoff: 12/07/2016
 
 **檔案通知最大傳遞計數**︰IoT 中樞可嘗試傳遞檔案上傳通知的次數。 預設為 10，但可以使用滑桿來自訂成其他值。
 
-![][15]
+![在入口網站中設定 IoT 中樞檔案上傳][15]
 
 ## <a name="next-steps"></a>後續步驟
+
 如需 IoT 中樞檔案上傳功能的詳細資訊，請參閱 IoT 中樞開發人員指南中的[從裝置上傳檔案][lnk-upload]。
 
 遵循下列連結以深入了解如何管理 Azure IoT 中樞：

@@ -14,9 +14,9 @@ ms.workload: NA
 ms.date: 1/17/2017
 ms.author: maburlik;chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: bd9ea82adc97698957dfebc3ee7c14c498808dd3
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: f332193f9a53260173a1010b8bf9f08726bea427
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -105,7 +105,9 @@ ms.lasthandoff: 03/29/2017
 4. 如果要部署的叢集是安全叢集，驗證安全性必要條件已就緒，並已正確設定組態。
 5. 如果叢集電腦不可存取網際網路，在叢集組態中設定下列各項：
 * 停用遙測：在 *properties* 下設定   *"enableTelemetry": false*
-* 停用目前叢集版本接近終止支援的自動化 Fabric 版本下載和通知：在 *properties* 下設定   *"fabricClusterAutoupgradeEnabled": true*
+* 停用自動的 Fabric 版本下載，以及目前叢集版本接近終止支援的通知：在 [屬性] 底下，設定   *"fabricClusterAutoupgradeEnabled": false*
+* 或者，如果網路的網際網路存取僅限於允許清單上的網域，則自動升級將需要下列網域：   go.microsoft.com   download.microsoft.com
+
 6. 設定適當的 Service Fabric 防毒排除項目︰
 
 | **防毒排除目錄** |

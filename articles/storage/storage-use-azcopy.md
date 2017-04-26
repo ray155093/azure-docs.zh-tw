@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: seguler
 translationtype: Human Translation
-ms.sourcegitcommit: e1c4342897fe6cf57e323a82e04e10473b3ece30
-ms.openlocfilehash: 777b84d9aa59f773345c1925c3c6467dc64d2d34
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: f703da63c4243c73cf68d3df9953f73d2462ac1c
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -402,7 +402,7 @@ AzCopy 將會使用下列命令慣例，在 Blob 容器中產生 JSON 資料檔�
 
 產生的 JSON 資料檔案會遵循基本中繼資料的裝載格式。 如需此裝載格式的詳細資訊，請參閱 [資料表服務作業的裝載格式](http://msdn.microsoft.com/library/azure/dn535600.aspx)。
 
-請注意，在將資料表匯出至 Blob 時，AzCopy 會先將資料表實體下載到本機暫存資料檔，再將這些實體上傳至 Blob。 這些暫存資料檔會放入日誌檔案資料夾中，預設路徑為 “<code>%LocalAppData%\Microsoft\Azure\AzCopy</code>”，您可以指定 /Z:[journal-file-folder] 選項來變更日誌檔案資料夾位置，從而變更暫存資料檔位置。 暫存資料檔大小取決於資料表實體大小和您使用 /SplitSize 選項所指定的大小，雖然本機磁碟中的暫存資料檔在上傳至 Blob 之後就立即刪除，但請確定您有足夠的本機磁碟空間，可儲存這些尚未刪除的暫存資料檔。
+請注意，在將資料表匯出至 Blob 時，AzCopy 會先將資料表實體下載到本機暫存資料檔，再將這些實體上傳至 Blob。 這些暫存資料檔會放入日誌檔案資料夾中，預設路徑為 "<code>%LocalAppData%\Microsoft\Azure\AzCopy</code>"，您可以指定 /Z:[journal-file-folder] 選項來變更日誌檔案資料夾位置，從而變更暫存資料檔位置。 暫存資料檔大小取決於資料表實體大小和您使用 /SplitSize 選項所指定的大小，雖然本機磁碟中的暫存資料檔在上傳至 Blob 之後就立即刪除，但請確定您有足夠的本機磁碟空間，以儲存尚未刪除的暫存資料檔。
 
 ## <a name="table-import"></a>資料表：匯入
 ### <a name="import-table"></a>匯入資料表
@@ -883,7 +883,7 @@ AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一�
       </appSettings>
     </configuration>
 
-針對屬性 “AzureStorageUseV1MD5” • True - 預設值，AzCopy 將使用 .NET MD5 實作。
+針對屬性 "AzureStorageUseV1MD5" • True - 預設值，AzCopy 將使用 .NET MD5 實作。
 • False – AzCopy 將使用 FIPS 相容的 MD5 演算法。
 
 請注意 Windows 電腦預設會停用 FIPS 相容演算法，可以在您執行的視窗中輸入 secpol.msc，並在 [安全性設定] -> [本機原則] -> [安全性選項] -> [系統密碼編譯: 使用 FIPS 相容演算法於加密、雜湊及簽章] 檢查此參數。

@@ -11,28 +11,29 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/18/2017
+ms.date: 03/23/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 8e209d70a0bdcac4d3d1f7fefe265bf4824520e3
-ms.openlocfilehash: 20c198577349a2173d5b7bafd1b84fd4c24fa711
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 2fcde595a40dafda7549f5bccb582b57585b314e
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-qualtrics"></a>教學課程：Azure Active Directory 與 Qualtrics 整合
 本教學課程的目的是要示範 Azure 與 Qualtrics 的整合。  
+
 本教學課程中說明的案例假設您已經具有下列項目：
 
 * 有效的 Azure 訂用帳戶
-* 已啟用 Qualtrics 單一登入的訂用帳戶
+* 已啟用 Qualtrics 單一登入 (SSO) 的訂用帳戶
 
 完成本教學課程之後，您指派給 Qualtrics 的 Azure AD 使用者就能夠從您的 Qualtrics 公司網站 (服務提供者起始登入)，或使用 [存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
 
 本教學課程中說明的案例由下列建置組塊組成：
 
 1. 啟用 Qualtrics 的應用程式整合
-2. 設定單一登入
+2. 設定單一登入 (SSO)
 3. 設定使用者佈建
 4. 指派使用者
 
@@ -41,7 +42,8 @@ ms.lasthandoff: 02/03/2017
 ## <a name="enabling-the-application-integration-for-qualtrics"></a>啟用 Qualtrics 的應用程式整合
 本節的目的是要說明如何啟用 Qualtrics 的應用程式整合。
 
-### <a name="to-enable-the-application-integration-for-qualtrics-perform-the-following-steps"></a>若要啟用 Qualtrics 的應用程式整合，請執行下列步驟：
+**若要啟用 Qualtrics 的應用程式整合，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
    
    ![Active Directory](./media/active-directory-saas-qualtrics-tutorial/IC700993.png "Active Directory")
@@ -62,11 +64,12 @@ ms.lasthandoff: 02/03/2017
    
    ![Qualtrics](./media/active-directory-saas-qualtrics-tutorial/IC789544.png "Qualtrics")
    
-## <a name="configuring-single-sign-on"></a>設定單一登入
+## <a name="configure-single-sign-on"></a>設定單一登入
 
 本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 Qualtrics。
 
-### <a name="to-configure-single-sign-on-perform-the-following-steps"></a>若要設定單一登入，請執行下列步驟：
+**若要設定單一登入，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站的 [Qualtrics] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-qualtrics-tutorial/IC789545.png "設定單一登入")
@@ -81,25 +84,25 @@ ms.lasthandoff: 02/03/2017
    ![設定單一登入](./media/active-directory-saas-qualtrics-tutorial/IC789548.png "設定單一登入")
 5. 將中繼資料檔傳送至 Qualtrics 支援小組。
    
-   > [!NOTE]
-   > 單一登入設定必須由 Qualtrics 支援小組執行。 設定完成後，您將會收到通知。
+   >[!NOTE]
+   >SSO 設定必須由 Qualtrics 支援小組執行。 設定完成後，您將會收到通知。
    > 
    > 
 6. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
    
    ![設定單一登入](./media/active-directory-saas-qualtrics-tutorial/IC789549.png "設定單一登入")
    
-## <a name="configuring-user-provisioning"></a>設定使用者佈建
+## <a name="configure-user-provisioning"></a>設定使用者佈建
 
-沒有動作項目可讓您設定 Qualtrics 使用者佈建。  
-當指派的使用者透過存取面板嘗試登入 Qualtrics 時，Qualtrics 會檢查使用者是否存在。  
+沒有動作項目可讓您設定 Qualtrics 使用者佈建。 當指派的使用者透過存取面板嘗試登入 Qualtrics 時，Qualtrics 會檢查使用者是否存在。  
 
 如果尚無可用的使用者帳戶，Qualtrics 就會自動予以建立。
 
-## <a name="assigning-users"></a>指派使用者
+## <a name="assign-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-### <a name="to-assign-users-to-qualtrics-perform-the-following-steps"></a>若要將使用者指派給 Qualtrics，請執行下列步驟：
+**若要將使用者指派給 Qualtrics，請執行下列步驟：**
+
 1. 在 Azure 傳統入口網站中建立測試帳戶。
 2. 在 [Qualtrics] 應用程式整合頁面上，按一下 [指派使用者]。
    
@@ -108,6 +111,6 @@ ms.lasthandoff: 02/03/2017
    
    ![是](./media/active-directory-saas-qualtrics-tutorial/IC767830.png "是")
 
-如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的 SSO 設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
 

@@ -10,28 +10,25 @@ tags: azure-service-management
 ms.assetid: 389d3bd3-cd8e-4715-a3a1-031ec061d385
 ms.service: app-service-web
 ms.workload: web
-ms.devlang: na
+ms.devlang: azurecli
+ms.tgt_pltfrm: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: cfowler
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: a2009cb07ae2ae7cf716d77a7d9eac7482138ab1
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
+ms.openlocfilehash: b82e51d8d96c98cba1d5989060eed40ed7f2d4fe
+ms.lasthandoff: 04/04/2017
 
 ---
-
 # <a name="create-a-web-app-with-continuous-deployment-from-visual-studio-team-services"></a>建立可從 Visual Studio Team Services 連續部署的 Web 應用程式
 
-此範例指令碼會在 App Service 中建立 Web 應用程式及其相關資源，然後設定從 Visual Studio Team Services 存放庫進行的連續部署。 
+此範例指令碼會在 App Service 中建立 Web 應用程式及其相關資源，然後設定從 Visual Studio Team Services 存放庫進行的連續部署。 針對此範例，您將需要：
 
-您可以視需要使用 [Azure CLI 安裝指南 (英文)](https://docs.microsoft.com/cli/azure/install-azure-cli) 中的指示來安裝 Azure CLI。 此外，請確定：
+* 具有應用程式程式碼的 Visual Studio Team Services 存放庫 (您必須有此存放庫的系統管理權限)。
+* 您 Visual Studio Team Services 帳戶的[個人存取權杖 (PAT)](https://www.visualstudio.com/docs/setup-admin/team-services/use-personal-access-tokens-to-authenticate)。
 
-- 已使用 `az login` 命令建立與 Azure 的連線。
-- 應用程式的程式碼位於您擁有的 Visual Studio Team Services 存放庫。
-- 您已[在 Visual Studio Team Services 帳戶中建立存取權杖](https://www.visualstudio.com/docs/setup-admin/team-services/use-personal-access-tokens-to-authenticate)。
-
-這個範例適用於 Bash 殼層。 如需在 Windows 用戶端上執行 Azure CLI 指令碼的選項，請參閱[在 Windows 中執行 Azure CLI](../../virtual-machines/virtual-machines-windows-cli-options.md)。
+[!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 ## <a name="create-app-sample"></a>建立應用程式範例
 

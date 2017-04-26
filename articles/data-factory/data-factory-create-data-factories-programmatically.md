@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/17/2017
+ms.date: 04/11/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 6a76c399e626ea85581d5f8fb863da878bdbf50b
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 280737097038ff328d487477279ce4f204b0ac0c
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 03/09/2017
 ## <a name="prerequisites"></a>必要條件
 * Visual Studio 2012、2013 或 2015
 * 下載並安裝 [Azure .NET SDK](http://azure.microsoft.com/downloads/)。
-* 將原生用戶端應用程式新增到 Azure Active Directory。 如需有關新增應用程式的步驟，請參閱 [整合應用程式與 Azure Active Directory](../active-directory/active-directory-integrating-applications.md) 。 記下 [設定] 頁面上的**用戶端識別碼**和**重新導向 URI**。
+* 將原生用戶端應用程式新增到 Azure Active Directory。 如需有關新增應用程式的步驟，請參閱 [整合應用程式與 Azure Active Directory](../active-directory/active-directory-integrating-applications.md) 。 記下 [設定] 頁面上的**用戶端識別碼**和**重新導向 URI**。 請參閱[使用 .NET API 的複製活動教學課程](data-factory-copy-activity-tutorial-using-dotnet-api.md)文章以了解詳細步驟。 
 * 取得您的 Azure **訂用帳戶 ID** 和**租用戶識別碼**。 如需相關指示，請參閱 [取得 Azure 訂用帳戶 ID 和租用戶識別碼](#get-azure-subscription-and-tenant-ids) 。
 * 下載並安裝適用於 Azure Data Factory 的 NuGet 封裝 逐步解說中包含相關指示。
 
@@ -364,7 +364,7 @@ ms.lasthandoff: 03/09/2017
     Console.WriteLine("\nPress any key to exit.");
     Console.ReadKey();
     ```
-14. 在 [方案總管] 中展開專案 (**DataFactoryAPITestApp**)，以滑鼠右鍵按一下 [參考]，然後按一下 [新增參考]。 選取 `System.Configuration` 組件的核取方塊，然後按一下 [確定]。
+14. 在 [方案總管] 中展開 **DataFactoryAPITestApp** 專案，以滑鼠右鍵按一下 [參考]，然後按一下 [加入參考]。 選取 `System.Configuration` 組件的核取方塊，然後按一下 [確定]。
 15. 建置主控台應用程式。 按一下功能表上的 [建置]，再按一下 [建置方案]。
 16. 確認您 Azure Blob 儲存體之 adftutorial 容器中至少有一個檔案。 如果沒有，請在「記事本」中以下列內容建立 Emp.txt 檔案，然後將它上傳至 adftutorial 容器。
 

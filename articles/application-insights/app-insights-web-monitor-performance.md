@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 11/25/2015
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: d84ab993b1d9489ca9d2edaa1cb9672d9bced899
-ms.openlocfilehash: 7dd1289453fe146b446322570fcb1c0df74b4db2
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: cbdef43381deac957c0e48b7043273c43b032935
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -28,7 +29,7 @@ Application Insights 可以監視 Java 和 ASP.NET Web 應用程式與服務、W
 
 用戶端方面，Application Insights 可從網頁及各種裝置 (包括 iOS、Android 和 Windows 市集應用程式) 上取得遙測。
 
-## <a name="a-namesetupaset-up-performance-monitoring"></a><a name="setup"></a>設定效能監視
+## <a name="setup"></a>設定效能監視
 如果您尚未將 Application Insights 新增至專案中 (亦即專案沒有 ApplicationInsights.config)，請選擇以下任一種方法來開始使用：
 
 * [ASP.NET Web 應用程式](app-insights-asp-net.md)
@@ -37,7 +38,7 @@ Application Insights 可以監視 Java 和 ASP.NET Web 應用程式與服務、W
 * [J2EE Web 應用程式](app-insights-java-get-started.md)
   * [加入相依性監視](app-insights-java-agent.md)
 
-## <a name="a-nameviewaexploring-performance-metrics"></a><a name="view"></a>探索效能度量
+## <a name="view"></a>探索效能度量
 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽至您為應用程式設定的 Application Insights 資源。 概觀刀鋒視窗會顯示基本的效能資料：
 
 按一下任一圖表可查看詳細資料，也能查看較長期的結果。 例如，按一下 [要求] 磚，然後選取時間範圍：
@@ -53,7 +54,7 @@ Application Insights 可以監視 Java 和 ASP.NET Web 應用程式與服務、W
 > 
 > 
 
-## <a name="a-namemetricsawhat-does-it-all-mean-performance-tiles-and-reports"></a><a name="metrics"></a>這具有哪些意義？ 效能磚和報告
+## <a name="metrics"></a>這具有哪些意義？ 效能磚和報告
 您可以取用多種效能度量。 我們從預設顯示在應用程式分頁中的度量開始討論。
 
 ### <a name="requests"></a>要求
@@ -106,24 +107,22 @@ HTTP 要求包括頁面、資料及影像的所有 GET 或 POST 要求。
 
 *I don't see the Add Alert button.* 我沒有看到 [新增警示] 按鈕 - 您只擁有此群組帳戶的唯讀權限嗎？ 請洽詢帳戶管理員。
 
-## <a name="a-namediagnosisadiagnosing-issues"></a><a name="diagnosis"></a>診斷問題
+## <a name="diagnosis"></a>診斷問題
 以下是幾個尋找及診斷效能問題的訣竅：
 
-* 設定 [Web 測試][availability] (英文)，以在網站故障、回應異常或過於緩慢時收到警示。 
+* 設定 [Web 測試][availability]，以在網站故障、回應異常或過於緩慢時收到警示。 
 * 比較要求計數與其他度量，了解失敗或回應過慢的情況是否與負載有關。
-* 在程式碼中[插入及搜尋追蹤陳述式][diagnostic] (英文) 有助於找出問題所在。
+* 在程式碼中[插入及搜尋追蹤陳述式][diagnostic]有助於找出問題所在。
 
-## <a name="a-namenextanext-steps"></a><a name="next"></a>接續步驟
-[Web 測試][availability] (英文) - 定期從全世界傳送 Web 要求給應用程式。
+## <a name="next"></a>接續步驟
+[Web 測試][availability] - 定期從全世界傳送 Web 要求給應用程式。
 
-[擷取及搜尋診斷追蹤][diagnostic] (英文) - 插入追蹤呼叫並詳查結果，以便找出問題所在。
+[擷取及搜尋診斷追蹤][diagnostic] - 插入追蹤呼叫並詳查結果，以便找出問題所在。
 
-[流量追蹤][usage] (英文) - 了解使用者使用應用程式的情況。
+[流量追蹤][usage] - 了解使用者使用應用程式的情況。
 
-[疑難排解][qna] - 和問答集
+[疑難排解][qna] - 以及問答集
 
-## <a name="video"></a>影片
-> [!VIDEO https://channel9.msdn.com/Series/ConnectOn-Demand/222/player]
 
 
 <!--Link references-->
@@ -136,10 +135,5 @@ HTTP 要求包括頁面、資料及影像的所有 GET 或 POST 要求。
 [start]: app-insights-overview.md
 [usage]: app-insights-web-track-usage.md
 
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
