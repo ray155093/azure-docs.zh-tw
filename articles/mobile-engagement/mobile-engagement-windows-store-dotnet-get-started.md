@@ -33,7 +33,7 @@ ms.lasthandoff: 03/01/2017
 ## <a name="set-up-mobile-engagement-for-your-windows-universal-app"></a>設定 Windows 通用應用程式的 Mobile Engagement
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a name="a-idconnecting-appaconnect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+## <a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
 本教學課程將說明「基本整合」，這是收集資料及傳送推播通知所需的最低設定。 您可以在 [Mobile Engagement Windows 通用 SDK 整合](mobile-engagement-windows-store-sdk-overview.md)中找到完整的整合文件。
 
 您使用 Visual Studio 建立基本應用程式來示範整合。
@@ -98,10 +98,10 @@ ms.lasthandoff: 03/01/2017
               //... rest of the code
             }
 
-## <a name="a-idmonitoraenable-real-time-monitoring"></a><a id="monitor"></a>啟用即時監視
+## <a id="monitor"></a>啟用即時監視
 若要開始傳送資料並確定使用者正在使用，您必須至少傳送一個畫面 (活動) 到 Mobile Engagement 後端。
 
-1. 在 **MainPage.xaml.cs`using` 中，新增下列 ** 陳述式：
+1. 在 **MainPage.xaml.cs`using` 中，新增下列** 陳述式：
 
     using Microsoft.Azure.Engagement.Overlay;
 2. 將 **MainPage** 的基底類別從 **Page** 變更為 **EngagementPageOverlay**：
@@ -120,10 +120,10 @@ ms.lasthandoff: 03/01/2017
 >
 > 對於 **Windows 10 通用應用程式**，請使用[使用 Windows 通用 App Engagement SDK 的進階報告](mobile-engagement-windows-store-advanced-reporting.md)之「建議使用的方法：多載您的 Page 類別」一節的建議方法，而非先前所述方法。
 
-## <a name="a-idmonitoraconnect-app-with-real-time-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
+## <a id="monitor"></a>將 App 與即時監視連接
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-## <a name="a-idintegrate-pushaenable-push-notifications-and-in-app-messaging"></a><a id="integrate-push"></a>啟用推播通知與 App 內傳訊
+## <a id="integrate-push"></a>啟用推播通知與 App 內傳訊
 Mobile Engagement 可讓您透過推播通知和應用程式內傳訊，於活動進行時與使用者互動和觸達。 此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。
 以下各節將設定您的用程式來接收它們。
 
@@ -167,7 +167,7 @@ Mobile Engagement 可讓您透過推播通知和應用程式內傳訊，於活�
 
     ![][7]
 
-## <a name="a-idsendasend-a-notification-to-your-app"></a><a id="send"></a>傳送通知至應用程式
+## <a id="send"></a>傳送通知至應用程式
 [!INCLUDE [Create Windows Push campaign](../../includes/mobile-engagement-windows-push-campaign.md)]
 
 如果應用程式正在執行，您會看到應用程式內通知。 如果應用程式已關閉，則會看到快顯通知。
