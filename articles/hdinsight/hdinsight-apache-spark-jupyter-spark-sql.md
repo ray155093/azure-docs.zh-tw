@@ -126,7 +126,7 @@ ms.lasthandoff: 03/18/2017
         # Create a data frame
         hvacdf = sqlContext.createDataFrame(hvac,hvacSchema)
 
-        # Register the data fram as a table to run queries against
+        # Register the data frame as a table to run queries against
         hvacdf.registerTempTable("hvac")
 
     HDInsight 中的 Spark 叢集隨附範例資料檔案 **hvac.csv** (位於 **\HdiSamples\HdiSamples\SensorSampleData\hvac**)。
