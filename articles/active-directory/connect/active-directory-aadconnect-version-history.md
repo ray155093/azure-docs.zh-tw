@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 02/08/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
-ms.openlocfilehash: d89135c8f3d5011d7549158a29050e3569defbcc
-ms.lasthandoff: 03/23/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: fe01be4f57766a556ff3a27a0cbba0293675cac7
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -34,6 +34,61 @@ Azure Active Directory (Azure AD) 團隊會定期以新的特性和功能更新 
 從 Azure AD Connect 升級的步驟 | [從舊版升級到最新版本](active-directory-aadconnect-upgrade-previous-version.md) Azure AD Connect 的多種方法。
 所需的權限 | 如需套用更新所需權限的詳細資訊，請參閱[帳戶和權限](./active-directory-aadconnect-accounts-permissions.md#upgrade)。
 下載| [下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771)。
+
+## <a name="114860"></a>1.1.486.0
+發行日期︰2017 年 4 月
+
+**已修正的問題：**
+* 修正 Azure AD Connect 無法在已當地語系化的 Windows Server 版本上成功安裝的問題。
+
+## <a name="114840"></a>1.1.484.0
+發行日期︰2017 年 4 月
+
+**已知問題︰**
+
+* 如果下列條件都成立，此 Azure AD Connect 版本將無法成功安裝：
+   1. 您執行 DirSync 就地升級或全新的 Azure AD Connect 安裝。
+   2. 您使用已當地語系化的 Windows Server 版本，其中伺服器上內建的「系統管理員」群組名稱不是 "Administrators"。
+   3. 您使用與 Azure AD Connect 一起安裝的預設 SQL Server 2012 Express LocalDB，而不是提供自己的完整 SQL。 
+
+**已修正的問題：**
+
+Azure AD Connect 同步處理
+* 修正當一或多個連接器遺漏某個同步處理步驟的執行設定檔時，同步排程器會略過該整個同步處理步驟的問題。 例如，您已使用 Synchronization Service Manager 來手動新增某個連接器，但沒有為它建立「差異匯入」執行設定檔。 這項修正可確保同步排程器會繼續執行其他連接器的「差異匯入」。
+* 修正「同步處理服務」在遇到其中一個執行步驟發生問題時，會立即停止處理執行設定檔的問題。 這項修正可確保「同步處理服務」會略過該執行步驟並繼續處理其餘步驟。 例如，您有一個「差異匯入」執行設定檔，用於具有多個執行步驟 (每個內部部署 AD 網域各有一個執行步驟) 的 AD 連接器。 即使其中一個 AD 網域有網路連線問題，「同步處理服務」也會在其他 AD 網域執行「差異匯入」。
+* 修正導致在進行「自動升級」時略過 Azure AD Connector 更新的問題。
+* 修正導致 Azure AD Connect 在設定時不正確地判斷伺服器是否為網域控制站的問題，此問題會進而導致 DirSync 升級失敗。
+* 修正導致 DirSync 就地升級不會為 Azure AD Connector 建立任何執行設定檔的問題。
+* 修正在嘗試設定「一般 LDAP 連接器」時，Synchronization Service Manager 使用者介面變成沒有反應的問題。
+
+AD FS 管理
+* 修正在已將 AD FS 主要節點移至另一部伺服器的情況下，Azure AD Connect 精靈會發生失敗的問題。
+
+傳統型 SSO
+* 修正 Azure AD Connect 精靈中的問題，也就是在進行新安裝時，如果您選擇 [密碼同步處理] 作為登入選項，[登入] 畫面將不會讓您啟用 [傳統型 SSO] 功能。
+
+**新功能/改進︰**
+
+Azure AD Connect 同步處理
+* Azure AD Connect Sync 現在支援使用「虛擬服務帳戶」、「受管理的服務帳戶」及「群組受管理服務帳戶」作為其服務帳戶。 這僅適用於新的 Azure AD Connect 安裝。 安裝 Azure AD Connect 時：
+    * 根據預設，Azure AD Connect 精靈會建立一個「虛擬服務帳戶」，並使用它作為其服務帳戶。
+    * 如果您是在網域控制站上進行安裝，Azure AD Connect 就會回復成先前的行為，也就是會建立網域使用者帳戶，並改用它作為服務帳戶。
+    * 您可以透過提供下列其中一項，來覆寫預設的行為：
+      * 群組受管理服務帳戶
+      * 受管理的服務帳戶
+      * 網域使用者帳戶
+      * 本機使用者帳戶
+* 以前，如果您升級至包含連接器更新或同步處理規則變更的新 Azure AD Connect 組建，Azure AD Connect 會觸發一個完整的同步處理週期。 現在，Azure AD Connect 會選擇性地僅針對具有更新的連接器觸發「完整匯入」步驟，以及僅針對具有同步處理規則變更的連接器觸發「完整同步處理」步驟。
+* 以前，「匯出刪除閾值」僅適用於透過同步排程器觸發的匯出。 現在，該功能已延伸到包含由客戶使用 Synchronization Service Manager 來手動觸發的匯出。
+* 在您的 Azure AD 租用戶上，有一個指出是否已為租用戶啟用「密碼同步處理」功能的服務組態。 以前，當您有作用中伺服器和預備環境伺服器時，Azure AD Connect 很容易以不正確的方式設定服務組態。 現在，Azure AD Connect 會嘗試讓服務組態只與您的作用中 Azure AD Connect 伺服器保持一致。
+* 如果內部部署 AD 未啟用「AD 資源回收筒」，Azure AD Connect 精靈現在會偵測到並傳回警告。
+* 以前，如果批次中物件的組合大小超出特定閾值，「匯出至 Azure AD」就會逾時。 現在，如果遇到此問題，「同步處理服務」會重新嘗試以個別、較小的批次重新傳送物件。
+* 「同步處理服務金鑰管理」應用程式已從 Windows [開始] 功能表中移除。 將會透過命令列介面使用 miiskmu.exe 來繼續支援加密金鑰的管理。 如需有關加密金鑰的資訊，請參閱[放棄 Azure AD Connect Sync 加密金鑰](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnectsync-change-serviceacct-pass#abandoning-the-azure-ad-connect-sync-encryption-key)一文。
+* 以前，如果您變更 Azure AD Connect 同步服務帳戶密碼，「同步處理服務」將會無法正確啟動，直到您放棄加密金鑰並將 Azure AD Connect 同步服務帳戶密碼重新初始化為止。 現在，已不再需要這麼做。
+
+傳統型 SSO
+
+* 設定「傳遞驗證」和「傳統型 SSO」時，Azure AD Connect 精靈已不再需要於網路上開啟連接埠 9090。 只需要開啟連接埠 443。 
 
 ## <a name="114430"></a>1.1.443.0
 發行日期︰2017 年 3 月
@@ -268,7 +323,14 @@ AD FS 管理
   * 選取要包含在同步處理的新 OU 不需要完整密碼同步處理。
   * 啟用已停用的使用者時，不會同步處理密碼。
   * 密碼重試佇列為無限，而且已移除 5000 個物件要淘汰的先前限制。
-  * [改良的疑難排解](active-directory-aadconnectsync-implement-password-synchronization.md#troubleshooting-password-synchronization)。
+<<<<<<< HEAD <<<<<<< HEAD
+  * [改良的疑難排解](active-directory-aadconnectsync-implement-password-synchronization.md#troubleshoot-password-synchronization)。
+=======
+  * [改良的疑難排解](active-directory-aadconnectsync-troubleshoot-password-synchronization.md)。
+>>>>>>> <a name="487b660b6d3bb5ce9e64b6fdbde2ae621cb91922"></a>487b660b6d3bb5ce9e64b6fdbde2ae621cb91922
+=======
+  * [改良的疑難排解](active-directory-aadconnectsync-troubleshoot-password-synchronization.md)。
+>>>>>>> 4b2e846c2cd4615f4e4be7195899de11e3957c83
 * 無法連接到具 Windows Server 2016 樹系功能等級的 Active Directory。
 * 初始安裝後，無法變更群組篩選所使用的群組。
 * 對於在啟用密碼回寫的情況下執行密碼變更的每個使用者，將無法再於 Azure AD Connect 伺服器上建立新的使用者設定檔。

@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 02/28/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: dca6f5189693fc98cec4f92eac81b6985e691889
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: a07051ea0be58cafcf1a7d7ae800b44e7abd05cd
+ms.lasthandoff: 04/13/2017
 
 
 ---
 # <a name="learn-more-about-password-management"></a>深入了解密碼管理
 > [!IMPORTANT]
-> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-my-password)。
 >
 >
 
@@ -105,7 +105,7 @@ ms.lasthandoff: 03/28/2017
 6. 一旦訊息抵達服務匯流排，密碼重設端點就會自動甦醒，並看到它有擱置中的重設要求。
 7. 服務接著會使用雲端錨點屬性來尋找提出要求的使用者。  此查閱若要成功，使用者物件必須存在於 AD 連接器空間、必須連結至對應的 MV 物件，而且必須連結至對應的 AAD 連接器物件。 最後，為了讓同步處理找到此使用者帳戶，AD 連接器物件與 MV 的連結上必須有同步處理規則 `Microsoft.InfromADUserAccountEnabled.xxx` 。  之所以需要這樣，是因為當呼叫是來自雲端時，同步處理引擎會使用 cloudAnchor 屬性來查閱 AAD 連接器空間物件，然後順著連結回到 MV 物件，接著再順著連結回到 AD 物件。 因為相同使用者可能有多個 AD 物件 (多樹系)，同步處理引擎需仰賴 `Microsoft.InfromADUserAccountEnabled.xxx` 連結來選出正確的物件。 請注意，因為此邏輯，您必須將 Azure AD Connect 連線至主要網域控制站，以便密碼回寫運作。  如果需要這樣做，您可以在 Active Directory 同步處理連接器的 [屬性] 上按一下滑鼠右鍵，然後選取 [設定目錄分割]，以設定 Azure AD Connect 使用主要網域控制站模擬器。 從那裡尋找 [網域控制站連線設定] 區段，然後核取標題為 [只使用慣用的網域控制站] 的方塊。 注意︰如果慣用的 DC 不是 PDC 模擬器，Azure AD Connect 仍會連到 PDC 進行密碼回寫。
 8. 一旦找到使用者帳戶，我們會嘗試直接在適當的 AD 樹系中重設密碼。
-9. 如果密碼設定作業成功，我們會告訴使用者他們的密碼已修改完成，可以放心繼續進行其他工作。
+9. 如果密碼設定作業成功，我們會告訴使用者他們的密碼已修改完成，可以放心繼續進行其他工作。 在使用「密碼同步處理」將使用者密碼同步至 Azure AD 的情況下，有可能內部部署密碼原則會比雲端密碼原則弱。 在此情況下，我們仍然會強制執行內部部署原則 (不論是怎樣的原則)，並且改為允許密碼雜湊同步處理，以同步處理該密碼的雜湊。 這可確保不論您是使用密碼同步處理還是同盟來提供單一登入，都會在雲端強制執行您的內部部署原則。
 10. 如果密碼設定作業失敗，我們會對使用者傳回錯誤，請他們再試一次。  作業可能因各種原因而失敗，例如服務已關閉、所選密碼不符合組織原則、在本機 AD 中找不到使用者等等。  其中的許多原因會有特定的訊息，讓使用者知道該怎麼做來解決問題。
 
 ## <a name="scenarios-supported-for-password-writeback"></a>密碼回寫的支援案例
@@ -629,7 +629,7 @@ Not possible in PowerShell V2
 ## <a name="next-steps"></a>後續步驟
 以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-your-password)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-my-password)。
 * [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
 * [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
 * [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為

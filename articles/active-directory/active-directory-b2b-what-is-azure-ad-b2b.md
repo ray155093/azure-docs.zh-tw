@@ -1,5 +1,5 @@
 ---
-title: "關於 Azure Active Directory B2B 共同作業預覽 | Microsoft Docs"
+title: "什麼是 Azure Active Directory B2B 共同作業？ | Microsoft Docs"
 description: "Azure Active Directory B2B 共同作業讓企業合作夥伴選擇性地存取您的公司應用程式，以支援公司間的關係。"
 services: active-directory
 documentationcenter: 
@@ -13,90 +13,97 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 03/18/2017
+ms.date: 04/12/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 4bfd76a00ba694096ef0b045b14beb757ba0809f
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: 9cd8edf47059a5f574489a604156890d157c8b1a
+ms.lasthandoff: 04/13/2017
 
 
 ---
 
-# <a name="about-the-azure-ad-b2b-collaboration-preview"></a>關於 Azure AD B2B 共同作業預覽
-本文討論更新的 Azure Active Directory (Azure AD) B2B 共同作業公開預覽之目標、各項功能和優點。
+# <a name="what-is-azure-ad-b2b-collaboration"></a>什麼是 Azure AD B2B 共同作業？
 
-無法您是 IT 專業人員或資訊工作者，都能使用 Azure AD B2B 共同作業的各項功能。 無論合作夥伴的規模、產業或合規性和控管需求為何，您都可以與身處任何地點之其他組織中的合作夥伴密切合作。 您也能提供對文件、資源及應用程式的存取權，同時又保有您對內部資料的完整控制權。
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AhwrweCBdsc" frameborder="0" allowfullscreen></iframe>
 
-如果您是開發人員，可以使用 Azure AD B2B API 撰寫應用程式，以安全地結全各個組織。 對於資訊工作者的使用者，可以直接進行程序和瀏覽。
+Azure AD 企業對企業 (B2B) 共同作業功能可讓任何使用 Azure AD 的組織安全地與來自任何其他組織的使用者共同作業 – 不論該組織是小還是大；有或沒有 Azure AD；事實上，也不論它是否具有 IT 組織。 
 
-## <a name="how-b2b-collaboration-works"></a>B2B 共同作業如何運作
+使用 Azure AD 的組織可以將文件、資源及應用程式的存取權提供給它們的合作夥伴，同時又保有完整的公司資料控制權。 開發人員可以使用 Azure AD 企業對企業 API 來撰寫應用程式，以既安全又可為使用者提供順暢且直覺式瀏覽的方式，將兩個組織結合在一起。
 
-在目前的預覽版本中，若要與合作夥伴組織建立關聯性，IT 專業人員和資訊工作者可以透過入口網站或邀請管理員 API，一次新增一個或一些使用者。
+我們的客戶中高達 **97%** 告訴我們 Azure AD B2B 共同作業對他們非常重要。
 
-管理員可以使用 Azure 入口網站 (https://portal.azure.com) 中的新入口網站體驗和 PowerShell 來建立關聯性。
+![圓形圖](media/active-directory-b2b-what-is-azure-ad-b2b/97-percent-support.png)
 
-資訊工作者則可以使用 http://myapps.microsoft.com 中的存取面板體驗。
+截至 2017 年 4 月初為止，我們有大約三百萬個使用者已經使用 Azure AD B2B 共同作業功能。 而有超過 23% 有 10 個使用者以上的 Azure AD 組織已經從這些功能獲益。
 
-開發人員可以使用 Azure AD B2B 邀請管理員 API 建立應用程式，以新增 B2B 共同作業使用者及自訂邀請和上線工作流程。
+## <a name="the-key-benefits-of-azure-ad-b2b-collaboration-to-your-organization"></a>Azure AD B2B 共同作業可為您組織提供的主要優點
 
-通常來說，系統會透過一個邀請和兌換程序來新增 B2B 共同作業使用者。 其運作方式如下：
+### <a name="work-with-any-user-from-any-partner"></a>可與來自任何合作夥伴的任何使用者共同作業
 
-1. 來自 WoodGrove 的 John Doe 想要使用 Sam Oogle 的 Gmail 地址 (gsamoogle@gmail.com) 來新增這位使用者。
+* 合作夥伴可使用他們自己的認證
 
-2. John Doe 前往 WoodGrove 入口網站 (portal.azure.com) 或存取面板 (myapps.microsoft.com)，登入並將使用者 Sam Oogle 新增到 WoodGrove 目錄、群組或應用程式。
+* 合作夥伴不一定要使用 Azure AD
 
-3. John Doe 指定一個自訂邀請電子郵件來傳送給 Sam Oogle。
+* 不需要外部目錄或複雜的設定
 
-4. 當 John Doe 傳送邀請時，系統已在適用於 WoodGrove 的 Azure AD 中建立了使用者 Sam Oogle，如此所示：
+### <a name="simple-and-secure-collaboration"></a>簡單且安全的共同作業
 
-  ![portal.azure.com 中的管理員使用者介面](media/active-directory-b2b-what-is-azure-ad-b2b/user-is-added.png)
+* 可提供對任何公司應用程式或資料的存取權，同時又套用精密、Azure AD 提供技術的授權原則
 
-5. 建立使甪者之後，Azure AD 會傳送一封邀請電子郵件給 Sam Oogle：
+* 流暢的使用者體驗
 
-  ![傳送給 Sam Oogle 的邀請郵件](media/active-directory-b2b-what-is-azure-ad-b2b/invitation-mail-sent-to-sam.png)
+* 企業級的應用程式與資料安全性
 
-6. 在邀請中，Sam Oogle 選擇了 [開始使用]。  
-Azure 入口網站隨即開啟。
+### <a name="no-management-overhead"></a>沒有任何額外的管理負荷
 
-7. Sam Oogle 登入 Azure 入口網站。
+* 不需要進行任何外部帳戶或密碼管理
 
-8. Azure AD 會用 Sam 權杖中的資訊更新 Azure AD 中的使用者物件，如此所示：
+* 不需要進行任何同步處理或手動帳戶生命週期管理
 
-  ![Azure 入口網站中的 Sam Oogle 使用者設定檔](media/active-directory-b2b-what-is-azure-ad-b2b/user-profile-is-populated.png)
+* 沒有任何額外的外部系統管理負荷
 
-9. 現在，使用者 Sam Oogle 已兌換邀請，也能夠存取 WoodGrove 資源。 如同 Azure AD 中的其他使用者，Sam Oogle 也會受到管理員的管理。 使用者清單如此所示：
+## <a name="you-can-easily-add-b2b-collaboration-users-to-your-organization"></a>您可以將 B2B 共同作業使用者輕鬆地新增到您的組織
 
-  ![Azure AD 使用者清單](media/active-directory-b2b-what-is-azure-ad-b2b/sam-now-user-in-azure-ad.png)
+系統管理員可以在 [Azure 入口網站](https://portal.azure.com)中新增 B2B 共同作業 (來賓) 使用者。
 
-## <a name="public-preview-features"></a>公開預覽功能
-依據使用者的意見反應，B2B 共同作業公開預覽更新會提供以下金鑰功能，包括：
+![圓形圖](media/active-directory-b2b-what-is-azure-ad-b2b/adding-b2b-users-admin.png)
 
-* 針對管理員：在 [Azure 入口網站](https://portal.azure.com)中取得使用者介面增強功能。 例如，管理員能夠邀請 B2B 使用者加入目錄、任何群組或應用程式。  
+### <a name="enable-your-collaborators-to-bring-their-own-identity"></a>讓您的共同作業者使用自己的身分識別
 
-* 針對資訊工作者：在[存取面板](https://myapps.microsoft.com)中取得 B2B 共同作業自助邀請功能。 資訊工作者可以邀請 B2B 共同作業使用者加入他們所管理的任何自助群組或應用程式。
+B2B 共同作業者可以使用自己選擇的身分識別來登入。 如果使用者沒有 Microsoft 帳戶或 Azure AD 帳戶 – 系統就會在他們兌換提供項目時為他們建立一個帳戶。
 
-* 允許受邀請的使用者擁有任何電子郵件地址。 無論是 Office 365 或內部部署 Microsoft Exchange 地址、outlook.com 地址或任何社交地址 (Gmail、Yahoo! 等)，使用者都能建立 Azure AD 或 Microsoft 帳戶以存取受邀請的組織。
+![登入身分識別選項](media/active-directory-b2b-what-is-azure-ad-b2b/sign-in-identity-choice.png)
 
-* 建立專業、租用戶品牌化邀請電子郵件。
+### <a name="delegate-to-application-and-group-owners"></a>委派給應用程式和群組擁有者 
+應用程式和群組擁有者可以將 B2B 使用者直接新增到您在意的任何應用程式，不論它是否為 Microsoft 應用程式。 系統管理員可以將新增 B2B 使用者的權限委派給非系統管理員。 非系統管理員可以使用 [Azure AD 應用程式存取面板](https://myapps.microsoft.com)，將 B2B 共同作業使用者新增到應用程式或群組。
 
-* 使用邀請 API 自訂使用者導向。
+![存取面板](media/active-directory-b2b-what-is-azure-ad-b2b/access-panel.png)
 
-* 設定適用於邀請組織中 B2B 共同作業使用者的多重要素驗證。
+![新增成員](media/active-directory-b2b-what-is-azure-ad-b2b/add-member.png)
 
-* 將邀請委派給非管理員。
+### <a name="authorization-policies-protect-your-corporate-content"></a>授權原則可保護您的公司內容
 
-* 提供 B2B 共同作業的 PowerShell 支援。
+系統管理員可以建立條件式存取原則，例如可以在租用戶層級、應用程式層級或針對特定使用者強制執行「多重要素驗證」，以保護公司應用程式和資料。
 
-* 提供稽核和報告功能。
+![新增成員](media/active-directory-b2b-what-is-azure-ad-b2b/add-member.png)
 
-## <a name="help-us-shape-your-features"></a>協助我們設計功能
- 
-我們會時常聆聽您對改進 B2B 共同作業的意見反應。 我們邀請您在 [Microsoft 技術社群 (英文)](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B/bd-p/AzureAD_B2b) 參與討論、分享您的使用者案例、最佳作法，以及您對 Azure AD B2B 共同作業的意見
- 
-我們也邀請您前往 [B2B 共同作業構想 (英文)](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B-Ideas/idb-p/AzureAD_B2B_Ideas) 網站提交您的構想和針對未來的功能投票。
+### <a name="use-our-apis-and-sample-code-to-easily-build-applications-to-onboard"></a>使用我們的 API 和範例程式碼來輕鬆建置要上線的應用程式
+讓您的外部合作夥伴以針對您組織需求量身打造的方式上線使用
+
+藉由使用 [Azure AD B2B 邀請 API](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation)，組織將可徹底自訂其上線體驗，包括建立自助式註冊入口網站，我們在 Github 上為其提供了範例程式碼：<https://github.com/Azure/active-directory-dotnet-graphapi-b2bportal-web>
+
+![註冊入口網站](media/active-directory-b2b-what-is-azure-ad-b2b/sign-up-portal.png)
+
+使用 Azure AD B2B 共同作業，您便可以運用 Azure AD 的完整強大功能，以使用者覺得簡單且直覺的方式來保護您的合作夥伴關係。 因此，請不要猶豫，加入成為已使用 Azure AD B2B 進行其外部共同作業之數千個組織的一員吧！
 
 ## <a name="next-steps"></a>後續步驟
+
+* 系統管理員體驗是在 [Azure 入口網站](https://portal.azure.com)中進行。
+
+* 資訊工作者體驗可在[存取面板](https://myapps.microsoft.com)中進行。
+
+* 一如往常，如有任何意見反應、討論及建議，請透過我們的 [Microsoft 技術社群 (英文)](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-B2B/bd-p/AzureAD_B2b) 與產品小組聯繫。
 
 請瀏覽有關 Azure AD B2B 共同作業的其他文章：
 

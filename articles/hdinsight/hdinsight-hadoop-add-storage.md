@@ -16,9 +16,9 @@ ms.date: 02/23/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
 translationtype: Human Translation
-ms.sourcegitcommit: d391c5c6289aa63e969f63f189eb5db680883f0a
-ms.openlocfilehash: b8c5e53ed5fe86ed099e37644d405080477f8c27
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 0bd6fce848c6d174eb519f8ef8a14f9ead5fa5ce
+ms.lasthandoff: 04/13/2017
 
 ---
 
@@ -52,7 +52,7 @@ ms.lasthandoff: 03/01/2017
 * 停止後重新啟動 Oozie、YARN、MapReduce2 和 HDFS 服務，以便它們挑選新的儲存體帳戶資訊。
 
 > [!WARNING]
-> 如果儲存體帳戶位於與 HDInsight 叢集不同的區域中，您可能會遇到效能不佳。 存取不同區域中的資料會傳送 Azure 資料中心外部和跨越公用網際網路的網路流量，這可能會造成延遲。 此外，傳送區域資料中心外部的資料可能會比較昂貴，因為當資料離開資料中心時適用輸出費用。
+> 不支援在與 HDInsight 叢集不同的位置中使用儲存體帳戶。
 
 ## <a name="the-script"></a>指令碼
 

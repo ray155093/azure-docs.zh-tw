@@ -1,6 +1,6 @@
 ---
 title: "Azure 事件中樞診斷記錄 | Microsoft Docs"
-description: "了解如何設定 Azure 中的事件中樞診斷記錄檔。"
+description: "了解如何為 Azure 中的事件中樞設定診斷記錄檔。"
 keywords: 
 documentationcenter: 
 services: event-hubs
@@ -16,9 +16,9 @@ ms.workload: data-services
 ms.date: 03/27/2017
 ms.author: sethm;babanisa
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 8b0484b2d4f6474be728531fbda65896f30eccc4
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: bb8679b733e9ebd8d6a95a618d4ab8deab18ece4
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -45,7 +45,7 @@ ms.lasthandoff: 03/29/2017
 
     ![變更診斷記錄檔的狀態](./media/event-hubs-diagnostic-logs/image3.png)
 
-5.    設定您要使用的封存目標，例如儲存體帳戶、事件中樞或 Azure Log Analytics。
+5.    設定您想要的封存目標，例如儲存體帳戶、事件中樞或 Azure Log Analytics。
 
 6.    選取您要收集的記錄類別，例如**執行**或**製作**。
 
@@ -59,7 +59,7 @@ ms.lasthandoff: 03/29/2017
 事件中樞會擷取兩種類別的診斷記錄檔：
 
 * **ArchivalLogs**：與事件中樞封存相關的記錄，具體而言，就是與封存錯誤相關的記錄。
-* **OperationalLogs**：事件中樞作業期間所發生事件的相關資訊，具體而言，就是作業類型 (包括建立事件中樞)、使用的資源，以及作業狀態。
+* **OperationalLogs**：與「事件中樞」作業期間發生的事件有關的資訊，具體而言，就是作業類型 (包括建立事件中樞)、使用的資源及作業狀態。
 
 ## <a name="diagnostic-logs-schema"></a>診斷記錄結構描述
 所有的記錄檔都會以 JavaScript 物件標記法 (JSON) 格式儲存。 每個項目都具有字串欄位，這些欄位會使用下列範例所述的格式。

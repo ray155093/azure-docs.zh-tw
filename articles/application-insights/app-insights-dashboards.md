@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: db3285bcdfb93c0c2b9f8972edb04e7064cfa31c
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: e6efa8c05c51b0438912738c3c5fcad4bc12b8f4
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -56,8 +56,16 @@ ms.lasthandoff: 04/12/2017
 
 請注意，圖表會分組為圖格︰一個圖格中可包含多個圖表。 您將整個圖格釘選至儀表板。
 
+圖表會以取決於圖表時間範圍的頻率自動重新整理：
+
+* 長達 1 小時的時間範圍：每隔 5 分鐘重新整理一次
+* 介於 1-24 小時的時間範圍：每隔 15 分鐘重新整理一次
+* 超過 24 小時的時間範圍：(時間範圍)/60
+
 ### <a name="pin-any-query-in-analytics"></a>在分析中釘選任何查詢
 您也可以[釘選分析](app-insights-analytics-using.md#pin-to-dashboard)圖表到[共用](#share-dashboards-with-your-team)儀表板。 這可讓您新增任意查詢以及標準度量的圖表。 (此功能不會收取費用。)
+
+系統會每小時自動重新計算結果。 按一下圖表上的 [重新整理] 圖示，即可立即重新計算。 (瀏覽器重新整理並不會重新計算)。
 
 ## <a name="adjust-a-tile-on-the-dashboard"></a>調整儀表板上的圖格
 圖格在儀表板上之後，您就可以進行調整。

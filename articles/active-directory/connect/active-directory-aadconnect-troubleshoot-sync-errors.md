@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 1/31/2017
 ms.author: vakarand
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 6a466937358932a28604cddf7f32cdfd02a5b88d
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: a1190f0ab4caf749cce0b5c9ba45e55f7e6ca8ec
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -180,9 +180,9 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 #### <a name="related-articles"></a>相關文章
 * [準備透過 Office 365 目錄同步作業佈建使用者](https://support.office.com/en-us/article/Prepare-to-provision-users-through-directory-synchronization-to-Office-365-01920974-9e6f-4331-a370-13aea4e82b3e)
 
-### <a name="datavalidationfailed"></a>DataValidationFailed
+### <a name="federateddomainchangeerror"></a>FederatedDomainChangeError
 #### <a name="description"></a>說明
-這是特殊情況：當使用者的 UserPrincipalName 尾碼從一個同盟網域變更為另一個同盟網域時，會導致 **"DataValidationFailed"** 同步處理錯誤。
+這是一個特殊情況，會在使用者的 UserPrincipalName 尾碼從一個同盟網域變更為另一個同盟網域時，導致發生 **"FederatedDomainChangeError"** 同步處理錯誤。
 
 #### <a name="scenarios"></a>案例
 對於已同步處理的使用者，UserPrincipalName 尾碼從一個同盟網域變更為另一個內部部署的同盟網域。 例如，UserPrincipalName = bob@contoso.com 已變更為 UserPrincipalName = bob@fabrikam.com。
@@ -191,7 +191,7 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 1. Bob Smith (contoso.com 的帳戶) 新增為 Active Directory 中具有 UserPrincipalName bob@contoso.com 的新使用者
 2. Bob 移至 Contoso.com 的不同部門 (名為 Fabrikam.com)，而他的 UserPrincipalName 變更為 bob@fabrikam.com
 3. Contoso.com 和 fabrikam.com 網域都是使用 Azure Active Directory 的同盟網域。
-4. Bob 的 userPrincipalName 並不會更新並導致 "DataValidationFailed" 同步處理錯誤。
+4. Bob 的 userPrincipalName 並不會更新，而導致發生 "FederatedDomainChangeError" 同步處理錯誤。
 
 #### <a name="how-to-fix"></a>修正方式
 如果使用者的 UserPrincipalName 尾碼從 bob@**contoso.com** 更新為 bob@**fabrikam.com**，其中 **contoso.com** 與 **fabrikam.com** 都是**同盟網域**，則遵循這些步驟來修正同步處理錯誤
@@ -215,7 +215,7 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 1. Bob 的 userCertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。 固定限制為 15 個憑證。
 2. Bob 的 userSMIMECertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。 固定限制為 15 個憑證。
 3. Bob 在 Active Directory 中設定的 thumbnailPhoto 太大，以致於無法在 Azure AD 中進行同步處理。
-4. 在 Active Directory 中 ProxyAddresses 屬性的自動母體擴展期間，一個物件被指派超過&500; 個 ProxyAddresses。
+4. 在 Active Directory 中 ProxyAddresses 屬性的自動母體擴展期間，一個物件被指派超過 500 個 ProxyAddresses。
 
 ### <a name="how-to-fix"></a>修正方式
 1. 確定造成錯誤的屬性在允許的限制內。

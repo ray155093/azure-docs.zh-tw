@@ -15,13 +15,14 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: fe331199333d492dbc42c9125c9da96a44066ee1
-ms.openlocfilehash: 8db864801042170fcad947d5b40220eea9c1c307
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 35bf064fdf2a766b8f699bed5c32d30c6c4dcd3c
+ms.lasthandoff: 04/18/2017
 
 ---
 
-## <a name="receive-events-from-azure-event-hubs-using-apache-storm"></a>使用 Apache Storm 從 Azure 事件中樞接收事件
-[Apache Storm](https://storm.incubator.apache.org) 是分散式即時運算系統，可簡化未繫結資料串流的可靠處理。 本節顯示如何使用事件中心 Storm Spout 接收來自事件中心的事件。 使用 Apache Storm，您可以將事件分割到多個裝載於不同節點的處理序。 事件中心與 Storm 的整合透過使用 Storm 的 Zookeeper 安裝透明地設定檢查點以檢查其進度、管理持續檢查點以及來自事件中心的平行接收，以簡化事件的使用。
+# <a name="receive-events-from-event-hubs-using-apache-storm"></a>使用 Apache Storm 從事件中樞接收事件
+[Apache Storm](https://storm.incubator.apache.org) 是分散式即時運算系統，可簡化未繫結資料串流的可靠處理。 本節說明如何使用「Azure 事件中樞」Storm Spout 來接收來自「事件中樞」的事件。 使用 Apache Storm，您可以將事件分割到多個裝載於不同節點的處理序。 事件中心與 Storm 的整合透過使用 Storm 的 Zookeeper 安裝透明地設定檢查點以檢查其進度、管理持續檢查點以及來自事件中心的平行接收，以簡化事件的使用。
 
 如需事件中樞接收模式的詳細資訊，請參閱 [事件中樞概觀][Event Hubs overview]。
 
@@ -230,7 +231,7 @@ ms.openlocfilehash: 8db864801042170fcad947d5b40220eea9c1c307
     }
     ```
 
-    這個類別會建立新的事件中樞 Spout，方法是使用組態檔中的屬性來進行具現化。 請務必注意此範例所建立的 Spouts 工作數目要與事件中心內的磁碟分割數目一樣多，才能使用該事件中心所允許的最大平行處理。
+    這個類別會建立新的事件中樞 Spout，方法是使用組態檔中的屬性來進行具現化。 請務必注意此範例所建立的 Spout 工作數目會與事件中樞內的磁碟分割數目相同，這是為了發揮該事件中樞所允許的平行處理原則上限。
 
 ## <a name="next-steps"></a>後續步驟
 您可以造訪下列連結以深入了解事件中樞︰
@@ -247,8 +248,4 @@ ms.openlocfilehash: 8db864801042170fcad947d5b40220eea9c1c307
 <!-- Images -->
 
 [12]: ./media/event-hubs-get-started-receive-storm/create-storm1.png
-
-
-<!--HONumber=Feb17_HO1-->
-
 

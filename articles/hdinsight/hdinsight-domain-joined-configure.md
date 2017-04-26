@@ -9,7 +9,6 @@ editor: cgronlun
 tags: 
 ms.assetid: 0cbb49cc-0de1-4a1a-b658-99897caf827c
 ms.service: hdinsight
-ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -17,9 +16,9 @@ ms.workload: big-data
 ms.date: 11/02/2016
 ms.author: saurinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 424ee513afce6ab689c8804594754b1b49234754
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 1fb13d60eebbaf45ca9cb394c073c834bbe59bb9
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -45,7 +44,6 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
 | --- | --- |
 | Azure AD VNet |contosoaadvnet |
 | Azure AD Vnet 資源群組 |contosoaadrg |
-| Azure AD 虛擬機器 (VM) |contosoaadadmin。 此 VM 用來設定組織單位和反向 DNS 區域。 |
 | Azure AD 目錄 |contosoaaddirectory |
 | Azure AD 網域名稱 |contoso (contoso.onmicrosoft.com) |
 | HDInsight VNet |contosohdivnet |
@@ -62,12 +60,9 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
 ## <a name="procedures"></a>程序
 1. 為您的 Azure AD 建立 Azure 傳統 VNet。  
 2. 建立和設定 Azure AD 與 Azure AD DS。
-3. 將 VM 新增至傳統 VNet 以建立組織單位。 
-4. 建立 Azure AD DS 的組織單位。
-5. 在 Azure 資源管理模式中建立 HDInsight VNet。
-6. 設定 Azure AD DS 的反向 DNS 區域。
-7. 對等互連兩個 VNet。
-8. 建立 HDInsight 叢集。
+3. 在 Azure 資源管理模式中建立 HDInsight VNet。
+4. 對等互連兩個 VNet。
+5. 建立 HDInsight 叢集。
 
 > [!NOTE]
 > 本教學課程假設您已沒有 Azure AD。 如果您有的話，可以略過步驟 2 的部分。
@@ -131,7 +126,7 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
 4. 輸入 [使用者名稱]，然後按一下 [下一步]。 
 5. 設定使用者設定檔；在 [角色] 選取 [全域管理員]，然後按一下 [下一步]。  需要「全域管理員角色」才能建立組織單位。
 6. 按一下 [建立] 取得暫時密碼。
-7. 複製一份密碼，然後按一下 [完成]。 稍後在本教學課程中，您將使用此全域系統管理員使用者登入系統管理員 VM，來建立組織單位和設定反向 DNS。
+7. 複製一份密碼，然後按一下 [完成]。 在本教學課程稍後，您會使用這個全域管理使用者來建立 HDInsight 叢集。
 
 依照相同程序建立另外兩位使用者，**使用者**角色分別為 hiveuser1 和 hiveuser2。 下列使用者會用於[針對已加入網域的 HDInsight 叢集設定 Hive 原則](hdinsight-domain-joined-run-hive.md)。
 
@@ -172,7 +167,7 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
 
 **設定 Azure AD 的 LDAPS**
 
-1. 取得由您的網域的簽章授權單位簽署的 SSL 憑證。 不可使用自我簽署憑證。 如果您無法取得 SSL 憑證，請向 hdipreview@microsoft.com 要求例外處理。
+1. 取得由您的網域的簽章授權單位簽署的 SSL 憑證。 如果您要使用自我簽署憑證，請向 hdipreview@microsoft.com 要求例外處理。
 2. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下 [Active Directory]  >  [contosoaaddirectory]。 
 3. 按一下頂端的 [設定]。
 4. 捲動到 [網域服務]。
@@ -186,91 +181,6 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
 > 
 
 如需詳細資訊，請參閱[針對 Azure AD 網域服務受管理網域設定安全的 LDAP (LDAPS)](../active-directory-domain-services/active-directory-ds-admin-guide-configure-secure-ldap.md)。
-
-## <a name="configure-an-organizational-unit-and-reverse-dns"></a>設定組織單位和反向 DNS。
-在本節中，您會將虛擬機器新增至 Azure AD VNet，並在此 VM 上安裝系統管理工具，讓您可以設定組織單位和反向 DNS。 Kerberos 驗證需要反向 DNS 查閱。
-
-**建立虛擬網路中的虛擬機器**
-
-1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，按一下 [新增]  >  [計算]  >  [虛擬機器]  >  [從組件庫]。
-2. 選取映像，然後按一下 [下一步]。  如果您不知道要使用哪一個，選取預設的 [Windows Server 2012 R2 Datacenter]。
-3. 輸入或選取下列值：
-   
-   * 虛擬機器名稱：**contosoaadadmin**
-   * 層︰**基本**
-   * 新增使用者名稱：(輸入使用者名稱)
-   * 密碼：(輸入密碼)
-     
-     請注意，使用者名稱和密碼是本機系統管理員。
-4. 依序按一下  **下一步**
-5. 在 [區域/虛擬網路] 中，選取您在上一個步驟建立的新虛擬網路 (contosoaadvnet)，然後按 [下一步]。
-6. 按一下頁面底部的 [新增] 。
-
-**以 RDP 連線至 VM**
-
-1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com) 中，按一下 [虛擬機器]  >  [contosoaadadmin]。
-2. 從頂端功能表按一下 [儀表板]  。
-3. 按一下頁面底部的 [連線]。
-4. 依照指示操作，並使用本機系統管理員使用者名稱和密碼來連線。
-
-**將 VM 加入 Azure AD 網域**
-
-1. 在 [RDP] 區段中，按一下 [啟動]，然後按一下 [伺服器管理員]。
-2. 按一下左功能表中的 [本機伺服器] 。
-3. 在 [群組] 中，按一下 [工作群組]。
-4. 按一下 [變更]。
-5. 按一下 [網域]，輸入 **contoso.onmicrosoft.com**，然後按一下 [確定]。
-6. 輸入網域使用者認證，然後按一下 [確定]。
-7. 按一下 [確定] 。
-8. 按一下 [確定] 同意重新啟動電腦。
-9. 按一下 [關閉] 。
-10. 按一下 [立即重新啟動]。
-
-如需詳細資訊，請參閱[將 Windows Server 虛擬機器加入受管理的網域](../active-directory-domain-services/active-directory-ds-admin-guide-join-windows-vm.md)。
-
-**安裝 Active Directory 系統管理工具和 DNS 工具**
-
-1. 使用 Azure AD 使用者帳戶以 RDP 連接到 **contosoaadadmin**。
-2. 按一下 [啟動]，然後按一下 [伺服器管理員]。
-3. 按一下左側功能表中的 [儀表板]。
-4. 按一下 [管理]，然後按一下 [新增角色及功能]。
-5. 按 [下一步] 。
-6. 選取 [角色型或功能型安裝]，然後按一下 [下一步]。
-7. 從伺服器集區中選取目前的虛擬機器，然後按一下 [下一步]。
-8. 按一下 [下一步] 略過角色。
-9. 展開 [遠端伺服器系統管理工具]，展開 [角色系統管理工具]，選取[AD DS 和 AD LDS 工具] 和 [DNS 伺服器工具]，然後按一下 [下一步]。 
-10. 依序按一下  **下一步**
-11. 按一下 [Install] 。
-
-如需詳細資訊，請參閱[在虛擬機器上安裝 Active Directory 系統管理工具](../active-directory-domain-services/active-directory-ds-admin-guide-administer-domain.md#task-2---install-active-directory-administration-tools-on-the-virtual-machine)。
-
-**設定反向 DNS**
-
-1. 使用 Azure AD 使用者帳戶以 RDP 連接到 contosoaadadmin。
-2. 按一下 [啟動]，按一下 [系統管理工具]，然後按一下 [DNS]。 
-3. 按一下 [否] 略過新增 ContosoAADAdmin。
-4. 選取 [下列電腦]，輸入您稍早設定的第一個 DNS 伺服器的 IP 位址，然後按一下 [確定]。  您應該會看到左邊的窗格中已新增 DC/DNS。
-5. 展開 DC/DNS 伺服器，以滑鼠右鍵按一下 [反向對應區域]，然後按一下 [新增區域]。 [新增區域精靈] 隨即開啟。
-6. 按 [下一步] 。
-7. 選取 [主要區域]，然後按一下 [下一步]。
-8. 選取 [到這個網域中網域控制站上執行的所有 DNS 伺服器]，然後按一下 [下一步]。
-9. 選取 [IPv4 反向對應區域]，然後按一下 [下一步]。
-10. 在 [網路識別碼] 中輸入 HDInsight VNET 網路範圍的前置詞，然後按一下 [下一步]。 您將在下一節建立 HDInsight VNet。
-11. 按 [下一步] 。
-12. 按 [下一步] 。
-13. 按一下 [完成] 。
-
-您接下來建立的組織單位將用於建立 HDInsight 叢集。 Hadoop 系統使用者和電腦帳戶將會置放於這個 OU 中。
-
-**在 Azure AD 網域服務的受管理網域上建立組織單位 (OU)**
-
-1. 使用 **AAD DC 系統管理員**群組中的網域帳戶以 RDP 連接到 **contosoaadadmin**。
-2. 依序按一下 [啟動]、[系統管理工具] 及 [Active Directory 系統管理中心]。
-3. 按一下左窗格中的網域名稱。 例如，contoso。
-4. 按一下 [工作] 窗格中網域名稱下的 [新增]，然後按一下 [組織單位]。
-5. 輸入名稱，例如 **HDInsightOU**，然後按一下 [確定]。 
-
-如需詳細資訊，請參閱[在 Azure AD 網域服務的受管理網域上建立組織單位 (OU)](../active-directory-domain-services/active-directory-ds-admin-guide-create-ou.md)。
 
 ## <a name="create-a-resource-manager-vnet-for-hdinsight-cluster"></a>建立用於 HDInsight 叢集的 Resource Manager VNet
 在本節中，您會建立將用於 HDInsight 的 Azure Resource Manager VNet。 如需使用其他方法建立 Azure VNet 的詳細資訊，請參閱[建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。
@@ -354,9 +264,9 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
        * **網域設定**： 
          
          * **網域名稱**：contoso.onmicrosoft.com
-         * **網域使用者名稱**：輸入網域使用者名稱。 這個網域必須有下列權限︰將機器加入網域，並將它們放在您稍早設定的組織單位內；在您稍早設定的組織單位內建立服務主體；建立反向 DNS 項目。 此網域使用者會成為這個已加入網域的 HDInsight 叢集的系統管理員。
+         * **網域使用者名稱**：輸入網域使用者名稱。 這個網域必須有下列權限︰將電腦加入網域，並將它們放在您於叢集建立期間指定的組織單位內；在您於叢集建立期間指定的組織單位內建立服務主體；建立反向 DNS 項目。 此網域使用者會成為這個已加入網域的 HDInsight 叢集的系統管理員。
          * **網域密碼**︰輸入網域使用者密碼。
-         * **組織單位**︰輸入您稍早設定之 OU 的辨別名稱。 例如︰OU=HDInsightOU,DC=contoso,DC=onmicrosoft,DC=com
+         * **組織單位**︰輸入您要搭配 HDInsight 叢集使用的 OU 辨別名稱。 例如：OU=HDInsightOU,DC=contoso,DC=onmicrosoft,DC=com。 如果此 OU 不存在，HDInsight 叢集會嘗試建立這個 OU。 確定 OU 已經存在，或是網域帳戶具有建立新 OU 的權限。 如果您使用屬於 AADDC 系統管理員的網域帳戶，它就已經有建立 OU 的所需權限。
          * **LDAPS URL**：ldaps://contoso.onmicrosoft.com:636
          * **存取使用者群組**︰指定您要將其使用者同步至叢集的安全性群組。 例如，HiveUsers。
            
@@ -393,7 +303,7 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
    * **虛擬網路子網路**：/subscriptions/&lt;SubscriptionID>/resourceGroups/&lt;ResourceGroupName>/providers/Microsoft.Network/virtualNetworks/&lt;VNetName>/subnets/Subnet1
    * **網域名稱**：contoso.onmicrosoft.com
    * **組織單位辨別名稱**：OU=HDInsightOU,DC=contoso,DC=onmicrosoft,DC=com
-   * **叢集使用者群組辨別名稱**："\"CN=HiveUsers,OU=AADDC Users,DC=<DomainName>,DC=onmicrosoft,DC=com\""
+   * **叢集使用者群組 DN**：[\"HiveUsers\"]
    * **LDAPS URL**：["ldaps://contoso.onmicrosoft.com:636"]
    * **DomainAdminUserName**：(輸入網域系統管理員使用者名稱)
    * **DomainAdminPassword**：(輸入網域系統管理員使用者密碼)
@@ -404,8 +314,7 @@ Azure 服務名稱必須是全域唯一的。 本教學課程中使用下列名�
 完成本教學課程之後，您可以刪除叢集。 利用 HDInsight，您的資料會儲存在 Azure 儲存體中，以便您在未使用叢集時安全地進行刪除。 您也需支付 HDInsight 叢集的費用 (即使未使用)。 由於叢集費用是儲存體費用的許多倍，所以刪除未使用的叢集符合經濟效益。 如需有關刪除叢集的指示，請參閱[使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集](hdinsight-administer-use-management-portal.md#delete-clusters)。
 
 ## <a name="next-steps"></a>後續步驟
-* 如需使用 Azure PowerShell 設定已加入網域的 HDInsight 叢集，請參閱[使用 Azure PowerShell 設定已加入網域的 HDInisight 叢集](hdinsight-domain-joined-configure-use-powershell.md)。
 * 如需設定 Hive 原則和執行 Hive 查詢，請參閱[針對已加入網域的 HDInisight 叢集設定 Hive 原則](hdinsight-domain-joined-run-hive.md)。
-* 若要使用 SSH 連線到已加入網域的 HDInsight 叢集，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined)。
+* 如需使用 SSH 連線到已加入網域的 HDInsight 叢集，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined)。
 
 

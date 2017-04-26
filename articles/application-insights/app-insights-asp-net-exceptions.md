@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 2f046ff687985a5c4f83ca7236ce832b4c81ea6e
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: d55892027a01bc9a1be2455d5d9bfee05b6fb982
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -28,6 +28,7 @@ ms.lasthandoff: 03/18/2017
   * 在應用程式程式碼中安裝 [Application Insights SDK](app-insights-asp-net.md)，或
   * IIS Web 伺服器：執行 [Application Insights 代理程式](app-insights-monitor-performance-live-website-now.md)；或
   * Azure Web 應用程式：新增 [Application Insights 擴充功能](app-insights-azure-web-apps.md)
+  * Java Web 應用程式：安裝 [Java 代理程式](app-insights-java-agent.md)
 * 在您的網頁中安裝 [JavaScript 程式碼片段](app-insights-javascript.md)來攔截瀏覽器例外狀況。
 * 在某些應用程式架構中或搭配某些設定時，您必須採取一些額外的步驟，才能攔截較多的例外狀況：
   * [Web Form](#web-forms)

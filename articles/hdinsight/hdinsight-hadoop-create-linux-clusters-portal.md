@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/16/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 22b45634ee66ec29c089ecd0a4d9bacc60f68b94
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 79a8b7352c12676bd26555b4447e030ecb4ad011
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -90,6 +90,9 @@ Azure 入口網站會公開大部分的叢集屬性。 使用 Azure Resource Man
     | **外部中繼存放區**                      | 您可以選擇性地指定 SQL 資料庫，來儲存與該叢集相關聯的 Hive 和 Oozie 中繼資料。 針對 [為 Hive 選取 SQL 資料庫]，選取 SQL 資料庫，然後提供該資料庫的使用者名稱/密碼。 對 Oozie 中繼資料重複這些步驟。<br><br>針對中繼存放區使用 Azure SQL 資料庫時的一些考量。 <ul><li>用於 metastore 的 Azure SQL Database 必須能夠連線至其他 Azure 服務 (包括 Azure HDInsight)。 在 Azure SQL Database 儀表板中，按一下右側的伺服器名稱。 這是指執行 SQL Database 執行個體的伺服器。 一旦進入伺服器檢視後，按一下 [設定]，然後在 [Azure 服務] 按一下 [是]，再按 [儲存]。</li><li>在建立中繼存放區時，請勿使用包含破折號或連字號的資料庫名稱，因為這會導致叢集建立程序失敗。</li></ul>                                                                                                                                                                       |
 
     按 [下一步] 。 
+
+    > [!WARNING]
+    > 不支援在與 HDInsight 叢集不同的位置中使用其他儲存體帳戶。
 
 5. 選擇性地按一下 [應用程式]，以安裝要使用 HDInsight 叢集的應用程式。 Microsoft 獨立軟體廠商 (ISV) 或您可以自己開發這些應用程式。 如需詳細資訊，請參閱[安裝 HDInsight 應用程式](hdinsight-apps-install-applications.md#install-applications-during-cluster-creation)。
 

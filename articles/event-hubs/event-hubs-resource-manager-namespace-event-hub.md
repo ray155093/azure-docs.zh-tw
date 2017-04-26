@@ -1,6 +1,6 @@
 ---
-title: "使用範本建立 Azure 事件中樞命名空間和取用者群組 | Microsoft Docs"
-description: "使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組"
+title: "使用範本來建立 Azure 事件中樞命名空間和取用者群組 | Microsoft Docs"
+description: "使用 Azure Resource Manager 範本來建立含有事件中樞和取用者群組的事件中樞命名空間"
 services: event-hubs
 documentationcenter: .net
 author: sethmanheim
@@ -15,14 +15,14 @@ ms.workload: na
 ms.date: 03/07/2017
 ms.author: sethm;shvija
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 271eca35ad18725306410d1e8b81bdf06712db1f
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 4a9a315f5b03e0fb5424713a3ff3757d928ba150
+ms.lasthandoff: 04/18/2017
 
 
 ---
-# <a name="create-an-event-hubs-namespace-with-event-hub-and-consumer-group-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組
-本文說明如何使用 Azure Resource Manager 範本，該範本會建立類型為事件中樞的命名空間、含有一個事件中樞和一個客戶群組。 本文說明如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
+# <a name="create-an-event-hubs-namespace-with-an-event-hub-and-consumer-group-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本來建立含有事件中樞和取用者群組的事件中樞命名空間
+本文說明如何使用 Azure Resource Manager 範本來建立一個類型為「事件中樞」、含有一個事件中樞和一個取用者群組的的命名空間。 本文說明如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
 
 如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][Authoring Azure Resource Manager templates]。
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 03/08/2017
 > 
 
 ## <a name="what-will-you-deploy"></a>您將部署什麼？
-您將使用此範本，部署具有事件中樞和取用者群組的事件中樞命名空間。
+藉由此範本，您將部署含有事件中樞和取用者群組的「事件中樞」命名空間。
 
 [事件中樞](event-hubs-what-is-event-hubs.md) 是事件處理服務，用於提供大規模進入 Azure 的事件和遙測入口，並具備低延遲和高可靠性等特性。
 
@@ -57,7 +57,7 @@ ms.lasthandoff: 03/08/2017
 ```
 
 ### <a name="eventhubname"></a>eventHubName
-在事件中樞命名空間中建立的事件中樞名稱。
+在「事件中樞」命名空間中建立的事件中樞名稱。
 
 ```json
 "eventHubName": {
@@ -84,7 +84,7 @@ ms.lasthandoff: 03/08/2017
 ```
 
 ## <a name="resources-to-deploy"></a>要部署的資源
-建立 **EventHubs**類型的服務匯流排命名空間，以及事件中樞和取用者群組。
+建立類型為 **EventHubs**、含有事件中樞和取用者群組的命名空間。
 
 ```json
 "resources":[  
@@ -153,5 +153,5 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 [Azure Quickstart Templates]:  https://azure.microsoft.com/documentation/templates/?term=event+hubs
 [Using Azure PowerShell with Azure Resource Manager]: ../powershell-azure-resource-manager.md
 [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../xplat-cli-azure-resource-manager.md
-[Event Hub and consumer group template]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-event-hubs-create-event-hub-and-consumer-group/
+[Event hub and consumer group template]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-event-hubs-create-event-hub-and-consumer-group/
 

@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/21/2017
+ms.date: 04/12/2017
 ms.author: ganesr;cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 212de47a9cc4f2130b94ac1e622eabe0c0cb781a
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: 15c08c950bc1dcd620f2943885e427991585d817
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -30,14 +30,10 @@ ms.lasthandoff: 03/24/2017
 > 
 >
 
-本文說明如何使用 Windows PowerShell Cmdlet 和 Azure Resource Manager 部署模型建立 Azure ExpressRoute 線路。 本文也會示範如何檢查線路的狀態、加以更新，或是加以刪除及取消佈建。
-
-**關於 Azure 部署模型**
-
-[!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
+本文說明如何使用 PowerShell Cmdlet 和 Azure Resource Manager 部署模型來建立 Azure ExpressRoute 線路。 本文也會示範如何檢查線路的狀態、加以更新，或是加以刪除及取消佈建。
 
 ## <a name="before-you-begin"></a>開始之前
-* 您需要最新版的 Azure Resource Manager PowerShell Cmdlet。 如需詳細資訊，請參閱[開始使用 Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)。 
+* 安裝最新版的 Azure Resource Manager PowerShell Cmdlet。 如需詳細資訊，請參閱 [Azure PowerShell 概觀](/powershell/azureps-cmdlets-docs)。
 * 開始設定之前，請檢閱[必要條件](expressroute-prerequisites.md)和[工作流程](expressroute-workflows.md)。
 
 
@@ -45,26 +41,34 @@ ms.lasthandoff: 03/24/2017
 ### <a name="1-sign-in-to-your-azure-account-and-select-your-subscription"></a>1.登入您的 Azure 帳戶並且選取您的訂用帳戶
 若要開始您的組態，請登入您的 Azure 帳戶。 使用下列範例來協助您連接：
 
-    Login-AzureRmAccount
+```powershell
+Login-AzureRmAccount
+```
 
 檢查帳戶的訂用帳戶：
 
-    Get-AzureRmSubscription
+```powershell
+Get-AzureRmSubscription
+```
 
 選取您想要建立 ExpressRoute 循環的訂用帳戶：
 
-    Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
+```powershell
+Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
+```
 
 ### <a name="2-get-the-list-of-supported-providers-locations-and-bandwidths"></a>2.取得支援的提供者、位置和頻寬清單
 建立 ExpressRoute 線路之前，您需要有支援的連線提供者、位置和頻寬選項的清單。
 
-PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，在稍後的步驟中將會用到：
+PowerShell Cmdlet **Get-AzureRmExpressRouteServiceProvider** 會傳回此資訊，在稍後的步驟中將會用到：
 
-    Get-AzureRmExpressRouteServiceProvider
+```powershell
+Get-AzureRmExpressRouteServiceProvider
+```
 
-請檢查是否列出您的連線服務提供者。 記下下列資訊，因為您稍後在建立線路時將會用到：
+請檢查是否列出您的連線服務提供者。 記下以下資訊。 稍後當您建立線路時，將會需要用到它。
 
-* Name
+* 名稱
 * PeeringLocations
 * BandwidthsOffered
 
@@ -73,17 +77,21 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 ### <a name="3-create-an-expressroute-circuit"></a>3.建立 ExpressRoute 線路
 若您還沒有資源群組，您必須在建立 ExpressRoute 線路之前建立一個。 您可以執行下列命令來這麼做：
 
-    New-AzureRmResourceGroup -Name "ExpressRouteResourceGroup" -Location "West US"
+```powershell
+New-AzureRmResourceGroup -Name "ExpressRouteResourceGroup" -Location "West US"
+```
 
 
 以下示範如何透過矽谷的 Equinix 建立 200-Mbps ExpressRoute 線路。 如果您使用不同的提供者和不同的設定，請在您提出要求時替換成該資訊。 下列是新服務金鑰的要求範例：
 
-    New-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup" -Location "West US" -SkuTier Standard -SkuFamily MeteredData -ServiceProviderName "Equinix" -PeeringLocation "Silicon Valley" -BandwidthInMbps 200
+```powershell
+New-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup" -Location "West US" -SkuTier Standard -SkuFamily MeteredData -ServiceProviderName "Equinix" -PeeringLocation "Silicon Valley" -BandwidthInMbps 200
+```
 
 請確定您指定正確的 SKU 層和 SKU 系列：
 
 * SKU 層會判斷 ExpressRoute 標準或 ExpressRoute 高階附加元件是否啟用。 您可以指定 [標準] 來取得標準 SKU，或指定 [進階] 來取得進階附加元件。
-* SKU 系列決定計費類型。 您可以指定 [Metereddata] 以採用計量付費數據傳輸方案，選取 [Unlimiteddata] 以採用無限行動數據方案。 請注意，您可以將計費類型從 [Metereddata] 變更為 [Unlimiteddata]，但無法從 [Unlimiteddata] 變更為 [Metereddata]。
+* SKU 系列決定計費類型。 您可以指定 [Metereddata] 以採用計量付費數據傳輸方案，選取 [Unlimiteddata] 以採用無限行動數據方案。 您可以將計費類型從 *Metereddata* 變更為 *Unlimiteddata*，但無法將類型從 *Unlimiteddata* 變更為 *Metereddata*。
 
 > [!IMPORTANT]
 > ExpressRoute 循環將會從發出服務金鑰時開始收費。 請確定在連線提供者準備好佈建線路之後，再執行這項作業。
@@ -92,13 +100,17 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 回應包含服務金鑰。 您可以執行下列命令來取得所有參數的詳細描述：
 
-    get-help New-AzureRmExpressRouteCircuit -detailed
+```powershell
+get-help New-AzureRmExpressRouteCircuit -detailed
+```
 
 
 ### <a name="4-list-all-expressroute-circuits"></a>4.列出所有 ExpressRoute 循環
-若要取得您已建立之所有 ExpressRoute 線路的清單，請執行 `Get-AzureRmExpressRouteCircuit` 命令：
+若要取得您已建立之所有 ExpressRoute 線路的清單，請執行 **Get-AzureRmExpressRouteCircuit** 命令：
 
-    Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+```powershell
+Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+```
 
 回應看起來將會如下列範例所示：
 
@@ -126,7 +138,9 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 您隨時可以使用 `Get-AzureRmExpressRouteCircuit` Cmdlet 擷取此資訊。 執行呼叫時，若未指定任何參數，將會列出所有線路。 [服務金鑰]  欄位會列出您的服務金鑰。
 
-    Get-AzureRmExpressRouteCircuit
+```powershell
+Get-AzureRmExpressRouteCircuit
+```
 
 
 回應看起來將會如下列範例所示：
@@ -156,7 +170,9 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 您可以執行下列命令來取得所有參數的詳細描述：
 
-    get-help Get-AzureRmExpressRouteCircuit -detailed
+```powershell
+get-help Get-AzureRmExpressRouteCircuit -detailed
+```
 
 ### <a name="5-send-the-service-key-to-your-connectivity-provider-for-provisioning"></a>5.將服務金鑰傳送給連線提供者以進行佈建
  提供服務提供者端目前的佈建狀態相關資訊。 [狀態] 提供 Microsoft 端的狀態。 如需線路佈建狀態的詳細資訊，請參閱 [工作流程](expressroute-workflows.md#expressroute-circuit-provisioning-states) 文章。
@@ -181,7 +197,9 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 ### <a name="6-periodically-check-the-status-and-the-state-of-the-circuit-key"></a>6.定期檢查線路金鑰的情況和狀態
 檢查線路金鑰的情況和狀態將能讓您得知提供者是否已啟用您的線路。 設定線路之後，[ServiceProviderProvisioningState] 會顯示為 [Provisioned]，如下列範例所示：
 
-    Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+```powershell
+Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+```
 
 
 回應看起來將會如下列範例所示：
@@ -220,9 +238,11 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 接下來，將虛擬網路連結到 ExpressRoute 線路。 當使用 Resource Manager 部署模型時，使用[將虛擬網路連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)文章。
 
 ## <a name="getting-the-status-of-an-expressroute-circuit"></a>取得 ExpressRoute 線路的狀態
-您隨時可以使用 `Get-AzureRmExpressRouteCircuit` Cmdlet 擷取此資訊。 執行呼叫時，若未指定任何參數，將會列出所有線路。
+您可以隨時使用 **Get-AzureRmExpressRouteCircuit** Cmdlet 來擷取此資訊。 執行呼叫時，若未指定任何參數，將會列出所有線路。
 
-    Get-AzureRmExpressRouteCircuit
+```powershell
+Get-AzureRmExpressRouteCircuit
+```
 
 
 回應將如以下範例所示：
@@ -252,7 +272,9 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 您可以透過將資源群組名稱和線路名稱做為參數傳遞至呼叫，取得特定 ExpressRoute 線路的資訊：
 
-    Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+```powershell
+Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+```
 
 
 回應看起來將會如下列範例所示：
@@ -282,8 +304,9 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 您可以執行下列命令來取得所有參數的詳細描述：
 
-    get-help get-azurededicatedcircuit -detailed
-
+```powershell
+get-help get-azurededicatedcircuit -detailed
+```
 
 ## <a name="modify"></a>修改 ExpressRoute 線路
 您可以修改 ExpressRoute 線路的某些屬性，而不會影響連線。
@@ -291,24 +314,25 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 您可以執行下列工作，而無需中途停機：
 
 * 啟用或停用 ExpressRoute 線路的 ExpressRoute 進階附加元件。
-* 只要連接埠有可用的容量，就增加 ExpressRoute 線路的頻寬。 請注意，不支援將線路的頻寬降級。 
-* 將計量方案從 [計量付費] 變更為 [無限制]。 請注意，不支援將計量方案從 [無限制] 變更為 [計量付費]。
-* 您可以啟用和停用 [允許傳統作業]。
+* 只要連接埠有可用的容量，就增加 ExpressRoute 線路的頻寬。 不支援將線路的頻寬降級。 
+* 將計量方案從 [計量付費] 變更為 [無限制]。 不支援將計量方案從 [無限制資料] 變更為 [已計量資料]。
+* 您可以啟用和停用 [允許傳統作業] 。
 
 如需限制的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
 ### <a name="to-enable-the-expressroute-premium-add-on"></a>啟用 ExpressRoute 進階附加元件
 您可以使用下列 PowerShell 程式碼片段，為現有的線路啟用 ExpressRoute 進階附加元件：
 
-    $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+```powershell
+$ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 
-    $ckt.Sku.Tier = "Premium"
-    $ckt.sku.Name = "Premium_MeteredData"
+$ckt.Sku.Tier = "Premium"
+$ckt.sku.Name = "Premium_MeteredData"
 
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+```
 
-
-線路現在將啟用 ExpressRoute 進階附加功能。 請注意，順利執行命令後，我們會開始向您收取進階附加元件功能的費用。
+線路現在將啟用 ExpressRoute 進階附加功能。 順利執行命令之後，我們就會立即開始針對進階附加元件功能計費。
 
 ### <a name="to-disable-the-expressroute-premium-add-on"></a>停用 ExpressRoute 進階附加元件
 > [!IMPORTANT]
@@ -324,13 +348,14 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 您可以使用下列 PowerShell Cmdlet，為現有的線路停用 ExpressRoute 進階附加元件：
 
-    $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+```powershell
+$ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 
-    $ckt.Sku.Tier = "Standard"
-    $ckt.sku.Name = "Standard_MeteredData"
+$ckt.Sku.Tier = "Standard"
+$ckt.sku.Name = "Standard_MeteredData"
 
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
-
+Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+```
 
 ### <a name="to-update-the-expressroute-circuit-bandwidth"></a>更新 ExpressRoute 線路頻寬
 請查閱 [ExpressRoute 常見問題集](expressroute-faqs.md)，以取得提供者支援的頻寬選項。 您可以挑選任何比現有線路規模還大的大小。
@@ -343,11 +368,13 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 一旦決定需要的大小後，可以使用下列命令來重新調整線路大小。
 
-    $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+```powershell
+$ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 
-    $ckt.ServiceProviderProperties.BandwidthInMbps = 1000
+$ckt.ServiceProviderProperties.BandwidthInMbps = 1000
 
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+```
 
 
 我們會在 Microsoft 端調整線路的大小。 接下來，您必須連絡連線提供者，將他們的設定更新為符合這項變更。 通知之後，我們會開始以更新的頻寬選項計費。
@@ -355,12 +382,14 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 ### <a name="to-move-the-sku-from-metered-to-unlimited"></a>將 SKU 從計量移動為無限
 您可以使用下列 PowerShell 程式碼片段變更 ExpressRoute 循環的 SKU：
 
-    $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+```powershell
+$ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 
-    $ckt.Sku.Family = "UnlimitedData"
-    $ckt.sku.Name = "Premium_UnlimitedData"
+$ckt.Sku.Family = "UnlimitedData"
+$ckt.sku.Name = "Premium_UnlimitedData"
 
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+```
 
 ### <a name="to-control-access-to-the-classic-and-resource-manager-environments"></a>控制對傳統和 Resource Manager 環境的存取
 請檢閱 [將 ExpressRoute 線路從傳統部署模型移至 Resource Manager 部署模型](expressroute-howto-move-arm.md)中的指示。  
@@ -374,9 +403,9 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 您可以執行下列命令來刪除 ExpressRoute 線路：
 
-    Remove-AzureRmExpressRouteCircuit -ResourceGroupName "ExpressRouteResourceGroup" -Name "ExpressRouteARMCircuit"
-
-
+```powershell
+Remove-AzureRmExpressRouteCircuit -ResourceGroupName "ExpressRouteResourceGroup" -Name "ExpressRouteARMCircuit"
+```
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -384,5 +413,4 @@ PowerShell Cmdlet `Get-AzureRmExpressRouteServiceProvider` 會傳回此資訊，
 
 * [建立和修改 ExpressRoute 線路的路由](expressroute-howto-routing-arm.md)
 * [將虛擬網路連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
-
 

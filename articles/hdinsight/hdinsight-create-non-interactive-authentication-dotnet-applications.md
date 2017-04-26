@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: a423975e8a091183154217678706817694f3e346
-ms.openlocfilehash: d5256250d6d3a6d7df3a90ae4a0801af131b830e
-ms.lasthandoff: 12/21/2016
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 2b8638ffc3287346a71f591370367655c450e376
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -29,25 +29,25 @@ ms.lasthandoff: 12/21/2016
 從非互動式 .NET 應用程式，您需要︰
 
 * 您的 Azure 訂用帳戶租用戶識別碼 (又稱為目錄識別碼)。 請參閱[取得租用戶識別碼](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-tenant-id)。
-* Azure Directory 應用程式用戶端識別碼。 請參閱[建立 Active Directory 應用程式](../azure-resource-manager/resource-group-create-service-principal-portal.md#create-an-active-directory-application)以及[取得應用程式識別碼](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)
-* Azure Directory 應用程式秘密金鑰。 請參閱[取得應用程式驗證金鑰](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)
+* Azure Active Directory 應用程式用戶端識別碼。 請參閱[建立 Azure Active Directory 應用程式](../azure-resource-manager/resource-group-create-service-principal-portal.md#create-an-azure-active-directory-application)以及[取得應用程式識別碼](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)
+* Azure Active Directory 應用程式祕密金鑰。 請參閱[取得應用程式驗證金鑰](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)
 
 ## <a name="prerequisites"></a>必要條件
 * HDInsight 叢集。 請參閱[入門教學課程](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster)。
 
 
 
-## <a name="assign-ad-application-to-role"></a>將 AD 應用程式指派給角色
+## <a name="assign-azure-ad-application-to-role"></a>將 Azure AD 應用程式指派給角色
 您必須將應用程式指派給某個 [角色](../active-directory/role-based-access-built-in-roles.md) ，以便授與它執行動作的權限。 您可以針對訂用帳戶、資源群組或資源的層級設定範圍。 較低的範圍層級會繼承較高層級的權限 (舉例來說，為資源群組的讀取者角色新增應用程式，代表該角色可以讀取資源群組及其所包含的任何資源)。 在本教學課程中，您將在資源群組層級設定範圍。 如需詳細資訊，請參閱[使用角色指派來管理 Azure 訂用帳戶資源的存取權](../active-directory/role-based-access-control-configure.md)
 
-**若要將擁有者角色新增至 AD 應用程式**
+**將擁有者角色新增至 Azure AD 應用程式**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下左側面板上的 [資源群組]  。
 3. 按一下資源群組，它包含您稍後在本教學課程中要在其中執行 Hive 查詢的 HDInsight 叢集。 如果有太多的資源群組，您可以使用篩選器。
 4. 從資源群組功能表中，按一下 [存取控制 (IAM)]。
 5. 從 [使用者] 刀鋒視窗中，按一下 [新增]。
-6. 依照指示以將 [擁有者]  角色新增至您在上一個程序中建立的 AD 應用程式。 當您成功完成此作業時，您會看到 [使用者] 刀鋒視窗中列出的應用程式具有 [擁有者] 角色。
+6. 依照指示以將 [擁有者] 角色新增至您在上一個程序中建立的 Azure AD 應用程式。 當您成功完成此作業時，您會看到 [使用者] 刀鋒視窗中列出的應用程式具有 [擁有者] 角色。
 
 ## <a name="develop-hdinsight-client-application"></a>開發 HDInsight 用戶端應用程式
 
@@ -125,7 +125,7 @@ ms.lasthandoff: 12/21/2016
         }
 
 ## <a name="next-steps"></a>後續步驟
-* [使用入口網站建立 Active Directory 應用程式和服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)
+* [使用入口網站建立 Azure Active Directory 應用程式和服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)
 * [使用 Azure Resource Manager 驗證服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md)
 * [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)
 

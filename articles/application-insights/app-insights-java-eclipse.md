@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 12/12/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 9a3df0ad2483471023ebb954d613bc5cad8fb7bf
-ms.openlocfilehash: 16e1276d5c0cc7eb8a8a868fa3b31fd51fbb1b96
-ms.lasthandoff: 02/02/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 8922c65a1755343e19072a0594b800838a5e1cf9
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -225,7 +225,7 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 
 #### <a name="track-usage"></a>追蹤流量
 * [新增 Web 用戶端遙測][usage]，以監視頁面檢視和基本使用者度量。
-* 在用戶端、伺服器，[追蹤自訂事件和度量][track]，以了解應用程式的使用情況。
+* [追蹤自訂事件和計量](app-insights-web-track-usage.md)，以了解應用程式在用戶端和伺服器的使用情況。
 
 <!--Link references-->
 
@@ -235,5 +235,5 @@ Application Insights 可讓您定期測試網站，以檢查網站運作中且�
 [javalogs]: app-insights-java-trace-logs.md
 [metrics]: app-insights-metrics-explorer.md
 [track]: app-insights-api-custom-events-metrics.md
-[usage]: app-insights-web-track-usage.md
+[usage]: app-insights-javascript.md
 

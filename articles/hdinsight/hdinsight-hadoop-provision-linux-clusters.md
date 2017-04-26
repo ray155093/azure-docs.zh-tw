@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 02/17/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: bc047ba2aacbbea6d47d3870ee70d9d9a068f83a
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 1b7772fbf719013d82e5baed1bbbf229d6f2946c
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -41,7 +41,7 @@ Hadoop 叢集由數個虛擬機器 (節點) 組成，可用於分散處理叢集
 | [Storm](hdinsight-storm-overview.md) |即時事件處理 |
 | [Spark](hdinsight-apache-spark-overview.md) |記憶體內處理、互動式查詢、微批次串流處理 |
 | [互動式 Hive (預覽)](hdinsight-hadoop-use-interactive-hive.md) |更快速之互動式 Hive 查詢的記憶體內快取 |
-| [Spark 上的 R 伺服器 (預覽)](hdinsight-hadoop-r-server-overview.md) |各種不同的巨量資料統計資料、預測模型和機器學習功能 |
+| [Spark 上的 R 伺服器](hdinsight-hadoop-r-server-overview.md) |各種不同的巨量資料統計資料、預測模型和機器學習功能 |
 | [Kafka (預覽)](hdinsight-apache-kafka-introduction.md) | 可用來建置即時串流資料管線和應用程式的分散式串流平台 |
 
 每個叢集類型都有自己叢集內的節點數目、叢集內的節點術語，以及每個節點類型的預設 VM 大小。 下表中各節點類型的節點數目位於括號中。
@@ -237,7 +237,7 @@ HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置
 | Standard_D13_v2 |8 |56 GB |8 |暫存 (SSD) = 400 GB |16 |16x500 |
 | Standard_D14_v2 |16 |112 GB |8 |暫存 (SSD) = 800 GB |32 |32x500 |
 
-如需規劃使用這些資源時需注意的部署考量，請參閱 [虛擬機器的大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 如需各式大小的價格資訊，請參閱 [HDInsight 價格](https://azure.microsoft.com/pricing/details/hdinsight)。   
+如需規劃使用這些資源時需注意的部署考量，請參閱 [虛擬機器的大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 如需各式大小的價格資訊，請參閱 [HDInsight 價格](https://azure.microsoft.com/pricing/details/hdinsight)。   
 
 > [!IMPORTANT]
 > 如果您在建立叢集時或在建立後調整叢集時規劃有 32 個以上的背景工作節點，則您必須選取具有至少 8 個核心和 14 GB RAM 的前端節點大小。
@@ -252,6 +252,9 @@ HDInsight 叢集與其預設儲存體帳戶必須並存於相同的 Azure 位置
 當您建立 HDInsight 叢集時，或在建立叢集之後，您可以新增儲存體帳戶。  請參閱 [使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
 如需有關次要 Azure 儲存體帳戶的詳細資訊，請參閱[使用 Azure 儲存體搭配 HDInsight](hdinsight-hadoop-use-blob-storage.md)。 如需次要 Data Lake 儲存體的詳細資訊，請參閱 [使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
+
+> [!WARNING]
+> 不支援在與 HDInsight 叢集不同的位置中使用其他儲存體帳戶。
 
 ## <a name="use-hiveoozie-metastore"></a>使用 Hive/Oozie 中繼存放區
 如果想要在刪除 HDInsight 叢集之後保留 Hive 資料表，建議您使用自訂的中繼存放區。 您可以將該中繼存放區附加至另一個 HDInsight 叢集。

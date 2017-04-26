@@ -17,40 +17,38 @@ ms.workload: big-data
 ms.date: 02/06/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 44e418e52fc18dd22820331f7d921e789da62832
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: a9bd1938c6b0aad2c08d063fd892fea2f8aad56e
+ms.lasthandoff: 04/13/2017
 
 
 ---
 # <a name="create-linux-based-clusters-in-hdinsight-using-azure-powershell"></a>使用 Azure PowerShell 在 HDInsight 中建立以 Linux 為基礎的叢集
+
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
 Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azure 中控制和自動化工作量的部署與管理。 本文件提供如何使用 Azure PowerShell 建立以 Linux 為基礎之 HDInsight 叢集的相關資訊。 其中也包含一個範例指令碼。
 
 > [!NOTE]
 > Azure PowerShell 僅適用於 Windows 用戶端。 如果您使用 Linux、Unix 或 Mac OS X 用戶端，請參閱 [使用 Azure CLI 建立以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-create-linux-clusters-azure-cli.md) ，以取得使用 Azure CLI 建立叢集的相關資訊。
-> 
-> 
 
 ## <a name="prerequisites"></a>必要條件
 開始進行此程序之前，您必須先具備下列項目：
 
 * Azure 訂用帳戶。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* Azure PowerShell。
-    如需搭配使用 Azure PowerShell 與 HDInsight 的詳細資訊，請參閱 [使用 PowerShell 管理 HDInsight](hdinsight-administer-use-powershell.md)。 如需 HDInsight Windows PowerShell Cmdlet 的清單，請參閱 [HDInsight Cmdlet 參考資料](https://msdn.microsoft.com/library/azure/dn858087.aspx)。
-  
+* [Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-azurerm-ps)
+
     > [!IMPORTANT]
     > 使用 Azure Service Manager 管理 HDInsight 資源的 Azure PowerShell 支援已**被取代**，並已在 2017 年 1 月 1 日移除。 本文件中的步驟會使用可與 Azure Resource Manager 搭配使用的新 HDInsight Cmdlet。
-    > 
-    > 請遵循 [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的步驟來安裝最新版的 Azure PowerShell。 如果您需要修改指令碼才能使用適用於 Azure Resource Manager 的新 Cmdlet，請參閱 [移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](hdinsight-hadoop-development-using-azure-resource-manager.md) ，以取得詳細資訊。
-    > 
-    > 
+    >
+    > 請遵循[安裝 Azure PowerShell (英文)](https://docs.microsoft.com/powershell/azure/install-azurerm-ps) 中的步驟來安裝最新版的 Azure PowerShell。 如果您需要修改指令碼才能使用適用於 Azure Resource Manager 的新 Cmdlet，請參閱 [移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](hdinsight-hadoop-development-using-azure-resource-manager.md) ，以取得詳細資訊。
 
 ### <a name="access-control-requirements"></a>存取控制需求
+
 [!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
-## <a name="create-clusters"></a>建立叢集
+## <a name="create-cluster"></a>建立叢集
+
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 若要使用 Azure PowerShell 建立 HDInsight 叢集，您必須完成下列程序：
@@ -123,21 +121,38 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azur
 
 > [!IMPORTANT]
 > 在這個指令碼中，您必須指定將位於叢集中的背景工作節點數目。 如果您規劃使用 32 個以上的背景工作角色節點 (在建立叢集時或在建立後調整叢集時)，則您也必須指定具有至少 8 個核心和 14 GB RAM 的前端節點大小。
-> 
+>
 > 如需節點大小和相關成本的詳細資訊，請參閱 [HDInsight 定價](https://azure.microsoft.com/pricing/details/hdinsight/)。
-> 
-> 
 
 建立叢集可能需要花費 20 分鐘的時間。
 
-以下範例示範如何新增其他儲存體帳戶︰
+## <a name="create-cluster-configuration-object"></a>建立叢集：設定物件
+
+您也可以使用 `New-AzureRmHDInsightClusterConfig` Cmdlet 建立 HDInsight 設定物件。 然後，您可以修改此設定物件來啟用叢集的其他設定選項。 最後，請使用 `New-AzureRmHDInsightCluster` Cmdlet 的 `-Config` 參數以使用設定。
+
+下列指令碼會建立可在 HDInsight 叢集類型上設定 R 伺服器的設定物件。 此設定可啟用邊緣節點、RStudio 和其他儲存體帳戶。
 
     # Create another storage account used as additional storage account
     $additionalStorageAccountName = $token + "store2"
-    New-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -StorageAccountName $additionalStorageAccountName -Location $location -Type Standard_LRS
+    New-AzureRmStorageAccount -ResourceGroupName $resourceGroupName `
+        -StorageAccountName $additionalStorageAccountName `
+        -Location $location `
+        -Type Standard_LRS
     $additionalStorageAccountKey = (Get-AzureRmStorageAccountKey -Name $additionalStorageAccountName -ResourceGroupName $resourceGroupName)[0].Value
 
-    $config = New-AzureRmHDInsightClusterConfig
+    # Create a new configuration for RServer cluster type
+    # Use -EdgeNodeSize to set the size of the edge node for RServer clusters
+    # if you want a specific size. Otherwise, the default size is used.
+    $config = New-AzureRmHDInsightClusterConfig `
+        -ClusterType "RServer" `
+        -EdgeNodeSize "Standard_D12_v2"
+
+    # Add RStudio to the configuration
+    $rserverConfig = @{"RStudio"="true"}
+    $config = $config | Add-AzureRmHDInsightConfigValues `
+        -RServer $rserverConfig
+
+    # Add an additional storage account
     Add-AzureRmHDInsightStorage -Config $config -StorageAccountName "$additionalStorageAccountName.blob.core.windows.net" -StorageAccountKey $additionalStorageAccountKey
 
     # Create a new HDInsight cluster
@@ -150,37 +165,46 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Microsoft Azur
         -DefaultStorageAccountKey $defaultStorageAccountKey `
         -DefaultStorageContainer $defaultStorageContainerName  `
         -ClusterSizeInNodes $clusterNodes `
-        -ClusterType Hadoop `
         -OSType Linux `
-        -Version "3.4" `
+        -Version "3.5" `
         -SshCredential $sshCredentials `
         -Config $config
 
+> [!WARNING]
+> 不支援在與 HDInsight 叢集不同的位置中使用儲存體帳戶。 使用此範例時，請在與伺服器相同的位置建立其他儲存體帳戶。
+
 ## <a name="customize-clusters"></a>自訂叢集
+
 * 請參閱 [使用 Bootstrap 自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-bootstrap.md#use-azure-powershell)。
 * 請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
 ## <a name="delete-the-cluster"></a>刪除叢集
+
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 ## <a name="next-steps"></a>後續步驟
+
 既然您已成功建立 HDInsight 叢集，請使用下列資源來了解如何使用您的叢集。
 
 ### <a name="hadoop-clusters"></a>Hadoop 叢集
+
 * [〈搭配 HDInsight 使用 Hivet〉](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
 ### <a name="hbase-clusters"></a>HBase 叢集
+
 * [開始在 HDInsight 上使用 HBase](hdinsight-hbase-tutorial-get-started-linux.md)
 * [在 HDInsight 上開發適用於 HBase 的 Java 應用程式](hdinsight-hbase-build-java-maven-linux.md)
 
 ### <a name="storm-clusters"></a>Storm 叢集
+
 * [在 HDInsight 上開發適用於 Storm 的 Java 拓撲](hdinsight-storm-develop-java-topology.md)
 * [在 HDInsight 上的 Storm 中使用 Python 元件](hdinsight-storm-develop-python-topology.md)
 * [在 HDInsight 上使用 Storm 部署和監視拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
 ### <a name="spark-clusters"></a>Spark 叢集
+
 * [使用 Scala 來建立獨立的應用程式](hdinsight-apache-spark-create-standalone-application.md)
 * [利用 Livy 在 Spark 叢集上遠端執行工作](hdinsight-apache-spark-livy-rest-interface.md)
 * [Spark 和 BI：搭配 BI 工具來使用 HDInsight 中的 Spark 以執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
