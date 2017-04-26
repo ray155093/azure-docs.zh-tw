@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 01/17/2017
+ms.date: 03/31/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: a99b55c98f29356fb78e053434f6f3fc5c9d0efc
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 4ea75e08a630ad777444ea3a3cb85f4bb0efe01f
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -29,25 +29,12 @@ ms.lasthandoff: 03/21/2017
 > 
 > 
 
-當您有 App 或指令碼需要存取資源時，可以設定 App 的身分識別並使用它自己的認證進行驗證。 以您自己的認證執行 App 是比較好的作法，因為︰
+當您有 App 或指令碼需要存取資源時，可以設定 App 的身分識別，並使用 App 自己的認證進行驗證。 此身分識別就是所謂的服務主體。 這種方法可讓您︰
 
-* 您可以對 App 身分識別指派不同於您自己權限的權限。 一般而言，這些權限只會限制為 App 必須執行的確切權限。
-* 如果您的職責變更，就不需要變更 App 的認證。 
-* 您可以使用憑證在執行自動指令碼時自動進行驗證。
+* 將權限指派給不同於您自己權限的 App 身分識別。 一般而言，這些權限只會限制為 App 必須執行的確切權限。
+* 使用憑證在執行無人看管的指令碼時進行驗證。
 
-本主題說明如何使用[適用於 Mac、Linux 和 Windows 的 Azure CLI](../cli-install-nodejs.md) 來設定應用程式，讓它利用自己的認證和身分識別來執行。
-
-在 Azure CLI 中，您有&2; 個選項可以驗證您的 AD 應用程式︰
-
-* password
-* 憑證
-
-本主題說明如何在 Azure CLI 中使用這兩個選項。 如果您想要從程式設計架構 (例如 Python、Ruby 或 Node.js) 登入 Azure，密碼驗證可能是您的最佳選項。 在決定是要使用密碼還是憑證時，請參閱 [範例應用程式](#sample-applications) 一節，以查看在不同架構進行驗證的範例。
-
-## <a name="active-directory-concepts"></a>Active Directory 概念
-在本文中，您會建立 Active Directory (AD) 應用程式和服務主體這兩個物件。 AD 應用程式是您的應用程式的全域表示法。 其中包含認證 (應用程式識別碼以及密碼或憑證)。 服務主體是您的應用程式在 Active Directory 中的本機表示法。 其中包含角色指派。 本主題著重在說明單一租用戶應用程式，此應用程式的目的是只在一個組織內執行。 您通常會將單一租用戶應用程式用在組織內執行的企業營運系統應用程式。 在單一租用戶應用程式中，您有一個 AD 應用程式和一個服務主體。
-
-您可能想知道 - 為什麼我需要這兩個物件？ 當您考慮多租用戶應用程式時，這個方法比較合適。 您通常會將多租用戶應用程式用於軟體即服務 (SaaS) 應用程式，以便您的應用程式在許多不同的訂用帳戶中執行。 對於多租用戶應用程式，您有一個 AD 應用程式和多個服務主體 (每個 Active Directory 中有一個服務主體可授與應用程式的存取權)。 若要設定多租用戶應用程式，請參閱 [利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
+本文說明如何使用 [Azure CLI 1.0](../cli-install-nodejs.md) 來設定應用程式，讓它利用自己的認證和身分識別來執行。 安裝最新版的 [Azure CLI 1.0](../cli-install-nodejs.md)，以確定您的環境符合本文中的範例。
 
 ## <a name="required-permissions"></a>所需的權限
 若要完成本主題，您必須在 Azure Active Directory 和您的 Azure 訂用帳戶中有足夠的權限。 具體來說，您必須能夠在 Active Directory 中建立應用程式，並將服務主體指派給角色。 
@@ -59,64 +46,38 @@ ms.lasthandoff: 03/21/2017
 ## <a name="create-service-principal-with-password"></a>使用密碼建立服務主體
 在本節中，您可以執行步驟來使用密碼建立 AD 應用程式，並將讀取者角色指派給服務主體。
 
-讓我們逐步進行這些步驟。
-
 1. 登入您的帳戶。
    
    ```azurecli
    azure login
    ```
-2. 您有兩個建立 AD 應用程式的選項。 您可以在一個步驟中一起建立 AD 應用程式和服務主體，或將它們分開建立。 如果您不需要指定應用程式的首頁和識別碼 URI，請在一個步驟中一起建立。 如果您需要為 Web 應用程式設定這些值，請將它們分開建立。 此步驟會同時顯示這兩個選項。
-   
-   * 若要在一個步驟中建立 AD 應用程式和服務主體，請提供應用程式名稱和密碼，如下列命令所示︰
+2. 若要建立應用程式身分識別，請提供 App 名稱和密碼，如下列命令中所示︰
      
-     ```azurecli
-     azure ad sp create -n exampleapp -p {your-password}
-     ```
-   * 若要分別建立 AD 應用程式，請提供︰
+   ```azurecli
+   azure ad sp create -n exampleapp -p {your-password}
+   ```
+     
+   傳回新的服務主體。 授與權限時，需要物件識別碼。 在登入時，則需要隨服務主體名稱列出的 GUID。 此 GUID 是和應用程式識別碼相同的值。 在範例應用程式中，這個值稱為 `Client ID`。 
+     
+   ```azurecli
+   info:    Executing command ad sp create
+     
+   Creating application exampleapp
+     / Creating service principal for application 7132aca4-1bdb-4238-ad81-996ff91d8db+
+     data:    Object Id:               ff863613-e5e2-4a6b-af07-fff6f2de3f4e
+     data:    Display Name:            exampleapp
+     data:    Service Principal Names:
+     data:                             7132aca4-1bdb-4238-ad81-996ff91d8db4
+     data:                             https://www.contoso.org/example
+     info:    ad sp create command OK
+   ```
 
-      * App 的名稱
-      * App 首頁的 URL
-      * 識別 App 的逗號分隔 URI 清單
-      * password
-
-      如下列命令所示：
-     
-     ```azurecli
-     azure ad app create -n exampleapp --home-page http://www.contoso.org --identifier-uris https://www.contoso.org/example -p {Your_Password}
-     ```
-
-       上述命令會傳回 AppId 值。 若要建立服務主體，請提供該值做為下列命令的參數︰
-     
-     ```azurecli
-     azure ad sp create -a {AppId}
-     ```
-     
-     如果您的帳戶沒有 Active Directory 的[必要權限](#required-permissions)，您會看到一則錯誤訊息，指出 "Authentication_Unauthorized" 或「在內容中找不到任何訂用帳戶」。
-     
-     兩個選項都會傳回新的服務主體。 授與權限時，需要 `Object Id`。 在登入時，則需要隨 `Service Principal Names` 列出的 GUID。 此 GUID 是和應用程式識別碼相同的值。 在範例應用程式中，這個值稱為 `Client ID`。 
-     
-     ```azurecli
-     info:    Executing command ad sp create
-     
-     Creating application exampleapp
-       / Creating service principal for application 7132aca4-1bdb-4238-ad81-996ff91d8db+
-       data:    Object Id:               ff863613-e5e2-4a6b-af07-fff6f2de3f4e
-       data:    Display Name:            exampleapp
-       data:    Service Principal Names:
-       data:                             7132aca4-1bdb-4238-ad81-996ff91d8db4
-       data:                             https://www.contoso.org/example
-       info:    ad sp create command OK
-      ```
-
-3. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 `objectid` 參數，提供您在建立應用程式時所使用的 `Object Id`。 執行此命令之前，您必須允許一些時間讓新的服務主體在整個 Active Directory 中傳播。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 您應該在指令碼中的命令之間加入睡眠步驟 (例如`sleep 15`)。 如果您看到主體不存在於目錄中的錯誤訊息，請重新執行命令。
+3. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 objectid 參數，提供您在建立應用程式時所使用的物件識別碼。 執行此命令之前，您必須允許一些時間讓新的服務主體在整個 Active Directory 中傳播。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 您應該在指令碼中的命令之間加入睡眠步驟 (例如`sleep 15`)。 如果您看到主體不存在於目錄中的錯誤訊息，請重新執行命令。
    
    ```azurecli
    azure role assignment create --objectId ff863613-e5e2-4a6b-af07-fff6f2de3f4e -o Reader -c /subscriptions/{subscriptionId}/
    ```
    
-     如果您的帳戶沒有足夠的權限可指派角色，您會看到一則錯誤訊息。 此訊息說明您的帳戶「沒有權限來對 '/subscriptions/{guid}' 範圍執行 'Microsoft.Authorization/roleAssignments/write' 動作」。
-
 就這麼簡單！ 您的 AD 應用程式和服務主體已設定好。 下一節會說明如何透過 Azure CLI 以認證來登入。 如果您想要在您的程式碼應用程式中使用認證，則不需要繼續進行本主題。 您可以跳到 [範例應用程式](#sample-applications) ，以查看使用應用程式識別碼和密碼來登入的範例。 
 
 ### <a name="provide-credentials-through-azure-cli"></a>透過 Azure CLI 提供認證
@@ -128,7 +89,7 @@ ms.lasthandoff: 03/21/2017
    azure account show
    ```
    
-     它會傳回：
+   它會傳回：
    
    ```azurecli
    info:    Executing command account show
@@ -198,66 +159,45 @@ ms.lasthandoff: 03/21/2017
    ```
    openssl req -x509 -days 3650 -newkey rsa:2048 -out cert.pem -nodes -subj '/CN=exampleapp'
    ```
-2. 結合公開和私密金鑰。
-   
+
+2. 上一個步驟建立了兩個檔案 - privkey.pem 和 cert.pem。 將公開和私密金鑰結合為單一檔案。
+
    ```
    cat privkey.pem cert.pem > examplecert.pem
    ```
+
 3. 開啟 **examplecert.pem** 檔案並尋找在 **-----BEGIN CERTIFICATE-----** 與 **-----END CERTIFICATE-----** 之間的一長串字元。 複製憑證資料。 您會在建立服務主體時將此資料當作參數傳遞。
+
 4. 登入您的帳戶。
-   
+
    ```azurecli
    azure login
    ```
-5. 您有兩個建立 AD 應用程式的選項。 您可以在一個步驟中一起建立 AD 應用程式和服務主體，或將它們分開建立。 如果您不需要指定應用程式的首頁和識別碼 URI，請在一個步驟中一起建立。 如果您需要為 Web 應用程式設定這些值，請將它們分開建立。 此步驟會同時顯示這兩個選項。
-   
-   * 若要在一個步驟中建立 AD 應用程式和服務主體，請提供應用程式名稱和憑證資料，如下列命令所示︰
+5. 若要建立服務主體，請提供應用程式名稱和憑證資料，如下列命令所示︰
      
-     ```azurecli
-     azure ad sp create -n exampleapp --cert-value {certificate data}
-     ```
-   * 若要分別建立 AD 應用程式，請提供︰
-      
-      * App 的名稱
-      * App 首頁的 URL
-      * 識別 App 的逗號分隔 URI 清單
-      * 憑證資料
-
-      如下列命令所示：
-
-     ```azurecli
-     azure ad app create -n exampleapp --home-page http://www.contoso.org --identifier-uris https://www.contoso.org/example --cert-value {certificate data}
-     ```
+   ```azurecli
+   azure ad sp create -n exampleapp --cert-value {certificate data}
+   ```
      
-       上述命令會傳回 AppId 值。 若要建立服務主體，請提供該值做為下列命令的參數︰
+   傳回新的服務主體。 授與權限時，需要物件識別碼。 在登入時，則需要隨服務主體名稱列出的 GUID。 此 GUID 是和應用程式識別碼相同的值。 在範例應用程式中，這個值稱為用戶端識別碼。 
      
-     ```azurecli
-     azure ad sp create -a {AppId}
-     ```
+   ```azurecli
+   info:    Executing command ad sp create
      
-     如果您的帳戶沒有 Active Directory 的[必要權限](#required-permissions)，您會看到一則錯誤訊息，指出 "Authentication_Unauthorized" 或「在內容中找不到任何訂用帳戶」。
-     
-     兩個選項都會傳回新的服務主體。 授與權限時，需要物件識別碼。 在登入時，則需要隨 `Service Principal Names` 列出的 GUID。 此 GUID 是和應用程式識別碼相同的值。 在範例應用程式中，這個值稱為 `Client ID`。 
-     
-     ```azurecli
-     info:    Executing command ad sp create
-     
-     Creating service principal for application 4fd39843-c338-417d-b549-a545f584a74+
-       data:    Object Id:        7dbc8265-51ed-4038-8e13-31948c7f4ce7
-       data:    Display Name:     exampleapp
-       data:    Service Principal Names:
-       data:                      4fd39843-c338-417d-b549-a545f584a745
-       data:                      https://www.contoso.org/example
-       info:    ad sp create command OK
-     ```
-6. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 `objectid` 參數，提供您在建立應用程式時所使用的 `Object Id`。 執行此命令之前，您必須允許一些時間讓新的服務主體在整個 Active Directory 中傳播。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 您應該在指令碼中的命令之間加入睡眠步驟 (例如`sleep 15`)。 如果您看到主體不存在於目錄中的錯誤訊息，請重新執行命令。
+   Creating service principal for application 4fd39843-c338-417d-b549-a545f584a74+
+     data:    Object Id:        7dbc8265-51ed-4038-8e13-31948c7f4ce7
+     data:    Display Name:     exampleapp
+     data:    Service Principal Names:
+     data:                      4fd39843-c338-417d-b549-a545f584a745
+     data:                      https://www.contoso.org/example
+     info:    ad sp create command OK
+   ```
+6. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 objectid 參數，提供您在建立應用程式時所使用的物件識別碼。 執行此命令之前，您必須允許一些時間讓新的服務主體在整個 Active Directory 中傳播。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 您應該在指令碼中的命令之間加入睡眠步驟 (例如`sleep 15`)。 如果您看到主體不存在於目錄中的錯誤訊息，請重新執行命令。
    
    ```azurecli
    azure role assignment create --objectId 7dbc8265-51ed-4038-8e13-31948c7f4ce7 -o Reader -c /subscriptions/{subscriptionId}/
    ```
-   
-     如果您的帳戶沒有足夠的權限可指派角色，您會看到一則錯誤訊息。 此訊息說明您的帳戶「沒有權限來對 '/subscriptions/{guid}' 範圍執行 'Microsoft.Authorization/roleAssignments/write' 動作」。
-
+  
 ### <a name="provide-certificate-through-automated-azure-cli-script"></a>透過自動化的 Azure CLI 指令碼提供憑證
 現在，您需要以應用程式的形式登入以執行作業。
 
@@ -267,7 +207,7 @@ ms.lasthandoff: 03/21/2017
    azure account show
    ```
    
-     它會傳回：
+   它會傳回：
    
    ```azurecli
    info:    Executing command account show
@@ -279,7 +219,7 @@ ms.lasthandoff: 03/21/2017
    ...
    ```
    
-     如果您需要取得其他訂用帳戶的租用戶識別碼，請使用下列命令︰
+   如果您需要取得其他訂用帳戶的租用戶識別碼，請使用下列命令︰
    
    ```azurecli
    azure account show -s {subscription-id}
@@ -290,7 +230,7 @@ ms.lasthandoff: 03/21/2017
    openssl x509 -in "C:\certificates\examplecert.pem" -fingerprint -noout | sed 's/SHA1 Fingerprint=//g'  | sed 's/://g'
    ```
    
-     這會傳回指紋值，類似：
+   這會傳回指紋值，類似：
    
    ```
    30996D9CE48A0B6E0CD49DBB9A48059BF9355851
@@ -301,7 +241,7 @@ ms.lasthandoff: 03/21/2017
    azure ad sp show -c exampleapp
    ```
    
-     要用於登入的值是服務主體名稱中所列出的 GUID。
+   要用於登入的值是服務主體名稱中所列出的 GUID。
      
    ```azurecli
    [
@@ -341,6 +281,13 @@ azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --password
 azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --cert-value {certificate data}
 ```
 
+## <a name="debug"></a>偵錯
+
+建立服務主體時，您可能會遇到下列錯誤︰
+
+* **Authentication_Unauthorized」**或**「在內容中找不到訂用帳戶。」** - 當您的帳戶在 Active Directory 上未具備註冊應用程式的[必要權限](#required-permissions)時，您就會看到此錯誤。 通常，只有 Active Directory 中的管理使用者可以註冊應用程式，且您的帳戶不是系統管理員時，就會看到此錯誤。 要求系統管理員將您指派給系統管理員角色，或是讓使用者註冊應用程式。
+
+* 您的帳戶**「沒有在範圍 '/subscriptions/{guid}' 中執行 'Microsoft.Authorization/roleAssignments/write' 動作的權限。」** - 當您的帳戶沒有足夠權限可將角色指派給身分識別時，您就會看到此錯誤。 要求訂用帳戶管理員將您新增至「使用者存取系統管理員」角色。
 
 ## <a name="sample-applications"></a>範例應用程式
 下列範例應用程式會顯示如何登入為服務主體。

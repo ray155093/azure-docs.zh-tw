@@ -12,11 +12,12 @@ ms.devlang: node
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/13/2016
+ms.date: 03/29/2017
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: f233f75d464ec2796d02f6760ef07512abfe3b2a
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 07797b9159c9b926e9eb47d8864c63048951931a
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -35,7 +36,7 @@ ms.openlocfilehash: f233f75d464ec2796d02f6760ef07512abfe3b2a
 
 若要完成此教學課程，您需要下列項目：
 
-* Microsoft Visual Studio 2015。
+* Visual Studio 2015 或 Visual Studio 2017。
 * Node.js 0.10.x 版或更新版本。
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
@@ -44,23 +45,23 @@ ms.openlocfilehash: f233f75d464ec2796d02f6760ef07512abfe3b2a
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
 ## <a name="create-the-service-app"></a>建立服務應用程式
-在本節中，您將建立一個 Node.js 主控台應用程式，此應用程式會將位置中繼資料新增至與 **myDeviceId** 相關聯的裝置對應項。 接著，它會選取位於美國的裝置來查詢儲存在 IoT 中樞的裝置對應項，再查詢會報告行動電話連線的對應項。
+在本節中，您將 (使用 C#) 建立一個 .NET 主控台應用程式，此應用程式會將位置中繼資料新增至與 **myDeviceId** 相關聯的裝置對應項。 接著，它會選取位於美國的裝置來查詢儲存在 IoT 中樞的裝置對應項，再查詢會報告行動電話連線的對應項。
 
 1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **AddTagsAndQuery**。
    
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **AddTagsAndQuery** 專案，然後按一下 [管理 NuGet 套件]。
-3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 **AddTagsAndQuery** 專案，然後按一下 [管理 NuGet 套件...]。
+1. 在 [NuGet 套件管理員] 視窗中，選取 [瀏覽]，並搜尋 **microsoft.azure.devices**。 選取 [安裝] 來安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
    
     ![NuGet 封裝管理員視窗][img-servicenuget]
-4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
+1. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
-5. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
+1. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-6. 將下列方法加入至 **Program** 類別：
+1. 將下列方法加入至 **Program** 類別：
    
         public static async Task AddTagsAndQuery()
         {
@@ -87,16 +88,18 @@ ms.openlocfilehash: f233f75d464ec2796d02f6760ef07512abfe3b2a
    
     **RegistryManager** 類別會公開從服務來與裝置對應項進行互動時所需的所有方法。 先前的程式碼會先初始化 **registryManager** 物件，然後擷取 **myDeviceId** 的裝置對應項，最後會以所需的位置資訊來更新其標籤。
    
-    在更新後，它會執行兩個查詢︰第一個只選取位於 **Redmond43** 工廠的裝置的裝置對應項，第二個會修改查詢，只選取也透過行動電話網路來連接的裝置。
+    在更新後，它會執行兩個查詢：第一個只選取位於 **Redmond43** 工廠的裝置對應項，第二個會修改查詢，只選取也透過行動電話網路來連接的裝置。
    
     請注意，先前的程式碼在建立 **查詢** 物件時，指定傳回的最大文件數。 **query** 物件包含 **HasMoreResults** 布林值屬性，可用來多次叫用 **GetNextAsTwinAsync** 方法以擷取所有結果。 有一個稱為 **GetNextAsJson** 的方法適用於不是裝置對應項的結果，例如彙總查詢的結果。
-7. 最後，將下列幾行加入至 **Main** 方法：
+1. 最後，將下列幾行加入至 **Main** 方法：
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         AddTagsAndQuery().Wait();
         Console.WriteLine("Press Enter to exit.");
         Console.ReadLine();
-8. 執行此應用程式，如果是查詢所有位於 **Redmond43** 中的裝置，您在結果中會看到一個裝置，而如果查詢將結果限於使用行動電話網路的裝置，則您不會看到任何裝置。
+
+1. 在 [方案總管] 中，開啟 [設定起始專案...]，並確定 **AddTagsAndQuery** 專案的 [動作] 是 [啟動]。 建置方案。
+1. 以滑鼠右鍵按一下 **AddTagsAndQuery** 專案，並選取 [偵錯]，後面接著 [開始新執行個體] 來執行此應用程式。 如果是查詢所有位於 **Redmond43** 中的裝置，您在結果中會看到一個裝置，而如果查詢將結果限於使用行動電話網路的裝置，則您不會看到任何裝置。
    
     ![視窗中的查詢結果][img-addtagapp]
 
@@ -105,18 +108,18 @@ ms.openlocfilehash: f233f75d464ec2796d02f6760ef07512abfe3b2a
 ## <a name="create-the-device-app"></a>建立裝置應用程式
 在本節中，您將建立一個 Node.js 主控台應用程式，此應用程式會以 **myDeviceId** 來連接到您的中樞，然後更新其報告屬性，以包含資訊來指出目前使用行動電話網路來連線。
 
-1. 建立稱為 **reportconnectivity** 的新空白資料夾。 在 **reportconnectivity** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值：
+1. 建立稱為 **reportconnectivity** 的新空白資料夾。 在 **reportconnectivity** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值。
    
     ```
     npm init
     ```
-2. 在 **reportconnectivity** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device** 和 **azure-iot-device-mqtt** 套件：
+1. 在 **reportconnectivity** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device** 和 **azure-iot-device-mqtt** 套件：
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. 使用文字編輯器，在 **reportconnectivity** 資料夾中建立新的 **ReportConnectivity.js** 檔案。
-4. 將下列程式碼新增至 **ReportConnectivity.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的裝置連接字串，取代 **{device connection string}** 預留位置︰
+1. 使用文字編輯器，在 **reportconnectivity** 資料夾中建立新的 **ReportConnectivity.js** 檔案。
+1. 將下列程式碼新增至 **ReportConnectivity.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的連接字串，取代裝置連接字串的預留位置：
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -155,12 +158,12 @@ ms.openlocfilehash: f233f75d464ec2796d02f6760ef07512abfe3b2a
         });
    
     **Client** 物件會公開從裝置來與裝置對應項進行互動時所需的所有方法。 先前的程式碼在初始化 **Client** 物件之後，會擷取 **myDeviceId** 的裝置對應項，並以連線資訊來更新其報告屬性。
-5. 執行裝置應用程式
+1. 執行裝置應用程式
    
         node ReportConnectivity.js
    
     您應該會看見訊息 `twin state reported`。
-6. 現在，裝置已回報其連線資訊，它應該會出現在這兩個查詢中。 執行 .NET **AddTagsAndQuery** 應用程式，以再次執行查詢。 這次，**myDeviceId** 應該會出現在這兩個查詢結果中。
+1. 現在，裝置已回報其連線資訊，它應該會出現在這兩個查詢中。 執行 .NET **AddTagsAndQuery** 應用程式，以再次執行查詢。 這次，**myDeviceId** 應該會出現在這兩個查詢結果中。
    
     ![][img-addtagapp2]
 
@@ -195,10 +198,5 @@ ms.openlocfilehash: f233f75d464ec2796d02f6760ef07512abfe3b2a
 [lnk-twin-how-to-configure]: iot-hub-csharp-node-twin-how-to-configure.md
 
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/blob/master/doc/node-devbox-setup.md
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

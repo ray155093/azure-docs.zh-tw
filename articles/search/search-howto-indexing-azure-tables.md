@@ -12,36 +12,47 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 01/18/2017
+ms.date: 04/10/2017
 ms.author: eugenesh
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 66e6fec16aab7764b05b616efc0fccbfb2d0595e
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 9b45ab6b86ab0a336b2a4b90e702fa4ff098d41c
+ms.lasthandoff: 04/10/2017
 
 ---
 
 # <a name="indexing-azure-table-storage-with-azure-search"></a>使用 Azure 搜尋服務對 Azure 表格儲存體編制索引
-本文章說明如何使用 Azure 搜尋服務來對儲存於 Azure 表格儲存體中的資料編制索引。 新的 Azure 搜尋服務資料表索引子可以讓此程序快速且順暢。
+本文章說明如何使用 Azure 搜尋服務來對儲存於 Azure 表格儲存體中的資料編制索引。
 
 ## <a name="setting-up-azure-table-indexing"></a>設定 Azure 資料表編制索引
-若要設定 Azure 資料表索引子，您可以使用 Azure 搜尋服務 REST API 來建立和管理**索引子**及**資料來源**，如[索引子的作業](https://msdn.microsoft.com/library/azure/dn946891.aspx)中所述。 您也可以使用 .NET SDK 的 [版本 2.0 預覽版](https://msdn.microsoft.com/library/mt761536%28v=azure.103%29.aspx) 。 在未來，對資料表索引的支援將會新增至 Azure 入口網站。
 
-資料來源能指定哪項資料要編製索引、存取資料需要哪些認證，以及哪些政策能讓 Azure 搜尋服務有效識別資料變更 (新增、修改或刪除的資料列)。
+您可以使用下列項目設定 Azure 資料表索引子︰
 
-索引子會從資料來源讀取資料，然後將資料載入到目標搜尋索引。
+* [Azure 入口網站](https://ms.portal.azure.com)
+* Azure 搜尋服務 [REST API](https://docs.microsoft.com/rest/api/searchservice/Indexer-operations)
+* Azure 搜尋服務 [.NET SDK](https://aka.ms/search-sdk)
 
-設定資料表編製索引：
+我們會在此示範使用 REST API 的流程。 
 
-1. 建立資料來源
-   * 將 `type` 參數設定為 `azuretable`
-   * 傳遞您的儲存體帳戶連接字串做為 `credentials.connectionString` 參數。 請參閱下面的[如何指定認證](#Credentials)了解詳細資訊。
-   * 使用 `container.name` 參數指定資料表名稱
-   * (選擇性) 使用 `container.query` 參數指定查詢。 可能的話，在 PartitionKey 上使用篩選器以獲得最佳效能；任何其他的查詢將會造成執行完整資料表掃描，這可能會產生大型資料表而導致效能不佳。
-2. 使用與您想要編製索引的資料表中的資料行對應的結構描述，建立搜尋索引。
-3. 將資料來源連接到搜尋索引來建立索引子。
+### <a name="step-1-create-a-data-source"></a>步驟 1：建立資料來源
 
-### <a name="create-data-source"></a>建立資料來源
+資料來源能指定哪項資料要編製索引、存取資料需要哪些認證，以及哪些政策能讓 Azure 搜尋服務有效識別資料變更。
+
+若要為資料表編製索引，資料來源必須具有下列屬性︰
+
+- **名稱**是搜尋服務中資料來源的唯一名稱。
+- **類型**必須是 `azuretable`。
+- **credentials** 參數包含儲存體帳戶連接字串。 請參閱[如何指定認證](#Credentials)一節了解詳細資訊。
+- **container** 設定資料表名稱和選擇性查詢
+    - 使用 `name` 參數指定資料表名稱
+    - (選擇性) 使用 `query` 參數指定查詢。 
+
+> [!IMPORTANT] 
+> 可能的話，在 Partitionkey 使用篩選以提升效能。 任何其他查詢會進行完整的資料表掃描，導致大型資料表的效能不佳。 請參閱[效能考量](#Performance)一節。
+
+
+若要建立資料來源：
+
     POST https://[service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
     api-key: [admin key]
@@ -53,7 +64,7 @@ ms.lasthandoff: 03/30/2017
         "container" : { "name" : "my-table", "query" : "PartitionKey eq '123'" }
     }   
 
-如需建立資料來源 API 的詳細資訊，請參閱 [建立資料來源](https://msdn.microsoft.com/library/azure/dn946876.aspx)。
+如需建立資料來源 API 的詳細資訊，請參閱 [建立資料來源](https://docs.microsoft.com/rest/api/searchservice/create-data-source)。
 
 <a name="Credentials"></a>
 #### <a name="how-to-specify-credentials"></a>如何指定認證 ####
@@ -67,9 +78,13 @@ ms.lasthandoff: 03/30/2017
 如需儲存體共用存取簽章的詳細資訊，請參閱[使用共用存取簽章](../storage/storage-dotnet-shared-access-signature-part-1.md)。
 
 > [!NOTE]
-> 如果您使用 SAS 認證，您必須使用更新的簽章定期更新資料來源認證以防止其到期。 如果 SAS 認證過期，索引子將會失敗並出現類似 `Credentials provided in the connection string are invalid or have expired.` 的錯誤訊息。  
+> 如果您使用 SAS 認證，您必須使用更新的簽章定期更新資料來源認證以防止其到期。 如果 SAS 認證過期，索引子會失敗並出現類似 `Credentials provided in the connection string are invalid or have expired.` 的錯誤訊息。  
 
-### <a name="create-index"></a>建立索引
+### <a name="step-2-create-an-index"></a>步驟 2：建立索引
+索引會指定文件、屬性和其他建構中可形塑搜尋體驗的欄位。
+
+以下是建立索引的做法：
+
     POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
     Content-Type: application/json
     api-key: [admin key]
@@ -82,10 +97,12 @@ ms.lasthandoff: 03/30/2017
           ]
     }
 
-如需建立索引 API 的詳細資訊，請參閱 [Create Index](https://msdn.microsoft.com/library/dn798941.aspx)
+如需建立索引的詳細資訊，請參閱[建立索引](https://docs.microsoft.com/rest/api/searchservice/create-index)。
 
-### <a name="create-indexer"></a>建立索引子
-最後，建立參考資料來源和目標索引的索引子。 例如：
+### <a name="step-3-create-an-indexer"></a>步驟 3：建立索引子
+索引子會以目標搜尋索引連接資料來源，並提供排程來自動重新整理資料。 
+
+建立索引和資料來源之後，您就可以開始建立索引子︰
 
     POST https://[service name].search.windows.net/indexers?api-version=2016-09-01
     Content-Type: application/json
@@ -98,12 +115,12 @@ ms.lasthandoff: 03/30/2017
       "schedule" : { "interval" : "PT2H" }
     }
 
-如需建立索引子 API 的詳細資訊，請參閱 [建立索引子](https://msdn.microsoft.com/library/azure/dn946899.aspx)。
+這個索引子每隔兩小時就會執行一次 (已將排程間隔設為 "PT2H")。 若每隔 30 分鐘就要執行索引子，可將間隔設為 "PT30M"。 支援的最短間隔為 5 分鐘。 排程為選擇性 - 如果省略，索引子只會在建立時執行一次。 不過，您隨時都可依需求執行索引子。   
 
-就是這麼簡單 - 快樂地編制索引吧！
+如需建立索引子 API 的詳細資訊，請參閱 [建立索引子](https://docs.microsoft.com/rest/api/searchservice/create-indexer)。
 
 ## <a name="dealing-with-different-field-names"></a>處理不同的欄位名稱
-通常，您現有索引中的欄位名稱會與您資料表中的屬性名稱不同。 您可以使用 **欄位對應** ，將資料表中的屬性名稱對應至您搜尋索引中的欄位名稱。 若要深入了解欄位對應，請參閱 [Azure 搜尋服務索引子欄位對應會橋接資料來源和搜尋索引之間的差異](search-indexer-field-mappings.md)。
+有時候，現有索引中的欄位名稱與資料表中的屬性名稱不同。 您可以使用 **欄位對應** ，將資料表中的屬性名稱對應至您搜尋索引中的欄位名稱。 若要深入了解欄位對應，請參閱 [Azure 搜尋服務索引子欄位對應會橋接資料來源和搜尋索引之間的差異](search-indexer-field-mappings.md)。
 
 ## <a name="handling-document-keys"></a>處理文件索引鍵
 在 Azure 搜尋服務中，文件索引鍵會唯一識別文件。 每個搜尋索引必須確實具有一個 `Edm.String`類型的索引鍵欄位。 要新增至索引的每個文件都需要有索引鍵欄位 (實際上它是唯一必要的欄位)。
@@ -118,7 +135,7 @@ ms.lasthandoff: 03/30/2017
 ## <a name="incremental-indexing-and-deletion-detection"></a>增量編製索引和刪除偵測
 當您將資料表索引子設為依排程執行時，它會根據資料列的 `Timestamp` 值來決定是否只對新的或已更新過的資料列重新編製索引。 您不需要指定變更偵測原則 – 會自動為您啟用增量編制索引。
 
-若要指示必須從索引中移除特定文件，您可以使用虛刪除策略 – 新增屬性以表示它已遭到刪除，而非刪除資料列，並在資料來源上設定虛刪除偵測原則。 例如，如果資料列有值為 `"true"` 的屬性 `IsDeleted`，則以下顯示的原則會認為資料列已刪除：
+若要指示必須從索引中移除特定文件，您可以使用虛刪除策略。 新增屬性來表示它已遭到刪除，而非刪除資料列，並在資料來源上設定虛刪除偵測原則。 例如，如果資料列有屬性 `IsDeleted` 的值為 `"true"`，則下列原則會認為資料列已刪除：
 
     PUT https://[service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
@@ -128,11 +145,29 @@ ms.lasthandoff: 03/30/2017
         "name" : "my-table-datasource",
         "type" : "azuretable",
         "credentials" : { "connectionString" : "<your storage connection string>" },
-        "container" : { "name" : "table name", "query" : "query" },
+        "container" : { "name" : "table name", "query" : "<query>" },
         "dataDeletionDetectionPolicy" : { "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy", "softDeleteColumnName" : "IsDeleted", "softDeleteMarkerValue" : "true" }
     }   
 
+<a name="Performance"></a>
+## <a name="performance-considerations"></a>效能考量
+
+根據預設，Azure 搜尋服務會使用下列查詢篩選條件︰`Timestamp >= HighWaterMarkValue`。 由於 Azure 資料表的 `Timestamp` 欄位沒有次要索引，這種類型的查詢需要完整的資料表掃描，因此若是大型資料表就會變慢。
+
+
+以下是加強資料表索引效能兩個可能的做法。 這兩種做法都依賴使用資料表資料分割︰ 
+
+- 如果您的資料可以自然地分割成幾個資料分割範圍，請建立資料來源以及與每個資料分割範圍對應的索引子。 每個索引子現在可以只處理某個特定資料分割範圍，進而提升查詢效能。 如果需要編製索引的資料有少量的固定資料分割，那更好，每個索引子只要執行一次資料分割掃描。 例如，要建立資料來源來處理金鑰 `000` 至 `100` 的資料分割範圍，可使用如下的查詢︰ 
+    ```
+    "container" : { "name" : "my-table", "query" : "PartitionKey ge '000' and PartitionKey lt '100' " }
+    ```
+
+- 如果您的資料是依時間分割 (例如，每日或每週建立新的資料分割)，請考慮下列做法︰ 
+    - 使用這個形式的查詢︰`(PartitionKey ge <TimeStamp>) and (other filters)` 
+    - 使用 [Get Indexer Status API](https://docs.microsoft.com/rest/api/searchservice/get-indexer-status) 監視索引子進度，並根據最新成功的上限標準值定期更新查詢的 `<TimeStamp>` 條件。 
+    - 採取此做法時，如果您需要觸發完整的重新索引，則除了重設索引子之外，還必須重設資料來源查詢。 
+
 
 ## <a name="help-us-make-azure-search-better"></a>協助我們改進 Azure 搜尋服務
-如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
+如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)提出。
 

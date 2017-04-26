@@ -5,20 +5,20 @@ services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
 manager: femila
-editor: pblachar, librown
+editor: librown
 ms.assetid: f04d5bce-e99e-4f75-82d1-ef6369be3402
 ms.service: multi-factor-authentication
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/17/2017
+ms.date: 03/17/2017
 ms.author: kgremban
+ms.custom: end-user
 translationtype: Human Translation
-ms.sourcegitcommit: 7c91ae265dd86e8d7f206c1ada021c40fd8c4479
-ms.openlocfilehash: cb3b7cfefe22176e17064ad6cbb9df4da8c57c0f
-ms.lasthandoff: 03/01/2017
-
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 731275c72422a622e1d49f7d362447ef3361338b
+ms.lasthandoff: 04/12/2017
 
 ---
 # <a name="microsoft-authenticator-app-faq"></a>Microsoft Authenticator 應用程式常見問題集
@@ -38,6 +38,18 @@ Microsoft Authenticator 應用程式取代了 Azure Authenticator 應用程式�
 程式碼每隔 30 秒會變更的原因，是讓您永遠不會使用相同的程式碼兩次。 不像您應該記住的密碼。 其概念是，只有可存取您電話的人會知道您的驗證碼。
 
 程式碼不需要網際網路或資料，因此您不必擔心有電話服務需要登入，或應用程式將會消耗您的資料方案。 當您關閉應用程式時，它不會在背景中持續執行，因此它不會耗盡電池。 您可以關閉應用程式並忽略它，等到下次您登入為止。  
+
+### <a name="i-only-get-notifications-when-i-have-the-app-open-if-the-app-isnt-open-i-dont-get-any-notifications"></a>我只有在開啟應用程式時才會收到通知。 如果未開啟應用程式，我就收不到任何通知。
+
+如果您收到通知，但儘管響鈴卻未發出雜訊或震動，則請先檢查應用程式設定。 讓應用程式搭配使用音效或震動與其通知。
+
+如果您根本未取得通知，請檢查下列情況︰
+
+- 您的電話處於「請勿打擾」還是無訊息模式？ 此模式可以讓應用程式傳送通知。
+- 您可以接收來自其他應用程式的通知嗎？ 如果接收不到，則可能是電話的網路連線或是 Android 或 Apple 的通知通道發生問題。 您可以在電話設定中解決第一個選項，但可能需要連絡服務提供者，以取得第二個選項的協助。
+- 您可以在應用程式上接收到某些帳戶的通知，但接收不到其他帳戶的通知嗎？ 如果可以，請從應用程式中移除有問題的帳戶，並重新新增它，以重新啟用推播通知。 
+
+如果您已嘗試這些疑難排解建議，但仍發生問題，請將記錄傳送給我們來進行診斷 (移至應用程式設定，然後選取 [說明與意見反應] 和 [傳送記錄])，然後移至 [Microsoft Authenticator 應用程式論壇](https://social.technet.microsoft.com/Forums/en-US/home?forum=MicrosoftAuthenticatorApp)，並讓我們知道您發生的問題，以及到目前為止嘗試過的步驟。 
 
 ### <a name="im-already-using-the-microsoft-authenticator-application-for-verification-codes-how-do-i-switch-to-one-click-push-notifications"></a>我已經使用 Microsoft Authenticator 應用程式做為驗證碼。 如何切換到單鍵推播通知？
 透過推播通知核准登入僅適用於個人的 Microsoft 帳戶或是工作和學校 Microsoft 帳戶，而不適用於 Google 或 Facebook 這類協力廠商帳戶。 如果您擁有工作或學校 Microsoft 帳戶，則您的組織可以選擇停用此選項。
@@ -83,6 +95,10 @@ Microsoft Authenticator 應用程式取代了 Azure Authenticator 應用程式�
 ### <a name="why-does-the-microsoft-authenticator-app-allow-you-to-approve-a-request-without-unlocking-the-device"></a>為什麼 Microsoft Authenticator 應用程式可讓您不需解除鎖定裝置就能核准要求？
 
 原先的設計就是如此。 雙步驟驗證需要證明兩件事 - 一件是您知道的，另一件則是您擁有的。 您知道的就是密碼。 您擁有的則是您的電話 (使用 Microsoft Authenticator 應用程式設定，並註冊為 MFA 證明)。因此，擁有電話及核准要求符合用於驗證第二要素的準則。 
+
+### <a name="what-does-the-lock-icon-in-the-account-list-mean"></a>帳戶清單中的鎖定圖示代表什麼意義？
+
+掛鎖圖示指出在 Azure AD 中註冊裝置，並向帳戶進行註冊。 iOS 的裝置註冊是在 Microsoft Intune 註冊期間進行。
 
 ## <a name="next-steps"></a>後續步驟
 

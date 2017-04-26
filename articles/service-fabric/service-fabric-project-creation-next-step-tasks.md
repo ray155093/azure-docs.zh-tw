@@ -12,11 +12,12 @@ ms.devlang: dotNet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/01/2016
+ms.date: 03/28/2017
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: b4b2424e5efe3392b08e58ceb05ec63f15c7ad32
+ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
+ms.openlocfilehash: 8208a1a41388a8cc36f3702bd0cad2bb82e16403
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -49,15 +50,17 @@ ms.openlocfilehash: b4b2424e5efe3392b08e58ceb05ec63f15c7ad32
 ### <a name="stateless-web-api"></a>無狀態 Web API
 無狀態 Web API 專案會提供基本一項 Web 服務，您可用來對外部用戶端開放您的應用程式。 如需有關如何建構專案的詳細資訊，請參閱 [Service Fabric Web API 服務與 OWIN 自我裝載](service-fabric-reliable-services-communication-webapi.md)。
 
+
 ### <a name="aspnet-core"></a>ASP.NET 核心
-Service Fabric SDK 提供 ASP.NET 核心範本的相同集合，適用於獨立 ASP.NET 核心專案︰空的 [Web API][aspnet-webapi] 和 [Web 應用程式][aspnet-webapp]。
+Service Fabric SDK 提供 ASP.NET Core 範本的相同集合，適用於獨立 ASP.NET Core 專案︰空的、[Web API][aspnet-webapi] 和 [Web 應用程式][aspnet-webapp]。
+
+### <a name="guest-executables-and-guest-containers"></a>客體可執行檔和客體容器
+
+Service Fabric「客體」這個服務並非由平台的程式設計模型所建立。 您可以[直接在應用程式套件中](service-fabric-deploy-existing-app.md)或[透過容器映像](service-fabric-deploy-container.md)，將客體的二進位檔案進行封裝。 在這兩種情況下，Visual Studio 會在應用程式專案的 **ApplicationPackageRoot** 資料夾中建立必要的成品。 Visual Studio 不會建立新的服務專案，因為程式碼已經存在於其他地方。 如果您想要同時管理客體專案與 Service Fabric 應用程式專案，您可以將它們新增至相同的 Visual Studio 解決方案。
 
 ## <a name="next-steps"></a>後續步驟
 ### <a name="create-an-azure-cluster"></a>建立 Azure 叢集
 Service Fabric SDK 提供一個用於開發和測試的本機叢集。 若要在 Azure 中建立叢集，請參閱[從 Azure 入口網站設定 Service Fabric 叢集][create-cluster-in-portal]。
-
-### <a name="try-deploying-to-azure-for-free-with-party-clusters"></a>嘗試使用派對叢集部署到免費的 Azure
-如果您想要嘗試在 Azure 中部署管理應用程式，而不設定自己的叢集，您可以使用免費的 [派對叢集服務](http://aka.ms/tryservicefabric)。
 
 ### <a name="publish-your-application-to-azure"></a>將應用程式發行至 Azure
 您可以直接從 Visual Studio 將應用程式發行至 Azure 叢集。 若要瞭解做法，請參閱[將應用程式發佈至 Azure][publish-app-to-azure]。
@@ -81,9 +84,4 @@ Service Fabric 可讓您為應用程式中的獨立服務進行獨立的版本�
 [app-upgrade-tutorial]: service-fabric-application-upgrade-tutorial.md
 [aspnet-webapi]: https://docs.asp.net/en/latest/tutorials/first-web-api.html
 [aspnet-webapp]: https://docs.asp.net/en/latest/tutorials/first-mvc-app/index.html
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

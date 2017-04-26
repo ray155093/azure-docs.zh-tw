@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 02/10/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 56b2e13c3bf053175e357a627d45a91d9a9a4ba9
+ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
+ms.openlocfilehash: 3dbcbbab51080cb8e714cff4f9cc0b3a7a463b24
+ms.lasthandoff: 03/31/2017
 
 
 ---
@@ -24,9 +25,9 @@ ms.openlocfilehash: 56b2e13c3bf053175e357a627d45a91d9a9a4ba9
 動作項目可藉由註冊計時器或提醒來排程本身的週期性工作。 本文示範如何使用計時器和提醒，以及說明它們之間的差異。
 
 ## <a name="actor-timers"></a>動作項目計時器
-動作項目計時器提供 .NET 計時器的簡單包裝函式，以確保回呼方法採用動作項目執行階段所提供的回合式並行保證。
+動作項目計時器提供 .NET 或 Java 計時器的簡單包裝函式，以確保回呼方法採用動作項目執行階段所提供的回合式並行保證。
 
-動作項目可以在其基底類別使用 `RegisterTimer` 和 `UnregisterTimer` 方法註冊和取消其計時器。 下列範例示範如何使用計時器 API。 API 和 .NET 計時器非常類似。 在此範例中，當計時器到期時，動作項目執行階段將會呼叫 `MoveObject` 方法。 此方法保證會採用回合式並行存取。 這表示沒有其他動作項目方法或計時器/提醒回呼將在進行中，直到此回呼完成執行為止。
+動作項目可以在其基底類別使用 `RegisterTimer`(C#) 或 `registerTimer`(Java) 和 `UnregisterTimer`(C#) 或 `unregisterTimer`(Java) 方法註冊和取消其計時器。 下列範例示範如何使用計時器 API。 API 和 .NET 計時器或 Java 計時器非常類似。 在此範例中，當計時器到期時，動作項目執行階段將會呼叫 `MoveObject`(C#) 或 `moveObject`(Java) 方法。 此方法保證會採用回合式並行存取。 這表示沒有其他動作項目方法或計時器/提醒回呼將在進行中，直到此回呼完成執行為止。
 
 ```csharp
 class VisualObjectActor : Actor, IVisualObject
@@ -68,10 +69,67 @@ class VisualObjectActor : Actor, IVisualObject
     }
 }
 ```
+```Java
+public class VisualObjectActorImpl extends FabricActor implements VisualObjectActor
+{
+    private ActorTimer updateTimer;
+
+    public VisualObjectActorImpl(FabricActorService actorService, ActorId actorId)
+    {
+        super(actorService, actorId);
+    }
+
+    @Override
+    protected CompletableFuture onActivateAsync()
+    {
+        ...
+
+        return this.stateManager()
+                .getOrAddStateAsync(
+                        stateName,
+                        VisualObject.createRandom(
+                                this.getId().toString(),
+                                new Random(this.getId().toString().hashCode())))
+                .thenApply((r) -> {
+                    this.registerTimer(
+                            (o) -> this.moveObject(o),                        // Callback method
+                            "moveObject",
+                            null,                                             // Parameter to pass to the callback method
+                            Duration.ofMillis(10),                            // Amount of time to delay before the callback is invoked
+                            Duration.ofMillis(timerIntervalInMilliSeconds));  // Time interval between invocations of the callback method
+                    return null;
+                });
+    }
+
+    @Override
+    protected CompletableFuture onDeactivateAsync()
+    {
+        if (updateTimer != null)
+        {
+            unregisterTimer(updateTimer);
+        }
+
+        return super.onDeactivateAsync();
+    }
+
+    private CompletableFuture moveObject(Object state)
+    {
+        ...
+        return this.stateManager().getStateAsync(this.stateName).thenCompose(v -> {
+            VisualObject v1 = (VisualObject)v;
+            v1.move();
+            return (CompletableFuture<?>)this.stateManager().setStateAsync(stateName, v1).
+                    thenApply(r -> {
+                      ...
+                      return null;});
+        });
+    }
+}
+```
 
 當回呼完成執行後，就會啟動下一期間的計時器。 這表示回呼執行時計時器將會停止，並在回呼完成時重新啟動。
 
-動作項目執行階段會儲存在回呼完成時，對動作項目的狀態管理員所做的變更。 如果儲存狀態時發生錯誤，將會停用該動作項目物件並啟動新的執行個體。 
+動作項目執行階段會儲存在回呼完成時，對動作項目的狀態管理員所做的變更。 如果儲存狀態時發生錯誤，將會停用該動作項目物件並啟動新的執行個體。
 
 當動作項目在記憶體回收期間停用時，將會停止所有的計時器。 而在此之後不會叫用任何計時器回呼。 此外，動作項目執行階段並不保留任何停用前執行中的計時器資訊。 由動作項目來決定任何未來重新啟動時所需計時器的註冊。 如需詳細資訊，請參閱 [動作項目記憶體回收](service-fabric-reliable-actors-lifecycle.md)一節。
 
@@ -94,7 +152,22 @@ protected override async Task OnActivateAsync()
 }
 ```
 
-在此範例中， `"Pay cell phone bill"` 為該提醒名稱。 這是動作項目用來唯一識別提醒的一個字串。 `BitConverter.GetBytes(amountInDollars)` 為與提醒相關聯的內容。 其會作為提醒回呼的引數傳回給動作項目，也就是 `IRemindable.ReceiveReminderAsync`。
+```Java
+@Override
+protected CompletableFuture onActivateAsync()
+{
+    String reminderName = "Pay cell phone bill";
+    int amountInDollars = 100;
+
+    ActorReminder reminderRegistration = this.registerReminderAsync(
+            reminderName,
+            state,
+            dueTime,    //The amount of time to delay before firing the reminder
+            period);    //The time interval between firing of reminders
+}
+```
+
+在此範例中， `"Pay cell phone bill"` 為該提醒名稱。 這是動作項目用來唯一識別提醒的一個字串。 `BitConverter.GetBytes(amountInDollars)`(C#) 為與提醒相關聯的內容。 其會作為提醒回呼的引數傳回給動作項目，也就是 `IRemindable.ReceiveReminderAsync`(C#) 或 `Remindable.receiveReminderAsync`(Java)。
 
 使用提醒的動作項目必須實作 `IRemindable` 介面，如下列範例所示。
 
@@ -117,30 +190,48 @@ public class ToDoListActor : Actor, IToDoListActor, IRemindable
     }
 }
 ```
+```Java
+public class ToDoListActorImpl extends FabricActor implements ToDoListActor, Remindable
+{
+    public ToDoListActor(FabricActorService actorService, ActorId actorId)
+    {
+        super(actorService, actorId);
+    }
 
-當觸發提醒時，Reliable Actors 執行階段將會叫用動作項目上的 `ReceiveReminderAsync` 方法。 一個動作項目可以註冊多個提醒，而每當觸發這些提醒中的任一個時，便會叫用 `ReceiveReminderAsync` 方法。 動作項目可以使用傳遞至 `ReceiveReminderAsync` 方法的提醒名稱，以找出已觸發的提醒。
+    public CompletableFuture receiveReminderAsync(String reminderName, byte[] context, Duration dueTime, Duration period)
+    {
+        if (reminderName.equals("Pay cell phone bill"))
+        {
+            int amountToPay = ByteBuffer.wrap(context).getInt();
+            System.out.println("Please pay your cell phone bill of " + amountToPay);
+        }
+        return CompletableFuture.completedFuture(true);
+    }
 
-當 `ReceiveReminderAsync` 呼叫完成時，動作項目執行階段會儲存動作項目狀態。 如果儲存狀態時發生錯誤，將會停用該動作項目物件並啟動新的執行個體。 
+```
 
-若要將提醒取消註冊，動作項目會呼叫 `UnregisterReminderAsync` 方法，如下列範例所示。
+當觸發提醒時，Reliable Actors 執行階段將會叫用動作項目上的 `ReceiveReminderAsync`(C#) 或 `receiveReminderAsync`(Java) 方法。 一個動作項目可以註冊多個提醒，而每當觸發這些提醒中的任一個時，便會叫用 `ReceiveReminderAsync`(C#) 或 `receiveReminderAsync`(Java) 方法。 動作項目可以使用傳遞至 `ReceiveReminderAsync`(C#) 或 `receiveReminderAsync`(Java) 方法的提醒名稱，以找出已觸發的提醒。
+
+當 `ReceiveReminderAsync`(C#) 或 `receiveReminderAsync`(Java) 呼叫完成時，動作項目執行階段會儲存動作項目狀態。 如果儲存狀態時發生錯誤，將會停用該動作項目物件並啟動新的執行個體。
+
+若要將提醒取消註冊，動作項目會呼叫 `UnregisterReminderAsync`(C#) 或 `unregisterReminderAsync`(Java) 方法，如下列範例所示。
 
 ```csharp
 IActorReminder reminder = GetReminder("Pay cell phone bill");
 Task reminderUnregistration = UnregisterReminderAsync(reminder);
 ```
+```Java
+ActorReminder reminder = getReminder("Pay cell phone bill");
+CompletableFuture reminderUnregistration = unregisterReminderAsync(reminder);
+```
 
-如上所示，`UnregisterReminderAsync` 方法會接受 `IActorReminder` 介面。 動作項目基底類別支援 `GetReminder` 方法，在傳遞進提醒名稱時可以用來擷取 `IActorReminder` 介面。 這很方便，因為動作項目不需保存從 `RegisterReminder` 方法呼叫傳回的 `IActorReminder` 介面。
+如上所示，`UnregisterReminderAsync`(C#) 或 `unregisterReminderAsync`(Java) 方法會接受 `IActorReminder`(C#) 或 `ActorReminder`(Java) 介面。 動作項目基底類別支援 `GetReminder`(C#) 或 `getReminder`(Java) 方法，在傳遞進提醒名稱時可以用來擷取 `IActorReminder`(C#) 或 `ActorReminder`(Java) 介面。 這很方便，因為動作項目不需保存從 `RegisterReminder`(C#) 或 `registerReminder`(Java) 方法呼叫傳回的 `IActorReminder`(C#) 或 `ActorReminder`(Java) 介面。
 
 ## <a name="next-steps"></a>後續步驟
 * [動作項目事件](service-fabric-reliable-actors-events.md)
 * [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
 * [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
 * [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
-* [範例程式碼](https://github.com/Azure/servicefabric-samples)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
-
+* [C# 範例程式碼 (英文)](https://github.com/Azure/servicefabric-samples)
+* [Java 範例程式碼 (英文)](http://github.com/Azure-Samples/service-fabric-java-getting-started)
 

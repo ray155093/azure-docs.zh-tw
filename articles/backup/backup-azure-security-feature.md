@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 備份保護混合式備份的安全性功能 | Microsoft Docs"
+title: "利用安全性功能協助保護使用 Azure 備份的混合式備份 | Microsoft Docs"
 description: "了解如何使用 Azure 備份的安全性功能，讓備份更安全"
 services: backup
 documentationcenter: 
@@ -15,105 +15,101 @@ ms.topic: article
 ms.date: 02/17/2017
 ms.author: pajosh
 translationtype: Human Translation
-ms.sourcegitcommit: 5c49de40401235d38142efd60d22b0591752fe75
-ms.openlocfilehash: f17802bf455b82f0b5239356c35024ecde7f1f35
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 41a7024b51bc7a3c9cf34dba97255ea61fd27924
+ms.lasthandoff: 04/07/2017
 
 
 ---
-# <a name="security-features-for-protecting-hybrid-backups-using-azure-backup"></a>使用 Azure 備份保護混合式備份的安全性功能
-越來越多客戶會遇到惡意軟體、勒索軟體、入侵等安全性問題。這些安全性問題會導致資料遺失，並不斷增加每個安全性缺口的成本。 為了防範這類攻擊，Azure 備份現在提供安全性功能來保護混合式備份。 本文討論如何透過 Microsoft Azure 復原服務代理程式和 Microsoft Azure 備份伺服器來啟用和利用這些功能。 這些功能是以三大安全性要件為基礎︰
+# <a name="security-features-to-help-protect-hybrid-backups-that-use-azure-backup"></a>利用安全性功能協助保護使用 Azure 備份的混合式備份
+現在越來越重視安全性問題，例如惡意程式碼、勒索軟體和入侵。 這些安全性問題在成本和資料方面付出的代價很高。 為了防範這類攻擊，Azure 備份現在提供安全性功能來協助保護混合式備份。 本文說明如何使用 Azure 復原服務代理程式和 Azure 備份伺服器以啟用及使用這些功能。 這些功能包括：
 
-1. **防護** - 每當執行重要作業 (如變更複雜密碼) 時，就會新增額外的驗證。 這項驗證用來確保只有具備有效 Azure 認證的使用者可以執行這類作業。
-2. **警示** - 每當執行重要作業 (如刪除備份資料) 時，就會傳送電子郵件通知給訂用帳戶管理員。 這封電子郵件可確保使用者及時獲知這類動作。
-3. **復原** - 已刪除的備份資料會額外保留 14 天 (從刪除日期算起)。 這可確保指定時間週期內的資料復原能力，所以即使發生攻擊，也不會遺失任何資料。 而且會維護更多的復原點，以防範資料損毀。
+- **預護**。 每當執行重要作業 (如變更複雜密碼) 時，就會多一道驗證。 這項驗證用來確保只有具備有效 Azure 認證的使用者，才能執行這類作業。
+- **警示**。 每當執行重要作業 (如刪除備份資料) 時，就會傳送電子郵件通知給訂用帳戶管理員。 這封電子郵件可確保使用者迅速獲知這類動作。
+- **復原**。 已刪除的備份資料會額外保留 14 天 (從刪除日期算起)。 這可確保指定時間週期內的資料復原能力，所以即使發生攻擊，也不會遺失任何資料。 而且會維護更多的復原點，以防範資料損毀。
 
 > [!NOTE]
-> 只有當您使用下列項目，才應該啟用安全性功能︰ <br/>
-> * **MAB 代理程式** - 至少為代理程式 2.0.9052 版。 一旦啟用這些功能，您就應該升級為此版本的代理程式，以執行重要作業，例如變更複雜密碼、停止備份並刪除資料。 <br/>
-> * **Azure 備份伺服器** - 至少為 MAB 代理程式 2.0.9052 版與 Azure 備份伺服器 Update 1。 <br/>
-> * **DPM** - 至少為 MAB 代理程式 2.0.9052 版，並具有 DPM 2012 R2 UR12 或 DPM 2016 UR2。 <br/>
-> * **IaaS VM 備份** - 不要對 IaaS VM 備份啟用這些功能。 這些功能尚無法用於 IaaS VM 備份，所以啟用它們不會對 IaaS VM 備份造成任何影響。
-> * 這些功能僅適用於復原服務保存庫。
-> * 所有新建立的復原服務保存庫預設都已經啟用這些功能。 對於現有的復原服務保存庫，使用者則需要使用下節中提及的步驟來啟用這些功能。
-> * 一旦啟用，您即可取得所有向保存庫註冊之 Azure 復原服務代理程式 (MARS) 電腦、Azure 備份伺服器和 DPM 伺服器的安全性功能。 <br/>
-> * 啟用此設定是一次性動作，啟用之後便無法停用這些功能。 <br/>
->
+> 如果您使用基礎結構即服務 (IaaS) VM 備份，則不應該啟用安全性功能。 這些功能尚無法用於 IaaS VM 備份，所以啟用它們不會有任何影響。 只有當您使用下列項目，才應該啟用安全性功能︰ <br/>
+>  * **Azure 備份代理程式**。 至少為代理程式 2.0.9052 版。 啟用這些功能之後，您應該升級為此版本的代理程式，以執行重要作業。 <br/>
+>  * **Azure 備份伺服器**。 至少為 Azure 備份代理程式 2.0.9052 版與 Azure 備份伺服器 Update 1。 <br/>
+>  * **System Center Data Protection Manager**。 至少為 Azure 備份代理程式 2.0.9052 版與 Data Protection Manager 2012 R2 UR12 或 Data Protection Manager 2016 UR2。 <br/> 
+
+
+> [!NOTE]
+> 這些功能僅適用於復原服務保存庫。 所有新建立的復原服務保存庫預設都已經啟用這些功能。 對於現有的復原服務保存庫，使用者可使用下節中提及的步驟來啟用這些功能。 這些功能啟用之後，它們會套用至所有向保存庫註冊的復原服務代理程式電腦、Azure 備份伺服器執行個體和 Data Protection Manager 伺服器。 啟用此設定是一次性動作，啟用之後便無法停用這些功能。
 >
 
-## <a name="enabling-security-features"></a>啟用安全性功能
-建立復原服務保存庫的使用者能夠使用所有的安全性功能。 對於現有的復原服務保存庫，應使用下列步驟來啟用這些功能︰
+## <a name="enable-security-features"></a>啟用安全性功能
+如果您在建立復原服務保存庫，您可以使用所有安全性功能。 如果您在使用現有的保存庫，請依照下列這些步驟啟用安全性功能︰
 
-1. 使用 Azure 認證登入 Azure 入口網站
-2. 在中樞功能表中輸入 Recovery Services，以瀏覽至復原服務清單。
+1. 使用您的 Azure 認證登入 Azure 入口網站。
+2. 選取 [瀏覽]，然後輸入 [復原服務]。
 
-    ![建立復原服務保存庫的步驟 1](./media/backup-azure-security-feature/browse-to-rs-vaults.png) <br/>
+    ![Azure 入口網站瀏覽選項的螢幕擷取畫面](./media/backup-azure-security-feature/browse-to-rs-vaults.png) <br/>
 
-    復原服務保存庫清單隨即出現。 從此清單中選取保存庫。
-
-    選取的保存庫儀表板隨即開啟。
+    復原服務保存庫清單隨即出現。 從此清單中選取保存庫。 選取的保存庫儀表板隨即開啟。
 3. 從保存庫下顯示的項目清單中，按一下 [設定] 之下的 [屬性]。
 
-    ![開啟保存庫屬性](./media/backup-azure-security-feature/vault-list-properties.png)
+    ![復原服務保存庫選項的螢幕擷取畫面](./media/backup-azure-security-feature/vault-list-properties.png)
 4. 按一下 [安全性設定] 之下的 [更新]。
 
-    ![開啟安全性設定](./media/backup-azure-security-feature/security-settings-update.png)
+    ![復原服務保存庫屬性的螢幕擷取畫面](./media/backup-azure-security-feature/security-settings-update.png)
 
-    [更新] 連結會開啟 [安全性設定] 刀鋒視窗，以便您啟用這些功能並提供功能的摘要。
-5. 從 [是否已設定 Azure Multi-Factor Authentication？] 的下拉式清單中選取一個值，確認您是否已啟用 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)。 如果已啟用，系統會要求您在登入 Azure 入口網站時從另一個裝置 (例如行動電話) 進行驗證。
+    更新連結會開啟 [安全性設定] 刀鋒視窗，其中提供功能的摘要並讓您啟用它們。
+5. 從 [是否已設定 Azure Multi-Factor Authentication?] 下拉式清單中，選取一個值以確認您是否已啟用 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)。 如果已啟用，當您登入 Azure 入口網站時，系統會要求您從另一個裝置 (例如行動電話) 進行驗證。
 
-   在 Azure 備份中執行重要作業時，您必須輸入 Azure 入口網站上可用的 [安全性 PIN 碼]，這是安全性功能的一部分。 啟用 Azure Multi-Factor Authentication 可多加一層安全性，確保只有獲得授權且具備有效 Azure 認證並從第二個裝置進行驗證的使用者可以存取 Azure 入口網站並執行這類重要作業。
-6. 使用切換按鈕來 [啟用] 並按一下頂端的 [儲存] 來儲存安全性設定，如下圖所示。 您只能在從 [是否已設定 Azure Multi-Factor Authentication？] 的下拉式清單中選取值之後， 選取 [啟用]。
+   當您在備份中執行重要作業時，您必須輸入安全 PIN 碼 (可在 Azure 入口網站上取得)。 啟用 Multi-Factor Authentication 可多一道安全性。 只有具備有效 Azure 認證且從第二個裝置驗證的授權使用者，才能存取 Azure 入口網站。
+6. 若要儲存安全性設定，請選取 [啟用]，然後按一下 [儲存]。 只有當您在上一個步驟從 [是否已設定 Azure Multi-Factor Authentication?] 清單中選取一個值之後，才能選取 [啟用]。
 
-    ![啟用安全性設定](./media/backup-azure-security-feature/enable-security-settings-dpm-update.png)
+    ![安全性設定的螢幕擷取畫面](./media/backup-azure-security-feature/enable-security-settings-dpm-update.png)
 
-## <a name="recovering-deleted-backup-data"></a>復原已刪除的備份資料
-基於安全性考量，如果已執行「停止備份並刪除備份資料」作業，Azure 備份會保留已刪除的備份資料額外 14 天，並不會立即將它刪除。 若要在 14 天的期間內還原此資料，請使用下列步驟︰
+## <a name="recover-deleted-backup-data"></a>復原已刪除的備份資料
+如果已執行**停止備份並刪除備份資料**作業，備份會保留已刪除的備份資料額外 14 天，不會立即將它刪除。 若要在 14 天的期間內還原此資料，請執行下列步驟，根據您使用的工具而定：
 
-若為 **Microsoft 復原服務代理程式 (MARS)** 使用者：
+**Azure 復原服務代理程式**使用者：
 
-1. 如果發生備份的電腦仍可使用，請使用 MARS 中的[將資料復原到相同電腦](backup-azure-restore-windows-server.md#use-instant-restore-to-recover-data-to-the-same-machine)，以便從舊的復原點復原資料。
-2. 如果無法使用上述的電腦，請使用[復原到其他電腦](backup-azure-restore-windows-server.md#use-instant-restore-to-restore-data-to-an-alternate-machine)，以使用另一部 MARS 電腦來取得此資料。
+1. 如果原本進行備份的電腦仍可使用，請使用 Azure 復原服務中的[將資料復原到相同電腦](backup-azure-restore-windows-server.md#use-instant-restore-to-recover-data-to-the-same-machine)，以便從所有舊的復原點復原資料。
+2. 如果此電腦無法使用，請使用[復原到其他電腦](backup-azure-restore-windows-server.md#use-instant-restore-to-restore-data-to-an-alternate-machine)，以使用另一部 Azure 復原服務電腦來取得此資料。
 
 若為 **Azure 備份伺服器**使用者：
 
-1. 如果發生備份的伺服器仍可使用，請重新保護已刪除的資料來源，並使用復原資料功能來從舊的復原點復原資料。
-2. 如果無法使用上述的電腦，請使用[從其他 Azure 備份伺服器復原資料](backup-azure-alternate-dpm-server.md#recover-data-from-another-azure-backup-server)，以使用另一部 Azure 備份伺服器來取得此資料。
+1. 如果原本進行備份的伺服器仍可使用，請重新保護已刪除的資料來源，並使用**復原資料**功能來從舊的復原點復原資料。
+2. 如果此伺服器無法使用，請使用[從其他 Azure 備份伺服器復原資料](backup-azure-alternate-dpm-server.md#recover-data-from-another-azure-backup-server)，以使用另一個 Azure 備份伺服器執行個體來取得此資料。
 
-對於 **Data Protection Manager (DPM)** 使用者：
+**Data Protection Manager** 使用者：
 
-1. 如果發生備份的伺服器仍可使用，請重新保護已刪除的資料來源，並使用復原資料功能來從舊的復原點復原資料。
-2. 如果無法使用上述的電腦，請使用[新增外部 DPM](backup-azure-alternate-dpm-server.md#recover-data-from-another-azure-backup-server)，以使用另一部 DPM 伺服器來取得此資料。
+1. 如果原本進行備份的伺服器仍可使用，請重新保護已刪除的資料來源，並使用**復原資料**功能來從舊的復原點復原資料。
+2. 如果此伺服器無法使用，請使用[新增外部 DPM](backup-azure-alternate-dpm-server.md#recover-data-from-another-azure-backup-server)，以使用另一部 Data Protection Manager 伺服器來取得此資料。
 
-## <a name="preventing-attacks"></a>預防攻擊
-這項功能已新增各種檢查，確保只有有效的使用者可以執行各種作業。
+## <a name="prevent-attacks"></a>防止攻擊
+已新增檢查來確保只有有效使用者才能執行各種作業。 其中包括新增額外一道驗證，並維護復原用途所需的最小保留範圍。
 
 ### <a name="authentication-to-perform-critical-operations"></a>用來執行重要作業的驗證
-針對重要作業新增額外一層驗證時，系統會提示您在執行「停止保護並刪除資料」和「變更複雜密碼」作業時輸入 [安全性 PIN 碼]。
+針對重要作業新增額外一層驗證時，系統會提示您在執行**停止保護並刪除資料**和**變更複雜密碼**作業時輸入安全性 PIN 碼。
 
-若要接收 [安全性 PIN 碼]，請使用下列步驟：
+若要收到這個 PIN：
 
 1. 登入 Azure 入口網站。
 2. 瀏覽至 [復原服務保存庫] > [設定] > [屬性]。
-3. 按一下 [安全性 PIN 碼] 底下的 [產生]。 [產生] 連結會開啟一個刀鋒視窗，其中包含要在 Azure 復原服務代理程式 UI 中輸入的 [安全性 PIN 碼]。
-    此 PIN 碼的有效時間只有 5 分鐘，而且會在該期間後自動產生。
+3. 在 [安全性 PIN 碼] 底下，按一下 [產生]。 這會開啟刀鋒視窗，其中包含要在 Azure 復原服務代理程式使用者介面中輸入的 PIN。
+    此 PIN 碼的有效時間只有五分鐘，而且會在該期間後自動產生。
 
-### <a name="maintaining-minimum-retention-range"></a>維護最小的保留範圍
+### <a name="maintain-a-minimum-retention-range"></a>維護最小的保留範圍
 為了確保永遠都有有效的復原點可用，已新增下列檢查︰
 
-1. 若為每日保留，最少應該保留**七**天
-2. 若為每週保留，最少應該保留**四**週
-3. 若為每月保留，最少應該保留**三**個月
-4. 若為每年保留，最少應該保留**一**年
+- 若為每日保留，最少應該保留**七**天。
+- 若為每週保留，最少應該保留**四**週。
+- 若為每月保留，最少應該保留**三**個月。
+- 若為每年保留，最少應該保留**一**年。
 
 ## <a name="notifications-for-critical-operations"></a>重要作業的通知
-每當執行一些重要作業時，訂用帳戶管理員會收到一封含有作業相關詳細資訊的電子郵件通知。 如果您想要設定其他電子郵件 ID 來接收電子郵件通知，您可以使用 Azure 入口網站加以設定。
+執行重要作業時，訂用帳戶管理員通常會收到一封含有作業相關詳細資訊的電子郵件通知。 您可以使用 Azure 入口網站，設定這些通知的其他電子郵件收件者。
 
-本文所提的安全性功能會提供目標攻擊的防禦機制，以防止攻擊者接觸備份。 更重要的是，這些功能會在發生攻擊時提供復原資料的能力。
+本文所提的安全性功能可提供對付目標攻擊的防禦機制。 更重要的是，如果發生攻擊，這些功能可讓您復原資料。
 
 ## <a name="next-steps"></a>後續步驟
-* [開始使用 Azure 復原服務保存庫](backup-azure-vms-first-look-arm.md)以啟用這些功能
-* [下載最新的 Azure 復原服務代理程式](http://aka.ms/azurebackup_agent)以保護 Windows 電腦及防護備份資料以免遭受攻擊
-* [下載最新的 Azure 備份伺服器](https://aka.ms/latest_azurebackupserver)以保護工作負載及防護備份資料以免遭受攻擊
-* [下載適用於 System Center 2012 R2 Data Protection Manager 的 UR12](https://support.microsoft.com/help/3209592/update-rollup-12-for-system-center-2012-r2-data-protection-manager) 或[下載適用於 System Center 2016 Data Protection Manager 的 UR2](https://support.microsoft.com/help/3209593/update-rollup-2-for-system-center-2016-data-protection-manager) 以保護工作負載，及保護您的備份免於攻擊
+* [開始使用 Azure 復原服務保存庫](backup-azure-vms-first-look-arm.md)以啟用這些功能。
+* [下載最新的 Azure 復原服務代理程式](http://aka.ms/azurebackup_agent)，以協助保護 Windows 電腦及防護備份資料以免遭受攻擊。
+* [下載最新的 Azure 備份伺服器](https://aka.ms/latest_azurebackupserver)，以協助保護工作負載及防護備份資料以免遭受攻擊。
+* [下載適用於 System Center 2012 R2 Data Protection Manager 的 UR12](https://support.microsoft.com/help/3209592/update-rollup-12-for-system-center-2012-r2-data-protection-manager) 或[下載適用於 System Center 2016 Data Protection Manager 的 UR2](https://support.microsoft.com/help/3209593/update-rollup-2-for-system-center-2016-data-protection-manager)，以協助保護工作負載及防護備份資料以免遭受攻擊。
 

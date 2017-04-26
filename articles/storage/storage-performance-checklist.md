@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 4931d68cf7e040539e7fcec7e0bc387c60a00827
-ms.openlocfilehash: 9598f1fbe3375d3e37d283f259770cf53582a089
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: c12f98b069689e335d308d8f8edba2dece21d806
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -133,7 +133,7 @@ Azure 儲存體使用範圍型的資料分割配置，調整和負載平衡系�
 與任何網路使用方式一樣，請留意導致錯誤和封包遺失的網路狀況將會減慢有效的輸送量。  使用 WireShark 或 NetMon 可能有助於診斷此問題。  
 
 ##### <a name="useful-resources"></a>有用資源
-如需虛擬機器大小與所配置頻寬的詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。  
+如需虛擬機器大小與所配置頻寬的詳細資訊，請參閱 [Windows VM 大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)或 [Linux VM 大小](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。  
 
 #### <a name="subheading4"></a>位置
 在任何分散式環境中，將用戶端放置於伺服器附近可提供最佳的效能。 若要以最低的延遲時間存取 Azure 儲存體，對用戶端而言的最佳位置是在同一個 Azure 區域內。 例如，如果您擁有使用 Azure 儲存體的 Azure 網站，您應將這兩者置於單一區域內 (例如，美國西部或東南亞)。 這可降低延遲和成本 — 本文撰寫期間，在單一區域內的頻寬使用量是免費的。  
@@ -148,7 +148,7 @@ Azure 儲存體使用範圍型的資料分割配置，調整和負載平衡系�
 ### <a name="subheading6"></a>使用 SAS 和 CORS
 當您必須在使用者的網頁瀏覽器或行動電話應用程式中授權程式碼 (例如 JavaScript) 以存取 Azure 儲存體中的資料時，一個方法是將 Web 角色中的應用程式作為 Proxy 使用：使用者的裝置會向 Web 角色進行驗證，Web 服務轉而向儲存體服務進行驗證。 如此一來，您可以避免在未受到保護的裝置上公開您的儲存體帳戶金鑰。 不過，因為在使用者裝置和儲存體服務之間傳輸的所有資料都必須通過 Web 角色，所以這會在 Web 角色上加上大量負荷。 您可以透過使用共用存取簽章 (SAS)，有時與跨原始來源資源分享 (CORS) 標頭搭配使用，來避免將 Web 角色作為儲存體服務的 Proxy 使用。 使用 SAS，您可以透過有限的存取權杖，允許使用者裝置直接對儲存體服務提出要求。 例如，如果使用者想要將相片上傳到您的應用程式，您的 Web 角色可產生 SAS 權杖，可授與接下來 30 分鐘內寫入特定 Blob 或容器的權限 (時間過後 SAS 權杖便會過期)，並將它傳送到使用者裝置。
 
-通常，在某個網域上由網站託管的頁面中，瀏覽器不允許 JavaScript 對另一個網域執行特定作業 (例如 “PUT”)。 例如，如果您在 “contosomarketing.cloudapp.net” 上主控 Web 角色，並想要使用用戶端 JavaScript 來將 Blob 上傳至您在 “contosoproducts.blob.core.windows.net” 的儲存體帳戶，則瀏覽器的「相同原始原則」將會禁止此作業。 CORS 是個瀏覽器功能，可允許目標網域 (在此案例中是儲存體帳戶) 與信任源自來源網域 (在此案例中是 Web 角色) 要求的瀏覽器進行通訊。  
+通常，在某個網域上由網站託管的頁面中，瀏覽器不允許 JavaScript 對另一個網域執行特定作業 (例如 "PUT")。 例如，如果您在 "contosomarketing.cloudapp.net" 上主控 Web 角色，並想要使用用戶端 JavaScript 來將 Blob 上傳至您在 "contosoproducts.blob.core.windows.net" 的儲存體帳戶，則瀏覽器的「相同原始原則」將會禁止此作業。 CORS 是個瀏覽器功能，可允許目標網域 (在此案例中是儲存體帳戶) 與信任源自來源網域 (在此案例中是 Web 角色) 要求的瀏覽器進行通訊。  
 
 這些技術可協助您避免 Web 應用程式上的不必要負荷 (和瓶頸)。  
 
@@ -168,7 +168,7 @@ Azure 儲存體使用範圍型的資料分割配置，調整和負載平衡系�
 如需如何使用 .NET 來取得 Blob 屬性，以找出最後修改日期的範例，請參閱 [設定和擷取屬性及中繼資料](storage-properties-metadata.md)。 如需條件式下載的詳細資訊，請參閱 [有條件地重新整理 Blob 的本機複本](http://msdn.microsoft.com/library/azure/dd179371.aspx)。  
 
 #### <a name="subheading8"></a>以批次方式上傳資料
-在某些應用程式案例中，您可以在本機彙總資料，然後以批次方式將它定期上傳，而非立即上傳每一份資料。 例如，Web 應用程式可保留活動記錄檔︰應用程式可以在每次活動發生時，以資料表實體的格式 (這需要許多儲存體作業) 將每個活動的詳細資料上傳到 Blob，或可以將活動詳細資料儲存到本機記錄檔，然後以使用分隔符號的檔案格式將所有活動詳細資料定期上傳到 Blob。 如果每筆記錄項目的大小是 1KB，您可以在單一 “Put Blob” 交易中上傳上千筆記錄項目 (您可以在單一交易中上傳的 Blob 大小上限為 64MB)。 當然，如果本機電腦在上傳前當機，您可能會失去一些記錄資料：應用程式開發人員必須針對用戶端裝置的可能性進行設計，或上傳失敗。  如果必須上傳活動資料以取得 Timespan (而不是只是單一活動)，則我們建議選擇 Blob 勝過資料表。
+在某些應用程式案例中，您可以在本機彙總資料，然後以批次方式將它定期上傳，而非立即上傳每一份資料。 例如，Web 應用程式可保留活動記錄檔︰應用程式可以在每次活動發生時，以資料表實體的格式 (這需要許多儲存體作業) 將每個活動的詳細資料上傳到 Blob，或可以將活動詳細資料儲存到本機記錄檔，然後以使用分隔符號的檔案格式將所有活動詳細資料定期上傳到 Blob。 如果每筆記錄項目的大小是 1KB，您可以在單一 "Put Blob" 交易中上傳上千筆記錄項目 (您可以在單一交易中上傳的 Blob 大小上限為 64MB)。 當然，如果本機電腦在上傳前當機，您可能會失去一些記錄資料：應用程式開發人員必須針對用戶端裝置的可能性進行設計，或上傳失敗。  如果必須上傳活動資料以取得 Timespan (而不是只是單一活動)，則我們建議選擇 Blob 勝過資料表。
 
 ### <a name="net-configuration"></a>.NET 組態
 如果使用 .NET Framework，本節會列出數個可用來大幅改善效能的快速組態設定。  如果使用其他語言，請查看類似的概念是否適用於您所選擇的語言。  
@@ -245,7 +245,7 @@ ThreadPool.SetMinThreads(100,100); //(Determine the right number for your applic
 如需詳細資訊，請參閱 [複製 Blob](http://msdn.microsoft.com/library/azure/dd894037.aspx)。  
 
 #### <a name="subheading18"></a>使用 AzCopy
-Azure 儲存體團隊推出一個命令列工具 “AzCopy”，旨在協助將多個 Blob 大量傳輸至儲存體帳戶、從儲存體帳戶複製，及跨儲存體帳戶進行複製。  此工具已針對此案例進行最佳化，且可達到高傳輸率。  建議在大量上傳、下載和複製案例中使用此工具。 如需詳細資訊並加以下載，請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。  
+Azure 儲存體團隊推出一個命令列工具 "AzCopy"，旨在協助將多個 Blob 大量傳輸至儲存體帳戶、從儲存體帳戶複製，及跨儲存體帳戶進行複製。  此工具已針對此案例進行最佳化，且可達到高傳輸率。  建議在大量上傳、下載和複製案例中使用此工具。 如需詳細資訊並加以下載，請參閱 [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)。  
 
 #### <a name="subheading19"></a>Azure 匯入/匯出服務
 Azure 儲存體針對超大量的資料 (大於 1TB) 提供匯入/匯出服務，這允許透過寄送硬碟的方式，從 Blob 儲存體進行上傳和下載。  您可以將資料放在硬碟上，並將它寄送到 Microsoft 進行上傳，或寄送空白硬碟到 Microsoft 以下載資料。  如需詳細資訊，請參閱「 [使用 Microsoft Azure 匯入/匯出服務將資料移轉至 Blob 儲存體](storage-import-export-service.md)」。  這會比透過網路來上傳/下載此大量資料還要有效率。  
@@ -253,7 +253,7 @@ Azure 儲存體針對超大量的資料 (大於 1TB) 提供匯入/匯出服務�
 ### <a name="subheading20"></a>使用中繼資料
 Blob 服務支援包含 Blob 中繼資料的標頭要求。 例如，如果您的應用程式需要相片的 EXIF 資料，它可以擷取相片並擷取該資料。 若要節省頻寬並改善效能，當應用程式上傳相片時，您的應用程式可以在 Blob 的中繼資料中儲存 EXIF 資料：您即可僅使用一個 HEAD 要求來擷取中繼資料中的 EXIF 資料，並節省大量頻寬以及每次讀取 Blob 時擷取 EXIF 資料所需的處理時間。 這在您僅需要中繼資料而非 Blob 完整內容的案例中，此操作會很有幫助。  請注意，每個 Blob 僅可儲存 8 KB 的中繼資料 (此服務不接受超過此值的儲存要求)，因此如果資料不符合該大小，您就可能無法使用此方法。  
 
-如需如何使用 .NET 來取得 Blob 中繼資料的範例，請參閱 [設定和擷取屬性及中繼資料](storage-properties-metadata.md)。  
+如需如何使用 .NET 來取得 Blob 中繼資料的範例，請參閱[設定和擷取屬性及中繼資料](storage-properties-metadata.md)。  
 
 ### <a name="uploading-fast"></a>快速上傳
 若要快速上傳 Blob，請先回答一個問題：您會上傳一或多個 Blob？  使用下列指引，根據您的案例來判斷所要使用的正確方法。  

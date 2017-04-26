@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 12/15/2016
+ms.date: 04/03/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: aaf13418331f29287399621cb911e4b9f5b33dc0
-ms.openlocfilehash: 54ec0b039b14246e3c64d1721b4562035e39efa5
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: 76dfd1c2b2f17e6bc798f4313c4dc4817d2136a4
+ms.lasthandoff: 04/04/2017
 
 
 ---
@@ -26,18 +27,15 @@ ms.openlocfilehash: 54ec0b039b14246e3c64d1721b4562035e39efa5
 > * [Azure 入口網站](application-gateway-create-url-route-portal.md)
 > * [Azure Resource Manager PowerShell](application-gateway-create-url-route-arm-ps.md)
 
-URL 路徑型路由可讓您根據 Http 要求的 URL 路徑來關聯路由。 它會檢查是否有路由連至針對應用程式閘道中的 URL 清單設定的後端集區，並將網路流量傳送至定義的後端集區。 URL 型路由的常見用法是將不同內容類型的要求負載平衡至不同的後端伺服器集區。
+以 URL 路徑為基礎的路由可讓您根據 Http 要求的 URL 路徑來關聯路由。 它會檢查應用程式閘道中是否有路由指向 URL 設定的後端集區，然後將網路流量傳送至已定義的後端集區。 URL 型路由的常見用法是將不同內容類型的要求負載平衡至不同的後端伺服器集區。
 
 URL 型路由會將新的規則類型引進應用程式閘道。 應用程式閘道具有 2 種規則類型：基本和 PathBasedRouting。 基本規則類型會針對後端集區提供循環配置資源服務，而 PathBasedRouting 除了循環配置資源發佈之外也會在選擇後端集區時將要求 URL 的路徑模式納入考慮。
-
-> [!IMPORTANT]
-> PathPattern：要比對的路徑模式清單。 每個路徑都必須以 / 開頭，而且只有結尾允許使用 "\*"。 有效範例包括 /xyz、/xyz* 或 /xyz/*。 傳送給路徑比對器的字串未在第一個 "?" 或 "#" 之後包含任何文字，而這些字元是不允許的。 
 
 ## <a name="scenario"></a>案例
 
 在下列範例中，應用程式閘道會利用兩個後端伺服器集區來為 contoso.com 提供流量：視訊伺服器集區和映像伺服器集區。
 
-對 http://contoso.com/image* 的要求會路由傳送至映像伺服器集區 (pool1)，而 http://contoso.com/video* 則會路由傳送至視訊伺服器集區 (pool2)。 如果沒有任何路徑模式相符，則會選取預設的伺服器集區 (pool1)。
+對 http://contoso.com/image* 的要求會路由傳送至影像伺服器集區 (pool1)，而 http://contoso.com/video* 則會路由傳送至影片伺服器集區 (pool2)。 如果沒有任何路徑模式相符，則會選取預設的伺服器集區 (pool1)。
 
 ![URL 路由](./media/application-gateway-create-url-route-arm-ps/figure1.png)
 
@@ -103,7 +101,7 @@ Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
 建立資源群組 (若使用現有的資源群組，請略過此步驟)。
 
 ```powershell
-New-AzureRmResourceGroup -Name appgw-RG -Location "West US"
+$resourceGroup = New-AzureRmResourceGroup -Name appgw-RG -Location "West US"
 ```
 
 或者，您也可以針對應用程式閘道建立資源群組的標記：
@@ -123,11 +121,11 @@ Azure 資源管理員需要所有的資源群組指定一個位置。 這用來�
 
 ## <a name="create-a-virtual-network-and-a-subnet-for-the-application-gateway"></a>建立應用程式閘道的虛擬網路和子網路
 
-下面的範例說明如何使用資源管理員建立虛擬網路。
+下面的範例說明如何使用資源管理員建立虛擬網路。 這個範例會建立應用程式閘道的 VNET。 應用程式閘道需要它自己的子網路，因此針對應用程式閘道建立的子網路會小於 VNET 位址空間。 這允許其他資源，包括但不限於要在相同 VNET 中設定的 Web 伺服器。
 
 ### <a name="step-1"></a>步驟 1
 
-指派用於建立虛擬網路的位址範圍 10.0.0.0/24 給子網路變數。
+指派用於建立虛擬網路的位址範圍 10.0.0.0/24 給子網路變數。  這會為下一個範例使用的應用程式閘道建立子網路設定物件。
 
 ```powershell
 $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10.0.0.0/24
@@ -135,7 +133,7 @@ $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name subnet01 -AddressPrefix 10
 
 ### <a name="step-2"></a>步驟 2
 
-使用前置詞 10.0.0.0/16 搭配子網路 10.0.0.0/24，在美國西部 (West US) 區域的 **appgw-rg** 資源群組中建立名為 **appgwvnet** 的虛擬網路。
+使用前置詞 10.0.0.0/16 搭配子網路 10.0.0.0/24，在美國西部 (West US) 區域的 **appgw-rg** 資源群組中建立名為 **appgwvnet** 的虛擬網路。 這樣就完成 VNET 的設定，有單一子網路放置應用程式閘道。
 
 ```powershell
 $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-RG -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $subnet
@@ -143,7 +141,7 @@ $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-RG -L
 
 ### <a name="step-3"></a>步驟 3
 
-針對建立應用程式閘道的後續步驟，指派子網路變數。
+指派後續步驟的子網路變數，這會在未來的步驟中傳遞至 `New-AzureRMApplicationGateway` Cmdlet。
 
 ```powershell
 $subnet=$vnet.Subnets[0]
@@ -151,7 +149,7 @@ $subnet=$vnet.Subnets[0]
 
 ## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>建立前端組態的公用 IP 位址
 
-在美國西部區域的 **appgw-rg** 資源群組中建立公用 IP 資源 **publicIP01**。
+在美國西部區域的 **appgw-rg** 資源群組中建立公用 IP 資源 **publicIP01**。 應用程式閘道可以使用公用 IP 位址、內部 IP 位址或兩者來接收負載平衡的要求。  此範例中僅使用公用 IP 位址。 在下列範例中，未設定 DNS 名稱以建立公用 IP 位址。  應用程式閘道在公用 IP 位址上不支援自訂 DNS 名稱。  如果公用端點需要自訂名稱，應該建立 CNAME 記錄以指向針對公用 IP 位址自動產生的 DNS 名稱。
 
 ```powershell
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -name publicIP01 -location "West US" -AllocationMethod Dynamic
@@ -173,19 +171,19 @@ $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Sub
 
 ### <a name="step-2"></a>步驟 2
 
-設定名為 **pool01** 和 **pool2** 的後端 IP 位址集區，**pool1** 的 IP 位址為 **134.170.185.46**、**134.170.188.221**、**134.170.185.50**，而 **pool2** 的 IP 位址為 **134.170.186.46**、**134.170.189.221**、**134.170.186.50**。
+設定名為 **pool01** 和 **pool2** 的後端 IP 位址集區，並指定 **pool1** 和 **pool2** 的 IP 位址。 這些 IP 位址是託管 Web 應用程式 (由應用程式閘道保護) 之資源的 IP 位址。 這些後端集區成員都由探查 (無論是基本探查或自訂探查) 驗證為健康狀態。  當要求進入應用程式閘道時，流量便會路由傳送至它們。 後端集區可供應用程式閘道內的多個規則使用，這表示一個後端集區可用於位在相同主機上的多個 Web 應用程式。
 
 ```powershell
-$pool1 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221,134.170.185.50
+$pool1 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221, 134.170.185.50
 
-$pool2 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool02 -BackendIPAddresses 134.170.186.46, 134.170.189.221,134.170.186.50
+$pool2 = New-AzureRmApplicationGatewayBackendAddressPool -Name pool02 -BackendIPAddresses 134.170.186.47, 134.170.189.222, 134.170.186.51
 ```
 
 此範例中有兩個後端集區，根據 URL 路徑路由傳送網路流量。 有一個集區會接收來自 URL 路徑 "/video" 的流量，而另一個集區會接收來自路徑 "/image" 的流量。 取代上述 IP 位址來新增自己的應用程式 IP 位址端點。 
 
 ### <a name="step-3"></a>步驟 3
 
-針對後端集區中負載平衡的網路流量，設定應用程式閘道設定 **poolsetting01** 和 **poolsetting02**。 在此範例中，您會針對後端集區設定不同的後端集區設定。 每個後端集區都可以有它自己的後端集區設定。
+針對後端集區中負載平衡的網路流量，設定應用程式閘道設定 **poolsetting01** 和 **poolsetting02**。 在此範例中，您會針對後端集區設定不同的後端集區設定。 每個後端集區都可以有它自己的後端集區設定。  規則會使用後端 HTTP 設定，將流量路由傳送至正確的後端集區成員。 這會決定將流量傳送至後端集區成員時使用的通訊協定和連接埠。 以 Cookie 為基礎的工作階段也是由後端 HTTP 設定決定。  啟用時，以 Cookie 為基礎的工作階段親和性會比照先前每個封包的要求，將流量至相同的後端。
 
 ```powershell
 $poolSetting01 = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetting01" -Port 80 -Protocol Http -CookieBasedAffinity Disabled -RequestTimeout 120
@@ -195,7 +193,7 @@ $poolSetting02 = New-AzureRmApplicationGatewayBackendHttpSettings -Name "besetti
 
 ### <a name="step-4"></a>步驟 4
 
-利用公用 IP 端點設定前端 IP。
+利用公用 IP 端點設定前端 IP。 接聽程式會使用前端 IP 設定物件，將對外 IP 位址與接聽程式相關聯。
 
 ```powershell
 $fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -PublicIPAddress $publicip
@@ -203,7 +201,7 @@ $fipconfig01 = New-AzureRmApplicationGatewayFrontendIPConfig -Name "frontend1" -
 
 ### <a name="step-5"></a>步驟 5
 
-設定應用程式閘道的前端連接埠。
+設定應用程式閘道的前端連接埠。 接聽程式會使用前端連接埠設定物件，定義應用程式閘道在接聽程式上的哪個連接埠接聽流量。
 
 ```powershell
 $fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "fep01" -Port 80
@@ -211,7 +209,7 @@ $fp01 = New-AzureRmApplicationGatewayFrontendPort -Name "fep01" -Port 80
 
 ### <a name="step-6"></a>步驟 6
 
-設定接聽程式。 這個步驟會針對用來接收連入網路流量的公用 IP 位址和連接埠設定接聽程式。 
+設定接聽程式。 這個步驟會針對用來接收連入網路流量的公用 IP 位址和連接埠設定接聽程式。 下列範例採用先前設定的前端 IP 設定、前端連接埠設定和通訊協定 (http 或 https)，並設定接聽程式。 在此範例中，接聽程式會在稍早建立的公用 IP 位址上的連接埠 80 接聽 HTTP 流量。
 
 ```powershell
 $listener = New-AzureRmApplicationGatewayHttpListener -Name "listener01" -Protocol Http -FrontendIPConfiguration $fipconfig01 -FrontendPort $fp01
@@ -221,7 +219,10 @@ $listener = New-AzureRmApplicationGatewayHttpListener -Name "listener01" -Protoc
 
 設定後端集區的 URL 規則路徑。 這個步驟會設定應用程式閘道用來定義 URL 路徑間對應的相對路徑，而且會指派其中的後端集區來處理連入流量。
 
-下列範例會建立兩個規則：一個適用於將流量路由傳送到後端 "pool1" 的 "/image/" 路徑，另一個則適用於將流量路由傳送到後端 "pool2" 的 "/video/" 路徑。
+> [!IMPORTANT]
+> 每個路徑都必須以 / 開頭，而且只有結尾允許使用 "\*"。 有效範例包括 /xyz、/xyz* 或 /xyz/*。 傳送給路徑比對器的字串未在第一個 "?" 或 "#" 之後包含任何文字，而這些字元是不允許的。 
+
+下列範例會建立兩個規則：一個適用於將流量路由傳送到後端 "pool1" 的 "/image/" 路徑，另一個則適用於將流量路由傳送到後端 "pool2" 的 "/video/" 路徑。 這些規則確保每一組 url 的流量都路由傳送至後端。 例如，http://contoso.com/image/figure1.jpg 會傳送至 pool1，http://contoso.com/video/example.mp4 會傳送至 pool2。
 
 ```powershell
 $imagePathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule1" -Paths "/image/*" -BackendAddressPool $pool1 -BackendHttpSettings $poolSetting01
@@ -229,7 +230,7 @@ $imagePathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule1" -
 $videoPathRule = New-AzureRmApplicationGatewayPathRuleConfig -Name "pathrule2" -Paths "/video/*" -BackendAddressPool $pool2 -BackendHttpSettings $poolSetting02
 ```
 
-如果路徑不符合任何預先定義的路徑規則，規則路徑對應組態也會設定預設的後端位址集區。 
+如果路徑不符合任何預先定義的路徑規則，規則路徑對應組態也會設定預設的後端位址集區。 比方說，http://contoso.com/shoppingcart/test.html 會傳送至 pool1，因為它定義為不相符流量的預設集區。
 
 ```powershell
 $urlPathMap = New-AzureRmApplicationGatewayUrlPathMapConfig -Name "urlpathmap" -PathRules $videoPathRule, $imagePathRule -DefaultBackendAddressPool $pool1 -DefaultBackendHttpSettings $poolSetting02
@@ -237,7 +238,7 @@ $urlPathMap = New-AzureRmApplicationGatewayUrlPathMapConfig -Name "urlpathmap" -
 
 ### <a name="step-8"></a>步驟 8
 
-建立規則設定。 這個步驟會設定應用程式閘道來使用 URL 路徑型路由。
+建立規則設定。 這個步驟會設定應用程式閘道來使用 URL 路徑型路由。 稍早步驟中定義的 `$urlPathMap` 變數，現在用來建立以路徑為基礎的規則。 在此步驟中，我們將規則與接聽程式和稍早建立的 url 路徑對應相關聯。
 
 ```powershell
 $rule01 = New-AzureRmApplicationGatewayRequestRoutingRule -Name "rule1" -RuleType PathBasedRouting -HttpListener $listener -UrlPathMap $urlPathMap
@@ -292,10 +293,5 @@ DnsSettings              : {
 ## <a name="next-steps"></a>後續步驟
 
 如果您想要了解「安全通訊端層」(SSL) 卸載，請參閱 [設定適用於 SSL 卸載的應用程式閘道](application-gateway-ssl-arm.md)。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

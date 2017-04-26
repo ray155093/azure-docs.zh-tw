@@ -3,7 +3,7 @@ title: "發生影響 Azure 雲端服務的 Azure 服務中斷事件時該怎麼�
 description: "了解發生影響 Azure 雲端服務的 Azure 服務中斷事件時該怎麼辦。"
 services: cloud-services
 documentationcenter: 
-author: kmouss
+author: mmccrory
 manager: drewm
 editor: 
 ms.assetid: e52634ab-003d-4f1e-85fa-794f6cd12ce4
@@ -12,12 +12,12 @@ ms.workload: cloud-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/16/2016
-ms.author: kmouss;aglick
+ms.date: 04/04/2017
+ms.author: mmccrory
 translationtype: Human Translation
-ms.sourcegitcommit: e7d3c82e235d691c4ab329be3b168dcccc19774f
-ms.openlocfilehash: 5db1864f5fb04b30a7b8ce59932e826fcef792f0
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
+ms.openlocfilehash: b20f846caa12866ce8815c7931a2c66346cd4085
+ms.lasthandoff: 04/04/2017
 
 
 ---
@@ -35,25 +35,16 @@ Azure 已經有許多支援高可用性應用程式的內建平台功能。 如�
 >
 >
 
-為協助您處理這些罕見事件，我們提供以下 Azure 虛擬機器 (VM) 指引，以因應 Azure VM 應用程式部署所在的整個區域發生服務中斷的情況。
 
-## <a name="option-1-wait-for-recovery"></a>選項 1︰等待復原
-在此情況下，您不需要採取任何動作。 但您要知道，Azure 小組正在努力還原服務的可用性。 您可以在 [Azure 服務健康狀態儀表板](https://azure.microsoft.com/status/)上看見目前的服務狀態。
+## <a name="option-1-use-a-backup-deployment-through-azure-traffic-manager"></a>選項 1︰透過 Azure 流量管理員使用備份部署
+最強固的災害復原解決方案涉及維護您的應用程式在不同區域中的多個部署，然後使用 [Azure 流量管理員](../traffic-manager/traffic-manager-overview.md)導向其間的流量。 Azure 流量管理員會提供多種[路由方式](../traffic-manager/traffic-manager-routing-methods.md)，因此您可以選擇使用主要/備份模型來管理您的部署，或分割其間的流量。
 
-> [!NOTE]
-> 如果客戶尚未安裝 Azure Site Recovery，或在不同地區有次要部署，這會是最佳的選項。
->
->
+![使用 Azure 流量管理員平衡區域間的 Azure 雲端服務](./media/cloud-services-disaster-recovery-guidance/using-azure-traffic-manager.png)
 
-如果客戶想要立即存取其已部署的雲端服務，目前提供下列選項。
+若要對遺失區域做出最快的回應，請務必設定流量管理員的[端點監視](../traffic-manager/traffic-manager-monitoring.md)。
 
-> [!NOTE]
-> 請注意，這兩個選項都可能會遺失部分資料。     
->
->
-
-## <a name="option-2-re-deploy-your-cloud-service-configuration-to-a-new-region"></a>選項 2︰將您的雲端服務組態重新部署到新的區域
-如果您具有原始程式碼，只需在新區域中將應用程式及相關聯的組態和資源重新部署至新的雲端服務。  
+## <a name="option-2-deploy-your-application-to-a-new-region"></a>選項 2︰將應用程式部署至新的區域
+如前一個選項所述維護多個作用中的部署，會造成額外的成本。 如果您的復原時間目標 (RTO) 有足夠的彈性，且您具有原始程式碼或已編譯的雲端服務套件，您即可在其他區域中建立應用程式的新執行個體並更新您的 DNS 記錄，以指向新的部署。
 
 如需如何建立和部署雲端服務應用程式的詳細資訊，請參閱[如何建立和部署雲端服務](cloud-services-how-to-create-deploy-portal.md)。
 
@@ -62,15 +53,11 @@ Azure 已經有許多支援高可用性應用程式的內建平台功能。 如�
 * 如需 Azure 儲存體資料來源，請參閱 [Azure 儲存體複寫](../storage/storage-redundancy.md#read-access-geo-redundant-storage) ，以根據您針對應用程式所選擇的複寫模型來查看可用的選項。
 * 如需 SQL 資料庫來源，請閱讀 [概觀：雲端商務持續性和 SQL Database 的資料庫災害復原](../sql-database/sql-database-business-continuity.md) ，以根據您針對應用程式所選擇的複寫模型來查看可用的選項。
 
-## <a name="option-3-use-a-backup-deployment-through-azure-traffic-manager"></a>選項 3︰透過 Azure 流量管理員使用備份部署
-此選項假設您在設計應用程式方案時已將區域災害復原納入考慮。 如果您已經在不同區域中執行次要的雲端服務應用程式部署，並透過流量管理員通道來連接，則您可以使用這個選項。 在此情況下，請檢查次要部署的健全狀況。 如果是狀況良好，您就可以透過 Azure 流量管理員將流量重新導向到該部署。 採用這個策略時，您就能利用 Azure 流量管理員中的流量路由方法和容錯移轉順序組態。 如需詳細資訊，請參閱[什麼是流量管理員？](../traffic-manager/traffic-manager-overview.md)。
 
-![使用 Azure 流量管理員平衡區域間的 Azure 雲端服務](./media/cloud-services-disaster-recovery-guidance/using-azure-traffic-manager.png)
+## <a name="option-3-wait-for-recovery"></a>選項 3︰等待復原
+在此情況下，您不需要採取任何動作，但是直到該區域還原，才可使用您的服務。 您可以在 [Azure 服務健康狀態儀表板](https://azure.microsoft.com/status/)上看見目前的服務狀態。
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解如何實作災害復原和高可用性策略，請參閱 [Azure 應用程式的災害復原和高可用性](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)。
 
 若要開發雲端平台功能的詳細技術知識，請參閱 [Azure 復原技術指導](../resiliency/resiliency-technical-guidance.md)。
-
-如果指示不清楚，或如果您希望 Microsoft 代您執行作業，請連絡 [客戶支援](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
-

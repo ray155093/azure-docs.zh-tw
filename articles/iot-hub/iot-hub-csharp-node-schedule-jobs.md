@@ -12,12 +12,12 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/24/2017
+ms.date: 03/30/2017
 ms.author: juanpere
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: fd53e73d6a686581ea2b807ae66716fc36a99ad4
-ms.lasthandoff: 12/07/2016
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 659a1df454f7085b1f6e2cea3ae1e18d386a09f7
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -25,13 +25,13 @@ ms.lasthandoff: 12/07/2016
 [!INCLUDE [iot-hub-selector-schedule-jobs](../../includes/iot-hub-selector-schedule-jobs.md)]
 
 ## <a name="introduction"></a>簡介
-Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建立及追蹤可排定和更新數百萬個裝置的作業。  作業可用於下列動作：
+Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建立作業來排定和更新數百萬個裝置，並追蹤作業。  作業可用於下列動作：
 
 * 更新所需屬性
 * 更新標籤
 * 叫用直接方法
 
-就概念而言，作業會包裝上述其中一個動作，然後針對由裝置對應項 (twin) 查詢所定義的一組裝置，追蹤執行進度。  例如，使用作業，後端應用程式便可在 10,000 個裝置上叫用重新啟動方法，這是由裝置對應項查詢所指定並排定在未來的時間執行。  接著，該應用程式可以追蹤每個這些裝置接收和執行重新啟動方法的進度。
+就概念而言，作業會包裝上述其中一個動作，然後針對由裝置對應項 (twin) 查詢所定義的一組裝置，追蹤執行進度。  例如，後端應用程式可以在 10,000 個裝置上使用作業叫用重新啟動方法，此方法由裝置對應項查詢指定並排定在未來執行。  接著，它可以追蹤每個裝置接收和執行重新啟動方法的進度。
 
 從下列文章深入了解這當中的每一項功能：
 
@@ -51,9 +51,9 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
 
 若要完成此教學課程，您需要下列項目：
 
-* Microsoft Visual Studio 2015。
-* Node.js 0.12.x 版或更新版本， <br/>  [準備您的開發環境][lnk-dev-setup]說明如何在 Windows 或 Linux 上安裝本教學課程的 Node.js。
-* 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
+* Visual Studio 2015 或 Visual Studio 2017。
+* Node.js 0.12.x 版或更新版本。 [準備您的開發環境][lnk-dev-setup]一文說明如何在 Windows 或 Linux 上安裝本教學課程的 Node.js。
+* 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
@@ -66,21 +66,26 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
 
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
 
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **ScheduleJob** 專案，然後按一下 [管理 NuGet 套件]。
-3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 **ScheduleJob** 專案，然後按一下 [管理 NuGet 套件...]。
+1. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此步驟會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
 
     ![NuGet 封裝管理員視窗][img-servicenuget]
-4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
+1. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
+        using Microsoft.Azure.Devices.Shared;
+
+1. 新增下列 `using` 陳述式 (如果預設陳述式中尚不存在)。
+
+        using System.Threading.Tasks;
         
-5. 將下列欄位新增到 **Program** 類別。 將預留位置替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
+1. 將下列欄位新增到 **Program** 類別。 將預留位置替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
    
         static string connString = "{iot hub connection string}";
         static ServiceClient client;
         static JobClient jobClient;
         
-6. 將下列方法加入至 **Program** 類別：
+1. 將下列方法加入至 **Program** 類別：
    
         public static async Task MonitorJob(string jobId)
         {
@@ -93,7 +98,7 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
             } while ((result.Status != JobStatus.Completed) && (result.Status != JobStatus.Failed));
         }
                 
-7. 將下列方法加入至 **Program** 類別：
+1. 將下列方法加入至 **Program** 類別：
 
         public static async Task StartMethodJob(string jobId)
         {
@@ -108,7 +113,7 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
             Console.WriteLine("Started Method Job");
         }
 
-8. 將下列方法加入至 **Program** 類別：
+1. 將下列方法加入至 **Program** 類別：
 
         public static async Task StartTwinUpdateJob(string jobId)
         {
@@ -127,7 +132,7 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
         }
  
 
-9. 最後，將下列幾行加入至 **Main** 方法：
+1. 最後，將下列幾行加入至 **Main** 方法：
    
         jobClient = JobClient.CreateFromConnectionString(connString);
 
@@ -144,8 +149,8 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
         MonitorJob(twinUpdateJobId).Wait();
         Console.WriteLine("Press ENTER to exit.");
         Console.ReadLine();
-                   
-10. 建置方案。
+
+1. 在 [方案總管] 中，開啟 [設定起始專案...]，並確定 **ScheduleJob** 專案的 [動作] 是 [啟動]。 建置方案。
 
 ## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您會建立 Node.js 主控台應用程式，它會回應雲端所呼叫的直接方法，這會讓模擬的裝置重新啟動，並使用報告屬性來啟用裝置對應項查詢，以識別裝置以及上次重新啟動的時機。
@@ -155,13 +160,13 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
     ```
     npm init
     ```
-2. 在命令提示字元中，於 **simDevice** 資料夾中執行下列命令來安裝 **azure-iot-device** 裝置 SDK 套件和 **azure-iot-device-mqtt** 套件：
+1. 在 **simDevice** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device** 和 **azure-iot-device-mqtt** 套件：
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. 使用文字編輯器，在 [simDevice] 資料夾中建立新的 **simDevice.js** 檔案。
-4. 在 **simDevice.js** 檔案的開頭新增下列 'require' 陳述式：
+1. 使用文字編輯器，在 [simDevice] 資料夾中建立新的 **simDevice.js** 檔案。
+1. 在 **simDevice.js** 檔案的開頭新增下列 'require' 陳述式：
    
     ```
     'use strict';
@@ -169,13 +174,13 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
     var Client = require('azure-iot-device').Client;
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
-5. 新增 **connectionString** 變數，並用它來建立**用戶端**執行個體。  
+1. 新增 **connectionString** 變數，並用它來建立**用戶端**執行個體。 務必以適合您設定的值來取代預留位置。
    
     ```
     var connectionString = 'HostName={youriothostname};DeviceId={yourdeviceid};SharedAccessKey={yourdevicekey}';
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
-6. 新增下列函式以處理 **lockDoor** 方法。
+1. 新增下列函式以處理 **lockDoor** 方法。
    
     ```
     var onLockDoor = function(request, response) {
@@ -192,7 +197,7 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
         console.log('Locking Door!');
     };
     ```
-7. 新增下列程式碼以註冊 **lockDoor** 方法的處理常式。
+1. 新增下列程式碼以註冊 **lockDoor** 方法的處理常式。
    
     ```
     client.open(function(err) {
@@ -204,7 +209,7 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
         }
     });
     ```
-8. 儲存並關閉 **simDevice.js** 檔案。
+1. 儲存並關閉 **simDevice.js** 檔案。
 
 > [!NOTE]
 > 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
@@ -219,22 +224,23 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
     ```
     node simDevice.js
     ```
-2. 執行 C# 主控台應用程式 **ScheduleJob** - 以滑鼠右鍵按一下 **ScheduleJob** 專案，選取 [偵錯] 和 [啟動新的執行個體]。
+1. 執行 C# 主控台應用程式 **ScheduleJob** - 以滑鼠右鍵按一下 **ScheduleJob** 專案，然後選取 [偵錯] 和 [開始新執行個體]。
 
-3. 您會看到來自裝置及後端應用程式的輸出。
+1. 您會看到來自裝置及後端應用程式的輸出。
+
+    ![執行應用程式以排程作業][img-schedulejobs]
 
 ## <a name="next-steps"></a>後續步驟
 在本教學課程中，您已使用作業來排定裝置的直接方法，以及更新裝置對應項 (twin) 的屬性。
 
-若要繼續開始使用「IoT 中樞」和裝置管理模式 (例如遠端無線韌體更新)，請參閱︰
-
-[教學課程：如何進行韌體更新][lnk-fwupdate]
+若要繼續開始使用「IoT 中樞」和裝置管理模式 (例如遠端無線韌體更新)，請參閱[教學課程：如何進行韌體更新][lnk-fwupdate]。
 
 若要繼續開始使用 IoT 中樞，請參閱[開始使用 IoT 閘道 SDK][lnk-gateway-SDK]。
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-node-schedule-jobs/servicesdknuget.png
 [img-createapp]: media/iot-hub-csharp-node-schedule-jobs/createnetapp.png
+[img-schedulejobs]: media/iot-hub-csharp-node-schedule-jobs/schedulejobs.png
 
 [lnk-get-started-twin]: iot-hub-node-node-twin-getstarted.md
 [lnk-twin-props]: iot-hub-node-node-twin-how-to-configure.md

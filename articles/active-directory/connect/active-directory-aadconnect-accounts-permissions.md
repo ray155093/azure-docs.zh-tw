@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/07/2017
+ms.date: 04/04/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: 68e475891a91e4ae45a467cbda2b7b51c8020dbd
-ms.openlocfilehash: e5f643d444fb2bf00aa91083f5d09962372e0dbb
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: 4ef0118435020edc3a922c88a5a55400992cbc09
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -106,14 +107,68 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 
 ![AD 帳戶](./media/active-directory-aadconnect-accounts-permissions/adsyncserviceaccount.png)
 
-### <a name="azure-ad-connect-sync-service-accounts"></a>Azure AD Connect 同步處理服務帳戶
+如果您使用自訂設定，您就必須負責在開始安裝之前建立帳戶。
+
+### <a name="azure-ad-connect-sync-service-account"></a>Azure AD Connect 同步處理服務帳戶
+同步處理服務可以在不同帳戶下執行。 它可以在**虛擬服務帳戶** (VSA)、**群組受管理服務帳戶** (gMSA/sMSA) 或一般使用者帳戶下執行。 當您執行全新安裝時，2017 年 4 月版之 Connect 的支援選項已變更。 如果您從舊版的 Azure AD Connect 升級，將無法使用這些額外選項。
+
+| 帳戶類型 | 安裝選項 | 說明 |
+| --- | --- | --- |
+| [虛擬服務帳戶](#virtual-service-account) | 快速和自訂，2017 年 4 月和更新版本 | 這個選項適用於所有快速安裝，但網域控制站上的安裝除外。 若為自訂安裝，除非您使用其他選項，否則這是預設選項。 |
+| [群組受管理服務帳戶](#group-managed-service-account) | 自訂，2017 年 4 月和更新版本 | 如果您使用遠端 SQL Server，我們建議使用群組受管理服務帳戶。 |
+| [使用者帳戶](#user-account) | 快速和自訂，2017 年 4 月和更新版本 | 只有在 Windows Server 2008 和網域控制站上安裝時，才會在安裝期間建立前面加上 AAD_ 的使用者帳戶。 |
+| [使用者帳戶](#user-account) | 快速和自訂，2017 年 3 月和更早版本 | 在安裝期間，系統會建立本機帳戶，並於帳戶前面加上 AAD_。 而在使用自訂安裝時，您則可以指定另一個帳戶。 |
+
+如果您使用的 Connect 所具有的組建來自 2017 年 3 月或更早版本，由於 Windows 基於安全性理由會摧毀加密金鑰，您不應該重設服務帳戶的密碼。 只有重新安裝 Azure AD Connect 才能將帳戶變更為其他任何帳戶。 如果您升級為來自 2017 年 4 月或更新版本的組建，則系統支援變更服務帳戶的密碼，但是您無法變更所使用的帳戶。
+
+> [!Important]
+> 您只能在第一次安裝時設定服務帳戶。 系統不支援在安裝完成之後才變更服務帳戶。
+
+下列資料表列出同步處理服務帳戶的預設、建議和支援選項。
+
+圖例：
+
+- **粗體**代表預設選項，大部分情況下也代表建議選項。
+- *斜體* 代表建議選項 (若該選項不是預設選項)。
+- 2008 - 安裝在 Windows Server 2008 時的預設選項
+- 非粗體 - 支援選項
+- 本機帳戶 - 伺服器上的本機使用者帳戶
+- 網域帳戶 - 網域使用者帳戶
+- sMSA - [獨立受管理服務帳戶](https://technet.microsoft.com/library/dd548356.aspx)
+- gMSA - [群組受管理服務帳戶](https://technet.microsoft.com/library/hh831782.aspx)
+
+| | LocalDB</br>Express | LocalDB/LocalSQL</br>自訂 | 遠端 SQL</br>自訂 |
+| --- | --- | --- | --- |
+| **獨立/工作群組電腦** | 不支援 | **VSA**</br>本機帳戶 (2008)</br>本機帳戶 |  不支援 |
+| **已加入網域的電腦** | **VSA**</br>本機帳戶 (2008) | **VSA**</br>本機帳戶 (2008)</br>本機帳戶</br>網域帳戶</br>sMSA、gMSA | **gMSA**</br>網域帳戶 |
+| **網域控制站** | **網域帳戶** | *gMSA*</br>**網域帳戶**</br>sMSA| *gMSA*</br>**網域帳戶**|
+
+#### <a name="virtual-service-account"></a>虛擬服務帳戶
+虛擬服務帳戶是特殊的帳戶類型，這種帳戶沒有密碼，並且是由 Windows 進行管理。
+
+![VSA](./media/active-directory-aadconnect-accounts-permissions/aadsyncvsa.png)
+
+VSA 適用於同步處理引擎和 SQL 位於相同伺服器的情況。 如果您使用遠端 SQL，我們會建議您改用[群組受管理服務帳戶](#managed-service-account)。
+
+這項功能需要 Windows Server 2008 R2 或更新版本。 如果您在 Windows Server 2008 上安裝 Azure AD Connect，則安裝會改回使用[使用者帳戶](#user-account)。
+
+#### <a name="group-managed-service-account"></a>群組受管理服務帳戶
+如果您使用遠端 SQL Server，我們建議使用**群組受管理服務帳戶**。 如需如何讓 Active Directory 準備好使用群組受管理服務帳戶的詳細資訊，請參閱[群組受管理服務帳戶概觀](https://technet.microsoft.com/library/hh831782.aspx)。
+
+若要使用此選項，請在 [安裝必要元件][](active-directory-aadconnect-get-started-custom.md#install-required-components) 頁面上，依序選取 [使用現有的服務帳戶] 和 [受管理服務帳戶]。  
+![VSA](./media/active-directory-aadconnect-accounts-permissions/serviceaccount.png)  
+系統也支援使用[獨立受管理服務帳戶](https://technet.microsoft.com/library/dd548356.aspx)。 不過，由於這些帳戶只能在本機電腦上使用，所以對預設虛擬服務帳戶使用這些帳戶並沒有任何實質好處。
+
+這項功能需要 Windows Server 2012 或更新版本。 如果您需要使用較舊的作業系統並使用遠端 SQL，則您必須使用[使用者帳戶](#user-account)。
+
+#### <a name="user-account"></a>使用者帳戶
 安裝精靈會建立本機服務帳戶 (除非您在自訂設定指定要使用的帳戶)。 此帳戶的前面會加上 **AAD_** 並用做實際同步處理服務的執行身分。 如果您在網域控制站上安裝 Azure AD Connect，則在網域中建立帳戶。 如果您使用執行 SQL Server 的遠端伺服器，或使用要求驗證的 Proxy，**AAD_** 服務帳戶就必須位於網域中。
 
 ![同步服務帳戶](./media/active-directory-aadconnect-accounts-permissions/syncserviceaccount.png)
 
 系統會使用不會過期的長複雜密碼建立帳戶。
 
-這個帳戶是安全儲存其他帳戶密碼的方式。 這些其他帳戶的密碼會加密儲存在資料庫中。 加密金鑰的私密金鑰是使用 Windows 資料保護 API (DPAPI) 的密碼編譯服務祕密金鑰加密來保護。 由於 Windows 基於安全性理由之後會摧毀加密金鑰，您不應該重設服務帳戶的密碼。
+這個帳戶是安全儲存其他帳戶密碼的方式。 這些其他帳戶的密碼會加密儲存在資料庫中。 加密金鑰的私密金鑰是使用 Windows 資料保護 API (DPAPI) 的密碼編譯服務祕密金鑰加密來保護。
 
 如果您使用完整的 SQL Server，那麼服務帳戶會是為同步引擎所建立的資料庫 DBO。 使用其他權限，服務將無法如預期般運作。 也會建立 SQL 登入。
 
@@ -132,10 +187,4 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](../active-directory-aadconnect.md)。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

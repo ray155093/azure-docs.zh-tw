@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 09/06/2016
+ms.date: 04/11/2017
 ms.author: rclaus
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 4f6f8dd109a1f0d395782ba73fd425c7a6ccf0eb
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 1a808a83a8ed1162d57f7c5a49e34b2e3be50833
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -29,18 +29,13 @@ ms.lasthandoff: 03/27/2017
 * Oracle JDK 虛擬機器映像
 
 ## <a name="oracle-database-virtual-machine-images"></a>Oracle 資料庫虛擬機器映像
-### <a name="clustering-rac-is-not-supported"></a>不支援叢集 (RAC)
-Azure 目前不支援 Oracle 資料庫的 Oracle Real Application Clusters (RAC)。 僅支援獨立 Oracle 資料庫執行個體。 因為 Azure 目前不支援多個虛擬機器之間讀取/寫入方式的虛擬磁碟機共用。 也不支援多點傳送 UDP。
 
 ### <a name="no-static-internal-ip"></a>無靜態內部 IP
 Azure 會指派每部虛擬機器各一個內部 IP 位址。 除非虛擬機器屬於虛擬網路的一部分，否則虛擬機器的 IP 位址將是動態位址，且虛擬機器重新啟動之後可能會改變。 這可能會造成問題，因為 Oracle 資料庫預期的是靜態 IP 位址。 若要避免這個問題，請考慮將虛擬機器加入 Azure 虛擬網路。 如需詳細資訊，請參閱[虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)和[在 Azure 中建立虛擬網路](../../../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。
 
 ### <a name="attached-disk-configuration-options"></a>連接的磁碟組態選項
-您可以將資料檔案放在虛擬機器的作業系統磁碟，或連接的磁碟 (又稱資料磁碟)。 相較於作業系統磁碟，連接的磁碟可能會提供更好的效能和具彈性的大小。 作業系統磁碟可能只適合 10 GB 以下的資料庫。
 
-連接的磁碟依賴 Azure Blob 儲存體服務。 理論上每個磁碟最多都能達約每秒 500 輸入/輸出作業 (IOPS)。 連接的磁碟一開始可能未達最佳效能，經過持續作業約 60-90 分鐘的燒錄 (burn-in) 期間後，IOPS 效能可能會大幅改善。 若磁碟之後保持閒置，IOPS 效能可能會縮減，直到另一個持續作業的燒錄期間。 簡單地說，磁碟越活躍就越接近最佳 IOPS 效能。
-
-雖然最簡單的方法是將單一磁碟連接至虛擬機器，並將資料庫檔案放在該磁碟，但這個方法也對效能產生較多限制。 反之，透過使用多個連接的磁碟，並將資料庫資料分散至其間，然後使用 Oracle Automatic Storage Management (ASM)，通常就能改善有效的 IOPS 效能。 如需詳細資訊，請參閱 [Oracle Automatic Storage 概觀](http://www.oracle.com/technetwork/database/index-100339.html) (英文)。 雖然可以在作業系統層級使用多重磁碟等量，但因為它對 IOPS 效能的改善尚屬未知，所以不建議此方法。
+連接的磁碟依賴 Azure Blob 儲存體服務。 理論上每個標準磁碟最多都能達約每秒 500 輸入/輸出作業 (IOPS)。 我們的進階磁碟品項十分適用於高效能資料庫工作附載，並且達到每部磁碟最多 5000 IOPS。 如果一個磁碟就能符合您的效能需求，則您可以僅使用單一磁碟，然而，透過使用多個連結的磁碟，並將資料庫資料分散至其間，然後使用 Oracle Automatic Storage Management (ASM)，通常就能改善有效的 IOPS 效能。 如需詳細資訊，請參閱 [Oracle Automatic Storage 概觀](http://www.oracle.com/technetwork/database/index-100339.html) (英文)。 雖然可能會在作業系統層級分割多個磁碟，但您可以使用任何一個路由方式來做取捨。 
 
 請根據您希望最佳化資料庫讀取作業或寫入作業的效能，考慮兩種連接多個磁碟的方法：
 
@@ -48,14 +43,16 @@ Azure 會指派每部虛擬機器各一個內部 IP 位址。 除非虛擬機器
     ![](media/mysql-2008r2/image2.png)
 
 > [!IMPORTANT]
-> 依個別情況評估寫入效能與讀取效能之間的取捨。 您的實際結果可能因使用此方法而有所不同。
+> 依個別情況評估寫入效能與讀取效能之間的取捨。 您的實際結果可能會不同，請執行適當的測試。 ASM 適用寫入作業，作業系統磁碟分量適用讀取作業。
 > 
-> 
+
+### <a name="clustering-rac-is-not-supported"></a>不支援叢集 (RAC)
+Oracle Real Application Clusters (RAC) 是用來在內部部署的多節點叢集組態中，減少發生單一節點錯誤的機率。  它依賴以下兩個內部部署技術，而這兩個技術無法在大規模雲端環境 (如 Microsoft Azure) 中運作︰網路多點傳送和共用磁碟。 如果您想要建構 Oracle 資料庫的異地備援多節點組態，您必須透過 Oracle DataGuard 實作資料複寫。
 
 ### <a name="high-availability-and-disaster-recovery-considerations"></a>高可用性和災害復原考量
 在 Azure 虛擬機器中使用 Oracle 資料庫時，您必須負責實作高可用性和災害復原解決方案，以避免任何停機。 您也需負責備份自己的資料和應用程式。
 
-Azure 上的 Oracle Database Enterprise Edition (不含 RAC) 可以使用 [Data Guard、Active Data Guard](http://www.oracle.com/technetwork/articles/oem/dataguardoverview-083155.html) 或 [Oracle Golden Gate](http://www.oracle.com/technetwork/middleware/goldengate) 來達成高可用性和災害復原，且兩個資料庫位於不同的虛擬機器上。 這兩個虛擬機器應該位於相同的[雲端服務](../../linux/classic/connect-vms.md)和[虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)中，以確保它們可以透過永續私人 IP 位址互相存取。  此外，建議您將虛擬機器放在相同的 [可用性設定組](../../virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 中，讓 Azure 可將其放置於不同的容錯網域和升級網域。 只有相同雲端服務內的虛擬機器可以參與相同的可用性設定組。 每部虛擬機器必須至少有 2 GB 的記憶體和 5 GB 的磁碟空間。
+Azure 上的 Oracle Database Enterprise Edition (不含 RAC) 可以使用 [Data Guard、Active Data Guard](http://www.oracle.com/technetwork/articles/oem/dataguardoverview-083155.html) 或 [Oracle Golden Gate](http://www.oracle.com/technetwork/middleware/goldengate) 來達成高可用性和災害復原，且兩個資料庫位於不同的虛擬機器上。 這兩個虛擬機器應該位於相同的[虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)中，以確保它們可以透過永續私人 IP 位址互相存取。  此外，建議您將虛擬機器放在相同的 [可用性設定組](../manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 中，讓 Azure 可將其放置於不同的容錯網域和升級網域。 每部虛擬機器必須至少有 2 GB 的記憶體和 5 GB 的磁碟空間。
 
 使用 Oracle Data Guard，可以藉由某個虛擬機器中的主要資料庫、另一個虛擬機器中的次要 (待命) 資料庫以及它們之間的單向複寫設定，達到高可用性。 這樣讀取作業存取的會是資料庫的複本。 使用 Oracle GoldenGate，您則可以設定兩個資料庫之間的雙向複寫。 若要了解如何使用這些工具為資料庫設定高可用性解決方案，請參閱 Oracle 網站上的 [Active Data Guard](http://www.oracle.com/technetwork/database/features/availability/data-guard-documentation-152848.html) 和 [GoldenGate](http://docs.oracle.com/goldengate/1212/gg-winux/index.html) 文件 (英文)。 如需資料庫複本的讀取-寫入存取權，您可以使用 [Oracle Active Data Guard](http://www.oracle.com/uk/products/database/options/active-data-guard/overview/index.html)。
 
