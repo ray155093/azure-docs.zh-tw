@@ -13,38 +13,51 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-multiple
 ms.devlang: na
 ms.topic: article
-ms.date: 02/09/2017
+ms.date: 03/30/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: cb10c04d76e957f88d67a791e3b4a19797704eea
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 4387dc52b756e919c482deacf826ebafd3709126
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="how-to-install-and-configure-trend-micro-deep-security-as-a-service-on-a-windows-vm"></a>如何在 Windows VM 上安裝和設定 Trend Micro Deep Security as a Service
-> [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> [!IMPORTANT]
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用 Resource Manager 模式。
 
 本文說明如何在執行 Windows Server 的新或現有虛擬機器 (VM) 上，安裝和設定 Trend Micro Deep Security as a Service。 Deep Security as a Service 包括反惡意程式碼防護、防火牆、入侵防禦系統及完整監視。
 
-透過 VM 代理程式，用戶端會安裝為安全性延伸模組。 在新的虛擬機器上，您將安裝 VM 代理程式與 Deep Security 代理程式。 在沒有 VM 代理程式的現有虛擬機器上，您必須先下載與安裝 VM 代理程式。 本文將探討這兩種狀況。
+透過 VM 代理程式，用戶端會安裝為安全性延伸模組。 在新的虛擬機器上，您將安裝 Deep Security Agent，因為 Azure 入口網站會自動建立 VM 代理程式。
 
-如果您已有 Trend Micro 的內部部署解決方案現有訂用帳戶，您可以用它來協助保護 Azure 虛擬機器的安全。 如果您還不是 Symantec 客戶，您可以註冊試用訂用帳戶。 如需有關此解決方案的詳細資訊，請參閱 Trend Micro 部落格文章 [適用於 Deep Security 的 Microsoft Azure VM 代理程式延伸模組](http://go.microsoft.com/fwlink/p/?LinkId=403945)。
+使用傳統入口網站、Azure CLI 或 PowerShell 建立的現有 VM 可能沒有 VM 代理程式。 對於沒有 VM 代理程式的現有虛擬機器，您必須先下載與安裝 VM 代理程式。 本文將探討這兩種狀況。
+
+如果您已有 Trend Micro 的內部部署解決方案的目前訂用帳戶，您可以用它來協助保護 Azure 虛擬機器的安全。 如果您還不是 Symantec 客戶，您可以註冊試用訂用帳戶。 如需有關此解決方案的詳細資訊，請參閱 Trend Micro 部落格文章 [適用於 Deep Security 的 Microsoft Azure VM 代理程式延伸模組](http://go.microsoft.com/fwlink/p/?LinkId=403945)。
 
 ## <a name="install-the-deep-security-agent-on-a-new-vm"></a>在新的 VM 上安裝 Deep Security 代理程式
-當您使用 **[從主機庫]** 選項建立虛擬機器時， [Azure 傳統入口網站](http://manage.windowsazure.com) 可讓您安裝 VM 代理程式和 Trend Micro 安全性擴充功能。 如果您打算建立單一虛擬機器，使用此入口網站可輕易地新增 Trend Micro 的防護。
 
-此 [From Gallery]  選項會開啟可協助您設定虛擬機器的精靈。 您可以使用精靈的最後一個頁面，來安裝 VM 代理程式和 Trend Micro 安全性延伸模組。 如需一般指示，請參閱[在 Azure 傳統入口網站中建立執行 Windows 的虛擬機器](tutorial.md)。 當您進入精靈的最後一個頁面時，請執行下列步驟：
+<!-- old portal [Azure classic portal](http://manage.windowsazure.com) -->
 
-1. 在 [VM 代理程式] 下，勾選 [安裝 VM 代理程式]。
-2. 在 [安全性擴充功能] 下，勾選 [Trend Micro Deep Security Agent]。
-   
-   ![Install the VM Agent and the Deep Security Agent](./media/install-trend/InstallVMAgentandTrend.png)
-3. 按一下核取記號以建立虛擬機器。
+當您使用來自 **Marketplace** 的映像建立虛擬機器時，[Azure 入口網站](http://portal.azure.com)可讓您安裝 Trend Micro 安全性擴充功能。 如果您打算建立單一虛擬機器，使用此入口網站可輕易地新增 Trend Micro 的防護。
+
+使用來自 **Marketplace** 的項目會開啟能協助您設定虛擬機器的精靈。 您會使用精靈中的第三個面板 [設定] 刀鋒視窗，來安裝 Trend Micro 安全性擴充功能。  如需一般指示，請參閱[在 Azure 入口網站中建立執行 Windows 的虛擬機器](tutorial.md)。
+
+當您進入精靈的**設定**刀鋒視窗時，請執行下列步驟：
+
+1. 按一下 [擴充功能]，然後在下一個窗格中按一下 [新增擴充功能]。
+
+   ![開始新增擴充功能][1]
+
+2. 在 [新增資源] 窗格中選取 [Deep Security 代理程式]。 在 [Deep Security 代理程式] 窗格中，按一下 [建立]。
+
+   ![識別 Deep Security Agent][2]
+
+3. 輸入擴充功能的**租用戶識別碼**和**租用戶啟用密碼**。 您可以選擇性地輸入**安全性原則識別碼**。 然後按一下 [確定] 來新增用戶端。
+
+   ![提供擴充功能詳細資料][3]
 
 ## <a name="install-the-deep-security-agent-on-an-existing-vm"></a>在現有 VM 上安裝 Deep Security 代理程式
-若要在現有的 VM 上安裝代理程式，您需要下列各項：
+若要在現有的 VM 上安裝代理程式，您需要下列項目：
 
 * 在本機電腦上安裝 Azure PowerShell 模組 0.8.2 版或更新版本。 您可以使用 **Get-Module azure | format-table version** 命令來檢查已安裝的 Azure PowerShell 版本。 如需最新版本的指示與連結，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 使用 `Add-AzureAccount`登入您的 Azure 訂用帳戶。
 * 在目標虛擬機器上安裝 VM 代理程式。
@@ -78,7 +91,12 @@ ms.lasthandoff: 03/27/2017
 
 [Azure VM 延伸模組與功能]
 
-<!--Link references-->
+<!-- Image references -->
+[1]: ./media/install-trend/new_vm_Blade3.png
+[2]: ./media/install-trend/find_SecurityAgent.png
+[3]: ./media/install-trend/SecurityAgentDetails.png
+
+<!-- Link references -->
 [如何登入執行 Windows Server 的虛擬機器]:connect-logon.md
 [Azure VM 延伸模組與功能]: http://go.microsoft.com/fwlink/p/?linkid=390493&clcid=0x409
 

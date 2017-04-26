@@ -1,6 +1,6 @@
 ---
 title: "在 HDinsight 上於 Storm 拓撲中使用 Python 元件 | Microsoft Docs"
-description: "了解如何在 Azure HDInsight 上從 Apache Storm 中Python 元件。 您將了解如何從 Java 和 Clojure 型 Storm 拓撲中使用 Python 元件。"
+description: "了解如何搭配 Apache Storm on Azure HDInsight 使用 Python 元件。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -13,175 +13,146 @@ ms.devlang: python
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/12/2017
+ms.date: 04/04/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 8b32aa77e1dbe18076d73e10914b59be107c3588
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 39a8eb9ce6a5363f541f02c33cd46d56fdabcae8
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="develop-apache-storm-topologies-using-python-on-hdinsight"></a>在 HDInsight 上使用 Python 開發 Apache Storm 拓撲
 
-Apache Storm 支援多種語言，甚至可讓您將數種語言的元件結合成一個拓撲。 本文件中，您將了解如何在 HDInsight 上於 Java 和 Clojure 型 Storm 拓撲中使用 Python 元件。
+了解如何搭配 Storm on HDInsight 使用 Python 元件。 Apache Storm 支援多種語言，甚至可讓您將數種語言的元件結合成一個拓撲。 Flux 架構 (隨 Storm 0.10.0 一起引進) 可讓您輕鬆建立使用 Python 元件的解決方案。
 
 > [!IMPORTANT]
-> 本文件提供有關使用 Windows 和 Linux 型 HDInsight 叢集的步驟。 Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-32-and-33-nearing-deprecation-date)。
+> 本文件中的資訊已使用 Storm on HDInsight 3.5 進行測試。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.3 和 3.4 版取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+
+此專案的程式碼可於 [https://github.com/Azure-Samples/hdinsight-python-storm-wordcount](https://github.com/Azure-Samples/hdinsight-python-storm-wordcount)取得。
 
 ## <a name="prerequisites"></a>必要條件
 
 * Python 2.7 或更新版本
-* Java JDK 1.7 或更新版本
-* [Leiningen](http://leiningen.org/)
+
+* Java JDK 1.8 或更新版本
+
+* Maven 3
+
+* (選擇性) 本機 Storm 開發環境。 只有當您想要在本機執行拓撲時，才需要本機 Storm 環境。 如需詳細資訊，請參閱[設定開發環境](http://storm.apache.org/releases/1.0.1/Setting-up-development-environment.html)。
 
 ## <a name="storm-multi-language-support"></a>Storm 多語言支援
 
-Storm 設計為可以與使用任何程式設計語言撰寫的元件一起使用，但元件必須了解如何使用 [Storm 的 Thrift 定義](https://github.com/apache/storm/blob/master/storm-core/src/storm.thrift)。 在 Python 中，Apache Storm 專案隨附一個模組，可讓您輕鬆地與 Strom 互動。 您可以在 [https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py](https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py)找到此模組。
+Storm 專門用來搭配以任何程式設計語言撰寫的元件。 這些元件必須了解如何使用 [Storm 的 Thrift 定義](https://github.com/apache/storm/blob/master/storm-core/src/storm.thrift)。 在 Python 中，Apache Storm 專案隨附一個模組，可讓您輕鬆地與 Strom 互動。 您可以在 [https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py](https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py)找到此模組。
 
-由於 Apache Storm 是在 Java 虛擬機器 (JVM) 上執行的 Java 程序，以其他語言撰寫的元件會以子程序方式執行。 JVM 中執行的 Storm 程式碼會使用透過 stdin/stdout 傳送的 JSON 訊息，與這些子程序進行通訊。 如需各元件之間通訊的詳細資訊，請參閱 [多語言通訊協定](https://storm.apache.org/documentation/Multilang-protocol.html) 文件。
+Apache Storm 是在 Java 虛擬機器 (JVM) 上執行的 Java 程序。 以其他語言撰寫的元件會以子流程執行。 Storm 會使用透過 stdin/stdout 傳送的 JSON 訊息，與這些子流程進行通訊。 如需各元件之間通訊的詳細資訊，請參閱 [多語言通訊協定](https://storm.apache.org/documentation/Multilang-protocol.html) 文件。
 
-### <a name="the-storm-module"></a>Storm 模組
-Storm 模組 (https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py)，提供建立 Python 元件 (使用 Storm) 所需的位元。
+## <a name="python-and-the-flux-framework"></a>Python 和 Flux 架構
 
-例如，其中有 `storm.emit` 可發出 Tuple、`storm.logInfo` 可寫入記錄檔。 建議您詳閱這個檔案，了解它所提供的內容。
+Flux 架構可讓您獨立於元件之外定義 Storm 拓撲。 雖然此範例中的元件是使用 Python 撰寫，但拓撲是使用 YAML 來定義。 下列文字是 YAML 文件中如何參考 Python 元件的範例：
 
-## <a name="challenges"></a>挑戰
-您可以使用 **storm.py** 模組建立 Python spout 來取用資料、建立 bolt 來處理資料，但是，負責設置元件之間通訊的整個 Storm 拓撲定義，仍是使用 Java 或 Clojure 撰寫。 此外，如果您使用 Java，您也必須建立 Java 元件做為 Python 元件的介面。
+```yaml
+# Spout definitions
+spouts:
+  - id: "sentence-spout"
+    className: "org.apache.storm.flux.wrappers.spouts.FluxShellSpout"
+    constructorArgs:
+      # Command line
+      - ["python", "sentencespout.py"]
+      # Output field(s)
+      - ["sentence"]
+    # parallelism hint
+    parallelism: 1
+```
 
-另外，因為 Storm 叢集是以分散式方式執行，您必須確定任何 Python 元件所需的任何模組，可供叢集的所有背景工作角色節點使用。 對於多語言的資源，Storm 沒有辦法輕鬆完成此工作，您必須將所有相依性納入拓撲的 jar 檔案中，或在叢集的每一個背景工作角色節點上手動安裝相依性。
+類別 `FluxShellSpout` 用來啟動實作 Spout 的 `sentencespout.py` 指令碼。
 
-### <a name="java-vs-clojure-topology-definition"></a>Java 與Clojure 拓撲定義的比較
-在兩種定義拓撲的方法，Clojure 是目前為止最簡單/最乾淨的方法，因為您可以在拓樸定義中直接參考 python 元件。 對於 Java 型拓樸定義，您也必須定義 Java 元件來處理一些工作，例如在 Python 元件傳回的 Tuple 中宣告欄位。
+Flux 要求 Python 指令碼位於拓撲所在之 jar 檔案內的 `/resources` 目錄。 因此，這個範例會將 Python 指令碼儲存在 `/multilang/resources` 目錄。 `pom.xml` 使用下列 XML 來包含此檔案：
 
-本文件說明這兩種方法，並附上範例專案。
+```xml
+<!-- include the Python components -->
+<resource>
+    <directory>${basedir}/multilang</directory>
+    <filtering>false</filtering>
+</resource>
+```
 
-## <a name="python-components-with-a-java-topology"></a>使用 Java 拓撲的 Python 元件
-> [!NOTE]
-> 此範例可於 [https://github.com/Azure-Samples/hdinsight-python-storm-wordcount](https://github.com/Azure-Samples/hdinsight-python-storm-wordcount) 的 **JavaTopology** 目錄中取得。 這是一個 Maven 型專案。 如果您不熟悉 Maven，請參閱 [在 HDInsight 上使用 Apache Storm 開發以 Java 為基礎的拓撲](hdinsight-storm-develop-java-topology.md) ，以取得有關為 Storm 拓撲建立 Maven 專案的詳細資訊。
-> 
-> 
+如先前所述，有一個 `storm.py` 檔案實作 Storm 的 Thrift 定義。 建置專案，Flux 架構會自動包含此檔案，因此您不必擔心要包含它。
 
-使用 Python (或其他 JVM 語言元件) 的 Java 型拓樸乍看之下是使用 Java 元件，但如果查看每個 Java spout/bolt，您會看到類似下列的程式碼：
+## <a name="build-the-project"></a>建置專案
 
-    public SplitBolt() {
-        super("python", "countbolt.py");
-    }
+從專案根目錄中，使用下列命令︰
 
-Java 在這裡叫用 Python，並執行含有實際 blot 邏輯的指令碼。 Java spout/bolt (針對此範例) 只是在基礎 Python 元件將發出的 Tuple 中宣告欄位。
+```bash
+mvn clean compile package
+```
 
-在此範例中，實際 Python 檔案儲存在 `/multilang/resources` 目錄中。 **pom.xml** 中會參考 `/multilang` 目錄：
+此命令會建立 `target/WordCount-1.0-SNAPSHOT.jar` 檔案，其中包含已編譯的拓撲。
 
-<resources>
-    <resource>
-        <!-- Where the Python bits are kept -->
-        <directory>${basedir}/multilang</directory>
-    </resource>
-</resources>
+## <a name="run-the-topology-locally"></a>在本機測試拓撲
 
-這會將 `/multilang` 資料夾中的所有檔案，併入到從這個專案建置的 jar 中。
+若要在本機執行拓撲，請使用下列命令：
 
-> [!IMPORTANT]
-> 請注意，這僅指定 `/multilang` 目錄，而不是 `/multilang/resources`。 Storm 預期非 JVM 資源都在 `resources` 目錄中，因此在內部已尋找過它。 將元件放在此資料夾中，可讓您在 Java 程式碼中直接依名稱參考。 例如， `super("python", "countbolt.py");`。 另一種看法是 Storm 存取多語言的資源時會將 `resources` 目錄視為根目錄 (/)。
-> 
-> 針對此範例專案，`storm.py` 模組位於 `/multilang/resources` 目錄中。
-> 
-> 
-
-### <a name="build-and-run-the-project"></a>建置並執行專案
-若要在本機執行此專案，只要使用下列 Maven 命令建置，並以本機模式執行即可：
-
-    mvn compile exec:java -Dstorm.topology=com.microsoft.example.WordCount
-
-使用 ctrl+c 可結束程序。
-
-若要將專案部署至執行 Apache Storm 的 HDInsight 叢集，請使用下列步驟：
-
-1. 建置 uber jar：
-   
-        mvn package
-   
-    這樣會在此專案的 `/target` 目錄中建立名為 **WordCount--1.0-SNAPSHOT.jar** 的檔案。
-2. 使用下列其中一種方法，將 jar 檔案上傳至 Hadoop 叢集：
-   
-   * **以 Linux 為基礎的** HDInsight 叢集：使用 `scp WordCount-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:WordCount-1.0-SNAPSHOT.jar` 將 jar 檔案複製到叢集，並以您的 SSH 使用者名稱取代 USERNAME，以 HDInsight 叢集名稱取代 CLUSTERNAME。
-     
-       檔案上傳完成之後，使用 SSH 連接到叢集，然後使用 `storm jar WordCount-1.0-SNAPSHOT.jar com.microsoft.example.WordCount wordcount`
-   * **以 Windows 為基礎的** HDInsight 叢集：在瀏覽器中移至 HTTPS://CLUSTERNAME.azurehdinsight.net/，以連接到 Storm 儀表板。 以您的 HDInsight 叢集名稱取代 CLUSTERNAME，在出現提示時，提供系統管理員名稱和密碼。
-     
-       使用表單執行下列動作：
-     
-     * **Jar 檔案**：選取 [瀏覽]，然後選取 **wordcount-1.0-SNAPSHOT.jar** 檔案
-     * **類別名稱**：輸入 `com.microsoft.example.WordCount`
-     * **其他參數**：輸入易記名稱來識別拓撲，例如 `wordcount`
-       
-       最後，選取 [提交]  啟動拓撲。
+```bash
+storm jar WordCount-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux -l -R /topology.yaml
+```
 
 > [!NOTE]
-> Storm 拓撲啟動之後會一直執行到停止 (刪除) 為止。若要停止拓撲，請從命令列 (例如，Linux 叢集的 SSH 工作階段) 使用 `storm kill TOPOLOGYNAME` 命令，或使用 Storm UI 選取拓撲，然後選取 [刪除] 按鈕。
-> 
-> 
+> 此命令需要本機 Storm 開發環境。 如需詳細資訊，請參閱[設定開發環境](http://storm.apache.org/releases/1.0.1/Setting-up-development-environment.html)。
 
-## <a name="python-components-with-a-clojure-topology"></a>使用 Clojure 拓撲的 Python 元件
-> [!NOTE]
-> 此範例可於 [https://github.com/Azure-Samples/hdinsight-python-storm-wordcount](https://github.com/Azure-Samples/hdinsight-python-storm-wordcount) 的 **ClojureTopology** 目錄中取得。
-> 
-> 
+拓撲啟動之後，就會將類似下列文字的資訊發出至本機主控台︰
 
-此拓撲由 [Leiningen](http://leiningen.org) 建立，用於[建立新的 Clojure 專案](https://github.com/technomancy/leiningen/blob/stable/doc/TUTORIAL.md#creating-a-project)。 之後，已建立結構的專案經過下列修改：
+```
+24302 [Thread-25-sentence-spout-executor[4 4]] INFO  o.a.s.s.ShellSpout - ShellLog pid:2436, name:sentence-spout Emiting the cow jumped over the moon
+24302 [Thread-30] INFO  o.a.s.t.ShellBolt - ShellLog pid:2438, name:splitter-bolt Emitting the
+24302 [Thread-28] INFO  o.a.s.t.ShellBolt - ShellLog pid:2437, name:counter-bolt Emitting years:160
+24302 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=the, count=599}
+24303 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=seven, count=302}
+24303 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=dwarfs, count=143}
+24303 [Thread-25-sentence-spout-executor[4 4]] INFO  o.a.s.s.ShellSpout - ShellLog pid:2436, name:sentence-spout Emiting the cow jumped over the moon
+24303 [Thread-30] INFO  o.a.s.t.ShellBolt - ShellLog pid:2438, name:splitter-bolt Emitting cow
+^C24303 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=four, count=160}
+```
 
-* **project.clj**：加入 Storm 的相依性，並排除部署至 HDInsight 伺服器時可能造成問題的項目。
-* **resources/resources**：Leiningen 建立預設的 `resources` 目錄，不過，這裡儲存的檔案似乎會新增至根據這個專案所建立的 jar 檔案的根目錄，但 Storm 需要這些檔案位於名為 `resources` 的子目錄中。 因此加入一個子目錄，Python 檔案就儲存在 `resources/resources`中。 在執行階段，這當成存取 Python 元件時的根目錄 (/)。
-* **src/wordcount/core.clj**：此檔案包含拓撲定義，而且由 **project.clj** 檔案參考。 如需有關使用 Clojure 定義 Storm 拓撲的詳細資訊，請參閱 [Clojure DSL](https://storm.apache.org/documentation/Clojure-DSL.html)。
+使用 Ctrl+c 來停止拓撲。
 
-### <a name="build-and-run-the-project"></a>建置並執行專案
-**如果要在本機建置並執行專案**，請使用下列命令：
+## <a name="run-the-topology-on-hdinsight"></a>在 HDInsight 上執行拓撲
 
-    lein clean, run
+1. 使用下列命令將 `WordCount-1.0-SNAPSHOT.jar`檔案複製到 Storm on HDInsight 叢集：
 
-若要停止拓撲，請使用 **Ctrl+C**。
+    ```bash
+    scp target\WordCount-1.0-SNAPSHOT.jar sshuser@mycluster-ssh.azurehdinsight.net
+    ```
 
-**如果要建置 Uberjar 並部署至 HDInsight**，請使用下列步驟：
+    將 `sshuser` 取代為叢集的 SSH 使用者。 將 `mycluster` 取代為叢集名稱。 系統可能會提示您輸入 SSH 使用者的密碼。
 
-1. 建立包含拓撲和必要相依性的 uberjar：
-   
-        lein uberjar
-   
-    這會建立在 `wordcount-1.0-SNAPSHOT.jar` 的 `target\uberjar+uberjar` 目錄中取得。
-2. 使用下列其中一種方法，將拓撲部署至 HDInsight 叢集來執行：
-   
-   * **以 Linux 為基礎的 HDInsight**
-     
-     1. 使用 `scp`將檔案複製到 HDInsight 叢集前端節點。 例如：
-        
-             scp wordcount-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:wordcount-1.0-SNAPSHOT.jar
-        
-         以您叢集的 SSH 使用者取代 USERNAME，並以您的 HDInsight 叢集名稱取代 CLUSTERNAME。
-     2. 將檔案複製到叢集之後，使用 SSH 連接到叢集並提交工作。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
-     
-     3. 連線之後，使用下列命令啟動拓撲：
-        
-             storm jar wordcount-1.0-SNAPSHOT.jar wordcount.core wordcount
-   * **以 Windows 為基礎的 HDInsight**
-     
-     1. 在瀏覽器中移至 HTTPS://CLUSTERNAME.azurehdinsight.net/，以連接到 Storm 儀表板。 以您的 HDInsight 叢集名稱取代 CLUSTERNAME，在出現提示時，提供系統管理員名稱和密碼。
-     2. 使用表單執行下列動作：
-        
-        * **Jar 檔案**：選取 [瀏覽]，然後選取 **wordcount-1.0-SNAPSHOT.jar** 檔案
-        * **類別名稱**：輸入 `wordcount.core`
-        * **其他參數**：輸入易記名稱來識別拓撲，例如 `wordcount`
-          
-          最後，選取 [提交]  啟動拓撲。
+    如需有關使用 SSH 和 SCP 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+
+2. 上傳檔案後，使用 SSH 連線至叢集：
+
+    ```bash
+    ssh sshuser@mycluster-ssh.azurehdinsight.net
+    ```
+
+3. 從 SSH 工作階段中，使用下列命令啟動叢集上的拓撲：
+
+    ```bash
+    storm jar WordCount-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux -r -R /topology.yaml
+    ```
+
+3. 您可以使用 Storm UI 來檢視叢集上的拓撲。 Storm UI 位於 https://mycluster.azurehdinsight.net/stormui。 將 `mycluster` 取代為您的叢集名稱。
 
 > [!NOTE]
-> Storm 拓撲啟動之後會一直執行到停止 (刪除) 為止。若要停止拓撲，請從命令列 (Linux 叢集的 SSH 工作階段) 使用 `storm kill TOPOLOGYNAME` 命令，或使用 Storm UI 選取拓撲，然後選取 [刪除] 按鈕。
-> 
-> 
+> Storm 拓撲啟動之後會一直執行到停止為止。 若要停止拓撲，請使用下列其中一種方法：
+>
+> * 從命令列執行 `storm kill TOPOLOGYNAME` 命令
+> * Storm UI 中的 [終止] 按鈕。
+
 
 ## <a name="next-steps"></a>後續步驟
-本文件中，您已了解如何從 Storm 拓撲中使用 Python 元件。 請參閱下列文件，了解搭配使用 Python 與 HDInsight 的其他方式。
+
+請參閱下列文件，了解搭配使用 Python 與 HDInsight 的其他方式。
 
 * [如何使用 Python 串流處理 MapReduce 工作](hdinsight-hadoop-streaming-python.md)
 * [如何在 Pig 和 Hive 中使用 Python 使用者定義函數 (UDF)](hdinsight-python.md)
-
 

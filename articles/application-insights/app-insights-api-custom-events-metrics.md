@@ -4,19 +4,19 @@ description: "在您的裝置或桌面應用程式、網頁或服務中插入幾
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 80400495-c67b-4468-a92e-abf49793a54d
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
-ms.date: 11/16/2016
+ms.date: 03/31/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 1330d8be444f596b0d1ed2038eaeb1200e8b9285
-ms.openlocfilehash: 6951a50050c5b0c8edb2deb1eb64aef44e94ff96
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 64632e58330b8212be24b98f861a3a4f358e72df
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -31,12 +31,12 @@ API 是跨所有平台統一的，除了一些小變化形式。
 | 方法 | 用於 |
 | --- | --- |
 | [`TrackPageView`](#page-views) |頁面、畫面、刀鋒視窗或表單。 |
-| [`TrackEvent`](#track-event) |使用者動作和其他事件。 用來追蹤使用者行為，或監視效能。 |
-| [`TrackMetric`](#track-metric) |效能度量，例如與特定事件不相關的佇列長度。 |
-| [`TrackException`](#track-exception) |記錄例外狀況以供診斷。 追蹤與其他事件的發生相對位置，並且檢查堆疊追蹤。 |
-| [`TrackRequest`](#track-request) |記錄伺服器要求的頻率和持續時間以進行效能分析。 |
-| [`TrackTrace`](#track-trace) |診斷記錄訊息。 您也可以擷取第三方記錄檔。 |
-| [`TrackDependency`](#track-dependency) |記錄應用程式所依賴之外部元件呼叫的持續時間及頻率。 |
+| [`TrackEvent`](#trackevent) |使用者動作和其他事件。 用來追蹤使用者行為，或監視效能。 |
+| [`TrackMetric`](#send-metrics) |效能度量，例如與特定事件不相關的佇列長度。 |
+| [`TrackException`](#trackexception) |記錄例外狀況以供診斷。 追蹤與其他事件的發生相對位置，並且檢查堆疊追蹤。 |
+| [`TrackRequest`](#trackrequest) |記錄伺服器要求的頻率和持續時間以進行效能分析。 |
+| [`TrackTrace`](#tracktrace) |診斷記錄訊息。 您也可以擷取第三方記錄檔。 |
+| [`TrackDependency`](#trackdependency) |記錄應用程式所依賴之外部元件呼叫的持續時間及頻率。 |
 
 您可以 [附加屬性和度量](#properties) 至這裡大部分的遙測呼叫。
 
@@ -45,9 +45,9 @@ API 是跨所有平台統一的，除了一些小變化形式。
 
 * 將 Application Insights SDK 加入至專案：
 
-  * [ASP.NET 專案][greenbrown]
-  * [Java 專案][java]
-  * [每個網頁中的 JavaScript][client]   
+  * [ASP.NET 專案](app-insights-asp-net.md)
+  * [Java 專案](app-insights-java-get-started.md)
+  * [每個網頁中的 JavaScript](app-insights-javascript.md) 
 * 在裝置或 Web 伺服器程式碼中，加入：
 
     *C#:* `using Microsoft.ApplicationInsights;`
@@ -76,7 +76,7 @@ TelemetryClient 具備執行緒安全。
 我們建議針對您每個應用程式的模組使用 TelemetryClient 執行個體。 比方說，您可能在 Web 服務中有一個 TelemetryClient 執行個體用來報告傳入的 HTTP 要求，以及中介類別中的另一個執行個體用來告報商業邏輯事件。 您可以設定如 `TelemetryClient.Context.User.Id` 的屬性以追蹤使用者和工作階段，或 `TelemetryClient.Context.Device.Id` 來識別電腦。 這項資訊會附加至執行個體所傳送的所有事件。
 
 ## <a name="trackevent"></a>TrackEvent
-在 Application Insights 中，「自訂事件」是您可以在[計量瀏覽器][metrics]顯示為彙總計數，以及在[診斷搜尋][diagnostic]中顯示為個別發生點的資料點。 (它與 MVC 或其他架構的「事件」不相關。)
+在 Application Insights 中，「自訂事件」是您可以在[計量瀏覽器](app-insights-metrics-explorer.md)顯示為彙總計數，以及在[診斷搜尋](app-insights-diagnostic-search.md)中顯示為個別發生點的資料點。 (它與 MVC 或其他架構的「事件」不相關。)
 
 在您的程式碼中插入 TrackEvent 呼叫，以計算使用者選擇特定功能的頻率、達成特定目標的頻率，或他們犯特定類型錯誤的頻率。
 
@@ -116,45 +116,128 @@ TelemetryClient 具備執行緒安全。
 
 ![開啟 [篩選器]，展開 [事件名稱]，然後選取一或多個值](./media/app-insights-api-custom-events-metrics/06-filter.png)
 
-## <a name="trackmetric"></a>TrackMetric
-使用 TrackMetric 傳送未附加至特定事件的度量。 例如，您可以定期監視佇列長度。
 
-在計量瀏覽器中，計量會顯示為統計圖表。 但不同於事件的是，您不能搜尋診斷搜尋中的個別發生點。
+## <a name="send-metrics"></a>傳送計量
 
-若要讓計量值正確顯示，這些值應該大於或等於 0。
+Application Insights 可以將未附加至特定事件的計量繪製成圖表。 例如，您可以定期監視佇列長度。 當您使用計量時，個別測量的重要性就不如變化和趨勢，因此統計圖表很有用。
+
+您有兩種方式可以傳送計量：
+
+* **MetricManager** 是建議的方式，它可方便您在傳送計量的同時節省頻寬。 這個方式會彙總您應用程式中的計量，每隔一分鐘就將彙總的統計資料傳送至入口網站。 您可以從 Application Insights SDK for ASP.NET 2.4 版取得 MetricManager。
+* **TrackMetric** 會將計量統計資料傳送至入口網站。 您可以傳送單一計量值，或是執行您自己的彙總並使用 TrackMetric 來傳送統計資料。
+
+### <a name="metricmanager"></a>MetricManager
+
+(Application Insights for ASP.NET v2.4.0+)
+
+建立 MetricManager 執行個體，然後使用它作為計量工廠︰
+
+*C#*
+```C#
+    // Initially:
+    var manager = new Microsoft.ApplicationInsights.Extensibility.MetricManager(telemetryClient);
+
+    // For each metric that you want to use:
+    var metric1 = mgr.CreateMetric("m1", dimensions);
+
+    // Each time you want to record a measurement:
+    metric1.Track(value);
+
+```
+
+`dimensions` 是選擇性的字串字典。 使用它，您就可以對計量附加[屬性](#properties)，以便依照不同屬性值來進行劃分。 
+
+### <a name="trackmetric"></a>TrackMetric
+
+TrackMetric 是用來傳送彙總計量的基本方法。 
+
+若要傳送單一計量值︰
 
 *JavaScript*
 
-    appInsights.trackMetric("Queue", queue.Length);
+ ```Javascript
+     appInsights.trackMetric("queueLength", 42.0);
+ ```
+
+C#、Java
+
+```C#
+    var sample = new MetricTelemetry();
+    sample.Name = "metric name";
+    sample.Value = 42.3;
+    telemetryClient.TrackMetric(sample);
+```
+
+不過，我們的建議是先彙總計量再從應用程式傳送計量，以節省頻寬。
+如果您是使用最新版的 SDK for ASP.NET，則可以使用 [`MetricManager`](#metricmanager) 來進行這項作業。 否則，程式碼的彙總範例如下︰
 
 *C#*
 
-    telemetry.TrackMetric("Queue", queue.Length);
-
-*Visual Basic*
-
-    telemetry.TrackMetric("Queue", queue.Length)
-
-*Java*
-
-    telemetry.trackMetric("Queue", queue.Length);
-
-事實上，您可能會在背景執行緒中執行這個動作：
-
-*C#*
-
-    private void Run() {
-     var appInsights = new TelemetryClient();
-     while (true) {
-      Thread.Sleep(60000);
-      appInsights.TrackMetric("Queue", queue.Length);
-     }
+```C#
+    /// Accepts metric values and sends the aggregated values at 1-minute intervals.
+    class MetricAggregator
+    {
+        private List<double> measurements = new List<double>();
+        private string name;
+        private TelemetryClient telemetryClient;
+        private BackgroundWorker thread;
+        private Boolean stop = false;
+        public void TrackMetric (double value)
+        {
+            lock (this)
+            {
+                measurements.Add(value);
+            }
+        }
+        public MetricTelemetry Aggregate()
+        {
+            lock (this)
+            {
+                var sample = new MetricTelemetry();
+                sample.Name = "metric name";
+                sample.Count = measurements.Count;
+                sample.Max = measurements.Max();
+                sample.Min = measurements.Min();
+                sample.Sum = measurements.Sum();
+                var mean = sample.Sum / measurements.Count;
+                sample.StandardDeviation = Math.Sqrt(measurements.Sum(v => { var diff = v - mean; return diff * diff; }) / measurements.Count);
+                sample.Timestamp = DateTime.Now;
+                measurements.Clear();
+                return sample;
+            }
+        }
+        public MetricAggregator(string Name)
+        {
+            name = Name;
+            thread = new BackgroundWorker();
+            thread.DoWork += async (o, e) => {
+                while (!stop)
+                {
+                    await Task.Delay(60000);
+                    telemetryClient.TrackMetric(this.Aggregate());
+                }
+            };
+            thread.RunWorkerAsync();
+        }
     }
+```
+### <a name="custom-metrics-in-metrics-explorer"></a>[計量瀏覽器] 中的自訂計量
 
+若要查看結果，開啟 [計量瀏覽器] 並加入新的圖表。 請編輯圖表以顯示您的計量。
 
-若要查看結果，開啟 [計量瀏覽器] 並加入新的圖表。 將它設定為顯示您的度量。
+> [!NOTE]
+> 自訂計量可能需要幾分鐘的時間才會出現在可用計量清單中。
+>
 
 ![新增圖表或選取圖表，並在 [自訂] 底下選取您的度量](./media/app-insights-api-custom-events-metrics/03-track-custom.png)
+
+### <a name="custom-metrics-in-analytics"></a>Analytics 中的自訂計量
+
+customMetrics 資料表中有提供遙測資料。 每個資料列各代表應用程式中的一個 trackMetric() 呼叫。 因此，如果您曾經使用 MetricManager 或您自己的彙總程式碼，每個資料列就不會只代表單一測量結果。 
+
+* `valueSum` - 這是測量結果的總和。 若要取得平均值，請將它除以 `valueCount`。
+* `valueCount` - 彙總到這個 trackMetric 呼叫的測量數目。
+
 
 
 ## <a name="page-views"></a>頁面檢視
@@ -209,30 +292,16 @@ TelemetryClient 具備執行緒安全。
 
 如果您想要在沒有 Web 服務模組執行的內容中模擬要求，您也可以自行呼叫。
 
-*C#*
-
-    // At start of processing this request:
-
-    // Operation Id and Name are attached to all telemetry and help you identify
-    // telemetry associated with one request:
-    telemetry.Context.Operation.Id = Guid.NewGuid().ToString();
-    telemetry.Context.Operation.Name = requestName;
-
-    var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-
-    // ... process the request ...
-
-    stopwatch.Stop();
-    telemetry.TrackRequest(requestName, DateTime.Now,
-       stopwatch.Elapsed,
-       "200", true);  // Response code, success
-
-
+不過，建議用來傳送要求遙測的方式是在要求作為<a href="#operation-context">作業內容</a>的地方。
 
 ## <a name="operation-context"></a>作業內容
 您可藉由為遙測項目附加通用的作業識別碼，讓它們能夠關聯在一起。 標準的要求追蹤模組會針對在處理 HTTP 要求時傳送的例外狀況和其他事件執行此動作。 在[搜尋](app-insights-diagnostic-search.md)和[分析](app-insights-analytics.md)中，您可以使用此識別碼，輕易地找出任何與要求相關聯的事件。
 
 設定此識別碼的最簡單方式是使用下列模式來設定作業內容：
+
+*C#*
+
+```C#
 
     // Establish an operation context and associated telemetry item:
     using (var operation = telemetry.StartOperation<RequestTelemetry>("operationName"))
@@ -248,6 +317,7 @@ TelemetryClient 具備執行緒安全。
         telemetry.StopOperation(operation);
 
     } // When operation is disposed, telemetry item is sent.
+```
 
 在設定作業內容時，`StartOperation` 會建立所指定類型的遙測項目。 它會在您處置作業時或您明確地呼叫 `StopOperation` 時傳送遙測項目。 如果您使用 `RequestTelemetry` 做為遙測類型，則其持續時間會設定為開始與停止之間的時間間隔。
 
@@ -260,8 +330,8 @@ TelemetryClient 具備執行緒安全。
 ## <a name="trackexception"></a>TrackException
 傳送例外狀況至 Application Insights︰
 
-* 以[計算數目][metrics]，來指出問題的頻率。
-* 以[檢查個別出現次數][diagnostic]。
+* 以[計算數目](app-insights-metrics-explorer.md)，來指出問題的頻率。
+* 以[檢查個別出現次數](app-insights-diagnostic-search.md)。
 
 報告包含堆疊追蹤。
 
@@ -301,9 +371,9 @@ SDK 將自動攔截許多例外狀況，所以您不一定需要明確呼叫 Tra
     ```
 
 ## <a name="tracktrace"></a>TrackTrace
-使用 TrackTrace 可協助您藉由將 "breadcrumb trail" 傳送至 Application Insights 來診斷問題。 您可以傳送診斷資料區塊，並且在[診斷搜尋][diagnostic]中檢查。
+使用 TrackTrace 可協助您藉由將 "breadcrumb trail" 傳送至 Application Insights 來診斷問題。 您可以傳送診斷資料區塊，並且在[診斷搜尋](app-insights-diagnostic-search.md)中檢查。
 
-[記錄配接器][trace]使用此 API 將第三方記錄傳送至入口網站。
+[記錄配接器](app-insights-asp-net-trace-logs.md)使用此 API 將第三方記錄傳送至入口網站。
 
 *C#*
 
@@ -322,7 +392,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
                    SeverityLevel.Warning,
                    new Dictionary<string,string> { {"database", db.ID} });
 
-在[搜尋][diagnostic]中，您便可以輕鬆地篩選出與特定資料庫相關且具有特定嚴重性層級的所有訊息。
+在[搜尋](app-insights-diagnostic-search.md)中，您便可以輕鬆地篩選出與特定資料庫相關且具有特定嚴重性層級的所有訊息。
 
 ## <a name="trackdependency"></a>TrackDependency
 您可以使用 TrackDependency 呼叫來追蹤回應時間以及呼叫外部程式碼片段的成功率。 結果會出現在入口網站中的相依性圖表中。
@@ -398,7 +468,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 
 在[計量瀏覽器](app-insights-metrics-explorer.md)中，您可建立可計算**已驗證的使用者**和**使用者帳戶**的圖表。
 
-您也可以[搜尋][diagnostic]具有特定使用者名稱和帳戶的用戶端資料點。
+您也可以[搜尋](app-insights-diagnostic-search.md)具有特定使用者名稱和帳戶的用戶端資料點。
 
 ## <a name="properties"></a>使用屬性篩選、搜尋和分割資料
 您可以將屬性和測量結果附加至您的事件 (同時還有度量，頁面檢視、例外狀況和其他的遙測資料)。
@@ -496,7 +566,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 
 ![將詞彙輸入 [搜尋] 中](./media/app-insights-api-custom-events-metrics/appinsights-23-customevents-5.png)
 
-[深入了解搜尋運算式][diagnostic]。
+[深入了解搜尋運算式](app-insights-diagnostic-search.md)。
 
 ### <a name="alternative-way-to-set-properties-and-metrics"></a>設定屬性和度量的替代方式
 如果更加方便，您可以收集個別物件中事件的參數：
@@ -603,7 +673,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
     TelemetryConfiguration.Active.DisableTelemetry = true;
 ```
 
-若要*停用選取的標準收集器* (例如效能計數器、HTTP 要求或相依性)，請刪除或註解化 [ApplicationInsights.config][config] 中的相關行。 例如，如果您想要傳送自己的 TrackRequest 資料，可以這麼做。
+若要*停用選取的標準收集器* (例如效能計數器、HTTP 要求或相依性)，請刪除或註解化 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 中的相關行。 例如，如果您想要傳送自己的 TrackRequest 資料，可以這麼做。
 
 ## <a name="debug"></a>開發人員模式
 偵錯期間，讓您的遙測透過管線加速很有用，如此您就可以立即看到結果。 您也會取得額外的訊息，協助您追蹤任何遙測的問題。 在生產環境中將它關閉，因為它可能會拖慢您的應用程式。
@@ -626,7 +696,7 @@ TrackTrace 的優點在於您可以將較長的資料放在訊息中。 例如�
 
 
 ## <a name="dynamic-ikey"></a> 動態檢測金鑰
-若要避免混合來自開發、測試和實際執行環境的遙測，您可以[建立個別的 Application Insights 資源][create]，並且依據環境變更其金鑰。
+若要避免混合來自開發、測試和實際執行環境的遙測，您可以[建立個別的 Application Insights 資源](app-insights-create-new-resource.md)，並且依據環境變更其金鑰。
 
 而不是從組態檔取得檢測金鑰，您可以在程式碼中設定。 在初始化方法中設定金鑰，例如 ASP.NET 服務中的 global.aspx.cs：
 
@@ -666,7 +736,7 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
     telemetry.Context.Operation.Name = "MyOperationName";
 
-如果您自行設定這些值，請考慮從 [ApplicationInsights.config][config] 移除相關的程式碼行，讓您的值和標準值不致混淆。
+如果您自行設定這些值，請考慮從 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 移除相關的程式碼行，讓您的值和標準值不致混淆。
 
 * **元件**：應用程式及其版本。
 * **裝置**︰應用程式執行所在裝置的相關資料  (在 Web 應用程式中，這是傳送遙測的伺服器或用戶端裝置)。
@@ -685,7 +755,7 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
 
 若要避免達到資料速率限制，請使用[取樣](app-insights-sampling.md)。
 
-若要決定資料的保留時間，請參閱[資料保留和隱私權][data]。
+若要決定資料的保留時間，請參閱[資料保留和隱私權](app-insights-data-retention-privacy.md)。
 
 ## <a name="reference-docs"></a>參考文件
 * [ASP.NET 參考](https://msdn.microsoft.com/library/dn817570.aspx)
@@ -711,23 +781,10 @@ TelemetryClient 具有內容屬性，其中包含與所有遙測資料一起傳�
     是，[資料存取 API](https://dev.applicationinsights.io/)。 其他擷取資料的方法包括[從分析匯出至 Power BI](app-insights-export-power-bi.md) 和[連續匯出](app-insights-export-telemetry.md)。
 
 ## <a name="next"></a>接續步驟
-* [搜尋事件和記錄檔][diagnostic]
+* [搜尋事件和記錄](app-insights-diagnostic-search.md)
 
-* [範例和逐步解說](app-insights-code-samples.md)
+* [疑難排解](app-insights-troubleshoot-faq.md)
 
-* [疑難排解][qna]
 
-<!--Link references-->
 
-[client]: app-insights-javascript.md
-[config]: app-insights-configuration-with-applicationinsights-config.md
-[create]: app-insights-create-new-resource.md
-[data]: app-insights-data-retention-privacy.md
-[diagnostic]: app-insights-diagnostic-search.md
-[exceptions]: app-insights-asp-net-exceptions.md
-[greenbrown]: app-insights-asp-net.md
-[java]: app-insights-java-get-started.md
-[metrics]: app-insights-metrics-explorer.md
-[qna]: app-insights-troubleshoot-faq.md
-[trace]: app-insights-search-diagnostic-logs.md
 

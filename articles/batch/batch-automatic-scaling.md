@@ -12,28 +12,35 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: multiple
-ms.date: 02/27/2017
+ms.date: 04/03/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2c9877f84873c825f96b62b492f49d1733e6c64e
-ms.openlocfilehash: 9dbfa813ea64666779f1f85b3ccda2b4fa1a755b
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
+ms.openlocfilehash: 0563f6c3aa4508ef2acac6b17dc85ecbf11bb154
+ms.lasthandoff: 04/07/2017
 
 
 ---
 # <a name="create-an-automatic-scaling-formula-for-scaling-compute-nodes-in-a-batch-pool"></a>建立自動調整公式來調整 Batch 集區中的計算節點
 
-透過自動調整功能，Azure Batch 服務可以根據您定義的參數，動態新增或移除集區中的計算節點。 您可自動調整您的應用程式所用的計算能力來節省時間與金頡 -- 隨著作業的工作需求增加來新增節點，並在需求降低時將它們移除。
+透過自動調整功能，Azure Batch 服務可以根據您定義的參數，動態新增或移除集區中的計算節點。 自動調整應用程式所使用的計算節點數目，可讓您節省時間與金錢。 自動調整可讓您隨著作業的工作需求提高來新增節點，並且在需求降低時將它們移除。
 
-您可讓您定義的「自動調整公式」與計算節點的集區 (例如 [Batch .NET](batch-dotnet-get-started.md) 程式庫中的 [PoolOperations.EnableAutoScale][net_enableautoscale] 方法) 產生關聯，以在該集區上啟用自動調整。 Batch 服務會接著使用此公式來判斷要執行您的工作負載所需的計算節點數目。 Batch 會回應定期收集的服務計量資料範例，並根據您的公式在可設定的間隔調整集區中的計算節點數目。
+您可讓您定義的「自動調整公式」與計算節點的集區產生關聯，以在該集區上啟用自動調整。 例如，在 Batch .NET 中，您可以使用 [PoolOperations.EnableAutoScale][net_enableautoscale] 方法。 Batch 服務會使用自動調整公式來判斷要執行您的工作負載所需的計算節點數目。 Batch 會回應定期收集的服務計量資料。 使用此計量資料，Batch 會根據您的公式以可設定的間隔調整集區中的計算節點數目。
 
 您可以在建立集區時或在現有的集區上啟用自動調整。 您也可以變更已啟用「自動調整」的集區上的現有的公式。 Batch 可讓您在將公式指派給集區之前評估公式，以及監視自動調整回合的狀態。
 
-## <a name="automatic-scaling-formulas"></a>自動調整公式
-自動調整公式是您定義的字串值 (包含一或多個陳述式)，已指派給集區的 [autoScaleFormula][rest_autoscaleformula] 元素 (Batch REST) 或 [CloudPool.AutoScaleFormula][net_cloudpool_autoscaleformula] 屬性 (Batch .NET)。 若已指派給集區，Batch 集區會使用您的公式來決定集區中可供下一個間隔處理的目標計算節點數目 (稍後會詳細說明間隔)。 公式字串的大小不得超過 8 KB、最多只能包含 100 個陳述式 (以分號隔開)，而且可以包含換行和註解。
+本文會討論構成自動調整公式的各種實體，包括變數、運算子、作業和函式。 您將了解如何取得 Batch 內的各種計算資源和工作度量。 您可以使用這些度量，根據資源使用量和工作狀態明智地調整集區的節點計數。 然後，您將透過使用 Batch REST 和 .NET API，了解如何建立公式以及對集區啟用自動調整。 我們將完成幾個範例公式。
 
-您可以將自動調整公式視為使用 Batch 自動調整「語言」。 公式陳述式是自由格式的運算式，可以包括服務定義的變數 (Batch 服務所定義的變數) 和使用者定義的變數 (您所定義的變數)。 它們可以使用內建類型、運算子和函數對這些值執行各種作業。 例如，陳述式可能會採用下列格式：
+> [!IMPORTANT]
+> 每個 Azure Batch 帳戶限制為可用於處理的核心 (以及計算節點) 數目上限。 Batch 服務建立的新節點數目最多達到該核心限制。 Batch 服務不會達到自動調整公式所指定的目標計算節點數目。 如需檢視和增加帳戶配額的相關資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md) 。
+> 
+> 
+
+## <a name="automatic-scaling-formulas"></a>自動調整公式
+自動調整公式是您定義的字串值，其中包含一或多個陳述式。 自動調整公式已指派給集區的 [autoScaleFormula][rest_autoscaleformula] 元素 (Batch REST) 或 [CloudPool.AutoScaleFormula][net_cloudpool_autoscaleformula] 屬性 (Batch .NET)。 Batch 集區會使用您的公式來決定集區中可供下一個間隔處理的目標計算節點數目。 公式字串的大小不得超過 8 KB、最多只能包含 100 個陳述式 (以分號隔開)，而且可以包含換行和註解。
+
+您可以將自動調整公式視為使用 Batch 自動調整「語言」。 公式陳述式是自由格式的運算式，可以包括服務定義的變數 (Batch 服務所定義的變數) 和使用者定義的變數 (您所定義的變數)。 它們可以使用內建類型、運算子和函式對這些值執行各種作業。 例如，陳述式可能會採用下列格式：
 
 ```
 $myNewVariable = function($ServiceDefinedVariable, $myCustomVariable);
@@ -46,24 +53,29 @@ $variable1 = function1($ServiceDefinedVariable);
 $variable2 = function2($OtherServiceDefinedVariable, $variable1);
 ```
 
-透過公式中的這些陳述式，您的目標是要達到應該調整集區時的計算節點數目，也就是**專用節點**的**目標**數目。 此數目可能會更高、更低，或與集區中目前的節點數目相同。 Batch 服務會在特定間隔評估集區的自動調整公式 (下面會討論[自動調整間隔](#automatic-scaling-interval) )。 然後將集區中的目標節點數目調整為自動調整公式在評估時指定的數目。
+在自動調整公式中包含這些陳述式，以便達到集區應調整成的計算節點數目，也就是**專用節點**的**目標**數目。 此數目可能會更高、更低，或與集區中目前的節點數目相同。 Batch 服務會在特定間隔評估集區的自動調整公式 (下面會討論[自動調整間隔](#automatic-scaling-interval) )。 Batch 會將集區中的目標節點數目調整為自動調整公式在評估時指定的數目。
 
-舉一個快速範例，以下兩行自動調整公式會根據作用中的工作數目指定應該調整的節點數目 (最多 10 個計算節點)：
+### <a name="sample-autoscale-formula"></a>自動調整公式範例
+
+以下是可加以調整以適用於大部分情況的自動調整公式範例。 您可以依照需求調整範例公式中的 `startingNumberOfVMs` 和 `maxNumberofVMs` 變數。
 
 ```
-$averageActiveTaskCount = avg($ActiveTasks.GetSample(TimeInterval_Minute * 15));
-$TargetDedicated = min(10, $averageActiveTaskCount);
+startingNumberOfVMs = 1;
+maxNumberofVMs = 25;
+pendingTaskSamplePercent = $PendingTasks.GetSamplePercent(180 * TimeInterval_Second);
+pendingTaskSamples = pendingTaskSamplePercent < 70 ? startingNumberOfVMs : avg($PendingTasks.GetSample(180 * TimeInterval_Second));
+$TargetDedicated=min(maxNumberofVMs, pendingTaskSamples);
 ```
 
-本文的後續幾節會討論將構成自動調整公式的各種實體，包括變數、運算子、作業和函數。 您將了解如何取得 Batch 內的各種計算資源和工作度量。 您可以使用這些度量，根據資源使用量和工作狀態明智地調整集區的節點計數。 然後，您將透過使用 Batch REST 和 .NET API，了解如何建立公式以及對集區啟用自動調整。 我們將完成幾個範例公式。
-
-> [!IMPORTANT]
-> 每個 Azure Batch 帳戶限制為可用於處理的核心 (以及計算節點) 數目上限。 Batch 服務建立的節點數目最多達到該核心限制。 因此不會達到公式所指定的目標計算節點數目。 如需檢視和增加帳戶配額的相關資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md) 。
-> 
-> 
+使用此自動調整公式，一開始會建立包含單一 VM 的集區。 $PendingTasks 計量會定義執行中或已排入佇列的工作數目。 公式會尋找過去 180 秒內的平均擱置中工作數目，並據以設定 TargetDedicated。 此公式會確保 TargetDedicated 決不會超過 25 部 VM。 集區會隨著新工作的提交而自動成長。 隨著工作完成，VM 會逐一變成可用，且自動調整公式會縮小集區。
 
 ## <a name="variables"></a>變數
-您可以在自動調整公式中同時使用**服務定義**和**使用者定義**的變數。 服務定義的變數會內建至 Batch 服務 -- 有些是讀寫狀態，而有些則是唯讀狀態。 使用者定義的變數是「您」  定義的變數。 在上述兩行範例公式中，`$TargetDedicated` 是服務定義的變數，而 `$averageActiveTaskCount` 是使用者定義的變數。
+您可以在自動調整公式中同時使用**服務定義**和**使用者定義**的變數。 服務定義的變數會內建至 Batch 服務 -- 有些是讀寫狀態，而有些則是唯讀狀態。 使用者定義的變數是「您」  定義的變數。 在上一節中所示的範例公式中，`$TargetDedicated` 和 `$PendingTasks` 是服務定義的變數。 `startingNumberOfVMs` 和 `maxNumberofVMs` 變數是使用者定義的變數。
+
+> [!NOTE]
+> 服務定義的變數前面一律會加上貨幣符號 ($)。 針對使用者定義的變數而言，貨幣符號是選擇性的。
+>
+>
 
 下表顯示 Batch 服務所定義的讀寫和唯讀變數。
 
@@ -71,7 +83,7 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 
 | 讀寫服務定義變數 | 說明 |
 | --- | --- |
-| $TargetDedicated |集區之**專用計算節點**的**目標**數目。 這是應該調整集區時的計算節點數目。 它是「目標」數目，因為集區可能不會達到此目標節點數目。 如果在集區達到初始目標之前，後續的自動調整評估再次修改目標節點數目。 如果在達到目標節點數目前便達到 Batch 帳戶節點或核心配額，也可能會發生這種情形。 |
+| $TargetDedicated |集區之**專用計算節點**的**目標**數目就是集區應調整成的計算節點數目。 它是「目標」數目，因為集區可能不會達到此目標節點數目。 例如，如果在集區達到初始目標之前，後續的自動調整評估再次修改目標節點數目，則集區可能未達到目標節點數目。 如果在達到目標節點數目前便達到 Batch 帳戶節點或核心配額，也可能會發生這種情形。 |
 | $NodeDeallocationOption |計算節點從集區移除時所發生的動作。 可能的值包括：<ul><li>**requeue**：立即終止工作，並將這些工作放回工作佇列，為它們重新排程。<li>**terminate**：立即終止工作，並從作業佇列移除這些工作。<li>**taskcompletion**：等待目前執行中的工作完成，然後再從集區中移除該節點。<li>**retaineddata**：等待所有本機工作保留在節點上的資料先清除，再從集區移除節點。</ul> |
 
 您可以 **取得** 這些服務定義的變數值，以根據 Batch 服務提供的度量進行調整：
@@ -97,7 +109,7 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 | $CurrentDedicated |目前的專用計算節點數目。 |
 
 > [!TIP]
-> 上述服務定義的唯讀變數是可提供各種方法來存取相關聯資料的「物件」。 如需詳細資訊，請參閱下面的 [取得樣本資料](#getsampledata) 。
+> 上述服務定義的唯讀變數是可提供各種方法來存取相關聯資料的「物件」。 如需詳細資訊，請參閱下面的[取得範例資料](#getsampledata)。
 > 
 > 
 
@@ -157,19 +169,19 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 ## <a name="functions"></a>Functions
 這些預先定義的 **函式** 可供您用來定義自動調整公式。
 
-| 函數 | 傳回類型 | 說明 |
+| 函式 | 傳回類型 | 說明 |
 | --- | --- | --- |
 | avg(doubleVecList) |double |傳回 doubleVecList 中所有值的平均值。 |
 | len(doubleVecList) |double |傳回 doubleVecList 建立的向量的長度。 |
 | lg(double) |double |傳回 double 的對數底數 2。 |
-| lg(doubleVecList) |doubleVec |傳回 doubleVecList 的 componentwise 對數底數 2。 vec(double) 必須針對此參數明確傳遞。 否則會假設為 double lg(double) 版本。 |
+| lg(doubleVecList) |doubleVec |傳回 doubleVecList 的全元件對數底數 2。 vec(double) 必須針對此參數明確傳遞。 否則會假設為 double lg(double) 版本。 |
 | ln(double) |double |傳回 double 的自然底數。 |
-| ln(doubleVecList) |doubleVec |傳回 doubleVecList 的 componentwise 對數底數 2。 vec(double) 必須針對此參數明確傳遞。 否則會假設為 double lg(double) 版本。 |
+| ln(doubleVecList) |doubleVec |傳回 doubleVecList 的全元件對數底數 2。 vec(double) 必須針對此參數明確傳遞。 否則會假設為 double lg(double) 版本。 |
 | log(double) |double |傳回 double 的對數底數 10。 |
-| log(doubleVecList) |doubleVec |傳回 doubleVecList 的 componentwise 對數底數 10。 vec(double) 必須針對單一 double 參數明確傳遞。 否則，會假設為 double log (double) 版本。 |
+| log(doubleVecList) |doubleVec |傳回 doubleVecList 的全元件對數底數 10。 vec(double) 必須針對單一 double 參數明確傳遞。 否則，會假設為 double log (double) 版本。 |
 | max(doubleVecList) |double |傳回 doubleVecList 中的最大值。 |
 | min(doubleVecList) |double |傳回 doubleVecList 中的最小值。 |
-| norm(doubleVecList) |double |傳回 doubleVecList 建立的向量的&2;-norm。 |
+| norm(doubleVecList) |double |傳回 doubleVecList 建立的向量的 2-norm。 |
 | percentile(doubleVec v, double p) |double |傳回向量 v 的百分位數元素。 |
 | rand() |double |傳回介於 0.0 到 1.0 之間的隨機值。 |
 | range(doubleVecList) |double |傳回 doubleVecList 中最小和最大值之間的差異。 |
@@ -179,7 +191,7 @@ $TargetDedicated = min(10, $averageActiveTaskCount);
 | time(string dateTime="") |timestamp |如果未傳遞參數，則傳回目前時間的時間戳記，如果有傳遞參數，則為 dateTime 字串的時間戳記。 支援的 dateTime 格式為 W3C-DTF 和 RFC 1123。 |
 | val(doubleVec v, double i) |double |傳回向量 v 中位置 i 的元素值，起始索引為零。 |
 
-上表中所述的某些函式可以接受清單做為引數。 逗號分隔清單是 *double* 和 *doubleVec* 的任意組合。 例如：
+上表中所述的某些函式可以接受清單作為引數。 逗號分隔清單是 *double* 和 *doubleVec* 的任意組合。 例如：
 
 `doubleVecList := ( (double | doubleVec)+(, (double | doubleVec) )* )?`
 
@@ -215,7 +227,7 @@ Batch 服務會定期取得工作和資源度量的樣本  ，使其可供自動
 
 **GetSample() 和樣本範圍**
 
-您的自動調整公式即將擴大和縮減您的集區--加入節點或移除節點。 因為節點為付費使用，您想要確保您的公式使用根據充足資料的明智的分析方法。 因此，建議您在公式中使用趨勢類型分析。 此類型會根據所收集樣本的範圍  來擴大和縮減集區。
+您的自動調整公式即將擴大和縮減您的集區--新增節點或移除節點。 因為節點為付費使用，您想要確保您的公式使用根據充足資料的明智的分析方法。 因此，建議您在公式中使用趨勢類型分析。 此類型會根據所收集樣本的範圍  來擴大和縮減集區。
 
 若要這樣做，請使用 `GetSample(interval look-back start, interval look-back end)` 傳回樣本的 **向量** ：
 
@@ -231,16 +243,16 @@ $runningTasksSample=[1,1,1,1,1,1,1,1,1,1];
 
 收集樣本向量後，您便可使用 `min()`、`max()` 和 `avg()` 等函式從所收集的範圍衍生出有意義的值。
 
-若要增加安全性，如果特定一段時間可用的樣本小於特定百分比，您可以強制公式評估為「失敗」  。 強制公式評估為失敗會指示 Batch 在指定的樣本百分比無法使用時停止進一步評估公式，而且將不會變更集區大小。 若要指定評估成功所需的樣本百分比，請將其指定為 `GetSample()`的第三個參數。 以下指定了 75% 的樣本需求：
+若要增加安全性，如果特定一段時間可用的樣本小於特定百分比，您可以強制公式評估為「失敗」  。 強制公式評估為失敗會指示 Batch 在指定的樣本百分比無法使用時停止進一步評估公式。 在此情況下，不會變更集區大小。 若要指定評估成功所需的樣本百分比，請將其指定為 `GetSample()`的第三個參數。 以下指定了 75% 的樣本需求：
 
 ```
 $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * TimeInterval_Second, 75);
 ```
 
-由於先前提到的樣本可用性延遲，所以也請務必記得指定回顧開始時間早於一分鐘的時間範圍。 這是因為樣本需要花大約一分鐘的時間才能傳播到整個系統，所以通常無法使用 `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` 範圍中的樣本。 同樣地，您可以使用 `GetSample()` 的百分比參數來強制特定樣本百分比需求。
+因為樣本可用性可能延遲，所以請務必記得指定回顧開始時間早於一分鐘的時間範圍。 樣本需要花大約一分鐘的時間才能傳播到整個系統，所以通常無法使用 `(0 * TimeInterval_Second, 60 * TimeInterval_Second)` 範圍中的樣本。 同樣地，您可以使用 `GetSample()` 的百分比參數來強制特定樣本百分比需求。
 
 > [!IMPORTANT]
-> 我們**強烈建議**您**避免「只」**依賴自動調整公式中的 `GetSample(1)`**。 這是因為 `GetSample(1)` 基本上會向 Batch 服務表示：「不論您多久以前取得最後一個樣本，請將它提供給我」。 因為它只是單一樣本，而且可能是較舊的樣本，所以可能無法代表最近工作或資源狀態的全貌。 如果您使用 `GetSample(1)`，請確定它是較大的陳述式，而且不是您的公式所依賴的唯一資料點。
+> 我們**強烈建議**您***避免「只」*`GetSample(1)`依賴自動調整公式中的** 。 這是因為 `GetSample(1)` 基本上會向 Batch 服務表示：「不論您多久以前擷取最後一個樣本，請將它提供給我」。 因為它只是單一樣本，而且可能是較舊的樣本，所以可能無法代表最近工作或資源狀態的全貌。 如果您使用 `GetSample(1)`，請確定它是較大的陳述式，而且不是您的公式所依賴的唯一資料點。
 > 
 > 
 
@@ -371,7 +383,7 @@ pool.Commit();
 最小間隔為 5 分鐘，而最大間隔為 168 小時。 如果指定此範圍以外的時間間隔，則 Batch 服務會傳回「不正確的要求 (400)」錯誤。
 
 > [!NOTE]
-> 自動調整目前不適合做為低於一分鐘的變更回應，而是要在您執行工作負載時逐步調整您的集區大小。
+> 自動調整目前不適合作為低於一分鐘的變更回應，而是要在您執行工作負載時逐步調整您的集區大小。
 > 
 > 
 
@@ -610,7 +622,7 @@ $NodeDeallocationOption = taskcompletion;
 
 下列程式碼片段中的公式：
 
-* 將初始的集區大小設為&4; 個節點。
+* 將初始的集區大小設為 4 個節點。
 * 在集區生命週期的最初 10 分鐘內不調整集區大小。
 * 10 分鐘後，取得過去 60 分鐘內執行中和作用中工作數目的最大值。
   * 如果這兩個值都是 0 (表示過去 60 分鐘沒有執行或作用中的工作)，集區大小就設為 0。

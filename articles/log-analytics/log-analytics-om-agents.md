@@ -12,14 +12,15 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/08/2016
+ms.date: 04/10/2017
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 961a3867362d14ab7b6ff99ce4002380d763082f
-
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: 3624e4130cc1e87983ebc7c9adc4968436bec386
+ms.lasthandoff: 04/11/2017
 
 ---
+
 # <a name="connect-operations-manager-to-log-analytics"></a>將 Operations Manager 連接到 Log Analytics
 若要維護 System Center Operations Manager 中的現有投資，並使用 Log Analytics 的延伸功能，您可以整合 Operations Manager 與 OMS 工作區。  這可讓您利用 OMS 的機會，同時繼續使用 Operations Manager：
 
@@ -35,10 +36,12 @@ ms.openlocfilehash: 961a3867362d14ab7b6ff99ce4002380d763082f
 
 ![oms-operations-manager-integration-diagram](./media/log-analytics-om-agents/oms-operations-manager-connection.png)
 
+如果 IT 安全性原則不允許您網路上的電腦連線到網際網路，則可以將管理伺服器設定為連線到 OMS 閘道，以根據您已啟用的解決方案來接收組態資訊和傳送收集到的資料。  如需如何設定 Operations Manager 管理群組以透過 OMS 閘道與 OMS 服務進行通訊的其他資訊和步驟，請參閱[使用 OMS 閘道將電腦連線到 OMS](log-analytics-oms-gateway.md)。  
+
 ## <a name="system-requirements"></a>系統需求
 開始之前，請檢閱下列詳細資料，確認您符合所需的必要條件。
 
-* OMS 僅支援 Operations Manager 2012 SP1 UR6 和更新版本，以及 Operations Manager 2012 R2 UR2 和更新版本。  Operations Manager 2012 SP1 UR7 和 Operations Manager 2012 R2 UR3 中已加入 Proxy 支援。
+* OMS 僅支援 Operations Manager 2016、Operations Manager 2012 SP1 UR6 和更新版本，以及 Operations Manager 2012 R2 UR2 和更新版本。  Operations Manager 2012 SP1 UR7 和 Operations Manager 2012 R2 UR3 中已加入 Proxy 支援。
 * 所有 Operations Manager 代理程式必須符合最低支援需求。 請確定代理程式已安裝最低更新版本，否則 Windows 代理程式流量會失敗，許多錯誤可能會填滿 Operations Manager 事件記錄檔。
 * OMS 訂用帳戶。  如需進一步資訊，請檢閱 [開始使用 Log Analytics](log-analytics-get-started.md)。
 
@@ -137,28 +140,36 @@ ms.openlocfilehash: 961a3867362d14ab7b6ff99ce4002380d763082f
 ## <a name="remove-integration-with-oms"></a>移除與 OMS 的整合
 當您不再需要整合 Operations Manager 管理群組和 OMS 工作區時，需要執行幾個步驟，才能適當移除管理群組中的連接和組態。 下列程序可讓您刪除管理群組的參考來更新 OMS 工作區、刪除 OM 連接器，然後刪除支援 OMS 的管理組件。   
 
+已啟用且與 Operations Manager 整合之解決方案的管理組件，以及支援與 OMS 服務整合所需的管理組件，都無法輕易地從管理群組予以刪除。  這是因為有些 OMS 管理組件與其他相關管理組件相依。  若要刪除與其他管理組件相依的管理組件，請從 TechNet 指令碼中心下載[移除具有相依性的管理組件](https://gallery.technet.microsoft.com/scriptcenter/Script-to-remove-a-84f6873e) (英文) 指令碼。  
+
 1. 使用身為 Operations Manager 系統管理員角色成員的帳戶開啟 Operations Manager 命令殼層。
    
-   > [!WARNING]
-   > 繼續之前，請確認您的任何自訂管理組件名稱中沒有 Advisor 或 IntelligencePack 這個字，否則下列步驟會從管理群組中刪除它們。
-   > 
-   > 
-2. 從命令殼層提示字元中，輸入 `Get-SCOMManagementPack -name "*advisor*" | Remove-SCOMManagementPack`
-3. 接著輸入 `Get-SCOMManagementPack -name “*IntelligencePack*” | Remove-SCOMManagementPack`
-4. 使用身為 Operations Manager 系統管理員角色成員的帳戶開啟 Operations Manager Operations 主控台。
-5. 在 [管理] 下，選取 [管理組件] 節點，然後在 [尋找:] 方塊中輸入 **Advisor**，並確認下列管理組件仍匯入到管理群組中︰
+    > [!WARNING]
+    > 繼續之前，請確認您的任何自訂管理組件名稱中沒有 Advisor 或 IntelligencePack 這個字，否則下列步驟會從管理群組中刪除它們。
+    > 
+
+2. 從命令殼層提示字元中，輸入 `Get-SCOMManagementPack -name "*Advisor*" | Remove-SCOMManagementPack -ErrorAction SilentlyContinue`。
+3. 接著，輸入 `Get-SCOMManagementPack -name “*IntelligencePack*” | Remove-SCOMManagementPack -ErrorAction SilentlyContinue`。
+4. 若要移除與其他 System Center Advisor 管理組件具有相依性的任何其餘管理組件，請使用您稍早從 TechNet 指令碼中心下載的 *RecursiveRemove.ps1* 指令碼。  
+ 
+    > [!NOTE]
+    > 請不要刪除 Microsoft System Center Advisor 或 Microsoft System Center Advisor Internal 管理組件。  
+    >  
+
+5. 使用身為 Operations Manager 系統管理員角色成員的帳戶開啟 Operations Manager Operations 主控台。
+6. 在 [管理] 下，選取 [管理組件] 節點，然後在 [尋找:] 方塊中輸入 **Advisor**，並確認下列管理組件仍匯入到管理群組中︰
    
    * Microsoft System Center Advisor
    * Microsoft System Center Advisor Internal
-6. 在 OMS 入口網站中，按一下 [設定]  圖格。
-7. 選取 [連接的來源] 。
-8. 在 [System Center Operations Manager] 區段下方的表格中，您應該會看到想要從工作區移除的管理群組名稱。  在 [最後一筆資料] 資料行之下，按一下 [移除]。  
+7. 在 OMS 入口網站中，按一下 [設定]  圖格。
+8. 選取 [連接的來源] 。
+9. 在 [System Center Operations Manager] 區段下方的表格中，您應該會看到想要從工作區移除的管理群組名稱。  在 [最後一筆資料] 資料行之下，按一下 [移除]。  
    
-   > [!NOTE]
-   > 如果未從已連接管理群組偵測到任何活動，則 [移除] 連結在 14 天之前無法使用。  
-   > 
-   > 
-9. 將出現視窗，要求您確認想要繼續移除。  按一下 [是]  以繼續。 
+    > [!NOTE]
+    > 如果未從已連接管理群組偵測到任何活動，則 [移除] 連結在 14 天之前無法使用。  
+    > 
+
+10. 將出現視窗，要求您確認想要繼續移除。  按一下 [是]  以繼續。 
 
 若要刪除兩個連接器 - Microsoft.SystemCenter.Advisor.DataConnector 和 Advisor 連接器，請將以下 PowerShell 指令碼儲存至您的電腦，並使用下列範例來執行。
 
@@ -168,7 +179,7 @@ ms.openlocfilehash: 961a3867362d14ab7b6ff99ce4002380d763082f
 ```
 
 > [!NOTE]
-> 您執行此指令碼的電腦 (如果不是管理伺服器) 應該已安裝 Operations Manager 2012 SP1 或 R2 命令殼層，視您的管理群組版本而定。
+> 您執行此指令碼的電腦 (如果不是管理伺服器) 應該已安裝 Operations Manager 命令殼層，視您的管理群組版本而定。
 > 
 > 
 
@@ -263,10 +274,5 @@ ms.openlocfilehash: 961a3867362d14ab7b6ff99ce4002380d763082f
 ## <a name="next-steps"></a>後續步驟
 * [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md) ，以加入功能和收集資料。
 * [在 Log Analytics 中設定 Proxy 和防火牆設定](log-analytics-proxy-firewall.md) ，讓代理程式可與 Log Analytics 服務通訊。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

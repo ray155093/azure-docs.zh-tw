@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/15/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 7f719fb38709f4bb7083b7f21a5979f7e0588d0f
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
+ms.openlocfilehash: c62f8d077906ce8ad1b5501864a21ee369b2314a
+ms.lasthandoff: 04/07/2017
 
 
 ---
@@ -44,7 +44,7 @@ ms.lasthandoff: 03/22/2017
 
 **Linux 用戶端的問題**
 
-* [間歇性 IO 錯誤 - 在現有檔案共用上發生「主機當機 (錯誤 112)」，或在掛接點上執行 list 命令時殼層停止回應](#errorhold)
+* [間歇性 IO 錯誤 - 在現有檔案共用上發生「主機當機 (錯誤 112)」，或在掛接點上執行 list 命令時殼層停止回應](#error112)
 * [嘗試在 Linux VM 上掛接 Azure 檔案時，發生掛接錯誤 115](#error15)
 * [掛接在 Linux VM 上的 Azure 檔案共用發生效能變慢的問題](#delayproblem)
 * [掛接錯誤(11)：掛接到 Ubuntu 4.8+ 核心時，資源暫時無法使用](#ubuntumounterror)
@@ -116,13 +116,13 @@ ms.lasthandoff: 03/22/2017
 這個問題可能是因下列情況而起︰
 
 ### <a name="cause-1"></a>原因 1
-「發生系統錯誤 53。 存取遭到拒絕。」 基於安全性理由，如果通訊通道沒有加密，Azure 檔案共用的連線會遭到封鎖，故不會從 Azure 檔案共用所在的相同資料中心進行連線嘗試。 如果使用者的用戶端作業系統不支援 SMB 加密，則不會提供通訊通道加密。 指出這個狀況的就是「發生系統錯誤 53。 存取遭到拒絕。」錯誤訊息，在使用者嘗試從內部部署或不同的資料中心掛接檔案共用時出現。 Windows 8、Windows Server 2012 和更新版本的每個交涉皆會要求包含支援加密的 SMB 3.0。
+「發生系統錯誤 53。 存取遭到拒絕。」 基於安全性理由，如果通訊通道沒有加密，Azure 檔案共用的連線會遭到封鎖，故不會從 Azure 檔案共用所在的相同 Azure 區域進行連線嘗試。 如果使用者的用戶端作業系統不支援 SMB 加密，則不會提供通訊通道加密。 指出這個狀況的就是「發生系統錯誤 53。 存取遭到拒絕。」錯誤訊息，在使用者嘗試從內部部署或不同的資料中心掛接檔案共用時出現。 Windows 8、Windows Server 2012 和更新版本的每個交涉皆會要求包含支援加密的 SMB 3.0。
 
 ### <a name="solution-for-cause-1"></a>原因 1 的解決辦法
-從符合 Windows 8、Windows Server 2012 和更新版本需求的用戶端進行連線，或是從 Azure 檔案共用所使用的 Azure 儲存體帳戶相同的資料中心上的虛擬機器進行連線。
+從符合 Windows 8、Windows Server 2012 和更新版本需求的用戶端進行連線，或是從與 Azure 儲存體帳戶 ( Azure 檔案共用所使用) 相同 Azure 區域上的虛擬機器進行連線。
 
 ### <a name="cause-2"></a>原因 2
-當您掛接 Azure 檔案共用時，如果連接埠 445 至 Azure 檔案資料中心的輸出通訊遭到封鎖，可能會發生「系統錯誤 53」或「系統錯誤 67」。 按一下[這裡](http://social.technet.microsoft.com/wiki/contents/articles/32346.azure-summary-of-isps-that-allow-disallow-access-from-port-445.aspx)查看 ISP 是否允許從連接埠 445 進行存取的摘要。
+當您掛接 Azure 檔案共用時，如果連接埠 445 至 Azure 檔案 Azure 區域的輸出通訊遭到封鎖，可能會發生「系統錯誤 53」或「系統錯誤 67」。 按一下[這裡](http://social.technet.microsoft.com/wiki/contents/articles/32346.azure-summary-of-isps-that-allow-disallow-access-from-port-445.aspx)查看 ISP 是否允許從連接埠 445 進行存取的摘要。
 
 Comcast 和某些 IT 組織會封鎖此連接埠。 若要了解這是否是「系統錯誤 53」訊息的原因，您可以使用 Portqry 查詢 TCP:445 端點。 如果篩選顯示 TCP:445 端點，則 TCP 連接埠會被封鎖。 查詢範例如下：
 
@@ -191,7 +191,7 @@ Azure 檔案僅支援 NTLMv2 驗證。 請確定群組原則有套用到用戶�
 
 使用 **net use** 的另一個做法，是在 **net use** 命令的使用者名稱和密碼參數中傳遞儲存體帳戶名稱和金鑰。
 
-遵循這些指示操作之後，您可能會收到下列錯誤訊息：「發生系統錯誤 1312。 指定的登入工作階段不存在。 可能已被終止。」，在您以系統/網路服務帳戶執行 **net use** 時。 如果發生這種情況，請確定傳遞至 **net use** 的使用者名稱包含網域資訊 (例如，"[storage account name].file.core.windows.net")。
+遵循這些指示操作之後，您可能會收到下列錯誤訊息：「發生系統錯誤 1312。 指定的登入工作階段不存在。 可能已被終止。」，在您以系統/網路服務帳戶執行 **net use**  時。 如果發生這種情況，請確定傳遞至 **net use** 的使用者名稱包含網域資訊 (例如，"[storage account name].file.core.windows.net")。
 
 <a id="encryption"></a>
 
@@ -213,7 +213,7 @@ Bitlocker 加密的檔案可以複製到 Azure 檔案。 不過，檔案儲存�
 
 不過請注意，設定登錄機碼會影響所有複製到網路共用的複製作業。
 
-<a id="errorhold"></a>
+<a id="error112"></a>
 
 ## <a name="host-is-down-error-112-on-existing-file-shares-or-the-shell-hangs-when-you-run-list-commands-on-the-mount-point"></a>在現有檔案共用上發生「主機當機 (錯誤 112)」錯誤，或在掛接點上執行 list 命令時殼層停止回應
 ### <a name="cause"></a>原因
@@ -251,7 +251,7 @@ Bitlocker 加密的檔案可以複製到 Azure 檔案。 不過，檔案儲存�
 Linux 散發套件尚未支援 SMB 3.0 中的加密功能。 在某些散發套件中，如果使用者因為功能遺失而嘗試使用 SMB 3.0 來掛接 Azure 檔案，可能會收到「115」錯誤訊息。
 
 ### <a name="solution"></a>方案
-如果使用的 Linux SMB 用戶端不支援加密，在與檔案儲存體帳戶相同的資料中心上，從 Linux VM 使用 SMB 2.1 掛接 Azure 檔案。
+如果使用的 Linux SMB 用戶端不支援加密，在與檔案儲存體帳戶相同的 Azure 區域上，從 Linux VM 使用 SMB 2.1 掛接 Azure 檔案。
 
 <a id="delayproblem"></a>
 
@@ -277,9 +277,9 @@ dir_mode=0777,persistenthandles,nounix,serverino,mapposix,rsize=1048576,wsize=10
 ### <a name="cause"></a>原因
 Ubuntu 16.10 核心 (4.8 版) 中的已知問題：用戶端宣告支援加密，但實際上並不支援。 
 
-### <a name="solution"></a>解決方式
+### <a name="solution"></a>方案
 直到修正 Ubuntu 16.10 之前，請指定「vers=2.1」掛接選項，或使用 Ubuntu 16.04。
-## <a name="learn-more"></a>深入了解
+## <a name="learn-more"></a>詳細資訊
 * [在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)
 * [在 Linux 上開始使用 Azure 檔案儲存體](storage-how-to-use-files-linux.md)
 

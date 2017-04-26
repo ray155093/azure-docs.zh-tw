@@ -12,11 +12,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/18/2017
+ms.date: 04/05/2017
 ms.author: trinadhk;markgal;jpallavi;
 translationtype: Human Translation
-ms.sourcegitcommit: 2224ddf52283d7da599b1b4842ca617d28b28668
-ms.openlocfilehash: e40a31b7226bd94a3d0e07f528a87f4f686e5bdc
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: 61f62d606b44b3390e6500ea2b30b20d7d2929ff
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -46,8 +47,13 @@ ms.openlocfilehash: e40a31b7226bd94a3d0e07f528a87f4f686e5bdc
 | 找不到 Azure 虛擬機器。 |當刪除主要 VM 但備份原則繼續尋找 VM 來執行備份時，就會發生這種情況。 若要修正此錯誤： <ol><li>重新建立具有相同名稱和相同資源群組名稱 [雲端服務名稱] 的虛擬機器， <br>(或) <li> 停用此 VM 的保護，因此不會建立備份作業。 </ol> |
 | 虛擬機器代理程式不存在於虛擬機器上：請安裝任何必要元件和 VM 代理程式，然後重新啟動作業。 |[深入了解](#vm-agent) VM 代理程式安裝，以及如何驗證 VM 代理程式安裝。 |
 | 快照集作業失敗，因為 VSS 寫入器處於不正常狀態 |您需要重新啟動 VSS (磁碟區陰影複製服務) 寫入器處於不正常的狀態。 若要達到這個目的，從提高權限的命令提示字元，執行 _vssadmin list writers_。 輸出會包含所有 VSS 寫入器和其狀態。 對於每個狀態不是「[1] 穩定」的 VSS 寫入器，請從提高權限的命令提示字元執行下列命令，重新啟動 VSS 寫入器<br> _net stop serviceName_ <br> _net start serviceName_|
-| 快照集作業失敗，因為組態的剖析失敗 |這是因為 MachineKeys 目錄中的權限已變更︰_%systemdrive%\programdata\microsoft\crypto\rsa\machinekeys_ <br>請執行下列命令，並確認 MachineKeys 目錄的權限是預設的︰<br>_icacls %systemdrive%\programdata\microsoft\crypto\rsa\machinekeys_ <br><br> 預設權限是︰<br>Everyone:(R,W) <br>BUILTIN\Administrators:(F)<br><br>如果您發現 MachineKeys 目錄的權限不同於預設權限，請依照下列步驟來修正權限、刪除憑證，並觸發備份。<ol><li>修正 MachineKeys 目錄上的權限。<br>在目錄上使用 Explorer 安全性屬性和進階安全性設定，將權限重設回預設值，從目錄移除任何額外 (預設值以外) 的使用者物件，然後確認「Everyone」權限有特殊存取權︰<br>-列出資料夾/讀取資料 <br>-讀取屬性 <br>-讀取擴充屬性 <br>-建立檔案/寫入資料 <br>-建立資料夾/附加資料<br>-寫入屬性<br>-寫入擴充屬性<br>-讀取權限<br><br><li>刪除具有欄位 [發行至] = Windows Azure Service Management for Extensions 的憑證<ul><li>[開啟憑證主控台](https://msdn.microsoft.com/library/ms788967(v=vs.110).aspx)<li>刪除具有欄位 [發行至] = “Windows Azure Service Management for Extensions” 的憑證 (在 [個人] -> [憑證] 底下)</ul><li>觸發 VM 備份。 </ol>|
+| 快照集作業失敗，因為組態的剖析失敗 |這是因為 MachineKeys 目錄中的權限已變更︰_%systemdrive%\programdata\microsoft\crypto\rsa\machinekeys_ <br>請執行下列命令，並確認 MachineKeys 目錄的權限是預設的︰<br>_icacls %systemdrive%\programdata\microsoft\crypto\rsa\machinekeys_ <br><br> 預設權限是︰<br>Everyone:(R,W) <br>BUILTIN\Administrators:(F)<br><br>如果您發現 MachineKeys 目錄的權限不同於預設權限，請依照下列步驟來修正權限、刪除憑證，並觸發備份。<ol><li>修正 MachineKeys 目錄上的權限。<br>在目錄上使用 Explorer 安全性屬性和進階安全性設定，將權限重設回預設值，從目錄移除任何額外 (預設值以外) 的使用者物件，然後確認「Everyone」權限有特殊存取權︰<br>-列出資料夾/讀取資料 <br>-讀取屬性 <br>-讀取擴充屬性 <br>-建立檔案/寫入資料 <br>-建立資料夾/附加資料<br>-寫入屬性<br>-寫入擴充屬性<br>-讀取權限<br><br><li>刪除 [發給] 欄位 = "Windows Azure Service Management for Extensions" 或 "Windows Azure CRP Certificate Generator” 的憑證。<ul><li>[開啟 [憑證 (本機電腦)] 主控台](https://msdn.microsoft.com/library/ms788967(v=vs.110).aspx)<li>刪除 [發給] 欄位 = "Windows Azure Service Management for Extensions" 或 "Windows Azure CRP Certificate Generator” 的憑證 (在 [個人] -> [憑證] 下)。</ul><li>觸發 VM 備份。 </ol>|
 | 驗證失敗，因為虛擬機器單獨以 BEK 進行加密。 只會對同時使用 BEK 和 KEK 加密的虛擬機器啟用備份。 |虛擬機器應該使用「BitLocker 加密金鑰」和「金鑰加密金鑰」進行加密。 之後，應該啟用備份。 |
+|快照集擴充安裝失敗，錯誤為 - COM+ 無法與 Microsoft Distributed Transaction Coordinator 通話 | 請嘗試重新啟動 Windows 服務 "COM+ System Application" (從提高權限的命令提示字元 - _net start COMSysApp_)。 <br>如果在啟動時失敗，請遵循下列步驟︰<ol><li> 確認服務 "Distributed Transaction Coordinator" 的登入帳戶是 "Network Service"。 如果不是，請變更為 "Network Service"，重新啟動此服務，然後嘗試啟動服務 "COM+ System Application"。'<li>如果仍然無法啟動，請依照下列步驟解除安裝/安裝服務 "Distributed Transaction Coordinator"：<br> - 停止 MSDTC 服務<br> - 開啟命令提示字元 (cmd) <br> - 執行命令 “msdtc -uninstall” <br> - 執行命令 “msdtc -install” <br> - 啟動 MSDTC 服務<li>啟動 Windows 服務 "COM+ System Application"，啟動之後，從入口網站觸發備份。</ol> |
+| 無法凍結 VM 的一或多個掛接點以取得檔案系統一致快照集 | <ol><li>使用 _'tune2fs'_ 命令檢查所有已裝載裝置的檔案系統狀態。<br> 例如：tune2fs -l /dev/sdb1 \| grep "Filesystem state" <li>使用 _'umount'_ 命令卸載檔案系統狀態不是空白的裝置 <li> 使用 _'fsck'_ 命令對這些裝置執行 FileSystemConsistency 檢查 <li> 重新裝載裝置並嘗試備份。</ol> |
+| 因為建立安全網路通訊通道時發生失敗，所以快照集作業失敗 | <ol><Li> 在提高權限的模式中執行 regedit.exe，開啟登錄編輯程式。 <li> 識別系統中存在的所有 .NetFramework 版本。 它們位於登錄機碼 "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft" 的階層下 <li> 針對登錄機碼中的每個 .NetFramework，新增下列機碼︰ <br> "SchUseStrongCrypto"=dword:00000001 </ol>| 
+| 因為安裝適用於 Visual Studio 2012 的 Visual C++ 可轉散發套件時發生失敗，所以快照集作業失敗 | 瀏覽至 C:\Packages\Plugins\Microsoft.Azure.RecoveryServices.VMSnapshot\agentVersion，並安裝 vcredist2012_x64。 請確定允許這項服務安裝的登錄機碼值設為正確的值，也就是登錄機碼 _HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Msiserver_ 的值為 3，而不是 4。 如果您仍遇到安裝問題，請從提高權限的命令提示字元執行 _MSIEXEC /UNREGISTER_，再執行 _MSIEXEC /REGISTER_，以重新啟動安裝服務。  |
+
 
 ## <a name="jobs"></a>作業
 | 錯誤詳細資料 | 因應措施 |
@@ -72,10 +78,8 @@ ms.openlocfilehash: e40a31b7226bd94a3d0e07f528a87f4f686e5bdc
 | 選取的子網路不存在：請選取已存在的子網路 |None |
 | 備份服務無權存取您訂用帳戶中的資源。 |若要解決此問題，請先使用[選擇 VM 還原組態](backup-azure-arm-restore-vms.md#choosing-a-vm-restore-configuration)的＜還原備份的磁碟＞一節中所述的步驟來還原磁碟。 之後，使用[從還原的磁碟建立 VM](backup-azure-vms-automation.md#create-a-vm-from-restored-disks) 中所述的 PowerShell 步驟，從還原的磁碟建立完整的 VM。 |
 
-## <a name="policy"></a>原則
-| 錯誤詳細資料 | 因應措施 |
-| --- | --- |
-| 無法建立原則：請減少保留選項以繼續設定原則。 |None |
+## <a name="backup-or-restore-taking-time"></a>備份或還原很花時間
+如果您發現備份 (>12 小時) 或還原很花時間 (>6 小時)，請確定您遵循[備份最佳做法](backup-azure-vms-introduction.md#best-practices)。 也請確定您的應用程式[以最佳方式使用 Azure 儲存體](backup-azure-vms-introduction.md#total-vm-backup-time)進行備份。 
 
 ## <a name="vm-agent"></a>VM 代理程式
 ### <a name="setting-up-the-vm-agent"></a>設定 VM 代理程式
@@ -98,7 +102,7 @@ ms.openlocfilehash: e40a31b7226bd94a3d0e07f528a87f4f686e5bdc
 
 如為 Linux VM：
 
-* 遵循[更新 Linux VM 代理程式](../virtual-machines/virtual-machines-linux-update-agent.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)上的指示進行。
+* 遵循[更新 Linux VM 代理程式](../virtual-machines/linux/update-agent.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)上的指示進行。
 我們**強烈建議**只透過發佈存放庫更新代理程式。 我們不建議直接從 github 下載代理程式程式碼，並加以更新。 如果最新的代理程式不適用於您的散發套件，請連絡散發套件支援以取得如何安裝最新代理程式的指示。 您可以在 github 存放庫中檢查最新的 [Windows Azure Linux 代理程式](https://github.com/Azure/WALinuxAgent/releases)資訊。
 
 ### <a name="validating-vm-agent-installation"></a>驗證 VM 代理程式安裝
@@ -151,9 +155,4 @@ VM 備份仰賴發給底層儲存體的快照命令。 無法存取儲存體，�
 > 請參閱有關 [設定靜態內部私人 IP 位址](../virtual-network/virtual-networks-reserved-private-ip.md)的詳細資訊。
 >
 >
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

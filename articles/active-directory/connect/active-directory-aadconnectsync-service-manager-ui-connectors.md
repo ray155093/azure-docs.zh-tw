@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/02/2017
+ms.date: 04/03/2017
 ms.author: billmath
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: bd2240678fed44db748ae062bdf91e457159b4a2
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 6d893efd775ff6b55524ba3a621d8248adbdd432
+ms.lasthandoff: 04/03/2017
 
 ---
 # <a name="using-connectors-with-the-azure-ad-connect-sync-service-manager"></a>使用連接器搭配 Auzre AD Connect Sync Service Manager
@@ -67,6 +67,28 @@ ms.lasthandoff: 03/04/2017
 例如，如果您進行樹狀子目錄的搜尋，將會取得某一個 OU 中的所有物件。  
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearchsubtree.png)  
 您可以從此格線選取物件、選取「屬性」，然後[跟隨物件](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md)，從來源連接器空間、通過 Metaverse，再到目標連接器空間。
+
+### <a name="changing-the-ad-ds-account-password"></a>變更 AD DS 帳戶密碼
+如果您變更帳戶密碼，同步處理服務就再也無法匯入/匯出內部部署 AD 的變更。   這時您會看到下列情形：
+
+- AD 連接器的匯入/匯出步驟失敗，並出現「no-start-credentials」錯誤。
+- Windows 事件檢視器底下的應用程式事件記錄會包含事件識別碼為 6000 的錯誤與「管理代理程式 "contoso.com" 無法執行，因為認證無效」的訊息。
+
+若要解決此問題，請使用下列程序來更新 AD DS 使用者帳戶︰
+
+
+1. 啟動同步處理服務管理員 ([開始] → [同步處理服務])。
+</br>![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/startmenu.png)
+2. 移至 [連接器] 索引標籤。
+3. 選取設定為使用 AD DS 帳戶的 AD 連接器。
+4. 選取 [動作] 下方的 [屬性]。
+5. 在快顯對話方塊中，選取 [連線至 Active Directory 樹系]：
+6. 樹系名稱會指出對應的內部部署 AD。
+7. 使用者名稱會指出用於同步處理服務的 AD DS 帳戶。
+8. 在 [密碼] 文字方塊中輸入新的 AD DS 帳戶密碼 ![Azure AD Connect 同步處理加密金鑰公用程式](media/active-directory-aadconnectsync-encryption-key/key6.png)
+9. 按一下 [確定] 以儲存新密碼，然後重新啟動同步處理服務，以從記憶體快取中移除舊密碼。
+
+
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。

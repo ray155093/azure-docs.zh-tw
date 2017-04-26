@@ -1,11 +1,11 @@
 ---
-title: "在邏輯應用程式中新增 HTTP 動作 | Microsoft Docs"
-description: "HTTP 動作與屬性的概觀"
-services: 
-documentationcenter: 
+title: "透過 HTTP - Azure Logic Apps 與任何端點通訊 | Microsoft Docs"
+description: "建立可以透過 HTTP 與任何端點通訊的邏輯應用程式"
+services: logic-apps
 author: jeffhollan
 manager: anneta
 editor: 
+documentationcenter: 
 tags: connectors
 ms.assetid: e11c6b4d-65a5-4d2d-8e13-38150db09c0b
 ms.service: logic-apps
@@ -14,15 +14,16 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/15/2016
-ms.author: jehollan
+ms.author: jehollan; LADocs
 translationtype: Human Translation
-ms.sourcegitcommit: 9c74b25a2ac5e2088a841d97920035376b7f3f11
-ms.openlocfilehash: d3514dad84bea024ad6215711877a9784a8d8ffd
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
+ms.openlocfilehash: d422a07a27ffa62a673bd2d471ae4fc837251dee
+ms.lasthandoff: 04/11/2017
 
 
 ---
 # <a name="get-started-with-the-http-action"></a>開始使用 HTTP 動作
+
 您可以利用 HTTP 動作來延伸組織的工作流程，並透過 HTTP 與任何端點通訊。
 
 您可以：
@@ -40,12 +41,14 @@ ms.lasthandoff: 01/20/2017
 1. 在邏輯應用程式中新增 HTTP 觸發程序。
 2. 為想要輪詢的 HTTP 端點填入參數。
 3. 修改其輪詢頻率的循環間隔。
-4. 邏輯應用程式現在會在每個檢查期間傳回任何內容時引發。
 
-![HTTP 觸發程序](./media/connectors-native-http/using-trigger.png)
+   邏輯應用程式現在會在每個檢查期間傳回任何內容時引發。
+
+   ![HTTP 觸發程序](./media/connectors-native-http/using-trigger.png)
 
 ### <a name="how-the-http-trigger-works"></a>HTTP 觸發程序的運作方式
-HTTP 觸發程序會以循環間隔呼叫 HTTP 端點。 根據預設，任何小於 300 的 HTTP 回應碼均會導致執行邏輯應用程式。 您可以在程式碼檢視中新增條件，讓它在 HTTP 呼叫之後進行評估，以判斷是否應該引發邏輯應用程式。 以下是 HTTP 觸發程序的範例，它會在每次傳回的狀態碼大於或等於 `400`時觸發。
+
+HTTP 觸發程序會以循環間隔呼叫 HTTP 端點。 依預設，任何低於 300 的 HTTP 回應碼都會執行邏輯應用程式。 若要指定是否應該觸發邏輯應用程式，您可以在程式碼檢視中編輯邏輯應用程式，並新增條件以在 HTTP 呼叫之後進行評估。 以下是 HTTP 觸發程序的範例，它會在每次傳回的狀態碼大於或等於 `400` 時觸發。
 
 ```javascript
 "Http":
@@ -73,17 +76,20 @@ HTTP 觸發程序會以循環間隔呼叫 HTTP 端點。 根據預設，任何�
 如需關於 HTTP 觸發程序參數的詳細資料，可在 [MSDN](https://msdn.microsoft.com/library/azure/mt643939.aspx#HTTP-trigger)取得。
 
 ## <a name="use-the-http-action"></a>使用 HTTP 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](connectors-overview.md)。
 
-1. 選取 [新增步驟]  按鈕。
-2. 選擇 [新增動作] 。
+動作是由邏輯應用程式中定義的工作流程所執行的作業。 
+[深入了解動作](connectors-overview.md)。
+
+1. 選擇 [新增步驟] > [新增動作]。
 3. 在動作搜尋方塊中，輸入 **http** 以列出 HTTP 動作。
    
     ![選取 HTTP 動作](./media/connectors-native-http/using-action-1.png)
-4. 新增 HTTP 呼叫所需的任何參數。
+
+4. 新增任何必要參數以呼叫 HTTP。
    
     ![完成 HTTP 動作](./media/connectors-native-http/using-action-2.png)
-5. 按一下工具列左上角以儲存。 您的邏輯應用程式會儲存並發佈 (啟動)。
+
+5. 在程式設計工具的工具列上，按一下 [儲存]。 系統已儲存您的邏輯應用程式並在同一時間發佈 (啟動)。
 
 ## <a name="http-trigger"></a>HTTP 觸發程序
 以下是此連接器所支援觸發程序的詳細資料。 HTTP 連接器有一個觸發程序。
@@ -133,6 +139,7 @@ Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您�
 * [Azure Active Directory (Azure AD) OAuth 驗證](#azure-active-directory-oauth-authentication)
 
 #### <a name="basic-authentication"></a>基本驗證
+
 以下是基本驗證所需的驗證物件。
 標示 * 代表必要欄位。
 
@@ -143,11 +150,10 @@ Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您�
 | 密碼* |password |要驗證的密碼 |
 
 > [!TIP]
-> 如果您要使用無法從定義中擷取的密碼，請使用 `securestring` 參數和 `@parameters()` [工作流程定義函式](http://aka.ms/logicappdocs)。
-> 
-> 
+> 如果您要使用無法從定義中擷取的密碼，請使用 `securestring` 參數和 `@parameters()` 
+> [工作流程定義函式](http://aka.ms/logicappdocs)。
 
-因此，您會在驗證欄位建立一個類似以下的物件︰
+例如：
 
 ```javascript
 {
@@ -158,18 +164,18 @@ Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您�
 ```
 
 #### <a name="client-certificate-authentication"></a>用戶端憑證驗證
+
 以下是用戶端憑證驗證需要的驗證物件。 標示 * 代表必要欄位。
 
 | 屬性名稱 | 資料類型 | 說明 |
 | --- | --- | --- |
 | 類型* |type |驗證類型 (若為 SSL 用戶端憑證，必須是 `ClientCertificate` ) |
-| PFX* |pfx |Base&64; 編碼的個人資訊交換 (PFX) 檔案內容 |
+| PFX* |pfx |Base 64 編碼的個人資訊交換 (PFX) 檔案內容 |
 | 密碼* |password |存取 PFX 檔案的密碼 |
 
 > [!TIP]
-> 使用 `securestring` 參數和 `@parameters()` [工作流程定義函式](http://aka.ms/logicappdocs)，您就能在儲存邏輯應用程式後，使用無法在定義中讀取的參數。
-> 
-> 
+> 若要在儲存邏輯應用程式後，使用無法在定義中讀取的參數，您可以使用 `securestring` 參數和 `@parameters()`  
+> [工作流程定義函式](http://aka.ms/logicappdocs)。
 
 例如：
 
@@ -188,7 +194,7 @@ Logic Apps 功能可讓您針對 HTTP 端點使用不同類型的驗證。 您�
 | --- | --- | --- |
 | 類型* |type |驗證類型 (若為 Azure AD OAuth 必須是 `ActiveDirectoryOAuth` ) |
 | 租用戶* |tenant |Azure AD 租用戶的租用戶識別碼 |
-| 對象* |audience |設定為 `https://management.core.windows.net/` |
+| 對象* |audience |您要求授權使用的資源。 例如：`https://management.core.windows.net/` |
 | 用戶端識別碼* |clientId |Azure AD 應用程式的用戶端識別碼 |
 | 密碼* |secret |要求權杖之用戶端的密碼 |
 

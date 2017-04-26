@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 2/17/2017
 ms.author: asgang
 translationtype: Human Translation
-ms.sourcegitcommit: 54cf67bf630a9de30d4ccafdb09a3f8986c04145
-ms.openlocfilehash: 4415af41cfaf7230f398016e37b8a8cde453fa54
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 06ac75a40ed1dc97046836388bb7938dabd2b9ac
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -74,6 +74,14 @@ ms.lasthandoff: 02/22/2017
 10. 在 [名稱]  > 中，選取處理序伺服器將用來在機器上自動安裝行動服務的帳戶。 依預設會複寫所有磁碟。 按一下 [所有磁碟]  ，然後將任何您不想要複寫的磁碟取消選取。 然後按一下 [確定] 。 您可以稍後再設定其他屬性。
 
     ![啟用複寫](./media/site-recovery-vmware-to-azure/enable-replication6.png)
+
+
+> [!NOTE]
+> 依預設會複寫電腦上的所有磁碟。 您可以[從複寫排除磁碟](site-recovery-exclude-disk.md)。 例如，您可能不想要複寫具有暫存資料的磁碟，或是每次機器或應用程式重新啟動時便重新整理的資料 (例如 pagefile.sys 或 SQL Server tempdb)。
+>
+
+
+
 11. 在 [複寫設定] > [設定複寫設定] 中，確認已選取正確的複寫原則。 您可以在 [設定]  >  [複寫原則] > 原則名稱 > [編輯設定] 中修改複寫原則設定。 套用到原則的變更將會套用到複寫和新的機器。
 12. 如果您想要將機器聚集成一個複寫群組，請啟用 [多部 VM 一致性]  ，並指定群組的名稱。 然後按一下 [確定] 。 請注意：
 
@@ -94,7 +102,26 @@ ms.lasthandoff: 02/22/2017
 1. 按一下 [設定] > [複寫的項目]，然後選取機器。 [程式集]  刀鋒視窗會顯示機器設定與狀態的相關資訊。
 2. 在 [屬性] 中，您可以檢視 VM 的複寫和容錯移轉資訊。
 3. 在 [計算和網路] > [計算屬性] 中，您可以指定 Azure VM 名稱和目標大小。 視需要修改名稱以符合 Azure 需求。
-   您也可以檢視和加入目標網路、子網路的相關資訊，以及將指派給 Azure VM 的 IP 位址。 請注意：
+![啟用複寫](./media/site-recovery-vmware-to-azure/VMProperties_AVSET.png)
+
+*資源群組*
+   
+  * 您可以選取電腦將成為其後置容錯移轉一部分的[資源群組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-resource-groups-guidelines)。 您可以在容錯移轉之前隨時變更這項設定。 
+  
+> [!NOTE]
+> 容錯移轉後，如果將電腦移轉到不同的資源群組，則會中斷電腦的保護設定。
+ 
+*可用性設定組*
+
+如果您的電腦必須是其中一個後置容錯移轉，您可以選取[可用性設定組](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)。 當選取可用性設定組時，請記住︰
+
+* 只將屬於指定之資源群組的可用性設定組列出  
+* 虛擬網路不同的電腦不可在相同的可用性設定組中 
+* 只有相同大小的虛擬機器可在相同的可用性設定組中 
+
+網路屬性
+
+您也可以檢視和加入目標網路、子網路的相關資訊，以及將指派給 Azure VM 的 IP 位址。 請注意：
 
    * 您可以設定目標 IP 位址。 如果您未提供地址，則容錯移轉的機器會使用 DHCP。 如果您設定的位址在容錯移轉時無法使用，則容錯移轉會失敗。 如果位址可用於測試容錯移轉網路，則相同的目標 IP 位址可用於測試容錯移轉。
    * 網路介面卡的數目會視您指定給目標虛擬機器的大小而有所不同，如下所示：
@@ -116,5 +143,7 @@ ms.lasthandoff: 02/22/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-保護完成之後，您可以嘗試測試容錯移轉，以檢查應用程式是否會出現在 Azure 中。
+保護完成之後，您可以嘗試[容錯移轉](site-recovery-failover.md)，以檢查應用程式是否會出現在 Azure 中。
+
+如果您想要停用保護，請檢查如何[清除註冊與保護設定](site-recovery-manage-registration-and-protection.md)
 

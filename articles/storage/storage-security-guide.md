@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: f9d15570aeeb398b34198918b78590948020f256
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
+ms.openlocfilehash: fb764e3d228aa852a4d4e6b0f314daa60d099093
+ms.lasthandoff: 04/06/2017
 
 
 ---
@@ -318,7 +318,7 @@ SSE 可讓您要求儲存體服務在將資料寫入 Azure 儲存體時自動加
 
 用戶端加密內建於 Java 和 .NET 儲存體用戶端程式庫，接著會使用 Azure 金鑰保存庫 API，讓您實作變得很簡單。 加密和解密資料的程序會使用信封技術，並在每個儲存體物件中儲存加密所使用的中繼資料。 例如，如果是 Blob，會將它儲存於 Blob 中繼資料中，如果是佇列，則會將它新增至每個佇列訊息。
 
-至於加密本身，您可以產生和管理自己的加密金鑰。 您也可以使用 Azure 儲存體用戶端程式庫所產生的金鑰，或者可以讓 Azure 金鑰保存庫產生金鑰。 您可以將加密金鑰儲存於內部部署金鑰儲存體中，或將它們儲存在 Azure 金鑰保存庫中。 Azure 金鑰保存庫可讓您使用 Azure Active Directory，為特定的使用者授與 Azure 金鑰保存庫中密碼的存取權。 這表示並非人人都能讀取 Azure 金鑰保存庫，以及擷取您用來進行用戶端加密的金鑰。
+至於加密本身，您可以產生和管理自己的加密金鑰。 您也可以使用 Azure 儲存體用戶端程式庫所產生的金鑰，或者可以讓 Azure 金鑰保存庫產生金鑰。 您可以將加密金鑰儲存於內部部署金鑰儲存體中，或將它們儲存在 Azure 金鑰保存庫中。 Azure 金鑰保存庫可讓您使用 Azure Active Directory，為特定的使用者授與 Azure 金鑰保存庫中密碼的存取權。 這表示並非人人都能讀取 Azure Key Vault，以及擷取您用來進行用戶端加密的金鑰。
 
 #### <a name="resources"></a>資源
 * [在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 blob](storage-encrypt-decrypt-blobs-key-vault.md)
@@ -411,7 +411,7 @@ SSE 是由 Azure 儲存體所管理。 使用 SSE 不會針對傳輸中資料提
 
 ![記錄檔的檢視](./media/storage-security-guide/image1.png)
 
-對於 Azure 儲存體的每個要求都會記錄。 以下是記錄檔的快照，會顯示前幾個欄位。
+對於 Azure 儲存體的每個要求都會記錄。 以下是記錄的快照，會顯示前幾個欄位。
 
 ![記錄檔的快照](./media/storage-security-guide/image2.png)
 
@@ -422,20 +422,20 @@ SSE 是由 Azure 儲存體所管理。 使用 SSE 不會針對傳輸中資料提
 
 ![記錄檔中欄位的快照](./media/storage-security-guide/image3.png)
 
-我們對於 GetBlob 的項目及其驗證方法很感興趣，所以必須尋找作業類型 "Get-Blob" 的項目，並檢查要求狀態 (第&4;<sup></sup> 欄) 和授權類型 (第&8;<sup></sup> 欄)。
+我們對於 GetBlob 的項目及其驗證方法很感興趣，所以必須尋找作業類型 "Get-Blob" 的項目，並檢查要求狀態 (第 4<sup></sup> 欄) 和授權類型 (第 8<sup></sup> 欄)。
 
-例如，在上述清單的前幾個列中，要求狀態為 “Success” 且驗證類型為 “authenticated”。 這表示已使用儲存體帳戶金鑰驗證要求。
+例如，在上述清單的前幾個列中，要求狀態為 "Success" 且驗證類型為 "authenticated"。 這表示已使用儲存體帳戶金鑰驗證要求。
 
 #### <a name="how-are-my-blobs-being-authenticated"></a>如何驗證我的 Blob？
 以下提供三個我們感興趣的案例。
 
-1. Blob 是公用的且可使用 URL (而不需共用存取簽章) 來存取。 在此案例中，要求狀態為 “AnonymousSuccess” 且驗證類型為 “anonymous”。
+1. Blob 是公用的且可使用 URL (而不需共用存取簽章) 來存取。 在此案例中，要求狀態為 "AnonymousSuccess" 且驗證類型為 "anonymous"。
    
    1.0;2015-11-17T02:01:29.0488963Z;GetBlob;**AnonymousSuccess**;200;124;37;**anonymous**;;mystorage…
-2. Blob 是私人的且與共用存取簽章搭配使用。 在此案例中，要求狀態為 “SASSuccess” 且驗證類型為 “sas”。
+2. Blob 是私人的且與共用存取簽章搭配使用。 在此案例中，要求狀態為 "SASSuccess" 且驗證類型為 "sas"。
    
    1.0;2015-11-16T18:30:05.6556115Z;GetBlob;**SASSuccess**;200;416;64;**sas**;;mystorage…
-3. Blob 是私人且使用儲存體金鑰來存取它。 在此案例中，request-status 為 “**Success**” 且 authorization-type 為 “**authenticated**”。
+3. Blob 是私人且使用儲存體金鑰來存取它。 在此案例中，request-status 為 "**Success**" 且 authorization-type 為 “**authenticated**”。
    
    1.0;2015-11-16T18:32:24.3174537Z;GetBlob;**Success**;206;59;22;**authenticated**;mystorage…
 
@@ -493,7 +493,7 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每
 * **AllowedOrigins** 這會指出哪些不相符的網域可以向儲存體服務提出要求並從中接收資料。 這表示，contoso.com 和 fabrikam.com 可以針對特定的儲存體帳戶向 Blob 儲存體要求資料。 您也可以將此設定為萬用字元 (\*)，以允許所有網域存取要求。
 * **AllowedMethods** 這是提出要求時可以使用的方法 (HTTP 要求動詞命令) 清單。 在此範例中，只允許 PUT 和 GET。 您可以將此設定為萬用字元 (\*)，以允許使用所有方法。
 * **AllowedHeaders** 這是在提出要求時原始網域可以指定的要求標頭。 在此範例中，允許以 x-ms-meta-data、x-ms-meta-target 及 x-ms-meta-abc 開頭的所有中繼資料標頭。 萬用字元 (\*) 表示允許任何以指定前置詞開頭的標頭。
-* **ExposedHeaders** 這表示瀏覽器應向要求簽發者公開的回應標頭。 在此範例中，將公開任何以 “x-ms-meta-“ 開頭的標頭。
+* **ExposedHeaders** 這表示瀏覽器應向要求簽發者公開的回應標頭。 在此範例中，將公開任何以 "x-ms-meta-" 開頭的標頭。
 * **MaxAgeInSeconds** 這是瀏覽器將快取預檢 OPTIONS 要求的時間量上限。 (如需預檢要求的詳細資訊，請檢查下列第一篇文章)。
 
 #### <a name="resources"></a>資源
@@ -525,12 +525,12 @@ Azure 儲存體可讓您啟用 CORS – 跨原始來源資源共用。 對於每
    
    **資源**
 
-* [Why We’re Not Recommending “FIPS Mode” Anymore (為什麼我們不再建議「FIPS 模式」)](http://blogs.technet.com/b/secguide/archive/2014/04/07/why-we-re-not-recommending-fips-mode-anymore.aspx)
+* [Why We’re Not Recommending "FIPS Mode" Anymore (為什麼我們不再建議「FIPS 模式」)](http://blogs.technet.com/b/secguide/archive/2014/04/07/why-we-re-not-recommending-fips-mode-anymore.aspx)
   
   此部落格文章提供 FIPS 概觀，並說明他們為什麼預設不啟用 FIPS 模式。
 * [FIPS 140 Validation (FIPS 140 驗證)](https://technet.microsoft.com/library/cc750357.aspx)
   
   本文提供 Microsoft 產品和密碼編譯模組如何符合美國美國聯邦政府的 FIPS 標準的相關資訊。
-* [Windows XP 和 Windows 的更新版本中「系統密碼編譯︰使用 FIPS 相容演算法於加密，雜湊，以及簽章」安全性設定的效果](https://support.microsoft.com/kb/811833)
+* [Windows XP 和 Windows 的更新版本中「系統密碼編譯︰使用符合 FIPS 規範的演算法進行加密，雜湊，以及簽章」安全性設定的效果](https://support.microsoft.com/kb/811833)
   
   本文討論如何在較舊的 Windows 電腦中使用 FIPS 模式。

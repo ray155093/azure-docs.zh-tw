@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 01/17/2017
+ms.date: 04/03/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
-ms.openlocfilehash: 31495f402b810c524bd7b906498774302500b732
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: db36f52f538905683b4cbc6db7cc41b56710db8c
+ms.lasthandoff: 04/04/2017
 
 
 ---
@@ -29,25 +29,12 @@ ms.lasthandoff: 01/24/2017
 > 
 > 
 
-當您有 App 或指令碼需要存取資源時，可以設定 App 的身分識別並使用它自己的認證進行驗證。 以您自己的認證執行 App 是比較好的作法，因為︰
+當您有 App 或指令碼需要存取資源時，可以設定 App 的身分識別，並使用 App 自己的認證進行驗證。 此身分識別就是所謂的服務主體。 這種方法可讓您︰
 
-* 您可以對 App 身分識別指派不同於您自己權限的權限。 一般而言，這些權限只會限制為 App 必須執行的確切權限。
-* 如果您的職責變更，就不需要變更 App 的認證。 
-* 您可以使用憑證在執行自動指令碼時自動進行驗證。
+* 將權限指派給不同於您自己權限的 App 身分識別。 一般而言，這些權限只會限制為 App 必須執行的確切權限。
+* 使用憑證在執行無人看管的指令碼時進行驗證。
 
 本主題說明如何使用 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 來設定所需的一切項目，以便讓應用程式利用自己的認證和身分識別來執行。
-
-在 PowerShell 中，您有兩個選項可以驗證您的 AD 應用程式︰
-
-* password
-* 憑證
-
-本主題說明如何在 PowerShell 中使用這兩個選項。 如果您想要從程式設計架構 (例如 Python、Ruby 或 Node.js) 登入 Azure，密碼驗證可能是您的最佳選項。 在決定是要使用密碼還是憑證時，請參閱 [範例應用程式](#sample-applications) 一節，以查看在不同架構進行驗證的範例。
-
-## <a name="active-directory-concepts"></a>Active Directory 概念
-在本文中，您會建立 Active Directory (AD) 應用程式和服務主體這兩個物件。 AD 應用程式是您的應用程式的全域表示法。 其中包含認證 (應用程式識別碼以及密碼或憑證)。 服務主體是您的應用程式在 Active Directory 中的本機表示法。 其中包含角色指派。 本主題著重在說明單一租用戶應用程式，此應用程式的目的是只在一個組織內執行。 您通常會將單一租用戶應用程式用在組織內執行的企業營運系統應用程式。 在單一租用戶應用程式中，您有一個 AD 應用程式和一個服務主體。
-
-您可能想知道 - 為什麼我需要這兩個物件？ 當您考慮多租用戶應用程式時，這個方法比較合適。 您通常會將多租用戶應用程式用於軟體即服務 (SaaS) 應用程式，以便您的應用程式在許多不同的訂用帳戶中執行。 對於多租用戶應用程式，您有一個 AD 應用程式和多個服務主體 (每個 Active Directory 中有一個服務主體可授與應用程式的存取權)。 若要設定多租用戶應用程式，請參閱 [利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
 
 ## <a name="required-permissions"></a>所需的權限
 若要完成本主題，您必須在 Azure Active Directory 和您的 Azure 訂用帳戶中有足夠的權限。 具體來說，您必須能夠在 Active Directory 中建立應用程式，並將服務主體指派給角色。 
@@ -57,259 +44,304 @@ ms.lasthandoff: 01/24/2017
 現在，繼續進行[密碼](#create-service-principal-with-password)或[憑證](#create-service-principal-with-certificate)驗證的章節。
 
 ## <a name="create-service-principal-with-password"></a>使用密碼建立服務主體
-在本節中，您會執行下列步驟：
-
-* 建立具有密碼的 AD 應用程式
-* 建立服務主體
-* 將 [讀取者角色] 指派給服務主體
-
-若要快速執行這些步驟，請看下列 Cmdlet：
+下列指令碼會建立您應用程式的身分識別，並將它指派給指定範圍內的參與者角色︰
 
 ```powershell
-$app = New-AzureRmADApplication -DisplayName "{app-name}" -HomePage "https://{your-domain}/{app-name}" -IdentifierUris "https://{your-domain}/{app-name}" -Password "{your-password}"
-New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId
-Start-Sleep 15
-New-AzureRmRoleAssignment -RoleDefinitionName Reader -ServicePrincipalName $app.ApplicationId
+Param (
+
+ # Use to set scope to resource group. If no value is provided, scope is set to subscription.
+ [Parameter(Mandatory=$false)]
+ [String] $ResourceGroup,
+
+ # Use to set subscription. If no value is provided, default subscription is used. 
+ [Parameter(Mandatory=$false)]
+ [String] $SubscriptionId,
+
+ [Parameter(Mandatory=$true)]
+ [String] $ApplicationDisplayName,
+
+ [Parameter(Mandatory=$true)]
+ [String] $Password
+ )
+
+ Login-AzureRmAccount
+ Import-Module AzureRM.Resources
+
+ if ($SubscriptionId -eq "") 
+ {
+    $SubscriptionId = (Get-AzureRmContext).Subscription.SubscriptionId
+ }
+ else
+ {
+    Set-AzureRmContext -SubscriptionId $SubscriptionId
+ }
+
+ if ($ResourceGroup -eq "")
+ {
+    $Scope = "/subscriptions/" + $SubscriptionId
+ }
+ else
+ {
+    $Scope = (Get-AzureRmResourceGroup -Name $ResourceGroup -ErrorAction Stop).ResourceId
+ }
+
+ # Create Active Directory application with password
+ $Application = New-AzureRmADApplication -DisplayName $ApplicationDisplayName -HomePage ("http://" + $ApplicationDisplayName) -IdentifierUris ("http://" + $ApplicationDisplayName) -Password $Password
+
+ # Create Service Principal for the AD app
+ $ServicePrincipal = New-AzureRMADServicePrincipal -ApplicationId $Application.ApplicationId 
+ Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id 
+
+ $NewRole = $null
+ $Retries = 0;
+ While ($NewRole -eq $null -and $Retries -le 6)
+ {
+    # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
+    Sleep 15
+    New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $Application.ApplicationId -Scope $Scope | Write-Verbose -ErrorAction SilentlyContinue
+    $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $Application.ApplicationId -ErrorAction SilentlyContinue
+    $Retries++;
+ }
 ```
 
-指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。 如果您收到此錯誤，可以重新執行 Cmdlet 將它指派給角色。
+有關指令碼的一些注意事項︰
 
-我們會更仔細解說這些步驟，確保您了解此程序。
+* 若要授與身分識別存取預設訂用帳戶，您不需要提供 ResourceGroup 或 SubscriptionId 參數。
+* 只有當您想要將角色指派的範圍限制為資源群組時，才指定 ResourceGroup 參數。
+* 對於單一租用戶應用程式，不會驗證首頁和識別項 URI。
+*  在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
+* 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
+* 如果您要授與服務主體存取更多訂用帳戶或資源群組，請以不同範圍再次執行 `New-AzureRMRoleAssignment` Cmdlet。
 
-1. 登入您的帳戶。
-   
-   ```powershell
-   Login-AzureRmAccount
-   ```
-
-2. 建立新的 Active Directory 應用程式，方法是提供顯示名稱、描述應用程式的 URI、識別應用程式的 URI，以及應用程式身分識別的密碼。
-
-   ```powershell   
-   $app = New-AzureRmADApplication -DisplayName "exampleapp" -HomePage "https://www.contoso.org/exampleapp" -IdentifierUris "https://www.contoso.org/exampleapp" -Password "{Your_Password}"
-   ```
-
-     對於單一租用戶應用程式，不會驗證 URI。
-   
-     如果您的帳戶沒有 Active Directory 的[必要權限](#required-permissions)，您會看到一則錯誤訊息，指出 "Authentication_Unauthorized" 或「在內容中找不到任何訂用帳戶」。
-3. 檢查新的應用程式物件。 
-   
-   ```powershell
-   $app
-   ```
-   
-     請特別注意，需要有 `ApplicationId` 屬性，才能建立服務主體、角色指派以及取得存取權杖。
-   
-   ```powershell
-   DisplayName             : exampleapp
-   ObjectId                : c95e67a3-403c-40ac-9377-115fa48f8f39
-   IdentifierUris          : {https://www.contoso.org/example}
-   HomePage                : https://www.contoso.org
-   Type                    : Application
-   ApplicationId           : 8bc80782-a916-47c8-a47e-4d76ed755275
-   AvailableToOtherTenants : False
-   AppPermissions          : 
-   ReplyUrls               : {}
-   ```
-4. 傳入 Active Directory 應用程式的應用程式識別碼來建立應用程式的服務主體。
-   
-   ```powershell
-   New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId
-   ```
-
-5. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 `ServicePrincipalName` 參數，提供您在建立應用程式時所使用的 `ApplicationId`。 執行此 Cmdlet 之前，您必須允許一些時間讓新的服務主體在整個 Active Directory 中傳播。 當您手動執行這些 Cmdlet 時，通常 Cmdlet 與 Cmdlet 之間經過的時間已足夠。 您應該在指令碼中的 Cmdlet 之間加入睡眠步驟 (例如`Start-Sleep 15`)。 如果您看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」，請重新執行 Cmdlet。
-
-   ```powershell   
-   New-AzureRmRoleAssignment -RoleDefinitionName Reader -ServicePrincipalName $app.ApplicationId
-   ```
-
-    如果您的帳戶沒有足夠的權限可指派角色，您會看到一則錯誤訊息。 此訊息說明您的帳戶「沒有權限來對 '/subscriptions/{guid}' 範圍執行 'Microsoft.Authorization/roleAssignments/write' 動作」。 
-
-就這麼簡單！ 您的 AD 應用程式和服務主體已設定好。 下一節會說明如何透過 PowerShell 以認證來登入。 如果您想要使用程式碼應用程式中的認證，您可以跳到 [範例應用程式](#sample-applications)。 
 
 ### <a name="provide-credentials-through-powershell"></a>透過 PowerShell 提供認證
-現在，您需要以應用程式的形式登入以執行作業。
+現在，您需要以應用程式的形式登入以執行作業。 針對使用者名稱，使用您針對應用程式建立的 `ApplicationId`。 針對密碼，使用您在建立帳戶時所指定的密碼。 
 
-1. 執行 `Get-Credential` 命令，以建立含有您認證的 `PSCredential` 物件。 您必須先擁有 `ApplicationId` 才能執行此命令，因此請確定您已有上述項目可供貼上。
-
-   ```powershell   
-   $creds = Get-Credential
-   ```
-
-2. 系統會提示您輸入認證。 針對使用者名稱，使用您在建立應用程式時所使用的 `ApplicationId`。 針對密碼，使用您在建立帳戶時所指定的密碼。
-   
-     ![輸入認證](./media/resource-group-authenticate-service-principal/arm-get-credential.png)
-3. 每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Active Directory 的執行個體。 如果您只有一個訂用帳戶，您可以使用：
-
-   ```powershell   
-   $tenant = (Get-AzureRmSubscription).TenantId
-   ```
-   
-     如果您有多個訂用帳戶，請指定 Active Directory 所在的訂用帳戶。 如需詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](../active-directory/active-directory-how-subscriptions-associated-directory.md)。
-
-   ```powershell
-   $tenant = (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
-   ```
-
-4. 登入為服務主體，方法是指定此帳戶為服務主體，以及提供認證物件。 
-   
-   ```powershell
-   Login-AzureRmAccount -Credential $creds -ServicePrincipal -TenantId $tenant
-   ```
-   
-     您現在驗證為您所建立之 Active Directory 應用程式的服務主體。
-
-### <a name="save-access-token-to-simplify-log-in"></a>儲存存取權杖以簡化登入
-若要避免每次需要登入時都要提供服務主體認證，您可以儲存存取權杖。
-
-1. 若要在稍後的工作階段中使用目前的存取權杖，請儲存設定檔。
-   
-   ```powershell
-   Save-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
-   ```
-   
-     開啟設定檔，並檢查其內容。 請注意其中包含存取權杖。 
-2. 請不要以手動方式再次登入，只要載入設定檔即可。
-   
-   ```powershell
-   Select-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
-   ```
-
-  > [!NOTE]
-  > 存取權杖會過期，因此，只要權杖有效，就只使用可使用的已儲存設定檔。
-  >  
-
-或者，您可以從 PowerShell 叫用 REST 作業來登入。 從驗證回應，您可以擷取存取權杖以用於其他作業。 如需叫用 REST 作業擷取存取權杖的範例，請參閱[產生存取權杖](resource-manager-rest-api.md#generating-an-access-token)。
-
-## <a name="create-service-principal-with-certificate"></a>使用憑證建立服務主體
-在本節中，您會執行下列步驟：
-
-* 建立自我簽署憑證
-* 建立具有憑證的 AD 應用程式
-* 建立服務主體
-* 將 [讀取者角色] 指派給服務主體
-
-若要在 Windows 10 或 Windows Server 2016 Technical Preview 上使用 Azure PowerShell 2.0 快速執行這些步驟，請參閱下列 Cmdlet：
-
-```powershell
-$cert = New-SelfSignedCertificate -CertStoreLocation "cert:\CurrentUser\My" -Subject "CN=exampleapp" -KeySpec KeyExchange
-$keyValue = [System.Convert]::ToBase64String($cert.GetRawCertData())
-$app = New-AzureRmADApplication -DisplayName "exampleapp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.contoso.org/example" -CertValue $keyValue -EndDate $cert.NotAfter -StartDate $cert.NotBefore
-New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId
-Start-Sleep 15
-New-AzureRmRoleAssignment -RoleDefinitionName Reader -ServicePrincipalName $app.ApplicationId
+```powershell   
+$creds = Get-Credential
+Login-AzureRmAccount -Credential $creds -ServicePrincipal -TenantId {tenant-id}
 ```
 
-指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。 如果您收到此錯誤，可以重新執行 Cmdlet 將它指派給角色。
+租用戶識別碼不區分大小寫，因此您可以直接將它內嵌在指令碼中。 如果您要擷取租用戶識別碼，請使用︰
 
-我們會更仔細解說這些步驟，確保您了解此程序。 本文也說明如何在使用舊版 Azure PowerShell 或作業系統時完成工作。
+```powershell
+(Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
+```
 
-### <a name="create-the-self-signed-certificate"></a>建立自我簽署憑證
-Windows 10 和 Windows Server 2016 Technical Preview 提供的 PowerShell 版本已更新用來產生自我簽署憑證的 `New-SelfSignedCertificate` Cmdlet。 舊版作業系統有 New-SelfSignedCertificate Cmdlet，但它不會提供本主題所需的參數。 相反地，您需要匯入模組來產生憑證。 根據您擁有的作業系統，本主題說明兩種用來產生憑證的方法。 
+## <a name="create-service-principal-with-self-signed-certificate"></a>使用自我簽署憑證建立服務主體
+若要使用 Windows 10 的 Azure PowerShell 2.0 或 Windows Server 2016 Technical Preview 產生自我簽署的憑證與服務主體，請使用下列指令碼︰
 
-* 如果您執行 **Windows 10 或 Windows Server 2016 Technical Preview**，請執行下列命令來建立自我簽署憑證： 
-   
-  ```powershell
-  $cert = New-SelfSignedCertificate -CertStoreLocation "cert:\CurrentUser\My" -Subject "CN=exampleapp" -KeySpec KeyExchange
-  ```
-* 如果您 **不是執行 Windows 10 或 Windows Server 2016 Technical Preview**，則必須從 Microsoft 指令碼中心下載 [自我簽署憑證產生器](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6/) 。 將其內容解壓縮，並匯入您需要的 Cmdlet。
+```powershell
+Param (
 
-  ```powershell  
-  # Only run if you could not use New-SelfSignedCertificate
-  Import-Module -Name c:\ExtractedModule\New-SelfSignedCertificateEx.ps1
-  ```
+ # Use to set scope to resource group. If no value is provided, scope is set to subscription.
+ [Parameter(Mandatory=$false)]
+ [String] $ResourceGroup,
+
+ # Use to set subscription. If no value is provided, default subscription is used. 
+ [Parameter(Mandatory=$false)]
+ [String] $SubscriptionId,
+
+ [Parameter(Mandatory=$true)]
+ [String] $ApplicationDisplayName
+ )
+
+ Login-AzureRmAccount
+ Import-Module AzureRM.Resources
+
+ if ($SubscriptionId -eq "") 
+ {
+    $SubscriptionId = (Get-AzureRmContext).Subscription.SubscriptionId
+ }
+ else
+ {
+    Set-AzureRmContext -SubscriptionId $SubscriptionId
+ }
+
+ if ($ResourceGroup -eq "")
+ {
+    $Scope = "/subscriptions/" + $SubscriptionId
+ }
+ else
+ {
+    $Scope = (Get-AzureRmResourceGroup -Name $ResourceGroup -ErrorAction Stop).ResourceId
+ }
+
+ $cert = New-SelfSignedCertificate -CertStoreLocation "cert:\CurrentUser\My" -Subject "CN=exampleappScriptCert" -KeySpec KeyExchange
+ $keyValue = [System.Convert]::ToBase64String($cert.GetRawCertData())
+
+ # Use Key credentials
+ $Application = New-AzureRmADApplication -DisplayName $ApplicationDisplayName -HomePage ("http://" + $ApplicationDisplayName) -IdentifierUris ("http://" + $ApplicationDisplayName) -CertValue $keyValue -EndDate $cert.NotAfter -StartDate $cert.NotBefore
+
+ $ServicePrincipal = New-AzureRMADServicePrincipal -ApplicationId $Application.ApplicationId 
+ Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id 
+
+ $NewRole = $null
+ $Retries = 0;
+ While ($NewRole -eq $null -and $Retries -le 6)
+ {
+    # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
+    Sleep 15
+    New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $Application.ApplicationId -Scope $Scope | Write-Verbose -ErrorAction SilentlyContinue
+    $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $Application.ApplicationId -ErrorAction SilentlyContinue
+    $Retries++;
+ }
+```
+
+有關指令碼的一些注意事項︰
+
+* 若要授與身分識別存取預設訂用帳戶，您不需要提供 ResourceGroup 或 SubscriptionId 參數。
+* 只有當您想要將角色指派的範圍限制為資源群組時，才指定 ResourceGroup 參數。
+* 對於單一租用戶應用程式，不會驗證首頁和識別項 URI。
+*  在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
+* 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
+* 如果您要授與服務主體存取更多訂用帳戶或資源群組，請以不同範圍再次執行 `New-AzureRMRoleAssignment` Cmdlet。
+
+如果您 **不是執行 Windows 10 或 Windows Server 2016 Technical Preview**，則必須從 Microsoft 指令碼中心下載 [自我簽署憑證產生器](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6/) 。 將其內容解壓縮，並匯入您需要的 Cmdlet。
+
+```powershell  
+# Only run if you could not use New-SelfSignedCertificate
+Import-Module -Name c:\ExtractedModule\New-SelfSignedCertificateEx.ps1
+```
   
-     然後產生憑證。
+在指令碼中，取代下列兩行來產生憑證。
   
-  ```powershell
-  New-SelfSignedCertificateEx  -StoreLocation CurrentUser -StoreName My -Subject "CN=exampleapp" -KeySpec "Exchange" -FriendlyName "exampleapp"
-  $cert = Get-ChildItem -path Cert:\CurrentUser\my | where {$PSitem.Subject -eq 'CN=exampleapp' }
-  ```
-
-您已擁有憑證，接下來可以繼續建立 AD 應用程式。
-
-### <a name="create-the-active-directory-app-and-service-principal"></a>建立 Active Directory 應用程式和服務主體
-1. 從憑證擷取金鑰值。
-   
-   ```powershell
-   $keyValue = [System.Convert]::ToBase64String($cert.GetRawCertData())
-   ```
-2. 登入您的 Azure 帳戶。
-   
-   ```powershell
-   Login-AzureRmAccount
-   ```
-3. 建立新的 Active Directory 應用程式，方法是提供顯示名稱、描述應用程式的 URI、識別應用程式的 URI，以及應用程式身分識別的密碼。
-   
-     如果您有 Azure PowerShell 2.0 (2016 年 8 月或更新版本)，請使用下列 Cmdlet：
-
-   ```powershell   
-   $app = New-AzureRmADApplication -DisplayName "exampleapp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.contoso.org/example" -CertValue $keyValue -EndDate $cert.NotAfter -StartDate $cert.NotBefore      
-   ```
-   
-    如果您有 Azure PowerShell 1.0，請使用下列 Cmdlet：
-
-   ```powershell
-   $app = New-AzureRmADApplication -DisplayName "exampleapp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.contoso.org/example" -KeyValue $keyValue -KeyType AsymmetricX509Cert  -EndDate $cert.NotAfter -StartDate $cert.NotBefore
-   ```
-   
-    對於單一租用戶應用程式，不會驗證 URI。
-   
-    如果您的帳戶沒有 Active Directory 的[必要權限](#required-permissions)，您會看到一則錯誤訊息，指出 "Authentication_Unauthorized" 或「在內容中找不到任何訂用帳戶」。
-   
-    檢查新的應用程式物件。 
-   
-   ```powershell
-   $app
-   ```
-   
-    請注意，需要有 **ApplicationId** 屬性，才能建立服務主體、角色指派以及取得存取權杖。
-
-   ```powershell
-   DisplayName             : exampleapp
-   ObjectId                : c95e67a3-403c-40ac-9377-115fa48f8f39
-   IdentifierUris          : {https://www.contoso.org/example}
-   HomePage                : https://www.contoso.org
-   Type                    : Application
-   ApplicationId           : 8bc80782-a916-47c8-a47e-4d76ed755275
-   AvailableToOtherTenants : False
-   AppPermissions          : 
-   ReplyUrls               : {}
-   ```
-4. 傳入 Active Directory 應用程式的應用程式識別碼來建立應用程式的服務主體。
-   
-   ```powershell
-   New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId
-   ```
-5. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 `ServicePrincipalName` 參數，提供您在建立應用程式時所使用的 `ApplicationId`。 執行此 Cmdlet 之前，您必須允許一些時間讓新的服務主體在整個 Active Directory 中傳播。 當您手動執行這些 Cmdlet 時，通常 Cmdlet 與 Cmdlet 之間經過的時間已足夠。 您應該在指令碼中的 Cmdlet 之間加入睡眠步驟 (例如`Start-Sleep 15`)。 如果您看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」，請重新執行 Cmdlet。
-   
-   ```powershell
-   New-AzureRmRoleAssignment -RoleDefinitionName Reader -ServicePrincipalName $app.ApplicationId
-   ```
-   
-    如果您的帳戶沒有足夠的權限可指派角色，您會看到一則錯誤訊息。 此訊息說明您的帳戶「沒有權限來對 '/subscriptions/{guid}' 範圍執行 'Microsoft.Authorization/roleAssignments/write' 動作」。
-
-就這麼簡單！ 您的 AD 應用程式和服務主體已設定好。 下一節會說明如何透過 PowerShell 以憑證來登入。
+```powershell
+New-SelfSignedCertificateEx  -StoreLocation CurrentUser -StoreName My -Subject "CN=exampleapp" -KeySpec "Exchange" -FriendlyName "exampleapp"
+$cert = Get-ChildItem -path Cert:\CurrentUser\my | where {$PSitem.Subject -eq 'CN=exampleapp' }
+```
 
 ### <a name="provide-certificate-through-automated-powershell-script"></a>透過自動化的 PowerShell 指令碼提供憑證
 每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Active Directory 的執行個體。 如果您只有一個訂用帳戶，您可以使用：
 
 ```powershell
-$tenant = (Get-AzureRmSubscription).TenantId
+Param (
+ 
+ [Parameter(Mandatory=$true)]
+ [String] $CertSubject,
+ 
+ [Parameter(Mandatory=$true)]
+ [String] $ApplicationId,
+
+ [Parameter(Mandatory=$true)]
+ [String] $TenantId
+ )
+
+ $Thumbprint = (Get-ChildItem cert:\CurrentUser\My\ | Where-Object {$_.Subject -match $CertSubject }).Thumbprint
+ Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint $Thumbprint -ApplicationId $ApplicationId -TenantId $TenantId
 ```
 
-如果您有多個訂用帳戶，請指定 Active Directory 所在的訂用帳戶。 如需詳細資訊，請參閱[管理您的 Azure AD 目錄](../active-directory/active-directory-administer.md)。
+應用程式識別碼和租用戶識別碼不區分大小寫，因此您可以直接將它們內嵌在您的指令碼中。 如果您要擷取租用戶識別碼，請使用︰
 
 ```powershell
-$tenant = (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
+(Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
 ```
 
-若要在指令碼中進行驗證，請指定帳戶為服務主體，並且提供憑證指紋、應用程式識別碼和租用戶識別碼。 若要讓指令碼自動執行，您可以將這些值儲存為環境變數，並在執行期間擷取它們，或者您可以將它們包含在指令碼中。
+如果您要擷取應用程式識別碼，請使用︰
 
 ```powershell
-Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint $cert.Thumbprint -ApplicationId $app.ApplicationId -TenantId $tenant
+(Get-AzureRmADApplication -DisplayNameStartWith {display-name}).ApplicationId
 ```
 
-您現在驗證為您所建立之 Active Directory 應用程式的服務主體。
+## <a name="create-service-principal-with-certificate-from-certificate-authority"></a>使用憑證授權中心的憑證來建立服務主體
+若要使用憑證授權中心所發行的憑證來建立服務主體，請使用下列指令碼︰
+
+```powershell
+Param (
+ [Parameter(Mandatory=$true)]
+ [String] $ApplicationDisplayName,
+
+ [Parameter(Mandatory=$true)]
+ [String] $SubscriptionId,
+
+ [Parameter(Mandatory=$true)]
+ [String] $CertPath,
+
+ [Parameter(Mandatory=$true)]
+ [String] $CertPlainPassword
+ )
+
+ Login-AzureRmAccount
+ Import-Module AzureRM.Resources
+ Set-AzureRmContext -SubscriptionId $SubscriptionId
+
+ $KeyId = (New-Guid).Guid
+ $CertPassword = ConvertTo-SecureString $CertPlainPassword -AsPlainText -Force
+
+ $PFXCert = New-Object -TypeName System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList @($CertPath, $CertPassword)
+ $KeyValue = [System.Convert]::ToBase64String($PFXCert.GetRawCertData())
+
+ $KeyCredential = New-Object  Microsoft.Azure.Commands.Resources.Models.ActiveDirectory.PSADKeyCredential
+ $KeyCredential.StartDate = $PFXCert.NotBefore
+ $KeyCredential.EndDate= $PFXCert.NotAfter
+ $KeyCredential.KeyId = $KeyId
+ $KeyCredential.CertValue = $KeyValue
+
+ # Use Key credentials
+ $Application = New-AzureRmADApplication -DisplayName $ApplicationDisplayName -HomePage ("http://" + $ApplicationDisplayName) -IdentifierUris ("http://" + $KeyId) -KeyCredentials $keyCredential
+
+ $ServicePrincipal = New-AzureRMADServicePrincipal -ApplicationId $Application.ApplicationId 
+ Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id 
+
+ $NewRole = $null
+ $Retries = 0;
+ While ($NewRole -eq $null -and $Retries -le 6)
+ {
+    # Sleep here for a few seconds to allow the service principal application to become active (should only take a couple of seconds normally)
+    Sleep 15
+    New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $Application.ApplicationId | Write-Verbose -ErrorAction SilentlyContinue
+    $NewRole = Get-AzureRMRoleAssignment -ServicePrincipalName $Application.ApplicationId -ErrorAction SilentlyContinue
+    $Retries++;
+ }
+ 
+ $NewRole
+```
+
+有關指令碼的一些注意事項︰
+
+* 存取限域為訂用帳戶。
+* 對於單一租用戶應用程式，不會驗證首頁和識別項 URI。
+*  在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
+* 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
+* 如果您要授與服務主體存取更多訂用帳戶或資源群組，請以不同範圍再次執行 `New-AzureRMRoleAssignment` Cmdlet。
+
+### <a name="provide-certificate-through-automated-powershell-script"></a>透過自動化的 PowerShell 指令碼提供憑證
+每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Active Directory 的執行個體。
+
+```powershell
+Param (
+ 
+ [Parameter(Mandatory=$true)]
+ [String] $CertPath,
+
+ [Parameter(Mandatory=$true)]
+ [String] $CertPlainPassword,
+ 
+ [Parameter(Mandatory=$true)]
+ [String] $ApplicationId,
+
+ [Parameter(Mandatory=$true)]
+ [String] $TenantId
+ )
+
+ $CertPassword = ConvertTo-SecureString $CertPlainPassword -AsPlainText -Force
+ $PFXCert = New-Object -TypeName System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList @($CertPath, $CertPassword)
+ $Thumbprint = $PFXCert.Thumbprint
+
+ Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint $Thumbprint -ApplicationId $ApplicationId -TenantId $TenantId
+```
+
+應用程式識別碼和租用戶識別碼不區分大小寫，因此您可以直接將它們內嵌在您的指令碼中。 如果您要擷取租用戶識別碼，請使用︰
+
+```powershell
+(Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
+```
+
+如果您要擷取應用程式識別碼，請使用︰
+
+```powershell
+(Get-AzureRmADApplication -DisplayNameStartWith {display-name}).ApplicationId
+```
 
 ## <a name="change-credentials"></a>管理認證
 
@@ -332,6 +364,35 @@ New-AzureRmADAppCredential -ApplicationId 8bc80782-a916-47c8-a47e-4d76ed755275 -
 ```powershell
 New-AzureRmADAppCredential -ApplicationId 8bc80782-a916-47c8-a47e-4d76ed755275 -CertValue $keyValue -EndDate $cert.NotAfter -StartDate $cert.NotBefore
 ```
+
+## <a name="save-access-token-to-simplify-log-in"></a>儲存存取權杖以簡化登入
+若要避免每次需要登入時都要提供服務主體認證，您可以儲存存取權杖。
+
+若要在稍後的工作階段中使用目前的存取權杖，請儲存設定檔。
+   
+```powershell
+Save-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
+```
+   
+開啟設定檔，並檢查其內容。 請注意其中包含存取權杖。 請不要以手動方式再次登入，只要載入設定檔即可。
+   
+```powershell
+Select-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
+```
+
+> [!NOTE]
+> 存取權杖會過期，因此，只要權杖有效，就只使用可使用的已儲存設定檔。
+>  
+
+或者，您可以從 PowerShell 叫用 REST 作業來登入。 從驗證回應，您可以擷取存取權杖以用於其他作業。 如需叫用 REST 作業擷取存取權杖的範例，請參閱[產生存取權杖](resource-manager-rest-api.md#generating-an-access-token)。
+
+## <a name="debug"></a>偵錯
+
+建立服務主體時，您可能會遇到下列錯誤︰
+
+* **Authentication_Unauthorized」**或**「在內容中找不到訂用帳戶。」** - 當您的帳戶在 Active Directory 上未具備註冊應用程式的[必要權限](#required-permissions)時，您就會看到此錯誤。 通常，只有 Active Directory 中的管理使用者可以註冊應用程式，且您的帳戶不是系統管理員時，就會看到此錯誤。 要求系統管理員將您指派給系統管理員角色，或是讓使用者註冊應用程式。
+
+* 您的帳戶**「沒有在範圍 '/subscriptions/{guid}' 中執行 'Microsoft.Authorization/roleAssignments/write' 動作的權限。」** - 當您的帳戶沒有足夠權限可將角色指派給身分識別時，您就會看到此錯誤。 要求訂用帳戶管理員將您新增至「使用者存取系統管理員」角色。
 
 ## <a name="sample-applications"></a>範例應用程式
 下列範例應用程式會顯示如何登入為服務主體。

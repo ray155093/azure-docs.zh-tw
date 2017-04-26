@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: 5e113af94c1ac27d759a75ff35bb9eb29fa08bf6
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: f9f29cd20020ec5e6538bf1dd31e89c2f7adcc92
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -33,6 +33,64 @@ ms.lasthandoff: 03/24/2017
 | [Azure Machine Learning](#azure-machine-learning-linked-service) |[Machine Learning 活動︰批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) |
 | [Azure Data Lake Analytics](#azure-data-lake-analytics-linked-service) |[Data Lake Analytics U-SQL](data-factory-usql-activity.md) |
 | [Azure SQL](#azure-sql-linked-service)、[Azure SQL 資料倉儲](#azure-sql-data-warehouse-linked-service)、[SQL Server](#sql-server-linked-service) |[預存程序](data-factory-stored-proc-activity.md) |
+
+## <a name="supported-hdinsight-versions-in-azure-data-factory"></a>Azure Data Factory 中支援的 HDInsight 版本
+Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個版本選擇都會建立特定版本的 Hortonworks Data Platform (HDP) 散發，以及該散發內包含的一組元件。 Microsoft 會持續更新所支援 HDInsight 版本的清單，以提供最新的 Hadoop 生態系統元件和修正程式。 HDInsight 3.2 已於 04/01/2017 淘汰，如需詳細資訊，請參閱[支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。
+
+這會影響具有對 HDInsight 3.2 叢集執行活動的現有 Azure Data Factory。 我們建議使用者遵循下列指導方針來更新受影響的 Data Factory。
+
+### <a name="for-linked-services-pointing-to-your-own-hdinsight-clusters"></a>針對指向您自己的 HDInsight 叢集的連結服務
+* **指向您自己的 HDInsight 3.2 或舊版叢集的 HDInsight 連結服務：**
+
+  Azure Data Factory 支援將作業提交至您自己的 HDInsight 叢集，從 HDI 3.1 至[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。 不過，根據[支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)中記載的淘汰原則，在 04/01/2017 之後，您無法再建立 HDInsight 3.2 叢集。  
+
+  **建議：** 
+  * 利用[可以搭配不同 HDInsight 版本使用的 Hadoop 元件](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions)和[與 HDInsight 版本相關聯的 Hortonworks 版本資訊](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions)中記載的資訊，執行測試以確保參考此連結服務之活動的相容性為[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。
+  * 將您的 HDInsight 3.2 叢集升級為[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)，以取得最新的 Hadoop 生態系統元件和修正程式。 
+
+* **指向您自己的 HDInsight 3.3 或以上叢集的 HDInsight 連結服務：**
+
+  Azure Data Factory 支援將作業提交至您自己的 HDInsight 叢集，從 HDI 3.1 至[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。 
+  
+  **建議：** 
+  * 從 Data Factory 的觀點來看，不需要採取任何動作。 不過，如果您是在較低版本的 HDInsight，仍建議您升級至[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)，以取得最新的 Hadoop 生態系統元件和修正程式。
+
+### <a name="for-hdinsight-on-demand-linked-services"></a>針對 HDInsight 隨選連結服務
+* **3.2 版或以下版本是在 HDInsight 隨選連結服務 JSON 定義中指定：**
+  
+  自 **05/05/2017** 起，Azure Data Factory 可支援建立隨選 HDInsight 3.3 和更新版本的叢集。 並且對現有隨選 HDInsight 3.2 連結服務的結束支援會延長至 **07/05/2017**。  
+
+  **建議：** 
+  * 利用[可以搭配不同 HDInsight 版本使用的 Hadoop 元件](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions)和[與 HDInsight 版本相關聯的 Hortonworks 版本資訊](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions)中記載的資訊，執行測試以確保參考此連結服務之活動的相容性為[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。
+  * 在 **07/05/2017** 之前，將隨選 HDI 連結服務 JSON 定義中的 Version 屬性更新為[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)，以取得最新的 Hadoop 生態系統元件和修正程式。 如需詳細的 JSON 定義，請參閱 [Azure HDInsight 隨選連結服務範例](#azure-hdinsight-on-demand-linked-service)。 
+
+* **隨選 HDInsight 連結服務中未指定的版本：**
+  
+  自 **05/05/2017** 起，Azure Data Factory 可支援建立隨選 HDInsight 3.3 和更新版本的叢集。 並且對現有隨選 HDInsight 3.2 連結服務的結束支援會延長至 **07/05/2017**。 
+
+  在 **05/05/2017** 之前，如果保留空白，version 和 osType 屬性的預設值為： 
+
+  | 屬性 | 預設值 | 必要 |
+  | --- | --- | --- |
+  版本    | Windows 叢集為 HDI 3.1，Linux 叢集為 HDI 3.2。| 否
+  osType | 預設值為 Windows | 否
+
+  在 **05/05/2017** 之後，如果保留空白，version 和 osType 屬性的預設值為：
+
+  | 屬性 | 預設值 | 必要 |
+  | --- | --- | --- |
+  版本    | Windows 叢集為 HDI 3.3，Linux 叢集為 3.5。    | 否
+  osType | 預設值為 Linux    | 否
+
+  **建議：** 
+  * 在 **05/05/2017** 之前，更新連結服務，以明確地在隨選 HDInsight 連結服務 JSON 定義中定義預期的 Version 和 osType 組合。 您可以將 Version 設定為 3.2 來確保回溯相容性。 
+  * 在 **05/05/2017** 與 **07/05/2017** 之間，利用[可以搭配不同 HDInsight 版本使用的 Hadoop 元件](../hdinsight/hdinsight-component-versioning.md#hadoop-components-available-with-different-hdinsight-versions)和[與 HDInsight 版本相關聯的 Hortonworks 版本資訊](../hdinsight/hdinsight-component-versioning.md#hortonworks-release-notes-associated-with-hdinsight-versions)中記載的資訊，執行測試以確保參考此連結服務之活動的相容性為[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)。  
+  * 在 **07/05/2017** 之前，將隨選 HDInsight 連結服務 JSON 定義中的 Version 屬性更新為[最新支援的 HDInsight 版本](../hdinsight/hdinsight-component-versioning.md#supported-hdinsight-versions)，或利用預設值 (即 HDInsight 3.5) 以取得最新的 Hadoop 生態系統元件和修正程式。 如需詳細的 JSON 定義，請參閱 [Azure HDInsight 隨選連結服務範例](#azure-hdinsight-on-demand-linked-service)。
+
+>[!Note]
+>目前 Azure Data Factory 不支援使用 Azure Data Lake Store 作為主要存放區的 HDInsight 叢集。 您將需要使用 Azure 儲存體作為 HDInsight 叢集的主要存放區。 
+>  
+>  
 
 ## <a name="on-demand-compute-environment"></a>隨選計算環境
 在這種組態中，運算環境完全是由 Azure Data Factory 服務管理。 Data Factory 服務會在工作提交前自動建立運算環境以處理資料，而在工作完成時予以移除。 您可以建立隨選計算環境的連結服務、加以設定，以及控制工作執行、叢集管理和啟動動作的細微設定。
@@ -165,7 +223,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 | zookeeperNodeSize |指定 Zoo Keeper 節點的大小。 預設值為：Standard_D3。 |否 |
 
 #### <a name="specifying-node-sizes"></a>指定節點大小
-如需了解需為上方屬性指定的字串值，請參閱[虛擬機器的大小](../virtual-machines/virtual-machines-linux-sizes.md)一文。 值必須符合本文件中所參考的 **CMDLET 與 APIS**。 如您在文中所見，若資料節點的大小設定為大 (預設值)，則記憶體大小為 7 GB，其可能不適用於您的案例。 
+如需了解需為上方屬性指定的字串值，請參閱[虛擬機器的大小](../virtual-machines/linux/sizes.md)一文。 值必須符合本文件中所參考的 **CMDLET 與 APIS**。 如您在文中所見，若資料節點的大小設定為大 (預設值)，則記憶體大小為 7 GB，其可能不適用於您的案例。 
 
 若想要建立 D4 大小的前端節點與背景工作節點，必須指定 **Standard_D4** 作為 headNodeSize 與 dataNodeSize 屬性的值。 
 

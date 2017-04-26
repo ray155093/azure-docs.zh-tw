@@ -12,18 +12,19 @@ ms.devlang: node
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/13/2016
+ms.date: 03/30/2017
 ms.author: elioda
 translationtype: Human Translation
-ms.sourcegitcommit: a243e4f64b6cd0bf7b0776e938150a352d424ad1
-ms.openlocfilehash: 26a6cd170e47204e16bb5799af8dcece7f4bb844
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: e42ad1b62d4f953e23624841ddec70b1fac28058
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="use-desired-properties-to-configure-devices"></a>使用所需屬性來設定裝置
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
-在本教學課程結尾端，您將會有兩個 Node.js 主控台應用程式：
+在本教學課程結尾，您將會有兩個主控台應用程式：
 
 * **SimulateDeviceConfiguration.js**，這是模擬裝置應用程式，可等候所需的組態更新，並報告模擬組態更新程序的狀態。
 * **SetDesiredConfigurationAndQuery.js**，這是 .NET 後端應用程式，可在裝置上設定所需的設定，並查詢組態更新程序。
@@ -35,11 +36,11 @@ ms.openlocfilehash: 26a6cd170e47204e16bb5799af8dcece7f4bb844
 
 若要完成此教學課程，您需要下列項目：
 
-* Microsoft Visual Studio 2015。
+* Visual Studio 2015 或 Visual Studio 2017。
 * Node.js 0.10.x 版或更新版本。
-* 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
+* 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
 
-如果您依照[開始使用裝置對應項][lnk-twin-tutorial]教學課程進行，您便已經有一個 IoT 中樞和一個稱為 **myDeviceId** 的裝置身分識別，您可以直接跳到[建立模擬裝置應用程式][lnk-how-to-configure-createapp]一節。
+如果您遵循[開始使用裝置對應項][lnk-twin-tutorial]教學課程進行，您便已經有一個 IoT 中樞和一個稱為 **myDeviceId** 的裝置身分識別。 在該情況下，您可以直接跳到[建立模擬裝置應用程式][lnk-how-to-configure-createapp]一節。
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
@@ -48,18 +49,18 @@ ms.openlocfilehash: 26a6cd170e47204e16bb5799af8dcece7f4bb844
 ## <a name="create-the-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您將建立 Node.js 主控台應用程式，此應用程式會以 **myDeviceId** 連接到您的中樞、等候所需的組態更新，然後報告模擬組態更新程序上的更新。
 
-1. 建立稱為 **simulatedeviceconfiguration** 的新空白資料夾。 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值：
+1. 建立稱為 **simulatedeviceconfiguration** 的新空白資料夾。 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元使用下列命令建立新的 package.json 檔案。 接受所有預設值。
    
     ```
     npm init
     ```
-2. 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device** 和 **azure-iot-device-mqtt** 套件：
+1. 在 **simulatedeviceconfiguration** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-device** 和 **azure-iot-device-mqtt** 套件：
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. 使用文字編輯器，在 **simulatedeviceconfiguration** 資料夾中建立新的 **SimulateDeviceConfiguration.js** 檔案。
-4. 將下列程式碼新增至 **SimulateDeviceConfiguration.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的裝置連接字串，取代 **{device connection string}** 預留位置︰
+1. 使用文字編輯器，在 **simulatedeviceconfiguration** 資料夾中建立新的 **SimulateDeviceConfiguration.js** 檔案。
+1. 將下列程式碼新增至 **SimulateDeviceConfiguration.js** 檔案，並以您建立 **myDeviceId** 裝置身分識別時所複製的裝置連接字串，取代 **{device connection string}** 預留位置︰
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -93,15 +94,15 @@ ms.openlocfilehash: 26a6cd170e47204e16bb5799af8dcece7f4bb844
             }
         });
    
-    **Client** 物件會公開從裝置來與裝置對應項進行互動時所需的所有方法。 先前的程式碼在初始化 **Client** 物件之後，會擷取 **myDeviceId** 的裝置對應項，並附加處理常式來處理所需屬性的更新。 此處理常式會比較 configIds 來驗證有實際的組態變更要求，然後叫用方法來啟動組態變更。
+    **Client** 物件會公開從裝置來與裝置對應項進行互動時所需的所有方法。 此程式碼會初始化 **Client** 物件，擷取 **myDeviceId** 的裝置對應項，然後附加處理常式來處理*所需屬性*的更新。 此處理常式會比較 configIds 來驗證有實際的組態變更要求，然後叫用方法來啟動組態變更。
    
-    請注意，為了簡單起見，先前的程式碼使用硬式編碼的預設值作為初始組態。 實際的應用程式可能會從本機儲存體載入該組態。
+    請注意，為了簡單起見，此程式碼使用硬式編碼的預設值作為初始組態。 實際的應用程式可能會從本機儲存體載入該組態。
    
    > [!IMPORTANT]
-   > 所需的屬性變更事件永遠會在裝置連線時發出一次，在執行任何動作之前，請務必檢查所需的屬性有實際的變更。
+   > 所需的屬性變更事件永遠會在裝置連線時發出一次。 在執行任何動作之前，務必檢查所需的屬性有實際的變更。
    > 
    > 
-5. 在 `client.open()` 叫用之前新增下列方法︰
+1. 在 `client.open()` 叫用之前新增下列方法︰
    
         var initConfigChange = function(twin) {
             var currentTelemetryConfig = twin.properties.reported.telemetryConfig;
@@ -147,10 +148,10 @@ ms.openlocfilehash: 26a6cd170e47204e16bb5799af8dcece7f4bb844
     請注意，為了節省頻寬，更新所報告的屬性時只會指定要修改的屬性 (在上述程式碼中名為 **patch**)，而不是取代整份文件。
    
    > [!NOTE]
-   > 本教學課程不會模擬並行組態更新的任何行為。 某些組態更新程序可能在更新執行時能夠接受目標組態的變更，其他程序可能必須將變更排入佇列，還有其他程序可能會因錯誤條件而拒絕變更。 請務必考慮您的特定程序所需的行為，並在初始化組態變更之前新增適當的邏輯。
+   > 本教學課程不會模擬並行組態更新的任何行為。 某些組態更新程序可能在更新執行時能夠接受目標組態的變更，部分程序可能必須將變更排入佇列，還有部分程序可能會因錯誤條件而拒絕變更。 請務必考慮您的特定程序所需的行為，並在初始化組態變更之前新增適當的邏輯。
    > 
    > 
-6. 執行裝置應用程式︰
+1. 執行裝置應用程式︰
    
         node SimulateDeviceConfiguration.js
    
@@ -162,20 +163,20 @@ ms.openlocfilehash: 26a6cd170e47204e16bb5799af8dcece7f4bb844
 1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **SetDesiredConfigurationAndQuery**。
    
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **SetDesiredConfigurationAndQuery** 專案，然後按一下 [管理 NuGet 套件]。
-3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 **SetDesiredConfigurationAndQuery** 專案，然後按一下 [管理 NuGet 套件...]。
+1. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
    
     ![NuGet 封裝管理員視窗][img-servicenuget]
-4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
+1. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
         using System.Threading;
         using Newtonsoft.Json;
-5. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
+1. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-6. 將下列方法加入至 **Program** 類別：
+1. 將下列方法加入至 **Program** 類別：
    
         static private async Task SetDesiredConfigurationAndQuery()
         {
@@ -209,20 +210,23 @@ ms.openlocfilehash: 26a6cd170e47204e16bb5799af8dcece7f4bb844
             }
         }
    
-    **Registry** 物件會公開從服務來與裝置對應項進行互動時所需的所有方法。 先前的程式碼在初始化 **Registry** 物件之後，會擷取 **myDeviceId** 的裝置對應項，並以新的遙測組態物件來更新其所需屬性。
+    **Registry** 物件會公開從服務來與裝置對應項進行互動時所需的所有方法。 此程式碼會初始化 **Registry** 物件，擷取 **myDeviceId** 的裝置對應項，然後以新的遙測組態物件來更新其所需屬性。
     之後，它每隔 10 秒就會查詢儲存在 IoT 中樞的裝置對應項，並列印所需和所報告的遙測組態。 請參閱 [IoT 中樞查詢語言][lnk-query]，以了解如何產生跨所有裝置的實用報告。
    
    > [!IMPORTANT]
    > 為了便於說明，此應用程式每 10 秒查詢一次 IoT 中樞。 跨許多裝置時，請使用查詢來產生適合使用者的報告，而非偵測變更。 如果您的解決方案需要裝置事件的即時通知，請使用[裝置到雲端訊息][lnk-d2c]。
    > 
    > 
-7. 最後，將下列幾行加入至 **Main** 方法：
+1. 最後，將下列幾行加入至 **Main** 方法：
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         SetDesiredConfigurationAndQuery();
         Console.WriteLine("Press any key to quit.");
         Console.ReadLine();
-8. 在 **SimulateDeviceConfiguration.js** 執行時，使用 **F5** 從 Visual Studio 執行 .NET 應用程式，然後您應該會看到所報告的組態從 **Success** 變成 **Pending**，又再變回 **Success**，而且新的作用中傳送頻率是五分鐘，而不是 24 小時。
+1. 在 [方案總管] 中，開啟 [設定起始專案...]，並確定 **SetDesiredConfigurationAndQuery** 專案的 [動作] 是 [啟動]。 建置方案。
+1. 在 **SimulateDeviceConfiguration.js** 執行時，使用 **F5** 從 Visual Studio 執行 .NET 應用程式，然後您應該會看到所報告的組態從 **Success** 變成 **Pending**，又再變回 **Success**，而且新的作用中傳送頻率是五分鐘，而不是 24 小時。
+
+ ![已成功設定裝置][img-deviceconfigured]
    
    > [!IMPORTANT]
    > 裝置報告作業和查詢結果之間的延遲最多一分鐘。 這是為了讓查詢基礎結構能夠以非常高的延展性運作。 若要擷取單一裝置對應項的一致檢視，請使用 **Registry** 類別中的 **getDeviceTwin** 方法。
@@ -239,8 +243,9 @@ ms.openlocfilehash: 26a6cd170e47204e16bb5799af8dcece7f4bb844
 * 以互動方式控制裝置 (例如，從使用者控制的應用程式開啟風扇)，請參閱[使用直接方法][lnk-methods-tutorial]教學課程。
 
 <!-- images -->
-[img-servicenuget]: media/iot-hub-csharp-node-twin-getstarted/servicesdknuget.png
-[img-createapp]: media/iot-hub-csharp-node-twin-getstarted/createnetapp.png
+[img-servicenuget]: media/iot-hub-csharp-node-twin-how-to-configure/servicesdknuget.png
+[img-createapp]: media/iot-hub-csharp-node-twin-how-to-configure/createnetapp.png
+[img-deviceconfigured]: media/iot-hub-csharp-node-twin-how-to-configure/deviceconfigured.png
 
 <!-- links -->
 [lnk-hub-sdks]: iot-hub-devguide-sdks.md
@@ -264,9 +269,4 @@ ms.openlocfilehash: 26a6cd170e47204e16bb5799af8dcece7f4bb844
 [lnk-guid]: https://en.wikipedia.org/wiki/Globally_unique_identifier
 
 [lnk-how-to-configure-createapp]: iot-hub-node-node-twin-how-to-configure.md#create-the-simulated-device-app
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 
