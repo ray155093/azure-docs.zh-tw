@@ -15,23 +15,14 @@ ms.topic: article
 ms.date: 11/25/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 79a880ed30b1fd50e7d4f232f03629c228a72a2e
-ms.lasthandoff: 04/07/2017
+ms.sourcegitcommit: e0c999b2bf1dd38d8a0c99c6cdd4976cc896dd99
+ms.openlocfilehash: 1caea59e71126e934e2e52a1ad7f533ffa7d4b03
+ms.lasthandoff: 04/20/2017
 
 
 ---
 # <a name="devtest-labs-concepts"></a>研發/測試實驗室概念
-> [!NOTE]
-> 本文是含有 3 篇文章的一系列文章中的第 3 篇︰
->
-> 1. [何謂研發/測試實驗室？](devtest-lab-overview.md)
-> 2. [為什麼需要研發/測試實驗室？](devtest-lab-why.md)
-> 3. **[研發/測試實驗室概念](devtest-lab-concepts.md)**
->
->
-
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 下列清單包含重要的研發/測試實驗室概念和定義：
 
 ## <a name="labs"></a>實驗室

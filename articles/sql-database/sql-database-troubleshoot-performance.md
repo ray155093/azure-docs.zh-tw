@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 02/07/2017
 ms.author: v-shysun
 translationtype: Human Translation
-ms.sourcegitcommit: 984adf244596578a3301719e5ac2f68a841153bf
-ms.openlocfilehash: 3bfcaf4ae29d23754a19a61f2775d1b12e3e69ba
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: faf2d9632462c434c38dc9c2d65f7c9e58f801d8
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -39,6 +39,6 @@ ms.lasthandoff: 02/16/2017
 
 ## <a name="steps-to-improve-database-performance-with-more-resources"></a>使用更多資源提升資料庫效能的步驟
 1. 若是獨立資料庫，您可以視需要[變更服務層級](sql-database-service-tiers.md)以提升資料庫效能。
-2. 若是多個資料庫，請考慮使用[彈性集區](sql-database-elastic-pool-guidance.md)來自動調整資源。
+2. 若是多個資料庫，請考慮使用[彈性集區](sql-database-elastic-pool.md)來自動調整資源。
 
 

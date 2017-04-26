@@ -7,6 +7,7 @@
 ## [安全性群組檢視](network-watcher-security-group-view-overview.md)
 ## [下一個躍點](network-watcher-next-hop-overview.md)
 ## [VPN 連線疑難排解](network-watcher-troubleshoot-overview.md)
+## [服務限制](../azure-subscription-service-limits.md?toc=%2fazure%2fnetwork-watcher%2ftoc.json#network-watcher-limits)
 # 開始使用
 ## [設定網路監看員](network-watcher-create.md)
 ## 管理封包擷取

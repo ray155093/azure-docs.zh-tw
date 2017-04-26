@@ -15,9 +15,9 @@ ms.workload: big-data
 ms.date: 03/21/2017
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 7f23ae904461e754b3871b33ca40c2ff4fcb99f0
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 64c5869f3e66c249fefa9af228fe1b33974cf293
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -57,7 +57,7 @@ ms.lasthandoff: 03/22/2017
 建立 Data Lake Analytics 之後，您可以新增其他 Data Lake Store 帳戶和 Azure 儲存體帳戶。 如需詳細指示，請參閱[管理 Data Lake Analytics 帳戶資料來源](data-lake-analytics-manage-use-portal.md#manage-account-data-sources)。
 
 ## <a name="prepare-source-data"></a>準備來源資料
-在本教學課程中，您將會處理搜尋記錄。  搜尋記錄檔可以儲存在 Data Lake 存放區或 Azure Blob 儲存體中。
+在本教學課程中，您將會處理搜尋記錄。  搜尋記錄檔可以儲存在 Data Lake Store 或 Azure Blob 儲存體中。
 
 Azure 入口網站會提供使用者介面，可將範例資料檔案複製到預設的 Data Lake Store 存放區帳戶，其中包括搜尋記錄檔案。
 

@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 09/06/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: e210fb7ead88a9c7f82a0d0202a1fb31043456e6
-ms.openlocfilehash: f1f963c1401b785b3d4ee007b6ea61f221f9ec4d
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 2a7c761062dcf5da016a2e106274839f5f6c0d13
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -94,7 +94,7 @@ ms.lasthandoff: 02/16/2017
 
 若要將現有的資料庫轉換為使用該工具，請參閱 [移轉現有的資料庫以相應放大](sql-database-elastic-convert-to-use-elastic-tools.md)。
 
-若要查看彈性集區的細節，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)，或使用[彈性集區](sql-database-elastic-pool-manage-portal.md)來建立新的集區。  
+若要查看彈性集區的細節，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool.md)，或使用[彈性集區](sql-database-elastic-pool-manage-portal.md)來建立新的集區。  
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

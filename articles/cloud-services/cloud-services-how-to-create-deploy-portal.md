@@ -12,11 +12,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/14/2016
+ms.date: 04/19/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 1ce2e980dc71ede4f8cd8ec7c9166efac7b25d2e
-ms.openlocfilehash: 554ef45d7fba5f2ff314a162ae33c6cc27206933
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 542817c562e10ff32c62afd186cf012abbe82ac5
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -32,7 +33,7 @@ Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快�
 本主題說明如何使用「快速建立」方法建立新的雲端服務，然後使用 [上傳]  上傳雲端服務封裝並在 Azure 中部署。 當您使用這個方法時，Azure 入口網站會在過程中提供便利的連結，讓您完成所有要求。 如果您準備在建立雲端服務時加以部署，可以同時使用 [自訂建立] 進行這兩項作業。
 
 > [!NOTE]
-> 如果您計劃從 Visual Studio Team Services (VSTS) 發佈您的雲端服務，請使用快速建立，然後從 Azure 快速入門或儀表板設定 VSTS 發佈。 如需詳細資訊，請參閱[使用 Visual Studio Team Services 持續傳遞至 Azure][TFSTutorialForCloudService] 或 [快速啟動]頁面的說明。
+> 如果您計劃從 Visual Studio Team Services (VSTS) 發佈您的雲端服務，請使用快速建立，然後從 Azure 快速入門或儀表板設定 VSTS 發佈。 如需詳細資訊，請參閱[使用 Visual Studio Team Services 連續傳遞至 Azure][TFSTutorialForCloudService]，或參閱 [快速入門] 頁面的說明。
 >
 >
 
@@ -108,9 +109,4 @@ Azure 入口網站提供兩種方法讓您建立和部署雲端服務：「快�
 * 設定 [自訂網域名稱](cloud-services-custom-domain-name-portal.md)。
 * [管理您的雲端服務](cloud-services-how-to-manage-portal.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate-portal.md)。
-
-
-
-<!--HONumber=Nov16_HO4-->
-
 

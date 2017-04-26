@@ -22,5 +22,5 @@ Blob 服務包含下列元件：
   
     *分頁 Blob* 大小可達 1 TB，且在頻繁進行讀寫操作時更有效率。 Azure 虛擬機器會使用分頁 Blob 作為作業系統和資料磁碟。
   
-    如需有關命名容器和 Blob 的詳細資訊，請參閱 [命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/fileservices/Naming-and-Referencing-Containers--Blobs--and-Metadata)。
+    如需有關命名容器和 Blob 的詳細資訊，請參閱 [命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/Naming-and-Referencing-Containers--Blobs--and-Metadata)。
 

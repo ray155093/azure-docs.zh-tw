@@ -67,6 +67,9 @@
   - name: "政府"
     tocHref: /azure/azure-government/
     topicHref: /azure/azure-government/
+  - name: "德國"
+    tocHref: /azure/germany/
+    topicHref: /azure/germany/
   - name: "入口網站"
     tocHref: /azure/azure-portal/
     topicHref: /azure/azure-portal/

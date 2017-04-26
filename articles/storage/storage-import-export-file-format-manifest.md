@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: d56754c9c205ddc4933b29e8f4891a56f42496e9
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: c1857eb94fba13c30e7f07669616f5d0ab9953f4
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -123,7 +123,7 @@ block-list ::=
 |`PageRange/@Offset`|屬性、整數|指定傳輸檔案中的位移和指定的頁面範圍開始處的 Blob。 此值需為 512 的倍數。|  
 |`PageRange/@Length`|屬性、整數|指定頁面範圍的長度。 此值需為 512 的倍數，且不得超過 4 MB。|  
 |`PageRange/@Hash`|屬性、字串|為頁面範圍指定 Base16 式編碼的 MD5 雜湊值。|  
-|`BlockList`|巢狀的 XML 元素|含有具名區塊的區塊 Blob 的必要元素。<br /><br /> 針對匯入作業，區塊清單會指定將匯入到 Azure 儲存體的一組區塊。 針對匯出作業，區塊清單會指定匯出磁碟機上的檔案中已儲存的每個區塊的位置。 每個區塊是由該檔案中的位移和一個區塊長度所描述；每個區塊再由一個區塊識別碼屬性命名，並且包含區塊的 MD5 雜湊。 最多可使用 50,000 個區塊來描述一個 Blob。  所有區塊必須按照位移排序，並能覆蓋檔案的完整範圍，，也就是說，區塊之間必須沒有任何間距。 如果 Blob 小於 64 MB，每個區塊的區塊識別碼必須全部不存在或全部存在。 區塊識別碼必須是 Base64 式編碼的字串。 請參閱 [Put Block](/rest/api/storageservices/fileservices/put-block)以了解區塊識別碼的進一步需求。|  
+|`BlockList`|巢狀的 XML 元素|含有具名區塊的區塊 Blob 的必要元素。<br /><br /> 針對匯入作業，區塊清單會指定將匯入到 Azure 儲存體的一組區塊。 針對匯出作業，區塊清單會指定匯出磁碟機上的檔案中已儲存的每個區塊的位置。 每個區塊是由該檔案中的位移和一個區塊長度所描述；每個區塊再由一個區塊識別碼屬性命名，並且包含區塊的 MD5 雜湊。 最多可使用 50,000 個區塊來描述一個 Blob。  所有區塊必須按照位移排序，並能覆蓋檔案的完整範圍，，也就是說，區塊之間必須沒有任何間距。 如果 Blob 小於 64 MB，每個區塊的區塊識別碼必須全部不存在或全部存在。 區塊識別碼必須是 Base64 式編碼的字串。 請參閱 [Put Block](/rest/api/storageservices/put-block)以了解區塊識別碼的進一步需求。|  
 |`Block`|XML 元素|代表區塊。|  
 |`Block/@Offset`|屬性、整數|指定指定的區塊開始處的位移。|  
 |`Block/@Length`|屬性、整數|指定區塊中的位元組數目；此值不得超過 4 MB。|  
