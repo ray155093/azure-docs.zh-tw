@@ -15,18 +15,18 @@ ms.workload: na
 ms.date: 03/27/2017
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: 420a79a3f98500fa5e9054c3a59d9ac20ecb6cbf
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 12d4282082b3318bd14535a49e25c8d606d1bd7f
+ms.lasthandoff: 04/26/2017
 
 ---
 
 # <a name="get-started-sending-messages-to-azure-event-hubs-in-net-standard"></a>開始在 .NET Standard 中傳送訊息至 Azure 事件中樞
 
 > [!NOTE]
-> 您可在 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleSender) 上取得此範例。
+> 您可在 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) 上取得此範例。
 
-本教學課程說明如何撰寫將一組訊息傳送到「事件中樞」的.NET Core 主控台應用程式。 您可以依現狀執行 [GitHub (英文)](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleSender) 解決方案，使用您事件中樞的值取代 `EhConnectionString` 和 `EhEntityPath` 字串。 或者，您可以遵循本教學課程中的步驟，來建立自己的解決方案。
+本教學課程說明如何撰寫一個 .NET Core 主控台應用程式，以將一組訊息傳送到事件中樞。 您可以依現狀執行 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender) 解決方案，其中以您事件中樞的值來取代 `EhConnectionString` 和 `EhEntityPath` 字串。 或者，您可以遵循本教學課程中的步驟，來建立自己的解決方案。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -35,7 +35,7 @@ ms.lasthandoff: 03/28/2017
 * Azure 訂用帳戶。
 * 事件中樞命名空間。
 
-為了將訊息傳送至事件中樞，我們會使用 Visual Studio 撰寫 C# 主控台應用程式。
+為了將訊息傳送到事件中樞，我們將使用 Visual Studio 來撰寫一個 C# 主控台應用程式。
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>建立事件中樞命名空間和事件中樞
 
@@ -51,7 +51,7 @@ ms.lasthandoff: 03/28/2017
 
 將 [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) NuGet 封裝新增至您的專案。
 
-## <a name="write-some-code-to-send-messages-to-the-event-hub"></a>撰寫一些程式碼來傳送訊息至事件中樞
+## <a name="write-some-code-to-send-messages-to-the-event-hub"></a>撰寫一些程式碼以將訊息傳送到事件中樞
 
 1. 在 Program.cs 檔案開頭處加入 `using` 陳述式。
 
@@ -61,7 +61,7 @@ ms.lasthandoff: 03/28/2017
     using System.Threading.Tasks;
     ```
 
-2. 針對事件中樞連接字串和實體路徑 (個別事件中樞名稱)，新增常數至 `Program` 類別。 將方括號中的預留位置以建立事件中樞時所取得的正確值取代。
+2. 針對「事件中樞」連接字串和實體路徑 (個別事件中樞名稱)，將常數新增到 `Program` 類別。 以建立事件中樞時所取得的適當值取代方括號中的預留位置。
 
     ```csharp
     private static EventHubClient eventHubClient;
@@ -96,7 +96,7 @@ ms.lasthandoff: 03/28/2017
 4. 將名為 `SendMessagesToEventHub` 的新方法新增到 `Program` 類別，如下所示：
 
     ```csharp
-    // Creates an Event Hub client and sends 100 messages to the event hub.
+    // Creates an event hub client and sends 100 messages to the event hub.
     private static async Task SendMessagesToEventHub(int numMessagesToSend)
     {
         for (var i = 0; i < numMessagesToSend; i++)
@@ -166,7 +166,7 @@ ms.lasthandoff: 03/28/2017
                 Console.ReadLine();
             }
 
-            // Creates an Event Hub client and sends 100 messages to the event hub.
+            // Creates an event hub client and sends 100 messages to the event hub.
             private static async Task SendMessagesToEventHub(int numMessagesToSend)
             {
                 for (var i = 0; i < numMessagesToSend; i++)
@@ -193,7 +193,7 @@ ms.lasthandoff: 03/28/2017
 
 6. 執行程式，並確定沒有任何錯誤。
 
-恭喜！ 您現在已可以傳送訊息至事件中樞。
+恭喜！ 您現在已將傳送訊息到事件中樞。
 
 ## <a name="next-steps"></a>後續步驟
 您可以造訪下列連結以深入了解事件中樞︰

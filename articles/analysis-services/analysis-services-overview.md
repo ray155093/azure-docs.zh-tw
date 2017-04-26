@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 02/27/2017
+ms.date: 04/17/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 3539da8afe5781d74cbf723090050b767373f268
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: d1cb0751633f1a190d8ecfe1888ab6cdd8736480
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -33,10 +33,6 @@ Azure Analysis Services 利用經實證的 Microsoft SQL Server Analysis Service
 >
 >
 
-> [!IMPORTANT]
-> Azure Analysis Services 目前為**預覽版**。 有一些功能尚無法運作。 請務必查看本文後面的[預覽版期望](#preview-expectations)。 也請務必留意我們的 [Azure Analysis Services 部落格](https://go.microsoft.com/fwlink/?linkid=830920)以取得最新資訊。
-> 
-> 
 
 ## <a name="built-on-sql-server-analysis-services"></a>建置在 SQL Server Analysis Services 上
 Azure Analysis Services 與您已知的同一個 SQL Server 2016 Analysis Services Enterprise Edition 相容。 Azure Analysis Services 支援 1200 種相容性層級的表格式模型。 DirectQuery、分割區、資料列層級安全性、雙向關聯性和轉譯都有支援。
@@ -53,14 +49,12 @@ Azure Analysis Services 與您已知的同一個 SQL Server 2016 Analysis Servic
 
 因為您的伺服器在雲端中，因此能無縫連接到雲端資料來源。 連接到內部部署資料來源時，[內部部署資料閘道](analysis-services-gateway.md)可確保和雲端中的 Analysis Services 伺服器建立快速且安全的連線。  
 
- \*預覽版目前不支援某些資料來源。 若要深入了解，請參閱本文後面的[預覽版期望](#preview-expectations)。
 
 ## <a name="explore-your-data-from-anywhere"></a>從任何地方瀏覽資料
-從任何地方連接，並從您的伺服器[取得資料](analysis-services-connect.md)。 Azure Analysis Services 支援從 Power BI Desktop、Excel、自訂應用程式和以瀏覽器為基礎的工具連接。
+從幾乎任何地方連接到伺服器並從中取得資料。 Azure Analysis Services 支援從 Power BI Desktop、Excel、自訂應用程式和以瀏覽器為基礎的工具連接。
 
 ![資料視覺效果](./media/analysis-services-overview/aas-overview-visualization.png)
 
- \*預覽版目前不支援 Power BI Embedded。
 
 ## <a name="secure"></a>安全
 #### <a name="user-authentication"></a>使用者驗證
@@ -93,31 +87,6 @@ Analysis Services 有活躍的使用者社群。 在 [Azure Analysis Services �
 您有任何建議或功能要求嗎？ 請務必在 [Azure Analysis Services 意見反應](https://aka.ms/azureanalysisservicesfeedback)留下您的意見。
 
 您對文件有何建議嗎？ 您可以使用每篇文章下方的 Disqus 新增留言。
-
-## <a name="preview-expectations"></a>預覽版期望
-Azure Analysis Services 目前為預覽版。 您必須留意一些事項：
-
-##### <a name="server-modes"></a>伺服器模式
-Azure Analysis Services 目前支援 1200 種相容性層級的表格式模型。 不支援多維度和資料採礦模式，以及 Power Pivot for SharePoint 模式。
-
-##### <a name="data-sources"></a>資料來源
-在預覽版本中，部署到 Azure Analysis Services 伺服器的 1200 種表格式模型支援下列資料來源。
-
-| **雲端** | **內部部署 (需要資料閘道)** |
-| --- | --- |
-| SQL Database |SQL Server |
-| SQL 資料倉儲 |APS |
-| Oracle | Oracle |
-| Teradata | |
-
-### <a name="data-source-providers"></a>資料來源提供者
-Azure Analysis Services 中的資料模型連接到資料來源需要的資料提供者，可能不同於 SQL Server Analysis Services 中的資料模型。 資料提供者需求取決於資料來源是在雲端或內部部署，以及資料模型的類型：記憶體中或直接查詢。 若要深入了解，請參閱[資料來源連接](analysis-services-datasource.md)。
-
-### <a name="client-connections"></a>用戶端連接
-
-用戶端應用程式需要最新的用戶端[資料提供者](analysis-services-data-providers.md)，才能連接到 Azure Analysis Services。
-
-不支援與 Azure Analysis Services 伺服器即時連接和儲存在 OneDrive 或 SharePoint Online 的 Excel 活頁簿。
 
 ## <a name="next-steps"></a>後續步驟
 在深入了解後，您現在可以開始使用 Azure Analysis Services。 了解如何在 Azure 中[建立伺服器](analysis-services-create-server.md)，並在其中[部署表格式模型](analysis-services-deploy.md)。

@@ -15,18 +15,18 @@ ms.workload: na
 ms.date: 03/27/2017
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: c86a1feee02bbf8580a40119ac140528217e435d
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: e286693b585a5991dbecd537fe5cd6621dd27e01
+ms.lasthandoff: 04/26/2017
 
 ---
 
 # <a name="get-started-receiving-messages-with-the-event-processor-host-in-net-standard"></a>開始使用 .NET Standard 中的事件處理器主機來接收訊息
 
 > [!NOTE]
-> 您可在 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleEphReceiver) 上取得此範例。
+> 您可在 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) 上取得此範例。
 
-本教學課程說明如何撰寫使用 **EventProcessorHost** 從事件中樞接收訊息的 .NET Core 主控台應用程式。 您可以依現狀執行 [GitHub (英文)](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleEphReceiver) 解決方案，使用您事件中樞和儲存體帳戶的值取代字串。 或者，您可以遵循本教學課程中的步驟，來建立自己的解決方案。
+本教學課程說明如何撰寫一個 .NET Core 主控台應用程式，以使用 **EventProcessorHost** 從事件中樞接收訊息。 您可以依現狀執行 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) 解決方案，其中以您事件中樞和儲存體帳戶的值來取代字串。 或者，您可以遵循本教學課程中的步驟，來建立自己的解決方案。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -38,7 +38,7 @@ ms.lasthandoff: 03/28/2017
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>建立事件中樞命名空間和事件中樞  
 
-第一個步驟是使用 [Azure 入口網站](https://portal.azure.com)來建立事件中樞類型的命名空間，然後取得您應用程式與事件中樞進行通訊所需的管理認證。 若要建立命名空間和事件中樞，請依照[這篇文章](event-hubs-create.md)中的程序操作，然後繼續進行下列步驟。  
+第一個步驟是使用 [Azure 入口網站](https://portal.azure.com)來建立「事件中樞」類型的命名空間，然後取得您應用程式與事件中樞進行通訊所需的管理認證。 若要建立命名空間和事件中樞，請依照[這篇文章](event-hubs-create.md)中的程序操作，然後繼續進行下列步驟。  
 
 ## <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶  
 
@@ -211,7 +211,7 @@ ms.lasthandoff: 03/28/2017
 
 4. 執行程式，並確定沒有任何錯誤。
 
-恭喜！ 您現在已使用「事件處理器主機」從「事件中樞」收到訊息。
+恭喜！ 您現在已使用「事件處理器主機」從事件中樞接收訊息。
 
 ## <a name="next-steps"></a>後續步驟
 您可以造訪下列連結以深入了解事件中樞︰
