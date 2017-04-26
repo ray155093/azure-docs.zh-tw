@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 2/24/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 14b7900a8b4fbf86e8a814def6fa8c7915832376
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: e0c999b2bf1dd38d8a0c99c6cdd4976cc896dd99
+ms.openlocfilehash: c212df3646dce24eb11542884c6ee5084325cb7d
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -95,7 +95,12 @@ Data Factory 可在**美國西部**和**北歐**地區使用。 資料處理站�
 管線依例應該有配套的相關活動。 如果管線外的任何其他活動都未使用連接它們的資料集，則您可以將活動保留在一個管線中。 如此一來，您就不需要鏈結管線作用期間，使其彼此一致。 此外，更新管線時，也會更適當地保留管線內部資料表中的資料完整性。 管線更新基本上會停止、移除並重新建立管線內的所有活動。 從撰寫觀點來看，可能也較容易看出管線的某個 JSON 檔案中相關活動內的資料流程。
 
 ### <a name="what-are-the-supported-data-stores"></a>支援哪些資料存放區？
+Data Factory 中的複製活動會將資料從來源資料存放區複製到接收資料存放區。 Data Factory 支援下列資料存放區。 可將來自任何來源的資料寫入任何接收器。 按一下資料存放區，即可了解如何將資料複製到該存放區，以及從該存放區複製資料。
+
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
+
+> [!NOTE]
+> 具有 * 的資料存放區可以在內部部署環境或 Azure IaaS 上，並且需要您在內部部署/Azure IaaS 機器上安裝 [資料管理閘道](data-factory-data-management-gateway.md) 。
 
 ### <a name="what-are-the-supported-file-formats"></a>支援什麼檔案格式？
 [!INCLUDE [data-factory-file-format](../../includes/data-factory-file-format.md)]

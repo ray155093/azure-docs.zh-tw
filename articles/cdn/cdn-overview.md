@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 02/08/2017
 ms.author: rli
 translationtype: Human Translation
-ms.sourcegitcommit: 6c8c04e0237e2168df60ecc597754c38af167e14
-ms.openlocfilehash: 0aed3d224199b17bac748b14416a738eac342103
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 8809f35e992d528224fc14e0de01a61d396c082b
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -41,7 +41,7 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 1. 使用者 (Alice) 使用具有特殊網域名稱的 URL (例如 `<endpointname>.azureedge.net`) 要求檔案 (也稱為資產)。  DNS 將要求路由傳送到最佳的存在點 (POP) 位置。  這通常是地理位置最接近使用者的 POP。
 2. 如果 POP 中的 Edge Server 在其快取中沒有該檔案，Edge Server 便會從原始來源要求檔案。  原始來源可以是 Azure Web 應用程式、Azure 雲端服務、Azure 儲存體帳戶或任何可公開存取的 Web 伺服器。
 3. 原始來源將檔案傳回給 Edge Server，包括描述檔案存留時間 (TTL) 的選擇性 HTTP 標頭。
-4. Edge Server 快取檔案，並將檔案傳回給原始要求者 (Alice)。  在 TTL 到期之前，檔案會一直快取在 Edge Server 上。  如果原始來源未指定 TTL，預設 TTL 為&7; 天。
+4. Edge Server 快取檔案，並將檔案傳回給原始要求者 (Alice)。  在 TTL 到期之前，檔案會一直快取在 Edge Server 上。  如果原始來源未指定 TTL，預設 TTL 為 7 天。
 5. 其他使用者後來可能會使用相同 URL 要求相同檔案，而且也可能導向至該相同 POP。
 6. 如果檔案的 TTL 尚未過期，Edge Server 便會從快取傳回檔案。  這會產生更快、更靈敏回應的使用者經驗。
 
@@ -63,7 +63,7 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 | [快速清除](cdn-purge-endpoint.md) |**&#x2713;** |**&#x2713;** |**&#x2713;** |
 | [資產預先載入](cdn-preload-endpoint.md) | |**&#x2713;** |**&#x2713;** |
 | [核心分析](cdn-analyze-usage-patterns.md) | |**&#x2713;** |**&#x2713;** |
-| [HTTP/2 支援](https://msdn.microsoft.com/library/mt762901.aspx) |**&#x2713;** | | |
+| [HTTP/2 支援](https://msdn.microsoft.com/library/mt762901.aspx) |**&#x2713;** |**&#x2713;** |**&#x2713;** |
 | [進階 HTTP 報告](cdn-advanced-http-reports.md) | | |**&#x2713;** |
 | [即時統計資料](cdn-real-time-stats.md) | | |**&#x2713;** |
 | [即時警示](cdn-real-time-alerts.md) | | |**&#x2713;** |

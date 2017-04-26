@@ -12,12 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 11/01/2016
+ms.date: 04/14/2017
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: 3fb7a0361717d4616ec21e55c0a202ed8bf8991d
-ms.openlocfilehash: a537a71a43b49d510a12d1293d8ee898d66efe63
-ms.lasthandoff: 01/12/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: ab8623d6f9751ed6d71d9a5b1c0d5e939c442862
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -28,10 +28,14 @@ ms.lasthandoff: 01/12/2017
 
 ## <a name="to-enable-session-affinity-for-your-role"></a>為角色啟用工作階段同質
 1. 在 Eclipse 的 [專案總管] 中以滑鼠右鍵按一下角色，然後依序按一下 [Azure] 和 [負載平衡]。
+
 2. 在 [WorkerRole1 的屬性] 的 [負載平衡]  對話方塊中：
-   1. 核取 [為這個角色啟用 HTTP 工作階段同質 (黏性工作階段)] 
-   2. 針對 [要使用的輸入端點]，選取要使用的輸入端點，例如 **http (public:80, private:8080)**。 您的應用程式必須使用這個端點作為其 HTTP 端點。 您可以為角色啟用多個端點，但只能選取其中一個端點來支援黏性工作階段。
-   3. 重建您的應用程式
+
+   a. 核取 [為這個角色啟用 HTTP 工作階段同質 (黏性工作階段)] 
+
+   b.這是另一個 C# 主控台應用程式。 針對 [要使用的輸入端點]，選取要使用的輸入端點，例如 **http (public:80, private:8080)**。 您的應用程式必須使用這個端點作為其 HTTP 端點。 您可以為角色啟用多個端點，但只能選取其中一個端點來支援黏性工作階段。
+
+   c. 重建您的應用程式
 
 啟用後，如果您有多個角色執行個體，來自特定用戶端的 HTTP 要求會繼續由相同的角色執行個體來處理。
 
@@ -39,8 +43,11 @@ Eclipse Toolkit 藉由將稱為應用程式要求路由 (ARR) 的特殊 IIS 模�
 
 ## <a name="notes-about-session-affinity"></a>工作階段同質的相關注意事項
 * 工作階段同質不會在計算模擬器中執行。 您可以在不干擾建置流程或計算模擬器執行的情況下，將這些設定套用至計算模擬器，但功能本身不會在計算模擬器中執行。
+
 * 啟用工作階段同質會導致 Azure 中的部署所佔用的磁碟空間量增加，因為當您在 Azure 雲端中啟動服務時，會下載額外的軟體並安裝到您的角色執行個體。
+
 * 初始化每個角色的時間會比較長。
+
 * 系統會加入一個內部端點，如上所述作為路由器來重新路由傳送流量。
 
 

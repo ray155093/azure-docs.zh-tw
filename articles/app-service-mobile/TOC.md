@@ -22,7 +22,7 @@
 
 ## 建立 Web Apps
 ### [.NET](../app-service-web/app-service-web-get-started-dotnet.md)
-### [PHP](../app-service-web/app-service-web-get-started-php.md)    
+### [PHP](../app-service-web/app-service-web-get-started-php.md)
 ### [Node.js](../app-service-web/app-service-web-get-started-nodejs.md)
 ### [Java](../app-service-web/app-service-web-get-started-java.md)
 ### [Python](../app-service-web/app-service-web-get-started-python.md)
@@ -68,7 +68,7 @@
 #### [新增推播通知](app-service-mobile-windows-store-dotnet-get-started-push.md)
 #### [使用用戶端 SDK](app-service-mobile-dotnet-how-to-use-client-library.md)
 
-### Xamarin.Android 
+### Xamarin.Android
 #### [啟用離線同步](app-service-mobile-xamarin-android-get-started-offline-data.md)
 #### [新增驗證](app-service-mobile-xamarin-android-get-started-users.md)
 #### [新增推播通知](app-service-mobile-xamarin-android-get-started-push.md)
@@ -78,7 +78,6 @@
 #### [啟用離線同步](app-service-mobile-xamarin-forms-get-started-offline-data.md)
 #### [新增驗證](app-service-mobile-xamarin-forms-get-started-users.md)
 #### [新增推播通知](app-service-mobile-xamarin-forms-get-started-push.md)
-#### [連接至 Xamarin.Forms 應用程式中的 Azure 儲存體](app-service-mobile-xamarin-forms-blob-storage.md)
 #### [使用用戶端 SDK](app-service-mobile-dotnet-how-to-use-client-library.md)
 
 ### Xamarin.iOS
@@ -194,7 +193,6 @@
 ### [使用 Azure 自動化管理應用程式](../app-service-web/automation-manage-web-app.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 ## 整合
-### [連接至 Xamarin.Forms 應用程式中的 Azure 儲存體](app-service-mobile-xamarin-forms-blob-storage.md)
 ### [使用混合式連線存取內部部署資源](../app-service-web/web-sites-hybrid-connection-get-started.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ### [如何在 Azure 上使用 SendGrid 傳送電子郵件](../app-service-web/sendgrid-dotnet-how-to-send-email.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
@@ -219,10 +217,10 @@
 ## [Azure 入口網站](../app-service-web/app-service-web-app-azure-portal.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 # 資源
-## [價格](https://azure.microsoft.com/en-us/pricing/details/app-service/)  
-## [MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=azuremobile)  
-## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-mobile-services)  
-## [影片](https://azure.microsoft.com/documentation/videos/index/?services=mobile-services) 
+## [價格](https://azure.microsoft.com/en-us/pricing/details/app-service/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=azuremobile)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-mobile-services)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=mobile-services)
 ## 範例
 ### [現場工程師](https://azure.microsoft.com/resources/samples/app-service-mobile-dotnet-fieldengineer/)
 ### [結構化資料同步處理](https://azure.microsoft.com/resources/samples/app-service-mobile-dotnet-todo-list-files/)

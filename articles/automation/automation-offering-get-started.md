@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 04/14/2017
 ms.author: magoedte
 translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: 1876b78186da3aa6c0ae9dc7de3b7ab7e46888bb
-ms.lasthandoff: 04/17/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 0f80ac93e3ff1ee95477e4fa5dbe21d61ddf8ead
+ms.lasthandoff: 04/25/2017
 
 ---
 
@@ -211,7 +211,7 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 | AzureClassicAutomationTutorial Runbook | 此為圖形化 Runbook 範例，可使用傳統執行身分帳戶 (憑證) 來取得訂用帳戶中使用傳統部署模型所建立的所有 VM，然後寫入 VM 名稱和狀態。 |
 | AzureClassicAutomationTutorial 指令碼 Runbook | 此為 PowerShell Runbook 範例，可使用傳統執行身分帳戶 (憑證) 來取得訂用帳戶中的所有傳統 VM，然後寫入 VM 名稱和狀態。 |
 | AzureClassicRunAsCertificate | 自動建立的憑證資產，可供您向 Azure 進行驗證，以便從 Runbook 管理 Azure 傳統資源。 此憑證有一年的有效期。 |
-| AzureClassicRunAsConnection | 自動建立的連線資產，可供您向 Azure 進行驗證，以便從 Runbook 管理 Azure 傳統資源。 |向 Azure 進行驗證，以便從 Runbook 管理 Azure 傳統資源。 |
+| AzureClassicRunAsConnection | 自動建立的連線資產，可供您向 Azure 進行驗證，以便從 Runbook 管理 Azure 傳統資源。|
 
 ## <a name="next-steps"></a>後續步驟
 * 您可藉由檢閱[測試 Azure 自動化執行身分帳戶驗證](automation-verify-runas-authentication.md)，確認新的自動化帳戶可以驗證 Azure 資源。

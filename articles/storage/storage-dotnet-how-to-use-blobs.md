@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 03/27/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: 29d8693dd1d6d1ef26ccb21e3a5b29cf1adbfcc5
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: e9cfcdd9d6e36c1154b91904da60483825ff8b94
+ms.lasthandoff: 04/25/2017
 
 ---
 # <a name="get-started-with-azure-blob-storage-using-net"></a>以 .NET 開始使用 Azure Blob 儲存體
@@ -365,7 +365,7 @@ for (int i = 0; i < numBlocks; i++)
 Console.WriteLine(appendBlob.DownloadText());
 ```
 
-如需了解有關 Blob 的三種類型間差異的資訊，請參閱 [了解區塊 Blob、分頁 Blob 和附加 Blob](/rest/api/storageservices/fileservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs) 。
+如需了解有關 Blob 的三種類型間差異的資訊，請參閱 [了解區塊 Blob、分頁 Blob 和附加 Blob](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs) 。
 
 ## <a name="managing-security-for-blobs"></a>管理 Blob 安全性
 根據預設，Azure 儲存體會限制擁有帳戶存取金鑰的帳戶擁有者的存取權來保持資料安全。 當您需要共用儲存體帳戶中的 Blob 資料時，請注意不可危及您帳戶存取金鑰的安全性。 此外，您可以加密 blob 資料以確保透過網路與 Azure 儲存體中的安全。
@@ -395,7 +395,7 @@ Azure 儲存體支援在用戶端和伺服器上加密 blob 資料︰
 
 ### <a name="blob-storage-reference"></a>Blob 儲存體參考
 * [Storage Client Library for .NET 參考資料](https://msdn.microsoft.com/library/azure/mt347887.aspx)
-* [REST API 參考資料](/rest/api/storageservices/fileservices/azure-storage-services-rest-api-reference)
+* [REST API 參考資料](/rest/api/storageservices/azure-storage-services-rest-api-reference)
 
 ### <a name="conceptual-guides"></a>概念性指南
 * [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)

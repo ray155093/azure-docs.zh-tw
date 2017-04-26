@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 12/05/2016
 ms.author: jonatul
 translationtype: Human Translation
-ms.sourcegitcommit: 119275f335344858cd20b6a17ef87e3ef32b6e12
-ms.openlocfilehash: 4e25ec1ece6017dc58c24ce593802293b7fc12b8
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: f15654f621bafb2617bdb456bbda0233db656be5
+ms.lasthandoff: 04/22/2017
 
 ---
 
@@ -68,7 +68,7 @@ CNAME 記錄集不能與其他具有相同名稱的記錄集共存。 例如，�
 
 在每個區域頂點 (名稱 = '@') 會自動建立 NS 記錄集，並在刪除該區域時自動將其刪除 (無法個別刪除)。  可以修改此記錄集的 TTL，但無法修改記錄，因為依照預先設定，記錄會參考指派給該區域的 Azure DNS 名稱伺服器。
 
-除了在區域頂點，您可以在該區域內建立和刪除其他 NS 記錄。  這可讓您設定子區域 (請參閱[在 Azure DNS 中委派子網域](dns-domain-delegation.md#delegating-sub-domains-in-azure-dns)。)
+除了在區域頂點，您可以在該區域內建立和刪除其他 NS 記錄。  這可讓您設定子區域 (請參閱[在 Azure DNS 中委派子網域](dns-domain-delegation.md)。)
 
 ### <a name="soa-records"></a>SOA 記錄
 
@@ -78,11 +78,7 @@ CNAME 記錄集不能與其他具有相同名稱的記錄集共存。 例如，�
 
 ### <a name="spf-records"></a>SPF 記錄
 
-寄件者原則架構 (SPF) 記錄，是用來指定可以代表指定的網域名稱，傳送電子郵件的電子郵件伺服器。  請務必正確設定 SPF 記錄，以防止收件者將您的電子郵件標示為垃圾郵件。
-
-DNS RFC 原本推出了新 'SPF' 記錄類型，以支援這種情況。 為了支援較舊的名稱伺服器，RFC 也允許使用 TXT 記錄類型來指定 SPF 記錄。  這種模稜兩可曾經造成混淆，但已透過 [RFC 7208](http://tools.ietf.org/html/rfc7208#section-3.1) 解決。  其中出應該只使用 TXT 記錄類型來建立 SPF 記錄，且 SPF 記錄類型已被取代。
-
-Azure DNS 支援 SPF 記錄，因此應該使用 TXT 記錄類型來建立。 不支援過時的 SPF 記錄類型。 當[匯入 DNS 區域檔案](dns-import-export.md)時，任何使用 SPF 記錄類型的 SPF 記錄，都會轉換成 TXT 記錄類型。
+[!INCLUDE [dns-spf-include](../../includes/dns-spf-include.md)]
 
 ### <a name="srv-records"></a>SRV 記錄
 
@@ -99,7 +95,7 @@ DNS 標準允許單一 TXT 記錄包含多個字串，每個長度最多可達 2
 
 在呼叫 Azure DNS REST API 時，您必須分別指定每個 TXT 字串。  當使用 Azure 入口網站、PowerShell 或 CLI 介面時，您應該為每筆記錄指定單一字串，如有需要，字串將自動分段成 254 個字元的區段。
 
-DNS 記錄中的多個字串，不應與 TXT 記錄集中的多個 TXT 記錄相混淆。  TXT 記錄集可以包含多個記錄，「每一個」記錄可以包含多個字串。  Azure DNS 支援每個 TXT 記錄集中的 字串總長度上限為 1024 個字元 (所有記錄的總和)。 
+DNS 記錄中的多個字串，不應與 TXT 記錄集中的多個 TXT 記錄相混淆。  TXT 記錄集可以包含多個記錄，「每一個」記錄可以包含多個字串。  Azure DNS 支援每個 TXT 記錄集中的 字串總長度上限為 1024 個字元 (所有記錄的總和)。
 
 ## <a name="tags-and-metadata"></a>標記和中繼資料
 
@@ -141,5 +137,4 @@ Azure DNS 使用 Etag 以安全地處理相同資源的並行變更。 Etag 和 
 
 * 若要開始使用 Azure DNS，請學習如何[建立 DNS 區域](dns-getstarted-create-dnszone-portal.md)和[建立 DNS 記錄](dns-getstarted-create-recordset-portal.md)。
 * 若要移轉現有的 DNS 區域，請學習如何[匯入和匯出 DNS 區域檔案](dns-import-export.md)。
-
 

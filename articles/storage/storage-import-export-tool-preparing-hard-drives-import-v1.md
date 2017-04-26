@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 5ec2f1346e7c9723aeca45f1c278d0731b3a43b5
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: cb330845ea623e49cc1d434dea9448c41b26413d
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -135,7 +135,7 @@ ms.lasthandoff: 03/30/2017
 |命令列參數|說明|
 |----------------------------|-----------------|
 |**/srcdir:**<SourceDirectory\>|`Required.`包含要複製到目標磁碟機的檔案的來源目錄。 目錄路徑必須是絕對路徑 (而非相對路徑)。|
-|**/dstdir:**<DestinationBlobVirtualDirectory\>|`Required.`Microsoft Azure 儲存體帳戶中的目的地虛擬目錄路徑。 虛擬目錄可能已存在或可能不存在。<br /><br /> 您可以指定容器或 Blob 前置詞，如 `music/70s/`。 目的地目錄必須以容器名稱開頭，後面接著正斜線 "/"，並可選擇性地包含結尾是 "/" 的虛擬 Blob 目錄。<br /><br /> 目的地容器為根容器時，您必須明確指定根容器 (包括正斜線)，例如 `$root/`。 由於根容器下的 Blob 名稱中不能包含 "/"，當目的地目錄是根容器時，將不會複製來源目錄中的任何子目錄。<br /><br /> 指定目的地虛擬目錄或 blob 時，請確定使用有效的容器名稱。 請記住容器名稱必須是小寫。 關於容器命名規則，請參閱[命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/fileservices/naming-and-referencing-containers--blobs--and-metadata)。|
+|**/dstdir:**<DestinationBlobVirtualDirectory\>|`Required.`Microsoft Azure 儲存體帳戶中的目的地虛擬目錄路徑。 虛擬目錄可能已存在或可能不存在。<br /><br /> 您可以指定容器或 Blob 前置詞，如 `music/70s/`。 目的地目錄必須以容器名稱開頭，後面接著正斜線 "/"，並可選擇性地包含結尾是 "/" 的虛擬 Blob 目錄。<br /><br /> 目的地容器為根容器時，您必須明確指定根容器 (包括正斜線)，例如 `$root/`。 由於根容器下的 Blob 名稱中不能包含 "/"，當目的地目錄是根容器時，將不會複製來源目錄中的任何子目錄。<br /><br /> 指定目的地虛擬目錄或 blob 時，請確定使用有效的容器名稱。 請記住容器名稱必須是小寫。 關於容器命名規則，請參閱[命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata)。|
 |**/Disposition:**<rename&#124;no-overwrite&#124;overwrite>|`Optional.`指定具有指定位址的 Blob 已存在時的行為。 這個參數的有效值為︰`rename`、`no-overwrite`及 `overwrite`。 請注意，這些值區分大小寫。 如果未指定任何值，預設值為 `rename`。<br /><br /> 為此參數指定的值會影響 `/srcdir` 參數指定的目錄中的所有檔案。|
 |**/BlobType:**<BlockBlob&#124;PageBlob>|`Optional.`指定目的地 Blob 的 Blob 類型。 有效值為：`BlockBlob`和 `PageBlob`。 請注意，這些值區分大小寫。 如果未指定任何值，預設值為 `BlockBlob`。<br /><br /> 在大部分情況下，建議使用 `BlockBlob`。 如果您指定 `PageBlob`，目錄中每個檔案的長度必須是 512 (分頁 Blob 的分頁大小) 的倍數。|
 |**/PropertyFile:**<PropertyFile\>|`Optional.`目的地 Blob 的屬性檔案路徑。 如需詳細資訊，請參閱[匯入/匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)。|
@@ -147,7 +147,7 @@ ms.lasthandoff: 03/30/2017
 |命令列參數|說明|
 |----------------------------|-----------------|
 |**/srcfile:**<SourceFile\>|`Required.`要複製的檔案的完整路徑。 目錄路徑必須是絕對路徑 (而非相對路徑)。|
-|**/dstblob:**<DestinationBlobPath\>|`Required.`Microsoft Azure 儲存體帳戶中目的地 Blob 的路徑。 Blob 可能已存在或可能不存在。<br /><br /> 指定開頭為容器名稱的 Blob 名稱。 Blob 名稱不得以 "/" 或儲存體帳戶名稱開頭。 關於 Blob 命名規則，請參閱[命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/fileservices/naming-and-referencing-containers--blobs--and-metadata)。<br /><br /> 目的地容器為根容器時，您必須明確指定 `$root` 做為容器，例如 `$root/sample.txt`。 請注意，根容器下的 Blob 名稱不能包含 "/"。|
+|**/dstblob:**<DestinationBlobPath\>|`Required.`Microsoft Azure 儲存體帳戶中目的地 Blob 的路徑。 Blob 可能已存在或可能不存在。<br /><br /> 指定開頭為容器名稱的 Blob 名稱。 Blob 名稱不得以 "/" 或儲存體帳戶名稱開頭。 關於 Blob 命名規則，請參閱[命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata)。<br /><br /> 目的地容器為根容器時，您必須明確指定 `$root` 做為容器，例如 `$root/sample.txt`。 請注意，根容器下的 Blob 名稱不能包含 "/"。|
 |**/Disposition:**<rename&#124;no-overwrite&#124;overwrite>|`Optional.`指定具有指定位址的 Blob 已存在時的行為。 這個參數的有效值為︰`rename`、`no-overwrite`及 `overwrite`。 請注意，這些值區分大小寫。 如果未指定任何值，預設值為 `rename`。|
 |**/BlobType:**<BlockBlob&#124;PageBlob>|`Optional.`指定目的地 Blob 的 Blob 類型。 有效值為：`BlockBlob`和 `PageBlob`。 請注意，這些值區分大小寫。 如果未指定任何值，預設值為 `BlockBlob`。<br /><br /> 在大部分情況下，建議使用 `BlockBlob`。 如果您指定 `PageBlob`，目錄中每個檔案的長度必須是 512 (分頁 Blob 的分頁大小) 的倍數。|
 |**/PropertyFile:**<PropertyFile\>|`Optional.`目的地 Blob 的屬性檔案路徑。 如需詳細資訊，請參閱[匯入/匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)。|

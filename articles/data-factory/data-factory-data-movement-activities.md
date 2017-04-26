@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/30/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 62586434f233b1d40b8a9efd539d1fcdca3bdec7
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: e0c999b2bf1dd38d8a0c99c6cdd4976cc896dd99
+ms.openlocfilehash: e9215bdd02c9d1b595f65997840926080d6d7d01
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -60,7 +60,15 @@ ms.lasthandoff: 04/12/2017
 您也可以使用「資料管理閘道」，將資料移出/移入 Azure IaaS 虛擬機器 (VM) 上所裝載的支援資料存放區。 在此情況下，您可以將「資料管理閘道」安裝在與資料存放區本身相同的 VM 上，或是安裝在可存取該資料存放區的另一部 VM 上。
 
 ## <a name="supported-data-stores-and-formats"></a>支援的資料存放區和格式
+Data Factory 中的複製活動會將資料從來源資料存放區複製到接收資料存放區。 Data Factory 支援下列資料存放區。 可將來自任何來源的資料寫入任何接收器。 按一下資料存放區，即可了解如何將資料複製到該存放區，以及從該存放區複製資料。
+
+> [!NOTE] 
+> 如果您需要將資料移入/移出「複製活動」不支援的資料存放區，請在 Data Factory 中使用 **自訂活動** 搭配您自己的邏輯來複製/移動資料。 如需有關建立及使用自訂活動的詳細資料，請參閱 [在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)。
+
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
+
+> [!NOTE]
+> 具有 * 的資料存放區可以在內部部署環境或 Azure IaaS 上，並且需要您在內部部署/Azure IaaS 機器上安裝 [資料管理閘道](data-factory-data-management-gateway.md) 。
 
 ### <a name="supported-file-formats"></a>支援的檔案格式
 您可以使用「複製活動」在兩個以檔案為基礎的資料存放區之間**依原樣複製檔案**，您可以在輸入和輸出資料集定義中略過[格式區段](data-factory-create-datasets.md)。 系統會有效率地複製資料，而不會進行任何序列化/還原序列化。

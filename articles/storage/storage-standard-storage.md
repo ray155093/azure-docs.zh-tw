@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/18/2017
 ms.author: yuemlu
 translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 77e48af7ba59ed1e5b2ebcda0760e0eda1f407df
-ms.lasthandoff: 04/06/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 37a22be9fba7b245b2c1ea3ca6e495601d63b611
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -52,7 +52,7 @@ ms.lasthandoff: 04/06/2017
 
 **標準儲存體磁碟︰**標準儲存體磁碟可以附加至所有 Azure VM，包括進階儲存體使用的大小系列 VM，例如 DSv2 和 GS 系列。 標準儲存體磁碟只能附加至一個 VM。 不過，您可以將一或多個這些磁碟附加至 VM，最多為該 VM 大小所定義的最大磁碟計數。 在下一節的「標準儲存體延展性和效能目標」中，我們會更詳細地說明規格。 
 
-**標準分頁 Blob**︰標準分頁 Blob 用來保存 VM 的持續性磁碟，也可以透過 REST 直接存取，如同其他類型的 Azure Blob 一樣。 [分頁 Blob](/rest/api/storageservices/fileservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs)是已最佳化隨機讀取和寫入作業的一組 512 位元組分頁。 
+**標準分頁 Blob**︰標準分頁 Blob 用來保存 VM 的持續性磁碟，也可以透過 REST 直接存取，如同其他類型的 Azure Blob 一樣。 [分頁 Blob](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs)是已最佳化隨機讀取和寫入作業的一組 512 位元組分頁。 
 
 **儲存體複寫︰**在大部分區域，標準儲存體帳戶中的資料可以在本地複寫，或跨多個資料中心進行異地複寫。 可用的四種複寫包括本地備援儲存體 (LRS)、區域備援儲存體 (ZRS)、異地備援儲存體 (GRS) 和讀取權限異地備援儲存體 (RA-GRS)。 標準儲存體中的受控磁碟目前只支援本地備援儲存體 (LRS)。 如需詳細資訊，請參閱[儲存體複寫](storage-redundancy.md)。
 
@@ -99,11 +99,11 @@ ms.lasthandoff: 04/06/2017
 
 就像對標準儲存體使用快照集一樣，您可以使用相同方式為非受控標準磁碟建立[增量快照集](storage-incremental-snapshots.md)。 如果來源磁碟在本地備援儲存體帳戶中，我們建議您建立快照集，然後將那些快照集複製到異地備援標準儲存體帳戶。 如需詳細資訊，請參閱 [Azure 儲存體備援選項](storage-redundancy.md)。
 
-如果磁碟已附加至 VM，則磁碟上不允許某些 API 作業。 例如，只要磁碟連接至 VM，您就無法在該 Blob 上執行 [複製 Blob](/rest/api/storageservices/fileservices/Copy-Blob) 作業。 您必須先使用[快照 Blob](/rest/api/storageservices/fileservices/Snapshot-Blob) REST API 方法建立該 Blob 的快照，然後對該快照執行[複製 Blob](/rest/api/storageservices/fileservices/Copy-Blob) 以複製連接的磁碟。 或者，您可以中斷連結磁碟，再執行任何必要的作業。
+如果磁碟已附加至 VM，則磁碟上不允許某些 API 作業。 例如，只要磁碟連接至 VM，您就無法在該 Blob 上執行 [複製 Blob](/rest/api/storageservices/Copy-Blob) 作業。 您必須先使用[快照 Blob](/rest/api/storageservices/Snapshot-Blob) REST API 方法建立該 Blob 的快照，然後對該快照執行[複製 Blob](/rest/api/storageservices/Copy-Blob) 以複製連接的磁碟。 或者，您可以中斷連結磁碟，再執行任何必要的作業。
 
-若要維護快照集的異地備援副本，您可以使用 AzCopy 或「複製 Blob」，將本地備援儲存體帳戶中的快照集，複製到異地備援標準儲存體帳戶。 如需詳細資訊，請參閱[使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)和[複製 Blob](/rest/api/storageservices/fileservices/Copy-Blob)。
+若要維護快照集的異地備援副本，您可以使用 AzCopy 或「複製 Blob」，將本地備援儲存體帳戶中的快照集，複製到異地備援標準儲存體帳戶。 如需詳細資訊，請參閱[使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)和[複製 Blob](/rest/api/storageservices/Copy-Blob)。
 
-如需對標準儲存體帳戶中的分頁 Blob 執行 REST 作業的詳細資訊，請參閱 [Azure 儲存體服務 REST API](/rest/api/storageservices/fileservices/Azure-Storage-Services-REST-API-Reference)。
+如需對標準儲存體帳戶中的分頁 Blob 執行 REST 作業的詳細資訊，請參閱 [Azure 儲存體服務 REST API](/rest/api/storageservices/Azure-Storage-Services-REST-API-Reference)。
 
 ### <a name="managed-disks"></a>受控磁碟
 
@@ -125,7 +125,7 @@ ms.lasthandoff: 04/06/2017
 
 **受控磁碟︰**受控磁碟依據佈建大小計費。 如果磁碟佈建為 10 GB 的磁碟，但您只使用 5 GB，則仍然會向您收取佈建大小 10 GB 的費用。
 
-**快照集**：標準儲存體的快照集會因為使用的額外容量而產生費用。 如需有關快照的資訊，請參閱 [建立 Blob 的快照](/rest/api/storageservices/fileservices/Creating-a-Snapshot-of-a-Blob)。
+**快照集**：標準儲存體的快照集會因為使用的額外容量而產生費用。 如需有關快照的資訊，請參閱 [建立 Blob 的快照](/rest/api/storageservices/Creating-a-Snapshot-of-a-Blob)。
 
 **輸出資料傳輸**： [輸出資料傳輸](https://azure.microsoft.com/pricing/details/data-transfers/) (Azure 資料中心送出的資料) 會產生頻寬使用量費用。
 

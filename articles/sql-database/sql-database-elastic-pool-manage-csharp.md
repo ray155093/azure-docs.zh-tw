@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: c83a5aacca6669c4259365fba9f444ecb1b2a6c9
-ms.openlocfilehash: 1e7393537f6c9e4d6af522dd05f149403a85559e
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 9e038bfeee023b26aa80046fe877db007baa1816
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -364,12 +364,12 @@ namespace SqlElasticPoolConsoleApp
     newPoolResponse = sqlClient.ElasticPools.CreateOrUpdate("resourcegroup-name", "server-name", "ElasticPool1", newPoolParameters);
 
 ## <a name="latency-of-elastic-pool-operations"></a>彈性集區的作業延遲
-* 每個資料庫的最小 eDTU 數或每個資料庫的最大 eDTU 數變更作業通常在&5; 分鐘內即可完成。
+* 每個資料庫的最小 eDTU 數或每個資料庫的最大 eDTU 數變更作業通常在 5 分鐘內即可完成。
 * 變更集區大小的時間 (eDTUs) 取決於集區中所有資料庫的合併大小。 變更作業平均每 100 GB 會在 90 分鐘以內完成。 舉例來說，如果集區中所有資料庫的總空間為 200 GB，則每集區變更集區 eDTU 的預期延遲時間會少於 3 小時。
 
 ## <a name="additional-resources"></a>其他資源
 *  如需 SQL Database 用戶端應用程式的 SQL 錯誤碼、資料庫連線錯誤和其他問題，請參閱 [錯誤訊息](sql-database-develop-error-messages.md)。
 * [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)
-* 如需彈性集區指導方針，請參閱 [何時應該使用彈性集區？](sql-database-elastic-pool-guidance.md)
+* 如需彈性集區指導方針，請參閱 [何時應該使用彈性集區？](sql-database-elastic-pool.md)
 
 

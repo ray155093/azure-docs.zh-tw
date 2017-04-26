@@ -4,7 +4,7 @@ description: "如何從 .NET 應用程式使用 Azure 搜尋服務"
 services: search
 documentationcenter: 
 author: brjohnstmsft
-manager: pablocas
+manager: jlembicz
 editor: 
 ms.assetid: 93653341-c05f-4cfd-be45-bb877f964fcb
 ms.service: search
@@ -12,11 +12,12 @@ ms.devlang: dotnet
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 11/30/2016
+ms.date: 04/21/2017
 ms.author: brjohnst
 translationtype: Human Translation
-ms.sourcegitcommit: 23ea2ac2afd60c500b3ffe4ee57e991a11551625
-ms.openlocfilehash: 50e03b7a3af6f88c9ceb3241d60b9414bbe42d16
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 2c7032e74dc59eb610b8860338486afc52e3abbe
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -59,40 +60,49 @@ Azure 搜尋服務 .NET SDK 支援以 .NET Framework 4.5、.NET Core 為目標�
 ### <a name="overview"></a>Overview
 我們將探索的範例應用程式，會建立名為 "hotels" 的新索引，並透過一些文件填入索引，然後執行一些搜尋查詢。 以下是主要程式，該程式顯示了整體流程：
 
-    // This sample shows how to delete, create, upload documents and query an index
-    static void Main(string[] args)
-    {
-        SearchServiceClient serviceClient = CreateSearchServiceClient();
+```csharp
+// This sample shows how to delete, create, upload documents and query an index
+static void Main(string[] args)
+{
+    SearchServiceClient serviceClient = CreateSearchServiceClient();
 
-        Console.WriteLine("{0}", "Deleting index...\n");
-        DeleteHotelsIndexIfExists(serviceClient);
+    Console.WriteLine("{0}", "Deleting index...\n");
+    DeleteHotelsIndexIfExists(serviceClient);
 
-        Console.WriteLine("{0}", "Creating index...\n");
-        CreateHotelsIndex(serviceClient);
+    Console.WriteLine("{0}", "Creating index...\n");
+    CreateHotelsIndex(serviceClient);
 
-        ISearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
+    ISearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
 
-        Console.WriteLine("{0}", "Uploading documents...\n");
-        UploadDocuments(indexClient);
+    Console.WriteLine("{0}", "Uploading documents...\n");
+    UploadDocuments(indexClient);
 
-        ISearchIndexClient indexClientForQueries = CreateSearchIndexClient();
+    ISearchIndexClient indexClientForQueries = CreateSearchIndexClient();
 
-        RunQueries(indexClientForQueries);
+    RunQueries(indexClientForQueries);
 
-        Console.WriteLine("{0}", "Complete.  Press any key to end application...\n");
-        Console.ReadKey();
-    }
+    Console.WriteLine("{0}", "Complete.  Press any key to end application...\n");
+    Console.ReadKey();
+}
+```
+
+> [!NOTE]
+> 您可以在 [GitHub](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo) 上尋找本逐步解說中所用範例應用程式的完整原始程式碼。
+> 
+>
 
 我們會逐步說明， 首先必須建立新的 `SearchServiceClient`。 此物件可讓您管理索引。 若要建構此物件，必須提供 Azure Search 服務名稱和系統管理 API 金鑰。
 
-    private static SearchServiceClient CreateSearchServiceClient()
-    {
-        string searchServiceName = "myservice";
-        string adminApiKey = "Put your API admin key here";
+```csharp
+private static SearchServiceClient CreateSearchServiceClient()
+{
+    string searchServiceName = "myservice";
+    string adminApiKey = "Put your API admin key here";
 
-        SearchServiceClient serviceClient = new SearchServiceClient(searchServiceName, new SearchCredentials(adminApiKey));
-        return serviceClient;
-    }
+    SearchServiceClient serviceClient = new SearchServiceClient(searchServiceName, new SearchCredentials(adminApiKey));
+    return serviceClient;
+}
+```
 
 > [!NOTE]
 > 如果提供不正確的金鑰 (例如，需要系統管理金鑰卻提供查詢金鑰)，則 `SearchServiceClient` 會在您第一次用它呼叫作業方法時 (例如 `Indexes.Create`) 擲回 `CloudException`，並附上「禁止」的錯誤訊息。 如果遇到此情況，請按兩下我們的 API 金鑰。
@@ -101,15 +111,19 @@ Azure 搜尋服務 .NET SDK 支援以 .NET Framework 4.5、.NET Core 為目標�
 
 以下幾行程式碼會呼叫建立名為 "hotels" 索引的方法，如果索引已存在，請加以刪除。 稍後我們會逐項執行這些方法。
 
-    Console.WriteLine("{0}", "Deleting index...\n");
-    DeleteHotelsIndexIfExists(serviceClient);
+```csharp
+Console.WriteLine("{0}", "Deleting index...\n");
+DeleteHotelsIndexIfExists(serviceClient);
 
-    Console.WriteLine("{0}", "Creating index...\n");
-    CreateHotelsIndex(serviceClient);
+Console.WriteLine("{0}", "Creating index...\n");
+CreateHotelsIndex(serviceClient);
+```
 
 接著必須填入索引。 若要這麼做，必須要有 `SearchIndexClient`。 取得的方式有兩種：建構該項目，或用 `SearchServiceClient` 呼叫 `Indexes.GetClient`。 為方便起見，我們使用後者。
 
-    ISearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
+```csharp
+ISearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
+```
 
 > [!NOTE]
 > 在一般搜尋應用程式中，索引的管理和填入是由搜尋查詢的個別元件所處理。 `Indexes.GetClient` 可以很輕易填入索引，因為它可以節省提供其他 `SearchCredentials` 的麻煩。 執行方法是將用於建立 `SearchServiceClient` 的系統管理金鑰傳遞至新的 `SearchIndexClient`。 但在執行查詢的應用程式中，最好直接建立 `SearchIndexClient` ，如此一來就可以傳遞查詢金鑰，而非系統管理金鑰。 這不但符合最低權限的準則，也可以讓您的應用程式更安全。 您可以 [在這裡](https://docs.microsoft.com/rest/api/searchservice/#authentication-and-authorization)深入了解系統管理金鑰和查詢金鑰。
@@ -118,25 +132,31 @@ Azure 搜尋服務 .NET SDK 支援以 .NET Framework 4.5、.NET Core 為目標�
 
 現在我們有 `SearchIndexClient`，可以開始填入索引。 這要使用另一個方法來執行，稍後我們會逐項說明。
 
-    Console.WriteLine("{0}", "Uploading documents...\n");
-    UploadDocuments(indexClient);
+```csharp
+Console.WriteLine("{0}", "Uploading documents...\n");
+UploadDocuments(indexClient);
+```
 
 最後，我們會執行一些搜尋查詢並顯示結果。 這次我們使用不同的 `SearchIndexClient`：
 
-    ISearchIndexClient indexClientForQueries = CreateSearchIndexClient();
+```csharp
+ISearchIndexClient indexClientForQueries = CreateSearchIndexClient();
 
-    RunQueries(indexClientForQueries);
+RunQueries(indexClientForQueries);
+```
 
 我們稍後會仔細查看 `RunQueries` 方法。 以下是可建立新 `SearchIndexClient` 的程式碼：
 
-    private static SearchIndexClient CreateSearchIndexClient()
-    {
-        string searchServiceName = "myservice";
-        string queryApiKey = "Put one of your API query keys here";
+```csharp
+private static SearchIndexClient CreateSearchIndexClient()
+{
+    string searchServiceName = "myservice";
+    string queryApiKey = "Put one of your API query keys here";
 
-        SearchIndexClient indexClient = new SearchIndexClient(searchServiceName, "hotels", new SearchCredentials(queryApiKey));
-        return indexClient;
-    }
+    SearchIndexClient indexClient = new SearchIndexClient(searchServiceName, "hotels", new SearchCredentials(queryApiKey));
+    return indexClient;
+}
+```
 
 這次我們使用查詢金鑰，因為我們不需要索引的寫入存取權。
 
@@ -177,13 +197,15 @@ Azure 搜尋服務 .NET SDK 支援以 .NET Framework 4.5、.NET Core 為目標�
 ### <a name="creating-an-index"></a>建立索引
 建立 `SearchServiceClient`後，`Main` 會接著刪除 "hotels" 索引 (如果已經存在)。 刪除方法如下：
 
-    private static void DeleteHotelsIndexIfExists(SearchServiceClient serviceClient)
+```csharp
+private static void DeleteHotelsIndexIfExists(SearchServiceClient serviceClient)
+{
+    if (serviceClient.Indexes.Exists("hotels"))
     {
-        if (serviceClient.Indexes.Exists("hotels"))
-        {
-            serviceClient.Indexes.Delete("hotels");
-        }
+        serviceClient.Indexes.Delete("hotels");
     }
+}
+```
 
 此方法使用指定的 `SearchServiceClient` 查看索引是否存在，如果存在，就加以刪除。
 
@@ -194,16 +216,18 @@ Azure 搜尋服務 .NET SDK 支援以 .NET Framework 4.5、.NET Core 為目標�
 
 接著，`Main` 會呼叫此方法建立新的 "hotels" 索引：
 
-    private static void CreateHotelsIndex(SearchServiceClient serviceClient)
+```csharp
+private static void CreateHotelsIndex(SearchServiceClient serviceClient)
+{
+    var definition = new Index()
     {
-        var definition = new Index()
-        {
-            Name = "hotels",
-            Fields = FieldBuilder.BuildForType<Hotel>()
-        };
+        Name = "hotels",
+        Fields = FieldBuilder.BuildForType<Hotel>()
+    };
 
-        serviceClient.Indexes.Create(definition);
-    }
+    serviceClient.Indexes.Create(definition);
+}
+```
 
 此方法會以定義新索引結構描述的 `Field` 物件清單，建立新的 `Index` 物件。 每個欄位均有一個名稱、資料類型和一些屬性，以用於定義欄位的搜尋行為。 `FieldBuilder` 類別會檢查指定 `Hotel` 模型類別的公用屬性 (property) 和屬性 (attribute)，進而使用反映來建立索引的 `Field` 物件清單。 我們稍後會仔細查看 `Hotel` 類別。
 
@@ -217,67 +241,69 @@ Azure 搜尋服務 .NET SDK 支援以 .NET Framework 4.5、.NET Core 為目標�
 ### <a name="populating-the-index"></a>填入索引
 `Main` 的下一步是填入新建立的索引。 執行方法如下：
 
-    private static void UploadDocuments(ISearchIndexClient indexClient)
+```csharp
+private static void UploadDocuments(ISearchIndexClient indexClient)
+{
+    var hotels = new Hotel[]
     {
-        var hotels = new Hotel[]
-        {
-            new Hotel()
-            { 
-                HotelId = "1", 
-                BaseRate = 199.0, 
-                Description = "Best hotel in town",
-                DescriptionFr = "Meilleur hôtel en ville",
-                HotelName = "Fancy Stay",
-                Category = "Luxury", 
-                Tags = new[] { "pool", "view", "wifi", "concierge" },
-                ParkingIncluded = false, 
-                SmokingAllowed = false,
-                LastRenovationDate = new DateTimeOffset(2010, 6, 27, 0, 0, 0, TimeSpan.Zero), 
-                Rating = 5, 
-                Location = GeographyPoint.Create(47.678581, -122.131577)
-            },
-            new Hotel()
-            { 
-                HotelId = "2", 
-                BaseRate = 79.99,
-                Description = "Cheapest hotel in town",
-                DescriptionFr = "Hôtel le moins cher en ville",
-                HotelName = "Roach Motel",
-                Category = "Budget",
-                Tags = new[] { "motel", "budget" },
-                ParkingIncluded = true,
-                SmokingAllowed = true,
-                LastRenovationDate = new DateTimeOffset(1982, 4, 28, 0, 0, 0, TimeSpan.Zero),
-                Rating = 1,
-                Location = GeographyPoint.Create(49.678581, -122.131577)
-            },
-            new Hotel() 
-            { 
-                HotelId = "3", 
-                BaseRate = 129.99,
-                Description = "Close to town hall and the river"
-            }
-        };
-
-        var batch = IndexBatch.Upload(hotels);
-
-        try
-        {
-            indexClient.Documents.Index(batch);
+        new Hotel()
+        { 
+            HotelId = "1", 
+            BaseRate = 199.0, 
+            Description = "Best hotel in town",
+            DescriptionFr = "Meilleur hôtel en ville",
+            HotelName = "Fancy Stay",
+            Category = "Luxury", 
+            Tags = new[] { "pool", "view", "wifi", "concierge" },
+            ParkingIncluded = false, 
+            SmokingAllowed = false,
+            LastRenovationDate = new DateTimeOffset(2010, 6, 27, 0, 0, 0, TimeSpan.Zero), 
+            Rating = 5, 
+            Location = GeographyPoint.Create(47.678581, -122.131577)
+        },
+        new Hotel()
+        { 
+            HotelId = "2", 
+            BaseRate = 79.99,
+            Description = "Cheapest hotel in town",
+            DescriptionFr = "Hôtel le moins cher en ville",
+            HotelName = "Roach Motel",
+            Category = "Budget",
+            Tags = new[] { "motel", "budget" },
+            ParkingIncluded = true,
+            SmokingAllowed = true,
+            LastRenovationDate = new DateTimeOffset(1982, 4, 28, 0, 0, 0, TimeSpan.Zero),
+            Rating = 1,
+            Location = GeographyPoint.Create(49.678581, -122.131577)
+        },
+        new Hotel() 
+        { 
+            HotelId = "3", 
+            BaseRate = 129.99,
+            Description = "Close to town hall and the river"
         }
-        catch (IndexBatchException e)
-        {
-            // Sometimes when your Search service is under load, indexing will fail for some of the documents in
-            // the batch. Depending on your application, you can take compensating actions like delaying and
-            // retrying. For this simple demo, we just log the failed document keys and continue.
-            Console.WriteLine(
-                "Failed to index some of the documents: {0}",
-                String.Join(", ", e.IndexingResults.Where(r => !r.Succeeded).Select(r => r.Key)));
-        }
+    };
 
-        Console.WriteLine("Waiting for documents to be indexed...\n");
-        Thread.Sleep(2000);
+    var batch = IndexBatch.Upload(hotels);
+
+    try
+    {
+        indexClient.Documents.Index(batch);
     }
+    catch (IndexBatchException e)
+    {
+        // Sometimes when your Search service is under load, indexing will fail for some of the documents in
+        // the batch. Depending on your application, you can take compensating actions like delaying and
+        // retrying. For this simple demo, we just log the failed document keys and continue.
+        Console.WriteLine(
+            "Failed to index some of the documents: {0}",
+            String.Join(", ", e.IndexingResults.Where(r => !r.Succeeded).Select(r => r.Key)));
+    }
+
+    Console.WriteLine("Waiting for documents to be indexed...\n");
+    Thread.Sleep(2000);
+}
+```
 
 此方法分四個部分。 第一個部分會建立 `Hotel` 物件的陣列，做為我們上傳到索引的輸入資料。 為簡單起見，此資料採硬式編碼。 在您的應用程式中，資料可能會來自像是 SQL 資料庫的外部資料來源。
 
@@ -300,50 +326,53 @@ Azure 搜尋服務 .NET SDK 支援以 .NET Framework 4.5、.NET Core 為目標�
 #### <a name="how-the-net-sdk-handles-documents"></a>.NET SDK 如何處理文件
 您可能想知道 Azure 搜尋服務 .NET SDK 如何能夠將使用者定義的類別執行個體 (例如 `Hotel` 上傳至索引。 為了回答這問題，我們來看一下 `Hotel` 類別：
 
-    [SerializePropertyNamesAsCamelCase]
-    public partial class Hotel
-    {
-        [Key]
-        [IsFilterable]
-        public string HotelId { get; set; }
+```csharp
+// The SerializePropertyNamesAsCamelCase attribute is defined in the Azure Search .NET SDK.
+// It ensures that Pascal-case property names in the model class are mapped to camel-case
+// field names in the index.
+[SerializePropertyNamesAsCamelCase]
+public partial class Hotel
+{
+    [System.ComponentModel.DataAnnotations.Key]
+    [IsFilterable]
+    public string HotelId { get; set; }
 
-        [IsFilterable, IsSortable, IsFacetable]
-        public double? BaseRate { get; set; }
+    [IsFilterable, IsSortable, IsFacetable]
+    public double? BaseRate { get; set; }
 
-        [IsSearchable]
-        public string Description { get; set; }
+    [IsSearchable]
+    public string Description { get; set; }
 
-        [IsSearchable]
-        [Analyzer(AnalyzerName.AsString.FrLucene)]
-        [JsonProperty("description_fr")]
-        public string DescriptionFr { get; set; }
+    [IsSearchable]
+    [Analyzer(AnalyzerName.AsString.FrLucene)]
+    [JsonProperty("description_fr")]
+    public string DescriptionFr { get; set; }
 
-        [IsSearchable, IsFilterable, IsSortable]
-        public string HotelName { get; set; }
+    [IsSearchable, IsFilterable, IsSortable]
+    public string HotelName { get; set; }
 
-        [IsSearchable, IsFilterable, IsSortable, IsFacetable]
-        public string Category { get; set; }
+    [IsSearchable, IsFilterable, IsSortable, IsFacetable]
+    public string Category { get; set; }
 
-        [IsSearchable, IsFilterable, IsFacetable]
-        public string[] Tags { get; set; }
+    [IsSearchable, IsFilterable, IsFacetable]
+    public string[] Tags { get; set; }
 
-        [IsFilterable, IsFacetable]
-        public bool? ParkingIncluded { get; set; }
+    [IsFilterable, IsFacetable]
+    public bool? ParkingIncluded { get; set; }
 
-        [IsFilterable, IsFacetable]
-        public bool? SmokingAllowed { get; set; }
+    [IsFilterable, IsFacetable]
+    public bool? SmokingAllowed { get; set; }
 
-        [IsFilterable, IsSortable, IsFacetable]
-        public DateTimeOffset? LastRenovationDate { get; set; }
+    [IsFilterable, IsSortable, IsFacetable]
+    public DateTimeOffset? LastRenovationDate { get; set; }
 
-        [IsFilterable, IsSortable, IsFacetable]
-        public int? Rating { get; set; }
+    [IsFilterable, IsSortable, IsFacetable]
+    public int? Rating { get; set; }
 
-        [IsFilterable, IsSortable]
-        public GeographyPoint Location { get; set; }
-
-        // ToString() method omitted for brevity...
-    }
+    [IsFilterable, IsSortable]
+    public GeographyPoint Location { get; set; }
+}
+```
 
 首先要注意的是，每個 `Hotel` 的公用屬性會對應索引定義中的欄位，但這之中有一項關鍵的差異：每個欄位的名稱會以小寫字母 (「駝峰式命名法」) 為開頭，而每個 `Hotel` 的公用屬性名稱會以大小字母 (「巴斯卡命名法」) 為開頭。 這在執行資料繫結、而目標結構描述在應用程式開發人員控制範圍之外的 .NET 應用程式中很常見。 與其違反 .NET 命名方針，使屬性名稱為駝峰式命名法，您可以改用 `[SerializePropertyNamesAsCamelCase]` 屬性，告訴 SDK 自動將屬性名稱對應至駝峰式命名法。
 
@@ -387,83 +416,13 @@ SDK 會使用 JSON.NET 序列化和還原序列化文件。 您可以視需要�
 ### <a name="searching-for-documents-in-the-index"></a>搜尋索引中的文件
 此範例應用程式的最後一個步驟是搜尋索引中的一些文件。 執行方法如下：
 
-    private static void RunQueries(ISearchIndexClient indexClient)
-    {
-        SearchParameters parameters;
-        DocumentSearchResult<Hotel> results;
-    
-        Console.WriteLine("Search the entire index for the term 'budget' and return only the hotelName field:\n");
-    
-        parameters =
-            new SearchParameters()
-            {
-                Select = new[] { "hotelName" }
-            };
-    
-        results = indexClient.Documents.Search<Hotel>("budget", parameters);
-    
-        WriteDocuments(results);
-    
-        Console.Write("Apply a filter to the index to find hotels cheaper than $150 per night, ");
-        Console.WriteLine("and return the hotelId and description:\n");
-    
-        parameters =
-            new SearchParameters()
-            {
-                Filter = "baseRate lt 150",
-                Select = new[] { "hotelId", "description" }
-            };
-    
-        results = indexClient.Documents.Search<Hotel>("*", parameters);
-    
-        WriteDocuments(results);
-    
-        Console.Write("Search the entire index, order by a specific field (lastRenovationDate) ");
-        Console.Write("in descending order, take the top two results, and show only hotelName and ");
-        Console.WriteLine("lastRenovationDate:\n");
-    
-        parameters =
-            new SearchParameters()
-            {
-                OrderBy = new[] { "lastRenovationDate desc" },
-                Select = new[] { "hotelName", "lastRenovationDate" },
-                Top = 2
-            };
-    
-        results = indexClient.Documents.Search<Hotel>("*", parameters);
-    
-        WriteDocuments(results);
-    
-        Console.WriteLine("Search the entire index for the term 'motel':\n");
-    
-        parameters = new SearchParameters();
-        results = indexClient.Documents.Search<Hotel>("motel", parameters);
-    
-        WriteDocuments(results);
-    }
+```csharp
+private static void RunQueries(ISearchIndexClient indexClient)
+{
+    SearchParameters parameters;
+    DocumentSearchResult<Hotel> results;
 
-每次執行查詢時，這個方法都會先建立新的 `SearchParameters` 物件。 該物件用於指定查詢的其他選項，例如排序、篩選、分頁及 Facet。 在此方法中，我們會針對不同查詢設定 `Filter`、`Select`、`OrderBy` 和 `Top` 屬性。 所有 `SearchParameters` 屬性都記載於[這裡](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.searchparameters)。
-
-下一步是實際執行搜尋查詢， 我們透過 `Documents.Search` 方法完成此步驟。 針對每次查詢，我們會傳遞搜尋文字做為字串 (如果沒有搜尋文字，則傳遞 `"*"`)，並再加上先前建立的搜尋參數。 我們也指定了 `Hotel` 做為 `Documents.Search` 的類型參數，藉此告訴 SDK 將搜尋結果中的文件還原序列化為 `Hotel` 類型的物件。
-
-> [!NOTE]
-> 如需搜尋查詢運算式語法的詳細資訊，請參閱 [這裡](https://docs.microsoft.com/rest/api/searchservice/Simple-query-syntax-in-Azure-Search)。
-> 
-> 
-
-最後，在每次查詢之後，此方法會反覆查詢搜尋結果中的所有相符項，然後將每個文件列印至主控台：
-
-    private static void WriteDocuments(DocumentSearchResult<Hotel> searchResults)
-    {
-        foreach (SearchResult<Hotel> result in searchResults.Results)
-        {
-            Console.WriteLine(result.Document);
-        }
-
-        Console.WriteLine();
-    }
-
-讓我們依序仔細查看每個查詢。 以下是執行第一個查詢的程式碼︰
+    Console.WriteLine("Search the entire index for the term 'budget' and return only the hotelName field:\n");
 
     parameters =
         new SearchParameters()
@@ -475,11 +434,8 @@ SDK 會使用 JSON.NET 序列化和還原序列化文件。 您可以視需要�
 
     WriteDocuments(results);
 
-在此情況下，我們會搜尋符合 "budget" 這個字的旅館，而且我們只想要傳回 `Select` 參數所指定的旅館名稱。 結果如下︰
-
-    Name: Roach Motel
-
-接下來，我們想要尋找每晚費率小於 $150 的旅館，並且只傳回旅館識別碼和描述︰
+    Console.Write("Apply a filter to the index to find hotels cheaper than $150 per night, ");
+    Console.WriteLine("and return the hotelId and description:\n");
 
     parameters =
         new SearchParameters()
@@ -492,6 +448,87 @@ SDK 會使用 JSON.NET 序列化和還原序列化文件。 您可以視需要�
 
     WriteDocuments(results);
 
+    Console.Write("Search the entire index, order by a specific field (lastRenovationDate) ");
+    Console.Write("in descending order, take the top two results, and show only hotelName and ");
+    Console.WriteLine("lastRenovationDate:\n");
+
+    parameters =
+        new SearchParameters()
+        {
+            OrderBy = new[] { "lastRenovationDate desc" },
+            Select = new[] { "hotelName", "lastRenovationDate" },
+            Top = 2
+        };
+
+    results = indexClient.Documents.Search<Hotel>("*", parameters);
+
+    WriteDocuments(results);
+
+    Console.WriteLine("Search the entire index for the term 'motel':\n");
+
+    parameters = new SearchParameters();
+    results = indexClient.Documents.Search<Hotel>("motel", parameters);
+
+    WriteDocuments(results);
+}
+```
+
+每次執行查詢時，這個方法都會先建立新的 `SearchParameters` 物件。 該物件用於指定查詢的其他選項，例如排序、篩選、分頁及 Facet。 在此方法中，我們會針對不同查詢設定 `Filter`、`Select`、`OrderBy` 和 `Top` 屬性。 所有 `SearchParameters` 屬性都記載於[這裡](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.searchparameters)。
+
+下一步是實際執行搜尋查詢， 我們透過 `Documents.Search` 方法完成此步驟。 針對每次查詢，我們會傳遞搜尋文字做為字串 (如果沒有搜尋文字，則傳遞 `"*"`)，並再加上先前建立的搜尋參數。 我們也指定了 `Hotel` 做為 `Documents.Search` 的類型參數，藉此告訴 SDK 將搜尋結果中的文件還原序列化為 `Hotel` 類型的物件。
+
+> [!NOTE]
+> 如需搜尋查詢運算式語法的詳細資訊，請參閱 [這裡](https://docs.microsoft.com/rest/api/searchservice/Simple-query-syntax-in-Azure-Search)。
+> 
+> 
+
+最後，在每次查詢之後，此方法會反覆查詢搜尋結果中的所有相符項，然後將每個文件列印至主控台：
+
+```csharp
+private static void WriteDocuments(DocumentSearchResult<Hotel> searchResults)
+{
+    foreach (SearchResult<Hotel> result in searchResults.Results)
+    {
+        Console.WriteLine(result.Document);
+    }
+
+    Console.WriteLine();
+}
+```
+
+讓我們依序仔細查看每個查詢。 以下是執行第一個查詢的程式碼︰
+
+```csharp
+parameters =
+    new SearchParameters()
+    {
+        Select = new[] { "hotelName" }
+    };
+
+results = indexClient.Documents.Search<Hotel>("budget", parameters);
+
+WriteDocuments(results);
+```
+
+在此情況下，我們會搜尋符合 "budget" 這個字的旅館，而且我們只想要傳回 `Select` 參數所指定的旅館名稱。 結果如下︰
+
+    Name: Roach Motel
+
+接下來，我們想要尋找每晚費率小於 $150 的旅館，並且只傳回旅館識別碼和描述︰
+
+```csharp
+parameters =
+    new SearchParameters()
+    {
+        Filter = "baseRate lt 150",
+        Select = new[] { "hotelId", "description" }
+    };
+
+results = indexClient.Documents.Search<Hotel>("*", parameters);
+
+WriteDocuments(results);
+```
+
 此查詢會使用 OData `$filter` 運算式 (`baseRate lt 150`)，以篩選索引中的文件。 您可以在 [這裡](https://docs.microsoft.com/rest/api/searchservice/OData-Expression-Syntax-for-Azure-Search)找到更多 Azure 搜尋服務支援的 OData 語法。
 
 查詢的結果如下：
@@ -501,17 +538,19 @@ SDK 會使用 JSON.NET 序列化和還原序列化文件。 您可以視需要�
 
 接下來，我們要尋找最近重新裝修的前兩間旅館，並顯示旅館名稱和上次重新裝修日期。 程式碼如下： 
 
-    parameters =
-        new SearchParameters()
-        {
-            OrderBy = new[] { "lastRenovationDate desc" },
-            Select = new[] { "hotelName", "lastRenovationDate" },
-            Top = 2
-        };
-    
-    results = indexClient.Documents.Search<Hotel>("*", parameters);
-    
-    WriteDocuments(results);
+```csharp
+parameters =
+    new SearchParameters()
+    {
+        OrderBy = new[] { "lastRenovationDate desc" },
+        Select = new[] { "hotelName", "lastRenovationDate" },
+        Top = 2
+    };
+
+results = indexClient.Documents.Search<Hotel>("*", parameters);
+
+WriteDocuments(results);
+```
 
 在此情況下，我們再次使用 OData 語法，將 `OrderBy` 參數指定為 `lastRenovationDate desc`。 我們也會將 `Top` 設定為 2，以確保只取得前兩份文件。 如同前面，我們會設定 `Select` 來指定應傳回哪些欄位。
 
@@ -522,10 +561,12 @@ SDK 會使用 JSON.NET 序列化和還原序列化文件。 您可以視需要�
 
 最後，我們想要尋找符合 "motel" 這個字的所有旅館︰
 
-    parameters = new SearchParameters();
-    results = indexClient.Documents.Search<Hotel>("motel", parameters);
+```csharp
+parameters = new SearchParameters();
+results = indexClient.Documents.Search<Hotel>("motel", parameters);
 
-    WriteDocuments(results);
+WriteDocuments(results);
+```
 
 結果如下，其中包含所有欄位，因為我們並未指定 `Select` 屬性︰
 
@@ -533,17 +574,9 @@ SDK 會使用 JSON.NET 序列化和還原序列化文件。 您可以視需要�
 
 此步驟已完成本教學課程，但別就此結束。 **後續步驟** 會提供可深入了解 Azure 搜尋服務的其他資源。
 
-## <a name="sample-application-source-code"></a>範例應用程式的原始程式碼
-您可以在 [GitHub](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo) 上尋找本逐步解說中所用範例應用程式的完整原始程式碼。
-
 ## <a name="next-steps"></a>後續步驟
 * 瀏覽 [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search) 及 [REST API](https://docs.microsoft.com/rest/api/searchservice/) 參考文章。
 * 使用 [影片與其他範例和教學課程](search-video-demo-tutorial-list.md)加深知識。
 * 檢閱 [命名規則](https://docs.microsoft.com/rest/api/searchservice/Naming-rules) ，了解命名各種物件的規則。
 * 檢閱 Azure 搜尋服務 [支援的資料類型](https://docs.microsoft.com/rest/api/searchservice/Supported-data-types) 。
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
