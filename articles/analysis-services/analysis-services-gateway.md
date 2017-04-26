@@ -16,9 +16,9 @@ ms.workload: na
 ms.date: 02/27/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 193c939065979dc48243d31e7f97cd87d96bf9a8
-ms.openlocfilehash: 90584f60864589744888817ea71d0eb0d4d170ff
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: c7127f4bd89bf00a4ef72e54dc7694a1766e5762
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -129,6 +129,25 @@ ms.lasthandoff: 11/17/2016
 如果您有閘道安裝和設定的問題，請務必參閱 [Power BI 閘道的疑難排解](https://powerbi.microsoft.com/documentation/powerbi-gateway-onprem-tshoot/)。 如果您認為您的防火牆有問題，請參閱防火牆或 Proxy 章節。
 
 如果您認為閘道有 Proxy 相關問題，請參閱[設定 Power BI 閘道的 Proxy 設定](https://powerbi.microsoft.com/documentation/powerbi-gateway-proxy.md)。
+
+### <a name="telemetry"></a>遙測
+遙測可應用在監視和疑難排解上。 
+
+**開啟遙測**
+
+1.    檢查電腦上的內部部署資料閘道用戶端目錄。 此目錄通常是 %systemdrive%\Program Files\內部部署資料閘道。 或者，您可以開啟 [服務] 主控台並查看可執行檔的路徑：內部部署資料閘道服務的一個屬性。
+2.    在來自用戶端目錄的 Microsoft.PowerBI.DataMovement.Pipeline.GatewayCore.dll.config 檔案中， 將 SendTelemetry 設定變更為 true。
+        
+    ```
+        <setting name="SendTelemetry" serializeAs="String">
+                    <value>true</value>
+        </setting>
+    ```
+
+3.    儲存您的變更，然後重新啟動 Windows 服務：內部部署資料閘道服務。
+
+
+
 
 ## <a name="next-steps"></a>後續步驟
 * [ Analysis Services](analysis-services-manage.md)

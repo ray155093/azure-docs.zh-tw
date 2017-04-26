@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
 translationtype: Human Translation
-ms.sourcegitcommit: ea6b80e289f039a5924fcc2ccf9d71dbbb432982
-ms.openlocfilehash: 2f2676d85a513a152832cfd336c3b643577341b9
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: 7d58748c4b0195246fffafe2e5544678b83dfd60
+ms.lasthandoff: 04/14/2017
 
 ---
 # <a name="azure-api-management-faqs"></a>Azure API 管理常見問題集
@@ -44,6 +44,8 @@ ms.lasthandoff: 02/24/2017
 * [是否可以對後端使用自我簽署的 SSL 憑證？](#can-i-use-a-self-signed-ssl-certificate-for-a-back-end)
 * [為什麼我在嘗試複製 GIT 儲存機制時會發生驗證失敗？](#why-do-i-get-an-authentication-failure-when-i-try-to-clone-a-git-repository)
 * [API 管理是否能搭配 Azure ExpressRoute 運作？](#does-api-management-work-with-azure-expressroute)
+* [為什麼將「API 管理」部署到 Resource Manager 樣式的 VNET 中時，我們需要在這些 VNET 中有一個專用子網路？](#why-do-we-require-a-dedicated-subnet-in-resource-manager-style-vnets-when-api-management-is-deployed-into-them)
+* [將「API 管理」部署到 VNET 中時，所需的子網路大小下限是多少？](#what-is-the-minimum-subnet-size-needed-when-deploying-api-management-into-a-vnet)
 * [可以將 API 管理服務從某一個訂用帳戶移至另一個嗎？](#can-i-move-an-api-management-service-from-one-subscription-to-another)
 * [匯入 API 有任何限制或已知的問題嗎？](#are-there-restrictions-on-or-known-issues-with-importing-my-api)
 
@@ -51,7 +53,7 @@ ms.lasthandoff: 02/24/2017
 您可以使用下列其中一個選項與我們連絡︰
 
 * 將問題張貼在我們的 [API 管理 MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=azureapimgmt)。
-* 將電子郵件傳送至 <mailto:apimgmt@microsoft.com>。
+* 將電子郵件傳送至 < mailto:apimgmt@microsoft.com >。
 * 在 [Azure 意見反應論壇](https://feedback.azure.com/forums/248703-api-management)將功能要求傳送給我們。
 
 ### <a name="what-does-it-mean-when-a-feature-is-in-preview"></a>功能預覽中是什麼意思？
@@ -113,9 +115,9 @@ ms.lasthandoff: 02/24/2017
 ### <a name="is-the-api-management-gateway-ip-address-constant-can-i-use-it-in-firewall-rules"></a>API 管理閘道 IP 位址是否固定？ 我可以用在防火牆規則嗎？
 在標準和進階層，API 管理租用戶的公用 IP 位址 (VIP) 在租用戶的存留期內是靜態的，但有一些例外狀況。 在下列情況下，IP 位址會變更︰
 
-* 服務遭到刪除而後重新建立。
-* 服務訂用帳戶遭到停用 (例如，因為未付款) 而後恢復。
-* 您新增或移除 Azure 虛擬網路 (您只能在進階層使用虛擬網路)。
+* 服務遭到刪除，然後又重新建立。
+* 服務訂用帳戶遭到[暫止](https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/subscription-lifecycle-api-reference.md#subscription-states)或[警告](https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/subscription-lifecycle-api-reference.md#subscription-states) (例如，因為未付款)，然後又恢復。
+* 您新增或移除「Azure 虛擬網路」(您只能在「開發人員」或「進階」層使用「虛擬網路」)。
 
 對於多重區域的部署，如果區域被清空而後恢復，區域位址則會變更 (您只能在進階層使用多重區域部署)。
 
@@ -144,6 +146,13 @@ API 管理會在部署到多個地理位置時，使用[效能流量路由方法
 
 ### <a name="does-api-management-work-with-azure-expressroute"></a>API 管理是否能搭配 Azure ExpressRoute 運作？
 是。 API 管理能搭配 Azure ExpressRoute 運作。
+
+### <a name="why-do-we-require-a-dedicated-subnet-in-resource-manager-style-vnets-when-api-management-is-deployed-into-them"></a>為什麼將「API 管理」部署到 Resource Manager 樣式的 VNET 中時，我們需要在這些 VNET 中有一個專用子網路？
+「API 管理」的專用子網路需求來自於一個事實，就是它是建置在「傳統」(PAAS V1 層) 部署模型的基礎上。 雖然我們可以部署到 Resource Manager VNET (V2 層) 中，但是會有後果。 Azure 中的「傳統」部署模型並未與 Resource Manager 模型緊密結合，因此，如果您在 V2 層中建立一項資源，V1 層並不會知道它，而問題就可能發生，例如「API 管理」嘗試使用已經配置給某個 NIC (建置在 V2 上) 的 IP。
+若要深入了解 Azure 中「傳統」模型與 Resource Manager 模型的差異，請參閱[部署模型中的差異](../azure-resource-manager/resource-manager-deployment-model.md)。
+
+### <a name="what-is-the-minimum-subnet-size-needed-when-deploying-api-management-into-a-vnet"></a>將「API 管理」部署到 VNET 中時，所需的子網路大小下限是多少？
+部署「API 管理」所需的子網路大小下限是 [/29](../virtual-network/virtual-networks-faq.md#configuration)，這是 Azure 支援的子網路大小下限。
 
 ### <a name="can-i-move-an-api-management-service-from-one-subscription-to-another"></a>可以將 API 管理服務從某一個訂用帳戶移至另一個嗎？
 是。 若要了解作法，請參閱[將資源移至新的資源群組或訂用帳戶](../azure-resource-manager/resource-group-move-resources.md)。

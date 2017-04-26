@@ -1,171 +1,146 @@
 ---
-title: "使用 Application Insights 進行 Web 應用程式的使用量分析"
-description: "使用 Application Insights 進行 Web 應用程式使用量分析的概觀"
+title: "使用 Azure Application Insights 進行 Web 應用程式的使用量分析 | Microsoft Docs"
+description: "使用 Application Insights 進行使用量分析的概觀"
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: bbdb8e58-7115-48d8-93c0-f69a1beeea6e
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
-ms.devlang: na
+ms.devlang: multiple
 ms.topic: article
-ms.date: 06/12/2016
+ms.date: 04/12/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 8e32014147c322e09af08e5c05d83aea13041a4c
-ms.lasthandoff: 04/07/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 2715207e548fc57b1896f5736731be3881256cbf
+ms.lasthandoff: 04/13/2017
 
 
 ---
 # <a name="usage-analysis-for-web-applications-with-application-insights"></a>使用 Application Insights 進行 Web 應用程式的使用量分析
-知道人員使用您的應用程式的方式可讓您將開發工作著重在對他們來說最重要的案例，並且對他們認為易於或難以達成的目標獲得見解。 
+了解使用者如何使用您的應用程式，可讓您將開發工作的焦點放在對您的使用者來說最重要的案例上，並深入解析他們認為較容易或較難達成的目標。
 
-Azure Application Insights 提供兩種使用情況追蹤層級：
+[Azure Application Insights](app-insights-overview.md) 提供兩種層級的使用情況追蹤：
 
 * **使用者、工作階段與頁面檢視資料** - 預設提供。  
-* **自訂遙測** - [撰寫程式碼][api]，透過應用程式的使用者體驗來追蹤您的使用者。 
+* **自訂遙測** - 您可以[撰寫程式碼](app-insights-api-custom-events-metrics.md)來透過應用程式的使用者體驗追蹤您的使用者。 
 
-## <a name="setting-up"></a>設定
-在 [Azure 入口網站](https://portal.azure.com)中開啟 Application Insights 資源按一下 [瀏覽器載入頁面] 圖表，並按照設定指示操作。
 
-[深入了解](app-insights-javascript.md) 
+## <a name="get-started"></a>開始使用
 
-## <a name="how-popular-is-my-web-application"></a>我的 Web 應用程式的熱門程度為何？
-登入 [Azure 入口網站][portal]，瀏覽至應用程式資源，然後按一下 [使用情況]：
+若要獲得最佳體驗，請同時在您的應用程式伺服器程式碼和網頁中安裝 Application Insights。 您應用程式的用戶端和伺服器元件會將遙測資料傳送回 Azure 入口網站以供分析。
 
-![](./media/app-insights-web-track-usage/14-usage.png)
+1. **伺服器程式碼：**為您的 [ASP.NET](app-insights-asp-net.md)、[Azure](app-insights-azure.md)、[Java](app-insights-java-get-started.md)、[Node.js](app-insights-nodejs.md) 或[其他](app-insights-platforms.md)應用程式安裝適當的模組。
 
-* **使用者：** 圖表的時間範圍內不同作用中使用者的計數。 
-* **工作階段：** 使用中工作階段計數
+    * *不想安裝伺服器程式碼嗎？請直接[建立 Azure Application Insights 資源](app-insights-create-new-resource.md)。*
+
+2. **網頁程式碼：**開啟 [Azure 入口網站](https://portal.azure.com)、開啟您應用程式的 Application Insights 資源，然後開啟 [快速入門] > [監視及診斷用戶端應用程式]。 
+
+    ![將指令碼複製到您主版頁面的標頭。](./media/app-insights-web-track-usage/02-monitor-web-page.png)
+
+
+3. **取得遙測資料：**以偵錯模式執行您的專案幾分鐘，然後在 Application Insights 的 [概觀] 刀鋒視窗中尋找結果。
+
+    發佈您的應用程式以監視應用程式的效能，並了解使用者如何利用您的應用程式。
+
+## <a name="usage-analysis-out-of-the-box"></a>現成的使用情況分析
+開啟 [使用量] 刀鋒視窗。
+
+![使用者數、工作階段數及頁面檢視數圖表](./media/app-insights-web-track-usage/14-usage.png)
+
+將滑鼠移至圖形上的空白部分，以查看特定點的計數。 否則，數字會顯示一段期間的彙總值，例如一段期間的平均、總計或獨特使用者計數。
+
+這些圖表顯示什麼？
+
+* **使用者：** 圖表的時間範圍內不同作用中使用者的計數。 在 Web 應用程式中，是使用 Cookie 來計算使用者。 使用數個瀏覽器、清除 Cookie 或使用私密瀏覽功能的人員將被計入數次。
+* 如果您已在程式碼中插入對 [setAuthenticatedUser()](app-insights-api-custom-events-metrics.md#authenticated-users) 的呼叫，就會計算「已驗證的使用者」。
+* **工作階段：**使用中工作階段計數。 Web 工作階段在 30 分鐘無活動後會被計入。 
 * **頁面檢視** 計算對 trackPageView() 呼叫的數目，通常在每個網頁中呼叫一次。
 
 逐一點選任何圖表以查看詳細資料。 請注意，您可以變更圖表的時間範圍。
 
 ### <a name="where-do-my-users-live"></a>我的使用者住在何處？
-從使用方式刀鋒視窗中，按一下 [使用者] 圖表以查看詳細資料：
+按一下 [使用者] 圖表的空白部分，以開啟顯示更多詳細資料的另一個刀鋒視窗：
 
 ![在 [使用量] 刀鋒視窗中，按一下 [使用者] 圖表](./media/app-insights-web-track-usage/02-sessions.png)
 
 ### <a name="what-browsers-or-operating-systems-do-they-use"></a>他們使用什麼瀏覽器或作業系統？
-依屬性 (例如瀏覽器、作業系統或城市) 群組 (分段) 資料：
+
+按一下 [使用者] 圖表上的 [編輯]，然後依屬性 (例如 [瀏覽器]、[作業系統] 或 [城市]) 將資料分組 (區段)： 
 
 ![選取顯示單一度量的圖表，將分組切換成開啟，並選擇屬性](./media/app-insights-web-track-usage/03-browsers.png)
 
-## <a name="sessions"></a>工作階段
-工作階段是 Application Insights 中的基本概念，Application Insights 會致力於使用特定使用者工作階段關聯每個遙測事件，例如要求、頁面檢視、例外狀況或您自行編碼的自訂事件。 
+若要查看完整的一組計數，請將圖表類型切換成 [方格]。 您也可以選擇顯示額外的計量：
 
-它會收集關於每個工作階段的豐富內容資訊，例如裝置特性、地理位置、作業系統等等。
+![多資料行方格圖表](./media/app-insights-web-track-usage/multi-column-grid.png)
 
-如果您同時檢測用戶端和伺服器 ([ASP.NET][greenbrown] 或 [J2EE][java])，則 SDK 會在用戶端與伺服器之間傳播工作階段識別碼，以便能夠相互關聯這兩端的事件。
+針對圖形化圖表類型，您可以依屬性分組或選取多個計量，但不能同時使用兩者。 此圖表會比較兩個計量、使用者及[已驗證的使用者](app-insights-api-custom-events-metrics.md#authenticated-users)。 
 
-在[診斷問題][diagnostic]時，您可以找到與問題發生所在工作階段相關的所有遙測資料，包括所記錄下來的所有要求、任何事件、例外狀況或追蹤。
+![選取圖表，搜尋並勾選或取消勾選度量。](./media/app-insights-web-track-usage/031-dual.png)
 
-工作階段可正確測量出裝置、作業系統或位置等內容的熱門程度。 比方說，相較於透過計算頁面檢視計數，透過顯示依裝置所分組的工作階段計數，您可以取得該裝置與您的應用程式搭配使用之頻率的更精確數字。 此輸入很適合用來分類任何裝置特定的問題。
 
-#### <a name="whats-a-session"></a>什麼是工作階段？
-一個工作階段代表使用者和應用程式之間的一次交流。 簡單來說，工作階段開始於使用者啟動應用程式，結束於使用者離開應用程式。 對 Web 應用程式來說，工作階段預設會在停止活動 30 分鐘後或持續活動 24 小時後終止。 
 
-您可以編輯程式碼片段來變更這些預設值：
-
-    <script type="text/javascript">
-        var appInsights= ... { ... }({
-            instrumentationKey: "...",
-            sessionRenewalMs: 3600000,
-            sessionExpirationMs: 172800000
-        });
-    </script>
-
-* `sessionRenewalMs` ：因使用者未活動而讓工作階段過期的時間 (毫秒)。 預設值：30 分鐘。
-* `sessionExpirationMs` ：工作階段最大長度，以毫秒為單位。 如果使用者持續活動超過這段時間，就會計入另一個工作階段。 預設值：24 小時。
-
-**工作階段持續時間**是一個[計量值][metrics]，會記錄工作階段的第一個和最後一個遙測項目間隔的時間範圍。 (不包含逾時期間)。
-
-**工作階段計數** 的定義是，在此間隔期間具有某些活動的唯一工作階段數目。 當您查看長時間範圍時，例如過去一週的每日工作階段計數，這通常相當於工作階段的總數。 
-
-不過，當您瀏覽較短的時間範圍時，例如每小時的資料粒度，跨越多個小時的長工作階段將會針對工作階段有活動的每個小時來進行計算。 
-
-## <a name="users-and-user-counts"></a>使用者和使用者計數
-每個使用者工作階段都會與唯一的使用者識別碼相關聯。 
-
-根據預設，會放置 cookie 來識別使用者。 使用多個瀏覽器或裝置的使用者將會計算一次以上。 (但是請參閱 [驗證的使用者](#authenticated-users))
-
-特定間隔期間的 **使用者計數** 度量的定義是，在此間隔期間具有記錄活動的唯一使用者數目。 因此，當您設定的時間範圍資料粒度小於一小時左右，具有長工作階段的使用者可能會計算多次。
-
-**新使用者** 會計算應用程式的第一個工作階段發生在此間隔期間的使用者。 如果使用以 Cookie 計算使用者的預設方法，則這也會包括已清除其 Cookie 或是使用新裝置或瀏覽器第一次存取您的 App 的使用者。
-![從 [使用量] 刀鋒視窗中，按一下 [使用者] 圖表，即可檢查新的使用者。](./media/app-insights-web-track-usage/031-dual.png)
-
-### <a name="authenticated-users"></a>驗證的使用者
-如果您的 Web App 可讓使用者登入，您可以藉由提供具有唯一使用者識別碼的 Application Insights 取得更精確的計數。 它不一定要是其名稱，或者您在 App 中使用的相同識別碼。 只要您的 App 已經識別使用者，請使用下列程式碼：
-
-*用戶端的 JavaScript*
-
-      appInsights.setAuthenticatedUserContext(userId);
-
-如果您的 App 會將使用者群組為帳戶，您也可以傳遞適用於該帳戶的識別碼。 
-
-      appInsights.setAuthenticatedUserContext(userId, accountId);
-
-使用者及帳戶識別碼不得包含空格或字元 `,;=|`
-
-在 [計量瀏覽器][](app-insights-metrics-explorer.md) 中，您可以建立 [已驗證的使用者] 和 [帳戶] 的圖表。 
-
-## <a name="synthetic-traffic"></a>綜合流量
-綜合流量包括來自可用性和負載測試、搜尋引擎編目程式和其他代理程式的要求。 
-
-Application Insights 會努力試著自動判斷和分類綜合流量並適當地標記。 在大部分情況下，綜合流量不會叫用 JavaScript SDK，因此這個活動會排除在使用者和工作階段的計算之外。 
-
-不過，對於 Application Insights [Web 測試][availability]，使用者識別碼會自動根據 POP 位置進行設定，而工作階段識別碼則會根據測試回合識別碼進行設定。 在預設報告中，預設會篩選掉綜合流量，排除這些使用者和工作階段。 不過，若包含綜合流量，可能會造成整體使用者和工作階段計數少量增加。
-
-## <a name="page-usage"></a>頁面使用量
-逐一點選頁面檢視圖表以取得更放大的版本，以及最受歡迎頁面的分解：
+## <a name="page-views"></a>頁面檢視
+從 [使用量] 刀鋒視窗，一路點選進入頁面檢視圖表以取得更詳細的版本，以及最受歡迎頁面的明細：
 
 ![從 [概觀] 刀鋒視窗，按一下 [頁面檢視] 圖表](./media/app-insights-web-track-usage/05-games.png)
 
-以上範例來自遊戲網站。 透過它，我們可以立即看到：
+上述範例來自遊戲網站。 從這些圖表，我們可以立即看到：
 
 * 在上一週使用量未改善。 也許我們應該考慮搜尋引擎最佳化？
-* 看遊戲頁面的人比看首頁的人少很多。 我們的首頁何不吸引人來玩遊戲？
-* 'Crossword' 是最受歡迎的遊戲。 我們應該優先推行新想法和改善。
+* 網球是最受歡迎的遊戲頁面。 讓我們將焦點放在此頁面的進一步改善上。
+* 平均而言，使用者大約每週瀏覽網球頁面三次。 (與使用者相比，工作階段數大約多出三倍)。
+* 大多數使用者都是在美國工作週且在工作時間瀏覽此網站。 也許我們應該在網頁上提供一個 [快速隱藏] 按鈕。
+* 圖表上的[註解](app-insights-annotations.md)會顯示新版網站的部署時間。 沒有任何一個最近的部署對使用量有明顯的影響。
 
 ## <a name="custom-tracking"></a>自訂追蹤
-我們假設不要在個別網頁實作每個遊戲，您決定將它們全部重新分解成相同的單一頁面應用程式，其中多數功能的網頁都是以 Javascript 編寫。 這可讓使用者在遊戲之間快速切換，或甚至是在一個頁面中有數個遊戲。 
+我們假設不要在個別網頁實作每個遊戲，您決定將它們全部重新分解成相同的單一頁面應用程式，其中多數功能的網頁都是以 Javascript 編寫。 這可讓使用者在遊戲之間快速切換，或甚至是在一個頁面中有數個遊戲。
 
 但您仍想要 Application Insights 記錄開啟每個遊戲的次數，以他們在不同頁面上完全相同的方式記錄。 那很簡單：只需要插入呼叫到 JavaScript 中您要記錄已開啟新「頁面」的遙測模組即可：
 
-    appInsights.trackPageView(game.Name);
-
-## <a name="custom-events"></a>自訂事件
-撰寫自訂遙測來記錄特定事件。 特別是在單一頁面應用程式中，您會想要知道使用者執行特定動作或達成特定目標的頻率： 
-
-    appInsights.trackEvent("GameEnd");
-
-例如，若要記錄按一下連結：
-
-    <a href="target.htm" onclick="appInsights.trackEvent('linkClick');return true;">my link</a>
+```JavaScript
+    telemetryClient.trackPageView(game.Name);
+```
+這個呼叫會模擬記錄頁面檢視的遙測。  不過，您不會總是想要將訊息與頁面檢視混在一起。 改為使用自訂事件。 您可以從網頁或 Web 伺服器傳送它們：
 
 
-## <a name="view-counts-of-custom-events"></a>檢視自訂事件的計數
-開啟 [計量瀏覽器]，並新增圖表以顯示事件。 依名稱分割：
+```JavaScript
 
-![選取僅顯示一個度量的圖表。 將分組切換成開啟。 選擇屬性。 並非所有屬性都可供使用。](./media/app-insights-web-track-usage/06-eventsSegment.png)
+    telemetryClient.trackEvent("GameEnd");
+```
+
+```C#
+    var tc = new Microsoft.ApplicationInsights.TelemetryClient();
+    tc.TrackEvent("GameEnd");
+```
+
+```VB
+
+    Dim tc = New Microsoft.ApplicationInsights.TelemetryClient()
+    tc.TrackEvent("GameEnd")
+```
+
+您可以透過許多方式使用[插入到您 Web 或伺服器程式碼中的自訂遙測](app-insights-api-custom-events-metrics.md#trackevent)，以了解您應用程式的使用情況。
+
+若要檢視 TrackEvent() 所傳送的事件：開啟 [計量瀏覽器]、新增一個新的圖表，然後編輯它。 您的計量會顯示在 [自訂計量] 底下。 
+
+![顯示自訂事件的圖表。](./media/app-insights-web-track-usage/06-eventsSegment.png)
+
+如果您在事件中設定[屬性值](app-insights-api-custom-events-metrics.md#properties) (也稱為維度)，您便可以依這些屬性值進行分組或篩選。
+
+您可以建立多個圖表來將其他計量和事件中的變更相互關聯。 例如，在玩很多遊戲的時候，您會預期看到被放棄的遊戲也有上升。 但是，被放棄的遊戲上升不成比例，您會想要知道高負載是否造成問題，使得使用者覺得無法接受。
 
 ## <a name="drill-into-specific-events"></a>深入特定事件
-若要更了解一般工作階段的進行情況，您可能想要著重在包含特定事件類型的特定使用者工作階段。 
+若要更了解一般工作階段的進行情況，您可能想要著重在包含特定事件類型的特定使用者工作階段。
 
-在此範例中，我們編寫了自訂事件 "NoGame"，當使用者登出而實際上未啟動遊戲時會呼叫它。 為什麼使用者要那麼做？ 也許我們深入一些特定的出現次數可獲得線索。 
-
-從應用程式收到的自訂事件會依名稱列在 [概觀] 刀鋒視窗上：
-
-![在 [概觀] 刀鋒視窗中，按一下其中一個自訂事件類型。](./media/app-insights-web-track-usage/07-clickEvent.png)
-
-逐一點選感興趣的事件，並選取最近的特定出現次數：
+從事件方格中，一路點選進入感興趣的事件，然後選取最近的特定出現項目：
 
 ![在摘要圖表下的清單中，按一下事件](./media/app-insights-web-track-usage/08-searchEvents.png)
 
-讓我們查看工作階段的所有遙測，其中發生了特定 NoGame 事件。 
+讓我們查看工作階段的所有遙測，其中發生了特定 NoGame 事件。
 
 ![按一下 [工作階段的所有遙測]](./media/app-insights-web-track-usage/09-relatedTelemetry.png)
 
@@ -180,7 +155,7 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 ## <a name="filter-search-and-segment-your-data-with-properties"></a>使用屬性來篩選、搜尋和分割您的資料
 您可以附加任意標記和數值到事件。
 
-*用戶端的 JavaScript*
+*網頁中的 JavaScript*
 
 ```JavaScript
 
@@ -197,7 +172,7 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 ```C#
 
     // Set up some properties:
-    var properties = new Dictionary <string, string> 
+    var properties = new Dictionary <string, string>
         {{"game", currentGame.Name}, {"difficulty", currentGame.Difficulty}};
     var measurements = new Dictionary <string, double>
         {{"Score", currentGame.Score}, {"Opponents", currentGame.OpponentCount}};
@@ -225,7 +200,7 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 
 以相同的方式將屬性附加至頁面檢視：
 
-*用戶端的 JavaScript*
+*網頁中的 JavaScript*
 
 ```JS
 
@@ -243,14 +218,31 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 
 ![在 [搜尋] 欄位中輸入值](./media/app-insights-web-track-usage/12-searchEvents.png)
 
+## <a name="edit-and-create-queries-over-your-telemetry"></a>編輯和建立與您遙測資料相關的查詢
+
+按一下任何圖表上的 [Azure 分析] 圖示，以開啟可供您編輯的對等查詢。
+向下捲動以查看是否有多個產生的查詢。 將游標放在任何查詢中，然後按一下 [執行]。 
+
+或者，從 [概觀] 刀鋒視窗上的圖示開啟 [分析]，然後撰寫您自己的查詢，或在 [分析] 首頁上嘗試一些範例查詢。
+
+
+![含有已產生之查詢的 [分析] 視窗](./media/app-insights-web-track-usage/open-analytics.png)
+
+[深入了解 Azure 分析查詢語言](app-insights-analytics.md)。
+
+針對使用量分析，您可能會對下列資料表特別感興趣：
+
+* `customEvents` - [TrackEvent()](app-insights-api-custom-events-metrics.md#trackevent) 呼叫的結果。
+* `pageViews` - 在用戶端瀏覽器中開啟的頁面計數，或對 [trackPageView()](app-insights-api-custom-events-metrics.md#page-views) 的呼叫。
+
+
 ## <a name="a--b-testing"></a>A | B 測試
 如果您不知道哪個功能的變數將更可能成功，請兩者都釋出，讓兩者都可供不同使用者存取。 測量每一個的成功，然後移至整合的版本。
 
-針對此技術，您會附加獨特的標記到每個應用程式版本所傳送的所有遙測。 您可以在作用中 TelemetryContext 中定義屬性來執行該動作。 這些預設屬性會加入到應用程式傳送的每個遙測訊息 - 不只是您的自訂訊息，還有標準遙測。 
+針對此技術，您會附加獨特的標記到每個應用程式版本所傳送的所有遙測。 您可以在作用中 TelemetryContext 中定義屬性來執行該動作。 這些預設屬性會加入到應用程式傳送的每個遙測訊息 - 不只是您的自訂訊息，還有標準遙測。
 
 在 Application Insights 入口網站中，您將可以依標記篩選並分組 (分段) 資料，以便比較不同版本。
 
-*伺服器上的 C#*
 
 ```C#
 
@@ -263,7 +255,6 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
     telemetry.TrackEvent("WinGame");
 ```
 
-*伺服器上的 VB*
 
 ```VB
 
@@ -309,27 +300,16 @@ Application Insights 會努力試著自動判斷和分類綜合流量並適當�
 
 * 判斷應用程式的關鍵度量。 您是想要盡可能多的使用者，或您只需要少量開心使用的使用者？ 您要讓造訪或銷售獲得最大效益？
 * 計劃測量每個劇本。 在草擬新使用者劇本或功能，或計劃更新現有功能時，一律要考慮如何測量變更的成功。 編寫開始之前，詢問「如果有作用，這對我們的度量將有什麼影響？ 我們是否應該追蹤任何新事件？
-  」 而當然，當功能上線時，請確定您查看分析並依據結果採取行動。 
-* 將其他度量與關鍵度量產生交互關聯。 例如，如果您加入「我的最愛」功能，則會想要知道使用者加入最愛的頻率。 但也許知道他們回到我的最愛的頻率會更有趣。 同時，更重要的是，使用我的最愛的客戶最終是否購買您的更多產品？
+  」 而當然，當功能上線時，請確定您查看分析並依據結果採取行動。
+* 將其他度量與關鍵度量產生交互關聯。 例如，如果您加入「我的最愛」功能，您會想要知道使用者加入最愛的頻率。 但也許知道他們回到我的最愛的頻率會更有趣。 同時，更重要的是，使用我的最愛的客戶最終是否購買您的更多產品？
 * Canary 測試。 設定可讓您使新功能僅對部分使用者顯示的功能開關。 使用 Application Insights 來查看新功能是否正依您設想的方式提供使用。 進行調整，然後發行給更廣大的對象。
 * 與您的使用者討論！ 單單分析是不足夠的，但可以補充以保有良好的客戶關係。
 
-## <a name="references"></a>參考
-* [使用 API - 概觀][api]
+## <a name="learn-more"></a>詳細資訊
+* [偵測、分及和診斷應用程式中的損毀和效能問題](app-insights-detect-triage-diagnose.md)
+* [開始使用 .NET 的 Application Insights](app-insights-detect-triage-diagnose.md)
+* [使用 API - 概觀](app-insights-api-custom-events-metrics.md)
 * [JavaScript API 參考](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md)
-
-
-<!--Link references-->
-
-[api]: app-insights-api-custom-events-metrics.md
-[availability]: app-insights-monitor-web-app-availability.md
-[client]: app-insights-javascript.md
-[diagnostic]: app-insights-diagnostic-search.md
-[greenbrown]: app-insights-asp-net.md
-[java]: app-insights-java-get-started.md
-[metrics]: app-insights-metrics-explorer.md
-[portal]: http://portal.azure.com/
-[windows]: app-insights-windows-get-started.md
 
 
 

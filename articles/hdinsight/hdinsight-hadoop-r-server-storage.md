@@ -16,9 +16,9 @@ ms.workload: data-services
 ms.date: 02/28/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 2df17cddf629cb72b7fa4d590dfaa69311c96aa4
-ms.openlocfilehash: 3e47a7e0382009a07b885a28c6e8d90f9bff9cfb
-ms.lasthandoff: 01/10/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 18dcb3a319f78639b27f9e70a2177423192e5958
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -28,7 +28,10 @@ HDInsight 中的 Microsoft R 伺服器具有 Azure Blob 和 [Azure Data Lake 儲
 當您在 HDInsight 中建立 Hadoop 叢集時，您可以指定一個 Azure 儲存體帳戶或一個 Data Lake Store。 該帳戶的特定儲存體容器會保留您建立之叢集的檔案系統 (例如，Hadoop 分散式檔案系統)。 基於效能目的，系統會在與您指定的主要儲存體帳戶相同資料中心內建立 HDInsight 叢集。 如需詳細資訊，請參閱 [搭配 HDInsight 使用 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md "搭配 HDInsight 使用 Azure Blob 儲存體")。   
 
 ## <a name="use-multiple-azure-blob-storage-accounts"></a>使用多個 Azure Blob 儲存體帳戶
-如有需要，您可以使用 HDI 叢集存取多個 Azure 儲存體帳戶或容器。 若要這樣做，您必須在建立叢集時於 UI 中指定其他儲存體帳戶，然後遵循下列步驟，以便在 R 中使用它們。  
+如有需要，您可以使用 HDI 叢集存取多個 Azure 儲存體帳戶或容器。 若要這樣做，您必須在建立叢集時於 UI 中指定其他儲存體帳戶，然後遵循下列步驟，以便在 R 中使用它們。
+
+> [!WARNING]
+> 不支援在與 HDInsight 叢集不同的位置中使用儲存體帳戶。
 
 1. 使用儲存體帳戶名稱 **storage1** 和預設容器 **container1** 建立 HDInsight 叢集。
 2. 指定其他儲存體帳戶 **storage2**。  
@@ -128,7 +131,7 @@ hadoop fs -mkdir wasbs://container2@storage2.blob.core.windows.net/user/RevoShar
 
 若要在建立叢集之後新增一或多個 Data Lake Store 的叢集存取，您可以開啟 Data Lake Store 的 Azure 入口網站執行個體，然後移至 [資料總管] > [存取] > [新增]。 
 
-如需 HDI 叢集新增 Data Lake Store 存取權的相關資訊，請參閱[使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store (英文)](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-hdinsight-hadoop-use-portal#create-an-hdinsight-cluster-with-access-to-azure-data-lake-store) 文章
+如需 HDI 叢集新增 Data Lake Store 存取權的相關資訊，請參閱[使用 Azure 入口網站建立 HDInsight 叢集與 Data Lake Store (英文)](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-hdinsight-hadoop-use-portal#create-an-hdinsight-cluster-with-access-to-azure-data-lake-store) 文章
 
 ## <a name="use-the-data-lake-store-with-r-server"></a>搭配 R 伺服器使用 Data Lake Store
 一旦您獲得 Data Lake Store 的存取權，就可以在 HDInsight 上的 R 伺服器中使用 Data Lake Store，其方式就和使用次要 Azure 儲存體帳戶一樣。 唯一的差別在於前置詞 **wasb://** 會變更為 **adl://**，如下所示：

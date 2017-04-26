@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/27/2017
+ms.date: 04/14/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
 translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: bf15644cbf3a640bb706292c17cddbefa0574605
-ms.lasthandoff: 04/11/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: dd5df541c0362b8fe8265fd26dc73908215076ad
+ms.lasthandoff: 04/17/2017
 
 ---
 # <a name="add-custom-hive-libraries-when-creating-your-hdinsight-cluster"></a>建立 HDInsight 叢集時新增自訂 Hive 程式庫
@@ -34,8 +34,8 @@ ms.lasthandoff: 04/11/2017
 > [!NOTE]
 > 使用本文中的指令碼動作可讓程式庫在下列案例中可供使用：
 >
-> * **以 Linux 為基礎的 HDInsight** - 使用 **Hive 命令列**、**WebHCat** 和 **HiveServer2** 時。
-> * **以 Windows 為基礎的 HDInsight** - 使用 **Hive 命令列**和 **WebHCat** 時。
+> * **以 Linux 為基礎的 HDInsight** - 使用 Hive 用戶端、**WebHCat** 和 **HiveServer2** 時。
+> * **以 Windows 為基礎的 HDInsight** - 使用 Hive 用戶端和 **WebHCat** 時。
 
 ## <a name="the-script"></a>指令碼
 

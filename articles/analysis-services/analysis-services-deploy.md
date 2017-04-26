@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 02/27/2017
+ms.date: 04/17/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: 193c939065979dc48243d31e7f97cd87d96bf9a8
-ms.openlocfilehash: 18d64f1ad4ef0dd41ae9302d08e02e94d1c608f5
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 766120913d419ec8090a4f25d304f2d3cf9b6693
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 11/17/2016
 * **內部部署閘道** - 如果您組織的網路中有一或多個資料來源為內部部署，您必須安裝[內部部署資料閘道](analysis-services-gateway.md)。 您在雲端中的伺服器必須有閘道，才能連線至您的內部部署資料來源，以處理和重新整理模型中的資料。
 
 ## <a name="to-deploy-a-tabular-model-from-ssdt"></a>從 SSDT 部署表格式模型
-為了從 SSDT 部署，請確定您使用的是於 2016 年 9 月 30 日或以後更新的[最新版本](https://msdn.microsoft.com/library/mt204009.aspx)。
+為了從 SSDT 部署，請確定您使用的是[最新版本](https://msdn.microsoft.com/library/mt204009.aspx)。
 
 > [!TIP]
 > 部署之前，請確定您可以在資料表中處理資料。 在 SSDT 中，按一下 [模型]  >  [程序]  >  **Process All** (全部處理)。 如果處理失敗，部署將失敗。

@@ -14,8 +14,9 @@ ms.topic: article
 ms.date: 08/24/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 08ce387dd37ef2fec8f4dded23c20217a36e9966
-ms.openlocfilehash: e085f90d3f34d32d2e065ede6674842000e29fb8
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 5a39d4ec9bbf1c7672267c7e89c957ebc49f1f3a
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -124,6 +125,14 @@ ms.openlocfilehash: e085f90d3f34d32d2e065ede6674842000e29fb8
 * 開啟終端機，並以詳細資訊模式啟動 collectd，以查看所報告的任何問題：
   * `sudo collectd -f`
 
+## <a name="known-issue"></a>已知問題
+
+Application Insights 的「寫入」外掛程式與某些「讀取」外掛程式不相容。 有些外掛程式有時會在 Application Insights 外掛程式預期要有浮點數的位置傳送 "NaN"。
+
+徵狀：collectd 記錄檔會顯示包含下列資訊的錯誤：「AI: ...SyntaxError: 未預期的權杖 N」。
+
+因應措施：排除有問題的「寫入」外掛程式所收集的資料。 
+
 <!--Link references-->
 
 [api]: app-insights-api-custom-events-metrics.md
@@ -134,12 +143,6 @@ ms.openlocfilehash: e085f90d3f34d32d2e065ede6674842000e29fb8
 [java]: app-insights-java-get-started.md
 [javalogs]: app-insights-java-trace-logs.md
 [metrics]: app-insights-metrics-explorer.md
-[usage]: app-insights-web-track-usage.md
 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

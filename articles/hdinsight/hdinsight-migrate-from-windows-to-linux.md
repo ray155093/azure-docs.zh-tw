@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/04/2017
+ms.date: 04/12/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
-ms.openlocfilehash: 0a566fe81239b5753f48d62219d8c8ea3842ffdb
-ms.lasthandoff: 04/04/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: f2c4956ba296781907498226a18708684281692b
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -45,13 +45,13 @@ ms.lasthandoff: 04/04/2017
 
 4. 執行驗證測試以確保您的工作在新叢集上會如預期般運作。
 
-當您已驗證一切都會如預期般運作之後，請為移轉排定停機時間。 在停機期間，請執行下列動作。
+當您已驗證一切都會如預期般運作之後，請為移轉排定停機時間。 在停機期間，執行下列動作：
 
 1. 備份所有儲存在本機叢集節點上的暫時性資料。 例如，如果您的資料是直接儲存在前端節點上。
 
 2. 刪除以 Windows 為基礎的叢集。
 
-3. 使用和以 Windows 為基礎之叢集所使用的相同預設資料存放區，建立以 Linux 為基礎的叢集。 新叢集可以針對現有的生產資料繼續運作。
+3. 使用和以 Windows 為基礎之叢集所使用的相同預設資料存放區，建立以 Linux 為基礎的叢集。 以 Linux 為基礎的叢集可以針對現有的生產資料繼續運作。
 
 4. 匯入任何已備份的暫時性資料。
 
@@ -61,7 +61,7 @@ ms.lasthandoff: 04/04/2017
 
 雖然複製資料和工作的方法有很多，但是本區段所討論的兩個方法，是將檔案直接移至測試叢集最簡單的方法。
 
-#### <a name="hdfs-dfs-copy"></a>HDFS DFS 複製
+#### <a name="hdfs-copy"></a>HDFS 複製
 
 使用下列步驟，將資料從生產環境叢集複製到測試叢集。 這些步驟使用 HDInsight 隨附的 `hdfs dfs` 公用程式。
 
@@ -97,24 +97,27 @@ ms.lasthandoff: 04/04/2017
 
     `-p` 參數可讓您在路徑中建立所有目錄。
 
-#### <a name="direct-copy-between-azure-storage-blobs"></a>在 Azure 儲存體 Blob 之間進行直接複製
+#### <a name="direct-copy-between-blobs-in-azure-storage"></a>在 Azure 儲存體中的 Blob 之間直接複製
 
 此外，您也可能會想要使用 `Start-AzureStorageBlobCopy` Azure PowerShell Cmdlet 在 HDInsight 之外的儲存體帳戶之間複製 Blob。 如需詳細資訊，請參閱＜搭配使用 Azure PowerShell 與 Azure 儲存體＞一文中的＜如何管理 Azure Blob＞一節。
 
 ## <a name="client-side-technologies"></a>用戶端技術
 
-一般來說，用戶端技術 (例如 [Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)、[Azure CLI](../cli-install-nodejs.md) 或 [.NET SDK for Hadoop](https://hadoopsdk.codeplex.com/)) 在以 Linux 為基礎的叢集上會以相同方式持續運作，因為在這兩個叢集作業系統類型中，它們仰賴相同的 REST API。
+[Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)、[Azure CLI](../cli-install-nodejs.md) 或 [.NET SDK for Hadoop](https://hadoopsdk.codeplex.com/) 之類的用戶端技術會繼續使用以 Linux 為基礎的叢集。 這些依賴 REST API 的技術在兩種叢集作業系統類型上都相同。
 
 ## <a name="server-side-technologies"></a>伺服器端技術
 
-下列表格提供移轉 Windows 特定之伺服器端元件的指導方針。
+下表提供移轉 Windows 特定之伺服器端元件的指導方針。
 
 | 如果您正在使用這項技術... | 請執行此動作... |
 | --- | --- |
 | **PowerShell** (伺服器端指令碼，包含於叢集建立期間使用的指令碼動作) |重寫為 Bash 指令碼。 針對指令碼動作，請參閱[使用指令碼動作自訂 Linux 型 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)和[以 Linux 為基礎之 HDInsight 的指令碼動作開發](hdinsight-hadoop-script-actions-linux.md)。 |
-| **Azure CLI** (伺服器端指令碼) |雖然 Azure CLI 可在 Linux 上使用，它並沒有預先安裝在 HDInsight 叢集前端節點上。 如果您需要搭配伺服器端指令碼來使用，請參閱 [安裝 Azure CLI](../cli-install-nodejs.md) 了解在以 Linux 為基礎之平台上進行安裝的資訊。 |
-| **.NET 元件** |.NET 並未在所有 Linux 型 HDInsight 叢集類型上都受到完全支援。 在 2016/10/28 之後建立的 Linux 型 Storm on HDInsight 叢集支援使用 SCP.NET 架構的 C# Storm 拓撲。 .NET 的其他支援將在未來的更新中新增。 |
+| **Azure CLI** (伺服器端指令碼) |雖然 Azure CLI 可在 Linux 上使用，它並沒有預先安裝在 HDInsight 叢集前端節點上。 如需有關安裝 Azure CLI 的詳細資訊，請參閱[開始使用 Azure CLI 2.0 (英文)](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli)。 |
+| **.NET 元件** |以 Linux 為基礎的 HDInsight 透過 [Mono](https://mono-project.com) 支援 .NET。 如需詳細資訊，請參閱[將 .NET 方案移轉至以 Linux 為基礎的 HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md)。 |
 | **Win32 元件或其他僅限 Windows 的技術** |指導方針將視元件或技術而有所不同。 您或許能夠找到與 Linux 相容的版本，也可能需要尋找替代的解決方案，或是重寫此元件。 |
+
+> [!IMPORTANT]
+> HDInsight 管理 SDK 不完全相容 Mono。 目前它不應該作為部署至 HDInsight 叢集方案的一部分。
 
 ## <a name="cluster-creation"></a>叢集建立
 
@@ -122,7 +125,7 @@ ms.lasthandoff: 04/04/2017
 
 ### <a name="ssh-user"></a>SSH 使用者
 
-以 Linux 為基礎的 HDInsight 是使用 **安全殼層 (SSH)** 通訊協定來為叢集節點提供遠端存取功能。 大部分的 SSH 用戶端和以 Windows 為基礎之叢集的遠端桌面不同，它們不會提供圖形化使用者體驗，而是提供允許您在叢集上執行命令的命令列。 某些用戶端 (例如 [MobaXterm](http://mobaxterm.mobatek.net/)) 除了提供遠端命令列之外，也提供圖形化檔案系統瀏覽器。
+以 Linux 為基礎的 HDInsight 是使用 **安全殼層 (SSH)** 通訊協定來為叢集節點提供遠端存取功能。 不同於以 Windows 為基礎之叢集的遠端桌面，大部分的 SSH 用戶端不提供圖形化使用者體驗。 SSH 用戶端改為提供命令列，讓您在叢集上執行命令。 某些用戶端 (例如 [MobaXterm](http://mobaxterm.mobatek.net/)) 除了提供遠端命令列之外，也提供圖形化檔案系統瀏覽器。
 
 在叢集建立期間，您必須提供 SSH 使用者，以及**密碼**或**公開金鑰憑證**以進行驗證。
 
@@ -162,7 +165,7 @@ Ambari 擁有能通知您叢集潛在問題的警示系統。 警示將會以紅
 >
 > 許多警示都是針對某項服務實作為以間隔為基礎的查詢，並會預期在特定的時間範圍內收到回應。 因此警示本身並不代表服務已關閉，而只是單純表示該服務沒有在預期的時間範圍內傳回結果。
 
-通常，您應先評估某個警示是否已長時間持續發生，或者是否與使用者所回報的某個問題有關，再對它採取動作。
+您應先評估某個警示是否已長時間持續發生，或者是否與使用者所回報的某個問題有關，再對它採取動作。
 
 ## <a name="file-system-locations"></a>檔案系統位置
 
@@ -183,12 +186,18 @@ Linux 叢集檔案系統的展開方式和以 Windows 為基礎的 HDInsight 叢
 
 ## <a name="hive-pig-and-mapreduce"></a>Hive、Pig 及 MapReduce
 
-Pig 和 MapReduce 工作負載與以 Linux 為基礎的叢集非常類似。 唯一的差別在於連接到叢集前端節點的方式。 如需詳細資訊，請參閱下列文件：
+Pig 和 MapReduce 工作負載在 Linux 為基礎的叢集上很相似。 不過，您可以使用較新版本的 Hadoop、Hive 和 Pig 建立以 Linux 為基礎的 HDInsight 叢集。 這些版本的差異可能會對您現有方案的運作方式造成變更。 如需 HDInsight 包含之元件的版本詳細資訊，請參閱 [HDInsight 元件版本設定](hdinsight-component-versioning.md)。
 
+以 Linux 為基礎的 HDInsight 不提供遠端桌面功能。 您可以改用 SSH 來遠端連線至叢集前端節點。 如需詳細資訊，請參閱下列文件：
+
+* [搭配 SSH 使用 Hive](hdinsight-hadoop-use-hive-ssh.md)
 * [搭配 SSH 使用 Pig](hdinsight-hadoop-use-pig-ssh.md)
 * [搭配 SSH 使用 MapReduce](hdinsight-hadoop-use-mapreduce-ssh.md)
 
 ### <a name="hive"></a>Hive
+
+> [!IMPORTANT]
+> 如果您使用外部 Hive 中繼存放區，您應該先備份中繼存放區，然後才將它搭配以 Linux 為基礎的 HDInsight 使用。 以 Linux 為基礎的 HDInsight 可搭配較新版本的 Hive 使用，但可能會與舊版建立的中繼存放區不相容。
 
 下列圖表提供移轉 Hive 工作負載的指導方針。
 
@@ -196,8 +205,32 @@ Pig 和 MapReduce 工作負載與以 Linux 為基礎的叢集非常類似。 唯
 | --- | --- |
 | **Hive 編輯器** |[Ambari 中的 Hive 檢視](hdinsight-hadoop-use-hive-ambari-view.md) |
 | `set hive.execution.engine=tez;` 以啟用 Tez |Tez 是以 Linux 為基礎之叢集的預設執行引擎，因此已不再需要 SET 陳述式。 |
+| C# 使用者定義函數 | 如需驗證以 Linux 為基礎之 HDInsight 的 C# 元件詳細資訊，請參閱[將 .NET 方案移轉至以 Linux 為基礎的 HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md) |
 | 伺服器上的 CMD 檔案或指令碼是做為 Hive 工作的一部分進行叫用 |使用 Bash 指令碼 |
 | `hive` 命令 |使用 [Beeline](hdinsight-hadoop-use-hive-beeline.md) 或是[來自 SSH 工作階段的 Hive](hdinsight-hadoop-use-hive-ssh.md) |
+
+### <a name="pig"></a>Pig
+
+| 以 Windows 為基礎時，我是使用... | 以 Linux 為基礎時... |
+| --- | --- |
+| C# 使用者定義函數 | 如需驗證以 Linux 為基礎之 HDInsight 的 C# 元件詳細資訊，請參閱[將 .NET 方案移轉至以 Linux 為基礎的 HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md) |
+| 伺服器上的 CMD 檔案或指令碼是做為 Pig 作業的一部分叫用 |使用 Bash 指令碼 |
+
+### <a name="mapreduce"></a>MapReduce
+
+| 以 Windows 為基礎時，我是使用... | 以 Linux 為基礎時... |
+| --- | --- |
+| C# 對應器和歸納器元件 | 如需驗證以 Linux 為基礎之 HDInsight 的 C# 元件詳細資訊，請參閱[將 .NET 方案移轉至以 Linux 為基礎的 HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md) |
+| 伺服器上的 CMD 檔案或指令碼是做為 Hive 工作的一部分進行叫用 |使用 Bash 指令碼 |
+
+## <a name="oozie"></a>Oozie
+
+> [!IMPORTANT]
+> 如果您使用外部 Oozie 中繼存放區，您應該先備份中繼存放區，然後才將它搭配以 Linux 為基礎的 HDInsight 使用。 以 Linux 為基礎的 HDInsight 可搭配較新版本的 Oozie 使用，但可能會與舊版建立的中繼存放區不相容。
+
+Oozie 工作流程允許殼層動作。 殼層動作會使用作業系統的預設殼層來執行命令列命令。 如果您有依賴 Windows 殼層的 Oozie 工作流程，您必須重新撰寫工作流程，以依賴 Linux 殼層環境 (Bash)。 如需使用 Oozie 殼層動作的詳細資訊，請參閱 [Oozie 殼層動作擴充功能](http://oozie.apache.org/docs/3.3.0/DG_ShellActionExtension.html)。
+
+如果您有依賴 C# 應用程式 (透過殼層動作叫用) 的 Oozie 工作流程，您必須在 Linux 環境中驗證這些應用程式。 如需詳細資訊，請參閱[將 .NET 方案移轉至以 Linux 為基礎的 HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md)。
 
 ## <a name="storm"></a>Storm
 
@@ -230,22 +263,27 @@ Azure Data Factory 自訂 .NET 活動目前並不受以 Linux 為基礎的 HDIns
 
 通常來說，以 Windows 為基礎之系統上的行尾結束符號是使用 CRLF，而以 Linux 為基礎的系統則使用 LF。 如果您產生或預期擁有 CRLF 行尾結束符號的資料，便可能需要修改產生者或取用者來搭配 LF 行尾結束符號運作。
 
-例如，使用 Azure PowerShell，在以 Windows 為基礎的叢集上查詢 HDInsight，會傳回擁有 CRLF 的資料。 在以 Linux 為基礎的叢集上使用相同查詢，會傳回 LF。 您應該先進行測試，以查看這是否會導致您的解決方案發生問題，再將它移轉到以 Linux 為基礎的叢集。
+例如，使用 Azure PowerShell，在以 Windows 為基礎的叢集上查詢 HDInsight，會傳回擁有 CRLF 的資料。 在以 Linux 為基礎的叢集上使用相同查詢，會傳回 LF。 您應該先進行測試，查看行尾結束符號否會導致您的方案發生問題，再將它移轉到以 Linux 為基礎的叢集。
 
 如果您的指令碼會直接在 Linux 叢集節點上執行，則您應一律使用 LF 做為行尾結束符號。 如果您使用 CRLF，便可能會在以 Linux 為基礎的叢集上執行指令碼時遭遇到錯誤。
 
 如果您知道指令碼並沒有包含擁有內嵌 CR 字元的字串，您可以使用下列其中一種方法來大量變更行尾結束符號：
 
-* **如果您打算將指令碼上傳至叢集**，請在將指令碼上傳至叢集之前，使用下列 PowerShell 陳述式將行尾結束符號從 CRLF 變更為 LF。
+* **上傳至叢集之前**：請在將指令碼上傳至叢集之前，使用下列 PowerShell 陳述式將行尾結束符號從 CRLF 變更為 LF。
 
-      $original_file ='c:\path\to\script.py'
-      $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
-      [IO.File]::WriteAllText($original_file, $text)
-* **如果您的指令碼已經位於叢集所使用的儲存體中**，您可以針對以 Linux 為基礎的叢集，透過 SSH 工作階段使用下列命令來修改指令碼。
+    ```powershell
+    $original_file ='c:\path\to\script.py'
+    $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
+    [IO.File]::WriteAllText($original_file, $text)
+    ```
 
-      hdfs dfs -get wasbs:///path/to/script.py oldscript.py
-      tr -d '\r' < oldscript.py > script.py
-      hdfs dfs -put -f script.py wasbs:///path/to/script.py
+* **上傳至叢集之後**：請從以 Linux 為基礎之叢集的 SSH 工作階段使用下列命令來修改指令碼。
+
+    ```bash
+    hdfs dfs -get wasbs:///path/to/script.py oldscript.py
+    tr -d '\r' < oldscript.py > script.py
+    hdfs dfs -put -f script.py wasbs:///path/to/script.py
+    ```
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -13,31 +13,33 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 01/17/2017
+ms.date: 04/14/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 693e3aebad339b1a9b5e0afbe7770197ea70dcf6
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: c27e6c19f44d9f0fa60ae31d0cda756dcd032f02
+ms.lasthandoff: 04/17/2017
 
 
 ---
 # <a name="ports-and-uris-used-by-hdinsight"></a>HDInsight 所使用的連接埠和 URI
+
 本文件提供在以 Linux 為基礎的 HDInsight 叢集上執行的 Hadoop 服務所使用的連接埠清單。 此外，也提供用來連線到使用 SSH 之叢集的連接埠相關資訊。
 
 ## <a name="public-ports-vs-non-public-ports"></a>公用連接埠與非公用連接埠
-以 Linux 為基礎的 HDInsight 叢集只會公開網際網路上的三個公開連接埠：22、23 和 443。 這些用來安全地存取使用 SSH 的叢集以及透過安全 HTTPS 通訊協定公開的服務。
+
+以 Linux 為基礎的 HDInsight 叢集只會在網際網路上公開三個公開連接埠：22、23 和 443。 這些連接埠用來使用 SSH 以及透過安全 HTTPS 通訊協定公開的服務安全地存取叢集。
 
 在內部，HDInsight 由數個在 Azure 虛擬網路上執行的 Azure 虛擬機器 (叢集內的節點) 實作。 您可以從虛擬網路存取不是透過網際網路公開的連接埠。 例如，如果您使用 SSH 連接到其中一個前端節點，您可以從此前端節點直接存取在叢集節點上執行的服務。
 
 > [!IMPORTANT]
-> 當您建立 HDInsight 叢集時，如果您沒有將 Azure 虛擬網路指定為設定選項，則會建立一個虛擬網路；不過，您無法將其他電腦 (例如其他 Azure 虛擬機器或用戶端開發電腦) 加入至這個自動建立的虛擬網路。 
-> 
-> 
+> 如果您沒有將 Azure 虛擬網路指定為 HDInsight 的設定選項，則會自動建立一個。 不過，您無法將其他電腦 (例如其他 Azure 虛擬機器或用戶端開發電腦) 加入此虛擬網路。
+
 
 若要將其他電腦加入至虛擬網路，您必須先建立虛擬網路，然後在建立 HDInsight 叢集時進行指定。 如需詳細資訊，請參閱 [使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)
 
 ## <a name="public-ports"></a>公用連接埠
+
 HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接從網際網路存取。 公用閘道提供下列連接埠 (常見於所有的 HDInsight 叢集類型) 的網際網路存取。
 
 | 服務 | 連接埠 | 通訊協定 | 說明 |
@@ -60,6 +62,7 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | Storm |443 |HTTPS |Storm |Storm Web UI。 請參閱 [部署和管理 HDInsight 上的 Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md) |
 
 ### <a name="authentication"></a>驗證
+
 在網際網路上公開的所有服務都必須經過驗證︰
 
 | 連接埠 | 認證 |
@@ -68,15 +71,15 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | 443 |在叢集建立期間設定的登入名稱 (預設值：admin) 和密碼 |
 
 ## <a name="non-public-ports"></a>非公用連接埠
+
 > [!NOTE]
 > 部分服務只能在特定叢集類型上使用。 例如，HBase 只能在 HBase 叢集類型上使用。
-> 
-> 
 
 ### <a name="hdfs-ports"></a>HDFS 連接埠
+
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
-| NameNode Web UI |前端節點 |30070 |HTTPS |用以檢視目前狀態的 Web UI |
+| NameNode Web UI |前端節點 |30070 |HTTPS |用以檢視狀態的 Web UI |
 | NameNode 中繼資料服務 |前端節點 |8020 |IPC |檔案系統中繼資料 |
 | DataNode |所有背景工作節點 |30075 |HTTPS |用以檢視狀態、記錄檔等的 Web UI |
 | DataNode |所有背景工作節點 |30010 |&nbsp; |資料傳輸 |
@@ -84,6 +87,7 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | 次要 NameNode |前端節點 |50090 |HTTP |NameNode 中繼資料的檢查點 |
 
 ### <a name="yarn-ports"></a>YARN 連接埠
+
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
 | Resource Manager |前端節點 |8088 |HTTP |適用於 Resource Manager 的 Web UI |
@@ -97,6 +101,7 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | Timeline Web UI |前端節點 |8181 |HTTP |Timeline 服務 Web UI |
 
 ### <a name="hive-ports"></a>Hive 連接埠
+
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
 | HiveServer2 |前端節點 |10001 |Thrift |可以程式設計方式連接到 Hive 的服務 (Thrift/JDBC) |
@@ -104,11 +109,13 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | Hive 中繼存放區 |前端節點 |9083 |Thrift |可以程式設計方式連接到 Hive 中繼資料的服務 (Thrift/JDBC) |
 
 ### <a name="webhcat-ports"></a>WebHCat 連接埠
+
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
 | WebHCat 伺服器 |前端節點 |30111 |HTTP |以 HCatalog 和其他 Hadoop 服務為基礎的 Web API |
 
 ### <a name="mapreduce-ports"></a>MapReduce 連接埠
+
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
 | JobHistory |前端節點 |19888 |HTTP |MapReduce JobHistory Web UI |
@@ -116,18 +123,21 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | ShuffleHandler |&nbsp; |13562 |&nbsp; |將中繼對應輸出傳輸至要求的歸納器 |
 
 ### <a name="oozie"></a>Oozie
+
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
 | Oozie 伺服器 |前端節點 |11000 |HTTP |Oozie 服務的 URL |
 | Oozie 伺服器 |前端節點 |11001 |HTTP |Oozie 系統管理的連接埠 |
 
 ### <a name="ambari-metrics"></a>Ambari 度量
+
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
 | TimeLine (應用程式歷程記錄) |前端節點 |6188 |HTTP |Timeline 服務 Web UI |
 | TimeLine (應用程式歷程記錄) |前端節點 |30200 |RPC |Timeline 服務 Web UI |
 
 ### <a name="hbase-ports"></a>HBase 連接埠
+
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
 | HMaster |前端節點 |16000 |&nbsp; |&nbsp; |
@@ -136,6 +146,7 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | &nbsp; |&nbsp; |2181 |&nbsp; |用戶端用於連接至 ZooKeeper 的連接埠 |
 
 ### <a name="kafka-ports"></a>Kafka 連接埠
+
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
 | Broker |背景工作節點 |9092 |[Kafka Wire Protocol (Kafka 有線通訊協定)](http://kafka.apache.org/protocol.html) |用於用戶端通訊 |

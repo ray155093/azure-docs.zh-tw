@@ -1,6 +1,6 @@
 ---
 title: "建立 Azure 事件中樞 | Microsoft Docs"
-description: "使用 Azure 入口網站建立 Azure 事件中樞命名空間和事件中樞"
+description: "使用 Azure 入口網站來建立「Azure 事件中樞」命名空間和事件中樞"
 services: event-hubs
 documentationcenter: na
 author: jtaubensee
@@ -15,12 +15,13 @@ ms.workload: na
 ms.date: 01/25/2017
 ms.author: jotaub
 translationtype: Human Translation
-ms.sourcegitcommit: aa7244849f6286e8ef9f9785c133b4c326193c12
-ms.openlocfilehash: ca5c8b489345dcd0523897895de346509db08a28
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 23df3a3a11d8f065d6ce2a4f14ba175d6c781ee9
+ms.lasthandoff: 04/18/2017
 
 ---
 
-# <a name="create-an-event-hubs-namespace-and-an-event-hub-using-the-azure-portal"></a>使用 Azure 入口網站建立事件中樞命名空間和事件中樞
+# <a name="create-an-event-hubs-namespace-and-an-event-hub-using-the-azure-portal"></a>使用 Azure 入口網站來建立事件中樞命名空間和事件中樞
 
 ## <a name="create-an-event-hubs-namespace"></a>建立事件中樞命名空間
 1. 登入 [Azure 入口網站][Azure portal]，然後按一下畫面左上方的 [新增]。
@@ -44,20 +45,20 @@ ms.openlocfilehash: ca5c8b489345dcd0523897895de346509db08a28
 1. 在刀鋒視窗頂端，按一下 [新增事件中樞] 。
    
     ![](./media/event-hubs-create/create-event-hub4.png)
-1. 輸入您的事件中心名稱，然後按一下 [建立] 。
+1. 輸入您的事件中樞名稱，然後按一下 [建立]。
    
     ![](./media/event-hubs-create/create-event-hub5.png)
 1. 在事件中樞清單中，按一下新建立的事件中樞名稱。 
     
-     ![](./media/event-hubs-create/create-event-hub6.png)
-1. 回到命名空間刀鋒視窗 (而不是特定事件中樞刀鋒視窗)，按一下 [共用存取原則]，然後按一下 [RootManageSharedAccessKey]。
+    ![](./media/event-hubs-create/create-event-hub6.png)
+1. 回到命名空間刀鋒視窗 (而不是特定的事件中樞刀鋒視窗)、按一下 [共用存取原則]，然後按一下 [RootManageSharedAccessKey]。
     
-     ![](./media/event-hubs-create/create-event-hub7.png)
+    ![](./media/event-hubs-create/create-event-hub7.png)
 1. 按一下複製按鈕，將 **RootManageSharedAccessKey** 連接字串複製到剪貼簿。 儲存此連接字串，以便稍後在本教學課程中使用。
     
-     ![](./media/event-hubs-create/create-event-hub8.png)
+    ![](./media/event-hubs-create/create-event-hub8.png)
 
-現已建立事件中心，並具有傳送與接收事件所需的連接字串。
+現已建立事件中樞，您已具有傳送及接收事件所需的連接字串。
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解事件中樞，請造訪下列連結：
@@ -66,8 +67,3 @@ ms.openlocfilehash: ca5c8b489345dcd0523897895de346509db08a28
 * [事件中樞 API 概觀](event-hubs-api-overview.md)
 
 [Azure portal]: https://portal.azure.com/
-
-
-<!--HONumber=Feb17_HO1-->
-
-

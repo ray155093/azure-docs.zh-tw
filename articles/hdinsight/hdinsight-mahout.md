@@ -14,58 +14,52 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/19/2017
+ms.date: 04/14/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 4ee75cac7fb4c8e6903b73150ec7b1acfc9cb9f9
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 7d8f200799163a86f20efa100257d2ec006dd785
+ms.lasthandoff: 04/17/2017
 
 
 ---
 # <a name="generate-movie-recommendations-by-using-apache-mahout-with-hadoop-in-hdinsight-powershell"></a>透過在 HDInsight 上將 Apache Mahout 與 Hadoop 搭配使用來產生電影推薦 (PowerShell)
+
 [!INCLUDE [mahout-selector](../../includes/hdinsight-selector-mahout.md)]
 
-了解如何使用搭配 Azure HDInsight 的 [Apache Mahout](http://mahout.apache.org) 機器學習庫產生電影推薦。 本文件中，您會學習如何使用 Azure PowerShell 從遠端執行 Mahout。
-
-Mahout 是 Apache Hadoop 的[機器學習服務][ml]程式庫。 Mahout 包含可處理資料的演算法，例如篩選、分類和叢集化。 在本文中，您會使用推薦引擎，以根據朋友看過的電影來產生電影推薦。
+了解如何使用搭配 Azure HDInsight 的 [Apache Mahout](http://mahout.apache.org) 機器學習庫產生電影推薦。 本文件中的範例使用 Azure PowerShell 來執行 Mahout 作業。
 
 ## <a name="prerequisites"></a>必要條件
 
 * 以 Linux 為基礎的 HDInsight 叢集。 如需有關建立叢集的資訊，請參閱[開始在 HDInsight 中使用以 Linux 為基礎的 Hadoop][getstarted]。
 
 > [!IMPORTANT]
-> Linux 是 HDInsight 3.4 版或更新版本上唯一使用的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 元件版本設定](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
-* **具有 Azure PowerShell 的工作站**。
-
-    > [!IMPORTANT]
-    > 使用 Azure Service Manager 管理 HDInsight 資源的 Azure PowerShell 支援已**被取代**，將會在 2017 年 1 月 1 日前移除。 本文件中的步驟會使用可與 Azure Resource Manager 搭配使用的新 HDInsight Cmdlet。
-    >
-    > 請遵循 [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的步驟來安裝最新版的 Azure PowerShell。 如果您需要修改指令碼才能使用適用於 Azure Resource Manager 的新 Cmdlet，請參閱 [移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](hdinsight-hadoop-development-using-azure-resource-manager.md) ，以取得詳細資訊。
+* [Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)
 
 ## <a name="recommendations"></a>使用 Azure PowerShell 產生推薦
 
-> [!NOTE]
-> 雖然本節中使用的工作能夠利用 Azure PowerShell 來執行，但 Mahout 隨附的許多類別目前仍無法搭配 Azure PowerShell 運作，而必須使用 Hadoop 命令列來執行。 如需無法搭配 Azure PowerShell 使用的類別清單，請參閱 [疑難排解](#troubleshooting) 一節。
+> [!WARNING]
+> 本節中的作業是使用 Azure PowerShell 運作。 Mahout 提供的許多類別目前無法搭配 Azure PowerShell 使用。 如需無法搭配 Azure PowerShell 使用的類別清單，請參閱 [疑難排解](#troubleshooting) 一節。
 >
 > 如需使用 SSH 連線到 HDInsight 並在叢集上直接執行 Mahout 範例的範例，請參閱[使用 Mahout 和 HDInsight (SSH) 來產生電影推薦](hdinsight-hadoop-mahout-linux-mac.md)。
 
-Mahout 提供的其中一項功能是推薦引擎。 這個引擎接受 `userID``itemId` 和 `prefValue` (使用者偏好的項目) 格式的資料。 Mahout 接著可以執行共生分析來判斷：「偏好某項目的使用者同時也偏好其他這些項目」。 接著 Mahout 會以偏好的類似項目判斷使用者，並以此做出推薦。
+Mahout 提供的其中一項功能是推薦引擎。 這個引擎接受 `userID``itemId` 和 `prefValue` (使用者偏好的項目) 格式的資料。 Mahout 會使用資料以偏好的類似項目判斷使用者，並以此做出推薦。
 
-以下使用電影做一個很簡單的範例：
+下列範例是簡化的逐步解說，說明建議程序如何運作：
 
 * **共生**：Joe、Alice 和 Bob 都喜歡*《星際大戰》*、*《帝國大反擊》*和*《絕地大反攻》*。 Mahout 將判斷喜歡上述任何一部電影的使用者，也會喜歡另外兩部電影。
 
-* **共生**：Bob 和 Alice 同時也喜歡*《威脅潛伏》*、*《複製人全面進攻》*和*《西斯大帝的復仇》*。 Mahout 將判斷喜歡前三部電影的使用者，也會喜歡這三部電影。
+* **共生**：Bob 和 Alice 同時也喜歡*《威脅潛伏》*、*《複製人全面進攻》*和*《西斯大帝的復仇》*。 Mahout 將判斷喜歡前三部電影的使用者，也會喜歡這些電影。
 
 * **相似性推薦**：因為 Joe 喜歡前三部電影，Mahout 會查看具有相似偏好的其他使用者所喜歡但 Joe 還沒看過 (喜歡/評價) 的電影。 在此情況下，Mahout 將會推薦*《威脅潛伏》*、*《複製人全面進攻》*和*《西斯大帝的復仇》*。
 
 ### <a name="understanding-the-data"></a>了解資料
 
-[GroupLens 研究][movielens]提供 Mahout 相容格式的電影評價資料，相當方便。 您可在位於 `/HdiSamples//HdiSamples/MahoutMovieData`的叢集預設儲存體取得這份資料。
+[GroupLens 研究][movielens]提供 Mahout 相容格式的電影評分資料。 您可在位於 `/HdiSamples//HdiSamples/MahoutMovieData` 的叢集預設儲存體取得這份資料。
 
-有兩份檔案：`moviedb.txt` (影片相關資訊) 和 `user-ratings.txt`。 分析期間使用的是 user-ratings.txt 檔案，moviedb.txt 則是在顯示分析結果時用來提供使用者易懂的文字資訊。
+有兩份檔案：`moviedb.txt` (電影相關資訊) 和 `user-ratings.txt`。 `user-ratings.txt` 檔案是用於分析期間。 `moviedb.txt` 檔案是在顯示分析結果時，用來提供易懂的文字。
 
 user-ratings.txt 內包含的資料具有 `userID`、`movieID`、`userRating` 和 `timestamp` 結構，可告訴我們每位使用者對於影片的評價為何。 以下是資料範例：
 
@@ -93,7 +87,7 @@ if(-not($sub))
 
 # Get cluster info
 $clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-$creds=Get-Credential -Message "Enter the login for the cluster (the default name is usually 'admin')"
+$creds=Get-Credential -UserName "admin" -Message "Enter the login for the cluster"
 
 #Get the cluster info so we can get the resource group, storage, etc.
 $clusterInfo = Get-AzureRmHDInsightCluster -ClusterName $clusterName
@@ -114,7 +108,7 @@ $context = New-AzureStorageContext `
 $queryString = "!ls /usr/hdp/current/mahout-client"
 $hiveJobDefinition = New-AzureRmHDInsightHiveJobDefinition -Query $queryString
 $hiveJob=Start-AzureRmHDInsightJob -ClusterName $clusterName -JobDefinition $hiveJobDefinition -HttpCredential $creds
-$dummy = wait-azurermhdinsightjob -ClusterName $clusterName -JobId $hiveJob.JobId -HttpCredential $creds
+wait-azurermhdinsightjob -ClusterName $clusterName -JobId $hiveJob.JobId -HttpCredential $creds > $null
 #Get the files returned from Hive
 $files=get-azurermhdinsightjoboutput -clustername $clusterName -JobId $hiveJob.JobId -DefaultContainer $container -DefaultStorageAccountName $storageAccountName -DefaultStorageAccountKey $storageAccountKey -HttpCredential $creds
 #Find the file that starts with mahout-examples and ends in job.jar
@@ -180,7 +174,7 @@ Get-AzureStorageBlobContent -blob "HdiSamples/HdiSamples/MahoutMovieData/user-ra
 
 Mahout 工作不會將輸出傳回 STDOUT。 相反地，其會將該輸出儲存在指定的輸出目錄 **part-r-00000**中。 指令碼會下載這個檔案到您工作站上目前目錄的 **output.txt** 檔。
 
-以下是此檔案的內容範例：
+下列文字是此檔案內容的範例：
 
     1    [234:5.0,347:5.0,237:5.0,47:5.0,282:5.0,275:5.0,88:5.0,515:5.0,514:5.0,121:5.0]
     2    [282:5.0,210:5.0,237:5.0,234:5.0,347:5.0,121:5.0,258:5.0,515:5.0,462:5.0,79:5.0]
@@ -193,7 +187,7 @@ Mahout 工作不會將輸出傳回 STDOUT。 相反地，其會將該輸出儲�
 
 ### <a name="view-the-output"></a>檢視輸出
 
-雖然產生的輸出可以在應用程式中使用，但非常難以讓人判讀。 來自伺服器的 `moviedb.txt`可用來解決電影名稱的 `movieId`。 使用下列 PowerShell 指令碼來顯示建議的影片名稱︰
+雖然產生的輸出可以在應用程式中使用，但使用者不容易判讀。 來自伺服器的 `moviedb.txt`可用來解決電影名稱的 `movieId`。 使用下列 PowerShell 指令碼來顯示建議的影片名稱︰
 
 ```powershell
 <#
@@ -279,11 +273,13 @@ $recommendationFormat = @{Expression={$_.Name};Label="Movie";Width=40}, `
 $recommendations | format-table $recommendationFormat
 ```
 
-以下是執行此指令碼的範例：
+使用下列命令，以易懂的格式來顯示建議： 
 
-    PS C:\> show-recommendation.ps1 -userId 4 -userDataFile .\user-ratings.txt -movieFile .\moviedb.txt -recommendationFile .\output.txt
+```powershell
+.\show-recommendation.ps1 -userId 4 -userDataFile .\user-ratings.txt -movieFile .\moviedb.txt -recommendationFile .\output.txt
+```
 
-輸出應該如下所示：
+輸出大致如下：
 
     Reading movies descriptions
     Reading rated movies
@@ -318,9 +314,9 @@ $recommendations | format-table $recommendationFormat
 
 ### <a name="cannot-overwrite-files"></a>無法覆寫檔案
 
-Mahout 工作不會清除在處理期間所建立的暫存檔。 此外，工作也不會覆寫現有的輸出檔。
+Mahout 工作不會清除在處理期間所建立的暫存檔。 此外，作業也不會覆寫現有的輸出檔。
 
-為了避免執行 Mahout 工作時發生錯誤，請在每次執行之前刪除暫存檔和輸出檔，或使用唯一的暫存和輸出目錄名稱。 使用下列 PowerShell 指令碼移除本文件中先前指令碼所建立的檔案︰
+為了避免執行 Mahout 作業時發生錯誤，請在每次執行之前刪除暫存檔和輸出檔。 若要移除本文件中先前指令碼所建立的檔案，請使用下列 PowerShell 指令碼︰
 
 ```powershell
 # Login to your Azure subscription
@@ -367,7 +363,7 @@ foreach($blob in $blobs)
 
 ### <a name="nopowershell"></a>不適用於 Azure PowerShell 的類別
 
-如果從 Windows PowerShell 中使用的 Mahout 工作利用到下列類別，則會傳回各種錯誤訊息：
+當從 Windows PowerShell 中使用的 Mahout 作業利用到下列類別時，會傳回各種錯誤訊息：
 
 * org.apache.mahout.utils.clustering.ClusterDumper
 * org.apache.mahout.utils.SequenceFileDumper
@@ -386,7 +382,7 @@ foreach($blob in $blobs)
 * org.apache.mahout.classifier.sequencelearning.hmm.RandomSequenceGenerator
 * org.apache.mahout.classifier.df.tools.Describe
 
-若要執行用到這些類別的工作，請使用 SSH 連接至 HDInsight 叢集，然後從命令列執行作業。 如需使用 SSH 來執行 Mahout 作業的範例，請參閱[使用 Mahout 和 HDInsight (SSH) 來產生電影推薦](hdinsight-hadoop-mahout-linux-mac.md)。
+若要執行用到這些類別的作業，請使用 SSH 連接至 HDInsight 叢集，然後從命令列執行作業。 如需使用 SSH 來執行 Mahout 作業的範例，請參閱[使用 Mahout 和 HDInsight (SSH) 來產生電影推薦](hdinsight-hadoop-mahout-linux-mac.md)。
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -11,22 +11,22 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 04/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fc6acf7b24bb017e4a93df1c15ed493a4442d6b5
-ms.openlocfilehash: 917261e32845b53f2f2f3d12f60ca5fa87d441c7
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 11b9f52801e9a62b9c52f0f622fdcae761cc122a
+ms.lasthandoff: 04/18/2017
 
 
 ---
 
 # <a name="live-metrics-stream-instant-metrics-for-close-monitoring"></a>即時計量串流：適用於關閉監視的即時計量
-即時計量串流顯示您的 [Application Insights](app-insights-overview.md) 計量正處於這個非常時刻，接近即時的延遲為&1; 秒。 當您發行了新的組建且想要確定一切都如預期般運作，或者要即時調查某個事件時，此種立即監視非常有用。
+即時計量串流顯示您的 [Application Insights](app-insights-overview.md) 計量正處於這個非常時刻，接近即時的延遲為 1 秒。 當您發行了新的組建且想要確定一切都如預期般運作，或者要即時調查某個事件時，此種立即監視非常有用。
 
 不同於[計量瀏覽器](app-insights-metrics-explorer.md)，即時計量串流會顯示一組固定的計量。 只要資料仍在圖表上就會保存，之後便會捨棄該資料。
 
-即時計量串流資料是免費的︰它不會加至您的帳單。
+即時計量串流資料是免費的︰它不會加至您的帳單。 這適用於 ASP.NET 和 Java 應用程式。
 
 ![即時計量串流影片](./media/app-insights-live-stream/youtube.png) [即時計量串流影片](https://www.youtube.com/watch?v=zqfHf1Oi5PY)
 
@@ -57,7 +57,7 @@ ms.lasthandoff: 02/27/2017
 
 
 ## <a name="next-steps"></a>後續步驟
-* [使用 Application Insights 監視使用情況](app-insights-overview-usage.md)
+* [使用 Application Insights 監視使用情況](app-insights-web-track-usage.md)
 * [使用診斷搜尋](app-insights-diagnostic-search.md)
 
 

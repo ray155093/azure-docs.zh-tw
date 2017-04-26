@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 01/07/2017
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: dd673ba36689c83021a27d593139f0676b0c5e79
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 51c6a8ae17821d4eb00bf26612bc6e1e434ebbd9
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -26,10 +26,11 @@ Azure Active Directory (Azure AD) 支援數個最常用的驗證和授權通訊�
 
 ## <a name="authentication-protocols-articles-and-reference"></a>驗證通訊協定的文件和參考資料
 * [Azure AD 中簽署金鑰變換的相關重要資訊](active-directory-signing-key-rollover.md) – 了解 Azure AD 的簽署金鑰變換模式、對自動更新金鑰進行的變更，以及如何更新最常見應用程式案例的討論。
-* [支援的權杖和宣告類型](active-directory-token-and-claims.md) - 了解權杖中 Azure AD 所發出的宣告。
+* [支援的權杖和宣告類型](active-directory-token-and-claims.md) - 了解 Azure AD 所發出之權杖中的宣告。
 * [同盟中繼資料](active-directory-federation-metadata.md) - 了解如何尋找並解譯 Azure AD 所產生的中繼資料文件。
 * [Azure AD 中的 OAuth 2.0](active-directory-protocols-oauth-code.md) - 了解 Azure AD 中的 OAuth 2.0 實作。
 * [OpenID Connect 1.0](active-directory-protocols-openid-connect-code.md) - 了解如何使用 OAuth 2.0 (授權通訊協定) 進行驗證。
+* [服務對服務呼叫](active-directory-protocols-oauth-service-to-service.md) - 了解如何使用 OAuth 2.0 用戶端認證授與流程來進行服務對服務呼叫。
 * [SAML 通訊協定參照](active-directory-saml-protocol-reference.md) - 了解 Azure AD 的單一登入和單一登出 SAML 設定檔。
 
 ## <a name="see-also"></a>另請參閱

@@ -15,30 +15,30 @@ ms.topic: article
 ms.date: 01/12/2017
 ms.author: darosa;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 25dd25d8f8f0388ed7ef11bb26344ad7199fde2e
-ms.openlocfilehash: 3f0487fba592426c835d81a46a752697ecf34d8b
-ms.lasthandoff: 02/03/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 5e37870f932ce775293b913504f2530d1d8935e1
+ms.lasthandoff: 04/18/2017
 
 
 ---
 # <a name="event-hubs-archive-walkthrough-python"></a>事件中樞封存逐步解說︰Python
-事件中樞封存是事件中樞的新功能，可讓您自動將事件中樞內的串流資料傳遞到您所選擇的 Azure Blob 儲存體帳戶。 這可讓您輕鬆地對即時串流資料執行批次處理。 本文說明如何搭配使用事件中樞封存與 Python。 如需事件中樞封存的詳細資訊，請參閱 [概觀文章](event-hubs-archive-overview.md)。
+「事件中樞封存」是「事件中樞」的新功能，可讓您將事件中樞內的串流資料自動傳遞給您選擇的 Azure Blob 儲存體帳戶。 這可讓您輕鬆地對即時串流資料執行批次處理。 本文說明如何搭配使用事件中樞封存與 Python。 如需事件中樞封存的詳細資訊，請參閱 [概觀文章](event-hubs-archive-overview.md)。
 
-此範例使用 [Azure Python SDK](https://azure.microsoft.com/develop/python/) 來示範「封存」功能。 sender.py 程式會以 JSON 格式將模擬的環境遙測傳送至事件中樞。 事件中樞會設定為使用封存功能將此資料批次寫入至 Blob 儲存體。 archivereader.py 應用程式接著會讀取這些 Blob 並為每個裝置建立附加檔案，然後將資料寫入至 .csv 檔案。
+此範例使用 [Azure Python SDK](https://azure.microsoft.com/develop/python/) 來示範「封存」功能。 sender.py 程式會以 JSON 格式將模擬的環境遙測傳送至事件中樞。 事件中樞已設定為使用「封存」功能將此資料批次寫入至 Blob 儲存體。 archivereader.py 應用程式接著會讀取這些 Blob 並為每個裝置建立附加檔案，然後將資料寫入至 .csv 檔案。
 
 將會完成的工作
 
 1. 使用 Azure 入口網站建立 Azure Blob 儲存體帳戶和其中所含的 Blob 容器。
 2. 使用 Azure 入口網站建立事件中樞命名空間。
-3. 使用 Azure 入口網站建立啟用了封存功能的事件中樞。
-4. 使用 Python 指令碼將資料傳送至事件中樞。
+3. 使用 Azure 入口網站來建立已啟用「封存」功能的事件中樞。
+4. 使用 Python 指令碼將資料傳送到事件中樞。
 5. 使用另一個 Python 指令碼讀取封存的檔案並加以處理。
 
 必要條件
 
 - Python 2.7.x
 - Azure 訂用帳戶
-- 使用中的[事件中樞命名空間和事件中樞。](event-hubs-create.md)
+- 作用中的[事件中樞命名空間和事件中樞](event-hubs-create.md)。
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
@@ -51,9 +51,9 @@ ms.lasthandoff: 02/03/2017
 4. 在看到**部署成功**訊息之後，按一下新儲存體帳戶的名稱，並在 [基本功能] 刀鋒視窗中按一下 [Blob]。 當 [Blob 服務] 刀鋒視窗開啟時，按一下頂端的 [+ 容器]。 將容器命名為**封存**，然後關閉 [Blob 服務] 刀鋒視窗。
 5. 按一下左側刀鋒視窗的 [存取金鑰]，然後複製儲存體帳戶名稱和 **key1** 的值。 將這些值儲存到記事本或一些其他暫存位置。
 
-## <a name="create-a-python-script-to-send-events-to-your-event-hub"></a>建立 Python 指令碼以將事件傳送至事件中樞
+## <a name="create-a-python-script-to-send-events-to-your-event-hub"></a>建立 Python 指令碼以將事件傳送到事件中樞
 1. 開啟您慣用的 Python 編輯器，例如 [Visual Studio 程式碼][Visual Studio Code]。
-2. 建立稱為 **sender.py**的指令碼。 此指令碼會傳送 200 個事件至事件中樞。 這些事件是以 JSON 格式傳送的簡單環境數據。
+2. 建立稱為 **sender.py**的指令碼。 此指令碼會將 200 個事件傳送到事件中樞。 這些事件是以 JSON 格式傳送的簡單環境數據。
 3. 將下列程式碼貼到 sender.py：
    
    ```python
@@ -75,7 +75,7 @@ ms.lasthandoff: 02/03/2017
            sbs.send_event('INSERT YOUR EVENT HUB NAME', s)
        print y
    ```
-4. 更新上述程式碼，以使用您在建立「事件中樞」命名空間時取得的命名空間名稱、金鑰值及「事件中樞」名稱。
+4. 更新上述程式碼，以使用您在建立「事件中樞」命名空間時取得的命名空間名稱、金鑰值及事件中樞名稱。
 
 ## <a name="create-a-python-script-to-read-your-archive-files"></a>建立 Python 指令碼來讀取封存檔案
 1. 填寫刀鋒視窗，然後按一下 [建立] 。

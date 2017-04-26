@@ -13,19 +13,19 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 02/09/2017
+ms.date: 04/12/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: 64af2509036d035c5802f4b1985c3f986b685545
-ms.openlocfilehash: 2b677e684021a873c0bc4db751d8e60d9eaa6f9d
-ms.lasthandoff: 02/24/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: 4e620f3d76caa25ac0e5afb134f37ffe263935f0
+ms.lasthandoff: 04/13/2017
 
 
 ---
 
 # <a name="azure-active-directory-b2b-collaboration-licensing-guidance"></a>Azure Active Directory B2B 共同作業授權指引
 
-Azure Active Directory (Azure AD) B2B 共同作業會將一組精選的現有 Azure AD 功能延伸給獲邀加入 Azure AD 租用戶的來賓使用者使用。 因此，Azure AD B2B 共同作業來賓使用者將會透過 Azure AD 授權來獲得授權，而與現有的「免費」、「基本」及「進階 P1/「進階 P2」授權層一致，如這裡所示：https://azure.microsoft.com/en-us/pricing/details/active-directory/。
+Azure Active Directory (Azure AD) B2B 共同作業會將一組精選的現有 Azure AD 功能延伸給獲邀加入 Azure AD 租用戶的來賓使用者使用。 因此，Azure AD B2B 共同作業來賓使用者將會透過 Azure AD 授權來獲得授權，而與現有的「免費」、「基本」及「進階 P1」/「進階 P2」授權層一致，如這裡所示：https://azure.microsoft.com/pricing/details/active-directory/。
 
 邀請 B2B 使用者並將他們指派給 Azure AD 中的應用程式並無須付費。 此外，就 B2B 使用者而言，每一來賓使用者最多還可享有 10 個免費的應用程式和 3 個基本報告，因為他們屬於 Azure AD「免費」層。
 凡是透過 B2B 共同作業功能延伸至 B2B 使用者的付費 Azure AD 功能，都必須以 Azure AD 付費授權 (基本、進階 P1 或進階 P2，視將使用的功能而定) 進行授權。 邀請方租用戶透過每個 Azure AD 付費授權將可獲得 5 份 B2B 使用者權限。 也就是說，每個 Azure AD 付費授權除了將 Azure AD 付費功能的權限提供給租用戶中的一位員工使用者之外，現在也會將相同 Azure AD 付費功能的權限提供給額外 5 個受邀加入該租用戶的 B2B 使用者。
@@ -45,6 +45,21 @@ Azure Active Directory (Azure AD) B2B 共同作業會將一組精選的現有 Az
 - 並不需要將授權實際指派給 B2B 使用者帳戶。 系統將會自動計算和報告。
 - 如果租用戶中沒有付費的 Azure AD 授權，則每位受邀使用者會獲得 Azure AD「免費」版本所提供的權限。
 - 如果 B2B 共同作業使用者已從其組織員工身分獲得付費的 Azure AD 授權，他就不會取用邀請方租用戶的其中一個 B2B 共同作業授權。
+
+## <a name="advanced-discussion-what-are-the-licensing-considerations-when-we-add-users-from-a-conglomerate-organization-as-members-using-your-apis"></a>進階討論：當我們使用您的 API 從某個集團組織新增使用者作為「成員」時，有什麼授權考量？
+B2B 來賓使用者是從合作夥伴組織受邀來與主辦組織共同作業的使用者。 一般而言，此情況以外的任何其他情況都不符合 B2B 資格，即使是使用 B2B 功能。 讓我們來特別看看兩個案例：
+
+1. 如果主辦組織使用取用者位址來邀請員工
+  1. 這不符合我們的授權原則，因此目前不建議使用。
+
+2.    如果主辦組織從另一個集團組織新增使用者
+  1. 這是使用 B2B API 來邀請使用者的情況，但這並不是傳統上的 B2B。 在理想情況下，我們應該讓這些組織邀請其他組織使用者作為成員 (我們的 API 允許這麼做)。 在此情況下，必須將授權指派給這些成員，讓他們存取邀請組織中的資源。
+
+  2. 有些組織可能會想要將另一個組織的使用者新增為「來賓」來作為一項原則。 這裡有兩個案例：
+      * 集團組織已經使用 Azure AD 且受邀的使用者已在另一個組織中獲得授權：在此情況下，我們不會預期受邀使用者需依循本文件稍早所配置的 1:5 公式。 
+
+      * 集團組織未使用 Azure AD 或沒有適當的授權：在此情況下，請依循本文件稍早所配置的 1:5 公式。
+
 
 ## <a name="next-steps"></a>後續步驟
 
