@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: curtand
 translationtype: Human Translation
-ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
-ms.openlocfilehash: ae3a2236b163e6a6ffdd7f1aeabf93406981ff0b
-ms.lasthandoff: 04/13/2017
+ms.sourcegitcommit: fc73b667112fe35473872c33bc98423a424c5c65
+ms.openlocfilehash: d6bee5afea6afcd756b53f41baef5dd984423c0a
+ms.lasthandoff: 02/17/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 04/13/2017
 本文說明和儲存在 Azure AD 目錄中的使用者帳戶相關聯的密碼原則和複雜性需求。
 
 > [!IMPORTANT]
-> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-my-password)。
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 >
 >
 
@@ -36,7 +36,7 @@ ms.lasthandoff: 04/13/2017
 | --- | --- |
 | 允許的字元 |<ul> <li>A – Z</li> <li>a - z</li><li>0 – 9</li> <li> 。 - \_ ! \# ^ \~</li></ul> |
 | 不允許的字元 |<ul> <li>任何不是用來分隔使用者名稱和網域的 '@' 字元。</li> <li>'@' 符號前面不可直接包含句點字元 '.'</li></ul> |
-| 長度限制 |<ul> <li>總長度不得超過 113 個字元</li><li>'@' 符號前為 64 個字元</li><li>'@' 符號後為 48 個字元</li></ul> |
+| 長度限制 |<ul> <li>總長度不得超過 113 個字元</li><li>‘@’ 符號前為&64; 個字元</li><li>‘@’ 符號後為&48; 個字元</li></ul> |
 
 ## <a name="password-policies-that-apply-only-to-cloud-user-accounts"></a>僅適用於雲端使用者帳戶的密碼原則
 下表描述可套用至在 Azure AD 中建立及管理的使用者帳戶的可用密碼原則設定。
@@ -44,7 +44,7 @@ ms.lasthandoff: 04/13/2017
 | 屬性 | 需求 |
 | --- | --- |
 | 允許的字元 |<ul><li>A – Z</li><li>a - z</li><li>0 – 9</li> <li>@ # $ % ^ & * - _ ! + = [ ] { } &#124; \ : ‘ , . ? / ` ~ “ ( ) ;</li></ul> |
-| 不允許的字元 |<ul><li>Unicode 字元</li><li>空格</li><li> **僅限使用強式密碼**：'@' 符號前面不能直接包含點字元 '.'</li></ul> |
+| 不允許的字元 |<ul><li>Unicode 字元</li><li>空格</li><li> **僅限使用增強式密碼**：'@' 符號前面不能直接包含點字元 '.'</li></ul> |
 | 密碼限制 |<ul><li>最少 8 個字元，最多 16 個字元</li><li>**僅限使用增強式密碼**︰需要下列 4 種字元中的 3 種︰<ul><li>小寫字元</li><li>大寫字元</li><li>數字 (0-9)</li><li>符號 (請參閱上面的密碼限制)</li></ul></li></ul> |
 | 密碼到期時間 |<ul><li>預設值：**90** 天 </li><li>值可透過適用於 Windows PowerShell 的 Azure Active Directory 模組使用 Set-MsolPasswordPolicy Cmdlet 設定。</li></ul> |
 | 密碼到期通知 |<ul><li>預設值：**14** 天 (密碼到期之前)</li><li>您可使用 Set-MsolPasswordPolicy Cmdlet 設定此值。</li></ul> |
@@ -54,7 +54,7 @@ ms.lasthandoff: 04/13/2017
 | 帳戶鎖定 |10 次嘗試登入失敗 (錯誤密碼) 之後，使用者會被封鎖一分鐘。 後續嘗試登入的錯誤會增加使用者被封鎖的時間。 |
 
 ## <a name="next-steps"></a>後續步驟
-* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md#reset-my-password)。
+* **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 * [從任何地方管理您的密碼](active-directory-passwords.md)
 * [密碼管理如何運作](active-directory-passwords-how-it-works.md)
 * [開始使用密碼管理](active-directory-passwords-getting-started.md)

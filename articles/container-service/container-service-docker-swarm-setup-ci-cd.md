@@ -55,6 +55,8 @@ ms.lasthandoff: 12/14/2016
 - [建立 Visual Studio Team Services 帳戶以及 Team 專案 (英文)](https://www.visualstudio.com/en-us/docs/setup-admin/team-services/sign-up-for-visual-studio-team-services)
 - [在您的 GitHub 帳戶建立該 GitHub 存放庫的分叉 (英文)](https://github.com/jcorioland/MyShop/)
 
+[!INCLUDE [container-service-swarm-mode-note](../../includes/container-service-swarm-mode-note.md)]
+
 您也需要已經安裝 Docker 的 Ubuntu (14.04 or 16.04) 機器。 Visual Studio Team Services 會在建置與發行程序期間使用此機器。 建立此機器的其中一個方法是使用可在 [Azure Marketplace (英文)](https://azure.microsoft.com/marketplace/partners/canonicalandmsopentech/dockeronubuntuserver1404lts/) 中取得的映像。 
 
 ## <a name="step-1-configure-your-visual-studio-team-services-account"></a>步驟 1：設定 Visual Studio Team Services 帳戶 

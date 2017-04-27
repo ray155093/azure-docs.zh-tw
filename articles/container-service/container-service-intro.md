@@ -74,6 +74,8 @@ Docker Swarm 為 Docker 提供原生叢集。 由於 Docker Swarm 可作為標�
 
 ![Azure Container Service 設定為使用 Swarm。](media/acs-intro/acs-swarm2.png)
 
+[!INCLUDE [container-service-swarm-mode-note](../../includes/container-service-swarm-mode-note.md)]
+
 在 Swarm 叢集上管理容器的支援工具包括但不限於下列程式：
 
 * Dokku
