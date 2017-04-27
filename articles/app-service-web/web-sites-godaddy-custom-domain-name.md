@@ -65,7 +65,7 @@ ms.lasthandoff: 01/20/2017
    
     ![新增區域記錄](./media/web-sites-godaddy-custom-domain-name/godaddy-addzonerecord.png)
    
-   * 新增 [A (主機) 記錄] 時，您必須將 [主機] 欄位設定為 **@** (這代表根網域名稱，例如 **contoso.com**)、* (符合多個子網域的萬用字元)，或您要使用的子網域 (例如 **www**)。您必須將* [指向]* 欄位設為 Azure Web 應用程式的 IP 位址。
+   * 新增 [A (主機) 記錄] 時，您必須將 [主機] 欄位設定為 **@** (這代表根網域名稱，例如 **contoso.com**)、*(符合多個子網域的萬用字元)，或您要使用的子網域 (例如**www**)。您必須將* [指向]* 欄位設為 Azure Web 應用程式的 IP 位址。
    * 新增 [CNAME (別名) 記錄] 時，您必須將 [主機] 欄位設定為您要使用的子網域。 例如 **www**。 您必須將 [指向] 欄位設為 Azure Web 應用程式的 **.azurewebsites.net** 網域名稱。 例如，**contoso.azurewebsites.net**。
 4. 按一下 [加入另一個] 。
 5. 選取 [TXT] 做為記錄類型，然後指定 **@** 的 [主機] 值和 **&lt;yourwebappname&gt;.azurewebsites.net** 的 [指向] 值。

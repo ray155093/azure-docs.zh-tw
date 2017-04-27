@@ -17,6 +17,7 @@ ms.author: douglasl
 translationtype: Human Translation
 ms.sourcegitcommit: bcb0a66425439522e0c9a353798ac70505b91e39
 ms.openlocfilehash: ceb355d2ba872ed5d3886c6dc82ca75b1854db0a
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -58,9 +59,4 @@ TDE 會使用稱為資料庫加密金鑰的對稱金鑰來加密整個資料庫�
 
 
 <!--Link references-->
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

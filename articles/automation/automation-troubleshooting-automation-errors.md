@@ -19,6 +19,7 @@ ms.author: sngun; v-reagie
 translationtype: Human Translation
 ms.sourcegitcommit: a8ecffbc5f9c7e2408708d59459a0d39e59d6e1e
 ms.openlocfilehash: 3e4a4b431e26e58a0af1eee182fded51b6618fac
+ms.lasthandoff: 01/25/2017
 
 
 ---
@@ -65,7 +66,7 @@ ms.openlocfilehash: 3e4a4b431e26e58a0af1eee182fded51b6618fac
 
 ## <a name="common-errors-when-working-with-runbooks"></a>使用 Runbook 時的常見錯誤
 ### <a name="scenario-runbook-fails-because-of-deserialized-object"></a>案例：Runbook 因還原序列化物件而失敗
-**錯誤：``<ParameterName>``您的 Runbook 失敗且具有錯誤「無法繫結參數 **。 無法將類型還原序列化 ``<ParameterType>`` 的 ``<ParameterType>`` 值轉換為類型 ``<ParameterType>``」。
+**錯誤：``<ParameterName>``您的 Runbook 失敗且具有錯誤「無法繫結參數**。 無法將類型還原序列化 ``<ParameterType>`` 的 ``<ParameterType>`` 值轉換為類型 ``<ParameterType>``」。
 
 **錯誤的原因：** 如果您的 Runbook 是 PowerShell 工作流程，它會以還原序列化格式儲存複雜物件，以在暫止工作流程時保存 Runbook 狀態。  
 
@@ -157,7 +158,7 @@ ms.openlocfilehash: 3e4a4b431e26e58a0af1eee182fded51b6618fac
 **疑難排解秘訣：**請依照 [DSC known issues and limitations (DSC 已知問題和限制)](https://msdn.microsoft.com/powershell/wmf/5.0/limitation_dsc) 中的指示來修正問題。
 
 ### <a name="scenario--unable-to-use-a-credential-in-a-dsc-configuration"></a>案例：無法在 DSC 組態中使用認證
-**錯誤：``<some resource name>``您的 DSC 編譯作業已暫停，錯誤訊息：「System.InvalidOperationException 處理 ** 類型的屬性 'Credential' 時發生錯誤：只有在 PSDscAllowPlainTextPassword 設為 True 時，才允許轉換加密密碼並儲存為純文字」。
+**錯誤：``<some resource name>``您的 DSC 編譯作業已暫停，錯誤訊息：「System.InvalidOperationException 處理** 類型的屬性 'Credential' 時發生錯誤：只有在 PSDscAllowPlainTextPassword 設為 True 時，才允許轉換加密密碼並儲存為純文字」。
 
 **錯誤的原因：**您已在組態中使用認證，但沒有提供適當的 **ConfigurationData**，以便把每個節點組態的 **PSDscAllowPlainTextPassword** 設定為 True。  
 
@@ -172,9 +173,4 @@ ms.openlocfilehash: 3e4a4b431e26e58a0af1eee182fded51b6618fac
 * 提出 Azure 支援事件。 請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後在 [技術及帳務支援] 下方按一下 [取得支援]。
 * 如果您在尋找 Azure 自動化 Runbook 解決方案或整合模組，請在 [指令碼中心](https://azure.microsoft.com/documentation/scripts/) 提出指令碼要求。
 * 請在 [User Voice](https://feedback.azure.com/forums/34192--general-feedback)上張貼 Azure 自動化的意見反應或功能要求。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 
