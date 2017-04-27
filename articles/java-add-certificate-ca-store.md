@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 12/22/2016
+ms.date: 04/25/2017
 ms.author: robmcm
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: a967a522ebbdce57fa5b4f938369ddd88253701c
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -55,10 +56,5 @@ Baltimore 憑證可能已經安裝於您的 cacerts 存放區，因此請記得�
 如需 Azure 所用根憑證的詳細資訊，請參閱 [Azure 根憑證移轉](http://blogs.msdn.com/b/windowsazure/archive/2013/03/15/windows-azure-root-certificate-migration.aspx)。
 
 如需 Java 的詳細資訊，請參閱 [Java 開發人員中心](/develop/java/)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

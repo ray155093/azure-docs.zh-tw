@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 12/22/2016
+ms.date: 04/25/2017
 ms.author: robmcm
 translationtype: Human Translation
 ms.sourcegitcommit: 3e0f8d92495c976040113f8edc0d4c789920c549
 ms.openlocfilehash: e22dca7b666720edfcbfd1b871d98b9468441fbd
+ms.lasthandoff: 01/18/2017
 
 
 ---
@@ -236,7 +237,7 @@ Azure 即會建立並啟動命名空間。 等到新命名空間的狀態變成 
 
 當您完成使用r ACS Hello World 應用程式時，請記住刪除部署 (您可以在 [在 Eclipse 建立 Azure 的 Hello World 應用程式](http://msdn.microsoft.com/library/windowsazure/hh690944.aspx) (英文) 主題中了解如何刪除部署。
 
-## <a name="a-namenextstepsanext-steps"></a><a name="next_steps"></a>接續步驟
+## <a name="next_steps"></a>接續步驟
 若要檢查 ACS 傳回給應用程式的安全性聲明標記語言 (SAML)，請參閱 [如何檢視 Azure 存取控制服務傳回的 SAML][How to view SAML returned by the Azure Access Control Service]。 若要進一步探索 ACS 功能及試試其他更精緻的案例，請參閱 [存取控制服務 2.0][Access Control Service 2.0]。
 
 同時，此範例也使用了 [Embed the certificate in the WAR file]  選項。 此選項可讓您輕易部署憑證。 如果您想要改為讓簽署憑證與 WAR 檔案維持分開狀態，則可以使用下列技術：
@@ -296,10 +297,5 @@ Azure 即會建立並啟動命名空間。 等到新命名空間的狀態變成 
 [add_jsp_file_acs]: ./media/active-directory-java-authenticate-users-access-control-eclipse/AddJSPFileACS.png
 [create_acs_hello_world]: ./media/active-directory-java-authenticate-users-access-control-eclipse/CreateACSHelloWorld.png
 [add_token_signing_cert]: ./media/active-directory-java-authenticate-users-access-control-eclipse/AddTokenSigningCertificate.png
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

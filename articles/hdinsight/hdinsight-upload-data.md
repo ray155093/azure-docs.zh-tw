@@ -295,7 +295,7 @@ Azure Blob 儲存體也可以使用 Azure SDK，透過下列程式設計語言�
 
 [hdinsight-use-hive]: hdinsight-use-hive.md
 [hdinsight-use-pig]: hdinsight-use-pig.md
-[hdinsight-provision]: hdinsight-provision-clusters.md
+[hdinsight-provision]: hdinsight-hadoop-provision-linux-clusters.md
 
 [sqldatabase-create-configure]: ../sql-database-create-configure.md
 

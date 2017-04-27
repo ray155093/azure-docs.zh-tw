@@ -56,7 +56,7 @@ ms.lasthandoff: 04/12/2017
 ## <a name="next-steps"></a>後續步驟
 嘗試下列範例： [使用 Hive 和 HDInsight 分析感應器資料](hdinsight-hive-analyze-sensor-data.md)。
 
-[hdinsight-provision]: hdinsight-provision-clusters.md
+[hdinsight-provision]: hdinsight-hadoop-provision-linux-clusters.md
 [hdinsight-sensor-data-sample]: ../hdinsight-use-hive-sensor-data-analysis.md
 
 [img-hdi-weblogs-sample]: ./media/hdinsight-hive-analyze-website-log/hdinsight-weblogs-sample.png

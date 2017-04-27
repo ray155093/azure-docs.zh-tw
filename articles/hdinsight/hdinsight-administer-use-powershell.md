@@ -213,8 +213,8 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 [azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md
-[hdinsight-provision]: hdinsight-provision-clusters.md
-[hdinsight-provision-custom-options]: hdinsight-provision-clusters.md#configuration
+[hdinsight-provision]: hdinsight-hadoop-provision-linux-clusters.md
+[hdinsight-provision-custom-options]: hdinsight-hadoop-provision-linux-clusters.md#configuration
 [hdinsight-submit-jobs]: hdinsight-submit-hadoop-jobs-programmatically.md
 
 [hdinsight-admin-cli]: hdinsight-administer-use-command-line.md

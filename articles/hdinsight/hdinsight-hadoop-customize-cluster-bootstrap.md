@@ -24,6 +24,7 @@ ms.lasthandoff: 02/22/2017
 
 ---
 # <a name="customize-hdinsight-clusters-using-bootstrap"></a>使用 Bootstrap 自訂 HDInsight 叢集
+
 有時候，您需要設定包含下列項目的組態檔：
 
 * clusterIdentity.xml
@@ -139,7 +140,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
 [hdinsight-install-spark]: hdinsight-hadoop-spark-install.md
 [hdinsight-install-r]: hdinsight-hadoop-r-scripts.md
 [hdinsight-write-script]: hdinsight-hadoop-script-actions.md
-[hdinsight-provision-cluster]: hdinsight-provision-clusters.md
+[hdinsight-provision-cluster]: hdinsight-hadoop-provision-linux-clusters.md
 [powershell-install-configure]: /powershell/azureps-cmdlets-docs
 
 
