@@ -12,13 +12,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/27/2017
+ms.date: 04/17/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 405e236288a32afa572da8c665ea2557a9c8cb03
-ms.openlocfilehash: 8d09eb65d6d165093f9de5810a6affbe95b7a053
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: ca5b67043843185ac40d02030f26fab8639a1f9f
+ms.lasthandoff: 04/25/2017
 
 ---
 # <a name="deploy-storsimple-virtual-array---set-up-as-file-server-via-azure-portal"></a>部署 StorSimple Virtual Array - 透過 Azure 入口網站設定為檔案伺服器
@@ -134,7 +134,7 @@ ms.lasthandoff: 03/01/2017
     
     3. 256 位元 AES 金鑰與使用者定義的金鑰搭配用來加密。 指定 32 個字元的金鑰，然後重新輸入金鑰來加以確認。 將金鑰記錄在金鑰管理應用程式中，供日後參考。
     
-    4. 按一下 [進行必要的設定]，以指定要用於裝置的儲存體帳戶認證。 如果未設定儲存體帳戶認證，請按一下 [新增]。
+    4. 按一下 [進行必要的設定]，以指定要用於裝置的儲存體帳戶認證。 如果未設定儲存體帳戶認證，請按一下 [新增]。 **請確認您使用的儲存體帳戶支援區塊 Blob。不支援分頁 Blob。** 關於 [區塊 Blob 和分頁 Blob](https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs) 的其他資訊。
    
     ![設定檔案伺服器](./media/storsimple-virtual-array-deploy3-fs-setup/deployfs6m.png) 
 4. 在 [新增儲存體帳戶認證] 刀鋒視窗中，執行下列動作︰ 

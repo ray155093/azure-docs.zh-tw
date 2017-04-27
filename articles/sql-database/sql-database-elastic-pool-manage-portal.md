@@ -11,15 +11,15 @@ ms.assetid: 3dc9b7a3-4b10-423a-8e44-9174aca5cf3d
 ms.service: sql-database
 ms.custom: multiple databases
 ms.devlang: NA
-ms.date: 11/17/2016
+ms.date: 04/18/2016
 ms.author: ninarn
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: 878bb6e792cff555747912a57c1a15632f06b2f7
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 66f7cc63d311b6b5cd223fe0d8a9bf9f636abef1
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -53,7 +53,7 @@ ms.lasthandoff: 03/10/2017
 
     **-或-**
 
-    您可能會看到一則訊息，表示伺服器有建議的彈性集區 (僅限 V12)。 按一下訊息以查看系統根據資料庫的歷史使用量遙測資料所推薦的集區，然後按一下定價層以查看更多詳細資料並自訂集區。 若要了解系統是如何做出推薦的，請參閱本主題稍後的 [了解集區建議](#understand-pool-recommendations) 。
+    您可能會看到一則訊息，表示伺服器有建議的彈性集區。 按一下訊息以查看系統根據資料庫的歷史使用量遙測資料所推薦的集區，然後按一下定價層以查看更多詳細資料並自訂集區。 若要了解系統是如何做出推薦的，請參閱本主題稍後的 [了解集區建議](#understand-pool-recommendations) 。
 
     ![建議的集區](./media/sql-database-elastic-pool-create-portal/recommended-pool.png)
 
@@ -88,13 +88,12 @@ ms.lasthandoff: 03/10/2017
 
     如果您要使用的資料庫有足夠的歷史使用量遙測資料，[預估的 eDTU 和 GB 使用量] 圖形和 [實際的 eDTU 使用量] 長條圖便會更新以幫助您決定要使用的組態。 此外，該服務可能會提供您建議訊息，協助您決定集區的適當大小。 請參閱 [動態建議](#dynamic-recommendations)。
 
-3. 使用 [設定集區]  頁面上的控制項，探索設定及設定您的集區。 如需各服務層限制的詳細資訊，請參閱[彈性集區限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools)；如需如何決定彈性集區適當大小的詳細指導方針，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。 如需集區設定的詳細資訊，請參閱[彈性集區屬性](sql-database-elastic-pool.md#elastic-pool-properties)。
+3. 使用 [設定集區]  頁面上的控制項，探索設定及設定您的集區。 如需各服務層限制的詳細資訊，請參閱[彈性集區限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools)；如需如何決定彈性集區適當大小的詳細指導方針，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool.md)。 如需集區設定的詳細資訊，請參閱[彈性集區屬性](sql-database-elastic-pool.md#database-properties-for-pooled-databases)。
 
     ![設定彈性集區](./media/sql-database-elastic-pool-create-portal/configure-performance.png)
 
 4. 變更設定之後，請按一下 [設定集區] 刀鋒視窗中的 [選取]。
 5. 按一下 [確定]  以建立集區。
-
 
 ## <a name="understand-elastic-pool-recommendations"></a>了解彈性集區建議
 
@@ -104,12 +103,13 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 
 集區建議包含下列內容︰
 
-- 集區的定價層 (基本、標準或進階)。
+- 集區的定價層 (基本、標準、進階或進階 RS)
 - 適當的 [集區 eDTU]  \(也稱為每一集區的最大 eDTU)
 - 每一資料庫的 [eDTU 上限] 和 [eDTU 下限]
 - 集區的建議資料庫清單
 
-> ![重要] 服務在建議集區時，會將過去 30 天的遙測納入考量。 為了讓資料庫被視為彈性集區的候選項目，它必須存在至少 7 天。 已在彈性集區中的資料庫不會被視為彈性集區建議候選項目。
+> [!IMPORTANT]
+> 服務在建議集區時，會計算過去 30 天的遙測。 為了讓資料庫被視為彈性集區的候選項目，它必須存在至少 7 天。 已在彈性集區中的資料庫不會被視為彈性集區建議候選項目。
 >
 
 服務會評估將每個服務層中的單一資料庫移至同一層集區的資源需求和成本效益。 例如，會評估伺服器上的所有 Standard 資料庫是否適合 Standard 彈性集區。 這表示服務不會進行跨層建議，例如將 Standard 資料庫移到 Premium 集區。
@@ -260,7 +260,7 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 
 ## <a name="change-performance-settings-of-an-elastic-pool"></a>變更彈性集區的效能設定
 
-當您監視彈性集區的資源使用率時，可能會發現需要一些調整。 也許集區的效能或儲存體限制需要變更。 您可能想要變更集區中的資料庫設定。 您可以隨時變更集區設定，以在效能和成本之間取得最佳平衡。 如需詳細資訊，請參閱[何時應該使用彈性集區？](sql-database-elastic-pool-guidance.md)
+當您監視彈性集區的資源使用率時，可能會發現需要一些調整。 也許集區的效能或儲存體限制需要變更。 您可能想要變更集區中的資料庫設定。 您可以隨時變更集區設定，以在效能和成本之間取得最佳平衡。 如需詳細資訊，請參閱[何時應該使用彈性集區？](sql-database-elastic-pool.md)
 
 若要變更每個集區的 eDTU 和儲存體限制，以及每個資料庫的 eDTU：
 
@@ -281,7 +281,7 @@ SQL Database 服務會評估使用量的歷史資料，並為您推薦一或多�
 ## <a name="next-steps"></a>後續步驟
 
 - 若要了解什麼是彈性集區，請參閱 [SQL Database 彈性集區](sql-database-elastic-pool.md)。
-- 如需使用彈性集區的相關指導方針，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
+- 如需使用彈性集區的相關指導方針，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool.md)。
 - 若要使用彈性工作對集區中任意數目的資料庫執行 Transact-SQL 指令碼，請參閱[彈性工作概觀](sql-database-elastic-jobs-overview.md)。
 - 若要對跨集區中任意數目的資料庫執行查詢，請參閱[彈性查詢概觀](sql-database-elastic-query-overview.md)。
 - 如需集區中任意數目的資料庫的相關交易，請參閱[彈性交易](sql-database-elastic-transactions-overview.md)。

@@ -12,12 +12,12 @@ ms.devlang: rest-api
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 01/18/2017
+ms.date: 04/15/2017
 ms.author: eugenesh
 translationtype: Human Translation
-ms.sourcegitcommit: 05fc8ff05f8e2f20215f6683a125c1a506b4ccdc
-ms.openlocfilehash: 23ed2e066cc6751ebabb57c8077f95b0cb074850
-ms.lasthandoff: 02/18/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: e14da5fa10533d922a6263e8f52a53c0eaa23393
+ms.lasthandoff: 04/25/2017
 
 ---
 
@@ -38,7 +38,7 @@ blob 索引子可以從下列文件格式擷取文字：
 * CSV (請參閱[編製 CSV Blob 的索引](search-howto-index-csv-blobs.md) 預覽功能)
 
 > [!IMPORTANT]
-> CSV 和 JSON 檔案的支援目前為預覽。 僅在使用 **2015-02-28-Preview** 的 REST API 或 .NET sdk 的 2.x-preview 版本時，才可使用這些格式。 請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
+> CSV 和 JSON 的陣列支援目前屬於預覽功能。 僅在使用 **2015-02-28-Preview** 的 REST API 或 .NET sdk 的 2.x-preview 版本時，才可使用這些格式。 請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
 >
 >
 
@@ -139,11 +139,15 @@ blob 索引子可以從下列文件格式擷取文字：
 取決於[組態](#PartsOfBlobToIndex)，blob 索引子只可以編製儲存體中繼資料的索引 (僅當您關注中繼資料且無須編製 blob 內容的索引時很有用)，儲存體和內容中繼資料，或中繼資料和文字內容。 根據預設，索引子會擷取中繼資料和內容。
 
 > [!NOTE]
-> 根據預設，使用結構化內容 (例如 JSON、CSV 或 XML) 的 blob 會做為文字的單一區塊編製索引。 如果您要以結構化方式編製 JSON 和 CSV blob 的索引，請參閱[編製 JSON blob 的索引](search-howto-index-json-blobs.md)和[編製 CSV blob 的索引](search-howto-index-csv-blobs.md)預覽功能。 我們目前不支援剖析的 XML 內容；如有此需要，請在我們的 [UserVoice](https://feedback.azure.com/forums/263029-azure-search) 上新增建議。
->
+> 根據預設，結構化內容 (例如 JSON 或CSV) 的 Blob 會以單一區塊文字編製索引。 如果您要以結構化方式編製 JSON 和 CSV blob 的索引，請參閱[編製 JSON blob 的索引](search-howto-index-json-blobs.md)和[編製 CSV blob 的索引](search-howto-index-csv-blobs.md)預覽功能。
+> 
 > 複合或內嵌文件 (例如 ZIP 封存或具有內嵌 Outlook 電子郵件 (內含附件) 的 Word 文件) 也會編制索引為單一文件。
 
-* 文件的全部文字內容會擷取至名為 `content` 的字串欄位。
+* 文件的文字內容會擷取至名為 `content` 的字串欄位。
+
+> [!NOTE]
+> Azure 搜尋服務會根據定價層限制擷取的文字數量：免費層可擷取 32,000 個字元、基本層可擷取 64,000 個字元、標準、標準 S2 與 標準 S3 層可擷取 4 百萬個字元。 在已截斷的文件中，索引子的狀態回應會包含警告。  
+
 * 顯示在 blob 中的使用者指定中繼資料屬性 (如果有的話)，會逐字擷取。
 * 標準 blob 中繼資料屬性會擷取到下列欄位：
 
@@ -300,7 +304,7 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 
 例如，如果 blob 有值為 `true` 的中繼資料屬性 `IsDeleted`，則下列原則會認為 blob 已刪除：
 
-    PUT https://[service name].search.windows.net/datasources?api-version=2016-09-01
+    PUT https://[service name].search.windows.net/datasources/blob-datasource?api-version=2016-09-01
     Content-Type: application/json
     api-key: [admin key]
 
@@ -338,7 +342,7 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 
 您的文件可能具有相關聯的中繼資料 (例如建立文件的部門)，這類資料會在下列其中一個位置儲存為結構化資料。
 -   在個別的資料存放區中，例如 SQL Database 或 DocumentDB。
--   直接附加至 Azure Blob 儲存體中的每份文件以做為自訂中繼資料 (如需詳細資訊，請參閱[設定和擷取 Blob 資源的屬性及中繼資料](https://docs.microsoft.com/rest/api/storageservices/fileservices/setting-and-retrieving-properties-and-metadata-for-blob-resources))。
+-   直接附加至 Azure Blob 儲存體中的每份文件以做為自訂中繼資料 (如需詳細資訊，請參閱[設定和擷取 Blob 資源的屬性及中繼資料](https://docs.microsoft.com/rest/api/storageservices/setting-and-retrieving-properties-and-metadata-for-blob-resources))。
 
 您也可以藉由為每份文件和它的中繼資料指派相同的唯一值，以及為每個索引子指派 `mergeOrUpload` 動作，來為文件及其中繼資料編製索引。 如需此解決方案的詳細說明，請參閱這篇外部文章：[在 Azure 搜尋服務中將文件與其他資料組合在一起 (英文)](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html)。
 

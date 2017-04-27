@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 1da12abc-0646-43ba-b564-e3b049a6487f
 ms.service: sql-database
-ms.custom: overview
+ms.custom: reference
 ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.date: 02/07/2017
 ms.author: sashan;carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: ef58f595ff58b9156df813cf92e2306654a8b3ed
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 0b53eb34293078ad2ce334583fee88a8c5ac5ccf
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -77,17 +77,17 @@ SQL Database 是以可預測的每小時費率收費，同時根據服務層 + �
 與單一資料庫不同，搭配彈性資料庫使用 [作用中異地複寫](sql-database-geo-replication-overview.md) 對計費並沒有直接的影響。  您只需支付對每個集區佈建的 eDTU (主要集區和次要集區)
 
 ## <a name="how-does-the-use-of-the-auditing-feature-impact-my-bill"></a>使用稽核功能會如何影響帳單？
-稽核內建在 SQL Database 服務供免費使用，Basic、Standard 和 Premium 資料庫皆可使用。 但是，為了儲存稽核記錄檔，稽核功能會使用 Azure 儲存體帳戶，而 Azure 儲存體的費率資料表和佇列 會根據稽核記錄檔的大小套用。
+稽核內建在 SQL Database 服務供免費使用，且基本、標準、進階和進階 RS 資料庫皆可使用。 但是，為了儲存稽核記錄檔，稽核功能會使用 Azure 儲存體帳戶，而 Azure 儲存體的費率資料表和佇列 會根據稽核記錄檔的大小套用。
 
 ## <a name="how-do-i-find-the-right-service-tier-and-performance-level-for-single-databases-and-elastic-pools"></a>我如何找到單一資料庫和彈性集區的正確服務層和效能等級？
 有幾個工具可供您使用。 
 
 * 針對內部部署資料庫，請使用 [DTU 大小建議器](http://dtucalculator.azurewebsites.net/) 來建議需要的資料庫和 DTU，並針對彈性集區評估多個資料庫。
-* 如果單一資料庫會因集區而受益，Azure 的智慧型引擎如果發現必要的歷程使用模式，就會建議彈性集區。 請參閱[使用 Azure 入口網站監視和管理彈性集區](sql-database-elastic-pool-manage-portal.md)。 如需有關如何自己進行數學計算的詳細資訊，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)
+* 如果單一資料庫會因集區而受益，Azure 的智慧型引擎如果發現必要的歷程使用模式，就會建議彈性集區。 請參閱[使用 Azure 入口網站監視和管理彈性集區](sql-database-elastic-pool-manage-portal.md)。 如需有關如何自己進行數學計算的詳細資訊，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool.md)
 * 若要查看您是否需要向上或向下調整單一資料庫，請參閱 [單一資料庫的效能指引](sql-database-performance-guidance.md)。
 
 ## <a name="how-often-can-i-change-the-service-tier-or-performance-level-of-a-single-database"></a>變更單一資料庫的服務層或效能等級可以多久進行一次？
-藉由 V12 資料庫，您可以隨意且不限次數地變更服務層 (在「基本」、「標準」及「進階」之間) 或服務層內的效能等級 (例如 S1 到 S2)。 若為較早版本的資料庫，在 24 小時內，您總計只可以變更服務層或效能層級四次。
+您可以隨意且不限次數地，變更服務層 (在基本、標準、進階和進階 RS 之間) 或服務層內的效能等級 (例如 S1 到 S2)。 若為較早版本的資料庫，在 24 小時內，您總計只可以變更服務層或效能層級四次。
 
 ## <a name="how-often-can-i-adjust-the-edtus-per-pool"></a>調整每一集區 eDTU 頻率為何？
 視您所需，不限次數。
@@ -96,13 +96,13 @@ SQL Database 是以可預測的每小時費率收費，同時根據服務層 + �
 變更資料庫的服務層和移入和移出集區需要在平台上複製資料庫做為背景作業。 視資料庫的大小而定，變更服務層可能需要數分鐘到數小時的時間不等。 在這兩種情況下，在移動期間，資料庫將維持完全連線且可供使用的狀態。 如需變更單一資料庫的詳細資訊，請參閱 [變更資料庫的服務層](sql-database-service-tiers.md)。 
 
 ## <a name="when-should-i-use-a-single-database-vs-elastic-databases"></a>何時應該使用單一資料庫與彈性資料庫？
-一般而言，彈性集區是專為一般 [軟體即服務 (SaaS) 應用程式模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)而設計，其中每一客戶或租用戶會有一個資料庫。 購買個別資料庫並為了符合每個資料庫的變動尖峰需求而進行超規空間管理，通常不具成本效益。 利用集區，您可管理集區的集體效能，而資料庫會自動相應增加和相應減少。 Azure 的智慧型引擎如果發現必要的使用模式，就會對資料庫建議集區。 如需詳細資訊，請參閱[彈性集區指引](sql-database-elastic-pool-guidance.md)。
+一般而言，彈性集區是專為一般 [軟體即服務 (SaaS) 應用程式模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)而設計，其中每一客戶或租用戶會有一個資料庫。 購買個別資料庫並為了符合每個資料庫的變動尖峰需求而進行超規空間管理，通常不具成本效益。 利用集區，您可管理集區的集體效能，而資料庫會自動相應增加和相應減少。 Azure 的智慧型引擎如果發現必要的使用模式，就會對資料庫建議集區。 如需詳細資訊，請參閱[彈性集區指引](sql-database-elastic-pool.md)。
 
 ## <a name="what-does-it-mean-to-have-up-to-200-of-your-maximum-provisioned-database-storage-for-backup-storage"></a>備份儲存體可高達 200% 的最大可佈建資料庫儲存體，這是什麼意思？
 備份儲存體是與自動資料庫備份相關聯的儲存體，可用於[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)和[異地還原](sql-database-recovery-using-backups.md#geo-restore)。 Microsoft Azure SQL Database 提供的備份儲存體可高達 200% 的最大可佈建資料庫儲存體，且不須支付額外費用。 例如，如果您擁有可佈建 DB 大小為 250 GB 的標準 DB 執行個體，您就能免費獲得 500 GB 的備份儲存體。 若您的資料庫超過所提供的備份儲存體，您可以連絡 Azure 支援部門，選擇縮短保留期限，或是以標準讀取存取地理備援儲存體 (RA-GRS) 費率，另購額外的備份儲存體。 如需 RA-GRS 計費的詳細資訊，請參閱儲存體價格詳細資料。
 
 ## <a name="im-moving-from-webbusiness-to-the-new-service-tiers-what-do-i-need-to-know"></a>我正從 Web/Business 移到新的服務層，我應該知道什麼？
-Azure SQL Web 和 Business 資料庫現已淘汰。 基本、標準、高階和彈性層取代淘汰 Web 和商務資料庫。 我們提供額外的常見問題集，在此過渡期應該有所幫助。 [Web 和 Business 版本終止常見問題集](sql-database-web-business-sunset-faq.md)
+Azure SQL Web 和 Business 資料庫現已淘汰。 基本、標準、進階、進階 RS 和彈性層取代淘汰 Web 和商務資料庫。 
 
 ## <a name="what-is-an-expected-replication-lag-when-geo-replicating-a-database-between-two-regions-within-the-same-azure-geography"></a>在兩個 Azure 地理位置相同的區域之間，針對資料庫進行異地複寫時，預期的複寫延遲是多久？
 我們目前支援五秒的 RPO，而且當地區次要資料庫裝載於 Azure 建議的配對區域中且位於同一服務層，複寫延遲便會小於五秒。
