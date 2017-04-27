@@ -5,18 +5,18 @@ services: active-directory
 documentationCenter: na
 author: jeevansd
 manager: femila
-ms.assetid: d92e3edb-31aa-4d21-9bf8-6e5917d7bf5f
+ms.assetid: 15ba026e-96fc-4ae8-b135-0169da810e99
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/28/2017
+ms.date: 04/13/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 6844a46978618d5dc3292168bbcc228480311d47
-ms.openlocfilehash: e84a3aeb9e7a8cddccb293ab2bb9d7fdc5fa82b4
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 8a7481b71df5ca407dbed5da3d3cc26991504c82
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -28,9 +28,9 @@ ms.lasthandoff: 02/23/2017
 
 - 您可以在 Azure AD 中控制可存取 MaxxPoint 的人員
 - 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 MaxxPoint (單一登入)
-- 您可以在 Azure 管理入口網站中集中管理您的帳戶
+- 您可以在 Azure 入口網站中集中管理您的帳戶
 
-若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
+如果您想要了解有關 SaaS 應用程式與 Azure AD 之整合的更多詳細資料，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -39,16 +39,13 @@ ms.lasthandoff: 02/23/2017
 - Azure AD 訂用帳戶
 - 已啟用 MaxxPoint 單一登入功能的訂用帳戶
 
-
 > [!NOTE]
 > 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
-
+- 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
 ## <a name="scenario-description"></a>案例描述
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
@@ -62,7 +59,7 @@ ms.lasthandoff: 02/23/2017
 
 **若要從資源庫加入 MaxxPoint，請執行下列步驟：**
 
-1. 在 **[Azure 管理入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
+1. 在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
 
     ![Active Directory][1]
 
@@ -70,7 +67,7 @@ ms.lasthandoff: 02/23/2017
 
     ![應用程式][2]
     
-3. 按一下對話方塊頂端的 [新增] 按鈕。
+3. 按一下對話方塊頂端的 [新應用程式] 按鈕來新增新的應用程式。
 
     ![應用程式][3]
 
@@ -81,7 +78,6 @@ ms.lasthandoff: 02/23/2017
 5. 在結果窗格中，選取 [MaxxPoint]，然後按一下 [新增] 按鈕以新增應用程式。
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-maxxpoint-tutorial/tutorial_maxxpoint_0001.png)
-
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 MaxxPoint 搭配運作的 Azure AD 單一登入。
@@ -100,15 +96,15 @@ ms.lasthandoff: 02/23/2017
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
-在本節中，您會在 Azure 管理入口網站中啟用 Azure AD 單一登入，並在您的 MaxxPoint 應用程式中設定單一登入。
+在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，並在您的 MaxxPoint 應用程式中設定單一登入。
 
 **若要使用 MaxxPoint 設定 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 管理入口網站的 [MaxxPoint] 應用程式整合頁面上，按一下 [單一登入]。
+1. 在 Azure 入口網站的 [MaxxPoint] 應用程式整合頁面上，按一下 [單一登入]。
 
     ![設定單一登入][4]
 
-2. 在 [單一登入] 對話方塊上，選取 [SAML 型登入] 做為 [模式]，以啟用單一登入。
+2. 在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。
  
     ![設定單一登入](./media/active-directory-saas-maxxpoint-tutorial/tutorial_general_300.png)
 
@@ -120,44 +116,34 @@ ms.lasthandoff: 02/23/2017
     
     ![設定單一登入](./media/active-directory-saas-maxxpoint-tutorial/tutorial_maxxpoint_03.png)
 
-    a. 按一下 [顯示進階 URL 設定] 選項
+    a. 按一下 [顯示進階 URL 設定] 選項。
 
-    b. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://maxxpoint.westipc.com/default/sso/login/entity/<customer-id>-azure`
+    b.這是另一個 C# 主控台應用程式。 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://maxxpoint.westipc.com/default/sso/login/entity/<customer-id>-azure`
 
     > [!NOTE] 
-    > 請注意，這不是真正的值。 您必須使用實際的「登入 URL」來更新此值。 請連絡 [MaxxPoint 支援小組](mailto:iumsupport@intercall.com)以取得這些值。
+    > 請注意，這不是真正的值。 您必須使用實際的「登入 URL」來更新此值。 請撥打電話 (**888-728-0950**) 給 MaxxPoint 小組以取得這個值。
 
-5. 在 [SAML 簽署憑證] 區段中，按一下 [建立新憑證]。
-
-    ![設定單一登入](./media/active-directory-saas-maxxpoint-tutorial/tutorial_general_400.png)     
-
-6. 在 [建立新憑證] 對話方塊中，按一下行事曆圖示並選取 [到期日]。 然後按一下 [儲存] 按鈕。
-
-    ![設定單一登入](./media/active-directory-saas-maxxpoint-tutorial/tutorial_general_500.png)
-
-7. 在 [SAML 簽署憑證] 區段中，選取 [啟用新憑證] 並按一下 [儲存] 按鈕。
-
-    ![設定單一登入](./media/active-directory-saas-maxxpoint-tutorial/tutorial_maxxpoint_05.png)
-
-8. 在 [變換憑證] 快顯視窗上，按一下 [確定]。
-
-    ![設定單一登入](./media/active-directory-saas-maxxpoint-tutorial/tutorial_general_600.png)
-
-9. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將中繼資料檔案儲存在您的電腦上。
+5. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將中繼資料檔案儲存在您的電腦上。
 
     ![設定單一登入](./media/active-directory-saas-maxxpoint-tutorial/tutorial_maxxpoint_06.png) 
 
-10. 若要為您的應用程式設定 SSO，請連絡 [MaxxPoint 支援小組](mailto:iumsupport@intercall.com)並提供所下載的**中繼資料**。 
+6. 按一下 [儲存]  按鈕。
 
+    ![設定單一登入](./media/active-directory-saas-maxxpoint-tutorial/tutorial_general_400.png)
+
+7. 若要為您的應用程式設定 SSO，請撥打電話 (**888-728-0950**) 給 MaxxPoint 支援小組，他們將會進一步協助您將所下載的「中繼資料 XML」檔案提供給他們。 
+
+> [!TIP]
+> 現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！  從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。 您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
-本節目標是在 Azure 管理入口網站中建立名為 Britta Simon 的測試使用者。
+本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][100]
 
 **若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 **Azure 管理入口網站**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。
+1. 在「Azure 入口網站」的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-maxxpoint-tutorial/create_aaduser_01.png) 
 
@@ -181,12 +167,9 @@ ms.lasthandoff: 02/23/2017
 
     d. 按一下 [建立] 。 
 
-
-
 ### <a name="creating-a-maxxpoint-test-user"></a>建立 MaxxPoint 測試使用者
 
-在本節中，您要在 MaxxPoint 中建立名為 Britta Simon 的使用者。 請與 MaxxPoint [支援小組](mailto:iumsupport@intercall.com)合作，在 MaxxPoint 平台中新增使用者。
-
+在本節中，您要在 MaxxPoint 中建立名為 Britta Simon 的使用者。 請撥打電話 (**888-728-0950**) 給 MaxxPoint 支援小組，以在 MaxxPoint 應用程式中新增使用者。
 
 ### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
@@ -196,7 +179,7 @@ ms.lasthandoff: 02/23/2017
 
 **若要將 Britta Simon 指派到 MaxxPoint，請執行以下步驟：**
 
-1. 在 Azure 管理入口網站中，開啟應用程式檢視，然後瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
+1. 在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
 
     ![指派使用者][201] 
 
@@ -218,8 +201,6 @@ ms.lasthandoff: 02/23/2017
 
 7. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
     
-
-
 ### <a name="testing-single-sign-on"></a>測試單一登入
 
 在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。

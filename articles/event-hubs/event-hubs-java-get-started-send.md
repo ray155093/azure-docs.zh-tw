@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: aa7244849f6286e8ef9f9785c133b4c326193c12
-ms.openlocfilehash: feb466064f2e26a329977240eeafb28148bdf212
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: fe10aaca3232e5baa0b726b7262a6e9e8ce6b638
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.openlocfilehash: feb466064f2e26a329977240eeafb28148bdf212
 
 如需詳細資訊，請參閱 [事件中樞概觀][Event Hubs overview]。
 
-本教學課程也會示範如何使用 Java 主控台應用程式，將事件傳送至事件中樞。 若要使用 Java Event Processor Host 程式庫接收事件，請參閱[此文章](event-hubs-java-get-started-receive-eph.md)，或按一下左側目錄中適當的接收語言。
+本教學課程也會示範如何使用以 Java 撰寫的主控台應用程式，將事件傳送到事件中樞。 若要使用 Java Event Processor Host 程式庫接收事件，請參閱[此文章](event-hubs-java-get-started-receive-eph.md)，或按一下左側目錄中適當的接收語言。
 
 若要完成本教學課程，您需要下列項目：
 
@@ -102,8 +103,3 @@ public class Send
 * [事件中樞概觀](event-hubs-what-is-event-hubs.md)
 * [建立事件中樞](event-hubs-create.md)
 * [事件中樞常見問題集](event-hubs-faq.md)
-
-
-<!--HONumber=Feb17_HO1-->
-
-

@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: d7f6f9582a3d15563c19d69845836a92a35ee95e
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 8485fd9350672dd0f41e2d5dada57a1940c43f16
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -134,7 +134,7 @@ IntelliSense 會向您提示您可使用的運算子和運算式元素。 按一
 如果資料表有四個或更少的資料行，即可將該資料表釘選到儀表板。 只會顯示前七個資料列。
 
 ### <a name="dashboard-refresh"></a>儀表板重新整理
-釘選到儀表板的圖表大約每兩小時就會自動重新執行查詢來重新整理。
+釘選到儀表板的圖表大約每小時會重新執行一次查詢，來自動重新整理。 您也可以按一下 [重新整理] 按鈕。
 
 ### <a name="automatic-simplifications"></a>自動簡化
 

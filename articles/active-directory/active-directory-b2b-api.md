@@ -13,19 +13,19 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 03/15/2017
+ms.date: 04/11/2017
 ms.author: sasubram
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: 6f487e2e8f368240339ef5e0015c85591522e49a
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: c85e05b38b4a9525e13ec510a17b7ef4841198d7
+ms.lasthandoff: 04/13/2017
 
 
 ---
 
 # <a name="azure-active-directory-b2b-collaboration-api-and-customization"></a>Azure Active Directory B2B 共同作業 API 和自訂
 
-有許多客戶告訴我們他們想要以最適合其組織的方式自訂邀請程序。 使用我們的 API，您可以進行自訂。 [https://graph.microsoft.io/en-us/docs/api-reference/beta/resources/invitation](https://graph.microsoft.io/en-us/docs/api-reference/beta/resources/invitation)
+有許多客戶告訴我們他們想要以最適合其組織的方式自訂邀請程序。 使用我們的 API，您可以進行自訂。 [https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation)
 
 ## <a name="capabilities-of-the-invitation-api"></a>邀請 API 的功能
 API 提供下列功能：
@@ -98,7 +98,7 @@ New-AzureADMSInvitation
 * -SendInvitationMessage
 * -InvitedUserMessageInfo
 
-您也可以參考 [https://graph.microsoft.io/en-us/docs/api-reference/beta/resources/invitation](https://graph.microsoft.io/en-us/docs/api-reference/beta/resources/invitation) 中的邀請 API 參考資料
+您也可以參考 [https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation](https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/invitation) 中的邀請 API 參考資料
 
 ## <a name="next-steps"></a>後續步驟
 

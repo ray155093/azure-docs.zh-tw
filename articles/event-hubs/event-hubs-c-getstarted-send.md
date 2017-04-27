@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/30/2017
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: f92909e0098a543f99baf3df3197a799bc9f1edc
-ms.openlocfilehash: f62c0ca57bfd15a9ad1f767fa8fd59cc73b71c43
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: f029b2dfaff372b3a8282d056ca52bd5d0893e64
+ms.lasthandoff: 04/18/2017
 
 ---
 
@@ -28,7 +28,7 @@ ms.lasthandoff: 03/01/2017
 
 如需詳細資訊，請參閱[事件中樞概觀][Event Hubs overview]。
 
-在本教學課程中，您將了解如何使用 C 的主控台應用程式將事件傳送至事件中樞。若要接收事件，請按一下左側目錄中適當的接收語言。
+在本教學課程中，您將了解如何使用以 C 撰寫的主控台應用程式將事件傳送到事件中樞。若要接收事件，請按一下左側目錄中適當的接收語言。
 
 若要完成本教學課程，您需要下列項目：
 
@@ -37,7 +37,7 @@ ms.lasthandoff: 03/01/2017
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="send-messages-to-event-hubs"></a>將訊息傳送至事件中心
-在本節中，我們會撰寫一個 C 應用程式，以將事件傳送至事件中心。 我們將使用 [Apache Qpid 專案](http://qpid.apache.org/)中的 Proton AMQP 程式庫。 這與搭配使用 Service Bus Queues and Topics 與透過 C 的 AMQP 類似 (如 [這裡](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504)所示)。 如需詳細資訊，請參閱 [Qpid Proton 文件](http://qpid.apache.org/proton/index.html)。
+在本節中，我們將撰寫一個 C 應用程式，以將事件傳送到事件中樞。 我們將使用 [Apache Qpid 專案](http://qpid.apache.org/)中的 Proton AMQP 程式庫。 這與搭配使用 Service Bus Queues and Topics 與透過 C 的 AMQP 類似 (如 [這裡](https://code.msdn.microsoft.com/Using-Apache-Qpid-Proton-C-afd76504)所示)。 如需詳細資訊，請參閱 [Qpid Proton 文件](http://qpid.apache.org/proton/index.html)。
 
 1. 從 [Qpid AMQP Messenger 頁面](http://qpid.apache.org/components/messenger/index.html)，按一下 [ **安裝 Qpid Proton** ] 連結，並遵循指示進行 (視您的環境而定)。
 2. 若要編譯 Proton 程式庫，請安裝下列封裝：
@@ -60,7 +60,7 @@ ms.lasthandoff: 03/01/2017
     cmake -DCMAKE_INSTALL_PREFIX=/usr ..
     sudo make install
     ```
-5. 在工作目錄中，使用下列內容建立一個稱為 **sender.c** 的新檔案。 請務必替代您事件中樞名稱和命名空間名稱的值 (後者通常是 `{event hub name}-ns`)。 您也必須替代先前針對 **SendRule** 建立之金鑰的 URL 編碼版本。 您可以在 [這裡](http://www.w3schools.com/tags/ref_urlencode.asp)對其進行 URL 編碼。
+5. 在工作目錄中，使用下列內容建立一個稱為 **sender.c** 的新檔案。 請記得將值替換成您的事件中樞名稱和命名空間名稱 (後者通常是 `{event hub name}-ns`)。 您也必須替代先前針對 **SendRule** 建立之金鑰的 URL 編碼版本。 您可以在 [這裡](http://www.w3schools.com/tags/ref_urlencode.asp)對其進行 URL 編碼。
    
     ```c
     #include "proton/message.h"
