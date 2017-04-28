@@ -333,7 +333,7 @@ Visual Studio 不會顯示部署進度。  如果您想要檢閱輸出，請參�
 ## <a name="next-steps"></a>後續步驟
 請遵循下列連結以深入了解 Flask 和 Python Tools for Visual Studio： 
 
-* [Flask 說明文件  (英文)]
+* [Flask 說明文件 英文]
 * [Python Tools for Visual Studio 文件]
 
 如需有關使用 Azure 資料表儲存體和 MongoDB 的資訊：
@@ -360,6 +360,6 @@ Visual Studio 不會顯示部署進度。  如果您想要檢閱輸出，請參�
 [Python Tools 2.2 for Visual Studio]: http://go.microsoft.com/fwlink/?LinkID=624025
 [Visual Studio]: http://www.visualstudio.com/
 [Python Tools for Visual Studio 文件]: http://aka.ms/ptvsdocs
-[Flask 說明文件  (英文)]: http://flask.pocoo.org/ 
+[Flask 說明文件 英文]: http://flask.pocoo.org/ 
 
 
