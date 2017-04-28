@@ -35,7 +35,7 @@ ms.lasthandoff: 02/22/2017
 * 如何變更集合的索引編製原則？
 * 如何比較不同索引編製原則的儲存空間和效能？
 
-## <a name="a-idcustomizingindexingpolicya-customizing-the-indexing-policy-of-a-collection"></a><a id="CustomizingIndexingPolicy"></a> 自訂集合的索引編製原則
+## <a id="CustomizingIndexingPolicy"></a> 自訂集合的索引編製原則
 開發人員可以透過覆寫 DocumentDB 集合上的預設索引編製原則，並設定下列各方面，以自訂儲存空間、寫入/查詢效能，以及查詢一致性之間的取捨。
 
 * **在索引中包含/排除文件和路徑**。 開發人員可以在集合中插入或取代文件時，選擇要在索引中排除或包含的特定文件。 開發人員也可以選擇要包含或排除特定 JSON 屬性 (亦稱為 路徑，包括萬用字元模式)，以便跨索引中包含的文件編製索引。
@@ -112,7 +112,7 @@ DocumentDB 會將 JSON 文件和索引塑造為樹狀結構，並可讓您調整
 
 索引路徑的開頭為根 (/)，且通常結尾為 ? 萬用字元運算子，代表有多個可能的首碼值。 例如，若要為 SELECT * FROM Families F WHERE F.familyName = "Andersen" 提供服務，您必須在集合的索引原則中包含 /familyName/? 的索引路徑。
 
-索引路徑也可以使用 * 萬用字元運算子來指定路徑首碼底下的遞迴行為。例如，使用 /"payload"/* 可將 payload 屬性下的所有項目自索引編製作業中排除。
+索引路徑也可以使用 *萬用字元運算子來指定路徑首碼底下的遞迴行為。例如，使用 /"payload"/* 可將 payload 屬性下的所有項目自索引編製作業中排除。
 
 以下是指定索引路徑的常見模式：
 

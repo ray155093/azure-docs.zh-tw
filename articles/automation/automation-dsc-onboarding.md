@@ -148,7 +148,7 @@ Azure 自動化 DSC 可讓您輕鬆上架 Azure 虛擬機器以進行組態管�
 
 1. 確定在您想要上架到 Azure Automation DSC 的電腦上已安裝最新版的 [WMF 5](http://aka.ms/wmf5latest) 。
 2. 請依照下列 [**產生 DSC 中繼設定**](#generating-dsc-metaconfigurations) 一節中的指示，來產生包含所需 DSC 中繼設定的資料夾。
-3. 從遠端將 PowerShell DSC 中繼設定套用至您想要上架的電腦。 **執行此命令的電腦必須安裝最新版的 [WMF 5](http://aka.ms/wmf5latest) **：
+3. 從遠端將 PowerShell DSC 中繼設定套用至您想要上架的電腦。 **執行此命令的電腦必須安裝最新版的 [WMF 5](http://aka.ms/wmf5latest)**：
 
     ```powershell
     Set-DscLocalConfigurationManager -Path C:\Users\joe\Desktop\DscMetaConfigs -ComputerName MyServer1, MyServer2

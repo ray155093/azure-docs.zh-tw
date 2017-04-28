@@ -101,7 +101,7 @@ ms.lasthandoff: 02/15/2017
 1. 在 Azure 傳統入口網站的 **O.C.Tanner - AppreciateHub** 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
     ![設定單一登入][6]
-2. 在 ** [您希望使用者如何登入 O.C.Tanner - AppreciateHub]** 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+2. 在 **[您希望使用者如何登入 O.C.Tanner - AppreciateHub]** 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
    
     ![Azure AD 單一登入][7]
 3. 在 [設定應用程式設定]  對話方塊頁面上，執行下列步驟：

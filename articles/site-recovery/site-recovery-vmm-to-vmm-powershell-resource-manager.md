@@ -298,7 +298,7 @@ ms.lasthandoff: 02/21/2017
 
         $jobIDResult =  Start-AzureRmSiteRecoveryUnPlannedFailoverJob -Direction PrimaryToRecovery -ProtectionEntity $protectionEntity
 
-## <a name="a-namemonitora-monitor-activity"></a><a name=monitor></a>監視活動
+## <a name=monitor></a>監視活動
 使用下列命令來監視活動。 請注意，您必須在工作之間等候處理程序完成。
 
     Do

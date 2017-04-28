@@ -64,9 +64,9 @@ ms.lasthandoff: 02/16/2017
 | EnableDeadLetteringOnMessageExpiration |true |
 | EnableBatchedOperations |true |
 
-例如，針對命名空間 **contoso`contoso/x-servicebus-transfer/0` 建立的第一個積存佇列名為 **。
+例如，針對命名空間 **contoso`contoso/x-servicebus-transfer/0` 建立的第一個積存佇列名為**。
 
-建立佇列時，程式碼會先查看是否有此佇列存在。 如果此佇列不存在，則會建立佇列。 程式碼不會清除「額外的」待處理項目佇列。 具體而言，如果具有主要命名空間 **contoso** 的應用程式要求&5; 個積存佇列，但有一個具有路徑 `contoso/x-servicebus-transfer/7` 的積存佇列存在，則該額外的積存佇列仍然存在，但不會使用。 系統明確允許額外的待處理項目佇列存在但不會使用。 身為命名空間擁有者，您必須負責清除任何未使用/不需要的待處理項目佇列。 此決策的原因是服務匯流排無法得知您的命名空間中所有佇列的目的為何。 此外，如果佇列具有指定的名稱但不符合所假設的 [QueueDescription][QueueDescription]，則您的理由是您自己要變更預設行為。 不保證您的程式碼會修改待處理項目佇列。 請務必徹底測試您的變更。
+建立佇列時，程式碼會先查看是否有此佇列存在。 如果此佇列不存在，則會建立佇列。 程式碼不會清除「額外的」待處理項目佇列。 具體而言，如果具有主要命名空間 **contoso** 的應用程式要求 5 個積存佇列，但有一個具有路徑 `contoso/x-servicebus-transfer/7` 的積存佇列存在，則該額外的積存佇列仍然存在，但不會使用。 系統明確允許額外的待處理項目佇列存在但不會使用。 身為命名空間擁有者，您必須負責清除任何未使用/不需要的待處理項目佇列。 此決策的原因是服務匯流排無法得知您的命名空間中所有佇列的目的為何。 此外，如果佇列具有指定的名稱但不符合所假設的 [QueueDescription][QueueDescription]，則您的理由是您自己要變更預設行為。 不保證您的程式碼會修改待處理項目佇列。 請務必徹底測試您的變更。
 
 ## <a name="custom-messagesender"></a>自訂 MessageSender
 傳送時，所有訊息都會經過內部 [MessageSender][MessageSender] 物件，該物件在一切可行時會正常表現，但在出現問題時會重新導向至積存佇列。 收到非暫時性失敗時，會啟動計時器。 在由 [FailoverInterval][FailoverInterval] 屬性值組成的 [TimeSpan][TimeSpan] 期間 (其間並未傳送任何成功訊息) 過後，會進行容錯移轉。 此時，每個實體會發生下列情況︰
