@@ -44,7 +44,7 @@ ms.lasthandoff: 04/03/2017
 1. 從[這裡](https://github.com/Azure/Azure-Media-Services-Explorer)下載 AMSE 工具。
 1. 使用您的服務金鑰登入您的媒體服務帳戶。
 
-    若要取得帳戶名稱和金鑰資訊，請移至 [Azure 入口網站](https://portal.azure.com/)，然後選取 AMS 帳戶。 選取 [Settings] (設定) > [Keys] (金鑰)。 [管理金鑰] 視窗會顯示帳戶名稱以及主要和次要金鑰。 複製帳戶名稱和主要金鑰的值。
+    若要取得帳戶名稱和金鑰資訊，請移至 [Azure 入口網站](https://portal.azure.com/)，然後選取 AMS 帳戶。 選取 [Settings] \(設定) > [Keys] \(金鑰)。 [管理金鑰] 視窗會顯示帳戶名稱以及主要和次要金鑰。 複製帳戶名稱和主要金鑰的值。
 
 ![臉部修訂](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough001.png)
 
@@ -73,7 +73,7 @@ ms.lasthandoff: 04/03/2017
     ![臉部修訂](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough006.png)
 
 3. (選擇性) 編輯 annotations.json 檔案，例如增加周框方塊界限。 
-4. 以滑鼠右鍵按一下第一階段中的輸出資產，選取修訂器，並以 [Redact] (修訂) 模式執行。 
+4. 以滑鼠右鍵按一下第一階段中的輸出資產，選取修訂器，並以 [Redact] \(修訂) 模式執行。 
 
     ![臉部修訂](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough007.png)
 
@@ -104,7 +104,7 @@ ms.lasthandoff: 04/03/2017
 
 ### <a name="use-the-tool"></a>使用工具
 
-1. 在您的 Azure 媒體服務帳戶中使用 [Analyze] (分析) 模式的 [Redactor MP] (修訂器 MP) 處理您的視訊。 
+1. 在您的 Azure 媒體服務帳戶中使用 [Analyze] \(分析) 模式的 [Redactor MP] \(修訂器 MP) 處理您的視訊。 
 2. 下載原始視訊檔和「修訂 - 分析」工作的輸出。 
 3. 執行視覺化檢視應用程式，然後選擇上述檔案。 
 
