@@ -31,8 +31,6 @@ ms.lasthandoff: 02/03/2017
 > * [Azure Resource Manager 範本](data-factory-copy-activity-tutorial-using-azure-resource-manager-template.md)
 > * [REST API](data-factory-copy-activity-tutorial-using-rest-api.md)
 > * [.NET API](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-> 
-> 
 
 Azure Data Factory 的 [複製精靈] 可讓您輕鬆快速地建立管線，以實作資料擷取/移動案例。 因此，建議在第一個步驟中使用精靈來建立資料移動案例的範例管線。 本教學課程說明如何建立 Azure data factory、啟動 [複製精靈]、執行一系列的步驟，以提供有關資料擷取/移動案例的詳細資料。 當您完成精靈中的步驟時，精靈會自動建立具有複製活動的管線，以將資料從 Azure Blob 儲存體複製到 Azure SQL Database。 如需複製活動的詳細資訊，請參閱 [資料移動活動](data-factory-data-movement-activities.md) 文章。 
 

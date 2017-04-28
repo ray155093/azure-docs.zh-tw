@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/07/2017
-ms.author: mbaldwin
+ms.date: 04/27/2017
+ms.author: bryanla
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 9c52e9257272c5b0c55c488d2c7ca6fef500260b
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -51,10 +52,5 @@ ms.openlocfilehash: 9c52e9257272c5b0c55c488d2c7ca6fef500260b
 不過，當網頁正在載入時，該項目會呈暗灰色且標示為 [無法使用] 。 這是暫時性狀態。 如果您稍待片刻，該項目將變成可用狀態。 如果延遲太久，重新整理網頁通常就能解決問題。
 
 ![螢幕擷取畫面：Active Directory 無法使用](./media/active-directory-troubleshooting/not-available.png)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

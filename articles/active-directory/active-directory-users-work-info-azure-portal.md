@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
-ms.author: curtand
+ms.date: 04/26/2017
+ms.author: curtand;jeffsta
 translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: b344136bdcfba22416933ced9a91ef2a82082d11
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -43,9 +44,4 @@ ms.openlocfilehash: b344136bdcfba22416933ced9a91ef2a82082d11
 * [在 Azure Active Directory 預覽版中將使用者指派給系統管理員角色](active-directory-users-assign-role-azure-portal.md)
 * [在 Azure Active Directory 預覽版中新增或變更使用者的設定檔資訊](active-directory-users-profile-azure-portal.md)
 * [在 Azure Active Directory 預覽版中將使用者從目錄中刪除](active-directory-users-delete-user-azure-portal.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 
