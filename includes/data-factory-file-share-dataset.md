@@ -48,8 +48,3 @@
 ],
 ```
 在此範例中，SliceStart 的年、月、日和時間會擷取到 folderPath 和 fileName 屬性所使用的個別變數。
-
-
-<!--HONumber=Jan17_HO3-->
-
-

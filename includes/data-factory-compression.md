@@ -47,8 +47,3 @@
 * 從來自內部部署檔案系統之純文字檔案讀取資料、使用 GZip 格式加以壓縮並將壓縮的資料寫入到 Azure blob。 您可以利用設為 GZip 的 `compression` `type` JSON 屬性，定義輸出 Azure Blob 資料集。
 * 從 FTP 伺服器讀取.zip 檔、將它解壓縮以取得其中的檔案，並將這些檔案放入 Azure Data Lake Store。 您可以利用設為 ZipDeflate 的 `compression` `type` JSON 屬性，定義輸入 FTP 資料集。
 * 從 Azure blob 讀取 GZIP 壓縮資料，將其解壓縮、使用 BZIP2 將其壓縮，並將結果資料寫入到 Azure blob。 您會在此情況下利用設為 GZIP 的 `compression` `type` 定義輸入 Azure Blob 資料集，並利用設為 BZIP2 的 `compression` `type` 定義輸出資料集。   
-
-
-<!--HONumber=Jan17_HO3-->
-
-

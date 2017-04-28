@@ -13,8 +13,3 @@
    
    ![顯示驗證 VM 身分識別相關訊息的螢幕擷取畫面。](./media/virtual-machines-log-on-win-server/cert-warning.png)
 
-
-
-<!--HONumber=Jan17_HO3-->
-
-

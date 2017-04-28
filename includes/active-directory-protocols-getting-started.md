@@ -31,8 +31,3 @@ ms.openlocfilehash: b31fa50a62d5b26a7346f212076ec3a2b0386f5e
   * 若為原生應用程式，請提供 **重新導向 URI**，以供 Azure AD 用來傳回權杖回應。 輸入應用程式特定的值，例如 `http://MyFirstAADApp`
 * 完成註冊後，Azure AD 將會為您的應用程式指派一個唯一用戶端識別碼 (應用程式識別碼)。 您在後續章節中將會用到這個值，所以請從應用程式頁面中複製此值。
 
-
-
-<!--HONumber=Feb17_HO1-->
-
-

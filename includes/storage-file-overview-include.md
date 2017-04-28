@@ -5,8 +5,3 @@ Azure 檔案儲存體是使用標準 [伺服器訊息區塊 (SMB) 通訊協定](
 
 您可以使用 [Azure 入口網站](https://portal.azure.com)、Azure 儲存體 PowerShell Cmdlet、Azure 儲存體用戶端程式庫或 Azure 儲存體 REST API 來建立 Azure 檔案共用。 此外，由於檔案共用為 SMB 共用，因此您可以透過熟悉的標準檔案系統 API 加以存取。
 
-
-
-<!--HONumber=Jan17_HO3-->
-
-

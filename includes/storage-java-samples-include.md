@@ -8,7 +8,3 @@
 * [開始使用 Java 中的 Azure 佇列服務](https://azure.microsoft.com/resources/samples/storage-queue-java-getting-started/)
 * [開始使用 Java 中的 Azure 表格服務](https://azure.microsoft.com/resources/samples/storage-table-java-getting-started/)
 * [儲存體 Java 用戶端程式庫範例](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage)
-
-<!--HONumber=Jan17_HO3-->
-
-
