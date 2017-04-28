@@ -249,7 +249,7 @@ Azure 警示僅針對計量。 請建立一個會在每次事件發生時超出�
 
 ### <a name="firewall-door"></a>防火牆門
 
-可讓您的 Web 伺服器將遙測資料傳送給我們的端點 https://dc.services.visualstudio.com:443 和 https://rt.services.visualstudio.com:443。 
+可讓您的 Web 伺服器將遙測資料傳送給我們的端點 https://dc.services.visualstudio.com:443 和 https://rt.services.visualstudio.com:443 。 
 
 ### <a name="proxy"></a>Proxy
 

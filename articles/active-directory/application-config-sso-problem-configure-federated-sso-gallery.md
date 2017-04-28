@@ -73,7 +73,7 @@ ms.lasthandoff: 04/17/2017
 
 -   洽詢應用程式廠商，以取得符合 Azure AD 上預先設定之模式的值
 
--   或者，您可以連絡 Azure AD 小組 (<aadapprequest@microsoft.com >)，或在教學課程中留下註解，以要求應用程式支援模式的更新
+-   或者，您可以連絡 Azure AD 小組 <aadapprequest@microsoft.com> ，或在教學課程中留下註解，以要求應用程式支援模式的更新
 
 ## <a name="where-do-i-set-the-entityid-user-identifier-format"></a>我可以在何處設定 EntityID (使用者識別碼) 格式
 
