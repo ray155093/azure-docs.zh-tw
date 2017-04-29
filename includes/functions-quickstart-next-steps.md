@@ -10,7 +10,3 @@
   討論 Azure Functions 可用的服務方案，包括使用情況主控方案，以及如何選擇正確的方案。 
 * [什麼是 Azure 應用程式服務？](../articles/app-service/app-service-value-prop-what-is.md)  
   Azure Functions 會使用 Azure App Service 平台執行核心功能，例如部署、環境變數和診斷。 
-
-<!--HONumber=Feb17_HO1-->
-
-

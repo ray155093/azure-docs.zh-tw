@@ -20,8 +20,3 @@
     perl Unregister-ASRComponent.pl -IPAddress <IP_of_Process_Server> -Component PS
     ```
 4. 這將會從系統清除處理序伺服器的詳細資料。
-
-
-<!--HONumber=Feb17_HO1-->
-
-

@@ -5,7 +5,7 @@
 
 ## <a name="attach-an-empty-disk"></a>連接空的磁碟
 1. 開啟 Azure CLI 1.0，並[連接到您的 Azure 訂用帳戶](../articles/xplat-cli-connect.md)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
-2. 輸入 `azure vm disk attach-new` 建立並連接新的磁碟，如下列範例所示。 將 *myVM* 取代為 Linux 虛擬機器的名稱，並指定磁碟大小 (GB) (在此範例中為&100; GB)：
+2. 輸入 `azure vm disk attach-new` 建立並連接新的磁碟，如下列範例所示。 將 *myVM* 取代為 Linux 虛擬機器的名稱，並指定磁碟大小 (GB) (在此範例中為 100 GB)：
 
     ```azurecli
     azure vm disk attach-new myVM 100

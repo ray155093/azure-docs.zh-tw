@@ -6,8 +6,3 @@
 | [從 .NET Web App 呼叫 Web API](../articles/active-directory-b2c/active-directory-b2c-devquickstarts-web-api-dotnet.md) | [在 Javascript SPA (NodeJS) 中新增註冊和登入](https://github.com/Azure-Samples/active-directory-b2c-javascript-singlepageapp-nodejs-webapi)| |
 | [在 ASP.NET Core 應用程式中新增註冊和登入](https://github.com/azure-samples/active-directory-dotnet-webapp-openidconnect-aspnetcore-b2c) | | |
 
-
-
-<!--HONumber=Feb17_HO1-->
-
-

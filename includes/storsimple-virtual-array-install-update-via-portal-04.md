@@ -53,7 +53,3 @@
 9. 成功安裝更新之後，您會在 [裝置更新] 刀鋒視窗中看見關於此效果的訊息。 軟體版本也會變更為 **10.0.10289.0**。
 
     ![更新裝置](../includes/media/storsimple-virtual-array-install-update-via-portal-04/azupdate17m1.png)
-
-<!--HONumber=Feb17_HO1-->
-
-

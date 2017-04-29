@@ -4,8 +4,3 @@
 
    > [!NOTE]
    > 如果您要以沒有 VMware vCenter 或主機伺服器系統管理員權限的帳戶新增 VMware vSphere 伺服器或 vSphere 主機，確定帳戶已啟用這些權限：資料中心、資料存放區、資料夾、主機、網路、資源、虛擬機器和 vSphere 分散式交換器。 此外，VMware vCenter 伺服器需要啟用儲存體檢視權限。
-
-
-<!--HONumber=Feb17_HO2-->
-
-
