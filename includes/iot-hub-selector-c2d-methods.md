@@ -26,7 +26,3 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個裝置和�
 
 [使用 IoT 中樞傳送雲端到裝置訊息]: ../articles/iot-hub/iot-hub-csharp-csharp-c2d.md
 [IoT 中樞入門]: ../articles/iot-hub/iot-hub-node-node-getstarted.md
-
-<!--HONumber=Dec16_HO1-->
-
-

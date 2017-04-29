@@ -107,8 +107,3 @@ Azure IoT 中樞和可能是解決方案一部份的其他服務，允許使用 
 [lnk-appservices]: https://azure.microsoft.com/services/app-service/
 [lnk-logicapps]: https://azure.microsoft.com/services/app-service/logic/
 [lnk-blob]: https://azure.microsoft.com/services/storage/
-
-
-<!--HONumber=Dec16_HO1-->
-
-

@@ -6,8 +6,3 @@ ExpressRoute 虛擬網路閘道可以使用下列 SKU：
 * HighPerformance
 * UltraPerformance
 
-
-
-<!--HONumber=Dec16_HO1-->
-
-

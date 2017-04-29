@@ -51,8 +51,3 @@
 4. 我們不會將服務主體指派給 **CDN 設定檔參與者** 角色，而是會指派個別使用者或群組。  在此範例中，您可以看到我已將「CDN 示範使用者」指派給 **CDN 設定檔參與者**角色。  
 
     ![個別使用者存取](./media/cdn-app-dev-prep/cdn-aad-user-include.png)
-
-
-<!--HONumber=Dec16_HO1-->
-
-

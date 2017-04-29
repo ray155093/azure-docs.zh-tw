@@ -52,8 +52,3 @@
 
 如需 Azure 訂用帳戶和帳戶的詳細資訊，請參閱[如何：連線至訂用帳戶](/powershell/azureps-cmdlets-docs#step-3-connect)。
 
-
-
-<!--HONumber=Dec16_HO1-->
-
-

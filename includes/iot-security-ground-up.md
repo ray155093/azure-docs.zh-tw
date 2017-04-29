@@ -78,8 +78,3 @@ Microsoft Azure IoT 套件根據設計會建置安全性措施，啟用安全的
 * [**Logic Apps**](https://azure.microsoft.com/services/app-service/logic/)：Azure App Service 的 Logic Apps 功能可協助您將 IoT 方案整合到現有的企業營運系統並自動化工作流程。 Logic Apps 可讓開發人員設計從觸發程序開始，然後執行一系列步驟的工作流程 — 使用功能強大的連接器來與您的商務程序整合的規則和動作。 Logic Apps 提供與 SaaS、雲端架構及內部部署應用程式的廣大生態系統的即時連接。
 * [**Azure Blob 儲存體**](https://azure.microsoft.com/services/storage/)：可靠且符合經濟效益的雲端儲存體，適用於裝置要傳送到雲端的資料。
 
-
-
-<!--HONumber=Dec16_HO1-->
-
-

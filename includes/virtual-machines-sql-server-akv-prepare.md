@@ -32,8 +32,3 @@
 
 金鑰保存庫 URL 稍後會指派給 PowerShell 指令碼中的 **$akvURL** 參數，以啟用 Azure 金鑰保存庫整合。
 
-
-
-<!--HONumber=Dec16_HO1-->
-
-

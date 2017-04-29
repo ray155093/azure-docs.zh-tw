@@ -71,7 +71,3 @@ Logger 模組只會取用來自訊息代理程式的訊息，永遠不會對訊�
 <!-- Links -->
 [lnk-helloworld-sample]: https://github.com/Azure/azure-iot-gateway-sdk/tree/master/samples/hello_world
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
-
-<!--HONumber=Dec16_HO1-->
-
-

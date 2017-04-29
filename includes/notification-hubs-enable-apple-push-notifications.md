@@ -116,8 +116,3 @@ Apple Push Notification Service (APNS) 使用憑證來驗證您的通知服務�
 7. 當新的佈建設定檔建立好時，按一下它來下載並安裝在 Xcode 開發電腦上。 然後按一下 [ **完成**]。
    
       ![](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-provisioning-profile-ready.png)
-
-
-<!--HONumber=Dec16_HO1-->
-
-

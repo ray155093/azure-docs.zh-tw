@@ -15,8 +15,3 @@
 您可以對其他平台重複步驟 3 到 5。
 
 [Azure 入口網站]: https://portal.azure.com/
-
-
-<!--HONumber=Dec16_HO1-->
-
-
