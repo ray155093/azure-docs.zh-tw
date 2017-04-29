@@ -155,7 +155,7 @@ VSA 適用於同步處理引擎和 SQL 位於相同伺服器的情況。 如果�
 #### <a name="group-managed-service-account"></a>群組受管理服務帳戶
 如果您使用遠端 SQL Server，我們建議使用**群組受管理服務帳戶**。 如需如何讓 Active Directory 準備好使用群組受管理服務帳戶的詳細資訊，請參閱[群組受管理服務帳戶概觀](https://technet.microsoft.com/library/hh831782.aspx)。
 
-若要使用此選項，請在 [安裝必要元件][](active-directory-aadconnect-get-started-custom.md#install-required-components) 頁面上，依序選取 [使用現有的服務帳戶] 和 [受管理服務帳戶]。  
+若要使用此選項，請在 [安裝必要元件](active-directory-aadconnect-get-started-custom.md#install-required-components) 頁面上，依序選取 [使用現有的服務帳戶] 和 [受管理服務帳戶]。  
 ![VSA](./media/active-directory-aadconnect-accounts-permissions/serviceaccount.png)  
 系統也支援使用[獨立受管理服務帳戶](https://technet.microsoft.com/library/dd548356.aspx)。 不過，由於這些帳戶只能在本機電腦上使用，所以對預設虛擬服務帳戶使用這些帳戶並沒有任何實質好處。
 
