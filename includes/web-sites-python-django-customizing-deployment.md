@@ -25,15 +25,10 @@
     \.deployment
     \deploy.cmd
 
-您可以使用 [Azure command-line interface[Azure command-line interface] 建立檔案。  從您的專案資料夾中使用此命令：
+您可以使用 [Azure command-line interface][Azure command-line interface] 建立檔案。  從您的專案資料夾中使用此命令：
 
     azure site deploymentscript --python
 
 當這些檔案不存在時，Azure 會建立一個暫存的部署指令碼，並執行該指令碼。  它與您使用上述命令建立的指令碼完全相同。
 
 [Azure command-line interface]: http://azure.microsoft.com/downloads/
-
-
-<!--HONumber=Nov16_HO2-->
-
-

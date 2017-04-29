@@ -11,7 +11,7 @@
       
         ![新增磁碟區](./media/storsimple-create-volume/ScreenshotUpdate1VolumeFlow.png)
       
-      1. 按一下箭頭圖示  ![arrow-icon](./media/storsimple-create-volume/HCS_ArrowIcon-include.png)  以移至下一頁。
+      1. 按一下箭頭圖示  ![arrow-icon](./media/storsimple-create-volume/HCS_ArrowIcon-include.png) 以移至下一頁。
 3. 在 [其他設定]  對話方塊中，加入新的存取控制記錄 (ACR)：
    
    1. 提供 ACR 的 [名稱]  。
@@ -29,9 +29,4 @@
 ![提供的影片](./media/storsimple-create-volume/Video_icon.png) **提供的影片**
 
 若要觀看影片示範如何建立 StorSimple 磁碟區，請按一下 [這裡](https://azure.microsoft.com/documentation/videos/create-a-storsimple-volume/)。
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

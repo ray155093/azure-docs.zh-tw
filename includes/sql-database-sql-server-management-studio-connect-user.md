@@ -30,8 +30,3 @@
 ## <a name="troubleshoot-connection-failures"></a>針對連接失敗進行疑難排解
 最常見的連接失敗原因是伺服器名稱 (請記得，<*servername*> 是邏輯伺服器而非資料庫的名稱)、使用者名稱或密碼錯誤，以及基於安全性理由不允許連接伺服器。 
 
-
-
-<!--HONumber=Nov16_HO2-->
-
-

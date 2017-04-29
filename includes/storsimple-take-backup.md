@@ -16,7 +16,7 @@
    3. 選取保留時間。 保留選項會根據備份頻率而定。 例如，針對每日原則，可以指定保留幾週，而針對每月原則，則可指定保留幾個月。
    4. 選取備份原則的開始時間和日期。
    5. 選取 [啟用]  核取方塊以啟用備份原則。 
-   6. 按一下核取圖示  ![核取圖示](./media/storsimple-take-backup/HCS_CheckIcon-include.png)  以儲存原則。
+   6. 按一下核取圖示  ![核取圖示](./media/storsimple-take-backup/HCS_CheckIcon-include.png) 以儲存原則。
       
       ![Add-backup-policy](./media/storsimple-take-backup/HCS_AddBackupPolicyWizard2M-include.png)
       
@@ -27,9 +27,4 @@
 ![提供的影片](./media/storsimple-take-backup/Video_icon.png) **提供的影片**
 
 若要觀看影片示範如何建立 StorSimple 備份，請按一下 [這裡](https://azure.microsoft.com/documentation/videos/take-a-storsimple-backup/)。
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

@@ -26,8 +26,3 @@ Azure 資料表儲存體服務可儲存大量的結構化資料。 此服務是�
 
 [Table1]: ./media/storage-table-concepts-include/table1.png
 [OData.org]: http://www.odata.org/
-
-
-<!--HONumber=Nov16_HO2-->
-
-

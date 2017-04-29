@@ -11,7 +11,7 @@
    
     ![](./media/mobile-engagement-ios-send-push/native-push-settings.png)
 
-## <a name="a-idsendasend-a-notification-to-your-app"></a><a id="send"></a>傳送通知至應用程式
+## <a id="send"></a>傳送通知至應用程式
 現在，我們將建立簡單的推播通知活動，它會傳送推播至我們的應用程式：
 
 1. 瀏覽至您的 Mobile Engagement 入口網站中的 [Reach]  索引標籤
@@ -39,9 +39,4 @@
 8. 若您擁有與此 iOS 裝置配對的 Apple Watch，您將會在 Apple Watch 上看見該通知：
    
     ![](./media/mobile-engagement-ios-send-push/apple-watch.png)
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

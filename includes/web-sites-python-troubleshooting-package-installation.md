@@ -62,8 +62,3 @@ Mac/Linux 使用者：如果您無法存取 Windows 電腦，請參閱 [建立�
 [建立執行 Windows 的虛擬機器]: http://azure.microsoft.com/documentation/articles/virtual-machines-windows-hero-tutorial/
 [Microsoft Visual C++ Compiler for Python 2.7]: http://aka.ms/vcpython27
 [Microsoft Visual C++ 2010 Express]: http://go.microsoft.com/?linkid=9709949
-
-
-<!--HONumber=Nov16_HO2-->
-
-

@@ -44,8 +44,3 @@
 6. 按一下核取圖示  ![核取圖示](./media/storsimple-configure-new-storage-account/HCS_CheckIcon-include.png)。 成功建立儲存體帳戶之後，系統將會通知您。
 7. 新建立的儲存體帳戶將顯示於 [設定] 頁面上的 [儲存體帳戶] 下方。 按一下 [儲存] 以儲存新的儲存體帳戶。 系統提示您進行確認時，按一下 [確定]  。
 
-
-
-<!--HONumber=Nov16_HO2-->
-
-

@@ -11,7 +11,7 @@
    
     ![StorSimple 註冊裝置 2](./media/storsimple-configure-and-register-device-u1/HCS_RegisterYourDevice2_U1-include.png)
    
-     完成步驟 5-12，為裝置設定最小的必要網路設定。 **這些設定步驟必須在裝置的主動控制器上執行。**  序列主控台功能表會在橫幅訊息中指出控制站狀態。 如果您未連接到主動控制器，請中斷連線，然後連接到主動控制器。
+     完成步驟 5-12，為裝置設定最小的必要網路設定。 **這些設定步驟必須在裝置的主動控制器上執行。** 序列主控台功能表會在橫幅訊息中指出控制站狀態。 如果您未連接到主動控制器，請中斷連線，然後連接到主動控制器。
 5. 在命令提示字元中，輸入您的密碼。 預設裝置密碼是 **Password1**。
 6. 輸入以下命令： `Invoke-HcsSetupWizard`。 
 7. 安裝精靈將協助您設定裝置的網路設定。 請提供下列資訊： 
@@ -62,9 +62,4 @@
         如果數分鐘之後裝置仍然離線，請確定您的防火牆網路已依照 [StorSimple 裝置網路需求](../articles/storsimple/storsimple-system-requirements.md)中的說明加以設定。 
        
         請確認連接埠 9354 已開啟供輸出通訊使用，因為 StorSimple Manager 服務對裝置服務匯流排通訊也使用此連接埠。
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

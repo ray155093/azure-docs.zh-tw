@@ -27,8 +27,3 @@
     
     ![建立虛擬網路磚](./media/vpn-gateway-basic-vnet-rm-portal-include/deploying150.png "Creating virtual network tile")
 
-
-
-<!--HONumber=Nov16_HO2-->
-
-

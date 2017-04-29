@@ -34,8 +34,3 @@
 
 如需更多與連線問題有關的詳細資訊，請參閱[排解、診斷和防止 SQL Database 的 SQL 連接錯誤和暫時性錯誤](../articles/sql-database/sql-database-connectivity-issues.md)。
 
-
-
-<!--HONumber=Nov16_HO2-->
-
-

@@ -29,8 +29,3 @@
     ![已連接的服務對話方塊](./media/vs-storage-aspnet-getting-started-setup-dev-env/vs-storage-aspnet-getting-started-setup-dev-env-3.png)
 
 1. 在 [Azure 儲存體] 對話方塊上，選取您想要使用的所需 Azure 儲存體帳戶，然後選取 [新增]。
-
-
-<!--HONumber=Dec16_HO3-->
-
-

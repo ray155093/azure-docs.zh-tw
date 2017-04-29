@@ -13,8 +13,3 @@
     
     ![建立站對站連線](./media/vpn-gateway-add-site-to-site-connection-rm-portal-include/connectionstatus450.png)
 
-
-
-<!--HONumber=Nov16_HO2-->
-
-

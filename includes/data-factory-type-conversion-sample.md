@@ -75,8 +75,3 @@
 
 在此情況下，Data Factory 會自動進行類型轉換，包括將資料從 Blob 移到 Azure SQL 時，含有自訂 datetime 格式 (使用 fr-fr 文化特性) 的 Datetime 欄位。
 
-
-
-<!--HONumber=Dec16_HO3-->
-
-

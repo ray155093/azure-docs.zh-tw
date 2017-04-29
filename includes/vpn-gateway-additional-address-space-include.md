@@ -13,8 +13,3 @@
    
     ![子網路設定](./media/vpn-gateway-additional-address-space-include/ok.png)
 
-
-
-<!--HONumber=Nov16_HO2-->
-
-

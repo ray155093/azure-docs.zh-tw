@@ -1,6 +1,6 @@
 儲存體帳戶分為兩種類型：
 
-### <a name="generalpurpose-storage-accounts"></a>一般用途的儲存體帳戶
+### <a name="general-purpose-storage-accounts"></a>一般用途的儲存體帳戶
 一般用途的儲存體帳戶可讓您使用單一帳戶存取 Azure 儲存體服務，例如資料表、佇列、檔案、Blob 和 Azure 虛擬機器磁碟。 這種類型的儲存體帳戶有兩個效能層︰
 
 * 標準儲存體效能層，可讓您儲存資料表、佇列、檔案、 Blob 和 Azure 虛擬機器磁碟。
@@ -26,9 +26,4 @@ Blob 儲存體帳戶會公開 [存取層]  屬性，該屬性可在帳戶建立�
 在建立儲存體帳戶之前，您必須擁有 Azure 訂閱，訂閱是指可讓您存取各種 Azure 服務的方案。 您可以利用 [免費帳戶](https://azure.microsoft.com/pricing/free-trial/)來開始使用 Azure。 在決定購買訂用計畫之後，您便可以選擇各種 [購買選項](https://azure.microsoft.com/pricing/purchase-options/)。 如果您是 [MSDN 訂閱者](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)，您將取得可在 Azure 服務 (包括 Azure 儲存體) 中使用的每月免費額度。 如需批量價格的詳細資訊，請參閱 [Azure 儲存體價格 ](https://azure.microsoft.com/pricing/details/storage/) 。
 
 若要了解如何建立儲存體帳戶，請參閱 [建立儲存體帳戶](../articles/storage/storage-create-storage-account.md#create-a-storage-account) 以取得詳細資訊。 單一訂用帳戶可讓您建立最多 100 個唯一命名的儲存體帳戶。 如需關於儲存體帳戶限制的詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](../articles/storage/storage-scalability-targets.md) 。
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

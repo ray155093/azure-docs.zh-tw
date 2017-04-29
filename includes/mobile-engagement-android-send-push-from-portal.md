@@ -14,7 +14,7 @@
    
     ![](./media/mobile-engagement-android-send-push/api-key.png)
 
-## <a name="a-idsendasend-a-notification-to-your-app"></a><a id="send"></a>傳送通知至應用程式
+## <a id="send"></a>傳送通知至應用程式
 我們將建立一個簡單的推播通知活動，它會將推播通知傳送至我們的應用程式。
 
 1. 瀏覽至您的 Mobile Engagement 入口網站中的 [觸達]  索引標籤
@@ -41,9 +41,4 @@
 6. 最後一個步驟：按一下 [啟動]  來啟用活動以傳送推播通知。
    
     ![](./media/mobile-engagement-android-send-push/campaign-activate.png)
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

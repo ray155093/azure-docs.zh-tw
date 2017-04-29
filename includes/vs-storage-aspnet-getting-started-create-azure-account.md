@@ -4,8 +4,3 @@
 您也可以使用 [Azure PowerShell](../articles/storage/storage-powershell-guide-full.md)、[Azure CLI](../articles/storage/storage-azure-cli.md)，或 [Storage Resource Provider Client Library for .NET](https://msdn.microsoft.com/library/azure/mt131037.aspx) 來建立 Azure 儲存體帳戶。
 
 
-
-
-<!--HONumber=Dec16_HO3-->
-
-
