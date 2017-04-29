@@ -12,8 +12,3 @@
 
 因為 Azure Redis 快取執行個體是由 Microsoft 設定與管理，所以 Azure Redis 快取並未支援所有的 Redis 命令。 如需詳細資訊，請參閱 [Azure Redis 快取中不支援的 Redis 命令]((redis-cache/cache-configure.md#redis-commands-not-supported-in-azure-redis-cache)。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

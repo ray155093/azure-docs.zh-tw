@@ -2,8 +2,3 @@
 
 您必須先了解可以使用靜態公用 IP 的時機和使用方式，才能在 VM 中實作靜態公用 IP。 請閱讀 [IP 位址指定概觀](../articles/virtual-network/virtual-network-ip-addresses-overview-arm.md) 以詳細了解 Azure 中的 IP 位址指定。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

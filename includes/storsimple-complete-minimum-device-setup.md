@@ -29,16 +29,11 @@
    您將會回到裝置的 [快速入門]  頁面。
    
    > [!NOTE]
-   > 您可以隨時存取 [ **設定** 頁面。
+   > 您可以隨時存取  **設定** 頁面。
    > 
    > 
 
 ![提供的影片](./media/storsimple-complete-minimum-device-setup/Video_icon.png) **提供的影片**
 
 若要觀看影片示範如何完成最小量裝置設定，請按一下 [這裡](https://azure.microsoft.com/documentation/videos/minimum-storsimple-device-setup/)。
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

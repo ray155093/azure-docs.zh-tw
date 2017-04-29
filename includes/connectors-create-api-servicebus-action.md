@@ -15,8 +15,3 @@
 8. 儲存對您工作流程所做的變更。   
    ![服務匯流排動作圖像 4](./media/connectors-create-api-servicebus/action-4.png)     
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

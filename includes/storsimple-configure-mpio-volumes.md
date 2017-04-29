@@ -6,8 +6,3 @@
     ![MPIO 內容探索多重路徑](./media/storsimple-configure-mpio-volumes/IC741003.png)
 4. 當系統提示您將伺服器重新開機。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

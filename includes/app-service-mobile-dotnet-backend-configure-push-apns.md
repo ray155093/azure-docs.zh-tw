@@ -92,8 +92,3 @@
             module.exports = table;
 
     2. 當您在本機電腦上編輯檔案時，請重新發佈伺服器專案。
-
-
-<!--HONumber=Nov16_HO3-->
-
-

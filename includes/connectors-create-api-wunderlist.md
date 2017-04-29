@@ -16,8 +16,3 @@
 5. 最後，選取 [授權] 按鈕  
    ![](./media/connectors-create-api-wunderlist/wunderlist-5.png)  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

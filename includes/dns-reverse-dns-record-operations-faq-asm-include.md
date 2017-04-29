@@ -32,8 +32,3 @@ Azure 網站不支援反向 DNS。 Azure PaaS 角色與 IaaS 虛擬機器則支�
 ### <a name="can-i-send-emails-to-external-domains-from-my-azure-compute-services"></a>我可以從我的 Azure 計算服務將電子郵件傳送至外部網域嗎？
 
 否。 [Azure 計算服務不支援將電子郵件傳送至外部網域](https://blogs.msdn.microsoft.com/mast/2016/04/04/sending-e-mail-from-azure-compute-resource-to-external-domains/)。
-
-
-<!--HONumber=Nov16_HO3-->
-
-

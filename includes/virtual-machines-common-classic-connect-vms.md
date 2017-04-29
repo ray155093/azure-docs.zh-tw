@@ -25,8 +25,3 @@
    
    ![將虛擬機器加入至現有的雲端服務。](./media/virtual-machines-common-classic-connect-vms/Connect-VM-to-CS.png)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

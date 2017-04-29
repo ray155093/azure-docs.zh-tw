@@ -75,8 +75,3 @@ JSON 格式的範例 NSG：
 * 取得 [NSG](../articles/virtual-network/virtual-networks-nsg.md)的詳細資訊。
 * 閱讀關於 NSG 的 [REST API 參考文件](https://msdn.microsoft.com/library/azure/mt163615.aspx) 。
 * 閱讀關於安全性規則的 [REST API 參考文件](https://msdn.microsoft.com/library/azure/mt163580.aspx) 。
-
-
-<!--HONumber=Nov16_HO3-->
-
-

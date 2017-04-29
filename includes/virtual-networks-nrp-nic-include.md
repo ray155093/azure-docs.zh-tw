@@ -75,8 +75,3 @@ JSON 格式的範例公用 IP 位址：
 ### <a name="additional-resources"></a>其他資源
 * 讀取適用於 NIC 的 [REST API 參考文件](https://msdn.microsoft.com/library/azure/mt163579.aspx) 。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

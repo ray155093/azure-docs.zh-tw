@@ -80,8 +80,3 @@ JSON 格式的流量管理員範例：
 ## <a name="additional-resources"></a>其他資源
 如需詳細資訊，請閱讀 [流量管理員的 REST API 文件](https://msdn.microsoft.com/library/azure/mt163664.aspx) 。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

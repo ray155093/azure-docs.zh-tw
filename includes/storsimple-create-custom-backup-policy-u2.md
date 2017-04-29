@@ -18,8 +18,3 @@
 4. 按一下核取圖示  ![核取圖示](./media/storsimple-add-backup-policy-u2/HCS_CheckIcon-include.png) 以完成。
 5. 您將回到 [ **備份原則** ] 頁面。 備份原則的表格式清單將會更新以顯示自訂原則。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

@@ -31,8 +31,3 @@
     
     ![新的虛擬網路](./media/virtual-networks-create-vnet-classic-portal-include/vnet-create-portal-figure5.png)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

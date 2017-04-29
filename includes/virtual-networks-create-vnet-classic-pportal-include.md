@@ -26,8 +26,3 @@
     
     ![在 Azure 入口網站中建立 VNet](./media/virtual-networks-create-vnet-classic-pportal-include/vnet-create-pportal-figure7.gif)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

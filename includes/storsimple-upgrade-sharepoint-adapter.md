@@ -31,8 +31,3 @@
    > 
 2. 安裝新的 StorSimple Adapter for SharePoint。 新的配接器會自動辨識先前已為 RBS 啟用或停用的內容資料庫，並使用先前的設定。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

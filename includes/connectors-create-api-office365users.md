@@ -14,8 +14,3 @@
 4. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：  
    ![Office 365 使用者的建立步驟](./media/connectors-create-api-office365users/office365users-4.png)  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

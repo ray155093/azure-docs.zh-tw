@@ -6,8 +6,3 @@
 * 用來對儲存在 Azure StorSimple 中的資料加密的憑證公開金鑰，會安全地在 Azure 傳統入口網站中供人使用，而私密金鑰則會保留在 StorSimple 裝置中。 在 StorSimple 虛擬裝置上，公開和私密金鑰都會儲存於 Azure 中。
 * 虛擬裝置會裝載於 Microsoft Azure 資料中心。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

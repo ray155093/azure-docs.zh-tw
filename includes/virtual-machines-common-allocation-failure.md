@@ -99,7 +99,7 @@ GeneralError*
 ## <a name="allocation-scenario-stagingproduction-deployments-platform-as-a-service-only"></a>配置案例：預備/生產環境部署 (僅適用於平台即服務)
 **Error**
 
-New_General* 或 New_VMSizeNotSupported*
+New_General *或 New_VMSizeNotSupported*
 
 **叢集釘選的原因**
 
@@ -112,7 +112,7 @@ New_General* 或 New_VMSizeNotSupported*
 ## <a name="allocation-scenario-affinity-group-vmservice-proximity"></a>配置案例：同質群組 (VM/服務鄰近性)
 **Error**
 
-New_General* 或 New_VMSizeNotSupported*
+New_General *或 New_VMSizeNotSupported*
 
 **叢集釘選的原因**
 
@@ -125,7 +125,7 @@ New_General* 或 New_VMSizeNotSupported*
 ## <a name="allocation-scenario-affinity-group-based-virtual-network"></a>配置案例：同質群組式虛擬網路
 **Error**
 
-New_General* 或 New_VMSizeNotSupported*
+New_General *或 New_VMSizeNotSupported*
 
 **叢集釘選的原因**
 
@@ -151,7 +151,7 @@ New_General* 或 New_VMSizeNotSupported*
 ## <a name="allocation-scenario-resize-a-vm-or-add-vms-to-an-existing-availability-set"></a>配置案例：調整 VM 大小，或將 VM 加入至現有的可用性設定組
 **Error**
 
-Upgrade_VMSizeNotSupported* 或 GeneralError*
+Upgrade_VMSizeNotSupported *或 GeneralError*
 
 **叢集釘選的原因**
 
@@ -205,9 +205,4 @@ GeneralError*
 **GeneralError***
 
 「伺服器發生內部錯誤。 請重試要求。」 或「無法產生服務的配置。」
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

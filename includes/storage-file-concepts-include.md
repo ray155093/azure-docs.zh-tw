@@ -30,8 +30,3 @@
   `http://samples.file.core.windows.net/logs/CustomLogs/Log1.txt`
 
 如需有關如何為共用、目錄和檔案命名的詳細資料，請參閱 [命名和參考共用、目錄、檔案及中繼資料](http://msdn.microsoft.com/library/azure/dn167011.aspx)。
-
-
-<!--HONumber=Nov16_HO3-->
-
-

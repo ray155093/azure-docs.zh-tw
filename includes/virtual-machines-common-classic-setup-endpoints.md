@@ -58,8 +58,3 @@
 
 規則的評估順序是從第一個規則開始，一直到最後一個規則為止。 這表示規則應會以最寬鬆到最嚴格的順序來排列。 如需範例和詳細資訊，請參閱 [什麼是網路存取控制清單？](../articles/virtual-network/virtual-networks-acl.md)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

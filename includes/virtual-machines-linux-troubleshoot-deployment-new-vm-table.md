@@ -5,8 +5,3 @@
 | Linux 一般化 |N<sup>1</sup> |Y |N<sup>3</sup> |Y |
 | Linux 特殊化 |Y |N<sup>2</sup> |Y |N<sup>4</sup> |
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

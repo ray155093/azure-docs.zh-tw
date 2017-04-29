@@ -32,8 +32,3 @@ Azure Resource Manager 範本可讓您藉由定義資源之間的相依性，以
 ## <a name="identifying-the-publisher-type-and-typehandlerversion-for-any-extension"></a>識別任何擴充功能的發行者、類型和 typeHandlerVersion
 Azure VM 擴充功能是由 Microsoft 和受信任的第 3 方發行者所發佈，每個擴充功能會依其發行者、類型和 typeHandlerVersion 進行唯一識別。 其判斷方式如下：  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

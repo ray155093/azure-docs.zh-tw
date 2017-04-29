@@ -27,8 +27,3 @@
    ![SFTP 動作條件圖像 13](./media/connectors-create-api-sftp/condition-13.png)   
 9. 儲存對您工作流程所做的變更  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

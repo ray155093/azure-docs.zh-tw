@@ -19,8 +19,3 @@
 * 針對 .NET API 應用程式，啟動[遠端偵錯工作階段](../articles/app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md#remotedebug)，並檢查傳遞至使用 ADAL 來取得持有人權杖之程式碼，或傳遞至針對預期的服務主體識別碼檢查宣告之程式碼的變數值。 請注意，程式碼可以從許多不同的來源取得設定值，因此透過這種方式可能可以找到意外結果。 例如，如果您在設定 Azure App Service 環境設定時將 `ida:ClientId` 拼錯為 `ida:ClientID`，程式碼可能忽略 Azure App Service Environment 設定的值，從 Web.config 檔案取得 `ida:ClientId` 值。 
 * 如果無法在正常的 Internet Explorer 視窗中運作，現有的登入可能會產生干擾；請嘗試 InPrivate 並嘗試使用 Chrome 或 Firefox。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

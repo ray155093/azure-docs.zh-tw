@@ -12,8 +12,3 @@
 3. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：  
    ![MicrosoftTranslator 連接的建立步驟](./media/connectors-create-api-microsofttranslator/microsofttranslator-3.png)  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

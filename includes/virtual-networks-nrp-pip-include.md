@@ -39,8 +39,3 @@ JSON 格式的範例公用 IP 位址：
 * 了解 [執行個體層級公用 IP 位址](../articles/virtual-network/virtual-networks-instance-level-public-ip.md)。
 * 讀取公用 IP 位址的 [REST API 參考文件](https://msdn.microsoft.com/library/azure/mt163638.aspx) 。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

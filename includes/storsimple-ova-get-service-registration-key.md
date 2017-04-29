@@ -5,8 +5,3 @@
    1. 找到 [服務註冊金鑰] 。
    2. 按一下複製圖示 ![](./media/storsimple-ova-get-service-registration-key/image6-include.png) ，複製此金鑰並加以儲存，以供日後使用。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

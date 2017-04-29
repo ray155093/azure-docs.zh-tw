@@ -17,8 +17,3 @@ articles/sql-data-warehouse/sql-data-warehouse-manage-scale-out-tasks-rest-api.m
 * 您的資料可供使用。
 * 您需要重新啟動工作負載查詢。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

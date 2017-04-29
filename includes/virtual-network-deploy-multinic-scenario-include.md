@@ -3,8 +3,3 @@
 
 ![多個 NIC 案例](./media/virtual-network-deploy-multinic-scenario-include/Figure1.png)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

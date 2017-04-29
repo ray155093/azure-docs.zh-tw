@@ -14,8 +14,3 @@
 4. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：  
    ![MailChimp 步驟 4](./media/connectors-create-api-mailchimp/mailchimp-4.png)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

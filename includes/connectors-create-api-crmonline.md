@@ -16,8 +16,3 @@
 4. 請注意，已建立連線。 現在，請繼續進行您邏輯應用程式中的其他步驟：  
    ![](./media/connectors-create-api-crmonline/dynamics-properties.png)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

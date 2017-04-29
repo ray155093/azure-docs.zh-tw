@@ -17,8 +17,3 @@
 4. 請注意，已建立連線。 現在，請繼續進行您邏輯應用程式中的其他步驟：   
     ![Office 365 連線建立步驟](./media/connectors-create-api-office365-outlook/office365-sendemailproperties.png)  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

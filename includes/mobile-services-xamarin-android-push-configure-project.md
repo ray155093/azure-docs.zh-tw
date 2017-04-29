@@ -39,8 +39,3 @@
 
 您的 **ToDoActivity** 現在可供新增推送通知。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

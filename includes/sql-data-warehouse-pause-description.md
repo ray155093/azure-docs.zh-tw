@@ -19,8 +19,3 @@ articles/sql-data-warehouse/sql-data-warehouse-manage-scale-out-tasks-rest-api.m
 * 不會影響資料儲存體，您的資料保持不變。 
 * SQL 資料倉儲會取消所有執行中或已排入佇列的作業。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

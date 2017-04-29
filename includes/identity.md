@@ -11,7 +11,7 @@
 * [使用 Azure Active Directory](#ad)
 * [使用 Azure Active Directory 存取控制](#ac)
 
-## <a name="a-nameadinvmarunning-windows-server-active-directory-in-virtual-machines"></a><a name="adinvm"></a>在虛擬機器中執行 Windows Server Active Directory
+## <a name="adinvm"></a>在虛擬機器中執行 Windows Server Active Directory
 在 Azure 虛擬機器中執行 Windows Server AD，與在內部部署中執行 Windows Server AD 非常類似。 [圖 1](#fig1) 顯示其外觀的典型範例。
 
 ![虛擬機器中的 Azure Active Directory](./media/identity/identity_01_ADinVM.png)
@@ -36,7 +36,7 @@
 
 此外，還有其他可能性。 例如，您不需要將雲端的 Windows Server AD 連線到內部部署資料中心。 如果您要執行為特定一組使用者 (例如，他們全都以雲端型身分識別單獨登入) 提供服務的 SharePoint 伺服器陣列，您可以在 Azure 上建立一個獨立樹系。 您使用此技術的方式取決於您的目的。 (如需使用 Windows Server AD 搭配 Azure 的詳細指引， [請參閱這裡](http://msdn.microsoft.com/library/windowsazure/jj156090.aspx))。
 
-## <a name="a-nameadausing-azure-active-directory"></a><a name="ad"></a>使用 Azure Active Directory
+## <a name="ad"></a>使用 Azure Active Directory
 隨著 SaaS 應用程式日益普及，因而引發一個明顯的問題：這些雲端型應用程式應使用哪種目錄服務？ Azure Active Directory 是 Microsoft 對於該問題的解決之道。
 
 在雲端使用此目錄服務的主要選項有兩個：
@@ -73,7 +73,7 @@
 
 Azure AD 目前並未完全取代內部部署 Windows Server AD。 如先前所述，雲端目錄的架構簡單許多，但也有所欠缺，例如群組原則、儲存電腦相關資訊的功能，以及對 LDAP 的支援。 (事實上，無法將 Windows 電腦設定成讓使用者僅使用 Azure AD 進行登入 - 不支援此案例)。Azure AD 的最初目標包括讓企業使用者不需維護個別的登入，並且讓內部部署目錄管理員不需手動同步處理其內部部署目錄與其組織所用的每個 SaaS 應用程式，即可存取雲端的應用程式。 但是，過一段時間後，便期望此雲端目錄服務能處理更廣泛的案例。
 
-## <a name="a-nameacausing-azure-active-directory-access-control"></a><a name="ac"></a>使用 Azure Active Directory 存取控制
+## <a name="ac"></a>使用 Azure Active Directory 存取控制
 雲端型身分識別技術可用於解決各種問題。 舉例來說，Azure Active Directory 可將多個 SaaS 應用程式的單一登入提供給組織的使用者。 但雲端的身分識別技術也可用於其他層面。
 
 假設有應用程式希望讓使用者使用多個「身分識別提供者 (IdP)」 所簽發的權杖進行登入。 現今有為數眾多的身分識別提供者，包括 Facebook、Google、Microsoft 和其他提供者，而應用程式經常讓使用者使用上述其中一個身分識別進行登入。 既然可以依賴已經存在的身分識別，應用程式為何還要麻煩地維護自己的使用者和密碼清單？ 對於要記住不只一個使用者名稱和密碼的使用者，以及建立應用程式且不必再維護自己的使用者名稱和密碼清單的人而言，接受現有的身分識別比較方便。
@@ -101,9 +101,4 @@ Azure AD 目前並未完全取代內部部署 Windows Server AD。 如先前所�
 
 ## <a name="about-the-author"></a>關於作者
 David Chappell 是 Chappell & Associates [www.davidchappell.com](http://www.davidchappell.com) (位於美國加州舊金山) 的主席。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

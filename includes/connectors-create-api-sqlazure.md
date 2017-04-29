@@ -40,8 +40,3 @@
    
     ![SQL Azure 連接建立步驟](./media/connectors-create-api-sqlazure/table.png)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

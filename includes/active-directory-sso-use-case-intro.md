@@ -16,8 +16,3 @@ Azure AD 可讓您整合 App 和佈建的帳戶。 這可透過下列兩種方�
 
 當您將 App 整合到 Azure AD 時，可以將使用者已建立的應用程式身分識別對應至其各自的 Azure AD 身分識別。  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

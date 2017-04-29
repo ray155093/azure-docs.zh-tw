@@ -36,7 +36,3 @@ Azure Active Directory 必須驗證您在使用 Azure 資源管理員的資源�
     ```
 
 [lnk-authenticate-arm]: https://msdn.microsoft.com/library/azure/dn790557.aspx
-
-<!--HONumber=Nov16_HO3-->
-
-

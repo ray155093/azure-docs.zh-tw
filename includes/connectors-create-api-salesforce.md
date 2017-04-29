@@ -16,8 +16,3 @@
 5. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：  
    ![Salesforce 連線圖像 5](./media/connectors-create-api-salesforce/salesforce-5.png)  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

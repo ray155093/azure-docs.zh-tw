@@ -40,8 +40,3 @@
 現在，您可以測試邏輯應用程式︰在 Salesforce 中，建立一個符合您所建立條件的新潛在客戶。  如果您完全按照本逐步解說操作，就只要建立一個電子郵件地址包含 *amazon.com* 的新潛在客戶即可。 幾秒鐘之後，應該會觸發您的邏輯應用程式，而結果看起來可能會像這樣︰  
 ![Salesforce 動作圖像 9](./media/connectors-create-api-salesforce/action-9.png)  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

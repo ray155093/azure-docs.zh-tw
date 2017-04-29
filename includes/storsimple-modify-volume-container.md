@@ -17,8 +17,3 @@
        ![使用頻寬範本 2 修改磁碟區容器](./media/storsimple-modify-volume-container/HCS_ModifyVCBT2-include.png)
    3. 按一下核取圖示 ![核取圖示](./media/storsimple-modify-volume-container/HCS_CheckIcon-include.png) 儲存已更新的設定。 [ **磁碟區容器** ] 頁面將會更新以反映所做的變更。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

@@ -3,7 +3,7 @@
 
 ### <a name="can-i-host-arpa-zones-for-my-isp-assigned-ip-blocks-on-azure-dns"></a>我可以在 Azure DNS 上，為 ISP 指派的 IP 區塊裝載 ARPA 區域嗎？
 
- 是。 完全支援在 Azure DNS 中託管您自己的 IP 範圍的 ARPA 區域。
+是。 完全支援在 Azure DNS 中託管您自己的 IP 範圍的 ARPA 區域。
 
 只要[在 Azure DNS 中建立區域](../articles/dns/dns-getstarted-create-dnszone.md)，然後與您的 ISP 合作來[委派區域](../articles/dns/dns-domain-delegation.md)。  接著，您就可以使用與其他記錄類型相同的方式來管理每個反向對應的 PTR 記錄。
 
@@ -15,9 +15,4 @@
 
 ### <a name="can-i-host-arpa-zones-for-both-ipv4-and-ipv6-addresses-in-azure-dns"></a>我可以在 Azure DNS 中同時託管 IPv4 和 IPv6 位址的 ARPA 區域？
 
- 是。
-
-
-<!--HONumber=Nov16_HO3-->
-
-
+是。

@@ -55,8 +55,3 @@ JSON 格式的範例路由表：
 * 閱讀關於路由表的 [REST API 參考文件](https://msdn.microsoft.com/library/azure/mt502549.aspx) 。
 * 閱讀關於使用者定義路由的 [REST API 參考文件](https://msdn.microsoft.com/library/azure/mt502539.aspx) 。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

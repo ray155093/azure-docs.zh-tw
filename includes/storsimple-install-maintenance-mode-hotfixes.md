@@ -15,8 +15,3 @@
 5. 在某一個控制站上套用 Hotfix 之後，請登入另一個控制站。 使用您為前一個控制站所做的方式來套用 Hotfix。
 6. 套用 Hotfix 之後，結束維護模式。 如需相關指示，請參閱[步驟 4：結束維護模式](../articles/storsimple/storsimple-update-device.md#step4)。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

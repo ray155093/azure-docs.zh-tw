@@ -14,8 +14,3 @@ articles/sql-data-warehouse/sql-data-warehouse-manage-scale-out-tasks-rest-api.m
 
 如需目前的 DWU 設定的清單，請參閱 [服務容量限制](../articles/sql-data-warehouse/sql-data-warehouse-service-capacity-limits.md)中的「服務等級目標」。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

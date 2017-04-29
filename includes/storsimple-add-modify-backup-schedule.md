@@ -11,15 +11,10 @@
    2. 選取備份類型為本機或雲端快照集。
    3. 指定備份頻率、保留期，以及排程的開始時間。
    4. 啟用或停用排程。
-   5. 按一下核取圖示  ![核取圖示](./media/storsimple-add-modify-backup-schedule/HCS_CheckIcon-include.png)  以儲存排程的變更。
+   5. 按一下核取圖示  ![核取圖示](./media/storsimple-add-modify-backup-schedule/HCS_CheckIcon-include.png) 以儲存排程的變更。
 5. 在 [ **磁碟區** ] 區段，新增或移除磁碟機到此原則。
 6. 將變更儲存到此原則。
 7. 系統將提示您進行確認。 按一下 [ **確定** ] 儲存原則。
 
 [ **備份原則** ] 頁面將會更新以儲存原則的變更。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

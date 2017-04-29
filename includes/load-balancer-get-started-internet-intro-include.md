@@ -5,8 +5,3 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡
 * 對虛擬機器 (VM) 的連入網際網路流量進行負載平衡。 我們將此案例中的負載平衡器稱為 [網際網路面向的負載平衡器](../articles/load-balancer/load-balancer-internet-overview.md)。
 * 對虛擬網路 (VNet) 中的 VM 之間、雲端服務中的 VM 之間，或內部部署電腦與跨單位虛擬網路中的 VM 之間的流量進行負載平衡。 我們將此案例中的負載平衡器稱為 [內部負載平衡器 (ILB)](../articles/load-balancer/load-balancer-internal-overview.md)。
 * 將外部流量轉送到特定的 VM 執行個體。
-
-
-<!--HONumber=Nov16_HO2-->
-
-

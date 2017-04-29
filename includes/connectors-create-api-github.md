@@ -16,8 +16,3 @@
 5. 請注意，入口網站中已建立連線。 您可以繼續建立邏輯應用程式，並在其中使用 GitHub：   
    ![](./media/connectors-create-api-github/github-5.png)   
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

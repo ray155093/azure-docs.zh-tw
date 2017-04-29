@@ -18,8 +18,3 @@
 7. 開啟 [SharePoint 管理中心] 頁面。 您應該會看到一個包含 StorSimple Adapter for SharePoint 連結的 StorSimple 設定群組。
 8. 移至下一個步驟： [設定 RBS](#configure-rbs)。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

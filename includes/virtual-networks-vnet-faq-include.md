@@ -203,8 +203,3 @@ VNet 會與另一個 VNet，以及其他裝載於 Azure 基礎結構中的服務
 ### <a name="is-there-tooling-support-for-vnets"></a>是否有工具支援 VNet？
 是。 您可以針對各種平台使用 PowerShell 和命令列工具。 如需詳細資訊，請參閱 [這裡](http://go.microsoft.com/fwlink/?LinkId=317721)。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

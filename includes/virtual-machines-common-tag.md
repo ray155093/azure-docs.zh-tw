@@ -42,8 +42,3 @@
 
 ![Azure 入口網站中儲存的新標記](./media/virtual-machines-common-tag/azure-portal-saved-new-tag.png)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

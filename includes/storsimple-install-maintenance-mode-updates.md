@@ -17,8 +17,3 @@
 8. 當目前的控制站上已安裝更新並重新啟動後，請連接到另一個控制站，然後執行步驟 1 到 6。
 9. 更新這兩個控制站之後，結束維護模式。 如需相關指示，請參閱[步驟 4：結束維護模式](../articles/storsimple/storsimple-update-device.md#step4)。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

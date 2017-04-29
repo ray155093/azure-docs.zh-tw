@@ -14,8 +14,3 @@
         ![新增儲存體帳戶](./media/storsimple-ova-configure-new-storage-account/addnewstorageaccount-include.png)
 4. 新建立的儲存體帳戶將顯示於 [設定] 頁面上的 [儲存體帳戶] 下方。 
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

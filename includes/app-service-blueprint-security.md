@@ -16,8 +16,3 @@
   * [為 ASE 設定傳入網路流量的存取控制](../articles/app-service-web/app-service-app-service-environment-control-inbound-traffic.md)
   * [安全地從 ASE 連線到後端資源](../articles/app-service-web/app-service-app-service-environment-securely-connecting-to-backend-resources.md)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-
