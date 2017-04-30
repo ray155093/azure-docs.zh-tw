@@ -30,8 +30,3 @@
 
 如果您需要提供參數機密的值 (例如密碼)，請將該值加入金鑰保存庫。 在部署期間擷取金鑰保存庫，如先前範例所示。 如需詳細資訊，請參閱 [在部署期間傳遞安全值](../articles/azure-resource-manager/resource-manager-keyvault-parameter.md)。 
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

@@ -19,8 +19,3 @@ wwwroot
 
 每個函數都會有一個資料夾，其中包含一或多個程式碼檔案、function.json 組態及其他相依性。
 
-
-
-<!--HONumber=Nov16_HO4-->
-
-

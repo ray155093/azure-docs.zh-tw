@@ -6,8 +6,3 @@
    ![在 iOS 上執行的快速入門應用程式](./media/app-service-mobile-ios-quickstart/mobile-quickstart-startup-ios.png)
 
 [Azure 入口網站]: https://portal.azure.com/
-
-
-<!--HONumber=Nov16_HO3-->
-
-
