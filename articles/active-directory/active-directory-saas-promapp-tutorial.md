@@ -12,20 +12,22 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/20/2017
+ms.date: 03/23/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: 04a045f41965b093aab71e59cd9b5f328b44de84
-ms.openlocfilehash: ac73b5c2ece8044d9f75e017428c43259f8a9357
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: 610c731195ffa92ccd915b93e8c901f47b2ff16a
+ms.lasthandoff: 04/03/2017
 
 
 ---
 # <a name="tutorial-azure-active-directory-integration-with-promapp"></a>教學課程：Azure Active Directory 與 Promapp 整合
-本教學課程旨在說明如何整合 Promapp 與 Azure Active Directory (Azure AD)。  
+本教學課程旨在說明如何整合 Promapp 與 Azure Active Directory (Azure AD)。
+
 Promapp 與 Azure AD 整合提供下列優點： 
 
 * 您可以在 Azure AD 中控制可存取 Promapp 的人員 
-* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Promapp (單一登入)
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Promapp 單一登入 (SSO)
 * 您可以在 Azure Active Directory 傳統入口網站集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -34,25 +36,25 @@ Promapp 與 Azure AD 整合提供下列優點：
 若要設定與 Promapp 的 Azure AD 整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 啟用 Promapp 單一登入的訂用帳戶
+* 已啟用 Promapp 單一登入 (SSO) 的訂用帳戶
 
-> [!NOTE]
-> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
+>[!NOTE]
+>若要測試本教學課程中的步驟，我們不建議使用生產環境。
 > 
 > 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。 
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。 
 
 ## <a name="scenario-description"></a>案例描述
 此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
 1. 從資源庫加入 Promapp 
-2. 設定並測試 Azure AD 單一登入
+2. 設定並測試 Azure AD 單一登入 (SSO)
 
-## <a name="adding-promapp-from-the-gallery"></a>從資源庫加入 Promapp
+## <a name="add-promapp-from-the-gallery"></a>從資源庫加入 Promapp
 若要設定 Promapp 與 Azure AD 整合，您需要從資源庫將 Promapp 加入到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫加入 Promapp，請執行下列步驟：**
@@ -77,13 +79,14 @@ Promapp 與 Azure AD 整合提供下列優點：
    
     ![應用程式][500]
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
-本節的目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試對 Promapp 的 Azure AD 單一登入。
+## <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
+本節的目標是要說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Promapp 搭配運作的 Azure AD SSO。
 
-若要讓單一登入運作，Azure AD 必須知道 Promapp 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 Promapp 中的相關使用者之間，建立連結關聯性。  
+若要讓 SSO 運作，Azure AD 必須知道 Promapp 中與 Azure AD 互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 Promapp 中的相關使用者之間，建立連結關聯性。  
+
 建立此連結關聯性的方法，就是將 Azure AD 中 [使用者名稱] 的值指定為 Promapp 中 [Username] 的值。
 
-若要設定及測試對 Promapp 的 Azure AD 單一登入，您需要完成下列建置組塊：
+若要設定及測試與 Promapp 搭配運作的 Azure AD SSO，您需要完成下列建置組塊：
 
 1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
@@ -91,10 +94,10 @@ Promapp 與 Azure AD 整合提供下列優點：
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
-本節的目標是在 Azure AD 傳統入口網站啟用 Azure AD 單一登入，並在您的 Promapp 應用程式中設定單一登入。
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+本節的目標是要在 Azure 傳統入口網站中啟用 Azure AD SSO，並在您的 Promapp 應用程式中設定 SSO。
 
-**若要使用 Promapp 設定 Azure AD 單一登入，請執行下列步驟：**
+**若要設定與 Promapp 搭配運作的 Azure AD SSO，請執行下列步驟：**
 
 1. 在 Azure AD 傳統入口網站的 [Promapp] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
@@ -137,8 +140,8 @@ Promapp 與 Azure AD 整合提供下列優點：
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
-本節目標是在 Azure 傳統入口網站中建立名為 Britta Simon 的測試使用者。
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
 
@@ -180,14 +183,13 @@ Promapp 與 Azure AD 整合提供下列優點：
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-promapp-tutorial/create_aaduser_08.png) 
    
    1. 記下 [新密碼] 的值。
-   2. 按一下 [完成]。   
+   2. 按一下頁面底部的 [新增] 。   
 
-### <a name="creating-a-promapp-test-user"></a>建立 Promapp 測試使用者
-Promapp 應用程式支援 Just-in-Time 佈建。
-這表示，在使用存取面板嘗試存取應用程式期間，必要時會自動建立使用者帳戶。  
+### <a name="create-a-promapp-test-user"></a>建立 Promapp 測試使用者
+Promapp 應用程式支援 Just-in-Time 佈建。 這表示，在使用存取面板嘗試存取應用程式期間，必要時會自動建立使用者帳戶。  
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
-本節的目標是要將 Promapp 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+本節的目標是將對 Promapp 的存取權授與 Britta Simon，使她能夠使用 Azure SSO。
 
 ![指派使用者][200] 
 
@@ -207,8 +209,9 @@ Promapp 應用程式支援 Just-in-Time 佈建。
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。  
+### <a name="test-single-sign-on"></a>測試單一登入
+本節的目標是要使用「存取面板」來測試您的 Azure AD SSO 組態。
+
 當您在存取面板中按一下 Promapp 磚時，應該會自動登入您的 Promapp 應用程式。
 
 ## <a name="additional-resources"></a>其他資源
@@ -248,9 +251,4 @@ Promapp 應用程式支援 Just-in-Time 佈建。
 [400]: ./media/active-directory-saas-promapp-tutorial/tutorial_promapp_400.png
 [401]: ./media/active-directory-saas-promapp-tutorial/tutorial_promapp_401.png
 [402]: ./media/active-directory-saas-promapp-tutorial/tutorial_promapp_402.png
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

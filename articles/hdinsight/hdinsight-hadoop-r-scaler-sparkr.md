@@ -1,5 +1,5 @@
 ---
-title: "在 Azure HDInsight 混合使用 ScaleR 與 SparkR | Microsoft Docs"
+title: "搭配 Azure HDInsight 使用 ScaleR 與 SparkR | Microsoft Docs"
 description: "使用 ScaleR 與 SparkR 搭配 R Server 與 HDInsight"
 services: hdinsight
 documentationcenter: 
@@ -14,19 +14,19 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/24/2017
+ms.date: 04/04/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 5e8fb7642dca815c64b9aed8184672259d3facf8
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
+ms.openlocfilehash: bab5268c4aab2210e8ace2c3a1db23b34887c2ed
+ms.lasthandoff: 04/04/2017
 
 
 ---
 
-# <a name="mixing-use-of-scaler-and-sparkr-in-hdinsight"></a>在 HDInsight 中混合使用 ScaleR 與 SparkR
+# <a name="combining-scaler-and-sparkr-in-hdinsight"></a>在 HDInsight 中結合 ScaleR 與 SparkR
 
-了解如何混合使用 Spark 上用於資料操作的 SparkR 與用於分析的 Microsoft R Server。 雖然這兩個套件都在 Hadoop 的 Spark 執行引擎之上執行，以利用分散式處理的最新功能，但要求其自己的 Spark 工作階段也會使它們無法使用記憶體內部資料共用。 在新近 R Server 版本補救這項缺失之前，其因應措施是維護不重疊的 Spark 工作階段，並透過中繼檔案交換資料。 如您所見，這兩項需求都很容易達成。
+了解如何結合 Spark 上用於資料操作的 ScaleR 功能與用於分析的 Microsoft R Server。 雖然這兩個套件都在 Hadoop 的 Spark 執行引擎之上執行，以利用分散式處理的最新功能，但要求其自己的 Spark 工作階段也會使它們無法使用記憶體內部資料共用。 在新近 R Server 版本處理此缺失之前，其因應措施是維護不重疊的 Spark 工作階段，並透過中繼檔案交換資料。 如您所見，這兩項需求都很容易達成。
 
 我們一開始會使用 Mario Inchiosa 和 Roni Burd 在 Strata 2016 演講 (也可透過 [Building a Scalable Data Science Platform with R](http://event.on24.com/eventRegistration/console/EventConsoleNG.jsp?uimode=nextgeneration&eventid=1160288&sessionid=1&key=8F8FB9E2EB1AEE867287CD6757D5BD40&contenttype=A&eventuserid=305999&playerwidth=1000&playerheight=650&caller=previewLobby&text_language_id=en&format=fhaudio) 網路研討會觀看) 中分享的範例進行示範。此範例使用 SparkR 聯結知名航線抵達延遲資料集與起飛和抵達機場的天氣資料集，並使用該資料做為 ScaleR 羅吉斯迴歸模型的輸入，以供預測班機抵達延遲。
 

@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 02/26/2016
 ms.author: asmalser
 translationtype: Human Translation
-ms.sourcegitcommit: c579135f798ea0c2a5461fdd7c88244d2d6d78c6
-ms.openlocfilehash: e9ab491639485950b17de4be190b6797c1660530
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: d3952e65aaf3ca89f83e99409e196840dd692a01
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -31,7 +32,7 @@ ms.openlocfilehash: e9ab491639485950b17de4be190b6797c1660530
 
 ![][1]
 
-您可能需要編輯在 SAML 權杖中簽發的宣告的兩個可能原因為：•被寫入的應用程式需要一組不同的宣告 URI 或宣告值 •您的應用程式的部署方式需要 NameIdentifier 宣告不同於儲存在 Azure Active Directory 中的使用者名稱 (也稱為使用者主體名稱)。 
+您可能需要編輯在 SAML 權杖中發出的宣告的兩個可能原因為：被寫入的應用程式需要一組不同的宣告 URI 或宣告值 您的應用程式的部署方式需要 NameIdentifier 宣告不同於儲存在 Azure Active Directory 中的使用者名稱 (也稱為使用者主體名稱)。 
 
 您可以編輯任一個預設的宣告值，方法是選取每當您的滑鼠游標移到 SAML 權杖屬性表格的其中一個資料列上方時會顯示於右側的鉛筆形狀圖示。 您也可以使用 **X** 圖示移除宣告 (除了 NameIdentifier 以外)，並使用 [新增使用者屬性] 按鈕新增宣告。
 
@@ -42,7 +43,7 @@ ms.openlocfilehash: e9ab491639485950b17de4be190b6797c1660530
 
 在 [屬性值] 功能表中，選取 [user.mail] 以將 NameIdentifier 宣告設為目錄中使用者的電子郵件地址，或選取 [user.onpremisessamaccountname] 以設為已從內部部署的 Azure AD 同步處理的使用者 SAM 帳戶名稱。 
 
-您也可以使用特殊的 ExtractMailPrefix() 函式來移除電子郵件地址或使用者主體名稱的網域尾碼，使得只有使用者名稱的第一個部分可以通過 (例如 "joesmith" 而不是 joesmith@contoso.com)。
+您也可以使用特殊的 ExtractMailPrefix() 函式來移除電子郵件地址或使用者主體名稱的網域尾碼，使得只有使用者名稱的第一個部分可以通過 (例如 joesmith 而不是 joesmith@contoso.com)。
 
 ![][3]
 
@@ -63,13 +64,7 @@ ms.openlocfilehash: e9ab491639485950b17de4be190b6797c1660530
 * [SAML 型單一登入疑難排解](active-directory-saml-debugging.md)
 
 <!--Image references-->
-[1]: ./media/active-directory-saml-claims-customization/claimscustomization1.png
-[2]: ./media/active-directory-saml-claims-customization/claimscustomization2.png
-[3]: ./media/active-directory-saml-claims-customization/claimscustomization3.png
-[4]: ./media/active-directory-saml-claims-customization/claimscustomization4.png
-
-
-
-<!--HONumber=Jan17_HO3-->
-
-
+[1]: ../media/active-directory-saml-claims-customization/claimscustomization1.png
+[2]: ../media/active-directory-saml-claims-customization/claimscustomization2.png
+[3]: ../media/active-directory-saml-claims-customization/claimscustomization3.png
+[4]: ../media/active-directory-saml-claims-customization/claimscustomization4.png

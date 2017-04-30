@@ -13,12 +13,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 04/08/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: 5ed72d95ae258d6fa8e808cd72ab6e8a665901c9
-ms.openlocfilehash: 4c72a7c7127f2d387926ac2722aeb3f1e5f7c2a6
-ms.lasthandoff: 02/22/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: c1360cb76c6fe8fd5177f13ea67f2109b5777521
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -1205,7 +1205,7 @@ JOIN 的實際作用是透過圖形中很難投射的交叉乘積來形成 Tuple
         }
     }
 
-`AndersenFamily` 有一個小孩養了一隻寵物。 因此，交叉乘積會從此家族產生&1; 個資料列 (1*1*1)。 不過，WakefieldFamily 有兩個小孩，但只有一個小孩 "Jesse" 養了多隻寵物。 而 Jesse 擁有 2 隻寵物。 因此，交叉乘積會從此家族產生 1*1*2 = 2 個資料列。
+`AndersenFamily` 有一個小孩養了一隻寵物。 因此，交叉乘積會從此家族產生 1 個資料列 (1*1*1)。 不過，WakefieldFamily 有兩個小孩，但只有一個小孩 "Jesse" 養了多隻寵物。 而 Jesse 擁有 2 隻寵物。 因此，交叉乘積會從此家族產生 1*1*2 = 2 個資料列。
 
 在下一個範例中，對 `pet`有一個額外的篩選。 這會排除寵物名稱不是 "Shadow" 的所有 Tuple。 請注意，我們可以從陣列建置 Tuple、根據 Tuple 的任何元素進行篩選，以及投射元素的任何組合。 
 
@@ -1411,7 +1411,7 @@ DocumentDB 也支援一般作業的數個內建函數，這些函數可用於查
 | [FLOOR (num_expr)](#bk_floor) | 傳回小於或等於指定之數值運算式的最大整數。 |
 | [EXP (num_expr)](#bk_exp) | 傳回指定之數值運算式的指數。 |
 | [LOG (num_expr [,base])](#bk_log) | 傳回指定之數值運算式的自然對數，或使用指定之基底的對數 |
-| [LOG10 (num_expr)](#bk_log10) | 傳回指定之數值運算式的以&10; 為基底的對數值。 |
+| [LOG10 (num_expr)](#bk_log10) | 傳回指定之數值運算式的以 10 為基底的對數值。 |
 | [ROUND (num_expr)](#bk_round) | 傳回數值，四捨五入到最接近的整數值。 |
 | [TRUNC (num_expr)](#bk_trunc) | 傳回數值，截斷至最接近的整數值。 |
 | [SQRT (num_expr)](#bk_sqrt) | 傳回指定之數值運算式的平方根。 |
@@ -1769,6 +1769,7 @@ DocumentDB 查詢提供者執行從 LINQ 查詢到 DocumentDB SQL 查詢的最�
 * **Where**：篩選會轉譯為 SQL WHERE，並支援 &&、|| 及 ! 之間的轉譯 到 SQL 運算子之間的轉譯
 * **SelectMany**：可讓陣列回溯到 SQL JOIN 子句。 可用來鏈結/巢串運算式來篩選陣列元素
 * **OrderBy 和 OrderByDescending**：轉譯為 ORDER BY 遞增/遞減順序
+* 彙總的 **Count**、**Sum**、**Min**、**Max** 與 **Average** 運算子，以及其非同步對應項 **CountAsync**、**SumAsync**、**MinAsync**、**MaxAsync** 與 **AverageAsync**。
 * **CompareTo**：轉譯為範圍比較。 通常用於字串，因為字串在 .NET 中是無法比較的
 * **Take**：轉譯為 SQL TOP，以限制查詢的結果
 * **數學函數**：支援從 .NET 的 Abs、Acos、Asin、Atan、Ceiling、Cos、Exp、Floor、Log、Log10、Pow、Round、Sign、Sin、Sqrt、Tan、Truncate 轉譯為對等的 SQL 內建函式。
@@ -1777,11 +1778,6 @@ DocumentDB 查詢提供者執行從 LINQ 查詢到 DocumentDB SQL 查詢的最�
 * **地理空間擴充函數**：支援從虛設常式方法 Distance、Within、IsValid 及 IsValidDetailed 轉譯為對等的 SQL 內建函式。
 * **使用者定義函式的擴充函數**：支援從虛設常式方法 UserDefinedFunctionProvider.Invoke 轉譯為對應的使用者定義函式。
 * **其他**：支援聯合和條件式運算子的轉譯。 可根據內容將 Contains 轉譯為字串 CONTAINS、ARRAY_CONTAINS 或 SQL IN。
-
-> [!NOTE]
-> 目前不支援彙總運算子 **Count、Sum、Min、Max 和 Average**，但未來的 SDK 版本會提供支援。  
-> 
-> 
 
 ### <a name="sql-query-operators"></a>SQL 查詢運算子
 以下一些範例說明如何將一些標準 LINQ 查詢運算子往下轉譯為 DocumentDB 查詢。

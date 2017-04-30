@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/14/2017
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: 4fbd80f7e9775fe3c12a54302be4a162d2102e2f
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
+ms.openlocfilehash: 717269a2c0e0b1a3d332e627154eacd2d2c5001e
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -27,6 +27,7 @@ ms.lasthandoff: 03/16/2017
 * 如果您的應用程式還未將資料傳送至 Application Insights，則**[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**。
 * **[SQL 使用者的功能提要](https://aka.ms/sql-analytics)**會翻譯成最常見的習慣用語。
 * **[語言參考](app-insights-analytics-reference.md)** 了解如何使用 Analytics 查詢語言的分析查詢語言的所有強大功能。
+
 
 ## <a name="queries-in-analytics"></a>分析中的查詢功能
 標準的查詢是一個「來源」資料表，後面接著一系列由 `|` 隔開的「運算子」**。 
@@ -56,6 +57,7 @@ ms.lasthandoff: 03/16/2017
 
 這個語言具有許多吸引人的功能︰
 
+
 * [篩選](app-insights-analytics-reference.md#where-operator) 未經處理的應用程式遙測，包括您的自訂屬性和計量。
 * [加入](app-insights-analytics-reference.md#join-operator) 多個資料表 – 將要求與頁面檢視、相依性呼叫、例外狀況和記錄追蹤相互關聯。
 * 功能強大的統計 [彙總](app-insights-analytics-reference.md#aggregations)。
@@ -81,7 +83,20 @@ ms.lasthandoff: 03/16/2017
 
 
 ## <a name="next-steps"></a>後續步驟
-* 我們建議您從 [語言教學](app-insights-analytics-tour.md)開始。
+* 我們建議您從 [語言教學](app-insights-analytics-tour.md)開始。 
+
+### <a name="query-examples"></a>查詢範例
+
+* 請嘗試下列逐步解說，以了解 Analytics 的強大功能：
+ 1.    [自動診斷要求持續時間中的突增和步驟跳躍 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/results/chart?title=Automatic%20diagnostics%20of%20sudden%20spikes%20or%20step%20jumps%20in%20requests%20duration&shared=true)
+ 2.    [以時間序列分析對效能降低進行分析 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Analyzing%20performance%20degradations%20with%20time%20series%20analysis&shared=true)
+ 3.    [以 autocluster 和 diffpatterns 分析應用程式失敗 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Analyzing%20application%20failures%20with%20autocluster%20and%20diffpatterns&shared=true)
+ 4.    [搭配時間序列分析的進階圖形偵測 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Advanced%20shape%20detection%20with%20time%20series%20analysis&shared=true)
+ 5.    [使用滑動視窗作業分析應用程式使用情況 (累積的 MAU/DAU 等等) (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Using%20sliding%20window%20calculations%20to%20analyze%20usage%20metrics:%20rolling%20MAU~2FDAU%20and%20cohorts&shared=true)
+ 6.    [根據偵錯記錄檔的分析來偵測服務中斷 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Detection%20of%20service%20disruptions%20based%20on%20regression%20analysis%20of%20trace%20logs&shared=true)，以及[這篇 (英文)](https://maximshklar.wordpress.com/2017/02/16/finding-trends-in-traces-with-smart-data-analytics) 相對應的部落格文章。
+ 7.    [使用簡單的偵錯記錄檔來分析應用程式的效能 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Profiling%20applications'%20performance%20with%20simple%20debug%20logs&shared=true)，以及[這篇 (英文)](https://yossiattasblog.wordpress.com/2017/03/13/first-blog-post/) 相對應的部落格文章
+ 8.    [使用簡單的偵錯記錄檔來測量程式碼流程中每個步驟的持續時間 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/main?title=Measuring%20the%20duration%20of%20each%20step%20in%20your%20code%20flow%20using%20simple%20debug%20logs&shared=true)，以及[這篇 (英文)](https://yossiattasblog.wordpress.com/2017/03/14/measuring-the-duration-of-each-step-in-your-code-flow-using-simple-debug-logs/) 相對應的部落格文章
+ 9.    [使用簡單的偵錯記錄檔來分析並行 (英文)](https://analytics.applicationinsights.io/demo#/discover/query/results/chart?title=Analyzing%20concurrency%20with%20simple%20debug%20logs&shared=true)，以及[這篇 (英文)](https://yossiattasblog.wordpress.com/2017/03/23/analyzing-concurrency-using-simple-debug-logs/) 相對應的部落格文章
 
 
 

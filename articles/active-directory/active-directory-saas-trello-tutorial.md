@@ -12,11 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/03/2017
+ms.date: 03/22/2017
 ms.author: jeedes
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 36cc4206b81312f8f4ff287cd36d9dba56611fde
+ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
+ms.openlocfilehash: f3e607fbff1aa8c6a652dae452c75554a59828d9
+ms.lasthandoff: 04/03/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 36cc4206b81312f8f4ff287cd36d9dba56611fde
 Trello 與 Azure AD 整合提供下列優點：
 
 * 您可以在 Azure AD 中控制可存取 Trello 的人員
-* 您可以讓使用者利用自己的 Azure AD 帳戶，來自動登入 Trello (單一登入)
+* 您可以讓使用者利用自己的 Azure AD 帳戶，來自動登入 Trello 單一登入 (SSO)
 * 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
@@ -35,7 +36,7 @@ Trello 與 Azure AD 整合提供下列優點：
 若要設定 Azure AD 與 Trello 整合，您需要下列項目：
 
 * Azure AD 訂用帳戶
-* 已啟用 **Trello** 單一登入功能的訂用帳戶
+* 已啟用 **Trello** 單一登入的訂用帳戶
 
 > [!NOTE]
 > 若要測試本教學課程中的步驟，我們不建議使用生產環境。
@@ -45,7 +46,7 @@ Trello 與 Azure AD 整合提供下列優點：
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 * 除非必要，否則您不應使用生產環境，。
-* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
+* 如果您沒有 Azure AD 試用環境，您可以取得[一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
 在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
@@ -53,7 +54,7 @@ Trello 與 Azure AD 整合提供下列優點：
 1. 從資源庫新增 Trello
 2. 設定並測試 Azure AD 單一登入
 
-## <a name="adding-trello-from-the-gallery"></a>從資源庫新增 Trello
+## <a name="add-trello-from-the-gallery"></a>從資源庫新增 Trello
 如要設定將 Trello 整合到 Azure AD 中，您需要從資源庫把 Trello 新增到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫新增 Trello，請執行下列步驟：**
@@ -84,19 +85,20 @@ Trello 與 Azure AD 整合提供下列優點：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-trello-tutorial/tutorial_trello_02.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
+## <a name="configure-and-test-azure-ad-sso"></a>設定並測試 Azure AD SSO
 在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Trello 搭配運作的 Azure AD 單一登入。
 
-若要讓單一登入能夠運作，Azure AD 必須知道 Trello 與 Azure AD 中互相對應的使用者。 換句話說，必須要建立某位 Azure AD 使用者與 Trello 中相關使用者之間的連結關聯性。
-建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指定為 Trello 中 **Username** 的值。 若要設定及測試與 Trello 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
+若要讓 SSO 運作，Azure AD 必須知道 Trello 中與 Azure AD 互相對應的使用者。 換句話說，必須要建立某位 Azure AD 使用者與 Trello 中相關使用者之間的連結關聯性。
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
+建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指定為 Trello 中 **Username** 的值。 若要設定及測試與 Trello 搭配運作的 Azure AD SSO，您需要完成下列建置組塊：
+
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
 2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
 3. **[建立 Trello 測試使用者](#creating-a-the-funding-portal-test-user)** - 使 Trello 中對應的 Britta Simon 連結到她在 Azure AD 中的代表項目。
 4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
+5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 本節的目標，是要在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Trello 應用程式中設定單一登入。
 
 Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此應用程式的下列屬性。 您可以從應用程式的 [屬性]  索引標籤來管理這些屬性的值。 以下螢幕擷取畫面顯示上述的範例。
@@ -117,15 +119,12 @@ Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此
     | User.FirstName | user.givenname |
     | User.LastName | user.surname |
 
-    a. 按一下 [新增使用者屬性] 來開啟 [新增使用者屬性] 對話方塊。
+   1. 按一下 [新增使用者屬性] 來開啟 [新增使用者屬性] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-trello-tutorial/tutorial_trello_05.png)
-
-    b. 在 [屬性名稱]  文字方塊中，輸入該資料列所顯示的屬性名稱。
-
-    c. 在 [屬性值] 清單中，選取該資料列所顯示的值。
-
-    d. 按一下頁面底部的 [新增] 。 然後，按一下頁面底部的 [套用變更]。
+   2. 在 [屬性名稱]  文字方塊中，輸入該資料列所顯示的屬性名稱。
+   3. 在 [屬性值] 清單中，選取該資料列所顯示的值。
+   4. 按一下頁面底部的 [新增] 。 然後，按一下頁面底部的 [套用變更]。
 
 1. 按一下頂端功能表中的 [快速啟動] 。
    
@@ -143,37 +142,35 @@ Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此
    
     ![設定單一登入](./media/active-directory-saas-trello-tutorial/tutorial_trello_07.png)
 
-    a. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://trello.com/auth/saml/consume/<enterprise>`。
+   1. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://trello.com/auth/saml/consume/<enterprise>`
+   2. 按 [下一步] 。
 
-    b. 按 [下一步] 。
-
-    > [!NOTE]
-    > 您應該會從 Trello 取得 **\<enterprise\>** slug。 如果您沒有 Slug 值，請利用 <mailto:support@trello.com> 連絡 Trello 支援小組以取得貴企業的 Slug。
+    >[!NOTE]
+    >您應該會從 Trello 取得 **\<enterprise\>** slug。 如果您沒有 Slug 值，請利用 <mailto:support@trello.com> 連絡 Trello 支援小組以取得貴企業的 Slug。
     > 
     > 
 
-1. 如果您想要在 [設定應用程式設定] 對話方塊頁面上以 **SP 起始模式**設定應用程式，請按一下 [顯示進階設定 (選擇性)]，然後輸入**登入 URL**：
+5. 如果您想要在 [設定應用程式設定] 對話方塊頁面上以 **SP 起始模式**設定應用程式，請按一下 [顯示進階設定 (選擇性)]，然後輸入**登入 URL**：
    
     ![設定單一登入](./media/active-directory-saas-trello-tutorial/tutorial_trello_08.png)
    
-    a. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://trello.com/auth/saml/consume/<enterprise>`
-   
-    b. 依序按一下 [ **下一步**
+   1. 在 [登入 URL] 文字方塊中，以下列模式輸入 URL：`https://trello.com/auth/saml/consume/<enterprise>`
+   2. 按 [下一步] 。
 
-2. 於 [在 Trello 設定單一登入] 頁面上，按 [下載憑證]，然後將檔案儲存在您的電腦中。
+6. 於 [在 Trello 設定單一登入] 頁面上，按 [下載憑證]，然後將檔案儲存在您的電腦中。
    
     ![設定單一登入](./media/active-directory-saas-trello-tutorial/tutorial_trello_09.png)
 
-3. 若要取得為應用程式設定的 SSO，請移至 [Trello 企業 SSO 組態](https://trello.com/sso-configuration) 頁面，將「登入 URL」傳送給 Trello 小組並附加下載的憑證。
-4. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
+7. 若要取得為應用程式設定的 SSO，請移至 [Trello 企業 SSO 組態](https://trello.com/sso-configuration) 頁面，將「登入 URL」傳送給 Trello 小組並附加下載的憑證。
+8. 在傳統入口網站中，選取單一登入設定確認項目，然後按 [下一步] 。
    
     ![Azure AD 單一登入][10]
 
-5. 在 [單一登入確認] 頁面上，按一下 [完成]。  
+9. 在 [單一登入確認] 頁面上，按一下 [完成]。  
    
     ![Azure AD 單一登入][11]
 
-### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][20]
@@ -198,25 +195,19 @@ Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-trello-tutorial/create_aaduser_05.png) 
    
-    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
-   
-    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-   
-    c. 按 [下一步] 。
+   1. 針對 [使用者類型]，選取 [您組織中的新使用者]。
+   2. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
+   3. 按 [下一步] 。
 
 6. 在 [使用者設定檔]  對話方塊頁面上，執行下列步驟：
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-trello-tutorial/create_aaduser_06.png) 
    
-    a. 在 [名字] 文字方塊中，輸入 **Britta**。  
-   
-    b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
-   
-    c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-   
-    d. 在 [角色] 清單中選取 [使用者]。
-   
-    e. 按 [下一步] 。
+   1. 在 [名字] 文字方塊中，輸入 **Britta**。  
+   2. 在 [姓氏] 文字方塊中，輸入 **Simon**。
+   3. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+   4. 在 [角色] 清單中選取 [使用者]。
+   5. 按 [下一步] 。
 
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
@@ -226,14 +217,13 @@ Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此
    
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-trello-tutorial/create_aaduser_08.png) 
    
-    a. 記下 [新密碼] 的值。
-   
-    b. 按一下頁面底部的 [新增] 。   
+   1. 記下 [新密碼] 的值。
+   2. 按一下頁面底部的 [新增] 。   
 
-### <a name="creating-a-trello-test-user"></a>建立 Trello 測試使用者
+### <a name="create-a-trello-test-user"></a>建立 Trello 測試使用者
 在本節中，您會在 Trello 中建立名為 Britta Simon 的使用者。 在本節中，您會在 Trello 中建立名為 Britta Simon 的使用者。 Trello 支援即時佈建，而且會在您第一次從 Azure AD 登入時建立新的帳戶。
 
-### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 在本節中，您會將 Trello 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
@@ -257,8 +247,8 @@ Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此
    
     ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>測試單一登入
-本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。
+### <a name="test-single-sign-on"></a>測試單一登入
+本節的目標是要使用「存取面板」來測試您的 Azure AD SSO 組態。
 
 當您在存取面板中按一下 Trello 圖格時，應該會自動登入您的 Trello 應用程式。
 
@@ -286,9 +276,4 @@ Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此
 [203]: ./media/active-directory-saas-trello-tutorial/tutorial_general_203.png
 [204]: ./media/active-directory-saas-trello-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-trello-tutorial/tutorial_general_205.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

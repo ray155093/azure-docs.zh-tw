@@ -13,12 +13,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/31/2016
+ms.date: 4/4/2016
 ms.author: anandy
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: b4b5e1af6c03e1124de78308cab1dad86d06641e
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
+ms.openlocfilehash: 2a64405c0862d09dd487d260a651123eafbcaf99
+ms.lasthandoff: 04/10/2017
 
 
 ---
@@ -29,6 +29,7 @@ ms.lasthandoff: 03/28/2017
 |:--- |:--- |
 | **管理 AD FS** | |
 | [修復信任](#repairthetrust) |如何修復與 Office 365 的同盟信任。 |
+| [使用替代登入識別碼與 Azure AD 建立同盟關係](#alternateid) | 使用替代登入識別碼設定同盟  |
 | [新增 AD FS 伺服器](#addadfsserver) |如何使用額外的 AD FS 伺服器擴充 AD FS 伺服器陣列。 |
 | [新增 AD FS Web 應用程式 Proxy 伺服器](#addwapserver) |如何使用其他 Web 應用程式 Proxy (WAP) 伺服器展開 AD FS 陣列。 |
 | [新增同盟網域](#addfeddomain) |如何新增同盟網域。 |
@@ -66,6 +67,22 @@ ms.lasthandoff: 03/28/2017
 
 > [!NOTE]
 > Azure AD Connect 只可以對自我簽署的憑證進行修復或採取動作。 Azure AD Connect 無法修復第三方憑證。
+
+## 使用替代識別碼與 Azure AD 建立同盟關係<a name=alternateid></a>
+建議您讓內部部署使用者主體名稱 (UPN) 和雲端使用者主體名稱保持相同。 如果內部部署 UPN 使用無法路由傳送的網域 (例如︰Contoso.local)，或是此 UPN 由於本機應用程式相依性而無法變更，我們會建議您設定替代登入識別碼。 Contoso.local) or cannot be changed due to local application dependencies, we recommend setting up alternate login ID. 替代登入識別碼可讓您設定登入體驗，讓使用者可以透過其 UPN 以外的屬性 (例如 mail) 來進行登入。 Azure AD Connect 預設會選擇 Active Directory 中的 userPrincipalName 屬性來作為使用者主體名稱。 如果您選擇任何其他屬性來作為使用者主體名稱，而且您使用 AD FS 來建立同盟，則 Azure AD Connect 會就替代登入識別碼對 AD FS 進行設定。 選擇不同屬性來作為使用者主體名稱的範例如下所示︰
+
+![替代識別碼屬性的選擇](media/active-directory-aadconnect-federation-management/attributeselection.png)
+
+AD FS 替代登入識別碼的設定作業包含兩個主要步驟︰
+1. **設定正確的發行宣告集**︰Azure AD 信賴憑證者信任中的發行宣告規則，會修改為使用選取的 UserPrincipalName 屬性來作為使用者的替代識別碼。
+2. **在 AD FS 設定中啟用替代登入識別碼**︰AD FS 設定會進行更新，讓 AD FS 可以使用替代識別碼在適當樹系中查詢使用者。 此設定支援 Windows Server 2012 R2 (含 KB2919355) 或更新版本上的 AD FS。 如果 AD FS 伺服器是 2012 R2，Azure AD Connect 會檢查是否有必要的 KB 存在。 如果未偵測到必要 KB，則系統會在設定完成之後顯示警告，如下所示︰
+
+    ![2012 R2 上缺少 KB 的警告](media/active-directory-aadconnect-federation-management/kbwarning.png)
+
+    若要在缺少 KB 時修正設定，請安裝必要的 [KB2919355](http://go.microsoft.com/fwlink/?LinkID=396590)，然後使用[修復 AAD 與 AD FS 信任](#repairthetrust)來修復信任。
+
+> [!NOTE]
+> 如需替代識別碼以及手動設定步驟的詳細資訊，請閱讀[設定替代登入識別碼](https://technet.microsoft.com/windows-server-docs/identity/ad-fs/operations/configuring-alternate-login-id)
 
 ## 新增 AD FS 伺服器 <a name=addadfsserver></a>
 
