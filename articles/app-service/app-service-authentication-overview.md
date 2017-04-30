@@ -76,12 +76,12 @@ App Service 會驗證您的應用程式核發來驗證使用者的任何 Cookie 
 
 App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特殊案例，在 [將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用](../logic-apps/logic-apps-custom-hosted-api.md)中有詳細說明。
 
-## <a name="a-nameauthorizationahow-authorization-works-in-app-service"></a><a name="authorization"></a>App Service 中授權的運作方式
+## <a name="authorization"></a>App Service 中授權的運作方式
 您可以完整控制哪些要求可存取您的應用程式。 可以使用下列任何一個行為對 App Service 驗證 / 授權進行設定︰
 
 * 只允許通過驗證的要求進入您的應用程式。
   
-    如果瀏覽器收到匿名要求，App Service 會重新導向至您選擇的識別提供者頁面，讓使用者能夠登入。 如果要求來自行動裝置，則傳回的回應是「HTTP&401; 未經授權」回應。
+    如果瀏覽器收到匿名要求，App Service 會重新導向至您選擇的識別提供者頁面，讓使用者能夠登入。 如果要求來自行動裝置，則傳回的回應是「HTTP 401 未經授權」回應。
   
     使用此選項，您完全不需要在應用程式撰寫任何驗證程式碼。 如果需要更細部的授權，您的程式碼可取得使用者的相關資訊。
 * 允許所有要求抵達您的應用程式，但只接受通過驗證的要求，並在 HTTP 標頭中傳遞驗證資訊。
