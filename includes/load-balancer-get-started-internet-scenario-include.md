@@ -5,8 +5,3 @@
 * 建立健全狀態探查
 
 ![負載平衡器案例](./media/load-balancer-get-started-internet-scenario-include/scenario-classic.png)
-
-
-<!--HONumber=Nov16_HO2-->
-
-

@@ -64,8 +64,3 @@ Azure 也可在雲端服務或虛擬網路中進行負載平衡。 這稱為內�
 
 如需負載平衡器的詳細資訊，請參閱 [內部負載平衡](../articles/load-balancer/load-balancer-internal-overview.md)。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

@@ -10,8 +10,3 @@
 6. 選取右邊的 [選擇值]  ，然後輸入 *ExtractMeFirst*。 在此範例中，ExtractMeFirst 是能夠存取 SFTP 資料夾的人員預期檔案中要有的值，用以指出檔案是應該要擷取的封存檔案。  
    ![SFTP 連線圖像 5](./media/connectors-create-api-sftp/condition-5.png)   
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

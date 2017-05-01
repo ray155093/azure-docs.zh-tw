@@ -15,8 +15,3 @@
   * 一頁的參考。
 * [疑難排解](../articles/application-insights/app-insights-analytics-troubleshooting.md)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

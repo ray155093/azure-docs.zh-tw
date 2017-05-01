@@ -58,11 +58,6 @@
 <!-- URLs. -->
 [開始使用通知中樞]: ../articles/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
 [通知中樞 REST 介面]: http://msdn.microsoft.com/library/windowsazure/dn223264.aspx
-[將推播通知新增至 Mobile Apps]: ../articles/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md
-[如何使用 Java/PHP 的通知中樞]: ../articles/notification-hubs/notification-hubs-java-push-notification-tutorial.md
-[Microsoft.Azure.Notification 中樞 NuGet 封裝]: http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/
-
-
-<!--HONumber=Nov16_HO3-->
-
-
+[新增 Mobile Apps 的推播通知]: ../articles/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md
+[如何從 Java/PHP 使用通知中樞]: ../articles/notification-hubs/notification-hubs-java-push-notification-tutorial.md
+[Microsoft.Azure.Notification Hubs NuGet 封裝]: http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/

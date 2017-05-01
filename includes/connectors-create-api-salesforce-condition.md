@@ -16,8 +16,3 @@
    ![Salesforce 條件圖像 7](./media/connectors-create-api-salesforce/condition-7.png)  
 8. 儲存您的邏輯應用程式。  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

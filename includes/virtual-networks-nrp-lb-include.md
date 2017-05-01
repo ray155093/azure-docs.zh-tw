@@ -189,8 +189,3 @@ Json 格式的負載平衡器範本範例：
 ### <a name="additional-resources"></a>其他資源
 如需詳細資訊，請參閱 [負載平衡器 REST API](https://msdn.microsoft.com/library/azure/mt163651.aspx) 。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

@@ -16,8 +16,3 @@
 5. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：  
    ![Twitter 連線圖像 4](./media/connectors-create-api-twitter/twitter-4.png)
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

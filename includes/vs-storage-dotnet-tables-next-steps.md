@@ -7,8 +7,3 @@
   * 若要使用 Azure 儲存體佇列，請參閱 [以 .NET 開始使用 Azure 佇列儲存體](../articles/storage/storage-dotnet-how-to-use-queues.md)。
   * 若要儲存關聯式資料，請參閱 [使用 .NET (C#) 連接到 SQL Database](../articles/sql-database/sql-database-develop-dotnet-simple.md)。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

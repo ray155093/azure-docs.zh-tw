@@ -11,7 +11,7 @@
 5. 在 [管理排程] 對話方塊的 [新增或修改排程] 中，執行下列動作：
    
    1. 從下拉式清單中選擇現有的排程，或選取 [ **新增** ] 以建立新的排程。
-   2. 按一下核取圖示  ![修改排程 1](./media/storsimple-add-modify-backup-schedule-u2/HCS_CheckIcon-include.png)]。 
+   2. 按一下核取圖示  ![修改排程 1](./media/storsimple-add-modify-backup-schedule-u2/HCS_CheckIcon-include.png)。 
       
        ![修改排程 1](./media/storsimple-add-modify-backup-schedule-u2/AddModify1.png)
    3. 選取備份類型為本機或雲端快照集。
@@ -19,15 +19,10 @@
        ![修改排程 1](./media/storsimple-add-modify-backup-schedule-u2/AddModify2.png) 
    4. 指定備份頻率、保留期，以及排程的開始時間。
    5. 選取核取方塊以啟用或停用排程。
-   6. 按一下核取圖示  ![核取圖示](./media/storsimple-add-modify-backup-schedule-u2/HCS_CheckIcon-include.png)  以儲存排程。
+   6. 按一下核取圖示  ![核取圖示](./media/storsimple-add-modify-backup-schedule-u2/HCS_CheckIcon-include.png) 以儲存排程。
 6. 在 [ **磁碟區** ] 區段中，選擇將套用此原則的磁碟區。
 7. 在頁面底部，按一下 [ **儲存** ] 以儲存對此原則進行的變更。
 8. 系統將提示您進行確認。 按一下 [ **是** ] 儲存原則。
 
 [ **備份原則** ] 頁面將會更新以儲存原則的變更。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

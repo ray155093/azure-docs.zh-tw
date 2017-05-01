@@ -11,7 +11,7 @@
    
     ![StorSimple 註冊裝置 2](./media/storsimple-configure-and-register-device/HCS_RegisterYourDevice2-include.png)
    
-     完成步驟 5-12，為裝置設定最小的必要網路設定。 **這些設定步驟必須在裝置的主動控制器上執行。**  序列主控台功能表會在橫幅訊息中指出控制站狀態。 如果您未連接到主動控制器，請中斷連線，然後連接到主動控制器。
+     完成步驟 5-12，為裝置設定最小的必要網路設定。 **這些設定步驟必須在裝置的主動控制器上執行。** 序列主控台功能表會在橫幅訊息中指出控制站狀態。 如果您未連接到主動控制器，請中斷連線，然後連接到主動控制器。
 5. 在命令提示字元中，輸入您的密碼。 預設裝置密碼是 **Password1**。
 6. 輸入以下命令：
    
@@ -73,9 +73,4 @@
 ![提供的影片](./media/storsimple-configure-and-register-device/Video_icon.png) **提供的影片**
 
 若要觀看影片示範如何使用 Windows PowerShell for StorSimple 設定和註冊裝置，請按一下 [這裡](https://azure.microsoft.com/documentation/videos/initialize-the-storsimple-appliance/)。
-
-
-
-<!--HONumber=Nov16_HO2-->
-
 

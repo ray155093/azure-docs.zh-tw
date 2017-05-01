@@ -2,8 +2,3 @@
 
 如需 NSG 的詳細資訊，請瀏覽 [何謂 NSG](../articles/virtual-network/virtual-networks-nsg.md)。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

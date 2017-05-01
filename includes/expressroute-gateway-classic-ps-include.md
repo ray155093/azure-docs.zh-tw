@@ -24,7 +24,3 @@
 使用以下的命令移除閘道器
 
     Remove-AzureVirtualNetworkGateway -GatewayId <Gateway ID>
-
-<!--HONumber=Nov16_HO3-->
-
-

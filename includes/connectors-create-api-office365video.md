@@ -14,8 +14,3 @@
 4. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：  
    ![Office 365 影片連接的建立步驟](./media/connectors-create-api-office365video/office365video-4.png)  
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

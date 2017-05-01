@@ -15,8 +15,3 @@
 4. 提供您的 Outlook 認證並登入：![](./media/connectors-create-api-outlook/office365-outlook-2.png)  
    就這麼簡單。 現在您已建立 Outlook 的連線， 即可在您建立的任何其他邏輯應用程式中使用這個連線。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

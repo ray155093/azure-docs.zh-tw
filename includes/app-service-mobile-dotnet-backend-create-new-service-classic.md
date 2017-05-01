@@ -17,8 +17,3 @@
 
 <!-- URLs. -->
 [Azure 入口網站]: https://portal.azure.com/
-
-
-<!--HONumber=Nov16_HO3-->
-
-

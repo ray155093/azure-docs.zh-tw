@@ -26,7 +26,7 @@
    
     ![變更服務加密金鑰](./media/storsimple-change-data-encryption-key/HCS_ChangeServiceDataEncryptionKey-include.png)
 2. 在 [ **變更服務資枓加密金鑰** ] 對話方塊中，選取並授權裝置以起始服務資料加密金鑰變更。 下拉式清單包含有資格獲得授權的所有裝置。
-3. 按一下核取圖示  ![核取圖示](./media/storsimple-change-data-encryption-key/HCS_CheckIcon-include.png)]。
+3. 按一下核取圖示  ![核取圖示](./media/storsimple-change-data-encryption-key/HCS_CheckIcon-include.png)。
 
 ### <a name="step-2-use-windows-powershell-for-storsimple-to-initiate-the-service-data-encryption-key-change"></a>步驟 2：使用 Windows PowerShell for StorSimple 起始服務資料加密金鑰變更
 這個步驟是在 Windows PowerShell for StorSimple 介面中，對已獲授權的 StorSimple 裝置執行。
@@ -65,9 +65,4 @@
    
     `Invoke-HcsmServiceDataEncryptionKeyChange – ServiceDataEncryptionKey`
 3. 提供您在 [步驟 2：使用 Windows PowerShell for StorSimple 起始服務資料加密金鑰變更](#to-initiate-the-service-data-encryption-key-change)中取得的服務資料加密金鑰。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

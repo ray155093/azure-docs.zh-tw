@@ -2,8 +2,3 @@
 
 如需在 Azure 中執行大規模平行、批次和 HPC 工作負載的更多選項，請參閱 [批次和高效能運算技術資源](../articles/batch/big-compute-resources.md)。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

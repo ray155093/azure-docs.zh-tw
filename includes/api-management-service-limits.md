@@ -8,8 +8,3 @@
 
 <sup>1</sup>每個定價層的 API 管理限制不同。 若要查看定價層和其相關聯的限制與調整選項，請參閱 [API 管理價格](https://azure.microsoft.com/pricing/details/api-management/)。
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-

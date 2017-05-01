@@ -39,8 +39,3 @@
     | 8 |EBOD 機箱 |
     | 9 |PDU |
 
-
-
-<!--HONumber=Nov16_HO3-->
-
-
