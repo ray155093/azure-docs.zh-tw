@@ -14,7 +14,7 @@
 
 下列各節提供每個步驟的詳細指示。 
 
-#### <a name="a-namegetnetaget-the-name-of-the-cluster-network-resource"></a><a name="getnet"></a>取得叢集網路資源名稱
+#### <a name="getnet"></a>取得叢集網路資源名稱
 
 1. 使用 RDP 連接到裝載主要複本的 Azure 虛擬機器。 
 
@@ -26,7 +26,7 @@
 
    ![叢集網路名稱](./media/virtual-machines-ag-listener-configure/90-clusternetworkname.png)
 
-#### <a name="a-nameaddcapaadd-the-client-access-point"></a><a name="addcap"></a>新增用戶端存取點
+#### <a name="addcap"></a>新增用戶端存取點
 
 用戶端存取點是一個網路名稱，應用程式可用來連線到可用性群組中的資料庫。 在容錯移轉叢集管理員中建立用戶端存取點。 
 
@@ -42,7 +42,7 @@
    
    要完成建立接聽程式，按一下 [下一步] 兩次，再按一下 [結束]。 目前請勿讓接聽程式或資源上線工作。
    
-#### <a name="a-namecongroupaconfigure-the-ip-resource-for-the-availability-group"></a><a name="congroup"></a>為可用性群組設定 IP 資源
+#### <a name="congroup"></a>為可用性群組設定 IP 資源
 
 1. 按一下 [資源] 索引標籤，然後展開您建立的用戶端存取點。 用戶端存取點離線。
 
@@ -58,7 +58,7 @@
 1. Disable NetBIOS for this address and click **OK**. Repeat this step for each IP resource if your solution spans multiple Azure VNets. 
 ------------------------->
 
-#### <a name="a-name--dependencygroupamake-the-sql-server-availability-group-resource-dependent-on-the-client-access-point"></a><a name = "dependencyGroup"></a>讓 SQL Server 可用性群組資源依存於用戶端存取點
+#### <a name = "dependencyGroup"></a>讓 SQL Server 可用性群組資源依存於用戶端存取點
 
 1. 在 [容錯移轉叢集管理員] 中，按一下 [角色]，再按一下您的 [可用性群組]。
 
@@ -70,7 +70,7 @@
 
 1. 按一下 [確定] 。
 
-#### <a name="a-namelistnameamake-the-client-access-point-resource-dependent-on-the-ip-address"></a><a name="listname"></a>讓用戶端存取點資源依存於 IP 位址
+#### <a name="listname"></a>讓用戶端存取點資源依存於 IP 位址
 
 1. 在 [容錯移轉叢集管理員] 中，按一下 [角色]，再按一下您的 [可用性群組]。 
 
@@ -84,7 +84,7 @@
 
 1. 以滑鼠右鍵按一下接聽程式名稱，然後按一下 [線上工作] 。 
 
-#### <a name="a-namesetparamaset-the-cluster-parameters-in-powershell"></a><a name="setparam"></a>在 PowerShell 中設定叢集參數
+#### <a name="setparam"></a>在 PowerShell 中設定叢集參數
 
 1. 將下列 PowerShell 指令碼複製到您的其中一個 SQL Server。 請更新您環境的變數。     
    ```PowerShell
@@ -102,10 +102,5 @@
 
 > [!NOTE]
 > 如果您的 SQL Server 位於不同的區域中，您需要執行 PowerShell 指令碼兩次。 若是第一次，請使用第一個區域的 `$ILBIP` 和 `$ProbePort`。 若是第二次，請使用第二個區域的 `$ILBIP` 和 `$ProbePort`。 叢集網路名稱和叢集 IP 資源名稱相同。 
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

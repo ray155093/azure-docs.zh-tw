@@ -55,8 +55,3 @@ New-HPCIaaSCluster.ps1 [-ConfigFile] <String> [-AdminUserName]<String> [[-AdminP
 ## <a name="configuration-file"></a>組態檔
 部署指令碼的組態檔是 XML 檔案。 結構描述檔案 HPCIaaSClusterConfig.xsd 位於 HPC Pack IaaS 部署指令碼資料夾中。 **IaaSClusterConfig** 是組態檔的根元素，其中包含相關子元素用以說明部署指令碼資料夾中的檔案 Manual.rtf。
 
-
-
-<!--HONumber=Feb17_HO3-->
-
-

@@ -96,8 +96,3 @@
 
 請注意，本文中的步驟假設您已在 Azure 虛擬機器上執行 SQL Server。 如果沒有，請參閱[在 Azure 中佈建 SQL Server 虛擬機器](../articles/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-server-provision.md)。 如需在 Azure VM 中執行 SQL Server 的其他指引，請參閱[Azure 虛擬機器上的 SQL Server 概觀](../articles/virtual-machines/windows/sql/virtual-machines-windows-sql-server-iaas-overview.md)。
 
-
-
-<!--HONumber=Jan17_HO2-->
-
-

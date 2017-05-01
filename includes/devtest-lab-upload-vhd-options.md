@@ -4,8 +4,3 @@
 - [使用 AzCopy 命令列公用程式上傳](../articles/devtest-lab/devtest-lab-upload-vhd-using-azcopy.md)
 - [使用 Microsoft Azure 儲存體總管上傳](../articles/devtest-lab/devtest-lab-upload-vhd-using-storage-explorer.md)
 - [使用 PowerShell 主控台上傳](../articles/devtest-lab/devtest-lab-upload-vhd-using-powershell.md)
-
-
-<!--HONumber=Jan17_HO2-->
-
-
