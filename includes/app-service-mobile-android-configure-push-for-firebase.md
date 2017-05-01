@@ -10,8 +10,3 @@ Mobile Apps 後端現已設定成使用 Firebase 雲端通訊。 這個設定可
 
 
 <!-- images -->
-
-
-<!--HONumber=Dec16_HO2-->
-
-

@@ -5,8 +5,3 @@
     ![在入口網站中設定 WNS 金鑰](./media/app-service-mobile-configure-wns/mobile-push-wns-credentials.png)
 
 您的後端現在已設定成使用 WNS 傳送來傳送推播通知。
-
-
-<!--HONumber=Dec16_HO2-->
-
-

@@ -6,8 +6,3 @@
 您的服務現在已設定成在 iOS 上使用推播通知。
 
 [1]: ./media/app-service-mobile-apns-configure-push/mobile-push-notification-hub.png
-
-
-<!--HONumber=Dec16_HO2-->
-
-

@@ -9,8 +9,3 @@ Azure App Service 的 Mobile Apps 使用 [Azure 通知中樞]來傳送推送，�
 
 [Azure 入口網站]: https://portal.azure.com/
 [Azure 通知中樞]: https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-push-notification-overview/
-
-
-<!--HONumber=Dec16_HO2-->
-
-

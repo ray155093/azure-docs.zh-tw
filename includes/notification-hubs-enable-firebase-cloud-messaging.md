@@ -8,8 +8,3 @@
 
     ![](./media/notification-hubs-enable-firebase-cloud-messaging/notification-hubs-firebase-console-project-settings.png)
 4. 按一下專案設定中的 [雲端通訊] 索引標籤，並複製 [伺服器金鑰] 和 [寄件者識別碼] 的值。 稍後會使用這些值來設定通知中樞的存取原則，以及應用程式中的通知處理常式。
-
-
-<!--HONumber=Dec16_HO2-->
-
-

@@ -94,8 +94,3 @@
         NotificationsManager.handleNotifications(this, SENDER_ID, MyHandler.class);
 
     您的應用程式現在已更新為支援推播通知。
-
-
-<!--HONumber=Dec16_HO2-->
-
-
