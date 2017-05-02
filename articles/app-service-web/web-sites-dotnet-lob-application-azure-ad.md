@@ -66,7 +66,7 @@ ms.lasthandoff: 03/01/2017
     ![](./media/web-sites-dotnet-lob-application-azure-ad/3-add-sql-database.png)
 7. 在 [設定 SQL Database] 中，按一下 [新增] 以建立 SQL Server 執行個體。
 8. 在 [設定 SQL Server] 中，設定 SQL Server 執行個體。 然後依序按一下 [確定]、[確定] 和 [建立]，開始在 Azure 中建立應用程式。
-9. 在 [Azure App Service 活動] 中，當應用程式建立完成時您便會看到。 按一下** [立即將&lt;*應用程式名稱*> 發佈至此 Web 應用程式]**，然後按一下** [發佈]**。 
+9. 在 [Azure App Service 活動] 中，當應用程式建立完成時您便會看到。 按一下**[立即將&lt;*應用程式名稱*> 發佈至此 Web 應用程式]**，然後按一下** [發佈]**。 
    
     當 Visual Studio 完成後，它會在瀏覽器中開啟發佈應用程式。 
    

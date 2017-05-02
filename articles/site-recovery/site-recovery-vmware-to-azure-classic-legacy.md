@@ -193,7 +193,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
   * 在保留磁碟區上，這會變成 120 * 5 = 600 個 IOP，而這可能會變成瓶頸。 在此案例中，加入更多磁碟到保留的磁碟區，並跨越以做為 RAID 等量磁碟區設定是不錯的策略。 因為 IOP 會分散到多個磁碟機，這將可改進效能。 要加入至保留磁碟區的磁碟機數目如下所示：
     * 來自來源環境的 IOP 總計 / 500
     * 每日來自來源環境的變換總計 (未壓縮) / 287 GB。 287 GB 是每日的目標磁碟支援的最大輸送量。 此度量會隨著寫入大小 8K 的因數而異，因為在此情況下，8K 是假設的寫入大小。 例如，如果寫入大小是 4K，則輸送量會是 287/2。 而且如果寫入大小為 16K，那麼輸送量會是 287*2。
-* 儲存體帳戶所需的數目 = 來源 IOP 總計 /&10000;。
+* 儲存體帳戶所需的數目 = 來源 IOP 總計 / 10000。
 
 ## <a name="before-you-start"></a>開始之前
 | **元件** | **需求** | **詳細資料** |
@@ -392,8 +392,8 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
    4. 將檔案從 Gzip 安裝程式解壓縮，方法是執行：**tar –xvzf Microsoft-ASR_UA_8.4.0.0_RHEL6-64***
       ![Linux 主要目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-tar.png)
    5. 請確認您在解壓縮 tar 檔案內容的目錄中。
-   6. 使用命令 **echo *`<passphrase>`* 將組態伺服器的複雜密碼複製到本機檔案
-   7. 執行 “**sudo ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i *`<Configuration server internal IP address>`* -p 443 -s y -c https -P passphrase.txt**” 命令。
+   6. 使用命令 **echo*`<passphrase>`* 將組態伺服器的複雜密碼複製到本機檔案
+   7. 執行 “**sudo ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i*`<Configuration server internal IP address>`* -p 443 -s y -c https -P passphrase.txt**” 命令。
 
       ![註冊目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-mt-install.png)
 7. 等候幾分鐘 (10-15)，然後在頁面上，檢查主要目標伺服器在 [伺服器]  >  [組態伺服器] > [伺服器詳細資料] 索引標籤上是否列為已註冊。 如果您在執行 Linux 而且伺服器並未註冊，請再次從 /usr/local/ASR/Vx/bin/hostconfigcli 執行主機設定工具。 您必須藉由執行 chmod 做為根使用者，以設定存取權限。
@@ -471,10 +471,10 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 3. 如果是執行已安裝行動服務的虛擬機器或實體伺服器，您可以取得服務的更新，如下所示：
 
    * **選項 1**：下載更新：
-     * [Windows Server (僅限&64; 位元)](http://download.microsoft.com/download/8/4/8/8487F25A-E7D9-4810-99E4-6C18DF13A6D3/Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe)
+     * [Windows Server (僅限 64 位元)](http://download.microsoft.com/download/8/4/8/8487F25A-E7D9-4810-99E4-6C18DF13A6D3/Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe)
      * [CentOS 6.4、6.5、6.6 (僅限 64 位元)](http://download.microsoft.com/download/7/E/D/7ED50614-1FE1-41F8-B4D2-25D73F623E9B/Microsoft-ASR_UA_8.4.0.0_RHEL6-64_GA_28Jul2015_release.tar.gz)
      * [Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元)](http://download.microsoft.com/download/5/2/6/526AFE4B-7280-4DC6-B10B-BA3FD18B8091/Microsoft-ASR_UA_8.4.0.0_OL6-64_GA_28Jul2015_release.tar.gz)
-     * [SUSE Linux Enterprise Server SP3 (僅限&64; 位元)](http://download.microsoft.com/download/B/4/2/B4229162-C25C-4DB2-AD40-D0AE90F92305/Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz)
+     * [SUSE Linux Enterprise Server SP3 (僅限 64 位元)](http://download.microsoft.com/download/B/4/2/B4229162-C25C-4DB2-AD40-D0AE90F92305/Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz)
      * 在更新處理序伺服器之後，處理序伺服器上的 C:\pushinstallsvc\repository 資料夾中就有更新版本的行動服務可用。
    * **選項 2**：如果您有一部安裝了舊版行動服務的機器，則您可以從管理入口網站自動升級該機器上的行動服務。
 
@@ -567,7 +567,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 
 | 來源作業系統 | 處理序伺服器上的行動服務封裝 |
 | --- | --- |
-| Windows Server (僅限&64; 位元) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe` |
+| Windows Server (僅限 64 位元) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe` |
 | CentOS 6.4、6.5、6.6 (僅限 64 位元) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_RHEL6-64_GA_28Jul2015_release.tar.gz` |
 | SUSE Linux Enterprise Server 11 SP3 (僅限 64 位元) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz` |
 | Oracle Enterprise Linux 6.4、6.5 (僅限 64 位元) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_OL6-64_GA_28Jul2015_release.tar.gz` |
@@ -629,7 +629,7 @@ Site Recovery 元件會不定時更新。 當有新的更新可用時，您應�
 * 系統會每隔 15 分鐘探索虛擬機器一次，而且在探索之後，需要最多 15 分鐘的時間，虛擬機器才會會出現在 Azure Site Recovery 中。
 * 虛擬機器上的環境變更 (例如 VMware 工具安裝) 也可能需要最多 15 分鐘的時間，才能在 Site Recovery 中更新。
 * 您可以在 [組態伺服器] 頁面上 vCenter 伺服器/ESXi 主機的 [上次連絡時間] 欄位中檢查上次探索的時間。
-* 如果您已建立保護群組，並新增 vCenter Server 或 ESXi 主機之後，需要&15; 分鐘，Azure Site Recovery 入口網站才會重新整理並且在 [將機器加入至保護群組]  對話方塊中列出虛擬機器。
+* 如果您已建立保護群組，並新增 vCenter Server 或 ESXi 主機之後，需要 15 分鐘，Azure Site Recovery 入口網站才會重新整理並且在 [將機器加入至保護群組]  對話方塊中列出虛擬機器。
 * 如果您想要立即繼續將機器加入至保護群組，而不想等候排程的探索，請反白顯示設定伺服器 (不要按它)，然後按一下 [重新整理]  按鈕。
 * 當您將虛擬機器或實體機器加入保護群組時，處理序伺服器會自動推入行動服務並在來源伺服器上安裝 (如果尚未安裝)。
 * 若要讓自動推入機制運作，請確認已將受保護機器如上一個步驟所述進行設定。

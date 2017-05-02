@@ -18,6 +18,7 @@ ms.author: cherylmc
 translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 1206d7444f32216597a6f546c71131b2de0ec3f8
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -25,6 +26,8 @@ ms.openlocfilehash: 1206d7444f32216597a6f546c71131b2de0ec3f8
 本文中的步驟將引導您使用傳統部署模型與傳統入口網站來設定虛擬網路和虛擬網路閘道，以和 ExpressRoute 搭配使用。
 
 如果您需要 Resource Manager 部署模型的指示，您可以使用下列文章：[使用 PowerShell 建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-ps.md)及[將 VPN 閘道新增 ExpressRoute 的 Resource Manager VNet](expressroute-howto-add-gateway-resource-manager.md)。
+
+[!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
 **關於 Azure 部署模型**
 
@@ -57,13 +60,13 @@ ms.openlocfilehash: 1206d7444f32216597a6f546c71131b2de0ec3f8
    * **新增閘道子網路** - 按一下以新增閘道子網路。 閘道器子網路僅用於虛擬網路閘道，而且為這個組態的必要項目。<BR>ExpressRoute 的閘道子網路 CIDR (位址計數) 必須是 /28 或更大 (/27、/26 等)。 如此可讓該子網路中有足夠的 IP 位址，允許組態工作。 在傳統入口網站中，如果您已選取核取方塊以使用 ExpressRoute，入口網站會以 /28 指定閘道子網路。  您無法在傳統入口網站中調整 CIDR 位址計數。 閘道子網路在傳統入口網站中會顯示為**閘道**，雖然建立的閘道子網路的實際名稱是 **GatewaySubnet**。 您可以使用 PowerShell 或 Azure 入口網站來檢視此名稱。
 7. 按一下頁面底部的核取記號，然後您的虛擬網路即會開始建立。 完成時，您將在傳統入口網站的 [網路] 頁面上看到 [狀態] 下列出 [已建立]。
 
-## <a name="a-namegwacreate-the-gateway"></a><a name="gw"></a>建立閘道
+## <a name="gw"></a>建立閘道
 1. 在 [網路] 頁面上按一下您剛才建立的虛擬網路，然後在頁面頂端按一下 [儀表板]。
 2. 按一下 [儀表板] 頁面底部的 [建立閘道]，然後選取 [動態路由]。 按一下 [是]  確認要建立閘道。
 3. 當閘道器建立開始時，系統會顯示訊息來通知您閘道器已啟動。 閘道建立作業最多可能需要花費 45 分鐘。
 4. 將網路連結至線路。 請依照 [如何將 VNet 連結至 ExpressRoute 電路](expressroute-howto-linkvnet-classic.md)文章中的指示進行。
 
-## <a name="a-nameconfigaconfigure-an-existing-classic-vnet-for-expressroute"></a><a name="config"></a>設定 ExpressRoute 的現有傳統 VNet
+## <a name="config"></a>設定 ExpressRoute 的現有傳統 VNet
 如果您已經有傳統 VNet，您可以設定它以在傳統入口網站中連接到 ExpressRoute。 設定與上述章節中的設定相同，因此請詳閱這些章節以熟悉必要設定。 如果您想要建立 ExpressRoute/站對站並存連接，請參閱 [這篇文章](expressroute-howto-coexist-classic.md) 以取得步驟。 它們與這篇文章的步驟不同。
 
 1. 您必須在更新其他 VNet 設定之前先建立區域網路。 若要建立新的區域網路 (透過傳統入口網站設定 ExpressRoute 時為必要項目)，則按一下 [新增]**>**[網路服務]**>**[虛擬網路]**>**[新增區域網路]。 遵循精靈步驟來建立區域網路。
@@ -73,10 +76,5 @@ ms.openlocfilehash: 1206d7444f32216597a6f546c71131b2de0ec3f8
 ## <a name="next-steps"></a>後續步驟
 * 如果您想要將虛擬機器新增至虛擬網路，請參閱 [虛擬機器學習路徑](https://azure.microsoft.com/documentation/learning-paths/virtual-machines/)。
 * 如果您想要深入了解 ExpressRoute，請參閱 [ExpressRoute 概觀](expressroute-introduction.md)。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

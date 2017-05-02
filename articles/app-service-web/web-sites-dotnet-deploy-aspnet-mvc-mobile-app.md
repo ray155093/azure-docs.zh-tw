@@ -530,7 +530,7 @@ Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個�
 * 在 Razor 程式碼中套用 Boostrap 樣式
 
 ## <a name="see-also"></a>另請參閱
-* [回應性 Web 設計的&9; 個基本原則](http://blog.froont.com/9-basic-principles-of-responsive-web-design/)
+* [回應性 Web 設計的 9 個基本原則](http://blog.froont.com/9-basic-principles-of-responsive-web-design/)
 * [Bootstrap][BootstrapSite]
 * [官方 Bootstrap 部落格][Official Bootstrap Blog]
 * [Tutorial Republic 的 Twitter Bootstrap 教學課程][Twitter Bootstrap Tutorial from Tutorial Republic]

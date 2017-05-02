@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory&2;.0 版和 OpenID Connect 通訊協定 | Microsoft Docs"
+title: "Azure Active Directory 2.0 版和 OpenID Connect 通訊協定 | Microsoft Docs"
 description: "使用 Azure AD v2.0 的 OpenID Connect 驗證通訊協定實作來建置 Web 應用程式。"
 services: active-directory
 documentationcenter: 
@@ -21,7 +21,7 @@ ms.lasthandoff: 02/23/2017
 
 
 ---
-# <a name="azure-active-directory-v20-and-the-openid-connect-protocol"></a>Azure Active Directory&2;.0 和 OpenID Connect 通訊協定
+# <a name="azure-active-directory-v20-and-the-openid-connect-protocol"></a>Azure Active Directory 2.0 和 OpenID Connect 通訊協定
 OpenID Connect 在 OAuth 2.0 上建置的驗證通訊協定，可用來讓使用者安全地登入 Web 應用程式。 當您使用 v2.0 端點的 OpenID Connect 實作時，可以在您的 Web 型應用程式中新增登入和 API 存取。 在本文中，我們將示範如何在不受語言限制的情況下執行此操作。 我們將說明如何傳送及接收 HTTP 訊息，但不使用任何 Microsoft 開放原始碼程式庫。
 
 > [!NOTE]
