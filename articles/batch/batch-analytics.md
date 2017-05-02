@@ -1,0 +1,39 @@
+---
+title: "批次分析 - Azure | Microsoft Docs"
+ms.custom: 
+ms.date: 2017-02-01
+ms.prod: azure
+ms.reviewer: 
+ms.service: batch
+ms.suite: 
+ms.tgt_pltfrm: 
+ms.topic: reference
+ms.assetid: 2fda4d9c-f782-4088-9320-656b450e3100
+caps.latest.revision: 7
+author: tamram
+ms.author: tamram
+manager: timlt
+translationtype: Human Translation
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 4b73637e0ec6798b701d5a13f96c504bcbb14cc7
+ms.lasthandoff: 04/13/2017
+
+---
+# <a name="batch-analytics"></a>批次分析
+批次分析中的主題包含批次服務資源所適用事件和警示的參考資訊。
+
+請參閱[記錄事件以便對 Batch 解決方案進行診斷評估和監視](https://azure.microsoft.com/documentation/articles/batch-diagnostics/)，以取得啟用與取用批次診斷記錄檔的詳細資訊。
+
+## <a name="diagnostic-logs"></a>診斷記錄檔
+
+Azure 批次服務會在某些批次資源的存留期間發出下列診斷記錄事件。
+
+**服務記錄檔事件**
+* [建立集區](batch-pool-create-event.md)
+* [開始刪除集區](batch-pool-delete-start-event.md)
+* [完成集區刪除](batch-pool-delete-complete-event.md)
+* [開始調整集區大小](batch-pool-resize-start-event.md)
+* [完成集區大小調整](batch-pool-resize-complete-event.md)
+* [開始工作](batch-task-start-event.md)
+* [完成工作](batch-task-complete-event.md)
+* [工作失敗](batch-task-fail-event.md)

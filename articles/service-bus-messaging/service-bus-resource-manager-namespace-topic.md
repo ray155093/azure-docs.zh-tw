@@ -1,5 +1,5 @@
 ---
-title: "使用範本建立 Azure 服務匯流排命名空間主題訂用帳戶 | Microsoft Docs"
+title: "使用 Azure Resource Manager 範本建立 Azure 服務匯流排命名空間、主題和訂用帳戶 | Microsoft Docs"
 description: "使用 Azure Resource Manager 範本建立服務匯流排命名空間與主題和訂用帳戶"
 services: service-bus-messaging
 documentationcenter: .net
@@ -12,16 +12,18 @@ ms.devlang: tbd
 ms.topic: article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 01/18/2017
+ms.date: 04/18/2017
 ms.author: sethm;shvija
 translationtype: Human Translation
-ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
-ms.openlocfilehash: 27ad541fc51c497528355cd1091cc48ae8fe1ee8
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: f14e847b702b92a58fd257512a557b9af3f07238
+ms.lasthandoff: 04/18/2017
 
 
 ---
 # <a name="create-a-service-bus-namespace-with-topic-and-subscription-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立服務匯流排命名空間與主題和訂用帳戶
-本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間與主題和訂用帳戶。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
+
+本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間和該命名空間內的主題和訂用帳戶。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
 
 如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][Authoring Azure Resource Manager templates]。
 
@@ -40,6 +42,7 @@ ms.openlocfilehash: 27ad541fc51c497528355cd1091cc48ae8fe1ee8
 > 
 
 ## <a name="what-will-you-deploy"></a>您將部署什麼？
+
 使用此範本，您將部署具有主題和訂用帳戶的服務匯流排命名空間。
 
 [服務匯流排主題和訂用帳戶](service-bus-queues-topics-subscriptions.md#topics-and-subscriptions)使用「發佈/訂閱」模式，提供一對多的通訊形式。
@@ -49,6 +52,7 @@ ms.openlocfilehash: 27ad541fc51c497528355cd1091cc48ae8fe1ee8
 [![部署至 Azure](./media/service-bus-resource-manager-namespace-topic/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-topic-and-subscription%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>參數
+
 透過 Azure 資源管理員，您可以定義在部署範本時想要指定之值的參數。 此範本有一個 `Parameters` 區段，內含所有參數值。 您應該為會隨著要部署的專案或要部署到的環境而變化的值定義參數。 請不要為永遠保持不變的值定義參數。 每個參數值都可在範本中用來定義所部署的資源。
 
 範本會定義下列參數。
@@ -143,7 +147,7 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 ## <a name="next-steps"></a>後續步驟
 現在您已使用 Azure Resource Manager 建立並部署資源，請檢視這些文件，了解如何管理這些資源︰
 
-* [使用 PowerShell 管理服務匯流排](service-bus-powershell-how-to-provision.md)
+* [使用 PowerShell 管理服務匯流排](service-bus-manage-with-ps.md)
 * [使用服務匯流排總管管理服務匯流排資源](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
 
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
@@ -152,9 +156,4 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 [Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/powershell-azure-resource-manager.md
 [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
 [Service Bus namespace with topic and subscription]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-topic-and-subscription/
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

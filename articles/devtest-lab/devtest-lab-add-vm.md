@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/24/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 052785aa225086e55a40c061765770b9eebaa154
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 9ac43f4ac0a58ae3326c63ab53259d7621577d34
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -48,7 +48,9 @@ ms.lasthandoff: 03/21/2017
 1. 選取 [虛擬機器大小]  ，然後選取其中一個預先定義的項目，這些項目可以指定處理器核心、RAM 大小，以及要建立的 VM 的硬碟大小。
 1. 選取 [構件]，然後從構件清單中，選取並設定您想要新增到基本映像中的構件。
     **附註：**如果您對 DevTest Labs 或設定構件並不熟悉，請參閱[將現有的構件加入至 VM](./devtest-lab-add-vm-with-artifacts.md#add-an-existing-artifact-to-a-vm) 一節，完成該節之後再返回此處。
-1. 選取 [進階設定] 以設定 VM 的網路選項和到期日選項。
+1. 選取 [進階設定] 以設定 VM 的網路選項和到期日選項。 
+
+   若要設定到期選項，選擇行事曆圖示，以指定 VM 將會自動刪除的日期。  根據預設，VM 永遠不會到期。 
 1. 如果您想要檢視或複製 Azure Resource Manager 範本，請參閱[儲存 Azure Resource Manager 範本](./devtest-lab-add-vm-with-artifacts.md#save-azure-resource-manager-template)一節，然後在完成時回到這裡。
 1. 選取 [建立]  ，將指定的 VM 加入實驗室。
 1. 實驗室刀鋒視窗會顯示 VM 的建立狀態，其狀態會先是 [正在建立]，在啟動該 VM 之後才會變成 [正在執行]。

@@ -4,7 +4,7 @@ description: "圖形化編寫可讓您建立 Azure 自動化的 Runbook，而不
 services: automation
 documentationcenter: 
 author: mgoedtel
-manager: jwhit
+manager: carmonm
 editor: tysonn
 ms.assetid: 4b6f840c-e941-4293-a728-b33407317943
 ms.service: automation
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 06/03/2016
+ms.date: 04/14/2017
 ms.author: magoedte;bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 8d408f6ac49ea376508e025c53b09434c2ea164a
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 1e61e3717a9006f67c0b57c33573c2d0f5fbfa05
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -253,13 +254,13 @@ Azure 自動化中的每個 Runbook 有草稿和已發行的版本。 只可執�
 檢查點只能在圖形化 PowerShell 工作流程 Runbook 中啟用，無法在圖形化 Runbook 中使用。  如果 Runbook 使用 Azure Cmdlet，當 Runbook 暫停並且在不同的背景工作從這個檢查點開始時，您應該使用 Add-AzureRMAccount 遵循任何檢查點活動。 
 
 ## <a name="authenticating-to-azure-resources"></a>向 Azure 資源驗證
-在管理 Azure 資源之 Azure 自動化中的 Runbook 將需要向 Azure 驗證。  新的[執行身分帳戶](automation-sec-configure-azure-runas-account.md)功能 (也稱為服務主體) 是使用自動化 Runbook 存取您訂用帳戶中 Azure Resource Manager 資源的預設方法。  您可以將此功能加入至圖形化 Runbook，方法是將 **AzureRunAsConnection** 連線資產 (使用 PowerShell [Get-AutomationConnection](https://technet.microsoft.com/library/dn919922%28v=sc.16%29.aspx) Cmdlet) 和 [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet 加入至畫布。 下列範例就將此說明。<br>![執行身分驗證活動](media/automation-graphical-authoring-intro/authenticate-run-as-account.png)<br>
+在管理 Azure 資源之 Azure 自動化中的 Runbook 將需要向 Azure 驗證。  [執行身分帳戶](automation-offering-get-started.md#automation-account) (也稱為服務主體) 是使用自動化 Runbook 存取您訂用帳戶中 Azure Resource Manager 資源的預設方法。  您可以將此功能加入至圖形化 Runbook，方法是將 **AzureRunAsConnection** 連線資產 (使用 PowerShell [Get-AutomationConnection](https://technet.microsoft.com/library/dn919922%28v=sc.16%29.aspx) Cmdlet) 和 [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet 加入至畫布。 下列範例就將此說明。<br>![執行身分驗證活動](media/automation-graphical-authoring-intro/authenticate-run-as-account.png)<br>
 「取得執行身分連線」活動 (亦即 Get-AutomationConnection) 是使用名為 AzureRunAsConnection 的常數值資料來源所設定。<br>![執行身分連線組態](media/automation-graphical-authoring-intro/authenticate-runas-parameterset.png)<br>
 下一個活動 (Add-AzureRmAccount) 會加入已驗證的執行身分帳戶，以便在 Runbook 中使用。<br>
 ![Add-AzureRmAccount 參數集](media/automation-graphical-authoring-intro/authenticate-conn-to-azure-parameter-set.png)<br>
 針對 **APPLICATIONID**、**CERTIFICATETHUMBPRINT** 和 **TENANTID** 等參數，您需要針對 Field 路徑指定屬性名稱，因為活動會使用多個屬性來輸出物件。  否則當您執行 Runbook 時，它在嘗試進行驗證便會失敗。  這就是您使用執行身分帳戶驗證 Runbook 時所需的最低限度。
 
-若要針對使用 [Azure AD 使用者帳戶](automation-sec-configure-aduser-account.md)建立自動化帳戶來管理 Azure 服務管理 (ASM) 或 Azure Resource Manager 資源的訂戶維持回溯相容性，用來驗證的方法是使用 Add-AzureAccount Cmdlet 搭配[認證資產](http://msdn.microsoft.com/library/dn940015.aspx)，其代表可存取 Azure 帳戶的 Active Directory 使用者。
+若要針對使用 [Azure AD 使用者帳戶](automation-create-aduser-account.md)建立自動化帳戶來管理 Azure 傳統部署或 Azure Resource Manager 資源的訂戶維持回溯相容性，用來驗證的方法是使用 Add-AzureAccount Cmdlet 搭配[認證資產](automation-credentials.md)，其代表可存取 Azure 帳戶的 Active Directory 使用者。
 
 您可以在 Add-AzureAccount 活動之後，將認證資產加入至畫布，以將這項功能加入至圖形化 Runbook。  Add-AzureAccount 會對其輸入使用認證活動。  下列範例就將此說明。
 
@@ -381,10 +382,5 @@ Runbook 可能需要來自使用者的輸入內容 (透過 Azure 入口網站啟
 * 若要開始使用圖形化 Runbook，請參閱 [我的第一個圖形化 Runbook](automation-first-runbook-graphical.md)
 * 若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
 * 若要了解如何使用自動化執行身分帳戶進行驗證，請參閱 [設定 Azure 執行身分帳戶](automation-sec-configure-azure-runas-account.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

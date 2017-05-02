@@ -12,11 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 02/01/2017
+ms.date: 04/16/2017
 ms.author: juliako;
 translationtype: Human Translation
-ms.sourcegitcommit: 5b8d989d950c17d867f30a6fa8a464a8750e2303
-ms.openlocfilehash: 98922addf7aa8bfc77033be29bf137b362378661
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 2600c5cec36a8a44a85a62d6672d6ae57343f20c
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -91,7 +92,7 @@ ms.openlocfilehash: 98922addf7aa8bfc77033be29bf137b362378661
           ]
         },
 
-… 已截斷
+    … truncated
 
 ### <a name="redact-mode"></a>修訂模式
 工作流程的第二個階段會接受必須結合成單一資產的較大量輸入。
@@ -113,6 +114,12 @@ ms.openlocfilehash: 98922addf7aa8bfc77033be29bf137b362378661
 
 [請觀看這個影片](http://ampdemo.azureedge.net/?url=http%3A%2F%2Freferencestream-samplestream.streaming.mediaservices.windows.net%2Fad6e24a2-4f9c-46ee-9fa7-bf05e20d19ac%2Fdance_redacted1.mp4)
 
+Example foo_IDList.txt
+ 
+     1
+     2
+     3
+ 
 ## <a name="attribute-descriptions"></a>屬性描述
 修訂 MP 能提供高精確度的臉部位置偵測和追蹤功能，可在單一視訊畫面中偵測到最多 64 個人類臉部。 正面的臉部能提供最佳結果，而側面的臉部和較小的臉部 (小於或等於 24x24 像素) 則頗具挑戰性。
 
@@ -304,10 +311,5 @@ ms.openlocfilehash: 98922addf7aa8bfc77033be29bf137b362378661
 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)
 
 [Azure 媒體分析示範](http://azuremedialabs.azurewebsites.net/demos/Analytics.html)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

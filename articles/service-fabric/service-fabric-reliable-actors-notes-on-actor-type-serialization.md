@@ -15,17 +15,17 @@ ms.workload: NA
 ms.date: 02/10/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: 57aec98a681e1cb5d75f910427975c6c3a1728c3
-ms.openlocfilehash: f08fc1df10506dead5d049fb2c6cdc29c8f89d90
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: c0eda3f6648c085a7328c6271ed36eafde5ff142
+ms.lasthandoff: 04/14/2017
 
 
 ---
 # <a name="notes-on-service-fabric-reliable-actors-type-serialization"></a>Service Fabric Reliable Actors 類型序列化的注意事項
-所有方法的引數、動作項目介面中每個方法所傳回之工作的結果類型，以及動作項目的狀態管理員中儲存的物件都必須 [可資料合約序列化](https://msdn.microsoft.com/library/ms731923.aspx)。 這也適用於在 [動作項目事件介面](service-fabric-reliable-actors-events.md)中定義的方法引數。 (動作項目事件介面方法一律會傳回無效)。
+所有方法的引數、動作項目介面中每個方法所傳回之工作的結果類型，以及動作項目的狀態管理員中儲存的物件都必須[可資料合約序列化](https://msdn.microsoft.com/library/ms731923.aspx)。 這也適用於在 [動作項目事件介面](service-fabric-reliable-actors-events.md)中定義的方法引數。 (動作項目事件介面方法一律會傳回無效)。
 
 ## <a name="custom-data-types"></a>自訂資料類型
-在此範例中，下列動作項目介面會定義一個方法，以傳回名為 `VoicemailBox`的自訂資料類型。
+在此範例中，下列動作項目介面會定義一個方法，以傳回名為 `VoicemailBox` 的自訂資料類型：
 
 ```csharp
 public interface IVoiceMailBoxActor : IActor
@@ -82,7 +82,7 @@ public class VoiceMailBoxActorImpl extends FabricActor implements VoicemailBoxAc
 * 在動作項目執行個體與呼叫端之間傳輸物件。
 * 物件已儲存在狀態管理員，以保存到磁碟並複寫到其他節點。
 
-Reliable Actor 架構會使用 DataContract 序列化。 因此，自訂資料物件與其成員必須使用 **DataContract** 和 **DataMember** 屬性分別註解
+Reliable Actor 架構會使用 DataContract 序列化。 因此，自訂資料物件與其成員必須使用 **DataContract** 和 **DataMember** 屬性分別註解。
 
 ```csharp
 [DataContract]

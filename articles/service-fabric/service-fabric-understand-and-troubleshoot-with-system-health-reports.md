@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 04/12/2017
 ms.author: oanapl
 translationtype: Human Translation
-ms.sourcegitcommit: d20b8d5848d1a11326c60d998099571a4ab8056e
-ms.openlocfilehash: 0306b8c38a7dd86dff56f6cc7bb9eab7e0428762
-ms.lasthandoff: 01/13/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 93a4e5fc2ec3c4e847f3fe8e76df9f83253eea9b
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -57,7 +57,7 @@ Azure Service Fabric 元件會針對叢集中的所有實體提供現成的報�
 * **後續步驟**：調查網路上的芳鄰遺失的原因 (例如，檢查叢集節點之間的通訊)。
 
 ## <a name="node-system-health-reports"></a>節點系統健康狀態報告
-**System.FM**(代表容錯移轉管理員服務) 是管理叢集節點相關資訊的授權單位。 每個節點都應該有一份來自 System.FM 的報告，以顯示其狀態。 移除節點狀態時會移除節點實體 (請參閱 [RemoveNodeStateAsync](https://msdn.microsoft.com/library/azure/mt161348.aspx))。
+**System.FM**(代表容錯移轉管理員服務) 是管理叢集節點相關資訊的授權單位。 每個節點都應該有一份來自 System.FM 的報告，以顯示其狀態。 移除節點狀態時會移除節點實體 (請參閱 [RemoveNodeStateAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.clustermanagementclient.removenodestateasync))。
 
 ### <a name="node-updown"></a>節點運作中/關閉
 當節點加入環形時，System.FM 會回報為 OK (節點已啟動且正在運作中)。 當節點離開環形時，則會回報錯誤 (節點已關閉進行升級，或只是發生故障)。 由健康狀態資料存放區建置的健康狀態階層會根據 System.FM 節點報告，對部署的實體採取行動。 它會將節點視為所有已部署實體的虛擬父系。 如果 System.FM 回報指出該節點已啟動，且其執行個體與實體相關聯的執行個體相同，則該節點上已部署的實體將會透過查詢公開。 當 System.FM 回報節點已關閉或重新啟動 (新執行個體) 時，健康狀態資料存放區會自動清除僅能存在於已關閉節點或先前的節點執行個體上的已部署實體。
@@ -111,7 +111,7 @@ HealthEvents          :
 
 * **SourceId**：System.CM
 * **Property**：State
-* **後續步驟**：如果已建立應用程式，它就應該包含叢集管理員健康狀態報告。 否則，請發出查詢 (例如 PowerShell Cmdlet **Get-ServiceFabricApplication -ApplicationName *applicationName*) 以檢查應用程式狀態。
+* **後續步驟**：如果已建立應用程式，它就應該包含叢集管理員健康狀態報告。 否則，請發出查詢 (例如 PowerShell Cmdlet **Get-ServiceFabricApplication -ApplicationName *applicationName***) 以檢查應用程式狀態。
 
 以下範例說明 **fabric:/WordCount** 應用程式上的狀態事件：
 
@@ -486,7 +486,7 @@ Visual Studio 2015 診斷事件：RunAsync 在 **fabric:/HelloWorldStatefulAppli
 * **Property**：**PrimaryReplicationQueueStatus** 或 **SecondaryReplicationQueueStatus** (根據複本角色而定)
 
 ### <a name="slow-naming-operations"></a>緩慢的命名作業
-**System.NamingService** 會報告其主要複本的健全狀況。 命名作業的範例為 [CreateServiceAsync](https://msdn.microsoft.com/library/azure/mt124028.aspx) 或 [DeleteServiceAsync](https://msdn.microsoft.com/library/azure/mt124029.aspx)。 在 FabricClient 下可以找到更多方法，例如在[服務管理方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.servicemanagementclient.aspx)或[屬性管理方法](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.propertymanagementclient.aspx)底下。
+**System.NamingService** 會報告其主要複本的健全狀況。 命名作業的範例為 [CreateServiceAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient.createserviceasync) 或 [DeleteServiceAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient.deleteserviceasync)。 在 FabricClient 下可以找到更多方法，例如在[服務管理方法](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient)或[屬性管理方法](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.propertymanagementclient)底下。
 
 > [!NOTE]
 > 命名服務會將服務名稱解析至叢集中的位置，並可讓使用者能夠管理服務名稱和屬性。 它是 Service Fabric 資料分割保存的服務。 其中一個分割區代表「授權擁有者」，內含所有 Service Fabric 名稱和服務的中繼資料。 Service Fabric 名稱會對應至不同的資料分割 (稱為「名稱擁有者資料分割」)，讓服務可以擴充。 深入了解 [命名服務](service-fabric-architecture.md)。

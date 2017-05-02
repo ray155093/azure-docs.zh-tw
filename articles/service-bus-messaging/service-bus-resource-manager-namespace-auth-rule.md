@@ -1,5 +1,5 @@
 ---
-title: "使用範本建立 Azure 服務匯流排授權規則 | Microsoft Docs"
+title: "使用 Azure Resource Manager 範本建立服務匯流排授權規則 | Microsoft Docs"
 description: "使用 Azure Resource Manager 範本建立命名空間和佇列的服務匯流排授權規則"
 services: service-bus-messaging
 documentationcenter: .net
@@ -12,20 +12,22 @@ ms.devlang: tbd
 ms.topic: article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 01/18/2017
+ms.date: 04/18/2017
 ms.author: sethm;shvija
 translationtype: Human Translation
-ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
-ms.openlocfilehash: 65693a99ee3458deb15d0e41187ef3babd76e5c1
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: e62ff884e5e48f8cc542cd85a750fc857302c6b4
+ms.lasthandoff: 04/18/2017
 
 
 ---
 # <a name="create-a-service-bus-authorization-rule-for-namespace-and-queue-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立命名空間和佇列的服務匯流排授權規則
+
 本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間和佇列的[授權規則](service-bus-authentication-and-authorization.md#shared-access-signature-authentication)。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求。
 
 如需建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][Authoring Azure Resource Manager templates]。
 
-如需完整的範本，請參閱 GitHub 上的 [服務匯流排授權規則範本][Service Bus auth rule template]。
+如需完整的範本，請參閱 GitHub 上的[服務匯流排授權規則範本][Service Bus auth rule template]。
 
 > [!NOTE]
 > 下列 Azure Resource Manager 範本可供下載和部署。
@@ -42,13 +44,14 @@ ms.openlocfilehash: 65693a99ee3458deb15d0e41187ef3babd76e5c1
 ## <a name="what-will-you-deploy"></a>您將部署什麼？
 使用此範本，您將部署命名空間和訊息實體 (在此情況下為佇列) 的服務匯流排授權規則。
 
-此範本使用[共用存取簽章 (SAS)](service-bus-sas-overview.md) 進行驗證。 SAS 可讓應用程式使用在命名空間或在與特定權限相關聯的訊息實體 (佇列或主題) 上設定的存取金鑰，向服務匯流排進行驗證。 您可以接著使用此金鑰來產生 SAS 權杖，以便用戶端用來向服務匯流排進行驗證。
+此範本使用[共用存取簽章 (SAS)](service-bus-sas.md) 進行驗證。 SAS 可讓應用程式使用在命名空間或在與特定權限相關聯的訊息實體 (佇列或主題) 上設定的存取金鑰，向服務匯流排進行驗證。 您可以接著使用此金鑰來產生 SAS 權杖，以便用戶端用來向服務匯流排進行驗證。
 
 若要自動執行部署，請按一下下列按鈕：
 
 [![部署至 Azure](./media/service-bus-resource-manager-namespace-auth-rule/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F301-servicebus-create-authrule-namespace-and-queue%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>參數
+
 透過 Azure 資源管理員，您可以定義在部署範本時想要指定之值的參數。 此範本有一個 `Parameters` 區段，內含所有參數值。 您應該為會隨著要部署的專案或要部署到的環境而變化的值定義參數。 請不要為永遠保持不變的值定義參數。 每個參數值都可在範本中用來定義所部署的資源。
 
 範本會定義下列參數。
@@ -170,9 +173,4 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 [Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/powershell-azure-resource-manager.md
 [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
 [Service Bus auth rule template]: https://github.com/Azure/azure-quickstart-templates/blob/master/301-servicebus-create-authrule-namespace-and-queue/
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

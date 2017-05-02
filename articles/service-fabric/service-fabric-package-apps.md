@@ -15,14 +15,14 @@ ms.workload: NA
 ms.date: 3/24/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 45bf19b4c8406cfc09624bef2b9c0f1c443d8fd6
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: bc87185c56b2dc45f041136474b9fb1bf6afebc3
+ms.lasthandoff: 04/13/2017
 
 
 ---
 # <a name="package-an-application"></a>封裝應用程式
-本文說明如何對 Service Fabric 應用程式進行封裝，並使它準備好進行部署。
+本文說明如何對 Service Fabric 應用程式進行封裝，並使其準備好進行部署。
 
 ## <a name="package-layout"></a>封裝版面配置
 應用程式資訊清單、服務資訊清單和其他必要封裝檔案必須以特定版面配置組織，才能部署至 Service Fabric 叢集。 在本文中的範例資訊清單必須組織成下列目錄結構：
@@ -54,7 +54,7 @@ D:\TEMP\MYAPPLICATIONTYPE
 * 設定及初始化服務可執行檔需要的環境變數。 這不限於透過 Service Fabric 程式設計模型撰寫的執行檔。 例如，npm.exe 部署 node.js 應用程式，需要設定某些環境變數。
 * 透過安裝安全性憑證設定存取控制。
 
-如需有關如何設定 **SetupEntryPoint** 的更多詳細資料，請參閱[設定服務安裝程式進入點的原則](service-fabric-application-runas-security.md)  
+如需有關如何設定 **SetupEntryPoint** 的詳細資訊，請參閱[設定服務安裝程式進入點的原則](service-fabric-application-runas-security.md)  
 
 ## <a name="configure"></a>設定 
 ### <a name="build-a-package-by-using-visual-studio"></a>使用 Visual Studio 建置封裝
@@ -64,10 +64,10 @@ D:\TEMP\MYAPPLICATIONTYPE
 
 ![使用 Visual Studio 封裝應用程式][vs-package-command]
 
-封裝完成時，您會在 [輸出]  視窗中發現封裝的位置。 請注意，當您在 Visual Studio 中部署或偵錯應用程式時，封裝步驟會自動進行。
+封裝完成時，您會在 [輸出]  視窗中找到封裝的位置。 當您在 Visual Studio 中部署或偵錯應用程式時，封裝步驟會自動執行。
 
 ### <a name="build-a-package-by-command-line"></a>透過命令列建置封裝
-使用 `msbuild.exe` 以程式設計方式封裝您的應用程式也是可行的。 深入探究，這就是 Visual Studio 的實際執行內容，因此輸出將會相同。
+使用 `msbuild.exe` 以程式設計方式封裝您的應用程式也是可行的。 深入探究，這就是 Visual Studio 的實際執行內容，因此輸出會相同。
 
 ```shell
 D:\Temp> msbuild HelloWorld.sfproj /t:Package
@@ -75,7 +75,7 @@ D:\Temp> msbuild HelloWorld.sfproj /t:Package
 
 ## <a name="test-the-package"></a>測試封裝
 您可以使用 [Test-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/test-servicefabricapplicationpackage) 命令，透過 PowerShell 在本機上驗證封裝結構。
-這個命令會檢查有無資訊清單剖析問題，並驗證所有參考。 這個命令只會驗證封裝中目錄與檔案的結構正確性。
+此命令會檢查有無資訊清單剖析問題，並驗證所有參考。 這個命令只會驗證封裝中目錄與檔案的結構正確性。
 除了檢查所有必要檔案是否都在之外，它不會驗證任何程式碼或資料封裝內容。
 
 ```
@@ -169,8 +169,9 @@ PS D:\temp> Copy-ServiceFabricApplicationPackage -ApplicationPackagePath .\MyApp
 ```
 
 Service Fabric 會在內部針對驗證計算應用程式封裝的總和檢查碼。 使用壓縮時，會針對每個封裝的壓縮版本計算總和檢查碼。
-若您已複製應用程式封裝的未壓縮版本，並想要使用相同封裝的壓縮版本，您必須變更應用程式資訊清單版本，以避免總和檢查碼不符。
-同樣地，如果您已上傳封裝的壓縮版本，您必須更新應用程式資訊清單版本以使用未壓縮的封裝。
+若您已複製應用程式封裝的未壓縮版本，並想要使用相同封裝的壓縮版本，您必須變更 `code`、`config`和 `data`封裝的版本，以避免總和檢查碼不符。 若封裝未變更，則您可不變更版本而使用 [差異佈建](service-fabric-application-upgrade-advanced.md)。 使用此選項時，請勿包含未變更的封裝，只要從服務資訊清單參考該封裝即可。
+
+同樣地，若您已上傳封裝的壓縮版本，且想要使用未壓縮的封裝，則您必須更新版本以避免總和檢查碼不符。
 
 封裝現已正確完成封裝、驗證及壓縮 (若有需要)，因此已準備好[部署](service-fabric-deploy-remove-applications.md)至一或多個 Service Fabric 叢集。
 

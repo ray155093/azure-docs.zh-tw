@@ -13,41 +13,33 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 08/10/2016
+ms.date: 04/11/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 5183fc3b4e7ec3fe6060a6a9551656332300995f
-ms.openlocfilehash: 75cd2b7073d5cda6fc90aa963a9ad321e6992743
+ms.sourcegitcommit: 0d9afb1554158a4d88b7f161c62fa51c1bf61a7d
+ms.openlocfilehash: 326d09de70e00463df554f27d754ef6999da21d1
+ms.lasthandoff: 04/12/2017
 
 
 ---
 # <a name="configure-forced-tunneling-using-the-classic-deployment-model"></a>使用傳統部署模型設定強制通道
+
+強制通道可讓您透過站對站 VPN 通道，重新導向或「強制」所有網際網路繫結流量傳回內部部署位置，以便進行檢查和稽核。 這是多數企業 IT 原則的重要安全性需求。 若不使用強制通道，則 Azure 中來自 VM 的網際網路繫結流量會永遠從 Azure 網路基礎結構直接向外周遊到網際網路，而您無法選擇檢查或稽核流量。 未經授權的網際網路存取可能會導致資訊洩漏或其他類型的安全性缺口
+
+[!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
+
+本文會引導您為使用傳統部署模型建立的虛擬網路設定強制通道。 強制通道可使用 PowerShell 設定，而非透過入口網站。 如果想要設定 Resource Manager 部署模型的強制通道，請從下列下拉式清單選取傳統文章：
+
 > [!div class="op_single_selector"]
 > * [PowerShell - 傳統](vpn-gateway-about-forced-tunneling.md)
 > * [PowerShell - 資源管理員](vpn-gateway-forced-tunneling-rm.md)
 > 
 > 
 
-強制通道可讓您透過站對站 VPN 通道，重新導向或「強制」所有網際網路繫結流量傳回內部部署位置，以便進行檢查和稽核。 這是多數企業 IT 原則的重要安全性需求。 
-
-若不使用強制通道，則 Azure 中來自 VM 的網際網路繫結流量會永遠從 Azure 網路基礎結構直接向外周遊到網際網路，而您無法選擇檢查或稽核流量。 未經授權的網際網路存取可能會導致資訊洩漏或其他類型的安全性漏洞。
-
-本文會引導您為使用傳統部署模型建立的虛擬網路設定強制通道。 
-
-**關於 Azure 部署模型**
-
-[!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
-
-**強制通道的部署模型和工具**
-
-可以同時針對傳統部署模型和 Resource Manager 部署模型設定強制通道連線。 如需詳細資訊，請參閱下列表格。 當此組態有新文章、新的部署模型和額外工具可以使用時，我們就會更新此資料表。 當文章可用時，我們會直接從資料表連結至該文章。
-
-[!INCLUDE [vpn-gateway-forcedtunnel](../../includes/vpn-gateway-table-forcedtunnel-include.md)]
-
 ## <a name="requirements-and-considerations"></a>需求和考量
 Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行設定。 將流量重新導向至在內部部署網站時，會表示為至 Azure VPN 閘道的「預設路由」。 下節列出 Azure 虛擬網路路由表和路由目前的限制：
 
-* 每個虛擬網路的子網路皆有內建的系統路由表。 系統路由表具有下列&3; 個路由群組：
+* 每個虛擬網路的子網路皆有內建的系統路由表。 系統路由表具有下列 3 個路由群組：
   
   * **本機 VNet 路由：** 直接連接到相同虛擬網路中的目的地 VM
   * **內部部署路由：** 連接到 Azure VPN 閘道
@@ -74,7 +66,8 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
 ## <a name="configure-forced-tunneling"></a>設定強制通道
 下列程序將協助您指定虛擬網路的強制通道。 設定步驟會對應至 Vnet 網路組態檔。
 
-    <VirtualNetworkSite name="MultiTier-VNet" Location="North Europe">
+```
+<VirtualNetworkSite name="MultiTier-VNet" Location="North Europe">
      <AddressSpace>
       <AddressPrefix>10.1.0.0/16</AddressPrefix>
         </AddressSpace>
@@ -109,60 +102,81 @@ Azure 中的強制通道會透過虛擬網路使用者定義路由 (UDR) 進行�
         </Gateway>
       </VirtualNetworkSite>
     </VirtualNetworkSite>
+```
 
-在此範例中，"MultiTier-VNet" 虛擬網路具有&3; 個子網路：「前端」、「中層」及「後端」子網路，其中有&4; 個跨單位連線：*DefaultSiteHQ* 和&3; 個「分支」。 
+在此範例中，"MultiTier-VNet" 虛擬網路具有 3 個子網路：「前端」、「中層」及「後端」子網路，其中有 4 個跨單位連線：*DefaultSiteHQ* 和 3 個「分支」。 
 
 這些步驟會將 DefaultSiteHQ  設定為強制通道的預設網站連線，並設定「中層」和「後端」子網路以使用強制通道。
 
 1. 建立路由表。 使用下列 Cmdlet 來建立路由表。
-   
-        New-AzureRouteTable –Name "MyRouteTable" –Label "Routing Table for Forced Tunneling" –Location "North Europe"
+
+  ```powershell
+  New-AzureRouteTable –Name "MyRouteTable" –Label "Routing Table for Forced Tunneling" –Location "North Europe"
+  ```
 2. 將預設路由加入至路由表。 
    
     下列範例會將預設路由加入至步驟 1 中所建立的路由表。 請注意，唯一支援的路由是到 "VPNGateway" Nexthop 的 "0.0.0.0/0" 目的地前置詞。
-   
-        Get-AzureRouteTable -Name "MyRouteTable" | Set-AzureRoute –RouteTable "MyRouteTable" –RouteName "DefaultRoute" –AddressPrefix "0.0.0.0/0" –NextHopType VPNGateway
+
+  ```powershell
+  Get-AzureRouteTable -Name "MyRouteTable" | Set-AzureRoute –RouteTable "MyRouteTable" –RouteName "DefaultRoute" –AddressPrefix "0.0.0.0/0" –NextHopType VPNGateway
+  ```
 3. 將路由表關聯至子網路。 
    
     建立路由表並加入路由之後，使用下列範例將路由表加入或關聯至 VNet 子網路。 此範例會將路由表 "MyRouteTable" 加入至 VNet 多層式 VNet 中的中層和後端子網路。
-   
-        Set-AzureSubnetRouteTable -VirtualNetworkName "MultiTier-VNet" -SubnetName "Midtier" -RouteTableName "MyRouteTable"
-   
-        Set-AzureSubnetRouteTable -VirtualNetworkName "MultiTier-VNet" -SubnetName "Backend" -RouteTableName "MyRouteTable"
+
+  ```powershell
+  Set-AzureSubnetRouteTable -VirtualNetworkName "MultiTier-VNet" -SubnetName "Midtier" -RouteTableName "MyRouteTable"
+  Set-AzureSubnetRouteTable -VirtualNetworkName "MultiTier-VNet" -SubnetName "Backend" -RouteTableName "MyRouteTable"
+  ```
 4. 為強制通道指派預設站台。 
    
     在前述步驟中，範例 Cmdlet 指令碼已建立路由表，並將路由表關聯至兩個 VNet 子網路。 剩餘步驟是選取虛擬網路多網站連接之間的本機網站作為預設的網站或通道。
-   
-        $DefaultSite = @("DefaultSiteHQ")
-        Set-AzureVNetGatewayDefaultSite –VNetName "MultiTier-VNet" –DefaultSite "DefaultSiteHQ"
+
+  ```powershell
+  $DefaultSite = @("DefaultSiteHQ")
+  Set-AzureVNetGatewayDefaultSite –VNetName "MultiTier-VNet" –DefaultSite "DefaultSiteHQ"
+  ```
 
 ## <a name="additional-powershell-cmdlets"></a>其他的 PowerShell Cmdlet
 ### <a name="to-delete-a-route-table"></a>刪除路由表
-    Remove-AzureRouteTable -Name <routeTableName>
 
+```powershell
+Remove-AzureRouteTable -Name <routeTableName>
+```
+  
 ### <a name="to-list-a-route-table"></a>列出路由表
-    Get-AzureRouteTable [-Name <routeTableName> [-DetailLevel <detailLevel>]]
+
+```powershell
+Get-AzureRouteTable [-Name <routeTableName> [-DetailLevel <detailLevel>]]
+```
 
 ### <a name="to-delete-a-route-from-a-route-table"></a>從路由表刪除路由
-    Remove-AzureRouteTable –Name <routeTableName>
+
+```powershell
+Remove-AzureRouteTable –Name <routeTableName>
+```
 
 ### <a name="to-remove-a-route-from-a-subnet"></a>從子網路移除路由
-    Remove-AzureSubnetRouteTable –VirtualNetworkName <virtualNetworkName> -SubnetName <subnetName>
+
+```powershell
+Remove-AzureSubnetRouteTable –VirtualNetworkName <virtualNetworkName> -SubnetName <subnetName>
+```
 
 ### <a name="to-list-the-route-table-associated-with-a-subnet"></a>列出與子網路相關聯的路由表
-    Get-AzureSubnetRouteTable -VirtualNetworkName <virtualNetworkName> -SubnetName <subnetName>
+
+```powershell
+Get-AzureSubnetRouteTable -VirtualNetworkName <virtualNetworkName> -SubnetName <subnetName>
+```
 
 ### <a name="to-remove-a-default-site-from-a-vnet-vpn-gateway"></a>從 VNet VPN 閘道移除預設網站
-    Remove-AzureVnetGatewayDefaultSite -VNetName <virtualNetworkName>
+
+```powershell
+Remove-AzureVnetGatewayDefaultSite -VNetName <virtualNetworkName>
+```
 
 
 
 
 
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

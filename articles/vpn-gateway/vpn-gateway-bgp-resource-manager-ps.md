@@ -1,5 +1,5 @@
 ---
-title: "如何使用 Azure Resource Manager 和 PowerShell 在 Azure VPN 閘道上設定 BGP | Microsoft Docs"
+title: "在 Azure VPN 閘道上設定 BGP：Resource Manager: PowerShell | Microsoft Docs"
 description: "本文將逐步引導您使用 Azure Resource Manager 和 PowerShell 來設定 BGP 與 Azure VPN 閘道。"
 services: vpn-gateway
 documentationcenter: na
@@ -13,20 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/15/2016
+ms.date: 04/12/2017
 ms.author: yushwang
 translationtype: Human Translation
-ms.sourcegitcommit: 3fe204c09eebf7d254a1bf2bb130e2d3498b6b45
-ms.openlocfilehash: e999970954d199fa75ad4a3e4d8916d4aea4048e
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 61d0532a5750b3ef71ca557eec0ab705e370473b
+ms.lasthandoff: 04/13/2017
 
 
 ---
-# <a name="how-to-configure-bgp-on-azure-vpn-gateways-using-azure-resource-manager-and-powershell"></a>如何使用 Azure Resource Manager 和 PowerShell 在 Azure VPN 閘道上設定 BGP
+# <a name="how-to-configure-bgp-on-azure-vpn-gateways-using-powershell"></a>如何使用 PowerShell 在 Azure VPN 閘道上設定 BGP
 本文將逐步引導您進行使用 Resource Manager 部署模型和 PowerShell 在跨單位網站間 (S2S) VPN 連線和 VNet 對 VNet 連線上啟用 BGP 的步驟。
-
-**關於 Azure 部署模型**
-
-[!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="about-bgp"></a>關於 BGP
 BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多個網路之間的路由和可執行性資訊。 BGP 會啟用 Azure VPN 閘道，以及內部部署 VPN 裝置 (稱為 BGP 對等或鄰近項目) 來交換「路由」，其會通知這兩個閘道對要通過閘道的首碼或所涉及之路由器的可用性和可執行性。 BGP 也可以傳播從一個 BGP 對等互連到所有其他 BGP 對等所識別的 BGP 閘道，來啟用多個網路之間的傳輸路由。
@@ -46,7 +43,7 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 
 您可以將這些結合起來，以建立符合您的需求的更複雜、多點跳躍、過境網路。
 
-## <a name="a-name-enablebgpapart-1---configure-bgp-on-the-azure-vpn-gateway"></a><a name ="enablebgp"></a>第 1 部分 - 在 Azure VPN 閘道上設定 BGP
+## <a name ="enablebgp"></a>第 1 部分 - 在 Azure VPN 閘道上設定 BGP
 下列設定步驟將會設定 Azure VPN 閘道的 BGP 參數，如下圖所示︰
 
 ![BGP 閘道](./media/vpn-gateway-bgp-resource-manager-ps/bgp-gateway.png)
@@ -59,77 +56,90 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 #### <a name="1-declare-your-variables"></a>1.宣告變數
 對於此練習，我們一開始先宣告我們的變數。 下列範例會使用此練習中的值來宣告變數。 請務必在設定生產環境時，使用您自己的值來取代該值。 若您執行這些步驟是為了熟悉此類型的設定，則可以使用這些變數。 修改變數，然後將其複製並貼到您的 PowerShell 主控台中。
 
-    $Sub1          = "Replace_With_Your_Subcription_Name"
-    $RG1           = "TestBGPRG1"
-    $Location1     = "East US"
-    $VNetName1     = "TestVNet1"
-    $FESubName1    = "FrontEnd"
-    $BESubName1    = "Backend"
-    $GWSubName1    = "GatewaySubnet"
-    $VNetPrefix11  = "10.11.0.0/16"
-    $VNetPrefix12  = "10.12.0.0/16"
-    $FESubPrefix1  = "10.11.0.0/24"
-    $BESubPrefix1  = "10.12.0.0/24"
-    $GWSubPrefix1  = "10.12.255.0/27"
-    $VNet1ASN      = 65010
-    $DNS1          = "8.8.8.8"
-    $GWName1       = "VNet1GW"
-    $GWIPName1     = "VNet1GWIP"
-    $GWIPconfName1 = "gwipconf1"
-    $Connection12  = "VNet1toVNet2"
-    $Connection15  = "VNet1toSite5"
+```powershell
+$Sub1 = "Replace_With_Your_Subcription_Name"
+$RG1 = "TestBGPRG1"
+$Location1 = "East US"
+$VNetName1 = "TestVNet1"
+$FESubName1 = "FrontEnd"
+$BESubName1 = "Backend"
+$GWSubName1 = "GatewaySubnet"
+$VNetPrefix11 = "10.11.0.0/16"
+$VNetPrefix12 = "10.12.0.0/16"
+$FESubPrefix1 = "10.11.0.0/24"
+$BESubPrefix1 = "10.12.0.0/24"
+$GWSubPrefix1 = "10.12.255.0/27"
+$VNet1ASN = 65010
+$DNS1 = "8.8.8.8"
+$GWName1 = "VNet1GW"
+$GWIPName1 = "VNet1GWIP"
+$GWIPconfName1 = "gwipconf1"
+$Connection12 = "VNet1toVNet2"
+$Connection15 = "VNet1toSite5"
+```
 
 #### <a name="2-connect-to-your-subscription-and-create-a-new-resource-group"></a>2.連接至您的訂用帳戶並建立新的資源群組
 請確定您切換為 PowerShell 模式以使用資源管理員 Cmdlet。 如需詳細資訊，請參閱 [搭配使用 Windows PowerShell 與 Resource Manager](../powershell-azure-resource-manager.md)。
 
 開啟 PowerShell 主控台並連接到您的帳戶。 使用下列範例來協助您連接：
 
-    Login-AzureRmAccount
-    Select-AzureRmSubscription -SubscriptionName $Sub1
-    New-AzureRmResourceGroup -Name $RG1 -Location $Location1
+```powershell
+Login-AzureRmAccount
+Select-AzureRmSubscription -SubscriptionName $Sub1
+New-AzureRmResourceGroup -Name $RG1 -Location $Location1
+```
 
 #### <a name="3-create-testvnet1"></a>3.建立 TestVNet1
-下列範例會建立一個名為 TestVNet1 的虛擬網路和三個子網路：一個名為 GatewaySubnet、一個名為 FrontEnd，另一個名為 Backend。 替代值時，務必一律將您的閘道子網路特定命名為 GatewaySubnet。 如果您將其命名為其他名稱，閘道將會建立失敗。 
+下列範例會建立一個名為 TestVNet1 的虛擬網路和三個子網路：一個名為 GatewaySubnet、一個名為 FrontEnd，另一個名為 Backend。 替代值時，務必一律將您的閘道子網路特定命名為 GatewaySubnet。 如果您將其命名為其他名稱，閘道將會建立失敗。
 
-    $fesub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName1 -AddressPrefix $FESubPrefix1
-    $besub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $BESubName1 -AddressPrefix $BESubPrefix1
-    $gwsub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName1 -AddressPrefix $GWSubPrefix1
+```powershell
+$fesub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName1 -AddressPrefix $FESubPrefix1 $besub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $BESubName1 -AddressPrefix $BESubPrefix1
+$gwsub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName1 -AddressPrefix $GWSubPrefix1
 
-    New-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1 -Location $Location1 -AddressPrefix $VNetPrefix11,$VNetPrefix12 -Subnet $fesub1,$besub1,$gwsub1
+New-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1 -Location $Location1 -AddressPrefix $VNetPrefix11,$VNetPrefix12 -Subnet $fesub1,$besub1,$gwsub1
+```
 
 ### <a name="step-2---create-the-vpn-gateway-for-testvnet1-with-bgp-parameters"></a>步驟 2 - 使用 BGP 參數建立 TestVNet1 的 VPN 閘道
 #### <a name="1-create-the-ip-and-subnet-configurations"></a>1.建立 IP 和子網路組態
-要求一個公用 IP 位址，以配置給您將建立給 VNet 使用的閘道。 您也會定義所需的子網路和 IP 組態。 
+要求一個公用 IP 位址，以配置給您將建立給 VNet 使用的閘道。 您也會定義所需的子網路和 IP 組態。
 
-    $gwpip1    = New-AzureRmPublicIpAddress -Name $GWIPName1 -ResourceGroupName $RG1 -Location $Location1 -AllocationMethod Dynamic
+```powershell
+$gwpip1 = New-AzureRmPublicIpAddress -Name $GWIPName1 -ResourceGroupName $RG1 -Location $Location1 -AllocationMethod Dynamic
 
-    $vnet1     = Get-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1
-    $subnet1   = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet1
-    $gwipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName1 -Subnet $subnet1 -PublicIpAddress $gwpip1
+$vnet1 = Get-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1
+$subnet1 = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet1
+$gwipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName1 -Subnet $subnet1 -PublicIpAddress $gwpip1
+```
 
 #### <a name="2-create-the-vpn-gateway-with-the-as-number"></a>2.透過 AS 號碼建立 VPN 閘道
 建立 TestVNet1 的虛擬網路閘道。 請注意，BGP 需要路由式 VPN 閘道，以及額外參數 (-Asn) 才能設定 TestVNet1 的 ASN (AS 號碼)。 建立閘道可能需要花費一段時間 (30 分鐘或更久)。
 
-    New-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1 -Location $Location1 -IpConfigurations $gwipconf1 -GatewayType Vpn -VpnType RouteBased -GatewaySku HighPerformance -Asn $VNet1ASN
+```powershell
+New-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1 -Location $Location1 -IpConfigurations $gwipconf1 -GatewayType Vpn -VpnType RouteBased -GatewaySku HighPerformance -Asn $VNet1ASN
+```
 
 #### <a name="3-obtain-the-azure-bgp-peer-ip-address"></a>3.取得 Azure BGP 對等 IP 位址
 建立閘道後，您必須取得 Azure VPN 閘道上的 BGP 對等 IP 位址。 需要有此位址，才能將 Azure VPN 閘道設定為您的內部部署 VPN 裝置的 BGP 對等。
 
-    $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
-    $vnet1gw.BgpSettingsText
+```powershell
+$vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
+$vnet1gw.BgpSettingsText
+```
 
 最後一個命令會顯示 Azure VPN 閘道上對應的 BGP 組態；例如︰
 
+```powershell
     $vnet1gw.BgpSettingsText
     {
         "Asn": 65010,
         "BgpPeeringAddress": "10.12.255.30",
         "PeerWeight": 0
     }
+```
 
 建立閘道後，您可以使用此閘道來建立跨單位連線或與 BGP 的 VNet 對 VNet 連線。 下列各節將逐步說明完成練習的步驟。
 
-## <a name="a-name-crossprembbgpapart-2---establish-a-cross-premises-connection-with-bgp"></a><a name ="crossprembbgp"></a>第 2 部份 – 建立與 BGP 的跨單位連線
+## <a name ="crossprembbgp"></a>第 2 部份 – 建立與 BGP 的跨單位連線
 若要建立跨單位連線，您需要建立區域網路閘道來代表您的內部部署 VPN 裝置，以及建立一個連線來連接 Azure VPN 閘道與區域網路閘道。 本文中指示之間的差異在於指定 BGP 組態參數所需的其他屬性。
 
 ![跨單位的 BGP](./media/vpn-gateway-bgp-resource-manager-ps/bgp-crossprem.png)
@@ -140,13 +150,15 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 #### <a name="1-declare-your-variables"></a>1.宣告變數
 本練習將繼續建置圖中所示的組態。 請務必使用您想用於設定的值來取代該值。
 
-    $RG5           = "TestBGPRG5"
-    $Location5     = "East US 2"
-    $LNGName5      = "Site5"
-    $LNGPrefix50   = "10.52.255.254/32"
-    $LNGIP5        = "Your_VPN_Device_IP"
-    $LNGASN5       = 65050
-    $BGPPeerIP5    = "10.52.255.254"
+```powershell
+$RG5 = "TestBGPRG5"
+$Location5 = "East US 2"
+$LNGName5 = "Site5"
+$LNGPrefix50 = "10.52.255.254/32"
+$LNGIP5 = "Your_VPN_Device_IP"
+$LNGASN5 = 65050
+$BGPPeerIP5 = "10.52.255.254"
+```
 
 關於區域網路閘道參數，有幾件事要注意︰
 
@@ -159,19 +171,26 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 #### <a name="2-create-the-local-network-gateway-for-site5"></a>2.建立 Site5 的區域網路閘道
 如果尚未建立資源群組，請務必加以建立，才能建立區域網路閘道。 請注意，區域網路閘道的兩個額外參數︰Asn 與 BgpPeerAddress。
 
-    New-AzureRmResourceGroup -Name $RG5 -Location $Location5
+```powershell
+New-AzureRmResourceGroup -Name $RG5 -Location $Location5
 
-    New-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG5 -Location $Location5 -GatewayIpAddress $LNGIP5 -AddressPrefix $LNGPrefix50 -Asn $LNGASN5 -BgpPeeringAddress $BGPPeerIP5
+New-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG5 -Location $Location5 -GatewayIpAddress $LNGIP5 -AddressPrefix $LNGPrefix50 -Asn $LNGASN5 -BgpPeeringAddress $BGPPeerIP5
+```
 
 ### <a name="step-2---connect-the-vnet-gateway-and-local-network-gateway"></a>步驟 2 - 連接 VNet 閘道與區域網路閘道
 #### <a name="1-get-the-two-gateways"></a>1.取得兩個閘道
-        $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
-        $lng5gw  = Get-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG5
+
+```powershell
+$vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
+$lng5gw  = Get-AzureRmLocalNetworkGateway -Name $LNGName5 -ResourceGroupName $RG5
+```
 
 #### <a name="2-create-the-testvnet1-to-site5-connection"></a>2.建立 TestVNet1 至 Site5 的連線
 在此步驟中，您將建立從 TestVNet1 至 Site5 的連線。 您必須指定 "-EnableBGP $True" 才能為此連線啟用 BGP。 如先前所討論，相同的 Azure VPN 閘道可以同時有 BGP 和非 BGP 連線。 除非已在連接屬性中啟用 BGP，否則即使已在兩個閘道上設定 BGP 參數，Azure 也不會為此連線啟用 BGP。
 
-    New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng5gw -Location $Location1 -ConnectionType IPsec -SharedKey 'AzureA1b2C3' -EnableBGP $True
+```powershell
+New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng5gw -Location $Location1 -ConnectionType IPsec -SharedKey 'AzureA1b2C3' -EnableBGP $True
+```
 
 
 下列範例列出您將會針對此練習中，在內部部署 VPN 裝置的 BGP 組態區段中輸入的參數︰
@@ -186,7 +205,7 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 
 幾分鐘後應會建立連線，而一旦建立 IPsec 連線，BGP 對等工作階段就會啟動。
 
-## <a name="a-name-v2vbgpapart-3---establish-a-vnet-to-vnet-connection-with-bgp"></a><a name ="v2vbgp"></a>第 3 部份 – 建立與 BGP 的 VNet 對 VNet 連線
+## <a name ="v2vbgp"></a>第 3 部份 – 建立與 BGP 的 VNet 對 VNet 連線
 本節新增與 BGP 的 VNet 對 VNet 連線，如下圖所示。 
 
 ![VNet 對 VNet 的 BGP](./media/vpn-gateway-bgp-resource-manager-ps/bgp-vnet2vnet.png)
@@ -201,46 +220,55 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 #### <a name="1-declare-your-variables"></a>1.宣告變數
 請務必使用您想用於設定的值來取代該值。
 
-    $RG2           = "TestBGPRG2"
-    $Location2     = "West US"
-    $VNetName2     = "TestVNet2"
-    $FESubName2    = "FrontEnd"
-    $BESubName2    = "Backend"
-    $GWSubName2    = "GatewaySubnet"
-    $VNetPrefix21  = "10.21.0.0/16"
-    $VNetPrefix22  = "10.22.0.0/16"
-    $FESubPrefix2  = "10.21.0.0/24"
-    $BESubPrefix2  = "10.22.0.0/24"
-    $GWSubPrefix2  = "10.22.255.0/27"
-    $VNet2ASN      = 65020
-    $DNS2          = "8.8.8.8"
-    $GWName2       = "VNet2GW"
-    $GWIPName2     = "VNet2GWIP"
-    $GWIPconfName2 = "gwipconf2"
-    $Connection21  = "VNet2toVNet1"
-    $Connection12  = "VNet1toVNet2"
+```powershell
+$RG2 = "TestBGPRG2"
+$Location2 = "West US"
+$VNetName2 = "TestVNet2"
+$FESubName2 = "FrontEnd"
+$BESubName2 = "Backend"
+$GWSubName2 = "GatewaySubnet"
+$VNetPrefix21 = "10.21.0.0/16"
+$VNetPrefix22 = "10.22.0.0/16"
+$FESubPrefix2 = "10.21.0.0/24"
+$BESubPrefix2 = "10.22.0.0/24"
+$GWSubPrefix2 = "10.22.255.0/27"
+$VNet2ASN = 65020
+$DNS2 = "8.8.8.8"
+$GWName2 = "VNet2GW"
+$GWIPName2 = "VNet2GWIP"
+$GWIPconfName2 = "gwipconf2"
+$Connection21 = "VNet2toVNet1"
+$Connection12 = "VNet1toVNet2"
+```
 
 #### <a name="2-create-testvnet2-in-the-new-resource-group"></a>2.在新的資源群組中建立 TestVNet2
-    New-AzureRmResourceGroup -Name $RG2 -Location $Location2
 
-    $fesub2 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName2 -AddressPrefix $FESubPrefix2
-    $besub2 = New-AzureRmVirtualNetworkSubnetConfig -Name $BESubName2 -AddressPrefix $BESubPrefix2
-    $gwsub2 = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName2 -AddressPrefix $GWSubPrefix2
+```powershell
+New-AzureRmResourceGroup -Name $RG2 -Location $Location2
 
-    New-AzureRmVirtualNetwork -Name $VNetName2 -ResourceGroupName $RG2 -Location $Location2 -AddressPrefix $VNetPrefix21,$VNetPrefix22 -Subnet $fesub2,$besub2,$gwsub2
+$fesub2 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName2 -AddressPrefix $FESubPrefix2
+$besub2 = New-AzureRmVirtualNetworkSubnetConfig -Name $BESubName2 -AddressPrefix $BESubPrefix2
+$gwsub2 = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName2 -AddressPrefix $GWSubPrefix2
+
+New-AzureRmVirtualNetwork -Name $VNetName2 -ResourceGroupName $RG2 -Location $Location2 -AddressPrefix $VNetPrefix21,$VNetPrefix22 -Subnet $fesub2,$besub2,$gwsub2
+```
 
 #### <a name="3-create-the-vpn-gateway-for-testvnet2-with-bgp-parameters"></a>3.使用 BGP 參數建立 TestVNet2 的 VPN 閘道
-要求一個公用 IP 位址，以配置給您將建立給 VNet 使用的閘道。 您也會定義所需的子網路和 IP 組態。 
+要求一個公用 IP 位址，以配置給您將建立給 VNet 使用的閘道。 您也會定義所需的子網路和 IP 組態。
 
-    $gwpip2    = New-AzureRmPublicIpAddress -Name $GWIPName2 -ResourceGroupName $RG2 -Location $Location2 -AllocationMethod Dynamic
+```powershell
+$gwpip2    = New-AzureRmPublicIpAddress -Name $GWIPName2 -ResourceGroupName $RG2 -Location $Location2 -AllocationMethod Dynamic
 
-    $vnet2     = Get-AzureRmVirtualNetwork -Name $VNetName2 -ResourceGroupName $RG2
-    $subnet2   = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet2
-    $gwipconf2 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName2 -Subnet $subnet2 -PublicIpAddress $gwpip2
+$vnet2     = Get-AzureRmVirtualNetwork -Name $VNetName2 -ResourceGroupName $RG2
+$subnet2   = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet2
+$gwipconf2 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName2 -Subnet $subnet2 -PublicIpAddress $gwpip2
+```
 
 透過 AS 號碼建立 VPN 閘道。 請注意，您必須覆寫您的 Azure VPN 閘道上的預設 ASN。 已連接 VNet 的 ASN 必須不同，才能啟用 BGP 與傳輸路由。
 
-    New-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2 -Location $Location2 -IpConfigurations $gwipconf2 -GatewayType Vpn -VpnType RouteBased -GatewaySku Standard -Asn $VNet2ASN
+```powershell
+New-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2 -Location $Location2 -IpConfigurations $gwipconf2 -GatewayType Vpn -VpnType RouteBased -GatewaySku Standard -Asn $VNet2ASN
+```
 
 ### <a name="step-2---connect-the-testvnet1-and-testvnet2-gateways"></a>步驟 2 - 連接 TestVNet1 與 TestVNet2 閘道
 在此範例中，兩個閘道位於相同的訂用帳戶。 您可以在相同的 PowerShell 工作階段中完成此步驟。
@@ -248,15 +276,19 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 #### <a name="1-get-both-gateways"></a>1.取得兩個閘道
 請確定您已登入並連接到訂用帳戶 1。
 
-    $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
-    $vnet2gw = Get-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2
+```powershell
+$vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
+$vnet2gw = Get-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2
+```
 
 #### <a name="2-create-both-connections"></a>2.建立兩個連線
 在此步驟中，您將建立從 TestVNet1 到 TestVNet2 的連線，以及從 TestVNet2 到 TestVNet1 的連線。
 
-    New-AzureRmVirtualNetworkGatewayConnection -Name $Connection12 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet2gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
+```powershell
+New-AzureRmVirtualNetworkGatewayConnection -Name $Connection12 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet2gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
 
-    New-AzureRmVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupName $RG2 -VirtualNetworkGateway1 $vnet2gw -VirtualNetworkGateway2 $vnet1gw -Location $Location2 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
+New-AzureRmVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupName $RG2 -VirtualNetworkGateway1 $vnet2gw -VirtualNetworkGateway2 $vnet1gw -Location $Location2 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
+```
 
 > [!IMPORTANT]
 > 請務必對這兩個連線啟用 BGP。
@@ -271,10 +303,5 @@ BGP 是常用於網際網路的標準路由通訊協定，可交換兩個或多�
 
 ## <a name="next-steps"></a>後續步驟
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 請參閱 [建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 以取得相關步驟。
-
-
-
-
-<!--HONumber=Dec16_HO1-->
 
 

@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/28/2017
 ms.author: robb
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 7e6053c8a737674f0e8d9816d3ee228c118a722e
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 97ed0ae7cf9f741155c57053bc8b34a0246d0586
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -218,7 +218,7 @@ namespace EventHubListener
         static void Main(string[] args)
         {
             string eventHubConnectionString = "Endpoint= <your connection string>”
-            string eventHubName = "<Event Hub name>";
+            string eventHubName = "<Event hub name>";
             string storageAccountName = "<Storage account name>";
             string storageAccountKey = "<Storage account key>”;
             string storageConnectionString = string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}", storageAccountName, storageAccountKey);

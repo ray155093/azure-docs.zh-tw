@@ -13,16 +13,17 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/01/2017
-ms.author: bradsev
+ms.date: 04/13/2017
+ms.author: gokuma
 translationtype: Human Translation
-ms.sourcegitcommit: 6c664a055e577881d4fcccd5b0ba4047d88aa9ef
-ms.openlocfilehash: 64b413451c6ce47cc3aa14322b2aa0342e1e3ffe
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 77b4f634c2a30d0cbec92d34a7f83866541d7d84
+ms.lasthandoff: 04/15/2017
 
 
 ---
 # <a name="introduction-to-the-cloud-based-data-science-virtual-machine-for-linux-and-windows"></a>適用於 Linux 和 Windows 的雲端型資料科學虛擬機器簡介
-資料科學虛擬機器是 Microsoft Azure 雲端上的自訂 VM 映像，專為進行資料科學建置。 它已預先安裝和預先設定許多常用的資料科學和其他工具，以開始建置智慧應用程式進行進階分析。 可用於 Windows Server 2012 或以 OpenLogic 7.2 CentOS 為基礎的 Linux 版本。 
+資料科學虛擬機器 (DSVM) 是 Microsoft Azure 雲端上的自訂 VM 映像，專為進行資料科學建置。 它已預先安裝和預先設定許多常用的資料科學和其他工具，以開始建置智慧應用程式進行進階分析。 這可在 Windows Server 2012 和 Linux 上進行。 我們透過 Ubuntu 16.04 LTS 或 OpenLogic 7.2 CentOS 型 Linux 散發套件提供 Linux 版 DSVM。 
 
 本主題討論您可以使用資料科學 VM 來做什麼、說明使用 VM 的一些主要案例、逐項列出 Windows 和 Linux 版本中可使用的主要功能，並提供如何開始使用的相關指示。
 
@@ -46,27 +47,77 @@ ms.openlocfilehash: 64b413451c6ce47cc3aa14322b2aa0342e1e3ffe
 ### <a name="short-term-experimentation-and-evaluation"></a>短期實驗和評估
 資料科學 VM 可以用來評估或學習工具，例如 Microsoft R Server、SQL Server、Visual Studio 工具、Jupyter、深入學習/ML 工具組，與社群中需要最少設定的受歡迎新工具。 因為資料科學 VM 可快速設定，它可以套用至其他短期使用案例，例如複寫已發佈的實驗、執行示範、遵循線上課程或會議教學課程的逐步解說。
 
-## <a name="whats-included-in-the-data-science-vm"></a>資料科學 VM 中包含什麼？
-資料科學虛擬機器已安裝和設定許多常用的資料科學工具。 它也包含工具，可讓您輕鬆地使用各種 Azure 資料與分析產品。 您可以使用 Microsoft R Server 或 SQL Server 2016 在大型資料集上探索和建置預測模型。 來自開放原始碼社群及 Microsoft 的許多其他工具也會包含在內，以及範例程式碼和 Notebook。 下表列舉並比較 Windows 和 Linux 版本的資料科學虛擬機器所包含的主要元件。
+### <a name="deep-learning"></a>深入學習
+資料科學 VM 可以用於在 GPU (圖形處理單元) 型硬體使用深入學習演算法的定型模型。 只有在需要訓練大型模型時，或需要利用 GPU 的能力進行高速計算時，DSVM 才會協助使用雲端的 GPU 型硬體。  對於 Windows，我們目前提供[DSVM 的深入學習工具組](http://aka.ms/dsvm/deeplearning)和 DSVM 的個別附加元件。 您建立 VM 執行個體時，此附加元件會自動安裝 GPU 驅動程式、架構和 GPU 版深層學習演算法。 對於 Linux，只有在 [Linux (Ubuntu) 版資料科學虛擬機器](http://aka.ms/dsvm/ubuntu)上，GPU 上的深入學習才會啟用。 您可以將 Ubuntu 版資料科學 VM 部署到非 GPU 型 Azure 虛擬機器，所有深入學習架構在此情況下將恢復為 CPU 模式。 CentOS 型 Linux 版 DSVM 僅包含一些輸入學習工具 (CNTK、Tensorflow、MXNet) 的 CPU 組建，但是不會預先安裝 GPU 驅動程式和架構。 
 
-| **Windows 版本** | **Linux 版本** |
-| -- | --|
-| 已預先安裝熱門套件的 Microsoft R Open | 已預先安裝熱門套件的 Microsoft R Open |
-| 含 MicrosoftML 演算法及 Microsoft R 實作的 Microsoft R Server Developer Edition  |Microsoft R Server Developer Edition |
-| Anaconda Python 2.7, 3.5 |已預先安裝熱門套件的 Anaconda Python 2.7、3.5|
-| 已預先安裝熱門套件的 JuliaPro | 已預先安裝熱門套件的 JuliaPro |
-| Jupyter Notebook Server (R、Python、Julia) |JupyterHub：多使用者 Jupyter Notebook (R、Python、Julia、PySpark) |
-| SQL Server 2016 SP1 Developer Edition：可調整資料庫中分析與 R 服務 |PostgreSQL、SQuirreL SQL (資料庫工具)、SQL Server 驅動程式和命令列 (bcp、sqlcmd) |
-|-  Visual Studio Community 版本 2015 (IDE) </br> - Azure HDInsight (Hadoop)、Data Lake、SQL Server Data Tools </br> - Node.js、Python 和適用於 Visual Studio 的 R 工具 (RTVS 0.5) </br>-R Studio 桌面|IDE 和編輯器 </br> - Eclipse 與 Azure 工具組外掛程式 </br> - Emacs (含 ESS, auctex) gedit </br> - IntelliJ IDEA</br> - PyCharm</br> - Atom</br> - Visual Studio 程式碼|
-| Power BI 桌面 |-- |
-| 機器學習工具 </br> - 與 Azure Machine Learning 整合 </br> - Microsoft Cognitive Toolkit (CNTK 2.0) 深入學習/人工智慧 </br> - Xgboost (資料科學競賽中的熱門 ML 工具) </br> - Vowpal Wabbit (快速線上學習模組) </br> - Rattle (視覺效果快速入門資料和分析工具) </br> - Mxnet (深入學習/AI) </br> -Tensorflow  |機器學習工具 </br> - 與 Azure Machine Learning 整合 </br> - CNTK (深入學習/AI) </br> - Xgboost (資料科學競賽中的熱門 ML 工具) </br> - Vowpal Wabbit (快速線上學習模組) </br> - Rattle (視覺效果快速入門資料和分析工具) </br> -Mxnet (深入學習/AI)|
-| SDK，用以存取服務的 Azure 和 Cortana Intelligence Suite |SDK，用以存取服務的 Azure 和 Cortana Intelligence Suite |
-| Azure 和巨量資料資源的資料移動和管理工具：Azure 儲存體總管、CLI、PowerShell、AdlCopy (Azure Data Lake)、AzCopy、dtui (適用於 DocumentDB)、Microsoft 資料管理閘道器 |Azure 和巨量資料資源的資料移動和管理工具：Azure 儲存體總管、CLI |
-| Git、Visual Studio Team Services 外掛程式 |Git |
-| 最受歡迎 Linux/Unix 命令列公用程式的 Windows 連接埠可透過 GitBash/命令提示字元存取 |-- |
-| Weka | Weka |
-| 深入探詢 | 深入探詢 |
-| --| Spark 本機 |
+## <a name="whats-included-in-the-data-science-vm"></a>資料科學 VM 中包含什麼？
+資料科學虛擬機器已安裝和設定許多常用的資料科學和深入學習工具。 它也包含工具，可讓您輕鬆地使用各種 Azure 資料與分析產品。 您可以使用 Microsoft R Server 或 SQL Server 2016 在大型資料集上探索和建置預測模型。 來自開放原始碼社群及 Microsoft 的許多其他工具也會包含在內，以及範例程式碼和 Notebook。 下表列舉並比較 Windows 和 Linux 版本的資料科學虛擬機器所包含的主要元件。
+
+
+| **工具**                                                           | **Windows 版本** | **Linux 版本** |
+| :------------------------------------------------------------------ |:-------------------:|:------------------:|
+| 已預先安裝熱門套件的 [Microsoft R Open](https://mran.microsoft.com/open/)   |Y                      | Y             |
+| [Microsoft R Server](https://msdn.microsoft.com/microsoft-r/) Developer Edition 包括： <br />  &nbsp;&nbsp;&nbsp;&nbsp;* [ScaleR](https://msdn.microsoft.com/microsoft-r/scaler-getting-started) 平行和分散式高效能 R 架構<br />  &nbsp;&nbsp;&nbsp;&nbsp;* [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml-introduction) - Microsoft 的最新 ML 演算法 <br />  &nbsp;&nbsp;&nbsp;&nbsp;* [R 實作](https://msdn.microsoft.com/microsoft-r/operationalize/about)                                            |Y                      | Y <br/> (MicrosoftML 尚無法使用)|
+| 已預先安裝熱門套件的 [Anaconda Python](https://www.continuum.io/) 2.7、3.5    |Y                      |Y              |
+| 已預先安裝 Julia 語言熱門套件的 [JuliaPro](https://juliacomputing.com/products/juliapro.html)                         |Y                      |Y              |
+| 關聯式資料庫                                                            | [SQL Server 2016 SP1](https://www.microsoft.com/sql-server/sql-server-2016) <br/> Developer Edition| [PostgreSQL](https://www.postgresql.org/) |
+| 資料庫工具                                                       | * SQL Server Management Studio <br/>* SQL Server Integration Services<br/>* [bcp、sqlcmd](https://docs.microsoft.com/sql/tools/command-prompt-utility-reference-database-engine)<br /> * ODBC/JDBC 驅動程式| * [SQuirreL SQL](http://squirrel-sql.sourceforge.net/) (查詢工具)， <br /> * bcp、sqlcmd <br /> * ODBC/JDBC 驅動程式|
+| 可調整資料庫中分析與 SQL Server R 服務 | Y     |N              |
+| 採用下列核心的 **[Jupyter Notebook Server](http://jupyter.org/) ，**                                  | Y     | Y |
+|     &nbsp;&nbsp;&nbsp;&nbsp;* R | Y | Y |
+|     &nbsp;&nbsp;&nbsp;&nbsp;* Python 2.7 & 3.5 | Y | Y |
+|     &nbsp;&nbsp;&nbsp;&nbsp;* Julia | Y | Y |
+|     &nbsp;&nbsp;&nbsp;&nbsp;* PySpark | N | Y |
+|     &nbsp;&nbsp;&nbsp;&nbsp;* [Sparkmagic](https://github.com/jupyter-incubator/sparkmagic) | N | Y (僅限 Ubuntu) |
+|     &nbsp;&nbsp;&nbsp;&nbsp;* SparkR     | N | Y |
+| JupyterHub (多使用者筆記型電腦伺服器)| N | Y |
+| **開發工具、IDE 和程式碼編輯器**| | |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Visual Studio 2015 (Community Edition)](https://www.visualstudio.com/community/) >以及 Git Plugin、Azure HDInsight (Hadoop)、Data Lake、SQL Server Data Tools、[Node.js](https://github.com/Microsoft/nodejstools)、[Python](http://aka.ms/ptvs) 和 [R Tools for Visual Studio (RTVS)](http://microsoft.github.io/RTVS-docs/) | Y | N |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Visual Studio Code](https://code.visualstudio.com/) | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [RStudio Desktop](https://www.rstudio.com/products/rstudio/#Desktop) | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [RStudio Server](https://www.rstudio.com/products/rstudio/#Server) | N | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [PyCharm](https://www.jetbrains.com/pycharm/) | N | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Atom](https://atom.io/) | N | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Juno (Julia IDE)](http://junolab.org/)| Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* Vim 和 Emacs | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* Git 和 GitBash | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* OpenJDK | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* .Net Framework | Y | N |
+| PowerBI Desktop | Y | N |
+| SDK，用以存取服務的 Azure 和 Cortana Intelligence Suite | Y | Y |
+| **資料移動和管理工具** | | |
+| &nbsp;&nbsp;&nbsp;&nbsp;* Azure 儲存體總管 | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Azure CLI](https://docs.microsoft.com/cli/azure/overview) | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* Azure Powershell | Y | N |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Azcopy](https://docs.microsoft.com/azure/storage/storage-use-azcopy) | Y | N |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Adlcopy(Azure Data Lake 儲存體)](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-copy-data-azure-storage-blob) | Y | N |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [DocDB 資料移轉工具](https://docs.microsoft.com/azure/documentdb/documentdb-import-data) | Y | N |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Microsoft Data Management Gateway](https://msdn.microsoft.com/library/dn879362.aspx)：在 OnPrem 與雲端之間移動資料 | Y | N |
+| &nbsp;&nbsp;&nbsp;&nbsp;* Unix/Linux 命令列公用程式 | Y | Y |
+| [Apache Drill](http://drill.apache.org) for Data exploration | Y | Y |
+| **機器學習工具** |||
+| &nbsp;&nbsp;&nbsp;&nbsp;* 與 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) (R、Python) 整合 | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Xgboost](https://github.com/dmlc/xgboost) | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Vowpal Wabbit](https://github.com/JohnLangford/vowpal_wabbit) | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Weka](http://www.cs.waikato.ac.nz/ml/weka/) | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Rattle](http://rattle.togaware.com/) | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [LightGBM](https://github.com/Microsoft/LightGBM) | N | Y (僅限 Ubuntu) |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [H2O](https://www.h2o.ai/h2o/) | N | Y (僅限 Ubuntu) |
+| **GPU 型 Deep Learning Tools** |使用 [Deep Learning Toolkit for DSVM](http://aka.ms/dsvm/deeplearning) |僅限 Ubuntu Edition|
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Microsoft 辨識工具組 (CNTK)](http://cntk.ai) | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Tensorflow](https://www.tensorflow.org/) | Y | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [MXNet](http://mxnet.io/) | Y | Y|
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Caffe 和 Caffe2](https://github.com/caffe2/caffe2) | N | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Torch](http://torch.ch/) | N | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Theano](https://github.com/Theano/Theano) | N | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [Keras](https://keras.io/)| N | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [NVidia Digits](https://github.com/NVIDIA/DIGITS) | N | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* [CUDA、CUDNN、Nvidia 驅動程式](https://developer.nvidia.com/cuda-toolkit) | Y | Y |
+| **巨量資料平台 (僅限 Devtest)**|||
+| &nbsp;&nbsp;&nbsp;&nbsp;* 本機獨立 [Spark](http://spark.apache.org/) | N | Y |
+| &nbsp;&nbsp;&nbsp;&nbsp;* 本機 [Hadoop](http://hadoop.apache.org/) (HDFS、YARN) | N | Y |
+
+
 
 ## <a name="how-to-get-started-with-the-windows-data-science-vm"></a>如何開始使用 Windows 資料科學 VM
 * 在 Windows 上建立 VM 的執行個體，方法是瀏覽至[本頁面](https://azure.microsoft.com/marketplace/partners/microsoft-ads/standard-data-science-vm/)並選取綠色 [建立虛擬機器] 按鈕。
@@ -74,7 +125,9 @@ ms.openlocfilehash: 64b413451c6ce47cc3aa14322b2aa0342e1e3ffe
 * 若要探索和啟動可用的工具，按一下 [啟動] 功能表。
 
 ## <a name="get-started-with-the-linux-data-science-vm"></a>開始使用 Linux 資料科學 VM
-* 在 Linux (以 OpenLogic CentOS 為基礎) 上建立 VM 的執行個體，方法是瀏覽至[本頁面](https://azure.microsoft.com/marketplace/partners/microsoft-ads/linux-data-science-vm/)並選取 [建立虛擬機器] 按鈕。
+* 在 Linux 上建立 VM 的執行個體
+  * 對於 OpenLogic CentOS 型版本，瀏覽至[此頁面](http://aka.ms/dsvm/centos)，並選取 [立即取得] 按鈕。
+  * 對於 Ubuntu 版本，瀏覽至[此頁面](http://aka.ms/dsvm/ubuntu)，並選取 [立即取得] 按鈕。
 * 使用您建立 VM 時指定的認證，從 SSH 用戶端登入 VM，例如 Putty 或 SSH 命令。
 * 在殼層提示字元中，輸入 dsvm-more-info。
 * 對於圖形化桌面，在[這裡](http://wiki.x2go.org/doku.php/doc:installation:x2goclient)針對您的用戶端平台下載 X2Go 用戶端，並且遵循 Linux 資料科學 VM 文件[佈建 Linux 資料科學虛擬機器](machine-learning-data-science-linux-dsvm-intro.md#installing-and-configuring-x2go-client)中的指示。
@@ -87,10 +140,5 @@ ms.openlocfilehash: 64b413451c6ce47cc3aa14322b2aa0342e1e3ffe
 ### <a name="for-the-linux-data-science-vm"></a>對於 Linux 資料科學 VM
 * 如需有關如何在 Linux 版本上執行特定工具的詳細資訊，請參閱[佈建 Linux 資料科學虛擬機器](machine-learning-data-science-linux-dsvm-intro.md)。
 * 如需為您示範如何使用 Linux VM 執行數個常見資料科學工作的逐步解說，請參閱 [Linux 資料科學虛擬機器上的資料科學](machine-learning-data-science-linux-dsvm-walkthrough.md)。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

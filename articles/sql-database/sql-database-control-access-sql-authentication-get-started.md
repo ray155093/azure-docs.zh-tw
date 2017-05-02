@@ -9,7 +9,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 67797b09-f5c3-4ec2-8494-fe18883edf7f
 ms.service: sql-database
-ms.custom: authentication and authorization
+ms.custom: security-access
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 02/17/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: a5084b62a309dba433e2b363322b9a9c362bcdc3
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 1bd474cc547ca2f6aa32944c1a1e5a92f917444a
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -58,11 +58,6 @@ ms.lasthandoff: 03/10/2017
 1. 開啟您選擇的瀏覽器並連接到 [Azure 入口網站](https://portal.azure.com/)。
 2. 登入 [Azure 入口網站](https://portal.azure.com/)。
 3. 在 [登入]  頁面上，提供您訂用帳戶的認證。
-   
-   ![Sign in](./media/sql-database-get-started-portal/login.png)
-
-
-<a name="create-logical-server-bk"></a>
 
 ## <a name="view-logical-server-security-information-in-the-azure-portal"></a>在 Azure 入口網站中檢視邏輯伺服器的安全性資訊
 
@@ -268,17 +263,17 @@ ms.lasthandoff: 03/10/2017
 
 2. 在 [連接到伺服器] 視窗中，輸入伺服器名稱和驗證資訊，以使用 SQL Server 驗證和 **user1** 帳戶進行連線。 
     
-   ![以 user1 身分連線，沒有防火牆規則&1;](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_no_rule1.png)
+   ![以 user1 身分連線，沒有防火牆規則 1](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_no_rule1.png)
 
-3. 按一下 [選項] 指定您要連線的資料庫，然後在 [連線屬性] 索引標籤的 [連線到資料庫] 下拉式方塊中，輸入 **sqldbtutorialdb**。
+3. 在 [連線到資料庫] 對話方塊中，按一下 [選項] 指定您要連線的資料庫，然後在 [連線屬性] 索引標籤的 [連線到資料庫] 下拉式方塊中，輸入 **sqldbtutorialdb**。
    
-   ![以 user1 身分連線，沒有防火牆規則&2;](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_no_rule2.png)
+   ![以 user1 身分連線，沒有防火牆規則 2](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_no_rule2.png)
 
 4. 按一下 [ **連接**]。 
 
    隨即會出現對話方塊，通知您嘗試用來連線到 SQL Database 的電腦沒有可存取資料庫的防火牆規則。 
 
-   ![以 user1 身分連線，沒有防火牆規則&4;](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_no_rule4.png)
+   ![以 user1 身分連線，沒有防火牆規則 4](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_no_rule4.png)
 
 
 5. 複製此對話方塊中的用戶端 IP 位址，以在步驟 8 中使用。
@@ -301,7 +296,7 @@ ms.lasthandoff: 03/10/2017
 
 10. 成功連接之後，展開 [物件總管] 中的 [資料庫]。 請注意，**user1** 只能檢視 **sqldbtutorialdb** 資料庫。
 
-   ![以 user1 身分連線，有防火牆規則&1;](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_rule1.png)
+   ![以 user1 身分連線，有防火牆規則 1](./media/sql-database-control-access-sql-authentication-get-started/connect-user1_rule1.png)
 
 11. 展開 [sqldbtutorialdb]，然後展開 [資料表]。 請注意，user1 只擁有檢視單一資料表 (**SalesLT.ProductCategory** 資料表) 的權限。 
 

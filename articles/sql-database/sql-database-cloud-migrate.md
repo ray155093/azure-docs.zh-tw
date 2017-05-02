@@ -17,9 +17,9 @@ ms.workload: sqldb-migrate
 ms.date: 02/08/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
-ms.openlocfilehash: 272b5eade0a80b1f46af4e4df1c7801d86fee175
-ms.lasthandoff: 04/10/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 9fb1d12f5895e27929b2698edbf8c207aa2ee377
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -34,7 +34,7 @@ ms.lasthandoff: 04/10/2017
 
 ## <a name="method-1-migration-with-downtime-during-the-migration"></a>方法 1︰在移轉期間會停機的移轉作業
 
- 如果您可以經得起一些停機時間，或者您在執行生產資料庫的測試移轉，以便稍後進行移轉，請使用此方法。
+ 如果您可以經得起一些停機時間，或者您在執行生產資料庫的測試移轉，以便稍後進行移轉，請使用此方法。 如需教學課程，請參閱[移轉 SQL Server Database](sql-database-migrate-your-sql-server-database.md)。
 
 下列清單包含使用此方法移轉 SQL Server 資料庫時的一般工作流程。
 
@@ -45,7 +45,7 @@ ms.lasthandoff: 04/10/2017
 3. 為所要移轉的來源資料庫製作具有交易一致性的複本，並確保未再對來源資料庫進行任何變更 (或者，您可以在移轉完成後手動套用任何這類變更)。 有許多方法可以停止資料庫，從停用用戶端連接性到建立 [資料庫快照集](https://msdn.microsoft.com/library/ms175876.aspx)。
 4. 部署 Transact-SQL 指令碼，將修正套用至資料庫複本。
 5. 將資料庫複本[匯出](sql-database-export.md)至本機磁碟機上的 .BACPAC 檔案。
-6. 使用任一 BACPAC 匯入工具將 .BACPAC 檔案[匯入](sql-database-import-sqlpackage.md)成為新的 Azure SQL Database，若要獲得最佳效能，建議使用 SQLPackage.exe 工具。
+6. 使用任一 BACPAC 匯入工具將 .BACPAC 檔案[匯入](sql-database-import.md)成為新的 Azure SQL Database，若要獲得最佳效能，建議使用 SQLPackage.exe 工具。
 
 ### <a name="optimizing-data-transfer-performance-during-migration"></a>將移轉期間的資料傳輸效能最佳化 
 

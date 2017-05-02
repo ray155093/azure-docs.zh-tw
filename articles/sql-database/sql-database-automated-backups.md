@@ -16,9 +16,9 @@ ms.workload: NA
 ms.date: 11/02/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: 8323aa27c93c1c460b31f7f7c822644f5eee929a
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: d849eeedae65c8cc35271c2e9b63236760c4629c
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -38,11 +38,6 @@ SQL Database 使用 SQL Server 技術來建立[完整](https://msdn.microsoft.co
 * 將資料庫還原到另一個地理區域。 這可讓您在無法存取您的伺服器和資料庫時，從地理災害中復原。 在世界各地任何現有的伺服器中建立新的資料庫。 
 * 從 Azure 復原服務保存庫中儲存的特定備份中還原資料庫。 這可讓您還原舊版的資料庫來符合規範要求，或執行舊版的應用程式。 請參閱[長期保留](sql-database-long-term-retention.md)。
 * 若要執行還原，請參閱[從備份還原資料庫](sql-database-recovery-using-backups.md)。
-
-> [!TIP]
-> 如需教學課程，請參閱[開始使用備份與還原以保護和復原資料](sql-database-get-started-backup-recovery-portal.md)
->
-
 
 > [!NOTE]
 > 在 Azure 儲存體中，「複寫」一詞指的是將檔案從某個位置複製到另一個位置。 SQL 的「資料庫複寫」  指的是保持多個次要資料庫與主要資料庫同步。 
@@ -79,17 +74,17 @@ SQL Database 提供高達 200% 的最大可佈建資料庫儲存體作為備份�
 ## <a name="how-to-extend-the-backup-retention-period"></a>如何延長備份保留期限？
 如果您的應用程式需要較長時間可進行備份，您可以延長內建的保留期限，方法為設定個別資料庫的長期備份保留原則 (LTR 原則)。 這可讓您將保留期限延長 35 天至多達 10 年。 如需詳細資訊，請參閱[長期保存](sql-database-long-term-retention.md)。
 
-一旦您使用 Azure 入口網站或 API 將 LTR 原則新增至資料庫後，每週的完整資料庫備份將會自動複製到您自己的 Azure 備份服務保存庫。 如果您的資料庫是使用 TDE 加密，則備份會自動加密靜止。  服務保存庫將自動刪除您過期的備份，根據其時間戳記和 LTR 原則。  因此您不需要管理備份排程或擔心清理舊檔案的工作。 還原 API 支援保存庫中儲存的備份，只要保存庫在與您的 SQL Database 相同的訂用帳戶中。 您可以使用 Azure 入口網站或 PowerShell 存取這些備份。
+一旦您使用 Azure 入口網站或 API 將 LTR 原則新增至資料庫後，每週的完整資料庫備份將會自動複製到您自己的 Azure 備份服務保存庫。 如果您的資料庫是使用 TDE 加密，則備份會自動加密靜止。  服務保存庫將自動刪除您過期的備份，根據其時間戳記和 LTR 原則。  因此您不需要管理備份排程或擔心清理舊檔案的工作。 還原 API 支援保存庫中儲存的備份，只要保存庫在與您的 SQL Database 相同的訂用帳戶中。 您可使用 Azure 入口網站或 PowerShell 存取這些備份。
 
 > [!TIP]
-> 如需教學課程，請參閱[開始使用備份與還原以保護和復原資料](sql-database-get-started-backup-recovery-portal.md)
+> 如需作法指南，請參閱[設定 Azure SQL Database 長期備份保留並從中還原](sql-database-long-term-backup-retention-configure.md)
 >
 
 ## <a name="next-steps"></a>後續步驟
 
 - 資料庫備份可保護資料免於意外損毀或刪除，是商務持續性和災害復原策略中不可或缺的一部分。 若要深入了解其他 Azure SQL Database 業務持續性解決方案，請參閱[業務持續性概觀](sql-database-business-continuity.md)。
-- 若要使用 Azure 入口網站還原至某個時間點，請參閱[使用 Azure 入口網站將資料庫還原至時間點](sql-database-point-in-time-restore-portal.md)。
+- 若要使用 Azure 入口網站還原至某個時間點，請參閱[使用 Azure 入口網站將資料庫還原至時間點](sql-database-recovery-using-backups.md)。
 - 若要使用 PowerShell 還原至某個時間點，請參閱[使用 PowerShell 將資料庫還原至時間點](scripts/sql-database-restore-database-powershell.md)。
-- 若要使用 Azure 入口網站在「Azure 復原服務」保存庫中設定、管理自動備份的長期保留及從該保留還原，請參閱[使用 Azure 入口網站來管理長期備份保留](sql-database-manage-long-term-backup-retention-portal.md)。
-- 若要使用 PowerShell 在「Azure 復原服務」保存庫中設定、管理自動備份的長期保留及從該保留還原，請參閱[使用 PowerShell 來管理長期備份保留](sql-database-manage-long-term-backup-retention-powershell.md)。
+- 若要使用 Azure 入口網站在「Azure 復原服務」保存庫中設定、管理自動備份的長期保留及從該保留還原，請參閱[使用 Azure 入口網站來管理長期備份保留 (英文)](sql-database-long-term-backup-retention-configure.md)。
+- 若要使用 PowerShell 在「Azure 復原服務」保存庫中設定、管理自動備份的長期保留及從該保留還原，請參閱[使用 PowerShell 來管理長期備份保留 (英文)](sql-database-long-term-backup-retention-configure.md)。
 

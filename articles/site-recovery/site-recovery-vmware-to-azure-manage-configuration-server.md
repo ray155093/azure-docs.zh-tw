@@ -15,9 +15,9 @@ ms.workload: backup-recovery
 ms.date: 2/14/2017
 ms.author: anoopkv
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 3a02171d52b6d963a93a654d2506269e29f1be8e
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 0d9afb1554158a4d88b7f161c62fa51c1bf61a7d
+ms.openlocfilehash: 3b03b59fd338fa31c3248b0798463ee659e7e5ff
+ms.lasthandoff: 04/12/2017
 
 ---
 
@@ -108,7 +108,7 @@ ProxyPassword="Password"
 
 ## <a name="re-register-a-configuration-server-with-the-same-recovery-services-vault"></a>向相同的復原服務保存庫註冊組態伺服器
   1. 登入您的組態伺服器。
-  2. 使用捷徑啟動 cspsconfigtool.exe。
+  2. 使用桌面上的捷徑啟動 cspsconfigtool.exe。
   3. 按一下 [保存庫註冊] 索引標籤。
   4. 從入口網站下載新的註冊檔案，並當做輸入提供給工具。
         ![註冊組態伺服器](./media/site-recovery-vmware-to-azure-manage-configuration-server/register-csonfiguration-server.png)

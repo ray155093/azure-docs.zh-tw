@@ -14,9 +14,9 @@ ms.workload: infrastructure-services
 ms.date: 08/16/2016
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: f06bf515accd8507189ecd5f1759f14f4f06fd33
-ms.openlocfilehash: faac9909993895b3e8a27b2cbaa7b62b3e508933
-ms.lasthandoff: 01/05/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 765a30f360cf8d3f8bde08aa94b20eba0d4537c9
+ms.lasthandoff: 04/18/2017
 
 ---
 
@@ -32,6 +32,9 @@ Azure DNS 支援使用 Azure 命令列介面 (CLI) 匯入和匯出區域檔案�
 
 Azure CLI 是用來管理 Azure 服務的跨平台命令列工具。 它可從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)取得，且適用於 Windows、Mac 及 Linux 平台。 跨平台支援對於匯入和匯出區域檔案特別重要，因為最常見的名稱伺服器軟體 [BIND](https://www.isc.org/downloads/bind/)通常會在 Linux 上執行。
 
+> [!NOTE]
+> 目前提供兩個版本的 Azure CLI。 CLI1.0 以 Node.js 為基礎，且命令以「azure」開頭。
+> CLI2.0 以 Python 為基礎，且命令以「az」開頭。 雖然這兩個版本都支援區域檔案匯入，我們建議使用 CLI1.0 命令，如本頁面中所述。
 
 ## <a name="obtain-your-existing-dns-zone-file"></a>取得現有的 DNS 區域檔案
 
@@ -41,9 +44,13 @@ Azure CLI 是用來管理 Azure 服務的跨平台命令列工具。 它可從 [
 * 如果 DNS 區域託管在 Windows DNS 上，區域檔案的預設資料夾是 **%systemroot%\system32\dns**。 DNS 服務管理主控台的 [一般]  索引標籤上，也會顯示每個區域檔案的完整路徑。
 * 如果使用 BIND 裝載 DNS 區域，則 BIND 組態檔 **named.conf**中會指定每個區域的區域檔案位置。
 
-**使用來自 GoDaddy 的區域檔案**
-
-下載自 GoDaddy 的區域檔案會有些微非標準格式。 您必須先修正格式，再將這些區域檔案匯入 Azure DNS。 每個 DNS 記錄 RData 中的 DNS 名稱會指定為完整名稱，但是結尾沒有 "."。這表示其他 DNS 系統會將這些名稱解譯為相對名稱。 將區域檔案匯入 Azure DNS 之前，您必須先加以編輯，以將結尾的 "." 附加至這些名稱。
+> [!NOTE]
+> 下載自 GoDaddy 的區域檔案會有些微非標準格式。 您必須先修正格式，再將這些區域檔案匯入 Azure DNS。
+>
+> 每個 DNS 記錄 RDATA 中的 DNS 名稱會指定為完整名稱，但是結尾沒有「.」。這表示其他 DNS 系統會將這些名稱解譯為相對名稱。 將區域檔案匯入 Azure DNS 之前，您必須先加以編輯，以將結尾的 "." 附加至這些名稱。
+>
+> 例如，CNAME 記錄「www 3600 IN CNAME contoso.com」應變更為「www 3600 IN CNAME contoso.com.」。
+> (結尾附加「.」)。
 
 ## <a name="import-a-dns-zone-file-into-azure-dns"></a>將 DNS 區域檔案匯入 Azure DNS
 

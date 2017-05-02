@@ -17,9 +17,9 @@ ms.date: 03/14/2017
 ms.author: anhoh
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 0c62fc01947e0f2e4b0e45d176d5af04c6250fa8
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: ec64215bfa3b812cddbed290d343c2d99fb70257
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -408,7 +408,7 @@ UDF 可以指定為部分 SQL 查詢，也可做為一種擴充 [Document DB 的
 雖然上面的程式碼片段顯示的是透過 [DocumentDB JavaScript SDK](https://github.com/Azure/azure-documentdb-js) 執行的註冊 (POST)、取消註冊 (PUT)、讀取/列出 (GET) 及執行 (POST)，但是您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或其他[用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)。 
 
 ## <a name="documents"></a>文件
-您可以在集合中插入、取代、刪除、讀取、列舉和查詢任意 JSON 文件。 DocumentDB 不會託管任何結構描述，而且不需要次要索引，就支援逐一查詢集合中的文件。 根據預設，文件的大小上限為 2 MB。   
+您可以在集合中插入、取代、刪除、讀取、列舉和查詢任意 JSON 文件。 DocumentDB 不會託管任何結構描述，而且不需要次要索引，就支援逐一查詢集合中的文件。 文件的大小上限為 2 MB。   
 
 DocumentDB 是真正開放的資料庫服務，不會發明 JSON 文件的任何特殊資料類型 (例如日期時間) 或特定編碼。 請注意，DocumentDB 無須遵循任何特殊 JSON 慣例，即可編寫各種文件之間的關聯性。DocumentDB 的 SQL 語法提供有效率的階層式和關係查詢運算子，讓您可以用於查詢及保護文件，不僅無須任何特殊註釋，也無須使用不同的屬性來編寫文件之間的關聯性。  
 

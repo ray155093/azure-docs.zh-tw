@@ -1,6 +1,6 @@
 ---
 title: "在 Azure 資訊安全中心啟用資料收集 | Microsoft Docs"
-description: " 了解如何在 Azure 資訊安全中心啟用資料收集. "
+description: " 了解如何在 Azure 資訊安全中心啟用資料收集。 "
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -12,17 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/08/2017
+ms.date: 04/12/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: 57c0228c398ba4ba3fd18a1088472749bed3ac69
-ms.openlocfilehash: 9ebbed56bdbc8385bb651c7aa1e77f369da1d727
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: b942f934ecb25083d779096dc628e342870edc26
+ms.lasthandoff: 04/13/2017
 
 
 ---
 # <a name="enable-data-collection-in-azure-security-center"></a>在 Azure 資訊安全中心啟用資料收集
-為了協助客戶防範、偵測和回應威脅，Azure 資訊安全中心會收集和處理 Azure 虛擬機器的相關資料，包含組態資訊、中繼資料、事件記錄檔等等。 當您第一次存取資訊安全中心時，訂用帳戶中的所有虛擬機器都會啟用資料收集。 建議啟用資料收集，但您可以在資訊安全中心原則中關閉資料收集來選擇退出 (請參閱 [停用資料收集](#disabling-data-collection))。 如果您關閉資料收集，資訊安全中心會建議您在該訂用帳戶的安全性原則中開啟資料收集。
+為了協助客戶防範、偵測和回應威脅，Azure 資訊安全中心會收集和處理 Azure 虛擬機器的相關資料，包含組態資訊、中繼資料和事件記錄檔。 當您第一次存取資訊安全中心時，訂用帳戶中的所有虛擬機器都會啟用資料收集。 建議啟用資料收集，但您可以在資訊安全中心原則中關閉資料收集來選擇退出 (請參閱 [停用資料收集](#disabling-data-collection))。 如果您關閉資料收集，資訊安全中心會建議您在該訂用帳戶的安全性原則中開啟資料收集。
 
 > [!NOTE]
 > 本文件將使用範例部署來介紹服務。 這不是逐步指南。

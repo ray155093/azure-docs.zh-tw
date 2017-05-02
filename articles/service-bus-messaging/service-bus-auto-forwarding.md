@@ -1,6 +1,6 @@
 ---
-title: "自動轉寄服務匯流排傳訊實體 | Microsoft Docs"
-description: "如何將佇列或訂用帳戶鏈結至另一個佇列或主題。"
+title: "自動轉送 Azure 服務匯流排傳訊實體 | Microsoft Docs"
+description: "如何將服務匯流排佇列或訂用帳戶鏈結至另一個佇列或主題。"
 services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
@@ -12,17 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/10/2017
+ms.date: 04/12/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 994a379129bffd7457912bc349f240a970aed253
-ms.openlocfilehash: cbbd416a065b3284e85957cc024955d11524d3da
-ms.lasthandoff: 01/12/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: d58e9b9dc4771cc69265d02b62cf8fe3c9b7d72e
+ms.lasthandoff: 04/13/2017
 
 
 ---
 # <a name="chaining-service-bus-entities-with-auto-forwarding"></a>使用自動轉寄鏈結服務匯流排實體
-「自動轉寄」功能可讓您將佇列或訂用帳戶鏈結至另一個屬於相同命名空間的佇列或主題。 啟用自動轉寄後，服務匯流排會自動移除放在第一個佇列或訂用帳戶 (來源) 中的訊息，然後將它們放入第二個佇列或主題 (目的地) 中。 請注意，仍有可能將訊息直接傳送至目的地實體。 此外，不可能將子佇列 (例如寄不出的信件佇列) 鏈結至另一個佇列或主題。
+
+服務匯流排*自動轉送*功能可讓您將佇列或訂用帳戶鏈結至另一個屬於相同命名空間的佇列或主題。 啟用自動轉寄後，服務匯流排會自動移除放在第一個佇列或訂用帳戶 (來源) 中的訊息，然後將它們放入第二個佇列或主題 (目的地) 中。 請注意，仍有可能將訊息直接傳送至目的地實體。 此外，不可能將子佇列 (例如寄不出的信件佇列) 鏈結至另一個佇列或主題。
 
 ## <a name="using-auto-forwarding"></a>使用自動轉寄
 在來源的 [QueueDescription][QueueDescription] 或 [SubscriptionDescription][SubscriptionDescription] 物件上設定 [QueueDescription.ForwardTo][QueueDescription.ForwardTo] 或 [SubscriptionDescription.ForwardTo][SubscriptionDescription.ForwardTo] 屬性，即可啟用自動轉寄，如下列範例所示。
@@ -39,14 +40,15 @@ namespaceManager.CreateSubscription(srcSubscription));
 
 ![自動轉寄案例][0]
 
-您也可以使用自動轉寄來分離訊息傳送端和接收端。 例如，請考慮包含三個模組的 ERP 系統︰訂單處理、存貨管理及客戶關係管理。 上述每一個模組會產生加入對應主題中的訊息。 Alice 和 Bob 都是銷售代表，他們對其客戶相關的所有訊息很感興趣。 為了接收這些訊息，Alice 和 Bob 各自在每個會將所有訊息自動轉寄至其佇列的 ERP 主題上建立個人佇列和訂用帳戶。
+您也可以使用自動轉寄來分離訊息傳送端和接收端。 例如，請考慮包含三個模組的 ERP 系統︰訂單處理、庫存管理及客戶關係管理。 上述每一個模組會產生加入對應主題中的訊息。 Alice 和 Bob 都是銷售代表，他們對其客戶相關的所有訊息很感興趣。 為了接收這些訊息，Alice 和 Bob 各自在每個會將所有訊息自動轉寄至其佇列的 ERP 主題上建立個人佇列和訂用帳戶。
 
 ![自動轉寄案例][1]
 
 如果 Alice 去渡假，她的個人佇列 (而不是 ERP 主題) 會填滿。 在此案例中，因為銷售代表未收到任何訊息，所以沒有任何 ERP 主題達到配額。
 
 ## <a name="auto-forwarding-considerations"></a>自動轉寄考量
-如果目的地實體已累積了許多訊息並超過配額，或目的地實體已停用，則來源實體會將訊息新增至其[寄不出的信件佇列](service-bus-dead-letter-queues.md)，直到目的地有空間 (或已重新啟用實體) 為止。 這些訊息將會繼續存留在寄不出的信件佇列中，所以您必須從寄不出的信件佇列明確地接收並處理它們。
+
+如果目的地實體累積了過多訊息並超過配額，或目的地實體已停用，則來源實體會將訊息新增至其[寄不出的信件佇列](service-bus-dead-letter-queues.md)，直到目的地有空間 (或已重新啟用實體) 為止。 這些訊息將會繼續存留在寄不出的信件佇列中，所以您必須從寄不出的信件佇列明確地接收並處理它們。
 
 將個別主題鏈結在一起以取得具有許多訂用帳戶的複合主題時，建議您在第一層主題上有適量的訂用帳戶，而在第二層主題上有許多訂用帳戶。 例如，有 20 個訂用帳戶的第一層主題 (其中的每個訂用帳戶會鏈結至有 200 個訂用帳戶的第二層主題) 可達到比有 200 個訂用帳戶的第一層主題 (其中的每個訂用帳戶會鏈結至有 20 個訂用帳戶的第二層主題) 更高的輸送量。
 
@@ -55,18 +57,22 @@ namespaceManager.CreateSubscription(srcSubscription));
 若要建立鏈結至另一個佇列或主題的訂用帳戶，訂用帳戶的建立者必須同時擁有來源和目的地實體的**管理**權限。 將訊息傳送至來源主題只需要來源主題的**傳送**權限。
 
 ## <a name="next-steps"></a>後續步驟
+
 如需自動轉寄的詳細資訊，請參閱下列參考主題：
 
 * [SubscriptionDescription.ForwardTo][SubscriptionDescription.ForwardTo]
 * [QueueDescription][QueueDescription]
 * [SubscriptionDescription][SubscriptionDescription]
 
-若要深入了解「服務匯流排」效能改進，請參閱[分割的訊息實體][Partitioned messaging entities]。
+若要深入了解服務匯流排效能改進，請參閱 
 
-[QueueDescription.ForwardTo]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_ForwardTo
-[SubscriptionDescription.ForwardTo]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_ForwardTo
-[QueueDescription]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.queuedescription
-[SubscriptionDescription]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.queuedescription
+* [使用服務匯流排傳訊的效能改進最佳作法](service-bus-performance-improvements.md)
+* [分割的傳訊實體][Partitioned messaging entities]。
+
+[QueueDescription.ForwardTo]: /dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_ForwardTo
+[SubscriptionDescription.ForwardTo]: /dotnet/api/microsoft.servicebus.messaging.subscriptiondescription#Microsoft_ServiceBus_Messaging_SubscriptionDescription_ForwardTo
+[QueueDescription]: /dotnet/api/microsoft.servicebus.messaging.queuedescription
+[SubscriptionDescription]: /dotnet/api/microsoft.servicebus.messaging.queuedescription
 [0]: ./media/service-bus-auto-forwarding/IC628631.gif
 [1]: ./media/service-bus-auto-forwarding/IC628632.gif
 [Partitioned messaging entities]: service-bus-partitioning.md

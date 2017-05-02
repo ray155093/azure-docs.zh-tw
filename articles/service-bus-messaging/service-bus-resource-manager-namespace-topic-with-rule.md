@@ -1,5 +1,5 @@
 ---
-title: "使用範本建立 Azure 服務匯流排主題訂用帳戶和規則 | Microsoft Docs"
+title: "使用 Azure Resource Manager 範本建立 Azure 服務匯流排主題、訂用帳戶和規則 | Microsoft Docs"
 description: "使用 Azure Resource Manager 範本建立服務匯流排命名空間與主題、訂用帳戶和規則"
 services: service-bus-messaging
 documentationcenter: .net
@@ -12,15 +12,17 @@ ms.devlang: tbd
 ms.topic: article
 ms.tgt_pltfrm: dotnet
 ms.workload: na
-ms.date: 01/18/2017
+ms.date: 04/18/2017
 ms.author: sethm;shvija
 translationtype: Human Translation
-ms.sourcegitcommit: ca66a344ea855f561ead082091c6941540b1839d
-ms.openlocfilehash: 16da81e14b7c4059de61b2dfebe081a9e4f08d5e
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 759c5655d7a6dbfff92136968ae8f26ccdeb44af
+ms.lasthandoff: 04/18/2017
 
 
 ---
 # <a name="create-a-service-bus-namespace-with-topic-subscription-and-rule-using-an-azure-resource-manager-template"></a>使用 Azure Resource Manager 範本建立服務匯流排命名空間與主題、訂用帳戶和規則
+
 本文說明如何使用 Azure Resource Manager 範本，建立服務匯流排命名空間與主題、訂用帳戶和規則 (篩選器)。 您將學習如何定義要部署哪些資源，以及如何定義執行部署時所指定的參數。 您可以直接在自己的部署中使用此範本，或自訂此範本以符合您的需求
 
 如需關於建立範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本][Authoring Azure Resource Manager templates]。
@@ -42,18 +44,21 @@ ms.openlocfilehash: 16da81e14b7c4059de61b2dfebe081a9e4f08d5e
 > 
 
 ## <a name="what-will-you-deploy"></a>您將部署什麼？
+
 使用此範本，您將部署具有主題、訂用帳戶和規則 (篩選器) 的服務匯流排命名空間。
 
 [服務匯流排主題和訂用帳戶](service-bus-queues-topics-subscriptions.md#topics-and-subscriptions)使用「發佈/訂閱」模式，提供一對多的通訊形式。 使用主題和訂用帳戶時，分散式應用程式的元件彼此不直接通訊，相反的，它們會透過扮演中繼角色的主題來交換訊息。主題的訂用帳戶類似於虛擬佇列，同樣可接收已傳送到主題的訊息複本。 訂用帳戶上的篩選器可讓您指定傳送至主題的哪些訊息應出現在特定主題訂用帳戶中。
 
 ## <a name="what-are-rules-filters"></a>什麼是規則 (篩選器)？
-在許多情況下，必須以不同的方式處理具有特定特性的訊息。 若要這麼做，您可以設定訂用帳戶以尋找具有所需屬性的訊息，然後對這些屬性進行一些修改。 雖然服務匯流排訂用帳戶可看見所有傳送至主題的訊息，但您只可以將部分的訊息複製到虛擬訂用帳戶佇列。 使用訂用帳戶篩選器即可達成。 若要深入了解規則 (篩選器)，請參閱[服務匯流排佇列、主題和訂用帳戶][Service Bus queues, topics, and subscriptions]。
+
+在許多情況下，必須以不同的方式處理具有特定特性的訊息。 若要這麼做，您可以設定訂用帳戶以尋找具有特定屬性的訊息，然後對這些屬性進行修改。 雖然服務匯流排訂用帳戶可看見所有傳送至主題的訊息，但您只可以將部分的訊息複製到虛擬訂用帳戶佇列。 使用訂用帳戶篩選器即可達成。 若要深入了解規則 (篩選條件)，請參閱 [規則和動作](service-bus-queues-topics-subscriptions.md#rules-and-actions)。
 
 若要自動執行部署，請按一下下列按鈕：
 
 [![部署至 Azure](./media/service-bus-resource-manager-namespace-topic/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-topic-subscription-rule%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>參數
+
 透過 Azure Resource Manager，您應該定義在部署範本時想要指定之值的參數。 此範本有一個 `Parameters` 區段，內含所有參數值。 您應該為會隨著要部署的專案或要部署到的環境而變化的值定義參數。 請不要為永遠保持不變的值定義參數。 每個參數值都可在範本中用來定義所部署的資源。
 
 範本會定義下列參數：
@@ -170,8 +175,8 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 ## <a name="next-steps"></a>後續步驟
 現在您已使用 Azure Resource Manager 建立並部署資源，請檢視這些文件，了解如何管理這些資源︰
 
-* [使用 Azure 自動化管理 Azure 服務匯流排](service-bus-automation-manage.md)
-* [使用 PowerShell 管理服務匯流排](service-bus-powershell-how-to-provision.md)
+* [管理 Azure 服務匯流排](service-bus-management-libraries.md)
+* [使用 PowerShell 管理服務匯流排](service-bus-manage-with-ps.md)
 * [使用服務匯流排總管管理服務匯流排資源](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
 
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/resource-group-authoring-templates.md
@@ -182,10 +187,5 @@ azure group deployment create \<my-resource-group\> \<my-deployment-name\> --tem
 [Recommended naming conventions for Azure resources]: ../guidance/guidance-naming-conventions.md
 [Service Bus namespace with topic, subscription, and rule]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-topic-subscription-rule/
 [Service Bus queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

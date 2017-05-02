@@ -1,6 +1,6 @@
 ---
 title: "在入口網站中建立 Azure App 的身分識別 | Microsoft Docs"
-description: "描述如何建立可以與 Azure 資源管理員中的角色型存取控制搭配使用來管理資源存取權的新 Active Directory 應用程式和服務主體。"
+description: "描述如何建立可以與 Azure 資源管理員中的角色型存取控制搭配使用來管理資源存取權的新 Active Directory 應用程式和服務主體。描述如何建立可以與 Azure 資源管理員中的角色型存取控制搭配使用來管理資源存取權的新 Active Directory 應用程式和服務主體。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -15,13 +15,13 @@ ms.workload: na
 ms.date: 01/17/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2a9075f4c9f10d05df3b275a39b3629d4ffd095f
-ms.openlocfilehash: 3b132bbc89f64928f971f92365691d40c1aab420
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 0b1d7bb2cbbeed2b41c22f19c1db49e81dadd4d7
+ms.lasthandoff: 04/18/2017
 
 
 ---
-# <a name="use-portal-to-create-active-directory-application-and-service-principal-that-can-access-resources"></a>使用入口網站來建立可存取資源的 Active Directory 應用程式和服務主體
+# <a name="use-portal-to-create-an-azure-active-directory-application-and-service-principal-that-can-access-resources"></a>使用入口網站來建立可存取資源的 Active Directory 應用程式和服務主體
 > [!div class="op_single_selector"]
 > * [PowerShell](resource-group-authenticate-service-principal.md)
 > * [Azure CLI](resource-group-authenticate-service-principal-cli.md)
@@ -38,20 +38,20 @@ ms.lasthandoff: 01/24/2017
 本主題說明如何透過入口網站執行這些步驟。 其中著重在說明單一租用戶應用程式，此應用程式的目的是只在一個組織內執行。 您通常會將單一租用戶應用程式用在組織內執行的企業營運系統應用程式。
  
 ## <a name="required-permissions"></a>所需的權限
-若要完成本主題，您必須有足夠權限向 Active Directory 註冊應用程式，並將應用程式指派給 Azure 訂用帳戶中的角色。 讓我們來確定您具有適當的權限可執行這些步驟。
+若要完成本主題，您必須有足夠權限向 Azure AD 租用戶註冊應用程式，並將應用程式指派給 Azure 訂用帳戶中的角色。 讓我們來確定您具有適當的權限可執行這些步驟。
 
-### <a name="check-active-directory-permissions"></a>檢查 Active Directory 權限
+### <a name="check-azure-active-directory-permissions"></a>檢查 Azure Active Directory 權限
 1. 透過 [Azure 入口網站](https://portal.azure.com)登入 Azure 帳戶。
 2. 選取 **Azure Active Directory**。
 
      ![選取 Azure Active Directory](./media/resource-group-create-service-principal-portal/select-active-directory.png)
-3. 在 Active Directory 中，選取 [使用者設定]。
+3. 在 Azure Active Directory 中，選取 [使用者設定]。
 
      ![選取使用者設定](./media/resource-group-create-service-principal-portal/select-user-settings.png)
-4. 檢查 [應用程式註冊] 設定。 如果設定為 [是]，非系統管理使用者可以註冊 AD 應用程式。 這個設定表示 Active Directory 中的任何使用者都可以註冊應用程式。 您可以繼續到[檢查 Azure 訂用帳戶權限](#check-azure-subscription-permissions)。
+4. 檢查 [應用程式註冊] 設定。 如果設定為 [是]，非系統管理使用者可以註冊 AD 應用程式。 這個設定表示 Azure AD 租用戶中的任何使用者都可以註冊應用程式。 您可以繼續到[檢查 Azure 訂用帳戶權限](#check-azure-subscription-permissions)。
 
      ![檢視應用程式註冊](./media/resource-group-create-service-principal-portal/view-app-registrations.png)
-5. 如果應用程式註冊設定為 [否]，則只有系統管理員使用者才能註冊應用程式。 您需要檢查帳戶是否為 Active Directory 的系統管理員。 從 [快速工作] 中，選取 [概觀] 和 [尋找使用者]。
+5. 如果應用程式註冊設定為 [否]，則只有系統管理員使用者才能註冊應用程式。 您需要檢查帳戶是否為 Azure AD 租用戶的系統管理員。 從 [快速工作] 中，選取 [概觀] 和 [尋找使用者]。
 
      ![尋找使用者](./media/resource-group-create-service-principal-portal/find-user.png)
 6. 搜尋您的帳戶，找到時選取它。
@@ -60,7 +60,7 @@ ms.lasthandoff: 01/24/2017
 7. 對於您的帳戶，選取 [目錄角色]。 
 
      ![目錄角色](./media/resource-group-create-service-principal-portal/select-directory-role.png)
-8. 檢視 Active Directory 指派的角色。 如果您的帳戶指派給「使用者」角色，但應用程式註冊設定 (從先前步驟中)僅限於系統管理員使用者，請洽詢系統管理員將您指派至系統管理員角色，或讓使用者可以註冊應用程式。
+8. 在 Azure AD 中檢視您指派的目錄角色。 如果您的帳戶指派給「使用者」角色，但應用程式註冊設定 (從先前步驟中)僅限於系統管理員使用者，請洽詢系統管理員將您指派至系統管理員角色，或讓使用者可以註冊應用程式。
 
      ![檢視角色](./media/resource-group-create-service-principal-portal/view-role.png)
 
@@ -69,9 +69,9 @@ ms.lasthandoff: 01/24/2017
 
 若要檢查訂用帳戶權限：
 
-1. 如果您在先前的步驟中還沒有查看您的 Active Directory 帳戶，請從左窗格選取 [Azure Active Directory]。
+1. 如果您在先前的步驟中還沒有查看您的 Azure AD 帳戶，請從左窗格選取 [Azure Active Directory]。
 
-2. 尋找 Active Directory 帳戶。 從 [快速工作] 中，選取 [概觀] 和 [尋找使用者]。
+2. 找到您的 Azure AD 帳戶。 從 [快速工作] 中，選取 [概觀] 和 [尋找使用者]。
 
      ![尋找使用者](./media/resource-group-create-service-principal-portal/find-user.png)
 2. 搜尋您的帳戶，找到時選取它。
@@ -85,7 +85,7 @@ ms.lasthandoff: 01/24/2017
 
      ![顯示權限](./media/resource-group-create-service-principal-portal/view-assigned-roles.png)
 
-## <a name="create-an-active-directory-application"></a>建立 Active Directory 應用程式
+## <a name="create-an-azure-active-directory-application"></a>建立 Azure Active Directory 應用程式
 1. 透過 [Azure 入口網站](https://portal.azure.com)登入 Azure 帳戶。
 2. 選取 **Azure Active Directory**。
 
@@ -107,7 +107,7 @@ ms.lasthandoff: 01/24/2017
 ## <a name="get-application-id-and-authentication-key"></a>取得應用程式識別碼和驗證金鑰
 以程式設計方式登入時，您需要應用程式識別碼和驗證金鑰。 若要取得這些值，請使用下列步驟︰
 
-1. 在 Active Directory 中，從 [應用程式註冊]選取您的應用程式。
+1. 在 Azure Active Directory 中，從 [應用程式註冊]選取您的應用程式。
 
      ![選取應用程式](./media/resource-group-create-service-principal-portal/select-app.png)
 2. 複製 [應用程式識別碼] 並儲存在您的應用程式碼中。 [範例應用程式](#sample-applications) 區段中的應用程式會參考此值作為用戶端識別碼。
@@ -127,9 +127,9 @@ ms.lasthandoff: 01/24/2017
 ## <a name="get-tenant-id"></a>取得租用戶識別碼
 以程式設計方式登入時，您需要將租用戶識別碼與您的驗證要求一起傳送。 
 
-1. 若要取得租用戶識別碼，請選取 Active Directory 的 [屬性]。 
+1. 若要取得租用戶識別碼，請選取 Azure AD 租用戶的 [屬性]。 
 
-     ![選取 Active Directory 屬性](./media/resource-group-create-service-principal-portal/select-ad-properties.png)
+     ![選取 Azure AD 屬性](./media/resource-group-create-service-principal-portal/select-ad-properties.png)
 
 2. 複製 [目錄識別碼]。 這個值是您的租用戶識別碼。
 
@@ -166,7 +166,7 @@ ms.lasthandoff: 01/24/2017
 
 ## <a name="log-in-as-the-application"></a>以應用程式身分登入
 
-您的應用程式現在已設定在 Active Directory 中。 您有識別碼和金鑰可用應用程式方式登入。 系統會對應用程式指派角色，允許它執行特定動作。 
+您的應用程式現在已設定在 Azure Active Directory 中。 您有識別碼和金鑰可用應用程式方式登入。 系統會對應用程式指派角色，允許它執行特定動作。 
 
 若要透過 PowerShell 登入，請參閱[透過 PowerShell 提供認證](resource-group-authenticate-service-principal.md#provide-credentials-through-powershell)。
 

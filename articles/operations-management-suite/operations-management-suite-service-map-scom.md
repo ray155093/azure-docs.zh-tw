@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/21/2017
 ms.author: bwren;dairwin
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 389c01234acff068dc90f3cdfdc4916a9d76d244
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: 1937462eef4647b273dfa029c8f18c80d3443ae8
+ms.lasthandoff: 04/14/2017
 
 
 ---
@@ -50,7 +50,7 @@ Operations Management Suite (OMS) 服務對應可自動探索 Windows 和 Linux 
 
     ![SCOM 設定精靈](media/oms-service-map/scom-configuration.png)
 
-3. 此精靈的第一個步驟是「連線設定」，您可以在此步驟中輸入「Azure 服務主體」的資訊。 請輸入租用戶名稱或識別碼、應用程式識別碼 (或是使用者名稱或 ClientID)，以及服務主體的密碼。  [深入了解如何建立服務主體](#creating-a-service-principal)。
+3. 此精靈的第一個步驟是「連線設定」，您可以在此步驟中輸入「Azure 服務主體」的資訊。 請輸入租用戶名稱或識別碼、應用程式識別碼 (亦即使用者名稱或 ClientID)，以及服務主體的密碼。  [深入了解如何建立服務主體](#creating-a-service-principal)。
 
     ![SCOM Config SPN](media/oms-service-map/scom-config-spn.png)
 
@@ -77,8 +77,8 @@ Operations Management Suite (OMS) 服務對應可自動探索 Windows 和 Linux 
 ![SCOM 監視](media/oms-service-map/scom-monitoring.png)
 
 服務對應資料夾有三個節點︰
-### <a name="all-alerts"></a>所有警示︰
-這可顯示有關 OMS 中 SCOM 與服務對應解決方案之間通訊的所有警示。
+### <a name="active-alerts"></a>作用中警示：
+這可顯示有關 OMS 中 SCOM 與服務對應解決方案之間通訊的所有作用中警示。
 
 **注意︰**SCOM 中不會顯示任何 OMS 警示。
 ### <a name="servers"></a>伺服器︰
@@ -108,7 +108,7 @@ Operations Management Suite (OMS) 服務對應可自動探索 Windows 和 Linux 
 
 ## <a name="known-issueslimitations"></a>已知的問題/限制︰
 在目前的設計中︰
-1. 使用者可以透過 [撰寫] 窗格以手動方式將伺服器新增至「服務對應伺服器群組」，而這些伺服器的對應只會在下一個同步週期內從服務對應同步處理 (預設為&60; 分鐘。 使用者可以覆寫同步時間)。 
+1. 使用者可以透過 [撰寫] 窗格以手動方式將伺服器新增至「服務對應伺服器群組」，而這些伺服器的對應只會在下一個同步週期內從服務對應同步處理 (預設為 60 分鐘。 使用者可以覆寫同步時間)。 
 2. 使用者可以連線到單一 OMS 工作區。
 
 ## <a name="creating-a-service-principal"></a>建立服務主體

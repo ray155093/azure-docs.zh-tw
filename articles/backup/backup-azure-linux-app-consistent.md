@@ -1,9 +1,9 @@
 ---
-title: "Azure 備份︰Azure Linux VM 的應用程式一致備份 | Microsoft Docs"
-description: "Azure Linux VM 的應用程式一致備份"
+title: "Azure 備份：Linux VM 的應用程式一致備份 | Microsoft Docs"
+description: "使用指令碼針對 Linux 虛擬機器保證應用程式會一致地備份到 Azure。 指令碼僅適用於資源管理員部署中的 Linux VM，不適用於 Windows VM 或服務管理員部署。 這篇文章會帶領您完成設定指令碼的步驟，包括疑難排解。"
 services: backup
 documentationcenter: dev-center-name
-author: anuragm
+author: anuragmehrotra
 manager: shivamg
 keywords: "應用程式一致備份; 應用程式一致 Azure VM 備份; Linux VM 備份; Azure 備份"
 ms.assetid: bbb99cf2-d8c7-4b3d-8b29-eadc0fed3bef
@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 3/20/2017
+ms.date: 4/12/2017
 ms.author: anuragm;markgal
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 044b5d3834518b44209485d1c1a68f2ac0f8a455
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 0f4ca1924531df890433ec092790e6bec7c41df0
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 03/22/2017
 本文討論 Linux 前置和後置指令碼架構，以及如何使用它來取得 Azure Linux VM 的應用程式一致備份。
 
 > [!Note]
-> 前置和後置指令碼架構僅支援已部署 Resource Manager 的 Linux 虛擬機器，它不支援傳統虛擬機器或 Windows 虛擬機器。
+> 僅支援資源管理員所部署 Linux 虛擬機器的前置和後置指令碼架構。 不支援服務管理員所部署虛擬機器或 Windows 虛擬機器的應用程式一致指令碼。
 >
 
 ## <a name="how-the-framework-works"></a>架構的運作方式
@@ -37,7 +37,7 @@ ms.lasthandoff: 03/22/2017
 
 ## <a name="steps-to-configure-pre-script-and-post-script"></a>設定前指令碼和後置指令碼的步驟
 
-1. 登入要以根使用者身分備份的 Linux VM。
+1. 以根使用者身分登入要備份的 Linux VM。
 
 2. 從 [github](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) 下載 VMSnapshotPluginConfig.json，並將它複製到所有要備份 VM 上的 /etc/azure 資料夾。 如果它尚未存在，請建立 /etc/azure 目錄。
 
@@ -48,12 +48,12 @@ ms.lasthandoff: 03/22/2017
    - VMSnapshotPluginConfig.json- 權限 “600” 也就是只有「根」使用者可擁有此檔案的「讀取」與「寫入」權限，使用者不應該有「執行」權限。
    - 前置指令碼檔案- 權限 “700” 也就是只有「根」使用者可擁有此檔案的「讀取」、「寫入」與「執行」權限。
    - 後置指令碼- 權限 “700” 也就是只有「根」使用者可擁有此檔案的「讀取」、「寫入」與「執行」權限。
-   
+
    > [!Note]
    > 此架構會提供許多權限給使用者，所以完全安全非常重要，且應只有「根」使用者有權存取重要的 JSON 和指令碼檔案。
    > 如果萬一不符合上述需求，指令碼將不會執行，導致檔案系統/損毀一致備份。
    >
-   
+
 5. 根據下列詳細資料設定 VMSnapshotPluginConfig.json
     - **pluginName**- 將此欄位保留原狀，無論您的指令碼是否可能無法如預期般運作。
     - **preScriptLocation**- 在要備份的 VM 上提供前置指令碼的完整路徑。
@@ -65,7 +65,7 @@ ms.lasthandoff: 03/22/2017
     - **timeoutInSeconds**- 前置指令碼和後置指令碼的個別逾時。
     - **continueBackupOnFailure**- 如果您在前置或後置指令碼失敗時想要 Azure 備份改為使用檔案系統一致/損毀一致備份，請將這個值設定為 true。 指令碼失敗時，將此設定為 false 會使備份失敗 (除非在不論此設定皆會回到損毀一致備份的單一磁碟 VM)。
     - **fsFreezeEnabled**- 這會指定是否應該呼叫 Linux fsfreeze，同時取得 VM 快照集以確保檔案系統一致性。 我們建議您將這個保持為 true，除非您的應用程式在已停用的 fsfreeze 上具有相依性。
-    
+
 6. 現在已設定指令碼架構，如果已設定 VM 備份，下一次備份會叫用指令碼並觸發應用程式一致備份。 如果未設定 VM 備份，請使用[將 Azure 虛擬機器備份到復原服務保存庫](https://docs.microsoft.com/azure/backup/backup-azure-vms-first-look-arm)來設定。
 
 ## <a name="troubleshooting"></a>疑難排解

@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/31/2017
 ms.author: jotaub
 translationtype: Human Translation
-ms.sourcegitcommit: aa7244849f6286e8ef9f9785c133b4c326193c12
-ms.openlocfilehash: 5a360462288e5df6e0ede5f11adabba158a9dd57
-ms.lasthandoff: 02/02/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: a10ab3cf10826c63785d6427c27712573e82457a
+ms.lasthandoff: 04/18/2017
 
 ---
 
@@ -25,7 +25,7 @@ ms.lasthandoff: 02/02/2017
 
 ## <a name="runtime-apis"></a>執行階段 API
 
-以下是所有目前可用的事件中樞執行階段用戶端清單。 雖然這些程式庫其中也包括有限的管理功能，但也有專用於管理作業的[特定程式庫](#management-apis)。 這些程式庫的核心重點是從事件中樞傳送和接收訊息。
+以下是所有目前可用的 Azure 事件中樞執行階段用戶端清單。 雖然這些程式庫其中也包括有限的管理功能，但也有專用於管理作業的[特定程式庫](#management-apis)。 這些程式庫的核心重點是從事件中樞傳送和接收訊息。
 
 如需每個執行階段程式庫目前狀態的詳細資料，請參閱[其他資訊](#additional-information)。
 

@@ -8,7 +8,7 @@ manager: jhubbard
 editor: giladm
 ms.assetid: 89c2a155-c2fb-4b67-bc19-9b4e03c6d3bc
 ms.service: sql-database
-ms.custom: secure and protect
+ms.custom: security-protect
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 7/3/2017
 ms.author: giladm
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: fdb80e3379adfa9d65d6e5891cb701cee86eb1b9
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 20b46682471addfdaf563c55e989bb5d2271979f
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -238,6 +238,9 @@ Blob 稽核記錄是以 Blob 檔案集合的方式儲存在名為 "**sqldbauditl
    * [Set-AzureRMSqlDatabaseAuditingPolicy][105]
    * [Set-AzureRMSqlServerAuditingPolicy][106]
    * [Use-AzureRMSqlServerAuditingPolicy][107]
+
+   如需指令碼範例，請參閱[使用 PowerShell 設定稽核與威脅偵測](scripts/sql-database-auditing-and-threat-detection-powershell.md)。
+
 2. **REST API - Blob 稽核**
 
    * [建立或更新資料庫 Blob 稽核原則](https://msdn.microsoft.com/library/azure/mt695939.aspx)

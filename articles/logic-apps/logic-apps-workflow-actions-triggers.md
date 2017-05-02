@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 11/17/2016
 ms.author: mandia
 translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 3a240ff317e1b3ea450703965629c08053668856
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: 3f050e2722091aa8b58591cc0c894a6ecb82c3fa
+ms.lasthandoff: 04/14/2017
 
 ---
 
@@ -453,7 +453,7 @@ HTTP 動作 \(和 API 連線\) 動作支援重試原則。 重試原則適用於
     "type": "http",
     "inputs": {
         "method": "GET",
-        "uri": "uri": "https://mynews.example.com/latest",
+        "uri": "https://mynews.example.com/latest",
         "retryPolicy" : {
             "type": "fixed",
             "interval": "PT30S",
@@ -658,6 +658,28 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 |from|是|陣列|來源陣列。|
 |其中|是|String|要套用到來源陣列各個元素的條件。|
 
+## <a name="select-action"></a>選取動作
+
+`select` 動作可讓您將陣列的每個元素預測為新的值。
+例如，若要將數字的陣列轉換為物件的陣列，您可以使用︰
+
+```json
+"SelectNumbers" : {
+    "type": "select",
+    "inputs": {
+        "from": [ 1, 3, 0, 5, 4, 2 ],
+        "select": { "number": "@item()" }
+    }
+}
+```
+
+`select` 動作的輸出是基數為與輸入陣列相同的陣列，其中每個轉換的元素均由 `select` 屬性定義。 如果輸入是空的陣列，則輸出也是空的陣列。
+
+|名稱|必要|類型|說明|
+|--------|------------|--------|---------------|
+|from|是|陣列|來源陣列。|
+|選取|是|任意|要套用到來源陣列各個元素的預測。|
+
 ## <a name="terminate-action"></a>終止動作
 
 終止動作會停止執行工作流程、中止任何進行中的動作，並略過任何剩餘的動作。 例如，若要終止狀態為**失敗**的執行，您可以使用下列程式碼片段︰
@@ -703,6 +725,71 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 
 > [!NOTE]
 > **撰寫**動作可用來建構任何輸出，包括物件、陣列以及邏輯應用程式原生支援的其他任何類型，例如 XML 和二進位檔。
+
+## <a name="table-action"></a>資料表動作
+
+`table` 可讓您將項目的陣列轉換為 **CVS** 或 **HTML** 資料表。
+
+假設 @triggerBody() 是
+
+```json
+[{
+  "id": 0,
+  "name": "apples"
+},{
+  "id": 1, 
+  "name": "oranges"
+}]
+```
+
+並且讓動作定義為
+
+```json
+"ConvertToTable" : {
+    "type": "table",
+    "inputs": {
+        "from": "@triggerBody()",
+        "format": "html"
+    }
+}
+```
+
+以上會產生
+
+<table><thead><tr><th>id</th><th>名稱</th></tr></thead><tbody><tr><td>0</td><td>apples</td></tr><tr><td>1</td><td>oranges</td></tr></tbody></table>"
+
+為了自訂資料表，您可以明確指定資料行。 例如：
+
+```json
+"ConvertToTable" : {
+    "type": "table",
+    "inputs": {
+        "from": "@triggerBody()",
+        "format": "html",
+        "columns": [{
+          "header": "produce id",
+          "value": "@item().id"
+        },{
+          "header": "description",
+          "value": "@concat('fresh ', item().name)"
+        }]
+    }
+}
+```
+
+以上會產生
+
+<table><thead><tr><th>產生識別碼</th><th>說明</th></tr></thead><tbody><tr><td>0</td><td>fresh apples</td></tr><tr><td>1</td><td>fresh oranges</td></tr></tbody></table>"
+
+如果 `from` 屬性值為空的陣列，則輸出為空的資料表。
+
+|名稱|必要|類型|說明|
+|--------|------------|--------|---------------|
+|from|是|陣列|來源陣列。|
+|format|是|String|格式，**CVS** 或 **HTML**。|
+|columns|否|陣列|資料行。 允許覆寫資料表的預設圖形。|
+|資料行標頭|否|String|資料行的標頭。|
+|資料行值|是|String|資料行的值。|
 
 ## <a name="workflow-action"></a>工作流程動作   
 
@@ -897,3 +984,4 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 ## <a name="next-steps"></a>後續步驟
 
 [工作流程服務 REST API](https://docs.microsoft.com/rest/api/logic/workflows)
+

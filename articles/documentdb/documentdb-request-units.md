@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 04/17/2017
 ms.author: syamk
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: b098e3087cb08528c5fbdc2d0d768ce40e7ffe0d
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 6185c703e9148c71d9995b92540b8ea72fba5cc0
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -132,37 +132,37 @@ API for MongoDB 是在與 DocumentDB 相同的保留模型上，根據輸送量�
             <td valign="top"><p>1 KB</p></td>
             <td valign="top"><p>500</p></td>
             <td valign="top"><p>100</p></td>
-            <td valign="top"><p>(500 *1) + (100* 5) = 1,000 RU/s</p></td>
+            <td valign="top"><p>(500 * 1) + (100 * 5) = 1,000 RU/s</p></td>
         </tr>
         <tr>
             <td valign="top"><p>1 KB</p></td>
             <td valign="top"><p>500</p></td>
             <td valign="top"><p>500</p></td>
-            <td valign="top"><p>(500 *5) + (100* 5) = 3,000 RU/s</p></td>
+            <td valign="top"><p>(500 * 1) + (500 * 5) = 3,000 RU/s</p></td>
         </tr>
         <tr>
             <td valign="top"><p>4 KB</p></td>
             <td valign="top"><p>500</p></td>
             <td valign="top"><p>100</p></td>
-            <td valign="top"><p>(500 *1.3) + (100* 7) = 1,350 RU/s</p></td>
+            <td valign="top"><p>(500 * 1.3) + (100 * 7) = 1,350 RU/s</p></td>
         </tr>
         <tr>
             <td valign="top"><p>4 KB</p></td>
             <td valign="top"><p>500</p></td>
             <td valign="top"><p>500</p></td>
-            <td valign="top"><p>(500 *1.3) + (500* 7) = 4,150 RU/s</p></td>
+            <td valign="top"><p>(500 * 1.3) + (500 * 7) = 4,150 RU/s</p></td>
         </tr>
         <tr>
             <td valign="top"><p>64 KB</p></td>
             <td valign="top"><p>500</p></td>
             <td valign="top"><p>100</p></td>
-            <td valign="top"><p>(500 *10) + (100* 48) = 9,800 RU/s</p></td>
+            <td valign="top"><p>(500 * 10) + (100 * 48) = 9,800 RU/s</p></td>
         </tr>
         <tr>
             <td valign="top"><p>64 KB</p></td>
             <td valign="top"><p>500</p></td>
             <td valign="top"><p>500</p></td>
-            <td valign="top"><p>(500 *10) + (500* 48) = 29,000 RU/s</p></td>
+            <td valign="top"><p>(500 * 10) + (500 * 48) = 29,000 RU/s</p></td>
         </tr>
     </tbody>
 </table>
@@ -336,7 +336,7 @@ API for Mongodb 支援自訂命令 *getLastRequestStatistics*，可擷取指定�
 | 讀取文件 |100 |100 |
 | 依製造商選取食物 |25 |175 |
 | 依食物群組選取 |10 |700 |
-| 選取前 10 個 |15 |總共&150; 個 |
+| 選取前 10 個 |15 |總共 150 個 |
 
 在此情況下，我們預期平均輸送量需求為 1,275 RU/秒。  四捨五入至最接近 100 的數目，我們會針對此應用程式的集合佈建 1,300 RU/秒。
 
@@ -352,7 +352,7 @@ API for Mongodb 支援自訂命令 *getLastRequestStatistics*，可擷取指定�
 如果您有多個用戶端會以高於要求速率的方式累積運作，則預設的重試行為可能會不敷使用，而用戶端將擲回 DocumentClientException (狀態碼 429) 到應用程式。 在這類情況下，您可以考慮處理應用程式錯誤處理常式中的重試行為和邏輯，或為集合提高保留的輸送量。
 
 ## <a id="RequestRateTooLargeAPIforMongoDB"></a> 超過 API for MongoDB 中保留的輸送量限制
-如果應用程式超過集合已佈建的要求單位，則會受到節流控制，直到速率降到保留的等級以下。 節流發生時，後端會提前結束要求，並傳回&16500; 錯誤碼 -「太多要求」。 根據預設，在傳回「太多要求」錯誤碼之前，API for MongoDB 會自動重試最多 10 次。 如果您收到很多「太多要求」錯誤碼，您可以考慮在應用程式的錯誤處理常式中新增重試行為，或[提高集合的保留輸送量](documentdb-set-throughput.md)。
+如果應用程式超過集合已佈建的要求單位，則會受到節流控制，直到速率降到保留的等級以下。 節流發生時，後端會提前結束要求，並傳回 16500 錯誤碼 -「太多要求」。 根據預設，在傳回「太多要求」錯誤碼之前，API for MongoDB 會自動重試最多 10 次。 如果您收到很多「太多要求」錯誤碼，您可以考慮在應用程式的錯誤處理常式中新增重試行為，或[提高集合的保留輸送量](documentdb-set-throughput.md)。
 
 ## <a name="next-steps"></a>後續步驟
 若要深入了解透過 Azure DocumentDB 資料庫保留輸送量的方式，請探索下列資源：

@@ -17,9 +17,9 @@ ms.date: 03/17/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 7fad506f2b85404c0b8a2c52ca0d630efdd21387
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: 2d146d3a3bd2497a6c1d9b2b924d2e2cd00710de
+ms.lasthandoff: 04/14/2017
 
 
 ---
@@ -53,7 +53,7 @@ Azure 中的基礎結構分為多個硬體叢集。 每個硬體叢集皆可支�
 
 負載平衡器可以在每個應用程式層級之前運用，以和可用性設定組一起運作，並確保流量總是會被路由到正在執行中的執行個體。 若沒有負載平衡器，您的 VM 可能會在規劃或未規劃的維護事件期間持續執行，但在主要 VM 無法使用的情況下，您的使用者可能無法解析它們。
 
-使用非受控磁碟時，請針對儲存層的高可用性設計應用程式。 最佳作法是針對可用性設定組中的每個 VM 使用個別的儲存體帳戶。 將與 VM 相關聯的所有磁碟 (OS 和資料) 保留於相同的儲存體帳戶中。 將更多 VHD 新增至儲存體帳戶時，請考慮將儲存體帳戶[限制](../../storage/storage-scalability-targets.md)。 如果是 [Azure 受控磁碟](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，將會為您處理基礎磁碟的散佈。
+針對儲存層的高可用性設計應用程式。 最佳作法是[對於可用性設定組中的 VM 使用受控磁碟](../windows/manage-availability.md#use-managed-disks-for-vms-in-availability-set)。 如果您目前使用非受控磁碟，強烈建議您[將可用性設定組中的 VM 轉換為受控磁碟](../windows/convert-unmanaged-to-managed-disks.md#convert-vms-in-an-availability-set-to-managed-disks-in-a-managed-availability-set)。
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-next-steps](../../../includes/virtual-machines-windows-infrastructure-guidelines-next-steps.md)]

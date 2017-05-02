@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: 47869775365ea517b94cbd5a2eb83c93f4d2b4df
-ms.openlocfilehash: 17b7337ddcfa2671bb3a035de8462e31bfa0c85f
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: d324aaf8ec2c8766d5cf11452158d14c19cba4d9
+ms.lasthandoff: 04/13/2017
 
 ---
 
@@ -72,6 +72,10 @@ LOB 的另一個案例是有站台對站台 VPN 至 ILB 端點設定所在的虛
 ![使用站台對站台 VPN 的內部負載平衡](./media/load-balancer-internal-overview/IC744150.png)
 
 圖 4 - 內部部署網路流量路由傳送至 ILB 端點
+
+## <a name="limitations"></a>限制
+
+內部負載平衡器組態不支援 SNAT。 在此文件的內容中，SNAT 是指連接埠偽裝來源網路位址轉譯。  這適用於負載平衡器集區的 VM 需要連接個別內部負載平衡器前端 IP 位址的情況。 內部負載平衡器不支援這種情況。 流量經過負載平衡傳輸至起始流程的 VM 時，會發生連線失敗。 對於這類情況，您必須使用 Proxy 形式負載平衡器。
 
 ## <a name="next-steps"></a>後續步驟
 

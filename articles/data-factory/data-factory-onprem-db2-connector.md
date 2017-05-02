@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 04/12/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 59a83a62ddee89c44533060b811bc8fc2f144bee
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 0d9afb1554158a4d88b7f161c62fa51c1bf61a7d
+ms.openlocfilehash: 6d54203797ad970d590b853b171b383708dbcb5d
+ms.lasthandoff: 04/12/2017
 
 
 ---
@@ -27,9 +27,9 @@ ms.lasthandoff: 03/29/2017
 Data Factory 目前只支援將資料從 DB2 資料庫移到[支援的接收資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)，而不支援將資料從其他資料存放區移到 DB2 資料庫。
 
 ## <a name="prerequisites"></a>必要條件
-若要讓 Azure Data Factory 服務能夠連接到內部部署的 DB2 資料庫，您必須在裝載資料庫的同一部電腦上或在個別的電腦上安裝「資料管理閘道」，以避免發生與資料庫競用資源的情況。 「資料管理閘道」是一個元件，可透過既安全又受管理的方式，將內部部署的資料來源連接到雲端服務。 如需資料管理閘道的詳細資料，請參閱 [資料管理閘道](data-factory-data-management-gateway.md) 一文。 如需有關為閘道設定資料管線來移動資料的逐步指示，請參閱[將資料從內部部署移到雲端](data-factory-move-data-between-onprem-and-cloud.md)。
+資料處理站支援使用資料管理閘道連接至內部部署 DB2 資料庫。 請參閱[資料管理閘道](data-factory-data-management-gateway.md)一文來了解資料管理閘道，以及[將資料從內部部署移動到雲端](data-factory-move-data-between-onprem-and-cloud.md)一文來取得設定資料管線的閘道以移動資料的逐步指示。
 
-您必須使用閘道來連接到 DB2 資料庫，即使該資料庫裝載在雲端中 (例如在 Azure IaaS VM 上) 也一樣。 您可以讓閘道位於裝載資料庫的同一部 VM 上，也可以讓它位於個別的 VM 上，只要該閘道可以連接到資料庫即可。  
+即使 DB2 裝載於 Azure IaaS VM 中，也必須要有閘道。 您可以將閘道安裝在與資料存放區相同或相異的 IaaS VM 上，只要閘道可以連線到資料庫即可。
 
 資料管理閘道提供內建的 DB2 驅動程式，因此從 DB2 複製資料時，您不需要手動安裝任何驅動程式。
 
@@ -47,17 +47,20 @@ Data Factory 目前只支援將資料從 DB2 資料庫移到[支援的接收資�
 * IBM DB2 for LUW 10.5
 * IBM DB2 for LUW 10.1
 
+> [!TIP]
+> 如果出現錯誤，錯誤訊息「找不到對應至 SQL 陳述式執行要求的封裝。 SQLSTATE=51002 SQLCODE=-805」，請使用擁有較高權限的帳戶 (進階使用者或管理員) 執行一次複製活動，所需的封裝將會在複製時自動建立。 之後，您可以切換至一般使用者，來執行後續的複製。
+
 ## <a name="getting-started"></a>開始使用
 您可以藉由使用不同的工具/API，建立內含複製活動的管線，以從內部部署的 DB2 資料存放區移動資料。 
 
 - 建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。 
-- 您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API**及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
+- 您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
 
 不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線：
 
-1. 建立「已連結的服務」，以將輸入和輸出資料存放區連結到 Data Factory。
-2. 建立「資料集」，以代表複製作業的輸入和輸出資料。 
-3. 建立「管線」，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
+1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
+2. 建立**資料集**，代表複製作業的輸入和輸出資料。 
+3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
 
 使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來從內部部署 DB2 資料存放區複製資料之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例：將資料從 DB2 複製到 Azure Blob](#json-example-copy-data-from-db2-to-azure-blob) 一節。 
 

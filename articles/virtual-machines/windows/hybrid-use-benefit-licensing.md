@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 3/10/2017
+ms.date: 4/10/2017
 ms.author: georgem
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 76459acd75cc09a315b0dad219990a830a6ad111
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: 04f5fab5a27a28a0881d59b93451f4c3615692b4
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -32,30 +32,31 @@ ms.lasthandoff: 03/31/2017
 ## <a name="ways-to-use-azure-hybrid-use-benefit"></a>如何使用 Azure Hybrid Use Benefit
 有幾種不同方式可部署 Windows VM 與 Azure Hybrid Use Benefit︰
 
-1. 如果您有具備 Enterprise 合約支援，您可以[從預先設有 Azure Hybrid Use Benefit 的特定 Marketplace 映象部署 VM](#deploy-a-vm-using-the-azure-marketplace)。
-2. 如果沒有 Enterprise 合約，您可以[上傳自訂 VM](#upload-a-windows-vhd)，並使用 [Resource Manager 範本來部署](#deploy-a-vm-via-resource-manager)或使用 [Azure PowerShell](#detailed-powershell-deployment-walkthrough) 來部署。
+1. 您可以從使用 Azure Hybrid Use Benefit - Windows Server 2016、Windows Server 2012R2、Windows Server 2012 和 Windows Server 2008SP1 預先設定的[特定 Marketplace 映像](#deploy-a-vm-using-the-azure-marketplace)部署 VM。
+2. 您可以[上傳自訂 VM](#upload-a-windows-vhd)，並使用 [Resource Manager 範本來部署](#deploy-a-vm-via-resource-manager)或使用 [Azure PowerShell](#detailed-powershell-deployment-walkthrough)。
 
 ## <a name="deploy-a-vm-using-the-azure-marketplace"></a>使用 Azure Marketplace 部署 VM
-對於具備 [Enterprise 合約訂用帳戶](https://www.microsoft.com/Licensing/licensing-programs/enterprise.aspx)的客戶，可以在預先設有 Azure Hybrid Use Benefit 的 Marketplace 使用映象。 這些映像可以直接從 Azure 入口網站、Resource Manager 範本或 Azure PowerShell 部署，例如。 Marketplace 中的映像會以 `[HUB]` 名稱註明，如下所示︰
-
-![Azure Marketplace 中的 Azure Hybrid Use Benefit 映像](./media/hybrid-use-benefit-licensing/ahub-images-portal.png)
+下列映像位於使用 Azure Hybrid Use Benefit - Windows Server 2016、Windows Server 2012R2、Windows Server 2012 和 Windows Server 2008SP1 預先設定的 Marketplace。 這些映像可以直接從 Azure 入口網站、Resource Manager 範本或 Azure PowerShell 部署。
 
 您可以直接從 Azure 入口網站部署這些映像。 若要在 Resource Manager 範本中使用，並與 Azure PowerShell 搭配使用，請檢視映像的清單，如下所示︰
 
 對於 Windows Server：
 ```powershell
-Get-AzureRMVMImageSku -Location "West US" -Publisher "MicrosoftWindowsServer" `
-    -Offer "WindowsServer-HUB"
+Get-AzureRmVMImagesku -Location westus -PublisherName MicrosoftWindowsServer -Offer WindowsServer
 ```
+2016-Datacenter 版本 2016.127.20170406 或更高版本
+
+2012-R2-Datacenter 版本 4.127.20170406 或更高版本
+
+2012-Datacenter 版本 3.127.20170406 或更高版本
+
+2008-R2-SP1 版本 2.127.20170406 或更高版本
 
 對於 Windows 用戶端：
 ```powershell
 Get-AzureRMVMImageSku -Location "West US" -Publisher "MicrosoftWindowsServer" `
     -Offer "Windows-HUB"
 ```
-
-如果您沒有 Enterprise 合約訂用帳戶，請繼續閱讀如何上傳自訂 VM 並使用 Azure Hybrid Use Benefit 進行部署的指示。
-
 
 ## <a name="upload-a-windows-vhd"></a>上傳 Windows VHD
 若要在 Azure 中部署 Windows VM，您必須先建立包含基底 Windows 組建的 VHD。 您必須先透過 Sysprep 妥善準備這個 VHD，再將其上傳至 Azure。 您可以深入了解 [VHD 需求和 Sysprep 處理序](upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)及 [伺服器角色的 Sysprep 支援](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。 執行 Sysprep 前，請先備份 VM。 
@@ -220,4 +221,6 @@ New-AzureRmVM -ResourceGroupName $resourceGroupName -Location $location -VM $vm 
 深入了解 [Azure Hybrid Use Benefit](https://azure.microsoft.com/pricing/hybrid-use-benefit/)授權。
 
 深入了解如何[使用 Resource Manager 範本](../../azure-resource-manager/resource-group-overview.md)。
+
+深入了解 [Azure Hybrid Use Benefit 和 Azure Site Recovery 將應用程式移轉至 Azure 更符合成本效益](https://azure.microsoft.com/blog/hybrid-use-benefit-migration-with-asr/)。
 

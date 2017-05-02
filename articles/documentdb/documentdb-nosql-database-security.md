@@ -13,19 +13,23 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 04/19/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 9cf87aa75b2ef65719a38e446a81086d265e7f4d
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: d04c670daac243119b47cece2df18335c7af972c
+ms.lasthandoff: 04/18/2017
 
 
 ---
 
 # <a name="documentdb-nosql-database-security"></a>DocumentDB NoSQL 資料庫安全性
 
- 本文討論 Azure DocumentDB 提供的 NoSQL 資料庫安全性最佳作法和重要功能，協助您防止、偵測及因應資料庫缺口。
+本文討論 Azure DocumentDB 提供的 NoSQL 資料庫安全性最佳作法和重要功能，協助您防止、偵測及因應資料庫缺口。
+ 
+## <a name="whats-new-in-documentdb-security"></a>DocumentDB 安全性有那些新功能？
+
+加密靜止功能現在可用於儲存在所有 Azure 區域中 DocumentDB 的文件，但政府區域、中國境內的 Azure 及德國境內的 Azure 除外。 其餘區域將於下週啟用，並對備份執行加密靜止。 這些區域內的新舊客戶都會自動套用加密靜止功能。 無須設定任何項目；您即可獲得跟之前相同的出色延遲、輸送量、可用性及功能，並擁有以下好處：知道資料在加密靜止下仍舊安全無虞。
 
 ## <a name="how-do-i-secure-my-nosql-database"></a>如何保護我的 NoSQL 資料庫？ 
 
@@ -72,7 +76,7 @@ ms.lasthandoff: 04/03/2017
 |區域複寫|即使在單一資料中心內，DocumentDB 也會自動複寫資料來達到高可用性，還可讓您選擇[一致性層級](documentdb-consistency-levels.md)。 這樣可保證  [99.99% 執行時間可用性 SLA](https://azure.microsoft.com/support/legal/sla/documentdb/v1_1/)，同時帶來財務保證 - 其他任何 NoSQL 資料庫服務都沒有這種能力。|
 |自動化線上備份|DocumentDB 資料庫會定期備份，並儲存在異地備援存放區。 <br><br>請參閱[使用 DocumentDB 進行自動線上備份及還原](documentdb-online-backup-and-restore.md)以深入了解。|
 |還原已刪除的資料|自動化線上備份可用來復原您不小心刪除的資料，最多可還原意外發生後 30 天內的資料。 <br><br>請參閱[使用 DocumentDB 進行自動線上備份及還原](documentdb-online-backup-and-restore.md)以深入了解|
-|保護並隔離機密資料|PII 和其他機密資料可隔離至特定集合，而讀寫或唯讀存取權可以限制只給特定使用者。|
+|保護並隔離機密資料|在列於[新功能](#whats-new)的區域中，所有資料均已加密靜止。<br><br>PII 和其他機密資料可隔離至特定集合，而讀寫或唯讀存取權可以限制只給特定使用者。|
 |監視攻擊|您可以使用稽核記錄和活動記錄，以監視帳戶的正常和異常活動。 您可以檢視資源上執行的作業、誰起始作業、作業何時發生、作業的狀態等等。<br><br>![Azure DocumentDB 的活動記錄](./media/documentdb-nosql-database-security/nosql-database-security-application-logging.png)|
 |回應攻擊|一旦您連絡 Azure 支援來報告潛在的攻擊，就會展開 5 步驟的事件回應程序。 5 步驟程序的目標是在偵測到問題並展開調查之後，儘快恢復正常的服務安全性和作業。<br><br>請參閱[雲端的 Microsoft Azure 安全性回應](https://aka.ms/securityresponsepaper)以深入了解。|
 |異地隔離|DocumentDB 可確保主權區域 (例如，德國、中國、美國政府) 的資料控管和合規性。|
@@ -87,3 +91,4 @@ ms.lasthandoff: 04/03/2017
 如需主要金鑰和資源權杖的詳細資訊，請參閱[保護 DocumentDB 資料存取](documentdb-secure-access-to-data.md)。
 
 如需 Microsoft 認證的詳細資訊，請參閱 [Azure 信任中心](https://azure.microsoft.com/en-us/support/trust-center/)。
+

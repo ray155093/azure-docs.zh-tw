@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 03/22/2017
 ms.author: darosa;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: 6d749e5182fbab04adc32521303095dab199d129
-ms.openlocfilehash: 95a927d8c2fbfbcb6aa663985d078d5146c489aa
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: f86336de4e1d5bda1eba12f0f95079b950963bde
+ms.lasthandoff: 04/18/2017
 
 
 ---
 # <a name="azure-event-hubs-archive"></a>Azure 事件中樞封存
-Azure 事件中樞封存可讓您自動將事件中樞的串流資料傳遞到您選擇的 Blob 儲存體帳戶，並另外增加了可指定所選擇的時間或大小間隔的彈性。 設定封存的作業很快，因此執行時不需要系統管理成本，而且它可以針對事件中樞的[輸送量單位](event-hubs-what-is-event-hubs.md#capacity)自動進行調整。 事件中樞封存是將串流資料載入至 Azure 的最簡單方式，並可讓您專注於處理資料而非擷取資料。
+Azure 事件中樞封存可讓您自動將事件中樞的串流資料傳遞到您選擇的 Blob 儲存體帳戶，並另外增加了可指定所選擇的時間或大小間隔的彈性。 設定封存的作業很快，因此執行時不需要系統管理成本，而且它可以針對事件中樞的 [輸送量單位](event-hubs-what-is-event-hubs.md#capacity) 自動進行調整。 事件中樞封存是將串流資料載入至 Azure 的最簡單方式，並可讓您專注於處理資料而非擷取資料。
 
 事件中樞封存可讓您在相同資料流上處理即時和批次型的管線。 這可讓您建置可隨時間配合需求成長的方案。 不論您現在是要建置著眼於未來即時處理的批次型系統，或想要為現有即時方案新增有效率的冷路徑，事件中樞封存都可以讓使用串流資料變得更簡單。
 
