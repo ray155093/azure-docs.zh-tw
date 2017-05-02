@@ -35,7 +35,7 @@ ms.lasthandoff: 04/07/2017
 
 1. 移至 [QQ 開發人員入口網站](http://open.qq.com)並以您的 QQ 帳戶認證登入。
 2. 登入之後，請移至 [http://open.qq.com/reg](http://open.qq.com/reg)，將您自己註冊為開發人員。
-3. 在功能表中，選取 [个人] (個人開發人員)。
+3. 在功能表中，選取 [个人] \(個人開發人員)。
 4. 在表單中輸入所需的資訊，然後按 [下一步]。
 5. 完成電子郵件驗證程序。
 
@@ -45,16 +45,16 @@ ms.lasthandoff: 04/07/2017
 ### <a name="register-a-qq-application"></a>註冊 QQ 應用程式
 
 1. 移至 [https://connect.qq.com/index.html](https://connect.qq.com/index.html)。
-2. 按一下 [应用管理] (應用程式管理)。
-3. 按一下 [创建应用] (建立應用程式)。
+2. 按一下 [应用管理] \(應用程式管理)。
+3. 按一下 [创建应用] \(建立應用程式)。
 4. 輸入必要的應用程式資訊。
-5. 按一下 [创建应用] (建立應用程式)。
+5. 按一下 [创建应用] \(建立應用程式)。
 6. 輸入必要資訊。
-7. 針對 [授权回调域] (回呼 URL) 欄位，輸入 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`。 例如，如果您的 `tenant_name` 是 contoso.onmicrosoft.com，請將 URL 設為 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`。
-8. 按一下 [创建应用] (建立應用程式)。
-9. 在 [確認] 頁面上，按一下 [应用管理] (應用程式管理) 以返回應用程式管理頁面。
-10. 在您剛建立的應用程式旁邊，按一下 [查看] (檢視)。
-11. 按一下 [修改] (編輯)。
+7. 針對 [授权回调域] \(回呼 URL) 欄位，輸入 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`。 例如，如果您的 `tenant_name` 是 contoso.onmicrosoft.com，請將 URL 設為 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`。
+8. 按一下 [创建应用] \(建立應用程式)。
+9. 在 [確認] 頁面上，按一下 [应用管理] \(應用程式管理) 以返回應用程式管理頁面。
+10. 在您剛建立的應用程式旁邊，按一下 [查看] \(檢視)。
+11. 按一下 [修改] \(編輯)。
 12. 從頁面頂端複製**應用程式識別碼**和**應用程式金鑰**。
 
 ## <a name="configure-qq-as-an-identity-provider-in-your-tenant"></a>在租用戶中將 QQ 設為識別提供者

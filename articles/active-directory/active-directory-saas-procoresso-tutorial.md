@@ -223,7 +223,7 @@ To ensure users can sign-in to Procore SSO after it has been configured to use A
 
     ![設定單一登入](./media/active-directory-saas-procoresso-tutorial/Procore_user_check.png)
 
-5. 按一下 [儲存並傳送邀請] (如果透過郵件邀請是必要的)，或者按一下 [儲存] (直接儲存) 以完成使用者註冊。
+5. 按一下 [儲存並傳送邀請] \(如果透過郵件邀請是必要的)，或者按一下 [儲存] \(直接儲存) 以完成使用者註冊。
     
     ![設定單一登入](./media/active-directory-saas-procoresso-tutorial/Procore_user_save.png)    
 
