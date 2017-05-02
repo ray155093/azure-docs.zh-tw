@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: jonatul
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 627f0004cd4d558150c1603681431e7638caef88
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 48f7ba325f61b4a91c0208b4c99058da801bee19
+ms.lasthandoff: 04/21/2017
 
 ---
 
@@ -35,6 +35,14 @@ ms.lasthandoff: 03/11/2017
 DNS 區域用來裝載特定網域的 DNS 記錄。 若要開始將網域裝載到 Azure DNS 中，您必須建立該網域名稱的 DNS 區域。 接著在此 DNS 區域內，建立網域的每筆 DNS 記錄。 最後，若要將 DNS 區域發佈至網際網路，您需要設定網域的名稱伺服器。 以下說明上述各步驟。
 
 這些指示假設您已經安裝並登入 Azure PowerShell。 如需說明，請參閱[如何使用 PowerShell 管理 DNS 區域](dns-operations-dnszones.md)。
+
+## <a name="create-the-resource-group"></a>建立資源群組
+
+建立 DNS 區域之前，會建立資源群組以包含 DNS 區域。 以下顯示命令。
+
+```powershell
+New-AzureRMResourceGroup -name MyResourceGroup -location "westus"
+```
 
 ## <a name="create-a-dns-zone"></a>建立 DNS 區域
 
@@ -84,6 +92,13 @@ MaxNumberOfRecordSets : 5000
 
 這些名稱伺服器應該向網域名稱註冊機構 (您購買網域名稱的來源) 設定。 您的註冊機構會提供選項來設定網域的名稱伺服器。 如需詳細資訊，請參閱[將網域委派給 Azure DNS](dns-domain-delegation.md)。
 
+## <a name="delete-all-resources"></a>刪除所有資源
+
+若要刪除這篇文章中建立的所有資源，請採取下列步驟︰
+
+```powershell
+Remove-AzureRMResourceGroup -Name MyResourceGroup
+```
 
 ## <a name="next-steps"></a>後續步驟
 

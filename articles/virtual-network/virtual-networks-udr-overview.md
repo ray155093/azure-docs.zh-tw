@@ -16,9 +16,9 @@ ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 1657f7c772b7039707a67c4abc788479cc08bdd0
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 93920075a8ad8de4fd650d9cbbfd13b7bc18bf52
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -46,7 +46,7 @@ ms.lasthandoff: 04/03/2017
 ![Azure 中的系統路由](./media/virtual-networks-udr-overview/Figure2.png)
 
 > [!IMPORTANT]
-> 使用者定義的路由只適用於離開子網路的流量。 例如，您無法建立路由來指定流量如何從網際網路進入某個子網路的方式。 此外，接收轉送流量的應用裝置不得與流量來源的裝置位於相同的子網路中。 請永遠為您的應用裝置建立個別的子網路。 
+> 使用者定義的路由會套用至從子網路中的任何資源 (例如，連結至 VM 的網路介面) 離開子網路的流量。 例如，您無法建立路由來指定流量該如何從網際網路進入某個子網路。 接收轉送流量的應用裝置不得與流量來源的裝置位於相同的子網路中。 請永遠為您的應用裝置建立個別的子網路。 
 > 
 > 
 

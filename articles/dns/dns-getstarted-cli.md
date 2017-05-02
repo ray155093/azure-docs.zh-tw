@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: jonatul
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 981275da75adb11e8fff16f77e31d4ff86affe1f
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 5cb387c4d1a2a2ae5ee8822241b11e79f53f0d6a
+ms.lasthandoff: 04/25/2017
 
 ---
 
@@ -34,14 +34,21 @@ ms.lasthandoff: 03/11/2017
 
 DNS 區域用來裝載特定網域的 DNS 記錄。 若要開始將網域裝載到 Azure DNS 中，您必須建立該網域名稱的 DNS 區域。 接著在此 DNS 區域內，建立網域的每筆 DNS 記錄。 最後，若要將 DNS 區域發佈至網際網路，您需要設定網域的名稱伺服器。 以下說明上述各步驟。
 
-這些指示假設您已經安裝並登入 Azure CLI 1.0。 如需說明，請參閱[如何使用 Azure CLI 2.0 管理 DNS 區域](dns-operations-dnszones-cli.md)。
+這些指示假設您已經安裝並登入 Azure CLI 2.0。 如需說明，請參閱[如何使用 Azure CLI 2.0 管理 DNS 區域](dns-operations-dnszones-cli.md)。
 
+## <a name="create-the-resource-group"></a>建立資源群組
+
+建立 DNS 區域之前，會建立資源群組以包含 DNS 區域。 以下顯示命令。
+
+```azurecli
+az group create --name MyResourceGroup --location "West US"
+```
 
 ## <a name="create-a-dns-zone"></a>建立 DNS 區域
 
 使用 `az network dns zone create` 命令建立 DNS 區域。 若要查看此命令的說明，請輸入 `az network dns zone create -h`。
 
-下列範例會在稱為 MyResourceGroup 的資源群組中建立稱為 contoso.com 的 DNS 區域。 使用範例來建立 DNS 區域，並將值替換為您自己的值。
+下列範例會在 MyResourceGroup 資源群組中建立稱為 contoso.com 的 DNS 區域。 使用範例來建立 DNS 區域，並將值替換為您自己的值。
 
 ```azurecli
 az network dns zone create -g MyResourceGroup -n contoso.com
@@ -100,6 +107,13 @@ az network dns zone show -g MyResourceGroup -n contoso.com -o json
 
 這些名稱伺服器應該向網域名稱註冊機構 (您購買網域名稱的來源) 設定。 您的註冊機構會提供選項來設定網域的名稱伺服器。 如需詳細資訊，請參閱[將網域委派給 Azure DNS](dns-domain-delegation.md)。
 
+## <a name="delete-all-resources"></a>刪除所有資源
+ 
+若要刪除這篇文章中建立的所有資源，請採取下列步驟︰
+
+```azurecli
+az group delete --name MyResourceGroup
+```
 
 ## <a name="next-steps"></a>後續步驟
 

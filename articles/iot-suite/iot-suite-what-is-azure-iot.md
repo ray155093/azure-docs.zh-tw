@@ -16,16 +16,16 @@ ms.workload: na
 ms.date: 02/09/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 37a1653ca058c60a39df95f646127bd9e7fdd556
-ms.openlocfilehash: 57c7b895579e1c1e86224a60d961721d2d4cf638
-ms.lasthandoff: 02/09/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 1c8703d64ff45e589a7ce93f1f2176681e1bf331
+ms.lasthandoff: 04/25/2017
 
 
 ---
 [!INCLUDE [iot-azure-and-iot](../../includes/iot-azure-and-iot.md)]
 
 ## <a name="azure-iot-suite"></a>Azure IoT 套件
-Microsoft Azure IoT 套件是企業級解決方案，可透過一組可延伸的預先設定解決方案讓您快速入門。 這些解決方案可滿足常見的 IoT 案例，例如[遠端監視][lnk-preconfigured-solutions]和[預測性維護][lnk-predictive-maintenance]。 這些解決方案是本文章概述之 IoT 解決方案架構的實作。
+Microsoft Azure IoT 套件是企業級解決方案，可透過一組可延伸的預先設定解決方案讓您快速入門。 這些解決方案可滿足常見的 IoT 案例，例如[遠端監視][lnk-preconfigured-solutions]、[預測性維護][lnk-predictive-maintenance]和[連線的處理站][lnk-connected-factory]。 這些解決方案是本文章概述之 IoT 解決方案架構的實作。
 
 預先設定之解決方案是完整、有效的端對端解決方案，其中包括︰
 
@@ -53,4 +53,4 @@ Microsoft Azure IoT 套件是企業級解決方案，可透過一組可延伸的
 [Azure Machine Learning]: https://azure.microsoft.com/documentation/services/machine-learning/
 [Azure storage]: https://azure.microsoft.com/documentation/services/storage/
 [lnk-predictive-maintenance]: iot-suite-predictive-overview.md
-
+[lnk-connected-factory]: iot-suite-connected-factory-overview.md

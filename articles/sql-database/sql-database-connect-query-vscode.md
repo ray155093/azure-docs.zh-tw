@@ -18,9 +18,9 @@ ms.topic: hero-article
 ms.date: 04/17/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 5b623c78f8b8eac846c5ca244f1e0b25ee4f400f
-ms.lasthandoff: 04/18/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 45405c7bb9993d1fd529b25b599c3cd7f459843c
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -28,14 +28,14 @@ ms.lasthandoff: 04/18/2017
 
 [Visual Studio Code](https://code.visualstudio.com/docs) 是一個圖形化程式碼編輯器，適用於支援擴充功能的 Linux、macOS 和 Windows，包括可供查詢 Microsoft SQL Server、Azure SQL Database 和 SQL 資料倉儲的 [mssql extension](https://aka.ms/mssql-marketplace)。 此快速入門示範如何使用 Visual Studio Code 來連線至 Azure SQL Database，然後使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。
 
-本快速入門可做為在其中一個快速入門中建立之資源的起點︰
+本快速入門可作為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
 
 開始之前，確定您已安裝最新版的 [Visual Studio Code](https://code.visualstudio.com/Download) 並已載入 [mssql 擴充功能](https://aka.ms/mssql-marketplace)。 如需 mssql 擴充功能的安裝指引，請參閱[安裝 VS Code](https://docs.microsoft.com/sql/linux/sql-server-linux-develop-use-vscode#install-vs-code)和[適用於 Visual Studio Code 的 mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql)。 
 
-## <a name="configure-vs-code-mac-os-only"></a>設定 VS Code (僅限 Mac OS)
+## <a name="configure-vs-code"></a>設定 VS Code 
 
 ### <a name="mac-os"></a>**Mac OS**
 對於 macOS，您必須安裝 OpenSSL，這是 mssql 擴充功能使用之 DotNet Core 的必要條件。 開啟您的終端機，並輸入下列命令以安裝 **brew** 和 **OpenSSL**。 
@@ -49,9 +49,17 @@ ln -s /usr/local/opt/openssl/lib/libcrypto.1.0.0.dylib /usr/local/lib/
 ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 ```
 
+### <a name="linux-ubuntu"></a>**Linux (Ubuntu)**
+
+不需要特別設定。
+
+### <a name="windows"></a>**Windows**
+
+不需要特別設定。
+
 ## <a name="get-connection-information"></a>取得連線資訊
 
-在 Azure 入口網站中取得 Azure SQL Database 伺服器的完整伺服器名稱。 透過 Visual Studio Code，您可使用此完整伺服器名稱連接到您的伺服器。
+取得連線到 Azure SQL Database 所需的連線資訊。 您在下一個程序中需要完整的伺服器名稱、資料庫名稱和登入資訊。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
@@ -108,7 +116,7 @@ ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 
 ## <a name="query-data"></a>查詢資料
 
-使用 [SELECT](https://msdn.microsoft.com/library/ms189499.aspx) Transact-SQL 陳述式在 Azure SQL Database 中查詢資料。
+使用下列程式碼，可藉由使用 [SELECT](https://msdn.microsoft.com/library/ms189499.aspx) Transact-SQL 陳述式來依照類別查詢前 20 項產品。
 
 1. 在 [編輯器] 視窗中，於空白查詢視窗中輸入下列查詢︰
 
@@ -125,7 +133,7 @@ ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 
 ## <a name="insert-data"></a>插入資料
 
-使用 [INSERT](https://msdn.microsoft.com/library/ms174335.aspx) Transact-SQL 陳述式在 Azure SQL Database 中插入資料。
+使用下列程式碼，藉由使用 [INSERT](https://msdn.microsoft.com/library/ms174335.aspx) Transact-SQL 陳述式將新產品插入 SalesLT.Product 資料表中。
 
 1. 在 [編輯器] 視窗中，刪除先前的查詢並輸入下列查詢︰
 
@@ -153,7 +161,7 @@ ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 
 ## <a name="update-data"></a>更新資料
 
-使用 [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx) Transact-SQL 陳述式在 Azure SQL Database 中更新資料。
+使用下列程式碼，藉由使用 [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx) Transact-SQL 陳述式更新您先前新增的產品。
 
 1.  在 [編輯器] 視窗中，刪除先前的查詢並輸入下列查詢︰
 
@@ -167,7 +175,7 @@ ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 
 ## <a name="delete-data"></a>刪除資料
 
-使用 [DELETE](https://msdn.microsoft.com/library/ms189835.aspx) Transact-SQL 陳述式在 Azure SQL Database 中刪除資料。
+使用下列程式碼，藉由使用 [DELETE](https://msdn.microsoft.com/library/ms189835.aspx) Transact-SQL 陳述式刪除您先前新增的產品。
 
 1. 在 [編輯器] 視窗中，刪除先前的查詢並輸入下列查詢︰
 

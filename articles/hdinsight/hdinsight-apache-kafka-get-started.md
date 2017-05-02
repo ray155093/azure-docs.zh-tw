@@ -16,14 +16,14 @@ ms.workload: big-data
 ms.date: 02/14/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 1c7a95354358d91859ce9d2019cef93b6662811f
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: ceedbd6436e819a090e2033aec024034790dbecf
+ms.lasthandoff: 04/20/2017
 
 ---
 # <a name="get-started-with-apache-kafka-preview-on-hdinsight"></a>開始使用 Apache Kafka (預覽) on HDInsight
 
-[Apache Kafka](https://kafka.apache.org) 是 HDInsight 提供的開放原始碼分散式串流平台。 它通常做為訊息代理程式，因為它提供了類似於發佈-訂閱訊息佇列的功能。 在本文件中，您會了解如何建立 Kafka on HDInsight 叢集，然後從 Java 應用程式傳送和接收資料。
+[Apache Kafka](https://kafka.apache.org) 是 HDInsight 提供的開放原始碼分散式串流平台。 它通常作為訊息代理程式，因為它提供了類似於發佈-訂閱訊息佇列的功能。 在本文件中，您會了解如何建立 Kafka on HDInsight 叢集，然後從 Java 應用程式傳送和接收資料。
 
 > [!NOTE]
 > HDInsight 目前提供兩個 Kafka 版本：0.9.0 (HDInsight 3.4) 和 0.10.0 (HDInsight 3.5)。 本文件中的步驟假設您使用 Kafka on HDInsight 3.5。
@@ -340,6 +340,5 @@ Kafka 中儲存的記錄會依照其在資料分割內接收的順序儲存。 �
 * kafka.apache.org 上的 [Apache Kafka 文件](http://kafka.apache.org/documentation.html)。
 * [使用 MirrorMaker 建立 Apache Kafka on HDInsight 複本](hdinsight-apache-kafka-mirroring.md)
 * [使用 Apache Storm 搭配 HDInsight 上的 Kafka](hdinsight-apache-storm-with-kafka.md)
-* [使用 Apache Spark 搭配 HDInsight 上的 Kafka](hdinsight-apache-spark-with-kafka.md)
-
-
+* [使用 Apache Spark 搭配 Kafka on HDInsight](hdinsight-apache-spark-with-kafka.md)
+* [透過 Azure 虛擬網路連線到 Kafka](hdinsight-apache-kafka-connect-vpn-gateway.md)

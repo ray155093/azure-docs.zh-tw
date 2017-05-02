@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/01/2017
+ms.date: 04/25/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: caecd0d6e546d4ddef71ebeee6fad3a5c7ba6451
-ms.openlocfilehash: 5447dff1ff9aea1b90f7e18499f795e7c173e2b9
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: e0e658fc392bf6a53f777f22a2e0b6e7bd742f97
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -47,7 +48,7 @@ Fabrikam 飛機的引擎由各種感應器進行檢測，而這些感應器會�
 
 ## <a name="how-the-predictive-maintenance-solution-is-built"></a>預測性維護解決方案的建置方式
 
-解決方案會使用可做為範例的現有 Azure Machine Learning 模型，示範這些功能如何運用透過 IoT 套件服務收集而來的裝置遙測資料。 Microsoft 已根據公開可用的資料<sup>\[1\]</sup>，以及如何使用模型的逐步指引，建置了一套飛機引擎的[迴歸模型][lnk_regression_model]。
+解決方案會使用可作為範例的現有 Azure Machine Learning 模型，示範這些功能如何運用透過 IoT 套件服務收集而來的裝置遙測資料。 Microsoft 已根據公開可用的資料<sup>\[1\]</sup>，以及如何使用模型的逐步指引，建置了一套飛機引擎的[迴歸模型][lnk_regression_model]。
 
 Azure IoT 預先設定的預測性維護解決方案會利用此範本所建立的迴歸模型。 此模型會部署到您的 Azure 訂用帳戶，並透過自動產生的 API 加以公開。 此解決方案包含了代表 4 具 (全部共 100 具) 引擎之測試資料與 4 個 (全部共 21 個) 感應器之資料流的交集。 此資料足以從定型的模型提供精確的結果。
 
@@ -85,7 +86,7 @@ Azure IoT 預先設定的預測性維護解決方案會利用此範本所建立�
 本節會引導您了解解決方案 UI。
 
 ### <a name="predictive-maintenance-dashboard"></a>預測性維護儀表板
-Web 應用程式中的此頁面會使用 PowerBI JavaScript 控制項 (請參閱 [PowerBI 視覺效果儲存機制][lnk-powerbi]) 以視覺化方式呈現：
+Web 應用程式中的此頁面會使用 PowerBI JavaScript 控制項 (請參閱 [PowerBI 視覺效果存放庫][lnk-powerbi]) 以視覺化方式呈現：
 
 * Blob 儲存體中串流分析作業的輸出資料。
 * 每個飛機引擎的 RUL 和週期計數。
@@ -150,8 +151,3 @@ Web 應用程式中的此頁面會使用 PowerBI JavaScript 控制項 (請參閱
 [lnk-permissions]: iot-suite-permissions.md
 [lnk-portal]: http://portal.azure.com/
 [lnk-machine-learning]: https://azure.microsoft.com/services/machine-learning/
-
-
-<!--HONumber=Feb17_HO1-->
-
-

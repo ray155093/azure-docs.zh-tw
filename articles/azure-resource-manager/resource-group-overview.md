@@ -1,6 +1,6 @@
 ---
 title: "Azure Resource Manager 概觀 | Microsoft Docs"
-description: "描述如何使用 Azure 資源管理員在 Azure 上進行資源的部署、管理及存取控制。"
+description: "描述如何使用 Azure Resource Manager 在 Azure 上進行資源的部署、管理及存取控制。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -15,14 +15,14 @@ ms.workload: na
 ms.date: 03/23/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 6d88b7c5ad96a1c7cfb60bde3c9d952b654adb9f
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 4b7192b22d1583be2b2ab027b040c9a2fce8a293
+ms.lasthandoff: 04/21/2017
 
 
 ---
-# <a name="azure-resource-manager-overview"></a>Azure 資源管理員概觀
-應用程式的基礎結構通常由許多元件所組成 – 或許是虛擬機器、儲存體帳戶和虛擬網路，或者 web 應用程式、資料庫、資料庫伺服器和協力廠商服務。 您看不到這些元件做為個別的實體，而是看到它們做為單一實體相關且彼此相依的組件。 您會想要將其當成群組來部署、管理和監視。 Azure 資源管理員可讓您將方案中的資源做為群組使用。 您可以透過單一、協調的作業來部署、更新或刪除方案的所有資源。 您會使用部署的範本，且該範本可以用於不同的環境，例如測試、預備和生產環境。 資源管理員會提供安全性、稽核和標記功能，以協助您在部署後管理您的資源。 
+# <a name="azure-resource-manager-overview"></a>Azure Resource Manager 概觀
+應用程式的基礎結構通常由許多元件所組成 – 或許是虛擬機器、儲存體帳戶和虛擬網路，或者 web 應用程式、資料庫、資料庫伺服器和第三方服務。 您看不到這些元件作為個別的實體，而是看到它們作為單一實體相關且彼此相依的組件。 您會想要將其當成群組來部署、管理和監視。 Azure Resource Manager 可讓您將方案中的資源作為群組使用。 您可以透過單一、協調的作業來部署、更新或刪除方案的所有資源。 您會使用部署的範本，且該範本可以用於不同的環境，例如測試、預備和生產環境。 Resource Manager 會提供安全性、稽核和標記功能，以協助您在部署後管理您的資源。 
 
 ## <a name="terminology"></a>術語
 如果您不熟悉 Azure Resource Manager，則您可能不熟悉一些詞彙。
@@ -33,8 +33,8 @@ ms.lasthandoff: 03/31/2017
 * **Resource Manager 範本** - 定義一或多個要部署至資源群組之資源的 JavaScript 物件標記法 (JSON) 檔案。 它也會定義所部署資源之間的相依性。 範本可用來以一致性方式重複部署資源。 請參閱 [範本部署](#template-deployment)。
 * **宣告式語法** - 可讓您陳述「以下是我想要建立的項目」而不需要撰寫一連串程式設計命令來加以建立的語法。 Resource Manager 範本便是宣告式語法的其中一個範例。 在該檔案中，您可以定義要部署至 Azure 之基礎結構的屬性。 
 
-## <a name="the-benefits-of-using-resource-manager"></a>使用資源管理員的優點
-資源管理員會提供數個優點：
+## <a name="the-benefits-of-using-resource-manager"></a>使用 Resource Manager 的優點
+Resource Manager 會提供數個優點：
 
 * 您可以以群組形式部署、管理及監視方案的所有資源，而不是個別處理這些資源。
 * 您可以在整個方案週期重複部署方案，並確信您的資源會部署在一致的狀態中。
@@ -44,7 +44,7 @@ ms.lasthandoff: 03/31/2017
 * 您可以將標籤套用至資源，以便以邏輯方式組織訂用帳戶中的所有資源。
 * 您可以檢視共用相同標籤之資源群組的成本，以釐清您的組織的計費方式。  
 
-資源管理員提供一個部署和管理方案的新方式。 如果您使用較舊的部署模型並想要了解這些變更，請參閱 [瞭解資源管理員部署和傳統部署](resource-manager-deployment-model.md)。
+Resource Manager 提供一個部署和管理方案的新方式。 如果您使用較舊的部署模型並想要了解這些變更，請參閱[瞭解Resource Manager 部署和傳統部署](resource-manager-deployment-model.md)。
 
 ## <a name="consistent-management-layer"></a>一致的管理層
 Resource Manager 會針對您透過 Azure PowerShell、Azure CLI、Azure 入口網站、REST API 和開發工具所執行的工作提供一致的管理層。 所有工具使用一組共同的作業。 您所使用的是最適合您的工具，而且您可以交互使用這些工具而不會發生混淆。 
@@ -56,14 +56,14 @@ Resource Manager 會針對您透過 Azure PowerShell、Azure CLI、Azure 入口�
 ## <a name="guidance"></a>指引
 下列建議可協助您在使用您的方案時充分利用 Resource Manager。
 
-1. 透過資源管理員範本中的宣告式語法定義和部署基礎結構，而非透過命令式指令。
+1. 透過 Resource Manager 範本中的宣告式語法定義和部署基礎結構，而非透過命令式指令。
 2. 在範本中定義所有的部署和設定步驟。 您在設定方案時應該沒有手動步驟。
 3. 執行命令式指令來管理您的資源，例如啟動或停止應用程式或機器。
 4. 利用與資源群組中相同的生命週期排列資源。 將標記用於資源的所有其他組織方式。
 
 如需範本的建議，請參閱[建立 Azure Resource Manager 範本的最佳做法](resource-manager-template-best-practices.md)。
 
-如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
+如需關於企業如何使用 Resource Manager 有效地管理訂用帳戶的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
 
 ## <a name="resource-groups"></a>資源群組
 定義資源群組時，必須考慮一些重要因素：
@@ -172,11 +172,11 @@ REQUEST BODY
 
 如需關於自動化部署的四部分系列，請參閱[自動化應用程式部署至 Azure 虛擬機器](../virtual-machines/windows/dotnet-core-1-landing.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 這個系列涵蓋應用程式架構、存取與安全性、可用性與級別，以及應用程式部署。
 
-Azure Resource Manager 會分析相依性，確保以正確的順序建立資源。 如果某個資源依賴另一個資源的值 (例如需要儲存體帳戶以供磁碟使用的虛擬機器)，您必須設定相依性。 如需詳細資訊，請參閱 [定義 Azure 資源管理員範本中的相依性](resource-group-define-dependencies.md)。
+Azure Resource Manager 會分析相依性，確保以正確的順序建立資源。 如果某個資源依賴另一個資源的值 (例如需要儲存體帳戶以供磁碟使用的虛擬機器)，您必須設定相依性。 如需詳細資訊，請參閱 [定義 Azure Resource Manager 範本中的相依性](resource-group-define-dependencies.md)。
 
-您也可以使用範本進行基礎結構的更新。 例如，您可以將資源新增至您的方案，並將組態規則新增至已部署的資源。 如果此範本指定建立資源，但該資源已經存在，Azure Resource Manager 會執行更新，而不必建立新資產。 Azure 資源管理員會將現有資產更新為和新資產相同的狀態。  
+您也可以使用範本進行基礎結構的更新。 例如，您可以將資源新增至您的方案，並將組態規則新增至已部署的資源。 如果此範本指定建立資源，但該資源已經存在，Azure Resource Manager 會執行更新，而不必建立新資產。 Azure Resource Manager 會將現有資產更新為和新資產相同的狀態。  
 
-當您需要其他作業 (例如安裝不包含在安裝程式的特定軟體) 時，資源管理員會提供案例的延伸模組。 如果您已經使用組態管理服務，例如 DSC、Chef 或 Puppet，您可以透過使用擴充功能繼續使用該服務。 如需虛擬機器擴充功能的相關資訊，請參閱[有關虛擬機器擴充功能和功能](../virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
+當您需要其他作業 (例如安裝不包含在安裝程式的特定軟體) 時，Resource Manager 會提供案例的延伸模組。 如果您已經使用組態管理服務，例如 DSC、Chef 或 Puppet，您可以透過使用擴充功能繼續使用該服務。 如需虛擬機器擴充功能的相關資訊，請參閱[有關虛擬機器擴充功能和功能](../virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 
 最後，範本會成為應用程式原始碼的一部分。 您可以檢查您的原始程式碼存放庫，並隨著您的應用程式發展加以更新。 您可以透過 Visual Studio 編輯範本。
 
@@ -188,7 +188,7 @@ Azure Resource Manager 會分析相依性，確保以正確的順序建立資源
 * [使用 Resource Manager 範本和 Resource Manager REST API 部署資源](resource-group-template-deploy-rest.md)
 
 ## <a name="tags"></a>標記
-資源管理員提供標記的功能，可讓您根據管理或計費需求將資源分類。 當您有複雜的資源群組和資源集合，而且必須以對您最有意義的方式視覺化資產時，請使用標籤。 例如，您可以標記在組織中具有類似角色，或屬於相同部門的資源。 如果不使用標籤，貴組織中的使用者可建立多個資源，如此對於日後的身分識別及管理來說可能很困難。 例如，您可能想要刪除特定專案的所有資源。 如果未對此專案標記這些資源，您必須手動尋找它們。 標記是降低訂用帳戶不必要成本的重要方法。 
+Resource Manager 提供標記的功能，可讓您根據管理或計費需求將資源分類。 當您有複雜的資源群組和資源集合，而且必須以對您最有意義的方式視覺化資產時，請使用標籤。 例如，您可以標記在組織中具有類似角色，或屬於相同部門的資源。 如果不使用標籤，貴組織中的使用者可建立多個資源，如此對於日後的身分識別及管理來說可能很困難。 例如，您可能想要刪除特定專案的所有資源。 如果未對此專案標記這些資源，您必須手動尋找它們。 標記是降低訂用帳戶不必要成本的重要方法。 
 
 資源不需要位於相同的資源群組即可共用標記。 您可以建立自己的標記分類，以確保組織中的所有使用者都使用常見的標記，而不是使用者意外套用稍有不同的標記 (例如 "dept" 而不是 "department")。
 
@@ -226,7 +226,7 @@ az resource list --tag costCenter=Finance
 訂用帳戶的[使用報告](../billing/billing-understand-your-bill.md)包含標籤名稱和值，可讓您依標籤細分成本。 如需標記的詳細資訊，請參閱 [使用標記來組織您的 Azure 資源](resource-group-using-tags.md)。
 
 ## <a name="access-control"></a>存取控制
-資源管理員可讓您控制哪些人能存取組織的特定動作。 以原生方式將角色型存取控制 (RBAC) 整合至管理平台，並將存取控制套用至資源群組中的所有服務。 
+Resource Manager 可讓您控制哪些人能存取組織的特定動作。 以原生方式將角色型存取控制 (RBAC) 整合至管理平台，並將存取控制套用至資源群組中的所有服務。 
 
 在使用角色型存取控制時，請了解兩個主要概念︰
 
@@ -256,15 +256,15 @@ Azure 也提供數個資源特有的角色。 一些常見的角色有︰
 
 * [使用 Azure PowerShell 建立用來存取資源的服務主體](resource-group-authenticate-service-principal.md)
 * [使用 Azure CLI 建立用來存取資源的服務主體](resource-group-authenticate-service-principal-cli.md)
-* [使用入口網站來建立可存取資源的 Active Directory 應用程式和服務主體](resource-group-create-service-principal-portal.md)
+* [使用入口網站來建立可存取資源的 Azure Active Directory 應用程式和服務主體](resource-group-create-service-principal-portal.md)
 
-您也可以明確地鎖定重要的資源，以防止使用者刪除或修改它們。 如需詳細資訊，請參閱 [使用 Azure 資源管理員來鎖定資源](resource-group-lock-resources.md)。
+您也可以明確地鎖定重要的資源，以防止使用者刪除或修改它們。 如需詳細資訊，請參閱[使用 Azure Resource Manager 來鎖定資源](resource-group-lock-resources.md)。
 
-## <a name="activity-logs"></a>活動記錄檔
-Resource Manager 會記錄所有建立、修改或刪除資源的作業。 您可以使用活動記錄檔在進行疑難排解時發現錯誤，或是監視貴組織使用者修改資源的方式。 若要查看記錄檔，請在資源群組的 [設定] 刀鋒視窗中選取 [活動記錄檔]。 您可以透過許多不同的值篩選記錄檔，包括哪位使用者起始了作業。 如需使用活動記錄檔的相關資訊，請參閱[檢視活動記錄檔以管理 Azure 資源](resource-group-audit.md)。
+## <a name="activity-logs"></a>活動記錄
+Resource Manager 會記錄所有建立、修改或刪除資源的作業。 您可以使用活動記錄在進行疑難排解時發現錯誤，或是監視貴組織使用者修改資源的方式。 若要查看記錄，請在資源群組的 [設定] 刀鋒視窗中選取 [活動記錄]。 您可以透過許多不同的值篩選記錄，包括哪位使用者起始了作業。 如需使用活動記錄的相關資訊，請參閱[檢視活動記錄以管理 Azure 資源](resource-group-audit.md)。
 
 ## <a name="customized-policies"></a>自訂的原則
-資源管理員可讓您建立自訂的原則，以便管理您的資源。 您所建立的原則類型可以包含各種案例。 您可以強制執行資源的的命名慣例、限制可以部署的資源類型和執行個體，或限制可以裝載某個資源類型的區域。 您可以要求資源的標籤值，以便依照部門組織計費方式。 您可建立原則來協助降低成本，並維護訂用帳戶中的一致性。 
+Resource Manager 可讓您建立自訂的原則，以便管理您的資源。 您所建立的原則類型可以包含各種案例。 您可以強制執行資源的的命名慣例、限制可以部署的資源類型和執行個體，或限制可以裝載某個資源類型的區域。 您可以要求資源的標籤值，以便依照部門組織計費方式。 您可建立原則來協助降低成本，並維護訂用帳戶中的一致性。 
 
 您需要使用 JSON 來定義原則，然後將這些原則套用到您的訂用帳戶或資源群組內。 原則會套用到資源類型，因此不同於角色型存取控制。
 
@@ -288,7 +288,7 @@ Resource Manager 會記錄所有建立、修改或刪除資源的作業。 您�
 
 ## <a name="sdks"></a>SDK
 Azure SDK 可供多個語言和平台使用。
-這些語言實作都是透過其生態系統的封裝管理員和 GitHub 提供。
+這些語言實作都是透過其生態系統的套件管理員和 GitHub 提供。
 
 每個 SDK 中的程式碼都是從 Azure RESTful API 規格產生。
 這些規格是開放原始碼，以 Swagger 2.0 規格為基礎。
@@ -296,7 +296,7 @@ SDK 程式碼是透過稱為 AutoRest 的開放原始碼專案所產生。
 AutoRest 會將這些 RESTful API 規格轉換成多種語言版本的用戶端程式庫。
 如果您想要改善 SDK 中所產生之程式碼的任何層面，用來建立 SDK 的完整工具集皆開放免費取得，且是根據廣為採用的 API 規格格式。
 
-以下是我們的開放原始碼 SDK 儲存機制。 歡迎提供意見反應、問題並提取要求。
+以下是我們的開放原始碼 SDK 存放庫。 歡迎提供意見反應、問題並提取要求。
 
 [.NET](https://github.com/Azure/azure-sdk-for-net) | [Java](https://github.com/Azure/azure-sdk-for-java) | [Node.js](https://github.com/Azure/azure-sdk-for-node) | [PHP](https://github.com/Azure/azure-sdk-for-php) | [Python](https://github.com/Azure/azure-sdk-for-python) | [Ruby](https://github.com/Azure/azure-sdk-ruby)
 

@@ -15,8 +15,9 @@ ms.topic: get-started-article
 ms.date: 09/12/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 29c4c2a2818468a2fa8360eebd4b653bdcbbde19
-ms.openlocfilehash: 0749d371466226343227c79db544a8e3dca0cca8
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 75188a8f74b08d28b92259348626d5734ed4ce6c
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -31,7 +32,7 @@ ms.openlocfilehash: 0749d371466226343227c79db544a8e3dca0cca8
 
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 2. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
-3. 在 [DevTest Labs] 刀鋒視窗上，選取 [加入]。
+3. 在 [DevTest Labs] 刀鋒視窗上，選取 [新增]。
    
     ![新增實驗室](./media/devtest-lab-create-lab/add-lab-button.png)
 4. 在 [建立 DevTest 實驗室]  刀鋒視窗上：
@@ -40,9 +41,11 @@ ms.openlocfilehash: 0749d371466226343227c79db544a8e3dca0cca8
    2. 選取要與實驗室關聯的 **訂用帳戶** 。
    3. 選取用來儲存實驗室的 [位置]  。
    4. 選取 [自動關機]  來指定是否要啟用所有實驗室 VM 的自動關閉，以及定義其參數。 
-   5. 選取 [建立] 。
-      
-      ![建立實驗室刀鋒視窗](./media/devtest-lab-create-lab/create-devtestlab-blade.png)
+   5. 如果您希望在入口網站儀表板上顯示實驗室的捷徑，請選取 [釘選到儀表板]。
+   6. 選取 [自動化選項] 來取得可自動進行設定的 Azure Resource Manager 範本。 
+   7. 選取 [ **建立**]。
+    
+    ![建立實驗室刀鋒視窗](./media/devtest-lab-create-lab/create-devtestlab-blade.png)
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
@@ -53,11 +56,6 @@ ms.openlocfilehash: 0749d371466226343227c79db544a8e3dca0cca8
 * [設定實驗室原則](devtest-lab-set-lab-policy.md)。
 * [建立實驗室範本](devtest-lab-create-template.md)。
 * [為您的 VM 建立自訂成品](devtest-lab-artifact-author.md)。
-* [將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)。
-
-
-
-
-<!--HONumber=Dec16_HO3-->
+* [將具有構件的 VM 新增至實驗室](devtest-lab-add-vm-with-artifacts.md)。
 
 

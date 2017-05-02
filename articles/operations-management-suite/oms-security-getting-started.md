@@ -13,12 +13,12 @@ ms.topic: get-started-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/30/2017
+ms.date: 04/19/2017
 ms.author: yurid
 translationtype: Human Translation
-ms.sourcegitcommit: 5001cd47b6ee51967d1286414ccefedd8e7e7813
-ms.openlocfilehash: 888b9786de8302ccd2e11f271aa417bcbcc2620b
-ms.lasthandoff: 12/02/2016
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: c6944fd4f93d2daa9071bb27f76ea0f772bdb743
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -33,7 +33,7 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 
 1. 在 [Microsoft Operations Management Suite] 主要儀表板中，按一下左邊的 [設定] 圖格。
 2. 在 [設定] 刀鋒視窗的 [解決方案] 底下，按一下 [安全性和稽核] 選項。
-3. [安全性和稽核] 儀表板會出現︰
+3. [安全性和稽核] 儀表板隨即出現︰
    
     ![OMS 安全性和稽核儀表板](./media/oms-security-getting-started/oms-getting-started-fig1-ga.png)
 
@@ -44,7 +44,7 @@ Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理
 > 
 > 
 
-解決方案是邏輯、視覺效果和資料擷取規則的集合，可解決客戶所面臨的重要挑戰。 「安全性和稽核」是其他人可以個別加入的一種解決方案。 如需有關如何加入新解決方案的詳細資訊，請閱讀 [新增解決方案](https://technet.microsoft.com/library/mt674635.aspx) 一文。
+解決方案是邏輯、視覺效果和資料擷取規則的集合，可解決客戶所面臨的重要挑戰。 「安全性和稽核」是其他人可以個別新增的一種解決方案。 如需有關如何新增解決方案的詳細資訊，請閱讀 [新增解決方案](https://technet.microsoft.com/library/mt674635.aspx) 一文。
 
 OMS 安全性和稽核儀表板分為四個主要類別︰
 
@@ -99,12 +99,12 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 如果您按一下電腦名稱，將會取得這部電腦依時間順序排列的保護狀態檢視。 對於需要了解反惡意程式碼是否曾經安裝並在某個時間點移除的情況，這非常實用。   
 
 ### <a name="update-assessment"></a>更新評估
-此選項可讓您快速判斷潛在安全性問題的整體風險，以及或重要性這些更新適用於您的環境。 OMS 安全性和稽核解決方案只提供這些更新的視覺效果，而實際資料來自[系統更新解決方案](https://technet.microsoft.com/library/mt484096.aspx) (這是 OMS 內的不同模組)。 以下是更新範例：
+此選項可讓您快速判斷潛在安全性問題的整體風險，以及或重要性這些更新適用於您的環境。 OMS 安全性和稽核解決方案只提供這些更新的視覺效果，而實際資料來自[更新管理解決方案](oms-solution-update-management.md) (這是 OMS 內的不同模組)。 以下是更新範例：
 
-![系統更新](./media/oms-security-getting-started/oms-getting-started-fig6.png)
+![系統更新](./media/oms-security-getting-started/oms-getting-started-fig6-new.png)
 
 > [!NOTE]
-> 如需更新解決方案的詳細資訊，請參閱 [使用系統更新解決方案來更新伺服器](https://technet.microsoft.com/library/mt484096.aspx)。
+> 如需更新管理解決方案的詳細資訊，請參閱[在 OMS 中更新管理解決方案](oms-solution-update-management.md)。
 > 
 > 
 
@@ -135,6 +135,14 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 
 您可以按一下每部電腦以繼續調查，並檢閱已加上旗標的安全性事件。
 
+### <a name="threat-intelligence"></a>威脅情報
+
+使用 OMS 安全性和稽核中可用的 [威脅情報] 選項，IT 系統管理員可以識別對環境的安全性威脅 (例如，識別特定的電腦是否屬於殭屍網路)。 如果攻擊者偷偷地安裝惡意程式碼，暗中將此電腦連接到命令和控制項，則電腦可能會成為殭屍網路中的節點。 它也可以識別來自地下通訊通道 (例如暗網) 的潛在威脅。 請閱讀[在 Operations Management Suite 安全性和稽核解決方案內監視及回應安全性警示](oms-security-responding-alerts.md)一文，以深入了解威脅情報。
+
+### <a name="baseline-assessment"></a>基準評估
+
+Microsoft 與全球產業和政府組織共同定義可代表高度安全伺服器部署的 Windows 組態。 此組態是一組登錄機碼、稽核原則設定和安全性原則設定，以及 Microsoft 對於這些設定的建議值。 這組規則也稱為安全性基準。 如需此選項的詳細資訊，請參閱 [Operations Management Suite 安全性和稽核解決方案中的基準評估](oms-security-baseline.md)。
+
 ### <a name="azure-security-center"></a>Azure 資訊安全中心
 此圖格基本上是存取 Azure 資訊安全中心儀表板的捷徑。 如需此解決方案的詳細資訊，請閱讀 [開始使用 Azure 資訊安全中心](../security-center/security-center-get-started.md) 。
 
@@ -153,14 +161,14 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 在[事件回應調查](https://blogs.msdn.microsoft.com/azuresecurity/2016/11/30/investigating-suspicious-activity-in-a-hybrid-cloud-with-oms-security/)期間，這個選項也可以用來執行評估並取得有關攻擊的詳細資訊。
 
 > [!NOTE]
-> 如需有關如何使用 OMS 進行事件回應的詳細資訊，請參閱[ Azure 資訊安全中心和 Microsoft Operations Management Suite 進行事件回應](https://channel9.msdn.com/Blogs/Taste-of-Premier/ToP1703)。
+> 如需有關如何使用 OMS 進行事件回應的詳細資訊，請觀看此影片：[如何利用 Azure 資訊安全中心和 Microsoft Operations Management Suite 進行事件回應](https://channel9.msdn.com/Blogs/Taste-of-Premier/ToP1703)。
 > 
 > 
 
 ## <a name="threat-intelligence"></a>威脅情報
 「安全性和稽核」解決方案的新威脅情報區段會以數種方式呈現可能的攻擊模式：具有惡意輸出 IP 流量的伺服器總數、惡意威脅類型，以及顯示這些 IP 出處的地圖。 您可以與地圖互動並按一下 IP 以取得詳細資訊。
 
-地圖上的黃色圖釘表示來自惡意 IP 的傳入流量。 對於暴露在網際網路中以查看傳入惡意流量的伺服器而言，這也很常見，但建議檢閱這些嘗試以確定全都順利完成。 這些指標是以 IIS 記錄檔、WireData 和 Windows 防火牆記錄檔為基礎。  
+地圖上的黃色圖釘表示來自惡意 IP 的傳入流量。 對於暴露在網際網路中以查看傳入惡意流量的伺服器而言，這也很常見，但建議檢閱這些嘗試以確定全都順利完成。 這些指標是以 IIS 記錄、WireData 和 Windows 防火牆記錄為基礎。  
 
 ![威脅情報](./media/oms-security-getting-started/oms-getting-started-fig11-ga.png)
 

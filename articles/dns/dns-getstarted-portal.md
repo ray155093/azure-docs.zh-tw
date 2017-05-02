@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: jonatul
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 79f0c9297c4be70f705f325274f3d9241ea4bc3f
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 3aea60bc21bfb0650a336f6674005bbab47201fe
+ms.lasthandoff: 04/21/2017
 
 ---
 
@@ -32,7 +32,7 @@ ms.lasthandoff: 03/29/2017
 
 本文將逐步引導您使用 Azure 入口網站建立第一個 DNS 區域和記錄。 您也可以使用 Azure PowerShell 或跨平台 Azure CLI 執行這些步驟。
 
-DNS 區域用來裝載特定網域的 DNS 記錄。 若要開始將網域裝載到 Azure DNS 中，您必須建立該網域名稱的 DNS 區域。 接著在此 DNS 區域內，建立網域的每筆 DNS 記錄。 最後，若要將 DNS 區域發佈至網際網路，您需要設定網域的名稱伺服器。 以下說明上述各步驟。
+DNS 區域用來裝載特定網域的 DNS 記錄。 若要開始將網域裝載到 Azure DNS 中，您必須建立該網域名稱的 DNS 區域。 接著在此 DNS 區域內，建立網域的每筆 DNS 記錄。 最後，若要將 DNS 區域發佈至網際網路，您需要設定網域的名稱伺服器。 下列步驟會說明每個步驟。
 
 ## <a name="create-a-dns-zone"></a>建立 DNS 區域
 
@@ -41,41 +41,36 @@ DNS 區域用來裝載特定網域的 DNS 記錄。 若要開始將網域裝載�
 
     ![DNS 區域](./media/dns-getstarted-portal/openzone650.png)
 
-4. 在 [建立 DNS 區域]  刀鋒視窗中，提供 DNS 區域的 [名稱]。 例如 *contoso.com*。
- 
-    ![建立區域](./media/dns-getstarted-portal/newzone250.png)
+4. 在 [建立 DNS 區域] 刀鋒視窗中輸入下列的值，然後按一下 [建立]：
 
-5. 接下來，指定您想要使用的資源群組。 您可以建立新的資源群組，或選取已經存在的資源群組。 如果您選擇建立新的資源群組，請使用 [位置] 下拉式清單來指定資源群組的位置。 請注意，這項設定是指資源群組的位置，不會對 DNS 區域有任何影響。 DNS 區域一定是「全域」位置，並不會顯示出來。
 
-6. 如果您想要輕鬆地在儀表板上找到您的新區域，您可以讓 [釘選到儀表板] 核取方塊保持選取狀態。 然後按一下 [ **建立**]。
+   | **設定** | **值** | **詳細資料** |
+   |---|---|---|
+   |**名稱**|contoso.com|DNS 區域的名稱|
+   |**訂用帳戶**|[您的訂用帳戶]|選取要在其中建立應用程式閘道的訂用帳戶。|
+   |**資源群組**|**建立新的︰**contosoDNSRG|建立資源群組。 資源群組名稱在您選取的訂用帳戶中必須是唯一的。 若要深入了解資源群組，請閱讀 [Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) 概觀。|
+   |**位置**|美國西部||
 
-    ![釘選到儀表板](./media/dns-getstarted-portal/pindashboard150.png)
-
-7. 按一下 [建立] 之後，您會看到您的新區域已設定到儀表板上。
-
-    ![建立中](./media/dns-getstarted-portal/creating150.png)
-
-8. 建立新區域之後，新區域的刀鋒視窗就會在儀表板上開啟。
-
+> [!NOTE]
+> 資源群組是指資源群組的位置，不會對 DNS 區域有任何影響。 DNS 區域一定是「全域」位置，並不會顯示出來。
 
 ## <a name="create-a-dns-record"></a>建立 DNS 記錄
 
 下列範例將逐步引導您完成建立新的 'A' 記錄的程序。 關於其他記錄類型和修改現有的記錄，請參閱[使用 Azure 入口網站管理 DNS 記錄和記錄集](dns-operations-recordsets-portal.md)。 
 
+1. 建立 DNS 區域之後，在 Azure 入口網站的 [我的最愛] 窗格中，按一下 [所有資源]。 在 [所有資源] 刀鋒視窗中，按一下 [contoso.com] DNS 區域。 如果您選取的訂用帳戶已有幾個資源，您可以在 [依名稱篩選...] 方塊中輸入 **contoso.com**， 輕鬆地存取 DNS 區域。
 
 1. 在 [DNS 區域] 刀鋒視窗頂端，選取 [+ 記錄集] 以開啟 [新增記錄集] 刀鋒視窗。
 
-    ![新的記錄集](./media/dns-getstarted-portal/newrecordset500.png)
+1. 在 [新增記錄集] 刀鋒視窗上，輸入下列的值，然後按一下 [確定]。 在此範例中，我們會建立 A 記錄。
 
-4. 在 [新增記錄集] 刀鋒視窗中，為您的記錄集命名。 例如，您可以將記錄集命名為 "**www**"。
-
-    ![新增記錄集](./media/dns-getstarted-portal/addrecordset500.png)
-
-5. 選取您想要建立的記錄類型。 在此範例中，請選取 [A]。
-6. 設定 **TTL**。 預設的存留時間是一小時。
-7. 新增錄的 IP 位址。
-8. 選取刀鋒視窗底部的 [確定]，建立 DNS 記錄。
-
+   |**設定** | **值** | **詳細資料** |
+   |---|---|---|
+   |**名稱**|www|記錄的名稱|
+   |**類型**|具有使用 | 要建立的 DNS 記錄類型，可接受的值為 A、AAAA、CNAME、MX、NS、SRV、TXT 和 PTR。  如需記錄類型的詳細資訊，請參閱 [DNS 區域和記錄的概觀](dns-zones-records.md)。|
+   |**TTL**|1|DNS 要求的存留時間。|
+   |**TTL 單位**|小時|TTL 值的時間測量。|
+   |**IP 位址**|{ipAddressValue| 這個值是 DNS 記錄解析的 IP 位址。|
 
 ## <a name="view-records"></a>檢視記錄
 
@@ -93,6 +88,14 @@ Azure 入口網站中會提供您區域的名稱伺服器：
 ![區域](./media/dns-getstarted-portal/viewzonens500.png)
 
 這些名稱伺服器應該向網域名稱註冊機構 (您購買網域名稱的來源) 設定。 您的註冊機構會提供選項來設定網域的名稱伺服器。 如需詳細資訊，請參閱[將網域委派給 Azure DNS](dns-domain-delegation.md)。
+
+## <a name="delete-all-resources"></a>刪除所有資源
+
+若要刪除這篇文章中建立的所有資源，請完成下列步驟︰
+
+1. 在 Azure 入口網站的 [我的最愛] 窗格中，按一下 [所有資源]。 在 [所有資源] 刀鋒視窗中，按一下 [MyResourceGroup] 資源群組。 如果您選取的訂用帳戶已有幾個資源，您可以在 [依名稱篩選...] 方塊中輸入 **MyResourceGroup**， 輕鬆地存取資源群組。
+1. 在 [MyResourceGroup] 刀鋒視窗中，按一下 [刪除] 按鈕。
+1. 入口網站會要求您輸入資源群組的名稱，以確認您想要刪除它。 按一下 [刪除]，輸入 *MyResourceGroup* 作為資源群組名稱，然後按一下 [刪除]。 刪除資源群組會刪除資源群組內的所有資源，所以務必確認資源群組的內容，然後再刪除它。 入口網站會刪除資源群組內包含的所有資源，然後刪除資源群組本身。 這個程序需要幾分鐘的時間。
 
 
 ## <a name="next-steps"></a>後續步驟

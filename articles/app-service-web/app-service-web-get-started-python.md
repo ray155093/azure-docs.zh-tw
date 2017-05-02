@@ -15,15 +15,15 @@ ms.topic: hero-article
 ms.date: 03/17/2017
 ms.author: cfowler
 translationtype: Human Translation
-ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
-ms.openlocfilehash: f60e1188d1eb8baf8c6d5e77e2ff91a449351e1e
-ms.lasthandoff: 04/04/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 9bd8db6c765f8f702a6e4ea5b17507269d3310d1
+ms.lasthandoff: 04/26/2017
 
 
 ---
 # <a name="create-a-python-application-on-web-app"></a>在 Web 應用程式上建立 Python 應用程式
 
-本快速入門教學課程會逐步解說如何開發 Python 應用程式及部署至 Azure 。 我們將使用 Linux 型 Azure App Service 來執行應用程式，以及使用 Azure CLI 在其中建立和設定新的 Web 應用程式。 我們接著會使用 git 將 Python 應用程式部署至 Azure。
+本快速入門教學課程會逐步解說如何開發 Python 應用程式及部署至 Azure 。 我們將使用 Azure App Service 來執行應用程式，以及使用 Azure CLI 在其中建立和設定新的 Web 應用程式。 我們接著會使用 git 將 Python 應用程式部署至 Azure。
 
 ![hello-world-in-browser](media/app-service-web-get-started-python/hello-world-in-browser.png)
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 04/04/2017
 執行此範例之前，請在本機安裝下列必要條件︰
 
 1. [下載並安裝 git](https://git-scm.com/)
-1. [下載並安裝 Python](https://Python.net)
+1. [下載並安裝 Python](https://www.python.org/downloads/)
 1. 下載並安裝 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
 ## <a name="download-the-sample"></a>下載範例
@@ -59,13 +59,13 @@ cd Python-docs-hello-world
 在本機執行應用程式，做法是開啟終端機視窗並使用範例的 `Python` 命令列，以啟動內建 Python Web 伺服器。
 
 ```bash
-Python -S localhost:8080
+python main.py
 ```
 
 開啟網頁瀏覽器，然後瀏覽至範例。
 
 ```bash
-http://localhost:8080
+http://localhost:5000
 ```
 
 您可以看到來自範例應用程式的 **Hello World** 訊息顯示在網頁中。
@@ -119,27 +119,34 @@ az group create --name myResourceGroup --location westeurope
 > * SKU (免費、共用、基本、標準、進階)
 >
 
-下列範例會使用**標準**定價層，在名為 `quickStartPlan` 的 Linux 背景工作上建立 App Service 方案。
+下列範例會使用**免費**定價層，在名為 `quickStartPlan` 的 Linux 背景工作上建立 App Service 方案。
 
 ```azurecli
-az appservice plan create --name quickStartPlan --resource-group myResourceGroup --sku S1 --is-linux
+az appservice plan create --name quickStartPlan --resource-group myResourceGroup --sku FREE
 ```
 
 建立 App Service 方案後，Azure CLI 會顯示類似下列範例的資訊。
 
 ```json
 {
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Web/serverfarms/quickStartPlan",
-    "kind": "linux",
-    "location": "West Europe",
-    "sku": {
-    "capacity": 1,
-    "family": "S",
-    "name": "S1",
-    "tier": "Standard"
-    },
-    "status": "Ready",
-    "type": "Microsoft.Web/serverfarms"
+"appServicePlanName": "quickStartPlan",
+"geoRegion": "North Europe",
+"id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Web/serverfarms/quickStartPlan",
+"kind": "app",
+"location": "North Europe",
+"maximumNumberOfWorkers": 1,
+"name": "quickStartPlan",
+"provisioningState": "Succeeded",
+"resourceGroup": "myResourceGroup",
+"sku": {
+  "capacity": 0,
+  "family": "F",
+  "name": "F1",
+  "size": "F1",
+  "tier": "Free"
+},
+"status": "Ready",
+"type": "Microsoft.Web/serverfarms",
 }
 ```
 
@@ -147,7 +154,7 @@ az appservice plan create --name quickStartPlan --resource-group myResourceGroup
 
 現已建立 App Service 方案，請在 `quickStartPlan` App Service 方案中建立 Web 應用程式。 Web 應用程式會提供裝載空間來部署我們的程式碼，以及提供 URL 讓我們檢視已部署的應用程式。 使用 [az appservice web create](/cli/azure/appservice/web#create) 命令來建立 Web 應用程式。
 
-在下列命令中，請將 <app_name> 預留位置替換成您自己的唯一應用程式名稱。 <app_name> 將做為 Web 應用程式的預設 DNS 網站，所以此名稱在 Azure 的所有應用程式中必須是唯一的名稱。 您稍後先將任何自訂 DNS 項目對應至 Web 應用程式，再將它公開給使用者。
+在下列命令中，請將 `<app_name>` 預留位置替換成您自己的唯一應用程式名稱。 `<app_name>` 將作為 Web 應用程式的預設 DNS 網站，所以此名稱在 Azure 的所有應用程式中必須是唯一的名稱。 您稍後先將任何自訂 DNS 項目對應至 Web 應用程式，再將它公開給使用者。
 
 ```azurecli
 az appservice web create --name <app_name> --resource-group myResourceGroup --plan quickStartPlan
@@ -157,19 +164,24 @@ az appservice web create --name <app_name> --resource-group myResourceGroup --pl
 
 ```json
 {
-    "clientAffinityEnabled": true,
-    "defaultHostName": "<app_name>.azurewebsites.net",
-    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Web/sites/<app_name>",
-    "isDefaultContainer": null,
-    "kind": "app",
-    "location": "West Europe",
-    "name": "<app_name>",
-    "repositorySiteName": "<app_name>",
-    "reserved": true,
-    "resourceGroup": "myResourceGroup",
-    "serverFarmId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Web/serverfarms/quickStartPlan",
-    "state": "Running",
-    "type": "Microsoft.Web/sites",
+  "clientAffinityEnabled": true,
+  "defaultHostName": "<app_name>.azurewebsites.net",
+  "enabled": true,
+  "enabledHostNames": [
+    "<app_name>.azurewebsites.net",
+    "<app_name>.scm.azurewebsites.net"
+  ],
+  "hostNames": [
+    "<app_name>.azurewebsites.net"
+  ],
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Web/sites/<app_name>",
+  "kind": "app",
+  "location": "North Europe",
+  "outboundIpAddresses": "13.69.190.80,13.69.191.239,13.69.186.193,13.69.187.34",
+  "resourceGroup": "myResourceGroup",
+  "serverFarmId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Web/serverfarms/quickStartPlan",
+  "state": "Running",
+  "type": "Microsoft.Web/sites",
 }
 ```
 
@@ -185,13 +197,13 @@ http://<app_name>.azurewebsites.net
 
 ## <a name="configure-to-use-python"></a>設定成使用 Python
 
-使用 [az appservice web config update](/cli/azure/app-service/web/config#update) 命令來設定 Web 應用程式以使用 Python 版本 `7.0.x`。
+使用 [az appservice web config update](/cli/azure/app-service/web/config#update) 命令來設定 Web 應用程式以使用 Python 版本 `3.4`。
 
 > [!TIP]
 > 以這種方式設定 Python 版本，可使用平台所提供的預設容器，如果您想要使用自己的容器，請參照 CLI 參考中的 [az appservice web config container update](https://docs.microsoft.com/cli/azure/appservice/web/config/container#update) 命令。
 
 ```azurecli
-az appservice web config update --name <app_name> --resource-group myResourceGroup
+az appservice web config update --python-version 3.4 --name <app-name> --resource-group myResourceGroup
 ```
 
 ## <a name="configure-local-git-deployment"></a>設定本機 git 部署
@@ -227,28 +239,45 @@ git push azure master
 在部署期間，Azure App Service 將與 Git 溝通其進度。
 
 ```bash
-Counting objects: 2, done.
+Counting objects: 18, done.
 Delta compression using up to 4 threads.
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (2/2), 352 bytes | 0 bytes/s, done.
-Total 2 (delta 1), reused 0 (delta 0)
+Compressing objects: 100% (16/16), done.
+Writing objects: 100% (18/18), 4.31 KiB | 0 bytes/s, done.
+Total 18 (delta 4), reused 0 (delta 0)
 remote: Updating branch 'master'.
 remote: Updating submodules.
-remote: Preparing deployment for commit id '25f18051e9'.
+remote: Preparing deployment for commit id '44e74fe7dd'.
 remote: Generating deployment script.
+remote: Generating deployment script for python Web Site
+remote: Generated deployment script files
 remote: Running deployment command...
-remote: Handling Basic Web Site deployment.
-remote: Kudu sync from: '/home/site/repository' to: '/home/site/wwwroot'
+remote: Handling python deployment.
+remote: KuduSync.NET from: 'D:\home\site\repository' to: 'D:\home\site\wwwroot'
+remote: Deleting file: 'hostingstart.html'
 remote: Copying file: '.gitignore'
 remote: Copying file: 'LICENSE'
-remote: Copying file: 'README.md'
 remote: Copying file: 'main.py'
-remote: Ignoring: .git
+remote: Copying file: 'README.md'
+remote: Copying file: 'requirements.txt'
+remote: Copying file: 'virtualenv_proxy.py'
+remote: Copying file: 'web.2.7.config'
+remote: Copying file: 'web.3.4.config'
+remote: Detected requirements.txt.  You can skip Python specific steps with a .skipPythonDeployment file.
+remote: Detecting Python runtime from site configuration
+remote: Detected python-3.4
+remote: Creating python-3.4 virtual environment.
+remote: .................................
+remote: Pip install requirements.
+remote: Successfully installed Flask click itsdangerous Jinja2 Werkzeug MarkupSafe
+remote: Cleaning up...
+remote: .
+remote: Overwriting web.config with web.3.4.config
+remote:         1 file(s) copied.
 remote: Finished successfully.
 remote: Running post deployment command(s)...
 remote: Deployment successful.
 To https://<app_name>.scm.azurewebsites.net/<app_name>.git
-   cc39b1e..25f1805  master -> master
+ * [new branch]      master -> master
 ```
 
 ## <a name="browse-to-the-app"></a>瀏覽至應用程式
@@ -261,14 +290,14 @@ http://<app_name>.azurewebsites.net
 
 這次，顯示 Hello World 訊息的頁面會使用 Python 程式碼當作 Azure App Service Web 應用程式執行。
 
-
+![]()
 
 ## <a name="updating-and-deploying-the-code"></a>更新和部署程式碼
 
-使用本機文字編輯器，開啟 Python 應用程式內的 `main.py` 檔案，並且對 `echo` 旁邊字串內的文字進行小幅變更：
+使用本機文字編輯器，開啟 Python 應用程式內的 `main.py` 檔案，並且對 `return` 陳述式旁邊字串內的文字進行小幅變更：
 
 ```python
-echo "Hello Azure!";
+return 'Hello, Azure!'
 ```
 
 在 git 中認可您的變更，然後將程式碼變更推送至 Azure。
@@ -288,7 +317,7 @@ git push azure master
 
 若要這麼做，請登入 [https://portal.azure.com](https://portal.azure.com)。
 
-按一下左側功能表中的 [App Service]，然後按一下 Azure Web 應用程式的名稱。
+按一下左側功能表中的 [應用程式服務]，然後按一下 Azure Web 應用程式的名稱。
 
 ![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-get-started-python/Python-docs-hello-world-app-service-list.png)
 

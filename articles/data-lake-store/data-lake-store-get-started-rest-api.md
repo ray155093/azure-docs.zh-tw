@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/03/2017
+ms.date: 04/21/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 650ff05715c8c0d915c82f9de49756530b8f3138
-ms.lasthandoff: 04/06/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: de04bf367f9f9f92756202cf6c1571f811a0f1f7
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -55,7 +55,7 @@ ms.lasthandoff: 04/06/2017
 
 1. 透過您的應用程式，將使用者重新導向至下列 URL：
    
-        https://login.microsoftonline.com/<TENANT-ID>/oauth2/authorize?client_id=<CLIENT-ID>&response_type=code&redirect_uri=<REDIRECT-URI>
+        https://login.microsoftonline.com/<TENANT-ID>/oauth2/authorize?client_id=<APPLICATION-ID>&response_type=code&redirect_uri=<REDIRECT-URI>
    
    > [!NOTE]
    > \<REDIRECT-URI> 需要編碼才能在 URL 中使用。 因此，針對 https://localhost，使用 `https%3A%2F%2Flocalhost`)
@@ -71,7 +71,7 @@ ms.lasthandoff: 04/06/2017
         -F redirect_uri=<REDIRECT-URI> \
         -F grant_type=authorization_code \
         -F resource=https://management.core.windows.net/ \
-        -F client_id=<CLIENT-ID> \
+        -F client_id=<APPLICATION-ID> \
         -F code=<AUTHORIZATION-CODE>
    
    > [!NOTE]
@@ -86,7 +86,7 @@ ms.lasthandoff: 04/06/2017
         curl -X POST https://login.microsoftonline.com/<TENANT-ID>/oauth2/token  \
              -F grant_type=refresh_token \
              -F resource=https://management.core.windows.net/ \
-             -F client_id=<CLIENT-ID> \
+             -F client_id=<APPLICATION-ID> \
              -F refresh_token=<REFRESH-TOKEN>
 
 如需互動使用者驗證的詳細資料，請參閱 [授權碼授與流程](https://msdn.microsoft.com/library/azure/dn645542.aspx)。
@@ -128,7 +128,7 @@ ms.lasthandoff: 04/06/2017
 
 使用下列 cURL 命令。 以 Data Lake Store 名稱取代 **\<yourstorename>**。
 
-    curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/?op=MKDIRS
+    curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/?op=MKDIRS'
 
 在上述命令中，以您稍早擷取的授權權杖取代 \<`REDACTED`\>。 此命令會在 Data Lake Store 帳戶的根資料夾下建立名為 **mytempdir** 的目錄。
 
@@ -141,7 +141,7 @@ ms.lasthandoff: 04/06/2017
 
 使用下列 cURL 命令。 以 Data Lake Store 名稱取代 **\<yourstorename>**。
 
-    curl -i -X GET -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/?op=LISTSTATUS
+    curl -i -X GET -H "Authorization: Bearer <REDACTED>" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/?op=LISTSTATUS'
 
 在上述命令中，以您稍早擷取的授權權杖取代 \<`REDACTED`\>。
 
@@ -167,33 +167,24 @@ ms.lasthandoff: 04/06/2017
 ## <a name="upload-data-into-a-data-lake-store-account"></a>將資料上傳至 Data Lake Store 帳戶
 這項作業以 [這裡](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Create_and_Write_to_a_File)定義的 WebHDFS REST API 呼叫為基礎。
 
-使用 WebHDFS REST API 上傳資料是兩個步驟的程序，如下所述。
+使用下列 cURL 命令。 以 Data Lake Store 名稱取代 **\<yourstorename>**。
 
-1. 提交 HTTP PUT 要求，而不傳送要上傳的檔案資料。 在下列命令中，以 Data Lake Store 名稱取代 **\<yourstorename>**。
+    curl -i -X PUT -L -T 'C:\temp\list.txt' -H "Authorization: Bearer <REDACTED>" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/list.txt?op=CREATE'
+
+在上述語法中，**-T** 參數是您要上傳檔案的位置。
+
+輸出大致如下：
    
-        curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/?op=CREATE
-   
-    此命令的輸出將會包含暫時重新導向 URL，如下所示。
-   
-        HTTP/1.1 100 Continue
-   
-        HTTP/1.1 307 Temporary Redirect
-        ...
-        ...
-        Location: https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/somerandomfile.txt?op=CREATE&write=true
-        ...
-        ...
-2. 您現在必須針對為回應中 **Location** 屬性所列出的 URL 提交另一個 HTTP PUT 要求。 以 Data Lake Store 名稱取代 **\<yourstorename>**。
-   
-        curl -i -X PUT -T myinputfile.txt -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=CREATE&write=true
-   
-    輸出將類似於：
-   
-        HTTP/1.1 100 Continue
-   
-        HTTP/1.1 201 Created
-        ...
-        ...
+    HTTP/1.1 307 Temporary Redirect
+    ...
+    Location: https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/list.txt?op=CREATE&write=true
+    ...
+    Content-Length: 0
+
+    HTTP/1.1 100 Continue
+
+    HTTP/1.1 201 Created
+    ...
 
 ## <a name="read-data-from-a-data-lake-store-account"></a>從 Data Lake Store 帳戶讀取資料
 這項作業以 [這裡](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/WebHDFS.html#Open_and_Read_a_File)定義的 WebHDFS REST API 呼叫為基礎。
@@ -205,7 +196,7 @@ ms.lasthandoff: 04/06/2017
 
 不過，由於第一和第二個步驟之間的輸入參數沒有任何差異，您可以使用 `-L` 參數來提交第一個要求。 `-L` 選項基本上會將兩個要求結合為一個，並且讓 cURL 在新的位置重做要求。 最後會顯示所有要求呼叫的輸出，如下所示。 以 Data Lake Store 名稱取代 **\<yourstorename>**。
 
-    curl -i -L GET -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN
+    curl -i -L GET -H "Authorization: Bearer <REDACTED>" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=OPEN'
 
 您應該會看到如下所示的輸出：
 
@@ -224,7 +215,7 @@ ms.lasthandoff: 04/06/2017
 
 請使用下列 cURL 命令重新命名檔案。 以 Data Lake Store 名稱取代 **\<yourstorename>**。
 
-    curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=RENAME&destination=/mytempdir/myinputfile1.txt
+    curl -i -X PUT -H "Authorization: Bearer <REDACTED>" -d "" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile.txt?op=RENAME&destination=/mytempdir/myinputfile1.txt'
 
 您應該會看到如下所示的輸出：
 
@@ -238,7 +229,7 @@ ms.lasthandoff: 04/06/2017
 
 請使用下列 cURL 命令刪除檔案。 以 Data Lake Store 名稱取代 **\<yourstorename>**。
 
-    curl -i -X DELETE -H "Authorization: Bearer <REDACTED>" https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile1.txt?op=DELETE
+    curl -i -X DELETE -H "Authorization: Bearer <REDACTED>" 'https://<yourstorename>.azuredatalakestore.net/webhdfs/v1/mytempdir/myinputfile1.txt?op=DELETE'
 
 您應該會看到如下的輸出：
 

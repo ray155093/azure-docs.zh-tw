@@ -16,9 +16,9 @@ ms.date: 03/07/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: b7dbfff716806e8b91488d3eb5eafab582e173ba
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 11d7c919da7e443dcb59c16b4d5fe2b25501fb2d
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -91,12 +91,12 @@ ms.lasthandoff: 03/15/2017
     private static final String deviceId = "myFirstJavaDevice";
    
     ```
-8. 修改 **main** 方法的簽章以加入如下所示的例外狀況：
+8. 修改 **main** 方法的簽章以新增如下所示的例外狀況：
    
     ```
     public static void main( String[] args ) throws IOException, URISyntaxException, Exception
     ```
-9. 新增下列程式碼做為 **main** 方法的主體。 如果還沒有裝置，此程式碼會在 IoT 中樞身分識別登錄中建立名為 javadevice  的裝置。 然後它會顯示稍後需要用到的裝置識別碼和金鑰：
+9. 新增下列程式碼作為 **main** 方法的主體。 如果還沒有裝置，此程式碼會在 IoT 中樞身分識別登錄中建立名為 javadevice  的裝置。 然後它會顯示稍後需要用到的裝置識別碼和金鑰：
    
     ```
     RegistryManager registryManager = RegistryManager.createFromConnectionString(connectionString);
@@ -125,10 +125,10 @@ ms.lasthandoff: 03/15/2017
     ```
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
-13. 記下**裝置識別碼**和**裝置金鑰**。 稍後在建立連線至做為裝置之 IoT 中樞的應用程式時，您會需要這些值。
+13. 記下**裝置識別碼**和**裝置金鑰**。 稍後在建立連線至作為裝置之 IoT 中樞的應用程式時，您會需要這些值。
 
 > [!NOTE]
-> IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對 IoT 中樞的安全存取。 它會儲存裝置識別碼和金鑰來做為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。 如果您的應用程式需要儲存其他裝置特定中繼資料，它應該使用應用程式特定存放區。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
+> IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對 IoT 中樞的安全存取。 它會儲存裝置識別碼和金鑰來作為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。 如果您的應用程式需要儲存其他裝置特定中繼資料，它應該使用應用程式特定存放區。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
 > 
 > 
 
@@ -239,7 +239,7 @@ ms.lasthandoff: 03/15/2017
    > 在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，這個方法會使用篩選器。 這項技術很適合測試環境，因為如此一來您就可以看到目前的訊息集。 在生產環境中，您的程式碼應該要確定它能處理所有訊息；如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
    > 
    > 
-9. 修改 **main** 方法的簽章，以加入如下所示的例外狀況：
+9. 修改 **main** 方法的簽章，以新增如下所示的例外狀況：
    
     ```
     public static void main( String[] args ) throws IOException
@@ -336,7 +336,8 @@ ms.lasthandoff: 03/15/2017
     ```
     private static class TelemetryDataPoint {
       public String deviceId;
-      public double windSpeed;
+      public double temperature;
+      public double humidity;
    
       public String serialize() {
         Gson gson = new Gson();
@@ -367,17 +368,22 @@ ms.lasthandoff: 03/15/2017
     
       public void run()  {
         try {
-          double avgWindSpeed = 10; // m/s
+          double minTemperature = 20;
+          double minHumidity = 60;
           Random rand = new Random();
     
           while (true) {
-            double currentWindSpeed = avgWindSpeed + rand.nextDouble() * 4 - 2;
+            double currentTemperature = minTemperature + rand.nextDouble() * 15;
+            double currentHumidity = minHumidity + rand.nextDouble() * 20;
             TelemetryDataPoint telemetryDataPoint = new TelemetryDataPoint();
             telemetryDataPoint.deviceId = deviceId;
-            telemetryDataPoint.windSpeed = currentWindSpeed;
+            telemetryDataPoint.temperature = currentTemperature;
+            telemetryDataPoint.humidity = currentHumidity;
     
             String msgStr = telemetryDataPoint.serialize();
             Message msg = new Message(msgStr);
+            msg.setProperty("temperatureAlert", (currentTemperature > 30) ? "true" : "false");
+            msg.setMessageId(java.util.UUID.randomUUID().toString()); 
             System.out.println("Sending: " + msgStr);
     
             Object lockobj = new Object();
@@ -396,7 +402,7 @@ ms.lasthandoff: 03/15/2017
     }
     ```
     
-    這個方法會在 IoT 中樞認可先前的訊息一秒後，傳送新的裝置到雲端訊息。 此訊息會包含 JSON 序列化物件及 deviceId 與隨機產生的數字，以模擬風向速度感應器。
+    這個方法會在 IoT 中樞認可先前的訊息一秒後，傳送新的裝置到雲端訊息。 此訊息包含 JSON 序列化物件及裝置識別碼與隨機產生的數字，以模擬溫度感應器和溼度感應器。
 11. 將 **main** 方法取代為下列程式碼，以建立執行緒來將裝置到雲端訊息傳送至 IoT 中樞：
     
     ```
@@ -486,3 +492,4 @@ ms.lasthandoff: 03/15/2017
 [lnk-maven-service-search]: http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22
 [lnk-maven-device-search]: http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-device-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22
 [lnk-maven-eventhubs-search]: http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22
+

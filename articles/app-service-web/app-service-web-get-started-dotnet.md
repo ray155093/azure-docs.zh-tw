@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 03/27/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 24ddf0d81e52960bd582861d324585b8ba0ca357
-ms.lasthandoff: 04/18/2017
+ms.sourcegitcommit: e0bfa7620feeb1bad33dd2fe4b32cb237d3ce158
+ms.openlocfilehash: 24e9f1d7bdf4401d009ba04fb62351b6abda6079
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -132,7 +132,7 @@ URL 會使用您稍早指定的 Web 應用程式名稱，其格式為 `http://<a
 
 ## <a name="update-the-app-and-redeploy"></a>更新應用程式並重新部署
 
-將更新重新部署至 Azure 極為容易。 讓我們對首頁進行更新。
+您可以很容易地更新並重新部署至 Azure。 讓我們對首頁進行更新。
 
 從 [方案總管]，開啟 **Views\Home\Index.cshtml**。
 

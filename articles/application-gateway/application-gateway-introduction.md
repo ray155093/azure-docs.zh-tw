@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 04/03/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
-ms.openlocfilehash: d23b400d8e6db66bc596731770a98e2833302543
-ms.lasthandoff: 04/04/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: ba9c673676fd0b742eb8bd780b67930333b151b3
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -101,6 +101,9 @@ Azure 應用程式閘道會透過基本或自訂健全狀態探測，自動監�
 
 價格是以每小時的閘道器執行個體費用和資料處理費用為基礎。 WAF SKU 的每小時閘道價格不同於標準 SKU 費用，您可在[應用程式閘道價格詳細資料](https://azure.microsoft.com/pricing/details/application-gateway/)找到。 資料處理費用維持不變。
 
+## <a name="faq"></a>常見問題集
+
+如需應用程式閘道的常見問題集，請參閱[應用程式閘道常見問題集](application-gateway-faq.md)。
 ## <a name="next-steps"></a>後續步驟
 
 了解應用程式閘道之後，您可以[建立應用程式閘道](application-gateway-create-gateway-portal.md)，或是[建立應用程式閘道 SSL 卸載](application-gateway-ssl-arm.md)來為 HTTPS 連線進行負載平衡。

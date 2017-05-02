@@ -8,15 +8,17 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: f284b6e3-5f3b-4a50-b455-917e77588069
 ms.service: hdinsight
+ms.custom: hdinsightactive
 ms.devlang: na
-ms.topic: hero-article
+ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 02/09/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 2d744e753224e4ce98680d3228914fd89e87eba4
-ms.openlocfilehash: 28d213fa23d480635fd4376e22ff54a5e6374350
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: a3ceca6cd0f470a5cd6849c345867f094b870a85
+ms.lasthandoff: 04/20/2017
 
 ---
 # <a name="introducing-apache-kafka-on-hdinsight-preview"></a>HDInsight 上的 Apache Kafka (預覽) 簡介
@@ -27,7 +29,7 @@ ms.openlocfilehash: 28d213fa23d480635fd4376e22ff54a5e6374350
 
 Kafka 提供下列功能：
 
-* 發行-訂閱傳訊模式︰Kafka 提供生產者 API，可將記錄發佈到 Kafka 主題。 訂閱主題時會使用取用者 API。
+* 發佈-訂閱傳訊模式︰Kafka 提供生產者 API，可將記錄發佈到 Kafka 主題。 訂閱主題時會使用取用者 API。
 
 * 串流處理︰Kafka 通常與 Apache Storm 或 Spark 一起用來處理即時串流。 Kafka 0.10.0.0 (HDInsight 3.5 版) 引進串流 API，讓您不需要 Storm 或 Spark 就能建置串流解決方案。
 
@@ -39,7 +41,7 @@ Kafka 提供下列功能：
 
 ## <a name="use-cases"></a>使用案例
 
-* **傳訊**︰Kafka 支援發行-訂閱傳訊模式，常做為訊息代理程式。
+* **傳訊**︰Kafka 支援發佈-訂閱傳訊模式，通常作為訊息代理程式。
 
 * **活動追蹤**︰Kafka 能夠依序登載記錄，可用來追蹤和重新建立活動。 例如，網站或應用程式中的使用者動作。
 
@@ -63,9 +65,4 @@ Kafka 提供下列功能：
 
 * [使用 Apache Spark 搭配 Kafka on HDInsight](hdinsight-apache-spark-with-kafka.md)
 
-
-
-
-<!--HONumber=Nov16_HO3-->
-
-
+* [透過 Azure 虛擬網路連線至 Kafka](hdinsight-apache-kafka-connect-vpn-gateway.md)

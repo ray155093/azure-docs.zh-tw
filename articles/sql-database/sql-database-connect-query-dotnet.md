@@ -16,9 +16,9 @@ ms.topic: hero-article
 ms.date: 04/17/2017
 ms.author: andrela;sstein;carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 368ffc65382c75b0fe5f4c20ce1c6a487a764ed3
-ms.lasthandoff: 04/18/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 119ffa3ac31e0ea6e76f8232f13b4dd8667f78aa
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -26,12 +26,14 @@ ms.lasthandoff: 04/18/2017
 
 此快速入門示範如何使用 [C# 和 ADO.NET](https://msdn.microsoft.com/library/kb9s9ks0.aspx) 來連線至 Azure SQL Database，然後從 Windows、Mac OS 和 Ubuntu Linux 平台使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。
 
-本快速入門可做為在其中一個快速入門中建立之資源的起點︰
+本快速入門可作為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
 
 ## <a name="install-net"></a>安裝 .NET
+
+本節中的步驟假設您已熟悉使用 .NET 進行開發且不熟悉 Azure SQL Database。 如果您不熟悉使用 .NET 進行開發，請前往[使用 SQL Server 建置應用程式](https://www.microsoft.com/en-us/sql-server/developer-get-started/)並選取 **C#**，然後選取您的作業系統。
 
 ### <a name="windows-net-framework-and-net-core"></a>**Windows .NET Framework 和 .NET Core**
 
@@ -66,7 +68,7 @@ sudo apt-get install dotnet-dev-1.0.1
 
 ## <a name="get-connection-information"></a>取得連線資訊
 
-在 Azure 入口網站中取得連接字串。 您可使用連接字串連線到 Azure SQL Database。
+取得連線到 Azure SQL Database 所需的連線資訊。 您在下一個程序中需要完整的伺服器名稱、資料庫名稱和登入資訊。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
@@ -83,7 +85,7 @@ sudo apt-get install dotnet-dev-1.0.1
     ![ADO.NET 連接字串](./media/sql-database-connect-query-dotnet/adonet-connection-string.png)
   
 ## <a name="add-systemdatasqlclient"></a>新增 System.Data.SqlClient
-使用 .NET Core 時，將 System.Data.SqlClient 新增至專案的 ***csproj*** 檔案做為相依項目。
+使用 .NET Core 時，將 System.Data.SqlClient 新增至專案的 ***csproj*** 檔案作為相依項目。
 
 ```xml
 <ItemGroup>
@@ -96,7 +98,8 @@ sudo apt-get install dotnet-dev-1.0.1
 1. 在開發環境中，開啟空白的程式碼檔案。
 2. 將 ```using System.Data.SqlClient``` 新增至您的程式碼檔案 ([System.Data.SqlClient 命名空間](https://msdn.microsoft.com/library/system.data.sqlclient.aspx))。 
 
-3. 使用 [SqlCommand.ExecuteReader](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executereader.aspx) 搭配 [SELECT](https://msdn.microsoft.com/library/ms189499.aspx) Transact-SQL 陳述式，在 Azure SQL Database 中查詢資料。 為您的伺服器新增適當的值。
+3. 使用下列程式碼，可藉由使用 [SqlCommand.ExecuteReader](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executereader.aspx) 命令搭配 [SELECT](https://msdn.microsoft.com/library/ms189499.aspx) Transact-SQL 陳述式來依照類別查詢前 20 項產品。 為您的伺服器、資料庫、使用者和密碼新增適當的值。
+
 ```csharp
 using System;
 using System.Data;
@@ -152,7 +155,7 @@ namespace ConsoleApplication1
 
 ## <a name="insert-data"></a>插入資料
 
-使用 [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) 搭配 [INSERT](https://msdn.microsoft.com/library/ms174335.aspx) Transact-SQL 陳述式，在 Azure SQL Database 中插入資料。
+使用下列程式碼，藉由使用 [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) 搭配 [INSERT](https://msdn.microsoft.com/library/ms174335.aspx) Transact-SQL 陳述式將新產品插入至 SalesLT.Product 資料表。 為您的伺服器、資料庫、使用者和密碼新增適當的值。
 
 ```csharp
 using System;
@@ -207,7 +210,7 @@ namespace ConsoleApplication1
 
 ## <a name="update-data"></a>更新資料
 
-使用 [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) 搭配 [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx) Transact-SQL 陳述式，在 Azure SQL Database 中更新資料。
+使用下列程式碼，藉由使用 [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) 搭配 [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx) Transact-SQL 陳述式更新您先前新增的產品。 為您的伺服器、資料庫、使用者和密碼新增適當的值。
 
 ```csharp
 using System;
@@ -257,7 +260,7 @@ namespace ConsoleApplication1
 
 ## <a name="delete-data"></a>刪除資料
 
-使用 [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) 搭配 [DELETE](https://msdn.microsoft.com/library/ms189835.aspx) Transact-SQL 陳述式，在 Azure SQL Database 中刪除資料。
+使用下列程式碼，藉由使用 [SqlCommand.ExecuteNonQuery](https://msdn.microsoft.com/library/system.data.sqlclient.sqlcommand.executenonquery.aspx) 搭配 [DELETE](https://msdn.microsoft.com/library/ms189835.aspx) Transact-SQL 陳述式刪除您先前新增的產品。 為您的伺服器、資料庫、使用者和密碼新增適當的值。
 
 ```csharp
 using System;

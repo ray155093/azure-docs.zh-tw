@@ -18,9 +18,9 @@ ms.topic: hero-article
 ms.date: 03/15/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: a08fe566f4962684bc4aad220687e9cd36fc4abf
-ms.lasthandoff: 04/17/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 9ffad92e668b76c9a4e2941b20d075bf52132d16
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 04/17/2017
 
 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS) 是一套管理工具，可在使用者介面或以指令碼中建立和管理 SQL Server 資源。 此快速入門示範如何使用 SSMS 來連線至 Azure SQL Database，然後使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。 
 
-本快速入門可做為在其中一個快速入門中建立之資源的起點︰
+本快速入門可作為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
@@ -37,7 +37,7 @@ ms.lasthandoff: 04/17/2017
 
 ## <a name="get-connection-information"></a>取得連線資訊
 
-在 Azure 入口網站中取得 Azure SQL Database 伺服器的完整伺服器名稱。 透過 SQL Server Management Studio，您可使用此完整伺服器名稱連接到您的伺服器。
+取得連線到 Azure SQL Database 所需的連線資訊。 您在下一個程序中需要完整的伺服器名稱、資料庫名稱和登入資訊。
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
@@ -78,7 +78,7 @@ ms.lasthandoff: 04/17/2017
 
 ## <a name="query-data"></a>查詢資料
 
-使用 [SELECT](https://msdn.microsoft.com/library/ms189499.aspx) Transact-SQL 陳述式在 Azure SQL Database 中查詢資料。
+使用下列程式碼，可藉由使用 [SELECT](https://msdn.microsoft.com/library/ms189499.aspx) Transact-SQL 陳述式來依照類別查詢前 20 項產品。
 
 1. 在 [物件總管] 中，於 **mySampleDatabase** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。 隨即開啟已連線到您資料庫的空白查詢視窗。
 2. 在查詢視窗中，輸入下列查詢︰
@@ -96,7 +96,7 @@ ms.lasthandoff: 04/17/2017
 
 ## <a name="insert-data"></a>插入資料
 
-使用 [INSERT](https://msdn.microsoft.com/library/ms174335.aspx) Transact-SQL 陳述式在 Azure SQL Database 中插入資料。
+使用下列程式碼，藉由使用 [INSERT](https://msdn.microsoft.com/library/ms174335.aspx) Transact-SQL 陳述式將新產品插入 SalesLT.Product 資料表中。
 
 1. 在查詢視窗中，以下列查詢取代先前的查詢︰
 
@@ -126,7 +126,7 @@ ms.lasthandoff: 04/17/2017
 
 ## <a name="update-data"></a>更新資料
 
-使用 [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx) Transact-SQL 陳述式在 Azure SQL Database 中更新資料。
+使用下列程式碼，藉由使用 [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx) Transact-SQL 陳述式更新您先前新增的產品。
 
 1. 在查詢視窗中，以下列查詢取代先前的查詢︰
 
@@ -142,7 +142,7 @@ ms.lasthandoff: 04/17/2017
 
 ## <a name="delete-data"></a>刪除資料
 
-使用 [DELETE](https://msdn.microsoft.com/library/ms189835.aspx) Transact-SQL 陳述式在 Azure SQL Database 中刪除資料。
+使用下列程式碼，藉由使用 [DELETE](https://msdn.microsoft.com/library/ms189835.aspx) Transact-SQL 陳述式刪除您先前新增的產品。
 
 1. 在查詢視窗中，以下列查詢取代先前的查詢︰
 

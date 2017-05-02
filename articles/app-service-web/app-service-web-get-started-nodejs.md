@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 03/28/2017
 ms.author: cfowler
 translationtype: Human Translation
-ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
-ms.openlocfilehash: 22966659db3951316dca11fd555e07a183114062
-ms.lasthandoff: 04/04/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: c32cb52e4bb7bacde20e21820f277b4e86877e74
+ms.lasthandoff: 04/25/2017
 
 ---
 # <a name="create-a-nodejs-application-on-web-app"></a>在 Web 應用程式上建立 Node.js 應用程式
@@ -148,7 +148,7 @@ az appservice plan create --name quickStartPlan --resource-group myResourceGroup
 
 現已建立 App Service 方案，請在 `quickStartPlan` App Service 方案中建立 Web 應用程式。 Web 應用程式會提供裝載空間來部署我們的程式碼，以及提供 URL 讓我們檢視已部署的應用程式。 使用 [az appservice web create](/cli/azure/appservice/web#create) 命令來建立 Web 應用程式。
 
-在下列命令中，請將 <app_name> 預留位置替換成您自己的唯一應用程式名稱。 <app_name> 將做為 Web 應用程式的預設 DNS 網站，所以此名稱在 Azure 的所有應用程式中必須是唯一的名稱。 您稍後先將任何自訂 DNS 項目對應至 Web 應用程式，再將它公開給使用者。
+在下列命令中，請將 `<app_name>` 預留位置替換成您自己的唯一應用程式名稱。 `<app_name>` 將作為 Web 應用程式的預設 DNS 網站，所以此名稱在 Azure 的所有應用程式中必須是唯一的名稱。 您稍後先將任何自訂 DNS 項目對應至 Web 應用程式，再將它公開給使用者。
 
 ```azurecli
 az appservice web create --name <app_name> --resource-group myResourceGroup --plan quickStartPlan
@@ -296,7 +296,7 @@ git push azure master
 
 若要這麼做，請登入 [https://portal.azure.com](https://portal.azure.com)。
 
-按一下左側功能表中的 [App Service]，然後按一下 Azure Web 應用程式的名稱。
+按一下左側功能表中的 [應用程式服務]，然後按一下 Azure Web 應用程式的名稱。
 
 ![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-get-started-nodejs-poc/nodejs-docs-hello-world-app-service-list.png)
 
@@ -321,3 +321,4 @@ git push azure master
 ## <a name="next-steps"></a>後續步驟
 
 瀏覽預先建立的 [Web Apps CLI 指令碼](app-service-cli-samples.md)。
+

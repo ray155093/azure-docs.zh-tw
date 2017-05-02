@@ -1,6 +1,6 @@
 ---
 title: "服務匯流排進階和標準傳訊定價層概觀 | Microsoft Docs"
-description: "服務匯流排進階和標準傳訊"
+description: "服務匯流排進階和標準傳訊層級"
 services: service-bus-messaging
 documentationcenter: .net
 author: djrosanova
@@ -12,15 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/18/2017
+ms.date: 04/19/2017
 ms.author: darosa;sethm;jotaub
 translationtype: Human Translation
-ms.sourcegitcommit: f223ea7ac168d3c800b6ba664b31ab66b382d6cc
-ms.openlocfilehash: 2657965ff3ee028263f9ef0c48024fe1839eee6e
+ms.sourcegitcommit: e0c999b2bf1dd38d8a0c99c6cdd4976cc896dd99
+ms.openlocfilehash: 606838dbeec5e9762f67159ece1bbc8a78769420
+ms.lasthandoff: 04/20/2017
 
 
 ---
 # <a name="service-bus-premium-and-standard-messaging-tiers"></a>服務匯流排進階和標準傳訊層級
+
 服務匯流排傳訊 (包含佇列和主題等實體) 結合雲端級別的企業傳訊功能與豐富的發佈-訂閱語意。 服務匯流排傳訊作為許多縝密雲端解決方案的通訊骨幹。
 
 服務匯流排傳訊的「進階」層級可滿足一般客戶對於關鍵任務應用程式的規模、效能和可用性要求。 雖然功能組幾乎完全相同，但這兩層級的服務匯流排傳訊設計用來服務不同的使用案例。
@@ -40,13 +42,16 @@ ms.openlocfilehash: 2657965ff3ee028263f9ef0c48024fe1839eee6e
 此效能不僅更可預測並可取得，而且還更快速。 服務匯流排進階傳訊是以 [Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)中引進的儲存引擎為建置基礎。 使用進階訊息，尖峰效能的速度比標準層級的速度快很多。
 
 ## <a name="premium-messaging-technical-differences"></a>進階傳訊技術差異
-以下是進階和標準傳訊層之間的一些差異。
+
+下列各節討論進階與標準傳訊層之間的一些差異。
 
 ### <a name="partitioned-queues-and-topics"></a>分割的佇列和主題
-分割的佇列和主題在進階傳訊中受支援，但是其運作方式與在服務匯流排傳訊的標準和基本層級中不同。 進階傳訊不會使用 SQL 做為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，效能不一定需要進行資料分割。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有&2; 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
+
+分割的佇列和主題在進階傳訊中受支援，但是其運作方式與在服務匯流排傳訊的標準和基本層級中不同。 進階傳訊不會使用 SQL 作為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，效能不一定需要進行資料分割。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有 2 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
 
 ### <a name="express-entities"></a>快速實體
-因為進階傳訊在完全隔離的執行階段環境中執行，所以在進階命名空間中不支援快速實體。 如需快速功能的詳細資訊，請參閱 [QueueDescription.EnableExpress](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) 屬性。
+
+因為進階傳訊在完全隔離的執行階段環境中執行，所以在進階命名空間中不支援快速實體。 如需快速功能的詳細資訊，請參閱 [QueueDescription.EnableExpress](/dotnet/api/microsoft.servicebus.messaging.queuedescription.enableexpress?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) 屬性。
 
 ## <a name="get-started-with-premium-messaging"></a>開始使用進階傳訊
 
@@ -58,6 +63,7 @@ ms.openlocfilehash: 2657965ff3ee028263f9ef0c48024fe1839eee6e
 
 
 ## <a name="next-steps"></a>後續步驟
+
 若要深入了解服務匯流排訊息，請參閱下列主題。
 
 * [Azure 服務匯流排進階傳訊簡介 (部落格文章)](http://azure.microsoft.com/blog/introducing-azure-service-bus-premium-messaging/)
@@ -68,9 +74,4 @@ ms.openlocfilehash: 2657965ff3ee028263f9ef0c48024fe1839eee6e
 <!--Image references-->
 
 [create-premium-namespace]: ./media/service-bus-premium-messaging/select-premium-tier.png
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

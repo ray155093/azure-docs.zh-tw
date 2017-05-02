@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 04/12/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 0a6b5115a4eebfcce14094d82cdcc9579f80def6
-ms.lasthandoff: 04/15/2017
+ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
+ms.openlocfilehash: 5b4a2b7646a2ead1df459c5d9a17d125821c86a5
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -88,19 +88,21 @@ Log Analytics 工作區有兩個存取控制權限模型︰
 | Azure 角色型存取  | 是                  | 是          | 是                        |
 
 > [!NOTE]
-> Log Analytics 將改為使用 Azure 角色型存取來做為權限模型，以取代 Log Analytics 使用者角色。
+> Log Analytics 將改為使用 Azure 角色型存取來作為權限模型，以取代 Log Analytics 使用者角色。
 >
 >
 
 舊版 Log Analytics 使用者角色只能控制 [Log Analytics 入口網站](https://mms.microsoft.com)中所執行活動的存取權。
 
-Log Analytics 入口網站中的下列活動也需要 Azure 權限︰
+下列活動也需要 Azure 權限︰
 
 | 動作                                                          | 所需的 Azure 權限 | 注意事項 |
 |-----------------------------------------------------------------|--------------------------|-------|
-| 新增及移除管理解決方案                        | 資源群組寫入 <br> `Microsoft.OperationalInsights/*` <br> `Microsoft.OperationsManagement/*` <br> `Microsoft.Automation/*` <br> `Microsoft.Resources/deployments/*/write` | |
+| 新增及移除管理解決方案                        | `Microsoft.Resources/deployments/*` <br> `Microsoft.OperationalInsights/*` <br> `Microsoft.OperationsManagement/*` <br> `Microsoft.Automation/*` <br> `Microsoft.Resources/deployments/*/write` | |
 | 變更定價層                                       | `Microsoft.OperationalInsights/workspaces/*/write` | |
 | 檢視 [備份] 和 [Site Recovery] 解決方案圖格中的資料 | 系統管理員/共同管理員 | 存取使用傳統部署模型所部署的資源 |
+| 在 Azure 入口網站中建立工作區                        | `Microsoft.Resources/deployments/*` <br> `Microsoft.OperationalInsights/workspaces/*` ||
+
 
 ### <a name="managing-access-to-log-analytics-using-azure-permissions"></a>使用 Azure 權限管理對 Log Analytics 的存取
 若要使用 Azure 權限授與 Log Analytics 工作區的存取權，請遵循[使用角色指派來管理 Azure 訂用帳戶資源的存取權](../active-directory/role-based-access-control-configure.md)中的步驟。
@@ -177,19 +179,19 @@ Log Analytics 入口網站中的下列活動也需要 Azure 權限︰
 4. 在確認對話方塊中，按一下 [是]。
 
 ### <a name="remove-a-user-from-a-workspace"></a>從工作區移除使用者
-使用下列步驟，從工作區移除使用者。 移除使用者並不會關閉工作區。 而會移除使用者與工作區之間的關聯。 如果使用者與多個工作區相關聯，該使用者還是可以登入 OMS 並可看自己的其他工作區。
+使用下列步驟，從工作區移除使用者。 移除使用者並不會關閉工作區。 而會移除使用者與工作區之間的關聯。 如果使用者與多個工作區相關聯，該使用者還是可以登入 OMS，並看到其他工作區。
 
 1. 在 OMS 入口網站中，按一下 [設定] 圖格。
 2. 按一下 [帳戶] 索引標籤，然後按一下 [管理使用者] 索引標籤。
 3. 按一下您要移除之使用者名稱旁邊的 [移除]。
 4. 在確認對話方塊中，按一下 [是]。
 
-### <a name="add-a-group-to-an-existing-workspace"></a>將群組加入現有的工作區
+### <a name="add-a-group-to-an-existing-workspace"></a>將群組新增至現有的工作區
 1. 在上一節＜將使用者新增至現有工作區＞中，遵循步驟 1 至 4。
 2. 在 [選擇使用者/群組] 下方，選取 [群組]。  
    ![add a group to an existing workspace](./media/log-analytics-manage-access/add-group.png)
-3. 輸入您想要加入之群組的顯示名稱或電子郵件地址。
-4. 在清單結果中選取群組，然後按一下 [加入] 。
+3. 輸入您想要新增之群組的顯示名稱或電子郵件地址。
+4. 在清單結果中選取群組，然後按一下 [新增]。
 
 ## <a name="link-an-existing-workspace-to-an-azure-subscription"></a>將現有的工作區連結到 Azure 訂用帳戶
 建立時，所有在 2016 年 9 月 26 日之後建立的工作區都必須連結到 Azure 訂用帳戶。 下次登入時，在這個日期之前建立的工作區必須連結到工作區。 如果您從 Azure 入口網站建立工作區，或將工作區連結到 Azure 訂用帳戶，則會連結 Azure Active Directory 作為您的組織帳戶。
@@ -214,7 +216,7 @@ Log Analytics 入口網站中的下列活動也需要 Azure 權限︰
 6. 您會看到尚未連結到您 Azure 帳戶的工作區清單。 選取工作區。  
    ![選取工作區](./media/log-analytics-manage-access/manage-access-link-azure04.png)
 7. 需要時，您可以變更下列項目的值：
-   * 訂閱
+   * 訂用帳戶
    * 資源群組
    * 位置
    * 定價層   
@@ -330,7 +332,7 @@ OMS 有三種工作區方案類型：[免費]、[獨立] 和 [OMS]。  如果您
 5. 在 [刪除工作區] 確認對話方塊中，按一下 [是]。
 
 ## <a name="next-steps"></a>後續步驟
-* 請參閱 [將 Windows 電腦連接到 Log Analytics](log-analytics-windows-agents.md) ，以加入代理程式和收集資料。
-* [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md) ，以加入功能和收集資料。
+* 請參閱 [將 Windows 電腦連接到 Log Analytics](log-analytics-windows-agents.md)，以新增代理程式和收集資料。
+* [從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)，以新增功能和收集資料。
 * [在 Log Analytics 中設定 Proxy 和防火牆設定](log-analytics-proxy-firewall.md) ，讓代理程式可與 Log Analytics 服務通訊。
 

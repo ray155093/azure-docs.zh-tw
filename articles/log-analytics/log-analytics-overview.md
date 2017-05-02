@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 03/29/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 762d8deac1f176e51b54295ef571ae529d338d2c
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: c2e78e0191be6ac7d828402859c04c486e8df594
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -45,7 +45,7 @@ Log Analytics 包含可快速擷取及彙總存放庫中資料的查詢語言。
 
 ![儀表板](media/log-analytics-overview/dashboard.png)
 
-為了在 Log Analytics 外分析資料，您可以將資料從 OMS 儲存機制工具匯出到例如 [Power BI](log-analytics-powerbi.md) 或 Excel 的工具。  您也可以利用 [記錄搜尋 API](log-analytics-log-search-api.md) 建置運用 Log Analytics 資料的自訂方案，或與其他系統整合。
+為了在 Log Analytics 外分析資料，您可以將資料從 OMS 存放庫工具匯出到例如 [Power BI](log-analytics-powerbi.md) 或 Excel 的工具。  您也可以利用 [記錄搜尋 API](log-analytics-log-search-api.md) 建置運用 Log Analytics 資料的自訂方案，或與其他系統整合。
 
 ## <a name="add-functionality-with-management-solutions"></a>透過管理解決方案新增功能
 [管理解決方案](log-analytics-add-solutions.md)可將功能新增至 OMS，以提供其他資料和分析工具給 Log Analytics。  它們也可以定義要收集的新記錄類型，可以使用記錄搜尋進行分析，或是藉由儀表板方案所提供的其他使用者介面進行分析。  以下的範例圖顯示[變更追蹤解決方案](log-analytics-change-tracking.md)
@@ -57,9 +57,9 @@ Log Analytics 包含可快速擷取及彙總存放庫中資料的查詢語言。
 ![方案庫](media/log-analytics-overview/solution-gallery.png)
 
 ## <a name="log-analytics-components"></a>Log Analytics 元件
-Log Analytics 的中心是裝載在 Azure 雲端的 OMS 儲存機制。  資料會藉由設定資料來源以及將方案加入訂用帳戶中，而從連接的來源收集到儲存機制。  資料來源和方案都會建立不同的記錄類型，它們具有自己的屬性集，但仍可以一起分析，以便查詢儲存機制。  這可讓您使用相同的工具和方法，來處理由不同來源收集的不同類型的資料。
+Log Analytics 的中心是裝載在 Azure 雲端的 OMS 存放庫。  資料會藉由設定資料來源以及將方案新增至訂用帳戶中，而從連接的來源收集到存放庫。  資料來源和方案都會建立不同的記錄類型，它們具有自己的屬性集，但仍可以一起分析，以便查詢存放庫。  這可讓您使用相同的工具和方法，來處理由不同來源收集的不同類型的資料。
 
-![OMS 儲存機制](media/log-analytics-overview/overview.png)
+![OMS 存放庫](media/log-analytics-overview/overview.png)
 
 連接的來源是指產生 Log Analytics 所收集資料的電腦和其他資源。  這可以包括安裝在直接連接的 [Windows](log-analytics-windows-agents.md) 和 [Linux](log-analytics-linux-agents.md) 電腦的代理程式，或[已連線的 System Center Operations Manager 管理群組](log-analytics-om-agents.md)中的代理程式。  對於 Azure 資源，Log Analytics 會從 [Azure 監視器和 Azure 診斷](log-analytics-azure-storage.md)收集資料。
 
@@ -68,7 +68,7 @@ Log Analytics 的中心是裝載在 Azure 雲端的 OMS 儲存機制。  資料�
 如果您有自訂需求，則可以使用 [HTTP 資料收集器 API](log-analytics-data-collector-api.md)，將資料從 REST API 用戶端寫入至存放庫。
 
 ## <a name="log-analytics-architecture"></a>Log Analytics 架構
-Log Analytics 的部署需求非常少，因為中心元件託管於 Azure 雲端。  這包括儲存機制，以及可讓您關聯與分析所收集資料的服務。  可以從任何瀏覽器存取入口網站，因此不需要用戶端軟體。
+Log Analytics 的部署需求非常少，因為中心元件託管於 Azure 雲端。  這包括存放庫，以及可讓您關聯與分析所收集資料的服務。  可以從任何瀏覽器存取入口網站，因此不需要用戶端軟體。
 
 您必須在 [Windows](log-analytics-windows-agents.md) 和 [Linux](log-analytics-linux-agents.md) 電腦上安裝代理程式，但已經是[連線的 SCOM 管理群組](log-analytics-om-agents.md)成員的電腦則不需要其他代理程式。  SCOM 代理程式將會繼續與管理伺服器通訊，管理伺服器會將其資料轉送至 Log Analytics。  不過，某些方案需要代理程式以便直接與 Log Analytics 通訊。  每個方案的文件將詳述其通訊需求。
 
@@ -78,7 +78,7 @@ Log Analytics 的部署需求非常少，因為中心元件託管於 Azure 雲�
 
 ## <a name="next-steps"></a>後續步驟
 * [申請免費的 Log Analytics 帳戶](log-analytics-get-started.md) ，在自己的環境中測試。
-* 檢視可用來將資料收集到 OMS 儲存機制的不同 [資料來源](log-analytics-data-sources.md) 。
+* 檢視可用來將資料收集到 OMS 存放庫的不同 [資料來源](log-analytics-data-sources.md) 。
 * [瀏覽方案庫中可用的方案](log-analytics-add-solutions.md)，將功能新增至 Log Analytics。
 
 

@@ -13,34 +13,36 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/11/2017
+ms.date: 04/24/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: ff70484dff03a44d23d2cf34ce115fd57c4b0390
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: d0cedf73aa3f73e672a73b6abaca5eb8c22a76a7
+ms.lasthandoff: 04/25/2017
 
 
 ---
-# <a name="create-a-vnet-with-a-site-to-site-connection-using-the-classic-portal"></a>使用傳統入口網站建立具有站對站連接的 VNet
+# <a name="create-a-vnet-with-a-site-to-site-connection-using-the-classic-portal-classic"></a>使用傳統入口網站建立具有站對站連線的 VNet (傳統)
 
-網站間 (S2S) VPN 閘道連線是透過 IPsec/IKE (IKEv1 或 IKEv2) VPN 通道建立的連線。 此類型的連線需要位於內部部署的 VPN 裝置，其具有指派的公用 IP 位址且不是位於 NAT 後方。 網站間連線可以用於跨單位與混合式組態。
-
-![站對站 VPN 閘道跨單位連線圖表](./media/vpn-gateway-site-to-site-create/site-to-site-connection-diagram.png)
-
-本文逐步引導您使用傳統部署模型和傳統入口網站，建立虛擬網路以及內部部署網路的網站間 VPN 閘道連接。 網站間連線可以用於跨單位與混合式組態。 您也可以為 Resource Manager 部署模型建立這個組態，或如果是傳統部署模型，從下列清單中選取不同選項來建立這個組態︰
+本文說明如何使用傳統入口網站來建立從內部部署網路到 VNet 的站對站 VPN 閘道連線。 本文中的步驟適用於傳統部署模型。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
 
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
+> * [Resource Manager - CLI](vpn-gateway-howto-site-to-site-resource-manager-cli.md)
 > * [傳統 - Azure 入口網站](vpn-gateway-howto-site-to-site-classic-portal.md)
 > * [傳統 - 傳統入口網站](vpn-gateway-site-to-site-create.md)
+> 
 >
->
+
+![站對站 VPN 閘道跨單位連線圖表](./media/vpn-gateway-site-to-site-create/site-to-site-connection-diagram.png)
+
+
+站對站 VPN 閘道連線可用來透過 IPsec/IKE (IKEv1 或 IKEv2) VPN 通道，將內部部署網路連線到 Azure 虛擬網路。 此類型的連線需要位於內部部署的 VPN 裝置，且您已對該裝置指派對外開放的公用 IP 位址。 如需 VPN 閘道的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
 
 #### <a name="additional-configurations"></a>其他組態
-如果您想要將 VNet 連接在一起，請參閱 [設定傳統部署模型的 VNet 對 VNet 連線](virtual-networks-configure-vnet-to-vnet-connection.md)。 如果您想要網站間連接新增至已經有連接的 VNet，請參閱[將 S2S 連接新增至已有現有 VPN 閘道連接的 VNet](vpn-gateway-multi-site.md)。
 
+如果您想要將 VNet 連接在一起，請參閱 [設定傳統部署模型的 VNet 對 VNet 連線](virtual-networks-configure-vnet-to-vnet-connection.md)。 如果您想要網站間連接新增至已經有連接的 VNet，請參閱[將 S2S 連接新增至已有現有 VPN 閘道連接的 VNet](vpn-gateway-multi-site.md)。
 ## <a name="before-you-begin"></a>開始之前
 
 [!INCLUDE [deployment models](../../includes/vpn-gateway-deployment-models-include.md)]
@@ -70,7 +72,7 @@ ms.lasthandoff: 04/12/2017
 * **區域網路**：表示實體內部部署位置的本機網路。 您可以選取先前建立的區域網路，或者可以建立新的區域網路。 不過，如果您選擇使用您先前建立的區域網路，請移至 [區域網路]  組態頁面，並確認 VPN 裝置的 VPN 裝置 IP 位址 (公開 IPv4 位址) 正確無誤。
 
 ## <a name="Connectivity"></a>網站間連線能力頁面
-如果您正在建立新的區域網路，將看到 [網站間連線能力]  頁面。 如果您想要使用先前建立的區域網路，此頁面不會出現在精靈中，而您可以移至下一節。
+如果您正在建立新的區域網路，將看到 [網站間連線能力] 頁面。 如果您想要使用先前建立的區域網路，此頁面不會出現在精靈中，而您可以移至下一節。
 
 輸入下列資訊，然後按 [下一步] 箭頭。
 
@@ -90,7 +92,7 @@ ms.lasthandoff: 04/12/2017
 * **新增子網路**：包括起始 IP 和位址計數。 不需要其他子網路，但是您可以為將擁有靜態 DIP 的 VM 建立個別的子網路。 或者，您可以讓您的 VM 位於與其他角色執行個體不同的子網路中。
 * **新增閘道子網路**：按一下以新增閘道子網路。 閘道器子網路僅用於虛擬網路閘道，而且為這個組態的必要項目。
 
-按一下頁面底部的核取記號，然後您的虛擬網路即會開始建立。 完成時，您將在 Azure 傳統入口網站的 [網路] 頁面上看到 [狀態] 下列出 [已建立]。 建立了 VNet 之後，您便可設定虛擬網路閘道。
+按一下頁面底部的核取記號，以建立虛擬網路。 完成時，您將在 Azure 傳統入口網站的 [網路] 頁面上看到 [狀態] 下列出 [已建立]。 建立了 VNet 之後，您便可設定虛擬網路閘道。
 
 [!INCLUDE [vpn-gateway-no-nsg](../../includes/vpn-gateway-no-nsg-include.md)]
 

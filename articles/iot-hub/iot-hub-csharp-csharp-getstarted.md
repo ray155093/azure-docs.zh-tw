@@ -16,9 +16,9 @@ ms.date: 03/16/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
-ms.openlocfilehash: ac67a1a67c3a11fde98242519266fcd3ab4f60cb
-ms.lasthandoff: 04/18/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 33ddab887ade0d788129367eec4db7e70f35e0b9
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -52,9 +52,9 @@ ms.lasthandoff: 04/18/2017
    
     ![新的 Visual C# Windows 傳統桌面專案][10]
 2. 在 [方案總管] 中，以滑鼠右鍵按一下 **CreateDeviceIdentity** 專案，然後按一下 [管理 Nuget 套件]。
-3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
+3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並新增對它的參考。
    
-    ![NuGet 封裝管理員視窗][11]
+    ![NuGet 套件管理員視窗][11]
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
@@ -63,7 +63,7 @@ ms.lasthandoff: 04/18/2017
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-6. 將下列方法加入至 **Program** 類別：
+6. 將下列方法新增至 **Program** 類別：
    
         private static async Task AddDeviceAsync()
         {
@@ -81,7 +81,7 @@ ms.lasthandoff: 04/18/2017
         }
    
     這個方法會建立具有識別碼 **myFirstDevice**的裝置識別。 (如果該裝置識別碼已經存在身分識別登錄中，程式碼就只會擷取現有的裝置資訊)。接著，應用程式會顯示該身分識別的主要金鑰。 您會在模擬裝置應用程式中使用此金鑰來連線到您的 IoT 中樞。
-7. 最後，將下列幾行加入至 **Main** 方法：
+7. 最後，將下列幾行新增至 **Main** 方法：
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         AddDeviceAsync().Wait();
@@ -91,10 +91,11 @@ ms.lasthandoff: 04/18/2017
     ![應用程式所產生的裝置金鑰][12]
 
 > [!NOTE]
-> IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對 IoT 中樞的安全存取。 它會儲存裝置識別碼和金鑰來做為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。 如果您的應用程式需要儲存其他裝置特定的中繼資料，它應該使用應用程式專用的存放區。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
+> IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對 IoT 中樞的安全存取。 它會儲存裝置識別碼和金鑰來作為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。 如果您的應用程式需要儲存其他裝置特定的中繼資料，它應該使用應用程式專用的存放區。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
 > 
 > 
 
+<a id="D2C_csharp"></a>
 ## <a name="receive-device-to-cloud-messages"></a>接收裝置到雲端的訊息
 在本節中，您會建立 .NET 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與 [Azure 事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 若要了解如何大規模處理裝置到雲端訊息，請參閱[處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。 如需有關如何處理來自「事件中樞」之訊息的詳細資訊，請參閱[開始使用事件中樞][lnk-eventhubs-tutorial]教學課程。 (本教學課程適用於 IoT 中樞的事件中樞相容端點)。
 
@@ -107,7 +108,7 @@ ms.lasthandoff: 04/18/2017
    
     ![新的 Visual C# Windows 傳統桌面專案][10a]
 2. 在 [方案總管] 中，以滑鼠右鍵按一下 **ReadDeviceToCloudMessages** 專案，然後按一下 [管理 NuGet 套件]。
-3. 在 [NuGet 套件管理員] 視窗中，搜尋 **WindowsAzure.ServiceBus**，選取 [安裝] 並接受使用規定。 此程序會下載及安裝 [Azure 服務匯流排][lnk-servicebus-nuget]，並新增對它的參考與其所有相依項目。 此封裝可讓應用程式連接到 IoT 中樞上的事件中樞相容端點。
+3. 在 [NuGet 套件管理員] 視窗中，搜尋 **WindowsAzure.ServiceBus**，選取 [安裝] 並接受使用規定。 此程序會下載及安裝 [Azure 服務匯流排][lnk-servicebus-nuget]，並新增對它的參考與其所有相依項目。 此套件可讓應用程式連接到 IoT 中樞上的事件中樞相容端點。
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.ServiceBus.Messaging;
@@ -117,7 +118,7 @@ ms.lasthandoff: 04/18/2017
         static string connectionString = "{iothub connection string}";
         static string iotHubD2cEndpoint = "messages/events";
         static EventHubClient eventHubClient;
-6. 將下列方法加入至 **Program** 類別：
+6. 將下列方法新增至 **Program** 類別：
    
         private static async Task ReceiveMessagesFromDeviceAsync(string partition, CancellationToken ct)
         {
@@ -134,7 +135,7 @@ ms.lasthandoff: 04/18/2017
         }
    
     這個方法會使用 **EventHubReceiver** 執行個體接收來自所有 IoT 中樞裝置對雲端接收資料分割的訊息。 請注意當您建立 **EventHubReceiver** 物件時如何傳遞 `DateTime.Now` 參數，使它只會收到它啟動後傳送的訊息。 此篩選器很適合測試環境，因為如此一來您就可以看到目前的訊息集。 在生產環境中，您的程式碼應該要確定它能處理所有訊息。 如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
-7. 最後，將下列幾行加入至 **Main** 方法：
+7. 最後，將下列幾行新增至 **Main** 方法：
    
         Console.WriteLine("Receive messages. Ctrl-C to exit.\n");
         eventHubClient = EventHubClient.CreateFromConnectionString(connectionString, iotHubD2cEndpoint);
@@ -164,7 +165,7 @@ ms.lasthandoff: 04/18/2017
    
     ![新的 Visual C# Windows 傳統桌面專案][10b]
 2. 在 [方案總管] 中，以滑鼠右鍵按一下 **SimulatedDevice** 專案，然後按一下 [管理 NuGet 套件]。
-3. 在 [NuGet 套件管理員] 視窗中選取 [瀏覽]、搜尋 **Microsoft.Azure.Devices.Client**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices.Client** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 裝置 SDK NuGet 套件][lnk-device-nuget]與其相依項目，並加入對它的參考。
+3. 在 [NuGet 套件管理員] 視窗中選取 [瀏覽]、搜尋 **Microsoft.Azure.Devices.Client**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices.Client** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 裝置 SDK NuGet 套件][lnk-device-nuget]與其相依項目，並新增對它的參考。
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices.Client;
@@ -174,24 +175,28 @@ ms.lasthandoff: 04/18/2017
         static DeviceClient deviceClient;
         static string iotHubUri = "{iot hub hostname}";
         static string deviceKey = "{device key}";
-6. 將下列方法加入至 **Program** 類別：
+6. 將下列方法新增至 **Program** 類別：
    
         private static async void SendDeviceToCloudMessagesAsync()
         {
-            double avgWindSpeed = 10; // m/s
+            double minTemperature = 20;
+            double minHumidity = 60;
             Random rand = new Random();
    
             while (true)
             {
-                double currentWindSpeed = avgWindSpeed + rand.NextDouble() * 4 - 2;
+                double currentTemperature = minTemperature + rand.NextDouble() * 15;
+                double currentHumidity = minHumidity + rand.NextDouble() * 20;
    
                 var telemetryDataPoint = new
                 {
                     deviceId = "myFirstDevice",
-                    windSpeed = currentWindSpeed
+                    temperature = currentTemperature,
+                    humidity = currentHumidity
                 };
                 var messageString = JsonConvert.SerializeObject(telemetryDataPoint);
                 var message = new Message(Encoding.ASCII.GetBytes(messageString));
+                message.Properties.Add("temperatureAlert", (currentTemperature > 30) ? "true" : "false");
    
                 await deviceClient.SendEventAsync(message);
                 Console.WriteLine("{0} > Sending message: {1}", DateTime.Now, messageString);
@@ -200,8 +205,8 @@ ms.lasthandoff: 04/18/2017
             }
         }
    
-    這個方法會每秒傳送新的裝置對雲端訊息。 此訊息會包含 JSON 序列化物件及裝置識別碼與隨機產生的數字，以模擬風向速度感應器。
-7. 最後，將下列幾行加入至 **Main** 方法：
+    這個方法會每秒傳送新的裝置對雲端訊息。 此訊息包含 JSON 序列化物件及裝置識別碼與隨機產生的數字，以模擬溫度感應器和溼度感應器。
+7. 最後，將下列幾行新增至 **Main** 方法：
    
         Console.WriteLine("Simulated device\n");
         deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey("myFirstDevice", deviceKey), TransportType.Mqtt);
@@ -221,7 +226,7 @@ ms.lasthandoff: 04/18/2017
 ## <a name="run-the-apps"></a>執行應用程式
 您現在可以開始執行應用程式。
 
-1. 在 Visual Studio 的 [方案總管] 中以滑鼠右鍵按一下您的方案，然後按一下 [設定啟始專案]。 選取 [多個啟始專案]，然後同時針對 **ReadDeviceToCloudMessages** 和 **SimulatedDevice** 專案選取 **Start** 做為動作。
+1. 在 Visual Studio 的 [方案總管] 中以滑鼠右鍵按一下您的方案，然後按一下 [設定啟始專案]。 選取 [多個啟始專案]，然後同時針對 **ReadDeviceToCloudMessages** 和 **SimulatedDevice** 專案選取 **Start** 作為動作。
    
     ![啟動專案屬性 ][41]
 2. 按下 **F5** 來啟動這兩個執行的應用程式。 來自 **SimulatedDevice** 應用程式的主控台輸出會顯示模擬裝置應用程式傳送給您的 IoT 中樞的訊息。 來自 **ReadDeviceToCloudMessages** 應用程式的主控台輸出則會顯示您的 IoT 中樞接收的訊息。

@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/01/2017
+ms.date: 04/25/2017
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 719f9810abb12cbe8645651d35cbff936cecd158
-ms.openlocfilehash: 57531b609b095359c8bf0ea3685af40124f46311
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 9b2947d9ce00083c168635811395bc86b3e60b78
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.openlocfilehash: 57531b609b095359c8bf0ea3685af40124f46311
 
 ## <a name="introduction"></a>簡介
 
-IoT Suite 預先設定的預測性維護解決方案是一個端對端解決方案，適用於可預測可能發生失敗時間點的商務案例。 您可以針對最佳化維護等活動，主動使用此預先設定的解決方案。 此解決方案結合了主要 Azure IoT 套件服務，例如 IoT 中樞、串流分析和 [Azure Machine Learning][lnk-machine-learning] 工作區。 此工作區包含以公開範例資料集為基礎的模型，用來預測飛機引擎的剩餘使用年限 (RUL)。 此解決方案完整提供 IoT 商務案例的實作做為起點，讓您規劃和實作能滿足特定商務需求的解決方案。
+IoT Suite 預先設定的預測性維護解決方案是一個端對端解決方案，適用於可預測可能發生失敗時間點的商務案例。 您可以針對最佳化維護等活動，主動使用此預先設定的解決方案。 此解決方案結合了主要 Azure IoT 套件服務，例如 IoT 中樞、串流分析和 [Azure Machine Learning][lnk-machine-learning] 工作區。 此工作區包含以公開範例資料集為基礎的模型，用來預測飛機引擎的剩餘使用年限 (RUL)。 此解決方案完整提供 IoT 商務案例的實作作為起點，讓您規劃和實作能滿足特定商務需求的解決方案。
 
 ## <a name="logical-architecture"></a>邏輯架構
 
@@ -43,9 +44,9 @@ IoT Suite 預先設定的預測性維護解決方案是一個端對端解決方�
 
 在預先設定的解決方案中，模擬裝置代表飛機引擎。 此解決方案已佈建兩個對應至單一飛機的引擎。 每個引擎會發出四種類型的遙測：感應器 9、感應器 11、感應器 14 和感應器 15 會提供 Machine Learning 模型來計算該引擎的 RUL 所需的資料。 每個模擬的裝置會將下列遙測訊息傳送至 IoT 中樞：
 
-*週期計數*。 週期表示已完成持續期間介於&2; 小時與&10; 小時之間的飛行。 在飛行期間，每半小時擷取一次遙測資料。
+*週期計數*。 週期表示已完成持續期間介於 2 小時與 10 小時之間的飛行。 在飛行期間，每半小時擷取一次遙測資料。
 
-*遙測*。 有四個代表引擎屬性的感應器。 這些感應器會一般會標示為感應器 9、感應器 11、感應器 14 和感應器 15。 這&4; 個感應器代表足以從 RUL 模型取得有用結果的遙測。 用於預先設定之解決方案中的模型是根據包含實際引擎感應器資料的公用資料集建立而來。 如需有關如何從原始資料集建立模型的詳細資訊，請參閱 [Cortana Intelligence Gallery 預測性維護範本][lnk-cortana-analytics]。
+*遙測*。 有四個代表引擎屬性的感應器。 這些感應器會一般會標示為感應器 9、感應器 11、感應器 14 和感應器 15。 這 4 個感應器代表足以從 RUL 模型取得有用結果的遙測。 用於預先設定之解決方案中的模型是根據包含實際引擎感應器資料的公用資料集建立而來。 如需有關如何從原始資料集建立模型的詳細資訊，請參閱 [Cortana Intelligence Gallery 預測性維護範本][lnk-cortana-analytics]。
 
 模擬的裝置可以處理從解決方案中 IoT 中樞傳送的下列命令：
 
@@ -83,8 +84,3 @@ Machine Learning 元件使用的模型衍生自從真實飛機引擎收集而來
 [lnk-faq]: iot-suite-faq.md
 [lnk-security-groundup]: securing-iot-ground-up.md
 [lnk-machine-learning]: https://azure.microsoft.com/services/machine-learning/
-
-
-<!--HONumber=Feb17_HO1-->
-
-

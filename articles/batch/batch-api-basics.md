@@ -16,9 +16,9 @@ ms.date: 03/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: c7090940192d9bd07fce96ad475b2239f5e9f2e8
-ms.lasthandoff: 04/06/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 23dfe112411ebc6f47e6a3f09baaf1aa746e6987
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -73,11 +73,12 @@ ms.lasthandoff: 04/06/2017
 
 您可以使用 [Azure 入口網站](batch-account-create-portal.md)或以程式設計的方式建立 Azure Batch 帳戶，例如使用 [Batch管理 .NET 程式庫](batch-management-dotnet.md)。 建立帳戶時，您可以將 Azure 儲存體帳戶產生關聯。
 
-Batch 支援兩個帳戶設定，根據集區配置模式屬性。 兩個組態提供不同的選項，可驗證 Batch 服務及佈建和管理 Batch [集區](#pool) (請參閱本文稍後的部分)。 
+Batch 支援兩個帳戶設定，根據集區配置模式屬性。 這兩種組態可讓您存取與 Batch [集區](#pool)相關的不同功能 (請參閱本文稍後章節)。 
 
 
-* **Batch 服務**(預設值)︰您可以使用共用金鑰驗證或 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API。 Batch 計算資源會在 Azure 受管理帳戶中配置於幕後。   
-* **使用者訂用帳戶**︰您只能使用 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API。 Batch 計算資源會直接配置在您的 Azure 訂用帳戶中。 此模式可提供您更多彈性來設定計算節點，並與其他服務整合。 這個模式會要求您設定 Batch 帳戶的其他 Azure Key Vault。
+* **Batch 服務**：這是預設選項，在 Azure 管理的訂用帳戶中，系統會在幕後配置 Batch 集區 VM。 如果您需要雲端服務集區，您就必須使用此帳戶組態，但如果您需要透過自訂 VM 映像所建立的虛擬機器集區或使用虛擬網路的虛擬機器集區，就不能使用此組態。 您可以使用共用金鑰驗證或 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API。 
+
+* **使用者訂用帳戶**：如果您需要透過自訂 VM 映像所建立的虛擬機器集區或使用虛擬網路的虛擬機器集區，您就必須使用此帳戶組態。 您只能使用 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API，雲端服務集區不支援此功能。 Batch 計算 VM 會直接配置在您的 Azure 訂用帳戶中。 這個模式會要求您設定 Batch 帳戶的 Azure Key Vault。
  
 
 ## <a name="compute-node"></a>計算節點

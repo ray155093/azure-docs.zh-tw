@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-wms.date: 03/06/2017
+wms.date: 04/14/2017
 ms.author: janeng
 translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 85b7336958c90b477eea8ea185a69bab2bd87a79
-ms.lasthandoff: 04/15/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 884cd19bdfb1bf53d75cb27e840c448eff8bc991
+ms.lasthandoff: 04/21/2017
 
 
 ---
 # <a name="sql-database-options-and-performance-understand-whats-available-in-each-service-tier"></a>SQL Database 選項和效能：了解每個服務層中可用的項目
 
-[Azure SQL Database](sql-database-technical-overview.md) 提供四個服務層：**基本**、**標準**、**進階**和**進階 RS**。 每個服務層都有多個效能等級可處理不同的工作負載。 較高的效能等級會提供額外的資源，旨在提供愈來愈高的輸送量。 您可以動態變更服務層和效能層級而不需要停機。 基本、標準、進階和進階 RS 服務層都具備 99.99% 的執行時間 SLA、彈性的商務持續性選項、安全性功能，以及按小時計費。 進階 RS 層會提供和進階層相同的效能等級、安全性功能和商務持續性功能，但 SLA 會降低。
+[Azure SQL Database](sql-database-technical-overview.md) 提供四個服務層：**基本**、**標準**、**進階**和**進階 RS**。 每個服務層都有多個效能等級可處理不同的工作負載。 較高的效能等級會提供額外的資源，旨在提供愈來愈高的輸送量。 您可以動態變更服務層和效能層級而不需要停機。 基本、標準和高階服務層都具備 99.99% 的執行時間 SLA、彈性的商務持續性選項、安全性功能，以及按小時計費。 進階 RS 層會提供和進階層相同的效能等級、安全性功能和商務持續性功能，但 SLA 會降低。
 
 > [!IMPORTANT]
 > 進階 RS 資料庫在執行時所用的備援複本數，比進階或標準資料庫所用的少。 因此，當服務失敗時，最慢可能會延遲 5 分鐘才能從備份中復原資料庫。
@@ -44,18 +44,18 @@ ms.lasthandoff: 04/15/2017
 | **進階 RS** | 專為需要大量 IO 但不需要高可用性保證的工作負載所設計。 範例包括測試高效能工作負載，或資料庫不是記錄系統的分析工作負載。 |
 |||
 
-請先決定您想要執行具有定量專用資源的單一資料庫，還是想要在一組資料庫之間共用資源集區。 檢閱[彈性集區的考量事項](sql-database-elastic-pool-guidance.md)。 若要決定服務層，請先判斷您所需要的資料庫功能底限︰
+請先決定您想要執行具有定量專用資源的單一資料庫，還是想要在一組資料庫之間共用資源集區。 檢閱[彈性集區的考量事項](sql-database-elastic-pool.md)。 若要決定服務層，請先判斷您所需要的資料庫功能底限︰
 
 | **服務層功能** | **基本** | **標準** | **高級** | **進階 RS**|
 | :-- | --: | --: | --: | --: |
-| 個別資料庫大小上限 | 2 GB | 250 GB | 4 TB*  | 500 GB  |
-| 彈性集區中的儲存體總量上限 | 117 GB | 1200 GB | 750 GB | 750 GB |
-| 每個集區的資料庫數目上限 | 400  | 400 | 50 | 50 |
+| 單一資料庫大小上限 | 2 GB | 250 GB | 4 TB*  | 500 GB  |
+| 彈性集區中的資料庫大小上限 | 156 GB | 2.9 TB | 500 GB | 500 GB |
+| 每個集區的資料庫數目上限 | 500  | 500 | 100 | 100 |
 | 資料庫備份的保留期限 | 7 天 | 35 天 | 35 天 | 35 天 |
 ||||||
 
 > [!IMPORTANT]
-> 使用 P11 和 P15 效能等級的客戶不需額外付費就能使用最多 4 TB 的內含儲存體。 這個 4 TB 選項目前在下列區域為公開預覽狀態：美國東部 2、美國西部、西歐、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。 若要了解目前的限制，請參閱[目前的 4 TB 限制](sql-database-service-tiers.md#current-limitations-of-p11-and-p15-databases-with-4-tb-maxsize)
+> 對於使用 P11 和 P15 效能層級的客戶，其可在公開預覽版中免費使用最多 4 TB 的個別資料庫。 我們目前也已經提供儲存體超過 750 GB 的進階集區。 這些額外的儲存體選項目前已在下列區域中提供：美國東部 2、美國西部、西歐、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。 請參閱[目前的 4 TB 限制](sql-database-service-tiers.md#current-limitations-of-p11-and-p15-databases-with-4-tb-maxsize)
 >
 
 一旦決定最低服務層之後，接下來要決定資料庫的效能層級 (DTU 數目)。 標準 S2 和 S3 效能層級通常是不錯的起點。 而對於具有高 CPU 或 IO 需求的資料庫，高階效能層級才是正確的起點。 比起 [標準] 效能層級，[高階] 提供更多的 CPU 以及多了 10 倍的 IO。
@@ -90,7 +90,7 @@ ms.lasthandoff: 04/15/2017
 
 ## <a name="elastic-pool-service-tiers-and-performance-in-edtus"></a>eDTU 中的彈性集區服務層和效能
 
-集區可讓資料庫共用和取用 eDTU 資源，而無須指派特定效能等級給集區中的每個資料庫。 例如，標準集區中的單一資料庫可從使用 0 個 eDTU 到您設定集區時設定的最大資料庫 eDTU。 集區可讓多個具有不同工作負載的多個資料庫有效使用整個集區中的可用 eDTU。 如需詳細資訊，請參閱 [彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md) 。
+集區可讓資料庫共用和取用 eDTU 資源，而無須指派特定效能等級給集區中的每個資料庫。 例如，標準集區中的單一資料庫可從使用 0 個 eDTU 到您設定集區時設定的最大資料庫 eDTU。 集區可讓多個具有不同工作負載的多個資料庫有效使用整個集區中的可用 eDTU。 如需詳細資訊，請參閱 [彈性集區的價格和效能考量](sql-database-elastic-pool.md) 。
 
 下表說明集區服務層的特性。
 
@@ -144,7 +144,7 @@ ALTER DATABASE <myDatabaseName>
 
 ## <a name="next-steps"></a>後續步驟
 
-* 深入了解[彈性集區](sql-database-elastic-pool-guidance.md)和[彈性集區](sql-database-elastic-pool-guidance.md)的價格與效能考量。
+* 深入了解[彈性集區](sql-database-elastic-pool.md)和[彈性集區](sql-database-elastic-pool.md)的價格與效能考量。
 * 了解如何[監視、管理彈性集區和調整其大小](sql-database-elastic-pool-manage-portal.md)和[監視單一資料庫的效能](sql-database-single-database-monitor.md)。
 * 如果您認識了 SQL Database 各個層，可以透過[免費帳戶](https://azure.microsoft.com/pricing/free-trial/)親身體驗，然後了解[如何建立您的第一個 SQL Database](sql-database-get-started-portal.md)。
 * 若要進行移轉，請使用 [DTU 計算機](http://dtucalculator.azurewebsites.net/)估計所需的 DTU 數目。 
