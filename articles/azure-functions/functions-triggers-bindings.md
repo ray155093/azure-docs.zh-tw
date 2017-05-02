@@ -3,7 +3,7 @@ title: "在 Azure Functions 中使用觸發程序和繫結 | Microsoft Docs"
 description: "了解如何在 Azure Functions 中使用觸發程序和繫結，將您的程式碼執行連接到線上事件和雲端服務。"
 services: functions
 documentationcenter: na
-author: christopheranderson
+author: lindydonna
 manager: erikre
 editor: 
 tags: 
@@ -14,125 +14,288 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 01/23/2017
-ms.author: chrande
+ms.date: 04/14/2017
+ms.author: donnam
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: a56d71d437814ed08b2e0a05d9acc8448f6b9ae5
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: ed0ade96cc1cf6afc82787133d3fbcf874c43e0f
+ms.lasthandoff: 04/18/2017
 
 
 ---
 
-# <a name="learn-how-to-work-with-triggers-and-bindings-in-azure-functions"></a>了解如何在 Azure Functions 中使用觸發程序和繫結 
-本主題說明如何在 Azure Functions 中使用觸發程序和繫結，將您的程式碼連接到各種不同的觸發程序和 Azure 服務，以及其他雲端服務。 它具備一些進階繫結功能及所有繫結類型都支援的語法。  
-
-如需有關使用特定類型的觸發程序或繫結的詳細資訊，請參閱下列其中一個參考主題︰
-
-| | | | |  
-| --- | --- | --- | --- |  
-| [HTTP/webhook](functions-bindings-http-webhook.md) | [計時器](functions-bindings-timer.md) | [行動應用程式](functions-bindings-mobile-apps.md) | [服務匯流排](functions-bindings-service-bus.md)  |  
-| [DocumentDB](functions-bindings-documentdb.md) |  [儲存體 Blob](functions-bindings-storage-blob.md) | [儲存體佇列](functions-bindings-storage-queue.md) |  [儲存體資料表](functions-bindings-storage-table.md) |  
-| [事件中樞](functions-bindings-event-hubs.md) | [通知中樞](functions-bindings-notification-hubs.md) | [SendGrid](functions-bindings-sendgrid.md) | [Twilio](functions-bindings-twilio.md) |   
-| | | | |  
-
-這些文章假設您已經讀過 [Azure Functions 開發人員參考](functions-reference.md)及 [C#](functions-reference-csharp.md)、[F#](functions-reference-fsharp.md) 或 [Node.js](functions-reference-node.md) 開發人員參考文章。
+# <a name="azure-functions-triggers-and-bindings-concepts"></a>Azure Functions 觸發程序和繫結概念
+Azure Functions 可讓您撰寫程式碼，以透過「觸發程序」和「繫結」回應 Azure 和其他服務中的事件。 此文章是適用於所有支援之程式設計語言的觸發程序和繫結的概念性概觀。 這裡描述所有繫結的通用功能。
 
 ## <a name="overview"></a>概觀
-觸發程序是用來觸發自訂程式碼的事件回應。 它們可讓您回應整個 Azure 平台或內部部署環境的事件。 繫結代表用來將程式碼連接到所需觸發程序或相關輸入或輸出資料的必要中繼資料。 每個函式的 *function.json* 檔案都包含所有相關的繫結。 函式可以有的輸入和輸出繫結的數量沒有任何限制。 不過，每個函式中僅支援單一觸發程序繫結。  
 
-若要進一步了解可與您 Azure Functions App 整合的各種不同繫結，請參考下表。
+觸發程序和繫結是定義叫用函數的方式與其處理之資料的宣告式方法。 「觸發程序」會定義叫用函數的方式。 一個函數只能恰有一個觸發程序。 觸發程序具有相關聯的資料，它通常是觸發函數的承載。 
 
-[!INCLUDE [dynamic compute](../../includes/functions-bindings.md)]
+輸入和輸出「繫結」提供從您的程式碼內連線到資料的宣告式方法。 類似於觸發程序，您需要在函數組態中指定連接字串和其他屬性。 繫結是選擇性的，而且一個函數可以有多個輸入和輸出繫結。 
 
-若要進一步了解觸發程序和繫結的一般概念，假設您想要執行一些程式碼以處理放入「Azure 儲存體」佇列中的新項目。 Azure Functions 便可提供「Azure 佇列」觸發程序來支援這麼做。 您將需要下列資訊來監視佇列：
+使用觸發程序和繫結，您可以撰寫較泛型的程式碼，而不是以硬式編碼的方式撰寫要互動之服務的詳細資訊。 來自服務的資料會直接成為函數程式碼的輸入值。 若要將資料輸出到其他服務 (例如在 Azure 表格儲存體中建立新的資料列)，請使用方法的傳回值。 或者，如果您需要輸出多個值，請使用協助程式物件。 觸發程序和繫結有 **name** 屬性，它是您在程式碼中用來存取繫結的識別項。
 
-* 佇列所在的儲存體帳戶。
-* 佇列名稱。
-* 您程式碼會用來參考放入佇列中之新項目的變數名稱。  
+您可以在 Azure Functions 入口網站的 [整合] 索引標籤中設定觸發程序和繫結。 實際上，UI 會修改函數目錄中名稱為 *function.json* 的檔案。 您可以變更為 [進階編輯器] 以編輯這個檔案。
 
-佇列觸發程序繫結會包含 Azure 函式的這項資訊。 以下是一個包含佇列觸發程序繫結的範例 *function.json*。 
+下表顯示 Azure Functions 支援的觸發程序和繫結。 
 
-```json
-{
-  "bindings": [
-    {
-      "name": "myNewUserQueueItem",
-      "type": "queueTrigger",
-      "direction": "in",
-      "queueName": "queue-newusers",
-      "connection": "MY_STORAGE_ACCT_APP_SETTING"
-    }
-  ],
-  "disabled": false
-}
-```
+[!INCLUDE [Full bindings table](../../includes/functions-bindings.md)]
 
-您的程式碼可以根據新佇列項目的處理方式來傳送不同類型的輸出。 例如，您可以將一個新記錄寫入「Azure 儲存體」資料表中。  若要這麼做，您可以對 Azure 儲存體資料表建立輸出繫結。 以下是一個範例 *function.json*，其中包含可與佇列觸發程序搭配使用的儲存體資料表輸出繫結。 
+### <a name="example-queue-trigger-and-table-output-binding"></a>範例︰佇列觸發程序和資料表輸出繫結
 
-```json
-{
-  "bindings": [
-    {
-      "name": "myNewUserQueueItem",
-      "type": "queueTrigger",
-      "direction": "in",
-      "queueName": "queue-newusers",
-      "connection": "MY_STORAGE_ACCT_APP_SETTING"
-    },
-    {
-      "type": "table",
-      "name": "myNewUserTableBinding",
-      "tableName": "newUserTable",
-      "connection": "MY_TABLE_STORAGE_ACCT_APP_SETTING",
-      "direction": "out"
-    }
-  ],
-  "disabled": false
-}
-```
+假設您想要每當新訊息出現在 Azure 佇列儲存體時，就在 Azure 表格儲存體寫入新的資料列。 此案例可以使用 Azure 佇列觸發程序和資料表輸出繫結來實作。 
 
-下列 C# 函式會回應被放入佇列中的新項目，並將新的使用者輸入寫入「Azure 儲存體」資料表中。
+佇列觸發程序需要 [整合] 索引標籤中的下列資訊：
+
+* 包含佇列的儲存體帳戶連接字串之應用程式設定的名稱
+* 佇列名稱
+* 程式碼中讀取佇列訊息內容所需的識別項，例如 `order`。
+
+若要寫入 Azure 表格儲存體，可以使用包含下列詳細資料的輸出繫結：
+
+* 包含資料表的儲存體帳戶連接字串之應用程式設定的名稱
+* 資料表名稱
+* 程式碼中建立輸出項目的識別項，或來自函數的傳回值。
+
+繫結將應用程式設定用於連接字串，以強制遵循 *function.json* 不包含服務祕密的最佳做法。
+
+然後，在程式碼中使用提供的識別項來與 Azure 儲存體整合。
 
 ```cs
 #r "Newtonsoft.Json"
 
-using System;
-using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-public static async Task Run(string myNewUserQueueItem, IAsyncCollector<Person> myNewUserTableBinding, 
-                                TraceWriter log)
+// From an incoming queue message that is a JSON object, add fields and write to Table Storage
+// The method return value creates a new row in Table Storage
+public static Person Run(JObject order, TraceWriter log)
 {
-    // In this example the queue item is a JSON string representing an order that contains the name, 
-    // address and mobile number of the new customer.
-    dynamic order = JsonConvert.DeserializeObject(myNewUserQueueItem);
-
-    await myNewUserTableBinding.AddAsync(
-        new Person() { 
-            PartitionKey = "Test", 
-            RowKey = Guid.NewGuid().ToString(), 
-            Name = order.name,
-            Address = order.address,
-            MobileNumber = order.mobileNumber }
-        );
+    return new Person() { 
+            PartitionKey = "Orders", 
+            RowKey = Guid.NewGuid().ToString(),  
+            Name = order["Name"].ToString(),
+            MobileNumber = order["MobileNumber"].ToString() };  
 }
-
+ 
 public class Person
 {
     public string PartitionKey { get; set; }
     public string RowKey { get; set; }
     public string Name { get; set; }
-    public string Address { get; set; }
     public string MobileNumber { get; set; }
 }
 ```
 
-如需有關所支援 Azure 儲存體類型的更多程式碼範例和更具體資訊，請參閱 [Azure 儲存體的 Azure Functions 觸發程序和繫結](functions-bindings-storage.md)。
+```javascript
+// From an incoming queue message that is a JSON object, add fields and write to Table Storage
+// The second parameter to context.done is used as the value for the new row
+module.exports = function (context, order) {
+    order.PartitionKey = "Orders";
+    order.RowKey = generateRandomId(); 
 
-若要使用 Azure 入口網站中更進階的繫結功能，請按一下您函式 [整合] 索引標籤上的 [進階編輯器] 選項。 進階編輯器可讓您在入口網站中直接編輯 *function.json*。
+    context.done(null, order);
+};
 
-## <a name="random-guids"></a>隨機 GUID
-Azure Functions 提供可使用您的繫結來產生隨機 GUID 的語法。 下列繫結語法會以獨特的名稱，將輸出寫入儲存體容器中的新 BLOB： 
+function generateRandomId() {
+    return Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15);
+}
+```
+
+以下是對應上述程式碼的 *function.json*。 請注意，無論函數實作的語言為何，仍可以使用相同的設定。
+
+```json
+{
+  "bindings": [
+    {
+      "name": "order",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "myqueue-items",
+      "connection": "MY_STORAGE_ACCT_APP_SETTING"
+    },
+    {
+      "name": "$return",
+      "type": "table",
+      "direction": "out",
+      "tableName": "outTable",
+      "connection": "MY_TABLE_STORAGE_ACCT_APP_SETTING"
+    }
+  ]
+}
+```
+若要在 Azure 入口網站中檢視及編輯 *function.json* 的內容，請按一下函數的 [整合] 索引標籤上的 [進階編輯器] 選項。
+
+如需程式碼範例及整合 Azure 儲存體的詳細資訊，請參閱 [Azure 儲存體的 Azure Functions 觸發程序和繫結](functions-bindings-storage.md)。
+
+### <a name="binding-direction"></a>繫結方向
+
+所有觸發程序和繫結都具有 `direction` 屬性：
+
+- 對於觸發程序，方向一律為 `in`
+- 輸入和輸出繫結使用 `in` 和 `out`
+- 某些繫結支援特殊方向 `inout`。 如果您使用 `inout`，則 [整合] 索引標籤中只有 [進階編輯器] 可供使用。
+
+## <a name="using-the-function-return-type-to-return-a-single-output"></a>使用函數傳回類型來傳回單一輸出
+
+上述範例顯示如何使用函數傳回值，來提供輸出值給繫結，方法是使用特殊名稱參數 `$return` (這只支援有傳回值的語言，例如 C#、JavaScript 和 F#)。如果函數有多個輸出繫結，請只將 `$return` 用於其中一個輸出繫結。 
+
+```json
+// excerpt of function.json
+{
+    "name": "$return",
+    "type": "blob",
+    "direction": "out",
+    "path": "output-container/{id}"
+}
+```
+
+下列範例顯示如何在 C#、JavaScript 和 F# 中搭配輸出繫結使用傳回類型。
+
+```cs
+// C# example: use method return value for output binding
+public static string Run(WorkItem input, TraceWriter log)
+{
+    string json = string.Format("{{ \"id\": \"{0}\" }}", input.Id);
+    log.Info($"C# script processed queue message. Item={json}");
+    return json;
+}
+```
+
+```cs
+// C# example: async method, using return value for output binding
+public static Task<string> Run(WorkItem input, TraceWriter log)
+{
+    string json = string.Format("{{ \"id\": \"{0}\" }}", input.Id);
+    log.Info($"C# script processed queue message. Item={json}");
+    return json;
+}
+```
+
+```javascript
+// JavaScript: return a value in the second parameter to context.done
+module.exports = function (context, input) {
+    var json = JSON.stringify(input);
+    context.log('Node.js script processed queue message', json);
+    context.done(null, json);
+}
+```
+
+```fsharp
+// F# example: use return value for output binding
+let Run(input: WorkItem, log: TraceWriter) =
+    let json = String.Format("{{ \"id\": \"{0}\" }}", input.Id)   
+    log.Info(sprintf "F# script processed queue message '%s'" json)
+    json
+```
+
+## <a name="resolving-app-settings"></a>解析應用程式設定
+為了遵循最佳做法，祕密和連接字串應使用應用程式設定來管理，而不是使用組態檔。 這會限制對這些祕密的存取，並保護儲存在公用原始檔控制存放庫的 *function.json*。
+
+當您想要根據環境來變更設定時，應用程式設定也很有用。 例如，在測試環境中，您可能會想要監視不同佇列或 Blob 儲存體容器。
+
+只要某個值是以百分比符號括住 (例如 `%MyAppSetting%`)，就會解析應用程式設定。 請注意，觸發程序和繫結的 `connection` 屬性是特殊案例，且會自動將值解析為應用程式設定。 
+
+下列範例是使用應用程式設定 `%input-queue-name%` 來定義要觸發之佇列的佇列觸發程序。
+
+```json
+{
+  "bindings": [
+    {
+      "name": "order",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "%input-queue-name%",
+      "connection": "MY_STORAGE_ACCT_APP_SETTING"
+    }
+  ]
+}
+```
+
+## <a name="trigger-metadata-properties"></a>觸發程序中繼資料屬性
+
+除了觸發程序提供的資料承載 (例如觸發函數的佇列訊息) 之外，許多觸發程序都提供額外的中繼資料值。 這些值可以在 C# 和 F# 中作為輸入參數使用，或在 JavaScript 中做為 `context.bindings` 物件上的屬性使用。 
+
+例如，佇列觸發程序支援下列屬性：
+
+* QueueTrigger - 如果是有效字串，便觸發訊息內容
+* DequeueCount
+* ExpirationTime
+* 識別碼
+* InsertionTime
+* NextVisibleTime
+* PopReceipt
+
+在對應的參考主題中，會描述每個觸發程序之中繼資料屬性的詳細資料。 您也可以在入口網站的 [整合] 索引標籤中，繫結設定區域之下的 [文件] 區段取得文件。  
+
+例如，因為 Blob 觸發程序會有一些延遲，所以您可以使用佇列觸發程序來執行您的函數 (請參閱 [Blob 儲存體觸發程序](functions-bindings-storage-blob.md#storage-blob-trigger)。 佇列訊息會包含要在其上觸發的 Blob 檔案名稱。 使用 `queueTrigger` 中繼資料屬性，您只要在設定中就能指定此行為，而不需在程式碼中指定。
+
+```json
+  "bindings": [
+    {
+      "name": "myQueueItem",
+      "type": "queueTrigger",
+      "queueName": "myqueue-items",
+      "connection": "MyStorageConnection",
+    },
+    {
+      "name": "myInputBlob",
+      "type": "blob",
+      "path": "samples-workitems/{queueTrigger}",
+      "direction": "in",
+      "connection": "MyStorageConnection"
+    }
+  ]
+```
+
+您也可以將來自觸發程序的中繼資料屬性用於其他繫結中的「繫結運算式」，如下節所述。
+
+## <a name="binding-expressions-and-patterns"></a>繫結運算式和模式
+
+觸發程序和繫結其中一個最強大的功能就是「繫結運算式」。 在繫結中，您可以定義模式運算式，並將它用於其他繫結或您的程式碼。 觸發程序中繼資料也可以用於繫結運算式，如上一節中的範例所示。
+
+例如，當您想要調整特定 Blob 儲存體容器中的影像大小時，就如同 [新函數]**** 頁面中的 [Image Resizer]**** (影像大小重新調整器) 範本。 移至 [新函數] -> [語言 C#] -> [案例範例] -> [ImageResizer-CSharp]。 
+
+以下是 *function.json* 定義：
+
+```json
+{
+  "bindings": [
+    {
+      "name": "image",
+      "type": "blobTrigger",
+      "path": "sample-images/{filename}",
+      "direction": "in",
+      "connection": "MyStorageConnection"
+    },
+    {
+      "name": "imageSmall",
+      "type": "blob",
+      "path": "sample-images-sm/{filename}",
+      "direction": "out",
+      "connection": "MyStorageConnection"
+    }
+  ],
+}
+```
+
+請注意，`filename` 參數用於 Blob 觸發程序定義以及 Blob 輸出繫結。 這個參數也可以用於函數程式碼。
+
+```csharp
+// C# example of binding to {filename}
+public static void Run(Stream image, string filename, Stream imageSmall, TraceWriter log)  
+{
+    log.Info($"Blob trigger processing: {filename}");
+    // ...
+} 
+```
+
+<!--TODO: add JavaScript example -->
+<!-- Blocked by bug https://github.com/Azure/Azure-Functions/issues/248 -->
+
+
+### <a name="random-guids"></a>隨機 GUID
+Azure Functions 透過 `{rand-guid}` 繫結運算式，提供在繫結中產生 GUID 的便利語法。 下列範例使用此語法產生唯一的 Blob 名稱： 
 
 ```json
 {
@@ -143,248 +306,91 @@ Azure Functions 提供可使用您的繫結來產生隨機 GUID 的語法。 下
 }
 ```
 
+## <a name="bind-to-custom-input-properties-in-a-binding-expression"></a>在繫結運算式中繫結到自訂輸入屬性
 
-## <a name="returning-a-single-output"></a>傳回單一輸出
-如果您的函式程式碼會傳回單一輸出，您可以使用名為 `$return` 的輸出繫結，以在您的程式碼中保留更自然的函式簽章。 這只能與支援傳回值的語言 (C#、Node.js、F#) 搭配使用。 此繫結會類似於下列與佇列觸發程序搭配使用的 Blob 輸出繫結。
+繫結運算式也可以參考在其觸發程序承載中定義的屬性。 例如，您可能想要從在 Webhook 中提供的檔案名稱動態地繫結到 Blob 儲存體檔案。
+
+例如，下列 *function.json* 使用來自觸發程序承載且稱為 `BlobName` 的屬性：
 
 ```json
 {
   "bindings": [
     {
-      "type": "queueTrigger",
-      "name": "input",
+      "name": "info",
+      "type": "httpTrigger",
       "direction": "in",
-      "queueName": "test-input-node"
+      "webHookType": "genericJson",
     },
     {
+      "name": "blobContents",
       "type": "blob",
-      "name": "$return",
-      "direction": "out",
-      "path": "test-output-node/{id}"
+      "direction": "in",
+      "path": "strings/{BlobName}",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
     }
   ]
 }
 ```
 
-下列 C# 程式碼會以不在函式簽章中使用 `out` 參數的更自然方式傳回輸出。
+若要在 C# 和 F# 中完成此動作，您必須定義一個 POCO，以定義將在觸發程序承載中還原序列化的欄位。
 
-```cs
-public static string Run(WorkItem input, TraceWriter log)
+```csharp
+using System.Net;
+
+public class BlobInfo
 {
-    string json = string.Format("{{ \"id\": \"{0}\" }}", input.Id);
-    log.Info($"C# script processed queue message. Item={json}");
-    return json;
+    public string BlobName { get; set; }
+}
+  
+public static HttpResponseMessage Run(HttpRequestMessage req, BlobInfo info, string blobContents)
+{
+    if (blobContents == null) {
+        return req.CreateResponse(HttpStatusCode.NotFound);
+    } 
+
+    return req.CreateResponse(HttpStatusCode.OK, new {
+        data = $"{blobContents}"
+    });
 }
 ```
 
-非同步範例︰
-
-```cs
-public static Task<string> Run(WorkItem input, TraceWriter log)
-{
-    string json = string.Format("{{ \"id\": \"{0}\" }}", input.Id);
-    log.Info($"C# script processed queue message. Item={json}");
-    return json;
-}
-```
-
-
-以下使用 Node.js 示範這個相同的方法：
+在 JavaScript 中，會自動執行 JSON 還原序列化，且您可以直接使用該屬性。
 
 ```javascript
-module.exports = function (context, input) {
-    var json = JSON.stringify(input);
-    context.log('Node.js script processed queue message', json);
-    context.done(null, json);
-}
-```
-
-以下是 F# 範例：
-
-```fsharp
-let Run(input: WorkItem, log: TraceWriter) =
-    let json = String.Format("{{ \"id\": \"{0}\" }}", input.Id)   
-    log.Info(sprintf "F# script processed queue message '%s'" json)
-    json
-```
-
-這也可以透過以 `$return` 指定單一輸出，來與多個輸出參數搭配使用。
-
-## <a name="resolving-app-settings"></a>解析應用程式設定
-使用應用程式設定隨著執行階段環境儲存敏感資訊是最佳作法。 透過讓敏感資訊遠離您的應用程式組態檔，便可在使用公開儲存機制來儲存應用程式檔案時將暴光機會限制在最低。  
-
-當應用程式設定名稱含括在百分比符號 `%your app setting%` 時，Azure Functions 執行階段可以將應用程式設定解析為值。 下列 [Twilio 繫結](functions-bindings-twilio.md)會針對繫結的 `from` 欄位使用名為 `TWILIO_ACCT_PHONE` 的應用程式設定。 
-
-```json
-{
-  "type": "twilioSms",
-  "name": "$return",
-  "accountSid": "TwilioAccountSid",
-  "authToken": "TwilioAuthToken",
-  "to": "{mobileNumber}",
-  "from": "%TWILIO_ACCT_PHONE%",
-  "body": "Thank you {name}, your order was received Node.js",
-  "direction": "out"
-},
-```
-
-
-
-## <a name="parameter-binding"></a>參數繫結
-您可以不為輸出繫結屬性進行靜態組態設定，而是設定讓設定動態繫結到您觸發程序輸入繫結中的資料。 請思考一個使用「Azure 儲存體」佇列來處理新訂單的情況。 每個新的佇列項目都是至少包含下列屬性的 JSON 字串：
-
-```json
-{
-  "name" : "Customer Name",
-  "address" : "Customer's Address",
-  "mobileNumber" : "Customer's mobile number in the format - +1XXXYYYZZZZ."
-}
-```
-
-您可能會想要使用您的 Twilio 帳戶來傳送簡訊給客戶，來提供已收到訂單的最新資訊。  您可以將 Twilio 輸出繫結的 `body` 和 `to` 欄位設定成動態繫結到包含在輸出中的 `name` 和 `mobileNumber`，如下。
-
-```json
-{
-  "name": "myNewOrderItem",
-  "type": "queueTrigger",
-  "direction": "in",
-  "queueName": "queue-newOrders",
-  "connection": "orders_STORAGE"
-},
-{
-  "type": "twilioSms",
-  "name": "$return",
-  "accountSid": "TwilioAccountSid",
-  "authToken": "TwilioAuthToken",
-  "to": "{mobileNumber}",
-  "from": "%TWILIO_ACCT_PHONE%",
-  "body": "Thank you {name}, your order was received",
-  "direction": "out"
-},
-```
-
-現在，您的函式程式碼只需要將輸出參數初始化即可，如下。 在執行期間，輸出屬性會繫結至所需的輸入資料。
-
-```cs
-#r "Newtonsoft.Json"
-#r "Twilio.Api"
-
-using System;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Twilio;
-
-public static async Task<SMSMessage> Run(string myNewOrderItem, TraceWriter log)
-{
-    log.Info($"C# Queue trigger function processed: {myNewOrderItem}");
-
-    dynamic order = JsonConvert.DeserializeObject(myNewOrderItem);    
-
-    // Even if you want to use a hard coded message and number in the binding, you must at least 
-    // initialize the SMSMessage variable.
-    SMSMessage smsText = new SMSMessage();
-
-    // The following isn't needed since we use parameter binding for this
-    //string msg = "Hello " + order.name + ", thank you for your order.";
-    //smsText.Body = msg;
-    //smsText.To = order.mobileNumber;
-
-    return smsText;
-}
-```
-
-Node.js：
-
-```javascript
-module.exports = function (context, myNewOrderItem) {    
-    context.log('Node.js queue trigger function processed work item', myNewOrderItem);    
-
-    // No need to set the properties of the text, we use parameters in the binding. We do need to 
-    // initialize the object.
-    var smsText = {};    
-
-    context.done(null, smsText);
-}
-```
-
-## <a name="advanced-binding-at-runtime-imperative-binding"></a>執行階段的進階繫結 (命令式繫結)
-
-使用 *function.json* 的標準輸入和輸出繫結模式稱為[*宣告式*](https://en.wikipedia.org/wiki/Declarative_programming)繫結，其中，繫結是由 JSON 宣告所定義。 不過，您可以使用[命令式](https://en.wikipedia.org/wiki/Imperative_programming)繫結。 利用此模式，您可以快速在您的程式碼中繫結至任何數量的支援輸入及輸出繫結。
-當繫結路徑或其他輸入需要在執行階段函式中不是設計階段中進行的情況下，您可能需要命令式繫結。 
-
-定義命令式繫結，如下所示︰
-
-- **請勿**在 *function.json* 中為您所需的命令式繫結併入項目。
-- 傳入輸入參數 [`Binder binder`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.Host/Bindings/Runtime/Binder.cs) 或 [`IBinder binder`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IBinder.cs)。 
-- 使用下列 C# 模式來執行資料繫結。
-
-```cs
-using (var output = await binder.BindAsync<T>(new BindingTypeAttribute(...)))
-{
-    ...
-}
-```
-
-其中 `BindingTypeAttribute` 是可定義繫結的.NET 屬性，而 `T` 是該繫結類型支援的輸入或輸出類型。 `T` 也不能是 `out` 參數類型 (例如 `out JObject`)。 例如，Mobile Apps 資料表輸出繫結支援[六個輸出類型](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.MobileApps/MobileTableAttribute.cs#L17-L22)，但您只可以對 `T` 使用 [ICollector<T>](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) 或 [IAsyncCollector<T>](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs)。
-    
-下列範例程式碼會使用在執行階段定義的 blob 路徑來建立[儲存體 blob 輸出繫結](functions-bindings-storage-blob.md#storage-blob-output-binding)，然後將字串寫入 blob。
-
-```cs
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host.Bindings.Runtime;
-
-public static async Task Run(string input, Binder binder)
-{
-    using (var writer = await binder.BindAsync<TextWriter>(new BlobAttribute("samples-output/path")))
-    {
-        writer.Write("Hello World!!");
+module.exports = function (context, info) {
+    if ('BlobName' in info) {
+        context.res = {
+            body: { 'data': context.bindings.blobContents }
+        }
     }
-}
-```
-
-[BlobAttribute](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/BlobAttribute.cs) 會定義[儲存體 blob](functions-bindings-storage-blob.md) 輸入或輸出繫結，而 [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx) 是支援的輸出繫結類型。
-此程式碼會依原樣取得儲存體帳戶連接字串的預設應用程式設定 (也就是 `AzureWebJobsStorage`)。 您可以指定要使用的自訂應用程式設定，方法是新增 [StorageAccountAttribute](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/StorageAccountAttribute.cs) 並將屬性陣列傳遞至 `BindAsync<T>()`。 例如，
-
-```cs
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host.Bindings.Runtime;
-
-public static async Task Run(string input, Binder binder)
-{
-    var attributes = new Attribute[]
-    {    
-        new BlobAttribute("samples-output/path"),
-        new StorageAccountAttribute("MyStorageAccount")
-    };
-
-    using (var writer = await binder.BindAsync<TextWriter>(attributes))
-    {
-        writer.Write("Hello World!");
+    else {
+        context.res = {
+            status: 404
+        };
     }
+    context.done();
 }
 ```
-
-下表顯示要對每個繫結類型使用的對應 .NET 屬性，以及要參考的封裝。
-
-> [!div class="mx-codeBreakAll"]
-| 繫結 | 屬性 | 新增參考 |
-|------|------|------|
-| DocumentDB | [`Microsoft.Azure.WebJobs.DocumentDBAttribute`](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.DocumentDB/DocumentDBAttribute.cs) | `#r "Microsoft.Azure.WebJobs.Extensions.DocumentDB"` |
-| 事件中樞 | [`Microsoft.Azure.WebJobs.ServiceBus.EventHubAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.ServiceBus/EventHubs/EventHubAttribute.cs), [`Microsoft.Azure.WebJobs.ServiceBusAccountAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.ServiceBus/ServiceBusAccountAttribute.cs) | `#r "Microsoft.Azure.Jobs.ServiceBus"` |
-| 行動應用程式 | [`Microsoft.Azure.WebJobs.MobileTableAttribute`](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.MobileApps/MobileTableAttribute.cs) | `#r "Microsoft.Azure.WebJobs.Extensions.MobileApps"` |
-| 通知中樞 | [`Microsoft.Azure.WebJobs.NotificationHubAttribute`](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.NotificationHubs/NotificationHubAttribute.cs) | `#r "Microsoft.Azure.WebJobs.Extensions.NotificationHubs"` |
-| 服務匯流排 | [`Microsoft.Azure.WebJobs.ServiceBusAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.ServiceBus/ServiceBusAttribute.cs), [`Microsoft.Azure.WebJobs.ServiceBusAccountAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.ServiceBus/ServiceBusAccountAttribute.cs) | `#r "Microsoft.Azure.WebJobs.ServiceBus"` |
-| 儲存體佇列 | [`Microsoft.Azure.WebJobs.QueueAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/QueueAttribute.cs), [`Microsoft.Azure.WebJobs.StorageAccountAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/StorageAccountAttribute.cs) | |
-| 儲存體 Blob | [`Microsoft.Azure.WebJobs.BlobAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/BlobAttribute.cs), [`Microsoft.Azure.WebJobs.StorageAccountAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/StorageAccountAttribute.cs) | |
-| 儲存體資料表 | [`Microsoft.Azure.WebJobs.TableAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/TableAttribute.cs), [`Microsoft.Azure.WebJobs.StorageAccountAttribute`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/StorageAccountAttribute.cs) | |
-| Twilio | [`Microsoft.Azure.WebJobs.TwilioSmsAttribute`](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.Twilio/TwilioSMSAttribute.cs) | `#r "Microsoft.Azure.WebJobs.Extensions.Twilio"` |
-
-
 
 ## <a name="next-steps"></a>後續步驟
-如需詳細資訊，請參閱下列資源：
+如需特定繫結的詳細資訊，請參閱下列文章：
 
-* [測試函數](functions-test-a-function.md)
-* [調整函數](functions-scale.md)
-
+- [HTTP 和 Webhook](functions-bindings-http-webhook.md)
+- [計時器](functions-bindings-timer.md)
+- [佇列儲存體](functions-bindings-storage-queue.md)
+- [Blob 儲存體](functions-bindings-storage-blob.md)
+- [資料表儲存體](functions-bindings-storage-table.md)
+- [事件中樞](functions-bindings-event-hubs.md)
+- [服務匯流排](functions-bindings-service-bus.md)
+- [DocumentDB](functions-bindings-documentdb.md)
+- [SendGrid](functions-bindings-sendgrid.md)
+- [Twilio](functions-bindings-twilio.md)
+- [通知中樞](functions-bindings-notification-hubs.md)
+- [行動應用程式](functions-bindings-mobile-apps.md)
+- [外部檔案](functions-bindings-external-file.md)
 
