@@ -136,7 +136,7 @@ ms.lasthandoff: 03/28/2017
 |"@@"|傳回包含 '@' 的 1 個字元字串。|  
 |" @"|傳回包含 '@' 的 2 個字元字串。|  
   
-使用「字串插補」，運算式也可以出現在字串內，其中運算式會包含在 `@{ ... }` 內。 例如： <p>`"name" : "First Name: @{parameters('firstName')} Last Name: @{parameters('lastName'}"`
+使用「字串插補」，運算式也可以出現在字串內，其中運算式會包含在 `@{ ... }` 內。 例如： <p>`"name" : "First Name: @{parameters('firstName')} Last Name: @{parameters('lastName')}"`
 
 結果一律是字串，使這項功能類似於 `concat` 函式。 假設您將 `myNumber` 定義為`42` 以及將 `myString` 定義為 `sampleString`：  
   

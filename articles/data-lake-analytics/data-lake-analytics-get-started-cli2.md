@@ -111,8 +111,8 @@ Azure 入口網站會提供使用者介面，可將範例資料檔案複製到�
 若要使用 CLI 2.0 上傳檔案，請使用下列命令：
 
 ```azurecli
-az dls file upload --account "<Data Lake Store Account Name>" --source-path "<Source File Path>" --destination-path "<Destination File Path>"
-az dls file list --account "<Data Lake Store Account Name>" --path "<Path>"
+az dls fs upload --account "<Data Lake Store Account Name>" --source-path "<Source File Path>" --destination-path "<Destination File Path>"
+az dls fs list --account "<Data Lake Store Account Name>" --path "<Path>"
 ```
 
 Data Lake Analytics 也可存取 Azure Blob 儲存體。  若要將資料上傳至 Azure Blob 儲存體，請參閱 [使用 Azure CLI 搭配 Azure 儲存體](../storage/storage-azure-cli.md)。

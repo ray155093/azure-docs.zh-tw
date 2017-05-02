@@ -38,7 +38,7 @@ ms.lasthandoff: 04/18/2017
 
     ![叢集設定輸出][cluster-setup-basics]
 
-4. 填妥 [叢集組態] 表單。  對於 [節點類型計數] 輸入"1"，並將 [持久性層][](service-fabric-cluster-capacity.md#the-durability-characteristics-of-the-cluster) 設定為「銅級」。
+4. 填妥 [叢集組態] 表單。  對於 [節點類型計數] 輸入"1"，並將 [持久性層](service-fabric-cluster-capacity.md#the-durability-characteristics-of-the-cluster) 設定為「銅級」。
 
 5. 選取 [設定每個節點類型] 並填妥 [節點類型組態] 表單。 節點類型可定義 VM 大小、VM 數目、自訂端點，以及該類型 VM 的其他設定。 所定義的每個節點類型都會設定為不同的虛擬機器擴展集，以便用集合形式部署和管理虛擬機器。 每個節點類型可以獨立相應增加或相應減少，可以開啟不同組的連接埠，並可以有不同的容量計量。  第一個 (或主要) 節點類型就是 Service Fabric 系統服務所在的節點類型，且必須具有 5 部或更多部 VM。
 
