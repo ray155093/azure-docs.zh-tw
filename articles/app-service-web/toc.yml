@@ -21,18 +21,22 @@
     href: app-service-web-get-started-python.md
   - name: "建立靜態 HTML 網站"
     href: app-service-web-get-started-html.md
+- name: "教學課程"
+  items:
+  - name: "1 - .NET with SQL DB"
+    href: app-service-web-tutorial-dotnet-sqldatabase.md
+  - name: "1 - Node.js with MongoDB"
+    href: app-service-web-tutorial-nodejs-mongodb-app.md
+  - name: "2 - 對應自訂網域"
+    href: app-service-web-tutorial-custom-domain.md
+  - name: "3 - 繫結 SSL 憑證"
+    href: app-service-web-tutorial-custom-ssl.md
 - name: "範例"
   items:
   - name: "Azure CLI"
     href: app-service-cli-samples.md
   - name: "PowerShell"
     href: app-service-powershell-samples.md
-- name: "教學課程"
-  items:
-  - name: ".NET 搭配 SQL Database"
-    href: app-service-web-tutorial-dotnet-sqldatabase.md
-  - name: "Node.js 搭配 MongoDB"
-    href: app-service-web-tutorial-nodejs-mongodb-app.md
 - name: "概念"
   items:
   - name: "App Service 的運作方式"
@@ -174,8 +178,6 @@
         href: web-sites-dotnet-entity-framework-row-level-security.md
     - name: "指派自訂的 SSL"
       items:
-      - name: "購買 SSL 憑證"
-        href: web-sites-purchase-ssl-web-site.md
       - name: "設定第三方 SSL 憑證"
         href: web-sites-configure-ssl-certificate.md
     - name: "強制使用 HTTPS"

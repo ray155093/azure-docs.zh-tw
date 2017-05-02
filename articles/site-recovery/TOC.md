@@ -8,17 +8,18 @@
 ## [觀看簡介](https://azure.microsoft.com/resources/videos/index/?services=site-recovery)
 
 # 開始使用
-## [將 VMware VM 複寫至 Azure](site-recovery-vmware-to-azure.md)
-## [在多租用戶部署 (CSP) 中將 VMware VM 複寫至 Azure](site-recovery-multi-tenant-support-vmware-using-csp.md)
+## [將 VMware VM 複寫到 Azure](site-recovery-vmware-to-azure.md)
+## [將實體伺服器複寫到 Azure](site-recovery-physical-servers-to-azure.md) 
 ## [將 Hyper-V VM 複寫至 Azure (使用 VMM)](site-recovery-vmm-to-azure.md)
 ## [將 Hyper-V VM 複寫至 Azure](site-recovery-hyper-v-site-to-azure.md)
-## [將 VMware VM 和實體伺服器複寫至次要網站](site-recovery-vmware-to-vmware.md)
 ## [將 Hyper-V VM 複寫至次要站台 (使用 VMM)](site-recovery-vmm-to-vmm.md)
+## [將 VMware VM 和實體伺服器複寫至次要網站](site-recovery-vmware-to-vmware.md)
+## [在多租用戶部署 (CSP) 中將 VMware VM 複寫至 Azure](site-recovery-multi-tenant-support-vmware-using-csp.md)
 
 # 作法
 ## 規劃
 ### [部署必要條件](site-recovery-prereq.md)
-### [網路基礎結構的注意事項](site-recovery-network-design.md)
+### [規劃網路基礎結構](site-recovery-network-design.md)
 ### [規劃容量並調整 Azure 中的 VMware 複寫](site-recovery-plan-capacity-vmware.md)
 ### [將 VMware 複寫至 Azure 的部署規劃工具](site-recovery-deployment-planner.md)
 ### [適用於 Hyper-V 複寫的 Capacity Planner](site-recovery-capacity-planner.md)

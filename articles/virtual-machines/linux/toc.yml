@@ -13,20 +13,30 @@
     href: quick-create-portal.md
   - name: "建立 VM - PowerShell"
     href: quick-create-powershell.md
+- name: "教學課程"
+  items:
+  - name: "1 - 建立/管理 VM"
+    href: tutorial-manage-vm.md
+  - name: "2 - 建立/管理磁碟"
+    href: tutorial-manage-disks.md
+  - name: "3 - 自動化組態"
+    href: tutorial-automate-vm-deployment.md
+  - name: "4 - 建立 VM 映像"
+    href: tutorial-custom-images.md
+  - name: "5 - 高可用性 VM"
+    href: tutorial-availability-sets.md
+  - name: "6 - 建立 VM 擴展集"
+    href: tutorial-create-vmss.md
+  - name: "7 - 負載平衡的 VM"
+    href: tutorial-load-balancer.md
+  - name: "8 - 管理網路"
+    href: tutorial-virtual-network.md
 - name: "範例"
   items:
   - name: "Azure CLI"
     href: cli-samples.md
   - name: "PowerShell"
     href: powershell-samples.md
-- name: "教學課程"
-  items:
-  - name: "建立和管理 VM"
-    href: tutorial-manage-vm.md
-  - name: "負載平衡高可用性 VM"
-    href: tutorial-load-balance-nodejs.md
-  - name: "建立 VM 擴展集"
-    href: tutorial-create-vmss.md
 - name: "概念"
   items:
   - name: "Azure 認可的發佈"

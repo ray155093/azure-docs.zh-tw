@@ -18,6 +18,7 @@
 ### [Web Apps - 執行階段](app-insights-java-live.md)
 ### [Docker 應用程式](app-insights-docker.md)
 
+
 ## 監視網頁
 ### [JavaScript](app-insights-javascript.md)
 
@@ -75,6 +76,7 @@
 #### [儀表板](app-insights-dashboards.md)
 #### [搜尋](app-insights-diagnostic-search.md)
 #### [計量](app-insights-metrics-explorer.md)
+#### [即時資料流](app-insights-live-stream.md)
 
 #### [應用程式對應](app-insights-app-map.md)
 #### [HockeyApp 資料](app-insights-hockeyapp-bridge-app.md)
@@ -132,6 +134,14 @@
 ## [Java](/java/api/com.microsoft.applicationinsights)
 ## [JavaScript](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md)
 ## [REST](https://dev.applicationinsights.io/)
+## [資料模型](application-insights-data-model.md)
+### [要求](application-insights-data-model-request-telemetry.md)
+### [相依性](application-insights-data-model-dependency-telemetry.md)
+### [例外狀況](application-insights-data-model-exception-telemetry.md)
+### [追蹤](application-insights-data-model-trace-telemetry.md)
+### [Event](application-insights-data-model-event-telemetry.md)
+### [度量](application-insights-data-model-metric-telemetry.md)
+## [遙測相互關聯](application-insights-correlation.md)
 
 # 資源
 

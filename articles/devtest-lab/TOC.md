@@ -1,7 +1,6 @@
 # 概觀
-## [何謂研發/測試實驗室？](devtest-lab-overview.md)
-## [為什麼需要研發/測試實驗室？](devtest-lab-why.md)
-## [研發/測試實驗室概念](devtest-lab-concepts.md)
+## [深入了解 Azure DevTest Labs](devtest-lab-overview.md)
+## [概念](devtest-lab-concepts.md)
 
 # 開始使用
 ## [建立實驗室](devtest-lab-create-lab.md)

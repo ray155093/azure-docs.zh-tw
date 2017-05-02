@@ -69,6 +69,7 @@
 #### [識別並解決群組的授權問題](active-directory-licensing-group-problem-resolution-azure-portal.md)
 #### [將個別授權使用者移轉至群組型的授權](active-directory-licensing-group-migration-azure-portal.md)
 #### [群組型授權的其他案例](active-directory-licensing-group-advanced.md)
+#### [群組型授權的 PowerShell 範例](active-directory-licensing-ps-examples.md)
 ### [設定自助式群組](active-directory-accessmanagement-self-service-group-management.md)
 ### [疑難排解](active-directory-accessmanagement-troubleshooting.md)
 

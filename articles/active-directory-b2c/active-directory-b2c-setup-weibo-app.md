@@ -45,13 +45,13 @@ ms.lasthandoff: 04/07/2017
 
 1. 移至[新的 Weibo 應用程式註冊頁面](http://open.weibo.com/apps/new)。
 2. 輸入必要的應用程式資訊。
-3. 按一下 [创建] (建立)。
+3. 按一下 [创建] \(建立)。
 4. 複製**應用程式金鑰**和**應用程式密碼**的值。 稍後您將會需要此資訊。
 5. 上傳所需的相片，並輸入所需的資訊。
-6. 按一下 [保存以上信息] (儲存)。
-7. 按一下 [高级信息] (進階資訊)。
-8. 按一下 OAuth2.0 [授权设置] (重新導向 URL) 旁的 [编辑] (編輯) 欄位。
-9. 針對 OAuth2.0 [授权设置] (重新導向 URL) 輸入 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`。 例如，如果您的 `tenant_name` 是 contoso.onmicrosoft.com，請將 URL 設為 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`。
+6. 按一下 [保存以上信息] \(儲存)。
+7. 按一下 [高级信息] \(進階資訊)。
+8. 按一下 OAuth2.0 [授权设置] \(重新導向 URL) 旁的 [编辑] \(編輯) 欄位。
+9. 針對 OAuth2.0 [授权设置] \(重新導向 URL) 輸入 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`。 例如，如果您的 `tenant_name` 是 contoso.onmicrosoft.com，請將 URL 設為 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`。
 10. 按一下 [提交]。  
 
 ## <a name="configure-weibo-as-an-identity-provider-in-your-tenant"></a>在租用戶中將 Weibo 設為識別提供者

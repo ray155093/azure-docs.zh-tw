@@ -10,6 +10,12 @@
 ## [建立您的第一個範本](resource-manager-create-first-template.md)
 ## [搭配 Resource Manager 使用 Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)
 
+# 範例
+## PowerShell
+### [部署範本](resource-manager-samples-powershell-deploy.md)
+## Azure CLI
+### [部署範本](resource-manager-samples-cli-deploy.md)
+
 # 作法
 ## 建立範本
 ### [範本的最佳做法](resource-manager-template-best-practices.md)
@@ -26,8 +32,12 @@
 ### [在連結的範本間共用狀態](best-practices-resource-manager-state.md)
 ### [設計範本的模式](best-practices-resource-manager-design-templates.md)
 ## 部署
-### [PowerShell](resource-group-template-deploy.md)
-### [Azure CLI](resource-group-template-deploy-cli.md)
+### PowerShell
+#### [部署範本](resource-group-template-deploy.md)
+#### [使用 SAS 權杖部署私人範本](resource-manager-powershell-sas-token.md)
+### Azure CLI
+#### [部署範本](resource-group-template-deploy-cli.md)
+#### [使用 SAS 權杖部署私人範本](resource-manager-cli-sas-token.md)
 ### [入口網站](resource-group-template-deploy-portal.md)
 ### [REST API](resource-group-template-deploy-rest.md)
 ### [持續與 Visual Studio Team Services 整合](../vs-azure-tools-resource-groups-ci-in-vsts.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)

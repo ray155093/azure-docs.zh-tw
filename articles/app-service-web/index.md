@@ -12,15 +12,30 @@ ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
-ms.openlocfilehash: f6d1595d7ad4f60299308eda505abbcbd7498d64
-ms.lasthandoff: 04/08/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 77859b2329404fd741f59bedd7b816e4e3a5fbb2
+ms.lasthandoff: 04/22/2017
 
 ---
 <div class="content">
     <h1>Web Apps 文件</h1>
-    <p style="padding-bottom: 0px; max-width: 1050px;">Azure Web Apps 可讓您以選定的程式設計語言來建置並託管網站，無需管理基礎結構。 它提供自動調整及高度可用性，支援 Windows 和 Linux (預覽)，並可從 GitHub、Team Services 或任何 Git 存放庫啟用自動部署。 了解如何透過我們的快速入門、教學課程和範例使用 Azure Web Apps。</p>
-<h2 style="margin-top: 36px">快速入門</h2>
+    <div class="introHolder" style="justify-content: space-between;">
+        <div class="intro" style="min-width: 200px">
+            <p>Azure Web Apps 可讓您以選定的程式設計語言來建置並託管 Web 應用程式，無需管理基礎結構。 它提供自動調整及高度可用性，支援 Windows 和 Linux，並可從 GitHub、Visual Studio Team Services 或任何 Git 存放庫啟用自動部署。 了解如何透過我們的快速入門、教學課程和範例使用 Azure Web Apps。</p>
+        </div>
+        <a href="https://azure.microsoft.com/en-us/resources/videos/create-a-web-app-with-nodejs-and-azure-app-service/">
+            <div class="calloutHolder" style="max-width: 250px">
+                <div>
+                    <img src="media/index/create-a-web-app-with-nodejs-and-azure-app-service.png" style="width: 250px" />
+                </div>
+                <div>
+                    <p style="margin-top: 0; color: #6e6e6e">使用 Node.js 和 Azure App Service 建立 Web 應用程式。 (2:41)</p>
+                </div>
+            </div>
+        </a>
+    </div>
+<h2 style="margin-top: 24px; margin-bottom: 0px;">5 分鐘快速入門</h2>
+<p style="margin-top: 6px; margin-bottom: 6px;">了解如何使用 Web Apps 將第一個應用程式部署至雲端：</p>
 <div class="ico48Case">
     <div class="ico48Link">
         <a href="/azure/app-service-web/app-service-web-get-started-dotnet">
@@ -59,34 +74,62 @@ ms.lasthandoff: 04/08/2017
         </a>
     </div>
 </div>
-<div class="columnHolder">
-    <div class="column50">
-        <h2 style="margin-top: 36px">教學課程</h2>
-        <p>在雲端中建立簡單的 Web 應用程式。</p>
-        <ul class="spaced">
-            <li><a href="/azure/app-service-web/app-service-web-tutorial-dotnet-sqldatabase">使用 Azure SQL DB 建立 .NET 應用程式</a></li>
-            <li><a href="/azure/app-service-web/app-service-web-tutorial-nodejs-mongodb-app">使用 MongoDB 建立 Node.js 應用程式</a></li>
-        </ul>
-        <h2>範例</h2>
-        <p>尋找指令碼來管理常見工作。</p>
-        <ul class="spaced">
-            <li><a href="/azure/app-service-web/app-service-cli-samples">Azure CLI</a></li>
-            <li><a href="/azure/app-service-web/app-service-powershell-samples">Azure PowerShell</a></li>
-        </ul>
-    </div>
-    <div class="column50" style="max-width: 400px">
-        <h2 style="margin-top: 36px">免費影片訓練</h2>
-        <a href="https://www.pluralsight.com/courses/developing-dotnet-microsoft-azure-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02">
-            <img src="media/index/video-training-dotnet.png" width="400" alt="" />
-            <p style="margin-top: 0px">免費 PluralSight 影片訓練 - 透過 .NET 進行開發</a></p>
-            <p></p>
-        <p style="margin-top: 36px"></p>
-        <a href="https://www.pluralsight.com/courses/developing-nodejs-microsoft-azure-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02">
-            <img src="media/index/video-training-nodejs.png" width="400" alt="" />
-            <p style="margin-top: 0px">免費 PluralSight 影片訓練 - 透過 Node.js 進行開發</a></p>
-    </div>
-</div>
-<hr />
+
+<h2 style="margin-top: 36px">逐步教學課程</h2>
+<p>了解如何在 Azure 中部署、管理和監視安全的 Web 應用程式</p>
+<ol>
+    <li>使用 <a href="/azure/app-service-web/app-service-web-tutorial-dotnet-sqldatabase">.NET with Azure SQL DB</a> 或 <a href="/azure/app-service-web/app-service-web-tutorial-nodejs-mongodb-app">Node.js with MongoDB</a></li>
+    <li><a href="/azure/app-service-web/app-service-web-tutorial-custom-domain">將現有的自訂網域對應至您的應用程式</a></li>
+    <li><a href="/azure/app-service-web/app-service-web-tutorial-custom-SSL">將現有的 SSL 憑證與您的應用程式繫結</a></li>
+</ol>
+
+<h2 style="margin-top: 36px">免費 PluralSight 影片訓練</h2>
+<ul class="panelContent cardsW">
+    <li style="flex: 0 1 25%">
+        <a href="https://www.pluralsight.com/courses/developing-dotnet-microsoft-azure-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02"> 
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                       <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img style="max-width: 100%" alt="" src="media/index/video-training-dotnet.png" data-linktype="external">
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <p>使用 .NET 進行開發</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li style="flex: 0 1 25%">
+        <a href="https://www.pluralsight.com/courses/developing-nodejs-microsoft-azure-getting-started?twoid=d6abac77-7dcc-4d33-9e03-f85e78989f02"> 
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                       <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img style="max-width: 100%" alt="" src="media/index/video-training-nodejs.png" data-linktype="external">
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <p>使用 Node.js 進行開發</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+
+<h2>範例</h2>
+<p>尋找指令碼來管理常見工作。</p>
+<ul class="spaced">
+    <li><a href="/azure/app-service-web/app-service-cli-samples">Azure CLI</a></li>
+    <li><a href="/azure/app-service-web/app-service-powershell-samples">Azure PowerShell</a></li>
+</ul>
+
 <h2 style="margin-top: 36px">參考</h2>
 <ul class="panelContent cardsW">
     <li>
@@ -129,3 +172,4 @@ ms.lasthandoff: 04/08/2017
     </li>
 </ul>
 </div>
+

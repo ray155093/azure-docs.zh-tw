@@ -36,7 +36,7 @@ ms.lasthandoff: 04/07/2017
 1. 移至 [https://open.weixin.qq.com/](https://open.weixin.qq.com/) 並登入。
 2. 按一下 [管理中心]。
 3. 遵循註冊新應用程式的必要步驟。
-4. 針對 [授权回调域] (回呼 URL)，輸入 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`。 例如，如果您的 `tenant_name` 是 contoso.onmicrosoft.com，請將 URL 設為 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`。
+4. 針對 [授权回调域] \(回呼 URL)，輸入 `https://login.microsoftonline.com/te/{tenant_name}/oauth2/authresp`。 例如，如果您的 `tenant_name` 是 contoso.onmicrosoft.com，請將 URL 設為 `https://login.microsoftonline.com/te/contoso.onmicrosoft.com/oauth2/authresp`。
 5. 尋找並複製**應用程式識別碼**和**應用程式金鑰**。 稍後您將需要這些資訊。
 
 ## <a name="configure-wechat-as-an-identity-provider-in-your-tenant"></a>在租用戶中將 WeChat 設為識別提供者

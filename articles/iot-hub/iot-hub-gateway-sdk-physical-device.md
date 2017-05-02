@@ -23,7 +23,7 @@ ms.lasthandoff: 03/31/2017
 ---
 # <a name="use-the-azure-iot-gateway-sdk-to-send-device-to-cloud-messages-with-a-physical-device-linux"></a>使用 Azure IoT 閘道 SDK 搭配實體裝置來傳送裝置到雲端訊息 (Linux)
 
-本逐步解說的[藍牙低功耗範例][lnk-ble-samplecode]示範如何使用 [Azure IoT 閘道 SDK][ lnk-sdk]以便：
+本逐步解說的[藍牙低功耗範例][lnk-ble-samplecode]示範如何使用 [Azure IoT 閘道 SDK][lnk-sdk]以便：
 
 * 從實體裝置將裝置對雲端遙測轉送至 IoT 中樞。
 * 將命令從 IoT 中樞路由傳送至實體裝置。

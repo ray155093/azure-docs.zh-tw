@@ -1,10 +1,9 @@
 # 概觀
 ## [Azure Data Factory 簡介](data-factory-introduction.md)
 ## 概念
-### [資料集](data-factory-create-datasets.md)
 ### [管線和活動](data-factory-create-pipelines.md)
+### [資料集](data-factory-create-datasets.md)
 ### [排程和執行](data-factory-scheduling-and-execution.md)
-### [運算連結服務](data-factory-compute-linked-services.md)
 
 # 開始使用
 ## [教學課程︰建立管線以複製資料](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
@@ -21,6 +20,7 @@
 ### [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 ### [Azure Resource Manager 範本](data-factory-build-your-first-pipeline-using-arm.md)
 ### [REST API](data-factory-build-your-first-pipeline-using-rest-api.md)
+## [教學課程：在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)
 ## [常見問題集](data-factory-faq.md)
 
 # 作法
@@ -60,7 +60,7 @@
 #### [Teradata](data-factory-onprem-teradata-connector.md)
 #### [Web 資料表](data-factory-web-table-connector.md)
 ### [資料管理閘道](data-factory-data-management-gateway.md)
-### [在內部部署和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)
+
 
 ## [資料轉換](data-factory-data-transformation-activities.md)
 ### [HDInsight Hive 活動](data-factory-hive-activity.md)
@@ -75,6 +75,7 @@
 ### [.NET 自訂活動](data-factory-use-custom-activities.md)
 ### [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 ### [重新處理 Azure Analysis Services 中的模型](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/AzureAnalysisServicesProcessSample)
+### [運算連結服務](data-factory-compute-linked-services.md)
 
 ## 開發
 ### [Azure Resource Manager 範本](data-factory-how-to-use-resource-manager-templates.md)

@@ -33,18 +33,19 @@
       href: sql-database-connect-query-python.md
     - name: "Ruby"
       href: sql-database-connect-query-ruby.md
+- name: "教學課程"
+  items:
+  - name: "1 - 建立/設計新的 SQL DB"
+    href: sql-database-design-first-database.md
+  - name: "2 - 移轉現有的 SQL Server"
+    href: sql-database-migrate-your-sql-server-database.md 
 - name: "範例"
   items:
   - name: "Azure CLI"
     href: sql-database-cli-samples.md
   - name: "PowerShell"
     href: sql-database-powershell-samples.md
-- name: "教學課程"
-  items:
-  - name: "設計資料庫"
-    href: sql-database-design-first-database.md
-  - name: "移轉資料庫"
-    href: sql-database-migrate-your-sql-server-database.md  
+ 
 - name: "概念"
   items:
   - name: "資料庫和伺服器"
@@ -55,8 +56,6 @@
       href: sql-database-server-overview.md
     - name: "彈性集區"
       href: sql-database-elastic-pool.md
-    - name: "使用彈性集區？"
-      href: sql-database-elastic-pool-guidance.md
   - name: "資源"
     items:
     - name: "服務層"

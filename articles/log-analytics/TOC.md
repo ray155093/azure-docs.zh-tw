@@ -56,6 +56,7 @@
 ### [容量和效能](log-analytics-capacity.md)
 ### [變更追蹤](log-analytics-change-tracking.md)
 ### [容器](log-analytics-containers.md)
+### [DNS 分析](log-analytics-dns.md)
 ### [金鑰保存庫](log-analytics-azure-key-vault.md)
 ### Logic Apps B2B 訊息
 #### [Logic Apps B2B 訊息解決方案](../logic-apps/logic-apps-track-b2b-messages-omsportal.md?toc=%2fazure%2flog-analytics%2ftoc.json)
