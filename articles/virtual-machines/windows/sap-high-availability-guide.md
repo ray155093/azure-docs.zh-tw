@@ -732,7 +732,7 @@ _**圖 11：**設定 SAP 高可用性 Azure Resource Manager 參數_
 >
 
 ### <a name="c87a8d3f-b1dc-4d2f-b23c-da4b72977489"></a> 使用公司網路連線能力 (跨單位) 部署虛擬機器以用於生產環境中
-針對生產環境 SAP 系統，使用 Azure 站對站 VPN 或 Azure ExpressRoute，部署具有 [公司網路連線能力 (跨單位)][][planning-guide-2.2] 的 Azure 虛擬機器。
+針對生產環境 SAP 系統，使用 Azure 站對站 VPN 或 Azure ExpressRoute，部署具有 [公司網路連線能力 (跨單位)][planning-guide-2.2] 的 Azure 虛擬機器。
 
 > [!NOTE]
 > 您可以使用您的 Azure 虛擬網路執行個體。 虛擬網路和子網路已建立並備妥。
@@ -796,7 +796,7 @@ _**圖 11：**設定 SAP 高可用性 Azure Resource Manager 參數_
 
 下列各節有更多關於您需要在範本中提供之範本和參數的詳細資料。
 
-#### <a name="ASCS-SCS-template">ASCS/SCS 範本</a>
+#### <a name="ASCS-SCS-template"></a> ASCS/SCS 範本
 
 ASCS/SCS 範本會部署兩部虛擬機器，可讓您用來建立裝載多個 ASCS/SCS 執行個體的 Windows Server 容錯移轉叢集。
 
@@ -1026,7 +1026,7 @@ _**圖 15：**Azure 內部負載平衡器的預設 ASCS/SCS 負載平衡規_
 
 如果您想要將其他號碼用於 SAP ASCS 或 SCS 執行個體，您就必須從預設值變更其連接埠的名稱和值。
 
-1.  在 Azure 入口網站中，選取 [<*SID*>-lb-ascs 負載平衡器]**** > [負載平衡規則]。
+1.  在 Azure 入口網站中，選取 **<*SID*>-lb-ascs 負載平衡器** > **負載平衡規則**。
 2.  針對屬於 SAP ASCS 或 SCS 執行個體的所有負載平衡規則，變更下列值：
 
   * 名稱
