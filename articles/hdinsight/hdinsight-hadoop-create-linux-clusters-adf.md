@@ -573,7 +573,7 @@ FolderPath 會指定包含輸出資料的資料夾路徑︰
 ## <a name="appendix"></a>附錄
 
 ### <a name="azure-cli-script"></a>Azure CLI 指令碼
-您可以使用 Azure CLI ，而不是使用 Azure PowerShell 來執行教學課程。 若要使用 Azure CLI，先依照下列指示安裝 Azure CLI：[!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
+您可以使用 Azure CLI ，而不是使用 Azure PowerShell 來執行教學課程。 若要使用 Azure CLI，先依照下列指示安裝 Azure CLI： [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-cli.md)]
 
 #### <a name="use-azure-cli-to-prepare-the-storage-and-copy-the-files"></a>使用 Azure CLI 準備儲存體並複製檔案
 
@@ -593,5 +593,5 @@ azure storage blob copy start "https://hditutorialdata.blob.core.windows.net/adf
 azure storage blob copy start "https://hditutorialdata.blob.core.windows.net/adfhiveactivity/script/partitionweblogs.hql" --dest-account-name "<Azure Storage Account Name>" --dest-account-key "<Azure Storage Account Key>" --dest-container "adfgetstarted"
 ```
 
-容器名稱為 adfgetstarted 。 讓它保持原狀。 否則，您必須更新 Resource Manager 範本。 如需有關此 CLI 指定碼的說明，請參閱 [使用 Azure CLI 搭配 Azure 儲存體](../storage/storage-azure-cli.md)。
+容器名稱為 *adfgetstarted*。 讓它保持原狀。 否則，您必須更新 Resource Manager 範本。 如需有關此 CLI 指定碼的說明，請參閱 [使用 Azure CLI 搭配 Azure 儲存體](../storage/storage-azure-cli.md)。
 
