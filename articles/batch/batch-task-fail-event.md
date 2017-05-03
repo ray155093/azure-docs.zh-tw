@@ -1,28 +1,26 @@
 ---
-title: "工作失敗事件 - Azure | Microsoft Docs"
-ms.custom: 
-ms.date: 2017-02-01
-ms.prod: azure
-ms.reviewer: 
-ms.service: batch
-ms.suite: 
-ms.tgt_pltfrm: 
-ms.topic: reference
-ms.assetid: 8c16a533-1ac7-4b65-a84e-8eafb937b3d7
-caps.latest.revision: 3
+title: "Azure Batch 工作失敗事件 | Microsoft Docs"
+description: "Batch 工作失敗事件的參考。"
+services: batch
 author: tamram
-ms.author: tamram
 manager: timlt
+ms.assetid: 
+ms.service: batch
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: big-compute
+ms.date: 04/20/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 880fe1cfb0496311d7c386f25762c5d02a6c91f4
-ms.lasthandoff: 04/13/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 08feb4ec34bb1635f8ea744b54a10b677b94ab3e
+ms.lasthandoff: 04/22/2017
 
 ---
-# <a name="task-fail-event"></a>工作失敗事件
-工作失敗事件記錄檔內文
 
-## <a name="remarks"></a>備註
+# <a name="task-fail-event"></a>工作失敗事件
+
  當工作未成功完成時，就會發出此事件。 目前所有非零的結束代碼皆視為失敗。 除了工作完成事件外，還會發出此事件，此事件可用於偵測工作何時失敗。
 
 

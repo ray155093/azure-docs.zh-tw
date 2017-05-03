@@ -1,28 +1,26 @@
 ---
-title: "工作開始事件 - Azure | Microsoft Docs"
-ms.custom: 
-ms.date: 2017-02-01
-ms.prod: azure
-ms.reviewer: 
-ms.service: batch
-ms.suite: 
-ms.tgt_pltfrm: 
-ms.topic: reference
-ms.assetid: 95f7762a-a715-4c83-907b-8aed004e69b1
-caps.latest.revision: 3
+title: "Azure Batch 工作開始事件 | Microsoft Docs"
+description: "Batch 工作開始事件的參考。"
+services: batch
 author: tamram
-ms.author: tamram
 manager: timlt
+ms.assetid: 
+ms.service: batch
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: big-compute
+ms.date: 04/20/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 81e27c1db2687c819aee15646c2c72e8765293c8
-ms.lasthandoff: 04/13/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: c47ab36c99dddd46a14c15018a2a46bf7f873ffa
+ms.lasthandoff: 04/22/2017
 
 ---
-# <a name="task-start-event"></a>工作開始事件
-工作開始事件記錄內文
 
-## <a name="remarks"></a>備註
+# <a name="task-start-event"></a>工作開始事件
+
  一旦排程器已排程工作在計算節點上執行時，就會發出此事件。 請注意，如果工作已重試或重新排入佇列，則系統會為相同的工作再次發出此事件，但重試計數與系統工作版本將會隨之更新。
 
 

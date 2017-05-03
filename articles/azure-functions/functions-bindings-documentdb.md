@@ -14,12 +14,12 @@ ms.devlang: multiple
 ms.topic: reference
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 11/10/2016
+ms.date: 04/18/2016
 ms.author: chrande; glenga
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 2ac78606f851068fa0fb7dcab3bac1c629b9cdb3
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: e38c9187be42946df1e8059ba44f10f76d32d984
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -37,34 +37,27 @@ ms.lasthandoff: 04/03/2017
 ## <a name="documentdb-input-binding"></a>DocumentDB 輸入繫結
 DocumentDB 輸入繫結會擷取 DocumentDB 文件，並將它傳遞給函式的具名輸入參數。 您可以根據叫用該函式的觸發程序來判斷文件識別碼。 
 
-函式的 DocumentDB 輸入會使用 function.json `bindings` 陣列中的下列 JSON 物件︰
+DocumentDB 輸入繫結在 *function.json* 中具有下列屬性：
 
-```json
-{
-  "name": "<Name of input parameter in function signature>",
-  "type": "documentDB",
-  "databaseName": "<Name of the DocumentDB database>",
-  "collectionName": "<Name of the DocumentDB collection>",
-  "id": "<Id of the DocumentDB document - see below>",
-  "connection": "<Name of app setting with connection string - see below>",
-  "direction": "in"
-},
-```
+- `name`︰函數程式碼中用於文件的識別碼名稱
+- `type`︰必須設定為 "documentdb"
+- `databaseName`︰包含文件的資料庫
+- `collectionName`︰包含文件的集合
+- `id`︰要擷取之文件的識別碼。 此屬性支援繫結參數；請參閱 [Azure Functions 觸發程序和繫結概念](functions-triggers-bindings.md)一文中的[在繫結運算式中繫結到自訂輸入屬性](functions-triggers-bindings.md#bind-to-custom-input-properties-in-a-binding-expression)。
+- `sqlQuery`：用來擷取多份文件的 DocumentDB SQL 查詢。 此查詢支援執行階段繫結。 例如：`SELECT * FROM c where c.departmentId = {departmentId}`
+- `connection`：包含您 DocumentDB 連接字串的應用程式設定名稱
+- `direction`：必須設定為 `"in"`。
 
-請注意：
+不可同時指定 `id` 和 `sqlQuery`。 如果既未設定 `id` 也未設定 `sqlQuery`，則會擷取整個集合。
 
-* `id` 支援類似於 `{queueTrigger}` 的繫結，此繫結會使用佇列訊息的字串值做為文件識別碼。
-* `connection` 必須是指向 DocumentDB 帳戶端點的應用程式設定名稱 (具有值 `AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>`)。 如果您透過 Functions 入口網站 UI 建立 DocumentDB 帳戶，帳戶建立程序會為您建立應用程式設定。 若要使用現有的 DocumentDB 帳戶，您需要[手動設定設定此應用程式](functions-how-to-use-azure-function-app-settings.md)。 
-* 如果找不到指定的文件，對函式的具名輸入參數會設定為 `null`。 
+## <a name="using-a-documentdb-input-binding"></a>使用 DocumentDB 輸入繫結
 
-## <a name="input-usage"></a>輸入使用方式
-本節說明如何在您的函式程式碼中使用您的 DocumentDB 輸入繫結。
-
-在 C# 和 F# 函式中，當函式成功結束時，會將對輸入文件 (具名輸入參數) 所做的任何變更自動傳送回集合。 在 Node.js 函式中，對輸入繫結中文件的更新不會傳送回集合。 不過，您可以使用 `context.bindings.<documentName>In` 和 `context.bindings.<documentName>Out` 對輸入文件進行更新。 請在 [Node.js 範例](#innodejs)中查看如何進行。
+* 在 C# 和 F# 函數中，當函數順利結束時，會自動傳送透過具名輸入參數對輸入文件所做的任何變更。 
+* 在 JavaScript 函數中，不會在函數結束時自動執行更新。 請改用 `context.bindings.<documentName>In` 和 `context.bindings.<documentName>Out` 來進行更新。 請參閱 [JavaScript 範例](#injavascript)。
 
 <a name="inputsample"></a>
 
-## <a name="input-sample"></a>輸入範例
+## <a name="input-sample-for-single-document"></a>單一文件的輸入範例
 假設您的 function.json `bindings` 陣列中有下列 DocumentDB 輸入繫結︰
 
 ```json
@@ -83,12 +76,13 @@ DocumentDB 輸入繫結會擷取 DocumentDB 文件，並將它傳遞給函式的
 
 * [C#](#incsharp)
 * [F#](#infsharp)
-* [Node.js](#innodejs)
+* [JavaScript](#injavascript)
 
 <a name="incsharp"></a>
 ### <a name="input-sample-in-c"></a>C 中的輸入範例# #
 
 ```cs
+// Change input document contents using DocumentDB input binding 
 public static void Run(string myQueueItem, dynamic inputDocument)
 {   
   inputDocument.text = "This has changed.";
@@ -99,12 +93,13 @@ public static void Run(string myQueueItem, dynamic inputDocument)
 ### <a name="input-sample-in-f"></a>F 中的輸入範例# #
 
 ```fsharp
+(* Change input document contents using DocumentDB input binding *)
 open FSharp.Interop.Dynamic
 let Run(myQueueItem: string, inputDocument: obj) =
   inputDocument?text <- "This has changed."
 ```
 
-您需要新增可指定 `FSharp.Interop.Dynamic` 和 `Dynamitey` NuGet 相依性的 `project.json` 檔案︰
+此範例需要一個指定 `FSharp.Interop.Dynamic` 和 `Dynamitey` NuGet 相依性的 `project.json` 檔案︰
 
 ```json
 {
@@ -121,11 +116,12 @@ let Run(myQueueItem: string, inputDocument: obj) =
 
 若要新增 `project.json` 檔案，請參閱 [F# 封裝管理](functions-reference-fsharp.md#package)。
 
-<a name="innodejs"></a>
+<a name="injavascript"></a>
 
-### <a name="input-sample-in-nodejs"></a>Node.js 中的輸入範例
+### <a name="input-sample-in-javascript"></a>以 JavaScript 撰寫的輸入範例
 
 ```javascript
+// Change input document contents using DocumentDB input binding, using context.bindings.inputDocumentOut
 module.exports = function (context) {   
   context.bindings.inputDocumentOut = context.bindings.inputDocumentIn;
   context.bindings.inputDocumentOut.text = "This was updated!";
@@ -133,29 +129,66 @@ module.exports = function (context) {
 };
 ```
 
-## <a id="docdboutput"></a>DocumentDB 輸出繫結
-DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。 
+## <a name="input-sample-with-multiple-documents"></a>具有多份文件的輸入範例
 
-輸出繫結會使用 function.json `bindings` 陣列中的下列 JSON 物件︰ 
+假設您想要使用佇列觸發程序來自訂查詢參數，以擷取 SQL 查詢所指定的多份文件。 
 
-```json
+在此範例中，佇列觸發程序會提供參數 `departmentId`。`{ "departmentId" : "Finance" }` 的佇列訊息會傳回財務部門的所有記錄。 請在 *function.json* 中使用下列程式碼︰
+
+```
 {
-  "name": "<Name of output parameter in function signature>",
-  "type": "documentDB",
-  "databaseName": "<Name of the DocumentDB database>",
-  "collectionName": "<Name of the DocumentDB collection>",
-  "createIfNotExists": <true or false - see below>,
-  "connection": "<Value of AccountEndpoint in Application Setting - see below>",
-  "direction": "out"
+    "name": "documents",
+    "type": "documentdb",
+    "direction": "in",
+    "databaseName": "MyDb",
+    "collectionName": "MyCollection",
+    "sqlQuery": "SELECT * from c where c.departmentId = {departmentId}"
+    "connection": "DocumentDBConnection"
 }
 ```
 
-請注意：
+### <a name="input-sample-with-multiple-documents-in-c"></a>以 C 撰寫之具有多份文件的輸入範例#
 
-* 如果不存在，請將 `createIfNotExists` 設定為 `true` 來建立資料庫和集合。 預設值為 `false`。 新集合會使用保留的輸送量建立，其具有價格含意。 如需詳細資訊，請參閱 [DocumentDB 定價](https://azure.microsoft.com/pricing/details/documentdb/)。
-* `connection` 必須是指向 DocumentDB 帳戶端點的應用程式設定的名稱 (具有值 `AccountEndpoint=<Endpoint for your account>;AccountKey=<Your primary access key>`)。 如果您透過 Functions 入口網站 UI 建立 DocumentDB 帳戶，帳戶建立程序會為您建立新的應用程式設定。 若要使用現有的 DocumentDB 帳戶，您需要[手動設定設定此應用程式](functions-how-to-use-azure-function-app-settings.md)。 
+```csharp
+public static void Run(QueuePayload myQueueItem, IEnumerable<dynamic> documents)
+{   
+    foreach (var doc in documents)
+    {
+        // operate on each document
+    }    
+}
 
-## <a name="output-usage"></a>輸出使用方式
+public class QueuePayload
+{
+    public string departmentId { get; set; }
+}
+```
+
+### <a name="input-sample-with-multiple-documents-in-javascript"></a>以 JavaScript 撰寫之具有多份文件的輸入範例
+
+```javascript
+module.exports = function (context, input) {    
+    var documents = context.bindings.documents;
+    for (var i = 0; i < documents.length; i++) {
+        var document = documents[i];
+        // operate on each document
+    }        
+    context.done();
+};
+```
+
+## <a id="docdboutput"></a>DocumentDB 輸出繫結
+DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。 它在 *function.json* 中具有下列屬性：
+
+- `name`︰函數程式碼中用於新文件的識別碼
+- `type`：必須設定為 `"documentdb"`
+- `databaseName` ︰包含其中將建立新文件之集合的資料庫。
+- `collectionName` ︰其中將建立新文件的集合。
+- `createIfNotExists`︰一個布林值，用來指出當集合不存在時是否要建立集合。 預設值為 *false*。 因為新集合會使用保留的輸送量建立，其具有價格含意。 如需詳細資訊，請瀏覽 [定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
+- `connection`：包含您 DocumentDB 連接字串的應用程式設定名稱
+- `direction`：必須設定為 `"out"`
+
+## <a name="using-a-documentdb-output-binding"></a>使用 DocumentDB 輸出繫結
 本節說明如何在您的函式程式碼中使用您的 DocumentDB 輸出繫結。
 
 在函式中寫入輸出參數時，依預設會在資料庫中產生新文件，使用自動產生的 GUID 做為文件識別碼。 您可以藉由在輸出參數中指定 `id` JSON 屬性來指定輸出文件的文件識別碼。 
@@ -163,27 +196,11 @@ DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。
 >[!Note]  
 >當您指定現有文件的識別碼時，新的輸出文件會覆寫現有文件。 
 
-您可以使用下列任何類型來寫入輸出︰
-
-* 任何[物件](https://msdn.microsoft.com/library/system.object.aspx) - 適用於 JSON 序列化。
-  如果您宣告自訂輸出類型 (例如 `out FooType paramName`)，Azure Functions 會嘗試將物件序列化為 JSON。 如果函式結束時輸出參數為 null，則函式的執行階段會建立 blob 作為 null 物件。
-* 字串 - (`out string paramName`) 適用於文字 blob 資料。 當函式結束時，如果字串參數非 Null，就只會建立 Blob。
-
-在 C# 函式中，您也可以輸出至下列任何類型︰
-
-* `TextWriter`
-* `Stream`
-* `CloudBlobStream`
-* `ICloudBlob`
-* `CloudBlockBlob` 
-* `CloudPageBlob` 
-
 如果要輸出多個文件，您也可以繫結至 `ICollector<T>` 或 `IAsyncCollector<T>`，`T` 表示其中一種支援的類型。
-
 
 <a name="outputsample"></a>
 
-## <a name="output-sample"></a>輸出範例
+## <a name="documentdb-output-binding-sample"></a>DocumentDB 輸出繫結範例
 假設您的 function.json `bindings` 陣列中有下列 DocumentDB 輸出繫結︰
 
 ```json
@@ -223,7 +240,7 @@ DocumentDB 輸出繫結可讓您撰寫新的文件至 DocumentDB 資料庫。
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
-* [Node.js](#outnodejs)
+* [JavaScript](#outjavascript)
 
 <a name="outcsharp"></a>
 
@@ -276,7 +293,7 @@ let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
       address = employee?address }
 ```
 
-您需要新增可指定 `FSharp.Interop.Dynamic` 和 `Dynamitey` NuGet 相依性的 `project.json` 檔案︰
+此範例需要一個指定 `FSharp.Interop.Dynamic` 和 `Dynamitey` NuGet 相依性的 `project.json` 檔案︰
 
 ```json
 {
@@ -293,9 +310,9 @@ let Run(myQueueItem: string, employeeDocument: byref<obj>, log: TraceWriter) =
 
 若要新增 `project.json` 檔案，請參閱 [F# 封裝管理](functions-reference-fsharp.md#package)。
 
-<a name="outnodejs"></a>
+<a name="outjavascript"></a>
 
-### <a name="output-sample-in-nodejs"></a>Node.js 中的輸出範例
+### <a name="output-sample-in-javascript"></a>以 JavaScript 撰寫的輸出範例
 
 ```javascript
 module.exports = function (context) {

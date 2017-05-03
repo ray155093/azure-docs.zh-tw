@@ -13,12 +13,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 3/10/2017
+ms.date: 4/25/2017
 ms.author: markgal;trinadhk;
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 2eb88bd81a46dbff9842887976c59d150ae4dad6
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 045dfff9a439674c220a962907d2fe91f2fe0b35
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -83,7 +83,7 @@ ms.lasthandoff: 04/03/2017
 | 選項 | 優點 | 缺點 |
 | --- | --- | --- |
 | 將 IP 範圍列入允許清單 |沒有額外的成本。<br><br>如需在某個 NSG 中開啟存取權，請使用 <i>Set-AzureNetworkSecurityRule</i> Cmdlet。 |由於受影響的 IP 範圍會隨著時間改變，因此難以管理。<br><br>提供整個 Azure 的存取權，而不只是「儲存體」的存取權。 |
-| HTTP Proxy |在 proxy 中精確控制允許的儲存體 URL。<br>VM 的單一網際網路存取點。<br>不會隨著 Azure IP 位址變更。 |使用 Proxy 軟體執行 VM 時的額外成本。 |
+| HTTP Proxy |在 proxy 中精確控制允許的儲存體 URL。 若要在 Proxy 中設定細微控制，必須將 https://\*.blob.core.windows.net/\* URL 模式設為允許清單。 若只要將 VM 所使用的儲存體帳戶白名單設為允許清單，必須將 https://\<storageAccount\>.blob.core.windows.net/\* URL 模式設為允許清單。 <br>VM 的單一網際網路存取點。<br>不會隨著 Azure IP 位址變更。 |使用 Proxy 軟體執行 VM 時的額外成本。 |
 
 ### <a name="whitelist-the-azure-datacenter-ip-ranges"></a>將 Azure 資料中心 IP 範圍列入允許清單
 若要將 Azure 資料中心 IP 範圍列入允許清單，請參閱 [Azure 網站](http://www.microsoft.com/en-us/download/details.aspx?id=41653) 以取得 IP 範圍的詳細資料和指示。

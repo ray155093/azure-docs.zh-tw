@@ -1,6 +1,6 @@
 ---
 title: "使用 PowerShell 建立 Azure App 的身分識別 | Microsoft Docs"
-description: "描述如何使用 Azure PowerShell 建立 Active Directory 應用程式和服務主體，並透過角色型存取控制將存取權授與資源。 它示範如何使用密碼或憑證來驗證應用程式。"
+description: "描述如何使用 Azure PowerShell 建立 Azure Active Directory 應用程式和服務主體，並透過角色型存取控制將存取權授與資源。 它示範如何使用密碼或憑證來驗證應用程式。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 04/03/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
-ms.openlocfilehash: db36f52f538905683b4cbc6db7cc41b56710db8c
-ms.lasthandoff: 04/04/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 775734ea55d1136e64afc713356b0f0bfc81ea9f
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 04/04/2017
 本主題說明如何使用 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 來設定所需的一切項目，以便讓應用程式利用自己的認證和身分識別來執行。
 
 ## <a name="required-permissions"></a>所需的權限
-若要完成本主題，您必須在 Azure Active Directory 和您的 Azure 訂用帳戶中有足夠的權限。 具體來說，您必須能夠在 Active Directory 中建立應用程式，並將服務主體指派給角色。 
+若要完成本主題，您必須在 Azure Active Directory 和您的 Azure 訂用帳戶中有足夠的權限。 具體來說，您必須能夠在 Azure Active Directory 中建立應用程式，並將服務主體指派給角色。 
 
 檢查您的帳戶是否具有足夠的權限，最簡單的方式是透過入口網站。 請參閱[檢查必要的權限](resource-group-create-service-principal-portal.md#required-permissions)。
 
@@ -85,7 +85,7 @@ Param (
     $Scope = (Get-AzureRmResourceGroup -Name $ResourceGroup -ErrorAction Stop).ResourceId
  }
 
- # Create Active Directory application with password
+ # Create Azure Active Directory application with password
  $Application = New-AzureRmADApplication -DisplayName $ApplicationDisplayName -HomePage ("http://" + $ApplicationDisplayName) -IdentifierUris ("http://" + $ApplicationDisplayName) -Password $Password
 
  # Create Service Principal for the AD app
@@ -110,7 +110,7 @@ Param (
 * 只有當您想要將角色指派的範圍限制為資源群組時，才指定 ResourceGroup 參數。
 * 對於單一租用戶應用程式，不會驗證首頁和識別項 URI。
 *  在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
-* 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
+* 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
 * 如果您要授與服務主體存取更多訂用帳戶或資源群組，請以不同範圍再次執行 `New-AzureRMRoleAssignment` Cmdlet。
 
 
@@ -194,7 +194,7 @@ Param (
 * 只有當您想要將角色指派的範圍限制為資源群組時，才指定 ResourceGroup 參數。
 * 對於單一租用戶應用程式，不會驗證首頁和識別項 URI。
 *  在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
-* 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
+* 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
 * 如果您要授與服務主體存取更多訂用帳戶或資源群組，請以不同範圍再次執行 `New-AzureRMRoleAssignment` Cmdlet。
 
 如果您 **不是執行 Windows 10 或 Windows Server 2016 Technical Preview**，則必須從 Microsoft 指令碼中心下載 [自我簽署憑證產生器](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6/) 。 將其內容解壓縮，並匯入您需要的 Cmdlet。
@@ -212,7 +212,7 @@ $cert = Get-ChildItem -path Cert:\CurrentUser\my | where {$PSitem.Subject -eq 'C
 ```
 
 ### <a name="provide-certificate-through-automated-powershell-script"></a>透過自動化的 PowerShell 指令碼提供憑證
-每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Active Directory 的執行個體。 如果您只有一個訂用帳戶，您可以使用：
+每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Azure Active Directory 的執行個體。 如果您只有一個訂用帳戶，您可以使用：
 
 ```powershell
 Param (
@@ -302,11 +302,11 @@ Param (
 * 存取限域為訂用帳戶。
 * 對於單一租用戶應用程式，不會驗證首頁和識別項 URI。
 *  在此範例中，您將服務主體新增至參與者角色。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。
-* 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
+* 指令碼會睡 15 秒，留一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 如果您的指令碼等得不夠久，您會看到錯誤指出：「PrincipalNotFound︰主體 {id} 不存在於目錄中」。
 * 如果您要授與服務主體存取更多訂用帳戶或資源群組，請以不同範圍再次執行 `New-AzureRMRoleAssignment` Cmdlet。
 
 ### <a name="provide-certificate-through-automated-powershell-script"></a>透過自動化的 PowerShell 指令碼提供憑證
-每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Active Directory 的執行個體。
+每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Azure Active Directory 的執行個體。
 
 ```powershell
 Param (
@@ -390,7 +390,7 @@ Select-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
 
 建立服務主體時，您可能會遇到下列錯誤︰
 
-* **Authentication_Unauthorized」**或**「在內容中找不到訂用帳戶。」** - 當您的帳戶在 Active Directory 上未具備註冊應用程式的[必要權限](#required-permissions)時，您就會看到此錯誤。 通常，只有 Active Directory 中的管理使用者可以註冊應用程式，且您的帳戶不是系統管理員時，就會看到此錯誤。 要求系統管理員將您指派給系統管理員角色，或是讓使用者註冊應用程式。
+* **Authentication_Unauthorized」**或**「在內容中找不到訂用帳戶。」** - 當您的帳戶在 Azure Active Directory 上未具備註冊應用程式的[必要權限](#required-permissions)時，您就會看到此錯誤。 通常，只有 Azure Active Directory 中的管理使用者可以註冊應用程式，且您的帳戶不是系統管理員時，就會看到此錯誤。 要求系統管理員將您指派給系統管理員角色，或是讓使用者註冊應用程式。
 
 * 您的帳戶**「沒有在範圍 '/subscriptions/{guid}' 中執行 'Microsoft.Authorization/roleAssignments/write' 動作的權限。」** - 當您的帳戶沒有足夠權限可將角色指派給身分識別時，您就會看到此錯誤。 要求訂用帳戶管理員將您新增至「使用者存取系統管理員」角色。
 
@@ -425,6 +425,6 @@ Select-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
 ## <a name="next-steps"></a>後續步驟
 * 如需有關將應用程式整合至 Azure 來管理資源的詳細步驟，請參閱 [利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
 * 如需應用程式和服務主體的詳細說明，請參閱[應用程式物件和服務主體物件](../active-directory/active-directory-application-objects.md)。 
-* 如需 Active Directory 驗證的詳細資訊，請參閱 [Azure AD 的驗證案例](../active-directory/active-directory-authentication-scenarios.md)。
+* 如需 Azure Active Directory 驗證的詳細資訊，請參閱 [Azure AD 的驗證案例](../active-directory/active-directory-authentication-scenarios.md)。
 
 

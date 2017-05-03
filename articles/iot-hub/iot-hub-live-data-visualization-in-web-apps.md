@@ -16,15 +16,15 @@ ms.workload: na
 ms.date: 03/29/2017
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 1d1eec1457917baef1acab27f7c60bdb048837a9
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: f3bb01da7764e467963a47d3d5485679411c9167
+ms.lasthandoff: 04/25/2017
 
 
 ---
 # <a name="visualize-real-time-sensor-data-from-azure-iot-hub-using-azure-web-apps"></a>使用 Azure Web Apps 將來自 Azure IoT 中樞的即時感應器資料視覺化
 
-![感應器、IoT 裝置、IoT 中樞與 Azure Web 應用程式 (web app) 之間的連接](media/iot-hub-live-data-visualization-in-web-apps/1_sensor-iot-device-azure-iot-hub-web-app-connection.png)
+![端對端圖表](media/iot-hub-get-started-e2e-diagram/5.png)
 
 [!INCLUDE [iot-hub-get-started-note](../../includes/iot-hub-get-started-note.md)]
 
@@ -42,7 +42,7 @@ ms.lasthandoff: 04/12/2017
 
 ## <a name="what-you-need"></a>您需要什麼
 
-- 完成[將 ESP8266 連接到 Azure IoT 中樞](iot-hub-arduino-huzzah-esp8266-get-started.md)教學課程，其中涵蓋下列需求：
+- 完成涵蓋下列需求的[設定裝置](iot-hub-raspberry-pi-kit-node-get-started.md)教學課程︰
   - 有效的 Azure 訂用帳戶。
   - 位於您訂用帳戶中的 Azure IoT 中樞。
   - 將訊息傳送到您 Azure IoT 中樞的用戶端應用程式。
@@ -57,16 +57,7 @@ ms.lasthandoff: 04/12/2017
 
    ![建立 Azure Web 應用程式 (web app)](media/iot-hub-live-data-visualization-in-web-apps/2_create-web-app-azure.png)
 
-## <a name="add-a-consumer-group-to-your-iot-hub"></a>將取用者群組新增至 IoT 中樞
-
-應用程式會使用取用者群組從 Azure IoT 中樞提取資料。 在此課程中，您可以建立 Web 應用程式 (web app) 所要使用的取用者群組，以便從 IoT 中樞讀取資料。
-
-若要將取用者群組新增至 IoT 中樞，請遵循下列步驟：
-
-1. 在 [Azure 入口網站](https://ms.portal.azure.com/)中，開啟 IoT 中樞。
-1. 按一下左窗格的 [端點]，選取中間窗格的 [事件]，在右窗格的 [取用者群組] 之下輸入名稱，然後按一下 [儲存]。
-
-   ![在 Azure IoT 中樞建立取用者群組](media/iot-hub-live-data-visualization-in-web-apps/3_add-consumer-group-iot-hub-azure.png)
+[!INCLUDE [iot-hub-get-started-create-consumer-group](../../includes/iot-hub-get-started-create-consumer-group.md)]
 
 ## <a name="configure-the-web-app-to-read-data-from-your-iot-hub"></a>設定 Web 應用程式 (web app) 來讀取 IoT 中樞的資料
 
@@ -75,8 +66,8 @@ ms.lasthandoff: 04/12/2017
 
    | 索引鍵                                   | 值                                                        |
    |---------------------------------------|--------------------------------------------------------------|
-   | Azure.IoT.IoTHub.ConnectionString     | 取自 IoT 中樞總管                               |
-   | Azure.IoT.IoTHub.DeviceId             | 取自 IoT 中樞總管                               |
+   | Azure.IoT.IoTHub.ConnectionString     | 取自 iothub-explorer                                |
+   | Azure.IoT.IoTHub.DeviceId             | 取自 iothub-explorer                                |
    | Azure.IoT.IoTHub.ConsumerGroup        | 您新增至 IoT 中樞之取用者群組的名稱  |
 
    ![使用索引鍵值組將設定新增至 Azure Web 應用程式 (web app)](media/iot-hub-live-data-visualization-in-web-apps/4_web-app-settings-key-value-azure.png)

@@ -16,15 +16,16 @@ ms.workload: data-management
 ms.date: 07/19/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: 145cdc5b686692b44d2c3593a128689a56812610
-ms.openlocfilehash: 071cc504cc4111e20391af86ffdc7819644ec434
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 155e9ddb48c65ad1648e18eb306c9badc2cb27e8
+ms.lasthandoff: 04/20/2017
 
 
 ---
 # <a name="sql-database-performance-insight"></a>SQL Database 效能深入解析
 Azure SQL Database 藉由提供智慧型的調整動作與建議，提供可協助您識別並改善資料庫效能的效能工具。 
 
-1. 在 [Azure 入口網站](http://portal.azure.com)中瀏覽至您的資料庫，然後按一下 [所有設定]  >  [效能]  >  [概觀] 以開啟 [效能] 頁面。 
+1. 在 [Azure 入口網站](http://portal.azure.com)中瀏覽至您的資料庫，然後按一下 [所有設定] > [效能]**** > [概觀] 以開啟 [效能] 頁面。 
 2. 按一下 [建議] 以開啟 [SQL Database 建議程式](#sql-database-advisor)，然後按一下 [查詢] 來開啟[查詢效能深入解析](#query-performance-insight)。
    
     ![檢視效能](./media/sql-database-performance/entries.png)
@@ -55,11 +56,6 @@ Azure SQL Database 藉由提供智慧型的調整動作與建議，提供可協�
 
 ## <a name="additional-resources"></a>其他資源
 * [單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md)
-* [何時使用彈性集區？](sql-database-elastic-pool-guidance.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
+* [何時使用彈性集區？](sql-database-elastic-pool.md)
 
 

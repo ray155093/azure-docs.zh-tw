@@ -11,12 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/12/2017
+ms.date: 04/12/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 07adf751001a49e0365dde7cb8d7d2317a6b8134
-ms.openlocfilehash: d79c8418769656ecfd35a71a450176bd27427f68
-ms.lasthandoff: 02/27/2017
+ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
+ms.openlocfilehash: f31625783aa03dd01a73b5e5b39dd899e109b3b9
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -29,19 +29,13 @@ ms.lasthandoff: 02/27/2017
 * 設定連接器以略過您的內部部署輸出 Proxy。
 * 設定要使用輸出 Proxy 來存取 Azure AD 應用程式 Proxy 的連接器。
 
-如需連接器運作方式的詳細資訊，請參閱 [如何為內部部署應用程式提供安全的遠端存取](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-application-proxy-get-started)。
-
-## <a name="configure-your-connectors"></a>設定連接器
-
-核心連接器服務會使用 Azure 服務匯流排來處理一些 Azure AD 應用程式 Proxy 服務的基礎通訊。 服務匯流排會伴隨其他組態需求。
-
-有關解決 Azure AD 連線問題的詳細資訊，請參閱[如何疑難排解 Azure AD 應用程式 Proxy 連線問題](https://blogs.technet.microsoft.com/applicationproxyblog/2015/03/24/how-to-troubleshoot-azure-ad-application-proxy-connectivity-problems)。
+如需連接器運作方式的詳細資訊，請參閱[了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)。
 
 ## <a name="configure-the-outbound-proxy"></a>設定輸出 Proxy
 
-如果您的環境中有輸出 Proxy，請確定進行安裝的帳戶已經過適當設定，而可使用輸出 Proxy。 安裝程式會在進行安裝的使用者內容中執行，因此您可以使用 Microsoft Edge 或其他網際網路瀏覽器來檢查組態。
+如果您的環境中有輸出 Proxy，請使用具有適當權限的帳戶來設定輸出 Proxy。 安裝程式會在進行安裝的使用者內容中執行，因此您可以使用 Microsoft Edge 或其他網際網路瀏覽器來檢查組態。
 
-若要使用 Microsoft Edge 設定 Proxy 的設定︰
+若要在 Microsoft Edge 中設定 Proxy 的設定︰
 
 1. 移至 [設定] > [檢視進階設定] > [開啟 Proxy 設定] > [手動 Proxy 設定]。
 2. 將 [使用 Proxy 伺服器] 設定為 [開啟]，選取 [不要為近端 (內部網路) 位址使用 Proxy 伺服器] 核取方塊，然後變更位址和連接埠以反映您的本機 Proxy 伺服器。
@@ -51,62 +45,58 @@ ms.lasthandoff: 02/27/2017
 
 ## <a name="bypass-outbound-proxies"></a>略過輸出 Proxy
 
-根據預設，連接器用來進行輸出要求的基礎 OS 元件會自動嘗試尋找網路上的 Proxy 伺服器。 然後使用 Web Proxy 自動探索 (WPAD) (如果已在環境中啟用)。
+連接器有會發出輸出要求的基礎作業系統元件。 這些元件會自動嘗試在網路上找出 Proxy 伺服器。 然後使用 Web Proxy 自動探索 (WPAD) (如果已在環境中啟用)。
 
 OS 元件會嘗試藉由對 wpad.domainsuffix 執行 DNS 查閱來尋找 Proxy 伺服器。 如果這在 DNS 中解決，則會對 wpad.dat 的 IP 位址提出 HTTP 要求。 此要求會成為您環境中的 Proxy 組態指令碼。 連接器會使用這個指令碼來選取輸出 Proxy 伺服器。 不過，連接器流量可能會因為 Proxy 上所需的其他組態設定而仍然不會通過。
 
-在下一節中，我們將討論輸出 Proxy 上要將流量通過所需的設定步驟。 但是首先，讓我們說明設定連接器以略過您內部部署 Proxy，確保它會使用直接連線至 Azure 服務的方式。 這是建議的執行方式 (若您的網路原則允許)，因為這表示您有一個要維護的較少組態。
+您可以將連接器設定為略過內部部署 Proxy，以確保它會使用與 Azure 服務的直接連線。 我們之所以建議這種方式 (若您的網路原則允許)，是因為這表示您有一個要維護的較少組態。
 
-若要停用連接器的輸出 Proxy 使用，請編輯 C:\Program Files\Microsoft AAD App Proxy Connector\ApplicationProxyConnectorService.exe.config 檔案，並新增此程式碼範例中所示的 [system.net] 區段︰
+若要停用連接器的輸出 Proxy 使用，請編輯 C:\Program Files\Microsoft AAD App Proxy Connector\ApplicationProxyConnectorService.exe.config 檔案，並新增此程式碼範例中所示的 system.net 區段︰
 
 ```xml
- <?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-<system.net>
-<defaultProxy enabled="false"></defaultProxy>
-</system.net>
- <runtime>
-<gcServer enabled="true"/>
+  <system.net>
+    <defaultProxy enabled="false"></defaultProxy>
+  </system.net>
+  <runtime>
+    <gcServer enabled="true"/>
   </runtime>
   <appSettings>
-<add key="TraceFilename" value="AadAppProxyConnector.log" />
+    <add key="TraceFilename" value="AadAppProxyConnector.log" />
   </appSettings>
 </configuration>
 ```
-若要確保連接器更新程式服務也會略過 Proxy，對位於 C:\Program Files\Microsoft AAD App Proxy Connector Updater\ApplicationProxyConnectorUpdaterService.exe.config 的 ApplicationProxyConnectorUpdaterService.exe.config 檔案進行類似的變更。
+若要確保連接器更新程式服務也會略過 Proxy，對位於 C:\Program Files\Microsoft AAD App Proxy Connector Updater 的 ApplicationProxyConnectorUpdaterService.exe.config 檔案進行類似的變更。
 
 請務必複製原始檔案，以免您需要還原為預設 .config 檔案。
 
 ## <a name="use-the-outbound-proxy-server"></a>使用輸出 Proxy 伺服器
 
-如先前所述，某些客戶環境會要求所有輸出流量通過輸出 Proxy，無一例外。 如此一來，略過 Proxy 不是選項。
+某些環境會要求所有輸出流量通過輸出 Proxy，無一例外。 如此一來，略過 Proxy 不是選項。
 
 您可以設定連接器流量以過輸出 proxy，如下圖所示。
 
  ![設定讓連接器流量通過輸出 Proxy 來到達 Azure AD 應用程式 Proxy](./media/application-proxy-working-with-proxy-servers/configure-proxy-settings.png)
 
-由於僅有輸出流量，不需要設定連接器之間的負載平衡，或透過您的防火牆設定內部存取。
-
-在任何情況下，您都需要執行下列步驟：
-1. 設定連接器更新程式服務以通過輸出 Proxy。
-2. 設定 Proxy 設定以允許 Azure AD 應用程式 Proxy 服務的連線。
+由於僅有輸出流量，因此您不需要設定透過防火牆來進行的輸入存取。
 
 ### <a name="step-1-configure-the-connector-and-related-services-to-go-through-the-outbound-proxy"></a>步驟 1：設定連接器和相關服務以通過輸出 Proxy
 
 如先前所述，若 WPAD 在環境中啟用並正確地設定，連接器會自動探索輸出 Proxy 伺服器，並嘗試使用它。 不過，您可以明確地設定連接器以通過輸出 Proxy。
 
-若要這樣做，請編輯 C:\Program Files\Microsoft AAD App Proxy Connector\ApplicationProxyConnectorService.exe.config 檔案，並新增此程式碼範例中所示的 [system.net] 區段︰
+若要這樣做，請編輯 C:\Program Files\Microsoft AAD App Proxy Connector\ApplicationProxyConnectorService.exe.config 檔案，並新增此程式碼範例中所示的 system.net 區段。 變更 proxyserver:8080 以反映您的本機 Proxy 伺服器名稱或 IP 位址與其正在接聽的連接埠。
 
 ```xml
- <?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-<system.net>  
+  <system.net>  
     <defaultProxy>   
       <proxy proxyaddress="http://proxyserver:8080" bypassonlocal="True" usesystemdefault="True"/>   
     </defaultProxy>  
-</system.net>
+  </system.net>
   <runtime>
-     <gcServer enabled="true"/>
+    <gcServer enabled="true"/>
   </runtime>
   <appSettings>
     <add key="TraceFilename" value="AadAppProxyConnector.log" />
@@ -114,15 +104,11 @@ OS 元件會嘗試藉由對 wpad.domainsuffix 執行 DNS 查閱來尋找 Proxy �
 </configuration>
 ```
 
->[!NOTE]
->變更 proxyserver:8080 以反映您的本機 Proxy 伺服器名稱或 IP 位址與其正在接聽的連接埠。
->
-
 接著，設定連接器更新程式服務來使用 Proxy，方法為對位於 C:\Program Files\Microsoft AAD App Proxy Connector Updater\ApplicationProxyConnectorUpdaterService.exe.config 的檔案進行類似變更。
 
 ### <a name="step-2-configure-the-proxy-to-allow-traffic-from-the-connector-and-related-services-to-flow-through"></a>步驟 2︰設定 Proxy 以允許來自連接器與相關服務的流量通過
 
-在輸出 Proxy 有&4; 個層面需要考量：
+在輸出 Proxy 有 4 個層面需要考量：
 * Proxy 輸出規則
 * Proxy 驗證
 * Proxy 連接埠
@@ -172,7 +158,7 @@ OS 元件會嘗試藉由對 wpad.domainsuffix 執行 DNS 查閱來尋找 Proxy �
 
 找出連接器連線問題並進行疑難排解的最佳方式，是在啟動連接器服務時，在連接器服務上進行網路擷取。 這可能是令人怯步的工作，因此讓我們看看關於擷取及篩選網路追蹤的快速提示。
 
-您可以使用您選擇的監視工具。 基於本文的目的，我們使用了 Microsoft Network Monitor 3.4。 您可以[從 Microsoft 下載](https://www.microsoft.com/en-us/download/details.aspx?id=4865)。
+您可以使用您選擇的監視工具。 基於本文的目的，我們使用了 Microsoft Network Monitor 3.4。 您可以[從 Microsoft 下載](https://www.microsoft.com/download/details.aspx?id=4865)。
 
 我們在後續章節所使用的範例與篩選器僅限網路監視器，但這些原則可以套用到任何分析工具。
 
@@ -240,7 +226,7 @@ SYN 封包是傳送到建立 TCP 連線的第一個封包。 如果此封包未�
 
 如果您繼續遭遇連接器連線問題，請向我們的支援小組建立票證。 該小組能協助您進行進一步疑難排解。
 
-如需有關解決應用程式 Proxy 連接器錯誤的相關資訊，請參閱[疑難排解應用程式 Proxy](https://azure.microsoft.com/en-us/documentation/articles/active-directory-application-proxy-troubleshoot)。
+如需有關解決應用程式 Proxy 連接器錯誤的相關資訊，請參閱[疑難排解應用程式 Proxy](https://azure.microsoft.com/documentation/articles/active-directory-application-proxy-troubleshoot)。
 
 ## <a name="next-steps"></a>後續步驟
 

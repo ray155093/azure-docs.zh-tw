@@ -16,13 +16,16 @@ ms.workload: na
 ms.date: 03/29/2017
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 6a99749a96a6239428e5b018a26a6e8fd440c9d2
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: ba25cdee46ce4ceb5acd5ff9da683a057f2bd733
+ms.lasthandoff: 04/25/2017
 
 
 ---
 # <a name="visualize-real-time-sensor-data-from-azure-iot-hub-using-power-bi"></a>使用 Power BI 將 Azure IoT 中樞的即時感應器資料視覺化
+
+![端對端圖表](media/iot-hub-get-started-e2e-diagram/4.png)
+
 
 [!INCLUDE [iot-hub-get-started-note](../../includes/iot-hub-get-started-note.md)]
 
@@ -38,22 +41,13 @@ ms.lasthandoff: 04/12/2017
 
 ## <a name="what-you-need"></a>您需要什麼
 
-- 完成[將 ESP8266 連接到 Azure IoT 中樞](iot-hub-arduino-huzzah-esp8266-get-started.md)教學課程，其中涵蓋下列需求：
+- 完成涵蓋下列需求的[設定裝置](iot-hub-raspberry-pi-kit-node-get-started.md)教學課程︰
   - 有效的 Azure 訂用帳戶。
   - 位於您訂用帳戶中的 Azure IoT 中樞。
   - 將訊息傳送到您 Azure IoT 中樞的用戶端應用程式。
 - Power BI 帳戶。 ([免費試用 Power BI](https://powerbi.microsoft.com/))
 
-## <a name="add-a-consumer-group-to-your-iot-hub"></a>將取用者群組新增至 IoT 中樞
-
-應用程式會使用取用者群組從 Azure IoT 中樞提取資料。 在此課程中，您可以建立串流分析作業所要使用的取用者群組，以便從 IoT 中樞讀取資料。
-
-若要將取用者群組新增至 IoT 中樞，請遵循下列步驟：
-
-1. 在 [Azure 入口網站](https://ms.portal.azure.com/)中，開啟 IoT 中樞。
-1. 按一下左窗格的 [端點]，選取中間窗格的 [事件]，在右窗格的 [取用者群組] 之下輸入名稱，然後按一下 [儲存]。
-
-   ![在 Azure IoT 中樞建立取用者群組](media/iot-hub-live-data-visualization-in-power-bi/1_iot-hub-create-consumer-group-azure.png)
+[!INCLUDE [iot-hub-get-started-create-consumer-group](../../includes/iot-hub-get-started-create-consumer-group.md)]
 
 ## <a name="create-configure-and-run-a-stream-analytics-job"></a>設定、設定及執行串流分析作業
 

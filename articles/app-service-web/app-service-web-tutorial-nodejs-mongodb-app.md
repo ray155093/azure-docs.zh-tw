@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/30/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: ef3fc25ed06eb498600df4fc8fcad37f0f0dc676
-ms.lasthandoff: 04/18/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 8dcb006a8cf167cdbfb67de5a11dabf0edbbe41c
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 04/18/2017
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="step-1---test-local-mongodb-database"></a>步驟 1 - 測試本機的 MongoDB 資料庫
+## <a name="test-local-mongodb-database"></a>測試本機的 MongoDB 資料庫
 在此步驟中，您要確定您的本機 MongoDB 資料庫正在執行。
 
 開啟終端機視窗，然後 `CD` 至 MongoDB 安裝的 `bin` 目錄。 
@@ -54,7 +54,7 @@ mongo
 
 <a name="step2"></a>
 
-## <a name="step-2---create-local-nodejs-application"></a>步驟 2 - 建立本機的 Node.js 應用程式
+## <a name="create-local-nodejs-application"></a>建立本機的 Node.js 應用程式
 在此步驟中，您要設定本機的 Node.js 專案。
 
 ### <a name="clone-the-sample-application"></a>複製範例應用程式
@@ -103,7 +103,7 @@ MEAN.js 範例應用程式會將使用者資料儲存於資料庫中。 如果�
 
 如需隨時停止 Node.js，請在終端機上輸入 `Ctrl`+`C`。 
 
-## <a name="step-3---create-a-production-mongodb-database"></a>步驟 3 - 建立 MongoDB 生產資料庫
+## <a name="create-a-production-mongodb-database"></a>建立 MongoDB 生產資料庫
 
 在此步驟中，您要在 Azure 中建立 MongoDB 資料庫。 將您的應用程式部署至 Azure 時，它會針對其生產工作負載使用此資料庫。
 
@@ -163,7 +163,7 @@ DB/databaseAccounts/<documentdb_name>",
 } 
 ```
 
-## <a name="step-4---connect-your-nodejs-application-to-the-database"></a>步驟 4 - 將 Node.js 應用程式連接到資料庫
+## <a name="connect-your-nodejs-application-to-the-database"></a>將 Node.js 應用程式連線到資料庫
 
 在此步驟中，您要使用 MongoDB 連接字串，將MEAN.js 範例應用程式連接到您剛才建立的 DocumentDB 資料庫。 
 
@@ -242,7 +242,7 @@ MEAN.JS version: 0.5.0
 
 在瀏覽器中，瀏覽至 `http://localhost:8443`。 按一下上層功能表中的 [註冊]，然後嘗試建立一位虛擬使用者，就像之前一樣。 如果您成功，則您的應用程式正在將資料寫入至 Azure 中的 DocumentDB 資料庫。 
 
-## <a name="step-5---deploy-the-nodejs-application-to-azure"></a>步驟 5 - 將 Node.js 應用程式部署至 Azure
+## <a name="deploy-the-nodejs-application-to-azure"></a>將 Node.js 應用程式部署至 Azure
 在此步驟中，您要將已與 MongoDB 連接的 Node.js 應用程式部署至 Azure App Service。
 
 ### <a name="create-an-app-service-plan"></a>建立應用程式服務方案
@@ -435,7 +435,7 @@ http://<app_name>.azurewebsites.net
 
 **恭喜！** 您正在 Azure App Service 中執行資料驅動的 Node.js 應用程式。
 
-## <a name="step-6---update-data-model-and-redeploy"></a>步驟 6 - 更新資料模型並重新部署
+## <a name="update-data-model-and-redeploy"></a>更新資料模型並重新部署
 
 在此步驟中，您要對 `article` 資料模型進行一些變更，並將變更發佈至 Azure。
 
@@ -569,7 +569,7 @@ git push azure master
 >
 >
 
-## <a name="step-7---stream-diagnostic-logs"></a>步驟 7 - 資料流診斷記錄 
+## <a name="stream-diagnostic-logs"></a>資料流診斷記錄 
 
 當 Node.js 應用程式在 Azure App Service 中執行時，您可以使用管線將主控台記錄直接傳送至終端機。 這樣一來，您就能取得相同的診斷訊息，以協助您偵錯應用程式錯誤。
 
@@ -583,7 +583,7 @@ az appservice web log tail --name <app_name> --resource-group myResourceGroup
 
 若要隨時停止記錄資料流，輸入 `Ctrl`+`C`。 
 
-## <a name="step-8---manage-your-azure-web-app"></a>步驟 8 - 管理您的 Azure Web 應用程式
+## <a name="manage-your-azure-web-app"></a>管理您的 Azure Web 應用程式
 
 請移至 Azure 入口網站，以查看您所建立的 Web 應用程式。
 

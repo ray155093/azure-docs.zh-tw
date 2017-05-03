@@ -1,6 +1,6 @@
 ---
-title: "Active Directory 驗證和 Resource Manager | Microsoft Docs"
-description: "使用 Azure Resource Manager API 與 Active Directory 進行驗證以整合應用程式與其他 Azure 訂用帳戶的開發人員指南。"
+title: "Azure Active Directory 驗證和 Resource Manager | Microsoft Docs"
+description: "使用 Azure Resource Manager API 與 Azure Active Directory 進行驗證以整合應用程式與其他 Azure 訂用帳戶的開發人員指南。"
 services: azure-resource-manager,active-directory
 documentationcenter: na
 author: dushyantgill
@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 12/27/2016
 ms.author: dugill;tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
-ms.openlocfilehash: de1355a8dc4b0099dca3efc2109ccfb9facf7269
-ms.lasthandoff: 04/05/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 8a8a28e6491855434c4445bedd5644d7da109f8a
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -71,7 +71,7 @@ Web 應用程式：
 ## <a name="register-application"></a>註冊應用程式
 在開始撰寫程式碼之前，請先使用 Azure Active Directory (AD) 註冊 Web 應用程式。 應用程式註冊會為您在 Azure AD 中的應用程式建立中央身分識別。 它會保留您的應用程式的基本資訊，例如您的應用程式用來驗證和存取 Azure Resource Manager API 的 OAuth 用戶端識別碼、回覆 URL 和認證。 應用程式註冊也會記錄您的應用程式需要的各種委派權限，以便代表使用者存取 Microsoft API。
 
-由於應用程式會存取其他訂用帳戶，您必須將它設定為多租用戶應用程式。 為了通過驗證，請提供與 Active Directory 相關聯的網域。 若要查看與 Active Directory 相關聯的網域，請登入 [傳統入口網站](https://manage.windowsazure.com)。 選取您的 Active Directory，然後選取 [網域] 。
+由於應用程式會存取其他訂用帳戶，您必須將它設定為多租用戶應用程式。 為了通過驗證，請提供與 Azure Active Directory 相關聯的網域。 若要查看與 Azure Active Directory 相關聯的網域，請登入[傳統入口網站 (英文)](https://manage.windowsazure.com)。 選取您的 Azure Active Directory，然後選取 [網域]。
 
 下列範例示範如何使用 Azure PowerShell 註冊應用程式。 您必須擁有最新版 (2016 年 8 月) Azure PowerShell 才能讓此命令生效。
 
@@ -93,7 +93,7 @@ Azure AD 也支援應用程式的憑證認證︰您建立自我簽署憑證、�
 如需使用憑證建立 AD 應用程式的相關資訊，請參閱[使用 Azure PowerShell 建立用來存取資源的服務主體](resource-group-authenticate-service-principal.md#create-service-principal-with-certificate-from-certificate-authority)或[使用 Azure CLI 建立用來存取資源的服務主體](resource-group-authenticate-service-principal-cli.md#create-service-principal-with-certificate)。
 
 ## <a name="get-tenant-id-from-subscription-id"></a>從訂用帳戶識別碼取得租用戶識別碼
-若要要求可用來呼叫 Resource Manager 的權杖，應用程式必須知道裝載 Azure 訂用帳戶之 Azure AD 租用戶的租用戶識別碼。 使用者很可能知道其訂用帳戶識別碼，但他們可能不知道其用於 Active Directory 的租用戶識別碼。 若要取得使用者的租用戶識別碼，請要求使用者提供訂用帳戶識別碼。 在傳送有關訂用帳戶的要求時，請提供該訂用帳戶識別碼：
+若要要求可用來呼叫 Resource Manager 的權杖，應用程式必須知道裝載 Azure 訂用帳戶之 Azure AD 租用戶的租用戶識別碼。 使用者很可能知道其訂用帳戶識別碼，但他們可能不知道其用於 Azure Active Directory 的租用戶識別碼。 若要取得使用者的租用戶識別碼，請要求使用者提供訂用帳戶識別碼。 在傳送有關訂用帳戶的要求時，請提供該訂用帳戶識別碼：
 
     https://management.azure.com/subscriptions/{subscription-id}?api-version=2015-01-01
 

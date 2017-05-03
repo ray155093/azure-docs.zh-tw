@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 04/07/2017
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 3fa7b8d053d0193352776e94d2ab4796ba05e166
-ms.lasthandoff: 04/07/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 2b1b12666b71bf173342d5864772a94b9625d38b
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -41,7 +41,9 @@ Azure Service Fabric 藉由確保只升級已變更的服務，並且在整個�
 
 ![發佈 Service Fabric 應用程式][image2]
 
-現在，您可以按一下對話方塊中的 [發佈]  。 您可以使用 [Service Fabric 總管來檢視叢集與應用程式](service-fabric-visualizing-your-cluster.md)。 Visual Objects 應用程式有一個 Web 服務，透過在您瀏覽器的網址列中輸入 [http://localhost:8082/visualobjects/](http://localhost:8082/visualobjects/) ，即可移至該服務。  您應該會看到 10 個浮動的視覺物件在畫面中四處移動。
+現在，您可以按一下對話方塊中的 [發佈]  。 您可以使用 [Service Fabric 總管來檢視叢集與應用程式](service-fabric-visualizing-your-cluster.md)。 Visual Objects 應用程式有一個 Web 服務，您可在瀏覽器的網址列中輸入 [http://localhost:8081/visualobjects/](http://localhost:8081/visualobjects/)，以移至該服務。  您應該會看到 10 個浮動的視覺物件在畫面中四處移動。
+
+**注意︰**如果部署至 `Cloud.xml` 設定檔 (Azure Service Fabric)，則應該可在 **http://{ServiceFabricName}.{Region}.cloudapp.azure.com:8081/visualobjects/** 上取得應用程式。 請確定您確實已在負載平衡器 (在與 Service Fabric 執行個體相同的資源群組中尋找負載平衡器) 中設定 `8081/TCP`。
 
 ## <a name="step-2-update-the-visual-objects-sample"></a>步驟 2：更新視覺物件範例
 您可能會注意到使用步驟 1 中部署的版本，視覺物件不會旋轉。 讓我們將這個應用程式升級到其中的視覺物件也會旋轉的版本。

@@ -16,9 +16,9 @@ ms.date: 02/21/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: bb8d390a6ab045dc418bf80ec4fc218e0a35282b
-ms.lasthandoff: 04/11/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 73c38182f4caa92f5aa561b10a30c60efc8cfdae
+ms.lasthandoff: 04/26/2017
 
 ---
 # <a name="built-in-roles-for-azure-role-based-access-control"></a>Azure 角色型存取控制的內建角色
@@ -40,6 +40,7 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | [備份參與者](#backup-contributor) | 可以管理復原服務保存庫中的備份 |
 | [備份操作員](#backup-operator) | 可以管理復原服務保存庫中的備份，但不能移除備份 |
 | [備份讀取者](#backup-reader) | 可以檢視所有的備份管理服務  |
+| [帳單讀取器](#billing-reader) | 可檢視所有帳單資訊  |
 | [BizTalk 參與者](#biztalk-contributor) |可以管理 BizTalk 服務 |
 | [ClearDB MySQL DB 參與者](#cleardb-mysql-db-contributor) |可以管理 ClearDB MySQL 資料庫 |
 | [參與者](#contributor) |可以管理存取以外的所有內容。 |
@@ -215,6 +216,15 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read  | 讀取保存庫中註冊項目上執行作業的結果 |
 | Microsoft.RecoveryServices/Vaults/registeredIdentities/read  | 讀取保存庫中的註冊項目 |
 | Microsoft.RecoveryServices/Vaults/usages/read  |  讀取復原服務保存庫的使用方式 |
+
+## <a name="billing-reader"></a>帳單讀取器
+可檢視所有帳單資訊
+
+| **動作** |  |
+| --- | --- |
+| Microsoft.Authorization/*/read |讀取角色和角色指派 |
+| Microsoft.Billing/*/read |讀取帳單資訊 |
+| Microsoft.Support/* |建立和管理支援票證 |
 
 ### <a name="biztalk-contributor"></a>BizTalk 參與者
 可以管理 BizTalk 服務

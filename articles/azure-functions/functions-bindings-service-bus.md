@@ -17,16 +17,18 @@ ms.workload: na
 ms.date: 04/01/2017
 ms.author: chrande; glenga
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 6644f6b879e48787249111c5e02b75b963f1e1cd
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 1afc4d0c04929fdf55cc9f336e50d90ff7c66172
+ms.lasthandoff: 04/25/2017
 
 
 ---
 # <a name="azure-functions-service-bus-bindings"></a>Azure Functions 服務匯流排繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-此文章說明如何在 Azure Functions 中設定及使用 Azure 服務匯流排繫結。 Azure Functions 支援服務匯流排佇列和主題的觸發程序和輸出繫結。
+此文章說明如何在 Azure Functions 中設定及使用 Azure 服務匯流排繫結。 
+
+Azure Functions 支援服務匯流排佇列和主題的觸發程序和輸出繫結。
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -66,14 +68,14 @@ ms.lasthandoff: 04/03/2017
 
 請注意：
 
-* 針對 `connection`，[在您的函式應用程式中建立應用程式設定](functions-how-to-use-azure-function-app-settings.md)，其中包含您的服務中樞命名空間的連接字串，然後在觸發程序的 `connection` 屬性中指定應用程式設定的名稱。 您會遵循[取得管理認證](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials)中顯示的步驟來取得連接字串。
+* 針對 `connection`，請[在您的函數應用程式中建立應用程式設定](functions-how-to-use-azure-function-app-settings.md)，其中包含您「服務匯流排」命名空間的連接字串，然後在觸發程序的 `connection` 屬性中指定應用程式設定的名稱。 您會遵循[取得管理認證](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials)中顯示的步驟來取得連接字串。
   連接字串必須是用於服務匯流排命名空間，而不限於特定佇列或主題。
   如果您將 `connection` 保留空白，觸發程序會假設預設的服務匯流排連接字串已在名為 `AzureWebJobsServiceBus` 的應用程式設定中指定。
 * 針對 `accessRights`，可用值為 `manage` 和 `listen`。 預設值是 `manage`，這表示 `connection` 已具備**管理**權限。 如果您使用沒有**管理**權限的連接字串，請將 `accessRights` 設定為 `listen`。 否則，Functions 執行階段在嘗試執行需要管理權限的作業時可能會失敗。
 
 ## <a name="trigger-behavior"></a>觸發程序行為
 * **單一執行緒** - Functions 執行階段預設會並行處理多個訊息。 若要指示執行階段一次只處理一個佇列或主題訊息，請在 *host.json* 檔案中將 `serviceBus.maxConcurrentCalls` 設定為 1。 
-  如需 *host.json* 的相關資訊，請參閱[資料夾結構](functions-reference.md#folder-structure)和 [host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json)。
+  如需有關 *host.json* 的資訊，請參閱[資料夾結構](functions-reference.md#folder-structure)和 [host.json](https://git .com/Azure/azure-webjobs-sdk-script/wiki/host.json)。
 * **有害訊息處理** - 服務匯流排會自行處理無法在 Azure Functions 組態或程式碼中控制或設定的有害訊息。 
 * **PeekLock behavior** - Functions 執行階段會在 [`PeekLock` 模式](../service-bus-messaging/service-bus-performance-improvements.md#receive-mode)下接收訊息，並在函式順利完成時，於訊息上呼叫 `Complete`，或是在函式失敗時呼叫 `Abandon`。 
   如果函數執行時間較 `PeekLock` 逾時還長，即會自動更新鎖定。
@@ -81,7 +83,7 @@ ms.lasthandoff: 04/03/2017
 <a name="triggerusage"></a>
 
 ## <a name="trigger-usage"></a>觸發程序使用方式
-本節說明如何在您的函式程式碼中使用服務中樞觸發程序。 
+本節說明如何在您的函數程式碼中使用「服務匯流排」觸發程序。 
 
 在 C# 和 F# 中，服務匯流排觸發程序訊息可以還原序列化為下列任何一種輸入類型︰
 
@@ -183,7 +185,7 @@ module.exports = function(context, myQueueItem) {
 
 請注意：
 
-* 針對 `connection`，[在您的函式應用程式中建立應用程式設定](functions-how-to-use-azure-function-app-settings.md)，其中包含您的服務中樞命名空間的連接字串，然後在輸出繫結的 `connection` 屬性中指定應用程式設定的名稱。 您會遵循[取得管理認證](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials)中顯示的步驟來取得連接字串。
+* 針對 `connection`，請[在您的函數應用程式中建立應用程式設定](functions-how-to-use-azure-function-app-settings.md)，其中包含您「服務匯流排」命名空間的連接字串，然後在輸出繫結的 `connection` 屬性中指定應用程式設定的名稱。 您會遵循[取得管理認證](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md#obtain-the-management-credentials)中顯示的步驟來取得連接字串。
   連接字串必須是用於服務匯流排命名空間，而不限於特定佇列或主題。
   如果您將 `connection` 保留空白，輸出繫結會假設預設的服務匯流排連接字串已在名為 `AzureWebJobsServiceBus` 的應用程式設定中指定。
 * 針對 `accessRights`，可用值為 `manage` 和 `listen`。 預設值是 `manage`，這表示 `connection` 已具備**管理**權限。 如果您使用沒有**管理**權限的連接字串，請將 `accessRights` 設定為 `listen`。 否則，Functions 執行階段在嘗試執行需要管理權限的作業時可能會失敗。

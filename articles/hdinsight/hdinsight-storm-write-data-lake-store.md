@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/03/2017
+ms.date: 04/21/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 514319dfcb532ab3708352b2467c095d7775b714
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 30edf20d7fc742da9b42d3ea9baafcce31141259
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -33,8 +33,8 @@ Azure Data Lake Store 是 HDFS 相容的雲端儲存體服務，可為資料提�
 
 Data Lake Store 對 HDInsight 來說會顯示為 HDFS 相容檔案系統，因此您可以 Storm-HDFS Bolt 來寫入它。 從 HDInsight 使用 Azure Data Lake 時，您可以使用 `adl://` 的檔案配置。
 
-* 如果 Data Lake 儲存體是叢集的主要儲存體，請使用 `adl:///`。 這是 Azure Data Lake 中叢集儲存體的根。 這可能會轉譯為 Data Lake 儲存體帳戶中 /clusters/CLUSTERNAME 的路徑。
-* 如果 Data Lake 儲存體是叢集的次要儲存體，請使用 `adl://DATALAKEACCOUNT.azuredatalakestore.net/`。 這個 URI 會指定要寫入資料的 Data Lake 儲存體帳戶。 資料是從 Data Lake Store 的根開始寫入。
+* 如果 Data Lake Store 是叢集的主要儲存體，請使用 `adl:///`。 這是 Azure Data Lake 中叢集儲存體的根。 這可能會轉譯為 Data Lake Store 帳戶中 /clusters/CLUSTERNAME 的路徑。
+* 如果 Data Lake Store 是叢集的其他儲存體，請使用 `adl://DATALAKEACCOUNT.azuredatalakestore.net/`。 這個 URI 會指定要寫入資料的 Data Lake Store 帳戶。 資料是從 Data Lake Store 的根開始寫入。
 
     > [!NOTE]
     > 您也可以使用這個 URI 格式，來將資料儲存到包含您叢集主要儲存體的 Data Lake Store 帳戶。 這可讓您將資料儲存於包含 HDInsight 的目錄路徑以外的位置。

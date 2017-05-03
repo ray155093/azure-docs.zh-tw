@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 03/16/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 1da8051f96107310b821c4f88f4725987b81f732
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 3f1f19f8d8a4f2e6e892ba3ede67f3749cedb11b
+ms.lasthandoff: 04/22/2017
 
 ---
 
@@ -104,6 +104,10 @@ Contoso Corp 開發出新的合作夥伴入口網站。 此入口網站的 URL �
 ## <a name="pricing"></a>價格
 
 如需定價資訊，請參閱[流量管理員定價](https://azure.microsoft.com/pricing/details/traffic-manager/)。
+
+## <a name="faq"></a>常見問題集
+
+如需流量管理員的常見問題集，請參閱[流量管理員常見問題集](traffic-manager-FAQs.md)
 
 ## <a name="next-steps"></a>後續步驟
 

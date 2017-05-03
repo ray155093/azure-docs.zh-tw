@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 12/22/2016
+ms.date: 04/14/2017
 ms.author: robmcm;asirveda;martinsawicki
 translationtype: Human Translation
-ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
-ms.openlocfilehash: a2006dbcf0d63ef38651a0859dc654d531fd875a
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 23714856f0f778be04cf321e0726b53ade430f57
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -28,6 +29,15 @@ ms.openlocfilehash: a2006dbcf0d63ef38651a0859dc654d531fd875a
 > 另外還有適用於 Eclipse IDE 的 Azure 工具組。 如需詳細資訊，請參閱 [適用於 Eclipse 的 Azure 工具組]。
 > 
 > 
+
+### <a name="april-14-2017"></a>2017 年 4 月 14 日
+適用於 IntelliJ 的 Azure 工具組 - 2017 年 4 月版本包含下列增強功能：
+
+* **改善的 Azure 登入體驗**：適用於 IntelliJ 的 Azure 工具組現在支援兩種可登入您 Azure 帳戶的方法︰互動式和自動化。 如需詳細資訊，請參閱[適用於 IntelliJ 的 Azure 工具組的 Azure 登入指示]。
+* **使用 Docker 容器發佈**︰您現在可以使用適用於 IntelliJ 的 Azure 工具組，將 web 應用程式發佈作為 Docker 容器。 如需詳細資訊，請參閱[如何使用適用於 IntelliJ 的 Azure 工具組，將 Web 應用程式發佈作為 Docker 容器]。
+* **儲存體帳戶管理**：適用於 IntelliJ 的 Azure 工具組現在支援從 Azure Explorer 檢視管理儲存體帳戶。 如需詳細資訊，請參閱[使用適用於 IntelliJ 的 Azure 工具組來管理儲存體帳戶]。
+* **虛擬機器管理**：適用於 IntelliJ 的 Azure 工具組現在支援從 Azure Explorer 工具視窗管理虛擬機器。 如需詳細資訊，請參閱[使用適用於 IntelliJ 的 Azure 工具組來管理虛擬機器]。
+* **移除遠端偵錯支援**。 已從適用於 IntelliJ 的 Azure 工具組將 Azure App Service 上的 Java web 應用程式遠端偵錯移除；在解決客戶使用此工具組所遭遇的一些問題時，必須進行此動作。
 
 ### <a name="august-26-2016"></a>2016 年 8 月 26 日
 適用於 IntelliJ 的 Azure 工具組 - 2016 年 8 月版本包含下列增強功能：
@@ -61,15 +71,17 @@ ms.openlocfilehash: a2006dbcf0d63ef38651a0859dc654d531fd875a
 如需適用於 Java IDE 的 Azure 套件組的詳細資訊，請參閱下列連結：
 
 * [適用於 Eclipse 的 Azure 工具組]
+  * [適用於 Eclipse 的 Azure 工具組的新功能]
   * [安裝 Azure Toolkit for Eclipse]
   * [Create a Hello World Web App for Azure in Eclipse (在 Eclipse 中建立 Azure Hello World Web 應用程式)]
-  * [適用於 Eclipse 的 Azure 工具組的新功能]
+  * [適用於 Eclipse 的 Azure 工具組登入指示]
 * [Azure Toolkit for IntelliJ]
-  * [安裝 Azure Toolkit for IntelliJ]
-  * [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
   * *適用於 IntelliJ 的 Azure 工具組新增功能 (本文)*
+  * [安裝 Azure Toolkit for IntelliJ]
+  * [適用於 IntelliJ 的 Azure 工具組登入指示]
+  * [在 IntelliJ 中建立 Azure Hello World Web 應用程式]
 
-如需有關在 Azure 中使用 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
+如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
 
 <!-- URL List -->
 
@@ -79,15 +91,17 @@ ms.openlocfilehash: a2006dbcf0d63ef38651a0859dc654d531fd875a
 [在 IntelliJ 中建立 Azure Hello World Web 應用程式]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
 [安裝 Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
 [安裝 Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
+[適用於 Eclipse 的 Azure 工具組登入指示]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[適用於 IntelliJ 的 Azure 工具組登入指示]: ./azure-toolkit-for-intellij-sign-in-instructions.md
 [適用於 Eclipse 的 Azure 工具組的新功能]: ./azure-toolkit-for-eclipse-whats-new.md
 [What's New in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
+
+[適用於 IntelliJ 的 Azure 工具組的 Azure 登入指示]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[如何使用適用於 IntelliJ 的 Azure 工具組，將 Web 應用程式發佈作為 Docker 容器]: ./azure-toolkit-for-intellij-publish-as-docker-container.md
+[使用適用於 IntelliJ 的 Azure 工具組來管理儲存體帳戶]: ./azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md
+[使用適用於 IntelliJ 的 Azure 工具組來管理虛擬機器]: ./azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md
 
 [Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
 
 [IntelliJ 的 HDInsight Tools 外掛程式]: ./hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

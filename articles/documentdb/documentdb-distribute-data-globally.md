@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/14/2017
 ms.author: arramac
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 203648d999032d86dca10f9b47c40a2208ab79e9
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 746fefab12aae11774a7d582e39ac2bc7eb9c88b
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -58,7 +58,7 @@ DocumentDB 的設計可取得原則式異地隔離限制功能。 異地隔離�
 DocumentDB 可讓您隨時對資料庫帳戶新增 (關聯) 或移除 (中斷關聯) 區域 (請參閱[上圖](#UnlimitedRegionsPerAccount))。 藉由以平行方式跨資料分割複寫資料，DocumentDB 可確保當新區域上線時，30 分鐘以內就能在世界各地以高達 100 TB 的速度使用 DocumentDB。 
 
 ### <a id="FailoverPriorities"></a>容錯移轉優先順序
-若要在有數個區域發生中斷時完全控制區域容錯移轉的順序，DocumentDB 可讓您將優先順序和資料庫帳戶相關的各個區域 (請參閱下圖)。 DocumentDB 可確保會以您所指定的優先順序自動進行容錯移轉。
+若要在有數個區域發生中斷時完全控制區域容錯移轉的順序，DocumentDB 可讓您將優先順序和資料庫帳戶相關的各個區域 (請參閱下圖)。 DocumentDB 可確保會以您所指定的優先順序自動進行容錯移轉。 如需有關區域性容錯移轉的詳細資訊，請參閱 [DocumentDB 中商務持續性的自動區域容錯移轉](documentdb-regional-failovers.md)。
 
 **DocumentDB 的租用戶能為和資料庫帳戶相關的區域設定容錯移轉優先順序 (右窗格)**
 

@@ -1,5 +1,5 @@
 ---
-title: "如何使用 Azure 入口網站為 Resource Manager 部署模型的虛擬網路新增多個 VPN 閘道站對站連線 | Microsoft Docs"
+title: "將多個 VPN 閘道站對站連線新增到 VNet：Azure 入口網站：Resource Manager| Microsoft Docs"
 description: "將多個 S2S 連線新增至具有現有連線的 VPN 閘道"
 services: vpn-gateway
 documentationcenter: na
@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/10/2016
+ms.date: 04/20/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9906602e0a154c2dc3d6e458179c7e9346df2852
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: bbe76873c94aea0db7843af36d8a8d44d7565bbb
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -28,9 +29,7 @@ ms.openlocfilehash: 9906602e0a154c2dc3d6e458179c7e9346df2852
 > 
 > 
 
-這篇文章會引導您使用 Azure 入口網站將站對站 (S2S) 連線新增至具有現有連線的 VPN 閘道。 這種連線通常稱為「多站台」組態。 
-
-您可以使用本篇文章，將 S2S 連線新增至已有 S2S 連線、點對站連線、或 VNet 對 VNet 連線的現有 VNet。 新增連線有一些限制。 開始設定之前，請先閱讀本文的[開始之前](#before)一節。 
+這篇文章會引導您使用 Azure 入口網站將站對站 (S2S) 連線新增至具有現有連線的 VPN 閘道。 這種連線通常稱為「多站台」組態。 您可以將 S2S 連線新增到已經有 S2S 連線、點對站連線或 VNet 對 VNet 連線的 VNet。 新增連線有一些限制。 開始設定之前，請先閱讀本文的[開始之前](#before)一節。 
 
 本文適用於使用具有路由型 VPN 閘道之 Resource Manager 部署模型建立的 VNet。 這些步驟不適用於 ExpressRoute/站台對站並存連線組態。 如需有關並存連線的資訊，請參閱 [ExpressRoute/S2S 並存連線](../expressroute/expressroute-howto-coexist-resource-manager.md)。
 
@@ -41,7 +40,7 @@ ms.openlocfilehash: 9906602e0a154c2dc3d6e458179c7e9346df2852
 
 [!INCLUDE [vpn-gateway-table-multi-site](../../includes/vpn-gateway-table-multisite-include.md)]
 
-## <a name="a-namebeforeabefore-you-begin"></a><a name="before"></a>開始之前
+## <a name="before"></a>開始之前
 請確認下列事項：
 
 * 您尚未建立 ExpressRoute/S2S 並存連線。
@@ -51,29 +50,29 @@ ms.openlocfilehash: 9906602e0a154c2dc3d6e458179c7e9346df2852
 * 您有相容的 VPN 裝置以及能夠對其進行設定的人員。 請參閱 [關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。 如果不熟悉設定 VPN 裝置，或不熟悉位於內部部署網路組態的 IP 位址範圍，則您需要與能夠提供那些詳細資料的人協調。
 * 您的 VPN 裝置有對外開放的公用 IP 位址。 此 IP 位址不能位於 NAT 後方。
 
-## <a name="a-namepart1apart-1---configure-a-connection"></a><a name="part1"></a>第 1 部分 - 設定連線
+## <a name="part1"></a>第 1 部分 - 設定連線
 1. 透過瀏覽器瀏覽至 [Azure 入口網站](http://portal.azure.com) ，並視需要使用您的 Azure 帳戶登入。
 2. 按一下 [所有資源]，在資源清單中找到您的 [虛擬網路閘道]，並按一下它。
 3. 在 [虛擬網路閘道] 刀鋒視窗上，按一下 [連線]。
    
-    ![連接刀鋒視窗](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/connectionsblade.png "Connections blade")<br>
+    ![[連接] 刀鋒視窗](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/connectionsblade.png "Connections blade")<br>
 4. 在 [連線] 刀鋒視窗上，按一下 [+新增]。
    
-    ![新增連線按鈕](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/addbutton.png "Add connection button")<br>
+    ![[加入連接] 按鈕](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/addbutton.png "Add connection button")<br>
 5. 在 [新增連線] 刀鋒視窗中，填寫下列欄位︰
    
    * **名稱︰**為您要建立連線的網站提供名稱。
    * **連線類型：**選取 [站對站 (IPSec)]。
      
-     ![新增連線刀鋒視窗](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/addconnectionblade.png "Add connection blade")<br>
+     ![[加入連接] 刀鋒視窗](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/addconnectionblade.png "Add connection blade")<br>
 
-## <a name="a-namepart2apart-2---add-a-local-network-gateway"></a><a name="part2"></a>第 2 部分 - 新增區域網路閘道
+## <a name="part2"></a>第 2 部分 - 新增區域網路閘道
 1. 按一下 [區域網路閘道] > [選擇區域網路閘道]。 這會開啟 [選擇區域網路閘道] 刀鋒視窗。
    
     ![選擇區域網路閘道](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/chooselng.png "Choose local network gateway")<br>
 2. 按一下 [建立新的] 以開啟 [建立區域網路閘道] 刀鋒視窗。
    
-    ![建立區域網路閘道刀鋒視窗](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/createlngblade.png "Create local network gateway")<br>
+    ![[建立區域網路閘道] 刀鋒視窗](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/createlngblade.png "Create local network gateway")<br>
 3. 在 [建立區域網路閘道] 刀鋒視窗中，填寫下列欄位︰
    
    * **名稱：**您要給區域網路閘道資源的名稱。
@@ -81,23 +80,17 @@ ms.openlocfilehash: 9906602e0a154c2dc3d6e458179c7e9346df2852
    * **位址空間︰**您要路由傳送至新的區域網路網站的位址空間。
 4. 按一下 [建立區域網路閘道] 刀鋒視窗上的 [確定] 儲存變更。
 
-## <a name="a-namepart3apart-3---add-the-shared-key-and-create-the-connection"></a><a name="part3"></a>第 3 部 - 新增共用金鑰並建立連線
+## <a name="part3"></a>第 3 部 - 新增共用金鑰並建立連線
 1. 在 [新增連線] 刀鋒視窗中，新增您想要用來建立連線的共用金鑰。 您可以從您的 VPN 裝置取得共用金鑰，或將此處製作一個，然後設定您的 VPN 裝置使用同一共用金鑰。 重點是金鑰必須完全相同。
    
     ![共用金鑰](./media/vpn-gateway-howto-multi-site-to-site-resource-manager-portal/sharedkey.png "Shared key")<br>
 2. 按一下刀鋒視窗底部的 [確定]  以建立連線。
 
-## <a name="a-namepart4apart-4---verify-the-vpn-connection"></a><a name="part4"></a>第 4 部份︰驗證 VPN 連線
-您可以在入口網站中，或使用 PowerShell 來驗證您的 VPN 連線。
+## <a name="part4"></a>第 4 部份︰驗證 VPN 連線
 
-[!INCLUDE [vpn-gateway-verify-connection-rm](../../includes/vpn-gateway-verify-connection-rm-include.md)]
+
+[!INCLUDE [vpn-gateway-verify-connection-ps-rm](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
-* 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱虛擬機器 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/virtual-machines) 。
 
-
-
-
-<!--HONumber=Nov16_HO3-->
-
-
+一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱虛擬機器 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/virtual-machines) 。

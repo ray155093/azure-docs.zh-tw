@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/03/2017
+ms.date: 04/21/2017
 ms.author: terrylan
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: b16d8607ca0dbb08421b332df11e462267eb80f5
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 68d74cfde8146007930a4c340b7412fca00afc39
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -49,7 +49,7 @@ ms.lasthandoff: 04/03/2017
 
 查看每個建議的詳細資料：
 
-1. 按一下 [資訊安全中心]刀鋒視窗上的 [建議] 磚。 將會開啟 [建議]  刀鋒視窗。
+選取 [資訊安全中心] 刀鋒視窗上的 [建議] 圖格。 將會開啟 [建議]  刀鋒視窗。
 
 系統會以表格格式顯示建議，其中每一行代表一個特定的建議。 這個表格的資料行包括：
 
@@ -98,7 +98,7 @@ ms.lasthandoff: 04/03/2017
 
 您可以篩選並關閉建議。
 
-1. 按一下 [建議] 刀鋒視窗上的 [篩選]。 即會開啟 [篩選]  刀鋒視窗，您可以選取想要查看的嚴重性和狀態值。
+1. 選取 [建議] 刀鋒視窗上的 [篩選]。 即會開啟 [篩選]  刀鋒視窗，您可以選取想要查看的嚴重性和狀態值。
 
     ![篩選建議][2]
 2. 如果您判斷建議不適用，您可解除該建議，然後將它從您的檢視中篩除。 解除建議的方式有兩種。 有一種方式是在項目上按一下滑鼠右鍵，然後選取 [解除] 。 另一種方式是將滑鼠游標暫留在項目上、按一下出現在右邊的三個點，然後選取 [解除] 。 您可以按一下 [篩選]，然後選取 [已解除]，以檢視已解除的建議。

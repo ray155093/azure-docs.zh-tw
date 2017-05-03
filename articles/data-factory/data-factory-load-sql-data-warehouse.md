@@ -12,12 +12,12 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 04/19/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 9e61eeb9ec7895b4f436534a1fd8b2cb608cf613
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: d0aea6ffc04792e7e70a15accf92de05c553ff46
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -139,7 +139,7 @@ ms.lasthandoff: 11/17/2016
 
 1. 輸入 **CopyFromBlobToAzureSqlDataWarehouse** 作為 [工作名稱]
 2. 選取 [立即執行一次] 選項。   
-3. 按一下頁面底部的 [新增] 來單一登入應用程式。  
+3. 按 [下一步] 。  
 
     ![複製精靈 - 屬性頁面](media/data-factory-load-sql-data-warehouse/copy-wizard-properties-page.png)
 
@@ -177,9 +177,7 @@ ms.lasthandoff: 11/17/2016
 
     ![複製精靈 - 資料表對應頁面](media/data-factory-load-sql-data-warehouse/table-mapping-page.png)
 
-4. 接受資料行對應的預設設定，然後按 [下一步]。
-
-    ![複製精靈 - 結構描述對應頁面](media/data-factory-load-sql-data-warehouse/schema-mapping.png)
+4. 在 [結構描述對應] 頁面中，將 [套用資料行對應] 選項保持不選取，然後按 [下一步]。
 
 ## <a name="step-4-performance-settings"></a>步驟 4：效能設定
 

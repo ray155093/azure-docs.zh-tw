@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/02/2017
+ms.date: 04/21/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: 0f6af54b351235390afa88f1ce156abd839a723f
-ms.lasthandoff: 03/03/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: c20f5c39b00992d801909c8e5de292f3c2f12673
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -67,12 +67,12 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 ### <a name="what-do-i-need-to-use-this-approach"></a>使用這個方法時需要什麼？
 * Azure AD 網域名稱。 已列在本文的先決條件中。
 * Azure AD **原生應用程式**
-* Azure AD 原生應用程式的用戶端識別碼
-* Azure AD 原生應用程式的回覆 URI
+* Azure AD 原生應用程式的應用程式識別碼
+* Azure AD 原生應用程式的重新導向 URI
 * 設定委派權限
 
 
-## <a name="step-1-create-an-active-directory-web-application"></a>步驟 1：建立 Active Directory Web 應用程式
+## <a name="step-1-create-an-active-directory-native-application"></a>步驟 1：建立 Active Directory 原生應用程式
 
 建立和設定 Azure AD 原生應用程式，以便使用 Azure Active Directory 以 Azure Data Lake Store 進行使用者驗證。 如需指示，請參閱[建立 Azure AD 應用程式](../azure-resource-manager/resource-group-create-service-principal-portal.md)。
 
@@ -80,9 +80,9 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 
 ![建立 Web 應用程式](./media/data-lake-store-end-user-authenticate-using-active-directory/azure-active-directory-create-native-app.png "建立原生應用程式")
 
-## <a name="step-2-get-client-id-reply-uri-and-set-delegated-permissions"></a>步驟 2︰取得用戶端識別碼、回覆 URI，並設定委派的權限
+## <a name="step-2-get-application-id-and-redirect-uri"></a>步驟 2：取得應用程式識別碼和重新導向 URI
 
-請參閱[取得用戶端識別碼](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)，以擷取 Azure AD 原生應用程式的用戶端識別碼 (也稱為應用程式識別碼)。
+請參閱[取得應用程式識別碼](../azure-resource-manager/resource-group-create-service-principal-portal.md#get-application-id-and-authentication-key)，以擷取 Azure AD 原生應用程式的應用程式識別碼 (在 Azure 傳統入口網站中也稱為用戶端識別碼)。
 
 若要擷取重新導向 URI，請遵循下列步驟。
 
@@ -116,9 +116,10 @@ Azure Data Lake Store 使用 Azure Active Directory 進行驗證。 撰寫搭配
 5. 重複最後兩個步驟，以便將權限也授與 **Windows Azure 服務管理 API**。
    
 ## <a name="next-steps"></a>後續步驟
-在本文中，您已建立 Azure AD Web 應用程式，並收集您使用 .NET SDK、Java SDK 等撰寫的用戶端應用程式中所需的資訊。您現在可以繼續進行下列文章，這些文章說明如何使用 Azure AD Web 應用程式先以 Data Lake Store 進行驗證，然後再於存放區上執行其他作業。
+在本文中，您已建立 Azure AD 原生應用程式，並收集您使用 .NET SDK、Java SDK、REST API 等撰寫之用戶端應用程式中所需的資訊。您現在可以繼續進行下列文章，這些文章說明如何使用 Azure AD Web 應用程式先以 Data Lake Store 進行驗證，然後再於存放區上執行其他作業。
 
 * [使用 .NET SDK 開始使用 Azure Data Lake Store](data-lake-store-get-started-net-sdk.md)
 * [使用 Java SDK 開始使用 Azure Data Lake Store](data-lake-store-get-started-java-sdk.md)
+* [使用 REST API 開始使用 Azure Data Lake Store](data-lake-store-get-started-rest-api.md)
 
 

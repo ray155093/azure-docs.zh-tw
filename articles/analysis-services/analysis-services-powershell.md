@@ -12,12 +12,12 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/28/2017
+ms.date: 04/18/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: c0dd85570f052c4a9651faecbaeb3eaa181f9017
-ms.openlocfilehash: b00b2cf1d3a54bba716d7470643aa1a5e6a58633
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 478703542edeee1b40fb5714c91dd6a75bb17513
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -47,19 +47,21 @@ Azure Analysis Services Cmdlet 包含在 [AzureRM.AnalysisServices](https://www.
 |[Test-AzureRmAnalysisServicesServer](https://docs.microsoft.com/powershell/resourcemanager/azurerm.analysisservices/v3.0.0/test-azurermanalysisservicesserver)|測試伺服器執行個體的存在。| 
 
 ## <a name="database-operations"></a>資料庫作業
-Azure Analysis Services 資料庫作業使用與 SQL Server Analysis Services 相同的 [SQLASCMDLETS](https://msdn.microsoft.com/library/hh758425.aspx) 模組。 不過，Azure Analysis Services 預覽並不支援所有的 Cmdlet。 
+Azure Analysis Services 資料庫作業使用與 SQL Server Analysis Services 相同的 [SQLASCMDLETS](https://msdn.microsoft.com/library/hh758425.aspx) 模組。 不過，Azure Analysis Services 並不支援所有的 Cmdlet。 
 
-SQLASCMDLETS 模組提供特定工作的資料庫管理 Cmdlet，以及接受「表格式模型指令碼語言」(TMSL) 查詢或指令碼的一般用途 Invoke-ASCmd Cmdlet。 Azure Analysis Services 預覽支援在 SQLASCMDLETS 模組中的下列 Cmdlet。
+SQLASCMDLETS 模組提供特定工作的資料庫管理 Cmdlet，以及接受「表格式模型指令碼語言」(TMSL) 查詢或指令碼的一般用途 Invoke-ASCmd Cmdlet。 Azure Analysis Services 支援在 SQLASCMDLETS 模組中的下列 Cmdlet。
   
 |Cmdlet|說明|
 |------------|-----------------| 
 |[Add-RoleMember](https://msdn.microsoft.com/library/hh510167.aspx)|將成員新增到資料庫角色。| 
+|[Backup-ASDatabase](https://docs.microsoft.com/sql/analysis-services/powershell/backup-asdatabase-cmdlet)|備份 Analysis Services 資料庫。|  
 |[Remove-RoleMember](https://msdn.microsoft.com/library/hh510173.aspx)|從資料庫角色移除成員。|   
 |[Invoke-ASCmd](https://msdn.microsoft.com/library/hh479579.aspx)|執行 TMSL 指令碼。|
 |[Invoke-ProcessASDatabase](https://msdn.microsoft.com/library/mt651773.aspx)|處理資料庫。|  
 |[Invoke-ProcessPartition](https://msdn.microsoft.com/library/hh510164.aspx)|處理資料分割。| 
 |[Invoke-ProcessTable](https://msdn.microsoft.com/library/mt651774.aspx)|處理資料表。|  
 |[Merge-Partition](https://msdn.microsoft.com/library/hh479576.aspx)|合併資料分割。|  
+|[Restore-ASDatabase](https://docs.microsoft.com/sql/analysis-services/powershell/restore-asdatabase-cmdlet)|還原 Analysis Services 資料庫。| 
   
 
 ## <a name="related-information"></a>相關資訊

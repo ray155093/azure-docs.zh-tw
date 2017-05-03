@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 04/07/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 566a8d7fc595975e065c5a8a42c7f7c94997821b
-ms.lasthandoff: 04/18/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: d7006a50d35412021f7e475df526661854b23dc8
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 04/18/2017
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="step-1---download-the-sample"></a>步驟 1 - 下載範例
+## <a name="download-the-sample"></a>下載範例
 在此步驟中，您要下載範例 ASP.NET 應用程式。
 
 ### <a name="get-the-sample-project"></a>取得範例專案
@@ -65,7 +65,7 @@ ms.lasthandoff: 04/18/2017
 
 您的資料庫內容會使用名為 `MyDbConnection` 的連接字串。 此連接字串定義於 `Web.config` 中，並在 `Models\MyDatabaseContext.cs` 中加以參考。 當您稍後將 Azure Web 應用程式連接到 Azure SQL Database 時，只需用到此連接字串名稱。 
 
-## <a name="step-2---publish-to-azure-with-sql-database"></a>步驟 2 - 發佈至含有 SQL Database 的 Azure
+## <a name="publish-to-azure-with-sql-database"></a>發佈至含有 SQL Database 的 Azure
 
 在 [方案總管] 中，以滑鼠右鍵按一下 [DotNetAppSqlDb] 專案，然後選取 [發佈]。
 
@@ -168,7 +168,7 @@ Azure Web 應用程式也需要「App Service 方案」。
 
 恭喜！ 您的資料導向 ASP.NET 應用程式正在 Azure App Service 中執行。
 
-## <a name="step-3---access-the-sql-database-locally"></a>步驟 3 - 在本機存取 SQL Database
+## <a name="access-the-sql-database-locally"></a>在本機存取 SQL Database
 
 Visual Studio 可讓您在 [SQL Server 物件總管] 中，輕鬆地探索和管理新的 SQL Database。
 
@@ -204,7 +204,7 @@ Visual Studio 可讓您在 [SQL Server 物件總管] 中，輕鬆地探索和管
 
 ![探索 SQL Database 物件](./media/app-service-web-tutorial-dotnet-sqldatabase/explore-sql-database.png)
 
-## <a name="step-4---update-app-with-code-first-migrations"></a>步驟 4 - 使用 Code First 移轉更新應用程式
+## <a name="update-app-with-code-first-migrations"></a>使用 Code First 移轉更新應用程式
 
 在此步驟中，您將使用 Entity Framework 中的 Code First 移轉來變更資料庫結構描述，然後將它發佈至 Azure。
 
@@ -329,7 +329,7 @@ public ActionResult Create([Bind(Include = "id,Description,CreatedDate,Done")] T
 >
 >
 
-## <a name="step-6---stream-application-logs"></a>步驟 6 - 資料流應用程式記錄
+## <a name="stream-application-logs"></a>資料流應用程式記錄
 
 您可以將追蹤訊息從 Azure Web 應用程式直接資料流處理到 Visual Studio。
 
@@ -389,7 +389,7 @@ Application: 2017-04-06T23:30:54  PID[8132] Verbose     GET /Todos/Index
 
 ![停止記錄資料流](./media/app-service-web-tutorial-dotnet-sqldatabase/stop-streaming.png)
 
-## <a name="step-7---manage-your-azure-web-app"></a>步驟 7 - 管理您的 Azure Web 應用程式
+## <a name="manage-your-azure-web-app"></a>管理您的 Azure Web 應用程式
 
 請移至 Azure 入口網站，以查看您所建立的 Web 應用程式。 
 

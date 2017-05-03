@@ -15,9 +15,9 @@ ms.workload:
 ms.date: 02/13/2017
 ms.author: ruturajd
 translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: c75a3a2477f113f17aab7a3e1969f15a4ec88a02
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 22a86001fe93dcb11e180dbdd75045b49b85b58f
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -37,13 +37,14 @@ ms.lasthandoff: 03/31/2017
 * 主要目標應位於可與處理序伺服器及組態伺服器通訊的網路上。
 * 主要目標的版本必須等於或早於處理序伺服器和組態伺服器的版本。 例如，若組態伺服器的版本是 9.4，則主要目標的版本可以是 9.4 或 9.3，但不能是 9.5。
 * 主要目標只能是 VMware 虛擬機器，不能是實體伺服器。
-* 主要目標必須遵循下列針對大小的指導方針
+
+## <a name="master-target-sizing-guideline"></a>主要目標調整大小方針
+
+主要目標需要透過下列調整大小方針來建立
     * 記憶體：6GB 或更多
-    * OS 磁碟大小：50GB 或更多 (以安裝 CentOS6.6)
+    * OS 磁碟大小：100GB 或更多 (以安裝 CentOS6.6)
     * 用於保留磁碟機的額外磁碟大小：1TB
     * CPU 核心：4 核心或更多
-
-
 
 
 ## <a name="steps-to-deploy-the-master-target-server"></a>主要目標伺服器的部署步驟

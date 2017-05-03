@@ -13,25 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/11/2017
+ms.date: 04/21/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 4448b7209fc777c2aeebe696b7bed87537a4585b
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 3a3734fba72c42ee4e6f14069faf2d3396c06dd1
+ms.lasthandoff: 04/25/2017
 
 
 ---
 # <a name="configure-a-vnet-to-vnet-connection-classic"></a>設定 VNet 對 VNet 連線 (傳統)
 
-將虛擬網路連接至另一個虛擬網路 (VNet 對 VNet)，類似於將 VNet 連接至內部部署網站位置。 這兩種連線類型都使用 VPN 閘道提供使用 IPsec/IKE 的安全通道。 您甚至可以將多網站連線組態與 VNet 對 VNet 通訊結合。 這可讓您建立結合了跨單位連線與內部虛擬網路連線的網路拓撲。
-
-
-![v2v 圖表](./media/vpn-gateway-howto-vnet-vnet-resource-manager-portal/v2vrmps.png)
-
-本文將引導您完成使用傳統部署模型來建立虛擬網路並將虛擬網路連線在一起的步驟。 下列步驟會使用 Azure 入口網站來建立 Vnet 和閘道，以及使用 PowerShell 來設定 VNet 對 VNet 連線。 您無法在入口網站中設定連線。
-
-[!INCLUDE [deployment models](../../includes/vpn-gateway-deployment-models-include.md)] 如果您想要在不同的部署模型之間使用不同的部署模型，或使用不同的部署工具建立一個 VNet 對 VNet 連線，您可以從下列文件下拉式清單中選取一個選項︰
+本文說明如何建立虛擬網路之間的 VPN 閘道連線。 虛擬網路可位於相同或不同的區域，以及來自相同或不同的訂用帳戶。 本文中的步驟適用於傳統部署模型和 Azure 入口網站。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
 
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
@@ -40,24 +33,26 @@ ms.lasthandoff: 04/12/2017
 > * [連線不同的部署模型 - Azure 入口網站](vpn-gateway-connect-different-deployment-models-portal.md)
 > * [連線不同的部署模型 - PowerShell](vpn-gateway-connect-different-deployment-models-powershell.md)
 >
-
-[!INCLUDE [vpn-gateway-vnetpeeringlink](../../includes/vpn-gateway-vnetpeeringlink-include.md)]
+>
 
 ![VNet 對 VNet 連線能力圖表](./media/vpn-gateway-howto-vnet-vnet-portal-classic/v2vclassic.png)
 
-
 ## <a name="about-vnet-to-vnet-connections"></a>關於 VNet 對 VNet 連線
+
 在傳統部署模型中使用 VPN 閘道將一個虛擬網路連線到另一個虛擬網路 (VNet 對 VNet)，類似於將虛擬網路連線到內部部署網站位置。 這兩種連線類型都使用 VPN 閘道提供使用 IPsec/IKE 的安全通道。 
 
 您所連線的 Vnet 可位於不同的訂用帳戶和不同的區域。 您可以將 VNet 對 VNet 通訊與多站台組態結合。 這可讓您建立結合了跨單位連線與內部虛擬網路連線的網路拓撲。
 
+![VNet 對 VNet 連線](./media/vpn-gateway-howto-vnet-vnet-portal-classic/aboutconnections.png)
+
 ### <a name="why-connect-virtual-networks"></a>為什麼要連接虛擬網路？
+
 針對下列原因，您可能希望連接虛擬網路：
 
 * **跨區域的異地備援和異地目前狀態**
   
   * 您可以使用安全連線設定自己的異地複寫或同步處理，而不用查看網際網路對向端點。
-  * 有了 Azure Load Balancer 和 Microsoft 或協力廠商叢集技術，您便可以利用跨多個 Azure 區域的異地備援，設定具有高可用性的工作負載。 其中一個重要的範例就是使用分散在多個 Azure 區域的可用性群組來設定 SQL Always On。
+  * 有了 Azure Load Balancer 和 Microsoft 或第三方叢集技術，您便可以利用跨多個 Azure 區域的異地備援，設定具有高可用性的工作負載。 其中一個重要的範例就是使用分散在多個 Azure 區域的可用性群組來設定 SQL Always On。
 * **具有嚴密隔離界限的區域性多層式應用程式**
   
   * 在相同的區域中，您可以設定既有多個 VNet 相連又有嚴密的隔離及安全的層次間通訊的多層式應用程式。
@@ -68,7 +63,12 @@ ms.lasthandoff: 04/12/2017
 
 如需 VNet 對 VNet 連接的詳細資訊，請參閱本文結尾處的 [VNet 對 VNet 的考量](#faq)。
 
+### <a name="before-you-begin"></a>開始之前
+
+開始本練習之前，請下載並安裝最新版的 Azure 服務管理 (SM) PowerShell Cmdlet。 如需詳細資訊，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 我們使用入口網站來執行大部分的步驟，但是您必須使用 PowerShell 來建立 Vnet 之間的連線。 您無法使用 Azure 入口網站建立連線。
+
 ## <a name="step1"></a>步驟 1 - 規劃 IP 位址範圍
+
 決定將用來設定虛擬網路的範圍相當重要。 就此組態而言，您必須確定沒有任何 VNet 範圍彼此重疊，或是與其連接的區域網路重疊。
 
 下表顯示一個範例，說明如何定義 VNet。 範圍僅供作為指導方針。 請記下您虛擬網路的範圍。 稍後的步驟將會需要這項資訊。
@@ -81,6 +81,7 @@ ms.lasthandoff: 04/12/2017
 | TestVNet4 |TestVNet4<br>(10.41.0.0/16)<br>(10.42.0.0/16) |美國西部 |VNet1Local<br>(10.11.0.0/16)<br>(10.12.0.0/16) |
 
 ## <a name="vnetvalues"></a>步驟 2 - 建立虛擬網路
+
 在 [Azure 入口網站](https://portal.azure.com)中建立兩個虛擬網路。 如需建立傳統虛擬網路的步驟，請參閱[建立傳統虛擬網路](../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。 如果您使用這篇文章作為練習，您可以使用下列範例值：
 
 **TestVNet1 的值**
@@ -116,7 +117,6 @@ GatewaySubnet：10.41.1.0/27
 * **子網路** – 此組態不需要額外的子網路，但是您可能想要讓您的 VM 位於與其他角色執行個體不同的子網路中。
 
 * **DNS 伺服器** – 輸入 DNS 伺服器名稱和 IP 位址。 此設定不會建立 DNS 伺服器。 它可讓您指定要用於此虛擬網路之名稱解析的 DNS 服務。
-
 
 在本節中，您會設定連線類型、本機網站，並建立閘道。 
 
@@ -174,7 +174,7 @@ Azure 會使用每個區域網路站台中指定的設定，來決定如何路�
 1. 在 Azure 入口網站中找到虛擬網路。
 2. 按一下以開啟 VNet [概觀] 刀鋒視窗。 在刀鋒視窗的 [VPN 連線] 中，您可以檢視虛擬網路閘道的 IP 位址。
 
-    ![公用 IP](./media/vpn-gateway-howto-vnet-vnet-portal-classic/publicIP.png)
+  ![公用 IP](./media/vpn-gateway-howto-vnet-vnet-portal-classic/publicIP.png)
 3. 複製 IP 位址。 您在下一節將會用到此位址。
 4. 對 TestVNet4 重複執行這些步驟
 
@@ -183,19 +183,18 @@ Azure 會使用每個區域網路站台中指定的設定，來決定如何路�
 1. 在 Azure 入口網站中找到虛擬網路。
 2. 在 VNet 的 [概觀] 刀鋒視窗中，按一下本機網站。
 
-    ![建立本機網站](./media/vpn-gateway-howto-vnet-vnet-portal-classic/local.png)
+  ![建立本機網站](./media/vpn-gateway-howto-vnet-vnet-portal-classic/local.png)
 3. 在 [站對站 VPN 連線] 刀鋒視窗中，按一下您想要修改之本機網站的名稱。
 
-    ![開啟本機網站](./media/vpn-gateway-howto-vnet-vnet-portal-classic/openlocal.png)
+  ![開啟本機網站](./media/vpn-gateway-howto-vnet-vnet-portal-classic/openlocal.png)
 4. 按一下您想要修改的 [本機網站]。
 
-    ![修改網站](./media/vpn-gateway-howto-vnet-vnet-portal-classic/connections.png)
+  ![修改網站](./media/vpn-gateway-howto-vnet-vnet-portal-classic/connections.png)
 5. 更新 [VPN 閘道 IP 位址]，然後按一下 [確定] 以儲存設定。
 
-    ![閘道 IP](./media/vpn-gateway-howto-vnet-vnet-portal-classic/gwupdate.png)
+  ![閘道 IP](./media/vpn-gateway-howto-vnet-vnet-portal-classic/gwupdate.png)
 6. 關閉其他刀鋒視窗。
 7. 對 TestVNet4 重複執行這些步驟。
-
 
 ## <a name="step-7---retrieve-values-from-the-network-configuration-file"></a>步驟 7 - 從網路組態檔擷取值
 
@@ -207,23 +206,32 @@ Azure 會使用每個區域網路站台中指定的設定，來決定如何路�
 
 2. 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。 使用下列範例來協助您連接：
 
-        Login-AzureRmAccount
+  ```powershell
+  Login-AzureRmAccount
+  ```
 
-    檢查帳戶的訂用帳戶。
+  檢查帳戶的訂用帳戶。
 
-        Get-AzureRmSubscription
+  ```powershell
+  Get-AzureRmSubscription
+  ```
 
-    如果您有多個訂用帳戶，請選取您要使用的訂用帳戶。
+  如果您有多個訂用帳戶，請選取您要使用的訂用帳戶。
 
-        Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+  ```powershell
+  Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+  ```
 
-    接下來，使用下列 Cmdlet，將您的 Azure 訂用帳戶新增到 PowerShell，以供傳統部署模型使用。
+  接下來，使用下列 Cmdlet，將您的 Azure 訂用帳戶新增到 PowerShell，以供傳統部署模型使用。
 
-        Add-AzureAccount
-
+  ```powershell
+  Add-AzureAccount
+  ```
 3. 匯出並檢視網路組態檔。 在您的電腦上建立目錄，然後將網路組態檔匯出到該目錄。 在此範例中，會將網路組態檔匯出到 **C:\AzureNet**。
 
-         Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
+  ```powershell
+  Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
+  ```
 4. 使用文字編輯器開啟檔案，並且檢視 VNet 和網站的名稱。 這些名稱是您建立連線時使用的名稱。<br>VNet 名稱會列為 **VirtualNetworkSite name =**<br>網站名稱會列為 **LocalNetworkSiteRef name =**
 
 ## <a name="step-8---create-the-vpn-gateway-connections"></a>步驟 8 - 建立 VPN 閘道連線
@@ -234,23 +242,26 @@ Azure 會使用每個區域網路站台中指定的設定，來決定如何路�
 
 1. 建立 TestVNet1 至 TestVNet4 的連線。
 
-        Set-AzureVNetGatewayKey -VNetName 'Group ClassicRG TestVNet1' `
-        -LocalNetworkSiteName '17BE5E2C_VNet4Local' -SharedKey A1b2C3D4
-
+  ```powershell
+  Set-AzureVNetGatewayKey -VNetName 'Group ClassicRG TestVNet1' `
+  -LocalNetworkSiteName '17BE5E2C_VNet4Local' -SharedKey A1b2C3D4
+  ```
 2. 建立 TestVNet4 至 TestVNet1 的連線。
 
-        Set-AzureVNetGatewayKey -VNetName 'Group ClassicRG TestVNet4' `
-        -LocalNetworkSiteName 'F7F7BFC7_VNet1Local' -SharedKey A1b2C3D4
-
+  ```powershell
+  Set-AzureVNetGatewayKey -VNetName 'Group ClassicRG TestVNet4' `
+  -LocalNetworkSiteName 'F7F7BFC7_VNet1Local' -SharedKey A1b2C3D4
+  ```
 3. 等待連線初始化。 一旦閘道初始化，其狀態為「成功」。
 
-
-        Error          :
-        HttpStatusCode : OK
-        Id             : 
-        Status         : Successful
-        RequestId      : 
-        StatusCode     : OK
+  ```
+  Error          :
+  HttpStatusCode : OK
+  Id             : 
+  Status         : Successful
+  RequestId      : 
+  StatusCode     : OK
+  ```
 
 ## <a name="faq"></a>傳統 VNet 的 VNet 對 VNet 考量
 * 虛擬網路可位於相同或不同的訂用帳戶。
@@ -265,10 +276,5 @@ Azure 會使用每個區域網路站台中指定的設定，來決定如何路�
 * VNet 的所有 VPN 通道 (包括 P2S VPN) 在 Azure 中皆共用 VPN 閘道的可用頻寬及相同的 VPN 閘道執行時間 SLA。
 * VNet 對 VNet 流量會經過 Azure 的骨幹。
 
-
-
-
 ## <a name="next-steps"></a>後續步驟
 確認您的連線。 [確認 VPN 閘道連線](vpn-gateway-verify-connection-resource-manager.md)。
-
-

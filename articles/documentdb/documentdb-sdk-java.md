@@ -16,9 +16,9 @@ ms.date: 03/16/2017
 ms.author: khdang
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 6e558d2b651b9c50bafa5814a18ad360f7beb2f0
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 40ea65f692d1e2cbc39a6c65b2f8b255282e34cc
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -52,15 +52,15 @@ ms.lasthandoff: 03/25/2017
 
 ## <a name="release-notes"></a>版本資訊
 
-### <a name="a-name11001100httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb1100"></a><a name="1.10.0"/>[1.10.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.10.0)
+### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
 * 已啟用對低至 2,500 RU/秒且以 100 RU/秒遞增量進行調整之資料分割集合的支援。
 * 已修正原生組件中的 Bug，這會在某些查詢中導致 NullRef 例外狀況。
 
-### <a name="a-name196196httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb196"></a><a name="1.9.6"/>[1.9.6](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.6)
+### <a name="a-name196196"></a><a name="1.9.6"/>1.9.6
 * 修正查詢引擎組態中可能對閘道模式中的查詢造成例外狀況的錯誤。
 * 修正工作階段容器中可能在集合建立後立即對要求造成「找不到擁有者資源」例外狀況的幾個錯誤。
 
-### <a name="a-name195195httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb195"></a><a name="1.9.5"/>[1.9.5](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.5)
+### <a name="a-name195195"></a><a name="1.9.5"/>1.9.5
 * 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。 請參閱[彙總支援](documentdb-sql-query.md#Aggregates)。
 * 新增變更摘要的支援。
 * 新增透過 RequestOptions.setPopulateQuotaInfo 收集配額資訊的支援。
@@ -70,7 +70,7 @@ ms.lasthandoff: 03/25/2017
 * 修正當要求率過高時，可能在 HttpContext 中造成 NullReferenceException 的錯誤。
 * 改善 DirectHttps 模式的效能。
 
-### <a name="a-name194194httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb194"></a><a name="1.9.4"/>[1.9.4](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.4)
+### <a name="a-name194194"></a><a name="1.9.4"/>1.9.4
 * 在 ConnectionPolicy.setProxy() API 加入簡單的用戶端執行個體 Proxy 支援。
 * 加入的 DocumentClient.close() API 可正確關閉 DocumentClient 執行個體。
 * 從原生組件 (而不是從閘道) 衍生的查詢計劃利用直接連線模式改善查詢效能。
@@ -78,22 +78,22 @@ ms.lasthandoff: 03/25/2017
 * 重新建構記錄使用 SLF4J。
 * 修正一致性讀取器中的其他幾個 Bug。
 
-### <a name="a-name193193httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb193"></a><a name="1.9.3"/>[1.9.3](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.3)
+### <a name="a-name193193"></a><a name="1.9.3"/>1.9.3
 * 修正連線管理中的 Bug，避免連線在直接連線模式中流失。
 * 修正排名最前的查詢中可能會擲回 NullReferenece 例外狀況的 Bug。
 * 透過減少內部快取的網路呼叫數來增進效能。
 * 在 DocumentClientException 中的 ActivityID 和要求 URI 中加入狀態碼以協助疑難排解。
 
-### <a name="a-name192192httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb192"></a><a name="1.9.2"/>[1.9.2](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.2)
+### <a name="a-name192192"></a><a name="1.9.2"/>1.9.2
 * 修正連線管理中的問題以提供穩定性。
 
-### <a name="a-name191191httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb191"></a><a name="1.9.1"/>[1.9.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.1)
+### <a name="a-name191191"></a><a name="1.9.1"/>1.9.1
 * 新增對 BoundedStaleness 一致性層級的支援。
 * 新增對已分割集合之 CRUD 作業的直接連線支援。
 * 修正以 SQL 查詢資料庫時發生的錯誤。
 * 修正工作階段權杖設定不正確之工作階段快取中的錯誤。
 
-### <a name="a-name190190httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb190"></a><a name="1.9.0"/>[1.9.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.9.0)
+### <a name="a-name190190"></a><a name="1.9.0"/>1.9.0
 * 新增對跨資料分割平行查詢的支援。
 * 新增對已分割集合的 TOP/ORDER BY 查詢支援。
 * 新增對強式一致性的支援。
@@ -103,46 +103,46 @@ ms.lasthandoff: 03/25/2017
 * 新增為異地隔離空間查詢指定集合索引編製原則時的 Polygon 和 LineString 資料類型。
 * 修正適用於 Java 1.8 之 Java Doc 的錯誤。
 
-### <a name="a-name181181httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb181"></a><a name="1.8.1"/>[1.8.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.8.1)
+### <a name="a-name181181"></a><a name="1.8.1"/>1.8.1
 * 修正 PartitionKeyDefinitionMap 中將單一資料分割集合加入快取，而非提出額外擷取資料分割索引鍵要求的錯誤。
 * 修正在提供不正確的資料分割索引鍵時不重試的錯誤。
 
-### <a name="a-name180180httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb180"></a><a name="1.8.0"/>[1.8.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.8.0)
+### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
 * 新增對多重區域資料庫帳戶的支援。
 * 新增在已節流處理的要求上自動重試的支援，方法是提供選項來自訂重試次數上限和等待時間上限。  請參閱 RetryOptions 和 ConnectionPolicy.getRetryOptions()。
 * 已淘汰以 IPartitionResolver 為基礎的自訂分割程式碼。 請針對更高的儲存體和輸送量使用分割集合。
 
-### <a name="a-name171171httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb171"></a><a name="1.7.1"/>[1.7.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.7.1)
+### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
 * 新加入節流的重試原則支援。  
 
-### <a name="a-name170170httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb170"></a><a name="1.7.0"/>[1.7.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.7.0)
+### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
 * 新加入文件的存留時間 (TTL) 支援。
 
-### <a name="a-name160160httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb160"></a><a name="1.6.0"/>[1.6.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.6.0)
+### <a name="a-name160160"></a><a name="1.6.0"/>1.6.0
 * 實作[已分割的集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。
 
-### <a name="a-name151151httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb151"></a><a name="1.5.1"/>[1.5.1](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.5.1)
+### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
 * 修正 HashPartitionResolver 中的錯誤以產生與其他 SDK 一致的 little-endian 雜湊值。
 
-### <a name="a-name150150httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb150"></a><a name="1.5.0"/>[1.5.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.5.0)
+### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
 * 新增「雜湊和範圍」分割區解析程式來協助將應用程式跨多個分割區分區。
 
-### <a name="a-name140140httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb140"></a><a name="1.4.0"/>[1.4.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.4.0)
+### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
 * 實作 Upsert。 已新增新的 upsertXXX 方法以支援 Upsert 功能。
 * 實作以識別碼為基礎的路由。 不需變更公用 API，所有變更皆為內部變更。
 
 ### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
 * 已略過版本以配合其他 SDK 的版本號碼
 
-### <a name="a-name120120httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb120"></a><a name="1.2.0"/>[1.2.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.2.0)
+### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * 支援地理空間索引
 * 驗證所有資源的識別碼屬性。 資源的識別碼不能包含 ?、/、#、\, 字元，或以空格作為結尾。
 * 將新標頭「索引轉換進度」加至 ResourceResponse。
 
-### <a name="a-name110110httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb110"></a><a name="1.1.0"/>[1.1.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.1.0)
+### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 * 實作 V2 索引原則
 
-### <a name="a-name100100httpmvnrepositorycomartifactcommicrosoftazureazure-documentdb100"></a><a name="1.0.0"/>[1.0.0](http://mvnrepository.com/artifact/com.microsoft.azure/azure-documentdb/1.0.0)
+### <a name="a-name100100"></a><a name="1.0.0"/>1.0.0
 * GA SDK
 
 ## <a name="release--retirement-dates"></a>發行和停用日期

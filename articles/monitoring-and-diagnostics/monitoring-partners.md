@@ -12,12 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 2/10/2017
+ms.date: 4/20/2017
 ms.author: johnkem
 translationtype: Human Translation
-ms.sourcegitcommit: 7a3b8c4d373a97db1a1fae4af6d6ee4d8c35d4c4
-ms.openlocfilehash: ae3d9963045749f5487b4baac77e5eacc16ac9fc
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
+ms.openlocfilehash: b2eb107d3d4279b5e2ac0612561f613fdb7ba006
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -91,8 +91,8 @@ ScienceLogic 提供新一代 IT 服務保證平台，可在任何位置管理任
 
 [深入了解。][sciencelogic-doc]
 
-## <a name="splunk-add-on-for-microsoft-cloud-services"></a>Microsoft 雲端服務的 Splunk 附加元件
-Microsoft 雲端服務的 Splunk 附加元件[可在這裡的 Splunkbase 取得](https://splunkbase.splunk.com/app/3110/)。
+## <a name="azure-monitor-add-on-for-splunk"></a>Splunk 適用的 Azure 監視器附加元件
+Splunk 適用的 Azure 監視器附加元件的下載位置：[Splunkbase](https://splunkbase.splunk.com/app/3534/)。
 
 [請移至文件。][splunk-doc]
 
@@ -120,7 +120,7 @@ Sumo Logic 是安全、雲端原生的電腦資料分析服務，能橫跨整個
 [opsgenie-anchor]: #opsgenie "OpsGenie"
 [pagerduty-anchor]: #pagerduty "PagerDuty"
 [sciencelogic-anchor]: #sciencelogic "ScienceLogic"
-[splunk-anchor]: #splunk-add-on-for-microsoft-cloud-services "Splunk"
+[splunk-anchor]: #azure-monitor-add-on-for-splunk "Splunk"
 [sumologic-anchor]: #sumo-logic "Sumo Logic"
 
 <!--Icon references-->
@@ -152,6 +152,6 @@ Sumo Logic 是安全、雲端原生的電腦資料分析服務，能橫跨整個
 [opsgenie-doc]: https://www.opsgenie.com/docs/integrations/azure-integration "OpsGenie 文件。"
 [pagerduty-doc]: https://www.pagerduty.com/docs/guides/azure-integration-guide/ "PagerDuty 文件。"
 [sciencelogic-doc]: https://www.sciencelogic.com/product/technologies/microsoft/azure "ScienceLogic 文件。"
-[splunk-doc]: http://docs.splunk.com/Documentation/AddOns/released/MSCloudServices/About "Splunk 文件。"
+[splunk-doc]: https://github.com/Microsoft/AzureMonitorAddonForSplunk/wiki/Azure-Monitor-Addon-For-Splunk "Splunk 文件。"
 [sumologic-doc]: https://www.sumologic.com/azure "SumoLogic 文件。"
 

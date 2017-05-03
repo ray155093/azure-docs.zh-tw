@@ -16,15 +16,15 @@ ms.workload: na
 ms.date: 03/29/2017
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: a8c4987066e0439f8775d823e91666a006a9fca9
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 872930fd127729e0f444942ad1ee6fa11465ceb9
+ms.lasthandoff: 04/25/2017
 
 
 ---
 # <a name="weather-forecast-using-the-sensor-data-from-your-iot-hub-in-azure-machine-learning"></a>在 Azure Machine Learning 中使用 IoT 中樞的感應器資料進行氣象預報
 
-![感應器、IoT 裝置、IoT 中樞、串流分析作業，Azure 機器學習和 Blob 儲存體之間的連線](media/iot-hub-weather-forecast-machine-learning/1_Connection-azure-machine-learning-iot-hub.png)
+![端對端圖表](media/iot-hub-get-started-e2e-diagram/6.png)
 
 [!INCLUDE [iot-hub-get-started-note](../../includes/iot-hub-get-started-note.md)]
 
@@ -46,7 +46,7 @@ ms.lasthandoff: 04/12/2017
 
 ## <a name="what-you-need"></a>您需要什麼
 
-- 完成[將 ESP8266 連接到 Azure IoT 中樞](iot-hub-arduino-huzzah-esp8266-get-started.md)教學課程，其中涵蓋下列需求：
+- 完成涵蓋下列需求的[設定裝置](iot-hub-raspberry-pi-kit-node-get-started.md)教學課程︰
   - 有效的 Azure 訂用帳戶。
   - 位於您訂用帳戶中的 Azure IoT 中樞。
   - 將訊息傳送到您 Azure IoT 中樞的用戶端應用程式。
@@ -75,16 +75,7 @@ ms.lasthandoff: 04/12/2017
 
 1. 開啟 Excel 活頁簿，請記下 **Web 服務 URL** 和**存取金鑰**。
 
-## <a name="add-a-consumer-group-to-your-iot-hub"></a>將取用者群組新增至 IoT 中樞
-
-應用程式會使用取用者群組從 Azure IoT 中樞讀取資料。 在此課程中，您會建立 Web 服務要使用的取用者群組，以便從 IoT 中樞讀取資料。
-
-若要將取用者群組新增至 IoT 中樞，請遵循下列步驟：
-
-1. 在 [Azure 入口網站](https://ms.portal.azure.com/)中，開啟 IoT 中樞。
-1. 按一下左窗格的 [端點]，選取中間窗格的 [事件]，在右窗格的 [取用者群組] 之下輸入名稱，然後按一下 [儲存]。
-
-   ![將取用者群組新增至 IoT 中樞](media/iot-hub-weather-forecast-machine-learning/6_add-consumer-group-iot-hub-azure.png)
+[!INCLUDE [iot-hub-get-started-create-consumer-group](../../includes/iot-hub-get-started-create-consumer-group.md)]
 
 ## <a name="create-configure-and-run-a-stream-analytics-job"></a>設定、設定及執行串流分析作業
 

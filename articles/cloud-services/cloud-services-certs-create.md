@@ -12,12 +12,12 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/20/2016
+ms.date: 04/19/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 885180e9759d0702d4e0988a7a1b4eb9097d4433
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 7e68a738feff2eb2330b74d942b0a7f42d07df78
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -58,8 +58,10 @@ Azure 所使用的憑證可以包含私密或公開金鑰。 憑證具有指紋�
 * X.509 憑證。
 * 包含一個私密金鑰。
 * 針對金鑰交換 (.pfx 檔案) 而建立。
-* 主體名稱必須符合用來存取雲端服務的網域。 
+* 主體名稱必須符合用來存取雲端服務的網域。
+
     > 您無法取得 cloudapp.net 網域 (或針對任何 Azure 相關網域) 的 SSL 憑證；憑證的主體名稱必須符合用來存取應用程式的自訂網域名稱。 例如，**contoso.net**，而非 **contoso.cloudapp.net**。
+
 * 至少為 2048 位元加密。
 * **僅限服務憑證**：用戶端憑證必須位於 *個人* 憑證存放區。
 
@@ -77,8 +79,7 @@ Export-PfxCertificate -Cert $cert -FilePath ".\my-cert-file.pfx" -Password $pass
 
 > [!NOTE]
 > 如果您想要搭配 IP 位址 (而不是網域) 來使用憑證，請在 -DnsName 參數中使用 IP 位址。
-> 
-> 
+
 
 如果您想要使用這個 [憑證搭配管理入口網站](../azure-api-management-certs.md)，請將它匯出至 **.cer** 檔案：
 
@@ -98,11 +99,6 @@ Export-Certificate -Type CERT -Cert $cert -FilePath .\my-cert-file.cer
 ## <a name="next-steps"></a>後續步驟
 [將服務憑證上傳至 Azure 傳統入口網站](cloud-services-configure-ssl-certificate.md) (或 [Azure 入口網站](cloud-services-configure-ssl-certificate-portal.md))。
 
-將 [管理 API 憑證](../azure-api-management-certs.md) 上傳至 Azure 傳統入口網站。
-
-> [!NOTE]
-> Azure 入口網站不會使用管理憑證存取 API，但是會使用使用者帳戶。
-> 
-> 
+將 [管理 API 憑證](../azure-api-management-certs.md) 上傳至 Azure 傳統入口網站。 Azure 入口網站並不使用管理憑證來進行驗證。
 
 

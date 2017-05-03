@@ -16,9 +16,9 @@ ms.workload: na
 ms.date: 03/20/2017
 ms.author: jlian
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: c69334279e79352e3f7ad58d356f6891dd060b0a
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 539a3e628dfec1088f683652bc9b743b87875d36
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -44,7 +44,7 @@ ms.lasthandoff: 04/03/2017
 
 ### <a name="check-your-subscription-and-access"></a>檢查訂用帳戶和存取權
 
-檢視成本需要[訂用帳戶層級存取權](../active-directory/role-based-access-control-configure.md)，但只有帳戶管理員可以存取[帳戶中心](https://account.windowsazure.com/Home/Index)、變更計費資訊，以及管理訂用帳戶。 帳戶管理員是完成註冊程序的人員。 如需詳細資訊，請參閱[如何新增或變更 Azure 管理員角色](billing-add-change-azure-subscription-administrator.md)。
+檢視成本需要[訂用帳戶層級的計費資訊存取權](billing-manage-access.md)，但只有帳戶管理員可以存取[帳戶中心](https://account.windowsazure.com/Home/Index)、變更計費資訊，以及管理訂用帳戶。 帳戶管理員是完成註冊程序的人員。 如需詳細資訊，請參閱[新增或變更管理訂用帳戶或服務的 Azure 系統管理員角色](billing-add-change-azure-subscription-administrator.md)。
 
 若要查看您是否為帳戶管理員，請前往 [Azure 入口網站中的訂用帳戶刀鋒視窗](https://portal.azure.com/#blade/Microsoft_Azure_Billing/SubscriptionsBlade)並查看您具有存取權的訂用帳戶清單。 查看 [我的角色] 底下。 如果它顯示*帳戶管理員*，那麼您就是帳戶管理員。 如果它顯示諸如*擁有者*之類的其他角色，則表示您沒有完整權限。
 

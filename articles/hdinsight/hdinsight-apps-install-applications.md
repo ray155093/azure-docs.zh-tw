@@ -14,12 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/06/2017
+ms.date: 04/25/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 3b2a18232a9ab8c1b587cfa4fa14ced0c3b515ba
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: cb9753500dc9ed13ef10a757b247b703bc7f1644
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -34,8 +34,8 @@ HDInsight 應用程式是使用者可以在以 Linux 為基礎的 HDInsight 叢�
 * **HDInsight 上的 DATAIKU DDS**：Dataiku DSS (Data Science Studio) 是一套軟體，可讓資料專業人員 (資料科學家、商業分析師、開發人員...) 製作原型、建置及部署非常特定的服務，以將未經處理資料轉換成有影響力的商務預測。
 * **Datameer**： [Datameer](http://www.datameer.com/documentation/display/DAS50/Home?ls=Partners&lsd=Microsoft&c=Partners&cd=Microsoft) 會提供互動方式，讓分析師探索、分析和視覺化巨量資料的結果。 輕鬆拉進其他資料來源，以探索新的關聯性並迅速取得您所需的答案。
 * **適用於 HDInsight 的 Streamsets 資料收集器**提供功能完整的整合式開發環境 (IDE)，可讓您設計、測試、部署和管理任意至任意內嵌管線 (它會協調資料流與批次資料)，並包括各種資料流內轉換，而完全不必撰寫自訂程式碼。 
-* **適用於 HDInsight 的 Cask CDAP 3.5** 提供第一個巨量資料統一整合平台，可減少資料應用程式與 Data Lake 80% 的產出時間。 此應用程式僅支援 Standard HBase 3.4 叢集。
-
+* **適用於 HDInsight 的 Cask CDAP 3.5/4.0/4.1** 提供第一個巨量資料統一整合平台，可減少資料應用程式與 Data Lake 80% 的產出時間。 此應用程式僅支援 Standard HBase 3.4 叢集。
+* **HDInsight (Beta) 的 H2O 人工智慧** H2O Sparkling Water 支援下列分散式演算法︰GLM、Naïve Bayes (貝氏機率分類)、Distributed Random Forest (分散式隨機樹系)、Gradient Boosting Machine (漸層停駐提升機器)、Deep Neural Networks (深度神經網路)、深度學習、K-means、PCA、Generalized Low Rank Models (一般化低順位模型)、異常偵測和 Autoencoder。
 
 本文提供的指示將使用 Azure 入口網站。 您也可以從入口網站匯出 Azure Resource Manager 範本或從廠商取得 Resource Manage 範本的複本，然後使用 Azure PowerShell 和 Azure CLI 來部署範本。  請參閱 [使用 Resource Manager 範本在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-create-linux-clusters-arm-templates.md)。
 

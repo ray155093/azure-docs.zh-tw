@@ -13,31 +13,36 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 1/30/2017
+ms.date: 04/12/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 34148a8fe2fe5b9ebd2ff4a01ff523f7f5a74c67
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: e0c999b2bf1dd38d8a0c99c6cdd4976cc896dd99
+ms.openlocfilehash: 88e653f6e46f3e8eb72e620b495d1769f17bdfbf
+ms.lasthandoff: 04/20/2017
 
 
 ---
 # <a name="datasets-in-azure-data-factory"></a>Azure Data Factory 中的資料集
 本文說明 Azure Data Factory 中的資料集，並包含位移、anchorDateTime 和位移/樣式資料庫等範例。
 
-當您建立資料集時，您會對想要處理的資料建立指標。 資料會在活動中處理 (輸入/輸出)，而活動則包含在管線中。 輸入資料集表示管線中的活動輸入，而輸出資料集表示活動的輸出。
-
-資料集可識別資料表、檔案、資料夾和文件等各種資料存放區中的資料。 建立資料集之後，您可以將其與管線中的活動搭配使用。 例如，資料集可以是複製活動或 HDInsightHive 活動的輸入/輸出資料集。 Azure 入口網站可提供您所有管線和資料的輸入和輸出的視覺化版面配置。 您只需要看一眼，就可以看出管線在所有來源的所有關聯性和相依性，因此能永遠知道資料的來源和目的地。
-
-在 Azure Data Factory 中，您可以使用管線中的複製活動從資料集取得資料。
-
 > [!NOTE]
-> 如果您不熟悉 Azure Data Factory，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md) 以取得 Azure Data Factory 服務的概觀。 如需建立第一個 Data Factory 的教學課程，請參閱 [建置第一個 Data Factory](data-factory-build-your-first-pipeline.md) 。 這兩篇文章提供您進一步了解這篇文章所需的背景資訊。
->
->
+> 如果您不熟悉 Azure Data Factory，請參閱 [Azure Data Factory 簡介](data-factory-introduction.md) 以取得 Azure Data Factory 服務的概觀。 如果您沒有建立 Data Factory 的實作經驗，瀏覽[資料轉換教學課程](data-factory-build-your-first-pipeline.md)和/或[資料移動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)將可協助您進一步了解這篇文章。 
 
-## <a name="define-datasets"></a>定義資料集
-Azure Data Factory 中的資料集定義如下：
+## <a name="overview"></a>概觀
+資料處理站可以有一或多個管線。 「管線」是一起執行某個工作的「活動」所組成的邏輯群組。 管線中的活動會定義要在資料上執行的動作。 例如，您可以使用複製活動將資料從內部部署 SQL Server 複製到「Azure Blob 儲存體」。 接著，使用在 Azure HDInsight 叢集上執行 Hive 指令碼的 Hive 活動，來處理/轉換來自 Blob 儲存體的資料以產生輸出資料。 最後，使用第二個複製活動將輸出資料複製到 Azure SQL 資料倉儲，以在該處建置商業智慧 (BI) 報表解決方案。 如需有關管線和活動的詳細資訊，請參閱 [Azure Data Factory 中的管線及活動](data-factory-create-pipelines.md)。
+
+一個活動可以接受零個或多個輸入「資料集」，並且會產生一個或多個輸出資料集。 輸入資料集表示管線中的活動輸入，而輸出資料集表示活動的輸出。 資料集可識別資料表、檔案、資料夾和文件等各種資料存放區中的資料。 例如，Azure Blob 資料集會指定管線應從中讀取資料之「Azure Blob 儲存體」中的 Blob 容器和資料夾。 
+
+在您建立資料集之前，您必須建立一個「已連結的服務」，以將資料存放區連結到 Data Factory。 已連結的服務非常類似連接字串，可定義 Data Factory 連接到外部資源所需的連線資訊。 資料集可識別已連結的資料存放區內的資料，例如 SQL 資料表、檔案、資料夾及文件。 例如，「Azure 儲存體」已連結服務會將 Azure 儲存體帳戶連結到 Data Factory。 Azure Blob 資料集代表包含要處理之輸入 Blob 的 Blob 容器和資料夾。 
+
+以下是一個範例案例：若要將資料從「Azure Blob 儲存體」複製到 Azure SQL Database，您需建立兩個已連結的服務：「Azure 儲存體」和 Azure SQL Database。 接著，建立兩個資料集：Azure Blob 資料集 (參考「Azure 儲存體」已連結服務)、Azure SQL Table 資料集 (參考 Azure SQL Database 已連結服務)。 「Azure 儲存體」和 Azure SQL Database 已連結服務包含 Data Factory 在執行階段分別用來連接到 Azure 儲存體和 Azure SQL Database 的連接字串。 Azure Blob 資料集會指定包含 Azure Blob 儲存體中輸入 Blob 的 Blob 容器和 Blob 資料夾。 「Azure SQL 資料表」資料集會指定作為資料複製目的地的 Azure SQL Database 中 SQL 資料表。
+
+下圖顯示 Data Factory 中管線、活動、資料集及已連結服務之間的關聯性： 
+
+![管線、活動、資料集、已連結的服務之間的關聯性](media/data-factory-create-datasets/relationship-between-data-factory-entities.png)
+
+## <a name="dataset-json"></a>資料集 JSON
+Azure Data Factory 中的資料集是以 JSON 格式定義如下：
 
 ```json
 {
@@ -72,11 +77,11 @@ Azure Data Factory 中的資料集定義如下：
 | 屬性 | 說明 | 必要 | 預設值 |
 | --- | --- | --- | --- |
 | 名稱 |資料集的名稱。 請參閱 [Azure Data Factory - 命名規則](data-factory-naming-rules.md) ，以了解命名規則。 |是 |NA |
-| 類型 |資料集的類型。 指定 Azure Data Factory 支援的其中一個類型 (例如︰AzureBlob、AzureSqlTable)。 <br/><br/>請參閱 [資料集類型](#Type) 以取得詳細資訊。 |是 |NA |
-| structure |資料集的結構描述<br/><br/>如需詳細資訊，請參閱 [資料集結構](#Structure) 一節。 |編號 |NA |
-| typeProperties |對應至所選類型的屬性。 請參閱 [資料集類型](#Type) 一節，以取得支援的類型及其屬性的詳細資訊。 |是 |NA |
-| external |用來指定資料集是否由 Data Factory 管線明確產生的布林值旗標。 |否 |false |
-| availability |定義處理時間範圍或資料集生產的切割模型。 <br/><br/>如需詳細資訊，請參閱 [資料集可用性](#Availability) 一節。 <br/><br/>如需資料集切割模型的詳細資訊，請參閱 [排程和執行](data-factory-scheduling-and-execution.md) 一文。 |是 |NA |
+| 類型 |資料集的類型。 指定 Azure Data Factory 支援的其中一個類型 (例如︰AzureBlob、AzureSqlTable)。 <br/><br/>如需詳細資料，請參閱[資料集類型](#Type)。 |是 |NA |
+| structure |資料集的結構描述<br/><br/>如需詳細資料，請參閱[資料集結構](#Structure)。 |否。 |NA |
+| typeProperties | 每個類型 (例如：Azure Blob、Azure SQL 資料表) 的類型屬性都不同。 如需有關支援的類型及其屬性的詳細資料，請參閱[資料集類型](#Type)。 |是 |NA |
+| external | 用來指定資料集是否由 Data Factory 管線明確產生的布林值旗標。 如果活動的輸入資料集不是由目前的管線所產生，請將此旗標設定為 true。 請針對管線中第一個活動的輸入資料集，將此旗標設定為 true。  |否 |false |
+| Availability | 定義處理時間範圍 (每小時、每天等) 或用於產生資料集的切割模型。 活動執行取用和產生的每個資料單位稱為資料配量。 如果將輸出資料集的可用性設定為每天 (frequency - Day，interval - 1)，就會每天產生配量。 <br/><br/>如需詳細資料，請參閱[資料集可用性](#Availability)。 <br/><br/>如需資料集切割模型的詳細資訊，請參閱 [排程和執行](data-factory-scheduling-and-execution.md) 一文。 |是 |NA |
 | 原則 |定義資料集配量必須符合的準則或條件。 <br/><br/>如需詳細資訊，請參閱 [資料集原則](#Policy) 一節。 |否 |NA |
 
 ## <a name="dataset-example"></a>資料集範例
@@ -105,8 +110,8 @@ Azure Data Factory 中的資料集定義如下：
 
 * 類型設為 AzureSqlTable。
 * tableName 類型屬性 (針對 AzureSqlTable 類型) 設定為 MyTable。
-* linkedServiceName 係指 AzureSqlDatabase 類型的已連結服務，這是在下列 JSON 程式碼片段中定義。
-* 可用性頻率設為 [天]，間隔設為 1，表示每天產生配量。  
+* linkedServiceName 係指 AzureSqlDatabase 類型的已連結服務，在接下來的 JSON 程式碼片段中將會定義。 
+* availability frequency 是設定為 Day，interval 是設定為 1，表示會每天產生資料集配量。  
 
 AzureSqlLinkedService 定義如下︰
 
@@ -128,18 +133,48 @@ AzureSqlLinkedService 定義如下︰
 * 類型設為 AzureSqlDatabase
 * connectionString 類型屬性會指定連接至 Azure SQL Database 的資訊。  
 
-如您所見，連結服務會定義如何連線到 Azure SQL Database。 資料集會定義哪個資料表可做為管線中活動的輸入/輸出。 您的 [管線](data-factory-create-pipelines.md) JSON 中的 [活動] 區段會指定使用資料集做為輸入或輸出資料集。
+如您所見，連結服務會定義如何連線到 Azure SQL Database。 資料集會定義哪個資料表可做為管線中活動的輸入/輸出。   
 
 > [!IMPORTANT]
-> 除非資料集是由 Azure Data Factory 產生，否則應該標示為 **外部**。 此設定通常會套用至管線中第一個活動的輸入。   
->
->
+> 除非資料集是由管線所產生，否則應該標示為「外部」。 此設定通常會套用至管線中第一個活動的輸入。   
+
 
 ## <a name="Type"></a> 資料集類型
-支援的資料來源和資料集類型會對應。 如需資料集的類型和組態資訊，請參閱 [資料移動活動](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 一文中參照的主題。 例如，如果您使用 Azure SQL Database 中的資料，請在支援的資料存放區清單中按一下 Azure SQL Database 以查看詳細資訊。  
+資料集的類型取決於您所使用的資料存放區。 如需 Data Factory 所支援的資料存放區清單，請參閱下表。 按一下某個資料存放區，即可了解如何為該資料存放區建立已連結的服務和資料集。
+
+[!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
+
+> [!NOTE]
+> 具有 * 的資料存放區可以在內部部署環境或 Azure IaaS 上，並且需要您在內部部署/Azure IaaS 機器上安裝 [資料管理閘道](data-factory-data-management-gateway.md) 。
+
+在上一節的範例中，資料集的類型是設定為 **AzureSqlTable**。 同樣地，針對 Azure Blob 資料集，資料集的類型是設定為 **AzureBlob**，如以下 JSON 所示：
+
+```json
+{
+    "name": "AzureBlobInput",
+    "properties": {
+        "type": "AzureBlob",
+        "linkedServiceName": "AzureStorageLinkedService",
+        "typeProperties": {
+            "fileName": "input.log",
+            "folderPath": "adfgetstarted/inputdata",
+            "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+            }
+        },
+        "availability": {
+            "frequency": "Month",
+            "interval": 1
+        },
+        "external": true,
+        "policy": {}
+    }
+}
+```
 
 ## <a name="Structure"></a>資料集結構
-**structure** 區段是一個「選擇性」區段，用來定義資料集的結構描述。 它包含資料行的名稱和資料類型的集合。 您可以使用 structure 區段來提供用於「類型轉換」的類型資訊，或用於執行「資料行對應」。 在下列範例中，資料集有三個資料行 `slicetimestamp`、`projectname` 及 `pageviews`，類型分別為：String、String 及 Decimal。
+**structure** 區段是一個「選擇性」區段，用來定義資料集的結構描述。 它包含資料行的名稱和資料類型的集合。 您可以使用 structure 區段來提供類型資訊，此資訊會用來轉換類型並將資料行從來源對應到目的地。 在下列範例中，資料集有三個資料行 `slicetimestamp`、`projectname` 及 `pageviews`，類型分別為：String、String 及 Decimal。
 
 ```json
 structure:  
@@ -150,18 +185,18 @@ structure:
 ]
 ```
 
-各資料行包含下列屬性：
+structure 中的每個資料行都包含下列屬性︰
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
 | 名稱 |資料行的名稱。 |是 |
 | 類型 |資料行的資料類型。  |否 |
-| culture |.NET 型文化特性是在已指定類型 (type) 且是 .NET 類型 `Datetime` 或 `Datetimeoffset` 時使用。 預設值為 “en-us”。 |否 |
-| format |格式字串是在已指定類型且是 .NET 類型 `Datetime` 或 `Datetimeoffset` 時使用。 |否 |
+| culture |當類型為 .NET 類型 (`Datetime` 或 `Datetimeoffset`) 時，所要使用的 .NET 型文化特性。 預設值為 `en-us`。 |否 |
+| format |當類型為 .NET 類型 (`Datetime` 或 `Datetimeoffset`) 時，所要使用的格式字串。 |否 |
 
-有關何時要包括 “structure” 資訊以及在**結構**區段中要包含哪些資訊，請遵循下列準則。
+有關何時要包括 “structure” 資訊以及在 **structure** 區段中要包含哪些資訊，請遵循下列準則。
 
-* **針對結構化資料來源**，這類來源會將資料結構描述及類型資訊與資料本身儲存在一起 (例如 SQL Server、Oracle、Azure 資料表等來源)，您應該只有在想要將來源資料行對應至接收器資料行且其名稱不相同時，才指定 “structure” 區段。 
+* **針對結構化資料來源**，這類來源會將資料結構描述及類型資訊與資料本身儲存在一起 (例如 SQL Server、Oracle、Azure 資料表等來源)，請只有在您想要將來源資料行對應到接收資料行且其名稱不相同時，才指定 “structure” 區段。 
   
     由於結構化資料來源已經有可用的類型資訊，因此當您包含 “structure” 區段時，便不應包含類型資訊。
 * **針對在讀取時驗證結構描述 (schema on read) 的資料來源 (具體而言即 Azure Blob)**，您可以選擇儲存資料，而不將任何結構描述或類型資訊與資料儲存在一起。 針對這些類型的資料來源，當您想要將來源資料行與接收資料行對應，或當資料集是複製活動的輸入資料集，並且來源資料集的資料類型必須轉換成接收器的原生類型時，請包含 “structure”。 
@@ -172,7 +207,7 @@ Data Factory 會在將資料從來源資料存放區移到接收資料存放區�
   
 
 ## <a name="Availability"></a> 資料集可用性
-資料集中的 **availability** 區段定義處理時間 (每小時、每天、每週等) 或資料集的切割模型。 如需資料集切割和相依性模型的詳細資訊，請參閱[排程和執行](data-factory-scheduling-and-execution.md)。
+資料集中的 **availability** 區段會定義資料集的處理時間範圍 (每小時、每天、每週等)。 如需有關活動時間範圍的詳細資訊，請參閱[排程和執行](data-factory-scheduling-and-execution.md)。
 
 下列 availability 區段指定輸出資料集是每小時產生 (或) 輸入資料集是每小時可用：
 
@@ -184,18 +219,27 @@ Data Factory 會在將資料從來源資料存放區移到接收資料存放區�
 }
 ```
 
+如果管線有下列開始和結束時間：  
+
+```json
+    "start": "2016-08-25T00:00:00Z",
+    "end": "2016-08-25T05:00:00Z",
+```
+
+輸出資料集會在管線的開始和結束時間內每小時產生。 因此，這個管線會產生五個資料集配量，每個活動時間範圍 (上午 12 點 - 上午 1 點、上午 1 點 - 上午 2 點、上午 2 點 - 上午 3 點、上午 3 點 - 上午 4 點、上午 4 點 - 上午 5 點) 各一個資料集。 
+
 下表描述您可以在 [可用性] 區段中使用的屬性：
 
 | 屬性 | 說明 | 必要 | 預設值 |
 | --- | --- | --- | --- |
 | frequency |指定資料集配量生產的時間單位。<br/><br/><b>支援的頻率</b>：Minute、Hour、Day、Week、Month |是 |NA |
-| interval |指定頻率的倍數<br/><br/>「頻率 x 間隔」會決定產生配量的頻率。<br/><br/>如果您需要以每小時為單位來切割資料集，請將 <b>Frequency</b> 設定為 <b>Hour</b>，將 <b>interval</b> 設定為 <b>1</b>。<br/><br/><b>注意</b>：如果您將 Frequency 指定為 Minute，建議您將 interval 設定為不小於 15 |是 |NA |
+| interval |指定頻率的倍數<br/><br/>「頻率 x 間隔」會決定產生配量的頻率。<br/><br/>如果您需要將資料集以每小時為單位來切割，請將 <b>Frequency</b> 設定為 <b>Hour</b>，將 <b>interval</b> 設定為 <b>1</b>。<br/><br/><b>注意</b>：如果您將 Frequency 指定為 Minute，建議您將 interval 設定為不小於 15 |是 |NA |
 | style |指定是否應該在間隔開始/結束時產生配量。<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>如果 Frequency 設為 Month，style 設為 EndOfInterval，則會在當月最後一天產生配量。 如果 style 設為 StartOfInterval，則會在每月的第一天產生配量。<br/><br/>如果 Frequency 設為 Day，style 設為 EndOfInterval，則會在當天最後一個小時產生配量。<br/><br/>如果 Frequency 設為 Hour，style 設為 EndOfInterval，則會在每小時結束時產生配量。 例如，若為下午 1 – 2 點期間的配量，此配量會在下午 2 點產生。 |否 |EndOfInterval |
-| anchorDateTime |定義排程器用來計算資料集配量界限的時間絕對位置。 <br/><br/><b>注意</b>：如果 AnchorDateTime 有比頻率更細微的日期部分，則系統會忽略那些更細微的部分。 <br/><br/>例如，如果 <b>interval</b> 為 <b>hourly</b> (frequency: hour 且 interval: 1) 而 <b>AnchorDateTime</b> 包含「分鐘和秒鐘」<b></b>，系統便會忽略 AnchorDateTime 的「分鐘和秒鐘」<b></b>部分。 |否 |01/01/0001 |
+| anchorDateTime |定義排程器用來計算資料集配量界限的時間絕對位置。 <br/><br/><b>注意</b>：如果 AnchorDateTime 有比頻率更細微的日期部分，則系統會忽略那些更細微的部分。 <br/><br/>例如，如果 <b>interval</b> 為 <b>hourly</b> (frequency: hour 且 interval: 1) 而且 <b>AnchorDateTime</b> 包含<b>分鐘和秒鐘</b>，則會忽略 AnchorDateTime 的<b>分鐘和秒鐘</b>部分。 |否 |01/01/0001 |
 | Offset |所有資料集配量的開始和結束移位所依據的時間範圍。 <br/><br/><b>注意</b>︰如果同時指定 anchorDateTime 和 offset，結果會是合併的位移。 |否 |NA |
 
 ### <a name="offset-example"></a>位移範例
-於上午 6 點 (而非預設的午夜) 開始的每日配量。
+根據預設，每日 (`"frequency": "Day", "interval": 1`) 配量的開始時間是 UTC 時間上午 12 點 (午夜)。 如果您希望將開始時間改為 UTC 時間上午 6 點，請依照下列程式碼片段所示設定位移： 
 
 ```json
 "availability":
@@ -205,40 +249,27 @@ Data Factory 會在將資料從來源資料存放區移到接收資料存放區�
     "offset": "06:00:00"
 }
 ```
-
-**frequency** 設為 **Day**，**interval** 設為 **1** (一天一次)︰如果您想要在上午 6 點而非預設時間上午 12 點產生配量。 請記住，此時間是 UTC 時間。
-
-## <a name="anchordatetime-example"></a>anchorDateTime 範例
-**範例：** 於 2007-04-19T08:00:00 開始的 23 小時資料集配量
+### <a name="anchordatetime-example"></a>anchorDateTime 範例
+在下列範例中，會每隔 23 小時產生一次資料集。 第一個配量會在 anchorDateTime 所指定的時間開始，這是設定成 `2017-04-19T08:00:00` (UTC 時間)。
 
 ```json
 "availability":    
 {    
     "frequency": "Hour",        
     "interval": 23,    
-    "anchorDateTime":"2007-04-19T08:00:00"    
+    "anchorDateTime":"2017-04-19T08:00:00"    
 }
 ```
 
-## <a name="offsetstyle-example"></a>位移/樣式範例
-如果您需要在特定日期和時間 (假設在每月 3 日上午 8:00) 執行以每月為基礎的資料集，請使用 **位移** 標籤，以設定其應該要執行的日期和時間。
+### <a name="offsetstyle-example"></a>位移/樣式範例
+下列資料集是每月資料集，會在每月 3 號的上午 8:00 (`3.08:00:00`) 產生：
 
 ```json
-{
-  "name": "MyDataset",
-  "properties": {
-    "type": "AzureSqlTable",
-    "linkedServiceName": "AzureSqlLinkedService",
-    "typeProperties": {
-      "tableName": "MyTable"
-    },
-    "availability": {
-      "frequency": "Month",
-      "interval": 1,
-      "offset": "3.08:00:00",
-      "style": "StartOfInterval"
-    }
-  }
+"availability": {
+    "frequency": "Month",
+    "interval": 1,
+    "offset": "3.08:00:00",    
+    "style": "StartOfInterval"
 }
 ```
 
@@ -284,16 +315,39 @@ Data Factory 會在將資料從來源資料存放區移到接收資料存放區�
 
 | 名稱 | 說明 | 必要 | 預設值 |
 | --- | --- | --- | --- |
-| dataDelay |延遲指定配量之外部資料可用性檢查的時間。 例如，如果資料應該每小時可用，則可以使用 dataDelay 來延遲「查看外部資料可用，且對應的配量已就緒」的檢查。<br/><br/>僅適用於目前的時間。  例如，如果現在時間是下午 1:00，且此值是 10 分鐘，驗證就會在下午 1:10 開始。<br/><br/>此設定不會影響過去配量 (配量結束時間 + dataDelay < 現在的配量) 的處理方式而不產生任何延遲。<br/><br/>時間若大於 23:59 小時，則必須使用「日.小時:分:秒」格式指定。 例如，若要指定 24 小時，請不要使用 24:00:00；請改用 1.00:00:00。 如果您使用 24:00:00，這會視同 24 天 (24.00:00:00)。 如為 1 天又 4 小時，請指定 1:04:00:00。 |否 |0 |
-| retryInterval |失敗與下一步重試嘗試之間的等待時間。 適用於當前的時間；如果先前嘗試失敗，我們會在上次嘗試之後等待這麼久。 <br/><br/>如果現在是下午 1:00，我們會開始第一次嘗試。 如果完成第一次驗證檢查的持續時間是 1 分鐘且作業失敗，則下一次重試會在 1:00 + 1 分鐘 (持續時間) + 1 分鐘 (重試間隔) = 1:02pm。 <br/><br/>若是過去的配量，則不會有任何延遲。 重試會立即發生。 |否 |00:01:00 (1 分鐘) |
+| dataDelay |延遲指定配量之外部資料可用性檢查的時間。 例如，如果是每小時有資料可用，則可以使用 dataDelay 來延遲查看「外部資料是否可用，且對應的配量是否已就緒」的檢查。<br/><br/>僅適用於目前的時間。  例如，如果現在時間是下午 1:00，且此值是 10 分鐘，驗證就會在下午 1:10 開始。<br/><br/>此設定不會影響過去配量 (配量結束時間 + dataDelay < 現在的配量) 的處理方式而不產生任何延遲。<br/><br/>時間若大於 23:59 小時，就必須使用 `day.hours:minutes:seconds` 格式來指定。 例如，若要指定 24 小時，請不要使用 24:00:00；請改用 1.00:00:00。 如果您使用 24:00:00，這會視同 24 天 (24.00:00:00)。 如為 1 天又 4 小時，請指定 1:04:00:00。 |否 |0 |
+| retryInterval |失敗與下一步重試嘗試之間的等待時間。 適用於當前的時間；如果上一次嘗試失敗，下一次嘗試將會在 retryInterval 期間之後。 <br/><br/>如果現在是下午 1:00，我們會開始第一次嘗試。 如果完成第一次驗證檢查的持續時間是 1 分鐘且作業失敗，則下一次重試會在 1:00 + 1 分鐘 (持續時間) + 1 分鐘 (重試間隔) = 1:02pm。 <br/><br/>若是過去的配量，則不會有任何延遲。 重試會立即發生。 |否 |00:01:00 (1 分鐘) |
 | retryTimeout |每次重試嘗試的逾時。<br/><br/>如果此屬性設為 10 分鐘，則必須在 10 分鐘內完成驗證。 如果花超過 10 分鐘來執行驗證，則重試會逾時。<br/><br/>如果驗證的所有嘗試都逾時，配量會標示為 TimedOut。 |否 |00:10:00 (10 分鐘) |
 | maximumRetry |檢查外部資料可用性的次數。 允許的最大值為 10。 |否 |3 |
+
+
+## <a name="create-datasets"></a>建立資料集
+您可以使用下列其中一項工具或 SDK 來建立資料集。 
+
+- 複製精靈 
+- Azure 入口網站
+- Visual Studio
+- Azure PowerShell
+- Azure Resource Manager 範本
+- REST API
+- .NET API
+
+如需使用上述其中一項工具或 SDK 來建立管線和資料集的逐步指示，請參閱下列教學課程。
+ 
+- [使用資料轉換活動來建置管線](data-factory-build-your-first-pipeline.md)
+- [使用資料移動活動來建置管線](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+
+建置/部署管線之後，您便可以使用 Azure 入口網站刀鋒視窗或「監視與管理」應用程式，來管理及監視您的管線。 如需逐步指示，請參閱下列主題。 
+
+- [使用 Azure 入口網站刀鋒視窗來監視和管理管線](data-factory-monitor-manage-pipelines.md)
+- [使用監視與管理應用程式來監視和管理管線](data-factory-monitor-manage-app.md)
+
 
 ## <a name="scoped-datasets"></a>範圍資料集
 您可以使用 **datasets** 屬性來建立範圍設定為管線的資料集。 這些資料集只能由此管線中的活動使用，不能由其他管線中的活動使用。 下列範例會定義具有兩個資料集 (InputDataset-rdc 和 OutputDataset-rdc) 的管線，以在管線內使用：  
 
 > [!IMPORTANT]
-> 只有一次性管線 (**pipelineMode** 設為 **OneTime**) 支援範圍資料集。 如需詳細資訊，請參閱 [一次性管線](data-factory-scheduling-and-execution.md#onetime-pipeline) 。
+> 只有單次管線 (將 pipelineMode 設定為 OneTime) 才支援範圍資料集。 如需詳細資訊，請參閱 [一次性管線](data-factory-scheduling-and-execution.md#onetime-pipeline) 。
 >
 >
 
@@ -388,3 +442,6 @@ Data Factory 會在將資料從來源資料存放區移到接收資料存放區�
 }
 ```
 
+## <a name="next-steps"></a>後續步驟
+- 如需有關管線的詳細資訊，請參閱[建立管線](data-factory-create-pipelines.md)一文。 
+- 如需有關管線的排程和執行方式的詳細資訊，請參閱 [Azure Data Factory 中的排程和執行](data-factory-scheduling-and-execution.md)一文。 

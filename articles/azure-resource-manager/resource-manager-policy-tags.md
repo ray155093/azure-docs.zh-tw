@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/30/2017
+ms.date: 04/20/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 6e71fd9eda822478fa0555aa44908a4094fe8de2
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
+ms.openlocfilehash: 04338b62d942774368149b27e8b35713b77f8d7c
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -31,83 +31,53 @@ ms.lasthandoff: 03/31/2017
 
 常見的需求是資源群組中的所有資源都有特定的標籤和值。 通常需要這項需求來依部門追蹤成本。 必須符合下列條件：
 
-* 必要的標籤和值會附加至沒有任何現有標籤的新增和更新的資源。
-* 必要的標籤和值會附加至有其他標籤的新增和更新的資源，但不會附加至必要的標籤和值。
+* 必要的標籤和值會附加至沒有任何標籤的新增和更新的資源。
 * 無法從任何現有的資源移除必要的標籤和值。
 
-將下列三個原則套用至資源群組來完成這項需求︰
+將下列兩個內建原則套用至資源群組來完成這項需求。
 
-* [附加標籤](#append-tag) 
-* [使用其他標籤附加標籤](#append-tag-with-other-tags)
-* [需要標籤和值](#require-tag-and-value)
+| ID | 說明 |
+| ---- | ---- |
+| 2a0e14a6-b0a6-4fab-991a-187a4f81c498 | 使用者未指定時，套用必要的標籤和其預設值。 |
+| 1e30110a-5ceb-460c-a204-c1c3969c6d62 | 強制必要的標籤和其值。 |
 
-### <a name="append-tag"></a>附加標籤
+### <a name="powershell"></a>PowerShell
 
-下列原則規則會在沒有標籤時附加 costCenter 標籤，並且具有預先定義的值：
+下列 PowerShell 指令碼會將兩個內建的原則定義指派給資源群組。 執行指令碼之前，請將所有必要的標籤指派給資源群組。 資源群組中每個標籤對群組中的資源而言都是必要的。 若要指派給您的訂用帳戶中的所有資源群組，取得資源群組時請勿提供 `-Name` 參數。
 
-```json
+```powershell
+$appendpolicy = Get-AzureRmPolicyDefinition | Where-Object {$_.Name -eq '2a0e14a6-b0a6-4fab-991a-187a4f81c498'}
+$denypolicy = Get-AzureRmPolicyDefinition | Where-Object {$_.Name -eq '1e30110a-5ceb-460c-a204-c1c3969c6d62'}
+
+$rgs = Get-AzureRMResourceGroup -Name ExampleGroup
+
+foreach($rg in $rgs)
 {
-  "if": {
-    "field": "tags",
-    "exists": "false"
-  },
-  "then": {
-    "effect": "append",
-    "details": [
-      {
-        "field": "tags",
-        "value": {"costCenter":"myDepartment" }
-      }
-    ]
-  }
-}
-```
-
-### <a name="append-tag-with-other-tags"></a>使用其他標籤附加標籤
-
-下列原則規則會在有標籤 (但未定義 costCenter 標籤) 時附加 costCenter 標籤，並且具有預先定義的值：
-
-```json
-{
-  "if": {
-    "allOf": [
-      {
-        "field": "tags",
-        "exists": "true"
-      },
-      {
-        "field": "tags.costCenter",
-        "exists": "false"
-      }
-    ]
-  },
-  "then": {
-    "effect": "append",
-    "details": [
-      {
-        "field": "tags.costCenter",
-        "value": "myDepartment"
-      }
-    ]
-  }
-}
-```
-
-### <a name="require-tag-and-value"></a>需要標籤和值
-
-下列原則規則會拒絕更新或建立沒有將 costCenter 標籤指派至預先定義值的資源。
-
-```json
-{
-  "if": {
-    "not": {
-      "field": "tags.costCenter",
-      "equals": "myDepartment"
+    $tags = $rg.Tags
+    foreach($key in $tags.Keys){
+        $key 
+        $tags[$key]
+        New-AzureRmPolicyAssignment -Name ("append"+$key+"tag") -PolicyDefinition $appendpolicy -Scope $rg.ResourceId -tagName $key -tagValue  $tags[$key]
+        New-AzureRmPolicyAssignment -Name ("denywithout"+$key+"tag") -PolicyDefinition $denypolicy -Scope $rg.ResourceId -tagName $key -tagValue  $tags[$key]
     }
-  },
-  "then": {
-    "effect": "deny"
-  }
+}
+```
+
+在指派原則之後，您可以對所有現有的資源觸發更新，以強制您加入的標籤原則。 下列指令碼會保留資源中現存的任何其他標籤︰
+
+```powershell
+$group = Get-AzureRmResourceGroup -Name "ExampleGroup" 
+
+$resources = Find-AzureRmResource -ResourceGroupName $group.ResourceGroupName 
+
+foreach($r in $resources)
+{
+    try{
+        $r | Set-AzureRmResource -Tags ($a=if($r.Tags -eq $NULL) { @{}} else {$r.Tags}) -Force -UsePatchSemantics
+    }
+    catch{
+        Write-Host  $r.ResourceId + "can't be updated"
+    }
 }
 ```
 
@@ -150,26 +120,6 @@ ms.lasthandoff: 03/31/2017
   "then" : {
     "effect" : "deny"
   }
-}
-```
-
-## <a name="trigger-updates-to-existing-resources"></a>將更新觸發至現有的資源
-
-下列 PowerShell 指令碼會將更新觸發至現有的資源，以強制執行您已新增的標籤原則。
-
-```powershell
-$group = Get-AzureRmResourceGroup -Name "ExampleGroup" 
-
-$resources = Find-AzureRmResource -ResourceGroupName $group.ResourceGroupName 
-
-foreach($r in $resources)
-{
-    try{
-        $r | Set-AzureRmResource -Tags ($a=if($_.Tags -eq $NULL) { @{}} else {$_.Tags}) -Force -UsePatchSemantics
-    }
-    catch{
-        Write-Host  $r.ResourceId + "can't be updated"
-    }
 }
 ```
 

@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 12/12/2016
 ms.author: amsriva
 translationtype: Human Translation
-ms.sourcegitcommit: e20f7349f30c309059c2867d7473fa6fdefa9b61
-ms.openlocfilehash: d46c87480fd198bf4f09e48f4d2ea838a350190c
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: d42efa7d359f5c87c14afbfd138328b37c8ae6c2
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -45,7 +46,7 @@ ms.openlocfilehash: d46c87480fd198bf4f09e48f4d2ea838a350190c
 * **後端伺服器集區設定：** 每個集區都包括一些設定，例如連接埠、通訊協定和以 Cookie 為基礎的同質性。 這些設定會繫結至集區，並套用至集區內所有伺服器。
 * **前端連接埠：** 此連接埠是在應用程式閘道上開啟的公用連接埠。 流量會到達此連接埠，然後重新導向至其中一個後端伺服器。
 * **接聽程式：** 接聽程式具有前端連接埠、通訊協定 (Http 或 Https，這些值都區分大小寫) 和 SSL 憑證名稱 (如果已設定 SSL 卸載)。 針對啟用多站台功能的應用程式閘道，會一併新增主機名稱和 SNI 指示器。
-* **規則：**規則會繫結接聽程式和後端伺服器集區，並定義流量達到特定接聽程式時應該導向至哪個後端伺服器集區。
+* **規則：**規則會繫結接聽程式和後端伺服器集區，並定義流量達到特定接聽程式時應該導向至哪個後端伺服器集區。 會以規則列出的順序進行處理，且不論精確性，都會透過相符的第一個規則將流量進行導向。 例如，如果您在相同的連接埠上同時使用基本接聽程式的規則和多站台接聽程式的規則，則必須將多站台接聽程式的規則列於基本接聽程式的規則之前，多站台規則才能如預期般運作。
 
 ## <a name="create-an-application-gateway"></a>建立應用程式閘道
 
@@ -281,10 +282,5 @@ DnsSettings              : {
 ## <a name="next-steps"></a>後續步驟
 
 了解如何使用[應用程式閘道 - Web 應用程式防火牆](application-gateway-webapplicationfirewall-overview.md)保護您的網站
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

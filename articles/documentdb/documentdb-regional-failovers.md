@@ -16,9 +16,9 @@ ms.date: 02/09/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 4af4d30a3378e1aea66309a1d757be1c1da2ea0d
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: e23c5849cb89d0d72052e3ebaace14a55f9c6f71
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -28,7 +28,7 @@ Azure DocumentDB 會簡化資料的全球發佈作業，方法是提供多個可
 Azure DocumentDB 支援明確和原則導向的容錯移轉，可讓您控制在失敗發生時的端對端系統行為。 我們將在本文中說明：
 
 * DocumentDB 的手動容錯移轉如何運作？
-* DocumentDB 的自動容錯移轉如何運作？
+* 自動容錯移轉在 DocumentDB 中如何運作，以及當資料中心當機時會發生什麼情況？
 * 如何在應用程式架構中使用手動容錯移轉？
 
 您也可以在這段 Azure Friday 影片中，和 Scott Hanselman 與工程總經理 Karthik Raman 一起了解區域容錯移轉。
@@ -72,7 +72,7 @@ Azure DocumentDB 支援明確和原則導向的容錯移轉，可讓您控制在
 現在，我們來看一下 DocumentDB 服務如何透過自動容錯移轉處理區域失敗。 
 
 ## <a id="AutomaticFailovers"></a>自動容錯移轉
-發生 Azure 區域中斷這類罕見事件時，DocumentDB 會自動觸發受影響區域中出現的所有 DocumentDB 帳戶的容錯移轉。 
+當發生 Azure 區域性中斷或資料中心中斷這類罕見事件時，DocumentDB 會自動觸發存在於受影響區域中所有 DocumentDB 帳戶的容錯移轉。 
 
 **如果讀取區域中斷會發生什麼事？**
 
@@ -112,7 +112,7 @@ DocumentDB 帳戶的讀取區域若在其中一個受影響區域中，會自動
 
 **服務更新**︰某些分散在世界各地的應用程式部署，可能會在其規劃的服務更新期間透過流量管理員將流量重新路由至其他區域。 現在，這類應用程式部署可以使用手動容錯移轉，將寫入狀態保持為在服務更新期間即將有活躍流量的區域。
 
-**商務持續性和災害復原 (BCDR) 鑽研**︰大部分的企業應用程式會將商務持續性測試納入其開發和發行程序。 BCDR 測試通常是合規性認證以及區域性中斷時服務可用性保證的重要步驟。 您可以針對使用 DocumentDB 做為儲存體的應用程式測試 BCDR 完備性，做法是觸發 DocumentDB 帳戶的手動容錯移轉，及/或動態新增並移除區域。
+**商務持續性和災害復原 (BCDR) 及高可用性和災害復原 (HADR) 演練**︰大多數企業應用程式都會將商務持續性測試納入其開發和發行程序。 BCDR 和 HADR 測試通常是合規性認證及發生區域性中斷時保證服務可用性的重要步驟。 您可以針對使用 DocumentDB 做為儲存體的應用程式測試 BCDR 完備性，做法是觸發 DocumentDB 帳戶的手動容錯移轉，及/或動態新增並移除區域。
 
 在本文中，我們看了在 Azure DocumentDB 中手動和自動容錯移轉如何運作，以及如何將 DocumentDB 帳戶和應用程式設定為可全域使用。 使用 Azure DocumentDB 的全域複寫支援，可以改善端對端延遲，並確保其即使是在區域失敗時仍有高可用性。 
 

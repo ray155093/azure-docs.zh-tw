@@ -1,9 +1,9 @@
 ---
-title: "在 Azure 中使用虛擬機器擴展集建立高可用性應用程式 | Microsoft Docs"
-description: "在 Linux VM 上使用虛擬機器擴展集和 Azure CLI，建立及部署高可用性應用程式。"
+title: "在 Azure 中建立 Linux 的虛擬機器擴展集 | Microsoft Docs"
+description: "在 Linux VM 上使用虛擬機器擴展集，建立及部署高可用性應用程式。"
 services: virtual-machine-scale-sets
 documentationcenter: 
-author: Thraka
+author: iainfoulds
 manager: timlt
 editor: 
 tags: 
@@ -13,33 +13,33 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: azurecli
 ms.topic: article
-ms.date: 04/05/2017
-ms.author: adegeo
+ms.date: 04/18/2017
+ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 4c76fb202f501f671504646395b800aeb90d8e69
-ms.lasthandoff: 04/07/2017
+ms.sourcegitcommit: e0bfa7620feeb1bad33dd2fe4b32cb237d3ce158
+ms.openlocfilehash: 73167924f95c8cea0ac3cb4651cb3571fb24cc01
+ms.lasthandoff: 04/21/2017
 
 ---
 
-# <a name="create-a-highly-available-application-on-linux-with-virtual-machine-scale-sets"></a>在 Linux 中使用虛擬機器擴展集建立高可用性應用程式
-本教學課程示範如何在虛擬機器擴展集中建立高可用性應用程式。 您也會了解如何自動化擴展集中的虛擬機器組態。 
+# <a name="create-a-virtual-machine-scale-set-and-deploy-a-highly-available-app-on-linux"></a>在 Linux 上建立虛擬機器擴展集及部署高可用性應用程式
+在本教學課程中，您會了解 Azure 中的虛擬機器擴展集如何讓您快速地擴展執行您應用程式的虛擬機器 (VM) 數目。 虛擬機器擴展集可讓您部署和管理一組相同、自動調整的虛擬機器。 您可以手動調整擴展集中的 VM 數目，或定義規則以根據 CPU 使用量、記憶體需求或網路流量自動調整。 若要查看作用中的虛擬機器擴展集，您可建置在多部 Linux VM 上執行的 Node.js 應用程式。
+
+您可以使用最新的 [Azure CLI 2.0](/cli/azure/install-azure-cli) 來完成本教學課程中的步驟。
 
 
-## <a name="step-1---create-a-resource-group"></a>步驟 1 - 建立資源群組
-若要完成本教學課程，請確定您已安裝最新的 [Azure CLI 2.0](/cli/azure/install-azure-cli)。 如果您尚未登入 Azure 訂用帳戶，請使用 [az login](/cli/azure/#login) 進行登入並遵循螢幕上的指示。
+## <a name="scale-set-overview"></a>擴展集概觀
+虛擬機器擴展集可讓您部署和管理一組相同、自動調整的虛擬機器。 擴展集使用的元件，與您在[建立高可用性 VM](tutorial-availability-sets.md) 的先前教學課程中所學習到的元件相同。 擴展集中的 VM 會建立於可用性設定組中並分散於邏輯容錯網域和更新網域。
 
-使用 [az group create](/cli/azure/group#create) 來建立資源群組。 下列範例會在 `westus` 位置建立名為 `myResourceGroupVMSS` 的資源群組：
+VM 會視需要建立於擴展集中。 您可以定義自動調整規則，以控制如何及何時新增或移除擴展集中的 VM。 您可以根據計量 (例如 CPU 負載、記憶體使用量或網路流量) 觸發這些規則。
 
-```azurecli
-az group create --name myResourceGroupVMSS --location westus
-```
+當您使用 Azure 平台映像時，擴展集可支援多達 1,000 部 VM。 對於生產工作負載，您可以[建立自訂 VM 映像](tutorial-custom-images.md)。 使用自訂映像時，您可以在擴展集中建立多達 100 部 VM。
 
 
-## <a name="step-2---define-your-app"></a>步驟 2 - 定義您的應用程式
-您使用的 **cloud-init** 組態，與建立高可用性、負載平衡應用程式的教學課程組態相同。 如需有關使用 **cloud-init** 的詳細資訊，請參閱[在建立期間使用 cloud-init 自訂 Linux VM](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+## <a name="create-an-app-to-scale"></a>建立要調整的應用程式
+為了提供生產環境使用，您可以[建立自訂 VM 映像](tutorial-custom-images.md)，其中包含已安裝和設定的應用程式。 在本教學課程中，我們會在首次開機時自訂 VM，以便快速查看作用中擴展集。
 
-建立名為 `cloud-init.txt` 的檔案並貼上下列組態︰
+在先前的教學課程中，您已了解使用 cloud-init [如何在首次開機時自訂 Linux 虛擬機器](tutorial-automate-vm-deployment.md)。 您可以使用相同的 cloud-init 組態檔來安裝 NGINX 和執行簡單的 'Hello World' Node.js 應用程式。 建立名為 `cloud-init.txt` 的檔案並貼上下列組態︰
 
 ```yaml
 #cloud-config
@@ -76,7 +76,7 @@ write_files:
         console.log('Hello world app listening on port 3000!')
       })
 runcmd:
-  - nginx -s reload
+  - service nginx restart
   - cd "/home/azureuser/myapp"
   - npm init
   - npm install express -y
@@ -84,16 +84,18 @@ runcmd:
 ```
 
 
-## <a name="step-3---create-scale-set"></a>步驟 3 - 建立擴展集
-虛擬機器擴展集可讓您部署和管理一組相同、自動調整的虛擬機器。 擴展集使用的元件，與[在 Azure 上建置高可用性應用程式](tutorial-load-balance-nodejs.md)教學課程中所學習到的元件相同。 這些元件包括可用性設定組、容錯網域和更新網域，以及負載平衡器。
+## <a name="create-a-scale-set"></a>建立擴展集
+請先使用 [az group create](/cli/azure/group#create) 建立資源群組，才可以建立擴展集。 下列範例會在 `westus` 位置建立名為 `myResourceGroupScaleSet` 的資源群組：
 
-使用擴展集，會為您建立和管理這些資源。 擴展集中的 VM 數目可以根據定義規則自動增加或減少。 您可以[使用自訂映像](capture-image.md)作為虛擬機器的來源，或者如本教學課程所示，在部署期間使用 **cloud-init**來設定 VM。
+```azurecli
+az group create --name myResourceGroupScaleSet --location westus
+```
 
-使用 [az vmss create](/cli/azure/vmss#create) 建立虛擬機器擴展集。 下列範例會建立名為 `myScaleSet` 的擴展集：
+現在使用 [az vmss create](/cli/azure/vmss#create) 建立虛擬機器擴展集。 下列範例會建立名為 `myScaleSet` 的擴展集，使用 cloud-int 檔案來自訂 VM，以及產生 SSH 金鑰 (如果不存在)︰
 
 ```azurecli
 az vmss create \
-  --resource-group myResourceGroupVMSS \
+  --resource-group myResourceGroupScaleSet \
   --name myScaleSet \
   --image Canonical:UbuntuServer:14.04.4-LTS:latest \
   --upgrade-policy-mode automatic \
@@ -105,12 +107,14 @@ az vmss create \
 建立及設定所有擴展集資源和 VM 需要幾分鐘的時間。
 
 
-## <a name="step-4---configure-firewall"></a>步驟 4 - 設定防火牆
-負載平衡器會自動建立，作為虛擬機器擴展集的一部分。 負載平衡器會使用負載平衡器規則，將流量分散於一組定義的 VM。 若要允許流量觸達 Web 應用程式，使用 [az network lb probe create](/cli/azure/network/lb/probe#create)建立規則。 下列範例會建立名為 `myLoadBalancerRuleWeb` 的規則：
+## <a name="allow-web-traffic"></a>允許 Web 流量
+負載平衡器會自動建立，作為虛擬機器擴展集的一部分。 負載平衡器會使用負載平衡器規則，將流量分散於一組定義的 VM。 您可以在下一個教學課程[如何平衡 Azure 中虛擬機器的負載](tutorial-load-balancer.md)中，深入了解負載平衡器的概念和設定。
+
+若要允許流量觸達 Web 應用程式，請使用 [az network lb rule create](/cli/azure/network/lb/rule#create) 建立規則。 下列範例會建立名為 `myLoadBalancerRuleWeb` 的規則：
 
 ```azurecli
 az network lb rule create \
-  --resource-group myResourceGroupVMSS \
+  --resource-group myResourceGroupScaleSet \
   --name myLoadBalancerRuleWeb \
   --lb-name myScaleSetLB \
   --backend-pool-name myScaleSetLBBEPool \
@@ -120,12 +124,12 @@ az network lb rule create \
   --protocol tcp
 ```
 
-## <a name="step-5---test-your-app"></a>步驟 5 - 測試應用程式
-使用 [az network public-ip show](/cli/azure/network/public-ip#show) 取得負載平衡器的公用 IP 位址。 下列範例會取得建立作為擴展集一部分之 `myScaleSetLBPublicIP` 的 IP 位址︰
+## <a name="test-your-app"></a>測試應用程式
+若要查看 Web 上的 Node.js 應用程式，請使用 [az network public-ip show](/cli/azure/network/public-ip#show) 取得負載平衡器的公用 IP 位址。 下列範例會取得建立作為擴展集一部分之 `myScaleSetLBPublicIP` 的 IP 位址︰
 
 ```azurecli
 az network public-ip show \
-    --resource-group myResourceGroupVMSS \
+    --resource-group myResourceGroupScaleSet \
     --name myScaleSetLBPublicIP \
     --query [ipAddress] \
     --output tsv
@@ -133,19 +137,52 @@ az network public-ip show \
 
 在 Web 瀏覽器中輸入公用 IP 位址。 應用程式隨即顯示，包括負載平衡器分散流量之 VM 的主機名稱︰
 
-![執行 Node.js 應用程式](./media/tutorial-load-balance-nodejs/running-nodejs-app.png)
+![執行 Node.js 應用程式](./media/tutorial-create-vmss/running-nodejs-app.png)
 
-強制重新整理您的 Web 瀏覽器，以查看負載平衡器如何將流量分散於執行應用程式之擴展集中的所有 VM。
+若要查看作用中的擴展集，請強制重新整理您的 Web 瀏覽器，以查看負載平衡器如何將流量分散於執行應用程式的所有 VM。
 
 
-## <a name="step-6---management-tasks"></a>步驟 6 - 管理工作
+## <a name="management-tasks"></a>管理工作
 在擴展集生命週期中，您可能需要執行一或多個管理工作。 此外，您可以建立指令碼來自動化各種生命週期工作。 Azure CLI 2.0 提供快速的方式來執行這些工作。 以下是一些常見工作。
 
-### <a name="increase-or-decrease-vm-instances"></a>增加或減少 VM 執行個體
-您可以使用 [az vmss scale](/cli/azure/vmss#scale)，增加或減少擴展集中虛擬機器的數目。 下列範例會將擴展集中 VM 的數目增加為 `5`：
+### <a name="view-vms-in-a-scale-set"></a>檢視擴展集中的 VM
+若要檢視在擴展集中執行的 VM 清單，請使用 [az vmss list-instances](/cli/azure/vmss#list-instances)，如下所示︰
 
 ```azurecli
-az vmss scale --resource-group myResourceGroupVMSS --name myScaleSet --new-capacity 5
+az vmss list-instances \
+  --resource-group myResourceGroupScaleSet \
+  --name myScaleSet \
+  --output table
+```
+
+輸出類似於下列範例：
+
+```azurecli
+  InstanceId  LatestModelApplied    Location    Name          ProvisioningState    ResourceGroup            VmId
+------------  --------------------  ----------  ------------  -------------------  -----------------------  ------------------------------------
+           1  True                  westus      myScaleSet_1  Succeeded            MYRESOURCEGROUPSCALESET  c72ddc34-6c41-4a53-b89e-dd24f27b30ab
+           3  True                  westus      myScaleSet_3  Succeeded            MYRESOURCEGROUPSCALESET  44266022-65c3-49c5-92dd-88ffa64f95da
+```
+
+
+### <a name="increase-or-decrease-vm-instances"></a>增加或減少 VM 執行個體
+若要查看擴展集中目前擁有的執行個體數目，請使用 [az vmss show](/cli/azure/vmss#show) 並查詢 `sku.capacity`：
+
+```azurecli
+az vmss show \
+    --resource-group myResourceGroupScaleSet \
+    --name myScaleSet \
+    --query [sku.capacity] \
+    --output table
+```
+
+然後，您可以使用 [az vmss scale](/cli/azure/vmss#scale)，手動增加或減少擴展集中的虛擬機器數目。 下列範例會將擴展集中的 VM 數目設定為 `5`：
+
+```azurecli
+az vmss scale \
+    --resource-group myResourceGroupScaleSet \
+    --name myScaleSet \
+    --new-capacity 5
 ```
 
 自動調整規則可讓您定義如何在擴展集中相應增加或相應減少 VM 的數目，以回應例如網路流量或 CPU 使用率的需求。 目前，無法在 Azure CLI 2.0 中設定這些規則。 使用 [Azure 入口網站](https://portal.azure.com)以設定自動調整。
@@ -154,22 +191,12 @@ az vmss scale --resource-group myResourceGroupVMSS --name myScaleSet --new-capac
 若要取得擴展集中 VM 的相關連線資訊，請使用 [az vmss list-instance-connection-info](/cli/azure/vmss#list-instance-connection-info)。 此命令會輸出每部 VM 的公用 IP 位址和連接埠，可讓您與 SSH 連線︰
 
 ```azurecli
-az vmss list-instance-connection-info --resource-group myResourceGroupVMSS --name myScaleSet
-```
-
-### <a name="delete-resource-group"></a>刪除資源群組
-刪除資源群組同時會刪除其內含的所有資源。
-
-```azurecli
-az group delete --name myResourceGroupVMSS
+az vmss list-instance-connection-info --resource-group myResourceGroupScaleSet --name myScaleSet
 ```
 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，我們使用 **cloud-init** 定義 Web 應用程式，並且在部署期間設定每部 VM。 如需擷取 VM 來作為擴展集中來源映像的詳細資訊，請參閱[如何一般化和擷取 Linux 虛擬機器](capture-image.md)。
+在本教學課程中，您已了解如何建立虛擬機器擴展集。 請前進到下一個教學課程，以深入了解虛擬機器的負載平衡概念。
 
-若要深入了解本教學課程中介紹的虛擬機器擴展集功能，請參閱下列資訊︰
+[平衡虛擬機器的負載](tutorial-load-balancer.md)
 
-- [Azure 虛擬機器擴展集概觀](../../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md)
-- [Azure 負載平衡器概觀](../../load-balancer/load-balancer-overview.md)
-- [使用網路安全性群組來控制網路流量](../../virtual-network/virtual-networks-nsg.md)

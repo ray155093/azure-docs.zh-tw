@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/30/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: fd15cbc8f6efa788ddaeaee4ab39ce1410c4be5a
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 3a2166fefc8d0b1602562b753e0413be458fae98
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -141,6 +141,8 @@ GET /subscriptions/{id}/providers?$expand=resourceTypes/aliases&api-version=2015
 ```
 
 ## <a name="powershell"></a>PowerShell
+
+繼續 PowerShell 範例之前，請確定您已[安裝最新版](/powershell/azure/install-azurerm-ps)的 Azure PowerShell。 原則參數是於 3.6.0 版中加入。 如果您使用舊版本，範例會傳回找不到參數的錯誤。
 
 ### <a name="create-policy-definition"></a>建立原則定義
 您可以使用 `New-AzureRmPolicyDefinition` cmdlet 建立原則定義。 以下範例會建立一個原則定義，只允許北歐和西歐中的資源。

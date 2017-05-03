@@ -1,10 +1,10 @@
 ---
-title: "Azure AD Connect：單一登入 | Microsoft Docs"
-description: "本主題提供您所需資訊，以讓您了解如何使用單一登入從內部部署 Active Directory (AD) 同步處理登入至雲端式 Azure Active Directory (Azure AD) 和已連線服務。"
+title: "Azure AD Connect：順暢單一登入 | Microsoft Docs"
+description: "本主題描述 Azure Active Directory (Azure AD) 的順暢單一登入，以及它如何讓您為公司網路內部的公司桌面使用者，提供真正的單一登入。"
 services: active-directory
 keywords: "何謂 Azure AD Connect、安裝 Active Directory、Azure AD、SSO、單一登入的必要元件"
 documentationcenter: 
-author: billmath
+author: swkrish
 manager: femila
 ms.assetid: 9f994aca-6088-40f5-b2cc-c753a4f41da7
 ms.service: active-directory
@@ -12,32 +12,43 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/15/2017
+ms.date: 04/21/2017
 ms.author: billmath
 translationtype: Human Translation
-ms.sourcegitcommit: e208b2bf861d698901b287458a3969e833540e44
-ms.openlocfilehash: f8f67af3cb6adb333924714bd758609b950845af
-ms.lasthandoff: 02/17/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 294a7b7de5c0a95f9f0784f315f202ae2c062e57
+ms.lasthandoff: 04/22/2017
 
 ---
 
-# <a name="what-is-single-sign-on-sso-preview"></a>何謂單一登入 (SSO) (預覽)
-單一登入是可在 Azure Active Directory Connect 中使用[密碼同步處理](active-directory-aadconnectsync-implement-password-synchronization.md)或[傳遞驗證](active-directory-aadconnect-pass-through-authentication.md)啟用的一個選項。 啟用之後，當使用者在他們的公司電腦上且已經連線至公司網路時，只需要輸入其使用者名稱，不需要輸入密碼就能登入 Azure Active Directory (Azure AD) 或其他雲端服務。
+# <a name="azure-active-directory-seamless-single-sign-on"></a>Azure Active Directory 順暢單一登入
 
-![單一登入](./media/active-directory-aadconnect-sso/sso1.png)
+## <a name="what-is-azure-active-directory-seamless-single-sign-on"></a>何謂 Azure Active Directory 順暢單一登入？
 
-透過為使用者提供 SSO，來提供更熟悉的雲端式服務存取方式，並為組織提供安全、簡單，且不需要任何其他內部部署元件的程序。
+Azure Active Directory 順暢單一登入 (Azure AD 順暢 SSO) 可以為使用者提供真正的單一登入，讓他們登入到已連線到公司網路的公司電腦。 當此功能啟用時，使用者不需要輸入密碼就能登入 Azure AD，而且在大部分情況下，甚至也不用輸入其使用者名稱。 這項功能可讓使用者輕鬆存取雲端架構服務，而不需要任何額外的內部部署元件。
 
-SSO 是一個透過 Azure AD Connect 啟用的功能，且會和密碼同步處理或傳遞驗證及您的內部部署 Active Directory 搭配運作。 若要讓您的使用者在您的環境中使用單一登入，您需要確定使用者：
+順暢 SSO 可以透過 Azure AD Connect 來啟用，並可與[密碼同步處理](active-directory-aadconnectsync-implement-password-synchronization.md)或[傳遞驗證](active-directory-aadconnect-pass-through-authentication.md)結合。
 
-- 在已加入網域的電腦上
-- 能夠直接連線至網域控制站，例如在企業有線或無線網路上，或透過遠端存取連線 (例如 VPN 連線) 連線。
-- 將雲端的 Kerberos 端點定義為瀏覽器內部網路區域的一部分。
+>[!NOTE]
+>這項功能不適用於 Active Directory Federation Services (ADFS)，因為 ADFS 已提供這項功能。
 
-如果少了上述任何一個需求 (例如電腦沒有位於公司網路)，將會提示使用者輸入他們的密碼，就像在沒有使用單一登入時一樣。
+若要為特定使用者啟用這項功能，您必須符合下列條件︰
 
-## <a name="supported-clients"></a>支援的用戶端
-單一登入是透過能夠使用 Kerberos 驗證的電腦 (例如 Windows) 上，支援[新式驗證](https://aka.ms/modernauthga)的 Web 瀏覽器型用戶端和支援 Office 用戶端來支援。 下面的矩陣提供多種作業系統上瀏覽器架構用戶端的詳細資料。
+- 使用者是在公司桌面上登入。
+- 桌面先前已加入您的 Active Directory (AD) 網域。
+- 桌面能夠直接連線至網域控制站 (DC)，不論是在公司的有線或無線網路上進行，還是透過遠端存取連線 (例如 VPN 連線) 來進行。
+- 您已將我們的服務端點納入到瀏覽器的內部網路區域。
+
+如果上述條件有任何一個未能符合，系統就會如往常一樣，提示使用者輸入其使用者名稱和密碼。
+
+![順暢單一登入](./media/active-directory-aadconnect-sso/sso1.png)
+
+## <a name="whats-available-during-preview"></a>預覽期間有什麼可用功能？
+
+>[!NOTE]
+>Azure AD 順暢 SSO 目前為預覽狀態。 這是免費功能，您不需要任何付費的 Azure AD 版本即可使用。
+
+順暢 SSO 是透過能夠使用 Kerberos 驗證的桌面 (例如 Windows 架構機器) 上，支援[新式驗證](https://aka.ms/modernauthga)的 Web 瀏覽器型用戶端和 Office 用戶端來支援。 下面的矩陣提供多種作業系統上瀏覽器架構用戶端的詳細資料。
 
 | 作業系統\瀏覽器 |Internet Explorer|Chrome|Firefox|Edge
 | --- | --- |--- | --- | --- |
@@ -45,97 +56,105 @@ SSO 是一個透過 Azure AD Connect 啟用的功能，且會和密碼同步處�
 |Windows 8.1|是|是|是*|N/A
 |Windows 8|是|是|是*|N/A
 |Windows 7|是|是|是*|N/A
-|Mac|N/A|N/A|N/A|N/A
+|Mac|N/A|否|否|N/A
 
-\*需要個別組態。
-
->[!NOTE]
->對於 Windows 10 架構用戶端，建議使用 [Azure AD Join](../active-directory-azureadjoin-overview.md) 以獲得 Azure AD 最佳使用體驗。
-
-## <a name="how-single-sign-on-works"></a>單一登入運作方式
-
-當您在 Azure AD Connect 中啟用單一登入時，會在內部部署 Active Directory 中建立名為 AZUREADSSOACCT 的電腦帳戶，並和 Azure AD 安全地共用 Kerberos 解密金鑰。 此外，會建立兩個 Kerberos 服務主體名稱 (SPN)，以代表在用戶端和 Azure AD 之間進行驗證證期間使用的雲端 URL。
-
-在此設定完成後，驗證程序就和任何其他整合式 Windows 驗證 (IWA) 架構應用程式一樣。 如果您熟悉 IWA 的運作方式，那麼您已經知道單一登入和 Azure AD 的搭配運作方式。 如果您不熟悉，那麼 IWA 的程序如下：
-
-![單一登入](./media/active-directory-aadconnect-sso/sso2.png)
-
-首先，使用者嘗試存取資源，而此資源信任由 Azure AD (例如 SharePoint Online) 簽發的權杖。 接著 SharePoint Online 會將使用者重新導向去向 Azure AD 驗證。 然後，使用者提供他們的使用者名稱，好讓 Azure AD 可以確認他們的組織是否已啟用單一登入。 假設組織已啟用單一登入，會發生下列傳輸。
-
-1.    Azure AD 資源會透過 401 未授權回應挑戰用戶端，以提供 Kerberos 票證。
-2.    用戶端向 Active Directory 要求 Azure AD 的票證。
-3.    Active Directory 會找出 Azure AD Connect 建立的電腦帳戶，將 Kerberos 票證傳回給用戶端 (使用電腦帳戶的密碼加密)。 票證包括目前已登入電腦之使用者的身分識別。
-4.    用戶端將它向 Active Directory 取得的 Kerberos 票證傳遞至 Azure AD。
-5.    Azure AD 會使用之前共用的金鑰將 Kerberos 票證解密。 然後它會將權杖傳回給使用者，或依照資源的要求來要求使用者提供其他證明，例如多重要素驗證。
-
-單一登入是一個隨機功能，這表示如果它因為某些原因而失敗，使用者只需要像平常一樣在登入頁面上輸入他們的密碼即可。
-
-## <a name="single-sign-on-sso-prerequisites"></a>單一登入 (SSO) 先決條件
-如果您要啟用「單一登入」搭配「傳遞驗證」，則只需要符合「傳遞驗證」的先決條件。
-
-如果您要啟用「單一登入」搭配「密碼同步化」，而且如果 Azure AD Connect 和 Azure AD 之間有防火牆，請確定︰
-- Azure AD Connect 伺服器可以與 *.msappproxy.net 通訊。
-- Azure AD Connect 可以在下列連接埠向 Azure AD發出 HTTPS 要求：
-
-|通訊協定|連接埠號碼|說明
-| --- | --- | ---
-|HTTPS|9090|    啟用 SSO 註冊 (只有在 SSO 註冊程序才需要)。
-
-## <a name="enabling-sso-with-pass-through-authentication-or-password-sync"></a>搭配傳遞驗證或密碼同步處理來啟用 SSO
-Azure AD Connect 提供簡單的程序來搭配傳遞驗證或密碼同步處理啟用單一驗證。 請確保您擁有每個樹系內要同步處理的其中一個網域的網域系統管理員權限，才能允許在電腦帳戶上使用 Kerberos 服務主體名稱 (SPN) 的組態。 使用者名稱和密碼不會儲存在 Azure AD Connect 或 Azure AD 中，並且僅用於這項作業。
-
-安裝 Azure AD Connect 時，請選取自訂安裝，您才能夠在使用者登入頁面上選取單一登入選項。 如需詳細資訊，請參閱[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)。
-
-![單一登入](./media/active-directory-aadconnect-sso/sso3.png)
-
-啟用單一登入之後，您可以繼續執行安裝精靈，直到您到達單一登入頁面為止。
-
-![單一登入](./media/active-directory-aadconnect-sso/sso4.png)
-
-針對每個列出的樹系，提供適當的帳戶詳細資料，就會為您的 Azure 目錄啟用單一登入。
+\*需要其他設定。
 
 >[!NOTE]
->Azure AD Connect 需要能夠與 9090 (TCP) 連接埠上的 \*.msappproxy.net 通訊，才能設定 SSO。 只有在設定期間需要此連接埠，在使用者驗證期間則無此需要。
+>對於 Windows 10，建議使用 [Azure AD Join](../active-directory-azureadjoin-overview.md) 以獲得 Azure AD 最佳使用體驗。
 
-## <a name="ensuring-clients-sign-in-automatically"></a>確保用戶端自動登入
-依照預設，瀏覽器不會嘗試傳送認證至 Web 伺服器，除非 URL 是定義為位於內部網路區域中。 一般而言，瀏覽器可以透過查看 URL 來計算正確的區域。 例如，如果 URL 為 http://intranet/，則瀏覽器會自動傳送認證，因為它將會把 URL 對應到內部網路區域。 但是，如果 URL 包含句號，例如 http://intranet.contoso.com/，電腦將不會自動傳送認證，並且會將 URL 視為任何網際網路網站。
+## <a name="how-does-azure-ad-seamless-sso-work"></a>Azure AD 順暢 SSO 如何運作？
 
-由於用於 Azure AD 中單一登入的 URL 包含句號，您必須明確地將它們新增到電腦的內部網路區域。 此設定會使瀏覽器將目前登入之使用者的認證，以 Kerberos 票證的形式傳送到 Azure AD。 將所需 URL 加入到內部網路區域的最簡單方式，是在 Active Directory 中建立群組原則。
+您可以在 Azure AD Connect 中啟用順暢 SSO，[如下所示](#how-to-enable-azure-ad-seamless-sso?)。 啟用後，系統會在內部部署 Active Directory (AD) 中建立名為 AZUREADSSOACCT 的電腦帳戶，並和 Azure AD 安全地共用其 Kerberos 解密金鑰。 此外，系統會建立兩個 Kerberos 服務主體名稱 (SPN)，以代表 Azure AD 登入期間所使用的兩個服務 URL。
 
-1.    開啟 [群組原則管理工具]。
-2.    編輯要套用到所有使用者的群組原則 (例如**預設網域原則**)。
-3.    瀏覽至 **User Configuration\Administrative Templates\Windows Components\Internet Explorer\Internet Control Panel\Security 頁面**，並選取 [指派網站到區域清單]。
+此設定完成之後，Azure AD 登入的運作方式與其他任何使用整合式 Windows 驗證 (IWA) 的登入相同。 順暢 SSO 程序的運作方式如下所示︰
+
+假設您的使用者嘗試存取 Azure AD 所保護的雲端架構資源，例如 SharePoint Online。 SharePoint Online 會將使用者的瀏覽器重新導向至 Azure AD 以進行登入。
+
+- 如果對於 Azure AD 的登入要求包含 `domain_hint` (識別您的 Azure AD 租用戶；例如 contoso.onmicrosoft.com) 或 `login_hint` (識別使用者的使用者名稱；例如 user@contoso.onmicrosoft.com 或 user@contoso.com) 參數，則會發生下列步驟。
+- 如果這兩個參數有任何一個未納入 Azure AD 的登入要求中，系統就會要求使用者提供他們的使用者名稱，之後就會發生下列步驟。
+
+1. Azure AD 資源會透過 401 未授權回應挑戰用戶端，以提供 Kerberos 票證。
+2. 用戶端從 Active Directory 要求 Azure AD (由先前所設定的電腦帳戶來表示) 的票證。
+3. Active Directory 會找出該電腦帳戶，將 Kerberos 票證傳回給用戶端 (使用電腦帳戶的祕密加密)。 票證包括目前已登入桌面之使用者的身分識別。
+4. 用戶端將它向 Active Directory 取得的 Kerberos 票證傳遞至 Azure AD。
+5. Azure AD 會使用之前共用的金鑰將 Kerberos 票證解密。 如果成功，Azure AD 會傳回權杖，或要求使用者依照資源的要求來執行其他證明，例如 Multi-Factor Authentication。
+
+順暢 SSO 是一個隨機功能，這表示如果它因為某些原因而失敗，使用者只需要像往常一樣在登入頁面上輸入他們的密碼即可。
+
+完整的程序也會顯示在下圖中︰
+
+![順暢單一登入](./media/active-directory-aadconnect-sso/sso2.png)
+
+## <a name="how-to-enable-azure-ad-seamless-sso"></a>如何啟用 Azure AD 順暢 SSO？
+
+### <a name="pre-requisites"></a>必要條件
+
+如果您要啟用「順暢 SSO」並搭配「傳遞驗證」，則只需要符合「傳遞驗證」功能的必要條件。
+
+如果您要啟用「順暢 SSO」並搭配「密碼同步處理」，而且如果 Azure AD Connect 和 Azure AD 之間有防火牆，請確定︰
+
+- Azure AD Connect 伺服器可以與 `*.msappproxy.net` URL 通訊。
+- Azure AD Connect (1.1.484.0 版或更新版本) 可以透過連接埠 443 向 Azure AD發出 HTTPS 要求。 這只能用於啟用此功能，不適用於實際的使用者登入。
+
+>[!NOTE]
+> 舊版的 Azure AD Connect (低於 1.1.484.0) 必須能夠透過連接埠 9090 與 Azure AD 進行通訊。
+
+### <a name="enabling-the-azure-ad-seamless-sso-feature"></a>啟用 Azure AD 順暢 SSO 功能
+
+您可以透過 Azure AD Connect 啟用 Azure AD 順暢 SSO。
+
+如果您要執行新安裝的 Azure AD Connect，請選擇[自訂的安裝路徑](active-directory-aadconnect-get-started-custom.md)。 在 [使用者登入] 頁面上，勾選 [啟用單一登入] 選項。
+
+![Azure AD Connect - 使用者登入](./media/active-directory-aadconnect-sso/sso8.png)
+
+如果您已經安裝 Azure AD Connect，可使用[快速安裝](active-directory-aadconnect-get-started-express.md)或[自訂安裝](active-directory-aadconnect-get-started-custom.md)路徑來設定，在 Azure AD Connect 上選擇 [變更使用者登入] 頁面，然後按 [下一步]。 然後勾選 [啟用單一登入] 選項。
+
+![Azure AD Connect - 變更使用者登入](./media/active-directory-aadconnect-user-signin/changeusersignin.png)
+
+繼續執行安裝精靈，直到抵達 [啟用單一登入] 頁面。 對於您同步處理至 Azure AD (透過 Azure AD Connect) 的每個 AD 樹系，以及您想要為其使用者啟用順暢 SSO 者，您必須提供網域系統管理員認證。 請注意，網域系統管理員認證不會儲存在 Azure AD Connect 或 Azure AD 中，而只會用來建立電腦帳戶和設定 Kerberos SPN，如先前所述。
+
+此時，您的租用戶已啟用順暢 SSO。 請注意，您仍需先完成下一節的步驟，使用者才能受惠於這項功能。
+
+## <a name="rolling-the-feature-out-to-your-users"></a>對使用者推出此功能
+
+根據預設，瀏覽器不會將 Kerberos 票證傳送給雲端端點，除非您已將其 URL 定義為瀏覽器內部網路區域的一部分。 瀏覽器會自動從 URL 計算正確的區域 (網際網路或內部網路)。 例如，http://contoso/ 會對應到內部網路區域，而 http://intranet.contoso.com/ 會對應到網際網路區域 (因為 URL 包含句點)。
+
+因為用於 Azure AD 順暢 SSO 的服務 URL 包含句點，您必須將它們明確地新增到每個使用者瀏覽器的內部網路區域設定中。 這會讓瀏覽器自動將目前登入之使用者的 Kerberos 票證傳送到 Azure AD。 雖然您可以在每部電腦上手動進行此操作，但將所需 URL 新增到所有使用者之內部網路區域的最簡單方式，是在 Active Directory 中建立群組原則。
+
+1. 開啟群組原則管理工具。
+2. 編輯要套用到所有使用者的群組原則 (例如**預設網域原則**)。
+3. 瀏覽至 **User Configuration\Administrative Templates\Windows Components\Internet Explorer\Internet Control Panel\Security 頁面**，並選取 [指派網站到區域清單]。
 ![單一登入](./media/active-directory-aadconnect-sso/sso6.png)  
-4.    啟用原則，並在對話方塊中輸入下列值/資料。  
+4. 啟用原則，並在對話方塊中輸入下列值/資料。 這些是 Kerberos 票證的傳送目標 Azure AD URL。
 
-        值︰https://autologon.microsoftazuread-sso.com  
-        資料︰1  
-        值︰https://aadg.windows.net.nsatc.net  
-        資料︰1  
-5.    看起來應該會像下面這樣：  
-![單一登入](./media/active-directory-aadconnect-sso/sso7.png)
+        Value: https://autologon.microsoftazuread-sso.com  
+        Data: 1  
+        Value: https://aadg.windows.net.nsatc.net  
+        Data: 1  
+5. 按一下 [確定]，然後再按一下 [確定]。
 
-6.    按一下 [確定]，然後再按一下 [確定]。
-
-您的使用者現在已經可以開始進行單一登入。
+它看起來應該如下所示：![單一登入](./media/active-directory-aadconnect-sso/sso7.png)
 
 >[!NOTE]
->依照預設，Chrome 會使用和 Internet Explorer 相同的一組信任的網站 URL。 如果您已經為 Chrome 設定不同的設定，您將需要個別更新這些網站。
+>依照預設，Chrome 會使用和 Internet Explorer 相同的一組信任的網站 URL。 如果您已經為 Chrome 設定不同的設定，您將需要個別更新這些設定。
 
-## <a name="troubleshooting-single-sign-on-issues"></a>針對單一登入問題進行疑難排解
-請務必確定已針對單一登入正確設定用戶端，包括下列項目：
+## <a name="troubleshooting-seamless-sso"></a>針對順暢 SSO 進行疑難排解
 
-1.    已在內部網路區域內定義 https://autologon.microsoftazuread-sso.com 和 https://aadg.windows.net.nsatc.net。
-2.    確定工作站已經加入網域。
-3.    確定使用者已經使用網域帳戶登入。
-4.    確定電腦已經連線到公司網路。
-5.    確定電腦的時間已經與 Active Directory 同步，且網域控制站時間是在正確時間的 5 分鐘內。
-6.    清除用戶端現有的 Kerberos 票證，例如從命令提示字元執行 **klist purge** 命令。
+使用下列檢查清單來針對順暢 SSO 進行疑難排解︰
 
-如果您已經能夠確認上述需求，您就可以檢閱瀏覽器的主控台記錄檔，以了解其他資訊。 主控台記錄檔可以在開發人員工具底下找到。 這些記錄檔可協助您判斷潛在問題。
+1. 在 Azure AD Connect 工具上檢查租用戶是否已啟用順暢 SSO 功能。 如果您無法啟用此功能 (例如，因為連接埠已封鎖)，請確定您已完成所有[必要條件](#pre-requisites)。 如果您仍無法啟用此功能，請連絡 Microsoft 支援服務。
+2. 兩個服務 URL (https://autologon.microsoftazuread-sso.com 和 https://aadg.windows.net.nsatc.net) 已定義到內部網路區域設定中。
+3. 確定公司桌面已加入 AD 網域。
+4. 確定使用者是使用 AD 網域帳戶來登入桌面。
+5. 確定桌面已連線到公司網路。
+6. 確定桌面的時間已經與 Active Directory 和網域控制站的時間同步，且彼此的時間差不到 5 分鐘。
+7. 從其桌面清除現有的 Kerberos 票證。 這可透過從命令提示字元執行 **klist purge** 命令來完成。
+8. 檢閱瀏覽器的主控台記錄 (在 [開發人員工具] 底下)，以協助確定可能的問題。
 
-## <a name="event-log-entries"></a>事件記錄檔項目
-如果已經成功啟用稽核，使用者每次使用單一登入登入時，就會在網域控制站的事件記錄檔中記錄一個項目。 若要尋找這些事件，您可以檢閱和電腦帳戶 **AzureADSSOAcc$** 相關聯之安全性事件 4769 的事件記錄檔。 下面的篩選可找出和電腦帳戶相關聯的所有安全性事件：
+### <a name="domain-controller-logs"></a>網域控制站記錄
+
+如果網域控制站已啟用成功稽核，則每次使用者使用順暢 SSO 登入時，系統都會在事件記錄中記錄一個安全性項目 (與電腦帳戶 **AzureADSSOAcc$** 相關聯的事件 4769)。 您可以使用下列查詢來尋找這些安全性事件︰
 
 ```
     <QueryList>

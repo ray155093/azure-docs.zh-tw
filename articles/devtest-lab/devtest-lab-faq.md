@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/22/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 7a9b8037967f0180d2f7d2a7d100d0cc3ad9e4a2
-ms.lasthandoff: 04/07/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 519f035b411f254e8412ba9a8868b226c63cccb6
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -228,7 +228,7 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 每個訂用帳戶可以建立的實驗室數目並無特定限制， 但每個訂用帳戶可使用的資源是有限的。 您可以閱讀[加諸於 Azure 訂用帳戶的限制和配額](../azure-subscription-service-limits.md)和[如何增加這些限制值](https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests)。
 
 ### <a name="how-many-vms-can-i-create-per-lab"></a>每個實驗室可以建立幾個 VM？
-每個實驗室可以建立的 VM 數目並無特定限制， 但實驗室目前可支援的 VM 數目為：標準儲存體只支援同時執行大約 40 個 VM，進階儲存體只支援並行執行大約 25 個 VM。 我們目前正在努力增加這些限制值。
+每個實驗室可以建立的 VM 數目並無特定限制， 不過，每個訂用帳戶可使用的資源 (例如 VM 核心、公用 IP 等) 是有限的。 您可以閱讀[加諸於 Azure 訂用帳戶的限制和配額](../azure-subscription-service-limits.md)和[如何增加這些限制值](https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests)。
 
 ### <a name="how-do-i-share-a-direct-link-to-my-lab"></a>如何共用我實驗室的直接連結？
 若要與您的實驗室使用者共用直接連結，您可以執行下列程序：

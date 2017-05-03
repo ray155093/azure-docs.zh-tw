@@ -15,14 +15,16 @@ ms.workload: NA
 ms.date: 03/08/2017
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: 6d8f489ac053db4898741671df73b6abfabeb0dd
-ms.openlocfilehash: 140bee520dd8de0d9303a7d80e10cae407c8b10d
-ms.lasthandoff: 12/14/2016
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 8e487cd33bef73ac66e1b1b6ee614b5a1376d772
+ms.lasthandoff: 04/21/2017
 
 
 ---
 # <a name="create-service-fabric-clusters-on-windows-server-or-linux"></a>在 Windows Server 或 Linux 上建立 Service Fabric 叢集
-Azure Service Fabric 可讓您在執行 Windows Server 或 Linux 的任何 VM 或電腦上建立 Service Fabric 叢集。 這表示在任何環境中，只要有一組互連式 Windows Server 或 Linux 電腦，不論是在內部部署、Microsoft Azure 或透過任何雲端提供者，您都能夠部署和執行 Service Fabric 應用程式。
+Azure Service Fabric 叢集是一組由網路連線的虛擬或實體機器，可用來將您的微服務部署到其中並進行管理。 隸屬於叢集的機器或 VM 稱為叢集模式。 叢集可擴充至數千個節點。 若您新增節點至叢集，則 Service Fabric 會重新平衡全體增加節點數的服務資料分割複本和執行個體。 整體應用程式效能會有所改善，改善，並減少爭用記憶體的存取權。 若未有效率地使用叢集中的節點，您可減少叢集中的節點數目。 Service Fabric 會再次重新平衡全體減少節點數的資料分割複本和執行個體，以善加使用每個節點上的硬體。
+
+Service Fabric 可讓您在執行 Windows Server 或 Linux 的任何 VM 或電腦上建立 Service Fabric 叢集。 這表示在任何環境中，只要有一組互連式 Windows Server 或 Linux 電腦，不論是在內部部署、Microsoft Azure 或透過任何雲端提供者，您都能夠部署和執行 Service Fabric 應用程式。
 
 ## <a name="create-service-fabric-clusters-on-azure"></a>在 Azure 上建立 Service Fabric 叢集
 在 Azure 上建立叢集是透過資源模型範本或 Azure 入口網站。 如需詳細資訊，請參閱[使用 Resource Manager 範本來建立 Service Fabric 叢集](service-fabric-cluster-creation-via-arm.md)或[從 Azure 入口網站建立 Service Fabric 叢集](service-fabric-cluster-creation-via-portal.md)。
@@ -40,7 +42,7 @@ Service Fabric 提供安裝套件，讓您在內部部署或任何雲端提供�
 如需在 Windows Server 上設定獨立 Service Fabric 叢集的詳細資訊，請參閱 [建立適用於 Windows Server 的 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)
 
 ### <a name="any-cloud-deployments-vs-on-premises-deployments"></a>任何雲端部署與內部部署之比較
-在內部部署環境建立 Service Fabric 叢集的程序會與在您所選擇、具有一組 VM 的任何雲端建立叢集的程序類似。 佈建 VM 的初始步驟取決於您要使用的雲端提供者或內部部署環境。 在您有一組彼此之間已啟用網路連線的 VM 之後，則安裝 Service Fabric 封裝、編輯叢集設定，以及執行叢集建立與管理指令碼的步驟將會相同。 這可確保當您選擇以新裝載環境做為目標時，可將您操作和管理 Service Fabric 叢集方面的知識與經驗轉移過去。
+在內部部署環境建立 Service Fabric 叢集的程序會與在您所選擇、具有一組 VM 的任何雲端建立叢集的程序類似。 佈建 VM 的初始步驟取決於您要使用的雲端提供者或內部部署環境。 在您有一組彼此之間已啟用網路連線的 VM 之後，則安裝 Service Fabric 套件、編輯叢集設定，以及執行叢集建立與管理指令碼的步驟將會相同。 這可確保當您選擇以新裝載環境做為目標時，可將您操作和管理 Service Fabric 叢集方面的知識與經驗轉移過去。
 
 ### <a name="benefits-of-creating-standalone-service-fabric-clusters"></a>建立獨立 Service Fabric 叢集的優點
 * 您可以自由選擇任何雲端提供者來裝載您的叢集。

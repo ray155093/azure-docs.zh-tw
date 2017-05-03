@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/14/2017
 ms.author: nepeters
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 4e890582e790ad9187287e1323159098e19d7325
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: c2d14be5f27a775a14039bd63c5ccb5cd7b10f9a
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -40,7 +40,7 @@ Operations Management Suite (OMS) 可提供雲端和內部部署資產的監視�
 | Oracle Linux | 5、6 和 7 |
 | Red Hat Enterprise Linux Server | 5、6 和 7 |
 | Debian GNU/Linux | 6、7 和 8 |
-| Ubuntu | 12.04 LTS、14.04 LTS、15.04 |
+| Ubuntu | 12.04 LTS、14.04 LTS、15.04、15.10、16.04 LTS |
 | SUSE Linux Enterprise Server | 11 和 12 |
 
 ### <a name="internet-connectivity"></a>網際網路連線
@@ -49,7 +49,7 @@ Operations Management Suite (OMS) 可提供雲端和內部部署資產的監視�
 
 ## <a name="extension-schema"></a>擴充功能結構描述
 
-下列 JSON 顯示 OMS 代理程式擴充功能的結構描述。 此擴充功能需要來自目標 OMS 工作區的工作區識別碼和工作區金鑰，這些在 OMS 入口網站上皆有提供。 由於工作區金鑰應視為敏感性資料，因此應儲存在受保護的設定組態中。 Azure VM 擴充功能保護的設定資料會經過加密，只會在目標虛擬機器上解密。 請注意，**workspaceId** 和 **workspaceKey** 區分大小寫。
+下列 JSON 顯示 OMS 代理程式擴充功能的結構描述。 此擴充功能需要來自目標 OMS 工作區的工作區識別碼和工作區金鑰，您可以在 OMS 入口網站中找到這些值。 由於工作區金鑰應視為敏感性資料，因此應儲存在受保護的設定組態中。 Azure VM 擴充功能保護的設定資料會經過加密，只會在目標虛擬機器上解密。 請注意，**workspaceId** 和 **workspaceKey** 區分大小寫。
 
 ```json
 {
@@ -63,7 +63,7 @@ Operations Management Suite (OMS) 可提供雲端和內部部署資產的監視�
   "properties": {
     "publisher": "Microsoft.EnterpriseCloud.Monitoring",
     "type": "OmsAgentForLinux",
-    "typeHandlerVersion": "1.0",
+    "typeHandlerVersion": "1.3",
     "settings": {
       "workspaceId": "myWorkspaceId"
     },
@@ -81,7 +81,7 @@ Operations Management Suite (OMS) 可提供雲端和內部部署資產的監視�
 | apiVersion | 2015-06-15 |
 | publisher | Microsoft.EnterpriseCloud.Monitoring |
 | 類型 | OmsAgentForLinux |
-| typeHandlerVersion | 1.0 |
+| typeHandlerVersion | 1.3 |
 | workspaceId (例如) | 6f680a37-00c6-41c7-a93f-1437e3462574 |
 | workspaceKey (例如) | z4bU3p1/GrnWpQkky4gdabWXAhbWSTz70hm4m2Xt92XI+rSRgE8qVvRhsGo9TXffbrTahyrwv35W0pOqQAU7uQ== |
 
@@ -106,7 +106,7 @@ Operations Management Suite (OMS) 可提供雲端和內部部署資產的監視�
   "properties": {
     "publisher": "Microsoft.EnterpriseCloud.Monitoring",
     "type": "OmsAgentForLinux",
-    "typeHandlerVersion": "1.0",
+    "typeHandlerVersion": "1.3",
     "settings": {
       "workspaceId": "myWorkspaceId"
     },
@@ -131,7 +131,7 @@ Operations Management Suite (OMS) 可提供雲端和內部部署資產的監視�
   "properties": {
     "publisher": "Microsoft.EnterpriseCloud.Monitoring",
     "type": "OmsAgentForLinux",
-    "typeHandlerVersion": "1.0",
+    "typeHandlerVersion": "1.3",
     "settings": {
       "workspaceId": "myWorkspaceId"
     },
@@ -148,7 +148,7 @@ Azure CLI 可以用來將 OMS 代理程式 VM 擴充功能部署到現有的虛�
 
 ```azurecli
 azure vm extension set myResourceGroup myVM \
-  OmsAgentForLinux Microsoft.EnterpriseCloud.Monitoring 1.0 \
+  OmsAgentForLinux Microsoft.EnterpriseCloud.Monitoring 1.3 \
   --public-config-path public.json  \
   --private-config-path protected.json
 ```
@@ -168,6 +168,30 @@ azure vm extension get myResourceGroup myVM
 ```
 /opt/microsoft/omsagent/bin/stdout
 ```
+
+### <a name="error-codes-and-their-meanings"></a>錯誤碼及其意義
+
+| 錯誤碼 | 意義 | 可能的動作 |
+| :---: | --- | --- |
+| 2 | 提供給殼層組合的選項無效 | |
+| 3 | 未提供任何選項給殼層組合 | |
+| 4 | 無效的套件類型 | |
+| 5 | 必須以 root 身分執行殼層組合 | |
+| 6 | 無效的套件架構 | |
+| 10 | VM 已經連線到 OMS 工作區 | 若要將 VM 連線到擴充功能結構描述中所指定的工作區，請在公用設定中將 stopOnMultipleConnections 設定為 false，或是移除此屬性。 針對此 VM 所連線的每個工作區都會向此 VM 計費一次。 |
+| 11 | 提供給擴充功能的組態無效 | 依照上述範例來設定部署所需的所有屬性值。 |
+| 20 | SCX/OMI 安裝失敗 | |
+| 21 | SCX/提供者套件安裝失敗 | |
+| 22 | 組合套件安裝失敗 | |
+| 23 | 已經安裝 SCX 或 OMI 套件 | |
+| 30 | 內部組合錯誤 | |
+| 51 | VM 的作業系統上不支援此擴充功能 | |
+| 60 | 不支援的 OpenSSL 版本 | 安裝符合我們[套件需求](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/OMS-Agent-for-Linux.md#package-requirements)的 OpenSSL 版本。 |
+| 61 | 遺失 Python ctypes 程式庫 | 安裝 Python ctypes 程式庫或套件 (python-ctypes)。 |
+| 62 | 遺漏 tar 程式 | 安裝 tar。 |
+| 63 | 遺漏 sed 程式 | 安裝 sed。 |
+
+如需其他疑難排解資訊，請參閱 [OMS-Agent-for-Linux 疑難排解指南](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md#)。
 
 ### <a name="support"></a>支援
 

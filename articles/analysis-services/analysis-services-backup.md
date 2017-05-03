@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 04/17/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 8ded51e2e34aa1583b249af11a260eaa4304f79f
-ms.lasthandoff: 04/18/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: fb660384f2f9f569bcfbe7fa7d5c1f7ce772cacd
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -83,6 +83,9 @@ ms.lasthandoff: 04/18/2017
 使用 [Backup-ASDatabase](https://docs.microsoft.com/sql/analysis-services/powershell/backup-asdatabase-cmdlet) Cmdlet。
 
 ## <a name="restore"></a>還原
+在還原時，您的備份檔案必須位於您為伺服器所設定的儲存體帳戶中。 如果您需要將備份檔案從內部部署位置移至儲存體帳戶，請使用 [Microsoft Azure 儲存體總管](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer)或 [AzCopy](../storage/storage-use-azcopy.md) 命令列公用程式。 
+
+如果您要從內部部署 SQL Server Analysis Services 伺服器來還原表格式 1200 模型資料庫，您必須先從該模型的角色中移除所有網域使用者，再將他們新增回角色中以成為 Azure Active Directory 使用者。 這些角色將會相同。
 
 ### <a name="to-restore-by-using-ssms"></a>使用 SSMS 來進行還原
 
@@ -103,5 +106,8 @@ ms.lasthandoff: 04/18/2017
 
 
 ## <a name="related-information"></a>相關資訊
-[Azure 儲存體帳戶](../storage/storage-create-storage-account.md)   
+
+[Azure 儲存體帳戶](../storage/storage-create-storage-account.md)  
+[高可用性](analysis-services-bcdr.md)     
 [管理 Azure Analysis Services](analysis-services-manage.md)
+

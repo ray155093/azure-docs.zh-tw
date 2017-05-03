@@ -11,27 +11,27 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/08/2017
+ms.date: 04/19/2017
 ms.author: v-donglo
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: e75099e1ca7e3bbfc427883a8c343d773f3923ae
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 3879eb3d0c6fa9d74fff01b07f5c07d3991dfbbd
+ms.lasthandoff: 04/21/2017
 
 
 ---
 # <a name="azure-batch-service-for-machine-learning-jobs"></a>適用於 Machine Learning 作業的 Azure Batch 服務
 
-Machine Learning 批次集區處理會使用 [Azure Batch 服務](../batch/batch-technical-overview.md)，提供客戶管理的 Azure Machine Learning 批次執行服務級別。 傳統批次處理發生於多租用戶環境中，其限制您可以提交的並行作業數目，而且作業會以先進先出為原則排入佇列中。 這種不確定性，表示您無法準確地預測何時會執行您的作業。
+Machine Learning 批次集區處理提供客戶管理的 Azure Machine Learning 批次執行服務級別。 機器學習服務的傳統批次處理發生於多租用戶環境中，其限制您可以提交的並行作業數目，而且作業會以先進先出為原則排入佇列中。 這種不確定性，表示您無法準確地預測何時會執行您的作業。
 
-批次集區處理可讓您建立 Azure Batch 集區，以便提交批次作業。 您可控制集區的大小，以及作業要提交至哪個集區。 BES 作業會在自己的處理空間中執行，以提供可預測的處理效能以及建立資源集區 (對應至您提交的處理負載) 的功能。
+批次集區處理可讓您建立集區，以便提交批次作業。 您可控制集區的大小，以及作業要提交至哪個集區。 BES 作業會在自己的處理空間中執行，以提供可預測的處理效能以及建立資源集區 (對應至您提交的處理負載) 的功能。
 
 ## <a name="how-to-use-batch-pool-processing"></a>如何使用批次集區處理
 
-若要使用批次集區處理，您必須具有：
+您目前無法透過 Azure 入口網站設定批次集區處理。 若要使用批次集區處理，您必須：
 
--   批次集區帳戶具有集區服務 URL 和授權金鑰
--   全新 Resource Manager 型 Web 服務和計費方案
+-   呼叫 CSS 以建立批次集區帳戶，並取得集區服務 URL 和授權金鑰
+-   建立新的 Resource Manager 型 Web 服務和計費方案
 
 若要建立帳戶，請連絡 Microsoft 客戶服務與支援中心 (CSS) 並提供您的訂用帳戶識別碼。 CSS 將與您一起決定您案例的適當容量。 CSS 會接著設定您的帳戶：您可以建立的集區數目上限，以及您可以放在每個集區中的虛擬機器 (VM) 數目上限。 設定您的帳戶後，您便會取得集區服務 URL 和授權金鑰。
 

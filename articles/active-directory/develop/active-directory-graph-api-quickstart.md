@@ -16,9 +16,9 @@ ms.workload: identity
 ms.date: 01/07/2017
 ms.author: patricka
 translationtype: Human Translation
-ms.sourcegitcommit: 0d8472cb3b0d891d2b184621d62830d1ccd5e2e7
-ms.openlocfilehash: 9a3fca0c81f44b456b8d0201201ffb73b904a0a5
-ms.lasthandoff: 03/21/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 45e899364f467404c9a817825e157ba12494a2fa
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -34,7 +34,7 @@ Azure Active Directory (AD) Graph API 是透過 OData REST API 端點，以程�
 在 Graph API 中，若要存取您想要對其執行 CRUD 作業的目錄資料和物件 (亦即，資源或實體)，您可使用以「開放式資料 (OData) 通訊協定」為基礎的 URL。 Graph API 中使用的 URL 是由下列四個主要部分所組成：服務根目錄、租用戶識別碼、資源路徑和查詢字串選項： `https://graph.windows.net/{tenant-identifier}/{resource-path}?[query-parameters]`。 在下列 URL 中取得範例： `https://graph.windows.net/contoso.com/groups?api-version=1.6`。
 
 * **服務根目錄**：在 Azure AD Graph API 中，服務根目錄一律為 https://graph.windows.net。
-* **租用戶識別碼**：這可以是已驗證 (已註冊) 的網域名稱，在上述範例中為 contoso.com。 它也可以是租用戶物件識別碼，或是 “myorganiztion” 或 “me” 別名。 如需詳細資訊，請參閱 [在 Graph API 中將實體和作業定址](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-operations-overview))。
+* **租用戶識別碼**：這可以是已驗證 (已註冊) 的網域名稱，在上述範例中為 contoso.com。 它也可以是租用戶物件識別碼，或是 “myorganization” 或 “me” 別名。 如需詳細資訊，請參閱 [在 Graph API 中將實體和作業定址](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-operations-overview))。
 * **資源路徑**：URL 的這個部分會識別要互動的資源 (使用者、群組、特定的使用者或特定的群組等)。在上述範例中，它是將該資源集定址的頂層「群組」。 您也可以為特定的實體定址，例如，“users/{objectId}” 或 “users/userPrincipalName”。
 * **查詢參數**：? 會將資源路徑區段從查詢參數區段中分隔出來。 在 Graph API 中，所有要求上都需要 “api-version” 查詢參數。 Graph API 也支援下列 OData 查詢選項：**$filter**、**$orderby**、**$expand**、**$top**, 和 **$format**.。 目前不支援下列查詢選項：**$count**、**$inlinecount** 和 **$skip**。 如需詳細資訊，請參閱 [Azure AD Graph API 中支援的查詢、篩選和分頁選項](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options)。
 

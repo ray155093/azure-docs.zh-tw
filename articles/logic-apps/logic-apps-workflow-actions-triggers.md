@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 11/17/2016
 ms.author: mandia
 translationtype: Human Translation
-ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
-ms.openlocfilehash: 3f050e2722091aa8b58591cc0c894a6ecb82c3fa
-ms.lasthandoff: 04/14/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: ff86340f18a2d3d13d55b7e0bcd4122d9b85ccd9
+ms.lasthandoff: 04/20/2017
 
 ---
 
@@ -406,6 +406,8 @@ Webhook 的屬性如下所示︰
 -   **等候** \- 這個簡單的動作會等候固定時間量或直到某個特定時間。  
   
 -   **工作流程** \- 這個動作代表巢狀工作流程。  
+
+-   **函式** \- 這個動作代表 Azure Function。
 
 ### <a name="collection-actions"></a>集合動作
 
@@ -828,6 +830,47 @@ API 連線是參考 Microsoft 管理之連接器的動作。
 系統會檢查工作流程 \(更具體地說是觸發程序\) 的存取權，也就是說，您需要工作流程的存取權。  
   
 `workflow` 動作的輸出是根據您在子工作流程之 `response` 動作中所做的定義。 如果您尚未定義任何 `response` 動作，輸出會是空的。  
+
+## <a name="function-action"></a>函式動作   
+
+|名稱|必要|類型|說明|  
+|--------|------------|--------|---------------|  
+|函式識別碼|是|String|您想要叫用之函式的資源識別碼。|  
+|method|否|String|用來叫用函式的 HTTP 方法。 若未指定，則其預設值為 `POST`。|  
+|查詢|否|Object|代表要新增至 URL 的查詢參數。 例如，`"queries" : { "api-version": "2015-02-01" }` 會將 `?api-version=2015-02-01` 新增至 URL。|  
+|headers|否|Object|代表傳送至要求的每個標頭。 例如，若要對要求設定語言和類型︰`"headers" : { "Accept-Language": "en-us" }`。|  
+|body|否|Object|代表傳送至端點的承載。|  
+
+```json
+"myfunc" : {
+    "type" : "Function",
+    "inputs" : {
+        "function" : {
+            "id" : "/subscriptions/xxxxyyyyzzz/resourceGroups/rg001/providers/Microsoft.Web/sites/myfuncapp/functions/myfunc"
+        },
+        "queries" : {
+            "extrafield" : "specialValue"
+        },  
+        "headers" : {
+            "x-ms-date" : "@utcnow()"
+        },
+        "method" : "POST",
+    "body" : {
+            "contentFieldOne" : "value100",
+            "anotherField" : 10.001
+        }
+    },
+    "runAfter": {}
+}
+```
+
+當您儲存邏輯應用程式時，我們會對所參考的函式執行某些檢查︰
+-   您必須具有該函式的存取權。
+-   僅允許使用標準 HTTP 觸發程序或一般 JSON Webhook 觸發程序。
+-   它不應定義任何路由。
+-   只允許使用「函式」和「匿名」授權層級。
+
+系統會在執行階段擷取、快取及使用觸發程序 URL。 因此，若有任何作業讓快取的 URL 失效，動作就會在執行階段失敗。 若要解決這個問題，請再次儲存邏輯應用程式，這會讓邏輯應用程式再次擷取及快取觸發程序 URL。
 
 ## <a name="collection-actions-scopes-and-loops"></a>集合動作 (範圍和迴圈)
 

@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/20/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 7dc5143086e3a73e0536408a41468b8cdd40bd12
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: bf4e400e30cc93ca8fa0cc727ada0f1b224b05cb
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 03/24/2017
 | Container Registry |是 |[容器登錄 REST](/rest/api/containerregistry) |[容器登錄資源](/azure/templates/microsoft.containerregistry/registries) |
 | 容器服務 |是 |[Container Service REST](/rest/api/compute/containerservices) |[Container Service 資源](/azure/templates/microsoft.containerservice/containerservices) |
 | Dynamics 週期服務 |是 | | |
-| 擴展集 |是 |[擴展集 REST](/rest/api/compute/virtualmachinescalesets) |[擴展集資源](/azure/templates/microsoft.compute/virtualmachinescalesets) |
+| 擴展集 |是 |[擴展集 REST](/rest/api/virtualmachinescalesets/) |[擴展集資源](/azure/templates/microsoft.compute/virtualmachinescalesets) |
 | Service Fabric |是 |[Service Fabric Rest](/rest/api/servicefabric) | [Service Fabric 資源](/azure/templates/microsoft.servicefabric/clusters) |
 | 虛擬機器 |是 |[VM REST](/rest/api/compute/virtualmachines) |[VM 資源](/azure/templates/microsoft.compute/virtualmachines) |
 | 虛擬機器 (傳統) |限制 |- |- |
@@ -125,14 +125,14 @@ ms.lasthandoff: 03/24/2017
 | 服務匯流排 |是 |[服務匯流排 REST](/rest/api/servicebus) |[服務匯流排資源](/azure/templates/microsoft.servicebus/namespaces) |
 
 ## <a name="identity--access-management"></a>身分識別與存取管理
-Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳戶啟用角色型存取控制。 若要了解如何使用角色型存取控制和 Active Directory，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
+Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳戶啟用角色型存取控制。 若要了解如何使用角色型存取控制和 Azure Active Directory，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
 ## <a name="developer-services"></a>開發人員服務
 | 服務 | 已啟用資源管理員 | REST API | 範本格式 |
 | --- | --- | --- | --- |
 | 監視 |是 |[監視 REST](/rest/api/monitor) |[Insights 資源](/azure/templates/microsoft.insights/alertrules) |
 | Bing 地圖 |是 | | |
-| DevTest Labs |是 | [DevTest REST](/rest/api/dtl) |[DevTest Lab 資源](/azure/templates/microsoft.devtestlab/labs) |
+| DevTest Labs |是 | [DevTest Labs REST](/rest/api/dtl) |[DevTest Labs 資源](/azure/templates/microsoft.devtestlab/labs) |
 | Visual Studio 帳戶 |是 | |[Visual Studio 結構描述](https://github.com/Azure/azure-resource-manager-schemas/blob/master/schemas/2014-02-26/microsoft.visualstudio.json) |
 
 ## <a name="management-and-security"></a>管理和安全性
@@ -157,7 +157,7 @@ Azure Active Directory 可搭配資源管理員使用，以針對您的訂用帳
 ## <a name="resource-providers-and-types"></a>資源提供者和類型
 部署資源時，您經常需要擷取有關資源提供者和類型的資訊。 您可以透過 REST API、Azure PowerShell 或 Azure CLI 擷取此資訊。
 
-若要使用資源提供者，必須在您的帳戶中註冊該資源提供者。 根據預設，許多資源提供者會自動註冊。不過，您可能需要手動註冊某些資源提供者。 下列範例示範如何取得資源提供者註冊狀態，以及必要時註冊資源提供者。
+若要使用資源提供者，必須在您的帳戶中註冊該資源提供者。 根據預設，許多資源提供者會自動註冊。不過，您可能需要手動註冊某些資源提供者。 下列本節中的範例示範如何取得資源提供者註冊狀態，並註冊資源提供者。
 
 ### <a name="portal"></a>入口網站
 您可以輕易地查看支援的資源提供者清單，方法是從訂用帳戶刀鋒視窗中選取**資源提供者**。 若要使用資源提供者註冊您的訂用帳戶，請選取 [註冊] 連結。
@@ -255,7 +255,7 @@ az provider show --namespace Microsoft.Web --query "resourceTypes[?resourceType=
 下列範例示範如何取得特定資源類型可用的 API 版本。
 
 ```powershell
-    ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).ApiVersions
+((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).ApiVersions
 ```
 
 輸出如下：

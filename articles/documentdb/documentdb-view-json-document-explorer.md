@@ -13,17 +13,18 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/10/2017
+ms.date: 04/18/2017
 ms.author: kirillg
 translationtype: Human Translation
-ms.sourcegitcommit: 81c569c5130869e6d8c9dc79feca592aecc44e61
-ms.openlocfilehash: edccbbb72649c5a443fefd7f1d97a8c01a4daff2
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 4338fc03664175b7c27a48f1ab682179c1035313
+ms.lasthandoff: 04/21/2017
 
 
 ---
-# <a name="view-edit-create-and-upload-json-documents-using-documentdb-document-explorer"></a>使用 DocumentDB Document Explorer 檢視、編輯、建立和上傳 JSON 文件
-本篇文章提供 [Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) Document Explorer 的概觀，它是一種 Azure 入口網站的工具，可讓您檢視、編輯、建立、上傳和篩選使用 DocumentDB 的 JSON 文件。 
+# <a name="view-edit-create-and-upload-json-documents"></a>檢視、編輯、建立及上傳 JSON文件 
+
+本文提供您可在入口網站中建立、編輯及查詢文件之兩種方法的概觀：[文件總管](#launch-document-explorer)和[資料總管 (預覽)](#data-explorer)。
 
 > [!NOTE]
 > 具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶不會啟用文件總管。 啟用此功能時，此頁面會加以更新。
@@ -147,6 +148,13 @@ Document Explorer 支援大量擷取一或多個現有 JSON 文件，每個上�
    
     ![[Document Explorer] 大量擷取結果的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/uploaddocument3.png)
 5. 作業完成後，您可以另外選取多達 100 個文件進行上傳。
+
+<a id="data-explorer"></a>
+## <a name="create-a-document-by-using-data-explorer-preview"></a>使用資料總管 (預覽) 來建立文件
+
+另一個在入口網站中建立、編輯及查詢文件的方法是使用 [資料總管]。 若要開啟 [資料總管]，請按一下入口網站中導覽列上的 [資料總管 (預覽)]，接著展開您的資料庫名稱、展開您的集合名稱、按一下 [文件]，然後按一下 [新增文件]，如以下螢幕擷取畫面所示。
+
+![顯示入口網站中 [新增集合] 按鈕的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/azure-documentdb-data-explorer.png)
 
 ## <a name="work-with-json-documents-outside-the-portal"></a>在入口網站外部使用 JSON 文件
 Azure 入口網站中的 Document Explorer 只是一種處理 DocumentDB 中文件的方法。 您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/mt489082.aspx) 或[用戶端 SDK](documentdb-sdk-dotnet.md) 來處理文件。 如需範例程式碼，請參閱 [.NET SDK 文件範例](documentdb-dotnet-samples.md#document-examples)和 [Node.js SDK 文件範例](documentdb-nodejs-samples.md#document-examples)。

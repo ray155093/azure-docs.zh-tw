@@ -13,12 +13,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/20/2017
+ms.date: 04/19/2017
 ms.author: byvinyal
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: e26a37fbe783c2ca95679b5bdcc9b0ba0beec76b
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 2450eada5a49763542c95799a381f2029fec7575
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -60,7 +60,7 @@ ms.lasthandoff: 04/03/2017
 * [CDN](#cdn-limits)
 * [雲端服務](#cloud-services-limits)
 * [Data Factory](#data-factory-limits)
-* [資料湖分析](#data-lake-analytics-limits)
+* [Data Lake Analytics](#data-lake-analytics-limits)
 * [Data Lake Store](#data-lake-store-limits)
 * [DNS](#dns-limits)
 * [DocumentDB](#documentdb-limits)
@@ -71,9 +71,10 @@ ms.lasthandoff: 04/03/2017
 * [媒體服務](#media-services-limits)
 * [Mobile Engagement](#mobile-engagement-limits)
 * [行動服務](#mobile-services-limits)
-* [監視](#monitoring-limits)
+* [監視](#monitor-limits)
 * [Multi-Factor Authentication](#multi-factor-authentication)
 * [網路功能](#networking-limits)
+* [網路監看員](#network-watcher-limits)
 * [通知中樞服務](#notification-hub-service-limits)
 * [資源群組](#resource-group-limits)
 * [排程器](#scheduler-limits)
@@ -123,6 +124,9 @@ ms.lasthandoff: 04/03/2017
 
 #### <a name="application-gateway-limits"></a>應用程式閘道限制
 [!INCLUDE [application-gateway-limits](../includes/application-gateway-limits.md)]
+
+#### <a name="network-watcher-limits"></a>網路監看員限制
+[!INCLUDE [network-watcher-limits](../includes/network-watcher-limits.md)]
 
 #### <a name="traffic-manager-limits"></a>流量管理員限制
 [!INCLUDE [traffic-manager-limits](../includes/traffic-manager-limits.md)]
@@ -206,7 +210,7 @@ DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應
 ### <a name="mobile-services-limits"></a>行動服務限制
 [!INCLUDE [mobile-services-limits](../includes/mobile-services-limits.md)]
 
-### <a name="monitoring-limits"></a>監視限制
+### <a name="monitor-limits"></a>監視限制
 [!INCLUDE [monitoring-limits](../includes/monitoring-limits.md)]
 
 ### <a name="notification-hub-service-limits"></a>通知中樞服務限制

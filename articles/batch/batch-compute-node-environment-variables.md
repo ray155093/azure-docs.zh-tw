@@ -1,24 +1,24 @@
 ---
 title: "Azure Batch 計算節點環境變數 | Microsoft Docs"
-ms.custom: 
-ms.date: 2017-02-01
-ms.prod: azure
-ms.reviewer: 
-ms.service: batch
-ms.suite: 
-ms.tgt_pltfrm: 
-ms.topic: article
-ms.assetid: 3990f0c8-b627-432f-9551-5ce10f9bb0ca
-caps.latest.revision: 14
+description: "Azure Batch 分析的計算節點環境變數參考。"
+services: batch
 author: tamram
-ms.author: tamram
 manager: timlt
+ms.assetid: 
+ms.service: batch
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: big-compute
+ms.date: 04/20/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: e31f2a5e5186ea27d7da7d0d5d5837a2cda41a11
-ms.lasthandoff: 04/13/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 9a31288f4cf67e551db016aa3b56058f607ef13a
+ms.lasthandoff: 04/22/2017
 
 ---
+
 # <a name="azure-batch-compute-node-environment-variables"></a>Azure Batch 計算節點環境變數
 [Azure Batch 服務](https://azure.microsoft.com/services/batch/)會在計算節點上設定下列環境變數。 您可以在工作命令列中，以及由該命令列執行的程式及指令碼中，參照這些環境變數。
 

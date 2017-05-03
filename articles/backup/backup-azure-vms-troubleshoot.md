@@ -12,12 +12,12 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/05/2017
+ms.date: 04/24/2017
 ms.author: trinadhk;markgal;jpallavi;
 translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 61f62d606b44b3390e6500ea2b30b20d7d2929ff
-ms.lasthandoff: 04/06/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 024b0019150c4d9117151d8faedb08ea3181d8c4
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -49,6 +49,7 @@ ms.lasthandoff: 04/06/2017
 | 快照集作業失敗，因為 VSS 寫入器處於不正常狀態 |您需要重新啟動 VSS (磁碟區陰影複製服務) 寫入器處於不正常的狀態。 若要達到這個目的，從提高權限的命令提示字元，執行 _vssadmin list writers_。 輸出會包含所有 VSS 寫入器和其狀態。 對於每個狀態不是「[1] 穩定」的 VSS 寫入器，請從提高權限的命令提示字元執行下列命令，重新啟動 VSS 寫入器<br> _net stop serviceName_ <br> _net start serviceName_|
 | 快照集作業失敗，因為組態的剖析失敗 |這是因為 MachineKeys 目錄中的權限已變更︰_%systemdrive%\programdata\microsoft\crypto\rsa\machinekeys_ <br>請執行下列命令，並確認 MachineKeys 目錄的權限是預設的︰<br>_icacls %systemdrive%\programdata\microsoft\crypto\rsa\machinekeys_ <br><br> 預設權限是︰<br>Everyone:(R,W) <br>BUILTIN\Administrators:(F)<br><br>如果您發現 MachineKeys 目錄的權限不同於預設權限，請依照下列步驟來修正權限、刪除憑證，並觸發備份。<ol><li>修正 MachineKeys 目錄上的權限。<br>在目錄上使用 Explorer 安全性屬性和進階安全性設定，將權限重設回預設值，從目錄移除任何額外 (預設值以外) 的使用者物件，然後確認「Everyone」權限有特殊存取權︰<br>-列出資料夾/讀取資料 <br>-讀取屬性 <br>-讀取擴充屬性 <br>-建立檔案/寫入資料 <br>-建立資料夾/附加資料<br>-寫入屬性<br>-寫入擴充屬性<br>-讀取權限<br><br><li>刪除 [發給] 欄位 = "Windows Azure Service Management for Extensions" 或 "Windows Azure CRP Certificate Generator” 的憑證。<ul><li>[開啟 [憑證 (本機電腦)] 主控台](https://msdn.microsoft.com/library/ms788967(v=vs.110).aspx)<li>刪除 [發給] 欄位 = "Windows Azure Service Management for Extensions" 或 "Windows Azure CRP Certificate Generator” 的憑證 (在 [個人] -> [憑證] 下)。</ul><li>觸發 VM 備份。 </ol>|
 | 驗證失敗，因為虛擬機器單獨以 BEK 進行加密。 只會對同時使用 BEK 和 KEK 加密的虛擬機器啟用備份。 |虛擬機器應該使用「BitLocker 加密金鑰」和「金鑰加密金鑰」進行加密。 之後，應該啟用備份。 |
+| Azure 備份服務沒有足夠的 Key Vault權限可備份加密的虛擬機器。 |應使用 [PowerShell 文件](backup-azure-vms-automation.md#backup-azure-vms)的**啟用備份**區段中所述的步驟，在 PowerShell 中向備份服務提供這些權限。 |
 |快照集擴充安裝失敗，錯誤為 - COM+ 無法與 Microsoft Distributed Transaction Coordinator 通話 | 請嘗試重新啟動 Windows 服務 "COM+ System Application" (從提高權限的命令提示字元 - _net start COMSysApp_)。 <br>如果在啟動時失敗，請遵循下列步驟︰<ol><li> 確認服務 "Distributed Transaction Coordinator" 的登入帳戶是 "Network Service"。 如果不是，請變更為 "Network Service"，重新啟動此服務，然後嘗試啟動服務 "COM+ System Application"。'<li>如果仍然無法啟動，請依照下列步驟解除安裝/安裝服務 "Distributed Transaction Coordinator"：<br> - 停止 MSDTC 服務<br> - 開啟命令提示字元 (cmd) <br> - 執行命令 “msdtc -uninstall” <br> - 執行命令 “msdtc -install” <br> - 啟動 MSDTC 服務<li>啟動 Windows 服務 "COM+ System Application"，啟動之後，從入口網站觸發備份。</ol> |
 | 無法凍結 VM 的一或多個掛接點以取得檔案系統一致快照集 | <ol><li>使用 _'tune2fs'_ 命令檢查所有已裝載裝置的檔案系統狀態。<br> 例如：tune2fs -l /dev/sdb1 \| grep "Filesystem state" <li>使用 _'umount'_ 命令卸載檔案系統狀態不是空白的裝置 <li> 使用 _'fsck'_ 命令對這些裝置執行 FileSystemConsistency 檢查 <li> 重新裝載裝置並嘗試備份。</ol> |
 | 因為建立安全網路通訊通道時發生失敗，所以快照集作業失敗 | <ol><Li> 在提高權限的模式中執行 regedit.exe，開啟登錄編輯程式。 <li> 識別系統中存在的所有 .NetFramework 版本。 它們位於登錄機碼 "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft" 的階層下 <li> 針對登錄機碼中的每個 .NetFramework，新增下列機碼︰ <br> "SchUseStrongCrypto"=dword:00000001 </ol>| 

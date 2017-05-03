@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: e1563db23e687f772eaff2e90ce9853c9d8b87de
-ms.openlocfilehash: f87df28a5a44b7ab3c1d9a48d43c8d1354c48830
-ms.lasthandoff: 11/23/2016
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 8df9fbf4b09cb63cafc9d43592edc68068a28f14
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -47,6 +47,9 @@ Microsoft 資料科學虛擬機器是預先安裝並設定數個常用於資料�
 Microsoft 資料科學虛擬機器可快速啟動分析專案。 它能讓您用各種語言處理工作，包含 R、Python、SQL 與 C#。 Visual Studio 提供整合式開發環境 (IDE) 以開發和測試您的程式碼，很容易使用。 包含在 VM 的 Azure SDK 可讓您使用 Microsoft 的雲端平台上的各種服務，建置您的應用程式。 
 
 這個資料科學 VM 映像沒有任何軟體費用。 您只需針對佈建的虛擬機器大小支付 Azure 使用費。 計算費用的詳細資訊可在 [資料科學虛擬機器](https://azure.microsoft.com/marketplace/partners/microsoft-ads/standard-data-science-vm/) 頁面的＜價格詳細資料＞一節中找到。 
+
+## <a name="other-versions-of-the-data-science-virtual-machine"></a>其他版本的資料科學虛擬機器
+另提供 [CentOS](machine-learning-data-science-linux-dsvm-intro.md) 映像，其中包含許多與 Windows 映像相同的工具。 亦提供 [Ubuntu](machine-learning-data-science-dsvm-ubuntu-intro.md) 映像，其中包含許多類似的工具及深入學習架構。
 
 ## <a name="prerequisites"></a>必要條件
 您必須先具有下列項目，才可以建立 Microsoft 資料科學虛擬機器：

@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/25/2017
+ms.date: 04/25/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017, end-user
 translationtype: Human Translation
-ms.sourcegitcommit: 6872b216ab2bfd5823b65b1bb70d503c7628ee13
-ms.openlocfilehash: 26d9f04f9d3019ab5fcad48ef1e9821a4dd6a724
-ms.lasthandoff: 03/01/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 6bcf667849a8cb52126f832eed0b99a893182150
+ms.lasthandoff: 04/26/2017
 
 ---
 # <a name="get-started-with-the-microsoft-authenticator-app"></a>開始使用 Microsoft 驗證器應用程式
@@ -43,7 +43,7 @@ Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com
 
 ### <a name="add-a-work-or-school-account-to-the-app-using-the-qr-code-scanner"></a>使用 QR 代碼掃描器將工作或學校帳戶新增至應用程式
 1. 移至安全性驗證設定畫面。  如需如何進入此畫面的詳細資訊，請參閱 [變更安全性設定](multi-factor-authentication-end-user-manage-settings.md#where-to-find-the-settings-page)。
-2. 核取 **Azure Authenticator 應用程式**旁的方塊，然後選取 [設定]。
+2. 核取 **Authenticator 應用程式**旁的方塊，然後選取 [設定]。
 
     ![安全性驗證設定畫面上的設定按鈕](./media/authenticator-app-how-to/azureauthe.png)
 

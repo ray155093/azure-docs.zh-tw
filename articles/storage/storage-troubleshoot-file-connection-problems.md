@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/15/2017
 ms.author: genli
 translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: c62f8d077906ce8ad1b5501864a21ee369b2314a
-ms.lasthandoff: 04/07/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 0635120c4e16f3b8531039eee4c6651e7cdeca40
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -261,15 +261,17 @@ Linux 散發套件尚未支援 SMB 3.0 中的加密功能。 在某些散發套�
 
 在某些情況下，serverino 掛接選項可能會造成 ls 命令對所有目錄項目執行 stat，這會在列出大型目錄時導致效能變慢。 您可以檢查 "/etc/fstab" 項目中的掛接選項：
 
-`//azureuser.file.core.windows.net/cifs        /cifs   cifs vers=3.0,serverino,username=xxx,password=xxx,dir_mode=0777,file_mode=0777`
+`//<storage-account-name>.file.core.windows.net/<file-share-name> <mount-point> cifs vers=3.0,serverino,username=xxx,password=xxx,dir_mode=0777,file_mode=0777`
 
-您也可以執行 **sudo mount | grep cifs** 命令並查看其輸出，來檢查是否使用正確的選項：
+您也可以執行 `sudo mount | grep cifs` 命令 (範例輸出如下) 來檢查是否使用正確的選項。
 
-`//mabiccacifs.file.core.windows.net/cifs on /cifs type cifs
-(rw,relatime,vers=3.0,sec=ntlmssp,cache=strict,username=xxx,domain=X,uid=0,noforceuid,gid=0,noforcegid,addr=192.168.10.1,file_mode=0777,
-dir_mode=0777,persistenthandles,nounix,serverino,mapposix,rsize=1048576,wsize=1048576,actimeo=1)`
+`//<storage-account-name>.file.core.windows.net/<file-share-name> on <mount-point> type cifs
+(rw,relatime,vers=3.0,sec=ntlmssp,cache=strict,username=xxx,domain=X,uid=0,
+noforceuid,gid=0,noforcegid,addr=192.168.10.1,file_mode=0777,
+dir_mode=0777,persistenthandles,nounix,serverino,
+mapposix,rsize=1048576,wsize=1048576,actimeo=1)`
 
-如果沒有 cache=strict 或 serverino 選項，請執行[文件](https://docs.microsoft.com/en-us/azure/storage/storage-how-to-use-files-linux#mount-the-file-share)中的掛接命令，將 Azure 檔案卸載並再次掛接，然後重新檢查 "/etc/fstab" 項目是否有正確的選項。
+如果沒有 cache=strict 或 serverino 選項，請執行[文件](https://docs.microsoft.com/en-us/azure/storage/storage-how-to-use-files-linux#mount-the-file-share)中的掛接命令，將 Azure 檔案卸載並再次掛接，然後重新檢查 "/etc/fstab" 項目是否採用正確的選項。
 
 <a id="ubuntumounterror"></a>
 ## <a name="mount-error11-resource-temporarily-unavailable-when-mounting-to-ubuntu-48-kernel"></a>掛接錯誤(11)：掛接到 Ubuntu 4.8+ 核心時，資源暫時無法使用

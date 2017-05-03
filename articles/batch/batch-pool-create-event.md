@@ -1,28 +1,26 @@
 ---
-title: "集區建立事件 - Azure | Microsoft Docs"
-ms.custom: 
-ms.date: 2017-02-01
-ms.prod: azure
-ms.reviewer: 
-ms.service: batch
-ms.suite: 
-ms.tgt_pltfrm: 
-ms.topic: reference
-ms.assetid: 8473bab4-6c16-4ee2-8d78-22fa3ca87487
-caps.latest.revision: 4
+title: "Azure Batch 集區建立事件 | Microsoft Docs"
+description: "Batch 集區建立事件的參考。"
+services: batch
 author: tamram
-ms.author: tamram
 manager: timlt
+ms.assetid: 
+ms.service: batch
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: big-compute
+ms.date: 04/20/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: b66319c384ba1fe80489246e9816b8fc7cc3727d
-ms.lasthandoff: 04/13/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 67edaa55d7ccd00d4aebb309f11bcf95486e87fa
+ms.lasthandoff: 04/22/2017
 
 ---
-# <a name="pool-create-event"></a>集區建立事件
-集區建立事件記錄檔內文
 
-## <a name="remarks"></a>備註
+# <a name="pool-create-event"></a>集區建立事件
+
  一旦集區建立完成，就會發出此事件。 記錄檔內容將公開集區的一 般資訊。 請注意，如果集區的目標大小大於 0 個計算節點，則集區調整開始事件將緊接在此事件之後。
 
  以下範例顯示使用 CloudServiceConfiguration 屬性所建立集區其集區建立事件的內文。

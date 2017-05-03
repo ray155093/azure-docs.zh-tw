@@ -1,144 +1,234 @@
 ---
-title: "將 Intel Edison (節點) 連接到 Azure IoT - 開始使用 | Microsoft Docs"
-description: "開始使用 Intel Edison、建立 Azure IoT 中樞，以及將 Edison 與 IoT 中樞連線"
+title: "Intel Edison 到雲端 (Node.js) - 將 Intel Edison 連線到 Azure IoT 中樞 | Microsoft Docs"
+description: "將 Intel Edison 連線到適用於 Intel Edison 的 Azure IoT 中樞以將資料傳送到 Azure 雲端。"
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "intel edison 開發, azure iot 中樞, 開始使用物聯網, 物聯網教學課程, adafruit 物聯網, intel edison arduino, 開始使用 arduino"
+keywords: "azure iot intel edison, intel edison iot 中樞, intel edison 傳送資料到雲端, intel edison 到雲端"
 ms.assetid: a7c9cf2d-c102-41b0-aa45-41285c6877eb
 ms.service: iot-hub
 ms.devlang: nodejs
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 3/21/2017
+ms.date: 4/17/2017
 ms.author: xshi
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 7adde91586f5fbbffd0aeaf0efb0810cc891ac0b
-ms.openlocfilehash: 43b6efb64c24405ae3638f6d04da5d21e30a55e1
-ms.lasthandoff: 03/02/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 231d9f2e4a501f20a47b1cec55c75fba4c2e57c8
+ms.lasthandoff: 04/20/2017
 
 
 ---
-# <a name="connect-your-intel-edison-device-to-your-iot-hub-using-nodejs"></a>使用 Node.js 將 Intel Edison 裝置連接到 IoT 中樞
-> [!div class="op_single_selector"]
-> * [Node.JS](iot-hub-intel-edison-kit-node-get-started.md)
-> * [C](iot-hub-intel-edison-kit-c-get-started.md)
+
+# <a name="connect-intel-edison-to-azure-iot-hub-nodejs"></a>將 Intel Edison 連線到 Azure IoT 中樞 (Node.js)
+
+[!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
 在本教學課程中，您一開始會先了解使用 Intel Edison 的基本知識。 接著會了解如何使用 [Azure IoT 中樞](iot-hub-what-is-iot-hub.md)讓您的裝置順暢地與雲端連線。
 
 還沒有套件嗎？ 從[這裡](https://azure.microsoft.com/develop/iot/starter-kits)開始
 
-## <a name="lesson-1-configure-your-device"></a>第 1 課：設定裝置
-![第 1 課端對端圖表](media/iot-hub-intel-edison-lessons/e2e-lesson1.png)
+## <a name="what-you-do"></a>您要做什麼
 
-在本課程中，您會設定 Intel Edison 及作業系統、設定開發環境，並將應用程式部署至 Edison。
+* 設置 Intel Edison 和 Grove 模組。
+* 建立 IoT 中樞。
+* 在 IoT 中樞註冊 Edison 的裝置。
+* 在 Edison 上執行範例應用程式，將感應器資料傳送至 IoT 中樞。
 
-### <a name="configure-your-device"></a>設定裝置
-設定 Intel Edison 以進行首次使用，方法是組裝面板、接上電源，並將組態工具安裝到桌面作業系統，以更新 Edison 的韌體、設定其密碼，然後將其連線至 Wi-Fi。  
+將 Intel Edison 連線至您建立的 IoT 中樞。 然後，在 Edison 上執行範例應用程式，以收集 Grove 溫度感應器中的溫度和溼度資料。 最後，將感應器資料傳送至 IoT 中樞。
 
-*預估完成時間：30 分鐘*
+## <a name="what-you-learn"></a>您學到什麼
 
-前往[設定裝置][configure-your-device]。
+* 如何建立 Azure IoT 中樞，並取得新的裝置連接字串。
+* 如何將 Edison 與 Grove 溫度感應器連接。
+* 如何在 Edison 上執行範例應用程式來收集感應器資料。
+* 如何將感應器資料傳送至 IoT 中樞。
 
-### <a name="get-the-tools"></a>取得工具
-下載工具與軟體建置，以建置並部署您第一個適用於 Intel Edison 的應用程式。
+## <a name="what-you-need"></a>您需要什麼
 
-*預估完成時間：20 分鐘*
+![您需要什麼](media/iot-hub-intel-edison-kit-node-get-started/0_kit.png)
 
-前往[取得工具][get-the-tools]。
+* Intel Edison 開發板
+* Arduino 擴充板
+* 有效的 Azure 訂用帳戶。 如果您沒有 Azure 帳戶，請花幾分鐘的時間[建立免費的 Azure 試用帳戶](https://azure.microsoft.com/free/)。
+* 執行 Windows 或 Linux 的 Mac 或 PC。
+* 網際網路連線。
+* Micro B 轉 Type A 的 USB 纜線
+* 直流電 (DC) 電源供應器。 電源供應器的額定值應如下所示︰
+  - 7-15V DC
+  - 至少 1500mA
+  - 中心/內部插銷應該是電源供應器的正極
 
-### <a name="create-and-deploy-the-blink-application"></a>建立並部署閃爍應用程式
-從 GitHub 複製範例閃爍應用程式，並使用 gulp 以將此應用程式部署至您的 Intel Edison 面板。 此範例應用程式會讓與面板連接的 LED 每兩秒閃爍一次。
+下列項目是選用項目︰
 
-*預估完成時間：5 分鐘*
+* Grove Base Shield V2
+* Grove - 溫度感應器
+* Grove 纜線
+* 包裝內所含的任何間隔柱或螺絲，包括兩個用來將模組鎖到擴充板的螺絲，和四組螺絲和塑膠間隔柱。
 
-前往[建立並部署閃爍應用程式][create-and-deploy-the-blink-application]。
+> [!NOTE] 
+這些項目都是選用項目，因為程式碼範例支援模擬感應器資料。
 
-## <a name="lesson-2-create-your-iot-hub"></a>第 2 課：建立 IoT 中樞
-![第 2 課端對端圖表](media/iot-hub-intel-edison-lessons/e2e-lesson2.png)
+[!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
-在本課程中，您會建立免費的 Azure 帳戶、佈建 Azure IoT 中樞，並在 IoT 中樞建立第一個裝置。
+## <a name="setup-intel-edison"></a>安裝 Intel Edison
 
-開始本課程前，請先完成第 1 課。
+### <a name="assemble-your-board"></a>組裝面板
 
-### <a name="get-the-azure-tools"></a>取得 Azure 工具
-安裝 Azure 命令列介面 (Azure CLI)。
+本節所含步驟會將 Intel® Edison 模組連接至擴充板。
 
-*預估完成時間：10 分鐘*
+1. 將 Intel® Edison 模組放在擴充板的白框內，讓模組上的螺絲孔對齊擴充板上的螺絲。
 
-前往[取得 Azure 工具][get-azure-tools]。
+2. 在模組上的 `What will you make?` 字樣正下方往下按，直到您感覺到兩者咬合。
 
-### <a name="create-your-iot-hub-and-register-intel-edison"></a>建立 IoT 中樞並登錄 Intel Edison
-建立資源群組、佈建第一個 Azure IoT 中樞，並使用 Azure CLI 將第一個裝置新增至 IoT 中樞。
+   ![組裝面板 2](media/iot-hub-intel-edison-kit-node-get-started/1_assemble_board2.jpg)
 
-*預估完成時間：10 分鐘*
+3. 使用兩個六角螺帽 (包裝內含) 將模組鎖緊到擴充板上。
 
-前往[建立 IoT 中樞並登錄 Intel Edison](iot-hub-intel-edison-kit-node-lesson2-prepare-azure-iot-hub.md)。
+   ![組裝面板 3](media/iot-hub-intel-edison-kit-node-get-started/2_assemble_board3.jpg)
 
-## <a name="lesson-3-send-device-to-cloud-messages"></a>第 3 課：傳送裝置到雲端訊息
-![第 3 課端對端圖表](media/iot-hub-intel-edison-lessons/e2e-lesson3.png)
+4. 在擴充板四個角落的其中一個螺絲孔中插入螺絲。 將其中一個白色塑膠間隔柱旋緊到螺絲上。
 
-在本課中，您會將訊息從 Edison 傳送到 IoT 中樞。 您也會建立 Azure 函式應用程式，此應用程式會從 IoT 中樞取得傳入訊息，並將這些訊息寫入 Azure 表格儲存體。
+   ![組裝面板 4](media/iot-hub-intel-edison-kit-node-get-started/3_assemble_board4.jpg)
 
-開始本課程前，請先完成第 1 課和第 2 課。
+5. 重複裝上其他三個角落的間隔柱。
 
-### <a name="create-an-azure-function-app-and-azure-storage-account"></a>建立 Azure 函數應用程式與 Azure 儲存體帳戶
-使用 Azure Resource Manager 範本來建立 Azure 函數應用程式及 Azure 儲存體帳戶。
+   ![組裝面板 5](media/iot-hub-intel-edison-kit-node-get-started/4_assemble_board5.jpg)
 
-*預估完成時間：10 分鐘*
+面板現已組裝好。
 
-前往[建立 Azure 函式應用程式與 Azure 儲存體帳戶][create-an-azure-function-app-and-azure-storage-account]。
+   ![組裝好的面板](media/iot-hub-intel-edison-kit-node-get-started/5_assembled_board.jpg)
 
-### <a name="run-a-sample-application-to-send-device-to-cloud-messages"></a>執行範例應用程式以傳送裝置到雲端訊息
-將範例應用程式部署至 Intel Edison 裝置，並執行該應用程式以傳送訊息至 IoT 中樞。
+### <a name="connect-the-grove-base-shield-and-the-temperature-sensor"></a>連接 Grove Base Shield 和溫度感應器
 
-*預估完成時間：10 分鐘*
+1. 將 Grove Base Shield 放上主機板。 確定所有針腳都緊密地插入主機板。
+   
+   ![Grove Base Shield](media/iot-hub-intel-edison-kit-node-get-started/6_grove_base_sheild.jpg)
 
-前往[執行範例應用程式以傳送裝置到雲端訊息][send-device-to-cloud-messages]。
+2. 使用 Grove 纜線將 Grove 溫度感應器連接到 Grove Base Shield **A0** 連接埠。
 
-### <a name="read-messages-persisted-in-azure-storage"></a>讀取保存在 Azure 儲存體中的訊息
-當裝置到雲端訊息寫入 Azure 儲存體時對其進行監視。
+   ![連接到溫度感應器](media/iot-hub-intel-edison-kit-node-get-started/7_temperature_sensor.jpg)
 
-*預估完成時間：5 分鐘*
+   ![Edison 和感應器連接](media/iot-hub-intel-edison-kit-node-get-started/16_edion_sensor.png)
 
-前往[讀取保存在 Azure 儲存體中的訊息][read-messages-persisted-in-azure-storage]。
+現在您的感應器已就緒。
 
-## <a name="lesson-4-send-cloud-to-device-messages"></a>第 4 課：傳送雲端到裝置訊息
-![第 4 課端對端圖表](media/iot-hub-intel-edison-lessons/e2e-lesson4.png)
+### <a name="power-up-edison"></a>將 Edison 接上電源
 
-本課程示範如何將訊息從 Azure IoT 中樞傳送至 Intel Edison。 這些訊息會針對與 Edison 連接的 LED，控制其開啟與關閉行為。 本課程中已為您準備好範例應用程式以完成這項工作。
+1. 插上電源供應器。
 
-開始本課程前，請先完成第 1 課、第 2 課和第 3 課。
+   ![插上電源供應器](media/iot-hub-intel-edison-kit-node-get-started/8_plug_power.jpg)
 
-### <a name="run-the-sample-application-to-receive-cloud-to-device-messages"></a>執行範例應用程式以接收雲端到裝置訊息
-＜課程 4＞中的範例應用程式會在 Edison 上執行，並監視來自 IoT 中樞的傳入訊息。 新的 Gulp 工作會從 IoT 中樞將訊息傳送到 Edison 來使 LED 閃爍。
+2. 綠色 LED (在 Arduino* 擴充板上標示為 DS1) 應該會亮起，並持續亮著。
 
-*預估完成時間：10 分鐘*
+3. 等候一分鐘，讓面板完成開機。
 
-前往[執行範例應用程式以接收雲端到裝置訊息][receive-cloud-to-device-messages]。
+   > [!NOTE]
+   > 如果您沒有 DC 電源供應器，也可以透過 USB 連接埠為面板供電。 如需詳細資訊，請參閱`Connect Edison to your computer`一節。 以此方式為面板供電，可能會讓面板發生無法預期的行為，尤其是在使用 Wi-Fi 或驅動馬達時。
 
-### <a name="optional-section-change-the-on-and-off-behavior-of-the-led"></a>選讀區段：變更 LED 的開起與關閉行為
-自訂訊息以變更 LED 的開啟與關閉行為。
+### <a name="connect-edison-to-your-computer"></a>將 Edison 連接到電腦
 
-*預估完成時間：10 分鐘*
+1. 將微型開關往下扳動到靠近兩個 micro USB 連接埠的方向，使 Edison 進入裝置模式。 若要了解裝置模式與主機模式的差異，請參閱[這裡](https://software.intel.com/en-us/node/628233#usb-device-mode-vs-usb-host-mode)。
 
-前往[選讀區段：變更 LED 的開啟與關閉行為][change-the-on-and-off-behavior-of-the-led]。
+   ![將微型開關往下扳動](media/iot-hub-intel-edison-kit-node-get-started/9_toggle_down_microswitch.jpg)
 
-## <a name="troubleshooting"></a>疑難排解
-如果在課程期間遇到任何問題，您可以在[疑難排解][troubleshooting]一文中尋求解決方案。
-<!-- Images and links -->
+2. 將 micro USB 纜線插入最上方的 micro USB 連接埠。
 
-[configure-your-device]: iot-hub-intel-edison-kit-node-lesson1-configure-your-device.md
-[get-the-tools]: iot-hub-intel-edison-kit-node-lesson1-get-the-tools-win32.md
-[create-and-deploy-the-blink-application]: iot-hub-intel-edison-kit-node-lesson1-deploy-blink-app.md
-[get-azure-tools]: iot-hub-intel-edison-kit-node-lesson2-get-azure-tools-win32.md
-[create-an-azure-function-app-and-azure-storage-account]: iot-hub-intel-edison-kit-node-lesson3-deploy-resource-manager-template.md
-[send-device-to-cloud-messages]: iot-hub-intel-edison-kit-node-lesson3-run-azure-blink.md
-[read-messages-persisted-in-azure-storage]: iot-hub-intel-edison-kit-node-lesson3-read-table-storage.md
-[receive-cloud-to-device-messages]: iot-hub-intel-edison-kit-node-lesson4-send-cloud-to-device-messages.md
-[change-the-on-and-off-behavior-of-the-led]: iot-hub-intel-edison-kit-node-lesson4-change-led-behavior.md
-[troubleshooting]: iot-hub-intel-edison-kit-node-troubleshooting.md
+   ![最上方的 micro USB 連接埠](media/iot-hub-intel-edison-kit-node-get-started/10_top_usbport.jpg)
+
+3. 將 USB 纜線的另一端插入電腦。
+
+   ![電腦 USB](media/iot-hub-intel-edison-kit-node-get-started/11_computer_usb.jpg)
+
+4. 當電腦掛接新的磁碟機 (很像將 SD 卡插入電腦) 時，您就會知道面板已完全初始化。
+
+## <a name="download-and-run-the-configuration-tool"></a>下載並執行組態工具
+從[此連結](https://software.intel.com/en-us/iot/hardware/edison/downloads)的 `Installers` 標題底下所列項目取得最新的組態工具。 執行工具，並依照其螢幕上的指示進行，視需要按 [Next]
+
+### <a name="flash-firmware"></a>更新韌體
+1. 在 `Set up options` 頁面上，按一下 `Flash Firmware`。
+2. 執行下列其中一項，選取要更新至面板的映像︰
+   - 若要下載 Intel 所提供之最新韌體映像並以此映像更新面板，請選取 `Download the latest image version xxxx`。
+   - 若要以電腦上已儲存的映像更新面板，請選取 `Select the local image`。 瀏覽並選取您要更新至面板的映像。
+3. 安裝工具會嘗試更新面板。 整個更新程序最多可能需要 10 分鐘。
+
+### <a name="set-password"></a>設定密碼
+1. 在 `Set up options` 頁面上，按一下 `Enable Security`。
+2. 您可以為 Intel® Edison 面板設定自訂名稱。 這是選擇性。
+3. 輸入面板的密碼，然後按一下 `Set password`。
+4. 記下密碼，以供稍後使用。
+
+### <a name="connect-wi-fi"></a>連接 Wi-Fi
+1. 在 `Set up options` 頁面上，按一下 `Connect Wi-Fi`。 最多請等候一分鐘，讓電腦掃描可用的 Wi-Fi 網路。
+2. 從 `Detected Networks` 下拉式清單中選取網路。
+3. 從 `Security` 下拉式清單中選取網路的安全性類型。
+4. 提供登入和密碼資訊，然後按一下 `Configure Wi-Fi`。
+5. 記下 IP 位址，以供稍後使用。
+
+> [!NOTE]
+> 請確定 Edison 是連接到與您電腦相同的網路。 電腦會使用該 IP 位址連接到 Edison。
+
+   ![連接到溫度感應器](media/iot-hub-intel-edison-kit-node-get-started/12_configuration_tool.png)
+
+恭喜！ 您已經成功設定 Edison。
+
+## <a name="run-a-sample-application-on-intel-edison"></a>在 Intel Edison 上執行範例應用程式
+
+### <a name="prepare-the-azure-iot-device-sdk"></a>準備 Azure IoT 裝置 SDK
+
+1. 使用下列其中一個 SSH 用戶端，從主機電腦連線到 Intel Edison。 IP 位址來自組態工具，密碼則是您在該工具中設定的密碼。
+    - [PuTTY](http://www.putty.org/) 適用於 Windows。
+    - Ubuntu 或 macOS 上內建的 SSH 用戶端。
+
+2. 將範例用戶端應用程式複製到裝置。 
+   
+   ```bash
+   git clone https://github.com/Azure-Samples/iot-hub-node-intel-edison-client-app
+   ```
+
+3. 然後瀏覽到存放庫資料夾，執行下列命令來安裝所有套件，這可能需要幾分鐘才能完成。
+   
+   ```bash
+   npm install
+   ```
+
+
+### <a name="configure-and-run-the-sample-application"></a>設定和執行範例應用程式
+
+1. 執行下列命令以開啟組態檔：
+
+   ```bash
+   nano config.json
+   ```
+
+   ![組態檔](media/iot-hub-intel-edison-kit-node-get-started/13_configure_file.png)
+
+   此檔案中有兩個巨集可供您設定。 第一個是 `INTERVAL`，這可定義傳送至雲端的兩個訊息之間相隔的時間間隔。 第二個是 `SIMULATED_DATA`，這是是否使用模擬感應器資料的布林值。
+
+   如果**沒有感應器**，請將 `SIMULATED_DATA` 值設定為 `1`，使範例應用程式建立和使用模擬感應器資料。
+
+1. 按下 [Control-O] > 輸入 > [Control-X] 儲存並結束。
+
+
+1. 執行下列命令，執行範例應用程式：
+
+   ```bash
+   sudo node index.js '<your Azure IoT hub device connection string>'
+   ```
+
+   > [!NOTE] 
+   確定複製裝置連接字串，並貼到單引號中。
+
+您應該會看見下列輸出，顯示傳送至 IoT 中樞的感應器資料和訊息。
+
+![輸出 - 從 Intel Edison 傳送至 IoT 中樞的感應器資料](media/iot-hub-intel-edison-kit-node-get-started/15_message_sent.png)
+
+## <a name="next-steps"></a>後續步驟
+
+您已執行範例應用程式收集感應器資料並傳送至 IoT 中樞。
+
+[!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

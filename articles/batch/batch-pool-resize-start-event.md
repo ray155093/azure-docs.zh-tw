@@ -1,28 +1,26 @@
 ---
-title: "集區調整大小開始事件 - Azure | Microsoft Docs"
-ms.custom: 
-ms.date: 2017-02-01
-ms.prod: azure
-ms.reviewer: 
-ms.service: batch
-ms.suite: 
-ms.tgt_pltfrm: 
-ms.topic: reference
-ms.assetid: 8bd33e8b-6390-4a34-95dc-2e63d8bce941
-caps.latest.revision: 6
+title: "Azure Batch 集區調整大小開始事件 | Microsoft Docs"
+description: "Batch 集區調整大小開始事件的參考。"
+services: batch
 author: tamram
-ms.author: tamram
 manager: timlt
+ms.assetid: 
+ms.service: batch
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: big-compute
+ms.date: 04/20/2017
+ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 5064d86063251aeed22688d8fac133c4be1a88f8
-ms.lasthandoff: 04/13/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 826cd984d26b923ba38562e05a2e75c399be9121
+ms.lasthandoff: 04/22/2017
 
 ---
-# <a name="pool-resize-start-event"></a>集區調整大小開始事件
-集區調整大小開始事件記錄檔內文
 
-## <a name="remarks"></a>備註
+# <a name="pool-resize-start-event"></a>集區調整大小開始事件
+
  集區調整大小開始時，就會發出此事件。 由於集區調整大小為非同步事件，因此您可以預期當調整大小作業完成時，就會發出集區調整大小完成事件。
 
  下列範例顯示以手動調整大小的方式將集區大小從 0 調整為 2 個節點的集區調整大小開始事件內文。

@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/14/2017
 ms.author: aelnably
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 148bc76b7f3e09745cbecfa41710a5e949704948
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: d9410448952438d6b9d437b7ca8823d4f196a2d6
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -72,6 +72,14 @@ ms.lasthandoff: 03/08/2017
 
 **答︰**我們在 \home\ 目錄掛接了 SMB 共用。 這會覆寫該處的所有內容。
 
+**問︰**私人登錄伺服器 URL 的格式為何？
+
+**答︰**您需要輸入包括 "http://" 或 "https://" 的完整登錄 URL。
+
+**問︰**私人登錄選項中的映像名稱格式為何？
+
+**答︰**您需要新增包括私人登錄 URL 的完整映像名稱 (例如 myacr.azurecr.io/dotnet:latest) myacr.azurecr.io/dotnet:latest)
+
 **問︰**我想要在我的自訂容器映像上公開多個連接埠。 是否可行？
 
 **答：**目前不支援此做法。
@@ -87,6 +95,10 @@ ms.lasthandoff: 03/08/2017
 **問︰**我的自訂容器接聽連接埠 80 以外的連接埠。 如何設定我的應用程式將要求路由至該連接埠？
 
 **答︰**您可以指定一個叫做 [連接埠] 的應用程式設定，為它提供一個預期的連接埠號碼值。
+
+**問︰**我是否需要在我的自訂容器中實作 HTTPS。
+
+**答︰**不需要，平台會在共用的前端處理 HTTPS 終止。
 
 ## <a name="pricing-and-sla"></a>價格和 SLA
 

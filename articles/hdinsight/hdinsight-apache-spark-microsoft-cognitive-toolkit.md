@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/28/2017
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: 2b4510c417843085101e4b3696c0b81f655df7b5
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 2dc1f8ae8e0a2986806445dc9852a54ceaaef5a4
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -70,7 +70,7 @@ Jupyter Notebook 中涵蓋下列剩餘步驟。
 
 * 對於 **Bash 指令碼 URI**，輸入 `https://raw.githubusercontent.com/Azure-Samples/hdinsight-pyspark-cntk-integration/master/cntk-install.sh`。
 
-* 確定您只在前端節點上執行指令碼。 清除背景工作節點和 Zookeeper 節點的核取方塊。
+* 確定您只會在前端和背景工作節點上執行指令碼，並清除所有其他核取方塊。
 
 * 按一下 [建立] 。
 

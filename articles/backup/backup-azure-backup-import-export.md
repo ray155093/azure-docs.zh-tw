@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 11/28/2016
+ms.date: 4/20/2017
 ms.author: saurse;nkolli;trinadhk
 translationtype: Human Translation
-ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
-ms.openlocfilehash: 2876f3a7e8e83dc05801d914c7582a4f1fd92e98
+ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
+ms.openlocfilehash: 4f5e58713d925d2f7477dc072ecec455dec70792
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -48,7 +49,7 @@ Azure 備份的離線植入程序與 [Azure 匯入/匯出服務](../storage/stor
   * 已在 Windows Server/Windows 用戶端或 System Center Data Protection Manager 伺服器上安裝 Azure 備份代理程式，並向 Azure 備份保存庫註冊電腦。
 * [下載 Azure 發佈檔案設定](https://manage.windowsazure.com/publishsettings) 。
 * 準備可能是網路共用或電腦上其他磁碟機的預備位置。 預備位置是暫時性儲存體，因此在此工作流程期間會暫時使用。 請確定預備位置有足夠的磁碟空間來保存您的初始複本。 例如：若您正在嘗試備份 500 GB 的檔案伺服器，請確定預備區域至少有 500 GB 的空間  (由於壓縮的關係，實際使用量會較少)。
-* 確定您使用的是支援的磁碟機。 只有 3.5 英吋的 SATA II/III 硬碟能夠用於匯入/匯出服務。 不支援大於 8 TB 的硬碟。 您可以將 SATA II/III 磁碟附加至大多數使用 SATA II/III USB 介面卡的外部電腦。 檢查 Azure 匯入/匯出文件以取得服務所支援的最新磁碟機組合。
+* 確定您使用的是支援的磁碟機。 只有 2.5 英吋的 SSD 或 2.5 英吋或 3.5 英吋的 SATA II/III 內接式硬碟能夠用於匯入/匯出服務。 您可以使用高達 10 TB 的硬碟。 檢查 [Azure 匯入/匯出服務文件](../storage/storage-import-export-service.md#hard-disk-drives)以取得服務所支援的最新磁碟機組合。
 * 在 SATA 磁碟機寫入器所連接的電腦上啟用 BitLocker。
 * [下載 Azure 匯入/匯出工具](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409) 至 SATA 磁碟機寫入器所連接的電腦上。 如果您已下載並安裝 Azure 備份的 2016 年 8 月更新 (或更新版本)，就不需要此步驟。
 
@@ -209,9 +210,4 @@ Azure 備份的離線植入程序與 [Azure 匯入/匯出服務](../storage/stor
 ## <a name="next-steps"></a>後續步驟
 * 如有任何關於 Azure 匯入/匯出工作流程的問題，請參閱 [使用 Microsoft Azure 匯入/匯出服務將資料傳輸至 Blob 儲存體](../storage/storage-import-export-service.md)。
 * 若您有關於工作流程的任何問題，請參閱 Azure 備份 [常見問題集](backup-azure-backup-faq.md) 的＜離線備份＞章節。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

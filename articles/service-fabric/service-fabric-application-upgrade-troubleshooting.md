@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 03/02/2017
 ms.author: subramar
 translationtype: Human Translation
-ms.sourcegitcommit: 5e4aebee48754f1f6762898d9571a4fff7d7283e
-ms.openlocfilehash: 2149bcf588b019a0c0f3c64a4e39fec9b9bc5925
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 7fc832ff23f5ad652df3cb9c689180c92952ba8e
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -187,7 +187,7 @@ PS D:\temp>
 ### <a name="service-fabric-is-not-following-the-specified-health-policies"></a>Service Fabric 不遵循指定的健康狀態原則。
 可能的原因 1：
 
-Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複本、資料分割和服務) 實際數目，並且一律無條件進位到實體整數。 例如，如果最大值 MaxPercentUnhealthyReplicasPerPartition 是 21%，而有 5 個複本，則 Service Fabric 可允許最多 2 個健康狀態不良的複本 (亦即 `Math.Ceiling (5\*0.21))。 因此，健康狀態原則應該據此設定。
+Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複本、資料分割和服務) 實際數目，並且一律無條件進位到實體整數。 例如，如果最大值 MaxPercentUnhealthyReplicasPerPartition 是 21%，而且有 5 個複本，則 Service Fabric 允許最多 2 個狀況不良的複本 (亦即 `Math.Ceiling (5*0.21)`)。 因此，健康狀態原則應該據此設定。
 
 可能的原因 2：
 
@@ -222,7 +222,4 @@ Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複
 了解如何使用 [資料序列化](service-fabric-application-upgrade-data-serialization.md)，以讓您的應用程式升級相容。
 
 參考 [進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
-
-參考 [疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
-
 

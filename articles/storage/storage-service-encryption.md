@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 12/08/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: aaada39283b19015e460768b072d0164b0d22bae
-ms.lasthandoff: 04/06/2017
+ms.sourcegitcommit: e0bfa7620feeb1bad33dd2fe4b32cb237d3ce158
+ms.openlocfilehash: 680f41dc15b9681059847174a6910cfc937abd8b
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -133,7 +133,7 @@ Azure 檔案儲存體可在雲端中使用標準的 SMB 通訊協定提供檔案
 
 答︰您可以建立新的 Resource Manager 儲存體帳戶，並且使用 [AzCopy](storage-use-azcopy.md) ，從現有的傳統儲存體帳戶將資料複製到新建立的 Resource Manager 儲存體帳戶。 
 
-若將您的傳統儲存體帳戶移轉到 Resource Manage 儲存體帳戶，在移轉期間將不會加密資料。 然而，若移轉儲存體帳戶並啟用加密，系統將會加密寫入到該儲存體帳戶的所有新資料。 如需詳細資訊，請參閱 [Platform Supported Migration of IaaS Resources from Classic to Resource Manager (從傳統移轉至 Resource Manager 的平台支援 IaaS 資源移轉)](https://azure.microsoft.com/blog/iaas-migration-classic-resource-manager/)。 請注意，只有針對 Blob 儲存體才支援此功能。 對於檔案儲存體預覽，使用者必須建立新的 Resource Manager 儲存體帳戶。
+若將您的傳統儲存體帳戶移轉到 Resource Manager 儲存體帳戶，在移轉期間將不會加密資料。 然而，若移轉儲存體帳戶並啟用加密，系統將會加密寫入到該儲存體帳戶的所有新資料。 如需詳細資訊，請參閱 [Platform Supported Migration of IaaS Resources from Classic to Resource Manager (從傳統移轉至 Resource Manager 的平台支援 IaaS 資源移轉)](https://azure.microsoft.com/blog/iaas-migration-classic-resource-manager/)。 請注意，只有針對 Blob 儲存體才支援此功能。 對於檔案儲存體預覽，使用者必須建立新的 Resource Manager 儲存體帳戶。
 
 **問：我有現有的 Resource Manager 儲存體帳戶。可以在其上啟用 SSE 嗎？**
 

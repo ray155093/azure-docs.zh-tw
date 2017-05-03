@@ -4,7 +4,7 @@ description: "本文旨在做為熟悉 PowerShell 的作者的快速課程，以
 services: automation
 documentationcenter: 
 author: mgoedtel
-manager: jwhit
+manager: carmonm
 editor: tysonn
 ms.assetid: 84bf133e-5343-4e0e-8d6c-bb14304a70db
 ms.service: automation
@@ -12,23 +12,24 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 04/21/2017
 ms.author: magoedte;bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 480a40bd5ecd58f11b10c27e7e0d2828bcae1f17
-ms.openlocfilehash: 50966ed518b79f2033680790432e29b0c9e7b289
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: 4de812c7f863e42a6ed10c2312d61b8377e06431
+ms.lasthandoff: 04/22/2017
 
 
 ---
 # <a name="learning-key-windows-powershell-workflow-concepts-for-automation-runbooks"></a>了解適用於自動化 Runbook 的重要 Windows PowerShell 工作流程概念 
 Azure 自動化中的 Runbook 會實作為 Windows PowerShell 工作流程。  Windows PowerShell 工作流程類似於 Windows PowerShell 指令碼，但有一些顯著的差異可能會對新使用者造成混淆。  雖然本文旨在協助您使用 PowerShell 工作流程撰寫 Runbook，但是除非您需要檢查點，否則建議您使用 PowerShell 來撰寫 Runbook。  在撰寫 PowerShell 工作流程 Runbook 時有許多語法差異，而這些差異需要更多的工作來撰寫有效的工作流程。  
 
-工作流程是一連串的程式化、連接步驟，執行長時間執行的工作，或是需要跨多個裝置或受管理節點協調多個步驟。 透過標準的指令碼工作流程的好處包括能夠同時對多個裝置執行動作，以及可自動從失敗復原的能力。 Windows PowerShell 工作流程是運用 Windows Workflow Foundation 的 Windows PowerShell 指令碼。 雖然工作流程是使用 Windows PowerShell 語法編寫，並由 Windows PowerShell 啟動，它是由 Windows Workflow Foundation 來處理。
+工作流程是一連串的程式化、連接步驟，執行長時間執行的工作，或是需要跨多個裝置或受管理節點協調多個步驟。 透過標準的指令碼工作流程的好處包括能夠同時對多個裝置執行動作，以及可自動從失敗復原的能力。 Windows PowerShell 工作流程是使用 Windows Workflow Foundation 的 Windows PowerShell 指令碼。 雖然工作流程是使用 Windows PowerShell 語法編寫，並由 Windows PowerShell 啟動，它是由 Windows Workflow Foundation 來處理。
 
 如需這篇文章中的主題的完整詳細資訊，請參閱 [開始使用 Windows PowerShell 工作流程](http://technet.microsoft.com/library/jj134242.aspx)。
 
 ## <a name="basic-structure-of-a-workflow"></a>工作流程的基本結構
-將 PowerShell 指令碼轉換成 PowerShell 工作流程的第一個步驟是將它使用 **Workflow** 關鍵字含括。  一種工作流程，以 **Workflow** 關鍵字為開頭，後面接著括在大括弧中的指令碼主體。 工作流程的名稱會遵循 **Workflow** 關鍵字，如下列語法所示。
+將 PowerShell 指令碼轉換成 PowerShell 工作流程的第一個步驟是將它使用 **Workflow** 關鍵字含括。  一種工作流程，以 **Workflow** 關鍵字為開頭，後面接著括在大括弧中的指令碼主體。 工作流程的名稱會遵循 **Workflow** 關鍵字，如下列語法所示：
 
     Workflow Test-Workflow
     {
@@ -43,7 +44,7 @@ Azure 自動化中的 Runbook 會實作為 Windows PowerShell 工作流程。  W
 PowerShell 工作流程程式碼看起來幾乎類似於 PowerShell 指令碼，除了少數幾個重大變更。  下列各節說明您必須對 PowerShell 指令碼進行的變更，以讓它在工作流程中執行。
 
 ### <a name="activities"></a>活動
-活動是工作流程中的特定工作。 就像指令碼是由一或多個命令所組成，工作流程是由序列中執行的一或多個活動所組成。 執行工作流程時，Windows PowerShell 工作流程會自動將許多 Windows PowerShell Cmdlet 轉換為活動。 在 Runbook 中指定其中一個 Cmdlet 時，對應的活動實際上是由 Windows Workflow Foundation 執行。 針對沒有對應活動的 Cmdlet，Windows PowerShell 工作流程會自動在 [InlineScript](#inlinescript) 活動內執行 Cmdlet。 有一組 Cmdlet 被排除，除非您明確在 InlineScript 區塊中將其納入，否則無法用在工作流程中。 如需這些概念的詳細資訊，請參閱 [在指令碼工作流程中使用活動](http://technet.microsoft.com/library/jj574194.aspx)。
+活動是工作流程中的特定工作。 就像指令碼是由一或多個命令所組成，工作流程是由序列中執行的一或多個活動所組成。 執行工作流程時，Windows PowerShell 工作流程會自動將許多 Windows PowerShell Cmdlet 轉換為活動。 在 Runbook 中指定其中一個 Cmdlet 時，對應的活動是由 Windows Workflow Foundation 執行。 針對沒有對應活動的 Cmdlet，Windows PowerShell 工作流程會自動在 [InlineScript](#inlinescript) 活動內執行 Cmdlet。 有一組 Cmdlet 被排除，除非您明確在 InlineScript 區塊中將其納入，否則無法用在工作流程中。 如需這些概念的詳細資訊，請參閱 [在指令碼工作流程中使用活動](http://technet.microsoft.com/library/jj574194.aspx)。
 
 工作流程活動共用一組通用參數來設定其作業。 如需有關工作流程通用參數的詳細資訊，請參閱 [about_WorkflowCommonParameters](http://technet.microsoft.com/library/jj129719.aspx)。
 
@@ -54,7 +55,7 @@ PowerShell 工作流程程式碼看起來幾乎類似於 PowerShell 指令碼，
 
      Get-Service | Where-Object {$_.Status -eq "Running"}
 
-如果您嘗試在工作流程中執行這個相同的程式碼，您會得到像「無法使用指定的具名參數解析參數集」的訊息。  若要修正這個問題，只需提供參數名稱，如下所示。
+如果您嘗試在工作流程中執行這個相同的程式碼，您會接收到像「無法使用指定的具名參數解析參數集」的訊息。  若要修正這個問題，請提供參數名稱，如下所示。
 
     Workflow Get-RunningServices
     {
@@ -67,7 +68,7 @@ PowerShell 工作流程程式碼看起來幾乎類似於 PowerShell 指令碼，
     $Service = Get-Service -Name MyService
     $Service.Stop()
 
-如果您嘗試執行此工作流程，您會取得錯誤，指出「Windows PowerShell 工作流程不支援方法引動過程」。  
+如果您嘗試執行此工作流程，您會接收到錯誤，指出「Windows PowerShell 工作流程不支援方法引動過程」。  
 
 其中一個選項是將這兩行程式碼中包裝在 [InlineScript](#inlinescript) 區塊中，在此情況下 $Service 會是區塊內的服務物件。
 
@@ -134,7 +135,7 @@ InlineScript 使用如下所示的語法。
 * 您不能在 InlineScriptBlock 內使用[平行執行](#parallel-processing)。
 * InlineScript 會影響工作流程的延展性，因為它會保留 InlineScript 區塊的整個長度的 Windows PowerShell 工作階段。
 
-如需使用 InlineScript 的進一步詳細資訊，請參閱[在工作流程中執行 Windows PowerShell 命令](http://technet.microsoft.com/library/jj574197.aspx)和 [about_InlineScript](http://technet.microsoft.com/library/jj649082.aspx)。
+如需使用 InlineScript 的詳細資訊，請參閱[在工作流程中執行 Windows PowerShell 命令](http://technet.microsoft.com/library/jj574197.aspx)和 [about_InlineScript](http://technet.microsoft.com/library/jj649082.aspx)。
 
 ## <a name="parallel-processing"></a>平行處理
 Windows PowerShell 工作流程的優點之一是可平行執行一組命令，而不是如同一般的指令碼以循序方式執行。
@@ -151,26 +152,26 @@ Windows PowerShell 工作流程的優點之一是可平行執行一組命令，�
 
 例如，考慮下列 PowerShell 命令，它會將多個檔案複製到網路目的地。  這些命令會循序執行，因此一個檔案必須完成複製才能開始複製下一個。     
 
-    $Copy-Item -Path C:\LocalPath\File1.txt -Destination \\NetworkPath\File1.txt
-    $Copy-Item -Path C:\LocalPath\File2.txt -Destination \\NetworkPath\File2.txt
-    $Copy-Item -Path C:\LocalPath\File3.txt -Destination \\NetworkPath\File3.txt
+    Copy-Item -Path C:\LocalPath\File1.txt -Destination \\NetworkPath\File1.txt
+    Copy-Item -Path C:\LocalPath\File2.txt -Destination \\NetworkPath\File2.txt
+    Copy-Item -Path C:\LocalPath\File3.txt -Destination \\NetworkPath\File3.txt
 
-下列工作流程會平行執行這些相同的命令，讓它們在相同的時間全部開始複製。  只有在全部完全複製之後，才會顯示完成訊息。
+下列工作流程會平行執行這些相同的命令，讓它們在相同的時間全部開始複製。  只有在全部複製之後，才會顯示完成訊息。
 
     Workflow Copy-Files
     {
         Parallel
         {
-            $Copy-Item -Path "C:\LocalPath\File1.txt" -Destination "\\NetworkPath"
-            $Copy-Item -Path "C:\LocalPath\File2.txt" -Destination "\\NetworkPath"
-            $Copy-Item -Path "C:\LocalPath\File3.txt" -Destination "\\NetworkPath"
+            Copy-Item -Path "C:\LocalPath\File1.txt" -Destination "\\NetworkPath"
+            Copy-Item -Path "C:\LocalPath\File2.txt" -Destination "\\NetworkPath"
+            Copy-Item -Path "C:\LocalPath\File3.txt" -Destination "\\NetworkPath"
         }
 
         Write-Output "Files copied."
     }
 
 
-您可以使用 **ForEach-Parallel** 建構來並行處理集合中每個項目的命令。 會以平行方式處理集合中的項目，而循序執行指令碼區塊中的命令。 這會使用如下所示的語法。 在此情況下，Activity1 將與集合中的所有項目同時開始。 針對每個項目，Activity2 會在 Activity1 完成之後開始 。 只有在 Activity1 和 Activity2 已完成所有項目之後，Activity3 才會開始。
+您可以使用 **ForEach-Parallel** 建構來並行處理集合中每個項目的命令。 會以平行方式處理集合中的項目，而循序執行指令碼區塊中的命令。 這會使用如下所示的語法。 在此情況下，Activity1 將與集合中的所有項目同時開始。 針對每個項目，Activity2 會在 Activity1 完成之後開始。 只有在 Activity1 和 Activity2 已完成所有項目之後，Activity3 才會開始。
 
     ForEach -Parallel ($<item> in $<collection>)
     {
@@ -187,7 +188,7 @@ Windows PowerShell 工作流程的優點之一是可平行執行一組命令，�
 
         ForEach -Parallel ($File in $Files)
         {
-            $Copy-Item -Path $File -Destination \\NetworkPath
+            Copy-Item -Path $File -Destination \\NetworkPath
             Write-Output "$File copied."
         }
 
@@ -219,7 +220,7 @@ Windows PowerShell 工作流程的優點之一是可平行執行一組命令，�
 
         ForEach ($File in $Files)
         {
-            $Copy-Item -Path $File -Destination \\NetworkPath
+            Copy-Item -Path $File -Destination \\NetworkPath
             Write-Output "$File copied."
             Checkpoint-Workflow
         }
@@ -260,9 +261,4 @@ Windows PowerShell 工作流程的優點之一是可平行執行一組命令，�
 
 ## <a name="next-steps"></a>後續步驟
 * 若要開始使用 PowerShell 工作流程 Runbook，請參閱 [我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

@@ -15,9 +15,9 @@ ms.workload:
 ms.date: 02/13/2017
 ms.author: ruturajd
 translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: b054245de2c5bf6019c2cb29409289f2ac8766ec
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 6629666eaa913321db3855438bb66d349d5c52bf
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -93,6 +93,12 @@ ms.lasthandoff: 03/31/2017
 
 如果您選取應用程式一致復原點，單一虛擬機器容錯回復會復原至其最新可用的應用程式一致復原點。 如果復原方案有複寫群組，每個複寫群組會復原至其一般可用的復原點。
 請注意，應用程式一致復原點的時間會落後，可能會遺失資料。
+
+### <a name="what-happens-to-vmware-tools-post-failback"></a>VMware 工具在容錯回復後會發生什麼狀況？
+
+容錯移轉至 Azure 期間，VMware 工具無法在 Azure 虛擬機器上執行。 萬一遇上 Windows 虛擬機器，ASR 會在容錯移轉期間停用 VMware 工具。 萬一遇上 Linux 虛擬機器，ASR 會在容錯移轉期間解除安裝 VMware 工具。 
+
+在 Windows 虛擬機器容錯回復期間，VMware 工具也會在容錯回復之後立即重新啟用。 同樣地，針對 Linux 虛擬機器，VMware 工具會在容錯回復期間重新安裝於電腦上。
 
 ## <a name="next-steps"></a>後續步驟
 

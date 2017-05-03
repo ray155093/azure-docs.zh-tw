@@ -12,13 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/29/2017
+ms.date: 04/20/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: f819992125f77897545ce3194870b1eadf400852
-ms.lasthandoff: 04/07/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: fc6e4eaa34694e2b20cb53b3e457803c59bf76b9
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -425,7 +425,7 @@ Type=Event Computer=*SQL*
 將傳回的結果欄位限制為 *Name* and *Severity*小節中閱讀搜尋中傳回的欄位，以及協助您深入鑽研相似資料類別的 Facet。
 
 ### <a name="measure"></a>Measure
-*measure* 命令可用來將統計函數套用至未經處理的搜尋結果。 需要取得資料的 *群組依據* 檢視時，這非常有用。 當您使用 measure 命令時，Log Analytics 搜尋會顯示含有彙總結果的資料表。
+*measure* 命令可用來將統計函式套用至未經處理的搜尋結果。 需要取得資料的 *群組依據* 檢視時，這非常有用。 當您使用 measure 命令時，Log Analytics 搜尋會顯示含有彙總結果的資料表。
 
 **語法：**
 
@@ -438,15 +438,15 @@ Type=Event Computer=*SQL*
 
 根據 groupField 彙總結果，並使用 aggregatedField 計算彙總的測量值。
 
-| 量值統計函數 | 說明 |
+| 量值統計函式 | 說明 |
 | --- | --- |
-| *aggregateFunction* |彙總函數的名稱 (不區分大小寫)。 支援下列彙總函式：COUNT、MAX、MIN、SUM、AVG、STDDEV、COUNTDISTINCT、PERCENTILE## 或 PCT## (## 是 1 與 99 之間的任意數字)。 |
+| *aggregateFunction* |彙總函式的名稱 (不區分大小寫)。 支援下列彙總函式：COUNT、MAX、MIN、SUM、AVG、STDDEV、COUNTDISTINCT、PERCENTILE## 或 PCT## (## 是 1 與 99 之間的任意數字)。 |
 | *aggregatedField* |正在彙總的欄位。 這是 COUNT 彙總函式的選擇性欄位，但必須是 SUM、MAX、MIN、AVG、STDDEV、PERCENTILE## 或 PCT## 的現有數值欄位 (## 是 1 與 99 之間的任意數字)。 aggregatedField 也可以是任一 **Extend** 支援的函式。 |
 | *fieldAlias* |計算彙總值 (選擇性) 別名。 如果未指定，欄位名稱會是 **AggregatedValue**。 |
 | *groupField* |用來分組結果集的欄位名稱。 |
 | *間隔* |時間間隔，格式為：**nnnNAME**。 **nnn** 是正整數。 **NAME** 是間隔名稱。 支援的間隔名稱區分大小寫，且包括：MILLISECOND[S]、SECOND[S]、MINUTE[S]、HOUR[S]、DAY[S]、MONTH[S] 和 YEAR[S]。 |
 
-間隔選項只能用於日期/時間群組欄位中 (例如 *TimeGenerated* and *TimeCreated*)。 目前，服務不會強制執行，但是沒有傳遞至後端之日期/時間的欄位會造成執行階段錯誤。 實作結構描述驗證時，服務 API 會拒絕某些查詢，其使用的欄位沒有間隔彙總的日期/時間。 目前的 *Measure* 實作支援任何彙總函數的間隔分組。
+間隔選項只能用於日期/時間群組欄位中 (例如 *TimeGenerated* and *TimeCreated*)。 目前，服務不會強制執行，但是沒有傳遞至後端之日期/時間的欄位會造成執行階段錯誤。 實作結構描述驗證時，服務 API 會拒絕某些查詢，其使用的欄位沒有間隔彙總的日期/時間。 目前的 *Measure* 實作支援任何彙總函式的間隔分組。
 
 如果省略 BY 子句，但指定間隔 (作為第二個語法)，則預設採用 TimeGenerated 欄位。
 
@@ -610,6 +610,85 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 
 這個範例會為每個 EventID 傳回一個事件 (最新事件)。
 
+### <a name="join"></a>Join
+聯結兩個查詢的結果以形成單一結果集。  支援下表所述的多個聯結類型。
+  
+| 聯結類型 | 說明 |
+|:--|:--|
+| inner | 只傳回具有兩個查詢相符值的記錄。 |
+| outer | 傳回兩個查詢的所有記錄。  |
+| left  | 傳回左查詢的所有記錄，以及傳回右查詢的相符記錄。 |
+
+
+- 聯結目前不支援包含 **IN** 關鍵字或 **Measure** 命令的查詢。
+- 您目前只可以在一個聯結中包含單一欄位。
+- 單一搜尋可能不包含一個以上的聯結。
+
+**語法**
+
+```
+<left-query> | JOIN <join-type> <left-query-field-name> (<right-query>) <right-query-field-name>
+```
+
+**範例**
+
+若要說明不同的聯結類型，請考慮聯結從稱為 MyBackup_CL 的自訂記錄收集的資料類型與每部電腦的活動訊號。  這些資料類型具有下列資料。
+
+`Type = MyBackup_CL`
+
+| TimeGenerated | 電腦 | LastBackupStatus |
+|:---|:---|:---|
+| 4/20/2017 01:26:32.137 AM | srv01.contoso.com | 成功 |
+| 4/20/2017 02:13:12.381 AM | srv02.contoso.com | 成功 |
+| 4/20/2017 02:13:12.381 AM | srv03.contoso.com | 失敗 |
+
+`Type = Hearbeat` (只會顯示部分的欄位)
+
+| TimeGenerated | 電腦 | ComputerIP |
+|:---|:---|:---|
+| 4/21/2017 12:01:34.482 PM | srv01.contoso.com | 10.10.100.1 |
+| 4/21/2017 12:02:21.916 PM | srv02.contoso.com | 10.10.100.2 |
+| 4/21/2017 12:01:47.373 PM | srv04.contoso.com | 10.10.100.4 |
+
+#### <a name="inner-join"></a>inner join
+
+`Type=MyBackup_CL | join inner Computer (Type=Heartbeat) Computer`
+
+當電腦欄位符合兩個資料類型時，傳回下列記錄。
+
+| 電腦| TimeGenerated | LastBackupStatus | TimeGenerated_joined | ComputerIP_joined | Type_joined |
+|:---|:---|:---|:---|:---|:---|
+| srv01.contoso.com | 4/20/2017 01:26:32.137 AM | 成功 | 4/21/2017 12:01:34.482 PM | 10.10.100.1 | Heartbeat |
+| srv02.contoso.com | 4/20/2017 02:13:12.381 AM | 成功 | 4/21/2017 12:02:21.916 PM | 10.10.100.2 | Heartbeat |
+
+
+#### <a name="outer-join"></a>outer join
+
+`Type=MyBackup_CL | join outer Computer (Type=Heartbeat) Computer`
+
+傳回兩個資料類型的下列記錄。
+
+| 電腦| TimeGenerated | LastBackupStatus | TimeGenerated_joined | ComputerIP_joined | Type_joined |
+|:---|:---|:---|:---|:---|:---|
+| srv01.contoso.com | 4/20/2017 01:26:32.137 AM | 成功  | 4/21/2017 12:01:34.482 PM | 10.10.100.1 | Heartbeat |
+| srv02.contoso.com | 4/20/2017 02:14:12.381 AM | 成功  | 4/21/2017 12:02:21.916 PM | 10.10.100.2 | Heartbeat |
+| srv03.contoso.com | 4/20/2017 01:33:35.974 AM | 失敗  | 4/21/2017 12:01:47.373 PM | | |
+| srv04.contoso.com |                           |          | 4/21/2017 12:01:47.373 PM | 10.10.100.2 | Heartbeat |
+
+
+
+#### <a name="left-join"></a>left join
+
+`Type=MyBackup_CL | join left Computer (Type=Heartbeat) Computer`
+
+從 MyBackup_CL 傳回下列記錄，以及 Heartbeat 的任何相符欄位。
+
+| 電腦| TimeGenerated | LastBackupStatus | TimeGenerated_joined | ComputerIP_joined | Type_joined |
+|:---|:---|:---|:---|:---|:---|
+| srv01.contoso.com | 4/20/2017 01:26:32.137 AM | 成功 | 4/21/2017 12:01:34.482 PM | 10.10.100.1 | Heartbeat |
+| srv02.contoso.com | 4/20/2017 02:13:12.381 AM | 成功 | 4/21/2017 12:02:21.916 PM | 10.10.100.2 | Heartbeat |
+| srv03.contoso.com | 4/20/2017 02:13:12.381 AM | 失敗 | | | |
+
 
 ### <a name="extend"></a>Extend
 可讓您在查詢中建立執行階段欄位。 如果您想要執行彙總，也可以在 extend 命令之後使用 measure 命令。
@@ -647,7 +726,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | Ex
 
 | 函式 | 說明 | 語法範例 |
 | --- | --- | --- |
-| abs |傳回所指定數值或函數的絕對值。 |`abs(x)` <br> `abs(-5)` |
+| abs |傳回所指定數值或函式的絕對值。 |`abs(x)` <br> `abs(-5)` |
 | acos |傳回值或函式的反餘弦值。 |`acos(x)` |
 | 和 |只有在其所有運算元都評估為 true 時，才會傳回 true 值。 |`and(not(exists(popularity)),exists(price))` |
 | asin |傳回值或函式的反正弦值。 |`asin(x)` |
@@ -665,35 +744,35 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | Ex
 | exp |傳回歐拉數字乘冪 x。 |`exp(x)` |
 | floor |無條件捨去到整數。 |`floor(x)`  <br> `floor(5.6)`：傳回 5 |
 | hypo |傳回 sqrt(sum(pow(x,2),pow(y,2)))，而不需要中繼溢位或反向溢位。 |`hypo(x,y)`  <br> ` |
-| if |啟用條件式函數查詢。 在 `if(test,value1,value2)` 中：test 是或參照可傳回邏輯值 (TRUE 或 FALSE) 的邏輯值或運算式。 `value1` 是函式在 test 產生 TRUE 時所傳回的值。 `value2` 是函式在 test 產生 FALSE 時所傳回的值。 運算式可以是輸出布林值的任何函式。 也可以是傳回數值的函式，在此情況下，值 0 會解譯為 false 或傳回字串，在此情況下，空字串會解譯為 false。 |`if(termfreq(cat,'electronics'),popularity,42)`：這個函式會檢查每個文件，確認 cat 欄位中是否包含 "electronics" 這個字。 如果是的話，會傳回 popularity 欄位的值。 否則會傳回值 42。 |
-| linear |實作 `m*x+c`，其中 m 和 c 是常數，而 x 是任意函式。 這相當於 `sum(product(m,x),c)`，但較具效率，因為它實作為單一函數。 |`linear(x,m,c) linear(x,2,4)` 傳回 `2*x+4` |
+| if |啟用條件式函式查詢。 在 `if(test,value1,value2)` 中：test 是或參照可傳回邏輯值 (TRUE 或 FALSE) 的邏輯值或運算式。 `value1` 是函式在 test 產生 TRUE 時所傳回的值。 `value2` 是函式在 test 產生 FALSE 時所傳回的值。 運算式可以是輸出布林值的任何函式。 也可以是傳回數值的函式，在此情況下，值 0 會解譯為 false 或傳回字串，在此情況下，空字串會解譯為 false。 |`if(termfreq(cat,'electronics'),popularity,42)`：這個函式會檢查每個文件，確認 cat 欄位中是否包含 "electronics" 這個字。 如果是的話，會傳回 popularity 欄位的值。 否則會傳回值 42。 |
+| linear |實作 `m*x+c`，其中 m 和 c 是常數，而 x 是任意函式。 這相當於 `sum(product(m,x),c)`，但較具效率，因為它實作為單一函式。 |`linear(x,m,c) linear(x,2,4)` 傳回 `2*x+4` |
 | ln |傳回所指定函式的自然對數。 |`ln(x)` |
-| log |傳回所指定函數的對數底數 10。 |`log(x)   log(sum(x,100))` |
-| map |將輸入函式 x 的任何落在 min 與 max (含) 之間的值對應到指定的目標。 min 和 max 引數必須是常數。 target 和 default 引數可以是常數或函數。 如果值 x 未落在 min 與 max 之間，則會傳回值 x，或者，如果指定為第 5 個引數，則會傳回預設值。 |`map(x,min,max,target) map(x,0,0,1)`：將任何 0 的值變更為 1。 這可用於處理預設值 0 的值。<br> `map(x,min,max,target,default)    map(x,0,100,1,-1)`：變更 0 和 100 到 1 之間的任何值，所有其他值為 -1。<br>  `map(x,0,100,sum(x,599),docfreq(text,solr))`：變更介於 0 和 100 到 x+599 之間的任何值和所有其他值，成為欄位文字中詞彙 'solr' 的頻率。 |
-| max |傳回多個巢狀函式或常數的最大數值 (指定為引數：`max(x,y,...)`。 max 函數也適用於將某個指定常數上的另一個函數或欄位「降到最小值」  使用 `field(myfield,max)` 語法來選取單一多值欄位的最大值。 |`max(myfield,myotherfield,0)` |
-| Min |傳回常數之多個巢狀函式的最小數值 (指定為引數︰`min(x,y,...)`。 min 函數也適用於使用常數提供函數的「上限」 使用 `field(myfield,min)` 語法來選取單一多值欄位的最小值。 |`min(myfield,myotherfield,0)` |
+| log |傳回所指定函式的對數底數 10。 |`log(x)   log(sum(x,100))` |
+| map |將輸入函式 x 的任何落在 min 與 max (含) 之間的值對應到指定的目標。 min 和 max 引數必須是常數。 target 和 default 引數可以是常數或函式。 如果值 x 未落在 min 與 max 之間，則會傳回值 x，或者，如果指定為第 5 個引數，則會傳回預設值。 |`map(x,min,max,target) map(x,0,0,1)`：將任何 0 的值變更為 1。 這可用於處理預設值 0 的值。<br> `map(x,min,max,target,default)    map(x,0,100,1,-1)`：變更 0 和 100 到 1 之間的任何值，所有其他值為 -1。<br>  `map(x,0,100,sum(x,599),docfreq(text,solr))`：變更介於 0 和 100 到 x+599 之間的任何值和所有其他值，成為欄位文字中詞彙 'solr' 的頻率。 |
+| max |傳回多個巢狀函式或常數的最大數值 (指定為引數：`max(x,y,...)`。 max 函式也適用於將某個指定常數上的另一個函式或欄位「降到最小值」  使用 `field(myfield,max)` 語法來選取單一多值欄位的最大值。 |`max(myfield,myotherfield,0)` |
+| Min |傳回常數之多個巢狀函式的最小數值 (指定為引數︰`min(x,y,...)`。 min 函式也適用於使用常數提供函式的「上限」 使用 `field(myfield,min)` 語法來選取單一多值欄位的最小值。 |`min(myfield,myotherfield,0)` |
 | mod |計算函式 x 乘以函式 y 的模數。 |`mod(1,x)` <br> `mod(sum(x,100), max(y,1))` |
 | ms |傳回其引數之間差異的毫秒。 日期相對於 Unix 或 POSIX 時間新紀元：1970 年 1 月 1 日午夜 UTC。 引數可以是索引 TrieDateField 的名稱，或根據常數日期或 NOW 的日期算術。 `ms()` 相當於 `ms(NOW)`，epoch 以來毫秒數的數字。 `ms(a)` 傳回引數所代表之新紀元後的毫秒數。 `ms(a,b)` 傳回 b 之前發生的毫秒數，也就是 `a - b`。 |`ms(NOW/DAY)`<br>`ms(2000-01-01T00:00:00Z)`<br>`ms(mydatefield)`<br>`ms(NOW,mydatefield)`<br>`ms(mydatefield,2000-01-01T00:00:00Z)`<br>`ms(datefield1,datefield2)` |
-| 否 |所包裝函數的邏輯負值。 |`not(exists(author))`：當 `exists(author)` 為 false 時才為 TRUE。 |
+| 否 |所包裝函式的邏輯負值。 |`not(exists(author))`：當 `exists(author)` 為 false 時才為 TRUE。 |
 | 或 |邏輯分離。 |`or(value1,value2)`：如果 value1 或 value2 為 true，則為 TRUE。 |
 | pow |將指定的基底提升為指定的次方。 `pow(x,y)` 將 x 提升為次方 y。 |`pow(x,y)`<br>`pow(x,log(y))`<br>`pow(x,0.5)`：與 sqrt 相同。 |
-| product |傳回多個數值或函數 (指定為逗號分隔的清單) 的乘積。 `mul(...)` 也可以做為這個函數的別名。 |`product(x,y,...)`<br>`product(x,2)`<br>`product(x,y)`<br>`mul(x,y)` |
-| recip |執行 `recip(x,m,a,b)` 實作 `a/(m*x+b)` 的倒數函式，其中 m、a 和 b 是常數，而 x 是任何任意複雜函式。 a 與 b 相等而且 x>=0 時，此函式的最大值為 1，會在 x 增加時減少。 同時增加 a 和 b 的值，可將整個函數移到曲線最平緩的部分。 x 為 `rord(datefield)`時，這些屬性可以將這個設為提升較新文件的理想函數。 |`recip(myfield,m,a,b)`<br>`recip(rord(creationDate),1,1000,1000)` |
+| product |傳回多個數值或函式 (指定為逗號分隔的清單) 的乘積。 `mul(...)` 也可以作為這個函式的別名。 |`product(x,y,...)`<br>`product(x,2)`<br>`product(x,y)`<br>`mul(x,y)` |
+| recip |執行 `recip(x,m,a,b)` 實作 `a/(m*x+b)` 的倒數函式，其中 m、a 和 b 是常數，而 x 是任何任意複雜函式。 a 與 b 相等而且 x>=0 時，此函式的最大值為 1，會在 x 增加時減少。 同時增加 a 和 b 的值，可將整個函式移到曲線最平緩的部分。 x 為 `rord(datefield)`時，這些屬性可以將這個設為提升較新文件的理想函式。 |`recip(myfield,m,a,b)`<br>`recip(rord(creationDate),1,1000,1000)` |
 | rad |將度數轉換為弧度。 |`rad(x)` |
 | rint |四捨五入為最接近的整數。 |`rint(x)`  <br> `rint(5.6)`：傳回 6 |
 | sin |傳回角度的正弦值。 |`sin(x)` |
 | sinh |傳回角度的雙曲正弦值。 |`sinh(x)` |
-| 級別 |調整函式 x 的值，讓它們落在指定的 minTarget 與 maxTarget (含) 之間。 目前的實作會周遊所有函數值以取得最小值和最大值，讓它可以取得正確的小數位數。 目前的實作無法區別何時刪除文件或文件是否沒有值。 在這些情況下，它會使用 0.0 值。 這表示，如果值通常都大於 0.0，其中一個還是可以將 0.0 當成要對應來源的最小值。 在這些情況下，適當的 `map()` 函式可以用做將 0.0 變更為實際範圍內之值的因應措施，如這裡所示：`scale(map(x,0,0,5),1,2)` |`scale(x,minTarget,maxTarget)`<br>`scale(x,1,2)`：調整 x 值，讓所有值都在 1 與 2 (含) 之間。 |
-| sqrt |傳回所指定數值或函數的平方根。 |`sqrt(x)`<br>`sqrt(100)`<br>`sqrt(sum(x,100))` |
+| 級別 |調整函式 x 的值，讓它們落在指定的 minTarget 與 maxTarget (含) 之間。 目前的實作會周遊所有函式值以取得最小值和最大值，讓它可以取得正確的小數位數。 目前的實作無法區別何時刪除文件或文件是否沒有值。 在這些情況下，它會使用 0.0 值。 這表示，如果值通常都大於 0.0，其中一個還是可以將 0.0 當成要對應來源的最小值。 在這些情況下，適當的 `map()` 函式可以用做將 0.0 變更為實際範圍內之值的因應措施，如這裡所示：`scale(map(x,0,0,5),1,2)` |`scale(x,minTarget,maxTarget)`<br>`scale(x,1,2)`：調整 x 值，讓所有值都在 1 與 2 (含) 之間。 |
+| sqrt |傳回所指定數值或函式的平方根。 |`sqrt(x)`<br>`sqrt(100)`<br>`sqrt(sum(x,100))` |
 | strdist |計算兩個字串之間的距離。 使用 Lucene 拼字檢查程式 StringDistance 介面並支援該套件中可用的所有實作。 也允許應用程式透過 Solr 的資源載入功能插入專屬的實作。 strdist 採用 `(string1, string2, distance measure)`。 距離量值的可能值如下︰<ul><li>jw: Jaro-Winkler</li><li>編輯︰Levenstein 或編輯距離</li><li>ngram：NGramDistance，如果指定，也可以選擇性地傳入 ngram 大小。 預設值為 2。</li><li>FQN：StringDistance 介面實作的完整類別名稱。 必須要有無引數建構函式。</li></ul> |`strdist("SOLR",id,edit)` |
 | sub |從 `sub(x,y)`傳回 x-y。 |`sub(myfield,myfield2)`<br>`sub(100,sqrt(myfield))` |
-| Sum |傳回多個數值或函數 (指定為逗號分隔的清單) 的總和。 `add(...)` 可以做為這個函數的別名。 |`sum(x,y,...)`<br>`sum(x,1)`<br>`sum(x,y)`<br>`sum(sqrt(x),log(y),z,0.5)`<br>`add(x,y)` |
+| Sum |傳回多個數值或函式 (指定為逗號分隔的清單) 的總和。 `add(...)` 可以作為這個函式的別名。 |`sum(x,y,...)`<br>`sum(x,1)`<br>`sum(x,y)`<br>`sum(sqrt(x),log(y),z,0.5)`<br>`add(x,y)` |
 | termfreq |傳回在該文件欄位中字詞出現的次數。 |termfreq(text,'memory') |
 | tan |傳回角度的正切值。 |`tan(x)` |
 | tanh |傳回角度的雙曲正切值。 |`tanh(x)` |
 
 ## <a name="search-field-and-facet-reference"></a>搜尋欄位和 Facet 參考 (英文)
-當您使用記錄檔搜尋來尋找資料時，結果會顯示各種欄位和 Facet。 資訊的某些部分可能不太清楚。 使用下列資訊來協助了解結果。
+當您使用記錄搜尋來尋找資料時，結果會顯示各種欄位和 Facet。 資訊的某些部分可能不太清楚。 使用下列資訊來協助了解結果。
 
 | 欄位 | 搜尋類型 | 說明 |
 | --- | --- | --- |
@@ -803,8 +882,8 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | Ex
 | Current |ConfigurationChange |此軟體最新的狀態 (已安裝/未安裝/上一個版本)。 |
 
 ## <a name="next-steps"></a>後續步驟
-如需記錄檔搜尋的其他資訊：
+如需記錄搜尋的其他資訊：
 
-* 熟悉 [記錄檔搜尋](log-analytics-log-searches.md) 以檢視方案所收集的詳細資訊。
+* 熟悉 [記錄搜尋](log-analytics-log-searches.md) 以檢視方案所收集的詳細資訊。
 * 使用 [Log Analytics 中的自訂欄位](log-analytics-custom-fields.md)來延伸記錄搜尋。
 

@@ -16,9 +16,9 @@ ms.workload: sql-database
 ms.date: 10/12/2016
 ms.author: bonova
 translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 8687603e7dbb91d60520be8952a78128595d9f46
-ms.lasthandoff: 04/15/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 3870a6ddb8c40a619e3aa6ed1a040f2070e2598c
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -118,7 +118,7 @@ ON T1.history_table_id = T2.object_id WHERE T1.temporal_type = 2
 當您的工作負載快速產生大量記錄資料時，絕佳的資料壓縮和有效率的保留清除，使得叢集資料行存放區索引成為最佳選擇。 此模式通常用於需要[使用時態表的大量交易處理工作負載](https://msdn.microsoft.com/library/mt631669.aspx)，以追蹤和稽核變更、分析趨勢，或擷取 IoT 資料。
 
 ## <a name="index-considerations"></a>索引考量
-對於具有資料列存放區叢集索引的資料表，清除工作需有從對應 SYSTEM_TIME 時段結束的資料行開始的索引。 如果沒有這種索引，您無法設定有限保留期限︰
+對於具有資料列存放區叢集索引的資料表，清除工作需有從對應 SYSTEM_TIME 時段結束的資料行開始的索引。 如果沒有這種索引，您就無法設定有限保留期限：
 
 *訊息 13765，層級 16，狀態 1 <br></br> 在由系統設定版本的時態表 'temporalstagetestdb.dbo.WebsiteUserInfo' 上，設定有限的保留期限失敗，因為記錄資料表 'temporalstagetestdb.dbo.WebsiteUserInfoHistory' 不包含必要的叢集索引。在記錄資料表上，請考慮建立從符合 SYSTEM_TIME 時段結束的資料行開始的叢集資料行存放區或 B 型樹狀目錄索引。*
 

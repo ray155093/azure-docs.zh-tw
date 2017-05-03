@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 04/04/2017
 ms.author: asteen
 translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: c0283282c0f19c3a0e0f4304de2b5ab4768d3290
-ms.lasthandoff: 04/17/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: d24031955f57794d6796ea37d8d1b0984f066286
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -38,6 +38,8 @@ ms.lasthandoff: 04/17/2017
 ## <a name="configuring-an-application-for-automatic-provisioning"></a>設定應用程式以進行自動佈建
 
 「自動」表示已經為此應用程式開發 Azure AD 佈建連接器。 如需 Azure AD 佈建服務及其運作方式的詳細資訊，請參閱[自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning)。
+
+如需如何將特定使用者和群組佈建到應用程式的相關詳細資訊，請參閱[管理企業應用程式的使用者帳戶佈建](https://docs.microsoft.com/azure/active-directory/active-directory-enterprise-apps-manage-provisioning)。
 
 啟用及設定自動佈建所需的實際步驟會因應用程式而有所不同。
 

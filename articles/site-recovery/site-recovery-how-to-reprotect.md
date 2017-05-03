@@ -15,9 +15,9 @@ ms.workload:
 ms.date: 02/13/2017
 ms.author: ruturajd
 translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 7b7177faa9fa571d3a62ee15b4a0fbfdab3a097f
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: a655c7bf1ea5ca1439d4353df5067c0e07f2d49f
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -46,7 +46,7 @@ ms.lasthandoff: 03/24/2017
         * Windows 虛擬機器需要 Windows 主要目標伺服器。 您可以再次使用內部部署處理序伺服器和主要目標電腦。
 * 執行容錯回復時，組態伺服器必須為內部部署。 在容錯回復期間，虛擬機器必須存在於組態伺服器資料庫中。 否則，將無法成功容錯回復。 請確定您有排定來定期備份伺服器。 發生災害時，您需要使用相同的 IP 位址還原伺服器，讓容錯回復運作。
 * 確定您在 VMware 中將主要目標虛擬機器的組態參數設定設為 disk.EnableUUID=true。 如果此列不存在，請新增它。 需要此設定才能提供一致的 UUID 給虛擬機器磁碟 (VMDK)，使其可正確掛接。
-* 您無法使用主要目標伺服器的儲存體 vMaster。 這會造成容錯回復失敗。 虛擬機器不會啟動，因為磁碟不可供其使用。
+* 您無法在主要目標伺服器上使用儲存體 vMotion。 這會造成容錯回復失敗。 虛擬機器不會啟動，因為磁碟不可供其使用。 若要避免這個問題，請從 vMotion 清單中排除主要目標伺服器。
 * 您需要將新的磁碟機新增至主要目標伺服器。 此磁碟機稱為保留磁碟機。 新增磁碟並格式化磁碟機。
 * [重新保護之前在主要目標上檢查的常見項目](site-recovery-how-to-reprotect.md#common-things-to-check-after-completing-installation-of-the-master-target-server)中，列出主要目標的其他必要條件。
 
@@ -76,6 +76,11 @@ ms.lasthandoff: 03/24/2017
 
 深入了解如何安裝 [Azure 處理序伺服器](site-recovery-vmware-setup-azure-ps-resource-manager.md)。
 
+> [!TIP]
+> 我們始終建議在容錯回復期間使用以 Azure 為基礎的處理序伺服器。 如果處理序伺服器比較接近複寫的虛擬機器 (在 Azure 中容錯移轉的機器)，則複寫效能較高。 不過，在概念或示範的證明期間，您可以透過私人對等互連，使用內部部署處理序伺服器以及 ExpressRoute 更快完成 POC。
+
+
+
 ### <a name="what-are-the-ports-to-be-open-on-different-components-so-that-reprotect-can-work"></a>在不同的元件上要開啟哪些連接埠，重新保護才能運作？
 
 ![容錯移轉-容錯回復所有的連接埠](./media/site-recovery-failback-azure-to-vmware-classic/Failover-Failback.png)
@@ -94,9 +99,12 @@ ms.lasthandoff: 03/24/2017
 
 * 若虛擬機器存在於內部部署 vCenter 伺服器上，主要目標伺服器必須能夠存取內部部署虛擬機器的 VMDK。 需要存取才可將複寫的資料寫入虛擬機器的磁碟。 請確定內部部署內部部署的資料存放區已掛接在主要目標的主機上並已設定讀寫權限。
 
-* 如果虛擬機器不是在 vCenter Server 上的內部部署中出現，您需要在重新保護期間建立新的虛擬機器。 您必須在建立主要目標的 ESX 主機上建立此虛擬機器。 請謹慎選擇 ESX 主機，以便在您要的主機上建立容錯回復虛擬機器。
+* 如果虛擬機器不在 vCenter Server 上的內部部署環境，站台復原服務需要在重新保護期間建立新的虛擬機器。 您必須在建立主要目標的 ESX 主機上建立此虛擬機器。 請謹慎選擇 ESX 主機，以便在您要的主機上建立容錯回復虛擬機器。
 
 * 您無法使用主要目標伺服器的儲存體 vMotion。 這會造成容錯回復失敗。 虛擬機器不會啟動，因為磁碟不可供其使用。
+
+> [!WARNING]
+> 如果主要目標經歷儲存體 vMotion 後重新保護，則連結到主要目標的受保護虛擬機器磁碟將移轉到 vMotion 的目標。 如果您嘗試在此之後進行容錯回復，則中斷磁碟連結便無法引述找不到磁碟。 在此之後，就很難在您的儲存體帳戶中找到磁碟。 您必須手動找到這些磁碟並將它們連結到虛擬機器。 而後，就可以啟動內部部署虛擬機器。
 
 * 您必須將新的磁碟機新增至現有的 Windows 主要目標伺服器。 此磁碟機稱為保留磁碟機。 新增磁碟並格式化磁碟機。 保留磁碟機可用來停止虛擬機器複寫回到內部部署站台時的時間點。 以下為保留磁碟機的一些準則，如果沒有這些準則，磁碟機將不會針對主要目標伺服器列出。
 
@@ -113,6 +121,11 @@ ms.lasthandoff: 03/24/2017
    * Windows 的預設保留磁碟區為 R 磁碟區。
 
    * Linux 的預設保留磁碟區為 /mnt/retention。
+   
+   > [!IMPORTANT]
+   > 如果您使用現有的 CS+PS 機器或 PS+MT 機器，則必須新增磁碟機。 新的磁碟機應該符合上述需求。 如果保留磁碟機不存在，則入口網站上的選取項目下拉式清單中不會列出任何項目。 將磁碟機新增至內部部署主要目標之後，磁碟機最多需要 15 分鐘才會反映在入口網站上的選取項目中。 如果磁碟機未在 15 分鐘之後出現，您也可以重新整理設定伺服器。
+
+
 
 * Linux 容錯移轉虛擬機器需要 Linux 主要目標伺服器。 Windows 容錯移轉虛擬機器需要 Windows 主要目標伺服器。
 

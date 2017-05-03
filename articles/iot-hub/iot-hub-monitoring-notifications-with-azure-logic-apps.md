@@ -16,13 +16,15 @@ ms.workload: na
 ms.date: 04/12/2017
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
-ms.openlocfilehash: 00f45f2bc1a7e15d93980779c23c8aa287cd25bb
-ms.lasthandoff: 04/13/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 2cdfbadfc4cc28afe34b4d558f40bba6451f7388
+ms.lasthandoff: 04/25/2017
 
 
 ---
 # <a name="iot-remote-monitoring-and-notifications-with-azure-logic-apps-connecting-your-iot-hub-and-mailbox"></a>搭配連接 IoT 中樞和信箱的 Azure Logic Apps 進行 IoT 遠端監視和通知
+
+![端對端圖表](media/iot-hub-get-started-e2e-diagram/7.png)
 
 [!INCLUDE [iot-hub-get-started-note](../../includes/iot-hub-get-started-note.md)]
 
@@ -40,7 +42,7 @@ Azure Logic Apps 可用來以一連串的步驟使程序自動進行。 邏輯�
 
 ## <a name="what-you-need"></a>您需要什麼
 
-* 完成[將 ESP8266 連接到 Azure IoT 中樞](iot-hub-arduino-huzzah-esp8266-get-started.md)教學課程，其中涵蓋下列需求：
+* 完成涵蓋下列需求的[設定裝置](iot-hub-raspberry-pi-kit-node-get-started.md)教學課程︰
   * 有效的 Azure 訂用帳戶。
   * 位於您訂用帳戶中的 Azure IoT 中樞。
   * 將訊息傳送到您 Azure IoT 中樞的用戶端應用程式。

@@ -12,17 +12,18 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/14/2016
+ms.date: 04/19/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: b159d3583c24e36c2803d7d02deca1415669d054
-ms.openlocfilehash: ebc5461177df5b5a16ab9b5668f5fda890ee11a4
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 2ba9676ed2afce7f18446642527971f5001b5ca7
+ms.lasthandoff: 04/20/2017
 
 
 ---
 # <a name="how-to-update-a-cloud-service"></a>如何更新雲端服務
-## <a name="overview"></a>Overview
-在 10,000 英呎處，更新雲端服務 (包括其角色和客體 OS) 是包含三個步驟的程序。 首先，必須上傳新雲端服務或作業系統版本的二進位檔和組態檔案。 接著，Azure 會根據新雲端服務版本的需求，保留雲端服務的計算和網路資源。 最後，Azure 會執行輪流升級，以累加方式將租用戶更新為新版本或客體 OS，同時保留您的可用性。 本文將討論最後一個步驟 (輪流升級) 的細節。
+
+更新雲端服務 (包括其角色和客體 OS) 是一個包含三步驟的程序。 首先，必須上傳新雲端服務或作業系統版本的二進位檔和組態檔案。 接著，Azure 會根據新雲端服務版本的需求，保留雲端服務的計算和網路資源。 最後，Azure 會執行輪流升級，以累加方式將租用戶更新為新版本或客體 OS，同時保留您的可用性。 本文將討論最後一個步驟 (輪流升級) 的細節。
 
 ## <a name="update-an-azure-service"></a>更新 Azure 服務
 Azure 會將您的角色執行個體組織成名為升級網域 (UD) 的邏輯群組。 升級網域 (UD) 是角色執行個體的邏輯集合，會以群組方式進行更新。  Azure 會一次更新一個 UD 的一個雲端服務，讓其他 UD 中的執行個體能夠繼續處理流量。
@@ -66,9 +67,9 @@ Azure 會將您的角色執行個體組織成名為升級網域 (UD) 的邏輯�
 | 變更現有的憑證 |是 |是 |是 |
 | 部署新程式碼 |是 |是 |是 |
 
-<sup>1</sup>大小變更已限制為可供雲端服務使用的大小子集。
+<sup>1</sup> 大小變更已限制為可供雲端服務使用的大小子集。
 
-<sup>2</sup>需要 Azure SDK 1.5 或更新版本。
+<sup>2</sup> 需要 Azure SDK 1.5 或更新版本。
 
 > [!WARNING]
 > 變更虛擬機器大小將會損毀本機資料。
@@ -90,11 +91,11 @@ Azure 會將您的角色執行個體組織成名為升級網域 (UD) 的邏輯�
 
 下圖說明如果您要升級服務中的所有角色，如何繼續進行升級：
 
-![升級服務](media/cloud-services-update-azure-service/IC345879.png "Upgrade service")
+![升級服務](media/cloud-services-update-azure-service/IC345879.png "升級服務")
 
 下圖說明如果您只要升級單一角色，如何繼續進行更新：
 
-![升級角色](media/cloud-services-update-azure-service/IC345880.png "Upgrade role")  
+![升級角色](media/cloud-services-update-azure-service/IC345880.png "升級角色")  
 
 在自動更新期間，Azure 網狀架構控制器會定期評估雲端服務的健康狀態，以判斷何時可放心進行下一個 UD。 此健康狀態評估會根據每一個角色執行，而且只考慮最新版本中的執行個體 (也就是 UD 中已進行的執行個體)。 它會確認每個角色的最少角色執行個體是否已達到令人滿意的終止狀態。
 
@@ -178,7 +179,7 @@ Azure 會將角色的執行個體平均分散於一組升級網域，而升級�
 
 下圖說明當服務定義兩個升級網域時，如何散發包含兩個角色的服務。 此服務正在執行 Web 角色的 8 個執行個體以及背景工作角色的 9 個執行個體。
 
-![升級網域的散發](media/cloud-services-update-azure-service/IC345533.png "Distribution of Upgrade Domains")
+![升級網域的分配](media/cloud-services-update-azure-service/IC345533.png "升級網域的分配")
 
 > [!NOTE]
 > 請注意，Azure 會控制執行個體配置於升級網域的方式。 您無法指定哪些執行個體會配置給哪一個網域。
@@ -189,9 +190,4 @@ Azure 會將角色的執行個體平均分散於一組升級網域，而升級�
 [如何管理雲端服務](cloud-services-how-to-manage.md)  
 [如何監視雲端服務](cloud-services-how-to-monitor.md)  
 [如何設定雲端服務](cloud-services-how-to-configure.md)  
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

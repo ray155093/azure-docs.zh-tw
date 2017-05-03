@@ -12,12 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/23/2017
+ms.date: 03/19/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 1a462b8d557ad23bda912ddf9431195a8cfe909e
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 284b239860481cf76f647d78f6a7b5e2b7cf9a3b
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 03/31/2017
 
 **如果我從現有的 VHD (大小為 80 GB) 建立標準受控磁碟，需要多少費用？**
 
-從 80 GB VHD 建立的標準受控磁碟會被視為下一個可用的進階磁碟大小 (S10 磁碟)。 我們將根據 S10 磁碟價格收費。 如需詳細資訊，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/storage)。
+從 80 GB VHD 建立的標準受控磁碟會被視為下一個可用的標準磁碟大小 (S10 磁碟)。 我們將根據 S10 磁碟價格收費。 如需詳細資訊，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/storage)。
 
 **標準受控磁碟有任何交易成本嗎？**
 
@@ -121,6 +121,11 @@ ms.lasthandoff: 03/31/2017
 
 Azure 受控磁碟目前僅支援本地備援儲存體 (LRS)。
 
+**我可以壓縮受控磁碟嗎？**
+否。 目前不受支援此功能。 
+
+**使用特殊化 (未執行過 Sysprep 或一般化) 的 OS 磁碟來佈建 VM 時，我可以變更電腦名稱屬性嗎？**否。 您無法更新電腦名稱屬性。 新的 VM 將繼承其父 VM 的電腦名稱屬性，該屬性是用來建立 OS 磁碟。 
+
 ## <a name="managed-disks-and-port-8443"></a>受控磁碟和通訊埠 8443
 
 **為什麼對於使用 Azure 受控磁碟的 VM 客戶必須解鎖通訊埠 8443 上的輸出流量？**
@@ -189,8 +194,13 @@ DS 系列的快取和本機 SSD 合併限制是每個核心 4000 IOPS，以及�
 
 本機 SSD 是受控磁碟 VM 隨附的暫時儲存體。 暫時儲存體不需額外的成本。 建議您不要使用此本機 SSD 來儲存應用程式資料，因為它不會保存在 Azure Blob 儲存體中。
 
+**在進階磁碟上使用 TRIM 是否有任何影響？**
+
+在進階或標準磁碟的 Azure 磁碟上使用 TRIM 並無任何不妥。
+
 ## <a name="what-if-my-question-isnt-answered-here"></a>如果這裡沒有解答我的問題該怎麼辦？
 
 如果這裡未列出您的問題，請告訴我們，我們將協助您找到答案。 您可以在本文結尾處的意見欄，或在 MSDN [Azure 儲存體論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)，張貼有關本文的問題，與 Azure 儲存體小組和其他社群成員一起討論。
 
 若要提出功能要求，請將要求和想法提交到 [Azure 儲存體意見反應論壇](https://feedback.azure.com/forums/217298-storage)。
+

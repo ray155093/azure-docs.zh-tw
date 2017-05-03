@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 04/10/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: ba85ab354d051990d0a9bae089e45c8df7ade4ea
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 626b152b8511995413af39a41161c29c88429605
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -36,7 +36,7 @@ ms.lasthandoff: 04/12/2017
 ## <a name="checklist-before-moving-resources"></a>移動資源前的檢查清單
 在移動資源之前，要執行的重要步驟如下︰ 藉由驗證這些條件，您可以避免錯誤。
 
-1. 來源和目的地的訂用帳戶必須存在於相同的 [Active Directory 租用戶](../active-directory/active-directory-howto-tenant.md)內。 若要檢查這兩個訂用帳戶都有相同的租用戶識別碼，請使用 Azure PowerShell 或 Azure CLI。
+1. 來源和目的地的訂用帳戶必須存在於相同的 [Azure Active Directory 租用戶](../active-directory/active-directory-howto-tenant.md)內。 若要檢查這兩個訂用帳戶都有相同的租用戶識別碼，請使用 Azure PowerShell 或 Azure CLI。
 
   如果是 Azure PowerShell，請使用：
 
@@ -50,7 +50,7 @@ ms.lasthandoff: 04/12/2017
   az account show --subscription "Example Subscription" --query tenantId
   ```
 
-  如果來源和目的地訂用帳戶的租用戶識別碼不相同，您可以嘗試變更訂用帳戶的目錄。 不過，此選項僅提供給使用 Microsoft 帳戶 (非組織帳戶) 登入的服務系統管理員。 若要嘗試變更目錄，登入到[傳統入口網站](https://manage.windowsazure.com/)，然後選取 [設定]，再選取訂用帳戶。 如果 [編輯目錄] 圖示可用，請選取它來變更相關聯的 Active Directory。 
+  如果來源和目的地訂用帳戶的租用戶識別碼不相同，您可以嘗試變更訂用帳戶的目錄。 不過，此選項僅提供給使用 Microsoft 帳戶 (非組織帳戶) 登入的服務系統管理員。 若要嘗試變更目錄，登入到[傳統入口網站](https://manage.windowsazure.com/)，然後選取 [設定]，再選取訂用帳戶。 如果 [編輯目錄] 圖示可用，請選取它來變更相關聯的 Azure Active Directory。 
 
   ![編輯目錄](./media/resource-group-move-resources/edit-directory.png) 
 
@@ -67,7 +67,7 @@ ms.lasthandoff: 04/12/2017
 
 當您需要進行下列作業時，請連絡支援人員︰
 
-* 將資源移至新的 Azure 帳戶 (與 Active Directory 租用戶)。
+* 將資源移至新的 Azure 帳戶 (與 Azure Active Directory 租用戶)。
 * 移動傳統資源，但有限制的問題。
 
 ## <a name="services-that-enable-move"></a>啟用移動的服務

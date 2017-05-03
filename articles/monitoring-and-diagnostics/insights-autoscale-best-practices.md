@@ -12,15 +12,16 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2016
+ms.date: 04/20/2017
 ms.author: ashwink
 translationtype: Human Translation
-ms.sourcegitcommit: cc557c7139561345a201fa0cd45c803af3751acd
-ms.openlocfilehash: 25fa8749d4b23d3619829fa179a7c91da311bbd0
+ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
+ms.openlocfilehash: 6dad42f94d263d9dacedf145bf4e5d487d0aed77
+ms.lasthandoff: 04/21/2017
 
 
 ---
-# <a name="best-practices-autoscaling-virtual"></a>自動調整虛擬的最佳做法
+# <a name="best-practices-for-autoscale"></a>自動調整規模的最佳做法
 本文會說明在 Azure 中自動調整的最佳做法。 它與虛擬機器、虛擬機器擴展集和雲端服務相關。  其他 Azure 服務使用不同的調整方法。
 
 ## <a name="autoscale-concepts"></a>自動調整的概念
@@ -149,9 +150,4 @@ ms.openlocfilehash: 25fa8749d4b23d3619829fa179a7c91da311bbd0
 * 自動調整服務無法使用度量決定規模。
 * 度量恢復使用 (復原)，可用以決定規模。
   除了上述條件之外，您也可以設定電子郵件或 Webhook 通知，在調整動作成功時收到通知。
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

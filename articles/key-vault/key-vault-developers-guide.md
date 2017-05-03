@@ -1,6 +1,6 @@
 ---
 title: "金鑰保存庫開發人員指南 | Microsoft Docs"
-description: "開發人員可以使用 Azure 金鑰保存庫來管理 Microsoft Azure 環境中的密碼編譯金鑰。 "
+description: "開發人員可以使用 Azure 金鑰保存庫來管理 Microsoft Azure 環境中的密碼編譯金鑰。"
 services: key-vault
 documentationcenter: 
 author: BrucePerlerMS
@@ -12,25 +12,28 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/17/2017
+ms.date: 04/18/2017
 ms.author: bruceper
 translationtype: Human Translation
-ms.sourcegitcommit: 74de2165ea3a66cd0babc9f6d6d451522988bbe6
-ms.openlocfilehash: b3fc845812e8a4a2729f026baa82b58319d5c5f3
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: c6ae0909faf0711b1ad25df48f626630644c5df7
+ms.lasthandoff: 04/20/2017
 
 
 ---
 # <a name="azure-key-vault-developers-guide"></a>Azure 金鑰保存庫開發人員指南
+
 透過金鑰保存庫，您可以從應用程式內安全地存取機密資訊，進而達到以下效果︰
 
 * 不需要自行撰寫程式碼即可保護金鑰和密碼，而且也能輕易地從應用程式加以使用。
 * 可以讓客戶擁有及管理他們自己的金鑰，因此您可以致力於提供核心軟體功能。 透過這種方式，您的應用程式將不需要對客戶的租用戶金鑰和密碼負起責任或潛在責任。
-* 您的應用程式能使用金鑰進行簽署和加密，卻也能在應用程式外部管理金鑰，如此一來此解決方案便適用於位於不同地點的應用程式。
+* 您的應用程式能使用金鑰進行簽署和加密，同時也能在應用程式外部管理金鑰，讓您的解決方案適用於位於不同地點的應用程式。
 * 有了 2016 年 9 月推出的金鑰保存庫，您的應用程式現在可以使用金鑰保存庫憑證。 如需詳細資訊，請參閱 [REST 參考](https://msdn.microsoft.com/library/azure/dn903623.aspx)中的**關於金鑰、祕密和憑證**文。
 
 如需 Azure 金鑰保存庫的一般詳細資訊，請參閱 [什麼是金鑰保存庫？](key-vault-whatis.md)。
 
 ## <a name="videos"></a>影片
+
 此影片示範如何建立專屬金鑰保存庫以及如何從 'Hello Key Vault' 範例應用程式使用它。
 
 
@@ -45,6 +48,7 @@ ms.openlocfilehash: b3fc845812e8a4a2729f026baa82b58319d5c5f3
 若要深入了解，您可以關注[金鑰保存庫部落格](http://aka.ms/kvblog)，並加入[金鑰保存庫論壇](http://aka.ms/kvforum)。
 
 ## <a name="creating-and-managing-key-vaults"></a>建立及管理金鑰保存庫
+
 在程式碼中使用 Azure 金鑰保存庫之前，您可以透過 REST、資源管理員範本、PowerShell 或 CLI 來建立及管理保存庫，如以下文章所述︰
 
 * [使用 REST 建立和管理金鑰保存庫](https://msdn.microsoft.com/library/azure/mt620024.aspx)
@@ -54,13 +58,12 @@ ms.openlocfilehash: b3fc845812e8a4a2729f026baa82b58319d5c5f3
 
 > [!NOTE]
 > 涉及金鑰保存庫的作業乃透過 AAD 進行驗證，以及透過金鑰保存庫自己的存取原則 (每個保存庫有各自的定義) 進行授權。
->
->
 
 ## <a name="coding-with-key-vault"></a>撰寫金鑰保存庫的程式碼
+
 程式設計人員的金鑰保存庫管理系統由幾個介面組成，並以 REST 作為基礎 ( [Key Vault REST API Reference (金鑰保存庫 REST API 參考))](https://msdn.microsoft.com/library/azure/dn903609.aspx)。
 
-已成功取得授權的使用者可以執行下列作業：
+已成功取得授權的使用者可以執行下列任何一項作業。
 
 * 使用 [Create](https://msdn.microsoft.com/library/azure/dn903634.aspx)、[Import](https://msdn.microsoft.com/library/azure/dn903626.aspx)、[Update](https://msdn.microsoft.com/library/azure/dn903616.aspx)、[Delete](https://msdn.microsoft.com/library/azure/dn903611.aspx) 和其他作業管理密碼編譯金鑰
 * 使用 [Get](https://msdn.microsoft.com/library/azure/dn903633.aspx)、[Update](https://msdn.microsoft.com/library/azure/dn986818.aspx)、[Delete](https://msdn.microsoft.com/library/azure/dn903613.aspx) 和其他作業管理祕密
@@ -76,12 +79,14 @@ ms.openlocfilehash: b3fc845812e8a4a2729f026baa82b58319d5c5f3
 如需 .NET SDK 2.x 版的詳細資訊，請參閱[版本資訊](key-vault-dotnet2api-release-notes.md)。
 
 ## <a name="example-code"></a>程式碼範例
+
 如需搭配使用金鑰保存庫和應用程式的完整範例，請參閱︰
 
 * .NET 範例應用程式 *HelloKeyVault* 和 Azure Web 服務範例。 [Azure 金鑰保存庫程式碼範例](http://www.microsoft.com/download/details.aspx?id=45343)
 * 幫助您了解如何從 Azure 之 Web 應用程式使用 Azure 金鑰保存庫的教學課程。 [從 Web 應用程式使用 Azure 金鑰保存庫](key-vault-use-from-web-application.md)
 
 ## <a name="how-tos"></a>作法
+
 下列文章和案例提供使用 Azure Key Vault 的工作特定指引：
 
 * [訂用帳戶動作之後變更金鑰保存庫租用戶識別碼](key-vault-subscription-move-fix.md) - 當您將 Azure 訂用帳戶從租用戶 A 移動至租用戶 B 時，租用戶 B 中的實體 (使用者和應用程式) 將無法存取您現有的金鑰保存庫。請利用本指南來解決此問題。
@@ -97,7 +102,8 @@ ms.openlocfilehash: b3fc845812e8a4a2729f026baa82b58319d5c5f3
 如需整合及搭配使用金鑰保存庫和 Azure 的具體工作指引，請參閱 [Ryan Jones 的金鑰保存庫 Azure Resource Manager 範本範例](https://github.com/rjmax/ArmExamples/tree/master/keyvaultexamples)。
 
 ## <a name="integrated-with-key-vault"></a>與金鑰保存庫整合
-這些文章是關於其他可讓我們使用及整合金鑰保存庫的案例和服務。
+
+這些文章是關於其他可讓我們使用及整合 Key Vault 的案例和服務。
 
 * [Azure 磁碟加密](../security/azure-security-disk-encryption.md)利用 Windows 的業界標準 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) 功能和 Linux 的 [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) 功能，為 OS 和資料磁碟提供磁碟區加密。 此解決方案與 Azure 金鑰保存庫整合，可幫助您控制和管理您的金鑰保存庫訂用帳戶中的磁碟加密金鑰和密碼，同時確保虛擬機器磁碟中的所有資料會在您的 Azure 儲存體中輕鬆加密。
 * [Azure Data Lake Store](../data-lake-store/data-lake-store-get-started-portal.md) 會為帳戶中儲存的資料提供加密選項。 金鑰管理，如 Data Lake Store 會提供兩種模式用於管理您的主要加密金鑰 (MEK)，它是解密 Data Lake Store 中儲存任何資料所需。 您可以讓 Data Lake Store 管理 MEK，或使用 Azure 金鑰保存庫帳戶，選擇保留 MEK 的擁有權。 您會在建立 Data Lake Store 帳戶時指定金鑰管理的模式。 
@@ -105,15 +111,12 @@ ms.openlocfilehash: b3fc845812e8a4a2729f026baa82b58319d5c5f3
 
 
 ## <a name="supporting-libraries"></a>支援程式庫
-* [Microsoft Azure 金鑰保存庫核心程式庫](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core)提供 `IKey` 和 `IKeyResolver` 介面，以從識別碼尋找金鑰和使用金鑰執行作業。
+
+* [Microsoft Azure Key Vault 核心程式庫](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Core)提供 **IKey** 和 **IKeyResolver** 介面，以從識別碼找出金鑰和使用金鑰執行作業。
 * [Microsoft Azure 金鑰保存庫擴充](http://www.nuget.org/packages/Microsoft.Azure.KeyVault.Extensions)提供 Azure 金鑰保存庫的擴充功能。
 
 ## <a name="other-key-vault-resources"></a>其他金鑰保存庫資源
+
 * [Key Vault Blog (金鑰保存庫部落格)](http://aka.ms/kvblog)
 * [Key Vault Forum (金鑰保存庫論壇)](http://aka.ms/kvforum)
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

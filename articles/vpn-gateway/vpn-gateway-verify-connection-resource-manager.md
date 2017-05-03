@@ -13,17 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/11/2017
+ms.date: 04/24/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: b5bad71095e4b7e3b26df15780467526200ffa10
-ms.openlocfilehash: 68d94a6402b1497f65c4d03fb987ba800e86c2a3
-ms.lasthandoff: 01/31/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 0e9fa1b1397c60985de9d2e60b3f01146036801f
+ms.lasthandoff: 04/26/2017
 
 
 ---
 # <a name="verify-a-vpn-gateway-connection"></a>確認 VPN 閘道連線
-您可以使用入口網站和 PowerShell 來確認虛擬網路「VPN 閘道」連線。 本文包含同時適用於 Resource Manager 和傳統部署模型的步驟。
+
+本文說明如何確認 Resource Manager 和傳統部署模型的 VPN 閘道連線。
 
 ## <a name="verify-using-the-azure-portal"></a>使用 Azure 入口網站進行確認
 
@@ -52,7 +53,34 @@ ms.lasthandoff: 01/31/2017
 
 ### <a name="verify-your-connection"></a>確認您的連接
 
-[!INCLUDE [Powershell](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
+[!INCLUDE [PowerShell](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
+
+## <a name="verify-using-the-azure-cli"></a>使用 Azure CLI 進行確認
+
+若要使用 Azure CLI 進行確認，請安裝最新版的 CLI 命令 (2.0 或更新版本)。 如需關於安裝 CLI 命令的資訊，請參閱[安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)。
+
+### <a name="log-in-to-your-azure-account"></a>登入您的 Azure 帳戶
+
+1. 使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
+
+  ```azurecli
+  az login
+  ```
+2. 如果您有多個 Azure 訂用帳戶，請列出帳戶的所有訂用帳戶。
+
+  ```azurecli
+  Az account list --all
+  ```
+3. 指定您要使用的訂用帳戶。
+
+  ```azurecli
+  Az account set --subscription
+  <replace_with_your_subscription_id>
+  ```
+
+### <a name="verify-your-connection"></a>確認您的連接
+
+[!INCLUDE [CLI](../../includes/vpn-gateway-verify-connection-cli-rm-include.md)]
 
 ## <a name="verify-using-the-azure-portal-classic"></a>使用 Azure 入口網站進行確認 (傳統)
 [!INCLUDE [Azure portal](../../includes/vpn-gateway-verify-connection-azureportal-classic-include.md)]

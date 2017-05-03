@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: fe8b4b097f7ff157d624c09b8dbf26f94401395c
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 158c5dc06f83e16633d3c2fbb4eb27d3e8af030c
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -42,7 +42,7 @@ ms.lasthandoff: 01/20/2017
 ## <a name="add-a-dns-record-for-your-custom-domain"></a>新增自訂網域的 DNS 記錄
 若要將您的自訂網域與 App Service 中的 Web 應用程式產生關聯，您必須使用由 GoDaddy 所提供的工具，在 DNS 資料表中為您的自訂網域新增項目。 在 GoDaddy.com 中，使用下列步驟來尋找 DNS 工具
 
-1. 在 GoDaddy.com 中登入您的帳戶，並依序選取 [我的帳戶]、[管理我的網域]。 最後，在下拉式功能表中選取您要與 Azure Web 應用程式搭配使用的網域名稱，然後選取 [管理 DNS] 。
+1. 在 GoDaddy.com 中登入您的帳戶，並依序選取 [我的帳戶]、[管理我的網域]。 從下拉式功能表中選取要與 Azure Web 應用程式搭配使用的網域名稱，然後選取 [管理 DNS]。
    
     ![custom domain page for GoDaddy](./media/web-sites-godaddy-custom-domain-name/godaddy-customdomain.png)
 2. 在 [網域詳細資料] 頁面中，捲動至 [DNS 區域檔案] 索引標籤。 此區段可用來新增與修改網域名稱的 DNS 記錄。
@@ -65,7 +65,7 @@ ms.lasthandoff: 01/20/2017
    
     ![新增區域記錄](./media/web-sites-godaddy-custom-domain-name/godaddy-addzonerecord.png)
    
-   * 新增 [A (主機) 記錄] 時，您必須將 [主機] 欄位設定為 **@** (這代表根網域名稱，例如 **contoso.com**)、*(符合多個子網域的萬用字元)，或您要使用的子網域 (例如**www**)。您必須將* [指向]* 欄位設為 Azure Web 應用程式的 IP 位址。
+   * 新增 [A (主機) 記錄] 時，您必須將 [主機] 欄位設定為 **@** (這代表根網域名稱，例如 **contoso.com**)* (用於比對多個子網域的萬用字元)，或是您要使用的子網域 (例如 **www**)。您必須將 [指向] 欄位設定為 Azure Web 應用程式的 IP 位址。
    * 新增 [CNAME (別名) 記錄] 時，您必須將 [主機] 欄位設定為您要使用的子網域。 例如 **www**。 您必須將 [指向] 欄位設為 Azure Web 應用程式的 **.azurewebsites.net** 網域名稱。 例如，**contoso.azurewebsites.net**。
 4. 按一下 [加入另一個] 。
 5. 選取 [TXT] 做為記錄類型，然後指定 **@** 的 [主機] 值和 **&lt;yourwebappname&gt;.azurewebsites.net** 的 [指向] 值。

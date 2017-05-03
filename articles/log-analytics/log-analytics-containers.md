@@ -12,12 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
+ms.date: 04/24/2017
 ms.author: banders
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 45b07f5dd29b7e920ac2abe6765020e0337ecf95
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: f5c5abc988cd363cafe8c07f83eb2686a83ee1a2
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -43,6 +43,10 @@ ms.lasthandoff: 03/11/2017
 
 
 您可以在 [GitHub](https://github.com/Microsoft/OMS-docker) 上檢閱容器主機支援的 Docker 和 Linux 作業系統版本。
+
+如果您有使用 Azure Container Service 的 Kubernetes 叢集，請深入了解[使用 Microsoft Operations Management Suite (OMS) 監視 Azure Container Service 叢集](../container-service/container-service-kubernetes-oms.md)。
+
+如果您擁有 Azure Container Service DC/OS 叢集，請深入了解[使用 Operations Management Suite 監視 Azure Container Service DC/OS 叢集](../container-service/container-service-monitoring-oms.md)。
 
 檢閱 [Windows 上的 Docker 引擎](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon)文章，以取得有關如何在執行 Windows 的電腦上安裝和設定您 Docker 引擎的資訊。
 

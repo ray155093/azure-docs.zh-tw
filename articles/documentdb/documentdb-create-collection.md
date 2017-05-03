@@ -12,19 +12,23 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 04/18/2017
 ms.author: mimig
 translationtype: Human Translation
-ms.sourcegitcommit: fba82c5c826da7d1912814b61c5065ca7f726011
-ms.openlocfilehash: 8ee846e659d0a47a5fb39d6baa3235f59e19d653
-ms.lasthandoff: 02/23/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 97b634b10f75dd10c9cf4b61a5b9674f7ee73e00
+ms.lasthandoff: 04/20/2017
 
 
 ---
 # <a name="how-to-create-a-documentdb-collection-and-database-using-the-azure-portal"></a>如何使用 Azure 入口網站建立 DocumentDB 集合和資料庫
 若要使用 Microsoft Azure DocumentDB，您必須擁有 [DocumentDB 帳戶](documentdb-create-account.md)、資料庫、集合和文件。 本主題說明如何在 Azure 入口網站中建立 DocumentDB 集合。
 
-不確定集合是什麼嗎？ 請參閱＜ [什麼是 DocumentDB 集合？](#what-is-a-documentdb-collection)
+不確定集合是什麼嗎？ 請參閱[什麼是 DocumentDB 集合？](#what-is-a-documentdb-collection)。
+
+在入口網站中建立集合的方法有兩種：使用 [加入集合] 按鈕或使用[資料總管 (預覽)](#data-explorer)。
+
+## <a name="create-a-colletion-using-add-collection-button"></a>使用 [加入集合] 按鈕來建立集合
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)的動態工具列中，按一下 [DocumentDB (NoSQL)]，然後在 [DocumentDB (NoSQL)] 刀鋒視窗中，選取要新增集合的帳戶。 如果您沒有任何列出的帳戶，您需要 [建立 DocumentDB 帳戶](documentdb-create-account.md)。
 
@@ -54,6 +58,14 @@ ms.lasthandoff: 02/23/2017
 10. **選擇性︰**若要在入口網站中修改集合的輸送量，請按一下 [資源] 功能表上的 [級別]。
 
     ![資源功能表的螢幕擷取畫面，其中已選取 [級別]](./media/documentdb-create-collection/docdb-collection-creation-scale.png)
+
+<a id="data-explorer"></a>
+## <a name="create-a-collection-by-using-data-explorer-preview"></a>使用資料總管 (預覽) 來建立集合
+
+另一個在入口網站中建立集合的方法是使用 [資料總管]。 若要開啟 [資料總管]，請按一下入口網站中導覽列上的 [資料總管 (預覽)]，然後按一下 [新增集合] 按鈕，如以下螢幕擷取畫面所示。
+
+ ![顯示入口網站中 [新增集合] 按鈕的螢幕擷取畫面](./media/documentdb-create-collection/azure-documentdb-data-explorer.png)
+
 
 ## <a name="what-is-a-documentdb-collection"></a>什麼是 DocumentDB 集合？
 集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。 集合是計費實體，其 [成本](documentdb-performance-levels.md) 是由集合所佈建的輸送量所決定。 集合可以跨越一或多個資料分割/伺服器，也可以進行調整以處理幾乎無限量的儲存體或輸送量。

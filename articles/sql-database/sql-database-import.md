@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 3602a1a5f281bec79937dc20e44f447527be8377
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: e0bfa7620feeb1bad33dd2fe4b32cb237d3ce158
+ms.openlocfilehash: 8ef393e414559ed6c7a2a3b41a0c8cf060f8d4da
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -44,7 +44,7 @@ ms.lasthandoff: 04/12/2017
 
 本文提供的指示將說明如何使用 [Azure 入口網站](https://portal.azure.com)，從 BACPAC 檔案 (儲存於 Azure Blob 儲存體中) 建立 Azure SQL Database。 使用 Azure 入口網站匯入的方式只支援從 Azure Blob 儲存體匯入 BACPAC 檔案。
 
-若要使用 Azure 入口網站匯入資料庫，請開啟資料庫頁面，然後按一下工具列上的 [匯入]。 指定 *.bacpac 檔案名稱，並提 BACPAC 的 Azure 儲存體帳戶和容器，然後提供認證以連線至來源資料庫。  
+若要使用 Azure 入口網站匯入資料庫，請開啟資料庫頁面，然後按一下工具列上的 [匯入]。 指定儲存體帳戶和容器，然後選取您要匯入的 *.bacpac 檔案。 選取新資料庫的大小 (通常與來源相同)，並提供目的地 SQL Server 認證。  
 
    ![資料庫匯入](./media/sql-database-import/import.png)
 

@@ -12,11 +12,12 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 12/22/2016
+ms.date: 04/14/2017
 ms.author: robmcm
 translationtype: Human Translation
-ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
-ms.openlocfilehash: eb1f4c815618e866e683b3fe2e3adf93a151ff5a
+ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
+ms.openlocfilehash: cd734c64ba6d1394cb261bace92dee9dd579dd08
+ms.lasthandoff: 04/22/2017
 
 
 ---
@@ -36,7 +37,7 @@ ms.openlocfilehash: eb1f4c815618e866e683b3fe2e3adf93a151ff5a
 * [快取屬性](#caching_properties)
 * [憑證屬性](#certificates_properties)
 * [元件屬性](#components_properties)
-* [偵錯屬性](#debugging_properties)
+<!-- * [Debugging properties](#debugging_properties) -->
 * [端點屬性](#endpoints_properties)
 * [環境變數屬性](#environment_variables_properties)
 * [負載平衡/工作階段親和性 (也稱為「黏性工作階段」) 屬性](#session_affinity_properties)
@@ -174,14 +175,14 @@ ms.openlocfilehash: eb1f4c815618e866e683b3fe2e3adf93a151ff5a
 > 
 > 
 
-<a name="debugging_properties"></a> 
+<!-- <a name="debugging_properties"></a> -->
 
-### <a name="debugging-properties"></a>偵錯屬性
-在 Eclipse 的 [專案總管] 窗格中開啟角色的操作功能表，按一下 [Azure]，然後按一下 [偵錯]。 在這個對話方塊中，您可以啟用或停用遠端偵錯以及建立偵錯組態，如下圖所示。
+<!-- ### Debugging properties -->
+<!-- Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Debugging**. Within this dialog, you have the ability to enable or disable remote debugging, as well as create debug configurations, as shown in the following image. -->
 
-![][ic719504]
+<!-- ![][ic719504] -->
 
-如需有關偵錯的相關資訊，請參閱[在 Eclipse 中偵錯 Azure 應用程式][Debugging Azure Applications in Eclipse]。
+<!-- For related information about debugging, see [Debugging Azure Applications in Eclipse][Debugging Azure Applications in Eclipse]. -->
 
 <a name="endpoints_properties"></a> 
 
@@ -206,13 +207,13 @@ ms.openlocfilehash: eb1f4c815618e866e683b3fe2e3adf93a151ff5a
 
 針對設為自動設定的連接埠，如果您需要確定在執行階段實際使用的連接埠，則應用程式可以使用 [com.microsoft.windowsazure.serviceruntime 封裝摘要][com.microsoft.windowsazure.serviceruntime package summary]中所記載的「Azure 服務執行階段 API」。
 
-若要查看如何使用執行個體輸入端點來協助對多個執行個體部署進行偵錯，請參閱[針對多執行個體部署中的特定角色執行個體進行偵錯][Debugging a specific role instance in a multi-instance deployment]。
+<!-- To see how instance input endpoints can be used to help with debugging a multi-instance deployment, see [Debugging a specific role instance in a multi-instance deployment][Debugging a specific role instance in a multi-instance deployment]. -->
 
 若要修改端點，請選取端點，然後按一下 [端點] 屬性頁中的 [編輯] 按鈕。 隨即會開啟對話方塊供您修改端點名稱、類型和公用與私人連接埠。 按 [確定]  以儲存修改過的端點值。
 
 若要刪除端點，請選取端點，按一下 [端點] 屬性頁中的 [移除] 按鈕，然後按一下 [是] 以確認刪除。
 
-為了正確設定使用者對某個角色所啟用的某些功能 (例如快取、遠端偵錯、工作階段親和性或 SSL 卸載)，工具組可能會自動設定隨使用者定義的端點一起列出的特殊端點。 只要啟用關聯的功能，工具組就會防止使用者編輯或刪除這類自動產生的端點。
+為了正確設定使用者對某個角色所啟用的某些功能 (例如快取、工作階段親和性或 SSL 卸載)，工具組可能會自動設定隨使用者定義的端點一起列出的特殊端點。 只要啟用關聯的功能，工具組就會防止使用者編輯或刪除這類自動產生的端點。
 
 <a name="environment_variables_properties"></a> 
 
@@ -457,9 +458,4 @@ ms.openlocfilehash: eb1f4c815618e866e683b3fe2e3adf93a151ff5a
 [ic719481]: ./media/azure-toolkit-for-eclipse-azure-role-properties/ic719481.png
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690945.aspx -->
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

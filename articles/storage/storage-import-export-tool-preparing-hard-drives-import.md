@@ -12,12 +12,12 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/15/2017
+ms.date: 04/21/2017
 ms.author: muralikk
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: d95aaf81ee4d9c19549a57dd1af0f79a1e1bffdd
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 04ac94a1c07c3ad2a9384f5cf5fca1341ebfa0d8
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -84,8 +84,8 @@ BasePath,DstBlobPathOrPrefix,BlobType,Disposition,MetadataFile,PropertiesFile
 
 | 欄位 | 說明 |
 | --- | --- |
-| 基本路徑 | **[必要]**<br/>此參數的值代表要匯入的資料所在的來源。工具會以遞迴方式複製位於這個路徑下的所有資料。<br><br/>**允許值**︰這必須是本機電腦上的有效路徑或有效的共用路徑，而且應可供使用者存取。 目錄路徑必須是絕對路徑 (而非相對路徑)。如果路徑的結尾是 "\\" 則其代表目錄，若路徑的結尾不是 "\\" 則代表檔案。<br/>此欄位中不允許 Regex。 如果路徑包含空格，請使用 "" 括住。<br><br/>**範例**："c:\Directory\c\Directory\File.txt"<br>"\\\\FBaseFilesharePath.domain.net\sharename\directory 1"  |
-| DstBlobPathOrPrefix | **[必要]**<br/> Microsoft Azure 儲存體帳戶中的目的地虛擬目錄路徑。 虛擬目錄可能已存在或可能不存在。 如果不存在，匯入/匯出服務將會建立一個。<br/><br/>指定目的地虛擬目錄或 blob 時，請確定使用有效的容器名稱。 請記住容器名稱必須是小寫。 如需容器命名規則的詳細資訊，請參閱[命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/fileservices/naming-and-referencing-containers--blobs--and-metadata)。如果只指定根目錄，則會在目的地 Blob 容器中複製來源的目錄結構。如果想要與來源不同的目錄結構，CSV 中多個對應的資料列<br/><br/>您可以指定容器或 blob 首碼，如 music/70s/。 目的地目錄必須以容器名稱開頭，後面接著正斜線 "/"，並可選擇性地包含結尾是 "/" 的虛擬 Blob 目錄。<br/><br/>目的地容器為根容器時，您必須明確指定根容器 (包括正斜線)，例如 $root /。 由於根容器下的 Blob 名稱中不能包含 "/"，當目的地目錄是根容器時，將不會複製來源目錄中的任何子目錄。<br/><br/>**範例**<br/>如果目的地 Blob 路徑是 https://mystorageaccount.blob.core.windows.net/video，這個欄位的值可以是 video/  |
+| 基本路徑 | **[必要]**<br/>此參數的值代表要匯入的資料所在的來源。工具會以遞迴方式複製位於這個路徑下的所有資料。<br><br/>**允許值**︰這必須是本機電腦上的有效路徑或有效的共用路徑，而且應可供使用者存取。 目錄路徑必須是絕對路徑 (而非相對路徑)。如果路徑的結尾是 "\\" 則其代表目錄，若路徑的結尾不是 "\\" 則代表檔案。<br/>此欄位中不允許 Regex。 如果路徑包含空格，請使用 "" 括住。<br><br/>**範例**："c:\Directory\c\Directory\File.txt"<br>"\\\\FBaseFilesharePath.domain.net\sharename\directory\"  |
+| DstBlobPathOrPrefix | **[必要]**<br/> Microsoft Azure 儲存體帳戶中的目的地虛擬目錄路徑。 虛擬目錄可能已存在或可能不存在。 如果不存在，匯入/匯出服務將會建立一個。<br/><br/>指定目的地虛擬目錄或 blob 時，請確定使用有效的容器名稱。 請記住容器名稱必須是小寫。 如需容器命名規則的詳細資訊，請參閱[命名和參考容器、Blob 及中繼資料](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata)。如果只指定根目錄，則會在目的地 Blob 容器中複製來源的目錄結構。如果想要與來源不同的目錄結構，CSV 中多個對應的資料列<br/><br/>您可以指定容器或 blob 首碼，如 music/70s/。 目的地目錄必須以容器名稱開頭，後面接著正斜線 "/"，並可選擇性地包含結尾是 "/" 的虛擬 Blob 目錄。<br/><br/>目的地容器為根容器時，您必須明確指定根容器 (包括正斜線)，例如 $root /。 由於根容器下的 Blob 名稱中不能包含 "/"，當目的地目錄是根容器時，將不會複製來源目錄中的任何子目錄。<br/><br/>**範例**<br/>如果目的地 Blob 路徑是 https://mystorageaccount.blob.core.windows.net/video，這個欄位的值可以是 video/  |
 | BlobType | **[選用]** block &#124; page<br/>目前匯入/匯出服務支援兩種 Blob。 分頁 blob 和區塊 Blob，所有檔案預設會匯入為區塊 Blob。 \*.vhd 和 \*.vhdx 會匯入為分頁 Blob。區塊 Blob 和分頁 Blob 允許的大小有限。 如需詳細資訊，請參閱[儲存體延展性目標](storage-scalability-targets.md#scalability-targets-for-blobs-queues-tables-and-files) (英文)。  |
 | Disposition | **[選用]** rename &#124; no-overwrite &#124; overwrite <br/> 此欄位會指定匯入期間的複製行為，也就是說 當資料從磁碟上傳至儲存體帳戶時，可用的選項有︰rename&#124;overwite&#124;no-overwrite。如未指定，預設值為「重新命名」。 <br/><br/>**重新命名**︰如果已經有同名的物件，會在目的地建立複本。<br/>覆寫︰以較新的檔案覆寫檔案。 上次修改 wins 的檔案。<br/>**不要覆寫**︰如已存在則略過覆寫檔案。|
 | MetadataFile | **[選用]** <br/>此欄位的值為中繼資料檔案，如果需要保留物件的中繼資料或提供自訂中繼資料，則可提供這個欄位的值。 目的地 Blob 的中繼資料檔案路徑。 如需詳細資訊，請參閱[匯入/匯出服務中繼資料和屬性檔案格式](storage-import-export-file-format-metadata-and-properties.md)。 |

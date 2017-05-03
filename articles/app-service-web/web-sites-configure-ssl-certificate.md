@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 08/08/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: f7a2066f43219e8748b5c5356ff6c81535b7842a
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: e0bfa7620feeb1bad33dd2fe4b32cb237d3ce158
+ms.openlocfilehash: 0d909f6272cc9dcfd13bd9c18affa8d1e249efe4
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 03/17/2017
 
 這篇文章說明如何在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中為使用自訂網域名稱的 Web 應用程式、行動應用程式後端或 API 應用程式啟用 HTTPS。 本文涵蓋僅限伺服器驗證。 如果您需要相互驗證 (包括用戶端驗證)，請參閱 [如何設定 App Service 的 TLS 相互驗證](app-service-web-configure-tls-mutual-auth.md)。
 
-若要使用 HTTPS 保護擁有自訂網域名稱的應用程式，您可以為該網域名稱新增憑證。 根據預設，Azure 使用單一 SSL 憑證來保護 **\*.azurewebsites.net** 萬用字元網域，因此您的用戶端已經可以在 **https://*&lt;appname>*.azurewebsites.net**存取您的應用程式。但是，如果您想使用自訂網域 (例如**contoso.com**、**www.contoso.com**和**\*.contoso.com**)，則預設憑證無法提供保護。 此外，如同所有[萬用字元憑證](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates/)，預設憑證的安全性不如使用自訂網域和該自訂網域的憑證。   
+若要使用 HTTPS 保護擁有自訂網域名稱的應用程式，您可以為該網域名稱新增憑證。 根據預設，Azure 會使用單一 SSL 憑證來保護 **\*.azurewebsites.net** 萬用字元網域，因此您的用戶端已經可以存取在 **https://*&lt;appname>*.azurewebsites.net** 的應用程式。 但是，如果您想使用自訂網域 (例如 **contoso.com**、**www.contoso.com** 及 **\*.contoso.com**)，則預設憑證無法提供保護。 此外，如同所有[萬用字元憑證](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates/)，預設憑證的安全性不如使用自訂網域和該自訂網域的憑證。   
 
 > [!NOTE]
 > 您隨時可以在 [Azure 論壇](https://azure.microsoft.com/support/forums/)上取得 Azure 專家的協助。 如需更個人化的支援，請移至 [Azure 支援](https://azure.microsoft.com/support/options/) ，按一下 **取得支援**。
@@ -44,7 +44,7 @@ ms.lasthandoff: 03/17/2017
 若要使用 HTTPS 保護您的自訂網域名稱，您要在 Azure 中將自訂 SSL 憑證繫結至該自訂網域。 繫結自訂網域憑證之前，必須執行下列動作：
 
 * **設定自訂網域** - App Service 只允許為您的應用程式中已設定的網域名稱新增憑證。 如需指示，請參閱 [將自訂網域名稱對應至 Azure 應用程式](web-sites-custom-domain-name.md)。 
-* **相應增加至基本或更高層** - 較低定價層中的 App Service 方案不支援自訂 SSL 憑證。 如需指示，請參閱 [在 Azure 中相應增加應用程式的規模](web-sites-scale.md)。 
+* **向上調整至基本層或更高層** - 較低定價層中的 App Service 方案不支援自訂 SSL 憑證。 如需指示，請參閱 [在 Azure 中相應增加應用程式的規模](web-sites-scale.md)。 
 * **取得 SSL 憑證** - 如果您還沒有 SSL 憑證，您必須向信任的 [憑證授權單位](http://en.wikipedia.org/wiki/Certificate_authority) (CA) 取得一份。 憑證必須符合下列所有要求：
   
   * 由信任的 CA (非私人 CA 伺服器) 簽署。

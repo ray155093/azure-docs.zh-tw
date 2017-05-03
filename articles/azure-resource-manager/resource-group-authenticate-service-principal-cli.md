@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure CLI 建立 Azure App 的身分識別 | Microsoft Docs"
-description: "描述如何使用 Azure CLI 建立 Active Directory 應用程式和服務主體，並透過角色型存取控制將存取權授與資源。 它示範如何使用密碼或憑證來驗證應用程式。"
+description: "描述如何使用 Azure CLI 建立 Azure Active Directory 應用程式和服務主體，並透過角色型存取控制將存取權授與資源。 它示範如何使用密碼或憑證來驗證應用程式。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/31/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 4ea75e08a630ad777444ea3a3cb85f4bb0efe01f
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: c8a883dedee31d9efab6e2eb4c0ac67b467afe34
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 04/03/2017
 本文說明如何使用 [Azure CLI 1.0](../cli-install-nodejs.md) 來設定應用程式，讓它利用自己的認證和身分識別來執行。 安裝最新版的 [Azure CLI 1.0](../cli-install-nodejs.md)，以確定您的環境符合本文中的範例。
 
 ## <a name="required-permissions"></a>所需的權限
-若要完成本主題，您必須在 Azure Active Directory 和您的 Azure 訂用帳戶中有足夠的權限。 具體來說，您必須能夠在 Active Directory 中建立應用程式，並將服務主體指派給角色。 
+若要完成本主題，您必須在 Azure Active Directory 和您的 Azure 訂用帳戶中有足夠的權限。 具體來說，您必須能夠在 Azure Active Directory 中建立應用程式，並將服務主體指派給角色。 
 
 檢查您的帳戶是否具有足夠的權限，最簡單的方式是透過入口網站。 請參閱[在入口網站中檢查必要的權限](resource-group-create-service-principal-portal.md#required-permissions)。
 
@@ -72,7 +72,7 @@ ms.lasthandoff: 04/03/2017
      info:    ad sp create command OK
    ```
 
-3. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 objectid 參數，提供您在建立應用程式時所使用的物件識別碼。 執行此命令之前，您必須允許一些時間讓新的服務主體在整個 Active Directory 中傳播。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 您應該在指令碼中的命令之間加入睡眠步驟 (例如`sleep 15`)。 如果您看到主體不存在於目錄中的錯誤訊息，請重新執行命令。
+3. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 objectid 參數，提供您在建立應用程式時所使用的物件識別碼。 執行此命令之前，您必須允許一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 您應該在指令碼中的命令之間加入睡眠步驟 (例如`sleep 15`)。 如果您看到主體不存在於目錄中的錯誤訊息，請重新執行命令。
    
    ```azurecli
    azure role assignment create --objectId ff863613-e5e2-4a6b-af07-fff6f2de3f4e -o Reader -c /subscriptions/{subscriptionId}/
@@ -83,7 +83,7 @@ ms.lasthandoff: 04/03/2017
 ### <a name="provide-credentials-through-azure-cli"></a>透過 Azure CLI 提供認證
 現在，您需要以應用程式的形式登入以執行作業。
 
-1. 每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Active Directory 的執行個體。 若要擷取目前已驗證訂用帳戶的租用戶識別碼，請使用︰
+1. 每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Azure Active Directory 的執行個體。 若要擷取目前已驗證訂用帳戶的租用戶識別碼，請使用︰
    
    ```azurecli
    azure account show
@@ -192,7 +192,7 @@ ms.lasthandoff: 04/03/2017
      data:                      https://www.contoso.org/example
      info:    ad sp create command OK
    ```
-6. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 objectid 參數，提供您在建立應用程式時所使用的物件識別碼。 執行此命令之前，您必須允許一些時間讓新的服務主體在整個 Active Directory 中傳播。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 您應該在指令碼中的命令之間加入睡眠步驟 (例如`sleep 15`)。 如果您看到主體不存在於目錄中的錯誤訊息，請重新執行命令。
+6. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 objectid 參數，提供您在建立應用程式時所使用的物件識別碼。 執行此命令之前，您必須允許一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 您應該在指令碼中的命令之間加入睡眠步驟 (例如`sleep 15`)。 如果您看到主體不存在於目錄中的錯誤訊息，請重新執行命令。
    
    ```azurecli
    azure role assignment create --objectId 7dbc8265-51ed-4038-8e13-31948c7f4ce7 -o Reader -c /subscriptions/{subscriptionId}/
@@ -201,7 +201,7 @@ ms.lasthandoff: 04/03/2017
 ### <a name="provide-certificate-through-automated-azure-cli-script"></a>透過自動化的 Azure CLI 指令碼提供憑證
 現在，您需要以應用程式的形式登入以執行作業。
 
-1. 每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Active Directory 的執行個體。 若要擷取目前已驗證訂用帳戶的租用戶識別碼，請使用︰
+1. 每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Azure Active Directory 的執行個體。 若要擷取目前已驗證訂用帳戶的租用戶識別碼，請使用︰
    
    ```azurecli
    azure account show
@@ -263,7 +263,7 @@ ms.lasthandoff: 04/03/2017
    azure login --service-principal --tenant {tenant-id} -u 4fd39843-c338-417d-b549-a545f584a745 --certificate-file C:\certificates\examplecert.pem --thumbprint {thumbprint}
    ```
 
-您現在驗證為您所建立之 Active Directory 應用程式的服務主體。
+您現在驗證為您所建立之 Azure Active Directory 應用程式的服務主體。
 
 ## <a name="change-credentials"></a>管理認證
 
@@ -285,7 +285,7 @@ azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --cert-val
 
 建立服務主體時，您可能會遇到下列錯誤︰
 
-* **Authentication_Unauthorized」**或**「在內容中找不到訂用帳戶。」** - 當您的帳戶在 Active Directory 上未具備註冊應用程式的[必要權限](#required-permissions)時，您就會看到此錯誤。 通常，只有 Active Directory 中的管理使用者可以註冊應用程式，且您的帳戶不是系統管理員時，就會看到此錯誤。 要求系統管理員將您指派給系統管理員角色，或是讓使用者註冊應用程式。
+* **Authentication_Unauthorized」**或**「在內容中找不到訂用帳戶。」** - 當您的帳戶在 Azure Active Directory 上未具備註冊應用程式的[必要權限](#required-permissions)時，您就會看到此錯誤。 通常，只有 Azure Active Directory 中的管理使用者可以註冊應用程式，且您的帳戶不是系統管理員時，就會看到此錯誤。 要求系統管理員將您指派給系統管理員角色，或是讓使用者註冊應用程式。
 
 * 您的帳戶**「沒有在範圍 '/subscriptions/{guid}' 中執行 'Microsoft.Authorization/roleAssignments/write' 動作的權限。」** - 當您的帳戶沒有足夠權限可將角色指派給身分識別時，您就會看到此錯誤。 要求訂用帳戶管理員將您新增至「使用者存取系統管理員」角色。
 

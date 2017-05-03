@@ -17,9 +17,9 @@ ms.date: 03/13/2017
 ms.author: guybo
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: 89db91d7ab8dc4340484054986b35583ed23b343
-ms.lasthandoff: 03/16/2017
+ms.sourcegitcommit: e0bfa7620feeb1bad33dd2fe4b32cb237d3ce158
+ms.openlocfilehash: 5f02d36bfc5aa390bba345f084ce530c27bb6520
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -91,7 +91,7 @@ Azure 資源群組部署是一種方式，可在單一部署作業中將一組�
 
 ![雲端總管][cloud_explorer]
 
- 入口網站提供最佳方式，使用網頁瀏覽器以視覺化方式管理 Azure 基礎結構，而 Azure 資源總管則提供簡單的方法以探索和偵錯 Azure 資源，讓視窗成為「執行個體檢視」，並且也會顯示您要尋找的資源的 PowerShell 命令。 當虛擬機器擴展集處於預覽時，資源總管會顯示最詳細的虛擬機器擴展集資料。
+ 入口網站提供使用網頁瀏覽器以視覺化方式管理 Azure 基礎結構的最佳方式，而「Azure 資源總管」則提供一個簡單的方式來探索 Azure 資源及進行偵錯，其中提供視窗來深入「執行個體檢視」，同時也顯示您要尋找之資源的 PowerShell 命令。 當虛擬機器擴展集處於預覽時，資源總管會顯示最詳細的虛擬機器擴展集資料。
 
 ## <a name="next-steps"></a>後續步驟
 一旦透過 Visual Studio 成功部署虛擬機器擴展集之後，就可進一步自訂專案以符合應用程式的需求。 例如，設定自動調整規模，方法是新增 **Insights** 資源、將基礎結構新增至範本 (例如獨立 VM)，或是使用自訂指令碼延伸模組部署應用程式。 您可以在 [Azure 快速入門範本 (英文)](https://github.com/Azure/azure-quickstart-templates) GitHub 儲存機制中找到良好的範例範本 (搜尋 "vmss")。

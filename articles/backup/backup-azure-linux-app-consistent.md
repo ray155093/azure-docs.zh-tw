@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 4/12/2017
 ms.author: anuragm;markgal
 translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 0f4ca1924531df890433ec092790e6bec7c41df0
-ms.lasthandoff: 04/13/2017
+ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
+ms.openlocfilehash: 4529037cb610e31028a35cf4643a2a99e90b2b8f
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -39,13 +39,13 @@ ms.lasthandoff: 04/13/2017
 
 1. 以根使用者身分登入要備份的 Linux VM。
 
-2. 從 [github](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) 下載 VMSnapshotPluginConfig.json，並將它複製到所有要備份 VM 上的 /etc/azure 資料夾。 如果它尚未存在，請建立 /etc/azure 目錄。
+2. 從 [github](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) 下載 VMSnapshotScriptPluginConfig.json，並將它複製到所有要備份 VM 上的 /etc/azure 資料夾。 如果它尚未存在，請建立 /etc/azure 目錄。
 
-3. 在所有要進行備份之 VM 上複製應用程式的前置指令碼和後置指令碼。 您可以將指令碼複製到 VM 內的任何位置，您必須更新 VMSnapshotPluginConfig.json 檔案中指令碼檔案的完整路徑
+3. 在所有要進行備份之 VM 上複製應用程式的前置指令碼和後置指令碼。 您可以將指令碼複製到 VM 內的任何位置，您必須更新 VMSnapshotScriptPluginConfig.json 檔案中指令碼檔案的完整路徑
 
 4. 請確定下列檔案的權限︰
 
-   - VMSnapshotPluginConfig.json- 權限 “600” 也就是只有「根」使用者可擁有此檔案的「讀取」與「寫入」權限，使用者不應該有「執行」權限。
+   - VMSnapshotScriptPluginConfig.json- 權限 “600” 也就是只有「根」使用者可擁有此檔案的「讀取」與「寫入」權限，使用者不應該有「執行」權限。
    - 前置指令碼檔案- 權限 “700” 也就是只有「根」使用者可擁有此檔案的「讀取」、「寫入」與「執行」權限。
    - 後置指令碼- 權限 “700” 也就是只有「根」使用者可擁有此檔案的「讀取」、「寫入」與「執行」權限。
 
@@ -54,7 +54,7 @@ ms.lasthandoff: 04/13/2017
    > 如果萬一不符合上述需求，指令碼將不會執行，導致檔案系統/損毀一致備份。
    >
 
-5. 根據下列詳細資料設定 VMSnapshotPluginConfig.json
+5. 根據下列詳細資料設定 VMSnapshotScriptPluginConfig.json
     - **pluginName**- 將此欄位保留原狀，無論您的指令碼是否可能無法如預期般運作。
     - **preScriptLocation**- 在要備份的 VM 上提供前置指令碼的完整路徑。
     - **postScriptLocation**- 在要備份的 VM 上提供後置指令碼的完整路徑。
@@ -76,14 +76,14 @@ ms.lasthandoff: 04/13/2017
 | ------------------------ | -------------- | ------------------ |
 | Pre-ScriptExecutionFailed |前置指令碼會傳回錯誤，所以備份可能無法應用程式一致。    | 請查看您指令碼的失敗記錄來修正此問題。|  
 |    Post-ScriptExecutionFailed |    後置指令碼傳回的錯誤可能會影響應用程式狀態。 |    請查看您指令碼的失敗記錄並檢查應用程式狀態來修正此問題。 |
-| Pre-ScriptNotFound |    VMSnapshotPluginConfig.json 組態檔中指定的位置找不到前置指令碼。 |    請確定前置指令碼會出現在組態檔中所指定的路徑，以確保應用程式一致的備份。|
-| Post-ScriptNotFound |    VMSnapshotPluginConfig.json 組態檔中指定的位置找不到後置指令碼 |    請確定後置指令碼會出現在組態檔中所指定的路徑，以確保應用程式一致的備份。|
+| Pre-ScriptNotFound |    VMSnapshotScriptPluginConfig.json 組態檔中指定的位置找不到前置指令碼。 |    請確定前置指令碼會出現在組態檔中所指定的路徑，以確保應用程式一致的備份。|
+| Post-ScriptNotFound |    VMSnapshotScriptPluginConfig.json 組態檔中指定的位置找不到後置指令碼 |    請確定後置指令碼會出現在組態檔中所指定的路徑，以確保應用程式一致的備份。|
 | IncorrectPluginhostFile |    VmSnapshotLinux 延伸模組隨附的 Pluginhost 檔案已損毀，因此無法執行前置指令碼和後置指令碼，且備份為應用程式不一致。    | 請解除安裝 VmSnapshotLinux 延伸模組，它會自動與下一次備份重新安裝以解決問題。 |
-| IncorrectJSONConfigFile | VMSnapshotPluginConfig.json 檔不正確，所以無法執行前置指令碼和後置指令碼，且備份為應用程式不一致 | 請從 [GitHub](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) 下載副本並再設定一次 |
+| IncorrectJSONConfigFile | VMSnapshotScriptPluginConfig.json 檔不正確，所以無法執行前置指令碼和後置指令碼，且備份為應用程式不一致 | 請從 [GitHub](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) 下載副本並再設定一次 |
 | InsufficientPermissionforPre-Script | 針對執行指令碼，根使用者應該是檔案擁有者，且檔案應具有 “700” 權限，也就是應只有擁有者具有「讀取」、「寫入」和「執行」權限 | 請確定「根」使用者是指令碼檔案的「擁有者」，且只有擁有者具有「讀取」、「寫入」和「執行」權限。 |
 | InsufficientPermissionforPost-Script | 針對執行指令碼，根使用者應該是檔案擁有者，且檔案應具有 “700” 權限，也就是應只有擁有者具有「讀取」、「寫入」和「執行」權限 | 請確定「根」使用者是指令碼檔案的「擁有者」，且只有擁有者具有「讀取」、「寫入」和「執行」權限。 |
-| Pre-ScriptTimeout | 執行應用程式一致備份前置指令碼逾時。 | 請檢查指令碼，並增加位於 /etc/azure 的 VMSnapshotPluginConfig.json 檔案中的逾時。 |
-| Post-ScriptTimeout | 執行應用程式一致備份後置指令碼逾時。 | 請檢查指令碼，並增加位於 /etc/azure 的 VMSnapshotPluginConfig.json 檔案中的逾時。 |
+| Pre-ScriptTimeout | 執行應用程式一致備份前置指令碼逾時。 | 請檢查指令碼，並增加位於 /etc/azure 的 VMSnapshotScriptPluginConfig.json 檔案中的逾時。 |
+| Post-ScriptTimeout | 執行應用程式一致備份後置指令碼逾時。 | 請檢查指令碼，並增加位於 /etc/azure 的 VMSnapshotScriptPluginConfig.json 檔案中的逾時。 |
 
 ## <a name="next-steps"></a>後續步驟
 [設定 VM 備份以復原服務保存庫](https://docs.microsoft.com/azure/backup/backup-azure-arm-vms)

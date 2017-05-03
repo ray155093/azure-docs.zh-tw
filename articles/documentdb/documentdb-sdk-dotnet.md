@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 03/29/2017
+ms.date: 04/19/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: c953615ef370dc89ed09bb8a32dc2caf7a7bcc3b
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: b0e43aa89dbed801e5e212279582223b09eb9854
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -52,43 +52,47 @@ ms.lasthandoff: 03/30/2017
 
 ## <a name="release-notes"></a>版本資訊
 
-### <a name="a-name11311131httpswwwnugetorgpackagesmicrosoftazuredocumentdb1131"></a><a name="1.13.1"/>[1.13.1](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.13.1)
+### <a name="a-name11321132"></a><a name="1.13.2"/>1.13.2
+* 修正將在彙總查詢之 FeedOptions 中提供的 PartitionKey 值忽略的問題。
+* 修正在執行移動途中跨資料分割 Order By 查詢期間，進行資料分割管理的透明處理時發生的問題。
+
+### <a name="a-name11311131"></a><a name="1.13.1"/>1.13.1
 * 已修正在 ASP.NET 內容內部使用時會在某些非同步 API 中造成死結的問題。
 
-### <a name="a-name11301130httpswwwnugetorgpackagesmicrosoftazuredocumentdb1130"></a><a name="1.13.0"/>[1.13.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.13.0)
+### <a name="a-name11301130"></a><a name="1.13.0"/>1.13.0
 * 修正來讓 SDK 在某些情況下能夠更有彈性地進行自動容錯移轉。
 
-### <a name="a-name11221122httpswwwnugetorgpackagesmicrosoftazuredocumentdb1122"></a><a name="1.12.2"/>[1.12.2 (英文)](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.12.2)
+### <a name="a-name11221122"></a><a name="1.12.2"/>1.12.2
 * 修正偶爾會造成「WebException: 無法解析遠端名稱」的錯誤。
 * 透過針對 ReadDocumentAsync API 新增多載，以新增直接讀取具類型文件的支援。
 
-### <a name="a-name11211121httpswwwnugetorgpackagesmicrosoftazuredocumentdb1121"></a><a name="1.12.1"/>[1.12.1](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.12.1)
+### <a name="a-name11211121"></a><a name="1.12.1"/>1.12.1
 * 新增彙總查詢的 LINQ 支援 (COUNT、MIN、MAX、SUM 和 AVG)。
 * 針對使用事件處理常式所造成的 ConnectionPolicy 物件，修正記憶體流失問題。
 * 修正使用 ETag 時 UpsertAttachmentAsync 無法運作的問題。
 * 修正根據字串欄位排序時交叉資料分割排序依據查詢接續無法運作的問題。
 
-### <a name="a-name11201120httpswwwnugetorgpackagesmicrosoftazuredocumentdb1120"></a><a name="1.12.0"/>[1.12.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.12.0)
+### <a name="a-name11201120"></a><a name="1.12.0"/>1.12.0
 * 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。 請參閱[彙總支援](documentdb-sql-query.md#Aggregates)。
 * 已將分割區集合的最小輸送量從 10,100 RU/s 降低為 2500 RU/s。
 
-### <a name="a-name11141114httpswwwnugetorgpackagesmicrosoftazuredocumentdb1114"></a><a name="1.11.4"/>[1.11.4](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.11.4)
+### <a name="a-name11141114"></a><a name="1.11.4"/>1.11.4
 * 修正一個某些跨分割區查詢在 32 位元主機處理序中失敗的問題。
 * 修正在閘道模式中未使用失敗要求的權杖來更新工作階段容器的問題。
 * 修正縱向選取中具有 UDF 呼叫的查詢在某些案例中失敗的問題。
 * 已修正用戶端效能，以提高要求的讀取和寫入輸送量。
 
-### <a name="a-name11131113httpswwwnugetorgpackagesmicrosoftazuredocumentdb1113"></a><a name="1.11.3"/>[1.11.3](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.11.3)
+### <a name="a-name11131113"></a><a name="1.11.3"/>1.11.3
 * 修正未使用失敗要求的權杖來更新工作階段容器的問題。
 * 新增 SDK 支援，以在 32 位元主機處理序中運作。 請注意，若使用跨分割區查詢，建議您使用 64 位元主機處理以獲得改進的效能。
 * 改進關於 IN 運算式中涉及大量分割區索引鍵值之查詢案例的效能。
 * 在設定 PopulateQuotaInfo 選項時，已在 ResourceResponse 中填入各種資源配額統計資料，以供文件集合讀取要求使用。
 
-### <a name="a-name11111111httpswwwnugetorgpackagesmicrosoftazuredocumentdb1111"></a><a name="1.11.1"/>[1.11.1](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.11.1)
+### <a name="a-name11111111"></a><a name="1.11.1"/>1.11.1
 * 針對在 1.11.0 推出的 CreateDocumentCollectionIfNotExistsAsync API 小幅修正效能。
 * 針對和高比例並行要求有關的案例，修正 SDK 中的效能。
 
-### <a name="a-name11101110httpswwwnugetorgpackagesmicrosoftazuredocumentdb1110"></a><a name="1.11.0"/>[1.11.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.11.0)
+### <a name="a-name11101110"></a><a name="1.11.0"/>1.11.0
 * 支援新的類別和方法以在集合內處理文件的[變更摘要](documentdb-change-feed.md)。
 * 支援跨資料分割繼續查詢和改善跨資料分割查詢的一些效能。
 * 新增 CreateDatabaseIfNotExistsAsync 和 CreateDocumentCollectionIfNotExistsAsync 方法。
@@ -96,26 +100,26 @@ ms.lasthandoff: 03/30/2017
 * 修正在搭配使用 Nuget 套件和具有 project.json 工具的專案時，自動將 Microsoft.Azure.Documents.ServiceInterop.dll 和 DocumentDB.Spatial.Sql.dll 組件的 bin 放入應用程式的 bin 資料夾的動作。
 * 支援發出用戶端 ETW 追蹤，其可在偵錯案例中幫上忙。
 
-### <a name="a-name11001100httpswwwnugetorgpackagesmicrosoftazuredocumentdb1100"></a><a name="1.10.0"/>[1.10.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.10.0)
+### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
 * 新增分割集合的直接連線支援。
 * 改進「界限-陳舊」一致性層級的效能。
 * 新增為異地隔離空間查詢指定集合索引編製原則時的 Polygon 和 LineString 資料類型。
 * 新增轉譯述詞時對 StringEnumConverter、IsoDateTimeConverter、UnixDateTimeConverter 的 LINQ 支援。
 * 多項 SDK 錯誤修正。
 
-### <a name="a-name195195httpswwwnugetorgpackagesmicrosoftazuredocumentdb195"></a><a name="1.9.5"/>[1.9.5](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.5)
+### <a name="a-name195195"></a><a name="1.9.5"/>1.9.5
 * 將造成下列 NotFoundException 的問題修正︰讀取工作階段不適用於輸入工作階段權杖。 查詢異地分散帳戶讀取區域時，在某些情況下發生此例外狀況。
 * 公開 ResourceResponse 類別中的 ResponseStream 屬性，可讓您直接從回應存取基礎資料流。
 
-### <a name="a-name194194httpswwwnugetorgpackagesmicrosoftazuredocumentdb194"></a><a name="1.9.4"/>[1.9.4](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.4)
+### <a name="a-name194194"></a><a name="1.9.4"/>1.9.4
 * 修改了 ResourceResponse、FeedResponse、StoredProcedureResponse 和 MediaResponse 類別以實作對應的公用介面，讓它們可以模擬用於測試導向部署 (TDD)。
 * 修正了使用自訂 JsonSerializerSettings 物件來序列化資料時，會造成資料分割索引鍵標頭格式不正確的問題。
 
-### <a name="a-name193193httpswwwnugetorgpackagesmicrosoftazuredocumentdb193"></a><a name="1.9.3"/>[1.9.3](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.3)
+### <a name="a-name193193"></a><a name="1.9.3"/>1.9.3
 * 已修正造成長時間執行的查詢失敗，並伴隨「授權權杖目前無效」錯誤的問題。
 * 已修正會從跨資料分割的排名/排序依據查詢中移除原始 SqlParameterCollection 的問題。
 
-### <a name="a-name192192httpswwwnugetorgpackagesmicrosoftazuredocumentdb192"></a><a name="1.9.2"/>[1.9.2](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.9.2)
+### <a name="a-name192192"></a><a name="1.9.2"/>1.9.2
 * 已新增分割集合的平行查詢支援。
 * 已新增分割集合的跨資料分割 ORDER BY 和 TOP 查詢支援。
 * 已修正使用 DocumentDB Nuget 封裝參照來參考 DocumentDB 專案時，遺失所需的 DocumentDB.Spatial.Sql.dll 與 Microsoft.Azure.Documents.ServiceInterop.dll 參照。
@@ -127,39 +131,39 @@ ms.lasthandoff: 03/30/2017
   * CreateOfferQuery 方法，會接受 querySpec 做為參數
 * 已解除密封 IDocumentClient 介面中公開的公用類別。
 
-### <a name="a-name180180httpswwwnugetorgpackagesmicrosoftazuredocumentdb180"></a><a name="1.8.0"/>[1.8.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.8.0)
+### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
 * 新增對多重區域資料庫帳戶的支援。
 * 新增在已節流處理的要求上進行重試的支援。  使用者可以藉由設定 ConnectionPolicy.RetryOptions 屬性，來自訂重試次數和等待時間上限。
 * 新增新的 IDocumentClient 介面，其中會定義所有 DocumenClient 屬性和方法的簽章。  做為此變更的一部分，也將建立 IQueryable 和 IOrderedQueryable 的擴充方法變更為 DocumentClient 類別本身上的方法。
 * 新增組態選項，以針對指定的 DocumentDB 端點 URI 設定 ServicePoint.ConnectionLimit。  使用 ConnectionPolicy.MaxConnectionLimit 來變更預設值 (已設為 50)。
 * 已淘汰 IPartitionResolver 及其實作。  現在不支援 IPartitionResolver。 建議您針對更高的儲存體和輸送量使用分割集合。
 
-### <a name="a-name171171httpswwwnugetorgpackagesmicrosoftazuredocumentdb171"></a><a name="1.7.1"/>[1.7.1](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.7.1)
+### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
 * 根據會接受 RequestOptions 做為參數的 ExecuteStoredProcedureAsync 方法，新加入 URI 多載。
 
-### <a name="a-name170170httpswwwnugetorgpackagesmicrosoftazuredocumentdb170"></a><a name="1.7.0"/>[1.7.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.7.0)
+### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
 * 新加入文件的存留時間 (TTL) 支援。
 
-### <a name="a-name163163httpswwwnugetorgpackagesmicrosoftazuredocumentdb163"></a><a name="1.6.3"/>[1.6.3](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.6.3)
+### <a name="a-name163163"></a><a name="1.6.3"/>1.6.3
 * 修正 .NET SDK 的 Nuget 封裝錯誤，可供封裝為 Azure 雲端服務解決方案的一部分。
 
-### <a name="a-name162162httpswwwnugetorgpackagesmicrosoftazuredocumentdb162"></a><a name="1.6.2"/>[1.6.2](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.6.2)
+### <a name="a-name162162"></a><a name="1.6.2"/>1.6.2
 * 實作[已分割的集合](documentdb-partition-data.md)和[使用者定義的效能等級](documentdb-performance-levels.md)。 
 
-### <a name="a-name153153httpswwwnugetorgpackagesmicrosoftazuredocumentdb153"></a><a name="1.5.3"/>[1.5.3](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.5.3)
+### <a name="a-name153153"></a><a name="1.5.3"/>1.5.3
 * **[已修正]** 查詢 DocumentDB 端點時擲回：「System.Net.Http.HttpRequestException：將內容複製到資料流時發生錯誤」。
 
-### <a name="a-name152152httpswwwnugetorgpackagesmicrosoftazuredocumentdb152"></a><a name="1.5.2"/>[1.5.2](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.5.2)
+### <a name="a-name152152"></a><a name="1.5.2"/>1.5.2
 * 擴充的 LINQ 支援包括新的分頁、條件式運算式以及範圍比較的運算子。
   * Take 運算子：可啟用 LINQ 中的 SELECT TOP 行為
   * CompareTo 運算子：可啟用字串範圍比較
   * 條件式 (?) 與聯合運算子 (??)
 * **[已修正]** 將模型投射與 LINQ 查詢中的 Where-In 結合使用時發生 ArgumentOutOfRangeException。  [#81](https://github.com/Azure/azure-documentdb-dotnet/issues/81)
 
-### <a name="a-name151151httpswwwnugetorgpackagesmicrosoftazuredocumentdb151"></a><a name="1.5.1"/>[1.5.1](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.5.1)
+### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
 * **[已修正]** 如果 Select 不是最後一個運算式，LINQ 提供者會假設沒有任何預測，並會產生不正確的 SELECT *。  [#58](https://github.com/Azure/azure-documentdb-dotnet/issues/58)
 
-### <a name="a-name150150httpswwwnugetorgpackagesmicrosoftazuredocumentdb150"></a><a name="1.5.0"/>[1.5.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.5.0)
+### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
 * 實作 Upsert、新增 UpsertXXXAsync 方法
 * 所有要求的效能改進
 * LINQ 提供者支援字串的條件式、聯合和 CompareTo 方法
@@ -167,10 +171,10 @@ ms.lasthandoff: 03/30/2017
 * **[已修正]** 重試時，BackoffRetryUtility 會再次使用相同的 HttpRequestMessage，而非建立新的
 * **[已過時]** UriFactory.CreateCollection --> 現應使用 UriFactory.CreateDocumentCollection
 
-### <a name="a-name141141httpswwwnugetorgpackagesmicrosoftazuredocumentdb141"></a><a name="1.4.1"/>[1.4.1](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.4.1)
+### <a name="a-name141141"></a><a name="1.4.1"/>1.4.1
 * **[已修正]** 使用非 en 文化特性資訊時 (例如 nl-NL 等) 的當地語系化問題。 
 
-### <a name="a-name140140httpswwwnugetorgpackagesmicrosoftazuredocumentdb140"></a><a name="1.4.0"/>[1.4.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.4.0)
+### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
 * 以識別碼為基礎的路由
   * 新的 UriFactory 協助程式，協助建構以識別碼為基礎的資源連結
   * DocumentClient 上新的多載可接受 URI
@@ -181,7 +185,7 @@ ms.lasthandoff: 03/30/2017
   * **陣列** - Concat、Contains、Count
   * **IN** 運算子
 
-### <a name="a-name130130httpswwwnugetorgpackagesmicrosoftazuredocumentdb130"></a><a name="1.3.0"/>[1.3.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.3.0)
+### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
 * 新增支援來修改索引編製原則
   * DocumentClient 中新的 ReplaceDocumentCollectionAsync 方法
   * ResourceResponse 中新的 IndexTransformationProgress 屬性<T>可追蹤索引原則變更的百分比進度
@@ -191,7 +195,7 @@ ms.lasthandoff: 03/30/2017
   * 新的 SpatialIndex 類別，可對儲存在 DocumentDB 中的 GeoJSON 資料編製索引
 * **[已修正]** ：從 LINQ 運算式產生的 SQL 查詢不正確 [#38](https://github.com/Azure/azure-documentdb-net/issues/38)
 
-### <a name="a-name120120httpswwwnugetorgpackagesmicrosoftazuredocumentdb120"></a><a name="1.2.0"/>[1.2.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.2.0)
+### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * 對 Newtonsoft.Json v5.0.7 的相依性 
 * 變更為支援 Order By
   
@@ -202,13 +206,13 @@ ms.lasthandoff: 03/30/2017
     
     如果您有與自訂索引原則佈建集合的現有程式碼，您需要更新現有的程式碼才能支援新的 IndexingPolicy 類別。 如果您沒有自訂的索引原則，這個變更不會影響到您。
 
-### <a name="a-name110110httpswwwnugetorgpackagesmicrosoftazuredocumentdb110"></a><a name="1.1.0"/>[1.1.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.1.0)
+### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 * 支援使用新的 HashPartitionResolver 和 RangePartitionResolver 類別及 IPartitionResolver 來分割資料
 * DataContract 序列化
 * LINQ 提供者中的 Guid 支援
 * LINQ 中的 UDF 支援 
 
-### <a name="a-name100100httpswwwnugetorgpackagesmicrosoftazuredocumentdb100"></a><a name="1.0.0"/>[1.0.0](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB/1.0.0)
+### <a name="a-name100100"></a><a name="1.0.0"/>1.0.0
 * GA SDK
 
 ## <a name="release--retirement-dates"></a>發行和停用日期
@@ -222,6 +226,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [1.13.2](#1.13.2) |2017 年 4 月 19 日 |--- |
 | [1.13.1](#1.13.1) |2017 年 3 月 29 日 |--- |
 | [1.13.0](#1.13.0) |2017 年 3 月 24 日 |--- |
 | [1.12.2](#1.12.2) |2017 年 3 月 20 日 |--- |

@@ -13,12 +13,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 02/27/2017
+ms.date: 04/18/2017
 ms.author: owend
 translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: c7127f4bd89bf00a4ef72e54dc7694a1766e5762
-ms.lasthandoff: 04/18/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: e47fa44d87ad29054b833ee4bf201ac4d72e1e6e
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -49,7 +49,7 @@ ms.lasthandoff: 04/18/2017
 * 在某些情況下，使用原生提供者 (例如 SQL Server Native Client (SQLNCLI11)) 連接到資料來源的表格式模型可能會傳回錯誤。 若要深入了解，請參閱[資料來源連接](analysis-services-datasource.md)。
 
 ## <a name="supported-on-premises-data-sources"></a>支援的內部部署資料來源
-預覽版本中，閘道支援 Azure Analysis Services 伺服器與下列內部部署資料來源之間的連接︰
+閘道支援 Azure Analysis Services 伺服器與下列內部部署資料來源之間的連線︰
 
 * SQL Server
 * SQL 資料倉儲

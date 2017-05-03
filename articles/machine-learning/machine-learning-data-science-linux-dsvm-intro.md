@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
 translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: c041802cd86f9e8b07771413f867691d76b01abf
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: b94b8b84ae2cf26a1680f816460cc86c4d79e885
+ms.lasthandoff: 04/20/2017
 
 
 ---
 # <a name="provision-the-linux-data-science-virtual-machine"></a>佈建 Linux 資料科學虛擬機器
-Linux 資料科學虛擬機器是一部 Azure 虛擬機器，其中隨附預先安裝的工具集合。 這些工具通常用來執行資料分析和機器學習。 包含的重要軟體元件如下︰
+Linux 資料科學虛擬機器是以 CentOS 為基礎的 Azure 虛擬機器，其中隨附預先安裝的工具集合。 這些工具通常用來執行資料分析和機器學習。 包含的重要軟體元件如下︰
 
 * Microsoft R Server Developer Edition
 * Anaconda Python 散發套件 (2.7 版和 3.5 版)，包括常用的資料分析程式庫
@@ -53,6 +53,9 @@ Linux 資料科學虛擬機器是一部 Azure 虛擬機器，其中隨附預先�
 Linux 資料科學虛擬機器可以大幅減輕這樣的負擔。 使用它可以快速啟動分析專案。 它能讓您用各種語言處理工作，包含 R、Python、SQL、Java 與 C++。 Eclipse 提供整合式開發環境 (IDE) 以開發和測試易於使用的程式碼。 VM 中所含的 Azure SDK 可讓您使用適用於 Microsoft 雲端平台之 Linux 上的各種服務，來建置您的應用程式。 此外，您可以存取也已預先安裝的其他語言，例如 Ruby、Perl、PHP 和 node.js。
 
 這個資料科學 VM 映像沒有任何軟體費用。 您僅需支付 Azure 硬體使用費，這是根據您使用 VM 映像所佈建的虛擬機器大小來評估。 如需計算費用的詳細資訊，請參閱 [Azure Marketplace 上的 VM 清單頁面](https://azure.microsoft.com/marketplace/partners/microsoft-ads/linux-data-science-vm/)。
+
+## <a name="other-versions-of-the-data-science-virtual-machine"></a>其他版本的資料科學虛擬機器
+另提供 [Ubuntu](machine-learning-data-science-dsvm-ubuntu-intro.md) 映像，其中包含許多與 CentOS 映像相同的工具及深入學習架構。 亦提供 [Windows](machine-learning-data-science-provision-vm.md) 映像。
 
 ## <a name="prerequisites"></a>必要條件
 您必須先具有下列項目，才可以建立 Linux 資料科學虛擬機器：

@@ -14,12 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/02/2017
+ms.date: 04/21/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 79e122beb0f31c46bbb9951a2dee223de4a77e1f
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 89c3eb1c501f455cfa154014665fef25af346873
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -52,7 +52,7 @@ Azure HDInsight 叢集可在您熟悉的 Linux 環境中提供於 Azure 雲端�
 
     curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/hosts" | jq '.items[].Hosts.host_name'
 
-將 **PASSWORD** 取代為系統管理員帳戶的密碼，並且將 **CLUSTERNAME** 取代為叢集名稱。 此命令會傳回包含叢集中主機清單的 JSON 文件，然後 jq 會針對叢集中的每個主機提取 `host_name` 元素值。
+將 **PASSWORD** 取代為系統管理員帳戶的密碼，並且將 **CLUSTERNAME** 取代為叢集名稱。 此命令會傳回包含叢集中主機清單的 JSON 文件。 Jq 用來擷取每部主機的 `host_name` 元素值。
 
 如果您需要針對特定服務尋找節點的名稱，您可以查詢 Ambari 有無該元件。 例如，若要尋找主機有無 HDFS 名稱節點，請使用下列命令：
 
@@ -64,12 +64,12 @@ Azure HDInsight 叢集可在您熟悉的 Linux 環境中提供於 Azure 雲端�
 
 * **Ambari (web)** - https://&lt;clustername>.azurehdinsight.net
 
-    使用叢集系統管理員使用者和密碼進行驗證，然後登入 Ambari 。 您必須使用叢集系統管理員使用者和密碼進行驗證。
+    使用叢集系統管理員使用者和密碼進行驗證，然後登入 Ambari 。
 
     驗證是純文字的 - 請一律使用 HTTPS 來協助確保連線的安全性。
 
     > [!IMPORTANT]
-    > 雖然可以直接透過網際網路存取叢集的 Ambari，但要使用某些功能則要靠存取叢集所使用之內部網域名稱的節點來達成。 由於內部網域名稱並未公開存取，因此在嘗試透過網際網路存取某些功能時可能會收到「找不到伺服器」的錯誤。
+    > 透過 Ambari 使用的一些 Web UI 會使用內部網域名稱存取節點。 內部網域名稱無法透過網際網路公開存取。 在嘗試透過網際網路存取某些功能時可能會收到「找不到伺服器」的錯誤。
     >
     > 若要使用 Ambari Web UI 的完整功能，請使用 SSH 通道將 Web 流量以 Proxy 處理傳輸到叢集前端節點。 請參閱[使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)
 
@@ -96,14 +96,14 @@ Azure HDInsight 叢集可在您熟悉的 Linux 環境中提供於 Azure 雲端�
 
 Hadoop 相關檔案可以在叢集節點的 `/usr/hdp`上找到。 此目錄包含下列子目錄：
 
-* **2.2.4.9-1**：這個目錄是針對 HDInsight 所使用的 Hortonworks Data Platform 版本來命名，因此您叢集上的數字可能會與此處所列的數字不同。
-* **目前**︰此目錄包含 **2.2.4.9-1** 目錄之下的子目錄連結。 有了此目錄，每次想要存取檔案時，就不必輸入版本號碼 (可能會變更)。
+* **2.2.4.9-1**︰目錄名稱是 HDInsight 所使用的 Hortonworks Data Platform 版本。 叢集上的數字可能不同於此處所列的數字。
+* **current**︰此目錄包含 **2.2.4.9-1** 目錄下的子目錄連結。 因為有此目錄，您就不必記住版本號碼。
 
 在 Hadoop 分散式檔案系統的 `/example` 和 `/HdiSamples` 可取得範例資料和 JAR 檔案。
 
 ## <a name="hdfs-azure-storage-and-data-lake-store"></a>HDFS、Azure 儲存體和 Data Lake Store
 
-在大部分的 Hadoop 散發套件中，是以叢集機器上的本機儲存體支援 HDFS 的運作。 使用本機儲存體雖有效率，但在用於雲端解決方案時則需高昂成本，因為計算資源是以每小時或每分鐘為單位來計費。
+在大部分的 Hadoop 散發套件中，是以叢集機器上的本機儲存體支援 HDFS 的運作。 針對雲端解決方案使用本機儲存體的成本可能相當高，因為計算資源是以每小時或每分鐘為單位來計費。
 
 HDInsight 使用 Azure 儲存體或 Azure Data Lake Store 中的 Blob 做為預設存放區。 這些服務提供下列優點：
 
@@ -113,7 +113,7 @@ HDInsight 使用 Azure 儲存體或 Azure Data Lake Store 中的 Blob 做為預�
 > [!WARNING]
 > HDInsight 僅支援__一般用途__的 Azure 儲存體帳戶。 目前不支援 __Blob 儲存體__帳戶類型。
 
-Azure 儲存體帳戶可以保存多達 4.75 TB 的資料，但個別 Blob (或檔案，從 HDInsight 觀點來看) 只能保存到達 195 GB 的資料。 Azure Data Lake Store 可以動態地成長來保存數兆的檔案，個別檔案可大於 PB。 如需詳細資訊，請參閱[了解 Blob](https://docs.microsoft.com/rest/api/storageservices/fileservices/understanding-block-blobs--append-blobs--and-page-blobs) 和[Data Lake Store](https://azure.microsoft.com/services/data-lake-store/)。
+Azure 儲存體帳戶可以保存多達 4.75 TB 的資料，但個別 Blob (或檔案，從 HDInsight 觀點來看) 只能保存到達 195 GB 的資料。 Azure Data Lake Store 可以動態地成長來保存數兆的檔案，個別檔案可大於 PB。 如需詳細資訊，請參閱[了解 Blob](https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs) 和[Data Lake Store](https://azure.microsoft.com/services/data-lake-store/)。
 
 使用 Azure 儲存體或 Data Lake Store 時，您不需要從 HDInsight 進行任何特殊動作就能存取資料。 例如，下列命令列出 `/example/data` 資料夾中的檔案，不論其儲存在 Azure 儲存體或 Data Lake Store 中：
 
@@ -135,7 +135,7 @@ Azure 儲存體帳戶可以保存多達 4.75 TB 的資料，但個別 Blob (或�
 
 * `adl:///`︰存取叢集的預設 Data Lake Store。
 
-* `adl://<storage-name>.azuredatalakestore.net/`︰以非預設 Data Lake Store 進行通訊，或存取 HDInsight 叢集根目錄之外的資料時。
+* `adl://<storage-name>.azuredatalakestore.net/`：用來與非預設 Data Lake Store 進行通訊。 也用來存取 HDInsight 叢集根目錄之外的資料。
 
 > [!IMPORTANT]
 > 使用 Data Lake Store 做為 HDInsight 的預設存放區時，您必須在存放區內指定要做為 HDInsight 儲存體根目錄的路徑。 預設路徑為 `/clusters/<cluster-name>/`。
@@ -149,9 +149,9 @@ Azure 儲存體帳戶可以保存多達 4.75 TB 的資料，但個別 Blob (或�
 ```curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["fs.defaultFS"] | select(. != null)'```
 
 > [!NOTE]
-> 這個方法會傳回套用至伺服器的第一個組態 (`service_config_version=1`)，其包含這項資訊。 如果是擷取在叢集建立後修改的值，您可能需要列出組態版本並擷取最新的版本。
+> 這個方法會傳回套用至伺服器的第一個組態 (`service_config_version=1`)，其包含這項資訊。 您可能需要列出所有組態版本來找出最新的版本。
 
-此命令會傳回類似下列的值：
+此命令會傳回類似下列 URI 的值：
 
 * `wasbs://<container-name>@<account-name>.blob.core.windows.net`，若使用 Azure 儲存體帳戶。
 
@@ -167,7 +167,7 @@ Azure 儲存體帳戶可以保存多達 4.75 TB 的資料，但個別 Blob (或�
 
     ```curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["dfs.adls.home.mountpoint"] | select(. != null)'```
 
-    此命令會傳回類似下列的路徑：`/clusters/<hdinsight-cluster-name>/`。
+    此命令會傳回類似下列路徑的路徑：`/clusters/<hdinsight-cluster-name>/`。
 
 您也可以使用 Azure 入口網站，以下列步驟尋找儲存體資訊︰
 
@@ -206,11 +206,11 @@ Azure 儲存體帳戶可以保存多達 4.75 TB 的資料，但個別 Blob (或�
 
 ## <a name="scaling"></a>調整您的叢集規模
 
-叢集調整功能可讓您變更叢集所用的資料節點數目，而不需要刪除然後再重新建立叢集。 正在叢集上執行其他工作或處理序時，您可以執行調整作業。
+叢集調整功能可讓您動態變更叢集所用的資料節點數目。 正在叢集上執行其他工作或處理序時，您可以執行調整作業。
 
 不同的叢集類型會受調整影響，如下所示：
 
-* **Hadoop**︰相應減少叢集中的節點數目時，會重新啟動叢集中的部分服務。 這會導致執行中或擱置的工作在調整作業完成時失敗。 您可以在作業完成後重新提交這些工作。
+* **Hadoop**︰相應減少叢集中的節點數目時，會重新啟動叢集中的部分服務。 調整作業可能會導致執行中或擱置的工作在調整作業完成時失敗。 您可以在作業完成後重新提交這些工作。
 * **HBase**︰區域伺服器會在完成調整作業的數分鐘之內自動取得平衡。 若要手動平衡區域伺服器，請使用下列步驟：
 
     1. 使用 SSH 連線到 HDInsight 叢集。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
@@ -223,7 +223,7 @@ Azure 儲存體帳戶可以保存多達 4.75 TB 的資料，但個別 Blob (或�
 
             balancer
 
-* **Storm**︰執行調整作業之後，您應該重新平衡任何執行中的 Storm 拓撲。 這可讓拓撲根據叢集中的新節點數目，重新調整平行處理原則設定。 若要重新平衡執行中的拓撲，請使用下列其中一個選項：
+* **Storm**︰執行調整作業之後，您應該重新平衡任何執行中的 Storm 拓撲。 重新平衡可讓拓撲根據叢集中的新節點數目，重新調整平行處理原則設定。 若要重新平衡執行中的拓撲，請使用下列其中一個選項：
 
     * **SSH**︰連接到伺服器並使用下列命令來重新平衡拓撲：
 
@@ -248,7 +248,7 @@ HDInsight 是受管理的服務。 如果 Azure 偵測到叢集問題，它可�
 * 安裝及設定服務或網站，例如 Spark 或 Hue。
 * 安裝及設定需要在叢集中的多個節點上進行組態變更的元件。 例如，必要的環境變數、建立記錄目錄或建立組態檔。
 
-指令碼動作是在叢集佈建期間執行的 Bash 指令碼，而且可用來在叢集上安裝並設定其他元件。 範例指令碼可供安裝下列元件：
+指令碼動作是 Bash 指令碼。 指令碼會在叢集佈建期間執行，而且可用來在叢集上安裝並設定其他元件。 範例指令碼可供安裝下列元件：
 
 * [Hue](hdinsight-hadoop-hue-linux.md)
 * [Giraph](hdinsight-hadoop-giraph-install-linux.md)
@@ -269,7 +269,7 @@ HDInsight 是受管理的服務。 如果 Azure 偵測到叢集問題，它可�
 >
 > 此命令會傳回任何相符 jar 檔案的路徑。
 
-如果想要使用不同於叢集隨附的版本，您可以上傳新版的元件並嘗試在您的作業中使用它。
+若要使用不同版本的元件，請上傳您需要的版本並在工作中使用。
 
 > [!WARNING]
 > 透過 HDInsight 叢集提供的元件會受到完整支援，且 Microsoft 支援服務會協助釐清與解決這些元件的相關問題。

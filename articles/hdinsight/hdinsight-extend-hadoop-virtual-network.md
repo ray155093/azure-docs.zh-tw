@@ -13,12 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/13/2017
+ms.date: 04/20/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
-ms.openlocfilehash: 938f6e4bf7d9d6418c9b10531725807a0a9dbce4
-ms.lasthandoff: 04/14/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 52038c02901d49f787226ce629a1ca5942414e4a
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -116,6 +116,8 @@ HDInsight 服務是受管理的服務，在佈建期間和執行時都需要存�
 | 巴西 | 巴西南部 | 191.235.84.104</br>191.235.87.113 | 443 |
 | 加拿大 | 加拿大東部 | 52.229.127.96</br>52.229.123.172 | 443 |
 | &nbsp; | 加拿大中部 | 52.228.37.66</br>52.228.45.222 | 443 |
+| 德國 | 德國中部 | 51.4.146.68</br>51.4.146.80 | 443 |
+| &nbsp; | 德國東北部 | 51.5.150.132</br>51.5.144.101 | 443 |
 | 印度 | 印度中部 | 52.172.153.209</br>52.172.152.49 | 443 |
 | 英國 | 英國西部 | 51.141.13.110</br>51.141.7.20 | 443 |
 | &nbsp; | 英國南部 | 51.140.47.39</br>51.140.52.16 | 443 |
@@ -247,7 +249,7 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 
     建立群組之後，您會收到新群組的相關資訊。
 
-2. 使用下列將規則加入新的網路安全性群組，這些規則允許從 Azure HDInsight 健全狀況和管理服務透過連接埠 443 的輸入通訊。 將 **RESOURCEGROUPNAME** 取代為包含 Azure 虛擬網路的資源群組名稱。
+2. 使用下列將規則新增至新的網路安全性群組，這些規則允許從 Azure HDInsight 健康狀態和管理服務透過連接埠 443 的輸入通訊。 將 **RESOURCEGROUPNAME** 取代為包含 Azure 虛擬網路的資源群組名稱。
 
     ```azurecli
     az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule1 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "168.61.49.99/24" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 300 --direction "Inbound"

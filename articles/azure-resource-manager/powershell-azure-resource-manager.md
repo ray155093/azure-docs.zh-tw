@@ -12,12 +12,12 @@ ms.workload: multiple
 ms.tgt_pltfrm: powershell
 ms.devlang: na
 ms.topic: article
-ms.date: 12/05/2016
+ms.date: 04/19/2017
 ms.author: tomfitz
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 407e9a1e4a50b875fa65e61d3e9aae245dd907e5
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
+ms.openlocfilehash: 5d32a695c14ebe01d1ad8cf4b789bf2edc8c30ce
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -30,15 +30,16 @@ ms.lasthandoff: 03/04/2017
 >
 >
 
-本主題中，您會了解如何使用 Azure PowerShell 和 Azure Resource Manager 管理您的解決方案。 如果您不熟悉如何使用 Resource Manager，請參閱 [Resource Manager 概觀](resource-group-overview.md)。 本主題著重於管理工作。 您將：
+在本文中，您會了解如何使用 Azure PowerShell 和 Azure Resource Manager 管理您的解決方案。 如果您不熟悉如何使用 Resource Manager，請參閱 [Resource Manager 概觀](resource-group-overview.md)。 本主題著重於管理工作。 您將：
 
 1. 建立資源群組
 2. 將資源加入資源群組
 3. 將標籤加入資源
 4. 根據名稱或標籤值查詢資源
 5. 套用和移除資源的鎖定
-6. 從資源群組建立 Resource Manager 範本
-7. 刪除資源群組
+6. 刪除資源群組
+
+本文不會說明如何將 Resource Manager 範本部署到您的訂用帳戶。 如需該資訊，請參閱[使用 Resource Manager 範本與 Azure PowerShell 來部署資源](resource-group-template-deploy.md)。
 
 ## <a name="get-started-with-azure-powershell"></a>開始使用 Azure PowerShell
 
@@ -142,7 +143,7 @@ Get-AzureRmResourceGroup
 ## <a name="add-resources-to-a-resource-group"></a>將資源加入資源群組
 若要將資源加入資源群組，您可以使用 **New-AzureRmResource** Cmdlet 或是與您建立之資源類型相關的 Cmdlet (像是**New-AzureRmStorageAccount**)。 您可能會發現使用與資源類型相關的 Cmdlet 會比較容易，因為它包含新資源所需的屬性參數。 若要使用 **New-AzureRmResource**，您必須知道要設定的所有屬性而不需經過提示。
 
-不過，透過 Cmdlet 新增資源可能會造成未來的混淆，因為新的資源不在 Resource Manager 範本中。 Microsoft 建議在 Resource Manager 範本中定義 Azure 解決方案的基礎結構。 範本可讓您可靠且重複地部署您的解決方案。 本主題不會說明如何將 Resource Manager 範本部署到您的訂用帳戶。 如需該資訊，請參閱[使用 Resource Manager 範本與 Azure PowerShell 來部署資源](resource-group-template-deploy.md)。 在本主題中，您會使用 PowerShell Cmdlet 建立儲存體帳戶，但之後您會從資源群組中產生範本。
+不過，透過 Cmdlet 新增資源可能會造成未來的混淆，因為新的資源不在 Resource Manager 範本中。 Microsoft 建議在 Resource Manager 範本中定義 Azure 解決方案的基礎結構。 範本可讓您可靠且重複地部署您的解決方案。 在本主題中，您會使用 PowerShell Cmdlet 建立儲存體帳戶，但之後您會從資源群組中產生範本。
 
 下列 Cmdlet 會建立儲存體帳戶。 請不要使用範例所顯示的名稱，而是為儲存體帳戶提供唯一的名稱。 名稱的長度必須介於 3 到 24 個字元，而且只能使用數字和小寫字母。 如果使用範例所顯示的名稱，您會收到錯誤，因為該名稱已在使用中。
 
@@ -221,25 +222,6 @@ Remove-AzureRmResourceLock -LockName LockStorage -ResourceName mystoragename -Re
 ```
 
 如需設定鎖定的詳細資訊，請參閱[使用 Azure Resource Manager 鎖定資源](resource-group-lock-resources.md)。
-
-## <a name="export-resource-manager-template"></a>匯出 Resource Manager 範本
-對於現有的資源群組 (透過 PowerShell 或 入口網站等其他方法部署)，您可以檢視資源群組的資源管理員範本。 匯出此範本有兩個優點︰
-
-1. 因為所有基礎結構都已定義於範本中，所以您可以輕鬆地自動進行解決方案的未來部署。
-2. 您可以查看代表您的解決方案的 JavaScript 物件標記法 (JSON)，藉此熟悉範本語法。
-
-> [!NOTE]
-> 匯出範本功能處於預覽狀態，並非所有的資源類型目前都支援匯出範本。 嘗試匯出範本時，您可能會看到一個錯誤，表示未匯出某些資源。 如有需要，您可以在下載範本之後，在範本中手動定義這些資源。
->
->
-
-若要檢視資源群組的範本，請執行 **Export-AzureRmResourceGroup** Cmdlet。
-
-```powershell
-Export-AzureRmResourceGroup -ResourceGroupName TestRG1 -Path c:\Azure\Templates\Downloads\TestRG1.json
-```
-
-有許多匯出 Resource Manager 範本的選項和案例。 如需詳細資訊，請參閱[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
 
 ## <a name="remove-resources-or-resource-group"></a>移除資源或資源群組
 您可以移除資源或資源群組。 當您移除資源群組時，也會移除該資源群組內的所有資源。

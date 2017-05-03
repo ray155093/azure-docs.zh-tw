@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: android
 ms.devlang: java
 ms.topic: article
-ms.date: 01/07/2017
+ms.date: 04/07/2017
 ms.author: xerners
 translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 3af96dd06223c4b32ccd3e1d73e1017980fcbccc
-ms.lasthandoff: 03/29/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 510a1827f432c4db2190deff016a886dd79eebc9
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -83,15 +83,15 @@ Microsoft 為每個行動平台提供應用程式，允許跨不同廠商的應�
 ```
 
 #### <a name="broker-assisted-logins"></a>訊息代理程式協助登入
-訊息代理程式協助登入是在訊息代理程式應用程式中發生的登入體驗，並且使用訊息代理程式的儲存體和安全性，跨套用 Microsoft 身分識別平台之裝置上的所有應用程式共用認證。 這表示您的應用程式依賴訊息代理程式來讓使用者登入。 在 iOS 和 Android 上，會透過可下載的應用程式提供這些訊息代理程式，客戶可以獨立安裝它們，或可由為使用者管理裝置的公司推送至裝置。 此類型應用程式的範例為 iOS 上的 Azure Authenticator 應用程式。 在 Windows 中，內建於作業系統的帳戶選擇器會提供此功能，在技術上稱為 Web 驗證訊息代理程式。
+訊息代理程式協助登入是在訊息代理程式應用程式中發生的登入體驗，並且使用訊息代理程式的儲存體和安全性，跨套用 Microsoft 身分識別平台之裝置上的所有應用程式共用認證。 這表示您的應用程式依賴訊息代理程式來讓使用者登入。 在 iOS 和 Android 上，會透過可下載的應用程式提供這些訊息代理程式，客戶可以獨立安裝它們，或可由為使用者管理裝置的公司推送至裝置。 此類型應用程式的範例為 iOS 上的 Microsoft Authenticator 應用程式。 在 Windows 中，內建於作業系統的帳戶選擇器會提供此功能，在技術上稱為 Web 驗證訊息代理程式。
 體驗會依平台而有所不同，如果未正確管理，有時可能會干擾使用者。 如果您已安裝 Facebook 應用程式，並在另一個應用程式中使用 Facebook Connect，您可能最熟悉這種模式。 Microsoft 身分識別平台會使用相同的模式。
 
-對於 iOS 而言，這會前往「轉換」動畫，您的應用程式已在其中傳送到背景工作，而 Azure Authenticator 應用程式則來到前景讓使用者選取他們想要登入的帳戶。  
+對於 iOS 而言，這會前往「轉換」動畫，您的應用程式已在其中傳送到背景工作，而 Microsoft Authenticator 應用程式則來到前景讓使用者選取他們想要登入的帳戶。  
 
 對於 Android 和 Windows 而言，帳戶選擇器會顯在比較不干擾使用者的應用程式頂端。
 
 #### <a name="how-the-broker-gets-invoked"></a>如何叫用訊息代理程式
-如果在裝置上安裝相容的訊息代理程式，例如 Azure Authenticator 應用程式，當使用者指出他們想要使用 Microsoft 身分識別平台的任何帳戶登入時，Microsoft 身分識別 SDK 會自動為您叫用訊息代理程式。 這個帳戶可以是個人的 Microsoft 帳戶、工作或學校帳戶，或您提供的帳戶，以及在 Azure 中使用 B2C 和 B2B 產品的主機。 
+如果在裝置上安裝相容的訊息代理程式，例如 Microsoft Authenticator 應用程式，當使用者指出他們想要使用 Microsoft 身分識別平台的任何帳戶登入時，Microsoft 身分識別 SDK 會自動為您叫用訊息代理程式。 這個帳戶可以是個人的 Microsoft 帳戶、工作或學校帳戶，或您提供的帳戶，以及在 Azure 中使用 B2C 和 B2B 產品的主機。 
  
  #### <a name="how-we-ensure-the-application-is-valid"></a>我們如何確保應用程式有效
  

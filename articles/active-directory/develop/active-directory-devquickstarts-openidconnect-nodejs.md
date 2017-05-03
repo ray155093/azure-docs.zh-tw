@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: xerners
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 27f9c5a18b85c0cc2f918ccefeb063f58cc967c6
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
+ms.openlocfilehash: 8d91d551cbb508485ca27d77b23eb319293e4237
+ms.lasthandoff: 04/20/2017
 
 
 ---
@@ -144,8 +144,7 @@ Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有
 
     > [!IMPORTANT]
     > The previous code takes any user that happens to authenticate to our server. This is known as auto-registration. We recommend that you don't let anyone authenticate to a production server without first having them register via a process that you decide on. This is usually the pattern you see in consumer apps, which allow you to register with Facebook but then ask you to provide additional information. If this weren't a sample application, we could have extracted the user's email address from the token object that is returned and then asked the user to fill out additional information. Because this is a test server, we add them to the in-memory database.
->
->
+
 
 4. 接下來，我們會新增方法，讓我們可以如 Passport 所要求追蹤已登入的使用者。 這些方法包括將使用者資訊序列化和還原序列化。
 
@@ -180,9 +179,9 @@ Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有
             }
             return fn(null, null);
             };
-            ```
+    ```
 
-5.  Next, let's add the code to load the Express engine. Here we use the default /views and /routes pattern that Express provides.
+5.  接下來，加入可載入 Express 引擎的程式碼。 在此處可看到我們使用 Express 所提供的預設 /views 和 /routes 模式。
 
     ```JavaScript
 
@@ -205,9 +204,9 @@ Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有
           app.use(express.static(__dirname + '/../../public'));
         });
 
-        ```
+    ```
 
-6. Finally, let's add the routes that hand off the actual sign-in requests to the `passport-azure-ad` engine:
+6. 最後，新增路由以將實際的登入要求遞交給 `passport-azure-ad` 引擎：
 
        
        ```JavaScript
@@ -250,13 +249,13 @@ Passport 會使用適用於它的所有策略 (Twitter、Facebook 等) 且所有
                 log.info('We received a return from AzureAD.');
                 res.redirect('/');
               });
-          ```
+       ```
 
 
-## Step 4: Use Passport to issue sign-in and sign-out requests to Azure AD
-Your app is now properly configured to communicate with the endpoint by using the OpenID Connect authentication protocol.  `passport-azure-ad` has taken care of all the details of crafting authentication messages, validating tokens from Azure AD, and maintaining user sessions. All that remains is giving your users a way to sign in and sign out, and gathering additional information about the signed-in users.
+## <a name="step-4-use-passport-to-issue-sign-in-and-sign-out-requests-to-azure-ad"></a>步驟 4：使用 Passport，向 Azure AD 發出登入和登出要求
+您的應用程式現在已正確設定，將使用 OpenID Connect 驗證通訊協定與端點通訊。  `passport-azure-ad` 已經處理有關製作驗證訊息、驗證 Azure AD 的權杖及維護使用者工作階段的所有細節。 剩下的工作就是讓使用者有辦法登入和登出，以及收集關於已登入使用者的其他資訊。
 
-1. First, let's add the default, sign-in, account, and sign-out methods to our `app.js` file:
+1. 首先，在 `app.js` 檔案中加入預設、登入、帳戶和登出方法：
 
     ```JavaScript
 
@@ -329,9 +328,9 @@ Your app is now properly configured to communicate with the endpoint by using th
                 exports.index = function(req, res){
                   res.render('index', { title: 'Express' });
                 };
-                ```
+    ```
 
-2. Create the `/routes/user.js` route under the root directory.
+2. 在根目錄下方建立 `/routes/user.js` 路由。
 
                 ```JavaScript
                 /*
@@ -341,11 +340,11 @@ Your app is now properly configured to communicate with the endpoint by using th
                 exports.list = function(req, res){
                   res.send("respond with a resource");
                 };
-        ```
+                ```
 
- These pass along the request to our views, including the user if present.
+ 這些會將要求傳遞到我們的檢視，包括使用者 (如果有的話)。
 
-3. Create the `/views/index.ejs` view under the root directory. This is a simple page that calls our login and logout methods and enables us to grab account information. Notice that we can use the conditional `if (!user)` as the user being passed through in the request is evidence we have a signed-in user.
+3. 在根目錄底下建立 `/views/index.ejs` 檢視。 這是簡單網頁，可呼叫我們的登入和登出方法，且讓我們能夠抓取帳戶資訊。 請注意，我們可以使用條件式 `if (!user)`，因為在要求中傳遞使用者就證實我們擁有已登入的使用者。
 
     ```JavaScript
     <% if (!user) { %>

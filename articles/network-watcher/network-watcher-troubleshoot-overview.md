@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: dcf8a88ebd66f5e4a5a06538532fbfbae7ce852e
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 9c7ce71674a851d598ef48eb430127c9a6bddb84
+ms.lasthandoff: 04/25/2017
 
 ---
 
@@ -57,7 +57,7 @@ ms.lasthandoff: 03/04/2017
 | PlatformInActive | 平台發生問題。 | 否|
 | ServiceNotRunning | 基礎服務並未執行。 | 否|
 | NoConnectionsFoundForGateway | 閘道上沒有任何連線存在。 這只是警告。| 否|
-| ConnectionsNotConnected | 沒有任何連線未連線。 這只是警告。| 是|
+| ConnectionsNotConnected | 未建立連線。 這只是警告。| 是|
 | GatewayCPUUsageExceeded | 目前的閘道 CPU 使用量 > 95%。 | 是 |
 
 ### <a name="connection"></a>連線
