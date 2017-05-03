@@ -11,7 +11,3 @@
 5. 若要檢視連線的詳細資訊，請按一下連線名稱以開啟 [站對站 VPN 連線] 刀鋒視窗。
 
     ![連線狀態詳細資訊](./media/vpn-gateway-verify-connection-azureportal-classic/connections4.png "連線狀態詳細資訊")
-
-<!--HONumber=Jan17_HO5-->
-
-
