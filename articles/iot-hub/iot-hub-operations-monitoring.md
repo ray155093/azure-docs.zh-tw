@@ -188,7 +188,7 @@ IoT 中樞會監視六個類別的事件：
 
 ## <a name="view-events"></a>檢視事件
 
-您可以使用 *iothub-explorer* 工具來快速測試 IoT 中樞正在產生監視事件。 若要安裝此工具，請參閱 [iothub-explorer][ lnk-iothub-explorer] GitHub 儲存機制中的指示。
+您可以使用 *iothub-explorer* 工具來快速測試 IoT 中樞正在產生監視事件。 若要安裝此工具，請參閱 [iothub-explorer][lnk-iothub-explorer] GitHub 儲存機制中的指示。
 
 1. 請確定入口網站中的 [連線] 監視類別設定為 [詳細資訊]。
 
