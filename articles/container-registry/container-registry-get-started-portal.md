@@ -49,12 +49,11 @@ ms.lasthandoff: 03/27/2017
 
     d. **管理員使用者**：如果您想，可啟用管理員使用者存取登錄。 您可以在建立登錄庫後變更此設定。
 
-    > [!IMPORTANT]
-    > 除了透過管理員使用者帳戶存取，容器登錄庫還支援 Azure Active Directory 服務主體所支援的驗證。 如需詳細資訊和考量事項，請參閱[驗證容器登錄庫](container-registry-authentication.md)。
-
+      > [!IMPORTANT]
+      > 除了透過管理員使用者帳戶存取，容器登錄庫還支援 Azure Active Directory 服務主體所支援的驗證。 如需詳細資訊和考量事項，請參閱[驗證容器登錄庫](container-registry-authentication.md)。
+      >
 
     e. **儲存體帳戶**：使用預設設定建立[儲存體帳戶](../storage/storage-introduction.md)，或選取相同位置中的現有儲存體帳戶。 目前不支援進階儲存體。
-
 
 ## <a name="manage-registry-settings"></a>管理登錄庫設定
 建立登錄庫之後，在入口網站中啟動 [容器登錄庫] 刀鋒視窗，以尋找登錄庫的設定。 例如，您可能需要用這些設定來登入您的登錄庫，或者您可能想要啟用或停用管理員使用者。
