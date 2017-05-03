@@ -27,12 +27,12 @@ ms.lasthandoff: 03/01/2017
 如果您不熟悉 Azure AD 登入或多租用戶應用程式開發：
 
 1. 從閱讀 [Azure AD 驗證案例中的瀏覽器到 Web 應用程式案例][AAD-Auth-Scenarios-Browser-To-WebApp]著手。  
-2. 接者，參閱 Azure AD [Web 應用程式快速入門指南][AAD-QuickStart-Web-Apps]，這些指南示範如何實作登入，並且包含程式碼範例。 
-   
+2. 接者，參閱 Azure AD [Web 應用程式快速入門指南][AAD-QuickStart-Web-Apps]，這些指南示範如何實作登入，並且包含程式碼範例。
+
    > [!TIP]
    > 試用新 [開發人員入口網站](https://identity.microsoft.com/Docs/Web) 的預覽版本，這可協助您在短短幾分鐘內啟動並執行 Azure Active Directory！  開發人員入口網站會逐步引導您完成註冊應用程式並將 Azure AD 整合至您的程式碼的程序。  當您完成時，您會有可驗證租用戶中使用者的簡單應用程式，以及可接受權杖並執行驗證的後端。
-   > 
-   > 
+   >
+   >
 3. 若要了解如何實作與 Azure AD 搭配運作的多租用戶登入模式，請參閱[如何使用多租用戶應用程式模式讓任何 Azure Active Directory (AD) 使用者登入][AAD-Howto-Multitenant-Overview]
 
 ## <a name="related-content"></a>相關內容
@@ -45,18 +45,8 @@ ms.lasthandoff: 03/01/2017
 [AAD-Auth-Scenarios-Browser-To-WebApp]: ./active-directory-authentication-scenarios.md#web-browser-to-web-application
 [AAD-Dev-Guide]: ./active-directory-developers-guide.md
 [AAD-Howto-Multitenant-Overview]: ./active-directory-devhowto-multi-tenant-overview.md
-[AAD-QuickStart-Web-Apps]: ./active-directory-developers-guide.md#web-application-quick-start-guides
+[AAD-QuickStart-Web-Apps]: ./active-directory-developers-guide.md#guides
 
 
 <!--Image references-->
-
-
-
-
-
-
-
-
-
-
 
