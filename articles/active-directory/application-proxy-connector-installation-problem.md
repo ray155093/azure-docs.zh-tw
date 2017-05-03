@@ -39,7 +39,7 @@ Microsoft AAD 應用程式 Proxy 連接器是內部網域元件，它會使用�
 
 **目標：**確認連接器電腦可以連線到 AAD 應用程式 Proxy 註冊端點以及 Microsoft 登入頁面。
 
-1.  開啟瀏覽器並移至下列網頁：<https://aadap-portcheck.connectorporttest.msappproxy.net (英文)>，確認透過連接埠 9090 和 9091 與美國中部 (Central US) 與美國東部 (East US) 資料中心的連線是正常的。
+1.  開啟瀏覽器並移至下列網頁： <https://aadap-portcheck.connectorporttest.msappproxy.net> (英文)，確認透過連接埠 9090 和 9091 與美國中部 (Central US) 與美國東部 (East US) 資料中心的連線是正常的。
 
 2.  如果有任何連接埠未成功 (沒有綠色勾選記號)，請確認防火牆或後端 Proxy 是否已正確定義 \*.msappproxy.net 與連接埠 9090 和 9091。
 
