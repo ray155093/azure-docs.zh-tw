@@ -37,7 +37,7 @@ ms.lasthandoff: 04/03/2017
 
 ## <a name="azure-media-services-explorer-workflow"></a>Azure 媒體服務總管工作流程
 
-開始使用修訂器最簡單的方法，是使用 github 上的開放原始碼 AMSE 工具。 如果您不需要註解 json 或臉部 jpg 影像的存取權，您可以透過 [Combined] (合併) 模式執行簡單的工作流程。
+開始使用修訂器最簡單的方法，是使用 github 上的開放原始碼 AMSE 工具。 如果您不需要註解 json 或臉部 jpg 影像的存取權，您可以透過 [Combined] \(合併) 模式執行簡單的工作流程。
 
 ### <a name="download-and-setup"></a>下載及安裝
 
