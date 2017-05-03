@@ -15,8 +15,3 @@ VPN 閘道不會使用 UltraPerformance 閘道 SKU。 如需 UltraPerformance SK
 * 基本 SKU 不支援 ExpressRoute-VPN 閘道共存組態。
 * 僅可以在高效能 SKU 上設定主動-主動 S2S VPN 閘道連線。
 
-
-
-<!--HONumber=Jan17_HO1-->
-
-

@@ -3,8 +3,3 @@ Microsoft Azure ExpressRoute 可讓您透過連線提供者所提供的專用私
 
 ![](./media/expressroute-intro-include/expressroute-basic.png)
 
-
-
-<!--HONumber=Jan17_HO1-->
-
-

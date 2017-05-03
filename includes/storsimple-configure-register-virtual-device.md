@@ -17,8 +17,3 @@
 
 ![StorSimple 虛擬裝置上線階段](./media/storsimple-configure-register-virtual-device/StorSimple_VirtualDeviceOnline1M.png)
 
-
-
-<!--HONumber=Jan17_HO1-->
-
-
