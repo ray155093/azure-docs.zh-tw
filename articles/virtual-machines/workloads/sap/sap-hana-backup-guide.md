@@ -14,9 +14,9 @@ ms.workload: infrastructure-services
 ms.date: 3/13/2017
 ms.author: rclaus
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 3f473836959fbc5d336038a62a95df8db6b7eb7d
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: 587a8e225b18ae2a07d766f1a0d75623e44aec9f
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -91,7 +91,7 @@ SAP 不特別偏好 HANA 備份或儲存體快照集之中的任何一個。 它
 
 在 Azure 上，請注意一件事：Azure blob 快照集功能不保證檔案系統的一致性 (請參閱[以 PowerShell 使用 blob 快照集](https://blogs.msdn.microsoft.com/cie/2016/05/17/using-blob-snapshots-with-powershell/))。 下一節＜建立儲存體快照集時，SAP HANA 資料的一致性＞將討論此功能的考量事項。
 
-此外，您必須了解經常使用 blob 快照集對費用的影響，如這篇文章中所述︰[了解快照如何產生費用](/rest/api/storageservices/fileservices/understanding-how-snapshots-accrue-charges)— 它不像使用 Azure 虛擬磁碟那麼明顯。
+此外，您必須了解經常使用 blob 快照集對費用的影響，如這篇文章中所述︰[了解快照如何產生費用](/rest/api/storageservices/understanding-how-snapshots-accrue-charges)— 它不像使用 Azure 虛擬磁碟那麼明顯。
 
 ### <a name="sap-hana-data-consistency-when-taking-storage-snapshots"></a>建立儲存體快照集時，SAP HANA 資料的一致性
 

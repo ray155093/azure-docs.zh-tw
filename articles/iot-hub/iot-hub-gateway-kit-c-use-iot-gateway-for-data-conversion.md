@@ -16,9 +16,9 @@ ms.workload: na
 ms.date: 04/07/2017
 ms.author: xshi
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: ca5631755fd9c46c4ee7a0f837dcbf4d75a99c25
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
+ms.openlocfilehash: d7897f1a7eee5fbb04cf43da0d0156a6b8fb11f6
+ms.lasthandoff: 04/25/2017
 
 
 ---
@@ -146,4 +146,5 @@ sed -i -e "s/\r$\/\/" build.sh
 ## <a name="next-steps"></a>後續步驟
 
 您已成功使用 IoT 閘道將訊息從 SensorTag 轉換為 .json 格式。
-如果您想要深入了解 Azure IoT 閘道模組，您可以在這裡找到更多模組範例：https://github.com/Azure/azure-iot-gateway-sdk/tree/master/modules。
+
+[!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 02/10/2017
 ms.author: vturecek
 translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: 3dbcbbab51080cb8e714cff4f9cc0b3a7a463b24
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
+ms.openlocfilehash: 9d22438c6ca14ddb8843f4b72cae40e3b622e849
+ms.lasthandoff: 04/26/2017
 
 
 ---
@@ -232,6 +232,6 @@ CompletableFuture reminderUnregistration = unregisterReminderAsync(reminder);
 * [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
 * [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
 * [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
-* [C# 範例程式碼 (英文)](https://github.com/Azure/servicefabric-samples)
+* [C# 範例程式碼 (英文)](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
 * [Java 範例程式碼 (英文)](http://github.com/Azure-Samples/service-fabric-java-getting-started)
 

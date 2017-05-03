@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 03/14/2017
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: c974bd122fa2549f0d3e2d96fa70abfdd17ccc1d
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
+ms.openlocfilehash: 96a968ea3f7bb8f3fbb8abb9b061bdc885776d68
+ms.lasthandoff: 04/21/2017
 
 
 ---
@@ -44,7 +44,7 @@ ms.lasthandoff: 03/31/2017
 ### <a name="resource-manager-templates"></a>Resource Manager 範本
 Resource Manager 範本可讓您輕鬆地在單一、協調的作業中為您的應用程式建立下列各項：
 * HDInsight 叢集和其相依資源 (例如預設的儲存體帳戶)
-* 其他資源 (例如，使用 Apache Sqoop 的 Azure SQL Database) 
+* 其他資源 (例如，使用 Apache Sqoop 的 Azure SQL Database)
 
 在範本中，您會定義應用程式所需的資源。 您也可以指定部署參數，以便為不同的環境輸入值。 範本由 JSON 與運算式所組成，可讓您用來為部署建構值。
 
@@ -139,7 +139,7 @@ Resource Manager 範本可讓您輕鬆地在單一、協調的作業中為您的
 
     PowerShell 指令碼只會設定叢集名稱。 儲存體帳戶名稱是硬式編碼於範本中。 系統會提示您輸入叢集使用者密碼。 (預設的使用者名稱為 **admin**。)也會提示您輸入 SSH 使用者密碼。 (預設的 SSH 使用者名稱為 **sshuser**。)  
 
-如需詳細資訊，請參閱[使用 PowerShell 進行部署](../azure-resource-manager/resource-group-template-deploy.md#deploy)。
+如需詳細資訊，請參閱[使用 PowerShell 進行部署](../azure-resource-manager/resource-group-template-deploy.md#deploy-local-template)。
 
 ## <a name="deploy-with-cli"></a>使用 CLI 部署
 下列範例會使用 Azure 命令列介面 (CLI)。 它會藉由呼叫 Resource Manager 範本來建立叢集和其依存的儲存體帳戶與容器：
