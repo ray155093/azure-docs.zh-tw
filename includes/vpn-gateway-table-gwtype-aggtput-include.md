@@ -13,4 +13,4 @@
 * (3) 基本 SKU 不支援 BGP。
 * (4) 此 SKU 不支援原則式 VPN。 只有基本 SKU 提供支援。
 * (5) 此 SKU 不支援主動-主動 S2S VPN 閘道連線。 只有高效能 SKU 支援主動-主動。
-* (6) 基本 SKU 已被 ExpressRoute 取代。
+* (6) 基本 SKU 不支援 ExpressRoute。
