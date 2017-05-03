@@ -53,7 +53,7 @@ ms.lasthandoff: 04/14/2017
 您可以使用下列其中一個選項與我們連絡︰
 
 * 將問題張貼在我們的 [API 管理 MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=azureapimgmt)。
-* 將電子郵件傳送至 < mailto:apimgmt@microsoft.com >。
+* 將電子郵件傳送至 <mailto:apimgmt@microsoft.com> 。
 * 在 [Azure 意見反應論壇](https://feedback.azure.com/forums/248703-api-management)將功能要求傳送給我們。
 
 ### <a name="what-does-it-mean-when-a-feature-is-in-preview"></a>功能預覽中是什麼意思？
