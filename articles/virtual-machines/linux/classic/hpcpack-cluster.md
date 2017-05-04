@@ -16,9 +16,9 @@ ms.workload: big-compute
 ms.date: 10/12/2016
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 868026150e81347aa3a7914f63bc19c3a878c586
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: c65a932d0bf9bfb00f138997babc1bd642bcf879
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -59,7 +59,7 @@ ms.lasthandoff: 04/03/2017
 使用 HPC Pack IaaS 部署指令碼部署叢集的其他必要條件：
 
 * **用戶端電腦** - 您需要有 Windows 型用戶端電腦，才能執行叢集部署指令碼。
-* **Azure PowerShell** - [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) (0.8.10 版或更新版本)。
+* **Azure PowerShell** - [安裝和設定 Azure PowerShell](/powershell/azure/overview) (0.8.10 版或更新版本)。
 * **HPC Pack IaaS 部署指令碼** - 從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=44949)下載並解壓縮最新版的指令碼。 執行 `.\New-HPCIaaSCluster.ps1 –Version`即可檢查指令碼的版本。 這篇文章根據 4.4.1 版或更新版本的指令碼。
 
 ### <a name="deployment-option-1-use-a-resource-manager-template"></a>部署選項 1。 使用 Resource Manager 範本
@@ -87,7 +87,7 @@ ms.lasthandoff: 04/03/2017
 使用 HPC Pack IaaS 部署指令碼部署叢集的其他必要條件如下：
 
 * **用戶端電腦** - 您需要有 Windows 型用戶端電腦，才能執行叢集部署指令碼。
-* **Azure PowerShell** - [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) (0.8.10 版或更新版本)。
+* **Azure PowerShell** - [安裝和設定 Azure PowerShell](/powershell/azure/overview) (0.8.10 版或更新版本)。
 * **HPC Pack IaaS 部署指令碼** - 從 [Microsoft 下載中心](https://www.microsoft.com/download/details.aspx?id=44949)下載並解壓縮最新版的指令碼。 執行 `.\New-HPCIaaSCluster.ps1 –Version`即可檢查指令碼的版本。 這篇文章根據 4.4.1 版或更新版本的指令碼。
 
 **XML 組態檔**

@@ -17,9 +17,9 @@ ms.date: 4/06/2017
 ms.author: nitinme
 ROBOTS: NOINDEX
 translationtype: Human Translation
-ms.sourcegitcommit: 757d6f778774e4439f2c290ef78cbffd2c5cf35e
-ms.openlocfilehash: 8f82690170f4a861adf2fcb3a889919df6fa5d0d
-ms.lasthandoff: 04/10/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 5e1538ae0d4b1270040bd593cae66c1dd1046201
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -1249,7 +1249,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 關於 Azure PowerShell 和 HDInsight SDK 的錯誤訊息：「叢集未設定 HTTP 服務存取」：
 
 * 此錯誤是已知的[相容性問題](https://social.msdn.microsoft.com/Forums/azure/a7de016d-8de1-4385-b89e-d2e7a1a9d927/hdinsight-powershellsdk-error-cluster-is-not-configured-for-http-services-access?forum=hdinsight)，起因可能是 HDInsight 或 Azure PowerShell 版本和叢集版本的差異。 在 8/15 或之後建立的叢集支援佈建到虛擬網路的這項新功能。 但舊版的 HDInsight SDK 或 Azure PowerShell 無法正確解譯此功能。 結果造成某些工作提交作業失敗。 如果您使用 HDInsight SDK API 或 Azure PowerShell Cmdlet (**Use-AzureRmHDInsightCluster** 或 **Invoke-AzureRmHDInsightHiveJob**) 來提交工作，這些作業可能會失敗並傳回錯誤訊息「叢集 <clustername> 未設定 HTTP 服務存取」。 或者 (根據作業而定) 傳回其他錯誤訊息，例如「無法連接到叢集」。
-* 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。 建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。 您可以從 [Nuget (英文)](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 取得 Azure PowerShell 工具。
+* 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。 建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。 您可以從 [Nuget (英文)](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 取得 Azure PowerShell 工具。
 
 ## <a name="notes-for-9122014-release-of-hdinsight-31"></a>HDInsight 3.1 2014/9/12 版本的相關資訊
 * 此版本根據 Hortonworks Data Platform (HDP) 2.1.5。 如需此版本中修正的 Bug 清單，請參閱 Hortonworks 網站上的 [已在此版本修正](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.5/bk_releasenotes_hdp_2.1/content/ch_relnotes-hdp-2.1.5-fixed.html) 頁面。
