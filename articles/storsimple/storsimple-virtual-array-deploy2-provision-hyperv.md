@@ -133,7 +133,7 @@ ms.lasthandoff: 03/16/2017
 16. 在 [選擇磁碟格式] 頁面上，接受 [VHDX] 格式預設選項。 按一下 [下一步]。 如果您執行的是 Windows Server 2008 R2，則不會出現此畫面。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image15.png)
-17. 在 [選擇磁碟類型] 頁面上，將虛擬硬碟類型設定為 [動態擴充] (建議選項)。 [固定大小] 磁碟可以運作，但您可能需要等待很長一段時間。 建議您不要使用 [差異]  選項。 按一下 [下一步]。 在 Windows Server 2012 R2 和 Windows Server 2012 中，[動態擴充] 是預設選項，而在 Windows Server 2008 R2 中，預設值是 [固定大小]。
+17. 在 [選擇磁碟類型] 頁面上，將虛擬硬碟類型設定為 [動態擴充] \(建議選項)。 [固定大小] 磁碟可以運作，但您可能需要等待很長一段時間。 建議您不要使用 [差異]  選項。 按一下 [下一步]。 在 Windows Server 2012 R2 和 Windows Server 2012 中，[動態擴充] 是預設選項，而在 Windows Server 2008 R2 中，預設值是 [固定大小]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-hyperv/image16.png)
 18. 在 [指定名稱和位置] 頁面上，提供資料磁碟的「名稱」和「位置」(您可以瀏覽至該位置)。 按一下 [下一步]。
