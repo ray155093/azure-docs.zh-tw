@@ -85,7 +85,7 @@ ms.lasthandoff: 01/24/2017
 下列程式碼片段顯示如何變更在 Jupyter 中執行的應用程式的組態。
 
     %%configure
-    {"executorMemory": "3072M", "executorCores": 4, “numExecutors”:10}
+    {"executorMemory": "3072M", "executorCores": 4, "numExecutors":10}
 
 組態參數必須以 JSON 字串傳遞，且必須在 magic 之後的下一行，如範例資料行中所示。
 
