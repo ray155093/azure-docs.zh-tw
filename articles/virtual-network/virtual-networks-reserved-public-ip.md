@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 02/10/2016
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: 12811b5cbfc6072075395d8542b79d10d2873286
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 120ae95fe12daa8fc213d0062ca446d5c1b10134
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -58,7 +58,7 @@ Azure 中的 IP 位址分為兩個類別：動態和保留。 依預設由 Azure
 
 ## <a name="manage-reserved-vips"></a>管理保留的 VIP
 
-確保您完成[安裝並設定 PowerShell](/powershell/azureps-cmdlets-docs) 文章中的步驟來安裝和設定 PowerShell。 
+確保您完成[安裝並設定 PowerShell](/powershell/azure/overview) 文章中的步驟來安裝和設定 PowerShell。 
 
 您必須將保留的 IP 新增至訂用帳戶才能使用。 若要在 *美國中部* 位置從可用的公用 IP 位址集區來建立保留的 IP，請執行下列命令：
 

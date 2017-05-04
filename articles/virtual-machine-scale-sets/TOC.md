@@ -44,7 +44,7 @@
 ### [擴展集常見問題](virtual-machine-scale-sets-faq.md)
 
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs)
+## [PowerShell](/powershell/azure/overview)
 ## [Azure CLI](../virtual-machines/azure-cli-arm-commands.md)
 ## [REST](/rest/api/virtualmachinescalesets/)
 

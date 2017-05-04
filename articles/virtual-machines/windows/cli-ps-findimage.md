@@ -16,9 +16,9 @@ ms.workload: infrastructure
 ms.date: 08/23/2016
 ms.author: rasquill
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: b36fb2b94dcee94eb299221bbb5c82080d23bfb1
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 28bb214570fcca94c5ceb6071c4851b81ec00c8d
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -41,7 +41,7 @@ ms.lasthandoff: 03/31/2017
 
 ## <a name="find-azure-images-with-powershell"></a>使用 PowerShell 來尋找 Azure 映像
 > [!NOTE]
-> 安裝及設定 [最新的 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 如果您使用 1.0 以下的 Azure PowerShell 模組，您仍可以使用下列命令，但您必須先 `Switch-AzureMode AzureResourceManager`。 
+> 安裝及設定 [最新的 Azure PowerShell](/powershell/azure/overview)。 如果您使用 1.0 以下的 Azure PowerShell 模組，您仍可以使用下列命令，但您必須先 `Switch-AzureMode AzureResourceManager`。 
 > 
 > 
 
@@ -134,3 +134,4 @@ Windows-Server-Technical-Preview
 
 ## <a name="next-steps"></a>後續步驟
 現在，您可以精確地選擇想要使用的映像。 若要使用您剛找到的映像資訊來快速建立虛擬機器，或使用範本搭配該映像資訊，請參閱[使用 Resource Manager 和 PowerShell 建立 Windows VM](../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+

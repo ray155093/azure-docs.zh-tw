@@ -16,9 +16,9 @@ ms.workload: infrastructure
 ms.date: 03/06/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 5108df1ef407132de4c685d35f1c453d30d1aa96
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: b436f2d43c41000f4385889edb3fa3983d4a8c66
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -114,7 +114,7 @@ Azure CLI 不會在加密過程中提供詳細資訊錯誤。 如需其他疑難
 azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
   --aad-client-id 147bc426-595d-4bad-b267-58a7cbd8e0b6 \
   --aad-client-secret P@ssw0rd! \
-  --disk-encryption-key-vault-url https://myKeyVault.vault.azure.net/ \ 
+  --disk-encryption-key-vault-url https://myKeyVault.vault.azure.net/ \
   --disk-encryption-key-vault-id /subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myKeyVault \
   --key-encryption-key-url https://myKeyVault.vault.azure.net/keys/myKey/6f5fe9383f4e42d0a41553ebc6a82dd1 \
   --key-encryption-key-vault-id /subscriptions/guid/resourceGroups/myResoureGroup/providers/Microsoft.KeyVault/vaults/myKeyVault \
@@ -142,11 +142,11 @@ Linux VM 上的待用虛擬磁碟會使用 [dm-crypt](https://wikipedia.org/wiki
 ## <a name="supporting-services-and-encryption-process"></a>支援服務和加密程序
 磁碟加密依賴下列其他元件︰
 
-* **Azure 金鑰保存庫** - 用來保護磁碟加密/解密程序所使用的密碼編譯金鑰和密碼。 
+* **Azure 金鑰保存庫** - 用來保護磁碟加密/解密程序所使用的密碼編譯金鑰和密碼。
   * 如果有的話，您可以使用現有的 Azure 金鑰保存庫。 您沒有專門用來加密磁碟的金鑰保存庫。
   * 若要區分系統管理界限和金鑰可視性，您可以建立專用的金鑰保存庫。
-* **Azure Active Directory** - 處理必要密碼編譯金鑰的安全交換以及所要求動作的驗證。 
-  * 您通常使用現有的 Azure Active Directory 執行個體來裝載您的應用程式。 
+* **Azure Active Directory** - 處理必要密碼編譯金鑰的安全交換以及所要求動作的驗證。
+  * 您通常使用現有的 Azure Active Directory 執行個體來裝載您的應用程式。
   * 對金鑰保存庫和虛擬機器服務而言，此應用程式不僅只是個端點，還可要求和取得已發出的適當密碼編譯金鑰。 您並未開發與 Azure Active Directory 整合的實際應用程式。
 
 ## <a name="requirements-and-limitations"></a>需求和限制
@@ -172,7 +172,7 @@ azure config mode arm
 
 在整個命令範例中，以您自己的名稱、位置和金鑰值取代所有的範例參數。 下列範例使用 `myResourceGroup`、`myKeyVault`、`myAADApp` 等的慣例。
 
-建立 Azure 金鑰保存庫的第一個步驟是儲存您的密碼編譯金鑰。 Azure 金鑰保存庫儲存可讓您安全地在應用程式和服務中實作的金鑰和密碼 (Secret 或 Password)。 如需虛擬磁碟加密，您可使用金鑰保存庫來儲存用來加密或解密虛擬磁碟的密碼編譯金鑰。 
+建立 Azure 金鑰保存庫的第一個步驟是儲存您的密碼編譯金鑰。 Azure 金鑰保存庫儲存可讓您安全地在應用程式和服務中實作的金鑰和密碼 (Secret 或 Password)。 如需虛擬磁碟加密，您可使用金鑰保存庫來儲存用來加密或解密虛擬磁碟的密碼編譯金鑰。
 
 啟用您的 Azure 訂用帳戶中的 Azure 金鑰保存庫提供者，然後建立資源群組。 下列範例會在 `WestUS` 位置建立名為 `myResourceGroup` 的資源群組：
 
@@ -188,7 +188,7 @@ azure keyvault create --vault-name myKeyVault --resource-group myResourceGroup \
   --location WestUS
 ```
 
-您可以使用軟體或硬體安全性模型 (HSM) 保護功能來儲存密碼編譯金鑰。 使用 HSM 時需要進階金鑰保存庫。 建立進階金鑰保存庫 (而非用來儲存軟體保護金鑰的標準金鑰保存庫) 會有額外的成本。 若要建立進階金鑰保存庫，在前一個步驟中將 `--sku Premium` 新增至命令。 下列範例會使用軟體保護的金鑰，因為我們建立了標準金鑰保存庫。 
+您可以使用軟體或硬體安全性模型 (HSM) 保護功能來儲存密碼編譯金鑰。 使用 HSM 時需要進階金鑰保存庫。 建立進階金鑰保存庫 (而非用來儲存軟體保護金鑰的標準金鑰保存庫) 會有額外的成本。 若要建立進階金鑰保存庫，在前一個步驟中將 `--sku Premium` 新增至命令。 下列範例會使用軟體保護的金鑰，因為我們建立了標準金鑰保存庫。
 
 在兩種保護模型中，Azure 平台都必須獲得存取權，才能在 VM 開機時要求密碼編譯金鑰來將虛擬磁碟解密。 在您的金鑰保存庫中建立加密金鑰，然後加以啟用以便用於虛擬磁碟加密。 下列範例會建立名為 `myKey` 的金鑰，然後加以啟用以便用於磁碟加密︰
 
@@ -203,7 +203,7 @@ azure keyvault set-policy --vault-name myKeyVault --resource-group myResourceGro
 ## <a name="create-the-azure-active-directory-application"></a>建立 Azure Active Directory 應用程式
 加密或解密虛擬磁碟時，您可以使用端點來處理金鑰保存庫中密碼編譯金鑰的驗證和交換。 此端點 (Azure Active Directory 應用程式) 可讓 Azure 平台代表 VM 要求適當的密碼編譯金鑰。 雖然許多組織都有專用的 Azure Active Directory 目錄，但您的訂用帳戶中會有預設 Azure Active Directory 執行個體。
 
-因為您不想建立完整的 Azure Active Directory 應用程式，所以下列範例中的 `--home-page` 和 `--identifier-uris` 參數不必是實際可路由傳送的位址。 下列範例也會指定以密碼 (password) 為基礎的密碼 (secret)，而不是在 Azure 入口網站中產生金鑰。 此時，無法從 Azure CLI 產生金鑰。 
+因為您不想建立完整的 Azure Active Directory 應用程式，所以下列範例中的 `--home-page` 和 `--identifier-uris` 參數不必是實際可路由傳送的位址。 下列範例也會指定以密碼 (password) 為基礎的密碼 (secret)，而不是在 Azure 入口網站中產生金鑰。 此時，無法從 Azure CLI 產生金鑰。
 
 建立 Azure Active Directory 應用程式。 下列範例會建立名為 `myAADApp` 的應用程式，並使用 `myPassword` 的密碼。 指定您自己的密碼，如下所示︰
 
@@ -214,7 +214,7 @@ azure ad app create --name myAADApp \
   --password myPassword
 ```
 
-請記下先前命令的輸出中傳回的 `applicationId`。 此應用程式識別碼會使用於剩餘的某些步驟。 接下來，建立服務主體名稱 (SPN)，以便在您的環境中存取應用程式。 若要成功加密或解密虛擬磁碟，金鑰保存庫中所儲存之密碼編譯金鑰的權限必須設定為允許 Azure Active Directory 應用程式讀取機碼。 
+請記下先前命令的輸出中傳回的 `applicationId`。 此應用程式識別碼會使用於剩餘的某些步驟。 接下來，建立服務主體名稱 (SPN)，以便在您的環境中存取應用程式。 若要成功加密或解密虛擬磁碟，金鑰保存庫中所儲存之密碼編譯金鑰的權限必須設定為允許 Azure Active Directory 應用程式讀取機碼。
 
 建立 SPN 並設定適當的權限，如下所示︰
 
@@ -273,7 +273,7 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
 azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
   --aad-client-id 147bc426-595d-4bad-b267-58a7cbd8e0b6 \
   --aad-client-secret P@ssw0rd! \
-  --disk-encryption-key-vault-url https://myKeyVault.vault.azure.net/ \ 
+  --disk-encryption-key-vault-url https://myKeyVault.vault.azure.net/ \
   --disk-encryption-key-vault-id /subscriptions/guid/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myKeyVault \
   --key-encryption-key-url https://myKeyVault.vault.azure.net/keys/myKey/6f5fe9383f4e42d0a41553ebc6a82dd1 \
   --key-encryption-key-vault-id /subscriptions/guid/resourceGroups/myResoureGroup/providers/Microsoft.KeyVault/vaults/myKeyVault \
@@ -314,7 +314,6 @@ azure vm enable-disk-encryption --resource-group myResourceGroup --name myVM \
 
 
 ## <a name="next-steps"></a>後續步驟
-* 如需有關管理 Azure 金鑰保存庫 (包括刪除密碼編譯金鑰和保存庫) 的詳細資訊，請參閱[使用 CLI 管理金鑰保存庫](../../key-vault/key-vault-manage-with-cli.md)。
+* 如需有關管理 Azure 金鑰保存庫 (包括刪除密碼編譯金鑰和保存庫) 的詳細資訊，請參閱[使用 CLI 管理金鑰保存庫](../../key-vault/key-vault-manage-with-cli2.md)。
 * 如需有關磁碟加密 (例如準備加密的自訂 VM 以上傳至 Azure) 的詳細資訊，請參閱 [Azure 磁碟加密](../../security/azure-security-disk-encryption.md)。
-
 

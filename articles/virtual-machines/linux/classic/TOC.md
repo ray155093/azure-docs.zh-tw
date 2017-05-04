@@ -66,7 +66,7 @@
 ### [重新啟動 VM 或調整 VM 的大小](restart-resize-error-troubleshooting.md)
 
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs)
+## [PowerShell](/powershell/azure/overview)
 ## [Azure CLI](/cli/azure/vm)
 ## [Java](/java/api)
 ## [製作 Resource Manager 範本](../../../azure-resource-manager/resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

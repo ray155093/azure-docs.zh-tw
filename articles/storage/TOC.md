@@ -4,7 +4,6 @@
 
 # 開始使用
 
-## [快速入門指南](storage-getting-started-guide.md)
 ## [建立儲存體帳戶](storage-create-storage-account.md)
 
 ## Blob 儲存體
@@ -166,7 +165,7 @@
 #### [備份磁碟機資訊清單](storage-import-export-backing-up-drive-manifests.md)
 #### [匯入/匯出作業的診斷和錯誤復原](storage-import-export-diagnostics-and-error-recovery.md)
 # 參考
-## [PowerShell](/powershell/storage)
+## [PowerShell](/powershell/module/azure.storage)
 ## [Azure CLI](/cli/azure/storage)
 ## .NET
 ### [資源管理員](/dotnet/api/microsoft.azure.management.storage)
@@ -180,7 +179,7 @@
 ## [iOS](http://azure.github.io/azure-storage-ios/)
 ## [Android](http://azure.github.io/azure-storage-android)
 ## REST
-### [Blob、佇列、資料表和檔案](/rest/api/storageservices/azure-storage-services-rest-api-reference)
+### [Blob、佇列、資料表和檔案](/rest/api/storageservices)
 ### [資源提供者](/rest/api/storagerp)
 ### [匯入/匯出](/rest/api/storageimportexport)
 

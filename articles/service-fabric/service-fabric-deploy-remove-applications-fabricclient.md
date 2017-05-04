@@ -15,9 +15,9 @@ ms.workload: NA
 ms.date: 04/10/2017
 ms.author: ryanwi
 translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: 4c7a92352d4fef6a0e55b608bf5c957cd2c40332
-ms.lasthandoff: 04/11/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: e6c6b4acbc48cfbb8c26d09852f8b4c86fd6ea27
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -57,7 +57,7 @@ FabricClient fabricClient = new FabricClient();
 假設您在 Visual Studio 中建置並封裝名為 *MyApplication* 的應用程式。 根據預設，ApplicationManifest.xml 中列出的應用程式類型名稱會是 "MyApplicationType"。  應用程式封裝 (其中包含必要的應用程式資訊清單、服務資訊清單和程式碼/組態/資料封裝) 位於 *C:\Users\username\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug*。
 
 上傳應用程式封裝會將它放在一個可由內部 Service Fabric 元件存取的位置。
-如果您想要在本機確認應用程式封裝，使用 [Test-ServiceFabricApplicationPackage](/powershell/servicefabric/vlatest/test-servicefabricapplicationpackage) cmdlet。
+如果您想要在本機確認應用程式封裝，使用 [Test-ServiceFabricApplicationPackage](/powershell/module/servicefabric/test-servicefabricapplicationpackage?view=azureservicefabricps) cmdlet。
 
 [Copy-ServiceFabricApplicationPackage](/dotnet/api/system.fabric.fabricclient.applicationmanagementclient.copyapplicationpackage) 方法會將應用程式套件上傳至叢集映像存放區。 
 

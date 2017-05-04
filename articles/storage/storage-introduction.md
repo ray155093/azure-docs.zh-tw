@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 02/24/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 44f40aebe8418b0cfcf2c2708469d586d1dd4c4c
-ms.lasthandoff: 04/06/2017
+ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
+ms.openlocfilehash: eec53d5dea1255572d515f1ab2796da681579d19
+ms.lasthandoff: 04/29/2017
 
 
 ---
@@ -32,7 +32,9 @@ Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應�
 * 如何透過備援和複寫來保持 Azure 儲存體資料的永久性
 * 若要打造第一個 Azure 儲存體應用程式下一步該怎麼做
 
-若要快速啟動並執行 Azure 儲存體，請參閱 [在 5 分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)。
+<!-- after our quick starts are available, replace this link with a link to one of those. 
+Had to remove this article, it refers to the VS quickstarts, and they've stopped publishing them. Robin --> 
+<!-- To get up and running with Azure Storage quickly, see [Get started with Azure Storage in five minutes](storage-getting-started-guide.md). -->
 
 如需使用 Azure 儲存體的工具、程式庫及其他資源的詳細資訊，請參閱下方的 [後續步驟](#next-steps) 。
 
@@ -185,12 +187,12 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 * [適用於 PHP 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/php/)
 * [適用於 Ruby 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/ruby/)
 * [適用於 Python 的儲存體用戶端程式庫](https://azure.microsoft.com/develop/python/)
-* [PowerShell 1.0 的儲存體 Cmdlet](https://msdn.microsoft.com/library/azure/mt269418.aspx)
+* [PowerShell 1.0 的儲存體 Cmdlet](/powershell/module/azurerm.storage/#storage)
 
 ### <a name="azure-storage-management-services"></a>Azure 儲存體管理服務
 * [儲存體資源提供者 REST API 參考](/rest/api/storagerp/)
 * [適用於 .NET 的儲存體資源提供者用戶端程式庫](/dotnet/api/microsoft.azure.management.storage)
-* [適用於 PowerShell 1.0 的儲存體資源提供者 Cmdlet](/powershell/storage/)
+* [適用於 PowerShell 1.0 的儲存體資源提供者 Cmdlet](/powershell/module/azure.storage)
 * [儲存體服務管理 REST API (傳統)](https://msdn.microsoft.com/library/azure/ee460790.aspx)
 
 ### <a name="azure-storage-data-movement-services"></a>Azure 儲存體資料移動服務
@@ -202,7 +204,7 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 * [Azure 儲存體用戶端工具](storage-explorers.md)
 * [Azure SDK 及工具](https://azure.microsoft.com/tools/)
 * [Azure 儲存體模擬器](http://www.microsoft.com/download/details.aspx?id=43709)
-* [Azure PowerShell](/powershell/azureps-cmdlets-docs)
+* [Azure PowerShell](/powershell/azure/overview)
 * [AzCopy 命令列公用程式](http://aka.ms/downloadazcopy)
 
 ## <a name="next-steps"></a>後續步驟
@@ -211,7 +213,11 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 ### <a name="documentation"></a>文件
 * [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 * [建立儲存體帳戶](storage-create-storage-account.md)
-* [在五分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)
+
+<!-- after our quick starts are available, replace this link with a link to one of those. 
+Had to remove this article, it refers to the VS quickstarts, and they've stopped publishing them. Robin --> 
+<!--* [Get started with Azure Storage in five minutes](storage-getting-started-guide.md)
+-->
 
 ### <a name="for-administrators"></a>針對系統管理員
 * [搭配使用 Azure PowerShell 與 Azure 儲存體](storage-powershell-guide-full.md)

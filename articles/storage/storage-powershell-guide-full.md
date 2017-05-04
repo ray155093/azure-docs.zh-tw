@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/03/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: a47a806856be9e2daa9bcac8ce23da4d15386cc8
-ms.lasthandoff: 04/06/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: aef5820257334b0a3ac9c8b18690dfa0f6fd1d8f
+ms.lasthandoff: 04/27/2017
 
 ---
 
@@ -24,7 +24,7 @@ ms.lasthandoff: 04/06/2017
 ## <a name="overview"></a>Overview
 Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows PowerShell 管理 Azure。 它是以工作為基礎的命令列殼層和指令碼語言，特別為系統管理所設計。 使用 PowerShell，您可以輕鬆控制和自動執行 Azure 服務和應用程式的管理。 例如，您可透過 [Azure 入口網站](https://portal.azure.com)執行的工作，大多也可使用 Cmdlet 來執行。
 
-在本指南中，我們將探討如何使用 [Azure 儲存體 Cmdlet (英文)](https://msdn.microsoft.com/library/azure/mt269418.aspx)，來使用 Azure 儲存體執行各種開發和管理工作。
+在本指南中，我們將探討如何使用 [Azure 儲存體 Cmdlet (英文)](/powershell/module/azurerm.storage/#storage)，來使用 Azure 儲存體執行各種開發和管理工作。
 
 本指南假設您過去有使用 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/)和 [Windows PowerShell](http://technet.microsoft.com/library/bb978526.aspx) 的經驗。 本指南提供的一些指令碼示範如何搭配使用 PowerShell 與 Azure 儲存體。 您應該在執行每個指令碼之前，先根據您的組態更新指令碼變數。
 
@@ -137,7 +137,7 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 ## <a name="prerequisites-for-using-azure-powershell-with-azure-storage"></a>搭配使用 Azure PowerShell 與 Azure 儲存體的先決條件
 您需要有 Azure 訂用帳戶和帳戶，才能如上面說明的方法執行本指南提供的 PowerShell Cmdlet。
 
-Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows PowerShell 管理 Azure。 如需安裝和設定 Azure PowerShell 的資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 建議您在使用本指南之前，先下載並安裝或升級至最新的 Azure PowerShell 模組。
+Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows PowerShell 管理 Azure。 如需安裝和設定 Azure PowerShell 的資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。 建議您在使用本指南之前，先下載並安裝或升級至最新的 Azure PowerShell 模組。
 
 您可以在標準 Windows PowerShell 主控台，或是 Windows PowerShell 整合式指令碼環境 (ISE) 中執行 Cmdlet。 若要開啟 [Windows PowerShell ISE] ，請移至 [開始] 功能表、輸入「系統管理工具」，然後按一下加以執行。 在 [系統管理工具] 視窗中，以滑鼠右鍵按一下 [Windows PowerShell ISE]，按一下 [以系統管理員身分執行]。
 
@@ -146,7 +146,7 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 讓我們看看如何使用 PowerShell 在 Azure 中管理儲存體帳戶
 
 ### <a name="how-to-set-a-default-azure-subscription"></a>如何設定預設 Azure 訂用帳戶
-若要使用 Azure PowerShell 管理 Azure 儲存體，您需要透過 Azure Active Directory 驗證或憑證型驗證向 Azure 驗證用戶端環境。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 教學課程。 本指南使用 Azure Active Directory 驗證。
+若要使用 Azure PowerShell 管理 Azure 儲存體，您需要透過 Azure Active Directory 驗證或憑證型驗證向 Azure 驗證用戶端環境。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 教學課程。 本指南使用 Azure Active Directory 驗證。
 
 1. 在 Windows PowerShell ISE 中，輸入下列命令，將您的 Azure 帳戶新增到本機的 PowerShell 環境：
 
@@ -234,11 +234,11 @@ Get-AzureStorageAccount | Format-Table -Property StorageAccountName, Location, A
 ```
 
 ### <a name="how-to-create-an-azure-storage-context"></a>如何建立 Azure 儲存體內容
-Azure 儲存體內容是 PowerShell 中用以封裝儲存體認證的物件。 在執行任何後續 Cmdlet 時使用儲存體內容，可讓您驗證您的要求，而不需明確指定儲存體帳戶和其存取金鑰。 您可以用很多方式建立儲存體內容，例如使用儲存體帳戶名稱和存取金鑰、共用存取簽章 (SAS) 權杖、連接字串或匿名。 如需詳細資訊，請參閱 [New-AzureStorageContext](http://msdn.microsoft.com/library/azure/dn806380.aspx)。  
+Azure 儲存體內容是 PowerShell 中用以封裝儲存體認證的物件。 在執行任何後續 Cmdlet 時使用儲存體內容，可讓您驗證您的要求，而不需明確指定儲存體帳戶和其存取金鑰。 您可以用很多方式建立儲存體內容，例如使用儲存體帳戶名稱和存取金鑰、共用存取簽章 (SAS) 權杖、連接字串或匿名。 如需詳細資訊，請參閱 [New-AzureStorageContext](/powershell/module/azure.storage/new-azurestoragecontext)。  
 
 使用下列三種方式之一來建立儲存體內容：
 
-* 執行 [Get-AzureStorageKey](http://msdn.microsoft.com/library/azure/dn495235.aspx) Cmdlet 可找出 Azure 儲存體帳戶的主要儲存體存取金鑰。 接著，呼叫 [New-AzureStorageContext](http://msdn.microsoft.com/library/azure/dn806380.aspx) Cmdlet，以建立儲存體內容：
+* 執行 [Get-AzureStorageKey](/powershell/module/azure.storage/get-azurestoragekey) Cmdlet 可找出 Azure 儲存體帳戶的主要儲存體存取金鑰。 接著，呼叫 [New-AzureStorageContext](/powershell/module/azure.storage/new-azurestoragecontext) Cmdlet，以建立儲存體內容：
 
     ```powershell
     $StorageAccountName = "yourstorageaccount"
@@ -253,7 +253,7 @@ Azure 儲存體內容是 PowerShell 中用以封裝儲存體認證的物件。 �
     $Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -SasToken $sasToken
     ```
 
-    如需詳細資訊，請參閱 [New-AzureStorageContainerSASToken](http://msdn.microsoft.com/library/azure/dn806416.aspx) 和[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
+    如需詳細資訊，請參閱 [New-AzureStorageContainerSASToken](/powershell/module/azure.storage/new-azurestoragecontainersastoken) 和[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
 
 * 在某些情況下，您可能想要在建立新的儲存體內容時指定服務端點。 當您向 Blob 服務註冊儲存體帳戶的自訂網域名稱，或想要使用共用存取簽章存取儲存體資源時，這可能是必要作業。 在連接字串中設定服務端點，並用來建立新的儲存體內容，如下所示：
 
@@ -308,16 +308,16 @@ New-AzureStorageContainer -Name $StorageContainerName -Permission Off
 ### <a name="how-to-upload-a-blob-into-a-container"></a>如何將 Blob 上傳到容器中
 Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。 如需詳細資訊，請參閱 [了解區塊 Blob、附加 Blob 和分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)。
 
-若要將 Blob 上傳至容器，您可以使用 [Set-AzureStorageBlobContent](http://msdn.microsoft.com/library/azure/dn806379.aspx) Cmdlet。 根據預設，此命令會將本機檔案上傳至區塊 Blob。 若要指定 Blob 的類型，您可以使用 -BlobType 參數。
+若要將 Blob 上傳至容器，您可以使用 [Set-AzureStorageBlobContent](/powershell/module/azure.storage/set-azurestorageblobcontent) Cmdlet。 根據預設，此命令會將本機檔案上傳至區塊 Blob。 若要指定 Blob 的類型，您可以使用 -BlobType 參數。
 
-下列範例會執行 [Get-ChildItem](http://technet.microsoft.com/library/hh849800.aspx) Cmdlet 以取得指定資料夾中的所有檔案，然後使用管線運算子將這些檔案傳遞至下一個 Cmdlet。 [Set-AzureStorageBlobContent](http://msdn.microsoft.com/library/azure/dn806379.aspx) Cmdlet 會將本機檔案上傳至您的容器：
+下列範例會執行 [Get-ChildItem](http://technet.microsoft.com/library/hh849800.aspx) Cmdlet 以取得指定資料夾中的所有檔案，然後使用管線運算子將這些檔案傳遞至下一個 Cmdlet。 [Set-AzureStorageBlobContent](/powershell/module/azure.storage/set-azurestorageblobcontent) Cmdlet 會將本機檔案上傳至您的容器：
 
 ```powershell
 Get-ChildItem –Path C:\Images\* | Set-AzureStorageBlobContent -Container "yourcontainername"
 ```
 
 ### <a name="how-to-download-blobs-from-a-container"></a>如何從容器下載 Blob
-下列範例示範如何從容器下載 Blob。 此範例會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其主要存取金鑰 。 然後使用 [Get-AzureStorageBlob](http://msdn.microsoft.com/library/azure/dn806392.aspx) Cmdlet 擷取 Blob 參照。 接著再使用 [Get-AzureStorageBlobContent](http://msdn.microsoft.com/library/azure/dn806418.aspx) Cmdlet 將 Blob 下載到本機目的地資料夾中。
+下列範例示範如何從容器下載 Blob。 此範例會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其主要存取金鑰 。 然後使用 [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) Cmdlet 擷取 Blob 參照。 接著再使用 [Get-AzureStorageBlobContent](/powershell/module/azure.storage/get-azurestorageblobcontent) Cmdlet 將 Blob 下載到本機目的地資料夾中。
 
 ```powershell
 #Define the variables.
@@ -338,7 +338,7 @@ $blobs | Get-AzureStorageBlobContent -Destination $DestinationFolder -Context $C
 ```
 
 ### <a name="how-to-copy-blobs-from-one-storage-container-to-another"></a>如何在儲存體容器之間複製 Blob
-您可以跨儲存體帳戶和區域以非同步方式複製 Blob。 下列範例示範如何在兩個不同的儲存體帳戶中將 Blob 從一個儲存體容器複製到另一個儲存體容器。 此範例會先設定來源和目的地儲存體帳戶的變數，然後建立每個帳戶的儲存體內容。 接著再使用 [Start-AzureStorageBlobCopy](http://msdn.microsoft.com/library/azure/dn806394.aspx) Cmdlet 將 Blob 從來源容器複製到目的地容器。 此範例假設來源和目的地儲存體帳戶和容器已經存在。
+您可以跨儲存體帳戶和區域以非同步方式複製 Blob。 下列範例示範如何在兩個不同的儲存體帳戶中將 Blob 從一個儲存體容器複製到另一個儲存體容器。 此範例會先設定來源和目的地儲存體帳戶的變數，然後建立每個帳戶的儲存體內容。 接著再使用 [Start-AzureStorageBlobCopy](/powershell/module/azure.storage/start-azurestorageblobcopy) Cmdlet 將 Blob 從來源容器複製到目的地容器。 此範例假設來源和目的地儲存體帳戶和容器已經存在。
 
 ```powershell
 #Define the source storage account and context.
@@ -360,7 +360,7 @@ $blobs = Get-AzureStorageBlob -Container $SrcContainerName -Context $SourceConte
 $blobs| Start-AzureStorageBlobCopy -DestContainer $DestContainerName -DestContext $DestContext
 ```
 
-請注意，此範例會執行非同步複製。 您可以透過執行 [Get-AzureStorageBlobCopyState](http://msdn.microsoft.com/library/azure/dn806406.aspx) Cmdlet，監視每個副本的狀態。
+請注意，此範例會執行非同步複製。 您可以透過執行 [Get-AzureStorageBlobCopyState](/powershell/module/azure.storage/start-azurestorageblobcopystate) Cmdlet，監視每個副本的狀態。
 
 ### <a name="how-to-copy-blobs-from-a-secondary-location"></a>如何從次要位置複製 Blob
 您可以從支援 RA-GRS 之帳戶的次要位置複製 Blob。
@@ -372,7 +372,7 @@ Start-AzureStorageBlobCopy –Container *** -Blob *** -Context $SrcContext –De
 ```
 
 ### <a name="how-to-delete-a-blob"></a>如何刪除 Blob
-若要刪除 Blob，請先取得 Blob 參考，然後在該參考上呼叫 Remove-AzureStorageBlob Cmdlet。 下列範例會刪除指定的容器中的所有 Blob。 此範例會先設定儲存體帳戶的變數，然後建立儲存體內容。 接著再使用 [Get-AzureStorageBlob](http://msdn.microsoft.com/library/azure/dn806392.aspx) Cmdlet 擷取 Blob 參照，並執行 [Remove-AzureStorageBlob](http://msdn.microsoft.com/library/azure/dn806399.aspx) Cmdlet，以從 Azure 儲存體中的容器移除 Blob。
+若要刪除 Blob，請先取得 Blob 參考，然後在該參考上呼叫 Remove-AzureStorageBlob Cmdlet。 下列範例會刪除指定的容器中的所有 Blob。 此範例會先設定儲存體帳戶的變數，然後建立儲存體內容。 接著再使用 [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) Cmdlet 擷取 Blob 參照，並執行 [Remove-AzureStorageBlob](/powershell/module/azure.storage/remove-azurestorageblob) Cmdlet，以從 Azure 儲存體中的容器移除 Blob。
 
 ```powershell
 #Define the storage account and context.
@@ -392,7 +392,7 @@ $blobs| Remove-AzureStorageBlob
 Azure 可讓您建立 Blob 的快照集。 快照集是在某個點時間取得的唯讀 Blob 版本。 一旦建立快照集後，即可加以讀取、複製或刪除，但不能修改。 快照集提供在某個時間點備份 Blob 的方法。 如需詳細資訊，請參閱 [建立 Blob 的快照集](http://msdn.microsoft.com/library/azure/hh488361.aspx)。
 
 ### <a name="how-to-create-a-blob-snapshot"></a>如何建立 Blob 快照集
-若要建立 Blob 的快照，請先取得 Blob 參照，然後在該參考上呼叫 `ICloudBlob.CreateSnapshot` 方法。 下列範例會先設定儲存體帳戶的變數，然後建立儲存體內容。 接著再使用 [Get-AzureStorageBlob](http://msdn.microsoft.com/library/azure/dn806392.aspx) Cmdlet 擷取 Blob 參考，並執行 [ICloudBlob.CreateSnapshot](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.icloudblob.aspx) 方法建立快照。
+若要建立 Blob 的快照，請先取得 Blob 參照，然後在該參考上呼叫 `ICloudBlob.CreateSnapshot` 方法。 下列範例會先設定儲存體帳戶的變數，然後建立儲存體內容。 接著再使用 [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) Cmdlet 擷取 Blob 參考，並執行 [ICloudBlob.CreateSnapshot](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.icloudblob.aspx) 方法建立快照。
 
 ```powershell
 #Define the storage account and context.
@@ -410,7 +410,7 @@ $snap = $blob.ICloudBlob.CreateSnapshot()
 ```
 
 ### <a name="how-to-list-a-blobs-snapshots"></a>如何列出 Blob 的快照
-您可以對 Blob 建立您所需數量的快照集。 您可以列出與 Blob 相關聯的快照集，以追蹤目前的快照集。 下列範例會使用預先定義的 Blob，並呼叫 [Get-AzureStorageBlob](http://msdn.microsoft.com/library/azure/dn806392.aspx) Cmdlet 以列出該 Blob 的快照。  
+您可以對 Blob 建立您所需數量的快照集。 您可以列出與 Blob 相關聯的快照集，以追蹤目前的快照集。 下列範例會使用預先定義的 Blob，並呼叫 [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) Cmdlet 以列出該 Blob 的快照。  
 
 ```powershell
 #Define the blob name.
@@ -421,7 +421,7 @@ Get-AzureStorageBlob –Context $Ctx -Prefix $BlobName -Container $ContainerName
 ```
 
 ### <a name="how-to-copy-a-snapshot-of-a-blob"></a>如何複製 Blob 的快照集
-您可以複製 Blob 的快照集以還原該快照集。 如需詳細的資訊及限制，請參閱 [建立 Blob 的快照集](http://msdn.microsoft.com/library/azure/hh488361.aspx)。 下列範例會先設定儲存體帳戶的變數，然後建立儲存體內容。 接著，此範例會定義容器和 Blob 名稱變數。 然後使用 [Get-AzureStorageBlob](http://msdn.microsoft.com/library/azure/dn806392.aspx) Cmdlet 擷取 Blob 參考，並執行 [ICloudBlob.CreateSnapshot](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.icloudblob.aspx) 方法建立快照。 再執行 [Start-AzureStorageBlobCopy](http://msdn.microsoft.com/library/azure/dn806394.aspx) Cmdlet，並使用來源 Blob 的 ICloudBlob 物件複製 Blob 的快照。 執行此範例前，請務必根據您的組態更新變更。 請注意，下列範例假設來源和目的地容器和來源 Blob 已經存在。
+您可以複製 Blob 的快照集以還原該快照集。 如需詳細的資訊及限制，請參閱 [建立 Blob 的快照集](http://msdn.microsoft.com/library/azure/hh488361.aspx)。 下列範例會先設定儲存體帳戶的變數，然後建立儲存體內容。 接著，此範例會定義容器和 Blob 名稱變數。 然後使用 [Get-AzureStorageBlob](/powershell/module/azure.storage/get-azurestorageblob) Cmdlet 擷取 Blob 參考，並執行 [ICloudBlob.CreateSnapshot](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.icloudblob.aspx) 方法建立快照。 再執行 [Start-AzureStorageBlobCopy](/powershell/module/azure.storage/start-azurestorageblobcopy) Cmdlet，並使用來源 Blob 的 ICloudBlob 物件複製 Blob 的快照。 執行此範例前，請務必根據您的組態更新變更。 請注意，下列範例假設來源和目的地容器和來源 Blob 已經存在。
 
 ```powershell
 #Define the storage account and context.
@@ -453,7 +453,7 @@ Azure 資料表儲存體服務是 NoSQL 資料存放區，您可以用來儲存�
 在下列小節中，您將學習如何使用 Azure PowerShell 管理 Azure 資料表儲存體服務。 涵蓋的狀況包括**建立**、**刪除**和**擷取****資料表**，以及**新增**、**查詢**和**刪除資料表實體**。
 
 ### <a name="how-to-create-a-table"></a>如何建立資料表
-每個資料表必須位於 Azure 儲存體帳戶中。 下列範例示範如何在 Azure 儲存體中建立資料表。 此範例會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著再使用 [New-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806417.aspx) Cmdlet 在 Azure 儲存體中建立資料表。
+每個資料表必須位於 Azure 儲存體帳戶中。 下列範例示範如何在 Azure 儲存體中建立資料表。 此範例會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著再使用 [New-AzureStorageTable](/powershell/module/azure.storage/new-azurestoragetable) Cmdlet 在 Azure 儲存體中建立資料表。
 
 ```powershell
 #Define the storage account and context.
@@ -467,7 +467,7 @@ New-AzureStorageTable –Name $tabName –Context $Ctx
 ```
 
 ### <a name="how-to-retrieve-a-table"></a>如何擷取資料表
-您可以查詢和擷取儲存體帳戶中的一個或所有資料表。 下列範例示範如何使用 [Get-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 擷取指定的資料表。
+您可以查詢和擷取儲存體帳戶中的一個或所有資料表。 下列範例示範如何使用 [Get-AzureStorageTable](/powershell/module/azure.storage/get-azurestoragetable) Cmdlet 擷取指定的資料表。
 
 ```powershell
 #Retrieve a table.
@@ -478,7 +478,7 @@ Get-AzureStorageTable –Name $tabName –Context $Ctx
 如果您未使用任何參數呼叫 Get-AzureStorageTable Cmdlet，它會取得儲存體帳戶的所有儲存體資料表。
 
 ### <a name="how-to-delete-a-table"></a>如何刪除資料表
-您可以使用 [Remove-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806393.aspx) Cmdlet 刪除儲存體帳戶中的資料表。  
+您可以使用 [Remove-AzureStorageTable](/powershell/module/azure.storage/remove-azurestoragetable) Cmdlet 刪除儲存體帳戶中的資料表。  
 
 ```powershell
 #Delete a table.
@@ -497,7 +497,7 @@ Remove-AzureStorageTable –Name $tabName –Context $Ctx
 
 您可以為每個實體最多定義 252 個自訂屬性。 如需詳細資訊，請參閱 [了解表格服務資料模型](http://msdn.microsoft.com/library/azure/dd179338.aspx)。
 
-下列範例示範如何將實體加入至資料表。 此範例示範如何擷取員工資料表並在其中加入數個項實體。 首先，它會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，再使用 [Get-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 擷取指定的資料表。 如果資料表不存在，可使用 [New-AzureStorageTable](http://msdn.microsoft.com/library/azure/dn806417.aspx) Cmdlet 在 Azure 儲存體中建立資料表。 接下來，此範例會定義 Add-Entity 自訂函數，經由指定每個實體的分割區和資料列索引鍵，將實體加入至資料表。 Add-Entity 函數會在 [Microsoft.WindowsAzure.Storage.Table.DynamicTableEntity](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.dynamictableentity.aspx) 類別上呼叫 [New-Object](http://technet.microsoft.com/library/hh849885.aspx) Cmdlet，以建立實體物件。 之後，此範例會在此實體物件上呼叫 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Insert](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.insert.aspx) 方法，以將它加入資料表中。
+下列範例示範如何將實體加入至資料表。 此範例示範如何擷取員工資料表並在其中加入數個項實體。 首先，它會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，再使用 [Get-AzureStorageTable](/powershell/module/azure.storage/get-azurestoragetable) Cmdlet 擷取指定的資料表。 如果資料表不存在，可使用 [New-AzureStorageTable](/powershell/module/azure.storage/new-azurestoragetable) Cmdlet 在 Azure 儲存體中建立資料表。 接下來，此範例會定義 Add-Entity 自訂函數，經由指定每個實體的分割區和資料列索引鍵，將實體加入至資料表。 Add-Entity 函數會在 [Microsoft.WindowsAzure.Storage.Table.DynamicTableEntity](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.dynamictableentity.aspx) 類別上呼叫 [New-Object](http://technet.microsoft.com/library/hh849885.aspx) Cmdlet，以建立實體物件。 之後，此範例會在此實體物件上呼叫 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Insert](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.insert.aspx) 方法，以將它加入資料表中。
 
 ```powershell
 #Function Add-Entity: Adds an employee entity to a table.
@@ -541,7 +541,7 @@ Add-Entity -Table $table -PartitionKey Partition2 -RowKey Row2 -Name Steven -Id 
 ```
 
 #### <a name="how-to-query-table-entities"></a>如何查詢資料表實體
-若要查詢資料表，請使用 [Microsoft.WindowsAzure.Storage.Table.TableQuery](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tablequery.aspx) 類別。 下列範例假設您已執行本指南＜如何新增實體＞一節中所提供的指令碼。 此範例會先使用儲存體內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，它會使用 [Get-AzureStorageTable (英文)](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 嘗試擷取先前建立的「員工」資料表。 在 Microsoft.WindowsAzure.Storage.Table.TableQuery 類別上呼叫 [New-Object](http://technet.microsoft.com/library/hh849885.aspx) Cmdlet，可建立新的查詢物件。 此範例會尋找 'ID' 資料行的值為 1 (如字串篩選條件中指定) 的實體。 如需詳細資訊，請參閱 [查詢資料表和實體](http://msdn.microsoft.com/library/azure/dd894031.aspx)。 當您執行此查詢時，它會傳回所有符合篩選準則的所有實體。
+若要查詢資料表，請使用 [Microsoft.WindowsAzure.Storage.Table.TableQuery](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tablequery.aspx) 類別。 下列範例假設您已執行本指南＜如何新增實體＞一節中所提供的指令碼。 此範例會先使用儲存體內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，它會使用 [Get-AzureStorageTable (英文)](/powershell/module/azure.storage/get-azurestoragetable) Cmdlet 嘗試擷取先前建立的「員工」資料表。 在 Microsoft.WindowsAzure.Storage.Table.TableQuery 類別上呼叫 [New-Object](http://technet.microsoft.com/library/hh849885.aspx) Cmdlet，可建立新的查詢物件。 此範例會尋找 'ID' 資料行的值為 1 (如字串篩選條件中指定) 的實體。 如需詳細資訊，請參閱 [查詢資料表和實體](http://msdn.microsoft.com/library/azure/dd894031.aspx)。 當您執行此查詢時，它會傳回所有符合篩選準則的所有實體。
 
 ```powershell
 #Define the storage account and context.
@@ -575,7 +575,7 @@ $entities  | Format-Table PartitionKey, RowKey, @{ Label = "Name"; Expression={$
 ```
 
 #### <a name="how-to-delete-table-entities"></a>如何刪除資料表實體
-您可以使用實體的資料分割和資料列索引鍵來刪除實體。 下列範例假設您已執行本指南＜如何新增實體＞一節中所提供的指令碼。 此範例會先使用儲存體內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，它會使用 [Get-AzureStorageTable (英文)](http://msdn.microsoft.com/library/azure/dn806411.aspx) Cmdlet 嘗試擷取先前建立的「員工」資料表。 如果資料表已存在，則會呼叫 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Retrieve](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.retrieve.aspx) 方法，根據資料分割及資料列索引鍵的值擷取實體。 然後，將實體傳遞至 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Delete](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.delete.aspx) 方法加以刪除。
+您可以使用實體的資料分割和資料列索引鍵來刪除實體。 下列範例假設您已執行本指南＜如何新增實體＞一節中所提供的指令碼。 此範例會先使用儲存體內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，它會使用 [Get-AzureStorageTable (英文)](/powershell/module/azure.storage/get-azurestoragetable) Cmdlet 嘗試擷取先前建立的「員工」資料表。 如果資料表已存在，則會呼叫 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Retrieve](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.retrieve.aspx) 方法，根據資料分割及資料列索引鍵的值擷取實體。 然後，將實體傳遞至 [Microsoft.WindowsAzure.Storage.Table.TableOperation.Delete](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.table.tableoperation.delete.aspx) 方法加以刪除。
 
 ```powershell
 #Define the storage account and context.
@@ -608,7 +608,7 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
 本節將示範如何使用 Azure PowerShell 來管理 Azure 佇列儲存體服務。 涵蓋的狀況包括**插入**和**刪除**佇列訊息，以及**建立**、**刪除**和**擷取**佇列。
 
 ### <a name="how-to-create-a-queue"></a>如何建立佇列
-下列範例會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，它會呼叫 [New-AzureStorageQueue (英文)](http://msdn.microsoft.com/library/azure/dn806382.aspx) Cmdlet 以建立名為 'queuename' 的佇列。
+下列範例會先使用儲存體帳戶內容建立 Azure 儲存體的連線，其中包含儲存體帳戶名稱及其存取金鑰 。 接著，它會呼叫 [New-AzureStorageQueue (英文)](/powershell/module/azure.storage/new-azurestoragequeue) Cmdlet 以建立名為 'queuename' 的佇列。
 
 ```powershell
 #Define the storage account and context.
@@ -622,7 +622,7 @@ $Queue = New-AzureStorageQueue –Name $QueueName -Context $Ctx
 如需 Azure 佇列服務命名慣例的資訊，請參閱 [為佇列和中繼資料命名](http://msdn.microsoft.com/library/azure/dd179349.aspx)。
 
 ### <a name="how-to-retrieve-a-queue"></a>如何擷取佇列
-您可以查詢與擷取儲存體帳戶中的特定佇列或所有佇列清單。 下列範例示範如何使用 [Get-AzureStorageQueue](http://msdn.microsoft.com/library/azure/dn806377.aspx) Cmdlet 擷取指定的佇列。
+您可以查詢與擷取儲存體帳戶中的特定佇列或所有佇列清單。 下列範例示範如何使用 [Get-AzureStorageQueue](/powershell/module/azure.storage/get-azurestoragequeue) Cmdlet 擷取指定的佇列。
 
 ```powershell
 #Retrieve a queue.
@@ -630,7 +630,7 @@ $QueueName = "queuename"
 $Queue = Get-AzureStorageQueue –Name $QueueName –Context $Ctx
 ```
 
-如果您未使用任何參數，直接呼叫 [Get-AzureStorageQueue](http://msdn.microsoft.com/library/azure/dn806377.aspx) Cmdlet，會取得所有佇列的清單。
+如果您未使用任何參數，直接呼叫 [Get-AzureStorageQueue](/powershell/module/azure.storage/get-azurestoragequeue) Cmdlet，會取得所有佇列的清單。
 
 ### <a name="how-to-delete-a-queue"></a>如何刪除佇列
 若要刪除佇列及其內含的所有訊息，請呼叫 Remove-AzureStorageQueue Cmdlet。 下列範例示範如何使用 Remove-AzureStorageQueue Cmdlet 刪除指定的佇列。
@@ -717,7 +717,7 @@ Azure 檔案儲存體為使用標準 SMB 通訊協定的應用程式提供共用
 在下一節中，您將了解如何為 Azure 資料表建立共用存取簽章權杖和預存的存取原則。 Azure PowerShell 也會為容器、Blob 和佇列提供類似的 Cmdlet。 若要執行本節中的指令碼，請下載 [Azure PowerShell 0.8.14 版](http://go.microsoft.com/?linkid=9811175&clcid=0x409) 或更高版本。
 
 ### <a name="how-to-create-a-policy-based-shared-access-signature-token"></a>如何建立原則式共用存取簽章權杖
-使用 New-AzureStorageTableStoredAccessPolicy Cmdlet 來建立新的預存存取原則。 然後呼叫 [New-AzureStorageTableSASToken](http://msdn.microsoft.com/library/azure/dn806400.aspx) Cmdlet，為 Azure 儲存體資料表建立新的原則式共用存取簽章權杖。
+使用 New-AzureStorageTableStoredAccessPolicy Cmdlet 來建立新的預存存取原則。 然後呼叫 [New-AzureStorageTableSASToken](/powershell/module/azure.storage/new-azurestoragetablesastoken) Cmdlet，為 Azure 儲存體資料表建立新的原則式共用存取簽章權杖。
 
 ```powershell
 $policy = "policy1"
@@ -726,7 +726,7 @@ New-AzureStorageTableSASToken -Name $tableName -Policy $policy -Context $Ctx
 ```
 
 ### <a name="how-to-create-an-ad-hoc-non-revocable-shared-access-signature-token"></a>如何建立臨機操作 (無法撤銷) 的共用存取簽章權杖
-[New-AzureStorageTableSASToken](http://msdn.microsoft.com/library/azure/dn806400.aspx) Cmdlet 可為 Azure 儲存體資料表建立新的臨機操作 (無法撤銷) 的共用存取簽章權杖：
+[New-AzureStorageTableSASToken](/powershell/module/azure.storage/new-azurestoragetablesastoken) Cmdlet 可為 Azure 儲存體資料表建立新的臨機操作 (無法撤銷) 的共用存取簽章權杖：
 
 ```powershell
 New-AzureStorageTableSASToken -Name $tableName -Permission "rqud" -StartTime "2015-01-01" -ExpiryTime "2015-02-01" -Context $Ctx
@@ -759,7 +759,7 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 
 若要搭配使用 Azure 儲存體與 AzureChinaCloud，您需要建立與 AzureChinaCloud 相關聯的儲存體內容。 遵循下列步驟，以便開始使用產品：
 
-1. 執行 [Get-AzureEnvironment](https://msdn.microsoft.com/library/azure/dn790368.aspx) Cmdlet，查看可用的 Azure 環境：
+1. 執行 [Get-AzureEnvironment](/powershell/module/azure/get-azureenvironment?view=azuresmps-3.7.0) Cmdlet，查看可用的 Azure 環境：
    
     ```powershell
     Get-AzureEnvironment
@@ -779,7 +779,7 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 
 若要將 Azure 儲存體與[適用於美國政府的 Azure Government ](https://azure.microsoft.com/features/gov/) 搭配使用，請定義一個新環境，然後在此環境中建立新的儲存體內容：
 
-1. 執行 [Get-AzureEnvironment](https://msdn.microsoft.com/library/azure/dn790368.aspx) Cmdlet，查看可用的 Azure 環境：
+1. 執行 [Get-AzureEnvironment](/powershell/module/azure/get-azureenvironment?view=azuresmps-3.7.0) Cmdlet，查看可用的 Azure 環境：
 
     ```powershell
     Get-AzureEnvironment
@@ -806,7 +806,7 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 在本指南，您已了解如何使用 Azure PowerShell 管理 Azure 儲存體。 以下是有助於您深入了解的一些相關文章和資源。
 
 * [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
-* [Azure 儲存體 PowerShell Cmdlet](http://msdn.microsoft.com/library/azure/dn806401.aspx)
+* [Azure 儲存體 PowerShell Cmdlet](/powershell/module/azurerm.storage/#storage)
 * [Windows PowerShell 參考](https://msdn.microsoft.com/library/ms714469.aspx)
 
 [Getting started with Azure Storage and PowerShell in 5 minutes]: #getstart

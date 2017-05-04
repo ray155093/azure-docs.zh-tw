@@ -15,9 +15,9 @@ ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: cabailey
 translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 51732acdad74dd6dbfc47fae62efc87df6ce5c15
-ms.lasthandoff: 03/14/2017
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 924fce8245a88fd7c12636182336e503237fe4dc
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -35,11 +35,11 @@ ms.lasthandoff: 03/14/2017
 請使用本教學課程來協助您開始使用 Azure 金鑰保存庫記錄、建立儲存體帳戶、啟用記錄，以及解譯所收集到的記錄資訊。  
 
 > [!NOTE]
-> 本教學課程不會指示如何建立金鑰保存庫、金鑰或密碼。 如需這方面的資訊，請參閱 [開始使用 Azure 金鑰保存庫](key-vault-get-started.md)。 或者，如需跨平台命令列介面的指示，請參閱 [這個對等的教學課程](key-vault-manage-with-cli.md)。
-> 
+> 本教學課程不會指示如何建立金鑰保存庫、金鑰或密碼。 如需這方面的資訊，請參閱 [開始使用 Azure 金鑰保存庫](key-vault-get-started.md)。 或者，如需跨平台命令列介面的指示，請參閱 [這個對等的教學課程](key-vault-manage-with-cli2.md)。
+>
 > 目前，您無法在 Azure 入口網站中設定 Azure 金鑰保存庫。 請改用這些 Azure PowerShell 指示。
-> 
-> 
+>
+>
 
 如需 Azure 金鑰保存庫的概觀資訊，請參閱 [什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)
 
@@ -47,7 +47,7 @@ ms.lasthandoff: 03/14/2017
 若要完成本教學課程，您必須具備下列項目：
 
 * 所使用的現有金鑰保存庫。  
-* Azure PowerShell ( **至少必須是 1.0.1 版**)。 若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 如果您已安裝 Azure PowerShell 但不知道版本，請在 Azure PowerShell 主控台中輸入 `(Get-Module azure -ListAvailable).Version`。  
+* Azure PowerShell ( **至少必須是 1.0.1 版**)。 若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。 如果您已安裝 Azure PowerShell 但不知道版本，請在 Azure PowerShell 主控台中輸入 `(Get-Module azure -ListAvailable).Version`。  
 * 足夠的 Azure 儲存體以儲存金鑰保存庫記錄。
 
 ## <a id="connect"></a>連線到您的訂用帳戶
@@ -66,11 +66,11 @@ ms.lasthandoff: 03/14/2017
     Set-AzureRmContext -SubscriptionId <subscription ID>
 
 > [!NOTE]
-> 這個步驟很重要，如果您有多個與帳戶相關聯的訂用帳戶會特別實用。 若您略過此步驟，則可能會收到註冊 Microsoft.Insights 的錯誤。 
+> 這個步驟很重要，如果您有多個與帳戶相關聯的訂用帳戶會特別實用。 若您略過此步驟，則可能會收到註冊 Microsoft.Insights 的錯誤。
 >   
 >
 
-如需設定 Azure PowerShell 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+如需設定 Azure PowerShell 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ## <a id="storage"></a>建立新的儲存體帳戶來儲存記錄
 雖然您可以使用現有儲存體帳戶來儲存記錄，但我們將建立新的儲存體帳戶來專用儲存金鑰保存庫記錄。 為了方便起見，在稍後遇到必須指定此帳戶時，我們會將詳細資料儲存到名為 **sa**的變數中。
@@ -82,8 +82,8 @@ ms.lasthandoff: 03/14/2017
 
 > [!NOTE]
 > 如果您決定使用現有儲存體帳戶，則必須使用和金鑰保存庫相同的訂用帳戶，此外也必須使用 Resource Manager 部署模型，而非傳統部署模型。
-> 
-> 
+>
+>
 
 ## <a id="identify"></a>識別用來儲存記錄的金鑰保存庫
 在開始使用教學課程中，金鑰保存庫名稱是 **ContosoKeyVault**，因此我們會繼續使用該名稱，並將詳細資料儲存到名為 **kv** 的變數中：
@@ -168,13 +168,13 @@ ms.lasthandoff: 03/14/2017
 若要有所選擇地下載 blob，請使用萬用字元。 例如：
 
 * 如果您有多個金鑰保存庫，並且只想下載其中的 CONTOSOKEYVAULT3 金鑰保存庫的記錄：
-  
+
         Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/VAULTS/CONTOSOKEYVAULT3
 * 如果您有多個資源群組，並且只想下載其中某個資源群組的記錄，請使用 `-Blob '*/RESOURCEGROUPS/<resource group name>/*'`：
-  
+
         Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/RESOURCEGROUPS/CONTOSORESOURCEGROUP3/*'
 * 如果您想下載 2016 年 1 月份當月的所有記錄，請使用 `-Blob '*/year=2016/m=01/*'`：
-  
+
         Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/year=2016/m=01/*'
 
 您現在已做好準備，可以開始查看記錄中有何內容。 但在開始之前，您可能還需要了解 Get-AzureRmDiagnosticSetting 的兩個參數：
@@ -272,8 +272,7 @@ ms.lasthandoff: 03/14/2017
 
 如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。
 
-如需 Azure 金鑰保存庫的 Azure PowerShell 1.0 Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/azure/dn868052.aspx)。
+如需 Azure 金鑰保存庫的 Azure PowerShell 1.0 Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](/powershell/module/azurerm.keyvault/#key_vault)。
 
 如需有關 Azure 金鑰保存庫的金鑰輪替和記錄檔稽核的教學課程，請參閱 [如何使用端對端金鑰輪替和稽核設定金鑰保存庫](key-vault-key-rotation-log-monitoring.md)。
-
 

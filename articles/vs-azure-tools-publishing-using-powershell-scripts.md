@@ -15,9 +15,9 @@ ms.workload: multiple
 ms.date: 11/11/2016
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 6041c627d87f0223b9c718f3883a709ff81c28e1
-ms.lasthandoff: 04/06/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: d5e9a300dcea137bf0d3db2da2dfb5c2e6a152af
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 04/06/2017
 
 要產生 Web 專案的指令碼並不需要用到 Azure SDK。 這項功能是供 Web 專案使用，而非供雲端服務中的 Web 角色使用。
 
-* Azure PowerShell 0.7.4 或更新版本。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
+* Azure PowerShell 0.7.4 或更新版本。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 。
 * [Windows PowerShell 3.0](http://go.microsoft.com/?linkid=9811175) 或更新版本。
 
 ## <a name="additional-tools"></a>其他工具
@@ -47,7 +47,7 @@ Visual Studio 會產生名為 **PublishScripts** 的方案層級資料夾，並�
 發佈指令碼含有部署至網站或虛擬機器的特定發佈步驟。 Visual Studio 提供語法著色功能，可用來進行 Windows PowerShell 開發。 有提供函式說明，而且您可以自由編輯指令碼中的函式以符合您不斷變化的需求。
 
 ### <a name="windows-powershell-module"></a>Windows PowerShell 模組
-Visual Studio 所產生的 Windows PowerShell 模組包含發佈指令碼所使用的函式。 這些都是 Azure PowerShell 函式，不可進行修改。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。
+Visual Studio 所產生的 Windows PowerShell 模組包含發佈指令碼所使用的函式。 這些都是 Azure PowerShell 函式，不可進行修改。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 。
 
 ### <a name="json-configuration-file"></a>JSON 組態檔
 JSON 檔案建立在 [組態]  資料夾，其包含的組態資料可確切指定要部署至 Azure 的資源。 Visual Studio 所產生之檔案的名稱是 project-name-WAWS-dev.json (如果您建立網站) 或 project name-VM-dev.json (如果您建立虛擬機器)。 以下是建立網站時所產生之 JSON 組態檔的範例。 其中大多數的值都簡單易懂。 網站名稱是由 Azure 產生，因此可能不符合您的專案名稱。
@@ -168,7 +168,7 @@ JSON 檔案建立在 [組態]  資料夾，其包含的組態資料可確切指�
 
     出現提示時，提供您的使用者名稱和密碼。
 
-    請注意，當您自動執行指令碼時，這個提供 Azure 認證的方法將沒有作用。 您應該改用 .publishsettings 檔案來提供認證。 請使用 **Get-AzurePublishSettingsFile** 命令從 Azure 下載檔案，之後使用 **Import-AzurePublishSettingsFile** 匯入檔案 (此程序只需執行一次)。 如需詳細指示，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+    請注意，當您自動執行指令碼時，這個提供 Azure 認證的方法將沒有作用。 您應該改用 .publishsettings 檔案來提供認證。 請使用 **Get-AzurePublishSettingsFile** 命令從 Azure 下載檔案，之後使用 **Import-AzurePublishSettingsFile** 匯入檔案 (此程序只需執行一次)。 如需詳細指示，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 4. (選用) 如果您想要建立虛擬機器、資料庫和網站等 Azure 資源，而不要發佈 Web 應用程式，請使用 **Publish-WebApplication.ps1** 命令搭配設定為 JSON 組態檔的 **-Configuration** 引數。 此命令列使用 JSON 組態檔來決定要建立哪些資源。 因為它使用其他命令列引數的預設設定，所以會建立資源，但不會發佈 Web 應用程式。 –Verbose 選項可讓您進一步了解會發生什麼事。
 

@@ -16,9 +16,9 @@ ms.date: 03/20/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: e1e915e07591ed104a30e9194ec6228b04519b8c
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: e391dc0f88bd7e065f968a490b3c1ddb1fa75978
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -56,7 +56,7 @@ ms.lasthandoff: 04/12/2017
 ### <a name="alerts"></a>Alerts
 [Log Analytics 中的警示](../log-analytics/log-analytics-alerts.md)可透過對存放庫中的資料進行[記錄搜尋](#log-searches)來識別問題。  它們會通知使用者，或自動執行回應中的動作。 您應該識別應用程式的不同警示條件，並在解決方案檔中包含對應的警示規則。
 
-如果問題有可能透過自動化程序加以修正，您通常會在 Azure 自動化中建立 Runbook 以執行此修復。  大部分 Azure 服務都可使用 [Cmdlet](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 來管理，Runbook 會運用這些 Cmdlet 來執行這類功能。
+如果問題有可能透過自動化程序加以修正，您通常會在 Azure 自動化中建立 Runbook 以執行此修復。  大部分 Azure 服務都可使用 [Cmdlet](/powershell/azure/overview) 來管理，Runbook 會運用這些 Cmdlet 來執行這類功能。
 
 如果您的解決方案需要外部功能以對警示做出回應，您可以使用 [Webhook 回應](../log-analytics/log-analytics-alerts-actions.md)。  這可讓您呼叫外部 Web 服務，以從警示傳送資訊。
 

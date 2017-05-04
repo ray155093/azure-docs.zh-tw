@@ -16,9 +16,9 @@ ms.workload: big-data
 ms.date: 01/24/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 9dcac84fdc33515ef12ab5b8154f700bb8618290
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
+ms.openlocfilehash: 627f9dccb48712fced81f2c6dc694043f7162205
+ms.lasthandoff: 05/01/2017
 
 
 ---
@@ -125,7 +125,7 @@ ms.lasthandoff: 03/18/2017
 串流分析是依所處理的資料量，和需要的串流單位數量 (根據每小時執行的工作數量) 計費。
                 </p>
                 <p>
-                    <a href="http://azure.microsoft.com/en-us/pricing/details/stream-analytics/">如需進一步的價格資訊，請參閱這裡。</a>
+                    <a href="http://azure.microsoft.com/pricing/details/stream-analytics/">如需進一步的價格資訊，請參閱這裡。</a>
                 </p>
             </td>
             <td width="246" valign="top">
@@ -133,7 +133,7 @@ ms.lasthandoff: 03/18/2017
 針對 HDInsight 上的 Apache Storm，購買的單位是叢集，並根據叢集執行的時間收費，與部署的工作是各自獨立的。
                 </p>
                 <p>
-                    <a href="http://azure.microsoft.com/en-us/pricing/details/hdinsight/">如需進一步的價格資訊，請參閱這裡。</a>
+                    <a href="http://azure.microsoft.com/pricing/details/hdinsight/">如需進一步的價格資訊，請參閱這裡。</a>
                 </p>
             </td>
         </tr>

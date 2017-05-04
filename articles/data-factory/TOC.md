@@ -29,6 +29,7 @@
 ### [Data Factory 複製精靈](data-factory-azure-copy-wizard.md)
 #### [在 15 分鐘內載入 1 TB](data-factory-load-sql-data-warehouse.md)
 ### [效能和微調指南](data-factory-copy-activity-performance.md)
+### [安全性考量](data-factory-data-movement-security-considerations.md)
 ### 連接器
 #### [Amazon Redshift](data-factory-amazon-redshift-connector.md)
 #### [Amazon S3](data-factory-amazon-simple-storage-service-connector.md)
@@ -91,7 +92,7 @@
 ### [使用資料管理閘道針對問題進行疑難排解](data-factory-troubleshoot-gateway-issues.md)
 
 # 參考
-## [PowerShell](/powershell/resourcemanager/azurerm.datafactories/v2.3.0/azurerm.datafactories)
+## [PowerShell](/powershell/module/azurerm.datafactories)
 ## [.NET](/dotnet/api/microsoft.azure.management.datafactories.models)
 ## [REST](/rest/api/datafactory/)
 ## [JSON](data-factory-json-scripting-reference.md)

@@ -15,8 +15,9 @@ ms.workload: required
 ms.date: 02/06/2017
 ms.author: ruturajd@microsoft.com
 translationtype: Human Translation
-ms.sourcegitcommit: 44b6ff6e588d529fd833a4a7fdd61df7e933ddd8
-ms.openlocfilehash: b4105e98323b5161a22fa65707d376a7155611d6
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: c91a1210e84d215449b98aae14bda490aa2cb156
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -90,7 +91,7 @@ Azure 自動化使用 Azure PowerShell 連線到訂用帳戶，並在該處的�
 
 ![](media/site-recovery-runbook-automation/11.png)
 
-[這裡](/powershell/azureps-cmdlets-docs)提供有關如何透過 PowerShell 連線到您的訂用帳戶的詳細資訊。
+[這裡](/powershell/azure/overview)提供有關如何透過 PowerShell 連線到您的訂用帳戶的詳細資訊。
 
 接下來，您將可以在 Azure 自動化中建立能夠在容錯移轉之後，為前端虛擬機器加入端點的 Runbook。
 
@@ -278,9 +279,4 @@ ASR 將內容變數傳遞至 Runbook，以協助您撰寫具有決定性的指�
 [Azure 自動化概觀](http://msdn.microsoft.com/library/azure/dn643629.aspx "Azure 自動化概觀")
 
 [Azure 自動化範例指令碼](http://gallery.technet.microsoft.com/scriptcenter/site/search?f\[0\].Type=User&f\[0\].Value=SC%20Automation%20Product%20Team&f\[0\].Text=SC%20Automation%20Product%20Team "Azure 自動化範例指令碼")
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

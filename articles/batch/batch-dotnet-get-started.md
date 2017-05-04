@@ -16,9 +16,9 @@ ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 08b478b3108f0673f3a130612020408a0e61c815
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
+ms.openlocfilehash: 91fab2cd7ad2babd567380308698f0608dda4cbf
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -27,6 +27,7 @@ ms.lasthandoff: 03/09/2017
 > [!div class="op_single_selector"]
 > * [.NET](batch-dotnet-get-started.md)
 > * [Python](batch-python-tutorial.md)
+> * [Node.js](batch-nodejs-get-started.md)
 >
 >
 
@@ -83,7 +84,7 @@ DotNetTutorial 程式碼範例是由兩個專案所組成的 Visual Studio 方�
 如上所述，並非每個 Batch 方案都會執行這些確切步驟，也有可能包含更多步驟，但 DotNetTutorial  範例應用程式會示範在 Batch 方案中找到的一般程序。
 
 ## <a name="build-the-dotnettutorial-sample-project"></a>建置 DotNetTutorial  範例專案
-您必須先在 DotNetTutorial*`Program.cs` 專案的* 檔案中指定 Batch 和儲存體帳戶認證，才可以成功執行範例。 如果您尚未這麼做，請在 `DotNetTutorial.sln` 方案檔案上連按兩下，以在 Visual Studio 中開啟方案。 或者使用 [檔案] > [開啟] > [專案/方案] 功能表，在 Visual Studio 中開啟方案。
+您必須先在 DotNetTutorial*`Program.cs` 專案的*  檔案中指定 Batch 和儲存體帳戶認證，才可以成功執行範例。 如果您尚未這麼做，請在 `DotNetTutorial.sln` 方案檔案上連按兩下，以在 Visual Studio 中開啟方案。 或者使用 [檔案] > [開啟] > [專案/方案] 功能表，在 Visual Studio 中開啟方案。
 
 開啟 DotNetTutorial 專案中的 `Program.cs`。 然後，如檔案頂端附近所指定新增您的認證：
 
@@ -121,7 +122,7 @@ private const string StorageAccountKey  = "";
 
 在下列各節中，我們會將範例應用程式細分為用來處理 Batch 服務中工作負載的數個步驟，並詳細討論這些步驟。 建議您在進行本文的其餘部分時參閱 Visual Studio 中開啟的方案，因為並不會討論範例中的每一行程式碼。
 
-瀏覽至 DotNetTutorial*`Program.cs` 專案的* 檔案中 `MainAsync` 方法的頂端，開始進行步驟 1。 以下每個步驟大致會依 `MainAsync`中的方法呼叫進展而定。
+瀏覽至 DotNetTutorial*`Program.cs` 專案的*  檔案中 `MainAsync` 方法的頂端，開始進行步驟 1。 以下每個步驟大致會依 `MainAsync`中的方法呼叫進展而定。
 
 ## <a name="step-1-create-storage-containers"></a>步驟 1：建立儲存體容器
 ![在 Azure 儲存體中建立容器][1]
@@ -608,7 +609,7 @@ private static async Task<bool> MonitorTasks(
 ## <a name="step-7-download-task-output"></a>步驟 7：下載工作輸出
 ![從儲存體下載工作輸出][7]<br/>
 
-現已完成作業，可以從 Azure 儲存體下載工作的輸出。 在 DotNetTutorial*`Program.cs` 的* 中呼叫 `DownloadBlobsFromContainerAsync` 即可完成此操作：
+現已完成作業，可以從 Azure 儲存體下載工作的輸出。 在 DotNetTutorial*`Program.cs` 的*  中呼叫 `DownloadBlobsFromContainerAsync` 即可完成此操作：
 
 ```csharp
 private static async Task DownloadBlobsFromContainerAsync(

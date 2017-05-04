@@ -16,9 +16,9 @@ ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 6b6c548ca1001587e2b40bbe9ee2fcb298f40d72
-ms.openlocfilehash: cc8942dacee60d6243e91a3b4360c0c07956fa66
-ms.lasthandoff: 02/28/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 65c9d6c2b7a7c994a262d463d6a32b41c7e5c33a
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -26,14 +26,14 @@ ms.lasthandoff: 02/28/2017
 
 使用 Azure Batch PowerShell Cmdlet，您可以執行與您使用 Batch API、Azure 入口網站和 Azure 命令列介面 (CLI) 執行的許多相同工作並撰寫其指令碼。 本文會快速介紹可用來管理 Batch 帳戶和使用批次資源 (例如集區、作業和和工作) 的 Cmdlet。
 
-如需批次 Cmdlet 和詳細 Cmdlet 語法的完整清單，請參閱 [Azure 批次 Cmdlet 參考資料](https://msdn.microsoft.com/library/azure/mt125957.aspx)。
+如需批次 Cmdlet 和詳細 Cmdlet 語法的完整清單，請參閱 [Azure 批次 Cmdlet 參考資料](/powershell/module/azurerm.batch/#batch)。
 
 本文是根據 Azure PowerShell 3.0.0 版中的 Cmdlet 所撰寫。 建議您經常更新您的 Azure PowerShell 以利用服務更新和增強功能。
 
 ## <a name="prerequisites"></a>必要條件
 執行下列作業，以使用 Azure PowerShell 來管理您的 Batch 資源。
 
-* [安裝並設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
+* [安裝並設定 Azure PowerShell](/powershell/azure/overview)
 * 執行 **Login-AzureRmAccount** Cmdlet 以連線到訂用帳戶 (Azure Batch Cmdlet 隨附在 Azure Resource Manager 模組中)：
   
     `Login-AzureRmAccount`
@@ -43,7 +43,7 @@ ms.lasthandoff: 02/28/2017
 
 ## <a name="manage-batch-accounts-and-keys"></a>管理 Batch 帳戶和金鑰
 ### <a name="create-a-batch-account"></a>建立批次帳戶：
-**New-AzureRmBatchAccount** 會在指定的資源群組中建立 Batch 帳戶。 如果您還沒有資源群組，請執行 [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/azure/mt603739.aspx) Cmdlet 建立一個資源群組。 在 **Location** 參數中指定其中一個 Azure 區域，例如 "Central US"。 例如：
+**New-AzureRmBatchAccount** 會在指定的資源群組中建立 Batch 帳戶。 如果您還沒有資源群組，請執行 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) Cmdlet 建立一個資源群組。 在 **Location** 參數中指定其中一個 Azure 區域，例如 "Central US"。 例如：
 
     New-AzureRmResourceGroup –Name MyBatchResourceGroup –location "Central US"
 
@@ -237,7 +237,7 @@ Batch Cmdlet 可以利用 PowerShell 管線在 Cmdlet 之間傳送資料。 這�
 > 
 
 ## <a name="next-steps"></a>後續步驟
-* 如需詳細的 Cmdlet 語法和範例，請參閱 [Azure Batch Cmdlet 參考資料](https://msdn.microsoft.com/library/azure/mt125957.aspx)。
+* 如需詳細的 Cmdlet 語法和範例，請參閱 [Azure Batch Cmdlet 參考資料](/powershell/module/azurerm.batch/#batch)。
 * 如需 Batch 中應用程式和應用程式套件的詳細資訊，請參閱[使用 Azure Batch 應用程式套件部署應用程式](batch-application-packages.md)。
 
 

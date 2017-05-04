@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/30/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: e0bfa7620feeb1bad33dd2fe4b32cb237d3ce158
-ms.openlocfilehash: 9c9135e200cd1676b01895af4611bc71d5d27c4a
-ms.lasthandoff: 04/21/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 736918ea310f276d961fa396f719b2b7809f0c0f
+ms.lasthandoff: 04/27/2017
 
 ---
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 04/21/2017
 
 如果您使用 Azure CLI 2.0 或 Azure PowerShell 建立擴展集，您必須先登入訂用帳戶。
 
-如需如何使用 Azure CLI 或 PowerShell 安裝、設定和登入 Azure 的詳細資訊，請參閱[開始使用 Azure CLI 2.0](/cli/azure/get-started-with-azure-cli.md) 或[開始使用 Azure PowerShell Cmdlet](/powershell/resourcemanager/)。
+如需如何使用 Azure CLI 或 PowerShell 安裝、設定和登入 Azure 的詳細資訊，請參閱[開始使用 Azure CLI 2.0](/cli/azure/get-started-with-azure-cli.md) 或[開始使用 Azure PowerShell Cmdlet](/powershell/azure/overview)。
 
 ```azurecli
 az login
@@ -184,3 +184,4 @@ Azure 入口網站很方便快速建立擴展集。 如需詳細資訊，請參�
 深入了解[資料磁碟](virtual-machine-scale-sets-attached-disks.md)。
 
 深入了解如何[管理您的應用程式](virtual-machine-scale-sets-deploy-app.md)。
+

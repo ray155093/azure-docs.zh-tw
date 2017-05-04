@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 2/24/2017
 ms.author: shlo
 translationtype: Human Translation
-ms.sourcegitcommit: e0c999b2bf1dd38d8a0c99c6cdd4976cc896dd99
-ms.openlocfilehash: c212df3646dce24eb11542884c6ee5084325cb7d
-ms.lasthandoff: 04/20/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 6af34cf24a8fb7d2dd8f4c44392e0e6c3ed46b1a
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -156,7 +156,7 @@ Pipeline 1: dataset4->activity4->dataset5
 如果 external 屬性的設定正確，請確認輸入資料是否存在於輸入資料集定義中指定的位置。
 
 ### <a name="how-to-run-a-slice-at-another-time-than-midnight-when-the-slice-is-being-produced-daily"></a>每日產生配量時，如何在午夜以外的其他時間執行配量？
-請使用 **offset** 屬性來指定要產生配量的時間。 如需有關此屬性的詳細資料，請參閱 [資料集可用性](data-factory-create-datasets.md#Availability) 一節。 以下是一個簡短的範例：
+請使用 **offset** 屬性來指定要產生配量的時間。 如需有關此屬性的詳細資料，請參閱 [資料集可用性](data-factory-create-datasets.md#dataset-availability) 一節。 以下是一個簡短的範例：
 
 ```json
 "availability":
@@ -193,7 +193,7 @@ Pipeline 1: dataset4->activity4->dataset5
 6. 您應該會看到 [持續時間]  欄位與值。 這個值是處理配量所花費的時間。   
 
 ### <a name="how-to-stop-a-running-slice"></a>如何停止執行中配量？
-如果需要停止執行管線，可以使用 [Suspend-AzureRmDataFactoryPipeline](https://msdn.microsoft.com/library/mt603721.aspx) Cmdlet。 目前，擱置管線並不會停止正在進行的配量執行。 一旦進行中的執行完成，就不會再挑選任何額外的配量。
+如果需要停止執行管線，可以使用 [Suspend-AzureRmDataFactoryPipeline](/powershell/module/azurerm.datafactories/suspend-azurermdatafactorypipeline) Cmdlet。 目前，擱置管線並不會停止正在進行的配量執行。 一旦進行中的執行完成，就不會再挑選任何額外的配量。
 
 如果真的想要立即停止所有執行作業，唯一的方法就是刪除管線，然後再重新建立。 如果您選擇刪除管線，則「不」需要刪除管線所使用的資料表和連結服務。
 

@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 02/22/2017
 ms.author: femila
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 0bcde69385b74fa62a629159abfff4bb16d9da89
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 4e76a20c7c7eef9a51c6c0373785fd810c09e34a
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -394,7 +394,7 @@ Azure 虛擬機器預設會配置「DHCP 租用位址」。 因為 Azure 虛擬�
 
 VM 會在啟動或有名稱變更時自動註冊其 DNS 名稱。
 
-如需此範例和示範如何佈建第一個 VM 並在其上安裝 AD DS 的另一個範例的詳細資訊，請參閱 [在 Microsoft Azure 上安裝新的 Active Directory 樹系](active-directory-new-forest-virtual-machine.md)。 如需使用 Windows PowerShell 的詳細資訊，請參閱[安裝 Azure PowerShell](/powershell/azureps-cmdlets-docs) 和 [Azure 管理 Cmdlet](https://msdn.microsoft.com/library/azure/jj152841)。
+如需此範例和示範如何佈建第一個 VM 並在其上安裝 AD DS 的另一個範例的詳細資訊，請參閱 [在 Microsoft Azure 上安裝新的 Active Directory 樹系](active-directory-new-forest-virtual-machine.md)。 如需使用 Windows PowerShell 的詳細資訊，請參閱[安裝 Azure PowerShell](/powershell/azureps-cmdlets-docs) 和 [Azure 管理 Cmdlet](/powershell/module/azurerm.compute/#virtual_machines)。
 
 ### <a name="BKMK_DistributedDCs"></a>地理位置分散 DC
 在不同的虛擬網路上裝載多個 DC 時，Azure 提供一些優點︰

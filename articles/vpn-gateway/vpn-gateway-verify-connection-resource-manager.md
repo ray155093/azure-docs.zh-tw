@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 04/24/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 0e9fa1b1397c60985de9d2e60b3f01146036801f
-ms.lasthandoff: 04/26/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: a67ea630cc8b5a3e9deab7733aa5cd2055949ec0
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -32,7 +32,7 @@ ms.lasthandoff: 04/26/2017
 
 ## <a name="verify-using-powershell"></a>使用 PowerShell 進行確認
 
-若要使用 PowerShell 進行確認，請安裝最新版的 Azure Resource Manager PowerShell Cmdlet。 如需有關安裝 PowerShell Cmdlet 的資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 如需使用 Resource Manager Cmdlet 的詳細資訊，請參閱 [搭配使用 Windows PowerShell 與 Resource Manager](../powershell-azure-resource-manager.md)。
+若要使用 PowerShell 進行確認，請安裝最新版的 Azure Resource Manager PowerShell Cmdlet。 如需有關安裝 PowerShell Cmdlet 的資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。 如需使用 Resource Manager Cmdlet 的詳細資訊，請參閱 [搭配使用 Windows PowerShell 與 Resource Manager](../powershell-azure-resource-manager.md)。
 
 ### <a name="log-in-to-your-azure-account"></a>登入您的 Azure 帳戶
 1. 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。
@@ -87,7 +87,7 @@ ms.lasthandoff: 04/26/2017
 
 
 ## <a name="verify-using-powershell-classic"></a>使用 PowerShell 進行確認 (傳統)
-若要使用 PowerShell 進行確認，請安裝最新版的 Azure PowerShell Cmdlet。 請務必將 Resource Manager 和「服務管理」(SM) 版本都下載並安裝。 如需有關安裝 PowerShell Cmdlet 的資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 
+若要使用 PowerShell 進行確認，請安裝最新版的 Azure PowerShell Cmdlet。 請務必將 Resource Manager 和「服務管理」(SM) 版本都下載並安裝。 如需有關安裝 PowerShell Cmdlet 的資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。 
 
 ### <a name="log-in-to-your-azure-account"></a>登入您的 Azure 帳戶
 1. 以提高的權限開啟 PowerShell 主控台並連接到您的帳戶。

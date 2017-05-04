@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 01/18/2017
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: e1f7b85308d7482e0066809737749e73029cd758
-ms.openlocfilehash: eed133ba2f0a5e1665afd39b2122d3aacd3cc40a
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 58ee6e9cc14b01f10e20dfc3f289bfc6cc386e2a
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -213,11 +214,6 @@ VNet 會與另一個 VNet，以及其他裝載於 Azure 基礎結構中的服務
 ### <a name="is-there-tooling-support-for-vnets"></a>是否有工具支援 VNet？
 是。 深入了解如何使用：
 - Azure 入口網站來透過 [Azure Resource Manager](virtual-networks-create-vnet-arm-pportal.md) 與 [傳統](virtual-networks-create-vnet-classic-pportal.md)部署模型部署 VNet。
-- PowerShell 來透過 [Resource Manager](/powershell/resourcemanager/azurerm.network/v3.1.0/azurerm.network.md)與[傳統](/powershell/servicemanagement/azure.networking/v3.1.0/azure.networking)部署模型管理 VNet。
+- PowerShell 來透過 [Resource Manager](/powershell/resourcemanager/azurerm.network/v3.1.0/azurerm.network.md)與[傳統](/powershell/module/azure/?view=azuresmps-3.7.0)部署模型管理 VNet。
 - [Azure 命令列介面 (CLI)](../virtual-machines/azure-cli-arm-commands.md#azure-network-commands-to-manage-network-resources) 來透過兩種部署模型部署管理 VNet。  
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

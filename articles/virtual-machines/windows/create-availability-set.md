@@ -18,9 +18,9 @@ ms.date: 02/06/2017
 ms.author: cynthn
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: e1933c5bf65f3e28d952213317413d0f65309c5b
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: caf50732ce19ded5016c6d5368f8b53b6ca3646f
+ms.lasthandoff: 04/27/2017
 
 ---
 # <a name="increase-vm-availability-by-creating-an-azure-availability-set"></a>建立 Azure 可用性設定組以增加 VM 可用性 
@@ -71,7 +71,7 @@ ms.lasthandoff: 03/31/2017
 ```powershell
 Install-Module AzureRM.Compute -RequiredVersion 2.6.0
 ```
-如需詳細資訊，請參閱 [Azure PowerShell 版本控制](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/#azure-powershell-versioning)。
+如需詳細資訊，請參閱 [Azure PowerShell 版本控制](/powershell/azure/overview)。
 
 
 如果您將受控磁碟使用於您的 VM，請輸入︰
@@ -88,7 +88,7 @@ Install-Module AzureRM.Compute -RequiredVersion 2.6.0
     -Name "myAvailabilitySet" -Location "West US" 
 ```
 
-如需詳細資訊，請參閱 [New-AzureRmAvailabilitySet](/powershell/resourcemanager/azurerm.compute/v2.8.0/new-azurermavailabilityset)。
+如需詳細資訊，請參閱 [New-AzureRmAvailabilitySet](/powershell/module/azurerm.compute/new-azurermavailabilityset)。
 
 ## <a name="troubleshooting"></a>疑難排解
 * 當您建立 VM 時，如果您想要的可用性設定組不在入口網站的下拉式清單中，您有可能將它建立在另一個資源群組中。 如果您不清楚您的可用性設定組的資源群組， 請移至 [中樞] 功能表，並按一下 [瀏覽] > [可用性設定組]，以查看可用性設定組清單及其所屬的資源群組。

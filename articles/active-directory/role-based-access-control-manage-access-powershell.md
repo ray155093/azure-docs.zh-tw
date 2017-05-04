@@ -15,9 +15,9 @@ ms.workload: identity
 ms.date: 03/02/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: 32c6224b36c73394c6bbd2aa5f6439f54f39f306
-ms.lasthandoff: 03/04/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 5de7b134d99a0b7887acb9d7f87991056e4d608a
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -31,8 +31,8 @@ ms.lasthandoff: 03/04/2017
 
 使用 PowerShell 來管理 RBAC 之前，您需要具備下列必要條件：
 
-* Azure PowerShell 0.8.8 或更新版本。 若要安裝最新版本，並將它與您的 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
-* Azure Resource Manager Cmdlet。 在 PowerShell 中，安裝 [Azure Resource Manager Cmdlet](https://msdn.microsoft.com/library/mt125356.aspx) 。
+* Azure PowerShell 0.8.8 或更新版本。 若要安裝最新版本，並將它與您的 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
+* Azure Resource Manager Cmdlet。 在 PowerShell 中，安裝 [Azure Resource Manager Cmdlet](/powershell/azure/overview) 。
 
 ## <a name="list-roles"></a>列出角色
 ### <a name="list-all-available-roles"></a>列出所有可用的角色
@@ -87,7 +87,7 @@ Get-AzureRmRoleAssignment -SignInName sameert@aaddemo.com -ExpandPrincipalGroups
 ### <a name="search-for-object-ids"></a>搜尋物件識別碼
 若要指派角色，您必須識別物件 (使用者、群組或應用程式) 和範圍。
 
-如果您不知道訂用帳戶 ID，可以在 Azure 入口網站的 **[訂用帳戶]** 刀鋒視窗中找到。 若要了解如何查詢訂用帳戶 ID，請參閱 MSDN 上的 [Get-AzureSubscription](https://msdn.microsoft.com/library/dn495302.aspx) 。
+如果您不知道訂用帳戶 ID，可以在 Azure 入口網站的 **[訂用帳戶]** 刀鋒視窗中找到。 若要了解如何查詢訂用帳戶 ID，請參閱 MSDN 上的 [Get-AzureSubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0) 。
 
 若要取得 Azure AD 群組的物件識別碼，請使用：
 

@@ -36,7 +36,7 @@
 ## [應用程式模式](virtual-machines-windows-sql-server-app-patterns-dev-strategies.md)
 
 # 參考
-## [PowerShell](/powershell/resourcemanager)
+## [PowerShell](/powershell/azure/overview)
 ## [Azure CLI](/cli/azure/)
 ## [T-SQL](https://msdn.microsoft.com/library/azure/bb510741.aspx)
 ## [SQL Server 驅動程式](https://msdn.microsoft.com/library/mt654049.aspx)

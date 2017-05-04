@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 04/11/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 003a32f2ef67f8aa63ed7be2553fa0f0c3afc08a
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: f4d2535e929996101f6e22ffbd0b2105e8fbf2a8
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -49,7 +49,7 @@ ms.lasthandoff: 04/12/2017
   2. 取得**用戶端識別碼**和**秘密金鑰**。 
   3. 取得 **租用戶識別碼**。 
   4. 將 **ADFCopyTutorialApp** 應用程式指派給 **Data Factory 參與者**角色。  
-* 安裝 [Azure PowerShell](/powershell/azureps-cmdlets-docs)。  
+* 安裝 [Azure PowerShell](/powershell/azure/overview)。  
 * 啟動 **PowerShell** 並執行下列步驟。 將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。 如果您關閉並重新開啟，則需要再次執行這些命令。
   
   1. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼：

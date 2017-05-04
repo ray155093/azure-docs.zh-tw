@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/07/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 3fbb35a059b77f5e918f54e0fefe472893d8a974
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 91a4e54b3dd2e1f44a6b52c548a243ae98e3ba3f
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -37,7 +37,7 @@ ms.lasthandoff: 03/10/2017
 
 **問：為什麼我在 Azure 入口網站中看不到在 Azure Active Directory 中註冊的所有裝置？** 
 
-**答：**目前無法在 Azure 入口網站中看到所有已註冊的裝置。 您可以使用 Azure PowerShell 來尋找所有裝置。 如需更多詳細資料，請參閱 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) Cmdlet。
+**答：**目前無法在 Azure 入口網站中看到所有已註冊的裝置。 您可以使用 Azure PowerShell 來尋找所有裝置。 如需更多詳細資料，請參閱 [Get-MsolDevice](/powershell/module/msonline/get-msoldevice?view=azureadps-1.0) Cmdlet。
 
 --- 
 

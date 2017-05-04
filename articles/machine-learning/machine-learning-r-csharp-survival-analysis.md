@@ -1,24 +1,11 @@
 ---
-title: "(已過時) 使用 Azure Machine Learning 進行存活分析 | Microsoft Docs"
-description: "(已過時) 存活分析 - 事件發生機率"
-services: machine-learning
-documentationcenter: 
-author: zhangya
-manager: jhubbard
-editor: cgronlun
-ms.assetid: a142fc45-cdfb-4971-910e-05dab8bc699e
-ms.service: machine-learning
-ms.workload: data-services
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: deprecated
-ms.date: 01/06/2017
-ms.author: zhangya
+
 ROBOTS: NOINDEX, NOFOLLOW
+redirect_url: https://gallery.cortanaintelligence.com/
 translationtype: Human Translation
-ms.sourcegitcommit: 2d9feed054fb4641e660c685d396260246ed1d54
-ms.openlocfilehash: 32ae345bb1d4bc364440543ea5c273e9b358ae40
-ms.lasthandoff: 01/11/2017
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: 38a086281ec9a93961caf492036aeed27091a462
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -27,7 +14,7 @@ ms.lasthandoff: 01/11/2017
 > [!NOTE]
 > Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
 > 
-> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+> 您可以在 [Cortana Intelligence 資源庫 (英文)](http://gallery.cortanaintelligence.com) 中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
 
 在許多情況下，主要評估結果會是感興趣事件的時間。 換句話說，詢問的問題會是「何時將發生這個事件」 。 例如，請考慮資料描述感興趣的事件 (疾病復發、取得博士學位、煞車來令片故障) 發生前所經過之時間 (天、年、里程數等) 的案例。 資料中的每個執行個體代表特定物件 (病患、學生、汽車等)。
 
@@ -40,7 +27,7 @@ ms.lasthandoff: 01/11/2017
 > 
 
 ## <a name="consumption-of-web-service"></a>使用 Web 服務
-下表中顯示 Web 服務的輸入資料結構描述。 必須輸入六項資訊：定型資料、測試資料、感興趣的時間、「時間」維度的索引、「事件」維度的索引和變數類型 (連續或因素)。 訓練資料是以字串表示，其中的資料列是以逗號分隔，而資料行是以分號分隔。 資料的特徵數目是彈性的。 輸入字串中的所有元素都必須為數值。 在定型資料中，「時間」維度表示自研究的起點 (病患收到藥物治療方案、學生開始博士研究、汽車開始發動等)，到發生感興趣的事件 (病患再度吸食毒品、學生取得博士學位、汽車的煞車來令片故障等) 所經過的時間單位數 (日、年、里程數等)。 「事件」維度指出感興趣的事件是否發生在研究結束時。 「事件 =&1;」的值表示感興趣的事件發生於「時間」維度所指出的時間；而「事件 =&0;」表示到「時間」維度所指定的時間為止都未發生感興趣的事件。
+下表中顯示 Web 服務的輸入資料結構描述。 必須輸入六項資訊：定型資料、測試資料、感興趣的時間、「時間」維度的索引、「事件」維度的索引和變數類型 (連續或因素)。 訓練資料是以字串表示，其中的資料列是以逗號分隔，而資料行是以分號分隔。 資料的特徵數目是彈性的。 輸入字串中的所有元素都必須為數值。 在定型資料中，「時間」維度表示自研究的起點 (病患收到藥物治療方案、學生開始博士研究、汽車開始發動等)，到發生感興趣的事件 (病患再度吸食毒品、學生取得博士學位、汽車的煞車來令片故障等) 所經過的時間單位數 (日、年、里程數等)。 「事件」維度指出感興趣的事件是否發生在研究結束時。 「事件 = 1」的值表示感興趣的事件發生於「時間」維度所指出的時間；而「事件 = 0」表示到「時間」維度所指定的時間為止都未發生感興趣的事件。
 
 * trainingdata - 字元字串。 資料列會以逗號分隔，而資料行會以分號分隔。 每個資料列包含「時間」維度、「事件」維度和預測變數。
 * testingdata - 包含特定物件之預測變數的一列資料。

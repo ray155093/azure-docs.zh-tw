@@ -16,9 +16,9 @@ ms.workload: identity
 ms.date: 04/06/2017
 ms.author: joflore
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 46e248112985b2e8f58f90e15cf885839d3cfcc8
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 516240ccc82a522a414d837ec334712196edf7dd
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -70,7 +70,7 @@ ms.lasthandoff: 03/25/2017
    |  **虛擬機器組態** |<p>選取 [安裝 VM 代理程式]<b></b> 以及您所需的任何其他延伸模組。</p> |
 2. 將磁碟連接至將執行 DC 伺服器角色的每個 VM。 需要額外的磁碟來儲存 AD 資料庫、記錄檔和 SYSVOL。 指定磁碟的大小 (例如 10 GB) 並保留 [主機快取喜好設定] 設為 [無]。 如需相關步驟，請參閱 [如何將資料磁碟連接至 Windows 虛擬機器](../virtual-machines/windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 3. 在您第一次登入 VM 之後，請開啟 [伺服器管理員]  >  [檔案和儲存體服務]，以在磁碟上使用 NTFS 建立磁碟區。
-4. 為將執行 DC 角色的 VM 保留靜態 IP 位址。 若要保留靜態 IP 位址，請下載 Microsoft Web Platform Installer， [安裝 Azure PowerShell](/powershell/azureps-cmdlets-docs) 並執行 Set-AzureStaticVNetIP Cmdlet。 例如：
+4. 為將執行 DC 角色的 VM 保留靜態 IP 位址。 若要保留靜態 IP 位址，請下載 Microsoft Web Platform Installer， [安裝 Azure PowerShell](/powershell/azure/overview) 並執行 Set-AzureStaticVNetIP Cmdlet。 例如：
 
     `Get-AzureVM -ServiceName AzureDC1 -Name AzureDC1 | Set-AzureStaticVNetIP -IPAddress 10.0.0.4 | Update-AzureVM`
 
@@ -104,7 +104,7 @@ ms.lasthandoff: 03/25/2017
 
 若要使用 Windows PowerShell 而非 UI 建立 VM，請參閱 [使用 Azure PowerShell 建立和預先設定以 Windows 為基礎的虛擬機器](../virtual-machines/windows/classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
-如需有關使用 Windows PowerShell 的詳細資訊，請參閱[開始使用 Azure Cmdlet](https://msdn.microsoft.com/library/azure/jj554332.aspx) 和 [Azure Cmdlet 參考](https://msdn.microsoft.com/library/azure/jj554330.aspx)。
+如需有關使用 Windows PowerShell 的詳細資訊，請參閱[開始使用 Azure Cmdlet](/powershell/azure/overview) 和 [Azure Cmdlet 參考](/powershell/azure/get-started-azureps)。
 
 ## <a name="see-also"></a>另請參閱
 * [如何在 Azure 虛擬網路上安裝新的 Active Directory 樹系](http://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/How-to-install-a-new-Active-Directory-forest-on-an-Azure-virtual-network)
@@ -114,9 +114,9 @@ ms.lasthandoff: 03/25/2017
 * [Microsoft Azure IT Pro IaaS：(01) 虛擬機器基本概念](http://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/01)
 * [Microsoft Azure IT Pro IaaS：(05) 建立虛擬網路和跨單位連線](http://channel9.msdn.com/Series/Windows-Azure-IT-Pro-IaaS/05)
 * [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)
-* [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
-* [Azure PowerShell](https://msdn.microsoft.com/library/azure/jj156055.aspx)
-* [Azure Cmdlet 參考](https://msdn.microsoft.com/library/azure/jj554330.aspx)
+* [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)
+* [Azure PowerShell](/powershell/azure/overview)
+* [Azure Cmdlet 參考](/powershell/azure/get-started-azureps)
 * [設定 Azure VM 靜態 IP 位址](http://windowsitpro.com/windows-azure/set-azure-vm-static-ip-address)
 * [如何將靜態 IP 指派給 Azure VM](http://www.bhargavs.com/index.php/2014/03/13/how-to-assign-static-ip-to-azure-vm/)
 * [安裝新的 Active Directory 樹系](https://technet.microsoft.com/library/jj574166.aspx)

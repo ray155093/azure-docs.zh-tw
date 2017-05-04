@@ -14,9 +14,9 @@ ms.workload: infrastructure-services
 ms.date: 03/16/2017
 ms.author: kumud
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: c2fb44817f168eee8303d0c07473f043ae30d350
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: a2a6ca04ca8043bc0ed142310ad3e7b55100d228
+ms.lasthandoff: 04/27/2017
 
 ---
 
@@ -36,7 +36,7 @@ Azure 流量管理員使用名為「流量管理員設定檔」的設定集合�
 
 這些指示使用 Microsoft Azure PowerShell。 下列文章說明如何安裝和設定 Azure PowerShell。
 
-* [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
+* [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)
 
 這篇文章中的範例假設您有現有的資源群組。 您可以使用下列命令建立資源群組：
 

@@ -17,9 +17,9 @@ ms.workload: infrastructure-services
 ms.date: 02/11/2016
 ms.author: telmos
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: e3c8f61be72309354471451a33664c4b5497eb0e
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 6dd2433bf744dd207375e92fd6f24b14cd3f828c
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -56,7 +56,7 @@ Azure 有兩個入口網站︰
 某些資源和功能只可以在其中一個入口網站中建立及設定。 某些資源或功能還不能在任一個入口網站中建立或設定，而只能透過 PowerShell、CLI 或兩者進行設定。 每個 Azure 資源的文件會詳述可用以建立該資源的方法。 
 
 ## <a name="powershell"></a>PowerShell
-透過 [PowerShell](/powershell/azureps-cmdlets-docs) ，您可以使用命令列或編寫指令碼，從 Windows 電腦建立及設定 Azure 資源。  個別 Azure 資源具有 [Resource Manager Cmdlet](https://msdn.microsoft.com/library/azure/mt125356.aspx)、[服務管理 Cmdlet](https://msdn.microsoft.com/library/azure/dn708504.aspx)，或兩者兼具。  某些資源和功能只可以在使用 PowerShell 或 CLI 加以建立及設定。 視資源而定，使用資源管理員 PowerShell Cmdlet 時，您可能會有兩個選項可供建立及設定 Azure 資源︰
+透過 [PowerShell](/powershell/azureps-cmdlets-docs) ，您可以使用命令列或編寫指令碼，從 Windows 電腦建立及設定 Azure 資源。  個別 Azure 資源具有 [Resource Manager Cmdlet](/powershell/azure/overview)、[服務管理 Cmdlet](/powershell/azure/overview?view=azuresmps-3.7.0)，或兩者兼具。  某些資源和功能只可以在使用 PowerShell 或 CLI 加以建立及設定。 視資源而定，使用資源管理員 PowerShell Cmdlet 時，您可能會有兩個選項可供建立及設定 Azure 資源︰
 
 * **僅限 PowerShell Cmdlet︰** 您可以使用每個資源的 Cmdlet，個別建立及設定每個 Azure 資源。 從命令列執行這項操作，或在 PowerShell 指令碼中包含您可儲存和設定版本的多個命令。
 * **具有 Azure 資源管理員範本的 PowerShell Cmdlet︰** 您可以使用 PowerShell，透過 Azure 資源管理員範本建立 Azure 資源。 範本可予以儲存及設定版本。 如需詳細資訊，請參閱 [使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md) 一文。 常見解決方案也有數個 [Azure 快速入門範本](https://azure.microsoft.com/documentation/templates/) 可供下載和修改。

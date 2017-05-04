@@ -46,7 +46,7 @@
 ### [對應用程式閘道中閘道的錯誤進行疑難排解](application-gateway-troubleshooting-502.md)
 ### [診斷記錄與計量](application-gateway-diagnostics.md)
 # 參考
-## [PowerShell](https://docs.microsoft.com/powershell/resourcemanager)
+## [PowerShell](/powershell/azure/overview)
 ## [Azure CLI 2.0](/cli/azure/network/application-gateway)
 ## [.NET](/dotnet/api)
 ## [Java](/java/api/com.microsoft.azure.management.network)

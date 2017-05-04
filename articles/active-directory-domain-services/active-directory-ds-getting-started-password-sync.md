@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
-ms.openlocfilehash: 51e4665b6372859021237144a0bf7f6763a2638b
-ms.lasthandoff: 04/14/2017
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: b7b5f92c0093faa96a367fc95d459b1babd99789
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -64,7 +64,7 @@ ms.lasthandoff: 04/14/2017
 當您變更密碼幾分鐘之後，新的密碼就能在 Azure Active Directory Domain Services 中使用。 再幾分鐘 (通常大約 20 分鐘) 之後，您就能使用最近變更的密碼來登入已加入受管理網域的電腦。
 
 ## <a name="next-steps"></a>後續步驟
-* [如何更新自己的密碼](../active-directory/active-directory-passwords-update-your-own-password.md#reset-my-password)
+* [如何更新自己的密碼](../active-directory/active-directory-passwords-update-your-own-password.md)
 * [在 Azure AD 中開始使用密碼管理](../active-directory/active-directory-passwords-getting-started.md)
 * [為同步處理的 Azure AD 租用戶啟用 Azure Active Directory Domain Services 的密碼同步處理](active-directory-ds-getting-started-password-sync-synced-tenant.md)
 * [受 Azure Active Directory Domain Services 管理的網域](active-directory-ds-admin-guide-administer-domain.md)

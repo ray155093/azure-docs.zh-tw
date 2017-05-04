@@ -15,8 +15,9 @@ ms.topic: hero-article
 ms.date: 10/24/2016
 ms.author: cabailey
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: dd53cbc0ec10700ebcd47f9d2f9d6cc358f68569
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -30,10 +31,10 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 
 > [!NOTE]
 > 本教學課程的指示並未說明如何撰寫其中步驟所包含的 Azure 應用程式，也就是如何授權應用程式使用金鑰保存庫中的金鑰或密碼。
-> 
-> 本教學課程使用 Azure PowerShell。 如需跨平台命令列介面的指示，請參閱 [這個對等的教學課程](key-vault-manage-with-cli.md)。
-> 
-> 
+>
+> 本教學課程使用 Azure PowerShell。 如需跨平台命令列介面的指示，請參閱 [這個對等的教學課程](key-vault-manage-with-cli2.md)。
+>
+>
 
 如需 Azure 金鑰保存庫的概觀資訊，請參閱 [什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)
 
@@ -41,7 +42,7 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 若要完成本教學課程，您必須具備下列項目：
 
 * Microsoft Azure 訂用帳戶。 如果您沒有訂用帳戶，您可以註冊 [免費帳戶](https://azure.microsoft.com/pricing/free-trial/)。
-* Azure PowerShell， **最低版本為 1.1.0**。 若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 如果您已安裝 Azure PowerShell 但不知道版本，請在 Azure PowerShell 主控台中輸入 `(Get-Module azure -ListAvailable).Version`。 如果您已安裝 Azure PowerShell 版本 0.9.1 至 0.9.8，您仍可使用本教學課程並稍作變更。 例如，您必須使用 `Switch-AzureMode AzureResourceManager` 命令，而有些 Azure 金鑰保存庫命令已變更。 如需版本 0.9.1 至 0.9.8 的金鑰保存庫 Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/azure/dn868052\(v=azure.98\).aspx)。 
+* Azure PowerShell， **最低版本為 1.1.0**。 若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。 如果您已安裝 Azure PowerShell 但不知道版本，請在 Azure PowerShell 主控台中輸入 `(Get-Module azure -ListAvailable).Version`。 如果您已安裝 Azure PowerShell 版本 0.9.1 至 0.9.8，您仍可使用本教學課程並稍作變更。 例如，您必須使用 `Switch-AzureMode AzureResourceManager` 命令，而有些 Azure 金鑰保存庫命令已變更。 如需版本 0.9.1 至 0.9.8 的金鑰保存庫 Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](/powershell/module/azurerm.keyvault/#key_vault)。
 * 可設定使用您在本教學課程中所建立之金鑰或密碼的應用程式。 您可以在 [Microsoft 下載中心](http://www.microsoft.com/en-us/download/details.aspx?id=45343)找到範例應用程式。 如需相關指示，請參閱隨附的讀我檔案。
 
 本教學課程是專為 Azure PowerShell 初學者所設計的，但它會假設您已了解基本概念，例如模組、Cmdlet 和工作階段。 如需詳細資訊，請參閱 [開始使用 Windows PowerShell](https://technet.microsoft.com/library/hh857337.aspx)。
@@ -56,13 +57,13 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 
 您也可以閱讀下列教學課程，以熟悉 Azure PowerShell 中的 Azure 資源管理員：
 
-* [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
+* [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)
 * [Azure PowerShell 搭配資源管理員使用](../powershell-azure-resource-manager.md)
 
-## <a name="a-idconnectaconnect-to-your-subscriptions"></a><a id="connect"></a>連線到您的訂用帳戶
+## <a id="connect"></a>連線到您的訂用帳戶
 開始 Azure PowerShell 工作階段，並使用下列命令登入您的 Azure 帳戶：  
 
-    Login-AzureRmAccount 
+    Login-AzureRmAccount
 
 請注意，如果您使用特定的 Azure 執行個體，例如 Azure Government，請在此命令中使用 -Environment 參數。 例如：`Login-AzureRmAccount –Environment (Get-AzureRmEnvironment –Name AzureUSGovernment)`
 
@@ -76,16 +77,16 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 
     Set-AzureRmContext -SubscriptionId <subscription ID>
 
-如需設定 Azure PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+如需設定 Azure PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
-## <a name="a-idresourceacreate-a-new-resource-group"></a><a id="resource"></a>建立新的資源群組
+## <a id="resource"></a>建立新的資源群組
 使用 Azure 資源管理員時，會在資源群組中建立所有相關資源。 在本教學課程中，我們將建立名為 **ContosoResourceGroup** 的新資源群組：
 
     New-AzureRmResourceGroup –Name 'ContosoResourceGroup' –Location 'East Asia'
 
 
-## <a name="a-idvaultacreate-a-key-vault"></a><a id="vault"></a>建立金鑰保存庫
-使用 [New-AzureRmKeyVault](https://msdn.microsoft.com/library/azure/mt603736\(v=azure.300\).aspx) Cmdlet 來建立金鑰保存庫。 這個 Cmdlet 包含三個必要參數：**資源群組名稱**、**金鑰保存庫名稱**和**地理位置**。
+## <a id="vault"></a>建立金鑰保存庫
+使用 [New-AzureRmKeyVault](/powershell/module/azurerm.keyvault/new-azurermkeyvault) Cmdlet 來建立金鑰保存庫。 這個 Cmdlet 包含三個必要參數：**資源群組名稱**、**金鑰保存庫名稱**和**地理位置**。
 
 例如，如果使用保存庫名稱為 **ContosoKeyVault**、資源群組名稱為 **ContosoResourceGroup** 及位置為**東亞**，請輸入：
 
@@ -99,12 +100,12 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 您的 Azure 帳戶現已取得在此金鑰保存庫上執行任何作業的授權。 而且，沒有其他人有此授權。
 
 > [!NOTE]
-> 當您嘗試建立新的金鑰保存庫時，如果看到**訂用帳戶未登錄要使用命名空間 'Microsoft.KeyVault'`Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.KeyVault"` 錯誤，請執行 **，然後重新執行 New-AzureRmKeyVault 命令。 如需詳細資訊，請參閱 [Register-AzureRmResourceProvider](https://msdn.microsoft.com/library/azure/mt759831\(v=azure.300\).aspx)。
-> 
-> 
+> 當您嘗試建立新的金鑰保存庫時，如果看到**訂用帳戶未登錄要使用命名空間 'Microsoft.KeyVault'`Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.KeyVault"` 錯誤，請執行** ，然後重新執行 New-AzureRmKeyVault 命令。 如需詳細資訊，請參閱 [Register-AzureRmResourceProvider](/powershell/module/azurerm.resources/register-azurermresourceprovider)。
+>
+>
 
-## <a name="a-idaddaadd-a-key-or-secret-to-the-key-vault"></a><a id="add"></a>新增金鑰或密碼至金鑰保存庫
-如果您要 Azure 金鑰保存庫為您建立一個軟體防護金鑰，請使用 [Add-AzureKeyVaultKey](https://msdn.microsoft.com/library/azure/dn868048\(v=azure.300\).aspx) Cmdlet，並輸入下列內容：
+## <a id="add"></a>新增金鑰或密碼至金鑰保存庫
+如果您要 Azure 金鑰保存庫為您建立一個軟體防護金鑰，請使用 [Add-AzureKeyVaultKey](/powershell/module/azurerm.keyvault/add-azurermkeyvaultkey) Cmdlet，並輸入下列內容：
 
     $key = Add-AzureKeyVaultKey -VaultName 'ContosoKeyVault' -Name 'ContosoFirstKey' -Destination 'Software'
 
@@ -144,13 +145,13 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 
 現在，您可以在應用程式中使用金鑰保存庫和金鑰或密碼。 您必須授權應用程式才能使用他們。  
 
-## <a name="a-idregisteraregister-an-application-with-azure-active-directory"></a><a id="register"></a>向 Azure Active Directory 註冊應用程式
+## <a id="register"></a>向 Azure Active Directory 註冊應用程式
 這步驟通常會由開發人員在個別電腦上完成。 這並非 Azure 金鑰保存庫的特有狀況，在此列出是為了讓程式完整。
 
 > [!IMPORTANT]
 > 若要完成本教學課程，您的帳戶、保存庫及將在本步驟中註冊的應用程式全都必須位於相同的 Azure 目錄中。
-> 
-> 
+>
+>
 
 使用金鑰保存庫的應用程式必須使用 Azure Active Directory 的權杖進行驗證。 若要達到此目的，應用程式擁有者首先必須在其 Azure Active Directory 中註冊該應用程式。 註冊結束時，應用程式擁有者會取得下列值：
 
@@ -169,8 +170,8 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 9. 捲動到 [金鑰] 區段，選取持續時間，然後按一下 [儲存]。 頁面會重新整理，並顯示金鑰值。 您必須使用此金鑰值和 [用戶端識別碼] 值來設定您的應用程式。 (有關此設定的指示僅適用於特定應用程式。)
 10. 複製此頁面的用戶端識別碼，您將在後續步驟中使用此識別碼來設定保存庫上的權限。
 
-## <a name="a-idauthorizeaauthorize-the-application-to-use-the-key-or-secret"></a><a id="authorize"></a>授權應用程式使用金鑰或密碼
-若要授權應用程式存取保存庫中的金鑰或密碼，請使用  [Set-AzureRmKeyVaultAccessPolicy](https://msdn.microsoft.com/library/azure/mt603625\(v=azure.300\).aspx) Cmdlet。
+## <a id="authorize"></a>授權應用程式使用金鑰或密碼
+若要授權應用程式存取保存庫中的金鑰或密碼，請使用  [Set-AzureRmKeyVaultAccessPolicy](/powershell/module/azurerm.keyvault/set-azurermkeyvaultaccesspolicy) Cmdlet。
 
 例如，如果您的保存庫名稱是 **ContosoKeyVault** ，且您要授權的應用程式具有 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed 的用戶端識別碼，您想要授權應用程式使用保存庫中的金鑰來進行解密並簽署，則請執行下列作業：
 
@@ -180,7 +181,7 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -ServicePrincipalName 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed -PermissionsToSecrets Get
 
-## <a name="a-idhsmaif-you-want-to-use-a-hardware-security-module-hsm"></a><a id="HSM"></a>如果您想要使用硬體安全模組 (HSM)
+## <a id="HSM"></a>如果您想要使用硬體安全模組 (HSM)
 為了加強保證，您可以在硬體安全模組 (HSM) 中匯入或產生無需離開 HSM 界限的金鑰。 HSM 已通過 FIPS 140-2 Level 2 驗證。 如果此需求對您不適用，請略過本節並移至 [刪除金鑰保存庫及相關聯的金鑰和密碼](#delete)。
 
 若要建立這些受 HSM 保護的金鑰，您必須使用 [Azure 金鑰保存庫高階服務層以支援受 HSM 保護的金鑰](https://azure.microsoft.com/pricing/free-trial/)。 此外，請注意此功能不適用於 Azure China。
@@ -206,8 +207,8 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 
 如需有關如何產生此 BYOK 封裝的詳細指示，請參閱 [如何傳輸 Azure 金鑰保存庫的受 HSM 保護金鑰](key-vault-hsm-protected-keys.md)。
 
-## <a name="a-iddeleteadelete-the-key-vault-and-associated-keys-and-secrets"></a><a id="delete"></a>刪除金鑰保存庫及相關聯的金鑰和密碼
-如果您不再需要金鑰保存庫及其所包含的金鑰或密碼，您可以使用 [Remove-AzureRmKeyVault](https://msdn.microsoft.com/library/azure/mt619485\(v=azure.300\).aspx) Cmdlet 來刪除金鑰保存庫：
+## <a id="delete"></a>刪除金鑰保存庫及相關聯的金鑰和密碼
+如果您不再需要金鑰保存庫及其所包含的金鑰或密碼，您可以使用 [Remove-AzureRmKeyVault](/powershell/module/azurerm.keyvault/remove-azurermkeyvault) Cmdlet 來刪除金鑰保存庫：
 
     Remove-AzureRmKeyVault -VaultName 'ContosoKeyVault'
 
@@ -216,7 +217,7 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
     Remove-AzureRmResourceGroup -ResourceGroupName 'ContosoResourceGroup'
 
 
-## <a name="a-idotheraother-azure-powershell-cmdlets"></a><a id="other"></a>其他 Azure PowerShell Cmdlet
+## <a id="other"></a>其他 Azure PowerShell Cmdlet
 可能有助於管理 Azure 金鑰保存庫的其他命令：
 
 * `$Keys = Get-AzureKeyVaultKey -VaultName 'ContosoKeyVault'`此命令會取得以表格形式顯示的所有金鑰和所選屬性。
@@ -225,18 +226,12 @@ ms.openlocfilehash: 115a718977906b3e647b628017f7ab46a588d7f2
 * `Remove-AzureKeyVaultKey -VaultName 'ContosoKeyVault' -Name 'ContosoFirstKey'`：如何移除特定金鑰範例。
 * `Remove-AzureKeyVaultSecret -VaultName 'ContosoKeyVault' -Name 'SQLPassword'`：如何移除特定密碼範例。
 
-## <a name="a-idnextanext-steps"></a><a id="next"></a>接續步驟
+## <a id="next"></a>接續步驟
 如需在 Web 應用程式中使用 Azure 金鑰保存庫的後續教學課程，請參閱 [從 Web 應用程式使用 Azure 金鑰保存庫](key-vault-use-from-web-application.md)。
 
 若要查看金鑰保存庫的使用情形，請參閱 [Azure 金鑰保存庫記錄](key-vault-logging.md)。
 
-如需最新 Azure 金鑰保存庫的 Azure PowerShell Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/azure/dn868052\(v=azure.300\).aspx)。 
+如需最新 Azure 金鑰保存庫的 Azure PowerShell Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](/powershell/module/azurerm.keyvault/#key_vault)。
 
 如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

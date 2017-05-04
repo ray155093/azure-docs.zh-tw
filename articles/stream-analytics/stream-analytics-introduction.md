@@ -16,9 +16,9 @@ ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 2b4a10c77ae02ac0e9eeecf6d7d6ade6e4c33115
-ms.openlocfilehash: 493a915fb4e3de4cb70324b22beeaae6720a3492
-ms.lasthandoff: 01/25/2017
+ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
+ms.openlocfilehash: a6b1df79f4fc6b09b681755f5adbb7f56faaf225
+ms.lasthandoff: 05/01/2017
 
 
 ---
@@ -42,7 +42,7 @@ Azure 串流分析是完全受管理、符合成本效益的即時事件處理�
 * **連接性：** 串流分析會直接連接到 Azure 事件中樞和 Azure IoT 中樞進行串流擷取，並連接到 Azure Blob 服務以取得歷史資料。 結果可以從串流分析寫入到 Azure 儲存體 Blob 或資料表、Azure SQL DB、Azure Data Lake Store、DocumentDB、事件中樞、Azure 服務匯流排主題或佇列以及 Power BI，它可在其中視覺化、由工作流程進一步處理、透過 [Azure HDInsight](https://azure.microsoft.com/services/hdinsight/) 在批次分析中使用，或以一系列事件的方式再次處理。 使用事件中樞時，您可以將多個串流分析與其他資料來源和處理引擎組合在一起，而不會失去計算的串流本質。  
 
 ## <a name="get-help"></a>取得說明
-如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
+如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>後續步驟
 以上就是串流分析 (物聯網資料串流分析專用的受管理服務) 的簡介。 若要深入了解此服務，請參閱：

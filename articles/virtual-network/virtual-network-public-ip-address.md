@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/14/2017
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 5274ffe641768e0725623c2acf38d432a97eea9f
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 9e65a61b2b156611e998f266068ab5e1e306143d
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -33,7 +33,7 @@ ms.lasthandoff: 04/03/2017
 
 本文的其餘各節會列出完成所有公用 IP 位址相關工作的步驟。 每一節會列出︰
 - 在 Azure 入口網站中完成工作的步驟。 若要完成這些步驟，您必須登入 [Azure 入口網站](http://portal.azure.com)。 如果您沒有帳戶，請註冊[免費試用帳戶](https://azure.microsoft.com/free)。
-- 使用 Azure PowerShell 搭配命令參考連結來完成工作的命令。 完成[如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs?toc=%2fazure%2fvirtual-network%2ftoc.json)一文中的步驟，以安裝和設定 PowerShell。 若要取得 PowerShell 命令的說明 (包含範例)，請輸入 `get-help <command> -full`。
+- 使用 Azure PowerShell 搭配命令參考連結來完成工作的命令。 完成[如何安裝及設定 Azure PowerShell](/powershell/azure/overview)一文中的步驟，以安裝和設定 PowerShell。 若要取得 PowerShell 命令的說明 (包含範例)，請輸入 `get-help <command> -full`。
 - 使用 Azure 命令列介面 (CLI) 搭配命令參考連結來完成工作的命令。 完成[如何安裝及設定 Azure CLI 2.0](/cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json) 一文中的步驟，以安裝 Azure CLI。 若要取得 CLI 命令的說明，請輸入 `az <command> -h`。
 
 公用 IP 位址需要少許費用。 若要檢視價格，請閱讀 [IP 位址價格](https://azure.microsoft.com/pricing/details/ip-addresses)頁面。 您可以在訂用帳戶內使用的公用 IP 位址數目有一些限制。 若要檢視限制，請閱讀 [Azure 限制](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits)一文。 
@@ -61,7 +61,7 @@ ms.lasthandoff: 04/03/2017
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network public-ip-create](/cli/azure/network/public-ip?toc=%2fazure%2fvirtual-network%2ftoc.json#create)|
-|**PowerShell**|[New-AzureRmPublicIpAddress](/powershell/resourcemanager/azurerm.network/v3.4.0/new-azurermpublicipaddress?toc=%2fazure%2fvirtual-network%2ftoc.json)|
+|**PowerShell**|[New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress)|
 
 ## <a name="change"></a>變更或刪除公用 IP 位址的設定
 
@@ -80,7 +80,7 @@ ms.lasthandoff: 04/03/2017
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network public-ip update](/cli/azure/network/public-ip?toc=%2fazure%2fvirtual-network%2ftoc.json#update) 用以更新；[az network public-ip delete](/cli/azure/network/public-ip?toc=%2fazure%2fvirtual-network%2ftoc.json#delete) 用以刪除|
-|**PowerShell**|[Set-AzureRmPublicIpAddress](/powershell/resourcemanager/azurerm.network/v3.4.0/set-azurermpublicipaddress?toc=%2fazure%2fvirtual-network%2ftoc.json) 用以更新；[Remove-AzureRmPublicIpAddress](/powershell/resourcemanager/azurerm.network/v3.4.0/remove-azurermpublicipaddress?toc=%2fazure%2fvirtual-network%2ftoc.json) 用以刪除|
+|**PowerShell**|[Set-AzureRmPublicIpAddress](/powershell/resourcemanager/azurerm.network/v3.4.0/set-azurermpublicipaddress?toc=%2fazure%2fvirtual-network%2ftoc.json) 用以更新；[Remove-AzureRmPublicIpAddress](/powershell/module/azurerm.network/remove-azurermpublicipaddress) 用以刪除|
 
 ## <a name="next-steps"></a>接續步驟
 請在建立下列 Azure 資源時，指派公用 IP 位址︰
@@ -90,3 +90,4 @@ ms.lasthandoff: 04/03/2017
 - [Azure 應用程式閘道](../application-gateway/application-gateway-create-gateway-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 - [使用 Azure VPN 閘道的站對站連線](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 - [Azure 虛擬機器擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-portal-create.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+

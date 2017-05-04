@@ -1,24 +1,11 @@
 ---
-title: "(已過時) 語彙型情感分析 - Azure | Microsoft Docs"
-description: "(已過時) 語彙型情感分析"
-services: machine-learning
-documentationcenter: 
-author: pengxia
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 912f41af-966c-4d79-a413-6f9fc02823df
-ms.service: machine-learning
-ms.workload: data-services
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: deprecated
-ms.date: 01/06/2017
-ms.author: pengxia
+
 ROBOTS: NOINDEX, NOFOLLOW
+redirect_url: https://gallery.cortanaintelligence.com/
 translationtype: Human Translation
-ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
-ms.openlocfilehash: 02a6005c47734419903f324f6fb60440f9d62664
-ms.lasthandoff: 01/11/2017
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: 9c7b8e4378cbc19255e60aa177207afe3d552087
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -27,7 +14,7 @@ ms.lasthandoff: 01/11/2017
 > [!NOTE]
 > Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
 > 
-> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+> 您可以在 [Cortana Intelligence 資源庫 (英文)](http://gallery.cortanaintelligence.com) 中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
 
 如何測量使用者在線上社交網路中 (例如 Facebook 文章、推文、評論等)，針對品牌或主題的意見和態度？ 情感分析提供分析這類問題的方法。
 

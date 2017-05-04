@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 11/23/2016
 ms.author: ericor
 translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: dcf897cfb03316312613a641f1758cd4636d06b7
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: b93861bc6277aaca5954bf9f4c338fed22a0c3fc
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -30,7 +30,7 @@ ms.lasthandoff: 03/31/2017
 
 ## <a name="before-you-start"></a>開始之前
 1. 請確認您的自訂映像符合[映像需求](remoteapp-imagereqs.md)和[應用程式需求](remoteapp-appreqs.md)。
-2. 安裝 [Azure PowerShell 模組](/powershell/azureps-cmdlets-docs)。
+2. 安裝 [Azure PowerShell 模組](/powershell/azure/overview)。
 
 ## <a name="step-by-step-on-how-to-upload-custom-image"></a>逐步解說如何上傳自訂映像
 1. 開啟 Azure 管理入口網站，並瀏覽至 [RemoteApp] 頁面。

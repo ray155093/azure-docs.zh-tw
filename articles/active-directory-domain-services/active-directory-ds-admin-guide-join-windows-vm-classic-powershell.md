@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
 translationtype: Human Translation
-ms.sourcegitcommit: fdc53ee24c623218e218cdda1c24dffbbec50bc5
-ms.openlocfilehash: e7c7e9504985fa98185286ee9a28cec80fb87df6
-ms.lasthandoff: 01/05/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 9fc3b38b22c3a092dc2d932d2d7471872f5ba66d
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 01/05/2017
 
 這些步驟遵循建立 Azure PowerShell 命令集合的填空方法。 如果您是 PowerShell 的新手或想知道可指定哪些值來成功設定組態，這個方法相當實用。 進階的 PowerShell 使用者可以使用命令並取代本身的變數值 (以「$」為開頭的行)。
 
-如果您尚未這樣做，請按照 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的操作方法，在本機電腦安裝 Azure PowerShell。 然後，開啟 Windows PowerShell 命令提示字元。
+如果您尚未這樣做，請按照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 中的操作方法，在本機電腦安裝 Azure PowerShell。 然後，開啟 Windows PowerShell 命令提示字元。
 
 ## <a name="step-1-add-your-account"></a>步驟 1︰加入您的帳戶
 1. 在 PowerShell 提示字元中，輸入 **Add-AzureAccount**，然後按一下 **Enter** 鍵。

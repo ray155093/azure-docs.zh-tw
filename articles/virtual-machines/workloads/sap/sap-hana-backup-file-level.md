@@ -14,9 +14,9 @@ ms.workload: infrastructure-services
 ms.date: 3/13/2017
 ms.author: rclaus
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: f2449ffda80ec7cb7a73a6eac229d09c3a4a96cc
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 047d9191e2c844a591c35279ff7b143906087f56
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -105,7 +105,7 @@ HANA Studio 備份主控台可讓您限制 HANA 備份檔案的檔案大小上�
 
 ![使用 **start-azurestorageblobcopy** PowerShell 命令複製所有相關的 VHD](media/sap-hana-backup-file-level/image031.png)
 
-備份至本機軟體 RAID 完成之後，使用 **start-azurestorageblobcopy** PowerShell 命令複製所有相關的 VHD (請參閱 [Start-AzureStorageBlobCopy](/powershell/storage/azure.storage/v2.1.0/start-azurestorageblobcopy))。 由於它只會影響保留備份檔案的專用檔案系統，無需考慮 SAP HANA 資料或磁碟上的記錄檔一致性。 這個命令的好處是，它可以在 VM 為線上狀態時運作。 若要確保沒有處理序寫入備份串接集，請務必在 blob 複本之前先它取消掛接，之後再將它掛接回來。 或者，可以使用適當的方式「凍結」&quot;&quot;檔案系統。 例如，在 XFS 檔案系統使用 xfs\_freeze。
+備份至本機軟體 RAID 完成之後，使用 **start-azurestorageblobcopy** PowerShell 命令複製所有相關的 VHD (請參閱 [Start-AzureStorageBlobCopy](/powershell/module/azure.storage/start-azurestorageblobcopy))。 由於它只會影響保留備份檔案的專用檔案系統，無需考慮 SAP HANA 資料或磁碟上的記錄檔一致性。 這個命令的好處是，它可以在 VM 為線上狀態時運作。 若要確保沒有處理序寫入備份串接集，請務必在 blob 複本之前先它取消掛接，之後再將它掛接回來。 或者，可以使用適當的方式「凍結」&quot;&quot;檔案系統。 例如，在 XFS 檔案系統使用 xfs\_freeze。
 
 ![這個螢幕擷取畫面顯示 Azure 入口網站上 vhd 容器中的 blob 清單](media/sap-hana-backup-file-level/image032.png)
 

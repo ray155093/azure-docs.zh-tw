@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: d9b713460f98104017ae73ea27f30b0d8d1ca7ee
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 8b823c42743bc477dceaa3270836de8ebd92c28f
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -38,7 +38,7 @@ ms.lasthandoff: 03/27/2017
 
 這些步驟遵循建立 Azure PowerShell 命令集合的填空方法。 如果您剛使用 PowerShell 或只想知道可指定哪些值來成功設定組態，這個方法相當實用。 進階的 PowerShell 使用者可以使用命令並取代本身的變數值 (以「$」為開頭的行)。
 
-如果您尚未這樣做，請按照 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的操作方法，在本機電腦安裝 Azure PowerShell。 然後，開啟 Windows PowerShell 命令提示字元。
+如果您尚未這樣做，請按照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 中的操作方法，在本機電腦安裝 Azure PowerShell。 然後，開啟 Windows PowerShell 命令提示字元。
 
 ## <a name="step-1-add-your-account"></a>步驟 1︰加入您的帳戶
 1. 在 PowerShell 提示字元中，輸入 **Add-AzureAccount**，然後按一下 **Enter** 鍵。 
@@ -122,7 +122,7 @@ ms.lasthandoff: 03/27/2017
     $domacctdomain="<domain of the account that has permission to add the machine to the domain>"
     $vm1 | Add-AzureProvisioningConfig -AdminUsername $cred1.Username -Password $cred1.GetNetworkCredential().Password -WindowsDomain -Domain $domacctdomain -DomainUserName $cred2.Username -DomainPassword $cred2.GetNetworkCredential().Password -JoinDomain $domaindns
 
-如需以 Windows 為基礎的虛擬機器的其他預先組態選項，請參閱 [Add-AzureProvisioningConfig](https://msdn.microsoft.com/library/azure/dn495299.aspx) 中的 **Windows** 和 **WindowsDomain** 參數集語法。
+如需以 Windows 為基礎的虛擬機器的其他預先組態選項，請參閱 [Add-AzureProvisioningConfig](/powershell/module/azure/add-azureprovisioningconfig) 中的 **Windows** 和 **WindowsDomain** 參數集語法。
 
 也可選擇將特定 IP 位址 (稱為靜態 DIP) 指派給虛擬機器。
 

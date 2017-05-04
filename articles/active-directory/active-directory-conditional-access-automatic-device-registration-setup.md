@@ -15,15 +15,15 @@ ms.topic: article
 ms.date: 03/24/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 6028116d18207d13729d1816f64ad192d4cdb491
-ms.lasthandoff: 04/26/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 0fb7e8fe778c8d6f7e12b1c8a75c95941da3d4d9
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="how-to-configure-automatic-registration-of-windows-domain-joined-devices-with-azure-active-directory"></a>如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊
 
-若要使用 [Azure Active Directory 裝置型條件式存取](active-directory-conditional-access-azure-portal.md)，電腦必須向 Azure Active Directory (Azure AD) 註冊。 您可以在 [Azure Active Directory PowerShell 模組](https://docs.microsoft.com/en-us/powershell/msonline/) 中使用 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) Cmdlet，以取得您組織中已註冊的裝置清單。 
+若要使用 [Azure Active Directory 裝置型條件式存取](active-directory-conditional-access-azure-portal.md)，電腦必須向 Azure Active Directory (Azure AD) 註冊。 您可以在 [Azure Active Directory PowerShell 模組](/powershell/azure/install-msonlinev1?view=azureadps-2.0) 中使用 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) Cmdlet，以取得您組織中已註冊的裝置清單。 
 
 本文會提供可供設定讓已加入網域的 Windows 裝置自動向組織中之 Azure AD 註冊的相關步驟。
 
@@ -302,7 +302,7 @@ Azure AD Connect：
 
 
 如需已驗證之網域名稱的詳細資料，請參閱[將自訂網域名稱新增至 Azure Active Directory](active-directory-add-domain.md)。  
-若要取得已驗證之公司網域的清單，您可以使用 [Get-MsolDomain](https://docs.microsoft.com/powershell/msonline/v1/get-msoldomain) Cmdlet。 
+若要取得已驗證之公司網域的清單，您可以使用 [Get-MsolDomain](/powershell/module/msonline/get-msoldomain?view=azureadps-1.0) Cmdlet。 
 
 ![Get-MsolDomain](./media/active-directory-conditional-access-automatic-device-registration-setup/01.png)
 
@@ -565,7 +565,7 @@ Azure AD Connect：
 
 ## <a name="step-5-verify-registered-devices"></a>步驟 5︰驗證已註冊的裝置
 
-您可以在 [Azure Active Directory PowerShell 模組](https://docs.microsoft.com/en-us/powershell/msonline/) 中使用 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) Cmdlet，以查看您組織中已註冊成功的裝置。
+您可以在 [Azure Active Directory PowerShell 模組](/powershell/azure/install-msonlinev1?view=azureadps-2.0) 中使用 [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) Cmdlet，以查看您組織中已註冊成功的裝置。
 
 此 Cmdlet 的輸出會顯示 Azure AD 中已註冊的裝置。 若要取得所有裝置，請使用 **-All** 參數，然後使用 **deviceTrustType** 屬性進行篩選。 已加入網域的裝置具有**已加入網域**這個值。
 

@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: d2bb2422a8458f1577c14bad8d24d8c9cb3ead1b
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: f3b464350f027bb1966638542fcc64d6fdc00a71
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 03/31/2017
 ## <a name="before-beginning"></a>開始之前
 
 ### <a name="1-download-the-latest-azure-resource-manager-powershell-cmdlets"></a>1.下載最新版的 Azure Resource Manager PowerShell Cmdlet。
-下載並安裝最新版的 Azure Resource Manager PowerShell Cmdlet。 如需下載和安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+下載並安裝最新版的 Azure Resource Manager PowerShell Cmdlet。 如需下載和安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ### <a name="2-connect-to-your-azure-account"></a>2.連線至您的 Azure 帳戶。 
 開啟 PowerShell 主控台並連接到您的帳戶。 使用下列範例來協助您連接：
@@ -325,3 +325,4 @@ Get-AzureRmResourceGroup -ResourceGroupName RG1
     ResourceGroupName : RG1
     Location          : eastus
     ProvisioningState : Succeeded
+

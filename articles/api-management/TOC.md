@@ -47,7 +47,7 @@
 ### [使用 Azure 監視器監視](api-management-howto-use-azure-monitor.md)
 ### [使用角色型存取控制](api-management-role-based-access-control.md)
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs)
+## [PowerShell](/powershell/azure/overview)
 ## [REST](/rest/api/apimanagement/)
 ## [REST (原始)](/rest/api/apimanagement/ApiManagementREST/api-management-REST)
 ## [原則](api-management-policies.md)

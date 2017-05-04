@@ -15,15 +15,15 @@ ms.workload: na
 ms.date: 04/06/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: b4acb01f4939b55317ac0c78eb467159d872f47a
-ms.lasthandoff: 04/11/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 02e4e58418e289eaf4b619a6cfc411fe1f50f48f
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="use-powershell-to-manage-service-bus-resources"></a>使用 PowerShell 來管理服務匯流排資源
 
-Microsoft Azure PowerShell 是一種指令碼環境，可讓您用來控制及自動化 Azure 服務的部署和管理。 本文說明如何使用本機 Azure PowerShell 主控台或指令碼，運用[服務匯流排 Resource Manager PowerShell 模組](/powershell/module/azurerm.servicebus/?view=azurermps-3.7.0#service_bus)來佈建及管理服務匯流排實體 (命名空間、佇列、主題和訂用帳戶)。
+Microsoft Azure PowerShell 是一種指令碼環境，可讓您用來控制及自動化 Azure 服務的部署和管理。 本文說明如何使用本機 Azure PowerShell 主控台或指令碼，運用[服務匯流排 Resource Manager PowerShell 模組](/powershell/module/azurerm.servicebus)來佈建及管理服務匯流排實體 (命名空間、佇列、主題和訂用帳戶)。
 
 您也可以使用 Azure Resource Manager 範本來管理服務匯流排實體。 如需詳細資訊，請參閱[使用 Azure Resource Manager 範本建立服務匯流排資源](service-bus-resource-manager-overview.md)文章。
 
@@ -158,11 +158,11 @@ Set-AzureRmServiceBusQueue -ResourceGroup $ResGrpName -NamespaceName $Namespace 
 
 ## <a name="provisioning-other-service-bus-entities"></a>佈建其他服務匯流排實體
 
-您可以使用[服務匯流排 PowerShell 模組](/powershell/module/azurerm.servicebus/?view=azurermps-3.7.0#service_bus)來佈建其他實體，例如主題和訂用帳戶。 這些 Cmdlet 在語法上類似於上一節中所示範的佇列建立 Cmdlet。
+您可以使用[服務匯流排 PowerShell 模組](/powershell/module/azurerm.servicebus)來佈建其他實體，例如主題和訂用帳戶。 這些 Cmdlet 在語法上類似於上一節中所示範的佇列建立 Cmdlet。
 
 ## <a name="next-steps"></a>後續步驟
 
-- 請在[這裡](/powershell/module/azurerm.servicebus/?view=azurermps-3.7.0#service_bus)參閱完整的服務匯流排 Resource Manager PowerShell 模組文件。 此頁面會列出所有可用的 Cmdlet。
+- 請在[這裡](/powershell/module/azurerm.servicebus)參閱完整的服務匯流排 Resource Manager PowerShell 模組文件。 此頁面會列出所有可用的 Cmdlet。
 - 如需使用 Azure Resource Manager 範本的相關資訊，請參閱[使用 Azure Resource Manager 範本建立服務匯流排資源](service-bus-resource-manager-overview.md)文章。
 - [服務匯流排 .NET 管理程式庫](service-bus-management-libraries.md)的相關資訊。
 

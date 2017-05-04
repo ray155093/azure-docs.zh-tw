@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: magoedte;bwren
 translationtype: Human Translation
-ms.sourcegitcommit: 24d86e17a063164c31c312685c0742ec4a5c2f1b
-ms.openlocfilehash: 4c0c4f8c0d6c7cdc98406559f1cd36c87d33bf47
-ms.lasthandoff: 03/11/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 28896becae631eb316775e0904930f750bafa607
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -33,14 +33,14 @@ ms.lasthandoff: 03/11/2017
 
 自動化變數會保存，即使 Runbook 或 DSC 設定失敗也可持續使用變數。  這也可讓一個 Runbook 設定某個值，然後由另一個 Runbook 使用，或者由相同的 Runbook 或 DSC 設定於下次執行時使用該值。     
 
-建立變數時，您可以指定將其加密儲存。  變數加密時，會安全地儲存在 Azure 自動化中，而且無法透過隨附於 Azure PowerShell 模組的 [Get-AzureRmAutomationVariable](https://msdn.microsoft.com/library/mt603849.aspx) Cmdlet 擷取其值。  可以擷取加密值的唯一方法是從 Runbook 或 DSC 設定中的 **Get-AutomationVariable** 活動。
+建立變數時，您可以指定將其加密儲存。  變數加密時，會安全地儲存在 Azure 自動化中，而且無法透過隨附於 Azure PowerShell 模組的 [Get-AzureRmAutomationVariable](/powershell/module/azurerm.automation/get-azurermautomationvariable) Cmdlet 擷取其值。  可以擷取加密值的唯一方法是從 Runbook 或 DSC 設定中的 **Get-AutomationVariable** 活動。
 
 > [!NOTE]
 > Azure 自動化中的安全資產包括認證、憑證、連接和加密的變數。 這些資產都會經過加密，並使用為每個自動化帳戶產生的唯一索引鍵儲存在 Azure 自動化中。 這個索引鍵是由主要憑證加密，並且儲存在 Azure 自動化中。 儲存安全資產之前，會使用主要憑證解密自動化帳戶的金鑰，然後用來加密資產。
 
 ## <a name="variable-types"></a>變數型別
 
-使用 Azure 入口網站建立變數時，您必須從下拉式清單中指定資料類型，使得入口網站可以顯示適當的控制項來輸入變數值。 變數不會受限於這個資料型別，但如果您想要指定不同型別的值，您必須使用 Windows PowerShell 來設定變數。 如果您指定 [未定義]，則變數的值會設為 **$null**，而且您必須使用 [Set-AzureAutomationVariable](http://msdn.microsoft.com/library/dn913767.aspx) Cmdlet 或 **Set-AutomationVariable** 活動來設定該值。  您無法在入口網站中建立或變更複雜變數型別的值，但是您可以使用 Windows PowerShell 提供任何型別的值。 複雜類型會傳回為 [PSCustomObject](http://msdn.microsoft.com/library/system.management.automation.pscustomobject.aspx)。
+使用 Azure 入口網站建立變數時，您必須從下拉式清單中指定資料類型，使得入口網站可以顯示適當的控制項來輸入變數值。 變數不會受限於這個資料型別，但如果您想要指定不同型別的值，您必須使用 Windows PowerShell 來設定變數。 如果您指定 [未定義]，則變數的值會設為 **$null**，而且您必須使用 [Set-AzureAutomationVariable](/powershell/module/azurerm.automation/set-azurermautomationvariable) Cmdlet 或 **Set-AutomationVariable** 活動來設定該值。  您無法在入口網站中建立或變更複雜變數型別的值，但是您可以使用 Windows PowerShell 提供任何型別的值。 複雜類型會傳回為 [PSCustomObject](http://msdn.microsoft.com/library/system.management.automation.pscustomobject.aspx)。
 
 您可以藉由建立陣列或雜湊表，並將它儲存到變數中，來儲存多個值到單一變數。
 
@@ -57,14 +57,14 @@ ms.lasthandoff: 03/11/2017
 
 ## <a name="cmdlets-and-workflow-activities"></a>Cmdlet 和工作流程活動
 
-下表中的 Cmdlet 是用來使用 Windows PowerShell 建立和管理自動化變數。 它們會隨著 [Azure PowerShell 模組](/powershell/azureps-cmdlets-docs) 一起推出，可供在自動化 Runbook 和 DSC 設定中使用。
+下表中的 Cmdlet 是用來使用 Windows PowerShell 建立和管理自動化變數。 它們會隨著 [Azure PowerShell 模組](/powershell/azure/overview) 一起推出，可供在自動化 Runbook 和 DSC 設定中使用。
 
 |Cmdlet|說明|
 |:---|:---|
-|[Get-AzureRmAutomationVariable](https://msdn.microsoft.com/library/mt603849.aspx)|擷取現有變數的值。|
-|[New-AzureRmAutomationVariable](https://msdn.microsoft.com/library/mt603613.aspx)|建立新的變數並設定其值。|
-|[Remove-AzureRmAutomationVariable](https://msdn.microsoft.com/library/mt619354.aspx)|移除現有的變數。|
-|[Set-AzureRmAutomationVariable](https://msdn.microsoft.com/library/mt603601.aspx)|設定現有的變數的值。|
+|[Get-AzureRmAutomationVariable](/powershell/module/azurerm.automation/get-azurermautomationvariable)|擷取現有變數的值。|
+|[New-AzureRmAutomationVariable](/powershell/module/azurerm.automation/new-azurermautomationvariable)|建立新的變數並設定其值。|
+|[Remove-AzureRmAutomationVariable](/powershell/module/azurerm.automation/remove-azurermautomationvariable)|移除現有的變數。|
+|[Set-AzureRmAutomationVariable](/powershell/module/azurerm.automation/set-azurermautomationvariable)|設定現有的變數的值。|
 
 下表中的工作流程活動可用來在 Runbook 中存取自動化變數。 它們僅供在 Runbook 或 DSC 設定中使用，並且不會隨著 Azure PowerShell 模組的一部分推出。
 
@@ -88,7 +88,7 @@ ms.lasthandoff: 03/11/2017
 
 ### <a name="to-create-a-variable-with-windows-powershell"></a>使用 Windows PowerShell 建立變數
 
-[New-AzureRmAutomationVariable](https://msdn.microsoft.com/library/mt603613.aspx) Cmdlet 會建立變數，並設定其初始值。 您可以使用 [Get-AzureRmAutomationVariable](https://msdn.microsoft.com/library/mt603849.aspx) 來擷取值。 如果值為簡單型別，則會傳回該相同的型別。 如果它是複雜型別，則會傳回 **PSCustomObject** 。
+[New-AzureRmAutomationVariable](/powershell/module/azurerm.automation/new-azurermautomationvariable) Cmdlet 會建立變數，並設定其初始值。 您可以使用 [Get-AzureRmAutomationVariable](/powershell/module/azurerm.automation/get-azurermautomationvariable) 來擷取值。 如果值為簡單型別，則會傳回該相同的型別。 如果它是複雜型別，則會傳回 **PSCustomObject** 。
 
 下列範例命令顯示如何建立字串型別的變數，然後傳回它的值。
 
@@ -111,7 +111,7 @@ ms.lasthandoff: 03/11/2017
 
 ## <a name="using-a-variable-in-a-runbook-or-dsc-configuration"></a>在 Runbook 或 DSC 設定中使用變數
 
-使用 **Set-AutomationVariable** 活動來設定 Runbook 或 DSC 設定中自動化變數的值，並使用 **Get-AutomationVariable** 來擷取它。  您不應該在 Runbook 或 DSC 設定中使用 **Set-AzureAutomationVariable** 或 **Get-AzureAutomationVariable** Cmdlet，因為它們都不如工作流程活動有效率。  您也無法使用 **Get-AzureAutomationVariable**擷取安全變數的值。  在 Runbook 或 DSC 設定中建立變數的唯一方法是使用 [New-AzureAutomationVariable](http://msdn.microsoft.com/library/dn913771.aspx) Cmdlet。
+使用 **Set-AutomationVariable** 活動來設定 Runbook 或 DSC 設定中自動化變數的值，並使用 **Get-AutomationVariable** 來擷取它。  您不應該在 Runbook 或 DSC 設定中使用 **Set-AzureAutomationVariable** 或 **Get-AzureAutomationVariable** Cmdlet，因為它們都不如工作流程活動有效率。  您也無法使用 **Get-AzureAutomationVariable**擷取安全變數的值。  在 Runbook 或 DSC 設定中建立變數的唯一方法是使用 [New-AzureAutomationVariable](/powershell/module/azure/new-azureautomationvariable?view=azuresmps-3.7.0) Cmdlet。
 
 
 ### <a name="textual-runbook-samples"></a>文字式 Runbook 範例

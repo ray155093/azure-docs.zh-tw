@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 04/12/2017
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
-ms.openlocfilehash: ff38f1536bf92911c18e0766ee655583c4d913d6
-ms.lasthandoff: 04/14/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 53ec54def52a6d0659dc12286148213d88e9ae24
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 04/14/2017
 
 因為您在使用 MyApps 入口網站時不幸發生問題，所以可能已到達此頁面。 雖然有時候會要求您連絡技術服務人員或系統管理員來解決問題，但我們在本主題中提供常見問題的處理步驟，您可以先自行嘗試。
 
-如果您要尋找密碼管理相關說明，請嘗試[這個](active-directory-passwords-update-your-own-password.md#reset-my-password)。
+如果您要尋找密碼管理相關說明，請嘗試[這個](active-directory-passwords-update-your-own-password.md)。
 
 
 ## <a name="what-is-the-myapps-portal"></a>什麼是 MyApps 入口網站？
@@ -49,7 +49,7 @@ MyApps 是一個 Web 入口網站，可讓您︰
 3.    輸入您的舊密碼，然後輸入新密碼並加以確認。
 4.    按一下 [提交] 。
 
-如需詳細資訊，請參閱[如何更新自己的密碼](active-directory-passwords-update-your-own-password.md#reset-my-password)。
+如需詳細資訊，請參閱[如何更新自己的密碼](active-directory-passwords-update-your-own-password.md)。
 
 
 ## <a name="how-do-i-setup-password-reset"></a>如何設定密碼重設？
@@ -58,7 +58,7 @@ MyApps 是一個 Web 入口網站，可讓您︰
 2.    在 [管理帳戶] 底下，按一下 [設定自助密碼重設]。
 3.    依照對話方塊中的步驟進行並提交。
 
-如需詳細資訊，請參閱[如何重設密碼](active-directory-passwords-update-your-own-password.md#reset-my-password)。
+如需詳細資訊，請參閱[如何重設密碼](active-directory-passwords-update-your-own-password.md)。
 
 
 ## <a name="how-can-i-add-a-new-app"></a>如何新增應用程式？

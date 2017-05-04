@@ -15,9 +15,9 @@ ms.topic: get-started-article
 ms.date: 03/14/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 79c6ef627d20be52b6067d1f6dfea2a53505c590
-ms.lasthandoff: 03/18/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 554931e96e073ec2f2f68df2297e1ee21f5eda87
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -66,7 +66,7 @@ ms.lasthandoff: 03/18/2017
 在您啟用您的使用者後，請透過電子郵件通知他們。 下次他們嘗試登入時，系統會要求他們針對雙步驟驗證註冊帳戶。 開始使用雙步驟驗證後，他們還需要設定應用程式密碼，以避免遭到鎖定而無法使用非瀏覽器應用程式。
 
 ## <a name="use-powershell-to-automate-turning-on-two-step-verification"></a>使用 PowerShell 自動開啟雙步驟驗證
-若要使用 [Azure AD PowerShell](/powershell/azureps-cmdlets-docs) 變更[狀態](multi-factor-authentication-whats-next.md)，您可以使用下列程式碼。  您可以將 `$st.State` 變更為下列其中一個狀態：
+若要使用 [Azure AD PowerShell](/powershell/azure/overview) 變更[狀態](multi-factor-authentication-whats-next.md)，您可以使用下列程式碼。  您可以將 `$st.State` 變更為下列其中一個狀態：
 
 * 已啟用
 * 已強制

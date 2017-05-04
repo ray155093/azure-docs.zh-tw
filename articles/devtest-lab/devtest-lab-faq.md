@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/22/2017
 ms.author: tarcher
 translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 519f035b411f254e8412ba9a8868b226c63cccb6
-ms.lasthandoff: 04/21/2017
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: e7dad0f943375f1bf2996564558e313416506506
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -136,7 +136,7 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 * [從 VSTS 在現有 AzureDevTestLab 部署新的 VM](http://www.visualstudiogeeks.com/blog/DevOps/Deploy-New-VM-To-Existing-AzureDevTestLab-From-VSTS)
 * [使用 VSTS 發行管理來持續部署至 AzureDevTestLabs](http://www.visualstudiogeeks.com/blog/DevOps/Use-VSTS-ReleaseManagement-to-Deploy-and-Test-in-AzureDevTestLabs)
 
-至於其他 CI/CD 工具鏈，先前提到可透過 VSTS 工作擴充功能實現的所有案例，皆可經由類似方式，透過使用 [Azure PowerShell Cmdlet](../azure-resource-manager/resource-group-template-deploy.md) 和 [.NET SDK](https://www.nuget.org/packages/Microsoft.Azure.Management.DevTestLabs/) 部署 [Azure Resource Manager 範本](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)來實現。 您也可以使用 [適用於 DevTest Labs 的 REST API](http://aka.ms/dtlrestapis) 來與您的工具鏈整合。  
+至於其他 CI/CD 工具鏈，先前提到可透過 VSTS 工作擴充功能實現的所有案例，皆可經由類似方式，透過使用 [Azure PowerShell Cmdlet](../azure-resource-manager/resource-group-template-deploy.md) 和 [.NET SDK](https://www.nuget.org/packages/Microsoft.Azure.Management.DevTestLabs/) 部署 [Azure Resource Manager 範本](https://aka.ms/dtlquickstarttemplate)來實現。 您也可以使用 [適用於 DevTest Labs 的 REST API](http://aka.ms/dtlrestapis) 來與您的工具鏈整合。  
 
 ### <a name="why-cant-i-see-certain-vms-in-the-azure-virtual-machines-blade-that-i-see-within-azure-devtest-labs"></a>為什麼我在 [Azure 虛擬機器] 刀鋒視窗中沒看到可在 Azure DevTest Labs 看到的某些 VM？
 在 Azure DevTest Labs 建立 VM 時，會提供存取該 VM 的權限。 您可以在實驗室刀鋒視窗和 [虛擬機器]  刀鋒視窗中檢視。 具有 DevTest Labs 角色的使用者可透過實驗室的 [所有虛擬機器]  刀鋒視窗，看到實驗室中建立的所有虛擬機器。 不過，具有 DevTest Labs 角色的使用者則沒有其他人所建立 VM 資源的讀取權限。 因此，這些 VM 不會顯示在 [虛擬機器]  刀鋒視窗。
@@ -145,7 +145,7 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 自訂映像是 VHD (虛擬硬碟)，公式則是可額外進行設定之可儲存和重現的映像。 如果您想要使用相同的不可變基底映像快速建立幾個環境，自訂映像可能較合適。 如果您想要使用最新版本、虛擬網路/子網路或特定大小重現您 VM 的組態，則公式可能較合適。 如需更深入的說明，請參閱 [比較 DevTest Labs 中的自訂映像和公式](devtest-lab-comparing-vm-base-image-types.md)一文。
 
 ### <a name="how-do-i-create-multiple-vms-from-the-same-template-at-once"></a>如何從相同範本一次建立多個 VM？
-您可以使用 [VSTS 工作擴充功能](https://marketplace.visualstudio.com/items?itemName=ms-azuredevtestlabs.tasks)，或在建立 VM 時[產生 Azure Resource Manager 範本](devtest-lab-add-vm-with-artifacts.md#save-azure-resource-manager-template)，然後[從 Windows PowerShell 部署 Azure Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)。
+您可以使用 [VSTS 工作擴充功能](https://marketplace.visualstudio.com/items?itemName=ms-azuredevtestlabs.tasks)，或在建立 VM 時[產生 Azure Resource Manager 範本](devtest-lab-add-vm.md#save-azure-resource-manager-template)，然後[從 Windows PowerShell 部署 Azure Resource Manager 範本](../azure-resource-manager/resource-group-template-deploy.md)。
 
 ### <a name="how-do-i-move-my-existing-azure-vms-into-my-azure-devtest-labs-lab"></a>如何將現有 Azure VM 移到 Azure DevTest Labs 實驗室？
 我們正在設計可直接將 VM 移至 Azure DevTest Labs 的解決方案，但目前來說，您可依下列方式，將現有 VM 複製到 Azure DevTest Labs︰
@@ -219,7 +219,7 @@ Azure DevTest Labs 是一項免費服務，這表示建立實驗室和設定原�
 構件是可用來在 VM 中部署最新版本或開發工具的可自訂項目。 只要按幾下滑鼠，構件就會在 VM 建立期間與其連接，而在 VM 佈建好之後，構件就會部署並設定 VM。 我們的[公用 GitHub 存放庫](https://github.com/Azure/azure-devtestlab/tree/master/Artifacts)中有許多既存構件，但您也可以輕易地[撰寫自己的構件](devtest-lab-artifact-author.md)。
 
 ### <a name="how-do-i-create-a-lab-from-an-azure-resource-manager-template"></a>如何從 Azure Resource Manager 範本建立實驗室？
-我們已提供一個 [實驗室 Azure Resource Manager 範本的 GitHub 存放庫](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)，您可以依原狀部署，或是加以修改來為您的實驗室建立自訂範本。 這些範本都各有可供點按的連結，可讓您在自己的 Azure 訂用帳戶下依原狀部署實驗室，或者您也可以自訂範本並 [使用 PowerShell 或 Azure CLI 進行部署](../azure-resource-manager/resource-group-template-deploy.md)。
+我們已提供一個 [實驗室 Azure Resource Manager 範本的 GitHub 存放庫](https://aka.ms/dtlquickstarttemplate)，您可以依原狀部署，或是加以修改來為您的實驗室建立自訂範本。 這些範本都各有可供點按的連結，可讓您在自己的 Azure 訂用帳戶下依原狀部署實驗室，或者您也可以自訂範本並 [使用 PowerShell 或 Azure CLI 進行部署](../azure-resource-manager/resource-group-template-deploy.md)。
 
 ### <a name="why-are-my-vms-created-in-different-resource-groups-with-arbitrary-names-can-i-rename-or-modify-these-resource-groups"></a>為何我的 VM 會建立在具有任意名稱的不同資源群組中？ 我是否可以重新命名或修改這些資源群組？
 之所以用這種方式建立資源群組，是為了讓 Azure DevTest Labs 管理使用者對虛擬機器的權限和存取權。 雖然可以將 VM 移到另一個具有您所需名稱的資源群組，但不建議這樣做。 我們正致力於改善這個體驗，以增加更多彈性。   

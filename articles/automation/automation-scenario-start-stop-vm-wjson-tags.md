@@ -15,8 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: magoedte;paulomarquesc
 translationtype: Human Translation
-ms.sourcegitcommit: 00d348306f76194bb44e5252be5c956a48192768
-ms.openlocfilehash: 69f05a8c0fc88201fc365546870585de5a419f1d
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: af0bc6b24a403bd09092ac0a099c500d651d15b7
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -145,7 +146,7 @@ Runbook 會循環執行已附加排程的虛擬機器，並檢查應採取什麼
 ### <a name="tag-from-powershell"></a>從 PowerShell 進行標記
 所有匯入的 Runbook 都在指令碼的開頭包含說明資訊，以描述如何直接從 PowerShell 執行 Runbook。 您可以從 PowerShell 呼叫 Add-ScheduleResource 和 Update-ScheduleResource Runbook。 若要這麼做，您可以傳遞必要的參數，以讓您能夠在入口網站外部的 VM 或資源群組上建立或更新排程標籤。
 
-若要透過 PowerShell 建立、新增和刪除標籤，您必須先 [設定 Azure 的 PowerShell 環境](/powershell/azureps-cmdlets-docs)。 在完成安裝後，您可以繼續進行下列步驟。
+若要透過 PowerShell 建立、新增和刪除標籤，您必須先 [設定 Azure 的 PowerShell 環境](/powershell/azure/overview)。 在完成安裝後，您可以繼續進行下列步驟。
 
 ### <a name="create-a-schedule-tag-with-powershell"></a>使用 PowerShell 建立排程標籤
 1. 開啟 PowerShell 工作階段。 然後使用下列範例，以使用您的「執行身分」帳戶進行驗證並指定訂用帳戶︰
@@ -241,9 +242,4 @@ Runbook 會循環執行已附加排程的虛擬機器，並檢查應採取什麼
 * 如需 PowerShell 指令碼支援功能的詳細資訊，請參閱 [Azure 自動化中的原生 PowerShell 指令碼支援](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)。
 * 若要深入了解 Runbook 記錄和輸出，請參閱 [Azure 自動化中的 Runbook 輸出和訊息](automation-runbook-output-and-messages.md)。
 * 若要深入了解 Azure 執行身分帳戶以及如何使用它來驗證 Runbook，請參閱[使用 Azure 執行身分帳戶驗證 Runbook](automation-sec-configure-azure-runas-account.md)。
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

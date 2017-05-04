@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/21/2017
+ms.date: 04/21/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: df4340ce5185405334f08f6098590f84b067dafd
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: 2e7c1ddedaa11fb614f2e8cf6d1644ae2a2beae3
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -86,7 +86,7 @@ ms.lasthandoff: 03/22/2017
 3. 結束通話。
 
 ### <a name="view-fraud-reports"></a>檢視詐騙報告
-1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 在左側選取 [Active Directory]。
 3. 在頂端選取 [Multi-Factor Auth Provider]。 這會顯示您的多因素驗證提供者清單。
 4. 選取您的 Multi-Factor Auth Provider，然後按一下頁面底部的 [管理]。 這時會開啟 Azure Multi-Factor Authentication 管理入口網站。
@@ -98,9 +98,9 @@ ms.lasthandoff: 03/22/2017
 「單次許可」可讓使用者只驗證一次，不需要執行雙步驟驗證。 許可只是暫時性，經過指定的秒數之後就會到期。 在行動裝置應用程式或電話沒有收到通知或來電的情況下，您可以啟用單次許可，讓使用者能夠存取所需的資源。
 
 ### <a name="create-a-one-time-bypass"></a>建立單次許可
-1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 依照此頁面最上方的指示，瀏覽至 MFA 管理入口網站。
-3. 在 Azure Multi-Factor Authentication 管理入口網站中，如果在左側看到您的租用戶或 Azure MFA 提供者的名稱旁邊有一個 **++，按一下** 可查看不同的 MFA 伺服器複寫群組和 Azure 預設群組。 選取適當的群組。
+3. 在 Azure Multi-Factor Authentication 管理入口網站中，如果在左側看到您的租用戶或 Azure MFA 提供者的名稱旁邊有一個 **++，按一下**  可查看不同的 MFA 伺服器複寫群組和 Azure 預設群組。 選取適當的群組。
 4. 在 [使用者管理] 底下，選取 [單次許可] 。
 5. 在 [單次許可] 頁面中，按一下 [新增單次許可] 。
 
@@ -110,7 +110,7 @@ ms.lasthandoff: 03/22/2017
 7. 時間限制立即生效，因此，使用者必須在單次許可到期之前登入。 
 
 ### <a name="view-the-one-time-bypass-report"></a>檢視單次許可報告
-1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 在左側選取 [Active Directory]。
 3. 在頂端選取 [Multi-Factor Auth Provider]。 這會顯示您的多因素驗證提供者清單。
 4. 選取您的 Multi-Factor Auth Provider，然後按一下頁面底部的 [管理]。 這時會開啟 Azure Multi-Factor Authentication 管理入口網站。
@@ -134,7 +134,7 @@ ms.lasthandoff: 03/22/2017
 若要上傳自訂訊息︰
 
 1. 使用其中一種支援的檔案格式建立自訂語音訊息。
-2. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。
+2. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 3. 依照此頁面最上方的指示，瀏覽至 MFA 管理入口網站。
 4. 在 Azure Multi-Factor Authentication 管理入口網站中，按一下 [設定] 區段底下的 [語音訊息]。
 5. 在 [設定：語音訊息] 頁面上，按一下 [新增語音訊息]。
@@ -164,7 +164,7 @@ ms.lasthandoff: 03/22/2017
 快取並非用於登入 Azure AD。
 
 ### <a name="set-up-caching"></a>設定快取 
-1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 依照此頁面最上方的指示，瀏覽至 MFA 管理入口網站。
 3. 在 Azure Multi-Factor Authentication 管理入口網站中，按一下 [設定] 區段底下的 [快取]。
 4. 在 [設定快取] 頁面上，按一下 [新增快取]。
@@ -193,7 +193,7 @@ ms.lasthandoff: 03/22/2017
 不論啟用或停用「信任的 IP」，瀏覽器流程需要雙步驟驗證，較舊的豐富型用戶端應用程式需要應用程式密碼。 
 
 ### <a name="to-enable-trusted-ips"></a>啟用信任的 IP
-1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 依照本文開頭的指示，瀏覽至 [MFA 服務設定] 頁面。
 3. 在 [服務設定] 頁面之 [信任的 IP] 下方，您有兩個選擇：
    
@@ -255,7 +255,7 @@ Azure AD 支援與內部部署 Windows Server Active Directory Domain Services (
 ### <a name="allow-app-password-creation"></a>允許建立應用程式密碼
 根據預設，使用者無法建立應用程式密碼。 這項功能必須經過啟用。 若要允許使用者建立應用程式密碼，請使用下列程序：
 
-1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 依照本文開頭的指示，瀏覽至 [MFA 服務設定] 頁面。
 3. 選取 [允許使用者建立應用程式密碼以登入非瀏覽器應用程式] 旁的選項按鈕。
 
@@ -283,7 +283,7 @@ Azure AD 支援與內部部署 Windows Server Active Directory Domain Services (
 >當使用者透過 Azure MFA Server 或第三方 MFA 解決方案執行雙步驟驗證時，這項功能無法與 AD FS 的「讓我保持登入」功能相容。 如果您的使用者選取 AD FS 上的「讓我保持登入」，並將其裝置標示為受 MFA 信任，他們在「記住 MFA」天數到期後將無法確認。 Azure AD 要求重新整理雙步驟驗證，但是 AD FS 會傳回包含原始 MFA 宣告及日期的權杖，而不是再次執行雙步驟驗證。 這會啟動 Azure AD 與 AD FS 之間的驗證迴圈。 
 
 ### <a name="enable-remember-multi-factor-authentication"></a>啟用記住 Multi-Factor Authentication
-1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 依照本文開頭的指示，瀏覽至 [MFA 服務設定] 頁面。
 3. 在 [服務設定] 頁面的管理使用者裝置設定下方，勾選 [允許使用者在其信任的裝置記住多重要素驗證]。
    ![記住裝置](./media/multi-factor-authentication-whats-next/remember.png)
@@ -310,7 +310,7 @@ Azure AD 支援與內部部署 Windows Server Active Directory Domain Services (
 | 行動應用程式傳回的驗證碼 |Microsoft Authenticator 應用程式每隔 30 秒會產生新的 OATH 驗證碼。 使用者會在登入介面中輸入這個驗證碼。<br>Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。 |
 
 ### <a name="how-to-enabledisable-authentication-methods"></a>如何啟用/停用驗證方法
-1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 依照本文開頭的指示，瀏覽至 [MFA 服務設定] 頁面。
 3. 在 [服務設定] 頁面的驗證選項下，選取/取消選取您想要使用的選項。
    ![驗證選項](./media/multi-factor-authentication-whats-next/authmethods.png)

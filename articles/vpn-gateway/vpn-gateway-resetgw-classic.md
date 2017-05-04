@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: c63af2de6272604f4d2d1ee694ccc4272192ef9a
-ms.lasthandoff: 04/13/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 0065a4a73ddd7eb9877359626bac231ec3fdef7c
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -61,7 +61,7 @@ ms.lasthandoff: 04/13/2017
 
 ### <a name="resource-manager-deployment-model"></a>資源管理員部署模型。
 
-您將需要最新版的 PowerShell Cmdlet。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。 用於重設閘道器的 PowerShell Resource Manager Cmdlet 是 `Reset-AzureRmVirtualNetworkGateway`。 以下範例會重設資源群組 "TestRG1" 中的 Azure VPN 閘道 "VNet1GW"。
+您將需要最新版的 PowerShell Cmdlet。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 。 用於重設閘道器的 PowerShell Resource Manager Cmdlet 是 `Reset-AzureRmVirtualNetworkGateway`。 以下範例會重設資源群組 "TestRG1" 中的 Azure VPN 閘道 "VNet1GW"。
 
 ```powershell
 $gw = Get-AzureRmVirtualNetworkGateway -Name VNet1GW -ResourceGroup TestRG1
@@ -70,7 +70,7 @@ Reset-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw
 
 ### <a name="resetclassic"></a>傳統部署模型
 
-您將需要最新版的 PowerShell Cmdlet。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 。 用於重設 Azure VPN 閘道的 PowerShell Cmdlet 是 **Reset-AzureVNetGateway**。 下列範例會重設稱為 "ContosoVNet" 的虛擬網路的 Azure VPN 閘道。
+您將需要最新版的 PowerShell Cmdlet。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 。 用於重設 Azure VPN 閘道的 PowerShell Cmdlet 是 **Reset-AzureVNetGateway**。 下列範例會重設稱為 "ContosoVNet" 的虛擬網路的 Azure VPN 閘道。
 
 ```powershell
 Reset-AzureVNetGateway –VnetName “ContosoVNet”

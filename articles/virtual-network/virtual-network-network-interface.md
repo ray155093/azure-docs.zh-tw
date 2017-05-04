@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/14/2017
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
-ms.openlocfilehash: e2d70bbb2af4231a9ba7e4d9a843593ff5d9f7d3
-ms.lasthandoff: 04/14/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: ec3c593c0fb6a92b65284285b330e20f788b84c5
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -42,7 +42,7 @@ ms.lasthandoff: 04/14/2017
 
 本文的其餘各節會提供完成所有 NIC 相關工作的步驟。 每一節會列出︰
 - 在 Azure 入口網站中完成工作的步驟。 若要完成這些步驟，您必須登入 [Azure 入口網站](http://portal.azure.com)。 如果您沒有帳戶，請註冊[免費試用帳戶](https://azure.microsoft.com/free)。
-- 使用 Azure PowerShell 搭配命令參考連結來完成工作的命令。 完成[如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs?toc=%2fazure%2fvirtual-network%2ftoc.json)一文中的步驟，以安裝和設定 PowerShell。 若要取得 PowerShell 命令的說明 (包含範例)，請輸入 `get-help <command> -full`。
+- 使用 Azure PowerShell 搭配命令參考連結來完成工作的命令。 完成[如何安裝及設定 Azure PowerShell](/powershell/azure/overview)一文中的步驟，以安裝和設定 PowerShell。 若要取得 PowerShell 命令的說明 (包含範例)，請輸入 `get-help <command> -full`。
 - 使用 Azure 命令列介面 (CLI) 搭配命令參考連結來完成工作的命令。 完成[如何安裝及設定 Azure CLI 2.0](/cli/azure/install-azure-cli?toc=%2fazure%2fvirtual-network%2ftoc.json) 一文中的步驟，以安裝 Azure CLI。 若要取得 CLI 命令的說明，請輸入 `az <command> -h`。
 
 ## <a name="nics"></a>網路介面
@@ -78,7 +78,7 @@ Azure 入口網站會建立一個名為 **ipconfig1** 且具有動態私人 IP �
 |**工具**|**命令**|
 |:---|:---|
 |**CLI**|[az network nic create](/cli/azure/network/nic?toc=%2fazure%2fvirtual-network%2ftoc.json#create)|
-|**PowerShell**|[New-AzureRmNetworkInterface](/powershell/resourcemanager/azurerm.network/v3.4.0/new-azurermnetworkinterface/cli/azure/network/nic?toc=%2fazure%2fvirtual-network%2ftoc.json#create)|
+|**PowerShell**|[New-AzureRmNetworkInterface](/powershell/module/azurerm.network/nic)|
 
 ### <a name="view-nics"></a>檢視及變更網路介面和設定
 
@@ -100,7 +100,7 @@ Azure 入口網站會建立一個名為 **ipconfig1** 且具有動態私人 IP �
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network nic list](/cli/azure/network/nic?toc=%2fazure%2fvirtual-network%2ftoc.json#list) 用以檢視訂用帳戶中的 NIC；[az network nic show](/cli/azure/network/nic?toc=%2fazure%2fvirtual-network%2ftoc.json#show) 用以檢視 NIC 的設定|
-|**PowerShell**|[Get-AzureRmNetworkInterface](/powershell/resourcemanager/azurerm.network/v3.4.0/get-azurermnetworkinterface?toc=%2fazure%2fvirtual-network%2ftoc.json) 用以檢視訂用帳戶中的 NIC 或檢視 NIC 的設定|
+|**PowerShell**|[Get-AzureRmNetworkInterface](/powershell/module/azurerm.network/get-azurermnetworkinterface) 用以檢視訂用帳戶中的 NIC 或檢視 NIC 的設定|
 
 ### <a name="dns"></a>變更 NIC 的 DNS 設定
 
@@ -116,7 +116,7 @@ Azure 入口網站會建立一個名為 **ipconfig1** 且具有動態私人 IP �
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network nic update](/cli/azure/network/nic?toc=%2fazure%2fvirtual-network%2ftoc.json#update)|
-|**PowerShell**|[Set-AzureRmNetworkInterface](/powershell/resourcemanager/azurerm.network/v3.4.0/set-azurermnetworkinterface?toc=%2fazure%2fvirtual-network%2ftoc.json)|
+|**PowerShell**|[Set-AzureRmNetworkInterface](/powershell/module/azurerm.network/set-azurermnetworkinterface)|
 
 ### <a name="ip-forwarding"></a>變更 NIC 的 IP 轉送
 
@@ -136,7 +136,7 @@ IP 轉送可讓連結 NIC 的 VM：
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network nic update](/cli/azure/network/nic?toc=%2fazure%2fvirtual-network%2ftoc.json#update)|
-|**PowerShell**|[Set-AzureRmNetworkInterface](/powershell/resourcemanager/azurerm.network/v3.4.0/set-azurermnetworkinterface?toc=%2fazure%2fvirtual-network%2ftoc.json)|
+|**PowerShell**|[Set-AzureRmNetworkInterface](/powershell/module/azurerm.network/set-azurermnetworkinterface)|
 
 ### <a name="subnet"></a>變更 NIC 所連線至的子網路
 
@@ -153,7 +153,7 @@ IP 轉送可讓連結 NIC 的 VM：
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network nic ip-config update](/cli/azure/network/nic/ip-config?toc=%2fazure%2fvirtual-network%2ftoc.json#update)|
-|**PowerShell**|[Set-AzureRmNetworkInterfaceIpConfig](/powershell/resourcemanager/azurerm.network/v3.4.0/set-azurermnetworkinterfaceipconfig?toc=%2fazure%2fvirtual-network%2ftoc.json)|
+|**PowerShell**|[Set-AzureRmNetworkInterfaceIpConfig](/powershell/module/azurerm.network/set-azurermnetworkinterfaceipconfig)|
 
 
 ### <a name="delete-nic"></a>刪除網路介面
@@ -169,7 +169,7 @@ IP 轉送可讓連結 NIC 的 VM：
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network nic delete](/cli/azure/network/nic?toc=%2fazure%2fvirtual-network%2ftoc.json#delete)|
-|**PowerShell**|[Remove-AzureRmNetworkInterface](/powershell/resourcemanager/azurerm.network/v3.1.0/remove-azurermnetworkinterface?toc=%2fazure%2fvirtual-network%2ftoc.json)|
+|**PowerShell**|[Remove-AzureRmNetworkInterface](/powershell/module/azurerm.network/remove-azurermnetworkinterface)|
 
 ## <a name="ip-configs"></a>IP 組態
 每個 NIC 至少有一個 IP 組態，也稱為**主要**組態。 NIC 也可以有一或多個相關聯的*次要* IP 組態。 您可以指派給 NIC 的 IP 位址數目有所限制。 如需詳細資訊，請閱讀 [Azure 限制](../azure-subscription-service-limits.md?toc=%2fazure%2fvirtual-network%2ftoc.json#azure-resource-manager-virtual-networking-limits)一文。 每個 IP 組態︰
@@ -205,7 +205,7 @@ Azure DHCP 伺服器會將 NIC 之主要 IP 組態的私人 IP 位址指派給 V
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network nic ip-config create](/cli/azure/network/nic/ip-config?toc=%2fazure%2fvirtual-network%2ftoc.json#create)|
-|**PowerShell**|[Add-AzureRmNetworkInterfaceIpConfig](/powershell/resourcemanager/azurerm.network/v3.4.0/add-azurermnetworkinterfaceipconfig?toc=%2fazure%2fvirtual-network%2ftoc.json)|
+|**PowerShell**|[Add-AzureRmNetworkInterfaceIpConfig](/powershell/module/azurerm.network/add-azurermnetworkinterfaceipconfig)|
 
 ### <a name="change-ip-config"></a>變更 IP 組態
 
@@ -225,7 +225,7 @@ Azure DHCP 伺服器會將 NIC 之主要 IP 組態的私人 IP 位址指派給 V
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network nic ip-config update](/cli/azure/network/nic/ip-config?toc=%2fazure%2fvirtual-network%2ftoc.json#update)|
-|**PowerShell**|[Set-AzureRMNetworkInterfaceIpConfig](/powershell/resourcemanager/azurerm.network/v3.4.0/set-azurermnetworkinterfaceipconfig?toc=%2fazure%2fvirtual-network%2ftoc.json)|
+|**PowerShell**|[Set-AzureRmNetworkInterfaceIpConfig](/powershell/module/azurerm.network/set-azurermnetworkinterfaceipconfig)|
 
 ### <a name="delete-ip-config"></a>刪除 NIC 中的次要 IP 組態
 
@@ -239,7 +239,7 @@ Azure DHCP 伺服器會將 NIC 之主要 IP 組態的私人 IP 位址指派給 V
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network nic ip-config delete](/cli/azure/network/nic/ip-config?toc=%2fazure%2fvirtual-network%2ftoc.json#delete)|
-|**PowerShell**|[Remove-AzureRmNetworkInterfaceIpConfig](/powershell/resourcemanager/azurerm.network/v3.4.0/remove-azurermnetworkinterfaceipconfig?toc=%2fazure%2fvirtual-network%2ftoc.json)|
+|**PowerShell**|[Remove-AzureRmNetworkInterfaceIpConfig](/powershell/module/azurerm.network/remove-azurermnetworkinterfaceipconfig)|
 
 
 ## <a name="nsgs"></a>網路安全性群組
@@ -259,7 +259,7 @@ Azure DHCP 伺服器會將 NIC 之主要 IP 組態的私人 IP 位址指派給 V
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network nic update](/cli/azure/network/nic?toc=%2fazure%2fvirtual-network%2ftoc.json#update)|
-|**PowerShell**|[Set-AzureRmNetworkInterface](/powershell/resourcemanager/azurerm.network/v3.4.0/set-azurermnetworkinterface?toc=%2fazure%2fvirtual-network%2ftoc.json)|
+|**PowerShell**|[Set-AzureRmNetworkInterface](/powershell/module/azurerm.network/set-azurermnetworkinterface)|
 
 ## <a name="vms"></a>從虛擬機器連結和卸離 NIC
 
@@ -286,7 +286,7 @@ Azure DHCP 伺服器會將 NIC 之主要 IP 組態的私人 IP 位址指派給 V
 您無法將現有的 NIC 連接至新的 VM，或使用 Azure 入口網站建立具有多個 NIC 的 VM。 您可以使用下列 Azure CLI 或 PowerShell 命令，在建立 VM 時連結一或多個現有的 NIC︰
 
 - **CLI：** [az vm create](/cli/azure/vm?toc=%2fazure%2fvirtual-network%2ftoc.json#create)
-- **PowerShell：** [New-AzureRmVM](/powershell/resourcemanager/azurerm.compute/v2.5.0/new-azurermvm?toc=%2fazure%2fvirtual-network%2ftoc.json)
+- **PowerShell：** [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm)
 
 ### <a name="vm-view-nic"></a>檢視連結至虛擬機器的 NIC
 
@@ -298,21 +298,21 @@ Azure DHCP 伺服器會將 NIC 之主要 IP 組態的私人 IP 位址指派給 V
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az vm show](/cli/azure/vm?toc=%2fazure%2fvirtual-network%2ftoc.json#show)|
-|**PowerShell**|[Get-AzureRmVM](/powershell/resourcemanager/azurerm.compute/v1.3.4/get-azurermvm?toc=%2fazure%2fvirtual-network%2ftoc.json)|
+|**PowerShell**|[Get-AzureRmVM](/powershell/module/azurerm.compute/get-azurermvm)|
 
 ### <a name="vm-attach-nic"></a>將 NIC 連結至現有的虛擬機器
 
 您要連結 NIC 的 VM 必須支援多個 NIC 並處於已停止 (已解除配置) 狀態。 您無法使用 Azure 入口網站，將 NIC 連結至現有的 VM。 您可以使用下列 Azure CLI 或 PowerShell 命令，將 NIC 連結至 VM︰
 
 - **CLI：** [az vm nic add](/cli/azure/vm/nic?toc=%2fazure%2fvirtual-network%2ftoc.json#add)
-- **PowerShell：** [Add-AzureRmVMNetworkInterface](/powershell/resourcemanager/azurerm.compute/v2.5.0/add-azurermvmnetworkinterface?toc=%2fazure%2fvirtual-network%2ftoc.json)
+- **PowerShell：** [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface)
 
 ### <a name="vm-detach-nic"></a>從現有的虛擬機器卸離 NIC
 
 您想要卸離 NIC 的 VM 必須處於已停止 (已解除配置) 狀態，而且目前必須至少連結兩個 NIC。 您可以卸離任何 NIC，但 VM 必須永遠連結至少一個 NIC。 如果卸離主要 NIC，Azure 會將主要屬性指派給已連結至 VM 最久的剩餘 NIC。 您也可以自行指定任何 NIC 做為主要 NIC。 您無法從 VM 卸離 NIC，也無法使用 Azure 入口網站設定 NIC 的主要屬性 (雖然您可以使用 PowerShell 或 CLI 來完成這兩項作業)。 您可以使用下列 Azure CLI 或 PowerShell 命令，從 VM 卸離 NIC︰
 
 - **CLI：** [az vm nic remove](/cli/azure/vm/nic?toc=%2fazure%2fvirtual-network%2ftoc.json#remove)
-- **PowerShell：** [Remove-AzureRMVMNetworkInterface](/powershell/resourcemanager/azurerm.compute/v2.5.0/remove-azurermvmnetworkinterface?toc=%2fazure%2fvirtual-network%2ftoc.json)
+- **PowerShell：** [Remove-AzureRMVMNetworkInterface](/powershell/module/azurerm.compute/remove-azurermvmnetworkinterface)
 
 ## <a name="next-steps"></a>後續步驟
 若要使用指令碼建立具有多個 NIC 或 IP 組態的 VM，請閱讀下列文章︰

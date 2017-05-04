@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 09/27/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 96560927bd9dd93c9313be7392e0cea427a50980
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 88541f6054df1476866d68fdc1c9690a73ada83c
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.openlocfilehash: 96560927bd9dd93c9313be7392e0cea427a50980
 
 大部分涉及管理擴展集中虛擬機器的工作，都需要您知道要管理的電腦執行個體識別碼。 您可以使用 [Azure 資源總管](https://resources.azure.com) 尋找擴展集中虛擬機器的執行個體識別碼。 您也可以使用資源總管來確認您所完成的工作狀態。
 
-如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ## <a name="display-information-about-a-scale-set"></a>顯示擴展集的相關資訊
 您可以取得擴展集，也稱為執行個體檢視的一般資訊。 或者，您可以取得更特定的資訊，如擴展集中的資源資訊。
@@ -212,10 +213,5 @@ ms.openlocfilehash: 96560927bd9dd93c9313be7392e0cea427a50980
     Update-AzureRmVmss -ResourceGroupName "resource group name" -Name "scale set name" -VirtualMachineScaleSet $vmss 
 
 如果您要從擴展集移除虛擬機器，會先移除具有最高識別碼的虛擬機器。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

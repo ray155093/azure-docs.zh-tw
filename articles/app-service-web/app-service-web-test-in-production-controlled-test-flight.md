@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/02/2016
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 84b5f28fcd0640fd85b5f8c9d655105790c70d62
-ms.lasthandoff: 01/20/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: e652218e6579ef430a5dc49f77a26a7d97b8b966
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 01/20/2017
 
 *試驗* 是以有限數量的實際客戶驗證新功能或變更的部署程序，同時也是生產案例中的主要測試。 它類似於 beta 測試，有時也稱為「受控試驗」。 許多具有網站空間的大型企業在執行 [靈活開發](https://en.wikipedia.org/wiki/Agile_software_development)時，都採用此方法及早驗證其應用程式更新。 Azure App Service 可讓您透過持續性發佈和 Application Insights 整合生產環境中的測試，以實作相同的營運開發案例。 此方法的優點包括：
 
-* 在更新發行至生產環境之前獲得真正的意見反應 - 在發行之前獲得意見反應的效果，僅次於在發行期間即時獲得的反應。 您可以在產品生命週期中，依需求及早以實際的使用者流量和行為來測試更新。
+* **在更新發行至生產環境*之前*獲得真正的意見反應** - 在發行之前獲得意見反應的效果，僅次於在發行期間即時獲得的反應。 您可以在產品生命週期中，依需求及早以實際的使用者流量和行為來測試更新。
 * **增強[持續性測試導向開發 (CTDD)](https://en.wikipedia.org/wiki/Continuous_test-driven_development)** - 透過 Application Insights 的持續性整合和工具整合生產環境中的測試，使用者驗證將可在您的產品生命週期內及早進行。 這有助於減少在手動測試執行上投入的時間。
 * **最佳化測試工作流程** - 透過持續性監視工具將生產環境中的測試自動化，可讓您在單一程序中達成不同測試類型的目標，例如[整合](https://en.wikipedia.org/wiki/Integration_testing)、[迴歸](https://en.wikipedia.org/wiki/Regression_testing)、[可用性](https://en.wikipedia.org/wiki/Usability_testing)、協助工具、當地語系化、[效能](https://en.wikipedia.org/wiki/Software_performance_testing)、[安全性](https://en.wikipedia.org/wiki/Security_testing)和[接受度](https://en.wikipedia.org/wiki/Acceptance_testing)。
 
@@ -299,7 +299,7 @@ ms.lasthandoff: 01/20/2017
 現在，您的變更已在 beta 位置中執行，因此已可執行試驗部署。
 
 ## <a name="validate-route-traffic-to-the-beta-app"></a>驗證：將流量路由傳送至 beta 應用程式
-在本節中，您要將流量路由傳送至 beta 應用程式。 為了能夠清楚示範，請您將使用者流量的重要部分路由傳送至該應用程式。 實際上，您將路由傳送的流量會取決於您的特定情況。 例如，如果您的網站屬於 microsoft.com 層級，則您可能只需要不到&1;% 總流量即可取得有用的資料。
+在本節中，您要將流量路由傳送至 beta 應用程式。 為了能夠清楚示範，請您將使用者流量的重要部分路由傳送至該應用程式。 實際上，您將路由傳送的流量會取決於您的特定情況。 例如，如果您的網站屬於 microsoft.com 層級，則您可能只需要不到 1% 總流量即可取得有用的資料。
 
 1. 在 Git Shell 工作階段中執行下列命令，將半數的生產流量路由傳送至 beta 位置：
 
@@ -355,6 +355,6 @@ Azure App Service 可讓中小型企業輕鬆地在生產環境中測試其客�
 * [編寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)
 * [JSONLint - JSON 驗證程式](http://jsonlint.com/)
 * [Git 分支 - 基本分支和合併](http://www.git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
-* [Azure PowerShell](/powershell/azureps-cmdlets-docs)
+* [Azure PowerShell](/powershell/azure/overview)
 * [專案 Kudu Wiki](https://github.com/projectkudu/kudu/wiki)
 

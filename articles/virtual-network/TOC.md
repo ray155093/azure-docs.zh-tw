@@ -126,8 +126,8 @@
 ### [輸送量測試](virtual-network-bandwidth-testing.md)
 
 # 參考
-## [PowerShell (資源管理員)](/powershell/resourcemanager/azurerm.network/v3.4.0/azurerm.network)
-## [PowerShell (傳統)](/powershell/servicemanagement/azure.networking/v3.4.0/azure.networking)
+## [PowerShell (資源管理員)](/powershell/module/azurerm.network)
+## [PowerShell (傳統)](/powershell/module/azure/?view=azuresmps-3.7.0)
 ## [Azure CLI](/cli/azure/network)
 ## [Java](/java/api/)
 ## [REST (Resource Manager)](https://msdn.microsoft.com/library/mt163658.aspx)

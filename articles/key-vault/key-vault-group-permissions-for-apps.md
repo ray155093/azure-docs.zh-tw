@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/01/2016
 ms.author: ambapat
 translationtype: Human Translation
-ms.sourcegitcommit: f1a03a0553bc1acd013918f527458603d08cb0f7
-ms.openlocfilehash: 8d213455ad9c771d54c2334e4d31eb4f84c9ec15
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 1549eb40b0ca79522cc5475057c3af7ff4c7fd1c
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -28,7 +29,7 @@ Key Vault 存取控制原則只支援 16 個項目。 不過，您可以建立 A
 
 必要條件如下︰
 * [安裝 Azure Active Directory V2 PowerShell 模組](https://www.powershellgallery.com/packages/AzureAD/2.0.0.30)。
-* [安裝 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+* [安裝 Azure PowerShell](/powershell/azure/overview)。
 * 若要執行下列命令，您需要在 Azure Active Directory 租用戶中建立/編輯群組的權限。 如果您沒有權限，則可能需要連絡 Azure Active Directory 系統管理員。
 
 現在在 PowerShell 中執行下列命令。
@@ -57,9 +58,4 @@ Set-AzureRmKeyVaultAccessPolicy –VaultName ContosoVault –ObjectId $aadGroup.
 ## <a name="next-steps"></a>後續步驟
 
 深入了解如何[保護您的金鑰保存庫](key-vault-secure-your-key-vault.md)。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

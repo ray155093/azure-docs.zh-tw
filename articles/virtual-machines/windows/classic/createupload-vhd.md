@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 07/21/2016
 ms.author: cynthn
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 8cae78052a4433f0a26d774a7085c110e32911c9
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 62c428215c5bd89789ae65bd420281a2f16f33a1
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -32,7 +32,7 @@ ms.lasthandoff: 03/27/2017
 本文假設您具有：
 
 * **Azure 訂用帳戶** - 如果您沒有帳戶，您可以 [免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。
-* **[Microsoft Azure PowerShell](/powershell/azureps-cmdlets-docs)** - 您已安裝 Microsoft Azure PowerShell 模組，並設定成使用您的訂用帳戶。
+* **[Microsoft Azure PowerShell](/powershell/azure/overview)** - 您已安裝 Microsoft Azure PowerShell 模組，並設定成使用您的訂用帳戶。
 * **.VHD 檔案** - 儲存在 .vhd 檔案中並連接至虛擬機器的受支援 Windows 作業系統。 檢查以查看 Sysprep 是否支援在 VHD 上執行的伺服器角色。 如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。
 
     > [!IMPORTANT]
@@ -88,7 +88,7 @@ ms.lasthandoff: 03/27/2017
     ```
 
 ## <a name="step-3-upload-the-vhd-file"></a>步驟 3：上傳 .vhd 檔案
-使用 [Add-AzureVhd](http://msdn.microsoft.com/library/dn495173.aspx) 來上傳 VHD。
+使用 [Add-AzureVhd](https://docs.microsoft.com/en-us/powershell/module/azure/add-azurevhd) 來上傳 VHD。
 
 從您在上一個步驟中使用的 Azure PowerShell 視窗中，輸入下列命令並以您自己的資訊取代 &lsaquo; 括號 &rsaquo; 中的變數。
 
@@ -97,7 +97,7 @@ Add-AzureVhd -Destination "https://<StorageAccountName>.blob.core.windows.net/<C
 ```
 
 ## <a name="step-4-add-the-image-to-your-list-of-custom-images"></a>步驟 4：將映像新增到您的自訂映像清單
-使用 [Add-AzureVMImage](https://msdn.microsoft.com/library/mt589167.aspx) Cmdlet 將映像新增到您的自訂映像清單。
+使用 [Add-AzureVMImage](https://docs.microsoft.com/en-us/powershell/module/azure/add-azurevmimage) Cmdlet 將映像新增到您的自訂映像清單。
 
 ```powershell
 Add-AzureVMImage -ImageName <ImageName> -MediaLocation "https://<StorageAccountName>.blob.core.windows.net/<ContainerName>/<vhdName>.vhd" -OS "Windows"

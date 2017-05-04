@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 02/13/2017
 ms.author: danlep
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: b0f97779c2cf8bf3e7535afa8a2ab1ee45958ad1
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: fd7b14d16a0654dc1368ddb00ea047aa7dd36a4c
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -40,7 +40,7 @@ ms.lasthandoff: 03/31/2017
 ## <a name="environment-setup"></a>環境設定
 [免費帳戶](https://azure.microsoft.com/free/)
 
-[安裝 Azure PowerShell](/powershell/azureps-cmdlets-docs)
+[安裝 Azure PowerShell](/powershell/azure/overview)
 
 [安裝 Azure CLI](../cli-install-nodejs.md)
 
@@ -152,7 +152,7 @@ ms.lasthandoff: 03/31/2017
 
 [服務管理 .NET API](https://msdn.microsoft.com/library/azure/mt420161.aspx)
 
-[Azure 服務管理 PowerShell Cmdlet 參考文件](https://msdn.microsoft.com/library/azure/dn708504.aspx)
+[Azure 服務管理 PowerShell Cmdlet 參考文件](/powershell/azure/overview?view=azuresmps-3.7.0)
 
 ## <a name="troubleshooting"></a>疑難排解
 [疑難排解執行 Windows 之 Azure 虛擬機器的遠端桌面連線](windows/troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)

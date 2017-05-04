@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 03/30/2017
 ms.author: jingwang
 translationtype: Human Translation
-ms.sourcegitcommit: e0c999b2bf1dd38d8a0c99c6cdd4976cc896dd99
-ms.openlocfilehash: e9215bdd02c9d1b595f65997840926080d6d7d01
-ms.lasthandoff: 04/20/2017
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: b60105297fb84ce1240a33d576653f5fa7c950e9
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -188,7 +188,7 @@ JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) �
 請參閱 [複製活動的效能及微調指南](data-factory-copy-activity-performance.md)，其中說明在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素。 它也列出在內部測試期間所觀察到的效能，並討論各種可將「複製活動」效能最佳化的方式。
 
 ## <a name="scheduling-and-sequential-copy"></a>排程和循序複製
-請參閱 [排程和執行](data-factory-scheduling-and-execution.md) ，以取得排程和執行在 Data Factory 中如何運作的詳細資訊。 您可以利用循序/排序的方式，逐一執行多個複製作業。 請參閱[循序複製](data-factory-scheduling-and-execution.md#run-activities-in-a-sequence)一節。
+請參閱 [排程和執行](data-factory-scheduling-and-execution.md) ，以取得排程和執行在 Data Factory 中如何運作的詳細資訊。 您可以利用循序/排序的方式，逐一執行多個複製作業。 請參閱[循序複製](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)一節。
 
 ## <a name="type-conversions"></a>類型轉換
 不同的資料存放區有不同的原生類型系統。 「複製活動」會藉由下列含有兩個步驟的方法，執行從來源類型轉換成接收類型的自動類型轉換：

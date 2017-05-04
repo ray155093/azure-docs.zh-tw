@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/07/2017
+ms.date: 05/01/2017
 ms.author: jotaub;sethm
 translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 2eaf642d3d6617c8500aee283809209a5f31ef88
-ms.lasthandoff: 04/18/2017
+ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
+ms.openlocfilehash: 89049688ab60842910f1bab8e56c349029dd17a7
+ms.lasthandoff: 05/02/2017
 
 ---
 
@@ -28,7 +28,7 @@ ms.lasthandoff: 04/18/2017
 在撰寫本文時，事件中樞範例位於數個不同的位置：
 
 - [MSDN 開發人員程式碼範例](https://code.msdn.microsoft.com/site/search?query=event%20hubs&f%5B0%5D.Value=event%20hubs&f%5B0%5D.Type=SearchText&ac=5)
-- [GitHub](https://github.com/Azure/azure-event-hubs-dotnet/tree/master/samples)
+- [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples)
 
 如需不同版本的 .NET Framework 的詳細資訊，請參閱[架構與目標](/dotnet/articles/standard/frameworks)。
 
@@ -40,11 +40,11 @@ ms.lasthandoff: 04/18/2017
 
 ### <a name="send-events"></a>傳送事件 
 
-[開始傳送](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleSender)範例示範如何撰寫一個 .NET Core 主控台應用程式，以將事件傳送到事件中樞。
+[開始傳送](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleSender)範例示範如何撰寫一個 .NET Core 主控台應用程式，以將事件傳送到事件中樞。
 
 ### <a name="receive-events"></a>接收事件 
 
-[開始使用事件處理器主機接收](https://github.com/Azure/azure-event-hubs/tree/master/samples/SampleEphReceiver)範例是一個 .NET Core 主控台應用程式，可使用 `Event Processor Host` 從事件中樞接收訊息。
+[開始使用事件處理器主機接收](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver)範例是一個 .NET Core 主控台應用程式，可使用 `Event Processor Host` 從事件中樞接收訊息。
 
 ## <a name="net-framework"></a>.NET Framework    
 

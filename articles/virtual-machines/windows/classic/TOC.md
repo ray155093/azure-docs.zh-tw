@@ -9,7 +9,7 @@
 # 開始使用
 ## [使用入口網站建立 VM](tutorial.md)
 ## [登入 VM](connect-logon.md)
-## [安裝 Azure PowerShell](/powershell/azureps-cmdlets-docs)
+## [安裝 Azure PowerShell](/powershell/azure/overview)
 ## [安裝 Azure CLI](../../../cli-install-nodejs.md)
 
 # 作法
@@ -88,7 +88,7 @@
 ## [重設遠端桌面通訊協定 (RDP) 密碼](reset-rdp.md)
 
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs)
+## [PowerShell](/powershell/azure/overview)
 ## [Azure CLI](/cli/azure/vm)
 ## [Java](/java/api)
 ## [.NET](/dotnet/api/microsoft.azure.management.compute)

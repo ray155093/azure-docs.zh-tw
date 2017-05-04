@@ -71,8 +71,8 @@
 ### [針對常見錯誤進行疑難排解](automation-troubleshooting-automation-errors.md)
 ### [混合式 Runbook 背景工作的疑難排解](automation-troubleshooting-hybrid-runbook-worker.md)
 # 參考
-## [PowerShell](/powershell/resourcemanager/azurerm.automation/v2.3.0/azurerm.automation)
-## [PowerShell (傳統)](/powershell/servicemanagement/azure.automation/v3.1.0/azure.automation)
+## [PowerShell](/powershell/module/azurerm.automation)
+## [PowerShell (傳統)](/powershell/module/azure/?view=azuresmps-3.7.0)
 ## [.NET](/dotnet/api/microsoft.azure.management.automation)
 ## [REST](/rest/api/automation)
 ## [REST (傳統)](https://msdn.microsoft.com/library/azure/mt163781)

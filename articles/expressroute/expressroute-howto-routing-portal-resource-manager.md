@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/21/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 5e33ffc313e7edfcf7243f1113e07b215dc5b10b
-ms.lasthandoff: 03/24/2017
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: 01fc643ce3fe82cd664cfca5ac02851611d7058e
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -34,10 +34,6 @@ ms.lasthandoff: 03/24/2017
 > 
 
 本文將逐步引導您使用 Azure 入口網站和資源管理員部署模型，以建立和管理 ExpressRoute 線路的路由組態。
-
-**關於 Azure 部署模型**
-
-[!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="configuration-prerequisites"></a>組態必要條件
 * 開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)頁面、[路由需求](expressroute-routing.md)頁面和[工作流程](expressroute-workflows.md)頁面。

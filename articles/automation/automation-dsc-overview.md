@@ -15,8 +15,9 @@ ms.workload: TBD
 ms.date: 02/02/2017
 ms.author: magoedte;eslesar
 translationtype: Human Translation
-ms.sourcegitcommit: f0d3a5c1929bb6dafef735ae3f4291e329861cc9
-ms.openlocfilehash: b750878703baf143a2e8247bdd01f358e462e598
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 852284ce7e82d782c31bb085d4878de25412411a
+ms.lasthandoff: 04/27/2017
 
 ---
 # <a name="azure-automation-dsc-overview"></a>Azure 自動化 DSC 概觀
@@ -115,13 +116,8 @@ Azure 自動化 DSC 中的編譯工作是組態編譯的執行個體，以建立
 
 * [上架由 Azure 自動化 DSC 管理的機器](automation-dsc-onboarding.md)
 * [編譯 Azure Automation DSC 中的組態](automation-dsc-compile.md)
-* [Azure 自動化 DSC Cmdlet](https://msdn.microsoft.com/library/mt244122.aspx)
+* [Azure 自動化 DSC Cmdlet](/powershell/module/azurerm.automation/#automation)
 * [Azure 自動化 DSC 價格](https://azure.microsoft.com/pricing/details/automation/)
 * [使用 Azure 自動化 DSC 和 Chocolatey 的 IaaS VM 持續部署](automation-dsc-cd-chocolatey.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

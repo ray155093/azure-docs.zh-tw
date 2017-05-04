@@ -15,10 +15,6 @@ NC 執行個體是由 NVIDIA 的 Tesla K80 卡提供技術支援。 使用者現
 
 1 GPU = 1/2 M60 卡。
 
-**受支援的作業系統**
-
-* Windows Server 2016、Windows Server 2012 R2 - 請參閱[適用於 Windows 的 N 系列驅動程式設定](../articles/virtual-machines/windows/n-series-driver-setup.md)
-
 ## <a name="nc-instances"></a>NC 執行個體
 
 | 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU |
@@ -32,10 +28,4 @@ NC 執行個體是由 NVIDIA 的 Tesla K80 卡提供技術支援。 使用者現
 
 *支援 RDMA
 
-**受支援的作業系統**
-
-* Windows Server 2016、Windows Server 2012 R2 - 請參閱[適用於 Windows 的 N 系列驅動程式設定](../articles/virtual-machines/windows/n-series-driver-setup.md)
-* Ubuntu 16.04 LTS - 請參閱[適用於 Linux 的 N 系列驅動程式設定](../articles/virtual-machines/linux/n-series-driver-setup.md)
-
-<br>
 

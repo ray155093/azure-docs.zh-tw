@@ -35,7 +35,7 @@
 ## [應用程式模式](../sql/virtual-machines-windows-sql-server-app-patterns-dev-strategies.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fsqlclassic%2ftoc.json)
 
 # 參考
-## [PowerShell 傳統](/powershell/servicemanagement)
+## [PowerShell 傳統](/powershell/azure/overview?view=azuresmps-3.7.0)
 ## [Azure CLI](/cli/azure/)
 ## [T-SQL](https://msdn.microsoft.com/library/azure/bb510741.aspx)
 ## [SQL Server 驅動程式](https://msdn.microsoft.com/library/mt654049.aspx)

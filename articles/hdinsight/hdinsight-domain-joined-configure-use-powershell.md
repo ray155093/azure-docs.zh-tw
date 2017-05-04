@@ -17,9 +17,9 @@ ms.workload: big-data
 ms.date: 11/02/2016
 ms.author: saurinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 916722d64f191bc482b50ad4338f6a1da1045b77
-ms.lasthandoff: 03/25/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 6f4189cb30d528a106dd8889c06acd621aebb699
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -56,7 +56,7 @@ ms.lasthandoff: 03/25/2017
 * 您熟悉 [Azure AD 網域服務](https://azure.microsoft.com/services/active-directory-ds/)及其 [價格](https://azure.microsoft.com/pricing/details/active-directory-ds/)結構。
 * 確定您的訂用帳戶已列入此公開預覽版本的允許清單中。 您可以傳送電子郵件與您的訂用帳戶識別碼給 hdipreview@microsoft.com 要求列入。
 * SSL 憑證，需由您的網域的簽章授權單位簽署。 設定安全的 LDAP 需有此憑證。 不可使用自我簽署憑證。
-* Azure PowerShell。  請參閱[安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+* Azure PowerShell。  請參閱[安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ## <a name="create-an-azure-classic-vnet-for-your-azure-ad"></a>為您的 Azure AD 建立 Azure 傳統 VNet。
 如需指示，請參閱[這裡](hdinsight-domain-joined-configure.md#create-an-azure-classic-vnet)。

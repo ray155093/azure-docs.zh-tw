@@ -1,24 +1,11 @@
 ---
-title: "(已過時) 比例差異測試 - Azure | Microsoft Docs"
-description: "(已過時) 比例差異測試"
-services: machine-learning
-documentationcenter: 
-author: aniedea
-manager: jhubbard
-editor: cgronlun
-ms.assetid: 9356b821-5345-44f6-8e26-719f2dea5e6d
-ms.service: machine-learning
-ms.workload: data-services
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: deprecated
-ms.date: 01/06/2017
-ms.author: aniedea
+
 ROBOTS: NOINDEX, NOFOLLOW
+redirect_url: https://gallery.cortanaintelligence.com/
 translationtype: Human Translation
-ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
-ms.openlocfilehash: 18023b5057d1eeca88a341d62cbeb543102b3abf
-ms.lasthandoff: 01/11/2017
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: b2194dd1742d175abb4f85158c4aae81bb4aa044
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -27,7 +14,7 @@ ms.lasthandoff: 01/11/2017
 > [!NOTE]
 > Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
 > 
-> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+> 您可以在 [Cortana Intelligence 資源庫 (英文)](http://gallery.cortanaintelligence.com) 中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
 
 兩個比例有統計上的差異嗎？ 假設使用者想要比較兩部電影，以判斷其中一部電影與另一部電影比較起來是否有明顯較高比例的「讚」。 在大型樣本中，在 0.50 和 0.51 比例之間可能會有統計上的顯著差異； 但在小型樣本中，可能沒有足夠的資料可以判斷這些比例是否真有差異。 
 

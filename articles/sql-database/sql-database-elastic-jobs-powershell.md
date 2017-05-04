@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
-ms.openlocfilehash: 225896e724717a00057be4c708ce485c8b785d45
-ms.lasthandoff: 02/16/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 4e0a0a711ffb0b474606863187acaab4474c3459
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 02/16/2017
 ## <a name="prerequisites"></a>必要條件
 * Azure 訂用帳戶。 如需免費試用，請參閱 [免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
 * 一組使用彈性資料庫工具所建立的資料庫。 請參閱 [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)。
-* Azure PowerShell。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+* Azure PowerShell。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 * **彈性資料庫工作** PowerShell 封裝：請參閱 [安裝彈性資料庫工作](sql-database-elastic-jobs-service-installation.md)
 
 ### <a name="select-your-azure-subscription"></a>選取您的 Azure 訂用帳戶
@@ -216,7 +216,7 @@ ms.lasthandoff: 02/16/2017
 * 認證應該具有執行工作作業所需的最低權限。  如需詳細資訊，請參閱 [SQL Server 中的授權和權限](https://msdn.microsoft.com/library/bb669084.aspx) 這篇 MSDN 文章。
 
 ### <a name="to-create-an-encrypted-credential-for-job-execution-across-databases"></a>建立跨資料庫執行工作的加密認證
-若要建立新的加密認證，[**Get-Credential Cmdlet**](https://technet.microsoft.com/library/hh849815.aspx) 會提示您輸入可以傳遞至 [**New-AzureSqlJobCredential Cmdlet**](https://msdn.microsoft.com/library/mt346063.aspx) 的使用者名稱和密碼。
+若要建立新的加密認證，[**Get-Credential Cmdlet**](https://technet.microsoft.com/library/hh849815.aspx) 會提示您輸入可以傳遞至 [**New-AzureSqlJobCredential Cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobcredential?view=azureelasticdbjobsps-0.8.33) 的使用者名稱和密碼。
 
     $credentialName = "{Credential Name}"
     $databaseCredential = Get-Credential
@@ -224,7 +224,7 @@ ms.lasthandoff: 02/16/2017
     Write-Output $credential
 
 ### <a name="to-update-credentials"></a>更新認證
-當密碼變更時，請使用 [**Set-AzureSqlJobCredential Cmdlet**](https://msdn.microsoft.com/library/mt346062.aspx) 並設定 **CredentialName** 參數。
+當密碼變更時，請使用 [**Set-AzureSqlJobCredential Cmdlet**](/powershell/module/elasticdatabasejobs/set-azuresqljobcredential?view=azureelasticdbjobsps-0.8.33) 並設定 **CredentialName** 參數。
 
     $credentialName = "{Credential Name}"
     Set-AzureSqlJobCredential -CredentialName $credentialName -Credential $credential 
@@ -245,7 +245,7 @@ ms.lasthandoff: 02/16/2017
 ## <a name="create-a-t-sql-script-for-execution-across-databases"></a>針對跨資料庫執行建立 T-SQL 指令碼
 建立要執行的 T-SQL 指令碼時，強烈建議將其建置為 [等冪性質](https://en.wikipedia.org/wiki/Idempotence) 且失敗時迅速恢復。 每當執行發生失敗時，不論失敗的分類，彈性資料庫工作將重試執行指令碼。
 
-使用 [**New-AzureSqlJobContent Cmdlet**](https://msdn.microsoft.com/library/mt346085.aspx) 建立並儲存要執行的指令碼，並且設定 **-ContentName** 和 **-CommandText** 參數。
+使用 [**New-AzureSqlJobContent Cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent?view=azureelasticdbjobsps-0.8.33) 建立並儲存要執行的指令碼，並且設定 **-ContentName** 和 **-CommandText** 參數。
 
     $scriptName = "Create a TestTable"
 
@@ -328,7 +328,7 @@ ms.lasthandoff: 02/16/2017
     Write-Output $jobExecution
 
 ## <a name="to-retrieve-the-state-of-a-single-job-execution"></a>擷取單一工作執行的狀態
-使用 [**Get-AzureSqlJobExecution Cmdlet**](https://msdn.microsoft.com/library/mt346058.aspx) 並且設定 **JobExecutionId** 參數，以檢視工作執行的狀態。
+使用 [**Get-AzureSqlJobExecution Cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobexecution?view=azureelasticdbjobsps-0.8.33) 並且設定 **JobExecutionId** 參數，以檢視工作執行的狀態。
 
     $jobExecutionId = "{Job Execution Id}"
     $jobExecution = Get-AzureSqlJobExecution -JobExecutionId $jobExecutionId
@@ -341,7 +341,7 @@ ms.lasthandoff: 02/16/2017
     Write-Output $jobExecutions 
 
 ## <a name="to-view-the-state-across-multiple-job-executions"></a>檢視跨多個工作執行的狀態
-[**Get-AzureSqlJobExecution Cmdlet**](https://msdn.microsoft.com/library/mt346058.aspx) 具有多個選用參數，可用來顯示多個工作執行、透過提供的參數篩選。 以下示範一些使用 Get-AzureSqlJobExecution 的可能方式：
+[**Get-AzureSqlJobExecution Cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobexecution?view=azureelasticdbjobsps-0.8.33) 具有多個選用參數，可用來顯示多個工作執行、透過提供的參數篩選。 以下示範一些使用 Get-AzureSqlJobExecution 的可能方式：
 
 擷取所有作用中最上層工作執行：
 
@@ -464,7 +464,7 @@ ms.lasthandoff: 02/16/2017
 
 如果針對父工作要求工作取消，則會對父工作和其所有子工作執行取消要求。
 
-若要提交取消要求，請使用 [**Stop-AzureSqlJobExecution Cmdlet**](https://msdn.microsoft.com/library/mt346053.aspx) 並設定 **JobExecutionId** 參數。
+若要提交取消要求，請使用 [**Stop-AzureSqlJobExecution Cmdlet**](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution?view=azureelasticdbjobsps-0.8.33) 並設定 **JobExecutionId** 參數。
 
     $jobExecutionId = "{Job Execution Id}"
     Stop-AzureSqlJobExecution -JobExecutionId $jobExecutionId
@@ -472,9 +472,9 @@ ms.lasthandoff: 02/16/2017
 ## <a name="to-delete-a-job-and-job-history-asynchronously"></a>以非同步方式刪除工作和工作歷程記錄
 彈性資料庫工作支援非同步刪除工作。 工作可以標示為刪除，系統將會在工作的工作執行皆已完成之後，刪除工作和其所有工作歷程記錄。 系統不會自動取消作用中的工作執行。  
 
-叫用 [**Stop-AzureSqlJobExecution**](https://msdn.microsoft.com/library/mt346053.aspx) 以取消作用中的工作執行。
+叫用 [**Stop-AzureSqlJobExecution**](/powershell/module/elasticdatabasejobs/stop-azuresqljobexecution?view=azureelasticdbjobsps-0.8.33) 以取消作用中的工作執行。
 
-若要觸發工作刪除，請使用 [**Remove-AzureSqlJob Cmdlet**](https://msdn.microsoft.com/library/mt346083.aspx) 並設定 **JobName** 參數。
+若要觸發工作刪除，請使用 [**Remove-AzureSqlJob Cmdlet**](/powershell/module/elasticdatabasejobs/remove-azuresqljob?view=azureelasticdbjobsps-0.8.33) 並設定 **JobName** 參數。
 
     $jobName = "{Job Name}"
     Remove-AzureSqlJob -JobName $jobName
@@ -489,7 +489,7 @@ ms.lasthandoff: 02/16/2017
     New-AzureSqlJobDatabaseTarget -DatabaseName $databaseName -ServerName $databaseServerName 
 
 ## <a name="to-create-a-custom-database-collection-target"></a>建立自訂資料庫集合目標
-使用 [**New-AzureSqlJobTarget Cmdlet**](https://msdn.microsoft.com/library/mt346077.aspx) 定義自訂資料庫集合目標，以跨多個已定義的資料庫目標執行。 建立資料庫群組之後，資料庫可以與自訂集合目標相關聯。
+使用 [**New-AzureSqlJobTarget Cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget?view=azureelasticdbjobsps-0.8.33) 定義自訂資料庫集合目標，以跨多個已定義的資料庫目標執行。 建立資料庫群組之後，資料庫可以與自訂集合目標相關聯。
 
 設定下列變數以反映所需的自訂集合目標組態：
 
@@ -497,7 +497,7 @@ ms.lasthandoff: 02/16/2017
     New-AzureSqlJobTarget -CustomCollectionName $customCollectionName 
 
 ### <a name="to-add-databases-to-a-custom-database-collection-target"></a>將資料庫新增至自訂資料庫集合目標
-若要將資料庫新增至特定的自訂集合，請使用 [**Add-AzureSqlJobChildTarget Cmdlet**](https://msdn.microsoft.comlibrary/mt346064.aspx)。
+若要將資料庫新增至特定的自訂集合，請使用 [**Add-AzureSqlJobChildTarget Cmdlet**](/powershell/module/elasticdatabasejobs/add-azuresqljobchildtarget?view=azureelasticdbjobsps-0.8.33)。
 
     $databaseServerName = "{Database Server Name}"
     $databaseName = "{Database Name}"
@@ -505,7 +505,7 @@ ms.lasthandoff: 02/16/2017
     Add-AzureSqlJobChildTarget -CustomCollectionName $customCollectionName -DatabaseName $databaseName -ServerName $databaseServerName 
 
 #### <a name="review-the-databases-within-a-custom-database-collection-target"></a>檢閱自訂資料庫集合目標內的資料庫
-使用 [**Get-AzureSqlJobTarget Cmdlet**](https://msdn.microsoft.com/library/mt346077.aspx) 以擷取自訂資料庫集合目標內的子資料庫。 
+使用 [**Get-AzureSqlJobTarget Cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget?view=azureelasticdbjobsps-0.8.33) 以擷取自訂資料庫集合目標內的子資料庫。 
 
     $customCollectionName = "{Custom Database Collection Name}"
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
@@ -513,7 +513,7 @@ ms.lasthandoff: 02/16/2017
     Write-Output $childTargets
 
 ### <a name="create-a-job-to-execute-a-script-across-a-custom-database-collection-target"></a>建立工作以跨自訂資料庫集合目標執行指令碼
-使用 [**New-AzureSqlJob Cmdlet**](https://msdn.microsoft.com/library/mt346078.aspx) 以根據自訂資料庫集合目標定義的資料庫群組建立工作。 彈性資料庫工作會將工作展開成多個子工作，每個子工作對應至與自訂資料庫集合目標相關聯的資料庫，並且確保指令碼會針對每個資料庫執行。 再次重申，很重要的是指令碼具有等冪處理重試的彈性。
+使用 [**New-AzureSqlJob Cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljob?view=azureelasticdbjobsps-0.8.33) 以根據自訂資料庫集合目標定義的資料庫群組建立工作。 彈性資料庫工作會將工作展開成多個子工作，每個子工作對應至與自訂資料庫集合目標相關聯的資料庫，並且確保指令碼會針對每個資料庫執行。 再次重申，很重要的是指令碼具有等冪處理重試的彈性。
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -530,7 +530,7 @@ ms.lasthandoff: 02/16/2017
 
 下列 PowerShell 指令碼會執行指令碼，並將結果收集至指定的資料表。 此指令碼假設已建立一個會輸出單一結果集的 T-SQL 指令碼，也假設已建立自訂資料庫集合目標。
 
-此指令碼使用 [**Get-AzureSqlJobTarget Cmdlet**](https://msdn.microsoft.com/library/mt346077.aspx)。 設定指令碼、認證和執行目標的參數：
+此指令碼使用 [**Get-AzureSqlJobTarget Cmdlet**](/powershell/module/elasticdatabasejobs/new-azuresqljobtarget?view=azureelasticdbjobsps-0.8.33)。 設定指令碼、認證和執行目標的參數：
 
     $jobName = "{Job Name}"
     $scriptName = "{Script Name}"
@@ -544,7 +544,7 @@ ms.lasthandoff: 02/16/2017
     $target = Get-AzureSqlJobTarget -CustomCollectionName $customCollectionName
 
 ### <a name="to-create-and-start-a-job-for-data-collection-scenarios"></a>建立和啟動資料庫集合案例的工作
-此指令碼使用 [**Start-AzureSqlJobExecution Cmdlet**](https://msdn.microsoft.com/library/mt346055.aspx)。
+此指令碼使用 [**Start-AzureSqlJobExecution Cmdlet**](/powershell/module/elasticdatabasejobs/start-azuresqljobexecution?view=azureelasticdbjobsps-0.8.33)。
 
     $job = New-AzureSqlJob -JobName $jobName 
     -CredentialName $executionCredentialName 
@@ -560,7 +560,7 @@ ms.lasthandoff: 02/16/2017
     Write-Output $jobExecution
 
 ## <a name="to-schedule-a-job-execution-trigger"></a>排程工作執行觸發程序
-下列 PowerShell 指令碼可以用來建立週期性排程。 這個指令碼使用分鐘間隔，但是 [**New-AzureSqlJobSchedule**](https://msdn.microsoft.com/library/mt346068.aspx) 也支援 -DayInterval、-HourInterval、-MonthInterval 和 -WeekInterval 參數。 您可以藉由傳遞 -OneTime，建立僅執行一次的排程。
+下列 PowerShell 指令碼可以用來建立週期性排程。 這個指令碼使用分鐘間隔，但是 [**New-AzureSqlJobSchedule**](/powershell/module/elasticdatabasejobs/new-azuresqljobschedule?view=azureelasticdbjobsps-0.8.33) 也支援 -DayInterval、-HourInterval、-MonthInterval 和 -WeekInterval 參數。 您可以藉由傳遞 -OneTime，建立僅執行一次的排程。
 
 建立新的排程：
 
@@ -576,7 +576,7 @@ ms.lasthandoff: 02/16/2017
 ### <a name="to-trigger-a-job-executed-on-a-time-schedule"></a>觸發依時間排程執行的工作
 可以定義工作觸發程序，讓工作根據時間排程執行。 下列 PowerShell 指令碼可以用來建立工作觸發程序。
 
-使用 [New-AzureSqlJobTrigger](https://msdn.microsoft.com/library/mt346069.aspx) ，並設定下列變數以對應至所需的工作和排程：
+使用 [New-AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/new-azuresqljobtrigger?view=azureelasticdbjobsps-0.8.33) ，並設定下列變數以對應至所需的工作和排程：
 
     $jobName = "{Job Name}"
     $scheduleName = "{Schedule Name}"
@@ -586,7 +586,7 @@ ms.lasthandoff: 02/16/2017
     Write-Output $jobTrigger
 
 ### <a name="to-remove-a-scheduled-association-to-stop-job-from-executing-on-schedule"></a>移除排程關聯以停止依排程執行工作
-若要透過工作觸發程序中止工作重複執行，可以移除工作觸發程序。 使用 [**Remove-AzureSqlJobTrigger Cmdlet**](https://msdn.microsoft.com/library/mt346070.aspx)，移除工作觸發程序以停止工作根據排程執行。
+若要透過工作觸發程序中止工作重複執行，可以移除工作觸發程序。 使用 [**Remove-AzureSqlJobTrigger Cmdlet**](/powershell/module/elasticdatabasejobs/remove-azuresqljobtrigger?view=azureelasticdbjobsps-0.8.33)，移除工作觸發程序以停止工作根據排程執行。
 
     $jobName = "{Job Name}"
     $scheduleName = "{Schedule Name}"
@@ -602,14 +602,14 @@ ms.lasthandoff: 02/16/2017
     Write-Output $jobTriggers
 
 ### <a name="to-retrieve-job-triggers-bound-to-a-job"></a>擷取繫結至工作的工作觸發程序
-使用 [Get-AzureSqlJobTrigger](https://msdn.microsoft.com/library/mt346067.aspx) 以取得和顯示包含已註冊工作的排程。
+使用 [Get-AzureSqlJobTrigger](/powershell/module/elasticdatabasejobs/get-azuresqljobtrigger?view=azureelasticdbjobsps-0.8.33) 以取得和顯示包含已註冊工作的排程。
 
     $jobName = "{Job Name}"
     $jobTriggers = Get-AzureSqlJobTrigger -JobName $jobName
     Write-Output $jobTriggers
 
 ## <a name="to-create-a-data-tier-application-dacpac-for-execution-across-databases"></a>建立資料層應用程式 (DACPAC) 以跨資料庫執行
-若要建立 DACPAC，請參閱 [資料層應用程式](https://msdn.microsoft.com/library/ee210546.aspx)。 若要部署 DACPAC、請使用 [New-AzureSqlJobContent Cmdlet](https://msdn.microsoft.com/library/mt346085.aspx)。 DACPAC 必須可供服務存取。 建議將建立的 DACPAC 上傳至 Azure 儲存體，並且為 DACPAC 建立 [共用存取簽章](../storage/storage-dotnet-shared-access-signature-part-1.md) 。
+若要建立 DACPAC，請參閱 [資料層應用程式](https://msdn.microsoft.com/library/ee210546.aspx)。 若要部署 DACPAC、請使用 [New-AzureSqlJobContent Cmdlet](/powershell/module/elasticdatabasejobs/new-azuresqljobcontent?view=azureelasticdbjobsps-0.8.33)。 DACPAC 必須可供服務存取。 建議將建立的 DACPAC 上傳至 Azure 儲存體，並且為 DACPAC 建立 [共用存取簽章](../storage/storage-dotnet-shared-access-signature-part-1.md) 。
 
     $dacpacUri = "{Uri}"
     $dacpacName = "{Dacpac Name}"
@@ -617,7 +617,7 @@ ms.lasthandoff: 02/16/2017
     Write-Output $dacpac
 
 ### <a name="to-update-a-data-tier-application-dacpac-for-execution-across-databases"></a>更新資料層應用程式 (DACPAC) 以跨資料庫執行
-彈性資料庫工作內的現有已註冊 DACPAC 可以更新以指向新的 URI。 使用 [**Set-AzureSqlJobContentDefinition Cmdlet**](https://msdn.microsoft.com/library/mt346074.aspx) 更新現有已註冊 DACPAC 上的 DACPAC URI：
+彈性資料庫工作內的現有已註冊 DACPAC 可以更新以指向新的 URI。 使用 [**Set-AzureSqlJobContentDefinition Cmdlet**](/powershell/module/elasticdatabasejobs/set-azuresqljobcontentdefinition?view=azureelasticdbjobsps-0.8.33) 更新現有已註冊 DACPAC 上的 DACPAC URI：
 
     $dacpacName = "{Dacpac Name}"
     $newDacpacUri = "{Uri}"

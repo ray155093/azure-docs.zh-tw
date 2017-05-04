@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 01/05/2017
 ms.author: seanmck
 translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: cc61146e0353455c5c763297a002afb86b76887a
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 2bf6bd76b653e30f38595631eff576d8eeb8efda
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -88,7 +88,7 @@ Service Fabric 叢集中的節點會橫跨容錯網域和升級網域的二維�
 | 節點 | 停用 (重新啟動) | 安全地移除所有記憶體內部服務，並關閉持續性服務。 通常會在主機處理或電腦必須重新啟動時使用。 | |
 | 節點 | 停用 (移除資料) | 在建置足夠的備援複本之後，安全地關閉節點上執行的所有服務。 通常於節點 (或至少其儲存體) 永久性地移除委任時使用。 | |
 | 節點 | 移除節點狀態 | 從叢集移除節點複本的知識。 通常在已失敗的節點被視為無法回復時使用。 | |
-| 節點 | 重新啟動 | 藉由重新啟動節點，模擬節點失敗。 如需詳細資訊，請參閱[這裡](https://docs.microsoft.com/en-us/powershell/servicefabric/vlatest/Restart-ServiceFabricNode)。 | |
+| 節點 | 重新啟動 | 藉由重新啟動節點，模擬節點失敗。 如需詳細資訊，請參閱[這裡](/powershell/module/servicefabric/restart-servicefabricnode?view=azureservicefabricps)。 | |
 
 由於許多動作都具有破壞性，因此在完成動作之前，系統可能會要求您確認您的意圖。
 

@@ -12,12 +12,12 @@ ms.workload: compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/23/2016
+ms.date: 04/26/2017
 ms.author: mbaldwin
 translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: ae8c26069503a24f3ba17a86160801c60a68d668
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 2c4a3ee9ec97dac78485e0f275fbb78412e7cb98
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -52,7 +52,7 @@ Azure RemoteApp 收藏分成兩種：
 * [註冊](https://azure.microsoft.com/services/remoteapp/) Azure RemoteApp。
 * 在 Active Directory 中建立使用者帳戶，做為 Azure RemoteApp 服務的帳戶。 限制此帳戶的權限，使其只能將機器加入網域中。
 * 收集內部部署網路的相關資訊：IP 位址資訊和 VPN 裝置詳細資料。
-* 安裝 [Azure PowerShell](/powershell/azureps-cmdlets-docs) 模組。
+* 安裝 [Azure PowerShell](/powershell/azure/overview) 模組。
 * 收集您想授與存取權之使用者的相關資訊。 您將需要每個使用者的 Azure Active Directory 使用者主體名稱 (例如，name@contoso.com)。 請確定 UPN 符合 Azure AD 和 Active Directory。
 * 選擇範本映像。 Azure RemoteApp 範本映像包含您要為使用者發佈的應用程式與程式。 如需詳細資訊，請參閱 [Azure RemoteApp 映像選項](remoteapp-imageoptions.md) 。
 * 想要使用 Office 365 ProPlus 的映像嗎？ 請在 [這裡](remoteapp-officesubscription.md)查看資訊。

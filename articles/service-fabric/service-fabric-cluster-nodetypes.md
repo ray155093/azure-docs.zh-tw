@@ -15,8 +15,9 @@ ms.workload: NA
 ms.date: 01/05/2017
 ms.author: chackdan
 translationtype: Human Translation
-ms.sourcegitcommit: a957a70be915459baa8c687c92e251c6011b6172
-ms.openlocfilehash: 6670076d14f1f3f3991dd004d488f69fb1c44cb6
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 32119a6ef586d616407c69e89a0d0f05758438bc
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -83,7 +84,7 @@ ms.openlocfilehash: 6670076d14f1f3f3991dd004d488f69fb1c44cb6
 ![inboundNatPools][InboundNatPools]
 
 ### <a name="after-cluster-deployment"></a>叢集部署之後
-這稍微複雜一點，而且可能會導致 VM 設定被回收。 您現在必須使用 Azure PowerShell 設定新的值。 請確定您的電腦已安裝 Azure PowerShell 1.0+ 或更新版本。 如果您還沒安裝，強烈建議您依照 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
+這稍微複雜一點，而且可能會導致 VM 設定被回收。 您現在必須使用 Azure PowerShell 設定新的值。 請確定您的電腦已安裝 Azure PowerShell 1.0+ 或更新版本。 如果您還沒安裝，強烈建議您依照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)
 
 登入您的 Azure 帳戶。 如果這個 PowerShell 命令因為某些原因無法運作，您應該檢查 Azure PowerShell 是否已正確安裝。
 
@@ -119,9 +120,4 @@ Set-AzureRmResource -PropertyObject $PropertiesObject -ResourceGroupName <RG nam
 [LBBlade]: ./media/service-fabric-cluster-nodetypes/LBBlade.png
 [NATRules]: ./media/service-fabric-cluster-nodetypes/NATRules.png
 [RDP]: ./media/service-fabric-cluster-nodetypes/RDP.png
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

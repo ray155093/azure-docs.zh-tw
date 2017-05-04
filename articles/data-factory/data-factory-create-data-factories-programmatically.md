@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 04/11/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 280737097038ff328d487477279ce4f204b0ac0c
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 8fcd609da46e88f7db90692c7e67011df64c9b4e
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -99,7 +99,7 @@ ms.lasthandoff: 04/12/2017
     ```
 
    > [!NOTE]
-   > 用您的 Azure 資源群組名稱取代 **resourcegroupname** 。 若要建立資源群組，請使用 [New-AzureResourceGroup](https://msdn.microsoft.com/library/Dn654594.aspx) Cmdlet。
+   > 用您的 Azure 資源群組名稱取代 **resourcegroupname** 。 若要建立資源群組，請使用 [New-AzureResourceGroup](/powershell/module/azure/new-azureresourcegroup?view=azuresmps-3.7.0) Cmdlet。
 7. 將下列會建立 **data Factory** 的程式碼新增至 **Main** 方法中。
 
     ```csharp
@@ -445,7 +445,7 @@ TokenCloudCredentials aadTokenCredentials =
 記下應用程式識別碼和密碼 (用戶端密碼)，然後在逐步解說中使用它。
 
 ## <a name="get-azure-subscription-and-tenant-ids"></a>取得 Azure 訂用帳戶 ID 和租用戶識別碼
-如果您的機器上未安裝最新版的 PowerShell，請依照 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 一文中的指示來安裝它。
+如果您的機器上未安裝最新版的 PowerShell，請依照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 一文中的指示來安裝它。
 
 1. 啟動 Azure PowerShell 並執行下列命令
 2. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼。

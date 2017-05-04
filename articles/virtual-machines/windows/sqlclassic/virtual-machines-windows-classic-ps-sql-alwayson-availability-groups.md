@@ -16,9 +16,9 @@ ms.workload: iaas-sql-server
 ms.date: 03/17/2017
 ms.author: mikeray
 translationtype: Human Translation
-ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
-ms.openlocfilehash: fa5467f38944435cc21d4d3ebd5a645c4f268b9b
-ms.lasthandoff: 04/05/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: c4948d83b5eff5280f6a0d16535f3eb29d680f04
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -46,7 +46,7 @@ Azure 虛擬機器 (VM) 可協助資料庫管理員降低高可用性 SQL Server
 本教學課程的目的是示範設定上述解決方案所需執行的步驟，但不會闡述每個步驟的細節內容。 因此，本教學課程會使用 PowerShell 指令碼帶您快速進行每個步驟，但不會提供 GUI 組態步驟。 本教學課程假設您已句備下列條件：
 
 * 您已經有訂閱虛擬機器訂用帳戶的 Azure 帳戶。
-* 您已安裝 [Azure PowerShell Cmdlet](/powershell/azureps-cmdlets-docs)。
+* 您已安裝 [Azure PowerShell Cmdlet](/powershell/azure/overview)。
 * 您已非常熟悉內部部署解決方案的 Always On 可用性群組的功能。 如需詳細資訊，請參閱 [Always On 可用性群組 (SQL Server)](https://msdn.microsoft.com/library/hh510230.aspx)。
 
 ## <a name="connect-to-your-azure-subscription-and-create-the-virtual-network"></a>連線至您的 Azure 訂用帳戶並建立虛擬網路

@@ -48,7 +48,7 @@
 ### [針對 Azure Load Balancer 的問題進行疑難排解](load-balancer-troubleshoot.md)
 
 # 參考
-## [PowerShell](/powershell/resourcemanager/azurerm.network/v3.1.0/azurerm.network)
+## [PowerShell](/powershell/module/azurerm.network)
 ## [Azure CLI 2.0](/cli/azure/network/lb)
 ## [.NET](/dotnet/api/microsoft.azure.management.network.models)
 ## [Java](/java/api/com.microsoft.azure.management.network)

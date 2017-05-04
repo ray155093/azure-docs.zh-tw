@@ -15,9 +15,9 @@ ms.workload: big-data
 ms.date: 01/27/2017
 ms.author: stewu
 translationtype: Human Translation
-ms.sourcegitcommit: 7c28fda22a08ea40b15cf69351e1b0aff6bd0a95
-ms.openlocfilehash: 34b449b251672619aec6e86b9343343a9404126a
-ms.lasthandoff: 03/07/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: a0eecbb50b001325c91d1d721bf8de7244f04674
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -48,7 +48,7 @@ ms.lasthandoff: 03/07/2017
 
 * **頻寬費用**。 適用[頻寬費用](https://azure.microsoft.com/en-us/pricing/details/bandwidth/)，因為資料會傳出 Azure 區域。
 
-* **資料的 ACL**。 請對檔案和資料夾套用 ACL 以保護新區域內的資料。 如需詳細資訊，請參閱[在 Azure Data Lake Store 中保護資料](data-lake-store-secure-data.md)。 建議您使用移轉來更新和調整 ACL。 您想要使用的設定可能類似目前的設定。 您可以使用 Azure 入口網站、[PowerShell Cmdlet](https://docs.microsoft.com/en-us/powershell/resourcemanager/azurerm.datalakestore/v3.1.0/get-azurermdatalakestoreitempermission) 或 SDK 檢視來套用到任何檔案的 ACL。  
+* **資料的 ACL**。 請對檔案和資料夾套用 ACL 以保護新區域內的資料。 如需詳細資訊，請參閱[在 Azure Data Lake Store 中保護資料](data-lake-store-secure-data.md)。 建議您使用移轉來更新和調整 ACL。 您想要使用的設定可能類似目前的設定。 您可以使用 Azure 入口網站、[PowerShell Cmdlet](/powershell/module/azurerm.datalakestore/get-azurermdatalakestoreitempermission) 或 SDK 檢視來套用到任何檔案的 ACL。  
 
 * **分析服務的位置**。 為獲得最佳效能，分析服務 (例如 Azure Data Lake Analytics 或 Azure HDInsight) 應位於與資料相同的區域中。  
 

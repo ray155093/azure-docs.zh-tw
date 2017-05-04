@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 04/10/2017
 ms.author: cherylmc
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: b0ccde30b93214b161558daf8e2b4e37e58711da
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: d340210d799f995cb10a20cf48a9245bbd3bc8d3
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -68,7 +68,7 @@ ms.lasthandoff: 04/12/2017
 
 ## <a name="before-beginning"></a>開始之前
 * 請確認您有 Azure 訂用帳戶。 如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details)或註冊[免費帳戶](https://azure.microsoft.com/pricing/free-trial)。
-* 安裝最新版的 Azure Resource Manager PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 
+* 安裝最新版的 Azure Resource Manager PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。 
 
 ## <a name="declare"></a>第 1 部分 - 登入和設定變數
 在此區段中，您可以登入並宣告用於此組態的值。 在範例指令碼中，會使用宣告的值。 請變更相關值以反映自己的環境。 或者，可以使用宣告的值並執行各步驟做為練習。
@@ -244,7 +244,7 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
 
 如果您想要從不同於用來產生用戶端憑證的用戶端電腦建立 P2S 連線，您需要安裝用戶端憑證。 安裝用戶端憑證時，您需要匯出用戶端憑證時所建立的密碼。
 
-1. 找出 *.pfx* 檔案並複製到用戶端電腦。 在用戶端電腦上，按兩下 *.pfx* 檔案以安裝。 [存放區位置] 保留 [目前使用者]，然後按 [下一步]。
+1. 找出 *.pfx* 檔案並複製到用戶端電腦。 在用戶端電腦上，按兩下 *.pfx* 檔案以安裝。 將 [存放區位置] 保留為 [目前使用者]，然後按 [下一步]。
 2. 在 [要匯入的檔案]  頁面上，請勿進行任何變更。 按 [下一步] 。
 3. 在 [私密金鑰保護] 頁面上，請輸入憑證的密碼，或確認安全性主體是否正確，然後按 [下一步]。
 4. 在 [憑證存放區] 頁面上，保留預設的位置，然後按 [下一步]。
@@ -284,7 +284,7 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
 
 ## <a name="connectVM"></a>連線至虛擬機器
 
-1. 連線至您的 VNet 之後，可以透過 P2S 連線來連線至 VM。 若要連線至 VM，您需要虛擬機器的私人 IP 位址。 下列範例可協助您取得私人 IP 位址與 [Get-AzureRmNetworkInterface](https://docs.microsoft.com/powershell/module/azurerm.network/get-azurermnetworkinterface?view=azurermps-3.7.0)。 結果會傳回所有資源群組中的 VM 清單和對應的私人 IP 位址。 
+1. 連線至您的 VNet 之後，可以透過 P2S 連線來連線至 VM。 若要連線至 VM，您需要虛擬機器的私人 IP 位址。 下列範例可協助您取得私人 IP 位址與 [Get-AzureRmNetworkInterface](/powershell/module/azurerm.network/get-azurermnetworkinterface)。 結果會傳回所有資源群組中的 VM 清單和對應的私人 IP 位址。 
 
   ```powershell   
   $vms = get-azurermvm
@@ -424,3 +424,4 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
 
 ## <a name="next-steps"></a>後續步驟
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱[虛擬機器](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。 若要了解網路與虛擬機器的詳細資訊，請參閱 [Azure 與 Linux VM 網路概觀](../virtual-machines/linux/azure-vm-network-overview.md)。
+

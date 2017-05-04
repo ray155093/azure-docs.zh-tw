@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 03/15/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: acf807538c8c9efdadb95c4b66db9a9d5d1f7a6d
-ms.lasthandoff: 04/25/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: d1709c2c28505e66a88cfbbcf4dc88c8ccca841f
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -103,9 +103,9 @@ Azure 儲存體作業可能會傳回大於 299 的 HTTP 狀態碼為其正常功
 
 **透過 PowerShell**
 
-若要開始使用 Azure PowerShell，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+若要開始使用 Azure PowerShell，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azure/overview)。
 
-1. 使用 [Add-AzureAccount](http://msdn.microsoft.com/library/azure/dn722528.aspx) Cmdlet 將您的 Azure 使用者帳戶新增至 PowerShell 視窗：
+1. 使用 [Add-AzureAccount](/powershell/module/azure/add-azureaccount?view=azuresmps-3.7.0) Cmdlet 將您的 Azure 使用者帳戶新增至 PowerShell 視窗：
    
     ```powershell
     Add-AzureAccount
@@ -374,3 +374,4 @@ Message Analyzer 會找出並選取搜尋準則符合用戶端要求識別碼的
 * [在 Azure 入口網站中監視儲存體帳戶](storage-monitor-storage-account.md)
 * [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 * [Microsoft Message Analyzer 操作指南](http://technet.microsoft.com/library/jj649776.aspx)
+

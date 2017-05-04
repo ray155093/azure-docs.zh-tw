@@ -54,7 +54,7 @@
 ## [使用開放原始碼執行侵入偵測](network-watcher-intrusion-detection-open-source-tools.md)
 ## [在 Azure Log Analytics 中分析應用程式閘道](../log-analytics/log-analytics-azure-networking-analytics.md?toc=%2fazure%2fnetwork-watcher%2ftoc.json)
 # 參考
-## [PowerShell](https://docs.microsoft.com/powershell/resourcemanager)
+## [PowerShell](/powershell/azure/overview)
 ## [.NET](/dotnet/api)
 ## [REST](/rest/api/networkwatcher/)
 # 相關參考

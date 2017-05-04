@@ -17,9 +17,9 @@ ms.topic: article
 ms.date: 04/03/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 506f2b997ae1f770c7b59f8e801ff3fbb6434ccc
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 6e001d497dba1e3cc0a987fd0950854fe2564d2c
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -232,7 +232,7 @@ Ambari REST API 可透過網際網路提供，而且公用閘道器會處理路�
 
 * [Ambari REST 參考](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)
 * [安裝和設定 Azure CLI](../cli-install-nodejs.md)
-* [安裝並設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
+* [安裝並設定 Azure PowerShell](/powershell/azure/overview)
 * [使用 Ambari 管理 HDInsight](hdinsight-hadoop-manage-ambari.md)
 * [佈建以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)
 

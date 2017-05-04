@@ -15,8 +15,9 @@ ms.topic: article
 ms.date: 12/27/2016
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: c2a9a14891f197ae442c41668229d4a7610ba248
-ms.openlocfilehash: 17270815b6278ec6b36a134c313cd543622dd9f4
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 76f59384db37967a9210ba5efa49b25788d21cdc
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -77,7 +78,7 @@ ms.openlocfilehash: 17270815b6278ec6b36a134c313cd543622dd9f4
 
 - 如果您想要讓生產環境位置使用靜態 IP 位址，就必須為您的預備位置也保留一個靜態 IP 位址。 否則，交換將會失敗。
 
-- 您的所有角色執行個體必須都處於執行中狀態，您才能執行交換。 您可以在 Azure 傳統入口網站中，或藉由使用 [Windows PowerShell 中的 Get-AzureRole 命令](https://docs.microsoft.com/en-us/powershell/servicemanagement/azure.service/v3.1.0/get-azurerole)，來檢查執行個體的狀態。
+- 您的所有角色執行個體必須都處於執行中狀態，您才能執行交換。 您可以在 Azure 傳統入口網站中，或藉由使用 [Windows PowerShell 中的 Get-AzureRole 命令](/powershell/module/azure/get-azurerole?view=azuresmps-3.7.0)，來檢查執行個體的狀態。
 
 請注意，客體 OS 更新和服務修復作業也可能導致部署交換失敗。 如需詳細資訊，請參閱[對雲端服務部署問題進行疑難排解](cloud-services-troubleshoot-deployment-problems.md)。
 
@@ -153,9 +154,4 @@ ms.openlocfilehash: 17270815b6278ec6b36a134c313cd543622dd9f4
 * 了解如何 [部署雲端服務](cloud-services-how-to-create-deploy.md)。
 * 設定 [自訂網域名稱](cloud-services-custom-domain-name.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
-
-
-
-<!--HONumber=Jan17_HO1-->
-
 

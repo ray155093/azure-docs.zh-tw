@@ -15,15 +15,15 @@ ms.workload: na
 ms.date: 04/06/2017
 ms.author: sethm
 translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: 9ca861788d9c327237c8637e11312fb099837e56
-ms.lasthandoff: 04/11/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: a3ba385e15510139929735adb5e50b6291846356
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="use-powershell-to-manage-event-hubs-resources"></a>使用 PowerShell 來管理事件中樞資源
 
-Microsoft Azure PowerShell 是一種指令碼環境，可讓您用來控制及自動化 Azure 服務的部署和管理。 本文說明如何使用本機 Azure PowerShell 主控台或指令碼，運用[事件中樞 Resource Manager PowerShell 模組](/powershell/module/azurerm.eventhub/?view=azurermps-3.7.0#event_hub)來佈建和管理事件中樞實體 (命名空間、事件中樞和取用者群組)。
+Microsoft Azure PowerShell 是一種指令碼環境，可讓您用來控制及自動化 Azure 服務的部署和管理。 本文說明如何使用本機 Azure PowerShell 主控台或指令碼，運用[事件中樞 Resource Manager PowerShell 模組](/powershell/module/azurerm.eventhub)來佈建和管理事件中樞實體 (命名空間、事件中樞和取用者群組)。
 
 您也可以使用 Azure Resource Manager 範本來管理事件中樞資源。 如需詳細資訊，請參閱[使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組](event-hubs-resource-manager-namespace-event-hub.md)文章。
 
@@ -151,7 +151,7 @@ Remove-AzureRmEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $N
 
 ## <a name="next-steps"></a>後續步驟
 
-- 請在[這裡](/powershell/module/azurerm.eventhub/?view=azurermps-3.7.0#event_hub)參閱完整的事件中樞 Resource Manager PowerShell 模組文件。 此頁面會列出所有可用的 Cmdlet。
+- 請在[這裡](/powershell/module/azurerm.eventhub)參閱完整的事件中樞 Resource Manager PowerShell 模組文件。 此頁面會列出所有可用的 Cmdlet。
 - 如需使用 Azure Resource Manager 範本的資訊，請參閱[使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組](event-hubs-resource-manager-namespace-event-hub.md)。
 - [事件中樞 .NET 管理程式庫](event-hubs-management-libraries.md)的相關資訊。
 

@@ -15,9 +15,9 @@ ms.workload: storage
 ms.date: 01/23/2017
 ms.author: marsma
 translationtype: Human Translation
-ms.sourcegitcommit: c5fedb8c4a6e3722e2f37dd432cec60513c73e0d
-ms.openlocfilehash: dc466ed5dbd7ad14dd1c84760d9205b940acf504
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
+ms.openlocfilehash: dd11ad70efd8f78805e74ad193fb9000abf6a3a8
+ms.lasthandoff: 04/29/2017
 
 
 ---
@@ -28,9 +28,12 @@ ms.lasthandoff: 01/24/2017
 ## <a name="azure-code-samples-library"></a>Azure 程式碼範例程式庫
 [Azure 程式碼範例程式庫](https://azure.microsoft.com/documentation/samples/?service=storage)包含您可以下載並在本機執行的 Azure 儲存體範例。 程式碼範例程式庫會提供 .zip 格式的範例程式碼。 或者，您可以瀏覽並複製每個範例的 GitHub 儲存機制。
 
-## <a name="getting-started-samples"></a>開始使用範例
-* [在五分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)
-* [適用於 Azure 儲存體的 Visual Studio 快速入門](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/VisualStudioQuickStarts)
+<!--## Getting started samples-->
+<!-- after our quick starts are available, replace this link with a link to one of those. 
+Had to remove this article, it refers to the VS quickstarts, and they've stopped publishing them. Robin --> 
+<!--* [Get started with Azure Storage in five minutes](storage-getting-started-guide.md)
+* [Visual Studio Quick Starts for Azure Storage](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/VisualStudioQuickStarts)
+-->
 
 ## <a name="net-samples"></a>.NET 範例
 若要瀏覽 .NET 範例，請從 NuGet 下載 [.NET 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/) 。 您也可以在 [適用於 .NET 的 Azure SDK](https://azure.microsoft.com/downloads/)中找到 .NET 儲存體用戶端程式庫。

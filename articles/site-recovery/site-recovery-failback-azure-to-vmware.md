@@ -15,15 +15,15 @@ ms.workload: required
 ms.date: 03/27/2017
 ms.author: ruturajd
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: ba801c69cf2d0d542bebf54e99ef981854284ab0
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 3bd182a775377f912914c0c7a63fe41811146e1a
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="fail-back-vmware-virtual-machines-and-physical-servers-to-the-on-premises-site"></a>將 VMWare 虛擬機器和實體伺服器容錯回復至內部部署網站
 > [!div class="op_single_selector"]
-> * [從 Azure 容錯回復 VMware/實體機器](site-recovery-failback-azure-to-vmware.md)
+> * [從 Azure 容錯回復 VMware/實體機器](site-recovery-how-to-failback-azure-to-vmware.md)
 > * [從 Azure 容錯回復 Hyper-V VM](site-recovery-failback-from-azure-to-hyper-v.md)
 
 本文說明如何將 Azure 虛擬機器從 Azure 容錯回復到內部部署網站。 當您準備好在使用此[參考](site-recovery-how-to-reprotect.md)重新保護機器後，將 VMware 虛擬機器或 Windows/Linux 實體伺服器容錯回復時，請依照這裡的指示執行。

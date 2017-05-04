@@ -12,11 +12,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 11/21/2016
+ms.date: 05/01/2017
 ms.author: alkohli
 translationtype: Human Translation
-ms.sourcegitcommit: c78eda33a64d630ba18aba6a174db372eb41dde9
-ms.openlocfilehash: 24c2670394c2873b333f41c081a8134710d16d54
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: c75c6ed40754aee964e2b68f4f569dc1422507f2
+ms.lasthandoff: 05/03/2017
 
 ---
 # <a name="configure-multipath-io-on-windows-server-host-for-the-storsimple-virtual-array"></a>在 Windows Server 主機上設定 StorSimple Virtual Array 的多重路徑 I/O
@@ -45,7 +46,7 @@ Windows Server 中的 MPIO 功能可協助建置高可用性、容錯的儲存�
 ### <a name="on-storsimple-virtual-array"></a>在 StorSimple Virtual Array 上
 * 虛擬陣列應該設定為 iSCSI 伺服器。 若要深入了解，請參閱[將虛擬陣列設定為 iSCSI 伺服器](storsimple-virtual-array-deploy3-iscsi-setup.md)。 應該在陣列上啟用一或多個網路介面。   
 * 虛擬陣列上的網路介面應該可從 Windows Server 主機觸達。
-* 應該在 StorSimple Virtual Array 上建立一或多個磁碟區。 若要深入了解，請參閱在 StorSimple Virtual Array 上[新增磁碟區](storsimple-ova-deploy3-iscsi-setup.md#step-3-add-a-volume)。 在此程序中，我們在虛擬陣列上建立 3 個磁碟區 (1 個固定在本機的磁碟區，2 個階層式磁碟區，如下所示)。
+* 應該在 StorSimple Virtual Array 上建立一或多個磁碟區。 若要深入了解，請參閱在 StorSimple Virtual Array 上[新增磁碟區](storsimple-virtual-array-deploy3-iscsi-setup.md#step-3-add-a-volume)。 在此程序中，我們在虛擬陣列上建立 3 個磁碟區 (1 個固定在本機的磁碟區，2 個階層式磁碟區，如下所示)。
   
     ![mpio0](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio0.png)
 
@@ -62,7 +63,7 @@ Windows Server 中的 MPIO 功能可協助建置高可用性、容錯的儲存�
     ![在 1200 上啟用的網路介面](./media/storsimple-virtual-array-configure-mpio-windows-server/mpio9.png)
   
     請記下啟用之網路介面 (乙太網路，預設為乙太網路 2) 的 IPv4 位址，並加以儲存供稍後在主機上使用。
-* Windows Server 主機已啟用&2; 個網路介面。 如果主機和陣列的連接介面位於相同的子網路上，將會有 4 個路徑可用。 在此程序中是這個情況。 不過，如果陣列和主機介面上的每個網路介面位於不同的 IP 子網路上 (且不可路由傳送)，則只有 2 個路徑可用。
+* Windows Server 主機已啟用 2 個網路介面。 如果主機和陣列的連接介面位於相同的子網路上，將會有 4 個路徑可用。 在此程序中是這個情況。 不過，如果陣列和主機介面上的每個網路介面位於不同的 IP 子網路上 (且不可路由傳送)，則只有 2 個路徑可用。
 
 ## <a name="step-1-install-mpio-on-the-windows-server-host"></a>步驟 1：在 Windows Server 主機上安裝 MPIO
 MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。 您應該透過伺服器管理員將它安裝為功能。 若要在 Windows Server 主機上安裝這項功能，請完成下列程序。
@@ -156,10 +157,5 @@ MPIO 是 Windows 伺服器預設不會安裝的選擇性功能。 您應該透�
    
 ## <a name="next-steps"></a>後續步驟
 深入了解[使用 StorSimple 裝置管理員服務管理 StorSimple Virtual Array](storsimple-virtual-array-manager-service-administration.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

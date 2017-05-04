@@ -15,9 +15,9 @@ ms.workload: infrastructure
 ms.date: 03/14/2017
 ms.author: iainfou
 translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 0095c9aeea3ab118fc212ee1ccbb71dcd84aae29
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: f04ac382521c7268d0eb03d1b3bfc78ee0b07d40
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -25,7 +25,7 @@ ms.lasthandoff: 03/31/2017
 您可以在 Azure 中，建立連接多個虛擬網路介面 (NIC) 的虛擬機器 (VM)。 常見案例是有不同的子網路可用於前端和後端連線，或者專門用來監視或備份解決方案的網路。 本文提供快速命令來建立連接多個 NIC 的 VM。 如需詳細資訊，包括如何在自己的 PowerShell 指令碼內建立多個 NIC，請深入了解 [部署多個 NIC 的 VM](../../virtual-network/virtual-network-deploy-multinic-arm-ps.md)。 不同的 [VM 大小](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 支援不同數量的 NIC，因此可據以調整您的 VM。
 
 ## <a name="create-core-resources"></a>建立核心資源
-確定您已 [安裝並執行最新的 Azure PowerShell](/powershell/azureps-cmdlets-docs)。 登入您的 Azure 帳戶：
+確定您已 [安裝並執行最新的 Azure PowerShell](/powershell/azure/overview)。 登入您的 Azure 帳戶：
 
 ```powershell
 Login-AzureRmAccount

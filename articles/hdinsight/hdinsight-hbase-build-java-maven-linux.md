@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 02/17/2017
 ms.author: larryfr
 translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: ce83fe64c4922b0e420f447e5b9db04c824412a6
-ms.lasthandoff: 04/12/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 6b26945f4bbffc3dad81bdb267d008da259b47df
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -46,7 +46,7 @@ ms.lasthandoff: 04/12/2017
 
 * **熟悉 SSH 與 SCP** 或 **Azure PowerShell**。 執行此範例時，此文件提供適用於 SSH/SCP 與 Azure PowerShell 的步驟。
 
-    如需有關安裝 Azure PowerShell 的資訊，請參閱[開始使用 Azure PowerShell (英文)](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)。
+    如需有關安裝 Azure PowerShell 的資訊，請參閱[開始使用 Azure PowerShell (英文)](/powershell/azure/overview)。
 
     如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 

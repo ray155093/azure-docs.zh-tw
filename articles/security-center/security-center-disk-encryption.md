@@ -15,9 +15,9 @@ ms.workload: na
 ms.date: 03/15/2017
 ms.author: tomsh
 translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: ac0d2e6891d916febb3eeee736288454c2b92c2d
-ms.lasthandoff: 03/31/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 859c0bf3afec46e07b8b8da73fffbc37f3f7959d
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -48,7 +48,7 @@ Azure 資訊安全中心會在您有未加密的虛擬機器時對您發出警�
 >
 
 ## <a name="install-and-configure-azure-powershell"></a>安裝並設定 Azure PowerShell
-您的電腦上需要安裝 Azure PowerShell 1.2.1 版或更新版本。 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 一文含有佈建電腦以使用 Azure PowerShell 的所有所需步驟。 最直接的方法是使用該文章所述的 Web PI 安裝方法。 即使您已安裝 Azure PowerShell，仍請使用 Web PI 方法再安裝一次，以便擁有最新的 Azure PowerShell 版本。
+您的電腦上需要安裝 Azure PowerShell 1.2.1 版或更新版本。 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 一文含有佈建電腦以使用 Azure PowerShell 的所有所需步驟。 最直接的方法是使用該文章所述的 Web PI 安裝方法。 即使您已安裝 Azure PowerShell，仍請使用 Web PI 方法再安裝一次，以便擁有最新的 Azure PowerShell 版本。
 
 ## <a name="obtain-and-run-the-azure-disk-encryption-prerequisites-configuration-script"></a>取得並執行 Azure 磁碟加密先決條件組態指令碼
 Azure 磁碟加密先決條件組態指令碼會設定用來加密 Azure 虛擬機器所需的所有先決條件。

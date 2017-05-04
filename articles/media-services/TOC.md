@@ -211,8 +211,8 @@
 ### [重試邏輯](media-services-retry-logic-in-dotnet-sdk.md)
 
 # 參考
-## [PowerShell (資源管理員)](/powershell/resourcemanager/azurerm.media/v0.3.1/azurerm.media)
-## [PowerShell (服務管理)](/powershell/servicemanagement/azure.compute/v3.1.0/azure.compute)
+## [PowerShell (資源管理員)](/powershell/module/azurerm.media)
+## [PowerShell (服務管理)](/powershell/module/azure/?view=azuresmps-3.7.0)
 ## [.NET](/dotnet/api/microsoft.windowsazure.mediaservices.client)
 ## [REST](/rest/api/media)
 

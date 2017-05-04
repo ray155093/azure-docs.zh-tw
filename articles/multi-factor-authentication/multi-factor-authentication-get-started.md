@@ -12,12 +12,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 01/23/2017
+ms.date: 04/23/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 92c552f42f2645281f5039242825cfdaf6b683c9
-ms.openlocfilehash: 1a42c137204c2d2f6fff9a005b2b0e885c2002b2
-ms.lasthandoff: 01/25/2017
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 8c3cc27f1fa708371d415d00cdff59f77712cd41
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -36,8 +36,8 @@ ms.lasthandoff: 01/25/2017
 | 您想要保護什麼 | 雲端 MFA | MFA Server |
 | --- |:---:|:---:|
 | 第一方 Microsoft 應用程式 |● |● |
-| 應用程式資源庫中的 SaaS 應用程式 |● |● |
-| 透過 Azure AD App Proxy 發佈的 Web 應用程式 |● |● |
+| 應用程式資源庫中的 SaaS 應用程式 |● |  |
+| 透過 Azure AD App Proxy 發佈的 Web 應用程式 |● |  |
 | 非透過 Azure AD App Proxy 發佈的 IIS 應用程式 | |● |
 | VPN、RDG 等遠端存取 | |● |
 

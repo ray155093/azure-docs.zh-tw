@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 03/30/2017
 ms.author: spelluru
 translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: 114a8cb31d2bd24baea12f7393bbc7f95c59e16e
-ms.lasthandoff: 04/22/2017
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: 864526efd2bc90bdd4beeb4c81173e85eee6f34b
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -732,7 +732,7 @@ Data Factory 服務會在 Azure Batch 中建立作業，其名為：**adf-poolna
 ```
 
 
-範例中有兩個延伸屬性：**SliceStart** 和 **DataFactoryName**。 SliceStart 的值以 SliceStart 系統變數為基礎。 如需支援的系統變數清單，請參閱 [系統變數](data-factory-scheduling-and-execution.md#data-factory-functions-and-system-variables) 。 DataFactoryName 值為硬式編碼為 CustomActivityFactory。
+範例中有兩個延伸屬性：**SliceStart** 和 **DataFactoryName**。 SliceStart 的值以 SliceStart 系統變數為基礎。 如需支援的系統變數清單，請參閱 [系統變數](data-factory-functions-variables.md) 。 DataFactoryName 值為硬式編碼為 CustomActivityFactory。
 
 若要以 **Execute** 方法存取這些延伸屬性，請使用類似以下的程式碼：
 

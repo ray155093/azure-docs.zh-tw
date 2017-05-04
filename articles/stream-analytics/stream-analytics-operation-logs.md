@@ -16,9 +16,9 @@ ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: e694eb8f4d658ff9410ae7be2bd4b69500ecbf20
-ms.lasthandoff: 11/17/2016
+ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
+ms.openlocfilehash: 7ac1a7f8e2f4f67aeb674f0720bc7108d44dad42
+ms.lasthandoff: 05/01/2017
 
 
 ---
@@ -81,10 +81,10 @@ ms.lasthandoff: 11/17/2016
 
   ![Operation Details](./media/stream-analytics-operation-logs/05-stream-analytics-operation-logs.png)  
 
-萬一您需要連絡[支援服務](https://azure.microsoft.com/support/options/)或透過 [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)將資訊提供給團隊，請注意作業詳細資料，特別是**相互關聯識別碼**。 
+萬一您需要連絡[支援服務](https://azure.microsoft.com/support/options/)或透過 [MSDN 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureStreamAnalytics)將資訊提供給團隊，請注意作業詳細資料，特別是**相互關聯識別碼**。 
 
 ## <a name="get-help"></a>取得說明
-如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
+如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)

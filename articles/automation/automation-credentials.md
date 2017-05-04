@@ -15,9 +15,9 @@ ms.workload: infrastructure-services
 ms.date: 04/14/2017
 ms.author: bwren
 translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 17b4dc2223d30ef13877efc650b56268b707c4bd
-ms.lasthandoff: 04/15/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 6a62f7f70982a07646248188da8293c88fbe1b52
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -28,14 +28,14 @@ ms.lasthandoff: 04/15/2017
 > Azure 自動化中的安全資產包括認證、憑證、連接和加密的變數。 這些資產都會經過加密，並使用為每個自動化帳戶產生的唯一索引鍵儲存在 Azure 自動化中。 這個索引鍵是由主要憑證加密，並且儲存在 Azure 自動化中。 儲存安全資產之前，會使用主要憑證解密自動化帳戶的金鑰，然後用來加密資產。  
 
 ## <a name="windows-powershell-cmdlets"></a>Windows PowerShell Cmdlet
-下表中的 Cmdlet 是用來透過 Windows PowerShell 建立和管理自動化認證資產。  它們是隨著 [Azure PowerShell 模組](/powershell/azureps-cmdlets-docs) 的一部分推出，可供在自動化 Runbook 和 DSC 設定中使用。
+下表中的 Cmdlet 是用來透過 Windows PowerShell 建立和管理自動化認證資產。  它們是隨著 [Azure PowerShell 模組](/powershell/azure/overview) 的一部分推出，可供在自動化 Runbook 和 DSC 設定中使用。
 
 | Cmdlet | 說明 |
 |:--- |:--- |
-| [Get-AzureAutomationCredential](http://msdn.microsoft.com/library/dn913781.aspx) |擷取認證資產的相關資訊。 您只能從 **Get-AutomationPSCredential** 活動擷取認證本身。 |
-| [New-AzureAutomationCredential](http://msdn.microsoft.com/library/azure/jj554330.aspx) |建立新的自動化認證。 |
-| [Remove-AzureAutomationCredential](http://msdn.microsoft.com/library/azure/jj554330.aspx) |移除自動化認證。 |
-| [Set-AzureAutomationCredential](http://msdn.microsoft.com/library/azure/jj554330.aspx) |設定現有自動化認證的屬性。 |
+| [Get-AzureAutomationCredential](/powershell/module/azure/get-azureautomationcredential?view=azuresmps-3.7.0) |擷取認證資產的相關資訊。 您只能從 **Get-AutomationPSCredential** 活動擷取認證本身。 |
+| [New-AzureAutomationCredential](/powershell/module/azure/new-azureautomationcredential?view=azuresmps-3.7.0) |建立新的自動化認證。 |
+| [Remove-AzureAutomationCredential](/powershell/module/azure/new-azureautomationcredential?view=azuresmps-3.7.0) |移除自動化認證。 |
+| [Set-AzureAutomationCredential](/powershell/module/azure/new-azureautomationcredential?view=azuresmps-3.7.0) |設定現有自動化認證的屬性。 |
 
 ## <a name="runbook-activities"></a>Runbook 活動
 下表中的活動用來存取中 Runbook 和 DSC 設定的認證。

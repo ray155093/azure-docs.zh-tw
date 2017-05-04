@@ -1,6 +1,6 @@
 ---
 title: "將雲端服務連接到自訂網域控制站 | Microsoft Docs"
-description: "了解如何使用 PowerShell 和 AD 網域延伸模組將 Web/背景工作角色連接到自訂 AD 網域"
+description: "了解如何使用 PowerShell 和 AD 網域延伸將 Web/背景工作角色連接到自訂 AD 網域"
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 01/04/2017
 ms.author: adegeo
 translationtype: Human Translation
-ms.sourcegitcommit: 0b404af5b638ec2d543ce98b562b7df538652f70
-ms.openlocfilehash: 39ee9cc1027958d85b2af2781adab0fe06c9a433
-ms.lasthandoff: 01/05/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 5489762a7a392e4e4098d85cba22d560e9858267
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -26,7 +26,7 @@ ms.lasthandoff: 01/05/2017
 
 在開始之前，請將以下幾件事牢記在心：
 
-1. 本教學課程使用 PowerShell，因此請確認您已安裝 Azure PowerShell 且已準備就緒。 如需設定 Azure PowerShell 的說明，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+1. 本教學課程使用 PowerShell，因此請確認您已安裝 Azure PowerShell 且已準備就緒。 如需設定 Azure PowerShell 的說明，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azure/overview)。
 2. AD 網域控制站和 Web/背景工作角色執行個體必須位在 VNet 中。
 
 請遵循以下逐步指南，如果您遇到任何問題，請在下方留言， 我們將會回覆您 (沒錯，我們真的會閱讀留言)。

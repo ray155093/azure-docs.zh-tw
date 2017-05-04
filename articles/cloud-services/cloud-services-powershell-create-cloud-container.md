@@ -15,8 +15,9 @@ ms.workload: na
 ms.date: 11/18/2016
 ms.author: cawa
 translationtype: Human Translation
-ms.sourcegitcommit: c1551b250ace3aa6775932c441fcfe28431f8f57
-ms.openlocfilehash: 89e517a17417475f975dbaa0cee8517145a7c6c3
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: c024d8d47ab9b78399d8eb8b4df1f764f2877339
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.openlocfilehash: 89e517a17417475f975dbaa0cee8517145a7c6c3
 3. 使用 [Add-AzureAccount](https://msdn.microsoft.com/library/dn495128.aspx) 登入。
 
    > [!NOTE]
-   > 如需安裝 Azure PowerShell Cmdlet 及連接至您的 Azure 訂用帳戶的進一步指示，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+   > 如需安裝 Azure PowerShell Cmdlet 及連接至您的 Azure 訂用帳戶的進一步指示，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azure/overview)。
    >
    >
 4. 使用 **New-AzureService** Cmdlet 來建立空白的 Azure 雲端服務容器。
@@ -52,9 +53,4 @@ Get-help New-AzureService
 ### <a name="next-steps"></a>後續步驟
 * 若要管理雲端服務部署，請參閱 [Get-AzureService](https://msdn.microsoft.com/library/azure/dn495131.aspx)、[Remove-AzureService](https://msdn.microsoft.com/library/azure/dn495120.aspx) 及 [Set-AzureService](https://msdn.microsoft.com/library/azure/dn495242.aspx) 命令。 另請參閱 [如何設定雲端服務](cloud-services-how-to-configure.md) 以取得進一步的資訊。
 * 若要將雲端服務專案發佈至 Azure，請參閱[在 Azure 中持續傳遞雲端服務](cloud-services-dotnet-continuous-delivery.md)中的 **PublishCloudService.ps1** 程式碼範例。
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

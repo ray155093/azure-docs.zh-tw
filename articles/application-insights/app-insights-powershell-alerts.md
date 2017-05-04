@@ -14,9 +14,9 @@ ms.topic: article
 ms.date: 10/31/2016
 ms.author: awills
 translationtype: Human Translation
-ms.sourcegitcommit: 80e2ac4235492d727e2034f37f9a85eb2873625c
-ms.openlocfilehash: f479ae38e446c3404592901c416990ab6e39126b
-ms.lasthandoff: 02/04/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 298e0218c51385caa2de6a684ac40503fc07f5fa
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -39,7 +39,7 @@ ms.lasthandoff: 02/04/2017
 * 使用該程式安裝 Microsoft Azure PowerShell
 
 ## <a name="connect-to-azure"></a>連接到 Azure
-啟動 Azure PowerShell 並 [連接至您的訂用帳戶](/powershell/azureps-cmdlets-docs)：
+啟動 Azure PowerShell 並 [連接至您的訂用帳戶](/powershell/azure/overview)：
 
 ```PowerShell
 

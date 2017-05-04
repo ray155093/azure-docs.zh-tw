@@ -16,9 +16,9 @@ ms.custom: manage
 ms.date: 03/30/2017
 ms.author: barbkess
 translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: adbd994022f7585676bcbd0c4e4b040e9160c679
-ms.lasthandoff: 04/07/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 3107e918a12ba17e72dbbe3660d42527e9e9f051
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -56,7 +56,7 @@ ms.lasthandoff: 04/07/2017
 | 訊息 40847：無法執行這項作業，因為伺服器可能會超過允許的資料庫交易單位配額 45000。 |減少您正在嘗試建立的資料庫 [DWU][DWU]，或是[要求增加配額][request a quota increase]。 |
 | 調查空間使用量 |請參閱[資料表大小][Table sizes]，以了解您系統的空間使用量。 |
 | 協助管理資料表 |請參閱[資料表概觀][Overview]一文，以協助管理您的資料表。  本文還包含更詳細主題的連結，例如[資料表的資料類型][Data types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]、[維護資料表統計資料][Statistics]和[暫存資料表][Temporary]。 |
-|Azure 入口網站中的透明資料加密 (TDE) 進度列不會更新|您可以透過 [PowerShell (英文)](https://docs.microsoft.com/powershell/module/azurerm.sql/get-azurermsqldatabasetransparentdataencryption?view=azurermps-3.7.0) 檢視 TDE 的狀態。|
+|Azure 入口網站中的透明資料加密 (TDE) 進度列不會更新|您可以透過 [PowerShell (英文)](/powershell/module/azurerm.sql/get-azurermsqldatabasetransparentdataencryption) 檢視 TDE 的狀態。|
 
 ## <a name="polybase"></a>Polybase
 | 問題 | 解決方案 |

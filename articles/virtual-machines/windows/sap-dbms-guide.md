@@ -18,9 +18,9 @@ ms.date: 11/08/2016
 ms.author: sedusch
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 9313065c82ec4c395f71d5af7ad8f7b20b68015e
-ms.lasthandoff: 04/03/2017
+ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
+ms.openlocfilehash: cc7c85382d8f8183ef3eb3cc7496b012808148e5
+ms.lasthandoff: 04/29/2017
 
 
 ---
@@ -78,7 +78,22 @@ ms.lasthandoff: 04/03/2017
 [azure-subscription-service-limits]:../../azure-subscription-service-limits.md
 [azure-subscription-service-limits-subscription]:../../azure-subscription-service-limits.md#subscription-limits
 
-[dbms-guide]:sap-dbms-guide.md (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南) [dbms-guide-2.1]:#c7abf1f0-c927-4a7c-9c1d-c7b5b3b7212f (VM 和 VHD 的快取) [dbms-guide-2.2]:#c8e566f9-21b7-4457-9f7f-126036971a91 (軟體 RAID) [dbms-guide-2.3]:#10b041ef-c177-498a-93ed-44b3441ab152 (Microsoft Azure 儲存體) [dbms-guide-2]:#65fa79d6-a85f-47ee-890b-22e794f51a64 (RDBMS 部署結構) [dbms-guide-3]:#871dfc27-e509-4222-9370-ab1de77021c3 (Azure VM 的相關高可用性和災害復原) [dbms-guide-5.5.1]:#0fef0e79-d3fe-4ae2-85af-73666a6f7268 (SQL Server 2012 SP1 CU4 和更新版本) [dbms-guide-5.5.2]:#f9071eff-9d72-4f47-9da4-1852d782087b (SQL Server 2012 SP1 CU3 和舊版) [dbms-guide-5.6]:#1b353e38-21b3-4310-aeb6-a77e7c8e81c8 (使用來自 Microsoft Azure Marketplace 的 SQL Server 映像) [dbms-guide-5.8]:#9053f720-6f3b-4483-904d-15dc54141e30 (適用於 Azure 上 SAP 的一般 SQL Server 摘要) [dbms-guide-5]:#3264829e-075e-4d25-966e-a49dad878737 (SQL Server RDBMS 專屬的詳細資料) [dbms-guide-8.4.1]:#b48cfe3b-48e9-4f5b-a783-1d29155bd573 (儲存體組態) [dbms-guide-8.4.2]:#23c78d3b-ca5a-4e72-8a24-645d141a3f5d (備份與還原) [dbms-guide-8.4.3]:#77cd2fbb-307e-4cbf-a65f-745553f72d2c (備份與還原的效能考量) [dbms-guide-8.4.4]:#f77c1436-9ad8-44fb-a331-8671342de818 (其他) [dbms-guide-900-sap-cache-server-on-premises]:#642f746c-e4d4-489d-bf63-73e80177a0a8
+[dbms-guide]:sap-dbms-guide.md 
+[dbms-guide-2.1]:#c7abf1f0-c927-4a7c-9c1d-c7b5b3b7212f 
+[dbms-guide-2.2]:#c8e566f9-21b7-4457-9f7f-126036971a91 
+[dbms-guide-2.3]:#10b041ef-c177-498a-93ed-44b3441ab152 
+[dbms-guide-2]:#65fa79d6-a85f-47ee-890b-22e794f51a64 
+[dbms-guide-3]:#871dfc27-e509-4222-9370-ab1de77021c3 
+[dbms-guide-5.5.1]:#0fef0e79-d3fe-4ae2-85af-73666a6f7268 
+[dbms-guide-5.5.2]:#f9071eff-9d72-4f47-9da4-1852d782087b 
+[dbms-guide-5.6]:#1b353e38-21b3-4310-aeb6-a77e7c8e81c8 
+[dbms-guide-5.8]:#9053f720-6f3b-4483-904d-15dc54141e30 
+[dbms-guide-5]:#3264829e-075e-4d25-966e-a49dad878737 
+[dbms-guide-8.4.1]:#b48cfe3b-48e9-4f5b-a783-1d29155bd573 
+[dbms-guide-8.4.2]:#23c78d3b-ca5a-4e72-8a24-645d141a3f5d 
+[dbms-guide-8.4.3]:#77cd2fbb-307e-4cbf-a65f-745553f72d2c 
+[dbms-guide-8.4.4]:#f77c1436-9ad8-44fb-a331-8671342de818 
+[dbms-guide-900-sap-cache-server-on-premises]:#642f746c-e4d4-489d-bf63-73e80177a0a8
 
 [dbms-guide-figure-100]:./media/virtual-machines-shared-sap-dbms-guide/100_storage_account_types.png
 [dbms-guide-figure-200]:./media/virtual-machines-shared-sap-dbms-guide/200-ha-set-for-dbms-ha.png
@@ -90,10 +105,27 @@ ms.lasthandoff: 04/03/2017
 [dbms-guide-figure-800]:./media/virtual-machines-shared-sap-dbms-guide/800-azure-vm-sap-content-server.png
 [dbms-guide-figure-900]:./media/virtual-machines-shared-sap-dbms-guide/900-sap-cache-server-on-premises.png
 
-[deployment-guide]:sap-deployment-guide.md (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 部署指南) [deployment-guide-2.2]:sap-deployment-guide.md#42ee2bdb-1efc-4ec7-ab31-fe4c22769b94 (SAP 資源) [deployment-guide-3.1.2]:sap-deployment-guide.md#3688666f-281f-425b-a312-a77e7db2dfab (使用自訂映像部署 VM) [deployment-guide-3.2]:sap-deployment-guide.md#db477013-9060-4602-9ad4-b0316f8bb281 (案例 1：從 Azure Marketplace 為 SAP 部署 VM) [deployment-guide-3.3]:sap-deployment-guide.md#54a1fc6d-24fd-4feb-9c57-ac588a55dff2 (案例 2：使用自訂映像為 SAP 部署 VM) [deployment-guide-3.4]:sap-deployment-guide.md#a9a60133-a763-4de8-8986-ac0fa33aa8c1 (案例 3：使用非一般化 Azure VHD 搭配 SAP 從內部部署環境移動 VM) [deployment-guide-3]:sap-deployment-guide.md#b3253ee3-d63b-4d74-a49b-185e76c4088e (適用於 Microsoft Azure SAP 的 VM 部署案例) [deployment-guide-4.1]:sap-deployment-guide.md#604bcec2-8b6e-48d2-a944-61b0f5dee2f7 (部署 Azure PowerShell Cmdlet) [deployment-guide-4.2]:sap-deployment-guide.md#7ccf6c3e-97ae-4a7a-9c75-e82c37beb18e (下載並匯入與 SAP 相關的 PowerShell Cmdlet) [deployment-guide-4.3]:sap-deployment-guide.md#31d9ecd6-b136-4c73-b61e-da4a29bbc9cc (將 VM 加入內部部署網域 - 僅限 Windows) [deployment-guide-4.4.2]:sap-deployment-guide.md#6889ff12-eaaf-4f3c-97e1-7c9edc7f7542 (Linux) [deployment-guide-4.4]:sap-deployment-guide.md#c7cbb0dc-52a4-49db-8e03-83e7edc2927d (下載、安裝和啟用 Azure VM 代理程式) [deployment-guide-4.5.1]:sap-deployment-guide.md#987cf279-d713-4b4c-8143-6b11589bb9d4 (Azure PowerShell) [deployment-guide-4.5.2]:sap-deployment-guide.md#408f3779-f422-4413-82f8-c57a23b4fc2f (Azure CLI) [deployment-guide-4.5]:sap-deployment-guide.md#d98edcd3-f2a1-49f7-b26a-07448ceb60ca (設定 Azure Enhanced Monitoring Extension for SAP) [deployment-guide-5.1]:sap-deployment-guide.md#bb61ce92-8c5c-461f-8c53-39f5e5ed91f2 (Azure Enhanced Monitoring for SAP 整備檢查) [deployment-guide-5.2]:sap-deployment-guide.md#e2d592ff-b4ea-4a53-a91a-e5521edb6cd1 (Health check for Azure 監視基礎結構組態的健康狀態檢查) [deployment-guide-5.3]:sap-deployment-guide.md#fe25a7da-4e4e-4388-8907-8abc2d33cfd8 (適用於 SAP 之 Azure 監視基礎結構的進一步疑難排解)
+[deployment-guide]:sap-deployment-guide.md 
+[deployment-guide-2.2]:sap-deployment-guide.md#42ee2bdb-1efc-4ec7-ab31-fe4c22769b94 
+[deployment-guide-3.1.2]:sap-deployment-guide.md#3688666f-281f-425b-a312-a77e7db2dfab 
+[deployment-guide-3.2]:sap-deployment-guide.md#db477013-9060-4602-9ad4-b0316f8bb281 
+[deployment-guide-3.3]:sap-deployment-guide.md#54a1fc6d-24fd-4feb-9c57-ac588a55dff2 
+[deployment-guide-3.4]:sap-deployment-guide.md#a9a60133-a763-4de8-8986-ac0fa33aa8c1
+[deployment-guide-3]:sap-deployment-guide.md#b3253ee3-d63b-4d74-a49b-185e76c4088e 
+[deployment-guide-4.1]:sap-deployment-guide.md#604bcec2-8b6e-48d2-a944-61b0f5dee2f7 
+[deployment-guide-4.2]:sap-deployment-guide.md#7ccf6c3e-97ae-4a7a-9c75-e82c37beb18e
+[deployment-guide-4.3]:sap-deployment-guide.md#31d9ecd6-b136-4c73-b61e-da4a29bbc9cc 
+[deployment-guide-4.4.2]:sap-deployment-guide.md#6889ff12-eaaf-4f3c-97e1-7c9edc7f7542 
+[deployment-guide-4.4]:sap-deployment-guide.md#c7cbb0dc-52a4-49db-8e03-83e7edc2927d 
+[deployment-guide-4.5.1]:sap-deployment-guide.md#987cf279-d713-4b4c-8143-6b11589bb9d4 
+[deployment-guide-4.5.2]:sap-deployment-guide.md#408f3779-f422-4413-82f8-c57a23b4fc2f 
+[deployment-guide-4.5]:sap-deployment-guide.md#d98edcd3-f2a1-49f7-b26a-07448ceb60ca 
+[deployment-guide-5.1]:sap-deployment-guide.md#bb61ce92-8c5c-461f-8c53-39f5e5ed91f2 
+[deployment-guide-5.2]:sap-deployment-guide.md#e2d592ff-b4ea-4a53-a91a-e5521edb6cd1 
+[deployment-guide-5.3]:sap-deployment-guide.md#fe25a7da-4e4e-4388-8907-8abc2d33cfd8 
 
-[deployment-guide-configure-monitoring-scenario-1]:sap-deployment-guide.md#ec323ac3-1de9-4c3a-b770-4ff701def65b (Configure Monitoring)
-[deployment-guide-configure-proxy]:sap-deployment-guide.md#baccae00-6f79-4307-ade4-40292ce4e02d (Configure Proxy)
+[deployment-guide-configure-monitoring-scenario-1]:sap-deployment-guide.md#ec323ac3-1de9-4c3a-b770-4ff701def65b 
+[deployment-guide-configure-proxy]:sap-deployment-guide.md#baccae00-6f79-4307-ade4-40292ce4e02d 
 [deployment-guide-figure-100]:./media/virtual-machines-shared-sap-deployment-guide/100-deploy-vm-image.png
 [deployment-guide-figure-1000]:./media/virtual-machines-shared-sap-deployment-guide/1000-service-properties.png
 [deployment-guide-figure-11]:sap-deployment-guide.md#figure-11
@@ -116,7 +148,7 @@ ms.lasthandoff: 04/03/2017
 [deployment-guide-figure-azure-cli-installed]:sap-deployment-guide.md#402488e5-f9bb-4b29-8063-1c5f52a892d0
 [deployment-guide-figure-azure-cli-version]:sap-deployment-guide.md#0ad010e6-f9b5-4c21-9c09-bb2e5efb3fda
 [deployment-guide-install-vm-agent-windows]:sap-deployment-guide.md#b2db5c9a-a076-42c6-9835-16945868e866
-[deployment-guide-troubleshooting-chapter]:sap-deployment-guide.md#564adb4f-5c95-4041-9616-6635e83a810b (Checks and Troubleshooting for End-to-End Monitoring Setup for SAP on Azure)
+[deployment-guide-troubleshooting-chapter]:sap-deployment-guide.md#564adb4f-5c95-4041-9616-6635e83a810b 
 
 [deploy-template-cli]:../../resource-group-template-deploy-cli.md
 [deploy-template-portal]:../../resource-group-template-deploy-portal.md
@@ -147,7 +179,33 @@ ms.lasthandoff: 04/03/2017
 
 [msdn-set-azurermvmaemextension]:https://msdn.microsoft.com/library/azure/mt670598.aspx
 
-[planning-guide]:sap-planning-guide.md (Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南) [planning-guide-1.2]:sap-planning-guide.md#e55d1e22-c2c8-460b-9897-64622a34fdff (資源) [planning-guide-11]:sap-planning-guide.md#7cf991a1-badd-40a9-944e-7baae842a058 (Azure 虛擬機器上執行之 SAP NetWeaver 的高可用性 (HA) 和災害復原 (DR)) [planning-guide-11.4.1]:sap-planning-guide.md#5d9d36f9-9058-435d-8367-5ad05f00de77 (SAP 應用程式伺服器的高可用性) [planning-guide-11.5]:sap-planning-guide.md#4e165b58-74ca-474f-a7f4-5e695a93204f (對 SAP 執行個體使用自動啟動) [planning-guide-2.1]:sap-planning-guide.md#1625df66-4cc6-4d60-9202-de8a0b77f803 (僅限雲端 - 將虛擬機器部署到 Azure，無須倚賴內部部署客戶網路) [planning-guide-2.2]:sap-planning-guide.md#f5b3b18c-302c-4bd8-9ab2-c388f1ab3d10 (跨單位 - 將單一或多個 SAP VM 部署到 Azure，必須完全整合到內部部署網路) [planning-guide-3.1]:sap-planning-guide.md#be80d1b9-a463-4845-bd35-f4cebdb5424a (Azure 區域) [planning-guide-3.2.1]:sap-planning-guide.md#df49dc09-141b-4f34-a4a2-990913b30358 (容錯網域) [planning-guide-3.2.2]:sap-planning-guide.md#fc1ac8b2-e54a-487c-8581-d3cc6625e560 (升級網域) [planning-guide-3.2.3]:sap-planning-guide.md#18810088-f9be-4c97-958a-27996255c665 (Azure 可用性設定組) [planning-guide-3.2]:sap-planning-guide.md#8d8ad4b8-6093-4b91-ac36-ea56d80dbf77 (Microsoft Azure 虛擬機器概念) [planning-guide-3.3.2]:sap-planning-guide.md#ff5ad0f9-f7f4-4022-9102-af07aef3bc92 (Azure 進階儲存體) [planning-guide-5.1.1]:sap-planning-guide.md#4d175f1b-7353-4137-9d2f-817683c26e53 (使用非一般化磁碟將 VM 從內部部署移至 Azure ) [planning-guide-5.1.2]:sap-planning-guide.md#e18f7839-c0e2-4385-b1e6-4538453a285c (使用客戶特定的映像部署 VM) [planning-guide-5.2.1]:sap-planning-guide.md#1b287330-944b-495d-9ea7-94b83aff73ef (使用非一般化磁碟將 VM 從內部部署移至 Azure 的準備工作) [planning-guide-5.2.2]:sap-planning-guide.md#57f32b1c-0cba-4e57-ab6e-c39fe22b6ec3 (使用客戶特定的映像為 SAP 部署 VM 的準備工作) [planning-guide-5.2]:sap-planning-guide.md#6ffb9f41-a292-40bf-9e70-8204448559e7 (使用適用於 Azure 的 SAP 準備 VM) [planning-guide-5.3.1]:sap-planning-guide.md#6e835de8-40b1-4b71-9f18-d45b20959b79 (Azure 磁碟與 Azure 映像之間的差異) [planning-guide-5.3.2]:sap-planning-guide.md#a43e40e6-1acc-4633-9816-8f095d5a7b6a (將 VHD 從內部部署環境上傳至 Azure) [planning-guide-5.4.2]:sap-planning-guide.md#9789b076-2011-4afa-b2fe-b07a8aba58a1 (在 Azure 儲存體帳戶之間複製磁碟) [planning-guide-5.5.1]:sap-planning-guide.md#4efec401-91e0-40c0-8e64-f2dceadff646 (SAP 部署的 VM/VHD 結構) [planning-guide-5.5.3]:sap-planning-guide.md#17e0d543-7e8c-4160-a7da-dd7117a1ad9d (為連結的磁碟設定自動掛接) [planning-guide-7.1]:sap-planning-guide.md#3e9c3690-da67-421a-bc3f-12c520d99a30 (單一 VM 搭配 SAP NetWeaver 的示範/訓練案例) [planning-guide-7]:sap-planning-guide.md#96a77628-a05e-475d-9df3-fb82217e8f14 (SAP 執行個體的僅限雲端部署概念) [planning-guide-9.1]:sap-planning-guide.md#6f0a47f3-a289-4090-a053-2521618a28c3 (適用於 SAP 的 Azure 監視解決方案) [planning-guide-azure-premium-storage]:sap-planning-guide.md#ff5ad0f9-f7f4-4022-9102-af07aef3bc92 (Azure 進階儲存體)
+[planning-guide]:sap-planning-guide.md  
+[planning-guide-1.2]:sap-planning-guide.md#e55d1e22-c2c8-460b-9897-64622a34fdff 
+[planning-guide-11]:sap-planning-guide.md#7cf991a1-badd-40a9-944e-7baae842a058 
+[planning-guide-11.4.1]:sap-planning-guide.md#5d9d36f9-9058-435d-8367-5ad05f00de77 
+[planning-guide-11.5]:sap-planning-guide.md#4e165b58-74ca-474f-a7f4-5e695a93204f 
+[planning-guide-2.1]:sap-planning-guide.md#1625df66-4cc6-4d60-9202-de8a0b77f803 
+[planning-guide-2.2]:sap-planning-guide.md#f5b3b18c-302c-4bd8-9ab2-c388f1ab3d10
+[planning-guide-3.1]:sap-planning-guide.md#be80d1b9-a463-4845-bd35-f4cebdb5424a 
+[planning-guide-3.2.1]:sap-planning-guide.md#df49dc09-141b-4f34-a4a2-990913b30358 
+[planning-guide-3.2.2]:sap-planning-guide.md#fc1ac8b2-e54a-487c-8581-d3cc6625e560 
+[planning-guide-3.2.3]:sap-planning-guide.md#18810088-f9be-4c97-958a-27996255c665 
+[planning-guide-3.2]:sap-planning-guide.md#8d8ad4b8-6093-4b91-ac36-ea56d80dbf77 
+[planning-guide-3.3.2]:sap-planning-guide.md#ff5ad0f9-f7f4-4022-9102-af07aef3bc92 
+[planning-guide-5.1.1]:sap-planning-guide.md#4d175f1b-7353-4137-9d2f-817683c26e53 
+[planning-guide-5.1.2]:sap-planning-guide.md#e18f7839-c0e2-4385-b1e6-4538453a285c 
+[planning-guide-5.2.1]:sap-planning-guide.md#1b287330-944b-495d-9ea7-94b83aff73ef 
+[planning-guide-5.2.2]:sap-planning-guide.md#57f32b1c-0cba-4e57-ab6e-c39fe22b6ec3 
+[planning-guide-5.2]:sap-planning-guide.md#6ffb9f41-a292-40bf-9e70-8204448559e7 
+[planning-guide-5.3.1]:sap-planning-guide.md#6e835de8-40b1-4b71-9f18-d45b20959b79 
+[planning-guide-5.3.2]:sap-planning-guide.md#a43e40e6-1acc-4633-9816-8f095d5a7b6a 
+[planning-guide-5.4.2]:sap-planning-guide.md#9789b076-2011-4afa-b2fe-b07a8aba58a1 
+[planning-guide-5.5.1]:sap-planning-guide.md#4efec401-91e0-40c0-8e64-f2dceadff646 
+[planning-guide-5.5.3]:sap-planning-guide.md#17e0d543-7e8c-4160-a7da-dd7117a1ad9d 
+[planning-guide-7.1]:sap-planning-guide.md#3e9c3690-da67-421a-bc3f-12c520d99a30 
+[planning-guide-7]:sap-planning-guide.md#96a77628-a05e-475d-9df3-fb82217e8f14 
+[planning-guide-9.1]:sap-planning-guide.md#6f0a47f3-a289-4090-a053-2521618a28c3 
+[planning-guide-azure-premium-storage]:sap-planning-guide.md#ff5ad0f9-f7f4-4022-9102-af07aef3bc92 
 
 [planning-guide-figure-100]:./media/virtual-machines-shared-sap-planning-guide/100-single-vm-in-azure.png
 [planning-guide-figure-1300]:./media/virtual-machines-shared-sap-planning-guide/1300-ref-config-iaas-for-sap.png
@@ -172,14 +230,14 @@ ms.lasthandoff: 04/03/2017
 [planning-guide-figure-600]:./media/virtual-machines-shared-sap-planning-guide/600-s2s-details.png
 [planning-guide-figure-700]:./media/virtual-machines-shared-sap-planning-guide/700-decision-tree-deploy-to-azure.png
 [planning-guide-figure-800]:./media/virtual-machines-shared-sap-planning-guide/800-portal-vm-overview.png
-[planning-guide-microsoft-azure-networking]:sap-planning-guide.md#61678387-8868-435d-9f8c-450b2424f5bd (Microsoft Azure Networking)
-[planning-guide-storage-microsoft-azure-storage-and-data-disks]:sap-planning-guide.md#a72afa26-4bf4-4a25-8cf7-855d6032157f (Storage: Microsoft Azure Storage and Data Disks)
+[planning-guide-microsoft-azure-networking]:sap-planning-guide.md#61678387-8868-435d-9f8c-450b2424f5bd 
+[planning-guide-storage-microsoft-azure-storage-and-data-disks]:sap-planning-guide.md#a72afa26-4bf4-4a25-8cf7-855d6032157f 
 
 [powershell-install-configure]:/powershell/azureps-cmdlets-docs
 [resource-group-authoring-templates]:../../resource-group-authoring-templates.md
 [resource-group-overview]:../../azure-resource-manager/resource-group-overview.md
 [resource-groups-networking]:../../virtual-network/resource-groups-networking.md
-[sap-pam]:https://support.sap.com/pam (SAP Product Availability Matrix)
+[sap-pam]:https://support.sap.com/pam 
 [sap-templates-2-tier-marketplace-image]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-2-tier-marketplace-image%2Fazuredeploy.json
 [sap-templates-2-tier-os-disk]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-2-tier-user-disk%2Fazuredeploy.json
 [sap-templates-2-tier-user-image]:https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fsap-2-tier-user-image%2Fazuredeploy.json
@@ -246,7 +304,7 @@ ms.lasthandoff: 04/03/2017
 [xplat-cli]:../../cli-install-nodejs.md
 [xplat-cli-azure-resource-manager]:../../xplat-cli-azure-resource-manager.md
 
-本指南是在 Microsoft Azure 上實作和部署 SAP 軟體之文件的一部分。 閱讀本指南之前，請先閱讀 [規劃和實作指南][planning-guide]。 本文說明如何在 Microsoft Azure 虛擬機器 (VM) 上，使用 Azure 基礎結構即服務 (IaaS) 功能搭配 SAP，來部署各種關聯式資料庫管理系統 (RDBMS) 及相關產品。
+本指南是在 Microsoft Azure 上實作和部署 SAP 軟體之文件的一部分。 閱讀本指南之前，請先閱讀[規劃和實作指南][planning-guide]。 本文說明如何在 Microsoft Azure 虛擬機器 (VM) 上，使用 Azure 基礎結構即服務 (IaaS) 功能搭配 SAP，來部署各種關聯式資料庫管理系統 (RDBMS) 及相關產品。
 
 本白皮書會對 SAP 安裝文件和 SAP 附註進行補充說明，指出用來在指定平台上安裝和部署 SAP 軟體的主要資源。
 
@@ -318,7 +376,7 @@ ms.lasthandoff: 04/03/2017
 * Azure IaaS 中的高可用性。
 
 ## <a name="65fa79d6-a85f-47ee-890b-22e794f51a64"></a>RDBMS 部署結構
-為了依循本章內容，必須了解 [部署指南][deployment-guide] 的 [這個章節][deployment-guide-3] 所提供的內容。 閱讀本章之前，必須先了解並熟悉有關不同的 VM 系列及其差異，以及 Azure 標準和進階儲存體之差異的知識。
+為了依循本章內容，必須了解[部署指南][deployment-guide]的[這個][deployment-guide-3]章節所提供的內容。 閱讀本章之前，必須先了解並熟悉有關不同的 VM 系列及其差異，以及 Azure 標準和進階儲存體之差異的知識。
 
 在 2015 年 3 月之前，包含作業系統的 Azure VHD 大小限制為 127 GB。 這項限制在 2015 年 3 月解除 (如需詳細資訊，請參閱 <https://azure.microsoft.com/blog/2015/03/25/azure-vm-os-drive-limit-octupled/>)。 從那時起，在包含作業系統的 VHD 上，其大小就與任何其他 VHD 一樣。 不過，我們仍然偏好部署的結構如下：作業系統、DBMS 和最終的 SAP 二進位檔會與資料庫檔案分隔開來。 因此，我們預期在 Azure 虛擬機器上執行的 SAP 系統將會使用作業系統、資料庫管理系統可執行檔和 SAP 可執行檔來安裝基底 VM (或 VHD)。 DBMS 資料和記錄檔將儲存於 Azure 儲存體 (標準或進階儲存體)，並以邏輯磁碟形式連接到原始的 Azure 作業系統映像 VM。
 
@@ -419,10 +477,10 @@ Microsoft Azure 儲存體會將基底 VM (含作業系統) 以及 VHD 或 BLOB �
 
 Azure 儲存體本機複寫 (本地備援) 會根據因為少數客戶提供來部署的基礎結構失敗而導致的資料遺失來提供保護層級。 如上所示，有 4 個不同的選項，第 5 個則是前三個其中之一的變化。 仔細查看我們區分它們的方式︰
 
-* **進階本地備援儲存體 (LRS)**：針對執行需要大量 I/O 之工作負載的虛擬機器，「Azure 進階儲存體」提供高效能、低延遲的磁碟支援。 在 Azure 區域的同一個 Azure 資料中心內有 3 個資料複本。 複本將位於不同的「容錯網域」和「升級網域」中 (如需相關概念，請參閱 [規劃指南][planning-guide] 中的 [這個章節][planning-guide-3.2])。 萬一資料複本因為儲存體節點失敗或磁碟失敗而停止服務，即會自動產生新的複本。
-* **本地備援儲存體 (LRS)**：在此案例中，在 Azure 區域的同一個 Azure 資料中心內會有 3 個資料複本。 複本將位於不同的「容錯網域」和「升級網域」中 (如需相關概念，請參閱 [規劃指南][planning-guide] 中的 [這個章節][planning-guide-3.2])。 萬一資料複本因為儲存體節點失敗或磁碟失敗而停止服務，即會自動產生新的複本。
+* **進階本地備援儲存體 (LRS)**：針對執行需要大量 I/O 之工作負載的虛擬機器，「Azure 進階儲存體」提供高效能、低延遲的磁碟支援。 在 Azure 區域的同一個 Azure 資料中心內有 3 個資料複本。 複本將位於不同的「容錯網域」和「升級網域」中 (如需相關概念，請參閱[規劃指南][planning-guide]中的[這個][planning-guide-3.2]章節)。 萬一資料複本因為儲存體節點失敗或磁碟失敗而停止服務，即會自動產生新的複本。
+* **本地備援儲存體 (LRS)**：在此案例中，在 Azure 區域的同一個 Azure 資料中心內會有 3 個資料複本。 複本將位於不同的「容錯網域」和「升級網域」中 (如需相關概念，請參閱[規劃指南][planning-guide]中的[這個][planning-guide-3.2]章節)。 萬一資料複本因為儲存體節點失敗或磁碟失敗而停止服務，即會自動產生新的複本。
 * **異地備援儲存體 (GRS)**︰在此案例中，會有一個非同步複寫，此複寫會在另一個 Azure 區域中饋送額外 3 個資料複本，而在大部分情況下，此區域會在同一個地理區域內 (例如，北歐和西歐)。 這將會產生 3 個額外的複本，因此總共有 6 個複本。 這個變化讓您能夠基於讀取目的來使用異地複寫之 Azure 區域中的資料 (讀取權限異地備援)。
-* **區域備援儲存體 (ZRS)**︰在此案例中，3 個資料複本會保留於同一個 Azure 區域中。 如 [規劃指南][planning-guide] 的 [這個章節][planning-guide-3.1] 所述，一個 Azure 區域可以是相近的一些資料中心。 在 LRS 的案例中，複本可以分散至組成一個 Azure 區域的不同資料中心。
+* **區域備援儲存體 (ZRS)**︰在此案例中，3 個資料複本會保留於同一個 Azure 區域中。 如[規劃指南][planning-guide]的[這個][planning-guide-3.1]章節所述，一個 Azure 區域可以是相近的一些資料中心。 在 LRS 的案例中，複本可以分散至組成一個 Azure 區域的不同資料中心。
 
 如需詳細資訊，請參閱[這裡][storage-redundancy]。
 
@@ -450,7 +508,7 @@ Azure 儲存體帳戶不只是一個系統管理的建構，而且還是限制�
 
 根據客戶部署和測試，大約可在單一 Azure 標準儲存體帳戶上，利用可接受的效能來佈建 30 到 40 個含有資料庫資料檔和記錄檔的 VHD。 如先前所述，Azure 進階儲存體帳戶的限制很可能是它可持有的資料容量，而不是 IOPS。
 
-使用內部部署的 SAN 裝置，共用需要一些監視，以便最終能夠偵測到 Azure 儲存體帳戶上的瓶頸。 適用於 SAP 的 Azure 監視擴充功能和 Azure 入口網站等工具可用來偵測可能提供次佳 IO 效能的忙碌 Azure 儲存體帳戶。  如果偵測到這種情況，則建議將忙碌的 VM 移到另一個 Azure 儲存體帳戶。 如需有關如何啟用 SAP 主機監視功能的詳細資訊，請參閱 [部署指南][deployment-guide]。
+使用內部部署的 SAN 裝置，共用需要一些監視，以便最終能夠偵測到 Azure 儲存體帳戶上的瓶頸。 適用於 SAP 的 Azure 監視擴充功能和 Azure 入口網站等工具可用來偵測可能提供次佳 IO 效能的忙碌 Azure 儲存體帳戶。  如果偵測到這種情況，則建議將忙碌的 VM 移到另一個 Azure 儲存體帳戶。 如需有關如何啟用 SAP 主機監視功能的詳細資訊，請參閱[部署指南][deployment-guide]。
 
 您可以在下列網址中，找到另一篇摘要說明「Azure 標準儲存體」和「Azure 標準儲存體帳戶」最佳做法的文章：<https://blogs.msdn.com/b/mast/archive/2014/10/14/configuring-azure-virtual-machines-for-optimal-storage-performance.aspx>
 
@@ -469,7 +527,7 @@ Microsoft Azure 提供多種方法來部署 VM 和相關聯的磁碟。 因此�
 您想要從 Azure Marketplace 使用 Microsoft 或協力廠商提供的映像來部署 VM。 在 Azure 中部署您的 VM 之後，您可以遵循相同的指導方針和工具在 VM 中安裝 SAP 軟體，就像在內部部署環境中所做的一樣。 若要在 Azure VM 中安裝 SAP 軟體，SAP 和 Microsoft 建議將 SAP 安裝媒體上傳並儲存到 Azure VHD，或建立做為「檔案伺服器」並包含所有必要 SAP 安裝媒體的 Azure VM。
 
 #### <a name="deploying-a-vm-with-a-customer-specific-generalized-image"></a>使用客戶特定的一般化映像部署 VM
-因為您的作業系統或 DBMS 版本的相關特定修補程式需求，所以 Azure Marketplace 中提供的映像可能不符合您的需求。 因此，您可能必須使用自己「私人」的 OS/DBMS VM 映像建立 VM，之後即可多次部署此映像。 若要準備這類「私人」映像以供複製，您必須在內部部署 VM 上將作業系統一般化。 如需有關如何將 VM 一般化的詳細資訊，請參閱 [部署指南][deployment-guide]。
+因為您的作業系統或 DBMS 版本的相關特定修補程式需求，所以 Azure Marketplace 中提供的映像可能不符合您的需求。 因此，您可能必須使用自己「私人」的 OS/DBMS VM 映像建立 VM，之後即可多次部署此映像。 若要準備這類「私人」映像以供複製，您必須在內部部署 VM 上將作業系統一般化。 如需有關如何將 VM 一般化的詳細資訊，請參閱[部署指南][deployment-guide]。
 
 如果您已在內部部署 VM (特別是針對 2 層系統) 中安裝 SAP 內容，您可以在部署 Azure VM 之後，透過 SAP Software Provisioning Manager 支援的執行個體重新命名程序來調整 SAP 系統設定 (SAP 附註 [1619720])。 否則，您稍後可以在部署 Azure VM 之後安裝 SAP 軟體。
 
@@ -516,7 +574,7 @@ Azure 平台不會針對部署的 VM 提供像是即時移轉等功能。 這表
 ## <a name="deployment-of-host-monitoring"></a>部署主機監視功能
 若要使 Azure 虛擬機器中的 SAP 應用程式以具生產力的方式運作，SAP 需要能夠從執行 Azure 虛擬機器的實際主機取得主機監視資料。 需要有特定的 SAP HostAgent 修補程式等級，才能在 SAPOSCOL 和 SAP HostAgent 中啟用此功能。 確切的修補程式等級記載於 SAP 附註 [1409604]。
 
-如需了解如何部署將主機資料傳遞給 SAPOSCOL 和 SAPHostAgent 的元件及這些元件的生命週期管理，請參閱 [部署指南][deployment-guide]
+如需了解如何部署將主機資料傳遞給 SAPOSCOL 和 SAPHostAgent 的元件及這些元件的生命週期管理，請參閱[部署指南][deployment-guide]
 
 ## <a name="3264829e-075e-4d25-966e-a49dad878737"></a>Microsoft SQL Server 專屬的詳細資料
 ### <a name="sql-server-iaas"></a>SQL Server IaaS
@@ -537,7 +595,7 @@ Azure 平台不會針對部署的 VM 提供像是即時移轉等功能。 這表
 * **SQL 版本支援**︰針對 SAP 客戶，我們在「Microsoft Azure 虛擬機器」上支援 SQL Server 2008 R2 和更新版本。 不支援舊版。 如需更多詳細資料，請檢閱這份通用的 [支援聲明](https://support.microsoft.com/kb/956893) 。 請注意，Microsoft 通常也支援 SQL Server 2008。 不過，由於適用於 SAP 的重大功能是透過 SQL Server 2008 R2 所引進，因此 SQL Server 2008 R2 是適用於 SAP 的最低版本。 請記住，SQL Server 2012 和 2014 已擴充來與 IaaS 案例進行更深入整合 (例如，直接對 Azure 儲存體進行備份)。 因此，我們將本白皮書範圍限制為 SQL Server 2012 和 2014 及其適用於 Azure 的最新修補程式等級。
 * **SQL 功能支援**︰「Microsoft Azure 虛擬機器」上支援大部分的 SQL Server 功能，但有一些例外。 **不支援使用共用磁碟的 SQL Server 容錯移轉叢集**。  單一 Azure 區域內支援分散式技術 (例如，資料庫鏡像、AlwaysOn 可用性群組、複寫、記錄傳送，以及 Service Broker)。 SQL Server AlwaysOn 也在不同 Azure 區域之間受到支援，如以下文件所述︰<https://blogs.technet.com/b/dataplatforminsider/archive/2014/06/19/sql-server-alwayson-availability-groups-supported-between-microsoft-azure-regions.aspx>。  如需更多詳細資料，請檢閱這份 [支援聲明](https://support.microsoft.com/kb/956893) 。 如需有關如何部署 AlwaysOn 組態的範例，請參閱[這篇][virtual-machines-workload-template-sql-alwayson]文章。 此外，也請參閱[這裡][virtual-machines-sql-server-infrastructure-services]所記載的最佳做法。
 * **SQL 效能**︰相較於其他公用雲端虛擬化產品，我們確信 Microsoft Azure 裝載的「虛擬機器」會有非常好的表現，但個別結果可能有所不同。 請參閱[這篇][virtual-machines-sql-server-performance-best-practices]文章。
-* **使用來自 Azure Marketplace 的映像**︰部署新 Microsoft Azure VM 的最快方式就是使用來自 Azure Marketplace 的映像。 Azure Marketplace 中提供包含 SQL Server 的映像。 已經安裝 SQL Server 的映像不能立即用於 SAP NetWeaver 應用程式。 原因是預設的 SQL Server 定序是安裝於這些映像內，而不是 SAP NetWeaver 系統所需的定序。 若要使用這類映像，請參閱 [使用來自 Microsoft Azure Marketplace 的 SQL Server 映像][dbms-guide-5.6] 一章中記載的步驟。
+* **使用來自 Azure Marketplace 的映像**︰部署新 Microsoft Azure VM 的最快方式就是使用來自 Azure Marketplace 的映像。 Azure Marketplace 中提供包含 SQL Server 的映像。 已經安裝 SQL Server 的映像不能立即用於 SAP NetWeaver 應用程式。 原因是預設的 SQL Server 定序是安裝於這些映像內，而不是 SAP NetWeaver 系統所需的定序。 若要使用這類映像，請參閱[使用來自 Microsoft Azure Marketplace 的 SQL Server 映像][dbms-guide-5.6]一章中記載的步驟。
 * 如需詳細資訊，請參閱 [定價詳細資料](https://azure.microsoft.com/pricing/) 。 [SQL Server 2012 授權指南](https://download.microsoft.com/download/7/3/C/73CAD4E0-D0B5-4BE5-AB49-D5B886A5AE00/SQL_Server_2012_Licensing_Reference_Guide.pdf)和 [SQL Server 2014 授權指南](https://download.microsoft.com/download/B/4/E/B4E604D9-9D38-4BBA-A927-56E4C872E41C/SQL_Server_2014_Licensing_Guide.pdf)也是相當重要的資源。
 
 ### <a name="sql-server-configuration-guidelines-for-sap-related-sql-server-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 相關之 SQL Server 的 SQL Server 組態指導方針
@@ -594,8 +652,8 @@ SQL Server 2014 引進的新功能，稱為「緩衝集區延伸模組」。 此
 
 有三種不同方式可將 SQL Server 備份至 Azure 儲存體︰
 
-1. SQL Server 2012 CU4 和更新版本可以原生方式將資料庫備份至 URL。 下列部落格有詳細說明： [New functionality in SQL Server 2014 – Part 5 – Backup/Restore Enhancements (SQL Server 2014 的新功能 – 第 5 部分 – 備份/還原增強功能)](https://blogs.msdn.com/b/saponsqlserver/archive/2014/02/15/new-functionality-in-sql-server-2014-part-5-backup-restore-enhancements.aspx)。 請參閱 [SQL Server 2012 SP1 CU4 和更新版本][dbms-guide-5.5.1] 一章。
-2. SQL 2012 CU4 之前的 SQL Server 版本可以使用重新導向功能來備份到 VHD，而且寫入串流基本上會流向已設定的 Azure 儲存體位置。 請參閱 [SQL Server 2012 SP1 CU3 和舊版][dbms-guide-5.5.2] 一章。
+1. SQL Server 2012 CU4 和更新版本可以原生方式將資料庫備份至 URL。 下列部落格有詳細說明： [New functionality in SQL Server 2014 – Part 5 – Backup/Restore Enhancements (SQL Server 2014 的新功能 – 第 5 部分 – 備份/還原增強功能)](https://blogs.msdn.com/b/saponsqlserver/archive/2014/02/15/new-functionality-in-sql-server-2014-part-5-backup-restore-enhancements.aspx)。 請參閱 [SQL Server 2012 SP1 CU4 和更新版本][dbms-guide-5.5.1]一章。
+2. SQL 2012 CU4 之前的 SQL Server 版本可以使用重新導向功能來備份到 VHD，而且寫入串流基本上會流向已設定的 Azure 儲存體位置。 請參閱 [SQL Server 2012 SP1 CU3 和舊版][dbms-guide-5.5.2]一章。
 3. 最後一個方法是在 VHD 磁碟裝置上執行傳統 SQL Server 備份到磁碟的命令。  這與內部部署模式完全相同，但不會在本文中詳細討論。
 
 #### <a name="0fef0e79-d3fe-4ae2-85af-73666a6f7268"></a>SQL Server 2012 SP1 CU4 和更新版本
@@ -603,7 +661,7 @@ SQL Server 2014 引進的新功能，稱為「緩衝集區延伸模組」。 此
 
  ![使用 SQL Server 2012 備份至 Microsoft Azure 儲存體 BLOB][dbms-guide-figure-400]
 
-此案例的優點是您不需要耗用 VHD 來儲存 SQL Server 備份。 因此，所配置的 VHD 較少，而且可以針對資料和記錄檔使用 VHD IOPS 的整個頻寬。 請注意，如下列文章的＜限制＞一節所記載，備份的大小上限是 1 TB︰<https://msdn.microsoft.com/library/dn435916.aspx#limitations>。 如果在使用「SQL Server 備份」壓縮的情況下，備份大小仍然會超過 1 TB，就需要使用本文件的 [SQL Server 2012 SP1 CU3 和舊版][dbms-guide-5.5.2] 一章中所述的功能。
+此案例的優點是您不需要耗用 VHD 來儲存 SQL Server 備份。 因此，所配置的 VHD 較少，而且可以針對資料和記錄檔使用 VHD IOPS 的整個頻寬。 請注意，如下列文章的＜限制＞一節所記載，備份的大小上限是 1 TB︰<https://msdn.microsoft.com/library/dn435916.aspx#limitations>。 如果在使用「SQL Server 備份」壓縮的情況下，備份大小仍然會超過 1 TB，就需要使用本文件的 [SQL Server 2012 SP1 CU3 和舊版][dbms-guide-5.5.2]一章中所述的功能。
 
 描述從「Azure Blob 存放區」之備份還原資料庫的[相關文件](https://msdn.microsoft.com/library/dn449492.aspx)建議在備份大於 25 GB 的情況下，不要直接從 Azure BLOB 存放區還原。 本文中的建議只以效能考量為依據，並未將功能限制納入考量。 因此，隨著案例的不同，可能會發生不同的狀況。
 
@@ -781,7 +839,7 @@ SAP 支援的「資料庫鏡像」(請參閱 SAP 附註 [965908]) 有賴於在 S
 7. 一律使用名稱解析，不要依賴 IP 位址。
 8. 盡可能使用最高度的資料庫壓縮。 針對 SQL Server 而言，此為頁面壓縮。
 9. 請務必謹慎使用來自 Azure Marketplace 的 SQL Server 映像。 如果您使用 SQL Server 的映像，就必須變更執行個體定序，才能在其上安裝任何 SAP NetWeaver 系統。
-10. 依照 [部署指南][deployment-guide] 所述，安裝並設定適用於 Azure 的「SAP 主機監視功能」。
+10. 依照[部署指南][deployment-guide]所述，安裝並設定適用於 Azure 的 SAP 主機監視功能。
 
 ## <a name="specifics-to-sap-ase-on-windows"></a>Windows 上 SAP ASE 專屬的詳細資料
 從 Microsoft Azure 開始，您就能輕易地將現有的 SAP ASE 應用程式移轉至 Azure 虛擬機器。 虛擬機器中的 SAP ASE 可讓您輕鬆地將這些應用程式移轉到 Microsoft Azure，藉以減少部署、管理和維護企業級應用程式的擁有權總成本。 透過 Azure 虛擬機器中的 SAP ASE，系統管理員和開發人員仍然可以使用可在內部部署使用的相同開發和管理工具。
@@ -1104,7 +1162,7 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 
 就 Oracle 資料庫檔案而言，都「不」  支援使用！
 
-根據「Azure 分頁 BLOB 儲存體」使用 Azure VHD 時，本文件的 [VM 和 VHD 的快取][dbms-guide-2.1] 及 [Microsoft Azure 儲存體][dbms-guide-2.3] 章節中所做的陳述也適用於利用 Oracle 資料庫所做的部署。
+根據「Azure 分頁 BLOB 儲存體」使用 Azure VHD 時，本文件的 [VM 和 VHD 的快取][dbms-guide-2.1]及 [Microsoft Azure 儲存體][dbms-guide-2.3]章節中所做的陳述也適用於利用 Oracle 資料庫所做的部署。
 
 如同先前在文件通用部分中所述，適用於 Azure VHD 的 IOPS 輸送量上有配額存在。 確切的配額會根據使用的 VM 類型而定。 如需 VM 類型及其配額的清單，請參閱[這裡][virtual-machines-sizes]
 
@@ -1112,7 +1170,7 @@ SAP 目前支援 SAP ASE 版本 16.0，可與 SAP 商務套件產品搭配使用
 
 只要每個磁碟上目前的 IOPS 配額能滿足需求，就可以將所有 DB 檔案儲存於單一已掛接的 Azure VHD 上。
 
-如果需要更多 IOPS，強烈建議使用 Windows 儲存集區 (僅適用於 Windows Server 2012 和更新版本) 或適用於 Windows 2008 R2 的 Windows 等量，透過多個已掛接的 VHD 磁碟來建立一個大型邏輯裝置。 另請參閱本文件的 [軟體 RAID][dbms-guide-2.2] 一章。 這種方法可以簡化系統管理負荷來管理磁碟空間，並避免將檔案手動分散到多個已掛接的 VHD。
+如果需要更多 IOPS，強烈建議使用 Windows 儲存集區 (僅適用於 Windows Server 2012 和更新版本) 或適用於 Windows 2008 R2 的 Windows 等量，透過多個已掛接的 VHD 磁碟來建立一個大型邏輯裝置。 另請參閱本文件的[軟體 RAID][dbms-guide-2.2] 一章。 這種方法可以簡化系統管理負荷來管理磁碟空間，並避免將檔案手動分散到多個已掛接的 VHD。
 
 #### <a name="backup--restore"></a>備份 / 還原
 針對備份 / 還原功能，利用與標準 Windows Server 作業系統和 Hyper-V 上所做的相同方式來支援 SAP BR*Tools for Oracle。 Oracle 復原管理員 (RMAN) 也支援備份至磁碟，以及從磁碟還原。
@@ -1142,7 +1200,7 @@ SAP 目前支援 SAP MaxDB 版本 7.9，以便與 Azure 中 SAP NetWeaver 架構
 
 ### <a name="sap-maxdb-configuration-guidelines-for-sap-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 的 SAP MaxDB 組態指導方針
 #### <a name="b48cfe3b-48e9-4f5b-a783-1d29155bd573"></a>儲存體組態
-適用於 SAP MaxDB 的 Azure 儲存體最佳做法是依照 [RDBMS 部署結構][dbms-guide-2] 一章中所提到的一般建議。
+適用於 SAP MaxDB 的 Azure 儲存體最佳做法是依照 [RDBMS 部署結構][dbms-guide-2]一章中所提到的一般建議。
 
 > [!IMPORTANT]
 > 如同其他資料庫，SAP MaxDB 也有資料和記錄檔。 不過，在 SAP MaxDB 術語中，正確的詞彙是「磁碟區」(不是「檔案」)。 例如，有 SAP MaxDB 資料磁碟區和記錄磁碟區。 請勿與作業系統磁碟區混淆。
@@ -1151,11 +1209,11 @@ SAP 目前支援 SAP MaxDB 版本 7.9，以便與 Azure 中 SAP NetWeaver 架構
 
 簡單地說，您必須︰
 
-* 如 [Microsoft Azure 儲存體][dbms-guide-2.3] 一章所指定，將保有 SAP MaxDB 資料和記錄磁碟區 (也就是檔案) 的 Azure 儲存體帳戶設定為 [本機備援儲存體 (LRS)]。
+* 如 [Microsoft Azure 儲存體][dbms-guide-2.3]一章所指定，將保有 SAP MaxDB 資料和記錄磁碟區 (也就是檔案) 的 Azure 儲存體帳戶設定為 [本機備援儲存體 (LRS)]。
 * 將 SAP MaxDB 資料磁碟區 (也就是檔案) 的 IO 路徑，與記錄磁碟區 (也就是檔案) 的 IO 路徑分隔開來。 這表示 SAP MaxDB 資料磁碟區 (也就是檔案) 必須安裝於一個邏輯磁碟機上，而 SAP MaxDB 記錄磁碟區 (也就是檔案) 必須安裝於另一個邏輯磁碟機上。
-* 如 [VM 的快取][dbms-guide-2.1] 一章所述，根據您是要針對 SAP MaxDB 資料還是記錄磁碟區 (也就是檔案) 使用檔案快取，以及您使用的是「Azure 標準儲存體」還是「Azure 進階儲存體」而定，為每個 Azure Blob 設定適當的檔案快取。
+* 如 [VM 的快取][dbms-guide-2.1]一章所述，根據您是要針對 SAP MaxDB 資料還是記錄磁碟區 (也就是檔案) 使用檔案快取，以及您使用的是「Azure 標準儲存體」還是「Azure 進階儲存體」而定，為每個 Azure Blob 設定適當的檔案快取。
 * 只要每個磁碟上目前的 IOPS 配額可滿足需求，就能夠將所有資料磁碟區儲存於單一掛接的 Azure VHD 上，而且也會將所有資料庫記錄磁碟區儲存於另一個單一掛接的 Azure VHD 上。
-* 如果需要更多 IOPS 和/或空間，強烈建議使用 Microsoft Windows 儲存集區 (僅適用於 Microsoft Windows Server 2012 和更新版本) 或適用於 Microsoft Windows 2008 R2 的 Microsoft Windows 等量，透過多個已掛接的 VHD 磁碟來建立一個大型邏輯裝置。 另請參閱本文件的 [軟體 RAID][dbms-guide-2.2] 一章。 這種方法可以簡化系統管理負荷來管理磁碟空間，並避免將檔案手動分散到多個掛接的 VHD。
+* 如果需要更多 IOPS 和/或空間，強烈建議使用 Microsoft Windows 儲存集區 (僅適用於 Microsoft Windows Server 2012 和更新版本) 或適用於 Microsoft Windows 2008 R2 的 Microsoft Windows 等量，透過多個已掛接的 VHD 磁碟來建立一個大型邏輯裝置。 另請參閱本文件的[軟體 RAID][dbms-guide-2.2] 一章。 這種方法可以簡化系統管理負荷來管理磁碟空間，並避免將檔案手動分散到多個掛接的 VHD。
 * 針對最高的 IOPS 需求，您可以使用 Azure 進階儲存體，這可以在 DS 系列和 GS 系列 VM 上使用。
 
 ![適用於 SAP MaxDB DBMS 之 Azure IaaS VM 的參考組態][dbms-guide-figure-600]
@@ -1181,7 +1239,7 @@ SAP 目前支援 SAP MaxDB 版本 7.9，以便與 Azure 中 SAP NetWeaver 架構
   * SAP MaxDB 資料磁碟區 (也就是檔案)
   * SAP MaxDB 記錄磁碟區 (也就是檔案)
 
-關於在多個掛接的 VHD 上等量劃分磁碟區，先前在本文件的 [軟體 RAID][dbms-guide-2.2] 一章中已討論過。
+關於在多個掛接的 VHD 上等量劃分磁碟區，先前在本文件的[軟體 RAID][dbms-guide-2.2] 一章中已討論過。
 
 #### <a name="f77c1436-9ad8-44fb-a331-8671342de818"></a>其他
 所有其他一般主題 (例如「Azure 可用性設定組」或 SAP 監視) 也適用於使用 SAP MaxDB 資料庫來部署 VM 的情況，如本文件的前三章中所述。
@@ -1214,7 +1272,7 @@ SAP 目前支援 SAP MaxDB 版本 7.9，以便與 Azure 中 SAP NetWeaver 架構
 從這個觀點來看，強烈建議使用新的 D 系列或 DS 系列 (搭配 Azure 進階儲存體) 的 Azure VM 類型，因為它們所擁有的處理器速度比 A 系列快上 60 %。 針對最高的 RAM 與 CPU 負載，您可以使用 G 系列和 GS 系列 (搭配 Azure 進階儲存體) 的 VM，其中配備最新的 Intel® Xeon® 處理器 E5 v3 系列，具有兩倍的記憶體以及四倍的 D/DS 系列固態硬碟儲存體 (SSD)。
 
 #### <a name="storage-configuration"></a>儲存體組態
-由於 SAP liveCache 是以 SAP MaxDB 技術為基礎，因此 [儲存體組態][dbms-guide-8.4.1] 一章中針對 SAP MaxDB 提到的所有 Azure 儲存體最佳做法建議也適用於 SAP liveCache。
+由於 SAP liveCache 是以 SAP MaxDB 技術為基礎，因此[儲存體組態][dbms-guide-8.4.1]一章中針對 SAP MaxDB 提到的所有 Azure 儲存體最佳做法建議也適用於 SAP liveCache。
 
 #### <a name="dedicated-azure-vm-for-livecache"></a>liveCache 專用的 Azure VM
 因為 SAP liveCache 會密集使用運算能力，所以針對可提高生產力的使用方式，強烈建議部署於專用的 Azure 虛擬機器上。
@@ -1222,10 +1280,10 @@ SAP 目前支援 SAP MaxDB 版本 7.9，以便與 Azure 中 SAP NetWeaver 架構
 ![適用於具生產力使用案例的 liveCache 專用的 Azure VM][dbms-guide-figure-700]
 
 #### <a name="backup-and-restore"></a>備份與還原
-備份與還原 (包括效能考量) 已經在相關的 SAP MaxDB 章節 [備份與還原][dbms-guide-8.4.2] 和 [備份與還原的效能考量][dbms-guide-8.4.3] 中做過說明。
+備份與還原 (包括效能考量) 已經在相關的 SAP MaxDB 章節[備份與還原][dbms-guide-8.4.2]和[備份與還原的效能考量][dbms-guide-8.4.3]中做過說明。
 
 #### <a name="other"></a>其他
-所有其他一般主題已經在 [這個][dbms-guide-8.4.4] 相關的 SAP MaxDB 章節中做過說明。
+所有其他一般主題已經在[這個][dbms-guide-8.4.4]相關的 SAP MaxDB 章節中做過說明。
 
 ## <a name="specifics-for-the-sap-content-server-on-windows"></a>Windows 上 SAP 內容伺服器專用的詳細資料
 SAP 內容伺服器是個別的伺服器架構元件，可以不同格式儲存內容，例如電子文件。 SAP 內容伺服器是透過技術開發來提供，可針對任何 SAP 應用程式跨應用程式加以使用。 它會安裝於不同的系統上。 典型的內容是來自 Knowledge Warehouse 的訓練材料和文件，或者源自 mySAP PLM 文件管理系統的技術繪圖。
@@ -1251,9 +1309,9 @@ SAP 目前支援：
 
 ### <a name="sap-content-server-configuration-guidelines-for-sap-installations-in-azure-vms"></a>在 Azure VM 中安裝 SAP 的 SAP 內容伺服器組態指導方針
 #### <a name="storage-configuration"></a>儲存體組態
-如果您將「SAP 內容伺服器」設定成將檔案儲存在 SAP MaxDB 資料庫中，則 [儲存體組態][dbms-guide-8.4.1] 一章中針對 SAP MaxDB 提到的所有 Azure 儲存體最佳做法建議也適用於「SAP 內容伺服器」案例。
+如果您將「SAP 內容伺服器」設定成將檔案儲存在 SAP MaxDB 資料庫中，則[儲存體組態][dbms-guide-8.4.1]一章中針對 SAP MaxDB 提到的所有 Azure 儲存體最佳做法建議也適用於「SAP 內容伺服器」案例。
 
-如果您設定 SAP 內容伺服器來將檔案儲存於檔案系統中，建議使用專用的邏輯磁碟機。 使用儲存空間可讓您一併增加邏輯磁碟大小和 IOPS 輸送量，如 [軟體 RAID][dbms-guide-2.2] 一章所述。
+如果您設定 SAP 內容伺服器來將檔案儲存於檔案系統中，建議使用專用的邏輯磁碟機。 使用儲存空間可讓您一併增加邏輯磁碟大小和 IOPS 輸送量，如[軟體 RAID][dbms-guide-2.2] 一章所述。
 
 #### <a name="sap-content-server-location"></a>SAP 內容伺服器位置
 SAP 內容伺服器必須部署於部署 SAP 系統的相同 Azure 區域和 Azure VNET 中。 您可以自行決定是否要在專用的 Azure VM 上或 SAP 系統執行所在的相同 VM 上部署 SAP 內容伺服器元件。
@@ -1267,14 +1325,14 @@ SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機�
 
 1. **用戶端是後端 SAP 系統** - 如果已設定後端 SAP 系統來存取「SAP 內容伺服器」，則該 SAP 系統就是用戶端。 由於 SAP 系統和 SAP 內容伺服器都會部署於同一個 Azure 區域 (在相同的 Azure 資料中心)，所以它們實際上是彼此接近的。 因此，不需要有專用的 SAP 快取伺服器。 SAP UI 用戶端 (SAP GUI 或 Web 瀏覽器) 可直接存取 SAP 系統，而 SAP 系統會從 SAP 內容伺服器擷取文件。
 2. **用戶端是內部部署的 Web 瀏覽器** - 可以將「SAP 內容伺服器」設定成供 Web 瀏覽器直接存取。 在此情況下，在內部部署執行的 Web 瀏覽器就是 SAP 內容伺服器的用戶端。 內部部署的資料中心與 Azure 資料中心位於不同的實體位置 (最好彼此接近)。 您的內部部署資料中心是透過 Azure 站對站 VPN 或 ExpressRoute 連接到 Azure。 雖然這兩個選項提供安全的 VPN 網路連線至 Azure，但站對站網路連接不會在內部部署的資料中心與 Azure 資料中心之間提供網路頻寬和延遲 SLA。 若要加快文件的存取，您可以執行下列其中一項︰
-   1. 安裝內部部署的「SAP 快取伺服器」，使其靠近內部部署的 Web 瀏覽器 ([這張][dbms-guide-900-sap-cache-server-on-premises] 圖中的選項)
+   1. 安裝內部部署的「SAP 快取伺服器」，使其靠近內部部署的 Web 瀏覽器 ([這張][dbms-guide-900-sap-cache-server-on-premises]圖中的選項)
    2. 設定 Azure ExpressRoute，提供內部部署的資料中心與 Azure 資料中心之間高速且低延遲的專用網路連接。
 
 ![安裝內部部署 SAP 快取伺服器的選項][dbms-guide-figure-900]
 <a name="642f746c-e4d4-489d-bf63-73e80177a0a8"></a>
 
 #### <a name="backup--restore"></a>備份 / 還原
-如果您將「SAP 內容伺服器」設定成將檔案儲存在 SAP MaxDB 資料庫中，請參閱 SAP MaxDB 的 [備份與還原][dbms-guide-8.4.2] 一章及 [備份與還原的效能考量][dbms-guide-8.4.3] 一章中已提供的備份/還原程序和效能考量。
+如果您將「SAP 內容伺服器」設定成將檔案儲存在 SAP MaxDB 資料庫中，請參閱 SAP MaxDB 的[備份與還原][dbms-guide-8.4.2]一章及[備份與還原的效能考量][dbms-guide-8.4.3]一章中已提供的備份/還原程序和效能考量。
 
 如果您設定 SAP 內容伺服器來將檔案儲存於檔案系統中，有一個選項是針對文件所在的整個檔案結構執行手動備份/還原。 與 SAP MaxDB 備份/還原類似，基於備份目的，建議要有專用的磁碟區。
 
@@ -1303,7 +1361,7 @@ SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機�
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx>
 * <https://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx>
 
-如果您是根據「Azure 分頁 BLOB 儲存體」使用 Azure VHD，則本文件的 [RDBMS 部署結構][dbms-guide-2] 一章中所做的陳述也適用於利用「IBM DB2 for LUW 資料庫」所做的部署。
+如果您是根據「Azure 分頁 BLOB 儲存體」使用 Azure VHD，則本文件的 [RDBMS 部署結構][dbms-guide-2]一章中所做的陳述也適用於利用「IBM DB2 for LUW 資料庫」所做的部署。
 
 如同先前在文件通用部分中所述，適用於 Azure VHD 的 IOPS 輸送量上有配額存在。 確切的配額會根據使用的 VM 類型而定。 如需 VM 類型及其配額的清單，請參閱[這裡][virtual-machines-sizes]
 
@@ -1311,7 +1369,7 @@ SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機�
 
 針對效能考量，也請參閱 SAP 安裝指南中的＜適用於資料庫目錄的資料安全性和效能考量＞章節。
 
-或者，您也可以使用「Windows 儲存集區」(僅適用於 Windows Server 2012 和更新版本) 或適用於 Windows 2008 R2 的 Windows 等量分割 (如本文件的 [軟體 RAID][dbms-guide-2.2] 一章所述)，在多個已掛接的 VHD 磁碟上建立一個大型邏輯裝置。
+或者，您也可以使用「Windows 儲存集區」(僅適用於 Windows Server 2012 和更新版本) 或適用於 Windows 2008 R2 的 Windows 等量分割 (如本文件的[軟體 RAID][dbms-guide-2.2] 一章所述)，在多個已掛接的 VHD 磁碟上建立一個大型邏輯裝置。
 如果磁碟包含適用於您 sapdata 和 saptmp 目錄的 DB2 儲存路徑，您必須將實體磁碟磁區大小指定為 512 KB。 使用 Windows 儲存集區時，您必須透過命令列介面，使用參數 „-LogicalSectorSizeDefault“，以手動方式建立儲存集區。 如需詳細資訊，請參閱 <https://technet.microsoft.com/library/hh848689.aspx>。
 
 #### <a name="backuprestore"></a>備份/還原
@@ -1335,10 +1393,10 @@ SAP 快取伺服器是一個額外的伺服器架構元件，可提供在本機�
 
 支援 DB2 高可用性災害復原 (HADR)。 如果 HA 組態的虛擬機器具有運作中的名稱解析，則 Azure 中的設定與內部部署中完成的任何設定並無任何差別。 不建議只依賴 IP 解析。
 
-請勿使用 Azure 市集異地複寫。 如需進一步的資訊，請參閱 [Microsoft Azure 儲存體][dbms-guide-2.3] 一章和 [Azure VM 的相關高可用性和災害復原][dbms-guide-3] 一章。
+請勿使用 Azure 市集異地複寫。 如需進一步的資訊，請參閱 [Microsoft Azure 儲存體][dbms-guide-2.3]一章和 [Azure VM 的相關高可用性和災害復原][dbms-guide-3]一章。
 
 #### <a name="other"></a>其他
 所有其他一般主題 (例如「Azure 可用性設定組」或 SAP 監視) 也適用於使用 IBM DB2 for LUW 來部署 VM 的情況，如本文件的前三章中所述。
 
-另請參閱 [適用於 Azure 上 SAP 的一般 SQL Server 摘要][dbms-guide-5.8]。
+另請參閱[適用於 Azure 上 SAP 的一般 SQL Server 摘要][dbms-guide-5.8]。
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 4/12/2017
 ms.author: dstefan
 translationtype: Human Translation
-ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
-ms.openlocfilehash: 03b7e184d26ceccd12f40b4935d7c451b7eee01e
-ms.lasthandoff: 04/14/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: b6f26a338450619cef012467bf78b9469622ba08
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -395,7 +395,7 @@ ms.lasthandoff: 04/14/2017
 | 提供依步驟 2 設定的「自助式密碼重設」資料 | http://aka.ms/ssprsetup |
 | 關閉瀏覽器 |  |
 | 以您在步驟 4 中使用的資訊工作者身分重新開始登入程序 |  |
-| 重設密碼 | [更新自己的密碼：重設密碼](active-directory-passwords-update-your-own-password.md#reset-my-password) |
+| 重設密碼 | [更新自己的密碼：重設密碼](active-directory-passwords-update-your-own-password.md) |
 | 嘗試以您的新密碼登入 Azure AD 及內部部署資源 |  |
 
 ### <a name="considerations"></a>考量

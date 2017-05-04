@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 04/21/2017
 ms.author: cephalin
 translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: ddbb31e9ed6080e7349f36788084e1e3580f9bd5
-ms.lasthandoff: 04/22/2017
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 5bbdd1db655c080b4372f6728bb47207757209e4
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -221,7 +221,7 @@ App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP
 
 ## <a name="automate-with-scripts"></a>使用指令碼進行自動化
 
-您可以使用 [Azure CLI](/cli/azure/install-azure-cli) 或 [Azure PowerShell](/powershell/azureps-cmdlets-docs/)，透過指令碼將 web 應用程式的 SSL 繫結自動化。
+您可以使用 [Azure CLI](/cli/azure/install-azure-cli) 或 [Azure PowerShell](/powershell/azure/overview)，透過指令碼將 web 應用程式的 SSL 繫結自動化。
 
 ### <a name="azure-cli"></a>Azure CLI
 

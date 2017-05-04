@@ -1,24 +1,11 @@
 ---
-title: "(已過時) 預測 - 指數平滑法 - Azure | Microsoft Docs"
-description: "(已過時) Web 服務：預測 - 指數平滑法"
-services: machine-learning
-documentationcenter: 
-author: yijichen
-manager: jhubbard
-editor: cgronlun
-ms.assetid: a4150681-6eac-4145-9eca-0cdf60781dde
-ms.service: machine-learning
-ms.workload: data-services
-ms.tgt_pltfrm: na
-ms.devlang: na
-ms.topic: deprecated
-ms.date: 01/06/2017
-ms.author: yijichen
+
 ROBOTS: NOINDEX, NOFOLLOW
+redirect_url: https://gallery.cortanaintelligence.com/
 translationtype: Human Translation
-ms.sourcegitcommit: f6ad106e769c807d1c281c8d19127eabc2048f30
-ms.openlocfilehash: c3fc7b8d7ba9faf79d80b55514ef09570e0d1655
-ms.lasthandoff: 01/11/2017
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: 353dcae989dd313577fe88ba6757107abcd5f5c9
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -27,7 +14,7 @@ ms.lasthandoff: 01/11/2017
 > [!NOTE]
 > Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。 
 > 
-> 您可以在 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com)中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
+> 您可以在 [Cortana Intelligence 資源庫 (英文)](http://gallery.cortanaintelligence.com) 中找到許多實用的範例實驗和 API。 如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。
 
 這項 [Web 服務](https://datamarket.azure.com/dataset/aml_labs/ets) 會實作指數平滑法模型 (ETS)，以根據使用者所提供的歷程記錄資料產生預測。 今年的特定產品需求會增加嗎？ 為方便有效地規劃庫存，我可以預測聖誕節的產品銷售嗎？ 預測模型專門處理此類問題。 有了過去的資料，這些模型可以檢查隱藏的趨勢和季節性來預測未來的趨勢。  
 

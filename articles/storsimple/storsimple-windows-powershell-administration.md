@@ -15,8 +15,9 @@ ms.workload: TBD
 ms.date: 11/18/2016
 ms.author: alkohli@microsoft.com
 translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 562e20d274079d221360d45302ff288190c1cd6e
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: f9e97bb2352231b46bdf66b1165bf22ec639fddf
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -34,7 +35,7 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 
 > [!NOTE]
 > * Windows PowerShell for StorSimple 的 Cmdlet 可讓您從序列主控台管理 StorSimple 裝置或透過「Windows PowerShell 遠端」進行管理。 如需此介面可使用的各個 Cmdlet 的詳細資訊，請移至 [Windows PowerShell for StorSimple 的 Cmdlet 參考資料](https://technet.microsoft.com/library/dn688168.aspx).
-> * Azure PowerShell StorSimple 的 Cmdlet 是另一組不同的指令程式，可讓您從命令列將 StorSimple 服務層級和移轉工作自動化。 如需 Azure PowerShell Cmdlet for StorSimple 的詳細資訊，請移至 [Azure StorSimple Cmdlet 參考資料](https://docs.microsoft.com/powershell/servicemanagement/azure.storsimple/v3.1.0/azure.storsimple)。
+> * Azure PowerShell StorSimple 的 Cmdlet 是另一組不同的指令程式，可讓您從命令列將 StorSimple 服務層級和移轉工作自動化。 如需 Azure PowerShell Cmdlet for StorSimple 的詳細資訊，請移至 [Azure StorSimple Cmdlet 參考資料](/powershell/module/azure/?view=azuresmps-3.7.0)。
 > 
 > 
 
@@ -142,8 +143,8 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 | 修改裝置上的 DATA 0 網路介面設定 |[修改 StorSimple 裝置上的 DATA 0 網路介面](storsimple-modify-data-0.md) |
 | 停止控制器  </br> 重新啟動或關閉控制器 </br> 關閉裝置</br>將裝置重設為出廠預設設定。 |[管理裝置控制器](storsimple-manage-device-controller.md) |
 | 安裝維護模式更新和 Hotfixe |[更新您的裝置](storsimple-update-device.md) |
-| 進入維護模式  </br> 結束維護模式 |[StorSimple 裝置模式](storsimple-device-modes.md) |
-| 建立支援封裝 </br> 解密並編輯支援封裝 |[建立及管理支援封裝](storsimple-create-manage-support-package.md) |
+| 進入維護模式  </br>結束維護模式 |[StorSimple 裝置模式](storsimple-device-modes.md) |
+| 建立支援封裝 </br>解密並編輯支援封裝 |[建立及管理支援封裝](storsimple-create-manage-support-package.md) |
 | 啟動支援工作階段</br> |[在 Windows PowerShell for StorSimple 中啟動支援工作階段](storsimple-create-manage-support-package.md#manually-create-a-support-package) |
 
 ## <a name="get-help-in-windows-powershell-for-storsimple"></a>在 Windows PowerShell for StorSimple 中取得說明
@@ -174,10 +175,5 @@ Windows PowerShell for StorSimple 提供命令列介面，可讓您用來管理 
 
 ## <a name="next-steps"></a>後續步驟
 如果您在執行上述任何工作流程時遇到任何 StorSimple 裝置的問題，請參閱 [適用於疑難排解 StorSimple 部署的工具](storsimple-troubleshoot-deployment.md#tools-for-troubleshooting-storsimple-deployments)。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 
