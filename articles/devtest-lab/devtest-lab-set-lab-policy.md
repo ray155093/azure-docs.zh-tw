@@ -16,9 +16,9 @@ ms.date: 03/13/2017
 ms.author: tarcher
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: 799bacdac6ff49cb6fa38cd208318673629d4035
-ms.lasthandoff: 03/15/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: e8452e272916222679dd5e411b5f8732d3e8059b
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 03/15/2017
 > 
 > 
 
-Azure DevTest Labs 可讓您管理每個實驗室的原則 (設定)，以控制實驗室的成本並儘可能避免浪費。 本文逐步地詳細說明如何設定每個原則。  
+Azure DevTest Labs 讓您管理每個實驗室的原則 (設定)，以控制實驗室的成本並儘可能避免浪費。 本文逐步地詳細說明如何設定每個原則。  
 
 ## <a name="set-allowed-virtual-machine-sizes"></a>設定允許的虛擬機器大小
 設定允許的 VM 大小的原則有助於將實驗室的成本浪費降至最低，方式是讓您指定實驗室中允許的 VM 大小。 如果啟用此原則，就只能使用此清單中的 VM 大小來建立 VM。
@@ -99,6 +99,9 @@ Azure DevTest Labs 可讓您管理每個實驗室的原則 (設定)，以控制�
 4. 選取 [ **儲存**]。
 
     這個原則一經啟用，就不會自動套用到目前實驗室中的任何 VM。 若要將這項設定套用至特定的 VM，請開啟 VM 的刀鋒視窗並變更其 [自動啟動]  設定。 
+
+## <a name="set-expiration-date"></a>設定到期日期
+當您[建立 VM](devtest-lab-add-vm.md)時，可以設定到期日期。 在進階設定中，選擇行事曆圖示，以指定 VM 將會自動刪除的日期。  根據預設，VM 永遠不會到期。
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 

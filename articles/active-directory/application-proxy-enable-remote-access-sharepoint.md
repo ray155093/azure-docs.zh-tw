@@ -11,12 +11,12 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/12/2017
+ms.date: 03/22/2017
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 12e8ff02c72d90513868d43bc34c564f1da1ae43
-ms.lasthandoff: 03/08/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 93b36891c960582563a4ff9c622cd5ac3198dfeb
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -43,7 +43,7 @@ ms.lasthandoff: 03/08/2017
 
 在此案例中，我們的客戶想要在後端應用程式 SharePoint Server 中享有最佳 SSO 體驗。 在這個常見的 Azure AD 案例中，使用者只需驗證一次，因為系統不會提示他們再次進行驗證。
 
-對於需要或使用 Windows 驗證的內部部署應用程式來說，您可以使用 Kerberos 驗證通訊協定和稱為 Kerberos 限制委派 (KCD) 的功能來達成 SSO。 KCD 一經設定，即可讓應用程式 Proxy 連接器為使用者取得 Windows 票證/權杖，即使使用者並未直接登入 Windows 也是如此。 若要深入了解 KCD，請參閱 [Kerberos 限制委派概觀](https://technet.microsoft.com/en-us/library/jj553400.aspx)。
+對於需要或使用 Windows 驗證的內部部署應用程式來說，您可以使用 Kerberos 驗證通訊協定和稱為 Kerberos 限制委派 (KCD) 的功能來達成 SSO。 KCD 一經設定，即可讓應用程式 Proxy 連接器為使用者取得 Windows 票證/權杖，即使使用者並未直接登入 Windows 也是如此。 若要深入了解 KCD，請參閱 [Kerberos 限制委派概觀](https://technet.microsoft.com/library/jj553400.aspx)。
 
 若要設定 SharePoint 伺服器的 KCD，請使用下列後續章節中的程序。
 
@@ -63,7 +63,7 @@ ms.lasthandoff: 03/08/2017
 5. 選取 [註冊新的受管理帳戶]。 帳戶建立之後，您必須設定 [Web 應用程式集區] 才能使用該帳戶。
 
 > [!NOTE]
-您必須擁有先前為服務建立的 Azure AD 帳戶。 建議您允許密碼自動變更。 如需完整的步驟和針對問題進行疑難排解的詳細資訊，請參閱[在 SharePoint 2013 中設定自動密碼變更](https://technet.microsoft.com/EN-US/library/ff724280.aspx)。
+您必須擁有先前為服務建立的 Azure AD 帳戶。 建議您允許密碼自動變更。 如需完整的步驟和針對問題進行疑難排解的詳細資訊，請參閱[在 SharePoint 2013 中設定自動密碼變更](https://technet.microsoft.com/library/ff724280.aspx)。
 
 ### <a name="configure-sharepoint-for-kerberos"></a>設定 SharePoint 的 Kerberos
 
@@ -87,7 +87,7 @@ ms.lasthandoff: 03/08/2017
 
 ### <a name="set-a-service-principal-name-for-the-sharepoint-service-account"></a>為 SharePoint 服務帳戶設定服務主體名稱
 
-在設定 KCD 之前，您需要識別以上面所設定之服務帳戶身分執行的 SharePoint 服務。 您可以透過設定 SPN 來執行此動作。 如需詳細資訊，請參閱[服務主體名稱](https://technet.microsoft.com/en-us/library/cc961723.aspx)。
+在設定 KCD 之前，您需要識別以上面所設定之服務帳戶身分執行的 SharePoint 服務。 您可以透過設定 SPN 來執行此動作。 如需詳細資訊，請參閱[服務主體名稱](https://technet.microsoft.com/library/cc961723.aspx)。
 
 SPN 格式如下︰
 
@@ -115,7 +115,7 @@ sharepoint.demo.o365identity.us
 HTTP/ sharepoint.demo.o365identity.us demo
 ```
 
-您可能也必須為伺服器上的特定網站設定 SPN。 如需詳細資訊，請參閱[設定 Kerberos 驗證](https://technet.microsoft.com/en-us/library/cc263449(v=office.12).aspx)。 密切注意＜使用 Kerberos 驗證為 Web 應用程式建立服務主體名稱＞一節。
+您可能也必須為伺服器上的特定網站設定 SPN。 如需詳細資訊，請參閱[設定 Kerberos 驗證](https://technet.microsoft.com/library/cc263449(v=office.12).aspx)。 密切注意＜使用 Kerberos 驗證為 Web 應用程式建立服務主體名稱＞一節。
 
 設定 SPN 最簡單的方式是遵循網站上可能已存在的 SPN 格式。 複製這些 SPN 來對服務帳戶進行註冊。 作法：
 
@@ -140,7 +140,7 @@ Klist
 
  將 _http/sharepoint.demo.o365identity.us_ 取代為伺服器的 SPN，並將 _demo\sp_svc_ 取代為環境中的服務帳戶。 Setspn 命令會先搜尋 SPN 再予以新增。 在此情況下，您可能會看到 **SPN 值重複**錯誤。 如果您看到此錯誤，請確定值已與服務帳戶相關聯。
 
-您可以執行 Setspn 命令並搭配 -l 選項，來確認是否已新增 SPN。 若要深入了解此命令，請參閱 [Setspn](https://technet.microsoft.com/en-us/library/cc731241.aspx)。
+您可以執行 Setspn 命令並搭配 -l 選項，來確認是否已新增 SPN。 若要深入了解此命令，請參閱 [Setspn](https://technet.microsoft.com/library/cc731241.aspx)。
 
 ### <a name="ensure-that-the-connector-is-set-as-a-trusted-delegate-to-sharepoint"></a>確定已將連接器設定為 SharePoint 信任的委派
 
@@ -220,7 +220,7 @@ Klist
 
 ## <a name="next-steps"></a>後續步驟
 
-[如何為內部部署應用程式提供安全的遠端存取](active-directory-application-proxy-get-started.md)<br>
-[了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)<br>
-[使用 Azure AD 應用程式 Proxy 發佈 SharePoint 2016 和 Office Online Server](https://blogs.technet.microsoft.com/dawiese/2016/06/09/publishing-sharepoint-2016-and-office-online-server-with-azure-ad-application-proxy/)
+- [如何為內部部署應用程式提供安全的遠端存取](active-directory-application-proxy-get-started.md)
+- [了解 Azure AD 應用程式 Proxy 連接器](application-proxy-understand-connectors.md)
+- [使用 Azure AD 應用程式 Proxy 發佈 SharePoint 2016 和 Office Online Server](https://blogs.technet.microsoft.com/dawiese/2016/06/09/publishing-sharepoint-2016-and-office-online-server-with-azure-ad-application-proxy/)
 

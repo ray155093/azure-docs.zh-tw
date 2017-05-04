@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: how-to-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 11/14/2016
+ms.date: 03/24/2017
 ms.author: stevelas
 ms.custom: H1Hack27Feb2017
 translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: 774c844375df89864274e3376ed07dd565c8ecff
-ms.lasthandoff: 03/27/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: ae6af47c82a5c0425f6cd53b8ba1134797505e6c
+ms.lasthandoff: 04/17/2017
 
 ---
 # <a name="authenticate-with-a-private-docker-container-registry"></a>向私用 Docker 容器登錄進行驗證
@@ -43,9 +43,16 @@ docker login myregistry.azurecr.io -u xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -p my
 >
 
 
-服務主體允許登錄庫的[角色型存取](../active-directory/role-based-access-control-configure.md)。 可用的角色是讀者 (僅提取存取權)、參與者 (提取和推送) 和擁有者 (可提取、推送及指派角色給其他使用者)。 您可以指派多個服務主體到登錄庫，就能為不同的使用者或應用程式定義存取權。 在如下的開發人員或 DevOps 案例中，服務主體也會啟用與登錄庫的「無周邊」連線︰
+服務主體允許登錄庫的[角色型存取](../active-directory/role-based-access-control-configure.md)。 可用的角色如下：
+  * 讀取者 (僅擁有提取存取權限)。
+  * 投稿人 (提取和推送)。
+  * 擁有者 (提取、推送及並指派角色給其他使用者)。
 
-  * 從登錄庫到協調流程系統的容器部署，包括 DC/OS、Docker Swarm 和 Kubernetes。 您也可以將容器登錄庫提取到相關的 Azure 服務 (例如 [Container Service](../container-service/index.md)、[App Service](../app-service/index.md)、[Batch](../batch/index.md) 及 [Service Fabric](../service-fabric/index.md))。
+Azure Container Registry 無法進行匿名存取。 您可以使用[Docker 中樞](https://docs.docker.com/docker-hub/)存取公用映像。
+
+您可以指派多個服務主體到登錄庫，就能為不同的使用者或應用程式定義存取權。 在如下的開發人員或 DevOps 案例中，服務主體也會啟用與登錄庫的「無周邊」連線：
+
+  * 從登錄庫到協調流程系統的容器部署，包括 DC/OS、Docker Swarm 和 Kubernetes。 您也可以將容器登錄庫提取到相關的 Azure 服務 (例如 [Container Service](../container-service/index.md)、[App Service](../app-service/index.md)、[Batch](../batch/index.md) 及 [Service Fabric](../service-fabric/index.md) 等)。
 
   * 建立容器映像，並將其推送到登錄庫的連續整合和部署解決方案 (例如 Visual Studio Team Services 或 Jenkins)。
 
@@ -54,10 +61,10 @@ docker login myregistry.azurecr.io -u xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -p my
 
 
 ## <a name="admin-account"></a>管理帳戶
-您建立的每個登錄，都會自動建立一個管理帳戶。 此帳戶預設為停用，但您可以啟用它以管理認證，例如透過[入口網站](container-registry-get-started-portal.md#manage-registry-settings)或使用 [Azure CLI 2.0 命令](container-registry-get-started-azure-cli.md#manage-admin-credentials)。 如果已啟用此帳戶，您可以傳送使用者名稱和密碼到 `docker login` 命令，向登錄庫進行基本驗證。 例如：
+您建立的每個登錄，都會自動建立一個管理帳戶。 此帳戶預設為停用，但您可以啟用它以管理認證，例如透過[入口網站](container-registry-get-started-portal.md#manage-registry-settings)或使用 [Azure CLI 2.0 命令](container-registry-get-started-azure-cli.md#manage-admin-credentials)。 每個管理帳戶會提供兩個可以重新產生的密碼。 這兩個密碼讓您在重新產生其他密碼時，可以使用其中一個密碼來維持對登錄的連線。 如果已啟用此帳戶，您可以傳送使用者名稱和密碼到 `docker login` 命令，向登錄庫進行基本驗證。 例如：
 
 ```
-docker login myregistry.azurecr.io -u myAdminName -p myPassword
+docker login myregistry.azurecr.io -u myAdminName -p myPassword1
 ```
 
 > [!IMPORTANT]

@@ -15,26 +15,28 @@ ms.workload: integration
 ms.date: 07/05/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
-ms.openlocfilehash: ef7df25d8080cae41235dffb287906508d4a652d
-ms.lasthandoff: 03/30/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: 3e9b95e6e9e84f8c2b615f43783d9fec5a2c09b6
+ms.lasthandoff: 04/14/2017
 
 
 ---
 # <a name="connect-to-on-premises-data-from-logic-apps"></a>從邏輯應用程式連線至內部部署資料
 
-若要存取內部部署資料，您可以為受支援的 Azure Logic Apps 連接器設定內部部署資料閘道的連線。 下列步驟可引導您了解如何安裝和設定內部部署資料閘道，以搭配邏輯應用程式使用。
-內部部署資料閘道支援這些資料來源連線︰
+若要存取內部部署資料，您可以為受支援的 Azure Logic Apps 連接器設定內部部署資料閘道的連線。 下列步驟可引導您了解如何安裝和設定內部部署資料閘道，以搭配邏輯應用程式使用。 內部部署資料閘道支援這些連線︰
 
 *   BizTalk Server
-*    DB2  
+*   DB2  
 *   檔案系統
 *   Informix
 *   MQ
-*    Oracle 資料庫 
+*   MySQL
+*   Oracle 資料庫 
 *   SAP 應用程式伺服器 
 *   SAP 訊息伺服器
-*    SQL Server
+*   僅限 SharePoint for HTTP，而非 SharePoint for HTTPS
+*   SQL Server
+*   Teradata
 
 如需這些連線的詳細資訊，請參閱[Azure Logic Apps 的連接器](https://docs.microsoft.com/azure/connectors/apis-list)。
 
@@ -42,7 +44,7 @@ ms.lasthandoff: 03/30/2017
 
 * 您必須在 Azure 中擁有工作或學校電子郵件地址，以便將內部部署資料閘道與您的帳戶 (Azure Active Directory 帳戶) 相關聯。
 
-* 如果您使用 Microsoft 帳戶 (例如 @outlook.com)，您可以使用 Azure 帳戶[建立工作或學校電子郵件地址](../virtual-machines/virtual-machines-windows-create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal)。
+* 如果您使用 Microsoft 帳戶 (例如 @outlook.com)，您可以使用 Azure 帳戶[建立工作或學校電子郵件地址](../virtual-machines/windows/create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal)。
 
 * 您必須[已在本機電腦上安裝內部部署資料閘道](logic-apps-gateway-install.md)。
 
@@ -59,7 +61,7 @@ ms.lasthandoff: 03/30/2017
 安裝閘道之後，您必須將 Azure 訂用帳戶與閘道相關聯。
 
 > [!IMPORTANT] 
-> 請確定閘道資源建立於與您邏輯應用程式相同的 Azure 區域中。 如果您未將它部署到相同的區域，將無法在您的邏輯應用程式中存取該資源。 
+> 確定在同一個 Azure 區域中建立閘道器資源成為邏輯應用程式。 如果您不將閘器道資源部署同一個區域，則邏輯應用程式無法存取閘道器。 
 > 
 
 1. 使用安裝閘道期間所使用的同一個工作或學校電子郵件地址來登入 Azure。
@@ -85,10 +87,13 @@ ms.lasthandoff: 03/30/2017
 
 連線現已設定好，可供邏輯應用程式使用。
 
-## <a name="data-gateway-connection-modifications"></a>修改資料閘道連線
-一旦您將資料閘道連線新增到邏輯應用程式之後，您可能需要進行修改以調整該連線特定的設定。 您可以在下列其中一個位置找到連線：
-* 在邏輯應用程式的主要刀鋒視窗上，您應該會在 [開發工具] 區段中看見 API 連線的面板。 選取將顯示所有與邏輯應用程式相關聯的 API 連線的選項，其中一個便是您的資料閘道連線。 選取該選項，您接著就能檢視和修改與連線相關聯的設定。
-* 選取 [API 連線] 主要刀鋒視窗，將顯示訂用帳戶中的所有 API 連線。 您的資料閘道連線將在此清單中。 選取該選項，您就能檢視和修改與連線相關聯的設定。
+## <a name="edit-your-data-gateway-connection-settings"></a>編輯資料閘道連接設定
+
+您將資料閘道連接新增至邏輯應用程式之後，可能需要進行修改，才能調整該連接的特定設定。 您可以在下列其中一個位置找到連線：
+
+* 在邏輯應用程式刀鋒視窗的 [開發工具] 下，選取 [API 連線]。 此清單顯示與邏輯應用程式有關的所有 API 連接，包括資料閘道連接。 若要檢視和修改該連接的設定，請選取該連接。
+
+* 在 API 連接主要刀鋒視窗上，您可以找到與您的 Azure 訂閱，包括資料閘道連接相關聯的所有 API 連接。 若要檢視和修改該連接的設定，請選取該連接。
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -15,9 +15,9 @@ ms.topic: article
 ms.date: 02/23/2017
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: 6ec77968a0f264b8bf1fa56a23e4cc7faef614da
-ms.lasthandoff: 03/17/2017
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 53bd62688aa0d1a06d2d012c8da664d2de4b0b45
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 03/17/2017
 Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduction.md)，簡化 Azure IaaS VM 的磁碟管理。 您只需要指定類型 ([進階](storage-premium-storage.md)或[標準](storage-standard-storage.md))，還有您需要的磁碟大小，Azure 就會替您建立並管理磁碟。
 
 >[!NOTE]
->具有受控磁碟的 VM 需要通訊埠 8443 上的輸出流量來向 Azure 平台報告已安裝的 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md)之狀態。 若此通訊埠無法使用，則具有擴充功能的 VM 將會佈建失敗。 此外，如果擴充功能安裝在執行中的 VM 上，擴充功能的部署狀態將會不明。 若您無法解鎖通訊埠 8443，則必須使用非受控磁碟。 我們正著手解決這個問題。 如需詳細資訊，請參閱 [IaaS VM 磁碟的常見問題集](storage-faq-for-disks.md#managed-disks-and-port-8443)。 
+>具有受控磁碟的 VM 需要通訊埠 8443 上的輸出流量來向 Azure 平台報告已安裝的 [VM 擴充功能](../virtual-machines/windows/extensions-features.md)之狀態。 若此通訊埠無法使用，則具有擴充功能的 VM 將會佈建失敗。 此外，如果擴充功能安裝在執行中的 VM 上，擴充功能的部署狀態將會不明。 若您無法解鎖通訊埠 8443，則必須使用非受控磁碟。 我們正著手解決這個問題。 如需詳細資訊，請參閱 [IaaS VM 磁碟的常見問題集](storage-faq-for-disks.md#managed-disks-and-port-8443)。 
 >
 >
 
@@ -95,8 +95,8 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 
 若要深入了解如何建立受控磁碟的快照集，請參閱下列資源︰
 
-* [在 Windows 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/virtual-machines-windows-snapshot-copy-managed-disk.md)
-* [在 Linux 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/linux/virtual-machines-linux-snapshot-copy-managed-disk.md)
+* [在 Windows 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/windows/snapshot-copy-managed-disk.md)
+* [在 Linux 中建立 VHD 複本並儲存為受控磁碟](../virtual-machines/linux/snapshot-copy-managed-disk.md)
 
 
 如需受控磁碟價格的詳細資訊，請參閱[受控磁碟價格](https://azure.microsoft.com/pricing/details/managed-disks)。
@@ -106,8 +106,8 @@ Azure 受控磁碟會管理 VM 磁碟相關的[儲存體帳戶](storage-introduc
 受控磁碟也支援建立受管理的自訂映像。 您可以從儲存體帳戶中的自訂 VHD 或直接從一般化 (系統預備的) VM 建立映像。 這會在單一映像中擷取與 VM 相關聯的所有受控磁碟，包括 OS 和資料磁碟。 這可讓您使用自訂映像建立數百個 VM，而不需要複製或管理任何儲存體帳戶。
 
 如需建立映像的相關資訊，請參閱下列文章︰
-* [在 Azure 中如何擷取一般化 VM 的受管理映像](../virtual-machines/virtual-machines-windows-capture-image-resource.md)
-* [如何使用 Azure CLI 2.0 來一般化和擷取 Linux 虛擬機器](../virtual-machines/virtual-machines-linux-capture-image.md)
+* [在 Azure 中如何擷取一般化 VM 的受管理映像](../virtual-machines/windows/capture-image-resource.md)
+* [如何使用 Azure CLI 2.0 來一般化和擷取 Linux 虛擬機器](../virtual-machines/linux/capture-image.md)
 
 ## <a name="images-versus-snapshots"></a>映像與快照集的比較
 
@@ -141,11 +141,11 @@ Azure 磁碟加密可讓您加密由 IaaS 虛擬機器所使用的作業系統�
 
 * [使用 Resource Manager 和 PowerShell 建立 VM](../virtual-machines/virtual-machines-windows-ps-create.md)
 
-* [使用 Azure CLI 2.0 來建立 Linux VM](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
+* [使用 Azure CLI 2.0 來建立 Linux VM](../virtual-machines/linux/quick-create-cli.md)
 
-* [使用 PowerShell 將受控資料磁碟附加至 Windows VM](../virtual-machines/virtual-machines-windows-attach-disk-ps.md)
+* [使用 PowerShell 將受控資料磁碟附加至 Windows VM](../virtual-machines/windows/attach-disk-ps.md)
 
-* [在 Linux VM 中新增受控磁碟](../virtual-machines/virtual-machines-linux-quick-create-cli.md)
+* [在 Linux VM 中新增受控磁碟](../virtual-machines/linux/add-disk.md)
 
 ### <a name="compare-managed-disks-storage-options"></a>比較受控磁碟儲存體選項 
 
@@ -155,7 +155,7 @@ Azure 磁碟加密可讓您加密由 IaaS 虛擬機器所使用的作業系統�
 
 ### <a name="operational-guidance"></a>作業指引
 
-* [從 AWS 和其他平台移轉至 Azure 中的受控磁碟](../virtual-machines/virtual-machines-windows-on-prem-to-azure.md)
+* [從 AWS 和其他平台移轉至 Azure 中的受控磁碟](../virtual-machines/windows/on-prem-to-azure.md)
 
-* [將 Azure VM 轉換成 Azure 中的受控磁碟](../virtual-machines/virtual-machines-windows-migrate-to-managed-disks.md)
+* [將 Azure VM 轉換成 Azure 中的受控磁碟](../virtual-machines/windows/migrate-to-managed-disks.md)
 

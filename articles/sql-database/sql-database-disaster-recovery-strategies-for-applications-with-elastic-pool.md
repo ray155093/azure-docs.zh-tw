@@ -16,8 +16,9 @@ ms.workload: NA
 ms.date: 07/16/2016
 ms.author: sashan
 translationtype: Human Translation
-ms.sourcegitcommit: 16f4e287a955b787a08cc6949094bd0f5224421a
-ms.openlocfilehash: 26a3e54b00b37d4488a3f1c787c44bbbb5078268
+ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
+ms.openlocfilehash: 7d666b81f6c836e161d3c97512767638c088d3c8
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -172,10 +173,5 @@ ms.openlocfilehash: 26a3e54b00b37d4488a3f1c787c44bbbb5078268
 * 若要了解如何使用自動備份進行復原，請參閱 [從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
 * 若要了解更快速的復原選項，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)  
 * 若要了解如何使用自動備份進行封存，請參閱 [資料庫複製](sql-database-copy.md)
-
-
-
-
-<!--HONumber=Dec16_HO3-->
 
 

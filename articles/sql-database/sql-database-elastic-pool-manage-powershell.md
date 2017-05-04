@@ -16,9 +16,9 @@ ms.workload: data-management
 ms.date: 06/22/2016
 ms.author: srinia
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: ffcf0f0aa80f0a6b65cbef65e361e4830fcca3ff
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 7ab1d760d26aac7fc185b0e9f5e4a7a47cc2eee5
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -29,7 +29,7 @@ ms.lasthandoff: 03/10/2017
 [!INCLUDE [Start your PowerShell session](../../includes/sql-database-powershell.md)]
 
 ## <a name="create-an-elastic-pool"></a>建立彈性集區
-[New-AzureRmSqlElasticPool](https://msdn.microsoft.com/library/azure/mt619378\(v=azure.300\).aspx) Cmdlet 會建立彈性集區。 每個集區的 eDTU 值、最小和最大 DTU 會受限於服務層值 (基本、標準或進階)。 請參閱[彈性集區和集區資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools)。
+[New-AzureRmSqlElasticPool](https://msdn.microsoft.com/library/azure/mt619378\(v=azure.300\).aspx) Cmdlet 會建立彈性集區。 每個集區的 eDTU 值、最小和最大 DTU 會受限於服務層值 (基本、標準、進階或進階 RS)。 請參閱[彈性集區和集區資料庫的 eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools)。
 
     New-AzureRmSqlElasticPool -ResourceGroupName "resourcegroup1" -ServerName "server1" -ElasticPoolName "elasticpool1" -Edition "Standard" -Dtu 400 -DatabaseDtuMin 10 -DatabaseDtuMax 100
 
@@ -111,7 +111,7 @@ ms.lasthandoff: 03/10/2017
     $metrics = (Get-AzureRmMetric -ResourceId /subscriptions/<subscriptionId>/resourceGroups/FabrikamData01/providers/Microsoft.Sql/servers/fabrikamsqldb02/elasticPools/franchisepool -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime "4/18/2015" -EndTime "4/21/2015")  
 
 ## <a name="get-resource-usage-data-for-a-database-in-an-elastic-pool"></a>取得彈性集區中資料庫的資源使用量資料
-這些 API 與目前用來監視單一資料庫之資源使用率的 (V12) API 相同，唯一的差別在於下列語意：擷取的度量是以為該集區設定的每個資料庫最大 eDTU 百分比形式表示 (或相等於 CPU 或 IO 等基礎度量的上限)。 例如，這些度量有其中一項的使用率為 50%，則表示特定資源的消耗量佔該資源在父集區中，每個資料庫上限限制的 50%。
+這些 API 與用來監視單一資料庫之資源使用率的 API 相同，唯一的差別在於下列語意：擷取的度量是以為該集區設定的每個資料庫最大 eDTU 百分比形式表示 (或相等於 CPU 或 IO 等基礎度量的上限)。 例如，這些度量有其中一項的使用率為 50%，則表示特定資源的消耗量佔該資源在父集區中，每個資料庫上限限制的 50%。
 
 擷取度量：
 

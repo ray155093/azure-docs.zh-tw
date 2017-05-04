@@ -12,12 +12,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
-ms.date: 03/27/2017
+ms.date: 05/02/2017
 ms.author: sdanie
 translationtype: Human Translation
-ms.sourcegitcommit: 6e0ad6b5bec11c5197dd7bded64168a1b8cc2fdd
-ms.openlocfilehash: fb9d9d06eb746e720a17d87d7ab45c29c6543e8f
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
+ms.openlocfilehash: 031fa71b8f5aac558569eea7001e16df4cae917c
+ms.lasthandoff: 04/18/2017
 
 
 ---
@@ -47,7 +47,7 @@ ms.lasthandoff: 03/28/2017
     * [存取金鑰](#access-keys)
     * [進階設定](#advanced-settings)
     * [Redis 快取顧問](#redis-cache-advisor)
-    * [定價層](#pricing-tier)
+    * [調整](#scale)
     * [Redis 叢集大小](#cluster-size)
     * [Redis 資料永續性](#redis-data-persistence)
     * [排程更新](#schedule-updates)
@@ -100,7 +100,7 @@ ms.lasthandoff: 03/28/2017
 * [存取金鑰](#access-keys)
 * [進階設定](#advanced-settings)
 * [Redis 快取顧問](#redis-cache-advisor)
-* [定價層](#pricing-tier)
+* [調整](#scale)
 * [Redis 叢集大小](#cluster-size)
 * [Redis 資料永續性](#redis-data-persistence)
 * [排程更新](#schedule-updates)
@@ -190,11 +190,11 @@ Redis Keyspace 通知是在 [進階設定]  刀鋒視窗上進行設定。 Keysp
 | 伺服器負載 |[使用量圖表 - Redis 伺服器負載](cache-how-to-monitor.md#usage-charts) |
 | 記憶體使用量 |[快取效能 - 大小](cache-faq.md#cache-performance) |
 
-若要升級快取，按一下 [立即升級]  以變更 [定價層](#pricing-tier) 及調整您的快取。 如需選擇定價層的詳細資訊，請參閱 [應該使用哪個 Redis 快取供應項目和大小？](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)
+若要升級快取，按一下 [立即升級]  以變更定價層及[調整](#scale)您的快取。 如需選擇定價層的詳細資訊，請參閱 [應該使用哪個 Redis 快取供應項目和大小？](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)
 
 
-### <a name="pricing-tier"></a>定價層 
-按一下 [定價層]  以檢視或變更快取的定價層。 如需調整的詳細資訊，請參閱 [如何調整 Azure Redis Cache](cache-how-to-scale.md)。
+### <a name="scale"></a>調整
+按一下 [調整] 以檢視或變更快取的定價層。 如需調整的詳細資訊，請參閱 [如何調整 Azure Redis Cache](cache-how-to-scale.md)。
 
 ![Redis 快取定價層](./media/cache-configure/pricing-tier.png)
 
@@ -452,6 +452,13 @@ Redis Keyspace 通知是在 [進階設定]  刀鋒視窗上進行設定。 Keysp
   * P2 (13 GB - 130 GB) - 最多 15,000 個連接
   * P3 (26 GB - 260 GB) - 最多 30,000 個連接
   * P4 (53 GB - 530 GB) - 最多 40,000 個連接
+
+> [!NOTE]
+> 雖然每種大小的快取皆允許連接數可*多達*某個數目，但對 Redis 的每個連接都有相關聯的負荷。 舉例來說，這類負荷可以是因為 TLS/SSL 加密而導致的 CPU 與記憶體用量。 指定快取大小的連接數上限讓快取略有負擔。 如果連接負荷的負擔*加上*用戶端作業的負擔，超過系統的容量，則快取會碰到容量問題，即使您尚未超過目前快取大小的連接限制。
+> 
+> 
+
+
 
 ## <a name="redis-commands-not-supported-in-azure-redis-cache"></a>Azure Redis 快取中不支援的 Redis 命令
 > [!IMPORTANT]

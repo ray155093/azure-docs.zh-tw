@@ -15,9 +15,9 @@ ms.workload: storage-backup-recovery
 ms.date: 01/25/2017
 ms.author: rajanaki
 translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: da63e54b3f4e27ed3c4a1fd909c6c28295c6730d
-ms.lasthandoff: 03/09/2017
+ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
+ms.openlocfilehash: 711fb0715b7f12e12a742136f75af8069cbc83d8
+ms.lasthandoff: 04/17/2017
 
 
 ---
@@ -33,11 +33,11 @@ ms.lasthandoff: 03/09/2017
 
 ## <a name="support-for-deployment-options"></a>支援部署選項
 
-**部署** | **VMware/實體伺服器** | **Hyper-V (無 Virtual Machine Manager)** | **Hyper-V (有 Virtual Machine Manager)**
---- | --- | --- | ---
-**Azure 入口網站** | 內部部署 VMware VM 至 Azure 儲存體，使用 Azure Resource Manager 或傳統儲存體和網路。<br/><br/> 容錯移轉至 Resource Manager 型或傳統 VM。 | 內部部署 Hyper-V VM (不在 Virtual Machine Manager 雲端中) 至 Azure 儲存體，使用 Resource Manager 或傳統儲存體和網路。<br/><br/> 容錯移轉至 Resource Manager 型或傳統 VM。 | 內部部署 Hyper-V (VM 在 Virtual Machine Manager 雲端中) 至 Azure 儲存體，使用 Resource Manager 或傳統儲存體和網路。<br/><br/> 容錯移轉至 Resource Manager 型或傳統 VM。
-**傳統入口網站** | 僅限使用維護模式。 無法建立新的保存庫。 | 僅限使用維護模式。 | 僅限使用維護模式。
-**PowerShell** | 目前不支援。 | 支援 | 支援
+**部署** | **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)** |
+--- | --- | ---
+**Azure 入口網站** | 內部部署 VMware VM 至 Azure 儲存體，使用 Azure Resource Manager 或傳統儲存體和網路。<br/><br/> 容錯移轉至 Resource Manager 型或傳統 VM。 | 內部部署 Hyper-V VM 至 Azure 儲存體，使用 Resource Manager 或傳統儲存體和網路。<br/><br/> 容錯移轉至 Resource Manager 型或傳統 VM。
+**傳統入口網站** | 僅限使用維護模式。 無法建立新的保存庫。 | 僅限使用維護模式。
+**PowerShell** | 目前不支援。 | 支援
 
 
 ## <a name="support-for-datacenter-management-servers"></a>支援資料中心管理伺服器
@@ -50,15 +50,15 @@ ms.lasthandoff: 03/09/2017
 **Hyper-V (有 Virtual Machine Manager)** | System Center Virtual Machine Manager 2016 和 System Center Virtual Machine Manager 2012 R2
 
   >[!Note]
-  > 目前不支援混用 Windows Server 2016 和 2012 R2 主機的 System Center Virtual Machine Manager 2016 雲端。 
+  > 目前不支援混用 Windows Server 2016 和 2012 R2 主機的 System Center Virtual Machine Manager 2016 雲端。
 
 ### <a name="host-servers"></a>主機伺服器
 
 **部署** | **支援**
 --- | ---
 **VMware VM/實體伺服器** | vCenter 5.5 或 6.0 (僅支援 5.5 功能)
-**Hyper-V (無 Virtual Machine Manager)** | 具有最新更新的 Windows Server 2016、Windows Server 2012 R2
-**Hyper-V (有 Virtual Machine Manager)** | 具有最新更新的 Windows Server 2016、Windows Server 2012 R2。<br/><br/> Windows Server 2016 主機應由 System Center Virtual Machine Manager 2016 管理。
+**Hyper-V (含/不含 Virtual Machine Manager)** | 具有最新更新的 Windows Server 2016、Windows Server 2012 R2。<br></br>Windows Server 2016 主機應由 SCVMM 2016 所管理 (若使用 SCVMM)。
+
 
   >[!Note]
   >目前不支援混用執行 Windows Server 2016 和 2012 R2 之主機的 Hyper-V 網站。 目前不支援將 Windows Server 2016 主機上的 VM 復原到替代位置。
@@ -68,50 +68,67 @@ ms.lasthandoff: 03/09/2017
 複寫至 Azure 時，受保護的虛擬機器必須符合 [Azure 需求](#failed-over-azure-vm-requirements)。
 下表摘要說明使用 Azure Site Recovery 時各種部署案例中的複寫作業系統支援。 這項支援適用於在上述 OS 中執行的任何工作負載。
 
- **VMware/實體伺服器** | **Hyper-V (無 Virtual Machine Manager)** | **Hyper-V (有 Virtual Machine Manager)**
---- | --- | ---
-64 位元的 Windows Server 2012 R2、Windows Server 2012、Windows Server 2008 R2 (至少含 SP1)<br/><br/> Red Hat Enterprise Linux 6.7、6.8、7.1、7.2 <br/><br/> CentOS 6.5、6.6、6.7、6.8、7.0、7.1、7.2 <br/><br/> Oracle Enterprise Linux 6.4、6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 | 任何 [Hyper-V 支援的](https://technet.microsoft.com/library/cc794868.aspx)的客體 OS | 任何 [Hyper-V 支援的](https://technet.microsoft.com/library/cc794868.aspx)的客體 OS
+ **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)** |
+--- | --- |
+64 位元的 Windows Server 2012 R2、Windows Server 2012、Windows Server 2008 R2 (至少含 SP1)<br/><br/> Red Hat Enterprise Linux 6.7、6.8、7.1、7.2 <br/><br/> CentOS 6.5、6.6、6.7、6.8、7.0、7.1、7.2 <br/><br/> Oracle Enterprise Linux 6.4、6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 <br/><br/> SUSE Linux Enterprise Server 11 SP4 <br/>(不支援 SLES 11 SP3 至 SLES 11 SP4 的複寫電腦升級。 若已將複寫電腦從 SLES 11SP3 升級至 SLES 11 SP4，則您必須停用複寫以在升級後重新提供電腦防護。） | 任何 [Hyper-V 支援的](https://technet.microsoft.com/library/cc794868.aspx)的客體 OS
 
+
+>[!IMPORTANT]
+>(適用於複寫至 Azure 的 VMware/實體伺服器)
+>
+> 在 Red Hat Enterprise Linux Server 7+ 和 CentOS 7+ 伺服器上，自 Azure Site Recovery 行動服務 9.8 版本起開始支援 3.10.0-514 核心版本。<br/><br/>
+> 若客戶使用行動服務版本低於 9.8 版的 3.10.0-514 核心版本，則必須停用複寫、將行動服務版本更新至 9.8 版，然後再啟用複寫。  
+
+## <a name="supported-file-systems-and-guest-storage-configurations-on-linux-vmwarephysical-servers"></a>Linux 上的支援檔案系統與客體儲存體組態 (VMware/實體伺服器)
+
+執行 VMware 或實體伺服器的 Linux 伺服器，支援下列檔案系統與儲存體組態：
+* 檔案系統：ext3、ext4、ReiserFS (僅 Suse Linux Enterprise Server)、XFS (最高僅至 v4)
+* 磁碟區管理員：LVM2
+* 多重路徑軟體：裝置對應程式
+
+不支援使用 HP CCISS 儲存體控制器的實體伺服器。
 
 >[!Note]
->Linux 版本的儲存體支援檔案系統 (EXT3、ETX4、ReiserFS、XFS)、多重路徑軟體裝置對應工具、磁碟區管理員 (LVM2) 和「不」支援使用 HP CCISS 控制器儲存體的實體伺服器。
->只有在 SUSE Linux Enterprise Server 11 SP3 上才支援 ReiserFS 檔案系統。
+> 在 Linux 伺服器上，下列目錄必須一律位於來源伺服器的同個磁碟 (OS 磁碟) (若設為獨立資料分割/檔案系統)：/ (root)、/boot、/usr、/usr/local、/var、/ 等等<br/><br/>
+> 諸如中繼資料總和檢查碼等 XFS v5 功能，目前不受 XFS 檔案系統的 ASR 所支援。 請確定 XFS 檔案系統未使用任何 v5 功能。 您可使用 xfs_info 公用程式來檢查資料分割的 XFS 超級區塊。 若 ftype 設為 1，則會使用 XFSv5 功能。 
+>
+
 
 ## <a name="support-for-network-configuration"></a>支援網路組態
 下表摘要說明使用 Azure Site Recovery 複寫至 Azure 的各種部署案例中的網路組態支援。
 
 ### <a name="host-network-configuration"></a>主機網路組態
 
-**組態** | **VMware/實體伺服器** | **Hyper-V (無 Virtual Machine Manager)** | **Hyper-V (有 Virtual Machine Manager)**
---- | --- | --- | ---
-NIC Teaming | 是<br/><br/>在實體機器中不支援| 是 | 是
-VLAN | 是 | 是 | 是
-IPv4 | 是 | 是 | 是
-IPv6 | 否 | 否 | 否
+**組態** | **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)**
+--- | --- | ---
+NIC Teaming | 是<br/><br/>在實體機器中不支援| 是
+VLAN | 是 | 是
+IPv4 | 是 | 是
+IPv6 | 否 | 否
 
 ### <a name="guest-vm-network-configuration"></a>客體 VM 網路組態
 
-**組態** | **VMware/實體伺服器** | **Hyper-V (無 Virtual Machine Manager)** | **Hyper-V (有 Virtual Machine Manager)**
---- | --- | --- | ---
-NIC Teaming | 否 | 否 | 否
-IPv4 | 是 | 是 | 是
-IPv6 | 否 | 否 | 否
-靜態 IP (Windows) | 是 | 是 | 是
-靜態 IP (Linux) | 否 | 否 | 否
-多個 NIC | 是 | 是 | 是
+**組態** | **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)**
+--- | --- | ---
+NIC Teaming | 否 | 否
+IPv4 | 是 | 是
+IPv6 | 否 | 否
+靜態 IP (Windows) | 是 | 是
+靜態 IP (Linux) | 否 | 否
+多個 NIC | 是 | 是
 
 ### <a name="failed-over-azure-vm-network-configuration"></a>容錯移轉的 Azure VM 網路組態
 
-**Azure 網路功能** | **VMware/實體伺服器** | **Hyper-V (無 Virtual Machine Manager)** | **Hyper-V (有 Virtual Machine Manager)**
---- | --- | --- | ---
-ExpressRoute | 是 | 是 | 是
-ILB | 是 | 是 | 是
-ELB | 是 | 是 | 是
-流量管理員 | 是 | 是 | 是
-多個 NIC | 是 | 是 | 是
-保留的 IP | 是 | 是 | 是
-IPv4 | 是 | 是 | 是
-保留來源 IP | 是 | 是 | 是
+**Azure 網路功能** | **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)**
+--- | --- | ---
+ExpressRoute | 是 | 是
+ILB | 是 | 是
+ELB | 是 | 是
+流量管理員 | 是 | 是
+多個 NIC | 是 | 是
+保留的 IP | 是 | 是
+IPv4 | 是 | 是
+保留來源 IP | 是 | 是
 
 
 ## <a name="support-for-storage"></a>儲存體的支援
@@ -119,50 +136,51 @@ IPv4 | 是 | 是 | 是
 
 ### <a name="host-storage-configuration"></a>主機儲存體組態
 
-**組態** | **VMware/實體伺服器** | **Hyper-V (無 Virtual Machine Manager)** | **Hyper-V (有 Virtual Machine Manager)**
+**組態** | **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)**
 --- | --- | --- | ---
-NFS | VMware 為是<br/><br/> 實體伺服器為否 | N/A | N/A
-SMB 3.0 | N/A | 是 | 是
-SAN (ISCSI) | 是 | 是 | 是
-多重路徑 (MPIO)<br></br>測試標的︰Microsoft DSM、EMC PowerPath 5.7 SP4、EMC PowerPath DSM for CLARiiON | 是 | 是 | 是
+NFS | VMware 為是<br/><br/> 實體伺服器為否 | N/A
+SMB 3.0 | N/A | 是
+SAN (ISCSI) | 是 | 是
+多重路徑 (MPIO)<br></br>測試標的︰Microsoft DSM、EMC PowerPath 5.7 SP4、EMC PowerPath DSM for CLARiiON | 是 | 是
 
 ### <a name="guest-or-physical-server-storage-configuration"></a>客體或實體伺服器儲存體組態
 
-**組態** | **VMware/實體伺服器** | **Hyper-V (無 Virtual Machine Manager)** | **Hyper-V (有 Virtual Machine Manager)**
---- | --- | --- | ---
-VMDK | 是 | N/A | N/A
-VHD/VHDX | N/A | 是 | 是
-第 2 代 VM | N/A | 是 | 是
-EFI/UEFI| 否 | 是 | 是
-共用叢集磁碟 | VMware 為是<br/><br/> 實體伺服器為 N/A | 否 | 否
-已加密磁碟 | 否 | 否 | 否
-NFS | 否 | N/A | N/A
-SMB 3.0 | 否 | 否 | 否
-RDM | 是<br/><br/> 實體伺服器為 N/A | N/A | N/A
-磁碟 > 1 TB | 否 | 否 | 否
-使用等量磁碟的磁碟區 > 1 TB<br/><br/> LVM 邏輯磁碟區管理 | 是 | 是 | 是
-儲存空間 | 否 | 是 | 是
-熱新增/移除磁碟 | 否 | 否 | 否
-排除磁碟 | 是 | 是 | 是
-多重路徑 (MPIO) | N/A | 是 | 是
+**組態** | **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)**
+--- | --- | ---
+VMDK | 是 | N/A
+VHD/VHDX | N/A | 是
+第 2 代 VM | N/A | 是
+EFI/UEFI| 否 | 是
+共用叢集磁碟 | VMware 為是<br/><br/> 實體伺服器為 N/A | 否
+已加密磁碟 | 否 | 否
+NFS | 否 | N/A
+SMB 3.0 | 否 | 否
+RDM | 是<br/><br/> 實體伺服器為 N/A | N/A
+磁碟 > 1 TB | 否 | 否
+使用等量磁碟的磁碟區 > 1 TB<br/><br/> LVM 邏輯磁碟區管理 | 是 | 是
+儲存空間 | 否 | 是
+熱新增/移除磁碟 | 否 | 否
+排除磁碟 | 是 | 是
+多重路徑 (MPIO) | N/A | 是
 
-**Azure 儲存體** | **VMware/實體伺服器** | **Hyper-V (無 Virtual Machine Manager)** | **Hyper-V (有 Virtual Machine Manager)**
---- | --- | --- | ---
-LRS | 是 | 是 | 是
-GRS | 是 | 是 | 是
-非經常性儲存體 | 否 | 否 | 否
-經常性存取儲存體| 否 | 否 | 否
-待用加密 (SSE)| 是 | 是 | 是
-進階儲存體 | 是 | 否 | 否
-匯入/匯出服務 | 否 | 否 | 否
+**Azure 儲存體** | **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)**
+--- | --- | ---
+LRS | 是 | 是
+GRS | 是 | 是
+RA-GRS | 是 | 是
+非經常性儲存體 | 否 | 否
+經常性存取儲存體| 否 | 否
+待用加密 (SSE)| 是 | 是
+進階儲存體 | 是 | 是
+匯入/匯出服務 | 否 | 否
 
 
 ## <a name="support-for-azure-compute-configuration"></a>支援 Azure 計算設定
 
-**計算功能** | **VMware/實體伺服器** | **Hyper-V (無 Virtual Machine Manager)** | **Hyper-V (有 Virtual Machine Manager)**
+**計算功能** | **VMware/實體伺服器** | **Hyper-V (含/不含 Virtual Machine Manager)**
 --- | --- | --- | ---
-可用性集合 | 否 | 否 | 否
-中樞 | 是 | 是 | 是
+可用性設定組 | 是 | 是
+中樞 | 是 | 是  
 
 ## <a name="failed-over-azure-vm-requirements"></a>容錯移轉的 Azure VM 需求
 

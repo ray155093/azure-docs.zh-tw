@@ -8,7 +8,7 @@ manager: jhubbard
 editor: 
 ms.assetid: 
 ms.service: sql-database
-ms.custom: servers
+ms.custom: DBs and servers
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,8 +16,9 @@ ms.workload: data-management
 ms.date: 02/01/2017
 ms.author: carlrab
 translationtype: Human Translation
-ms.sourcegitcommit: 79a9e72d29b5522dc3960b79bae7876f21acb4c5
-ms.openlocfilehash: 07181e5d35703cddf8a896badd45e7485c9e07a2
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 430af168e1bd19c15170996247bc7c7a62fe52d4
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -41,8 +42,8 @@ Azure 資料庫邏輯伺服器：
 - 藉由連接到 master 資料庫提供存取有關透過 DMV 內含資源的中繼資料 
 - 提供適用於其資料庫的管理原則範圍︰登入、防火牆、稽核、威脅偵測等等。 
 - 會受父訂用帳戶內的配額限制 (每個訂用帳戶六部伺服器 - [在此參閱訂用帳戶限制](../azure-subscription-service-limits.md))
-- 提供其包含的資料庫配額和 DTU 配額範圍 (例如在 V12 中 45000 DTU)
-- 內含資源 (最新版本是 V12) 上啟用功能的版本控制範圍
+- 提供其包含的資料庫配額和 DTU 配額範圍 (例如 45000 DTU)
+- 內含資源上啟用功能的版本控制範圍 
 - 伺服器層級主體登入可以管理伺服器上的所有資料庫
 - 可以包含類似內部部署之 SQL Server 執行個體中的登入，其在伺服器上一或多個資料庫被授與存取，且可以授與有限的系統管理權限。 如需詳細資訊，請參閱[登入](sql-database-manage-logins.md)。
 
@@ -55,7 +56,7 @@ Azure 資料庫邏輯伺服器：
 
 ## <a name="what-collations-are-supported"></a>支援哪些定序？
 
-Microsoft Azure SQL Database (包含 master 資料庫) 使用的預設資料庫定序是 **SQL_LATIN1_GENERAL_CP1_CI_AS**，其中 **LATIN1_GENERAL** 是英文 (美國)，**CP1** 是代碼頁 1252，**CI** 不區分大小寫，**AS** 區分重音。 不建議在建立之後變更 V12 資料庫的定序。 如需定序的詳細資訊，請參閱＜[COLLATE (Transact-SQL)](https://msdn.microsoft.com/library/ms184391.aspx)＞。
+Microsoft Azure SQL Database (包含 master 資料庫) 使用的預設資料庫定序是 **SQL_LATIN1_GENERAL_CP1_CI_AS**，其中 **LATIN1_GENERAL** 是英文 (美國)，**CP1** 是代碼頁 1252，**CI** 不區分大小寫，**AS** 區分重音。 不建議在建立之後變更資料庫的定序。 如需定序的詳細資訊，請參閱＜[COLLATE (Transact-SQL)](https://msdn.microsoft.com/library/ms184391.aspx)＞。
 
 ## <a name="what-are-the-naming-requirements-for-database-objects"></a>資料庫物件的命名需求有哪些？
 
@@ -68,8 +69,8 @@ Microsoft Azure SQL Database (包含 master 資料庫) 使用的預設資料庫�
 ## <a name="how-do-i-manage-a-logical-server"></a>如何管理邏輯伺服器？
 
 您可以使用幾種方法管理 Azure SQL Database 邏輯伺服器︰
-- [Azure 入口網站](sql-database-manage-portal.md)
-- [PowerShell](sql-database-manage-powershell.md)
+- [Azure 入口網站](sql-database-manage-overview.md)
+- [PowerShell](sql-database-manage-overview.md)
 - [REST](/rest/api/sql/)
 
 ## <a name="next-steps"></a>後續步驟
@@ -81,10 +82,5 @@ Microsoft Azure SQL Database (包含 master 資料庫) 使用的預設資料庫�
 - 如需根據您**服務層**的特定資源配額和限制。 如需服務層級的概觀，請參閱 [SQL Database 服務層級](sql-database-service-tiers.md)。
 - 如需安全性概觀，請參閱 [Azure SQL Database 安全性概觀](sql-database-security-overview.md)。
 - 如需驅動程式的可用性和 SQL Database 支援的相關資訊，請參閱＜ [SQL Database 與 SQL Server 的連線庫](sql-database-libraries.md)＞。
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

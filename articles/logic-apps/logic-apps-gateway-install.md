@@ -15,25 +15,28 @@ ms.workload: integration
 ms.date: 07/05/2016
 ms.author: jehollan
 translationtype: Human Translation
-ms.sourcegitcommit: 97acd09d223e59fbf4109bc8a20a25a2ed8ea366
-ms.openlocfilehash: 23b806556667539156ee399e90c7bd4af808804f
-ms.lasthandoff: 03/10/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: b9971117d5f61669a5161a28c96b11b2fd600b61
+ms.lasthandoff: 04/14/2017
 
 
 ---
 # <a name="install-an-on-premises-data-gateway-for-azure-logic-apps"></a>安裝 Azure Logic Apps 的內部部署資料閘道
 
-內部部署資料閘道支援這些資料來源連線︰
+內部部署資料閘道支援這些連線︰
 
 *   BizTalk Server
-*    DB2  
+*   DB2  
 *   檔案系統
 *   Informix
 *   MQ
-*    Oracle 資料庫 
+*   MySQL
+*   Oracle 資料庫 
 *   SAP 應用程式伺服器 
 *   SAP 訊息伺服器
-*    SQL Server
+*   僅限 SharePoint for HTTP，而非 SharePoint for HTTPS
+*   SQL Server
+*   Teradata
 
 如需這些連線的詳細資訊，請參閱[Azure Logic Apps 的連接器](https://docs.microsoft.com/azure/connectors/apis-list)。
 
@@ -61,7 +64,7 @@ ms.lasthandoff: 03/10/2017
 
 * 您只能在 Azure 中使用工作或學校電子郵件地址，因此您可以將內部部署資料閘道關聯至以 Azure Active Directory 為基礎的帳戶。
 
-    如果您使用 Microsoft 帳戶 (例如 @outlook.com)，您可以使用 Azure 帳戶  [建立工作或學校電子郵件地址](../virtual-machines/virtual-machines-windows-create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal)。
+    如果您使用 Microsoft 帳戶 (例如 @outlook.com)，您可以使用 Azure 帳戶  [建立工作或學校電子郵件地址](../virtual-machines/windows/create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal)。
 
 ### <a name="install-the-gateway"></a>安裝閘道
 
@@ -75,7 +78,7 @@ ms.lasthandoff: 03/10/2017
 
     若要設定閘道，請提供閘道名稱和修復金鑰，然後選擇 [設定]。
   
-    指定至少包含&8; 個字元的修復金鑰，並將此金鑰保存在安全的地方。 如果您想要移轉、還原或取代閘道，您會需要這個金鑰。
+    指定至少包含 8 個字元的修復金鑰，並將此金鑰保存在安全的地方。 如果您想要移轉、還原或取代閘道，您會需要這個金鑰。
 
     若要移轉、還原或取代現有的閘道，請提供建立閘道時所指定的修復金鑰。
 

@@ -13,12 +13,12 @@ ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/27/2016
-ms.author: torsteng
+ms.date: 03/27/2017
+ms.author: ddove
 translationtype: Human Translation
-ms.sourcegitcommit: 5024e5edbfaaf9b070f66e6b009bc6085de3fa7e
-ms.openlocfilehash: b0f700bd742e1a69245711ff7f87d7f35535b3ab
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: ff9f3ee4e44f7d0b51a6724304b0ec0f967f7d88
+ms.lasthandoff: 04/14/2017
 
 
 ---
@@ -43,7 +43,7 @@ ms.lasthandoff: 01/24/2017
 如果應用程式不會自行操作分區對應，用於 Factory 方法中的認證在 **全域分區對應** 資料庫上應該只有唯讀權限。 這些認證通常不同於用來對分區對應管理員開啟連接的認證。 另請參閱 [用來存取彈性資料庫用戶端程式庫的認證](sql-database-elastic-scale-manage-credentials.md)。 
 
 ## <a name="call-the-openconnectionforkey-method"></a>呼叫 OpenConnectionForKey 方法
-**[ShardMap.OpenConnectionForKey 方法](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx))** 傳回的 ADO.Net 連接可根據 **key** 參數的值，對適當的資料庫發出命令。 **ShardMapManager** 會將分區資訊快取在應用程式中，因此這些要求通常不需要針對**全域分區對應**資料庫進行資料庫尋查。 
+**[ShardMap.OpenConnectionForKey 方法](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx)** 傳回的 ADO.Net 連接可根據 **key** 參數的值，對適當的資料庫發出命令。 **ShardMapManager** 會將分區資訊快取在應用程式中，因此這些要求通常不需要針對**全域分區對應**資料庫進行資料庫尋查。 
 
     // Syntax: 
     public SqlConnection OpenConnectionForKey<TKey>(

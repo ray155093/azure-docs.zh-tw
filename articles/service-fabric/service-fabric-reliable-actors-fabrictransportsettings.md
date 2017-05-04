@@ -1,6 +1,6 @@
 ---
 title: "變更 Azure 微服務中的 FabricTransport 設定 | Microsoft Docs"
-description: "了解如何設定「Azure Service Fabric 動作項目」通訊設定。"
+description: "深入了解設定 Azure Service Fabric 動作項目通訊設定。"
 services: Service-Fabric
 documentationcenter: .net
 author: suchiagicha
@@ -15,42 +15,48 @@ ms.workload: NA
 ms.date: 11/22/2016
 ms.author: suchia
 translationtype: Human Translation
-ms.sourcegitcommit: f7edee399717ecb96fb920d0a938da551101c9e1
-ms.openlocfilehash: 6041541903d4d90710817149be50e05e31fd88f1
-ms.lasthandoff: 01/24/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: 4cbca6e496135a312bf4704dd0989f45dcccfc00
+ms.lasthandoff: 04/14/2017
 
 
 ---
-# <a name="configuring-fabrictransport-settings-for-reliable-actors"></a>設定 Reliable Actors 的 FabricTransport 設定
+# <a name="configure-fabrictransport-settings-for-reliable-actors"></a>設定 Reliable Actors 的 FabricTransport 設定
 
-以下是使用者可以設定 [FabrictTansportSettings](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.communication.fabrictransport.common.fabrictransportsettings) 的設定清單
+您可以進行的設定包括︰
+
+- C#: [FabricTansportSettings](https://docs.microsoft.com/dotnet/api/microsoft.servicefabric.services.communication.fabrictransport.common.fabrictransportsettings)
+- Java: [FabricTransportRemotingSettings](https://docs.microsoft.com/java/api/microsoft.servicefabric.services.remoting.fabrictransport._fabric_transport_remoting_settings)
 
 您可以下列方式修改 FabricTransport 的預設設定。
 
-1.  使用組件屬性 - [FabricTransportActorRemotingProvider](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.actors.remoting.fabrictransport.fabrictransportactorremotingproviderattribute?redirectedfrom=MSDN#microsoft_servicefabric_actors_remoting_fabrictransport_fabrictransportactorremotingproviderattribute)。
+## <a name="assembly-attribute"></a>組件屬性
 
-  此屬性必須套用在動作項目用戶端與動作項目服務組件。
-  下列範例顯示如何變更 FabricTransport OperationTimeout 設定的預設值。
+[FabricTransportActorRemotingProvider](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.actors.remoting.fabrictransport.fabrictransportactorremotingproviderattribute?redirectedfrom=MSDN#microsoft_servicefabric_actors_remoting_fabrictransport_fabrictransportactorremotingproviderattribute) 屬性需要在動作項目用戶端和動作項目服務組件上套用。
+
+下列範例顯示如何變更 FabricTransport OperationTimeout 設定的預設值：
 
   ```csharp
-     using Microsoft.ServiceFabric.Actors.Remoting.FabricTransport;
+    using Microsoft.ServiceFabric.Actors.Remoting.FabricTransport;
     [assembly:FabricTransportActorRemotingProvider(OperationTimeoutInSeconds = 600)]
    ```
 
-   第二個範例會變更 FabricTransport MaxMessageSize 和 OperationTimeoutInSeconds 的預設值
+下列範例顯示如何變更 FabricTransport MaxMessageSize 和 OperationTimeoutInSeconds 的預設值
 
-    ```csharp
+  ```csharp
     using Microsoft.ServiceFabric.Actors.Remoting.FabricTransport;
     [assembly:FabricTransportActorRemotingProvider(OperationTimeoutInSeconds = 600,MaxMessageSize = 134217728)]
-    ```
+   ```
 
-2. 使用[組態封裝](service-fabric-application-model.md)：
+## <a name="config-package"></a>組態封裝
 
-  * 設定動作項目服務的 FabricTransport 設定
+您可以使用[組態封裝](service-fabric-application-model.md)修改預設組態。
 
-    在 settings.xml 檔案中新增 TransportSettings 區段。
+### <a name="configure-fabrictransport-settings-for-the-actor-service"></a>設定動作項目服務的 FabricTransport 設定
 
-    * SectionName︰根據預設，動作項目程式碼會尋找 SectionName 做為「&lt;ActorName&gt;TransportSettings。」 如果找不到，它會檢查 sectionName 做為「TransportSettings」。
+在 settings.xml 檔案中新增 TransportSettings 區段。
+
+根據預設，動作項目程式碼會尋找 SectionName 做為「&lt;ActorName&gt;TransportSettings」。 如果找不到，它會以「TransportSettings」檢查 SectionName 。
 
   ```xml
   <Section Name="MyActorServiceTransportSettings">
@@ -66,9 +72,9 @@ ms.lasthandoff: 01/24/2017
    </Section>
   ```
 
-  * 設定動作項目用戶端組件的 FabricTransport 設定
+### <a name="configure-fabrictransport-settings-for-the-actor-client-assembly"></a>設定動作項目用戶端組件的 FabricTransport 設定
 
-    如果用戶端未當作服務一部分執行，則您可以在 client exe 存在的同一位置中建立「&lt;Client Exe Name&gt;.settings.xml」xml 檔案。 然後在該檔案中新增 TransportSettings 區段。 SectionName 應為「TransportSettings」。
+如果用戶端未當作服務一部分執行，則您可以在 client .exe 檔案存在的同一位置中建立「&lt;Client Exe Name&gt;.settings.xml」檔案。 然後在該檔案中新增 TransportSettings 區段。 SectionName 應為「TransportSettings」。
 
   ```xml
   <?xml version="1.0" encoding="utf-8"?>

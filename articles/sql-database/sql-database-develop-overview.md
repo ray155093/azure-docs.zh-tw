@@ -16,8 +16,9 @@ ms.topic: article
 ms.date: 08/17/2016
 ms.author: sstein
 translationtype: Human Translation
-ms.sourcegitcommit: cf627b92399856af2b9a58ab155fac6730128f85
-ms.openlocfilehash: 59b8e7b6b2e2442c0a961d105ccdbc9336445aa6
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: 338fa476377e9ff04c9a1f4e585f790b92a59f87
+ms.lasthandoff: 04/15/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.openlocfilehash: 59b8e7b6b2e2442c0a961d105ccdbc9336445aa6
 本文將逐步解說開發人員在撰寫程式碼以連接到 Azure SQL Database 時應注意的基本考量事項。
 
 > [!TIP]
-> 如需示範如何建立伺服器、建立伺服器型防火牆、檢視伺服器屬性、使用 SQL Server Management Studio 進行連接、查詢 Master 資料庫、建立範例資料庫和空白資料庫、查詢資料庫屬性、使用 SQL Server Management Studio 進行連接，以及查詢範例資料庫的教學課程，請參閱[開始使用教學課程](sql-database-get-started.md)。
+> 如需示範如何建立伺服器、建立伺服器型防火牆、檢視伺服器屬性、使用 SQL Server Management Studio 進行連接、查詢 Master 資料庫、建立範例資料庫和空白資料庫、查詢資料庫屬性、使用 SQL Server Management Studio 進行連接，以及查詢範例資料庫的教學課程，請參閱[開始使用教學課程](sql-database-get-started-portal.md)。
 >
 
 ## <a name="language-and-platform"></a>語言和平台
@@ -64,8 +65,8 @@ Azure SQL Database 提供資源以在 SQL Database 上限制存取、保護資�
 
 ## <a name="network-considerations"></a>網路考量事項
 * 在託管您的用戶端程式的電腦上，請確定防火牆允許連接埠 1433 上的傳出 TCP 通訊。  詳細資訊： [設定 Azure SQL Database 防火牆](sql-database-configure-firewall-settings.md)
-* 如果您的用戶端是在 Azure 虛擬機器 (VM) 上執行，而用戶端程式會連接到 SQL Database V12，您就必須開啟該 VM 上特定的連接埠範圍。 詳細資訊： [針對 ADO.NET 4.5 和 SQL Database V12 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)
-* 與 Azure SQL Database V12 的用戶端連線有時會略過 proxy 並直接與資料庫互動。 1433 以外的連接埠變得重要。 詳細資訊：[針對 ADO.NET 4.5 和 SQL Database V12 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)
+* 如果您的用戶端程式是在 Azure 虛擬機器 (VM) 上執行，而用戶端程式會連線至 SQL Database，您就必須開啟該 VM 上特定的連接埠範圍。 詳細資訊：[針對 ADO.NET 4.5 和 SQL Database 之 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)
+* 與 Azure SQL Database 的用戶端連線有時會略過 proxy 並直接與資料庫互動。 1433 以外的連接埠變得重要。 詳細資訊：[針對 ADO.NET 4.5 和 SQL Database 之 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)
 
 ## <a name="data-sharding-with-elastic-scale"></a>使用 Elastic Scale 的資料分區化
 Elastic Scale 會簡化相應放大 (和相應縮小) 的程序。 
@@ -76,9 +77,4 @@ Elastic Scale 會簡化相應放大 (和相應縮小) 的程序。
 
 ## <a name="next-steps"></a>後續步驟
 瀏覽所有 [SQL Database 的能力](sql-database-technical-overview.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

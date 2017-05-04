@@ -12,12 +12,12 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 04/12/2017
 ms.author: cenkd;juliako
 translationtype: Human Translation
-ms.sourcegitcommit: 7d980e14776cade574fc9ef4e63aea5c91fb8fdf
-ms.openlocfilehash: a5867566afc80fe7ae57b5027b5578e3144f7f07
-ms.lasthandoff: 02/15/2017
+ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
+ms.openlocfilehash: d6e3ea06106463367eb03498ef8d9bc47d83c694
+ms.lasthandoff: 04/13/2017
 
 
 ---
@@ -35,11 +35,11 @@ ms.lasthandoff: 02/15/2017
 
 從媒體服務 2.10 版起，當您建立通道時，可以指定您的通道接收輸入串流的方式。 您也可以指定是否要讓通道執行您串流的即時編碼。 您有兩個選擇：
 
-* **無**：如果您想要使用會以多位元速率串流 (傳遞串流) 做為輸出的內部部署即時編碼器，請指定這個值。 在此情況下，連入的串流會傳遞至輸出，無須任何編碼。 這是在 2.10 版以前的通道行為。 本主題提供有關使用此類型通道的詳細資訊。
-* **標準**：如果您打算使用媒體服務將單一位元速率即時串流編碼成多位元速率串流，請選擇這個值。 請注意，在**執行**狀態中離開即時編碼通道將會產生費用。 建議您在即時串流事件完成之後立即停止執行的通道，以避免額外的每小時費用。 媒體服務會將串流傳遞給要求的客戶。
+* **傳遞**：如果您想要使用會以多位元速率串流 (傳遞串流) 做為輸出的內部部署即時編碼器，請指定這個值。 在此情況下，連入的串流會傳遞至輸出，無須任何編碼。 這是在 2.10 版以前的通道行為。 本主題提供有關使用此類型通道的詳細資訊。
+* **即時編碼**：如果您打算使用媒體服務將單一位元速率即時串流編碼成多位元速率串流，請選擇這個值。 請注意，在**執行**狀態中離開即時編碼通道將會產生費用。 建議您在即時串流事件完成之後立即停止執行的通道，以避免額外的每小時費用。 媒體服務會將串流傳遞給要求的客戶。
 
 > [!NOTE]
-> 本主題討論通道的屬性，這些為未啟用執行即時編碼 (**未** 編碼類型) 的通道。 如需使用已啟用執行即時編碼通道的相關資訊，請參閱 [使用 Azure 媒體服務建立多位元速率串流的即時串流](media-services-manage-live-encoder-enabled-channels.md)。
+> 本主題討論未啟用而無法執行即時編碼的通道屬性。 如需使用已啟用執行即時編碼通道的相關資訊，請參閱 [使用 Azure 媒體服務建立多位元速率串流的即時串流](media-services-manage-live-encoder-enabled-channels.md)。
 >
 >
 
@@ -47,7 +47,7 @@ ms.lasthandoff: 02/15/2017
 
 ![即時工作流程][live-overview]
 
-## <a name="a-idscenarioacommon-live-streaming-scenario"></a><a id="scenario">常見即時串流案例</a>
+## <a id="scenario">常見即時串流案例</a>
 下列步驟描述當我們建立一般即時串流應用程式時，會涉及到的各種工作。
 
 1. 將攝影機連接到電腦。 啟動並設定內部部署即時編碼器，讓它以多位元速率 RTMP 或 Fragmented MP4 (Smooth Streaming) 串流做為輸出。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
@@ -79,9 +79,9 @@ ms.lasthandoff: 02/15/2017
 
 10. 刪除程式 (並選擇性地刪除資產)。     
 
-## <a name="a-idchanneladescription-of-a-channel-and-its-related-components"></a><a id="channel"></a>通道和其相關元件的說明
-### <a name="a-idchannelinputachannel-input-ingest-configurations"></a><a id="channel_input"></a>頻道輸入 (內嵌) 組態
-#### <a name="a-idingestprotocolsaingest-streaming-protocol"></a><a id="ingest_protocols"></a>嵌入串流通訊協定
+## <a id="channel"></a>通道和其相關元件的說明
+### <a id="channel_input"></a>頻道輸入 (內嵌) 組態
+#### <a id="ingest_protocols"></a>嵌入串流通訊協定
 媒體服務會使用多位元速率分散 MP4 和多位元速率 RTMP 做為串流通訊協定來支援內嵌即時摘要。 選取 RTMP 內嵌串流通訊協定時，會為通道建立兩個 ingest(input) 端點：
 
 * **主要 URL**：指定通道主要 RTMP 內嵌端點的完整 URL。
@@ -110,7 +110,7 @@ ms.lasthandoff: 02/15/2017
 
 您可以選擇透過 SSL 連線來內嵌 Fragmented MP4 (Smooth Streaming) 即時資料流。 若要透過 SSL 擷取，請務必將擷取 URL 更新為 HTTPS。 目前，您無法內嵌 RTMP over SSL。
 
-#### <a name="a-idkeyframeintervalakeyframe-interval"></a><a id="keyframe_interval"></a>主要畫面格間隔
+#### <a id="keyframe_interval"></a>主要畫面格間隔
 當您使用內部部署即時編碼器來產生多位元速率資料流時，主要畫面格間隔會指定圖片群組 (GOP) 持續期間以供該外部編碼器使用。 在通道收到此內送串流之後，您可以再將即時串流傳遞至下列任一形式的用戶端播放應用程式：Smooth Streaming、HTTP 動態調適性串流 (DASH) 及 HTTP 即時串流 (HLS)。 在執行即時資料流時，會一律動態封裝 HLS。 依預設，媒體服務會根據從即時編碼器收到的主要畫面格間隔，自動計算 HLS 區段封裝比例 (每一個區段的片段)。
 
 下表顯示如何計算區段持續時間：
@@ -169,7 +169,7 @@ ms.lasthandoff: 02/15/2017
 
 即使在停止並刪除程式之後，使用者還是可以視需求將封存的內容串流為視訊，直到您未刪除資產。 如果想要保留封存的內容，但不要讓它可進行串流處理，請刪除串流定位器。
 
-## <a name="a-idstatesachannel-states-and-billing"></a><a id="states"></a>通道狀態和計費
+## <a id="states"></a>通道狀態和計費
 通道目前狀態的可能值包括︰
 
 * **已停止**：這是通道建立後的初始狀態。 在此狀態下，通道屬性可以更新，但是不允許串流。
@@ -187,16 +187,16 @@ ms.lasthandoff: 02/15/2017
 | **停止中** |**停止中** |無 (暫時性狀態) |
 | **已停止** |**已停止** |否 |
 
-## <a name="a-idccandadsaclosed-captioning-and-ad-insertion"></a><a id="cc_and_ads"></a>隱藏式字幕和廣告插入
+## <a id="cc_and_ads"></a>隱藏式字幕和廣告插入
 下表示範支援的隱藏式字幕和廣告插入標準。
 
 | 標準 | 注意事項 |
 | --- | --- |
 | CEA-708 和 EIA-608 (708/608) |CEA-708 和 EIA-608 是美國和加拿大的隱藏式字幕標準。<p><p>目前只有編碼的輸入資料流附帶字幕時，才能播放字幕。 您使用的即時媒體編碼器，必須可以將 608 或 708 字幕插入至已傳送至媒體服務的已編碼資料流。 媒體服務會將內含字幕的內容傳遞給您的檢視器。 |
 | .ismt 裡面附帶字幕 (Smooth Streaming 文字播放軌) |媒體服務動態封裝功能可讓您的用戶端傳送以下任何格式的內容：DASH、HLS 或 Smooth Streaming。 不過，如果您內嵌 Fragmented MP4 (Smooth Streaming) 而且在 .ismt 裡面附帶字幕 (Smooth Streaming 文字播放軌)，您就只能將資料流傳遞至 Smooth Streaming 用戶端。 |
-| SCTE-35 |SCTE-35 是數位訊號系統，可用來提示廣告插入。 下游接收端會使用信號並根據分配的時間，將廣告切割成資料流。 SCTE&35; 必須以鬆散播放軌的形式傳送至輸入資料流中。<p><p>目前，唯一支援附帶廣告訊號的輸入資料流格式是 Fragmented MP4 (Smooth Streaming)。 唯一支援的輸出格式也是 Smooth Streaming。 |
+| SCTE-35 |SCTE-35 是數位訊號系統，可用來提示廣告插入。 下游接收端會使用信號並根據分配的時間，將廣告切割成資料流。 SCTE 35 必須以鬆散播放軌的形式傳送至輸入資料流中。<p><p>目前，唯一支援附帶廣告訊號的輸入資料流格式是 Fragmented MP4 (Smooth Streaming)。 唯一支援的輸出格式也是 Smooth Streaming。 |
 
-## <a name="a-idconsiderationsaconsiderations"></a><a id="considerations"></a>考量
+## <a id="considerations"></a>考量
 使用內部部署即時編碼器並將多位元速率資料流傳送到通道時，請注意以下限制：
 
 * 確定您的網際網路速度夠快，足以將資料傳送至內嵌點。

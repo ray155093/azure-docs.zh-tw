@@ -16,9 +16,9 @@ ms.topic: article
 ms.date: 12/07/2016
 ms.author: jodebrui
 translationtype: Human Translation
-ms.sourcegitcommit: 187954f3ddafdbc17e341ce41f5b109cb95f8a24
-ms.openlocfilehash: 620572f66367f61c6ee61d3c044083a0f71aca6f
-ms.lasthandoff: 01/12/2017
+ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
+ms.openlocfilehash: f827b76b8164e4eae286c9a1247e64d4f5ee9ea8
+ms.lasthandoff: 04/15/2017
 
 ---
 
@@ -28,7 +28,7 @@ ms.lasthandoff: 01/12/2017
 
 以下是記憶體內部 OLTP 如何幫助大幅提升效能的兩個範例︰
 
-- 由於使用記憶體內部 OLTP，[Quorum Business Solutions 能使其工作負載倍增，同時將 DTU (亦即資源耗用量) 提高 70%](https://customers.microsoft.com/en-US/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)。
+- 由於使用記憶體內部 OLTP，[Quorum Business Solutions 能使其工作負載倍增，同時將 DTU (亦即資源耗用量) 提高 70%](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)。
 - 下列影片以範例工作負載示範資源耗用量的重大改進︰[Azure SQL Database 中的記憶體內部 OLTP](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB)。
 
 記憶體內部技術適用於高階定價層的所有資料庫，包括高階彈性集區中的資料庫。
@@ -140,7 +140,7 @@ SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 
 ## <a name="1-install-the-in-memory-oltp-sample"></a>1.安裝記憶體內部 OLTP 範例
 
-在 [Azure 入口網站](https://portal.azure.com/)中按幾下滑鼠，即可建立 AdventureWorksLT [V12] 範例資料庫。 然後，本節中的步驟會說明如何使用記憶體內部 OLTP 物件擴充 AdventureWorksLT 資料庫，並示範效能優點。
+在 [Azure 入口網站](https://portal.azure.com/)中按幾下滑鼠，即可建立 AdventureWorksLT 範例資料庫。 然後，本節中的步驟會說明如何使用記憶體內部 OLTP 物件擴充 AdventureWorksLT 資料庫，並示範效能優點。
 
 如需更簡單、但更美觀的記憶體內部 OLTP 效能示範，請參閱︰
 
@@ -149,7 +149,7 @@ SELECT DatabasePropertyEx(DB_NAME(), 'IsXTPSupported');
 
 #### <a name="installation-steps"></a>安裝步驟
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，於 V12 伺服器上建立高階資料庫。 將 [來源]  設定為 AdventureWorksLT [V12] 範例資料庫。 如需詳細指示，請參閱[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，於伺服器上建立進階資料庫。 將 [來源]  設定為 AdventureWorksLT 範例資料庫。 如需詳細指示，請參閱[建立您的第一個 Azure SQL Database](sql-database-get-started-portal.md)。
 
 2. 使用 SQL Server Management Studio [(SSMS.exe)](http://msdn.microsoft.com/library/mt238290.aspx)連接到資料庫。
 
@@ -242,7 +242,7 @@ SELECT uses_native_compilation, OBJECT_NAME(object_id), definition
 本節顯示 ostress.exe 命令列中內嵌的 T-SQL 指令碼。 此指令碼會使用您稍早安裝的 T-SQL 指令碼所建立的項目。
 
 
-下列指令碼會在下列記憶體最佳化資料表 中插入有&5; 個細項的範例銷售訂單：
+下列指令碼會在下列記憶體最佳化資料表 中插入有 5 個細項的範例銷售訂單：
 
 - SalesLT.SalesOrderHeader_inmem
 - SalesLT.SalesOrderDetail_inmem
@@ -496,7 +496,7 @@ GO
 
 #### <a name="deeper-information"></a>更深入的資訊
 
-- [了解仲裁如何透過 SQL Database 中的記憶體內部 OLTP，讓重要資料庫的工作負載加倍，同時降低 70% 的 DTU](https://customers.microsoft.com/en-US/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)
+- [了解仲裁如何透過 SQL Database 中的記憶體內部 OLTP，讓重要資料庫的工作負載加倍，同時降低 70% 的 DTU](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)
 
 - [了解記憶體內部 OLTP](http://msdn.microsoft.com/library/dn133186.aspx)
 

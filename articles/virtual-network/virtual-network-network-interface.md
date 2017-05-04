@@ -16,9 +16,9 @@ ms.workload: infrastructure-services
 ms.date: 03/14/2017
 ms.author: jdial
 translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: f691f3886fce217ea784237f03a4f02ed58e12ee
-ms.lasthandoff: 03/28/2017
+ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
+ms.openlocfilehash: e2d70bbb2af4231a9ba7e4d9a843593ff5d9f7d3
+ms.lasthandoff: 04/14/2017
 
 
 ---
@@ -31,10 +31,10 @@ ms.lasthandoff: 03/28/2017
 
 本文說明如何運用圖中顯示的概念。 按一下下列任何一個概念，即可直接前往本文的該小節：
 
-- [網路介面](#nics)：NIC 會連線至 Azure 虛擬網路 (VNet) 內的一個子網路。 在上圖中，**VM1** 已連結兩個 NIC，而 **VM2** 已連結一個 NIC。 每個 NIC 會連線至相同的 VNet，但不同的子網路。 本節提供列出現有 NIC 以及建立、變更和刪除 NIC 的步驟。
+- [網路介面](#nics)：NIC 會連線至 Azure 虛擬網路 (VNet) 內的一個子網路。 在圖片中， **VM1** 有兩個 NIC 與之連結，而 **VM2** 有一個連接的 NIC 與之連結。 每個 NIC 會連線至相同的 VNet，但不同的子網路。 本節提供列出現有 NIC 以及建立、變更和刪除 NIC 的步驟。
 - [IP 組態](#ip-configs)︰每個 NIC 會有一或多個相關聯的 IP 組態。 每個 IP 組態都有指派的私人 IP 位址。 IP 組態可能有相關聯的公用 IP 位址。 在上圖中，**NIC1** 和 **NIC3** 各有一個相關聯的 IP 組態，而 **NIC2** 有兩個相關聯的 IP 組態。 指派給 NIC1 和 NIC3 的 IP 組態有指派的公用 IP 位址，而指派給 NIC2 的兩個 IP 組態均沒有指派給它的公用 IP 位址。 本節提供建立、變更及刪除以下 IP 組態的步驟：具有使用靜態和動態指派方法指派的私人 IP 位址。 本節也提供建立及解除公用 IP 位址與 IP 組態之關聯的步驟。
 - [網路安全性群組](#nsgs)︰網路安全性群組 (NSG) 包含一或多個輸入或輸出安全性規則。 這些規則控制可以傳入和傳出網路介面、子網路或兩者的網路流量類型。 在上圖中，**NIC1** 和 **NIC3** 有相關聯的 NSG，而 **NIC2** 則沒有。 本節提供下列步驟：檢視套用至 NIC 的 NSG、將 NSG 新增至 NIC，以及從 NIC 移除 NSG。
-- [虛擬機器](#vms)：VM 至少有一個相連結的 NIC，但可以有數個相連結的 NIC (視 VM 大小而定)。 若要了解每個 VM 大小支援多少個 NIC，請參閱 [Windows](../virtual-machines/virtual-machines-windows-sizes.md) 或 [Linux](../virtual-machines/virtual-machines-linux-sizes.md) VM 大小文章。 本節提供下列步驟：建立單一和多重 NIC 的 VM，以及從現有的 VM 連結和卸離 NIC。
+- [虛擬機器](#vms)：VM 至少有一個相連結的 NIC，但可以有數個相連結的 NIC (視 VM 大小而定)。 若要了解每個 VM 大小支援多少個 NIC，請參閱 [Windows](../virtual-machines/windows/sizes.md) 或 [Linux](../virtual-machines/linux/sizes.md) VM 大小文章。 本節提供下列步驟：建立單一和多重 NIC 的 VM，以及從現有的 VM 連結和卸離 NIC。
 
 如果您不熟悉 Azure 中的新手 NIC 和 VM，我們建議您先完成[建立第一個 Azure 虛擬網路](virtual-network-get-started-vnet-subnet.md)中的練習，再閱讀本文。 練習可幫助您熟悉 VNet 和 VM。
 
@@ -219,6 +219,9 @@ Azure DHCP 伺服器會將 NIC 之主要 IP 組態的私人 IP 位址指派給 V
 >[!NOTE]
 >如果主要 NIC 有多個 IP 組態，而且您變更主要 IP 組態的私人 IP 位址，您必須以手動方式將所有次要 IP 位址重新指派給 Windows 內的 NIC (對 Linux 而言並非必要)。 若要以手動方式將 IP 位址指派給作業系統內的 NIC，請閱讀[將多個 IP 位址指派給虛擬機器](virtual-network-multiple-ip-addresses-portal.md#os-config)一文。 請勿將任何公用 IP 位址新增至 VM 作業系統。
 
+>[!WARNING]
+>若要變更與次要 NIC 關聯之次要 IP 組態的私人 IP 位址，僅可在 VM 停止並已解除配置後完成以上步驟。
+
 |**工具**|**命令**|
 |---|---|
 |**CLI**|[az network nic ip-config update](/cli/azure/network/nic/ip-config?toc=%2fazure%2fvirtual-network%2ftoc.json#update)|
@@ -269,10 +272,11 @@ Azure DHCP 伺服器會將 NIC 之主要 IP 組態的私人 IP 位址指派給 V
 
 您可以使用 PowerShell 或 CLI，以無法使用於入口網站的所有先前屬性建立 NIC 或 VM。 在完成下列各節中的工作之前，請考量下列條件約束和行為︰
 
-- 不同的 VM 大小可支援不同數目的 NIC。 若要深入了解每個 VM 大小所支援的 NIC 數目，請參閱 [Linux](../virtual-machines/virtual-machines-linux-sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 或 [Windows](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) VM 大小文章。 
+- 不同的 VM 大小可支援不同數目的 NIC。 若要深入了解每個 VM 大小所支援的 NIC 數目，請參閱 [Linux](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 或 [Windows](../virtual-machines/virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json) VM 大小文章。 
+- 在過去，NIC 僅可新增至支援多個 NIC 並至少以兩個 NIC 建立的 VM。 您不可將 NIC 新增至以一個 NIC 建立的 VM，即使 VM 大小支援多個 NIC。 相反地，由於至少以兩個 NIC 建立的 VM 一定至少要有兩個 NIC 連結，因此您僅可從至少連結三個 NIC 的 VM 移除 NIC。 以上這些限制已不再適用。 您現在能夠以任何數目的 NIC 建立 VM (可達 VM 大小支援的數目) 並新增或移除任何數目的 NIC，只要 VM 總是至少具有一個連結的 NIC。 
 - 根據預設，連結至 VM 的第一個 NIC 會定義為「主要」 NIC。 連結至 VM 的所有其他 NIC 則為「次要」 NIC。
 - 根據預設，來自 VM 的所有輸出流量會送出指派給主要 NIC 之主要 IP 組態的 IP 位址。 您當然可以控制哪個 IP 位址使用於 VM 作業系統內的輸出流量。
-- 在過去，相同可用性設定組中的所有 VM 都必須有單一或多個 NIC。 具有任意多個 NIC 的 VM 現在可存在於相同的可用性設定組中。 然而只有在建立 VM 時，才能將 VM 新增到可用性設定組中。 若要深入了解可用性設定組，請閱讀[在 Azure 中管理 Windows 虛擬機器的可用性](../virtual-machines/virtual-machines-windows-manage-availability.md?toc=%2fazure%2fvirtual-network%2ftoc.json#configure-multiple-virtual-machines-in-an-availability-set-for-redundancy)一文。
+- 在過去，相同可用性設定組中的所有 VM 都必須有單一或多個 NIC。 具有任意多個 NIC 的 VM 現在可存在於相同的可用性設定組中。 然而只有在建立 VM 時，才能將 VM 新增到可用性設定組中。 若要深入了解可用性設定組，請閱讀[在 Azure 中管理 Windows 虛擬機器的可用性](../virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-network%2ftoc.json#configure-multiple-virtual-machines-in-an-availability-set-for-redundancy)一文。
 - 雖然連結至相同 VM 的 NIC 可以連線至 VNet 中不同的子網路，但 NIC 必須全部連線至相同的 VNet。
 - 您可以將任何主要或次要 NIC 之任何 IP 組態的任何 IP 位址新增至 Azure Load Balancer 後端集區。 在過去，只能將主要 NIC 的主要 IP 位址新增到後端集區。
 - 刪除 VM 並不會刪除與其連結的 NIC。 刪除 VM 時，會將 NIC 與該 VM 中斷連結。 您可以將 NIC 連結至其他 VM 或刪除它們。
