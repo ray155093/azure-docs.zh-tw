@@ -81,6 +81,7 @@
 ### 使用直接方法
 #### [Node.js 後端/Node.js 裝置](iot-hub-node-node-direct-methods.md)
 #### [.NET 後端/Node.js 裝置](iot-hub-csharp-node-direct-methods.md)
+#### [Java 後端/Java 裝置](iot-hub-java-java-direct-methods.md)
 ### 開始使用裝置管理
 #### [Node.js 後端/Node.js 裝置](iot-hub-node-node-device-management-get-started.md)
 #### [.NET 後端/Node.js 裝置](iot-hub-csharp-node-device-management-get-started.md)

@@ -29,15 +29,19 @@
 ### [設定位置](resource-manager-template-location.md)
 ### [指派標記](resource-manager-template-tags.md)
 ### [設定子資源名稱與類型](resource-manager-template-child-resource.md)
+### [更新資源](resource-manager-update.md)
+### [使用參數的物件](resource-manager-objects-as-parameters.md)
 ### [在連結的範本間共用狀態](best-practices-resource-manager-state.md)
 ### [設計範本的模式](best-practices-resource-manager-design-templates.md)
 ## 部署
 ### PowerShell
 #### [部署範本](resource-group-template-deploy.md)
 #### [使用 SAS 權杖部署私人範本](resource-manager-powershell-sas-token.md)
+#### [匯出範本並重新部署](resource-manager-export-template-powershell.md)
 ### Azure CLI
 #### [部署範本](resource-group-template-deploy-cli.md)
 #### [使用 SAS 權杖部署私人範本](resource-manager-cli-sas-token.md)
+#### [匯出範本並重新部署](resource-manager-export-template-cli.md)
 ### [入口網站](resource-group-template-deploy-portal.md)
 ### [REST API](resource-group-template-deploy-rest.md)
 ### [持續與 Visual Studio Team Services 整合](../vs-azure-tools-resource-groups-ci-in-vsts.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
@@ -72,7 +76,13 @@
 
 # 參考
 ## [範本函式](resource-group-template-functions.md)
-## [PowerShell](/powershell/resourcemanager/azurerm.resources/v3.5.0/azurerm.resources)
+### [陣列和物件函式](resource-group-template-functions-array.md)
+### [比較函式](resource-group-template-functions-comparison.md)
+### [部署函式](resource-group-template-functions-deployment.md)
+### [數值函式](resource-group-template-functions-numeric.md)
+### [資源函式](resource-group-template-functions-resource.md)
+### [字串函式](resource-group-template-functions-string.md)
+## [PowerShell](/powershell/module/azurerm.resources)
 ## [Azure 2.0 CLI](/cli/azure/resource)
 ## [.NET](/dotnet/api/microsoft.azure.management.resourcemanager)
 ## [Java](/java/api/com.microsoft.azure.management.resources)

@@ -30,6 +30,7 @@
 #### [通知中樞](functions-bindings-notification-hubs.md)
 #### [行動應用程式](functions-bindings-mobile-apps.md)
 #### [外部檔案](functions-bindings-external-file.md)
+#### [外部資料表](functions-bindings-external-table.md)
 ### [定義函式 Proxy](functions-proxies.md)
 ### [從 Azure 入口網站建立函式應用程式](functions-create-function-app-portal.md)
 ### [執行排定的清除工作](functions-scenario-database-table-cleanup.md)

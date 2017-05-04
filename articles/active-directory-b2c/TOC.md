@@ -9,14 +9,14 @@
 ## 快速入門指南
 ### [建置 iOS 應用程式](active-directory-b2c-devquickstarts-ios.md)
 ### [建置 Android 應用程式](active-directory-b2c-devquickstarts-android.md)
-### [建置 Node.Js Web API](active-directory-b2c-devquickstarts-api-node.md)
-### [建置 .NET Web App](active-directory-b2c-devquickstarts-web-dotnet.md)
-#### [註冊和登入 ASP.NET Web 應用程式](active-directory-b2c-devquickstarts-web-dotnet-susi.md)
+### 建置 .NET Web 應用程式
+#### [註冊和登入 .NET Web 應用程式](active-directory-b2c-devquickstarts-web-dotnet-susi.md)
+#### [從 .NET Web App 呼叫 Web API](active-directory-b2c-devquickstarts-web-api-dotnet.md)
 ### [建置 .NET Web API](active-directory-b2c-devquickstarts-api-dotnet.md)
-### [建置 Windows 桌面應用程式](active-directory-b2c-devquickstarts-native-dotnet.md)
-### [從 .NET Web App 呼叫 Web API](active-directory-b2c-devquickstarts-web-api-dotnet.md)
+### [建置 Node.Js Web 應用程式](active-directory-b2c-devquickstarts-web-node.md)
+### [建置 Node.Js Web API](active-directory-b2c-devquickstarts-api-node.md)
+### [建置 .NET 桌面應用程式](active-directory-b2c-devquickstarts-native-dotnet.md)
 ### [使用 Azure AD Graph API](active-directory-b2c-devquickstarts-graph-dotnet.md)
-### [在 Node JS Web 應用程式中加入登入](active-directory-b2c-devquickstarts-web-node.md)
 ## [常見問題集](active-directory-b2c-faqs.md)
 
 # 作法：
@@ -52,8 +52,8 @@
 ## [Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)
 
 # 資源
-## [價格](https://azure.microsoft.com/pricing/details/active-directory-b2c/)
-## [Azure 意見反應論壇](http://feedback.azure.com/forums/169401-azure-active-directory)
+## [定價](https://azure.microsoft.com/pricing/details/active-directory-b2c/)
+## [Azure AD B2C 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=active-directory-b2c) 
 ## [服務更新](https://azure.microsoft.com/updates/?product=active-directory-b2c)
 ## [支援](active-directory-b2c-support.md)

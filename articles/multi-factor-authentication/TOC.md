@@ -47,3 +47,4 @@
 ## 疑難排解
 ### [常見問題集](multi-factor-authentication-faq.md)
 ### [詢問問題](https://social.msdn.microsoft.com/Forums/newthread?category=windowsazureplatform&forum=windowsazureactiveauthentication&prof=required)
+### [NPS 擴充功能錯誤](multi-factor-authentication-nps-errors.md)

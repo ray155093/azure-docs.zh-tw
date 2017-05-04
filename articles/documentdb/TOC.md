@@ -6,6 +6,7 @@
 ## [全球發佈](documentdb-distribute-data-globally.md)
 ## [區域容錯移轉](documentdb-regional-failovers.md)
 ## [安全性](documentdb-nosql-database-security.md)
+## [待用加密](documentdb-nosql-database-encryption-at-rest.md)
 ## [NoSQL TCO 分析](https://aka.ms/documentdb-tco-paper)
 ## 案例
 ### [一般使用案例](documentdb-use-cases.md)

@@ -11,12 +11,22 @@
 ## [連線的處理站解決方案概觀](iot-suite-connected-factory-overview.md)
 ## [遠端監視解決方案的逐步解說](iot-suite-remote-monitoring-sample-walkthrough.md)
 ## [預防性維護解決方案的逐步解說](iot-suite-predictive-walkthrough.md)
+## [連接您的 Raspberry Pi](iot-suite-raspberry-pi-kit-get-started.md)
+### 使用 C
+#### [模擬的資料](iot-suite-raspberry-pi-kit-c-get-started-simulator.md)
+#### [使用真實的感應器](iot-suite-raspberry-pi-kit-c-get-started-basic.md)
+#### [實作韌體更新](iot-suite-raspberry-pi-kit-c-get-started-advanced.md)
+### 使用 Node.js
+#### [模擬的資料](iot-suite-raspberry-pi-kit-node-get-started-simulator.md)
+#### [使用真實的感應器](iot-suite-raspberry-pi-kit-node-get-started-basic.md)
+#### [實作韌體更新](iot-suite-raspberry-pi-kit-node-get-started-advanced.md)
 
-# 作法：
-## [將您的裝置連接到遠端監視解決方案 (Windows)](iot-suite-connecting-devices.md)
-## [將您的裝置連接到遠端監視解決方案 (Linux)](iot-suite-connecting-devices-linux.md)
-## [將您的裝置連接到遠端監視解決方案 (mbed)](iot-suite-connecting-devices-mbed.md)
-## [將您的裝置連接到遠端監視解決方案 (節點)](iot-suite-connecting-devices-node.md)
+# 作法
+## 連接模擬的裝置
+### [Windows 上的 C](iot-suite-connecting-devices.md)
+### [Linux 上的 C](iot-suite-connecting-devices-linux.md)
+### [Node.js](iot-suite-connecting-devices-node.md)
+## [連接您的 mbed 裝置](iot-suite-connecting-devices-mbed.md)
 ## [將邏輯應用程式連接到遠端監視解決方案](iot-suite-logic-apps-tutorial.md)
 ## [自訂預先設定的方案](iot-suite-guidance-on-customizing-preconfigured-solutions.md)
 ## [搭配使用動態遙測與遠端監視解決方案](iot-suite-dynamic-telemetry.md)

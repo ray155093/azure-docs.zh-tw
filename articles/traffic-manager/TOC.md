@@ -22,9 +22,11 @@
 ## [測量流量管理員效能](traffic-manager-performance-considerations.md)
 ## [使用 PowerShell 管理流量管理員](traffic-manager-powershell-arm.md)
 ## [將您的網際網路網域指向流量管理員](traffic-manager-point-internet-domain.md)
+## 疑難排解
+### [針對 Azure 流量管理員上的已降級狀態進行疑難排解](traffic-manager-troubleshooting-degraded.md)
 
 # 參考
-## [PowerShell](/powershell/resourcemanager/azurerm.trafficmanager/v2.5.0/azurerm.trafficmanager)
+## [PowerShell](/powershell/module/azurerm.trafficmanager)
 ## [Azure CLI](/cli/azure/network/traffic-manager)
 ## [Java](/java/api/com.microsoft.azure.management.trafficmanager)
 ## [Node.js](http://azure.github.io/azure-sdk-for-node/azure-arm-trafficmanager/latest/)

@@ -38,7 +38,9 @@
   - name: "1 - 建立/設計新的 SQL DB"
     href: sql-database-design-first-database.md
   - name: "2 - 移轉現有的 SQL Server"
-    href: sql-database-migrate-your-sql-server-database.md 
+    href: sql-database-migrate-your-sql-server-database.md
+  - name: "3 - 保護您的 SQL DB"
+    href: sql-database-security-tutorial.md 
 - name: "範例"
   items:
   - name: "Azure CLI"

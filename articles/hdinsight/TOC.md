@@ -132,8 +132,9 @@
 ## 擴充叢集
 ### [使用啟動程序自訂叢集](hdinsight-hadoop-customize-cluster-bootstrap.md)
 ### [使用指令碼動作來自訂叢集](hdinsight-hadoop-customize-cluster-linux.md)
-### [新增 Hive 程式庫](hdinsight-hadoop-add-hive-libraries.md)
 ### [開發指令碼動作](hdinsight-hadoop-script-actions-linux.md)
+### [安裝或更新 Mono](hdinsight-hadoop-install-mono.md)
+### [新增 Hive 程式庫](hdinsight-hadoop-add-hive-libraries.md)
 ### [使用 Giraph](hdinsight-hadoop-giraph-install-linux.md)
 ### [使用 Hue](hdinsight-hadoop-hue-linux.md)
 ### [使用 R](hdinsight-hadoop-r-scripts-linux.md)
@@ -190,7 +191,7 @@
 #### [Hive 查詢效能](https://blogs.msdn.microsoft.com/bigdatasupport/2015/08/13/troubleshooting-hive-query-performance-in-hdinsight-hadoop-cluster/)
 
 # 參考
-## [PowerShell](/powershell/resourcemanager/azurerm.hdinsight/v2.3.0/azurerm.hdinsight)
+## [PowerShell](/powershell/module/azurerm.hdinsight)
 ## [.NET (Hadoop)](https://msdn.microsoft.com/library/mt271028.aspx)
 ## [.NET (HBase)](https://www.nuget.org/packages/Microsoft.HBase.Client/)
 ## [.NET (Avro)](https://hadoopsdk.codeplex.com/wikipage?title=Avro%20Library)

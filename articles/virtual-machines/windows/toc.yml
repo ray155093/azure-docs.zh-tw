@@ -21,10 +21,19 @@
     href: tutorial-manage-data-disk.md
   - name: "3 - 自動化組態"
     href: tutorial-automate-vm-deployment.md
-  - name: "4 - 負載平衡的 VM"
+  - name: "4 - 建立 VM 映像"
+    href: tutorial-custom-images.md
+  - name: "5 - 高可用性 VM"
+    href: tutorial-availability-sets.md
+  - name: "6 - 建立 VM 擴展集"
+    href: tutorial-create-vmss.md
+  - name: "7 - 負載平衡的 VM"
     href: tutorial-load-balancer.md
-  - name: "5 - 管理網路"
+  - name: "8 - 管理網路"
     href: tutorial-virtual-network.md
+  - name: "9 - 管理 VM 安全性"
+    href: tutorial-azure-security.md
+
 - name: "範例"
   items:
   - name: "PowerShell"

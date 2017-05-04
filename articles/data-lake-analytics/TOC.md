@@ -19,6 +19,7 @@
 ### [U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
 ### [U-SQL 使用者定義的運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
 ### [U-SQL Python 延伸模組](data-lake-analytics-u-sql-python-extensions.md)
+### [U-SQL R 擴充功能](data-lake-analytics-u-sql-r-extensions.md)
 ### [U-SQL 辨識功能](data-lake-analytics-u-sql-cognitive.md)
 
 ## 建立解決方案
@@ -40,7 +41,7 @@
 ### [使用頂點執行檢視](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)
 
 # 參考
-## [PowerShell](/powershell/resourcemanager/azurerm.datalakeanalytics/v2.3.0/azurerm.datalakeanalytics)
+## [PowerShell](/powershell/module/azurerm.datalakeanalytics)
 ## [.NET](/dotnet/api/microsoft.azure.management.datalake.analytics)
 ## [Node.js](https://www.npmjs.com/package/azure-arm-datalake-analytics)
 ## [Python](http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-analytics.html)

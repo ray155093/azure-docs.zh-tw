@@ -56,15 +56,16 @@
 # 參考
 ## [支援的計量清單](monitoring-supported-metrics.md)
 ## [監視資料的來源](monitoring-data-sources.md)
-## [PowerShell](/powershell/resourcemanager/azurerm.insights/v1.0.12/azurerm.insights?redirectedfrom=msdn#40v=azure.200#41)
+## [PowerShell](/powershell/module/azurerm.insights)
 ## [.NET](https://msdn.microsoft.com/library/azure/dn802153)
 ## [REST](/rest/api/monitor/)
-## [Azure 診斷版本歷程記錄](azure-diagnostics-versioning-history.md)
-## [Azure 診斷結構描述](azure-diagnostics-schema.md)
-### [診斷結構描述 1.0](azure-diagnostics-schema-1dot0.md)
-### [診斷結構描述 1.2](azure-diagnostics-schema-1dot2.md)
-### [診斷結構描述 1.3 到 1.7](azure-diagnostics-schema-1dot3-and-later.md)
+## [Azure 診斷延伸版本歷程記錄](azure-diagnostics-versioning-history.md)
+## [Azure 診斷延伸結構描述](azure-diagnostics-schema.md)
+### [1.0](azure-diagnostics-schema-1dot0.md)
+### [1.2](azure-diagnostics-schema-1dot2.md)
+### [1.3 到 1.7](azure-diagnostics-schema-1dot3-and-later.md)
 
 # 資源
 ## [PowerShell 範例](insights-powershell-samples.md)
 ## [Azure CLI 1.0 範例](insights-cli-samples.md)
+## [影片](https://azure.microsoft.com/resources/videos/index/?services=monitor)

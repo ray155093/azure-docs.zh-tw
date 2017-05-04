@@ -7,6 +7,13 @@
 ## [建立事件來源](time-series-insights-add-event-source.md)
 ## [傳送事件](time-series-insights-send-events.md)
 
+# 作法
+## [建立「事件中樞」事件來源](time-series-insights-how-to-add-an-event-source-eventhub.md)
+## [建立「IoT 中樞」事件來源](time-series-insights-how-to-add-an-event-source-iothub.md)
+## [調整您的環境](time-series-insights-how-to-scale-your-environment.md)
+## [診斷並解決問題](time-series-insights-diagnose-and-solve-problems.md)
+## [使用 C# 查詢資料](time-series-insights-query-data-csharp.md)
+
 # 參考
 ## [查詢 API](/rest/api/time-series-insights/time-series-insights-reference-queryapi)
 ## [查詢語法](/rest/api/time-series-insights/time-series-insights-reference-query-syntax)

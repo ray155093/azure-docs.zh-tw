@@ -1,9 +1,9 @@
 # 概觀
 ## [什麼是 Azure Active Directory？](active-directory-whatis.md)
 ## [選擇版本](active-directory-editions.md)
-## [關於 Azure 身分識別管理](fundamentals-identity.md)
-## [預覽 Azure AD 入口網站體驗](active-directory-preview-explainer.md)
 
+## [關於 Azure 身分識別管理](identity-fundamentals.md)
+## [預覽 Azure 入口網站體驗](active-directory-preview-explainer.md)
 
 # 開始使用
 ## [取得 Azure AD 租用戶](active-directory-howto-tenant.md)
@@ -58,6 +58,7 @@
 ### [檢視全部群組](active-directory-groups-view-azure-portal.md)
 ### [啟用專用群組](active-directory-accessmanagement-dedicated-groups.md)
 ### [新增 SaaS 應用程式的群組存取權](active-directory-accessmanagement-group-saasapps.md)
+### [還原已刪除的 Office 365 群組](active-directory-groups-restore-azure-portal.md)
 ### 管理群組設定
 #### [Azure 入口網站](active-directory-groups-settings-azure-portal.md)
 #### [Cmdlet](active-directory-accessmanagement-groups-settings-cmdlets.md)
@@ -110,24 +111,27 @@
 ##### [不明來源](active-directory-reporting-sign-ins-from-unknown-sources.md)
 ##### [異常登入](active-directory-reporting-users-with-anomalous-sign-in-activity.md)
 
-## [管理密碼](active-directory-manage-passwords.md)
-### [重設或變更您的密碼](active-directory-passwords-update-your-own-password.md)
-### [註冊自助式密碼重設](active-directory-passwords-reset-register.md)
-### [管理員啟用自助式密碼重設](active-directory-passwords.md)
-### [了解密碼管理](active-directory-passwords-how-it-works.md)
-### [了解原則和限制](active-directory-passwords-policy.md)
-### 重設密碼
+## [管理密碼](active-directory-passwords.md)
+### 使用者文件
+#### [重設或變更您的密碼](active-directory-passwords-update-your-own-password.md)
+#### [註冊自助式密碼重設](active-directory-passwords-reset-register.md)
+### [快速入門：自助式密碼重設](active-directory-passwords-getting-started.md)
+### [授權 SSPR](active-directory-passwords-licensing.md)
+### [部署 SSPR](active-directory-passwords-best-practices.md)
+### IT 系統管理員︰重設密碼
 #### [Azure 入口網站](active-directory-users-reset-password-azure-portal.md)
-#### [傳統入口網站](active-directory-create-users-reset-password.md)
-### [設定到期原則](active-directory-passwords-set-expiration-policy.md)
-### 啟用密碼管理
-#### [開始使用](active-directory-passwords-getting-started.md)
-#### [部署](active-directory-passwords-best-practices.md)
-#### [自訂](active-directory-passwords-customize.md)
-#### [檢視報告](active-directory-passwords-get-insights.md)
-#### [深入了解](active-directory-passwords-learn-more.md)
-#### [常見問題集](active-directory-passwords-faq.md)
-#### [疑難排解](active-directory-passwords-troubleshoot.md)
+#### [Azure 傳統入口網站](active-directory-create-users-reset-password.md)
+### [了解 SSPR 原則](active-directory-passwords-policy.md)
+### [了解密碼重設](active-directory-passwords-how-it-works.md)
+### [自訂 SSPR](active-directory-passwords-customize.md)
+### [SSPR 所使用的資料](active-directory-passwords-data.md)
+### [提出 SSPR 報告](active-directory-passwords-reporting.md)
+### [Azure AD Connect](./connect/active-directory-aadconnect.md)
+### [密碼回寫](active-directory-passwords-writeback.md)
+### [密碼雜湊同步處理](./connect/active-directory-aadconnectsync-implement-password-synchronization.md#how-password-synchronization-works)
+### [疑難排解](active-directory-passwords-troubleshoot.md)
+### [常見問題集](active-directory-passwords-faq.md)
+
 
 ## 管理裝置
 ### [註冊裝置](active-directory-device-registration-overview.md)
@@ -289,6 +293,7 @@
 ##### [PowerShell](role-based-access-control-manage-access-powershell.md)
 ##### [REST](role-based-access-control-manage-access-rest.md)
 #### [疑難排解](role-based-access-control-troubleshooting.md)
+#### [資源提供者作業](role-based-access-control-resource-provider-operations.md)
 ### [設定權杖存留期](active-directory-configurable-token-lifetimes.md)
 
 ## 保護您的身分識別
@@ -341,7 +346,7 @@
 
 
 # 參考
-## [PowerShell Cmdlet](/powershell/ )
+## [PowerShell Cmdlet](/powershell/azure/overview)
 ## [Java API 參考](/java/api)
 ## [.NET API](/active-directory/adal/microsoft.identitymodel.clients.activedirectory)
 ## [服務限制](active-directory-service-limits-restrictions.md)

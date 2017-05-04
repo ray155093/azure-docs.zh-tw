@@ -42,8 +42,10 @@
 ### [交易處理](service-bus-transactions.md)
 ### [診斷記錄](service-bus-diagnostic-logs.md)
 ### AMQP
+#### [AMQP 概觀](service-bus-amqp-overview.md)
 #### [.NET](service-bus-amqp-dotnet.md)
 #### [Java](service-bus-amqp-java.md)
+#### [Java 訊息服務和 AMQP](service-bus-java-how-to-use-jms-api-amqp.md)
 #### [AMQP 通訊協定指南](service-bus-amqp-protocol-guide.md)
 #### [AMQP 以要求與回應為基礎的作業](service-bus-amqp-request-response.md)
 
@@ -56,7 +58,7 @@
 ## .NET
 ### [Microsoft.ServiceBus.Messaging](/dotnet/api/microsoft.servicebus.messaging)
 ### [Microsoft.Azure.Management.ServiceBus](/dotnet/api/microsoft.azure.management.servicebus)
-## [PowerShell](/powershell/resourcemanager/azurerm.servicebus/v0.0.2/azurerm.servicebus)
+## [PowerShell](/powershell/module/azurerm.servicebus)
 ## [REST](/rest/api/servicebus)
 ## [例外狀況](service-bus-messaging-exceptions.md)
 ## [配額](service-bus-quotas.md)

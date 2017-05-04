@@ -15,13 +15,12 @@
 ### [Azure 入口網站](search-explorer.md)
 ### [.NET](search-query-dotnet.md)
 ### [REST](search-query-rest-api.md)
-## [處理搜尋結果](search-pagination-page-layout.md)
-## 教學課程
-### [.NET](search-howto-dotnet-sdk.md)
-### [.NET 同義字預覽](search-synonyms-tutorial-sdk.md)
-### [入口網站](search-get-started-portal.md)
-### [NodeJS](search-get-started-nodejs.md)
-### [Java](search-get-started-java.md)
+# 教學課程
+## [.NET](search-howto-dotnet-sdk.md)
+## [.NET 同義字預覽](search-synonyms-tutorial-sdk.md)
+## [入口網站](search-get-started-portal.md)
+## [Node.js](search-get-started-nodejs.md)
+## [Java](search-get-started-java.md)
 # 作法
 ## 規劃和設計
 ### [服務限制](search-limits-quotas-capacity.md)
@@ -59,14 +58,16 @@
 ### 自訂搜尋
 #### [語言分析器](https://docs.microsoft.com/rest/api/searchservice/language-support)
 #### [自訂分析器](https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search)
+### [分頁結果](search-pagination-page-layout.md)
 ### [評分](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index)
 ### [建議](https://docs.microsoft.com/rest/api/searchservice/suggesters)
 ### [多面向導覽](search-faceted-navigation.md)
 ### [同義字預覽](search-synonyms.md)
 
 # 參考
-## [.NET](/dotnet/api/microsoft.azure.search)
-## [.NET (管理)](/dotnet/api/microsoft.azure.management.search)
+
+## [.NET](/dotnet/api/?term=microsoft.azure.search)
+## [.NET (管理)](/dotnet/api/?term=microsoft.azure.management.search)
 ## [Python (管理)](http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.mgmt.search.html)
 ## [REST](/rest/api/searchservice)
 ## [REST (管理)](/rest/api/searchmanagement)

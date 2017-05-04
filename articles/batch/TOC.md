@@ -7,11 +7,14 @@
 ## [建立 Batch 帳戶](batch-account-create-portal.md)
 ## [Batch .NET 教學課程](batch-dotnet-get-started.md)
 ## [Batch Python 教學課程](batch-python-tutorial.md)
+## [Batch Node.js 教學課程](batch-nodejs-get-started.md)
 # 作法
 ## 開發
 ### [應用程式封裝](batch-application-packages.md)
 ### [自動調整計算節點的規模](batch-automatic-scaling.md)
-### [Azure AD 驗證](batch-aad-auth.md)
+### Azure AD 驗證
+#### [包含 Batch 服務的 Azure AD](batch-aad-auth.md)
+#### [包含 Batch 管理的 Azure AD](batch-aad-auth-management.md)
 ### [並行節點工作](batch-parallel-node-tasks.md)
 ### [有效率的清單查詢](batch-efficient-list-queries.md)
 ### [作業的準備與完成工作](batch-job-prep-release.md)
@@ -27,7 +30,7 @@
 ### [Azure CLI](batch-cli-get-started.md)
 
 # 參考
-## [PowerShell](/powershell/resourcemanager/azurerm.batch/v2.5.0/azurerm.batch)
+## [PowerShell](/powershell/module/azurerm.batch)
 ## [Azure CLI](/cli/azure/batch)
 ## [.NET](/dotnet/api/microsoft.azure.batch)
 ## [Java](/java/api/com.microsoft.azure.batch)

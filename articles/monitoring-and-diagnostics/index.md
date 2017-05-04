@@ -1,5 +1,5 @@
 ---
-title: "Azure 監視器和診斷 文件 - 教學課程和 API 參考 | Microsoft Docs"
+title: "Azure 監視器文件 - 教學課程和 API 參考 | Microsoft Docs"
 description: "了解如何使用監視和診斷服務來追蹤效能、維護安全性及找出趨勢。 API 參考、最佳作法等等。"
 services: monitoring-and-diagnostics
 author: carolz
@@ -13,12 +13,12 @@ ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
 translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: 0d57ccb26a3dde16c50d2e837d392ab8e6fea979
-ms.lasthandoff: 03/22/2017
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: 475353f5a5abca1e9d6b5fdf4980d0cf33acc744
+ms.lasthandoff: 05/03/2017
 
 ---
-# <a name="monitoring-and-diagnostics-documentation"></a>監視和診斷文件
+# <a name="azure-monitor-documentation"></a>Azure 監視器文件
 
 了解如何使用 Azure 監視和診斷服務來追蹤效能、維護安全性及找出趨勢。 教學課程、API 參考、最佳作法及其他文件可協助您了解監視與診斷的使用方式，以及如何規劃和部署可調整且可靠的解決方案。
 
