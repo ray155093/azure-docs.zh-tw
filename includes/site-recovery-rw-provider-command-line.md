@@ -24,8 +24,3 @@ UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCred
 * SkipSpaceCheck。 選用。 略過快取的空間檢查。
 * AcceptThirdpartyEULA。 必要。 接受協力廠商使用者授權合約。
 * ShowThirdpartyEULA。 必要。 顯示協力廠商使用者授權合約。 如果提供作為輸入，則會忽略所有其他參數。
-
-
-<!--HONumber=Feb17_HO2-->
-
-

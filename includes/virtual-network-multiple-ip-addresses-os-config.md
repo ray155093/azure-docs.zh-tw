@@ -1,4 +1,4 @@
-## <a name="a-nameos-configaadd-ip-addresses-to-a-vm-operating-system"></a><a name="os-config"></a>將 IP 位址新增至 VM 作業系統
+## <a name="os-config"></a>將 IP 位址新增至 VM 作業系統
 
 連接並登入您使用多個私人 IP 位址建立的 VM。 您必須手動新增您新增至 VM 的所有私人 IP 位址 (包括主要位址)。 對您的 VM 作業系統完成下列步驟：
 
@@ -176,8 +176,3 @@ ip route add default via 10.0.0.1 dev eth2 table custom
     - 將 **10.0.0.5** 替換成有相關聯公用 IP 位址的私人 IP 位址
     - 將 **10.0.0.1** 替換為您的預設閘道
     - 將 **eth2** 替換為您的次要 NIC 名稱
-
-
-<!--HONumber=Feb17_HO2-->
-
-

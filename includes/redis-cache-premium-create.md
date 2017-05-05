@@ -11,8 +11,3 @@
 
 ![進階](media/redis-cache-premium-create/redis-cache-premium-pricing-tier.png)
 
-
-
-<!--HONumber=Feb17_HO2-->
-
-
