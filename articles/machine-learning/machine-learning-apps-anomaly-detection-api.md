@@ -120,12 +120,12 @@ Web 服務提供透過 HTTPS 的 REST 型 API，可以各種不同方式使用�
 
 | 輸入參數 | 說明 | 預設設定 | 類型 | 有效範圍 | 建議範圍 |
 | --- | --- | --- | --- | --- | --- |
-| detectors.historyWindow |用於計算異常分數的歷程記錄 (以資料點數目為單位) |500 |integer |10 -&2000; |取決於時間序列 |
+| detectors.historyWindow |用於計算異常分數的歷程記錄 (以資料點數目為單位) |500 |integer |10 - 2000 |取決於時間序列 |
 | detectors.spikesdips | 是否偵測只有尖峰、只有下降，或兩者 |兩者 |列舉 |兩者、尖峰、下降 |兩者 |
 | bileveldetector.sensitivity |雙向層級變更偵測器的敏感度。 |3.25 |double |None |3.25-5 (值愈低代表敏感度越高) |
 | trenddetector.sensitivity |正向趨勢偵測器的敏感度。 |3.25 |double |None |3.25-5 (值愈低代表敏感度越高) |
-| tspikedetector.sensitivity |TSpike 偵測器的敏感度 |3 |integer |1 -&10; |3-5 (值愈低代表敏感度越高) |
-| zspikedetector.sensitivity |ZSpike 偵測器的敏感度 |3 |integer |1 -&10; |3-5 (值愈低代表敏感度越高) |
+| tspikedetector.sensitivity |TSpike 偵測器的敏感度 |3 |integer |1 - 10 |3-5 (值愈低代表敏感度越高) |
+| zspikedetector.sensitivity |ZSpike 偵測器的敏感度 |3 |integer |1 - 10 |3-5 (值愈低代表敏感度越高) |
 | postprocess.tailRows |輸出結果中要保留的最新資料點數目 |0 |integer |0 (保留所有資料點)，或指定要在結果中保留的資料點數目 |N/A |
 
 ### <a name="output"></a>輸出
@@ -138,9 +138,9 @@ API 會對您的時間序列資料執行所有偵測器，然後傳回每個時�
 | TSpike |指出 TSpike 偵測器是否要偵測尖峰的二進位指示器 |
 | ZSpike |指出 Zspike 偵測器是否要偵測尖峰的二進位指示器 |
 | rpscore |代表雙向層級變更異常分數的浮動數字 |
-| rpalert |根據輸入敏感度指出有雙向層級變更異常的&1;/0 值 |
+| rpalert |根據輸入敏感度指出有雙向層級變更異常的 1/0 值 |
 | tscore |代表正向趨勢異常分數的浮動數字 |
-| talert |根據輸入敏感度指出有正向趨勢異常的&1;/0 值 |
+| talert |根據輸入敏感度指出有正向趨勢異常的 1/0 值 |
 
 ## <a name="scorewithseasonality-api"></a>ScoreWithSeasonality API
 ScoreWithSeasonality API 可用來對具有季節性模式的時間序列執行異常偵測。 這個 API 適用於偵測季節性模式的偏差。  
@@ -159,15 +159,15 @@ ScoreWithSeasonality API 可用來對具有季節性模式的時間序列執行�
 | preprocess.aggregationInterval |用來彙總輸入時間序列的彙總間隔 (秒) |0 (不執行彙總) |integer |0︰略過彙總，否則 > 0 |5 分鐘到 1 天，取決於時間序列 |
 | preprocess.aggregationFunc |用來將資料彙總到指定 AggregationInterval 的函式 |平均值 |列舉 |平均值、總和、長度 |N/A |
 | preprocess.replaceMissing |用來插補遺漏資料的值 |lkv (上一個已知值) |列舉 |零、lkv、平均值 |N/A |
-| detectors.historyWindow |用於計算異常分數的歷程記錄 (以資料點數目為單位) |500 |integer |10 -&2000; |取決於時間序列 |
+| detectors.historyWindow |用於計算異常分數的歷程記錄 (以資料點數目為單位) |500 |integer |10 - 2000 |取決於時間序列 |
 | detectors.spikesdips | 是否偵測只有尖峰、只有下降，或兩者 |兩者 |列舉 |兩者、尖峰、下降 |兩者 |
 | bileveldetector.sensitivity |雙向層級變更偵測器的敏感度。 |3.25 |double |None |3.25-5 (值愈低代表敏感度越高) |
 | postrenddetector.sensitivity |正向趨勢偵測器的敏感度。 |3.25 |double |None |3.25-5 (值愈低代表敏感度越高) |
 | negtrenddetector.sensitivity |負向趨勢偵測器的敏感度。 |3.25 |double |None |3.25-5 (值愈低代表敏感度越高) |
-| tspikedetector.sensitivity |TSpike 偵測器的敏感度 |3 |integer |1 -&10; |3-5 (值愈低代表敏感度越高) |
-| zspikedetector.sensitivity |ZSpike 偵測器的敏感度 |3 |integer |1 -&10; |3-5 (值愈低代表敏感度越高) |
+| tspikedetector.sensitivity |TSpike 偵測器的敏感度 |3 |integer |1 - 10 |3-5 (值愈低代表敏感度越高) |
+| zspikedetector.sensitivity |ZSpike 偵測器的敏感度 |3 |integer |1 - 10 |3-5 (值愈低代表敏感度越高) |
 | seasonality.enable |是否要執行季節性分析 |true |布林值 |true、false |取決於時間序列 |
-| seasonality.numSeasonality |要偵測的定期循環數目上限 |1 |integer |1、2 |1 -&2; |
+| seasonality.numSeasonality |要偵測的定期循環數目上限 |1 |integer |1、2 |1 - 2 |
 | seasonality.transform |在套用異常偵測之前，是否應該移除季節性 (和) 趨勢元件 |deseason |列舉 |無、deseason、deseasontrend |N/A |
 | postprocess.tailRows |輸出結果中要保留的最新資料點數目 |0 |integer |0 (保留所有資料點)，或指定要在結果中保留的資料點數目 |N/A |
 
@@ -182,11 +182,11 @@ API 會對您的時間序列資料執行所有偵測器，然後傳回每個時�
 | TSpike |指出 TSpike 偵測器是否要偵測尖峰的二進位指示器 |
 | ZSpike |指出 Zspike 偵測器是否要偵測尖峰的二進位指示器 |
 | BiLevelChangeScore |代表層級變更異常分數的浮動數字 |
-| BiLevelChangeAlert |根據輸入敏感度指出有層級變更異常的&1;/0 值 |
+| BiLevelChangeAlert |根據輸入敏感度指出有層級變更異常的 1/0 值 |
 | PosTrendScore |代表正向趨勢異常分數的浮動數字 |
-| PosTrendAlert |根據輸入敏感度指出有正向趨勢異常的&1;/0 值 |
+| PosTrendAlert |根據輸入敏感度指出有正向趨勢異常的 1/0 值 |
 | NegTrendScore |代表負向趨勢異常分數的浮動數字 |
-| NegTrendAlert |根據輸入敏感度指出有負向趨勢異常的&1;/0 值 |
+| NegTrendAlert |根據輸入敏感度指出有負向趨勢異常的 1/0 值 |
 
 [1]: ./media/machine-learning-apps-anomaly-detection-api/anomaly-detection-score.png
 [2]: ./media/machine-learning-apps-anomaly-detection-api/anomaly-detection-seasonal.png
