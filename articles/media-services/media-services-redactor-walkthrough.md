@@ -50,8 +50,8 @@ ms.lasthandoff: 04/03/2017
 
 ### <a name="first-pass--analyze-mode"></a>第一階段 – 分析模式
 
-1. 透過 [Asset] (資產) –> [Upload] (上傳) 或以拖放方式上傳您的媒體檔案。 
-1. 按一下滑鼠右鍵，使用 [Media Analytics] (媒體分析) –> [Azure Media Redactor] (Azure 媒體修訂器) –> [Analyze mode] (分析模式) 處理您的媒體檔案。 
+1. 透過 [Asset] \(資產) –> [Upload] \(上傳) 或以拖放方式上傳您的媒體檔案。 
+1. 按一下滑鼠右鍵，使用 [Media Analytics] \(媒體分析) –> [Azure Media Redactor] \(Azure 媒體修訂器) –> [Analyze mode] \(分析模式) 處理您的媒體檔案。 
 
 
 ![臉部修訂](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough002.png)
