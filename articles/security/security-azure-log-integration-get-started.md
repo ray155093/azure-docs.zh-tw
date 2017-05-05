@@ -151,7 +151,7 @@ Azure 記錄整合服務會從其安裝所在的電腦收集遙測資料。
   <li> 按一下 [安全性]  </li>
   <li> 按一下 [NT Service\Azlog]  並檢查帳戶的權限。 如果帳戶不在此索引標籤中，或適當的權限目前未顯示您可以授與此索引標籤中的帳戶權限。</li>
   </ol>
-3.請確定執行 **Azlog source list** 命令時，會列出 **Azlog source add** 命令中新增的儲存體帳戶。
+3. 請確定執行 **Azlog source list** 命令時，會列出 **Azlog source add** 命令中新增的儲存體帳戶。
 4. 移至 [事件檢視器] > [Windows 記錄] > [應用程式]，以查看是否有任何來自 Azure 記錄整合的錯誤報告。
 
 如果您在安裝和設定期間遇到任何問題，請開啟[支援要求](../azure-supportability/how-to-create-azure-support-request.md)，選取 [記錄整合]  作為您要求支援的服務。
