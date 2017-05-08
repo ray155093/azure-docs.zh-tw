@@ -17,6 +17,7 @@ ms.author: swkrish
 translationtype: Human Translation
 ms.sourcegitcommit: e37c48d6c92a8a2cd480458abdff0a3a1ca9338f
 ms.openlocfilehash: f3154968710384e3f6186b277c4cae33b25c77d2
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -47,10 +48,5 @@ ms.openlocfilehash: f3154968710384e3f6186b277c4cae33b25c77d2
 5. 按一下 [識別提供者類型]、選取 [Amazon]，然後按一下 [確定]。
 6. 按一下 [設定此身分識別提供者]  ，然後輸入您先前建立之 Amazon 應用程式的用戶端識別碼與用戶端密碼。
 7. 依序按一下 [確定] 和 [建立]，以儲存您的 Amazon 設定。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

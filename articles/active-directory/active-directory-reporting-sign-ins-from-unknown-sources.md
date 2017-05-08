@@ -17,6 +17,7 @@ ms.author: saah;kenhoff
 translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: 90006121e4b3392f6e3ecffb4a56aca330feb02f
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -26,10 +27,5 @@ ms.openlocfilehash: 90006121e4b3392f6e3ecffb4a56aca330feb02f
 這份報告的結果會顯示使用者從該位址和 Proxy 的 IP 位址成功登入您目錄的次數。
 
 ![從不明來源登入](./media/active-directory-reporting-sign-ins-from-unknown-sources/signInsFromUnknownSources.PNG)
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

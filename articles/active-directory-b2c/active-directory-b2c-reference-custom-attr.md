@@ -17,6 +17,7 @@ ms.author: swkrish
 translationtype: Human Translation
 ms.sourcegitcommit: 4b13c040a15bef2f04d2cd2126e2270d061898bd
 ms.openlocfilehash: f7b21cc941f17d0815316dfe7013e9f97a95c223
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -54,10 +55,5 @@ ms.openlocfilehash: f7b21cc941f17d0815316dfe7013e9f97a95c223
 ## <a name="notes"></a>注意事項
 * 除了註冊原則，自訂屬性也可以使用於註冊或登入原則和設定檔編輯原則。
 * 自訂屬性有已知的限制。 只有在第一次用於任何原則時才會建立，而不是在您將它加入至 [使用者屬性] 清單時建立。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

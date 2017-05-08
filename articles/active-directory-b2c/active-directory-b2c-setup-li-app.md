@@ -17,6 +17,7 @@ ms.author: swkrish
 translationtype: Human Translation
 ms.sourcegitcommit: e37c48d6c92a8a2cd480458abdff0a3a1ca9338f
 ms.openlocfilehash: 3b22dee95d064de8190d7429cc4118884fb81172
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -50,10 +51,5 @@ ms.openlocfilehash: 3b22dee95d064de8190d7429cc4118884fb81172
 5. 按一下 [識別提供者類型]、選取 [LinkedIn]，然後按一下 [確定]。
 6. 按一下 [設定此身分識別提供者]  ，然後輸入您先前建立之 LinkedIn 應用程式的用戶端識別碼與用戶端密碼。
 7. 按一下 [確定]，然後在按一下 [建立]，儲存您的 LinkedIn 設定。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

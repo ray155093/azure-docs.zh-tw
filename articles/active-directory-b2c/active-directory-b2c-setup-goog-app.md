@@ -17,6 +17,7 @@ ms.author: swkrish
 translationtype: Human Translation
 ms.sourcegitcommit: e37c48d6c92a8a2cd480458abdff0a3a1ca9338f
 ms.openlocfilehash: dbc544ad4dbb651aeb24faf2f89074c7aa59cf2a
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -58,10 +59,5 @@ ms.openlocfilehash: dbc544ad4dbb651aeb24faf2f89074c7aa59cf2a
 5. 按一下 [識別提供者類型]、選取 [Google]，然後按一下 [確定]。
 6. 按一下 [設定此識別提供者]  ，然後輸入您先前建立的 Google+ 應用程式用戶端識別碼和用戶端密碼。
 7. 依序按一下 [確定] 和 [建立]，儲存您的 Google+ 設定。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

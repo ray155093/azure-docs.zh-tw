@@ -17,6 +17,7 @@ ms.author: swkrish
 translationtype: Human Translation
 ms.sourcegitcommit: e37c48d6c92a8a2cd480458abdff0a3a1ca9338f
 ms.openlocfilehash: 866d2b54b0b517cb9984fd5e98840fe3a6c69965
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -59,10 +60,5 @@ ms.openlocfilehash: 866d2b54b0b517cb9984fd5e98840fe3a6c69965
 5. 按一下 [識別提供者類型]、選取 [Microsoft 帳戶]，然後按一下 [確定]。
 6. 按一下 [設定此身分識別提供者]  ，然後輸入您先前建立的 Microsoft 帳戶應用程式的應用程式識別碼和密碼。
 7. 依序按一下 [確定] 與 [建立]，以儲存您的 Microsoft 帳戶設定。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 
