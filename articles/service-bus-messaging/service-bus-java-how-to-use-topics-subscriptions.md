@@ -14,9 +14,10 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: sethm
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
 ms.openlocfilehash: 7132d1e42963d2e419d2bf1b7866ca5888f8719d
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/24/2017
 
 
@@ -151,7 +152,7 @@ BrokeredMessage message = new BrokeredMessage("MyMessage");
 service.sendTopicMessage("TestTopic", message);
 ```
 
-傳送至服務匯流排主題的訊息是 [BrokeredMessage][BrokeredMessage] 類別的執行個體。 [BrokeredMessage][BrokeredMessage]*物件具有一組標準方法 (例如**setLabel**和**TimeToLive**)、一個用來保存自訂應用程式特定屬性的字典，以及任意應用程式資料的主體。應用程式可設定訊息主體，方法是將任何可序列化物件傳遞到 [BrokeredMessage][BrokeredMessage] 的建構函式，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。或者，也可以提供 **java.io.InputStream**。
+傳送至服務匯流排主題的訊息是 [BrokeredMessage][BrokeredMessage] 類別的執行個體。 [BrokeredMessage][BrokeredMessage] *物件具有一組標準方法 (例如* *setLabel* *和* *TimeToLive** )、一個用來保存自訂應用程式特定屬性的字典，以及任意應用程式資料的主體。應用程式可設定訊息主體，方法是將任何可序列化物件傳遞到 [BrokeredMessage][BrokeredMessage] 的建構函式，接著系統便會使用適當的 **DataContractSerializer** 來序列化物件。或者，也可以提供 **java.io.InputStream** 。
 
 下列範例將示範如何傳送五則測試訊息至上述程式碼片段中所取得的 `TestTopic` **MessageSender**。
 請注意迴圈反覆運算上每個訊息的 **MessageNumber** 屬性值的變化 (這可判斷接收訊息的訂用帳戶為何)：
