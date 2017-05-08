@@ -156,7 +156,7 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
 
     LOAD DATA INPATH '<path to blob data>' INTO TABLE <database name>.<table name>;
 
-* **&#60;Blob 資料路徑>**：如果要上傳至 Hive 資料表的 Blob 檔案是在 HDInsight Hadoop 叢集的預設容器中，則 &#60;Blob 資料路徑> 的格式應該是 'wasb:///&#60;此容器中的目錄>/&#60;Blob 檔案名稱>'。 Blob 檔案也可以位於 HDInsight Hadoop 叢集的其他容器中。 在此情況下，*&#60;blob 資料路徑>* 的格式應該是 *'wasb://&#60;容器名稱>@&#60;儲存體帳戶名稱>.blob.core.windows.net/&#60;blob 檔案名稱>'*。
+* **&#60;Blob 資料路徑>**：如果要上傳至 Hive 資料表的 Blob 檔案是在 HDInsight Hadoop 叢集的預設容器中，則 &#60;Blob 資料路徑> 的格式應該是 'wasb:///&#60;此容器中的目錄>/&#60;Blob 檔案名稱>'。 Blob 檔案也可以位於 HDInsight Hadoop 叢集的其他容器中。 在此情況下， *&#60;blob 資料路徑>* 的格式應該是 *'wasb://&#60;容器名稱>@&#60;儲存體帳戶名稱>.blob.core.windows.net/&#60;blob 檔案名稱>'*。
 
   > [!NOTE]
   > 上傳至 Hive 資料表的 Blob 資料必須位於 Hadoop 叢集儲存體帳戶的預設或其他容器中。 否則，「LOAD DATA」  查詢會失敗並提報它無法存取資料。
