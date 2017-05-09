@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
 ms.openlocfilehash: 9ed2aadb67b5b911ef35a28879f349586baa5462
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/15/2017
 
 
@@ -32,7 +33,7 @@ Cortana Intelligence Gallery 提供數個[教學課程](https://gallery.cortanai
 
 ![在資源庫首頁選取教學課程](media/machine-learning-gallery-tutorials/select-tutorials-in-gallery.png)
 
-[教學課程]**[](https://gallery.cortanaintelligence.com/tutorials)** 頁面會顯示最近新增及熱門的教學課程清單。 若要查看所有教學課程，請選取 [查看全部] 按鈕。 若要搜尋特定的教學課程，請選取 [查看全部]，然後選取篩選準則。 您也可以在資源庫頁面頂端的 [搜尋] 方塊中輸入搜尋字詞。
+**[教學課程](https://gallery.cortanaintelligence.com/tutorials)** 頁面會顯示最近新增及熱門的教學課程清單。 若要查看所有教學課程，請選取 [查看全部] 按鈕。 若要搜尋特定的教學課程，請選取 [查看全部]，然後選取篩選準則。 您也可以在資源庫頁面頂端的 [搜尋] 方塊中輸入搜尋字詞。
 
 在教學課程詳細資料頁面上，您可以取得關於教學課程的詳細資訊。 若要開啟教學課程詳細資料頁面上，請選取教學課程。 在教學課程詳細資料頁面上的 [註解] 區段中，您可以留言、提供意見反應，或詢問有關教學課程的問題。 您甚至可以在 Twitter 或 LinkedIn 上與朋友或同事分享教學課程。 您也可以用電子郵件寄出教學課程詳細資料頁面連結，以邀請其他使用者檢視該頁面。
 
@@ -62,7 +63,7 @@ Cortana Intelligence Gallery 提供數個[教學課程](https://gallery.cortanai
   
     ![輸入新教學課程的資訊](media/machine-learning-gallery-tutorials/create-tutorial-page-2.png)
 
-6. 在 [設定] 頁面上，針對**可見性**，選取集合為 [公開] (任何人都可以檢視教學課程) 或 [不列示] (僅限有教學課程直接連結的使用者可以檢視)。
+6. 在 [設定] 頁面上，針對**可見性**，選取集合為 [公開] \(任何人都可以檢視教學課程) 或 [不列示] \(僅限有教學課程直接連結的使用者可以檢視)。
   
     > [!IMPORTANT]
     > 您將教學課程設定為 [公開]，然後選取 [建立] 之後，則無法將教學課程變更為 [不列示]。
