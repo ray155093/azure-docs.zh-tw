@@ -12,12 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/20/2017
+ms.date: 05/02/2017
 ms.author: magoedte
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: b0624bde9ab53231768beb0c832a4a49b21a8975
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 03a6c1f20632691c08f5de4afe74eacc6f79608e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -87,9 +88,14 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 然而，您可以將 Windows 電腦新增到自動化帳戶中的 Hybrid Runbook Worker 群組來支援自動化 Runbook，只要解決方案和 Hybrid Runbook Worker 群組成員資格兩者所用的帳戶相同即可。  此功能已新增至 Hybrid Runbook Worker 7.2.12024.0 版。  
 
 ## <a name="configuration"></a>組態
-請執行下列步驟，將更新管理解決方案新增至 OMS 工作區並確認代理程式正在報告中。 Windows 代理程式則會自動新增，不需要另外進行設定。 
+請執行下列步驟，將更新管理解決方案新增至 OMS 工作區並確認代理程式正在報告中。 不需要另外進行設定，便會自動新增已經連線至您的工作區的 Windows 代理程式。 
 
-您有三種不同方式可以新增此解決方案︰從 Azure 入口網站中的 Azure Marketplace 選取 [自動化與控制] 供應項目或 [更新管理] 解決方案，或從 OMS 工作區中的 OMS 解決方案資源庫。  如果您已經在相同的資源群組與區域中將自動化帳戶和 OMS 工作區連結在一起，則選取 [自動化與控制] 會驗證您的組態，而且只會安裝此解決方案並在這兩項服務中進行設定。  從 Azure Marketplace 選取 [更新管理] 解決方案會發生相同的行為。  如果您未在訂用帳戶中部署任一項服務，請遵循 [建立新解決方案] 刀鋒視窗中的步驟，並確認您想要安裝其他預先選取的建議解決方案。  您可以選擇性地使用從方案庫[新增 OMS 方案](../log-analytics/log-analytics-add-solutions.md)所述的步驟，將 [更新管理] 解決方案新增至 OMS 工作區。  
+您可以使用下列方法來部署解決方案︰
+
+* 從 Azure 入口網站中的 Azure Marketplace 選取 [自動化與控制] 供應項目或 [更新管理] 解決方案
+* 從 OMS 工作區中的 OMS 解決方案資源庫
+
+如果您已經在相同的資源群組與區域中將自動化帳戶和 OMS 工作區連結在一起，則選取 [自動化與控制] 會驗證您的組態，而且只會安裝此解決方案並在這兩項服務中進行設定。  從 Azure Marketplace 選取 [更新管理] 解決方案會發生相同的行為。  如果您未在訂用帳戶中部署任一項服務，請遵循 [建立新解決方案] 刀鋒視窗中的步驟，並確認您想要安裝其他預先選取的建議解決方案。  您可以選擇性地使用從方案庫[新增 OMS 方案](../log-analytics/log-analytics-add-solutions.md)所述的步驟，將 [更新管理] 解決方案新增至 OMS 工作區。  
 
 ### <a name="confirm-oms-agents-and-operations-manager-management-group-connected-to-oms"></a>確認 OMS 代理程式和 Operations Manager 管理群組已連線至 OMS
 
@@ -144,7 +150,7 @@ OMS 管理的電腦會使用下列各項來執行評估和更新部署︰
 > [!NOTE]
 > 依預設，從 Azure Marketplace 部署的 Windows VM 會設定為從 Windows Update 服務接收自動更新。  將此解決方案或 Windows VM 新增至您的工作區之後，此行為不會改變。  如果您未主動管理此解決方案的更新，則會套用預設行為 (自動套用更新)。  
 
-針對從 Azure Marketplace 所提供之隨選 Red Hat Enterprise Linux (RHEL) 映像建立的虛擬機器，系統會將其註冊以存取部署在 Azure 中的 [Red Hat Update Infrastructure (RHUI)](../virtual-machines/linux/update-infrastructure-redhat.md)。  針對任何其他 Linux 發行版本，則必須從發行版本線上檔案存放庫，依照其支援的方法來更新這些發行版本。  
+針對從 Azure Marketplace 所提供之隨選 Red Hat Enterprise Linux (RHEL) 映像建立的虛擬機器，系統會將其註冊以存取部署在 Azure 中的 [Red Hat Update Infrastructure (RHUI)](../virtual-machines/virtual-machines-linux-update-infrastructure-redhat.md)。  針對任何其他 Linux 發行版本，則必須從發行版本線上檔案存放庫，依照其支援的方法來更新這些發行版本。  
 
 ### <a name="viewing-update-deployments"></a>檢視更新部署
 按一下 [更新部署] 圖格可檢視現有更新部署的清單。  其分組依據為狀態 – **已排程**、**執行中**和**已完成**。<br><br> ![更新部署排程頁面](./media/oms-solution-update-management/update-updatedeployment-schedule-page.png)<br>  

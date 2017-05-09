@@ -4,7 +4,7 @@ description: "此文件說明 Azure 資訊安全中心如何與合作夥伴整�
 services: security-center
 documentationcenter: na
 author: YuriDio
-manager: swadhwa
+manager: mbaldwin
 editor: 
 ms.assetid: 6af354da-f27a-467a-8b7e-6cbcf70fdbcb
 ms.service: security-center
@@ -12,12 +12,13 @@ ms.topic: hero-article
 ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/30/2017
+ms.date: 05/08/2017
 ms.author: yurid
-translationtype: Human Translation
-ms.sourcegitcommit: 5001cd47b6ee51967d1286414ccefedd8e7e7813
-ms.openlocfilehash: 095b5c9d1a888a4061450234f80c52c5834fbf53
-ms.lasthandoff: 12/02/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
+ms.openlocfilehash: 8dddfc8929ab1a0c44522ed2a2596e2c82e3987d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/01/2017
 
 
 ---
@@ -37,10 +38,10 @@ ms.lasthandoff: 12/02/2016
 ## <a name="what-partners-are-integrated-with-security-center"></a>哪些合作夥伴會與資訊安全中心整合？
 資訊安全中心目前與下列合作夥伴整合︰
 
-- Endpoint Protection (Trend Micro)、 
-- Web 應用程式防火牆 (Barracuda、F5、Imperva，未來則還有 Microsoft WAF 和 Fortinet)， 
-- 新一代防火牆 (Check Point、Barracuda，未來則還有 Fortinet 和 Cisco) 解決方案。 
-- 弱點評估 (Qualys - 預覽) 解決方案。 
+- Endpoint Protection ([Trend Micro](https://help.deepsecurity.trendmicro.com/azure-marketplace-getting-started-with-deep-security.html)) 
+- Web 應用程式防火牆 ([Barracuda](https://www.barracuda.com/products/webapplicationfirewall)、[F5](https://support.f5.com/kb/en-us/products/big-ip_asm/manuals/product/bigip-ve-web-application-firewall-microsoft-azure-12-0-0.html)、[Imperva](https://www.imperva.com/Products/WebApplicationFirewall-WAF)、[Fortinet](https://www.fortinet.com/resources.html?limit=10&search=&document-type=data-sheets)、[App Gateway WAF](https://azure.microsoft.com/en-us/blog/azure-web-application-firewall-waf-generally-available/)) 
+- 新一代防火牆 ([Check Point](https://www.checkpoint.com/products/vsec-microsoft-azure/)、[Barracuda](https://campus.barracuda.com/product/nextgenfirewallf/article/NGF/AzureDeployment/)、[Fortinet](http://docs.fortinet.com/d/fortigate-fortios-handbook-the-complete-guide-to-fortios-5.2) 和 [Cisco](http://www.cisco.com/c/en/us/td/docs/security/firepower/quick_start/azure/ftdv-azure-qsg.html)) 
+- 弱點評估 ([Qualys](https://www.qualys.com/public-clouds/microsoft-azure/) - 預覽)  
 
 資訊安全中心會隨時間擴展這些現有類別內合作夥伴的數目，並加入新的類別。 
 
@@ -57,7 +58,7 @@ ms.lasthandoff: 12/02/2016
 
 部署合作夥伴解決方案後，您可以檢視解決方案的健康狀態相關資訊，並從主要資訊安全中心儀表板的 [協力廠商解決方案] 圖格執行基本管理工作。 如需管理資訊安全中心中合作夥伴解決方案的相關資訊，請閱讀[透過 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md)。
 
-![合作夥伴整合](./media/security-center-partner-integration/security-center-partner-integration-fig1-new.png)
+![合作夥伴整合](./media/security-center-partner-integration/security-center-partner-integration-fig1-newUI.png)
 
 
 ## <a name="see-also"></a>另請參閱

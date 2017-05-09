@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/23/2017
 ms.author: subramar
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 516b8e517a16dd0d87e02189260166696225fbab
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: d01e141ec8ee8da18d38a216f3b13c88f3632801
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -74,6 +75,13 @@ ms.lasthandoff: 03/29/2017
     ```bash
     sudo apt-get install servicefabricsdkcommon
     ```
+    若要自動進行安裝，設定 Service Fabric 套件的 debconf 選取項目，即可略過授權合約提示。 您可以執行下列兩個命令：
+    
+    ```bash
+    echo "servicefabric servicefabric/accepted-eula-v1 select true" | debconf-set-selections
+    echo "servicefabricsdkcommon servicefabricsdkcommon/accepted-eula-v1 select true" | debconf-set-selections
+    ```
+
 2. 執行 SDK 安裝指令碼。
 
     ```bash
@@ -203,6 +211,11 @@ Java SDK 提供了使用 Java 建置 Service Fabric 服務所需的程式庫和�
    sudo apt-get update
    sudo apt-get install servicefabric servicefabricsdkcommon servicefabricsdkcsharp servicefabricsdkjava
    ```
+   
+> [!NOTE]
+> 更新上述套件可能會導致本機開發叢集停止。 請依照本頁上的指示，在升級之後重新啟動本機叢集。
+>
+>
 
 若要更新 CLI，請瀏覽至 CLI 複製所在位置，然後執行 `git pull` 以進行更新。  如果更新需要其他步驟，版本資訊會指定這些步驟。 
 

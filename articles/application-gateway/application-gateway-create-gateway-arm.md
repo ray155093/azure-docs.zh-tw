@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/04/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
-ms.openlocfilehash: 11ecfc993f17c89d4ac4431e9a835000d30afe76
-ms.lasthandoff: 04/05/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: 8a0eb841b1a41a14e443b6ce93e6b8fb8985a803
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -107,7 +108,7 @@ Azure Resource Manager 需要所有的資源群組指定一個位置。 此位�
 > [!NOTE]
 > 如果您需要為應用程式閘道設定自訂探查，請造訪：[使用 PowerShell 建立具有自訂探查的應用程式閘道](application-gateway-create-probe-ps.md)。 請參閱 [自訂探查和健全狀況監視](application-gateway-probe-overview.md) 以取得詳細資訊。
 
-## <a name="create-a-virtual-network-and-a-subnet-for-the-application-gateway"></a>建立應用程式閘道的虛擬網路和子網路
+## <a name="create-a-virtual-network-and-a-subnet"></a>建立虛擬網路和子網路
 
 下面的範例說明如何使用資源管理員建立虛擬網路。 這個範例會建立應用程式閘道的 VNET。 應用程式閘道需要它自己的子網路，因此針對應用程式閘道建立的子網路會小於 VNET 位址空間。 使用允許其他資源的較小子網路，包括但不限於要在相同 VNET 中設定的 web 伺服器。
 
@@ -135,7 +136,7 @@ $vnet = New-AzureRmVirtualNetwork -Name appgwvnet -ResourceGroupName appgw-rg -L
 $subnet=$vnet.Subnets[0]
 ```
 
-## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>建立前端組態的公用 IP 位址
+## <a name="create-a-public-ip-address"></a>建立公用 IP 位址
 
 在美國西部區域的 **appgw-rg** 資源群組中建立公用 IP 資源 **publicIP01**。 應用程式閘道可以使用公用 IP 位址、內部 IP 位址或兩者來接收進行負載平衡的要求。  此範例中僅使用公用 IP 位址。 在下列範例中，未設定 DNS 名稱以建立公用 IP 位址。  應用程式閘道在不支援公用 IP 位址上自訂 DNS 名稱。  如果公用端點需要自訂名稱，應該建立 CNAME 記錄以指向針對公用 IP 位址自動產生的 DNS 名稱。
 
@@ -160,7 +161,7 @@ $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name gatewayIP01 -Sub
 
 ### <a name="step-2"></a>步驟 2
 
-設定名為 **pool01** 的後端 IP 位址集區，其 IP 位址有 **pool1**。 這些 IP 位址會用來託管要受應用程式閘道保護的 web 應用程式資源。 這些後端集區成員全都會由探查驗證健康狀態，無論是否為基本探查或自訂探查。  當要求進入應用程式閘道時，流量便會路由至它們。 後端集區可在應用程式閘道內供多個規則使用，這表示一個後端集區可用於位在相同主機上的多個 web 應用程式。
+設定名為 **pool01** 的後端 IP 位址集區，其 IP 位址有 **pool1**。 這些 IP 位址會用來託管要受應用程式閘道保護的 web 應用程式資源。 這些後端集區成員都由探查 (無論是基本探查或自訂探查) 驗證為健康狀態。  當要求進入應用程式閘道時，流量便會路由至它們。 後端集區可在應用程式閘道內供多個規則使用，這表示一個後端集區可用於位在相同主機上的多個 web 應用程式。
 
 ```powershell
 $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name pool01 -BackendIPAddresses 134.170.185.46, 134.170.188.221, 134.170.185.50
@@ -219,7 +220,7 @@ $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Cap
 > [!NOTE]
 > **InstanceCount** 的預設值是 2，且最大值是 10。 GatewaySize  的預設值是 Medium。 您可以在 **Standard_Small**、**Standard_Medium** 及 **Standard_Large** 之間選擇。
 
-## <a name="create-an-application-gateway-by-using-new-azurermapplicationgateway"></a>使用 New-AzureRmApplicationGateway 建立應用程式閘道
+## <a name="create-the-application-gateway"></a>建立應用程式閘道
 
 利用上述步驟中的所有組態項目來建立應用程式閘道。 此範例中的應用程式閘道稱為 **appgwtest**。
 
@@ -233,7 +234,7 @@ $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-
 Get-AzureRmPublicIpAddress -Name publicIP01 -ResourceGroupName appgw-rg  
 ```
 
-## <a name="delete-an-application-gateway"></a>刪除應用程式閘道
+## <a name="delete-the-application-gateway"></a>刪除應用程式閘道
 
 若要刪除應用程式閘道，請遵循下列步驟：
 
@@ -296,6 +297,14 @@ IpConfiguration          : {
 DnsSettings              : {
                                 "Fqdn": "00000000-0000-xxxx-xxxx-xxxxxxxxxxxx.cloudapp.net"
                             }
+```
+
+## <a name="delete-all-resources"></a>刪除所有資源
+
+若要刪除這篇文章中建立的所有資源，請完成下列步驟︰
+
+```powershell
+Remove-AzureRmResourceGroup -Name appgw-RG
 ```
 
 ## <a name="next-steps"></a>後續步驟

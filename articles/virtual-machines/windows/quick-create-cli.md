@@ -15,10 +15,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 04/03/2017
 ms.author: nepeters
-translationtype: Human Translation
-ms.sourcegitcommit: 0d9afb1554158a4d88b7f161c62fa51c1bf61a7d
-ms.openlocfilehash: a1ccebd6d53c7f02517c7655bdfb5b3ce3f26090
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 7461a0006e57608d9baa538175174788692db5f5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 ---
 
@@ -42,7 +43,7 @@ az login
 
 使用 [az group create](/cli/azure/group#create) 來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
 
-下列範例會在 `westeurope` 位置建立名為 `myResourceGroup` 的資源群組。
+下列範例會在 westeurope 位置建立名為 myResourceGroup 的資源群組。
 
 ```azurecli
 az group create --name myResourceGroup --location westeurope
@@ -50,15 +51,19 @@ az group create --name myResourceGroup --location westeurope
 
 ## <a name="create-virtual-machine"></a>Create virtual machine
 
-使用 [az vm create](/cli/azure/vm#create) 來建立 VM。 
+使用 [az vm create](/cli/azure/vm#create) 建立 VM。 
 
-下列範例會建立名為 `myVM` 的 VM。 此範例會以 `azureuser` 做為系統管理使用者名稱並以 ` myPassword12` 做為密碼。 將這些值更新為適合您環境的值。 建立與虛擬機器的連線時需要使用這些值。
+下列範例會建立名為 myVM 的 VM。 此範例會以 azureuser 作為系統管理使用者名稱並以 myPassword12 作為密碼。 將這些值更新為適合您環境的值。 建立與虛擬機器的連線時需要使用這些值。
 
 ```azurecli
-az vm create --resource-group myResourceGroup --name myVM --image win2016datacenter --admin-username azureuser --admin-password myPassword12
+az vm create `
+  --resource-group myResourceGroup `
+  --name myVM --image win2016datacenter `
+  --admin-username azureuser `
+  --admin-password myPassword12
 ```
 
-建立 VM 後，Azure CLI 會顯示類似下列範例的資訊。 記下公用 IP 位址。 此位址用來存取 VM。
+建立 VM 後，Azure CLI 會顯示類似下列範例的資訊。 記下 `publicIpAaddress`。 此位址用來存取 VM。
 
 ```azurecli
 {
@@ -75,7 +80,7 @@ az vm create --resource-group myResourceGroup --name myVM --image win2016datacen
 
 ## <a name="open-port-80-for-web-traffic"></a>針對 Web 流量開啟連接埠 80 
 
-依預設只能透過 RDP 連線至 Azure 中部署的 Windows 虛擬機器。 如果此 VM 即將成為 Web 伺服器，您需要從網際網路開啟連接埠 80。  需使用單一命令才能開啟所需的連接埠。  
+依預設只能透過 RDP 連線至 Azure 中部署的 Windows 虛擬機器。 如果此 VM 即將成為 Web 伺服器，您需要從網際網路開啟連接埠 80。 使用 [az vm open-port](/cli/azure/vm#open-port) 命令來開啟所需的連接埠。  
  
  ```azurecli 
 az vm open-port --port 80 --resource-group myResourceGroup --name myVM
@@ -92,7 +97,7 @@ mstsc /v:<Public IP Address>
 
 ## <a name="install-iis-using-powershell"></a>使用 PowerShell 安裝 IIS
 
-您現已登入 Azure VM，可使用一行 PowerShell 來安裝 IIS，並啟用本機防火牆規則以允許 Web 流量通過。  開啟 PowerShell 提示字元並執行下列命令：
+您現已登入 Azure VM，可使用一行 PowerShell 來安裝 IIS，並啟用本機防火牆規則以允許 Web 流量通過。 開啟 PowerShell 提示字元並執行下列命令：
 
 ```powershell
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
@@ -100,12 +105,12 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
 ## <a name="view-the-iis-welcome-page"></a>檢視 IIS 歡迎使用頁面
 
-安裝 IIS 後，現在經由網際網路在您的 VM 上開啟連接埠 80 - 您可以使用所選的網頁瀏覽器來檢視預設 IIS 歡迎使用畫面。 請務必使用您上面記載的 `publicIpAddress` 來瀏覽預設網頁。 
+安裝 IIS 後，現在經由網際網路在您的 VM 上開啟連接埠 80 - 您可以使用所選的網頁瀏覽器來檢視預設 IIS 歡迎使用畫面。 請務必使用您上面記載的公用 IP 位址來瀏覽預設網頁。 
 
 ![IIS 預設網站](./media/quick-create-powershell/default-iis-website.png) 
 ## <a name="delete-virtual-machine"></a>刪除虛擬機器
 
-若不再需要，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
+若不再需要，您可以使用 [az group delete](/cli/azure/group#delete) 命令來移除資源群組、VM 和所有相關資源。
 
 ```azurecli
 az group delete --name myResourceGroup

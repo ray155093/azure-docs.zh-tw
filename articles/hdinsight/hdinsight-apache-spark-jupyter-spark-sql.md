@@ -16,10 +16,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/13/2017
 ms.author: nitinme
-translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: f43a08a7096476fea79884163f89441e7e0c34cf
-ms.lasthandoff: 03/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: e2a9802e76579a523897d8904add6b317652ff05
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -153,7 +154,7 @@ ms.lasthandoff: 03/18/2017
 以下是使用 HDInsight 叢集時可能會遇到的一些常見問題。
 
 ### <a name="access-control-requirements"></a>存取控制需求
-[!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
+如果您在建立 HDInsight 叢集時遇到問題，請參閱[存取控制需求](hdinsight-administer-use-portal-linux.md#create-clusters)。
 
 ## <a name="delete-the-cluster"></a>刪除叢集
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]

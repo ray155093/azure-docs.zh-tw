@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: a7b3f8addbba21e60be0076784ae954f4cedb0b8
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: d29cf81747390fe153c3c6dc330ef738de0cd83a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -48,7 +49,7 @@ Azure 公用對等路徑可讓您連接到裝載於 Azure 中的所有服務的�
 > 
 
 ## <a name="nat-requirements-for-microsoft-peering"></a>Microsoft 對等的 NAT 需求
-Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑存取的 Microsoft 雲端服務。 服務清單包括 Office 365 服務，例如 Exchange Online、SharePoint Online、商務用 Skype 和 CRM Online。 Microsoft 預計在 Microsoft 對等上支援雙向連線能力。 以 Microsoft 雲端服務為目的地的流量，必須由 SNAT 轉譯成有效的公用 IPv4 位址，才能進入 Microsoft 網路。 從 Microsoft 雲端服務到您的網路的流量，必須經過 SNAT 轉譯，才會進入您的網路。 下圖提供如何為 Microsoft 對等設定 NAT 的高階圖片。
+Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑存取的 Microsoft 雲端服務。 服務清單包括 Office 365 服務，例如 Exchange Online、SharePoint Online、商務用 Skype 和 CRM Online。 Microsoft 預計在 Microsoft 對等上支援雙向連線能力。 以 Microsoft 雲端服務為目的地的流量，必須由 SNAT 轉譯成有效的公用 IPv4 位址，才能進入 Microsoft 網路。 從 Microsoft 雲端服務送到您的網路的流量，必須在網際網路邊緣經過 SNAT 轉譯，才可防止[非對稱式路由](expressroute-asymmetric-routing.md)。 下圖提供如何為 Microsoft 對等設定 NAT 的高階圖片。
 
 ![](./media/expressroute-nat/expressroute-nat-microsoft.png) 
 
@@ -63,7 +64,9 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
 
 ### <a name="traffic-originating-from-microsoft-destined-to-your-network"></a>從 Microsoft 出發到您的網路的流量
 * 在某些情況下，需要由 Microsoft 對您網路中裝載的服務端點起始連線。 常見的例子就是從 Office 365 連接到您網路中裝載的 ADFS 伺服器。 在這種情況下，必須將您網路中適當的首碼透露給 Microsoft 對等。 
-* 您必須以 SNAT 轉譯從 Microsoft 到您網路內的 IP 位址的流量。 
+* 您必須在網際網路邊緣進行 Microsoft 流量的 SNAT 轉譯，才可防止[非對稱式路由](expressroute-asymmetric-routing.md)。 一律會透過 ExpressRoute 傳送具有一個目的地 IP 且符合透過 ExpressRoute 接收之路由的要求**和回覆**。 如果要求是透過網際網路收到，而回覆是透過 ExpressRoute 傳送，則存在非對稱式路由。 在網際網路邊緣進行 Microsoft 流量的 SNAT 轉譯，可強制回覆流量回到網際網路邊緣，進而解決問題。
+
+![非對稱式路由與 ExpressRoute](./media/expressroute-asymmetric-routing/AsymmetricRouting2.png)
 
 ## <a name="next-steps"></a>後續步驟
 * 請參閱[路由](expressroute-routing.md)和 [QoS](expressroute-qos.md) 的需求。

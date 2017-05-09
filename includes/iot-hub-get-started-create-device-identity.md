@@ -1,21 +1,18 @@
 ## <a name="create-a-device-identity"></a>建立裝置識別
-在本節中，您可以使用名為 [IoT Hub Explorer][iot-hub-explorer] 的 Node.js 工具，針對本教學課程建立裝置身分識別。
+
+在本節中，您可以使用名為 [iothub-explorer][iot-hub-explorer] 的 Node.js 工具，針對本教學課程建立裝置身分識別。
 
 1. 在命令列環境中執行下列命令：
-   
-    ```
-    npm install -g iothub-explorer@latest
-    ```
-2. 接著，執行下列命令來登入您的中樞。 將 `{iot hub connection string}` 替換成您先前複製的 IoT 中樞連接字串：
 
-    ```
-    iothub-explorer login "{iot hub connection string}"
-    ```
-3. 最後，使用以下命令建立名為 `myDeviceId` 的新裝置身分識別：
-   
-    ```
-    iothub-explorer create myDeviceId --connection-string
-    ```
+    `npm install -g iothub-explorer@latest`
+
+1. 接著，執行下列命令來登入您的中樞。 將 `{iot hub connection string}` 替換成您先前複製的 IoT 中樞連接字串：
+
+    `iothub-explorer login "{iot hub connection string}"`
+
+1. 最後，使用以下命令建立名為 `myDeviceId` 的新裝置身分識別：
+
+    `iothub-explorer create myDeviceId --connection-string`
 
 記下結果中的裝置連接字串。 裝置應用程式會使用此裝置連接字串，以裝置的形式連接到您的 IoT 中樞。
 

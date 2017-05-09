@@ -1,5 +1,5 @@
 ---
-title: "服務匯流排進階和標準傳訊定價層概觀 | Microsoft Docs"
+title: "Azure 服務匯流排進階和標準傳訊定價層概觀 | Microsoft Docs"
 description: "服務匯流排進階和標準傳訊層級"
 services: service-bus-messaging
 documentationcenter: .net
@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/19/2017
+ms.date: 04/28/2017
 ms.author: darosa;sethm;jotaub
-translationtype: Human Translation
-ms.sourcegitcommit: e0c999b2bf1dd38d8a0c99c6cdd4976cc896dd99
-ms.openlocfilehash: 606838dbeec5e9762f67159ece1bbc8a78769420
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
+ms.openlocfilehash: 72e4c59e1282d97cfc5aa5f55861c6f70d419ce8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -47,7 +48,7 @@ ms.lasthandoff: 04/20/2017
 
 ### <a name="partitioned-queues-and-topics"></a>分割的佇列和主題
 
-分割的佇列和主題在進階傳訊中受支援，但是其運作方式與在服務匯流排傳訊的標準和基本層級中不同。 進階傳訊不會使用 SQL 作為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，效能不一定需要進行資料分割。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有 2 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
+進階傳訊支援分割的佇列和主題；事實上這些實體一律會進行分割 (且無法停用)。 不過，進階分割的佇列和主題在服務匯流排傳訊的標準和基本層中的運作方式不同。 進階傳訊不會使用 SQL 做為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，資料分割不一定能夠改善效能。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有 2 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
 
 ### <a name="express-entities"></a>快速實體
 

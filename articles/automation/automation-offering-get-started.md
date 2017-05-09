@@ -12,12 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/14/2017
+ms.date: 05/02/2017
 ms.author: magoedte
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 0f80ac93e3ff1ee95477e4fa5dbe21d61ddf8ead
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 8a04fda8eaf6e14a278941e7bb55b23012f67850
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 ---
 
@@ -98,8 +99,6 @@ Azure 自動化可讓您針對 Azure、內部部署以及其他雲端提供者�
 
 Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者帳戶和執行身分帳戶授與允許的動作，並驗證該服務主體。  若要取得有助於開發自動化權限管理模型的進一步資訊，請閱讀 [Azure 自動化中的角色型存取控制](automation-role-based-access-control.md)一文。  
 
-
-
 #### <a name="authentication-methods"></a>驗證方法
 下表摘要說明 Azure 自動化支援的每個環境所適用的不同驗證方法。
 
@@ -136,6 +135,13 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 | 澳大利亞東南部 |ase-jobruntimedata-prod-su1.azure-automation.net |
 | 英國南部 | uks-jobruntimedata-prod-su1.azure-automation.net |
 | 美國政府維吉尼亞州 | usge-jobruntimedata-prod-su1.azure-automation.us |
+
+如需 IP 位址 (而非名稱) 的清單，請從 Microsoft 下載中心下載並檢閱 [Azure 資料中心 IP 位址](https://www.microsoft.com/download/details.aspx?id=41653) xml 檔案。 
+
+> [!NOTE]
+> 這個檔案包含 Microsoft Azure 資料中心使用的 IP 位址範圍 (包括計算、SQL 和儲存體範圍)。 每週會公佈已更新的檔案，以反映目前部署的範圍和 IP 範圍的任何後續變更。 資料中心至少有一週不會使用檔案中顯示的新範圍。 請每週下載新的 xml 檔案，並且您的網站上執行所需的變更，以正確識別在 Azure 中執行的服務。 Express Route 使用者可能注意到，此檔案在每個月的第一週用來更新 Azure 空間的 BGP 公告。 
+> 
+
 
 ## <a name="implementation"></a>實作
 
@@ -191,27 +197,6 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 8. 按一下 [建立] 繼續將自動化和 OMS 工作區上架。 系統會驗證所有的設定，然後嘗試在您的訂用帳戶中部署此供應項目。  此程序需要幾秒鐘才能完成，您可以在功能表的 [通知] 底下追蹤其進度。 
 
 在供應項目上架後，您可以開始建立 Runbook、使用您啟用的管理解決方案，或開始使用 [Log Analytics](https://docs.microsoft.com/azure/log-analytics)，以收集您的雲端或內部部署環境中的資源所產生的資料。   
-
-### <a name="resources-included"></a>包含的資源
-順利建立自動化帳戶時，系統會自動為您建立幾項資源。 下面兩個資料表會摘要說明這些資源：<br>
-
-#### <a name="run-as-account-resources"></a>執行身分帳戶資源
-
-| 資源 | 說明 |
-| --- | --- |
-| AzureAutomationTutorial Runbook | 此為圖形化 Runbook 範例，示範如何使用執行身分帳戶進行驗證以及取得所有 Resource Manager 資源。 |
-| AzureAutomationTutorialScript Runbook | 此為 PowerShell Runbook 範例，示範如何使用執行身分帳戶進行驗證以及取得 Resource Manager 資源。 |
-| AzureRunAsCertificate | 在建立自動化帳戶時自動建立，或使用下列適用於現有帳戶的 PowerShell 指令碼建立的憑證資產。 此憑證可讓您向 Azure 進行驗證，以便從 Runbook 管理 Azure Resource Manager 資源。 此憑證有一年的有效期。 |
-| AzureRunAsConnection | 在建立自動化帳戶時自動建立，或使用適用於現有帳戶的 PowerShell 指令碼建立的連線資產。 |
-
-#### <a name="classic-run-as-account-resources"></a>傳統執行身分帳戶資源
-
-| 資源 | 說明 |
-| --- | --- |
-| AzureClassicAutomationTutorial Runbook | 此為圖形化 Runbook 範例，可使用傳統執行身分帳戶 (憑證) 來取得訂用帳戶中使用傳統部署模型所建立的所有 VM，然後寫入 VM 名稱和狀態。 |
-| AzureClassicAutomationTutorial 指令碼 Runbook | 此為 PowerShell Runbook 範例，可使用傳統執行身分帳戶 (憑證) 來取得訂用帳戶中的所有傳統 VM，然後寫入 VM 名稱和狀態。 |
-| AzureClassicRunAsCertificate | 自動建立的憑證資產，可供您向 Azure 進行驗證，以便從 Runbook 管理 Azure 傳統資源。 此憑證有一年的有效期。 |
-| AzureClassicRunAsConnection | 自動建立的連線資產，可供您向 Azure 進行驗證，以便從 Runbook 管理 Azure 傳統資源。|
 
 ## <a name="next-steps"></a>後續步驟
 * 您可藉由檢閱[測試 Azure 自動化執行身分帳戶驗證](automation-verify-runas-authentication.md)，確認新的自動化帳戶可以驗證 Azure 資源。

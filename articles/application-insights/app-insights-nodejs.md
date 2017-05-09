@@ -1,9 +1,9 @@
 ---
-title: "使用 Azure Application Insights 監視 Node.js 應用程式 | Microsoft Docs"
-description: "使用 Application Insights，分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。"
+title: "使用 Azure Application Insights 監視 Node.js 服務 | Microsoft Docs"
+description: "使用 Application Insights 監視 Node.js 服務的效能和診斷問題。"
 services: application-insights
-documentationcenter: 
-author: alancameronwills
+documentationcenter: nodejs
+author: joshgav
 manager: carmonm
 ms.assetid: 2ec7f809-5e1a-41cf-9fcd-d0ed4bebd08c
 ms.service: application-insights
@@ -11,191 +11,197 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/14/2017
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 310ada88bb4d9b39eeaa10f303b9e1bd3b1f927f
-ms.lasthandoff: 04/13/2017
+ms.date: 05/01/2017
+ms.author: joshgav
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: 76a8025cd2a67533beb321c88e924517c1977dfc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
-# <a name="add-application-insights-sdk-to-monitor-your-nodejs-app"></a>新增 Application Insights SDK 以監視 Node.js 應用程式
 
+# <a name="monitor-your-nodejs-services-and-apps-with-application-insights"></a>使用 Application Insights 監視 Node.js 服務和應用程式
 
-[Azure Application Insights](app-insights-overview.md) 監視您的即時應用程式，協助您[偵測並診斷效能問題和例外狀況](app-insights-detect-triage-diagnose.md)，同時[探索應用程式的使用情況](app-insights-web-track-usage.md)。 這適用於裝載在專屬內部部署 IIS 伺服器或 Azure VM 上的應用程式，以及 Azure Web 應用程式。
+[Azure Application Insights](app-insights-overview.md) 會在您部署後端服務和元件之後加以監視，協助您[探索並快速診斷效能和其他問題](app-insights-detect-triage-diagnose.md)。 將它使用於任何地方裝載的 Node.js 服務︰您的資料中心、Azure VM 和 Web Apps，甚至式其他公用雲端。
 
-SDK 可自動收集內送 HTTP 要求率和回應、效能計數器 (CPU、記憶體、RPS) 和未處理的例外狀況。 此外，您也可以新增自訂呼叫來追蹤相依性、度量或其他事件。
+若要接收、儲存和探索您的監視資料，請遵循下列指示，在您的程式碼中包含代理程式，並且在 Azure 中設定對應的 Application Insights 資源。 代理程式會將資料傳送至該資源，進行進一步的分析和探索。
+
+Node.js 代理程式可以自動監視傳入和傳出 HTTP 要求、數個系統計量及例外狀況。 從 v0.20 開始，也可以監視一些常見的第三方套件，例如 `mongodb`、`mysql` 和 `redis`。 與傳入 HTTP 要求相關的所有事件都會相互關聯，以進行快速疑難排解。
+
+使用稍後說明的代理程式 API 進行手動檢測，即可監視應用程式和系統的多個部分。
 
 ![範例效能監視圖表](./media/app-insights-nodejs/10-perf.png)
 
-#### <a name="before-you-start"></a>開始之前
-您需要：
+## <a name="getting-started"></a>開始使用
 
-* [Microsoft Azure](http://azure.com)訂用帳戶。 如果您的小組或組織擁有 Azure 訂用帳戶，擁有者就可以使用您的 [Microsoft 帳戶](http://live.com)將您加入。
+讓我們逐步設定應用程式或服務的監視。
 
-## <a name="add"></a>建立 Application Insights 資源
-登入 [Azure 入口網站][portal]，並建立新的 Application Insights 資源。 Azure 中的[資源][roles]是服務的執行個體。 此資源是來自您應用程式的遙測將經過分析並呈現的地方。
+### <a name="resource"></a>設定 App Insights 資源
 
-![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-nodejs/01-new-asp.png)
+**開始之前**，請確定您有 Azure 訂用帳戶或[免費取得一個新訂用帳戶][azure-free-offer]。 如果您的組織已經有 Azure 訂用帳戶，系統管理員可以依照[這些指示][ add-aad-user]將您新增至該訂用帳戶。
 
-選擇 [一般] 做為應用程式類型。 應用程式類型的選擇會設定[計量瀏覽器][metrics]中可見的資源刀鋒視窗和屬性的預設內容。
+[azure-free-offer]: https://azure.microsoft.com/en-us/free/
+[add-aad-user]: https://docs.microsoft.com/en-us/azure/active-directory/active-directory-users-create-azure-portal
 
-#### <a name="copy-the-instrumentation-key"></a>複製檢測金鑰
-該金鑰識別資源，您很快就會將它安裝在 SDK 中，以將資源導向資料。
+現在登入 [Azure 入口網站][ portal]並建立 Application Insights 資源，如下所示 - 按一下 [新增] > [開發人員工具] > [Application Insights]。 此資源包含用於接收遙測資料的端點、此資料的儲存體、已儲存的報告和儀表板、規則和警示組態等等。
 
-![按一下 [屬性]，選取金鑰，然後按下 CTRL+C](./media/app-insights-nodejs/02-props-asp.png)
+![建立 App Insights 資源](./media/app-insights-nodejs/03-new_appinsights_resource.png)
 
-## <a name="sdk"></a> 在應用程式中安裝 SDK
-```
+在資源建立頁面上，從 [應用程式類型] 下拉式清單中選擇 [Node.js 應用程式]。 應用程式類型可決定為您建立的預設儀表板和報告集合。 別擔心，任何 App Insights 資源實際上都可以從任何語言和平台收集資料。
+
+![新增 App Insights 資源表單](./media/app-insights-nodejs/04-create_appinsights_resource.png)
+
+### <a name="agent"></a> 設定 Node.js 代理程式
+
+現在可以在您的應用程式中包含代理程式，以便蒐集資料。
+如下所示，從入口網站複製資源的檢測金鑰 (以下稱為您的 `ikey`)。 App Insights 系統會使用此金鑰將資料對應至 Azure 資源，因此您必須在環境變數或您的程式碼中加以指定，以便代理程式使用。  
+
+![複製檢測金鑰](./media/app-insights-nodejs/05-appinsights_ikey_portal.png)
+
+接著透過 package.json，將 Node.js 代理程式庫新增至您應用程式的相依性。 從您應用程式的根資料夾，執行︰
+
+```bash
 npm install applicationinsights --save
 ```
 
-## <a name="usage"></a>使用量
-這會啟用要求監視、未處理的例外狀況追蹤和系統效能監視 (CPU/記憶體/RPS)。
+您現在需要在您的程式碼中明確地載入此程式庫。 因為代理程式會將檢測插入其他許多程式庫中，所以您應該儘早將它載入，甚至插入在其他 `require` 陳述式之前。 若要開始，請在第一個 .js 檔案頂端新增︰
 
 ```javascript
-
-var appInsights = require("applicationinsights");
-appInsights.setup("<instrumentation_key>").start();
+const appInsights = require("applicationinsights");
+appInsights.setup("<instrumentation_key>");
+appInsights.start();
 ```
 
-檢測金鑰也可設定於環境變數 APPINSIGHTS_INSTRUMENTATIONKEY 中。 如果這麼做，則在呼叫 `appInsights.setup()` 或 `appInsights.getClient()` 時就不需要引數。
+`setup` 方法會針對所有追蹤的項目，設定預設要使用的檢測金鑰 (以及 Azure 資源)。 在設定完成後呼叫 `start`，開始蒐集和傳送遙測資料。
 
-您可以在不傳送遙測的情況下嘗試 SDK︰將檢測金鑰設定為非空白字串。
+您也可以透過環境變數 APPINSIGHTS\_INSTRUMENTATIONKEY 提供 ikey，而非以手動方式將它傳遞至 `setup()` 或 `getClient()`。 這種做法可讓您將 ikeys 保留在認可的原始程式碼之外，並針對不同的環境指定不同的 ikey。
 
-## <a name="run"></a> 執行專案
-執行應用程式並立即試用：開啟不同的頁面來產生一些遙測。
+其他設定選項如以下述。
 
-## <a name="monitor"></a> 檢視遙測
-返回 [Azure 入口網站](https://portal.azure.com) ，並且瀏覽至您的 Application Insights 資源。
+您可以將檢測金鑰設定為非空白字串，在不傳送遙測的情況下嘗試代理程式。
 
-在 [概觀] 頁面中尋找資料。 剛開始的時候，您只會看見一或兩個資料點。 例如：
+### <a name="monitor"></a> 監視您的應用程式
 
-![Click through to more data](./media/app-insights-nodejs/12-first-perf.png)
+代理程式會自動蒐集有關 Node.js 執行階段和一些常見第三方模組的遙測。 現在使用您的應用程式來產生一些資料。
 
-逐一點選任何圖表以查看更詳細的度量。 [深入了解度量。][perf]
+然後，在 [Azure 入口網站][ portal]中瀏覽至您稍早建立的 Application Insights 資源，並且在 [概觀時間表] 中尋找您的前幾個資料點，如下圖所示。 逐一點選各個圖表以取得詳細資料。
+
+![第一個資料點](./media/app-insights-nodejs/12-first-perf.png)
+
+按一下 [應用程式對應] 按鈕，以檢視針對您的應用程式找到的拓撲，如下列圖所示。 逐一點選對應中的各個元件，以取得詳細資料。
+
+![簡單的應用程式對應](./media/app-insights-nodejs/06-appinsights_appmap.png)
+
+使用 [調查] 區段下其他可用的檢視，深入了解您的應用程式並針對問題進行疑難排解。
+
+![調查區段](./media/app-insights-nodejs/07-appinsights_investigate_blades.png)
 
 #### <a name="no-data"></a>沒有資料？
-* 使用應用程式、開啟不同頁面，以產生一些遙測。
-* 開啟 [ [搜尋](app-insights-diagnostic-search.md) ] 磚來查看個別事件。 有時候，事件通過計量管線所需的時間較長。
-* 請稍等片刻，然後按一下 [重新整理 ]。 圖表會定期自行重新整理，但是如果您在等待一些要顯示的資料，您可以手動重新整理。
-* 請參閱[疑難排解][qna]。
 
-## <a name="publish-your-app"></a>發佈您的應用程式
-現在請將應用程式部署至 IIS 或 Azure，並觀看資料累積情形。
+因為代理程式會分批提交資料，所以項目可能會延遲顯示在入口網站中。 如果您未在您的資源中看到資料，請嘗試以下一些修正方式︰
 
-#### <a name="no-data-after-you-publish-to-your-server"></a>發佈資料到伺服器之後，卻沒有資料？
-請檢查[必要的防火牆連接埠已開啟](app-insights-ip-addresses.md)。
+* 多使用一下應用程式；採取更多動作，以產生更多遙測。
+* 按一下入口網站資源檢視中的 [重新整理]。 圖表會自動定期重新整理，但重新整理會強制此動作立即發生。
+* 確認[所需的連出連接埠](app-insights-ip-addresses.md)已開啟。
+* 開啟 [搜尋][](app-insights-diagnostic-search.md) 圖格來查看個別事件。
+* 查看[常見問題集][]。
 
-#### <a name="trouble-on-your-build-server"></a>組建伺服器發生問題？
-請參閱 [此疑難排解項目](app-insights-asp-net-troubleshoot-no-data.md#NuGetBuild)。
 
-## <a name="customized-usage"></a>自訂的使用量
-### <a name="disabling-auto-collection"></a>停用自動收集
+## <a name="agent-configuration"></a>代理程式組態
+
+以下是代理程式的設定方法及其預設值。
+
+若要使服務中的事件完全相互關聯，請務必設定 `.setAutoDependencyCorrelation(true)`。 這可讓代理程式追蹤 Node.js 中所有非同步回呼的內容。
+
 ```javascript
-import appInsights = require("applicationinsights");
+const appInsights = require("applicationinsights");
 appInsights.setup("<instrumentation_key>")
-    .setAutoCollectRequests(false)
-    .setAutoCollectPerformance(false)
-    .setAutoCollectExceptions(false)
-    // no telemetry will be sent until .start() is called
+    .setAutoDependencyCorrelation(false)
+    .setAutoCollectRequests(true)
+    .setAutoCollectPerformance(true)
+    .setAutoCollectExceptions(true)
+    .setAutoCollectDependencies(true)
     .start();
 ```
 
-### <a name="custom-monitoring"></a>自訂監視
-```javascript
-import appInsights = require("applicationinsights");
-var client = appInsights.getClient();
+## <a name="agent-api"></a>代理程式 API
 
-client.trackEvent("custom event", {customProperty: "custom property value"});
+<!-- TODO: Fully document agent API. -->
+
+[這裡](app-insights-api-custom-events-metrics.md)有 .NET 代理程式 API 的完整說明。
+
+您可以使用 Application Insights Node.js 用戶端來追蹤任何要求、事件、計量或例外狀況。 下列範例示範一些可用的 API。
+
+```javascript
+let appInsights = require("applicationinsights");
+appInsights.setup().start(); // assuming ikey in env var
+let client = appInsights.getClient();
+
+client.trackEvent("my custom event", {customProperty: "custom property value"});
 client.trackException(new Error("handled exceptions can be logged with this method"));
 client.trackMetric("custom metric", 3);
 client.trackTrace("trace message");
-```
 
-[深入了解遙測 API](app-insights-api-custom-events-metrics.md)。
-
-### <a name="using-multiple-instrumentation-keys"></a>使用多個檢測金鑰
-```javascript
-import appInsights = require("applicationinsights");
-
-// configure auto-collection with one instrumentation key
-appInsights.setup("<instrumentation_key>").start();
-
-// get a client for another instrumentation key
-var otherClient = appInsights.getClient("<other_instrumentation_key>");
-otherClient.trackEvent("custom event");
-```
-
-## <a name="examples"></a>範例
-### <a name="tracking-dependency"></a>追蹤相依性
-```javascript
-import appInsights = require("applicationinsights");
-var client = appInsights.getClient();
-
-var startTime = Date.now();
-// execute dependency call
-var endTime = Date.now();
-
-var elapsedTime = endTime - startTime;
-var success = true;
-client.trackDependency("dependency name", "command name", elapsedTime, success);
-```
-
-
-
-### <a name="manual-request-tracking-of-all-get-requests"></a>所有 "GET" 要求的手動要求追蹤
-```javascript
-var http = require("http");
-var appInsights = require("applicationinsights");
-appInsights.setup("<instrumentation_key>")
-    .setAutoCollectRequests(false) // disable auto-collection of requests for this example
-    .start();
-
-// assign common properties to all telemetry sent from the default client
-appInsights.client.commonProperties = {
-    environment: process.env.SOME_ENV_VARIABLE
-};
-
-// track a system startup event
-appInsights.client.trackEvent("server start");
-
-// create server
-var port = process.env.port || 1337
-var server = http.createServer(function (req, res) {
-    // track all "GET" requests
-    if(req.method === "GET") {
-        appInsights.client.trackRequest(req, res);
-    }
-
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Hello World\n");
-}).listen(port);
-
-// track startup time of the server as a custom metric
-var start = +new Date;
-server.on("listening", () => {
-    var end = +new Date;
-    var duration = end - start;
-    appInsights.client.trackMetric("StartupTime", duration);
+let http = require("http");
+http.createServer( (req, res) => {
+  client.trackRequest(req, res); // Place at the beginning of your request handler
 });
 ```
 
-## <a name="video"></a>影片
+### <a name="track-your-dependencies"></a>追蹤相依項目
 
-> [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
+```javascript
+let appInsights = require("applicationinsights");
+let client = appInsights.getClient();
 
-## <a name="next-steps"></a>後續步驟
+var success = false;
+let startTime = Date.now();
+// execute dependency call here....
+let duration = Date.now() - startTime;
+success = true;
+
+client.trackDependency("dependency name", "command name", duration, success);
+```
+
+### <a name="add-a-custom-property-to-all-events"></a>將自訂屬性新增至所有事件
+
+```javascript
+appInsights.client.commonProperties = {
+    environment: process.env.SOME_ENV_VARIABLE
+};
+```
+
+### <a name="track-http-get-requests"></a>追蹤 HTTP GET 要求
+
+```javascript
+var server = http.createServer((req, res) => {
+    if ( req.method === "GET" ) {
+            appInsights.client.trackRequest(req, res);
+    }
+    // other work here....
+    res.end();
+});
+```
+
+### <a name="track-server-startup-time"></a>追蹤伺服器啟動時間
+
+```javascript
+let start = Date.now();
+server.on("listening", () => {
+    let duration = Date.now() - start;
+    appInsights.client.trackMetric("server startup time", duration);
+});
+```
+
+## <a name="more-resources"></a>其他資源
+
 * [在入口網站中監視遙測](app-insights-dashboards.md)
 * [寫您的遙測的分析查詢](app-insights-analytics-tour.md)
 
-<!--Link references-->
+<!--references-->
 
-[knowUsers]: app-insights-web-track-usage.md
-[metrics]: app-insights-metrics-explorer.md
-[perf]: app-insights-web-monitor-performance.md
-[portal]: http://portal.azure.com/
-[qna]: app-insights-troubleshoot-faq.md
-[roles]: app-insights-resources-roles-access-control.md
+[portal]: https://portal.azure.com/
+[常見問題集]: app-insights-troubleshoot-faq.md
 

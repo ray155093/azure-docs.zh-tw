@@ -12,6 +12,6 @@ customEvents
 ```
 
  > [!NOTE]
- > 與其所屬遙測項目相關聯的自訂度量。 而且系統會使用包含這些自訂度量的遙測項目來對自訂度量進行取樣。 使用[度量遙測](#metric-telemetry)以追蹤其值與其他遙測類型無關的度量。 
+ > 自訂度量會與其所屬的遙測項目相關聯。 系統會使用包含這些自訂度量的遙測項目來進行取樣。 若要追蹤其值獨立於其他遙測類型的度量，請使用[計量遙測](../articles/application-insights/app-insights-api-custom-events-metrics.md#send-metrics)。
 
 最大金鑰長度︰150

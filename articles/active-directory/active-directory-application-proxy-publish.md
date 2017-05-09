@@ -12,11 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/30/2016
+ms.date: 04/20/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: d7fe552e0c8856a8d7799ae8a7732e57a350fee3
-ms.openlocfilehash: 2a42605c75fe183d57030e4a3ff3f3218a7dbc2b
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: 4f7860b906ab988c918de31d53f4a958e4dea83b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -30,8 +32,8 @@ Azure AD 應用程式 Proxy 可藉由發佈要透過網際網路存取的內部�
 
 > [!NOTE]
 > 應用程式 Proxy 是您升級至 Premium 或 Basic 版本的 Azure Active Directory 時才能使用的功能。 如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
-> 
-> 
+
+如果您想要使用應用程式 Proxy 公開預覽版本，您可以[在 Azure 入口網站中發佈應用程式](application-proxy-publish-azure-portal.md)。
 
 ## <a name="publish-an-app-using-the-wizard"></a>使用精靈發佈應用程式
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中，以系統管理員身分登入。
@@ -102,10 +104,5 @@ Azure AD 應用程式 Proxy 可藉由發佈要透過網際網路存取的內部�
 * [使用宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
 
 如需最新消息，請查閱 [應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
-
-
-
-
-<!--HONumber=Jan17_HO2-->
 
 

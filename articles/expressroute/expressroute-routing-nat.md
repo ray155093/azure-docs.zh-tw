@@ -1,5 +1,5 @@
 ---
-title: "適用於 ExpressRoute 的路由需求 |Microsoft Docs"
+title: "適用於 Azure ExpressRoute 的 NAT | Microsoft Docs"
 description: "此頁面提供用來設定和管理 ExpressRoute 循環路由的詳細需求。"
 documentationcenter: na
 services: expressroute
@@ -14,13 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/12/2016
 ms.author: osamam
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 5e3c65d9ada5c75e0ddef3b3778a79ca77aa07d8
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: a97662819acbbbd4c4a331acac4fdec193242d80
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
-# <a name="expressroute-routing-requirements"></a>ExpressRoute 路由需求
+# <a name="nat-for-expressroute"></a>適用於 ExpressRoute 的 NAT
+
 若要使用 ExpressRoute 連線到 Microsoft 雲端服務，您必須設定和管理路由。 有些連線提供者會以受管理的服務形式提供路由的設定和管理。 請洽詢您的連線服務提供者，以查看他們是否提供這類服務。 如果沒有，您必須遵循下列需求。 
 
 如需必須設定才能進行連線的路由工作階段的說明，請參閱[線路和路由網域](expressroute-circuit-peerings.md)一文。
@@ -31,9 +34,11 @@ ms.openlocfilehash: 5e3c65d9ada5c75e0ddef3b3778a79ca77aa07d8
 > 
 
 ## <a name="ip-addresses-used-for-peerings"></a>用於對等互連的 IP 位址
+
 您必須保留一些 IP 位址來設定您的網路與 Microsoft 的 Enterprise Edge (MSEEs) 路由器之間的路由。 本節提供需求清單並描述必須如何取得和使用這些 IP 位址的相關規則。
 
 ### <a name="ip-addresses-used-for-azure-private-peering"></a>用於 Azure 私人對等互連的 IP 位址
+
 您可以使用私人 IP 位址或公用 IP 位址來設定對等互連。 用來設定路由的位址範圍不得與用來在 Azure 中建立虛擬網路的位址範圍重疊。 
 
 * 您必須為路由介面保留一個 /29 子網路或兩個 /30 子網路。
@@ -45,6 +50,7 @@ ms.openlocfilehash: 5e3c65d9ada5c75e0ddef3b3778a79ca77aa07d8
   * 您必須設定兩個 BGP 工作階段，我們的 [可用性 SLA](https://azure.microsoft.com/support/legal/sla/) 才會有效。  
 
 #### <a name="example-for-private-peering"></a>私人對等互連範例
+
 如果您選擇使用 a.b.c.d/29 來設定對等互連，它會分割成兩個 /30 子網路。 在下列範例中，我們會探討如何使用 a.b.c.d/29 子網路。 
 
 a.b.c.d/29 會分割成 a.b.c.d/30 和 a.b.c.d+4/30 並透過佈建 API 向下傳遞至 Microsoft。 您將使用 a.b.c.d+1 作為主要 PE 的 VRF IP，而 Microsoft 將使用 a.b.c.d+2 作為主要 MSEE 的 VRF IP。 您將使用 a.b.c.d+5 作為次要 PE 的 VRF IP，而 Microsoft 將使用 a.b.c.d+6 作為次要 MSEE 的 VRF IP。
@@ -55,6 +61,7 @@ a.b.c.d/29 會分割成 a.b.c.d/30 和 a.b.c.d+4/30 並透過佈建 API 向下�
 * 192.168.100.132/30 將會指派給 link2 (提供者使用 192.168.100.133，而 Microsoft 使用 192.168.100.134)。
 
 ### <a name="ip-addresses-used-for-azure-public-and-microsoft-peering"></a>用於 Azure 公用與 Microsoft 對等互連的 IP 位址
+
 您必須使用自己的公用 IP 位址來設定 BGP 工作階段。 Microsoft 必須能夠透過路由網際網路登錄和網際網路路由登錄來驗證 IP 位址的擁有權。 
 
 * 您必須使用唯一的 /29 子網路或兩個 /30 子網路來為每個 ExpressRoute 循環 (如果您有多個) 的每個對等互連設定 BGP 對等互連。 
@@ -64,13 +71,17 @@ a.b.c.d/29 會分割成 a.b.c.d/30 和 a.b.c.d+4/30 並透過佈建 API 向下�
   * 您必須設定兩個 BGP 工作階段，我們的 [可用性 SLA](https://azure.microsoft.com/support/legal/sla/) 才會有效。
 
 ## <a name="public-ip-address-requirement"></a>公用 IP 位址需求
+
 ### <a name="private-peering"></a>私人對等互連
+
 您可以選擇使用公用或私人 IPv4 位址進行私人對等互連。 我們會提供流量的端對端隔離，因此在私人對等互連的情況下不可能發生位址與其他客戶重疊。 這些位址不會向網際網路公告。 
 
 ### <a name="public-peering"></a>公用對等互連
+
 Azure 公用對等路徑可讓您連接到裝載於 Azure 中的所有服務的公用 IP 位址。 其中包括 [ExpessRoute 常見問題集](expressroute-faqs.md) 列出的服務，以及由 ISV 裝載於 Microsoft Azure 上的任何服務。 連線到公用對等的 Microsoft Azure 服務時，一律是從您的網路出發到 Microsoft 網路。 您必須將公用 IP 位址使用於目的地為 Microsoft 網路的流量。
 
 ### <a name="microsoft-peering"></a>Microsoft 對等互連
+
 Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑存取的 Microsoft 雲端服務。 服務清單包括 Office 365 服務，例如 Exchange Online、SharePoint Online、商務用 Skype 和 CRM Online。 Microsoft 支援在 Microsoft 對等上的雙向連線能力。 以 Microsoft 雲端服務為目的地的流量，必須使用有效的公用 IPv4 位址，才能進入 Microsoft 網路。
 
 確定您的 IP 位址和 AS 號碼已在下列其中一個登錄中註冊。
@@ -89,22 +100,27 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
 > 
 
 ## <a name="dynamic-route-exchange"></a>動態路由交換
+
 路由交換將會透過 eBGP 通訊協定。 MSEEs 與您的路由器之間會建立 EBGP 工作階段。 不一定需要驗證 BGP 工作階段。 如有必要，也可以設定 MD5 雜湊。 如需設定 BGP 工作階段的資訊，請參閱[設定路由](expressroute-howto-routing-classic.md)和[線路佈建工作流程和線路狀態](expressroute-workflows.md)。
 
 ## <a name="autonomous-system-numbers"></a>自發系統號碼
+
 Microsoft 將使用 AS 12076 進行 Azure 公用、Azure 私人和 Microsoft 對等互連。 我們已保留 65515 至 65520 的 ASN，以供內部使用。 同時支援 16 和 32 位元號碼。
 
 資料傳輸對稱沒有任何相關需求。 轉送與返回路徑可能會周遊不同的路由器配對。 相同的路由必須從橫跨多個屬於您的循環配對的任一端公告。 路由計量不需要完全相同。
 
 ## <a name="route-aggregation-and-prefix-limits"></a>路由彙總與前置詞限制
+
 我們支援透過 Azure 私人對等互連向我們公告最多 4000 個前置詞。 如果已啟用 ExpressRoute 進階附加元件，則可增加至 10,000 個前置詞。 我們接受每個 BGP 工作階段最多 200 個前置詞進行 Azure 公用和 Microsoft 對等互連。 
 
 如果前置詞數目超過此限制，則會捨棄 BGP 工作階段。 我們只會接受私人對等互連連結上的預設路由。 提供者必須從 Azure 公用和 Microsoft 對等互連路徑中篩選出預設路由和私人 IP 位址 (RFC 1918)。 
 
 ## <a name="transit-routing-and-cross-region-routing"></a>傳輸路由和跨區域路由
+
 ExpressRoute 不能設定為傳輸路由器。 您必須依賴連線提供者的傳輸路由服務。
 
 ## <a name="advertising-default-routes"></a>公告預設路由
+
 只有 Azure 私人對等互連工作階段允許預設路由。 在這種情況下，我們會將所有流量從相關聯的虛擬網路路由傳送到您的網路。 在私人對等互連中公告預設路由，將會導致來自 Azure 的網際網路路徑遭到封鎖。 您必須依賴您的公司網路邊緣，為 Azure 中裝載的服務往返路由傳送網際網路的流量。 
 
  若要能夠連接其他 Azure 服務和基礎結構服務，您必須確定已備妥下列其中一個項目︰
@@ -118,6 +134,7 @@ ExpressRoute 不能設定為傳輸路由器。 您必須依賴連線提供者的
 > 
 
 ## <a name="support-for-bgp-communities-preview"></a>BGP 社群支援 (預覽)
+
 本節提供 BGP 社群如何搭配 ExpressRoute 使用的概觀。 Microsoft 將會公告公用和 Microsoft 對等互連路徑中的路由並為路由標記適當的社群值。 這麼做的基本原理和社群值的詳細資料如下所述。 不過，Microsoft 不接受任何標記至向 Microsoft 公告之路由的社群值。
 
 如果您要在地理政治區域內的任何一個對等互連位置透過 ExpressRoute 連接到 Microsoft，您必須能夠存取地理政治界限內所有區域中的所有 Microsoft 雲端服務。 
@@ -185,15 +202,11 @@ Microsoft 會以適當的 BGP 社群值標記透過公用對等互連和 Microso
 > 
 
 ## <a name="next-steps"></a>後續步驟
+
 * 設定 ExpressRoute 連線。
   
   * [建立傳統部署模型的 ExpressRoute 線路](expressroute-howto-circuit-classic.md)或[使用 Azure Resource Manager 建立和修改 ExpressRoute 線路](expressroute-howto-circuit-arm.md)
   * [設定傳統部署模型的路由](expressroute-howto-routing-classic.md)或[設定 Resource Manager 部署模型的路由](expressroute-howto-routing-arm.md)
   * [將傳統 VNet 連結至 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)或[將 Resource Manager VNet 連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

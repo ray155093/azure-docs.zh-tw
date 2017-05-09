@@ -1,4 +1,7 @@
 ## <a name="provision-the-solution"></a>佈建解決方案
+
+如果您尚未在您的帳戶中佈建遠端監視預先設定的解決方案：
+
 1. 使用 Azure 帳戶認證登入 [azureiotsuite.com][lnk-azureiotsuite]，然後按一下 **+** 建立新的解決方案。
 2. 按一下 [遠端監視] 圖格上的 [選取]。
 3. 輸入遠端監視預先設定的解決方案的 [解決方案名稱]  。

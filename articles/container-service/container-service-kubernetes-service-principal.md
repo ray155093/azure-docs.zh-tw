@@ -16,10 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/21/2017
 ms.author: danlep
-translationtype: Human Translation
-ms.sourcegitcommit: 71c6c5ffacf49b907e3e9f488789f31928b25823
-ms.openlocfilehash: e01a9ef7d223e7a5a06475cf419b73959baa803f
-ms.lasthandoff: 02/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: b76020e3e5855a63c416851d9b9adefdbdc5874a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.lasthandoff: 02/22/2017
 
 
 
-在 Azure Container Service 中，Kubernetes 需要 [Azure Active Directory 服務主體](../active-directory/active-directory-application-objects.md)做為服務帳戶，才能與 Azure API 進行互動。 需要服務主體，才能以動態方式管理資源，例如使用者定義的路由及第 4 層 Azure Load Balancer。
+在 Azure Container Service 中，Kubernetes 需要 [Azure Active Directory 服務主體](../active-directory/active-directory-application-objects.md)做為服務帳戶，才能與 Azure API 進行互動。 需要服務主體，才能以動態方式管理資源，例如[使用者定義的路由](../virtual-network/virtual-networks-udr-overview.md)及[第 4 層 Azure Load Balancer](../load-balancer/load-balancer-overview.md)。
 
 本文說明為 Kubernetes 叢集指定服務主體的不同選項。 例如，如果您已安裝並設定 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)，您可以執行 [`az acs create`](https://docs.microsoft.com/en-us/cli/azure/acs#create) 命令，在同一時間建立 Kubernetes 叢集與服務主體。
 

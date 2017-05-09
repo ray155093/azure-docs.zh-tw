@@ -18,10 +18,11 @@ ms.author: magoedte
 ROBOTS: NOINDEX
 redirect_url: /azure/automation/automation-offering-get-started
 redirect_document_id: TRUE
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: fbca3d195290551d37606e231b997a40a602351f
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 90570886b3a1ae0c48683691cb438b5a61195d76
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -66,7 +67,7 @@ ms.lasthandoff: 03/29/2017
 >[!NOTE]
 >若要建立自動化帳戶，您必須是服務管理員角色的成員，或是獲得訂用帳戶存取權的訂用帳戶共同管理員。 您必須已新增成為該訂用帳戶之預設 Active Directory 執行個體的使用者。 此帳戶不需要獲派特殊權限角色。
 >
->若您在新增至訂用帳戶的共同管理員角色之前，並非訂用帳戶之 Active Directory 執行個體的成員，您在新增至 Active Directory 時會成為來賓身分。 在此情況下，您會在 [新增自動化帳戶] 刀鋒視窗上看到「您沒有權限建立...」警告。 warning on the **Add Automation Account** blade.
+>若您在新增至訂用帳戶的共同管理員角色之前，並非訂用帳戶之 Active Directory 執行個體的成員，您在新增至 Active Directory 時會成為來賓身分。 在此情況下，您會在 [新增自動化帳戶] 刀鋒視窗上看到 「您沒有權限建立...」的警告。
 >
 >新增至共同管理員角色的使用者可以先從訂用帳戶的 Active Directory 執行個體中移除並重新新增，使其成為 Active Directory 中的完整使用者。 若要確認這種情況，請從 Azure 入口網站的 [Azure Active Directory] 窗格，選取 [使用者和群組]、選取 [所有使用者]，然後在選取特定使用者之後選取 [設定檔]。 使用者設定檔之下 [使用者類型] 屬性的值不得等於 [來賓]。
 >
@@ -245,7 +246,7 @@ ms.lasthandoff: 03/29/2017
 此指令碼有下列先決條件：
 
 * 此指令碼只能在具有 Azure Resource Manager 模組 2.01 和更新版本的 Windows 10 與 Windows Server 2016 上執行。 不支援在舊版 Windows 上執行。
-* Azure PowerShell 1.0 和更新版本。 如需有關 PowerShell 1.0 版本的資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)。
+* Azure PowerShell 1.0 和更新版本。 如需有關 PowerShell 1.0 版本的資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 * 自動化帳戶，系統會將其參照作為下列 PowerShell 指令碼中 –AutomationAccountName 和 -ApplicationDisplayName 參數的值。
 
 若要取得指令碼所需參數 SubscriptionID、ResourceGroup 和 AutomationAccountName 的值，請執行下列動作︰
@@ -515,7 +516,7 @@ ms.lasthandoff: 03/29/2017
          }
     }
 
-為了協助您輕鬆地在多個訂用帳戶之間進行工作，指令碼另外包含兩行程式碼來支援訂用帳戶內容的參考。 名為 SubscriptionId 的變數資產包含訂用帳戶的識別碼。 在 `Add-AzureRmAccount` Cmdlet 陳述式後面，[`Set-AzureRmContext`](https://msdn.microsoft.com/library/mt619263.aspx) Cmdlet 會以參數集 -SubscriptionId 來指定。 如果變數名稱太過一般，您可加以修改使其包含前置詞，或使用其他命名慣例讓名稱能夠更容易地識別。 或者，您可以使用參數集 -SubscriptionName (而非 -SubscriptionId) 與對應的變數資產。
+為了協助您輕鬆地在多個訂用帳戶之間進行工作，指令碼另外包含兩行程式碼來支援訂用帳戶內容的參考。 名為 SubscriptionId 的變數資產包含訂用帳戶的識別碼。 在 `Add-AzureRmAccount` Cmdlet 陳述式後面，[`Set-AzureRmContext`](/powershell/module/azurerm.profile/set-azurermcontext) Cmdlet 會以參數集 -SubscriptionId 來指定。 如果變數名稱太過一般，您可加以修改使其包含前置詞，或使用其他命名慣例讓名稱能夠更容易地識別。 或者，您可以使用參數集 -SubscriptionName (而非 -SubscriptionId) 與對應的變數資產。
 
 Runbook 中用來驗證的 Cmdlet (`Add-AzureRmAccount`) 會使用 ServicePrincipalCertificate 參數集。 它藉由使用服務主體憑證 (而非使用者認證) 進行驗證。
 

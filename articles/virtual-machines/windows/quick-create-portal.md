@@ -15,10 +15,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 04/13/2017
 ms.author: nepeters
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 8a86cf64dcd65e74285a1073f7494eba0708ddcd
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: df6f1b86b706d58a5c07a4f3de43a1872da61511
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 ---
 
@@ -60,7 +61,7 @@ ms.lasthandoff: 04/15/2017
 2. 在資源群組刀鋒視窗中，按一下資源清單中的 [網路安全性群組]。 NSG 名稱應該是 VM 名稱結尾附加 -nsg。
 3. 按一下 [輸入安全性規則] 標題，以開啟輸入規則清單。 您應會看到清單中已經有 RDP 的規則。
 4. 按一下 [+ 新增] 以開啟 [新增輸入安全性規則] 刀鋒視窗。
-5. 在 [名稱] 中輸入 **IIS**。 確定 [連接埠範圍] 已設為 80 且 [動作] 已設為 [允許]。 按一下 [確定] 。
+5. 在 [名稱] 中輸入 *IIS*。 確定 [連接埠範圍] 已設為 80 且 [動作] 已設為 [允許]。 按一下 [確定] 。
 
 
 ## <a name="connect-to-virtual-machine"></a>連線至虛擬機器

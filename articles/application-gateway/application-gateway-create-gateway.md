@@ -15,10 +15,11 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 12/12/2016
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 119275f335344858cd20b6a17ef87e3ef32b6e12
-ms.openlocfilehash: 8b72a3f26e356af588e9f5c2039bcc525366ce11
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: 79e373a69f3b899dea1f10ac447a0284931648f4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -31,7 +32,7 @@ ms.lasthandoff: 03/01/2017
 > * [Azure Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
 > * [Azure CLI](application-gateway-create-gateway-cli.md)
 
-Azure 應用程式閘道是第&7; 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。 若要尋找完整的支援功能清單，請瀏覽 [應用程式閘道概觀](application-gateway-introduction.md)
+Azure 應用程式閘道是第 7 層負載平衡器。 不論是在雲端或內部部署中，此閘道均提供在不同伺服器之間進行容錯移轉及效能路由傳送 HTTP 要求。 應用程式閘道提供許多應用程式傳遞控制器 (ADC) 功能，包括 HTTP 負載平衡、以 Cookie 為基礎的工作階段同質性、安全通訊端層 (SSL) 卸載、自訂健全狀態探查、多網站支援，以及許多其他功能。 若要尋找完整的支援功能清單，請瀏覽 [應用程式閘道概觀](application-gateway-introduction.md)
 
 本文將逐步引導您完成建立、設定、啟動及刪除應用程式閘道的步驟。
 
@@ -106,11 +107,11 @@ DnsName       :
 
 您可以使用 XML 或設定物件來設定應用程式閘道。
 
-## <a name="configure-the-application-gateway-by-using-xml"></a>使用 XML 設定應用程式閘道
+### <a name="configure-the-application-gateway-by-using-xml"></a>使用 XML 設定應用程式閘道
 
 在下列範例中，您將使用 XML 檔案來設定所有應用程式閘道設定，並將它們認可到應用程式閘道資源。  
 
-### <a name="step-1"></a>步驟 1
+#### <a name="step-1"></a>步驟 1
 
 將下列文字複製到 [記事本]。
 
@@ -211,7 +212,7 @@ DnsName       :
 </ApplicationGatewayConfiguration>
 ```
 
-### <a name="step-2"></a>步驟 2
+#### <a name="step-2"></a>步驟 2
 
 接下來，設定應用程式閘道。 使用 `Set-AzureApplicationGatewayConfig` Cmdlet 搭配組態 XML 檔案。
 
@@ -219,14 +220,14 @@ DnsName       :
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile "D:\config.xml"
 ```
 
-## <a name="configure-the-application-gateway-by-using-a-configuration-object"></a>使用設定物件設定應用程式閘道
+### <a name="configure-the-application-gateway-by-using-a-configuration-object"></a>使用設定物件設定應用程式閘道
 
 下列範例示範如何使用設定物件來設定應用程式閘道。 必須個別設定所有組態項目，然後再將其新增至應用程式閘道組態物件。 建立組態物件之後，您會使用 `Set-AzureApplicationGateway` 命令，將組態認可到先前建立的應用程式閘道資源。
 
 > [!NOTE]
 > 在將值指派到各個設定物件之前，您必須宣告 PowerShell 要用來儲存的物件種類。 建立個別項目的第一行會定義要使用哪些 `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)`。
 
-### <a name="step-1"></a>步驟 1
+#### <a name="step-1"></a>步驟 1
 
 建立所有的個別設定項目。
 
@@ -297,7 +298,7 @@ $rule.Listener = "listener1"
 $rule.BackendAddressPool = "pool1"
 ```
 
-### <a name="step-2"></a>步驟 2
+#### <a name="step-2"></a>步驟 2
 
 將所有的個別設定項目指派給應用程式閘道設定物件 ($appgwconfig)。
 
@@ -385,9 +386,9 @@ Vip           : 138.91.170.26
 DnsName       : appgw-1b8402e8-3e0d-428d-b661-289c16c82101.cloudapp.net
 ```
 
-## <a name="delete-an-application-gateway"></a>刪除應用程式閘道
+## <a name="delete-the-application-gateway"></a>刪除應用程式閘道
 
-刪除應用程式閘道：
+若要刪除應用程式閘道：
 
 1. 使用 `Stop-AzureApplicationGateway` Cmdlet 停止閘道。
 2. 使用 `Remove-AzureApplicationGateway` Cmdlet 移除閘道。

@@ -1,6 +1,6 @@
 **建立新的 CDN 設定檔**
 
-1. 在 [Azure 入口網站](https://portal.azure.com)的左上角，按一下 [新增]。  在 [新增] 刀鋒視窗中，依序選取 [媒體 + CDN] 和 [CDN]。
+1. 在 [Azure 入口網站](https://portal.azure.com)的左上角，按一下 [新增]。  在 [新增] 刀鋒視窗中，依序選取 [Web + 行動] 和 [CDN]。
    
     此時會顯示新的 [CDN 設定檔] 刀鋒視窗。
    

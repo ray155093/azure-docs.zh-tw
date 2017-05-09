@@ -13,36 +13,26 @@ ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
-ms.date: 04/03/2017
+ms.date: 04/27/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: ba9c673676fd0b742eb8bd780b67930333b151b3
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: e9dfb5a744a7c63ef9805b1341236c4f3c57ec4d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
 # <a name="overview-of-application-gateway"></a>應用程式閘道的概觀
 
-Microsoft Azure 應用程式閘道是專用的虛擬設備，會以服務形式提供應用程式傳遞控制器 (ADC)，為您的應用程式提供各種第 7 層負載平衡功能。 它是由多個背景工作執行個體構成，以發揮延展性和高可用性。 它會將 CPU 密集 SSL 終止卸載至應用程式閘道，讓客戶最佳化 Web 伺服陣列的產能。 它也提供其他第 7 層路由功能，包括循環配置連入流量、以 Cookie 為基礎的工作階段同質、URL 路徑型路由，以及在單一應用程式閘道背後代管多個網站的能力。 應用程式閘道可以設定為面向網際網路的閘道、內部專用閘道或兩者混合。 應用程式閘道完全由 Azure 管理、可調整且可用性極高。 它提供一組豐富的診斷和記錄功能，很好管理。 當您建立應用程式閘道時，將會有一個端點 (公用 VIP 或內部 ILB IP) 形成關聯，並用於輸入網路流量。 此 VIP 或 ILB IP 由 Azure Load Balancer 提供，此負載平衡器在傳輸層級 (TCP/UDP) 運作，並將所有連入的網路流量平均分散到應用程式閘道背景工作角色執行個體。 接著，應用程式閘道會根據其組態 (無論是虛擬機器、雲端服務、內部或外部 IP 位址) 路由傳送 HTTP/HTTPS 流量。
+Microsoft Azure 應用程式閘道是專用的虛擬設備，會以服務形式提供應用程式傳遞控制器 (ADC)，為您的應用程式提供各種第 7 層負載平衡功能。 它會將 CPU 密集 SSL 終止卸載至應用程式閘道，讓客戶最佳化 Web 伺服陣列的產能。 它也提供其他第 7 層路由功能，包括循環配置連入流量、以 Cookie 為基礎的工作階段同質、URL 路徑型路由，以及在單一應用程式閘道背後代管多個網站的能力。 Web 應用程式防火牆 (WAF) 也會在應用程式閘道 WAF SKU 中提供，它會保護 Web 應用程式免於遭遇常見的 Web 弱點和攻擊。 應用程式閘道可以設定為面向網際網路的閘道、內部專用閘道或兩者混合。 
 
-Web 應用程式防火牆 (WAF) 也會在應用程式閘道 WAF SKU 中提供，它會保護 Web 應用程式免於遭遇常見的 Web 弱點和攻擊。 Web 應用程式防火牆會根據 [OWASP 核心規則集](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) 3.0 或 2.2.9 中的規則提供保護。
-
-## <a name="differences-between-application-gateway-skus"></a>應用程式閘道 SKU 之間的差異
-
-應用程式閘道隨附兩個 SKU。 標準 SKU 和 Web 應用程式防火牆 (WAF) SKU。
-
-### <a name="standard"></a>標準
-
-標準 SKU 提供 SSL 終止、Cookie 型工作階段同質、循環配置資源負載分配、內容型路由，以及裝載多個網站和安全性增強功能的能力。 應用程式閘道提供的安全性增強功能包括 SSL 原則管理、端對端 SSL 支援及 SSL 終止。
-
-### <a name="web-application-firewall-waf"></a>Web 應用程式防火牆 (WAF)
-
-WAF SKU 提供標準 SKU 提供的所有功能，再加上 [Web 應用程式防火牆](application-gateway-web-application-firewall-overview.md)。 這可提供攻擊偵測規則，進而為 Web 應用程式提供保護來抵禦常見的 Web 弱點和攻擊。
+![案例](./media/application-gateway-introduction/scenario.png)
 
 ## <a name="features"></a>特性
 
-應用程式閘道目前支援具有下列功能的第 7 層應用程式傳遞：
+應用程式閘道目前提供下列功能：
+
 
 * **[Web 應用程式防火牆](application-gateway-webapplicationfirewall-overview.md)** - Azure 應用程式閘道中的 Web 應用程式防火牆 (WAF) 可保護 Web 應用程式，不致遭受常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。
 * **HTTP 負載平衡** - 應用程式閘道提供循環配置資源負載平衡。 負載平衡會在第 7 層進行，而且只會用於 HTTP(S) 流量。
@@ -64,6 +54,9 @@ WAF SKU 提供標準 SKU 提供的所有功能，再加上 [Web 應用程式防�
 * 在同一個長時間執行的 TCP 連線上必須要有多個 HTTP 要求才能路由傳送至或負載平衡至不同後端伺服器的應用程式 (例如內容傳遞網路)。
 * 支援 Websocket 流量的應用程式
 * 保護 Web 應用程式不致遭受常見的 Web 型攻擊，例如 SQL 插入式攻擊、跨網站指令碼攻擊和工作階段攔截。
+* 以不同路由準則 (例如 url 路徑或網域標頭) 為基礎的邏輯流量分配。
+
+應用程式閘道完全由 Azure 管理、可調整且可用性極高。 它提供一組豐富的診斷和記錄功能，很好管理。 當您建立應用程式閘道時，將會有一個端點 (公用 VIP 或內部 ILB IP) 形成關聯，並用於輸入網路流量。 此 VIP 或 ILB IP 由 Azure Load Balancer 提供，此負載平衡器在傳輸層級 (TCP/UDP) 運作，並將所有連入的網路流量平均分散到應用程式閘道背景工作角色執行個體。 接著，應用程式閘道會根據其組態 (無論是虛擬機器、雲端服務、內部或外部 IP 位址) 路由傳送 HTTP/HTTPS 流量。
 
 應用程式閘道負載平衡為 Azure 管理服務，可允許將第 7 層負載平衡器佈建在 Azure 軟體負載平衡器之後。 流量管理員可用來完成如下圖所示的案例，其中的流量管理員會提供不同區域中多個應用程式閘道資源流量的重新導向和可用性，而應用程式閘道會提供跨區域的第 7 層負載平衡。 此案例的範例位於︰[在 Azure 雲端使用負載平衡服務](../traffic-manager/traffic-manager-load-balancing-azure.md)
 
@@ -104,6 +97,7 @@ Azure 應用程式閘道會透過基本或自訂健全狀態探測，自動監�
 ## <a name="faq"></a>常見問題集
 
 如需應用程式閘道的常見問題集，請參閱[應用程式閘道常見問題集](application-gateway-faq.md)。
+
 ## <a name="next-steps"></a>後續步驟
 
 了解應用程式閘道之後，您可以[建立應用程式閘道](application-gateway-create-gateway-portal.md)，或是[建立應用程式閘道 SSL 卸載](application-gateway-ssl-arm.md)來為 HTTPS 連線進行負載平衡。

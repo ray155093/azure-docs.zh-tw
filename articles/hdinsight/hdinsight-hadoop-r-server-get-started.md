@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/13/2017
 ms.author: jeffstok
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: bf245d8885e6d6628f182e36e0a9c99a4854873a
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: bf5b1c0a6e76f712e0be1f16ed1a6b2ac78d68de
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -36,13 +37,9 @@ HDInsight 包含了要整合至您的 HDInsight 叢集的 R 伺服器選項。 �
 > 本文中的步驟是假設您使用密碼來進行作業。
 
 
-### <a name="access-control-requirements"></a>存取控制需求
-
-[!INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
-
 ## <a name="automated-cluster-creation"></a>自動化的叢集建立
 
-您可以使用 ARM 範本、SDK 以及 PowerShell，自動建立 HDInsight R 伺服器。
+您可以使用 Azure Resource Manager 範本、SDK 以及 PowerShell，自動建立 HDInsight R 伺服器。
 
 * 若要使用 Azure Resource Management 範本建立 R Server，請參閱[部署 R Server HDInsight 叢集](https://azure.microsoft.com/resources/templates/101-hdinsight-rserver/)。
 * 若要使用 .NET SDK 建立 R 伺服器，請參閱[在 HDInsight 中使用 .NET SDK 建立以 Linux 為基礎的叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md)。
@@ -589,7 +586,7 @@ remoteLogin(
 )
 ```
 
-## <a name="how-to-scale-microsoft-r-server-operationalization-compute-nodes-on-hdinsight-worker-nodes"></a>如何在 HDInsight 背景工作節點上調整 Microsoft R 伺服器實作的計算節點？
+## <a name="how-to-scale-microsoft-r-server-operationalization-compute-nodes-on-hdinsight-worker-nodes"></a>如何在 HDInsight 背景工作節點上調整 Microsoft R 伺服器實作的計算節點
 
 
 ### <a name="decommission-the-worker-nodes"></a>將背景工作節點解除委任
@@ -629,6 +626,10 @@ Microsoft R 伺服器目前無法透過 Yarn 管理。 如果未將背景工作�
 * 尋找 [URI] 區段，並新增背景工作節點的 IP 和連接埠詳細資料。
 
 ![解除委任背景工作節點 cmdline](./media/hdinsight-hadoop-r-server-get-started/get-started-op-cmd.png)
+
+## <a name="troubleshoot"></a>疑難排解
+
+如果您在建立 HDInsight 叢集時遇到問題，請參閱[存取控制需求](hdinsight-administer-use-portal-linux.md#create-clusters)。
 
 ## <a name="next-steps"></a>後續步驟
 

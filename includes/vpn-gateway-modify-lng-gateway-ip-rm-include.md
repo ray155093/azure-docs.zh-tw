@@ -1,9 +1,8 @@
-若要修改閘道 IP 位址，請使用 'New-AzureRmVirtualNetworkGatewayConnection' Cmdlet。 'Set' Cmdlet 目前不支援修改閘道 IP 位址。
+### <a name="gwipnoconnection"></a>修改區域網路閘道 'GatewayIpAddress' - 沒有閘道連線
 
-### <a name="gwipnoconnection"></a>修改閘道 IP 位址 - 沒有閘道連線
-若要修改尚未擁有連線之區域網路閘道的閘道 IP 位址，請使用以下範例。 您也可以同時修改位址首碼。 請務必使用區域網路閘道的現有名稱來覆寫目前的設定。 否則，您會建立新的區域網路閘道，而不是覆寫現有閘道。
+如果您想要連線的 VPN 裝置已變更其公用 IP 位址，您需要修改區域網路閘道，以反映該變更。 使用範例來修改沒有閘道連線的區域網路閘道。
 
-使用下列範例，並將值替換為您自己的值：
+修改此值時，您也可以同時修改位址首碼。 務必使用區域網路閘道的現有名稱，以便覆寫目前的設定。 如果您使用不同的名稱，您會建立新的區域網路閘道，而不是覆寫現有閘道。
 
 ```powershell
 New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
@@ -11,13 +10,10 @@ New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
 -GatewayIpAddress "5.4.3.2" -ResourceGroupName MyRGName
 ```
 
-### <a name="gwipwithconnection"></a>修改閘道 IP 位址 - 現有閘道連線
-如果閘道連線已存在，您需要先移除連線。 連線移除之後，您可以修改閘道 IP 位址，然後重新建立新連線。 您也可以同時修改位址首碼。 這會導致您 VPN 連線的停機時間。
+### <a name="gwipwithconnection"></a>修改區域網路閘道 'GatewayIpAddress' - 現有閘道連線
 
-> [!IMPORTANT]
-> 請勿刪除 VPN 閘道。 如果您這樣做，您必須重新執行各個步驟來重新建立閘道。 此外，您必須以新的 VPN 閘道 IP 位址來更新內部部署 VPN 裝置。
-> 
-> 
+如果您想要連線的 VPN 裝置已變更其公用 IP 位址，您需要修改區域網路閘道，以反映該變更。 如果閘道連線已存在，您需要先移除連線。 連線移除之後，您可以修改閘道 IP 位址，然後重新建立新連線。 您也可以同時修改位址首碼。 這會導致您 VPN 連線的停機時間。 修改閘道 IP 位址時，您不需要刪除 VPN 閘道。 您只需要移除連線。
+ 
 
 1. 移除連線。 您可以使用 'Get-AzureRmVirtualNetworkGatewayConnection' Cmdlet 來找到連線的名稱。
 

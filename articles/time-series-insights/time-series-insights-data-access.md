@@ -5,7 +5,7 @@ keywords:
 services: time-series-insights
 documentationcenter: 
 author: op-ravi
-manager: santoshb
+manager: jhubbard
 editor: cgronlun
 ms.assetid: 
 ms.service: time-series-insights
@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/21/2017
+ms.date: 05/01/2017
 ms.author: omravi
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 5e9ee102c0375c8c1ac0e0ff6bc93989115b7cfa
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: 143d48b9fc551ade0d0fd043cdb0cf1f3340a9af
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 ---
 
@@ -39,6 +40,7 @@ Time Series Insights 環境有兩種獨立的存取原則︰
 
 這兩種原則能夠清楚區隔環境管理存取權與環境內資料存取權。 比方說，可以設定環境，以便移除環境擁有者/建立者的資料存取權。 獲准讀取環境中資料的使用者與服務，可能無法存取環境的組態。
 
+## <a name="grant-data-access"></a>授與資料存取
 下列步驟示範如何授與使用者主體的資料存取權︰
 
 1.    登入 [Azure 入口網站](https://portal.azure.com)。

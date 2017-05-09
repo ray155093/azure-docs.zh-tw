@@ -13,18 +13,19 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/21/2017
+ms.date: 04/24/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: c3563f3a3fa46d40ba02fe97b3b0ebe3c45caddd
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: af85e4921a2b81c71f1d132c6df591acbe5d3764
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
 # <a name="create-a-virtual-network-with-a-site-to-site-vpn-connection-using-cli"></a>使用 CLI 建立具有站對站 VPN 連線的虛擬網路
 
-本文說明如何使用 Azure CLI 來建立從內部部署網路到 VNet 的站對站 VPN 閘道連線。 本文中的步驟適用於 Resource Manager 部署模型。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
+本文說明如何使用 Azure CLI 來建立從內部部署網路到 VNet 的站對站 VPN 閘道連線。 本文中的步驟適用於 Resource Manager 部署模型。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：<br>
 
 > [!div class="op_single_selector"]
 > * [Resource Manager - Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
@@ -48,7 +49,7 @@ ms.lasthandoff: 04/26/2017
 * 相容的 VPN 裝置 (以及能夠進行設定的人員)。 如需相容 VPN 裝置和裝置組態的詳細資訊，請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。
 * 您的 VPN 裝置對外開放的公用 IPv4 位址。 此 IP 位址不能位於 NAT 後方。
 * 如果您不熟悉位於內部部署網路組態的 IP 位址範圍，您需要與能夠提供那些詳細資料的人協調。 當您建立此組態時，您必須指定 IP 位址範圍的首碼，以供 Azure 路由傳送至您的內部部署位置。 內部部署網路的子網路皆不得與您所要連線的虛擬網路子網路重疊。 
-* CLI 命令的最新版本 (2.0 版或更新版本)。 如需關於安裝 CLI 命令的資訊，請參閱[安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)。
+* CLI 命令的最新版本 (2.0 版或更新版本)。 如需關於安裝 CLI 命令的資訊，請參閱[安裝 Azure CLI 2.0](/cli/azure/install-azure-cli) 和[開始使用 Azure CLI 2.0](/cli/azure/get-started-with-azure-cli)。
 
 ### <a name="example-values"></a>值的範例
 
@@ -75,42 +76,26 @@ GatewayType             = Vpn
 ConnectionName          = VNet1toSite2
 ```
 
-## <a name="Login"></a>1.登入 Azure
+## <a name="Login"></a>1.連線至您的訂用帳戶
 
-使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
-
-```azurecli
-az login
-```
-
-如果您有多個 Azure 訂用帳戶，系統會列出帳戶的所有訂用帳戶。
-
-```azurecli
-Az account list --all
-```
-
-指定您要使用的訂用帳戶。
-
-```azurecli
-Az account set --subscription <replace_with_your_subscription_id>
-```
+[!INCLUDE [CLI login](../../includes/vpn-gateway-cli-login-include.md)]
 
 ## <a name="2-create-a-resource-group"></a>2.建立資源群組
 
 下列範例會在「eastus」位置建立名為「TestRG1」的資源群組。 如果您在該區域中已有想要用來建立 VNet 的資源群組，您可以改為使用該資源群組。
 
 ```azurecli
-az group create -n TestRG1 -l eastus
+az group create --name TestRG1 --location eastus
 ```
 
 ## <a name="VNet"></a>3.建立虛擬網路
 
-如果您還沒有虛擬網路，請建立一個。 在建立虛擬網路時，請確定您指定的位址空間沒有與您在內部部署網路上所擁有的任何位址空間重疊。 
+如果您還沒有虛擬網路，請使用 [az network vnet create](/cli/azure/network/vnet#create) 命令建立一個。 在建立虛擬網路時，請確定您指定的位址空間沒有與您在內部部署網路上所擁有的任何位址空間重疊。 
 
 下列範例會建立名為「TestVNet1」的虛擬網路和「Subnet1」子網路。
 
 ```azurecli
-az network vnet create -n TestVNet1 -g TestRG1 --address-prefix 10.12.0.0/16 -l eastus --subnet-name Subnet1 --subnet-prefix 10.12.0.0/24
+az network vnet create --name TestVNet1 --resource-group TestRG1 --address-prefix 10.12.0.0/16 --location eastus --subnet-name Subnet1 --subnet-prefix 10.12.0.0/24
 ```
 
 ## 4.<a name="gwsub"></a>建立閘道子網路
@@ -121,9 +106,11 @@ az network vnet create -n TestVNet1 -g TestRG1 --address-prefix 10.12.0.0/16 -l 
 
 您所要建立的 VPN 閘道組態會決定您需要為閘道子網路指定的大小。 雖然您可以建立小至 /29 的閘道子網路，但我們會建議您選取 /27 或 /28，以建立包含更多位址的較大子網路。 使用較大的閘道子網路可讓您擁有足夠的 IP 位址，以因應未來可能的組態。
 
+使用 [az network vnet subnet create](/cli/azure/network/vnet/subnet#create) 命令建立子網路閘道。
+
 
 ```azurecli
-az network vnet subnet create --address-prefix 10.12.255.0/27 -n GatewaySubnet -g TestRG1 --vnet-name TestVNet1
+az network vnet subnet create --address-prefix 10.12.255.0/27 --name GatewaySubnet --resource-group TestRG1 --vnet-name TestVNet1
 ```
 
 ## <a name="localnet"></a>5.建立區域網路閘道
@@ -135,20 +122,20 @@ az network vnet subnet create --address-prefix 10.12.255.0/27 -n GatewaySubnet -
 * --gateway-ip-address 是內部部署 VPN 裝置的 IP 位址。 VPN 裝置不能位於 NAT 後方。
 * --local-address-prefixes 是內部部署位址空間。
 
-下列範例示範如何新增具有多個位址首碼的區域網路閘道：
+使用 [az network local-gateway create](/cli/azure/network/local-gateway#create) 命令新增具有多個位址首碼的區域網路閘道：
 
 ```azurecli
-az network local-gateway create --gateway-ip-address 23.99.221.164 -n Site2 -g TestRG1 --local-address-prefixes 10.0.0.0/24 20.0.0.0/24
+az network local-gateway create --gateway-ip-address 23.99.221.164 --name Site2 --resource-group TestRG1 --local-address-prefixes 10.0.0.0/24 20.0.0.0/24
 ```
 
 ## <a name="PublicIP"></a>6.要求公用 IP 位址
 
-請要求公用 IP 位址，以配置給虛擬網路 VPN 閘道。 這是您的 VPN 裝置所設定要連線的 IP 位址。
+VPN 閘道必須具有公用 IP 位址。 您會先要求 IP 位址資源，然後在建立虛擬網路閘道時參考它。 建立 VPN 閘道時，系統會將 IP 位址動態指派給此資源。 VPN 閘道目前僅支援*動態*公用 IP 位址配置。 您無法要求靜態公用 IP 位址指派。 不過，這不表示 IP 位址變更之後已被指派至您的 VPN 閘道。 公用 IP 位址只會在刪除或重新建立閘道時變更。 它不會因為重新調整、重設或 VPN 閘道的其他內部維護/升級而變更。
 
-Resource Manager 部署模型的虛擬網路閘道目前僅支援使用動態配置方法的公用 IP 位址。 但是，這不代表 IP 位址會變更。 VPN 閘道 IP 位址只會在刪除或重新建立閘道時變更。 虛擬網路閘道公用 IP 位址不會因為重新調整、重設或 VPN 閘道的其他內部維護/升級而變更。 
+使用 [az network public-ip create](/cli/azure/network/public-ip#create) 命令來要求動態公用 IP 位址。
 
 ```azurecli
-az network public-ip create -n VNet1GWIP -g TestRG1 --allocation-method Dynamic
+az network public-ip create --name VNet1GWIP --resource-group TestRG1 --allocation-method Dynamic
 ```
 
 ## <a name="CreateGateway"></a>7.建立 VPN 閘道
@@ -157,31 +144,33 @@ az network public-ip create -n VNet1GWIP -g TestRG1 --allocation-method Dynamic
 
 輸入下列值：
 
-* 網站間組態的 --gateway-type 是 Vpn。 閘道器類型永遠是您實作的組態的特定類型。 如需詳細資訊，請參閱[閘道類型](vpn-gateway-about-vpn-gateway-settings.md#gwtype)
+* 網站間組態的 --gateway-type 是 Vpn。 閘道器類型永遠是您實作的組態的特定類型。 如需詳細資訊，請參閱[閘道類型](vpn-gateway-about-vpn-gateway-settings.md#gwtype)。
 * --vpn-type 可以是 RouteBased (在某些文件中稱為動態閘道器)，或 PolicyBased (在某些文件中稱為靜態閘道器)。 這是您所連線裝置之需求的特有設定。 如需 VPN 閘道類型的詳細資訊，請參閱[關於 VPN 閘道組態設定](vpn-gateway-about-vpn-gateway-settings.md#vpntype)。
 * --sku 可以是 Basic、Standard 或 HighPerformance。 某些 SKU 有組態限制。 如需詳細資訊，請參閱[閘道 SKU](vpn-gateway-about-vpngateways.md#gateway-skus)。
 
-執行此命令之後，您不會看到任何意見反應或輸出。 大約需要 45 分鐘的時間來建立閘道。
+使用 [az network vnet-gateway create](/cli/azure/network/vnet-gateway#create) 命令建立 VPN 閘道。 如果您使用 '--no-wait' 參數執行此命令，您不會看到任何意見反應或輸出。 此參數允許在背景中建立閘道。 大約需要 45 分鐘的時間來建立閘道。
 
 ```azurecli
-az network vnet-gateway create -n VNet1GW --public-ip-address VNet1GWIP -g TestRG1 --vnet TestVNet1 --gateway-type Vpn --vpn-type RouteBased --sku Standard --no-wait 
+az network vnet-gateway create --name VNet1GW --public-ip-address VNet1GWIP --resource-group TestRG1 --vnet TestVNet1 --gateway-type Vpn --vpn-type RouteBased --sku Standard --no-wait 
 ```
 
 ## <a name="VPNDevice"></a>8.設定 VPN 裝置
 
-[!INCLUDE [vpn-gateway-configure-vpn-device-rm](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
-若要尋找虛擬網路閘道的公用 IP 位址，請使用下面範例，將這些值替換為自己的值。 為方便閱讀，系統會將輸出格式化為以資料表格式顯示公用 IP 的清單。
+[!INCLUDE [Configure VPN device](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
+  若要尋找虛擬網路閘道的公用 IP 位址，請使用 [az network public-ip list](/cli/azure/network/public-ip#list) 命令。 為方便閱讀，系統會將輸出格式化為以資料表格式顯示公用 IP 的清單。
 
-  ```azurecli
-  az network public-ip list -g TestRG1 -o table
-  ```
+```azurecli
+az network public-ip list --resource-group TestRG1 --output table
+```
 
 ## <a name="CreateConnection"></a>9.建立 VPN 連線
 
 您會在虛擬網路閘道與內部部署 VPN 裝置之間建立站對站 VPN 連線。 請特別注意共用金鑰值，此值必須符合您的 VPN 裝置所設定的共用金鑰值。
 
+使用 [az network vpn-connection create](/cli/azure/network/vpn-connection#create) 命令建立連線。
+
 ```azurecli
-az network vpn-connection create -n VNet1toSite2 -g TestRG1 --vnet-gateway1 VNet1GW -l eastus --shared-key abc123 --local-gateway2 Site2
+az network vpn-connection create --name VNet1toSite2 -resource-group TestRG1 --vnet-gateway1 VNet1GW -l eastus --shared-key abc123 --local-gateway2 Site2
 ```
 
 過一會兒，連接將會建立。
@@ -194,65 +183,9 @@ az network vpn-connection create -n VNet1toSite2 -g TestRG1 --vnet-gateway1 VNet
 
 ## <a name="common-tasks"></a>常見工作
 
-### <a name="to-view-local-network-gateways"></a>檢視區域網路閘道
+本節包含使用站對站組態時很實用的常見命令。 如需 CLI 網路命令的完整清單，請參閱 [Azure CLI - 網路](/cli/azure/network)。
 
-```azurecli
-az network local-gateway list --resource-group TestRG1
-```
-
-### <a name="modify"></a>修改區域網路閘道的 IP 位址首碼
-如果您需要變更區域網路閘道首碼，請使用下列指示。 每次進行變更時，您都必須指定完整的首碼清單，而不只是指定您想要變更的首碼。
-
-- **如果您已指定連線**，請使用下列範例。 指定由現有首碼以及您想要新增之首碼所組成的完整首碼清單。 在此範例中，10.0.0.0/24 和 20.0.0.0/24 已存在。 我們要新增首碼 30.0.0.0/24 和 40.0.0.0/24。
-
-  ```azurecli
-  az network local-gateway update --local-address-prefixes 10.0.0.0/24 20.0.0.0/24 30.0.0.0/24 40.0.0.0/24 -n VNet1toSite2 -g TestRG1
-  ```
-
-- **如果您未指定連線**，請使用您在建立區域網路閘道時所使用的同一個命令。 您也可以使用此命令來更新 VPN 裝置的閘道 IP 位址。 請在您還未擁有連線時，才使用這個命令。 在此範例中，10.0.0.0/24、20.0.0.0/24、30.0.0.0/24 和 40.0.0.0/24 已存在。 我們只指定我們想要保留的首碼。 在此案例中為 10.0.0.0/24 和 20.0.0.0/24。
-
-  ```azurecli
-  az network local-gateway create --gateway-ip-address 23.99.221.164 -n Site2 -g TestRG1 --local-address-prefixes 10.0.0.0/24 20.0.0.0/24
-  ```
-
-### <a name="modifygwipaddress"></a>修改區域網路閘道的閘道 IP 位址
-
-此組態中的 IP 位址是您要連線之 VPN 裝置的 IP 位址。 如果 VPN 裝置的 IP 位址有所變更，您可以修改此值。 即使已有閘道連線，您仍可變更 IP 位址。
-
-```azurecli
-az network local-gateway update --gateway-ip-address 23.99.222.170 -n Site2 -g TestRG1
-```
-
-在檢視結果時，請確認其中已包括 IP 位址首碼。
-
-  ```azurecli
-  "localNetworkAddressSpace": { 
-    "addressPrefixes": [ 
-      "10.0.0.0/24", 
-      "20.0.0.0/24", 
-      "30.0.0.0/24" 
-    ] 
-  }, 
-  "location": "eastus", 
-  "name": "Site2", 
-  "provisioningState": "Succeeded",  
-  ```
-
-### <a name="to-view-the-virtual-network-gateway-public-ip-address"></a>檢視虛擬網路閘道的公用 IP 位址
-
-若要尋找虛擬網路閘道的公用 IP 位址，請使用下列範例。 為方便閱讀，系統會將輸出格式化為以資料表格式顯示公用 IP 的清單。
-
-```azurecli
-az network public-ip list -g TestRG1 -o table
-```
-
-### <a name="to-verify-the-shared-key-values"></a>確認共用金鑰值
-
-請確認共用金鑰值和您用於 VPN 裝置組態的值相同。 如果不同，請使用裝置的值再次執行連線，或是以傳回的值將裝置更新。 這兩個值必須相符。
-
-```azurecli
-az network vpn-connection shared-key show --connection-name VNet1toSite2 -g TestRG1
-```
+[!INCLUDE [local network gateway common tasks](../../includes/vpn-gateway-common-tasks-cli-include.md)] 
 
 ## <a name="next-steps"></a>後續步驟
 

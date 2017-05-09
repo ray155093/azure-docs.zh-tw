@@ -11,11 +11,13 @@ ms.devlang: na
 ms.workload: search
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
-ms.date: 12/08/2016
+ms.date: 04/26/2017
 ms.author: ashmaka
-translationtype: Human Translation
-ms.sourcegitcommit: 455c4847893175c1091ae21fa22215fd1dd10c53
-ms.openlocfilehash: 1e18f20e202c199036ff2012dcc6d415898cac7f
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: a6e9e504f4ccb8fb1e0a151dcfe76339fcc8051a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -28,7 +30,7 @@ ms.openlocfilehash: 1e18f20e202c199036ff2012dcc6d415898cac7f
 > 
 > 
 
-在提交搜尋要求給 Azure 搜尋服務時，除了在應用程式搜尋方塊中實際輸入的單字以外，還可以指定幾個參數。 這些查詢參數可讓您更深入地控制全文檢索搜尋體驗。
+在提交搜尋要求給 Azure 搜尋服務時，除了在應用程式搜尋方塊中實際輸入的單字以外，還可以指定幾個參數。 這些查詢參數可讓您更深入地控制[全文檢索搜尋體驗](search-lucene-query-architecture.md)。
 
 以下清單簡短說明查詢參數在 Azure 搜尋服務中的常見用法。 如需查詢參數和其行為的完整說明，請參閱 [REST API](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) 和 [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.searchparameters#microsoft_azure_search_models_searchparameters#properties_summary) 的詳細資料頁面。
 
@@ -59,10 +61,5 @@ Azure 搜尋服務可讓您輕鬆地對搜尋結果分頁。 透過使用 `top` 
 
 ## <a name="hit-highlighting"></a>搜尋結果醒目提示
 在 Azure 搜尋服務中，只要使用 `highlight`、`highlightPreTag` 和 `highlightPostTag` 參數就可強調提示搜尋結果中符合搜尋查詢的確切部分。 您可以指定哪些可搜尋欄位應該強調其相符的文字，以及指定要在 Azure 搜尋服務傳回的相符文字開頭和結尾附加的確切字串標記。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

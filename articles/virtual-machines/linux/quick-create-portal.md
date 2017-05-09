@@ -15,10 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 04/13/2017
 ms.author: nepeters
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: ab29f01980bc7c3a8f12aaa55ff35baa3bf3f9fb
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 8bfc4892343dd62c958ce6937c4879a2b029cb88
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 ---
 
@@ -71,7 +72,7 @@ ssh-keygen -t rsa -b 2048
 2. 在資源群組刀鋒視窗中，按一下資源清單中的 [網路安全性群組]。 NSG 名稱應該是 VM 名稱結尾附加 -nsg。
 3. 按一下 [輸入安全性規則] 標題，以開啟輸入規則清單。 您應會看到清單中已經有 RDP 的規則。
 4. 按一下 [+ 新增] 以開啟 [新增輸入安全性規則] 刀鋒視窗。
-5. 在 [名稱] 中輸入 **nginx**。 確定 [連接埠範圍] 已設為 80 且 [動作] 已設為 [允許]。 按一下 [確定] 。
+5. 在 [名稱] 中輸入 *nginx*。 確定 [連接埠範圍] 已設為 80 且 [動作] 已設為 [允許]。 按一下 [確定] 。
 
 
 ## <a name="connect-to-virtual-machine"></a>連線至虛擬機器
@@ -104,9 +105,9 @@ apt-get -y install nginx
 
 ## <a name="view-the-ngix-welcome-page"></a>檢視 NGIX 歡迎使用頁面
 
-安裝 NGINX 後，現在經由網際網路在您的 VM 上開啟連接埠 80 - 您可以使用所選的網頁瀏覽器來檢視預設 NGINX 歡迎使用畫面。 請務必使用您記載的 `publicIpAddress` 來瀏覽預設網頁。 
+安裝 NGINX 後，現在經由網際網路在您的 VM 上開啟連接埠 80 - 您可以使用所選的網頁瀏覽器來檢視預設 NGINX 歡迎使用畫面。 從 VM 的刀鋒視窗中取得 [公用 IP 位址] 並使用它來瀏覽預設網頁。
 
-![NGINX 預設網站](./media/quick-create-cli/nginx.png) 
+![預設 NGINX 網站](./media/quick-create-cli/nginx.png) 
 ## <a name="delete-virtual-machine"></a>刪除虛擬機器
 
 若不再需要，可刪除資源群組、虛擬機器和所有相關資源。 若要這樣做，請選取虛擬機器刀鋒視窗中的資源群組，然後按一下 [刪除]。
