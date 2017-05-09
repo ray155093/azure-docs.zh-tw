@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
 ms.openlocfilehash: 03f423fff9f4105bdb3a53b245514bde506b9743
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/15/2017
 
 
@@ -62,7 +63,7 @@ ms.lasthandoff: 04/15/2017
 5. 在 [映像選取] 頁面上，選取與集合一起顯示的映像。 您可以上傳您自己的映像檔，也可以選取內建映像。 選擇可能有助於使用者識別集合內容與用途的映像。
    
     ![輸入新集合的資訊](media/machine-learning-gallery-collections/create-collection-page-2.png)
-6. 在 [設定] 頁面上，針對**可見性**，選取集合為 [公開] (任何人都可以檢視集合) 或 [不列示] (僅限有集合直接連結的使用者可以檢視)。
+6. 在 [設定] 頁面上，針對**可見性**，選取集合為 [公開] \(任何人都可以檢視集合) 或 [不列示] \(僅限有集合直接連結的使用者可以檢視)。
    
    > [!IMPORTANT]
    > 您將集合設定為 [公開]，然後選取 [建立] 之後，則無法將集合變更為 [不列示]。
