@@ -15,9 +15,10 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 04/12/2017
 ms.author: sasubram
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
 ms.openlocfilehash: 4e620f3d76caa25ac0e5afb134f37ffe263935f0
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/13/2017
 
 
@@ -52,7 +53,7 @@ B2B 來賓使用者是從合作夥伴組織受邀來與主辦組織共同作業�
 1. 如果主辦組織使用取用者位址來邀請員工
   1. 這不符合我們的授權原則，因此目前不建議使用。
 
-2.    如果主辦組織從另一個集團組織新增使用者
+2. 如果主辦組織從另一個集團組織新增使用者
   1. 這是使用 B2B API 來邀請使用者的情況，但這並不是傳統上的 B2B。 在理想情況下，我們應該讓這些組織邀請其他組織使用者作為成員 (我們的 API 允許這麼做)。 在此情況下，必須將授權指派給這些成員，讓他們存取邀請組織中的資源。
 
   2. 有些組織可能會想要將另一個組織的使用者新增為「來賓」來作為一項原則。 這裡有兩個案例：

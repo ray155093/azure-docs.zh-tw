@@ -12,11 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 05/08/2017
 ms.author: curtand
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: a4a78b92c8bb9e8aff25fd724ed78283de8f2fd8
 ms.openlocfilehash: 92b9c88ec49424c96c3bd21bc5c4ce390352c17b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/13/2017
 
 
 ---
@@ -58,9 +60,4 @@ ms.openlocfilehash: 92b9c88ec49424c96c3bd21bc5c4ce390352c17b
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 * [什麼是 Azure Active Directory？](active-directory-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

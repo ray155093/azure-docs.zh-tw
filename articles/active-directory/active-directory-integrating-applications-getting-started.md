@@ -1,9 +1,10 @@
 ---
+
 title: "開始將 Azure AD 與應用程式整合 | Microsoft Docs"
 description: "本文章是整合 Azure Active Directory (AD) 與在內部部署應用程式和雲端應用程式的入門指南。"
 services: active-directory
 documentationcenter: 
-author: ihenkel
+author: MarkusVi
 manager: femila
 editor: 
 ms.assetid: db6d210d-c970-49e9-bd20-36d984bcd1c3
@@ -12,11 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/23/2017
-ms.author: inhenk
-translationtype: Human Translation
+ms.date: 05/04/2017
+ms.author: markvi
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 54e6bf0953135855d4dda2bc83c8dc06212c6eb5
 ms.openlocfilehash: 6b3f6889c747e72ee1c592b1b0dfb1d03d700ad3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -91,10 +94,5 @@ ms.openlocfilehash: 6b3f6889c747e72ee1c592b1b0dfb1d03d700ad3
 
 ## <a name="see-also"></a>另請參閱
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 
