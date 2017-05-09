@@ -14,9 +14,10 @@ ms.tgt_pltfrm: powershell
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: magoedte;eslesar
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: 2a6daccdc70ff285a6993da0b2fdcfbe85e635cf
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -114,7 +115,7 @@ ms.lasthandoff: 04/27/2017
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在 [中樞] 功能表上，依序按一下 [所有資源]  和您的自動化帳戶名稱。
 3. 在 [自動化帳戶] 刀鋒視窗上，按一下 [DSC 組態]。
-4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig] (先前匯入的組態名稱)。
+4. 在 [DSC 組態] 刀鋒視窗上，按一下 [TestConfig] \(先前匯入的組態名稱)。
 5. 在 [TestConfig 組態] 刀鋒視窗的 [編譯作業] 圖格上，按一下任何列出的工作。 [編譯作業]  刀鋒視窗隨即開啟，並標示編譯作業的啟動日期。
    
     ![[編譯作業] 刀鋒視窗的螢幕擷取畫面](./media/automation-dsc-getting-started/CompilationJob.png)
