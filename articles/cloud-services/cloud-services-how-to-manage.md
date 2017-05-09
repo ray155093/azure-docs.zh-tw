@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/27/2016
 ms.author: adegeo
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: 76f59384db37967a9210ba5efa49b25788d21cdc
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -49,7 +50,7 @@ ms.lasthandoff: 04/27/2017
 
     要讓 Azure 保證服務在雲端服務更新期間有 99.95% 的可用性，每個角色都至少必須有兩個角色執行個體 (虛擬機器)。 如此才能讓一個虛擬機器在受到更新時，還有另一個虛擬機器可以處理用戶端要求。
 
-8. 按一下 [確定]  (核取記號) 開始更新服務。
+8. 按一下 [確定]  \(核取記號) 開始更新服務。
 
 ## <a name="how-to-swap-deployments-to-promote-a-staged-deployment-to-production"></a>作法：交換部署以使預備部署升格為生產部署
 使用 [交換]  將雲端服務的預備部署升格為生產部署。 當您決定部署新版的雲端服務時，可以在雲端服務預備環境中預備並測試這個新版本，同時讓您的客戶繼續在生產部署中使用目前版本。 當您準備好要將新版部署升格為生產部署時，可以使用 [交換]  將這兩個部署的 URL 位址互換。

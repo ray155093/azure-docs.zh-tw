@@ -15,9 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/21/2017
 ms.author: cherylmc
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: de39e768697425b98fb615697e57918c8c5d3853
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -158,7 +159,7 @@ Azure 會使用每個區域網路站台中指定的設定，來決定如何路�
 
 ## <a name="step-5---configure-testvnet4-settings"></a>步驟 5 - 進行 TestVNet4 設定
 
-重複 [建立本機網站][](#localsite) 和 [建立虛擬網路閘道][](#gw) 的步驟以設定 TestVNet4，並且視需要取代值。 如果您執行這個操作作為練習，請使用[範例值](#vnetvalues)。
+重複 [建立本機網站](#localsite) 和 [建立虛擬網路閘道](#gw) 的步驟以設定 TestVNet4，並且視需要取代值。 如果您執行這個操作作為練習，請使用[範例值](#vnetvalues)。
 
 ## <a name="step-6---update-the-local-sites"></a>步驟 6 - 更新本機網站
 
