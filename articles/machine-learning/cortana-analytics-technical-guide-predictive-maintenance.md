@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: fboylu
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: c78604783bb21f9162939637e04e60aa8131ce11
 ms.openlocfilehash: 6464dbf22fc0084ee7d50f3117dae9b6566614cd
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/25/2017
 
 
@@ -181,7 +182,7 @@ Power BI 會連接到 Azure SQL Database 做為其資料來源，即預測結果
      ![編輯查詢](media/cortana-analytics-technical-guide-predictive-maintenance/edit-queries.png)
    * 您會看到兩個資料表，**RemainingUsefulLife** 和 **PMResult**。 選取第一個資料表，然後在右側 [查詢設定] 面板的 [套用的步驟] 下，按一下 [來源]旁的 ![Query settings icon](media/cortana-analytics-technical-guide-predictive-maintenance/icon-query-settings.png)。 略過任何出現的警告訊息。
    * 在快顯視窗中，將 [伺服器] 和 [資料庫] 取代為您自己的伺服器和資料庫名稱，然後按一下 [確定]。 針對伺服器名稱，請確定您指定連接埠 1433 (**YourSoutionName.database.windows.net, 1433**)。 讓 [資料庫] 欄位保持為 [pmaintenancedb]。 忽略畫面上出現的警告訊息。
-   * 在下一個快顯視窗中，您會在左側窗格上看到兩個選項 ([Windows] 和 [資料庫])。 按一下 [資料庫]，填入您的 [使用者名稱] 和 [密碼] (這是當您首次部署解決方案並建立 Azure SQL Database 時輸入的使用者名稱和密碼)。 在 [選取要套用這些設定的層級] 中，請勾選資料庫層級選項。 然後按一下 [連接]。
+   * 在下一個快顯視窗中，您會在左側窗格上看到兩個選項 ([Windows] 和 [資料庫])。 按一下 [資料庫]，填入您的 [使用者名稱] 和 [密碼] \(這是當您首次部署解決方案並建立 Azure SQL Database 時輸入的使用者名稱和密碼)。 在 [選取要套用這些設定的層級] 中，請勾選資料庫層級選項。 然後按一下 [連接]。
    * 按一下第二個資料表 **PMResult**，然後在右側 [查詢設定] 面板的 [套用的步驟] 下，按一下 [來源] 旁的 ![Navigation icon](media/cortana-analytics-technical-guide-predictive-maintenance/icon-navigation.png)，依上述步驟所示更新伺服器和資料庫名稱，然後按一下 [確定]。
    * 一旦引導您回到上一頁，請關閉視窗。 訊息將會蹦現 - 按一下 [套用] 。 最後，按一下 [儲存]  按鈕以儲存變更。 您的 Power BI 檔案現在已建立與伺服器的連線。 如果視覺效果是空的，請確定將視覺效果上的選取範圍都清除，以將所有資料視覺化，成法是按一下圖例右上角的橡皮擦圖示。 使用重新整理按鈕在視覺效果上反映新的資料。 最初，您只會在視覺效果上看到種子資料，因為 Data Factory 排定為每 3 個小時重新整理。 3 小時後，當您重新整理資料時，您會看到新的預測反映在視覺效果中。
 3. (選擇性) 將冷路徑儀表板發佈至 [Power BI 線上版](http://www.powerbi.com/)。 請注意，這個步驟需要 Power BI 帳戶 (或 Office 365 帳戶)。
