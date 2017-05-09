@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: marsma
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: e99294069f92f51d212b38b1c5ee12232c6dc77d
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -68,7 +69,7 @@ ms.lasthandoff: 04/27/2017
 1. 在功能表刀鋒視窗的 [BLOB SERVICE] 下方，選取 [自訂網域] 以開啟 [自訂網域] 刀鋒視窗。
 1. 登入網域註冊機構的網站，然後前往 DNS 管理頁面。 您可能會在 **Domain Name**、**DNS** 或 **Name Server Management** 等區段中發現此頁面。
 1. 尋找管理 CNAME 的區段。 您可能需要移至進階設定頁面，並尋找 **CNAME**、**Alias** 或 **Subdomains** 單字。
-1. 建立新的 CNAME 記錄並提供子網域別名，如 **www** 或 **photos**。 接著，以 **mystorageaccount.blob.core.windows.net** 格式 (其中 *mystorageaccount* 代表儲存體帳戶的名稱) 提供主機名稱 (即 Blob 服務端點)。 在 Azure 入口網站[](https://portal.azure.com)中，主機名稱會顯示於 [自訂網域] 刀鋒視窗的項目 #1。
+1. 建立新的 CNAME 記錄並提供子網域別名，如 **www** 或 **photos**。 接著，以 **mystorageaccount.blob.core.windows.net** 格式 (其中 *mystorageaccount* 代表儲存體帳戶的名稱) 提供主機名稱 (即 Blob 服務端點)。 在 [Azure 入口網站](https://portal.azure.com)中，主機名稱會顯示於 [自訂網域] 刀鋒視窗的項目 #1。
 1. 在 [Azure 入口網站](https://portal.azure.com) [自訂網域] 刀鋒視窗的文字方塊中，輸入包含子網域的自訂網域名稱。 例如，若您的網域為 **contoso.com**，且子網域別名為 **www**，請輸入 **www.contoso.com**。 若您的子網域為 **photos**，請輸入 **photos.contoso.com**。 子網域為*必要項目*。
 1. 在 [自訂網域] 刀鋒視窗上選取 [儲存]，以註冊您的自訂網域。 若註冊成功，則您會看見訊息指出已成功更新儲存體帳戶。
 

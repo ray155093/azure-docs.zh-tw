@@ -14,9 +14,10 @@ ms.topic: article
 ms.workload: required
 ms.date: 03/27/2017
 ms.author: ruturajd
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: 3bd182a775377f912914c0c7a63fe41811146e1a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -161,7 +162,7 @@ ms.lasthandoff: 04/27/2017
 1. 在安裝後，擷取 VM 中每個 SCSI 硬碟的 SCSI 識別碼。 若要這樣做，請將管理伺服器 VM 關機。 在 VMware 的 VM 屬性中，以滑鼠右鍵按一下 VM 項目 > [編輯設定]  > [選項]。
 2. 選取 [進階] > [一般項目]，然後按一下 [組態參數]。 當機器正在執行時，此選項無法使用。 若要讓此選項可用，必須將機器關機。
 3. 執行下列其中一個動作：
- * 如果 **disk.EnableUUID** 列存在，請確定其值已設定為 [True] (區分大小寫)。 如果值已設定為 [True]，您可以取消，然後在機器開機之後，於客體作業系統內部測試 SCSI 命令。
+ * 如果 **disk.EnableUUID** 列存在，請確定其值已設定為 [True] \(區分大小寫)。 如果值已設定為 [True]，您可以取消，然後在機器開機之後，於客體作業系統內部測試 SCSI 命令。
  * 如果 **disk.EnableUUID** 列不存在，請按一下 [新增列]，並以 [True] 值新增它。 請勿使用雙引號。
 
 #### <a name="install-additional-packages"></a>安裝其他套件
