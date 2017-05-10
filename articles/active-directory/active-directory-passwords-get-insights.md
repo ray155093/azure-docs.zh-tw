@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/28/2017
 ms.author: joflore
-translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: b010891a177f27eef99bd65e0d940c83375aa5ec
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: 7375d2d3c237c3b1c2dcdab44b2fcb0000ff961c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/04/2017
 
 
 ---
@@ -202,16 +203,12 @@ ms.lasthandoff: 04/27/2017
 4. 查看 [活動記錄檔]  區段。
 5. 選取 [密碼重設活動] 報告或 [密碼重設登錄活動] 報告。
 
-   ![][001]
-
 ## <a name="view-password-reset-registration-activity-in-the-classic-portal"></a>在傳統入口網站中檢視密碼重設註冊活動
 密碼重設註冊活動報告會顯示您的組織中發生的所有密碼重設註冊。  當任何使用者已成功在密碼重設註冊入口網站 ([http://aka.ms/ssprsetup](http://aka.ms/ssprsetup)) 註冊驗證資訊，則密碼重設註冊會顯示在此報告中。
 
 * **時間範圍上限**：30 天
 * **資料列數目上限**：75,000
 * **可下載**：是，透過 CSV 檔案
-
-    ![][002]
 
 ### <a name="description-of-report-columns"></a>報告資料行說明
 下列清單詳細說明每個報告資料行：
@@ -234,8 +231,6 @@ ms.lasthandoff: 04/27/2017
 * **時間範圍上限**：30 天
 * **資料列數目上限**：75,000
 * **可下載**：是，透過 CSV 檔案
-
-    ![][003]
 
 ### <a name="description-of-report-columns"></a>報告資料行說明
 下列清單詳細說明每個報告資料行：
@@ -308,8 +303,4 @@ ms.lasthandoff: 04/27/2017
 * [**常見問題集**](active-directory-passwords-faq.md) - 取得常見問題的解答
 * [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何快速移難排解服務的問題
 * [**深入了解**](active-directory-passwords-learn-more.md) - 深入探索服務運作方式的技術細節
-
-[001]: ./media/active-directory-passwords-get-insights/001.jpg "Image_001.jpg"
-[002]: ./media/active-directory-passwords-get-insights/002.jpg "Image_002.jpg"
-[003]: ./media/active-directory-passwords-get-insights/003.jpg "Image_003.jpg"
 

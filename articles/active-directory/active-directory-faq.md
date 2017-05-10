@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 04/24/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 521169d52d37e644ba416e27c9adc8587868ab40
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: 899a45d59099dec147c96e4cd175536e859e88f8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/04/2017
 
 
 ---
@@ -126,7 +127,7 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 - - -
 **問︰如果我在嘗試變更密碼時不記得現有的 Office 365/Azure AD 密碼，我可以做什麼？**
 
-**答︰**在這種情況下有幾種做法。  使用自助式密碼重設 (SSPR) (如果可用的話)。  SSPR 能否運作取決於其設定方式。  如需詳細資訊，請參閱[密碼重設入口網站的運作方式](active-directory-passwords-learn-more.md#how-does-the-password-reset-portal-work)。
+**答︰**在這種情況下有幾種做法。  使用自助式密碼重設 (SSPR) (如果可用的話)。  SSPR 能否運作取決於其設定方式。  如需詳細資訊，請參閱[密碼重設入口網站的運作方式](active-directory-passwords-best-practices.md)。
 
 對於 Office 365 使用者，您的系統管理員可以使用[重設使用者密碼](https://support.office.com/en-us/article/Admins-Reset-user-passwords-7A5D073B-7FAE-4AA5-8F96-9ECD041ABA9C?ui=en-US&rs=en-US&ad=US)所述的步驟重設密碼。
 
@@ -146,7 +147,7 @@ Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別�
 這是指全域通用的密碼，例如 “Password” 和 “123456” 的任何變體。
 
 **問︰來自可疑來源 (殭屍網路、Tor 端點) 的登入要求是否會在 B2C 租用戶中遭到封鎖，或者需要基本或進階版本租用戶？**</br>
-我們沒有適用於所有 B2C 租用戶的閘道，可篩選要求並提供殭屍網路的一些防護功能。 
+我們沒有適用於所有 B2C 租用戶的閘道，可篩選要求並提供殭屍網路的一些防護功能。
 
 ## <a name="application-access"></a>應用程式存取
 **問︰哪裡可以找到與 Azure AD 預先整合的應用程式及其功能的清單？**

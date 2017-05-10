@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/21/2017
+ms.date: 05/04/2017
 ms.author: nitinme
-translationtype: Human Translation
-ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
-ms.openlocfilehash: 2aa5542dc095beaf951bad2b0361a3acc4468f2d
-ms.lasthandoff: 04/05/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 37211b961644fdc5567147cde946f86afb9b1aa9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -76,10 +77,9 @@ ms.lasthandoff: 04/05/2017
 
 4. 選取現有的 Data Lake Store 帳戶，並輸入將儲存叢集特定檔案的根資料夾路徑。
 
-    ![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.1.adls.storage.png "將服務主體新增至 HDInsight 叢集")
-
-
     在上方的螢幕擷取畫面中，根資料夾路徑是 /clusters/myhdiadlcluster，其中 *myhdiadlcluster* 是要建立的叢集名稱。 在此情況下，請確定 Data Lake Store 帳戶中存在 /cluster 資料夾。 建立叢集時，會建立 *myhdiadlcluster* 資料夾。 同樣地，如果根路徑設為 /hdinsight/clusters/data/myhdiadlcluster，確保 Data Lake Store 帳戶中存在 /hdinsight/clusters/data/。
+
+    ![將服務主體新增至 HDInsight 叢集](./media/data-lake-store-hdinsight-hadoop-use-portal/hdi.adl.1.adls.storage.png "將服務主體新增至 HDInsight 叢集")
 
 5. 按一下 [Data Lake Store 存取] 以設定 Data Lake Store 帳戶和 HDInsight 叢集之間的存取。 如需指示，請參閱[設定 HDInsight 叢集和 Data Lake Store 之間的存取](#configure-access-between-hdinsight-cluster-and-data-lake-store)。
 

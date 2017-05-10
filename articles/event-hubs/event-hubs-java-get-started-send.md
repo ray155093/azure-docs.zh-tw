@@ -12,12 +12,13 @@ ms.workload: core
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/30/2017
+ms.date: 05/03/2017
 ms.author: jotaub;sethm
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: fe10aaca3232e5baa0b726b7262a6e9e8ce6b638
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: 45776b0920f65ae9749b00978656bcefa2bf01a8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/04/2017
 
 
 ---
@@ -38,7 +39,7 @@ ms.lasthandoff: 04/18/2017
 ## <a name="send-messages-to-event-hubs"></a>將訊息傳送至事件中心
 適用於事件中樞的 Java 用戶端程式庫可以在來自 [Maven 中央儲存機制](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22)的 Maven 專案中使用，而且可在您的 Maven 專案檔內使用下列相依性宣告來參考：    
 
-``` XML
+```XML
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-eventhubs</artifactId>
@@ -50,9 +51,9 @@ ms.lasthandoff: 04/18/2017
 
 如果是簡單事件發行者，請針對事件中樞用戶端類別匯入 *com.microsoft.azure.eventhubs* 套件，以及針對公用程式類別匯入 *com.microsoft.azure.servicebus* 套件，例如，與 Azure 服務匯流排訊息用戶端共用的常見例外狀況。 
 
-針對下列範例，在您最喜愛的 Java 開發環境中，先為主控台/殼層應用程式建立新的 Maven 專案。 此類別將稱為 ```Send```。     
+針對下列範例，在您最喜愛的 Java 開發環境中，先為主控台/殼層應用程式建立新的 Maven 專案。 此類別將稱為 `Send`。     
 
-``` Java
+```Java
 
 import java.io.IOException;
 import java.nio.charset.*;
@@ -71,7 +72,7 @@ public class Send
 
 使用您建立事件中樞時所使用的值，來取代命名空間和事件中樞名稱。
 
-``` Java
+```Java
     final String namespaceName = "----ServiceBusNamespaceName-----";
     final String eventHubName = "----EventHubName-----";
     final String sasKeyName = "-----SharedAccessSignatureKeyName-----";
@@ -81,7 +82,7 @@ public class Send
 
 接著將字串轉換為它的 utf-8 位元組編碼方式，藉以建立單一事件。 然後我們會從連接字串建立新的事件中樞用戶端執行個體，然後傳送訊息。   
 
-``` Java 
+```Java 
 
     byte[] payloadBytes = "Test AMQP message from JMS".getBytes("UTF-8");
     EventData sendEvent = new EventData(payloadBytes);
@@ -93,13 +94,13 @@ public class Send
 
 ``` 
 
-<!-- Links -->
-[Event Hubs overview]: event-hubs-overview.md
-
 ## <a name="next-steps"></a>後續步驟
 您可以造訪下列連結以深入了解事件中樞︰
 
 * [使用 EventProcessorHost 接收事件](event-hubs-java-get-started-receive-eph.md)
-* [事件中樞概觀](event-hubs-what-is-event-hubs.md)
+* [事件中樞概觀][Event Hubs overview]
 * [建立事件中樞](event-hubs-create.md)
 * [事件中樞常見問題集](event-hubs-faq.md)
+
+<!-- Links -->
+[Event Hubs overview]: event-hubs-overview.md

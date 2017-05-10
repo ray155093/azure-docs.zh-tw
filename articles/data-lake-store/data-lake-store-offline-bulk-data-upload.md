@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 02/06/2017
 ms.author: nitinme
-translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: dae5491962b22453c517da35539ce09463d8802d
-ms.lasthandoff: 03/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: c852374b6f6ca58d807631fdfcc8e42abf99b673
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -188,7 +189,7 @@ Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，更安
     }
 }
 ````
-如需詳細資訊，請參閱[使用 Azure Data Factory 將資料從 Azure 儲存體 Blob 移到 Azure Data Lake Store](../data-factory/data-factory-azure-datalake-connector.md#example-copy-data-from-azure-blob-to-azure-data-lake-store)。
+如需詳細資訊，請參閱[使用 Azure Data Factory 將資料從 Azure 儲存體 Blob 移到 Azure Data Lake Store](../data-factory/data-factory-azure-datalake-connector.md)。
 
 ## <a name="reconstruct-the-data-files-in-azure-data-lake-store"></a>在 Azure Data Lake Store 中重新建構資料檔
 我們從 319 GB 的檔案開始著手並將它分割成數個較小的檔案，以便使用 Azure 匯入/匯出服務來傳輸它。 現在，該資料在 Azure Data Lake Store 中，我們可以將檔案重新建構成其原始大小。 您可以使用下列 Azure PowerShell Cmdlet 來這麼做。
