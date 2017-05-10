@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: ashwink
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
 ms.openlocfilehash: f0ab9d4bea3a3f7f1e1a0af2206e7b5641be1288
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/03/2017
 
 
@@ -35,7 +36,7 @@ Webhook 可讓您將 Azure 警示通知路由到其他系統進行後處理或�
 
 * 選擇做為 [調整依據]  的度量。
 
-![調整依據](./media/insights-autoscale-to-webhook-email/insights-autoscale-scale-by.png)
+![調整依據](./media/insights-autoscale-to-webhook-email/insights-autoscale-notify.png)
 
 ## <a name="virtual-machine-scale-sets"></a>虛擬機器擴展集
 對於使用 Resource Manager 建立的較新虛擬機器 (虛擬機器擴展集)，您可以使用 REST API、Resource Manager 範本、PowerShell 和 CLI 設定此項目。 目前尚無入口網站介面。
@@ -126,5 +127,4 @@ Webhook 可以使用權杖型驗證來驗證，您會在其中儲存 Webhook URI
 | oldCapacity |yes |自動調整進行調整動作時的當前 (舊) 執行個體計數 |
 | newCapacity |yes |自動調整要將資源調整為此數目的新執行個體計數 |
 | properties |否 |選用。 <索引鍵, 值> 組 (例如，字典 <字串, 字串>)。 properties 欄位是選擇性的。 在自訂 UI 或邏輯應用程式的工作流程中，您可以輸入可使用承載傳遞的索引鍵和值。 另一個將自訂屬性傳回給連出 Webhook 呼叫的替代做法，是使用 Webhook URI 本身 (做為查詢參數) |
-
 

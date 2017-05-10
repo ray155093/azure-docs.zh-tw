@@ -14,11 +14,12 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/13/2016
+ms.date: 04/07/2017
 ms.author: sashan
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
 ms.openlocfilehash: 2ddbe1766a978f9849c310a72086f95cbb68cd83
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/14/2017
 
 
@@ -68,8 +69,7 @@ SQL Database 會每週自動執行完整資料庫備份、每小時自動執行�
 
 > [!IMPORTANT]
 > 若要使用作用中異地複寫和自動容錯移轉群組，您必須是訂用帳戶擁有者，或是在 SQL Server 中擁有系統管理權限。 您可以使用 Azure 入口網站、PowerShell 或 REST API，透過訂用帳戶的權限，或使用 Transact-SQL 透過 SQL Server 中的權限，來設定和容錯移轉。
->
->
+> 
 
 如果您的應用程式符合下列任何準則，就使用主動式異地複寫：
 
@@ -131,8 +131,8 @@ SQL Database 會每週自動執行完整資料庫備份、每小時自動執行�
 若您使用作用中異地複寫和自動容錯移轉群組做為復原機制，則可設定自動容錯移轉原則或使用[手動容錯移轉](sql-database-disaster-recovery.md#failover-to-geo-replicated-secondary-database)。 啟動容錯移轉後，次要資料庫就會成為新的主要資料庫，並準備好記錄新的交易以及回應查詢 - 只會遺失尚未複寫的資料。 如需關於設計容錯移轉程序的資訊，請參閱[設計雲端災害復原應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)。
 
 > [!NOTE]
-> 資料中心恢復連線時，舊的主要複本會自動重新連線至新的主要複本，且會成為次要資料庫。 若您需要將主要複本重新定位至原始區域，可手動啟動規劃的容錯移轉 (容錯回復)。
->
+> 資料中心恢復連線時，舊的主要複本會自動重新連線至新的主要複本，且會成為次要資料庫。 若您需要將主要複本重新定位至原始區域，可手動啟動規劃的容錯移轉 (容錯回復)。 
+> 
 
 ### <a name="perform-a-geo-restore"></a>執行異地還原
 如果您使用自動備份搭配異地備援儲存體複寫作為復原機制，請 [使用異地還原起始資料庫復原](sql-database-disaster-recovery.md#recover-using-geo-restore)。 復原通常會在 12 小時內進行 - 視最後一次每小時差異備份的執行和複寫時間而定，最多可能遺失 1 小時的資料。 在復原完成之前，資料庫無法記錄任何交易或回應任何查詢。

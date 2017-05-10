@@ -12,11 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/07/2017
+ms.date: 05/01/2017
 ms.author: dastrock
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: ba958d029e5bf1bc914a2dff4b6c09282d578c67
 ms.openlocfilehash: 4a71d02d37e55ae08035632c323283438b3f66c6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -36,7 +38,6 @@ ms.openlocfilehash: 4a71d02d37e55ae08035632c323283438b3f66c6
 完成了嗎？ 您現在應該看一下您的 Microsoft 應用程式清單，該清單有可能空白。  讓我們改變這點。
 
 按一下 [新增應用程式]，並為它命名。  入口網站將會指派全域唯一的應用程式識別碼給您的應用程式，以便稍後在您的程式碼中使用。  如果您的應用程式包含的伺服器端元件需要用來呼叫 API (例如：Office、Azure 或您自己的 Web API) 的存取權杖，您也會想在此處建立**應用程式密碼**。
-<!-- TODO: Link for app secrets -->
 
 接下來，加入您的 app 將使用的平台。
 
@@ -54,10 +55,5 @@ ms.openlocfilehash: 4a71d02d37e55ae08035632c323283438b3f66c6
 您現在已有 Microsoft app，您可以完成我們提供的其中一個 v2.0 快速啟動教學課程。  以下是一些建議：
 
 [!INCLUDE [active-directory-v2-quickstart-table](../../../includes/active-directory-v2-quickstart-table.md)]
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/23/2017
 ms.author: rachelap, glenga
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
 ms.openlocfilehash: e6f5798b260c4923452dcc96c18d4839f5c34bfc
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/25/2017
 
 
@@ -131,6 +132,6 @@ Functions 支援「取用」主控方案和 App Service 主控方案。 如需�
 + [設定 Azure App Service 設定](../app-service-web/web-sites-configure.md)
 + [Azure Functions 的持續部署](functions-continuous-deployment.md)
 
-[!INCLUDE [Getting Started Note](../../includes/functions-get-help.md)]
+
 
 
