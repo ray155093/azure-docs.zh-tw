@@ -11,17 +11,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 05/04/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 53fa0876ce1e3e2b2ac47316f37c5a0de2591d41
-ms.openlocfilehash: 2a050e5817ab884c9d4337cc1cc76e298299dba3
-ms.lasthandoff: 02/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 39049c7a1e2a4d61ef62bd06cda9ef1bb2c50c0b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 ---
 
-# <a name="publish-applications-on-separate-networks-and-locations-using-connector-groups---public-preview"></a>使用連接器群組在個別的網路和位置上發佈應用程式 - 公開預覽版
+# <a name="publish-applications-on-separate-networks-and-locations-using-connector-groups"></a>使用連接器群組在個別的網路和位置上發佈應用程式
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-application-proxy-connectors-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-application-proxy-connectors.md)
@@ -29,7 +30,7 @@ ms.lasthandoff: 02/28/2017
 
 ## <a name="azure-ad-application-proxy-and-connector-groups"></a>Azure AD 應用程式 Proxy 與連接器群組
 
-客戶在越來越多的案例和應用程式中利用 Azure AD 的應用程式 Proxy。 因此我們啟用更多的拓撲使應用程式 Proxy 更具彈性。 您可以建立應用程式 Proxy 連接器群組 – 可指派特定連接器以提供特定應用程式的新功能。 這項功能為應用程式 Proxy 產生過去不可能的許多使用案例。 在私人預覽階段期間，我們目睹大客戶啟用連接器群組來大幅提升其即時應用程式 Proxy 部署。 
+客戶在越來越多的案例和應用程式中利用 Azure AD 的應用程式 Proxy。 因此我們啟用更多的拓撲使應用程式 Proxy 更具彈性。 您可以建立應用程式 Proxy 連接器群組 – 可指派特定連接器以提供特定應用程式的新功能。 這項功能為應用程式 Proxy 產生過去不可能的許多使用案例。 
 
 基本概念是，每個應用程式 Proxy 連接器都會指派給連接器群組。 隸屬於相同連接器群組的所有連接器會做為高可用性及負載平衡的個別群組。 根據預設，所有的連接器屬於預設群組。 系統管理員可以建立新的群組，並在 Azure 入口網站變更這些指派。 
 
