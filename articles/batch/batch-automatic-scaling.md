@@ -15,10 +15,11 @@ ms.workload: multiple
 ms.date: 04/03/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
-ms.openlocfilehash: 0563f6c3aa4508ef2acac6b17dc85ecbf11bb154
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: f1156572dece1dd59d5a258b670c8fb4f3e3d0e6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -34,8 +35,8 @@ ms.lasthandoff: 04/07/2017
 
 > [!IMPORTANT]
 > 每個 Azure Batch 帳戶限制為可用於處理的核心 (以及計算節點) 數目上限。 Batch 服務建立的新節點數目最多達到該核心限制。 Batch 服務不會達到自動調整公式所指定的目標計算節點數目。 如需檢視和增加帳戶配額的相關資訊，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md) 。
-> 
-> 
+>
+>
 
 ## <a name="automatic-scaling-formulas"></a>自動調整公式
 自動調整公式是您定義的字串值，其中包含一或多個陳述式。 自動調整公式已指派給集區的 [autoScaleFormula][rest_autoscaleformula] 元素 (Batch REST) 或 [CloudPool.AutoScaleFormula][net_cloudpool_autoscaleformula] 屬性 (Batch .NET)。 Batch 集區會使用您的公式來決定集區中可供下一個間隔處理的目標計算節點數目。 公式字串的大小不得超過 8 KB、最多只能包含 100 個陳述式 (以分號隔開)，而且可以包含換行和註解。
@@ -110,8 +111,8 @@ $TargetDedicated=min(maxNumberofVMs, pendingTaskSamples);
 
 > [!TIP]
 > 上述服務定義的唯讀變數是可提供各種方法來存取相關聯資料的「物件」。 如需詳細資訊，請參閱下面的[取得範例資料](#getsampledata)。
-> 
-> 
+>
+>
 
 ## <a name="types"></a>類型
 公式中支援以下 **類型** 。
@@ -121,7 +122,7 @@ $TargetDedicated=min(maxNumberofVMs, pendingTaskSamples);
 * doubleVecList
 * string
 * timestamp：timestamp 是包含下列成員的複合結構：
-  
+
   * 年
   * month (1-12)
   * day (1-31)
@@ -130,7 +131,7 @@ $TargetDedicated=min(maxNumberofVMs, pendingTaskSamples);
   * minute (00-59)
   * second (00-59)
 * timeinterval
-  
+
   * TimeInterval_Zero
   * TimeInterval_100ns
   * TimeInterval_Microsecond
@@ -253,8 +254,8 @@ $runningTasksSample = $RunningTasks.GetSample(60 * TimeInterval_Second, 120 * Ti
 
 > [!IMPORTANT]
 > 我們**強烈建議**您***避免「只」*`GetSample(1)`依賴自動調整公式中的** 。 這是因為 `GetSample(1)` 基本上會向 Batch 服務表示：「不論您多久以前擷取最後一個樣本，請將它提供給我」。 因為它只是單一樣本，而且可能是較舊的樣本，所以可能無法代表最近工作或資源狀態的全貌。 如果您使用 `GetSample(1)`，請確定它是較大的陳述式，而且不是您的公式所依賴的唯一資料點。
-> 
-> 
+>
+>
 
 ## <a name="metrics"></a>度量
 您可以在定義公式時使用**資源**和**工作**計量。 您會根據您取得和評估的度量資料來調整集區中專用節點的目標數目。 如需每個度量的詳細資訊，請參閱上面的 [變數](#variables) 一節。
@@ -367,12 +368,12 @@ pool.AutoScaleEvaluationInterval = TimeSpan.FromMinutes(30);
 pool.Commit();
 ```
 
-除了 Batch REST API 和 .NET SDK，您可以使用任何其他 [Batch SDK](batch-apis-tools.md#batch-development-apis)、[Batch PowerShell Cmdlet](batch-powershell-cmdlets-get-started.md) 和 [Batch CLI](batch-cli-get-started.md) 來搭配自動調整運作。
+除了 Batch REST API 和 .NET SDK，您可以使用任何其他 [Batch SDK](batch-apis-tools.md#azure-accounts-for-batch-development)、[Batch PowerShell Cmdlet](batch-powershell-cmdlets-get-started.md) 和 [Batch CLI](batch-cli-get-started.md) 來搭配自動調整運作。
 
 > [!IMPORTANT]
 > 當您建立已啟用自動調整的集區時，您**不得** 指定 `targetDedicated` 參數。 此外，如果您想要對已啟用自動調整的集區手動調整大小 (例如使用 [BatchClient.PoolOperations.ResizePool][net_poolops_resizepool])，則必須先在集區**停用**自動調整，然後調整其大小。
-> 
-> 
+>
+>
 
 ### <a name="automatic-scaling-interval"></a>自動調整間隔
 依預設，Batch 服務會根據其自動調整公式每隔 **15 分鐘**調整集區的大小。 不過，可使用下列的集區屬性設定此間隔：
@@ -384,8 +385,8 @@ pool.Commit();
 
 > [!NOTE]
 > 自動調整目前不適合作為低於一分鐘的變更回應，而是要在您執行工作負載時逐步調整您的集區大小。
-> 
-> 
+>
+>
 
 ## <a name="enable-autoscaling-on-an-existing-pool"></a>在現有集區啟用自動調整
 如果您已經使用 targetDedicated  參數建立具有指定計算節點數目的集區，您仍可以在現有集區啟用自動調整。 每個 Batch SDK 都會提供「啟用自動調整」作業，例如︰
@@ -397,14 +398,14 @@ pool.Commit();
 
 * 如果在您發出「啟用自動調整」要求時，集區的自動調整目前**已停用**，您「必須」在發出要求時指定有效的自動調整公式。 您可以「選擇性地」指定自動調整評估間隔。 如果您未指定間隔，則會使用預設值 15 分鐘。
 * 如果集區的自動調整目前**已啟用**，您可以指定自動調整公式、評估間隔，或同時指定兩者。 您不能略過這兩個屬性。
-  
+
   * 如果您指定新的自動調整評估間隔，則會停止現有的評估排程並啟動新的排程。 新排程的開始時間發出「啟用自動調整」要求時的時間。
   * 如果您省略自動調整公式或評估間隔，則 Batch 服務會繼續使用該設定目前的值。
 
 > [!NOTE]
 > 如果建立集區時指定 *targetDedicated* 參數的值，則評估自動調整公式時會忽略此值。
-> 
-> 
+>
+>
 
 此 C# 程式碼片段使用 [Batch .NET][net_api] 程式庫，在現有的集區上啟用自動調整：
 
@@ -443,10 +444,10 @@ myBatchClient.PoolOperations.EnableAutoScale(
 若要評估自動調整公式，您必須先使用**有效的公式**在集區**啟用自動調整**。 如果您想要在尚未啟用自動調整的集區上測試公式，您可以在第一次啟用自動調整時使用一行公式 `$TargetDedicated = 0`。 然後，使用下列其中之一來評估您想要測試的公式︰
 
 * [BatchClient.PoolOperations.EvaluateAutoScale](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.evaluateautoscale.aspx) 或 [EvaluateAutoScaleAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.evaluateautoscaleasync.aspx)
-  
+
     這些 Batch .NET 方法都需要現有集區的識別碼以及包含要評估之自動調整公式的字串。 評估結果會包含在傳回的 [AutoScaleEvaluation](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.autoscaleevaluation.aspx) 執行個體中。
 * [評估自動調整公式](https://msdn.microsoft.com/library/azure/dn820183.aspx)
-  
+
     在這個 REST 要求中，於 URI 中指定集區識別碼，以及於要求主體的 *autoScaleFormula* 元素中指定自動調整公式。 作業的回應會包含可能與公式相關的任何錯誤資訊。
 
 在這個 [Batch .NET][net_api] 程式碼片段中，我們會先評估公式，再將它套用至 [CloudPool][net_cloudpool]。 如果集區並未啟用自動調整，我們會先加以啟用。

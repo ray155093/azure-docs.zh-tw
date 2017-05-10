@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/18/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 9ddf19c008c35525419a357436b1a969a4b19205
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 9489fdc3c5388a7510bc4411b4abb05fa72fbf4f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -229,7 +230,7 @@ Zookeeper 預設會將 Kafka 代理程式的網域名稱傳回給用戶端。 �
 
     出現提示時，請使用叢集的 HTTPS 使用者名稱和密碼。 此時會顯示叢集的 Ambari Web UI。
 
-2. 若要檢視 Kafka 上的資訊，請從左邊的清單選取 [Kafka]。 
+2. 若要檢視 Kafka 上的資訊，請從左邊的清單選取 [Kafka]。
 
     ![反白顯示 Kafka 的服務清單](./media/hdinsight-apache-kafka-connect-vpn-gateway/select-kafka-service.png)
 
@@ -271,7 +272,7 @@ Zookeeper 預設會將 Kafka 代理程式的網域名稱傳回給用戶端。 �
 
 ## <a name="connect-to-the-vpn-gateway"></a>連線到 VPN 閘道
 
-若要從 __Windows 用戶端__連線到 VPN 閘道，請使用[設定點對站連線](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md#a-nameconnectapart-7---connect-to-azure)文件的＜連線到 Azure＞一節。
+若要從 __Windows 用戶端__連線到 VPN 閘道，請使用[設定點對站連線](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md#a-nameclientcertificatea7---install-an-exported-client-certificate)文件的＜連線到 Azure＞一節。
 
 ## <a name="remote-kafka-client"></a>遠端 Kafka 用戶端
 
@@ -319,7 +320,7 @@ Zookeeper 預設會將 Kafka 代理程式的網域名稱傳回給用戶端。 �
   ```
 
     將 `'ip_address'` 項目取代為從本節的步驟 1 傳回的位址。
-    
+
     > [!NOTE]
     > 此程式碼會將 `test message` 字串傳送至 `testtopic` 主題。 HDInsight 上 Kafka 的預設組態是建立主題 (如果不存在)。
 

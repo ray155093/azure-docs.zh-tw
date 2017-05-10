@@ -13,10 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
-ms.openlocfilehash: f35da063fc637f315b52ea38b63d2c8222cecd21
-ms.lasthandoff: 04/05/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 0a8f2de60ab60b980b29c4dbc78045bd20693b9d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -197,29 +198,29 @@ FreshDesk 需以手動的方式佈建。
 1. 登入您的 **Freshdesk** 租用戶。
 2. 在頂端的功能表中，按一下 [系統管理員] 。
    
-       ![Admin](./media/active-directory-saas-freshdesk-tutorial/IC776772.png "Admin")
+   ![管理](./media/active-directory-saas-freshdesk-tutorial/IC776772.png "管理")
 
 3. 在 [一般設定] 索引標籤上，按一下 [代理程式]。
    
-       ![Agents](./media/active-directory-saas-freshdesk-tutorial/IC776773.png "Agents")
+   ![代理程式](./media/active-directory-saas-freshdesk-tutorial/IC776773.png "代理程式")
 
 4. 按一下 [新增代理程式] 。
    
-       ![New Agent](./media/active-directory-saas-freshdesk-tutorial/IC776774.png "New Agent")
+    ![新代理程式](./media/active-directory-saas-freshdesk-tutorial/IC776774.png "新代理程式")
 
 5. 在 [代理程式資訊] 對話方塊中，執行下列步驟：
    
-       ![Agent Information](./media/active-directory-saas-freshdesk-tutorial/IC776775.png "Agent Information")
+   ![代理程式資訊](./media/active-directory-saas-freshdesk-tutorial/IC776775.png "代理程式資訊")
    
-       a. In the **Full Name** textbox, type the name of the Azure AD account you want to provision.
+   a. 在 [全名]  文字方塊中，輸入您要佈建的 Azure AD 帳戶名稱。
 
-       b. In the **Email** textbox, type the Azure AD email address of the Azure AD account you want to provision.
+   b.這是另一個 C# 主控台應用程式。 在 [電子郵件]  文字方塊中，輸入您要佈建的 Azure AD 帳戶的電子郵件地址。
 
-       c. In the **Title** textbox, type the title of the Azure AD account you want to provision.
+   c. 在 [職稱]  文字方塊中，輸入您要佈建的 Azure AD 帳戶的職稱。
 
-       d. Select **Agents role**, and then click **Assign**.
+   d. 選取 [代理程式角色]，然後按一下 [指派]。
        
-       e. Click **Save**.     
+   e. 按一下 [儲存] 。     
    
     >[!NOTE]
     >Azure AD 帳戶的持有者會收到一封包含連結的電子郵件，以在啟用帳戶前進行確認。 

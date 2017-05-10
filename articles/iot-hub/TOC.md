@@ -106,6 +106,7 @@
 ### 設定檔案上傳
 #### [使用入口網站](iot-hub-configure-file-upload.md)
 #### [使用 PowerShell](iot-hub-configure-file-upload-powershell.md)
+#### [使用 CLI 2.0](iot-hub-configure-file-upload-cli.md)
 ### [大量管理 IoT 裝置](iot-hub-bulk-identity-mgmt.md)
 ### [用量度量](iot-hub-metrics.md)
 ### [作業監視](iot-hub-operations-monitoring.md)

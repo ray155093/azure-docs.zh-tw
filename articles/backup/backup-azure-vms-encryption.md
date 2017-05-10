@@ -15,10 +15,11 @@ ms.workload: storage-backup-recovery
 ms.date: 04/24/2017
 ms.author: pajosh;markgal;trinadhk
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: da6c497e10d31dbc98703090a8f7699d0841faa8
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: d76fb43a1b045b98a14ae91ac339d53e9a48f1de
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/04/2017
 
 
 ---
@@ -83,11 +84,11 @@ ms.lasthandoff: 04/26/2017
 使用[將 Azure VM 備份至復原服務保存庫](backup-azure-arm-vms.md)一文中所述的步驟來觸發備份作業。
 
 ### <a name="continue-backups-of-already-backed-up-vms-with-encryption-enabled"></a>將啟用加密之已備份 VM 繼續備份  
-如果您的 VM 已在復原服務保存庫中進行備份，並於稍後已啟用加密，您必須將備份服務的權限提供給金鑰保存庫，才可繼續進行備份。 您可以使用 [PowerShell 文件](backup-azure-vms-automation.md#backup-azure-vms)的**啟用備份**區段中所述的步驟，在 PowerShell 中提供這些權限。 
+如果您的 VM 已在復原服務保存庫中進行備份，並於稍後已啟用加密，您必須將備份服務的權限提供給金鑰保存庫，才可繼續進行備份。 您可以使用 [PowerShell 文件](backup-azure-vms-automation.md)的**啟用備份**區段中所述的步驟，在 PowerShell 中提供這些權限。 
 
 ## <a name="restore-encrypted-vm"></a>還原已加密的 VM
 若要還原加密的 VM，請先使用[選擇 VM 還原組態](backup-azure-arm-restore-vms.md#choosing-a-vm-restore-configuration)的＜還原備份的磁碟＞一節中所述的步驟來還原磁碟。 之後，您可以使用下列其中一個選項：
-* 使用[從還原的磁碟建立 VM](backup-azure-vms-automation.md#create-a-vm-from-restored-disks) 中所述的 PowerShell 步驟，從還原的磁碟建立完整的 VM。 
+* 使用[從還原的磁碟建立 VM](backup-azure-vms-automation.md#create-a-vm-from-restored-disks) 中所述的 PowerShell 步驟，從還原的磁碟建立完整的 VM。
 * 或者，[使用產生作為還原磁碟一部分的範本](backup-azure-arm-restore-vms.md#use-templates-to-customize-restore-vm)，從還原的磁碟建立 VM。 只可將範本用於 2017 年 4 月 26 日之後建立的復原點。
 
 ## <a name="troubleshooting-errors"></a>錯誤疑難排解
