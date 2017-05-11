@@ -14,9 +14,10 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: ff60ebaddd3a7888cee612f387bd0c50799496ac
 ms.openlocfilehash: 331d82a987aebe422ca2f560d856dad9f1b733f3
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/05/2017
 
 
@@ -44,7 +45,7 @@ Node.js 包含核心執行時期的一組最低功能。
         PS C:\Node\expressapp> Set-AzureServiceProjectRole WebRole1 Node 0.10.21
    
     > [!NOTE]
-    > **Add-AzureNodeWebRole** 預設會使用較舊版的 Node.js。 上方的 **Set-AzureServiceProjectRole** 陳述式會指示 Azure 使用&0;.10.21 版本的節點。  請注意這些參數會區分大小寫。  您可以檢查 **WebRole1\package.json** 中的 **engines** 屬性，確認已選取正確的 Node.js 版本。
+    > **Add-AzureNodeWebRole** 預設會使用較舊版的 Node.js。 上方的 **Set-AzureServiceProjectRole** 陳述式會指示 Azure 使用 0.10.21 版本的節點。  請注意這些參數會區分大小寫。  您可以檢查 **WebRole1\package.json** 中的 **engines** 屬性，確認已選取正確的 Node.js 版本。
     > 
     > 
 

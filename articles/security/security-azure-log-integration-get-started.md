@@ -14,9 +14,10 @@ ms.tgt_pltfrm: na
 ums.workload: na
 ms.date: 04/07/2017
 ms.author: TomSh
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
 ms.openlocfilehash: 2752ae92fbbbb284756215a53dcab054881bd08a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/13/2017
 
 
@@ -120,7 +121,7 @@ Azure 記錄整合服務會從其安裝所在的電腦收集遙測資料。
  2. 在 Azure 主控台瀏覽窗格中，捲動至底部，按一下 [更多服務]。
 
  ![更多服務](./media/security-azure-log-integration-get-started/more-services.png)
- 3. 在**篩選**文字方塊中輸入**儲存體**。 按一下 [儲存體帳戶]  (這會在您輸入**儲存體**之後顯示)
+ 3. 在**篩選**文字方塊中輸入**儲存體**。 按一下 [儲存體帳戶] \(這會在您輸入**儲存體**之後顯示)
 
   ![篩選方塊](./media/security-azure-log-integration-get-started/filter.png)
  4. 將顯示儲存體帳戶清單，按兩下您指派給記錄儲存體的帳戶。
