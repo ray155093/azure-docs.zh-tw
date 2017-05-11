@@ -13,9 +13,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
 ms.openlocfilehash: c07773be6e4a2274287920de9420f4c8b96f58e1
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/31/2017
 
 
@@ -50,7 +51,7 @@ Azure RemoteApp 的優點之一，就是您可以從任何裝置存取應用程�
 * Windows 10 IoT Enterprise
 
 ## <a name="downloading-the-client"></a>下載用戶端
-不論您使用的平台為何，都能在 [遠端桌面用戶端下載] [](https://www.remoteapp.windowsazure.com/ClientDownload/AllClients.aspx) 頁面找到您需要存取 RemoteApp 的用戶端。
+不論您使用的平台為何，都能在 [遠端桌面用戶端下載](https://www.remoteapp.windowsazure.com/ClientDownload/AllClients.aspx) 頁面找到您需要存取 RemoteApp 的用戶端。
 
 按一下不同的連結，將直接開始下載用戶端，或將您送到應用程式市集中該平台的用戶端下載頁面。 依照畫面上的指定來安裝用戶端。
 
