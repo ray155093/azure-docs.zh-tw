@@ -20,6 +20,9 @@
 #### [模擬的資料](iot-suite-raspberry-pi-kit-node-get-started-simulator.md)
 #### [使用真實的感應器](iot-suite-raspberry-pi-kit-node-get-started-basic.md)
 #### [實作韌體更新](iot-suite-raspberry-pi-kit-node-get-started-advanced.md)
+## 連線您的 Intel NUC 閘道
+### [模擬的資料](iot-suite-gateway-kit-get-started-simulator.md)
+### [使用真實的感應器](iot-suite-gateway-kit-get-started-sensortag.md)
 
 # 作法
 ## 連接模擬的裝置
@@ -33,6 +36,7 @@
 ## [在遠端監視解決方案中建立自訂規則](iot-suite-custom-rule.md)
 ## [遠端監視解決方案中的裝置資訊](iot-suite-remote-monitoring-device-info.md)
 ## [為連線的處理站部署閘道](iot-suite-connected-factory-gateway-deployment.md)
+## [自訂已連線處理站](iot-suite-connected-factory-customize.md)
 
 # 參考
 ## [安全性架構](iot-security-architecture.md)

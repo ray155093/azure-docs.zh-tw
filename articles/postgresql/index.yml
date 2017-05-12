@@ -1,0 +1,59 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: "適用於 PostgreSQL 的 Azure 資料庫文件"
+metadata:
+  title: "Azure PostgreSQL 文件 - 教學課程和 API 參考"
+  description: "適用於 PostgreSQL 的 Azure 資料庫位於 Microsoft 雲端中，是以開放原始碼 PostgreSQL 伺服器引擎為基礎的關聯式資料庫服務，供開發人員使用。"
+  services: app-service
+  author: jasonwhowell
+  manager: jhubbard
+  ms.service: postgresql
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 01/23/2017
+  ms.author: jasonh
+abstract:
+  description: "適用於 PostgreSQL 的 Azure 資料庫是以開放原始碼 Postgres 伺服器引擎為基礎的關聯式資料庫服務。  它是一個完全受管的資料庫即服務，可透過可預測效能、安全性、高可用性及動態延展性處理任務關鍵性工作負載。  您可以使用開放原始碼工具，以及您選擇的平台，透過適用於 PostgreSQL 的 Azure 資料庫來開發應用程式。  了解如何透過我們的快速入門、教學課程和範例使用適用於 PostgreSQL 的 Azure 資料庫。"
+sections:
+- title: "5 分鐘快速入門"
+  items:
+  - type: paragraph
+    text: 'Learn how to create a PostgreSQL database using:'
+  - type: list
+    style: icon48
+    items: 
+    - image: 
+        src: https://docs.microsoft.com/en-us/azure/sql-database/media/index/portal.svg
+      text: Azure Portal
+      href: /azure/postgresql/quickstart-create-server-database-portal
+    - image: 
+        src: https://docs.microsoft.com/en-us/azure/sql-database/media/index/cli.svg
+      text: Azure CLI
+      href: /azure/postgresql/quickstart-create-server-database-azure-cli
+- title: "逐步教學課程"
+  items:
+  - type: paragraph
+    text: 'Learn how to:'
+  - type: list
+    style: ordered
+    items:
+    - html: Design a Database&#58; <a href="/azure/postgresql/tutorial-design-database-using-azure-portal">Azure portal</a> | <a href="/azure/postgresql/tutorial-design-database-using-azure-cli">Azure CLI</a>
+    - html: <a href="/azure/app-service-web/app-service-web-tutorial-docker-python-postgresql-app?toc=%2fazure%2fpostgresql%2ftoc.json">Build a Web App using Python and the CLI</a>
+- title: "範例"
+  items:
+  - type: paragraph
+    text: Find scripts to manage common tasks.
+  - type: list
+    style: unordered
+    className: spaced noBullet
+    items:
+    - html: <a href="/azure/postgresql/sample-scripts-azure-cli">Azure CLI</a>
+- title: "參考"
+  items:
+  - type: list
+    style: cards
+    className: cardsD
+    items:
+    - title: "命令列"
+      html: <p><a href="/cli/azure">Azure CLI</a></p>

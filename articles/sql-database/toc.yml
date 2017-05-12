@@ -41,6 +41,26 @@
     href: sql-database-migrate-your-sql-server-database.md
   - name: "3 - 保護您的 SQL DB"
     href: sql-database-security-tutorial.md
+  - name: "4 - 改善 SQL DB 效能"
+    href: sql-database-performance-tutorial.md
+  - name: "5 - 實作多租用戶應用程式"
+    href: sql-database-multi-tenant-application.md
+  - name: "6 - 實作多租用戶應用程式"
+    href: sql-database-saas-tutorial.md
+  - name: "7 - 佈建/目錄新租用戶"
+    href: sql-database-saas-tutorial-provision-and-catalog.md
+  - name: "8 - 監視效能"
+    href: sql-database-saas-tutorial-performance-monitoring.md
+  - name: "9 - 還原單一租用戶"
+    href: sql-database-saas-tutorial-restore-single-tenant.md
+  - name: "10 - 管理租用結構描述"
+    href: sql-database-saas-tutorial-schema-management.md
+  - name: "11 - 執行臨機操作分析"
+    href: sql-database-saas-tutorial-adhoc-analytics.md
+  - name: "12 - 透過 Log Analytics 監視"
+    href: sql-database-saas-tutorial-log-analytics.md
+  - name: "13 - 管理租用戶分析"
+
 - name: "範例"
   items:
   - name: "Azure CLI"
@@ -142,7 +162,7 @@
       href: sql-database-long-term-retention.md
     - name: "資料庫復原"
       href: sql-database-recovery-using-backups.md
-    - name: "異地複寫"
+    - name: "自動容錯移轉和異地複寫"
       href: sql-database-geo-replication-overview.md
     - name: "登入"
       href: sql-database-geo-replication-security-config.md

@@ -3,7 +3,6 @@
 ## [選擇版本](active-directory-editions.md)
 
 ## [關於 Azure 身分識別管理](identity-fundamentals.md)
-## [預覽 Azure 入口網站體驗](active-directory-preview-explainer.md)
 
 # 開始使用
 ## [取得 Azure AD 租用戶](active-directory-howto-tenant.md)
@@ -18,7 +17,9 @@
 
 # 作法
 ## 規劃和設計
+### [了解 Azure AD 架構](active-directory-architecture.md)
 ### [部署混合式身分識別解決方案](active-directory-hybrid-identity-design-considerations-overview.md)
+
 #### 判斷需求
 ##### [身分識別](active-directory-hybrid-identity-design-considerations-business-needs.md)
 ##### [目錄同步](active-directory-hybrid-identity-design-considerations-directory-sync-requirements.md)
@@ -80,7 +81,7 @@
 ### [有風險的使用者](active-directory-reporting-security-user-at-risk.md)
 ### [有風險的登入](active-directory-reporting-security-risky-sign-ins.md)
 ### [風險事件](active-directory-reporting-risk-events.md)
-### [具名網路](active-directory-known-networks-azure-portal.md)
+### [具名位置](active-directory-named-locations.md)
 ### [報告移轉](active-directory-reporting-migration.md)
 ### [保留](active-directory-reporting-retention.md)
 ### [延遲](active-directory-reporting-latencies-azure-portal.md)
@@ -91,6 +92,7 @@
 ###    程式設計存取
 #### [稽核參考](active-directory-reporting-api-audit-reference.md)
 #### [稽核範例](active-directory-reporting-api-audit-samples.md)
+#### [取得資料](active-directory-reporting-api-with-certificates.md)
 #### [必要條件](active-directory-reporting-api-prerequisites.md)
 #### [登入參考](active-directory-reporting-api-sign-in-activity-reference.md)
 #### [登入範例](active-directory-reporting-api-sign-in-activity-samples.md)
@@ -114,6 +116,7 @@
 ## [管理密碼](active-directory-passwords.md)
 ### 使用者文件
 #### [重設或變更您的密碼](active-directory-passwords-update-your-own-password.md)
+#### [密碼最佳做法](active-directory-secure-passwords.md)
 #### [註冊自助式密碼重設](active-directory-passwords-reset-register.md)
 ### [快速入門：自助式密碼重設](active-directory-passwords-getting-started.md)
 ### [授權 SSPR](active-directory-passwords-licensing.md)
@@ -159,33 +162,37 @@
 #### [更新登錄設定](active-directory-cloudappdiscovery-registry-settings-for-proxy-services.md)
 #### [了解安全性和隱私權](active-directory-cloudappdiscovery-security-and-privacy-considerations.md)
 
-### [提供應用程式的遠端存取權](active-directory-application-proxy-get-started.md)
-#### [啟用應用程式 Proxy](active-directory-application-proxy-enable.md)
-#### [了解連接器](application-proxy-understand-connectors.md)
-#### [發佈應用程式](application-proxy-publish-azure-portal.md)
-#### [安全性](application-proxy-security-considerations.md)
-#### [網路](application-proxy-network-topology-considerations.md)
-#### [遠端桌面](application-proxy-publish-remote-desktop.md)
-#### [SharePoint](application-proxy-enable-remote-access-sharepoint.md)
-#### [在不同網路上發佈](active-directory-application-proxy-connectors-azure-portal.md)
-#### [Proxy 伺服器](application-proxy-working-with-proxy-servers.md)
-#### [自訂網域](active-directory-application-proxy-custom-domains.md)
-#### [存取應用程式](active-directory-appssoaccess-whatis.md)
-##### [Azure 入口網站](application-proxy-sso-azure-portal.md)
-#### [搭配 KCD 的 SSO](active-directory-application-proxy-sso-using-kcd.md)
-#### [搭配標頭的 SSO](application-proxy-ping-access.md)
-#### [宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
-#### [原生用戶端應用程式](active-directory-application-proxy-native-client.md)
-#### [自訂首頁](application-proxy-office365-app-launcher.md)
-#### [條件式存取](active-directory-application-proxy-conditional-access.md)
-#### [無訊息安裝](active-directory-application-proxy-silent-installation.md)
-#### [Microsoft Forefront](application-proxy-transition-from-uag-tmg.md)
+### [透過 App Proxy 遠端存取應用程式](active-directory-application-proxy-get-started.md)
+#### 開始使用
+##### [啟用應用程式 Proxy](active-directory-application-proxy-enable.md)
+##### [發佈應用程式](application-proxy-publish-azure-portal.md)
+##### [自訂網域](active-directory-application-proxy-custom-domains.md)
+#### [SSO 存取](active-directory-appssoaccess-whatis.md)
+##### [搭配 KCD 的 SSO](active-directory-application-proxy-sso-using-kcd.md)
+##### [搭配標頭的 SSO](application-proxy-ping-access.md)
+##### [搭配密碼保存庫的 SSO](application-proxy-sso-azure-portal.md)
+#### 了解最佳做法
+##### [連接器](application-proxy-understand-connectors.md)
+##### [安全性](application-proxy-security-considerations.md)
+##### [網路](application-proxy-network-topology-considerations.md)
+#### 
+#### 進階組態
+##### [在不同網路上發佈](active-directory-application-proxy-connectors-azure-portal.md)
+##### [Proxy 伺服器](application-proxy-working-with-proxy-servers.md)
+##### [宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
+##### [原生用戶端應用程式](active-directory-application-proxy-native-client.md)
+##### [無訊息安裝](active-directory-application-proxy-silent-installation.md)
+##### [自訂首頁](application-proxy-office365-app-launcher.md)
+#### 發佈逐步解說
+##### [遠端桌面](application-proxy-publish-remote-desktop.md)
+##### [SharePoint](application-proxy-enable-remote-access-sharepoint.md)
+##### [Microsoft Forefront](application-proxy-transition-from-uag-tmg.md)
 #### [疑難排解](active-directory-application-proxy-troubleshoot.md)
 #### 使用傳統入口網站
 ##### [下載連接器](application-proxy-enable-classic-portal.md)
 ##### [發佈應用程式](active-directory-application-proxy-publish.md)
 ##### [使用連接器](active-directory-application-proxy-connectors.md)
-
+##### [條件式存取](active-directory-application-proxy-conditional-access.md)
 
 ### 管理企業應用程式
 #### [指派使用者](active-directory-coreapps-assign-user-azure-portal.md)
@@ -297,14 +304,18 @@
 ### [設定權杖存留期](active-directory-configurable-token-lifetimes.md)
 
 ## 保護您的身分識別
-### [條件式存取](active-directory-conditional-access.md)
-#### [開始使用](active-directory-conditional-access-azuread-connected-apps.md)
+### [條件式存取](active-directory-conditional-access-azure-portal.md)
+#### [開始使用](active-directory-conditional-access-azure-portal-get-started.md)
 #### [支援的應用程式](active-directory-conditional-access-supported-apps.md)
 #### [了解裝置原則](active-directory-conditional-access-device-policies.md)
 #### [設定已連接應用程式的存取權](active-directory-conditional-access-policy-connected-applications.md)
+#### [技術參考](active-directory-conditional-access-technical-reference.md)
 #### [常見問題集](active-directory-conditional-faqs.md)
-#### [疑難排解](active-directory-conditional-access-device-remediation.md)
-#### [參考](active-directory-conditional-access-technical-reference.md)
+#### [補救](active-directory-conditional-access-device-remediation.md)
+#### [傳統入口網站](active-directory-conditional-access.md)
+##### [開始使用](active-directory-conditional-access-azuread-connected-apps.md)
+
+
 ### Windows Hello
 #### [無需密碼驗證](active-directory-azureadjoin-passport.md)
 #### [啟用 Windows Hello 企業版](active-directory-azureadjoin-passport-deployment.md)

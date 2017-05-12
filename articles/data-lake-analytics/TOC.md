@@ -15,12 +15,14 @@
 
 # 作法
 ## 開發
-### [U-SQL](data-lake-analytics-u-sql-get-started.md)
+### [U-SQL 基本概念](data-lake-analytics-u-sql-get-started.md)
+### [U-SQL 目錄](data-lake-analytics-u-sql-catalog.md)
+### [U-SQL 參數](data-lake-analytics-u-sql-parameterize_scripts.md)
 ### [U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
 ### [U-SQL 使用者定義的運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
 ### [U-SQL Python 延伸模組](data-lake-analytics-u-sql-python-extensions.md)
 ### [U-SQL R 擴充功能](data-lake-analytics-u-sql-r-extensions.md)
-### [U-SQL 辨識功能](data-lake-analytics-u-sql-cognitive.md)
+### [U-SQL 辨識擴充功能](data-lake-analytics-u-sql-cognitive.md)
 
 ## 建立解決方案
 ### [分析網站記錄](data-lake-analytics-analyze-weblogs.md)

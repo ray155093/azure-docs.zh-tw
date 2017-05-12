@@ -18,12 +18,13 @@
 ### [Web Apps - 執行階段](app-insights-java-live.md)
 ### [Docker 應用程式](app-insights-docker.md)
 
+## 監視 Node.js 應用程式
+### [Node.js](app-insights-nodejs.md)
 
 ## 監視網頁
 ### [JavaScript](app-insights-javascript.md)
-
+ 
 ## 監視其他平台
-### [Node.js 應用程式](app-insights-nodejs.md)
 ### [SharePoint 網站](app-insights-sharepoint.md)
 ### [其他平台](app-insights-platforms.md)
 
@@ -32,7 +33,6 @@
 ## 規劃和設計
 ### [深入診斷 Web Apps 和服務](app-insights-devops.md)
 ### [監視 Web 應用程式的效能](app-insights-web-monitor-performance.md)
-### [使用 Application Insights 進行使用量分析](app-insights-web-track-usage.md)
 ### [分隔 Application Insights 資源](app-insights-separate-resources.md)
 ### [我如何在 Application Insights 中...？](app-insights-how-do-i.md)
 
@@ -50,7 +50,7 @@
 #### [相依項目](app-insights-asp-net-dependencies.md)
 #### [版本註解](app-insights-annotations.md)
 #### [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)
-
+#### [快照集偵錯工具](app-insights-snapshot-debugger.md)
 
 ### J2EE
 #### [記錄追蹤](app-insights-java-trace-logs.md)
@@ -87,7 +87,12 @@
 #### [趨勢](app-insights-visual-studio-trends.md)
 #### [CodeLens](app-insights-visual-studio-codelens.md)
 
-### 分析
+### 使用量
+#### [概觀](app-insights-usage-overview.md)
+#### [保留](app-insights-usage-retention.md)
+#### [使用者、工作階段、事件](app-insights-usage-segmentation.md)
+
+### Analytics
 
 #### [概觀](app-insights-analytics.md)
 #### [教學](app-insights-analytics-tour.md)
@@ -152,14 +157,14 @@
 ## 新聞
 
 ### [部落格](https://azure.microsoft.com/blog/tag/application-insights/)
-### [服務更新](https://azure.microsoft.com/en-us/updates/?product=application-insights) 
+### [服務更新](https://azure.microsoft.com/updates/?product=application-insights) 
 ### [SDK 版本資訊](app-insights-release-notes.md)
 ### [開發人員分析工具的版本資訊](app-insights-release-notes-vsix.md)
 
 ## [常見問題集](app-insights-troubleshoot-faq.md)
 
 ## 說明
-### [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=ApplicationInsights)  
+### [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=ApplicationInsights)  
 ### [Stack Overflow](http://stackoverflow.com/questions/tagged/az-application-insights)
 ### [使用者心聲 (英文)](https://visualstudio.uservoice.com/forums/357324-application-insights)
 ### [支援](https://azure.microsoft.com/support/)

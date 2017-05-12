@@ -43,7 +43,7 @@
 ### [Azure Blob 儲存體索引子](search-howto-indexing-azure-blob-storage.md)
 ### [Azure 資料表儲存體索引子](search-howto-indexing-azure-tables.md)
 ### [Azure SQL 索引子](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
-### [Azure DocumentDB 索引子](search-howto-index-documentdb.md)
+### [Azure Cosmos DB 索引子](search-howto-index-documentdb.md)
 ### [索引 CSV blob](search-howto-index-csv-blobs.md)
 ### [索引 JSON blob](search-howto-index-json-blobs.md)
 ### [在 Azure VM 上設定連接至 SQL Server 的索引子](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)

@@ -11,8 +11,8 @@
 ### [Java](storage-java-how-to-use-blob-storage.md)
 ### [Node.js](storage-nodejs-how-to-use-blob-storage.md)
 ### [C++](storage-c-plus-plus-how-to-use-blobs.md)
-### [Python](storage-python-how-to-use-blob-storage.md)
 ### [PHP](storage-php-how-to-use-blobs.md)
+### [Python](storage-python-how-to-use-blob-storage.md)
 ### [Ruby](storage-ruby-how-to-use-blob-storage.md)
 ### [iOS](storage-ios-how-to-use-blob-storage.md)
 ### [Xamarin](storage-xamarin-blob-storage.md)
@@ -22,17 +22,18 @@
 ### [Java](storage-java-how-to-use-queue-storage.md)
 ### [Node.js](storage-nodejs-how-to-use-queues.md)
 ### [C++](storage-c-plus-plus-how-to-use-queues.md)
-### [Python](storage-python-how-to-use-queue-storage.md)
 ### [PHP](storage-php-how-to-use-queues.md)
+### [Python](storage-python-how-to-use-queue-storage.md)
 ### [Ruby](storage-ruby-how-to-use-queue-storage.md)
 
 ## 資料表儲存體
 ### [.NET](storage-dotnet-how-to-use-tables.md)
+### [F#](/dotnet/articles/fsharp/using-fsharp-on-azure/table-storage)
 ### [Java](storage-java-how-to-use-table-storage.md)
 ### [Node.js](storage-nodejs-how-to-use-table-storage.md)
 ### [C++](storage-c-plus-plus-how-to-use-tables.md)
-### [Python](storage-python-how-to-use-table-storage.md)
 ### [PHP](storage-php-how-to-use-table-storage.md)
+### [Python](storage-python-how-to-use-table-storage.md)
 ### [Ruby](storage-ruby-how-to-use-table-storage.md)
 
 ## 檔案儲存體
@@ -54,8 +55,10 @@
 ## [建立儲存體帳戶](storage-create-storage-account.md)
 ## 使用 Blob
 ### [服務概觀](https://msdn.microsoft.com/library/dd179376.aspx)
+### [使用 Azure 搜尋服務搜尋 Blob 儲存體](../search/search-blob-storage-integration.md)
 ### [經常性存取和非經常性存取層級](storage-blob-storage-tiers.md)
 ### [自訂網域](storage-custom-domain-name.md)
+### [使用 Azure CDN 透過 HTTPs 以自訂網域存取 blob](storage-https-custom-domain-cdn.md) 
 ### [匿名存取 Blob](storage-manage-access-to-resources.md)
 ### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob)
 ## 使用佇列
@@ -174,6 +177,7 @@
 ## [Java](http://azure.github.io/azure-storage-java/)
 ## [Node.js](http://azure.github.io/azure-storage-node)
 ## [Ruby](http://azure.github.io/azure-storage-ruby)
+## [PHP](http://azure.github.io/azure-storage-php/)
 ## [Python](https://azure-storage.readthedocs.io/en/latest/index.html)
 ## [C++](http://azure.github.io/azure-storage-cpp)
 ## [iOS](http://azure.github.io/azure-storage-ios/)
@@ -217,6 +221,6 @@
 ### [Java](https://github.com/Azure/azure-storage-java)
 ### [C++](https://github.com/Azure/azure-storage-cpp)
 ### [PHP](https://github.com/Azure/azure-storage-php)
-### [Ruby](https://github.com/Azure/azure-storage-ruby)
 ### [Python](https://github.com/Azure/azure-storage-python)
+### [Ruby](https://github.com/Azure/azure-storage-ruby)
 ### [iOS](https://github.com/Azure/azure-storage-ios)

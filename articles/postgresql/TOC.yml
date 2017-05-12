@@ -1,0 +1,101 @@
+- name: "適用於 PostgreSQL 的 Azure DB 文件"
+  href: index.yml
+- name: "概觀"
+  items:
+  - name: "適用於 PostgreSQL 的 Azure DB"
+    href: overview.md
+- name: "快速入門"
+  expanded: true
+  items:
+  - name: "建立 DB - 入口網站"
+    href: quickstart-create-server-database-portal.md
+  - name: "建立 DB - Azure CLI"
+    href: quickstart-create-server-database-azure-cli.md
+- name: "指令碼範例"
+  items:
+  - name: "Azure CLI"
+    href: sample-scripts-azure-cli.md
+- name: "教學課程"
+  items:
+  - name: "1 - 設計資料庫"
+    items:
+    - name: "Azure 入口網站"
+      href: tutorial-design-database-using-azure-portal.md
+    - name: "Azure CLI"
+      href: tutorial-design-database-using-azure-cli.md
+  - name: "2 - 設計 Web 應用程式 - Python"
+    href: ../app-service-web/app-service-web-tutorial-docker-python-postgresql-app.md?toc=%2fazure%2fpostgresql%2ftoc.json
+- name: "概念"
+  items:
+  - name: "DB 和伺服器"
+    items:
+    - name: "伺服器"
+      href: concepts-servers.md
+    - name: "支援的版本"
+      href: concepts-supported-versions.md
+    - name: "PostgreSQL 擴充功能"
+      href: concepts-extensions.md
+    - name: "伺服器記錄"
+      href: concepts-server-logs.md
+  - name: "資源"
+    items:
+    - name: "服務層"
+      href: concepts-service-tiers.md
+    - name: "計算單位和儲存體單位"
+      href: concepts-compute-unit-and-storage.md
+    - name: "限制"
+      href: concepts-limits.md
+  - name: "資料存取和安全性"
+    items:
+    - name: "防火牆規則"
+      href: concepts-firewall-rules.md
+    - name: "設定 SSL"
+      href: concepts-ssl-connection-security.md
+  - name: "開發"
+    items:
+    - name: "連線程式庫"
+      href: concepts-connection-libraries.md
+- name: "使用說明指南"
+  items:
+  - name: "防火牆規則"
+    items:
+    - name: "Azure 入口網站"
+      href: howto-manage-firewall-using-portal.md
+    - name: "Azure CLI"
+      href: howto-manage-firewall-using-cli.md
+  - name: "還原伺服器"
+    items:
+    - name: "Azure 入口網站"
+      href: howto-restore-server-portal.md
+  - name: "移轉資料庫"
+    items:
+    - name: "傾印和還原"
+      href: howto-migrate-using-dump-and-restore.md
+    - name: "匯入和匯出"
+      href: howto-migrate-using-export-and-import.md
+  - name: "自訂伺服器設定參數"
+    items:
+    - name: "Azure CLI"
+      href: howto-configure-server-parameters-using-cli.md
+  - name: "伺服器記錄"
+    items:
+    - name: "Azure CLI"
+      href: howto-configure-server-logs-using-cli.md
+- name: "參考"
+  items:
+  - name: "Azure CLI"
+    href: /cli/azure/postgres
+- name: "資源"
+  items:
+  - name: "價格"
+    href: https://azure.microsoft.com/pricing/details/postgresql/
+  - name: "MSDN 論壇"
+    href: https://social.msdn.microsoft.com/Forums/home?forum=AzureDatabaseforPostgreSQL
+  - name: "堆疊溢位"
+    href: http://stackoverflow.com/questions/tagged/azure-database-postgresql
+  - name: "意見反應論壇"
+    href: https://feedback.azure.com/forums/597976-azure-database-for-postgresql
+  - name: "區域可用性"
+    href: https://azure.microsoft.com/regions/services/
+  - name: "支援選項"
+    href: https://azure.microsoft.com/support/options/

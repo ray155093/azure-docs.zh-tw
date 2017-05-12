@@ -1,5 +1,6 @@
 # 概觀
-## [Azure 監視器概觀](monitoring-overview.md)
+## [監視 Azure 中的工具](monitoring-overview.md)
+## [Azure 監視器](monitoring-overview-azure-monitor.md)
 ## [計量](monitoring-overview-metrics.md)
 ## [警示](monitoring-overview-alerts.md)
 ## [Autoscale](monitoring-overview-autoscale.md)
@@ -7,12 +8,14 @@
 ## [動作群組](monitoring-action-groups.md)
 ## [診斷記錄檔](monitoring-overview-of-diagnostic-logs.md)
 ## [合作夥伴整合](monitoring-partners.md)
-## [Azure 診斷](azure-diagnostics.md)
+## [Azure 診斷擴充功能](azure-diagnostics.md)
 
 
 # 開始使用
 ## [開始使用 Azure 監視器](monitoring-get-started.md)
+## [開始使用自動調整](monitoring-autoscale-get-started.md)
 ## [角色權限與安全性](monitoring-roles-permissions-security.md)
+
 
 # 作法
 ## 使用警示
@@ -24,6 +27,8 @@
 ## 使用自動調整
 ### [自動調整的最佳做法](insights-autoscale-best-practices.md)
 ### [自動調整規模的常用計量](insights-autoscale-common-metrics.md)
+### [常用的自動調整模式](monitoring-autoscale-common-scale-patterns.md)
+### [使用自訂度量進行自動調整](monitoring-autoscale-scale-by-custom-metric.md)
 ### [使用 Resource Manager 範本自動調整 VM 擴展集](insights-advanced-autoscale-virtual-machine-scale-sets.md)
 ### [在虛擬機器擴展集中自動調整機器](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md?toc=%2fazure%2fmonitoring-and-diagnostics%2ftoc.json)
 ### [設定自動調整規模的 Webhook 與電子郵件通知](insights-autoscale-to-webhook-email.md)
@@ -48,7 +53,7 @@
 ### [使用 Resource Manager 範本啟用診斷設定](monitoring-enable-diagnostic-logs-using-template.md)
 ## 使用 REST API
 ### [逐步解說如何使用 REST API](monitoring-rest-api-walkthrough.md)
-## 使用 Azure 診斷
+## 使用 Azure 診斷擴充功能
 ### [傳送至 Application Insights](azure-diagnostics-configure-application-insights.md)
 ### [送至事件中樞](azure-diagnostics-streaming-event-hubs.md)
 ### [疑難排解](azure-diagnostics-troubleshooting.md)

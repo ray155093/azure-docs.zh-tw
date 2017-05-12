@@ -31,7 +31,11 @@
     href: tutorial-load-balancer.md
   - name: "8 - 管理網路"
     href: tutorial-virtual-network.md
-  - name: "9 - 管理 VM 安全性"
+  - name: "9 - 備份虛擬機器"
+    href: tutorial-backup-vms.md
+  - name: "10 - 監視虛擬機器"
+    href: tutorial-monitoring.md
+  - name: "11 - 管理 VM 安全性"
     href: tutorial-azure-security.md
 
 - name: "範例"
@@ -126,7 +130,7 @@
       href: creation-choices.md
     - name: "使用範本建立 VM"
       href: ps-template.md
-    - name: "使用 C# 建立 VM#"
+    - name: "使用 C# 建立 VM"
       href: csharp.md
     - name: "使用 C# 和範本建立 VM"
       href: csharp-template.md
@@ -159,7 +163,7 @@
       href: cli-manage.md
     - name: "使用 CLI 管理 VM"
       href: cli-deploy-templates.md
-    - name: "使用 C 管理 VM#"
+    - name: "使用 C# 管理 VM"
       href: csharp-manage.md
   - name: "以 RDP 連線"
     items:
@@ -202,7 +206,7 @@
       - name: "Azure PowerShell"
         href: attach-disk-ps.md
       - name: "Azure 入口網站"
-        href: attach-disk-portal.md
+        href: attach-managed-disk-portal.md
     - name: "卸離資料磁碟"
       href: detach-disk.md
     - name: "擴充 OS 磁碟"
@@ -223,6 +227,8 @@
         href: vhd-copy.md
       - name: "從特製化 VHD 建立 VM"
         href: create-vm-specialized.md
+      - name: "連結非受控資料磁碟"
+        href: attach-disk-portal.md
   - name: "VM 網路功能"
     href: ps-common-network-ref.md
     items:
@@ -392,9 +398,9 @@
   - name: "Java"
     href: /java/api
   - name: "Node.js"
-    href: https://azure.microsoft.com/en-us/develop/nodejs/#azure-sdk
+    href: https://azure.microsoft.com/develop/nodejs/#azure-sdk
   - name: "Python"
-    href: http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.mgmt.compute.html
+    href: https://azure.microsoft.com/develop/python/
   - name: "計算 REST"
     href: /rest/api/compute
   - name: "受控磁碟 REST"

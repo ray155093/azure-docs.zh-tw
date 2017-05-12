@@ -1,0 +1,312 @@
+- name: "Cosmos DB 文件"
+  href: index.yml
+- name: "概觀"
+  items:
+  - name: "關於 Azure Cosmos DB"
+    href: introduction.md
+- name: "快速入門"
+  expanded: true
+  items:
+  - name: "DocumentDB"
+    items:
+    - name: ".NET"
+      href: create-documentdb-dotnet.md
+    - name: ".NET Core"
+      href: create-documentdb-dotnet-core.md
+    - name: "Java"
+      href: create-documentdb-java.md
+    - name: "Node.js"
+      href: create-documentdb-nodejs.md
+    - name: "Python"
+      href: create-documentdb-python.md
+    - name: "Xamarin"
+      href: create-documentdb-xamarin-dotnet.md
+  - name: "MongoDB"
+    items:
+    - name: "Node.js"
+      href: create-mongodb-nodejs.md
+    - name: ".NET"
+      href: create-mongodb-dotnet.md
+    - name: "Java"
+      href: create-mongodb-java.md
+  - name: "圖形"
+    items:
+    - name: ".NET"
+      href: create-graph-dotnet.md
+    - name: "Gremlin 主控台"
+      href: create-graph-gremlin-console.md
+    - name: "Java"
+      href: create-graph-java.md
+    - name: "Node.js"
+      href: create-graph-nodejs.md
+  - name: "資料表"
+    items:
+    - name: ".NET"
+      href: create-table-dotnet.md
+- name: "教學課程"
+  items:
+  - name: "1 - 建立"
+    items:
+    - name: "DocumentDB"
+      href: tutorial-develop-documentdb-dotnet.md
+    - name: "MongoDB"
+      href: tutorial-develop-mongodb.md
+    - name: "資料表"
+      href: tutorial-develop-table-dotnet.md
+    - name: "圖形"
+      href: tutorial-develop-graph-dotnet.md
+  - name: "2 - 匯入"
+    items:
+    - name: "DocumentDB"
+      href: ../documentdb/documentdb-import-data.md
+    - name: "MongoDB"
+      href: ../documentdb/documentdb-mongodb-migrate.md
+  - name: "3 - 查詢"
+    items:
+    - name: "DocumentDB"
+      href: tutorial-query-documentdb.md
+    - name: "MongoDB"
+      href: tutorial-query-mongodb.md
+    - name: "資料表"
+      href: tutorial-query-table.md
+    - name: "圖形"
+      href: tutorial-query-graph.md
+  - name: "4 - 全域散發"
+    items:
+    - name: "DocumentDB"
+      href: tutorial-global-distribution-documentdb.md
+    - name: "MongoDB"
+      href: tutorial-global-distribution-mongodb.md
+    - name: "資料表"
+      href: tutorial-global-distribution-table.md
+    - name: "圖形"
+      href: tutorial-global-distribution-graph.md
+  - name: "5 - 本機開發"
+    items:
+    - name: "使用模擬器"
+      href: ../documentdb/documentdb-nosql-local-emulator.md
+    - name: "匯出憑證"
+      href: ../documentdb/documentdb-nosql-local-emulator-export-ssl-certificates.md
+- name: "範例"
+  items:
+  - name: "Azure CLI 2.0"
+    href: cli-samples.md
+  - name: "Azure PowerShell"
+    href: powershell-samples.md
+- name: "概念"
+  items:
+  - name: "全球發佈"
+    href: ../documentdb/documentdb-distribute-data-globally.md
+  - name: "分割"
+    href: partition-data.md
+  - name: "一致性"
+    href: ../documentdb/documentdb-consistency-levels.md
+  - name: "輸送量"
+    href: ../documentdb/documentdb-request-units.md
+    items:
+    - name: "每分鐘的要求單位"
+      href: request-units-per-minute.md
+  - name: "多模型 API"
+    items:
+    - name: "DocumentDB"
+      href: ../documentdb/documentdb-introduction.md
+    - name: "MongoDB"
+      href: ../documentdb/documentdb-protocol-mongodb.md
+    - name: "資料表"
+      href: table-introduction.md
+    - name: "圖形"
+      href: graph-introduction.md
+  - name: "安全性"
+    href: ../documentdb/documentdb-nosql-database-security.md
+  - name: "TCO"
+    href: https://aka.ms/documentdb-tco-paper
+  - name: "使用案例"
+    href: ../documentdb/documentdb-use-cases.md
+- name: "使用說明指南"
+  items:
+  - name: "開發"
+    items:
+    - name: "DocumentDB API"
+      items:
+      - name: "資源"
+        href: ../documentdb/documentdb-resources.md
+      - name: "SQL 查詢"
+        href: ../documentdb/documentdb-sql-query.md
+      - name: "SQL 園地"
+        href: https://www.documentdb.com/sql/demo
+      - name: "分割"
+        href: ../documentdb/documentdb-partition-data.md
+      - name: "預存程序、觸發程序和 UDF"
+        href: ../documentdb/documentdb-programming.md
+      - name: "效能測試"
+        href: ../documentdb/documentdb-performance-testing.md
+      - name: "效能秘訣"
+        href: ../documentdb/documentdb-performance-tips.md
+      - name: "多主機設定"
+        href: ../documentdb/documentdb-multi-region-writers.md
+      - name: "日期時間"
+        href: ../documentdb/documentdb-working-with-dates.md
+      - name: "教學課程"
+        items:
+        - name: "撰寫您的第一個應用程式"
+          items:
+          - name: ".NET"
+            href: ../documentdb/documentdb-get-started.md
+          - name: ".NET Core"
+            href: ../documentdb/documentdb-dotnetcore-get-started.md
+          - name: "Java"
+            href: ../documentdb/documentdb-java-get-started.md
+          - name: "Node.js"
+            href: ../documentdb/documentdb-nodejs-get-started.md
+          - name: "C++"
+            href: ../documentdb/documentdb-cpp-get-started.md
+        - name: "建置 Web 應用程式"
+          items:
+          - name: ".NET"
+            href: ../documentdb/documentdb-dotnet-application.md
+          - name: "Xamarin"
+            href: ../documentdb/documentdb-mobile-apps-with-xamarin.md
+          - name: "Node.js"
+            href: ../documentdb/documentdb-nodejs-application.md
+          - name: "Java"
+            href: ../documentdb/documentdb-java-application.md
+          - name: "Python Flask"
+            href: ../documentdb/documentdb-python-application.md
+      - name: "範例"
+        items:
+        - name: ".NET 範例"
+          href: ../documentdb/documentdb-dotnet-samples.md
+        - name: "Node.js 範例"
+          href: ../documentdb/documentdb-nodejs-samples.md
+        - name: "Python 範例"
+          href: ../documentdb/documentdb-python-samples.md
+        - name: "SQL 語法"
+          href: https://msdn.microsoft.com/library/azure/dn782250.aspx
+        - name: "SQL 語法功能提要"
+          href: ../documentdb/documentdb-sql-query-cheat-sheet.md
+      - name: "資源"
+        items:
+        - name: "堆疊溢位"
+          href: http://stackoverflow.com/questions/tagged/azure-documentdb
+        - name: "影片"
+          href: https://azure.microsoft.com/documentation/videos/index/?services=documentdb
+        - name: "服務更新"
+          href: https://azure.microsoft.com/updates/?product=documentdb
+        - name: "社群入口網站"
+          href: ../documentdb/documentdb-community.md
+        - name: "結構描述無從驗證索引文件"
+          href: http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf
+        - name: "淘汰 S1、S2、S3"
+          href: ../documentdb/documentdb-performance-levels.md
+    - name: "MongoDB API"
+      items:
+      - name: "連線至您的 MongoDB 帳戶"
+        href: ../documentdb/documentdb-connect-mongodb-account.md
+      - name: "使用 MongoChef"
+        href: ../documentdb/documentdb-mongodb-mongochef.md
+      - name: "使用 Robomongo"
+        href: ../documentdb/documentdb-mongodb-robomongo.md
+      - name: "教學課程"
+        items:
+        - name: "Node.js 主控台應用程式"
+          href: ../documentdb/documentdb-mongodb-samples.md
+    - name: "圖形 API"
+      items:
+      - name: "Gremlin 支援"
+        href: gremlin-support.md
+    - name: "資料表 API"
+      items:
+      - name: "表格儲存體"
+        href: https://docs.microsoft.com/rest/api/storageservices/fileservices/Table-Service-Concepts
+    - name: "變更摘要"
+      href: ../documentdb/documentdb-change-feed.md
+    - name: "地理空間"
+      href: ../documentdb/documentdb-geospatial.md
+    - name: "編製索引"
+      href: ../documentdb/documentdb-indexing-policies.md
+  - name: "管理"
+    items:
+    - name: "符合成本效益的讀取和寫入"
+      href: ../documentdb/documentdb-key-value-store-cost.md
+    - name: "讓資料自動到期"
+      href: ../documentdb/documentdb-time-to-live.md
+    - name: "備份與還原"
+      href: ../documentdb/documentdb-online-backup-and-restore.md
+    - name: "區域性容錯移轉"
+      href: ../documentdb/documentdb-regional-failovers.md
+    - name: "自動化"
+      items:
+      - name: "Azure CLI 1.0 - 建立帳戶"
+        href: ../documentdb/documentdb-automation-resource-manager-cli-nodejs.md
+      - name: "Azure CLI 1.0 - 新增或移除區域"
+        href: ../documentdb/documentdb-automation-region-management.md
+      - name: "Azure PowerShell"
+        href: ../documentdb/documentdb-manage-account-with-powershell.md
+    - name: "安全性"
+      items:
+      - name: "待用加密"
+        href: ../documentdb/documentdb-nosql-database-encryption-at-rest.md
+      - name: "防火牆支援"
+        href: ../documentdb/documentdb-firewall-support.md
+  - name: "整合"
+    items:
+    - name: "連線至 Spark"
+      href: ../documentdb/documentdb-spark-connector.md
+    - name: "以 Azure App Service 部署網站"
+      href: ../documentdb/documentdb-create-documentdb-website.md
+    - name: "使用 Logic Apps 進行應用程式記錄"
+      href: ../logic-apps/logic-apps-scenario-error-and-exception-handling.md
+    - name: "繫結至 Azure Functions"
+      href: ../azure-functions/functions-bindings-documentdb.md
+    - name: "以 Hadoop 分析資料"
+      href: ../documentdb/documentdb-run-hadoop-with-hdinsight.md
+    - name: "與 Azure 搜尋服務整合"
+      href: ../search/search-howto-index-documentdb.md
+    - name: "使用 Azure Data Factory 移動資料"
+      href: ../data-factory/data-factory-azure-documentdb-connector.md
+    - name: "使用 Azure 串流分析來分析即時資料"
+      href: ../stream-analytics/stream-analytics-define-outputs.md#documentdb
+    - name: "使用 Logic Apps 取得已變更的 HL7 FHIR 記錄"
+      href: ../documentdb/documentdb-change-feed-hl7-fhir-logic-apps.md
+    - name: "即時處理感應器資料"
+      href: ../hdinsight/hdinsight-storm-iot-eventhub-documentdb.md
+    - name: "使用 Power BI 將資料視覺化"
+      href: ../documentdb/documentdb-powerbi-visualize.md
+    - name: "運用 ODBC 驅動程式展現資料視覺效果"
+      href: ../documentdb/documentdb-nosql-odbc-driver.md
+- name: "參考"
+  items:
+  - name: "DocumentDB API"
+    items:
+    - name: "Java"
+      href: ../documentdb/documentdb-sdk-java.md
+    - name: ".NET"
+      href: ../documentdb/documentdb-sdk-dotnet.md
+    - name: ".NET Core"
+      href: ../documentdb/documentdb-sdk-dotnet-core.md
+    - name: "Node.js"
+      href: ../documentdb/documentdb-sdk-node.md
+    - name: "Python"
+      href: ../documentdb/documentdb-sdk-python.md
+    - name: "REST"
+      href: /rest/api/documentdb/
+    - name: "REST 資源提供者"
+      href: /rest/api/documentdbresourceprovider/
+  - name: "資料表 API"
+    items:
+    - name: ".NET"
+      href: table-sdk-dotnet.md
+  - name: "圖形 API"
+    items:
+    - name: ".NET"
+      href: graph-sdk-dotnet.md
+- name: "資源"
+  items:
+  - name: "價格"
+    href: https://azure.microsoft.com/pricing/details/documentdb/
+  - name: "常見問題集"
+    href: ../documentdb/documentdb-faq.md
+  - name: "堆疊溢位"
+    href: http://stackoverflow.com/questions/tagged/azure-cosmos-db
+  - name: "透過棒球說明資料一致性"
+    href: http://research.microsoft.com/apps/pubs/default.aspx?id=206913

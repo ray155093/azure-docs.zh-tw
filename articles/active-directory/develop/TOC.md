@@ -67,6 +67,7 @@
 ### [OpenID Connect](active-directory-protocols-openid-connect-code.md)
 ### [Oauth](active-directory-protocols-oauth-code.md)
 ### [服務對服務呼叫](active-directory-protocols-oauth-service-to-service.md)
+### [代理者流程](active-directory-protocols-oauth-on-behalf-of.md)
 ### [支援的權杖和宣告類型](active-directory-token-and-claims.md)
 ### [簽署金鑰變換](active-directory-signing-key-rollover.md)
 ### [同盟中繼資料](active-directory-federation-metadata.md)
@@ -77,31 +78,27 @@
 ## [服務限制](../active-directory-service-limits-restrictions.md)
 # v2.0 端點
 ## [概觀](active-directory-appmodel-v2-overview.md)
-### [差異](active-directory-v2-compare.md)
 ### [應用程式類型](active-directory-v2-flows.md)
 ### [限制](active-directory-v2-limitations.md)
-## 快速入門
-### Mobile Apps
-#### [iOS](active-directory-v2-devquickstarts-ios.md)
-#### [Windows Phone](active-directory-v2-devquickstarts-wpf.md)
-#### [Android](active-directory-v2-devquickstarts-android.md)
-### Web Apps 和 API
-#### [AngularJS 與 NodeJS](active-directory-v2-devquickstarts-angular-node.md)
-#### [Angular JS 與 .NET](active-directory-v2-devquickstarts-angular-dotnet.md)
-#### [.NET Web 應用程式](active-directory-v2-devquickstarts-dotnet-web.md)
-#### [.NET Web API](active-directory-v2-devquickstarts-dotnet-api.md)
-#### [NodeJS API](active-directory-v2-devquickstarts-node-api.md)
+### [v1-v2 比較](active-directory-v2-compare.md)
+## 開始使用
+### 行動和桌面應用程式
+#### [iOS](https://github.com/Azure-Samples/active-directory-msal-ios-swift)
+#### [Android](guidedsetups/active-directory-android.md)
+#### [Windows 桌面型 .NET](guidedsetups/active-directory-windesktop.md)
+### Web 應用程式
+#### [Javascript SPA](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi-v2)
+#### [ASP.NET Web 伺服器](guidedsetups/active-directory-aspnetwebapp.md)
 #### [NodeJS Web 應用程式](active-directory-v2-devquickstarts-node-web.md)
-#### [從 .NET Web 應用程式呼叫 Web API](active-directory-v2-devquickstarts-webapp-webapi-dotnet.md)
 ## 手冊
 ### [註冊應用程式](active-directory-v2-app-registration.md)
 ## 參考
-### [App 註冊參考](active-directory-v2-registration-portal.md)
 ### [驗證程式庫](active-directory-v2-libraries.md)
 ### [v2.0 驗證通訊協定](active-directory-v2-protocols.md)
+#### [OpenID Connect](active-directory-v2-protocols-oidc.md)
+#### [OAuth 2.0 授權碼授與](active-directory-v2-protocols-oauth-code.md)
+#### [Oauth 2.0 隱含授與](active-directory-v2-protocols-implicit.md)
+#### [OAuth 2.0 用戶端認證授與](active-directory-v2-protocols-oauth-client-creds.md)
+#### [Oauth 2.0 代理者流程](active-directory-v2-protocols-oauth-on-behalf-of.md)
 #### [權杖參考](active-directory-v2-tokens.md)
-#### [OAuth2.0 授權碼流程](active-directory-v2-protocols-oauth-code.md)
-#### [OpenID 連線](active-directory-v2-protocols-oidc.md)
-#### [隱含流程](active-directory-v2-protocols-implicit.md)
-#### [Oauth 2.0 用戶端認證](active-directory-v2-protocols-oauth-client-creds.md)
 ### [範圍](active-directory-v2-scopes.md)

@@ -19,6 +19,7 @@
 ### [有效率的清單查詢](batch-efficient-list-queries.md)
 ### [作業的準備與完成工作](batch-job-prep-release.md)
 ### [Linux 計算節點](batch-linux-nodes.md)
+### [低優先順序 VM](batch-low-pri-vms.md)
 ### [使用 Batch Management .NET 管理 Batch 帳戶](batch-management-dotnet.md)
 ### [持續作業及工作輸出](batch-task-output.md)
 ### [在 Batch 中執行 MPI 作業](batch-mpi.md)

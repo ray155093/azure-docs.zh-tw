@@ -1,4 +1,5 @@
 # StorSimple Virtual Array
+
 ## 概觀
 ### [解決方案為何？](storsimple-ova-overview.md)
 
@@ -8,7 +9,7 @@
 #### [了解限制](storsimple-ova-limits.md)
 #### [檢閱最佳作法](storsimple-ova-best-practices.md)
 
-### 部署 (Azure 入口網站)
+### 部署
 #### [準備部署](storsimple-virtual-array-deploy1-portal-prep.md)
 ##### [部署 StorSimple Manager 服務](storsimple-virtual-array-manage-service.md)
 #### [在 Hyper-V 中佈建](storsimple-virtual-array-deploy2-provision-hyperv.md)
@@ -16,17 +17,10 @@
 #### [設定為檔案伺服器](storsimple-virtual-array-deploy3-fs-setup.md)
 #### [設定為 iSCSI 伺服器](storsimple-virtual-array-deploy3-iscsi-setup.md)
 
-### 部署 (傳統入口網站)
-#### [準備部署](storsimple-ova-deploy1-portal-prep.md)
-##### [部署 StorSimple Manager 服務](storsimple-ova-manage-service.md)
-#### [在 Hyper-V 中佈建](storsimple-ova-deploy2-provision-hyperv.md)
-#### [在 VMware 中佈建](storsimple-ova-deploy2-provision-vmware.md)
-#### [設定為檔案伺服器](storsimple-ova-deploy3-fs-setup.md)
-#### [設定為 iSCSI 伺服器](storsimple-ova-deploy3-iscsi-setup.md)
-
 ## 作法
 ### [透過 Azure 入口網站管理](storsimple-virtual-array-manager-service-administration.md)
-#### [安裝最新的更新](storsimple-virtual-array-install-update-04.md)
+#### [安裝最新的更新](storsimple-virtual-array-install-update-05.md)
+##### [安裝 Update 0.4](storsimple-virtual-array-install-update-04.md)
 ##### [安裝 Update 0.3](storsimple-virtual-array-install-update.md)
 #### [建立和管理備份](storsimple-virtual-array-backup.md)
 #### [從備份複製](storsimple-virtual-array-clone.md)
@@ -44,22 +38,11 @@
 #### [診斷和疑難排解](storsimple-virtual-array-diagnose-problems.md)
 #### [記錄支援要求](storsimple-virtual-array-log-support-ticket.md)
 
-### [透過 Azure 傳統入口網站管理](storsimple-ova-manager-service-administration.md)
-#### [安裝最新的更新](storsimple-ova-install-update-01.md)
-#### [建立和管理備份](storsimple-ova-backup.md)
-#### [從備份還原](storsimple-ova-restore.md)
-#### [容錯移轉與 DR](storsimple-ova-failover-dr.md)
-#### [停用與刪除](storsimple-ova-deactivate-and-delete-device.md)
-#### [監視服務儀表板](storsimple-ova-service-dashboard.md)
-#### [變更裝置密碼](storsimple-ova-change-device-admin-password.md)
-#### [管理 ACR](storsimple-ova-manage-acrs.md)
-#### [管理儲存體帳戶](storsimple-ova-manage-storage-accounts.md)
-#### [管理工作](storsimple-ova-manage-jobs.md)
-#### [在 Windows Server 主機上設定 MPIO](storsimple-ova-configure-mpio-windows-server.md)
 ### [透過本機 Web UI 設定](storsimple-ova-web-ui-admin.md)
 
 ## 版本資訊
-### [Update 0.4 - 目前](storsimple-virtual-array-update-04-release-notes.md)
+### [Update 0.5 - 目前](storsimple-virtual-array-update-05-release-notes.md)
+### [更新 0.4](storsimple-virtual-array-update-04-release-notes.md)
 ### [Update 0.3](storsimple-ova-update-03-release-notes.md)
 ### [Update 0.2 和 0.1](storsimple-ova-update-01-release-notes.md)
 
@@ -71,6 +54,7 @@
 ### [安全性考量](storsimple-security.md)
 
 ## 開始使用
+
 ### 規劃
 #### [檢閱需求](storsimple-system-requirements.md)
 #### [檢閱技術規格](storsimple-technical-specifications-and-compliance.md)
@@ -80,7 +64,6 @@
 ### Install
 #### [檢閱安全性](storsimple-safety.md)
 #### [打開包裝、堆疊並為 8100 佈纜線](storsimple-8100-hardware-installation.md)
-
 #### [打開包裝、堆疊並為 8600 佈纜線](storsimple-8600-hardware-installation.md)
 #### [支援 10 GbE 網路介面的硬體](storsimple-supported-hardware-for-10-gbe-network-interfaces.md)
 
@@ -96,6 +79,7 @@
 #### [StorSimple Adapter for SharePoint](storsimple-adapter-for-sharepoint.md)
 
 ## 作法
+
 ### 管理
 #### [使用 StorSimple Manager 服務](storsimple-manager-service-administration.md)
 ##### [從備份還原](storsimple-restore-from-backup-set-u2.md)
@@ -214,6 +198,7 @@
 ### [變更預設 Blob 路徑](storsimple-data-manager-change-default-blob-path.md)
 
 # 供合作夥伴使用的 StorSimple
+
 ## 概觀
 ### [解決方案為何？](storsimple-partner-csp-overview.md)
 

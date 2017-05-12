@@ -1,0 +1,66 @@
+# 概觀
+## [關於 Azure 網路](networking-overview.md)
+## 架構
+### [非對稱式路由與多個網路路徑](../expressroute/expressroute-asymmetric-routing.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [保護網路設計](../best-practices-network-security.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [網路安全性的最佳做法](../security/azure-security-network-security-best-practices.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [高可用性的網路虛擬設備](https://docs.microsoft.com/azure/architecture/reference-architectures/dmz/nva-ha )
+### [合併負載平衡方法](../traffic-manager/traffic-manager-load-balancing-azure.md?toc=%2fazure%2fnetworking%2ftoc.json)
+## 規劃和設計
+### [虛擬網路](../virtual-network/virtual-network-vnet-plan-design-arm.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [流量篩選](../virtual-network/virtual-networks-nsg.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [內部部署連線能力](../vpn-gateway/vpn-gateway-plan-design.md?toc=%2fazure%2fnetworking%2ftoc.json)
+##  概念
+### [虛擬網路](../virtual-network/virtual-networks-overview.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [網路負載平衡](../load-balancer/load-balancer-overview.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [應用程式負載平衡](../application-gateway/application-gateway-introduction.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [DNS](../dns/dns-overview.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [DNS 流量散發](../traffic-manager/traffic-manager-overview.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [連接內部部署 - VPN](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [連線內部部署 - 專用](../expressroute/expressroute-introduction.md?toc=%2fazure%2fnetworking%2ftoc.json)
+
+# 開始使用
+## [建立您的第一個虛擬網路](../virtual-network/virtual-network-get-started-vnet-subnet.md?toc=%2fazure%2fnetworking%2ftoc.json)
+
+# 作法
+## 網際網路連線
+### [網路負載平衡公用伺服器](../load-balancer/load-balancer-get-started-internet-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [應用程式負載平衡公用伺服器](../application-gateway/application-gateway-create-gateway-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [保護 Web 應用程式](../application-gateway/application-gateway-web-application-firewall-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [將流量分散到位置](../traffic-manager/traffic-manager-configure-geographic-routing-method.md?toc=%2fazure%2fnetworking%2ftoc.json)
+## 內部連線能力
+### [網路負載平衡器私用伺服器](../load-balancer/load-balancer-get-started-ilb-arm-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [應用程式負載平衡器私用伺服器](../application-gateway/application-gateway-ilb-arm.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [連線虛擬網路 (相同位置)](../virtual-network/virtual-networks-create-vnetpeering-arm-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [連線虛擬網路 (不同位置)](../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+## 內部部署連線能力
+### [連線到內部部署網路 (專用)](../expressroute/expressroute-howto-circuit-portal-resource-manager.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [連線到內部部署網路 (VPN)](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+## 管理
+### [檢視網路拓撲](../network-watcher/network-watcher-topology-powershell.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [管理封包擷取](../network-watcher/network-watcher-packet-capture-manage-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [決定路由的下一個躍點](../network-watcher/network-watcher-check-next-hop-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [確認 VM 的 IP 流量](../network-watcher/network-watcher-check-ip-flow-verify-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+## 範例指令碼
+### [Azure CLI](cli-samples.md)
+## 教學課程
+### [負載平衡的 VM](../virtual-machines/linux/tutorial-load-balance-nodejs.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [將電腦連線到虛擬網路](../vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal.md?toc=%2fazure%2fnetworking%2ftoc.json)
+
+
+# 參考
+## [Azure CLI](https://docs.microsoft.com/cli/azure/network)
+## [PowerShell](https://docs.microsoft.com/powershell/module/azurerm.network/?view=azurermps-3.8.0)
+## [.Net](https://docs.microsoft.com/dotnet/api/microsoft.azure.management.network?view=azuremgmtnetwork-9.1.0-preview)
+## [Node.js](https://azure.microsoft.com/develop/nodejs/#azure-sdk)
+## [REST](https://msdn.microsoft.com/library/mt163658.aspx)
+
+# 資源
+## [網路部落格](http://azure.microsoft.com/blog/topics/networking)
+## [作者範本](/azure/azure-resource-manager/resource-group-authoring-templates?toc=%2fazure%2fnetworking%2ftoc.json)
+## [社群範本](https://azure.microsoft.com/resources/templates/)
+## [價格](https://azure.microsoft.com/pricing)
+## [區域可用性](https://azure.microsoft.com/regions/services/)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-virtual-network)
+## [影片](https://azure.microsoft.com/resources/videos/index/?services=virtual-network)
+

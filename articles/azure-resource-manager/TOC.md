@@ -53,6 +53,7 @@
 ### [REST API](resource-manager-rest-api.md)
 ### [使用標籤來整理資源](resource-group-using-tags.md)
 ### [將資源移至新群組或訂用帳戶](resource-group-move-resources.md)
+### [建立 UI 定義](managed-application-createuidefinition-overview.md)
 ## 控制存取權
 ### [使用 PowerShell 建立服務主體](resource-group-authenticate-service-principal.md)
 ### [使用 Azure CLI 2.0 建立服務主體](/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
@@ -82,6 +83,7 @@
 ### [數值函式](resource-group-template-functions-numeric.md)
 ### [資源函式](resource-group-template-functions-resource.md)
 ### [字串函式](resource-group-template-functions-string.md)
+## [UI 定義函式](managed-application-createuidefinition-functions.md)
 ## [PowerShell](/powershell/module/azurerm.resources)
 ## [Azure 2.0 CLI](/cli/azure/resource)
 ## [.NET](/dotnet/api/microsoft.azure.management.resourcemanager)

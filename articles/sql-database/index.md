@@ -9,12 +9,13 @@ ms.service: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: landing-page
-ms.date: 01/23/2017
+ms.date: 05/03/2017
 ms.author: carolz
-translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: bc2036c18615e855234885cc0937c16d43eb80dc
-ms.lasthandoff: 04/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 5dedddd62634551b5d20fd69c633477180e7623f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 ---
 <div class="content">
@@ -62,6 +63,9 @@ ms.lasthandoff: 04/28/2017
 <ol>
     <li><a href="/azure/sql-database/sql-database-design-first-database">建立並設計適用於新 SQL Database 的結構描述</a></li>
     <li><a href="/azure/sql-database/sql-database-migrate-your-sql-server-database">將現有的 SQL Server 資料庫移轉至 Azure SQL Database</a></li>
+    <li><a href="/azure/sql-database/sql-database-security-tutorial">保護您的 SQL Database</a></li> 
+    <li><a href="/azure/sql-database/sql-database-performance-tutorial">改善 SQL Database 效能</a></li> 
+    <li><a href="/azure/sql-database/sql-database-multi-tenant-application">使用 SQL DB 實作多租用戶 SaaS 應用程式</a></li> 
 </ol>
 
 <h2 style="margin-top: 36px">免費 PluralSight 影片訓練</h2>

@@ -18,8 +18,10 @@
 ### [在 Linux 上使用 Java](service-fabric-create-your-first-linux-application-with-java.md)
 ### [Linux 上的 C](service-fabric-create-your-first-linux-application-with-csharp.md)
 ## [在本機叢集上部署應用程式](service-fabric-get-started-with-a-local-cluster.md)
+## [在容器中部署 .NET 應用程式](service-fabric-host-app-in-a-container.md)
 ## [在 Azure 上建立您的第一個叢集](service-fabric-get-started-azure-cluster.md)
 ## [建立您的第一個獨立叢集](service-fabric-get-started-standalone-cluster.md)
+## [建立您的第一個容器應用程式](service-fabric-get-started-containers.md)
 
 # 作法
 ## 建置應用程式
@@ -27,6 +29,7 @@
 ### 概念
 #### [支援的程式設計模型](service-fabric-choose-framework.md)
 #### [應用程式模型](service-fabric-application-model.md)
+#### [主機模型](service-fabric-hosting-model.md)
 #### [服務資訊清單資源](service-fabric-service-manifest-resources.md)
 #### [服務狀態](service-fabric-concepts-state.md)
 #### [服務分割](service-fabric-concepts-partitioning.md)
@@ -44,20 +47,29 @@
 #### [概觀](service-fabric-containers-overview.md)
 #### [部署 Windows 容器](service-fabric-deploy-container.md)
 #### [部署 Linux 容器](service-fabric-deploy-container-linux.md)
+#### [Docker Compose (預覽)](service-fabric-docker-compose.md)
+#### [容器和服務的資源管理](service-fabric-resource-governance.md)
 
 ### 建置 Reliable Service 服務
 #### [概觀](service-fabric-reliable-services-introduction.md)
 #### 概念
 ##### [Reliable Services 生命週期 - C#](service-fabric-reliable-services-lifecycle.md)
 ##### [Reliable Services 生命週期 - Java](service-fabric-reliable-services-lifecycle-java.md)
-##### [可靠集合](service-fabric-reliable-services-reliable-collections.md)
+
+#### Reliable Collections
+##### [Reliable Collections](service-fabric-reliable-services-reliable-collections.md)
+##### [Reliable Collections 指導方針與建議](service-fabric-reliable-services-reliable-collections-guidelines.md)
+##### [使用 Reliable Collections](service-fabric-work-with-reliable-collections.md)
+##### [交易和鎖定](service-fabric-reliable-services-reliable-collections-transactions-locks.md)
+##### [可靠的並行佇列](service-fabric-reliable-services-reliable-concurrent-queue.md)
+##### [可靠的集合序列化](service-fabric-reliable-services-reliable-collections-serialization.md)
+##### [Reliable State Manager 與 Reliable Collection 內部](service-fabric-reliable-services-reliable-collections-internals.md)
 
 #### 開始使用
 ##### [Windows 上的 C# ](service-fabric-reliable-services-quick-start.md)
 ##### [在 Linux 上使用 Java](service-fabric-reliable-services-quick-start-java.md)
 
 #### Reliable Services 生命週期
-#### [使用 Reliable Collections](service-fabric-work-with-reliable-collections.md)
 #### [設定](service-fabric-reliable-services-configuration.md)
 #### [傳送通知](service-fabric-reliable-services-notifications.md)
 #### [備份與還原](service-fabric-reliable-services-backup-restore.md)
@@ -94,6 +106,7 @@
 
 ### 與服務通訊
 #### [服務通訊](service-fabric-connect-and-communicate-with-services.md)
+#### [DNS 服務](service-fabric-dnsservice.md)
 #### [反向 Proxy](service-fabric-reverseproxy.md)
 
 ### [新增 Web 前端](service-fabric-add-a-web-frontend.md)
