@@ -14,9 +14,10 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
 ms.openlocfilehash: cd734c64ba6d1394cb261bace92dee9dd579dd08
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/22/2017
 
 
@@ -68,7 +69,7 @@ ms.lasthandoff: 04/22/2017
 
 * 是否啟用共置快取。
 * 快取大小佔記憶體的百分比。
-* 當應用程式以雲端服務的形式執行時，用來儲存快取狀態的儲存體帳戶名稱，若不想儲存快取狀態，則為無  (在計算模擬器中執行應用程式時，不會使用儲存體帳戶名稱)。如果您將儲存體帳戶名稱設定為 [(自動)] (此為預設值)，您的快取設定會自動使用您在 [發佈至 Azure] 對話方塊中所選取的同一個儲存體帳戶。
+* 當應用程式以雲端服務的形式執行時，用來儲存快取狀態的儲存體帳戶名稱，若不想儲存快取狀態，則為無  (在計算模擬器中執行應用程式時，不會使用儲存體帳戶名稱)。如果您將儲存體帳戶名稱設定為 [(自動)] \(此為預設值)，您的快取設定會自動使用您在 [發佈至 Azure] 對話方塊中所選取的同一個儲存體帳戶。
 
 > [!NOTE]
 > 只有在使用 Eclipse 工具組的發佈精靈發佈部署時，[(自動)] 設定才會有所要的效果。 如果您改為使用外部機制 (例如 [Azure 管理入口網站][Azure Management Portal]) 手動發佈 .cspkg 檔案，部署作業將無法正確運作。

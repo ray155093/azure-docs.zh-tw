@@ -14,9 +14,10 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 06d30b8222cd0590809b2fd5a1241394056c6338
 ms.openlocfilehash: ac91a1c753611f4002a930dadeaeba2fcd53a324
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/18/2017
 
 
@@ -39,13 +40,13 @@ ms.lasthandoff: 01/18/2017
 ## <a name="add-the-jspwriter-library-to-your-build-path-and-deployment-assembly"></a>將 JspWriter 程式庫加入至組建路徑和部署組件
 將含有 **javax.servlet.jsp.JspWriter** 類別的程式庫加入至組建路徑和部署組件。 如果使用的是 Tomcat，則程式庫會是位於 Apache [lib] 資料夾中的 **jsp-api.jar**。
 
-1. 在 Eclipse 的 [Project Explorer] (專案總管) 中，於 [MyACSHelloWorld] 上按一下滑鼠右鍵，然後依序按一下 [Build Path] (組建路徑)、[Configure Build Path] (設定組建路徑)、[Libraries] (程式庫) 索引標籤，以及 [Add External JARs] (新增外部 JAR)。
-2. 在 [JAR Selection] (JAR 選擇) 對話方塊中，瀏覽至所需的 JAR 並選取它，然後按一下 [Open] (開啟)。
-3. 在 [Properties for MyACSHelloWorld] (MyACSHelloWorld 的屬性) 對話方塊仍開啟的情況下，按一下 [Deployment Assembly] (部署組件)。
-4. 在 [Web Deployment Assembly] (Web 部署組件) 對話方塊中，按一下 [Add] (加入)。
-5. 在 [New Assembly Directive] (新增組件指示詞) 對話方塊中，按一下 [Java Build Path Entries] (Java 組建路徑項目)，然後按 [Next] (下一步)。
+1. 在 Eclipse 的 [Project Explorer] \(專案總管) 中，於 [MyACSHelloWorld] 上按一下滑鼠右鍵，然後依序按一下 [Build Path] \(組建路徑)、[Configure Build Path] \(設定組建路徑)、[Libraries] \(程式庫) 索引標籤，以及 [Add External JARs] \(新增外部 JAR)。
+2. 在 [JAR Selection] \(JAR 選擇) 對話方塊中，瀏覽至所需的 JAR 並選取它，然後按一下 [Open] \(開啟)。
+3. 在 [Properties for MyACSHelloWorld] \(MyACSHelloWorld 的屬性) 對話方塊仍開啟的情況下，按一下 [Deployment Assembly] \(部署組件)。
+4. 在 [Web Deployment Assembly] \(Web 部署組件) 對話方塊中，按一下 [Add] \(加入)。
+5. 在 [New Assembly Directive] \(新增組件指示詞) 對話方塊中，按一下 [Java Build Path Entries] \(Java 組建路徑項目)，然後按 [Next] \(下一步)。
 6. 選取適當的程式庫，然後按一下 [完成] 。
-7. 按一下 [OK] (確定) 以關閉 [Properties for MyACSHelloWorld] (MyACSHelloWorld 的屬性) 對話方塊。
+7. 按一下 [OK] \(確定) 以關閉 [Properties for MyACSHelloWorld] \(MyACSHelloWorld 的屬性) 對話方塊。
 
 ## <a name="modify-the-jsp-file-to-display-saml"></a>修改 JSP 檔案來顯示 SAML
 修改 **index.jsp** 來使用下列程式碼。
