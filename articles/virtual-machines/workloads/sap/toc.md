@@ -17,7 +17,7 @@
 ## 虛擬機器上的 SAP HANA
 ### [單一執行個體 SAP HANA](hana-get-started.md)
 ### [S/4 HANA 或 BW/4 HANA 部署指南](cal-s4h.md)
-### [在 VM 中具有高可用性] (sap-hana-high-availability.md)
+### [VM 高可用性](sap-hana-high-availability.md)
 ### [備份概觀](sap-hana-backup-guide.md)
 ### [檔案層級備份](sap-hana-backup-file-level.md)
 ### [儲存體快照備份](sap-hana-backup-storage-snapshots.md)
