@@ -14,9 +14,10 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 04/10/2017
 ms.author: eugenesh
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
 ms.openlocfilehash: 7679aa86aa24396d9cd7cf84a8cafe7950ad6d62
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/20/2017
 
 ---
@@ -71,7 +72,7 @@ ms.lasthandoff: 04/20/2017
 
 您可以採取下列其中一種方式提供資料表的認證︰ 
 
-- **完整存取儲存體帳戶連接字串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`您可以從 Azure 入口網站取得連接字串︰移至 [儲存體帳戶] 刀鋒視窗 > [設定] > [金鑰] (傳統儲存體帳戶)，或 [設定] >  [存取金鑰] (Azure Resource Manager 儲存體帳戶)。
+- **完整存取儲存體帳戶連接字串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`您可以從 Azure 入口網站取得連接字串︰移至 [儲存體帳戶] 刀鋒視窗 > [設定] > [金鑰] \(傳統儲存體帳戶)，或 [設定] >  [存取金鑰] \(Azure Resource Manager 儲存體帳戶)。
 - **儲存體帳戶共用存取簽章連接字串**：`TableEndpoint=https://<your account>.table.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=t&sp=rl`共用存取簽章應該有容器 (在此案例中為資料表) 和物件 (資料表資料列) 的列出和讀取權限。
 -  **資料表共用存取簽章**：`ContainerSharedAccessUri=https://<your storage account>.table.core.windows.net/<table name>?tn=<table name>&sv=2016-05-31&sig=<the signature>&se=<the validity end time>&sp=r`共用存取簽章應該有資料表的查詢 (讀取) 權限。
 
