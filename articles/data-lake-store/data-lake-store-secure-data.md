@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/06/2017
+ms.date: 05/10/2017
 ms.author: nitinme
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 376b61037de8b1af657095b8b32ee16568af8894
 ms.openlocfilehash: 0df8932668a954cc60a1db9b745019decb98d1e9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -72,7 +74,7 @@ ms.openlocfilehash: 0df8932668a954cc60a1db9b745019decb98d1e9
 
 7. 您的使用者/安全性群組現在可以存取 Azure 資料湖儲存區帳戶。 若要將存取權授與特定使用者，您可以將他們新增至安全性群組。 同樣地，若要撤銷使用者的存取權，您可以將他們從安全性群組中移除。 您也可以將多個安全性群組指派給一個帳戶。 
 
-## <a name="a-namefilepermissionsaassign-users-or-security-group-as-acls-to-the-azure-data-lake-store-file-system"></a><a name="filepermissions"></a>將使用者或安全性群組以 ACL 型式指派給 Azure 資料湖儲存區檔案系統
+## <a name="filepermissions"></a>將使用者或安全性群組以 ACL 型式指派給 Azure 資料湖儲存區檔案系統
 藉由指派使用者/安全性群組給 Azure 資料湖檔案系統，您可以針對儲存在 Azure 資料湖儲存區中的資料設定存取控制。
 
 1. 在您的 [資料湖儲存區帳戶] 刀鋒視窗中，按一下 [資料總管] 。
@@ -146,10 +148,5 @@ Azure Data Lake Store 可讓您進一步在網路層級鎖定資料存放區的�
 * [使用 PowerShell 開始使用資料湖存放區](data-lake-store-get-started-powershell.md)
 * [使用 .NET SDK 開始使用資料湖存放區](data-lake-store-get-started-net-sdk.md)
 * [存取 Data Lake Store 的診斷記錄](data-lake-store-diagnostic-logs.md)
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 
