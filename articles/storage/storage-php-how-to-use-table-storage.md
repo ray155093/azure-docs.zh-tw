@@ -14,17 +14,17 @@ ms.devlang: php
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: e9fd8855cf0c51df5f3ec4f80a733e778996fb82
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 15d3216ef5bb1d7ff312bd886837a3a7b0335afd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="how-to-use-table-storage-from-php"></a>如何使用 PHP 的資料表儲存體
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-
-[!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-tables.md)]
+[!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>Overview
 本指南說明如何使用 Azure 資料表服務執行一般案例。 這些範例均是以 PHP 撰寫，並使用 [Azure SDK for PHP][download]。 所涵蓋的案例包括「建立和刪除資料表」以及「在資料表中插入、刪除及查詢實體」 。 如需有關 Azure 資料表服務的詳細資訊，請參閱 [後續步驟](#next-steps) 一節。
@@ -484,9 +484,9 @@ catch(ServiceException $e){
 ## <a name="next-steps"></a>後續步驟
 了解 Azure 資料表服務的基礎概念之後，請依循下列連結以深入了解更複雜的儲存體工作。
 
-* 造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)
+* [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
 
-如需詳細資訊，另請參閱 [PHP 開發人員中心](/develop/php/)。
+* [PHP 開發人員中心](/develop/php/)。
 
 [download]: http://go.microsoft.com/fwlink/?LinkID=252473
 [require_once]: http://php.net/require_once

@@ -15,10 +15,11 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 11/15/2016
 ms.author: lvargas
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 1bbcc8517b0e7bf3836e79a3861f83e181eb67e7
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: c5d0b7b466c65fb218acd010c13bde061a3abfbf
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -171,7 +172,7 @@ ms.lasthandoff: 03/31/2017
 如需高可用性和災害復原技術的完整資訊及教學課程，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和嚴重損壞修復](virtual-machines-windows-sql-high-availability-dr.md)。
 
 ## <a name="2-tier-and-3-tier-using-azure-vms-and-cloud-services"></a>使用 Azure VM 和雲端服務的 2 層和 3 層
-在此應用程式模式中，您會使用 [Azure 雲端服務 ](../../../cloud-services/cloud-services-choose-me.md#tellmecs)(Web 和背景工作角色 - 平台即服務 (PaaS)) 和 [Azure 虛擬機器](../about.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (基礎結構即服務 (IaaS))，將 2 層或 3 層應用程式部署至 Azure。 針對展示層/商務層使用 [Azure 雲端服務](https://azure.microsoft.com/documentation/services/cloud-services/)，以及針對資料層使用 [Azure 虛擬機器](../about.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的 SQL Server，對於大多數在 Azure 上執行的應用程式會較有幫助。 原因是在雲端服務上執行的計算執行個體，可讓您輕鬆管理、部署、監視和向外延展。
+在此應用程式模式中，您會使用 [Azure 雲端服務 ](../../../cloud-services/cloud-services-choose-me.md#tellmecs)(Web 和背景工作角色 - 平台即服務 (PaaS)) 和 [Azure 虛擬機器](../overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (基礎結構即服務 (IaaS))，將 2 層或 3 層應用程式部署至 Azure。 針對展示層/商務層使用 [Azure 雲端服務](https://azure.microsoft.com/documentation/services/cloud-services/)，以及針對資料層使用 [Azure 虛擬機器](../overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中的 SQL Server，對於大多數在 Azure 上執行的應用程式會較有幫助。 原因是在雲端服務上執行的計算執行個體，可讓您輕鬆管理、部署、監視和向外延展。
 
 有了雲端服務，Azure 就能為您維護基礎結構、執行例行性維護、修補作業系統，以及嘗試從服務和硬體故障中復原。 當您的應用程式需要向外延展時，有自動和手動向外延展選項可供您的雲端服務專案使用，方法是增加或減少應用程式所使用的執行個體或虛擬機器數目。 此外，您還可以使用內部部署 Visual Studio，將應用程式部署至 Azure 中的雲端服務專案。
 

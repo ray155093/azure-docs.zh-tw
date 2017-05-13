@@ -14,17 +14,17 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 70830309c33d4a94fc1eb5abb85cba26c8623f88
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: f004408910aecc380e20f7da54dbd155d179aaa5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="how-to-use-azure-table-storage-from-nodejs"></a>如何使用 Node.js 的 Azure 資料表儲存體
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-
-[!INCLUDE [storage-check-out-samples-all](../../includes/storage-check-out-samples-all.md)]
+[!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>Overview
 本主題示範如何使用 Node.js 應用程式中的 Azure 表格服務執行一般案例。
@@ -68,7 +68,7 @@ var azure = require('azure-storage');
 ## <a name="set-up-an-azure-storage-connection"></a>設定 Azure 儲存體連接
 azure 模組會讀取環境變數 AZURE\_STORAGE\_ACCOUNT 和 AZURE\_STORAGE\_ACCESS\_KEY，或 AZURE\_STORAGE\_CONNECTION\_STRING，以取得連接 Azure 儲存體帳戶所需的資訊。 如果未設定這些環境變數，則呼叫 **TableService**時必須指定帳戶資訊。
 
-如需針對 Azure 網站在 [Azure 入口網站](https://portal.azure.com)中設定環境變數的範例，請參閱[使用 Azure 表格服務的 Node.js Web 應用程式]。
+如需針對 Azure 網站在 [Azure 入口網站](https://portal.azure.com)中設定環境變數的範例，請參閱[使用 Azure 表格服務的 Node.js Web 應用程式](../app-service-web/storage-nodejs-use-table-storage-web-site.md)。
 
 ## <a name="create-a-table"></a>建立資料表
 下列程式碼會建立 **TableService** 物件，並使用該物件建立新資料表。 將下列內容新增至接近 **server.js**的頂端。
@@ -451,15 +451,7 @@ tableSAS = tableSvc.generateSharedAccessSignature('hometasks', { Id: 'user2' });
 ## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱下列資源。
 
-* [Azure 儲存體團隊部落格][Azure Storage Team Blog]。
-* GitHub 上的 [Azure Storage SDK for Node][Azure Storage SDK for Node] 儲存機制。
+* [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
+* [Azure Storage SDK for Node](https://github.com/Azure/azure-storage-node) 儲存機制。
 * [Node.js 開發人員中心](/develop/nodejs/)
-
-[Azure Storage SDK for Node]: https://github.com/Azure/azure-storage-node
-[OData.org]: http://www.odata.org/
-[Using the REST API]: http://msdn.microsoft.com/library/azure/hh264518.aspx
-
-[Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/
-[使用 Azure 表格服務的 Node.js Web 應用程式]: ../app-service-web/storage-nodejs-use-table-storage-web-site.md
-[Create and deploy a Node.js application to an Azure website]: ../app-service-web/app-service-web-get-started-nodejs.md
-
+* [建立 Node.js 應用程式並部署到 Azure 網站](../app-service-web/app-service-web-get-started-nodejs.md)

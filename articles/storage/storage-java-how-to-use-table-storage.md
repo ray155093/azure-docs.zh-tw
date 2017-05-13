@@ -14,16 +14,17 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-translationtype: Human Translation
-ms.sourcegitcommit: bb72ac092496b5962c98006aca61b8c085cb1694
-ms.openlocfilehash: 2c73585e9d1f265c011cf94d1923ecec5f6a3435
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: a4d6f144cc6940ffe2b2c6f27553cd7aa3bcb381
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="how-to-use-table-storage-from-java"></a>如何使用 Java 的資料表儲存體
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-
-[!INCLUDE [storage-check-out-samples-java](../../includes/storage-check-out-samples-java.md)]
+[!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>概觀
 本指南將示範如何使用 Azure 資料表儲存體服務執行一般案例。 相關範例是以 Java 撰寫並使用 [Azure Storage SDK for Java][Azure Storage SDK for Java]。 所涵蓋的案例包括「建立」、「列出」和「刪除」資料表，以及在資料表中「插入」、「查詢」、「修改」和「刪除」實體。 如需資料表的詳細資訊，請參閱 [後續步驟](#Next-Steps) 一節。
@@ -562,10 +563,11 @@ catch (Exception e)
     e.printStackTrace();
 }
 ```
+[!INCLUDE [storage-check-out-samples-java](../../includes/storage-check-out-samples-java.md)]
 
 ## <a name="next-steps"></a>後續步驟
-了解資料表儲存體的基礎概念之後，請參考下列連結以了解如何執行更複雜的儲存工作。
 
+* [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
 * [Azure Storage SDK for Java][Azure Storage SDK for Java]
 * [Azure 儲存體用戶端 SDK 參考][Azure 儲存體用戶端 SDK 參考]
 * [Azure 儲存體 REST API][Azure Storage REST API]
@@ -580,9 +582,4 @@ catch (Exception e)
 [Azure Storage REST API]: https://msdn.microsoft.com/library/azure/dd179355.aspx
 [Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/
 [Azure Tables: Introducing Upsert and Query Projection]: http://blogs.msdn.com/b/windowsazurestorage/archive/2011/09/15/windows-azure-tables-introducing-upsert-and-query-projection.aspx
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

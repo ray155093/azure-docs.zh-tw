@@ -14,19 +14,20 @@ ms.devlang: python
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-translationtype: Human Translation
-ms.sourcegitcommit: 931503f56b32ce9d1b11283dff7224d7e2f015ae
-ms.openlocfilehash: 98b02e8faa21e6d0e04d2f2c70bee6b8b018c010
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 34d075658514045e28d6a784c579528bb3eac376
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="how-to-use-table-storage-from-python"></a>如何使用 Python 的資料表儲存體
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-
-[!INCLUDE [storage-try-azure-tools-tables](../../includes/storage-try-azure-tools-tables.md)]
+[!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>Overview
-本指南說明如何使用 Azure 資料表儲存體服務執行一般案例。 這些範例是以 Python 所撰寫，並使用 [Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)]。 除了「在資料表中插入及查詢實體」外，所涵蓋的案例還包括「建立和刪除資料表」。
+本指南說明如何使用 Azure 資料表儲存體服務執行一般案例。 這些範例是以 Python 所撰寫，並使用 [Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)](https://github.com/Azure/azure-storage-python)。 除了「在資料表中插入及查詢實體」外，所涵蓋的案例還包括「建立和刪除資料表」。
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
@@ -163,18 +164,8 @@ table_service.delete_table('tasktable')
 ```
 
 ## <a name="next-steps"></a>後續步驟
-了解表格儲存體的基本概念之後，請使用下列連結深入了解。
 
+* [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
 * [Python 開發人員中心](/develop/python/)
 * [Azure 儲存體服務 REST API](http://msdn.microsoft.com/library/azure/dd179355)
-* [Azure 儲存體團隊部落格]
-* [Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)]
-
-[Azure 儲存體團隊部落格]: http://blogs.msdn.com/b/windowsazurestorage/
-[Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)]: https://github.com/Azure/azure-storage-python
-
-
-
-<!--HONumber=Dec16_HO2-->
-
-
+* [Microsoft Azure Storage SDK for Python](https://github.com/Azure/azure-storage-python)

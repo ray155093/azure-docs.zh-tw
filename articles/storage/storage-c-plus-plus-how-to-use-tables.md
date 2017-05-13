@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/28/2017
 ms.author: seguler
-translationtype: Human Translation
-ms.sourcegitcommit: 3047ba6bb363e087bfdf767a32c92a503000f11e
-ms.openlocfilehash: c97343008b5af378ed9d441e242018849e2ab69a
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: ab71da3b7cc77cfe6bf78caf358ddd0a4a10321b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="how-to-use-table-storage-from-c"></a>如何使用 C++ 的資料表儲存體
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-
-[!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-tables.md)]
+[!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>Overview
 本指南將示範如何使用 Azure 資料表儲存體服務執行一般案例。 這些範例均以 C++ 撰寫，並使用 [Azure Storage Client Library for C++](https://github.com/Azure/azure-storage-cpp/blob/master/README.md)。 所涵蓋的案例包括**建立和刪除資料表**，以及**使用資料表實體**。
@@ -452,10 +452,10 @@ azure::storage::table_result delete_result = table.execute(delete_operation);
 ## <a name="next-steps"></a>後續步驟
 了解資料表儲存體的基礎概念之後，請依照下列連結深入了解 Azure 儲存體：  
 
+* [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
 * [如何使用 C++ 的 Blob 儲存體](storage-c-plus-plus-how-to-use-blobs.md)
 * [如何使用 C++ 的佇列儲存體](storage-c-plus-plus-how-to-use-queues.md)
 * [以 C++ 列出 Azure 儲存體資源](storage-c-plus-plus-enumeration.md)
 * [Storage Client Library for C++ 參考資料](http://azure.github.io/azure-storage-cpp)
 * [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
-
 
