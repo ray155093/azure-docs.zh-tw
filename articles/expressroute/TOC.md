@@ -63,7 +63,7 @@
 ## [網路部落格](https://azure.microsoft.com/blog/topics/networking/)
 ## [個案研究](https://customers.microsoft.com/Pages/advancedsearch.aspx?mrmcproducts=More%20Products)
 ## [SLA](https://azure.microsoft.com/support/legal/sla/)
-## [訂用帳戶與服務限制](../azure-subscription-service-limits.md)
+## [訂用帳戶與服務限制](../azure-subscription-service-limits.md?toc=%2fazure%2fexpressroute%2ftoc.json)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=expressroute)
 ### [建立 ExpressRoute 線路](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-an-expressroute-circuit/)
 ### [如何為您的電路設定私用對等](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-private-peering-for-your-expressroute-circuit/)
