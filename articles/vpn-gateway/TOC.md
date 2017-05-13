@@ -1,7 +1,7 @@
 # 概觀
 ## [關於 VPN 閘道](vpn-gateway-about-vpngateways.md)
 ## [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)
-## [訂用帳戶與服務限制](../azure-subscription-service-limits.md)
+## [訂用帳戶與服務限制](../azure-subscription-service-limits.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
 
 # 開始使用
 ## [規劃與設計 VPN 閘道](vpn-gateway-plan-design.md)
@@ -46,7 +46,9 @@
 ### [Azure 入口網站](vpn-gateway-delete-vnet-gateway-portal.md)
 ### [PowerShell](vpn-gateway-delete-vnet-gateway-powershell.md)
 ### [PowerShell (傳統)](vpn-gateway-delete-vnet-gateway-classic-powershell.md)
-## [建立點對站的自我簽署憑證](vpn-gateway-certificates-point-to-site.md)
+## 建立點對站的自我簽署憑證
+### [PowerShell](vpn-gateway-certificates-point-to-site.md)
+### [Makecert](vpn-gateway-certificates-point-to-site-makecert.md)
 ## [設定 VPN 閘道 (傳統)](vpn-gateway-configure-vpn-gateway-mp.md)
 ## 疑難排解
 ### [驗證 VNet 的 VPN 輸送量](vpn-gateway-validate-throughput-to-vnet.md)
