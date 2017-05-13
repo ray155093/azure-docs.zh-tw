@@ -3,8 +3,8 @@ title: "利用 HDInsight 中的 Hive 分析和處理 JSON 文件 | Microsoft Doc
 description: "了解如何使用 JSON 文件，以集使用 HDInsight 中的 Hive 分析它們。"
 services: hdinsight
 documentationcenter: 
-author: rashimg
-manager: mwinkle
+author: mumian
+manager: jhubbard
 editor: cgronlun
 ms.assetid: e17794e8-faae-4264-9434-67f61ea78f13
 ms.service: hdinsight
@@ -13,17 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 06/22/2015
-ms.author: rashimg
-translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: c292772cb21c90bf4373803bfcaa47787c3980b5
-ms.lasthandoff: 03/06/2017
+ms.date: 04/26/2017
+ms.author: jgao
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: 1f59558d69993907bc2c37eaba03ad23e5ef8543
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
 # <a name="process-and-analyze-json-documents-using-hive-in-hdinsight"></a>使用 HDInsight 中的 Hive 處理並分析 JSON 文件
-了解如何使用 HDInsight 中的 Hive 處理並分析 JSON 文件。 本教學課程中將使用下列 JSON 文件
+
+了解如何使用 HDInsight 中的 Hive 處理並分析 JSON 文件。 本教學課程中將使用下列 JSON 文件：
 
     {
         "StudentId": "trgfg-5454-fdfdg-4346",
@@ -60,9 +62,9 @@ ms.lasthandoff: 03/06/2017
         ]
     }
 
-檔案位於 wasbs://processjson@hditutorialdata.blob.core.windows.net/。 如需關於搭配 HDInsight 使用 Azure Blob 儲存體的詳細資訊，請參閱[在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)。 如果您想要的話，可以將檔案複製到叢集的預設容器。
+檔案位於 wasbs://processjson@hditutorialdata.blob.core.windows.net/。 如需關於搭配 HDInsight 使用 Azure Blob 儲存體的詳細資訊，請參閱[在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)。 您可以將檔案複製到叢集的預設容器。
 
-在本教學課程中，您將使用 Hive 主控台。  如需開啟 Hive 主控台的指示，請參閱 [利用遠端桌面搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-hadoop-use-hive-remote-desktop.md)。
+在本教學課程中，您會使用 Hive 主控台。  如需開啟 Hive 主控台的指示，請參閱 [利用遠端桌面搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-hadoop-use-hive-remote-desktop.md)。
 
 ## <a name="flatten-json-documents"></a>簡維 JSON 文件
 下一節所列的方法需要 JSON 文件在單一資料列中。 因此，您必須將 JSON 文件簡維成一個字串。 如果已簡維 JSON 文件，您就可以略過此步驟，直接進入與分析 JSON 資料相關的下一節。
@@ -84,13 +86,13 @@ ms.lasthandoff: 03/06/2017
 
     SELECT * FROM StudentsOneLine
 
-原始 JSON 檔案位於 **wasbs://processjson@hditutorialdata.blob.core.windows.net/**。 StudentsRaw Hive 資料表指向原始未簡維的 JSON 文件。
+原始 JSON 檔案位於 **wasbs://processjson@hditutorialdata.blob.core.windows.net/**。 StudentsRaw Hive 資料表會指向原始未扁平化的 JSON 文件。
 
-*StudentsOneLine* Hive 資料表會將資料儲存在 HDInsight 預設檔案系統的 */json/students/* 路徑下。
+StudentsOneLine Hive 資料表會將資料儲存在 HDInsight 預設檔案系統的 /json/students/ 路徑下。
 
-INSERT 陳述式會簡維後的 JSON 資料填入 StudentOneLine 資料表。
+INSERT 陳述式會將扁平化的 JSON 資料填入 StudentOneLine 資料表。
 
-SELECT 陳述式應該只會傳回 1 個資料列。
+SELECT 陳述式應該只會傳回一個資料列。
 
 以下是 SELECT 陳述式的輸出：
 
@@ -99,13 +101,13 @@ SELECT 陳述式應該只會傳回 1 個資料列。
 ## <a name="analyze-json-documents-in-hive"></a>在 Hive 中分析 JSON 文件
 Hive 提供三種不同的機制，可在 JSON 文件上執行查詢：
 
-* 使用 GET\_JSON\_OBJECT UDF (使用者定義函數)
+* 使用 GET\_JSON\_OBJECT UDF (使用者定義函式)
 * 使用 JSON_TUPLE UDF
 * 使用自訂 SerDe
 * 使用 Python 或其他語言撰寫您自己的 UDF。 請參閱[這篇文章][hdinsight-python]，了解如何使用 Hive 執行您自己的 Python 程式碼。
 
 ### <a name="use-the-getjsonobject-udf"></a>使用 GET\_JSON_OBJECT UDF
-Hive 提供內建的 UDF，稱為 [get json objec](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object) ，可在執行階段期間執行 JSON 查詢。 此方法採用兩個引數 – 資料表名稱和方法名稱，後者具有簡維 JSON 文件和必須剖析的 JSON 欄位。 讓我們看看此 UDF 如何運作的範例。
+Hive 提供的內建 UDF 稱為 [get json objec](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object)，可在執行階段期間執行 JSON 查詢。 此方法採用兩個引數 – 資料表名稱和方法名稱，後者具有扁平化的 JSON 文件和必須剖析的 JSON 欄位。 讓我們看看此 UDF 如何運作的範例。
 
 取得每個學生的姓氏與名字
 
@@ -121,7 +123,7 @@ Hive 提供內建的 UDF，稱為 [get json objec](https://cwiki.apache.org/conf
 get-json_object UDF 有幾項限制。
 
 * 因為查詢中的每個欄位都需要重新剖析查詢，所以它會影響效能。
-* GET\_JSON_OBJECT() 會傳回陣列的字串表示法。 若要將其轉換成 Hive 陣列，您必須使用規則運算式來取代方括號 ‘[‘ 和 ‘]’，然後呼叫分割以取得陣列。
+* GET\_JSON_OBJECT() 會傳回陣列的字串表示法。 若要將此陣列轉換成 Hive 陣列，您必須使用規則運算式來取代方括號 ‘[‘ 和 ‘]’，然後呼叫分割以取得陣列。
 
 這就是 Hive wiki 建議使用 json_tuple 的原因。  
 
@@ -137,10 +139,10 @@ Hive 所提供的另一個 UDF 稱為 [json_tuple](https://cwiki.apache.org/conf
 
 ![json_tuple UDF][image-hdi-hivejson-jsontuple]
 
-JSON\_TUPLE 使用 Hive 中的[橫向檢視](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView)語法，可讓 json\_tuple 將 UDT 函數套用到原始資料表的每個資料列，以建立一個虛擬資料表。  複雜 JSON 會重複使用橫向檢視，因此變得難以使用。 此外，JSON_TUPLE 無法處理巢狀 JSON。
+JSON\_TUPLE 會使用 Hive 中的[橫向檢視](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView)語法，可讓 json\_tuple 將 UDT 函式套用到原始資料表的每個資料列，以建立一個虛擬資料表。  複雜 JSON 會重複使用橫向檢視，因此變得難以使用。 此外，JSON_TUPLE 無法處理巢狀 JSON。
 
 ### <a name="use-custom-serde"></a>使用自訂 SerDe
-SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON 結構描述，並使用該結構描述來剖析文件。 在本教學課程中，您將使用其中一個已由 [rcongiu](https://github.com/rcongiu)開發的熱門 SerDe。
+SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON 結構描述，並使用該結構描述來剖析文件。 在本教學課程中，您將使用其中一個已由 [rcongiu](https://github.com/rcongiu) 開發的熱門 SerDe。
 
 **使用自訂 SerDe：**
 
@@ -160,14 +162,14 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
       ![為 JDK 設定正確的組態值][image-hdi-hivejson-jdk]
 2. 安裝 [Maven 3.3.1](http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.1/binaries/apache-maven-3.3.1-bin.zip)
    
-    在您的路徑中新增 bin 資料夾，方法是移至 [控制台] --> [編輯系統變數] \(針對您帳戶的環境變數)。 以下螢幕擷取畫面顯示如何執行此動作。
+    在您的路徑中新增 bin 資料夾，方法是移至 [控制台] --> [編輯系統變數] \(針對您帳戶的環境變數)。 下列螢幕擷取畫面會顯示如何執行此動作。
    
     ![設定 Maven][image-hdi-hivejson-maven]
-3. 從 [Hive-JSON-SerDe](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) github 網站複製專案。 您可以按一下 [下載 Zip] 按鈕即可完成，如以下螢幕擷取畫面所示。
+3. 從 [Hive-JSON-SerDe](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) github 網站複製專案。 您按一下 [下載 Zip] 按鈕即可完成，如下列螢幕擷取畫面所示。
    
     ![複製專案][image-hdi-hivejson-serde]
 
-4：移至您已將此封裝下載至其中的資料夾，並輸入 “mvn package”。 這樣應該會建立您稍後會複製到叢集的必要 jar 檔案。
+4：移至您已將此套件下載至其中的資料夾，然後輸入 “mvn package”。 這樣應該會建立您稍後會複製到叢集的必要 jar 檔案。
 
 5：移至根資料夾 (您已將封裝下載至其中) 下的目標資料夾。 上傳 json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar 檔案到叢集的前端節點。 我通常會將它放在 hive 二進位資料夾底下：C:\apps\dist\hive-0.13.0.2.1.11.0-2316\bin 或類似位置。
 
@@ -179,7 +181,7 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 
 現在，您已準備好使用 SerDe 對 JSON 文件執行查詢。
 
-下列陳述式會利用已定義的結構描述建立資料表
+下列陳述式會利用已定義的結構描述來建立資料表：
 
     DROP TABLE json_table;
     CREATE EXTERNAL TABLE json_table (
@@ -216,20 +218,24 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
     FROM json_table jt
       lateral view explode(jt.StudentClassCollection.Score) collection as scores;
 
-上述查詢會使用 [橫向檢視切割](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) UDF 展開分數的陣列，讓它們可以加總。
+上述查詢會使用[橫向檢視切割](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) UDF 展開分數的陣列，讓它們可以進行加總。
 
 以下是 Hive 主控台的輸出。
 
 ![SerDe 查詢 2][image-hdi-hivejson-serde_query2]
 
-若要找出指定學生得分超過 80 分的科目，SELECT  
-      jt.StudentClassCollection.ClassId FROM json_table jt lateral view explode(jt.StudentClassCollection.Score) collection as score  where score > 80;
+若要找出指定學生得分超過 80 分的科目：
+
+    SELECT  
+      jt.StudentClassCollection.ClassId
+    FROM json_table jt
+      lateral view explode(jt.StudentClassCollection.Score) collection as score  where score > 80;
 
 上述查詢傳回的 Hive 陣列與傳回字串的 get\_json\_object 不同。
 
 ![SerDe 查詢 3][image-hdi-hivejson-serde_query3]
 
-如果您想要刪除格式不正確的 JSON，然後依照此 SerDe 之 [wiki 頁面](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) 的說明內容，您可以輸入下列程式碼即可達成：  
+如果您想要刪除格式不正確的 JSON，然後依照此 SerDe 之 [wiki 頁面](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) 的說明內容，您只要輸入下列程式碼即可：  
 
     ALTER TABLE json_table SET SERDEPROPERTIES ( "ignore.malformed.json" = "true");
 
@@ -237,7 +243,9 @@ SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON
 
 
 ## <a name="summary"></a>摘要
-總而言之，您在 Hive 中選擇的 JSON 運算子類型取決於您的案例。 如果您有一個簡單的 JSON 文件，且您只需要查閱一個欄位 – 您就可以選擇使用 Hive UDF get\_json\_object。 如果您有多個索引鍵需要查閱，則您可以使用 json_tuple。 如果您有巢狀文件，您應該使用 JSON SerDe。
+總而言之，您在 Hive 中選擇的 JSON 運算子類型取決於您的案例。 如果您有一個簡單的 JSON 文件，且您只需要查閱一個欄位 – 您就可以選擇使用 Hive UDF get\_json\_object。 如果您有多個金鑰需要查閱，可以使用 json_tuple。 如果您有巢狀文件，您應該使用 JSON SerDe。
+
+## <a name="next-steps"></a>後續步驟
 
 如需其他相關文章，請參閱
 
