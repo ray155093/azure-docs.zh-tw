@@ -1,5 +1,5 @@
 ---
-title: "在本機安裝 Jupyter Notebook 並連線到 Azure Spark 叢集 | Microsoft Docs"
+title: "在本機安裝 Jupyter 筆記本並連線到 Azure HDInsight Spark 叢集 | Microsoft Docs"
 description: "了解如何在電腦本機安裝 Jupyter Notebook 並連接到 Azure HDInsight 上的 Apache Spark 叢集"
 services: hdinsight
 documentationcenter: 
@@ -14,18 +14,19 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/17/2017
+ms.date: 05/10/2017
 ms.author: nitinme
-translationtype: Human Translation
-ms.sourcegitcommit: a939a0845d7577185ff32edd542bcb2082543a26
-ms.openlocfilehash: 26cdaf4dc68876fa2bed4ca15d8bfb7fd3ac4b6d
-ms.lasthandoff: 01/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: 689bcb86a5eb4476cb62516f623cd23702cd6bc9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="install-jupyter-notebook-on-your-computer-and-connect-to-apache-spark-cluster-on-hdinsight"></a>在電腦上安裝 Jupyter Notebook 並連接到 HDInsight 上的 Apache Spark 叢集
 
-在這篇文章中，您將了解如何搭配含有 Spark magic 的自訂 PySpark (適用於 Python) 和 Spark (適用於 Scala) 核心來安裝 Jupyter Notebook，然後將 Notebook 連接到 HDInsight 叢集。 在您的本機電腦上安裝 Jupyter 可以有數種原因，而且也會面臨數種挑戰。 如需原因和挑戰的清單，請參閱這篇文章結尾的 [為什麼我應該在我的電腦上安裝 Jupyter](#why-should-i-install-jupyter-on-my-computer) 。
+在這篇文章中，您會了解如何搭配含有 Spark magic 的自訂 PySpark (適用於 Python) 和 Spark (適用於 Scala) 核心來安裝 Jupyter 筆記本，然後將筆記本連接到 HDInsight 叢集。 在您的本機電腦上安裝 Jupyter 可以有數種原因，而且也會面臨數種挑戰。 如需詳細資訊，請參閱本文章結尾的[為什麼我應該在我的電腦上安裝 Jupyter](#why-should-i-install-jupyter-on-my-computer) 一節。
 
 在電腦上安裝 Jupyter 和 Spark magic 涉及三個主要步驟。
 
@@ -42,7 +43,8 @@ ms.lasthandoff: 01/24/2017
 * HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
 ## <a name="install-jupyter-notebook-on-your-computer"></a>在電腦上安裝 Jupyter Notebook
-您必須先安裝 Python，才能安裝 Jupyter Notebook。 Python 和 Jupyter 皆為 [Ananconda 發行版本](https://www.continuum.io/downloads)的一部分。 當您安裝 Anaconda 時，實際上安裝的是某個 Python 發行版本。 安裝 Anaconda 之後，您便可以執行命令來新增 Jupyter 安裝。 本節提供您必須遵循的指示。
+
+您必須先安裝 Python，才能安裝 Jupyter Notebook。 Python 和 Jupyter 皆為 [Ananconda 發行版本](https://www.continuum.io/downloads)的一部分。 當您安裝 Anaconda 時，會安裝某個 Python 發行版本。 安裝 Anaconda 之後，您便可以執行適當的命令來新增 Jupyter 安裝。
 
 1. 下載您平台適用的 [Anaconda 安裝程式](https://www.continuum.io/downloads) ，然後執行安裝程式。 執行安裝精靈時，請確定您選取將 Anaconda 新增至 PATH 變數的選項。
 2. 執行下列命令來安裝 Jupyter。
@@ -52,13 +54,15 @@ ms.lasthandoff: 01/24/2017
     如需有關安裝 Jupyter 的詳細資訊，請參閱 [使用 Anaconda 來安裝 Jupyter](http://jupyter.readthedocs.io/en/latest/install.html)。
 
 ## <a name="install-the-kernels-and-spark-magic"></a>安裝核心和 Spark magic
-如需有關如何安裝 Spark magic、PySpark 和 Spark 核心的指示，請參閱 GitHub 上的 [sparkmagic 文件](https://github.com/jupyter-incubator/sparkmagic#installation) 。
 
-若為叢集 3.4 版，請執行 `pip install sparkmagic==0.2.3` 來安裝 sparkmagic 0.5.0。
+如需有關如何安裝 Spark magic、PySpark 和 Spark 核心的指示，請遵循 GitHub 上 [sparkmagic 文件](https://github.com/jupyter-incubator/sparkmagic#installation)中的安裝指示。 Spark magic 文件中的第一個步驟會要求您安裝 Spark magic。 根據您將要連線的 HDInsight 叢集版本，將連結中的第一個步驟以下列命令取代。 之後，遵循 Spark magic 文件中的其餘步驟。 如果您想要安裝其他核心，則必須執行 Spark magic 安裝指示小節中的步驟 3。
 
-若為叢集 3.5 版，請執行 `pip install sparkmagic==0.8.4` 來安裝 sparkmagic 0.8.4。
+* 若為叢集 3.4 版，請執行 `pip install sparkmagic==0.2.3` 來安裝 sparkmagic 0.2.3
+
+* 若為叢集 3.5 版和 3.6 版，請執行 `pip install sparkmagic==0.11.2` 來安裝 sparkmagic 0.11.2
 
 ## <a name="configure-spark-magic-to-access-the-hdinsight-spark-cluster"></a>設定 Spark magic 以存取 HDInsight Spark 叢集
+
 在本節中，您會設定稍早安裝的 Spark magic，以連線到您必須已在 Azure HDInsight 中建立的 Apache Spark 叢集。
 
 1. Jupyter 組態資訊通常儲存在使用者主目錄中。 若要在任何作業系統平台上找出您的主目錄，輸入下列命令。
@@ -88,19 +92,17 @@ ms.lasthandoff: 01/24/2017
           }
         }
 
-4. 以適當的值替代 **{USERNAME}**、**{CLUSTERDNSNAME}** 和 **{BASE64ENCODEDPASSWORD}**。 您可以在您慣用的程式設計語言中或線上，使用一些公用程式來產生 base64 編碼的密碼，以做為您的實際密碼。 以下是一個從命令提示字元執行的簡單 Python 程式碼片段︰
-
-        python -c "import base64; print(base64.b64encode('{YOURPASSWORD}'))"
+4. 以適當的值替代 **{USERNAME}**、**{CLUSTERDNSNAME}** 和 **{BASE64ENCODEDPASSWORD}**。 您可以在慣用的程式設計語言中或在線上，使用一些公用程式來產生 base64 編碼的密碼，以做為您的實際密碼。
 
 5. 在 `config.json` 中設定正確的活動訊號設定。 您應該依照加入稍早的 `kernel_python_credentials` 和 `kernel_scala_credentials` 程式碼片段，在相同層級新增這些設定。 如需有關加入活動訊號設定的方法與位置範例，請參閱此[範例 config.json (sample config.json)](https://github.com/jupyter-incubator/sparkmagic/blob/master/sparkmagic/example_config.json)。
 
-    * 若為 `sparkmagic 0.5.0` (叢集 3.4 版)，請加入︰
+    * 若為 `sparkmagic 0.2.3` (叢集 3.4 版)，請加入︰
 
             "should_heartbeat": true,
             "heartbeat_refresh_seconds": 5,
             "heartbeat_retry_seconds": 1
 
-    * 若為 `sparkmagic 0.8.4` (叢集 3.5 版)，請加入︰
+    * 若為 `sparkmagic 0.11.2` (叢集 3.5 版和 3.6 版)，請加入︰
 
             "heartbeat_refresh_seconds": 5,
             "livy_server_heartbeat_timeout_seconds": 60,
@@ -115,19 +117,16 @@ ms.lasthandoff: 01/24/2017
 
 7. 確認您可以使用 Jupyter Notebook 來連接到叢集，並且可以使用核心隨附的 Spark magic。 請執行下列步驟：
 
-   1. 建立新的 Notebook。 從右下角，按一下 [新增]。 您應該會看到預設核心 **Python2**，以及您安裝的兩個新核心 **PySpark** 和 **Spark**。
+    a. 建立新的 Notebook。 從右下角，按一下 [新增]。 您應該會看到預設核心 **Python2**，以及您安裝的兩個新核心 **PySpark** 和 **Spark**。 按一下 [PySpark] 。
 
-       ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-install-locally/jupyter-kernels.png "建立新的 Jupyter Notebook")
+    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-install-locally/jupyter-kernels.png "建立新的 Jupyter Notebook")
 
-        按一下 [PySpark] 。
+    b. 執行下列程式碼片段。
 
+        %%sql
+        SELECT * FROM hivesampletable LIMIT 5
 
-    2. 執行下列程式碼片段。
-
-            %%sql
-            SELECT * FROM hivesampletable LIMIT 5
-
-        如果您可以順利擷取輸出，即表示已測試您對 HDInsight 叢集的連線。
+    如果您可以順利擷取輸出，即表示已測試您對 HDInsight 叢集的連線。
 
     >[!TIP]
     >如果您想要更新 Notebook 組態以連接到不同的叢集，請將 config.json 更新成一組新的值，如上述的步驟 3 所示。

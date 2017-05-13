@@ -13,11 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 01/19/2017
+ms.date: 05/03/2017
 ms.author: spelluru
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 9591d7e2dd743e44d228205163ad55cb47992283
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 361ad3a669370419e1080d3e4b3fc646f7a0a958
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -105,7 +107,7 @@ Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼�
 
 <table>
 <tr><td><b>屬性名稱</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr>
-<tr><td>索引鍵</td><td>String</td><td>可唯一識別目前集合中之註解的使用者指定索引鍵。 索引鍵長度不能超過 256 個字元。</td></tr>
+<tr><td>key</td><td>String</td><td>可唯一識別目前集合中之註解的使用者指定索引鍵。 索引鍵長度不能超過 256 個字元。</td></tr>
 </table>
 
 ### <a name="root-asset-types"></a>根資產類型
@@ -173,7 +175,7 @@ Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼�
 常見類型可作為屬性的類型，而不是項目的類型。
 
 <table>
-<tr><td><b>常見類型</b></td><td><b>屬性</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr>
+<tr><td><b>一般類型</b></td><td><b>屬性</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr>
 <tr><td>DataSourceInfo</td><td></td><td></td><td></td></tr>
 <tr><td></td><td>sourceType</td><td>string</td><td>描述資料來源的類型。  例如︰SQL Server、Oracle 資料庫等。  </td></tr>
 <tr><td></td><td>objectType</td><td>string</td><td>描述資料來源中的物件類型。 例如：SQL Server 的資料表、檢視。</td></tr>
@@ -251,7 +253,7 @@ Azure 資料目錄使用兩種授權機制：
 ### <a name="roles"></a>角色
 有 3 個角色：**系統管理員**、**擁有者**和**參與者**。  每個角色有其範圍和權限，於下表中摘要說明。
 
-<table><tr><td><b>角色</b></td><td><b>Scope</b></td><td><b>權限</b></td></tr><tr><td>系統管理員</td><td>目錄 (目錄中的所有資產/註解)</td><td>Read Delete ViewRoles
+<table><tr><td><b>角色</b></td><td><b>範圍</b></td><td><b>權限</b></td></tr><tr><td>系統管理員</td><td>目錄 (目錄中的所有資產/註解)</td><td>Read Delete ViewRoles
 
 ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>擁有者</td><td>每個資產 (根項目)</td><td>Read Delete ViewRoles
 
@@ -359,9 +361,4 @@ ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>參與者</td>
 
 <!--Image references-->
 [1]: ./media/data-catalog-developer-concepts/concept2.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

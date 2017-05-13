@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/14/2016
 ms.author: adegeo
-translationtype: Human Translation
-ms.sourcegitcommit: 2b020004762125aad201cf7eb454da5cf73288ae
-ms.openlocfilehash: 7d509e9606c0a2f599f511c011ab775b2ea6f7b0
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 55fc4e5c88568cca8a2842590dfd24e082139699
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -76,7 +78,7 @@ A 記錄將網域 (例如 **contoso.com** 或 **www.contoso.com**) 或萬用字�
        ![快速瀏覽區段，其中顯示網站 URL][csurl]
      
        **或**
-   * 安裝並設定 [Azure Powershell](/powershell/azureps-cmdlets-docs)，然後使用下列命令：
+   * 安裝並設定 [Azure Powershell](/powershell/azure/overview)，然後使用下列命令：
      
        ```powershell
        Get-AzureDeployment -ServiceName yourservicename | Select Url
@@ -97,7 +99,7 @@ A 記錄將網域 (例如 **contoso.com** 或 **www.contoso.com**) 或萬用字�
 > [!NOTE]
 > **www.contoso.com** 的訪客絕對看不到真正的主機 (contoso.cloudapp.net)，所以使用者不會察覺到轉送過程。
 > 
-> 上述範例僅適用於 **www** 子網域的流量。 因為 CNAME 記錄不能使用萬用字元，所以您必須為每一個網域/子網域建立一個 CNAME。 如果要將來自子網域 (例如 .contoso.com) 的流量導向您的 cloudapp.net 位址，您可以在 DNS 設定中設定 [URL 重新導向] 或 [URL 轉送] 項目，或建立一筆 A 記錄。
+> 上述範例僅適用於 **www** 子網域的流量。 因為 CNAME 記錄不能使用萬用字元，所以您必須為每一個網域/子網域建立一個 CNAME。 如果要將來自子網域 (例如 *.contoso.com) 的流量導向您的 cloudapp.net 位址，您可以在 DNS 設定中設定 [URL 重新導向] 或 [URL 轉送] 項目，或建立 A 記錄。
 > 
 > 
 
@@ -111,7 +113,7 @@ A 記錄將網域 (例如 **contoso.com** 或 **www.contoso.com**) 或萬用字�
        ![快速瀏覽區段，其中顯示 VIP][vip]
      
        **或**
-   * 安裝並設定 [Azure Powershell](/powershell/azureps-cmdlets-docs)，然後使用下列命令：
+   * 安裝並設定 [Azure Powershell](/powershell/azure/overview)，然後使用下列命令：
      
        ```powershell
        get-azurevm -servicename yourservicename | get-azureendpoint -VM {$_.VM} | select Vip
@@ -153,9 +155,4 @@ A 記錄將網域 (例如 **contoso.com** 或 **www.contoso.com**) 或萬用字�
 [Azure 入口網站]: https://portal.azure.com
 [vip]: ./media/cloud-services-custom-domain-name-portal/csvip.png
 [csurl]: ./media/cloud-services-custom-domain-name-portal/csurl.png
-
-
-
-<!--HONumber=Dec16_HO3-->
-
 

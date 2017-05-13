@@ -14,10 +14,11 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: 8dcb006a8cf167cdbfb67de5a11dabf0edbbe41c
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 6db07ed122d8dbd9edaa3b4d25680863778a6adf
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -32,6 +33,7 @@ ms.lasthandoff: 04/22/2017
 
 1. [下載並安裝 git](https://git-scm.com/)
 1. [下載並安裝 Node.js 和 NPM](https://nodejs.org/)
+1. [安裝 Gulp.js](http://gulpjs.com/)
 1. [下載、安裝及執行 MongoDB Community Edition (英文)](https://docs.mongodb.com/manual/administration/install-community/)。 
 1. [下載並安裝 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
@@ -40,7 +42,7 @@ ms.lasthandoff: 04/22/2017
 ## <a name="test-local-mongodb-database"></a>測試本機的 MongoDB 資料庫
 在此步驟中，您要確定您的本機 MongoDB 資料庫正在執行。
 
-開啟終端機視窗，然後 `CD` 至 MongoDB 安裝的 `bin` 目錄。 
+開啟終端機視窗，然後 `cd` 至 MongoDB 安裝的 `bin` 目錄。 
 
 在終端機上執行 `mongo`，以連接到本機的 MongoDB 伺服器。
 
@@ -59,7 +61,7 @@ mongo
 
 ### <a name="clone-the-sample-application"></a>複製範例應用程式
 
-開啟終端機視窗，然後 `CD` 至工作目錄。  
+開啟終端機視窗，然後 `cd` 至工作目錄。  
 
 執行下列命令來複製範例存放庫。 
 
@@ -107,7 +109,7 @@ MEAN.js 範例應用程式會將使用者資料儲存於資料庫中。 如果�
 
 在此步驟中，您要在 Azure 中建立 MongoDB 資料庫。 將您的應用程式部署至 Azure 時，它會針對其生產工作負載使用此資料庫。
 
-針對 MongoDB，本教學課程會使用 [Azure DocumentDB](/azure/documentdb/)，這可支援 MongoDB 用戶端連線。 換句話說，您的 Node.js 應用程式只知道它連接到 MongoDB 資料庫。 應用程式不需知道連接是由 DocumentDB 資料庫所支援的事實。
+針對 MongoDB，本教學課程使用 [Azure DocumentDB](/azure/documentdb/)。 Azure DocumentDB 支援 MongoDB 用戶端連線，這表示您的 Node.js 應用程式只知道它是連線到 MongoDB 資料庫。 應用程式不需知道連接是由 DocumentDB 資料庫所支援的事實。
 
 ### <a name="log-in-to-azure"></a>登入 Azure
 
@@ -193,11 +195,11 @@ Azure CLI 會輸出類似下列範例的資訊：
 
 在您的 MEAN.js 存放庫中，開啟 `config/env/production.js`。
 
-在 `db` 物件中，取代 `uri` 的值，如下列範例中所示。 務必也要使用您的 DocumentDB 資料庫名稱來取代這兩個 `<documentdb_name>` 預留位置，並使用您在上一個步驟中複製的索引鍵來取代 `<primary_maste_key>` 預留位置。
+在 `db` 物件中，取代 `uri` 的值，如下列範例中所示。 務必也要使用您的 DocumentDB 資料庫名稱來取代這兩個 `<documentdb_name>` 預留位置，並使用您在上一個步驟中複製的索引鍵來取代 `<primary_master_key>` 預留位置。
 
 ```javascript
 db: {
-  uri: 'mongodb://<documentdb_name>:<primary_maste_key>@<documentdb_name>.documents.azure.com:10250/mean?ssl=true&sslverifycertificate=false',
+  uri: 'mongodb://<documentdb_name>:<primary_master_key>@<documentdb_name>.documents.azure.com:10250/mean?ssl=true&sslverifycertificate=false',
   ...
 },
 ```
@@ -211,7 +213,7 @@ db: {
 
 ### <a name="test-the-application-in-production-mode"></a>在生產模式中測試應用程式 
 
-如同一些其他的 Node.js 應用程式，MEAN.js 會使用 `gulp prod` 來縮小和組合用於生產環境的指令碼。 這會產生生產環境所需的檔案。 
+如同一些其他的 Node.js Web 架構，MEAN.js 會使用 `gulp prod` 來縮小和組合用於生產環境的指令碼。 這會產生生產環境所需的檔案。 
 
 立即執行 `gulp prod`。
 
@@ -241,6 +243,8 @@ MEAN.JS version: 0.5.0
 ```
 
 在瀏覽器中，瀏覽至 `http://localhost:8443`。 按一下上層功能表中的 [註冊]，然後嘗試建立一位虛擬使用者，就像之前一樣。 如果您成功，則您的應用程式正在將資料寫入至 Azure 中的 DocumentDB 資料庫。 
+
+在終端機中，輸入 `Ctrl`+`C` 以停止 Node.js。 
 
 ## <a name="deploy-the-nodejs-application-to-azure"></a>將 Node.js 應用程式部署至 Azure
 在此步驟中，您要將已與 MongoDB 連接的 Node.js 應用程式部署至 Azure App Service。
@@ -353,7 +357,7 @@ db: {
 > 需要部署使用者，才能將 FTP 和本機 Git 部署至 App Service。 此部署使用者是帳戶層級。 因此，它與您的 Azure 訂用帳戶不同。 您只需設定此部署使用者一次。
 
 ```azurecli
-az appservice web deployment user set --user-name <specify-a-username> --password <mininum-8-char-captital-lowercase-number>
+az appservice web deployment user set --user-name <specify-a-username> --password <minimum-8-char-capital-lowercase-number>
 ```
 
 使用 [az appservice web source-control config-local-git](/cli/azure/appservice/web/source-control#config-local-git) 命令，來設定 Azure Web 應用程式的本機 Git 存取。 
@@ -441,7 +445,7 @@ http://<app_name>.azurewebsites.net
 
 ### <a name="update-the-data-model"></a>更新資料模型
 
-開啟 `modules/articles/server/models/articles.server.controller.js`。
+開啟 `modules/articles/server/models/article.server.model.js`。
 
 在 `ArticleSchema` 中，新增名為 `comment` 的 `String` 類型。 完成時，您的結構描述程式碼應該如下所示：
 
@@ -484,7 +488,7 @@ exports.update = function (req, res) {
 };
 ```
 
-接下來，開啟 `modules/client/views/view-article.client.view.js`。
+接下來，開啟 `modules/articles/client/views/view-article.client.view.html`。
 
 就在結尾 `</section>` 標記的正上方，新增下列程式碼行來顯示 `comment` 以及剩餘的文章資料：
 
@@ -492,7 +496,7 @@ exports.update = function (req, res) {
 <p class="lead" ng-bind="vm.article.comment"></p>
 ```
 
-接下來，開啟 `modules/client/views/list-articles.client.view.js`。
+接下來，開啟 `modules/articles/client/views/list-articles.client.view.html`。
 
 就在結尾 `</a>` 標記的正上方，新增下列程式碼行來顯示 `comment` 以及剩餘的文章資料：
 
@@ -500,7 +504,7 @@ exports.update = function (req, res) {
 <p class="list-group-item-text" ng-bind="article.comment"></p>
 ```
 
-接下來，開啟 `modules/client/views/admin/list-articles.client.view.js`。
+接下來，開啟 `modules/articles/client/views/admin/list-articles.client.view.html`。
 
 在 `<div class="list-group">` 標記內部且就在結尾 `comment` 標記的正上方，新增下列程式碼行來顯示 `</a>` 以及剩餘的文章資料：
 
@@ -508,7 +512,7 @@ exports.update = function (req, res) {
 <p class="list-group-item-text" data-ng-bind="article.comment"></p>
 ```
 
-最後，開啟 `modules/client/views/admin/list-articles.client.view.js`。
+最後，開啟 `modules/articles/client/views/admin/form-article.client.view.html`。
 
 找到包含提交按鈕的 `<div class="form-group">` 標記，如下：
 
@@ -551,6 +555,8 @@ NODE_ENV=production node server.js
 
 ![已將註解欄位新增到文章中](./media/app-service-web-tutorial-nodejs-mongodb-app/added-comment-field.png)
 
+在終端機中，輸入 `Ctrl`+`C` 以停止 Node.js。 
+
 ### <a name="publish-changes-to-azure"></a>將變更發佈至 Azure
 
 在 git 中認可您的變更，然後將程式碼變更推送至 Azure。
@@ -581,7 +587,7 @@ az appservice web log tail --name <app_name> --resource-group myResourceGroup
 
 開始記錄資料流之後，重新整理瀏覽器中的 Azure Web 應用程式，以取得部分 Web 流量。 您現在應該會看到使用管線傳送到終端機的主控台記錄。
 
-若要隨時停止記錄資料流，輸入 `Ctrl`+`C`。 
+您隨時可以輸入 `Ctrl`+`C` 以停止記錄資料流。 
 
 ## <a name="manage-your-azure-web-app"></a>管理您的 Azure Web 應用程式
 

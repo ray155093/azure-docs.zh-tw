@@ -14,10 +14,11 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
-ms.openlocfilehash: 48ce80d2a25c6ad55e0520ea4cbdbc82db23f919
-ms.lasthandoff: 04/04/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f291186c6a68dea8aa00b846a2e6f3ad0d7996c
+ms.openlocfilehash: eac9c5b0d8d0f7802d88e6f4f27d9d23c406e025
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -25,7 +26,7 @@ ms.lasthandoff: 04/04/2017
 
 本教學課程示範如何相應放大 Azure 中的 ASP.NET Web 應用程式，以處理最多的使用者要求。
 
-開始本教學課程之前，請確認您的電腦上[已安裝 Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)。 此外，在執行範例應用程式的本機電腦上，還需要 [Visual Studio](https://www.visualstudio.com/vs/)。
+開始本教學課程之前，請確認您的電腦上[已安裝 Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)。 此外，本機電腦上還需要 [Visual Studio](https://www.visualstudio.com/vs/) 以執行範例應用程式。
 
 ## <a name="step-1---get-sample-application"></a>步驟 1 - 取得範例應用程式
 在此步驟中，您要設定本機的 ASP.NET 專案。

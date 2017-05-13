@@ -4,30 +4,31 @@ description: "事件遙測的 Application Insights 資料模型"
 services: application-insights
 documentationcenter: .net
 author: SergeyKanzhelev
-manager: azakonov-ms
+manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 04/25/2017
 ms.author: sergkanz
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: 5b8b803f26dca82b5112568f486e5c347602a409
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 1cad3594be32e59ea6bd3d3ba2289d391bd92c0b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="event-telemetry-application-insights-data-model"></a>事件遙測：Application Insights 資料模型
 
-事件是代表應用程式中發生動作的時間點。 通常它是使用者互動，例如按一下按鈕或簽出訂單。 它也可以是初始化或組態更新等應用程式生命週期事件。 事件名稱應該為簡短低基數的字串。 
+您可以建立事件遙測項目 (在 [Application Insights](app-insights-overview.md) 中) 來代表發生在您應用程式中的事件。 通常它是與使用者互動的事件，例如按一下按鈕或簽出訂單。 它也可以是初始化或組態更新等應用程式生命週期事件。 
 
-事件在語意上可能會或可能不會與要求相互關聯。 不過，如果使用得當，事件遙測比要求或追蹤更重要。 事件代表商務遙測，且應該是個別、較不主動取樣。
+事件在語意上不一定會與要求相互關聯。 不過，如果使用得當，事件遙測比要求或追蹤更重要。 事件代表商務遙測，且應該會受到個別、較不積極[取樣](app-insights-api-filtering-sampling.md)所影響。
 
 ## <a name="name"></a>名稱
 
-事件名稱。 讓它保持較低的基數，以便正確群組並提供實用的計量。
+事件名稱。 若要有適當的分組與實用的計量，請限制應用程式，使其產生少量的個別事件名稱。 例如，針對每個產生的事件執行個體，不要使用不同的名稱。
 
 最大長度︰512 個字元
 
@@ -41,7 +42,7 @@ ms.lasthandoff: 04/22/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需 Application Insights 類型和資料模型，請參閱[資料模型](/application-insights-data-model.md)。
-- 了解如何使用[自訂事件和計量的 Application Insights API](/app-insights-asp-net-dependencies.md)。
-- 查看 Application Insights 支援的[平台](/app-insights-platforms.md)。
+- 如需 Application Insights 類型和資料模型，請參閱[資料模型](application-insights-data-model.md)。
+- [撰寫自訂事件遙測](app-insights-api-custom-events-metrics.md#trackevent)
+- 查看 Application Insights 支援的[平台](app-insights-platforms.md)。
 

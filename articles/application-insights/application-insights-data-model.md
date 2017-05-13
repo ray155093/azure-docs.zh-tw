@@ -4,32 +4,45 @@ description: "Application Insights 資料模型概觀"
 services: application-insights
 documentationcenter: .net
 author: SergeyKanzhelev
-manager: azakonov-ms
+manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 04/25/2017
 ms.author: sergkanz
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: 52f700bd18da87a9a38e0a791d0ec3496f201e0a
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 7dd240c4e1a6fcc9c89bf4418e635e7ef8ef0617
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="application-insights-telemetry-data-model"></a>Application Insights 遙測資料模型
 
-Application Insights 會定義 Application Performance Management (APM) 的遙測資料模型。 此模型會將資料收集標準化，並啟用建立平台以及和語言無關的監視案例。 Application Insights 所收集的資料會建立一般應用程式執行模式的模型︰
+[Azure Application Insights](app-insights-overview.md) 會將遙測從您的 Web 應用程式傳送到 Azure 入口網站，以便您可以分析應用程式的效能和使用量。 遙測模型已經過標準化，如此就可以建立平台與無關語言的監視。 
+
+Application Insights 所收集的資料會建立一般應用程式執行模式的模型︰
 
 ![Application Insights 應用程式模型](./media/application-insights-data-model/application-insights-data-model.png)
 
-應用程式的類型有兩種 — 具有端點可接收外部***要求***的應用程式 - Web 應用程式，以及會定期「喚醒」來處理儲存在某處之資料的應用程式 - WebJobs 或函式。 在這兩種情況下，我們將唯一執行稱為***作業***。 作業透過***例外狀況***會成功或失敗，或可能依賴其他服務/儲存體來執行其商務邏輯。 為了反映這些概念，Application Insights 資料模型會定義三種遙測類型︰[要求](./application-insights-data-model-request-telemetry.md)、[例外狀況](/application-insights-data-model-exception-telemetry.md)和[相依性](/application-insights-data-model-dependency-telemetry.md)。
+下列遙測類型可用來監視您應用程式的執行。 Application Insights SDK 通常會從 Web 應用程式架構自動收集下列三種類型：
 
-一般而言，這些類型會由應用程式架構定義，而且會由 SDK 自動收集。 `ASP.NET MVC` 會在其模型檢視控制器配管中定義要求執行的概念 - 標記要求的開始和停止。 SQL 的相依性呼叫是由 `System.Data` 所定義。 HTTP 端點的呼叫是由 `System.Net` 所定義。 您可以使用自訂屬性和度量，將特定平台和架構所收集的遙測類型進行擴充。 不過，一些情況下您會報告自訂遙測。 您可能想要使用熟悉的檢測架構 (例如 `Log4Net` 或 `System.Diagnostics`) 來實作診斷記錄。 或者，您可能需要擷取使用者與您服務的互動，來分析使用模式。 Application Insights 會辨識三種其他的資料類型︰[追蹤](/application-insights-data-model-trace-telemetry.md)、[事件](/application-insights-data-model-event-telemetry.md)和[計量](/application-insights-data-model-metric-telemetry.md)來建立這些案例的模型。
+* [**要求**](application-insights-data-model-request-telemetry.md)：產生以記錄應用程式所接收的要求。 例如，Application Insights Web SDK 會針對您 Web 應用程式接收的每個 HTTP 要求產生「要求」遙測項目。 
 
-Application Insights 遙測模型會定義將遙測與其所屬作業[相互關聯](/correlation.md)的方式。 例如，要求會發出 SQL Database 呼叫，並記錄診斷資訊。 您可以設定這些會將其固定回要求遙測之遙測項目的相互關聯內容。
+    **作業**是處理要求的執行緒。 您也可以[撰寫程式碼](app-insights-api-custom-events-metrics.md#trackrequest)來監視其他作業類型，例如，定期處理資料之 Web 工作或函式中的「喚醒」。  每個作業都有識別碼，可以用來將應用程式處理要求時產生的其他遙測加以分組。 每個作業可能會成功或失敗，而且有持續時間。
+* [**例外狀況**](application-insights-data-model-exception-telemetry.md)：通常表示造成作業失敗的例外狀況。
+* [**相依性**](application-insights-data-model-dependency-telemetry.md)：代表從您的應用程式對外部服務或儲存體的呼叫，例如 REST API 或 SQL。 在 ASP.NET 中，SQL 的相依性呼叫是由 `System.Data` 所定義。 HTTP 端點的呼叫是由 `System.Net` 所定義。 
+
+Application Insights 針對自訂遙測提供三種其他資料類型：
+
+* [追蹤](application-insights-data-model-trace-telemetry.md)：可直接使用或透過配接器，以您所熟悉的檢測架構 (例如 `Log4Net` 或 `System.Diagnostics`) 來實作診斷記錄。
+* [事件](application-insights-data-model-event-telemetry.md)：通常用於擷取使用者與您服務的互動，藉以分析使用模式。
+* [計量](application-insights-data-model-metric-telemetry.md)：用於報告定期的純量測量。
+
+Application Insights 遙測模型會定義將遙測與其所屬作業[相互關聯](application-insights-correlation.md)的方式。 例如，要求會發出 SQL Database 呼叫，並記錄診斷資訊。 針對會往回繫結至要求遙測的遙測項目，您可以設定這些遙測項目的相互關聯內容。
 
 ## <a name="schema-improvements"></a>結構描述的增強功能
 
@@ -39,7 +52,8 @@ Application Insights 資料模型是簡單且基本但功能強大的方式，�
 
 ## <a name="next-steps"></a>後續步驟
 
-- 查看 Application Insights 支援的[平台](/app-insights-platforms.md)。
-- 了解如何[擴充和篩選遙測](/app-insights-api-filtering-sampling.md)。
-- 使用[取樣](/app-insights-sampling.md)，根據資料模型將遙測量降到最低。
+- [撰寫自訂遙測](app-insights-api-custom-events-metrics.md)
+- 了解如何[擴充和篩選遙測](app-insights-api-filtering-sampling.md)。
+- 使用[取樣](app-insights-sampling.md)，根據資料模型將遙測量降到最低。
+- 查看 Application Insights 支援的[平台](app-insights-platforms.md)。
 

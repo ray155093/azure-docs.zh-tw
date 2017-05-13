@@ -12,12 +12,13 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/14/2017
+ms.date: 04/26/2017
 ms.author: magoedte
-translationtype: Human Translation
-ms.sourcegitcommit: 5ae60cb8ba3d391d3babd1ab575b4f32e139a185
-ms.openlocfilehash: f2c9a5ef2a8f517b9b2072be57f4d8c51b7694c6
-ms.lasthandoff: 02/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 2d6ef39ad4678d331eadd2c0bfd6ff93c99da501
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 ---
 
@@ -29,7 +30,7 @@ ms.lasthandoff: 02/15/2017
 
 - Runbook 會使用 [Azure 執行身分帳戶](automation-sec-configure-azure-runas-account.md)。  執行身分帳戶是慣用的驗證方法，因為它會使用憑證驗證，而不是過期或經常變更的密碼。  
 
-- 這個方案只能管理與自動化帳戶位於相同訂用帳戶和資源群組中的 VM。  
+- 這個方案只能管理與「自動化」帳戶位於相同訂用帳戶中的 VM。  
 
 - 這個方案只會部署到下列 Azure 區域 - 澳大利亞東南部、美國東部、東南亞和西歐。  管理 VM 排程的 Runbook 可以任何區域中的 VM 為目標。  
 

@@ -13,12 +13,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/16/2017
+ms.date: 04/26/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 875b4e3cab6eb4b45ed2d4b6160c60f320703dd8
-ms.openlocfilehash: 1c8ebf2e1dd9400ad153f5b42e7b72f36d28feac
-ms.lasthandoff: 02/23/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 5adffb0d461503b57ff9152671c44716dd044b1e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 ---
 # <a name="how-to-get-azure-multi-factor-authentication"></a>如何取得 Azure Multi-Factor Authentication
@@ -37,7 +38,7 @@ ms.lasthandoff: 02/23/2017
 | 版本 | 說明 |
 | --- | --- |
 | Multi-Factor Authentication for Office 365 |這個版本專門搭配 Office 365 應用程式運作，並且可從 Office 365 入口網站管理。 系統管理員可以[使用雙步驟驗證來保護 Office 365 資源的安全](https://support.office.com/article/Set-up-multi-factor-authentication-for-Office-365-users-8f0454b2-f51a-4d9c-bcde-2c48e41621c6)。 此版本隨附於 Office 365 訂用帳戶。 |
-| 適用於 Azure 系統管理員的 Multi-Factor Authentication | Azure 系統管理員可以為其系統管理員帳戶啟用雙步驟驗證而不需要額外收費。|
+| 適用於 Azure 系統管理員的 Multi-Factor Authentication | Azure 租用戶的全域系統管理員可以為其全域系統管理員帳戶啟用雙步驟驗證，而不需要額外收費。|
 | Azure Multi-Factor Authentication | 通常稱為「完整」版本，Azure Multi-Factor Authentication 提供最豐富的功能。 它能透過 [Azure 傳統入口網站](https://manage.windowsazure.com)、進階報告及支援一系列內部部署和雲端應用程式來提供其他組態選項。 Azure Multi-Factor Authentication 隨附於 Azure Active Directory Premium (P1 及 P2 方案) 和 Enterprise Mobility + Security (E3 及 E5 方案) 中，並可以[在雲端中部署或進行內部部署](multi-factor-authentication-get-started.md)。 |
 
 ## <a name="feature-comparison-of-versions"></a>版本的功能比較
@@ -49,7 +50,7 @@ ms.lasthandoff: 02/23/2017
 
 | 功能 | Multi-Factor Authentication for Office 365 | 適用於 Azure 系統管理員的 Multi-Factor Authentication | Azure Multi-Factor Authentication |
 | --- |:---:|:---:|:---:|
-| 透過 MFA 保護系統管理員帳戶 |● |● (僅適用於 Azure 系統管理員帳戶) |● |
+| 透過 MFA 保護系統管理員帳戶 |● |● (僅限全域系統管理員帳戶) |● |
 | 以行動應用程式做為第二個因素 |● |● |● |
 | 以撥打電話做為第二個因素 |● |● |● |
 | 以 SMS 做為第二個因素 |● |● |● |
@@ -90,16 +91,16 @@ ms.lasthandoff: 02/23/2017
 1. **每個使用者** - 適用於想要為一群定期需要驗證之固定數量員工啟用雙步驟驗證的企業。 每個使用者會根據 Azure AD 租用戶和/或您 Azure MFA 伺服器中啟用的 MFA 使用者數目計費。 使用者如果在 Azure AD 與 Azure MFA Server 中啟用 MFA，並啟用網域同步處理 (Azure AD Connect)，則我們會計算較大的使用者組。 如果未啟用網域同步處理，則我們會計算在 Azure AD 與 Azure MFA Server 中啟用 MFA 的所有使用者總和。 計費是按比例計費，而每日回報給商務系統。 
 
   > [!NOTE]
-  > 計費範例 1︰今日有 5,000 位使用者啟用 MFA。 MFA 系統會將該數字除以 31，並報告那一天有 161.29 個使用者。 明天多啟用 15 使用者，則 MFA 系統會報告那一天有 161.77 個使用者。 計費週期結束時，針對您的 Azure 訂用帳戶計費的使用者總數加起來大約為 5,000 個。 
+  > 計費範例 1︰今日有 5,000 個使用者啟用 MFA。 MFA 系統會將該數字除以 31，並報告那一天有 161.29 個使用者。 明天多啟用 15 個使用者，則 MFA 系統會報告那一天有 161.77 個使用者。 計費週期結束時，針對您的 Azure 訂用帳戶計費的使用者總數加起來大約為 5,000 個。 
   >
-  > 計費範例 2︰您有具有授權的使用者與不具有授權的使用者混合，因此您需要有每位使用者 Azure MFA 提供者來補足差距。 您的租用戶上有 4,500 個 Enterprise Mobility + Security 授權，但 5,000 個使用者啟用 MFA。 Azure 訂用帳戶會對 500 個使用者計費，按比例計費且每日報告為 16.13 個使用者。 
+  > 計費範例 2︰您有具有授權的使用者與不具有授權的使用者混合，因此您需要有每個使用者 Azure MFA 提供者來補足差距。 您的租用戶上有 4,500 個 Enterprise Mobility + Security 授權，但 5,000 個使用者啟用 MFA。 Azure 訂用帳戶會對 500 個使用者計費，按比例計費且每日報告為 16.13 個使用者。 
 
 2. **每次驗證** - 適用於想要為大量不定期需要驗證之使用者啟用雙步驟驗證的企業。 計費是根據 Azure MFA 雲端服務收到的雙步驟驗證要求數目，不論這些驗證是否成功還是遭到拒絕。 這個計費會以 10 個驗證的組件出現在您的 Azure 使用量聲明中，每日回報給商務系統。 
 
   > [!NOTE]
   > 計費範例 3：今日，Azure MFA 服務收到 3,105 個雙步驟驗證要求。 您的 Azure 訂用帳戶會以 310.5 個驗證組件計費。 
 
-請務必注意，您可以有 Azure MFA 授權，但仍需支付耗用量為基礎的組態。 如果您設定每次驗證 Azure MFA 提供者，需支付每隔雙步驟驗證的要求，甚至包括具有授權的使用者。 如果在不連結至 Azure AD 租用戶的網域上設定每個使用者 Azure MFA 提供者，則會以每個啟用的使用者計費，即使您的使用者在 Azure AD 具有授權。 
+請務必注意，您可以有 Azure MFA 授權，但仍需支付耗用量為基礎的組態。 如果您設定每次驗證 Azure MFA 提供者，需支付每個雙步驟驗證的要求，甚至包括具有授權的使用者。 如果在不連結至 Azure AD 租用戶的網域上設定每個使用者 Azure MFA 提供者，則會以每個啟用的使用者計費，即使您的使用者在 Azure AD 具有授權。 
 
 ## <a name="next-steps"></a>後續步驟
 

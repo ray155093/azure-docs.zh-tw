@@ -4,7 +4,7 @@ description: "本文提供有關安裝和使用混合式 Runbook 背景工作的
 services: automation
 documentationcenter: 
 author: mgoedtel
-manager: jwhit
+manager: carmonm
 editor: tysonn
 ms.assetid: 06227cda-f3d1-47fe-b3f8-436d2b9d81ee
 ms.service: automation
@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/31/2017
+ms.date: 05/02/2017
 ms.author: bwren
-translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: 3a958b790b4501153aad86310c3783d49733dd90
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 66e749106ba1031eef19b12f06d5bd16ffa9d09e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 ---
 
@@ -69,6 +70,7 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 | --- | --- |
 | 美國中南部 |scus-jobruntimedata-prod-su1.azure-automation.net |
 | 美國東部 2 |eus2-jobruntimedata-prod-su1.azure-automation.net |
+| 美國中西部 | wcus-jobruntimedata-prod-su1.azure-automation.net |
 | 西歐 |we-jobruntimedata-prod-su1.azure-automation.net |
 | 北歐 |ne-jobruntimedata-prod-su1.azure-automation.net |
 | 加拿大中部 |cc-jobruntimedata-prod-su1.azure-automation.net |
@@ -76,6 +78,14 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 | 印度中部 |cid-jobruntimedata-prod-su1.azure-automation.net |
 | 日本東部 |jpe-jobruntimedata-prod-su1.azure-automation.net |
 | 澳大利亞東南部 |ase-jobruntimedata-prod-su1.azure-automation.net |
+| 英國南部 | uks-jobruntimedata-prod-su1.azure-automation.net |
+| 美國政府維吉尼亞州 | usge-jobruntimedata-prod-su1.azure-automation.us |
+
+如需 IP 位址 (而非名稱) 的清單，請從「Microsoft 下載中心」下載並檢閱 [Azure 資料中心 IP 位址](https://www.microsoft.com/download/details.aspx?id=41653) xml 檔案。 
+
+> [!NOTE]
+> 這個檔案包含「Microsoft Azure 資料中心」中所使用的 IP 位址範圍 (包括「計算」、SQL 和「儲存體」範圍)。 每週會公佈已更新的檔案，以反映目前已部署的範圍及任何即將進行的 IP 範圍變更。 出現在檔案中的新範圍將至少有一週的時間不會在資料中心中使用。 請每週下載新的 xml 檔案，並在您的站台上執行必要的變更，以正確識別在 Azure 中執行的服務。 Express Route 使用者可能會注意到，在每個月的第一週會使用此檔案來更新 Azure 空間的 BGP 公告。 
+> 
 
 ## <a name="installing-hybrid-runbook-worker"></a>安裝混合式 Runbook 背景工作
 

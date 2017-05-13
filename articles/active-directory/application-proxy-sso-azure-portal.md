@@ -12,11 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/06/2017
+ms.date: 04/26/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 1fcec43ad50b9c78443ada116b9ca444605c4730
-ms.openlocfilehash: fa2a2f8ee61b6edf92db8d1f92ab9aca8bc673c5
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: b0454ad51a2d0edecb6f7e7748ec3b74eeefa1da
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 ---
 
@@ -25,7 +27,7 @@ ms.openlocfilehash: fa2a2f8ee61b6edf92db8d1f92ab9aca8bc673c5
 
 Azure Active Directory 應用程式 Proxy 可發佈內部部署應用程式，讓遠端員工也可以安全地存取它們，進而幫助您改進生產力。 在 Azure 入口網站中，您也可以設定這些應用程式的單一登入 (SSO)。 現在，您的使用者只需要向 Azure AD 驗證，便可以存取您的企業應用程式，而不必再次登入。
 
-我們將在本文中使用密碼型應用程式的範例，示範密碼儲存庫存如何提供簡單的 SSO 體驗。 
+在本文中，我們使用密碼型應用程式做為範例，以示範密碼保存庫如何提供簡單的 SSO 體驗。 
 
 您應該已經使用應用程式 Proxy 發行並測試您的應用程式。 如果還沒，請依照[使用 Azure AD 應用程式 Proxy 發佈應用程式 - 公開預覽](application-proxy-publish-azure-portal.md)的步驟操作，然後回到這裡。 
 
@@ -35,7 +37,7 @@ Azure Active Directory 應用程式 Proxy 可發佈內部部署應用程式，�
 
 1. 以系統管理員身分登入 [Azure 入口網站](https://portal.azure.com)。
 2. 選取 [Azure Active Directory]  >  [企業應用程式]  >  [所有應用程式]。
-3. 從清單中選取您要設定 SSO 的應用程式。 如果您有很多應用程式，您可以使用搜尋方塊來篩選出正確的一個。  
+3. 從清單中選取您要設定 SSO 的應用程式。 如果您有許多應用程式，就可以使用搜尋方塊來篩選出正確的應用程式。  
 4. 在 [管理] 區段中，按一下 [單一登入]。
 
    ![選取單一登入](./media/application-proxy-sso-azure-portal/select-sso.png)
@@ -58,9 +60,4 @@ Azure Active Directory 應用程式 Proxy 可發佈內部部署應用程式，�
 ## <a name="next-steps"></a>後續步驟
 
 閱讀其他實作[使用應用程式 Proxy 進行單一登入](active-directory-application-proxy-sso-using-kcd.md)的做法
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

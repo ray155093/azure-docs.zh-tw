@@ -1,5 +1,5 @@
 ---
-title: "Azure AD 應用程式 Proxy 的 PingAccess | Microsoft Docs"
+title: "標頭型驗證搭配 Azure AD 應用程式 Proxy 的 PingAccess | Microsoft Docs"
 description: "使用 PingAccess 與應用程式 Proxy 來發行應用程式可支援標頭型驗證。"
 services: active-directory
 documentationcenter: 
@@ -11,16 +11,17 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/21/2017
+ms.date: 04/21/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
-ms.openlocfilehash: 173607c481d0ba7ceece6310fcd131ff622a0677
-ms.lasthandoff: 03/23/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
+ms.openlocfilehash: 8db76d1f83cdf1cf53ddd1e9c69c56400d04af2d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/29/2017
 
 ---
 
-# <a name="publish-applications-that-support-header-based-authentication-with-pingaccess-for-azure-ad"></a>使用 Azure AD 的 PingAccess 支援標頭型驗證的發行應用程式
+# <a name="publish-applications-that-support-header-based-authentication-with-azure-ad-application-proxy-and-pingaccess"></a>發行支援標頭型驗證搭配 Azure AD 應用程式 Proxy 和 PingAccess 的應用程式
 
 Azure Active Directory 應用程式 Proxy 和 PingAccess 通力合作，為 Azure Active Directory 客戶提供甚至更多應用程式的存取權。 PingAccess 會展開[現有應用程式 Proxy 供應項目](active-directory-application-proxy-get-started.md)以包含遠端存取使用標頭進行驗證的應用程式。 
 

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: tarcher
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 1b6e826426ebafe10abdf33f9bcfecc1c6315cfc
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: 98950d72e90b0e178bae2fffa7644fd824a25eea
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -32,7 +33,7 @@ ms.lasthandoff: 04/07/2017
 ## <a name="steps-to-add-a-claimable-vm-to-a-lab-in-azure-devtest-labs"></a>將可宣告 VM 新增至 Azure DevTest Labs 中實驗室的步驟
 1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
-1. 從實驗室清單中，選取您想要在其中建立 VM 的實驗室。  
+1. 從實驗室清單中，選取您想要在其中建立可宣告 VM 的實驗室。  
 1. 在實驗室的 [概觀] 刀鋒視窗中，選取 [+ 新增]。  
 
     ![加入 VM 按鈕](./media/devtest-lab-add-vm/devtestlab-home-blade-add-vm.png)
@@ -46,13 +47,12 @@ ms.lasthandoff: 04/07/2017
 1. 如果您想使用儲存在[密碼存放區](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store)中的密碼，請選取 [使用儲存的密碼]，並指定與密碼對應的金鑰值。 否則，請在標示為 [輸入值] 的文字欄位中輸入密碼。
 1. [虛擬機器磁碟類型] 會決定實驗室中的虛擬機器所允許的儲存磁碟類型。
 1. 選取 [虛擬機器大小]  ，然後選取其中一個預先定義的項目，這些項目可以指定處理器核心、RAM 大小，以及要建立的 VM 的硬碟大小。
-1. 選取 [構件]，然後從構件清單中，選取並設定您想要新增到基本映像中的構件。
-    **附註：**如果您對 DevTest Labs 或設定構件並不熟悉，請參閱[將現有的構件加入至 VM](./devtest-lab-add-vm-with-artifacts.md#add-an-existing-artifact-to-a-vm) 一節，完成該節之後再返回此處。
+1. 選取 [構件]，然後從構件清單中，選取並設定您想要新增到基本映像中的構件。 如果您對 DevTest Labs 或設定構件並不熟悉，請參閱[將現有的構件加入至 VM](devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) 一節，完成該節之後再返回此處。
 1. 選取 [進階設定] 以設定 VM 的網路選項和到期日選項。 在 [宣告選項] 底下，選擇 [是] 來允許宣告機器。
 
   ![選擇以允許宣告 VM。](./media/devtest-lab-add-vm/devtestlab-claim-VM-option.png)
 
-1. 如果您想要檢視或複製 Azure Resource Manager 範本，請參閱[儲存 Azure Resource Manager 範本](./devtest-lab-add-vm-with-artifacts.md#save-azure-resource-manager-template)一節，然後在完成時回到這裡。
+1. 如果您想要檢視或複製 Azure Resource Manager 範本，請參閱[儲存 Azure Resource Manager 範本](devtest-lab-add-vm.md#save-azure-resource-manager-template)一節，然後在完成時回到這裡。
 1. 選取 [建立]  ，將指定的 VM 加入實驗室。
 1. 實驗室刀鋒視窗會顯示 VM 的建立狀態，其狀態會先是 [正在建立]，在啟動該 VM 之後才會變成 [正在執行]。
 

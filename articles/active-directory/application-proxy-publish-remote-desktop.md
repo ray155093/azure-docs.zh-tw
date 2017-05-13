@@ -11,12 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/11/2017
+ms.date: 04/21/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: e45d704e68c17d36fd5b195179730b80d0f53e0c
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: 9724ad2e460837157c7677d2c91493cebc8f7012
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -59,14 +60,14 @@ RD Web 和 RD 閘道端點必須位於相同的電腦上，並具有一般的根
 ### <a name="publish-the-rd-host-endpoint"></a>發佈 RD 主機端點
 
 1. 使用下列值[發佈新的應用程式 Proxy 應用程式](application-proxy-publish-azure-portal.md)︰
-   - 內部 URL：https://<rdhost>.com/，其中 <rdhost> 是 RD Web 和 RD 閘道共用的一般根。 
+   - 內部 URL：https://\<rdhost\>.com/，其中 \<rdhost\> 是 RD Web 和 RD 閘道共用的共同根。 
    - 外部 URL︰會根據應用程式名稱自動填入這個欄位，但您可以修改它。 您的使用者在存取 RDS 時，將會移到此 URL。 
    - 預先驗證方法︰Azure Active Directory
    - 轉譯 URL 標頭：否
 2. 將使用者指派給已發佈 RD 應用程式。 並請確定它們都可存取 RDS。
 3. 保留應用程式的單一登入方法，因為 **Azure AD 單一登入已停用**。 系統會要求您的使用者分別驗證一次 Azure AD 及 RD Web，但可單一登入 RD 閘道。 
 4. 移至 [Azure Active Directory] > [應用程式註冊] > [您的應用程式] > [設定]。 
-5. 選取 [內容] 並更新 [首頁 URL] 欄位，以指向 RD Web 端點 (例如 https://<rdhost>.com/RDWeb)。
+5. 選取 [內容] 並更新 [首頁 URL] 欄位，以指向 RD Web 端點 (例如 https://\<rdhost\>.com/RDWeb)。
 
 ### <a name="direct-rds-traffic-to-application-proxy"></a>將 RDS 資料流導向應用程式 Proxy
 
@@ -82,7 +83,7 @@ RD Web 和 RD 閘道端點必須位於相同的電腦上，並具有一般的根
 
   ![在 RDS 上部署內容畫面](./media/application-proxy-publish-remote-desktop/rds-deployment-properties.png)
 
-8. 針對每個集合，執行下列命令。 將 *<yourcollectionname>* 和 *<proxyfrontendurl>* 取代為您的個人資訊。 此命令會啟用 RD Web 和 RD 閘道之間的單一登入，並將效能最佳化︰
+8. 針對每個集合，執行下列命令。 使用您自己的資訊來取代 *\<yourcollectionname\>* 和 *\<proxyfrontendurl\>*。 此命令會啟用 RD Web 和 RD 閘道之間的單一登入，並將效能最佳化︰
 
    ```
    Set-RDSessionCollectionConfiguration -CollectionName "<yourcollectionname>" -CustomRdpProperty "pre-authentication server address:s: <proxyfrontendurl> `n require pre-authentication:i:1"
@@ -103,3 +104,4 @@ RD Web 和 RD 閘道端點必須位於相同的電腦上，並具有一般的根
 
 [使用 Azure AD 應用程式 Proxy 啟用 SharePoint 的遠端存取](application-proxy-enable-remote-access-sharepoint.md)  
 [使用 Azure AD 應用程式 Proxy 遠端存取應用程式的安全性考量](application-proxy-security-considerations.md)
+

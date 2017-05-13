@@ -11,12 +11,13 @@ ms.workload: compute
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/07/2017
+ms.date: 04/26/2017
 ms.author: mbaldwin
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 25ba53a1047863d01ba1fc2647af51fdd582feb1
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 11254a9bd82885701b457ba3b4ec0ef0aad710e6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -186,7 +187,7 @@ MyCloudIT 平台可減少 95% 的部署時間、30% 的 Azure 成本，而且只
 >   
 > Loughton, Essex IG10 3TQ
 >   
-> **電話：+44 (0) 20 8502 2155
+> 電話：+44 (0) 20 8502 2155
 > 
 > **新加坡**：
 >   
@@ -194,7 +195,7 @@ MyCloudIT 平台可減少 95% 的部署時間、30% 的 Azure 成本，而且只
 >   
 > The Globe, Singapore 069532
 > 
-> **電話：+65 6709 4933
+> 電話：+65 6709 4933
 >   
 > **北美洲**：
 >   
@@ -202,7 +203,7 @@ MyCloudIT 平台可減少 95% 的部署時間、30% 的 Azure 成本，而且只
 >   
 > Suite 200, Houston, TX 77098
 >   
-> **電話：+1 713 691 0800
+> 電話：+1 713 691 0800
 
 #### <a name="saasplaza"></a>**SaaSplaza**
 [SaaSplaza](http://www.saasplaza.com/) 提供完整的 Microsoft Dynamics 組合 (NAV、AX、GP、SL、CRM) 私人和公用雲端 (Azure)。
@@ -217,7 +218,7 @@ MyCloudIT 平台可減少 95% 的部署時間、30% 的 Azure 成本，而且只
 > 
 > 提供以工作階段為基礎的 RemoteApp 和桌面解決方案︰是，兩者
 > 
-> **EMEA**
+> **歐洲、中東與非洲**：
 > 
 > Prins Mauritslaan 29-35
 > 
@@ -227,7 +228,7 @@ MyCloudIT 平台可減少 95% 的部署時間、30% 的 Azure 成本，而且只
 > 
 > 電話：+31 20 547 8060 
 > 
->  **美洲**
+>  **美洲**：
 > 
 > 171 Saxony Road, Suite 105
 > 
@@ -239,7 +240,7 @@ MyCloudIT 平台可減少 95% 的部署時間、30% 的 Azure 成本，而且只
 > 
 > 電話：+1 858 385 8900 
 > 
-> **APAC**
+> **亞太地區**：
 > 
 > 105 Cecil Street
 >    

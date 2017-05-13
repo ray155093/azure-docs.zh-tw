@@ -14,10 +14,11 @@ ms.workload: infrastructure
 ms.date: 12/01/2016
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 758c9112539ebaedc6c8180b7e6642d5d26fa16d
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: 18501fc0fdb3174b3ec74e3dde3422b27898bf10
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -27,11 +28,11 @@ ms.lasthandoff: 04/12/2017
 
 本指南的五個部分涵蓋下列主題：
 
-- [概觀和架構](hana-overview-architecture.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [基礎結構和連線能力](hana-overview-infrastructure-connectivity.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [SAP HANA 安裝](hana-installation.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [高可用性和災害復原](hana-overview-high-availability-disaster-recovery.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [疑難排解和監視](troubleshooting-monitoring.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [Azure 上 SAP HANA (大型執行個體) 的概觀和架構](hana-overview-architecture.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [Azure 上 SAP HANA (大型執行個體) 的基礎結構和連接](hana-overview-infrastructure-connectivity.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [如何在 Azure 上安裝和設定 SAP HANA (大型執行個體)](hana-installation.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [Azure 上 SAP Hana (大型執行個體) 的高可用性和災害復原](hana-overview-high-availability-disaster-recovery.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [Azure 上 SAP HANA (大型執行個體) 疑難排解和監視](troubleshooting-monitoring.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="definitions"></a>定義
 
@@ -132,7 +133,7 @@ SAP HANA on Azure (大型執行個體) 的整體架構不僅提供一個經 SAP 
 - 與 Azure 不同，SAP HANA on Azure (大型執行個體) 伺服器是特定客戶專用。 重新啟動或關閉伺服器並不會導致作業系統和 SAP HANA 被部署到另一部伺服器。 (唯一的例外狀況是當伺服器發生問題而必須在另一個刀鋒視窗上執行重新部署的時候)。
 - 與 Azure 中配合最佳性價比來選取主機處理器類型的方式不同，為 SAP HANA on Azure (大型執行個體) 選擇的處理器類型是 Intel E7v3 處理器系列中效能最佳的類型。
 
-將會有多個客戶在 SAP HANA on Azure (大型執行個體) 硬體上進行部署，而每個客戶都會透過在自己的 VLAN 中進行部署來彼此防護。 為了將「HANA 大型執行個體」連接到「Azure 虛擬網路」(VNet) 中，適當的網路功能元件會在 Azure VNet IP 位址範圍與硬體基礎結構內的 VLAN IP 位址空間之間執行網路位址轉譯 (NAT)。
+將會有多個客戶在 SAP HANA on Azure (大型執行個體) 硬體上進行部署，而每個客戶都會透過在自己的 VLAN 中進行部署來彼此防護。 為了將「HANA 大型執行個體」連接到「Azure 虛擬網路」(VNet)，適當的網路元件會將租用戶「HANA 大型執行個體」單位，以隔離的方式連接到租用戶 Azure 訂用帳戶的 Azure VNet 中。 
 
 ## <a name="operations-model-and-responsibilities"></a>作業模型和職責
 
@@ -179,11 +180,11 @@ SAP HANA on Azure (大型執行個體) 提供的服務可與 Azure IaaS 服務�
 
 「HANA 大型執行個體」的大小調整與 HANA 的大小調整大致上沒有差別。 針對您想要就現有的和已部署的系統從其他 RDBMS 移到 HANA 的情況，SAP 提供一些可在您現有 SAP 系統上執行的報告。 如果資料庫是要移到 HANA，它們會檢查資料並計算資料表記憶體需求。 若要取得有關如何執行這些報告及如何取得其最新修補程式/版本的詳細資訊，請參閱下列 SAP 附註：
 
-- SAP 附註 #1793345 - SAP Suite on HANA 的大小調整
-- SAP 附註 #1872170 - Suite on HANA 與 S/4 HANA 大小調整報告
-- SAP 附註 #2121330 - 常見問題集：SAP BW on HANA 大小調整報告
-- SAP 附註 #1736976 - BW on HANA 的大小調整報告
-- SAP 附註 #2296290 - 新的 BW on HANA 大小調整報告
+- [SAP 附註 #1793345 - SAP Suite on HANA 的大小調整 (英文)](https://launchpad.support.sap.com/#/notes/1793345)
+- [SAP 附註 #1872170 - Suite on HANA 與 S/4 HANA 大小調整報告 (英文)](https://launchpad.support.sap.com/#/notes/1872170)
+- [SAP 附註 #2121330 - 常見問題集：SAP BW on HANA 大小調整報告 (英文)](https://launchpad.support.sap.com/#/notes/2121330)
+- [SAP 附註 #1736976 - BW on HANA 的大小調整報告 (英文)](https://launchpad.support.sap.com/#/notes/1736976)
+- [SAP 附註 #2296290 - 新的 BW on HANA 大小調整報告 (英文)](https://launchpad.support.sap.com/#/notes/2296290)
 
 針對嶄新的實作，可使用 SAP Quick Sizer 來計算在 HANA 上實作 SAP 軟體時的記憶體需求。
 
@@ -201,7 +202,7 @@ HANA 的記憶體需求會隨著資料量的成長增加，因此您會想要知
 
 **網路連線︰**
 
-- 內部部署環境與 Azure 之間的 Azure ExpressRoute：請務必向 ISP 訂購一條 1 Gbps 的連線，以將您的內部部署資料中心連接到 Azure
+- 內部部署環境與 Azure 之間的 Azure ExpressRoute：請務必向 ISP 訂購一條至少 1 Gbps 的連線，以將您的內部部署資料中心連接到 Azure
 
 **作業系統︰**
 
@@ -217,7 +218,9 @@ HANA 的記憶體需求會隨著資料量的成長增加，因此您會想要知
 > Microsoft 提供的作業系統未向 Red Hat 註冊，也未連接至 Red Hat Subscription Manager 執行個體。
 
 - 部署在 Azure VM 上 Azure 中的 Red Hat Subscription Manager。 這會提供可讓 Red Hat 註冊 SAP HANA on Azure (大型執行個體) 並對其分別進行更新 (因為從部署在「Azure 大型執行個體」戳記上的租用戶內無法直接存取網際網路) 的功能。
-- 與 Linux 提供者之間簽訂的服務和支援合約 (特定 Linux 版本訂用帳戶中隱含包含)，或涵蓋所用之特定 Linux 版本且符合 SAP 準則的其他服務和支援合約。
+- SAP 會要求您與 Linux 提供者之間有一份支援合約。 這項需求並不會因「HANA 大型執行個體」解決方案或您在 Azure 中執行 Linux 的事實而消除。 與使用一些 Linux Azure 資源庫映像時不同，服務費用並未包含在「HANA 大型執行個體」的解決方案內容中。 身為客戶的您必須負責滿足 SAP 對 Linux 散發者之支援合約的相關需求。   
+   - 針對 SUSE Linux，請查閱 [SAP 附註 #1984787 - SUSE LINUX Enterprise Server 12：安裝注意事項 (英文)](https://launchpad.support.sap.com/#/notes/1984787) 和 [SAP 附註 #1056161 - SAP 應用程式的 SUSE 優先支援 (英文)](https://launchpad.support.sap.com/#/notes/1056161) 中的支援合約需求。
+   - 針對 Red Hat Linux，您必須擁有包含支援和服務 (「HANA 大型執行個體」的作業系統更新) 的正確訂用帳戶層級。 關於支援和服務，Red Hat 建議您取得 "RHEL for SAP Business Applications" 訂用帳戶。 如需詳細資料，請查看 [SAP 附註 #2002167 - Red Hat Enterprise Linux 7.x：安裝和升級](https://launchpad.support.sap.com/#/notes/2002167)和 [SAP 附註 #1496410 - Red Hat Enterprise Linux 6.x：安裝和升級](https://launchpad.support.sap.com/#/notes/1496410)。
 
 **資料庫：**
 
@@ -235,6 +238,19 @@ HANA 的記憶體需求會隨著資料量的成長增加，因此您會想要知
 - 合格的 SAP HANA 安裝人員。
 - 可設計以 SAP HANA 為中心之「高可用性」和「災害復原」的 SAP 架構師技能。
 
+
+## <a name="storage"></a>儲存體
+
+SAP HANA on Azure (大型執行個體) 的儲存體配置是由 SAP HANA on Azure Service Management 透過 SAP 建議的最佳做法進行設定，請參閱 [SAP HANA 儲存體需求](http://go.sap.com/documents/2015/03/74cdb554-5a7c-0010-82c7-eda71af511fa.html)技術白皮書。
+
+「HANA 大型執行個體」通常隨附存放磁碟區 4 倍的記憶體磁碟區。 這些單位會隨附一個用來儲存 HANA 記錄備份的磁碟區。 如需更多詳細資料，請參閱[如何在 Azure 上安裝和設定 SAP HANA (大型執行個體)](hana-installation.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+
+身為客戶的您可以選擇利用儲存體快照來進行備份/還原及災害復原。 如需有關此主題的更多詳細資料，請參閱 [Azure 上 SAP Hana (大型執行個體) 的高可用性和災害復原](hana-overview-high-availability-disaster-recovery.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+
+### <a name="encryption-of-data-at-rest"></a>待用資料加密
+用於「HANA 大型執行個體」的儲存體可允許在資料儲存於磁碟上時，對其進行透明加密。 部署「HANA 大型執行個體單位」時，您可以選擇啟用這類加密。 您也可以在已部署完成之後，選擇變更成已加密的磁碟區。 從非加密到已加密磁碟區的轉移過程是透明的，並不需要停機。 
+
+
 ## <a name="networking"></a>網路
 
 「Azure 網路」的架構是成功部署 SAP 應用程式的關鍵元件。 一般而言，SAP HANA on Azure (大型執行個體) 部署具有較大的 SAP 架構，其中包含數個擁有不同資料庫大小、CPU 資源耗用量及記憶體使用量的不同 SAP 解決方案。 這些 SAP 系統中很可能只有一或兩個系統是以 SAP HANA 為基礎，因此您的 SAP 架構可能會是一個利用下列各項的混合式架構：
@@ -251,23 +267,26 @@ HANA 的記憶體需求會隨著資料量的成長增加，因此您會想要知
 - 「Azure 虛擬網路」(VNet) 必須連接到會連接到內部部署網路的 Azure ExpressRoute 線路。
 - ExpressRoute 線路通常應有 1 Gbps 或更高的頻寬。 這會允許有足夠的頻寬，可供在內部部署系統與在 Azure VM 上執行的系統之間傳輸資料 (以及從內部部署環境中的使用者連線到 Azure 系統)。
 - Azure 中的所有 SAP 系統都必須在 Azure VNet 中設定妥當，才能彼此通訊。
-- 裝載於內部部署環境中的 Active Directory 與 DNS 會透過 ExpressRoute 延伸到 Azure。
+- 裝載於內部部署環境中的 Active Directory 與 DNS 會透過 ExpressRoute 從內部部署環境延伸到 Azure。
 
-**建議：**在單一 Azure 訂用帳戶內將整個 SAP 架構部署在 Azure。 SAP 架構內的許多程序都需要 SAP 開發、測試及生產執行個體之間的通透 (可能較少) 網路連線，而 SAP NetWeaver 架構有許多自動作用都倚賴這個在這些不同執行個體之間的通透網路。 因此，強烈建議將整個 SAP 架構置於一個 Azure 訂用帳戶中，即使已跨多個 Azure 區域部署該架構。
-
-SAP HANA on Azure (大型執行個體) 的相關架構與程序便是建立在上述建議的基礎上。
 
 > [!NOTE] 
 > 單一 Azure 訂用帳戶只能連結到特定 Azure 區域中某個「大型執行個體」戳記內的單一租用戶，相反地，單一「大型執行個體」戳記租用戶也只能連結到一個 Azure 訂用帳戶。
 
-將 SAP HANA on Azure (大型執行個體) 部署在兩個不同的 Azure 區域中會導致在「大型執行個體」戳記中部署個別的租用戶。 不過，只要這些執行個體都是相同 SAP 架構的一部分，您便可以預期兩個租用戶最終都會在同一個 Azure 訂用帳戶下。
+將 SAP HANA on Azure (大型執行個體) 部署在兩個不同的 Azure 區域中會導致在「大型執行個體」戳記中部署個別的租用戶。 不過，只要這些執行個體都是相同 SAP 架構的一部分，您便可以在同一個 Azure 訂用帳戶下執行兩者。 
 
 > [!IMPORTANT] 
 > 使用 SAP HANA on Azure (大型執行個體) 時，僅支援「Azure 資源管理」部署。
 
+### <a name="internet-connectivity-of-hana-large-instances"></a>HANA 大型執行個體的網際網路連線
+「HANA 大型執行個體」無法直接連線到網際網路。 這會限制您的一些能力，例如直接向 OS 廠商註冊 OS 映像。 因此，您可能需要與本機 SLES SMT 伺服器或 RHEL Subscription Manager 搭配運作
+
+### <a name="data-encryption-between-azure-vms-and-hana-large-instances"></a>Azure VM 與 HANA 大型執行個體之間的資料加密
+「HANA 大型執行個體」與 Azure VM 之間的資料傳輸並未加密。 不過，您可以純粹針對 HANA DBMS 端與 JDBC/ODBC 型應用程式之間的交換，啟用流量加密。 請參考 [SAP 提供的這份文件 (英文)](http://help-legacy.sap.com/saphelp_hanaplatform/helpdata/en/db/d3d887bb571014bf05ca887f897b99/content.htm?frameset=/en/dd/a2ae94bb571014a48fc3b22f8e919e/frameset.htm&current_toc=/en/de/ec02ebbb57101483bdf3194c301d2e/plain.htm&node_id=20&show_children=false)  
+
 ### <a name="additional-azure-vnet-information"></a>其他 Azure VNet 資訊
 
-為了將 Azure VNet 連接到 ExpressRoute，必須建立 Azure 閘道 (請參閱[關於 ExpressRoute 的虛擬網路閘道](../../../expressroute/expressroute-about-virtual-network-gateways.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json))。 Azure 閘道可以與連到 Azure 外部基礎結構 (或連到「Azure 大型執行個體」戳記) 的 ExpressRoute 搭配使用，或用來在 Azure VNet 之間做連接 (請參閱[使用 PowerShell 設定 Resource Manager 的 VNet 對 VNet 連線](../../../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json))。 您可以將 Azure 閘道最多連接到四個不同的 ExpressRoute 連線，只要這些連線是來自不同的 MS Enterprise Exchanges (MSEE) 即可。
+為了將 Azure VNet 連接到 ExpressRoute，必須建立 Azure 閘道 (請參閱[關於 ExpressRoute 的虛擬網路閘道](../../../expressroute/expressroute-about-virtual-network-gateways.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json))。 Azure 閘道可以與連到 Azure 外部基礎結構 (或連到「Azure 大型執行個體」戳記) 的 ExpressRoute 搭配使用，或用來在 Azure VNet 之間做連接 (請參閱[使用 PowerShell 設定 Resource Manager 的 VNet 對 VNet 連線](../../../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json))。 您可以將 Azure 閘道最多連接到四個不同的 ExpressRoute 連線，只要這些連線是來自不同的 MS Enterprise Edges (MSEE) 即可。  如需進一步的詳細資料，請參閱 [Azure 上 SAP HANA (大型執行個體) 的基礎結構和連接](hana-overview-infrastructure-connectivity.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 
 
 > [!NOTE] 
 > Azure 閘道為這兩個使用案例提供的輸送量是不同的 (請參閱[關於 VPN 閘道](../../../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json))。 在使用 ExpressRoute 連線的情況下，VNet 閘道可達到的最大輸送量是 10 Gbps。 請記住，在位於 Azure VNet 中的 Azure VM 與內部部署系統之間複製檔案 (以單一複製串流的形式) 並不會達到不同閘道 SKU 的最大輸送量。 若要利用 VNet 閘道的全部頻寬，您必須使用多個串流，或是以單一檔案的平行串流複製不同的檔案。
@@ -296,7 +315,12 @@ Azure VM (裝載 SAP 應用程式執行個體) 的 VNet 閘道會連接到該 Ex
 
 ### <a name="multiple-sap-systems-or-large-sap-systems"></a>多個 SAP 系統或大型 SAP 系統
 
-如果有多個 SAP 系統或大型 SAP 系統被部署成連接到 SAP HANA on Azure (大型執行個體)，就可以合理假設 HighPerformance VNet 閘道 SKU 的輸送量可能成為瓶頸。 在此情況下，請選擇 UltraPerformance SKU (如果可用)。 不過，如果只有 HighPerformance SKU (上限為 2 Gbps) 可用，或 UltraPerformance SKU (上限為 10 Gbps) 可能不敷使用，您就必須將應用程式層分割成多個 Azure VNet。
+如果有多個 SAP 系統或大型 SAP 系統被部署成連接到 SAP HANA on Azure (大型執行個體)，就可以合理假設 HighPerformance VNet 閘道 SKU 的輸送量可能成為瓶頸。 在此情況下，請選擇 UltraPerformance SKU (如果可用)。 不過，如果只有 HighPerformance SKU (上限為 2 Gbps) 可用，或 UltraPerformance SKU (上限為 10 Gbps) 可能不敷使用，您就必須將應用程式層分割成多個 Azure VNet。 在類似以下的情況下，建立連接到「HANA 大型執行個體」的特殊 VNet 也可能是建議的做法：
+
+- 直接從「HANA 大型執行個體」中的「HANA 執行個體」備份到 Azure 中裝載 NFS 共用的 VM
+- 將大型備份或其他檔案從「HANA 大型執行個體」單位複製到在 Azure 中管理的磁碟空間。
+
+如果使用個別的 VNet 來裝載管理儲存體的 VM，將可避免在透過「VNet 閘道」(此閘道為執行 SAP 應用程式層的 VM 提供服務) 將大型檔案或資料從「HANA 大型執行個體」傳輸到 Azure 時所帶來的影響。 
 
 讓網路架構更具彈性：
 
@@ -307,51 +331,23 @@ Azure VM (裝載 SAP 應用程式執行個體) 的 VNet 閘道會連接到該 Ex
 
 ![跨多個 Azure VNet 部署 SAP 應用程式層](./media/hana-overview-architecture/image4-networking-architecture.png)
 
-如上面所示跨多個 Azure VNet 部署 SAP 應用程式層或元件時，已產生無法避免的延遲額外負荷，其發生時機是在這些 Azure VNet 中裝載的應用程式間進行通訊時。 根據預設，在此組態中，不同 VNet 中的 Azure VM 之間的網路流量會透過 MSEE 路由器發生。 不過，自 2016 年 9 月起，已可以避免並最佳化這種情形。 若要最佳化並縮短兩個 VNet 之間的通訊延遲，做法是將相同區域內的 Azure VNet 對等互連。 即使在不同的訂用帳戶中也一樣。 如果使用 Azure VNet 對等互連，兩個不同 Azure VNet 中的 VM 之間的通訊就可以使用 Azure 網路骨幹彼此直接通訊。 因此會有相似的延遲，就好像 VM 位於相同的 VNet 中一樣。 反之，以透過 Azure VNet 閘道器連接的 IP 位址範圍來定址的流量，將會透過 VNet 的個別 VNet 閘道器而路由傳送。 您可以在 [VNet 對等互連](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview)一文中取得 Azure VNet 對等互連的詳細資訊。
-### <a name="minimal-deployment"></a>最基本部署
+如上面所示，跨多個 Azure VNet 部署 SAP 應用程式層或元件時，會在這些 Azure VNet 所裝載的應用程式之間進行通訊的期間，產生無法避免的延遲額外負荷。 根據預設，在此組態中，不同 VNet 中的 Azure VM 之間的網路流量會透過 MSEE 路由器發生。 不過，自 2016 年 9 月起，已可避免這種情況並予以做最佳的改善。 若要最佳化並縮短兩個 VNet 之間的通訊延遲，做法是將相同區域內的 Azure VNet 對等互連。 即使在不同的訂用帳戶中也一樣。 如果使用 Azure VNet 對等互連，兩個不同 Azure VNet 中 VM 間的通訊就可以使用 Azure 網路骨幹來彼此直接通訊。 因此，所顯示的延遲會類似於 VM 就位於相同 VNet 中一樣。 反之，以透過 Azure VNet 閘道器連接的 IP 位址範圍來定址的流量，將會透過 VNet 的個別 VNet 閘道器而路由傳送。 您可以在 [VNet 對等互連](https://docs.microsoft.com/azure/virtual-network/virtual-network-peering-overview)一文中取得 Azure VNet 對等互連的詳細資訊。
 
-就小型 SAP 系統 (最基本部署) 而言，Azure VM 會將 SAP 應用程式層裝載在原生 Azure 中 (在單一 VNet 內)，並透過 ExpressRoute 連接到「大型執行個體」戳記。 請依照下列步驟來備妥 SAP HANA on Azure (大型執行個體) 以供使用：
-
-- 收集與四個不同 IP 位址範圍相關的特定資訊：
-
-  1. 要用於 ExpressRoute 線路的 P2P 連線 /29 位址範圍。
-  
-  2. 要用於指派 SAP HANA on Azure (大型執行個體) 所需之特定 IP 位址的 /24 (建議使用) 唯一 CIDR 區塊。
-  3. 一或多個供您 Azure VNet 租用戶子網路使用的 /24 (建議使用) CIDR 區塊。 這些是 SAP 相關 Azure VM 將歸屬的客戶 Azure 訂用帳戶中的子網路；這些位址將被允許存取 SAP HANA on Azure (大型執行個體)。 應該每一子網路一個租用戶位址區塊，而如果區塊是連續的且位於相同的 VNet 中，則可以加以彙總。
-  4. 一個您 VNet 閘道子網路的 /28 (如果想要 P2S 網路功能，則必須使用 /27)。
-
-  - 前兩個範圍是所需範圍 (每一 Azure 訂用帳戶和區域各一個)。 每一 Azure VNet 至少需要項目 3 和 4 中所述的 IP 位址範圍，而如果想要 VNet 中有多個子網路/租用戶，則應該針對項目 3 指定多個範圍。
-![SAP HANA on Azure (大型執行個體) 最基本部署中所需的 IP 位址範圍](./media/hana-overview-architecture/image5-ip-address-range-a.png)
-
-  -  如果在 Azure VNet 中設定多個租用戶子網路：![具有連續位址空間的 Azure VNet IP 位址範圍](./media/hana-overview-architecture/image6-ip-address-range-b.png)
-
-> [!IMPORTANT] 
-> 上面指定的每個 IP 位址皆不得與任何其他範圍重疊；每個位址都必須是不連續的且不得為任何其他範圍的子網路。 只有項目 3 和 4 中所定義的位址應該套用到 Azure VNet，所有其他位址則是用於「大型執行個體」的連線和路由。 此外，就最佳做法而言，「位址空間」位址範圍應該與子網路範圍相符，且不含空白或未指派的空間。 如果項目 1 和 2 中所定義的範圍與為項目 3 和 4 定義的範圍之間發生重疊，Azure VNet 將不會連接到 ExpressRoute 線路。
-
-- ExpressRoute 線路是 Microsoft 在您的 Azure 訂用帳戶與「大型執行個體」戳記之間建立的線路。
-- 在「大型執行個體」戳記上建立網路租用戶。
-- 設定 SAP HANA on Azure (大型執行個體) 基礎結構中的網路功能，使其接受來自您 Azure VNet 內所指定範圍的 IP 位址，以便與「HANA 大型執行個體」通訊。
-- 在「大型執行個體」戳記的客戶租用戶中設定「網路位址轉譯」(NAT) (為的是將租用戶內部 IP 位址對應到租用戶為 Azure 定義的 IP 位址)。
-- 依據所購買的特定 SAP HANA on Azure (大型執行個體) SKU，在租用戶網路中指定一個計算單位、配置並掛接儲存體，以及安裝作業系統 (SUSE 或 RedHat Linux)。
-
-SAP HANA on Azure (大型執行個體) 網路架構的最基本部署：
-
-![含 IP 位址範圍的最基本部署](./media/hana-overview-architecture/image7-minimal-deployment.png)
 
 ### <a name="routing-in-azure"></a>Azure 中的路由
 
 SAP HANA on Azure (大型執行個體) 有兩個重要的網路路由考量：
 
-1. SAP HANA on Azure (大型執行個體) 僅供 Azure VM 以專用 ExpressRoute 連線存取；無法從內部部署環境直接存取。 因此管理用戶端及任何需要直接存取權的應用程式 (例如在內部部署環境中執行的 SAP Solution Manager) 無法連接到 SAP HANA 資料庫。
+1. SAP HANA on Azure (大型執行個體) 僅供 Azure VM 以專用 ExpressRoute 連線存取；無法從內部部署環境直接存取。 有些系統管理用戶端及所有需要直接存取權的應用程式 (例如在內部部署環境中執行的 SAP Solution Manager) 會無法連接到 SAP HANA 資料庫。
 
-2. SAP HANA on Azure (大型執行個體) 有一個來自已定義之 NAT 集區的已指派 IP 位址。 透過 Azure 訂用帳戶和 ExpressRoute 可以存取此 IP 位址。 由於 IP 位址是 NAT 集區的一部分，因此您將需要在環境中執行額外的網路功能設定。 如需詳細資料，請參閱「SAP HANA 安裝」的相關文章。
+2. SAP HANA on Azure (大型執行個體) 單位有一個指派的 IP 位址，此位址來自身為客戶的您所提交的「伺服器 IP 集區」位址範圍 (如需詳細資料，請參閱 [Azure 上 SAP HANA (大型執行個體) 的基礎結構和連接](hana-overview-infrastructure-connectivity.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json))。  透過 Azure 訂用帳戶和將 Azure VNet 連接到 HANA on Azure (大型執行個體) 的 ExpressRoute，即可存取此 IP 位址。 從該「伺服器 IP 集區」位址範圍指派的 IP 位址會直接指派給硬體單位，且「不再」經過 NAT 處理，因為這是此解決方案的第一次部署才會有的情況。 
 
 > [!NOTE] 
-> 如果在「資料倉儲」案例中您需要連接到 SAP HANA on Azure (大型執行個體)，其中應用程式和 (或) 使用者需要連接到 SAP HANA 資料庫 (直接執行)，您就必須使用另一個網路功能元件：一個可將資料正反方向路由傳送的反向 Proxy。 例如，部署在 Azure 中作為虛擬防火牆/流量路由解決方案的附帶 Traffic Manager 的 F5 BIG-IP。
+> 如果在「資料倉儲」案例中您需要連接到 SAP HANA on Azure (大型執行個體)，其中應用程式和 (或) 使用者需要連接到 SAP HANA 資料庫 (直接執行)，您就必須使用另一個網路功能元件：一個可將資料正反方向路由傳送的反向 Proxy。 例如，搭配部署在 Azure 中作為虛擬防火牆/流量路由解決方案之「流量管理員」的 F5 BIG-IP、NGINX。
 
 ### <a name="leveraging-in-multiple-regions"></a>在多個區域中運用
 
-除了災害復原之外，您可能還有其他理由促使您在多個 Azure 區域中部署 SAP HANA on Azure (大型執行個體)。 也許您想要從部署在這些區域之不同 VNet 中的每個 VM 存取「HANA 大型執行個體」。 由於經 NAT 處理的不同「HANA 大型執行個體」伺服器 IP 位址在傳播時不會超出 Azure VNet (這些 VNet 是透過其閘道直接連接到執行個體) 範圍，因此對上面介紹的 VNet 設計有些微變更：Azure VNet 閘道可以處理來自不同 MSEE 的四種不同 ExpressRoute 線路，而每個連接到其中一個「大型執行個體」戳記的 VNet 都可連接到另一個 Azure 區域中的「大型執行個體」戳記。
+除了災害復原之外，您可能還有其他理由促使您在多個 Azure 區域中部署 SAP HANA on Azure (大型執行個體)。 也許您想要從部署在這些區域之不同 VNet 中的每個 VM 存取「HANA 大型執行個體」。 由於指派給不同「HANA 大型執行個體」單位的 IP 位址不會傳播到 Azure VNet (這些 VNet 是透過其閘道直接連接到執行個體) 之外，因此對上面介紹的 VNet 設計有些微變更：Azure VNet 閘道可以處理四個來自不同 MSEE 的不同 ExpressRoute 線路，而每個連接到其中一個「大型執行個體」戳記的 VNet 都可連接到另一個 Azure 區域中的「大型執行個體」戳記。
 
 ![連接到不同 Azure 區域中「Azure 大型執行個體」戳記的 Azure VNet](./media/hana-overview-architecture/image8-multiple-regions.png)
 

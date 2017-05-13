@@ -14,12 +14,13 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/17/2017
+ms.date: 04/27/2017
 ms.author: jgao
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 636d58cc3bda38c0fb49412b6bd4cbb96d235858
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: 3c1021ec8c8dc4488f86ba89f6ae31d6ed75e9f5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -47,10 +48,31 @@ ms.lasthandoff: 04/18/2017
 
        如果您沒有看見 HDInsight 叢集，請按一下位於清單底部的 [更多服務]，然後按一下位於 [智慧 + 分析] 區段底下的 [HDInsight 叢集]。
 
+
 ## <a name="create-clusters"></a>建立叢集
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支援元件的清單，請參閱 [Azure HDInsight 提供 Hadoop 的什麼版本？](hdinsight-component-versioning.md)(英文)。 如需一般叢集建立的資訊，請參閱 [在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+
+### <a name="access-control-requirements"></a>存取控制需求
+
+當您建立 HDInsight 叢集時，必須指定 Azure 訂用帳戶。 這個叢集可在新的 Azure 資源群組中建立，或是在現有的資源群組中建立。 您可以使用下列步驟，確認您具有建立 HDInsight 叢集的權限：
+
+- 使用現有的資源群組。
+
+    1. 登入 [Azure 入口網站](https://portal.azure.com)。
+    2. 按一下左側功能表的 [資源群組] 以列出資源群組。
+    3. 按一下您要用來建立 HDInsight 叢集的資源群組。
+    4. 按一下 [存取控制 (IAM)]，然後確認您 (或是您所屬的群組) 至少具有資源群組的「參與者」存取權限。
+
+- 建立新的資源群組
+
+    1. 登入 [Azure 入口網站](https://portal.azure.com)。
+    2. 按一下左側功能表的 [訂用帳戶]。 它有黃色的鑰匙圖示。 您應該會看到訂用帳戶清單。
+    3. 按一下您要用來建立叢集的訂用帳戶。 
+    4. 按一下 [我的權限]。  它會顯示您在訂用帳戶上的[角色](../active-directory/role-based-access-control-what-is.md#built-in-roles)。 您至少需要「參與者」存取權限才能建立 HDInsight 叢集。
+
+如果您收到 NoRegisteredProviderFound 錯誤或 MissingSubscriptionRegistration 錯誤，請參閱[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解](../azure-resource-manager/resource-manager-common-deployment-errors.md)。
 
 ## <a name="list-and-show-clusters"></a>列出和顯示叢集
 1. 登入 [https://portal.azure.com](https://portal.azure.com)。
@@ -154,7 +176,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
 
     HDInsight 叢集上有提供 Storm Web UI：
 
-    ![HDInsight Storm 調整重新平衡](./media/hdinsight-administer-use-portal-linux/hdinsight.portal.scale.cluster.storm.rebalance.png)
+    ![HDInsight Storm 調整重新平衡](./media/hdinsight-administer-use-portal-linux/hdinsight-portal-scale-cluster-storm-rebalance.png)
 
     以下是如何使用 CLI 命令重新平衡 Storm 拓撲的範例：
 
@@ -171,7 +193,7 @@ HDInsight 可以與很多 Hadoop 元件搭配使用。 如需已驗證和所支�
 3. 按一下 [調整叢集]。
 4. 輸入 **背景工作節點的數目**。 叢集節點的數目限制會因 Azure 訂用帳戶而有所不同。 請連絡帳務支援提高限制。  成本資訊會反映您對節點數目所做的變更。
 
-    ![HDInsight hadoop hbase storm spark scale](./media/hdinsight-administer-use-portal-linux/hdinsight.portal.scale.cluster.png)
+    ![HDInsight hadoop hbase storm spark scale](./media/hdinsight-administer-use-portal-linux/hdinsight-portal-scale-cluster.png)
 
 ## <a name="pauseshut-down-clusters"></a>暫停/關閉叢集
 
@@ -307,7 +329,7 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 
 * [使用 Azure PowerShell 管理 HDInsight](hdinsight-administer-use-powershell.md)
 * [使用 Azure CLI 管理 HDInsight](hdinsight-administer-use-command-line.md)
-* [建立 HDInsight 叢集](hdinsight-provision-clusters.md)
+* [建立 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)
 * [在 HDInsight 中使用 Hive](hdinsight-use-hive.md)
 * [在 HDInsight 中使用 Pig](hdinsight-use-pig.md)
 * [在 HDInsight 中使用 Sqoop](hdinsight-use-sqoop.md)

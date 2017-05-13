@@ -4,24 +4,25 @@ description: "例外狀況遙測的 Application Insights 資料模型"
 services: application-insights
 documentationcenter: .net
 author: SergeyKanzhelev
-manager: azakonov-ms
+manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 04/25/2017
 ms.author: sergkanz
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: 17a39660fce598610ff9a95e886282e6b3faffe4
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 49d2429c01fe3fde2e51e4344904f55e43eea1cd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="exception-telemetry-application-insights-data-model"></a>例外狀況遙測：Application Insights 資料模型
 
-例外狀況的執行個體代表受監視應用程式執行期間所發生的已處理或未處理例外狀況。
+在 [Application Insights](app-insights-overview.md) 中，例外狀況的執行個體代表受監視應用程式執行期間所發生的已處理或未處理例外狀況。
 
 ## <a name="problem-id"></a>問題識別碼
 
@@ -35,7 +36,7 @@ ms.lasthandoff: 04/22/2017
 
 ## <a name="exception-details"></a>例外狀況詳細資料
 
-這個區段為進行中的工作...
+(等候進一步擴充)
 
 ## <a name="custom-properties"></a>自訂屬性
 
@@ -47,7 +48,7 @@ ms.lasthandoff: 04/22/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需 Application Insights 類型和資料模型，請參閱[資料模型](/application-insights-data-model.md)。
-- 了解如何[使用 Application Insights 在 Web Apps 中診斷例外狀況](/app-insights-asp-net-exceptions.md)。
-- 查看 Application Insights 支援的[平台](/app-insights-platforms.md)。
+- 如需 Application Insights 類型和資料模型，請參閱[資料模型](application-insights-data-model.md)。
+- 了解如何[使用 Application Insights 在 Web Apps 中診斷例外狀況](app-insights-asp-net-exceptions.md)。
+- 查看 Application Insights 支援的[平台](app-insights-platforms.md)。
 

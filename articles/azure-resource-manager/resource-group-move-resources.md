@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/10/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 626b152b8511995413af39a41161c29c88429605
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
+ms.openlocfilehash: cc2a24b26b152671173770adfd4aefcfcb2512d4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -75,6 +76,7 @@ ms.lasthandoff: 04/21/2017
 
 * API 管理
 * App Service 應用程式 (Web 應用程式) - 請參閱 [App Service 限制](#app-service-limitations)
+* Application Insights
 * 自動化
 * Batch
 * Bing 地圖
@@ -124,7 +126,6 @@ ms.lasthandoff: 04/21/2017
 
 * AD 混合式健康狀態服務
 * 應用程式閘道
-* Application Insights
 * BizTalk 服務
 * 容器服務
 * ExpressRoute
@@ -147,12 +148,12 @@ ms.lasthandoff: 04/21/2017
 * 將該資源群組中的 App Service 方案和所有其他 App Service 資源，都移到還沒有 App Service 資源的新資源群組。 這項需求意謂著您甚至必須移動與 App Service 方案沒有關聯的 App Service 資源。 
 * 將應用程式移到不同的資源群組，但在原始資源群組中保留所有 App Service 方案。
 
-如果原始資源群組也包含 Application Insights 資源，則無法移動該資源，因為 Application Insights 目前不啟用移動作業。 如果您在移動 App Service 應用程式時包含 Application Insights 資源，則整個移動作業會失敗。 不過，Application Insights 和 App Service 方案不需要位於與應用程式相同的資源群組，應用程式就能正確運作。
+App Service 方案不需要位於與應用程式相同的資源群組，應用程式就能正確運作。
 
 例如，如果您的資源群組包含︰
 
-* 與 **plan-a** 和 **app-insights-a** 關聯的 **web-a**
-* 與 **plan-b** 和 **app-insights-b** 關聯的 **web-b**
+* 與 **plan-a** 關聯的 **web-a**
+* 與 **plan-b** 關聯的 **web-b**
 
 您的選項如下：
 
@@ -161,7 +162,7 @@ ms.lasthandoff: 04/21/2017
 * 移動 **web-a**
 * 移動 **web-b**
 
-所有其他組合包含移動無法移動的資源類型 (Application Insights) 或留下移動 App Service 方案時無法留下的資源類型 (任何類型的 App Service 資源)。
+所有其他組合都會留下移動 App Service 方案時無法留下的資源類型 (任何類型的 App Service 資源)。
 
 如果 Web 應用程式與其 App Service 方案位於不同的資源群組，但您想要將兩者移到新的資源群組，則必須使用兩個步驟來執行移動。 例如：
 

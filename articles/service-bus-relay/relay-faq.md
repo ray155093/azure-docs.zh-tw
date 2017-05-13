@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: jotaub;sethm
-translationtype: Human Translation
-ms.sourcegitcommit: 4b54ad027a7de02cba7821f2a9b7fd06ef3a825b
-ms.openlocfilehash: ca2767340cb232722def8f06277cc84d5c76c1bf
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 7562fbee15e4450542c2c17d8ae2a763a556a44f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -49,8 +51,10 @@ ms.openlocfilehash: ca2767340cb232722def8f06277cc84d5c76c1bf
 
 請注意，範例中使用的價格僅適於預覽期間。當混合式連接正式運作時可能會有所變更。
 
-### <a name="how-are-wcf-relay-hours-calculated"></a>如何計算 WCF 轉送時數？
-轉送時數是以每個服務匯流排轉送「開啟」期間累積的時間總量計費。 當已啟用轉送的 WCF 服務或「轉送接聽程式」第一次連接到指定的服務匯流排位址 (服務命名空間 URL) 時，轉送就會隱含具現化並於該位址開放。 只有在最後一個接聽程式從該位址中斷連接時，轉送才會關閉。 因此，為了方便計費，從第一個轉送接聽程式連接轉送的服務匯流排位址，到最後一個轉送接聽程式中斷連接的這段時間，該轉送會被視為「開放」。
+### <a name="how-are-relay-hours-calculated"></a>如何計算轉送時數？
+WCF 轉送與混合式連線時數是以每個服務匯流排轉送「開啟」期間累積的時間總量計費。 當已啟用轉送的服務 (或稱「轉送接聽程式」) 第一次連接到指定的服務匯流排位址 (服務命名空間 URL) 時，轉送就會隱含具現化並於該位址開放。 只有在最後一個接聽程式從該位址中斷連接時，轉送才會關閉。 因此，為了方便計費，從第一個轉送接聽程式連接轉送的服務匯流排位址，到最後一個轉送接聽程式中斷連接的這段時間，該轉送會被視為「開放」。
+
+只能在標準層命名空間中使用 WCF 轉送。 否則轉送的定價和[連線配額](../service-bus-messaging/service-bus-quotas.md)會保持不變。 這表示轉送將繼續按訊息數目 (而非作業數) 和轉送時數計費。 如需詳細資訊，請參閱定價詳細資料頁面上的[混合式連線與 WCF 轉送](https://azure.microsoft.com/pricing/details/service-bus/)資料表。
 
 ### <a name="what-if-i-have-more-than-one-listener-connected-to-a-given-relay"></a>如果我有一個以上的接聽程式連接到指定的轉送，該怎麼辦？
 在某些情況下，單一轉送可能有多個已連接的接聽程式。 至少有一個轉送接聽程式連接到轉送時，即會被視為「開放式」轉送。 將其他接聽程式新增至開放式轉送會導致額外的轉送時數。 連接到轉送的轉送傳送者 (叫用或傳送訊息至轉送的用戶端) 數目也不會影響轉送時數的計算。
@@ -107,9 +111,4 @@ ms.openlocfilehash: ca2767340cb232722def8f06277cc84d5c76c1bf
 * [建立命名空間](relay-create-namespace-portal.md)
 * [開始使用 .NET](relay-hybrid-connections-dotnet-get-started.md)
 * [開始使用 Node](relay-hybrid-connections-node-get-started.md)
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

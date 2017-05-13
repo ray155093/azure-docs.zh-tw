@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: shlo
-translationtype: Human Translation
-ms.sourcegitcommit: e0c999b2bf1dd38d8a0c99c6cdd4976cc896dd99
-ms.openlocfilehash: 2e85e787d591f2c81ef4e54bc1e7ac111accbb16
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: 6926b0a594b29cb3b3fff7a76a258d11bd82ded8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -59,6 +60,9 @@ Data Factory 中的複製活動會將資料從來源資料存放區複製到接�
 ### <a name="custom-net-activities"></a>自訂 .NET 活動 
 如果您需要將資料移入/移出「複製活動」不支援的資料存放區，或使用您自己的邏輯來轉換資料，請建立**自訂 .NET 活動**。 如需有關建立及使用自訂活動的詳細資料，請參閱 [在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)。
 
+## <a name="schedule-pipelines"></a>建立管線排程
+管線僅在其「開始」時間與「結束」時間之間有作用。 在開始時間之前或結束時間之後就不會執行。 如果管線已暫停，不論其開始和結束時間為何，都不會執行。 若要執行管線，則不該將它暫停。 請參閱 [排程和執行](data-factory-scheduling-and-execution.md) ，以了解如何在 Azure Data Factory 中排程和執行。
+
 ## <a name="pipeline-json"></a>管線 JSON
 讓我們來深入探討如何定義 JSON 格式的管線。 管線的一般結構如下所示：
 
@@ -90,10 +94,10 @@ Data Factory 中的複製活動會將資料從來源資料存放區複製到接�
 | 說明 | 指定說明管線用途的文字。 |是 |
 | 活動 | [ **活動** ] 區段內可以有一或多個已定義的活動。 如需有關活動 JSON 元素的詳細資料，請參閱下一節。 | 是 |  
 | start | 管線的開始日期時間。 必須使用 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如： `2016-10-14T16:32:41Z`。 <br/><br/>您可以指定本地時間，如 EST 時間。 範例如下︰`2016-02-27T06:00:00-05:00`，這是美加東部標準時間上午 6 點。<br/><br/>管線的 start 和 end 屬性共同指定管線的作用中期間。 輸出配量只會在作用中期間內產生。 |否<br/><br/>如果您指定 end 屬性的值，也必須指定 start 屬性的值。<br/><br/>開始和結束時間都可以是空白來建立管線。 必須指定兩個值，才能設定執行管線的作用中時間。 如果您建立管線時未指定開始和結束時間，您可以在稍後使用 Set-AzureRmDataFactoryPipelineActivePeriod Cmdlet 進行設定。 |
-| end | 管線的結束日期時間。 如果已指定，則必須使用 ISO 格式。 例如：`2016-10-14T17:32:41Z` <br/><br/>您可以指定本地時間，如 EST 時間。 範例如下︰`2016-02-27T06:00:00-05:00`，這是美加東部標準時間上午 6 點。<br/><br/>若要無限期地執行管線，請指定 9999-09-09 做為 end 屬性的值。 |否 <br/><br/>如果您指定 start 屬性的值，也必須指定 end 屬性的值。<br/><br/>請參閱 **start** 屬性的註釋。 |
+| end | 管線的結束日期時間。 如果已指定，則必須使用 ISO 格式。 例如：`2016-10-14T17:32:41Z` <br/><br/>您可以指定本地時間，如 EST 時間。 範例如下︰`2016-02-27T06:00:00-05:00`，這是美加東部標準時間上午 6 點。<br/><br/>若要無限期地執行管線，請指定 9999-09-09 做為 end 屬性的值。 <br/><br/> 管線僅在其開始時間與結束時間之間有作用。 在開始時間之前或結束時間之後就不會執行。 如果管線已暫停，不論其開始和結束時間為何，都不會執行。 若要執行管線，則不該將它暫停。 請參閱 [排程和執行](data-factory-scheduling-and-execution.md) ，以了解如何在 Azure Data Factory 中排程和執行。 |否 <br/><br/>如果您指定 start 屬性的值，也必須指定 end 屬性的值。<br/><br/>請參閱 **start** 屬性的註釋。 |
 | isPaused | 如果設定為 true，管線就不會執行。 它會處於暫停狀態。 預設值 = false。 您可以使用此屬性來啟用或停用管線。 |否 |
-| pipelineMode | 排程管線執行的方法。 允許的值包括：scheduled (預設值)、onetime。<br/><br/>‘Scheduled’ 表示管線會根據其作用中期間 (開始和結束時間) 依指定的時間間隔執行。 ‘Onetime’ 表示管線只會執行一次。 目前，Onetime 管線在建立之後即無法進行修改/更新。 如需 onetime 設定的詳細資料，請參閱 [Onetime 管線](data-factory-scheduling-and-execution.md#onetime-pipeline)。 |否 |
-| expirationTime | 建立之後，[單次管線](data-factory-scheduling-and-execution.md#onetime-pipeline)有效且應該維持佈建狀態的持續時間。 如果管線沒有任何作用中、失敗或擱置中的執行，系統就會在管線達到到期時間時，自動將它刪除。 預設值：`"expirationTime": "3.00:00:00"`|否 |
+| pipelineMode | 排程管線執行的方法。 允許的值包括：scheduled (預設值)、onetime。<br/><br/>‘Scheduled’ 表示管線會根據其作用中期間 (開始和結束時間) 依指定的時間間隔執行。 ‘Onetime’ 表示管線只會執行一次。 目前，Onetime 管線在建立之後即無法進行修改/更新。 如需 onetime 設定的詳細資料，請參閱 [Onetime 管線](#onetime-pipeline)。 |否 |
+| expirationTime | 建立之後，[單次管線](#onetime-pipeline)有效且應該維持佈建狀態的持續時間。 如果管線沒有任何作用中、失敗或擱置中的執行，系統就會在管線達到到期時間時，自動將它刪除。 預設值：`"expirationTime": "3.00:00:00"`|否 |
 | 資料集 |要供管線中已定義活動所使用的資料集清單。 此屬性可用來定義此管線所特有但未在 Data Factory 內定義的資料集。 此管線內定義的資料集只有此管線才能使用，並無法共用。 如需詳細資訊，請參閱 [範圍資料集](data-factory-create-datasets.md#scoped-datasets) 。 |否 |
 
 ## <a name="activity-json"></a>活動 JSON
@@ -132,7 +136,7 @@ Data Factory 中的複製活動會將資料從來源資料存放區複製到接�
 | linkedServiceName |活動所使用的連結服務名稱。 <br/><br/>活動可能會要求您指定可連結至所需計算環境的連結服務。 |是：適用於 HDInsight 活動和 Azure Machine Learning Batch 評分活動  <br/><br/>否：所有其他 |
 | typeProperties |**typeProperties** 區段中的屬性會視活動的類型而定。 若要查看活動的類型屬性，請按一下先前小節中的活動連結。 | 否 |
 | 原則 |會影響活動之執行階段行為的原則。 如果未指定，則會使用預設原則。 |否 |
-| scheduler | “scheduler” 屬性用來定義所要的活動排程。 其子屬性與 [資料集中的可用性屬性](data-factory-create-datasets.md#Availability)中的屬性相同。 |否 |
+| scheduler | “scheduler” 屬性用來定義所要的活動排程。 其子屬性與 [資料集中的可用性屬性](data-factory-create-datasets.md#dataset-availability)中的屬性相同。 |否 |
 
 
 ### <a name="policies"></a>原則
@@ -279,125 +283,6 @@ Data Factory 中的複製活動會將資料從來源資料存放區複製到接�
 
 如需詳細資訊，請參閱 [排程和執行](#chaining-activities)。 
 
-### <a name="json-example-for-chaining-two-copy-activity-in-a-pipeline"></a>可變更一個管線中兩個複製活動的 JSON 範例
-您可以利用循序/排序的方式，逐一執行多個複製作業。 例如，您在管線中可能有兩個具有下列輸入資料輸出資料集的複製活動 (CopyActivity1 和 CopyActivity2)：   
-
-**CopyActivity1**
-
-輸入：Dataset1。 輸出：Dataset2。
-
-**CopyActivity2**
-
-輸入：Dataset2。  輸出：Dataset3。
-
-唯有當 CopyActivity1 成功執行且 Dataset2 可供使用時，CopyActivity2 才會執行。
-
-以下是範例管線 JSON：
-
-```json
-{
-    "name": "ChainActivities",
-    "properties": {
-        "description": "Run activities in sequence",
-        "activities": [
-            {
-                "type": "Copy",
-                "typeProperties": {
-                    "source": {
-                        "type": "BlobSource"
-                    },
-                    "sink": {
-                        "type": "BlobSink",
-                        "copyBehavior": "PreserveHierarchy",
-                        "writeBatchSize": 0,
-                        "writeBatchTimeout": "00:00:00"
-                    }
-                },
-                "inputs": [
-                    {
-                        "name": "Dataset1"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "Dataset2"
-                    }
-                ],
-                "policy": {
-                    "timeout": "01:00:00"
-                },
-                "scheduler": {
-                    "frequency": "Hour",
-                    "interval": 1
-                },
-                "name": "CopyFromBlob1ToBlob2",
-                "description": "Copy data from a blob to another"
-            },
-            {
-                "type": "Copy",
-                "typeProperties": {
-                    "source": {
-                        "type": "BlobSource"
-                    },
-                    "sink": {
-                        "type": "BlobSink",
-                        "writeBatchSize": 0,
-                        "writeBatchTimeout": "00:00:00"
-                    }
-                },
-                "inputs": [
-                    {
-                        "name": "Dataset2"
-                    }
-                ],
-                "outputs": [
-                    {
-                        "name": "Dataset3"
-                    }
-                ],
-                "policy": {
-                    "timeout": "01:00:00"
-                },
-                "scheduler": {
-                    "frequency": "Hour",
-                    "interval": 1
-                },
-                "name": "CopyFromBlob2ToBlob3",
-                "description": "Copy data from a blob to another"
-            }
-        ],
-        "start": "2016-08-25T00:00:00Z",
-        "end": "2016-08-25T05:00:00Z",
-        "isPaused": false
-    }
-}
-```
-
-請注意，在此範例中，是將第一個複製活動的輸出資料集 (Dataset2) 指定為第二個活動的輸入。 因此，只有當來自第一個活動的輸出資料集準備就緒時，第二個活動才會執行。  
-
-輸出資料集會在管線的開始和結束時間內每小時產生。 因此，這個管線會產生五個資料集配量，每個活動時間範圍 (上午 12 點 - 上午 1 點、上午 1 點 - 上午 2 點、上午 2 點 - 上午 3 點、上午 3 點 - 上午 4 點、上午 4 點 - 上午 5 點) 各一個資料集。 
-
-
-在此範例中，CopyActivity2 可以有一個額外的輸入 (例如 Dataset3)，但是由於您指定 Dataset2 作為 CopyActivity2 的輸入，因此必須等到 CopyActivity1 完成之後，此活動才會執行。 例如：
-
-**CopyActivity1**
-
-輸入︰Dataset1。 輸出：Dataset2。
-
-**CopyActivity2**
-
-輸入︰Dataset3、Dataset2。 輸出︰Dataset4。
-
-在此範例中，為第二個複製活動指定了兩個輸入資料集。 指定多個輸入時，只有第一個輸入資料集會用來複製資料，但是其他資料集會用來做為相依性。 CopyActivity2 只會在符合下列條件後才開始︰
-
-* CopyActivity1 已順利完成且 Dataset2 可供使用。 將資料複製到 Dataset4 時，不會使用此資料集。 它只會用來做為 CopyActivity2 的排程相依性。   
-* Dataset3 可供使用。 此資料集代表已複製到目的地的資料。 
-
-## <a name="scheduling-and-execution"></a>排程和執行
-管線僅在其開始時間與結束時間之間有作用。 在開始時間之前或結束時間之後就不會執行。 如果管線已暫停，不論其開始和結束時間為何，都不會執行。 若要執行管線，則不該將它暫停。 事實上，並不是執行管線。 而是執行管線中的活動。 不過，活動會在管線的整體內容中執行。 
-
-請參閱 [排程和執行](data-factory-scheduling-and-execution.md) ，以了解如何在 Azure Data Factory 中排程和執行。
-
 ## <a name="create-and-monitor-pipelines"></a>建立和監視管線
 您可以使用下列其中一項工具或 SDK 來建立管線。 
 
@@ -418,6 +303,53 @@ Data Factory 中的複製活動會將資料從來源資料存放區複製到接�
 
 - [使用 Azure 入口網站刀鋒視窗來監視和管理管線](data-factory-monitor-manage-pipelines.md)
 - [使用監視與管理應用程式來監視和管理管線](data-factory-monitor-manage-app.md)
+
+
+## <a name="onetime-pipeline"></a>Onetime 管線
+您可以建立和排程管線，以在管線定義中指定的開始和結束時間內定期執行 (例如：每小時或每日)。 如需詳細資訊，請參閱 [排程活動](#scheduling-and-execution) 。 您也可以建立只執行一次的管線。 若要這樣做，您需將管線定義中的 **pipelineMode** 屬性設定為 **onetime** (如下列 JSON 範例所示)。 這個屬性的預設值是 **scheduled**。
+
+```json
+{
+    "name": "CopyPipeline",
+    "properties": {
+        "activities": [
+            {
+                "type": "Copy",
+                "typeProperties": {
+                    "source": {
+                        "type": "BlobSource",
+                        "recursive": false
+                    },
+                    "sink": {
+                        "type": "BlobSink",
+                        "writeBatchSize": 0,
+                        "writeBatchTimeout": "00:00:00"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "InputDataset"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "OutputDataset"
+                    }
+                ]
+                "name": "CopyActivity-0"
+            }
+        ]
+        "pipelineMode": "OneTime"
+    }
+}
+```
+
+請注意：
+
+* 未指定管線的**開始**和**結束**時間。
+* 有指定輸入和輸出資料集的**可用性** (**頻率**和**間隔**)，即使 Data Factory 未使用這些值也是一樣。  
+* 圖表檢視不會顯示一次性管線。 這是設計的行為。
+* 一次性管線無法更新。 您可以複製一次性管線、將其重新命名、更新屬性，以及加以部署來建立另一個管線。
 
 
 ## <a name="next-steps"></a>後續步驟

@@ -4,24 +4,25 @@ description: "計量遙測的 Application Insights 資料模型"
 services: application-insights
 documentationcenter: .net
 author: SergeyKanzhelev
-manager: azakonov-ms
+manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 04/25/2017
 ms.author: sergkanz
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: e27301a4815d16396518ddfc7487b064892e7631
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 1bedede1934141927a770c97b61aeb5218652b3e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="metric-telemetry-application-insights-data-model"></a>計量遙測：Application Insights 資料模型
 
-Application Insights 支援兩種類型的計量遙測 - 單一度量和預先彙總的計量。 單一度量只有名稱與值。 預先彙總的計量會指定彙總間隔中計量的最小值和最大值以及它的標準差。
+[Application Insights](app-insights-overview.md) 支援兩種類型的計量遙測：單一測量和預先彙總的計量。 單一度量只有名稱與值。 預先彙總的計量會指定彙總間隔中計量的最小值和最大值以及它的標準差。
 
 預先彙總的計量遙測會假設該彙總期間為一分鐘。
 
@@ -71,7 +72,7 @@ Application Insights 支援數個已知的計量名稱。
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需 Application Insights 類型和資料模型，請參閱[資料模型](/application-insights-data-model.md)。
-- 了解如何使用[自訂事件和計量的 Application Insights API](/app-insights-asp-net-dependencies.md)。
-- 查看 Application Insights 支援的[平台](/app-insights-platforms.md)。
+- 了解如何使用[自訂事件和計量的 Application Insights API](app-insights-api-custom-events-metrics.md#send-metrics)。
+- 如需 Application Insights 類型和資料模型，請參閱[資料模型](application-insights-data-model.md)。
+- 查看 Application Insights 支援的[平台](app-insights-platforms.md)。
 

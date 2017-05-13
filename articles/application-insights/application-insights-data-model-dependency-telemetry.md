@@ -4,7 +4,7 @@ description: "相依性遙測的 Application Insights 資料模型"
 services: application-insights
 documentationcenter: .net
 author: SergeyKanzhelev
-manager: azakonov-ms
+manager: carmonm
 ms.service: application-insights
 ms.workload: TBD
 ms.tgt_pltfrm: ibiza
@@ -12,16 +12,17 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: sergkanz
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: b86b1e1ff7c0370918b2509f98ad65265eb4186e
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: e71730ffe7e42ce5658189baca92ced3a54d269d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="dependency-telemetry-application-insights-data-model"></a>相依性遙測：Application Insights 資料模型
 
-相依性遙測代表受監視元件與遠端元件 (如 SQL 或 HTTP 端點) 的互動。
+相依性遙測 (在 [Application Insights](app-insights-overview.md) 中) 代表受監視元件與遠端元件 (例如 SQL 或 HTTP 端點) 的互動。
 
 ## <a name="name"></a>名稱
 
@@ -29,7 +30,7 @@ ms.lasthandoff: 04/22/2017
 
 ## <a name="id"></a>ID
 
-相依性呼叫執行個體的識別碼。 用來與此相依性呼叫的對應要求遙測項目相互關聯。 如需詳細資訊，請參閱[相互關聯](/correlation.md)頁面。
+相依性呼叫執行個體的識別碼。 用來與此相依性呼叫的對應要求遙測項目相互關聯。 如需詳細資訊，請參閱[相互關聯](application-insights-correlation.md)頁面。
 
 ## <a name="data"></a>資料
 
@@ -41,7 +42,7 @@ ms.lasthandoff: 04/22/2017
 
 ## <a name="target"></a>目標
 
-相依性呼叫的目標網站。 範例為伺服器名稱、主機位址。 如需詳細資訊，請參閱[相互關聯](/correlation.md)頁面。
+相依性呼叫的目標網站。 範例為伺服器名稱、主機位址。 如需詳細資訊，請參閱[相互關聯](application-insights-correlation.md)頁面。
 
 ## <a name="duration"></a>持續時間
 
@@ -66,8 +67,9 @@ ms.lasthandoff: 04/22/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需 Application Insights 類型和資料模型，請參閱[資料模型](/application-insights-data-model.md)。
-- 設定 [.NET](/app-insights-asp-net-dependencies.md) 的相依性追蹤。
-- 設定 [Java](/app-insights-java-agent.md) 的相依性追蹤。
-- 查看 Application Insights 支援的[平台](/app-insights-platforms.md)。
+- 設定 [.NET](app-insights-asp-net-dependencies.md) 的相依性追蹤。
+- 設定 [Java](app-insights-java-agent.md) 的相依性追蹤。
+- [撰寫自訂相依性遙測](app-insights-api-custom-events-metrics.md#trackdependency)
+- 如需 Application Insights 類型和資料模型，請參閱[資料模型](application-insights-data-model.md)。
+- 查看 Application Insights 支援的[平台](app-insights-platforms.md)。
 

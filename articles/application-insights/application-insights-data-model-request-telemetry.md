@@ -10,18 +10,19 @@ ms.workload: TBD
 ms.tgt_pltfrm: ibiza
 ms.devlang: multiple
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 04/25/2017
 ms.author: sergkanz
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: f22b6dbdcc02b1182163f140d9ff13d2876dc0d8
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 5036ce23e602c7723f5fafef60ab45d533c1fe7d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="request-telemetry-application-insights-data-model"></a>要求遙測：Application Insights 資料模型
 
-要求遙測代表外部觸發的程式碼執行，以及封裝邏輯程式碼執行。 每個要求執行都是由包含所有執行參數的唯一 `ID` 和 `url` 所識別。 您可以將這些要求依邏輯 `name` 群組，並定義這項要求的 `source`。 程式碼執行可能會導致 `success` 或失敗，並且有特定 `duration`。 成功和失敗的執行都可以進一步由 `resultCode` 群組。 信封層級上定義之要求遙測的開始時間。
+要求遙測項目 (在 [Application Insights](app-insights-overview.md) 中) 代表外部要求對應用程式所觸發的執行邏輯順序。 每個要求執行都是由包含所有執行參數的唯一 `ID` 和 `url` 所識別。 您可以將這些要求依邏輯 `name` 群組，並定義這項要求的 `source`。 程式碼執行可能會導致 `success` 或 `fail`，並且有特定 `duration`。 成功和失敗的執行都可以進一步以 `resultCode` 分組。 信封層級上定義之要求遙測的開始時間。
 
 要求遙測會使用自訂 `properties` 和 `measurements`支援標準的擴充性模型。
 
@@ -35,7 +36,7 @@ Application Insights web SDK 會將要求名稱依「現狀」傳送 (考量字�
 
 ## <a name="id"></a>ID
 
-要求呼叫執行個體的識別碼。 用於要求和其他遙測項目之間的相互關聯。 識別碼必須是全域唯一的。 如需詳細資訊，請參閱[相互關聯](/correlation)頁面。
+要求呼叫執行個體的識別碼。 用於要求和其他遙測項目之間的相互關聯。 識別碼必須是全域唯一的。 如需詳細資訊，請參閱[相互關聯](application-insights-correlation.md)頁面。
 
 最大長度︰128 個字元
 
@@ -47,7 +48,7 @@ Application Insights web SDK 會將要求名稱依「現狀」傳送 (考量字�
 
 ## <a name="source"></a>來源
 
-要求的來源。 範例包括呼叫端的檢測金鑰或呼叫端的 IP 位址。 如需詳細資訊，請參閱[相互關聯](/correlation.md)頁面。
+要求的來源。 範例包括呼叫端的檢測金鑰或呼叫端的 IP 位址。 如需詳細資訊，請參閱[相互關聯](application-insights-correlation.md)頁面。
 
 最大長度︰1024 個字元
 
@@ -81,7 +82,8 @@ Application Insights web SDK 會將要求名稱依「現狀」傳送 (考量字�
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需 Application Insights 類型和資料模型，請參閱[資料模型](/application-insights-data-model.md)。
-- 了解如何使用 Application Insights [設定 ASP.NET Core](/app-insights-asp-net-core.md) 應用程式。
-- 查看 Application Insights 支援的[平台](/app-insights-platforms.md)。
+- [撰寫自訂要求遙測](app-insights-api-custom-events-metrics.md#trackrequest)
+- 如需 Application Insights 類型和資料模型，請參閱[資料模型](application-insights-data-model.md)。
+- 了解如何使用 Application Insights [設定 ASP.NET Core](app-insights-asp-net.md) 應用程式。
+- 查看 Application Insights 支援的[平台](app-insights-platforms.md)。
 

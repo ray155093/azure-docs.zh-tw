@@ -12,13 +12,14 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: article
-ms.date: 10/30/2016
+ms.date: 05/01/2017
 ms.author: rnagpal
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 84a04f71ffde07e9caa439c03b55920d0bb0ef16
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: af45d745bccb02ce9fd45320e83284a8b33d99bd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -51,6 +52,14 @@ ms.lasthandoff: 04/20/2017
 </table></br>
 
 ## <a name="release-notes"></a>版本資訊
+### <a name="a-name210210"></a><a name="2.1.0"/>2.1.0
+* 新增彙總查詢的支援 (COUNT、MIN、MAX、SUM 和 AVG)。
+* 新增針對 DocumentDB 模擬器執行時停用 SSL 驗證的選項。
+* 移除相依要求模組必須為 2.10.0 的限制。
+* 已將分割區集合的最小輸送量從 10,100 RU/s 降低為 2500 RU/s。
+* 在預存程序執行期間，加入支援指令碼記錄功能。
+* REST API 版本在此版本中提升至 '2017-01-19'。
+
 ### <a name="a-name201201"></a><a name="2.0.1"/>2.0.1
 * 對文件註解進行編輯性的變更。
 
@@ -114,6 +123,7 @@ Microsoft 至少會在停用 SDK 的 **12 個月** 之前提供通知，以供�
 
 | 版本 | 發行日期 | 停用日期 |
 | --- | --- | --- |
+| [2.1.0](#2.1.0) |2017 年 5 月 1 日 |--- |
 | [2.0.1](#2.0.1) |2016 年 10 月 30 日 |--- |
 | [2.0.0](#2.0.0) |2016 年 9 月 29 日 |--- |
 | [1.9.0](#1.9.0) |2016 年 7 月 7 日 |--- |
