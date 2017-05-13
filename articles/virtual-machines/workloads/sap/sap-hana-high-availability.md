@@ -13,9 +13,10 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 04/25/2017
 ms.author: sedusch
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
 ms.openlocfilehash: 6304f01fd5f97dd528054f8c4909593dd062e16b
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/26/2017
 
 
@@ -419,7 +420,7 @@ STONITH 裝置會使用服務主體來對 Microsoft Azure 授權。 請遵循下
    移至 [屬性]，並記下目錄識別碼。 這是**租用戶識別碼**。
 1. 按一下 [應用程式註冊]
 1. 按一下 [新增]
-1. 輸入名稱、選取應用程式類型 [Web 應用程式/API]、輸入登入 URL (例如 http://localhost)，然後按一下 [建立]
+1. 輸入名稱、選取應用程式類型 [Web 應用程式/API]、輸入登入 URL (例如 http://localhost )，然後按一下 [建立]
 1. 登入 URL 並未使用，而且可以是任何有效的 URL
 1. 選取新的應用程式，然後按一下 [設定] 索引標籤中的金鑰
 1. 輸入新金鑰的說明、選取 [永不過期]，然後按一下 [儲存]
