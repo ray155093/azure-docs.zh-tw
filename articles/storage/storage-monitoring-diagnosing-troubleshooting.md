@@ -3,8 +3,8 @@ title: "針對 Azure 儲存體進行監視、診斷及疑難排解 | Microsoft D
 description: "使用儲存體分析、用戶端記錄及其他協力廠商工具之類的功能，針對 Azure 儲存體的相關問題進行識別、診斷及疑難排解。"
 services: storage
 documentationcenter: 
-author: jasonnewyork
-manager: tadb
+author: fhryo-msft
+manager: jahogg
 editor: tysonn
 ms.assetid: d1e87d98-c763-4caa-ba20-2cf85f853303
 ms.service: storage
@@ -12,12 +12,13 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/03/2017
-ms.author: jahogg
-translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 8d2aa0c8ff9e39faf47c6c3339cd8da2610d2324
-ms.lasthandoff: 04/06/2017
+ms.date: 05/11/2017
+ms.author: fhryo-msft
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 8598e18aeb0552455a6e5344f10eb48382e8c2f4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -328,19 +329,19 @@ catch (StorageException storageException)
 * [用戶端收到 HTTP 409 (衝突) 訊息]
 
 ---
-[Metrics show low PercentSuccess or analytics log entries have operations with transaction status of ClientOtherErrors]
+[度量顯示低 PercentSuccess，或是分析記錄項目內含具有 ClientOtherErrors 交易狀態的作業項目]
 
 ---
 [容量度量顯示非預期的儲存體容量使用增加]
 
 ---
-[You are experiencing unexpected reboots of Virtual Machines that have a large number of attached VHDs]
+[附加大量 VHD 的虛擬機器，出現非預期的重新開機情況]
 
 ---
 [您的問題起因於使用儲存體模擬器進行開發或測試]
 
 ---
-[You are encountering problems installing the Azure SDK for .NET]
+[安裝 Azure SDK for .NET 時發生問題]
 
 ---
 [您的儲存體服務出現其他問題]

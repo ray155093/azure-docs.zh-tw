@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: fe52ced5e4dc829b5d1421bf0edcd58cffcaad19
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 24c2b27948e9373bc3957f706ed802cc36c04148
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -48,7 +49,7 @@ ms.lasthandoff: 04/03/2017
 
 <sup>1</sup> 儲存體帳戶名稱也必須是小寫、長度不超過 24 個字元，而且沒有任何連字號。
 
-如果您提供資源名稱的參數，必須在部署資源時提供唯一的名稱。 您可以選擇性地建立會使用 [uniqueString()](resource-group-template-functions.md#uniquestring) 函式來產生名稱的變數。 
+如果您提供資源名稱的參數，必須在部署資源時提供唯一的名稱。 您可以選擇性地建立會使用 [uniqueString()](resource-group-template-functions-string.md#uniquestring) 函式來產生名稱的變數。 
 
 您也可能想要將首碼或尾碼新增至 **uniqueString** 結果。 修改唯一的名稱可協助您更輕鬆地識別名稱的資源類型。 例如，您可以使用下列變數來產生儲存體帳戶的唯一名稱：
 
@@ -174,7 +175,7 @@ ms.lasthandoff: 04/03/2017
 當您使用變數時，下列資訊可能會很有幫助︰
 
 * 您需要在範本中使用一次以上的值，才使用變數。 如果值只會使用一次，硬式編碼值會讓您的範本較容易看懂。
-* 您不能使用範本之 **variables** 區段中的 [reference](resource-group-template-functions.md#reference) 函式。 **reference** 函式的值是從資源的執行階段狀態所衍生。 不過，將範本初始剖析時，會將變數加以解析。 請直接在範本的 **resources** 或 **outputs** 區段中，建構需要 **reference** 函式的值。
+* 您不能使用範本之 **variables** 區段中的 [reference](resource-group-template-functions-resource.md#reference) 函式。 **reference** 函式的值是從資源的執行階段狀態所衍生。 不過，將範本初始剖析時，會將變數加以解析。 請直接在範本的 **resources** 或 **outputs** 區段中，建構需要 **reference** 函式的值。
 * 如[資源名稱](#resource-names)中所述，包含變數以用於必須是唯一的資源名稱。
 * 您可以將變數組成複雜物件。 使用 **variable.subentry** 格式，參考來自複雜物件的值。 群組變數可協助您追蹤相關的變數。 它也可以改善範本的可讀性。 以下是範例：
    

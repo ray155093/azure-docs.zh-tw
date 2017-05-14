@@ -15,10 +15,10 @@ ms.workload: infrastructure-services
 ms.date: 05/02/2017
 ms.author: bwren
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 66e749106ba1031eef19b12f06d5bd16ffa9d09e
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: a63778c300a3d215a2a0025824f6363e1d9e9675
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/11/2017
 
 ---
 
@@ -57,7 +57,7 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 * 請考慮使用實際位於或接近自動化帳戶所在區域的電腦，因為當作業完成時，作業資料會送回到 Azure 自動化。
 
 ### <a name="configure-proxy-and-firewall-settings"></a>設定 Proxy 和防火牆設定
-若要讓內部部署 Hybrid Runbook Worker 連線到 Microsoft Operations Management Suite (OMS) 服務並向其註冊，它必須能夠存取下述連接埠號碼和 URL。  這是除了 [Microsoft Monitoring Agent 所需的連接埠和 URL](../log-analytics/log-analytics-proxy-firewall.md#configure-settings-with-the-microsoft-monitoring-agent) 以連線至 OMS。 如果您使用 Proxy 伺服器在代理程式和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取。
+若要讓內部部署 Hybrid Runbook Worker 連線到 Microsoft Operations Management Suite (OMS) 服務並向其註冊，它必須能夠存取下述連接埠號碼和 URL。  這是除了 [Microsoft Monitoring Agent 所需的連接埠和 URL](../log-analytics/log-analytics-windows-agents.md) 以連線至 OMS。 如果您使用 Proxy 伺服器在代理程式和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取。
 
 以下資訊列出要讓 Hybrid Runbook Worker 與自動化進行通訊所需的連接埠和 URL。
 
@@ -81,11 +81,11 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 | 英國南部 | uks-jobruntimedata-prod-su1.azure-automation.net |
 | 美國政府維吉尼亞州 | usge-jobruntimedata-prod-su1.azure-automation.us |
 
-如需 IP 位址 (而非名稱) 的清單，請從「Microsoft 下載中心」下載並檢閱 [Azure 資料中心 IP 位址](https://www.microsoft.com/download/details.aspx?id=41653) xml 檔案。 
+如需 IP 位址 (而非名稱) 的清單，請從「Microsoft 下載中心」下載並檢閱 [Azure 資料中心 IP 位址](https://www.microsoft.com/download/details.aspx?id=41653) xml 檔案。
 
 > [!NOTE]
-> 這個檔案包含「Microsoft Azure 資料中心」中所使用的 IP 位址範圍 (包括「計算」、SQL 和「儲存體」範圍)。 每週會公佈已更新的檔案，以反映目前已部署的範圍及任何即將進行的 IP 範圍變更。 出現在檔案中的新範圍將至少有一週的時間不會在資料中心中使用。 請每週下載新的 xml 檔案，並在您的站台上執行必要的變更，以正確識別在 Azure 中執行的服務。 Express Route 使用者可能會注意到，在每個月的第一週會使用此檔案來更新 Azure 空間的 BGP 公告。 
-> 
+> 這個檔案包含 Microsoft Azure 資料中心使用的 IP 位址範圍 (包括計算、SQL 和儲存體範圍)。 每週會公佈已更新的檔案，以反映目前已部署的範圍及任何即將進行的 IP 範圍變更。 出現在檔案中的新範圍將至少有一週的時間不會在資料中心中使用。 請每週下載新的 xml 檔案，並在您的站台上執行必要的變更，以正確識別在 Azure 中執行的服務。 Express Route 使用者可能會注意到，在每個月的第一週會使用此檔案來更新 Azure 空間的 BGP 公告。
+>
 
 ## <a name="installing-hybrid-runbook-worker"></a>安裝混合式 Runbook 背景工作
 
@@ -101,20 +101,20 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 
   * *AutomationAccountName* (必要) - 您的自動化帳戶名稱。  
   * *ResourceGroupName* (必要) - 與您的自動化帳戶相關聯的資源群組名稱。  
-  * *HybridGroupName* (必要) - 針對支援此案例的 Runbook，您指定作為目標的 Hybrid Runbook Worker 群組名稱。 
+  * *HybridGroupName* (必要) - 針對支援此案例的 Runbook，您指定作為目標的 Hybrid Runbook Worker 群組名稱。
   *  *SubscriptionID* (必要) - 您的自動化帳戶所在的 Azure 訂用帳戶識別碼。
   *  *WorkspaceName* (選擇性) - OMS 工作區名稱。  如果您沒有 OMS 工作區，此指令碼會建立並設定一個 OMS 工作區。  
 
      > [!NOTE]
      > 目前，支援與 OMS 整合的自動化區域只包括 - **澳大利亞東南部**、**美國東部 2**、**東南亞**和**西歐**。  如果您的自動化帳戶不在其中一個區域，此指令碼會建立 OMS 工作區，但會警告您，指出無法將它們連結在一起。
-     > 
+     >
 2. 在您的電腦上，從 [開始] 畫面以系統管理員模式啟動 **Windows PowerShell**。  
 3. 從 PowerShell 命令列殼層，瀏覽至您下載的指令碼所在的資料夾，然後執行該指令碼，並變更參數 *-AutomationAccountName*、*-ResourceGroupName*、*-HybridGroupName*、*-SubscriptionId* 和 *-WorkspaceName* 的值。
 
-     > [!NOTE] 
+     > [!NOTE]
      > 執行指令碼之後，您會收到向 Azure 進行驗證的提示。  您**必須**以訂用帳戶管理員角色成員和訂用帳戶共同管理員的帳戶登入。  
      >  
-    
+
         .\New-OnPremiseHybridWorker.ps1 -AutomationAccountName <NameofAutomationAccount> `
         -ResourceGroupName <NameofOResourceGroup> -HybridGroupName <NameofHRWGroup> `
         -SubscriptionId <AzureSubscriptionId> -WorkspaceName <NameOfOMSWorkspace>
@@ -123,7 +123,7 @@ Azure 自動化中的 Runbook 無法存取您的本機資料中心中的資源�
 
 5. 指令碼完成之後，[混合式背景工作角色群組] 刀鋒視窗會顯示新的群組和成員數目，或者，如果是現有的群組，則成員數目會遞增。  您可以在 [Hybrid Worker 群組] 刀鋒視窗從清單中選取群組，然後選取 [Hybrid Worker] 圖格。  在 [Hybrid Worker] 刀鋒視窗上，您會看到列出群組的每個成員。  
 
-### <a name="manual-deployment"></a>手動部署 
+### <a name="manual-deployment"></a>手動部署
 對您的自動化環境執行一次前兩個步驟，再對每一台背景工作角色電腦重複其餘步驟。
 
 #### <a name="1-create-operations-management-suite-workspace"></a>1.建立 Operations Management Suite 工作區
@@ -166,9 +166,9 @@ Microsoft Monitoring Agent 可將電腦連線至 Operations Management Suite。 
 #### <a name="5-install-powershell-modules"></a>5.安裝 PowerShell 模組
 Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何活動和 Cmdlet。  不過，這些模組不會自動部署至內部部署機器，所以您必須手動安裝它們。  例外狀況是預設安裝的 Azure 模組，可提供 Azure 自動化所有 Azure 服務和活動的 Cmdlet 存取權。
 
-由於 Hybrid Runbook Worker 功能的主要目的是要管理本機資源，您很可能必須安裝支援這些資源的模組。  您可以參考 [安裝模組](http://msdn.microsoft.com/library/dd878350.aspx) 來取得安裝 Windows PowerShell 模組的詳細資訊。  安裝的模組必須位於 PSModulePath 環境變數所參考的位置，才能由 Hybrid 背景工作角色自動匯入。  如需詳細資訊，請參閱[修改 PSModulePath 安裝路徑](https://msdn.microsoft.com/library/dd878326%28v=vs.85%29.aspx)。 
+由於 Hybrid Runbook Worker 功能的主要目的是要管理本機資源，您很可能必須安裝支援這些資源的模組。  您可以參考 [安裝模組](http://msdn.microsoft.com/library/dd878350.aspx) 來取得安裝 Windows PowerShell 模組的詳細資訊。  安裝的模組必須位於 PSModulePath 環境變數所參考的位置，才能由 Hybrid 背景工作角色自動匯入。  如需詳細資訊，請參閱[修改 PSModulePath 安裝路徑](https://msdn.microsoft.com/library/dd878326%28v=vs.85%29.aspx)。
 
-## <a name="removing-hybrid-runbook-worker"></a>移除 Hybrid Runbook Worker 
+## <a name="removing-hybrid-runbook-worker"></a>移除 Hybrid Runbook Worker
 您可以移除群組中的一或多個 Hybrid Runbook 背景工作角色，或移除該群組，視您的需求而定。  若要從內部部署電腦中移除 Hybrid Runbook Worker，請執行下列步驟。
 
 1. 在 Azure 入口網站中，瀏覽至您的自動化帳戶。  
@@ -242,21 +242,21 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
     .GUID 3a796b9a-623d-499d-86c8-c249f10a6986
     .AUTHOR Azure Automation Team
     .COMPANYNAME Microsoft
-    .COPYRIGHT 
-    .TAGS Azure Automation 
-    .LICENSEURI 
-    .PROJECTURI 
-    .ICONURI 
-    .EXTERNALMODULEDEPENDENCIES 
-    .REQUIREDSCRIPTS 
-    .EXTERNALSCRIPTDEPENDENCIES 
+    .COPYRIGHT
+    .TAGS Azure Automation
+    .LICENSEURI
+    .PROJECTURI
+    .ICONURI
+    .EXTERNALMODULEDEPENDENCIES
+    .REQUIREDSCRIPTS
+    .EXTERNALSCRIPTDEPENDENCIES
     .RELEASENOTES
     #>
 
     <#  
     .SYNOPSIS  
-    Exports the Run As certificate from an Azure Automation account to a hybrid worker in that account. 
-  
+    Exports the Run As certificate from an Azure Automation account to a hybrid worker in that account.
+
     .DESCRIPTION  
     This runbook exports the Run As certificate from an Azure Automation account to a hybrid worker in that account.
     Run this runbook in the hybrid worker where you want the certificate installed.
@@ -266,11 +266,11 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
     .\Export-RunAsCertificateToHybridWorker
 
     .NOTES
-    AUTHOR: Azure Automation Team 
+    AUTHOR: Azure Automation Team
     LASTEDIT: 2016.10.13
     #>
 
-    [OutputType([string])] 
+    [OutputType([string])]
 
     # Set the password used for this certificate
     $Password = "YourStrongPasswordForTheCert"
@@ -280,21 +280,21 @@ Runbook 可以使用 Azure 自動化環境中安裝的模組中定義的任何�
 
     # Get the management certificate that will be used to make calls into Azure Service Management resources
     $RunAsCert = Get-AutomationCertificate -Name "AzureRunAsCertificate"
-       
+
     # location to store temporary certificate in the Automation service host
     $CertPath = Join-Path $env:temp  "AzureRunAsCertificate.pfx"
-   
+
     # Save the certificate
     $Cert = $RunAsCert.Export("pfx",$Password)
-    Set-Content -Value $Cert -Path $CertPath -Force -Encoding Byte | Write-Verbose 
+    Set-Content -Value $Cert -Path $CertPath -Force -Encoding Byte | Write-Verbose
 
     Write-Output ("Importing certificate into local machine root store from " + $CertPath)
     $SecurePassword = ConvertTo-SecureString $Password -AsPlainText -Force
     Import-PfxCertificate -FilePath $CertPath -CertStoreLocation Cert:\LocalMachine\My -Password $SecurePassword -Exportable | Write-Verbose
 
     # Test that authentication to Azure Resource Manager is working
-    $RunAsConnection = Get-AutomationConnection -Name "AzureRunAsConnection" 
-    
+    $RunAsConnection = Get-AutomationConnection -Name "AzureRunAsConnection"
+
     Add-AzureRmAccount `
       -ServicePrincipal `
       -TenantId $RunAsConnection.TenantId `

@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/14/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: a6c3e0150a60777d9f824cb1e0768bd44a8c981e
-ms.lasthandoff: 03/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 78b8902927977c3b7dca3bd6e24633858ef8e6e9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -133,7 +134,7 @@ Resource Manager 會以個別部署的方式來處理每一個連結的範本。
 }
 ```
 
-您也可以使用 [deployment()](resource-group-template-functions.md#deployment) 取得目前範本的基底 URL，用來取得相同位置中其他範本的 URL。 如果您的範本位置變更 (可能是版本不同所造成)，或您想要避免在範本檔案中使用硬式編碼 URL，這十分實用。 
+您也可以使用 [deployment()](resource-group-template-functions-deployment.md#deployment) 取得目前範本的基底 URL，用來取得相同位置中其他範本的 URL。 如果您的範本位置變更 (可能是版本不同所造成)，或您想要避免在範本檔案中使用硬式編碼 URL，這十分實用。 
 
 ```json
 "variables": {

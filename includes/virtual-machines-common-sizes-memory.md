@@ -58,7 +58,7 @@ MBps = 每秒 10^6 位元組，而 GiB = 1024^3 位元組。
 
 *DSv2 系列 VM 的最大磁碟輸送量 (IOPS 或 MBps)，可能會受到所連接磁碟的數量、大小和串接所限制。  如需詳細資訊，請參閱 [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../articles/storage/storage-premium-storage.md)。
 
-** 在某些區域，加速網路適用於 Standard_DS15_v2 大小。 如需使用情形和可用性的詳細資訊，請參閱[加速網路僅供預覽](https://azure.microsoft.com/updates/accelerated-networking-in-preview/)和[虛擬機器的加速網路](../articles/virtual-network/virtual-network-accelerated-networking-powershell.md)。
+** 在某些區域，加速網路適用於 Standard_DS15_v2 大小。 如需使用情形和可用性的詳細資訊，請參閱[加速網路僅供預覽](https://azure.microsoft.com/updates/accelerated-networking-in-preview/)和[虛擬機器的加速網路](../articles/virtual-network/virtual-network-create-vm-accelerated-networking.md)。
 
 ***執行個體會隔離至單一客戶專用的硬體。
 <br>
@@ -78,7 +78,7 @@ ACU：210 - 250
 | Standard_D14_v2   | 16        | 112         | 800            | 48000 / 750 / 375                                        | 32 / 32x500                       | 8 / 極高           |
 | Standard_D15_v2** | 20        | 140         | 1,000          | 60000 / 937 / 468                                        | 40 / 40x500                       | 8 / 極高*          |
 
-* 在某些區域，加速網路適用於 Standard_D15_v2 大小。 如需使用情形和可用性的詳細資訊，請參閱[加速網路僅供預覽](https://azure.microsoft.com/updates/accelerated-networking-in-preview/)和[虛擬機器的加速網路](../articles/virtual-network/virtual-network-accelerated-networking-powershell.md)。
+* 在某些區域，加速網路適用於 Standard_D15_v2 大小。 如需使用情形和可用性的詳細資訊，請參閱[加速網路僅供預覽](https://azure.microsoft.com/updates/accelerated-networking-in-preview/)和[虛擬機器的加速網路](../articles/virtual-network/virtual-network-create-vm-accelerated-networking.md)。
 
 **執行個體會隔離至單一客戶專用的硬體。
 

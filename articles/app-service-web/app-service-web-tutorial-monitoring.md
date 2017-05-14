@@ -9,10 +9,10 @@ ms.date: 04/04/2017
 ms.topic: article
 ms.service: app-service-web
 ms.translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 8d9b4a4fa3b62659fc7e2aa1c6329fdc5e01fe39
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 29df824062d00e01b786533033097948c008588f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/21/2017
+ms.lasthandoff: 05/11/2017
 
 ---
 # <a name="monitor-app-service"></a>監視 App Service
@@ -25,15 +25,15 @@ ms.lasthandoff: 04/21/2017
 - 偵錯和修正問題。
 
 ## <a name="before-you-begin"></a>開始之前
-- 您必須有要監視的 Web 應用程式，並遵循概略的步驟。 
+- 您必須有要監視的 Web 應用程式，並遵循概略的步驟。
     - 您可以遵循[在 Azure 中搭配 SQL Database 建立 ASP.NET 應用程式](app-service-web-tutorial-dotnet-sqldatabase.md)教學課程中所述的步驟來建立應用程式。
 
-- 如果您想要試著進行應用程式的**遠端偵錯**，則您需要 Visual Studio。 
-    - 如果尚未安裝 Visual Studio 2017，您可以下載並使用免費的 [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/)。 
+- 如果您想要試著進行應用程式的**遠端偵錯**，則您需要 Visual Studio。
+    - 如果尚未安裝 Visual Studio 2017，您可以下載並使用免費的 [Visual Studio 2017 Community Edition](https://www.visualstudio.com/downloads/)。
     - 務必在 Visual Studio 設定期間啟用 **Azure 開發**。
 
 ## <a name="metrics"></a> 步驟 1 - 檢視計量
-**計量**有助於您了解︰ 
+**計量**有助於您了解︰
 - 應用程式健全狀況
 - 應用程式效能
 - 資源耗用量
@@ -51,7 +51,7 @@ ms.lasthandoff: 04/21/2017
 > * 級別計數：一、二或三個執行個體等。
 > * SKU：免費、共用、基本、標準、進階等。
 
-若要檢視 Web 應用程式的計量，請移至您想要監視之應用程式的 [概觀] 刀鋒視窗。 從這裡開始，您能以**監視圖格**的形式檢視應用程式計量的圖表。 按一下圖格，以編輯和設定要檢視的計量和要顯示的時間範圍。 
+若要檢視 Web 應用程式的計量，請移至您想要監視之應用程式的 [概觀] 刀鋒視窗。 從這裡開始，您能以**監視圖格**的形式檢視應用程式計量的圖表。 按一下圖格，以編輯和設定要檢視的計量和要顯示的時間範圍。
 
 根據預設，資源刀鋒視窗提供了應用程式要求的檢視和最後一個小時的錯誤。
 ![監視應用程式](media/app-service-web-tutorial-monitoring/app-service-monitor.png)
@@ -62,13 +62,13 @@ ms.lasthandoff: 04/21/2017
 > 透過下列連結深入了解 Azure 監視器：
 > - [開始使用 Azure 監視器](..\monitoring-and-diagnostics\monitoring-overview.md)
 > - [Azure 計量](..\monitoring-and-diagnostics\monitoring-overview-metrics.md)
-> - [支援 Azure 監視器的計量](..\monitoring-and-diagnostics\monitoring-supported-metrics.md#microsoftwebsites-including-functions)
+> - [支援 Azure 監視器的計量](..\monitoring-and-diagnostics\monitoring-supported-metrics.md)
 > - [Azure 儀表板](..\azure-portal\azure-portal-dashboards.md)
 
 ## <a name="alerts"></a> 步驟 2 - 設定警示
 **警示**可以設定成在您的應用程式發生特定條件時進行觸發。
 
-在[步驟 1 - 檢視計量](#metrics)中，我們看到應用程式有大量的錯誤。 
+在[步驟 1 - 檢視計量](#metrics)中，我們看到應用程式有大量的錯誤。
 
 讓我們將警示設定為發生錯誤時會自動取得通知。 在此情況下，我們希望每次 HTTP 50 X 錯誤數目超過某個臨界值時，警示會傳送電子郵件。
 
@@ -77,14 +77,14 @@ ms.lasthandoff: 04/21/2017
 ![Alerts](media/app-service-web-tutorial-monitoring/app-service-monitor-alerts.png)
 
 提供警示設定的值︰
-- **資源︰**使用警示來監視的網站。 
+- **資源︰**使用警示來監視的網站。
 - **名稱︰**您警示的名稱，在此案例中為︰高 HTTP 50X。
 - **描述︰**這項警示所查看的純文字說明。
 - **警示項目︰**警示可以查看計量或事件，此範例中，我們要查看計量。
 - **計量︰**要監視的計量，在此情況下︰HTTP 伺服器錯誤。
 - **條件︰**發出警示的時機，在此情況下，選取大於選項。
 - **臨界值︰**所要尋找的值，在此情況下︰400。
-- **期間︰**警示在計量的平均值期間運作。 較短的時間會造成警示較敏感。 在此情況下，我們看看 5 分鐘。 
+- **期間︰**警示在計量的平均值期間運作。 較短的時間會造成警示較敏感。 在此情況下，我們看看 5 分鐘。
 - **電子郵件擁有者和參與者︰**在此情況下︰已啟用。
 
 現在已建立警示，每次應用程式超過設定的閾值時，就會傳送電子郵件。 也可以在 Azure 入口網站中檢閱作用中警示。
@@ -116,7 +116,7 @@ ms.lasthandoff: 04/21/2017
 
 ## <a name="diagnose"></a> 步驟 4 - 診斷並解決問題
 **診斷並解決問題**可協助您區隔出應用程式問題與平台問題。 它也可以建議可能的補救措施，讓您的 Web 應用程式回到良好的健全狀況。
- 
+
 ![診斷並解決問題](media/app-service-web-tutorial-monitoring/app-service-monitor-diagnosis.png)
 
 繼續上一個步驟的範例，我們可以看到應用程式不斷發生可用性問題。 相反地，平台可用性並未低於 100%。
@@ -129,7 +129,7 @@ ms.lasthandoff: 04/21/2017
 記錄功能可讓您同時收集 Web 應用程式的**應用程式診斷**和 **Web 伺服器診斷**記錄。
 
 ### <a name="application-diagnostics"></a>應用程式診斷
-應用程式診斷功能可讓您擷取應用程式在執行階段所產生的追蹤。 
+應用程式診斷功能可讓您擷取應用程式在執行階段所產生的追蹤。
 
 將追蹤新增至您的應用程式，可大幅提升您的偵錯和固定點問題能力。
 
@@ -166,19 +166,19 @@ public ActionResult Delete(Guid? id)
  ### <a name="web-server-diagnostics"></a>Web 伺服器診斷
 即使未檢測您的應用程式，仍會產生 Web 伺服器記錄。 App Service 可以收集三種不同類型的伺服器記錄：
 
-- **Web 伺服器記錄** 
-    - 使用 [W3C 擴充記錄檔格式 (英文)](https://msdn.microsoft.com/library/windows/desktop/aa814385.aspx) 的 HTTP 交易相關資訊。 
+- **Web 伺服器記錄**
+    - 使用 [W3C 擴充記錄檔格式 (英文)](https://msdn.microsoft.com/library/windows/desktop/aa814385.aspx) 的 HTTP 交易相關資訊。
     - 當您需要判斷整體網站計量 (例如，處理的要求數量，或者有多少要求來自特定的 IP 位址) 時，非常實用。
-- **詳細錯誤記錄** 
-    - 對於表示失敗的 HTTP 狀態碼 (狀態碼 400 或更大) 的詳細錯誤資訊。 
+- **詳細錯誤記錄**
+    - 對於表示失敗的 HTTP 狀態碼 (狀態碼 400 或更大) 的詳細錯誤資訊。
     - [深入了解詳細的錯誤記錄](https://www.iis.net/learn/troubleshoot/diagnosing-http-errors/how-to-use-http-detailed-errors-in-iis)
-- **失敗要求的追蹤** 
-    - 關於失敗要求的詳細資訊，包括用於處理要求的 IIS 元件追蹤，以及每個元件所花費的時間。 
+- **失敗要求的追蹤**
+    - 關於失敗要求的詳細資訊，包括用於處理要求的 IIS 元件追蹤，以及每個元件所花費的時間。
     - 在嘗試隔離導致特定 HTTP 錯誤的項目時，失敗的要求記錄就非常實用。
     - [深入了解失敗的要求追蹤](https://www.iis.net/learn/troubleshoot/using-failed-request-tracing/troubleshooting-failed-requests-using-tracing-in-iis)
 
 啟用伺服器記錄：
-- 移至 [監視] > [診斷記錄]。 
+- 移至 [監視] > [診斷記錄]。
 - 使用切換來啟用不同類型的 Web 伺服器診斷。
 
 ![監視應用程式](media/app-service-web-tutorial-monitoring/app-service-monitor-serverlogs.png)
@@ -191,17 +191,17 @@ public ActionResult Delete(Guid? id)
 
 - **應用程式記錄** - `%HOME%/LogFiles/Application/`。
     - 此資料夾內含有一或多個文字檔案，這些檔案涵蓋應用程式記錄所產生的資訊。
-- **失敗的要求追蹤** - `%HOME%/LogFiles/W3SVC#########/`。 
-    - 此資料夾內含有一個 XSL 檔案和一或多個 XML 檔案。 
-- **詳細的錯誤記錄** - `%HOME%/LogFiles/DetailedErrors/`。 
+- **失敗的要求追蹤** - `%HOME%/LogFiles/W3SVC#########/`。
+    - 此資料夾內含有一個 XSL 檔案和一或多個 XML 檔案。
+- **詳細的錯誤記錄** - `%HOME%/LogFiles/DetailedErrors/`。
     - 此資料夾包含一或多個 .htm 檔案，以及關於您應用程式所產生之 HTTP 錯誤的詳細資訊。
-- **Web 伺服器記錄** - `%HOME%/LogFiles/http/RawLogs`。 
+- **Web 伺服器記錄** - `%HOME%/LogFiles/http/RawLogs`。
     - 此資料夾包含一或多個運用 W3C 擴充記錄檔格式來格式化的文字檔。
 
 ## <a name="streaming"></a> 步驟 6 - 記錄資料流
 資料流記錄在偵錯應用程式時非常便利，因為相較於透過 FTP 來[存取記錄](#Accessing-Logs)，這種方法比較節省時間。
 
-App Service 可以在產生**應用程式記錄**和 **Web 伺服器記錄**時對它們進行資料流處理。 
+App Service 可以在產生**應用程式記錄**和 **Web 伺服器記錄**時對它們進行資料流處理。
 
 > [!TIP]
 > 在嘗試資料流處理記錄時，請確定您已啟用收集記錄，如[記錄](#logging)一節中所述。
@@ -220,7 +220,7 @@ App Service 可以在產生**應用程式記錄**和 **Web 伺服器記錄**時�
 
 將偵錯工具附加至您在雲端中執行的應用程式：
 
-- 使用 Visual Studio 2017，開啟您要偵錯之應用程式的方案 
+- 使用 Visual Studio 2017，開啟您要偵錯之應用程式的方案
 - 設定一些中斷點，就像您針對本機開發所做的。
 - 開啟 [Cloud Explorer] \(ctr + /，ctrl + x)。
 - 視需要利用您的 Azure 認證登入。
@@ -242,7 +242,7 @@ Visual Studio 會設定您的應用程式以進行遠端偵錯，並啟動瀏覽
 使用**處理序總管**來執行下列動作：
 
 - 列舉 App Service 方案的不同執行個體上的所有處理序。
-- 向下切入並檢視與每個處理序相關聯的控制代碼和模組。 
+- 向下切入並檢視與每個處理序相關聯的控制代碼和模組。
 - 檢視處理序層級上的 CPU、工作集和執行緒計數，以協助您識別失控的處理序
 - 尋找開啟檔案控制代碼，甚至終止特定的處理序執行個體。
 
@@ -252,11 +252,11 @@ Visual Studio 會設定您的應用程式以進行遠端偵錯，並啟動瀏覽
 
 
 ## <a name="insights"></a> 步驟 9 - Application Insights
-**Application Insights** 可為您的應用程式提供應用程式分析和進階監視功能。 
+**Application Insights** 可為您的應用程式提供應用程式分析和進階監視功能。
 
 請使用 Application Insights 來偵測並診斷例外狀況，以及 Web 應用程式中的效能問題。
 
-您可以在 [監視] > [Application Insights] 下方，針對 Web 應用程式啟用 Application Insights 
+您可以在 [監視] > [Application Insights] 下方，針對 Web 應用程式啟用 Application Insights
 
 > [!NOTE]
 > Application Insights 可能會提示您安裝 Application Insights 網站延伸模組，以開始收集資料。 安裝網站延伸模組會導致應用程式重新啟動。
@@ -270,3 +270,4 @@ Application Insights 具有豐富的功能集，若要深入了解，請遵循[�
  - [什麼是 Application Insights](..\application-insights\app-insights-overview.md)
  - [使用 Application Insights 監視 Azure Web 應用程式效能](..\application-insights\app-insights-azure-web-apps.md)
  - [使用 Application Insights 監視任何網站的可用性和回應性](..\application-insights\app-insights-monitor-web-app-availability.md)
+

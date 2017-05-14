@@ -11,15 +11,16 @@ keywords: "部署錯誤, azure 部署, 部署至 azure"
 ms.assetid: c002a9be-4de5-4963-bd14-b54aa3d8fa59
 ms.service: azure-resource-manager
 ms.devlang: na
-ms.topic: article
+ms.topic: support-article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/15/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: bfbb3356454b9ef8b1834d03e7b76de9860a12c9
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 7dfd3f7f0bebd0dbe20ffc9952d83cb8b4fcfe3e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -285,7 +286,7 @@ Message=Cannot find ServerFarm with name exampleplan.
 
 如需針對相依性錯誤進行疑難排解的建議，請參閱[檢查部署順序](#check-deployment-sequence)。
 
-當資源存在於所要部署不同的資源群組中，則也會看到此錯誤。 在該情況下，請使用 [resourceId 函式](resource-group-template-functions.md#resourceid)來取得資源的完整名稱。
+當資源存在於所要部署不同的資源群組中，則也會看到此錯誤。 在該情況下，請使用 [resourceId 函式](resource-group-template-functions-resource.md#resourceid)來取得資源的完整名稱。
 
 ```json
 "properties": {
@@ -294,7 +295,7 @@ Message=Cannot find ServerFarm with name exampleplan.
 }
 ```
 
-如果您嘗試對無法解析的資源使用 [reference](resource-group-template-functions.md#reference) 或 [listKeys](resource-group-template-functions.md#listkeys) 函式，您會收到下列錯誤：
+如果您嘗試對無法解析的資源使用 [reference](resource-group-template-functions-resource.md#reference) 或 [listKeys](resource-group-template-functions-resource.md#listkeys) 函式，您會收到下列錯誤：
 
 ```
 Code=ResourceNotFound;
@@ -339,7 +340,7 @@ Code=StorageAccountAlreadyTaken
 Message=The storage account named mystorage is already taken.
 ```
 
-您可以將您的命名慣例與 [uniqueString](resource-group-template-functions.md#uniquestring) 函式的結果串連，以建立一個唯一名稱。
+您可以將您的命名慣例與 [uniqueString](resource-group-template-functions-string.md#uniquestring) 函式的結果串連，以建立一個唯一名稱。
 
 ```json
 "name": "[concat('storage', uniqueString(resourceGroup().id))]",
@@ -349,7 +350,7 @@ Message=The storage account named mystorage is already taken.
 如果您以與您的訂用帳戶中現有的儲存體帳戶相同的名稱部署儲存體帳戶，但提供不同的位置，您會遇到錯誤，指出儲存體帳戶已存在於不同的位置。 刪除現有的儲存體帳戶，或提供與現有儲存體帳戶相同的位置。
 
 ### <a name="accountnameinvalid"></a>AccountNameInvalid
-嘗試提供的儲存體帳戶名稱中包含禁止的字元時，您會看到 **AccountNameInvalid** 錯誤。 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能使用數字和小寫字母。 [uniqueString](resource-group-template-functions.md#uniquestring) 函式會傳回 13 個字元。 如果您要對 **uniqueString** 結果串連前置詞，請提供 11 個字元以下的前置詞。
+嘗試提供的儲存體帳戶名稱中包含禁止的字元時，您會看到 **AccountNameInvalid** 錯誤。 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能使用數字和小寫字母。 [uniqueString](resource-group-template-functions-string.md#uniquestring) 函式會傳回 13 個字元。 如果您要對 **uniqueString** 結果串連前置詞，請提供 11 個字元以下的前置詞。
 
 ### <a name="badrequest"></a>BadRequest
 
@@ -626,7 +627,7 @@ az policy definition show --name regionPolicyAssignment
 
 當資源是以非預期的順序部署時，會發生許多部署錯誤。 相依性未正確設定時，就會發生這些錯誤。 當您遺漏必要的相依性時，一個資源會嘗試使用另一個資源的值，但另一個資源還不存在。 您會收到錯誤表示找不到資源。 您可能會不斷遇到這種錯誤類型，因為每個資源的部署時間可能有所不同。 例如，您第一次部署資源成功，因為必要的資源恰好即時完成。 不過，您第二次嘗試失敗，因為必要的資源沒有即時完成。 
 
-但是，您要避免設定不需要的相依性。 當您有不必要的相依性時，您會阻止不互相相依的資源以平行方式部署，而延長部署的時間。 此外，您可以建立封鎖部署的循環相依性。 [reference](resource-group-template-functions.md#reference) 函式會對您在函式中指定為參數的資源建立隱含的相依性 (如果在同一個範本中部署該資源)。 因此，您的相依性可能會比 **dependsOn** 屬性中指定的相依性還多。 [resourceId](resource-group-template-functions.md#resourceid) 函式不會建立隱含的相依性或驗證資源存在。
+但是，您要避免設定不需要的相依性。 當您有不必要的相依性時，您會阻止不互相相依的資源以平行方式部署，而延長部署的時間。 此外，您可以建立封鎖部署的循環相依性。 [reference](resource-group-template-functions-resource.md#reference) 函式會對您在函式中指定為參數的資源建立隱含的相依性 (如果在同一個範本中部署該資源)。 因此，您的相依性可能會比 **dependsOn** 屬性中指定的相依性還多。 [resourceId](resource-group-template-functions-resource.md#resourceid) 函式不會建立隱含的相依性或驗證資源存在。
 
 當您遇到相依性問題時，您需要深入了解資源部署的順序。 若要檢視部署作業的順序︰
 

@@ -12,11 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 05/08/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: 4bab9f44d1c91f05618ea510b83beb06540429f2
-ms.openlocfilehash: 00424292fbc5321a77a4e924530ade97739208d4
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: d00375d9bc696b41a074eebe6d205e6907a54c4b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -26,13 +28,14 @@ Azure 傳統入口網站可讓您建立進階規則，以對 Azure Active Direct
 當使用者的任何屬性變更時，系統會評估目錄中的所有動態群組規則，以查看使用者的屬性變更是否會觸發任何的群組新增或移除。 如果使用者滿足群組規則，則使用者會新增為該群組的成員。 如果他們不再滿足其所屬群組的規則，則會從該群組的成員中移除。
 
 > [!NOTE]
-> 您可以為安全性群組或 Office 365 群組的動態成員資格設定規則。 目前對應用程式的群組式指派並不支援巢狀群組成員資格。
+> 您可以為安全性群組或 Office 365 群組的動態成員資格設定規則。 
 >
 > 群組的動態成員資格需要將 Azure AD Premium 授權指派給：
 >
 > * 負責管理群組規則的系統管理員
 > * 群組的所有成員
 >
+> 另請注意，雖然您可以為裝置或使用者建立動態群組，但無法建立規則來同時選取使用者和裝置物件。 
 
 ## <a name="to-create-the-advanced-rule"></a>建立進階規則
 1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，選取 [Active Directory]，然後開啟您組織的目錄。
@@ -105,7 +108,7 @@ user.mail –ne null
 | --- | --- | --- |
 | 錯誤：不支援屬性。 |(user.invalidProperty -eq "Value") |(user.department -eq "value")<br/>屬性應該符合 [支援的屬性清單](#supported-properties)。 |
 | 錯誤：屬性不支援運算子。 |(user.accountEnabled -contains true) |(user.accountEnabled -eq true)<br/>屬性屬於布林類型。 使用上述清單中的布林型別支援的運算子 (-eq 或-ne)。 |
-| 錯誤：查詢編譯錯誤。 |(user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") |(user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".*@domain.ext")or(user.userPrincipalName -match "@domain.ext$")Error 規則運算式中發生錯誤。 |
+| 錯誤：查詢編譯錯誤。 |(user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") |(user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".*@domain.ext") 或 (user.userPrincipalName -match "@domain.ext$") 規則運算式發生錯誤。 |
 | 錯誤：二進位運算式不是正確的格式。 |(user.department –eq “Sales”) (user.department -eq "Sales")(user.department-eq"Sales") |(user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。 括號不在正確的位置。 |
 | 錯誤：設定動態成員資格時發生未知的錯誤。 |(user.accountEnabled -eq "True" AND user.userPrincipalName -contains "alias@domain") |(user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。 括號不在正確的位置。 |
 
@@ -251,9 +254,4 @@ user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber
 * [設定群組設定的 Azure Active Directory Cmdlet](active-directory-accessmanagement-groups-settings-cmdlets.md)
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

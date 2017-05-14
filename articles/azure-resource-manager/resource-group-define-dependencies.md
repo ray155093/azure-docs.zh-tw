@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/03/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 006d8e10acd6b4b756c0b78988176f71c3802080
-ms.lasthandoff: 03/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 5617f6453cb5dbb1c86ec41d7b9649356a3d9c78
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -63,7 +64,7 @@ ms.lasthandoff: 03/06/2017
 雖然您可能比較傾向於使用 dependsOn 來對應資源之間的關聯性，但是請務必了解為什麼您要這麼做。 例如，若是要記載資源互連的方式，dependsOn 並不是適當的方法。 在部署之後，您便無法查詢 dependsOn 元素中定義了哪些資源。 使用 dependsOn 可能會影響部署時間，因為 Resource Manager 不會平行部署具有相依性的兩個資源。 若要記載資源之間的關聯性，請改用 [資源連結](/rest/api/resources/resourcelinks)。
 
 ## <a name="child-resources"></a>子資源
-resources 屬性可讓您指定與所定義的資源相關的子資源。 定義子資源時，深度只能有&5; 層。 請務必注意，在子資源與父資源之間並不會建立隱含的相依性。 如果您需要在父資源之後部署子資源，您必須使用 dependsOn 屬性明確地敘述該相依性。 
+resources 屬性可讓您指定與所定義的資源相關的子資源。 定義子資源時，深度只能有 5 層。 請務必注意，在子資源與父資源之間並不會建立隱含的相依性。 如果您需要在父資源之後部署子資源，您必須使用 dependsOn 屬性明確地敘述該相依性。 
 
 每個父資源只接受特定的資源類型做為子資源。 可接受的資源類型是在父資源的 [範本結構描述](https://github.com/Azure/azure-resource-manager-schemas) 中指定。 子資源類型的名稱包含父資源類型的名稱，例如 **Microsoft.Web/sites/config** 和 **Microsoft.Web/sites/extensions** 兩者皆為 **Microsoft.Web/sites** 的子資源。
 
@@ -108,7 +109,7 @@ resources 屬性可讓您指定與所定義的資源相關的子資源。 定義
 ```
 
 ## <a name="reference-function"></a>reference 函式
-[reference 函式](resource-group-template-functions.md#reference) 可讓運算式從其他 JSON 名稱和值組或執行階段資源衍生其值。 reference 運算式會隱含地宣告某個資源相依於另一個資源。 一般的格式如下︰
+[reference 函式](resource-group-template-functions-resource.md#reference) 可讓運算式從其他 JSON 名稱和值組或執行階段資源衍生其值。 reference 運算式會隱含地宣告某個資源相依於另一個資源。 一般的格式如下︰
 
 ```json
 reference('resourceName').propertyPath
@@ -133,7 +134,7 @@ reference('resourceName').propertyPath
 
 您可以使用此元素或 dependsOn 元素指定相依性，但是您不需要針對相同的相依資源使用兩者。 請盡可能使用隱含的參考，以避免新增不必要的相依性。
 
-若要深入了解，請參閱 [reference 函數](resource-group-template-functions.md#reference)。
+若要深入了解，請參閱 [reference 函數](resource-group-template-functions-resource.md#reference)。
 
 ## <a name="recommendations-for-setting-dependencies"></a>設定相依性的建議
 
