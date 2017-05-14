@@ -14,9 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/18/2017
 ms.author: jdial
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: 58ee6e9cc14b01f10e20dfc3f289bfc6cc386e2a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -198,7 +199,7 @@ Azure 提供的 DNS 是由 Microsoft 所提供的多租用戶 DNS 服務。 Azur
 VNet 會與另一個 VNet，以及其他裝載於 Azure 基礎結構中的服務完全隔離。 VNet 是一種信任邊界。
 
 ### <a name="can-i-restrict-inbound-or-outbound-traffic-flow-to-vnet-connected-resources"></a>我可以將輸入或輸出流量限制為與 VNet 連接的資源嗎？
-是。 您可以將 [網路安全性群組][](virtual-networks-nsg.md) 套用至 VNet、連接至 VNet 的 NIC 或同時在兩者以內的獨立子網路。
+是。 您可以將 [網路安全性群組](virtual-networks-nsg.md) 套用至 VNet、連接至 VNet 的 NIC 或同時在兩者以內的獨立子網路。
 
 ### <a name="can-i-implement-a-firewall-between-vnet-connected-resources"></a>我可以在與 VNet 連線的資源之間實作防火牆嗎？
 是。 您可以透過 Azure Marketplace 部署來自多個廠商的[防火牆網路虛擬應用裝置](https://azure.microsoft.com/en-us/marketplace/?term=firewall)。
