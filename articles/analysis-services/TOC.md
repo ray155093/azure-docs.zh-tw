@@ -1,10 +1,31 @@
 # 概觀
+
 ## [什麼是 Azure Analysis Services？](analysis-services-overview.md)
 
 # 開始使用
 ## [建立伺服器](analysis-services-create-server.md)
 ## [部署至伺服器](analysis-services-deploy.md)
 ## [連線](analysis-services-connect.md)
+
+# 教學課程
+## 建立和部署模型
+### [Adventure Works 教學課程](tutorials/aas-adventure-works-tutorial.md)
+### [第 1 課：建立新的表格式模型專案](tutorials/aas-lesson-1-create-a-new-tabular-model-project.md)
+### [第 2 課：取得資料](tutorials/aas-lesson-2-get-data.md)
+### [第 3 課：標記為日期資料表](tutorials/aas-lesson-3-mark-as-date-table.md) 
+### [第 4 課：建立關聯性](tutorials/aas-lesson-4-create-relationships.md) 
+### [第 5 課：建立已計算的資料行](tutorials/aas-lesson-5-create-calculated-columns.md)
+### [第 6 課：建立度量](tutorials/aas-lesson-6-create-measures.md)  
+### [第 7 課：建立關鍵效能指標](tutorials/aas-lesson-7-create-key-performance-indicators.md)  
+### [第 8 課：建立檢視方塊](tutorials/aas-lesson-8-create-perspectives.md) 
+### [第 9 課：建立檢視階層](tutorials/aas-lesson-9-create-hierarchies.md)  
+### [第 10 課：建立資料分割](tutorials/aas-lesson-10-create-partitions.md) 
+### [第 11 課：建立角色](tutorials/aas-lesson-11-create-roles.md)
+### [第 12 課：在 Excel 中分析](tutorials/aas-lesson-12-analyze-in-excel.md)
+### [第 13 課：部署](tutorials/aas-lesson-13-deploy.md)
+### [補充課程 - 詳細資料列](tutorials/aas-supplemental-lesson-detail-rows.md)
+### [補充課程 - 動態安全性](tutorials/aas-supplemental-lesson-dynamic-security.md)
+### [補充課程 - 不完全階層](tutorials/aas-supplemental-lesson-ragged-hierarchies.md)
 
 # 作法 
 ## [管理伺服器](analysis-services-manage.md)
@@ -20,7 +41,7 @@
 
 # 參考
 ## [PowerShell](analysis-services-powershell.md)
-## [REST](https://docs.microsoft.com/rest/api/analysisservices/)
+## [REST](/rest/api/analysisservices)
 ## [DAX](https://msdn.microsoft.com/library/gg413422.aspx)
 ## [Power Query M](https://msdn.microsoft.com/library/mt211003.aspx)
 

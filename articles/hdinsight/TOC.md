@@ -166,6 +166,7 @@
 #### [使用 Ambari REST API](hdinsight-hadoop-manage-ambari-rest-api.md)
 ### [新增儲存體帳戶](hdinsight-hadoop-add-storage.md)
 ### [上傳 Hadoop 工作的資料](hdinsight-upload-data.md)
+### [搭配 Data Lake Store 的多個 HDInsight 叢集](hdinsight-multiple-clusters-data-lake-store.md)
 ### [使用 Sqoop 匯入和匯出資料](hdinsight-use-sqoop.md)
 #### [使用 SSH 連線](hdinsight-use-sqoop-mac-linux.md)
 #### [使用 cURL 執行](hdinsight-hadoop-use-sqoop-curl.md)

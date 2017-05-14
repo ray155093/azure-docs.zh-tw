@@ -80,6 +80,16 @@
 ### [價格](https://azure.microsoft.com/pricing/details/logic-apps/)
 ### [使用量計量](logic-apps-pricing.md)
 
+# 無伺服器
+## 概觀
+### [Azure 中無伺服器](logic-apps-serverless-overview.md)
+## 開始使用
+### [在 Visual Studio 中建立無伺服器應用程式](logic-apps-serverless-get-started-vs.md)
+## 範例和逐步解說
+### [收集客戶意見反應](logic-apps-scenario-social-serverless.md)
+### [傳送自動化電子郵件](https://channel9.msdn.com/Blogs/Microsoft-Integration/Build-and-Deploy-Serverless-Part-1)
+### [B2B/EDI 訂單處理](logic-apps-enterprise-integration-overview.md)
+
 # 參考
 ## [工作流程定義語言](logic-apps-workflow-definition-language.md)
 ## [工作流程動作與觸發程序](logic-apps-workflow-actions-triggers.md)

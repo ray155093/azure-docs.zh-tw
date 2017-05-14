@@ -1,4 +1,4 @@
-# [概觀](security-get-started-overview.md)
+# [概觀](azure-security.md)
 ## [網路安全性](security-network-overview.md)
 ## [儲存體安全性](security-storage-overview.md)
 ## [計算安全性](security-virtual-machines-overview.md)
@@ -6,6 +6,10 @@
 ## [身分識別管理](security-identity-management-overview.md)
 ## [IoT 安全性](../iot-suite/iot-security-architecture.md#security-in-iot)
 ## [安全性架構](azure-security-architecture-overview.md)
+### [作業安全性](azure-operational-security.md)
+### [進階威脅偵測](azure-threat-detection.md)
+### [記錄與稽核](azure-log-audit.md)
+### [公用雲端中的隔離](azure-isolation.md)
 
 # 開始使用
 ## [開始使用 Azure 資訊安全](azure-security-getting-started.md)

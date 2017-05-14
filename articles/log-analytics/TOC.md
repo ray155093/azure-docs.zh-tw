@@ -5,7 +5,6 @@
 # 開始使用
 ## [註冊 Log Analytics](log-analytics-get-started.md)
 ## [管理存取權](log-analytics-manage-access.md)
-## [Proxy 與防火牆](log-analytics-proxy-firewall.md)
 ## [使用狀況資料](log-analytics-usage.md)
 ## [Log Analytics 常見問題集](log-analytics-faq.md)
 ## [服務提供者](log-analytics-service-providers.md)
@@ -14,7 +13,7 @@
 ## 收集資料
 ### 連接的來源
 #### [Windows 代理程式](log-analytics-windows-agents.md)
-#### [Linux 代理程式](log-analytics-linux-agents.md)
+#### [Linux 代理程式](log-analytics-agent-linux.md)
 #### [Azure 虛擬機器](log-analytics-azure-vm-extension.md)
 #### [Azure 資源](log-analytics-azure-storage.md)
 #### [Operations Manager](log-analytics-om-agents.md)
@@ -23,8 +22,12 @@
 ### 資料來源
 #### [資料來源概觀](log-analytics-data-sources.md)
 #### [Windows 事件](log-analytics-data-sources-windows-events.md)
+#### [自訂 JSON 資料](log-analytics-data-sources-json.md)
+#### [已收集的效能資料](log-analytics-data-sources-collectd.md)
+#### [Nagios 和 Zabbix 的警示](log-analytics-data-sources-alerts-nagios-zabbix.md)
 #### [Syslog](log-analytics-data-sources-syslog.md)
 #### [效能計數器](log-analytics-data-sources-performance-counters.md)
+#### [Linux 應用程式的效能](log-analytics-data-sources-linux-applications.md)
 #### [IIS 記錄檔](log-analytics-data-sources-iis-logs.md)
 #### [自訂的記錄檔](log-analytics-data-sources-custom-logs.md)
 #### [自訂欄位](log-analytics-custom-fields.md)
@@ -32,6 +35,7 @@
 ### [記錄檔搜尋概觀](log-analytics-log-searches.md)
 ### [搜尋參考](log-analytics-search-reference.md)
 #### [規則運算式](log-analytics-log-searches-regex.md)
+### [搜尋結果中採取行動](log-analytics-log-search-takeaction.md)
 ### [電腦群組](log-analytics-computer-groups.md)
 ## 分析資料
 ### [儀表板](log-analytics-dashboards.md)
