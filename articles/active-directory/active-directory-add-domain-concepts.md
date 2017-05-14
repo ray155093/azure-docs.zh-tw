@@ -3,7 +3,7 @@ title: "Azure Active Directory 中的自訂網域名稱的概念式概觀 | Micr
 description: "說明在 Azure Active directory 中使用自訂網域名稱的概念性架構，包括單一登入同盟"
 services: active-directory
 documentationcenter: 
-author: jeffsta
+author: curtand
 manager: femila
 editor: 
 ms.assetid: fd0c5def-0da2-43af-81bc-76f4cfe86afd
@@ -12,11 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/04/2016
+ms.date: 05/04/2017
 ms.author: curtand;jeffsta
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 2faa2c270b192a9b3476fa911333f6abfabb1ee9
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 028c1cab4f0229a06d37d2f325b384ee78a2b8f9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -55,16 +57,11 @@ Azure AD 會透過在網域名稱的網域名稱服務 (DNS) 區域檔案中尋�
 Azure Web 應用程式使用其本身的機制來驗證網域的擁有權。 網域必須驗證是否可用於 Azure AD，即使它先前已驗證可供仰賴該 Azure AD 之訂用帳戶中的 Azure Web 應用程式使用也是如此。 Azure Web 應用程式可使用已在不同於保護 Web 應用程式之目錄的目錄中，進行過驗證的網域名稱。
 
 ## <a name="managing-domain-names"></a>管理網域名稱
-您可以在 Azure 傳統入口網站和 PowerShell 中完成網域管理工作。 許多工作可使用 Azure AD 圖形 API (公開預覽中) 來完成。
+您可以在 Azure 傳統入口網站和 PowerShell 中完成網域管理工作。 您可以使用 AD 圖形 API 完成許多工作。
 
 * [新增和驗證自訂網域名稱](active-directory-add-domain.md)
 * [在 Azure 傳統入口網站中管理網域](active-directory-add-manage-domain-names.md)
 * [使用 PowerShell 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)
 * [使用 Azure AD 圖形 API 管理 Azure AD 中的網域名稱](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

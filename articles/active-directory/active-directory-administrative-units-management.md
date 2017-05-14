@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/13/2017
+ms.date: 05/04/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b30ed9727229c082bff65023bfe4900640caa995
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: d05b4a34c5271b636400ed90ead76fabf0d911bd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -30,7 +32,7 @@ ms.openlocfilehash: b30ed9727229c082bff65023bfe4900640caa995
 >
 >
 
-從管理中心的觀點來看，管理單位是可以建立並填入資源的目錄物件。 **在此版本中，這些資源僅能為使用者。**  一旦建立並填入，管理單位可用作為範圍，以限制僅能針對管理單位中所包含的資源來授與權限。
+從管理中心的觀點來看，管理單位是可以建立並填入資源的目錄物件。 **在此預覽版本中，這些資源僅能是使用者。** 一旦建立並填入，管理單位可用作為範圍，以限制僅能針對管理單位中所包含的資源來授與權限。
 
 ## <a name="managing-administrative-units"></a>管理管理單位
 在此預覽版本中，您可以使用適用於 Windows PowerShell Cmdlet 的 Azure Active Directory 模組來建立和管理管理單位。
@@ -39,9 +41,4 @@ ms.openlocfilehash: b30ed9727229c082bff65023bfe4900640caa995
 
 ## <a name="next-steps"></a>後續步驟
 [Azure Active Directory 版本](active-directory-editions.md)
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 
