@@ -14,9 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/06/2016
 ms.author: hkanna
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: d4a0dfbfab052e98e0dd641e8cab8fc143c2ff41
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 ---
@@ -238,7 +239,7 @@ StorSimple 提供下列優點︰
 -   關閉壓縮。
 -   關閉備份作業的重複資料刪除。
 -   設定最佳化為 [LAN Target (LAN 目標)]。
--   開啟 [建立作用中的完整備份] (每 2 週)。
+-   開啟 [建立作用中的完整備份] \(每 2 週)。
 -   在備份儲存機制中，設定 [使用每個 VM 的備份檔案]。
 -   將 [每個作業使用多個上傳資料流] 設定為 **8** (最多允許 16 個)。 根據 StorSimple 裝置的 CPU 使用量向上或向下調整此數字。
 
