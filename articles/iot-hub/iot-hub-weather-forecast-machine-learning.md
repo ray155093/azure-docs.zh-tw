@@ -15,9 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/29/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
 ms.openlocfilehash: 872930fd127729e0f444942ad1ee6fa11465ceb9
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/25/2017
 
 
@@ -54,7 +55,7 @@ ms.lasthandoff: 04/25/2017
 
 ## <a name="deploy-the-weather-prediction-model-as-a-web-service"></a>將氣象預報模型部署為 Web 服務
 
-1. 移至 [氣象預報模型頁面][](https://gallery.cortanaintelligence.com/Experiment/Weather-prediction-model-1)。
+1. 移至 [氣象預報模型頁面](https://gallery.cortanaintelligence.com/Experiment/Weather-prediction-model-1)。
 1. 在 Microsoft Azure Machine Leaning Studio 中按一下 [在 Studio 中開啟]。
    ![在 Cortana Intelligence 資源庫中開啟氣象預報模型頁面](media/iot-hub-weather-forecast-machine-learning/2_weather-prediction-model-in-cortana-intelligence-gallery.png)
 1. 按一下 [執行] 來驗證模型中的步驟。 此步驟可能需要 2 分鐘才能完成。

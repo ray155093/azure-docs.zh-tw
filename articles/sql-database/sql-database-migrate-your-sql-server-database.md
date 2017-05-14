@@ -16,9 +16,10 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 04/20/2017
 ms.author: janeng
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
 ms.openlocfilehash: c6d965351f6f131ee342cea672fc4fa8771f8ede
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/21/2017
 
 
@@ -48,7 +49,7 @@ ms.lasthandoff: 04/21/2017
 
      ![開啟 data migration assistant](./media/sql-database-migrate-your-sql-server-database/data-migration-assistant-open.png)
 
-2. 在左側功能表中，按一下 [新增]以建立 [評估] 專案。 填寫表單的 [專案名稱] (其他所有值應保留預設值)，然後按一下 [建立]。 此時會開啟 [選項]  頁面。
+2. 在左側功能表中，按一下 [新增]以建立 [評估] 專案。 填寫表單的 [專案名稱] \(其他所有值應保留預設值)，然後按一下 [建立]。 此時會開啟 [選項]  頁面。
 
      ![新 data migration assistant 專案](./media/sql-database-migrate-your-sql-server-database/data-migration-assistant-new-project.png)
 

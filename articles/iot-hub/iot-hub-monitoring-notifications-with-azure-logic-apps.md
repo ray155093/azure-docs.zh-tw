@@ -15,9 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/12/2017
 ms.author: xshi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
 ms.openlocfilehash: 2cdfbadfc4cc28afe34b4d558f40bba6451f7388
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/25/2017
 
 
@@ -163,7 +164,7 @@ Azure Logic Apps 可用來以一連串的步驟使程序自動進行。 邏輯�
 
 ## <a name="test-the-logic-app"></a>測試邏輯應用程式
 
-1. 在 [將 ESP8266 連接到 Azure IoT 中樞][](iot-hub-arduino-huzzah-esp8266-get-started.md) 中，啟動您部署至裝置的用戶端應用程式。
+1. 在 [將 ESP8266 連接到 Azure IoT 中樞](iot-hub-arduino-huzzah-esp8266-get-started.md) 中，啟動您部署至裝置的用戶端應用程式。
 1. 將 SensorTag 周圍的環境溫度增加到 30°C 以上。例如，在 SensorTag 周圍點蠟燭。
 1. 您應該會收到邏輯應用程式傳送的電子郵件通知。
 

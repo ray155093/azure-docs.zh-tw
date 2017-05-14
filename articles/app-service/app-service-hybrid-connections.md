@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/22/2017
 ms.author: ccompy
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
 ms.openlocfilehash: fef9e7b280387934cb093f51b4c8aa134a3b87e7
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/25/2017
 
 
@@ -138,7 +139,7 @@ HCM 有提供 UI 來供您進行設定。  HCM 安裝完成後，您可以執行
 1. 選擇訂用帳戶
 1. 按一下您要讓這個 HCM 轉送的混合式連線 ![][9]
 
-1. 按一下 [Save] (儲存)。
+1. 按一下 [Save] \(儲存)。
 
 此時，您會看到您新增的混合式連線。  您也可以按一下所設定的混合式連線，然後查看該連線的詳細資訊。
 
