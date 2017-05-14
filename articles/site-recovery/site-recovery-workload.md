@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
-ms.date: 02/06/2017
+ms.date: 05/08/2017
 ms.author: raynew
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 4149c5e06f1a23864ca0f92f1b7b73f4f66949df
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 1e48b0848c9f286f3bb0b3758403135a4f280bc0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -89,7 +90,7 @@ Azure Site Recovery 可協助保護 SharePoint 部署，如下所示：
 * 藉由建立類似生產的複本隨選複本環境進行測試和偵錯，以簡化 SharePoint 應用程式開發和測試。
 * 藉由使用 Site Recovery 將 SharePoint 部署移轉至 Azure，來簡化雲端轉換。
 
-[深入了解](https://gallery.technet.microsoft.com/SharePoint-DR-Solution-f6b4aeae) 如何保護 SharePoint。
+[深入了解](site-recovery-sharepoint.md) 如何保護 SharePoint。
 
 ## <a name="protect-dynamics-ax"></a>保護 Dynamics AX
 Azure Site Recovery 可協助保護您的 Dynamics AX ERP 解決方案，方法如下：
@@ -98,7 +99,7 @@ Azure Site Recovery 可協助保護您的 Dynamics AX ERP 解決方案，方法�
 * 簡化 Dynamics AX 部署到雲端 (Azure) 的移轉。
 * 藉由建立類似生產的複本隨選進行測試和偵錯，以簡化 Dynamics AX 應用程式開發和測試。
 
-[深入了解](https://gallery.technet.microsoft.com/Dynamics-AX-DR-Solution-b2a76281) 如何保護動態 Dynamic AX。
+[深入了解](site-recovery-dynamicsax.md) 如何保護動態 Dynamic AX。
 
 ## <a name="protect-rds"></a>保護 RDS
 遠端桌面服務 (RDS) 可啟用虛擬桌面基礎結構 (VDI)、以工作階段為基礎的桌面和應用程式，讓使用者可在任何地方工作。 使用 Azure Site Recovery，您可以：
