@@ -16,9 +16,10 @@ ms.author: ddove
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
 ms.openlocfilehash: cc81b842833942019d5afec9b9dc33813ac48964
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/20/2017
 
 
@@ -160,7 +161,7 @@ SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的�
 異地還原會在資料庫因裝載區域中的事件而無法使用時，提供預設復原選項。 請參閱 [還原 Azure SQL Database 或容錯移轉到次要資料庫](sql-database-disaster-recovery.md)
 
 ### <a name="active-geo-replication"></a>主動式異地複寫
-針對較異地還原需要更主動復原的應用程式，設定 [作用中異地複寫][](sql-database-geo-replication-overview.md)。
+針對較異地還原需要更主動復原的應用程式，設定 [作用中異地複寫](sql-database-geo-replication-overview.md)。
 
 ## <a name="next-steps"></a>後續步驟
 
