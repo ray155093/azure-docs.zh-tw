@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 03/27/2017
 ms.author: sdanie
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
 ms.openlocfilehash: 076a85b7b965f163255e919eb61700aef0d1fc18
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/06/2017
 
 
@@ -706,7 +707,7 @@ ms.lasthandoff: 04/06/2017
 
 [![部署至 Azure][deploybutton]](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-redis-cache-sql-database%2Fazuredeploy.json)
 
-這個 [部署至 Azure] 按鈕使用[建立 Web 應用程式、Redis 快取和 SQL Database](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-redis-cache-sql-database) [](https://github.com/Azure/azure-quickstart-templates)範本來佈建這些服務，並設定 SQL Database 的連接字串和 Azure Redis 快取連接字串的應用程式設定。
+這個 [部署至 Azure] 按鈕使用[建立 Web 應用程式、Redis 快取和 SQL Database](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-redis-cache-sql-database) [Azure 快速入門](https://github.com/Azure/azure-quickstart-templates)範本來佈建這些服務，並設定 SQL Database 的連接字串和 Azure Redis 快取連接字串的應用程式設定。
 
 > [!NOTE]
 > 如果您沒有 Azure 帳戶，只需要幾分鐘的時間就可以 [建立免費的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero) 。
