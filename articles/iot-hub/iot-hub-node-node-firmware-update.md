@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/06/2017
 ms.author: juanpere
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 4ba60cee8848079935111ed3de480081a4aa58f6
 ms.openlocfilehash: 30a707ec15d592c8a10905e13a75ea2f6e52cccc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/06/2017
 
 
 ---
@@ -59,7 +61,7 @@ ms.openlocfilehash: 30a707ec15d592c8a10905e13a75ea2f6e52cccc
 2. 在 **triggerfwupdateondevice** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iot-hub** 與 **azure-iot-device-mqtt** 裝置 SDK 套件：
    
     ```
-    npm install azure-iot-hub --save
+    npm install azure-iothub --save
     ```
 3. 使用文字編輯器，在 **triggerfwupdateondevice** 資料夾中建立 **dmpatterns_getstarted_service.js** 檔案。
 4. 在 **dmpatterns_getstarted_service.js** 檔案開頭新增下列 'require' 陳述式：
@@ -153,9 +155,4 @@ ms.openlocfilehash: 30a707ec15d592c8a10905e13a75ea2f6e52cccc
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/tree/master/doc/node-devbox-setup.md
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-transient-faults]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

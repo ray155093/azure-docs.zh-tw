@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/18/2017
+ms.date: 05/18/2017
 ms.author: dobett
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: df9772796796f7383aafc583b01f299a53679d88
 ms.openlocfilehash: 12535cbb6fa63c24dd63903380d697f8f38db6f9
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/27/2017
 
 
@@ -78,7 +79,7 @@ ms.lasthandoff: 02/27/2017
 
 1. 開啟 remote\_monitoring\remote_monitoring.c 檔案，並以下列程式碼取代現有的 `#include` 陳述字：
 
-    ```
+    ```c
     #include "iothubtransportmqtt.h"
     #include "schemalib.h"
     #include "iothub_client.h"
@@ -102,7 +103,7 @@ ms.lasthandoff: 02/27/2017
 
 1. 以位於 remote\_monitoring.c 檔案結尾的下列程式碼新增 **main** 函式，以叫用 **remote\_monitoring\_run** 函式︰
    
-    ```
+    ```c
     int main()
     {
       remote_monitoring_run();

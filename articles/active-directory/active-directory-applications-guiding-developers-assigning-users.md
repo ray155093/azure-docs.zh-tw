@@ -3,7 +3,7 @@ title: "Azure AD 和應用程式：將使用者指派給應用程式 | Microsoft
 description: "如何實作 Azure 應用程式的使用者指派。"
 services: active-directory
 documentationcenter: 
-author: femila
+author: kgremban
 manager: femila
 editor: 
 ms.assetid: 97ce69c1-4034-4e38-bd82-8caf984f6b98
@@ -13,11 +13,13 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/22/2017
-ms.author: femila
-translationtype: Human Translation
+ms.author: kgremban
+robots: noindex
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: d30ebb5a0e3e7b1560e1eff04bc5a54f0c45a595
-
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/29/2016
 
 ---
 # <a name="azure-ad-and-applications-assigning-users-to-an-application"></a>Azure AD 和應用程式：將使用者指派給應用程式
@@ -36,10 +38,5 @@ ms.openlocfilehash: d30ebb5a0e3e7b1560e1eff04bc5a54f0c45a595
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

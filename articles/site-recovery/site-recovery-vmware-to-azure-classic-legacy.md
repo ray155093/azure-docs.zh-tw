@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: raynew
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 858ed6ca4355c36c728ae88bf9488f362d487646
 ms.openlocfilehash: 7ffef4a8dcd10fa6608d200b4ca34fb3517c0cc6
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/22/2017
 
 
@@ -393,7 +394,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
       ![Linux 主要目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-tar.png)
    5. 請確認您在解壓縮 tar 檔案內容的目錄中。
    6. 使用命令 **echo*`<passphrase>`* 將組態伺服器的複雜密碼複製到本機檔案
-   7. 執行 “**sudo ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i*`<Configuration server internal IP address>`* -p 443 -s y -c https -P passphrase.txt**” 命令。
+   7. 執行 “**sudo ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i* `<Configuration server internal IP address>`* -p 443 -s y -c https -P passphrase.txt**” 命令。
 
       ![註冊目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-mt-install.png)
 7. 等候幾分鐘 (10-15)，然後在頁面上，檢查主要目標伺服器在 [伺服器]  >  [組態伺服器] > [伺服器詳細資料] 索引標籤上是否列為已註冊。 如果您在執行 Linux 而且伺服器並未註冊，請再次從 /usr/local/ASR/Vx/bin/hostconfigcli 執行主機設定工具。 您必須藉由執行 chmod 做為根使用者，以設定存取權限。
