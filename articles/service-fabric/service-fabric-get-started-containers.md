@@ -15,10 +15,10 @@ ms.workload: NA
 ms.date: 05/08/2017
 ms.author: ryanwi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
-ms.openlocfilehash: df5832478bf7049a7bb883eacac4be961ef65cf9
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: acb68b274228aa647dc7be5d36b2b077bd213c1b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -32,7 +32,7 @@ ms.lasthandoff: 05/09/2017
 * [Service Fabric SDK 和工具](service-fabric-get-started.md)。
 *  Docker for Windows。  [取得 Docker CE for Windows (穩定)](https://store.docker.com/editions/community/docker-ce-desktop-windows?tab=description)。 安裝並啟動 Docker 之後，以滑鼠右鍵按一下系統匣圖示，然後選取 [切換至 Windows 容器]。 這是執行以 Windows 為基礎的 Docker 映像時的必要動作。
 
-有三個或更多節點在具有容器的 Windows Server 2016 上執行的 Windows 叢集 - [建立叢集](service-fabric-get-started-azure-cluster.md)或[免費試用 Service Fabric](http://tryazureservicefabrictest.westus.cloudapp.azure.com/)。 
+有三個或更多節點在具有容器的 Windows Server 2016 上執行的 Windows 叢集 - [建立叢集](service-fabric-get-started-azure-cluster.md)或[免費試用 Service Fabric](http://tryazureservicefabric.westus.cloudapp.azure.com/)。 
 
 Azure Container Registry 中的登錄 - 在 Azure 訂用帳戶中[建立容器登錄](../container-registry/container-registry-get-started-portal.md)。 
 
@@ -193,7 +193,7 @@ Service Fabric SDK 和工具會提供一個服務範本，協助您將容器部�
 4. 開啟瀏覽器並瀏覽至 http://containercluster.westus2.cloudapp.azure.com。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
 
 ## <a name="clean-up"></a>清除
-當叢集在執行時，您需要繼續支付費用，請考慮[刪除您的叢集](service-fabric-get-started-azure-cluster.md#remove-the-cluster)。  [合作對象叢集](http://tryazureservicefabrictest.westus.cloudapp.azure.com/)會在幾個小時後自動刪除。
+當叢集在執行時，您需要繼續支付費用，請考慮[刪除您的叢集](service-fabric-get-started-azure-cluster.md#remove-the-cluster)。  [合作對象叢集](http://tryazureservicefabric.westus.cloudapp.azure.com/)會在幾個小時後自動刪除。
 
 將映像推送至容器登錄之後，您可以從開發電腦刪除本機映像︰
 
