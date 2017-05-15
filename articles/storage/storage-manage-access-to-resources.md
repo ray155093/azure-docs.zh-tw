@@ -1,5 +1,5 @@
 ---
-title: "管理對容器與 Blob 的匿名讀取權限 | Microsoft Docs"
+title: "對 Azure Blob 儲存體中的容器與 Blob 啟用公用讀取權限 | Microsoft Docs"
 description: "了解如何讓容器與 Blob 可供匿名存取，以及如何以程式設計方式存取。"
 services: storage
 documentationcenter: 
@@ -12,47 +12,50 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/08/2016
+ms.date: 04/26/2017
 ms.author: marsma
-translationtype: Human Translation
-ms.sourcegitcommit: 931503f56b32ce9d1b11283dff7224d7e2f015ae
-ms.openlocfilehash: 4fe41c3aabf5e6d9ae899cea0b9f9b6c9c305cf0
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: c7b83667b58649c156a62fa68cebd854c13e2cba
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 ---
-# <a name="manage-anonymous-read-access-to-containers-and-blobs"></a>管理對容器與 Blob 的匿名讀取權限。
-## <a name="overview"></a>Overview
-根據預設，只有儲存體帳戶的擁有者可以存取該帳戶內的儲存體資源。 您可以僅針對 Blob 儲存體設定容器的權限，以允許對容器和 Blob 的匿名讀取權限，讓您能夠授予這些資源的存取權，而無需分享您的帳戶金鑰。
 
-匿名存取適用於您想要某些 Blob 永遠可供匿名讀取存取的狀況。 如需更精密的控制，您可以建立共用存取簽章，讓您能夠在指定的時間間隔內，使用不同的權限來委派受限制的存取權。 如需建立共用存取簽章的詳細資訊，請參閱 [使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
+# <a name="manage-anonymous-read-access-to-containers-and-blobs"></a>管理對容器與 Blob 的匿名讀取權限。
+您可以對 Azure Blob 儲存體中的容器及其 Blob 啟用匿名與公用讀取權限。 如此您就可以將這些資源的唯讀存取權限授與他人，而無須共用您的帳戶金鑰，也無須要求共用存取簽章 (SAS)。
+
+公用讀取權限適用於您想要某些 Blob 永遠可供匿名讀取存取的狀況。 對於更深入的控管需求，您可以建立共用存取簽章。 共用存取簽章可讓您針對一段特定時間提供不同權限的限制存取。 如需建立共用存取簽章的詳細資訊，請參閱[在 Azure 儲存體中使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
 
 ## <a name="grant-anonymous-users-permissions-to-containers-and-blobs"></a>授與容器和 Blob 的匿名使用者權限
 根據預設，可能只有儲存體帳戶的擁有者能存取容器及其內部的任何 Blob。 若要為匿名使用者授與容器及其 Blob 的讀取權限，您可以設定容器權限以允許公用存取。 匿名使用者可以讀取可公開存取之容器內的 Blob，而不需驗證要求。
 
-容器會提供下列選項來管理容器存取：
+您可以為容器設定下列權限︰
 
-* **完整的公開讀取權限：** 可以透過匿名要求讀取容器和 Blob 資料。 用戶端可以透過匿名要求列舉容器內的 Blob，但無法列舉儲存體帳戶內的容器。
-* **僅對 Blob 有公開讀取權限：** 您可以透過匿名要求讀取此容器內的 Blob 資料，但您無法使用容器資料。 用戶端無法透過匿名要求列舉容器內的 Blob。
-* **沒有公開讀取權限：** 只有帳戶擁有者可以讀取容器和 Blob 資料。
+* **無公用讀取權限︰**只有儲存體帳戶擁有者可以存取容器和其 Blob。 這是所有新建容器的預設值。
+* **僅對 Blob 有公用讀取權限：**您可以透過匿名要求讀取容器內的 Blob，但您無法使用容器資料。 匿名用戶端無法列舉容器內的 Blob。
+* **完整的公用讀取權限：**可以透過匿名要求讀取所有容器和 Blob 資料。 用戶端可以透過匿名要求列舉容器內的 Blob，但無法列舉儲存體帳戶內的容器。
 
-您可以利用下列方式設定容器權限：
+您可以使用下列方式設定容器權限：
 
-* 從 [Azure 入口網站](https://portal.azure.com)。
-* 使用儲存體用戶端程式庫或 REST API 以程式設計方式設定。
-* 使用 PowerShell 設定。 若要深入了解如何從 Azure PowerShell 設定容器權限，請參閱 [使用 Azure PowerShell 與 Azure 儲存體](storage-powershell-guide-full.md#how-to-manage-azure-blobs)。
+* [Azure 入口網站](https://portal.azure.com)
+* [Azure PowerShell](storage-powershell-guide-full.md#how-to-manage-azure-blobs)
+* [Azure CLI 2.0](storage-azure-cli.md#create-and-manage-blobs)
+* 使用其中一個儲存體用戶端程式庫或 REST API 以程式設計方式設定
 
-### <a name="setting-container-permissions-from-the-azure-portal"></a>從 Azure 入口網站設定容器權限
-若要從 [Azure 入口網站](https://portal.azure.com)設定容器權限，請遵循下列步驟：
+### <a name="set-container-permissions-in-the-azure-portal"></a>在 Azure 入口網站中設定容器權限
+若要在 [Azure 入口網站](https://portal.azure.com)中設定容器權限，請遵循下列步驟：
 
-1. 瀏覽至儲存體帳戶的儀表板。
-2. 從清單中選取容器名稱。 按一下名稱將會公開所選容器中的 Blob
-3. 從工具列選取 [存取原則]  。
-4. 在 [存取類型]  欄位中，選取您所需的權限層級，如以下螢幕擷取畫面所示。
+1. 在入口網站中開啟 [儲存體帳戶] 刀鋒視窗。 您可以在主要入口網站的功能表刀鋒視窗中選取 [儲存體帳戶]，來尋找您的儲存體帳戶。
+1. 在功能表刀鋒視窗的 [BLOB 服務] 下，選取 [容器]。
+1. 以滑鼠右鍵按一下容器資料列或選取省略符號來開啟容器的**操作功能表**。
+1. 在操作功能表中選取 [存取原則]。
+1. 從下拉式功能表中選取 [存取類型]。
 
     ![編輯容器中繼資料對話方塊](./media/storage-manage-access-to-resources/storage-manage-access-to-resources-0.png)
 
-### <a name="setting-container-permissions-programmatically-using-net"></a>使用 .NET 以程式設計方式設定容器權限
-若要使用 .NET 用戶端程式庫來設定容器的權限，請先呼叫 **GetPermissions** 方法來擷取容器的現有權限。 接著為由 **GetPermissions** 方法傳回的 **BlobContainerPermissions** 物件設定 **PublicAccess** 屬性。 最後，使用更新的權限呼叫 **SetPermissions** 方法。
+### <a name="set-container-permissions-with-net"></a>使用 .NET 設定容器權限
+若要使用 .NET 的 C# 和儲存體用戶端程式庫來設定容器的權限，請先呼叫 **GetPermissions** 方法來擷取容器的現有權限。 接著為由 **GetPermissions** 方法傳回的 **BlobContainerPermissions** 物件設定 **PublicAccess** 屬性。 最後，使用更新的權限呼叫 **SetPermissions** 方法。
 
 下列範例將容器的權限設為完整公用讀取權限。 若只要將 Blob 的權限設為公用讀取權限，請將 **PublicAccess** 屬性設為 **BlobContainerPublicAccessType.Blob**。 若要移除匿名使用者的所有權限，請將屬性設為 **BlobContainerPublicAccessType.Off**。
 
@@ -104,7 +107,6 @@ public static void ListBlobsAnonymously()
 }
 ```
 
-
 ### <a name="reference-a-blob-anonymously"></a>匿名參考 Blob
 如果您有可供匿名存取之 Blob 的 URL，您可以使用該 URL 直接參考 Blob：
 
@@ -148,14 +150,9 @@ public static void DownloadBlobAnonymously()
 | 取得頁面範圍 |全部 |全部 |
 | 附加 Blob |只有擁有者 |只有擁有者 |
 
-## <a name="see-also"></a>另請參閱
+## <a name="next-steps"></a>後續步驟
+
 * [Azure 儲存體服務的驗證](https://msdn.microsoft.com/library/azure/dd179428.aspx)
 * [使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)
 * [使用共用存取簽章來委派存取權](https://msdn.microsoft.com/library/azure/ee395415.aspx)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

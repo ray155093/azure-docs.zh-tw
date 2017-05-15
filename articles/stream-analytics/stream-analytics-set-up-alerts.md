@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c8463e68600edefecd0f3bdd19c13b13f676b82b
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
+ms.openlocfilehash: d9578aa13fc22a148f76d95a2c548b88b699e723
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/01/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.lasthandoff: 11/17/2016
 ## <a name="introduction-monitor-page"></a>簡介：監視頁面
 您可以設定會在計量達到您指定的條件時觸發的警示。
 
-例如，「如果過去 15 分鐘內的輸出事件 <100，則將電子郵件通知傳送給電子郵件識別碼： xyz@company.com」。
+例如，「如果過去 15 分鐘內的輸出事件 <100，則將電子郵件通知傳送給電子郵件識別碼：xyz@company.com」。
 
 您可以透過入口網站來針對計量設定規則，或是透過作業記錄檔資料以 [程式設計方式](https://code.msdn.microsoft.com/windowsazure/Receive-Email-Notifications-199e2c9a) 來設定規則。
 
@@ -70,7 +71,7 @@ ms.lasthandoff: 11/17/2016
 如需有關在 Azure 入口網站中設定警示的更多詳細資料，請參閱[接收警示通知](../monitoring-and-diagnostics/insights-receive-alert-notifications.md)。  
 
 ## <a name="get-help"></a>取得說明
-如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
+如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)

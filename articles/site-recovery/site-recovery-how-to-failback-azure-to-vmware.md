@@ -14,15 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 02/13/2017
 ms.author: ruturajd
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 6629666eaa913321db3855438bb66d349d5c52bf
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 1c56a7f16361ac4fae97be6c9f21c959723b396c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="fail-back-from-azure-to-an-on-premises-site"></a>從 Azure 容錯回復至內部部署網站
+
+> [!div class="op_single_selector"]
+> * [從 Azure 容錯回復 VMware/實體機器](site-recovery-failback-azure-to-vmware.md)
+> * [從 Azure 容錯回復 Hyper-V VM](site-recovery-failback-from-azure-to-hyper-v.md)
+
+
 本文說明如何將虛擬機器從 Azure 虛擬機器容錯回復到內部部署網站。 請遵循本文中的指示，將已使用[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-vmware-to-azure-classic.md) 教學課程從內部部署網站容錯移轉至 Azure 的 VMware 虛擬機器或 Windows/Linux 實體伺服器進行容錯回復。
+
+> [!WARNING]
+> 如果您已[完成移轉](site-recovery-migrate-to-azure.md#what-do-we-mean-by-migration)、已將虛擬機器移至另一個資源群組，或已刪除 Azure 虛擬機器，則您無法在之後執行容錯回復。
+
+> [!NOTE]
+> 如果您已對 VMware 虛擬機器進行容錯移轉，便無法容錯回復到 Hyper-v 主機。
 
 ## <a name="overview-of-failback"></a>容錯回復的概觀
 容錯回復的運作方式如下。 在容錯移轉至 Azure 之後，您可以透過幾個階段來容錯回復至內部部署網站：
@@ -30,7 +43,7 @@ ms.lasthandoff: 04/25/2017
 1. [重新保護](site-recovery-how-to-reprotect.md) Azure 上的虛擬機器，讓它們開始複寫到內部部署網站中的 VMware 虛擬機器。 在此程序進行期間，您還需要︰
     1. 設定內部部署主要目標︰Windows 主要目標 (若為 Windows 虛擬機器) 和 [Linux 主要目標](site-recovery-how-to-install-linux-master-target.md) (若為 Linux 虛擬機器)。
     2. 設定[處理序伺服器](site-recovery-vmware-setup-azure-ps-resource-manager.md)。
-    3. 起始[重新保護](site-recovery-how-to-reprotect.md)。
+    3. 起始[重新保護](site-recovery-how-to-reprotect.md)。 這會關閉內部部署虛擬機器，並使 Azure 虛擬機器的資料與內部部署磁碟同步。
 5. 在 Azure 上的虛擬機器複寫至內部部署網站後，您可以起始從 Azure 到內部部署網站的容錯回復。
 
 容錯回復資料之後，您必須重新保護所容錯回復到的內部部署虛擬機器，使其開始複寫至 Azure。
@@ -41,6 +54,9 @@ ms.lasthandoff: 04/25/2017
 ### <a name="fail-back-to-the-original-or-alternate-location"></a>容錯回復到原始位置或替代位置
 
 如果您已容錯移轉 VMware 虛擬機器，在它仍存在的前提下，您可以將它容錯回復到相同的來源內部部署虛擬機器。 在此案例中，系統只會將變更複寫回來。 此案例稱為原始位置復原。 如果內部部署虛擬機器不存在，則此案例是替代位置復原。
+
+> [!NOTE]
+> 您只可容錯回復至原始的 vCenter 和組態伺服器。 您無法部署新的組態伺服器和使用它進行容錯回復。 此外，您無法將新的 vCenter 新增至現有組態伺服器及容錯回復到新的 vCenter。
 
 #### <a name="original-location-recovery"></a>原始位置復原
 
@@ -74,7 +90,7 @@ ms.lasthandoff: 04/25/2017
 ## <a name="steps-to-fail-back"></a>容錯回復的步驟
 
 > [!IMPORTANT]
-起始容錯回復之前，請確定您已完成虛擬機器的重新保護。 虛擬機器應該處於受保護狀態，且其健康狀態應該是**良好**。 若要重新保護虛擬機器，請參閱[如何重新保護](site-recovery-how-to-reprotect.md)。
+> 起始容錯回復之前，請確定您已完成虛擬機器的重新保護。 虛擬機器應該處於受保護狀態，且其健康狀態應該是**良好**。 若要重新保護虛擬機器，請參閱[如何重新保護](site-recovery-how-to-reprotect.md)。
 
 1. 在 [複製的項目] 頁面中，請選取虛擬機器，並以滑鼠右鍵按一下以選取 [非計劃性容錯移轉]。
 2. 在 [確認容錯移轉] 中，確認容錯移轉方向 (以 Azure 為來源)，然後選取您想要用來進行容錯移轉的復原點 (最近的復原點或最近的應用程式一致復原點)。 應用程式一致復原點會在最近的復原點之後，並造成部分資料遺失。

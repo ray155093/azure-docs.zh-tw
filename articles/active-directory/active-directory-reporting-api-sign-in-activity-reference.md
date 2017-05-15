@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/25/2016
 ms.author: dhanyahk;markvi
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: dce65678f9fc96d5802a7b705689cc63e6532c84
-ms.lasthandoff: 03/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: 077c39d1a6f61aba7b184ee616a93f30cdb7d12c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -34,9 +35,18 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
 如有相關疑問、問題或意見，請連絡 [AAD 報告協助](mailto:aadreportinghelp@microsoft.com)。
 
 ## <a name="who-can-access-the-api-data"></a>誰可以存取 API 資料？
-* 具有安全性系統管理員或安全性讀取器角色的使用者
+* 具有安全性系統管理員或安全性讀取者角色的使用者和服務主體
 * 全域管理員
 * 任何獲得授權存取 API 的應用程式 (只可以根據全域管理員的權限來設定應用程式授權)
+
+若要設定應用程式存取權以存取安全性 API (例如登入事件)，請使用下列 PowerShell 將應用程式服務主體新增至安全性讀取者角色
+
+```PowerShell
+Connect-MsolService
+$servicePrincipal = Get-MsolServicePrincipal -AppPrincipalId "<app client id>"
+$role = Get-MsolRole | ? Name -eq "Security Reader"
+Add-MsolRoleMember -RoleObjectId $role.ObjectId -RoleMemberType ServicePrincipal -RoleMemberObjectId $servicePrincipal.ObjectId
+```
 
 ## <a name="prerequisites"></a>必要條件
 若要透過報告 API 來存取此報告，您必須具有︰

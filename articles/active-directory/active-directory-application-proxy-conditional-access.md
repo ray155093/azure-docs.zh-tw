@@ -12,11 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 04/23/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 164e3b0af47cd98f2d20fce7344230608e9fbe8c
-ms.openlocfilehash: 72b823998ebd570acc34e6a7ca034f64881db0c4
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: c16e07925389cc17ff156cae767366223fefa18f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -34,7 +36,7 @@ ms.openlocfilehash: 72b823998ebd570acc34e6a7ca034f64881db0c4
 ## <a name="conditional-access-prerequisites"></a>條件式存取的先決條件
 * Azure Active Directory Premium 的訂用帳戶
 * 同盟或受管理的 Azure Active Directory 租用戶
-* 同盟租用戶需要 Multi-Factor Authentication (MFA) 已啟用   
+* 同盟租用戶需要 Multi-Factor Authentication (MFA)  
     ![設定存取規則 - 要求 Multi-Factor Authentication](./media/active-directory-application-proxy-conditional-access/application-proxy-conditional-access.png)
 
 ## <a name="configure-per-application-multi-factor-authentication"></a>設定每個應用程式的 Multi-Factor Authentication
@@ -42,10 +44,10 @@ ms.openlocfilehash: 72b823998ebd570acc34e6a7ca034f64881db0c4
 2. 移至 Active Directory，並選取您要啟用應用程式 Proxy 所在的目錄。
 3. 按一下 [應用程式] 並向下捲動至 [存取規則] 區段。 只有使用應用程式 Proxy 發佈並使用同盟驗證的應用程式，才會顯示 [存取規則] 區段。
 4. 為 [啟用存取規則] 選取 [開啟] 來啟用規則。
-5. 指定將套用規則的使用者和群組。 使用 [加入群組] 按鈕來選取一或多個將套用存取規則的群組。 此對話方塊也可用來移除選取的群組。  若將規則選取為套用至群組，則只會對屬於其中一個指定安全性群組的使用者強制執行存取規則。  
+5. 指定要套用規則的使用者和群組。 使用 [新增群組] 按鈕來選取一或多個要套用存取規則的群組。 此對話方塊也可用來移除選取的群組。  選取要套用至群組的規則之後，只會對屬於其中一個指定安全性群組的使用者強制執行存取規則。  
 
-   * 若要明確地將安全性群組從規則中排除，請選取 [例外] 並指定一或多個群組。 [除外] 清單中群組的使用者成員不需要執行 Multi-Factor Authentication。  
-   * 如果使用者已設定為使用每個使用者的 Multi-Factor Authentication 功能，則此設定會優先於應用程式的多重要素驗證規則。 這表示已設定每個使用者的 Multi-Factor Authentication 的使用者都必須執行 Multi-Factor Authentication，即使他們已從應用程式的 Multi-Factor Authentication 規則中免除。 深入了解 [多重要素驗證和每個使用者設定](../multi-factor-authentication/multi-factor-authentication.md)。
+   * 若要明確地將安全性群組從規則中排除，請選取 [例外]  並指定一或多個群組。 如果使用者是 [除外] 清單中某個群組的成員，則不需要執行多重要素驗證。  
+   * 如果已使用每個使用者的多重要素驗證功能來設定使用者，則此設定會優先於應用程式的多重要素驗證規則。 如果使用者已設定為使用每個使用者的多重要素驗證，則必須執行多重要素驗證，即使已從應用程式的多重要素驗證規則中免除他們也一樣。 深入了解 [多重要素驗證和每個使用者設定](../multi-factor-authentication/multi-factor-authentication.md)。
 6. 選取您要設定的存取規則：
 
    * **需要多重要素驗證**︰套用存取規則的使用者必須先完成多重要素驗證，才能存取套用規則的應用程式。
@@ -66,9 +68,4 @@ ms.openlocfilehash: 72b823998ebd570acc34e6a7ca034f64881db0c4
 * [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
 
 如需最新消息，請查閱 [應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

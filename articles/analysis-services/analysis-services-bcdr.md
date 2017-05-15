@@ -12,12 +12,13 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/18/2017
+ms.date: 05/02/2017
 ms.author: owend
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: c4eb1162edc42baafe96e6c33699805ffc121204
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
+ms.openlocfilehash: d71bf041585af101d6aa67ba2697f5192bdfd048
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -35,11 +36,10 @@ ms.lasthandoff: 04/20/2017
 
 不論是哪一種情況，如果您的主要伺服器發生中斷，您都必須將報告用戶端中的連接字串，變更為連線到不同區域資料中心的伺服器。 此變更作業應視為最後手段，只有在發生重大的區域資料中心中斷時才應考慮使用。 比較常見的情況是，您可能還未更新所有用戶端上的連線，裝載主要伺服器的資料中心就已從中斷狀態恢復為上線狀態。 
 
-在決定組織要如何處理服務中斷時，請考慮您要如何確保資料保持在最新狀態且安全無虞。 
 
 
 ## <a name="related-information"></a>相關資訊
-[備份與還原](analysis-services-backup.md) 
+[備份與還原](analysis-services-backup.md)   
 [管理 Azure Analysis Services](analysis-services-manage.md) 
 
 

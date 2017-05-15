@@ -13,10 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: 229dd21f3ab1ae716cd49611e720450ae5939eb8
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 6f84365acb9a1cc1fc31fa5f3c04cd112f68087b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -99,20 +100,18 @@ Application Insights 費用會加到您的 Azure 帳單中。 您可以在 Azure
 ## <a name="data-rate"></a>資料速率
 有三種方式可限制您傳送的資料量︰
 
-* **每日上限。** 最高上限是 500 GB/天。 從 Visual Studio 建立 Application Insights 資源時的預設值很小 (只有 32.3 MB/天)。 從 Azure 入口網站建立 Application Insights 資源時，會將此設為最大值。 因為達到上限會導致當天剩餘的時間內的資料遺失，所以變更此設定時，請務必小心。 若要變更，請從 [資料量管理] 刀鋒視窗連結來使用 [每日用量上限] 刀鋒視窗。
-* **[取樣](app-insights-sampling.md)。** 這個機制可減少您的伺服器和用戶端應用程式所傳送的遙測量，計量的扭曲程度最小。
-* **節流**會將資料速率限制在每秒 32,000 個事件，平均超過 1 分鐘。 
+* **取樣︰**這個機制可用來減少您的伺服器和用戶端應用程式所傳送的遙測量，計量的扭曲程度最小。 這是您調整資料量的主要工具。 深入了解[取樣功能](app-insights-sampling.md)。 
+* **每日上限：**從 Azure 入口網站建立 Application Insights 資源時，會將此設為每日 500 GB。 從 Visual Studio 建立 Application Insights 資源時的預設值很小 (只有 32.3 MB/天)，僅旨在協助測試。 在此情況下，用意在於使用者在將應用程式部署至實際執行環境之前，會提高每日的上限。 除非您針對高流量的應用程式要求更高的最大值，否則每日的最高上限是 500 GB。 設定每日的上限時請留意，您的目標應該是**絕不達到每日上限**，因為這樣一來您將會遺失每日剩餘項目的資料，且無法監視您的應用程式。 若要變更，請從 [資料量管理] 刀鋒視窗連結來使用 [每日用量上限] 刀鋒視窗 (如下所示)。 請注意，有些訂用帳戶類型的信用額度無法用於 Application Insights。 如果訂用帳戶內含消費限制，則 [每日上限] 刀鋒視窗中會有指示，說明如何將它移除，並讓每日上限提高至每天 32.3 MB。  
+* **節流：**這會將資料速率限制在每秒 32,000 個事件，平均超過 1 分鐘。 
 
 
 如果應用程式超過節流速率會發生什麼事？
 
-* 系統會每分鐘評估應用程式傳送的資料量。 如果每秒速率超過每分鐘平均值，伺服器會拒絕部分要求。 SDK 會緩衝處理資料，然後嘗試重新傳送，大量傳播幾分鐘。 如果應用程式始終以高於節流速率的方式傳送資料，有些資料會遭到捨棄  (ASP.NET、Java 和 JavaScript SDK 會嘗試以此方式重新傳送，其他 SDK 則可能直接捨棄節流的資料)。
+* 系統會每分鐘評估應用程式傳送的資料量。 如果每秒速率超過每分鐘平均值，伺服器會拒絕部分要求。 SDK 會緩衝處理資料，然後嘗試重新傳送，大量傳播幾分鐘。 如果應用程式始終以高於節流速率的方式傳送資料，有些資料會遭到捨棄  (ASP.NET、Java 和 JavaScript SDK 會嘗試以此方式重新傳送，其他 SDK 則可能直接捨棄節流的資料)。當節流發生時，您會看到警告您這種情況已發生的通知。
 
-當節流發生時，您會看到警告您這種情況已發生的通知。
+如何知道應用程式正在傳送多少資料？
 
-*如何知道應用程式正在傳送多少資料點？*
-
-* 開啟 [價格] 刀鋒視窗以查看 [資料量] 圖表。
+* 開啟 [資料量管理] 刀鋒視窗，查看每日資料量的圖表。 
 * 或在 [計量瀏覽器] 中，新增新的圖表，然後選取 [資料點數量] 做為其計量。 切換群組，並依 [資料類型] 分組。
 
 ## <a name="to-reduce-your-data-rate"></a>降低資料速率
@@ -130,7 +129,7 @@ Application Insights 費用會加到您的 Azure 帳單中。 您可以在 Azure
 
 請改為使用[取樣](app-insights-sampling.md)來將資料量調整到您所需的程度，並只將每日上限做為「最後的手段」，以防您的應用程式開始未預期地傳送大量遙測。 
 
-若要變更每日上限，請依序開啟 [功能與定價] 和 [資料管理]。
+若要變更每日上限，請在您 Application Insights 的 [設定] 區段中依序按一下 [資料量管理]、[每日上限]。
 
 ![調整每日遙測資料量上限](./media/app-insights-pricing/daily-cap.png) 
 

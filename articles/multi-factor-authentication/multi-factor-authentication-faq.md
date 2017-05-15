@@ -12,13 +12,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/26/2017
+ms.date: 04/26/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 12b67d92fb955d9d20b0e86a38baa47a3717a333
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f291186c6a68dea8aa00b846a2e6f3ad0d7996c
+ms.openlocfilehash: d9fffa2058120f067c631a900eb8db4738f73778
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 ---
 # <a name="frequently-asked-questions-about-azure-multi-factor-authentication"></a>與 Azure Multi-Factor Authentication 相關的常見問題
@@ -71,9 +72,9 @@ ms.lasthandoff: 03/31/2017
 
 在某些情況下，是的。 
 
-適用於 Azure 系統管理員的 Multi-Factor Authentication 提供免費的 Azure MFA 功能子集，讓您可存取 Microsoft 線上服務，包括 Azure 和 Office 365 系統管理員入口網站。 若 Azure Active Directory 執行個體中的 Azure 系統管理員沒有透過 MFA 授權、組合或獨立使用型提供者取得完整版 Azure MFA，則適用此優惠。 如果您的系統管理員使用該免費版本，接著您建立了 Multi-Factor Authentication 提供者，則在目錄中設定為可使用 Multi-Factor Authentication 的所有系統管理員和使用者皆可取得完整版 Azure Multi-Factor Authentication。
+適用於 Azure 系統管理員的 Multi-Factor Authentication 提供免費的 Azure MFA 功能子集，讓您可存取 Microsoft 線上服務，包括 Azure 和 Office 365 系統管理員入口網站。 若 Azure Active Directory 執行個體中的全域系統管理員沒有透過 MFA 授權、組合或以獨立使用為基礎的提供者取得完整版 Azure MFA，則適用此優惠。 如果您的系統管理員使用該免費版本，接著您建立了 Multi-Factor Authentication 提供者，則在目錄中設定為可使用 Multi-Factor Authentication 的所有系統管理員和使用者皆可取得完整版 Azure Multi-Factor Authentication。
 
-適用於 Office 365 使用者的 Multi-Factor Authentication 提供免費的 Azure MFA 功能子集，讓您可存取 Microsoft 線上服務，包括 Exchange Online、SharePoint Online 和其他 Office 365 服務。 若使用者擁有指派的 Office 365 授權，但相對應的 Azure Active Directory 執行個體沒有透過 MFA 授權、組合或獨立使用型提供者取得完整版 Azure MFA 時，則適用此優惠。 
+適用於 Office 365 使用者的 Multi-Factor Authentication 提供免費的 Azure MFA 功能子集，讓您可存取 Office 365 服務，包括 Exchange Online 和 SharePoint Online。 若使用者擁有指派的 Office 365 授權，但相對應的 Azure Active Directory 執行個體沒有透過 MFA 授權、組合或獨立使用型提供者取得完整版 Azure MFA 時，則適用此優惠。 
 
 **問：我的組織是否能隨時在「每位使用者」與「每次驗證」耗用量計費模式之間切換？**
 

@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 12/10/2016
 ms.author: zivr
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 18c7a013c01fee26c5455535af6d9fba2b98fac7
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
+ms.openlocfilehash: 7f0613285bc548e1329be3c33c30939f5998f379
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -50,7 +51,12 @@ Azure 中繼資料服務會公開有關使用 VM 內的 REST 端點執行虛擬�
 在虛擬機器建立在虛擬網路 (VNet) 之中的情況下，可從非路由傳送的 IP：169.254.169.254 提供中繼資料服務。否則雲端服務和傳統 VM 在預設的情況下，需要額外的邏輯來探索要使用的端點。 請參閱此範例以了解如何 [探索主機端點] (https://github.com/azure-samples/virtual-machines-python-scheduled-events-discover-endpoint-for-non-vnet-vm)
 
 ### <a name="versioning"></a>版本控制 
-中繼資料服務會使用下列格式的版本控制 API︰http://{ip}/metadata/{version}/scheduledevents。建議您的服務在下列位置取用最新版本：http://{ip}/metadata/latest/scheduledevents
+執行個體中繼資料服務已建立版本。 版本是必要項目，且目前版本為 2017-03-01
+
+> [!NOTE] 
+> 先前排定事件的預覽版支援作為 API 版本的 {latest}。 此格式將不再受到支援且之後會遭到取代。
+>
+
 
 ### <a name="using-headers"></a>使用標頭
 當您查詢中繼資料服務時，您必須提供下列標頭「中繼資料︰true」。 
@@ -67,7 +73,8 @@ Azure 中繼資料服務會公開有關使用 VM 內的 REST 端點執行虛擬�
 ### <a name="query-for-events"></a>查詢事件
 您只要進行下列呼叫，即可查詢排定的事件
 
-    curl -H Metadata:true http://169.254.169.254/metadata/latest/scheduledevents
+    curl -H Metadata:true http://169.254.169.254/metadata/scheduledevents?api-version=2017-03-01
+
 
 回應包含排定的事件陣列。 空白陣列表示目前沒有任何排定的事件。
 在有排定事件的情況下，回應會包含事件陣列︰ 
@@ -136,7 +143,7 @@ function HandleScheduledEvents($scheduledEvents)
 
 # Set up the scheduled events uri for VNET enabled VM
 $localHostIP = "169.254.169.254"
-$scheduledEventURI = 'http://{0}/metadata/latest/scheduledevents' -f $localHostIP 
+$scheduledEventURI = 'http://{0}/metadata/scheduledevents?api-version=2017-03-01' -f $localHostIP 
 
 
 # Get the document
@@ -170,7 +177,7 @@ foreach($event in $scheduledEvents.Events)
 
         public ScheduledEventsClient()
         {
-            scheduledEventsEndpoint = string.Format("http://{0}/metadata/latest/scheduledevents", defaultIpAddress);
+            scheduledEventsEndpoint = string.Format("http://{0}/metadata/scheduledevents?api-version=2017-03-01", defaultIpAddress);
         }
         /// Retrieve Scheduled Events 
         public string GetDocument()
@@ -293,7 +300,7 @@ import urllib2
 import socket
 import sys
 
-metadata_url="http://169.254.169.254/metadata/latest/scheduledevents"
+metadata_url="http://169.254.169.254/metadata/scheduledevents?api-version=2017-03-01"
 headers="{Metadata:true}"
 this_host=socket.gethostname()
 
@@ -329,4 +336,5 @@ if __name__ == '__main__':
 ```
 ## <a name="next-steps"></a>後續步驟 
 [Azure 中虛擬機器預定進行的維修](linux/planned-maintenance.md)
+[執行個體中繼資料服務](virtual-machines-instancemetadataservice-overview.md)
 

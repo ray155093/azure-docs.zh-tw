@@ -12,31 +12,31 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/28/2017
+ms.date: 04/27/2017
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 7fe9111061fed4af6aa720d0b158e5b4f2becd90
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: e74f3f7ed4ab0a7a37047b1277e76b6695f3884f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
 # <a name="azure-network-security-overview"></a>Azure 網路安全性概觀
 Microsoft Azure 包括強大網路基礎結構以支援您的應用程式和服務連線需求。 在 Azure 的資源之間、內部部署與 Azure 託管資源之間，以及到網際網路和 Azure 與來自網際網路和 Azure，可能會有網路連線。
 
-本文的目的是讓您更容易了解 Microsoft Azure 必須在網路安全性區域中提供的資訊。 這裡我們提供核心網路安全性概念和需求的基本說明。 我們也提供 Azure 必須在所有這些區域中提供的資訊。 有許多其他內容的連結可讓您更深入了解感興趣的區域。
+本文的目的是讓您更容易了解 Microsoft Azure 必須在網路安全性區域中提供的資訊。 這裡我們提供核心網路安全性概念和需求的基本說明。 我們也會提供一些資訊，讓您了解 Azure 在這些領域中必須提供的內容，還有多個連結，幫助您深入了解感興趣的領域。
 
-本＜Azure 網路安全性概觀＞一文將著重於下列項目︰
+本＜Azure 網路安全性概觀＞一文著重於下列領域︰
 
 * Azure 網路
-* Azure 網路監看員
 * 網路存取控制
 * 安全遠端存取和跨單位連線
 * Availability
-* 記錄
 * 名稱解析
 * DMZ 架構
-* Azure 資訊安全中心
+* 監視與威脅偵測
+
 
 ## <a name="azure-networking"></a>Azure 網路
 虛擬機器需要遠端連線。 為了支援該需求，Azure 需要虛擬機器連接到 Azure 虛擬網路。 Azure 虛擬網路是以實體 Azure 網路網狀架構為基礎所建置的邏輯建構。 每個邏輯 Azure 虛擬網路都會與其他所有 Azure 虛擬網路隔離。 這可協助確保其他 Microsoft Azure 客戶無法存取您部署中的網路流量。
@@ -45,29 +45,18 @@ Microsoft Azure 包括強大網路基礎結構以支援您的應用程式和服�
 
 * [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)
 
-## <a name="azure-network-watcher"></a>Azure 網路監看員
-Azure 網路監看員包含大量的網路監視功能，可協助對問題進行疑難排解，以及提供可協助識別安全性問題的全新工具集。
-
-[安全性群組檢視](/network-watcher/network-watcher-security-group-view-overview.md)可為虛擬機器的稽核與安全性合規性提供協助，並可以用來以程式設計方式執行稽核，將由貴組織所定義的基準原則，與您每個 VM 的有效規則進行比較。 這可以協助您識別所有設定漂移。
-
-[封包擷取](/network-watcher/network-watcher-packet-capture-overview.md)可讓您擷取傳送至虛擬機器，或是自虛擬機器傳送的網路流量。 除了讓您收集網路統計資料，以及對應用程式問題進行疑難排解之外，封包擷取在調查網路入侵上，也能提供非常寶貴的協助。 您可以搭配 Azure Functions 使用此功能，來開始針對特定 Azure 警示進行網路擷取。
-
-如需 Azure 網路監看員的詳細資訊，以及如何開始在實驗室中測試部分功能，請參閱 [Azure 網路監看員監視概觀](/network-watcher/network-watcher-monitoring-overview.md)
-
->[!NOTE]
-Azure 網路監看員目前仍為公開預覽，因此可能沒有與正式發行版本服務相同層級的可用性和可靠性。 可能不支援特定功能、可能有限制的功能，且可能無法在所有 Azure 位置提供使用。 如需此服務可用性和狀態的最新通知，請查看 [Azure 更新頁面](https://azure.microsoft.com/updates/?product=network-watcher)
 
 ## <a name="network-access-control"></a>網路存取控制
-網路存取控制是指限制與 Azure 虛擬網路內特定裝置或子網路間之連線的動作。 網路存取控制的目的是確定只有您想要它們存取的使用者和裝置，才能存取您的虛擬機器和服務。 存取控制是根據您虛擬機器或服務間之連線的允許或拒絕決策。
+網路存取控制是指限制與 Azure 虛擬網路內特定裝置或子網路間之連線的動作。 網路存取控制的目標是限制只有已核准的使用者和裝置，才能存取您的虛擬機器和服務。 存取控制是根據您虛擬機器或服務間之連線的允許或拒絕決策。
 
-Azure 支援數種類型的網路存取控制。 其中包含：
+Azure 支援數種類型的網路存取控制，例如︰
 
 * 網路層控制
 * 路由控制和強制通道
 * 虛擬網路安全性應用裝置
 
 ### <a name="network-layer-control"></a>網路層控制
-任何安全部署都需要某種程度的網路存取控制。 網路存取控制的目的是要確定您的虛擬機器以及在這些虛擬機器上執行的網絡服務，只能與它們需要通訊的其他網路裝置進行通訊，並封鎖所有其他連線嘗試。
+任何安全部署都需要某種程度的網路存取控制。 網路存取控制的目標是限制虛擬機器只能與必要的系統通訊，並封鎖其他的通訊嘗試。
 
 如果您需要基本網路層級存取控制 (根據 IP 位址和 TCP 或 UDP 通訊協定)，則可以使用網路安全性群組。 網路安全性群組 (NSG) 是基本可設定狀態封包篩選防火牆，並可讓您根據 [5-tuple](https://www.techopedia.com/definition/28190/5-tuple)來控制存取權。 NSG 未提供應用程式層級檢查或已驗證的存取控制。
 
@@ -76,9 +65,9 @@ Azure 支援數種類型的網路存取控制。 其中包含：
 * [網路安全性群組](../virtual-network/virtual-networks-nsg.md)
 
 ### <a name="route-control-and-forced-tunneling"></a>路由控制和強制通道
-控制您 Azure 虛擬網路上路由行為的能力是重大網路安全性和存取控制功能。 如果路由的設定不正確，虛擬機器上所裝載的應用程式和服務可能會連接到您不希望它們連接的裝置 (包括潛在攻擊者所擁有或操作的裝置)。
+控制您 Azure 虛擬網路上路由行為的能力是重大網路安全性和存取控制功能。 如果路由的設定不正確，虛擬機器上所裝載的應用程式和服務可能會連線到未經授權的裝置，包括潛在攻擊者所擁有或操作的系統。
 
-Azure 網路支援自訂您 Azure 虛擬網路上網路流量之路由行為的能力。 這可讓您改變 Azure 虛擬網路中的預設路由表項目。 路由行為的控制可協助您確保來自特定裝置或一組裝置的所有流量都會透過特定位置進入或離開您的 Azure 虛擬網路。
+Azure 網路支援自訂您 Azure 虛擬網路上網路流量之路由行為的能力。 這可讓您改變 Azure 虛擬網路中的預設路由表項目。 路由行為的控制可協助您確保來自特定裝置或一組裝置的所有流量，都透過特定位置進入或離開您的虛擬網路。
 
 例如，您在 Azure 虛擬網路上可能會有虛擬網路安全性應用裝置。 您想要確定與 Azure 虛擬網路之間的所有流量都會經過該虛擬安全性應用裝置。 做法是在 Azure 中設定 [使用者定義的路由](../virtual-network/virtual-networks-udr-overview.md) 。
 
@@ -106,10 +95,10 @@ Azure 網路支援自訂您 Azure 虛擬網路上網路流量之路由行為的�
 * 應用程式存取控制
 * 額外 DDoS 保護 (高於提供 Azure 網狀架構本身的 DDoS 保護)
 
-您可以使用 Azure 合作夥伴方案，來存取這些增強的網路安全性功能。 您可以造訪 [Azure Marketplace](https://azure.microsoft.com/marketplace/) 並搜尋「安全性」和「網路安全性」，來找到最新的 Azure 合作夥伴網路安全性方案。
+您可以使用 Azure 合作夥伴方案，來存取這些增強的網路安全性功能。 您可以造訪 [Azure Marketplace](https://azure.microsoft.com/marketplace/) 並搜尋「安全性」和「網路安全性」，尋找最新的 Azure 合作夥伴網路安全性方案。
 
 ## <a name="secure-remote-access-and-cross-premises-connectivity"></a>安全遠端存取和跨單位連線
-需要遠端完成 Azure 資源的安裝、組態和管理。 此外，建議您部署內部部署和 Azure 公用雲端中含有元件的 [混合式 IT](http://social.technet.microsoft.com/wiki/contents/articles/18120.hybrid-cloud-infrastructure-design-considerations.aspx) 方案。 這些案例都需要安全遠端存取。
+需要從遠端完成 Azure 資源的安裝、設定和管理。 此外，建議您部署內部部署和 Azure 公用雲端中含有元件的 [混合式 IT](http://social.technet.microsoft.com/wiki/contents/articles/18120.hybrid-cloud-infrastructure-design-considerations.aspx) 方案。 這些案例都需要安全遠端存取。
 
 Azure 網路支援下列安全遠端存取案例︰
 
@@ -128,7 +117,7 @@ Azure 網路支援下列安全遠端存取案例︰
 * [使用 PowerShell 設定虛擬網路的點對站連線](../vpn-gateway/vpn-gateway-howto-point-to-site-rm-ps.md)
 
 ### <a name="connect-your-on-premises-network-to-an-azure-virtual-network-with-a-vpn"></a>使用 VPN 將內部部署網路連接到 Azure 虛擬網路
-您可能想要將整個公司網路或其各部分連接到 Azure 虛擬網路。 這常見於公司 [將其內部部署資料中心擴充到 Azure](https://gallery.technet.microsoft.com/Datacenter-extension-687b1d84)的混合式 IT 案例。 在許多情況下，公司會在 Azure 和內部部署中裝載服務的各個部分 (例如，方案在 Azure 中包括前端 Web 伺服器而在內部部署中包括後端資料庫時)。 這些類型的「跨單位」連接也可讓管理 Azure 所在資源更加安全，並啟用將 Active Directory 網域控制站擴充到 Azure 這類案例。
+您可能想要將整個公司網路或其各部分連接到 Azure 虛擬網路。 這常見於公司 [將其內部部署資料中心擴充到 Azure](https://gallery.technet.microsoft.com/Datacenter-extension-687b1d84)的混合式 IT 案例。 在許多情況下，公司會在 Azure 和內部部署中裝載服務的各個部分 (例如，方案在 Azure 中包括前端 Web 伺服器而在內部部署中包括後端資料庫時)。 這些類型的「跨單位」連線也可更安全地管理 Azure 所在資源，並支援將 Active Directory 網域控制站擴充到 Azure 等案例。
 
 若要這麼做，其中一種方式是使用 [站對站 VPN](https://www.techopedia.com/definition/30747/site-to-site-vpn)。 站對站 VPN 與點對站 VPN 之間的差異在於點對站 VPN 將單一裝置連接到 Azure 虛擬網路，而站對站 VPN 將整個公司 (例如內部部署網路) 連接到 Azure 虛擬網路。 Azure 虛擬網路的站對站 VPN 使用高度安全 IPsec 通道模式 VPN 通訊協定。
 
@@ -141,7 +130,7 @@ Azure 網路支援下列安全遠端存取案例︰
 點對站和站對站 VPN 連接適用於啟用跨單位連接。 不過，有些組織認為它們有下列缺點︰
 
 * VPN 連接會透過網際網路移動資料；這會公開與透過公用網路移動資料相關之潛在安全性問題的這些連接。 此外，無法保證網際網路連接的可靠性和可用性。
-* 針對一些應用程式和用途，Azure 虛擬網路的 VPN 連接可能會視為頻寬受限，因為它們的最大頻寬約為 200Mbps。
+* 針對一些應用程式和用途，Azure 虛擬網路的 VPN 連線的頻寬可能會受限，因為最大頻寬約為 200 Mbps。
 
 需要最高安全性和可用性層級進行其跨單位連接的組織，一般會使用專用 WAN 連結連接到遠端網站。 Azure 可讓您使用可用來將內部部署網路連接到 Azure 虛擬網路的專用 WAN 連結。 這是透過 Azure ExpressRoute 來啟用。
 
@@ -156,7 +145,7 @@ Azure 網路支援下列安全遠端存取案例︰
 
 比較好的選擇可能是建立 Azure 虛擬網路到 Azure 虛擬網路站對站 VPN。 這個 Azure 虛擬網路到 Azure 虛擬網路站對站 VPN 使用與上面提到之跨單位站對站 VPN 連接相同的 [IPsec 通道模式](https://technet.microsoft.com/library/cc786385.aspx) 通訊協定。
 
-使用 Azure 虛擬網路到 Azure 虛擬網路站對站 VPN 的優點在於透過 Azure 網路網狀架構建立 VPN 連接；它不會透過網際網路連接。 與透過網際網路連接的站對站 VPN 相較之下，這提供額外一層的安全性。
+使用 Azure 虛擬網路到 Azure 虛擬網路的站對站 VPN 時，優點在於透過 Azure 網路網狀架構建立 VPN 連線，而不是透過網際網路連線。 與透過網際網路連接的站對站 VPN 相較之下，這提供額外一層的安全性。
 
 深入了解：
 
@@ -214,19 +203,6 @@ Azure 網路支援下列安全遠端存取案例︰
 
 * [什麼是流量管理員？](../traffic-manager/traffic-manager-overview.md)
 
-## <a name="logging"></a>記錄
-網路層級的記錄是任何網路安全性案例的重要功能。 在 Azure 中，您可以記錄針對網路安全性群組所取得的資訊，來取得網路層級記錄資訊。 使用 NSG 記錄，您可以從下列項目取得資訊︰
-
-* [活動記錄](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md) – 這些記錄用來檢視提交至 Azure 訂用帳戶的所有作業。 預設會啟用這些記錄檔，並且可以在 Azure 入口網站內使用。 它們以前稱為「稽核記錄」或「作業記錄」。
-* 事件記錄檔 – 這些記錄檔提供套用哪些 NSG 規則的相關資訊。
-* 計數器記錄檔 – 這些記錄檔可讓您知道套用每個 NSG 規則以拒絕或允許流量的次數。
-
-您也可以使用 [Microsoft Power BI](https://powerbi.microsoft.com/what-is-power-bi/)(功能強大的資料視覺化工具) 來檢視和分析這些記錄檔。
-
-深入了解：
-
-* [網路安全性群組 (NSG) 的 Log Analytics](../virtual-network/virtual-network-nsg-manage-log.md)
-
 
 ## <a name="name-resolution"></a>名稱解析
 名稱解析是您在 Azure 中裝載之所有服務的重大功能。 從安全性角度來看，入侵名稱解析功能可能會導致攻擊者將您網站的要求重新導向到攻擊者的網站。 安全名稱解析是所有雲端裝載服務的需求。
@@ -270,8 +246,25 @@ DMZ 設計和 DMZ 部署決策有許多變化，而在決定要使用 DMZ 時，
 
 * [Microsoft 雲端服務和網路安全性](../best-practices-network-security.md)
 
-## <a name="azure-security-center"></a>Azure 資訊安全中心
-資訊安全中心可協助您預防、偵測和回應威脅，並加強對 Azure 資源安全性的能見度及控制權。 它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於廣泛的安全性解決方案生態系統。
+
+## <a name="monitoring-and-threat-detection"></a>監視與威脅偵測
+
+在這個重要領域中，Azure 的功能可協助您及早偵測、監視，並收集和檢視網路流量。
+
+### <a name="azure-network-watcher"></a>Azure 網路監看員
+Azure 網路監看員包含大量功能，可協助您進行疑難排解，還提供一套全新的工具來協助識別安全性問題。
+
+[安全性群組檢視](/network-watcher/network-watcher-security-group-view-overview.md)可為虛擬機器的稽核與安全性合規性提供協助，並可以用來以程式設計方式執行稽核，將由貴組織所定義的基準原則，與您每個 VM 的有效規則進行比較。 這可以協助您識別所有設定漂移。
+
+[封包擷取](/network-watcher/network-watcher-packet-capture-overview.md)可讓您擷取傳送至虛擬機器，或是自虛擬機器傳送的網路流量。 除了讓您收集網路統計資料，以及對應用程式問題進行疑難排解之外，封包擷取在調查網路入侵上，也能提供非常寶貴的協助。 您可以搭配 Azure Functions 使用此功能，來開始針對特定 Azure 警示進行網路擷取。
+
+如需 Azure 網路監看員的詳細資訊，以及如何開始在實驗室中測試部分功能，請參閱 [Azure 網路監看員監視概觀](/network-watcher/network-watcher-monitoring-overview.md)
+
+>[!NOTE]
+Azure 網路監看員目前仍為公開預覽，因此可能沒有與正式發行版本服務相同層級的可用性和可靠性。 可能不支援特定功能、可能有限制的功能，且可能無法在所有 Azure 位置提供使用。 如需此服務可用性和狀態的最新通知，請查看 [Azure 更新頁面](https://azure.microsoft.com/updates/?product=network-watcher)
+
+### <a name="azure-security-center"></a>Azure 資訊安全中心
+資訊安全中心可協助您預防、偵測和回應威脅，並加強對 Azure 資源安全性的能見度及控制權。 它在您的 Azure 訂用帳戶之間提供整合式安全性監視和原則管理，協助您偵測可能會忽略的威脅，且適用於大量的安全性解決方案。
 
 Azure 資訊安全中心藉由下列方式來協助您最佳化和監視網路安全性︰
 
@@ -282,4 +275,18 @@ Azure 資訊安全中心藉由下列方式來協助您最佳化和監視網路�
 深入了解：
 
 * [Azure 資訊安全中心簡介](../security-center/security-center-intro.md)
+
+
+### <a name="logging"></a>記錄
+網路層級的記錄是任何網路安全性案例的重要功能。 在 Azure 中，您可以記錄針對網路安全性群組所取得的資訊，來取得網路層級記錄資訊。 使用 NSG 記錄，您可以從下列項目取得資訊︰
+
+* [活動記錄](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md) – 這些記錄用來檢視提交至 Azure 訂用帳戶的所有作業。 預設會啟用這些記錄檔，並且可以在 Azure 入口網站內使用。 它們以前稱為「稽核記錄」或「作業記錄」。
+* 事件記錄檔 – 這些記錄檔提供套用哪些 NSG 規則的相關資訊。
+* 計數器記錄檔 – 這些記錄檔可讓您知道套用每個 NSG 規則以拒絕或允許流量的次數。
+
+您也可以使用 [Microsoft Power BI](https://powerbi.microsoft.com/what-is-power-bi/)(功能強大的資料視覺化工具) 來檢視和分析這些記錄檔。
+
+深入了解：
+
+* [網路安全性群組 (NSG) 的 Log Analytics](../virtual-network/virtual-network-nsg-manage-log.md)
 

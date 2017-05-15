@@ -1,6 +1,6 @@
 ---
-title: "Azure 串流分析診斷記錄 |Microsoft Docs"
-description: "了解如何在 Microsoft Azure 中分析串流分析工作的診斷記錄。"
+title: "使用診斷記錄對 Azure 串流分析進行疑難排解 |Microsoft Docs"
+description: "了解如何在 Microsoft Azure 中分析串流分析作業的診斷記錄。"
 keywords: 
 documentationcenter: 
 services: stream-analytics
@@ -13,109 +13,119 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 03/28/2017
+ms.date: 04/20/2017
 ms.author: jeffstok
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 0dac2cc79de884def8d4cf0ee89dc2f645d35b34
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
+ms.openlocfilehash: 51f35173f386463eac0d5131e80534511bccbcd8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/01/2017
 
 
 ---
-# <a name="job-diagnostic-logs"></a>作業診斷記錄
+# <a name="troubleshoot-azure-stream-analytics-by-using-diagnostics-logs"></a>使用析診斷記錄對 Azure 串流分進行疑難排解
 
-## <a name="introduction"></a>簡介
-串流分析公開兩種類型的記錄： 
-* [活動記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)，一律會啟用，並提供作業上所執行之作業的深入資訊；
-* [診斷記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)，可設定並提供豐富的作業深入資訊，包含從建立、更新、執行，直到刪除作業之間所發生的任何事件。
+有時候，Azure 串流分析作業會非預期地停止處理。 請務必要設法解決這類事件的問題。 事件發生的原因可能是非預期的查詢結果、裝置的連線狀況，或未預期的服務中斷。 串流分析中的診斷記錄可協助您在事件發生當下找出問題原因，並減少復原時間。
+
+## <a name="log-types"></a>記錄類型
+
+串流分析提供開兩種記錄類型： 
+* [活動記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs) (一律開啟)。 活動記錄可讓您對所執行作業有深入的了解。
+* [診斷記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs) (可設定)。 診斷記錄可讓您更深入地了所有與作業相關的發生事件。 診斷記錄會在作業建立時開始執行，並在作業刪除時結束。 這些記錄涵蓋作業更新時與作業執行時的情形。
 
 > [!NOTE]
-> 應注意的是，使用服務 (例如，Azure 儲存體、事件中樞及 Log Analytics) 來分析不合格的資料，將根據那些服務的計價模型來收費。
+> 您可以使用 Azure 儲存體、Azure 事件中樞和 Azure Log Analytics 等服務來分析不一致的資料。 這些服務將會依據各自的計價模式向您收取費用。
+>
 
-## <a name="how-to-enable-diagnostic-logs"></a>如何啟用診斷記錄
-診斷記錄預設為 [關閉]。 若要啟用它們，請依照下列步驟執行：
+## <a name="turn-on-diagnostics-logs"></a>開啟診斷記錄
 
-登入 Azure 入口網站並瀏覽至 [資料流處理工作] 刀鋒視窗。 接著移至 [監視] 下方的 [診斷記錄] 刀鋒視窗。
+診斷記錄預設為 [關閉]。 若要開啟診斷記錄，請完成下列步驟︰
 
-![瀏覽到診斷記錄的刀鋒視窗](./media/stream-analytics-job-diagnostic-logs/image1.png)  
+1.  登入 Azure 入口網站並前往串流作業刀鋒視窗。 在 [監視] 下，選取 [診斷記錄]。
 
-然後按一下 [開啟診斷] 連結
+    ![瀏覽到診斷記錄的刀鋒視窗](./media/stream-analytics-job-diagnostic-logs/image1.png)  
 
-![開啟診斷記錄](./media/stream-analytics-job-diagnostic-logs/image2.png)
+2.  選取 [開啟診斷]。
 
-在開啟的診斷中，將狀態變更為 [開啟]。
+    ![開啟診斷記錄](./media/stream-analytics-job-diagnostic-logs/image2.png)
 
-![變更診斷記錄狀態](./media/stream-analytics-job-diagnostic-logs/image3.png)
+3.  在 [診斷設定] 頁面的 [狀態]  上，選取 [開啟]。
 
-設定所需的封存目標 (儲存體帳戶、事件中樞、Log Analytics)，並選取要收集的記錄類別 (執行、製作)。 然後儲存新的診斷組態。
+    ![變更診斷記錄的狀態](./media/stream-analytics-job-diagnostic-logs/image3.png)
 
-儲存設定之後，大約需要 10 分鐘才會生效。 之後，記錄將開始出現在設定的封存目標中 (您可以在 [診斷記錄] 刀鋒視窗中看到此目標)：
+4.  設定封存目標 (儲存體帳戶、事件中樞、Log Analytics)。 然後選取您要收集的記錄類別 (執行、編寫)。 
 
-![瀏覽到診斷記錄的刀鋒視窗](./media/stream-analytics-job-diagnostic-logs/image4.png)
+5.  儲存新的診斷組態。
 
-設定診斷的詳細資訊可在[診斷記錄](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)頁面取得。
+設定診斷大約需要 10 分鐘才會生效。 之後，記錄會開始出現在設定的封存目標中 (您可以在 [診斷記錄]頁面中看到這些記錄)：
 
-## <a name="diagnostic-logs-categories"></a>診斷記錄類別
-目前可擷取的診斷記錄類別有兩種：
+![瀏覽到診斷記錄的刀鋒視窗 - 封存目標](./media/stream-analytics-job-diagnostic-logs/image4.png)
 
-* **製作：**擷取作業製作作業相關的記錄：建立、新增及刪除輸入與輸出、新增及更新查詢、開始及停止作業。
-* **執行：**擷取作業執行期間所發生的事件。
-    * 連線錯誤；
-    * 資料處理錯誤；
-        * 不符合查詢定義的事件 (不相符的欄位類型與值、遺漏欄位等)；
-        * 運算式評估錯誤；
-    * 等等
+如需有關診斷設定的詳細資訊，請參閱[收集並取用來自 Azure 資源的診斷資料](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs)。
 
-## <a name="diagnostic-logs-schema"></a>診斷記錄結構描述
-所有記錄檔都以 JSON 格式儲存，且每個都有以下共通字串欄位：
+## <a name="diagnostics-log-categories"></a>診斷記錄類別
+
+我們目前會擷取兩種診斷記錄︰
+
+* **編寫**。 擷取作業編寫相關記錄：作業建立、新增及刪除輸入與輸出、新增及更新查詢、開始及停止作業。
+* **執行**。 擷取作業執行期間發生的事件︰
+    * 連線錯誤
+    * 資料處理錯誤，包括：
+        * 不符合查詢定義的事件 (不相符的欄位類型與值或遺漏欄位等)
+        * 運算式評估錯誤
+    * 其他事件和錯誤
+
+## <a name="diagnostics-logs-schema"></a>診斷記錄結構描述
+
+所有記錄會儲存為 JSON 格式。 每個項目皆包含下列常見的字串欄位︰
 
 名稱 | 說明
 ------- | -------
-分析 | 記錄的時間戳記 (UTC 時間)
-resourceId | 作業發生之資源的識別碼 (大寫)。 其中包含訂用帳戶識別碼、資源群組，以及作業名稱。 例如，**/SUBSCRIPTIONS/6503D296-DAC1-4449-9B03-609A1F4A1C87/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.STREAMANALYTICS/STREAMINGJOBS/MYSTREAMINGJOB**。
-category | 記錄類別，**執行**或**製作**。
-operationName | 記錄的作業名稱。 例如，**傳送事件︰SQL 輸出將失敗寫入 mysqloutput**
-status | 作業狀態。 例如，**失敗、成功**。
-層級 | 記錄層級。 例如，**錯誤、警告、資訊**。
-屬性 | 記錄項目特定的詳細資料；序列化為 JSON 字串；詳細資訊請參閱下面段落
+分析 | 記錄的時間戳記 (UTC 時間)。
+resourceId | 作業執行資源的識別碼 (大寫)。 其中包含訂用帳戶識別碼、資源群組，以及作業名稱。 例如，**/SUBSCRIPTIONS/6503D296-DAC1-4449-9B03-609A1F4A1C87/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.STREAMANALYTICS/STREAMINGJOBS/MYSTREAMINGJOB**。
+category | 記錄類別 (**執行**或**編寫**)。
+operationName | 記錄的作業名稱。 例如，**傳送事件︰SQL 輸出將失敗寫入 mysqloutput**。
+status | 作業的狀態。 例如，**失敗**或**成功**。
+層級 | 記錄層級。 例如，**錯誤**、**警告**或**資訊**。
+屬性 | 記錄項目特定詳細資料 (序列化為 JSON 字串)。 如需詳細資訊，請參閱下列幾節。
 
-### <a name="execution-logs-properties-schema"></a>執行記錄檔屬性結構描述
-執行記錄檔包含在執行串流分析工作期間所發生之事件的資訊。
-屬性會隨事件類型的不同而有不同的結構描述。 目前有下列幾種類型︰
+### <a name="execution-log-properties-schema"></a>執行記錄屬性結構描述
+
+執行記錄包含在執行串流分析作業期間所發生事件的資訊。 屬性結構描述會根據事件類型而有所不同。 我們目前有下列類型的執行記錄︰
 
 ### <a name="data-errors"></a>資料錯誤
-任何資料處理的錯誤都屬於此記錄類別。 主要在讀取、序列化及寫入資料作業時產生。 不包含視為一般事件的連線錯誤。
+
+作業處理資料時發生的任何錯誤皆包含於此類記錄中。 這些記錄最常於資料讀取、序列化和寫入作業時建立。 這些記錄不包含連線錯誤。 連線錯誤視為一般事件。
 
 名稱 | 說明
 ------- | -------
-來源 | 發生錯誤的作業輸入或輸出的名稱。
+來源 | 發生錯誤的作業輸入或輸出名稱。
 訊息 | 與錯誤相關的訊息。
-類型 | 錯誤類型。 例如，**DataConversionError、CsvParserError 和 ServiceBusPropertyColumnMissingError**。
-資料 | 包含有助於正確找到錯誤來源的資料。 視其大小，可能會做出截斷。
+類型 | 錯誤類型。 例如，**DataConversionError**、**CsvParserError** 或 **ServiceBusPropertyColumnMissingError**。
+資料 | 包含有助於正確找到錯誤來源的資料。 視其大小，資料可能會遭到截斷。
 
 資料錯誤會隨 **operationName** 值的不同而有下列結構描述：
-* **序列化事件** - 發生於事件讀取作業，其中輸入的資料不符合查詢結構描述：
-    * 事件 (還原) 序列化期間類型不相符：欄位造成錯誤。
-    * 無法讀取事件、無效的序列化︰輸入資料中發生錯誤之位置的相關資訊：Blob 輸入的 Blob 名稱、位移，以及資料樣本。
-* **傳送事件** - 寫入作業：造成錯誤的串流事件。
+* **序列化事件**。 序列化事件會在事件讀取作業期間發生。 當輸入上的資料不符合查詢結構描述時就會發生這類事件，發生原因可能是下列其中一個：
+    * *事件 (還原) 序列化期間類型不相符*：找出造成錯誤的欄位。
+    * *無法讀取事件，序列化無效*：針對發生錯誤的輸入資料位置列出資訊。 包含 Blob 輸入的 Blob 名稱、位移和資料範例。
+* **傳送事件**。 傳送事件會發生在寫入作業期間。 這些事件會識別造成錯誤的串流事件。
 
 ### <a name="generic-events"></a>一般事件
-其餘
+
+一般事件涵蓋所有其他事件。
 
 名稱 | 說明
 -------- | --------
-錯誤 | (選則性) 錯誤資訊，若可取得則通常為例外狀況資訊。
+錯誤 | (選用) 錯誤資訊。 這通常是例外狀況資訊 (如果有的話)。
 訊息| 記錄訊息。
-類型 | 訊息的類型，對應到錯誤的內部分類，例如 **JobValidationError、BlobOutputAdapterInitializationFailure** 等。
-相互關連識別碼 | 唯一識別作業執行的 [GUID (英文)](https://en.wikipedia.org/wiki/Universally_unique_identifier)。 從作業開始到停止的期間所產生的所有執行記錄項目都會有相同的「關聯識別碼」。
-
-
+類型 | 訊息類型。 對應至錯誤的內部分類。 例如，**JobValidationError**或 **BlobOutputAdapterInitializationFailure**。
+相互關連識別碼 | 唯一識別作業執行的 [GUID (英文)](https://en.wikipedia.org/wiki/Universally_unique_identifier)。 從作業開始直到作業停止的所有執行記錄項目皆具有同一個**相互關聯識別碼**值。
 
 ## <a name="next-steps"></a>後續步驟
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
-* [開始使用 Azure Stream Analytics](stream-analytics-get-started.md)
-* [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
-* [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
-* [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
+* [串流分析介紹](stream-analytics-introduction.md)
+* [開始使用串流分析](stream-analytics-get-started.md)
+* [調整串流分析作業](stream-analytics-scale-jobs.md)
+* [串流分析查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
+* [串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 

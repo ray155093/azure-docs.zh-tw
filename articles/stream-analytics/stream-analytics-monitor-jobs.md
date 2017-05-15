@@ -1,6 +1,6 @@
 ---
-title: "以程式設計方式監視串流分析的工作 | Microsoft Docs"
-description: "了解如何以程式設計方式監視透過 REST API、Azure SDK 或 PowerShell 建立的串流分析工作。"
+title: "以程式設計方式監視串流分析的作業 | Microsoft Docs"
+description: "了解如何以程式設計方式監視透過 REST API、Azure SDK 或 PowerShell 建立的串流分析作業。"
 keywords: ".net 監視, 工作監視, 監視應用程式"
 services: stream-analytics
 documentationcenter: 
@@ -13,27 +13,31 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 04/04/2017
+ms.date: 04/20/2017
 ms.author: jeffstok
-translationtype: Human Translation
-ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
-ms.openlocfilehash: dc19bec960edff15feffc41bee1bbc63eeff5c6d
-ms.lasthandoff: 04/04/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
+ms.openlocfilehash: 9cc2b35fa54c1fccb0e50840d0d6484c42edc5af
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/01/2017
 
 
 ---
 # <a name="programmatically-create-a-stream-analytics-job-monitor"></a>以程式設計方式來建立串流分析工作監視
- 本文示範如何為串流分析工作啟用監視。 透過 REST API、Azure SDK 或 PowerShell 建立的串流分析工作預設不會啟用監視。  您可以在 Azure 入口網站中瀏覽到該工作的 [監視] 頁面，然後按一下 [啟用] 按鈕來手動啟用，或是按照本文中的步驟執行，將此程序自動化。 串流分析工作的監視資料將會顯示在 Azure 入口網站的 [計量] 區域中。
+
+本文示範如何為串流分析工作啟用監視。 透過 REST API、Azure SDK 或 PowerShell 建立的串流分析作業預設不會啟用監視。 您可以在 Azure 入口網站中前往該作業的 [監視] 頁面，然後按一下 [啟用] 按鈕來手動啟用，或是按照本文中的步驟執行，將此程序自動化。 串流分析工作的監視資料將會顯示在 Azure 入口網站的 [計量] 區域中。
 
 ## <a name="prerequisites"></a>必要條件
-開始閱讀本文之前，您必須符合下列必要條件：
 
-* Visual Studio 2017 或 2015。
-* 下載並安裝 [Azure .NET SDK](https://azure.microsoft.com/downloads/)。
-* 一項需要啟用監視的現有串流分析工作。
+開始此程序之前，您必須有下列項目：
+
+* Visual Studio 2017 或 2015
+* 已下載並安裝 [Azure .NET SDK](https://azure.microsoft.com/downloads/)
+* 一項已啟用監視的現有串流分析作業
 
 ## <a name="create-a-project"></a>建立專案
-1. 建立 Visual Studio C# .Net 主控台應用程式。
+
+1. 建立 Visual Studio C# .NET 主控台應用程式。
 2. 在 Package Manager Console 中，執行下列命令以安裝 NuGet 封裝。 第一個是 Azure 串流分析管理 .NET SDK。 第二個是將用來啟用監視功能的 Azure 監視器 SDK。 最後一個是驗證要使用的 Azure Active Directory 用戶端。
    
    ```
@@ -116,6 +120,7 @@ ms.lasthandoff: 04/04/2017
      }
 
 ## <a name="create-management-clients"></a>建立管理用戶端
+
 下列程式碼將設定必要的變數與管理用戶端。
 
     string resourceGroupName = "<YOUR AZURE RESOURCE GROUP NAME>";
@@ -136,17 +141,18 @@ ms.lasthandoff: 04/04/2017
     InsightsManagementClient insightsClient = new
     InsightsManagementClient(aadTokenCredentials, resourceManagerUri);
 
-## <a name="enable-monitoring-for-an-existing-stream-analytics-job"></a>為現有串流分析工作啟用監視
-下列程式碼將為「現有」  串流分析工作啟用監視。 程式碼的第一部分會對串流分析服務執行 GET 要求，以擷取特定串流分析工作的相關資訊。 在程式碼的第二部分使用  “Id” 屬性 (擷取自 GET 要求) 當成 Put 方法的參數，將 PUT 要求傳送至 Insights 服務，來為串流分析工作啟用監視。
+## <a name="enable-monitoring-for-an-existing-stream-analytics-job"></a>為現有串流分析作業啟用監視
 
-> [!WARNING]
-> 如果您先前已經為不同的串流分析工作啟用監視 (不論是透過 Azure 入口網站，還是以程式設計方式透過以下的程式碼)，建議您提供先前啟用監視時所提供的相同儲存體帳戶名稱。
+下列程式碼將為「現有」 串流分析作業啟用監視。 程式碼的第一部分會對串流分析服務執行 GET 要求，以擷取特定串流分析工作的相關資訊。 在程式碼的第二部分使用 *Id* 屬性 (擷取自 GET 要求) 當成 Put 方法的參數，將 PUT 要求傳送至 Insights 服務，來為串流分析作業啟用監視。
+
+>[!WARNING]
+>如果您先前已經為不同的串流分析作業啟用監視 (不論是透過 Azure 入口網站，還是以程式設計方式透過以下的程式碼)，**建議您提供先前啟用監視時所提供的相同儲存體帳戶名稱。**
 > 
-> 儲存體帳戶會連結到您建立串流分析工作所在的區域，而不是明確地連結到工作本身。
+> 儲存體帳戶會連結到您建立串流分析作業所在的區域，而不是明確地連結到作業本身。
 > 
-> 相同區域中的所有串流分析工作 (以及其他所有 Azure 資源) 都共用此儲存體帳戶儲存監視資料。 如果您提供不同的儲存體帳戶，可能會對其他串流分析工作和 (或) 其他 Azure 資源的監視產生非預期的副作用。
+> 相同區域中的所有串流分析作業 (以及其他所有 Azure 資源) 都共用此儲存體帳戶儲存監視資料。 如果您提供不同的儲存體帳戶，可能會對其他串流分析作業或其他 Azure 資源的監視產生非預期的副作用。
 > 
-> 用來取代下方 ```“<YOUR STORAGE ACCOUNT NAME>”``` 的儲存體帳戶名稱應該是與您為其啟用監視功能的「串流分析」工作屬於相同訂用帳戶的儲存體帳戶。
+> 用來取代下方程式碼中 `<YOUR STORAGE ACCOUNT NAME>` 的儲存體帳戶名稱應該是與您為其啟用監視功能的「串流分析」作業屬於相同訂用帳戶的儲存體帳戶。
 > 
 > 
 
@@ -170,9 +176,11 @@ ms.lasthandoff: 04/04/2017
 
 
 ## <a name="get-support"></a>取得支援
-如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
+
+如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureStreamAnalytics)。
 
 ## <a name="next-steps"></a>後續步驟
+
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-get-started.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)

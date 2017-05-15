@@ -14,9 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/05/2017
 ms.author: mfussell
-translationtype: Human Translation
-ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
-ms.openlocfilehash: 0e899225063e77ccef254e8aaacbf0390faa25e3
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
+ms.openlocfilehash: 0fb4cc7b3c071eeb0bff15f9a57fc7e2106d7ca7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -60,7 +62,7 @@ Service Fabric 是跨電腦叢集的微服務[協調者](service-fabric-cluster-
 
 ![Service Fabric 平台][Image1]
 
-## <a name="stateless-and-stateful-micrososervices-for-service-fabric"></a>無狀態與具狀態的 Service Fabric 微服務
+## <a name="stateless-and-stateful-microservices-for-service-fabric"></a>Service Fabric 的無狀態與具狀態微服務
 Service Fabric 可讓您建置由微服務組成的應用程式。 無狀態微服務 (如通訊協定閘道器、Web Proxy) 不會維護要求之外的可變動狀態及來自服務的回應。 Azure 雲端服務背景工作角色即為無狀態服務的範例。 可設定狀態的微服務 (如使用者帳戶、資料庫、裝置、購物車、佇列) 會維護要求及其回應外的可變動授權狀態。 現今的網際網路級別應用程式包含無狀態與可設定狀態微服務的組合。
 
 為什麼有具狀態的微服務以及無狀態的微服務？ 兩個主要原因如下：
@@ -118,9 +120,4 @@ Service Fabric 應用程式生命週期管理讓應用程式管理員和 IT 操�
 * 了解 [Service Fabric 支援選項](service-fabric-support.md)
 
 [Image1]: media/service-fabric-overview/Service-Fabric-Overview.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

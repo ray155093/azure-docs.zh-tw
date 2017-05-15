@@ -12,36 +12,40 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/29/2016
+ms.date: 04/28/2016
 ms.author: bryanla;mbaldwin
-translationtype: Human Translation
-ms.sourcegitcommit: 8f70d9aeb0a407cdb76a5ce25eb620be58bb2659
-ms.openlocfilehash: f453dcafe629c871dc29742208e4864454f4c57e
-ms.lasthandoff: 02/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
+ms.openlocfilehash: 6ee0c0b5e606b1fd9fc9eecc877d2718b7079ecb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
-# <a name="application-and-service-principal-objects-in-azure-active-directory"></a>Azure Active Directory 中的應用程式和服務主體物件
-有時候 Azure Active Directory (Azure AD) 詞彙「應用程式」的意義可能容易被誤解，尤其是在支援的內容遺失時。 本文的目的是要藉由釐清 Azure AD 應用程式整合的概念和具體層面，並舉例說明如何註冊和同意[多租用戶應用程式](active-directory-dev-glossary.md#multi-tenant-application)，提供更清楚的說明。
+# <a name="application-and-service-principal-objects-in-azure-active-directory-azure-ad"></a>Azure Active Directory (Azure AD) 中的應用程式和服務主體物件
+在 Azure AD 的內容中使用「應用程式」這個詞彙時，有時會誤解其意義。 本文的目的是要藉由釐清 Azure AD 應用程式整合的概念和具體層面，並舉例說明如何註冊和同意[多租用戶應用程式](active-directory-dev-glossary.md#multi-tenant-application)，提供更清楚的說明。
 
 ## <a name="overview"></a>概觀
-Azure AD 應用程式遠遠不只是一套軟體。 它是一個概念性詞彙，指的不只是應用程式軟體，還包括它與 Azure AD 的註冊關係 (也稱為︰身分識別組態)，這可讓它在執行階段參與驗證和授權「對話」。 根據定義，應用程式的運作身分可以是[用戶端](active-directory-dev-glossary.md#client-application)角色 (取用資源)、[資源伺服器](active-directory-dev-glossary.md#resource-server)角色 (對用戶端公開 API)，或甚至身兼兩者。 對話通訊協定是由 [OAuth 2.0 授權授與流程](active-directory-dev-glossary.md#authorization-grant)所定義，目標是要讓用戶端/資源能夠各自存取/保護資源的資料。 現在讓我們再深入一點，看看 Azure AD 應用程式模型在內部是如何代表應用程式。 
+已與 Azure AD 整合的應用程式，其含意已超出軟體層面。 「應用程式」經常當作概念詞彙，不僅指應用程式軟體，在執行階段的驗證/授權「對話」中，也是指其 Azure AD 註冊和角色。 根據定義，應用程式的運作身分可以是[用戶端](active-directory-dev-glossary.md#client-application)角色 (取用資源)、[資源伺服器](active-directory-dev-glossary.md#resource-server)角色 (對用戶端公開 API)，或甚至身兼兩者。 對話通訊協定是由 [OAuth 2.0 授權授與流程](active-directory-dev-glossary.md#authorization-grant)所定義，可讓用戶端/資源各自存取/保護資源的資料。 現在讓我們再深入一點，看看 Azure AD 應用程式模型在設計階段和執行階段是如何代表應用程式。 
 
 ## <a name="application-registration"></a>應用程式註冊
-當您在 [Azure 入口網站][AZURE-Portal]註冊應用程式，Azure AD 租用戶中會建立兩個物件︰應用程式物件和服務主體物件。
+當您在 [Azure 入口網站][AZURE-Portal]註冊 Azure AD 應用程式時，Azure AD 租用戶中會建立兩個物件︰應用程式物件和服務主體物件。
 
 #### <a name="application-object"></a>應用程式物件
-Azure AD 應用程式是由其唯一一個應用程式物件所「定義」，該物件位於應用程式註冊所在的 Azure AD 租用戶，也稱為應用程式的「主要」租用戶。 應用程式物件能夠為應用程式提供身分識別相關資訊，並可做為其對應服務主體物件的「衍生」  範本，以在執行階段使用。 
-
-將應用程式物件視為應用程式的「全域」代表 (用於所有租用戶)，而將服務主體看做是「本機」代表 (用於特定租用戶)。 Azure AD Graph [應用程式實體][AAD-Graph-App-Entity]會定義應用程式物件的結構描述。 因此，應用程式物件與軟體應用程式具有 1:1 關聯性，而與其對應的 n 個服務主體物件具有 1:n 關聯性。
+Azure AD 應用程式是由其唯一一個應用程式物件所定義，該物件位於應用程式註冊所在的 Azure AD 租用戶，也稱為應用程式的「主要」租用戶。 Azure AD Graph [Application 實體][AAD-Graph-App-Entity]會定義應用程式物件屬性的結構描述。 
 
 #### <a name="service-principal-object"></a>服務主體物件
-服務主體物件會定義應用程式的原則和權限，為安全性主體提供在執行階段存取資源時用來代表應用程式的基礎。 Azure AD Graph [ServicePrincipal 實體][AAD-Graph-Sp-Entity]會定義服務主體物件的結構描述。 
+服務主體物件會定義在特定租用戶中使用應用程式時的原則和權限，為安全性主體提供在執行階段代表應用程式的基礎。 Azure AD Graph [ServicePrincipal 實體][AAD-Graph-Sp-Entity]會定義服務主體物件屬性的結構描述。 
 
-在 Azure AD 租用戶允許應用程式存取其保護的資源之前，必須在指定的租用戶中建立服務主體。 服務主體提供 Azure AD 保護應用程式存取該租用戶使用者所擁有之資源的基礎。 單一租用戶應用程式將只有一個服務主體 (在其主要租用戶中)。 多租用戶 [Web 應用程式](active-directory-dev-glossary.md#web-client) 在租用戶的系統管理員或使用者已表示同意的每個租用戶中也會有一個服務主體，使其可以存取他們的資源。 在同意之後，未來的授權要求都會參考服務主體物件。 
+#### <a name="application-and-service-principal-relationship"></a>應用程式和服務主體關聯性
+將應用程式物件視為應用程式的「全域」代表 (用於所有租用戶)，而將服務主體看做是「本機」代表 (用於特定租用戶)。 應用程式物件就像範本，可從中「衍生」通用和預設屬性，用以建立相對應的服務主體物件。 因此，應用程式物件與軟體應用程式之間存在 1:1 關聯性，而與其對應的服務主體物件之間存在一對多關聯性。
+
+每一個會用到應用程式的租用戶中必須建立服務主體，才能讓它建立身分識別來登入及/或存取租用戶所保護的資源。 單一租用戶的應用程式只能有一個服務主體 (在其主租用戶中)，通常是在應用程式註冊期間建立和同意使用。 如果是多租用戶 Web 應用程式/API，則在使用者已同意使用它的每個租用戶中，還會建立服務主體。  
 
 > [!NOTE]
-> 您對應用程式物件所做的任何變更也只會反映於它在應用程式的主要租用戶 (其註冊所在租用戶) 中的服務主體物件。 就多租用戶應用程式而言，對應用程式物件所做的變更必須等到取用者租用戶移除存取權後再重新授與存取權，才會反映在任何取用者租用戶的服務主體物件上。
+> 您對應用程式物件所做的任何變更也只會反映於它在應用程式的主要租用戶 (其註冊所在租用戶) 中的服務主體物件。 就多租用戶應用程式而言，對應用程式物件所做的變更，必須等到透過[應用程式存取面板](https://myapps.microsoft.com)移除存取權再重新授權之後，才會反映在任何取用者租用戶的服務主體物件中。
+><br>  
+> 也請注意，依預設，原生應用程式會註冊為多租用戶。
 > 
 > 
 
@@ -61,9 +65,11 @@ Azure AD 應用程式是由其唯一一個應用程式物件所「定義」，�
 在步驟 3 中，HR 應用程式的取用者租用戶 (Contoso 和 Fabrikam) 都分別擁有自己的服務主體物件。 每個均代表他們在執行階段的應用程式執行個體使用，其中皆受到個別系統管理員所同意的權限控管。
 
 ## <a name="next-steps"></a>後續步驟
-若要存取應用程式的應用程式物件，可以透過 Azure AD Graph API 來存取 (如其 OData 的[應用程式實體][AAD-Graph-App-Entity]所代表)
+若要存取應用程式的應用程式物件，可以透過 Azure AD Graph API、[Azure 入口網站][AZURE-Portal]的應用程式資訊清單編輯器，或 [Azure AD PowerShell Cmdlet](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0) 來存取 (如其 OData 的 [Application 實體][AAD-Graph-App-Entity]所代表)。
 
-若要存取應用程式的服務主體物件，可以透過 Azure AD Graph API 來存取 (如其 OData 的 [ServicePrincipal 實體][AAD-Graph-Sp-Entity]所代表)
+若要存取應用程式的服務主體物件，可以透過 Azure AD Graph API 或 [Azure AD PowerShell Cmdlet](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0) 來存取 (如其 OData 的 [ServicePrincipal][AAD-Graph-Sp-Entity] 實體所代表)。
+
+[Azure AD Graph 總管](https://graphexplorer.azurewebsites.net/)可用於查詢應用程式和服務主體物件。
 
 <!--Image references-->
 

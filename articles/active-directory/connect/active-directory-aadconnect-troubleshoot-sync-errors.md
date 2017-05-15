@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 1/31/2017
 ms.author: vakarand
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: a1190f0ab4caf749cce0b5c9ba45e55f7e6ca8ec
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
+ms.openlocfilehash: d270d7cc3ceeef29aaaf1c9f984e69984049f815
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/29/2017
 
 
 ---
@@ -212,10 +213,10 @@ a. 確定 userPrincipalName 屬性具有支援的字元和所需的格式。
 * proxyAddresses
 
 ### <a name="possible-scenarios"></a>可能的案例
-1. Bob 的 userCertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。 固定限制為 15 個憑證。
+1. Bob 的 userCertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。 固定限制為 15 個憑證。 如需有關如何處理 userCertificate 屬性引起之 LargeObject 錯誤的詳細資訊，請參閱[處理 userCertificate 屬性所造成的 LargeObject 錯誤](active-directory-aadconnectsync-largeobjecterror-usercertificate.md)一文。
 2. Bob 的 userSMIMECertificate 屬性儲存太多指派給 Bob 的憑證。 這些可能包含已過期的舊版憑證。 固定限制為 15 個憑證。
 3. Bob 在 Active Directory 中設定的 thumbnailPhoto 太大，以致於無法在 Azure AD 中進行同步處理。
-4. 在 Active Directory 中 ProxyAddresses 屬性的自動母體擴展期間，一個物件被指派超過 500 個 ProxyAddresses。
+4. 在 Active Directory 中自動填入 ProxyAddresses 屬性期間，一個物件被指派太多 ProxyAddresses。
 
 ### <a name="how-to-fix"></a>修正方式
 1. 確定造成錯誤的屬性在允許的限制內。

@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: ruby
 ms.topic: article
-ms.date: 01/11/2017
+ms.date: 04/27/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: 0f9f732d6998a6ee50b0aea4edfc615ac61025ce
-ms.openlocfilehash: 343dc0d39f284488f03e1d1ba3df21ae616e97d9
-ms.lasthandoff: 01/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f291186c6a68dea8aa00b846a2e6f3ad0d7996c
+ms.openlocfilehash: 9f0eb5a265777bdf249c46c41a065ef427fac920
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -34,13 +35,13 @@ ms.lasthandoff: 01/13/2017
 建立 Ruby 應用程式。 如需指示，請參閱[在 Azure 上建立 Ruby 應用程式](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md)。
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
-若要使用 Azure 服務匯流排，請下載並使用 Ruby Azure 套件，其中包含一組能與儲存體 REST 服務通訊的便利程式庫。
+若要使用 Azure 服務匯流排，請下載並使用 Azure Ruby 套件，其中包含一組能與儲存體 REST 服務通訊的便利程式庫。
 
 ### <a name="use-rubygems-to-obtain-the-package"></a>使用 RubyGems 來取得套件
 1. 使用命令列介面，例如 **PowerShell** (Windows)、**Terminal** (Mac) 或 **Bash** (Unix)。
 2. 在命令視窗中鍵入 "gem install azure" 以安裝 Gem 和相依性。
 
-### <a name="import-the-package"></a>匯入封裝
+### <a name="import-the-package"></a>匯入套件
 使用您偏好的文字編輯器，將以下內容新增至您打算使用儲存體的 Ruby 檔案頂端：
 
 ```
@@ -113,7 +114,7 @@ azure_service_bus_service.delete_queue_message(message)
 
 與在佇列內鎖定訊息相關的還有逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會自動解除鎖定訊息，並讓訊息可以被重新接收。
 
-如果應用程式在處理訊息之後，尚未呼叫 **delete\_queue\_message()** 方法時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為 **至少處理一次**，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 **message\_id** 屬性來達到此目的，該屬性會在各個傳遞嘗試中會保持不變。
+如果應用程式在處理訊息之後，尚未呼叫 **delete\_queue\_message()** 方法時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為 *至少處理一次*，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 **message\_id** 屬性來達到此目的，該屬性會在各個傳遞嘗試中會保持不變。
 
 ## <a name="next-steps"></a>後續步驟
 了解基本的服務匯流排佇列之後，請參考下列連結以取得更多資訊。

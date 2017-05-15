@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/13/2017
+ms.date: 05/08/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: d517f434fe81617061d37a5b60f4e49806948005
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 63818878e01dd52a988e10a6e4f624638ea1cfae
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -91,7 +93,7 @@ ms.openlocfilehash: d517f434fe81617061d37a5b60f4e49806948005
 
 身為受管理目錄的管理員，您新增網域，而該網域剛好有一個相關聯的未受管理目錄。
 
-例如，假設您是 IT 管理員，而且已有 Contoso.com (您的組織註冊的網域名稱) 的受管理目錄。 您會發現貴組織的使用者已使用電子郵件網域名稱 user@contoso.co.uk, (這是貴組織擁有的另一個網域名稱) 以自助方式註冊產品方案。 這些使用者目前在 contoso.co.uk 的未受管理目錄中有帳戶。
+例如，假設您是 IT 管理員，而且已有 Contoso.com (您的組織註冊的網域名稱) 的受管理目錄。 您會發現貴組織的使用者已使用電子郵件網域名稱 user@contoso.co.uk (這是貴組織擁有的另一個網域名稱) 以自助方式註冊產品方案。 這些使用者目前在 contoso.co.uk 的未受管理目錄中有帳戶。
 
 您不想管理兩個不同的目錄，所以將 contoso.co.uk 的未受管理目錄合併到 contoso.com 的現有 IT 受管理目錄。
 
@@ -193,19 +195,14 @@ ms.openlocfilehash: d517f434fe81617061d37a5b60f4e49806948005
 
 ![][1]
 
-如需如何使用這些參數的詳細資訊和相關範，請參閱 [Set-MsolCompanySettings](https://msdn.microsoft.com/library/azure/dn194127.aspx)。
+如需如何使用這些參數的詳細資訊和相關範，請參閱 [Set-MsolCompanySettings](/powershell/module/msonline/set-msolcompanysettings?view=azureadps-1.0)。
 
 ## <a name="see-also"></a>另請參閱
-* [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)
-* [Azure PowerShell](https://msdn.microsoft.com/library/azure/jj156055.aspx)
-* [Azure Cmdlet 參考](https://msdn.microsoft.com/library/azure/jj554330.aspx)
-* [Set-MsolCompanySettings](https://msdn.microsoft.com/library/azure/dn194127.aspx)
+* [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)
+* [Azure PowerShell](/powershell/azure/overview)
+* [Azure Cmdlet 參考](/powershell/azure/get-started-azureps)
+* [Set-MsolCompanySettings](/powershell/module/msonline/set-msolcompanysettings?view=azureadps-1.0)
 
 <!--Image references-->
 [1]: ./media/active-directory-self-service-signup/SelfServiceSignUpControls.png
-
-
-
-<!--HONumber=Dec16_HO2-->
-
 

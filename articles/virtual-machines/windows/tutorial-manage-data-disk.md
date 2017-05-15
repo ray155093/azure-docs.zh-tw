@@ -15,10 +15,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 04/21/2017
 ms.author: nepeters
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 6bc28290f5ae0466b8e1a260d411b7eab6f12439
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: d68fc54f3fd08b3d7d66a9cd1ddb91c340191468
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 ---
 
@@ -26,15 +27,15 @@ ms.lasthandoff: 04/26/2017
 
 在本教學課程中，您會了解不同類型的 VM 磁碟、如何選取磁碟組態，以及如何建立磁碟並將其連結至 Azure VM。 本教學課程也涵蓋製作磁碟快照集。  
 
-您可以使用最新的 [Azure PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 模組來完成本教學課程中的步驟。
+您可以使用最新的 [Azure PowerShell](/powershell/azure/overview) 模組來完成本教學課程中的步驟。
 
 ## <a name="default-azure-disks"></a>預設 Azure 磁碟
 
 建立 Azure 虛擬機器後，有兩個磁碟會自動連結到虛擬機器。 
 
-**作業系統磁碟** - 作業系統磁碟可裝載 VM 作業系統，其大小可以高達 1 TB。  預設會將磁碟機代號 `c:` 指派給 OS 磁碟。 OS 磁碟的磁碟快取組態已針對 OS 效能進行最佳化。 OS 磁碟**不得**裝載應用程式或資料。 請對應用程式和資料使用資料磁碟，本文稍後會詳細說明。
+**作業系統磁碟** - 作業系統磁碟可裝載 VM 作業系統，其大小可以高達 1 TB。  預設會將磁碟機代號 c: 指派給 OS 磁碟。 OS 磁碟的磁碟快取組態已針對 OS 效能進行最佳化。 OS 磁碟**不得**裝載應用程式或資料。 請對應用程式和資料使用資料磁碟，本文稍後會詳細說明。
 
-**暫存磁碟** - 暫存磁碟會使用與 VM 位於相同 Azure 主機的固態磁碟機。 暫存磁碟的效能非常好，可用於暫存資料處理等作業。 不過，如果 VM 移至新的主機，則會移除儲存在暫存磁碟上的任何資料。 暫存磁碟的大小取決於 VM 大小。 預設會將磁碟機代號 `d:` 指派給暫存磁碟。
+**暫存磁碟** - 暫存磁碟會使用與 VM 位於相同 Azure 主機的固態磁碟機。 暫存磁碟的效能非常好，可用於暫存資料處理等作業。 不過，如果 VM 移至新的主機，則會移除儲存在暫存磁碟上的任何資料。 暫存磁碟的大小取決於 VM 大小。 預設會將磁碟機代號 d: 指派給暫存磁碟。
 
 ### <a name="temporary-disk-sizes"></a>暫存磁碟大小
 
@@ -91,7 +92,7 @@ Azure 提供兩種類型的磁碟。
 使用 [New-AzureRmDiskConfig](/powershell/module/azurerm.compute/new-azurermdiskconfig) 建立初始組態。 下列範例會設定大小為 128 GB 的磁碟。
 
 ```powershell
-$diskConfig = New-AzureRmDiskConfig -Location westus -CreateOption Empty -DiskSizeGB 128
+$diskConfig = New-AzureRmDiskConfig -Location EastUS -CreateOption Empty -DiskSizeGB 128
 ```
 
 使用 [New-AzureRmDisk](/powershell/module/azurerm.compute/new-azurermdisk) 命令來建立資料磁碟。
@@ -138,3 +139,4 @@ Format-Volume -FileSystem NTFS -NewFileSystemLabel "myDataDisk" -Confirm:$false
 您已在本教學課程中了解 VM 磁碟。 請前進到下一個教學課程，以了解如何自動設定 VM。
 
 [自動設定 VM](./tutorial-automate-vm-deployment.md)
+

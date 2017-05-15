@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 01/11/2017
+ms.date: 04/27/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: f0b0c3bc9daf1e44dfebecedf628b09c97394f94
-ms.openlocfilehash: eb22b8e8c2d2b4a619e50b94321d4f819764bdaa
-ms.lasthandoff: 01/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f291186c6a68dea8aa00b846a2e6f3ad0d7996c
+ms.openlocfilehash: cfd4822820270dbaf44a25f3e0fe749492765df8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -26,7 +27,7 @@ ms.lasthandoff: 01/13/2017
 
 在服務匯流排中支援 AMQP 1.0 代表您現在能夠從一組平台中使用有效率的二進位通訊協定，來運用佇列與發佈/訂閱代理傳訊功能。 此外，您還可以建置使用混合語言、架構及作業系統所建置之元件所組成的應用程式。
 
-本文說明如何利用常用的 Java 訊息服務 (JMS) API 標準，從 Java 應用程式使用服務匯流排傳訊功能 (佇列和發佈/訂閱主題)。 這是說明如何使用服務匯流排 .NET API 達到相同效用的[附屬文章](service-bus-dotnet-advanced-message-queuing.md)。 您可以同時使用這兩個指南了解使用 AMQP 1.0 的跨平台訊息。
+本文說明如何利用常用的 Java 訊息服務 (JMS) API 標準，從 Java 應用程式使用服務匯流排傳訊功能 (佇列和發佈/訂閱主題)。 這是說明如何使用服務匯流排 .NET API 達到相同效用的[附屬文章](service-bus-amqp-dotnet.md)。 您可以同時使用這兩個指南了解使用 AMQP 1.0 的跨平台訊息。
 
 ## <a name="get-started-with-service-bus"></a>開始使用服務匯流排
 本指南假設您已經有服務匯流排命名空間，其中包含名稱為 **queue1** 的佇列。 如果沒有，您可以使用 [Azure 入口網站](service-bus-create-namespace-portal.md)建立[命名空間和佇列](https://portal.azure.com)。 如需有關如何建立服務匯流排命名空間和佇列的相關詳細資訊，請參閱[開始使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)。
@@ -110,7 +111,7 @@ topic.[jndi_name] = [physical_name]
 * **[physical_name]**：應用程式傳送或接收訊息的服務匯流排實體名稱。
 
 > [!NOTE]
-> 從服務匯流排主題訂用帳戶收到在 JNDI 中指定的實體名稱應該是主題的名稱。 以 JMS 應用程式程式碼建立持續性訂用帳戶時，將建立訂用帳戶名稱。 [服務匯流排 AMQP 1.0 開發人員指南](service-bus-amqp-dotnet.md)提供處理 JMS 服務匯流排主題訂閱的詳細資料。
+> 從服務匯流排主題訂用帳戶收到在 JNDI 中指定的實體名稱應該是主題的名稱。 以 JMS 應用程式程式碼建立持續性訂用帳戶時，將建立訂用帳戶名稱。 [服務匯流排 AMQP 1.0 開發人員指南](service-bus-amqp-dotnet.md)提供處理 JMS 服務匯流排主題的詳細資料。
 > 
 > 
 
@@ -248,9 +249,7 @@ exit
 ## <a name="cross-platform-messaging-between-jms-and-net"></a>JMS 與 .NET 之間的跨平台訊息
 本指南說明使用 JMS 傳送和接收服務匯流排的訊息。 不過，AMQP 1.0 的其中一個主要優點是能夠從不同語言撰寫的元件建立應用程式，並確實完整交換訊息。
 
-使用上述的範例 JMS 應用程式和取自隨附指南[如何透過服務匯流排 .NET API 使用 AMQP 1.0](service-bus-dotnet-advanced-message-queuing.md) 的類似 .NET 應用程式，即可交換 .NET 與 Java 之間的訊息。 
-
-如需使用服務匯流排與 AMQP 1.0 傳送跨平台訊息的詳細資訊，請參閱[服務匯流排 AMQP 1.0 開發人員指南](service-bus-amqp-dotnet.md)。
+使用上述的範例 JMS 應用程式和取自隨附文章[搭配使用 .NET 的服務匯流排與 AMQP 1.0](service-bus-amqp-dotnet.md) 的類似 .NET 應用程式，即可交換 .NET 與 Java 之間的訊息。 如需使用服務匯流排與 AMQP 1.0 傳送跨平台訊息的詳細資訊，請參閱本文。
 
 ### <a name="jms-to-net"></a>JMS 到 .NET
 示範 JMS 到 .NET 的訊息：
@@ -320,7 +319,7 @@ exit
 ## <a name="summary"></a>摘要
 本作法指南說明如何以常用的 JMS API 和 AMQP 1.0 從 Java 使用服務匯流排代理訊息功能 (佇列和發佈/訂閱主題)。
 
-您也可以使用包括 .NET、C、Python 和 PHP 在內的其他語言所撰寫的 Service Bus AMQP 1.0。 使用這些不同的語言撰寫的元件可使用服務匯流排中的 AMQP 1.0 支援確實完整交換訊息。 如需詳細資訊，請參閱[服務匯流排 AMQP 1.0 開發人員指南](service-bus-amqp-dotnet.md)。
+您也可以使用包括 .NET、C、Python 和 PHP 在內的其他語言所撰寫的 Service Bus AMQP 1.0。 使用這些不同的語言撰寫的元件可使用服務匯流排中的 AMQP 1.0 支援確實完整交換訊息。
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure 服務匯流排中的 AMQP 1.0 支援](service-bus-amqp-overview.md)

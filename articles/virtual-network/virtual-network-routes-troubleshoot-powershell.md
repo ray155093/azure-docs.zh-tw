@@ -15,9 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: anithaa
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: b568a9bea9679a9edeb708a5f7fcc6d68854574f
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 6efe6de6cc6d6d4c9788549048c5b50b03b3de42
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -57,7 +59,7 @@ ms.openlocfilehash: b568a9bea9679a9edeb708a5f7fcc6d68854574f
 ### <a name="view-effective-routes-for-a-network-interface"></a>檢視網路介面的有效路由
 若要查看套用到網路介面的彙總路由，請完成下列步驟︰
 
-1. 啟動 Azure PowerShell 工作階段並登入 Azure。 如果您不熟悉 Azure PowerShell，請閱讀 [如何安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 文章。
+1. 啟動 Azure PowerShell 工作階段並登入 Azure。 如果您不熟悉 Azure PowerShell，請閱讀 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 文章。
 2. 下列命令會傳回套用到資源群組 *RG1* 中名為 *VM1-NIC1* 之網路介面的所有路由。
    
        Get-AzureRmEffectiveRouteTable -NetworkInterfaceName VM1-NIC1 -ResourceGroupName RG1
@@ -101,7 +103,7 @@ ms.openlocfilehash: b568a9bea9679a9edeb708a5f7fcc6d68854574f
        ---- ----- ------------- ----------- ----------------
        Active {10.9.0.0/16} VnetLocal {}
        Active {0.0.0.0/0} Internet {}
-3. 上一個步驟的輸出沒有列出從 *WestUS-VNet1* (首碼 10.9.0.0/16)** 到 *WestUS-VNet3* VNet (首碼 10.10.0.0/16) 的路由。 如下圖所示，有 *WestUS-VNet3 VNet* 的 VNet 對等互連連結處於 *Disconnected* 狀態。
+3. 上一個步驟的輸出沒有列出從 WestUS-VNet3 (首碼 10.9.0.0/16)** 到 WestUS-VNet1 (首碼 10.10.0.0/16) 的路由。 如下圖所示，有 *WestUS-VNet3 VNet* 的 VNet 對等互連連結處於 *Disconnected* 狀態。
    
     ![](./media/virtual-network-routes-troubleshoot-portal/image4.png)
    
@@ -135,10 +137,5 @@ ms.openlocfilehash: b568a9bea9679a9edeb708a5f7fcc6d68854574f
 * 要讓 VNet 對等互連流量正確運作，對等互連的 VNet 的首碼範圍必須有 **nextHopType** *VNetPeering* 的系統路由。 如果沒有此類路由，且 VNet 對等互連連結看起來正常︰
   * 如果是新建立的對等互連連結，請等候幾秒鐘並重試。 有時候需要花比較長的時間才能將路由傳播到子網路中的所有網路介面。
   * 網路安全性群組 (NSG) 規則可能會影響流量流程。 如需詳細資訊，請參閱 [為網路安全性群組疑難排解](virtual-network-nsg-troubleshoot-powershell.md) 文章。
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 

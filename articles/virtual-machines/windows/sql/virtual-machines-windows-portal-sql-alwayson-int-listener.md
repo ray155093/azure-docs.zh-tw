@@ -12,18 +12,20 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
-ms.date: 12/28/2016
+ms.date: 05/01/2017
 ms.author: mikeray
-translationtype: Human Translation
-ms.sourcegitcommit: 407b189af12116d633ed505facf4bcfde9be5822
-ms.openlocfilehash: 6a37e9e786a4e399c49cb77758a23793790888c9
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: 9998c6ac27b9dc06b71edb4531aebeeb53fefcce
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
 # <a name="configure-an-internal-load-balancer-for-an-always-on-availability-group-in-azure"></a>在 Azure 中設定 Always On 可用性群組的內部負載平衡器
-本主題說明如何在 Resource Manager 模型中執行的 Azure 虛擬機器中建立 SQL Server AlwaysOn 可用性群組的內部負載平衡器。 當 SQL Server 執行個體位於 Azure 虛擬機器時，可用性群組需要負載平衡器。 負載平衡器會儲存可用性群組接聽程式的 IP 位址。 如果可用性群組跨越多個區域，則每個區域都需要負載平衡器。
+本主題說明如何在使用 Azure Resource Manager 執行的 Azure 虛擬機器中建立 SQL Server AlwaysOn 可用性群組的內部負載平衡器。 當 SQL Server 執行個體位於 Azure 虛擬機器時，可用性群組需要負載平衡器。 負載平衡器會儲存可用性群組接聽程式的 IP 位址。 如果可用性群組跨越多個區域，則每個區域都需要負載平衡器。
 
-若要完成這項工作，您必須在 Resource Manager 模型中的 Azure 虛擬機器上部署 SQL Server 可用性群組。 這兩部 SQL Server 虛擬機器必須屬於相同的可用性設定組。 您可以使用 [Microsoft 範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md) 在 Azure Resource Manager 中自動建立可用性群組。 此範本會自動為您建立內部負載平衡器。 
+若要完成這項工作，您必須在 Azure 虛擬機器 Resource Manager 上部署 SQL Server 可用性群組。 這兩部 SQL Server 虛擬機器必須屬於相同的可用性設定組。 您可以使用 [Microsoft 範本](virtual-machines-windows-portal-sql-alwayson-availability-groups.md) 在 Azure Resource Manager 中自動建立可用性群組。 此範本會自動為您建立內部負載平衡器。 
 
 如果您想要的話，也可以 [手動設定可用性群組](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)。
 
@@ -153,53 +155,6 @@ Azure 會建立探查。 Azure 會使用探查來測試那一個 SQL Server 具�
 
 [!INCLUDE [ag-listener-configure](../../../../includes/virtual-machines-ag-listener-configure.md)]
 
-<!---------------------------
-* Use RDP to connect to the Azure virtual machine that hosts the primary replica. 
-* Open Failover Cluster Manager.
-* Select the **Networks** node, and note the cluster network name. This name will be used in the `$ClusterNetworkName` variable in the PowerShell script.
-* Expand the cluster name, and then click **Roles**.
-* In the **Roles** pane, right-click the availability group name and then select **Add Resource** > **Client Access Point**.
-* In the **Name** box, create a name for this new listener, then click **Next** twice, and then click **Finish**. Do not bring the listener or resource online at this point.
-  
-  > [!NOTE]
-  > The name for the new listener is the network name that applications will use to connect to databases in the SQL Server availability group.
-  > 
-  > 
-* Click the **Resources** tab, then expand the Client Access Point you just created. Right-click the IP resource and click properties. Note the name of the IP address. You will use this name in the `$IPResourceName` variable in the PowerShell script.
-* Under **IP Address** click **Static IP Address** and set the static IP address to the same address that you used when you set the load balancer IP address on the Azure portal. Enable NetBIOS for this address and click **OK**. Repeat this step for each IP resource if your solution spans multiple Azure VNets. 
-* On the cluster node that currently hosts the primary replica, open an elevated PowerShell ISE and paste the following commands into a new script.
-  
-        $ClusterNetworkName = "<MyClusterNetworkName>" # the cluster network name (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name)
-        $IPResourceName = "<IPResourceName>" # the IP Address resource name
-        $ILBIP = “<X.X.X.X>” # the IP Address of the Internal Load Balancer (ILB). This is the static IP address for the load balancer you configured in the Azure portal.
-  
-        Import-Module FailoverClusters
-  
-        Get-ClusterResource $IPResourceName | Set-ClusterParameter -Multiple @{"Address"="$ILBIP";"ProbePort"="59999";"SubnetMask"="255.255.255.255";"Network"="$ClusterNetworkName";"EnableDhcp"=0}
-* Update the variables and run the PowerShell script to configure the IP address and port for the new listener.
-  
-  > [!NOTE]
-  > If your SQL Servers are in separate regions, you need to run the PowerShell script twice. The first time use the cluster network name, cluster IP resource name, and load balancer IP address from the first resource group. The second time use the cluster network name, cluster IP resource name, and load balancer IP address from the second resource group.
-  > 
-  > 
-
-Now the cluster has an availability group listener resource.
-
-### 2. Bring the listener online
-With the availability group listener resource configured, you can bring the listener online so that applications can connect to databases in the availability group with the listener.
-
-* Navigate back to Failover Cluster Manager. Expand **Roles** and then highlight your Availability Group. On the **Resources** tab, right-click the listener name and click **Properties**.
-* Click the **Dependencies** tab. If there are multiple resources listed, verify that the IP addresses have OR, not AND, dependencies. Click **OK**.
-* Right-click the listener name and click **Bring Online**.
-* Once the listener is online, from the **Resources** tab, right-click the availability group and click **Properties**.
-* Create a dependency on the listener name resource (not the IP address resources name). Click **OK**.
-* Launch SQL Server Management Studio and connect to the primary replica.
-* Navigate to **AlwaysOn High Availability** | **Availability Groups** | **Availability Group Listeners**. 
-* You should now see the listener name that you created in Failover Cluster Manager. Right-click the listener name and click **Properties**.
-* In the **Port** box, specify the port number for the availability group listener by using the $EndpointPort you used earlier (1433 was the default), then click **OK**.
-
-------------------------------->
-
 ### <a name="verify-the-configuration-of-the-listener"></a>驗證接聽程式的組態
 
 如果已正確設定叢集資源和相依性，您應該能夠看到 SQL Server Management Studio 中的接聽程式。 執行下列步驟來設定接聽程式連接埠︰
@@ -207,9 +162,9 @@ With the availability group listener resource configured, you can bring the list
 1. 啟動 SQL Server Management Studio，然後連接到主要複本。
 2. 瀏覽至 [AlwaysOn 高可用性] | [可用性群組] | [可用性群組接聽程式]。 
 1. 您現在應該會看到在容錯移轉叢集管理員中建立的接聽程式名稱。 以滑鼠右鍵按一下接聽程式名稱，然後按一下 [屬性] 。
-1. 在 [連接埠] 方塊中，使用您稍早所用的 $EndpointPort (預設值是&1433;) 來指定可用性群組接聽程式的連接埠號碼，然後按一下 [確定]。
+1. 在 [連接埠] 方塊中，使用您稍早所用的 $EndpointPort (預設值是 1433) 來指定可用性群組接聽程式的連接埠號碼，然後按一下 [確定]。
 
-在 Resource Manager 模式中執行的 Azure 虛擬機器中，您現在有 SQL Server AlwaysOn 可用性群組。 
+現在，您在以 Resource Manager 模式執行的 Azure 虛擬機器中，已有一個可用性群組。 
 
 ## <a name="test-the-connection-to-the-listener"></a>測試接聽程式的連線
 若要測試連線︰
@@ -221,13 +176,75 @@ With the availability group listener resource configured, you can bring the list
 
 SQLCMD 連線會自動連線到任何一個裝載主要複本的 SQL Server 執行個體。 
 
-## <a name="guidelines-and-limitations"></a>指導方針和限制
-請注意，下列關於 Azure 中使用內部負載平衡器之可用性群組接聽程式的指導方針：
+## <a name="create-an-ip-address---for-an-additional-availability-group"></a>建立 IP 位址 - 針對其他可用性群組
 
-* 每個雲端服務僅支援一個內部可用性群組接聽程式，因為接聽程式被設定為負載平衡器，而內部負載平衡器只有一個。 但是可以建立多個外部接聽程式。 
-* 使用內部負載平衡器，您只能從相同的虛擬網路內存取接聽程式。
+每個可用性群組都會使用個別的接聽程式。 每個接聽程式有其自己的 IP 位址。 使用相同的負載平衡器為其他接聽程式保存 IP 位址。 建立新的可用性群組之後，將 IP 位址新增至負載平衡器，然後設定接聽程式。
 
+若要使用 Azure 入口網站來將 IP 位址新增到負載平衡器，請執行下列步驟：
 
-<!--HONumber=Jan17_HO2-->
+1. 在 Azure 入口網站中，開啟包含負載平衡器的資源群組，然後按一下負載平衡器。 
+2. 在 [設定] 下按一下 [前端 IP 集區]。 按一下 [+ 新增]。 
+3. 在 [新增前端 IP 位址] 下指派前端的名稱。 
+4. 請確定**虛擬網路**和**子網路**與 SQL Server 執行個體相同。
+5. 設定接聽程式的 IP 位址。 
+   
+   >[!TIP]
+   >您可以設定為靜態 IP 位址，並輸入目前未在子網路中使用的位址。 或者，您可以設定動態 IP 位址，並儲存新的前端 IP 集區。 當您這樣做時，Azure 入口網站會自動將可用的 IP 位址指定至集區。 然後您可以重新開啟前端 IP 集區，並將指派變更為靜態。 
 
+   儲存接聽程式的 IP 位址。 
+
+6. 新增健康狀態探查。 套用下列設定：
+
+   |設定 |值
+   |:-----|:----
+   |**名稱** |用於識別探查的名稱。
+   |**通訊協定** |TCP
+   |**連接埠** |未使用的 TCP 連接埠。 必須可在所有虛擬機器上使用。 不能用於其他用途。 兩個接聽程式不可使用相同的探查連接埠。 
+   |**間隔** |探查嘗試間隔的時間長度。 使用預設值 (5)。
+   |**狀況不良臨界值** |連續發生錯誤的臨界值數目，超過此數目後虛擬機器會被視為狀況不良。
+
+   按一下 [確定] 儲存探查。 
+
+7. 建立新的負載平衡規則。 按一下 [負載平衡規則]，然後按一下 [+新增]。
+8. 使用下列設定來設定新的負載平衡規則：
+
+   |設定 |值
+   |:-----|:----
+   |**名稱** |用於識別負載平衡規則的名稱。 
+   |**前端 IP 位址** |選擇您所建立的 IP 位址。 
+   |**通訊協定** |TCP
+   |**連接埠** |使用 SQL Server 執行個體正在使用的連接埠。 預設的執行個體會使用連接埠 1433，除非您有進行變更。 
+   |**後端連接埠** |使用相同的值作為**連接埠**。
+   |**後端集區** |包含虛擬機器和 SQL Server 執行個體的集區。 
+   |**健康狀態探查** |選擇您所建立的探查。
+   |**工作階段持續性** |None
+   |**閒置逾時 (分鐘)** |預設值 (4)
+   |**浮動 IP (伺服器直接回傳)** | 已啟用
+
+### <a name="configure-the-availability-group-go-use-the-new-ip-address"></a>設定可用性群組以使用新的 IP 位址
+
+若要完成設定叢集，請重複您建立第一個可用性群組時遵循的步驟。 也就是說，設定[叢集以使用新的 IP 位址](#configure-the-cluster-to-use-the-load-balancer-ip-address)。 
+
+將 IP 位址加入接聽程式之後，您可以設定其他可用性群組。 
+
+1. 請確定新 IP 位址的探查連接埠都已經在兩部 SQL Server 虛擬機器上開啟。 
+
+2. [在叢集管理員中新增用戶端存取點](#addcap)
+
+3. [為可用性群組設定 IP 資源](#congroup)。
+
+   >[!IMPORTANT]
+   >當您建立 IP 位址時，請使用您在負載平衡器中新增的 IP 位址。  
+
+4. [讓 SQL Server 可用性群組資源依存於用戶端存取點](#dependencyGroup)
+
+5. [讓用戶端存取點資源依存於 IP 位址](#listname)。
+ 
+5. [在 PowerShell 中設定叢集參數](#setparam)。
+
+當您設定可用性群組以使用新的 IP 位址之後，請設定與接聽程式間的連線。 
+
+## <a name="next-steps"></a>後續步驟
+
+- [在不同區域中的 Azure 虛擬機器上設定 SQL Server Always On 可用性群組](virtual-machines-windows-portal-sql-availability-group-dr.md)
 

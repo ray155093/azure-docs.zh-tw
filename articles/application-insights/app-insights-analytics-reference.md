@@ -11,12 +11,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 03/22/2017
+ms.date: 04/26/2017
 ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 7f6c71056bca7beebc02313409aabe386d191e23
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f291186c6a68dea8aa00b846a2e6f3ad0d7996c
+ms.openlocfilehash: 93831bb163f67bbf40026faf3096ff5b7c581dfe
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -664,7 +665,7 @@ requests
            | where Name == "Stop"
            | project StopTime=timestamp, ActivityId)
         on ActivityId
-    | project City, ActivityId, StartTime, StopTime, Duration, StopTime, StartTime
+    | project City, ActivityId, StartTime, StopTime, Duration=StopTime-StartTime
 
 ```
 
@@ -2751,7 +2752,8 @@ substring("ABCD", 0, 2)       // AB
 * `parsejson('21')` - 包含數字的動態類型單一值
 * `parsejson('"21"')` - 包含字串的動態類型單一值
 
-請注意，不同於 JavaScript，JSON 強制在字串兩邊使用雙引號 (`"`)。 因此，使用單引號 (`'`) 引述 JSON 編碼的字串常值通常會比較容易。
+> ![附註] 雙引號 (`"`) 必須用來括住 JSON 中的標籤和字串值。 因此，使用單引號 (`'`) 引述 JSON 編碼的字串常值通常會比較容易。
+> 
 
 此範例會建立動態值，然後使用其欄位︰
 
@@ -2928,21 +2930,23 @@ json 所指定類型為 `dynamic` 的物件。
 
 **範例**
 
-在下列範例中，當 `context_custom_metrics` 是類似下面內容的 `string` 時： 
+在下列範例中，`customDimensions.person` 是類似下面內容的 `string`： 
 
 ```
-{"duration":{"value":118.0,"count":5.0,"min":100.0,"max":150.0,"stdDev":0.0,"sampledValue":118.0,"sum":118.0}}
+"\"addresses\":[{\"postcode\":\"C789\",\"street\":\"high st\",\"town\":\"Cardigan\"},{\"postcode\":\"J456\",\"street\":\"low st\",\"town\":\"Jumper\"}],\"name\":\"Ada\""
 ```
 
 則下列片段會擷取物件中 `duration` 位置的值，並從中擷取兩個位置：`duration.value` 和  `duration.min` (分別為 `118.0` 和 `110.0`)。
 
 ```AIQL
-T
-| ...
+customEvents
+| where name == "newMember"
 | extend d=parsejson(context_custom_metrics) 
 | extend duration_value=d.duration.value, duration_min=d["duration"]["min"]
 ```
 
+> ![附註] 雙引號字元必須用來括住 JSON 中的標籤和字串值。 
+>
 
 
 ### <a name="range"></a>range

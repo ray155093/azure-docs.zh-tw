@@ -1,5 +1,5 @@
 ---
-title: "使用 CLI 管理金鑰保存庫 | Microsoft Docs"
+title: "使用 CLI 管理 Azure Key Vault | Microsoft Docs"
 description: "透過本教學課程，使用 CLI 2.0 來自動化 Key Vault 中的一般工作"
 services: key-vault
 documentationcenter: 
@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/07/2017
+ms.date: 04/20/2017
 ms.author: ambapat
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 24b56848523a9bd7145e1c99394d55b9708e9896
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: e53b45ef180362f7554c7819b9ae2eb3dbfe3300
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -142,7 +143,7 @@ az keyvault secret set --vault-name 'ContosoKeyVault' --name 'SQLPassword' --val
 讓我們來檢視剛剛建立的金鑰或密碼：
 
 * 若要檢視您的金鑰，請輸入： `az keyvault key list --vault-name 'ContosoKeyVault'`
-* 若要檢視您的密碼，請輸入： `az keyvault secret list --vault-name 'ContosoKeyVault'`
+* 若要檢視您的祕密，請輸入： `az keyvault secret list --vault-name 'ContosoKeyVault'`
 
 ## <a name="register-an-application-with-azure-active-directory"></a>向 Azure Active Directory 註冊應用程式
 這步驟通常會由開發人員在個別電腦上完成。 這並非 Azure 金鑰保存庫的特有狀況，在此列出是為了讓程式完整。

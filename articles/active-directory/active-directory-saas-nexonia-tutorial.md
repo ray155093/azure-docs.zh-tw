@@ -11,12 +11,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/20/2017
+ms.date: 05/1/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: a6241afa7398684d9315ab401ecdb5b2abd824c5
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: 1370fa64c2ddc25d3121c567ceea4828b1e50921
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -117,7 +118,7 @@ Nexonia 與 Azure AD 整合提供下列優點：
     在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://system.nexonia.com/assistant/saml.do?orgCode=<organizationcode>`
 
     > [!NOTE] 
-    > 這不是真實的值。 請使用實際的「回覆 URL」來更新此值。 請連絡 [Nexonia 支援小組](http://www.nexonia.com/contact-us/)以取得此值。 
+    > 這不是真實的值。 請使用實際的「回覆 URL」來更新此值。 請連絡 [Nexonia 支援小組](https://nexonia.zendesk.com/hc/requests/new)以取得此值。 
 
 
 4. 在 [SAML 簽署憑證] 區段上，按一下 [憑證 (Base64)]，然後將憑證檔案儲存在您的電腦上。
@@ -132,7 +133,7 @@ Nexonia 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-nexonia-tutorial/tutorial_nexonia_configure.png) 
 
-7. 若要為您的應用程式設定 SSO，請連絡 [Nexonia 支援小組](http://www.nexonia.com/contact-us/)，並提供下列資訊：
+7. 若要為您的應用程式設定 SSO，請連絡 [Nexonia 支援小組](https://nexonia.zendesk.com/hc/requests/new)，並提供下列資訊：
 
     • 下載的 **憑證**
 
@@ -180,7 +181,7 @@ Nexonia 與 Azure AD 整合提供下列優點：
  
 ### <a name="creating-a-nexonia-test-user"></a>建立 Nexonia 測試使用者
 
-在本節中，您要在 Nexonia 中建立名為 Britta Simon 的使用者。 請與 [Nexonia 支援小組](http://www.nexonia.com/contact-us/)合作，在 Nexonia 平台中加入使用者。 您必須先建立和啟動使用者，然後才能使用單一登入。
+在本節中，您要在 Nexonia 中建立名為 Britta Simon 的使用者。 請與 [Nexonia 支援小組](https://nexonia.zendesk.com/hc/requests/new)合作，在 Nexonia 平台中加入使用者。 您必須先建立和啟動使用者，然後才能使用單一登入。
 
 
 ### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者

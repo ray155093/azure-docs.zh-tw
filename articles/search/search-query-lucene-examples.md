@@ -15,16 +15,18 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 10/27/2016
 ms.author: liamca
-translationtype: Human Translation
-ms.sourcegitcommit: fc2f30569acc49dd383ba230271989eca8a14423
-ms.openlocfilehash: 0f81ac0d19cd0f20c1f2214042eda391a3e68a7d
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 0740bc1f9e8b8be3c59518d9b23b8a1411c6d16a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 ---
 
 # <a name="lucene-query-syntax-examples-for-building-queries-in-azure-search"></a>在 Azure 搜尋服務中建置查詢的 Lucene 查詢語法範例
 建構 Azure 搜尋服務的查詢時，您可以使用預設的[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)或替代的 [Azure 搜尋服務 Lucene 查詢剖析器](https://msdn.microsoft.com/library/azure/mt589323.aspx)。 Lucene 查詢剖析器支援更複雜的查詢建構，例如欄位範圍查詢、模糊搜尋、鄰近搜尋、詞彙提升，和規則運算式搜尋。
 
-在本文中，您可以逐步了解並排顯示查詢語法和結果的範例。 針對在 [JSFiddle](https://jsfiddle.net/)中預先載入的搜尋索引執行的範例，這是測試指令碼和 HTML 的線上程式碼編輯器。
+在本文中，您可以逐步了解並排顯示查詢語法和結果的範例。 針對在 [JSFiddle](https://jsfiddle.net/)中預先載入的搜尋索引執行的範例，這是測試指令碼和 HTML 的線上程式碼編輯器。 如需有關查詢處理的背景知識，請參閱[全文檢索搜尋如何在 Azure 搜尋服務中運作](search-lucene-query-architecture.md)。
 
 以滑鼠右鍵按一下查詢範例 URL，以在個別瀏覽器視窗中開啟 JSFiddle。
 
@@ -120,9 +122,4 @@ ms.openlocfilehash: 0f81ac0d19cd0f20c1f2214042eda391a3e68a7d
 
 * [使用 .NET SDK 查詢 Azure 搜尋服務索引](search-query-dotnet.md)
 * [使用 REST API 查詢 Azure 搜尋服務索引](search-query-rest-api.md)
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

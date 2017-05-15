@@ -1,5 +1,5 @@
 ---
-title: "使用 .NET 發佈 Azure 媒體服務內容"
+title: "使用 .NET 發佈 Azure 媒體服務內容 | Microsoft Docs"
 description: "了解如何建立定位器，用來建置串流 URL。 程式碼範例以 C# 撰寫，並使用 Media Services SDK for .NET。"
 author: juliako
 manager: erikre
@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/30/2016
 ms.author: juliako
-translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 5598a16511713a76193c13c4521e4884d8f5b75d
-ms.lasthandoff: 03/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 37f6cd3a25c36fe27c9c711a430a2fc11e50906e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -39,7 +40,7 @@ ms.lasthandoff: 03/14/2017
 
 您也可以使用隨選串流定位器來建置指向可漸進式下載之 MP4 檔案的 URL。  
 
-本主題說明如何建立隨選串流定位器以發佈資產及建置 Smooth、MPEG DASH 和 HLS 串流 URL。 它也會示範如何建置漸進式下載 URL。 
+本主題說明如何建立隨選串流定位器，以發佈資產及建置 Smooth、MPEG DASH 和 HLS 串流 URL。 它也會示範如何建置漸進式下載 URL。 
 
 ## <a name="create-an-ondemand-streaming-locator"></a>建立隨選串流定位器
 若要建立隨選串流定位器並取得 URL，您需要執行下列動作：
@@ -53,7 +54,7 @@ ms.lasthandoff: 03/14/2017
 
 
 >[!NOTE]
->對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的天數 / 存取權限，則應該使用相同的原則識別碼。 例如，為預定要長時間維持就地 (非上傳原則) 的定位器原則。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
 ### <a name="use-media-services-net-sdk"></a>使用 Media Services .NET SDK
 建置串流 URL 
@@ -95,7 +96,7 @@ ms.lasthandoff: 03/14/2017
         Console.WriteLine();
     }
 
-此程式碼會輸出：
+輸出：
 
     URL to manifest for client streaming using Smooth Streaming protocol:
     http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny.ism/manifest
@@ -106,7 +107,7 @@ ms.lasthandoff: 03/14/2017
 
 
 > [!NOTE]
-> 您也可以透過 SSL 連線串流您的內容。 若要這樣做，請確定您的串流 URL 以 HTTPS 開頭。 請注意，目前 AMS 不支援使用 SSL 搭配自訂網域。  
+> 您也可以透過 SSL 連線串流您的內容。 若要執行這個方法，請確定您的串流 URL 是以 HTTPS 開頭。 目前 AMS 不支援使用 SSL 搭配自訂網域。
 > 
 > 
 
@@ -140,7 +141,7 @@ ms.lasthandoff: 03/14/2017
             Console.WriteLine(originLocator.Path + pd.Name);
     }
 
-此程式碼會輸出：
+輸出：
 
     http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny_H264_650kbps_AAC_und_ch2_96kbps.mp4
     http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny_H264_400kbps_AAC_und_ch2_96kbps.mp4
@@ -150,7 +151,7 @@ ms.lasthandoff: 03/14/2017
     . . . 
 
 ### <a name="use-media-services-net-sdk-extensions"></a>使用 Media Services .NET SDK 延伸模組
-下列程式碼會呼叫 .NET SDK 延伸模組方法，以針對調適性串流建立定位器並產生 Smooth Streaming、HLS 和 MPEG-DASH URL。
+下列程式碼會呼叫 .NET SDK 擴充功能方法，以針對調適性串流建立定位器並產生 Smooth Streaming、HLS 和 MPEG-DASH URL。
 
     // Create a loctor.
     _context.Locators.Create(
@@ -175,8 +176,8 @@ ms.lasthandoff: 03/14/2017
 ## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## <a name="see-also"></a>另請參閱
-[下載資產](media-services-deliver-asset-download.md)
-[設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)
+## <a name="next-steps"></a>後續步驟
+* [下載資產](media-services-deliver-asset-download.md)
+* [設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)
 
 

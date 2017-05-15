@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/08/2017
 ms.author: rasquill
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 59dc5340ca8ac02b1d99205ad8f1d44fa60148c0
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: 7f572adf499dd1fcd0db19500c9049af1e31cdea
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -44,17 +45,15 @@ SSH 是允許透過不安全的連線進行安全登入的加密連線通訊協�
 如果您不想使用 SSH 金鑰，您仍然可以使用密碼登入 Linux VM。 如果您的 VM 並未公開至網際網路，則使用密碼可能就以足夠。 不過，您仍然需要管理每個 Linux VM 的密碼，以及維護狀況良好的密碼原則和作法，例如最小密碼長度和定期進行更新。 使用 SSH 金鑰可降低橫跨多個 VM 管理個別認證的複雜度。
 
 ## <a name="windows-packages-and-ssh-clients"></a>Windows 套件和 SSH 用戶端
-您可使用 **SSH 用戶端**來連線及管理 Azure 中的 Linux VM。 Windows 電腦通常不會安裝 SSH 用戶端。 您可以安裝的常見 Windows SSH 用戶端包含在下列套件中︰
+您可使用 **SSH 用戶端**來連線及管理 Azure 中的 Linux VM。 Windows 電腦通常不會安裝 SSH 用戶端。 Windows 10 年度更新版已新增 Bash for Windows，且最新版 Windows 10 Creators Update 提供了其他更新。 適用於 Linux 的 Windows 子系統可讓您在 Bash 殼層內以原生方式執行和存取公用程式 (例如 SSH 用戶端)。 接著您可以參照任何 Linux 文件的說明，例如[如何產生適用於 Linux 的 SSH 金鑰組](mac-create-ssh-keys.md)。 Bash for Windows 仍處於開發階段，而且被視為測試版。 如需 Bash for Windows 的詳細資訊，請參閱 [Bash on Ubuntu on Windows](https://msdn.microsoft.com/commandline/wsl/about)。
+
+如果您想要使用 Bash for Windows 以外的產品，以下套件包含一般您可以安裝的 Windows SSH 用戶端︰
 
 * [Git For Windows](https://git-for-windows.github.io/)
 * [puTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/)
 * [MobaXterm](http://mobaxterm.mobatek.net/)
 * [Cygwin](https://cygwin.com/)
 
-> [!NOTE]
-> 最新的 Windows 10 年度更新版包含 Bash for Windows。 這項功能可讓您執行適用於 Linux 的 Windows 子系統和存取公用程式 (例如 SSH 用戶端)。 Bash for Windows 仍處於開發階段，而且被視為測試版。 如需 Bash for Windows 的詳細資訊，請參閱 [Bash on Ubuntu on Windows](https://msdn.microsoft.com/commandline/wsl/about)。
->
->
 
 ## <a name="which-key-files-do-you-need-to-create"></a>您需要建立哪些金鑰檔案？
 Azure 需要至少 2048 位元的 **ssh-rsa** 格式公開和私密金鑰。 如果您要使用傳統部署模型管理 Azure 資源，您也需要產生 PEM (`.pem` 檔案)。

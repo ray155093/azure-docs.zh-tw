@@ -12,17 +12,18 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 04/03/2017
+ms.date: 04/13/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 0b53a5ab59779dc16825887b3c970927f1f30821
-ms.openlocfilehash: aa31b373e67d4742f7697e2ec6958e108535f746
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: 06daecfe8cd61cbb3ab9d2307acb07e30270d921
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
 # <a name="get-started-with-role-based-access-control-in-the-azure-portal"></a>在 Azure 入口網站中開始使用角色型存取控制
-安全性導向公司應該將焦點放在提供員工所需的確切權限。 權限太多會讓帳戶暴露在攻擊者的威脅下。 權限太少則會讓員工無法有效率地完成工作。 Azure「角色型存取控制」(RBAC) 可以為 Azure 提供更細緻的存取管理來協助解決這個問題。
+安全性導向公司應該將焦點放在提供員工所需的確切權限。 權限太多可能會讓帳戶暴露在攻擊者的威脅下。 權限太少則會讓員工無法有效率地完成工作。 Azure「角色型存取控制」(RBAC) 可以為 Azure 提供更細緻的存取管理來協助解決這個問題。
 
 RBAC 可讓您區隔小組內的職責，而僅授與使用者執行作業所需的存取權。 您可以不授與每個人 Azure 訂用帳戶或資源中無限制的權限，而是只允許執行特定的動作。 例如，使用 RBAC 讓一位員工管理某個訂用帳戶中的虛擬機器，而讓另一位員工管理相同訂用帳戶中的 SQL 資料庫。
 
@@ -42,7 +43,7 @@ Azure RBAC 有適用於所有資源類型的三個基本角色：
 * **參與者** 可以建立和管理所有類型的 Azure 資源，但是不能將存取權授與其他人。
 * **讀者** 可以檢視現有的 Azure 資源。
 
-Azure 中其餘的 RBAC 角色可以管理特定 Azure 資源。 例如，「虛擬機器參與者」角色可讓使用者建立和管理虛擬機器。 但不會授予他們存取虛擬機器所連接的虛擬網路或子網路的存取權。
+Azure 中其餘的 RBAC 角色可以管理特定 Azure 資源。 例如，「虛擬機器參與者」角色可讓使用者建立和管理虛擬機器。 但不會授予他們存取虛擬機器所連接的虛擬網路或子網路的存取權。 
 
 [RBAC 內建角色](role-based-access-built-in-roles.md) 會列出 Azure 中可用的角色。 它會指定每個內建角色授與使用者的作業和範圍。 如果您想要定義自己的角色，獲得更進一步控制，請參閱如何建立 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)。
 
@@ -62,7 +63,7 @@ Azure 中其餘的 RBAC 角色可以管理特定 Azure 資源。 例如，「虛
 只有 Azure 入口網站和新的 Azure Resource Manager API 支援 Azure RBAC。 獲指派 RBAC 角色的使用者和應用程式無法使用傳統管理入口網站和 Azure 傳統部署模型。
 
 ## <a name="authorization-for-management-vs-data-operations"></a>管理與資料作業的授權
-Azure RBAC 僅支援在 Azure 入口網站和 Azure Resource Manager API 中的 Azure 資源管理作業。 它無法授權 Azure 資源的所有資料層級作業。 例如，您可以授權某個人管理「儲存體帳戶」，但無法授權他管理「儲存體帳戶」內的 Blob 或資料表。 同樣地，可以管理 SQL Database，但無法管理其中的資料表。
+Azure RBAC 僅支援在 Azure 入口網站和 Azure Resource Manager API 中的 Azure 資源管理作業。 它無法授權 Azure 資源的所有資料層級作業。 例如，您可以授權某個人管理「儲存體帳戶」，但無法授權他管理「儲存體帳戶」內的 blob 或資料表。 同樣地，可以管理 SQL Database，但無法管理其中的資料表。
 
 ## <a name="next-steps"></a>後續步驟
 * 在 Azure 入口網站中開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)。

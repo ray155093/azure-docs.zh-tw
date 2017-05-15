@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/15/2017
+ms.date: 04/25/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 356de369ec5409e8e6e51a286a20af70a9420193
-ms.openlocfilehash: ee4a47cf53898803e0080d3f9d00cf7617fe4ce8
-ms.lasthandoff: 03/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: adf358a130fd20674cbf2585de93005a9e1cb3ec
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -78,20 +79,18 @@ ms.lasthandoff: 03/27/2017
 ### <a name="table-6a---pass-through-authentication-with-sso"></a>表 6a - 傳遞驗證搭配 SSO
 |通訊協定|連接埠號碼|說明
 | --- | --- | ---
-|HTTP|80|為安全性驗證 (例如 SSL) 啟用輸出 HTTP 流量。
-|HTTPS|443|    針對 Azure AD 啟用使用者驗證
-|HTTPS|10100–10120|    啟用從連接器傳回 Azure AD 的回應 
-|Azure 服務匯流排|9352、5671|    為連入要求啟用連接器到 Azure 服務之間的通訊。
-|HTTPS|9350|    針對連入要求選擇性地啟用較佳的效能
-|HTTPS|8080/443|    啟用連接器開機順序以及連接器自動更新
-|HTTPS|9090|    啟用連接器註冊 (只有在連接器註冊程序才需要)
-|HTTPS|9091|    啟用連接器信任憑證自動更新
+|HTTP|80|為安全性驗證 (例如 SSL) 啟用輸出 HTTP 流量。 為了讓連接器自動更新功能正確運作，也需要如此。
+|HTTPS|443|    啟用輸出 HTTPS 流量來支援某些作業，例如啟用和停用功能、註冊連接器、下載連接器更新和處理所有使用者登入要求。
+
+此外，Azure AD Connect 也必須能夠對 [Azure 資料中心 IP 範圍](https://www.microsoft.com/en-us/download/details.aspx?id=41653)直接建立 IP 連線。
 
 ### <a name="table-6b---password-hash-sync-with-sso"></a>表 6b - 密碼雜湊同步處理搭配 SSO
 
 |通訊協定|連接埠號碼|說明
 | --- | --- | ---
-|HTTPS|9090|    啟用 SSO 註冊 (只有在 SSO 註冊程序才需要)。
+|HTTPS|443|    啟用 SSO 註冊 (只有在 SSO 註冊程序才需要)。
+
+此外，Azure AD Connect 也必須能夠對 [Azure 資料中心 IP 範圍](https://www.microsoft.com/en-us/download/details.aspx?id=41653)直接建立 IP 連線。 同樣地，這只在 SSO 註冊程序中才需要。
 
 ## <a name="table-7a--7b---azure-ad-connect-health-agent-for-ad-fssync-and-azure-ad"></a>表 7a 和 7b - 適用於 (AD FS/Sync) 和 Azure AD 的 Azure AD Connect Health 代理程式
 下表說明在 Azure AD Connect Health 代理程式與 Azure AD 之間通訊所需的端點、連接埠和通訊協定

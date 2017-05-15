@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 02/13/2017
 ms.author: ruturajd
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: a655c7bf1ea5ca1439d4353df5067c0e07f2d49f
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 3156ca5b2b8ba836e94d79a97b28bf591c799b48
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -25,6 +26,10 @@ ms.lasthandoff: 04/25/2017
 
 ## <a name="overview"></a>概觀
 此文章說明如何將 Azure 虛擬機器從 Azure 重新保護到內部部署網站。 當您準備好使用此[使用 Azure Site Recovery 將 VMWare 虛擬機器和實體伺服器複寫至 Azure](site-recovery-failover.md)，將已從內部部署網站容錯移轉至 Azure 的 VMware 虛擬機器或 Windows/Linux 實體伺服器容錯回復時，請依照此文章中的指示執行。
+
+> [!WARNING]
+> 如果您已[完成移轉](site-recovery-migrate-to-azure.md#what-do-we-mean-by-migration)、已將虛擬機器移至另一個資源群組，或已刪除 Azure 虛擬機器，則您無法在之後執行容錯回復。
+
 
 完成重新保護且受保護的虛擬機器開始複寫之後，您可以在虛擬機器上起始容錯回復，以將它們回復到內部部署網站。
 
@@ -38,7 +43,10 @@ ms.lasthandoff: 04/25/2017
 以下是準備重新保護之前必須採取的先決條件步驟或考量事項。
 
 * 如果您想要容錯回復到的目標虛擬機器是由 vCenter 伺服器進行管理，您必須確定已擁有在 vCenter 伺服器上探索虛擬機器的必要權限。 [閱讀更多資訊](site-recovery-vmware-to-azure-classic.md#vmware-permissions-for-vcenter-access)。
-* 如果內部部署虛擬機器上有快照，重新保護程序將會失敗。 您可以先刪除快照，再進行重新保護。
+
+> [!WARNING] 
+> 如果內部部署的主要目標或虛擬機器上有快照集，重新保護程序將會失敗。 您可以先刪除主要目標上的快照集，再進行重新保護。 虛擬機器上的快照集會在重新保護作業期間自動合併。
+
 * 在容錯回復之前，您將需要先建立兩個其他元件：
   * **建立處理伺服器**。 處理序伺服器會從在 Azure 中受保護的虛擬機器接收資料，並將資料傳送至內部部署網站。 低延遲網路必須位於處理伺服器與受保護虛擬機器之間。 因此，如果您使用 Azure ExpressRoute 連線則可擁有內部部署處理序伺服器，或如果使用 VPN 則為 Azure 處理序伺服器。
   * **建立主要目標伺服器**：主要目標伺服器會接收容錯回復資料。 您建立的內部部署管理伺服器預設會安裝主要目標伺服器。 不過，您可能必須根據容錯回復流量的大小，另外建立一部用來容錯回復的主要目標伺服器。
@@ -176,6 +184,8 @@ To replicate back to on-premises, you will need a failback policy. This policy g
 > [!NOTE]
 > 複寫群組應該使用相同的主要目標重新保護。 如果使用不同的主要目標伺服器重新保護，則伺服器無法提供一個共同的點的時間。
 
+> [!NOTE]
+> 執行重新保護的期間，內部部署虛擬機器將會關閉。 這是為了確保資料在複寫期間的一致性。 完成重新保護之後，請勿開啟虛擬機器。
 
 重新保護成功之後，虛擬機器將進入受保護狀態。
 

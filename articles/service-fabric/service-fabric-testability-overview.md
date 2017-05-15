@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/01/2017
 ms.author: anmola
-translationtype: Human Translation
-ms.sourcegitcommit: e3dda1f6a0d513668aca252aa1855a93f3720247
-ms.openlocfilehash: 3bff3fb99f27985c24b5a2e677738595314242c4
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: c05081685532aecbe29e9bf380f0278e775ad6b7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -37,7 +38,7 @@ ms.lasthandoff: 03/02/2017
 * 容錯移轉案例
 
 ## <a name="testing-as-a-service"></a>測試即服務
-錯誤分析服務是一種 Service Fabric 系統服務，會自動隨 Service Fabric 叢集啟動。 這是服務如同主機來進行插入錯誤、執行測試案例，以及分析健康狀態。 
+錯誤分析服務是一種 Service Fabric 系統服務，會自動隨 Service Fabric 叢集啟動。 此服務會如同主機般來進行插入錯誤、執行測試案例，以及分析健康狀態。 
 
 ![錯誤分析服務][0]
 

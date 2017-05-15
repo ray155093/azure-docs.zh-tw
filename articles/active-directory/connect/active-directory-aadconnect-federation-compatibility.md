@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/21/2017
+ms.date: 05/01/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 5c7c6c8568115093f3a7568b6d318f985705691c
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: 6f91f732b7579c9f14458dab9be49c027debfac1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -58,8 +59,8 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 * [Sailpoint IdentityNow](#sailpoint-identitynow)
 * [SecureAuth IdP 7.2.0](#secureauth-idp-720) 
 * [Sign&go 5.3](#signgo-53) 
-* [SoftBank](#softbank)
-* [VMware Identity Manager](#vmware-identity-manager)
+* [SoftBank Technology Online Service Gate](#softbank)
+* [VMware Workspace One](#vmware-workspace-one)
 * [VMware Workspace Portal 2.1 版](#vmware--workspace-portal-version-21) 
 
 
@@ -340,7 +341,7 @@ Azure Active Directory 在不需要任何非 Microsoft 解決方案的情況下�
 
 Sign&go 5.3 透過 Kerberos Contract 的組態支援 Kerberos 驗證。  如需此組態相關協助，請連絡 Ilex 或檢視 [此處](http://www.ilex-international.com/docs/sign&go_wsfederation_en.pdf)
 
-## <a name="softbank"></a>SoftBank
+## <a name="softbank-technology-online-service-gate"></a>SoftBank Technology Online Service Gate
 
 以下是支援此單一登入體驗之矩陣的案例：
 
@@ -350,9 +351,9 @@ Sign&go 5.3 透過 Kerberos Contract 的組態支援 Kerberos 驗證。  如需�
 | 豐富型用戶端應用程式，例如 Lync、Office 訂閱、CRM |支援 |不支援整合式 Windows 驗證 |
 | 豐富型電子郵件用戶端，例如 Outlook 和 ActiveSync |支援 |None |
 
-如需有關 BitGlass 的詳細資訊，請參閱[這裡](https://www.softbanktech.jp/service/list/osg-pro-ent/)。
+如需 SoftBank Technology Online Service Gate 的詳細資訊，請參閱[這裡](https://www.softbanktech.jp/service/list/osg-pro-ent/)。
 
-## <a name="vmware-identity-manager"></a>VMware Identity Manager
+## <a name="vmware-workspace-one"></a>VMware Workspace One
 
 以下是支援此單一登入體驗之矩陣的案例：
 

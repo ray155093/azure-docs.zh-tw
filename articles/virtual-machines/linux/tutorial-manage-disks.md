@@ -15,10 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 04/25/2017
 ms.author: nepeters
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 3e47c917774245f8b321b5cd94def24b7f523a94
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 84ce4b288c23c7005ac92f18ee26af70479deb8d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 ---
 
@@ -32,9 +33,9 @@ ms.lasthandoff: 04/26/2017
 
 建立 Azure 虛擬機器後，有兩個磁碟會自動連結到虛擬機器。 
 
-**作業系統磁碟** - 作業系統磁碟可裝載 VM 作業系統，其大小可以高達 1 TB。 OS 磁碟預設會標示為 `/dev/sda`。 OS 磁碟的磁碟快取組態已針對 OS 效能進行最佳化。 因為此組態，OS 磁碟**不得**裝載應用程式或資料。 請對應用程式和資料使用資料磁碟，本文稍後會詳細說明。 
+**作業系統磁碟** - 作業系統磁碟可裝載 VM 作業系統，其大小可以高達 1 TB。 OS 磁碟預設會標示為 /dev/sda。 OS 磁碟的磁碟快取組態已針對 OS 效能進行最佳化。 因為此組態，OS 磁碟**不得**裝載應用程式或資料。 請對應用程式和資料使用資料磁碟，本文稍後會詳細說明。 
 
-**暫存磁碟** - 暫存磁碟會使用與 VM 位於相同 Azure 主機的固態磁碟機。 暫存磁碟的效能非常好，可用於暫存資料處理等作業。 不過，如果 VM 移至新的主機，則會移除儲存在暫存磁碟上的任何資料。 暫存磁碟的大小取決於 VM 大小。 暫存磁碟會標示為 `/dev/sdb`，其掛接點為 `/mnt`。
+**暫存磁碟** - 暫存磁碟會使用與 VM 位於相同 Azure 主機的固態磁碟機。 暫存磁碟的效能非常好，可用於暫存資料處理等作業。 不過，如果 VM 移至新的主機，則會移除儲存在暫存磁碟上的任何資料。 暫存磁碟的大小取決於 VM 大小。 暫存磁碟會標示為 /dev/sdb，其掛接點為 /mnt。
 
 ### <a name="temporary-disk-sizes"></a>暫存磁碟大小
 
@@ -93,7 +94,7 @@ Azure 提供兩種類型的磁碟。
 使用 [az group create](https://docs.microsoft.com/cli/azure/group#create) 命令來建立資源群組。 
 
 ```azurecli
-az group create --name myResourceGroupDisk --location westus
+az group create --name myResourceGroupDisk --location eastus
 ```
 
 使用 [az vm create]( /cli/azure/vm#create) 命令來建立 VM。 `--datadisk-sizes-gb` 引數用來指定應該建立一個額外的磁碟並連結至虛擬機器。 若要建立並連結多個磁碟，請使用以空格分隔的磁碟大小值清單。 在下列範例中，會建立具有兩個資料磁碟 (均為 128 GB) 的 VM。 因為磁碟大小是 128 GB，所以這些磁碟都會設為 P10，其可提供每個磁碟最高 500 IOPS。
@@ -146,13 +147,13 @@ sudo mkfs -t ext4 /dev/sdc1
 sudo mkdir /datadrive && sudo mount /dev/sdc1 /datadrive
 ```
 
-現在可以透過 `datadrive` 掛接點存取磁碟，而執行 `df -h` 命令即可驗證此掛接點。 
+現在可以透過 datadrive 掛接點存取磁碟，而執行 `df -h` 命令即可驗證此掛接點。 
 
 ```bash
 df -h
 ```
 
-輸出會顯示掛接在 `/datadrive` 上的新磁碟機。
+輸出會顯示掛接在 /datadrive 上的新磁碟機。
 
 ```bash
 Filesystem      Size  Used Avail Use% Mounted on
@@ -161,7 +162,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 /dev/sdc1        50G   52M   47G   1% /datadrive
 ```
 
-為了確保磁碟機會在重新開機之後重新掛接，必須將磁碟機新增至 `/stc/fstab` 檔案。 若要這麼做，請使用 `blkid` 公用程式取得磁碟的 UUID。
+為了確保磁碟機會在重新開機之後重新掛接，必須將磁碟機新增至 /etc/fstab 檔案。 若要這麼做，請使用 `blkid` 公用程式取得磁碟的 UUID。
 
 ```bash
 sudo -i blkid
@@ -173,7 +174,7 @@ sudo -i blkid
 /dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
 ```
 
-將類似以下的一行新增至 `/etc/fstab` 檔案。 也請注意，使用 `barrier=0` 可以停用寫入屏障，此組態可以改善磁碟效能。 
+將類似以下的一行新增至 /etc/fstab 檔案。 也請注意，使用 barrier=0 可以停用寫入屏障，此組態可以改善磁碟效能。 
 
 ```bash
 UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive  ext4    defaults,nofail,barrier=0   1  2
@@ -192,7 +193,7 @@ exit
 增加磁碟大小之前，需要有磁碟的識別碼或名稱。 使用 [az disk list](/cli/azure/vm/disk#list) 命令來傳回資源群組中的所有磁碟。 記下您想要調整大小的磁碟名稱。
 
 ```azurecli
- az disk list -g myResourceGroupDisk --query '[*].{Name:name,Gb:diskSizeGb,Tier:accountType}' --output table
+az disk list -g myResourceGroupDisk --query '[*].{Name:name,Gb:diskSizeGb,Tier:accountType}' --output table
 ```
 
 此外，也必須將 VM 解除配置。 使用 [az vm deallocate]( /cli/azure/vm#deallocate) 命令來停止並解除配置 VM。
@@ -201,7 +202,7 @@ exit
 az vm deallocate --resource-group myResourceGroupDisk --name myVM
 ```
 
-使用 [az disk update](/cli/azure/vm/disk#update) 命令來調整磁碟的大小。 這個範例會將名為 `myDataDisk` 的磁碟大小調整為 1 TB。
+使用 [az disk update](/cli/azure/vm/disk#update) 命令來調整磁碟的大小。 這個範例會將名為 myDataDisk 的磁碟大小調整為 1 TB。
 
 ```azurecli
 az disk update --name myDataDisk --resource-group myResourceGroupDisk --size-gb 1023
@@ -259,7 +260,7 @@ az vm create --resource-group myResourceGroupDisk --name myVM --attach-os-disk m
 
 所有資料磁碟都必須重新連結至虛擬機器。
 
-首先使用 [az disk list](https://docs.microsoft.com/cli/azure/disk#list) 命令尋找資料磁碟名稱。 此範例會將磁碟名稱放入名為 `datadisk` 的變數，該變數使用於下一個步驟。
+首先使用 [az disk list](https://docs.microsoft.com/cli/azure/disk#list) 命令尋找資料磁碟名稱。 此範例會將磁碟名稱放入名為 datadisk 的變數，該變數使用於下一個步驟。
 
 ```azurecli
 datadisk=$(az disk list -g myResourceGroupDisk --query "[?contains(name,'myVM')].[name]" -o tsv)

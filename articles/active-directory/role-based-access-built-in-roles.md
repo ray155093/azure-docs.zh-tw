@@ -12,13 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/21/2017
+ms.date: 04/21/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 73c38182f4caa92f5aa561b10a30c60efc8cfdae
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: b600b7d67de24eab5395f085a2a424159b14ff28
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 ---
 # <a name="built-in-roles-for-azure-role-based-access-control"></a>Azure 角色型存取控制的內建角色
@@ -27,14 +28,21 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 ## <a name="roles-in-azure"></a>Azure 中的角色
 下表提供內建角色的簡短描述。 按一下角色名稱，即可查看該角色的詳細 **actions** 和 **notactions** 清單。 **actions** 屬性指定了 Azure 資源上允許的動作。 動作字串可以使用萬用字元。 **notactions** 屬性指定了從允許的動作中排除的動作。
 
+動作會定義您可以對給定資源類型執行的作業類型。 例如：
+- **寫入**可讓您執行 PUT、POST、PATCH 和 DELETE 作業。
+- **讀取**可讓您執行 GET 作業。 
+
+本文只說明現存的不同角色。 但是當您指派角色給使用者時，可以藉由定義範圍來進一步限制所允許的動作。 如果您想要讓某位使用者成為網站參與者，但僅限於某個資源群組，這會很實用。 
+
 > [!NOTE]
-> Azure 角色定義不斷地演變。 本文盡可能保持最新內容，但您永遠可以在 Azure PowerShell 中找到最新的角色定義。 適用時，請使用 Cmdlet `(get-azurermroledefinition "<role name>").actions` 或 `(get-azurermroledefinition "<role name>").notactions`。
->
->
+> Azure 角色定義不斷地演變。 本文盡可能保持最新內容，但您永遠可以在 Azure PowerShell 中找到最新的角色定義。 使用 [Get-AzureRmRoleDefinition](/powershell/module/azurerm.resources/get-azurermroledefinition) Cmdlet 來列出目前的所有角色。 您可以視情況使用 `(get-azurermroledefinition "<role name>").actions` 或 `(get-azurermroledefinition "<role name>").notactions` 來深入了解特定角色。 使用 [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) 來列出特定 Azure 資源提供者的作業。 
+
 
 | 角色名稱 | 說明 |
 | --- | --- |
-| [API 管理服務參與者](#api-management-service-contributor) |可以管理 API 管理服務 |
+| [API 管理服務參與者](#api-management-service-contributor) |可以管理 API 管理服務和 API |
+| [API 管理服務操作員角色](#api-management-service-operator-role) | 可以管理 API 管理服務，但不能管理 API 本身 |
+| [API 管理服務讀取者角色](#api-management-service-reader-role) | API 管理服務和 API 的唯讀權限 |
 | [Application Insights 元件參與者](#application-insights-component-contributor) |可以管理 Application Insights 元件 |
 | [自動化運算子](#automation-operator) |能夠啟動、停止、暫停和繼續工作 |
 | [備份參與者](#backup-contributor) | 可以管理復原服務保存庫中的備份 |
@@ -80,6 +88,40 @@ Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派
 | **動作** |  |
 | --- | --- |
 | Microsoft.ApiManagement/Service/* |建立和管理 API 管理服務 |
+| Microsoft.Authorization/*/read |讀取授權 |
+| Microsoft.Insights/alertRules/* |建立及管理警示規則 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
+| Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
+| Microsoft.Resources/subscriptions/resourceGroups/read |讀取角色和角色指派 |
+| Microsoft.Support/* |建立和管理支援票證 |
+
+### <a name="api-management-service-operator-role"></a>API 管理服務操作員角色
+可以管理 API 管理服務
+
+| **動作** |  |
+| --- | --- |
+| Microsoft.ApiManagement/Service/*/read | 讀取 API 管理服務執行個體 |
+| Microsoft.ApiManagement/Service/backup/action | 將 API 管理服務備份到使用者所提供之儲存體帳戶中的指定容器 |
+| Microsoft.ApiManagement/Service/delete | 刪除 API 管理服務執行個體 |
+| Microsoft.ApiManagement/Service/managedeployments/action | 變更 SKU/單位；新增或移除 API 管理服務的區域部署 |
+| Microsoft.ApiManagement/Service/read | 讀取 API 管理服務執行個體的中繼資料 |
+| Microsoft.ApiManagement/Service/restore/action | 從使用者所提供之儲存體帳戶中的指定容器來還原 API 管理服務 |
+| Microsoft.ApiManagement/Service/updatehostname/action | 設定、更新或移除 API 管理服務的自訂網域名稱 |
+| Microsoft.ApiManagement/Service/write | 建立 API 管理服務的新執行個體 |
+| Microsoft.Authorization/*/read |讀取授權 |
+| Microsoft.Insights/alertRules/* |建立及管理警示規則 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
+| Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
+| Microsoft.Resources/subscriptions/resourceGroups/read |讀取角色和角色指派 |
+| Microsoft.Support/* |建立和管理支援票證 |
+
+### <a name="api-management-service-reader-role"></a>API 管理服務讀取者角色
+可以管理 API 管理服務
+
+| **動作** |  |
+| --- | --- |
+| Microsoft.ApiManagement/Service/*/read | 讀取 API 管理服務執行個體 |
+| Microsoft.ApiManagement/Service/read | 讀取 API 管理服務執行個體的中繼資料 |
 | Microsoft.Authorization/*/read |讀取授權 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
 | Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |

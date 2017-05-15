@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/06/2017
+ms.date: 05/02/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: f09aa6cffbbaa2a3df7f84edee2d3e03aa23a719
-ms.lasthandoff: 03/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 483e77f598beaeb924197e3eb301a26da33a3f1f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -70,6 +71,25 @@ Azure Active Directory Identity Protection 不只是監視和報告工具而已�
 * 此原則會藉由封鎖登入或要求 Multi-Factor Authentication 挑戰來緩和有風險的登入。
 * 此原則會封鎖或保護有風險的使用者帳戶
 * 此原則會要求使用者註冊以便進行 Multi-Factor Authentication
+
+
+
+## <a name="identity-protection-roles"></a>Identity Protection 角色
+
+若要讓 Identity Protection 實作方面的管理活動達到負載平衡，您可以指派數個角色。 Azure AD Identity Protection 支援 3 種目錄角色：
+
+| 角色                         | 可以執行                          | 無法執行
+| :--                          | ---                                |  ---   |
+| 全域管理員         | 完整存取 Identity Protection、將 Identity Protection 上架| |
+| 安全性系統管理員       | 完整存取 Identity Protection | 將 Identity Protection 上架、重設使用者密碼 |
+| 安全性讀取者              | 唯讀存取 Identity Protection | 將 Identity Protection 上架、修復使用者、設定原則、重設密碼 |
+
+
+
+
+如需詳細資訊，請參閱[在 Azure Active Directory 中指派系統管理員角色](active-directory-assign-admin-roles-azure-portal.md)
+
+
 
 ## <a name="detection"></a>偵測
 

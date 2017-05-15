@@ -17,10 +17,11 @@ ms.topic: article
 ms.date: 02/22/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-translationtype: Human Translation
-ms.sourcegitcommit: bb700c7de96712666bc4be1f8e430a2e94761f69
-ms.openlocfilehash: 3f053d4c94d48630252f7c80fa8077c8ae5feb2d
-ms.lasthandoff: 01/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: 1901613b3e0db19f86247ee78828eccd58fb026b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -36,6 +37,7 @@ ms.lasthandoff: 01/24/2017
 如需 HDInsight 叢集支援的 Sqoop 版本，請參閱 [HDInsight 所提供叢集版本的新功能][hdinsight-versions]。
 
 ## <a name="understand-the-scenario"></a>了解案例
+
 HDInsight 叢集附有某些範例資料。 您將用到以下兩個範例：
 
 * 位於 */example/data/sample.log*的 log4j 記錄檔。 下列記錄擷取自此檔案：
@@ -60,7 +62,7 @@ HDInsight 叢集附有某些範例資料。 您將用到以下兩個範例：
   | sessionid |bigint |
   | sessionpagevieworder |bigint |
 
-您必須先將 sample.log 和 hivesampletable 匯出至 Azure SQL Database 或 SQL Server，再使用下列路徑，將包含行動裝置資料的資料表匯回 HDInsight：
+您必須先將 sample.log 和 hivesampletable 匯出至 Azure SQL Database 或 SQL Server，再使用下列路徑，將包含行動裝置資料的資料表匯入回到 HDInsight：
 
     /tutorials/usesqoop/importeddata
 
@@ -82,7 +84,7 @@ HDInsight 叢集附有某些範例資料。 您將用到以下兩個範例：
     - **訂用帳戶**：輸入您的 Azure 訂用帳戶。
     - **資源群組**：建立新的 Azure 資源群組，或選取現有的資源群組。  資源群組是為了管理之用。  它是物件的容器。
     - **位置**：選取區域。
-    - **ClusterName**：輸入您將建立的 Hadoop 叢集的名稱。
+    - **叢集名稱**：請輸入 Hadoop 叢集的名稱。
     - 叢集登入名稱和密碼：預設登入名稱是 admin。
     - **SSH 使用者名稱和密碼**。
     - **SQL Database 伺服器登入名稱和密碼**。
@@ -105,7 +107,7 @@ HDInsight 叢集附有某些範例資料。 您將用到以下兩個範例：
 
 5. 按一下 [法律條款]，然後按一下 [建立]。
 
-6. 按一下 [建立]。 您將會看到新的圖格，標題為「提交範本部署的部署」。 大約需要 20 分鐘的時間來建立叢集和 SQL Database。
+6. 按一下 [建立]。 您會看到新的圖格，標題為「提交範本部署的部署」。 大約需要 20 分鐘的時間來建立叢集和 SQL Database。
 
 如果您選擇使用現有的 Azure SQL Database 或 Microsoft SQL Server
 
@@ -131,7 +133,7 @@ HDInsight 叢集附有某些範例資料。 您將用到以下兩個範例：
       > 
       > 
     * 在 Azure 虛擬機器中使用 SQL Server 時，只要主控 SQL Server 的虛擬機器與 HDInsight 在同一個虛擬網路中，即可使用任何虛擬網路組態。
-  * 若要在虛擬網路上建立 HDInsight 叢集，請參閱 [使用自訂選項在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md)
+  * 若要在虛擬網路上建立 HDInsight 叢集，請參閱 [使用自訂選項在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)
     
     > [!NOTE]
     > SQL Server 也必須允許驗證。 您必須使用 SQL Server 登入來完成本文中的步驟。
@@ -149,7 +151,7 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。 請使用下表決定�
 
 ## <a name="limitations"></a>限制
 * 大量匯出 - 使用 Linux 型 HDInsight，用來將資料匯出至 Microsoft SQL Server 或 Azure SQL Database 的 Sqoop 連接器目前不支援大量插入。
-* 批次處理 - 使用 Linux 型 HDInsight，執行插入時若使用 `-batch` 參數，Sqoop 將會執行多個插入，而不是批次處理插入作業。
+* 批次處理 - 使用以 Linux 為基礎的 HDInsight，執行插入時若使用 `-batch` 參數，Sqoop 將會執行多個插入，而不是將插入作業批次處理。
 
 ## <a name="next-steps"></a>後續步驟
 現在，您已了解如何使用 Sqoop。 若要深入了解，請參閱：
@@ -213,7 +215,7 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。 請使用下表決定�
    > 除了連接字串資訊以外，本節中的步驟應該可運用在 Azure SQL Database 或 SQL Server 上。 這些步驟已使用下列組態進行測試：
    > 
    > * **Azure 虛擬網路點對站組態**：在私人資料中心裡將 HDInsight 叢集連接到 SQL Server 的虛擬網路。 如需詳細資訊，請參閱 [使用管理入口網站設定點對站 VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md) 。
-   > * **Azure HDInsight 3.1**：如需有關在虛擬網路上建立叢集的資訊，請參閱 [使用自訂選項在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md) 。
+   > * **Azure HDInsight 3.1**：如需有關在虛擬網路上建立叢集的資訊，請參閱 [使用自訂選項在 HDInsight 中建立 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md) 。
    > * **SQL Server 2014**：已設定成允許驗證，以及執行 VPN 用戶端組態套件以安全地連接到虛擬網路。
    > 
    > 
@@ -618,7 +620,7 @@ HDInsight 可以使用各種方法執行 Sqoop 工作。 請使用下表決定�
 [azure-management-portal]: https://portal.azure.com/
 
 [hdinsight-versions]:  hdinsight-component-versioning.md
-[hdinsight-provision]: hdinsight-provision-clusters.md
+[hdinsight-provision]: hdinsight-hadoop-provision-linux-clusters.md
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md
 [hdinsight-storage]: ../hdinsight-hadoop-use-blob-storage.md
 [hdinsight-analyze-flight-data]: hdinsight-analyze-flight-delay-data.md

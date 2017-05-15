@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/31/2017
+ms.date: 05/02/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: 1915044f252984f6d68498837e13c817242542cf
-ms.openlocfilehash: d88c6e8d4c0c5aecbdbcf6262da8d919ad3b325d
-ms.lasthandoff: 01/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: ddf69b7256ae9665363ee0f491a6475c69d6d555
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -132,7 +133,7 @@ Azure IoT 中樞會自動顯示使用者帳戶所連結的 Azure 訂用帳戶清
 
 ![][14]
 
-您可以新增路由到 IoT 中樞，方法是按一下 [路由]*刀鋒視窗頂端的 [新增]，輸入必要資訊然後按一下 [確定]**。您的路由接著會列在主要 [路由]** 刀鋒視窗中。您可以在路由清單中按一下路由來編輯它。若要啟用路由，按一下清單中的路由並將 [已啟用]** 切換為 [關閉]**。按一下刀鋒視窗底部的 [確定]** 來儲存變更。
+您可以將路由新增至 IoT 中樞，方法是按一下 [路由]* 刀鋒視窗頂端的 [新增]、輸入必要資訊，然後按一下 [確定]。 接著您的路由會列在主要 [路由] 刀鋒視窗中。 您可以在路由清單中按一下路由來編輯它。 若要啟用路由，按一下路由清單中的路由，並將 [已啟用] 切換為 [關閉]。 按一下刀鋒視窗底部的 [確定] 以儲存變更。
 
 ![][15]
 

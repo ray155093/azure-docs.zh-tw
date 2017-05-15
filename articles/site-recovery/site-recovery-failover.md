@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 2/15/2017
 ms.author: pratshar
-translationtype: Human Translation
-ms.sourcegitcommit: b818d5083f1436035185b1b0d7990b5a36716da4
-ms.openlocfilehash: 1fca09ad0c9e1bc72109910cd0dcaf186d6a7c3d
-ms.lasthandoff: 02/23/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: 960fb84c309b18c7f9741bb60b52cfcc3753a07d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -83,6 +84,26 @@ ms.lasthandoff: 02/23/2017
 > **不要取消進行中的容錯移轉**︰容錯移轉開始之前，虛擬機器的複寫會停止。 如果您**取消**進行中的作業，容錯移轉會停止，但虛擬機器不會開始複寫。 無法重新開始複寫。 
 >
 > 
+
+## <a name="time-taken-for-failover-to-azure"></a>容錯移轉至 Azure 所花費的時間
+
+在某些情況下，虛擬機器的容錯移轉會需要其他中繼步驟，通常會費時大約 8 到 10 分鐘才能完成。 這些情況如下所示︰
+
+* VMware 虛擬機器使用的行動服務版本早於 9.8 版
+* 實體伺服器 
+* VMware Linux 虛擬機器
+* 如同實體伺服器般受到保護的 Hyper-V 虛擬機器
+* 沒有以下驅動程式作為開機驅動程式的 VMware 虛擬機器 
+    * storvsc 
+    * vmbus 
+    * storflt 
+    * intelide 
+    * atapi
+* 沒有啟用 DHCP 服務的 VMware 虛擬機器，無論其是否正在使用 DHCP 或靜態 IP 位址
+
+在其他所有情況下則不需要此中繼步驟，且容錯移轉所花費的時間非常少。 
+
+
 
 
 

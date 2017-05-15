@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/23/2017
 ms.author: jdial
-translationtype: Human Translation
-ms.sourcegitcommit: e22a1ccb958942cfa3c67194430af6bc74fdba64
-ms.openlocfilehash: 1072148f11052a643bdc70239029a651d9d71dda
-ms.lasthandoff: 04/05/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
+ms.openlocfilehash: 22c0ee5090d67430fc63ad3f3c09076de0be067c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -61,9 +62,9 @@ Azure 虛擬網路服務可讓 Azure 資源與虛擬網路 (VNet) 安全地彼�
 ## <a name="connect-on-premises"></a>連線到內部部署網路
 
 您可以使用下列選項的任意組合，將內部部署網路連線至 VNet︰
-- **點對站虛擬私人網路 (VPN)：**建立於一部連線到您網路的電腦與 VNet 之間。 如果您剛開始使用 Azure，此連線類型就很適合您，也適用於開發人員，因為它幾乎不需要變更您現有的網路。 連線會使用 SSTP 通訊協定，透過網際網路提供電腦與 VNet 之間的加密通訊。 點對站 VPN 的延遲無法預期並已加密，因為流量會周遊網際網路。
+- **點對站虛擬私人網路 (VPN)：**建立於一部連線到您網路的電腦與 VNet 之間。 如果您剛開始使用 Azure，此連線類型就很適合您，也適用於開發人員，因為它幾乎不需要變更您現有的網路。 連線會使用 SSTP 通訊協定，透過網際網路提供電腦與 VNet 之間的加密通訊。 點對站 VPN 的延遲無法預期，因為流量會周遊網際網路。
 - **站對站 VPN：**建立於 VPN 裝置與 Azure VPN 閘道之間。 此連線類型可讓您授權的任何內部部署資源存取 VNet。 此連線是 IPSec/IKE VPN，可透過網際網路提供內部部署裝置與 Azure VPN 閘道之間的加密通訊。 站對站連線的延遲無法預期，因為流量會周遊網際網路。
-- **Azure ExpressRoute：**透過 ExpressRoute 合作夥伴，建立於您的網路與 Azure 之間。 此連線是私人連線。 流量不會周遊網際網路。 ExpressRoute 連線的延遲無法預期，因為流量不會周遊網際網路且未加密。
+- **Azure ExpressRoute：**透過 ExpressRoute 合作夥伴，建立於您的網路與 Azure 之間。 此連線是私人連線。 流量不會周遊網際網路。 ExpressRoute 連線的延遲無法預期，因為流量不會周遊網際網路。
 
 若要深入了解所有先前的連線選項，請閱讀[連線拓撲圖](../vpn-gateway/vpn-gateway-about-vpngateways.md?toc=%2fazure%2fvirtual-network%2ftoc.json#a-namediagramsaconnection-topology-diagrams)一文。
 
@@ -81,6 +82,10 @@ Azure 虛擬網路服務可讓 Azure 資源與虛擬網路 (VNet) 安全地彼�
 ## <a name="pricing"></a>價格
 
 虛擬網路、子網路、路由表或網路安全性群組均免費。 輸出網際網路頻寬使用量、公用 IP 位址、虛擬網路對等互連、VPN 閘道和 ExpressRoute 都有各自的價格結構。 如需詳細資訊，請檢視[虛擬網路](https://azure.microsoft.com/pricing/details/virtual-network)、[VPN 閘道](https://azure.microsoft.com/pricing/details/vpn-gateway)和 [ExpressRoute](https://azure.microsoft.com/pricing/details/expressroute) 價格頁面。
+
+## <a name="faq"></a>常見問題集
+
+若要檢閱虛擬網路相關常見問題的解答，請參閱[虛擬網路常見問題集](virtual-networks-faq.md)文章。
 
 
 ## <a name="next-steps"></a>接續步驟

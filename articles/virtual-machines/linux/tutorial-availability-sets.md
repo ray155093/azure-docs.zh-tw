@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: cynthn
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 65a7872e0880cc74a00ca1c05baae2b34b407a61
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: d082b37a2e070136178259c54ada8dc141f81e13
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -37,7 +38,7 @@ ms.lasthandoff: 04/26/2017
 
 ## <a name="create-an-availability-set"></a>建立可用性設定組
 
-您可以使用 [az vm availability-set create](/cli/azure/availability-set#create) 來建立可用性設定組。 在此範例中，我們將針對 **myResourceGroupAvailability** 資源群組中名為 **myAvailabilitySet** 的可用性設定組，同時將更新數目和容錯網域數目設為 **2**。
+您可以使用 [az vm availability-set create](/cli/azure/availability-set#create) 來建立可用性設定組。 在此範例中，我們將針對 *myResourceGroupAvailability* 資源群組中名為 *myAvailabilitySet* 的可用性設定組，同時將更新數目和容錯網域數目設為 *2*。
 
 ```azurecli
 az vm availability-set create \
@@ -73,7 +74,7 @@ done
 
 ## <a name="check-for-available-vm-sizes"></a>檢查可用的 VM 大小 
 
-您稍後可以將更多 VM 加入至可用性設定組，但是需要知道硬體上有哪些可用的 VM 大小。 針對可用性設定組，使用 `az vm availability-set list-sizes` 來列出硬體叢集上所有可用的大小。
+您稍後可以將更多 VM 加入至可用性設定組，但是需要知道硬體上有哪些可用的 VM 大小。 針對可用性設定組，使用 [az vm availability-set list-sizes](/cli/azure/availability-set#list-sizes) 來列出硬體叢集上所有可用的大小。
 
 ```azurecli
 az vm availability-set list-sizes \

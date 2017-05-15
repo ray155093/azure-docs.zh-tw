@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 2/15/2017
 ms.author: pratshar
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: 2aed07ff82c33111ef1abc9c9cc6b0ba2a9d3718
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: 0df4b3535449c88f11fa7a58811f68c82549558f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -71,6 +72,24 @@ ms.lasthandoff: 03/25/2017
 1. 先決條件檢查︰這個步驟可確保符合容錯移轉所需的所有條件
 1. 容錯移轉︰這個步驟會處理並備妥資料，以用來建立 Azure 虛擬機器。 如果您已選擇 [最新] 復原點，此步驟會從已傳送至服務的資料建立復原點。
 1. 開始︰這個步驟會使用上一個步驟中所處理的資料建立 Azure 虛擬機器。
+
+## <a name="time-taken-for-failover"></a>容錯移轉所花費的時間
+
+在某些情況下，虛擬機器的容錯移轉會需要其他中繼步驟，通常會費時大約 8 到 10 分鐘才能完成。 這些情況如下所示︰
+
+* VMware 虛擬機器使用的行動服務版本早於 9.8 版
+* 實體伺服器 
+* VMware Linux 虛擬機器
+* 如同實體伺服器般受到保護的 Hyper-V 虛擬機器
+* 沒有以下驅動程式作為開機驅動程式的 VMware 虛擬機器 
+    * storvsc 
+    * vmbus 
+    * storflt 
+    * intelide 
+    * atapi
+* 沒有啟用 DHCP 服務的 VMware 虛擬機器，無論其是否正在使用 DHCP 或靜態 IP 位址
+
+在其他所有情況下則不需要此中繼步驟，且容錯移轉所花費的時間非常少。 
 
 
 ## <a name="creating-a-network-for-test-failover"></a>建立測試容錯移轉的網路

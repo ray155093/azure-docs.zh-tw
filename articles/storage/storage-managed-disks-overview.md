@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/23/2017
 ms.author: robinsh
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 53bd62688aa0d1a06d2d012c8da664d2de4b0b45
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: e36deaeba611896e793f40cf0e05b8771841816f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -146,6 +147,8 @@ Azure 磁碟加密可讓您加密由 IaaS 虛擬機器所使用的作業系統�
 * [使用 PowerShell 將受控資料磁碟附加至 Windows VM](../virtual-machines/windows/attach-disk-ps.md)
 
 * [在 Linux VM 中新增受控磁碟](../virtual-machines/linux/add-disk.md)
+
+* [受控磁碟的 PowerShell 範例指令碼](https://github.com/Azure-Samples/managed-disks-powershell-getting-started)
 
 ### <a name="compare-managed-disks-storage-options"></a>比較受控磁碟儲存體選項 
 

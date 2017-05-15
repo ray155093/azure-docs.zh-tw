@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/28/2017
 ms.author: ryancraw
-translationtype: Human Translation
-ms.sourcegitcommit: 9afd26024d2aa0d3d732ddc6f54e591715afca69
-ms.openlocfilehash: 3753846e955308a7607d92ed25648d75b9cc3a35
-ms.lasthandoff: 01/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
+ms.openlocfilehash: 3a915f782eddaa91bcfcc3f2b2c32eee752c319c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/01/2017
 
 
 ---
@@ -51,7 +52,7 @@ Azure 串流分析可讓您快速開發及部署低成本的解決方案，即�
    * **編碼**：UTF8
    * **格式**：列分隔
 4. 按一下 [建立]  按鈕以新增這個來源，並確認串流分析可以成功連接到儲存體帳戶。
-5. 在 [查詢]  索引標籤上，以下列項目取代目前的查詢。 使用您在步驟 3 中所建立的輸出名稱取代 [您的服務匯流排名稱]  。 
+5. 在 [查詢]  索引標籤上，以下列項目取代目前的查詢。 使用您在步驟 3 中所建立的輸出名稱取代 *[您的服務匯流排名稱]*。 
    
     ```    
    
@@ -188,7 +189,7 @@ Azure 串流分析可讓您快速開發及部署低成本的解決方案，即�
 
 如果您不熟悉 Microsoft Azure，我們邀請您透過註冊 [免費 Azure 試用帳戶](https://azure.microsoft.com/pricing/free-trial/)來親自嘗試。 如果您不熟悉串流分析，我們邀請您 [建立您的第一個串流分析工作](stream-analytics-create-a-job.md)。
 
-如果您需要任何協助或有任何問題，請在 [MSDN](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics) 或 [Stackoverflow](http://stackoverflow.com/questions/tagged/azure-stream-analytics) 論壇中提出。 
+如果您需要任何協助或有任何問題，請在 [MSDN](https://social.msdn.microsoft.com/Forums/home?forum=AzureStreamAnalytics) 或 [Stackoverflow](http://stackoverflow.com/questions/tagged/azure-stream-analytics) 論壇中提出。 
 
 您也可以查看下列資源︰
 

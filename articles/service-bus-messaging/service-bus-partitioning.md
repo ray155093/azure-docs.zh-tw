@@ -12,19 +12,24 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/28/2017
+ms.date: 04/28/2017
 ms.author: sethm;hillaryc
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 946f3ac069db436828427e575be5a14efac9dda9
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
+ms.openlocfilehash: 3466bbd23cb20df826ad919b8c76289d89375f04
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
 # <a name="partitioned-queues-and-topics"></a>分割的佇列和主題
-Azure 服務匯流排會採用多個訊息代理人來處理訊息，並採用多個訊息存放區來儲存訊息。 傳統的佇列或主題由單一訊息代理程式處理並儲存在一個訊息存放區中。 服務匯流排「分割區」可讓佇列或主題分割到多個訊息代理程式及訊息存放區。 這表示分割佇列或主題的整體輸送量不會再受到單一訊息代理程式或訊息存放區的效能所限制。 此外，即使訊息存放區暫時中斷也不會讓分割的佇列或主題無法使用。 分割的佇列和主題可以包含所有進階的服務匯流排功能，例如支援交易和工作階段。
+Azure 服務匯流排會採用多個訊息代理人來處理訊息，並採用多個訊息存放區來儲存訊息。 傳統的佇列或主題由單一訊息代理程式處理並儲存在一個訊息存放區中。 服務匯流排「分割區」可讓佇列和主題或「傳訊實體」分割到多個訊息代理程式及訊息存放區。 這表示分割實體的整體輸送量不會再受到單一訊息代理程式或訊息存放區的效能所限制。 此外，即使訊息存放區暫時中斷也不會讓分割的佇列或主題無法使用。 分割的佇列和主題可以包含所有進階的服務匯流排功能，例如支援交易和工作階段。
 
 如需有關服務匯流排內部的詳細資訊，請參閱[服務匯流排架構][Service Bus architecture]一文。
+
+在標準和進階傳訊中，依預設，在所有佇列和主題上建立實體時會啟用分割。 您可以建立標準傳訊層實體而不要分割，但進階命名空間中的佇列和主題永遠會分割。無法停用此選項。 
+
+在標準或進階層中的現有佇列或主題上，無法變更分割選項，您只能在建立實體時設定此選項。
 
 ## <a name="how-it-works"></a>運作方式
 每個分割的佇列或主題都包含多個片段。 每個片段儲存在不同的訊息存放區中，並由不同的訊息代理人處理。 當訊息傳送至分割的佇列或主題時，服務匯流排會指派訊息到其中一個片段。 選取作業由服務匯流排或使用傳送者可指定的分割索引鍵隨機進行。
@@ -36,9 +41,19 @@ Azure 服務匯流排會採用多個訊息代理人來處理訊息，並採用�
 ## <a name="enable-partitioning"></a>啟用分割
 若要搭配 Azure 服務匯流排使用分割的佇列和主題，請使用 Azure SDK 2.2 版或更新版本，或在您的 HTTP 要求中指定 `api-version=2013-10`。
 
-您可以建立 1、2、3、4 或 5 GB 大小的服務匯流排佇列及主題 (預設值為 1 GB)。 啟用分割時，服務匯流排會為您指定的每 GB 建立 16 個資料分割。 因此，如果您建立 5 GB 大小的佇列，每 GB 有 16 個資料分割，則佇列大小上限會變成 (5 \* 16) = 80 GB。 您可以在 [Azure 入口網站][Azure portal]上檢視分割的佇列或主題項目，藉此查看其大小上限。
+### <a name="standard"></a>標準
 
-有多種方式可以建立分割的佇列或主題。 當您從應用程式建立佇列或主題時，您可以分別將 [QueueDescription.EnablePartitioning][QueueDescription.EnablePartitioning] 或 [TopicDescription.EnablePartitioning][TopicDescription.EnablePartitioning] 屬性設為 **true** 來啟用佇列或主題的分割。 這些屬性必須在建立佇列或主題時設定。 您不可以在現有的佇列或主題上變更這些屬性。 例如：
+在標準傳訊層中，您可以建立 1、2、3、4 或 5 GB 大小的服務匯流排佇列和主題 (預設值為 1 GB)。 啟用分割時，服務匯流排會為您指定的每 GB 建立 16 個複本 (16 個資料分割)。 因此，如果您建立 5 GB 大小的佇列，每 GB 有 16 個資料分割，則佇列大小上限會變成 (5 \* 16) = 80 GB。 如果要查看分割佇列或主題的大小上限，您可以在 [Azure 入口網站][Azure portal]上，在該實體的 [概觀] 刀鋒視窗中檢視其項目。
+
+### <a name="premium"></a>進階
+
+在進階層命名空間中，您可以建立 1、2、3、4、5、10、20、40 或 80 GB 大小的服務匯流排佇列和主題 (預設值為 1 GB)。 由於依預設會啟用分割，服務匯流排會為每個實體建立兩個資料分割。 如果要查看分割佇列或主題的大小上限，您可以在 [Azure 入口網站][Azure portal]上，在該實體的 [概觀] 刀鋒視窗中檢視其項目。
+
+如需有關進階傳訊層中之分割的詳細資訊，請參閱[服務匯流排進階和標準傳訊層級](service-bus-premium-messaging.md)。 
+
+### <a name="create-a-partitioned-entity"></a>建立分割實體
+
+有多種方式可以建立分割的佇列或主題。 當您從應用程式建立佇列或主題時，您可以分別將 [QueueDescription.EnablePartitioning][QueueDescription.EnablePartitioning] 或 [TopicDescription.EnablePartitioning][TopicDescription.EnablePartitioning] 屬性設為 **true** 來啟用佇列或主題的分割。 這些屬性必須在建立佇列或主題時設定。 如先前所述，在現有的佇列或主題上無法變更這些屬性。 例如：
 
 ```csharp
 // Create partitioned topic
@@ -48,7 +63,7 @@ td.EnablePartitioning = true;
 ns.CreateTopic(td);
 ```
 
-或者，您可以在 Visual Studio 或 [Azure 入口網站][Azure portal]中建立分割的佇列或主題。 當您在入口網站建立佇列或主題時，請在佇列或主題 [設定] 視窗的 [一般設定] 刀鋒視窗中，將 [啟用分割] 選項設定為 **true**。 在 Visual Studio 中，按一下 [新增佇列] 或 [新增主題] 對話方塊中的 [啟用分割] 核取方塊。
+或者，您可以在 [Azure 入口網站][Azure portal]或 Visual Studio 中建立分割的佇列或主題。 當您在入口網站建立佇列或主題時，依預設會勾選佇列或主題 [建立] 刀鋒視窗中的 [啟用分割] 選項。 您只能在標準層實體中停用此選項，在進階層中，永遠會啟用分割。 在 Visual Studio 中，按一下 [新增佇列] 或 [新增主題] 對話方塊中的 [啟用分割] 核取方塊。
 
 ## <a name="use-of-partition-keys"></a>分割索引鍵的用途
 當訊息加入佇列至分割的佇列或主題時，服務匯流排會檢查分割區索引鍵是否存在。 如果找到，它會根據該索引鍵選取片段。 如果找不到分割索引鍵，它會根據內部演算法選取片段。

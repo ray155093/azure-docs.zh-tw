@@ -13,10 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/14/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: bf5588885de9c280eb70712dbf800efe509ee912
-ms.openlocfilehash: 96eb66f35a91e769418d179b0997cd32e02cdc97
-ms.lasthandoff: 02/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 21372b8554901594f6770ef1ad18467801ef5fea
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -126,29 +127,8 @@ ms.lasthandoff: 02/14/2017
    
 ## <a name="configuring-user-provisioning"></a>設定使用者佈建
 
-若要讓 Azure AD 使用者可以登入 Gigya，則必須將他們佈建到 Gigya。  
-Gigya 需以手動的方式佈建。
+Azure AD 使用者會在第一次登入 Gigya 時自動佈建。
 
-### <a name="to-provision-a-user-accounts-perform-the-following-steps"></a>若要佈建使用者帳戶，請執行下列步驟：
-1. 以系統管理員身分登入您的 **Gigya** 公司網站。
-2. 移至 [系統管理員]\>[管理使用者]，然後按一下 [邀請使用者]。
-   
-    ![管理使用者](./media/active-directory-saas-gigya-tutorial/IC789535.png "管理使用者")
-
-3. 在 [邀請使用者] 對話方塊中，執行下列步驟：
-   
-    ![邀請使用者](./media/active-directory-saas-gigya-tutorial/IC789536.png "邀請使用者")
-   
-    a. 在 [電子郵件]  文字方塊中，輸入您要佈建之有效 Azure Active Directory 帳戶的電子郵件別名。
-    
-    b. 按一下 [邀請使用者] 。
-      
-    > [!NOTE]
-    > Azure Active Directory 帳戶的持有者會收到一封包含連結的電子郵件，以在啟用帳戶前進行確認。
-    > 
-    > 
-
- 
 
 ## <a name="assigning-users"></a>指派使用者
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。

@@ -12,16 +12,23 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
-ms.date: 03/06/2017
+ms.date: 05/03/2017
 ms.author: jeffstok
-translationtype: Human Translation
-ms.sourcegitcommit: 2fe28e7b52af579038ec145c028a6d2796d6cc6e
-ms.openlocfilehash: f47b719f7b1a78264e054ee15edacc32ca35aaf7
-ms.lasthandoff: 02/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 05c5476cbfd616ce47d6d93627c6e7dd4d8a0d6f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
 # <a name="stream-analytics-release-notes"></a>串流分析版本資訊
+
+## <a name="notes-for-05032017-update-of-stream-analytics"></a>串流分析 05/03/2017 版本的注意事項
+此更新是我們的疑難排解文件版本。
+
+[疑難排解指南](stream-analytics-troubleshooting-guide.md)和其他文件已經發行。 請檢閱，並歡迎提供意見反應。
+
 ## <a name="notes-for-02012017-release-of-stream-analytics"></a>串流分析 2017/02/01 版本的注意事項
 此版本包含下列更新。
 
@@ -136,7 +143,7 @@ ms.lasthandoff: 02/01/2017
 | PowerBI 資料集只能包含一個資料表 |PowerBI 不允許指定的資料集中存在多個資料表。 |
 
 ## <a name="get-help"></a>取得說明
-如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
+如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)

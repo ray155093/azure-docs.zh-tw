@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-translationtype: Human Translation
-ms.sourcegitcommit: 456c541be7aadcce494bbd54e97deb6f30d5141b
-ms.openlocfilehash: dc9af7e4ef9599886d1be6676f88f71f80c20474
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: b9df2c3e7f49a47bfd714f28c5ab53590ca9a719
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -48,11 +50,11 @@ ms.openlocfilehash: dc9af7e4ef9599886d1be6676f88f71f80c20474
 ### <a name="enable-vnet-connection-using-powershell-cmdlets"></a>使用 PowerShell Cmdlet 啟用 VNET 連線
 您也可以使用 PowerShell 來mdlet 來啟用 VNET 連線。
 
-* **在 VNET 內建立 API 管理服務**：使用 [New-AzureRmApiManagement](https://docs.microsoft.com/en-us/powershell/resourcemanager/azurerm.apimanagement/v3.1.0/new-azurermapimanagement) Cmdlet 在 VNET 內建立 Azure API 管理服務，並將其設定為使用內部 VNET 類型。
+* **在 VNET 內建立 API 管理服務**：使用 [New-AzureRmApiManagement](/powershell/module/azurerm.apimanagement/new-azurermapimanagement) Cmdlet 在 VNET 內建立 Azure API 管理服務，並將其設定為使用內部 VNET 類型。
 
-* **在 VNET 內部署現有 API 管理服務**：使用 [Update-AzureRmApiManagementDeployment](https://docs.microsoft.com/en-us/powershell/resourcemanager/azurerm.apimanagement/v3.1.0/update-azurermapimanagementdeployment) Cmdlet 移動虛擬網路內的現有 Azure API 管理服務，並將其設定為使用內部 VNET 類型。
+* **在 VNET 內部署現有 API 管理服務**：使用 [Update-AzureRmApiManagementDeployment](/powershell/module/azurerm.apimanagement/update-azurermapimanagementdeployment) Cmdlet 移動虛擬網路內的現有 Azure API 管理服務，並將其設定為使用內部 VNET 類型。
 
-## <a name="a-nameapim-dns-configurationadns-configuration"></a><a name="apim-dns-configuration"></a> DNS 設定
+## <a name="apim-dns-configuration"></a> DNS 設定
 使用外部虛擬網路模式的 API 管理時，DNS 是由 Azure 管理。 若是內部虛擬網路模式，您必須管理您自己的 DNS。
 
 > [!NOTE]
@@ -61,23 +63,23 @@ ms.openlocfilehash: dc9af7e4ef9599886d1be6676f88f71f80c20474
 ### <a name="access-on-default-host-names"></a>預設主機名稱上的存取︰
 當您在公用 Azure 雲端 (假設名為「contoso」) 中建立 API 管理服務，依預設會設定下列服務端點。
 
->   閘道 / 代理程式 - contoso.azure-api.net
+>    閘道 / 代理程式 - contoso.azure-api.net
 
 > 發行者入口網站和開發人員入口網站 - contoso.portal.azure-api.net
 
 > 直接管理端點 - contoso.management.azure-api.net
 
->   Git - contoso.scm.azure-api.net
+>    Git - contoso.scm.azure-api.net
 
 若要存取這些 API 管理服務端點，您可在連線到「已部署 API 管理的虛擬網路」的子網路中建立虛擬機器。 假設服務的內部虛擬 IP 位址是 10.0.0.5，您可以進行主機檔案對應 (%SystemDrive%\drivers\etc\hosts)，如下所示︰
 
-> 10.0.0.5    contoso.azure-api.net
+> 10.0.0.5      contoso.azure-api.net
 
-> 10.0.0.5    contoso.portal.azure-api.net
+> 10.0.0.5      contoso.portal.azure-api.net
 
-> 10.0.0.5    contoso.management.azure-api.net
+> 10.0.0.5      contoso.management.azure-api.net
 
-> 10.0.0.5    contoso.scm.azure-api.net
+> 10.0.0.5      contoso.scm.azure-api.net
 
 然後您就可以從您建立的虛擬機器存取所有服務端點。 如果在虛擬網路中使用自訂 DNS 伺服器，您也可以建立 A DNS 記錄，並從虛擬網路中的任何地方存取這些端點。 
 
@@ -99,9 +101,4 @@ ms.openlocfilehash: dc9af7e4ef9599886d1be6676f88f71f80c20474
 
 [Create API Management service]: api-management-get-started.md#create-service-instance
 [Common Network Configuration Issues]: api-management-using-with-vnet.md#network-configuration-issues
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

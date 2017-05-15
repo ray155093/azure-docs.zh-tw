@@ -14,15 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-translationtype: Human Translation
-ms.sourcegitcommit: fd3a08f227ade7589bbc7a17fa600e5a283d8054
-ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
+ms.openlocfilehash: 4c9991baf3fbcf3b8ea01f8dd573e2336db88b68
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 ---
 # <a name="api-management-access-restriction-policies"></a>API 管理存取限制原則
 本主題提供下列 API 管理原則的參考。 如需有關新增和設定原則的資訊，請參閱 [API 管理中的原則](http://go.microsoft.com/fwlink/?LinkID=398186)。  
   
-##  <a name="a-nameaccessrestrictionpoliciesa-access-restriction-policies"></a><a name="AccessRestrictionPolicies"></a>存取限制原則  
+##  <a name="AccessRestrictionPolicies"></a>存取限制原則  
   
 -   [檢查 HTTP 標頭](api-management-access-restriction-policies.md#CheckHTTPHeader) - 強制必須存在和/或強制採用 HTTP 標頭的值。  
   
@@ -38,8 +40,8 @@ ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
   
 -   [驗證 JWT](api-management-access-restriction-policies.md#ValidateJWT) - 強制擷取自指定 HTTP 標頭或指定查詢參數的 JWT 必須存在且有效。  
   
-##  <a name="a-namecheckhttpheadera-check-http-header"></a><a name="CheckHTTPHeader"></a>檢查 HTTP 標頭  
- 使用 `check-header` 原則來強制要求具有指定的 HTTP 標頭。 您可以選擇性地查看標頭是否具有特定值，或檢查允許的值範圍。 如果檢查失敗，原則就會終止要求處理，並傳回原則所指定的 HTTP 狀態碼和錯誤訊息。  
+##  <a name="CheckHTTPHeader"></a>檢查 HTTP 標頭  
+ 使用 `check-header` 原則來強制各要求均需具有指定的 HTTP 標頭。 您可以選擇性地查看標頭是否具有特定值，或檢查允許的值範圍。 如果檢查失敗，原則就會終止要求處理，並傳回原則所指定的 HTTP 狀態碼和錯誤訊息。  
   
 ### <a name="policy-statement"></a>原則陳述式  
   
@@ -81,7 +83,7 @@ ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namelimitcallratea-limit-call-rate-by-subscription"></a><a name="LimitCallRate"></a>依訂用帳戶限制呼叫頻率  
+##  <a name="LimitCallRate"></a>依訂用帳戶限制呼叫頻率  
  `rate-limit` 原則藉由將指定時間週期內的呼叫頻率限制為指定次數，以防止每個訂用帳戶的 API 使用量暴增。 觸發此原則時，呼叫者會收到 `429 Too Many Requests` 回應狀態碼。  
   
 > [!IMPORTANT]
@@ -136,7 +138,7 @@ ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
   
 -   **原則範圍︰**產品  
   
-##  <a name="a-namelimitcallratebykeya-limit-call-rate-by-key"></a><a name="LimitCallRateByKey"></a>依金鑰限制呼叫頻率  
+##  <a name="LimitCallRateByKey"></a>依金鑰限制呼叫頻率  
  `rate-limit-by-key` 原則藉由將指定時間週期內的呼叫頻率限制為指定次數，以防止每個金鑰的 API 使用量暴增。 金鑰可以具有任意字串值，而且通常會使用原則運算式來提供。 可以新增選擇性增量條件，以指定哪些要求應該計入限制。 觸發此原則時，呼叫者會收到 `429 Too Many Requests` 回應狀態碼。  
   
  如需此原則範例的詳細資訊，請參閱[以 Azure API 管理進行進階要求節流](https://azure.microsoft.com/documentation/articles/api-management-sample-flexible-throttling/)。  
@@ -194,7 +196,7 @@ ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namerestrictcalleripsa-restrict-caller-ips"></a><a name="RestrictCallerIPs"></a>限制呼叫端 IP  
+##  <a name="RestrictCallerIPs"></a>限制呼叫端 IP  
  `ip-filter` 原則可篩選 (允許/拒絕) 來自特定 IP 位址及/或位址範圍的呼叫。  
   
 ### <a name="policy-statement"></a>原則陳述式  
@@ -237,7 +239,7 @@ ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namesetusagequotaa-set-usage-quota-by-subscription"></a><a name="SetUsageQuota"></a>依訂用帳戶設定使用量配額  
+##  <a name="SetUsageQuota"></a>依訂用帳戶設定使用量配額  
  `quota` 原則會以訂用帳戶為單位，強制採用可續訂或有存留期呼叫量與 (或) 頻寬配額。  
   
 > [!IMPORTANT]
@@ -293,7 +295,7 @@ ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
   
 -   **原則範圍︰**產品  
   
-##  <a name="a-namesetusagequotabykeya-set-usage-quota-by-key"></a><a name="SetUsageQuotaByKey"></a>依金鑰設定使用量配額  
+##  <a name="SetUsageQuotaByKey"></a>依金鑰設定使用量配額  
  `quota-by-key` 原則會以金鑰為單位，強制採用可續訂或有存留期呼叫量與 (或) 頻寬配額。 金鑰可以具有任意字串值，而且通常會使用原則運算式來提供。 可以新增選擇性增量條件，以指定哪些要求應該計入配額。  
   
  如需此原則範例的詳細資訊，請參閱[以 Azure API 管理進行進階要求節流](https://azure.microsoft.com/documentation/articles/api-management-sample-flexible-throttling/)。  
@@ -354,7 +356,7 @@ ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
   
 -   **原則範圍︰**全域、產品、API、作業  
   
-##  <a name="a-namevalidatejwta-validate-jwt"></a><a name="ValidateJWT"></a>驗證 JWT  
+##  <a name="ValidateJWT"></a>驗證 JWT  
  `validate-jwt` 原則會強制擷取自指定 HTTP 標頭或指定查詢參數的 JWT 必須存在且有效。  
   
 > [!IMPORTANT]
@@ -419,7 +421,27 @@ ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
   
 ```xml  
 <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">  
-    <openid-config url="https://login.windows.net/contoso.onmicrosoft.com/.well-known/openid-configuration" />  
+    <openid-config url="https://login.microsoftonline.com/contoso.onmicrosoft.com/.well-known/openid-configuration" />  
+    <audiences>
+        <audience>25eef6e4-c905-4a07-8eb4-0d08d5df8b3f</audience>
+    </audiences>
+    <required-claims>  
+        <claim name="id" match="all">  
+            <value>insert claim here</value>  
+        </claim>  
+    </required-claims>  
+</validate-jwt>  
+```  
+
+  
+#### <a name="azure-active-directory-b2c-token-validation"></a>Azure Active Directory B2C 權杖驗證  
+  
+```xml  
+<validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">  
+    <openid-config url="https://login.microsoftonline.com/tfp/contoso.onmicrosoft.com/b2c_1_signin/v2.0/.well-known/openid-configuration" />
+    <audiences>
+        <audience>d313c4e4-de5f-4197-9470-e509a2f0b806</audience>
+    </audiences>
     <required-claims>  
         <claim name="id" match="all">  
             <value>insert claim here</value>  
@@ -495,7 +517,7 @@ ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
 |require-expiration-time|布林值。 指定權杖中是否需有逾期宣告。|否|true|
 |require-scheme|權杖結構描述的名稱，例如"Bearer"。 當已設定此屬性時，原則將會確定指定的結構描述存在於授權標頭值中。|否|N/A|
 |require-signed-tokens|布林值。 指定是否需要簽署權杖。|否|true|  
-|url|可從中取得 Open ID 設定中繼資料的 Open ID 設定端點 URL。 對於 Azure Active Directory，使用下列 URL：`https://login.windows.net/{tenant-name}/.well-known/openid-configuration` 代替您的目錄租用戶名稱，例如 `contoso.onmicrosoft.com`。|是|N/A|  
+|url|可從中取得 Open ID 設定中繼資料的 Open ID 設定端點 URL。 對於 Azure Active Directory，使用下列 URL：`https://login.microsoftonline.com/{tenant-name}/.well-known/openid-configuration` 代替您的目錄租用戶名稱，例如 `contoso.onmicrosoft.com`。|是|N/A|  
   
 ### <a name="usage"></a>使用量  
  此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
@@ -506,9 +528,4 @@ ms.openlocfilehash: 7e1f99c6c603420386432e04d0a2f0ecda95d6b7
   
 ## <a name="next-steps"></a>後續步驟
 如需有關使用原則的詳細資訊，請參閱 [API 管理中的原則](api-management-howto-policies.md)。  
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

@@ -1,6 +1,6 @@
 ---
 title: "Hadoop 堆疊追蹤錯誤訊息 |Microsoft Docs"
-description: "HDInsight 中 Hadoop 堆疊追蹤錯誤訊息的索引。 查看清單中的錯誤，以了解疑難排解資訊。"
+description: "Azure HDInsight 中 Hadoop 堆疊追蹤錯誤訊息的索引。 查看清單中的錯誤，以了解疑難排解資訊。"
 keywords: "堆疊追蹤，錯誤訊息"
 services: hdinsight
 documentationcenter: NA
@@ -14,12 +14,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: big-data
-ms.date: 02/22/2017
-ms.author: rashimg;jgao
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 35e11e1f48abd9b8ed8dbc9a00c2d752533cdd75
-ms.lasthandoff: 11/17/2016
+ms.date: 04/26/2017
+ms.author: gao
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: bc6f7904e6307477eb90bb0ca74be19a9c76eb35
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.lasthandoff: 11/17/2016
 文章會依錯誤的類型加以整理。
 
 ## <a name="out-of-memory-error"></a>記憶體不足錯誤
-* [修正 Hive 設定的記憶體不足 (OOM) 錯誤](hdinsight-hadoop-hive-out-of-memory-error-oom.md)：解決 Hive 查詢的記憶體不足錯誤 (OOM)。 此客戶案例包括跨許多大型資料表的查詢。
+* [修正 HDInsight 中 Hive 記憶體不足錯誤](hdinsight-hadoop-hive-out-of-memory-error-oom.md)：解決 Hive 查詢的記憶體不足錯誤 (OOM)。 此客戶案例包括跨許多大型資料表的查詢。
 
 ## <a name="hive-query-performance"></a>Hive 查詢效能
 * [在 HDInsight 中最佳化 Hadoop 的 Hive 查詢](hdinsight-hadoop-optimize-hive-query.md)︰本文章涵蓋一些您可以套用到 Hive 查詢，最常見的 Hive 效能最佳化方法。

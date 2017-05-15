@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 43618268aa0b234d271dcee7f95dfad2f2a1bb2b
-ms.lasthandoff: 03/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 21cdfbbc457aad1cd3b1a5b20745eee4286a78bb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -78,9 +79,9 @@ Azure API 管理可以部署在虛擬網路 (VNET) 內，因此它可以存取�
 ## <a name="enable-vnet-powershell"> </a>使用 PowerShell cmdlet 來啟用 VNET 連線
 您也可以使用 PowerShell cmdlet 啟用 VNET 連線能力
 
-* **在 VNET 內建立 API 管理服務**：使用 cmdlet [New-AzureRmApiManagement](https://docs.microsoft.com/en-us/powershell/resourcemanager/azurerm.apimanagement/v3.1.0/new-azurermapimanagement) 在 VNET 內建立 Azure API 管理服務。
+* **在 VNET 內建立 API 管理服務**：使用 cmdlet [New-AzureRmApiManagement](/powershell/module/azurerm.apimanagement/new-azurermapimanagement) 在 VNET 內建立 Azure API 管理服務。
 
-* **在 VNET 內部署現有 API 管理服務**：使用 cmdlet [Update-AzureRmApiManagementDeployment](https://docs.microsoft.com/en-us/powershell/resourcemanager/azurerm.apimanagement/v3.1.0/update-azurermapimanagementdeployment) 移動虛擬網路內的現有 Azure API 管理服務。
+* **在 VNET 內部署現有 API 管理服務**：使用 cmdlet [Update-AzureRmApiManagementDeployment](/powershell/module/azurerm.apimanagement/update-azurermapimanagementdeployment) 移動虛擬網路內的現有 Azure API 管理服務。
 
 ## <a name="connect-vnet"> </a>連接到裝載於虛擬網路內的 Web 服務
 在您的「API 管理」服務連接到 VNET 之後，存取 VNET 內的後端服務與存取公用服務便沒有差別。 只要在建立新 API 或編輯現有 API 時，於 [Web 服務 URL] 欄位中輸入您 Web 服務的本機 IP 位址或主機名稱 (如果為 VNET 設定了 DNS 伺服器) 即可。

@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/21/2017
+ms.date: 04/24/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: 0f54fb7d2d8cf010baf79409bc6a528d34982500
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
+ms.openlocfilehash: d3c3f6ba0da73a8297f437a56f190f90274957ab
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 ---
 
@@ -34,6 +35,7 @@ Azure AD 傳遞驗證能為這些組織提供簡易的解決方案。 當使用�
 - 容易使用
   - 執行密碼驗證，而不需要複雜的內部部署或網路組態。
   - 它只會利用輕量型內部部署連接器接聽並回應密碼驗證要求。
+  - 內部部署連接器具有自動更新功能，能夠自動接收功能改良和錯誤修正。
   - 它可以和 [Azure AD Connect](active-directory-aadconnect.md) 一起設定。 輕量型內部部署連接器和 Azure AD Connect 都安裝在相同的伺服器上。
 - 安全
   - 內部部署密碼絕對不會以任何形式儲存在雲端。
@@ -63,7 +65,7 @@ Azure AD 傳遞驗證能為這些組織提供簡易的解決方案。 當使用�
 - 適用於 Windows 10 裝置的 Azure AD Join。
 
 >[!IMPORTANT]
->為了因應傳遞驗證目前不支援的案例 (舊版 Office 用戶端應用程式、Exchange ActiveSync 和適用於 Window 10 裝置的 Azure AD Join)，當您啟用傳遞驗證時，預設也會啟用密碼同步處理。 只有在這些特定情況下可將密碼同步處理做為後援。 若無此需要，您可以在 Azure AD Connect 中的 [[選用功能](active-directory-aadconnect-get-started-custom.md#optional-features)] 頁面上關閉密碼同步處理。
+>為了因應傳遞驗證功能目前不支援的案例 (舊版 Office 用戶端應用程式、Exchange ActiveSync 和適用於 Window 10 裝置的 Azure AD Join)，當您啟用傳遞驗證時，預設也會啟用密碼同步處理。 只有在這些特定情況下可將密碼同步處理做為後援。 若無此需要，您可以在 Azure AD Connect 精靈中的[選用功能](active-directory-aadconnect-get-started-custom.md#optional-features)頁面上關閉密碼同步處理。
 
 ## <a name="how-to-enable-azure-ad-pass-through-authentication"></a>如何啟用 Azure AD 傳遞驗證？
 
@@ -74,25 +76,27 @@ Azure AD 傳遞驗證能為這些組織提供簡易的解決方案。 當使用�
 - 一個您必須是全域管理員的 Azure AD 租用戶。
 
 >[!NOTE]
->建議全域系統管理員帳戶使用僅限雲端使用的帳戶，這樣一來您就能夠在您的內部部署服務失敗或無法使用時，管理您租用戶的組態。 您可以新增僅限雲端使用的全域系統管理員帳戶，如[這裡](../active-directory-users-create-azure-portal.md)所示。
+>強烈建議全域系統管理員帳戶使用僅限雲端使用的帳戶，這樣一來您就能夠在您的內部部署服務失敗或無法使用時，管理您租用戶的組態。 您可以新增僅限雲端使用的全域系統管理員帳戶，如[這裡](../active-directory-users-create-azure-portal.md)所示。
 
-- Azure AD Connect 1.1.484.0 版或更新版本。 建議您使用[最新版的 Azure AD Connect (英文)](https://www.microsoft.com/download/details.aspx?id=47594)。
+- Azure AD Connect 1.1.486.0 版或更新版本。 建議您使用[最新版的 Azure AD Connect (英文)](https://www.microsoft.com/download/details.aspx?id=47594)。
 - 執行 Windows Server 2012 R2 或更新版本，以在其上執行 Azure AD Connect 的伺服器。
   - 此伺服器和必須驗證其密碼的使用者必須都是相同 AD 樹系的成員。
-  - 請注意，連接器和 Azure AD Connect 都安裝在相同的伺服器上。
+  - 請注意，傳遞驗證連接器和 Azure AD Connect 安裝在相同的伺服器上。 確認連接器版本是 1.5.58.0 或更新版本。
 
 >[!NOTE]
 >如果 AD 樹系之間有樹系信任且名稱尾碼路由已正確設定，就支援多樹系環境。
 
-- 如果您想要高可用性，您必須執行 Windows Server 2012 R2 或更新版本的其他伺服器來安裝獨立連接器。
+- 如果您想要高可用性，您需要有執行 Windows Server 2012 R2 或更新版本的其他伺服器來安裝獨立連接器 (版本必須是 1.5.58.0 或更新版本)。
 - 如果任何連接器和 Azure AD 之間有防火牆，請確定：
     - 如果已經啟用 URL 篩選，請確定連接器可以和下列 URL 通訊：
         -  \*.msappproxy.net
         -  \*.servicebus.windows.net
     - 連接器也會對 [Azure 資料中心 IP 範圍 (英文)](https://www.microsoft.com/en-us/download/details.aspx?id=41653) 直接建立 IP 連線。
     - 請確定防火牆不會執行 SSL 檢查，因為連接器會使用用戶端憑證來與 Azure AD 通訊。
-    - 請確定連接器可以透過連接埠 80 和 443 對 Azure AD 發出 HTTPS (TCP) 要求。
+    - 請確定連接器可以透過連接埠 80 和 443 對 Azure AD 發出輸出要求。
       - 如果您的防火牆根據原始使用者強制執行規則，請針對來自當做網路服務執行的 Windows 服務的流量，開放這些連接埠。
+      - 連接器會透過連接埠 80 發出 HTTP 要求，以下載 SSL 憑證撤銷清單。 為了讓自動更新功能正確運作，也需要如此。
+      - 連接器會透過連接埠 443 發出 HTTPS 要求，以支援其他所有作業，例如啟用和停用功能、註冊連接器、下載連接器更新和處理所有使用者登入要求。
 
 >[!NOTE]
 >我們最近已經改善，降低連接器與我們的服務通訊時所需的連接埠數目。 如果您正在執行舊版 Azure AD Connect 和/或獨立連接器，您應該繼續將這些其他的連接埠 (5671、8080、9090、9091、9350、9352、10100-10120) 保持開啟。
@@ -122,7 +126,7 @@ Azure AD 傳遞驗證能透過 Azure AD Connect 啟用。
 
 在此步驟中，您可以在伺服器上下載並安裝連接器軟體。
 
-1.    [下載 (英文)](https://go.microsoft.com/fwlink/?linkid=837580) 最新的連接器。
+1.    [下載 (英文)](https://go.microsoft.com/fwlink/?linkid=837580) 最新的連接器。 確認連接器版本是 1.5.58.0 或更新版本。
 2.    以系統管理員身分開啟命令提示字元。
 3.    執行下列命令 (/q 表示無訊息安裝，即安裝不會提示您接受《使用者授權合約》)：
 
@@ -173,7 +177,7 @@ AADApplicationProxyConnectorInstaller.exe REGISTERCONNECTOR="false" /q
 
 #### <a name="an-unexpected-error-occured"></a>發生意外的錯誤
 
-從伺服器[收集連接器記錄檔](#how-to-collect-pass-through-authentication-connector-logs?)，並連絡 Microsoft 支援服務解決您的問題。
+從伺服器[收集連接器記錄檔](#collecting-pass-through-authentication-connector-logs)，並連絡 Microsoft 支援服務解決您的問題。
 
 ### <a name="issues-during-registration-of-connectors"></a>註冊連接器期間發生的問題
 
@@ -181,9 +185,13 @@ AADApplicationProxyConnectorInstaller.exe REGISTERCONNECTOR="false" /q
 
 確認已安裝連接器的伺服器能與我們的服務 URL 和連接埠通訊，如[這裡](#pre-requisites)所列。
 
+#### <a name="registration-of-the-connector-failed-due-to-token-or-account-authorization-errors"></a>因為權杖或帳戶授權錯誤，註冊連接器失敗
+
+請確定您在所有 Azure AD Connect 或獨立連接器安裝和註冊作業中，使用僅限雲端的全域管理員帳戶。 啟用 MFA 的全域管理員帳戶有一個已知的問題，請暫時關閉 MFA (只是為了完成作業) 作為因應措施。
+
 #### <a name="an-unexpected-error-occurred"></a>發生意外的錯誤
 
-從伺服器[收集連接器記錄檔](#how-to-collect-pass-through-authentication-connector-logs?)，並連絡 Microsoft 支援服務解決您的問題。
+從伺服器[收集連接器記錄檔](#collecting-pass-through-authentication-connector-logs)，並連絡 Microsoft 支援服務解決您的問題。
 
 ### <a name="issues-during-un-installation-of-connectors"></a>解除安裝連接器期間發生的問題
 
@@ -197,11 +205,15 @@ AADApplicationProxyConnectorInstaller.exe REGISTERCONNECTOR="false" /q
 
 #### <a name="the-enabling-of-the-feature-failed-because-there-were-no-connectors-available"></a>因為沒有任何可用的連接器，而使啟用功能失敗
 
-您必須至少有一個使用中的連接器伺服器，才能在租用戶上啟用傳遞驗證。 您可以安裝 Azure AD Connect 或安裝獨立連接器來安裝連接器。
+您必須至少有一個使用中的連接器，才能在租用戶上啟用傳遞驗證。 您可以安裝 Azure AD Connect 或獨立連接器來安裝連接器。
 
 #### <a name="the-enabling-of-the-feature-failed-due-to-blocked-ports"></a>因為連接埠遭到封鎖，而使功能啟用失敗
 
 確認已安裝 Azure AD Connect 的伺服器能與我們的服務 URL 和連接埠通訊，如[這裡](#pre-requisites)所列。
+
+#### <a name="the-enabling-of-the-feature-failed-due-to-token-or-account-authorization-errors"></a>因為權杖或帳戶授權錯誤，啟用功能失敗
+
+請確定您使用僅限雲端的全域管理員帳戶來啟用此功能。 啟用 Multi-Factor Authentication (MFA) 的全域管理員帳戶有一個已知的問題，請暫時關閉 MFA (只是為了完成作業) 作為因應措施。
 
 ### <a name="issues-while-operating-the-pass-through-authentication-feature"></a>操作傳遞驗證功能時發生的問題
 
@@ -217,7 +229,7 @@ AADApplicationProxyConnectorInstaller.exe REGISTERCONNECTOR="false" /q
 |AADSTS80005|驗證發生無法預期的 WebException|這可能是暫時性的錯誤。 重試要求。 如果持續發生失敗，請連絡 Microsoft 支援服務。
 |AADSTS80007|和 Active Directory 通訊時發生錯誤|請檢查連接器記錄檔以了解詳細資訊，並確認 Active Directory 如預期般運作。
 
-### <a name="how-to-collect-pass-through-authentication-connector-logs"></a>如何收集傳遞驗證連接器記錄檔？
+### <a name="collecting-pass-through-authentication-connector-logs"></a>收集傳遞驗證連接器記錄
 
 根據發生的問題類型，您必須在不同位置中查看傳遞驗證連接器記錄檔。
 

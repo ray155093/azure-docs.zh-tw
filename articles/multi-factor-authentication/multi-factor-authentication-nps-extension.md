@@ -12,19 +12,22 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/03/2017
+ms.date: 04/23/2017
 ms.author: kgremban
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 3dba9ebc8eb23be00f9b52907ba4bc565eeb5688
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
+ms.openlocfilehash: 58b289530e16c2a2e9bbe59b372c858ff22ad5ac
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/29/2017
 
 ---
 # <a name="integrate-your-existing-nps-infrastructure-with-azure-multi-factor-authentication---public-preview"></a>將現有的 NPS 基礎結構與 Azure Multi-Factor Authentication 整合 - 公開預覽
 
 Azure MFA 的網路原則伺服器 (NPS) 擴充功能可使用現有伺服器將雲端式 MFA 功能新增至驗證基礎結構。 利用 NPS 擴充功能，您可以在現有驗證流程中新增通話、簡訊或電話應用程式驗證，而不必安裝、設定及維護新的伺服器。 
- 
+
+這個擴充功能是針對想要保護 VPN 連線但無須部署 Azure MFA Server 的組織所建立。 NPS 擴充功能是用於在 RADIUS 和以雲端為基礎的 Azure MFA 之間作為配接器，為聯盟或同步處理的使用者提供第二個驗證因素。 
+
 使用 Azure MFA 的 NPS 擴充功能時，驗證流程會包含下列元件︰ 
 
 1. **NAS/VPN 伺服器**會從 VPN 用戶端接收要求，並將其轉換為對 NPS 伺服器的 RADIUS 要求。 
@@ -108,6 +111,8 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 2. 移至任何展開 Azure AD 驗證的網站，例如 https://portal.azure.com。
 3. [註冊雙步驟驗證](./end-user/multi-factor-authentication-end-user-first-time.md)。
 
+您的使用者在向 NPS 擴充功能驗證之前，也必須遵循下列步驟進行註冊。
+
 ## <a name="install-the-nps-extension"></a>安裝 NPS 擴充功能
 
 > [!IMPORTANT]
@@ -144,6 +149,8 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 5. 以系統管理員身分登入 Azure AD。
 6. PowerShell 會在指令碼完成時顯示成功訊息。  
 
+在您想要進行設定以取得負載平衡的任何其他 NPS 伺服器上，重複上述步驟。 
+
 ## <a name="configure-your-nps-extension"></a>設定 NPS 擴充功能
 
 本節包含成功部署 NPS 擴充功能的設計考量和建議。
@@ -167,7 +174,7 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 
 此設定的目的是要決定當使用者未註冊 MFA 時的行為。 當此索引鍵不存在、未設定或是設為 TRUE 時，若使用者未註冊，則擴充功能將無法通過 MFA 挑戰。 當此索引鍵設為 FALSE 時，若使用者未註冊，將會繼續驗證但不執行 MFA。
 
-您可以選擇建立此索引鍵，並在使用者登入期間將它設為 FALSE。 設定索引鍵可讓未註冊 MFA 的使用者進行登入，因此您應該先移除此索引鍵再移至生產環境。
+在使用者要上架但尚未全部註冊 Azure MFA 時，您可以選擇建立此金鑰，並將它設為 FALSE。 但是，設定金鑰可讓未註冊 MFA 的使用者進行登入，因此您應該先移除此金鑰，然後再移至生產環境。
 
 ## <a name="troubleshooting"></a>疑難排解
 

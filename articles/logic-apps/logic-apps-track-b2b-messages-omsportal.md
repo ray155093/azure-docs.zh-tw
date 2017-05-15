@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/13/2016
 ms.author: padmavc
-translationtype: Human Translation
-ms.sourcegitcommit: 2aa32d692da81dc34fafbc9cb6ea72a806f31e5c
-ms.openlocfilehash: a4068c70a01f80086ff3fb55f8e101c7dce95dea
-ms.lasthandoff: 02/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: 4d68fde29e85fcf9aa623b4d798262bcd486a8bb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -80,7 +81,7 @@ B2B 通訊牽涉到兩個執行中商務程序或應用程式之間的訊息交�
 | 傳送者 | 針對 AS2 協議的接收設定中所設定的來賓合作夥伴，或傳送設定中設定的主機合作夥伴。 |
 | 接收者 | 針對 AS2 協議的接收設定中所設定的主機合作夥伴，或傳送設定中設定的來賓合作夥伴。 |
 | 邏輯應用程式 | 已設定 AS2 動作的邏輯應用程式。 |
-| 狀態 | AS2 訊息狀態 <br>成功 = 已接收或傳送良好的 AS2 訊息，未設定任何 MDN <br>成功 = 已接收或傳送良好的 AS2 訊息，MDN 已設定且接收或 MDN 已傳送 <br>失敗 = 接收不正確的 AS2 訊息，未設定任何 MDN <br>暫止 = 已接收或傳送良好的 AS2 訊息，MDN 已設定且應該函式認可 |
+| 狀態 | AS2 訊息狀態 <br>成功 = 已接收或傳送良好的 AS2 訊息，未設定任何 MDN <br>成功 = 已接收或傳送良好的 AS2 訊息，MDN 已設定且接收或 MDN 已傳送 <br>失敗 = 接收不正確的 AS2 訊息，未設定任何 MDN <br>暫止 = 已接收或傳送良好的 AS2 訊息，MDN 已設定且預期為 MDN |
 | Ack | MDN 訊息狀態 <br>接受 = 已接收或傳送正值的 MDN <br>暫止 = 等候接收或傳送 MDN <br>拒絕 = 已接收或傳送負值的 MDN <br>不需要 = MDN 在協議中未設定 |
 | 方向 | AS2 訊息方向。 |
 | 相互關連識別碼 | 與所有邏輯應用程式內的觸發程序和動作相關聯的識別碼。 |

@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 01850cbf8967fd5f79db64103fb18c6ec01babea
-ms.lasthandoff: 03/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 637473db37985a4a89ddb19e02eebc377902c942
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -37,7 +38,7 @@ ms.lasthandoff: 03/06/2017
 ## <a name="prerequisites"></a>必要條件
 您需要下列必要條件來完成本教學課程：
 
-* 最新版的 [Azure PowerShell](/powershell/azureps-cmdlets-docs)
+* 最新版的 [Azure PowerShell](/powershell/azure/overview)
 * Visual Studio 2017、2015 或免費的 [Visual Studio Community](https://www.visualstudio.com/products/visual-studio-community-vs.aspx)
 * [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)
 * 電腦的系統管理員權限
@@ -138,7 +139,7 @@ ms.lasthandoff: 03/06/2017
 
 請下載並儲存支援的 [TollApp](https://github.com/Azure/azure-stream-analytics/blob/master/Samples/TollApp/TollApp.zip) 資料夾和檔案。
 
-請*以系統管理員的身分*開啟 [Microsoft Azure PowerShell]。 如果您沒有 Azure PowerShell，請依照 [安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的指示來安裝。
+請*以系統管理員的身分*開啟 [Microsoft Azure PowerShell]。 如果您沒有 Azure PowerShell，請依照 [安裝和設定 Azure PowerShell](/powershell/azure/overview) 中的指示來安裝。
 
 因為 Windows 會自動封鎖 .ps1、.dll 及 .exe 檔案，所以您需要先設定執行原則，才能執行指令碼。 請確認您是「以系統管理員的身分」 執行 Azure PowerShell 視窗。 請執行 **Set-ExecutionPolicy unrestricted**。 在出現提示時按下 Y 鍵 。
 
@@ -255,7 +256,7 @@ PowerShell 指令碼會自動利用 TollApp 範例應用程式來開始傳送事
 6. [來源] 是 [事件中樞]。
 7. [服務匯流排命名空間] 應該是下拉式清單中的 TollData。
 8. [事件中樞名稱] 應該設定為**進入**。
-9. [事件中樞原則名稱]**是**RootManageSharedAccessKey*  (預設值)。
+9. [事件中樞原則名稱]* *是* **RootManageSharedAccessKey**  (預設值)。
 10. 選取 [JSON] 做為 [事件序列化格式]，並選取 [UTF8] 做為 [編碼] 格式。
    
     您的設定將看起來會像是：

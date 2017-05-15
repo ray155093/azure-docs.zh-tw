@@ -4,7 +4,7 @@ description: "針對在 Azure 中執行的 Windows 和 Linux 虛擬機器，收�
 services: log-analytics
 documentationcenter: 
 author: richrundmsft
-manager: jochan
+manager: ewinner
 editor: 
 ms.assetid: ca39e586-a6af-42fe-862e-80978a58d9b1
 ms.service: log-analytics
@@ -12,13 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/10/2016
+ms.date: 04/27/2017
 ms.author: richrund
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 87e888bf3d7355b36c42e8787abe9bf1cb191fcd
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 8f291186c6a68dea8aa00b846a2e6f3ad0d7996c
+ms.openlocfilehash: 1cab9d2f814e0c36dadcdd7bbc3cdc736de0af49
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -36,7 +37,7 @@ ms.lasthandoff: 04/03/2017
 如果您使用代理程式來收集記錄資料，則必須設定 [Log Analytics 中的資料來源](log-analytics-data-sources.md)，以指定您要收集的記錄和度量。
 
 > [!IMPORTANT]
-> 如果您已將 Log Analytics 設為使用 [Azure 診斷](log-analytics-azure-storage.md)來編製記錄資料的索引，並設定代理程式來收集相同的記錄，則記錄會收集兩次。 您需支付這兩個資料來源的費用。 如果您已安裝代理程式，則應該只使用代理程式來收集記錄資料 - 不要設定 Log Analytics 從 Azure 診斷收集記錄資料。
+> 如果您已將 Log Analytics 設為使用 [Azure 診斷](log-analytics-azure-storage.md)來編製記錄資料的索引，並設定代理程式來收集相同的記錄，則記錄會收集兩次。 您需支付這兩個資料來源的費用。 如果您已安裝代理程式，則請僅使用代理程式來收集記錄資料 - 不要設定 Log Analytics 從 Azure 診斷收集記錄資料。
 >
 >
 
@@ -64,7 +65,7 @@ ms.lasthandoff: 04/03/2017
    ![已連接](./media/log-analytics-azure-vm-extension/oms-connect-azure-05.png)
 
 ## <a name="enable-the-vm-extension-using-powershell"></a>使用 PowerShell 啟用 VM 擴充
-使用 PowerShell 設定虛擬機器時，您必須提供 **workspaceId** 和 **workspaceKey**。 請注意，json 組態中的屬性名稱需**區分大小寫**。
+使用 PowerShell 設定虛擬機器時，您必須提供 **workspaceId** 和 **workspaceKey**。 json 組態中的屬性名稱需**區分大小寫**。
 
 您可以在 OMS 入口網站的 [設定] 頁面上，或使用上述範例所示的 PowerShell，找到識別碼及金鑰。
 
@@ -74,7 +75,7 @@ Azure 傳統虛擬機器和 Resource Manager 虛擬機器各使用不同的命�
 
 若是傳統 Azure 虛擬機器，請使用下列 PowerShell 範例：
 
-```
+```PowerShell
 Add-AzureAccount
 
 $workspaceId = "enter workspace ID here"
@@ -90,9 +91,14 @@ $vm = Get-AzureVM –ServiceName $hostedService
 # Set-AzureVMExtension -VM $vm -Publisher 'Microsoft.EnterpriseCloud.Monitoring' -ExtensionName 'OmsAgentForLinux' -Version '1.*' -PublicConfiguration "{'workspaceId': '$workspaceId'}" -PrivateConfiguration "{'workspaceKey': '$workspaceKey' }" | Update-AzureVM -Verbose
 ```
 
+針對 Resource Manager Linux VM 請使用下列 CLI
+```azurecli
+az vm extension set --resource-group myRGMonitor --vm-name myMonitorVM --name OmsAgentForLinux --publisher Microsoft.EnterpriseCloud.Monitoring --version 1.3 --protected-settings ‘{"workspaceKey": "<workspace-key>"}’ --settings ‘{"workspaceId": "<workspace-id>"}’ 
+```
+
 若是 Resource Manager 虛擬機器，請使用下列 PowerShell 範例：
 
-```
+```PowerShell
 Login-AzureRMAccount
 Select-AzureSubscription -SubscriptionId "**"
 
@@ -122,8 +128,9 @@ $location = $vm.Location
 
 ```
 
+
 ## <a name="deploy-the-vm-extension-using-a-template"></a>使用範本部署 VM 擴充
-您可以利用 Azure Resource Manager 建立簡單範本 (JSON 格式)，以定義應用程式的部署和設定。 此範本就是所謂的資源管理員範本，並提供定義部署的宣告方式。 在整個應用程式生命週期內，您可以使用範本來重複部署應用程式，並確信您的資源會以一致的狀態部署。
+您可以利用 Azure Resource Manager 建立範本 (JSON 格式)，以定義應用程式的部署和設定。 此範本就是所謂的資源管理員範本，並提供定義部署的宣告方式。 在整個應用程式生命週期內，您可以使用範本來重複部署應用程式，並確信您的資源會以一致的狀態部署。
 
 您可以將 Log Analytics 代理程式納入 Resource Manager 範本中，以確定每個虛擬機器都預先設定為向您的 Log Analytics 工作區報告。
 
@@ -135,7 +142,7 @@ $location = $vm.Location
 * Microsoft.EnterpriseCloud.Monitoring 資源擴充功能區段
 * 輸出以查詢 workspaceId 和 workspaceSharedKey
 
-```
+```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
@@ -362,7 +369,7 @@ $location = $vm.Location
 
 您可以使用下列 PowerShell 命令來部署範本：
 
-```
+```PowerShell
 New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath
 ```
 
@@ -375,12 +382,12 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Templa
 
    ![VM 擴充功能檢視](./media/log-analytics-azure-vm-extension/oms-vmview-extensions.png)
 
-4. 按一下 *MicrosoftMonitoringAgent*(Windows) 或 *OmsAgentForLinux*(Linux) 擴充功能，並檢視詳細資料。 
+4. 按一下 [MicrosoftMonitoringAgent](Windows) 或 [OmsAgentForLinux] (Linux) 擴充功能，並檢視詳細資料。 
 
    ![VM 擴充功能詳細資料](./media/log-analytics-azure-vm-extension/oms-vmview-extensiondetails.png)
 
 ### <a name="troubleshooting-windows-virtual-machines"></a>針對 Windows 虛擬機器進行疑難排解
-如果 *Microsoft Monitoring Agent* VM 代理程式擴充未安裝或沒有回報，您可以執行下列步驟來排解這個問題。
+如果未安裝或沒有回報 Microsoft Monitoring Agent VM 代理程式擴充功能，您可以執行下列步驟來針對問題進行疑難排解。
 
 1. 使用 [KB 2965986](https://support.microsoft.com/kb/2965986#mt1) 中的步驟，檢查 Azure VM 代理程式是否已安裝且正確運作。
    * 您也可以檢閱 VM 代理程式記錄檔 `C:\WindowsAzure\logs\WaAppAgent.log`
@@ -397,10 +404,10 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Templa
 6. 在虛擬機器上提高權限的 PowerShell 視窗中輸入下列命令，以檢視 Microsoft Monitoring Agent 的狀態 `  (New-Object -ComObject 'AgentConfigManager.MgmtSvcCfg').GetCloudWorkspaces() | Format-List`
 7. 檢閱 `C:\Windows\System32\config\systemprofile\AppData\Local\SCOM\Logs` 中的 Microsoft Monitoring Agent 安裝記錄檔
 
-如需詳細資訊，請參閱[針對 Windows 擴充進行疑難排解](../virtual-machines/windows/extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+如需詳細資訊，請參閱[針對 Windows 擴充功能進行疑難排解](../virtual-machines/windows/extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ### <a name="troubleshooting-linux-virtual-machines"></a>針對 Linux 虛擬機器進行疑難排解
-如果 *OMS Agent for Linux* VM 代理程式擴充未安裝或沒有回報，您可以執行下列步驟來排解這個問題。
+如果未安裝或沒有回報 OMS Agent for Linux VM 代理程式擴充功能，您可以執行下列步驟來針對問題進行疑難排解。
 
 1. 如果擴充狀態是「未知」，請檢閱 VM 代理程式記錄檔 `/var/log/waagent.log`，以檢查 Azure VM 代理程式是否已安裝且正常運作
    * 如果記錄檔不存在，則表示未安裝 VM 代理程式。
@@ -408,7 +415,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Templa
 2. 若是其他不良狀態，請檢閱 `/var/log/azure/Microsoft.EnterpriseCloud.Monitoring.OmsAgentForLinux/*/extension.log` 和 `/var/log/azure/Microsoft.EnterpriseCloud.Monitoring.OmsAgentForLinux/*/CommandExecution.log` 中的 OMS Agent for Linux VM 擴充記錄檔
 3. 如果擴充狀態良好，但資料未上傳，請檢閱 `/var/opt/microsoft/omsagent/log/omsagent.log` 中的 OMS Agent for Linux 記錄檔
 
-如需詳細資訊，請參閱[針對 Linux 擴充進行疑難排解](../virtual-machines/linux/extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+如需詳細資訊，請參閱[針對 Linux 擴充功能進行疑難排解](../virtual-machines/linux/extensions-troubleshoot.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ## <a name="next-steps"></a>後續步驟
 * 設定 [Log Analytics 中的資料來源](log-analytics-data-sources.md) 來指定要收集的記錄和計量。

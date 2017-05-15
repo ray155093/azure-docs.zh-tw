@@ -4,17 +4,18 @@ description:
 keywords: 
 author: jeffgilb
 manager: femila
-ms.date: 3/28/2017
+ms.date: 5/1/2017
 ms.topic: article
 ms.prod: 
 ms.service: azure
 ms.technology: 
 ms.assetid: 
 ms.reviewer: jsnow
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 222259e1f7c5a8796fd9f652cf5e050e75d4ce49
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: bc67058d026219d676430a55fe8cfdd3f09cf295
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -53,7 +54,8 @@ Microsoft 身分識別與存取管理解決方案會協助 IT 保護應用程式
 
 Azure AD Premium 中的條件式存取系統讓身為企業系統管理員的您能夠針對任何 Azure AD 連線的應用程式 (SaaS 應用程式、在雲端執行的自訂應用程式或內部部署 Web 應用程式中) 建立以原則為基礎的存取規則。 Azure AD 會即時評估這些原則，並且在使用者嘗試存取應用程式時強制執行這些原則。 如果發現可疑的活動，Azure 身分識別保護原則可讓您自動採取行動，包括封鎖高風險使用者的存取、強制執行 Multi-Factor Authentication，以及重設密碼 (如果認證似乎遭到入侵)。
 
-## <a name="azure-active-directory-privileged-identify-management"></a>Azure Active Directory Privileged Identity Management
+
+## <a name="azure-active-directory-privileged-identity-management"></a>Azure Active Directory Privileged Identity Management
 
 Azure Active Directory Premium P2 隨附的 [Privileged Identity Management](https://docs.microsoft.com/azure/active-directory/active-directory-privileged-identity-management-getting-started)，可讓您探索、限制及監視系統管理帳戶與其對 Azure Active Directory 資源和其他 Microsoft 線上服務的存取權。 它也會協助您管理所需確切期間內的隨選系統管理存取權。
 

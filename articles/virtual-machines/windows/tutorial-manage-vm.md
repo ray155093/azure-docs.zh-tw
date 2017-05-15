@@ -15,10 +15,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 04/21/2017
 ms.author: nepeters
-translationtype: Human Translation
-ms.sourcegitcommit: e0bfa7620feeb1bad33dd2fe4b32cb237d3ce158
-ms.openlocfilehash: da5bcb0c4b848f27ae5997caf52e332cc4ce4c0a
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 59d6d646d4ab236d1fffad0cd0ec3e9f3ae4c342
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 ---
 
@@ -26,13 +27,13 @@ ms.lasthandoff: 04/21/2017
 
 本教學課程涵蓋基本的「Azure 虛擬機器」建立項目，例如選取 VM 大小、選取 VM 映像及部署 VM。 本教學課程也涵蓋基本的管理作業，例如管理狀態、刪除 VM 及調整 VM 大小。
 
-您可以使用最新的 [Azure PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/) 模組來完成本教學課程中的步驟。
+您可以使用最新的 [Azure PowerShell](/powershell/azure/overview) 模組來完成本教學課程中的步驟。
 
 ## <a name="create-resource-group"></a>建立資源群組
 
 使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 命令建立資源群組。 
 
-Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 資源群組必須在虛擬機器之前建立。 在此範例中，`westus` 區域中會建立名為 `myResourceGroupVM ` 的資源群組。 
+Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 資源群組必須在虛擬機器之前建立。 在此範例中，westus 區域中會建立名為 myResourceGroupVM 的資源群組。 
 
 ```powershell
 New-AzureRmResourceGroup -ResourceGroupName myResourceGroupVM -Location westeurope
@@ -49,7 +50,9 @@ New-AzureRmResourceGroup -ResourceGroupName myResourceGroupVM -Location westeuro
 使用 [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig) 建立子網路：
 
 ```powershell
-$subnetConfig = New-AzureRmVirtualNetworkSubnetConfig -Name mySubnet -AddressPrefix 192.168.1.0/24
+$subnetConfig = New-AzureRmVirtualNetworkSubnetConfig `
+    -Name mySubnet `
+    -AddressPrefix 192.168.1.0/24
 ```
 
 使用 [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork) 建立虛擬網路：
@@ -91,7 +94,7 @@ $nic = New-AzureRmNetworkInterface `
 
 Azure [網路安全性群組](../../virtual-network/virtual-networks-nsg.md) (NSG) 控制一或多部虛擬機器的輸入和傳出流量。 網路安全性群組規則可允許或拒絕特定連接埠或連接埠範圍上的網路流量。 這些規則也可以包含來源位址首碼，所以只有在預先定義的來源產生的流量可以與虛擬機器通訊。 若要存取您安裝的 IIS Web 伺服器，您必須新增輸入 NSG 規則。
 
-若要建立輸入 NSG 規則，請使用 [Add-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/add-azurermnetworksecurityruleconfig)。 下列範例會建立名為 `myNSGRule` 的 NSG 規則，該規則會為虛擬機器開啟連接埠 `3389`︰
+若要建立輸入 NSG 規則，請使用 [Add-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/add-azurermnetworksecurityruleconfig)。 下列範例會建立名為 myNSGRule 的 NSG 規則，該規則會為虛擬機器開啟連接埠 3389︰
 
 ```powershell
 $nsgRule = New-AzureRmNetworkSecurityRuleConfig `
@@ -106,16 +109,24 @@ $nsgRule = New-AzureRmNetworkSecurityRuleConfig `
   -Access Allow
 ```
 
-使用 `myNSGRule` 與 [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup) 建立 NSG：
+使用 myNSGRule 與 [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup) 建立 NSG：
 
 ```powershell
-$nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName myResourceGroupVM  -Location westeurope -Name myNetworkSecurityGroup -SecurityRules $nsgRule
+$nsg = New-AzureRmNetworkSecurityGroup `
+    -ResourceGroupName myResourceGroupVM `
+    -Location westeurope `
+    -Name myNetworkSecurityGroup `
+    -SecurityRules $nsgRule
 ```
 
 使用 [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig) 在虛擬網路中將 NSG 新增至子網路：
 
 ```powershell
-Set-AzureRmVirtualNetworkSubnetConfig -Name mySubnet -VirtualNetwork $vnet -NetworkSecurityGroup $nsg -AddressPrefix 192.168.1.0/24
+Set-AzureRmVirtualNetworkSubnetConfig `
+    -Name mySubnet `
+    -VirtualNetwork $vnet `
+    -NetworkSecurityGroup $nsg `
+    -AddressPrefix 192.168.1.0/24
 ```
 
 使用 [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork) 更新虛擬網路：
@@ -126,7 +137,7 @@ Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 
 ### <a name="create-virtual-machine"></a>Create virtual machine
 
-建立虛擬機器時，有數個可用的選項，例如作業系統映像、磁碟大小及系統管理認證。 在此範例中，使用 `myVM` 名稱建立的虛擬機器會執行最新版本的 Windows Server 2016 Datacenter。
+建立虛擬機器時，有數個可用的選項，例如作業系統映像、磁碟大小及系統管理認證。 在此範例中，使用 myVM 名稱建立的虛擬機器會執行最新版本的 Windows Server 2016 Datacenter。
 
 使用 [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) 設定虛擬機器上系統管理員帳戶所需的使用者名稱和密碼：
 
@@ -143,19 +154,34 @@ $vm = New-AzureRmVMConfig -VMName myVM -VMSize Standard_D1
 使用 [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem) 將作業系統資訊新增至虛擬機器組態：
 
 ```powershell
-$vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName myVM -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
+$vm = Set-AzureRmVMOperatingSystem `
+    -VM $vm `
+    -Windows `
+    -ComputerName myVM `
+    -Credential $cred `
+    -ProvisionVMAgent -EnableAutoUpdate
 ```
 
 使用 [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) 將映像資訊新增至虛擬機器組態：
 
 ```powershell
-$vm = Set-AzureRmVMSourceImage -VM $vm -PublisherName MicrosoftWindowsServer -Offer WindowsServer -Skus 2016-Datacenter -Version latest
+$vm = Set-AzureRmVMSourceImage `
+    -VM $vm `
+    -PublisherName MicrosoftWindowsServer `
+    -Offer WindowsServer `
+    -Skus 2016-Datacenter `
+    -Version latest
 ```
 
 使用 [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk) 將作業系統磁碟設定新增至虛擬機器組態：
 
 ```powershell
-$vm = Set-AzureRmVMOSDisk -VM $vm -Name myOsDisk -DiskSizeInGB 128 -CreateOption FromImage -Caching ReadWrite
+$vm = Set-AzureRmVMOSDisk `
+    -VM $vm `
+    -Name myOsDisk `
+    -DiskSizeInGB 128 `
+    -CreateOption FromImage `
+    -Caching ReadWrite
 ```
 
 使用 [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface) 將您先前建立的網路介面卡新增至虛擬機器組態：
@@ -167,7 +193,7 @@ $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 使用 [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) 建立虛擬機器。
 
 ```powershell
-New-AzureRmVM -ResourceGroupName myResourceGroupVM  -Location westeurope -VM $vm
+New-AzureRmVM -ResourceGroupName myResourceGroupVM -Location westeurope -VM $vm
 ```
 
 ## <a name="connect-to-vm"></a>連線到 VM
@@ -180,7 +206,7 @@ New-AzureRmVM -ResourceGroupName myResourceGroupVM  -Location westeurope -VM $vm
 Get-AzureRmPublicIpAddress -ResourceGroupName myResourceGroupVM  | Select IpAddress
 ```
 
-使用下列命令，建立與虛擬機器的遠端桌面工作階段。 以虛擬機器的 `publicIPAddress` 取代 IP 位址。 出現提示時，請輸入您在建立虛擬機器時所使用的認證。
+使用下列命令，建立與虛擬機器的遠端桌面工作階段。 以虛擬機器的 publicIPAddress 取代 IP 位址。 出現提示時，請輸入您在建立虛擬機器時所使用的認證。
 
 ```powershell
 mstsc /v:<publicIpAddress>
@@ -234,7 +260,12 @@ Skus                            Offer         PublisherName          Location
 此資訊可用來以特定映像部署 VM。 本範例會在 VM 物件上設定映像名稱。 請參考本教學課程中先前的範例，以取得完整的部署步驟。
 
 ```powershell
-$vm = Set-AzureRmVMSourceImage -VM $vm -PublisherName MicrosoftWindowsServer -Offer WindowsServer -Skus 2016-Datacenter-with-Containers -Version latest
+$vm = Set-AzureRmVMSourceImage `
+    -VM $vm `
+    -PublisherName MicrosoftWindowsServer `
+    -Offer WindowsServer `
+    -Skus 2016-Datacenter-with-Containers `
+    -Version latest
 ```
 
 ## <a name="understand-vm-sizes"></a>了解 VM 大小
@@ -248,11 +279,11 @@ $vm = Set-AzureRmVMSourceImage -VM $vm -PublisherName MicrosoftWindowsServer -Of
 | 類型                     | 大小           |    說明       |
 |--------------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | 一般用途         |DSv2、Dv2、DS、D、Av2、A0-7| 平衡的 CPU 對記憶體。 適合用於開發 / 測試及小型到中型應用程式和資料解決方案。  |
-| 計算最佳化      | Fs、F             | 高 CPU 對記憶體。 適用於中流量應用程式、網路設備及批次處理。        |
-| 記憶體最佳化       | GS、G、DSv2、DS、Dv2、D   | 高記憶體對核心。 很適合用於關聯式資料庫、中型至大型快取，以及記憶體內部分析。                 |
+| 計算最佳化      | Fs、F             | CPU 與記憶體的比例高。 適用於中流量應用程式、網路設備及批次處理。        |
+| 記憶體最佳化       | GS、G、DSv2、DS、Dv2、D   | 記憶體與核心的比例高。 很適合用於關聯式資料庫、中型至大型快取，以及記憶體內部分析。                 |
 | 儲存體最佳化       | Ls                | 高磁碟輸送量及 IO。 適用於巨量資料、SQL 及 NoSQL 資料庫。                                                         |
 | GPU           | NV、NC            | 以大量圖形轉譯和影片編輯為目標的特製化 VM。       |
-| 高效能 | H、A8-11          | 我們最有力的 CPU VM 可選擇搭配高輸送量網路介面 (RDMA)。 
+| 高效能 | H、A8-11          | 我們的最強大 CPU VM，可搭配選用的高輸送量網路介面 (RDMA)。 
 
 
 ### <a name="find-available-vm-sizes"></a>尋找可用的 VM 大小
@@ -293,17 +324,17 @@ Start-AzureRmVM -ResourceGroupName myResourceGroupVM  -Name $vm.name
 
 ## <a name="vm-power-states"></a>VM 電源狀態
 
-Azure VM 的電源狀態可以是下列其中一個。 此狀態表示從 Hypervisor 的觀點來看的目前 VM 狀態。 
+Azure VM 的電源狀態可以是許多電源狀態的其中一種。 這個狀態代表從 Hypervisor 的觀點來看，VM 的目前狀態。 
 
 ### <a name="power-states"></a>電源狀態
 
 | 電源狀態 | 說明
 |----|----|
-| 啟動中 | 表示虛擬機器正在啟動中。 |
-| 執行中 | 表示虛擬機器正在執行中。 |
-| 停止中 | 表示虛擬機器正在停止中。 | 
+| 啟動中 | 表示虛擬機器正在啟動。 |
+| 執行中 | 表示虛擬機器正在執行。 |
+| 停止中 | 表示虛擬機器正在停止。 | 
 | 已停止 | 表示虛擬機器已停止。 請注意，處於已停止狀態的虛擬機器仍會產生計算費用。  |
-| 解除配置中 | 表示虛擬機器正在解除配置中。 |
+| 解除配置中 | 表示虛擬機器正在解除配置。 |
 | 已解除配置 | 表示虛擬機器已從 Hypervisor 中完全移除，但仍可在控制平面中使用。 處於已解除配置狀態的虛擬機器不會產生計算費用。 |
 | - | 表示虛擬機器的電源狀態不明。 |
 
@@ -312,7 +343,10 @@ Azure VM 的電源狀態可以是下列其中一個。 此狀態表示從 Hyperv
 若要擷取特定 VM 的狀態，請使用 [Get-AzureRmVM](/powershell/module/azurerm.compute/get-azurermvm) 命令。 務必指定虛擬機器和資源群組的有效名稱。 
 
 ```powershell
-Get-AzureRmVM -ResourceGroupName myResourceGroup -Name myVM -Status | Select @{n="Status"; e={$_.Statuses[1].Code}}
+Get-AzureRmVM `
+    -ResourceGroupName myResourceGroup `
+    -Name myVM `
+    -Status | Select @{n="Status"; e={$_.Statuses[1].Code}}
 ```
 
 輸出：
@@ -340,7 +374,7 @@ Stop-AzureRmVM -ResourceGroupName myResourceGroupVM -Name "myVM" -Force
 ### <a name="start-virtual-machine"></a>啟動虛擬機器
 
 ```powershell
-Start-AzureRmVM -ResourceGroupName myResourceGroupVM  -Name myVM
+Start-AzureRmVM -ResourceGroupName myResourceGroupVM -Name myVM
 ```
 
 ### <a name="delete-resource-group"></a>刪除資源群組
@@ -348,11 +382,12 @@ Start-AzureRmVM -ResourceGroupName myResourceGroupVM  -Name myVM
 刪除資源群組同時會刪除其內含的所有資源。
 
 ```powershell
-Remove-AzureRmResourceGroup -Name myResourceGroupVM  -Force
+Remove-AzureRmResourceGroup -Name myResourceGroupVM -Force
 ```
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已了解如何建立及管理基本 VM。 請前進到下一個教學課程，以了解 VM 磁碟。  
+在本教學課程中，您已了解如何執行基本的 VM 建立和管理作業。 請前進到下一個教學課程，以了解 VM 磁碟。  
 
 [建立和管理 VM 磁碟](./tutorial-manage-data-disk.md)
+

@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/27/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: bed8e0c2b5d4d42fb0510f6b55cfab7404c01b11
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 4918648906212ea9708b6c6f0e89d1f4bb7bdcc5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -129,29 +130,15 @@ IoT 中樞會公開內建的事件中樞相容端點，以便讓應用程式能�
       ![在 Azure 入口網站中將資料表儲存體新增至函式應用程式](media\iot-hub-store-data-in-azure-table-storage\4_azure-portal-function-app-add-output-table-storage.png)
    1. 輸入必要資訊。
 
+      **資料表參數名稱**︰使用 `outputTable` 作為名稱，會用於 Azure Functions 的程式碼中。
+      
       **資料表名稱**︰使用 `deviceData` 作為名稱。
 
-      **儲存體帳戶連線**︰按一下 [新增] 並選取儲存體帳戶。
+      **儲存體帳戶連線**︰按一下 [新增] 並選取或輸入儲存體帳戶。
    1. 按一下 [儲存] 。
 1. 在 [觸發程序] 底下，按一下 [Azure 事件中樞 (myEventHubTrigger)]。
 1. 在 [事件中樞取用者群組] 底下，輸入您所建立之取用者群組的名稱，然後按一下 [儲存]。
 1. 按一下 [開發]，然後按一下 [檢視檔案]。
-1. 按一下 [新增] 來新增名為 `package.json` 的新檔案，貼入下列資訊，然後按一下 [儲存]。
-
-   ```json
-   {
-      "name": "iothub_save_message_to_table",
-      "version": "0.0.1",
-      "private": true,
-      "main": "index.js",
-      "author": "Microsoft Corp.",
-      "dependencies": {
-         "azure-iothub": "1.0.9",
-         "azure-iot-common": "1.0.7",
-         "moment": "2.14.1"
-      }
-   }
-   ```
 1. 使用下列程式碼來取代 `index.js` 中的程式碼，然後按一下 [儲存]。
 
    ```javascript
@@ -159,34 +146,20 @@ IoT 中樞會公開內建的事件中樞相容端點，以便讓應用程式能�
 
    // This function is triggered each time a message is revieved in the IoTHub.
    // The message payload is persisted in an Azure Storage Table
-   var moment = require('moment');
-
+ 
    module.exports = function (context, iotHubMessage) {
-      context.log('Message received: ' + JSON.stringify(iotHubMessage));
-      context.bindings.outputTable = {
-      "partitionKey": moment.utc().format('YYYYMMDD'),
-         "rowKey": moment.utc().format('hhmmss') + process.hrtime()[1] + '',
-         "message": JSON.stringify(iotHubMessage)
-      };
-      context.done();
+    context.log('Message received: ' + JSON.stringify(iotHubMessage));
+    var date = Date.now();
+    var partitionKey = Math.floor(date / (24 * 60 * 60 * 1000)) + '';
+    var rowKey = date + '';
+    context.bindings.outputTable = {
+     "partitionKey": partitionKey,
+     "rowKey": rowKey,
+     "message": JSON.stringify(iotHubMessage)
+    };
+    context.done();
    };
    ```
-1. 按一下 [函式應用程式設定] > [開啟開發人員主控台]。
-
-   您應該會在函式應用程式的 `wwwroot` 資料夾中。
-1. 執行下列命令以前往函式資料夾：
-
-   ```bash
-   cd <your function name>
-   ```
-1. 執行下列命令來安裝 npm 套件：
-
-   ```bash
-   npm install
-   ```
-
-   > [!Note]
-   > 安裝可能需要一些時間來完成。
 
 現在，您已建立函式應用程式。 它會將 IoT 中樞收到的訊息儲存在您的 Azure 資料表儲存體中。
 
@@ -207,3 +180,4 @@ IoT 中樞會公開內建的事件中樞相容端點，以便讓應用程式能�
 您已成功建立 Azure 儲存體帳戶和 Azure 函式應用程式，以將您的 IoT 中樞收到的訊息儲存在 Azure 資料表儲存體中。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
+

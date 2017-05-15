@@ -16,10 +16,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
-ms.openlocfilehash: f141d4f58727696c5f493c9e8eb19feb518e8968
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: d5854a623f656f08c428cd2f6792f25582362990
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 
 ---
@@ -53,6 +54,8 @@ Hive 和 Pig 都可以將資料傳遞至外部應用程式進行處理。 這個
 * __以 Linux 為基礎的 HDInsight__ 叢集使用 [Mono (https://mono-project.com)](https://mono-project.com) 來執行 .NET 應用程式。 4.2.1 版的 Mono 隨附於 3.5 版的 HDInsight。
 
     如需 Mono 與 .NET Framework 版本之相容性的詳細資訊，請參閱 [Mono 相容性 (英文)](http://www.mono-project.com/docs/about-mono/compatibility/)。
+
+    若要使用特定版本的 Mono，請參閱[安裝或更新 Mono](hdinsight-hadoop-install-mono.md) 文件。
 
 * __以 Windows 為基礎的 HDInsight__ 叢集使用 Microsoft.NET CLR 來執行.NET 應用程式。
 

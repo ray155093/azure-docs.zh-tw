@@ -1,67 +1,96 @@
 ---
-title: "Azure IoT 中樞快速入門 | Microsoft Docs"
-description: "如何開始使用 IoT 中樞服務"
+title: "Azure IoT 中樞 - 開始將 IoT 裝置連線到雲端 | Microsoft Docs"
+description: "了解如何將 IoT 裝置連線到 Azure IoT 中樞。 您的裝置可以將遙測傳送到 IoT 中樞，而 IoT 中樞會監視並管理您的裝置。"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
 manager: timlt
 editor: 
+keywords: "Azure IoT 中樞教學課程"
 ms.assetid: 24376318-5344-4a81-a1e6-0003ed587d53
 ms.service: iot-hub
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/31/2017
+ms.date: 04/28/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: d7360c3d41a0e4cf0d182e510d6bc2fccd915dd1
-ms.openlocfilehash: 51ac0c0d3a91070fc8f5b3892409af838e91068e
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
+ms.openlocfilehash: aeb0b665b8295bba30d8c6c47cc88e446693c91f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/01/2017
 
 
 ---
-# <a name="get-started-with-azure-iot-hub-or-azure-iot-gateway-sdk"></a>開始使用 Azure IoT 中樞或 Azure IoT 閘道 SDK
+# <a name="azure-iot-hub-get-started-tutorials"></a>Azure IoT 中樞快速入門教學課程
 
-您可以選擇數個教學課程之一，以便開始使用 IoT 中樞服務或閘道 SDK。
+您可以使用 Azure IoT 中樞和 Azure IoT 裝置 SDK 來建置物聯網 (IoT) 解決方案。
 
-## <a name="iot-hub"></a>IoT 中樞
+* Azure IoT 中樞是雲端中完全受管理的服務，可安全地連線、監視及管理您的 IoT 裝置。 您可以使用 Azure IoT 裝置 SDK 來實作您的 IoT 裝置。
+* 使用在更複雜的 IoT 案例中使用 IoT 閘道，您在此案例中必須考慮諸如傳統裝置、頻寬成本、安全性和隱私權原則或邊緣資料處理等因素。 在這些情況下，您可以使用 Azure IoT 閘道 SDK 來建立可將裝置連線到 IoT 中樞的閘道裝置。
 
-Azure IoT 中樞是一項完全受管理的服務，可在數百萬個物聯網 (IoT) 裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。
+## <a name="what-do-the-tutorials-cover"></a>這些教學課程的涵蓋範圍
 
-若要開始使用 IoT 中樞服務，您可以：
+這些教學課程將為您介紹 Azure IoT 中樞與裝置的 SDK。 這些教學課程涵蓋的常見 IoT 案例會說明 IoT 中樞的功能。 教學課程也將說明如何將 IoT 中樞與其他 Azure 服務和工具結合，建置更強大的 IoT 解決方案。 在教學課程中，您可以選擇使用模擬或實際的 IoT 裝置。 此外，您可以了解如何使用閘道來將裝置連線到您的 IoT 中樞。
 
-- 遵循使用在開發電腦上執行之模擬裝置的教學課程。 選擇使用您慣用程式設計語言的快速入門教學課程︰[.NET][lnk-dotnet]、[Java][lnk-java] 或 [Node.js][lnk-nodejs]。
+## <a name="device-setup-scenario-connect-iot-device-or-gateway-to-azure-iot-hub"></a>裝置設定案例︰將 IoT 裝置或閘道連線至 Azure IoT 中樞
 
-- 遵循使用實體裝置的教學課程。 選擇使用您慣用硬體平台的快速入門教學課程︰[Raspberry Pi][lnk-rasp-pi]、[Intel Edison][lnk-edison] 或 [Arduino][lnk-arduino]。 這些教學課程包含有關如何取得硬體裝置的資訊。
+您可以選擇要開始使用的真實或模擬裝置。
 
-- 若想了解如何使用 C 語言來開發 IoT 裝置，請參閱 [C 適用的 Azure IoT 裝置 SDK 簡介] [lnk-c-intro]一文。
+| IoT 裝置                       | 程式設計語言 |
+|---------------------------------|----------------------|
+| Raspberry Pi                    | [Node.js][Pi_Nd]、[C][Pi_C]           |
+| Intel Edison                    | [Node.js][Ed_Nd]、[C][Ed_C]           |
+| Adafruit Feather HUZZAH ESP8266 | [Arduino][Hu_Ard]              |
+| Sparkfun ESP8266 Thing 開發人員      | [Arduino][Th_Ard]              |
+| Adafruit Feather M0             | [Arduino][M0_Ard]              |
+| 模擬裝置                | [.NET][Sim_NET]、[Java][Sim_Jav]、[Node.js][Sim_Nd]、[Python][Sim_Pyth]              |
 
-## <a name="gateway-sdk"></a>閘道器 SDK
+此外，您可以使用閘道來將裝置連線到您的 IoT 中樞。
 
-您可以使用閘道 SDK 來建置自訂現場閘道。 閘道可以執行一些工作，例如執行分析、進行可降低延遲的時效性決策、提供裝置管理服務、強制執行安全性和隱私權條件約束，以及執行通訊協定轉譯。
+| 閘道裝置               | 程式設計語言 | 平台         |
+|------------------------------|----------------------|------------------|
+| Intel NUC (模型 DE3815TYKE) | C                    | [Wind River Linux][NUC_Lnx] |
+| 模擬閘道            | C                    | [Linux][Sim_Lnx]、[Windows][Sim_Win] |
 
-若要開始使用閘道 SDK，您可以：
+## <a name="extended-iot-scenarios-use-other-azure-services-and-tools"></a>延伸 IoT 案例︰使用其他 Azure 服務和工具
 
-- 遵循使用在開發電腦上執行之模擬閘道的教學課程。 您可以選擇適用於 [Linux] [lnk-linux] 或 [Windows][lnk-windows] 的快速入門教學課程。
+當您已將裝置連線到 IoT 中樞時，可以瀏覽使用其他 Azure 工具和服務的其他案例︰
 
-- 遵循使用實體裝置的教學課程。 您可以選擇一個快速入門教學課程，而該教學課程會使用[具有 Intel NUC (Next Unit of Computing) 的模擬裝置][lnk-gateway-sim] 或使用[具有 Intel NUC 的 SensorTag 裝置][lnk-gateway-tag]。
+| 案例                                    | Azure 服務或工具              |
+|---------------------------------------------|------------------------------------|
+| [管理 IoT 中樞訊息][Mg_IoT_Hub_Msg]                    | iothub-explorer 工具               |
+| [管理 IoT 裝置][Mg_IoT_Dv]               | iothub-explorer 工具               |
+| [將 IoT 中樞訊息儲存至 Azure 儲存體][Sv_IoT_Msg_Stor]                      | Azure 表格儲存體               |
+| [將感應器資料視覺化][Vis_Data]             | Microsoft Power BI、Azure Web Apps |
+| [使用感應器資料預測天氣][Weather_Forecast] | Azure Machine Learning             |
+| [自動異常偵測和回應][Anomaly_Detect]    | Azure Logic Apps                   |
 
 ## <a name="next-steps"></a>後續步驟
 
-當您完成快速入門教學課程時，您可以在[開發人員指南][lnk-devguide]和[做法] [lnk-howto]教學課程中探索更多 IoT 中樞與閘道 SDK 功能。
+當您完成這些教學課程時，可以在[開發人員指南][lnk-dev-guide]中進一步探索 IoT 中樞的功能。 您可以在[作法][lnk-how-to]一節找到其他教學課程。
 
-[lnk-dotnet]: ./iot-hub-csharp-csharp-getstarted.md
-[lnk-java]: ./iot-hub-java-java-getstarted.md
-[lnk-nodejs]: ./iot-hub-node-node-getstarted.md
-[lnk-c-intro]: ./iot-hub-device-sdk-c-intro.md
-[lnk-rasp-pi]: ./iot-hub-raspberry-pi-kit-node-get-started.md
-[lnk-edison]: ./iot-hub-intel-edison-kit-node-get-started.md
-[lnk-arduino]: ./iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started.md
-[lnk-linux]: ./iot-hub-linux-gateway-sdk-get-started.md
-[lnk-windows]: ./iot-hub-windows-gateway-sdk-get-started.md
-[lnk-gateway-sim]: ./iot-hub-gateway-kit-c-sim-get-started.md
-[lnk-gateway-tag]: ./iot-hub-gateway-kit-c-get-started.md
-[lnk-devguide]: ./iot-hub-devguide.md
-[lnk-howto]: ./iot-hub-how-to.md
 
+[Pi_Nd]: iot-hub-raspberry-pi-kit-node-get-started.md
+[Pi_C]: iot-hub-raspberry-pi-kit-c-get-started.md
+[Ed_Nd]: iot-hub-intel-edison-kit-node-get-started.md
+[Ed_C]: iot-hub-intel-edison-kit-c-get-started.md
+[Hu_Ard]: iot-hub-arduino-huzzah-esp8266-get-started.md
+[Th_Ard]: iot-hub-sparkfun-esp8266-thing-dev-get-started.md
+[M0_Ard]: iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started.md
+[Sim_NET]: iot-hub-csharp-csharp-getstarted.md
+[Sim_Jav]: iot-hub-java-java-getstarted.md
+[Sim_Nd]: iot-hub-node-node-getstarted.md
+[Sim_Pyth]: iot-hub-python-getstarted.md
+[NUC_Lnx]: iot-hub-gateway-kit-c-lesson1-set-up-nuc.md
+[Sim_Lnx]: iot-hub-linux-gateway-sdk-get-started.md
+[Sim_Win]: iot-hub-windows-gateway-sdk-get-started.md
+[Mg_IoT_Hub_Msg]: iot-hub-explorer-cloud-device-messaging.md
+[Mg_IoT_Dv]: iot-hub-device-management-iothub-explorer.md
+[Sv_IoT_Msg_Stor]: iot-hub-store-data-in-azure-table-storage.md
+[Vis_Data]: iot-hub-live-data-visualization-in-power-bi.md
+[Weather_Forecast]: iot-hub-weather-forecast-machine-learning.md
+[Anomaly_Detect]: iot-hub-monitoring-notifications-with-azure-logic-apps.md
+[lnk-dev-guide]: iot-hub-devguide.md
+[lnk-how-to]: iot-hub-how-to.md

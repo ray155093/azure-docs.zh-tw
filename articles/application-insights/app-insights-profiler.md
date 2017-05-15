@@ -12,10 +12,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: ed685f0a4ed26fb8d1c766f87210a99d2b5270ac
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 13a2883c59092c964cf3c353e767839c5f9ef788
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -43,6 +44,8 @@ Application Insights 的這項功能目前僅供預覽。
 如果您需要停止或重新啟動分析工具，您可以在 [App Service 資源] 的 [Web 作業] 中找到它。 若要刪除它，請在 [擴充功能] 底下查看。
 
 如果您使用 WebDeploy 來部署 Web 應用程式的變更，請確定您已排除 **App_Data** 資料夾，以免系統在部署期間刪除它。 否則，當您下次將 Web 應用程式部署至 Azure 時，系統就會刪除分析工具擴充功能的檔案。
+
+**[更新]** Application Insights 網站擴充功能已將 2.3 版本的分析工具代理程式進行整合。 它會取代原始的 Application Insights 分析工具網站擴充功能。 您可以透過**設定**精靈移轉至最新版本。
 
 ## <a name="viewing-profiler-data"></a>檢視分析工具的資料
 
@@ -172,7 +175,7 @@ CPU 正忙於執行指令。
 2. 將 [.Net Framework 版本] 設定為 [v4.6]。
 3. 將 [永遠開啟] 設定為 [開啟]。
 4. 新增應用程式設定「__APPINSIGHTS_INSTRUMENTATIONKEY__，並將其值設定為 SDK 所使用的同一個檢測金鑰。
-5. 在 [擴充功能] 中，新增「Application Insights Profiler」。 安裝過程需要 2 或 3 分鐘。
+5. 在 [擴充功能] 中，新增 "Application Insights"。 安裝過程需要幾分鐘。
 
 ## <a id="aspnetcore"></a>ASP.NET Core 支援
 

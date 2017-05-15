@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/08/2015
 ms.author: robb
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 1e680679086d54a2c6b10be7635e997ac61bacd5
+ms.translationtype: Human Translation
+ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
+ms.openlocfilehash: 8f1c94ae5389739e03a7b1a70421e538516c873f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/27/2017
 
 
 ---
@@ -34,10 +36,8 @@ ms.openlocfilehash: 1e680679086d54a2c6b10be7635e997ac61bacd5
 
 ## <a name="scaling-manually"></a>手動調整
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [瀏覽]，然後瀏覽至您想要調整的資源，例如 [App Service 方案]。
-2. [作業] 中的 [調整] 圖格會告訴您調整的狀態：當您手動調整時，會顯示 [關閉]，當您依一或多個效能計量調整時會顯示 [開啟]。
-   
-    ![[調整] 磚](./media/insights-how-to-scale/Insights_UsageLens.png)
-3. 按一下磚，即會將您帶到 [ **級別** ] 刀鋒視窗。 在 [級別] 刀鋒視窗的頂端，您可以檢視服務的自動調整動作歷程記錄。
+2. 按一下 [設定] > [相應放大 (App Service 方案)]。
+3. 您可以在 [級別] 刀鋒視窗的頂端，查看服務的自動調整動作歷程記錄。
    
     ![Scale blade](./media/insights-how-to-scale/Insights_ScaleBladeDayZero.png)
    
@@ -129,10 +129,5 @@ ms.openlocfilehash: 1e680679086d54a2c6b10be7635e997ac61bacd5
 * [監視應用程式效能](../application-insights/app-insights-azure-web-apps.md) 。
 * [檢視事件和活動記錄檔](insights-debugging-with-events.md)以了解在您服務內發生的所有內容。
 * [監視任何網頁的可用性和回應性](../application-insights/app-insights-monitor-web-app-availability.md) ，讓您可以找出您的頁面是否關閉。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

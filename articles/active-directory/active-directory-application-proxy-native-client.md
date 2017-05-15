@@ -12,11 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/23/2017
+ms.date: 04/23/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 164e3b0af47cd98f2d20fce7344230608e9fbe8c
-ms.openlocfilehash: 6762a5c88b7a3bbc0424729865ae312d74f9059f
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
+ms.openlocfilehash: 24396f7c82bcc0fb076c4fceca0ec4b0963d36e8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 04/28/2017
 
 
 ---
@@ -35,23 +37,23 @@ Azure Active Directory 應用程式 Proxy 廣泛用於發佈瀏覽器應用程�
 
 1. 登入 Azure 傳統入口網站。
 2. 選取左側功能表中的 Active Directory 圖示，然後選取您的目錄。
-3. 在頂端功能表上，按一下 [ **應用程式**]。 如果您的目錄中尚未新增任何應用程式，此頁面僅會顯示 [新增應用程式]  連結。 按一下該連結，或者您可以按一下命令列上的 [新增]  按鈕。
+3. 在頂端功能表上，按一下 [ **應用程式**]。 如果您的目錄中尚未新增任何應用程式，則此頁面只會顯示 [新增應用程式]  連結。 按一下此連結，或者您可以按一下命令列上的 [新增] 按鈕。
 4. 在 [欲執行動作] 頁面上，按一下 [加入我的組織正在開發的應用程式] 連結。
 5. 在 [告訴我們您的應用程式] 頁面上，指定應用程式的名稱，然後選擇 [原生用戶端應用程式]。 按一下箭號圖示以繼續。
 6. 在 [應用程式資訊] 頁面上，提供原生用戶端應用程式的 [重新導向 URI]，然後按一下核取記號來完成操作。
 
-已新增您的應用程式，而且您將會進入應用程式的 [快速啟動] 頁面。
+已新增您的應用程式，而且您會進入應用程式的 [快速啟動] 頁面。
 
 ## <a name="step-3-grant-access-to-other-applications"></a>步驟 3：授與其他應用程式存取權
 啟用要公開給您的目錄中的其他應用程式的原生應用程式：
 
 1. 在頂端功能表上，按一下 [應用程式]，選取新的原生應用程式，然後按一下 [設定]。
-2. 向下捲動至 [其他應用程式的權限]  區段。 按一下 [加入應用程式]  按鈕，並選取您想要授與原生應用程式存取的 Proxy 應用程式，然後按一下右下角中的核取記號。 從 [委派的權限]  下拉式功能表，選取新的權限。
+2. 向下捲動至 [其他應用程式的權限]  區段。 按一下 [新增應用程式] 按鈕，並選取您想要授與原生應用程式存取的 Proxy 應用程式，然後按一下右下角中的核取記號。 從 [委派的權限]  下拉式功能表，選取新的權限。
 
 ![[其他應用程式的權限] 的螢幕擷取畫面 - [新增應用程式]](./media/active-directory-application-proxy-native-client/delegate_native_app.png)
 
 ## <a name="step-4-edit-the-active-directory-authentication-library"></a>步驟 4：編輯 Active Directory 驗證程式庫
-在 Active Directory 驗證程式庫 (ADAL) 的驗證內容中編輯原生應用程式程式碼，以包含下列：
+在 Active Directory 驗證程式庫 (ADAL) 的驗證內容中編輯原生應用程式程式碼，以包含下列文字：
 
         // Acquire Access Token from AAD for Proxy Application
         AuthenticationContext authContext = new AuthenticationContext("https://login.microsoftonline.com/<TenantId>");
@@ -83,9 +85,4 @@ Azure Active Directory 應用程式 Proxy 廣泛用於發佈瀏覽器應用程�
 * [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
 
 如需最新消息，請查閱 [應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 

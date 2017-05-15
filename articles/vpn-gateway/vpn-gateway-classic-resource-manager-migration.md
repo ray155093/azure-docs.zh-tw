@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/28/2016
+ms.date: 05/02/2017
 ms.author: amsriva
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 32ca2e4b1dcf5715602b8e1e1f3026cb785fbe0c
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
+ms.openlocfilehash: 1164fc24355657af22b6befaad74685ebbc2b5cb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/03/2017
 
 
 ---
@@ -40,7 +41,7 @@ Resource Manager 中的模型不同於傳統模型，是由虛擬網路閘道、
 
 不支援的案例包括 -  
 
-* 包含 ExpressRoute 閘道器的 Vnet 目前不支援移轉。 因此，目前不支援與相同 VNet 上的 ExpressRoute 閘道器共存。
+* 目前不支援 VNet 隨附 ExpressRoute 閘道與 VPN 閘道。
 * 傳輸 VM 擴充功能連線到內部部署伺服器的案例。 傳輸 VPN 連線能力限制如下所述。
 
 > [!NOTE]

@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: c0a0959a5484111ee5426204e15434300cb6a438
-ms.lasthandoff: 12/08/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
+ms.openlocfilehash: 66f4e43670ffe9c62e026eb1b56eea035a199d05
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/01/2017
 
 
 ---
@@ -92,7 +93,7 @@ ms.lasthandoff: 12/08/2016
     FROM Step1 Partition By PartitionId
     GROUP BY TumblingWindow(minute, 3), TollBoothId, PartitionId
 
-這個查詢有群組索引鍵，且同一個查詢執行個體必須處理相同的索引鍵。 我們可以使用與上一個查詢相同的策略。 這個查詢有多重步驟。 每個步驟的 Partition By 都是 PartitionId 嗎？ 有，所以沒問題了。 針對輸出，我們必須把 PartitionKey 設定為PartitionId，就跟上面討論的一樣，且我們也得讓資料分割的數目跟輸入的一樣。 這個拓撲的確是窘迫平行。
+這個查詢有群組索引鍵，且同一個查詢執行個體必須處理相同的索引鍵。 我們可以使用與上一個查詢相同的策略。 這個查詢有多重步驟。 每個步驟都有 ** PartitionId** 的 **Partition By** 嗎？ 有，所以沒問題了。 針對輸出，我們必須把 PartitionKey 設定為PartitionId，就跟上面討論的一樣，且我們也得讓資料分割的數目跟輸入的一樣。 這個拓撲的確是窘迫平行。
 
 ## <a name="example-scenarios-that-are-not-embarrassingly-parallel"></a>並非窘迫平行的範例案例
 ### <a name="mismatched-partition-count"></a>不相符的資料分割數目
@@ -320,7 +321,7 @@ PowerBI 輸出目前並不支援資料分割。
 ![img.stream.analytics.perfgraph][img.stream.analytics.perfgraph]
 
 ## <a name="get-help"></a>取得說明
-如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
+如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureStreamAnalytics)。
 
 ## <a name="next-steps"></a>後續步驟
 * [Azure Stream Analytics 介紹](stream-analytics-introduction.md)

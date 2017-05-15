@@ -14,9 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: backup-recovery
 ms.date: 2/2/2017
 ms.author: anoopkv
-translationtype: Human Translation
-ms.sourcegitcommit: bb24e1c79f6a77ec157fa05a8a212109ce8ae7ad
-ms.openlocfilehash: cc2d4d92f7d900f8dc231e11b65acf4b742ed893
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
+ms.openlocfilehash: cceda131fc9eaa74f6328c8dd68a8e3885877061
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/02/2017
 
 ---
 
@@ -28,7 +30,7 @@ ms.openlocfilehash: cc2d4d92f7d900f8dc231e11b65acf4b742ed893
 在容錯回復期間，如果 Azure 虛擬網路和您的內部部署網路之間發生高延遲，則建議在 Azure 中部署處理伺服器。 此文章說明如何設定、配置及管理在 Azure 中執行的處理伺服器。
 
 > [!NOTE]
-> 若要在容錯回復期間使用 **Resource Manager** 做為虛擬機器部署模型，可以參考此文章。 如果您使用**傳統**做為部署模型，請依照[如何設定及配置容錯回復處理伺服器 (Resource Manager)](./site-recovery-vmware-setup-azure-ps-resource-manager.md) 中的步驟執行
+> 如果在容錯移轉期間使用「傳統」作為虛擬機器部署模型，可以參考此文章。 如果您使用 Resource Manager 作為部署模型，請依照[如何設定及配置容錯回復處理伺服器 (Resource Manager)](./site-recovery-vmware-setup-azure-ps-resource-manager.md) 中的步驟執行
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -60,9 +62,4 @@ ms.openlocfilehash: cc2d4d92f7d900f8dc231e11b65acf4b742ed893
 ## <a name="unregistering-the-process-server-running-in-azure-from-a-configuration-server-running-on-premises"></a>從組態伺服器 (在內部部署上執行) 取消註冊處理伺服器 (在 Azure 中執行)
 
 [!INCLUDE [site-recovery-vmware-upgrade-process-server](../../includes/site-recovery-vmware-unregister-process-server.md)]
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 
