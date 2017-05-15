@@ -14,9 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/13/2017
 ms.author: vidarmsft
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
 ms.openlocfilehash: 3c7c972cdc395e2e20e7f6a296a2ffab6efad66d
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/15/2017
 
 
@@ -101,7 +102,7 @@ Microsoft Azure StorSimple 是一個混合式雲端儲存體解決方案，可�
    5. 選取 [StorSimple]  索引標籤，然後選取包含實體裝置的 StorSimple Manager 服務。
    6. 建立磁碟區容器，然後建立磁碟區。 (這些磁碟區是供檔案伺服器 VM 上的檔案共用使用)。 在您建立磁碟區時，請複製啟動器名稱並為「存取控制記錄」提供適當名稱。
    7. 選取 [組態]  索引標籤並記下裝置的 IP 位址。
-   8. 在您的內部部署 VM 上，再度移到 [iSCSI 啟動器]  ，並在 [快速連線] 區段中輸入 IP。 按一下 [快速連線]  (裝置現在應該就會連線)。
+   8. 在您的內部部署 VM 上，再度移到 [iSCSI 啟動器]  ，並在 [快速連線] 區段中輸入 IP。 按一下 [快速連線]  \(裝置現在應該就會連線)。
    9. 開啟 Azure 入口網站，然後選取 [磁碟區和裝置]  索引標籤。 按一下 [自動設定] 。 您剛剛建立的磁碟區應該就會出現。
    10. 在入口網站中，選取 [裝置] 索引標籤，然後選取 [建立新的虛擬裝置]。 (此虛擬裝置將會在發生容錯移轉時使用)。 這個新的虛擬裝置可以維持在離線狀態以避免產生額外成本。 若要讓虛擬機器離線，請移至入口網站的 [虛擬機器] 區段並將它關閉。
    11. 回到內部部署 VM並開啟磁碟管理 (按 Windows 鍵 + X 並選取 [磁碟管理] )。

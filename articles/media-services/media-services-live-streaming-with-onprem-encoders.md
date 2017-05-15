@@ -14,9 +14,10 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: cenkd;juliako
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
 ms.openlocfilehash: d6e3ea06106463367eb03498ef8d9bc47d83c694
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/13/2017
 
 
@@ -47,7 +48,7 @@ ms.lasthandoff: 04/13/2017
 
 ![即時工作流程][live-overview]
 
-## <a id="scenario">常見即時串流案例</a>
+## <a id="scenario"></a>常見即時串流案例
 下列步驟描述當我們建立一般即時串流應用程式時，會涉及到的各種工作。
 
 1. 將攝影機連接到電腦。 啟動並設定內部部署即時編碼器，讓它以多位元速率 RTMP 或 Fragmented MP4 (Smooth Streaming) 串流做為輸出。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
