@@ -13,10 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
-ms.openlocfilehash: 69143ccdbfbf50701d44e0342e8eb4ebe68b22da
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: ddf4affe72c6413501ffa00747c110f8761ed70e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -141,13 +142,13 @@ LinkedIn Sales Navigator 與 Azure AD 整合提供下列優點：
     | --- | --- |    
     | department| user.department |
 
-       ![Creating an Azure AD test user](./media/active-directory-saas-linkedinsalesnavigator-tutorial/userattribute.png)
+   ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinsalesnavigator-tutorial/userattribute.png)
 
     a. 按一下 [新增屬性] 來開啟屬性對話方塊
 
-       ![Creating an Azure AD test user](./media/active-directory-saas-linkedinsalesnavigator-tutorial/adduserattribute.png)
+   ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinsalesnavigator-tutorial/adduserattribute.png)
    
-    b. 在 [名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
+    b.這是另一個 C# 主控台應用程式。 在 [名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
     
     c. 在 [值] 清單中，選取該列所顯示的值。
     

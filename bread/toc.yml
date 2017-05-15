@@ -191,6 +191,9 @@
   - name: "網路監看員"
     tocHref: /azure/network-watcher/
     topicHref: /azure/network-watcher/
+  - name: "網路"
+    tocHref: /azure/networking/
+    topicHref: /azure/networking/networking-overview
   - name: "通知中樞"
     tocHref: /azure/notification-hubs/
     topicHref: /azure/notification-hubs/

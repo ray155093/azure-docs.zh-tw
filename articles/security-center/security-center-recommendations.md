@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/21/2017
+ms.date: 05/09/2017
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: 68d74cfde8146007930a4c340b7412fca00afc39
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 9663535cc301ecd2c26c1cf318dbf9420758e245
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -110,7 +111,7 @@ ms.lasthandoff: 04/22/2017
 
 在上述的建議表格中選取一項建議並逐步進行，做為套用建議的範例。
 
-## <a name="see-also"></a>另請參閱
+## <a name="next-steps"></a>後續步驟
 在本文件中，已向您介紹「資訊安全中心」的安全性建議。 如要深入了解資訊安全中心，請參閱下列主題：
 
 * [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) — 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
