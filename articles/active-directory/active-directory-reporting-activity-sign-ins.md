@@ -1,6 +1,7 @@
 ---
-title: "Azure Active Directory 入口網站 (預覽版) 中的登入活動報告 | Microsoft Docs"
-description: "介紹 Azure Active Directory 入口網站 (預覽版) 中的登入活動報告"
+
+title: "Azure Active Directory 入口網站中的登入活動報告 | Microsoft Docs"
+description: "介紹 Azure Active Directory 入口網站中的登入活動報告"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -12,18 +13,19 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 04/06/2017
+ms.date: 05/04/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
-ms.openlocfilehash: f6c0bb59d9eb16da6c7daea2e722e32ac7dbc2d7
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 19cd81c1e6020523d1bea3ec76c957ce22f931ca
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
-# <a name="sign-in-activity-reports-in-the-azure-active-directory-portal---preview"></a>Azure Active Directory 入口網站 (預覽版) 中的登入活動報告
+# <a name="sign-in-activity-reports-in-the-azure-active-directory-portal"></a>Azure Active Directory 入口網站中的登入活動報告
 
-透過 Azure Active Directory [預覽版](active-directory-preview-explainer.md)中的報告，您可取得判斷您的環境執行狀況所需的所有資訊。
+透過 [Azure 入口網站](https://portal.azure.com)中的 Azure Active Directory (Azure AD) 報告，您可以取得判斷您的環境執行狀況所需的資訊。
 
 Azure Active Directory 中的報告架構包含下列元件：
 
@@ -44,7 +46,7 @@ Azure Active Directory 中的報告架構包含下列元件：
 * 一週內有多少使用者登入？
 * 這些登入的狀態為何？
 
-所有登入活動資料的第一個進入點是 **Azure Active** [活動] 區段中的 [登入]。 Directory。
+所有登入活動資料的第一個進入點是 **Azure Active** [活動] 區段中的 [登入]。
 
 
 ![登入活動](./media/active-directory-reporting-activity-sign-ins/61.png "登入活動")

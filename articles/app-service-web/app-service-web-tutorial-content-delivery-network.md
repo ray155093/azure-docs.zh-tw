@@ -1,148 +1,300 @@
 ---
-title: "在 Azure App Service 上新增內容傳遞網路 | Microsoft Docs"
-description: "在 Azure App Service 上新增內容傳遞網路，以從邊緣節點提供靜態檔案。"
+title: "將內容傳遞網路 (CDN) 新增至 Azure App Service | Microsoft Docs"
+description: "將內容傳遞網路 (CDN) 新增至 Azure App Service，以從您在世界各地的客戶附近的伺服器快取和傳遞靜態檔案。"
 services: app-service
 author: syntaxc4
 ms.author: cfowler
-ms.date: 04/03/2017
+ms.date: 05/01/2017
 ms.topic: hero-article
 ms.service: app-service-web
 manager: erikre
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: 7ba3737566401152a3171e8926beca188045230c
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 7208abc0e6eaa9067c5bb36a09e1bfd276fe0b0c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 ---
-# <a name="add-a-content-deliver-network-on-an-azure-app-service"></a>在 Azure App Service 上新增內容傳遞網路
+# <a name="add-a-content-delivery-network-cdn-to-an-azure-app-service"></a>將內容傳遞網路 (CDN) 新增至 Azure App Service
 
-在本教學課程中，您會在 Azure App Service 上新增內容傳遞網路 (CDN)，以在 Edge Server 上公開靜態內容。 您將會建立 CDN 設定檔，此設定檔是最多 10 個 CDN 端點的集合。
+[Azure 內容傳遞網路 (CDN)](../cdn/cdn-overview.md) 會在策略性放置的位置上快取靜態 Web 內容，以提供最大輸送量來將內容傳遞給使用者。 CDN 也可降低您的 Web 應用程式的伺服器負載。 本教學課程說明如何將 Azure CDN 新增至 [Azure App Service 中的 Web 應用程式](app-service-web-overview.md)。 
 
-內容傳遞網路會在策略性放置的位置上快取靜態 Web 內容，以提供最大輸送量來將內容傳遞給使用者。 使用 CDN 來快取網站資產的優點包括：
+在本教學課程中，您了解如何：
 
-* 讓使用者享有更好的效能和使用者經驗，尤其是當使用的應用程式需要反覆存取多次才能載入內容時。
-* 可進行大幅調整以更妥善地處理瞬間大量負載 (例如產品上市事件的開始)。
-* 透過分散使用者要求以及從 Edge Server 提供內容，傳送至原始來源的流量將會減少。
+> [!div class="checklist"]
+> * 建立 CDN 端點。
+> * 重新整理快取的資產。
+> * 使用查詢字串來控制快取的版本。
+> * 使用 CDN 端點的自訂網域。
 
-> [!TIP]
-> 檢閱 [Azure CDN POP 位置](https://docs.microsoft.com/en-us/azure/cdn/cdn-pop-locations)的最新清單。
->
+以下是您將使用的範例靜態 HTML 網站首頁︰
 
-## <a name="deploy-the-sample"></a>部署範例
+![範例應用程式首頁](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page.png)
 
-若要完成本教學課程，您必須在 Web 應用程式中部署應用程式。 請遵循[靜態 HTML 快速入門](app-service-web-get-started-html.md)來為本教學課程奠定基礎。
+## <a name="create-the-web-app"></a>建立 Web 應用程式
 
-## <a name="step-1---login-to-azure-portal"></a>步驟 1 - 登入 Azure 入口網站
+若要建立您將使用的 Web 應用程式，請遵循[靜態 HTML 快速入門](app-service-web-get-started-html.md)，但不進行**清除資源**步驟。
 
-首先，開啟您喜愛的瀏覽器並瀏覽至 Azure [入口網站](https://portal.azure.com)。
+當您完成本教學課程時，讓命令提示字元保持開啟狀態，以便稍後在本教學課程中部署 Web 應用程式部署的其他變更。
 
-## <a name="step-2---create-a-cdn-profile"></a>步驟 2 - 建立 CDN 設定檔
+### <a name="have-a-custom-domain-ready"></a>備妥自訂網域
 
-按一下左側導覽中的 `+ New` 按鈕，按一下 [Web + Mobile]。 在 [Web + 行動] 類別之下，選取 [CDN]。
+若要完成本教學課程的自訂網域步驟，您需要網域提供者 (例如 GoDaddy) 的 DNS 登錄存取權。 例如，若要為 `contoso.com` 和 `www.contoso.com` 新增 DNS 項目，您必須有權設定 `contoso.com` 根網域的 DNS 設定。
 
-指定下列欄位：
+如果您還沒有網域名稱，請考慮遵循 [App Service 網域教學課程](custom-dns-web-site-buydomains-web-app.md)的作法，使用 Azure 入口網站來購買網域。 
 
-| 欄位 | 範例值 | 說明 |
-|---|---|---|
-| 名稱 | myCDNProfile | CDN 設定檔的名稱。 |
-| 位置 | 西歐 | 此為儲存您 CDN 設定檔資訊的所在 Azure 位置。 其不會影響 CDN 端點位置。 |
-| 資源群組 | myResourceGroup | 如需資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../azure-resource-manager/resource-group-overview.md#resource-groups) |
-| 定價層 | 標準 Akamai | 如需定價層的比較，請參閱 [CDN 概觀](../cdn/cdn-overview.md#azure-cdn-features)。 |
+## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
 
-按一下 [建立] 。
+開啟瀏覽器並瀏覽至 [Azure 入口網站](https://portal.azure.com)。
 
-從左側導覽開啟資源群組中樞，選取 **myResourceGroup**。 從資源清單中選取 **myCDNProfile**。
+## <a name="create-a-cdn-profile-and-endpoint"></a>建立 CDN 設定檔和端點
 
-![azure-cdn-profile-created](media/app-service-web-tutorial-content-delivery-network/azure-cdn-profile-created.png)
+在左側導覽中，選取 [應用程式服務]，然後選取您在[靜態 HTML 快速入門](app-service-web-get-started-html.md)中建立的應用程式。
 
-## <a name="step-3---create-a-cdn-endpoint"></a>步驟 3 - 建立 CDN 端點
+![在入口網站中選取 App Service 應用程式](media/app-service-web-tutorial-content-delivery-network/portal-select-app-services.png)
 
-按一下搜尋方塊旁命令中的 [+ 端點]，這會啟動端點建立刀鋒視窗。
+在 [App Service] 頁面的 [設定] 區段中，選取 [網路] > [設定您應用程式的 Azure CDN]。
 
-指定下列欄位：
+![在入口網站中選取 CDN](media/app-service-web-tutorial-content-delivery-network/portal-select-cdn.png)
 
-| 欄位 | 範例值 | 說明 |
-|---|---|
-| 名稱 |  | 此名稱會用於存取位於網域 `<endpointname>.azureedge.net` 的快取資源 |
-| 原始來源類型 | Web 應用程式 | 選取原始來源類型會為您提供其餘欄位的關聯式功能表。 選取自訂原始來源則會為您提供用於填入原始主機名稱的文字欄位。 |
-| 原始主機名稱 | |  下拉式清單會列出您指定之原始來源類型的所有可用原始來源。 如果您選取 [自訂原始來源] 作為您的 [原始來源類型]，您將會輸入自訂原始來源的網域  |
+在 [Azure 內容傳遞網路] 頁面中，提供表格中所指定的 [新端點] 設定。
 
-按一下 [新增] 。
+![在入口網站中建立設定檔和端點](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint.png)
 
-將會建立端點，一旦建立內容傳遞網路端點，狀態就會更新為 [執行中]。
+| 設定 | 建議的值 | 說明 |
+| ------- | --------------- | ----------- |
+| **CDN 設定檔** | myCDNProfile | 選取 [建立新的] 以建立新的 CDN 設定檔。 CDN 設定檔是定價層相同的 CDN 端點集合。 |
+| **定價層** | 標準 Akamai | [定價層](../cdn/cdn-overview.md#azure-cdn-features)指定提供者和可用的功能。 在本教學課程中，我們會使用標準 Akamai。 |
+| **CDN 端點名稱** | azureedge.net 網域中任何唯一的名稱 | 您可在網域 *\<endpointname>.azureedge.net* 存取快取的資源。
 
-![azure-cdn-endpoint-created](media/app-service-web-tutorial-content-delivery-network/azure-cdn-endpoint-created.png)
+選取 [ **建立**]。
 
-## <a name="step-4---serve-from-azure-cdn"></a>步驟 4 - 從 Azure CDN 提供
+Azure 會建立設定檔和端點。 新端點會出現在相同頁面上的 [端點] 清單中，而且其佈建後的狀態為 [執行中]。
 
-CDN 端點現已**執行中**，因此，您應該能夠從 CDN 端點來存取內容。
+![清單中的新端點](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint-in-list.png)
 
-考慮到我們使用[靜態 HTML 快速入門](app-service-web-get-started-html.md)作為本教學課程的基礎，所以 CDN 上應該有下列資料夾︰`css`、`img`、`js`。
+### <a name="test-the-cdn-endpoint"></a>測試 CDN 端點
 
-Web 應用程式 URL `http://<app_name>.azurewebsites.net/img/` 和 CDN 端點 URL `http://<endpointname>.azureedge.net/img/` 之間的內容路徑是相同的，這表示您只需要以 CDN 端點網域取代任何靜態內容，即可從 CDN 提供該內容。
+如果您選取了 Verizon 定價層，通常需要大約 90 分鐘的時間進行端點傳播。 若為 Akamai，傳播需要幾分鐘的時間
 
-在您最愛的網頁瀏覽器中瀏覽至下列 URL，以從 CDN 端點提取我們的第一個影像︰
+範例應用程式有 `index.html` 檔案以及包含其他靜態資產的 css、img 和 js 資料夾。 在 CDN 端點上，上述所有檔案的內容路徑都相同。 例如，下列 URL 可存取 css 資料夾中的 bootstrap.css 檔案︰
 
-```bash
-http://<endpointname>.azureedge.net/img/03-enterprise.png
+```
+http://<appname>.azurewebsites.net/css/bootstrap.css
 ```
 
-靜態內容在 CDN 上已可供使用，因此您可以將應用程式更新為使用 CDN 端點來將內容傳遞給使用者。
+```
+http://<endpointname>.azureedge.net/css/bootstrap.css
+```
 
-視您網站的建置語言而定，可能有許多架構可協助實現 CDN 後援。 例如，ASP.NET 所提供的[統合和縮製](https://docs.microsoft.com/en-us/aspnet/mvc/overview/performance/bundling-and-minification#using-a-cdn)支援也可實現 CDN 後援功能。
+讓瀏覽器瀏覽至下列 URL，您會看到稍早在 Azure Web 應用程式中執行的相同頁面，但現在由 CDN 提供。
 
-如果您的語言沒有內建的 CDN 容錯回復支援或這項支援的程式庫，您可以使用類似 [FallbackJS](http://fallback.io/) 的 JavaScript 架構，以支援載入[指令碼](https://github.com/dolox/fallback/tree/master/examples/loading-scripts)、[樣式表](https://github.com/dolox/fallback/tree/master/examples/loading-stylesheets)和[影像](https://github.com/dolox/fallback/tree/master/examples/loading-images)。
+```
+http://<endpointname>.azureedge.net/index.html
+```
 
-## <a name="step-5---purge-the-cdn"></a>步驟 5 - 清除 CDN
+![CDN 提供的範例應用程式首頁](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page-cdn.png)
 
-如果您想要讓內容在存留時間 (TTL) 到期之前就先到期，有時候您可能必須強制清除 CDN。
+這會顯示 Azure CDN 已擷取原始 Web 應用程式的資產，並從 CDN 端點提供這些資產。 
 
-您可以手動清除 Azure CDN，不論是 [CDN 設定檔] 刀鋒視窗或 [CDN 端點] 刀鋒視窗都可讓您這麼做。 如果您從 [設定檔] 頁面選取清除作業，您就必須選取您想要清除哪一個端點。
+若要確保此頁面已在 CDN 中快取，請重新整理此頁面。 CDN 有時需要相同資產的兩個要求，才能快取所要求的內容。
 
-若要清除內容，請輸入您想要清除的內容路徑。 您可以傳遞完整檔案路徑來清除個別檔案，也可以傳遞路徑區段以從特定資料夾清除並重新整理內容。
+如需建立 Azure CDN 設定檔和端點的詳細資訊，請參閱[開始使用 Azure CDN](../cdn/cdn-create-new-endpoint.md)。
 
-在提供了您想要清除的所有內容路徑後，按一下 [清除]。
+## <a name="purge-the-cdn"></a>清除 CDN
 
-![app-service-web-purge-cdn](media/app-service-web-tutorial-content-delivery-network/app-service-web-purge-cdn.png)
+CDN 會根據存留時間 (TTL) 組態，從原始 web 應用程式定期重新整理其資源。 預設 TTL 為 7 天。
 
-## <a name="step-6---map-a-custom-domain"></a>步驟 6 - 對應自訂網域
+有時候，您可能需要在 TTL 到期日之前重新整理CDN 更新的內容部署至 web 應用程式時，-例如，。 若要觸發重新整理，您可以手動清除 CDN 資源。 
 
-將自訂網域對應至 CDN 端點可為 Web 應用程式提供統一的網域。
+在本節的教學課程中，您會將變更部署到 Web 應用程式並清除 CDN，進而觸發 CDN 重新整理其快取。
 
-若要將自訂網域對應至 CDN 端點，請在網域註冊機構建立 CNAME 記錄。
+### <a name="deploy-a-change-to-the-web-app"></a>將變更部署到 Web 應用程式
 
-> [!NOTE]
-> CNAME 記錄是將 `www.contosocdn.com` 或 `static.contosocdn.com` 等來源網域對應至目的地網域的 DNS 功能。
+開啟 `index.html` 檔案並將 "- V2" 新增至 H1 標題，如下列範例所示︰ 
 
-在此案例中，我們會新增 `static.contosocdn.com` 來源網域，而此網域會指向作為 CDN 端點的目的地網域。
+```
+<h1>Azure App Service - Sample Static HTML Site - V2</h1>
+```
 
-| 來源網域 | 目的地網域 |
-|---|---|
-| static.contosocdn.com | &lt;endpointname&gt;.azureedge.net |
+認可您的變更並將它部署至 Web 應用程式。
 
-從 [CDN 端點概觀] 刀鋒視窗中，按一下 `+ Custom domain` 按鈕。
+```bash
+git commit -am "version 2"
+git push azure master
+```
 
-在 [新增自訂網域] 刀鋒視窗中，於對話方塊內輸入您的自訂網域 (包括子網域)。 例如，以 `static.contosocdn.com` 格式輸入網域名稱。
+完成部署後，瀏覽至 Web 應用程式 URL，您會看到變更。
 
-按一下 [新增] 。
+```
+http://<appname>.azurewebsites.net/index.html
+```
 
-## <a name="step-7---version-content"></a>步驟 7 - 版本內容
+![Web 應用程式標題中的 V2](media/app-service-web-tutorial-content-delivery-network/v2-in-web-app-title.png)
 
-在 CDN 端點的左側導覽中，選取 [設定] 標題底下的 [快取]。
+瀏覽至首頁的 CDN 端點 URL，因為 CDN 中快取的版本尚未到期，所以您不會看到變更。 
 
-[快取] 刀鋒視窗可讓您設定 CDN 該如何處理要求中的查詢字串。
+```
+http://<endpointname>.azureedge.net/index.html
+```
 
-> [!NOTE]
-> 如需關於查詢字串快取行為選項的說明，請參閱[使用查詢字串控制 Azure CDN 快取行為](../cdn/cdn-query-string.md)主題。
+![CDN 標題中沒有 V2](media/app-service-web-tutorial-content-delivery-network/no-v2-in-cdn-title.png)
 
-從查詢字串快取行為的下拉式清單中，選取 [快取每個唯一 URL]。
+### <a name="purge-the-cdn-in-the-portal"></a>在入口網站中清除 CDN
 
-按一下 [儲存] 。
+若要觸發 CDN 更新其快取的版本，請清除 CDN。
+
+在入口網站的左側導覽中，選取 [資源群組]，然後選取您為 Web 應用程式 (myResourceGroup) 建立的資源群組。
+
+![選取資源群組](media/app-service-web-tutorial-content-delivery-network/portal-select-group.png)
+
+在資源清單中，選取您的 CDN 端點。
+
+![選取端點](media/app-service-web-tutorial-content-delivery-network/portal-select-endpoint.png)
+
+在 [端點] 頁面的頂端，按一下 [清除]。
+
+![選取清除](media/app-service-web-tutorial-content-delivery-network/portal-select-purge.png)
+
+輸入您想要清除的內容路徑。 您可以傳遞完整檔案路徑來清除個別檔案，也可以傳遞路徑區段來清除並重新整理資料夾中的所有內容。 因為您變更了 `index.html`，請確定這是其中一個路徑。
+
+選取頁面底部的 [清除]。
+
+![清除頁面](media/app-service-web-tutorial-content-delivery-network/app-service-web-purge-cdn.png)
+
+### <a name="verify-that-the-cdn-is-updated"></a>確認 CDN 已更新
+
+等到清除要求完成處理，通常需要幾分鐘的時間。 若要查看目前的狀態，請選取頁面頂端的鈴鐺圖示。 
+
+![清除通知](media/app-service-web-tutorial-content-delivery-network/portal-purge-notification.png)
+
+瀏覽至 `index.html` 的 CDN 端點 URL，您現在會看到已新增至首頁標題的 V2。 這會顯示已重新整理的 CDN 快取。
+
+```
+http://<endpointname>.azureedge.net/index.html
+```
+
+![CDN 標題中的 V2](media/app-service-web-tutorial-content-delivery-network/v2-in-cdn-title.png)
+
+如需詳細資訊，請參閱[清除 Azure CDN 端點](../cdn/cdn-purge-endpoint.md)。 
+
+## <a name="use-query-strings-to-version-content"></a>使用查詢字串來控制內容版本
+
+Azure CDN 提供下列快取行為選項︰
+
+* 忽略查詢字串
+* 略過查詢字串的快取
+* 快取每個唯一的 URL 
+
+上述第一個選項是預設值，這表示不管 URL 中用於存取資產的查詢字串為何，資產都只有一個快取的版本。 
+
+在本節的教學課程中，您可將快取行為變更為快取每個唯一 URL。
+
+### <a name="change-the-cache-behavior"></a>變更快取行為
+
+在 Azure 入口網站的 [CDN 端點] 頁面中，選取 [快取]。
+
+從 [查詢字串快取行為] 下拉式清單中，選取 [快取每個唯一 URL]。
+
+選取 [ **儲存**]。
+
+![選取查詢字串快取行為](media/app-service-web-tutorial-content-delivery-network/portal-select-caching-behavior.png)
+
+### <a name="verify-that-unique-urls-are-cached-separately"></a>確認唯一的 URL 會分開快取
+
+在瀏覽器中，瀏覽至 CDN 端點首頁，但包含查詢字串︰ 
+
+```
+http://<endpointname>.azureedge.net/index.html?q=1
+```
+
+CDN 會傳回目前的 Web 應用程式內容，其標題中包含 "V2"。 
+
+若要確保此頁面已在 CDN 中快取，請重新整理此頁面。 
+
+開啟 `index.html` 並將 "V2" 變更為 "V3"，然後部署變更。 
+
+```bash
+git commit -am "version 3"
+git push azure master
+```
+
+在瀏覽器中，移至含有新查詢字串 (例如`q=2`) 的 CDN 端點 URL。 CDN 會取得目前的 `index.html` 檔案並顯示 "V3"。  但是，如果您瀏覽至含有 `q=1` 查詢字串的 CDN 端點，您會看到 "V2"。
+
+```
+http://<endpointname>.azureedge.net/index.html?q=2
+```
+
+![CDN 標題中的 V3，查詢字串 2](media/app-service-web-tutorial-content-delivery-network/v3-in-cdn-title-qs2.png)
+
+```
+http://<endpointname>.azureedge.net/index.html?q=1
+```
+
+![CDN 標題中的 V2，查詢字串 1](media/app-service-web-tutorial-content-delivery-network/v2-in-cdn-title-qs1.png)
+
+此輸出顯示每個查詢字串是以不同的方式處理︰之前使用 q=1，所以傳回快取的內容 (V2)，而 q=2 是新查詢字串，所以會擷取並傳回最新的 Web 應用程式內容 (V3)。
+
+如需詳細資訊，請參閱[使用查詢字串控制 Azure CDN 快取行為](../cdn/cdn-query-string.md)。
+
+## <a name="map-a-custom-domain-to-a-cdn-endpoint"></a>將自訂網域對應至 CDN 端點
+
+您會建立 CNAME 記錄，以將自訂網域對應至 CDN 端點。 CNAME 記錄是將來源網域對應至目的地網域的 DNS 功能。 例如，您可能會將 `cdn.contoso.com` 或 `static.contoso.com` 對應到 `contoso.azureedge.net`。
+
+如果您沒有自訂網域，請考慮遵循 [App Service 網域教學課程](custom-dns-web-site-buydomains-web-app.md)的作法，使用 Azure 入口網站來購買網域。 
+
+### <a name="find-the-hostname-to-use-with-the-cname"></a>尋找要搭配 CNAME 使用的主機名稱
+
+在 Azure 入口網站的 [端點] 頁面中，確定已選取左側導覽中的 [概觀]，然後選取頁面頂端的 [+ 自訂網域] 按鈕。
+
+![選取新增自訂網域](media/app-service-web-tutorial-content-delivery-network/portal-select-add-domain.png)
+
+在 [新增自訂網域] 頁面中，您會看到要用於建立 CNAME 記錄的端點主機名稱。 主機名稱衍生自 CDN 端點 URL：**&lt;EndpointName>.azureedge.net**。 
+
+![新增網域頁面](media/app-service-web-tutorial-content-delivery-network/portal-add-domain.png)
+
+### <a name="configure-the-cname-with-your-domain-registrar"></a>透過您的網域註冊機構設定 CNAME
+
+瀏覽至您網域註冊機構的網站，並找出用於建立 DNS 記錄的區段。 您可能會在 **Domain Name**、**DNS** 或 **Name Server Management** 等區段中發現此頁面。
+
+尋找管理 CNAME 的區段。 您可能需要移至進階設定頁面，並尋找 CNAME、Alias 或 Subdomains 單字。
+
+建立新的 CNAME 記錄，將您選擇的子網域 (例如 **static** 或 **cdn**) 對應到入口網站中稍早顯示的 [端點主機名稱]。 
+
+### <a name="enter-the-custom-domain-in-azure"></a>在 Azure 中輸入自訂網域
+
+返回 [新增自訂網域]  頁面，在對話方塊中輸入您的自訂網域 (包括子網域)。 例如，輸入 `cdn.contoso.com`。   
+   
+Azure 會確認您所輸入的網域名稱存在 CNAME 記錄。 如果 CNAME 正確，您的自訂網域就會驗證。
+
+可能需要時間讓 CNAME 記錄傳播到網際網路上的名稱伺服器。 如果未立即驗證您的網域，但您確信 CNAME 記錄正確，請等待數分鐘的時間，然後再試一次。
+
+### <a name="test-the-custom-domain"></a>測試自訂網域
+
+在瀏覽器中，使用自訂網域 (例如 `cdn.contoso.com/index.html`) 瀏覽至 `index.html` 檔案，確認結果與您直接移至 `<endpointname>azureedge.net/index.html` 時相同。
+
+![使用自訂網域 URL 的範例應用程式首頁](media/app-service-web-tutorial-content-delivery-network/home-page-custom-domain.png)
+
+如需詳細資訊，請參閱[將 Azure CDN 內容對應至自訂網域](../cdn/cdn-map-content-to-custom-domain.md)。
+
+[!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 
 ## <a name="next-steps"></a>後續步驟
 
-* [什麼是 Azure CDN](../best-practices-cdn.md?toc=%2fazure%2fcdn%2ftoc.json)
-* [在 Azure CDN 自訂網域上啟用 HTTPS](../cdn/cdn-custom-ssl.md)
-* [在 Azure CDN 中壓縮檔案以改善效能](../cdn/cdn-improve-performance.md)
-* [在 Azure CDN 端點上預先載入資產](../cdn/cdn-preload-endpoint.md)
+在本教學課程中，您已了解如何：
+
+> [!div class="checklist"]
+> * 建立 CDN 端點。
+> * 重新整理快取的資產。
+> * 使用查詢字串來控制快取的版本。
+> * 使用 CDN 端點的自訂網域。
+
+了解在下列文章中如何將 CDN 效能最佳化。
+
+> [!div class="nextstepaction"]
+> [在 Azure CDN 中壓縮檔案以改善效能](../cdn/cdn-improve-performance.md)
+
+> [!div class="nextstepaction"]
+> [在 Azure CDN 端點上預先載入資產](../cdn/cdn-preload-endpoint.md)
+
 

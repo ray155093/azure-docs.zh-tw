@@ -3,8 +3,8 @@ title: "Microsoft Azure Data Lake Analytics 概觀 | Microsoft Docs"
 description: "Data Lake Analytics 是 Azure 巨量資料服務，可讓您使用從雲端中的資料獲得的深入資訊 (不論其所在位置和大小)，使用資料來推動業務。"
 services: data-lake-analytics
 documentationcenter: 
-author: edmacauley
-manager: jhubbard
+author: saveenr
+manager: saveenr
 editor: cgronlun
 ms.assetid: 1e1d443a-48a2-47fb-bc00-bf88274222de
 ms.service: data-lake-analytics
@@ -12,18 +12,19 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 03/28/2017
+ms.date: 05/06/2017
 ms.author: edmaca
-translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: 12d6fe834ed2b31a756123351288eec7ba2a72f7
-ms.lasthandoff: 03/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: cb2da3515cfe5fd460e16b019d3738f4a9a050bb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
 # <a name="overview-of-microsoft-azure-data-lake-analytics"></a>Microsoft Azure Data Lake Analytics 概觀
 ## <a name="what-is-azure-data-lake-analytics"></a>什麼是 Azure Data Lake Analytics？
-Azure Data Lake Analytics 是隨分析作業服務，可簡化巨量資料分析。 此服務著重於撰寫、執行和管理作業，而非操作分散式基礎結構。 無需部署、設定及調整硬體，您只需寫入查詢便可轉換資料並擷取寶貴的深入見解。 透過針對所需的功能設定級別，此項分析服務便可立即處理任何規模的工作。 只有在作業進行時您才需要支付費用，十分符合成本效益。 分析服務支援 Azure Active Directory，讓您管理存取權及角色，且其與您的內部部署身分識別系統整合。 分析服務支援還包括 U-SQL，該語言可將 SQL 的優勢與使用者程式碼的運算能力結合在一起。 U-SQL 的可調整分散式執行階段可讓您有效地分析資料，範圍遍及存放區以及 Azure、Azure SQL Database 以及 Azure SQL 資料倉儲中的 SQL Server。
+Azure Data Lake Analytics 是隨選分析作業服務，可簡化巨量資料分析。 此服務著重於撰寫、執行和管理作業，而非操作分散式基礎結構。 無需部署、設定及調整硬體，您只需寫入查詢便可轉換資料並擷取寶貴的深入見解。 透過針對所需的功能設定級別，此項分析服務便可立即處理任何規模的工作。 只有在作業進行時您才需要支付費用，十分符合成本效益。 分析服務支援 Azure Active Directory，讓您管理存取權及角色，且其與您的內部部署身分識別系統整合。 分析服務支援還包括 U-SQL，該語言可將 SQL 的優勢與使用者程式碼的運算能力結合在一起。 U-SQL 的可調整分散式執行階段可讓您有效地分析資料，範圍遍及存放區以及 Azure、Azure SQL Database 以及 Azure SQL 資料倉儲中的 SQL Server。
 
 ## <a name="key-capabilities"></a>主要功能
 * **動態調整**
@@ -37,7 +38,7 @@ Azure Data Lake Analytics 是隨分析作業服務，可簡化巨量資料分析
     Data Lake Analytics 包括 U-SQL，此查詢語言透過 C# 的運算能力，將大家所熟悉 SQL 的簡單、宣告的性質加以擴充。 U-SQL 語言是建立在提供 Microsoft 巨量資料系統資源的相同分散式執行階段之上。 數百萬名 SQL 和 .NET 開發人員現在已可以利用他們本來具備的技術處理及分析資料。
 * **與您的 IT 投資無縫整合**
   
-    Data Lake Analytics 會運用您現有的 IT 投資，進行身分識別、管理、安全性及資料倉儲等工作。 不僅資料管理得以簡化，擴充現有的資料應用程式也變得更為容易。 Data Lake Analytics 與 Active Directory 整合，以進行使用者管理與授予使用者權限，並隨附內建的監視與稽核功能。
+    Data Lake Analytics 會運用您現有的 IT 投資，進行身分識別、管理、安全性及資料倉儲等工作。 此方法可以簡化資料管理，以及輕鬆擴充目前的資料應用程式。 Data Lake Analytics 與 Active Directory 整合，以進行使用者管理與授予使用者權限，並隨附內建的監視與稽核功能。
 * **經濟實惠並符合成本效益**
   
     Data Lake Analytics 可用於執行巨量資料工作負載，是十分符合成本效益的解決方案。 所處理的資料將會以每件工作來計費。 您無需簽訂任何硬體、授權或服務相關的支援合約。 系統會自動在工作開始及完成時相應增加或減少，讓您的每一分錢都花在刀口上。
@@ -53,24 +54,16 @@ Azure Data Lake Analytics 是隨分析作業服務，可簡化巨量資料分析
   * [透過 Azure .NET SDK 開始使用 Data Lake Analytics](data-lake-analytics-get-started-net-sdk.md)
   * [使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
   * [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
-* U-SQL 和開發
-  
-  * [針對 Azure Data Lake Analytics 作業使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
-  * [針對 Data Lake Analytics 工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
+
 * 管理
   
   * [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)
   * [使用 Azure PowerShell 管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-powershell.md)
   * [使用 Azure 入口網站監視和疑難排解 Azure Data Lake Analytics 作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
-  * [為 Azure Data Lake Analytics 存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)
-* 端對端教學課程
-  
-  * [使用 Azure Data Lake Analytics 互動式教學課程](data-lake-analytics-use-interactive-tutorials.md)
-  * [使用 Azure Data Lake Analytics 來分析網站記錄](data-lake-analytics-analyze-weblogs.md)
+
 * 讓我們知道您的想法
   
-  <!-- Fixing broken links for Azure content migration from ACOM to DOCS. I can't find a suitable substitute for what appears to be a link that is no longer available. I am commenting out for now. The author can investigate in the future. Hyperlink text: Comment on our documentation backlog. Referenced file: data-lake-analytics-documentation-backlog.md -->
   * [提交要求功能](http://aka.ms/adlafeedback)
-  * [在論壇上取得協助](http://aka.ms/adlaforums)
+  * [在 MSDN 論壇上取得協助](http://aka.ms/adlaforums)
 
 

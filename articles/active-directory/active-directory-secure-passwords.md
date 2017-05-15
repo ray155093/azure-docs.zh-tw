@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/02/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: 8e625a346c9495d436a99fcf9eadf8ffeffcfdff
-ms.lasthandoff: 03/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 910ca62c331df0825e1403c19fe2f53672a7359d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -73,7 +74,8 @@ Microsoft 會持續分析[資料外洩](https://www.privacyrights.org/data-breac
 
 如需 Azure Active Directory 中密碼管理的相關資訊，請參閱[密碼管理運作方式](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-passwords-how-it-works)。
 
-  >![NOTE] 如果您是 Azure AD 系統管理員，可以使用 [Windows Hello](https://www.microsoft.com/en-us/windows/windows-hello) 全然避免使用者建立傳統密碼。
+  >[!NOTE]
+  >如果您是 Azure AD 系統管理員，可以使用 [Windows Hello](https://www.microsoft.com/en-us/windows/windows-hello) 全然避免使用者建立傳統密碼。
   >
 
 ## <a name="next-steps"></a>後續步驟

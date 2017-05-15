@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 04/03/2017
+ms.date: 05/02/2017
 ms.author: nepeters
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 94a1a7eb8da74925dbe4b50fffb5c61b5287c014
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 7cdbd8d9fbca20d53c8b920b6bc44851b95d2a07
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -30,7 +30,7 @@ Azure PowerShell 模組用於從 PowerShell 命令列或在指令碼中建立和
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-此外，請確定已安裝最新版的 Azure PowerShell 模組。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
+本教學課程需要 Azure PowerShell 模組 3.6 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 
@@ -155,7 +155,8 @@ Remove-AzureRmResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>後續步驟
 
-[安裝角色和設定防火牆的教學課程](hero-role.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+在此快速入門中，您已部署簡單的虛擬機器、網路安全性群組規則，並已安裝 Web 伺服器。 若要深入了解 Azure 虛擬機器，請繼續 Windows VM 的教學課程。
 
-[瀏覽 VM 部署 PowerShell 範例](powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> [!div class="nextstepaction"]
+> [Azure Windows 虛擬機器教學課程](./tutorial-manage-vm.md)
 

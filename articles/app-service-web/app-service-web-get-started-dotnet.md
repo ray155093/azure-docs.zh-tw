@@ -12,12 +12,13 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 03/27/2017
+ms.date: 05/05/2017
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: e0bfa7620feeb1bad33dd2fe4b32cb237d3ce158
-ms.openlocfilehash: 24e9f1d7bdf4401d009ba04fb62351b6abda6079
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 773d616b2a5815158971d63d005fae605450ac98
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.lasthandoff: 04/21/2017
 
 ![Azure App Service 中的 ASP.NET Web 應用程式](./media/app-service-web-get-started-dotnet/updated-azure-web-app.png)
 
-## <a name="before-you-begin"></a>開始之前
+## <a name="prerequisites"></a>必要條件
 
 本教學課程示範如何使用 Visual Studio 2017，建置 ASP.NET Web 應用程式並部署至 Azure。 如果尚未安裝 Visual Studio 2017，您可以下載並使用**免費的** [Visual Studio 2017 Community 版本](https://www.visualstudio.com/downloads/)。 務必在 Visual Studio 設定期間啟用 **Azure 開發**。
 
@@ -37,7 +38,7 @@ ms.lasthandoff: 04/21/2017
 
 ## <a name="create-an-aspnet-web-app"></a>建立 ASP.NET Web 應用程式
 
-在 Visual Studio 中，使用 `Ctrl`+`Shift`+`N` 建立新專案。
+在 Visual Studio 中，使用 `Ctrl`+`Shift`+`N` 建立專案。
 
 在 [新增專案] 對話方塊中，依序按一下 [Visual C#] > [Web] > [ASP.NET Web 應用程式 (.NET Framework)]。
 
@@ -76,7 +77,7 @@ ms.lasthandoff: 04/21/2017
 首先，您需有_資源群組_。 
 
 > [!NOTE] 
-> 資源群組是在其中部署與管理 Azure 資源 (如 Web 應用程式、資料庫和儲存體帳戶) 的邏輯容器。
+> 資源群組是一個邏輯容器，可在其中部署與管理 Azure 資源 (例如 Web 應用程式、資料庫和儲存體帳戶)。
 >
 >
 
@@ -110,7 +111,7 @@ Azure Web 應用程式也需要「App Service 方案」。
 
 按一下 [確定] 。
 
-![建立新的 App Service 方案](./media/app-service-web-get-started-dotnet/configure-app-service-plan.png)
+![建立 App Service 方案](./media/app-service-web-get-started-dotnet/configure-app-service-plan.png)
 
 ## <a name="create-and-publish-the-web-app"></a>建立和發佈 Web 應用程式
 
@@ -165,11 +166,11 @@ URL 會使用您稍早指定的 Web 應用程式名稱，其格式為 `http://<a
 
 您已進入 Web 應用程式的_刀鋒視窗_ (水平開啟的入口網站頁面)。 
 
-根據預設，Web 應用程式的刀鋒視窗會顯示 [概觀] 頁面。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 刀鋒視窗左側的索引標籤會顯示您可開啟的各種設定頁面。 
+根據預設，Web 應用程式的刀鋒視窗會顯示 [概觀] 頁面。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。  
 
 ![Azure 入口網站中的 App Service 刀鋒視窗](./media/app-service-web-get-started-dotnet/web-app-blade.png)
 
-刀鋒視窗中的索引標籤會顯示您可以新增至 Web 應用程式的許多強大功能。 下表提供幾個可能性︰
+刀鋒視窗左側的索引標籤會顯示您可開啟的各種設定頁面。 下表提供幾個可能性︰
 
 - 對應自訂 DNS 名稱
 - 繫結自訂 SSL 憑證
@@ -193,5 +194,9 @@ URL 會使用您稍早指定的 Web 應用程式名稱，其格式為 `http://<a
 
 ## <a name="next-steps"></a>後續步驟
 
-瀏覽預先建立的 [Web 應用程式 PowerShell 指令碼](app-service-powershell-samples.md)。
+> [!div class="nextstepaction"]
+> [了解如何在 Azure 中使用 SQL Database 建置 ASP.NET 應用程式](app-service-web-tutorial-dotnet-sqldatabase.md)
+
+> [!div class="nextstepaction"]
+> [探索範例 Web Apps PowerShell 指令碼](app-service-powershell-samples.md)
 

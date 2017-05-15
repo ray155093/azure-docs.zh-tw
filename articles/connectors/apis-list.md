@@ -16,10 +16,10 @@ ms.topic: get-started-article
 ms.date: 04/26/2017
 ms.author: mandia; ladocs
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 851ccd5a429eeed7d20a02cb7e36c62ab24d0780
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 4f821602c3a48740cac3c220f47b7317e7896208
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -80,7 +80,7 @@ ms.lasthandoff: 04/27/2017
 
 | | |
 |---|---|
-|<a name="1"></a>10to8 Appointment Scheduling<br/><br/><a name="a"></a>Act!<br/>appFigures<br/>[AS2][as2doc]<br/>Asana<br/>Azure Active Directory<br/>Azure API 管理<br/>Azure App Service<br/>Azure 自動化<br/>[Azure Blob 儲存體][azureblobstoragedoc]<br/>Azure Data Lake<br/>Azure DocumentDB<br/>[Azure Functions][azure-functionsdoc]<br/>[Azure Logic Apps][nested-logic-appdoc]<br/>AzureML<br/>Azure 佇列<br/>Azure Resource Manager<br/>[Azure SQL Database][sql-serverdoc]<br/><br/><a name="b"></a>Basecamp 2<br/>Basecamp 3<br/>Benchmark Email<br/>Bing 搜尋<br/>Bitbucket<br/>Bitly<br/>BizTalk Server<br/>Blogger<br/>Box<br/>Buffer<br/><br/><a name="c"></a>Campfire<br/>Capsule CRM<br/>Chatter<br/>辨識服務電腦視覺 API<br/>辨識服務臉部 API<br/>辨識服務 LUIS<br/>辨識服務文字分析<br/>Common Data Service<br/>[自訂 API / Web 應用程式][api/web-appdoc]<br/><br/><a name="d"></a>Data Operations<br/>[DB2][db2doc]<br/>Disqus<br/>DocuSign<br/>Do Until<br/>Dropbox<br/>[Dynamics 365 CRM Online][Dynamics-365doc]<br/>Dynamics 365 for Financials<br/>Dynamics 365 for Operations<br/>Dynamics NAV<br/><br/><a name="e"></a>Easy Redmine<br/>EDIFACT<br/>[事件中樞][event-hubs-doc]<br/>Eventbrite<br/><br/><a name="f"></a>Facebook<br/>[檔案系統][filesystemdoc]<br/>[一般檔案][flatfiledoc]<br/>FreshBooks<br/>Freshdesk!<br/>[FTP][ftpdoc]<br/><br/><a name="g"></a>GitHub<br/>Gmail<br/>Google 行事曆<br/>Google 聯絡人<br/>Google 雲端硬碟<br/>Google 試算表<br/>Google 工作表<br/>GoToMeeting<br/>GoToTraining<br/>GoToWebinar<br/><br/><a name="h"></a>Harvest<br/>HelloSign<br/>HipChat<br/>[HTTP][httpdoc]<br/>[HTTP + Swagger][http-swaggerdoc]<br/>[HTTP Webhook][webhookdoc]<br/><br/><a name="i"></a>[Informix][informixdoc]<br/>Infusionsoft<br/>Inoreader<br/>Insightly<br/>Instagram<br/>Instapaper<br/>整合帳戶<br/>Intercom | <a name="j"></a>JIRA<br/><br/><a name="l"></a>LeanKit<br/>LiveChat<br/><br/><a name="m"></a>MailChimp<br/>Mandrill<br/>中型<br/>Microsoft Translator<br/>MQ<br/>MSN 天氣<br/>Muhimbi PDF<br/>MySQL<br/><br/><a name="n"></a>Nexmo<br/><br/><a name="o"></a>[Office 365 Outlook][office365-outlookdoc]<br/>Office 365 使用者<br/>Office 365 影片<br/>OneDrive<br/>OneDrive for Business<br/>OneNote (Business)<br/>[Oracle Database][oracle-db-doc]<br/>Outlook Customer<br/>Outlook 工作<br/>Outlook.com<br/><br/><a name="p"></a>PagerDuty<br/>Paylocity<br/>Pinterest<br/>Pipedrive<br/>Pivotal Tracker<br/>Power BI<br/>Project Online<br/><br/><a name="r"></a>Redmine<br/>[要求 / 回應][http-requestdoc]<br/>RSS<br/><br/><a name="s"></a>[Salesforce][salesforcedoc]<br/>[SAP 應用程式伺服器][sapconnector]<br/>[SAP 訊息伺服器][sapconnector]<br/>[排程][recurrencedoc]<br/>Scope<br/>SendGrid<br/>[服務匯流排][service-busdoc]<br/>SFTP<br/>[SharePoint Online][sharepointdoc]<br/>[SharePoint Server][sharepointdoc]<br/>Slack<br/>Smartsheet<br/>SMTP<br/>SparkPost<br/>[SQL Server][sql-serverdoc]<br/>等量磁碟區<br/>切換大小寫<br/>SurveyMonkey<br/><br/><a name="t"></a>Teradata<br/>Todoist<br/>Toodledo<br/>[轉換 XML][xmltransformdoc]<br/>Trello<br/>Twilio<br/>[Twitter][twitterdoc]<br/>Typeform<br/><br/><a name="u"></a>UserVoice<br/><br/><a name="v"></a>變數<br/>Vimeo<br/>Visual Studio Team Services<br/><br/><a name="w"></a>WebMerge<br/>WordPress<br/>Wunderlist<br/><br/><a name="x"></a>[X12][x12doc]<br/>[XML 驗證][xmlvalidatedoc]<br/><br/><a name="y"></a>Yammer<br/>YouTube<br/><br/><a name="z"></a>Zendesk |
+|<a name="1"></a>10to8 Appointment Scheduling<br/><br/><a name="a"></a>Act!<br/>appFigures<br/>[AS2][as2doc]<br/>Asana<br/>Azure Active Directory<br/>Azure API 管理<br/>Azure App Service<br/>Azure 自動化<br/>[Azure Blob 儲存體][azureblobstoragedoc]<br/>Azure Data Lake<br/>Azure DocumentDB<br/>[Azure Functions][azure-functionsdoc]<br/>[Azure Logic Apps][nested-logic-appdoc]<br/>AzureML<br/>Azure 佇列<br/>Azure Resource Manager<br/>[Azure SQL Database][sql-serverdoc]<br/><br/><a name="b"></a>Basecamp 2<br/>Basecamp 3<br/>Benchmark Email<br/>Bing 搜尋<br/>Bitbucket<br/>Bitly<br/>BizTalk Server<br/>Blogger<br/>Box<br/>Buffer<br/><br/><a name="c"></a>Campfire<br/>Capsule CRM<br/>Chatter<br/>辨識服務電腦視覺 API<br/>辨識服務臉部 API<br/>辨識服務 LUIS<br/>辨識服務文字分析<br/>Common Data Service<br/>[自訂 API / Web 應用程式][api/web-appdoc]<br/><br/><a name="d"></a>Data Operations<br/>[DB2][db2doc]<br/>Disqus<br/>DocuSign<br/>Do Until<br/>Dropbox<br/>[Dynamics 365 CRM Online][Dynamics-365doc]<br/>Dynamics 365 for Financials<br/>Dynamics 365 for Operations<br/>Dynamics NAV<br/><br/><a name="e"></a>Easy Redmine<br/>EDIFACT<br/>[事件中樞][event-hubs-doc]<br/>Eventbrite<br/><br/><a name="f"></a>Facebook<br/>[檔案系統][filesystemdoc]<br/>[一般檔案][flatfiledoc]<br/>FreshBooks<br/>Freshdesk!<br/>[FTP][ftpdoc]<br/><br/><a name="g"></a>GitHub<br/>Gmail<br/>Google 行事曆<br/>Google 聯絡人<br/>Google 雲端硬碟<br/>Google 試算表<br/>Google 工作表<br/>GoToMeeting<br/>GoToTraining<br/>GoToWebinar<br/><br/><a name="h"></a>Harvest<br/>HelloSign<br/>HipChat<br/>[HTTP][httpdoc]<br/>[HTTP + Swagger][http-swaggerdoc]<br/>[HTTP Webhook][webhookdoc]<br/><br/><a name="i"></a>[Informix][informixdoc]<br/>Infusionsoft<br/>Inoreader<br/>Insightly<br/>Instagram<br/>Instapaper<br/>整合帳戶<br/>Intercom | <a name="j"></a>JIRA<br/><br/><a name="l"></a>LeanKit<br/>LiveChat<br/><br/><a name="m"></a>MailChimp<br/>Mandrill<br/>中型<br/>Microsoft Translator<br/>MQ<br/>MSN 天氣<br/>Muhimbi PDF<br/>MySQL<br/><br/><a name="n"></a>Nexmo<br/><br/><a name="o"></a>[Office 365 Outlook][office365-outlookdoc]<br/>Office 365 使用者<br/>Office 365 影片<br/>OneDrive<br/>OneDrive for Business<br/>OneNote (Business)<br/>[Oracle Database][oracle-db-doc]<br/>Outlook Customer<br/>Outlook 工作<br/>Outlook.com<br/><br/><a name="p"></a>PagerDuty<br/>Paylocity<br/>Pinterest<br/>Pipedrive<br/>Pivotal Tracker<br/>PostgreSQL<br/>Power BI<br/>Project Online<br/><br/><a name="r"></a>Redmine<br/>[要求 / 回應][http-requestdoc]<br/>RSS<br/><br/><a name="s"></a>[Salesforce][salesforcedoc]<br/>[SAP 應用程式伺服器][sapconnector]<br/>[SAP 訊息伺服器][sapconnector]<br/>[排程][recurrencedoc]<br/>Scope<br/>SendGrid<br/>[服務匯流排][service-busdoc]<br/>SFTP<br/>[SharePoint Online][sharepointdoc]<br/>[SharePoint Server][sharepointdoc]<br/>Slack<br/>Smartsheet<br/>SMTP<br/>SparkPost<br/>[SQL Server][sql-serverdoc]<br/>等量磁碟區<br/>切換大小寫<br/>SurveyMonkey<br/><br/><a name="t"></a>Teradata<br/>Todoist<br/>Toodledo<br/>[轉換 XML][xmltransformdoc]<br/>Trello<br/>Twilio<br/>[Twitter][twitterdoc]<br/>Typeform<br/><br/><a name="u"></a>UserVoice<br/><br/><a name="v"></a>變數<br/>Vimeo<br/>Visual Studio Team Services<br/><br/><a name="w"></a>WebMerge<br/>WordPress<br/>Wunderlist<br/><br/><a name="x"></a>[X12][x12doc]<br/>[XML 驗證][xmlvalidatedoc]<br/><br/><a name="y"></a>Yammer<br/>YouTube<br/><br/><a name="z"></a>Zendesk |
 
 > [!TIP]
 > 若要在註冊 Azure 帳戶之前先開始使用 Azure Logic Apps，請移至[試用 Logic Apps](https://tryappservice.azure.com/?appservice=logic)。 您可以立即建立短期的入門邏輯應用程式。 不需要信用卡；沒有承諾。
@@ -111,12 +111,12 @@ Logic Apps 包含下列幾種觸發程序：
 
 | | |
 |---|---|
-| **撰寫** | 建置或產生值或物件以便稍後使用，或在建置工作流程時使用。  例如，您可以使用來自多個步驟的值來撰寫 JSON 物件，或計算稍後要在邏輯應用程式執行中參考的常數。 |
+| **撰寫** | 建置或產生值或物件以便稍後使用，或在建置工作流程時使用。 例如，您可以使用來自多個步驟的值來撰寫 JSON 物件，或計算稍後要在邏輯應用程式執行中參考的常數。 |
 | **建立 CSV 資料表**<br/>**建立 HTML 資料表** | 將陣列結果集變成 CSV 或 HTML 資料表。 例如，新增 CRM「列出記錄」動作，以及為今天新增的記錄新增篩選條件。 然後，透過電子郵件以 HTML 資料表形式傳送結果。 |
-| **篩選陣列** (查詢) | 將結果集篩選成您感興趣的項目。  例如，使用 `#Azure` 搜尋所有推文，然後「篩選」傳回的推文，只傳回 `Tweeted_by_followers > 50` 的結果。 |
-| **Join** | 由某個分隔符號聯結陣列。  例如，「偵測關鍵片語」作業會傳回關鍵片語的陣列。  您可以用 `,` 或類似符號加以「聯結」。 因此，您會取得 `“Some, Phrase”`，而不是 `[“Some”, “Phrase”]`。 |
-| **剖析 JSON** | 剖析及存取設計工具中 JSON 物件的值。  例如，如果您的 Azure Function 傳回 JSON 承載，您可加以剖析，以便稍後在其他步驟中存取 JSON 屬性。 此動作也會驗證 JSON 是否符合在執行階段指定的結構描述。 | 
-| **選取** | 選取陣列的某些屬性，以便進一步處理。  如果您從 SQL 執行「列出記錄」，而它傳回 15 個資料行，則只要選取幾個資料行以便進一步處理 (輸出是一個僅包含所選屬性的陣列)。 |
+| **篩選陣列** (查詢) | 將結果集篩選成您感興趣的項目。 例如，使用 `#Azure` 搜尋所有推文，然後「篩選」傳回的推文，只傳回 `Tweeted_by_followers > 50` 的結果。 |
+| **Join** | 由某個分隔符號聯結陣列。 例如，「偵測關鍵片語」作業會傳回關鍵片語的陣列。 您可以用 `,` 或類似符號加以「聯結」。 因此，您會取得 `"Some, Phrase"`，而不是 `["Some", "Phrase"]`。 |
+| **剖析 JSON** | 剖析及存取設計工具中 JSON 物件的值。 例如，如果您的 Azure Function 傳回 JSON 承載，您可加以剖析，以便稍後在其他步驟中存取 JSON 屬性。 此動作也會驗證 JSON 是否符合在執行階段指定的結構描述。 | 
+| **選取** | 選取陣列的某些屬性，以便進一步處理。 如果您從 SQL 執行「列出記錄」，而它傳回 15 個資料行，則只要選取幾個資料行以便進一步處理 (輸出是一個僅包含所選屬性的陣列)。 |
 
 ## <a name="custom-connectors-and-azure-certification"></a>自訂連接器和 Azure 憑證 
 
@@ -128,7 +128,7 @@ Logic Apps 包含下列幾種觸發程序：
 
 若要提出問題、回答問題以及查看其他 Azure Logic Apps 使用者的做法，請移至 [Azure Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
 
-若要改善 Logic Apps 和連接器，請在 [Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)上票選或提交想法。
+若要改善 Azure Logic Apps 和連接器，請在 [Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)上票選或提交想法。
 
 ## <a name="next-steps"></a>後續步驟
 * [建立第一個邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)

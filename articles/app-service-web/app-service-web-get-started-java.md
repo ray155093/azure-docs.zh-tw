@@ -14,10 +14,11 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 04/17/2017
 ms.author: cephalin;robmcm
-translationtype: Human Translation
-ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
-ms.openlocfilehash: 2673a9c0d91510756a97b2dba3801d2925905c9a
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 75e51ca45a899c6b6fa123346aa3c5860fd1600d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -44,11 +45,9 @@ ms.lasthandoff: 04/21/2017
 
 ## <a name="create-a-dynamic-web-project-in-eclipse"></a>在 Eclipse 中建立動態 Web 專案
 
-在 Eclipse IDE 中，依序按一下 [檔案]、[新增] 和 [動態 Web 專案]。
+在 Eclipse 中，依序選取 [檔案] 功能表、[新增] 和 [動態 Web 專案]。
 
-![新增動態 Web 專案](./media/app-service-web-get-started-java/file-new-dynamic-web-project-menu.png)
-
-[動態 Web 專案] 對話方塊出現時，將應用程式命名為 **MyFirstJavaOnAzureWebApp**，然後按一下 [完成]。
+在 [新增動態 Web 專案] 對話方塊中，將專案命名為 **MyFirstJavaOnAzureWebApp**，然後選取 [完成]。
    
 ![[動態 Web 專案] 對話方塊](./media/app-service-web-get-started-java/new-dynamic-web-project-dialog-box.png)
 
@@ -73,13 +72,11 @@ ms.lasthandoff: 04/21/2017
 
 ```jsp
 <body>
-<h1><% out.println("Java on Azure!"); %></h1>
+<h1><% out.println("Hello Azure!"); %></h1>
 </body>
 ```
 
 儲存您對頁面所做的變更。
-
-![編輯 JSP 程式碼](./media/app-service-web-get-started-java/creating-index-jsp-page.png)
 
 ## <a name="publish-your-web-app-to-azure"></a>將您的 Web 應用程式發佈至 Azure
 
@@ -183,14 +180,12 @@ Azure Toolkit 會開始建立新的 App Service，並在進行處理時顯示進
 <title><% out.println(date.format(new Date())); %></title>
 </head>
 <body>
-<h1><% out.println("Java on Azure!"); %></h1>
+<h1><% out.println("Hello Azure!"); %></h1>
 </body>
 </html>
 ```
 
-![更新 JSP 程式碼](./media/app-service-web-get-started-java/updating-index-jsp-page.png)
-
-儲存對頁面所做的變更之後，在 Eclipse 的 [專案總管] 中，以滑鼠右鍵按一下您的專案，接著按一下 [Azure]，然後按一下 [發佈為 Azure Web 應用程式]。
+儲存您所做的變更之後，在 Eclipse 的 [專案總管] 中，以滑鼠右鍵按一下您的專案，接著按一下 [Azure]，然後按一下 [發佈為 Azure Web 應用程式]。
 
 ![發佈更新後的 Web 應用程式](./media/app-service-web-get-started-java/publish-updated-web-app-context-menu.png)
 
@@ -207,9 +202,9 @@ Azure Toolkit 會開始建立新的 App Service，並在進行處理時顯示進
 
 ![瀏覽至 Web 應用程式](./media/app-service-web-get-started-java/browse-web-app-2.png)
 
-## <a name="deleting-your-web-app"></a>刪除 Web 應用程式
+## <a name="clean-up-resources"></a>清除資源
 
-若要刪除 Web 應用程式，您可以使用 **Azure Explorer**，這是 Azure Toolkit 的一部分。 如果 Eclipse 中尚未顯示 **Azure Explorer** 檢視，請使用下列步驟來加以顯示︰
+若要刪除 Web 應用程式，請使用 Azure Toolkit 隨附的 **Azure Explorer**。 如果 Eclipse 中尚未顯示 **Azure Explorer** 檢視，請使用下列步驟來加以顯示︰
 
 1. 依序按一下 [視窗]、[顯示檢視] 和 [其他]。
 

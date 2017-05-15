@@ -16,10 +16,10 @@ ms.workload: infrastructure-services
 ms.date: 04/24/2017
 ms.author: cherylmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: af85e4921a2b81c71f1d132c6df591acbe5d3764
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 7132c83168efcebc9ac03b42afdec9f760e4fcbe
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -156,12 +156,18 @@ az network vnet-gateway create --name VNet1GW --public-ip-address VNet1GWIP --re
 
 ## <a name="VPNDevice"></a>8.設定 VPN 裝置
 
-[!INCLUDE [Configure VPN device](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
-  若要尋找虛擬網路閘道的公用 IP 位址，請使用 [az network public-ip list](/cli/azure/network/public-ip#list) 命令。 為方便閱讀，系統會將輸出格式化為以資料表格式顯示公用 IP 的清單。
+內部部署網路的站對站連線需要 VPN 裝置。 在此步驟中，設定 VPN 裝置。 在設定 VPN 裝置時，您需要下列項目：
 
-```azurecli
-az network public-ip list --resource-group TestRG1 --output table
-```
+- 共用金鑰。 這個共同金鑰與您建立站對站 VPN 連線時指定的共用金鑰相同。 在我們的範例中，我們會使用基本的共用金鑰。 我們建議您產生更複雜的金鑰以供使用。
+- 虛擬網路閘道的公用 IP 位址。 您可以使用 Azure 入口網站、PowerShell 或 CLI 來檢視公用 IP 位址。 若要尋找虛擬網路閘道的公用 IP 位址，請使用 [az network public-ip list](/cli/azure/network/public-ip#list) 命令。 為方便閱讀，系統會將輸出格式化為以資料表格式顯示公用 IP 的清單。
+
+  ```azurecli
+  az network public-ip list --resource-group TestRG1 --output table
+  ```
+
+
+[!INCLUDE [Configure VPN device](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
+
 
 ## <a name="CreateConnection"></a>9.建立 VPN 連線
 

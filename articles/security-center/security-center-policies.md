@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/03/2017
+ms.date: 05/08/2017
 ms.author: yurid
-translationtype: Human Translation
-ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
-ms.openlocfilehash: bd2291129a1a61f69e83cb76748d00b9ede6eb6f
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: ec658f4c74d54a11684460c0e634303793480152
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -66,7 +67,7 @@ ms.lasthandoff: 04/18/2017
    >
 9. 在 [安全性原則] 刀鋒視窗中，按一下 [開啟]，啟用您想要在此訂用帳戶使用的安全性建議。 按一下 [防止原則]  可看到類似下列螢幕擷取畫面中的選項︰
 
-    ![選取安全性原則](./media/security-center-policies/security-center-policies-fig4-ga-new.png)
+    ![選取安全性原則](./media/security-center-policies/security-center-policies-fig4-newUI.png)
 
 請使用下表做為參考，以了解每個選項：
 
@@ -82,6 +83,7 @@ ms.lasthandoff: 04/18/2017
 | SQL 稽核與威脅偵測 |建議針對法規遵循、進階威脅偵測及調查用途，啟用 Azure 資料庫的存取稽核。 |
 | SQL 透明資料加密 |建議為您的 Azure SQL Database、關聯的備份及交易記錄檔啟用待用期加密。 您的資料即使遭到入侵，也無法被讀取。 |
 | 弱點評估 |建議在 VM 上安裝弱點評估解決方案。 |
+| 儲存體加密 |這項功能目前可用於 Azure Blob 和檔案。 請注意，啟用儲存體服務加密之後，只會加密新的資料，而此儲存體帳戶中任何現有的檔案都會保持未加密狀態。 |
 
 設定所有選項之後，請在具有建議的 [安全性原則] 刀鋒視窗中按一下 [確定]，然後在具有初始設定的 [安全性原則] 刀鋒視窗中按一下 [儲存]。
 

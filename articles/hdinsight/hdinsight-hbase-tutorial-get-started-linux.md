@@ -1,7 +1,7 @@
 ---
 title: "在 Azure HDInsight 上開始使用 HBase | Microsoft Docs"
 description: "遵循本 HBase 教學課程，開始在 HDInsight 中搭配 Hadoop 使用 Apache HBase。 使用 Hive 從 HBase Shell 建立資料表並加以查詢。"
-keywords: "apache hbase,hbase,hbase shell,hbase 教學課程"
+keywords: "apache hbase,hbase,hbase shell,hbase 教學課程,beeline"
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -14,13 +14,13 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/22/2017
+ms.date: 05/08/2017
 ms.author: jgao
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 4e9ee21a7eac240cccdfac650992063244364185
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: a935fe574bffaad109abd13151c4da1027210014
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -31,7 +31,7 @@ ms.lasthandoff: 05/03/2017
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 ## <a name="prerequisites"></a>必要條件
-開始進行本 HBase 教學課程之前，您必須具備下列條件：
+開始進行本 HBase 教學課程之前，您必須具備下列項目：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * [安全殼層 (SSH)](hdinsight-hadoop-linux-use-ssh-unix.md)。 
@@ -43,12 +43,12 @@ ms.lasthandoff: 05/03/2017
 1. 按一下以下影像，在 Azure 入口網站中開啟範本。 此範本位於公用 Blob 容器中。 
    
     <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hbase-cluster-in-hdinsight.json" target="_blank"><img src="./media/hdinsight-hbase-tutorial-get-started-linux/deploy-to-azure.png" alt="Deploy to Azure"></a>
-2. 從 [自訂部署] 刀鋒視窗，輸入下列項目：
+2. 從 [自訂部署] 刀鋒視窗，輸入下列值：
    
-   * **訂用帳戶**：選取將用來建立叢集的 Azure 訂用帳戶。
-   * **資源群組**：建立新的 Azure 資源管理群組，或選取現有的資源管理群組。
+   * **訂用帳戶**：選取用來建立叢集的 Azure 訂用帳戶。
+   * **資源群組**：建立 Azure 資源管理群組，或選取現有的資源管理群組。
    * **位置**：指定資源群組的位置。 
-   * **ClusterName**：輸入您將建立的 HBase 叢集名稱。
+   * **叢集名稱**：輸入 HBase 叢集的名稱。
    * **叢集登入名稱和密碼**：預設登入名稱是 **admin**。
    * **SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。  您可以將它重新命名。
      
@@ -63,7 +63,7 @@ ms.lasthandoff: 05/03/2017
 > 
 
 ## <a name="create-tables-and-insert-data"></a>建立資料表和插入資料
-您可以使用 SSH 來連接到 HBase 叢集，然後使用 HBase Shell 來建立 HBase 資料表、插入及查詢資料。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+您可以使用 SSH 來連線到 HBase 叢集，然後使用 HBase Shell 來建立 HBase 資料表、插入及查詢資料。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 對大多數人而言，資料會以表格形式出現：
 
@@ -73,7 +73,6 @@ ms.lasthandoff: 05/03/2017
 
 ![HDInsight HBase BigTable 資料][img-hbase-sample-data-bigtable]
 
-下一個程序完成後，您對此會有更深的理解。  
 
 **使用 HBase Shell**
 
@@ -121,7 +120,7 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
     4761    Caleb Alexander  670-555-0141    230-555-0199    4775 Kentucky Dr.
     16443   Terry Chander    998-555-0171    230-555-0200    771 Northridge Drive
 
-您可以建立文字檔，並將檔案上載至自己的儲存體帳戶 (如果您要的話)。 如需指示，請參閱[在 HDInsight 中將 Hadoop 工作的資料上傳][hdinsight-upload-data]。
+您可以選擇性地建立文字檔，並將檔案上載至自己的儲存體帳戶。 如需指示，請參閱[在 HDInsight 中將 Hadoop 工作的資料上傳][hdinsight-upload-data]。
 
 > [!NOTE]
 > 此程序會使用您在上一個程序中建立的連絡人 HBase 資料表。
@@ -137,19 +136,14 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
 3. 您可以開啟 HBase Shell，並使用掃描命令來列出資料表內容。
 
 ## <a name="use-hive-to-query-hbase"></a>使用 Hive 查詢 HBase
-您可以使用 Hive 查詢 HBase 資料表中的資料。 本節將建立對應至 HBase 資料表的 Hive 資料表，並用以查詢您 HBase 資料表中的資料。
 
-> [!NOTE]
-> 如果 Hive 和 HBase 位於相同 VNet 中的不同叢集，您必須在叫用 Hive 殼層時傳遞 zookeeper 仲裁：
->
->       hive --hiveconf hbase.zookeeper.quorum=zk0-xxxx.xxxxxxxxxxxxxxxxxxxxxxx.cx.internal.cloudapp.net,zk1-xxxx.xxxxxxxxxxxxxxxxxxxxxxx.cx.internal.cloudapp.net,zk2-xxxx.xxxxxxxxxxxxxxxxxxxxxxx.cx.internal.cloudapp.net --hiveconf zookeeper.znode.parent=/hbase-unsecure  
->
->
+您可以使用 Hive 查詢 HBase 資料表中的資料。 在本節中，您會建立對應至 HBase 資料表的 Hive 資料表，並用以查詢您 HBase 資料表中的資料。
 
 1. 開啟 **PuTTY**，然後連線到叢集。  請參閱先前程序中的指示。
-2. 開啟 Hive 殼層。
-   
-       hive
+2. 在 SSH 工作階段中，使用以下命令啟動 Beeline：
+
+        beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
+    如需有關 Beeline 的詳細資訊，請參閱[利用 Beeline 搭配使用 Hive 與 HDInsight 中的 Hadoop](hdinsight-hadoop-use-hive-beeline.md)。
        
 3. 執行下列 HiveQL 指令碼以建立對應到 HBase 資料表的 Hive 資料表。 在執行此陳述式前，請確定您已使用 HBase Shell 建立參考先前本教學課程的範例資料表。
    
@@ -159,31 +153,12 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
         TBLPROPERTIES ('hbase.table.name' = 'Contacts');
 4. 執行下列 HiveQL 指令碼，以查詢 HBase 資料表中的資料：
    
-         SELECT count(*) FROM hbasecontacts;
+         SELECT * FROM hbasecontacts;
 
 ## <a name="use-hbase-rest-apis-using-curl"></a>使用 Curl 來使用 HBase REST API
-> [!NOTE]
-> 在使用 Curl 或與 WebHCat 進行任何其他 REST 通訊時，您必須提供 HDInsight 叢集系統管理員的使用者名稱和密碼來驗證要求。 您也必須在用來將要求傳送至伺服器的統一資源識別項 (URI) 中使用叢集名稱。
-> 
-> 在本節的所有命令中，將 **USERNAME** 取代為用來驗證叢集的使用者，並將 **PASSWORD** 取代為使用者帳戶的密碼。 將 **CLUSTERNAME** 取代為您叢集的名稱。
-> 
-> 透過 [基本驗證](http://en.wikipedia.org/wiki/Basic_access_authentication)來保護 REST API 的安全。 您應該一律使用安全 HTTP (HTTPS) 提出要求，確保認證安全地傳送至伺服器。
-> 
-> 
 
-1. 從命令列中，使用下列命令來確認您可以連線到 HDInsight 叢集：
-   
-        curl -u <UserName>:<Password> \
-        -G https://<ClusterName>.azurehdinsight.net/templeton/v1/status
-   
-    您應該會收到如下所示的回應：
-   
-        {"status":"ok","version":"v1"}
-   
-    此命令中使用的參數如下：
-   
-   * **-u** - 用來驗證要求的使用者名稱和密碼。
-   * **-G** - 指出這是 GET 要求。
+透過 [基本驗證](http://en.wikipedia.org/wiki/Basic_access_authentication)來保護 REST API 的安全。 您應該一律使用安全 HTTP (HTTPS) 提出要求，確保認證安全地傳送至伺服器。
+
 2. 使用下列命令列出現有的 HBase 資料表：
    
         curl -u <UserName>:<Password> \
@@ -223,10 +198,20 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
 
 如需 HBase Rest 的詳細資訊，請參閱 [Apache HBase 參考指南](https://hbase.apache.org/book.html#_rest)。
 
->
 > [!NOTE]
 > Thrift 不受 HDInsight 中的 HBase 所支援。
 >
+> 在使用 Curl 或與 WebHCat 進行任何其他 REST 通訊時，您必須提供 HDInsight 叢集系統管理員的使用者名稱和密碼來驗證要求。 您也必須在用來將要求傳送至伺服器的統一資源識別項 (URI) 中使用叢集名稱：
+> 
+>   
+>        curl -u <UserName>:<Password> \
+>        -G https://<ClusterName>.azurehdinsight.net/templeton/v1/status
+>   
+>    您應該會收到類似下列的回應：
+>   
+>        {"status":"ok","version":"v1"}
+   
+
 
 ## <a name="check-cluster-status"></a>檢查叢集狀態
 HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，您可要求關於區域的統計資料或資訊。

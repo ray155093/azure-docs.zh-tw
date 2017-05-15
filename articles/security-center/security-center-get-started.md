@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/11/2017
+ms.date: 05/08/2017
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: fcc43e5d98f75b34f2d65c9e1ce8eeba7762caaf
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: 0ca7382ed64fd548f8a086893ea2e3187dd26929
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -80,8 +81,8 @@ ms.lasthandoff: 04/12/2017
    ![Azure 資訊安全中心的建議][5]
 2. 選取 [建議] 刀鋒視窗上的建議，檢視詳細資訊及/或採取行動以解決問題。
 
-### <a name="view-the-health-and-security-state-of-your-resources"></a>檢視資源的健康狀態及安全性狀態
-1. 返回 [資訊安全中心]  刀鋒視窗。 [資源安全性健康狀態] 圖格包含虛擬機器、網路、資料和應用程式的安全性狀態指標。
+### <a name="view-the-security-state-of-your-resources"></a>檢視資源的健康狀態
+1. 返回 [資訊安全中心]  刀鋒視窗。 儀表板的 [防護] 區段包含虛擬機器、網路、資料和應用程式的安全性狀態指標。
 2. 選取 [計算] 以檢視更多資訊。 [計算] 刀鋒視窗隨即開啟，並顯示三個索引標籤：
 
   - **概觀** - 包含監視和虛擬機器的建議。

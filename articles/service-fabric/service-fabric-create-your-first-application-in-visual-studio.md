@@ -12,12 +12,13 @@ ms.devlang: dotNet
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 03/07/2017
+ms.date: 05/05/2017
 ms.author: ryanwi
-translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 296f02dd7deb22fd4ca15478b7f90a7688b4304a
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: dea338477ca82eead9e272ed9a1709cb2643f743
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -116,7 +117,18 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
    
     ![容錯移轉之後的診斷事件檢視器][diagnostic-events-viewer-detail-post-failover]
 
-## <a name="switch-cluster-mode"></a>切換叢集模式
+## <a name="cleaning-up-the-local-cluster-optional"></a>清除本機叢集 (選擇性)
+在我們做結論之前，請務必記得本機叢集是真實的。 停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。 但叢集會繼續在背景中執行。 您有數個選項可管理叢集：
+
+1. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]  。
+2. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]  。 此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。 唯有您打算停用本機叢集一陣子或需要回收資源時，再刪除叢集。
+
+## <a name="deploy-your-application-to-an-azure-cluster"></a>將應用程式部署至 Azure 叢集
+現在您已在本機部署應用程式，可以將相同的應用程式部署至 Azure。 [在 Azure 上建立您的第一個 Service Fabric 叢集](service-fabric-get-started-azure-cluster.md)文件逐步解說使用 Azure PowerShell 或入口網站的步驟。
+
+一旦您已設定 Azure 叢集，即可依照[發佈至 Azure 叢集](service-fabric-publish-app-remote-cluster.md)一文，從 Visual Studio 將此應用程式發佈至 Azure。  
+
+## <a name="switch-cluster-mode-of-your-local-development-cluster"></a>切換本機開發叢集的叢集模式
 根據預設，本機開發叢集已設定為以 5 個節點的叢集方式執行，這很適合用於偵錯跨多個節點部署的服務。 不過，將應用程式部署到 5 個節點的開發叢集可能需要一些時間。 如果您想要快速反覆執行程式碼變更，但不要在 5 個節點上執行您的應用程式，將開發叢集切換到 1 個節點的模式。 若要在具有一個節點的叢集上執行您的程式碼，請以滑鼠右鍵按一下系統匣中的 [本機叢集管理員] 並選取 [交換器叢集模式] -> [1 個節點]。  
 
 ![切換叢集模式][switch-cluster-mode]
@@ -136,11 +148,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
    
     ![叢集設定輸出][cluster-setup-success-1-node]
 
-## <a name="cleaning-up"></a>清除
-在我們做結論之前，請務必記得本機叢集是真實的。 停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。 但叢集會繼續在背景中執行。 您有數個選項可管理叢集：
 
-1. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]  。
-2. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]  。 此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。 唯有您打算停用本機叢集一陣子或需要回收資源時，再刪除叢集。
 
 ## <a name="next-steps"></a>後續步驟
 * 了解如何[在 Azure 中建立叢集](service-fabric-cluster-creation-via-portal.md)或[在 Windows 上建立獨立叢集](service-fabric-cluster-creation-for-windows-server.md)。

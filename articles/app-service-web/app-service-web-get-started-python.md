@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 03/17/2017
 ms.author: cfowler
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 9bd8db6c765f8f702a6e4ea5b17507269d3310d1
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 2916ee6ba4753efdb8823f93c951a4f678b08ae4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.lasthandoff: 04/26/2017
 
 您可以使用 Mac、Windows 或 Linux 電腦，依照下面步驟操作。 完成所有步驟只需要大約 5 分鐘的時間。
 
-## <a name="before-you-begin"></a>開始之前
+## <a name="prerequisites"></a>必要條件
 
 執行此範例之前，請在本機安裝下列必要條件︰
 
@@ -88,7 +89,7 @@ az login
 
 > [!NOTE]
 > 需要部署使用者，才能將 FTP 和本機 Git 部署至 Web 應用程式。
-> `username` 和 `password` 屬於帳戶層級，因此會與 Azure 訂用帳戶認證不同。 **這些認證只需要建立一次**。
+> `username` 和 `password` 屬於帳戶層級，因此與 Azure 訂用帳戶認證不同。 **這些認證只需要建立一次**。
 >
 
 使用 [az appservice web deployment user set](/cli/azure/appservice/web/deployment/user#set) 命令來建立帳戶層級的認證。
@@ -107,7 +108,7 @@ az group create --name myResourceGroup --location westeurope
 
 ## <a name="create-an-azure-app-service"></a>建立 Azure App Service
 
-使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立 Linux 型 App Service 方案。
+使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立 App Service 方案。
 
 > [!NOTE]
 > App Service 方案代表用來裝載應用程式的實體資源集合。 所有指派給 App Service 方案的所有應用程式都會共用它所定義的資源，而讓您節省裝載多個應用程式時的成本。
@@ -119,7 +120,7 @@ az group create --name myResourceGroup --location westeurope
 > * SKU (免費、共用、基本、標準、進階)
 >
 
-下列範例會使用**免費**定價層，在名為 `quickStartPlan` 的 Linux 背景工作上建立 App Service 方案。
+下列範例會使用**免費**定價層，建立名為 `quickStartPlan` 的 App Service 方案。
 
 ```azurecli
 az appservice plan create --name quickStartPlan --resource-group myResourceGroup --sku FREE
@@ -290,7 +291,7 @@ http://<app_name>.azurewebsites.net
 
 這次，顯示 Hello World 訊息的頁面會使用 Python 程式碼當作 Azure App Service Web 應用程式執行。
 
-![]()
+![hello-world-in-browser](media/app-service-web-get-started-python/hello-world-in-browser.png)
 
 ## <a name="updating-and-deploying-the-code"></a>更新和部署程式碼
 
@@ -309,7 +310,7 @@ git push azure master
 
 部署完成後，切換回在「瀏覽至應用程式」步驟中開啟的瀏覽器視窗，然後按 [重新整理]。
 
-![hello-world-in-browser](media/app-service-web-get-started-python/hello-world-in-browser.png)
+![hello-azure-in-browser](media/app-service-web-get-started-python/hello-azure-in-browser.png)
 
 ## <a name="manage-your-new-azure-web-app"></a>管理新的 Azure Web 應用程式
 
@@ -319,13 +320,13 @@ git push azure master
 
 按一下左側功能表中的 [應用程式服務]，然後按一下 Azure Web 應用程式的名稱。
 
-![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-get-started-python/Python-docs-hello-world-app-service-list.png)
+![入口網站瀏覽至 Azure Web 應用程式](./media/app-service-web-get-started-python/app-service-list.png)
 
 您已進入 Web 應用程式的_刀鋒視窗_ (水平開啟的入口網站頁面)。
 
 根據預設，Web 應用程式的刀鋒視窗會顯示 [概觀] 頁面。 此頁面可讓您檢視應用程式的執行方式。 您也可以在這裡執行基本管理工作，像是瀏覽、停止、啟動、重新啟動及刪除。 刀鋒視窗左側的索引標籤會顯示您可開啟的各種設定頁面。
 
-![Azure 入口網站中的 App Service 刀鋒視窗](media/app-service-web-get-started-python/Python-docs-hello-world-app-service-detail.png)
+![Azure 入口網站中的 App Service 刀鋒視窗](media/app-service-web-get-started-python/app-service-detail.png)
 
 刀鋒視窗中的索引標籤會顯示您可以新增至 Web 應用程式的許多強大功能。 下表提供幾個可能性︰
 
@@ -341,4 +342,6 @@ git push azure master
 
 ## <a name="next-steps"></a>後續步驟
 
-瀏覽預先建立的 [Web Apps CLI 指令碼](app-service-cli-samples.md)。
+> [!div class="nextstepaction"]
+> [探索範例 Web Apps CLI 指令碼](app-service-cli-samples.md)
+

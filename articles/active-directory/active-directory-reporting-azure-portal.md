@@ -1,6 +1,7 @@
 ---
-title: "Azure Active Directory 報告 - 預覽版 | Microsoft Docs"
-description: "列出 Azure Active Directory 預覽版的各種可用報告"
+
+title: "Azure Active Directory 報告 | Microsoft Docs"
+description: "列出 Azure Active Directory 的各種可用報告"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,19 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 04/06/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: be986fd7bb1745dcf43a1066dfabc1e1c699ab4c
-ms.openlocfilehash: b9cd11954a52600c1cd50155cb7ce9b7d2355cd3
-ms.lasthandoff: 01/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: c7fe995f097c72ab5275249538fe2bb65efac256
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
-# <a name="azure-active-directory-reporting---preview"></a>Azure Active Directory 報告 - 預覽版
+# <a name="azure-active-directory-reporting"></a>Azure Active Directory 報告
 
 
 *這份文件是 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)的一部分。*
 
-透過 Azure Active Directory 預覽版中的報告，您可取得判斷您的環境執行狀況所需的所有資訊。 [預覽版有何功能？](active-directory-preview-explainer.md)
+透過 Azure Active Directory 中的報告，您可以取得判斷您的環境執行狀況所需的資訊。
 
 其中有兩個主要報告區域：
 

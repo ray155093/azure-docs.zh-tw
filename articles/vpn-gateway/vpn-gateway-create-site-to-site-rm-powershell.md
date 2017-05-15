@@ -16,10 +16,10 @@ ms.workload: infrastructure-services
 ms.date: 05/01/2017
 ms.author: cherylmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: f485dc6a52488b44bbd0e68432d3fd2bcdb060a9
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: f10a6889944b1dde4f579e575389fa7bab28c51a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -37,9 +37,9 @@ ms.lasthandoff: 05/02/2017
 >
 
 
-![站對站 VPN 閘道跨單位連線圖表](./media/vpn-gateway-create-site-to-site-rm-powershell/site-to-site-connection-diagram.png)
-
 站對站 VPN 閘道連線可用來透過 IPsec/IKE (IKEv1 或 IKEv2) VPN 通道，將內部部署網路連線到 Azure 虛擬網路。 此類型的連線需要位於內部部署的 VPN 裝置，且您已對該裝置指派對外開放的公用 IP 位址。 如需 VPN 閘道的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
+
+![站對站 VPN 閘道跨單位連線圖表](./media/vpn-gateway-create-site-to-site-rm-powershell/site-to-site-connection-diagram.png)
 
 ## <a name="before-you-begin"></a>開始之前
 
@@ -144,7 +144,7 @@ New-AzureRmResourceGroup -Name testrg -Location 'West US'
 
   ```powershell
   New-AzureRmLocalNetworkGateway -Name LocalSite -ResourceGroupName testrg `
-  -Location 'West US' -GatewayIpAddress '23.99.221.164' -AddressPrefix   '10.0.0.0/24'
+  -Location 'West US' -GatewayIpAddress '23.99.221.164' -AddressPrefix '10.0.0.0/24'
   ```
 
 - 若要新增具有多個位址前置詞的區域網路閘道：
@@ -195,13 +195,17 @@ New-AzureRmVirtualNetworkGateway -Name vnetgw1 -ResourceGroupName testrg `
 
 ## <a name="ConfigureVPNDevice"></a>7.設定 VPN 裝置
 
+內部部署網路的站對站連線需要 VPN 裝置。 在此步驟中，設定 VPN 裝置。 在設定 VPN 裝置時，您需要下列項目：
+
+- 共用金鑰。 這個共同金鑰與您建立站對站 VPN 連線時指定的共用金鑰相同。 在我們的範例中，我們會使用基本的共用金鑰。 我們建議您產生更複雜的金鑰以供使用。
+- 虛擬網路閘道的公用 IP 位址。 您可以使用 Azure 入口網站、PowerShell 或 CLI 來檢視公用 IP 位址。 若要使用 PowerShell 尋找虛擬網路閘道的公用 IP 位址，請使用下面範例：
+
+  ```powershell
+  Get-AzureRmPublicIpAddress -Name GW1PublicIP -ResourceGroupName TestRG
+  ```
+
 [!INCLUDE [Configure VPN device](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
 
-若要使用 PowerShell 尋找虛擬網路閘道的公用 IP 位址，請使用下面範例：
-
-```powershell
-Get-AzureRmPublicIpAddress -Name GW1PublicIP -ResourceGroupName TestRG
-```
 
 ## <a name="CreateConnection"></a>8.建立 VPN 連線
 
@@ -223,6 +227,7 @@ Get-AzureRmPublicIpAddress -Name GW1PublicIP -ResourceGroupName TestRG
 過一會兒，連接將會建立。
 
 ## <a name="toverify"></a>9.驗證 VPN 連線
+
 VPN 連線有幾種不同的驗證方式。
 
 [!INCLUDE [Verify connection](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
@@ -246,4 +251,3 @@ VPN 連線有幾種不同的驗證方式。
 
 *  一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱[虛擬機器](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)。
 * 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
-

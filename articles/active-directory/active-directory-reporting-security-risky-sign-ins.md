@@ -1,6 +1,7 @@
 ---
-title: "在 Azure Active Directory 入口網站 (預覽版) 中有風險的登入報告 | Microsoft Docs"
-description: "了解 Azure Active Directory 入口網站 (預覽版) 中有風險的登入報告"
+
+title: "Azure Active Directory 入口網站中有風險的登入報告 | Microsoft Docs"
+description: "了解 Azure Active Directory 入口網站中有風險的登入報告"
 services: active-directory
 author: MarkusVi
 manager: femila
@@ -10,20 +11,21 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/21/2017
+ms.date: 05/04/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: 349109e0c12a1394f96529a94ab884eeb451d242
-ms.openlocfilehash: 69b2166dcbc3e4abd99084b47907c90e157791de
-ms.lasthandoff: 02/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: e21b7733bc0f6b8625fbdcec3529ad603ce306c1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
-# <a name="risky-sign-ins-report-in-the-azure-active-directory-portal---preview"></a>Azure Active Directory 入口網站 (預覽版) 中有風險的登入報告
+# <a name="risky-sign-ins-report-in-the-azure-active-directory-portal"></a>Azure Active Directory 入口網站中有風險的登入報告
 
-利用 Azure Active Directory [預覽](active-directory-preview-explainer.md)中的安全性報告，您可以深入了解環境中使用者帳戶被盜用的可能性。 
+利用 Azure Active Directory (Azure AD) 中的安全性報告，您可以深入了解環境中使用者帳戶被盜用的可能性。 
 
-Azure Active Directory 會偵測使用者帳戶相關的可疑動作。 針對每個偵測到的動作，將會建立一筆稱為「風險事件」的記錄。 如需詳細資訊，請參閱 [Azure Active 風險事件](active-directory-identity-protection-risk-events.md)。 
+Azure AD 會偵測使用者帳戶相關的可疑動作。 針對每個偵測到的動作，將會建立一筆稱為「風險事件」的記錄。 如需詳細資訊，請參閱 [Azure Active 風險事件](active-directory-identity-protection-risk-events.md)。 
 
 偵測到的風險事件用來計算︰
 
@@ -31,7 +33,7 @@ Azure Active Directory 會偵測使用者帳戶相關的可疑動作。 針對�
 
 - **標幟為有風險的使用者** - 有風險的使用者表示可能被盜用的使用者帳戶。 如需詳細資訊，請參閱[標幟為有風險的使用者](active-directory-identityprotection.md#users-flagged-for-risk)。  
 
-在 Azure 入口網站中，您可以在 [Azure Active Directory] 刀鋒視窗的 [安全性] 區段中找到安全性報告。 
+在 [Azure 入口網站](https://portal.azure.com)中，您可以在 [Azure Active Directory] 刀鋒視窗的 [安全性] 區段中找到安全性報告。 
 
 ![有風險的登入](./media/active-directory-reporting-security-risky-sign-ins/10.png)
 

@@ -1,6 +1,7 @@
 ---
-title: "在 Azure Active Directory 入口網站 (預覽版) 中有風險的安全性報告上的使用者 | Microsoft Docs"
-description: "了解 Azure Active Directory 入口網站 (預覽版) 中有風險的安全性報告上的使用者"
+
+title: "Azure Active Directory 入口網站中有風險使用者的安全性報告 | Microsoft Docs"
+description: "了解 Azure Active Directory 入口網站中有風險使用者的安全性報告"
 services: active-directory
 author: MarkusVi
 manager: femila
@@ -10,18 +11,19 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/21/2017
+ms.date: 05/04/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: 349109e0c12a1394f96529a94ab884eeb451d242
-ms.openlocfilehash: 48c504a9ed5bc4ef9f0bff889df031962c5bf6e8
-ms.lasthandoff: 02/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 01ecb98c02b2a01007c7f76805d4db4b7aeee1f0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
-# <a name="users-at-risk-security-report-in-the-azure-active-directory-portal---preview"></a>Azure Active Directory 入口網站 (預覽版) 中有風險的安全性報告上的使用者
+# <a name="users-at-risk-security-report-in-the-azure-active-directory-portal"></a>Azure Active Directory 入口網站中有風險使用者的安全性報告
 
-利用 Azure Active Directory [預覽](active-directory-preview-explainer.md)中的安全性報告，您可以深入了解環境中使用者帳戶被盜用的可能性。 
+利用 Azure Active Directory (Azure AD) 中的安全性報告，您可以深入了解環境中使用者帳戶被盜用的可能性。 
 
 Azure Active Directory 會偵測使用者帳戶相關的可疑動作。 針對每個偵測到的動作，將會建立一筆稱為「風險事件」的記錄。 如需詳細資訊，請參閱 [Azure Active 風險事件](active-directory-identity-protection-risk-events.md)。 
 

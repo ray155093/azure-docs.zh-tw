@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/24/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: e5dcf957ea88175be02bce21929c43151417d0e3
-ms.lasthandoff: 05/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 0148c3900f2bb6b6a227da01d954e6f79bff4270
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -35,10 +36,10 @@ ms.lasthandoff: 05/02/2017
 > 
 >
 
-![站對站 VPN 閘道跨單位連線圖表](./media/vpn-gateway-howto-site-to-site-classic-portal/site-to-site-diagram.png)
-
 
 站對站 VPN 閘道連線可用來透過 IPsec/IKE (IKEv1 或 IKEv2) VPN 通道，將內部部署網路連線到 Azure 虛擬網路。 此類型的連線需要位於內部部署的 VPN 裝置，且您已對該裝置指派對外開放的公用 IP 位址。 如需 VPN 閘道的詳細資訊，請參閱[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)。
+
+![站對站 VPN 閘道跨單位連線圖表](./media/vpn-gateway-howto-site-to-site-classic-portal/site-to-site-diagram.png)
 
 ## <a name="before-you-begin"></a>開始之前
 
@@ -108,6 +109,7 @@ ms.lasthandoff: 05/02/2017
 3. 在 [設定空間] 刀鋒視窗上，按一下 [+新增] 並輸入其他位址空間。
  
 ## <a name="dns"></a>3.指定 DNS 伺服器
+
 DNS 設定不是 S2S 組態的必要部分，但如果您想要名稱解析，則需要 DNS。
 
 建立虛擬網路之後，您可以新增 DNS 伺服器的 IP 位址，以便處理名稱解析。 開啟您的虛擬網路設定，按一下 DNS 伺服器，並新增您要用於名稱解析的 DNS 伺服器 IP 位址。 此設定不會建立 DNS 伺服器。 在設定範例中，我們會使用公用 DNS 伺服器。 您通常想要使用私人 DNS 伺服器。 務必新增您的資源可以與其通訊的 DNS 伺服器。
@@ -151,6 +153,7 @@ DNS 設定不是 S2S 組態的必要部分，但如果您想要名稱解析，�
     ![新增閘道子網路](./media/vpn-gateway-howto-site-to-site-classic-portal/addgwsubnet.png "新增閘道子網路")
 
 ## <a name="sku"></a>6.指定 SKU 和 VPN 類型
+
 1. 選取閘道**大小**。 這是您會用來建立虛擬網路閘道的閘道 SKU。 在入口網站中，[預設 SKU] 為 [基本]。 如需關於閘道 SKU 的資訊，請參閱[關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md#gwsku)。
 
     ![選取 SKUL 和 VPN 類型](./media/vpn-gateway-howto-site-to-site-classic-portal/sku.png "選取 SKU 和 VPN 類型")
@@ -160,7 +163,13 @@ DNS 設定不是 S2S 組態的必要部分，但如果您想要名稱解析，�
 
 ## <a name="vpndevice"></a>7.設定 VPN 裝置
 
+內部部署網路的站對站連線需要 VPN 裝置。 在此步驟中，設定 VPN 裝置。 在設定 VPN 裝置時，您需要下列項目：
+
+- 共用金鑰。 這個共同金鑰與您建立站對站 VPN 連線時指定的共用金鑰相同。 在我們的範例中，我們會使用基本的共用金鑰。 我們建議您產生更複雜的金鑰以供使用。
+- 虛擬網路閘道的公用 IP 位址。 您可以使用 Azure 入口網站、PowerShell 或 CLI 來檢視公用 IP 位址。
+
 [!INCLUDE [vpn-gateway-configure-vpn-device-rm](../../includes/vpn-gateway-configure-vpn-device-rm-include.md)]
+
 
 ## <a name="CreateConnection"></a>8.建立連線
 在此步驟中，您可以設定共用的金鑰及建立連線。 您設定的金鑰必須是 VPN 裝置組態中使用的相同金鑰。

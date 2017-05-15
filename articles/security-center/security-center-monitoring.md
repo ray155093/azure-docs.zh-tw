@@ -4,7 +4,7 @@ description: "本文可協助您開始使用「Azure 資訊安全中心」的監
 services: security-center
 documentationcenter: na
 author: YuriDio
-manager: swadhwa
+manager: mbaldwin
 editor: 
 ms.assetid: 3bd5b122-1695-495f-ad9a-7c2a4cd1c808
 ms.service: security-center
@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/30/2017
+ms.date: 05/09/2017
 ms.author: yurid
-translationtype: Human Translation
-ms.sourcegitcommit: f41fbee742daf2107b57caa528e53537018c88c6
-ms.openlocfilehash: d796566676e13b312832dd543f52d3475d877ef8
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: f7f50c305a5ae6ad7bba4e793f4cb6a0735b80b4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -28,18 +29,17 @@ ms.lasthandoff: 03/31/2017
 我們通常都將監視想像成監看及等候事件發生，以便對該情況作出反應。 安全性監視是指擁有一個主動式策略來稽核您的資源，以識別出不符合組織標準或最佳做法的系統。
 
 ## <a name="monitoring-security-health"></a>監視安全性健全狀況
-在您為訂用帳戶的資源啟用[安全性原則](security-center-policies.md)之後，資訊安全中心會分析您資源的安全性狀態，以找出潛在的弱點。 您可以立即取得網路組態的相關資訊。 至於虛擬機器組態的相關資訊 (例如安全性更新狀態與作業系統組態)，則可能需要一個小時以上才能取得。 您可以在 [資源安全性健康情況] 刀鋒視窗中，檢視資源的安全性狀態及任何問題。 您也可以在 [建議]  刀鋒視窗上檢視這些問題的清單。
+在您為訂用帳戶的資源啟用[安全性原則](security-center-policies.md)之後，資訊安全中心會分析您資源的安全性狀態，以找出潛在的弱點。 您可以立即取得網路組態的相關資訊。 至於虛擬機器組態的相關資訊 (例如安全性更新狀態與作業系統組態)，則可能需要一個小時以上才能取得。 您可以在 [防護] 刀鋒視窗中，檢視資源的安全性狀態及任何問題。 您也可以在 [建議] 圖格上檢視這些問題的清單。
 
 如需如何套用建議的詳細資訊，請參閱[實作 Azure 資訊安全中心的安全性建議](security-center-recommendations.md)。
 
-您可在 [資源安全性健康情況] 圖格上監視資源的安全性狀態。 在下列範例中，您會看到一些需要注意的高度或中度嚴重性問題。 已啟用的安全性原則將會影響受監督的控制項類型。
+在 [防護] 區段之下，您可以監視資源的安全性狀態。 在下列範例中，您可以看到每個資源的圖格 ([計算]、[網路]、[儲存體和資料] 及 [應用程式]) 都有已識別的問題總數。
 
-![資源安全性健康情況圖格](./media/security-center-monitoring/security-center-monitoring-fig1-new001-2017.png)
+![資源安全性健康情況圖格](./media/security-center-monitoring/security-center-monitoring-fig1-newUI-2017.png)
 
-如果資訊安全中心找出必須處理的弱點 (例如遺失了安全性更新的虛擬機器或沒有[網路安全性群組](/virtual-network/virtual-networks-nsg.md)的子網路)，將會在這裡列出。
 
 ### <a name="monitor-compute"></a>監視計算
-當您按一下 [資源安全性健康狀態] 圖格的 [計算] 時，開啟的 [計算] 刀鋒視窗會顯示三個索引標籤︰
+當您按一下 [計算] 圖格時，開啟的 [計算] 刀鋒視窗會顯示三個索引標籤︰
 
 - **概觀**︰監視和虛擬機器建議。
 - **虛擬機器**︰列出所有虛擬機器及其目前的安全性狀態。
@@ -119,7 +119,7 @@ ms.lasthandoff: 03/31/2017
 ![雲端服務建議](./media/security-center-monitoring/security-center-monitoring-fig8-new4.png)  
 
 ### <a name="monitor-virtual-networks"></a>監視虛擬網路
-按一下 [資源安全性健康情況] 圖格中的 [網路] 時，將會開啟含有更多詳細資料的 [網路] 刀鋒視窗，如下列螢幕擷取畫面所示：
+按一下 [網路] 圖格時，隨即開啟包含更多詳細資料的 [網路] 刀鋒視窗，如下列螢幕擷取畫面所示：
 
 ![網路刀鋒視窗](./media/security-center-monitoring/security-center-monitoring-fig9-new3.png)
 
@@ -170,11 +170,11 @@ ms.lasthandoff: 03/31/2017
 
 此刀鋒視窗的下半部有此虛擬機器的建議 (類似上面所述)。 您可以按一下建議以深入了解或套用所需的安全性控制或組態。
 
-### <a name="monitor-data"></a>監視資料
+### <a name="monitor-storage--data"></a>監視儲存體和資料
 
-當您按一下 [資源安全性健康情況] 圖格中的 [SQL 與資料] 時，[資料資源] 刀鋒視窗會隨即開啟，其中會有針對 SQL 和儲存體的建議。 它也具有資料庫的一般健全狀況狀態 [建議](security-center-sql-service-recommendations.md) 。 如需儲存體加密的詳細資訊，請閱讀[在 Azure 資訊安全中心啟用 Azure 儲存體帳戶的加密](security-center-enable-encryption-for-storage-account.md)。
+當您按一下 [防護] 區段中的 [儲存體和資料] 時，隨即開啟包含 SQL 和儲存體建議的 [資料資源] 刀鋒視窗。 它也具有資料庫的一般健全狀況狀態 [建議](security-center-sql-service-recommendations.md) 。 如需儲存體加密的詳細資訊，請閱讀[在 Azure 資訊安全中心啟用 Azure 儲存體帳戶的加密](security-center-enable-encryption-for-storage-account.md)。
 
-![資料資源](./media/security-center-monitoring/security-center-monitoring-fig13-ga-new.png)
+![資料資源](./media/security-center-monitoring/security-center-monitoring-fig13-newUI-2017.png)
 
 在 [SQL 建議] 底下，您可以按一下任何建議，取得解決問題所需之進一步動作的更多詳細資料。 下列範例顯示已展開的 **SQL Database 上的資料庫稽核和威脅偵測**建議。
 

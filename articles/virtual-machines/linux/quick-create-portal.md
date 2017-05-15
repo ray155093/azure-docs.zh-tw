@@ -13,27 +13,27 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 04/13/2017
+ms.date: 05/02/2017
 ms.author: nepeters
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 8bfc4892343dd62c958ce6937c4879a2b029cb88
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: ff4bf9c9e3bfbd0e51cdb91be85dec15db6cd758
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/09/2017
 
 ---
 
 # <a name="create-a-linux-virtual-machine-with-the-azure-portal"></a>使用 Azure 入口網站建立 Linux 虛擬機器
 
-您可以透過 Azure 入口網站建立 Azure 虛擬機器。 此方法可提供以瀏覽器為基礎的使用者介面，以便建立和設定虛擬機器，以及所有相關的資源。 本快速入門會逐步說明如何使用 Azure 入口網站建立虛擬機器。
+您可以透過 Azure 入口網站建立 Azure 虛擬機器。 此方法可提供以瀏覽器為基礎的使用者介面，以便建立和設定虛擬機器，以及所有相關的資源。 本快速入門會逐步說明如何建立虛擬機器，以及在 VM 上安裝 Web 伺服器。
 
-如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/en-us/free/?WT.mc_id=A261C142F) 。
+如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
 ## <a name="create-ssh-key-pair"></a>建立 SSH 金鑰組
 
-您需要有 SSH 金鑰組才能完成本快速入門。 如果現有的 SSH 金鑰組，則可略過此步驟。 如果您使用 Windows 電腦，請依照[這裡](ssh-from-windows.md)的指示操作。 
+您需要有 SSH 金鑰組才能完成本快速入門。 如果現有的 SSH 金鑰組，則可略過此步驟。
 
-從 Bash 殼層，執行此命令並遵循畫面上的指示操作。 命令輸出包含公開金鑰檔案的檔案名稱。 建立虛擬機器時需要此檔案的內容。
+從 Bash 殼層，執行此命令並遵循畫面上的指示操作。 命令輸出包含公開金鑰檔案的檔案名稱。 將公開金鑰檔案的內容複製到剪貼簿。
 
 ```bash
 ssh-keygen -t rsa -b 2048
@@ -47,13 +47,13 @@ ssh-keygen -t rsa -b 2048
 
 1. 按一下 Azure 入口網站左上角的 [新增] 按鈕。
 
-2. 選取 [新增] 刀鋒視窗中的 [計算]，選取 [計算] 刀鋒視窗中的 [Ubuntu Server 16.04 LTS]，然後按一下 [建立] 按鈕。
+2. 依序選取 [計算] 和 [Ubuntu Server 16.04 LTS]，並確保 [Resource Manager] 是選取的部署模型。 按一下 [ **建立** ] 按鈕。 
 
-3. 填寫虛擬機器 [基本資訊] 表單。 針對 [驗證類型] 選取 [SSH]。 貼上 [SSH 公開金鑰] 時，請謹慎地移除任何前置或尾端的空白字元。 對於 [資源群組]，建立新的資源群組。 資源群組是在其中建立和共同管理 Azure 資源的邏輯容器。 完成時，按一下 [確定]。
+3. 輸入虛擬機器資訊。 針對 [驗證類型] 選取 [SSH 公開金鑰]。 貼上 [SSH 公開金鑰] 時，請謹慎地移除任何前置或尾端的空白字元。 完成時，按一下 [確定]。
 
-    ![在入口網站刀鋒視窗中輸入 VM 的基本資訊](./media/quick-create-portal/create-vm-portal-basic-blade.png)  
+    ![在入口網站刀鋒視窗中輸入 VM 的基本資訊](./media/quick-create-portal/create-vm-portal-basic-blade.png)
 
-4. 選擇 VM 的大小。 若要查看更多大小，請選取 [檢視全部] 或變更 [支援的磁碟類型] 篩選條件。 
+4. 選取 VM 的大小。 若要查看更多大小，請選取 [檢視全部] 或變更 [支援的磁碟類型] 篩選條件。 
 
     ![顯示 VM 大小的螢幕擷取畫面](./media/quick-create-portal/create-linux-vm-portal-sizes.png)  
 
@@ -61,23 +61,12 @@ ssh-keygen -t rsa -b 2048
 
 6. 在 [摘要] 頁面上，按一下 [確定] 來啟動虛擬機器部署。
 
-7. 若要監視部署狀態，請按一下虛擬機器。 在 Azure 入口網站儀表板上，或藉由選取左側功能表的 [虛擬機器]，即可找到此 VM。 建立 VM 後，狀態會從 [部署中] 變更為 [執行中]。
-
-
-## <a name="open-port-80-for-web-traffic"></a>針對 Web 流量開啟連接埠 80 
-
-依預設只能透過 SSH 連線至 Azure 中部署的 Linux 虛擬機器。 如果此 VM 即將成為 Web 伺服器，您需要對 Web 流量開啟連接埠 80。 此步驟會引導您建立網路安全性群組 (NSG) 規則，以允許連接埠 80 上的輸入連線。
-
-1. 在虛擬機器刀鋒視窗的 [基本資訊] 區段中，按一下 [資源群組] 的名稱。
-2. 在資源群組刀鋒視窗中，按一下資源清單中的 [網路安全性群組]。 NSG 名稱應該是 VM 名稱結尾附加 -nsg。
-3. 按一下 [輸入安全性規則] 標題，以開啟輸入規則清單。 您應會看到清單中已經有 RDP 的規則。
-4. 按一下 [+ 新增] 以開啟 [新增輸入安全性規則] 刀鋒視窗。
-5. 在 [名稱] 中輸入 *nginx*。 確定 [連接埠範圍] 已設為 80 且 [動作] 已設為 [允許]。 按一下 [確定] 。
+7. 系統會將 VM 釘選到 Azure 入口網站儀表板。 一旦完成部署，VM 摘要刀鋒視窗就會自動開啟。
 
 
 ## <a name="connect-to-virtual-machine"></a>連線至虛擬機器
 
-完成部署之後，建立與虛擬機器的 SSH 連線。
+建立虛擬機器的 SSH 連線。
 
 1. 按一下虛擬機器刀鋒視窗上的 [連線] 按鈕。 [連線] 按鈕顯示的 SSH 連接字串可用來連線至虛擬機器。
 
@@ -86,7 +75,7 @@ ssh-keygen -t rsa -b 2048
 2. 執行以下命令來建立 SSH 工作階段。 以您從 Azure 入口網站複製的連接字串取代此連接字串。
 
 ```bash 
-ssh <replace with IP address>
+ssh azureuser@40.112.21.50
 ```
 
 ## <a name="install-nginx"></a>安裝 NGINX
@@ -97,24 +86,41 @@ ssh <replace with IP address>
 #!/bin/bash
 
 # update package source
-apt-get -y update
+sudo apt-get -y update
 
 # install NGINX
-apt-get -y install nginx
+sudo apt-get -y install nginx
 ```
+
+完成時，結束 SSH 工作階段並在 Azure 入口網站中傳回 VM 屬性。
+
+
+## <a name="open-port-80-for-web-traffic"></a>針對 Web 流量開啟連接埠 80 
+
+網路安全性群組 (NSG) 可保護輸入和輸出流量。 從 Azure 入口網站建立 VM 時，會在連接埠 22 上建立 SSH 連線的輸入規則。 因為此 VM 託管 Web 伺服器，所以必須針對連接埠 80 建立 NSG 規則。
+
+1. 在虛擬機器上，按一下 [資源群組] 的名稱。
+2. 選取 [網路安全性群組]。 使用 [類型] 資料行可以識別 NSG。 
+3. 在左側功能表的 [設定] 之下，按一下 [輸入安全性規則]。
+4. 按一下 [新增]。
+5. 在 [名稱] 中輸入 **http**。 確定 [連接埠範圍] 已設為 80 且 [動作] 已設為 [允許]。 
+6. 按一下 [確定] 。
+
 
 ## <a name="view-the-ngix-welcome-page"></a>檢視 NGIX 歡迎使用頁面
 
-安裝 NGINX 後，現在經由網際網路在您的 VM 上開啟連接埠 80 - 您可以使用所選的網頁瀏覽器來檢視預設 NGINX 歡迎使用畫面。 從 VM 的刀鋒視窗中取得 [公用 IP 位址] 並使用它來瀏覽預設網頁。
+安裝 NGINX 後，且連接埠 80 對您的 VM 開啟，即可立即從網際網路存取 Web 伺服器。 開啟 Web 瀏覽器，並輸入 VM 的公用 IP 位址。 在 Azure 入口網站的 VM 刀鋒視窗上可找到公用 IP 位址。
 
 ![預設 NGINX 網站](./media/quick-create-cli/nginx.png) 
+
 ## <a name="delete-virtual-machine"></a>刪除虛擬機器
 
 若不再需要，可刪除資源群組、虛擬機器和所有相關資源。 若要這樣做，請選取虛擬機器刀鋒視窗中的資源群組，然後按一下 [刪除]。
 
 ## <a name="next-steps"></a>後續步驟
 
-[建立高可用性的虛擬機器教學課程](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+在此快速入門中，您已部署簡單的虛擬機器、網路安全性群組規則，並已安裝 Web 伺服器。 若要深入了解 Azure 虛擬機器，請繼續 Linux VM 的教學課程。
 
-[瀏覽 VM 部署 CLI 範例](../windows/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+> [!div class="nextstepaction"]
+> [Azure Linux 虛擬機器教學課程](./tutorial-manage-vm.md)
 

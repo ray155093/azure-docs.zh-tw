@@ -3,8 +3,8 @@ title: "透過 Azure PowerShell 開始使用 Azure Data Lake Analytics | Microso
 description: "使用 Azure PowerShell 建立 Data Lake Analytics 帳戶、使用 U-SQL 建立 Data Lake Analytics 作業，以及提交作業。 "
 services: data-lake-analytics
 documentationcenter: 
-author: edmacauley
-manager: jhubbard
+author: saveenr
+manager: saveenr
 editor: cgronlun
 ms.assetid: 8a4e901e-9656-4a60-90d0-d78ff2f00656
 ms.service: data-lake-analytics
@@ -12,199 +12,142 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/06/2017
+ms.date: 05/04/2017
 ms.author: edmaca
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 2bc3e4573ff4f202c3c8492e8110dc35c7e8ff2a
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: 6985dff332928d704f30e167c3bddb62bcc6cac1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
 # <a name="tutorial-get-started-with-azure-data-lake-analytics-using-azure-powershell"></a>教學課程：透過 Azure PowerShell 開始使用 Azure Data Lake Analytics
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-了解如何透過 Azure PowerShell 建立 Azure Data Lake Analytics 帳戶、在 [U-SQL](data-lake-analytics-u-sql-get-started.md)中定義 Data Lake Analytics 作業，以及將工作提交至 Data Lake Analytics 帳戶。 如需 Data Lake Analytics 的詳細資訊，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
-
-在本教學課程中，您將會開發一個作業以讀取定位鍵分隔值 (TSV) 檔案，並將該檔案轉換為逗點分隔值 (CSV) 檔案。 若要使用其他支援的工具進行同一個教學課程，請按一下此區段最上方的索引標籤。
+了解如何使用 Azure PowerShell 建立 Azure Data Lake Analytics 帳戶，然後提交和執行 U-SQL 作業。 如需有關 Data Lake Analytics 的詳細資訊，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 
 ## <a name="prerequisites"></a>必要條件
-開始進行本教學課程之前，您必須具備下列條件：
+開始進行本教學課程之前，您必須具備下列資訊：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **具有 Azure PowerShell 的工作站**。 請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
-## <a name="create-data-lake-analytics-account"></a>建立 Data Lake Analytics 帳戶
-您必須擁有 Data Lake Analytics 帳戶，才能執行工作。 若要建立 Data Lake Analytics 帳戶，您必須指定下列項目：
+## <a name="preparing-for-the-tutorial"></a>準備教學課程
+若要建立 Data Lake Analytics 帳戶，您必須先定義：
 
-* **Azure 資源群組**：Data Lake Analytics 帳戶必須建立在 Azure 資源群組內。 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 可讓您將應用程式中的資源做為群組使用。 您可以透過單一、協調的作業來部署、更新或刪除應用程式的所有資源。  
-
-    若要列舉您訂用帳戶中的資源群組：
-
-        Get-AzureRmResourceGroup
-
-    若要建立新的資源群組：
-
-        New-AzureRmResourceGroup `
-            -Name "<Your resource group name>" `
-            -Location "<Azure Data Center>" # For example, "East US 2"
-* **Data Lake Analytics 帳戶名稱**
+* **Azure 資源群組**：Data Lake Analytics 帳戶必須建立在 Azure 資源群組內。
+* **Data Lake Analytics 帳戶名稱**：Data Lake 帳戶名稱只能包含小寫字母和數字。
 * **位置**：其中一個支援 Data Lake Analytics 的 Azure 資料中心。
-* **預設 Data Lake A帳戶**：每個 Data Lake Analytics 帳戶都有一個預設的 Data Lake 帳戶。
+* **預設 Data Lake Store 帳戶**：每個 Data Lake Analytics 帳戶都有一個預設的 Data Lake Store 帳戶。 這些帳戶必須位於相同的位置。
 
-    若要建立新的 Data Lake 帳戶：
+本教學課程中的 PowerShell 程式碼片段會使用這些變數來儲存此資訊
 
-        New-AzureRmDataLakeStoreAccount `
-            -ResourceGroupName "<Your Azure resource group name>" `
-            -Name "<Your Data Lake account name>" `
-            -Location "<Azure Data Center>"  # For example, "East US 2"
+```
+$rg = "<ResourceGroupName>"
+$adls = "<DataLakeAccountName>"
+$adla = "<DataLakeAnalyticsAccountName>"
+$location = "East US 2"
+```
 
-  > [!NOTE]
-  > Data Lake 帳戶名稱只能包含小寫字母和數字。
-  >
-  >
+## <a name="create-a-data-lake-analytics-account"></a>建立 Data Lake Analytics 帳戶
 
-**建立 Data Lake Analytics 帳戶**
+如果您還沒有可使用的資源群組，請建立一個。 
 
-1. 從您的 Windows 工作站開啟 PowerShell ISE。
-2. 執行下列指令碼：
+```
+New-AzureRmResourceGroup -Name  $rg -Location $location
+```
 
-        $resourceGroupName = "<ResourceGroupName>"
-        $dataLakeStoreName = "<DataLakeAccountName>"
-        $dataLakeAnalyticsName = "<DataLakeAnalyticsAccountName>"
-        $location = "East US 2"
+每個 Data Lake Analytics 帳戶都需要預設 Data Lake Store 帳戶，用於儲存記錄。 您可以重複使用現有的帳戶，或建立新的帳戶。 
 
-        Write-Host "Create a resource group ..." -ForegroundColor Green
-        New-AzureRmResourceGroup `
-            -Name  $resourceGroupName `
-            -Location $location
+```
+New-AdlStore -ResourceGroupName $rg -Name $adls -Location $location
+```
 
-        Write-Host "Create a Data Lake account ..."  -ForegroundColor Green
-        New-AzureRmDataLakeStoreAccount `
-            -ResourceGroupName $resourceGroupName `
-            -Name $dataLakeStoreName `
-            -Location $location
+資源群組和 Data Lake Store 帳戶一旦可用，請建立 Data Lake Analytics 帳戶。
 
-        Write-Host "Create a Data Lake Analytics account ..."  -ForegroundColor Green
-        New-AzureRmDataLakeAnalyticsAccount `
-            -Name $dataLakeAnalyticsName `
-            -ResourceGroupName $resourceGroupName `
-            -Location $location `
-            -DefaultDataLake $dataLakeStoreName
+```
+New-AdlAnalyticsAccount -ResourceGroupName $rg -Name $adla -Location $location -DefaultDataLake $adls
+```
 
-        Write-Host "The newly created Data Lake Analytics account ..."  -ForegroundColor Green
-        Get-AzureRmDataLakeAnalyticsAccount `
-            -ResourceGroupName $resourceGroupName `
-            -Name $dataLakeAnalyticsName  
+## <a name="get-information-about-a-data-lake-analytics-account"></a>取得 Data Lake Analytics 帳戶的相關資訊
 
-## <a name="upload-data-to-data-lake"></a>將資料上傳至 Data Lake
-在本教學課程中，您將會處理一些搜尋記錄檔。  搜尋記錄檔可以儲存在 Data Lake Store 或 Azure Blob 儲存體中。
+```
+Get-AdlAnalyticsAccount -ResourceGroupName $rg -Name $adla  
+```
 
-系統已將搜尋記錄檔範例複製到公用 Azure Blob 容器。 使用下列 PowerShell 指令碼將該檔案下載到您的工作站，然後再將其上傳到您 Data Lake Analytics 帳戶的預設 Data Lake Store 帳戶中。
+## <a name="submit-a-u-sql-job"></a>提交 U-SQL 作業
 
-    $dataLakeStoreName = "<The default Data Lake Store account name>"
+建立含有下列 U-SQL 指令碼的文字檔。
 
-    $localFolder = "C:\Tutorials\Downloads\" # A temp location for the file.
-    $storageAccount = "adltutorials"  # Don't modify this value.
-    $container = "adls-sample-data"  #Don't modify this value.
+```
+@a  = 
+    SELECT * FROM 
+        (VALUES
+            ("Contoso", 1500.0),
+            ("Woodgrove", 2700.0)
+        ) AS 
+              D( customer, amount );
+OUTPUT @a
+    TO "/data.csv"
+    USING Outputters.Csv();
+```
 
-    # Create the temp location    
-    New-Item -Path $localFolder -ItemType Directory -Force
+提交指令碼。
 
-    # Download the sample file from Azure Blob storage
-    $context = New-AzureStorageContext -StorageAccountName $storageAccount -Anonymous
-    $$blobs = Get-AzureStorageBlob -Container $container -Context $context
-    $blobs | Get-AzureStorageBlobContent -Context $context -Destination $localFolder
+```
+Submit-AdlJob -AccountName $adla –ScriptPath "d:\test.usql"Submit
+```
 
-    # Upload the file to the default Data Lake Store account    
-    Import-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path $localFolder"SearchLog.tsv" -Destination "/Samples/Data/SearchLog.tsv"
+## <a name="monitor-u-sql-jobs"></a>監視 U-SQL 作業
 
-下列 PowerShell 指令碼示範如何取得 Data Lake Analytics 帳戶的預設 Data Lake Store 名稱：
+列出帳戶中的所有作業。 輸出包含目前執行中作業和最近完成的作業。
 
-    $resourceGroupName = "<ResourceGroupName>"
-    $dataLakeAnalyticsName = "<DataLakeAnalyticsAccountName>"
-    $dataLakeStoreName = (Get-AzureRmDataLakeAnalyticsAccount -ResourceGroupName $resourceGroupName -Name $dataLakeAnalyticsName).Properties.DefaultDataLakeStoreAccount
-    echo $dataLakeStoreName
+```
+Get-AdlJob -Account $adla
+```
 
-> [!NOTE]
-> Azure 入口網站的使用者介面，可讓使用者將資料檔案範例複製到預設的 Data Lake Store 帳戶。 如需相關指示，請參閱 [使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md#prepare-source-data)。
->
->
+取得特定作業的狀態。
 
-Data Lake Analytics 也可存取 Azure Blob 儲存體。  如需有關上傳資料至 Azure Blob 儲存體的資訊，請參閱 [搭配使用 Azure PowerShell 與 Azure 儲存體](../storage/storage-powershell-guide-full.md)。
+```
+Get-AdlJob -AccountName $adla -JobId $job.JobId
+```
 
-## <a name="submit-data-lake-analytics-jobs"></a>提交 Data Lake Analytics 工作
-Data Lake Analytics 工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL，請參閱[開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
+您可以使用 Wait-AdlJob Cmdlet，而不需在作業完成前反覆呼叫 Get-AdlAnalyticsJob。
 
-**建立 Data Lake Analytics 工作指令碼**
+```
+Wait-AdlJob -Account $adla -JobId $job.JobId
+```
 
-* 使用下列 U-SQL 指令碼建立文字檔，並將該檔案儲存到您的工作站：
+在作業完成後，藉由列出資料夾中的檔案，檢查輸出檔案是否是否。
 
-        @searchlog =
-            EXTRACT UserId          int,
-                    Start           DateTime,
-                    Region          string,
-                    Query           string,
-                    Duration        int?,
-                    Urls            string,
-                    ClickedUrls     string
-            FROM "/Samples/Data/SearchLog.tsv"
-            USING Extractors.Tsv();
+```
+Get-AdlStoreChildItem -Account $adls -Path "/"
+```
 
-        OUTPUT @searchlog   
-            TO "/Output/SearchLog-from-Data-Lake.csv"
-        USING Outputters.Csv();
+檢查檔案是否存在。
 
-    此 U-SQL 指令碼會使用 **Extractors.Tsv()** 讀取來源資料檔案，然後使用 **Outputters.Csv()** 建立 csv 檔案。
+```
+Test-AdlStoreItem -Account $adls -Path "/data.csv"
+```
 
-    除非您將來源檔案複製到其他位置，否則請勿修改這兩個路徑。  Data Lake Analytics 將建立輸出資料夾 (若尚未建立)。
+## <a name="uploading-and-downloading-files"></a>上傳和下載檔案
 
-    使用儲存在預設 Data Lake 帳戶中檔案的相對路徑，是比較容易的方法。 您也可以使用絕對路徑。  例如
+下載 U-SQL 指令碼的輸出。
 
-        adl://<Data LakeStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
+```
+Export-AdlStoreItem -AccountName $adls -Path "/data.csv"  -Destination "D:\data.csv"
+```
 
-    您必須使用絕對路徑存取連結儲存體帳戶中的檔案。  儲存在連結 Azure 儲存體帳戶中之檔案的語法是：
 
-        wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
+將要作為輸入的檔案上傳至 U-SQL 指令碼。
 
-  > [!NOTE]
-  > 目前不支援具有公用 Blob 或公用容器存取權限的 Azure Blob 容器。    
-  >
-  >
-
-**提交工作**
-
-1. 從您的 Windows 工作站開啟 PowerShell ISE。
-2. 執行下列指令碼：
-
-        $dataLakeAnalyticsName = "<DataLakeAnalyticsAccountName>"
-        $usqlScript = "c:\tutorials\data-lake-analytics\copyFile.usql"
-
-        $job = Submit-AzureRmDataLakeAnalyticsJob -Name "convertTSVtoCSV" -AccountName $dataLakeAnalyticsName –ScriptPath $usqlScript
-
-        Wait-AdlJob -Account $dataLakeAnalyticsName -JobId $job.JobId
-
-        Get-AzureRmDataLakeAnalyticsJob -AccountName $dataLakeAnalyticsName -JobId $job.JobId
-
-    在指令碼中，U-SQL 指令碼檔案儲存在 c:\tutorials\data-lake-analytics\copyFile.usql 中。 相應地更新檔案路徑。
-
-工作完成之後，您可以使用下列 Cmdlet 列出該檔案，並下載檔案：
-
-    $resourceGroupName = "<Resource Group Name>"
-    $dataLakeAnalyticName = "<Data Lake Analytic Account Name>"
-    $destFile = "C:\tutorials\data-lake-analytics\SearchLog-from-Data-Lake.csv"
-
-    $dataLakeStoreName = (Get-AzureRmDataLakeAnalyticsAccount -ResourceGroupName $resourceGroupName -Name $dataLakeAnalyticName).Properties.DefaultDataLakeAccount
-
-    Get-AzureRmDataLakeStoreChildItem -AccountName $dataLakeStoreName -path "/Output"
-
-    Export-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path "/Output/SearchLog-from-Data-Lake.csv" -Destination $destFile
+```
+Import-AdlStoreItem -AccountName $adls -Path "D:\data.tsv" -Destination "/data_copy.csv" 
+```
 
 ## <a name="see-also"></a>另請參閱
 * 若要使用其他工具檢視同一個教學課程，請按一下頁面最上方的索引標籤選取器。
-* 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
-* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
 * 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
 * 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
-* 若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 

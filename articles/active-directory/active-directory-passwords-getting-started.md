@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 04/26/2017
 ms.author: joflore
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: d138f4135d008c746bd5501680392b80a51786fa
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: b4d2819f51506651ebeb5b7b7c2d016c0cfc154d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -61,15 +61,15 @@ ms.lasthandoff: 05/03/2017
 **此時，您已為 Azure AD 租用戶設定 SSPR**。 您可以在此停止，或繼續設定將密碼同步處理至內部部署 AD 網域。
 
 > [!NOTE]
-> 以使用者並非系統管理員測試 SSPR，因為 Microsoft 會強制執行 Azure 系統管理員類型帳戶的強式驗證需求。 如需有關系統管理員密碼原則的詳細資訊，請參閱我們的[深入探討文章](active-directory-passwords-how-it-works.md)。
+> 以使用者並非系統管理員測試 SSPR，因為 Microsoft 會強制執行 Azure 系統管理員類型帳戶的強式驗證需求。 如需有關系統管理員密碼原則的詳細資訊，請參閱我們的[密碼原則文章](active-directory-passwords-policy.md#administrator-password-policy-differences)。
 
 ## <a name="configure-synchronization-to-existing-identity-source"></a>設定現有身分識別來源的同步處理
 
-若要啟用內部部署身分識別同步處理至 Azure AD，您必須在您組織中的伺服器上安裝及設定 [Azure AD Connect](/connect/active-directory-aadconnect.md)。 此應用程式會現有身分識別來源的使用者和群組同步處理至您的 Azure AD 網域。
+若要啟用內部部署身分識別同步處理至 Azure AD，您必須在您組織中的伺服器上安裝及設定 [Azure AD Connect](./connect/active-directory-aadconnect.md)。 此應用程式會現有身分識別來源的使用者和群組同步處理至您的 Azure AD 網域。
 
-[使用快速設定開始使用 Azure AD Connect](/connect/active-directory-aadconnect-get-started-express.md)
+[使用快速設定開始使用 Azure AD Connect](./connect/active-directory-aadconnect-get-started-express.md)
 
-[從 DirSync 或 Azure AD Sync 升級至 Azure AD Connect](/connect/active-directory-aadconnect-dirsync-deprecated.md)
+[從 DirSync 或 Azure AD Sync 升級至 Azure AD Connect](./connect/active-directory-aadconnect-dirsync-deprecated.md)
 
 ## <a name="disabling-self-service-password-reset"></a>停用自助式密碼重設
 

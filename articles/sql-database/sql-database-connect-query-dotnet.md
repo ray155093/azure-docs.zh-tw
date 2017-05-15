@@ -13,12 +13,13 @@ ms.workload: drivers
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 04/17/2017
+ms.date: 05/07/2017
 ms.author: andrela;sstein;carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 119ffa3ac31e0ea6e76f8232f13b4dd8667f78aa
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 0dff167c370fcd2df40aa2ac302d0f09990e1d41
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -26,20 +27,20 @@ ms.lasthandoff: 04/21/2017
 
 此快速入門示範如何使用 [C# 和 ADO.NET](https://msdn.microsoft.com/library/kb9s9ks0.aspx) 來連線至 Azure SQL Database，然後從 Windows、Mac OS 和 Ubuntu Linux 平台使用 Transact-SQL 陳述式來查詢、插入、更新和刪除資料庫中的資料。
 
-本快速入門可作為在其中一個快速入門中建立之資源的起點︰
+本快速入門可做為在其中一個快速入門中建立之資源的起點︰
 
 - [建立 DB - 入口網站](sql-database-get-started-portal.md)
 - [建立 DB - CLI](sql-database-get-started-cli.md)
 
 ## <a name="install-net"></a>安裝 .NET
 
-本節中的步驟假設您已熟悉使用 .NET 進行開發且不熟悉 Azure SQL Database。 如果您不熟悉使用 .NET 進行開發，請前往[使用 SQL Server 建置應用程式](https://www.microsoft.com/en-us/sql-server/developer-get-started/)並選取 **C#**，然後選取您的作業系統。
+本節中的步驟假設您已熟悉使用 .NET 進行開發，且不熟悉 Azure SQL Database。 如果您不熟悉使用 .NET 進行開發，請前往[使用 SQL Server 建置應用程式](https://www.microsoft.com/en-us/sql-server/developer-get-started/)並選取 **C#**，然後選取您的作業系統。
 
 ### <a name="windows-net-framework-and-net-core"></a>**Windows .NET Framework 和 .NET Core**
 
 Visual Studio 2017 Community 是功能完整且可擴充的免費 IDE，用以建立適用於 Android、iOS、Windows 以及 Web 和資料庫應用程式和雲端服務的新式應用程式。 您可以安裝完整的 .NET Framework 或只安裝 .NET Core。 快速入門中的程式碼片段均可搭配使用。 如果您已在電腦上安裝 Visual Studio，請略過後續幾個步驟。
 
-1. 下載[安裝程式](https://go.microsoft.com/fwlink/?LinkId=691978)。 
+1. 下載 [Visual Studio 2017 安裝程式](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15)。 
 2. 執行安裝程式並依照安裝提示來完成安裝。
 
 ### <a name="mac-os"></a>**Mac OS**
@@ -54,7 +55,7 @@ ln -s /usr/local/opt/openssl/lib/libcrypto.1.0.0.dylib /usr/local/lib/
 ln -s /usr/local/opt/openssl/lib/libssl.1.0.0.dylib /usr/local/lib/
 ```
 
-在 macOS 上安裝 .NET Core。 下載[正式安裝程式](https://go.microsoft.com/fwlink/?linkid=843444)。 此安裝程式會安裝一些工具並將它們放在您的 PATH，以便您從主控台執行 dotnet
+在 macOS 上安裝 .NET Core。 下載[正式安裝程式](https://go.microsoft.com/fwlink/?linkid=843444)。 此安裝程式會安裝一些工具，並將這些工具放在您的 PATH，以便您從主控台執行 dotnet
 
 ### <a name="linux-ubuntu"></a>**Linux (Ubuntu)**
 開啟您的終端機，然後瀏覽至您打算在其中建立 .NET Core 專案的目錄。 輸入下列命令以安裝 **.NET Core**。
@@ -72,11 +73,11 @@ sudo apt-get install dotnet-dev-1.0.1
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
-3. 在您資料庫的 [概觀] 窗格上，檢閱如下圖所示的完整伺服器名稱。 您可以將滑鼠移至伺服器名稱上，以帶出 [按一下以複製] 選項。 
+3. 在您資料庫的 [概觀] 頁面上，檢閱如下圖所示的完整伺服器名稱。 您可將滑鼠移至伺服器名稱上，以帶出 [按一下以複製] 選項。 
 
    ![server-name](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. 如果您忘記 Azure SQL Database 伺服器的登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。
+4. 如果您忘記 Azure SQL Database 伺服器登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。
 
 5. 按一下 [顯示資料庫連接字串]。
 
@@ -308,13 +309,9 @@ namespace ConsoleApplication1
 ```
 
 ## <a name="next-steps"></a>後續步驟
+- [設計您的第一個 Azure SQL Database](sql-database-design-first-database.md)
+- [.NET 文件](https://docs.microsoft.com/dotnet/)。
+- [使用 SSMS 連接及查詢](sql-database-connect-query-ssms.md)
+- [使用 Visual Studio Code 連線及查詢](sql-database-connect-query-vscode.md)。
 
-- 如需 .NET 文件，請參閱 [.NET 文件](https://docs.microsoft.com/dotnet/)。
-- 若要使用 SQL Server Management Studio 來連線和查詢，請參閱[使用 SSMS 連線及查詢](sql-database-connect-query-ssms.md)
-- 若要使用 Visual Studio 進行連線和查詢，請參閱[使用 Visual Studio Code 進行連線和查詢](sql-database-connect-query-vscode.md)。
-- 若要使用 PHP 進行連線和查詢，請參閱[使用 PHP 進行連線和查詢](sql-database-connect-query-php.md)。
-- 若要使用 Node.js 進行連線和查詢，請參閱[使用 Node.js 進行連線和查詢](sql-database-connect-query-nodejs.md)。
-- 若要使用 Java 進行連線和查詢，請參閱[使用 Java 進行連線和查詢](sql-database-connect-query-java.md)。
-- 若要使用 Python 進行連線和查詢，請參閱[使用 Python 進行連線和查詢](sql-database-connect-query-python.md)。
-- 若要使用 Ruby 進行連線和查詢，請參閱[使用 Ruby 進行連線和查詢](sql-database-connect-query-ruby.md)。
 

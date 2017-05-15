@@ -14,15 +14,16 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 2/21/2017
 ms.author: nisoneji
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 07c6836c9279ed2f28730a49d131c064891de1b1
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: 5c716069bdff2a23bf81b2d2d0793a8616cf9c83
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
 # <a name="azure-site-recovery-deployment-planner"></a>Azure Site Recovery Deployment Planner
-本文是 VMware 到 Azure 生產部署的 Azure Site Recovery 使用者指南。
+本文是 VMware 到 Azure 生產部署的 Azure Site Recovery Deployment Planner 使用者指南。
 
 ## <a name="overview"></a>概觀
 
@@ -36,7 +37,7 @@ Site Recovery Deployment Planner 公開預覽版本是一項命令列工具，�
 
 **相容性評估**
 
-* 以磁碟數目、磁碟大小、IOPS 和變換為基礎的 VM 合適性評估
+* 以磁碟數目、磁碟大小、IOPS、變換和開機類型 (EFI/BIOS) 為基礎的 VM 合適性評估
 * 差異複寫所需的預估網路頻寬
 
 **網路頻寬需求與 RPO 評估**
@@ -204,6 +205,10 @@ ASRDeploymentPlanner.exe -Operation StartProfiling -Directory “E:\vCenter1_Pro
 | -StartDate | (選用) 採用 MM-DD-YYYY:HH:MM 格式 (24 小時制) 的開始日期和時間。 StartDate 必須與 EndDate 一起指定。 若已指定 StartDate，則會針對在 StartDate 與 EndDate 之間收集的剖析資料產生報告。 |
 | -EndDate | (選用) 採用 MM-DD-YYYY:HH:MM 格式 (24 小時制) 的結束日期和時間。 EndDate 必須與 StartDate 一起指定。 若已指定 EndDate，則會針對在 StartDate 與 EndDate 之間收集的剖析資料產生報告。 |
 | -GrowthFactor | (選用) 以百分比表示的成長因子。 預設值為 30%。 |
+| -UseManagedDisks | (選擇性) UseManagedDisks - 是/否。 預設值為 [是]。 根據是否已針對容錯移轉/測試容錯移轉選取受控磁碟，計算可以放到單一儲存體帳戶的虛擬機器數目。 |
+
+計算單一儲存體帳戶放置時，請考慮在受控磁碟而不是非受控磁碟上進行虛擬機器的容錯移轉/測試容錯移轉。 |
+
 
 #### <a name="example-1-generate-a-report-with-default-values-when-the-profiled-data-is-on-the-local-drive"></a>範例 1︰當剖析的資料位於本機磁碟機時，使用預設值來產生報告
 ```
@@ -480,7 +485,7 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 
 **NIC**：VM 上的 NIC 數目。
 
-**開機類型**︰這是 VM 的開機類型。 可以是 BIOS 或 EFI。 Azure Site Recovery 目前僅支援 BIOS 開機類型。 EFI 開機類型的所有虛擬機器會列在不相容的 VM 工作表中。 
+**開機類型**︰這是 VM 的開機類型。 可以是 BIOS 或 EFI。 Azure Site Recovery 目前僅支援 BIOS 開機類型。 EFI 開機類型的所有虛擬機器會列在不相容的 VM 工作表中。
 
 **OS 類型**：這是 VM 的 OS 類型。 可以是 Windows 或 Linux 或其他。
 
@@ -517,7 +522,7 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 
 **NIC**：VM 上的 NIC 數目。
 
-**開機類型**︰這是 VM 的開機類型。 可以是 BIOS 或 EFI。 Azure Site Recovery 目前僅支援 BIOS 開機類型。 EFI 開機類型的所有虛擬機器會列在不相容的 VM 工作表中。 
+**開機類型**︰這是 VM 的開機類型。 可以是 BIOS 或 EFI。 Azure Site Recovery 目前僅支援 BIOS 開機類型。 EFI 開機類型的所有虛擬機器會列在不相容的 VM 工作表中。
 
 **OS 類型**：這是 VM 的 OS 類型。 可以是 Windows 或 Linux 或其他。
 
@@ -558,6 +563,15 @@ ASRDeploymentPlanner.exe -Operation GetThroughput -Directory  E:\vCenter1_Profil
 
 
 ## <a name="version-history"></a>版本歷程記錄
+
+### <a name="13"></a>1.3
+更新日期：2017 年 5 月 9 日
+
+已新增下列新功能︰
+
+* 在產生報告中新增了受控磁碟支援。 根據是否已針對容錯移轉/測試容錯移轉選取受控磁碟，計算可以放到單一儲存體帳戶的虛擬機器數目。        
+
+
 ### <a name="12"></a>1.2
 更新日期：2017 年 4 月 7 日
 

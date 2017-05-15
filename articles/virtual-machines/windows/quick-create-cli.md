@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 04/03/2017
+ms.date: 05/02/2017
 ms.author: nepeters
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 7461a0006e57608d9baa538175174788692db5f5
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: b55478409d87ea1dd138c246ae05530df5e4ce2e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/09/2017
 
 ---
 
@@ -27,9 +27,9 @@ ms.lasthandoff: 05/03/2017
 
 Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。 本指南詳細說明如何使用 Azure CLI 來部署執行 Windows Server 2016 的虛擬機器。 部署完成後，我們會連線至伺服器並安裝 IIS。
 
-如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/en-us/free/?WT.mc_id=A261C142F) 。
+如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-此外，請確定已安裝 Azure CLI。 如需詳細資訊，請參閱 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)。
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
 
 ## <a name="log-in-to-azure"></a>登入 Azure 
 
@@ -43,10 +43,10 @@ az login
 
 使用 [az group create](/cli/azure/group#create) 來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
 
-下列範例會在 westeurope 位置建立名為 myResourceGroup 的資源群組。
+下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組。
 
 ```azurecli
-az group create --name myResourceGroup --location westeurope
+az group create --name myResourceGroup --location eastus
 ```
 
 ## <a name="create-virtual-machine"></a>Create virtual machine
@@ -69,7 +69,7 @@ az vm create `
 {
   "fqdns": "",
   "id": "/subscriptions/d5b9d4b7-6fc1-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM",
-  "location": "westeurope",
+  "location": "eastus",
   "macAddress": "00-0D-3A-23-9A-49",
   "powerState": "VM running",
   "privateIpAddress": "10.0.0.4",
@@ -118,6 +118,8 @@ az group delete --name myResourceGroup
 
 ## <a name="next-steps"></a>後續步驟
 
-[安裝角色和設定防火牆的教學課程](hero-role.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+在此快速入門中，您已部署簡單的虛擬機器、網路安全性群組規則，並已安裝 Web 伺服器。 若要深入了解 Azure 虛擬機器，請繼續 Windows VM 的教學課程。
 
-[瀏覽 VM 部署 CLI 範例](cli-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+> [!div class="nextstepaction"]
+> [Azure Windows 虛擬機器教學課程](./tutorial-manage-vm.md)
+

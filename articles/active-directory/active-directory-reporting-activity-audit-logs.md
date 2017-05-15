@@ -1,6 +1,7 @@
 ---
-title: "Azure Active Directory 入口網站 (預覽版) 中的稽核活動報告 | Microsoft Docs"
-description: "介紹 Azure Active Directory 入口網站預覽版中的稽核活動報告"
+
+title: "Azure Active Directory 入口網站中的稽核活動報告 | Microsoft Docs"
+description: "介紹 Azure Active Directory 入口網站中的稽核活動報告"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -12,20 +13,21 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 04/07/2017
+ms.date: 05/04/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: d88f8bed0cbd14ee49986d6749396731a810034b
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 4065682658bdd99066266b8b4e5e4c4605ff3db9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
-# <a name="audit-activity-reports-in-the-azure-active-directory-portal---preview"></a>Azure Active Directory 入口網站 (預覽版) 中的稽核活動報告
+# <a name="audit-activity-reports-in-the-azure-active-directory-portal"></a>Azure Active Directory 入口網站中的稽核活動報告 
 
-透過 Azure Active Directory [預覽版](active-directory-preview-explainer.md)中的報告，您可取得判斷您的環境執行狀況所需的所有資訊。
+透過 Azure Active Directory 中的報告，您可以取得判斷您的環境執行狀況所需的資訊。
 
-Azure Active Directory 中的報告架構包含下列元件：
+Azure AD 中的報告架構包含下列元件：
 
 - **活動** 
     - **登入活動** – 受管理應用程式和使用者登入活動的使用情況相關資訊
