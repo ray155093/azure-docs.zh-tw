@@ -7,15 +7,15 @@
   - PowerShell - 使用範例來檢視資源群組中的 VM 和私人 IP 位址清單。 使用此範例前，您不需要加以修改。
 
     ```powershell
-    $vms = get-azurermvm
-    $nics = get-azurermnetworkinterface | where VirtualMachine -NE $null
+    $VMs = Get-AzureRmVM
+    $Nics = Get-AzureRmNetworkInterface | Where VirtualMachine -ne $null
 
-    foreach($nic in $nics)
+    foreach($Nic in $Nics)
     {
-      $vm = $vms | where-object -Property Id -EQ $nic.VirtualMachine.id
-      $prv = $nic.IpConfigurations | select-object -ExpandProperty PrivateIpAddress
-      $alloc = $nic.IpConfigurations | select-object -ExpandProperty PrivateIpAllocationMethod
-      Write-Output "$($vm.Name): $prv,$alloc"
+      $VM = $VMs | Where-Object -Property Id -eq $Nic.VirtualMachine.Id
+      $Prv = $Nic.IpConfigurations | Select-Object -ExpandProperty PrivateIpAddress
+      $Alloc = $Nic.IpConfigurations | Select-Object -ExpandProperty PrivateIpAllocationMethod
+      Write-Output "$($VM.Name): $Prv,$Alloc"
     }
     ```
 
