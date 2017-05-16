@@ -13,11 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 01/23/2017
+ms.date: 05/15/2017
 ms.author: maroche
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: e9e1009bc20679a907e4bd2387865a6000b4a898
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -82,9 +84,4 @@ Azure 資料目錄中的資料設定檔是資料表層級的快照集和及資�
 ## <a name="see-also"></a>另請參閱
 * [什麼是 Azure 資料目錄？](data-catalog-what-is-data-catalog.md) 〉 - 這篇文章提供 Azure 資料目錄服務的概觀、所提供的價值和所支援的案例。
 * [開始使用 Azure 資料目錄](data-catalog-get-started.md) 〉 - 這篇文章提供端對端教學課程，示範如何使用 Azure 資料目錄來探索資料來源。  
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

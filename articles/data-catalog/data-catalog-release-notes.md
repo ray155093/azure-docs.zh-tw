@@ -13,11 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: data-catalog
-ms.date: 01/23/2017
+ms.date: 05/15/2017
 ms.author: maroche
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 60abdc490cefc7362ca6ed0dec7dbfd53984201f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -77,9 +79,4 @@ ms.openlocfilehash: 60abdc490cefc7362ca6ed0dec7dbfd53984201f
 
 
 若要找出 RegistrationTool.exe.config 檔案，請啟動註冊工具，然後開啟 Windows 工作管理員公用程式。 在工作管理員的 [詳細資料] 索引標籤，以滑鼠右鍵按一下 RegistrationTool.exe，再從快顯功能表中選擇 [開啟檔案位置]。
-
-
-
-<!--HONumber=Nov16_HO3-->
-
 

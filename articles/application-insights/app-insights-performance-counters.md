@@ -4,7 +4,7 @@ description: "監視 Application Insights 中的系統和自訂 .NET 效能計�
 services: application-insights
 documentationcenter: 
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 5b816f4c-a77a-4674-ae36-802ee3a2f56d
 ms.service: application-insights
 ms.workload: tbd
@@ -12,10 +12,12 @@ ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
 ms.date: 10/11/2016
-ms.author: awills
-translationtype: Human Translation
+ms.author: cfreeman
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
 ms.openlocfilehash: 94a4d2b85c845b135201fd919e8eac64a5e1cb37
+ms.contentlocale: zh-tw
+ms.lasthandoff: 11/17/2016
 
 
 ---
@@ -128,13 +130,8 @@ Windows 提供多種[效能計數器](http://www.codeproject.com/Articles/8590/A
 ## <a name="alerts"></a>Alerts
 與其他計量一樣，您可以[設定警示](app-insights-alerts.md)，在效能計數器超出您指定的界限時提出警告。 開啟 [警示] 刀鋒視窗，然後按一下 [新增警示]。
 
-## <a name="a-namenextanext-steps"></a><a name="next"></a>接續步驟
+## <a name="next"></a>接續步驟
 * [相依性追蹤](app-insights-asp-net-dependencies.md)
 * [例外狀況追蹤](app-insights-asp-net-exceptions.md)
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 
