@@ -14,10 +14,11 @@ ms.devlang: na
 ms.date: 04/18/2017
 ms.topic: get-started-article
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 3c5520f30b75c0e0a2b1aee890f79d01d325d543
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 745e115409a5b1e5e4f343ca0a5bb922272d3020
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 ---
 
@@ -184,7 +185,7 @@ ms.lasthandoff: 04/20/2017
 
 ![顯示函式](./media/resource-manager-create-first-template/show-functions.png)
 
-請注意，函式是以方括號括住。 [resourceGroup](resource-group-template-functions.md#resourcegroup) 函式會傳回具有 `location` 屬性的物件。 資源群組會保留您解決方案的所有相關資源。 您可以將 location 屬性硬式編碼為 "Central US" 之類的值，但您必須手動變更範本以重新部署到不同的位置。 使用 `resourceGroup` 函式，輕鬆地將此範本重新部署至不同位置的不同資源群組。
+請注意，函式是以方括號括住。 [resourceGroup](resource-group-template-functions-resource.md#resourcegroup) 函式會傳回具有 `location` 屬性的物件。 資源群組會保留您解決方案的所有相關資源。 您可以將 location 屬性硬式編碼為 "Central US" 之類的值，但您必須手動變更範本以重新部署到不同的位置。 使用 `resourceGroup` 函式，輕鬆地將此範本重新部署至不同位置的不同資源群組。
 
 您的範本現在如下所示：
 
@@ -216,7 +217,7 @@ ms.lasthandoff: 04/20/2017
 ## <a name="add-parameters-and-variables"></a>新增參數和變數
 您的範本只剩下兩個值要設定 - **name** 和 **sku.name**。 對於這些屬性，您可新增可讓您在部署期間自訂這些值的參數。 
 
-儲存體帳戶名稱有幾項限制，以致它們難以設定。 名稱的長度必須介於 3 到 24 個字元，只能使用數字和小寫字母，而且必須是唯一的。 請使用 [uniqueString](resource-group-template-functions.md#uniquestring) 函式來產生雜湊值，而非嘗試猜測符合限制的唯一值。 若要讓此雜湊值更具意義，請加上前置詞，協助您在部署後將它識別為儲存體帳戶。 
+儲存體帳戶名稱有幾項限制，以致它們難以設定。 名稱的長度必須介於 3 到 24 個字元，只能使用數字和小寫字母，而且必須是唯一的。 請使用 [uniqueString](resource-group-template-functions-string.md#uniquestring) 函式來產生雜湊值，而非嘗試猜測符合限制的唯一值。 若要讓此雜湊值更具意義，請加上前置詞，協助您在部署後將它識別為儲存體帳戶。 
 
 1. 若要傳入符合您的命名慣例的名稱前置詞，請移至範本的 **parameters** 區段。 將參數新增至可接受儲存體帳戶名稱前置詞的範本︰
 
