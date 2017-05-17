@@ -33,7 +33,7 @@ ms.lasthandoff: 04/15/2017
 
 ![在資源庫首頁選取集合](media/machine-learning-gallery-collections/select-collections-in-gallery.png)
 
-[集合]**[](https://gallery.cortanaintelligence.com/collections)** 頁面會顯示最近新增及熱門的教學課程清單。 若要檢視所有的集合，請選取 [查看全部]。 若要搜尋特定的集合，請選取 [查看全部]，然後選取篩選準則。 您也可以在資源庫頁面頂端的 [搜尋] 方塊中輸入搜尋字詞。
+**[集合](https://gallery.cortanaintelligence.com/collections)** 頁面會顯示最近新增及熱門的教學課程清單。 若要檢視所有的集合，請選取 [查看全部]。 若要搜尋特定的集合，請選取 [查看全部]，然後選取篩選準則。 您也可以在資源庫頁面頂端的 [搜尋] 方塊中輸入搜尋字詞。
 
 在集合詳細資訊頁面上，您可以取得集合的詳細資料。 若要開啟集合詳細資料頁面，請選取集合。 在集合詳細資料頁面上的 [註解] 區段中，您可以留言、提供意見反應，或詢問有關集合的問題。 您甚至可以在 Twitter 或 LinkedIn 上與朋友或同事分享集合。 您也可以用電子郵件寄出集合詳細資料頁面連結，以邀請其他使用者檢視該頁面。
 
