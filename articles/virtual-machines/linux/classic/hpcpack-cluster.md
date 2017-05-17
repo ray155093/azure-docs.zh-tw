@@ -15,9 +15,10 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: big-compute
 ms.date: 10/12/2016
 ms.author: danlep
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: c65a932d0bf9bfb00f138997babc1bd642bcf879
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -71,7 +72,7 @@ ms.lasthandoff: 04/27/2017
 4. 如果是第一次部署，通常可接受 [Head node settings] \(前端節點設定)  刀鋒視窗中的預設值。 
    
    > [!NOTE]
-   > [Post-configuration script URL] (組態後指令碼 URL) 是選擇性的設定，可指定您想要在前端節點 VM 執行後，於其上執行的公開的 Windows PowerShell 指令碼。 
+   > **[Post-configuration script URL]** \(組態後指令碼 URL) 是選擇性的設定，可指定您想要在前端節點 VM 執行後，於其上執行的公開的 Windows PowerShell 指令碼。 
    > 
    > 
 5. 在 [計算節點設定]  刀鋒視窗中，選取節點的命名模式、節點數目與大小，以及要部署的 Linux 散發。
