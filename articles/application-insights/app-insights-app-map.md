@@ -12,11 +12,12 @@ ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 37b85ba4987f8f29e4e825a17f0a892ddabf9599
-ms.lasthandoff: 04/12/2017
+ms.author: cfreeman
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: e76a31a8eaa249ab064d180bfd7ed158ef32c85a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -86,19 +87,35 @@ ms.lasthandoff: 04/12/2017
 
 ![釘選到儀表板](./media/app-insights-app-map/12.png)
 
+## <a name="error-pane"></a>錯誤窗格
+當您按一下對應中的節點時，會在右側顯示錯誤窗格，將該節點的失敗進行彙總。 失敗會先依作業識別碼群組，然後再依問題識別碼群組。
+
+![錯誤窗格](./media/app-insights-app-map/error-pane.png)
+
+按一下失敗可前往該失敗的最新範例。
+
+## <a name="resource-health"></a>資源健康情況
+對於某些資源類型，資源健康狀態會顯示在 [錯誤] 窗格的頂端。 例如，按一下 SQL 節點會顯示資料庫的健康狀態和所發出的任何警示。
+
+![資源健康情況](./media/app-insights-app-map/resource-health.png)
+
+您可以按一下資源名稱來檢視該資源的標準概觀計量。
+
 ## <a name="end-to-end-system-app-maps"></a>端對端系統應用程式對應
+
+*需要 SDK 2.3 版或更新版本*
 
 如果您的應用程式有多個元件 (例如 Web 應用程式以外的後端服務)，則可以在一個整合式應用程式對應上顯示所有元件。
 
 ![設定篩選](./media/app-insights-app-map/multi-component-app-map.png)
 
-應用程式對應會尋找目前資源群組內的所有 Application Insights 資源，藉此尋找伺服器節點。 它也會追蹤目前資源群組中的 Application Insights 資源所追蹤的任何相依性，藉此偵測伺服器節點。
+應用程式對應會尋找伺服器節點，方法是遵循已安裝 Application Insights SDK 的伺服器之間所發出的任何 HTTP 相依性呼叫。 會假設每個 Application Insights 資源都包含一部伺服器。
 
+### <a name="multi-role-app-map-preview"></a>多角色應用程式對應 (預覽)
 
-### <a name="setting-up"></a>設定
+預覽多角色應用程式對應功能可讓您使用應用程式對應搭配多部伺服器，將資料傳送至相同的 Application Insights  / 檢測金鑰。 對應中的伺服器會依遙測項目上的 cloud_RoleName 屬性進行區隔。 從 [預覽] 刀鋒視窗將 [多角色應用程式對應]設為 [開啟]，可啟用這項設定。
 
-> [!NOTE] 
-> 端對端系統應用程式對應處於預覽狀態。 您必須使用特殊版本的 SDK 來檢測您的元件，而且您必須使用特殊的 URL 來查看應用程式對應。 [了解如何設定端對端系統應用程式對應](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/app-insights-app-map-preview.md)。
+在微服務應用程式，或在您要於單一 Application Insights 資源內將多部伺服器之間的事件相互關聯的其他情況下，可能需要這種方法。
 
 ## <a name="video"></a>影片
 

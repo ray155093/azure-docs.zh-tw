@@ -11,11 +11,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 01/19/2017
+ms.date: 05/16/2017
 ms.author: femila;markvi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: be986fd7bb1745dcf43a1066dfabc1e1c699ab4c
 ms.openlocfilehash: 87a563f1e89fa1801edca557e1ef7cfdb6a9de4e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 01/20/2017
 
 
 ---
@@ -37,10 +39,5 @@ ms.openlocfilehash: 87a563f1e89fa1801edca557e1ef7cfdb6a9de4e
 * [從具有可疑活動的 IP 位址登入](active-directory-reporting-sign-ins-from-ip-addresses-with-suspicious-activity.md)
 * [從多個地理區域登入](active-directory-reporting-sign-ins-from-multiple-geographies.md)
 * [從可能受感染的裝置登入](active-directory-reporting-sign-ins-from-possibly-infected-devices.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

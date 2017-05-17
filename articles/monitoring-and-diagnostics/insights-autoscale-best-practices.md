@@ -14,15 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: ashwink
-translationtype: Human Translation
-ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
-ms.openlocfilehash: 6dad42f94d263d9dacedf145bf4e5d487d0aed77
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: f1e4a60cd98d40794c63dc334f242415445e0d6d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="best-practices-for-autoscale"></a>自動調整規模的最佳做法
-本文會說明在 Azure 中自動調整的最佳做法。 它與虛擬機器、虛擬機器擴展集和雲端服務相關。  其他 Azure 服務使用不同的調整方法。
+本文會說明在 Azure 中自動調整的最佳做法。 Azure 監視器自動調整僅適用於[虛擬機器擴展集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)、[雲端服務](https://azure.microsoft.com/services/cloud-services/)和 [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/)。 其他 Azure 服務使用不同的調整方法。
 
 ## <a name="autoscale-concepts"></a>自動調整的概念
 * 資源可以只有「一項」  自動調整設定。
@@ -35,7 +36,7 @@ ms.lasthandoff: 04/21/2017
 * 您可以選擇從電子郵件及 Webhook 接收調整動作成功的通知。
 
 ## <a name="autoscale-best-practices"></a>自動調整最佳做法
-使用自動調整時，請使用下列最佳作法。
+使用自動調整時，請使用下列最佳做法。
 
 ### <a name="ensure-the-maximum-and-minimum-values-are-different-and-have-an-adequate-margin-between-them"></a>確定最大值與最小值不同，而且兩者之間有差距適當。
 若設定的最小值等於 2，而最大值也等於 2，且目前執行個體計數為 2，將不會有任何調整動作。 在執行個體計數的最大值與最小值之間 (含這兩個值)，需保留適當的差距。 在這些限制之間，一定律會自動調整。
@@ -118,7 +119,7 @@ ms.lasthandoff: 04/21/2017
 
 當自動調整切換回預設設定檔時，同樣也會先檢是否符合最大值與最小值條件。 若當時的執行個體數為 12，將會相應縮小為 10 (預設設定檔允許的最大值)。
 
-![自動調整設定](./media/insights-autoscale-best-practices/insights-autoscale-best-practices.png)
+![自動調整設定](./media/insights-autoscale-best-practices/insights-autoscale-best-practices-2.png)
 
 ### <a name="considerations-for-scaling-when-multiple-rules-are-configured-in-a-profile"></a>當設定檔中設有多項規則時的調整注意事項
 有些情況可能需要您在設定檔中設定多項規則。 當設定多項規則時，服務會使用下列自動調整規則集。

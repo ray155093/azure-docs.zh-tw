@@ -13,11 +13,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 05/16/2017
 ms.author: markvi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
 ms.openlocfilehash: 70610ec2c5a056d63ed854b33d84e29951940c2f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/29/2016
 
 
 ---
@@ -46,10 +48,5 @@ ms.openlocfilehash: 70610ec2c5a056d63ed854b33d84e29951940c2f
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 * [透過 Microsoft Passport 不需要密碼就能驗證身分識別](active-directory-azureadjoin-passport.md)
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

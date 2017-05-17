@@ -1,6 +1,6 @@
 ---
-title: "Linux 上的 Azure App Service Web Apps 常見問題集 | Microsoft Docs"
-description: "Linux 上的 Azure App Service Web Apps 常見問題集。"
+title: "Linux 上的 Azure App Service Web 應用程式常見問題集 | Microsoft Docs"
+description: "Linux 上的 Azure App Service Web 應用程式常見問題集。"
 keywords: "azure app service, web 應用程式, 常見問題集, linux, oss"
 services: app-service
 documentationCenter: 
@@ -13,19 +13,23 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/14/2017
-ms.author: aelnably
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: d9410448952438d6b9d437b7ca8823d4f196a2d6
-ms.lasthandoff: 04/22/2017
+ms.date: 05/04/2017
+ms.author: aelnably;wesmc
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: dcce8d855f8c37d40fe8f09ef0a97e46b342e3cf
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 
-# <a name="azure-app-service-web-apps-on-linux-faq"></a>Linux 上的 Azure App Service Web Apps 常見問題集
+# <a name="azure-app-service-web-app-on-linux-faq"></a>Linux 上的 Azure App Service Web 應用程式常見問題集
 
-隨著 Linux 上的 Azure App Service (目前為預覽版) 的推出，我們正著手在我們的平台上新增功能和進行改善。 以下是過去幾個月以來，我們的客戶一直詢問的一些常見問題 (FAQ)。
+[!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
+
+
+隨著 Linux 上的 Web 應用程式推出，我們正著手在我們的平台上新增功能和進行改善。 以下是過去幾個月以來，我們的客戶一直詢問的一些常見問題 (FAQ)。
 如果您有問題，請對文章發表評論，我們會盡速回答。
 
 ## <a name="built-in-images"></a>內建映像
@@ -40,27 +44,29 @@ ms.lasthandoff: 04/22/2017
 
 ## <a name="management"></a>管理
 
-**問︰**我在 Azure 入口網站中按下 [重新啟動] 按鈕，但我的 Web 應用程式並未重新啟動。 為什麼會這樣？
+**問︰**當我按下 Azure 入口網站中的 [重新啟動] 按鈕時，會發生什麼事？
 
-**答︰**我們正努力要在近期啟用 [重新啟動] 按鈕。 目前，您有兩個選擇：
-- 新增或變更虛擬應用程式設定。 這會強制您的 Web 應用程式重新啟動。
-- 先停止再啟動您的 Web 應用程式。
+**答︰**這相當於 Docker 的重新啟動。
 
 **問：**我是否可以使用「安全殼層」(SSH) 來連線到應用程式容器虛擬機器 (VM)？
 
-**答：**否。 我們會在將來的版本中，提供可使用 SSH 來連線到您應用程式容器的方法。
+**答︰**是，您可以透過 SCM 網站來這樣做，如需詳細資訊，請查看下列文件：[Linux 上的 Web 應用程式 SSH 支援](./app-service-linux-ssh-support.md)
 
 ## <a name="continuous-integrationdeployment"></a>連續整合/部署
 
 **問︰**我的 Web 應用程式在我已更新 Docker Hub 上的映像之後，仍然使用舊的 Docker 容器映像。 您是否支援自訂容器的連續整合/部署？
 
-**答：**您可以將 Web 應用程式先停止再啟動，來重新整理容器。 您也可以變更或新增虛擬應用程式設定，來強制重新整理您的容器。 我們正計劃在未來的版本中，為自訂容器提供連續整合/部署功能。
+**答︰**如需設定 DockerHub 映像的連續整合/部署，請查看下列文件：[在 Linux 上使用 Web 應用程式連續部署 Docker 中樞](./app-service-linux-ci-cd.md)。 針對私人登錄，您可以將 Web 應用程式先停止再啟動，來重新整理容器。 您也可以變更或新增虛擬應用程式設定，來強制重新整理您的容器。
+
+**問︰**是否支援預備環境？
+
+**答：** 是。
 
 ## <a name="language-support"></a>語言支援
 
 **問︰**是否支援未編譯的 .NET Core 應用程式？
 
-**答：**否。 您必須部署具有所有相依性的已編譯 .NET Core 應用程式。 我們正計劃在未來的版本中，提供完整的部署和建置體驗。
+**答：** 是。
 
 **問︰**您是否支援以 Composer 做為 PHP 應用程式的相依性管理程式？
 
@@ -68,17 +74,17 @@ ms.lasthandoff: 04/22/2017
 
 ## <a name="custom-containers"></a>自訂容器
 
-**問︰**我使用自己的自訂容器。 我的應用程式位於 \home\ 目錄中，但是我使用 [SCM 網站](https://github.com/projectkudu/kudu)或 FTP 用戶端來瀏覽內容時卻找不到檔案。 我的檔案在哪裡？
+**問︰**我使用自己的自訂容器。 我的應用程式位於 `\home\` 目錄中，但是我使用 [SCM 網站](https://github.com/projectkudu/kudu)或 FTP 用戶端來瀏覽內容時卻找不到檔案。 我的檔案在哪裡？
 
-**答︰**我們在 \home\ 目錄掛接了 SMB 共用。 這會覆寫該處的所有內容。
+**答︰**我們在 `\home\` 目錄掛接了 SMB 共用。 這會覆寫該處的所有內容。
 
 **問︰**私人登錄伺服器 URL 的格式為何？
 
-**答︰**您需要輸入包括 "http://" 或 "https://" 的完整登錄 URL。
+**答︰**您需要提供包括 `http://` 或 `https://` 的完整登錄 URL。
 
 **問︰**私人登錄選項中的映像名稱格式為何？
 
-**答︰**您需要新增包括私人登錄 URL 的完整映像名稱 (例如 myacr.azurecr.io/dotnet:latest) myacr.azurecr.io/dotnet:latest)
+**答︰**您需要新增包括私人登錄 URL 的完整映像名稱 (例如 myacr.azurecr.io/dotnet:latest)
 
 **問︰**我想要在我的自訂容器映像上公開多個連接埠。 是否可行？
 
@@ -94,7 +100,7 @@ ms.lasthandoff: 04/22/2017
 
 **問︰**我的自訂容器接聽連接埠 80 以外的連接埠。 如何設定我的應用程式將要求路由至該連接埠？
 
-**答︰**您可以指定一個叫做 [連接埠] 的應用程式設定，為它提供一個預期的連接埠號碼值。
+**答︰**我們會自動偵測連接埠，您也可以指定一個名為 [連接埠] 的應用程式設定，為它提供一個預期的連接埠號碼值。
 
 **問︰**我是否需要在我的自訂容器中實作 HTTPS。
 
@@ -104,7 +110,7 @@ ms.lasthandoff: 04/22/2017
 
 **問︰**使用公開預覽版時是價格是多少？
 
-**答︰**我們會以標準 Azure App Service 定價，收取您應用程式執行時數一半的費用。 這表示您會獲得標準 Azure App Service 定價的五折優惠。
+**答︰**我們會以標準 Azure App Service 定價，向您收取應用程式執行時數一半的費用。 這表示您會獲得標準 Azure App Service 定價的五折優惠。
 
 ## <a name="other"></a>其他
 
@@ -114,9 +120,12 @@ ms.lasthandoff: 04/22/2017
 
 **問︰**我可以在何處提出新功能的要求？
 
-**答︰**您可以在 [Web Apps 意見反應論壇 (英文)](https://aka.ms/webapps-uservoice) 提交您的想法。 請在您想法的標題中加上 "[Linux]"。
+**答︰**您可以在 [Web Apps 意見反應論壇 (英文)](https://aka.ms/webapps-uservoice) 提交您的想法。 將 "[Linux]" 新增至您想法的標題。
 
 ## <a name="next-steps"></a>後續步驟
-* [何謂 Linux 上的 App Service？](app-service-linux-intro.md)
-* [在 Linux 上的 App Service 中建立 Web 應用程式](app-service-linux-how-to-create-a-web-app.md)
+* [什麼是 Linux 上的 Azure Web 應用程式？](app-service-linux-intro.md)
+* [在 Linux 上的 Azure Web 應用程式中建立 Web Apps](app-service-linux-how-to-create-web-app.md)
+* [Linux 上的 Azure Web 應用程式 SSH 支援](./app-service-linux-ssh-support.md)
+* [在 Azure App Service 中設定預備環境](./web-sites-staged-publishing.md)
+* [在 Linux 上使用 Azure Web 應用程式連續部署 Docker 中樞](./app-service-linux-ci-cd.md)
 

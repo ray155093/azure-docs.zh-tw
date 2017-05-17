@@ -14,26 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/6/2016
 ms.author: ashwink
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: bc9d9aa1cbe704de5f7fb960f1467aa522acd0b5
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 7f9fb67a28560f8cc48ba8be8011bc1991d09024
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="azure-monitor-autoscaling-common-metrics"></a>Azure 監視器自動調整的常用度量
 Azure 監視器的自動調整可讓您根據遙測資料 (度量) 增加或減少執行中執行個體的數目。 本文件說明您可能會使用的常用度量。 在 Azure 的雲端服務和伺服器陣列入口網站中，您可以選擇要作為調整依據的資源度量。 不過，您也可以選擇其他資源的任何度量來做為調整依據。
 
-下列資訊也適用於調整「虛擬機器擴展集」。
-
-> [!NOTE]
-> 此資訊僅適用於以 VM 和 VM 擴展集為基礎的 Resource Manager。 
-> 
+Azure 監視器自動調整僅適用於[虛擬機器擴展集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)、[雲端服務](https://azure.microsoft.com/services/cloud-services/)和 [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/)。 其他 Azure 服務使用不同的調整方法。
 
 ## <a name="compute-metrics-for-resource-manager-based-vms"></a>針對以 Resource Manager 為基礎的 VM 來計算度量
-根據預設，以 Resource Manager 為基礎的虛擬機器和虛擬機器擴展集會發出基本 (主機層級) 的度量。 此外，當您設定 Azure VM 和 VMSS 的診斷資料收集時，Azure 診斷擴充也會發出客體 OS 效能計數器 (通常稱為「客體 OS 度量」)。  您在自動調整規則中使用所有這些度量。 
+根據預設，以 Resource Manager 為基礎的虛擬機器和虛擬機器擴展集會發出基本 (主機層級) 的度量。 此外，當您設定 Azure VM 和 VMSS 的診斷資料收集時，Azure 診斷擴充也會發出客體 OS 效能計數器 (通常稱為「客體 OS 度量」)。  您在自動調整規則中使用所有這些度量。
 
-您可以使用 `Get MetricDefinitions` API/PoSH/CLI 來檢視 VMSS 資源的可用度量。 
+您可以使用 `Get MetricDefinitions` API/PoSH/CLI 來檢視 VMSS 資源的可用度量。
 
 如果您使用 VM 擴展集，而且發現特定度量沒有列出來，可能是您的診斷擴充功能已「停用」它。
 
@@ -42,7 +39,7 @@ Azure 監視器的自動調整可讓您根據遙測資料 (度量) 增加或減�
 如果發生上述任一種情況，請檢閱 PowerShell 相關的[使用 PowerShell 在執行 Windows 的虛擬機器中啟用 Azure 診斷](../virtual-machines/windows/ps-extensions-diagnostics.md)，設定和更新 Azure VM 診斷擴充以啟用該度量。 該文章也包含診斷組態檔的範例。
 
 ### <a name="host-metrics-for-resource-manager-based-windows-and-linux-vms"></a>以 Resource Manager 為基礎的 Windows 和 Linux VM 的主機度量
-在 Windows 和 Linux 執行個體中，根據預設會針對 Azure VM 和 VMSS 發出下列的主機層級度量。 這些度量描述您的 Azure VM，然而是從 Azure VM 主機收集，而不是透過客體 VM 上安裝的代理程式收集。 您可以在自動調整規則中使用這些度量。 
+在 Windows 和 Linux 執行個體中，根據預設會針對 Azure VM 和 VMSS 發出下列的主機層級度量。 這些度量描述您的 Azure VM，然而是從 Azure VM 主機收集，而不是透過客體 VM 上安裝的代理程式收集。 您可以在自動調整規則中使用這些度量。
 
 - [以 Resource Manager 為基礎的 Windows 和 Linux VM 的主機度量](monitoring-supported-metrics.md#microsoftcomputevirtualmachines)
 - [以 Resource Manager 為基礎的 Windows 和 Linux VM 擴展集的主機度量](monitoring-supported-metrics.md#microsoftcomputevirtualmachinescalesets)
@@ -162,7 +159,7 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 | BytesSent |位元組 |
 
 ## <a name="commonly-used-storage-metrics"></a>常用的儲存體度量
-您可以「儲存體佇列長度」做為調整依據，它是儲存體佇列中的訊息數目。 儲存體佇列長度是特殊度量，臨界值是每個執行個體的訊息數。 比方說，如果有兩個執行個體，且臨界值設定為 100，當佇列中的訊息總數為 200 時，將會進行調整。 可能每個執行個體有 100 個訊息、120 和 80 個訊息，或合計最多 200 個或更多訊息的其他任何組合。 
+您可以「儲存體佇列長度」做為調整依據，它是儲存體佇列中的訊息數目。 儲存體佇列長度是特殊度量，臨界值是每個執行個體的訊息數。 比方說，如果有兩個執行個體，且臨界值設定為 100，當佇列中的訊息總數為 200 時，將會進行調整。 可能每個執行個體有 100 個訊息、120 和 80 個訊息，或合計最多 200 個或更多訊息的其他任何組合。
 
 在 Azure 入口網站的 [設定] 刀鋒視窗中進行此設定。 若使用 VM 擴展集，您可以更新 Resource Manager 範本中的自動調整設定，改為使用 metricName 作為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼作為 *metricResourceUri*。
 
@@ -183,7 +180,7 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 ```
 
 ## <a name="commonly-used-service-bus-metrics"></a>常用的服務匯流排衡量標準
-您可以依服務匯流排佇列長度做為調整依據，它是服務匯流排佇列中的訊息數目。 服務匯流排長度是特殊度量，臨界值是每個執行個體的訊息數。 比方說，如果有兩個執行個體，且臨界值設定為 100，當佇列中的訊息總數為 200 時，將會進行調整。 可能每個執行個體有 100 個訊息、120 和 80 個訊息，或合計最多 200 個或更多訊息的其他任何組合。 
+您可以依服務匯流排佇列長度做為調整依據，它是服務匯流排佇列中的訊息數目。 服務匯流排長度是特殊度量，臨界值是每個執行個體的訊息數。 比方說，如果有兩個執行個體，且臨界值設定為 100，當佇列中的訊息總數為 200 時，將會進行調整。 可能每個執行個體有 100 個訊息、120 和 80 個訊息，或合計最多 200 個或更多訊息的其他任何組合。
 
 若使用 VM 擴展集，您可以更新 Resource Manager 範本中的自動調整設定，改為使用 metricName 作為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼作為 *metricResourceUri*。
 
@@ -195,7 +192,6 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 > [!NOTE]
 > 若使用服務匯流排，資源群組的概念不存在，但 Azure Resource Manager 會建立每個區域的預設資源群組。 此資源群組通常是 'Default-ServiceBus-[region]' 的格式。 例如，'Default-ServiceBus-EastUS'、'Default-ServiceBus-WestUS'、'Default-ServiceBus-AustraliaEast' 等。
-> 
-> 
-
+>
+>
 

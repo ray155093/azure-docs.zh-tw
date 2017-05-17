@@ -12,14 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: multiple
-ms.date: 04/03/2017
+ms.date: 05/05/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: f1156572dece1dd59d5a258b670c8fb4f3e3d0e6
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 85a2fac77cf5beae6debad044df169301d43f4ca
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -108,6 +108,7 @@ $TargetDedicated=min(maxNumberofVMs, pendingTaskSamples);
 | $SucceededTasks |已成功完成的工作數目。 |
 | $FailedTasks |失敗的工作數目。 |
 | $CurrentDedicated |目前的專用計算節點數目。 |
+| $PreemptedNodeCount | 優先佔用狀態的集區中之節點數目。 |
 
 > [!TIP]
 > 上述服務定義的唯讀變數是可提供各種方法來存取相關聯資料的「物件」。 如需詳細資訊，請參閱下面的[取得範例資料](#getsampledata)。

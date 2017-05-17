@@ -1,6 +1,6 @@
 ---
-title: "在 Linux 上的 Azure App Service Web Apps 中使用 Ruby | Microsoft Docs"
-description: "在 Linux 上的 Azure App Service Web Apps 中使用 Ruby。"
+title: "在 Linux 上的 Azure App Service Web 應用程式中使用 Ruby | Microsoft Docs"
+description: "在 Linux 上的 Azure App Service Web 應用程式中使用 Ruby。"
 keywords: "azure app service, web 應用程式, 常見問題集, linux, oss, ruby"
 services: app-service
 documentationCenter: 
@@ -15,17 +15,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: aelnably;wesmc
-translationtype: Human Translation
-ms.sourcegitcommit: bb4c7ea7adfe1326ae8259782b5de2762c8c2bf5
-ms.openlocfilehash: 8427034e5229000faf134bcd5b7174b0f7046321
-ms.lasthandoff: 02/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 5aeef6f31dacb1b27c605d39a35a81bd0211e06a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 
-# <a name="using-ruby-in-web-apps-on-linux"></a>在 Linux 上的 Web Apps 中使用 Ruby #
+# <a name="using-ruby-in-web-app-on-linux"></a>在 Linux 上的 Web 應用程式中使用 Ruby #
 
-在最後更新我們的後端時，我們開始支援 Ruby&2;.3 版。 您可以設定 Linux Web 應用程式的組態，以變更應用程式堆疊。
+在最後更新我們的後端時，我們開始支援 Ruby 2.3 版。 您可以設定 Linux Web 應用程式的組態，以變更應用程式堆疊。
 
 ## <a name="using-the-azure-portal"></a>使用 Azure 入口網站 ##
 
@@ -45,10 +46,10 @@ ms.lasthandoff: 02/17/2017
 在建立您的 Ruby Web 應用程式之後，您可以使用 Git 或 FTP 來部署。
 
 ## <a name="next-steps"></a>後續步驟
-* [何謂 Linux 上的 App Service？](app-service-linux-intro.md)
-* [在 Linux 上的 App Service 中建立 Web Apps](app-service-linux-how-to-create-a-web-app.md)
+* [什麼是 Linux 上的 Web 應用程式？](app-service-linux-intro.md)
+* [在 Linux 上的 Web 應用程式中建立 Web Apps](app-service-linux-how-to-create-web-app.md)
 * [本機 Git 部署至 Azure App Service](app-service-deploy-local-git.md)
-* [Linux 上的 Azure App Service Web Apps 常見問題集](app-service-linux-faq.md)
+* [Linux 上的 Azure App Service Web 應用程式常見問題集](app-service-linux-faq.md)
 
 <!--Image references-->
 [1]: ./media/app-service-linux-using-ruby/New-Linux.png

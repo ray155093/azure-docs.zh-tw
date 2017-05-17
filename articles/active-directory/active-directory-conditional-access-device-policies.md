@@ -12,11 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 05/16/2017
 ms.author: markvi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
 ms.openlocfilehash: 613e2447c1e47fcd80f2e9ded9ad2669f8283c3d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/29/2016
 
 
 ---
@@ -46,10 +48,5 @@ Azure Active Directory 會強制執行條件式存取原則，以確保 Office 3
 問：Office 365 服務的條件式存取原則何時會延伸到以瀏覽器為基礎的應用程式 (例如 OWA、以瀏覽器為基礎的 SharePoint)？
 
 答：在現階段，Office365 服務的條件式存取受限於裝置上的豐富應用程式。 我們已規劃將條件式存取原則延伸到從瀏覽器存取服務的使用者。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

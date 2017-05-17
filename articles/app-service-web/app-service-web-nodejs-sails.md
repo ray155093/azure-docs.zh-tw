@@ -14,10 +14,11 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: ff5deaa15d1f78df249e9e89b1f0ffc82076fee1
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 197e4c1873ecdc80c7eed3427449e2ea0d1605ba
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -183,11 +184,11 @@ ms.lasthandoff: 04/06/2017
 您可以在 [config/log.js](http://sailsjs.org/#!/documentation/concepts/Logging) 檔案中控制 stdout 記錄檔的細微度。
 
 ## <a name="connect-to-a-database-in-azure"></a>連接到 Azure 中的資料庫
-若要連接到 Azure 中的資料庫，您可以在 Azure 中建立所選擇的資料庫，例如 Azure SQL Database、MySQL、MongoDB、Azure (Redis) 快取等，並使用對應的 [資料存放區配接器](https://github.com/balderdashy/sails#compatibility) 連接到它。 本章節中的步驟示範如何使用可支援 MongoDB 用戶端連線的 [Azure DocumentDB](../documentdb/documentdb-protocol-mongodb.md) 資料庫連線至 MongoDB。
+若要連接到 Azure 中的資料庫，您可以在 Azure 中建立所選擇的資料庫，例如 Azure SQL Database、MySQL、MongoDB、Azure (Redis) 快取等，並使用對應的 [資料存放區配接器](https://github.com/balderdashy/sails#compatibility) 連接到它。 本章節中的步驟示範如何使用可支援 MongoDB 用戶端連線的 [Azure Cosmos DB](../documentdb/documentdb-protocol-mongodb.md) 資料庫連線至 MongoDB。
 
-1. [建立具有 MongoDB 通訊協定支援的 DocumentDB 帳戶](../documentdb/documentdb-create-mongodb-account.md)。
-2. [建立 DocumentDB 集合和資料庫](../documentdb/documentdb-create-collection.md)。 集合的名稱並不重要，但是當您從 Sails.js 連線時，需要資料庫的名稱。
-3. [尋找您 DocumentDB 資料庫的連接資訊](../documentdb/documentdb-connect-mongodb-account.md#a-idgetcustomconnectiona-get-the-mongodb-connection-string-to-customize)。
+1. [建立具有 MongoDB 通訊協定支援的 Cosmos DB 帳戶](../documentdb/documentdb-create-mongodb-account.md)。
+2. [建立 Cosmos DB 集合和資料庫](../documentdb/documentdb-create-collection.md)。 集合的名稱並不重要，但是當您從 Sails.js 連線時，需要資料庫的名稱。
+3. [尋找您 Cosmos DB 資料庫的連線資訊](../documentdb/documentdb-connect-mongodb-account.md#a-idgetcustomconnectiona-get-the-mongodb-connection-string-to-customize)。
 2. 從命令列終端機安裝 MongoDB 配接器︰
 
         npm install sails-mongo --save
@@ -205,11 +206,11 @@ ms.lasthandoff: 04/06/2017
         },
 
     > [!NOTE] 
-    > `ssl: true` 選項很重要，因為 [Azure DocumentDB 需要](../documentdb/documentdb-connect-mongodb-account.md#connection-string-requirements)。 
+    > `ssl: true` 選項很重要，因為 [Cosmos DB 需要](../documentdb/documentdb-connect-mongodb-account.md#connection-string-requirements)。 
     >
     >
 
-4. 針對每個環境變數 (`process.env.*`)，您需要在 App Service 中加以設定。 若要執行此動作，可從您的終端機執行下列命令。 使用您 DocumentDB 資料庫的連接資訊。
+4. 針對每個環境變數 (`process.env.*`)，您需要在 App Service 中加以設定。 若要執行此動作，可從您的終端機執行下列命令。 使用您 Cosmos DB 的連線資訊。
 
         az appservice web config appsettings update --settings dbuser="<database user>" --name <app_name> --resource-group my-sailsjs-app-group
         az appservice web config appsettings update --settings dbpassword="<database password>" --name <app_name> --resource-group my-sailsjs-app-group
@@ -230,7 +231,7 @@ ms.lasthandoff: 04/06/2017
             },
         },
 
-    此組態會覆寫 config/connections.js 檔案中本機環境的設定。 您專案中的預設 .gitignore 會排除這個檔案，因此不會儲存在 Git 中。 您現在可以從 Azure Web 應用程式和從本機開發環境連接到您的 DocumentDB (MongoDB) 資料庫。
+    此組態會覆寫 config/connections.js 檔案中本機環境的設定。 您專案中的預設 .gitignore 會排除這個檔案，因此不會儲存在 Git 中。 現在，您可以從 Azure Web 應用程式和從本機開發環境，連線至您的 Cosmos DB (MongoDB) 資料庫。
 6. 開啟 config/env/production.js 來設定您的生產環境，並加入下列 `models` 物件：
 
         models: {
@@ -270,7 +271,7 @@ ms.lasthandoff: 04/06/2017
 
          http://<appname>.azurewebsites.net/mywidget/create
 
-     如果此 API 傳回另一個新項目，則您的 Azure Web 應用程式會與您的 DocumentDB (MongoDB) 資料庫通訊。
+     如果此 API 傳回另一個新項目，則您的 Azure Web 應用程式會與您的 Cosmos DB (MongoDB) 資料庫通訊。
 
 ## <a name="more-resources"></a>其他資源
 * [在 Azure App Service 中開始使用 Node.js Web 應用程式](app-service-web-get-started-nodejs.md)

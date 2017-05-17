@@ -15,10 +15,11 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 09/08/2016
 ms.author: chrande; glenga
-translationtype: Human Translation
-ms.sourcegitcommit: ee94e074c574bc2e6e1a52dbfd6bd0ae102cb342
-ms.openlocfilehash: 0d007bf2a0f5a40fcb7ac6dfe5beff05a4310701
-ms.lasthandoff: 01/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 0f35d79870301bcba9f009f7dbc00696ce426458
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -80,7 +81,7 @@ Functions 是 WebJobs 的自然進化，因為它採用有關 WebJobs 的最佳�
 | 調整大小 |無組態調整 |隨著 App Service 方案調整 |
 | 價格 |按使用次數付費或屬於 App Service 方案的一部分 |屬於 App Service 方案的一部分 |
 | 執行類型 |觸發、排程 (依計時器觸發程序) |觸發、連續、排程 |
-| 觸發程序事件 |[計時器](functions-bindings-timer.md)、[Azure DocumentDB](functions-bindings-documentdb.md)、[Azure 事件中樞](functions-bindings-event-hubs.md)、[HTTP/WebHook (GitHub、Slack)](functions-bindings-http-webhook.md)、[Azure App Service Mobile Apps](functions-bindings-mobile-apps.md)、[Azure 通知中樞](functions-bindings-notification-hubs.md)、[Azure 服務匯流排](functions-bindings-service-bus.md)、[Azure 儲存體](functions-bindings-storage.md) |[Azure 儲存體](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)、[Azure 服務匯流排](../app-service-web/websites-dotnet-webjobs-sdk-service-bus.md) |
+| 觸發程序事件 |[計時器](functions-bindings-timer.md)、[Azure Cosmos DB](functions-bindings-documentdb.md)、[Azure 事件中樞](functions-bindings-event-hubs.md)、[HTTP/WebHook (GitHub、Slack)](functions-bindings-http-webhook.md)、[Azure App Service Mobile Apps](functions-bindings-mobile-apps.md)、[Azure 通知中樞](functions-bindings-notification-hubs.md)、[Azure 服務匯流排](functions-bindings-service-bus.md)、[Azure 儲存體](functions-bindings-storage.md) |[Azure 儲存體](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md)、[Azure 服務匯流排](../app-service-web/websites-dotnet-webjobs-sdk-service-bus.md) |
 | 瀏覽器中開發 |x | |
 | 視窗指令碼 |實驗性 |x |
 | PowerShell |實驗性 |x |

@@ -13,11 +13,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 05/16/2017
 ms.author: markvi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: bf9f0ae5876af6f9e92f86f0d49315ccb5ff06cf
 ms.openlocfilehash: 5f25bee0d6cb4c6985a63073e19929f8d69de139
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/29/2016
 
 
 ---
@@ -40,10 +42,5 @@ ms.openlocfilehash: 5f25bee0d6cb4c6985a63073e19929f8d69de139
 * [了解適用於 Azure AD Join 的使用案例](active-directory-azureadjoin-deployment-aadjoindirect.md)
 * [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

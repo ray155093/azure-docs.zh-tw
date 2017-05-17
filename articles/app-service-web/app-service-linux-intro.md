@@ -1,6 +1,6 @@
 ---
-title: "Linux 上的 App Service 簡介 | Microsoft Docs"
-description: "了解 Linux 上的 App Service。"
+title: "Linux 上的 Azure Web 應用程式簡介 | Microsoft Docs"
+description: "深入了解 Linux 上的 Azure Web 應用程式。"
 keywords: azure app service, linux, oss
 services: app-service
 documentationcenter: 
@@ -16,21 +16,22 @@ ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 94aaca68827ea847be02d879088a85d96dd24663
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 036e5691ecc435da54f381563b5d798f065bfb7f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="introduction-to-app-service-on-linux"></a>Linux 上的 App Service 簡介
-Linux 上的 Azure App Service 目前處於公開預覽狀態，支援在 Linux 上以原生方式執行 Web 應用程式。
+# <a name="introduction-to-azure-web-app-on-linux"></a>Linux 上的 Azure Web 應用程式簡介
 
-## <a name="overview"></a>Overview
-針對支援的應用程式堆疊，客戶可以使用 Linux 上的 App Service，以原生方式將 Web 應用程式裝載於 Linux。 下節列出目前支援的應用程式堆疊。 
+[!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
+
+## <a name="overview"></a>概觀
+針對支援的應用程式堆疊，客戶可以使用 Linux 上的 Web 應用程式，以原生方式將 Web Apps 裝載於 Linux。 下節列出目前支援的應用程式堆疊。 
 
 ## <a name="features"></a>特性
-Linux 上的 App Service 目前支援下列應用程式堆疊︰
+Linux 上的 Web 應用程式目前支援下列應用程式堆疊︰
 
 * Node.js
     * 4.4
@@ -56,40 +57,48 @@ Linux 上的 App Service 目前支援下列應用程式堆疊︰
 
 調整應用程式大小︰
 
-* 客戶可以在 App Service 方案中變更階層，即可相應增加和減少 Web 應用程式的規模。
-* 客戶可以將應用程式相應放大，在其 SKU 的範圍內執行多個應用程式執行個體。
+* 客戶可以在 App Service 方案中變更階層，即可相應增加和減少 Web Apps 的規模
+* 客戶可以將應用程式相應放大，在其 SKU 的範圍內執行多個應用程式執行個體
 
-針對 Kudu，有一些基本功能可用於下列幾項︰
+針對 Kudu，有一些基本功能︰
 
 * 環境
 * 部署
 * 基本主控台
+* SSH
+
+針對 DevOps：
+
+* 預備環境
+* DockerHub CI/CD
 
 ## <a name="limitations"></a>限制
-Azure 入口網站只會顯示 Linux 上的 App Service 目前可用的功能，並隱藏其餘部分。 隨著我們啟用更多功能，您會在入口網站中看到它們。
+Azure 入口網站只會顯示 Linux 上的 Web 應用程式目前可用的功能，並隱藏其餘部分。 隨著我們啟用更多功能，您會在入口網站中看到它們。
 
-某些功能尚未完備，例如虛擬網路整合、Azure Active Directory/協力廠商驗證或 Kudu 網站擴充。 一旦我們啟用這些功能，我們將會在文件和部落格中提供變更消息。
+某些功能尚無法使用，例如虛擬網路整合、Azure Active Directory/第三方驗證或 Kudu 網站擴充功能。 一旦這些功能提供使用後，我們將會在文件和部落格中更新關於變更的消息。
 
 目前只在下列區域提供此公開預覽版本：
 
 * 美國西部
 * 西歐 
 * 東南亞
+* 澳洲東部
 
 Linux 上的 Web Apps 只在「專用」App Service 方案中才支援，而且沒有「免費」或「共用」層。 此外，一般和 Linux Web 應用程式的 App Service 方案互斥，因此，您無法在非 Linux App Service 方案中建立 Linux Web 應用程式。
 
 只有同一區域沒有非 Linux Web Apps 的資源群組中，才能建立 Linux 上的 Web Apps。
 
-Linux 上的 Web Apps 尚未支援從未編譯來源部署 .NET Core 應用程式。 您必須先在本機發佈/編譯 .NET Core 應用程式，再將已發佈的網站位元推送至應用程式。
-
 ## <a name="next-steps"></a>後續步驟
 請參閱下列連結以開始使用 Linux 上的 App Service。 您可以在[我們的論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazurewebsitespreview)張貼問題和疑難。
 
-* [在 Linux 上的 App Service 中建立 Web Apps](app-service-linux-how-to-create-a-web-app.md)
-* [如何針對 Linux 上的 App Service 使用自訂 Docker 映像](app-service-linux-using-custom-docker-image.md)
-* [在 Linux 上的 Web Apps 中使用適用於 Node.js 的 PM2 組態](app-service-linux-using-nodejs-pm2.md)
-* [在 Linux 上的 Azure App Service Web Apps 中使用 .NET Core](app-service-linux-using-dotnetcore.md)
-* [在 Linux 上的 Azure App Service Web Apps 中使用 Ruby](app-service-linux-using-ruby.md)
-* [Linux 上的 Azure App Service Web Apps 常見問題集](app-service-linux-faq.md)
+* [在 Linux 上的 Azure Web 應用程式中建立 Web Apps](app-service-linux-how-to-create-web-app.md)
+* [如何針對 Linux 上的 Azure Web 應用程式使用自訂 Docker 映像](app-service-linux-using-custom-docker-image.md)
+* [在 Linux 上的 Azure Web 應用程式中使用適用於 Node.js 的 PM2 組態](app-service-linux-using-nodejs-pm2.md)
+* [在 Linux 上的 Azure App Service Web 應用程式中使用 .NET Core](app-service-linux-using-dotnetcore.md)
+* [在 Linux 上的 Azure App Service Web 應用程式中使用 Ruby](app-service-linux-ruby-get-started.md)
+* [Linux 上的 Azure App Service Web 應用程式常見問題集](app-service-linux-faq.md)
+* [Linux 上的 Azure Web 應用程式 SSH 支援](./app-service-linux-ssh-support.md)
+* [在 Azure App Service 中設定預備環境](./web-sites-staged-publishing.md)
+* [在 Linux 上使用 Azure Web 應用程式連續部署 Docker 中樞](./app-service-linux-ci-cd.md)
 
 

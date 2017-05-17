@@ -4,7 +4,7 @@ description: "可供檢視以及從 Azure Active Directory 下載的稽核事件
 services: active-directory
 documentationcenter: 
 author: dhanyahk
-manager: mbaldwin
+manager: femila
 editor: 
 ms.assetid: 307eedf7-05bc-448d-a84d-bead5a4c5770
 ms.service: active-directory
@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 12/14/2016
+ms.date: 05/16/2017
 ms.author: dhanyahk;markvi
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 6950072b8970dfc1b80674efe0be6cb7496fd5ce
 ms.openlocfilehash: 2dda60160bbcaa729bc8e5cec4f47efc10d120cf
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/29/2016
 
 
 ---
@@ -325,10 +327,5 @@ Azure AD 稽核報告中的事件會保留 180 天。 如需保留報告的詳�
 | PasswordValidityPeriodDays |密碼在必須變更前的理想天數。 |
 
 稽核記錄是許多標準規定的必要控制項。 對於使用 Azure Active Directory 稽核報告以符合其標準規定的客戶，建議客戶提交一份本說明主題的副本 (連同客戶匯出的稽核報告副本)，協助說明報告的詳細資料。 如果稽核人員想要了解 Azure 目前符合的法規，請將稽核人員導向至 Microsoft Azure 信任中心的 [規範](https://azure.microsoft.com/support/trust-center/compliance/) 頁面。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 

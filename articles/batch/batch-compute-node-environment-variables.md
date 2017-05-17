@@ -10,13 +10,13 @@ ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
-ms.date: 04/26/2017
+ms.date: 05/05/2017
 ms.author: tamram
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: 171393bc4145a1d39d6ae7bf76815e7cd2d18164
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 29f642754430957e77ef68946f721f8e15dba065
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 05/10/2017
 
 ---
 
@@ -60,9 +60,10 @@ ms.lasthandoff: 04/28/2017
 | AZ_BATCH_MASTER_NODE            | [多重執行個體工作][multi_instance]的主要工作執行所在的計算節點其 IP 位址與連接埠。 | 多重執行個體的主要工作和子工作。 | `10.0.0.4:6000`|
 | AZ_BATCH_TASK_SHARED_DIR | [多重執行個體工作][multi_instance]的主要工作與每個子工作相同的目錄路徑。 此路徑存在於多重執行個體工作執行所在的每個節點上，且可由在該節點上執行的工作命令 ([協調命令][coord_cmd]與[應用程式命令][app_cmd]) 以讀取/寫入的方式存取。 在其他節點上執行的子工作或主要工作沒有遠端存取此目錄 (它不是「共用的」網路目錄) 的權限。 | 多重執行個體的主要工作和子工作。 | C:\user\tasks\workitems\multiinstancesamplejob\job-1\multiinstancesampletask |
 | AZ_BATCH_IS_CURRENT_NODE_MASTER | 指定目前節點是否為[多重執行個體工作][multi_instance]的主要節點。 可能的值為 `true` 與 `false`。| 多重執行個體的主要工作和子工作。 | `true` |
-
+| AZ_BATCH_NODE_IS_DEDICATED | 若為 `true`，目前的節點就是專用節點。 若為 `false`，它就是[低優先順序節點](batch-low-pri-vms.md)。 | 所有工作。 | `true` |
 
 [files_dirs]: https://azure.microsoft.com/documentation/articles/batch-api-basics/#files-and-directories
 [multi_instance]: https://azure.microsoft.com/documentation/articles/batch-mpi/
 [coord_cmd]: https://azure.microsoft.com/documentation/articles/batch-mpi/#coordination-command
 [app_cmd]: https://azure.microsoft.com/documentation/articles/batch-mpi/#application-command
+

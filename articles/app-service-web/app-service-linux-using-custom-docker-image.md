@@ -1,6 +1,6 @@
 ---
-title: "如何針對 Linux 上的 Azure App Service 使用自訂 Docker 映像 | Microsoft Docs"
-description: "如何針對 Linux 上的 App Service 使用自訂 Docker 映像。"
+title: "如何針對 Linux 上的 Azure Web 應用程式使用自訂 Docker 映像 | Microsoft Docs"
+description: "如何針對 Linux 上的 Azure Web 應用程式使用自訂 Docker 映像。"
 keywords: "azure app service, web 應用程式, linux, docker, 容器"
 services: app-service
 documentationcenter: 
@@ -15,15 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-translationtype: Human Translation
-ms.sourcegitcommit: bb4c7ea7adfe1326ae8259782b5de2762c8c2bf5
-ms.openlocfilehash: 7e4aab65feac187b48ccca65b35bb94185323506
-ms.lasthandoff: 02/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 9962766b0a1fdfe313b70ea65e08785ec8a97996
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 
-# <a name="using-a-custom-docker-image-for-app-service-on-linux"></a>針對 Linux 上的 App Service 使用自訂 Docker 映像 #
+# <a name="using-a-custom-docker-image-for-azure-web-app-on-linux"></a>針對 Linux 上的 Azure Web 應用程式使用自訂 Docker 映像 #
+
+[!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
+
 
 App Service 在 Linux 上提供預先定義的應用程式堆疊，且支援特定的版本，例如 PHP 7.0 和 Node.js 4.5。 Linux 上的 App Service 使用 Docker 容器來裝載這些預先建置的應用程式堆疊。 您也可以使用自訂 Docker 映像，將您的 Web 應用程式部署到尚未定義在 Azure 中的應用程式堆疊。 自訂 Docker 映像可裝載於公用或私人 Docker 儲存機制。
 
@@ -98,12 +102,12 @@ App Service 在 Linux 上提供預先定義的應用程式堆疊，且支援特�
 
 ## <a name="next-steps"></a>後續步驟 ##
 
-請前往下列連結以開始使用 Linux 上的 App Service。   
+請前往下列連結以開始使用 Linux 上的 Web 應用程式。   
 
-* [Linux 上的 App Service 簡介](./app-service-linux-intro.md)
-* [在 Linux 上的 App Service 中建立 Web Apps](./app-service-linux-how-to-create-a-web-app.md)
-* [在 Linux 上的 Web Apps 中使用適用於 Node.js 的 PM2 組態](./app-service-linux-using-nodejs-pm2.md)
-* [Linux 上的 Azure App Service Web Apps 常見問題集](app-service-linux-faq.md)
+* [Linux 上的 Azure Web 應用程式簡介](./app-service-linux-intro.md)
+* [在 Linux 上的 Azure Web 應用程式中建立 Web Apps](./app-service-linux-how-to-create-web-app.md)
+* [在 Linux 上的 Azure Web 應用程式中使用適用於 Node.js 的 PM2 組態](./app-service-linux-using-nodejs-pm2.md)
+* [Linux 上的 Azure App Service Web 應用程式常見問題集](app-service-linux-faq.md)
 
 在[我們的論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazurewebsitespreview)張貼問題和關切事項。
 

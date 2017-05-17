@@ -10,23 +10,24 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 04/03/2017
-ms.author: awills
+ms.date: 05/04/2017
+ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 13a2883c59092c964cf3c353e767839c5f9ef788
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 6a3c4273042a7684307d56341de1065ad45eb617
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="profiling-live-azure-web-apps-with-application-insights-preview"></a>使用 Application Insights 來分析 Azure 的即時 Web 應用程式 (預覽)
+# <a name="profiling-live-azure-web-apps-with-application-insights"></a>使用 Application Insights 來分析即時 Azure Web Apps
 
-Application Insights 的這項功能目前僅供預覽。
+Application Insights 的這項功能在應用程式服務為 GA，在 Compute 為預覽中。
 
-使用 [Azure Application Insights](app-insights-overview.md) 的分析工具來了解即時 Web 應用程式中的每個方法各使用了多少時間。 此工具會顯示應用程式所提供之即時要求的詳細設定檔，並醒目提示使用最多時間的「最忙碌路徑」。 它會自動選取具有不同回應時間的範例。 分析工具會使用各種技術來盡量減少系統負荷。 
+使用 [Azure Application Insights](app-insights-overview.md) 的分析工具來了解即時 Web 應用程式中的每個方法各使用了多少時間。 此工具會顯示應用程式所提供之即時要求的詳細設定檔，並醒目提示使用最多時間的「最忙碌路徑」。 它會自動選取具有不同回應時間的範例。 分析工具會使用各種技術來盡量減少系統負荷。
 
 分析工具目前適用於在 Azure App Services (至少必須是基本定價層) 上執行的 ASP.NET Web 應用程式  (如果您使用 ASP.NET Core，則目標架構必須是 `.NetCoreApp`)。
+
 
 <a id="installation"></a>
 ## <a name="enable-the-profiler"></a>啟用分析工具
@@ -35,17 +36,42 @@ Application Insights 的這項功能目前僅供預覽。
 
 您使用的是 ASP.NET Core 嗎？[請查看這裡](#aspnetcore)。
 
-在 [https://portal.azure.com](https://portal.azure.com) 中，為您的 Web 應用程式開啟 Application Insights 資源。 開啟 [效能]，然後按一下 [設定]。 選取您的應用程式，然後遵循精靈的指示。
+在 [https://portal.azure.com](https://portal.azure.com) 中，為您的 Web 應用程式開啟 Application Insights 資源。 開啟 [效能] 然後按一下 [啟用 Application Insights 分析工具...]。
+
+![按一下 [啟用程式碼分析工具] 橫幅][enable-profiler-banner]
+
+或者，您隨時可以按一下 [設定] 來檢視狀態、啟用或停用分析工具。
 
 ![在 [效能] 刀鋒視窗中，按一下 [設定]][performance-blade]
 
-* 沒有 [設定] 按鈕？請使用[手動程序](#manual-installation)。
+使用 Application Insights 設定的 Web Apps 會列在 [設定] 刀鋒視窗。 請視需要依照指示來安裝分析工具代理程式。 如果尚未使用 Application Insights 設定任何 Web 應用程式，請按一下 [新增連結的應用程式]。
 
-如果您需要停止或重新啟動分析工具，您可以在 [App Service 資源] 的 [Web 作業] 中找到它。 若要刪除它，請在 [擴充功能] 底下查看。
+使用 [設定] 刀鋒視窗中的 [啟用分析工具] 或 [停用分析工具] 按鈕來控制所有連結的 Web Apps 之分析工具。
+
+
+
+![設定刀鋒視窗][linked app services]
+
+若要停止或重新啟動個別 App Service 執行個體的分析工具，您可以在 [App Service 資源] 的 [Web 作業] 中找到它。 若要刪除它，請在 [擴充功能] 底下查看。
+
+![停用 web 作業的分析工具][disable-profiler-webjob]
+
+我們建議您將 Web Apps 上的分析工具啟用，儘速找出任何的效能問題。
 
 如果您使用 WebDeploy 來部署 Web 應用程式的變更，請確定您已排除 **App_Data** 資料夾，以免系統在部署期間刪除它。 否則，當您下次將 Web 應用程式部署至 Azure 時，系統就會刪除分析工具擴充功能的檔案。
 
-**[更新]** Application Insights 網站擴充功能已將 2.3 版本的分析工具代理程式進行整合。 它會取代原始的 Application Insights 分析工具網站擴充功能。 您可以透過**設定**精靈移轉至最新版本。
+### <a name="using-profiler-with-azure-vms-and-compute-resources-preview"></a>使用分析工具搭配 Azure VM 和 Compute 資源 (預覽)
+
+當您[在執行階段啟用 Azure App Service 的 Application Insights](app-insights-azure-web-apps.md#run-time-instrumentation-with-application-insights) 時，分析工具會自動提供使用。 (如果已啟用資源的 Application Insights，您可能需要透過 [設定] 精靈更新為最新版本。)
+
+現提供 [Azure Compute 資源的分析工具預覽版本](https://go.microsoft.com/fwlink/?linkid=848155)。
+
+
+## <a name="limits"></a>限制
+
+預設資料保留期為 5 天。 每日擷取最多 10 GB。
+
+分析工具服務不會收取費用。 Web 應用程式必須至少在應用程式服務的基本層中託管。
 
 ## <a name="viewing-profiler-data"></a>檢視分析工具的資料
 
@@ -74,30 +100,32 @@ Application Insights 的這項功能目前僅供預覽。
 
 
 * **標籤**︰函式或事件的名稱。 樹狀結構會混合顯示程式碼和發生的事件 (例如 SQL 和 http 事件)。 最上層事件代表要求整體的持續時間。
-* **計量**︰經過的時間。
-* **何時**︰顯示函式/事件相對於其他函式的執行時間。 
+* **經過**︰作業開始和結束之間的時間間隔。
+* **何時**︰顯示函式/事件相對於其他函式的執行時間。
 
 ## <a name="how-to-read-performance-data"></a>如何讀取效能資料
 
-Microsoft 服務分析工具會合併使用取樣方法和檢測功能來分析應用程式的效能。 當系統正在進行詳細的收集作業時，服務分析工具會對每個機器之 CPU 的指令指標進行取樣，頻率為每毫秒一次。 每此取樣都會擷取目前執行之執行緒的完整呼叫堆疊，以便獲得詳細而實用的資訊，來了解該執行緒在高低兩個抽象層執行了哪些作業。 服務分析工具也會收集其他事件 (例如內容切換的事件，TPL 事件，以及執行緒集區事件) 來追蹤活動的關聯性和原因。 
+Microsoft 服務分析工具會合併使用取樣方法和檢測功能來分析應用程式的效能。
+當系統正在進行詳細的收集作業時，服務分析工具會對每個機器之 CPU 的指令指標進行取樣，頻率為每毫秒一次。
+每此取樣都會擷取目前執行之執行緒的完整呼叫堆疊，以便獲得詳細而實用的資訊，來了解該執行緒在高低兩個抽象層執行了哪些作業。 服務分析工具也會收集其他事件 (例如內容切換的事件，TPL 事件，以及執行緒集區事件) 來追蹤活動的關聯性和原因。
 
 時間表檢視中所顯示的呼叫堆疊是上述取樣和檢測的結果。 每個範例都會擷取執行緒的完整呼叫堆疊，因此範例中會包含 .NET Framework 的程式碼，以及您參考的其他架構。
 
 ### <a id="jitnewobj"></a>物件配置 (`clr!JIT\_New or clr!JIT\_Newarr1`)
-`clr!JIT\_New and clr!JIT\_Newarr1` 是 .NET Framework 內的 Helper 函式，可從 Managed 堆積來配置記憶體。 系統在配置物件時會叫用 `clr!JIT\_New`。 系統在配置物件陣列時則會叫用 `clr!JIT\_Newarr1`。 這兩個函式的速度通常很快，應該不會花上多少時間。 如果您在時間表中看到 `clr!JIT\_New` 或 `clr!JIT\_Newarr1` 花了很久的時間，就表示程式碼可能配置了許多物件，並耗用了大量記憶體。 
+`clr!JIT\_New and clr!JIT\_Newarr1` 是 .NET Framework 內的 Helper 函式，可從 Managed 堆積來配置記憶體。 系統在配置物件時會叫用 `clr!JIT\_New`。 系統在配置物件陣列時則會叫用 `clr!JIT\_Newarr1`。 這兩個函式的速度通常很快，應該不會花上多少時間。 如果您在時間表中看到 `clr!JIT\_New` 或 `clr!JIT\_Newarr1` 花了很久的時間，就表示程式碼可能配置了許多物件，並耗用了大量記憶體。
 
 ### <a id="theprestub"></a>載入程式碼 (`clr!ThePreStub`)
 `clr!ThePreStub` 是 .NET Framework 內的 Helper 函式，可讓程式碼準備好進行第一次的執行。 這通常包括但不限於 JIT (Just In Time) 編譯。 在程序的存留期內，每個 C# 方法最多只應該會叫用 `clr!ThePreStub` 一次。
 
-如果您看到 `clr!ThePreStub` 花了很久的時間來處理要求，則表示該要求是第一個執行該方法的要求，因此 .NET Framework 執行階段要花很多時間來載入該方法。 您可以考慮使用準備程序來執行程式碼的這個部分，再讓使用者存取該程式碼，或考慮在您的組件上執行 NGen。 
+如果您看到 `clr!ThePreStub` 花了很久的時間來處理要求，則表示該要求是第一個執行該方法的要求，因此 .NET Framework 執行階段要花很多時間來載入該方法。 您可以考慮使用準備程序來執行程式碼的這個部分，再讓使用者存取該程式碼，或考慮在您的組件上執行 NGen。
 
 ### <a id="lockcontention"></a>鎖定爭用 (`clr!JITutil\_MonContention` 或 `clr!JITutil\_MonEnterWorker`)
-`clr!JITutil\_MonContention` 或 `clr!JITutil\_MonEnterWorker` 表示目前的執行緒正在等待系統釋放鎖定。 系統在執行 C# 鎖定陳述式、叫用 Monitor.Enter 方法或以 MethodImplOptions.Synchronized 屬性叫用方法時，常會出現此情形。 當執行緒 A 取得鎖定但還未將其釋放之前，執行緒 B 就嘗試取得相同鎖定，系統一般就會發生鎖定爭用現象。 
+`clr!JITutil\_MonContention` 或 `clr!JITutil\_MonEnterWorker` 表示目前的執行緒正在等待系統釋放鎖定。 系統在執行 C# 鎖定陳述式、叫用 Monitor.Enter 方法或以 MethodImplOptions.Synchronized 屬性叫用方法時，常會出現此情形。 當執行緒 A 取得鎖定但還未將其釋放之前，執行緒 B 就嘗試取得相同鎖定，系統一般就會發生鎖定爭用現象。
 
 ### <a id="ngencold"></a>載入程式碼 (`[COLD]`)
-如果方法名稱包含 `[COLD]` (例如 `mscorlib.ni![COLD]System.Reflection.CustomAttribute.IsDefined`)，這表示 .NET Framework 執行階段所執行的程式碼尚未由<a href="https://msdn.microsoft.com/library/e7k32f4k.aspx">特性指引最佳化</a>進行首次最佳化。 每個方法最多只應該會在程序的存留期內顯示一次這個名稱。 
+如果方法名稱包含 `[COLD]` (例如 `mscorlib.ni![COLD]System.Reflection.CustomAttribute.IsDefined`)，這表示 .NET Framework 執行階段所執行的程式碼尚未由<a href="https://msdn.microsoft.com/library/e7k32f4k.aspx">特性指引最佳化</a>進行首次最佳化。 每個方法最多只應該會在程序的存留期內顯示一次這個名稱。
 
-如果某個要求在載入程式碼時花了很久的時間，就表示該要求是第一個在方法中執行這未最佳化部分的要求。 您可以考慮使用準備程序來執行程式碼的這個部分，再讓使用者存取該程式碼。 
+如果某個要求在載入程式碼時花了很久的時間，就表示該要求是第一個在方法中執行這未最佳化部分的要求。 您可以考慮使用準備程序來執行程式碼的這個部分，再讓使用者存取該程式碼。
 
 ### <a id="httpclientsend"></a>傳送 HTTP 要求
 `HttpClient.Send` 之類的方法表示程式碼正在等候 HTTP 要求完成。
@@ -109,7 +137,7 @@ SqlCommand.Execute 之類的方法表示程式碼正在等候系統資料庫作�
 `AWAIT\_TIME` 表示程式碼正在等候另一個工作完成。 這通常會發生在 C# 'await' 陳述式。 當程式碼執行 C# 'await' 時，執行緒會回溯控制權並將控制權交還給執行緒集區，而且系統不會將任何執行緒封鎖起來以等候 'await' 完成。 不過，就邏輯上來說，系統其實會將執行 await 的執行緒「封鎖」以等候作業完成。 `AWAIT\_TIME` 表示為了等候工作完成而封鎖的時間。
 
 ### <a id="block"></a> 封鎖的時間
-`BLOCKED_TIME` 表示程式碼在等候另一項資源變成可用狀態，例如，等候同步處理物件、等候執行緒變成可用狀態，或等候要求完成。 
+`BLOCKED_TIME` 表示程式碼在等候另一項資源變成可用狀態，例如，等候同步處理物件、等候執行緒變成可用狀態，或等候要求完成。
 
 ### <a id="cpu"></a>CPU 時間
 CPU 正忙於執行指令。
@@ -128,7 +156,7 @@ CPU 正忙於執行指令。
 
 ### <a name="how-can-i-know-whether-application-insights-profiler-is-running"></a>如何知道 Application Insights 分析工具是否有執行？
 
-在 Web 應用程式中，分析工具會以連續性 Web 作業的形式來執行。 您可以在 https://portal.azure.com 中開啟 Web 應用程式資源，然後檢查 [Webjob] 刀鋒視窗中的「ApplicationInsightsProfiler」狀態。 如果它沒有執行，請開啟 [記錄] 以進一步了解。 
+在 Web 應用程式中，分析工具會以連續性 Web 作業的形式來執行。 您可以在 https://portal.azure.com 中開啟 Web 應用程式資源，然後檢查 [Webjob] 刀鋒視窗中的「ApplicationInsightsProfiler」狀態。 如果它沒有執行，請開啟 [記錄] 以進一步了解。
 
 ### <a name="why-cant-i-find-any-stack-examples-even-though-the-profiler-is-running"></a>為什麼分析工具明明已在執行，我卻找不到任何堆疊範例呢？
 
@@ -148,7 +176,7 @@ CPU 正忙於執行指令。
 
 ### <a id="double-counting"></a>平行執行緒重複計算
 
-在某些情況下，堆疊檢視器的總時間計量會比要求實際的持續時間還多。 
+在某些情況下，堆疊檢視器的總時間計量會比要求實際的持續時間還多。
 
 當某個要求有兩個以上的關聯執行緒以平行方式運作時，就會發生這種情形。 於是，執行緒的總時間就會超過實際經過的時間。 執行緒經常要等候另一個執行緒完成。 檢視器會嘗試偵測這個狀況，並省略不重要的等候，但在過程中，它會寧可顯示過多資訊，以免省略了可能重要的資訊。  
 
@@ -158,7 +186,7 @@ CPU 正忙於執行指令。
 
 1. 如果您嘗試檢視的資料已存在好幾週，請試著限縮時間篩選器，然後再試一次。
 
-2. 確認系統未阻止 Proxy 或防火牆存取 https://gateway.azureserviceprofiler.net。 
+2. 確認系統未阻止 Proxy 或防火牆存取 https://gateway.azureserviceprofiler.net。
 
 3. 檢查您在應用程式中使用的 Application Insights 檢測金鑰和您已啟用分析功能的 Application Insights 資源相同。 金鑰通常位於 ApplicationInsights.config 中，但您也可以在 web.config 或 app.config 中找到。
 
@@ -166,10 +194,9 @@ CPU 正忙於執行指令。
 
 您可以從入口網站提出支援票證。 請納入錯誤訊息內的相互關聯識別碼。
 
-
 ## <a name="manual-installation"></a>手動安裝
 
-當您設定分析工具時，系統會對 Web 應用程式的設定進行下列更新。 您可以自行手動更新︰
+當您設定分析工具時，系統會對 Web 應用程式的設定進行下列更新。 如果您的環境需要，您可以手動方式自行將它們執行，例如，如果應用程式使用內部負載平衡器在私人網路中執行︰
 
 1. 在 [Web 應用程式控制] 刀鋒視窗中，開啟 [設定]。
 2. 將 [.Net Framework 版本] 設定為 [v4.6]。
@@ -179,19 +206,7 @@ CPU 正忙於執行指令。
 
 ## <a id="aspnetcore"></a>ASP.NET Core 支援
 
-.NET Core 執行階段目前支援 ASP.NET Core 應用程式。
-
-此應用程式也必須包含下列元件才能啟用分析功能。
-
-1. [Application Insights for ASP.NET Core 2.0](https://github.com/Microsoft/ApplicationInsights-aspnetcore/releases/tag/v2.0.0)
-2. [System.Diagnostics.DiagnosticSource 4.4.0-beta-25022-02](https://dotnet.myget.org/feed/dotnet-core/package/nuget/System.Diagnostics.DiagnosticSource/4.4.0-beta-25022-02)
-    * 在 Visual Studio 中，選取功能表的 [工具] -> [NuGet 套件管理員] -> [套件管理員設定]。
-    * 在 [選項] 對話方塊中，選取 [NuGet 套件管理員] -> [套件來源]。
-    * 按一下 [+] 按鈕以新增名為「DotNet-Core-MyGet」且值為「https://dotnet.myget.org/F/dotnet-core/api/v3/index.json」的套件來源。
-    * 按一下 [更新] 按鈕，然後關閉 [選項] 對話方塊。
-    * 開啟方案總管，對 ASP.NET Core 專案按一下滑鼠右鍵，然後選取 [管理 NuGet 套件...]。
-    * 按一下 [瀏覽] 索引標籤，選取 [套件來源: DotNet-Core-MyGet]，然後核取 [包括發行前版本]。
-    * 搜尋「System.Diagnostics.DiagnosticSource」，然後選擇 [4.4.0-beta-25022-02] 以進行安裝。
+目標為 AI SDK 2.0 或更高版本的 ASP.NET Core 1.1.2 應用程式可使用分析工具。 
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -204,4 +219,7 @@ CPU 正忙於執行指令。
 [trace-explorer-toolbar]: ./media/app-insights-profiler/trace-explorer-toolbar.png
 [trace-explorer-hint-tip]: ./media/app-insights-profiler/trace-explorer-hint-tip.png
 [trace-explorer-hot-path]: ./media/app-insights-profiler/trace-explorer-hot-path.png
+[enable-profiler-banner]: ./media/app-insights-profiler/enable-profiler-banner.png
+[disable-profiler-webjob]: ./media/app-insights-profiler/disable-profiler-webjob.png
+[linked app services]: ./media/app-insights-profiler/linked-app-services.png
 

@@ -16,14 +16,15 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 03/06/2017
 ms.author: chrande, glenga
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 7b4ae9281bca20949c37b2c797e4a1a677665929
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: b9cb2e6c15cbe217c57ddfe2910e8017bd61a67a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="azure-functions-storage-blob-bindings"></a>Azure Functions 儲存體 blob 繫結
+# <a name="azure-functions-blob-storage-bindings"></a>Azure Functions Blob 儲存體繫結
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
 這篇文章說明如何在 Azure Functions 中為 Azure 儲存體 blob 繫結進行設定及撰寫程式碼。 Azure Functions 支援適用於 Azure 儲存體 blob 的觸發程序、輸入和輸出繫結。
@@ -179,7 +180,7 @@ blob 可以還原序列化為下列任何一種類型︰
 
 <a name="triggercsharp"></a>
 
-### <a name="trigger-usage-in-c"></a>C 中的觸發程序使用方式# #
+### <a name="trigger-usage-in-c"></a>C# 中的觸發程序使用方式 #
 
 ```cs
 public static void Run(string myBlob, TraceWriter log)
@@ -290,7 +291,7 @@ blob 可以還原序列化為下列任何一種類型︰
 
 <a name="incsharp"></a>
 
-### <a name="input-usage-in-c"></a>C 中的輸入使用方式# #
+### <a name="input-usage-in-c"></a>C# 中的輸入使用方式 #
 
 ```cs
 public static void Run(string myQueueItem, string myInputBlob, out string myOutputBlob, TraceWriter log)

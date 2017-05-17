@@ -12,11 +12,12 @@ ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 8485fd9350672dd0f41e2d5dada57a1940c43f16
-ms.lasthandoff: 04/13/2017
+ms.author: cfreeman
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 6c8df6b9804d082c8044cdb2420cc5ea42b9774f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -123,6 +124,16 @@ IntelliSense 會向您提示您可使用的運算子和運算式元素。 按一
 如果您有數個正確類型的資料行，您可以選擇 x 和 y 軸，以及一個資料行的維度來據以分割結果。
 
 根據預設，結果一開始會顯示為資料表，而您會手動選取圖表。 但您可以在查詢結尾使用 [Render 指示詞](app-insights-analytics-reference.md#render-directive) 以選取圖表。
+
+### <a name="analytics-diagnostics"></a>分析診斷
+
+
+在時間圖表上，如果您的資料突然激增或升級，您可能會在線上看到反白顯示的點。 這表示分析診斷已識別出可將突然變更篩選掉的屬性組合。 按一下點可取得篩選條件的詳細資料，以及查看篩選的版本。 這可能有助於您找出造成變更的原因。 
+
+[深入了解分析診斷](app-insights-analytics-diagnostics.md)
+
+
+![分析診斷](./media/app-insights-analytics-using/analytics-diagnostics.png)
 
 ## <a name="pin-to-dashboard"></a>釘選到儀表板
 您可以將圖表或資料表釘選至您的其中一個[共用儀表板](app-insights-dashboards.md) - 只要按一下 [釘選]。 (您可能需要[升級應用程式的資費套餐](app-insights-pricing.md)才能開啟此功能。) 

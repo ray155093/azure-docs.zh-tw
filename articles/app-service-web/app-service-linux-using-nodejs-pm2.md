@@ -1,6 +1,6 @@
 ---
-title: "在 Linux 上的 Web Apps 中使用適用於 Node.js 的 PM2 組態 | Microsoft Docs"
-description: "在 Linux 上的 Web Apps 中使用適用於 Node.js 的 PM2 組態"
+title: "在 Linux 上的 Azure Web 應用程式中使用適用於 Node.js 的 PM2 組態 | Microsoft Docs"
+description: "在 Linux 上的 Azure Web 應用程式中使用適用於 Node.js 的 PM2 組態"
 keywords: "azure app service, web 應用程式, nodejs, pm2, linux, oss"
 services: app-service
 documentationcenter: 
@@ -15,15 +15,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-translationtype: Human Translation
-ms.sourcegitcommit: bb4c7ea7adfe1326ae8259782b5de2762c8c2bf5
-ms.openlocfilehash: c4af07e79ae066f916c15aa239cb5dfdd3fef2a8
-ms.lasthandoff: 02/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 7ad48d42f8cc847ece199a2372c20430c4c8424e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="use-pm2-configuration-for-nodejs-in-web-apps-on-linux"></a>在 Linux 上的 Web Apps 中使用適用於 Node.js 的 PM2 組態
-針對 Linux 上的 Web Apps ，如果您將應用程式堆疊設定為 Node.js，則可以選擇設定 Node.js 啟動檔案，如下圖所示：
+# <a name="use-pm2-configuration-for-nodejs-in-azure-web-app-on-linux"></a>在 Linux 上的 Azure Web 應用程式中使用適用於 Node.js 的 PM2 組態
+
+[!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
+
+
+針對 Linux 上的 Azure Web 應用程式，如果您將應用程式堆疊設定為 Node.js，就可以選擇設定 Node.js 啟動檔案，如下列映像所示：
 
 ![設定 Node.js 啟動檔案][1]
 
@@ -61,8 +66,8 @@ ms.lasthandoff: 02/17/2017
 * 針對 "watch_options"，由於應用程式內容的裝載方式，您目前需要將 "usePolling" 指定為 true。
 
 ## <a name="next-steps"></a>後續步驟
-* [何謂 Linux 上的 App Service？](app-service-linux-intro.md)
-* [Linux 上的 Azure App Service Web Apps 常見問題集](app-service-linux-faq.md)
+* [什麼是 Linux 上的 Azure Web 應用程式？](app-service-linux-intro.md)
+* [Linux 上的 Azure App Service Web 應用程式常見問題集](app-service-linux-faq.md)
 
 <!--Image references-->
 [1]: ./media/app-service-linux-using-nodejs-pm2/nodejs-startup-file.png

@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: app-service
 ms.date: 03/08/2017
 ms.author: cfowler
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 5d74f8216edd46fcd36d2b7f8763ec8a69ccad42
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 5c995ca118676935f4f9b0c72c266b9d52c181cb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -44,7 +45,7 @@ ms.lasthandoff: 03/31/2017
 | [將 Web 應用程式連線至 SQL Database](./scripts/app-service-cli-app-service-sql.md?toc=%2fcli%2fazure%2ftoc.json)| 建立 Azure Web 應用程式和 SQL Database，然後將資料庫連接字串新增至應用程式設定。 |
 | [將 Web 應用程式連線至儲存體帳戶](./scripts/app-service-cli-app-service-storage.md?toc=%2fcli%2fazure%2ftoc.json)| 建立 Azure Web 應用程式和儲存體帳戶，然後將儲存體連接字串新增至應用程式設定。 |
 | [將 Web 應用程式連線至 redis 快取](./scripts/app-service-cli-app-service-redis.md?toc=%2fcli%2fazure%2ftoc.json) | 建立 Azure Web 應用程式和 redis 快取，然後將 redis 連線詳細資料新增至應用程式設定。) |
-| [將 Web 應用程式連線至 documentdb](./scripts/app-service-cli-app-service-documentdb.md?toc=%2fcli%2fazure%2ftoc.json) | 建立 Azure Web 應用程式和 documentdb，然後將 documentdb 連線詳細資料新增至應用程式設定。 |
+| [將 Web 應用程式連線至 Cosmos DB](./scripts/app-service-cli-app-service-documentdb.md?toc=%2fcli%2fazure%2ftoc.json) | 建立 Azure Web 應用程式和 Cosmos DB，然後將 Cosmos DB 連線詳細資料新增至應用程式設定。 |
 |**監視應用程式**||
 | [使用 Web 伺服器記錄監視 Web 應用程式](./scripts/app-service-cli-monitor.md?toc=%2fcli%2fazure%2ftoc.json) | 建立 Azure Web 應用程式、為其啟用記錄，並將記錄下載到本機電腦。 |
 | | |

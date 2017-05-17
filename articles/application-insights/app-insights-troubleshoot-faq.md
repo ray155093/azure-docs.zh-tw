@@ -12,11 +12,12 @@ ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2017
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 191d9e1197c3526d2f72b972b7fada76dee84447
-ms.lasthandoff: 04/13/2017
+ms.author: cfreeman
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 65c199064273930f66db580b6c01dabb4b906e7a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -103,7 +104,7 @@ ms.lasthandoff: 04/13/2017
 從伺服器 Web 應用程式：
 
 * HTTP 要求
-* [相依項目](app-insights-asp-net-dependencies.md)。 對下列各項的呼叫：SQL Database、對外部服務的 HTTP 呼叫；Azure DocumentDB、資料表、Blob 儲存體及佇列。 
+* [相依項目](app-insights-asp-net-dependencies.md)。 對下列各項的呼叫：SQL Database、對外部服務的 HTTP 呼叫、Azure Cosmos DB、資料表、Blob 儲存體及佇列。 
 * [例外狀況](app-insights-asp-net-exceptions.md)和堆疊追蹤。
 * [效能計數器](app-insights-performance-counters.md) - 如果您使用[狀態監視器](app-insights-monitor-performance-live-website-now.md)、Azure 監視(app-insights-azure-web-apps.md) 或 [Application Insights collectd 寫入器](app-insights-java-collectd.md)。
 * 您以程式碼撰寫的[自訂事件和計量](app-insights-api-custom-events-metrics.md)。

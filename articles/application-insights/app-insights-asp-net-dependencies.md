@@ -11,12 +11,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 03/14/2017
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: 35817adde713995ec82eead033f058ee109bf900
-ms.lasthandoff: 03/16/2017
+ms.date: 05/04/2017
+ms.author: cfreeman
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: c31abf49a05f7911d4ec82db59efa2724ab7b49b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -31,7 +32,7 @@ ms.lasthandoff: 03/16/2017
   * SQL DATABASE
   * 使用 HTTP 式繫結的 ASP.NET Web 和 WCF 服務
   * 本機或遠端 HTTP 呼叫
-  * Azure DocumentDb、資料表、Blob 儲存體和佇列
+  * Azure Cosmos DB、資料表、Blob 儲存體和佇列
 * 網頁
   * AJAX 呼叫
 
@@ -119,9 +120,9 @@ ms.lasthandoff: 03/16/2017
 
 在第一次相依性呼叫之後似乎有一個很大的間隔，因此我們應該查看程式碼來找出原因。
 
-### <a name="profiling-your-live-site"></a>分析您的即時站台
+### <a name="profile-your-live-site"></a>剖析您的即時網站
 
-不清楚時間花在哪裡嗎？ Application Insights 分析工具會追蹤對您即時站台發出的 HTTP 呼叫，並顯示您程式碼中哪些函式花費的時間最長。 此分析工具目前是受限的預覽版 - 您可以[註冊來試用它](https://aka.ms/AIProfilerPreview)。
+不清楚時間花在哪裡嗎？ [Application Insights 分析工具](app-insights-profiler.md)會追蹤對您即時站台發出的 HTTP 呼叫，並顯示您程式碼中哪些函式花費的時間最長。
 
 ## <a name="failed-requests"></a>失敗的要求
 失敗的要求可能也會與失敗的相依性呼叫關聯。 同樣地，我們可以逐一點選來追蹤問題。

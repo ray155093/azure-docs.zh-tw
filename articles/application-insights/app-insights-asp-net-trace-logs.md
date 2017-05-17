@@ -4,19 +4,20 @@ description: "搜尋使用 Trace、NLog 或 Log4Net 產生的記錄檔。"
 services: application-insights
 documentationcenter: .net
 author: alancameronwills
-manager: douge
+manager: carmonm
 ms.assetid: 0c2a084f-6e71-467b-a6aa-4ab222f17153
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 07/21/2016
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: f803b44172b068b7ba65047c769421e39445ce10
-ms.lasthandoff: 03/15/2017
+ms.date: 05/3/2017
+ms.author: cfreeman
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 1b0c902adff1d60a04fb3cddef5862256d54f813
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -48,7 +49,6 @@ ms.lasthandoff: 03/15/2017
      </system.diagnostics>
    </configuration>
 ```
-
 ## <a name="configure-application-insights-to-collect-logs"></a>設定 Application Insights 收集記錄
 如果您尚未這麼做，請**[將 Application Insights 新增至您的專案](app-insights-asp-net.md)**。 您將會看見包含記錄收集器的選項。
 
@@ -62,11 +62,11 @@ ms.lasthandoff: 03/15/2017
 1. 如果您打算使用 log4Net 或 NLog，請將它安裝在您的專案。
 2. 在 [方案總管] 中，以滑鼠右鍵按一下您的專案並選擇 [ **管理 NuGet 封裝**]。
 3. 搜尋「Application Insights」
-
-    ![Get the prerelease version of the appropriate adapter](./media/app-insights-asp-net-trace-logs/appinsights-36nuget.png)
 4. 選取適當的套件 - 下列其中一個：
 
    * Microsoft.ApplicationInsights.TraceListener (擷取 System.Diagnostics.Trace 呼叫)
+   * Microsoft.ApplicationInsights.EventSourceListener (若為擷取 EventSource 事件)
+   * Microsoft.ApplicationInsights.EtwListener (若為擷取 ETW 事件)
    * Microsoft.ApplicationInsights.NLogTarget
    * Microsoft.ApplicationInsights.Log4NetAppender
 
@@ -81,6 +81,41 @@ NuGet 封裝會安裝必要的組件，並修改 web.config 或 app.config。
 
     logger.Warn("Slow response - database01");
 
+## <a name="using-eventsource-events"></a>使用 EventSource 事件
+您可以將 [System.Diagnostics.Tracing.EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) 設定為要傳送至 Application Insights 作為追蹤的事件。 首先，安裝 `Microsoft.ApplicationInsights.EventSourceListener` NuGet 套件。 然後編輯 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 檔案的 `TelemetryModules` 區段。
+
+```xml
+    <Add Type="Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule, Microsoft.ApplicationInsights.EventSourceListener">
+      <Sources>
+        <Add Name="MyCompany" Level="Verbose" />
+      </Sources>
+    </Add>
+```
+
+針對每個來源，您可以設定下列參數︰
+ * `Name` 會指定要收集之 EventSource 的名稱。
+ * `Level` 會指定要收集的記錄等級。 可以是 `Critical`、`Error`、`Informational`、`LogAlways`、`Verbose`、`Warning` 其中一個。
+ * `Keywords` (選擇性) 會指定要使用的關鍵字組合之整數值。
+
+## <a name="using-etw-events"></a>使用 ETW 事件
+您可以設定要傳送至 Application Insights 作為追蹤的 ETW 事件。 首先，安裝 `Microsoft.ApplicationInsights.EtwCollector` NuGet 套件。 然後編輯 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 檔案的 `TelemetryModules` 區段。
+
+> [!NOTE] 
+> 僅在裝載 SDK 的處理序是以「效能記錄使用者」或系統管理員成員的身分識別執行時，才可收集 ETW 事件。
+
+```xml
+    <Add Type="Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule, Microsoft.ApplicationInsights.EtwCollector">
+      <Sources>
+        <Add ProviderName="MyCompanyEventSourceName" Level="Verbose" />
+      </Sources>
+    </Add>
+```
+
+針對每個來源，您可以設定下列參數︰
+ * `ProviderName` 是要收集之 ETW 提供者的名稱。
+ * `ProviderGuid` 會指定要收集的 ETW 提供者 GUID，並可取代 `ProviderName` 使用之。
+ * `Level` 會設定要收集的記錄等級。 可以是 `Critical`、`Error`、`Informational`、`LogAlways`、`Verbose`、`Warning` 其中一個。
+ * `Keywords` (選擇性) 會設定要使用的關鍵字組合之整數值。
 
 ## <a name="using-the-trace-api-directly"></a>直接使用追蹤 API
 您可以直接呼叫 Application Insights 追蹤 API。 記錄配接器會使用此 API。

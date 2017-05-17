@@ -12,12 +12,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 05/16/2017
 ms.author: femila
 ROBOTS: NOINDEX, NOFOLLOW
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0af5a4e2139a202c7f62f48c7a7e8552457ae76d
 ms.openlocfilehash: 5dd6701f25c69f5e870d3add79c312f9aeec6bf4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 12/29/2016
 
 
 ---
@@ -118,10 +120,5 @@ IT 系統管理員可能曾建議您使用 Microsoft Azure Authenticator 進行�
 
 ## <a name="troubleshooting"></a>疑難排解
 如果您看到 [金鑰存放區錯誤]，這可能是因為您未使用 PIN 設定鎖定畫面。 若要解決這個問題，請將 Azure Authenticator 應用程式解除安裝、設定鎖定螢幕的 PIN，以及重新安裝應用程式。
-
-
-
-
-<!--HONumber=Dec16_HO5-->
 
 
