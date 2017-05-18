@@ -15,9 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: byvinyal
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
 ms.openlocfilehash: f15b3565d13436a54124e47be9d22bfe0789a922
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/18/2017
 
 
@@ -80,8 +81,8 @@ App Service 方案可定義：
 
 您可以從 App Service 方案瀏覽體驗或在應用程式建立期間，建立空白的 App Service 方案。
 
-在 [Azure 入口網站](https://portal.azure.com)中，按一下 [新增]**** > 
-[Web + 行動]****，然後選取 [Web 應用程式]**** 或其他 App Service 應用程式種類。
+在 [Azure 入口網站](https://portal.azure.com)中，按一下 **[新增]** > 
+**[Web + 行動]**，然後選取 **[Web 應用程式]** 或其他 App Service 應用程式種類。
 ![在 Azure 入口網站中建立應用程式。][createWebApp]
 
 接著，您可以選取或建立新應用程式的應用程式服務方案。
