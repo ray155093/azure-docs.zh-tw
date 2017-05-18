@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/14/2017
+ms.date: 05/17/2017
 ms.author: sethm
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 09577d3160137b7879a5c128552d8dcbef89bb0d
 ms.openlocfilehash: c025629c7700c0ee7b6495a922b9bf6823769cfa
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/16/2017
 
 
 ---
@@ -368,8 +370,3 @@ AMQP 訊息包含眾多屬性，以及比簡單訊息更多的資訊。 SAS 權�
 * [如何使用服務匯流排主題和訂用帳戶](service-bus-dotnet-how-to-use-topics-subscriptions.md)
 
 [Azure portal]: https://portal.azure.com
-
-
-<!--HONumber=Feb17_HO3-->
-
-
