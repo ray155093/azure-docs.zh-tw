@@ -25,7 +25,7 @@
      * [自助式密碼重設](../articles/active-directory/active-directory-playbook-implementation.md#self-service-password-reset)
      * [自助式存取應用程式](../articles/active-directory/active-directory-playbook-implementation.md#self-service-access-to-applications)
 4. [建置區塊](../articles/active-directory/active-directory-playbook-building-blocks.md)
-   * [動作項目的目錄](../articles/active-directory/active-directory-playbook-building-blocks.md#catalog-of-actors)
+   * [動作項目的目錄](../articles/active-directory/active-directory-playbook-building-blocks.md)
    * [所有建置區塊的一般必要條件](../articles/active-directory/active-directory-playbook-building-blocks.md#common-prerequisites-for-all-building-blocks)
    * [目錄同步作業 - 密碼雜湊同步處理 (PHS) - 全新安裝](../articles/active-directory/active-directory-playbook-building-blocks.md#directory-synchronization---password-hash-sync-phs---new-installation)
    * [商標](../articles/active-directory/active-directory-playbook-building-blocks.md#branding)

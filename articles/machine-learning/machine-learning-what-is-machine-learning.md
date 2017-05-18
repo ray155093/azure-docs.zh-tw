@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/13/2017
 ms.author: cgronlun;tedway;olgali
-translationtype: Human Translation
-ms.sourcegitcommit: 25e1def880dbb8431e1a0cae9d8b84c6f5906315
-ms.openlocfilehash: 50963d47d030d43d1c98dfb9a5878af7b9e99d47
-ms.lasthandoff: 02/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 247c26b3988664bcf93fb5face6514a3dc74cebc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -51,7 +52,7 @@ Azure Machine Learning 具備在雲端上建立完整預測性分析解決方案
 * 在 [Cortana 智慧資源庫](machine-learning-gallery-how-to-use-contribute-publish.md)中，您可以嘗試其他人所撰寫的分析解決方案，或提供您自己的方案。 在社群張貼關於實驗的問題或意見，或透過 LinkedIn 和 Twitter 等社交網路分享實驗的連結。
 
   ![在 Azure Cortana Intelligence Gallery 資源庫中試做預測實驗或提供您自己的實驗](./media/machine-learning-what-is-machine-learning/machine-learning-cortana-intelligence-gallery.png)
-* 使用 Machine Learning Studio 中之 [機器學習服務演算法和模組](https://msdn.microsoft.com/library/azure/f5c746fd-dcea-4929-ba50-2a79c4c067d7) 的大型程式庫，開始建立您的預測模型。 從範例實驗、R 和 Python 套件，以及 Xbox 和 Bing 等 Microsoft 公司的一流演算法中選擇。 使用您自訂的 [R](machine-learning-r-quickstart.md) 和 [Python](machine-learning-execute-python-scripts.md) 指令碼來擴充 Studio 模組。
+* 使用 Machine Learning Studio 中之 [機器學習服務演算法和模組](https://msdn.microsoft.com/library/azure/f5c746fd-dcea-4929-ba50-2a79c4c067d7) 的大型程式庫，開始建立您的預測模型。 從範例實驗、R 和 Python 套件，以及 Xbox 和 Bing 等 Microsoft 公司的一流演算法中選擇。 使用您自訂的 [R](machine-learning-extend-your-experiment-with-r.md) 和 [Python](machine-learning-execute-python-scripts.md) 指令碼來擴充 Studio 模組。
 
   ![什麼是預測性分析：Azure Machine Learning Studio 中的預測性分析實驗範例](./media/machine-learning-what-is-machine-learning/azure-machine-learning-studio-predictive-score-experiment.png)
 

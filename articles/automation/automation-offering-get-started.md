@@ -1,4 +1,4 @@
---- 
+---
 title: "開始使用 Azure 自動化 | Microsoft Docs"
 description: "本文藉由回顧準備從 Auzre Marketplace 將供應項目上架的核心概念和實作詳細資料，提供 Azure 自動化服務的概觀。"
 services: automation
@@ -15,16 +15,16 @@ ms.topic: get-started-article
 ms.date: 05/02/2017
 ms.author: magoedte
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 8a04fda8eaf6e14a278941e7bb55b23012f67850
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 9b4982ffece9283304ad3ab3c82a471ac1dbd463
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/11/2017
 
 ---
 
 ## <a name="getting-started-with-azure-automation"></a>開始使用 Azure 自動化
 
-本入門指南會介紹 Azure 自動化的部署相關核心概念。 如果您不熟悉 Azure 中的自動化，或具備使用自動化工作流程軟體 (例如 System Center Orchestrator) 的經驗，本指南可協助您初步了解相關概念和部署細節。 
+本入門指南會介紹 Azure 自動化的部署相關核心概念。 如果您不熟悉 Azure 中的自動化，或具備使用自動化工作流程軟體 (例如 System Center Orchestrator) 的經驗，本指南可協助您初步了解相關概念和部署細節。
 
 ## <a name="key-concepts"></a>重要概念
 
@@ -83,14 +83,14 @@ Azure 自動化 DSC 可以用來管理各種機器：
 ## <a name="security"></a>安全性
 Azure 自動化可讓您針對 Azure、內部部署以及其他雲端提供者的資源自動執行工作。  為了讓 Runbook 執行其必要動作，其必須有權能以訂用帳戶內的最少必要權限，安全地存取資源。  
 
-### <a name="automation-account"></a>自動化帳戶 
+### <a name="automation-account"></a>自動化帳戶
 在 Azure 自動化中使用 Azure Cmdlet 針對資源執行的所有自動化工作，均使用 Azure Active Directory 組織身分識別的認證型驗證向 Azure 進行驗證。  自動化帳戶與您用來登入入口網站以設定和使用 Azure 資源的帳戶不同。  
 
 每個自動化帳戶的自動化資源都會與單一 Azure 區域相關聯，但自動化帳戶可管理訂用帳戶中的所有資源。 如果您擁有需要將資料和資源區隔到特定區域的原則，請在不同的區域中建立自動化帳戶。
 
 > [!NOTE]
 > 使用 Azure 入口網站所建立的自動化帳戶以及其所包含的資源，無法在 Azure 傳統入口網站中存取。 如果您想使用 Windows PowerShell 來管理這些帳戶或它們的資源，您必須使用 「Azure 資源管理員」模組。
-> 
+>
 
 當您在 Azure 入口網站中建立自動化帳戶時，您會自動建立兩個驗證實體：
 
@@ -102,17 +102,17 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 #### <a name="authentication-methods"></a>驗證方法
 下表摘要說明 Azure 自動化支援的每個環境所適用的不同驗證方法。
 
-| 方法 | 環境 
-| --- | --- | 
+| 方法 | 環境
+| --- | --- |
 | Azure 執行身分和傳統執行身分帳戶 |Azure Resource Manager 和 Azure 傳統部署 |  
 | Azure AD 使用者帳戶 |Azure Resource Manager 和 Azure 傳統部署 |  
 | Windows 驗證 |使用混合式 Runbook 背景工作的本機資料中心或其他雲端提供者 |  
 | AWS 認證 |Amazon Web Services |  
 
 [如何\驗證和安全性] 區段之下有一些支援文章，提供如何針對這些環境設定驗證的概觀和實作步驟 (使用您專用於該環境的現有或新的帳戶)。  對於 Azure 執行身分和傳統執行身分帳戶，[使用 PowerShell 更新自動化執行身分帳戶](automation-update-account-powershell.md)主題會說明如何使用 PowerShell 以執行身分帳戶更新現有的自動化帳戶 (如果原先並未以執行身分或傳統執行身分帳戶設定現有的自動化帳戶)。   
- 
+
 ## <a name="network"></a>網路
-若要讓混合式 Runbook 背景工作連線至 Microsoft Operations Management Suite (OMS) 並向其註冊，它必須能夠存取下述連接埠號碼和 URL。  此外，這是 [Microsoft Monitoring Agent 連線至 OMS 所需的連接埠和 URL](../log-analytics/log-analytics-proxy-firewall.md#configure-settings-with-the-microsoft-monitoring-agent)。 如果您使用 Proxy 伺服器在代理程式和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取。
+若要讓混合式 Runbook 背景工作連線至 Microsoft Operations Management Suite (OMS) 並向其註冊，它必須能夠存取下述連接埠號碼和 URL。  此外，這是 [Microsoft Monitoring Agent 連線至 OMS 所需的連接埠和 URL](../log-analytics/log-analytics-windows-agents.md)。 如果您使用 Proxy 伺服器在代理程式和 OMS 服務之間進行通訊，您必須確保可以存取適當的資源。 如果您使用防火牆來限制網際網路存取，您需要設定防火牆以允許存取。
 
 以下資訊列出要讓 Hybrid Runbook Worker 與自動化進行通訊所需的連接埠和 URL。
 
@@ -136,11 +136,11 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 | 英國南部 | uks-jobruntimedata-prod-su1.azure-automation.net |
 | 美國政府維吉尼亞州 | usge-jobruntimedata-prod-su1.azure-automation.us |
 
-如需 IP 位址 (而非名稱) 的清單，請從 Microsoft 下載中心下載並檢閱 [Azure 資料中心 IP 位址](https://www.microsoft.com/download/details.aspx?id=41653) xml 檔案。 
+如需 IP 位址 (而非名稱) 的清單，請從「Microsoft 下載中心」下載並檢閱 [Azure 資料中心 IP 位址](https://www.microsoft.com/download/details.aspx?id=41653) xml 檔案。
 
 > [!NOTE]
-> 這個檔案包含 Microsoft Azure 資料中心使用的 IP 位址範圍 (包括計算、SQL 和儲存體範圍)。 每週會公佈已更新的檔案，以反映目前部署的範圍和 IP 範圍的任何後續變更。 資料中心至少有一週不會使用檔案中顯示的新範圍。 請每週下載新的 xml 檔案，並且您的網站上執行所需的變更，以正確識別在 Azure 中執行的服務。 Express Route 使用者可能注意到，此檔案在每個月的第一週用來更新 Azure 空間的 BGP 公告。 
-> 
+> 這個檔案包含 Microsoft Azure 資料中心使用的 IP 位址範圍 (包括計算、SQL 和儲存體範圍)。 每週會公佈已更新的檔案，以反映目前已部署的範圍及任何即將進行的 IP 範圍變更。 出現在檔案中的新範圍將至少有一週的時間不會在資料中心中使用。 請每週下載新的 xml 檔案，並在您的站台上執行必要的變更，以正確識別在 Azure 中執行的服務。 Express Route 使用者可能注意到，此檔案在每個月的第一週用來更新 Azure 空間的 BGP 公告。
+>
 
 
 ## <a name="implementation"></a>實作
@@ -175,16 +175,16 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 
 4. 在閱讀供應項目的描述之後，請按一下 [建立] 。  
 
-5. 在 [自動化與控制] 設定刀鋒視窗上，選取 [OMS 工作區]。  在 [OMS 工作區] 刀鋒視窗上，選取連結到與自動化帳戶所在相同 Azure 訂用帳戶的 OMS 工作區，或建立新的 OMS 工作區。  如果您沒有 OMS 工作區，請選取 [建立新工作區]，然後在 [OMS 工作區] 刀鋒視窗上執行下列動作︰ 
+5. 在 [自動化與控制] 設定刀鋒視窗上，選取 [OMS 工作區]。  在 [OMS 工作區] 刀鋒視窗上，選取連結到與自動化帳戶所在相同 Azure 訂用帳戶的 OMS 工作區，或建立新的 OMS 工作區。  如果您沒有 OMS 工作區，請選取 [建立新工作區]，然後在 [OMS 工作區] 刀鋒視窗上執行下列動作︰
    - 指定新 [OMS 工作區] 的名稱。
    - 如果選取的預設值不合適，請從下拉式清單中選取要連結的 [訂用帳戶]。
    - 對於 [資源群組]，您可以建立資源群組，或選取現有的資源群組。  
    - 選取 [位置] 。  目前可用的位置只有 [澳大利亞東南部]、[美國東部]、[東南亞]、[美國中西部] 和 [西歐]。
    - 選取 **定價層**。  此解決方案以兩種定價層提供︰免費和每個節點 (OMS) 層。  免費層會限制每日可收集的資料量、保留期和 Runbook 作業執行階段分鐘數。  每個節點 (OMS) 層不會限制每日可收集的資料量。  
-   - 選取 [自動化帳戶]。  如果您要建立新的 OMS 工作區，您也必須建立會與先前指定的新 OMS 工作區產生關聯的自動化帳戶，包括您的 Azure 訂用帳戶、資源群組和區域。  您可以選取 [建立自動化帳戶]，然後在 [自動化帳戶] 刀鋒視窗上提供下列資訊︰ 
+   - 選取 [自動化帳戶]。  如果您要建立新的 OMS 工作區，您也必須建立會與先前指定的新 OMS 工作區產生關聯的自動化帳戶，包括您的 Azure 訂用帳戶、資源群組和區域。  您可以選取 [建立自動化帳戶]，然後在 [自動化帳戶] 刀鋒視窗上提供下列資訊︰
   - 在 [名稱] 欄位中輸入自動化帳戶的名稱。
 
-    系統會根據所選的 OMS 工作區自動填入所有其他選項，您無法修改這些選項。  Azure 執行身分帳戶是供應項目的預設驗證方法。  一旦您按一下 [確定]，就會驗證組態選項並建立自動化帳戶。  您可以在功能表的 [通知] 底下追蹤其進度。 
+    系統會根據所選的 OMS 工作區自動填入所有其他選項，您無法修改這些選項。  Azure 執行身分帳戶是供應項目的預設驗證方法。  一旦您按一下 [確定]，就會驗證組態選項並建立自動化帳戶。  您可以在功能表的 [通知] 底下追蹤其進度。
 
     不然，選取現有的自動化執行身分帳戶。  您選取的帳戶不能已經連結到另一個 OMS 工作區，否則刀鋒視窗中會顯示一則通知訊息。  如果帳戶已經連結，您必須選取不同的自動化執行身分帳戶或建立一個帳戶。
 
@@ -194,7 +194,7 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 
 7. 在 [自動化與控制] 設定刀鋒視窗上，確認您要安裝建議的預先選取解決方案。 如果您取消選取任何項目，可以稍後再個別安裝。  
 
-8. 按一下 [建立] 繼續將自動化和 OMS 工作區上架。 系統會驗證所有的設定，然後嘗試在您的訂用帳戶中部署此供應項目。  此程序需要幾秒鐘才能完成，您可以在功能表的 [通知] 底下追蹤其進度。 
+8. 按一下 [建立] 繼續將自動化和 OMS 工作區上架。 系統會驗證所有的設定，然後嘗試在您的訂用帳戶中部署此供應項目。  此程序需要幾秒鐘才能完成，您可以在功能表的 [通知] 底下追蹤其進度。
 
 在供應項目上架後，您可以開始建立 Runbook、使用您啟用的管理解決方案，或開始使用 [Log Analytics](https://docs.microsoft.com/azure/log-analytics)，以收集您的雲端或內部部署環境中的資源所產生的資料。   
 
@@ -202,5 +202,4 @@ Azure Resource Manager 提供了角色型存取控制來對 Azure AD 使用者�
 * 您可藉由檢閱[測試 Azure 自動化執行身分帳戶驗證](automation-verify-runas-authentication.md)，確認新的自動化帳戶可以驗證 Azure 資源。
 * 若要開始使用 PowerShell Runbook，請參閱[我的第一個 PowerShell Runbook](automation-first-runbook-textual-powershell.md)。
 * 若要深入了解圖形化編寫，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)。
-
 
