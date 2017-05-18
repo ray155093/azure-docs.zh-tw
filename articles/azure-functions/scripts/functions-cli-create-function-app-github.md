@@ -6,13 +6,13 @@ keywords:
 author: syntaxc4
 ms.author: cfowler
 ms.date: 04/27/2017
-ms.topic: article
+ms.topic: sample
 ms.service: functions
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: cd3b9a6db119ffc9aca29b85005c4ce295fdf67e
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: f87cf7d300b4c2b89ad692aadcda958e9747c7f9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/15/2017
 
 ---
 # <a name="create-a-function-app-and-deploy-function-code-from-github"></a>建立函式應用程式和從 GitHub 部署函式程式碼
@@ -25,7 +25,7 @@ ms.lasthandoff: 05/10/2017
 
 此指令碼範例會建立 Azure 函式應用程式，並從 GitHub 部署函式程式碼。
 
-[!code-azurecli[主要](../../../cli_scripts/azure-functions/deploy-function-app-with-function-github/deploy-function-app-with-function-github.sh?highlight=3 "建立可從 GitHub 部署的函式應用程式")]
+[!code-azurecli-interactive[主要](../../../cli_scripts/azure-functions/deploy-function-app-with-function-github/deploy-function-app-with-function-github.sh?highlight=3 "建立可從 GitHub 部署的函式應用程式")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
@@ -45,3 +45,4 @@ ms.lasthandoff: 05/10/2017
 如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
 您可以在 [Azure Functions 文件](../functions-cli-samples.md)中找到其他 Azure Functions CLI 指令碼範例。
+

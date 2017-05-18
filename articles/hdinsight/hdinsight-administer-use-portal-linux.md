@@ -17,10 +17,10 @@ ms.topic: article
 ms.date: 04/27/2017
 ms.author: jgao
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 3c1021ec8c8dc4488f86ba89f6ae31d6ed75e9f5
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 939571e7c4ce2c26249b5fb21a09a93e4a51a680
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -322,7 +322,9 @@ HDInsight 叢集刀鋒視窗的 [使用量] 區段會顯示以下資訊：訂用
 >
 
 ## <a name="connect-to-a-cluster"></a>連接到叢集
-請參閱 [利用 SSH 搭配使用 Hive 與 HDInsight 中的 Hadoop](hdinsight-hadoop-use-hive-beeline.md#a-idsshaconnect-with-ssh)。
+
+* [〈搭配 HDInsight 使用 Hivet〉](hdinsight-hadoop-use-hive-ambari-view.md)
+* [搭配使用 SSH 與 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
 
 ## <a name="next-steps"></a>後續步驟
 在本文中，您已了解如何使用入口網站建立 HDInsight 叢集，以及如何開啟 Hadoop 命令列工具。 若要深入了解，請參閱下列文章：

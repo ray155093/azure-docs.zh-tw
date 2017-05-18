@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/14/2017
+ms.date: 05/17/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: c27e6c19f44d9f0fa60ae31d0cda756dcd032f02
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 3bf5ff732b03a1ecffb4e149d7805a6216ab0019
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -105,7 +106,6 @@ HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接
 | 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | --- | --- | --- | --- | --- |
 | HiveServer2 |前端節點 |10001 |Thrift |可以程式設計方式連接到 Hive 的服務 (Thrift/JDBC) |
-| HiveServer |前端節點 |10000 |Thrift |可以程式設計方式連接到 Hive 的服務 (Thrift/JDBC) |
 | Hive 中繼存放區 |前端節點 |9083 |Thrift |可以程式設計方式連接到 Hive 中繼資料的服務 (Thrift/JDBC) |
 
 ### <a name="webhcat-ports"></a>WebHCat 連接埠

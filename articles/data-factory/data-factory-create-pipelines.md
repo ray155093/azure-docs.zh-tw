@@ -16,10 +16,10 @@ ms.topic: article
 ms.date: 04/12/2017
 ms.author: shlo
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 6926b0a594b29cb3b3fff7a76a258d11bd82ded8
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: b11a729d935936c3abf34649c34a27b2ce7a7c45
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -281,7 +281,7 @@ Data Factory 中的複製活動會將資料從來源資料存放區複製到接�
 
 在此範例中，Pipeline1 只有一個活動，此活動是以 Dataset1 作為輸入，並產生 Dataset2 作為輸出。 Pipeline2 同樣只有一個活動，此活動是以 Dataset2 作為輸入，並產生 Dataset3 作為輸出。 
 
-如需詳細資訊，請參閱 [排程和執行](#chaining-activities)。 
+如需詳細資訊，請參閱 [排程和執行](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。 
 
 ## <a name="create-and-monitor-pipelines"></a>建立和監視管線
 您可以使用下列其中一項工具或 SDK 來建立管線。 

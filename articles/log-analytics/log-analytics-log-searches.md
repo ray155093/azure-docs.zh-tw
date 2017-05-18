@@ -12,13 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
+ms.date: 05/16/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
-ms.openlocfilehash: d4935af0647f0629cca327a7e87c29f1252af382
-ms.lasthandoff: 02/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: b005d0fb25483f3dce14133038d7759dff07fc7c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -148,7 +149,7 @@ EventLog=System TimeGenerated>NOW-24HOURS
 
 
 #### <a name="to-search-using-a-boolean-operator"></a>使用布林運算子來搜尋
-* 在搜尋查詢欄位中，輸入 `EventLog=System TimeGenerated>NOW-24HOURS"`  
+* 在搜尋查詢欄位中，輸入 `EventLog=System TimeGenerated>NOW-24HOURS`  
     ![使用布林值來搜尋](./media/log-analytics-log-searches/oms-search-boolean.png)
 
 雖然您可以以圖形方式控制時間間隔，而且大多數時候您可能會想這麼做，但是將時間篩選器直接包含在查詢中還是有其優點。 例如，這非常適合儀表板，無論儀表板頁面上的「全域」  時間選取器為何，您都可以在其中覆寫每個磚的時間。 如需詳細資訊，請參閱 [時間對儀表板很重要](http://cloudadministrator.wordpress.com/2014/10/19/system-center-advisor-restarted-time-matters-in-dashboard-part-6/)。

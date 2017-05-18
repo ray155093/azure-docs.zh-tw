@@ -14,10 +14,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: alkarche
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 08063960d3956ca65dd32d9fe726c366799a2087
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: aac362f5123038cc39e0d2b32c10f7747a702cfe
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -34,10 +35,10 @@ ms.lasthandoff: 04/18/2017
 
 ## <a name="enable"></a>啟用 OpenAPI 定義支援
 * 所有 OpenAPI 設定都能在您函數應用程式設定的 [`API Definition (preview)`] 頁面中設定。
-* 將 `API defintion source` 設定為 [`Function`]，以啟用裝載的 OpenAPI 定義，並立即開始產生定義。
+* 將 `API definition source` 設定為 [`Function`]，以啟用裝載的 OpenAPI 定義，並立即開始產生定義。
   * `External URL` 可讓您的函數使用裝載在其他位置的 OpenAPI 定義。
 
-## <a name="generate-defintion"></a>從您的函數中繼資料產生 Swagger 基本架構
+## <a name="generate-definition"></a>從您的函數中繼資料產生 Swagger 基本架構
 使用範本式開始撰寫您的第一個 OpenAPI 定義是一種絕佳方式。 定義範本功能會針對每個 HTTP 觸發程序函數，使用 function.json 中所有的中繼資料來建立鬆散的 OpenAPI 定義。 **您會需要從 [OpenAPI 規格 (英文)](http://swagger.io/specification/) 填入 API 的更多相關資訊，例如要求和回應範本。**
 
 [查看此入門教學課程以取得逐步指示](./functions-api-definition-getting-started.md)
