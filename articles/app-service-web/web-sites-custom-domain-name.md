@@ -15,9 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/30/2017
 ms.author: cephalin
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 59565c22ecd42985e8a6b81c4983fc2e87637e36
 ms.openlocfilehash: 589701270770494e4ec4d127a252712249da9f3a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/16/2017
 
 
@@ -55,7 +56,7 @@ Azure App Service 可讓您將下列類別的自訂網域對應至您的應用�
 根據您的需求，您可以使用兩種不同的標準 DNS 記錄來對應您的自訂網域︰ 
 
 * [A](https://en.wikipedia.org/wiki/List_of_DNS_record_types#A) - 直接將自訂網域名稱對應至 Azure 應用程式的虛擬 IP 位址。 
-* [CNAME](https://en.wikipedia.org/wiki/CNAME_record) - 將自訂網域名稱對應至您的應用程式的 Azure 網域名稱，**&lt;**appname>.azurewebsites.net**。 
+* [CNAME](https://en.wikipedia.org/wiki/CNAME_record) - 將自訂網域名稱對應至您的應用程式的 Azure 網域名稱， **&lt;*appname*>.azurewebsites.net**。 
 
 CNAME 的優點是它會存留在 IP 位址變更中。 若您刪除後重新建立應用程式，或是從較高定價層變回 **共用** 層，則應用程式的虛擬 IP 位址可能會變更。 透過此種變更，CNAME 記錄仍然有效，但 A 記錄需要更新。 
 
