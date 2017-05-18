@@ -9,7 +9,7 @@
 
 # 開始使用
 ## [將 VMware VM 複寫到 Azure](site-recovery-vmware-to-azure.md)
-## [將實體伺服器複寫到 Azure](site-recovery-physical-servers-to-azure.md) 
+## [將實體伺服器複寫到 Azure](site-recovery-physical-servers-to-azure.md)
 ## [將 Hyper-V VM 複寫至 Azure (使用 VMM)](site-recovery-vmm-to-azure.md)
 ## [將 Hyper-V VM 複寫至 Azure](site-recovery-hyper-v-site-to-azure.md)
 ## [將 Hyper-V VM 複寫至次要站台 (使用 VMM)](site-recovery-vmm-to-vmm.md)
@@ -23,6 +23,7 @@
 ### [規劃容量並調整 Azure 中的 VMware 複寫](site-recovery-plan-capacity-vmware.md)
 ### [將 VMware 複寫至 Azure 的部署規劃工具](site-recovery-deployment-planner.md)
 ### [適用於 Hyper-V 複寫的 Capacity Planner](site-recovery-capacity-planner.md)
+### [角色型存取控制](site-recovery-role-based-linked-access-control.md)
 
 ## 設定
 ### [設定來源環境](site-recovery-set-up-vmware-to-azure.md)
