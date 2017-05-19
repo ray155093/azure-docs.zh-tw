@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/24/2017
 ms.author: kgremban
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2f03ba60d81e97c7da9a9fe61ecd419096248763
 ms.openlocfilehash: b0c3c5dfd695b28b75bf44c9f835b34966413a9a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/18/2017
 
 
@@ -41,7 +42,7 @@ ms.lasthandoff: 04/18/2017
    ![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider1.png)
 4. 在底部按一下 [新增] 。
    ![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider2.png)
-5. 在 [應用程式服務] 之下選取 [Multi-Factor Auth Provider]****
+5. 在 [應用程式服務] 之下選取 **[Multi-Factor Auth Provider]**
    ![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider3.png)
 6. 選取 [快速建立] 。
    ![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider4.png)
