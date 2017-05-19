@@ -3,7 +3,7 @@ title: "Application Insights 中的效能計數器 | Microsoft Docs"
 description: "監視 Application Insights 中的系統和自訂 .NET 效能計數器。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 5b816f4c-a77a-4674-ae36-802ee3a2f56d
 ms.service: application-insights

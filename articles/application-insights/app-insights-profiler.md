@@ -3,7 +3,7 @@ title: "使用 Application Insights 來分析 Azure 上的即時 Web 應用程�
 description: "使用低資源使用量的分析工具來找出 Web 伺服器程式碼中的最忙碌路徑。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd

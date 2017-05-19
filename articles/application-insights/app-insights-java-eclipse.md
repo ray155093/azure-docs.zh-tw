@@ -3,7 +3,7 @@ title: "在 Eclipse 中利用 Java 開始使用 Application Insights | Microsoft
 description: "使用 Eclipse 外掛程式來加入效能和使用量計數器監視到您使用 Application Insights 的 Java 網站"
 services: application-insights
 documentationcenter: java
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: e88c9f53-cd90-4abc-b097-1f170937908e
 ms.service: application-insights

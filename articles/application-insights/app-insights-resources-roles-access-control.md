@@ -3,7 +3,7 @@ title: "Azure Application Insights 中的資源、角色及存取控制 | Micros
 description: "您的組織詳細資料的擁有者、參與者及讀者。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 49f736a5-67fe-4cc6-b1ef-51b993fb39bd
 ms.service: application-insights

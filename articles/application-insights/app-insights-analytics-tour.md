@@ -3,7 +3,7 @@ title: "Azure Application Insights 中分析的完整教學課程 | Microsoft Do
 description: "分析 (Application Insights 的強大搜尋工具) 中所有主要查詢的簡短範例。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: bddf4a6d-ea8d-4607-8531-1fe197cc57ad
 ms.service: application-insights

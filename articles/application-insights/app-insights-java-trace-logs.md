@@ -3,7 +3,7 @@ title: "在 Azure Application Insights 中探索 Java 追蹤記錄 | Microsoft D
 description: "在 Application Insights 中搜尋 Log4J 或 Logback 追蹤"
 services: application-insights
 documentationcenter: java
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: fc0a9e2f-3beb-4f47-a9fe-3f86cd29d97a
 ms.service: application-insights

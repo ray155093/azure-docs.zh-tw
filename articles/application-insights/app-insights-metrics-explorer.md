@@ -3,7 +3,7 @@ title: "在 Azure Application Insights 中探索計量 | Microsoft Docs"
 description: "如何解譯計量瀏覽器上的圖表，以及如何自訂計量瀏覽器刀鋒視窗。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 1f471176-38f3-40b3-bc6d-3f47d0cbaaa2
 ms.service: application-insights

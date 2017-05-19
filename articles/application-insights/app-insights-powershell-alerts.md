@@ -3,7 +3,7 @@ title: "在 Application Insights 中使用 PowerShell 設定警示 | Microsoft D
 description: "自動化 Application Insights 的組態以取得有關度量變更的電子郵件。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 05d6a9e0-77a2-4a35-9052-a7768d23a196
 ms.service: application-insights

@@ -3,7 +3,7 @@ title: "Azure Application Insights 中的相依性追蹤 | Microsoft Docs"
 description: "使用 Application Insights 分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: d15c4ca8-4c1a-47ab-a03d-c322b4bb2a9e
 ms.service: application-insights

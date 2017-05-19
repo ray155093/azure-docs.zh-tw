@@ -3,7 +3,7 @@ title: "從 Application Insights 連續匯出遙測 | Microsoft Docs"
 description: "匯出診斷和使用量資料至 Microsoft Azure 中的儲存體，並從那裡下載。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 5b859200-b484-4c98-9d9f-929713f1030c
 ms.service: application-insights

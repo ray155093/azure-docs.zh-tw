@@ -3,7 +3,7 @@ title: "Azure Application Insights 資料模型 | Microsoft Docs"
 description: "描述從 JSON 中的連續匯出匯出的屬性，並做為篩選器。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: cabad41c-0518-4669-887f-3087aef865ea
 ms.service: application-insights

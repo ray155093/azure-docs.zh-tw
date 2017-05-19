@@ -3,7 +3,7 @@ title: "使用 Application Insights 來監視應用程式的健康情況和流�
 description: "開始使用 Application Insights。 分析內部部署或 Microsoft Azure 應用程式的使用情況、可用性和效能。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 40650472-e860-4c1b-a589-9956245df307
 ms.service: application-insights

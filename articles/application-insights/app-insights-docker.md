@@ -3,7 +3,7 @@ title: "在 Azure Application Insights 中監視 Docker 應用程式 | Microsoft
 description: "Docker 效能計數器、事件和例外狀況可以與來自容器化應用程式的遙測一起顯示在 Application Insights 上。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 27a3083d-d67f-4a07-8f3c-4edb65a0a685
 ms.service: application-insights

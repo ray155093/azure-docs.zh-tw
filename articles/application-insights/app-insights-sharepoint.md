@@ -3,7 +3,7 @@ title: "使用 Application Insights 監視 SharePoint 網站"
 description: "開始使用新的檢測金鑰監視新的應用程式"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 2bfe5910-d673-4cf6-a5c1-4c115eae1be0
 ms.service: application-insights

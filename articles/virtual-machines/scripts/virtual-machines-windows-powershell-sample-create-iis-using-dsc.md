@@ -27,7 +27,7 @@ ms.lasthandoff: 04/27/2017
 
 此指令碼會建立執行 Windows Server 2016 的 Azure 虛擬機器，然後使用 Azure 虛擬機器 DSC 擴充功能來安裝 IIS。 執行指令碼之後，您可以在虛擬機器的公用 IP 位址上存取預設的 IIS 網站。
 
-[!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install.md)]
+[!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 

@@ -3,7 +3,7 @@ title: "疑難排解 Java Web 專案中的 Application Insights"
 description: "疑難排解指南 - 使用 Application Insights 監視即時的 Java 應用程式。"
 services: application-insights
 documentationcenter: java
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: ef602767-18f2-44d2-b7ef-42b404edd0e9
 ms.service: application-insights

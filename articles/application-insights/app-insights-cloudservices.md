@@ -3,7 +3,7 @@ title: "Azure 雲端服務的 Application Insights | Microsoft Docs"
 description: "使用 Application Insights 有效地監視您的 Web 和背景工作角色"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 editor: alancameronwills
 ms.assetid: 5c7a5b34-329e-42b7-9330-9dcbb9ff1f88

@@ -14,9 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: dastrock
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 43b77cabdb2d8832bda8fd0b726ba27edb0a0602
 ms.openlocfilehash: 2992b074986a7b7f3244ce996f2b41269bff8bbd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/03/2017
 
 
 ---
@@ -95,7 +97,7 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
                                              // In a real application you could use issuer validation for additional checks, like making sure the user's organization has signed up for your app, for instance.
         
                                              ClientId = clientId,
-                                             Authority = String.Format(CultureInfo.InvariantCulture, aadInstance, "common", "/v2.0 "),
+                                             Authority = String.Format(CultureInfo.InvariantCulture, aadInstance, "common", "/v2.0"),
                                              RedirectUri = redirectUri,
                                              Scope = "openid email profile",
                                              ResponseType = "id_token",
@@ -216,9 +218,4 @@ v2.0 端點可讓您快速地將驗證新增至您的 Web 應用程式，同時�
 
 ## <a name="get-security-updates-for-our-products"></a>取得產品的安全性更新
 我們鼓勵您造訪 [此頁面](https://technet.microsoft.com/security/dd252948) 並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
-
-
-
-<!--HONumber=Feb17_HO1-->
-
 

@@ -3,7 +3,7 @@ title: "Application Insights 的發行註解 | Microsoft Docs"
 description: "在 Application Insights 中對計量瀏覽器新增部署或建置標記。"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 23173e33-d4f2-4528-a730-913a8fd5f02e
 ms.service: application-insights

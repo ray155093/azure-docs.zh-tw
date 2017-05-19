@@ -3,7 +3,7 @@ title: "在 Azure Application Insights 中使用搜尋服務 | Microsoft Docs"
 description: "搜尋和篩選 Web 應用程式傳送的原始遙測。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 2a437555-8043-45ec-937a-225c9bf0066b
 ms.service: application-insights

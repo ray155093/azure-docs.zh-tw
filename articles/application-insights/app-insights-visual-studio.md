@@ -3,7 +3,7 @@ title: "在 Visual Studio 中使用 Azure Application Insights | Microsoft Docs"
 description: "偵錯期間和生產環境中的 Web 應用程式效能分析與診斷。"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 2059802b-1131-477e-a7b4-5f70fb53f974
 ms.service: application-insights

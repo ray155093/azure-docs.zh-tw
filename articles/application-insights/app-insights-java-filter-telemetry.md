@@ -3,7 +3,7 @@ title: "在 Java Web 應用程式中篩選 Azure Application Insights 遙測 | M
 description: "篩選出您不需要監視的事件，以減少遙測流量。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd

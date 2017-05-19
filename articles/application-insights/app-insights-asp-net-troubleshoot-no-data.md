@@ -3,7 +3,7 @@ title: "沒有要進行疑難排解的資料 - Application Insights for .NET"
 description: "在 Azure Application Insights 中看不到資料？ 試試這裡。"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: e231569f-1b38-48f8-a744-6329f41d91d3
 ms.service: application-insights

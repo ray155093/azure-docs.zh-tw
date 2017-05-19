@@ -3,7 +3,7 @@ title: "JavaScript Web App 適用的 Azure Application Insights | Microsoft Docs
 description: "取得頁面檢視和工作階段計數、Web 用戶端資料，並追蹤使用量模式。 Detect exceptions and performance issues in JavaScript web pages."
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 3b710d09-6ab4-4004-b26a-4fa840039500
 ms.service: application-insights

@@ -3,7 +3,7 @@ title: "Azure Application Insights 中的 Web 應用程式效能變更智慧型�
 description: "自動診斷您 Web 應用程式之效能遙測資料中的突然增加或段差情況。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.service: application-insights
 ms.workload: tbd

@@ -1,7 +1,7 @@
 ---
 title: "偵測和診斷 Web 應用程式問題 - Azure Application Insights | Microsoft Docs"
 description: "分析損毀及偵測和診斷應用程式的效能問題"
-author: alancameronwills
+author: CFreemanwa
 services: application-insights
 documentationcenter: 
 manager: carmonm

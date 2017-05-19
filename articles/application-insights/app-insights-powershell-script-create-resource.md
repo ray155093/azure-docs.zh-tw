@@ -3,7 +3,7 @@ title: "建立 Application Insights 資源的 PowerShell 指令碼 | Microsoft D
 description: "自動建立 Application Insights 資源。"
 services: application-insights
 documentationcenter: windows
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: f0082c9b-43ad-4576-a417-4ea8e0daf3d9
 ms.service: application-insights

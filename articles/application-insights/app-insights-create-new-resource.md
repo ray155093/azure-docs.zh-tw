@@ -3,7 +3,7 @@ title: "建立新的 Azure Application Insights 資源 | Microsoft Docs"
 description: "針對新的即時應用程式手動設定 Application Insights 監視。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 878b007e-161c-4e36-8ab2-3d7047d8a92d
 ms.service: application-insights

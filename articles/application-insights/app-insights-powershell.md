@@ -3,7 +3,7 @@ title: "使用 PowerShell 將 Azure Application Insights 自動化 | Microsoft D
 description: "在 PowerShell 中使用 Azure Resource Manager 範本自動建立資源、警示及可用性測試。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 9f73b87f-be63-4847-88c8-368543acad8b
 ms.service: application-insights

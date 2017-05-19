@@ -3,7 +3,7 @@ title: "在 Azure Application Insights 中探索 HockeyApp 資料 | Microsoft Do
 description: "使用 Application Insights 分析 Azure 應用程式的使用量和效能。"
 services: application-insights
 documentationcenter: windows
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 97783cc6-67d6-465f-9926-cb9821f4176e
 ms.service: application-insights

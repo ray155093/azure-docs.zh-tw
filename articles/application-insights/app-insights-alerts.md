@@ -3,7 +3,7 @@ title: "在 Azure Application Insights 中設定警示 | Microsoft Docs"
 description: "獲知回應時間緩慢、例外狀況，以及 Web 應用程式中的其他效能或使用量變更。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: f8ebde72-f819-4ba5-afa2-31dbd49509a5
 ms.service: application-insights

@@ -3,7 +3,7 @@ title: "監視 Windows 傳統型應用程式的使用情況和效能"
 description: "使用 HockeyApp 和 Application Insights 分析 Windows 傳統型應用程式的使用情况和效能。"
 services: application-insights
 documentationcenter: windows
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 19040746-3315-47e7-8c60-4b3000d2ddc4
 ms.service: application-insights

@@ -3,7 +3,7 @@ title: "為 Azure Application Insights 中的 Analytics 進行疑難排解 | Mic
 description: "有關於 Application Insights 分析的問題嗎？ 從這裡開始。 "
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 9bbd5859-3584-4d80-9b6d-d5910fa48baa
 ms.service: application-insights

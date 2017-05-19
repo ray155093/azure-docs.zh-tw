@@ -3,7 +3,7 @@ title: "Web 應用程式效能監視 - Azure Application Insights | Microsoft Do
 description: "Application Insights 如何融入 DevOps 循環"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 479522a9-ff5c-471e-a405-b8fa221aedb3
 ms.service: application-insights

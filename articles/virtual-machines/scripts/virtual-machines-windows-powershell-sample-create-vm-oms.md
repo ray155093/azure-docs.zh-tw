@@ -27,7 +27,7 @@ ms.lasthandoff: 04/27/2017
 
 此指令碼會建立 Azure 虛擬機器、安裝 Operations Management Suite (OMS) 代理程式，並向 OMS 工作區註冊系統。 執行此指令碼後，就能在 OMS 主控台中看到虛擬機器。 此外，您需要更新 OMS 工作區識別碼和工作區金鑰。
 
-[!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install.md)]
+[!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
