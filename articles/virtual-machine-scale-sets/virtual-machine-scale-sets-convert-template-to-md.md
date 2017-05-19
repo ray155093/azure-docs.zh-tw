@@ -14,11 +14,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 1/25/2017
+ms.date: 5/18/2017
 ms.author: negat
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 01983ac7b60f7fdb237fba27f22cb31fcb3c1b7b
 ms.openlocfilehash: cd1e67ce89a856f325b66087f003b1a9a1ac6f6a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/08/2017
 
 
 ---
@@ -148,10 +150,5 @@ ms.openlocfilehash: cd1e67ce89a856f325b66087f003b1a9a1ac6f6a
 如需使用擴展集的範例 Resource Manager 範本，請在 [Azure 快速入門範本 github 儲存機制](https://github.com/Azure/azure-quickstart-templates)中搜尋 "vmss"。
 
 如需一般資訊，請參閱 [擴展集的主要登陸頁面](https://azure.microsoft.com/services/virtual-machine-scale-sets/)。
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

@@ -14,11 +14,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: support-article
-ms.date: 02/09/2017
+ms.date: 05/18/2017
 ms.author: iainfou
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: 25e19b14e1cad41a365ee88ed317078bf551c36a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
@@ -45,8 +46,7 @@ ms.lasthandoff: 04/27/2017
 
 > [!TIP]
 > 如果 VM 的 [連接] 按鈕呈現灰色，而且您未透過 [Express Route](../../expressroute/expressroute-introduction.md) 或 [網站間 VPN](../../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) 連線來連接 Azure，您就必須先建立 VM 並為其指派公用 IP 位址，才能使用 RDP。 您可以深入了解 [Azure 中的公用 IP 位址](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)。
-> 
-> 
+
 
 ## <a name="ways-to-troubleshoot-rdp-issues"></a>針對 RDP 問題進行疑難排解的方法
 您可以使用下列其中一種方法，針對使用 Resource Manager 部署模型建立的 VM 進行疑難排解：
@@ -120,8 +120,6 @@ ms.lasthandoff: 04/27/2017
 
 > [!NOTE]
 > 您可使用 [Set-AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell Cmdlet 重設使用者認證和 RDP 組態。 在下列範例中，`myVMAccessExtension` 是您指定為程序一部分的名稱。 如果您先前使用了 VMAccessAgent，則可以使用 `Get-AzureRmVM -ResourceGroupName "myResourceGroup" -Name "myVM"` 來檢查 VM 的屬性，以取得現有擴充功能的名稱。 請查看輸出的 'Extensions' 區段底下來檢視名稱。
-> 
-> 
 
 在每個疑難排解步驟完成之後，請再次嘗試連接到 VM。 如果仍然無法連線，請嘗試下一個步驟。
 
