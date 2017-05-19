@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
 ms.openlocfilehash: 0a4dba58445cf0fd9fd8f51d443576bacd92251b
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/13/2017
 
 
@@ -419,7 +420,7 @@ PartitionConnectedCarEvents Hive 指令碼
 在名為 "AggresiveDrivingPatternPipeline" 的管線中，使用 Hive 處理分割的車輛訊號和診斷資料，以判斷呈現危險駕駛模式的車型、位置、車輛、駕駛狀況和其他參數。
 
 ![危險駕駛模式工作流程](./media/cortana-analytics-playbook-vehicle-telemetry-deep-dive/fig18-vehicle-telematics-aggressive-driving-pattern.png) 
-圖 18 – 危險駕駛模式工作流程**
+*圖 18 – 危險駕駛模式工作流程*
 
 
 危險駕駛模式 Hive 查詢
