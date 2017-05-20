@@ -40,12 +40,12 @@ Node.js 代理程式可以自動監視傳入和傳出 HTTP 要求、數個系統
 
 ### <a name="resource"></a>設定 App Insights 資源
 
-**開始之前**，請確定您有 Azure 訂用帳戶或[免費取得一個新訂用帳戶][azure-free-offer]。 如果您的組織已經有 Azure 訂用帳戶，系統管理員可以依照[這些指示][ add-aad-user]將您新增至該訂用帳戶。
+**開始之前**，請確定您有 Azure 訂用帳戶或[免費取得一個新訂用帳戶][azure-free-offer]。 如果您的組織已經有 Azure 訂用帳戶，系統管理員可以依照 [這些指示][add-aad-user] 將您新增至該訂用帳戶。
 
 [azure-free-offer]: https://azure.microsoft.com/en-us/free/
 [add-aad-user]: https://docs.microsoft.com/en-us/azure/active-directory/active-directory-users-create-azure-portal
 
-現在登入 [Azure 入口網站][ portal]並建立 Application Insights 資源，如下所示 - 按一下 [新增] > [開發人員工具] > [Application Insights]。 此資源包含用於接收遙測資料的端點、此資料的儲存體、已儲存的報告和儀表板、規則和警示組態等等。
+現在登入 [Azure 入口網站][portal]並建立 Application Insights 資源，如下所示 - 按一下 [新增] > [開發人員工具] > [Application Insights]。 此資源包含用於接收遙測資料的端點、此資料的儲存體、已儲存的報告和儀表板、規則和警示組態等等。
 
 ![建立 App Insights 資源](./media/app-insights-nodejs/03-new_appinsights_resource.png)
 
@@ -86,7 +86,7 @@ appInsights.start();
 
 代理程式會自動蒐集有關 Node.js 執行階段和一些常見第三方模組的遙測。 現在使用您的應用程式來產生一些資料。
 
-然後，在 [Azure 入口網站][ portal]中瀏覽至您稍早建立的 Application Insights 資源，並且在 [概觀時間表] 中尋找您的前幾個資料點，如下圖所示。 逐一點選各個圖表以取得詳細資料。
+然後，在 [Azure 入口網站][portal]中瀏覽至您稍早建立的 Application Insights 資源，並且在 [概觀時間表] 中尋找您的前幾個資料點，如下圖所示。 逐一點選各個圖表以取得詳細資料。
 
 ![第一個資料點](./media/app-insights-nodejs/12-first-perf.png)
 
@@ -105,7 +105,7 @@ appInsights.start();
 * 多使用一下應用程式；採取更多動作，以產生更多遙測。
 * 按一下入口網站資源檢視中的 [重新整理]。 圖表會自動定期重新整理，但重新整理會強制此動作立即發生。
 * 確認[所需的連出連接埠](app-insights-ip-addresses.md)已開啟。
-* 開啟 [搜尋][](app-insights-diagnostic-search.md) 圖格來查看個別事件。
+* 開啟 [搜尋](app-insights-diagnostic-search.md) 圖格來查看個別事件。
 * 查看[常見問題集][]。
 
 
