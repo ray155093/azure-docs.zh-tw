@@ -3,7 +3,7 @@ title: "監視任何網站的可用性和回應性 | Microsoft Docs"
 description: "在 Application Insights 中設定 Web 測試。 如果網站無法使用或回應緩慢，將收到警示。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: SoubhagyaDash
 manager: carmonm
 ms.assetid: 46dc13b4-eb2e-4142-a21c-94a156f760ee
 ms.service: application-insights
@@ -11,30 +11,29 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/12/2017
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 5893f8126b0f18ac0d56e434a8e495380bd605d5
-ms.lasthandoff: 04/13/2017
+ms.date: 04/26/2017
+ms.author: cfreeman
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 0916c10afd526abaaf6c8e1e3aa311af5c7d84cd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="monitor-availability-and-responsiveness-of-any-web-site"></a>監視任何網站的可用性和回應性
-將 Web 應用程式或網站部署至任何伺服器之後，您可以設定 Web 測試來監視其可用性和回應性。 [Azure Application Insights](app-insights-overview.md) 會將來自全球各地的 Web 要求定期傳送給您的應用程式。 如果應用程式沒有回應或回應太慢，則會警告您。
+將 Web 應用程式或網站部署至任何伺服器之後，您可以設定測試來監視其可用性和回應性。 [Azure Application Insights](app-insights-overview.md) 會將來自全球各地的 Web 要求定期傳送給您的應用程式。 如果應用程式沒有回應或回應太慢，則會警告您。
 
-![Web 測試範例](./media/app-insights-monitor-web-app-availability/appinsights-10webtestresult.png)
+您可以為公用網際網路可存取的任何 HTTP 或 HTTPS 端點設定可用性測試。 您不需要在您測試的網站上加入任何東西。 甚至不必是您的網站︰您可以測試您依賴的 REST API 服務。
 
-您可以為公用網際網路可存取的任何 HTTP 或 HTTPS 端點設定 Web 測試。 您不需要在您測試的網站上加入任何東西。 甚至不必是您的網站︰您可以測試您依賴的 REST API 服務。
-
-Web 測試可分為兩種：
+可用性測試有兩種：
 
 * [URL Ping 測試](#create)：您可以在 Azure 入口網站中建立的簡單測試。
 * [多步驟 Web 測試](#multi-step-web-tests)：您可以在 Visual Studio Enterprise 中建立並上傳至入口網站的測試。
 
-每個應用程式資源最多可以建立 10 個 Web 測試。
+每個應用程式資源最多可以建立 25 項可用性測試。
 
-## <a name="create"></a>1.開啟 Web 測試報告的資源
+## <a name="create"></a>1.開啟可用性測試報告的資源
 
 **如果您已針對應用程式設定 Application Insights**，請在 [Azure 入口網站](https://portal.azure.com)中開啟其 Application Insights 資源。
 
@@ -45,12 +44,12 @@ Web 測試可分為兩種：
 按一下 [所有資源]  ，以開啟新資源的 [概觀] 刀鋒視窗。
 
 ## <a name="setup"></a>2.建立 URL Ping 測試
-開啟 [可用性] 刀鋒視窗並新增一個 Web 測試。
+開啟 [可用性] 刀鋒視窗並新增一項測試。
 
 ![Fill at least the URL of your website](./media/app-insights-monitor-web-app-availability/13-availability.png)
 
-* **URL** 可以是您想要測試的任何網頁，但必須可從公用網際網路看見它。 URL 可以包含查詢字串 - 例如，您可以訓練一下您的資料庫。 如果 URL 解析為重新導向，我們會跟隨它，最多 10 個重新導向。
-* **剖析相依要求**︰若已核取這個選項，測試將會要求影像、指令碼、樣式檔案以及其他屬於受測試網頁的檔案。 記錄的回應時間包含取得這些檔案所需的時間。 如果無法在逾時內為整個測試成功下載所有這些資源，則測試將會失敗。 
+* **URL** 可以是您想要測試的任何網頁，但必須可從公用網際網路看見它。 URL 可以包含查詢字串。 例如，您可以訓練一下您的資料庫。 如果 URL 解析為重新導向，我們會跟隨它，最多 10 個重新導向。
+* **剖析相依要求**︰若已核取這個選項，測試會要求影像、指令碼、樣式檔案以及其他屬於受測試網頁的檔案。 記錄的回應時間包含取得這些檔案所需的時間。 如果無法在逾時內為整個測試成功下載所有這些資源，則測試將會失敗。 
 
     如果未核取這個選項，測試只會要求您指定之 URL 中的檔案。
 * **啟用重試**：若已核取這個選項，就會在短時間內進行重試。 只有在連續三次重試失敗後，才會回報失敗。 後續測試則會以一般測試頻率執行。 重試會暫時停止，直到下次成功為止。 此規則可個別套用在每個測試位置。 我們建議使用這個選項。 平均來說，大約 80% 失敗會在重試後消失。
@@ -68,33 +67,41 @@ Web 測試可分為兩種：
     您可以設定會在產生警示時呼叫的 [webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md)。 (不過請注意，查詢參數目前不會當作屬性傳遞)。
 
 ### <a name="test-more-urls"></a>測試更多 URL
-加入更多測試。 例如，除了測試首頁，您也可以測試搜尋的 URL 來確定資料庫在執行中。
+加入更多測試。 例如，除了測試首頁以外，您也可以測試搜尋的 URL 來確定資料庫在執行中。
 
 
-## <a name="monitor"></a>3.查看 Web 測試結果
+## <a name="monitor"></a>3.查看可用性測試結果
 
-5 分鐘之後，按一下 [重新整理] 來查看測試結果。 
+數分鐘之後，按一下 [重新整理] 來查看測試結果。 
 
-![Summary results on the home blade](./media/app-insights-monitor-web-app-availability/14-availSummary.png)
+![首頁刀鋒視窗上的摘要結果](./media/app-insights-monitor-web-app-availability/14-availSummary-3.png)
 
-按一下摘要圖表上的任何橫條，以取得該時段的更詳細檢視。
+散佈圖會顯示測試結果的範例，其中包含診斷測試步驟詳細資料。 測試引擎會儲存失敗測試的診斷詳細資料。 對於成功的測試，系統會儲存執行子集的診斷詳細資料。 將滑鼠停留在任何綠點/紅點上，以查看測試時間戳記、測試持續期間、位置和測試名稱。 點選散佈圖中的任何點以查看測試結果的詳細資料。  
+
+選取特定測試、位置，或縮短時間週期，以查看更多有關感興趣時間週期的結果。 使用 [搜尋總管] 以查看所有執行的結果，或使用分析查詢對此資料執行自訂報告。
+
+除了未經處理的結果，[計量瀏覽器] 中有兩個可用性計量︰ 
+
+1. 可用性︰所有測試執行中測試成功的百分比。 
+2. 測試持續期間︰所有測試執行中的平均測試持續期間。
+
+您可以對測試名稱、位置套用篩選條件，以分析特定測試及/或位置的趨勢。
 
 ## <a name="edit"></a> 檢查和編輯測試
 
 從摘要頁面中，選取特定測試。 您可以在該頁面中看見其特定結果，並加以編輯或暫時將它停用。
 
-![Edit or disable a web test](./media/app-insights-monitor-web-app-availability/19-availEdit.png)
+![Edit or disable a web test](./media/app-insights-monitor-web-app-availability/19-availEdit-3.png)
 
-當您在服務上進行維護時，您可能會想要停用 Web 測試。
-
+當您對服務執行維護時，您可能會想要停用可用性測試或與其相關聯的警示規則。 
 
 ## <a name="failures"></a>如果您看到失敗
 按一下一個紅點。
 
-![按一下一個紅點](./media/app-insights-monitor-web-app-availability/open-instance.png)
+![按一下一個紅點](./media/app-insights-monitor-web-app-availability/open-instance-3.png)
 
 
-從 Web 測試結果，您可以：
+從可用性測試結果，您可以：
 
 * 檢查從伺服器收到的回應。
 * 在處理失敗的要求執行個體時，開啟應用程式伺服器所傳送的遙測。
@@ -104,7 +111,7 @@ Web 測試可分為兩種：
 
 *看起來正常，但回報為失敗？* 請檢查所有映像、指令碼、樣式表和頁面載入的任何其他檔案。 如果其中有任何一個失敗，即使主要的 html 頁面載入正常，測試皆會回報為失敗。
 
-沒有相關項目？ 這可能是因為正在進行[取樣](app-insights-sampling.md)。
+沒有相關項目？ 如果您已針對伺服器端應用程式設定 Application Insights，這可能是因為正在進行[取樣](app-insights-sampling.md)。 
 
 ## <a name="multi-step-web-tests"></a>多重步驟 Web 測試
 您可以監視涉及一連串 URL 的案例。 例如，如果您正在監視銷售網站，您可以測試將項目加入購物車正確運作。
@@ -149,7 +156,7 @@ Web 測試可分為兩種：
     ![在 Visual Studio 中，開啟 .webtest 檔案，並按一下 [執行]。](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-run.png)
 
 #### <a name="2-upload-the-web-test-to-application-insights"></a>2.將 Web 測試上傳至 Application Insights
-1. 在 Application Insights 入口網站中，建立新的 Web 測試。
+1. 在 Application Insights 入口網站中，建立 Web 測試。
 
     ![在 [Web 測試] 刀鋒視窗中，選擇 [加入]。](./media/app-insights-monitor-web-app-availability/16-another-test.png)
 2. 選取多重步驟測試，並上傳 .webtest 檔案。
@@ -240,7 +247,7 @@ Web 測試外掛程式提供將時間參數化的方法。
 測試完成時，會為您顯示回應時間和成功率。
 
 ## <a name="automation"></a>自動化
-* [使用 PowerShell 指令碼自動設定 Web 測試](app-insights-powershell.md#add-an-availability-test) 。
+* [使用 PowerShell 指令碼自動設定可用性測試](app-insights-powershell.md#add-an-availability-test)。
 * 設定會在產生警示時呼叫的 [webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md)。
 
 ## <a name="qna"></a>有疑問嗎？ 有問題嗎？
@@ -252,7 +259,7 @@ Web 測試外掛程式提供將時間參數化的方法。
     我們支援 TLS 1.1 和 TLS 1.2。
 * *「Web 測試」和「可用性測試」之間有任何差異嗎？*
 
-    我們會交替使用這兩個詞彙。
+    這兩個詞彙可能會交替參考。 可用性測試是更廣泛的詞彙，除了多重步驟 Web 測試以外，還包含單一 URL ping 測試。
 * *我想要在位於防火牆後面執行的內部伺服器上使用可用性測試。*
 
     有兩個可能的解決方案：
@@ -291,4 +298,3 @@ Web 測試外掛程式提供將時間參數化的方法。
 [diagnostic]: app-insights-diagnostic-search.md
 [qna]: app-insights-troubleshoot-faq.md
 [start]: app-insights-overview.md
-

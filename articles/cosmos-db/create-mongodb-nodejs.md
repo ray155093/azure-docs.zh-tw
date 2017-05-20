@@ -1,0 +1,243 @@
+---
+title: "使用 Node.js 將 MongoDB 應用程式連線至 Azure Cosmos DB | Microsoft Docs"
+description: "了解如何將現有的 Node.js MongoDB 應用程式連線至 Azure Cosmos DB"
+services: cosmosdb
+documentationcenter: 
+author: mimig1
+manager: jhubbard
+editor: 
+ms.assetid: 
+ms.service: cosmosdb
+ms.custom: quick start connect
+ms.workload: 
+ms.tgt_pltfrm: na
+ms.devlang: nodejs
+ms.topic: hero-article
+ms.date: 05/10/2017
+ms.author: mimig
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 0e5657e4d110af095c934431cb6e3bf8824f791d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
+
+
+---
+# <a name="azure-cosmos-db-migrate-an-existing-nodejs-mongodb-web-app"></a>Azure Cosmos DB︰移轉現有的 Node.js MongoDB Web 應用程式 
+
+Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您可以快速建立及查詢文件、索引鍵/值及圖形資料庫，所有這些都受惠於位於 Azure Cosmos DB 核心的全域散發和水平調整功能。 
+
+本快速入門示範如何使用以 Node.js 撰寫的現有 [MongoDB](../documentdb/documentdb-protocol-mongodb.md) 應用程式，並將它連線到可支援 MongoDB 用戶端連線的 Azure Cosmos DB 資料庫。 換句話說，您的 Node.js 應用程式只知道它使用 MongoDB API 連線到資料庫。 對於資料儲存在 Azure Cosmos DB 中的應用程式而言是透明的。
+
+完成之後，您的 MEAN 應用程式 (MongoDB、Express、AngularJS 及 Node.js) 將會在 [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/) 上執行。 
+
+![在 Azure App Service 中執行的 MEAN.js 應用程式](./media/create-mongodb-nodejs/meanjs-in-azure.png)
+
+## <a name="prerequisites"></a>必要條件 
+
+開始本快速入門之前，請確認您的電腦上[已安裝 Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)。 此外，您需要 [Node.js](https://nodejs.org/) 和 [Git](http://www.git-scm.com/downloads)。 您將執行 `az`、`npm` 和 `git` 命令。
+
+您應具備 Node.js 的使用知識。 本快速入門通常不是為了協助您開發 Node.js 應用程式。
+
+## <a name="clone-the-sample-application"></a>複製範例應用程式
+
+開啟 Git 終端機視窗 (例如 Git Bash)，然後使用 `cd` 來切換到工作目錄。  
+
+執行下列命令來複製範例存放庫。 此範例存放庫包含預設 [MEAN.js](http://meanjs.org/) 應用程式。 
+
+```bash
+git clone https://github.com/prashanthmadi/mean
+```
+
+## <a name="run-the-application"></a>執行應用程式
+
+安裝必要的封裝，然後啟動應用程式。
+
+```bash
+cd mean
+npm install
+npm start
+```
+
+## <a name="log-in-to-azure"></a>登入 Azure
+
+現在在終端機視窗中使用 Azure CLI 2.0，以建立在 Azure App Service 中裝載 Node.js 應用程式所需的資源。  使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。 
+
+```azurecli 
+az login 
+``` 
+   
+### <a name="add-the-azure-cosmos-db-module"></a>新增 Azure Cosmos DB 模組
+
+若要使用 Azure Cosmos DB 命令，請新增 Azure Cosmos DB 模組。 
+
+```azurecli
+az component update --add cosmosdb
+```
+
+## <a name="create-a-resource-group"></a>建立資源群組
+
+使用 [az group create](../azure-resource-manager/resource-group-overview.md) 來建立[資源群組](/cli/azure/group#create)。 Azure 資源群組是在其中部署與管理 Azure 資源 (如 Web 應用程式、資料庫和儲存體帳戶) 的邏輯容器。 
+
+下列範例會在西歐區域中建立一個資源群組。 選擇資源群組的唯一名稱。
+
+```azurecli
+az group create --name myResourceGroup --location "West Europe"
+```
+
+## <a name="create-an-azure-cosmos-db-account"></a>建立 Azure Cosmos DB 帳戶
+
+使用 [az cosmosdb create](/cli/azure/cosmosdb#create) 命令來建立 Azure Cosmos DB 帳戶。
+
+在下列命令中，請在您看見 `<cosmosdb_name>` 預留位置的地方，替代成您自己的唯一 Azure Cosmos DB 帳戶名稱。 這個唯一名稱會用來作為 Azure Cosmos DB 端點 (`https://<cosmosdb_name>.documents.azure.com/`) 的一部分，所以這個名稱在 Azure 中的所有 Azure Cosmos DB 帳戶上必須是唯一的。 
+
+```azurecli
+az cosmosdb create --name <cosmosdb_name> --resource-group myResourceGroup --kind MongoDB
+```
+
+`--kind MongoDB` 參數會啟用 MongoDB 用戶端連接。
+
+建立 Azure Cosmos DB 帳戶之後，Azure CLI 會顯示類似下列範例的資訊。 
+
+```json
+{
+  "databaseAccountOfferType": "Standard",
+  "documentEndpoint": "https://<cosmosdb_name>.documents.azure.com:443/",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Document
+DB/databaseAccounts/<cosmosdb_name>",
+  "kind": "MongoDB",
+  "location": "West Europe",
+  "name": "<cosmosdb_name>",
+  "readLocations": [
+    {
+      "documentEndpoint": "https://<cosmosdb_name>-westeurope.documents.azure.com:443/",
+      "failoverPriority": 0,
+      "id": "<cosmosdb_name>-westeurope",
+      "locationName": "West Europe",
+      "provisioningState": "Succeeded"
+    }
+  ],
+  "resourceGroup": "myResourceGroup",
+  "type": "Microsoft.DocumentDB/databaseAccounts",
+  "writeLocations": [
+    {
+      "documentEndpoint": "https://<cosmosdb_name>-westeurope.documents.azure.com:443/",
+      "failoverPriority": 0,
+      "id": "<cosmosdb_name>-westeurope",
+      "locationName": "West Europe",
+      "provisioningState": "Succeeded"
+    }
+  ]
+} 
+```
+
+## <a name="connect-your-nodejs-application-to-the-database"></a>將 Node.js 應用程式連線到資料庫
+
+在此步驟中，您要使用 MongoDB 連接字串，將 MEAN.js 範例應用程式連線至您剛才建立的 Azure Cosmos DB 資料庫。 
+
+## <a name="retrieve-the-key"></a>擷取金鑰
+
+若要連線至 Azure Cosmos DB 資料庫，您需要資料庫金鑰。 使用 [az documentdb list-keys](/cli/azure/documentdb#list-keys) 命令來擷取主索引鍵。
+
+```azurecli
+az cosmosdb list-keys --name <cosmosdb_name> --resource-group myResourceGroup
+```
+
+Azure CLI 會輸出類似下列範例的資訊。 
+
+```json
+{
+  "primaryMasterKey": "RUayjYjixJDWG5xTqIiXjC...",
+  "primaryReadonlyMasterKey": "...",
+  "secondaryMasterKey": "...",
+  "secondaryReadonlyMasterKey": "..."
+}
+```
+
+將 `primaryMasterKey` 的值複製到文字編輯器。 您需要在下一個步驟中用到此資訊。
+
+<a name="devconfig"></a>
+## <a name="configure-the-connection-string-in-your-nodejs-application"></a>在 Node.js 應用程式中設定連接字串
+
+在您的 MEAN.js 存放庫中，開啟 `config/env/local-development.js`。
+
+以下列程式碼取代此檔案的內容。 務必也要使用您的 Azure Cosmos DB 帳戶名稱來取代這兩個 `<cosmosdb_name>` 預留位置，並使用您在上一個步驟中複製的金鑰取代 `<primary_master_key>` 預留位置。
+
+```javascript
+'use strict';
+
+module.exports = {
+  db: {
+    uri: 'mongodb://<cosmosdb_name>:<primary_master_key>@<cosmosdb_name>.documents.azure.com:10250/mean-dev?ssl=true&sslverifycertificate=false'
+  }
+};
+```
+
+> [!NOTE] 
+> `ssl=true` 選項很重要，因為 [Azure Cosmos DB 需要 SSL](../documentdb/documentdb-connect-mongodb-account.md#connection-string-requirements)。 
+>
+>
+
+儲存您的變更。
+
+### <a name="run-the-application-again"></a>再次執行應用程式。
+
+再次執行 `npm start`。 
+
+```bash
+npm start
+```
+
+主控台訊息現在應告訴您開發環境已啟動並在執行中。 
+
+在瀏覽器中，瀏覽至 `http://localhost:3000`。 按一下上層功能表中的 [註冊]，然後嘗試建立兩位虛擬使用者。 
+
+MEAN.js 範例應用程式會將使用者資料儲存於資料庫中。 如果您成功且 MEAN.js 自動登入至所建立的使用者，則您的 Cosmos DB 連線正在運作中。 
+
+![MEAN.js 成功連線至 MongoDB](./media/create-mongodb-nodejs/mongodb-connect-success.png)
+
+## <a name="view-data-in-data-explorer"></a>在資料總管中檢視資料
+
+可以在 Azure 入口網站中檢視、查詢 Azure Cosmos DB 所儲存的資料，以及在其上執行商務邏輯。
+
+若要檢視、查詢及處理在前一個步驟中建立的使用者資料，請在 Web 瀏覽器中登入 [Azure 入口網站](https://portal.azure.com)。
+
+在頂端的 [搜尋] 方塊中，輸入 Azure Cosmos DB。 當您的 Cosmos DB 帳戶刀鋒視窗開啟時，選取您的 Cosmos DB 帳戶。 在左側導覽中，按一下 [資料總管]。 在 [集合] 窗格中展開您的集合，然後您可以檢視集合中的文件、查詢資料，甚至是建立及執行預存程序、觸發程序和 UDF。 
+
+![Azure 入口網站中的資料總管](./media/create-mongodb-nodejs/cosmosdb-connect-mongodb-data-explorer.png)
+
+
+## <a name="deploy-the-nodejs-application-to-azure"></a>將 Node.js 應用程式部署至 Azure
+
+在此步驟中，您要將已與 MongoDB 連線接的 Node.js 應用程式部署至 Azure Cosmos DB。
+
+您可能已注意到，您稍早變更的組態檔適用於開發環境 (`/config/env/local-development.js`)。 當您將應用程式部署至 App Service 時，它會依照預設在生產環境中執行。 所以現在，您需要對個別的組態檔進行相同的變更。
+
+在您的 MEAN.js 存放庫中，開啟 `config/env/production.js`。
+
+在 `db` 物件中，取代 `uri` 的值，如下列範例中所示。 請務必取代預留位置，如同之前一樣。
+
+```javascript
+'mongodb://<cosmosdb_name>:<primary_master_key>@<cosmosdb_name>.documents.azure.com:10250/mean?ssl=true&sslverifycertificate=false',
+```
+
+在終端機中，將所有的變更認可至 Git。 您可以複製這兩個命令，以便同時執行它們。
+
+```bash
+git add .
+git commit -m "configured MongoDB connection string"
+```
+## <a name="clean-up-resources"></a>清除資源
+
+如果您將不繼續使用此應用程式，請使用下列步驟，在 Azure 入口網站中刪除本快速入門所建立的所有資源：
+
+1. 從 Azure 入口網站的左側功能表中，按一下 [資源群組]，然後按一下您所建立資源的名稱。 
+2. 在資源群組頁面上，按一下 [刪除]，在文字方塊中輸入要刪除之資源的名稱，然後按一下 [刪除]。
+
+## <a name="next-steps"></a>後續步驟
+
+在本快速入門中，您已了解如何建立 Azure Cosmos DB 帳戶，以及如何使用 [資料總管] 建立 MongoDB 集合。 您現在可以將 MongoDB 資料移轉到 Azure Cosmos DB。  
+
+> [!div class="nextstepaction"]
+> [將 MongoDB 資料匯入到 Azure Cosmos DB](../documentdb/documentdb-mongodb-migrate.md)
+

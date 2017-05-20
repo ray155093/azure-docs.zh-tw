@@ -3,7 +3,7 @@ title: "在 5 分鐘內將靜態 HTML Web 應用程式建立在 Azure 中 | Micr
 description: "藉由部署範例 App，了解在 App Service 中執行 Web 應用程式有多麼簡單。"
 services: app-service\web
 documentationcenter: 
-author: cephalin
+author: rick-anderson
 manager: wpickett
 editor: 
 ms.assetid: 60495cc5-6963-4bf0-8174-52786d226c26
@@ -12,73 +12,77 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 03/17/2017
-ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: ba9b9b780da74c44f6314fa289f1d6b8c231dd30
-ms.lasthandoff: 05/03/2017
+ms.date: 05/08/2017
+ms.author: riande
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 895906e1ab4bc50093ed3b18f043c3dd515ca054
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="create-a-static-html-web-app-in-azure-in-five-minutes"></a>在 5 分鐘內將靜態 HTML Web 應用程式建立在 Azure 中
-[!INCLUDE [app-service-web-selector-get-started](../../includes/app-service-web-selector-get-started.md)] 
 
-本快速入門可幫助您在短短幾分鐘內將簡單的 HTML + CSS 網站部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。
+本快速入門會逐步解說如何開發基本 HTML+CSS 網站及部署至 Azure。 您將使用 [Azure App Service 方案](https://docs.microsoft.com/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview)來執行應用程式，以及使用 [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli) 在其中建立 Web 應用程式。 您可使用 Git 將應用程式部署至 Azure。 安裝先決條件後，大約需要 5 分鐘才能完成本教學課程。
 
-開始之前，請確定已安裝 Azure CLI。 如需詳細資訊，請參閱 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)。
+![hello-world-in-browser](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
 
-## <a name="log-in-to-azure"></a>登入 Azure
-執行 `az login` 並遵循螢幕指示登入 Azure。
-   
-```azurecli
-az login
+## <a name="prerequisites"></a>必要條件
+
+建立這個範例之前，請下載並安裝下列元件︰
+
+- [Git](https://git-scm.com/)
+- [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
+
+[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
+
+## <a name="download-the-sample"></a>下載範例
+
+在終端機視窗中，將範例應用程式存放庫複製到本機電腦：
+
+```bash
+git clone https://github.com/Azure-Samples/html-docs-hello-world.git
 ```
 
-## <a name="create-a-resource-group"></a>建立資源群組   
-建立[資源群組](../azure-resource-manager/resource-group-overview.md)。 這是您放置要共同管理的所有 Azure 資源之處，例如 web 應用程式和它的 SQL 資料庫後端。
+## <a name="view-the-html"></a>HTML 檢視
 
-```azurecli
-az group create --location "West Europe" --name myResourceGroup
+瀏覽至包含範例 HTML 的目錄。 在瀏覽器中開啟 *index.html* 檔案。
+
+![hello-world-in-browser](media/app-service-web-get-started-html/hello-world-in-browser.png)
+
+[!INCLUDE [login-to-azure](../../includes/login-to-azure.md)] 
+[!INCLUDE [configure-deployment-user](../../includes/configure-deployment-user.md)] 
+
+[!INCLUDE [app-service-web-quickstart1](../../includes/app-service-web-quickstart1.md)] 
+
+在 `quickStartPlan` App Service 方案中建立 [Web 應用程式](app-service-web-overview.md)。 Web 應用程式會為您的程式碼提供裝載空間，以及提供 URL 讓您檢視已部署的應用程式。
+
+[!INCLUDE [app-service-web-quickstart2](../../includes/app-service-web-quickstart2.md)] 
+
+此頁面目前作為 Azure App Service Web 應用程式執行︰
+
+![hello-world-in-browser](media/app-service-web-get-started-html/hello-world-in-browser-az.png)
+
+## <a name="update-and-redeploy-the-app"></a>更新和重新部署應用程式
+
+開啟 *index.html* 檔案。 對標記進行變更。 例如，將 `Hello world!` 變更為 `Hello Azure!`
+
+在 Git 中認可您的變更，然後將程式碼變更推送至 Azure。
+
+```bash
+git commit -am "updated HTML"
+git push azure master
 ```
 
-若要查看您可用於 `--location` 的可能值，請使用 `az appservice list-locations` Azure CLI 命令。
+完成部署後，重新整理瀏覽器以查看變更。
 
+[!INCLUDE [manage-azure-web-app](../../includes/manage-azure-web-app.md)]
 
-## <a name="create-an-app-service-plan"></a>建立應用程式服務方案
-建立「免費」[App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。 
-
-```azurecli
-az appservice plan create --name my-free-appservice-plan --resource-group myResourceGroup --sku FREE
-```
-
-## <a name="create-a-web-app"></a>建立 Web 應用程式
-在 `<app_name>` 中使用唯一名稱建立 Web 應用程式。
-
-```azurecli
-az appservice web create --name <app_name> --resource-group myResourceGroup --plan my-free-appservice-plan
-```
-
-## <a name="deploy-sample-application"></a>部署範例應用程式
-從 GitHub 部署範例 HTML 網站。
-
-```azurecli
-az appservice web source-control config --name <app_name> --resource-group myResourceGroup \
---repo-url "https://github.com/Azure-Samples/app-service-web-html-get-started.git" --branch master --manual-integration 
-```
-
-## <a name="browse-to-web-app"></a>瀏覽至 Web 應用程式
-若要看見您的應用程式在 Azure 中即時執行，請執行這個命令。
-
-```azurecli
-az appservice web browse --name <app_name> --resource-group myResourceGroup
-```
-
-恭喜您，第一個靜態 HTML 站台在 Azure App Service 中即時執行。
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 
 ## <a name="next-steps"></a>後續步驟
 
-瀏覽預先建立的 [Web 應用程式 CLI 指令碼](app-service-cli-samples.md)。
-
+- 探索範例 [Web Apps CLI 指令碼](app-service-cli-samples.md)。
+- 了解如何將[自訂網域名稱](app-service-web-tutorial-custom-domain.md) (例如 contoso.com) 對應至 [App Service 應用程式](app-service-web-tutorial-custom-domain.md)。

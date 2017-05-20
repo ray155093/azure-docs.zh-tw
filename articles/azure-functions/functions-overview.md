@@ -17,10 +17,11 @@ ms.workload: na
 ms.date: 02/27/2017
 ms.author: cfowler;mahender;glenga
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 2fd12dd32ed3c8479c7460cbc0a1cac3330ff4f4
-ms.openlocfilehash: 045ec40811468eeffb25ed28ec5bfc84f074c19d
-ms.lasthandoff: 03/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 7fcf35b99cc410655f2a3b9b6961f5e3bef3aeb5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -57,10 +58,10 @@ Functions 提供範本，可讓您開始使用重要的案例，包括下列案�
 
 Azure Functions 支援「觸發」，這是開始執行您的程式碼的方式，以及「繫結」，這是針對輸入和輸出資料簡化編碼的方式。 如需 Azure Functions 提供的觸發和繫結的詳細說明，請參閱 [Azure Functions 觸發和繫結開發人員參考](functions-triggers-bindings.md)。
 
-## <a name="a-nameintegrationsaintegrations"></a><a name="integrations"></a>整合
+## <a name="integrations"></a>整合
 Azure Functions 可以與各種 Azure 和協力廠商服務整合。 這些服務可以觸發您的函式並開始執行，或做為您程式碼的輸入和輸出。 Azure Functions 支援下列服務整合。 
 
-* Azure DocumentDB
+* Azure Cosmos DB
 * Azure 事件中心 
 * Azure Mobile Apps (資料表)
 * Azure 通知中心
@@ -70,7 +71,7 @@ Azure Functions 可以與各種 Azure 和協力廠商服務整合。 這些服�
 * 內部部署 (使用服務匯流排)
 * Twilio (SMS 訊息)
 
-## <a name="a-namepricingahow-much-does-functions-cost"></a><a name="pricing"></a>Functions 的計費方式
+## <a name="pricing"></a>Functions 的計費方式
 Azure Functions 有兩種價格方案，選擇一個最適合您的需求的方案︰ 
 
 * **使用情況方案**：當您的函式執行時，Azure 會提供所有必要的運算資源。 您不必擔心資源管理，您只需為您的程式碼執行時間支付費用。 

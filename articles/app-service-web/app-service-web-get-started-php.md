@@ -1,5 +1,5 @@
 ---
-title: "在 Web 應用程式中建立 PHP 應用程式 | Microsoft Docs"
+title: "在 Azure Web 應用程式上建立 PHP 應用程式 | Microsoft Docs"
 description: "短短幾分鐘內在 App Service Web 應用程式中部署第一個 PHP Hello World。"
 services: app-service\web
 documentationcenter: 
@@ -12,30 +12,31 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: hero-article
-ms.date: 03/31/2017
+ms.date: 05/04/2017
 ms.author: cfowler
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: d5126f3b9fa92ff95eaa8bc06554c49f9836bab9
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 0541778e07193c4903a90ce0b91db224bdf60342
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="create-a-php-application-on-web-app"></a>在 Web 應用程式上建立 PHP 應用程式
 
-本快速入門教學課程會逐步解說如何開發 PHP 應用程式及部署至 Azure 。 我們將使用 Linux 型 Azure App Service 來執行應用程式，以及使用 Azure CLI 在其中建立和設定新的 Web 應用程式。 我們接著會使用 git 將 PHP 應用程式部署至 Azure。
+本快速入門教學課程會逐步解說如何開發 PHP 應用程式及部署至 Azure 。 我們將使用 [Azure App Service 方案](https://docs.microsoft.com/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview)來執行應用程式，以及使用 Azure CLI 在其中建立和設定新的 Web 應用程式。 我們接著會使用 git 將 PHP 應用程式部署至 Azure。
 
 ![hello-world-in-browser](media/app-service-web-get-started-php/hello-world-in-browser.png)
 
 您可以使用 Mac、Windows 或 Linux 電腦，依照下面步驟操作。 完成所有步驟只需要大約 5 分鐘的時間。
 
-## <a name="before-you-begin"></a>開始之前
+## <a name="prerequisites"></a>必要條件
 
-執行此範例之前，請在本機安裝下列必要條件︰
+建立這個範例之前，請下載並安裝下列各項︰
 
-1. [下載並安裝 git](https://git-scm.com/)
-1. [下載並安裝 PHP](https://php.net)
-1. 下載並安裝 [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
+* [Git](https://git-scm.com/)
+* [PHP](https://php.net)
+* [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
@@ -46,9 +47,6 @@ ms.lasthandoff: 04/25/2017
 ```bash
 git clone https://github.com/Azure-Samples/php-docs-hello-world
 ```
-
-> [!TIP]
-> 或者，您也可以[下載範例](https://github.com/Azure-Samples/php-docs-hello-world/archive/master.zip)成為 .zip 檔案並將它解壓縮。
 
 變更為包含範例程式碼的目錄。
 
@@ -84,20 +82,8 @@ http://localhost:8080
 az login
 ```
 
-## <a name="configure-a-deployment-user"></a>設定部署使用者
-
-對於 FTP 和本機 Git，必須在伺服器上設定部署使用者才能驗證您的部署。 建立部署使用者是一次性設定，請記下使用者名稱和密碼，因為下面步驟將使用這些資訊。
-
-> [!NOTE]
-> 需要部署使用者，才能將 FTP 和本機 Git 部署至 Web 應用程式。
-> `username` 和 `password` 屬於帳戶層級，因此會與 Azure 訂用帳戶認證不同。 **這些認證只需要建立一次**。
->
-
-使用 [az appservice web deployment user set](/cli/azure/appservice/web/deployment/user#set) 命令來建立帳戶層級的認證。
-
-```azurecli
-az appservice web deployment user set --user-name <username> --password <password>
-```
+<!-- ## Configure a Deployment User -->
+[!INCLUDE [login-to-azure](../../includes/configure-deployment-user.md)]
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 
@@ -107,24 +93,19 @@ az appservice web deployment user set --user-name <username> --password <passwor
 az group create --name myResourceGroup --location westeurope
 ```
 
-## <a name="create-an-azure-app-service"></a>建立 Azure App Service
+## <a name="create-an-azure-app-service-plan"></a>建立 Azure App Service 方案
 
-使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立 Linux 型 App Service 方案。
+使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立「免費」[App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。
 
-> [!NOTE]
-> App Service 方案代表用來裝載應用程式的實體資源集合。 所有指派給 App Service 方案的所有應用程式都會共用它所定義的資源，而讓您節省裝載多個應用程式時的成本。
->
-> App Service 方案可定義：
-> * 區域 (北歐、美國東部、東南亞)
-> * 執行個體大小 (小型、中型、大型)
-> * 級別計數 (一、二或三個執行個體等)
-> * SKU (免費、共用、基本、標準、進階)
->
+<!--
+ An App Service plan represents the collection of physical resources used to ..
+-->
+[!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
-下列範例會使用**標準**定價層，在名為 `quickStartPlan` 的 Linux 背景工作上建立 App Service 方案。
+下列範例會使用**免費**定價層，建立名為 `quickStartPlan` 的 App Service 方案。
 
 ```azurecli
-az appservice plan create --name quickStartPlan --resource-group myResourceGroup --sku S1 --is-linux
+az appservice plan create --name quickStartPlan --resource-group myResourceGroup --sku FREE
 ```
 
 建立 App Service 方案後，Azure CLI 會顯示類似下列範例的資訊。
@@ -132,7 +113,6 @@ az appservice plan create --name quickStartPlan --resource-group myResourceGroup
 ```json
 {
     "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Web/serverfarms/quickStartPlan",
-    "kind": "linux",
     "location": "West Europe",
     "sku": {
     "capacity": 1,
@@ -147,9 +127,13 @@ az appservice plan create --name quickStartPlan --resource-group myResourceGroup
 
 ## <a name="create-a-web-app"></a>建立 Web 應用程式
 
-現已建立 App Service 方案，請在 `quickStartPlan` App Service 方案中建立 Web 應用程式。 Web 應用程式會提供裝載空間來部署我們的程式碼，以及提供 URL 讓我們檢視已部署的應用程式。 使用 [az appservice web create](/cli/azure/appservice/web#create) 命令來建立 Web 應用程式。
+現已建立 App Service 方案，請在 `quickStartPlan` App Service 方案中建立 [Web 應用程式](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview)。 Web 應用程式會提供裝載空間來部署我們的程式碼，以及提供 URL 讓我們檢視已部署的應用程式。 使用 [az appservice web create](/cli/azure/appservice/web#create) 命令來建立 Web 應用程式。
 
-在下列命令中，請將 <app_name> 預留位置替換成您自己的唯一應用程式名稱。 <app_name> 將做為 Web 應用程式的預設 DNS 網站，所以此名稱在 Azure 的所有應用程式中必須是唯一的名稱。 您稍後先將任何自訂 DNS 項目對應至 Web 應用程式，再將它公開給使用者。
+在下列命令中，請將 `<app_name>` 預留位置替換成您自己的唯一應用程式名稱。 `<app_name>` 使用於 Web 應用程式的預設 DNS 網站。 如果 `<app_name>` 不是唯一的，您會收到易懂的錯誤訊息「具有指定名稱 <app_name> 的網站已經存在」。
+
+<!-- removed per https://github.com/Microsoft/azure-docs-pr/issues/11878
+You can later map any custom DNS entry to the web app before you expose it to your users.
+-->
 
 ```azurecli
 az appservice web create --name <app_name> --resource-group myResourceGroup --plan quickStartPlan
@@ -183,18 +167,7 @@ http://<app_name>.azurewebsites.net
 
 ![app-service-web-service-created](media/app-service-web-get-started-php/app-service-web-service-created.png)
 
-我們現已在 Azure 中建立空的新 Web 應用程式。 現在設定 Web 應用程式以使用 PHP 並將應用程式部署到它。
-
-## <a name="configure-to-use-php"></a>設定成使用 PHP
-
-使用 [az appservice web config update](/cli/azure/app-service/web/config#update) 命令來設定 Web 應用程式以使用 PHP 版本 `7.0.x`。
-
-> [!TIP]
-> 以這種方式設定 PHP 版本，可使用平台所提供的預設容器，如果您想要使用自己的容器，請參照 CLI 參考中的 [az appservice web config container update](https://docs.microsoft.com/cli/azure/appservice/web/config/container#update) 命令。
-
-```azurecli
-az appservice web config update --linux-fx-version "PHP|7.0" --name <app_name> --resource-group myResourceGroup
-```
+我們現已在 Azure 中建立空的新 Web 應用程式。
 
 ## <a name="configure-local-git-deployment"></a>設定本機 git 部署
 
@@ -220,9 +193,9 @@ https://<username>@<app_name>.scm.azurewebsites.net:443/<app_name>.git
 git remote add azure <paste-previous-command-output-here>
 ```
 
-推送到 Azure 遠端來部署您的應用程式。 建立部署使用者時，系統會提示您輸入稍早提供的密碼。
+推送到 Azure 遠端來部署您的應用程式。 當您建立部署使用者時，系統會提示您輸入稍早提供的密碼。 務必您輸入在[設定部署使用者](#configure-a-deployment-user)中建立的密碼，不是您用來登入 Azure 入口網站的密碼。
 
-```azurecli
+```bash
 git push azure master
 ```
 
@@ -312,6 +285,7 @@ git push azure master
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 
-## <a name="next-steps"></a>後續步驟
+> [!div class="nextstepaction"]
+> [探索範例 Web Apps CLI 指令碼](app-service-cli-samples.md)
 
-瀏覽預先建立的 [Web Apps CLI 指令碼](app-service-cli-samples.md)。
+

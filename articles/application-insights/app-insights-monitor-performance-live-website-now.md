@@ -3,7 +3,7 @@ title: "使用 Azure Application Insights 監視即時 ASP.NET Web 應用程式 
 description: "監視網站的效能而不重新部署網站。 使用裝載於內部部署、VM 中或 Azure 上的 ASP.NET Web 應用程式。"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 769a5ea4-a8c6-4c18-b46c-657e864e24de
 ms.service: application-insights
@@ -11,12 +11,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/08/2017
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 88abdb41a403f9c1dc85e574c655c532ee9b1eb5
-ms.lasthandoff: 04/13/2017
+ms.date: 05/05/2017
+ms.author: cfreeman
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 769377af7bf62d35c45c6e2e7b0ae3311b784894
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -59,6 +60,20 @@ ms.lasthandoff: 04/13/2017
     ![點選 Application Insights](./media/app-insights-monitor-performance-live-website-now/azure-web-view-more.png)
 
 [監視雲端和 VM 應用程式](app-insights-azure.md)。
+
+### <a name="enable-client-side-monitoring-in-azure"></a>在 Azure 中啟用用戶端監視
+
+如果您已在 Azure 中啟用 Application Insights，即可新增頁面檢視和使用者遙測。
+
+1. 選取 [設定] > [應用程式設定]
+2.  在 [應用程式設定] 之下，新增索引鍵值組︰ 
+   
+    索引鍵︰`APPINSIGHTS_JAVASCRIPT_ENABLED` 
+    
+    值: `true`
+3. **儲存**設定並**重新啟動**您的應用程式。
+
+Application Insights JavaScript SDK 現在已插入每個網頁中。
 
 ## <a name="monitor-a-live-iis-web-app"></a>監視即時 IIS Web 應用程式
 

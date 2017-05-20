@@ -12,14 +12,14 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-compute
-ms.date: 03/27/2017
+ms.date: 05/05/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: d05739a4d9f0712c2b4b47432bff97594a11b121
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: f8279eb672e58c7718ffb8e00a89bc1fce31174f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 05/03/2017
 
 在 Azure Batch 服務的核心元件概觀中，我們會討論 Batch 開發人員可用來建置大規模平行計算解決方案的主要服務功能和資源。
 
-不論您正在開發可發出直接 [REST API][batch_rest_api] 呼叫的分散式計算應用程式或服務，或是正在使用其中一個 [Batch SDK](batch-apis-tools.md#batch-development-apis)，您都會使用本文所討論的眾多資源和功能。
+不論您正在開發可發出直接 [REST API][batch_rest_api] 呼叫的分散式計算應用程式或服務，或是正在使用其中一個 [Batch SDK](batch-apis-tools.md#azure-accounts-for-batch-development)，您都會使用本文所討論的眾多資源和功能。
 
 > [!TIP]
 > 如需更高層級的 Batch 服務簡介，請參閱 [Azure Batch 的基本概念](batch-technical-overview.md)。
@@ -74,16 +74,15 @@ ms.lasthandoff: 05/03/2017
 
 您可以使用 [Azure 入口網站](batch-account-create-portal.md)或以程式設計的方式建立 Azure Batch 帳戶，例如使用 [Batch管理 .NET 程式庫](batch-management-dotnet.md)。 建立帳戶時，您可以將 Azure 儲存體帳戶產生關聯。
 
-Batch 支援兩個帳戶設定，根據集區配置模式屬性。 這兩種組態可讓您存取與 Batch [集區](#pool)相關的不同功能 (請參閱本文稍後章節)。 
+Batch 支援兩個帳戶設定，根據集區配置模式屬性。 這兩種組態可讓您存取與 Batch [集區](#pool)相關的不同功能 (請參閱本文稍後章節)。
 
 
-* **Batch 服務**：這是預設選項，在 Azure 管理的訂用帳戶中，系統會在幕後配置 Batch 集區 VM。 如果您需要雲端服務集區，您就必須使用此帳戶組態，但如果您需要透過自訂 VM 映像所建立的虛擬機器集區或使用虛擬網路的虛擬機器集區，就不能使用此組態。 您可以使用共用金鑰驗證或 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API。 
+* **Batch 服務**：這是預設選項，在 Azure 管理的訂用帳戶中，系統會在幕後配置 Batch 集區 VM。 如果您需要雲端服務集區，您就必須使用此帳戶組態，但如果您需要透過自訂 VM 映像所建立的虛擬機器集區或使用虛擬網路的虛擬機器集區，就不能使用此組態。 您可以使用共用金鑰驗證或 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API。 您可以在 Batch 服務帳戶組態中使用集區中專用或低優先順序的計算節點。
 
-* **使用者訂用帳戶**：如果您需要透過自訂 VM 映像所建立的虛擬機器集區或使用虛擬網路的虛擬機器集區，您就必須使用此帳戶組態。 您只能使用 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API，雲端服務集區不支援此功能。 Batch 計算 VM 會直接配置在您的 Azure 訂用帳戶中。 這個模式會要求您設定 Batch 帳戶的 Azure Key Vault。
- 
+* **使用者訂用帳戶**：如果您需要透過自訂 VM 映像所建立的虛擬機器集區或使用虛擬網路的虛擬機器集區，您就必須使用此帳戶組態。 您只能使用 [Azure Active Directory 驗證](batch-aad-auth.md)來存取 Batch API，雲端服務集區不支援此功能。 Batch 計算 VM 會直接配置在您的 Azure 訂用帳戶中。 這個模式會要求您設定 Batch 帳戶的 Azure Key Vault。 您只可以在使用者訂用帳戶組態中使用集區中的專用計算節點。 
 
 ## <a name="compute-node"></a>計算節點
-計算節點是一部 Azure 虛擬機器 (VM)，專門用來處理您應用程式的部分工作負載。 節點大小決定配置給節點的 CPU 核心數目、記憶體容量，以及本機檔案系統大小。 您可以使用 Azure 雲端服務或虛擬機器 Marketplace 的映像來建立 Windows 或 Linux 節點集區。 如需這些選項的詳細資訊，請參閱下列 [集區](#pool) 。
+計算節點是 Azure 虛擬機器 (VM) 或雲端服務 VM，專門用來處理您應用程式的部分工作負載。 節點大小決定配置給節點的 CPU 核心數目、記憶體容量，以及本機檔案系統大小。 您可以使用 Azure 雲端服務或虛擬機器 Marketplace 的映像來建立 Windows 或 Linux 節點集區。 如需這些選項的詳細資訊，請參閱下列 [集區](#pool) 。
 
 節點可以執行節點作業系統環境所支援的任何可執行檔或指令碼。 這包括適用於 Windows 的 \*.exe、\*.cmd、\*.bat 和 PowerShell 指令碼，以及適用於 Linux 的二進位檔、Shell 和 Python 指令碼。
 
@@ -117,6 +116,25 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
   * 「OS 系列」  也會決定哪些版本的.NET 會與作業系統一起安裝。
   * 如同雲端服務內的背景工作角色，您可以指定 [OS 版本] \(如需背景工作角色的詳細資訊，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)中的[我想了解雲端服務](../cloud-services/cloud-services-choose-me.md#tell-me-about-cloud-services)一節)。
   * 如同背景工作角色，建議為 [OS 版本]指定 `*`，以便自動升級節點，而且不需為了因應新發行的版本而執行工作。 選取特定 OS 版本的主要使用案例是為了確保應用程式相容性，以允許在更新版本之前執行回溯相容性測試。 通過驗證之後，即可更新集區的 [OS 版本] 並安裝新的 OS 映像，如此會中斷任何執行中的工作並重新排入佇列。
+
+* **計算節點類型**和**目標節點數目**
+
+    當您建立集區時，您可以指定您想要的計算節點類型及每個類型的目標數目。 計算節點有兩個類型︰
+
+    - **低優先順序的計算節點。** 低優先順序的節點會利用 Azure 中剩餘的容量來執行 Batch 工作負載。 低優先順序的節點比專用節點更符合成本效益，並可啟用需要大量計算能力的工作負載。 如需詳細資訊，請參閱[使用低優先順序的 VM 搭配 Batch](batch-low-pri-vms.md)。
+
+        Azure 多餘的容量不足時，可能會佔用低優先順序的計算節點。 如果節點在執行工作時遭到佔用，工作會重新排入佇列並於計算節點再次可用時再次執行。 低優先順序的節點很適合用於作業完成時間有彈性且工作分散於許多節點的工作負載。
+
+        低優先順序的計算節點僅可用於以 [Batch 服務] 集區配置模式建立的 Batch 帳戶。
+
+    - **專用計算節點。** 專用計算節點會保留給您的工作負載使用。 它們比低優先順序的節點昂貴，但保證永遠不會遭到佔用。    
+
+    您可以在相同的集區中同時擁有低優先順序和專用的計算節點。 每種節點類型 &mdash; 低優先順序和專用&mdash; 有它自己的目標設定，您可以對其指定所需的節點數目。 
+        
+    計算節點數目稱為「目標」，因為在某些情況下，您的集區可能無法達到所需的節點數目。 例如，如果集區先達到 Batch 帳戶的[核心配額](batch-quota-limit.md)，它就可能無法達成目標。 或者，如果您已將可限制節點數目上限的自動調整公式套用至集區，集區可能無法達成目標。
+
+    如需低優先順序和專用計算節點的價格資訊，請參閱 [Batch 價格](https://azure.microsoft.com/pricing/details/batch/)。
+
 * **節點的大小**
 
     **雲端服務組態** 計算節點大小會列於 [雲端服務的大小](../cloud-services/cloud-services-sizes-specs.md)。 Batch 支援 `ExtraSmall`、`STANDARD_A1_V2` 和 `STANDARD_A2_V2` 以外的所有雲端服務大小。
@@ -126,12 +144,11 @@ Azure Batch 集區的建置基礎為核心 Azure 計算平台。 這些集區可
     選取計算節點大小時，請考量將於節點上執行之應用程式的特性和需求。 應用程式是否為多執行緒以及需要使用多少記憶體之類的層面，有助於決定最適合且具成本效益的節點大小。 在選取節點大小時，通常會假設每次在節點上執行一項工作。 不過，在作業執行期間可能會有多項工作 (因而有多個應用程式執行個體) 在計算節點上[以平行方式執行](batch-parallel-node-tasks.md)。 在此情況下，通常會選擇較大的節點大小，以因應增加的平行工作執行需求。 如需詳細資訊，請參閱[工作排程原則](#task-scheduling-policy)。
 
     集區中所有節點的大小相同。 如果您打算執行具有不同系統需求和/或負載層級的應用程式，建議使用不同的集區。
-* **目標節點數目**
 
-    這是您想要在集區中部署的計算節點數目。 這稱為「目標」  ，因為在某些情況下，您的集區可能無法達到所需的節點數目。 集區未能達到所需節點數目的原因包括：已達到 Batch 帳戶的 [核心配額](batch-quota-limit.md) ，或您套用至集區的自動調整公式限制了節點數目上限 (請參閱下面的＜調整原則＞一節)。
 * **調整原則**
 
     針對動態工作負載，您可以撰寫並將[自動調整公式](#scaling-compute-resources)套用至集區。 Batch 服務將會定期評估您的公式，並根據可以指定的各種集區、作業、和工作參數，調整集區中的節點數目。
+
 * **工作排程原則**
 
     [每個節點的工作數上限](batch-parallel-node-tasks.md) 組態選項會決定可在集區內的每個計算節點上平行執行的工作數目上限。
@@ -336,7 +353,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 * VNet 應該擁有足夠的可用 **IP 位址**以配合集區的 `targetDedicated` 屬性。 如果子網路沒有足夠的可用 IP 位址，Batch 服務會配置集區中部分的計算節點，並傳回調整大小錯誤。
 
-* 指定的子網路必須允許來自 Batch 服務的通訊，才能在計算節點上排程工作。 如果對計算節點的通訊遭到與 VNet 相關聯的「網路安全性群組 (NSG)」拒絕，則 Batch 服務會將計算節點的狀態設為 [無法使用]。 
+* 指定的子網路必須允許來自 Batch 服務的通訊，才能在計算節點上排程工作。 如果對計算節點的通訊遭到與 VNet 相關聯的「網路安全性群組 (NSG)」拒絕，則 Batch 服務會將計算節點的狀態設為 [無法使用]。
 
 * 如果指定之 VNet 有任何相關聯的 NSG，必須啟用輸入通訊。 在 Linux 和 Windows 集區中，必須啟用連接埠 29876 和 29877。 您可以分別針對 Linux 集區上的 SSH 或 Windows 集區上的 RDP，選擇性地啟用 (或選擇性地篩選) 連接埠 22 或 3389。
 
@@ -345,7 +362,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 ### <a name="vnets-for-pools-provisioned-in-the-batch-service"></a>在 Batch 服務中佈建的集區 VNet
 
 在 Batch 服務配置模式中，只有 [雲端服務組態] 集區可以指派 VNet。 此外，指定的 VNet 必須為**傳統** VNet。 不支援使用 Azure Resource Manager 部署模型建立的 VNet。
-   
+
 
 
 * 針對指定的 VNet，*MicrosoftAzureBatch* 服務主體必須有[傳統虛擬機器參與者](../active-directory/role-based-access-built-in-roles.md#classic-virtual-machine-contributor)角色型存取控制 (RBAC) 角色。 在 Azure 入口網站中：
@@ -368,7 +385,7 @@ Batch 可處理使用 Azure 儲存體將應用程式封裝儲存及部署到計�
 
 撰寫 [自動調整公式](batch-automatic-scaling.md#automatic-scaling-formulas) 並將該公式與集區建立關聯，以啟用自動調整。 Batch 服務使用此公式來決定集區中下一個調整間隔 (您可以設定的間隔) 的目標節點數目。 您可以在建立集區時指定集區的自動調整設定，或稍後在集區上啟用調整。 您也可以更新已啟用調整的集區上的調整設定。
 
-例如，或許作業需要您提交非常大量要執行的工作。 您可以指派調整公式給集區，以根據目前已排入佇列的工作數目和作業中工作的完成率來調整集區中的節點數目。 Batch 服務會定期評估公式，並根據工作負載和其他公式設定來調整集區大小。 服務會在有大量排入佇列的工作時視需要新增節點，並在沒有排入佇列或正在執行時移除節點。 
+例如，或許作業需要您提交非常大量要執行的工作。 您可以指派調整公式給集區，以根據目前已排入佇列的工作數目和作業中工作的完成率來調整集區中的節點數目。 Batch 服務會定期評估公式，並根據工作負載和其他公式設定來調整集區大小。 服務會在有大量排入佇列的工作時視需要新增節點，並在沒有排入佇列或正在執行時移除節點。
 
 調整公式可以根據下列度量：
 

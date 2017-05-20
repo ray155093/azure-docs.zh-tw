@@ -3,7 +3,7 @@ title: "監視 Azure Web 應用程式效能 |Microsoft Docs"
 description: "Azure Web 應用程式的應用程式效能監視。 圖表載入和回應時間、相依性資訊以及設定效能警示。"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 0b2deb30-6ea8-4bc4-8ed0-26765b85149f
 ms.service: azure-portal
@@ -11,12 +11,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 03/30/2017
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: c6f25b8cf8c133f44644db1507958b2176efa230
-ms.lasthandoff: 04/13/2017
+ms.date: 05/05/2017
+ms.author: cfreeman
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: da09e09bb0605da583716e125f5d961bfb7af0c7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -40,9 +41,19 @@ ms.lasthandoff: 04/13/2017
 2. 安裝 Application Insights 之後，**檢測您的 Web 應用程式**。 
    
     ![檢測 Web 應用程式](./media/app-insights-azure-web-apps/restart-web-app-for-insights.png)
+
+   針對頁面檢視和使用者遙測**啟用用戶端監視**。
+
+   * 選取 [設定] > [應用程式設定]
+   * 在 [應用程式設定] 之下，新增索引鍵值組︰ 
+   
+    索引鍵︰`APPINSIGHTS_JAVASCRIPT_ENABLED` 
+    
+    值: `true`
+   * **儲存**設定並**重新啟動**您的應用程式。
 3. **監視 Web 應用程式**。  [探索資料](#explore-the-data)。
 
-稍後，您可以視需要使用 Application Insights 來建置並重新部署應用程式。
+稍後，您可以視需要使用 Application Insights 建置應用程式。
 
 如何移除 Application Insights，或切換成傳送到另一個資源？
 
@@ -104,6 +115,7 @@ Application Insights 可以提供更詳細的遙測，方法是將 SDK 安裝至
 
 ## <a name="next-steps"></a>後續步驟
 * [在即時應用程式上執行分析工具](app-insights-profiler.md)。
+* [Azure Functions](https://github.com/christopheranderson/azure-functions-app-insights-sample) - 使用 Application Insights 監視 Azure Functions
 * [能夠讓 Azure 診斷](app-insights-azure-diagnostics.md) 傳送至 Application Insights。
 * [監視服務健康狀態計量](../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md)，確保您的服務可用且回應正常。
 * 每當發生作業事件或計量超過臨界值時，[接收警示通知](../monitoring-and-diagnostics/insights-receive-alert-notifications.md)。
