@@ -1,5 +1,6 @@
 # 概觀
 ## [何謂事件中樞？](event-hubs-what-is-event-hubs.md)
+## [事件中樞功能](event-hubs-features.md)
 ## [常見問題集](event-hubs-faq.md)
 
 # 開始使用

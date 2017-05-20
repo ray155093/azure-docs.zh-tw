@@ -1,85 +1,87 @@
-- name: "LUIS Documentation"
+- name: LUIS 文件
   href: ../index.md
-- name: "Overview"
+- name: 概觀
   items: 
-  - name: "Learn about Language Understanding Intelligent Service"
+  - name: 了解語意辨識智慧服務
     href: Home.md
-- name: "Quickstarts"
+- name: 快速入門
   expanded: true
   items: 
-  - name: "Create a new app"
+  - name: 建立新的應用程式
     href: luis-get-started-create-app.md
-- name: "Tutorials"
+- name: 教學課程
   items: 
-  - name: "Integrate LUIS with a bot using Node.js"
+  - name: 使用 Node.js 整合 bot 與 LUIS
     href: luis-nodejs-tutorial-build-bot-framework-sample.md
-- name: "Concepts"
+- name: 概念
   items: 
-  - name: "Intents"
+  - name: 對應方式
     href: luis-concept-intent.md
-  - name: "Entities"
+  - name: 實體
     href: luis-concept-entity-types.md
-  - name: "Utterances"
+  - name: 表達方式
     href: luis-concept-utterance.md
-  - name: "Support for multiple languages"
+  - name: 支援多種語言
     href: luis-concept-language-support.md
-- name: "How-to guides"
+- name: 使用說明指南
   items: 
-  - name: "Plan your app"
+  - name: 規劃您的應用程式
     href: Plan-your-app.md
-  - name: "Build a LUIS app"
+  - name: 建置 LUIS 應用程式
     items: 
-    - name: "Start a new app"
+    - name: 啟動新的應用程式
       href: Create-new-app.md
-    - name: "Add intents"
+    - name: 新增對應方式
       href: Add-intents.md
-    - name: "Add utterances"
+    - name: 新增表達方式
       href: Add-example-utterances.md
-    - name: "Add entities"
+    - name: 新增實體
       href: Add-entities.md
-    - name: "Improve performance using features"
+    - name: 利用各項功能改善效能
       href: Add-Features.md
-    - name: "Train and test the app"
+    - name: 訓練及測試應用程式
       href: Train-Test.md
-    - name: "Use active learning"
+    - name: 使用主動學習
       href: Label-Suggested-Utterances.md
-    - name: "Publish your app"
+    - name: 發佈您的應用程式
       href: PublishApp.md
-  - name: "Prebuilt models"
+  - name: 預先建置的模型
     items: 
-    - name: "Use prebuilt entities"
+    - name: 使用預先建置的實體
       href: Pre-builtEntities.md
-    - name: "Use prebuilt domains"
+    - name: 使用預先建置的網域
       href: luis-how-to-use-prebuilt-domains.md
-    - name: "Use the Cortana prebuilt app"
+    - name: 使用預先建製的 Cortana 應用程式
       href: Cortana-Prebuilt-App.md
-  - name: "Manage your LUIS app"
+  - name: 管理您的 LUIS 應用程式
     items: 
-    - name: "Monitor your app using the dashboard"
+    - name: 使用儀表板監視您的應用程式
       href: App-Dashboard.md
-    - name: "Manage keys"
+    - name: 管理金鑰
       href: Manage-Keys.md
-    - name: "Create subscription keys"
+    - name: 建立訂用帳戶金鑰
       href: AzureIbizaSubscription.md
-    - name: "Manage versions"
+    - name: 管理版本
       href: luis-how-to-manage-versions.md
-    - name: "Collaborate on a LUIS app"
+    - name: 在 LUIS 應用程式上共同作業
       href: luis-how-to-collaborate.md    
-- name: "Reference"
+- name: 參考
   items: 
-  - name: "LUIS API"
+  - name: 編寫 API
     href: https://westus.dev.cognitive.microsoft.com/docs/services/5890b47c39e2bb17b84a55ff/operations/5890b47c39e2bb052c5b9c2f
-  - name: "SDKs"
+  - name: 端點 API
+    href: https://westus.dev.cognitive.microsoft.com/docs/services/5819c76f40a6350ce09de1ac/operations/5819c77140a63516d81aee78      
+  - name: SDK
     items:
-    - name: "Android"
+    - name: Android
       href: https://github.com/Microsoft/Cognitive-LUIS-Android
-    - name: "Node.js"
+    - name: Node.js
       href: https://github.com/Microsoft/Cognitive-LUIS-Node.js
-    - name: "Python"
+    - name: Python
       href: https://github.com/Microsoft/Cognitive-LUIS-Python
-    - name: "Windows"
+    - name: Windows
       href: https://github.com/Microsoft/Cognitive-LUIS-Windows
-- name: "Resources"
+- name: 資源
   items: 
-  - name: "LUIS FAQ"
+  - name: LUIS 常見問題
     href: luis-resources-faq.md

@@ -12,6 +12,7 @@
 ### [Web Apps 已上市](app-insights-monitor-performance-live-website-now.md)
 ### [Windows 服務](app-insights-windows-services.md)
 ### [Windows 桌面](app-insights-windows-desktop.md)
+### [ASP.NET Core](app-insights-asp-net-core.md)
 
 ## 監視 Java 應用程式
 ### [Web Apps](app-insights-java-get-started.md)
@@ -33,7 +34,8 @@
 ## 規劃和設計
 ### [深入診斷 Web Apps 和服務](app-insights-devops.md)
 ### [監視 Web 應用程式的效能](app-insights-web-monitor-performance.md)
-### [分隔 Application Insights 資源](app-insights-separate-resources.md)
+### [區分開發、測試及生產環境](app-insights-separate-resources.md)
+### [監視具有多個角色的應用程式](app-insights-monitor-multi-role-apps.md)
 ### [我如何在 Application Insights 中...？](app-insights-how-do-i.md)
 
 
@@ -112,7 +114,6 @@
 ### [自訂事件和計量的 API](app-insights-api-custom-events-metrics.md)
 ### [篩選及前置處理遙測](app-insights-api-filtering-sampling.md)
 ### [取樣](app-insights-sampling.md)
-### [ASP.NET Core](app-insights-asp-net-core.md)
 
 ## 管理
 ### [管理價格與配額](app-insights-pricing.md)

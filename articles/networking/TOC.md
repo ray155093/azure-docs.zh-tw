@@ -3,6 +3,7 @@
 ## 架構
 ### [非對稱式路由與多個網路路徑](../expressroute/expressroute-asymmetric-routing.md?toc=%2fazure%2fnetworking%2ftoc.json)
 ### [保護網路設計](../best-practices-network-security.md?toc=%2fazure%2fnetworking%2ftoc.json)
+### [中樞輪輻拓撲](https://docs.microsoft.com/azure/architecture/reference-architectures/hybrid-networking/hub-spoke)
 ### [網路安全性的最佳做法](../security/azure-security-network-security-best-practices.md?toc=%2fazure%2fnetworking%2ftoc.json)
 ### [高可用性的網路虛擬設備](https://docs.microsoft.com/azure/architecture/reference-architectures/dmz/nva-ha )
 ### [合併負載平衡方法](../traffic-manager/traffic-manager-load-balancing-azure.md?toc=%2fazure%2fnetworking%2ftoc.json)

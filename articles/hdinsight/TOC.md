@@ -1,5 +1,5 @@
 # 概觀
-## [Hadoop](hdinsight-hadoop-introduction.md)
+## [關於 HDInsight 和 Hadoop](hdinsight-hadoop-introduction.md)
 ## [HDInsight 上的 Hadoop 元件](hdinsight-component-versioning.md)
 ## [R 伺服器](hdinsight-hadoop-r-server-overview.md)
 ## [Apache Spark](hdinsight-apache-spark-overview.md)
@@ -133,6 +133,7 @@
 ### [使用啟動程序自訂叢集](hdinsight-hadoop-customize-cluster-bootstrap.md)
 ### [使用指令碼動作來自訂叢集](hdinsight-hadoop-customize-cluster-linux.md)
 ### [開發指令碼動作](hdinsight-hadoop-script-actions-linux.md)
+### [安裝並使用 Presto](hdinsight-hadoop-install-presto.md)
 ### [安裝或更新 Mono](hdinsight-hadoop-install-mono.md)
 ### [新增 Hive 程式庫](hdinsight-hadoop-add-hive-libraries.md)
 ### [使用 Giraph](hdinsight-hadoop-giraph-install-linux.md)
@@ -221,5 +222,6 @@
 ### [使用 Ambari API 監視叢集](hdinsight-monitor-use-ambari-api.md)
 
 # 資源
+## [適用於 HDInsight 的 Windows 工具](hdinsight-hadoop-windows-tools.md)
 ## [在論壇上取得協助](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=hdinsight)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)

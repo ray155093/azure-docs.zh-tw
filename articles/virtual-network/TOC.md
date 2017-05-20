@@ -17,14 +17,17 @@
 ### [網路安全性群組](virtual-networks-nsg.md)
 
 ## 部署
-### 虛擬網路
-#### [入口網站](virtual-networks-create-vnet-arm-pportal.md)
-#### [PowerShell](virtual-networks-create-vnet-arm-ps.md)
-#### [CLI](virtual-networks-create-vnet-arm-cli.md)
-#### [範本](virtual-networks-create-vnet-arm-template-click.md)
-#### [入口網站 (傳統)](virtual-networks-create-vnet-classic-pportal.md)
-#### [PowerShell (傳統)](virtual-networks-create-vnet-classic-netcfg-ps.md)
-#### [CLI (傳統)](virtual-networks-create-vnet-classic-cli.md)
+### 虛擬網路 (VNet)
+#### [建立、變更或刪除 VNet](virtual-network-manage-network.md)
+#### [建立、變更或刪除子網路](virtual-network-manage-subnet.md)
+#### [建立 VNet - 多重子網路](virtual-networks-create-vnet-arm-pportal.md) 
+##### [PowerShell](virtual-networks-create-vnet-arm-ps.md)
+##### [CLI](virtual-networks-create-vnet-arm-cli.md)
+##### [範本](virtual-networks-create-vnet-arm-template-click.md)
+#### 建立 VNet - 多重子網路 (傳統)
+##### [入口網站](virtual-networks-create-vnet-classic-pportal.md)
+##### [PowerShell](virtual-networks-create-vnet-classic-netcfg-ps.md)
+##### [CLI](virtual-networks-create-vnet-classic-cli.md)
 
 ### 網路安全性群組
 #### [入口網站](virtual-networks-create-nsg-arm-pportal.md)
@@ -46,8 +49,8 @@
 #### [PowerShell](virtual-networks-create-vnetpeering-arm-ps.md)
 #### [範本](virtual-networks-create-vnetpeering-arm-template-click.md)
 
-### 網路介面
-#### [新增、變更或刪除](virtual-network-network-interface.md)
+### 網路介面 (NIC)
+#### [建立、變更或刪除 NIC](virtual-network-network-interface.md)
 #### [新增、變更或移除 IP 位址](virtual-network-network-interface-addresses.md)
 
 ### [公用 IP 位址](virtual-network-public-ip-address.md)
@@ -81,6 +84,8 @@
 ##### [CLI](virtual-network-multiple-ip-addresses-cli.md)
 ##### [範本](virtual-network-multiple-ip-addresses-template.md)
 
+#### [建立使用加速網路的 VM](virtual-network-create-vm-accelerated-networking.md)
+
 ### 連線能力案例
 #### [虛擬網路 (VNet) 至 VNet](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 #### [VNet (Resource Manager) 至 VNet (傳統)](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
@@ -98,9 +103,6 @@
 ##### [範例應用程式](virtual-networks-sample-app.md)
 
 ## 設定
-### VM 加速網路
-#### [Azure 入口網站](virtual-network-accelerated-networking-portal.md)
-#### [PowerShell](virtual-network-accelerated-networking-powershell.md)
 ### [最佳化 VM 網路輸送量](virtual-network-optimize-network-bandwidth.md)
 ### 存取控制清單
 #### [傳統入口網站](virtual-networks-acl.md)

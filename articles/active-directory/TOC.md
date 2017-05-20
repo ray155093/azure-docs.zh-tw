@@ -1,8 +1,9 @@
 # 概觀
 ## [什麼是 Azure Active Directory？](active-directory-whatis.md)
 ## [選擇版本](active-directory-editions.md)
-
-## [關於 Azure 身分識別管理](identity-fundamentals.md)
+## [關於 Azure 身分識別管理](fundamentals-identity.md)
+## [了解 Azure 身分識別解決方案](understand-azure-identity-solutions.md)
+## [預覽 Azure 入口網站體驗](active-directory-preview-explainer.md)
 
 # 開始使用
 ## [取得 Azure AD 租用戶](active-directory-howto-tenant.md)
@@ -91,16 +92,17 @@
 #### [下載中缺少的資料](active-directory-reporting-troubleshoot-missing-data-download.md)
 ###    程式設計存取
 #### [稽核參考](active-directory-reporting-api-audit-reference.md)
-#### [稽核範例](active-directory-reporting-api-audit-samples.md)
-#### [取得資料](active-directory-reporting-api-with-certificates.md)
-#### [必要條件](active-directory-reporting-api-prerequisites.md)
 #### [登入參考](active-directory-reporting-api-sign-in-activity-reference.md)
+#### [必要條件](active-directory-reporting-api-prerequisites-azure-portal.md)
+#### [稽核範例](active-directory-reporting-api-audit-samples.md)
 #### [登入範例](active-directory-reporting-api-sign-in-activity-samples.md)
+#### [取得資料](active-directory-reporting-api-with-certificates.md)
 ### [傳統入口網站](active-directory-view-access-usage-reports.md)
 #### [Azure AD 報告](active-directory-reporting-getting-started.md)
 #### [報告指南](active-directory-reporting-guide.md)
 #### [已知的網路](active-directory-known-networks.md)
 #### [API](active-directory-reporting-api-getting-started.md)
+##### [必要條件](active-directory-reporting-api-prerequisites.md)
 #### [稽核事件](active-directory-reporting-audit-events.md)
 #### [延遲](active-directory-reporting-latencies.md)
 #### [Notifications](active-directory-reporting-notifications.md)
@@ -171,11 +173,14 @@
 ##### [搭配 KCD 的 SSO](active-directory-application-proxy-sso-using-kcd.md)
 ##### [搭配標頭的 SSO](application-proxy-ping-access.md)
 ##### [搭配密碼保存庫的 SSO](application-proxy-sso-azure-portal.md)
-#### 了解最佳做法
+#### 概念
 ##### [連接器](application-proxy-understand-connectors.md)
 ##### [安全性](application-proxy-security-considerations.md)
 ##### [網路](application-proxy-network-topology-considerations.md)
-#### 
+
+
+##### [從 TMG 或 UAG 升級](application-proxy-transition-from-uag-tmg.md)
+
 #### 進階組態
 ##### [在不同網路上發佈](active-directory-application-proxy-connectors-azure-portal.md)
 ##### [Proxy 伺服器](application-proxy-working-with-proxy-servers.md)
@@ -186,7 +191,6 @@
 #### 發佈逐步解說
 ##### [遠端桌面](application-proxy-publish-remote-desktop.md)
 ##### [SharePoint](application-proxy-enable-remote-access-sharepoint.md)
-##### [Microsoft Forefront](application-proxy-transition-from-uag-tmg.md)
 #### [疑難排解](active-directory-application-proxy-troubleshoot.md)
 #### 使用傳統入口網站
 ##### [下載連接器](application-proxy-enable-classic-portal.md)
@@ -201,12 +205,6 @@
 #### [移除使用者](active-directory-coreapps-remove-assignment-azure-portal.md)
 #### [檢視我的所有應用程式](active-directory-coreapps-view-azure-portal.md)
 #### [管理使用者帳戶佈建](active-directory-enterprise-apps-manage-provisioning.md)
-
-### 開發
-#### [指派使用者](active-directory-applications-guiding-developers-assigning-users.md)
-#### [指派群組](active-directory-applications-guiding-developers-assigning-groups.md)
-#### [需要指派](active-directory-applications-guiding-developers-requiring-user-assignment.md)
-#### [開發 LoB 應用程式](active-directory-applications-guiding-developers-for-lob-applications.md)
 
 ### [管理應用程式的存取權](active-directory-managing-access-to-apps.md)
 #### [自助服務存取](active-directory-self-service-application-access.md)
@@ -226,7 +224,7 @@
 ##### [存取面板](active-directory-application-access-panel-content-map.md)
 ##### [應用程式 Proxy](active-directory-application-proxy-content-map.md)
 ##### [條件式存取](active-directory-application-conditional-access-content-map.md)
-
+### [開發應用程式](active-directory-applications-guiding-developers-for-lob-applications.md)
 ### [文件庫](active-directory-apps-index.md)
 
 ## 管理您的目錄
@@ -294,6 +292,7 @@
 ##### [依資源](role-based-access-control-configure.md)
 #### [內建角色](role-based-access-built-in-roles.md)
 #### [自訂角色](role-based-access-control-custom-roles.md)
+#### [為內部及外部使用者指派自訂角色](role-based-access-control-create-custom-roles-for-internal-external-users.md)
 #### [報告](role-based-access-control-access-change-history-report.md)
 #### 更多管理角色的方式
 ##### [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
@@ -306,12 +305,13 @@
 ## 保護您的身分識別
 ### [條件式存取](active-directory-conditional-access-azure-portal.md)
 #### [開始使用](active-directory-conditional-access-azure-portal-get-started.md)
+#### [最佳作法](active-directory-conditional-access-best-practices.md)
+#### [技術參考](active-directory-conditional-access-technical-reference.md)
 #### [支援的應用程式](active-directory-conditional-access-supported-apps.md)
 #### [了解裝置原則](active-directory-conditional-access-device-policies.md)
 #### [設定已連接應用程式的存取權](active-directory-conditional-access-policy-connected-applications.md)
-#### [技術參考](active-directory-conditional-access-technical-reference.md)
-#### [常見問題集](active-directory-conditional-faqs.md)
 #### [補救](active-directory-conditional-access-device-remediation.md)
+#### [常見問題集](active-directory-conditional-faqs.md)
 #### [傳統入口網站](active-directory-conditional-access.md)
 ##### [開始使用](active-directory-conditional-access-azuread-connected-apps.md)
 
@@ -332,6 +332,7 @@
 #### [登入體驗](active-directory-identityprotection-flows.md)
 #### [模擬風險事件](active-directory-identityprotection-playbook.md)
 #### [解除封鎖使用者](active-directory-identityprotection-unblock-howto.md)
+#### [常見問題集](active-directory-identity-protection-faqs.md)
 #### [詞彙](active-directory-identityprotection-glossary.md)
 #### [Microsoft Graph](active-directory-identityprotection-graph-getting-started.md)
 ### [Privileged Identity Management](./privileged-identity-management/active-directory-securing-privileged-access.md)

@@ -71,9 +71,11 @@
 ### [Azure 備份中的檔案和資料夾備份速度緩慢](backup-azure-troubleshoot-slow-backup-performance-issue.md)
 
 # 概念
+## [復原服務保存庫概觀](backup-azure-recovery-services-vault-overview.md)
+## [將備份保存庫升級為復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)
+## [刪除 Azure 備份保存庫](backup-azure-delete-vault.md)
 ## [角色型存取控制](backup-rbac-rs-vault.md)
 ## [混合式備份的安全性](backup-azure-security-feature.md)
-## [刪除 Azure 備份保存庫](backup-azure-delete-vault.md)
 ## [設定離線備份](backup-azure-backup-import-export.md)
 ## [取代您的磁帶程式庫](backup-azure-backup-cloud-as-tape.md)
 ## [Linux VM 的應用程式一致備份](backup-azure-linux-app-consistent.md)

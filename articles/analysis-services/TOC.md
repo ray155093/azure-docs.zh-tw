@@ -1,11 +1,10 @@
 # 概觀
-
 ## [什麼是 Azure Analysis Services？](analysis-services-overview.md)
 
-# 開始使用
-## [建立伺服器](analysis-services-create-server.md)
-## [部署至伺服器](analysis-services-deploy.md)
-## [連線](analysis-services-connect.md)
+# 快速入門
+## [建立伺服器 - 入口網站](analysis-services-create-server.md)
+## [部署模型 - SSDT](analysis-services-deploy.md)
+
 
 # 教學課程
 ## 建立和部署模型
@@ -31,6 +30,7 @@
 ## [管理伺服器](analysis-services-manage.md)
 ## [管理使用者](analysis-services-manage-users.md)
 ## [整合內部部署資料閘道](analysis-services-gateway.md)
+## [連線至伺服器](analysis-services-connect.md)
 ## [與 Excel 連線](analysis-services-connect-excel.md)
 ## [與 Power BI 連線](analysis-services-connect-pbi.md)
 ## [取得用戶端程式庫](analysis-services-data-providers.md)

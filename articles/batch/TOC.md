@@ -29,6 +29,10 @@
 ## 管理
 ### [Batch PowerShell Cmdlet](batch-powershell-cmdlets-get-started.md)
 ### [Azure CLI](batch-cli-get-started.md)
+#### [建立 Batch 帳戶](./scripts/batch-cli-sample-create-account.md)
+#### [新增應用程式](./scripts/batch-cli-sample-add-application.md)
+#### [管理集區](./scripts/batch-cli-sample-manage-pool.md)
+#### [執行作業和工作](./scripts/batch-cli-sample-run-job.md)
 
 # 參考
 ## [PowerShell](/powershell/module/azurerm.batch)
@@ -63,7 +67,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=batch&updatetype=&platform=)
 ## [C# 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
 ## [Python 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
-## [CLI 範例](batch-cli-samples.md)
 ## [大量計算資源](big-compute-resources.md)
 ## [部落格](https://blogs.technet.microsoft.com/windowshpc/)
 

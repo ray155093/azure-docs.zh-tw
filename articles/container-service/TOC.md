@@ -29,6 +29,7 @@
 ### [DC/OS 中的應用程式/使用者特定協調者](container-service-application-specific-marathon.md)
 ### [新增檔案共用](container-service-dcos-fileshare.md)
 ### [使用 Azure 容器登錄](container-service-dcos-acr.md)
+### [具備 Vamp 的 Canary 版本](container-service-dcos-vamp-canary-release.md)
 ### 監視 DC/OS
 #### [透過 ELK 進行監視](container-service-monitoring-elk.md)
 #### [透過 OMS 進行監視](container-service-monitoring-oms.md)

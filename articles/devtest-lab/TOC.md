@@ -9,7 +9,7 @@
 ## [建立您的第一個 VM](devtest-lab-create-first-vm.md)
 ## [設定開始原則](devtest-lab-get-started-with-lab-policies.md)
 
-# 作法
+# 使用說明指南
 ## 在實驗室中使用 VM
 ### [建立 VM](devtest-lab-add-vm.md)
 ### [建立可宣告 VM](devtest-lab-add-claimable-vm.md)
@@ -44,6 +44,8 @@
 ## 管理虛擬網路
 ### [設定虛擬網路](devtest-lab-configure-vnet.md)
 ### [選取 IP 設定選項](devtest-lab-shared-ip.md)
+
+## [調整您的實驗室](devtest-lab-scale-lab.md)
 
 # 參考
 ## [CLI 2.0](/cli/azure/lab)
