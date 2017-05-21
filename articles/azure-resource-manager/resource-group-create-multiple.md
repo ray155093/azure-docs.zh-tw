@@ -12,145 +12,103 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/17/2017
+ms.date: 05/11/2017
 ms.author: tomfitz
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 8ecf7c058b90fd18e41fd4e1cbc29e22dfeb0883
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: e98fa067c0ed385fe20f66645311c9fd51cd6456
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
-# <a name="deploy-multiple-instances-of-resources-in-azure-resource-manager-templates"></a>在 Azure Resource Manager 範本中部署資源的多個執行個體
+# <a name="deploy-multiple-instances-of-a-resource-or-property-in-azure-resource-manager-templates"></a>在 Azure Resource Manager 範本中部署資源或屬性的多個執行個體
 此主題說明如何逐一查看您的「Azure 資源管理員」範本，以建立資源的多個執行個體。
 
-## <a name="copy-and-copyindex"></a>複製和 copyindex
+## <a name="resource-iteration"></a>資源反覆項目
+若要建立多個資源類型的執行個體，請將 `copy` 元素新增至資源類型。 在複製元素中，您可以指定反覆項目的數目以及此迴圈的名稱。 計數值必須為不超過 800 的正整數。 Resource Manager 會以平行方式建立資源。 因此，不保證資源會循序建立。 若要循序建立重複列舉的資源，請參閱 [Azure Resource Manager 範本的循序迴圈](resource-manager-sequential-loop.md)。 
+
 建立多個時間的資源需使用下列格式：
 
 ```json
-"resources": [ 
-  { 
-      "name": "[concat('examplecopy-', copyIndex())", 
-      "type": "Microsoft.Web/sites", 
-      "location": "East US", 
-      "apiVersion": "2015-08-01",
-      "copy": { 
-         "name": "websitescopy", 
-         "count": "[parameters('count')]" 
-      }, 
-      "properties": {
-          "serverFarmId": "hostingPlanName"
-      } 
-  } 
-]
-```
-
-請注意，逐一查看的次數會在複製物件中指定：
-
-```json
-"copy": { 
-    "name": "websitescopy", 
-    "count": "[parameters('count')]" 
-} 
-```
-
-計數值必須為不超過 800 的正整數。
-
-請注意，每個資源的名稱均包含 `copyIndex()` 函式，並會傳回目前的反覆項目迴圈。
-
-```json
-"name": "[concat('examplecopy-', copyIndex())]",
-```
-
-如果您部署三個網站，這些網站將名為：
-
-* examplecopy-0
-* examplecopy-1
-* examplecopy-2。
-
-若要位移索引值，您可以傳遞如同 `copyIndex(1)` 的 copyIndex() 函式。 要執行的反覆項目數仍然在複製項目中指定，但 copyIndex 的值會由指定的值位移。 因此，使用和前一個範例相同的範本，但指定 copyIndex(1) 時，部署的三個網站將名為：
-
-* examplecopy-1
-* examplecopy-2
-* examplecopy-3
-
-Resource Manager 會以平行方式建立資源。 因此，不保證資源會循序建立。 若要循序建立重複列舉的資源，請參閱 [Azure Resource Manager 範本的循序迴圈](resource-manager-sequential-loop.md)。 
-
-您只能將 copy 物件套用至最上層資源。 您不能將它套用至資源類型上的屬性或套用至子資源。 下列虛擬程式碼範例示範可將 copy 套用到的位置︰
-
-```json
-"resources": [
-  {
-    "type": "{provider-namespace-and-type}",
-    "name": "parentResource",
-    "copy": {  
-      /* Yes, copy can be applied here */
-    },
-    "properties": {
-      "exampleProperty": {
-        /* No, copy cannot be applied here */
-      }
-    },
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
     "resources": [
-      {
-        "type": "{provider-type}",
-        "name": "childResource",
-        /* No, copy cannot be applied here. The resource must be promoted to top-level. */ 
-      }
-    ]
-  }
-] 
+        {
+            "apiVersion": "2016-01-01",
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[concat(copyIndex(),'storage', uniqueString(resourceGroup().id))]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Standard_LRS"
+            },
+            "kind": "Storage",
+            "properties": {},
+            "copy": {
+                "name": "storagecopy",
+                "count": 3
+            }
+        }
+    ],
+    "outputs": {}
+}
 ```
 
-若要使用子資源，請參閱為[子資源建立多個執行個體](#create-multiple-instances-of-a-child-resource)。
+請注意，每個資源的名稱均包含 `copyIndex()` 函式，並會傳回目前的反覆項目迴圈。 `copyIndex()`是以零為基礎。 因此，下列範例：
 
-雖然您無法將複製套用到屬性，該屬性仍屬於屬性所在資源的反覆項目。 因此，您可以在屬性內使用 copyIndex() 來指定值。 若要建立多個屬性的值，請參閱[為資源類型的屬性建立多個執行個體](resource-manager-property-copy.md)。
+```json
+"name": "[concat('storage', copyIndex())]",
+```
 
-## <a name="use-copy-with-array"></a>搭配陣列使用複製
-使用陣列時，複製作業會有幫助，因為您可以逐一查看陣列中的每個項目。 部署名稱如下的三個網站：
+會建立這些名稱︰
 
-* examplecopy-Contoso
-* examplecopy-Fabrikam
-* examplecopy-Coho
+* storage0
+* storage1
+* storage2.
 
-使用下列範本：
+若要位移索引值，您可以傳遞 copyIndex() 函式中的值。 要執行的反覆項目數仍然在複製項目中指定，但 copyIndex 的值會由指定的值位移。 因此，下列範例：
+
+```json
+"name": "[concat('storage', copyIndex(1))]",
+```
+
+會建立這些名稱︰
+
+* storage1
+* storage2
+* storage3
+
+使用陣列時，複製作業會有幫助，因為您可以逐一查看陣列中的每個項目。 使用陣列上的 `length` 函式指定反覆項目的計數，並使用 `copyIndex` 來擷取陣列中目前的索引。 因此，下列範例：
 
 ```json
 "parameters": { 
   "org": { 
      "type": "array", 
      "defaultValue": [ 
-         "Contoso", 
-         "Fabrikam", 
-         "Coho" 
+         "contoso", 
+         "fabrikam", 
+         "coho" 
       ] 
   }
 }, 
 "resources": [ 
   { 
-      "name": "[concat('examplecopy-', parameters('org')[copyIndex()])]", 
-      "type": "Microsoft.Web/sites", 
-      "location": "East US", 
-      "apiVersion": "2015-08-01",
+      "name": "[concat('storage', parameters('org')[copyIndex()])]", 
       "copy": { 
-         "name": "websitescopy", 
+         "name": "storagecopy", 
          "count": "[length(parameters('org'))]" 
       }, 
-      "properties": {
-          "serverFarmId": "hostingPlanName"
-      } 
+      ...
   } 
 ]
 ```
 
-請注意，`length` 函式係用來指定計數。 您可以提供陣列為 length 函數的參數。
+會建立這些名稱︰
 
-```json
-"copy": {
-    "name": "websitescopy",
-    "count": "[length(parameters('siteNames'))]"
-}
-```
+* storagecontoso
+* storagefabrikam
+* storagecoho
 
 ## <a name="depend-on-resources-in-a-loop"></a>依迴圈中的資源而定
 您可以透過使用 `dependsOn` 元素，讓某個資源在另一個資源之後才部署。 若要部署相依於迴圈中資源集合的資源時，請在 dependsOn 元素中提供複製迴圈的名稱。 下列範例示範如何在部署虛擬機器之前部署三個儲存體帳戶。 不會顯示完整的虛擬機器定義。 請注意，複製元素將名稱設定為 `storagecopy`，並將虛擬機器的 dependsOn 元素設定為 `storagecopy`。
@@ -162,16 +120,18 @@ Resource Manager 會以平行方式建立資源。 因此，不保證資源會�
     "parameters": {},
     "resources": [
         {
-            "apiVersion": "2015-06-15",
+            "apiVersion": "2016-01-01",
             "type": "Microsoft.Storage/storageAccounts",
-            "name": "[concat('storage', uniqueString(resourceGroup().id), copyIndex())]",
+            "name": "[concat(copyIndex(),'storage', uniqueString(resourceGroup().id))]",
             "location": "[resourceGroup().location]",
-            "properties": {
-                "accountType": "Standard_LRS"
+            "sku": {
+                "name": "Standard_LRS"
             },
-            "copy": { 
-                "name": "storagecopy", 
-                "count": 3 
+            "kind": "Storage",
+            "properties": {},
+            "copy": {
+                "name": "storagecopy",
+                "count": 3
             }
         },
         {

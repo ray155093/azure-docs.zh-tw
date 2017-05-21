@@ -1,128 +1,128 @@
-- name: "Functions 文件"
+- name: Functions 文件
   href: index.yml
-- name: "概觀"
+- name: 概觀
   items:
-  - name: "關於函式"
+  - name: 關於函式
     href: functions-overview.md
-  - name: "Functions 執行階段"
+  - name: Functions 執行階段
     href: functions-runtime-overview.md
-  - name: "在 Flow、Logic Apps、Functions 和 WebJobs 之間做選擇"
+  - name: 在 Flow、Logic Apps、Functions 和 WebJobs 之間做選擇
     href: functions-compare-logic-apps-ms-flow-webjobs.md
-- name: "快速入門"
+- name: 快速入門
   expanded: true
   items:
-  - name: "建立函式 - 入口網站"
+  - name: 建立函式 - 入口網站
     href: functions-create-first-azure-function.md
-  - name: "建立函式 - Azure CLI"
+  - name: 建立函式 - Azure CLI
     href: functions-create-first-azure-function-azure-cli.md
 #  - name: Create function - Visual Studio
 #    href: functions-create-your-first-function-visual-studio.md
-  - name: "觸發程序"
+  - name: 觸發程序
     items:
-    - name: "計時器"
+    - name: 計時器
       href: functions-create-scheduled-function.md
-    - name: "GitHub webhook"
+    - name: GitHub webhook
       href: functions-create-github-webhook-triggered-function.md
-    - name: "Blob 儲存體"
+    - name: Blob 儲存體
       href: functions-create-storage-blob-triggered-function.md
-    - name: "佇列儲存體"
+    - name: 佇列儲存體
       href: functions-create-storage-queue-triggered-function.md
-  - name: "整合"
+  - name: 整合
     items:
-    - name: "儲存體"
+    - name: 儲存體
       href: functions-integrate-storage-queue-output-binding.md
-#    - name: Cosmos DB
-#      href: functions-integrate-store-unstructured-data-cosmosdb.md
-- name: "範例"
+    - name: Cosmos DB
+      href: functions-integrate-store-unstructured-data-cosmosdb.md
+- name: 範例
   items:
-  - name: "Azure CLI"
+  - name: Azure CLI
     href: functions-cli-samples.md
-- name: "教學課程"
+- name: 教學課程
   items:
-  - name: "1 - 搭配使用 Functions 與 Logic Apps"
+  - name: 1 - 搭配使用 Functions 與 Logic Apps
     href: functions-twitter-email.md
-  - name: "2 - 建立無伺服器 API"
+  - name: 2 - 建立無伺服器 API
     href: functions-create-serverless-api.md
-- name: "概念"
+- name: 概念
   items:
-  - name: "主機方案"
+  - name: 主機方案
     href: functions-scale.md
-  - name: "觸發和繫結"
+  - name: 觸發和繫結
     href: functions-triggers-bindings.md
-- name: "使用說明指南"
+- name: 使用說明指南
   items:
-  - name: "測試 Azure Functions"
+  - name: 測試 Azure Functions
     href: functions-test-a-function.md
-  - name: "在本機開發及偵錯"
+  - name: 在本機開發及偵錯
     href: functions-run-local.md
-  - name: "設定函式應用程式設定"
+  - name: 設定函式應用程式設定
     href: functions-how-to-use-azure-function-app-settings.md
-  - name: "Azure Functions 的持續部署"
+  - name: Azure Functions 的持續部署
     href: functions-continuous-deployment.md
-  - name: "使用基礎結構即程式碼部署 Functions"
+  - name: 使用基礎結構即程式碼部署 Functions
     href: functions-infrastructure-as-code.md
-  - name: "監視 Azure Functions"
+  - name: 監視 Azure Functions
     href: functions-monitoring.md
-  - name: "安裝 Functions 執行階段"
+  - name: 安裝 Functions 執行階段
     href: functions-runtime-install.md
-- name: "參考"
+- name: 參考
   items:
-  - name: "開發函數應用程式"
+  - name: 開發函數應用程式
     href: functions-reference.md
     items:
-    - name: "開啟 API 2.0"
+    - name: 開啟 API 2.0
       href: functions-api-definition.md
-  - name: "Azure Functions 的最佳做法"
+  - name: Azure Functions 的最佳做法
     href: functions-best-practices.md
-  - name: "繫結"
+  - name: 繫結
     items:
-    - name: "DocumentDB 繫結"
+    - name: Cosmos DB 繫結
       href: functions-bindings-documentdb.md
-    - name: "事件中樞繫結"
+    - name: 事件中樞繫結
       href: functions-bindings-event-hubs.md
-    - name: "HTTP 和 Webhook 繫結"
+    - name: HTTP 和 Webhook 繫結
       href: functions-bindings-http-webhook.md
-    - name: "Mobile Apps 繫結"
+    - name: Mobile Apps 繫結
       href: functions-bindings-mobile-apps.md
-    - name: "通知中樞輸出繫結"
+    - name: 通知中樞輸出繫結
       href: functions-bindings-notification-hubs.md
-    - name: "佇列和主題的服務匯流排觸發程序和繫結"
+    - name: 佇列和主題的服務匯流排觸發程序和繫結
       href: functions-bindings-service-bus.md
-    - name: "SendGrid 繫結"
+    - name: SendGrid 繫結
       href: functions-bindings-sendgrid.md
-    - name: "儲存體繫結"
+    - name: 儲存體繫結
       items:
-      - name: "Blob 繫結"
+      - name: Blob 繫結
         href: functions-bindings-storage-blob.md
-      - name: "佇列繫結"
+      - name: 佇列繫結
         href: functions-bindings-storage-queue.md
-      - name: "資料表繫結"
+      - name: 資料表繫結
         href: functions-bindings-storage-table.md
-      - name: "外部檔案繫結"
+      - name: 外部檔案繫結
         href: functions-bindings-external-file.md
-    - name: "SendGrid 繫結"
+    - name: SendGrid 繫結
       href: functions-bindings-sendgrid.md
-    - name: "計時器觸發程序"
+    - name: 計時器觸發程序
       href: functions-bindings-timer.md
-    - name: "Twilio 輸出繫結"
+    - name: Twilio 輸出繫結
       href: functions-bindings-twilio.md
-  - name: "架構"
+  - name: 架構
     items:
-    - name: "C#"
+    - name: 'C#'
       href: functions-reference-csharp.md
-    - name: "F#"
+    - name: 'F#'
       href: functions-reference-fsharp.md
-    - name: "JavaScript"
+    - name: JavaScript
       href: functions-reference-node.md
-- name: "資源"
+- name: 資源
   items:
-  - name: "價格"
+  - name: 價格
     href: https://azure.microsoft.com/pricing/details/functions/
-  - name: "MSDN 論壇"
+  - name: MSDN 論壇
     href: https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureFunctions
-  - name: "堆疊溢位"
+  - name: 堆疊溢位
     href: http://stackoverflow.com/questions/tagged/azure-functions
-  - name: "Azure Functions GitHub 存放庫"
+  - name: Azure Functions GitHub 存放庫
     href: https://github.com/Azure/Azure-Functions/
-  - name: "服務更新"
+  - name: 服務更新
     href: https://azure.microsoft.com/en-us/updates/?product=functions&updatetype=&platform=

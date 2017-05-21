@@ -11,6 +11,7 @@
 ## [連線的處理站解決方案概觀](iot-suite-connected-factory-overview.md)
 ## [遠端監視解決方案的逐步解說](iot-suite-remote-monitoring-sample-walkthrough.md)
 ## [預防性維護解決方案的逐步解說](iot-suite-predictive-walkthrough.md)
+## [連線的處理站解決方案逐步解說](iot-suite-connected-factory-sample-walkthrough.md)
 ## [連接您的 Raspberry Pi](iot-suite-raspberry-pi-kit-get-started.md)
 ### 使用 C
 #### [模擬的資料](iot-suite-raspberry-pi-kit-c-get-started-simulator.md)

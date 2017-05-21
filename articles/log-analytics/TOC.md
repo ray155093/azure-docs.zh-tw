@@ -58,6 +58,7 @@
 ### [AD 複寫狀態](log-analytics-ad-replication-status.md)
 ### [警示管理](log-analytics-solution-alert-management.md)
 ### [Azure SQL 分析](log-analytics-azure-sql.md)
+### [Azure Web Apps 分析](log-analytics-azure-web-apps-analytics.md)
 ### [容量和效能](log-analytics-capacity.md)
 ### [變更追蹤](log-analytics-change-tracking.md)
 ### [容器](log-analytics-containers.md)

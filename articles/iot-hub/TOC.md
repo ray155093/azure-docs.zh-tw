@@ -116,7 +116,7 @@
 ### [安全性最佳做法](iot-hub-security-best-practices.md)
 ### [安全性架構](iot-hub-security-architecture.md)
 ### [保護您的 IoT 部署](iot-hub-security-deployment.md)
-## 閘道器 SDK
+## IoT Edge
 ### 模擬裝置
 #### [Linux](iot-hub-linux-gateway-sdk-simulated-device.md)
 #### [Windows](iot-hub-windows-gateway-sdk-simulated-device.md)
@@ -129,7 +129,7 @@
 ## [Java (服務)](/java/api/com.microsoft.azure.sdk.iot.service)
 ## [Java (裝置)](/java/api/com.microsoft.azure.sdk.iot.device)
 ## [Azure IoT SDK](http://azure.github.io/azure-iot-sdks/)
-## [閘道器 SDK](http://azure.github.io/azure-iot-gateway-sdk)
+## [Azure IoT Edge](http://azure.github.io/iot-edge/)
 ## [REST (資源提供者)](https://docs.microsoft.com/rest/api/iothub/iothubresource)
 ## [REST (裝置身分識別)](https://docs.microsoft.com/rest/api/iothub/deviceapi)
 ## [REST (裝置對應項)](https://docs.microsoft.com/rest/api/iothub/devicetwinapi)

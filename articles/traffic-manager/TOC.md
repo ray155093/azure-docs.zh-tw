@@ -2,6 +2,7 @@
 ## [什麼是流量管理員？](traffic-manager-overview.md)
 ## [路由方法](traffic-manager-routing-methods.md)
 ### [流量管理員使用的國家/區域階層](traffic-manager-geographic-regions.md)
+## [巢狀流量管理員設定檔](traffic-manager-nested-profiles.md)
 ## [端點類型](traffic-manager-endpoint-types.md)
 ## [端點監視](traffic-manager-monitoring.md)
 ## [常見問題集](traffic-manager-FAQs.md)

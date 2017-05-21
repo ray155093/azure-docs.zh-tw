@@ -36,6 +36,7 @@
 ### [產生進階 HTTP 報告](cdn-advanced-http-reports.md)
 ### [檢視即時統計資料](cdn-real-time-stats.md)
 ### [分析邊緣效能](cdn-edge-performance.md)
+### [匯出診斷記檔與計量](cdn-log-analysis.md)
 
 ## 開發
 ### [.NET](cdn-app-dev-net.md)
