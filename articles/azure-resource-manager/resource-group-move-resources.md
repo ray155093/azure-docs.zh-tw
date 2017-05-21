@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 04/10/2017
 ms.author: tomfitz
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
-ms.openlocfilehash: cc2a24b26b152671173770adfd4aefcfcb2512d4
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: f1b9beabfb0a92e5cc49d6af762693ae45a85e42
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -86,14 +86,14 @@ ms.lasthandoff: 05/02/2017
 * 內容仲裁
 * 資料目錄
 * Data Factory
-* 資料湖分析
+* Data Lake Analytics
 * Data Lake Store
 * DNS
-* DocumentDB
+* Azure Cosmos DB
 * 事件中樞
 * HDInsight 叢集 - 請參閱 [HDInsight 限制](#hdinsight-limitations)
 * IoT 中樞
-* 金鑰保存庫 
+* Key Vault 
 * 負載平衡器
 * Logic Apps
 * 機器學習服務
@@ -126,19 +126,20 @@ ms.lasthandoff: 05/02/2017
 
 * AD 混合式健康狀態服務
 * 應用程式閘道
+* 具有使用受控磁碟之虛擬機器的可用性設定組
 * BizTalk 服務
 * 容器服務
 * ExpressRoute
 * DevTest Labs - 已啟用移動至相同訂用帳戶中新資源群組的功能，但未啟用跨訂用帳戶之間的移動。
 * Dynamics LCS
+* 從受控磁碟建立的映像
+* 受控磁碟
+* 受管理的應用程式
 * 復原服務保存庫 - 也不會移動與「復原服務」保存庫關聯的「計算」、「網路」及「儲存體」資源，請參閱 [復原服務限制](#recovery-services-limitations)。
 * 安全性
-* 憑證儲存在金鑰保存庫的虛擬機器
-* 使用受控磁碟的虛擬機器
-* 具有使用受控磁碟之虛擬機器的可用性設定組
-* 受控磁碟
-* 從受控磁碟建立的映像
 * 從受控磁碟建立的快照集
+* 憑證儲存在 Key Vault 的虛擬機器
+* 使用受控磁碟的虛擬機器
 * 虛擬網路 (傳統) - 請參閱 [傳統部署限制](#classic-deployment-limitations)
 * 從 Marketplace 資源建立的虛擬機器 - 無法在訂用帳戶之間移動。 資源必須先在目前的訂用帳戶中取消佈建，並於新訂用帳戶中再次部署
 
@@ -214,7 +215,7 @@ App Service 方案不需要位於與應用程式相同的資源群組，應用�
 * 目標訂用帳戶不得包含任何其他傳統資源。
 * 只能透過適用於傳統移動的個別 REST API 來要求移動。 將傳統資源移到新的訂用帳戶時，標準 Resource Manager 移動命令無法運作。
 
-若要將傳統資源移到新的訂用帳戶，請使用入口網站或傳統資源特定的 REST 作業。 如需有關透過入口網站移動傳統資源的資訊，請參閱[使用入口網站](#use-portal)。 若要使用 REST，請執行下列步驟：
+若要將傳統資源移到新的訂用帳戶，請使用傳統資源特定的 REST 作業。 若要使用 REST，請執行下列步驟：
 
 1. 請檢查來源訂用帳戶是否可以參與跨訂用帳戶移動。 請使用下列作業：
 
