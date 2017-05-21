@@ -12,12 +12,13 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 04/21/2017
+ms.date: 05/04/2017
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 5bbdd1db655c080b4372f6728bb47207757209e4
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: a0e245121f2a9ff4109b281cd7286ed601bf64ac
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -27,12 +28,20 @@ ms.lasthandoff: 04/27/2017
 
 ![Web 應用程式與自訂 SSL 憑證](./media/app-service-web-tutorial-custom-ssl/app-with-custom-ssl.png)
 
+在本教學課程中，您了解如何：
+
+> [!div class="checklist"]
+> * 升級應用程式的定價層
+> * 將自訂 SSL 憑證繫結至 App Service
+> * 為應用程式強制使用 HTTPS
+> * 使用指令碼來自動繫結 SSL 憑證
+
 > [!TIP]
 > 如果您需要自訂 SSL 憑證，可以直接在 Azure 入口網站取得，並將它繫結至 web 應用程式。 遵循 [App Service 憑證教學課程](web-sites-purchase-ssl-web-site.md)。 
 >
 > 
 
-## <a name="before-you-begin"></a>開始之前
+## <a name="prerequisites"></a>必要條件
 在依照本教學課程進行之前，請先確定您已完成下列項目：
 
 - [建立 App Service 應用程式](/azure/app-service/)
@@ -109,7 +118,7 @@ ms.lasthandoff: 04/27/2017
 openssl pkcs12 -export -out myserver.pfx -inkey myserver.key -in myserver.crt
 ```
 
-如果您使用 IIS 或 `Certreq.exe` 來產生憑證要求，請先將您的憑證安裝至本機電腦，然後遵循[將包含私密金鑰的憑證匯出](https://technet.microsoft.com/library/cc754329(v=ws.11).aspx)的步驟將它匯出為 PFX。
+如果您使用 IIS 或 _Certreq.exe_ 來產生憑證要求，請先將您的憑證安裝至本機電腦，然後遵循[將包含私密金鑰的憑證匯出](https://technet.microsoft.com/library/cc754329(v=ws.11).aspx)的步驟將它匯出為 PFX。
 
 ### <a name="upload-your-ssl-certificate"></a>上傳 SSL 憑證
 
@@ -156,7 +165,7 @@ openssl pkcs12 -export -out myserver.pfx -inkey myserver.key -in myserver.crt
 
 如果您已將 A 記錄對應至 web 應用程式，請使用這個新的專用 IP 位址來更新您的網域登錄。
 
-已將 Web 應用程式的**自訂網域**頁面更新為新的專用 IP 位址。 [複製此 IP 位址](app-service-web-tutorial-custom-domain.md#info)，然後[將 A 記錄重新對應](app-service-web-tutorial-custom-domain.md#create-the-a-record)到這個新的 IP 位址。
+已將 Web 應用程式的**自訂網域**頁面更新為新的專用 IP 位址。 [複製此 IP 位址](app-service-web-tutorial-custom-domain.md#info)，然後[將 A 記錄重新對應](app-service-web-tutorial-custom-domain.md#create-a)到這個新的 IP 位址。
 
 <a name="test"></a>
 
@@ -177,10 +186,10 @@ openssl pkcs12 -export -out myserver.pfx -inkey myserver.key -in myserver.crt
 ## <a name="enforce-https"></a>強制使用 HTTPS
 如果您仍然想允許 web 應用程式的 HTTP 存取，請略過此步驟。 
 
-App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP 存取您的 Web 應用程式。 若要強制 web 應用程式使用 HTTPS，您可以在 web 應用程式的 `web.config` 檔案中定義重寫規則。 無論 Web 應用程式語言架構為何，App Service 應用程式都會使用這個檔案。
+App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP 存取您的 Web 應用程式。 若要強制 web 應用程式使用 HTTPS，您可以在 web 應用程式的 _web.config_ 檔案中定義重寫規則。 無論 Web 應用程式語言架構為何，App Service 應用程式都會使用這個檔案。
 
 > [!NOTE]
-> 有語言特定的要求重新導向。 ASP.NET MVC 可使用 [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) 篩選，而非 `web.config` 中的重寫規則 (請參閱[將安全的 ASP.NET MVC 5 應用程式部署到 Web 應用程式](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md))。
+> 有語言特定的要求重新導向。 ASP.NET MVC 可使用 [RequireHttps](http://msdn.microsoft.com/library/system.web.mvc.requirehttpsattribute.aspx) 篩選，而非 _web.config_ 中的重寫規則 (請參閱[將安全的 ASP.NET MVC 5 應用程式部署到 Web 應用程式](web-sites-dotnet-deploy-aspnet-mvc-app-membership-oauth-sql-database.md))。
 > 
 > 
 
@@ -190,7 +199,7 @@ App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP
 
 遵循[使用 FTP/S 將應用程式部署至 Azure App Service](app-service-deploy-ftp.md) 中的指示，連線到 Web 應用程式的 FTP 端點。 
 
-此檔案應該位於 `/home/site/wwwroot`。 如果沒有，請在此資料夾中建立 `web.config`，並包含下列 XML：
+此檔案應該位於 _/home/site/wwwroot_。 如果沒有，請在此資料夾中建立 _web.config_，並包含下列 XML：
 
 ```xml   
 <?xml version="1.0" encoding="UTF-8"?>
@@ -213,7 +222,7 @@ App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP
 </configuration>
 ```
 
-針對現有的 `web.config`，您只需要將整個 `<rule>` 標記複製到您 `web.config` 的 `configuration/system.webServer/rewrite/rules` 元素中。 如果您的 `web.config` 中有其他 `<rule>` 標記，請將複製的 `<rule>` 標記放在其他 `<rule>` 標記之前。
+對於現有的 _web.config_，您只需要將整個 `<rule>` 標記複製到 _web.config_ 的 `configuration/system.webServer/rewrite/rules` 元素。 如果您的 _web.config_ 中有其他 `<rule>` 標記，請將複製的 `<rule>` 標記放在其他 `<rule>` 標記之前。
 
 每當使用者向 web 應用程式要求 HTTP 時，此規則就會將 HTTP 301 (永久重新導向) 傳回 HTTPS 通訊協定。 例如，它會從 `http://contoso.com` 重新導向至 `https://contoso.com`。
 
@@ -228,16 +237,23 @@ App Service 不會強制使用 HTTPS，因此任何使用者仍可以使用 HTTP
 下列命令會將匯出的 PFX 檔案上傳，並取得憑證指紋。 
 
 ```bash
-thumprint=$(az appservice web config ssl upload --certificate-file <path_to_PFX_file> \
---certificate-password <PFX_password> --name <app_name> --resource-group <resource_group_name> \
---query thumbprint --output tsv)
+thumprint=$(az appservice web config ssl upload \
+    --name <app_name> \
+    --resource-group <resource_group_name> \
+    --certificate-file <path_to_PFX_file> \
+    --certificate-password <PFX_password> \
+    --query thumbprint \
+    --output tsv)
 ```
 
 下列命令會使用上述命令的指紋來新增以 SNI 為基礎的 SSL 繫結。
 
 ```bash
-az appservice web config ssl bind --certificate-thumbprint $thumbprint --ssl-type SNI \
---name <app_name> --resource-group <resource_group_name>
+az appservice web config ssl bind \
+    --name <app_name> \
+    --resource-group <resource_group_name>
+    --certificate-thumbprint $thumbprint \
+    --ssl-type SNI \
 ```
 
 ### <a name="azure-powershell"></a>Azure PowerShell
@@ -245,12 +261,21 @@ az appservice web config ssl bind --certificate-thumbprint $thumbprint --ssl-typ
 下列命令會將匯出的 PFX 檔案上傳，並新增以 SNI 為基礎的 SSL 繫結。
 
 ```PowerShell
-New-AzureRmWebAppSSLBinding -WebAppName <app_name> -ResourceGroupName <resource_group_name> -Name <dns_name> `
--CertificateFilePath <path_to_PFX_file> -CertificatePassword <PFX_password> -SslState SniEnabled
+New-AzureRmWebAppSSLBinding `
+    -WebAppName <app_name> `
+    -ResourceGroupName <resource_group_name> `
+    -Name <dns_name> `
+    -CertificateFilePath <path_to_PFX_file> `
+    -CertificatePassword <PFX_password> `
+    -SslState SniEnabled
 ```
-## <a name="more-resources"></a>其他資源
-* [Microsoft Azure 信任中心](/support/trust-center/security/)
-* [Azure 網站中解除鎖定的設定選項](https://azure.microsoft.com/blog/2014/01/28/more-to-explore-configuration-options-unlocked-in-windows-azure-web-sites/)
-* [啟用診斷記錄](web-sites-enable-diagnostic-log.md)
-* [在 Azure App Service 中設定 Web 應用程式](web-sites-configure.md)
+## <a name="what-you-have-learned"></a>您已學到的知識
+
+在本教學課程中，您已了解如何：
+
+> [!div class="checklist"]
+> * 升級應用程式的定價層
+> * 將自訂 SSL 憑證繫結至 App Service
+> * 為應用程式強制使用 HTTPS
+> * 使用指令碼來自動繫結 SSL 憑證
 

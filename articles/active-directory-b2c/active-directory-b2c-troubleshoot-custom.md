@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory B2C：針對自訂原則進行疑難排解 | Microsoft Docs"
-description: "有關如何針對 Azure Active Directory B2C 自訂原則的問題進行疑難排解的主題"
+title: "Azure Active Directory B2C：用以針對自訂原則進行疑難排解的 Application Insights | Microsoft Docs"
+description: "如何設定 Application Insights 以追蹤自訂原則的執行"
 services: active-directory-b2c
 documentationcenter: 
 author: saeeda
@@ -15,10 +15,10 @@ ms.devlang: na
 ms.date: 04/04/2017
 ms.author: saeeda
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 2fa67038f2a214c1569fc65fd9f1beba394cb790
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 07eddeb35c2b88b2de08270d9ff5de317cc09ec7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/09/2017
 
 ---
 
@@ -46,11 +46,12 @@ Azure AD B2C 支援將資料傳送至 Application Insights 的功能。  Applica
 1. 將下列屬性新增至 `<TrustFrameworkPolicy>` 元素：
 
   ```XML
+  DeploymentMode="Development"
   UserJourneyRecorderEndpoint="urn:journeyrecorder:applicationinsights"
   ```
 
-1. 將子節點 `<UserJourneyBehaviors>` (如果尚未存在) 新增至 `<RelyingParty>` 節點。
-2. 新增下列節點作為 `<UserJourneyBehaviors>` 元素的子節點。 務必以您在上一節取得的 [檢測金鑰] 取代 `{Your Application Insights Key}`。
+1. 將子節點 `<UserJourneyBehaviors>` (如果尚未存在) 新增至 `<RelyingParty>` 節點。 它必須緊接在 `<DefaultUserJourney ReferenceId="YourPolicyName" />` 之後
+2. 新增下列節點作為 `<UserJourneyBehaviors>` 元素的子節點。 務必以您在上一節中從 Application Insights 取得的 [檢測金鑰] 取代 `{Your Application Insights Key}`。
 
   ```XML
   <JourneyInsights TelemetryEngine="ApplicationInsights" InstrumentationKey="{Your Application Insights Key}" DeveloperMode="true" ClientEnabled="false" ServerEnabled="true" TelemetryVersion="1.0.0" />
@@ -66,10 +67,12 @@ Azure AD B2C 支援將資料傳送至 Application Insights 的功能。  Applica
     ...
     TenantId="fabrikamb2c.onmicrosoft.com"
     PolicyId="SignUpOrSignInWithAAD"
+    DeploymentMode="Development"
     UserJourneyRecorderEndpoint="urn:journeyrecorder:applicationinsights"
   >
     ...
     <RelyingParty>
+      <DefaultUserJourney ReferenceId="YourPolicyName" />
       <UserJourneyBehaviors>
         <JourneyInsights TelemetryEngine="ApplicationInsights" InstrumentationKey="{Your Application Insights Key}" DeveloperMode="true" ClientEnabled="false" ServerEnabled="true" TelemetryVersion="1.0.0" />
       </UserJourneyBehaviors>
@@ -79,7 +82,7 @@ Azure AD B2C 支援將資料傳送至 Application Insights 的功能。  Applica
 
 3. 上傳原則。
 
-### <a name="see-the-logs"></a>請參閱記錄
+### <a name="see-the-logs-in-application-insights"></a>查看 Application Insights 中的記錄
 
 >[!NOTE]
 > 短暫延遲之後 (5 分鐘之內)，您在 Application Insights 中才會看到新的記錄。
@@ -94,7 +97,14 @@ Azure AD B2C 支援將資料傳送至 Application Insights 的功能。  Applica
 traces | 查看 Azure AD B2C 產生的所有記錄 |
 traces \| where timestamp > ago(1d) | 查看 Azure AD B2C 在最後一天產生的所有記錄
 
+此項目可能很長。  請將它匯出至 CSV 以仔細查看。
+
 您可以在[這裡](https://docs.microsoft.com/azure/application-insights/app-insights-analytics)深入了解分析工具。
+
+^[!NOTE]
+^ 該社群已開發了使用者旅程檢視器來協助身分識別開發人員。  此檢視器不受 Microsoft 支援，僅依原狀提供使用。  它會讀取您的 Application Insights 執行個體，並提供結構良好的使用者旅程事件檢視。  請取得原始碼，並將它部署在您自己的解決方案中。
+
+[Github 用來存放不受支援之自訂原則範例和相關工具的存放庫](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies)
 
 
 

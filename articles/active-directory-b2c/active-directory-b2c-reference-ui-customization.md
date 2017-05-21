@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/26/2017
 ms.author: swkrish
-translationtype: Human Translation
-ms.sourcegitcommit: 74b077f6f09d53c9232e5b209a5dd811364ee3f5
-ms.openlocfilehash: c995e0de46c67c5c5d243739b2d36266267bdade
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 8e71a7462a0cbdbd177b088e6757c70eeef31fc7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -33,7 +35,7 @@ ms.openlocfilehash: c995e0de46c67c5c5d243739b2d36266267bdade
 * 頁面使用者介面 (UI) 自訂功能。
 * 將協助您使用我們的範例內容測試頁面 UI 自訂功能的工具。
 * 每種頁面中的核心 UI 元素。
-* 執行這項功能時的最佳作法。
+* 執行這項功能時的最佳做法。
 
 ## <a name="the-page-ui-customization-feature"></a>頁面 UI 自訂功能
 透過頁面 UI 自訂功能，您可以自訂取用者註冊、登入、密碼重設及設定檔編輯頁面的外觀和風格 (藉由設定 [原則](active-directory-b2c-reference-policies.md))。 取用者在您的應用程式與 Azure AD B2C 所提供的頁面間瀏覽時，將會有順暢的體驗。
@@ -335,6 +337,9 @@ ms.openlocfilehash: c995e0de46c67c5c5d243739b2d36266267bdade
 
 ```
 
+## <a name="localizing-your-html-content"></a>將 HTML 內容當地語系化
+您可以開啟[「語言自訂」](active-directory-b2c-reference-language-customization.md)，以將 HTML 內容當地語系化。  啟用此功能會讓 Azure AD B2C 將 OIDC 參數 `ui-locales` 轉送給端點。  您可以使用此功能來提供語言專屬的自訂 UI 頁面。  
+
 ## <a name="things-to-remember-when-building-your-own-content"></a>建置自己的內容時的注意事項
 如果您打算使用頁面 UI 自訂功能，請檢閱以下最佳做法：
 
@@ -346,9 +351,4 @@ ms.openlocfilehash: c995e0de46c67c5c5d243739b2d36266267bdade
   * 對 Internet Explorer 9、8 提供有限支援
   * Google Chrome 42.0 和更新版本
   * Mozilla Firefox 38.0 和更新版本
-
-
-
-<!--HONumber=Feb17_HO2-->
-
 

@@ -4,7 +4,7 @@ description: "了解如何設計您的第一個 Azure SQL Database。"
 services: sql-database
 documentationcenter: 
 author: janeng
-manager: jstrauss
+manager: jhubbard
 editor: 
 tags: 
 ms.assetid: 
@@ -14,19 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: 
-ms.date: 03/30/2017
+ms.date: 05/07/2017
 ms.author: janeng
-translationtype: Human Translation
-ms.sourcegitcommit: 2c33e75a7d2cb28f8dc6b314e663a530b7b7fdb4
-ms.openlocfilehash: 0d02954829ebac9275c014f7dac7e1ec423b0fc1
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: a78284276b600172ad9fd6de2f30702a6f05e79b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
 
 # <a name="design-your-first-azure-sql-database"></a>設計您的第一個 Azure SQL Database
 
-在本教學課程中，您會建置一個大學資料庫來追蹤學生成績和課程註冊。 本教學課程展示如何使用 [Azure 入口網站](https://portal.azure.com/)和 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS)，在 Azure SQL Database 邏輯伺服器上建立 Azure SQL Database、將資料表新增至資料庫、將資料載入至資料表，以及查詢資料庫。 此外亦會展示如何使用 SQL Database [還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)功能，將資料庫還原至較早的時間點。
+Azure SQL Database 是關聯式資料庫即服務，使用 Microsoft SQL Server 引擎。 本教學課程探討基本的資料庫工作，例如建立資料庫和資料表、載入和查詢資料，以及將資料庫還原至先前的時間點。 您會了解如何： 
+
+> [!div class="checklist"]
+> * 建立資料庫
+> * 設定防火牆規則
+> * 使用 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS) 來連線到資料庫
+> * 建立資料表
+> * 大量載入資料
+> * 查詢該資料
+> * 使用 SQL Database [還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)功能，將資料庫還原至先前的時間點
 
 為了完成此教學課程，請確定您已安裝最新版的 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS)。 
 
@@ -280,7 +290,19 @@ Azure SQL Database 受防火牆保護。 依預設，伺服器與其內部資料
 
 3. 按一下 [確定]，以將資料庫[還原至新增資料表之前的時間點](sql-database-recovery-using-backups.md#point-in-time-restore)。 若將資料庫還原至不同的時間點，系統即會從您指定的時間點 (在您[服務層](sql-database-service-tiers.md)的保留期限內) 開始，在與原始資料庫相同的伺服器中建立重複的資料庫。
 
-## <a name="next-steps"></a>後續步驟 
 
-如需一般工作的 PowerShell 範例，請參閱 [SQL Database PowerShell 範例](sql-database-powershell-samples.md)
+
+## <a name="next-steps"></a>後續步驟 
+在本教學課程中，您已了解基本的資料庫工作，例如建立資料庫和資料表、載入和查詢資料，以及將資料庫還原至先前的時間點。 您已了解如何︰
+> [!div class="checklist"]
+> * 建立資料庫
+> * 設定防火牆規則
+> * 使用 [SQL Server Management Studio](https://msdn.microsoft.com/library/ms174173.aspx) (SSMS) 來連線到資料庫
+> * 建立資料表
+> * 大量載入資料
+> * 查詢該資料
+> * 使用 SQL Database [還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)功能，將資料庫還原至先前的時間點。請繼續下一個教學課程，以了解如何移轉資料。
+
+> [!div class="nextstepaction"]
+>[將 SQL Server Database 移轉至 Azure SQL Database](sql-database-migrate-your-sql-server-database.md)
 

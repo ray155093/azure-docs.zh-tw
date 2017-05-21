@@ -13,12 +13,13 @@ ms.workload: drivers
 ms.tgt_pltfrm: na
 ms.devlang: php
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 05/07/2017
 ms.author: meetb;carlrab;sstein
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: d4d21297618d34aa301e4e1cc814afb15045d7f7
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 2c0dc1bef0bf2b7b78e8858943ad6e0ede214681
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -84,7 +85,7 @@ sudo echo "extension= sqlsrv.so" >> `php --ini | grep "Loaded Configuration" | s
 
    ![server-name](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. 如果您忘記 Azure SQL Database 伺服器的登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。     
+4. 如果您忘記伺服器登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。     
     
 ## <a name="select-data"></a>選取資料
 使用下列程式碼，以藉由使用 [sqlsrv_query()](https://docs.microsoft.com/sql/connect/php/sqlsrv-query) 函式與 [SELECT](https://docs.microsoft.com/sql/t-sql/queries/select-transact-sql) Transact-SQL 陳述式來依照類別查詢前 20 項產品。 sqlsrv_query 函式可用來擷取對 SQL Database 執行之查詢的結果集。 此函式會接受查詢並傳回結果集，而您可以使用 [sqlsrv_fetch_array()](http://php.net/manual/en/function.sqlsrv-fetch-array.php) 反覆查詢結果集。 將 server、database、username 和 password 參數，取代為您使用 AdventureWorksLT 範例資料建立資料庫時所指定的值。 
@@ -193,14 +194,8 @@ else{
 ```
 
 ## <a name="next-steps"></a>後續步驟
+- [設計您的第一個 Azure SQL Database](sql-database-design-first-database.md)
+- [Microsoft PHP Drivers for SQL Server](https://github.com/Microsoft/msphpsql/)
+- [回報問題/發問](https://github.com/Microsoft/msphpsql/issues)
 
-- 關於 [Microsoft PHP Driver for SQL Server](https://github.com/Microsoft/msphpsql/) 的其他資訊。
-- [檔案問題/發問](https://github.com/Microsoft/msphpsql/issues)。
-- 若要使用 SQL Server Management Studio 來連線和查詢，請參閱[使用 SSMS 連線及查詢](sql-database-connect-query-ssms.md)
-- 若要使用 Visual Studio 進行連線和查詢，請參閱[使用 Visual Studio Code 進行連線和查詢](sql-database-connect-query-vscode.md)。
-- 若要使用 .NET 進行連線和查詢，請參閱[使用 .NET 進行連線和查詢](sql-database-connect-query-dotnet.md)。
-- 若要使用 Node.js 進行連線和查詢，請參閱[使用 Node.js 進行連線和查詢](sql-database-connect-query-nodejs.md)。
-- 若要使用 Java 進行連線和查詢，請參閱[使用 Java 進行連線和查詢](sql-database-connect-query-java.md)。
-- 若要使用 Python 進行連線和查詢，請參閱[使用 Python 進行連線和查詢](sql-database-connect-query-python.md)。
-- 若要使用 Ruby 進行連線和查詢，請參閱[使用 Ruby 進行連線和查詢](sql-database-connect-query-ruby.md)。
 

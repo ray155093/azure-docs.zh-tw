@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 02/26/2016
 ms.author: cephalin
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 64bd7f356673b385581c8060b17cba721d0cf8e3
-ms.openlocfilehash: e8f78602b293863b2e58160a5eb2cf8a5855576b
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 46e3852dc84265de41bb358f482dec06608e7efa
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -51,7 +51,7 @@ ASP.NET Core 是精簡的 .NET 堆疊，可建置 OS X、Linux 和 Windows 上�
 > 
 
 ## <a name="create-the-web-app"></a>建立 Web 應用程式
-本節說明如何使用 donet CLI 工具建立新的應用程式 ASP.NET Web 應用程式的結構。 
+本節說明如何使用 .NET CLI 工具建立新的應用程式 ASP.NET Web 應用程式的結構。 
 
 1. 在命令提示字元輸入下列命令，來建立專案資料夾，並建立應用程式的結構。
    
@@ -62,7 +62,7 @@ dotnet new mvc
 ```
 ![dotnet CLI - ASP.NET Core 產生器](./media/web-sites-create-web-app-using-vscode/dotnetcore-mvc-01.png)
 
-2. 若要安裝必要的 NuGet 套件以執行下列命令︰
+2. 若要還原必要的 NuGet 套件，請執行下列命令︰
    
     ```terminal
     dotnet restore

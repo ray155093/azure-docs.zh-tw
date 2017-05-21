@@ -14,18 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-ms.date: 01/23/2017
+ms.date: 05/05/2017
 ms.author: rickbyh
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 763ec017cef58b91ba12b616870cb9d830448749
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: f018e265d008cc06631034cea417109c71e7786f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
 # <a name="configure-and-manage-azure-active-directory-authentication-with-sql-database-or-sql-data-warehouse"></a>使用 SQL Database 或 SQL 資料倉儲設定和管理 Azure Active Directory 驗證
 
 本文說明如何建立和填入 Azure AD，以及搭配 Azure SQL Database 和 SQL 資料倉儲使用 Azure AD。 如需概觀，請參閱 [Azure Active Directory 驗證](sql-database-aad-authentication.md)。
+
+>  [!NOTE]  
+>  使用 Azure Active Directory 帳戶不支援連線到 Azure VM 上執行的 SQL Server。 請改用 Active Directory 網域帳戶。
 
 ## <a name="create-and-populate-an-azure-ad"></a>建立和填入 Azure AD
 建立 Azure AD 並利用使用者和群組填入。 Azure AD 可以是初始網域 Azure AD 受管理的網域。 Azure AD 也可以是與 Azure AD 同盟的內部部署 Active Directory 網域服務。

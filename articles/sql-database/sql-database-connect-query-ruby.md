@@ -13,12 +13,13 @@ ms.workload: drivers
 ms.tgt_pltfrm: na
 ms.devlang: ruby
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 05/07/2017
 ms.author: andrela;sstein;carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: c8700b16f91f014205acb93d6b57f9b972546268
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 56f1b57798b073622d273b16975981b23a0ad55d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -70,7 +71,7 @@ gem install tiny_tds
 
    ![server-name](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. 如果您忘記 Azure SQL Database 伺服器的登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。
+4. 如果您忘記伺服器登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。
     
 
 ## <a name="select-data"></a>選取資料
@@ -187,15 +188,9 @@ delete('BrandNewProduct', client)
 ```
 
 ## <a name="next-steps"></a>後續步驟
+- [設計您的第一個 Azure SQL Database](sql-database-design-first-database.md)
+- [適用於 TinyTDS 的 GitHub 存放庫](https://github.com/rails-sqlserver/tiny_tds)
+- [回報問題/發問](https://github.com/rails-sqlserver/tiny_tds/issues)
+- [Ruby Drivers for SQL Server](https://docs.microsoft.com/sql/connect/ruby/ruby-driver-for-sql-server/)
 
-- 適用於 [TinyTDS](https://github.com/rails-sqlserver/tiny_tds) 的 Github 儲存機制。
-- [檔案問題/發問](https://github.com/rails-sqlserver/tiny_tds/issues)。        
-- 深入了解[適用於 SQL Server 的 Ruby 驅動程式 (英文)](https://docs.microsoft.com/sql/connect/ruby/ruby-driver-for-sql-server/)。
-- 若要使用 SQL Server Management Studio 來連線和查詢，請參閱[使用 SSMS 連線及查詢](sql-database-connect-query-ssms.md)
-- 若要使用 Visual Studio 進行連線和查詢，請參閱[使用 Visual Studio Code 進行連線和查詢](sql-database-connect-query-vscode.md)。
-- 若要使用 .NET 進行連線和查詢，請參閱[使用 .NET 進行連線和查詢](sql-database-connect-query-dotnet.md)。
-- 若要使用 PHP 進行連線和查詢，請參閱[使用 PHP 進行連線和查詢](sql-database-connect-query-php.md)。
-- 若要使用 Node.js 進行連線和查詢，請參閱[使用 Node.js 進行連線和查詢](sql-database-connect-query-nodejs.md)。
-- 若要使用 Java 進行連線和查詢，請參閱[使用 Java 進行連線和查詢](sql-database-connect-query-java.md)。
-- 若要使用 Python 進行連線和查詢，請參閱[使用 Python 進行連線和查詢](sql-database-connect-query-python.md)。
 

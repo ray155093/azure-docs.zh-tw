@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/26/2017
 ms.author: swkrish
-translationtype: Human Translation
-ms.sourcegitcommit: 351149296a6d7dfa801b295ec21fc04215c7b051
-ms.openlocfilehash: ac2730935d206ddf9079395384d46a43fdd740cb
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: bc0b0b652312f6bcc27a981da766e19cded7bd6c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -32,7 +34,7 @@ Azure AD B2C 無法與 Microsoft Office 365 一起使用。 一般而言，它�
 ### <a name="what-are-local-accounts-in-azure-ad-b2c-how-are-they-different-from-work-or-school-accounts-in-azure-ad"></a>Azure AD B2C 中的本機帳戶是什麼？ 與 Azure AD 中的工作或學校帳戶有何不同？
 在 Azure AD 租用戶中，租用戶的每位使用者 (不包括目前有 Microsoft 帳戶的使用者) 都是以 `<xyz>@<tenant domain>` 格式的電子郵件地址登入，當中的 `<tenant domain>` 是租用戶已驗證的其中一個網域，或初始 `<...>.onmicrosoft.com` 網域。 這種類型的帳戶就是工作或學校帳戶。
 
-在 Azure AD B2C 租用戶中，大部分的應用程式都希望使用者以任意的電子郵件地址登入 (例如 joe@comcast.net, bob@gmail.com, sarah@contoso.com, 或 jim@live.com)。 這種類型的帳戶就是本機帳戶。 現在，我們也支援任意的使用者名稱 (僅單純字串) 做為本機帳戶 (例如，joe、bob、sarah 或 jim)。 您可以在 Azure AD B2C 服務中選擇這兩個本機帳戶類型的其中之一。
+在 Azure AD B2C 租用戶中，大部分的應用程式都希望使用者以任意的電子郵件地址登入 (例如 joe@comcast.net、bob@gmail.com、sarah@contoso.com 或 jim@live.com。 這種類型的帳戶就是本機帳戶。 現在，我們也支援任意的使用者名稱 (僅單純字串) 做為本機帳戶 (例如，joe、bob、sarah 或 jim)。 您可以在 Azure AD B2C 服務中選擇這兩個本機帳戶類型的其中之一。
 
 ### <a name="which-social-identity-providers-do-you-support-now-which-ones-do-you-plan-to-support-in-the-future"></a>你們現在支援哪些社交身分識別提供者？ 你們打算在未來支援哪些？
 我們目前支援 Facebook、Google+、LinkedIn 和 Amazon。 根據客戶需求，我們將會增加支援其他熱門的社交身分識別提供者。
@@ -80,7 +82,7 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。 Az
 否，Azure AD Connect 不是設計來搭配 Azure AD B2C 一起使用。 未來我們將提供各種現成的移轉選項和工具。
 
 ### <a name="can-my-app-open-up-azure-ad-b2c-pages-within-an-iframe"></a>我的應用程式是否能在 iFrame 內開啟 Azure AD B2C 頁面？
-否，基於安全性考量，無法在 iFrame 內開啟 Azure AD B2C 頁面 (在 `login.microsftonline.com` 網域底下提供)。 針對所有取用者體驗，您必須一律重新導向到 Azure AD B2C。
+否，基於安全性考量，無法在 iFrame 內開啟 Azure AD B2C 頁面。  我們的服務會與瀏覽器通訊以禁止此行為。  安全性社群整體和 OAUTH2 規格的建議是不要使用 iframe 來提供身分識別體驗，因為會有點擊劫持風險。
 
 ### <a name="does-azure-ad-b2c-work-with-crm-systems-such-as-microsoft-dynamics"></a>Azure AD B2C 可以搭配 Microsoft Dynamics 之類的 CRM 系統一起使用嗎？
 目前不支援。 整合這些系統已在我們的規劃中。
@@ -92,7 +94,10 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。 Az
 請閱讀這篇關於 [外部身分識別](../active-directory/active-directory-b2b-compare-external-identities.md) 的文章，以深入了解將適當的功能套用至外部身分識別的案例。
 
 ### <a name="what-reporting-and-auditing-features-does-azure-ad-b2c-provide-are-they-the-same-as-in-azure-ad-premium"></a>Azure AD B2C 提供哪些報告和稽核功能？ 它們與 Azure AD Premium 的功能相同嗎？
-否，Azure AD B2C 不支援與 Azure AD Premium 相同的一組報告。 Azure AD B2C 很快就會釋出基本的報告和稽核 API。
+否，Azure AD B2C 不支援與 Azure AD Premium 相同的一組報告。 不過它們有許多共同點。  
+* 登入報表會記錄每次登入並提供經過縮減的詳細資料。  
+* 稽核報告可在 Azure 入口網站中取得，位置在 Azure Active Directory > 活動-稽核記錄 > 選擇 B2C 並視需要套用篩選。 管理活動以及應用程式活動都包括在內。 
+* 您可以在[使用報告 API](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-reference-usage-reporting-api)中取得使用報告，裡面記載了使用者人數、登入次數及 MFA 數量
 
 ### <a name="can-i-localize-the-ui-of-pages-served-by-azure-ad-b2c-what-languages-are-supported"></a>我可以將 Azure AD B2C 所提供的頁面 UI 當地語系化嗎？ 支援哪些語言？
 目前，Azure AD B2C 僅針對英文做過最佳化。 我們計劃儘速推出當地語系化功能。
@@ -123,10 +128,5 @@ Azure AD B2C 的本機帳戶密碼原則是以 Azure AD 的原則為基礎。 Az
 
 ## <a name="more-information"></a>詳細資訊
 您也可能想要檢閱目前的 [服務限制和條件約束](active-directory-b2c-limitations.md)。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

@@ -3,7 +3,7 @@ title: "管理 Azure Application Insights 的價格和資料量 | Microsoft Docs
 description: "在 Application Insights 中管理遙測量和監視成本。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: ebd0d843-4780-4ff3-bc68-932aa44185f6
 ms.service: application-insights
@@ -11,13 +11,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
-ms.date: 03/17/2017
-ms.author: awills
+ms.date: 05/10/2017
+ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 6f84365acb9a1cc1fc31fa5f3c04cd112f68087b
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 0a66567d7381f38787f9aa7652c944e4bb3aef82
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -148,10 +148,7 @@ Application Insights 費用會加到您的 Azure 帳單中。 您可以在 Azure
 ![在 [配額和價格] 刀鋒視窗中，按一下 [範例] 磚，然後選取取樣分數。](./media/app-insights-pricing/04.png)
 
 > [!WARNING]
-> [保留的樣本] 圖格上顯示的值只會指出您為擷取取樣所設定的值。 它不會顯示在您應用程式中的 SDK 運作的取樣率。 
-> 
-> 如果已在 SDK 進行連入遙測的取樣，則不適用擷取取樣。
-> 
+> [資料取樣] 刀鋒視窗只會控制擷取取樣的值。 它並不會反映應用程式中的 Application Insights SDK 所套用的取樣率。 如果已在 SDK 進行連入遙測的取樣，則不適用擷取取樣。
 > 
 
 若要找出實際的取樣率 (不論是否已套用)，請使用如下所示的 [分析查詢](app-insights-analytics.md) ︰

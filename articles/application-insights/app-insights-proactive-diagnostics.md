@@ -4,7 +4,7 @@ description: "Application Insights 會自動深入分析您的 App 遙測，並�
 services: application-insights
 documentationcenter: windows
 author: rakefetj
-manager: douge
+manager: carmonm
 ms.assetid: 2eeb4a35-c7a1-49f7-9b68-4f4b860938b2
 ms.service: application-insights
 ms.workload: tbd
@@ -12,11 +12,12 @@ ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: article
 ms.date: 10/31/2016
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: fd35f1774ffda3d3751a6fa4b6e17f2132274916
-ms.openlocfilehash: fe2596a7fed52118425c612ebf50c01134928bf6
-ms.lasthandoff: 03/16/2017
+ms.author: cfreeman
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: 0331a20d60fd856c0d852b26f125c47a3614f1ad
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/04/2017
 
 
 ---
@@ -43,7 +44,7 @@ ms.lasthandoff: 03/16/2017
 共有三種偵測︰
 
 * [智慧型偵測 - 失敗異常](app-insights-proactive-failure-diagnostics.md)。 我們使用機器學習服務來為應用程式設定預期的失敗要求率，其會與負載和其他因素相互關聯。 如果失敗率超過預期限制，我們便會傳送警示。
-* [智慧型偵測 - 效能異常](app-insights-proactive-performance-diagnostics.md)。 我們每天都會搜尋回應時間和失敗率中是否有異常模式。 我們會將這些問題與位置、瀏覽器、用戶端作業系統、伺服器執行個體以及當天的時間等屬性相互關聯。
+* [智慧型偵測 - 效能異常](app-insights-proactive-performance-diagnostics.md)。 如果作業或相依性持續時間的回應時間變得比歷史基準慢，或如果我們在回應時間或頁面載入時間發現異常模式，您就會收到通知。   
 * [智慧型偵測 - Azure 雲端服務問題](https://azure.microsoft.com/blog/proactive-notifications-on-cloud-service-issues-with-azure-diagnostics-and-application-insights/)。 如果您的應用程式裝載於 Azure 雲端服務，而且角色執行個體有啟動失敗、經常回收或執行階段損毀等現象，您便會收到警示。
 
 (每個通知中的說明連結會帶您前往相關文章。)

@@ -12,12 +12,13 @@ ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
-ms.date: 04/21/2017
+ms.date: 05/04/2017
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 08a83bf8dca71846dd06edb9aa253f69c24d253c
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 000440fb2c38eadc0ffdcab84a3c23bb034e834f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -27,20 +28,22 @@ ms.lasthandoff: 04/27/2017
 
 ![入口網站瀏覽至 Azure 應用程式](./media/app-service-web-tutorial-custom-domain/app-with-custom-dns.png)
 
-本教學課程示範三個常見案例，案例中會將兩個 DNS 名稱對應至 App Service 中的應用程式︰
+在本教學課程中，您了解如何：
 
-- `www.contoso.com` - `contoso.com` 的子網域。 您會使用 CNAME 記錄來將它對應至應用程式。
-- `contoso.com` - 根網域。 您會使用 A 記錄來將它對應至應用程式。
-- `*.contoso.com` - 萬用字元網域。 您會使用 CNAME 記錄來將它對應至應用程式。
+> [!div class="checklist"]
+> * 使用 CNAME 記錄來對應子網域 (例如，`www.contoso.com`)
+> * 使用 A 記錄來對應根網域 (例如，`contoso.com`)
+> * 使用 CNAME 記錄來對應萬用字元網域 (例如，`*.contoso.com`)
+> * 使用指令碼來自動對應網域
 
 您可以使用 **CNAME 記錄**或 **A 記錄**將自訂 DNS 名稱對應至 App Service。
 
 > [!NOTE]
-> 我們建議您對所有自訂 DNS 名稱使用 CNAME，但根網域除外 (例如 contoso.com)。 
+> 我們建議您對所有自訂 DNS 名稱使用 CNAME，但根網域除外 (例如 `contoso.com`)。 
 > 
 > 
 
-## <a name="before-you-begin"></a>開始之前
+## <a name="prerequisites"></a>必要條件
 
 若要完成本教學課程，您需要網域提供者 (例如 GoDaddy) 的 DNS 登錄存取權，以及網域組態的編輯權限。 
 
@@ -195,6 +198,8 @@ ms.lasthandoff: 04/27/2017
 >
 >
 
+<a name="create-a"></a>
+
 ### <a name="create-the-a-record"></a>建立 A 記錄
 
 若要將 A 記錄對應至您的應用程式，App Service 實際上需要**兩筆**DNS 記錄︰
@@ -325,8 +330,10 @@ ms.lasthandoff: 04/27/2017
 下列命令會在 App Service 應用程式中新增所設定的自訂 DNS 名稱。 
 
 ```bash 
-az appservice web config hostname add --webapp <app_name> --resource-group <resourece_group_name> \ 
---name <fully_qualified_domain_name> 
+az appservice web config hostname add \
+    --webapp <app_name> \
+    --resource-group <resourece_group_name> \ 
+    --name <fully_qualified_domain_name> 
 ``` 
 
 如需詳細資訊，請參閱[將自訂網域對應至 Web 應用程式](scripts/app-service-cli-configure-custom-domain.md) 
@@ -336,13 +343,26 @@ az appservice web config hostname add --webapp <app_name> --resource-group <reso
 下列命令會在 App Service 應用程式中新增所設定的自訂 DNS 名稱。 
 
 ```PowerShell  
-Set-AzureRmWebApp -Name <app_name> -ResourceGroupName <resourece_group_name> ` 
--HostNames @(<fully_qualified_domain_name>,"<app_name>.azurewebsites.net") 
+Set-AzureRmWebApp `
+    -Name <app_name> `
+    -ResourceGroupName <resourece_group_name> ` 
+    -HostNames @("<fully_qualified_domain_name>","<app_name>.azurewebsites.net") 
 ```
 
 如需詳細資訊，請參閱[將自訂網域指派給 Web 應用程式](scripts/app-service-powershell-configure-custom-domain.md)。
 
-## <a name="more-resources"></a>其他資源
+## <a name="next-steps"></a>後續步驟
 
-[在 Azure App Service 中設定 App Service 網域](custom-dns-web-site-buydomains-web-app.md)
+在本教學課程中，您已了解如何：
+
+> [!div class="checklist"]
+> * 使用 CNAME 記錄來對應子網域
+> * 使用 A 記錄來對應根網域
+> * 使用 CNAME 記錄來對應萬用字元網域
+> * 使用指令碼來自動對應網域
+
+前進到下一個教學課程，以了解如何對它繫結自訂的 SSL 憑證。
+
+> [!div class="nextstepaction"]
+> [將現有的自訂 SSL 憑證繫結至 Azure Web Apps](app-service-web-tutorial-custom-ssl.md)
 

@@ -13,12 +13,13 @@ ms.workload: drivers
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: article
-ms.date: 04/17/2017
+ms.date: 05/07/2017
 ms.author: andrela;carlrab;sstein
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 6ba2880b1ce9eed0f5c3b8e3ed4255c7e4ec7f29
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: defb32835971fe423e77a11817fce057fa7c929d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -36,7 +37,7 @@ ms.lasthandoff: 04/21/2017
 本節中的步驟假設您已熟悉使用 Java 進行開發且不熟悉 Azure SQL Database。 如果您不熟悉使用 Java 進行開發，請前往[使用 SQL Server 建置應用程式](https://www.microsoft.com/en-us/sql-server/developer-get-started/)並選取 **Java**，然後選取您的作業系統。
 
 ### <a name="mac-os"></a>**Mac OS**
-開啟您的終端機，然後瀏覽至您打算在其中建立 Java 專案的目錄。 輸入下列命令以安裝 **brew** 和 **Maven**。 
+開啟您的終端機，然後瀏覽至您打算在其中建立 Java 專案的目錄。 輸入下列命令來安裝 **brew** 和 **Maven**： 
 
 ```bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -45,14 +46,14 @@ brew install maven
 ```
 
 ### <a name="linux-ubuntu"></a>**Linux (Ubuntu)**
-開啟您的終端機，然後瀏覽至您打算在其中建立 Java 專案的目錄。 輸入下列命令以安裝 **Maven**。 
+開啟您的終端機，然後瀏覽至您打算在其中建立 Java 專案的目錄。 輸入下列命令來安裝 **Maven**：
 
 ```bash
 sudo apt-get install maven
 ```
 
 ### <a name="windows"></a>**Windows**
-使用官方安裝程式來安裝 [Maven](https://maven.apache.org/download.cgi)。 Maven 可用來協助管理相依性、建置、測試及執行您的 Java 專案。 
+使用官方安裝程式來安裝 [Maven](https://maven.apache.org/download.cgi)。 請使用 Maven 來協助管理相依性、建置、測試及執行您的 Java 專案。 
 
 ## <a name="get-connection-information"></a>取得連線資訊
 
@@ -64,7 +65,7 @@ sudo apt-get install maven
 
    ![server-name](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. 如果您忘記 Azure SQL Database 伺服器的登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。
+4. 如果您忘記伺服器登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。
 5. 按一下 [顯示資料庫連接字串]。
 
 6. 檢閱完整的 **JDBC** 連接字串。
@@ -300,15 +301,8 @@ public class App {
 ```
 
 ## <a name="next-steps"></a>後續步驟
-
-- [Microsoft JDBC Driver for SQL Server](https://github.com/microsoft/mssql-jdbc) 的 GitHub 存放庫。
-- [檔案問題/發問](https://github.com/microsoft/mssql-jdbc/issues)。
-- 若要使用 SQL Server Management Studio 來連線和查詢，請參閱[使用 SSMS 連線及查詢](sql-database-connect-query-ssms.md)
-- 若要使用 Visual Studio 進行連線和查詢，請參閱[使用 Visual Studio Code 進行連線和查詢](sql-database-connect-query-vscode.md)。
-- 若要使用 .NET 進行連線和查詢，請參閱[使用 .NET 進行連線和查詢](sql-database-connect-query-dotnet.md)。
-- 若要使用 PHP 進行連線和查詢，請參閱[使用 PHP 進行連線和查詢](sql-database-connect-query-php.md)。
-- 若要使用 Node.js 進行連線和查詢，請參閱[使用 Node.js 進行連線和查詢](sql-database-connect-query-nodejs.md)。
-- 若要使用 Python 進行連線和查詢，請參閱[使用 Python 進行連線和查詢](sql-database-connect-query-python.md)。
-- 若要使用 Ruby 進行連線和查詢，請參閱[使用 Ruby 進行連線和查詢](sql-database-connect-query-ruby.md)。
+- [設計您的第一個 Azure SQL Database](sql-database-design-first-database.md)
+- [Microsoft JDBC Driver for SQL Server](https://github.com/microsoft/mssql-jdbc)
+- [回報問題/發問](https://github.com/microsoft/mssql-jdbc/issues)
 
 
