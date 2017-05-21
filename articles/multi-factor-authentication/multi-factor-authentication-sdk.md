@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: kgremban
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: e793478028cee273a07e3665d409a669bdadc758
 ms.openlocfilehash: 4f9456c479b76588adf5f5aecbdd6379ec0e9704
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/14/2017
 
 
@@ -53,7 +54,7 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
 2. 選取左邊的 [Active Directory] 。
 3. 按兩下您的 Azure AD 執行個體。
 4. 在頂端按一下  **設定**
-5. 在多因素驗證底下選取[管理服務設定]****
+5. 在多因素驗證底下選取 **管理服務設定**
    ![下載](./media/multi-factor-authentication-sdk/download2.png)
 6. 在 [服務設定] 頁面上，於畫面底部按一下 [ **移至入口網站**]。 新的頁面隨即開啟。
    ![下載](./media/multi-factor-authentication-sdk/download3a.png)
