@@ -13,12 +13,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/09/2017
+ms.date: 05/03/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: a3ceca6cd0f470a5cd6849c345867f094b870a85
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: ca48abcdc9f9d05648a4b03bdb5fec7b4a5b7cce
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/04/2017
 
 ---
 # <a name="introducing-apache-kafka-on-hdinsight-preview"></a>HDInsight 上的 Apache Kafka (預覽) 簡介
@@ -48,10 +49,6 @@ Kafka 提供下列功能：
 * **彙總**︰您可以利用串流處理來彙總不同串流的資訊，將資訊結合並集中而成為可操作的資料。
 
 * **轉換**︰您可以利用串流處理來結合並充實多個輸入主題的資料，而成為一個或多個輸出主題。
-
-## <a name="where-do-i-start"></a>我該從哪裡開始？
-
-如需有關建立 Kafka 叢集和使用 Kafka 的步驟，包括使用生產者、取用者和串流 API 的 Java 範例，請參閱[開始使用 HDInsight 上的 Kafka](hdinsight-apache-kafka-get-started.md)
 
 ## <a name="next-steps"></a>後續步驟
 

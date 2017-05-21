@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 05/04/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 59e12d70d46d45fb7dc4244ac2968838cb29dbec
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 9d10ebf9d7bd07bd126302a6ecf442d809e00196
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -367,20 +368,9 @@ Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 
 
 * [企業狀態漫遊](active-directory-windows-enterprise-state-roaming-overview.md)
 
-## <a name="azure-ad-preview-features"></a>Azure AD 預覽功能
-除了 Free、Basic 及 Premium (P1 和 P2) 版的正式運作功能之外，Azure AD 也提供您一組預覽功能。 您可以使用預覽功能獲得不久的將來可用的功能的印象，並判斷這些功能是否可協助改善您的環境。
-
-**可用的預覽功能：**
-
-* [B2B 共同作業](active-directory-b2b-collaboration-overview.md)
-* [管理單位](active-directory-administrative-units-management.md)
-* [HR 應用程式整合](active-directory-saas-workday-inbound-tutorial.md)
-* [iOS 上的憑證式驗證](active-directory-certificate-based-authentication-ios.md)
-* [Android 上的憑證式驗證](active-directory-certificate-based-authentication-android.md)
-
 ## <a name="next-steps"></a>後續步驟
 * [開始使用 Azure Active Directory Premium](active-directory-get-started-premium.md)
-* [在登入和存取面板頁面加上公司商標](active-directory-add-company-branding.md)
+* [在登入和存取面板頁面新增公司商標](active-directory-add-company-branding.md)
 * [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 
 <!--Image references-->

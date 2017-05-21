@@ -14,25 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-translationtype: Human Translation
-ms.sourcegitcommit: 194b5d79505afbfd0208f63dd182a0e03227ba69
-ms.openlocfilehash: 36677be6bc5599f55f1f15bc145c59033ad20e0a
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: ca88b355416b4ae4785bc69244185a67756ca916
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
 # <a name="use-azure-data-lake-analytics-interactive-tutorials"></a>使用 Azure 資料湖分析互動式教學課程
 Azure 入口網站提供您開始使用 Data Lake Analytics 的互動式教學課程。 本文會示範如何逐步完成分析網站記錄的教學課程。
 
-> [!NOTE]
-> 如果您想要使用 Visual Studio 完成相同的教學課程，請參閱 [使用資料湖分析來分析網站記錄](data-lake-analytics-analyze-weblogs.md)。
-> 更加互動式的教學課程會新增至入口網站。
-> 
-> 
-
 如需其他教學課程，請參閱：
 
 * [使用 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
-* [使用 Azure PowerShell 開始使用資料湖分析](data-lake-analytics-get-started-powershell.md)
+* [使用 Azure PowerShell 開始使用 Data Lake Analytics](data-lake-analytics-get-started-powershell.md)
 * [使用 .NET SDK 開始使用資料湖分析](data-lake-analytics-get-started-net-sdk.md)
 * [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md) 
 
@@ -42,12 +38,12 @@ Azure 入口網站提供您開始使用 Data Lake Analytics 的互動式教學�
 
 * **資料湖分析帳戶**。  請參閱[使用 Azure 入口網站開始使用 Azure Data Lake Analytics](data-lake-analytics-get-started-portal.md)。
 
-## <a name="create-data-lake-analytics-account"></a>建立資料湖分析帳戶
-您必須擁有資料湖分析帳戶，才能執行工作。
+## <a name="create-data-lake-analytics-account"></a>建立 Data Lake Analytics 帳戶
+您必須擁有 Data Lake Analytics 帳戶，才能執行工作。
 
 每個 Data Lake Analytics 帳戶有 [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md) 帳戶相依性，及預設的 Data Lake Store 帳戶。  在此教學課程中，您將建立具有 Analytics 帳戶的預設 Data Lake Store 帳戶，但您也可以事先建立。
 
-**建立資料湖分析帳戶**
+**建立 Data Lake Analytics 帳戶**
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/signin/index/?Microsoft_Azure_Kona=true&Microsoft_Azure_DataLake=true&hubsExtension_ItemHideKey=AzureDataLake_BigStorage%2cAzureKona_BigCompute)。
 2. 按一下左上角的 **Microsoft Azure** 以開啟「開始面板」。
@@ -82,15 +78,10 @@ Azure 入口網站提供您開始使用 Data Lake Analytics 的互動式教學�
 6. 按一下 [簡介]，然後依照指示進行
 
 ## <a name="see-also"></a>另請參閱
-* [Microsoft Azure 資料湖分析概觀](data-lake-analytics-overview.md)
+* [Microsoft Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)
 * [使用 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
 * [使用 Azure PowerShell 開始使用資料湖分析](data-lake-analytics-get-started-powershell.md)
 * [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
 * [使用 Azure 資料湖分析來分析網站記錄](data-lake-analytics-analyze-weblogs.md)
-
-
-
-
-<!--HONumber=Dec16_HO2-->
 
 
