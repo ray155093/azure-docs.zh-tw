@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 02/09/2017
+ms.date: 05/11/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 1bd7e8b6ba9e2f7f1150c8d88c46a4828ac078d4
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 7eb5903a5b010c7a6c2f1e427c596b931c6ec1a1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.lasthandoff: 04/03/2017
 ## <a name="next-steps"></a>後續步驟
 您可以從下列文章中，閱讀更多與這裡討論的技術相關的詳細資訊，以及有關如何使用「網路安全性群組」的快速入門指南：
 
-* [快速入門 - 使用 Azure CLI 來建立網路安全性群組和 ACL 規則](nsg-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)  
+* [快速入門 - 使用 Azure CLI 來建立網路安全性群組和 ACL 規則](nsg-quickstart.md)  
 * [Azure Resource Manager 概觀](../../azure-resource-manager/resource-group-overview.md)  
 * [什麼是網路安全性群組 (NSG)？](../../virtual-network/virtual-networks-nsg.md)  
 * [負載平衡器的 Azure Resource Manager 概觀](../../load-balancer/load-balancer-arm.md) 

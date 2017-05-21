@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 02/09/2017
+ms.date: 05/11/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: fc411d7605c9ef3cbd46e7522a6b565dd59f8b46
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 54adfd4cfaec086cec43ca851af9496bfb1049b2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -27,8 +28,8 @@ ms.lasthandoff: 03/31/2017
 ## <a name="next-steps"></a>後續步驟
 您可以從下列文章中，閱讀更多與這裡討論的技術相關的詳細資訊，以及有關如何使用「網路安全性群組」的快速入門指南：
 
-* [快速入門 - 使用 Azure 入口網站來建立網路安全性群組和 ACL 規則](nsg-quickstart-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)  
-* [快速入門 - 使用 Azure PowerShell 來建立網路安全性群組和 ACL 規則](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)  
+* [快速入門 - 使用 Azure 入口網站來建立網路安全性群組和 ACL 規則](nsg-quickstart-portal.md)  
+* [快速入門 - 使用 Azure PowerShell 來建立網路安全性群組和 ACL 規則](nsg-quickstart-powershell.md)  
 * [Azure Resource Manager 概觀](../../azure-resource-manager/resource-group-overview.md)  
 * [什麼是網路安全性群組 (NSG)？](../../virtual-network/virtual-networks-nsg.md)  
 * [負載平衡器的 Azure Resource Manager 概觀](../../load-balancer/load-balancer-arm.md) 

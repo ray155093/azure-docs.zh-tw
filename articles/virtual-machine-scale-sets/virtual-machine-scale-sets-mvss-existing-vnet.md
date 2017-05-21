@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/06/2017
 ms.author: negat
-translationtype: Human Translation
-ms.sourcegitcommit: 5e6ffbb8f1373f7170f87ad0e345a63cc20f08dd
-ms.openlocfilehash: f300537943b76e53b0e7c271e65293e585a2cd32
-ms.lasthandoff: 03/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 8e9caf7eebc17682b3204004e3a74331efbd04fb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 ---
 
@@ -28,7 +29,7 @@ ms.lasthandoff: 03/24/2017
 
 ## <a name="change-the-template-definition"></a>變更範本定義
 
-您可以在[這裡](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json)看到最基本的可行擴展集範本，並在[這裡](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json)看到用於將擴展集部署至現有虛擬網路的範本。 讓我們逐步檢查用來建立此範本 (`git diff master minimum-viable-scale-set`) 的差異：
+您可以在[這裡](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json)看到最基本的可行擴展集範本，並在[這裡](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json)看到用於將擴展集部署至現有虛擬網路的範本。 讓我們逐步檢查用來建立此範本 (`git diff minimum-viable-scale-set existing-vnet`) 的差異：
 
 首先，我們會新增 `subnetId` 參數。 這個字串會傳遞至擴展集組態，讓擴展集可識別要將虛擬機器部署到的預建子網路。 這個字串的格式必須是︰`/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Network/virtualNetworks/<virtual-network-name>/subnets/<subnet-name>`。 例如，若要將擴展集部署到名稱為 `myvnet`、子網路為 `mysubnet`、資源群組為 `myrg` 和訂用帳戶為 `00000000-0000-0000-0000-000000000000` 的現有虛擬網路，subnetId 會是：`/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet`。
 
