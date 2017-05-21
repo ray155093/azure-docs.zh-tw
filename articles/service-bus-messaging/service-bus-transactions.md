@@ -12,20 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/02/2017
+ms.date: 05/17/2017
 ms.author: clemensv;sethm
-translationtype: Human Translation
-ms.sourcegitcommit: c39abad6c5e2a9e2ae7add9ecda48783f61bc736
-ms.openlocfilehash: 8d0f3818831a22550fb0eea9bcbc1f62b133003a
-ms.lasthandoff: 02/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: a88f2d81ab43e38c9363a67aaefc178b47bfb259
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
 # <a name="overview-of-service-bus-transaction-processing"></a>服務匯流排交易處理概觀
-本文討論 Azure 服務匯流排的交易功能。 [使用服務匯流排的不可部分完成交易範例](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions)會說明大部分的討論。 本文只包含交易處理概觀以及服務匯流排中的「傳送方式」功能，而「不可部分完成交易」範例的範圍更廣且更複雜。
+本文討論 Azure 服務匯流排的交易功能。 [使用服務匯流排的不可部分完成交易範例](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/AtomicTransactions)會說明大部分的討論。 本文只包含交易處理概觀以及服務匯流排中的「傳送方式」功能，而「不可部分完成交易」範例的範圍更廣且更複雜。
 
 ## <a name="transactions-in-service-bus"></a>服務匯流排中的交易
-[交易](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions#what-are-transactions)會將兩個以上的作業一起分組到「執行範圍」。 本質上，這類交易必須確定屬於指定作業群組的所有作業都一起成功或失敗。 在這部分，所有交易都會當成一個單位，通常稱為「不可部分完成性」。 
+[交易](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/AtomicTransactions#what-are-transactions)會將兩個以上的作業一起分組到「執行範圍」。 本質上，這類交易必須確定屬於指定作業群組的所有作業都一起成功或失敗。 在這部分，所有交易都會當成一個單位，通常稱為「不可部分完成性」。 
 
 服務匯流排是交易訊息代理人，並確保其訊息存放區之所有內部作業的交易完整性。 服務匯流排內的所有訊息傳輸 (例如，將訊息移至[寄不出的信件佇列](service-bus-dead-letter-queues.md)，或[自動轉寄](service-bus-auto-forwarding.md)實體之間的訊息) 為交易式。 這麼一來，如果服務匯流排接受訊息，表示訊息已經儲存並標上序號。 從那時開始，服務匯流排內的任何訊息傳輸都是跨實體的協調作業，並且不會導致訊息遺失 (來源成功，但目標失敗) 或重複 (來源失敗，但目標成功)。
 
@@ -77,8 +78,8 @@ using (scope = new TransactionScope())
 如需服務匯流排佇列的詳細資訊，請參閱下列文章。
 
 * [使用自動轉寄鏈結服務匯流排實體](service-bus-auto-forwarding.md)
-* [自動轉寄範例](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AutoForward)
-* [使用服務匯流排的不可部分完成交易範例](https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/AtomicTransactions)
+* [自動轉寄範例](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/AutoForward)
+* [使用服務匯流排的不可部分完成交易範例](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/AtomicTransactions)
 * [比較 Azure 佇列和服務匯流排佇列](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
 * [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 

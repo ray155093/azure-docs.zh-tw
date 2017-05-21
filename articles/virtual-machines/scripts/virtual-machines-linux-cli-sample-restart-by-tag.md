@@ -16,10 +16,10 @@ ms.workload: infrastructure
 ms.date: 03/01/2017
 ms.author: allclark
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 85fa6ab8f7f5ad31347901a0be932d2474594802
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: fec7a2738c3b8e74ac335f62189f3d9b1dd346ab
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/06/2017
+ms.lasthandoff: 05/15/2017
 
 ---
 
@@ -59,19 +59,19 @@ az vm restart --ids $(az resource list --tag "restart-tag" --query "[?type=='Mic
 此指令碼會建立資源群組，然後建立三部要重新啟動的 VM。
 其中兩部已加上標記。
 
-[!code-azurecli[main](../../../cli_scripts/virtual-machine/restart-by-tag/provision.sh "佈建 VM")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/provision.sh "佈建 VM")]
 
 ### <a name="wait"></a>等候
 
 此指令碼會每 20 秒檢查一次佈建狀態，直到三部 VM 都已佈建，或其中一部佈建失敗為止。
 
-[!code-azurecli[main](../../../cli_scripts/virtual-machine/restart-by-tag/wait.sh "等待 VM 進行佈建")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/wait.sh "等待 VM 進行佈建")]
 
 ### <a name="restart-the-vms"></a>重新啟動 VM
 
 此指令碼重新啟動資源群組中的所有 VM，然後只重新啟動已標記的 VM。
 
-[!code-azurecli[main](../../../cli_scripts/virtual-machine/restart-by-tag/restart.sh "依標記重新啟動 VM")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/restart.sh "依標記重新啟動 VM")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 

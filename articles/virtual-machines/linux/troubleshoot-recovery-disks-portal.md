@@ -14,10 +14,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 11/14/2016
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: d631813e8d821a8efe135f0b138dec544b455390
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: c96ff625c3e83f6fc9057f1163c877e8e0aed5e3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -160,7 +161,7 @@ ms.lasthandoff: 04/03/2017
     請稍候，等待 VM 成功將資料磁碟中斷連結再繼續。
 
 ## <a name="create-vm-from-original-hard-disk"></a>從原始硬碟建立 VM
-若要從原始虛擬硬碟建立 VM，請使用[這個 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-specialized-vm-in-existing-vnet)。 此範本會使用來自先前命令的 VHD URL，將 VM 部署至現有的虛擬網路。 按一下 [部署至 Azure] 按鈕，如下所示︰
+若要從原始虛擬硬碟建立 VM，請使用[這個 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd-existing-vnet)。 此範本會使用來自先前命令的 VHD URL，將 VM 部署至現有的虛擬網路。 按一下 [部署至 Azure] 按鈕，如下所示︰
 
 ![從來自 GitHub 的範本部署 VM](./media/troubleshoot-recovery-disks-portal/deploy-template-from-github.png)
 

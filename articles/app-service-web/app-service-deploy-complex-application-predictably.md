@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2016
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: 0782000e87bed0d881be5238c1b91f89a970682c
-ms.openlocfilehash: 37a10d284afa6b9ee2aa65e7ec015c3c364f551d
-ms.lasthandoff: 02/16/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 844f42e61ba443a4b74a52f622113e87a7781913
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
@@ -130,7 +131,7 @@ ms.lasthandoff: 02/16/2017
 * `“resources”: […]` 內巢狀資源 (其中已定義資料庫和防火牆規則) 的 `dependsOn` 項目指定根層級 SQLServer 資源的資源識別碼。 這會告訴 Azure 資源管理員：「建立此資源之前，那個其他資源必須已經存在；如果那個其他資源定義在範本中，則請先建立它」。
   
   > [!NOTE]
-  > 如需如何使用 `resourceId()` 函式的詳細資訊，請參閱 [Azure Resource Manager 範本函式](../azure-resource-manager/resource-group-template-functions.md)。
+  > 如需如何使用 `resourceId()` 函式的詳細資訊，請參閱 [Azure Resource Manager 範本函式](../azure-resource-manager/resource-group-template-functions-resource.md#resourceid)。
   > 
   > 
 * `dependsOn` 項目的作用是 Azure 資源管理員可以知道可平行建立哪些資源，以及必須依序建立哪些資源。 

@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/28/2017
 ms.author: robb
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 97ed0ae7cf9f741155c57053bc8b34a0246d0586
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: 492e0ca675f2a827b172c33fcd33226abc95dcec
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -47,7 +48,7 @@ Azure 診斷會提供彈性的方法，用來收集來自雲端服務虛擬機�
 * 在應用程式中使用 *.wadcfgx* 檔案和以下任一方法的 Azure 診斷現有組態：
   * Visual Studio： [為 Azure 雲端服務和虛擬機器設定診斷功能](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md)
   * Windows PowerShell： [使用 PowerShell 在 Azure 雲端服務中啟用診斷](../cloud-services/cloud-services-diagnostics-powershell.md)
-* [開始使用事件中樞]((../event-hubs/event-hubs-csharp-ephcs-getstarted.md) 文章中佈建的事件中樞命名空間
+* 文章中佈建的事件中樞命名空間，[開始使用事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
 
 ## <a name="connect-azure-diagnostics-to-event-hubs-sink"></a>將 Azure 診斷連接至事件中樞接收
 根據預設，Azure 診斷一律會將記錄檔和計量傳送至 Azure 儲存體帳戶。 應用程式可能會將資料傳送至事件中樞，方法是將新的 [接收] 區段新增至 *.wadcfgx* 檔案的 **PublicConfig** / **WadCfg** 元素底下。 在 Visual Studio 中，*.wadcfgx* 檔案會儲存在以下路徑：[雲端服務專案] > [角色] > **(RoleName)** > **diagnostics.wadcfgx** 檔案。
