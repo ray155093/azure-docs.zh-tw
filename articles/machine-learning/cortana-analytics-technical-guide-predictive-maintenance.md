@@ -196,7 +196,7 @@ Power BI 會連接到 Azure SQL Database 做為其資料來源，即預測結果
      <br/>
    * 若要排定重新整理資料，請將滑鼠移至 **PredictiveMaintenanceAerospace** 資料集上，按一下 ![Elipsis icon](media/cortana-analytics-technical-guide-predictive-maintenance/icon-elipsis.png)，然後選擇 [排程重新整理]。
      <br/>
-     **附註：**如果您看到警告訊息，請按一下 [編輯認證]****，並確定您的資料庫認證與步驟 1 中所述相同。
+     **附註：**如果您看到警告訊息，請按一下 **編輯認證**，並確定您的資料庫認證與步驟 1 中所述相同。
      <br/>
      ![排程重新整理](media/cortana-analytics-technical-guide-predictive-maintenance/schedule-refresh.png)
      <br/>
