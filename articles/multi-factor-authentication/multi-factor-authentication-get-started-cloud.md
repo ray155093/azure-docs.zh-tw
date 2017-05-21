@@ -54,7 +54,7 @@ ms.lasthandoff: 04/27/2017
 4. 在頂端按一下 [使用者] 。
 5. 在頁面底部，按一下 [管理 Multi-Factor Auth] 。 隨即開啟新的瀏覽器索引標籤。
    ![按一下目錄](./media/multi-factor-authentication-get-started-cloud/manage1.png)
-6. 找出要啟用雙步驟驗證的使用者。 您可能需要在頂端變更檢視。 請確定狀態為 [停用]****。
+6. 找出要啟用雙步驟驗證的使用者。 您可能需要在頂端變更檢視。 請確定狀態為 **停用。**
    ![啟用使用者](./media/multi-factor-authentication-get-started-cloud/enable1.png)
 7. 請在其名稱旁的方塊 **打勾** 。
 8. 在右側按一下 [啟用] 。

@@ -716,7 +716,7 @@ HDInsight 服務提供數種方式以使用自訂元件。 無論元件如何使
 
     * **前端節點** - `<uniqueidentifier>AmbariDb-hn0-<generated_value>.cloudapp.net`
 
-    * **背景工作節點 - **`<uniqueidentifier>AmbariDb-wn0-<generated_value>.cloudapp.net`
+    * **背景工作節點** - `<uniqueidentifier>AmbariDb-wn0-<generated_value>.cloudapp.net`
 
     * **Zookeeper 節點** - `<uniqueidentifier>AmbariDb-zk0-<generated_value>.cloudapp.net`
 
