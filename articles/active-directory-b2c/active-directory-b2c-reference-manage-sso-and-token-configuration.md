@@ -56,6 +56,7 @@ ms.lasthandoff: 05/04/2017
 ```XML
 <Item Key="allow_infinite_rolling_refresh_token">True</Item>
 ```
+
 **簽發者 (iss) 宣告** 如果您想要變更簽發者 (iss) 宣告，請使用 Key="IssuanceClaimPattern" 修改 `<Item>` 內的值。  適用的值為 `AuthorityAndTenantGuid` 和 `AuthorityWithTfp`。
 
 **設定代表原則識別碼的宣告** 用來設定此值的選項為 TFP (信任架構原則) 和 ACR (驗證內容參考)。  
@@ -88,5 +89,8 @@ ms.lasthandoff: 05/04/2017
 </UserJourneyBehaviors>
 ```
 **單一登入 (SSO) 組態** 若要變更單一登入組態，您必須修改 `<SingleSignOn>` 的值。  適用的值為 `Tenant`、`Application`、`Policy` 和 `Disabled`。 
+
 **Web 應用程式工作階段存留期 (分鐘)** 若要變更 Web 應用程式工作階段存留期，您必須修改 `<SessionExpiryInSeconds>` 元素的值。  內建原則的預設值為 86400 秒 (1440 分鐘)。
+
 **Web 應用程式工作階段逾時** 若要變更 Web 應用程式工作階段逾時，您必須修改 `<SessionExpiryType>` 的值。  適用的值為 `Absolute` 和 `Rolling`。
+

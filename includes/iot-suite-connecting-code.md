@@ -4,7 +4,7 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
 
 1. 在 `#include` 陳述式之後新增下列變數宣告。 使用您在遠端監視解決方案儀表板中為裝置記下的值來取代 [Device Id] 和 [Device Key] 預留位置值。 使用解決方案儀表板中的「IoT 中樞主機名稱」來取代 [IoTHub Name]。 例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
    
-    ```
+    ```c
     static const char* deviceId = "[Device Id]";
     static const char* connectionString = "HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]";
     ```
@@ -17,7 +17,7 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
    - 可以接收 IoT 中樞內裝置對應項中設定的所需屬性，並根據這些屬性採取動作。
    - 可以回應透過解決方案入口網站叫用的 **Reboot** 和 **InitiateFirmwareUpdate** 直接方法。 裝置會使用回報的屬性來傳送它所支援之直接方法的相關資訊。
    
-    ```
+    ```c
     // Define the Model
     BEGIN_NAMESPACE(Contoso);
 
@@ -90,7 +90,7 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
 
 1. 新增下列函式，這些函式會處理在解決方案儀表板中設定的所需屬性。 這些所需屬性是在模型中定義：
 
-    ```
+    ```c
     void onDesiredTemperatureMeanValue(void* argument)
     {
       /* By convention 'argument' is of the type of the MODEL */
@@ -109,7 +109,7 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
 
 1. 新增下列函式，這些函式會處理透過 IoT 中樞叫用的直接方法。 這些直接方法是在模型中定義：
 
-    ```
+    ```c
     /* Handlers for direct methods */
     METHODRETURN_HANDLE Reboot(Thermostat* thermostat)
     {
@@ -132,7 +132,7 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
 
 1. 新增下列函式，此函式會傳送訊息給預先設定的解決方案：
    
-    ```
+    ```c
     /* Send data to IoT Hub */
     static void sendMessage(IOTHUB_CLIENT_HANDLE iotHubClientHandle, const unsigned char* buffer, size_t size)
     {
@@ -160,7 +160,7 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
 
 1. 新增下列回呼處理常式，此處理常式會在裝置將新回報的屬性值傳送給預先設定的解決方案後執行：
 
-    ```
+    ```c
     /* Callback after sending reported properties */
     void deviceTwinCallback(int status_code, void* userContextCallback)
     {
@@ -180,7 +180,7 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
     - 建立迴圈來每秒傳送遙測資料。
     - 將所有資源取消初始化。
 
-      ```
+      ```c
       void remote_monitoring_run(void)
       {
         if (platform_init() != 0)
