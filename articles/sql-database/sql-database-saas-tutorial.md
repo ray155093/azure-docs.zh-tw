@@ -1,6 +1,6 @@
 ---
-title: "部署及探索 Wingtip Tickets Platform (WTP) 應用程式 (使用 Azure SQL Database 的範例 SaaS 應用程式) | Microsoft Docs"
-description: "部署及探索使用 Azure SQL Database 的範例 SaaS 應用程式"
+title: "部署及探索使用 Azure SQL Database 的 SaaS 應用程式 | Microsoft Docs"
+description: "部署及瀏覽 Azure SQL Database 範例 Wingtip Tickets (WTP) 應用程式"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: billgib; sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: ff4dc19bb6e24ea9ceeed9721cfb3a85b4d10965
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 04859fb8a9f4a8bf04d92e7139d9202885c52503
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -29,6 +29,8 @@ ms.lasthandoff: 05/10/2017
 在此本教學課程中，您會部署及探索 Wingtip Tickets Platform (WTP) SaaS 應用程式。 應用程式使用租用戶各有資料庫的 SaaS 應用程式模式來維護多租用戶。 應用程式是設計成用來展示支援 SaaS 案例，以及 SaaS 設計及管理模式的 Azure SQL Database 功能。
 
 按一下下面的 [部署至 Azure] 按鈕五分鐘之後，您會擁有一個在雲端執行的多租用戶 SaaS 應用程式 (使用 SQL Database)。 應用程式部署為包含三個範例租用戶，每個都有自己的資料庫，且全部都部署到 SQL 彈性集區中。 應用程式會部署到您的 Azure 訂用帳戶，讓您有完整的存取權可以檢查及使用個別應用程式元件。
+
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得指令碼和應用程式原始程式碼。
 
 您會在本教學課程中學到：
 
@@ -97,7 +99,7 @@ WTP 應用程式使用 [*Azure 流量管理員*](https://docs.microsoft.com/azur
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-Wingtip Tickets 指令碼和應用程式原始程式碼可從 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫取得。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 [Learning Modules] 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 [Learning Modules] 資料夾下載到您的本機電腦，並維持其資料夾結構。
 
 ## <a name="provision-a-new-tenant"></a>佈建新租用戶
 

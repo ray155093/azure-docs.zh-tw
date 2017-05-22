@@ -1,6 +1,6 @@
 ---
-title: "佈建及編目新租用戶 (使用 Azure SQL Database 的範例 SaaS 應用程式) |Microsoft Docs"
-description: "佈建及編目新租用戶"
+title: "使用 Azure SQL Database 在多租用戶應用程式中佈建新的租用戶 | Microsoft Docs"
+description: "在 Wingtip Tickets (WTP) 範例 SQL Database SaaS 應用程式中佈建及編目新租用戶"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: billgib; sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 4eeada941f8615fa04624bc725efcb44f05d56c7
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: aae5d85a18f93b7821a6ef8fc7161dd9a6ebe533
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -57,7 +57,7 @@ Wingtip SaaS 應用程式是透過複製「範本」資料庫來佈建新租用�
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-Wingtip Tickets 指令碼和應用程式原始程式碼可從 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) GitHub 存放庫取得。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 [Learning Modules] 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 [Learning Modules] 資料夾下載到您的本機電腦，並維持其資料夾結構。
 
 ## <a name="provision-a-new-tenant"></a>佈建新租用戶
 

@@ -1,6 +1,6 @@
 ---
-title: "針對多個租用戶執行分析查詢 (使用 Azure SQL Database 的範例 SaaS 應用程式) | Microsoft Docs"
-description: "針對多個租用戶執行分析查詢"
+title: "針對多個 Azure SQL Database 執行分析查詢 | Microsoft Docs"
+description: "對多個 Azure SQL Database 執行分散式查詢"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -17,14 +17,14 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: billgib; sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: b512e2f7833be1947ef7674d6e0266879789ac5a
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: a0742a004b618dda304618bca21ae715552c16e6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
-# <a name="run-analytics-queries-against-multiple-tenants"></a>針對多個租用戶執行分析查詢
+# <a name="run-distributed-queries-across-multiple-azure-sql-databases"></a>對多個 Azure SQL Database 執行分散式查詢
 
 在本教學課程中，您可針對目錄中的每個租用戶執行分析查詢。 建立可執行查詢的彈性作業。 此作業會擷取資料，並將其載入在目錄伺服器上建立的不同分析資料庫。 查詢此資料庫，可以擷取藏在所有租用戶日常操作資料中的深入解析。 從租用戶分析資料庫內的結果傳回查詢建立資料表，作為作業的輸出。
 
@@ -47,7 +47,7 @@ SaaS 應用程式的其中一個絕佳機會是使用儲存在雲端的豐富租
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [Learning Modules 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 **Learning Modules** 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 **Learning Modules** 資料夾下載到您的本機電腦，並維持其資料夾結構。
 
 ## <a name="deploy-a-database-for-tenant-analytics-results"></a>部署租用戶分析結果的資料庫
 

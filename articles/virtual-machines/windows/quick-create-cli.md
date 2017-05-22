@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 05/02/2017
+ms.date: 05/11/2017
 ms.author: nepeters
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: b55478409d87ea1dd138c246ae05530df5e4ce2e
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: c2a595f07a51223368f00d6a8bf905249a391342
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/11/2017
 
 ---
 
@@ -29,7 +29,7 @@ Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+本快速入門需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
 
 ## <a name="log-in-to-azure"></a>登入 Azure 
 

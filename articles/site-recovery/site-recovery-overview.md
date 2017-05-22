@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 03/14/2017
 ms.author: raynew
-translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: d8e4e4bb7dd1e40d8c561adba04b8346fcb2127d
-ms.lasthandoff: 03/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 89921997f68bd72ee6086d2b635361eeeaba1c28
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -33,7 +34,7 @@ Azure 復原服務可參與 BCDR 策略。 [Azure 備份](https://docs.microsoft
 
 - **在雲端中進行災害復原** - 您可以將 VM 和實體伺服器上執行的工作負載複寫到 Azure，而不是複寫到次要站台。 這可排除維護次要資料中心的成本和複雜度。
 - **針對混合式環境提供彈性複寫** - 您可以複寫在支援的內部部署 Hyper-V VM、VMware VM 和 Windows/Linux 實體伺服器上執行的任何工作負載。
-- **移轉** - 您可以使用 Site Recovery，將內部部署 AWS 執行個體移轉到 Azure VM，或者在 Azure 區域之間移轉 Azure VM。
+- **移轉** - 您可以使用 Site Recovery，將 AWS 執行個體移轉到 Azure VM，或者在 Azure 區域之間移轉 Azure VM。
 - **簡化 BCDR** - 您可以從 Azure 入口網站中的單一位置部署複寫。  您可以針對單一和多部機器執行簡單的容錯移轉和容錯回復。
 - **恢復功能** - Site Recovery 會協調複寫和容錯移轉，而不需攔截應用程式資料。
 複寫的資料會儲存在 Azure 儲存體中，並具備所提供的恢復功能。 進行容錯移轉時，會根據複寫的資料來建立 Azuer VM。

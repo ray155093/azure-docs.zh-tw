@@ -1,6 +1,6 @@
 ---
-title: "WTP 應用程式效能監視 (使用 Azure SQL Database 的範例 SaaS 應用程式) | Microsoft Docs"
-description: "監視使用 Azure SQL Database 之範例 SaaS 應用程式的效能"
+title: "監視 SQL Database SaaS 應用程式的效能 | Microsoft Docs"
+description: "監視及管理 Azure SQL Database 範例 Wingtip Tickets (WTP) 應用程式的效能"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: billgib; sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 1698a06dc326b1d215bb635c40724f914ba82442
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: af9511978718af10c97bee6af3a2835c9d2c1ff4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -66,7 +66,7 @@ Wingtip Tickets 應用程式使用單一租用戶資料模型，其中每個場�
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-Wingtip Tickets 指令碼和應用程式原始程式碼可從 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫取得。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 [Learning Modules] 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 [Learning Modules] 資料夾下載到您的本機電腦，並維持其資料夾結構。
 
 ## <a name="provision-additional-tenants"></a>佈建其他租用戶
 

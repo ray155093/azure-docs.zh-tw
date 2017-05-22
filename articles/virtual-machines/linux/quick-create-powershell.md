@@ -16,10 +16,10 @@ ms.workload: infrastructure
 ms.date: 05/02/2017
 ms.author: nepeters
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 18ceb4967ee891ac24cce1a107b60c8e526fc7d2
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 53f8db832e829ed7111af8f0d0aa789f31843e18
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -30,7 +30,7 @@ Azure PowerShell 模組用於從 PowerShell 命令列或在指令碼中建立和
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-本教學課程需要 Azure PowerShell 模組 3.6 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
+本快速入門需要 Azure PowerShell 模組 3.6 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
 最後，名稱為 id_rsa.pub 的公開 SSH 金鑰必須儲存在 Windows 使用者設定檔的 .ssh 目錄中。 如需建立適用於 Azure 之 SSH 金鑰的詳細資訊，請參閱[建立適用於 Azure 的 SSH 金鑰](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 12/16/2015
 ms.author: dwrede
-translationtype: Human Translation
-ms.sourcegitcommit: 6ab02779d65dfc1519b457486678ace5fafc9fb5
-ms.openlocfilehash: 60733f973e7b88389816c1ea7cc15532ba967693
-ms.lasthandoff: 12/08/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: e4c1c2b956b2cae673e60223ce777ba1096dce33
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -32,7 +33,7 @@ Microsoft Azure 入口網站是一個可以佈建和管理 Azure 資源的中央
   ![Azure 入口網站 UI 定位][UIOrientation]
 
 ## <a name="before-you-get-started"></a>開始之前
-您需要一個有效的 Azure 訂用帳戶才能完成本教學課程。  如果您沒有訂用帳戶，您可以立即 [註冊免費試用](https://azure.microsoft.com/pricing/free-trial/) 。  擁有訂用帳戶之後，您便可以存取入口網站，網址是 [https://portal.azure.com] 。
+您需要一個有效的 Azure 訂用帳戶才能完成本教學課程。  如果您沒有訂用帳戶，您可以立即 [註冊免費試用](https://azure.microsoft.com/pricing/free-trial/) 。  擁有訂用帳戶之後，您便可以存取入口網站，網址是 <https://portal.azure.com>。
 
 ## <a name="how-to-create-a-resource"></a>如何建立資源
 Azure 擁有一個包含數千個項目的 Marketplace，您可以在一個位置即可建立這些項目。  例如，假設您想要建立新的 Windows Server 2012 VM。  [+ 新增] 中心是您進入 Marketplace 精選分類策劃組合的進入點。  每個類別都會有一小組的精選項目，以及一個可顯示所有類別和搜尋之完整 Marketplace 的連結。 若要建立新的 Windows Server 2012 VM，請執行下列動作：  

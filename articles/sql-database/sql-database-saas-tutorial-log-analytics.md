@@ -1,6 +1,6 @@
 ---
-title: "設定和執行 Log Analytics (使用 Azure SQL Database 的範例 SaaS 應用程式) |Microsoft Docs"
-description: "設定及使用 Log Analytics 搭配 WTP 範例 SaaS 應用程式"
+title: "使用 Log Analytics 搭配 SQL Database 多租用戶應用程式 | Microsoft Docs"
+description: "設定及使用 Log Analytics (OMS) 搭配 Azure SQL Database 範例 Wingtip Tickets (WTP) 應用程式"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: billgib; sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 7cb9b7dd90123a91cabe66fd8efa8ae4c9e2fa01
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 4ff4519ca40f036d58f82993db78fe08aa7d5733
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -51,7 +51,7 @@ ms.lasthandoff: 05/10/2017
 
 ### <a name="start-the-load-generator-to-create-data-to-analyze"></a>啟動負載產生器來建立要分析的資料
 
-1. 在 **PowerShell ISE** 中開啟 **Demo-PerformanceMonitoringAndManagement.ps1**。 讓此指令碼保持開啟，因為您可能想在本教學課程期間執行數個負載產生案例。
+1. 在 **PowerShell ISE** 中開啟 **Demo-PerformanceMonitoringAndManagement.ps1**。 讓此指令碼保持開啟，因為您會在本教學課程期間執行數個負載產生案例。
 1. 如果您擁有少於五個租用戶，請佈建一批租用戶以提供更有趣的監視內容︰
    1. 設定 **$DemoScenario = 1**，**佈建一批租用戶**
    1. 按 **F5** 以執行指令碼。
@@ -61,7 +61,7 @@ ms.lasthandoff: 05/10/2017
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [Learning Modules 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 **Learning Modules** 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 **Learning Modules** 資料夾下載到您的本機電腦，並維持其資料夾結構。
 
 ## <a name="installing-and-configuring-log-analytics-and-the-azure-sql-analytics-solution"></a>安裝及設定 Log Analytics 和 Azure SQL 分析解決方案
 

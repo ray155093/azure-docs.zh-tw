@@ -1,6 +1,6 @@
 ---
-title: "對所有租用戶執行臨機操作分析查詢 (使用 Azure SQL Database 的範例 SaaS 應用程式) | Microsoft Docs"
-description: "對所有租用戶執行臨機操作分析查詢"
+title: "跨多個 Azure SQL Database 執行臨機操作分析查詢 | Microsoft Docs"
+description: "在多租用戶應用程式中，跨多個資料庫執行臨機操作分析查詢"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: billgib; sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: c00c25116002c46fc94c5ea59acc101a2055b689
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: dd41e7f1f131f6c18e03d2434982c3d681342b8b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -54,7 +54,7 @@ SaaS 應用程式的其中一個絕佳機會是使用您集中儲存在雲端的
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [Learning Modules 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 **Learning Modules** 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 **Learning Modules** 資料夾下載到您的本機電腦，並維持其資料夾結構。
 
 ## <a name="deploy-the-database-used-for-ad-hoc-analytics-queries"></a>部署用於臨機操作分析查詢的資料庫
 

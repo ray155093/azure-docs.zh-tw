@@ -16,43 +16,49 @@ ms.workload: na
 ms.date: 05/02/2017
 ms.author: glenga
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 10461bddeb4d5adf4a6e4f65159ba2653dbef8a4
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 1478a2eedad496d3113fef28920d10859d11b1ce
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
-#  <a name="create-a-function-in-azure-that-is-triggered-by-a-timer"></a>在 Azure 中建立由計時器觸發的函式
+# <a name="create-a-function-in-azure-that-is-triggered-by-a-timer"></a>在 Azure 中建立由計時器觸發的函式
 
-了解如何使用 Azure Functions 來建立函式，並使其按照您定義的排程來執行。 
+了解如何使用 Azure Functions 來建立函式，並使其按照您定義的排程來執行。
 
 ![在 Azure 入口網站中建立函式應用程式](./media/functions-create-scheduled-function/function-app-in-portal-editor.png)
 
-完成本主題中的所有步驟需要不到 5 分鐘的時間。
+## <a name="prerequisites"></a>必要條件
 
-## <a name="prerequisites"></a>必要條件 
+如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-[!INCLUDE [Previous quickstart note](../../includes/functions-quickstart-previous-topics.md)]
+[!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)]
 
-在本主題中，您會在現有的函式應用程式內建立由計時器觸發的函式。 
+## <a name="create-an-azure-function-app"></a>建立 Azure 函數應用程式
 
-[!INCLUDE [functions-portal-favorite-function-apps](../../includes/functions-portal-favorite-function-apps.md)] 
+[!INCLUDE [Create function app Azure portal](../../includes/functions-create-function-app-portal.md)]
 
-## <a name="create-function"></a>建立由計時器觸發的函式
+![已成功建立函式應用程式。](./media/functions-create-first-azure-function/function-app-create-success.png)
+
+接下來，您要在新的函式應用程式中建立函式。
+
+<a name="create-function"></a>
+
+## <a name="create-a-timer-triggered-function"></a>建立由計時器觸發的函式
 
 1. 展開函式應用程式，按一下 [函式] 旁的 **+** 按鈕，然後按一下您所要語言的 [TimerTrigger] 範本。 然後，使用表格中指定的設定，並按一下 [建立]：
 
-    | 設定      |  建議的值   | 說明                              |
-    | ------------ |  ------- | -------------------------------------------------- |
-    | **函式命名** | TimerTriggerCSharp1 | 定義計時器觸發函式的名稱。
-    | **[排程](http://en.wikipedia.org/wiki/Cron#CRON_expression)** | 0 */1 * * * * | 含有六個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)，它會將函式排程為每分鐘執行一次。 |
+| 設定 | 建議的值 | 說明 |
+|---|---|---|
+| **函式命名** | TimerTriggerCSharp1 | 定義計時器觸發函式的名稱。 |
+| **[排程](http://en.wikipedia.org/wiki/Cron#CRON_expression)** | 0 \*/1 \* \* \* \* | 含有六個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)，它會將函式排程為每分鐘執行一次。 |
 
-    系統隨即會以您所選的語言建立函式，並讓它每分鐘執行一次。 
+系統隨即會以您所選的語言建立函式，並讓它每分鐘執行一次。
 
-4. 檢視寫入到記錄的追蹤資訊以確認執行情形。 
+1. 檢視寫入到記錄的追蹤資訊以確認執行情形。
 
-    ![Azure 入口網站中的函式記錄檢視器。](./media/functions-create-scheduled-function/functions-timer-trigger-view-logs2.png)
+![Azure 入口網站中的函式記錄檢視器。](./media/functions-create-scheduled-function/functions-timer-trigger-view-logs2.png)
 
 現在，您可以變更函式的排程，使其降低執行頻率，例如降低為每小時一次。 
 
@@ -71,12 +77,9 @@ ms.lasthandoff: 05/10/2017
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-cleanup.md)]
 
 ## <a name="next-steps"></a>後續步驟
-您已建立會根據排程來執行的函式。 
+
+您已建立會根據排程來執行的函式。
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 
-如需計時器觸發程序的詳細資訊，請參閱[使用 Azure Functions 排程程式碼執行](functions-bindings-timer.md)。 
-
-
-
-
+如需計時器觸發程序的詳細資訊，請參閱[使用 Azure Functions 排程程式碼執行](functions-bindings-timer.md)。

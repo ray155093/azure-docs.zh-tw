@@ -1,6 +1,6 @@
 ---
-title: "方塊中的 SaaS (使用 Azure SQL Database 的範例 SaaS 應用程式) | Microsoft Docs"
-description: "使用 SQL Database 建置 PaaS 應用程式"
+title: "Azure SQL Database 範例多租用戶應用程式 | Microsoft Docs"
+description: "Azure SQL Database 範例 Wingtip Tickets (WTP) 應用程式簡介"
 keywords: SQL Database Azure
 services: sql-database
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: billgib; sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: bf5745a788cd9ab6bf2ea8d5d97b8c04f083fc5d
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 265eab8104d8af7c510a88dffb9d70a2b3b37631
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -65,7 +65,7 @@ WTP 應用程式會使用「各租用戶資料庫」模型，並使用 SQL 彈�
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [Learning Modules 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 **Learning Modules** 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 **Learning Modules** 資料夾下載到您的本機電腦，並維持其資料夾結構。
 
 ## <a name="working-with-the-wtp-powershell-scripts"></a>使用 WTP PowerShell 指令碼
 
