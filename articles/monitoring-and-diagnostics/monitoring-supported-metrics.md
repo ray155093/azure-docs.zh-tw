@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 2/17/2017
+ms.date: 5/10/2017
 ms.author: johnkem
-translationtype: Human Translation
-ms.sourcegitcommit: 354bf45625c209c22118804d3835ca71e3128580
-ms.openlocfilehash: deda64fb779e176bb00c3256fa3028e7e3567eb4
-ms.lasthandoff: 02/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
+ms.openlocfilehash: c0e7eb271b7ab19131c500e139ea3b1f6b2e7479
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -42,6 +43,38 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |QueryPoolBusyThreads|查詢集區忙碌執行緒|Count|平均值|查詢執行緒集區中的忙碌執行緒數目。|
 |CommandPoolJobQueueLength|命令集區作業佇列長度|Count|平均值|命令執行緒集區佇列中的作業數目。|
 |ProcessingPoolJobQueueLength|處理集區作業佇列長度|Count|平均值|處理執行緒集區佇列中的非 I/O 作業數目。|
+|CurrentConnections|連接：目前的連接|Count|平均值|目前已建立的用戶端連接數目。|
+|CleanerCurrentPrice|記憶體︰清除工具目前價格|Count|平均值|記憶體目前的價格 ($/位元組/時間)，並正規化為 1000。|
+|CleanerMemoryShrinkable|記憶體︰可壓縮的清除器記憶體|位元組|平均值|背景清除器將清除的記憶體數量，以 KB 為單位。|
+|CleanerMemoryNonshrinkable|記憶體︰不可壓縮的清除器記憶體|位元組|平均值|背景清除器將不會清除的記憶體數量，以 KB 為單位。|
+|MemoryUsage|記憶體：記憶體使用量|位元組|平均值|伺服器處理序用於計算清除器記憶體價格的記憶體使用量。 等於計數器 Process\PrivateBytes 加上記憶體對應的資料大小，忽略 xVelocity 記憶體內部分析引擎 (VertiPaq) 在超出 xVelocity 引擎記憶體限制外對應或配置的任何記憶體。|
+|MemoryLimitHard|記憶體︰固定記憶體限制|位元組|平均值|組態檔中的固定記憶體限制。|
+|MemoryLimitHigh|記憶體︰記憶體上限|位元組|平均值|來自組態檔的記憶體上限。|
+|MemoryLimitLow|記憶體︰記憶體下限|位元組|平均值|來自組態檔的記憶體下限。|
+|MemoryLimitVertiPaq|記憶體︰記憶體限制 VertiPaq|位元組|平均值|來自組態檔的記憶體內部限制。|
+|配額|記憶體︰配額|位元組|平均值|目前的記憶體配額，以位元組為單位。 記憶體配額也就是指授與使用的記憶體，或是保留的記憶體。|
+|QuotaBlocked|記憶體︰封鎖的配額|Count|平均值|在釋放其他記憶體配額之前，目前已封鎖的配額要求數目。|
+|VertiPaqNonpaged|記憶體︰未分頁的 VertiPaq|位元組|平均值|工作集中已封鎖來供記憶體內部引擎使用的記憶體位元組。|
+|VertiPaqPaged|記憶體︰分頁的 VertiPaq|位元組|平均值|可供記憶體內部資料使用的分頁記憶體位元組。|
+|RowsReadPerSec|處理︰每秒讀取的資料列|每秒計數|平均值|從所有關聯式資料庫讀取資料列的速率。|
+|RowsConvertedPerSec|處理︰每秒轉換的資料列|每秒計數|平均值|處理期間資料列轉換的速率。|
+|RowsWrittenPerSec|處理︰每秒寫入的資料列|每秒計數|平均值|處理期間資料列寫入的速率。|
+|CommandPoolBusyThreads|執行緒︰命令集區的忙碌執行緒數|Count|平均值|命令執行緒集區中的忙碌執行緒數。|
+|CommandPoolIdleThreads|執行緒︰命令集區的閒置執行緒數|Count|平均值|命令執行緒集區中的閒置執行緒數。|
+|LongParsingBusyThreads|執行緒︰完整剖析的忙碌執行緒數|Count|平均值|完整剖析執行緒集區中的忙碌執行緒數目。|
+|LongParsingIdleThreads|執行緒︰完整剖析的閒置執行緒數|Count|平均值|完整剖析執行緒集區中的閒置執行緒數目。|
+|LongParsingJobQueueLength|執行緒︰完整剖析的作業佇列長度|Count|平均值|完整剖析執行緒集區佇列中的作業數目。|
+|ProcessingPoolBusyIOJobThreads|執行緒︰處理集區的忙碌 I/O 作業執行緒數|Count|平均值|處理執行緒集區中執行 I/O 作業的執行緒數目。|
+|ProcessingPoolBusyNonIOThreads|執行緒︰處理集區的忙碌非 I/O 執行緒數|Count|平均值|處理執行緒集區中執行非 I/O 作業的執行緒數目。|
+|ProcessingPoolIOJobQueueLength|執行緒：處理集區 I/O 作業佇列長度|Count|平均值|處理執行緒集區佇列中的 I/O 作業數目。|
+|ProcessingPoolIdleIOJobThreads|執行緒︰處理集區的閒置 I/O 作業執行緒數|Count|平均值|處理執行緒集區中 I/O 作業的閒置執行緒數目。|
+|ProcessingPoolIdleNonIOThreads|執行緒︰處理集區的閒置非 I/O 執行緒數|Count|平均值|處理執行緒集區中專供非 I/O 作業使用的閒置執行緒數目。|
+|QueryPoolIdleThreads|執行緒︰查詢集區的閒置執行緒數|Count|平均值|處理執行緒集區中 I/O 作業的閒置執行緒數目。|
+|QueryPoolJobQueueLength|執行緒︰查詢集區的作業佇列長度|Count|平均值|查詢執行緒集區佇列中的作業數目。|
+|ShortParsingBusyThreads|執行緒︰簡短剖析的忙碌執行緒數|Count|平均值|簡短剖析執行緒集區中的忙碌執行緒數目。|
+|ShortParsingIdleThreads|執行緒︰簡短剖析的閒置執行緒數|Count|平均值|簡短剖析執行緒集區中的閒置執行緒數目。|
+|ShortParsingJobQueueLength|執行緒︰簡短剖析的作業佇列長度|Count|平均值|簡短剖析執行緒集區佇列中的作業數目。|
+|memory_thrashing_metric|記憶體猛移|百分比|平均值|記憶體猛移的平均值。|
 
 ## <a name="microsoftapimanagementservice"></a>Microsoft.ApiManagement/service
 
@@ -299,6 +332,42 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |磁碟讀取作業數/秒|磁碟讀取作業數/秒|每秒計數|平均值|磁碟讀取 IOPS|
 |磁碟寫入作業數/秒|磁碟寫入作業數/秒|每秒計數|平均值|磁碟寫入 IOPS|
 
+## <a name="microsoftcustomerinsightshubs"></a>Microsoft.CustomerInsights/hubs
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|CustomerInsightsApiCalls|CustomerInsightsApiCalls|Count|總計||
+
+## <a name="microsoftdbformysqlservers"></a>Microsoft.DBforMySQL/servers
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|cpu_percent|CPU 百分比|百分比|平均值|CPU 百分比|
+|compute_limit|計算單位限制|Count|平均值|計算單位限制|
+|compute_consumption_percent|計算單位百分比|百分比|平均值|計算單位百分比|
+|memory_percent|記憶體百分比|百分比|平均值|記憶體百分比|
+|io_consumption_percent|IO 百分比|百分比|平均值|IO 百分比|
+|storage_percent|儲存體百分比|百分比|平均值|儲存體百分比|
+|storage_used|已使用儲存體|位元組|平均值|已使用儲存體|
+|storage_limit|儲存體限制|位元組|平均值|儲存體限制|
+|active_connections|作用中的連接總數|Count|平均值|作用中的連接總數|
+|connections_failed|失敗的連接總數|Count|平均值|失敗的連接總數|
+
+## <a name="microsoftdbforpostgresqlservers"></a>Microsoft.DBforPostgreSQL/servers
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|cpu_percent|CPU 百分比|百分比|平均值|CPU 百分比|
+|compute_limit|計算單位限制|Count|平均值|計算單位限制|
+|compute_consumption_percent|計算單位百分比|百分比|平均值|計算單位百分比|
+|memory_percent|記憶體百分比|百分比|平均值|記憶體百分比|
+|io_consumption_percent|IO 百分比|百分比|平均值|IO 百分比|
+|storage_percent|儲存體百分比|百分比|平均值|儲存體百分比|
+|storage_used|已使用儲存體|位元組|平均值|已使用儲存體|
+|storage_limit|儲存體限制|位元組|平均值|儲存體限制|
+|active_connections|作用中的連接總數|Count|平均值|作用中的連接總數|
+|connections_failed|失敗的連接總數|Count|平均值|失敗的連接總數|
+
 ## <a name="microsoftdevicesiothubs"></a>Microsoft.Devices/IotHubs
 
 |度量|度量顯示名稱|單位|彙總類型|說明|
@@ -311,7 +380,7 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |devices.totalDevices|裝置總計|Count|總計|向 IoT 中樞註冊的裝置數目|
 |devices.connectedDevices.allProtocol|連接的裝置|Count|總計|連接至 IoT 中樞的裝置數目|
 |d2c.telemetry.egress.success|已傳遞的遙測訊息|Count|總計|訊息成功寫入端點的次數 (總計)|
-|d2c.telemetry.egress.dropped|捨棄的訊息|Count|總計|因為不符合任何路由且後援路由已停用，而捨棄的訊息數目|
+|d2c.telemetry.egress.dropped|捨棄的訊息|Count|總計|由於傳遞端點已無作用而卸除的訊息數目|
 |d2c.telemetry.egress.orphaned|被遺棄的訊息|Count|總計|不符合任何路由 (包括後援路由) 的訊息計數|
 |d2c.telemetry.egress.invalid|無效的訊息|Count|總計|因為與端點不相容而未傳遞的訊息計數|
 |d2c.telemetry.egress.fallback|符合後援條件的訊息|Count|總計|寫入後援端點的訊息數目|
@@ -354,12 +423,14 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |jobs.queryJobs.failure|失敗作業查詢|Count|總計|所有呼叫查詢作業失敗的計數。|
 |jobs.completed|已完成的工作|Count|總計|所有已完成的作業計數。|
 |jobs.failed|失敗作業|Count|總計|所有失敗作業計數。|
+|d2c.telemetry.ingress.sendThrottle|節流錯誤數目|Count|總計|因裝置輸送量節流而導致的節流錯誤數目|
+|dailyMessageQuotaUsed|已使用的訊息總數|Count|平均值|今日已使用的總訊息數|
 
 ## <a name="microsofteventhubnamespaces"></a>Microsoft.EventHub/namespaces
 
 |度量|度量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|INREQS|傳入的要求|Count|總計|命名空間的傳入要求總計|
+|INREQS|傳入的傳送要求|Count|總計|針對通知中樞傳入的傳送要求總數|
 |SUCCREQ|成功的要求|Count|總計|命名空間的成功要求總數|
 |FAILREQ|失敗的要求|Count|總計|命名空間的失敗要求總數|
 |SVRBSY|伺服器忙線錯誤|Count|總計|命名空間的伺服器忙線錯誤總數|
@@ -367,11 +438,11 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |MISCERR|其他錯誤|Count|總計|命名空間的失敗要求總數|
 |INMSGS|傳入訊息|Count|總計|命名空間的內送訊息總數|
 |OUTMSGS|外送訊息|Count|總計|命名空間的外送訊息總數|
-|EHINMBS|傳入位元組|每秒位元組|總計|命名空間的事件中樞內送訊息輸送量|
-|EHOUTMBS|傳出位元組|每秒位元組|總計|命名空間的外送訊息總數|
+|EHINMBS|傳入位元組|位元組|總計|命名空間的事件中樞內送訊息輸送量|
+|EHOUTMBS|傳出位元組|位元組|總計|命名空間的外送訊息總數|
 |EHABL|封存待處理項目訊息|Count|總計|命名空間的事件中樞封存於待處理項目中訊息|
 |EHAMSGS|封存訊息|Count|總計|命名空間中的事件中樞已封存訊息|
-|EHAMBS|封存訊息輸送量|每秒位元組|總計|命名空間中的事件中樞已封存訊息輸送量|
+|EHAMBS|封存訊息輸送量|位元組|總計|命名空間中的事件中樞已封存訊息輸送量|
 
 ## <a name="microsoftlogicworkflows"></a>Microsoft.Logic/workflows
 
@@ -477,6 +548,10 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |outgoing.mpns.dropped|MPNS 已捨棄通知|Count|總計|MPNS 已捨棄的推播計數 (MPNS 回應標頭︰X-NotificationStatus: QueueFull 或 Suppressed)。|
 |outgoing.mpns.pnserror|MPNS 錯誤|Count|總計|因為與 MPNS 通訊錯誤而失敗的推播計數。|
 |outgoing.mpns.authenticationerror|MPNS 驗證錯誤|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。|
+|notificationhub.devices|通知中樞裝置|Count|平均值|通知中樞的裝置計數|
+|notificationhub.pushes|通知中樞推播通知|Count|總計|通知中樞內的推播通知計數|
+|incoming.all.requests|所有傳入要求|Count|總計|針對通知中樞傳入的要求總數|
+|incoming.all.failedrequests|所有傳入的失敗要求|Count|總計|針對通知中樞傳入的失敗要求總數|
 
 ## <a name="microsoftsearchsearchservices"></a>Microsoft.Search/searchServices
 
@@ -512,10 +587,9 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |sessions_percent|工作階段百分比|百分比|平均值|工作階段百分比|
 |dtu_limit|DTU 限制|Count|平均值|DTU 限制|
 |dtu_used|已使用 DTU|Count|平均值|已使用 DTU|
-|service_level_objective|資料庫的服務等級目標|Count|總計|資料庫的服務等級目標|
 |dwu_limit|DWU 限制|Count|最大值|DWU 限制|
-|dwu_consumption_percent|DWU 百分比|百分比|平均值|DWU 百分比|
-|dwu_used|已使用 DWU|Count|平均值|已使用 DWU|
+|dwu_consumption_percent|DWU 百分比|百分比|最大值|DWU 百分比|
+|dwu_used|已使用 DWU|Count|最大值|已使用 DWU|
 
 ## <a name="microsoftsqlserverselasticpools"></a>Microsoft.Sql/servers/elasticPools
 
@@ -550,65 +624,8 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |AMLCalloutFailedRequests|失敗的函式要求|Count|總計|失敗的函式要求|
 |AMLCalloutInputEvents|函式事件|Count|總計|函式事件|
 
-## <a name="microsoftwebserverfarms"></a>Microsoft.Web/serverfarms
-
-|度量|度量顯示名稱|單位|彙總類型|說明|
-|---|---|---|---|---|
-|CpuPercentage|CPU 百分比|百分比|平均值|CPU 百分比|
-|MemoryPercentage|記憶體百分比|百分比|平均值|記憶體百分比|
-|DiskQueueLength|磁碟佇列長度|Count|總計|磁碟佇列長度|
-|HttpQueueLength|Http 佇列長度|Count|總計|Http 佇列長度|
-|BytesReceived|資料輸入|位元組|總計|資料輸入|
-|BytesSent|資料輸出|位元組|總計|資料輸出|
-
-## <a name="microsoftwebsites-including-functions"></a>Microsoft.Web/sites (包括 Functions)
-
-|度量|度量顯示名稱|單位|彙總類型|說明|
-|---|---|---|---|---|
-|CPU 時間|CPU 時間|秒|總計|CPU 時間|
-|要求|要求|Count|總計|要求|
-|BytesReceived|資料輸入|位元組|總計|資料輸入|
-|BytesSent|資料輸出|位元組|總計|資料輸出|
-|Http101|Http 101|Count|總計|Http 101|
-|Http2xx|Http 2xx|Count|總計|Http 2xx|
-|Http3xx|Http 3xx|Count|總計|Http 3xx|
-|Http401|Http 401|Count|總計|Http 401|
-|Http403|Http 403|Count|總計|Http 403|
-|Http404|Http 404|Count|總計|Http 404|
-|Http406|Http 406|Count|總計|Http 406|
-|Http4xx|Http 4xx|Count|總計|Http 4xx|
-|Http5xx|Http 伺服器錯誤|Count|總計|Http 伺服器錯誤|
-|MemoryWorkingSet|記憶體工作集|位元組|平均值|記憶體工作集|
-|AverageMemoryWorkingSet|平均記憶體工作集|位元組|平均值|平均記憶體工作集|
-|AverageResponseTime|平均回應時間|秒|平均值|平均回應時間|
-|FunctionExecutionUnits|函式執行單位|Count|平均值|函式執行單位|
-|FunctionExecutionCount|函式執行計數|Count|平均值|函式執行計數|
-
-## <a name="microsoftwebsitesslots"></a>Microsoft.Web/sites/slots
-
-|度量|度量顯示名稱|單位|彙總類型|說明|
-|---|---|---|---|---|
-|CPU 時間|CPU 時間|秒|總計|CPU 時間|
-|要求|要求|Count|總計|要求|
-|BytesReceived|資料輸入|位元組|總計|資料輸入|
-|BytesSent|資料輸出|位元組|總計|資料輸出|
-|Http101|Http 101|Count|總計|Http 101|
-|Http2xx|Http 2xx|Count|總計|Http 2xx|
-|Http3xx|Http 3xx|Count|總計|Http 3xx|
-|Http401|Http 401|Count|總計|Http 401|
-|Http403|Http 403|Count|總計|Http 403|
-|Http404|Http 404|Count|總計|Http 404|
-|Http406|Http 406|Count|總計|Http 406|
-|Http4xx|Http 4xx|Count|總計|Http 4xx|
-|Http5xx|Http 伺服器錯誤|Count|總計|Http 伺服器錯誤|
-|MemoryWorkingSet|記憶體工作集|位元組|平均值|記憶體工作集|
-|AverageMemoryWorkingSet|平均記憶體工作集|位元組|平均值|平均記憶體工作集|
-|AverageResponseTime|平均回應時間|秒|平均值|平均回應時間|
-|FunctionExecutionUnits|函式執行單位|Count|平均值|函式執行單位|
-|FunctionExecutionCount|函式執行計數|Count|平均值|函式執行計數|
-
 ## <a name="next-steps"></a>後續步驟
-* [了解 Azure 監視器中的度量](monitoring-overview.md#monitoring-sources)
+* [了解 Azure 監視器中的度量](monitoring-overview-metrics.md)
 * [建立度量警示](insights-receive-alert-notifications.md)
 * [將度量匯出至儲存體、事件中樞或 Log Analytics](monitoring-overview-of-diagnostic-logs.md)
 

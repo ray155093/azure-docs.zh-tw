@@ -13,12 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 07/16/2016
-ms.author: sashan
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 7d666b81f6c836e161d3c97512767638c088d3c8
-ms.lasthandoff: 04/13/2017
+ms.date: 04/07/2017
+ms.author: sashan;carlrab
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 4abcfa777c08cec25770dc92f38e530f1ddb1d89
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -34,16 +35,16 @@ ms.lasthandoff: 04/13/2017
 ## <a name="scenario-1-cost-sensitive-startup"></a>案例 1. 成本導向創業
 <i>我想要創業，而且成本極為有限。我想要簡化應用程式的部署和管理，並且願意讓個別客戶具有有限的 SLA。但是我想要確保整個應用程式絕不會離線。</i>
 
-若要滿足簡單性需求，您應該將所有租用戶資料庫部署到您所選擇 Azure 區域中的單一彈性集區，並將管理資料庫部署為異地複寫的單一資料庫。 對於租用戶的災害復原，請使用異地還原，這不需要額外成本。 若要確保管理資料庫的可用性，應該將它們異地複寫到另一個區域 (步驟 1)。 此案例中災害復原組態的持續成本等於次要資料庫的總成本。 下圖說明此組態。
+若要滿足簡單性需求，您應該將所有租用戶資料庫部署到您所選擇 Azure 區域中的單一彈性集區，並將管理資料庫部署為異地複寫的單一資料庫。 對於租用戶的災害復原，請使用異地還原，這不需要額外成本。 若要確保管理資料庫的可用性，應該使用自動容錯移轉群組將它們異地複寫到另一個區域 (步驟 1)。 此案例中災害復原組態的持續成本等於次要資料庫的總成本。 下圖說明此組態。
 
 ![圖 1](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-1.png)
 
 如果主要區域中斷，下圖說明讓您的應用程式上線的復原步驟。
 
-* 將管理資料庫 (2) 立即容錯移轉到 DR 區域。 
-* 變更應用程式的連接字串，使其指向 DR 區域。 將會在 DR 區域中建立所有新的帳戶和租用戶資料庫。 現有的客戶會看到其資料暫時無法使用。
-* 使用與原始集區 (3) 相同的組態來建立彈性集區。 
-* 使用異地還原來建立租用戶資料庫 (4) 的複本。 您可以考慮透過使用者連接來觸發個別還原，或使用某個其他應用程式特有的優先順序配置。
+* 容錯移轉群組開始將管理資料庫自動容錯移轉到 DR 區域。 應用程式會自動重新連線到新的主要區域，並且將會在 DR 區域中建立所有新的帳戶和租用戶資料庫。 現有的客戶會看到其資料暫時無法使用。
+* 使用與原始集區 (2) 相同的組態來建立彈性集區。
+* 使用異地還原來建立租用戶資料庫 (3) 的複本。 您可以考慮透過使用者連接來觸發個別還原，或使用某個其他應用程式特有的優先順序配置。
+
 
 您的應用程式目前在 DR 區域中已重新上線，但有些客戶在存取其資料時會經歷到延遲。
 

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/02/2016
 ms.author: robb
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 62bafc9bc58811cd9bd314639e3c2a609f4935d3
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: ed9bfe928699d040aa4283da5a8690318932738c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -42,9 +43,12 @@ Azure 監視器自動調整僅適用於[虛擬機器擴展集](https://azure.mic
 
 以下說明適用於先前的圖表項目。   
 
-## <a name="resource-metrics"></a>資源度量
-資源會發出度量，並於稍後由規則處理。 度量來自不同的方法。
+## <a name="resource-metrics"></a>資源計量
+資源會發出計量，這些計量稍後會由規則處理。 度量來自不同的方法。
 虛擬機器擴展集使用來自 Azure 診斷代理程式的遙測資料，而 Web 應用程式和雲端服務的遙測則直接來自 Azure 基礎結構。 一些常用的統計資料包括 CPU 使用率、記憶體使用量、執行緒計數、佇列長度和磁碟使用量。 如需可使用哪些遙測資料的清單，請參閱 [自動調整的常用度量](insights-autoscale-common-metrics.md)。
+
+## <a name="custom-metrics"></a>自訂計量
+您也可以運用自己自訂的計量 (由您的應用程式發出)。 如果您已設定應用程式來將計量傳送至 Application Insights，則可以利用那些計量來決定是否要調整規模。 
 
 ## <a name="time"></a>時間
 排程型規則是以 UTC 為基礎。 設定規則時必須正確設定時區。  

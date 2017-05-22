@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Database 的主動式異地複寫"
-description: "主動式異地複寫可讓您在任何 Azure 資料中心中設定資料庫的 4 個複本。"
+title: "容錯移轉群組和主動式異地複寫 - Azure SQL Database | Microsoft Docs"
+description: "自動容錯移轉群組與主動式異地複寫可讓您在任何 Azure 資料中心設定 4 個資料庫複本，在發生中斷情況時自動進行容錯移轉。"
 services: sql-database
 documentationcenter: na
 author: anosov1960
@@ -15,37 +15,36 @@ ms.tgt_pltfrm: na
 ms.workload: NA
 ms.date: 09/26/2016
 ms.author: sashan
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 8d8743529f4f0b9e8c036d328d63bea247279fe3
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 647dbeb96181fb9a6118b0cbca8dce9876d9a983
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="overview-sql-database-active-geo-replication"></a>概觀︰SQL Database 主動式異地複寫
-主動式異地複寫可讓您在相同或不同資料中心位置 (區域) 中設定最多 4 個可讀取的次要資料庫。 在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫進行查詢和容錯移轉。 主動式異地複寫必須是在相同訂用帳戶內的資料庫之間進行。
+# <a name="overview-failover-groups-and-active-geo-replication"></a>概觀︰容錯移轉群組和主動式異地複寫
+主動式異地複寫可讓您在相同或不同資料中心位置 (區域) 中設定最多 4 個可讀取的次要資料庫。 在資料中心中斷或在無法連線至主要資料庫的情況下，便可使用次要資料庫進行查詢和容錯移轉。 容錯移轉必須由使用者的應用程式手動起始。 容錯移轉之後，新的主要資料庫會有不同的連接端點。 
 
 > [!NOTE]
-> 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。 在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
+> 主動式異地複寫 (可讀取次要複本) 可供所有服務層中的所有資料庫使用
 >  
 
- 您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)、[Transact-SQL](sql-database-geo-replication-transact-sql.md) 或 [REST API - 建立或更新資料庫](https://msdn.microsoft.com/library/azure/mt163685.aspx)來設定主動式異地複寫。
+Azure SQL Database 的自動容錯移轉群組是設計來自動管理複寫、連線能力和大規模容錯移轉的 SQL 資料庫功能。 客戶若使用此功能，就能夠在導致主要區域中完全或部分喪失 SQL Database 服務可用性的嚴重區域失敗或其他非計劃事件之後，自動復原次要區域中的多個相關資料庫。 此外，他們可以使用可讀取次要資料庫來卸載唯讀工作負載。  因為自動容錯移轉群組牽涉到多個資料庫，所以必須在主要伺服器上進行設定。 主要和次要伺服器都必須位於相同的訂用帳戶。 自動容錯移轉群組支援將群組中的所有資料庫都只複寫到不同區域的一部次要伺服器。 不過，主動式異地複寫在任何區域中最多可以有 4 個次要資料庫。
 
-若您的主要資料庫因為任何原因而失敗，或只需要離線，您可以「容錯移轉」  至任何次要資料庫。 容錯移轉至其中一個次要資料庫啟動時，所有其他次要複本會自動連結至新的主要複本。
+如果您使用主動式異地複寫，而且主要資料庫因為任何原因而失敗，或者只是需要離線，您可以起始容錯移轉至任何次要資料庫。 容錯移轉至其中一個次要資料庫啟動時，所有其他次要複本會自動連結至新的主要複本。 如果您使用自動容錯移轉群組管理資料庫復原，則影響群組中一或多個資料庫的任何中斷都會造自動容錯移轉。 您可以設定最符合您應用程式需求的自動容錯移轉原則，或者您可以選擇不設定而使用手動啟動。 此外，自動容錯移轉群組還提供在容錯移轉期間仍保持不變的讀寫和唯讀接聽程式端點。 無論您使用手動或自動啟動容錯移轉，容錯移轉都會將群組中所有次要資料庫切換到主要資料庫。 資料庫容錯移轉完成後，DNS 記錄會自動更新以將端點重新導向至新的區域。
 
-您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)、[Transact-SQL](sql-database-geo-replication-failover-transact-sql.md)、[REST API - 計劃的容錯移轉](https://msdn.microsoft.com/library/mt575007.aspx) 或 [REST API - 非計劃的容錯移轉](https://msdn.microsoft.com/library/mt582027.aspx)，容錯移轉至次要資料庫。
+您可以使用主動式異地複寫管理伺服器上或彈性集區中個別資料庫或一組資料庫的複寫和容錯移轉。 您可以使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md)、[Transact-SQL](sql-database-geo-replication-transact-sql.md) 或 [REST API](https://msdn.microsoft.com/library/azure/mt163685.aspx) 來進行。 容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。 如需詳細資訊，請參閱 [災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。 這適用於主動式異地複寫和自動容錯移轉群組兩者。
 
-容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。 如需詳細資訊，請參閱 [災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
+主動式異地複寫會利用 SQL Server 的 [Always On (英文)](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server) 技術，使用讀取認可快照隔離 (RCSI) 以非同步方式將主要資料庫上認可的交易複寫到次要資料庫。 自動容錯移轉群組在主動式異地複寫之上提供群組語意，但使用相同的非同步複寫機制。 雖然次要資料可能會在任何指定時間點稍微落後主要資料庫，但是次要資料保證絕對不會含有部分交易。 跨區域備援可讓應用程式從天然災害、災難性人為錯誤或惡意行為所造成的全部或部分資料中心永久遺失快速復原。 在 [商務持續性概觀](sql-database-business-continuity.md)中可以找到特定的 RPO 資料。
 
-主動式異地複寫功能會實作可在相同 Microsoft Azure 區域或不同區域 (異地備援) 內提供資料庫備援的機制。 主動式異地複寫以非同步方式從資料庫將已認可的交易複寫至不同伺服器上最多四個資料庫複本，而且使用讀取認可快照隔離 (RCSI) 進行隔離。 當設定主動式異地複寫時，會在指定的伺服器上建立次要資料庫。 原始的資料庫會變成主要資料庫。 主要資料庫會以非同步方式將已認可的交易複寫到每一個次要資料庫。 複寫的項目僅限完整的交易。 雖然次要資料可能會在任何指定時間點稍微落後主要資料庫，但是次要資料保證絕對不會含有部分交易。 在 [商務持續性概觀](sql-database-business-continuity.md)中可以找到特定的 RPO 資料。
-
-主動式異地複寫的主要優點之一，是它提供了具有極短復原時間的資料庫層級災害復原解決方案。 當您將次要資料庫放在不同區域中的伺服器上，就能夠為應用程式中加入最大的恢復能力。 跨區域備援可讓應用程式從天然災害、災難性人為錯誤或惡意行為所造成的全部或部分資料中心永久遺失復原。 下圖顯示以美國中北部區域的主要資料庫和美國中南部區域的次要資料庫所設定的作用中異地複寫範例。
+下圖顯示以美國中北部區域的主要資料庫和美國中南部區域的次要資料庫所設定的作用中異地複寫範例。
 
 ![異地複寫關聯性](./media/sql-database-active-geo-replication/geo-replication-relationship.png)
 
-另一個主要優點是次要資料庫可讀取，而且可用來卸載唯讀工作負載，例如報告作業。 如果您只想使用次要資料庫進行負載平衡，您可以在與主要資料庫相同的區域中建立它。 在相同的區域建立次要資料庫並不會增加應用程式對於災難性失敗的恢復能力。  
+因為次要資料庫可讀取，所以可用來卸載唯讀工作負載，例如報告作業。 如果您使用主動式異地複寫，可以在具有主要資料庫的相同區域中建立次要資料庫，但這樣不會增加應用程式發生嚴重失敗時的恢復能力。 如果您使用自動容錯移轉群組，則一律要在不同區域中建立次要資料庫。
 
-可以使用主動式異地覆寫的其他情況包括：
+除了災害復原之外，主動式異地複寫還可用於下列案例︰
 
 * **資料庫移轉**：您可以使用主動式異地覆寫，以最少的停機時間將資料庫從一部伺服器移轉到另一個線上伺服器。
 * **應用程式升級**：您可以在應用程式升級期間建立額外的次要資料庫做為容錯回復複本。
@@ -55,24 +54,53 @@ ms.lasthandoff: 04/15/2017
 ## <a name="active-geo-replication-capabilities"></a>主動式異地複寫功能
 主動式異地覆寫功能提供下列基本功能：
 
-* **自動非同步複寫**︰您只能藉由加入至現有資料庫來建立次要資料庫。 次要資料庫只能建立在不同的 Azure SQL Database 伺服器。 一旦建立之後，次要資料庫就要填入從主要資料庫複製的資料。 這個程序稱為植入。 建立並植入次要資料庫之後，主要資料庫的更新會以非同步方式自動複製到次要資料庫。 非同步複寫表示交易會先在主要資料庫上受到認可，才會複製到次要資料庫。 
-* **多個次要資料庫**：兩個或以上的次要資料庫可增加主要資料庫和應用程式的備援和保護層級。 如果有多個次要資料庫存在，即使其中一個次要資料庫失敗，應用程式仍會受到保護。 如果只有一個次要資料庫卻失敗了，應用程式會暴露在更高的風險中，直到建立新的次要資料庫。
+* **自動非同步複寫**︰您只能藉由加入至現有資料庫來建立次要資料庫。 您可以在任何 Azure SQL Database 伺服器建立次要資料庫。 一旦建立之後，次要資料庫就要填入從主要資料庫複製的資料。 這個程序稱為植入。 建立並植入次要資料庫之後，主要資料庫的更新會以非同步方式自動複製到次要資料庫。 非同步複寫表示交易會先在主要資料庫上受到認可，才會複製到次要資料庫。 
 * **可讀取的次要資料庫**：應用程式可以存取次要資料庫，使用用於存取主要資料庫的相同安全性主體或不同安全性主體進行唯讀作業。 在快照集隔離模式中執行次要資料庫，以確保主要資料庫更新的複寫 (記錄重播) 不會被次要資料庫上執行的查詢延遲。
 
-> [!NOTE]
-> 如果有從主要資料庫接收的結構描述更新，則次要資料庫上的記錄重播會延遲，因為它需要次要資料庫上的結構描述鎖定。
-> 
-> 
+   > [!NOTE]
+   > 如果有從主要資料庫接收的結構描述更新，則次要資料庫上的記錄重播會延遲，因為它需要次要資料庫上的結構描述鎖定。 
+   > 
 
-* **彈性集區資料庫的主動式異地複寫**：您可以為任何彈性集區中的任何資料庫設定主動式異地複寫。 次要資料庫可以在其他彈性集區中。 對於一般資料庫，只要服務層相同，次要資料庫可以是彈性集區，反之亦然。 
+* **多個可讀取次要資料庫**：兩個或以上的次要資料庫可增加主要資料庫和應用程式的備援和保護層級。 如果有多個次要資料庫存在，即使其中一個次要資料庫失敗，應用程式仍會受到保護。 如果只有一個次要資料庫卻失敗了，應用程式會暴露在更高的風險中，直到建立新的次要資料庫。
+
+   > [!NOTE]
+   > 如果您使用主動式異地複寫建置分散在世界各地的應用程式，而且必須在 4 個以上的區域中提供唯讀存取資料，您可以建立次要資料庫的次要資料庫 (稱為鏈結的程序)。 如此一來您就可以達到幾乎無限擴充的資料庫複寫。 此外，鏈結可減少來自主要資料庫的複寫額外負荷。 缺點是會增加分葉最尾端之次要資料庫上的複寫延遲。 。 
+   >
+
+* **支援彈性集區資料庫**：您可以為任何彈性集區中的任何資料庫設定主動式異地複寫。 次要資料庫可以在其他彈性集區中。 對於一般資料庫，只要服務層相同，次要資料庫可以是彈性集區，反之亦然。 
 * **次要資料庫的可設定效能層級**︰可以使用比主要資料庫低的效能層級建立次要資料庫。 主要和次要資料庫必須有相同的服務層。 對於具有高資料庫寫入活動的應用程式不建議使用這個選項，因為增加的複寫延遲會提高容錯移轉後遺失重要資料的風險。 此外，在容錯移轉之後應用程式的效能會受到影響，直到新的主要資料庫升級至較高的效能層級。 在 Azure 入口網站上的記錄 IO 百分比圖表，提供預估次要資料庫承受複寫負載所需的最少效能層級的好方法。 例如，如果您的主要資料庫是 P6 (1000 DTU) 和其記錄 IO 百分比為 50%，則次要資料庫必須至少是 P4 (500 DTU)。 您也可以使用 [sys.resource_stats](https://msdn.microsoft.com/library/dn269979.aspx) 或 [sys.dm_db_resource_stats](https://msdn.microsoft.com/library/dn800981.aspx) 資料庫檢視來擷取記錄 IO 資料。  如需 SQL Database 效能層級的詳細資訊，請參閱 [SQL Database 選項和效能](sql-database-service-tiers.md)。 
 * **使用者控制的容錯移轉和容錯回復**：應用程式或使用者可以隨時明確也將次要資料庫切換到主要角色。 在實際的中斷期間，應該使用「非計劃性」選項，這樣會立即將次要升級為主要。 當失敗的主要資料庫復原，並且可再次使用時，系統會自動將復原的主要資料庫標示為次要資料庫，並讓它與新的主要資料庫保持更新。 由於複寫的非同步本質，如果主要資料庫在將最新的變更複寫至次要資料庫之前失敗，則非計劃的容錯移轉期間會有少量的資料遺失。 當具有多個次要資料庫的主要資料庫容錯移轉時，系統會自動重新設定複寫關聯性，並且將剩餘的次要資料庫連結至新升級的主要資料庫，而不需要任何使用者介入。 解決造成容錯移轉的中斷之後，可能想要讓應用程式返回主要區域。 若要這麼做，應該使用「計劃」選項叫用容錯移轉命令。 
 * **保持認證和防火牆規則同步**︰我們建議針對異地複寫資料庫使用 [資料庫防火牆規則](sql-database-firewall-configure.md) ，這樣一來，這些規則可以使用資料庫複寫，以確保所有次要資料庫具有與主要資料庫相同的防火牆規則。 此方法不需要客戶手動設定及維護同時裝載主要和次要資料庫之伺服器上的防火牆規則。 同樣地，針對資料存取使用 [自主資料庫使用者](sql-database-manage-logins.md) ，確保主要與次要資料庫永遠具有相同的使用者認證，在容錯移轉時不會因為登入和密碼不相符而有任何中斷。 使用額外的 [Azure Active Directory](../active-directory/active-directory-whatis.md)，客戶可以管理主要和次要資料庫的使用者存取，並且排除在資料庫中管理認證的需求。
 
-## <a name="upgrading-or-downgrading-a-primary-database"></a>升級或降級主要資料庫
-您可以將主要資料庫升級或降級至不同的效能層級 (在相同的服務層內)，而不會中斷連接任何次要資料庫。 升級時，我們建議您先升級次要資料庫，然後再升級主要資料庫。 降級時，順序相反︰先降級主要資料庫，然後再降級次要資料庫。 
+## <a name="auto-failover-group-capabilities"></a>自動容錯移轉群組功能
 
-次要資料庫必須主要資料庫位於相同的服務層，因此，將主要資料庫移轉至不同的服務層時，您需要終止異地複寫連結，並重新命名次要資料庫，或者直接卸除它。 然後，將主要資料庫移轉至新的服務層，並重新設定異地複寫。 根據預設，將會自動以主要資料庫的相同效能層級來建立新的次要資料庫。
+自動容錯移轉群組功能支援群組層級的複寫和自動容錯移轉，提供強大的主動式異地複寫抽象概念。 此外，它提供額外的接聽程式端點，不需要在容錯移轉之後變更 SQL 連接字串。 
+
+* **容錯移轉群組**︰可以在不同區域 (主要和次要伺服器) 的兩部伺服器之間建立一或多個容錯移轉群組。 每個群組可包含一或多個做為復原單位的資料庫，以防所有或部分的主要資料庫因為主要區域中斷而變成無法使用。  
+* **在容錯移轉群組中新增資料庫**︰您可以將伺服器或彈性集區內的多個資料庫放在同一個容錯移轉群組中。 如果您在群組中新增獨立的資料庫，它會使用相同的版本和效能層級自動建立次要資料庫。 如果主要資料庫在彈性集區中，則會使用相同名稱在該彈性集區中建立次要資料庫。 如果您新增在次要伺服器中已經有次要資料庫的資料庫，群組就會繼承該異地複寫。
+
+   > [!NOTE]
+   > 新增在伺服器中已經有次要資料庫但不屬於容錯移轉群組一部分的資料庫時，會在次要伺服器中建立新的次要資料庫。 
+   >
+
+* **容錯移轉群組讀寫接聽程式**︰指向目前主要伺服器 URL 的 DNS CNAME 記錄。 它可讓讀寫 SQL 應用程式在容錯移轉之後，當主要資料庫變更時毫無障礙地重新連線至主要資料庫。 
+* **容錯移轉群組唯讀接聽程式**︰指向次要伺服器 URL 的 DNS CNAME 記錄。 它可讓唯讀 SQL 應用程式使用指定的負載平衡規則毫無障礙地連線到次要資料庫。 您可以選擇性指定當次要伺服器無法使用時，是否要將唯讀流量自動重新導向到主要伺服器。
+* **自動容錯移轉原則**︰容錯移轉群組預設是利用自動容錯移轉原則設定。 一旦偵測到失敗，系統就會觸發容錯移轉。 如果您想要控制應用程式的容錯移轉工作流程，可以關閉自動容錯移轉。 
+* **手動容錯移轉**︰無論自動容錯移轉設定為何，您都可以在任何時候手動起始容錯移轉。 如果未設定自動容錯移轉原則，就需要手動容錯移轉才能復原容錯移轉群組中的資料庫。 您可以起始強制或易用容錯移轉 (具有完整的資料同步處理)。 後者可用來將作用中伺服器重新放置到主要區域。 容錯移轉完成時，DNS 記錄會自動更新以確保能連線到正確的伺服器。
+* **資料遺失的寬限期**︰因為主要和次要資料庫是使用非同步複寫進行同步處理，容錯移轉可能會導致資料遺失。 您可以自訂自動容錯移轉原則，以反映應用程式對資料遺失的容錯程度。 設定遺失資料的寬限期，可以控制系統在起始可能造成資料遺失的容錯移轉之前等候的時間長度。 
+
+   > [!NOTE]
+   > 當系統偵測到群組中的資料庫在中斷之後仍保持線上狀態 (亦即中斷只影響服務控制平面)，它會立即啟動具完整資料同步處理的容錯移轉 (易用容錯移轉)，無論遺失資料的寬限期所設定的值為何。 這是為了確保在復原期間不會遺失資料。 寬限期只有在無法使用易用容錯移轉時才有效。 如果中斷情況在寬限期到期之前就趨緩，則不會啟動容錯移轉。
+   >
+
+* **多個容錯移轉群組**︰您可以為相同的兩部伺服器設定多個容錯移轉群組來控制容錯移轉的規模。 每個群組分別進行容錯移轉。 如果您的多租用戶應用程式使用彈性集區，可以使用這項功能來混合每個集區中的主要和次要資料庫。 如此一來，可以讓中斷只影響一半的租用戶。
+
+## <a name="upgrading-or-downgrading-a-primary-database"></a>升級或降級主要資料庫
+您可以將主要資料庫升級或降級至不同的效能層級 (在相同的服務層內)，而不會中斷連接任何次要資料庫。 升級時，我們建議您先升級次要資料庫，然後再升級主要資料庫。 降級時，順序相反︰先降級主要資料庫，然後再降級次要資料庫。 當您將資料庫升級或降級到不同的服務層時，會強制執行這項建議。 
+
+> [!NOTE]
+> 如果您已在容錯移轉群組設定中建立次要資料庫，則不建議降級次要資料庫。 這是為了確保您的資料層在容錯移轉啟動之後有足夠的容量來處理一般工作負載。 
+>
 
 ## <a name="preventing-the-loss-of-critical-data"></a>防止重要資料遺失
 由於廣域網路的高度延遲，連續複製採用非同步複寫機制。 如果發生失敗，非同步複寫導致部分資料遺失是無法避免的。 不過，有些應用程式可能會要求資料不能遺失。 若要保護這些重大更新，應用程式開發人員可以在認可交易後立即呼叫 [sp_wait_for_database_copy_sync](https://msdn.microsoft.com/library/dn467644.aspx) 系統程序。 呼叫 **sp_wait_for_database_copy_sync** 會封鎖呼叫執行緒，直到最後認可的交易複寫到次要資料庫。 此程序會等候，直到次要資料庫認可所有加入佇列的交易。 **sp_wait_for_database_copy_sync** 以特定的連續複製連結為範圍。 任何具備主要資料庫連接權限的使用者都可以呼叫此程序。
@@ -80,10 +108,9 @@ ms.lasthandoff: 04/15/2017
 > [!NOTE]
 > **sp_wait_for_database_copy_sync** 程序呼叫所造成的延遲可能會相當可觀。 延遲會取決於當時交易記錄長度的大小，而且此呼叫不會傳回，直到複寫整個記錄。 請避免呼叫此程序，除非絕對必要。
 > 
-> 
 
 ## <a name="programmatically-managing-active-geo-replication"></a>以程式設計方式管理主動式異地複寫
-如前所述，主動式異地複寫可使用 Azure PowerShell 和 REST API，以程式設計的方式管理。 下表描述可用的命令集。
+如前所述，自動容錯移轉群組和主動式異地複寫也可以使用 Azure PowerShell 和 REST API，以程式設計的方式管理。 下表描述可用的命令集。
 
 * **Azure Resource Manager API 和角色型安全性**︰主動式異地複寫包含一組可管理的 [Azure Resource Manager API](https://msdn.microsoft.com/library/azure/mt163571.aspx)，包括[以 Azure Resource Manager 為基礎的 PowerShell Cmdlet](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)。 這些 API 需要使用資源群組，並支援以角色為基礎的安全性 (RBAC)。 如需如何實作存取角色的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
@@ -107,11 +134,16 @@ ms.lasthandoff: 04/15/2017
 ### <a name="powershell"></a>PowerShell
 | Cmdlet | 說明 |
 | --- | --- |
-| [Get-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt603648.aspx) |取得一或多個資料庫。 |
-| [New-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt603689.aspx) |針對現有資料庫建立次要資料庫並開始資料複寫。 |
-| [Set-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt619393.aspx) |將次要資料庫切換為主要資料庫以開始容錯移轉。 |
-| [Remove-AzureRmSqlDatabaseSecondary](https://msdn.microsoft.com/library/mt603457.aspx) |終止 SQL Database 和指定次要資料庫間的資料複寫。 |
-| [Get-AzureRmSqlDatabaseReplicationLink](https://msdn.microsoft.com/library/mt619330.aspx) |取得 Azure SQL Database 和資源群組或 SQL Server 之間的異地複寫連結。 |
+| [Get-AzureRmSqlDatabase](https://docs.microsoft.com/powershell/module/azurerm.sql/get-azurermsqldatabase?view=azurermps-3.7.0) |取得一或多個資料庫。 |
+| [New-AzureRmSqlDatabaseSecondary](https://docs.microsoft.com/powershell/module/azurerm.sql/new-azurermsqldatabasesecondary?view=azurermps-3.7.0) |針對現有資料庫建立次要資料庫並開始資料複寫。 |
+| [Set-AzureRmSqlDatabaseSecondary](https://docs.microsoft.com/powershell/module/azurerm.sql/set-azurermsqldatabasesecondary?view=azurermps-3.7.0) |將次要資料庫切換為主要資料庫以開始容錯移轉。 |
+| [Remove-AzureRmSqlDatabaseSecondary](https://docs.microsoft.com/powershell/module/azurerm.sql/remove-azurermsqldatabasesecondary?view=azurermps-3.7.0) |終止 SQL Database 和指定次要資料庫間的資料複寫。 |
+| [Get-AzureRmSqlDatabaseReplicationLink](https://docs.microsoft.com/powershell/module/azurerm.sql/get-azurermsqldatabasereplicationlink?view=azurermps-3.7.0) |取得 Azure SQL Database 和資源群組或 SQL Server 之間的異地複寫連結。 |
+| [New-AzureRmSqlDatabaseFailoverGroup](https://docs.microsoft.com/powershell/module/azurerm.sql/set-azurermsqldatabasefailovergroup?view=azurermps-3.7.0) |    此命令會建立新的容錯移轉群組，並同時在主要和次要伺服器上註冊|
+| [Remove-AzureRmSqlDatabaseFailoverGroup](https://docs.microsoft.com/powershell/module/azurerm.sql/remove-azurermsqldatabasefailovergroup?view=azurermps-3.7.0) | 從伺服器移除容錯移轉群組，並刪除包含群組的所有次要資料庫 |
+| [Get-AzureRmSqlDatabaseFailoverGroup](https://docs.microsoft.com/powershell/module/azurerm.sql/get-azurermsqldatabasefailovergroup?view=azurermps-3.7.0) | 擷取容錯移轉群組設定 |
+| [Set-AzureRmSqlDatabaseFailoverGroup](https://docs.microsoft.com/powershell/module/azurerm.sql/set-azurermsqldatabasefailovergroup?view=azurermps-3.7.0) |    修改容錯移轉群組的設定 |
+| [Switch-AzureRMSqlDatabaseFailoverGroup](https://docs.microsoft.com/powershell/module/azurerm.sql/switch-azurermsqldatabasefailovergroup?view=azurermps-3.7.0) | 觸發容錯移轉群組的容錯移轉到次要伺服器 |
 |  | |
 
 ### <a name="rest-api"></a>REST API

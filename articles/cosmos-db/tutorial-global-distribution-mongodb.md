@@ -1,0 +1,110 @@
+---
+title: "適用於 MongoDB API 的 Azure Cosmos DB 全域散發教學課程 | Microsoft Docs"
+description: "了解如何使用 MongoDB API 來設定 Azure Cosmos DB 全域散發。"
+services: cosmosdb
+keywords: "全域散發, MongoDB"
+documentationcenter: 
+author: mimig1
+manager: jhubbard
+editor: cgronlun
+ms.assetid: 8b815047-2868-4b10-af1d-40a1af419a70
+ms.service: cosmosdb
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/10/2017
+ms.author: mimig
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 3cff5f474eac5be48cef1655ac312563c3ff473b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
+
+
+---
+# <a name="how-to-setup-azure-cosmos-db-global-distribution-using-the-mongodb-api"></a>如何使用 MongoDB API 來設定 Azure Cosmos DB 全域散發
+
+在本文中，我們會說明如何使用 Azure 入口網站來設定 Azure Cosmos DB 全域散發，然後使用 MongoDB API 來進行連線。
+
+本文涵蓋下列工作： 
+
+> [!div class="checklist"]
+> * 使用 Azure 入口網站來設定全域散發
+> * 使用 [MongoDB API](../documentdb/documentdb-protocol-mongodb.md) 來設定全域散發
+
+[!INCLUDE [cosmosdb-tutorial-global-distribution-portal](../../includes/cosmosdb-tutorial-global-distribution-portal.md)]
+
+## <a name="verifying-your-regional-setup-using-the-mongodb-api"></a>使用 MongoDB API 來確認您的區域設定
+若要在 API for MongoDB 內仔細檢查檢查您的全球組態，最簡單的方法就是從 Mongo 殼層執行 *isMaster()* 命令。
+
+從您的 Mongo 殼層︰
+
+   ```
+      db.isMaster()
+   ```
+   
+範例結果︰
+
+   ```JSON
+      {
+         "_t": "IsMasterResponse",
+         "ok": 1,
+         "ismaster": true,
+         "maxMessageSizeBytes": 4194304,
+         "maxWriteBatchSize": 1000,
+         "minWireVersion": 0,
+         "maxWireVersion": 2,
+         "tags": {
+            "region": "South India"
+         },
+         "hosts": [
+            "vishi-api-for-mongodb-southcentralus.documents.azure.com:10250",
+            "vishi-api-for-mongodb-westeurope.documents.azure.com:10250",
+            "vishi-api-for-mongodb-southindia.documents.azure.com:10250"
+         ],
+         "setName": "globaldb",
+         "setVersion": 1,
+         "primary": "vishi-api-for-mongodb-southindia.documents.azure.com:10250",
+         "me": "vishi-api-for-mongodb-southindia.documents.azure.com:10250"
+      }
+   ```
+
+## <a name="connecting-to-a-preferred-region-using-the-mongodb-api"></a>使用 MongoDB API 來連線到慣用的區域
+
+MongoDB API 可讓您針對全域分散式資料庫，指定集合的讀取喜好設定。 為了兼顧低延遲讀取和全球高可用性，建議將集合的讀取喜好設定設為 [最接近]。 [最接近] 讀取喜好設定會設定為從最近的區域讀取。
+
+```csharp
+var collection = database.GetCollection<BsonDocument>(collectionName);
+collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.Nearest));
+```
+
+如果應用程式具有主要讀取/寫入區域和次要地區來因應災害復原 (DR) 情況，我們建議將集合的讀取喜好設定設為 [慣用次要]。 [慣用次要] 讀取喜好設定會設定當主要區域無法使用時，從次要地區讀取。
+
+```csharp
+var collection = database.GetCollection<BsonDocument>(collectionName);
+collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.SecondaryPreferred));
+```
+
+最後，如果您想要手動指定讀取區域， 您可以在讀取喜好設定內設定區域標記。
+
+```csharp
+var collection = database.GetCollection<BsonDocument>(collectionName);
+var tag = new Tag("region", "Southeast Asia");
+collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.Secondary, new[] { new TagSet(new[] { tag }) }));
+```
+
+就這麼簡單，這樣便已完成本教學課程。 您可以透過閱讀 [Azure Cosmos DB 中的一致性層級](../documentdb/documentdb-consistency-levels.md)，來了解如何管理全域複寫帳戶的一致性。 如需有關 Azure Cosmos DB 中全域資料庫複寫運作方式的詳細資訊，請參閱[使用 Azure Cosmos DB 來全域散發資料](../documentdb/documentdb-distribute-data-globally.md)。
+
+## <a name="next-steps"></a>後續步驟
+
+在本教學課程中，您已完成下列操作：
+
+> [!div class="checklist"]
+> * 使用 Azure 入口網站來設定全域散發
+> * 使用 DocumentDB API 來設定全域散發
+
+您現在可以繼續進行到下一個教學課程，以了解如何使用 Azure Cosmos DB 本機模擬器在本機進行開發。
+
+> [!div class="nextstepaction"]
+> [使用模擬器在本機進行開發](../documentdb/documentdb-nosql-local-emulator.md)

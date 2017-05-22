@@ -13,12 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/13/2016
+ms.date: 04/14/2017
 ms.author: carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
-ms.openlocfilehash: 07593e7f1d92a9a5943714f662568fec10a8886a
-ms.lasthandoff: 02/16/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 1005f776ae85a7fc878315225c45f2270887771f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.lasthandoff: 02/16/2017
 若要使用 Transact-SQL 起始容錯移轉，請參閱 [使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-transact-sql.md)。
 
 > [!NOTE]
-> 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。 在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
+> 當您使用主動式異地複寫 (可讀取次要複本) 進行災害復原時，您應該為應用程式內的所有資料庫設定容錯移轉群組以啟用自動且通透的容錯移轉。 這項功能處於預覽狀態。 如需詳細資訊，請參閱[自動容錯移轉群組和異地複寫](sql-database-geo-replication-overview.md)。
 > 
 > 
 
@@ -53,23 +54,6 @@ ms.lasthandoff: 02/16/2017
 > [!NOTE]
 > 如果指定的夥伴伺服器上存在與名稱與主要資料庫相同的資料庫，則命令會失敗。
 > 
-> 
-
-### <a name="add-non-readable-secondary-single-database"></a>加入不可讀取次要複本 (單一資料庫)
-您可以使用下列步驟，將不可讀取次要複本建立為單一資料庫。
-
-1. 使用版本 13.0.600.65 或 SQL Server Management Studio 的更新版本。
-   
-   > [!IMPORTANT]
-   > 下載 [最新](https://msdn.microsoft.com/library/mt238290.aspx) 版本的 SQL Server Management Studio。 建議您一律使用最新版本的 Management Studio 保持與 Azure 入口網站更新同步。
-   > 
-   > 
-2. 開啟 Databases 資料夾、展開 [System Databases] 資料夾、在 [master] 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
-3. 使用下列 **ALTER DATABASE** 陳述式，使本機資料庫成為一個在 MySecondaryServer1 上具有不可讀取之次要資料庫的「異地複寫」主要複本 (其中 MySecondaryServer1 是您的伺服器易記名稱)。
-   
-        ALTER DATABASE <MyDB>
-           ADD SECONDARY ON SERVER <MySecondaryServer1> WITH (ALLOW_CONNECTIONS = NO);
-4. 按一下 [執行]  來執行查詢。
 
 ### <a name="add-readable-secondary-single-database"></a>加入可讀取次要複本 (單一資料庫)
 您可以使用下列步驟，將可讀取次要複本建立為單一資料庫。
@@ -80,18 +64,6 @@ ms.lasthandoff: 02/16/2017
    
         ALTER DATABASE <MyDB>
            ADD SECONDARY ON SERVER <MySecondaryServer2> WITH (ALLOW_CONNECTIONS = ALL);
-4. 按一下 [執行]  來執行查詢。
-
-### <a name="add-non-readable-secondary-elastic-pool"></a>加入不可讀取次要複本 (彈性集區)
-您可以使用下列步驟，在彈性集區中建立不可讀取次要複本。
-
-1. 在 Management Studio 中，連接到您的 Azure SQL Database 邏輯伺服器。
-2. 開啟 Databases 資料夾、展開 [System Databases] 資料夾、在 [master] 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
-3. 使用下列 **ALTER DATABASE** 陳述式，使本機資料庫成為一個在彈性集區中次要伺服器上具有不可讀取之次要資料庫的「異地複寫」主要複本。
-   
-        ALTER DATABASE <MyDB>
-           ADD SECONDARY ON SERVER <MySecondaryServer3> WITH (ALLOW_CONNECTIONS = NO
-           , SERVICE_OBJECTIVE = ELASTIC_POOL (name = MyElasticPool1));
 4. 按一下 [執行]  來執行查詢。
 
 ### <a name="add-readable-secondary-elastic-pool"></a>新增可讀取次要複本 (彈性集區)
@@ -141,22 +113,6 @@ ms.lasthandoff: 02/16/2017
         SELECT * FROM sys.dm_operation_status where major_resource_id = 'MyDB'
         ORDER BY start_time DESC
 9. 按一下 [執行]  來執行查詢。
-
-## <a name="upgrade-a-non-readable-secondary-to-readable"></a>將不可讀取的次要資料庫升級為可讀取
-在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。 如果您目前使用的是不可讀取的次要資料庫，而您想要將它們升級為可讀取，您可以針對每個次要資料庫使用下列簡單步驟。
-
-> [!IMPORTANT]
-> 並沒有自助升級方法能夠將不可讀取的次要資料庫就地升級為可讀取次要資料庫。 如果您僅卸除次要資料庫，則主要資料庫將會維持未受保護的狀態，直到新的次要資料庫完全同步為止。 如果您的應用程式 SLA 要求主要資料庫永遠受到保護，您應該考慮在其他伺服器中建立平行次要資料庫，然後才套用上述的升級步驟。 請注意，每個主要資料庫最多可以有 4 個次要資料庫。
-> 
-> 
-
-1. 首先，連接到「次要」  資料庫，然後卸除不可讀取的次要資料庫：  
-   
-        DROP DATABASE <MyNonReadableSecondaryDB>;
-2. 現在，連線到「主要」  伺服器，然後新增新的可讀取次要資料庫
-   
-        ALTER DATABASE <MyDB>
-            ADD SECONDARY ON SERVER <MySecondaryServer> WITH (ALLOW_CONNECTIONS = ALL);
 
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)

@@ -14,16 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: mcollier
-translationtype: Human Translation
-ms.sourcegitcommit: 1fe845d442c7010580d4592f205e92e8ef70e34a
-ms.openlocfilehash: 6d66a8fa6eac5bc0ecdddc12b67697045556bf46
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: fcf9cc661da0d8e65b385bfddeded0a3e5d0d3e2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="azure-monitoring-rest-api-walkthrough"></a>Azure 監視 REST API 逐步解說
 本文將說明如何執行驗證，讓您的程式碼可以使用 [Microsoft Azure 監視器 REST API 參考](https://msdn.microsoft.com/library/azure/dn931943.aspx)。         
 
-Azure 監視器 API 讓您能夠以程式設計方式擷取可用的預設度量定義 (例如 CPU 時間、要求等度量類型)、資料粒度和度量值。 一旦擷取之後，資料可以儲存在個別的資料存放區，例如 Azure SQL Database、DocumentDB 或 Azure Data Lake。 其他分析可視需要從該處執行。
+Azure 監視器 API 讓您能夠以程式設計方式擷取可用的預設度量定義 (例如 CPU 時間、要求等度量類型)、資料粒度和度量值。 一旦擷取之後，資料就可以儲存於個別的資料存放區，例如 Azure SQL Database、Azure Cosmos DB 或 Azure Data Lake。 其他分析可視需要從該處執行。
 
 除了使用不同的度量資料點之外，如本文所示範，監視 API 讓您能夠列出警示規則、檢視活動記錄檔等等。 如需可用作業的完整清單，請參閱 [Microsoft Azure 監視器 REST API 參考](https://msdn.microsoft.com/library/azure/dn931943.aspx)。
 
@@ -216,9 +218,4 @@ $request = "https://management.azure.com/subscriptions/${subscriptionId}/provide
 * 檢視 [支援 Azure 監視器的度量](monitoring-supported-metrics.md)。
 * 檢閱 [Microsoft Azure 監視器 REST API 參考](https://msdn.microsoft.com/library/azure/dn931943.aspx)。
 * 檢閱 [Azure Management Library](https://msdn.microsoft.com/library/azure/mt417623.aspx)。
-
-
-
-<!--HONumber=Feb17_HO3-->
-
 

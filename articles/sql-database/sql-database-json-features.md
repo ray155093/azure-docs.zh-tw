@@ -15,16 +15,18 @@ ms.author: jovanpop
 ms.workload: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
-translationtype: Human Translation
-ms.sourcegitcommit: 76d06bd9e0b033a2fb993f6183900e42e5232665
-ms.openlocfilehash: 741095b0ec2ae2ce125b59dfc5d1112d0a92de43
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 57057bbdbbafff6843070336efc986286d84af36
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="getting-started-with-json-features-in-azure-sql-database"></a>開始使用 Azure SQL Database 中的 JSON 功能
 Azure SQL Database 可讓您剖析及查詢以「JavaScript 物件標記法」 [(JSON)](http://www.json.org/) 格式表示的資料，然後將您的關聯式資料匯出成 JSON 文字。
 
-JSON 是一種用於在新式的 Web 與行動應用程式中交換資料的常用資料格式。 JSON 也用於將半結構化的資料儲存在記錄檔或 NoSQL 資料庫 (例如 [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/)) 中。 許多 REST Web 服務都會傳回採用 JSON 文字格式的結果，或是接受採用 JSON 格式的資料。 大多數 Azure 服務 (例如 [Azure 搜尋服務](https://azure.microsoft.com/services/search/)、[Azure 儲存體](https://azure.microsoft.com/services/storage/)、[Azure DocumentDB](https://azure.microsoft.com/services/documentdb/)) 都有會傳回或取用 JSON 的 REST 端點。
+JSON 是一種用於在新式的 Web 與行動應用程式中交換資料的常用資料格式。 JSON 也用於將半結構化的資料儲存在記錄檔或 NoSQL 資料庫 (例如 [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/)) 中。 許多 REST Web 服務都會傳回採用 JSON 文字格式的結果，或是接受採用 JSON 格式的資料。 大多數 Azure 服務 (例如 [Azure 搜尋服務](https://azure.microsoft.com/services/search/)、[Azure 儲存體](https://azure.microsoft.com/services/storage/)、[Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/)) 都有會傳回或取用 JSON 的 REST 端點。
 
 Azure SQL Database 可讓您輕鬆使用 JSON 資料，並將資料庫與新式服務整合。
 
@@ -204,10 +206,5 @@ END
 * [Channel 9 影片](https://channel9.msdn.com/Shows/Data-Exposed/SQL-Server-2016-and-JSON-Support)
 
 若要了解將 JSON 整合到您應用程式中的各種案例，請參閱這段 [Channel 9 影片](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/JSON-as-a-bridge-betwen-NoSQL-and-relational-worlds)中的示範，或從 [JSON 部落格文章](http://blogs.msdn.com/b/sqlserverstorageengine/archive/tags/json/)中尋找符合您使用案例的情況。
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

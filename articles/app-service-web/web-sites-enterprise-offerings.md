@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/29/2016
 ms.author: anwestg
-translationtype: Human Translation
-ms.sourcegitcommit: 4d3b3096e42736fddd3bb5b9f39376271d193c58
-ms.openlocfilehash: 980eb9ff0990d532a77614be571e3f6d24a1dfee
-ms.lasthandoff: 12/07/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 4d46654f42a3fd5c9b491f1b565c2acfa0dc52c4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 ---
 
@@ -112,7 +113,7 @@ App Service Web Apps 是一個可擴充的全域平台，可讓 Web 應用程式
 
 移轉程序中的下一個步驟是建立 App Service Web 應用程式和 Azure SQL Database。 Web Apps 執行個體有多種大小，內含不同數目的 CPU 核心和 RAM 數量可供您根據 Web 應用程式需求進行選擇。 如需詳細資訊與價格，請參閱 [https://azure.microsoft.com/pricing/details/app-service/](https://azure.microsoft.com/pricing/details/app-service/)。 同樣地，Microsoft Azure SQL Database 能夠兼顧企業的所有需求，透過各種服務層級和效能層級來實現需求。 在 [https://azure.microsoft.com/pricing/details/app-service/](https://azure.microsoft.com/pricing/details/sql-database/) 可以找到進一步的資訊。 建立應用程式之後，您便可透過 FTP 或 WebDeploy 將它們上傳至 App Service Web Apps，然後移入資料庫。
 
-在此移轉中，解決方案會使用 Azure SQL Database，但這不是 Azure 唯一支援的資料庫。 公司也可以透過附加元件 (可以在 [Azure Store](/marketplace/partner-program/)購買) 來使用 MySQL、MongoDB、Azure DocumentDB 等產品。
+在此移轉中，解決方案會使用 Azure SQL Database，但這不是 Azure 唯一支援的資料庫。 公司也可以使用 MySQL、MongoDB、Azure Cosmos DB 及許多其他透過附加元件 (可在 [Azure 市集](/marketplace/partner-program/)購買) 提供的資料庫。
 
 建立 Azure SQL Database 時，有幾個選項可用來從內部部署伺服器匯入現有資料庫，包括產生現有資料庫的指令碼，以及使用 [資料層應用程式匯出和匯入](http://aka.ms/dacpac)。
 

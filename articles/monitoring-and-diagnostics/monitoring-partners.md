@@ -12,13 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 5/5/2017
+ms.date: 5/9/2017
 ms.author: johnkem
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: 39345bdef6aeebb25fab87a17db683af78782e4f
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 18a45dd16e51e477758c3ba08f936a2e831dddb3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -27,7 +27,7 @@ ms.lasthandoff: 05/08/2017
 | --- | --- | --- |
 | [![合作夥伴標誌][alertlogic-logo]<br/>**AlertLogic**][alertlogic-anchor] | [![合作夥伴標誌][appdynamics-logo]<br/>**AppDynamics**][appdynamics-anchor] | [![合作夥伴標誌][atlassian-logo]<br/>**Atlassian**][atlassian-anchor] |
 | [![合作夥伴標誌][cloudhealth-logo]<br/>**CloudHealth**][cloudhealth-anchor] | [![合作夥伴標誌][cloudmonix-logo]<br/>**CloudMonix**][cloudmonix-anchor] | [![合作夥伴標誌][cloudyn-logo]<br/>**Cloudyn**][cloudyn-anchor] |
-| [![合作夥伴標誌][datadog-logo]<br/>**DataDog**][datadog-anchor] | [![合作夥伴標誌][dynatrace-logo]<br/>**Dynatrace**][dynatrace-anchor] | [![合作夥伴標誌][newrelic-logo]<br/>**NewRelic**][newrelic-anchor] |
+| [![Partner Logo][datadog-logo]<br/>**Datadog**][datadog-anchor] | [![合作夥伴標誌][dynatrace-logo]<br/>**Dynatrace**][dynatrace-anchor] | [![合作夥伴標誌][newrelic-logo]<br/>**NewRelic**][newrelic-anchor] |
 | [![合作夥伴標誌][opsgenie-logo]<br/>**OpsGenie**][opsgenie-anchor] | [![合作夥伴標誌][pagerduty-logo]<br/>**PagerDuty**][pagerduty-anchor] | [![合作夥伴標誌][sciencelogic-logo]<br/>**ScienceLogic**][sciencelogic-anchor] |
 | [![合作夥伴標誌][splunk-logo]<br/>**Splunk**][splunk-anchor] | [![合作夥伴標誌][sumologic-logo]<br/>**Sumo Logic**][sumologic-anchor] | |
 
@@ -61,7 +61,7 @@ Cloudyn 管理並最佳化 Multi-Platform、Hybrid Cloud Deployment 以協助企
 
 [請移至文件。][cloudyn-doc]
 
-## <a name="datadog"></a>DataDog
+## <a name="datadog"></a>Datadog
 Datadog 是全球領先的雲端規模應用程式監視服務，將伺服器、資料庫、工具和服務的資料進行結合，呈現您整個堆疊的統一檢視。 這些功能會提供於以 SaaS 為基礎的資料分析平台上，讓開發和作業團隊可協同運作，以避免停機時間、解決效能問題，並確保開發及部署週期能準時完成。 藉由整合 Datadog 和 Azure，您可以從整個基礎結構收集並檢視度量、將 VM 度量與應用程式層級的度量互相關聯，並使用任何組合的屬性和自訂標籤將您度量進行配量及分解。
 
 [請移至文件。][datadog-doc]
@@ -115,7 +115,7 @@ Sumo Logic 是安全、雲端原生的電腦資料分析服務，能橫跨整個
 [cloudhealth-anchor]: #cloudhealth "CloudHealth"
 [cloudmonix-anchor]: #cloudmonix "CloudMonix"
 [cloudyn-anchor]: #cloudyn "Cloudyn"
-[datadog-anchor]: #datadog "DataDog"
+[datadog-anchor]: #datadog "Datadog"
 [dynatrace-anchor]: #dynatrace "Dynatrace"
 [newrelic-anchor]: #newrelic "NewRelic"
 [opsgenie-anchor]: #opsgenie "OpsGenie"
@@ -147,7 +147,7 @@ Sumo Logic 是安全、雲端原生的電腦資料分析服務，能橫跨整個
 [cloudhealth-doc]: https://www.cloudhealthtech.com/azure
 [cloudmonix-doc]: http://cloudmonix.com/features/azure-management/ "CloudMonix 簡介。"
 [cloudyn-doc]: https://www.cloudyn.com/azure-monitoring "Cloudyn 簡介。"
-[datadog-doc]: http://docs.datadoghq.com/integrations/azure/ "DataDog 文件。"
+[datadog-doc]: http://docs.datadoghq.com/integrations/azure/ "Datadog 文件。"
 [dynatrace-doc]: https://blog.ruxit.com/ruxit-monitoring-azure-web-apps/ "Dynatrace 文件。"
 [newrelic-doc]: https://newrelic.com/azure "NewRelic 文件。"
 [opsgenie-doc]: https://www.opsgenie.com/docs/integrations/azure-integration "OpsGenie 文件。"

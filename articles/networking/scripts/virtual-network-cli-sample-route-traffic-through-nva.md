@@ -1,0 +1,71 @@
+---
+title: "Azure CLI 指令碼範例 - 透過網路虛擬設備來路由傳送流量 | Microsoft Docs"
+description: "Azure CLI 指令碼範例 - 透過防火牆網路虛擬設備來路由傳送流量。"
+services: virtual-network
+documentationcenter: virtual-network
+author: jimdial
+manager: timlt
+editor: tysonn
+tags: 
+ms.assetid: 
+ms.service: virtual-network
+ms.devlang: azurecli
+ms.topic: article
+ms.tgt_pltfrm: 
+ms.workload: infrastructure
+ms.date: 04/21/2017
+ms.author: jdial
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: e1ab4fd899b31eba3929b8c78e04bc8c09f39e14
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
+
+
+---
+
+# <a name="route-traffic-through-a-network-virtual-appliance"></a>透過網路虛擬設備來路由傳送流量
+
+此指令碼範例會建立一個具有前端和後端子網路的虛擬網路。 它也會建立一個已啟用 IP 轉送功能的 VM，以在兩個子網路之間路由傳送流量。 執行此指令碼之後，您可以將網路軟體 (例如防火牆應用程式) 部署到 VM。
+
+[!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
+
+[!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
+
+## <a name="sample-script"></a>範例指令碼
+
+
+[!code-azurecli[main](../../../cli_scripts/virtual-network/route-traffic-through-nva/route-traffic-through-nva.sh "透過網路虛擬設備來路由傳送流量")]
+
+## <a name="clean-up-deployment"></a>清除部署 
+
+執行下列命令來移除資源群組、VM 和所有相關資源。
+
+```azurecli
+az group delete --name MyResourceGroup --yes
+```
+
+## <a name="script-explanation"></a>指令碼說明
+
+此指令碼會使用下列命令來建立資源群組、虛擬網路及網路安全性群組。 下表中的每個命令都會連結至命令特定的文件。
+
+| 命令 | 注意事項 |
+|---|---|
+| [az group create](/cli/azure/group#create) | 建立用來存放所有資源的資源群組。 |
+| [az network vnet create](/cli/azure/network/vnet#create) | 建立 Azure 虛擬網路和前端子網路。 |
+| [az network subnet create](/cli/azure/network/vnet/subnet#create) | 建立後端和 DMZ 子網路。 |
+| [az network public-ip create](/cli/azure/network/public-ip#create) | 建立公用 IP 位址以從網際網路存取 VM。 |
+| [az network nic create](/cli/azure/network/nic#create) | 建立虛擬網路介面並為它啟用 IP 轉送功能。 |
+| [az network nsg create](/cli/azure/network/nsg#create) | 建立網路安全性群組 (NSG)。 |
+| [az network nsg rule create](/cli/azure/network/nsg/rule#create) | 建立允許對 VM 進行 HTTP 和 HTTPS 連接埠輸入的 NSG 規則。 |
+| [az network vnet subnet update](/cli/azure/network/vnet/subnet#update)| 將 NSG 和路由表與子網路建立關聯。 |
+| [az network route-table create](/cli/azure/network/route-table#create)| 為所有路由建立一個路由表。 |
+| [az network route-table route create](/cli/azure/network/route-table/route#create)| 建立路由，以透過 VM 在子網路與網際網路之間路由傳送流量。 |
+| [az vm create](/cli/azure/vm#create) | 建立虛擬機器，並將 NIC 連結到此虛擬機器。 此命令也會指定要使用的虛擬機器映像和系統管理認證。 |
+| [az group delete](/cli/azure/group#delete) | 刪除資源群組及其包含的所有資源。 |
+
+## <a name="next-steps"></a>後續步驟
+
+如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](/cli/azure/overview)。
+
+您可以在 [Azure 網路概觀文件](../cli-samples.md)中找到其他網路 CLI 指令碼範例

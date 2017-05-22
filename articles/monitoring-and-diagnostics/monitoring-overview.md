@@ -1,6 +1,6 @@
 ---
-title: "Azure 監視器概觀 | Microsoft Docs"
-description: "Azure 監視器會收集用於警示、webhook、自動調整，以及自動化的統計資料。 文章也會列出其他 Microsoft 監視選項。"
+title: "Microsoft Azure 中的監視 | Microsoft Docs"
+description: "您想要監視 Microsoft Azure 中的任何項目時的選項。 Azure 監視器, Application Insights Log Analytics"
 author: rboucher
 manager: carmonm
 editor: 
@@ -12,136 +12,92 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/31/2017
+ms.date: 05/12/2017
 ms.author: robb
-translationtype: Human Translation
-ms.sourcegitcommit: 5cce99eff6ed75636399153a846654f56fb64a68
-ms.openlocfilehash: 8e2b1a31b9875b8403e6c97c097ba65985f5f3b5
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
+ms.openlocfilehash: d4a94a92585420cf92018084437422fd0c66fa2d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 
-# <a name="overview-of-azure-monitor"></a>Azure 監視器的概觀
-本文提供監視 Azure 資源的概念性概觀， 以及特定資源類型詳細資訊的指標。  如需從非 Azure 角度監視應用程式的高層級資訊，請參閱 [監視和診斷指引](../best-practices-monitoring.md)。
+# <a name="overview-of-monitoring-in-microsoft-azure"></a>Microsoft Azure 中的監視概觀
+本文提供可用來監視 Microsoft Azure 的工具概觀。 適用範圍： 
+- 監視在 Microsoft Azure 中執行的應用程式 
+- 在 Azure 外部執行且可監視 Azure 中物件的工具/服務。 
 
-Azure 監視器的影片逐步解說位於  
-[開始使用 Azure 監視器](https://channel9.msdn.com/Blogs/Azure-Monitoring/Get-Started-with-Azure-Monitor)。 在[探索 Microsoft Azure 監視和診斷](https://channel9.msdn.com/events/Ignite/2016/BRK2234)可取得額外影片，該影片說明您可以使用 Azure 監視器的案例。  
+其會討論各種可用的產品與服務，以及它們如何一起運作。 本文可協助您判斷哪些工具在哪些情況下最適合您。  
 
-雲端應用程式相當複雜，且具有許多移動組件。 監視會提供資料，以確保應用程式持續運作並以健全的狀態執行。 它也可協助您預防潛在問題，或是針對過去所發生的問題進行疑難排解。 除此之外，您還可以使用監視資料來取得應用程式的深入解析。 這些知識可協助您提升應用程式效能或維護性，或是將原本需要手動介入的動作自動化。
+## <a name="why-use-monitoring-and-diagnostics"></a>為何要使用監視和診斷？
 
-下圖顯示 Azure 監視的概念式檢視，包括您可以收集的記錄檔類型，以及可以使用該資料進行的作業。   
+您雲端應用程式中的效能問題可能會對企業產生影響。 透過多個互連的元件和頻繁的發行，隨時都可能導致效能降低。 此外，如果您正在開發應用程式，您的使用者通常會探索到您在測試時未發現的問題。 您應該立即知道這些問題，並具備可用以診斷和修復問題的工具。 Microsoft Azure 提供多種工具來識別這些問題。
 
-![非計算資源的監視與診斷模型](./media/monitoring-overview/Monitoring_Azure_Resources-compute_v4.png)
+## <a name="how-do-i-monitor-my-azure-cloud-apps"></a>如何監視我的 Azure 雲端應用程式？
 
-<br/>
+有多種工具可用來監視 Azure 應用程式和服務。 其中有些功能會重疊。 這其中有部分是基於歷程記錄因素，而有部分是因為應用程式開發與作業之間的界限模糊不清而導致的。 
 
-![計算資源的監視與診斷模型](./media/monitoring-overview/Monitoring_Azure_Resources-non-compute_v4.png)
+以下是主要工具：
+
+-    **Azure 監視器**是用以監視 Azure 上執行之服務的基本工具。 它會提供關於服務輸送量及周遭環境之基礎結構等級的資料。 如果您正在 Azure 中管理所有的應用程式，決定是否要相應增加或減少資源，Azure 監視器接著就能提供可讓您用來做為起點的項目。
+
+-    **Application Insights** 可用來開發，並作為監視生產環境的解決方案。 它的運作方式是將封裝安裝到您的應用程式，因此可讓您更深入檢視內部情形。 它的資料包括相依性的回應時間、例外狀況追蹤、偵錯快照集、執行設定檔。 它提供功能強大的智慧型工具來完整分析此遙測，以協助您偵錯應用程式，並協助您了解使用者正使用它來做什麼。 您可以判斷回應時間突然增加是否因為應用程式中的某些項目所引起，還是由一些外部資源問題所引起的。 如果您使用 Visual Studio 且應用程式發生問題，則可直接將您帶至發生問題的程式碼行，讓您能夠修正問題。  
+
+-    **Log Analytics** 適用於需要微調效能並計劃維護在生產環境中執行之應用程式的使用者。 它是 Azure 中的基本工具。 它會從許多來源收集並彙總資料，但會有 10 到 15 分鐘的延遲。 它會針對 Azure、內部部署及協力廠商的雲端式基礎結構 (例如 Amazon Web 服務) 提供整體 IT 管理解決方案。 它提供更豐富的工具，可跨多個來源分析資料、允許跨所有記錄進行複雜的查詢，而且可以指定的條件主動提供警示。  您甚至可以將自訂資料收集到其中央存放庫，如此便能查詢並將其視覺化。 
+
+-    **System Center Operations Manager (SCOM)** 可用來管理及監視大型雲端安裝。 您可能已經熟悉它做為適用於內部部署 Windows Sever 和 Hyper-V 型雲端的管理工具，但它也可以與 Azure 應用程式整合並加以管理。 在其他方面，它可以在現有的即時應用程式上安裝 Application Insights。  如果應用程式當機，它會在短時間內通知您。 請注意，Log Analytics 不會取代 SCOM。 它也可與其搭配使用。  
 
 
-## <a name="monitoring-sources"></a>監視來源
-### <a name="activity-logs"></a>活動記錄檔
-您可以搜尋活動記錄檔 (之前稱為「作業記錄」或「稽核記錄」)，以取得 Azure 基礎結構所見之資源的相關資訊。 此記錄檔包含資源的建立或終結時間等資訊。  
+## <a name="accessing-monitoring-in-the-azure-portal"></a>在 Azure 入口網站中存取監視
+所有的 Azure 監視服務現在都可在單一 UI 窗格中取得。 如需如何存取此區域的詳細資訊，請參閱[開始使用 Azure 監視器](monitoring-get-started.md)。 
 
-### <a name="host-vm"></a>主機 VM
-**僅限計算**
+您也可以存取特定資源的監視功能，方法是將那些資源反白顯示，然後向下切入至它們的監視選項。 
 
-某些計算資源 (例如雲端服務、虛擬機器及 Service Fabric) 具有它們會與之互動的專用主機 VM。 主機 VM 等同於 Hyper-V Hypervisor 模型中的根 VM。 在此情況下，在客體 OS 之外，您可以只收集主機 VM 上的度量。  
+## <a name="examples-of-when-to-use-which-tool"></a>何時應使用哪個工具的範例 
 
-針對其他 Azure 服務，您的資源和特定主機 VM 之間並不一定具有 1:1 的對應，因此沒有主機 VM 度量可用。
+以下各節將說明一些基本案例，以及應該一起使用哪些工具。 
 
-### <a name="resource---metrics-and-diagnostics-logs"></a>資源 - 計量和診斷記錄檔
-可收集的計量視資源類型而異。 例如，虛擬機器會提供磁碟 IO 和百分比 CPU 的統計資料。 但服務匯流排佇列就沒有這些統計資料，而是改為提供佇列大小和訊息輸送量等計量。
+### <a name="scenario-1--fix-errors-in-an-azure-application-under-development"></a>案例 1：在開發期間，修正 Azure 應用程式中的錯誤   
 
-針對計算資源，您可以在客體 OS 及診斷模組 (如 Azure 診斷) 上取得計量。 Azure 診斷可以協助收集診斷資料，並將該資料路由到其他的位置 (包括 Azure 儲存體)。
+**最佳選項是一起使用 Application Insights、Azure 監視器和 Visual Studio**
 
-[支援的度量](monitoring-supported-metrics.md)中有目前可收集的度量清單。
+Azure 目前在雲端中提供 Visual Studio Debugger 的完整功能。 設定 Azure 監視器，以將遙測傳送至 Application Insights。 讓 Visual Studio 可將 Application Insights SDK 納入您的應用程式。 一旦位於 Application Insights 之後，您就能使用應用程式對應，以視覺化方式探索您執行中應用程式的哪些部分是否狀況不良。 針對那些狀況不良的部分，已經有錯誤和例外狀況可供探索。 您可以使用 Application Insights 中的各種分析來深入了解。 如果您不確定錯誤，可以使用 Visual Studio 偵錯工具來追蹤程式碼，並進一步準確地確認問題。 
 
-### <a name="application---diagnostics-logs-application-logs-and-metrics"></a>應用程式 - 診斷記錄檔、應用程式記錄檔及計量
-**僅限計算**
+如需詳細資訊，請參閱[監視 Web Apps](../application-insights/app-insights-azure-web-apps.md)，並參考左邊的目錄以取得各種類型之應用程式和語言的相關指示。  
 
-應用程式能以計算模型在客體 OS 上執行。 它們會發出自己的記錄檔和計量集合。
+### <a name="scenario-2--debug-an-azure-net-web-application-for-errors-that-only-show-in-production"></a>案例 2：對 Azure.NET Web 應用程式進行偵錯，以取得只會在生產環境中顯示的錯誤 
 
-計量類型包括
+> [!NOTE]
+> 這些功能目前為預覽狀態。 
 
-* 效能計數器
-* 應用程式記錄檔
-* Windows 事件記錄檔
-* .NET 事件來源
-* IIS 記錄檔
-* 以資訊清單為基礎的 ETW
-* 損毀傾印
-* 客戶錯誤記錄檔
+**最佳選項是使用 Application Insights，而且，如果可能，請使用 Visual Studio 以取得完整的偵錯體驗。**
 
-## <a name="uses-for-monitoring-data"></a>監視資料的用途
-### <a name="visualize"></a>視覺化
-以圖形和圖表視覺化您的監視資料，協助您透過比查看資料本身更快的速度找出趨勢。  
+使用 Application Insights 快照集偵錯工具來偵錯您的應用程式。 當生產元件發生特定的錯誤臨界值時，系統會在稱為「快照集」的時段中自動擷取遙測。 擷取的數量對生產雲端而言是安全的，因為夠小而不足以影響效能，但顯然足以允許追蹤。  系統可以擷取多個快照集。 您可以查看 Azure 入口網站中的時間點，或使用 Visual Studio 取得完整體驗。 使用 Visual Studio，開發人員就能逐步執行該快照集，如同他們正在進行即時偵錯。 本機變數、參數、記憶體及框架全都可供使用。 開發人員必須透過 RBAC 角色，被授與存取此生產資料的權限。  
 
-幾個視覺化方法包括︰
+如需詳細資訊，請參閱[快照集偵錯](../application-insights/app-insights-snapshot-debugger.md)。 
 
-* 使用 Azure 入口網站
-* 將資料路由至 Azure Application Insights
-* 將資料路由至 Microsoft PowerBI
-* 將資料路由至協力廠商視覺化工具，無論是透過即時串流，或是讓該工具讀取 Azure 儲存體中的封存
+### <a name="scenario-3--debug-an-azure-application-that-uses-containers-or-microservices"></a>案例 3：對使用容器或微服務的 Azure 應用程式進行偵錯 
 
-### <a name="archive"></a>封存
-監視資料通常會寫入 Azure 儲存體，並持續保存在那裡，直到您將它刪除為止。
+**與案例 1 相同。一起使用 Application Insights、Azure 監視器和 Visual Studio** Application Insights 也支援從在容器內部執行的程序以及從微服務 (Kubernetes、Docker、Azure Service Fabric) 蒐集遙測。 如需詳細資訊，[請參閱這段對容器和微服務進行偵錯的相關影片](https://go.microsoft.com/fwlink/?linkid=848184)。 
 
-以下為使用此資料的幾個方式：
 
-* 資料寫入後，您可以讓其他位於 Azure 之內或之外的工具讀取該資料並加以處理。
-* 您可以於本機將該資料下載到本機封存，或是在雲端變更您的保留原則，以延長資料的保留時間。  
-* <a name="you-leave-the-data-in-azure-storage-indefinitely-though-you-have-to-pay-for-azure-storage-based-on-the-amount-of-data-you-keep"></a>您將資料無限期的放在 Azure 儲存體中，則必須根據您所保留的資料量支付 Azure 儲存體費用。
-  -
+### <a name="scenario-4--fix-performance-issues-in-your-azure-application"></a>案例 4：修正 Azure 應用程式中的效能問題
 
-### <a name="query"></a>查詢
-您可以使用 Azure 監視器 REST API、跨平台命令列介面 (CLI) 命令、PowerShell Cmdlet 或 .NET SDK 來存取系統或是 Azure 儲存體中的資料
+[Application Insights Profiler](../application-insights/app-insights-profiler.md) 的設計目的是協助對這些類型的問題進行疑難排解。 您可以針對在應用程式服務 (Web Apps、Logic Apps、Mobile Apps、API Apps) 中執行的應用程式及其他元件 (例如，虛擬機器、虛擬機器擴展集 (VMSS)、雲端服務及 Service Fabric)，識別效能問題並進行疑難排解。 
 
-範例包括：
+> [!NOTE]
+> 分析虛擬機器、虛擬機器擴展集 (VMSS)、雲端服務及 Service Fabric 的功能目前為預覽狀態。   
 
-* 針對您所撰寫的自訂監視應用程式取得資料
-* 建立自訂查詢並將該資料傳送到協力廠商應用程式。
+此外，智慧型偵測工具會透過電子郵件主動通知您特定錯誤類型的相關資訊，例如頁面載入時間變慢。  您不需要在此工具上進行任何設定。 如需詳細資訊，請參閱[智慧型偵測 - 效能異常](../application-insights/app-insights-proactive-performance-diagnostics.md)和[智慧型偵測 - 效能異常](https://azure.microsoft.com/blog/Enhancments-ApplicationInsights-SmartDetection/preview)。
 
-### <a name="route"></a>路由
-您可以將監視資料即時串流到其他位置。
 
-範例包括：
-
-* 傳送到 Application Insights，讓您可以使用那裡的視覺化工具。
-* 傳送到事件中樞，讓您可以路由到協力廠商工具以執行即時分析。
-
-### <a name="automate"></a>自動化
-您可以使用監視資料來觸發警示或甚至觸發整個程序。
-範例包括：
-
-* 使用資料來根據應用程式負載，自動向上或向下調整計算執行個體。
-* 在某個計量超過預先定義的臨界值時傳送電子郵件。
-* 呼叫 Web URL (webhook) 以在 Azure 之外的系統中執行動作
-* 在 Azure 自動化中啟動 Runbook 以執行各種工作
-
-## <a name="methods-of-use"></a>使用方法
-一般來說，您可以使用下列其中一個方法操作資料追蹤、路由及擷取。 並非所有方法都適用所有動作或資料類型。
-
-* [Azure 入口網站](https://portal.azure.com)
-* [PowerShell](insights-powershell-samples.md)  
-* [跨平台命令列介面 (CLI)](insights-cli-samples.md)
-* [REST API](https://msdn.microsoft.com/library/dn931943.aspx)
-* [.NET SDK](https://msdn.microsoft.com/library/dn802153.aspx)
-
-## <a name="azures-monitoring-offerings"></a>Azure 的監視供應項目
-Azure 有提供監視您服務 (從裸機基礎結構到應用程式遙測) 的供應項目。 最好的監視策略，便是結合全部三種供應項目，以獲得服務健全狀況的完整、詳細深入解析。
-
-* [Azure 監視器](http://aka.ms/azmondocs) - 針對來自 Azure 基礎結構 (活動記錄檔) 及每個個別的 Azure 資源 (診斷記錄檔) 的資料，提供視覺化、查詢、路由、警示、自動調整及自動化功能。 此文章為 Azure 監視器文件的一部分。 「Azure 監視器」這個名稱於 2016 年 9 月 25 日在 Ignite 發表。  先前的名稱是「Azure Insights」。  
-* [Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) - 針對您服務的應用程式層問題提供豐富的偵測和診斷，並完美整合在來自 Azure 監視的資料之上。 它是 App Service Web Apps 的預設診斷平台。  您可以將其他服務資料路由至此。  
-* [Operations Management Suite](https://www.microsoft.com/oms/) 中的 [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) - 為內部部署和協力廠商雲端式基礎結構 (如 AWS) 提供 Azure 資源之外的全面性 IT 管理解決方案。  Azure 監視器中的資料可以直接路由至 Log Analytics，以便您可以在同一個地方看到整個環境的度量與記錄。     
 
 ## <a name="next-steps"></a>後續步驟
 深入了解
 
 * [Ignite 2016 上的 Azure 監視器影片](https://myignite.microsoft.com/videos/4977)
 * [開始使用 Azure 監視器](monitoring-get-started.md)
-* [Azure 診斷](../azure-diagnostics.md) ，如果您正在嘗試診斷您的雲端服務、虛擬機器或 Service Fabric 應用程式中的問題。
+* [Azure 診斷](../azure-diagnostics.md)，如果您正在嘗試診斷雲端服務、虛擬機器、虛擬機器擴展集或 Service Fabric 應用程式中的問題。
 * [Application Insights](https://azure.microsoft.com/documentation/services/application-insights/) ，如果您正在嘗試診斷 App Service Web 應用程式中的問題。
-* [疑難排解 Azure 儲存體](../storage/storage-e2e-troubleshooting.md) 
-* [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) 及 [Operations Management Suite](https://www.microsoft.com/oms/)
-
+* [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) 及 [Operations Management Suite](https://www.microsoft.com/oms/)，監視生產環境的解決方案

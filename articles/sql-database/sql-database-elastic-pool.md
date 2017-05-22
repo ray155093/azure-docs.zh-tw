@@ -11,16 +11,16 @@ ms.assetid: b46e7fdc-2238-4b3b-a944-8ab36c5bdb8e
 ms.service: sql-database
 ms.custom: multiple databases
 ms.devlang: NA
-ms.date: 04/19/2017
+ms.date: 05/15/2017
 ms.author: ddove
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: cc81b842833942019d5afec9b9dc33813ac48964
+ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
+ms.openlocfilehash: 448bdbd2ae12d325781587846c812995cae33774
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/20/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -129,7 +129,7 @@ SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的�
 
 ## <a name="edtu-and-storage-limits-for-elastic-pools"></a>彈性集區的 eDTU 和儲存體限制
 
-下表說明基本、標準、進階和進階 RS 彈性集區的特性。
+下表描述彈性集區的資源限制。  請注意，根據 DTU 和服務層，彈性集區中個別資料庫的資源限制通常與集區外部之單一資料庫的資源限制相同。  例如，S2 資料庫的並行背景工作數上限是 120 個背景工作。  因此，如果集區中每個資料庫的最大 DTU 是 50 DTU (這相當於 S2)，標準集區中的資料庫最大並行背景工作數上限也會是 120 個背景工作。
 
 [!INCLUDE [SQL DB service tiers table for elastic pools](../../includes/sql-database-service-tiers-table-elastic-pools.md)]
 
@@ -168,3 +168,4 @@ SQL Database 會自動評估現有 SQL Database 伺服器中資料庫過去的�
 * 您可以使用 [Azure 入口網站](sql-database-elastic-pool-manage-portal.md)、[PowerShell](sql-database-elastic-pool-manage-powershell.md)、[Transact-SQL](sql-database-elastic-pool-manage-tsql.md)、[C#](sql-database-elastic-pool-manage-csharp.md) 和 REST API 來建立及管理彈性集區。
 * 若要觀賞影片，請參閱[有關 Azure SQL Database 彈性功能的 Microsoft Virtual Academy 視訊課程](https://mva.microsoft.com/training-courses/elastic-database-capabilities-with-azure-sql-db-16554)
 * 若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱 [採用 Azure SQL Database 的多租用戶 SaaS 應用程式的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+

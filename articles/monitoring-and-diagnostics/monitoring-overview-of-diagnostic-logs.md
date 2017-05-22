@@ -12,12 +12,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/17/2017
+ms.date: 05/09/2017
 ms.author: johnkem; magoedte
-translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: be27a3541caa1620af432dcff438f70cb9b1074b
-ms.lasthandoff: 03/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 1978ecda9c635ace713b43f620300a06f4c609ba
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -181,20 +182,25 @@ ms.lasthandoff: 03/18/2017
 
 | 服務 | 結構描述與文件 |
 | --- | --- |
-| 負載平衡器 |[Azure 負載平衡器的 Log Analytics](../load-balancer/load-balancer-monitor-log.md) |
-| 網路安全性群組 |[網路安全性群組 (NSG) 的記錄檔分析](../virtual-network/virtual-network-nsg-manage-log.md) |
+| API 管理 | 無法使用結構描述。 |
 | 應用程式閘道 |[應用程式閘道的診斷記錄功能](../application-gateway/application-gateway-diagnostics.md) |
-| 金鑰保存庫 |[Azure 金鑰保存庫記錄](../key-vault/key-vault-logging.md) |
-| Azure 搜尋服務 |[啟用和使用搜尋流量分析](../search/search-traffic-analytics.md) |
-| Data Lake Store |[存取 Azure Data Lake Store 的診斷記錄](../data-lake-store/data-lake-store-diagnostic-logs.md) |
-| Data Lake Analytics |[存取 Azure Data Lake Analytics 的診斷記錄](../data-lake-analytics/data-lake-analytics-diagnostic-logs.md) |
-| Logic Apps |[Logic Apps B2B 自訂追蹤結構描述](../logic-apps/logic-apps-track-integration-account-custom-tracking-schema.md) |
-| Azure Batch |[Azure Batch 診斷記錄](../batch/batch-diagnostics.md) |
 | Azure 自動化 |[Azure 自動化的記錄檔分析](../automation/automation-manage-send-joblogs-log-analytics.md) |
+| Azure Batch |[Azure Batch 診斷記錄](../batch/batch-diagnostics.md) |
+| Customer Insights | 無法使用結構描述。 |
+| 內容傳遞網路 | 無法使用結構描述。 |
+| 資料湖分析 |[存取 Azure Data Lake Analytics 的診斷記錄](../data-lake-analytics/data-lake-analytics-diagnostic-logs.md) |
+| Data Lake Store |[存取 Azure Data Lake Store 的診斷記錄](../data-lake-store/data-lake-store-diagnostic-logs.md) |
+| ExpressRoute | 無法使用結構描述。 |
 | 事件中樞 |[Azure 事件中樞診斷記錄](../event-hubs/event-hubs-diagnostic-logs.md) |
-| 串流分析 |[作業診斷記錄](../stream-analytics/stream-analytics-job-diagnostic-logs.md) |
+| 金鑰保存庫 |[Azure 金鑰保存庫記錄](../key-vault/key-vault-logging.md) |
+| 負載平衡器 |[Azure 負載平衡器的 Log Analytics](../load-balancer/load-balancer-monitor-log.md) |
+| Logic Apps |[Logic Apps B2B 自訂追蹤結構描述](../logic-apps/logic-apps-track-integration-account-custom-tracking-schema.md) |
+| 網路安全性群組 |[網路安全性群組 (NSG) 的記錄檔分析](../virtual-network/virtual-network-nsg-manage-log.md) |
+| [復原服務] | 無法使用結構描述。|
+| 搜尋 |[啟用和使用搜尋流量分析](../search/search-traffic-analytics.md) |
+| 伺服器管理 | 無法使用結構描述。 |
 | 服務匯流排 |[Azure 服務匯流排診斷記錄](../service-bus-messaging/service-bus-diagnostic-logs.md) |
-
+| 串流分析 |[作業診斷記錄](../stream-analytics/stream-analytics-job-diagnostic-logs.md) |
 
 ## <a name="supported-log-categories-per-resource-type"></a>每個資源類型支援的記錄檔類別
 |資源類型|類別|類別顯示名稱|
@@ -204,6 +210,8 @@ ms.lasthandoff: 03/18/2017
 |Microsoft.Automation/automationAccounts|JobStreams|作業串流|
 |Microsoft.Automation/automationAccounts|DscNodeStatus|Dsc 節點狀態|
 |Microsoft.Batch/batchAccounts|ServiceLog|服務記錄檔|
+|Microsoft.Cdn/profiles/endpoints|CoreAnalytics|取得端點的計量，例如頻寬、輸出等資訊。|
+|Microsoft.CustomerInsights/hubs|AuditEvents|AuditEvents|
 |Microsoft.DataLakeAnalytics/accounts|稽核|稽核記錄檔|
 |Microsoft.DataLakeAnalytics/accounts|要求|要求記錄檔|
 |Microsoft.DataLakeStore/accounts|稽核|稽核記錄檔|
@@ -216,13 +224,16 @@ ms.lasthandoff: 03/18/2017
 |Microsoft.Logic/integrationAccounts|IntegrationAccountTrackingEvents|整合帳戶追蹤事件|
 |Microsoft.Network/networksecuritygroups|NetworkSecurityGroupEvent|網路安全性群組事件|
 |Microsoft.Network/networksecuritygroups|NetworkSecurityGroupRuleCounter|網路安全性群組規則計數器|
-|Microsoft.Network/networksecuritygroups|NetworkSecurityGroupFlowEvent|網路安全性群組規則流程事件|
 |Microsoft.Network/loadBalancers|LoadBalancerAlertEvent|負載平衡器警示事件|
 |Microsoft.Network/loadBalancers|LoadBalancerProbeHealthStatus|負載平衡器探查健全狀況狀態|
 |Microsoft.Network/applicationGateways|ApplicationGatewayAccessLog|應用程式閘道存取記錄檔|
 |Microsoft.Network/applicationGateways|ApplicationGatewayPerformanceLog|應用程式閘道效能記錄檔|
 |Microsoft.Network/applicationGateways|ApplicationGatewayFirewallLog|應用程式閘道防火牆記錄檔|
 |Microsoft.Network/expressRouteCircuits|GWMCountersTable|GWM 計數器的資料表|
+|Microsoft.RecoveryServices/Vaults|AzureBackupReport|Azure 備份報表資料|
+|Microsoft.RecoveryServices/Vaults|AzureSiteRecoveryJobs|Azure Site Recovery 作業|
+|Microsoft.RecoveryServices/Vaults|AzureSiteRecoveryEvents|Azure Site Recovery 事件|
+|Microsoft.RecoveryServices/Vaults|AzureSiteRecoveryReplicatedItems|Azure Site Recovery 複寫項目|
 |Microsoft.Search/searchServices|OperationLogs|作業記錄|
 |Microsoft.ServerManagement/nodes|RequestLogs|要求記錄檔|
 |Microsoft.ServiceBus/namespaces|OperationalLogs|作業記錄|

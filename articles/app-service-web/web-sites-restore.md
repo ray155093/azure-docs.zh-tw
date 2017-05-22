@@ -14,22 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: cephalin
-translationtype: Human Translation
-ms.sourcegitcommit: b1a633a86bd1b5997d5cbf66b16ec351f1043901
-ms.openlocfilehash: 71d07e64480d4b4eaff7fdef53c8f5ff7a97a944
-ms.lasthandoff: 01/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 49aa35a42e4f6dab2f8d556f7b1b10bfdef7b7db
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="restore-an-app-in-azure"></a>在 Azure 中還原應用程式
-本文說明如何在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中還原您先前備份的應用程式 (請參閱[在 Azure 中備份應用程式](web-sites-backup.md))。 您可以依需求將應用程式及其連結的資料庫 (SQL Database 或 MySQL) 還原成先前的狀態，或是根據您其中一個原始的應用程式備份來建立新應用程式。 建立與最新版本平行執行的新應用程式，對進行 A/B 測試來說，會相當有用。
+本文說明如何在 [Azure App Service](../app-service/app-service-value-prop-what-is.md) 中還原您先前備份的應用程式 (請參閱[在 Azure 中備份應用程式](web-sites-backup.md))。 您可以依需求將應用程式及其連結的資料庫還原到先前的狀態，或是根據您的其中一個原始應用程式備份來建立新的應用程式。 Azure App Service 支援使用下列資料庫來進行備份與還原︰
+- [SQL Database](https://azure.microsoft.com/en-us/services/sql-database/)
+- [適用於 MySQL 的 Azure 資料庫 (預覽)](https://azure.microsoft.com/en-us/services/mysql)
+- [適用於 PostgreSQL 的 Azure 資料庫 (預覽)](https://azure.microsoft.com/en-us/services/postgres)
+- [ClearDB MySQL](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/SuccessBricksInc.ClearDBMySQLDatabase?tab=Overview)
+- [應用程式內 MySQL](https://blogs.msdn.microsoft.com/appserviceteam/2017/03/06/announcing-general-availability-for-mysql-in-app)
 
 從備份還原是提供給在**標準**和**進階**層中執行的應用程式使用。 如需有關相應增加應用程式的詳細資訊，請參閱 [在 Azure 中調整應用程式規模](web-sites-scale.md)。 **進階**層所允許執行的每日備份數量比**標準**層多。
 
 <a name="PreviousBackup"></a>
 
 ## <a name="restore-an-app-from-an-existing-backup"></a>從現有備份還原應用程式
-1. 在「Azure 入口網站」中您應用程式的 [設定] 刀鋒視窗上，按一下 [備份] 以顯示 [備份] 刀鋒視窗。 然後，在命令列中按一下 [立即還原]  。
+1. 在 Azure 入口網站中您應用程式的 [設定] 刀鋒視窗上，按一下 [備份] 以顯示 [備份] 刀鋒視窗。 然後，在命令列中按一下 [立即還原]  。
    
     ![選擇立即還原][ChooseRestoreNow]
 2. 在 [還原]  刀鋒視窗中，先選取備份來源。
@@ -44,22 +50,19 @@ ms.lasthandoff: 01/20/2017
     ![](./media/web-sites-restore/022ChooseDestination.png)
    
    > [!WARNING]
-   > 如果您選擇 [覆寫]，則目前應用程式中的所有現有資料都會被清除。 按一下 [確定] 之前，請確定這確實是您想要執行的動作。
+   > 如果您選擇 [覆寫]，則目前應用程式中的所有現有資料都將被清除並覆寫。 按一下 [確定] 之前，請確定這確實是您想要執行的動作。
    > 
    > 
    
-    您可以選取 [現有應用程式]  ，將應用程式備份還原到相同資源群組中的另一個應用程式。 使用此選項之前，您應該已經在資源群組中，建立具有應用程式備份中所定義之資料庫組態的鏡像資料庫組態的另一個應用程式。
+    您可以選取 [現有應用程式]  ，將應用程式備份還原到相同資源群組中的另一個應用程式。 使用此選項之前，您應該已經在資源群組中建立另一個應用程式，此應用程式具有應用程式備份中所定義組態的鏡像組態。
+
 4. 按一下 [確定] 。
 
 <a name="StorageAccount"></a>
 
 ## <a name="download-or-delete-a-backup-from-a-storage-account"></a>從儲存體帳戶下載或刪除備份
-1. 從 Azure 入口網站的主要 [瀏覽] 刀鋒視窗中，選取 [儲存體帳戶]。
-   
-    隨即會出現您現有的儲存體帳戶清單。
-2. 選取包含您想要下載或刪除之備份的儲存體帳戶。
-   
-    儲存體帳戶的刀鋒視窗隨即顯示。
+1. 從 Azure 入口網站的主要 [瀏覽] 刀鋒視窗中，選取 [儲存體帳戶]。 隨即會顯示您現有的儲存體帳戶清單。
+2. 選取包含您想要下載或刪除之備份的儲存體帳戶。隨即會顯示儲存體帳戶的刀鋒視窗。
 3. 在儲存體帳戶刀鋒視窗中，選取所需的容器
    
     ![檢視容器][ViewContainers]
@@ -71,20 +74,16 @@ ms.lasthandoff: 01/20/2017
 <a name="OperationLogs"></a>
 
 ## <a name="monitor-a-restore-operation"></a>監視還原作業
-1. 若要查看有關應用程式還原作業成功或失敗的詳細資訊，請瀏覽至 Azure 入口網站中的 [活動記錄] 刀鋒視窗。
-   
-    [活動記錄] 刀鋒視窗會顯示您的所有作業，以及層級、狀態、資源和時間詳細資料。
-2. 向下捲動以尋找所要的還原作業，並按一下以選取它。
+若要查看有關應用程式還原作業成功或失敗的詳細資訊，請瀏覽至 Azure 入口網站中的 [活動記錄] 刀鋒視窗。  
+ 
 
-[詳細資料] 刀鋒視窗將會顯示與該還原作業有關的可用資訊。
+向下捲動以尋找所要的還原作業，並按一下以選取它。
+
+詳細資料刀鋒視窗會顯示與還原作業有關的可用資訊。
 
 ## <a name="next-steps"></a>後續步驟
-您也可以使用 REST API 來備份及還原 App Service 應用程式 (請參閱 [使用 REST 來備份及還原 App Service 應用程式](websites-csm-backup.md))。
+您可以使用 REST API 來備份及還原 App Service 應用程式 (請參閱[使用 REST 來備份及還原 App Service 應用程式](websites-csm-backup.md))。
 
-> [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](https://azure.microsoft.com/try/app-service/)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
-> 
-> 
 
 <!-- IMAGES -->
 [ChooseRestoreNow]: ./media/web-sites-restore/02ChooseRestoreNow.png
