@@ -63,7 +63,7 @@ ms.lasthandoff: 04/27/2017
     * **公式名稱** - 輸入公式的名稱。 當您建立 VM 時，這個值會在顯示在基本映像清單中。 輸入名稱時會立即驗證，如果無效，則會出現訊息指出有效名稱的需求。
     * **描述** - 輸入公式的有意義描述。 當您建立 VM 時，可以從公式的操作功能表使用這個值。
     * **使用者名稱** - 輸入被授與系統管理員權限的使用者名稱。
-    *  - 從下拉式清單中輸入或選取一個值，該值與您想用於指定使用者的密碼相關聯。 如需密碼的詳細資訊，請參閱 [Azure DevTest Labs︰個人密碼存放區](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store/)。
+    * **密碼** - 從下拉式清單中輸入或選取一個值，該值與您想用於指定使用者的密碼相關聯。 如需密碼的詳細資訊，請參閱 [Azure DevTest Labs︰個人密碼存放區](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store/)。
     * **虛擬機器磁碟類型** - 指定 HDD (硬碟) 或 SSD (固態硬碟)，以表示使用此基本映像佈建的虛擬機器可使用哪種儲存磁碟類型。
     * **虛擬機器大小** - 選取其中一個預先定義的項目，以指定要建立之 VM 的處理器核心、RAM 大小和硬碟大小。 
     * **構件** - 選取以開啟 [新增構件] 刀鋒視窗，以選取並設定您想要新增至基本映像的構件。 如需構件的詳細資訊，請參閱[在 Azure DevTest Labs 中管理 VM 構件](./devtest-lab-add-vm-with-artifacts.md)。
