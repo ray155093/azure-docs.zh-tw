@@ -24,7 +24,6 @@
 ### [連結至其他範本](resource-group-linked-templates.md)
 ### [定義資源間的相依性](resource-group-define-dependencies.md)
 ### [建立多個執行個體](resource-group-create-multiple.md)
-### [循序迴圈](resource-manager-sequential-loop.md)
 ### [設定位置](resource-manager-template-location.md)
 ### [指派標記](resource-manager-template-tags.md)
 ### [設定子資源名稱與類型](resource-manager-template-child-resource.md)
@@ -44,7 +43,7 @@
 #### [匯出範本並重新部署](resource-manager-export-template-cli.md)
 ### [入口網站](resource-group-template-deploy-portal.md)
 ### [REST API](resource-group-template-deploy-rest.md)
-### [多個資源群組部署](resource-manager-cross-resource-group-deployment.md)
+### [跨資源群組部署](resource-manager-cross-resource-group-deployment.md)
 ### [持續與 Visual Studio Team Services 整合](../vs-azure-tools-resource-groups-ci-in-vsts.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ### [在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)
 
