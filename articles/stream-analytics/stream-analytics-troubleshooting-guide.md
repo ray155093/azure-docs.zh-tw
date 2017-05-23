@@ -37,7 +37,7 @@ ms.lasthandoff: 05/01/2017
 
 2.  檢查您的輸入資料：
     - 若要驗證輸入資料是否正流入事件中樞，請使用[服務匯流排總管](https://code.msdn.microsoft.com/windowsapps/Service-Bus-Explorer-f2abca5a)與 Azure 事件中樞連線 (若有使用事件中樞輸入)。  
-    - 針對各個輸入使用 [範例資料][](stream-analytics-sample-data-input.md) 按鈕，並下載輸入範例資料。
+    - 針對各個輸入使用 [**範例資料**](stream-analytics-sample-data-input.md) 按鈕，並下載輸入範例資料。
     - 檢查範例資料以了解資料形式︰結構描述和[資料類型](https://msdn.microsoft.com/library/azure/dn835065.aspx)。
 
 3.  測試查詢︰
