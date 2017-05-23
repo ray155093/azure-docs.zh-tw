@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: jingwang
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
 ms.openlocfilehash: dc501a1c7c0d6a1d70ce368f86a967f889394dc7
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/12/2017
 
 
@@ -425,7 +426,7 @@ Data Factory 服務支援使用資料管理閘道器連接至內部部署 HDFS�
               REALM.COM = .
              }
 
-        設定之後**重新啟動** KDC 服務。
+  設定之後**重新啟動** KDC 服務。
 
 2.    使用下列命令，在 KDC 伺服器中準備名為 **krbtgt/REALM.COM@AD.COM** 的主體︰
 
