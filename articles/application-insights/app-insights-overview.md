@@ -3,7 +3,7 @@ title: "什麼是 Azure Application Insights？ | Microsoft Docs"
 description: "即時 Web 應用程式的應用程式效能管理和使用量追蹤。  偵測、分級和診斷問題，了解人們如何使用您的應用程式。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 379721d1-0f82-445a-b416-45b94cb969ec
 ms.service: application-insights
@@ -11,13 +11,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 02/07/2017
-ms.author: awills
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 4c47041bb729a3ee1f3fb4c7baf7f988db226677
-ms.lasthandoff: 04/12/2017
-
+ms.date: 05/14/2017
+ms.author: cfreeman
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: e57912a197394fbb8ea8bc374a1f3934ae0ff464
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 ---
 # <a name="what-is-application-insights"></a>什麼是 Application Insights？
@@ -64,14 +64,17 @@ Application Insights 是以開發小組為目標，以協助您了解您的應�
 
 |  |  |
 | --- | --- |
+| [**智慧型偵測和手動警示**](app-insights-proactive-diagnostics.md)<br/>如果在常見模式之外發生一些狀況，則自動警示會適應您應用程式的一般遙測和觸發程式模式。 您也可以在自訂或標準計量的特定層級上[設定警示](app-insights-alerts.md)。 |![警示範例](./media/app-insights-overview/alerts-tn.png) |
 | [**應用程式對應**](app-insights-app-map.md)<br/>應用程式的元件，包含重要計量和警示。 |![應用程式對應](./media/app-insights-overview/appmap-tn.png)  |
+| [**分析工具**](app-insights-profiler.md)<br/>檢查取樣要求的執行設定檔。 |![分析工具](./media/app-insights-overview/profiler.png) |
+| [**使用量分析**](app-insights-usage-overview.md)<br/>分析使用者區隔和保留期。|![保留期工具](./media/app-insights-overview/retention.png) |
 | [**執行個體資料的診斷搜尋**](app-insights-diagnostic-search.md)<br/>搜尋和篩選事件，例如要求、例外狀況、相依性呼叫、記錄追蹤，以及頁面檢視。  |![搜尋遙測](./media/app-insights-overview/search-tn.png) |
 | [**彙總資料的計量瀏覽器**](app-insights-metrics-explorer.md)<br/>瀏覽、篩選和分割彙總的資料，例如，要求、錯誤和例外狀況的比率；回應時間、頁面載入時間。 |![度量](./media/app-insights-overview/metrics-tn.png) |
 | [**儀表板**](app-insights-dashboards.md#dashboards)<br/>來自多個資源的交互式資料並與其他人員共用。 非常適用於多元件的應用程式，以及小組聊天室中的連續顯示。 |![儀表板範例](./media/app-insights-overview/dashboard-tn.png) |
 | [**即時計量串流**](app-insights-live-stream.md)<br/>當您部署新的組建時，請觀看這些近乎即時的效能指標，以確定一切如預期運作。 |![即時計量範例](./media/app-insights-overview/live-metrics-tn.png) |
 | [**分析**](app-insights-analytics.md)<br/>使用這個功能強大的查詢語言，回答有關您應用程式效能和使用方式的艱難問題。 |![分析範例](./media/app-insights-overview/analytics-tn.png) |
-| [**自動和手動警示**](app-insights-alerts.md)<br/>如果在常見模式之外發生一些狀況，則自動警示會適應您應用程式的一般遙測和觸發程式模式。 您也可以在自訂或標準計量的特定層級上設定警示。 |![警示範例](./media/app-insights-overview/alerts-tn.png) |
 | [**Visual Studio**](app-insights-visual-studio.md)<br/>查看程式碼中的效能資料。 從堆疊追蹤移至程式碼。|![Visual Studio](./media/app-insights-overview/visual-studio-tn.png) |
+| [**快照集偵錯工具**](app-insights-snapshot-debugger.md)<br/>使用參數值，對取樣自即時作業的快照集進行偵錯。|![Visual Studio](./media/app-insights-overview/snapshot.png) |
 | [**Power BI**](app-insights-export-power-bi.md)<br/>整合使用量計量和其他商業智慧。| ![Power BI](./media/app-insights-overview/power-bi.png)|
 | [**REST API**](https://dev.applicationinsights.io/)<br/>撰寫程式碼，對您的計量和未經處理資料執行查詢。| ![REST API](./media/app-insights-overview/rest-tn.png) |
 | [**連續匯出**](app-insights-export-telemetry.md)<br/>立即將送達的未經處理資料大量匯出至儲存體。 |![匯出](./media/app-insights-overview/export-tn.png) |
@@ -90,10 +93,10 @@ Application Insights 是以開發小組為目標，以協助您了解您的應�
 
 * 評估有多少使用者受到影響。
 * 將失敗與例外狀況、相依項目呼叫和追蹤相互關聯。
-* 檢查堆疊傾印和追蹤記錄檔。
+* 檢查分析工具、快照集、堆疊傾印和追蹤記錄。
 
 ### <a name="build-measure-learn"></a>建置、測量、學習
-測量所部署之各個新功能的效果。
+[測量所部署之各個新功能的效果](app-insights-usage-overview.md)。
 
 * 計劃測量客戶使用新 UX 或商務功能的情況。
 * 在程式碼中撰寫自訂遙測。
