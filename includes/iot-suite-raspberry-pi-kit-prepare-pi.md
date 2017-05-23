@@ -2,10 +2,10 @@
 
 ### <a name="install-raspbian"></a>安裝 Raspbian
 
-如果這是您第一次使用 Raspberry Pi，您需要使用套件內含 SD 卡上的 NOOBS 來安裝 Raspbian 作業系統。 [Raspberry Pi 軟體指南][ lnk-install-raspbian]說明如何在 Raspberry Pi 上安裝作業系統。 本教學課程假設您已在 Raspberry Pi 上安裝 Raspbian 作業系統。
+如果這是您第一次使用 Raspberry Pi，您需要使用套件內含 SD 卡上的 NOOBS 來安裝 Raspbian 作業系統。 [Raspberry Pi 軟體指南][lnk-install-raspbian]說明如何在 Raspberry Pi 上安裝作業系統。 本教學課程假設您已在 Raspberry Pi 上安裝 Raspbian 作業系統。
 
 > [!NOTE]
-> [適用於 Raspberry Pi 3 的 Microsoft Azure IoT 入門套件][ lnk-starter-kits]內含的 SD 卡已安裝 NOOBS。 您可以從這張卡啟動 Raspberry Pi，並選擇安裝 Raspbian OS。
+> [適用於 Raspberry Pi 3 的 Microsoft Azure IoT 入門套件][lnk-starter-kits]內含的 SD 卡已安裝 NOOBS。 您可以從這張卡啟動 Raspberry Pi，並選擇安裝 Raspbian OS。
 
 ### <a name="set-up-the-hardware"></a>設定工具
 

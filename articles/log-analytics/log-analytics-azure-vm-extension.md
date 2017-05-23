@@ -382,7 +382,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Templa
 
    ![VM 擴充功能檢視](./media/log-analytics-azure-vm-extension/oms-vmview-extensions.png)
 
-4. 按一下 [MicrosoftMonitoringAgent](Windows) 或 [OmsAgentForLinux] (Linux) 擴充功能，並檢視詳細資料。 
+4. 按一下 [MicrosoftMonitoringAgent] \(Windows) 或 [OmsAgentForLinux] \(Linux) 擴充功能，並檢視詳細資料。 
 
    ![VM 擴充功能詳細資料](./media/log-analytics-azure-vm-extension/oms-vmview-extensiondetails.png)
 
