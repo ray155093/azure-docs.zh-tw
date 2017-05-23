@@ -1,6 +1,6 @@
 ---
 title: "在入口網站中將資料匯入 Azure 搜尋服務 | Microsoft Docs"
-description: "使用 Azure 入口網站的 Azure 搜尋服務匯入資料精靈，以從 NoSQL DocumentDB、Blob 儲存體、表格儲存體、SQL Database 和 Azure VM 上的 SQL Server 對 Azure 資料進行編目。"
+description: "使用 Azure 入口網站的 Azure 搜尋服務匯入資料精靈，以從 NoSQL Azure Cosmos DB、Blob 儲存體、表格儲存體、SQL Database 和 Azure VM 上的 SQL Server 對 Azure 資料進行編目。"
 services: search
 documentationcenter: 
 author: HeidiSteen
@@ -13,11 +13,13 @@ ms.devlang: na
 ms.workload: search
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
-ms.date: 02/08/2017
+ms.date: 05/01/2017
 ms.author: heidist
-translationtype: Human Translation
-ms.sourcegitcommit: d19a85e127b548e5f8979358879e8b9354934904
-ms.openlocfilehash: c03c26d0e5ea2529162262664412f4f8f7e854dc
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: a3e6dd66197a17bfdc80c04130e198b787692a58
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -32,17 +34,17 @@ Azure 入口網站在 Azure 搜尋服務儀表板上提供 [匯入資料] 精靈
 * 根據來源資料結構產生可修改的索引結構描述
 * 使用從資料來源擷取到的資料列集將 JSON 文件載入索引中
 
-您可以使用 DocumentDB 中的範例資料試試看這個工作流程。 請瀏覽 [開始在 Azure 入口網站中使用 Azure 搜尋服務](search-get-started-portal.md) 以取得指示。
+您可以使用 Azure Cosmos DB 中的範例資料試試看這個工作流程。 請瀏覽 [開始在 Azure 入口網站中使用 Azure 搜尋服務](search-get-started-portal.md) 以取得指示。
 
 > [!NOTE]
-> 您可以從 DocumentDB 儀表板啟動**匯入資料**精靈，以簡化該資料來源的索引建立作業。 在左側導覽中，移至 [集合] > [新增 Azure 搜尋服務] 以便開始使用。
+> 您可以從 Azure Cosmos DB 儀表板啟動**匯入資料**精靈，以簡化該資料來源的索引建立作業。 在左側導覽中，移至 [集合] > [新增 Azure 搜尋服務] 以便開始使用。
 
 ## <a name="data-sources-supported-by-the-import-data-wizard"></a>匯入資料精靈所支援的資料來源
 匯入資料精靈支援下列資料來源︰ 
 
 * Azure SQL Database
 * Azure VM 上的 SQL Server 關聯式資料
-* Azure DocumentDB
+* Azure Cosmos DB
 * Azure Blob 儲存體
 * Azure 資料表儲存體
 
@@ -58,7 +60,7 @@ Azure 入口網站在 Azure 搜尋服務儀表板上提供 [匯入資料] 精靈
 | **現有的資料來源** |如果您的搜尋服務中已經定義索引子，您可以針對另一次匯入選取現有的資料來源定義。 |
 | **Azure SQL Database** |您可以在頁面上或透過 ADO.NET 連接字串指定服務名稱、具有讀取權限的資料庫使用者認證以及資料庫名稱。 選擇連接字串選項以檢視或自訂屬性。 <br/><br/>提供資料列集的資料表或檢視必須在頁面上指定。 連線成功後會出現此選項，並透過下拉式清單供您選取。 |
 | **在 Azure VM 上的 SQL Server** |指定完整服務名稱、使用者識別碼與密碼以及資料庫作為連接字串。 若要使用此資料來源，您必須先前就已在本機存放區中安裝用來加密連線的憑證。 如需指示，請參閱 [SQL VM 到 Azure 搜尋服務的連線](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)。 <br/><br/>提供資料列集的資料表或檢視必須在頁面上指定。 連線成功後會出現此選項，並透過下拉式清單供您選取。 |
-| **DocumentDB** |需求包括帳戶、資料庫和集合。 集合中的所有文件將會包含在索引中。 您可以定義查詢以壓平合併或篩選資料列集，或者偵測已變更的文件以用於後續資料重新整理作業。 |
+| **Azure Cosmos DB** |需求包括帳戶、資料庫和集合。 集合中的所有文件將會包含在索引中。 您可以定義查詢以壓平合併或篩選資料列集，或者偵測已變更的文件以用於後續資料重新整理作業。 |
 | **Azure Blob 儲存體** |需求包括儲存體帳戶和容器。 如果 Blob 名稱為了分組而遵循虛擬命名慣例，您可以指定名稱的虛擬目錄部分做為容器下的資料夾 (選擇性)。 如需詳細資訊，請參閱[為 Blob 儲存體編製索引](search-howto-indexing-azure-blob-storage.md)。 |
 | **Azure 資料表儲存體** |需求包括儲存體帳戶和資料表名稱。 您可以指定要擷取資料表子集的查詢 (選擇性)。 如需詳細資訊，請參閱[為表格儲存體編製索引](search-howto-indexing-azure-tables.md)。 |
 
@@ -113,16 +115,11 @@ Azure 入口網站在 Azure 搜尋服務儀表板上提供 [匯入資料] 精靈
 檢閱下列連結以深入了解索引子：
 
 * [為 Azure SQL Database 編製索引](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
-* [為 DocumentDB 編製索引](search-howto-index-documentdb.md)
+* [Azure Cosmos DB 編製索引](search-howto-index-documentdb.md)
 * [為 Blob 儲存體編製索引](search-howto-indexing-azure-blob-storage.md)
 * [為表格儲存體編製索引](search-howto-indexing-azure-tables.md)
 
 <!--Image references-->
 [1]: ./media/search-import-data-portal/search-import-data-command.png
-
-
-
-
-<!--HONumber=Feb17_HO2-->
 
 

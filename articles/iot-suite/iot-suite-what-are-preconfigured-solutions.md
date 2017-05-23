@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/24/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: fba7f5f33d1a0d39219a6790e1d5c6b4515b794c
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 29e8639a6f1f0c2733d24dda78975ea7cfb6107a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -107,7 +108,7 @@ IoT 中樞的裝置管理功能可讓您從解決方案入口網站管理裝置�
 ## <a name="azure-stream-analytics"></a>Azure 串流分析
 預先設定解決方案使用三個 [Azure 串流分析][lnk-asa] (ASA) 作業來篩選來自裝置的遙測串流：
 
-* *DeviceInfo 作業* - 將資料輸出到「事件」中樞，此中樞會將裝置註冊特定訊息傳送到解決方案裝置登錄 (DocumentDB 資料庫)。 當裝置第一次連線或回應「變更裝置狀態」命令時，就會傳送此訊息。
+* DeviceInfo 作業 - 將資料輸出到「事件」中樞，此中樞會將裝置註冊特定訊息傳送到解決方案裝置登錄 (Azure Cosmos DB 資料庫)。 當裝置第一次連線或回應「變更裝置狀態」命令時，就會傳送此訊息。
 * *遙測作業* - 將所有的原始遙測資訊傳送到 Azure Blob 儲存體進行冷儲存，並計算會顯示在解決方案儀表板中的遙測彙總。
 * *規則作業* - 篩選遙測串流中超出任何規則臨界值的值，並將資料輸出到事件中樞。 當規則引發時，解決方案入口網站儀表板檢視會將此事件顯示為警示歷程記錄資料表中的新資料列。 這些規則也可以根據解決方案入口網站中的 [規則] 和 [動作] 檢視上定義的設定來觸發動作。
 
@@ -117,10 +118,10 @@ IoT 中樞的裝置管理功能可讓您從解決方案入口網站管理裝置�
 在此預先設定解決方案中，事件處理器會形成典型 [IoT 解決方案架構][lnk-what-is-azure-iot]中 **IoT 解決方案後端**的一部分。
 
 **DeviceInfo** 和**規則** ASA 作業會將它們的輸出傳送到事件中樞，以傳遞給其他後端服務。 解決方案會使用在 [WebJob][lnk-web-job] 中執行的 [EventPocessorHost][lnk-event-processor] 執行個體，來從這些事件中樞讀取訊息。 **EventProcessorHost** 會使用：
-- **DeviceInfo** 資料來更新 DocumentDB 資料庫中的裝置資料。
+- **DeviceInfo** 資料來更新 Cosmos DB 資料庫中的裝置資料。
 - 「規則」資料來叫用邏輯應用程式，然後更新解決方案入口網站中的警示顯示。
 
-## <a name="device-identity-registry-device-twin-and-documentdb"></a>裝置身分識別登錄、裝置對應項及 DocumentDB
+## <a name="device-identity-registry-device-twin-and-cosmos-db"></a>裝置身分識別登錄、裝置對應項及 Cosmos DB
 每個 IoT 中樞都包括儲存裝置金鑰的[裝置身分識別登錄][lnk-identity-registry]。 IoT 中樞會使用此資訊驗證裝置 - 裝置必須先登錄並擁有有效的金鑰，才能連線至中樞。
 
 [裝置對應項][lnk-device-twin] 是由 IoT 中樞管理的 JSON 文件。 裝置的裝置對應項包含：
@@ -129,9 +130,9 @@ IoT 中樞的裝置管理功能可讓您從解決方案入口網站管理裝置�
 - 您想要傳送給裝置的所需屬性。 您可以在解決方案入口網站中設定這些屬性。
 - 只存在於裝置對應項中而不存在於裝置上的標籤。 您可以在解決方案入口網站中使用這些標籤來篩選裝置清單。
 
-此解決方案會使用裝置對應項來管理裝置中繼資料。 此解決方案也會使用 DocumentDB 資料庫來儲存額外的解決方案特定裝置資料，例如每個裝置支援的命令及命令歷程記錄。
+此解決方案會使用裝置對應項來管理裝置中繼資料。 此解決方案也會使用 Cosmos DB 資料庫來儲存額外的解決方案特定裝置資料，例如每個裝置支援的命令及命令歷程記錄。
 
-解決方案也必須讓裝置身分識別登錄中的資訊與 DocumentDB 資料庫中的內容維持同步。 **EventProcessorHost** 會使用來自 **DeviceInfo** 串流分析作業的資料來管理同步處理。
+解決方案也必須讓裝置身分識別登錄中的資訊與 Cosmos DB 資料庫中的內容保持同步。 **EventProcessorHost** 會使用來自 **DeviceInfo** 串流分析作業的資料來管理同步處理。
 
 ## <a name="solution-portal"></a>解決方案入口網站
 ![解決方案入口網站][img-dashboard]
@@ -168,3 +169,4 @@ IoT 中樞的裝置管理功能可讓您從解決方案入口網站管理裝置�
 [lnk-device-twin]: ../iot-hub/iot-hub-devguide-device-twins.md
 [lnk-direct-methods]: ../iot-hub/iot-hub-devguide-direct-methods.md
 [lnk-getstarted-factory]: iot-suite-connected-factory-overview.md
+

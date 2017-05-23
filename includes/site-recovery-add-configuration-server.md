@@ -1,6 +1,8 @@
 1. 執行統一安裝的安裝檔案。
 2. 在 [開始之前] 選取 [安裝設定伺服器和處理序伺服器]。
+
     ![開始之前](./media/site-recovery-add-configuration-server/combined-wiz1.png)
+
 3. 在 [協力廠商軟體授權] 中，按一下 [我接受] 來下載並安裝 MySQL。
 
     ![協力廠商軟體](./media/site-recovery-add-configuration-server/combined-wiz2.png)
@@ -9,12 +11,14 @@
     ![註冊](./media/site-recovery-add-configuration-server/combined-wiz3.png)
 5. 在 [網際網路設定] 中，指定在設定伺服器上執行的 Provider 要如何透過網際網路連接到 Azure Site Recovery。
 
-   * 如果您想要使用機器上目前設定的 Proxy 來連線，請選取 [以現有的 Proxy 設定連線]。
-   * 如果您想要讓 Provider 直接連線，請選取 [不使用 Proxy 直接連線]。
-   * 如果現有的 Proxy 需要驗證，或是您想要讓 Provider 使用自訂 Proxy 來連線，請選取 [以自訂 Proxy 設定連線]。
+   a. 如果您想要使用電腦上目前設定的 Proxy 來連線，請選取 [使用 Proxy 伺服器連線至 Azure Site Recovery]。
+
+   b.這是另一個 C# 主控台應用程式。 如果您想要讓提供者直接連接，請選取 [不使用 Proxy 伺服器直接連線到 Azure Site Recovery]。
+
+   c. 如果現有的 Proxy 需要驗證，或是您想要讓 Provider 使用自訂 Proxy 來連線，請選取 [以自訂 Proxy 設定連線]。
 
      * 如果您使用自訂 Proxy，您必須指定位址、連接埠以及認證。
-     * 如果您使用 Proxy，您應該已經允許[必要條件](#prerequisites)中所述的 URL。
+     * 如果您是使用 Proxy，應該已經允許[必要條件](#prerequisites)中所述的 URL。
 
      ![防火牆](./media/site-recovery-add-configuration-server/combined-wiz4.png)
 6. 在 [必要條件檢查] 中，安裝程式會執行檢查來確定可以執行安裝。 如果出現有關「通用時間同步處理檢查」的警告，請確認系統時鐘上的時間 ([日期和時間] 設定) 與時區相同。
@@ -23,7 +27,7 @@
 7. 在 [MySQL 組態] 中，建立認證來登入已安裝的 MySQL 伺服器執行個體。
 
     ![MySQL](./media/site-recovery-add-configuration-server/combined-wiz6.png)
-8. 在 [環境詳細資料] 中，選取您是否要複寫 VMware VM。 如果是的話，安裝程式會檢查是否已安裝 PowerCLI 6.0。
+8. 在 [環境詳細資料] 中，選取您是否要複寫 VMware VM。 如果是的話，安裝程式就會檢查是否已安裝 PowerCLI 6.0。
 
     ![MySQL](./media/site-recovery-add-configuration-server/combined-wiz7.png)
 

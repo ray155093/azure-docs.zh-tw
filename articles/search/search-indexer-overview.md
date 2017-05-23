@@ -1,6 +1,6 @@
 ---
 title: "Azure 搜尋服務中的索引工具 | Microsoft Docs"
-description: "耙梳 Azure SQL Database、DocumentDB 或 Azure 儲存體，以擷取可搜尋的資料並填入 Azure 搜尋服務索引。"
+description: "將 Azure SQL Database、Azure Cosmos DB 或 Azure 儲存體耙梳，以擷取可搜尋的資料並填入 Azure 搜尋服務索引。"
 services: search
 documentationcenter: 
 author: HeidiSteen
@@ -13,12 +13,13 @@ ms.devlang: na
 ms.workload: search
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
-ms.date: 10/27/2016
+ms.date: 05/01/2017
 ms.author: heidist
-translationtype: Human Translation
-ms.sourcegitcommit: 4bcd31a200024a182ee3d5a21bcbcb621fed595f
-ms.openlocfilehash: fd46641709d260f8b468556972aae14205fdb515
-ms.lasthandoff: 01/19/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 52b154895fca9fc465a9c6cc2fb6bf2d5384b057
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 ---
 
@@ -28,9 +29,9 @@ ms.lasthandoff: 01/19/2017
 > * [概觀](search-indexer-overview.md)
 > * [入口網站](search-import-data-portal.md)
 > * [Azure SQL](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
-> * [DocumentDB](search-howto-index-documentdb.md)
-> * [Blob 儲存體 (預覽)](search-howto-indexing-azure-blob-storage.md)
-> * [表格儲存體 (預覽)](search-howto-indexing-azure-tables.md)
+> * [Azure Cosmos DB](search-howto-index-documentdb.md)
+> * [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)
+> * [Azure 資料表儲存體](search-howto-indexing-azure-tables.md)
 >
 >
 
@@ -41,7 +42,7 @@ Azure 搜尋服務中的 **索引子** 是一種編目程式，其可從外部�
 您可以依需要執行索引子，也可以依週期性的資料重新整理排程，最多每十五分鐘執行一次。 若想更頻繁地進行更新，則 Azure 搜尋服務和外部資料來源中都必須要有可同時更新資料的發送模型。
 
 ## <a name="approaches-for-creating-and-managing-indexers"></a>建立與管理索引子的方法
-對於 Azure SQL 或 DocumentDB 等公開上市的索引子，您可以使用下列方法來建立及管理索引子︰
+對於 Azure SQL 或 Azure Cosmos DB 等公開上市的索引子，您可以使用下列方法來建立及管理索引子︰
 
 * [入口網站 > 匯入資料精靈](search-get-started-portal.md)
 * [服務 REST API](https://msdn.microsoft.com/library/azure/dn946891.aspx)
@@ -57,7 +58,7 @@ Azure 搜尋服務中的 **索引子** 是一種編目程式，其可從外部�
 索引子會從保有連接字串等資訊的 **資料來源** 提取資料。 目前支援下列資料來源：
 
 * [Azure SQL Database 或 Azure 虛擬機器中的 SQL Server](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
-* [DocumentDB](search-howto-index-documentdb.md)
+* [Azure Cosmos DB](search-howto-index-documentdb.md)
 * [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)可用來擷取 PDF、Office 文件、HTML 或 XML 中的文字
 * [Azure 資料表儲存體](search-howto-indexing-azure-tables.md)
 
@@ -70,9 +71,9 @@ Azure 搜尋服務中的 **索引子** 是一種編目程式，其可從外部�
 既然您已瞭解基本概念，下一個步驟是檢閱需求和每個資料來源類型特有的工作。
 
 * [Azure SQL Database 或 Azure 虛擬機器中的 SQL Server](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
-* [DocumentDB](search-howto-index-documentdb.md)
+* [Azure Cosmos DB](search-howto-index-documentdb.md)
 * [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)可用來擷取 PDF、Office 文件、HTML 或 XML 中的文字
 * [Azure 資料表儲存體](search-howto-indexing-azure-tables.md)
-* [使用 Azure 搜尋服務 Blob 索引子編製索引 CSV Blob (預覽)](search-howto-index-csv-blobs.md)
-* [使用 Azure 搜尋服務 Blob 索引子編製索引 JSON Blob (預覽)](search-howto-index-json-blobs.md)
+* [使用 Azure 搜尋服務 Blob 索引子編製索引 CSV Blob](search-howto-index-csv-blobs.md)
+* [使用 Azure 搜尋服務 Blob 索引子編製索引 JSON Blob](search-howto-index-json-blobs.md)
 

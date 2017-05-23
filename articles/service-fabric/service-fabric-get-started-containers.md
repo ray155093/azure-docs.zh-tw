@@ -111,7 +111,7 @@ Azure Container Registry 中的登錄 - 在 Azure 訂用帳戶中[建立容器�
     docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" my-web-site
     ```
 
-3. 連線到執行中的容器。  開啟 Web 瀏覽器並指向連接埠 8000 上傳回的 IP 位址，例如 "http://172.31.194.61:8000"。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
+3. 連線到執行中的容器。  開啟 Web 瀏覽器並指向連接埠 8000 上傳回的 IP 位址，例如 " http://172.31.194.61:8000 "。 您應該會看到 "Hello World!" 標題 顯示在瀏覽器中。
 
 4. 若要停止您的容器，請執行︰
 

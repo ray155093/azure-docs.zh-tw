@@ -16,10 +16,11 @@ ms.workload: na
 ms.date: 04/24/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 309a36b1aa5db95a287b7a6b21449f9d61880cf4
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: c57c0ddbe8e33d77c6f07f58dfe3236733f6c62f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -47,7 +48,7 @@ Azure 物聯網 (IoT) 服務提供廣泛的功能。 這些企業等級的服務
 
 * 「Azure IoT 套件」的核心是 [Azure IoT 中樞][lnk-iot-hub]服務。 這項服務提供裝置到雲端和雲端到裝置的傳訊功能，並作為雲端到其他重要的 IoT 套件服務的閘道器。 此服務可讓您從您的裝置大量接收訊息，並將命令傳送給您的裝置。 此服務還可讓您[管理您的裝置][lnk-device-management]。 例如，您可以在一或多個連接到中樞的裝置上，進行設定、重新啟動，或執行恢復出場預設值的作業。
 * [Azure 串流分析][lnk-asa]提供移動中的資料分析。 「IoT 套件」會使用這項服務來處理內送的遙測資料、執行彙總，以及偵測事件。 預先設定的解決方案也會使用串流分析來處理資訊訊息，它包含像是中繼資料或是從裝置回應的命令的資料。 這些解決方案使用「串流分析」來處理來自您裝置的訊息，並將這些訊息傳送給其他服務。
-* [Azure 儲存體][lnk-azure-storage]和 [Azure DocumentDB][lnk-document-db] 提供資料儲存體功能。 預先設定的解決方案使用 Blob 儲存體來儲存遙測，並且讓它可用於分析。 這些解決方案使用 DocumentDB 來儲存裝置中繼資料，以及啟用解決方案的裝置管理功能。
+* [Azure 儲存體][lnk-azure-storage]和 [Azure Cosmos DB][lnk-document-db] 提供資料儲存體功能。 預先設定的解決方案使用 Blob 儲存體來儲存遙測，並且讓它可用於分析。 這些解決方案使用 Cosmos DB 來儲存裝置中繼資料，以及將解決方案的裝置管理功能啟用。
 * [Azure Web Apps][lnk-web-apps] 和 [Microsoft Power BI][lnk-power-bi] 提供資料視覺化功能。 Power BI 的彈性可讓您快速建置自己的互動式儀表板 (使用 IoT 套件資料)。
 
 如需典型 IoT 解決方案架構的概觀，請參閱 [Microsoft Azure 和物聯網 (IoT)][iot-suite-what-is-azure-iot]。

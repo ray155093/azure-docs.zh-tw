@@ -13,12 +13,13 @@ ms.devlang: na
 ms.workload: search
 ms.topic: hero-article
 ms.tgt_pltfrm: na
-ms.date: 02/22/2017
+ms.date: 05/01/2017
 ms.author: heidist
-translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 7945ee77be8a09dcac9ddd6b338bdd542ec18540
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: e03d0ff92b0ad6d34314c55d98972997769d09f0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -199,7 +200,7 @@ ms.lasthandoff: 04/18/2017
 
   若要檢視個別元件，請按一下儀表板上的 [索引]、[索引子] 或 [資料來源] 圖格，以顯示現有物件的清單。 若要深入了解不需要重建的索引編輯動作，請參閱[更新索引 (Azure 搜尋服務 REST API)](https://docs.microsoft.com/rest/api/searchservice/update-index)。
 
-+ 請對其他資料來源試用工具和步驟。 範例資料集 (`realestate-us-sample`) 來自 Azure 搜尋服務可以搜耙的 Azure SQL Database。 除了 Azure SQL Database，Azure 搜尋服務可以從 Azure 表格儲存體、Blob 儲存體、Azure VM 上的 SQL Server 及 DocumentDB 中的一般資料結構搜耙及推斷索引。 精靈不支援上述所有資料來源。 在程式碼中，您可以使用「索引子」輕鬆地填入索引。
++ 請對其他資料來源試用工具和步驟。 範例資料集 (`realestate-us-sample`) 來自 Azure 搜尋服務可以搜耙的 Azure SQL Database。 除了 Azure SQL Database，Azure 搜尋服務可以從 Azure 表格儲存體、Blob 儲存體、Azure VM 上的 SQL Server 及 Azure Cosmos DB 中的一般資料結構搜耙及推斷索引。 精靈不支援上述所有資料來源。 在程式碼中，您可以使用「索引子」輕鬆地填入索引。
 
 + 透過推送模型可支援所有其他的非索引子資料來源，您的程式碼可在其中將 JSON 中新的和已變更的資料列集推送至您的索引。 如需詳細資訊，請參閱[在 Azure 搜尋服務中新增、更新或刪除文件](https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents)。
 

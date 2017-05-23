@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 04/28/2017
 ms.author: darosa;sethm;jotaub
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
-ms.openlocfilehash: 72e4c59e1282d97cfc5aa5f55861c6f70d419ce8
+ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
+ms.openlocfilehash: a916f643c7e6727d6053865d1c0bd2f683a53b3f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -48,11 +48,17 @@ ms.lasthandoff: 05/02/2017
 
 ### <a name="partitioned-queues-and-topics"></a>分割的佇列和主題
 
-進階傳訊支援分割的佇列和主題；事實上這些實體一律會進行分割 (且無法停用)。 不過，進階分割的佇列和主題在服務匯流排傳訊的標準和基本層中的運作方式不同。 進階傳訊不會使用 SQL 做為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，資料分割不一定能夠改善效能。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有 2 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
+進階傳訊支援分割的佇列和主題；事實上這些實體一律會進行分割 (且無法停用)。 不過，進階分割的佇列和主題在服務匯流排傳訊的標準和基本層中的運作方式不同。 進階傳訊不會使用 SQL 做為資料存放區，而且不可能再有與共用平台相關聯的資源競爭。 因此，資料分割不一定能夠改善效能。 此外，資料分割計數已從標準傳訊中的 16 個資料分割變更為進階傳訊中的 2 個資料分割。 擁有 2 個資料分割可確保可用性，而且是比較適合進階執行階段環境的數字。 
+
+透過進階傳訊，當您使用 [MaxSizeInMegabytes](/dotnet/api/microsoft.servicebus.messaging.queuedescription.maxsizeinmegabytes#Microsoft_ServiceBus_Messaging_QueueDescription_MaxSizeInMegabytes) 指定實體的大小時，會將 2 個分割的大小平均分割，這不同於[標準分割的實體](service-bus-partitioning.md#standard)，其中總大小是 16 乘以指定的大小。 
+
+如需分割的詳細資訊，請參閱[分割的佇列和主題](service-bus-partitioning.md)。
 
 ### <a name="express-entities"></a>快速實體
 
-因為進階傳訊在完全隔離的執行階段環境中執行，所以在進階命名空間中不支援快速實體。 如需快速功能的詳細資訊，請參閱 [QueueDescription.EnableExpress](/dotnet/api/microsoft.servicebus.messaging.queuedescription.enableexpress?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) 屬性。
+因為進階傳訊是在完全隔離的執行階段環境中執行，所以在進階命名空間中並不支援快速實體。 如需快速功能的詳細資訊，請參閱 [QueueDescription.EnableExpress](/dotnet/api/microsoft.servicebus.messaging.queuedescription.enableexpress#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) 屬性。
+
+如果您的程式碼是在標準傳訊下執行，而您想要將它移植到高階層，請確定 [EnableExpress](/dotnet/api/microsoft.servicebus.messaging.queuedescription.enableexpress#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) 屬性設為 **false** (預設值)。
 
 ## <a name="get-started-with-premium-messaging"></a>開始使用進階傳訊
 

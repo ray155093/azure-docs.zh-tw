@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/24/2017
 ms.author: marsma
-translationtype: Human Translation
-ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
-ms.openlocfilehash: eec53d5dea1255572d515f1ab2796da681579d19
-ms.lasthandoff: 04/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: e041a4d88d93b5ea9fcd792800c4a12a6a44ce36
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -90,7 +91,7 @@ Blob 儲存體提供三種類型的 Blob，包括區塊 Blob、附加 Blob 及�
 若是超大型資料集，網路限制會使得透過線路上傳或下載資料至 Blob 儲存體變得不切實際，您可以將硬碟送至 Microsoft，以便直接從資料中心匯入或匯出資料。 請參閱 [使用 Microsoft Azure 匯入/匯出服務將資料移轉至 Blob 儲存體](storage-import-export-service.md)。
 
 ## <a name="table-storage"></a>表格儲存體
-新式應用程式通常會要求以超越前幾代軟體需求的延伸性和彈性儲存資料。 表格儲存體提供高可用性且可大幅擴充的儲存體，方便您的應用程式自動擴充以滿足使用者需求。 表格儲存體屬於 Microsoft 的 NoSQL 索引鍵屬性儲存，它的無結構描述設計讓它有別於傳統的關聯式資料庫。 透過無結構描述資料儲存，便可輕易隨著應用程式發展需求改寫資料。 表格儲存體非常容易使用，方便開發人員可以快速建立應用程式。 所有類型的應用程式都可以用快速且具成本效益的方式存取資料。  相較於類似資料量的傳統 SQL，表格儲存體通常可大幅降低成本。
+[!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)] 新式應用程式通常會要求以超越前幾代軟體需求的延伸性和彈性來儲存資料。 表格儲存體提供高可用性且可大幅擴充的儲存體，方便您的應用程式自動擴充以滿足使用者需求。 表格儲存體屬於 Microsoft 的 NoSQL 索引鍵屬性儲存，它的無結構描述設計讓它有別於傳統的關聯式資料庫。 透過無結構描述資料儲存，便可輕易隨著應用程式發展需求改寫資料。 表格儲存體非常容易使用，方便開發人員可以快速建立應用程式。 所有類型的應用程式都可以用快速且具成本效益的方式存取資料。  相較於類似資料量的傳統 SQL，表格儲存體通常可大幅降低成本。
 
 表格儲存體屬於索引鍵屬性儲存，代表資料表中的每個值會與具型別的屬性名稱一起儲存。 屬性名稱可用來篩選與指定選取條件。 一組屬性及其值就構成一個實體。 因為表格儲存體沒有結構描述，因此相同資料表中的兩個實體可包含不同屬性集合，且這些屬性可以是不同類型。
 
@@ -200,7 +201,7 @@ Azure 匯入/匯出服務透過寄送至 Azure 資料中心的硬碟磁碟，提
 * [適用於 .NET 的儲存體資料移動 用戶端程式庫](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/)
 
 ### <a name="tools-and-utilities"></a>工具和公用程式
-* [Azure 儲存體總管](http://go.microsoft.com/fwlink/?LinkID=822673&clcid=0x409)
+* [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
 * [Azure 儲存體用戶端工具](storage-explorers.md)
 * [Azure SDK 及工具](https://azure.microsoft.com/tools/)
 * [Azure 儲存體模擬器](http://www.microsoft.com/download/details.aspx?id=43709)

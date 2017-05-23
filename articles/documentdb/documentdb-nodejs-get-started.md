@@ -1,28 +1,29 @@
 ---
-title: "DocumentDB 的 NoSQL Node.js 教學課程 | Microsoft Docs"
-description: "使用 DocumentDB Node.js SDK 來建立 NoSQL 資料庫及主控台應用程式的 NoSQL Node.js 教學課程。 DocumentDB 是 JSON 的 NoSQL 資料庫。"
+title: "適用於 Azure Cosmos DB 的 DocumentDB API 之 Node.js 教學課程 | Microsoft Docs"
+description: "使用 DocumentDB API 所建立的 Cosmos DB 之 Node.js 教學課程。"
 keywords: "node.js 教學課程，節點資料庫"
-services: documentdb
+services: cosmosdb
 documentationcenter: node.js
 author: AndrewHoh
 manager: jhubbard
 editor: monicar
 ms.assetid: 14d52110-1dce-4ac0-9dd9-f936afccd550
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: node
 ms.topic: hero-article
 ms.date: 12/25/2016
 ms.author: anhoh
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 2b8ac838e9387b04467f03d0608da05b3edfdd26
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 8e34fe6461683801ad6c0423567308b7b38d7a00
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="nosql-nodejs-tutorial-documentdb-nodejs-console-application"></a>NoSQL Node.js 教學課程：DocumentDB Node.js 主控台應用程式
+# <a name="nodejs-tutorial-documentdb-nodejs-console-application"></a>Node.js 教學課程：DocumentDB Node.js 主控台應用程式
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [.NET Core](documentdb-dotnetcore-get-started.md)
@@ -33,11 +34,11 @@ ms.lasthandoff: 03/29/2017
 >  
 > 
 
-歡迎使用 Azure DocumentDB Node.js SDK 的 Node.js 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 DocumentDB 資源。
+歡迎使用 Azure Cosmos DB Node.js SDK 的 Node.js 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 Azure Cosmos DB 資源。
 
 本文將討論：
 
-* 建立和連接到 DocumentDB 帳戶
+* 建立及連線至 Azure Cosmos DB 帳戶
 * 設定您的應用程式
 * 建立節點資料庫
 * 建立集合
@@ -57,11 +58,11 @@ ms.lasthandoff: 03/29/2017
 請確定您具有下列項目：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，您可以註冊 [免費 Azure 試用](https://azure.microsoft.com/pricing/free-trial/)。
-    * 或者，您可以使用 [Azure DocumentDB 模擬器](documentdb-nosql-local-emulator.md)來進行本教學課程。
+    * 或者，您可以使用 [Azure Cosmos DB 模擬器](documentdb-nosql-local-emulator.md)來進行本教學課程。
 * [Node.js](https://nodejs.org/) v0.10.29 版或更高版本。
 
-## <a name="step-1-create-a-documentdb-account"></a>步驟 1：建立 DocumentDB 帳戶
-讓我們建立 DocumentDB 帳戶。 如果您已經擁有想要使用的帳戶，就可以跳到 [設定您的 Node.js 應用程式](#SetupNode)。 如果您使用 DocumentDB 模擬器，請遵循 [Azure DocumentDB 模擬器](documentdb-nosql-local-emulator.md)的步驟來設定模擬器，並請直接跳到[設定您的 Node.js 應用程式](#SetupNode)。
+## <a name="step-1-create-an-azure-cosmos-db-account"></a>步驟 1：建立 Azure Cosmos DB 帳戶
+讓我們來建立 Azure Cosmos DB 帳戶。 如果您已經擁有想要使用的帳戶，就可以跳到 [設定您的 Node.js 應用程式](#SetupNode)。 如果您是使用「Azure Cosmos DB 模擬器」，請依照 [Azure Cosmos DB 模擬器](documentdb-nosql-local-emulator.md)的步驟來設定模擬器，然後直接跳到[設定您的 Node.js 應用程式](#SetupNode)。
 
 [!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
@@ -85,7 +86,7 @@ ms.lasthandoff: 03/29/2017
 
 然後，複製並貼上以下的程式碼片段，以及將屬性 ```config.endpoint``` 和 ```config.primaryKey``` 設定為您的 DocumentDB 端點 uri 和主要金鑰。 您可以在 [Azure 入口網站](https://portal.azure.com)找到這兩個設定。
 
-![node.js 教學課程 - 顯示 DocumentDB 帳戶的 Azure 入口網站螢幕擷取畫面，內含反白顯示的 [主動式] 集線器、[DocumentDB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值 - 節點資料庫][keys]
+![node.js 教學課程 - 顯示 Azure Cosmos DB 帳戶的 Azure 入口網站螢幕擷取畫面，內含反白顯示的 [主動式] 集線器、[Azure Cosmos DB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值 - 節點資料庫][keys]
 
     // ADD THIS PART TO YOUR CODE
     var config = {}
@@ -93,7 +94,7 @@ ms.lasthandoff: 03/29/2017
     config.endpoint = "~your DocumentDB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
 
-在您設定 ```config.endpoint``` 和 ```config.authKey``` 屬性的位置下面，複製 ```database id```、```collection id``` 和 ```JSON documents``` 並貼到您的 ```config``` 物件。 如果您已經有想要儲存於資料庫中的資料，就可以使用 DocumentDB 的 [資料移轉工具](documentdb-import-data.md) ，而不用新增文件定義。
+在您設定 ```config.endpoint``` 和 ```config.authKey``` 屬性的位置下面，複製 ```database id```、```collection id``` 和 ```JSON documents``` 並貼到您的 ```config``` 物件。 如果您已經有想要儲存於資料庫中的資料，就可以使用 Azure Cosmos DB 的 [資料移轉工具](documentdb-import-data.md)，而不用新增文件定義。
 
     config.endpoint = "~your DocumentDB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
@@ -177,7 +178,7 @@ ms.lasthandoff: 03/29/2017
     // ADD THIS PART TO YOUR CODE
     module.exports = config;
 
-## <a id="Connect"></a> 步驟 4：連接到 DocumentDB 帳戶
+## <a id="Connect"></a>步驟 4：連線至 Azure Cosmos DB 帳戶
 在文字編輯器中開啟您的空白 ```app.js``` 檔案。 複製並貼上以下的程式碼，以匯入 ```documentdb``` 模組和新建的 ```config``` 模組。
 
     // ADD THIS PART TO YOUR CODE
@@ -259,7 +260,7 @@ ms.lasthandoff: 03/29/2017
 
 在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
 
-恭喜！ 您已成功建立 DocumentDB 資料庫。
+恭喜！ 您已成功建立 Azure Cosmos DB 資料庫。
 
 ## <a id="CreateColl"></a>步驟 6：建立集合
 > [!WARNING]
@@ -369,8 +370,8 @@ ms.lasthandoff: 03/29/2017
 
 ![node.js 教學課程 - 說明帳戶、資料庫、集合和文件之間階層式關聯性的圖表 - 節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-account-database.png)
 
-## <a id="Query"></a>步驟 8：查詢 DocumentDB 資源
-DocumentDB 支援對儲存於每個集合的 JSON 文件進行 [豐富查詢](documentdb-sql-query.md) 。 下列範例程式碼示範您可以針對集合中之文件執行的查詢。
+## <a id="Query"></a>步驟 8︰查詢 Azure Cosmos DB 資源
+Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行[豐富查詢](documentdb-sql-query.md)。 下列範例程式碼示範您可以針對集合中之文件執行的查詢。
 
 將 **queryCollection** 函式複製並貼到 app.js 檔案中的 **getFamilyDocument** 函式之下。 DocumentDB 支援類 SQL 查詢，如下所示。 如需建立複雜查詢的詳細資訊，請參閱[查詢遊樂場](https://www.documentdb.com/sql/demo)和[查詢文件](documentdb-sql-query.md)。
 
@@ -424,10 +425,10 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行 [豐富查詢](do
 
 在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
 
-恭喜！ 您已成功建立查詢的 DocumentDB 文件。
+恭喜！ 您已成功查詢 Azure Cosmos DB 文件。
 
 ## <a id="ReplaceDocument"></a>步驟 9：取代文件
-DocumentDB 支援取代 JSON 文件。
+Azure Cosmos DB 支援取代 JSON 文件。
 
 將 **replaceFamilyDocument** 函式複製並貼到 app.js 檔案中的 **queryCollection** 函式之下。
 
@@ -471,10 +472,10 @@ DocumentDB 支援取代 JSON 文件。
 
 在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
 
-恭喜！ 您已成功取代 DocumentDB 文件。
+恭喜！ 您已成功取代 Azure Cosmos DB 文件。
 
 ## <a id="DeleteDocument"></a>步驟 10︰刪除文件
-DocumentDB 支援刪除 JSON 文件。
+Azure Cosmos DB 支援刪除 JSON 文件。
 
 將 **deleteFamilyDocument** 函式複製並貼到 **replaceFamilyDocument** 函式之下。
 
@@ -515,7 +516,7 @@ DocumentDB 支援刪除 JSON 文件。
 
 在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
 
-恭喜！ 您已成功刪除 DocumentDB 文件。
+恭喜！ 您已成功將 Azure Cosmos DB 文件刪除。
 
 ## <a id="DeleteDatabase"></a>步驟 11：刪除節點資料庫
 刪除已建立的資料庫將會移除資料庫和所有子系資源 (集合、文件等)。
@@ -601,14 +602,14 @@ DocumentDB 支援刪除 JSON 文件。
     Completed successfully
     Press any key to exit
 
-恭喜！ 您已完成 Node.js 教學課程，和擁有您的第一個 DocumentDB 主控台應用程式！
+恭喜！ 您已完成 Node.js 教學課程，並擁有您的第一個 Azure Cosmos DB 主控台應用程式！
 
 ## <a id="GetSolution"></a>取得完整的 Node.js 教學課程方案
 如果您沒有時間完成本教學課程中的步驟，或只想要下載程式碼，您可以從 [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started) 取得程式碼。
 
 若要執行包含本文中所有範例的 GetStarted 方案，您將需要下列項目：
 
-* [DocumentDB 帳戶][documentdb-create-account]。
+* [Azure Cosmos DB 帳戶][documentdb-create-account]。
 * 您可以在 GitHub 上找到 [GetStarted](https://github.com/Azure-Samples/documentdb-node-getting-started) 方案。
 
 透過 npm 安裝 **documentdb** 模組。 使用下列命令：
@@ -622,10 +623,10 @@ DocumentDB 支援刪除 JSON 文件。
 建置就這麼容易，繼續努力！ 
 
 ## <a name="next-steps"></a>後續步驟
-* 需要更複雜的 Node.js 範例嗎？ 請參閱 [使用 DocumentDB 建置 Node.js Web 應用程式](documentdb-nodejs-application.md)。
-* 了解如何 [監視 DocumentDB 帳戶](documentdb-monitor-accounts.md)(英文)。
+* 需要更複雜的 Node.js 範例嗎？ 請參閱[使用 Azure Cosmos DB 來建置 Node.js Web 應用程式](documentdb-nodejs-application.md)。
+* 了解如何[監視 Azure Cosmos DB 帳戶](documentdb-monitor-accounts.md)。
 * 在 [Query Playground](https://www.documentdb.com/sql/demo)中，針對範例資料集執行查詢。
-* 如需深入了解程式設計模型，請參閱 [DocumentDB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
+* 如需深入了解程式設計模型，請參閱 [Azure Cosmos DB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
 
 [documentdb-create-account]: documentdb-create-account.md
 [keys]: media/documentdb-nodejs-get-started/node-js-tutorial-keys.png

@@ -14,13 +14,13 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 05/08/2017
+ms.date: 05/09/2017
 ms.author: jgao
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: a935fe574bffaad109abd13151c4da1027210014
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 5f9b421571fa98d9881a9e955b05041de124f922
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -153,7 +153,7 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
         TBLPROPERTIES ('hbase.table.name' = 'Contacts');
 4. 執行下列 HiveQL 指令碼，以查詢 HBase 資料表中的資料：
    
-         SELECT * FROM hbasecontacts;
+         SELECT count(rowkey) FROM hbasecontacts;
 
 ## <a name="use-hbase-rest-apis-using-curl"></a>使用 Curl 來使用 HBase REST API
 
@@ -182,7 +182,7 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
         -d "{\"Row\":[{\"key\":\"MTAwMA==\",\"Cell\": [{\"column\":\"UGVyc29uYWw6TmFtZQ==\", \"$\":\"Sm9obiBEb2xl\"}]}]}" \
         -v
    
-    您必須使用 base64 編碼 -d 參數中指定的值。  在此範例中︰
+    您必須使用 base64 編碼 -d 參數中指定的值。  在範例中︰
    
    * MTAwMA==: 1000
    * UGVyc29uYWw6TmFtZQ==: Personal:Name
