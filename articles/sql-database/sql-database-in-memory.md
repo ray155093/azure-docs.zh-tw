@@ -13,12 +13,13 @@ ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 12/07/2016
+ms.date: 05/10/2017
 ms.author: jodebrui
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: f827b76b8164e4eae286c9a1247e64d4f5ee9ea8
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: a7273c50f2619c776268406aa14f6c00dcfbfbbe
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 ---
 
@@ -29,7 +30,7 @@ ms.lasthandoff: 04/15/2017
 以下是記憶體內部 OLTP 如何幫助大幅提升效能的兩個範例︰
 
 - 由於使用記憶體內部 OLTP，[Quorum Business Solutions 能使其工作負載倍增，同時將 DTU (亦即資源耗用量) 提高 70%](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)。
-- 下列影片以範例工作負載示範資源耗用量的重大改進︰[Azure SQL Database 中的記憶體內部 OLTP](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB)。
+- 下列影片以範例工作負載示範資源耗用量的重大改進︰[Azure SQL Database 影片中的記憶體內部 OLTP](https://channel9.msdn.com/Shows/Data-Exposed/In-Memory-OTLP-in-Azure-SQL-DB)。 如需詳細資訊，請參閱部落格文章︰[Azure SQL Database 中的記憶體 OLTP 部落格文章](https://azure.microsoft.com/blog/in-memory-oltp-in-azure-sql-database/)
 
 記憶體內部技術適用於高階定價層的所有資料庫，包括高階彈性集區中的資料庫。
 
@@ -497,6 +498,8 @@ GO
 #### <a name="deeper-information"></a>更深入的資訊
 
 - [了解仲裁如何透過 SQL Database 中的記憶體內部 OLTP，讓重要資料庫的工作負載加倍，同時降低 70% 的 DTU](https://customers.microsoft.com/story/quorum-doubles-key-databases-workload-while-lowering-dtu-with-sql-database)
+
+- [Azure SQL Database 中的記憶體內部 OLTP 部落格文章](https://azure.microsoft.com/blog/in-memory-oltp-in-azure-sql-database/)
 
 - [了解記憶體內部 OLTP](http://msdn.microsoft.com/library/dn133186.aspx)
 

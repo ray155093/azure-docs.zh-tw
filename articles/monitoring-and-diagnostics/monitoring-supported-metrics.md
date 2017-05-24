@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 5/10/2017
 ms.author: johnkem
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
-ms.openlocfilehash: c0e7eb271b7ab19131c500e139ea3b1f6b2e7479
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: ff47eaa27351f8d1685090edc54d90e5e91a1de0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -623,6 +623,63 @@ Azure 監視器提供數種與度量進行互動的方式，包括在入口網�
 |AMLCalloutRequests|函式要求|Count|總計|函式要求|
 |AMLCalloutFailedRequests|失敗的函式要求|Count|總計|失敗的函式要求|
 |AMLCalloutInputEvents|函式事件|Count|總計|函式事件|
+
+## <a name="microsoftwebserverfarms"></a>Microsoft.Web/serverfarms
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|CpuPercentage|CPU 百分比|百分比|平均值|CPU 百分比|
+|MemoryPercentage|記憶體百分比|百分比|平均值|記憶體百分比|
+|DiskQueueLength|磁碟佇列長度|Count|總計|磁碟佇列長度|
+|HttpQueueLength|Http 佇列長度|Count|總計|Http 佇列長度|
+|BytesReceived|資料輸入|位元組|總計|資料輸入|
+|BytesSent|資料輸出|位元組|總計|資料輸出|
+
+## <a name="microsoftwebsites-including-functions"></a>Microsoft.Web/sites (包括函式)
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|CPU 時間|CPU 時間|秒|總計|CPU 時間|
+|要求|要求|Count|總計|要求|
+|BytesReceived|資料輸入|位元組|總計|資料輸入|
+|BytesSent|資料輸出|位元組|總計|資料輸出|
+|Http101|Http 101|Count|總計|Http 101|
+|Http2xx|Http 2xx|Count|總計|Http 2xx|
+|Http3xx|Http 3xx|Count|總計|Http 3xx|
+|Http401|Http 401|Count|總計|Http 401|
+|Http403|Http 403|Count|總計|Http 403|
+|Http404|Http 404|Count|總計|Http 404|
+|Http406|Http 406|Count|總計|Http 406|
+|Http4xx|Http 4xx|Count|總計|Http 4xx|
+|Http5xx|Http 伺服器錯誤|Count|總計|Http 伺服器錯誤|
+|MemoryWorkingSet|記憶體工作集|位元組|平均值|記憶體工作集|
+|AverageMemoryWorkingSet|平均記憶體工作集|位元組|平均值|平均記憶體工作集|
+|AverageResponseTime|平均回應時間|秒|平均值|平均回應時間|
+|FunctionExecutionUnits|函式執行單位|Count|平均值|函式執行單位|
+|FunctionExecutionCount|函式執行計數|Count|平均值|函式執行計數|
+
+## <a name="microsoftwebsitesslots"></a>Microsoft.Web/sites/slots
+
+|度量|度量顯示名稱|單位|彙總類型|說明|
+|---|---|---|---|---|
+|CPU 時間|CPU 時間|秒|總計|CPU 時間|
+|要求|要求|Count|總計|要求|
+|BytesReceived|資料輸入|位元組|總計|資料輸入|
+|BytesSent|資料輸出|位元組|總計|資料輸出|
+|Http101|Http 101|Count|總計|Http 101|
+|Http2xx|Http 2xx|Count|總計|Http 2xx|
+|Http3xx|Http 3xx|Count|總計|Http 3xx|
+|Http401|Http 401|Count|總計|Http 401|
+|Http403|Http 403|Count|總計|Http 403|
+|Http404|Http 404|Count|總計|Http 404|
+|Http406|Http 406|Count|總計|Http 406|
+|Http4xx|Http 4xx|Count|總計|Http 4xx|
+|Http5xx|Http 伺服器錯誤|Count|總計|Http 伺服器錯誤|
+|MemoryWorkingSet|記憶體工作集|位元組|平均值|記憶體工作集|
+|AverageMemoryWorkingSet|平均記憶體工作集|位元組|平均值|平均記憶體工作集|
+|AverageResponseTime|平均回應時間|秒|平均值|平均回應時間|
+|FunctionExecutionUnits|函式執行單位|Count|平均值|函式執行單位|
+|FunctionExecutionCount|函式執行計數|Count|平均值|函式執行計數|
 
 ## <a name="next-steps"></a>後續步驟
 * [了解 Azure 監視器中的度量](monitoring-overview-metrics.md)

@@ -15,10 +15,10 @@ ms.devlang: na
 ms.date: 04/04/2017
 ms.author: parakhj
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: f520b46e9d37ac31c2ef5d78ef9044e62dd25a6f
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 652a2eb0db0e41c4706e06cd0cb2e97ce1eb6ab2
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -78,8 +78,6 @@ ms.lasthandoff: 05/09/2017
 1. 按一下 `Create`
 1. 確認您已建立金鑰︰`B2C_1A_ContosoAppSecret`
 
-    當您執行命令時，請確定您使用 Azure AD B2C 租用戶本機的 onmicrosoft.com 管理帳戶登入。 如果發生找不到 'TokenSigningKeyContainer' 或 `B2C_1A_TokenSigningKeyContainer` 的錯誤，請參閱[快速入門](active-directory-b2c-get-started-custom.md)指南。
-
 
 ## <a name="add-a-claims-provider-in-your-base-policy"></a>在基本原則中新增宣告提供者
 
@@ -94,39 +92,39 @@ ms.lasthandoff: 05/09/2017
         <Domain>Contoso</Domain>
         <DisplayName>Login using Contoso</DisplayName>
         <TechnicalProfiles>
-        <TechnicalProfile Id="ContosoProfile">
-            <DisplayName>Contoso Employee</DisplayName>
-            <Description>Login with your Contoso account</Description>
-            <Protocol Name="OpenIdConnect"/>
-            <OutputTokenFormat>JWT</OutputTokenFormat>
-            <Metadata>
-                <Item Key="METADATA">https://login.windows.net/contoso.com/.well-known/openid-configuration</Item>
-                <Item Key="ProviderName">https://sts.windows.net/00000000-0000-0000-0000-000000000000/</Item>
-                <Item Key="client_id">00000000-0000-0000-0000-000000000000</Item>
-                <Item Key="IdTokenAudience">00000000-0000-0000-0000-000000000000</Item>
-                <Item Key="response_types">id_token</Item>
-                <Item Key="UsePolicyInRedirectUri">false</Item>
-            </Metadata>
-            <CryptographicKeys>
-            <Key Id="client_secret" StorageReferenceId="ContosoAppSecret"/>
-            </CryptographicKeys>
-            <OutputClaims>
-                <OutputClaim ClaimTypeReferenceId="socialIdpUserId" PartnerClaimType="oid"/>
-                <OutputClaim ClaimTypeReferenceId="tenantId" PartnerClaimType="tid"/>
-                <OutputClaim ClaimTypeReferenceId="givenName" PartnerClaimType="given_name" />
-                <OutputClaim ClaimTypeReferenceId="surName" PartnerClaimType="family_name" />
-                <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
-                <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="contosoAuthentication" />
-                <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="AzureADContoso" />
-            </OutputClaims>
-            <OutputClaimsTransformations>
-                <OutputClaimsTransformation ReferenceId="CreateRandomUPNUserName"/>
-                <OutputClaimsTransformation ReferenceId="CreateUserPrincipalName"/>
-                <OutputClaimsTransformation ReferenceId="CreateAlternativeSecurityId"/>
-                <OutputClaimsTransformation ReferenceId="CreateSubjectClaimFromAlternativeSecurityId"/>
-            </OutputClaimsTransformations>
-            <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop"/>
-        </TechnicalProfile>
+            <TechnicalProfile Id="ContosoProfile">
+                <DisplayName>Contoso Employee</DisplayName>
+                <Description>Login with your Contoso account</Description>
+                <Protocol Name="OpenIdConnect"/>
+                <OutputTokenFormat>JWT</OutputTokenFormat>
+                <Metadata>
+                    <Item Key="METADATA">https://login.windows.net/contoso.com/.well-known/openid-configuration</Item>
+                    <Item Key="ProviderName">https://sts.windows.net/00000000-0000-0000-0000-000000000000/</Item>
+                    <Item Key="client_id">00000000-0000-0000-0000-000000000000</Item>
+                    <Item Key="IdTokenAudience">00000000-0000-0000-0000-000000000000</Item>
+                    <Item Key="response_types">id_token</Item>
+                    <Item Key="UsePolicyInRedirectUri">false</Item>
+                </Metadata>
+                <CryptographicKeys>
+                    <Key Id="client_secret" StorageReferenceId="B2C_1A_ContosoAppSecret"/>
+                </CryptographicKeys>
+                <OutputClaims>
+                    <OutputClaim ClaimTypeReferenceId="socialIdpUserId" PartnerClaimType="oid"/>
+                    <OutputClaim ClaimTypeReferenceId="tenantId" PartnerClaimType="tid"/>
+                    <OutputClaim ClaimTypeReferenceId="givenName" PartnerClaimType="given_name" />
+                    <OutputClaim ClaimTypeReferenceId="surName" PartnerClaimType="family_name" />
+                    <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
+                    <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="contosoAuthentication" />
+                    <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="AzureADContoso" />
+                </OutputClaims>
+                <OutputClaimsTransformations>
+                    <OutputClaimsTransformation ReferenceId="CreateRandomUPNUserName"/>
+                    <OutputClaimsTransformation ReferenceId="CreateUserPrincipalName"/>
+                    <OutputClaimsTransformation ReferenceId="CreateAlternativeSecurityId"/>
+                    <OutputClaimsTransformation ReferenceId="CreateSubjectClaimFromAlternativeSecurityId"/>
+                </OutputClaimsTransformations>
+                <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop"/>
+            </TechnicalProfile>
         </TechnicalProfiles>
     </ClaimsProvider>
     ```
@@ -212,7 +210,7 @@ ms.lasthandoff: 05/09/2017
 您現在需要更新 RP 檔案，此檔案將起始您剛才建立的使用者旅程圖。
 
 1. 將 SignUpOrSignIn.xml 複製到您的工作目錄，並重新命名 (例如 SignUpOrSignInWithAAD.xml)。
-1. 開啟新檔案，將 `<TrustFrameworkPolicy>` 的 `PolicyId` 屬性更新成唯一值。 這會成為您的原則名稱 (例如 SignUpOrSignInWithAAD)。
+1. 開啟新檔案，將 `<TrustFrameworkPolicy>` 的 `PolicyId` 屬性更新成唯一值 (例如，SignUpOrSignInWithAAD)。 這會成為您的原則名稱 (例如 B2C\_1A\_SignUpOrSignInWithAAD)。
 1. 修改 `<DefaultUserJourney>` 中的 `ReferenceId` 屬性，以符合您建立之新使用者旅程圖的識別碼 (例如 SignUpOrSignUsingContoso)。
 1. 儲存變更並上傳檔案。
 

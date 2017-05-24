@@ -15,10 +15,10 @@ ms.devlang: na
 ms.date: 04/04/2017
 ms.author: joroja;parahk;gsacavdm
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: b72db6a0eb8a8621be5f05da6028615d5d24ba1e
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 42824fe10e635257681f62ab1fec9b47abd4294a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/12/2017
 
 ---
 # <a name="azure-active-directory-b2c-getting-started-with-custom-policies"></a>Azure Active Directory B2C：開始使用自訂原則
@@ -35,7 +35,7 @@ ms.lasthandoff: 05/09/2017
 
 ## <a name="add-signing-and-encryption-keys-to-your-b2c-tenant-for-use-by-custom-policies"></a>將簽署和加密金鑰新增至 B2C 租用戶以供自訂原則使用
 
-1. 瀏覽至您的 Azure AD B2C 租用戶設定中的 [身分識別體驗架構] 刀鋒視窗。
+1. 瀏覽至您 Azure AD B2C 租用戶設定中的 [身分識別體驗架構] 刀鋒視窗。
 2. 選取**原則金鑰**以檢視您的租用戶中可用的金鑰。
 3. 建立 `B2C_1A_TokenSigningKeyContainer` (如果未存在)︰
  * 按一下 [新增]
@@ -107,7 +107,7 @@ Azure AD B2C 會要求您註冊兩個額外的應用程式，由引擎用來讓�
 
 * 原則的[基底檔案](active-directory-b2c-overview-custom.md#policy-files)。 需要對基底做一些修改。
 * 原則的[擴充檔案](active-directory-b2c-overview-custom.md#policy-files)。  大部分的設定變更都在這個檔案中完成。
-* [信賴憑證者檔案](active-directory-b2c-overview-custom.md#policy-files) 這些是工作特有檔案，由應用程式為了特定工作而呼叫。
+* [信賴憑證者檔案](active-directory-b2c-overview-custom.md#policy-files) 這些是工作特有檔案，由應用程式呼叫。
 
 >[!NOTE]
 >如果您的 XML 編輯器支援驗證，您可以根據入門套件根資料夾中的 `TrustFrameworkPolicy_0.3.0.0.xsd` XML 結構描述檔案來驗證檔案。 在上載之前，XML 結構描述驗證會識別錯誤。
@@ -120,7 +120,7 @@ Azure AD B2C 會要求您註冊兩個額外的應用程式，由引擎用來讓�
     git clone https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack
     ```
 2. 開啟 `SocialAndLocalAccounts` 資料夾。  此資料夾中的基底檔案 (`TrustFrameworkBase.xml`) 包含本機和社交/公司帳戶所需的內容。 社交內容不會干擾本機帳戶的啟動和執行步驟。
-3. 開啟 `TrustFrameworkBase.xml`。  如果您需要 XML 編輯器，請嘗試[試用 Visual Studio 程式碼](https://code.visualstudio.com/download)，這是一個輕巧的跨平台編輯器。
+3. 開啟 `TrustFrameworkBase.xml`。  如果您需要 XML 編輯器，請[試用 Visual Studio 程式碼](https://code.visualstudio.com/download)，這是一個輕巧的跨平台編輯器。
 4. 在 `TrustFrameworkPolicy` 根元素中，更新 `TenantId` 和 `PublicPolicyUri` 屬性，以您的 Azure AD B2C 租用戶網域名稱取代 `yourtenant.onmicrosoft.com`︰
 
     ```xml
@@ -139,7 +139,7 @@ Azure AD B2C 會要求您註冊兩個額外的應用程式，由引擎用來讓�
 5. 儲存檔案。
 6. 開啟 `TrustFrameworkExtensions.xml`，並以您的 Azure AD B2C 租用戶取代 `yourtenant.onmicrosoft.com` 來進行兩項相同的變更。 加上在 `<TenantId>` 元素中進行相同的取代作業，總共進行 3 項變更。  儲存檔案。
 7. 開啟 `SignUpOrSignIn.xml`，並在三個地方以您的 Azure AD B2C 租用戶取代 `yourtenant.onmicrosoft.com` 來進行相同的變更。 儲存檔案。
-8. 開啟密碼祕密和設定檔編輯檔案，然後在每個檔案的三個地方以您的 Azure AD B2C 租用戶取代 `yourtenant.onmicrosoft.com` 來進行相同的變更。 儲存檔案。
+8. 開啟密碼重設和設定檔編輯檔案，然後在每個檔案的三個地方以您的 Azure AD B2C 租用戶取代 `yourtenant.onmicrosoft.com` 來進行相同的變更。 儲存檔案。
 
 ### <a name="add-the-application-ids-to-your-custom-policy"></a>將應用程式識別碼新增至您的自訂原則
 在擴充檔案 (`TrustFrameworkExtensions.xml`) 中新增應用程式識別碼。

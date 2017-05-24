@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 04/11/2017
 ms.author: glenga
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: fb8eaa4bb122cd6bb7e3f72bb5f7000103bffb29
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: f9f1b95ade5f397fa1a3bcdc4165c81c1c9628c0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -31,17 +31,19 @@ Azure 函數應用程式使用 Azure App Service 基礎結構。 本主題說明
 
 [!INCLUDE [functions-create-function-app-portal](../../includes/functions-create-function-app-portal.md)]
 
-當您建立函數應用程式時，請提供有效的**應用程式名稱**，其中只能包含字母、數字和連字號。 不允許使用底線 (**_**) 字元。 
+當您建立函數應用程式時，請提供有效的**應用程式名稱**，其中只能包含字母、數字和連字號。 不允許使用底線 (**_**) 字元。
 
 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。 儲存體帳戶名稱必須在 Azure 中是獨一無二的。 
 
-函數應用程式建立之後，您可以使用一或多個不同的語言建立個別的函式。 使用[入口網站](functions-create-first-azure-function.md#create-function)、[連續部署](functions-continuous-deployment.md)或者[透過 FTP 上傳](https://github.com/projectkudu/kudu/wiki/Accessing-files-via-ftp)來建立函式。  
+函數應用程式建立之後，您可以使用一或多個不同的語言建立個別的函式。 使用[入口網站](functions-create-first-azure-function.md#create-function)、[連續部署](functions-continuous-deployment.md)或者[透過 FTP 上傳](https://github.com/projectkudu/kudu/wiki/Accessing-files-via-ftp)來建立函式。
 
 ## <a name="service-plans"></a>服務方案
 
 Azure Functions 有兩個不同的服務方案︰取用方案和 App Service 方案。 取用方案會在您的程式碼執行時自動配置計算能力、視需要相應放大來處理負載，然後在程式碼未執行時相應縮小。 App Service 方案可讓您的函數應用程式存取 App Service 的所有功能。 建立您的函數應用程式時，您必須選擇您的服務方案，且目前無法變更。 如需詳細資訊，請參閱[選擇 Azure Functions 主控方案](functions-scale.md)。
 
-若計畫在 App Service 方案上執行 JavaScript 函式，您應該選擇核心數目較少的方案。 如需詳細資訊，請參閱 [JavaScript 函式參考資料](functions-reference-node.md#choose-single-core-app-service-plans)。 
+若計畫在 App Service 方案上執行 JavaScript 函式，您應該選擇核心數目較少的方案。 如需詳細資訊，請參閱 [JavaScript 函式參考資料](functions-reference-node.md#choose-single-core-app-service-plans)。
+
+<a name="storage-account-requirements"></a>
 
 ## <a name="storage-account-requirements"></a>儲存體帳戶需求
 
@@ -53,6 +55,7 @@ Azure Functions 有兩個不同的服務方案︰取用方案和 App Service 方
 若要深入了解儲存體帳戶類型，請參閱 [Azure 儲存體服務簡介] (../storage/storage-introduction.md#introducing-the-azure-storage-services)。
 
 ## <a name="next-steps"></a>後續步驟
+
 [!INCLUDE [Functions quickstart next steps](../../includes/functions-quickstart-next-steps.md)]
 
 
