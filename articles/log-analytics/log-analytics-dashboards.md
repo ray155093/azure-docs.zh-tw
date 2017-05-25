@@ -3,7 +3,7 @@ title: "在 Azure Log Analytics 中建立自訂的儀表板 | Microsoft Docs"
 description: "本指南可幫助您了解 Log Analytics 儀表板如何以視覺效果顯示所有儲存的記錄搜尋，讓您以單一方式檢視您的環境。"
 services: log-analytics
 documentationcenter: 
-author: bandersmsft
+author: MGoedtel
 manager: carmonm
 editor: 
 ms.assetid: abb07f6c-b356-4f15-85f5-60e4415d0ba2
@@ -13,11 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2017
-ms.author: banders
+ms.author: magoedte
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
 ms.openlocfilehash: a8c9766bf066a7f0dfd28ebb4e41bf0eaf3f05bd
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/28/2017
 
 

@@ -13,10 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 07/29/2016
-ms.author: estfan
-translationtype: Human Translation
+ms.author: LADocs; padmavc
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 7884032fd4b5a72ca7e2f2dc2830b0a7c2220e94
 ms.openlocfilehash: 5d8ddd4449d3b160dbca7496c801e75dcf4a44e5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -58,11 +60,11 @@ ms.openlocfilehash: 5d8ddd4449d3b160dbca7496c801e75dcf4a44e5
 
 **判斷此存取層級**
 
-1.  開啟 [Azure 儲存體總管]。 
+1.    開啟 [Azure 儲存體總管]。 
 
-2.  在 [Blob 容器] 下，選取您要的 Blob 容器。 
+2.    在 [Blob 容器] 下，選取您要的 Blob 容器。 
 
-3.  選取 [安全性]、[存取層級]。
+3.    選取 [安全性]、[存取層級]。
 
 如果 blob 安全性存取層級為**公用**，請遵循下列步驟。
 
@@ -132,10 +134,5 @@ Azure 會顯示訊息，說明結構描述已順利上傳。
 
 ## <a name="next-steps"></a>後續步驟
 * [深入了解企業整合套件](logic-apps-enterprise-integration-overview.md "了解企業整合套件")。  
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

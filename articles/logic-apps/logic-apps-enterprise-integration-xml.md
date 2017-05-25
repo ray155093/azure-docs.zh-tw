@@ -12,16 +12,17 @@ ms.workload: integration
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/27/2017
-ms.author: mandia
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.date: 02/27/2017
+ms.author: LADocs; mandia
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 5913c81088724ef946ae147f4f3154fa6aefd22e
 ms.openlocfilehash: 9d40c5028fd8b3ab20f7562dce9274664e4e56ac
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/01/2017
 
-
 ---
+
 # <a name="validate-and-transform-xml-encode-and-decode-flat-files-and-enrich-messages-features-in-logic-apps"></a>驗證和轉換的 XML、編碼和解碼一般檔案，並擴充邏輯應用程式中的訊息功能
 
 使用邏輯應用程式，您可以處理您傳送和接收的 XML 訊息。 這項功能包含於企業整合套件。 針對具有 BizTalk Server 背景的這些使用者，企業整合套件可為您提供與轉換和驗證訊息、使用一般檔案，甚至使用 XPath 加強或從訊息擷取特定屬性的類似功能。 

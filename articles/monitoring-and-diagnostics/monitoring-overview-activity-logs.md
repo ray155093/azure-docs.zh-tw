@@ -14,9 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/02/2017
 ms.author: johnkem
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: f41fbee742daf2107b57caa528e53537018c88c6
 ms.openlocfilehash: c123b76b0e4c95cfebcc79063fb1c3a27efc8646
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/31/2017
 
 
@@ -39,7 +40,9 @@ ms.lasthandoff: 03/31/2017
 >
 
 檢視下列簡介活動記錄的影片。
-[!VIDEO https://channel9.msdn.com/Blogs/Seth-Juarez/Logs-John-Kemnetz/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Seth-Juarez/Logs-John-Kemnetz/player]
+> 
+>
 
 ## <a name="what-you-can-do-with-the-activity-log"></a>Azure 活動記錄檔的用途
 以下是您可以利用活動記錄檔進行的事：

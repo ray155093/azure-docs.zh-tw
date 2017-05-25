@@ -12,16 +12,17 @@ ms.workload: integration
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/27/2017
-ms.author: padmavc
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.date: 01/27/2017
+ms.author: LADocs; padmavc
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 5913c81088724ef946ae147f4f3154fa6aefd22e
 ms.openlocfilehash: dc760b4c08d0e1afff3bc1276f6ed2367d67629e
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/01/2017
 
-
 ---
+
 # <a name="start-or-enable-logging-of-as2-x12-and-edifact-messages-to-monitor-success-errors-and-message-properties"></a>啟動或啟用 AS2、X12 和行政、商業、貿易的電子資料交換 (EDIFACT) 訊息的記錄，以監視成功、錯誤和訊息屬性
 
 B2B 通訊牽涉到兩個執行中商務程序或應用程式之間的訊息交換。 關聯性定義商務程序之間的合約。 通訊建立之後，您可以設定訊息監視來檢查通訊是否如預期般運作。 如需更豐富的詳細資料和偵錯，您可以為整合帳戶設定診斷。

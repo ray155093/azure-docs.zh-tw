@@ -16,9 +16,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/22/2017
 ms.author: jgao
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 0587dfcd6079fc8df91bad5a5f902391d3657a6b
 ms.openlocfilehash: af9e0b7c0f7077b8d4e20ccafdc1fb4e1eb58505
+ms.contentlocale: zh-tw
 ms.lasthandoff: 12/08/2016
 
 
@@ -43,7 +44,7 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Azure 中控�
 
     Get-Module *azure*
 
-若要解除安裝較舊的版本，請在控制台中執行 [程式和功能]。 
+若要解除安裝較舊的版本，請在控制台中執行 [程式和功能]。
 
 ## <a name="create-clusters"></a>建立叢集
 請參閱 [使用 Azure PowerShell 在 HDInsight 中建立以 Linux 為基礎的叢集](hdinsight-hadoop-create-linux-clusters-azure-powershell.md)
@@ -72,40 +73,40 @@ Azure PowerShell 是功能強大的指令碼環境，可讓您在 Azure 中控�
 
 > [!NOTE]
 > 只支援使用 HDInsight 3.1.3 版或更高版本的叢集。 如果不確定您的叢集版本，您可以檢查 [屬性] 頁面。  請參閱[列出和顯示叢集](hdinsight-administer-use-portal-linux.md#list-and-show-clusters)。
-> 
-> 
+>
+>
 
 變更 HDInsight 支援的每一種叢集所用的資料節點數目會有何影響：
 
 * Hadoop
-  
+
     您可以順暢地增加正在執行的 Hadoop 叢集中背景工作節點數目，而不會影響任何擱置或執行中的工作。 您也可以在作業進行當中提交新工作。 系統會順暢處理失敗的調整作業，讓叢集永保正常運作狀態。
-  
+
     減少資料節點數目以縮減 Hadoop 叢集時，系統會重新啟動叢集中的部分服務。 這會導致所有執行中和擱置的工作在調整作業完成時失敗。 但您可以在作業完成後重新提交這些工作。
 * HBase
-  
+
     您可以順暢地在 HBase 叢集運作時對其新增或移除資料節點。 區域伺服器會在完成調整作業的數分鐘之內自動取得平衡。 但是，您也可以手動平衡區域伺服器，方法是登入叢集的前端節點，然後從命令提示字元視窗執行下列命令：
-  
+
         >pushd %HBASE_HOME%\bin
         >hbase shell
         >balancer
 * Storm
-  
+
     您可以順暢地在 Storm 叢集運作時對其新增或移除資料節點。 但在調整作業順利完成後，您需要重新平衡拓撲。
-  
+
     您可以使用兩種方式來完成重新平衡作業：
-  
+
   * Storm Web UI
   * 命令列介面 (CLI) 工具
-    
+
     如需詳細資訊，請參閱 [Apache Storm 文件](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html) 。
-    
+
     HDInsight 叢集上有提供 Storm Web UI：
-    
-    ![hdinsight storm scale rebalance](./media/hdinsight-administer-use-management-portal/hdinsight.portal.scale.cluster.storm.rebalance.png)
-    
+
+    ![hdinsight storm scale rebalance](./media/hdinsight-administer-use-management-portal/hdinsight.portal.scale.cluster.png)
+
     以下是如何使用 CLI 命令重新平衡 Storm 拓撲的範例：
-    
+
         ## Reconfigure the topology "mytopology" to use 5 worker processes,
         ## the spout "blue-spout" to use 3 executors, and
         ## the bolt "yellow-bolt" to use 10 executors
@@ -146,8 +147,8 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 
 > [!NOTE]
 > 透過授與/撤銷存取權，您將重設叢的使用者名稱和密碼。
-> 
-> 
+>
+>
 
 這也可以透過入口網站完成。 請參閱[使用 Azure 入口網站管理 HDInsight][hdinsight-admin-portal]。
 
@@ -164,7 +165,7 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
     $defaultStorageAccountName = ($cluster.DefaultStorageAccount).Replace(".blob.core.windows.net", "")
     $defaultBlobContainerName = $cluster.DefaultStorageContainer
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $defaultStorageAccountName)[0].Value
-    $defaultStorageAccountContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccountName -StorageAccountKey $defaultStorageAccountKey 
+    $defaultStorageAccountContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccountName -StorageAccountKey $defaultStorageAccountKey
 
 ## <a name="find-the-resource-group"></a>尋找資源群組
 在 Resource Manager 模式中，每個 HDInsight 叢集皆屬於一個 Azure 資源群組。  尋找資源群組：
@@ -180,7 +181,7 @@ HDInsight 叢集具有下列 HTTP Web 服務 (所有這些服務都有 RESTful �
 
 請參閱 [在以 Windows 為基礎的 HDInsight 中執行 Hadoop MapReduce 範例](hdinsight-run-samples.md)。
 
-**提交 Hive 作業** 
+**提交 Hive 作業**
 
 請參閱 [使用 PowerShell 執行 Hive 查詢](hdinsight-hadoop-use-hive-powershell.md)。
 

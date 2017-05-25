@@ -15,9 +15,10 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2548f779767635865daf790d301d86feff573a29
 ms.openlocfilehash: 348605fed8101cf83cbcfb559c71f34407692f7a
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/24/2017
 
 
@@ -230,7 +231,7 @@ GO
 
 ### <a name="42-load-the-data-into-new-tables"></a>4.2. 將資料載入新資料表
 若要從 Azure Blob 儲存體載入資料，並將它儲存在資料庫內的資料表中，請使用 [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] 陳述式。 以 CTAS 載入將能利用您剛剛建立的強型別外部資料表。針對每個資料表，請使用一個 [CTAS][CTAS] 陳述式。 
-
+ 
 CTAS 建立新的資料表，並將選取陳述式的結果填入該資料表。 CTAS 定義新資料表，以使它擁有和選取陳述式之結果相同的資料行和資料類型。 如果您選取外部資料表上的所有資料行，則新資料表將會是外部資料表中資料行和資料類型的複本。
 
 在此範例中，我們同時將維度和事實資料表建立為雜湊分散式資料表。 
@@ -262,7 +263,7 @@ SELECT
     s.request_id,
     r.status,
     count(distinct input_name) as nbr_files, 
-    sum(s.bytes_processed)/1024/1024 as gb_processed
+    sum(s.bytes_processed)/1024/1024/1024 as gb_processed
 FROM
     sys.dm_pdw_exec_requests r
     inner join sys.dm_pdw_dms_external_work s

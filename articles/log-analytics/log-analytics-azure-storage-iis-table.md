@@ -3,7 +3,7 @@ title: "對 IIS 使用 Blob 儲存體，對 Azure Log Analytics 中的事件使�
 description: "Log Analytics 可以讀取 Azure 服務 (將診斷寫入表格儲存體) 的記錄，或讀取寫入 Blob 儲存體的 IIS 記錄。"
 services: log-analytics
 documentationcenter: 
-author: bandersmsft
+author: MGoedtel
 manager: carmonm
 editor: 
 ms.assetid: bf444752-ecc1-4306-9489-c29cb37d6045
@@ -13,11 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2017
-ms.author: banders
+ms.author: magoedte
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: a0c8af30fbed064001c3fd393bf0440aa1cb2835
 ms.openlocfilehash: b40d7c0acd8cc6a672f25489b745561c24501482
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/28/2017
 
 
