@@ -152,7 +152,7 @@ ms.lasthandoff: 04/29/2017
 
 ### <a name="provide-justification-for-my-approvalrejection"></a>提供我的核准/拒絕理由
 
-這將開啟新的刀鋒視窗，一次核准或拒絕多個要求。 輸入您的決策理由，然後按一下底端或刀鋒視窗中的 [核准] (或 [拒絕])：
+這將開啟新的刀鋒視窗，一次核准或拒絕多個要求。 輸入您的決策理由，然後按一下底端或刀鋒視窗中的 [核准] \(或 [拒絕])：
 
 ![](media/azure-ad-pim-approval-workflow/image029.png)
 
