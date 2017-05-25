@@ -1,39 +1,46 @@
-您必須具有 Azure 的帳戶，才能搭配使用 Azure CLI 與 Resource Manager 命令和範本，使用資源群組來部署 Azure 資源和工作負載。 如果您沒有帳戶，可以取得 [此處免費試用的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+Azure CLI 2.0 可讓您建立及管理 macOS、Linux 和 Windows 上的 Azure 資源。 本文會詳細說明一些最常用來建立和管理虛擬機器 (VM) 的命令。
 
-如果您尚未安裝 Azure CLI 並且連接至您的訂用帳戶，請參閱[安裝 Azure CLI](../articles/cli-install-nodejs.md)，將模式設定為 `arm` 與 `azure config mode arm`，並連接至 Azure 與 `azure login` 命令。
+本文需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0](/cli/azure/install-azure-cli)。 您也可以從瀏覽器使用 [Cloud Shell](/azure/cloud-shell/quickstart)。
 
 ## <a name="basic-azure-resource-manager-commands-in-azure-cli"></a>Azure CLI 中的基本 Azure Resource Manager 命令
-本文章涵蓋搭配 Azure CLI 來管理 Azure 訂用帳戶中之 ARM 資源 (主要是 VM) 並與其互動的基本命令。  如需特定命令列參數和選項的詳細說明，您可以輸入 `azure <command> <subcommand> --help` 或 `azure help <command> <subcommand>` 來使用線上命令說明和選項。
+如需特定命令列參數和選項的詳細說明，您可以輸入 `az <command> <subcommand> --help` 來使用線上命令說明和選項。
 
-> [!NOTE]
-> 這些範例不包含以範本為基礎的作業，這些作業一般建議在資源管理員中針對 VM 部署使用。 如需資訊，請參閱[搭配 Azure Resource Manager 使用 Azure CLI](../articles/xplat-cli-azure-resource-manager.md) 和[使用 Azure Resource Manager 範本和 Azure CLI 部署與管理虛擬機器](../articles/virtual-machines/linux/cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-> 
-> 
+### <a name="create-vms"></a>建立 VM
+| 工作 | Azure CLI 命令 |
+| --- | --- |
+| 建立資源群組 | `az group create --name myResourceGroup --location eastus` |
+| 建立 Linux VM | `az vm create --resource-group myResourceGroup --name myVM --image ubuntults` |
+| 建立 Windows VM | `az vm create --resource-group myResourceGroup --name myVM --image win2016datacenter` |
 
-| Task | 資源管理員 |
-| --- | --- | --- |
-| 建立最基本的 VM |`azure vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password>`<br/><br/>(從 `azure vm image list` 命令取得 `image-urn`。 如需範例，請參閱[這篇文章](../articles/virtual-machines/linux/cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。) |
-| 建立 Linux VM |`azure  vm create [options] <resource-group> <name> <location> -y "Linux"` |
-| 建立 Windows VM |`azure  vm create [options] <resource-group> <name> <location> -y "Windows"` |
-| 列出 VM |`azure  vm list [options]` |
-| 取得 VM 的相關資訊 |`azure  vm show [options] <resource_group> <name>` |
-| 啟動 VM |`azure vm start [options] <resource_group> <name>` |
-| 停止 VM |`azure vm stop [options] <resource_group> <name>` |
-| 解除配置 VM |`azure vm deallocate [options] <resource-group> <name>` |
-| 重新啟動 VM |`azure vm restart [options] <resource_group> <name>` |
-| 刪除 VM |`azure vm delete [options] <resource_group> <name>` |
-| 擷取 VM |`azure vm capture [options] <resource_group> <name>` |
-| 從使用者映像建立 VM |`azure  vm create [options] –q <image-name> <resource-group> <name> <location> <os-type>` |
-| 從特殊化磁碟建立 VM |`azue  vm create [options] –d <os-disk-vhd> <resource-group> <name> <location> <os-type>` |
-| 將資料磁碟新增至 VM |`azure  vm disk attach-new [options] <resource-group> <vm-name> <size-in-gb> [vhd-name]` |
-| 從 VM 移除資料磁碟 |`azure  vm disk detach [options] <resource-group> <vm-name> <lun>` |
-| 將泛型延伸模組新增至 VM |`azure  vm extension set [options] <resource-group> <vm-name> <name> <publisher-name> <version>` |
-| 將 VM 存取延伸模組新增至 VM |`azure vm reset-access [options] <resource-group> <name>` |
-| 將 Docker 延伸模組新增至 VM |`azure  vm docker create [options] <resource-group> <name> <location> <os-type>` |
-| 移除 VM 延伸模組 |`azure  vm extension set [options] –u <resource-group> <vm-name> <name> <publisher-name> <version>` |
-| 取得 VM 資源的使用量 |`azure vm list-usage [options] <location>` |
-| 取得所有可用的 VM 大小 |`azure vm sizes [options]` |
+### <a name="manage-vm-state"></a>管理 VM 狀態
+| 工作 | Azure CLI 命令 |
+| --- | --- |
+| 啟動 VM | `az vm start --resource-group myResourceGroup --name myVM` |
+| 停止 VM | `az vm stop --resource-group myResourceGroup --name myVM` |
+| 解除配置 VM | `az vm deallocate --resource-group myResourceGroup --name myVM` |
+| 重新啟動 VM | `az vm restart --resource-group myResourceGroup --name myVM` |
+| 重新部署 VM | `az vm redeploy --resource-group myResourceGroup --name myVM` |
+| 刪除 VM | `az vm delete --resource-group myResourceGroup --name myVM` |
+
+### <a name="get-vm-info"></a>取得 VM 資訊
+| 工作 | Azure CLI 命令 |
+| --- | --- |
+| 列出 VM | `az vm list` |
+| 取得 VM 的相關資訊 | `az vm show --resource-group myResourceGroup --name myVM` |
+| 取得 VM 資源的使用量 | `az vm list-usage --location eastus` |
+| 取得所有可用的 VM 大小 | `az vm list-sizes --location eastus` |
+
+## <a name="disks-and-images"></a>磁碟和映像
+| 工作 | Azure CLI 命令 |
+| --- | --- |
+| 將資料磁碟新增至 VM | `az vm disk attach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk --size-gb 128 --new ` |
+| 從 VM 移除資料磁碟 | `az vm disk detach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk` |
+| 調整磁碟大小 | `az disk update --resource-group myResourceGroup --name myDataDisk --size-gb 256` |
+| 製作磁碟的快照集 | `az snapshot create --resource-group myResourceGroup --name mySnapshot --source myDataDisk` |
+| 建立 VM 的映像 | `az image create --resource-group myResourceGroup --source myVM --name myImage` |
+| 從映像建立 VM | `az vm create --resource-group myResourceGroup --name myNewVM --image myImage` |
+
 
 ## <a name="next-steps"></a>後續步驟
-* 如需超越基本 VM 管理的其他 CLI 命令範例，請參閱 [Azure CLI 與 Azure Resource Manager 搭配使用](../articles/virtual-machines/azure-cli-arm-commands.md)。
+如需 CLI 命令的其他範例，請參閱[使用 Azure CLI 建立和管理 Linux VM](../articles/virtual-machines/linux/tutorial-manage-vm.md) 教學課程。
 

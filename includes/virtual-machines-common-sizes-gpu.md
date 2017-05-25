@@ -7,22 +7,22 @@ NC 執行個體是由 NVIDIA 的 Tesla K80 卡提供技術支援。 使用者現
 
 ## <a name="nv-instances"></a>NV 執行個體
 
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU |
-| --- | --- | --- | --- | --- |
-| Standard_NV6 |6 |56 |380 | 1 |
-| Standard_NV12 |12 |112 |680 | 2 |
-| Standard_NV24 |24 |224 |1440 | 4 |
+| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU | 資料磁碟數目上限 |
+| --- | --- | --- | --- | --- | --- |
+| Standard_NV6 |6 |56 |380 | 1 | 64 |
+| Standard_NV12 |12 |112 |680 | 2 | 64 |
+| Standard_NV24 |24 |224 |1440 | 4 | 64 |
 
 1 GPU = 1/2 M60 卡。
 
 ## <a name="nc-instances"></a>NC 執行個體
 
-| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU |
-| --- | --- | --- | --- | --- |
-| Standard_NC6 |6 |56 | 380 | 1 |
-| Standard_NC12 |12 |112 | 680 | 2 |
-| Standard_NC24 |24 |224 | 1440 | 4 |
-| Standard_NC24r* |24 |224 | 1440 | 4 |
+| 大小 | CPU 核心 | 記憶體：GiB | 本機 SSD: GiB | GPU | 資料磁碟數目上限 |
+| --- | --- | --- | --- | --- | --- |
+| Standard_NC6 |6 |56 | 380 | 1 | 12 |
+| Standard_NC12 |12 |112 | 680 | 2 | 24 |
+| Standard_NC24 |24 |224 | 1440 | 4 | 48 |
+| Standard_NC24r* |24 |224 | 1440 | 4 | 48 |
 
 1 GPU = 1/2 K80 卡。
 

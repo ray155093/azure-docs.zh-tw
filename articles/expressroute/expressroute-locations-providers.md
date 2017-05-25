@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/02/2017
+ms.date: 05/15/2017
 ms.author: cherylmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: b7cb18fcfda5b829b72b2ded6a1ea9e996e771d7
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: c68f3ea4816eade5972c5936e381f435c24f3215
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/17/2017
 
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute 合作夥伴和對等互連位置
@@ -73,19 +73,21 @@ ms.lasthandoff: 05/03/2017
 | **阿姆斯特丹** |Aryaka Networks、AT&T NetBond、British Telecom、Colt、Equinix、euNetworks、GÉANT、InterCloud、Internet Solutions - Cloud Connect、Interxion、KPN、Level 3 Communications、Orange、Tata Communications、TeleCity Group、Telefonica+、Telenor、Verizon |
 | **亞特蘭大** |Equinix |
 | **斧山** |LG CNS |
-| **辰內** |Global CloudXchange (GCX)、SIFY、Tata Communications |
-| **芝加哥** |AT&T NetBond、Comcast、Equinix、Level 3 Communications、Verizon、Zayo Group |
+| **辰內** | Airtel+、Global CloudXchange (GCX)、SIFY、Tata Communications |
+| **芝加哥** |AT&T NetBond、Comcast、Equinix、Level 3 Communications、Megaport、Verizon、Zayo Group |
 | **達拉斯** |Aryaka Networks、AT&T NetBond、Cologix、Equinix、Level 3 Communications、Megaport、Verizon、Zayo Group+ |
+| **丹佛** |CoreSite+ |
 | **都柏林** |Colt、Telecity Group |
 | **香港** |Aryaka Networks、British Telecom、China Telecom Global、Equinix、Megaport、Orange、PCCW Global Limited、Tata Communications、Verizon |
 | **拉斯維加斯** |Level 3 Communications+、Megaport |
 | **倫敦** |AT&T NetBond、British Telecom、Colt、Equinix、InterCloud、Internet Solutions - Cloud Connect、Interxion、Jisc、Level 3 Communications、MTN、NTT Communications、Orange、Tata Communications、Telecity Group、Telehouse - KDDI、Telenor、Verizon、Vodafone、Zayo Group+ |
 | **洛杉磯** |CoreSite、Equinix、Megaport、NTT、Zayo Group |
 | **墨爾本** |AARNet、Equinix、Megaport、NEXTDC、Telstra Corporation |
-| **紐約** |Coresite、Equinix、Megaport、Zayo Group |
-| **Newport(Wales)** |新一代資料 |
+| **邁阿密** |Megaport |
 | **蒙特婁** |Bell Canada、Cologix |
 | **孟買** |Airtel+、Tata Communications |
+| **Newport(Wales)** |新一代資料 |
+| **紐約** |Coresite、Equinix、Megaport、Zayo Group |
 | **大阪** |Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank |
 | **巴黎** |Interxion、Equinix+ |
 | **魁北克市** | Megaport |
@@ -96,7 +98,7 @@ ms.lasthandoff: 05/03/2017
 | **新加坡** |Aryaka Networks、AT&T NetBond、British Telecom、Equinix、InterCloud、Level 3 Communications、Megaport、NTT Communications、Orange、SingTel、Tata Communications、Verizon |
 | **雪梨** |AARNet、AT&T NetBond、British Telecom、Equinix、Megaport、NEXTDC、Orange、Telstra Corporation、Verizon |
 | **東京** |Aryaka Networks、British Telecom、Colt、Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank、Verizon |
-| **多倫多** |Bell Canada、Cologix、Console、Equinix、Megaport、Zayo Group |
+| **多倫多** |Bell Canada、Cologix、Console、Equinix、Megaport、Telus、Zayo Group |
 | **華盛頓** |Aryaka Networks、AT&T NetBond、British Telecom、Comcast、Equinix、InterCloud、Level 3 Communications、Megaport、NTT Communications、Orange、Tata Communications、Verizon、Zayo Group |
 
  **+** 表示即將推出
@@ -147,21 +149,21 @@ ms.lasthandoff: 05/03/2017
 | --- | --- | --- |
 | **阿姆斯特丹** | Equinix、Telecity | Eurofiber、Fastweb S.p.A、Nianet |
 | **芝加哥** | Equinix | Windstream |
-| **達拉斯** | Equinix、Megaport | C3ntro、Data Foundry、Transtelco |
+| **達拉斯** | Equinix、Megaport | C3ntro Telecom、Cox Business、Data Foundry、Transtelco |
 | **法蘭克福** | Telecity | Nianet、QSC AG |
-| **倫敦** | Equinix、euNetworks、Telecity | Bezeq International Ltd.、Exponential E、HSO、NexGen Networks、Tamares Telecom |
+| **倫敦** | Equinix、euNetworks、Telecity | Bezeq International Ltd.、Epsilon、Exponential E、HSO、NexGen Networks、Tamares Telecom |
 | **洛杉磯** | Equinix |Transtelco |
 | **馬德里** | Level3 | Zertia |
-| **蒙特婁** | Cologix、Equinix | Airgate Technologies. Inc、Cogeco Peer 1 |
+| **蒙特婁** | Cologix、Equinix | Airgate Technologies. Inc、Cogeco Peer 1、Rogers |
 | **紐約** |Equinix | Lightower |
 | **Seattle** |Equinix | Alaska Communications |
-| **矽谷** |Equinix | Windstream |
+| **矽谷** |Equinix | Cox Business、Windstream |
 | **新加坡** |Equinix |1CLOUDSTAR、Epsilon Telecommunications Limited |
 | **Slough** | Equinix | HSO|
 | **雪梨** | Megaport | Macquarie Telecom Group|
 | **東京** | Equinix | ARTERIA Networks Corporation |
-| **多倫多** | Equinix | Airgate Technologies. Inc、Cogeco Peer 1 |
-| **華盛頓** |Equinix | Lightower、Masergy、Windstream |
+| **多倫多** | Equinix | Airgate Technologies. Inc、Cogeco Peer 1、Rogers、Thinktel|
+| **華盛頓** |Equinix | Epsilon、Lightower、Masergy、Windstream |
 
 ## <a name="expressroute-system-integrators"></a>ExpressRoute 系統整合者
 根據您的網路規模，為符合您的需求而啟用私人連線可能有一定的難度。 您可以使用下表所列出的任何系統整合者來協助您開始使用 ExpressRoute。
@@ -169,8 +171,8 @@ ms.lasthandoff: 05/03/2017
 | **Continent** | **系統整合者** |
 | --- | --- |
 | **亞洲** |Avanade Inc.、OneAs1a |
-| **澳大利亞** | IT Consultancy、Vigilant.IT |
-| **歐洲** |Avanade Inc.、Altogee、Bright Skies GmbH、Dotnet Solutions、MSG Services、Nelite、Orange Networks、sol-tec |
+| **澳大利亞** | Ensyst、IT Consultancy、Vigilant.IT |
+| **歐洲** |Avanade Inc.、Altogee、Bright Skies GmbH、New Signature、MSG Services、Nelite、Orange Networks、sol-tec |
 | **北美洲** |Avanade Inc.、Equinix Professional Services、Presidio、Perficient、Project Leadership |
 | **南美洲** |Avanade Inc. |
 ## <a name="next-steps"></a>後續步驟

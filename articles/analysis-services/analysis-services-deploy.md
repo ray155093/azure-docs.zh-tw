@@ -1,6 +1,6 @@
 ---
-title: "部署至 Azure Analysis Services | Microsoft Docs"
-description: "了解如何將表格式模型部署至 Azure Analysis Services 伺服器。"
+title: "使用 SSDT 部署至 Azure Analysis Services | Microsoft Docs"
+description: "了解如何使用 SSDT 將表格式模型部署至 Azure Analysis Services 伺服器。"
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -10,35 +10,35 @@ tags:
 ms.assetid: 5f1f0ae7-11de-4923-a3da-888b13a3638c
 ms.service: analysis-services
 ms.devlang: NA
-ms.topic: article
+ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 04/17/2017
 ms.author: owend
-translationtype: Human Translation
-ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
-ms.openlocfilehash: 766120913d419ec8090a4f25d304f2d3cf9b6693
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 04b809a6fdd7b993a048a67f66a9851c2a7bf3d2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
-# <a name="deploy-to-azure-analysis-services"></a>部署至 Azure Analysis Services
-以您的 Azure 訂用帳戶建立伺服器後，您即可將表格式模型資料庫部署至該伺服器。 您可以使用 SQL Server Data Tools (SSDT) 建置與部署您正在使用的表格式模型專案。 或者，您可以使用 SQL Server Management Studio (SSMS) 從 Analysis Services 執行個體部署現有的表格式模型資料庫。
+# <a name="deploy-a-model-from-ssdt"></a>從 SSDT 部署模型
+以您的 Azure 訂用帳戶建立伺服器後，您即可將表格式模型資料庫部署至該伺服器。 您可以使用 SQL Server Data Tools (SSDT) 建置與部署您正在使用的表格式模型專案。 
 
 ## <a name="before-you-begin"></a>開始之前
 若要開始，您需要：
 
 * Azure 中的 **Analysis Services 伺服器**。 若要深入了解，請參閱 [Create an Analysis Services in Azure](analysis-services-create-server.md) (在 Azure 中建立 Analysis Services)。
-* SSDT 中的**表格式模型專案**，或 Analysis Services 執行個體上 1200 相容性層級的現有表格式模型。 未曾建立過？ 請嘗試[表格式模型化 (Adventure Works 教學課程)](https://msdn.microsoft.com/library/hh231691.aspx)。
+* SSDT 中的**表格式模型專案**，或 Analysis Services 執行個體上 1200 或更新相容性層級的現有表格式模型。 未曾建立過？ 請嘗試[表格式模型化 (Adventure Works 教學課程)](https://msdn.microsoft.com/library/hh231691.aspx)。
 * **內部部署閘道** - 如果您組織的網路中有一或多個資料來源為內部部署，您必須安裝[內部部署資料閘道](analysis-services-gateway.md)。 您在雲端中的伺服器必須有閘道，才能連線至您的內部部署資料來源，以處理和重新整理模型中的資料。
-
-## <a name="to-deploy-a-tabular-model-from-ssdt"></a>從 SSDT 部署表格式模型
-為了從 SSDT 部署，請確定您使用的是[最新版本](https://msdn.microsoft.com/library/mt204009.aspx)。
 
 > [!TIP]
 > 部署之前，請確定您可以在資料表中處理資料。 在 SSDT 中，按一下 [模型]  >  [程序]  >  **Process All** (全部處理)。 如果處理失敗，部署將失敗。
 > 
 > 
+
+## <a name="to-deploy-a-tabular-model-from-ssdt"></a>從 SSDT 部署表格式模型
 
 1. 部署之前，您必須先取得伺服器名稱。 在 [Azure 入口網站] > 伺服器 > [概觀]  >  [伺服器名稱] 中，複製伺服器名稱。
    
@@ -56,9 +56,6 @@ ms.lasthandoff: 04/18/2017
 
 就是這麼簡單！
 
-## <a name="to-deploy-using-xmla-script"></a>使用 XMLA 指令碼部署
-1. 在 SSMS 中，以滑鼠右鍵按一下您要部署的表格式模型資料庫，按一下 [指令碼]  >  [編寫資料庫的指令碼為]  >  **CREATE to** (建立至)，然後選擇一個位置。
-2. 在您想要部署查詢的伺服器執行個體上執行查詢。 如果您正部署至相同的伺服器，您必須至少變更 XMLA 指令碼中的 **name** 屬性。  
 
 ## <a name="but-something-went-wrong"></a>但發生錯誤
 如果在部署中繼資料時部署失敗，則可能是因為 SSDT 無法連線至您的伺服器。 請確定您可以使用 SSMS 連線至您的伺服器。 接著確定專案的 [部署伺服器] 屬性正確。

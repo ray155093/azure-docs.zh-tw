@@ -13,13 +13,13 @@ ms.workload:
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 05/10/2017
+ms.date: 05/13/2017
 ms.author: arramac
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 45adf2accd3d9f43bc1d73b9ff93cc34d4d7c90a
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: d8a6a183d1acd7a06683ec2e402bd866cb5195f4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/15/2017
 
 
 ---
@@ -96,27 +96,25 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
     ![在 Azure 入口網站的 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/create-documentdb-dotnet/keys.png)
 
-2. 在 `app.js` 檔案中填入您的 endpoint、db、coll 和 authKey 組態：
+2. 從入口網站複製您的 URI 值 (使用 [複製] 按鈕)，並使它成為 config.js 中的 config.js 金鑰值。
 
-    ```nodejs
-    const client = Gremlin.createClient(
-        443, 
-        config.endpoint, 
-        { 
-            "session": false, 
-            "ssl": true, 
-            "user": `/dbs/${config.database}/colls/${config.collection}`,
-            "password": config.primaryKey
-        });
-    ```
+    `config.endpoint = "GRAPHENDPOINT";`
+
+3. 以 graphs.azure.com 取代 URI 的 documents.azure.com 部分。
+
+4. 然後，從入口網站複製您的主要金鑰值，並使它成為 config.js 中的 config.primaryKey 值。 您現已更新應用程式，使其具有與 Azure Cosmos DB 通訊所需的所有資訊。 
+
+    `config.primaryKey = "PRIMARYKEY";`
 
 ## <a name="run-the-console-app"></a>執行主控台應用程式
 
-1. 在終端機中執行 `npm install` 以安裝必要的 npm 模組
+1. 開啟終端機視窗並 `cd` 至專案內含 package.json 檔案的安裝目錄。  
 
-2. 使用 [Cosmos DB Gremlin Fork](https://github.com/CosmosDB/gremlin-javascript) 中的原始程式碼取代 `node_modules\gremlin` 的內容，該分叉具有 Azure Cosmos DB 所需的 SSL 和 SASL 支援，但驅動程式目前不提供支援 (在驅動程式接受變更以前是暫時性支援)。
+2. 執行 `npm install gremlin` 以安裝必要的 npm 模組。
 
-2. 在終端機中執行 `node app.js` 來啟動您的節點應用程式。
+3. 使用 [Cosmos DB Gremlin Fork](https://github.com/CosmosDB/gremlin-javascript) 中的原始程式碼取代 `node_modules\gremlin` 資料夾的內容，該分叉具有 Azure Cosmos DB 所需的 SSL 和 SASL 支援，但驅動程式目前不提供支援 (在驅動程式接受變更以前是暫時性支援)。
+
+4. 在終端機中執行 `node app.js` 來啟動您的節點應用程式。
 
 您現在可以返回 [資料總管]，以查看、查詢、修改及使用這項新資料。 
 
@@ -145,5 +143,3 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 > [!div class="nextstepaction"]
 > [使用 Gremlin 進行查詢](tutorial-query-graph.md)
-
-

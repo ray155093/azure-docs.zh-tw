@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/22/2017
+ms.date: 05/12/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
-ms.openlocfilehash: a56749a5ac1098db3970140a76b71c77c1f74c07
-ms.lasthandoff: 03/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 679b6962633cd734a1b1e339e8422da5b9c4ddfd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.lasthandoff: 03/28/2017
 [!INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
 
 ## <a name="azure-account"></a>Azure 帳戶
-* 使用中的有效 Microsoft Azure 帳戶。 需要有此帳戶才能設定 ExpressRoute 循環。 ExpressRoute 循環是 Azure 訂用帳戶內的資源。 即使連線只限於非 Azure Microsoft 雲端服務 (例如 Office 365 服務和線上 CRM)，Azure 訂用帳戶還是一項需求。
+* 使用中的有效 Microsoft Azure 帳戶。 需要有此帳戶才能設定 ExpressRoute 循環。 ExpressRoute 循環是 Azure 訂用帳戶內的資源。 即使連線只限於非 Azure Microsoft 雲端服務 (例如 Office 365 服務和 Dynamics 365)，Azure 訂用帳戶還是一項需求。
 * 使用中的 Office 365 訂用帳戶 (如果使用的是 Office 365 服務)。 如需詳細資訊，請參閱本文的 [Office 365 特定需求](#office-365-specific-requirements)一節。
 
 ## <a name="connectivity-provider"></a>連線提供者
@@ -53,10 +54,10 @@ ms.lasthandoff: 03/28/2017
 * [整合 Office 365 與內部部署環境](https://support.office.com/en-us/article/Office-365-integration-with-on-premises-environments-263faf8d-aa21-428b-aed3-2021837a4b65)
 * [Office 365 上的 ExpressRoute 進階訓練影片](https://channel9.msdn.com/series/aer/)
 
-## <a name="crm-online"></a>CRM Online
-如果您打算在 ExpressRoute 上啟用 CRM Online，請檢閱下列文件以取得 CRM Online 的詳細資訊
+## <a name="dynamics-365"></a>Dynamics 365
+如果您打算在 ExpressRoute 上啟用 Dynamics 365，請檢閱下列文件以取得 Dynamics 365 的詳細資訊
 
-* [CRM Online URL](https://support.microsoft.com/kb/2655102) 和 [IP 位址範圍](https://support.microsoft.com/kb/2728473)
+* [Dynamics 365 URL](https://support.microsoft.com/kb/2655102) 和 [IP 位址範圍](https://support.microsoft.com/kb/2728473)
 
 ## <a name="next-steps"></a>後續步驟
 * 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
