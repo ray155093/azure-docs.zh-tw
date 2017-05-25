@@ -1,6 +1,6 @@
 ---
-title: "Azure HDInsight 上 Hadoop 元件的封存版本資訊 | Microsoft Docs"
-description: "Azure HDInsight 的 Hadoop 元件的封存版本資訊與版本。"
+title: "封存版本資訊 - Azure HDInsight 上的 Hadoop 元件 | Microsoft Docs"
+description: "Azure HDInsight 之舊版 Hadoop 元件的封存版本資訊。"
 services: hdinsight
 documentationcenter: 
 editor: cgronlun
@@ -8,7 +8,7 @@ manager: jhubbard
 author: nitinme
 tags: azure-portal
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
@@ -16,10 +16,11 @@ ms.topic: article
 ms.date: 4/06/2017
 ms.author: nitinme
 ROBOTS: NOINDEX
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 5e1538ae0d4b1270040bd593cae66c1dd1046201
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: 7d8b691905c07b11543505ed1961d908ff4de654
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -61,7 +62,7 @@ ms.lasthandoff: 04/27/2017
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Spark、Hadoop、HBase 或 Storm) | JIRA (如果適用) |
 | --- | --- | --- | --- | --- |
-| HDInsight 3.4 叢集的變更 |為了提升效能，下列 hive 組態的預設值已變更  <ul><li>`hive.vectorized.execution.reduce.enabled=true`</li><li>`hive.tez.min.partition.factor=1f`</li><li>`hive.tez.max.partition.factor=3f`</li><li>`tez.shuffle-vertex-manager.min-src-fraction=0.9`</li><li>`tez.shuffle-vertex-manager.max-src-fraction=0.95`</li><li>`tez.runtime.shuffle.connect.timeout= 30000`</li></ul> |服務 |全部 |N/A |
+| HDInsight 3.4 叢集的變更 |為了提升效能，下列 Hive 組態的預設值已變更 <ul><li>`hive.vectorized.execution.reduce.enabled=true`</li><li>`hive.tez.min.partition.factor=1f`</li><li>`hive.tez.max.partition.factor=3f`</li><li>`tez.shuffle-vertex-manager.min-src-fraction=0.9`</li><li>`tez.shuffle-vertex-manager.max-src-fraction=0.95`</li><li>`tez.runtime.shuffle.connect.timeout= 30000`</li></ul> |服務 |全部 |N/A |
 | 此版本包含下列修正程式 |HIVE-13632, HIVE-12897,HIVE-12907,HIVE-12908,HIVE-12988,HIVE-13510,HIVE-13572,HIVE-13716,HIVE-13726,HIVE-12505,HIVE-13632,HIVE-13661,HIVE-13705,HIVE-13743,HIVE-13810,HIVE-13857,HIVE-13902,HIVE-13911,HIVE-13933 |服務 |全部 |N/A |
 
 ## <a name="notes-for-07142016-release-of-hdinsight"></a>HDInsight 2016/07/14 版本的相關資訊
@@ -169,7 +170,7 @@ ms.lasthandoff: 04/27/2017
 | HDI 3.4 的自訂中繼存放區升級問題 |如果您使用先前在另一個較低版本的 HDInsight 叢集上使用的自訂中繼存放區，則叢集會建立失敗。 這是因為升級指令碼時發生的錯誤現在已修正 |叢集建立 |全部 |N/A |
 | Livy Crash 復原 |為所有已透過 Livy 提交的作業提供工作狀態復原 |可靠性 |Spark on Linux |N/A |
 | Jupyter 內容 HA |提供儲存 Jupyter 筆記本內容，以及將此內容從與叢集相關的儲存體帳戶載入的功能。 如需詳細資訊，請參閱 [可供 Jupyter 筆記本使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 |筆記本 |Spark on Linux |N/A |
-| 移除 Jupter 筆記本中的 hiveContext |使用 `%%sql` magic，而非 `%%hive` magic。 SqlContext 等於 hiveContext。 如需詳細資訊，請參閱 [可供 Jupyter 筆記本使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md) |筆記本 |Linux 上的 Spark 叢集 |N/A |
+| 移除 Jupyter 筆記本中的 hiveContext |使用 `%%sql` magic，而非 `%%hive` magic。 SqlContext 等於 hiveContext。 如需詳細資訊，請參閱 [可供 Jupyter 筆記本使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md) |筆記本 |Linux 上的 Spark 叢集 |N/A |
 | 取代了舊版的 Spark |舊版的 Spark 1.3.1 會於 5 月 31 日從服務中移除 |服務 |Windows 上的 Spark 叢集 |N/A |
 
 ## <a name="notes-for-03292016-release-of-hdinsight"></a>HDInsight 2016/03/29 版本的相關資訊
@@ -571,7 +572,7 @@ ms.lasthandoff: 04/27/2017
 </tr>
 <tr>
 <td>SCP.NET EventHub 支援</td>
-<td>HDInsight Storm 的更新叢集封裝加入 SCP.NET 的新功能。 您現在將可存取拓撲產生器中的新 API，讓您更輕鬆地使用 EventHubSpout 或 Java Spouts。 您必須更新 SCP.NET 用戶端 SDK，才能在合約更新後使用新叢集。 如需新 API、使用方式及版本資訊 (包括 Bug 修正程式) 的詳細資訊，請參閱 SCP.NET nuget 封裝中包含的 Readme 檔案。</td>
+<td>HDInsight Storm 的更新叢集封裝加入 SCP.NET 的新功能。 您現在將可存取拓撲產生器中的新 API，讓您更輕鬆地使用 EventHubSpout 或 Java Spouts。 您必須更新 SCP.NET 用戶端 SDK，才能在合約更新後使用新叢集。 如需新 API、使用方式及版本資訊 (包括 Bug 修正程式) 的詳細資訊，請參閱 SCP.NET NuGet 套件中包含的 Readme 檔案。</td>
 <td>VS 工具</td>
 <td>Storm HDInsight 3.2 叢集</td>
 <td>N/A</td>
@@ -871,8 +872,8 @@ ms.lasthandoff: 04/27/2017
 <td>Hadoop</td>
 <td>N/A</td>
 </tr>
-<td>適用於 DocumentDB 的 Hadoop Connector </td>
-<td>使用適用於 DocumentDB 的 Hadoop Connector，您可以針對儲存在 DocumentDB 集合之間或資料庫帳戶之間的無結構描述 JSON 文件，執行複雜的彙總、分析與操作。 如需詳細資訊和教學課程，請參閱＜使用 DocumentDB 和 HDInsight 執行 Hadoop 工作＞。</td>
+<td>適用於 Azure Cosmos DB 的 Hadoop Connector</td>
+<td>使用適用於 Azure Cosmos DB 的 Hadoop Connector，您可以針對儲存在 Azure Cosmos DB 集合之間或資料庫帳戶之間的無結構描述 JSON 文件，執行複雜的彙總、分析與操作。 如需詳細資訊和教學課程，請參閱＜使用 Azure Cosmos DB 和 HDInsight 執行 Hadoop 作業＞。</td>
 <td>服務</td>
 <td>Hadoop</td>
 <td>N/A</td>
@@ -1101,7 +1102,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 * HDInsight 2.1.9.382.1169709 (從 2014/11/14 後未變更)
 * HDInsight 3.0.5.382.1169709 (從 2014/11/14 後未變更)
 * HDInsight 3.1.1.382.1169709 (從 2014/11/14 後未變更)
-* HDINsight SDK 1.4.0
+* HDInsight SDK 1.4.0
 
 此版本包含下列元件更新。
 
@@ -1249,7 +1250,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。 Mahout 包含用來處理�
 關於 Azure PowerShell 和 HDInsight SDK 的錯誤訊息：「叢集未設定 HTTP 服務存取」：
 
 * 此錯誤是已知的[相容性問題](https://social.msdn.microsoft.com/Forums/azure/a7de016d-8de1-4385-b89e-d2e7a1a9d927/hdinsight-powershellsdk-error-cluster-is-not-configured-for-http-services-access?forum=hdinsight)，起因可能是 HDInsight 或 Azure PowerShell 版本和叢集版本的差異。 在 8/15 或之後建立的叢集支援佈建到虛擬網路的這項新功能。 但舊版的 HDInsight SDK 或 Azure PowerShell 無法正確解譯此功能。 結果造成某些工作提交作業失敗。 如果您使用 HDInsight SDK API 或 Azure PowerShell Cmdlet (**Use-AzureRmHDInsightCluster** 或 **Invoke-AzureRmHDInsightHiveJob**) 來提交工作，這些作業可能會失敗並傳回錯誤訊息「叢集 <clustername> 未設定 HTTP 服務存取」。 或者 (根據作業而定) 傳回其他錯誤訊息，例如「無法連接到叢集」。
-* 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。 建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。 您可以從 [Nuget (英文)](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 取得 Azure PowerShell 工具。
+* 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。 建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。 您可以從 [NuGet](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 取得 Azure PowerShell 工具。
 
 ## <a name="notes-for-9122014-release-of-hdinsight-31"></a>HDInsight 3.1 2014/9/12 版本的相關資訊
 * 此版本根據 Hortonworks Data Platform (HDP) 2.1.5。 如需此版本中修正的 Bug 清單，請參閱 Hortonworks 網站上的 [已在此版本修正](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.5/bk_releasenotes_hdp_2.1/content/ch_relnotes-hdp-2.1.5-fixed.html) 頁面。

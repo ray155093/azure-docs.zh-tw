@@ -15,10 +15,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/10/2017
 ms.author: carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 295de55b311efe078fc9512ee886abc7a9ca6118
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 1d0167744e3068f6b52ae71f3433a383d607d07e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -87,16 +88,16 @@ SQL Database 針對使用[自動資料庫備份](sql-database-automated-backups.
 ![deleted-database-restore-2](./media/sql-database-recovery-using-backups/deleted-database-restore-2.png)
 
 ## <a name="geo-restore"></a>異地還原
-您可以從最新的異地複寫完整備份和差異備份，在任何 Azure 區域中的任何伺服器上還原 SQL Database。 異地還原使用異地備援備份做為其來源，即使因為中斷而無法存取資料庫或資料中心，也能用來復原資料庫。 
+您可以從最新的異地複寫完整備份和差異備份，在任何 Azure 區域中的任何伺服器上還原 SQL Database。 異地還原使用異地備援備份作為其來源，即使因為中斷而無法存取資料庫或資料中心，也能用來復原資料庫。 
 
 當您的資料庫因為裝載資料庫區域中的事件而無法使用時，異地還原就是預設的復原選項。 如果區域中的大規模意外導致您無法使用資料庫應用程式，則您可以從異地複寫備份，將資料庫還原到任何其他區域中的伺服器。 在建立差異備份與將它以異地方式複寫至不同區域中的 Azure Blob 之間會有延遲。 此延遲可能最長達一小時，因此當發生災害時，最多可能會遺失最長達一小時的資料。 下圖顯示從另一個區域中的上次可用備份來還原資料庫。
 
 ![異地還原](./media/sql-database-geo-restore/geo-restore-2.png)
 
-如需使用異地還原來從中斷復原的詳細資訊，請參閱 [從中斷復原](sql-database-disaster-recovery.md)
+如需使用異地還原來從中斷復原的詳細資訊，請參閱[從中斷復原](sql-database-disaster-recovery.md)。
 
 > [!IMPORTANT]
-> 從備份復原是 SQL Database 中最基本的災害復原解決方案，具備最長的 RPO 和「預估復原時間」(ERT)。 對於大小上限為 2 GB 的「基本」資料庫，異地還原提供 ERT 為 12 小時的合理 DR 解決方案。 對於較大的「標準」或「高階」資料庫，如果需要縮短復原時間，或為了降低資料遺失的可能性，您應該考慮使用「主動式異地複寫」。 「主動式異地複寫」提供明顯較低的 RPO 和 ERT，因為它只需要您起始對連續複寫次要資料庫的容錯移轉。 如需詳細資料，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)。
+> 從備份復原是 SQL Database 中最基本的災害復原解決方案，具備最長的 RPO 和「預估復原時間」(ERT)。 對於使用基本資料庫的解決方案，常見且合理的 DR 解決方案是異地還原，且這個解決方案具有 12 小時的 ERT。 對於使用較大型標準或進階資料庫的解決方案，如果其需要縮短復原時間，您應該考慮使用[主動式異地複寫](sql-database-geo-replication-overview.md)。 主動式異地複寫提供明顯較低的 RPO 和 ERT，因為它只需要您起始對連續複寫次要資料庫的容錯移轉。 如需商務持續性選項的詳細資訊，請參閱[商務持續性概觀](sql-database-business-continuity.md)。
 > 
 
 ### <a name="azure-portal"></a>Azure 入口網站
@@ -130,5 +131,5 @@ SQL Database 針對使用[自動資料庫備份](sql-database-automated-backups.
 * 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
 * 若要深入了解長期備份保留，請參閱[長期備份保留](sql-database-long-term-retention.md)
 * 若要使用 Azure 入口網站在「Azure 復原服務」保存庫中設定、管理自動備份的長期保留並從中還原，請參閱[設定與使用長期備份保留 (Configure and use long-term backup retention)](sql-database-long-term-backup-retention-configure.md)。 
-* 若要了解更快速的復原選項，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)  
+* 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)  
 

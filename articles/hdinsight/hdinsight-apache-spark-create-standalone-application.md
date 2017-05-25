@@ -1,5 +1,5 @@
 ---
-title: "建立在 Azure Spark 叢集上執行的 Scala Maven 應用程式 | Microsoft Docs"
+title: "建立在 Azure HDInsight Spark 叢集上執行的 Scala 應用程式 | Microsoft Docs"
 description: "了解如何使用 Maven 建立在 HDInsight Spark 叢集上執行的獨立 Spark 應用程式。"
 services: hdinsight
 documentationcenter: 
@@ -17,10 +17,10 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: c435e8ec21b568afcadaa1af95964753d36d0ccb
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 3cc921bdd6c9b374bda7bbfc3781f7a1327ae438
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/06/2017
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -66,7 +66,7 @@ ms.lasthandoff: 04/06/2017
    * 指定 [專案 SDK] 。 按一下 [新增]，然後導覽至 Java 安裝目錄 (通常是 `C:\Program Files\Java\jdk1.8.0_66`)。
    * 選取 [從原型建立]  選項。
    * 從原型清單中，選取 **org.scala-tools.archetypes:scala-archetype-simple**。 這會建立正確的目錄結構，並下載撰寫 Scala 程式所需的預設相依性。
-2. 為 [GroupId]、[ArtifactId] 和 [版本] 提供相關值。 按一下頁面底部的 [新增] 來單一登入應用程式。
+2. 為 [GroupId]、[ArtifactId] 和 [版本] 提供相關值。 按一下 [下一步] 。
 3. 在下一個對話方塊中 (您可以在此處指定 Maven 主目錄及其他使用者設定) 接受預設值，然後按 [下一步] 。
 4. 在最後一個對話方塊中指定專案名稱和位置，然後按一下 [完成] 。
 5. 刪除位於 **src\test\scala\com\microsoft\spark\example** 的 **MySpec.Scala** 檔案。 應用程式並不需要此檔案。

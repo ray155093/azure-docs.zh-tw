@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 儲存體中設定和擷取物件的屬性與中繼資料 | Microsoft Docs"
+title: "在 Azure 儲存體中設定和擷取物件屬性與中繼資料 | Microsoft Docs"
 description: "將物件的自訂中繼資料儲存在Azure 儲存體中，並設定和擷取系統屬性。"
 services: storage
 documentationcenter: 
@@ -12,21 +12,22 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 05/15/2017
 ms.author: marsma
-translationtype: Human Translation
-ms.sourcegitcommit: 3868d36948342739eb78b013bb4b466df4381b4f
-ms.openlocfilehash: 7c1ca950c3ab1b8ffb754a74597d45b82777838c
-ms.lasthandoff: 02/15/2017
-
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 6af66607478c58874f00bcf017a35abfc37888df
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 ---
-# <a name="set-and-retrieve-properties-and-metadata"></a>設定與擷取屬性和中繼資料
-## <a name="overview"></a>Overview
-除了所包含之資料外，在 Azure 儲存體支援系統屬性和使用者定義中繼資料中的物件：
+# <a name="set-and-retrieve-properties-and-metadata"></a>設定並擷取屬性和中繼資料
 
-* **系統屬性。** 系統屬性存在於每個儲存體資源上。 其中有些系統屬性可以讀取或設定，有些則是唯讀的。 實際上，有些系統屬性會對應至特定的標準 HTTP 標頭。 Azure 儲存體用戶端程式庫會為您維護這些 HTTP 標頭。
-* **使用者定義的中繼資料。** 使用者定義的中繼資料是您針對給定的資源，以名稱/值組的形式指定的中繼資料。 您可以使用中繼資料將額外的值與儲存體資源一同儲存。這些值僅供自己的用途使用，不會影響資源的運作方式。
+除了所包含之資料外，在 Azure 儲存體支援系統屬性和使用者定義中繼資料中的物件。 本文討論如何使用[適用於 .NET 的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)來管理系統屬性和使用者定義的中繼資料。
+
+* **系統屬性**：系統屬性存在於每個儲存體資源上。 其中有些系統屬性可以讀取或設定，有些則是唯讀的。 實際上，有些系統屬性會對應至特定的標準 HTTP 標頭。 Azure 儲存體用戶端程式庫會為您維護這些 HTTP 標頭。
+
+* **使用者定義的中繼資料**：使用者定義的中繼資料是您針對給定的資源，以名稱/值組的形式指定的中繼資料。 您可以使用中繼資料來儲存儲存體資源的額外值。 這些額外的中繼資料值僅供您自己使用，並不會影響資源的運作方式。
 
 擷取儲存體資源的屬性和中繼資料值是一個兩步驟程序。 您必須先呼叫 **FetchAttributes** 方法明確地擷取這些值，才能開始讀取這些值。
 
@@ -41,7 +42,7 @@ ms.lasthandoff: 02/15/2017
 
 若要設定物件的屬性，請指定屬性值，然後呼叫 **SetProperties** 方法。
 
-下列程式碼範例會建立一個容器，並將其部分屬性值寫入主控台視窗：
+下列程式碼範例會建立一個容器，然後將其部分屬性值寫入主控台視窗。
 
 ```csharp
 //Parse the connection string for the storage account.
@@ -105,8 +106,7 @@ public static void ListContainerMetadata(CloudBlobContainer container)
 }
 ```
 
-## <a name="see-also"></a>另請參閱
-* [適用於 .NET 的 Azure 儲存體用戶端程式庫參考資料](http://msdn.microsoft.com/library/azure/wa_storage_30_reference_home.aspx)
-* [適用於 .NET 的 Azure 儲存體用戶端程式庫封裝](https://www.nuget.org/packages/WindowsAzure.Storage/)
-
+## <a name="next-steps"></a>後續步驟
+* [適用於 .NET 的 Azure 儲存體用戶端程式庫參考資料](/dotnet/api/?term=Microsoft.WindowsAzure.Storage)
+* [適用於 .NET NuGet 套件的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
 

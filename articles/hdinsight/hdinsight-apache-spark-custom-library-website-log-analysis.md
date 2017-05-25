@@ -1,6 +1,6 @@
 ---
 title: "使用 Python 程式庫來分析 Azure Spark 叢集的網站記錄 | Microsoft Docs"
-description: "透過 HDInsight Spark 叢集使用自訂程式庫來分析網站記錄"
+description: "使用自訂 Python 程式庫搭配 HDInsight Spark 叢集來分析網站記錄"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -17,14 +17,14 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
 ms.translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 3f5b7409c5245ee975b0208f812668a0c35ff1c3
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: d55005ecea7ba6b31c638af3d26c44932e3d12bc
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/18/2017
+ms.lasthandoff: 05/17/2017
 
 
 ---
-# <a name="analyze-website-logs-using-a-custom-library-with-apache-spark-cluster-on-hdinsight"></a>在 HDInsight 上使用 Apache Spark 叢集搭配自訂程式庫分析網站記錄
+# <a name="analyze-website-logs-using-a-custom-python-library-with-spark-cluster-on-hdinsight"></a>在 HDInsight 上使用自訂 Python 程式庫搭配 Spark 叢集來分析網站記錄
 
 此 Notebook 示範如何使用自訂程式庫與 HDInsight 上的 Spark 來分析記錄資料。 我們使用的自訂程式庫是名為 **iislogparser.py**的 Python 程式庫。
 
@@ -57,10 +57,10 @@ ms.lasthandoff: 03/18/2017
    >
 3. 建立新的 Notebook。 按一下 [新增]，然後按一下 [PySpark]。
 
-    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-custom-library-website-log-analysis/hdispark.note.jupyter.createnotebook.png "建立新的 Jupyter Notebook")
+    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-custom-library-website-log-analysis/hdinsight-create-jupyter-notebook.png "建立新的 Jupyter Notebook")
 4. 系統隨即會建立新 Notebook，並以 Untitled.pynb 的名稱開啟。 在頂端按一下 Notebook 名稱，然後輸入好記的名稱。
 
-    ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-custom-library-website-log-analysis/hdispark.note.jupyter.notebook.name.png "提供 Notebook 的名稱")
+    ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-custom-library-website-log-analysis/hdinsight-name-jupyter-notebook.png "提供 Notebook 的名稱")
 5. 您使用 PySpark 核心建立 Notebook，因此不需要明確建立任何內容。 當您執行第一個程式碼儲存格時，系統會自動為您建立 Spark 和 Hive 內容。 首先，您可以匯入此案例需要的類型。 將下列程式碼片段貼到空白儲存格中，然後按 **SHIFT + ENTER**。
 
         from pyspark.sql import Row
@@ -188,7 +188,7 @@ ms.lasthandoff: 03/18/2017
 
    您應該會看到如下的輸出：
 
-   ![SQL 查詢輸出](./media/hdinsight-apache-spark-custom-library-website-log-analysis/sql.output.png "SQL 查詢輸出")
+   ![SQL 查詢輸出](./media/hdinsight-apache-spark-custom-library-website-log-analysis/hdinsight-jupyter-sql-qyery-output.png "SQL 查詢輸出")
 
    如需 `%%sql` magic 的詳細資訊，請參閱 [%%sql magic 支援的參數](hdinsight-apache-spark-jupyter-notebook-kernels.md#parameters-supported-with-the-sql-magic)。
 7. 現在您可以使用 Matplotlib (用於建構資料視覺效果的程式庫) 建立繪圖。 因為必須從保存在本機上的 **averagetime** 資料框架建立繪圖，所以程式碼片段的開頭必須為 `%%local` magic。 這可確保程式碼是在 Jupyter 伺服器的本機上執行。
@@ -203,7 +203,7 @@ ms.lasthandoff: 03/18/2017
 
    您應該會看到如下的輸出：
 
-   ![Matplotlib 輸出](./media/hdinsight-apache-spark-custom-library-website-log-analysis/hdi-apache-spark-web-log-analysis-plot.png "Matplotlib 輸出")
+   ![Matplotlib 輸出](./media/hdinsight-apache-spark-custom-library-website-log-analysis/hdinsight-apache-spark-web-log-analysis-plot.png "Matplotlib 輸出")
 8. 應用程式執行完畢之後，您應該要關閉 Notebook 來釋放資源。 若要這樣做，請從 Notebook 的 [檔案] 功能表中，按一下 [關閉並停止]。 這樣就能夠結束並關閉 Notebook。
 
 ## <a name="seealso"></a>另請參閱

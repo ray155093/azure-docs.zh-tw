@@ -13,20 +13,29 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 04/17/2017
+ms.date: 05/02/2017
 ms.author: iainfou
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 5ff735100132e8571871b41ac2309334662adb7f
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 079289f385266293ecfce7cd02b1673a774afbbe
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/15/2017
 
 ---
 
 # <a name="how-to-load-balance-linux-virtual-machines-in-azure-to-create-a-highly-available-application"></a>如何平衡 Azure 中 Linux 虛擬機器的負載以建立高可用性應用程式
-在本教學課程中，您會了解 Azure Load Balancer 的不同元件，以分散流量並提供高可用性。 若要查看作用中的負載平衡器，您可建置在三部 Linux 虛擬機器 (VM) 上執行的 Node.js 應用程式。
+負載平衡會將傳入要求分散到多部虛擬機器，藉此提供高可用性。 在本教學課程中，您會了解 Azure Load Balancer 的不同元件，以分散流量並提供高可用性。 您會了解如何：
 
-您可以使用最新的 [Azure CLI 2.0](/cli/azure/install-azure-cli) 來完成本教學課程中的步驟。
+> [!div class="checklist"]
+> * 建立 Azure Load Balancer
+> * 建立負載平衡器健全狀況探查
+> * 建立負載平衡器流量規則
+> * 使用 cloud-init 建立基本的 Node.js 應用程式
+> * 建立虛擬機器並連結至負載平衡器
+> * 檢視作用中的負載平衡器
+> * 新增和移除虛擬機器的負載平衡器
+
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
 
 
 ## <a name="azure-load-balancer-overview"></a>Azure Load Balancer 概觀
@@ -42,18 +51,18 @@ Azure Load Balancer 是 Layer-4 (TCP、UDP) 負載平衡器，可將連入流量
 
 
 ## <a name="create-azure-load-balancer"></a>建立 Azure Load Balancer
-本節將詳細說明如何建立及設定負載平衡器的每個元件。 請先使用 [az group create](/cli/azure/group#create) 建立資源群組，才可建立負載平衡器。 下列範例會在 westus 位置建立名為 myRGLoadBalancer 的資源群組：
+本節將詳細說明如何建立及設定負載平衡器的每個元件。 請先使用 [az group create](/cli/azure/group#create) 建立資源群組，才可建立負載平衡器。 下列範例會在 eastus 位置建立名為 myResourceGroupLoadBalancer 的資源群組：
 
 ```azurecli
-az group create --name myRGLoadBalancer --location westus
+az group create --name myResourceGroupLoadBalancer --location eastus
 ```
 
 ### <a name="create-a-public-ip-address"></a>建立公用 IP 位址
-若要存取網際網路上您的應用程式，您需要負載平衡器的公用 IP 位址。 使用 [az network public-ip create](/cli/azure/public-ip#create) 建立公用 IP 位址。 下列範例會在 myRGLoadBalancer 資源群組中建立名為 myPublicIP 的公用 IP 位址：
+若要存取網際網路上您的應用程式，您需要負載平衡器的公用 IP 位址。 使用 [az network public-ip create](/cli/azure/public-ip#create) 建立公用 IP 位址。 下列範例會在 myResourceGroupLoadBalancer 資源群組中建立名為 myPublicIP 的公用 IP 位址：
 
 ```azurecli
 az network public-ip create \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --name myPublicIP
 ```
 
@@ -62,7 +71,7 @@ az network public-ip create \
 
 ```azurecli
 az network lb create \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --name myLoadBalancer \
     --frontend-ip-name myFrontEndPool \
     --backend-pool-name myBackEndPool \
@@ -78,7 +87,7 @@ az network lb create \
 
 ```azurecli
 az network lb probe create \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --lb-name myLoadBalancer \
     --name myHealthProbe \
     --protocol tcp \
@@ -92,7 +101,7 @@ az network lb probe create \
 
 ```azurecli
 az network lb rule create \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --lb-name myLoadBalancer \
     --name myLoadBalancerRule \
     --protocol tcp \
@@ -112,7 +121,7 @@ az network lb rule create \
 
 ```azurecli
 az network vnet create \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --name myVnet \
     --subnet-name mySubnet
 ```
@@ -121,7 +130,7 @@ az network vnet create \
 
 ```azurecli
 az network nsg create \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --name myNetworkSecurityGroup
 ```
 
@@ -129,7 +138,7 @@ az network nsg create \
 
 ```azurecli
 az network nsg rule create \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --nsg-name myNetworkSecurityGroup \
     --name myNetworkSecurityGroupRule \
     --priority 1001 \
@@ -142,7 +151,7 @@ az network nsg rule create \
 ```bash
 for i in `seq 1 3`; do
     az network nic create \
-        --resource-group myRGLoadBalancer \
+        --resource-group myResourceGroupLoadBalancer \
         --name myNic$i \
         --vnet-name myVnet \
         --subnet mySubnet \
@@ -206,7 +215,7 @@ runcmd:
 
 ```azurecli
 az vm availability-set create \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --name myAvailabilitySet \
     --platform-fault-domain-count 3 \
     --platform-update-domain-count 2
@@ -217,7 +226,7 @@ az vm availability-set create \
 ```bash
 for i in `seq 1 3`; do
     az vm create \
-        --resource-group myRGLoadBalancer \
+        --resource-group myResourceGroupLoadBalancer \
         --name myVM$i \
         --availability-set myAvailabilitySet \
         --nics myNic$i \
@@ -237,7 +246,7 @@ done
 
 ```azurecli
 az network public-ip show \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --name myPublicIP \
     --query [ipAddress] \
     --output tsv
@@ -258,7 +267,7 @@ az network public-ip show \
 
 ```azurecli
 az network nic ip-config address-pool remove \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --nic-name myNic2 \
     --ip-config-name ipConfig1 \
     --lb-name myLoadBalancer \
@@ -272,7 +281,7 @@ az network nic ip-config address-pool remove \
 
 ```azurecli
 az network nic ip-config address-pool add \
-    --resource-group myRGLoadBalancer \
+    --resource-group myResourceGroupLoadBalancer \
     --nic-name myNic2 \
     --ip-config-name ipConfig1 \
     --lb-name myLoadBalancer \
@@ -281,7 +290,19 @@ az network nic ip-config address-pool add \
 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已了解如何建立虛擬機器的負載平衡器。 請前進到下一個教學課程，以深入了解 Azure 虛擬網路元件。
+在本教學課程中，您建立負載平衡器，並將 VM 連結到它。 您已了解如何︰
 
-[管理 VM 網路功能](tutorial-virtual-network.md)
+> [!div class="checklist"]
+> * 建立 Azure Load Balancer
+> * 建立負載平衡器健全狀況探查
+> * 建立負載平衡器流量規則
+> * 使用 cloud-init 建立基本的 Node.js 應用程式
+> * 建立虛擬機器並連結至負載平衡器
+> * 檢視作用中的負載平衡器
+> * 新增和移除虛擬機器的負載平衡器
+
+請前進到下一個教學課程，以深入了解 Azure 虛擬網路元件。
+
+> [!div class="nextstepaction"]
+> [管理 VM 和虛擬網路](tutorial-virtual-network.md)
 

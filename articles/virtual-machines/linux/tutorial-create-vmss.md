@@ -13,21 +13,27 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.devlang: azurecli
 ms.topic: article
-ms.date: 04/18/2017
+ms.date: 05/02/2017
 ms.author: iainfou
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 6be49be9e4321075aa76b3abcf4695d0e7b45f6e
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 972c6f60c8963cad6f92b228e795a5027b838f00
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/17/2017
 
 ---
 
 # <a name="create-a-virtual-machine-scale-set-and-deploy-a-highly-available-app-on-linux"></a>在 Linux 上建立虛擬機器擴展集及部署高可用性應用程式
-在本教學課程中，您會了解 Azure 中的虛擬機器擴展集如何讓您快速地擴展執行您應用程式的虛擬機器 (VM) 數目。 虛擬機器擴展集可讓您部署和管理一組相同、自動調整的虛擬機器。 您可以手動調整擴展集中的 VM 數目，或定義規則以根據 CPU 使用量、記憶體需求或網路流量自動調整。 若要查看作用中的虛擬機器擴展集，您可建置在多部 Linux VM 上執行的 Node.js 應用程式。
+虛擬機器擴展集可讓您部署和管理一組相同、自動調整的虛擬機器。 您可以手動調整擴展集中的 VM 數目，或定義規則以根據 CPU 使用量、記憶體需求或網路流量自動調整。 在本教學課程中，您將會在 Azure 部署虛擬機器擴展集。 您會了解如何：
 
-您可以使用最新的 [Azure CLI 2.0](/cli/azure/install-azure-cli) 來完成本教學課程中的步驟。
+> [!div class="checklist"]
+> * 使用 Cloud-init 來建立要調整的應用程式
+> * 建立虛擬機器擴展集
+> * 增加或減少擴展集內的執行個體數目
+> * 檢視擴展集執行個體的連線資訊
+> * 在擴展集內使用資料磁碟
 
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 您也可以在瀏覽器中使用 [Cloud Shell](/azure/cloud-shell/quickstart)。
 
 ## <a name="scale-set-overview"></a>擴展集概觀
 虛擬機器擴展集可讓您部署和管理一組相同、自動調整的虛擬機器。 擴展集使用的元件，與您在[建立高可用性 VM](tutorial-availability-sets.md) 的先前教學課程中所學習到的元件相同。 擴展集中的 VM 會建立於可用性設定組中並分散於邏輯容錯網域和更新網域。
@@ -86,10 +92,10 @@ runcmd:
 
 
 ## <a name="create-a-scale-set"></a>建立擴展集
-請先使用 [az group create](/cli/azure/group#create) 建立資源群組，才可以建立擴展集。 下列範例會在 westus 位置建立名為 myResourceGroupScaleSet 的資源群組：
+請先使用 [az group create](/cli/azure/group#create) 建立資源群組，才可以建立擴展集。 下列範例會在 eastus 位置建立名為 myResourceGroupScaleSet 的資源群組：
 
 ```azurecli
-az group create --name myResourceGroupScaleSet --location westus
+az group create --name myResourceGroupScaleSet --location eastus
 ```
 
 現在使用 [az vmss create](/cli/azure/vmss#create) 建立虛擬機器擴展集。 下列範例會建立名為 myScaleSet 的擴展集，使用 cloud-int 檔案來自訂 VM，以及產生 SSH 金鑰 (如果不存在)︰
@@ -161,8 +167,8 @@ az vmss list-instances \
 ```azurecli
   InstanceId  LatestModelApplied    Location    Name          ProvisioningState    ResourceGroup            VmId
 ------------  --------------------  ----------  ------------  -------------------  -----------------------  ------------------------------------
-           1  True                  westus      myScaleSet_1  Succeeded            MYRESOURCEGROUPSCALESET  c72ddc34-6c41-4a53-b89e-dd24f27b30ab
-           3  True                  westus      myScaleSet_3  Succeeded            MYRESOURCEGROUPSCALESET  44266022-65c3-49c5-92dd-88ffa64f95da
+           1  True                  eastus      myScaleSet_1  Succeeded            MYRESOURCEGROUPSCALESET  c72ddc34-6c41-4a53-b89e-dd24f27b30ab
+           3  True                  eastus      myScaleSet_3  Succeeded            MYRESOURCEGROUPSCALESET  44266022-65c3-49c5-92dd-88ffa64f95da
 ```
 
 
@@ -241,7 +247,16 @@ az vmss disk detach `
 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您已了解如何建立虛擬機器擴展集。 請前進到下一個教學課程，以深入了解虛擬機器的負載平衡概念。
+在本教學課程中，您已建立虛擬機器擴展集。 您已了解如何︰
 
-[平衡虛擬機器的負載](tutorial-load-balancer.md)
+> [!div class="checklist"]
+> * 使用 Cloud-init 來建立要調整的應用程式
+> * 建立虛擬機器擴展集
+> * 增加或減少擴展集內的執行個體數目
+> * 檢視擴展集執行個體的連線資訊
+> * 在擴展集內使用資料磁碟
 
+請前進到下一個教學課程，以深入了解虛擬機器的負載平衡概念。
+
+> [!div class="nextstepaction"]
+> [平衡虛擬機器的負載](tutorial-load-balancer.md)

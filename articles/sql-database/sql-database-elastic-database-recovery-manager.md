@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 10/25/2016
 ms.author: ddove
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: c34af1d0c1df88d13ba82fdef7ca9b33a2e55784
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: ce043e53d64a79c0ba37b500f8af9231e5372044
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -42,7 +42,7 @@ GSM 和 LSM 可能因為以下原因變成不同步：
 2. 發生異地備援容錯移轉事件。 若要繼續，必須更新伺服器名稱及應用程式中分區對應管理員的資料庫名稱，然後更新分區對應中所有分區的分區對應詳細資料。 如果有異地容錯移轉，這類復原邏輯應該在容錯移轉工作流程內自動執行。 自動化修復動作可為異地備援的資料庫啟用順暢的管理能力，並避免人工的動作。 若要了解在資料中心中斷時復原資料庫的選項，請參閱[商務持續性](sql-database-business-continuity.md)和[災害復原](sql-database-disaster-recovery.md)。
 3. 分區或 ShardMapManager 資料庫會還原到較早的時間點。 若要了解如何使用備份進行時間點復原，請參閱[使用備份進行復原](sql-database-recovery-using-backups.md)。
 
-如需有關「Azure SQL Database 彈性資料庫」工具、「異地複寫」及「還原」的詳細資訊，請參閱下列連結： 
+如需有關 Azure SQL Database 彈性資料庫工具、異地複寫及還原的詳細資訊，請參閱下列連結： 
 
 * [概觀：雲端商務持續性和 SQL Database 的資料庫災害復原](sql-database-business-continuity.md) 
 * [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)  

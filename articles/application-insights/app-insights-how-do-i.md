@@ -3,7 +3,7 @@ title: "我如何在 Azure Application Insights 中... | Microsoft Docs"
 description: "Application Insights 中的常見問題集。"
 services: application-insights
 documentationcenter: 
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 48b2b644-92e4-44c3-bc14-068f1bbedd22
 ms.service: application-insights
@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 04/04/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
-ms.openlocfilehash: d7795a494fbe8d3a850d7d8805cf059a86965a64
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 2e2b59c89fdc91437f148d062e312204be994350
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/05/2017
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -82,55 +82,11 @@ ms.lasthandoff: 04/05/2017
 * [建立新的資源](app-insights-powershell-script-create-resource.md)
 * [建立新的警示](app-insights-alerts.md#automation)
 
-## <a name="application-versions-and-stamps"></a>應用程式版本和戳記
-### <a name="separate-the-results-from-dev-test-and-prod"></a>將開發、測試和生產的結果分開
-* 針對不同的環境，設定不同的重點
-* 針對不同的戳記 (開發、測試、生產)，使用不同的屬性值來標記遙測
+## <a name="separate-telemetry-from-different-versions"></a>區分不同版本的遙測
 
-[深入了解](app-insights-separate-resources.md)
-
-### <a name="filter-on-build-number"></a>篩選組建編號
-當您發佈新的 App 版本時，希望能夠將不同組建的遙測分開。
-
-您可以設定 [應用程式版本] 屬性，如此便能篩選[搜尋](app-insights-diagnostic-search.md)和[計量總管](app-insights-metrics-explorer.md)的結果。
-
-![](./media/app-insights-how-do-i/050-filter.png)
-
-設定 [應用程式版本] 屬性有幾種不同的方法。
-
-* 直接設定：
-
-    `telemetryClient.Context.Component.Version = typeof(MyProject.MyClass).Assembly.GetName().Version;`
-* 在 [遙測初始設定式](app-insights-api-custom-events-metrics.md#defaults) 中將該行換行，以確保會以一致性方式設定所有 TelemetryClient 執行個體。
-* [ASP.NET] 在 `BuildInfo.config`中設定版本。 Web 模組將會從 BuildLabel 節點取得版本。 在您的專案中包含此檔案， 而且記得要在 [方案總管] 中設定 [永遠複製] 屬性。
-
-    ```XML
-
-    <?xml version="1.0" encoding="utf-8"?>
-    <DeploymentEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/VisualStudio/DeploymentEvent/2013/06">
-      <ProjectName>AppVersionExpt</ProjectName>
-      <Build type="MSBuild">
-        <MSBuild>
-          <BuildLabel kind="label">1.0.0.2</BuildLabel>
-        </MSBuild>
-      </Build>
-    </DeploymentEvent>
-
-    ```
-* [ASP.NET] 在 MSBuild 中自動產生 BuildInfo.config。 若要這樣做，請先在 .csproj 檔案中加入幾行：
-
-    ```XML
-
-    <PropertyGroup>
-      <GenerateBuildInfoConfigFile>true</GenerateBuildInfoConfigFile>    <IncludeServerNameInBuildInfo>true</IncludeServerNameInBuildInfo>
-    </PropertyGroup>
-    ```
-
-    這會產生一個稱為 *yourProjectName*.BuildInfo.config 的檔案。 發佈程序會將這個檔案重新命名為 BuildInfo.config。
-
-    當您使用 Visual Studio 建置時，組建標籤會包含預留位置 (AutoGen_...)。 但是當使用 MSBuild 建立時，則會填入正確的版本號碼。
-
-    若要允許 MSBuild 產生版本號碼，請在 AssemblyReference.cs 中設定類似 `1.0.*` 的版本
+* 應用程式中的多個角色︰使用單一 Application Insights 資源，並依據 cloud_Rolename 進行篩選。 [深入了解](app-insights-monitor-multi-role-apps.md)
+* 區分開發、測試和發行版本︰使用不同的 Application Insights 資源。 從 web.config 挑選檢測金鑰。 [深入了解](app-insights-separate-resources.md)
+* 報告組建版本︰使用遙測初始設定式新增屬性。 [深入了解](app-insights-separate-resources.md)
 
 ## <a name="monitor-backend-servers-and-desktop-apps"></a>監視後端伺服器與桌面應用程式
 [使用 Windows Server SDK 模組](app-insights-windows-desktop.md)。

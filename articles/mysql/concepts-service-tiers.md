@@ -3,19 +3,17 @@ title: "適用於 MySQL 的 Azure 資料庫中的服務層 | Microsoft Docs"
 description: "適用於 MySQL 的 Azure 資料庫中的服務層"
 services: mysql
 author: v-chenyh
-ms.author: v-chenyh
 manager: jhubbard
 editor: jasonh
-ms.assetid: 
 ms.service: mysql-database
-ms.tgt_pltfrm: portal
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 05/16/2017
+ms.author: v-chenyh
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: b647db3c3a48ac6c151814ee68b3117a92c1d4d8
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 9ae42c9b151c53a1f57d6856bc29cd7f71a7f9be
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/17/2017
 
 ---
 # <a name="azure-database-for-mysql-options-and-performance-understand-whats-available-in-each-service-tier"></a>適用於 MySQL 的 Azure 資料庫選項和效能：了解每個服務層中可用的項目
@@ -39,18 +37,17 @@ ms.lasthandoff: 05/10/2017
 | 基本 | 最適合需要可調整計算和儲存體而不需 IOPS 保證的小型工作負載。 範例包括用於開發或測試的伺服器，或者不常使用的小規模應用程式。 |
 | 標準 | 適用於需要 IOPS 保證之雲端應用程式的進階選項，能夠獨立調整到更高的計算與儲存體，以獲取高輸送量。 範例包括 Web 或分析應用程式。 |
 | 進階 | 最適合需要為交易和 IO 提供非常短暫之延遲的工作負載，以及高 IO 和工作負載輸送量。 可為許多並行使用者提供最佳支援。 適用於支援任務關鍵性應用程式的資料庫。<br />預覽版中並未提供進階服務層。 |
-| &nbsp; | &nbsp; |
+
 
 若要決定服務層，請先從判斷您的工作負載是否需要 IOPS 保證開始。 接著，決定您所需的基本功能：
 
 | **服務層功能** | **基本** | **標準** | **進階** * |
 | :------------------------ | :-------- | :----------- | :------------ |
-| 計算單位數目上限 | 100 | 2000 | 預覽版中並未提供 |
-| 總儲存體上限 | 1050 GB | 10000 GB | 預覽版中並未提供 |
+| 計算單位數目上限 | 100 | 2,000 | 預覽版中並未提供 |
+| 總儲存體上限 | 1,050 GB | 10,000 GB | 預覽版中並未提供 |
 | 儲存體 IOPS 保證 | N/A | 是 | 預覽版中並未提供 |
-| 儲存體 IOPS 上限 | N/A | 30,000 | 預覽版中並未提供 |
+| 儲存體 IOPS 上限 | N/A | 3,000 | 預覽版中並未提供 |
 | 資料庫備份的保留期限 | 7 天 | 35 天 | 35 天 |
-| &nbsp; | &nbsp; | &nbsp; | &nbsp; |
 
 > [!NOTE]
 > 預覽版中的標準服務層目前最多支援 800 個計算單位，以及 1000 GB 的儲存體上限。
@@ -63,40 +60,36 @@ ms.lasthandoff: 05/10/2017
 > 在預覽版中，基本和標準層目前不支援動態調整儲存體。 我們計劃在未來新增此功能。
 
 > [!NOTE]
-> 在標準服務層，IOPS 會以固定 3:1 的比例，按比例調整已佈建的儲存體大小。 125 GB 的內含儲存體可為 375 已佈建的 IOPS 提供保證，每個的 IO 大小可高達 256 KB。 如果您佈建 1000 GB，您將會取得 3000 已佈建的 IOPS。 您必須監視伺服器計算單位耗用量並相應增加，以充分利用可用的已佈建 IOPS。
+> 在標準服務層，IOPS 會以固定 3:1 的比例，按比例調整已佈建的儲存體大小。 125 GB 的內含儲存體可為 375 已佈建的 IOPS 提供保證，每個的 IO 大小可高達 256 KB。 如果您佈建 1,000 GB，您會獲得 3,000 已佈建的 IOPS。 您必須監視伺服器計算單位耗用量並相應增加，以充分利用可用的已佈建 IOPS。
 
 ## <a name="service-tiers-and-performance-levels"></a>服務層和效能等級
 
 適用於 MySQL 的 Azure 資料庫可在每個服務層內提供多個效能等級。 您可以使用下列其中一種方式，彈性選擇最符合您工作負載需求的等級：
-
 - [Azure 入口網站](quickstart-create-mysql-server-database-using-azure-portal.md)
 - [Azure CLI](quickstart-create-mysql-server-database-using-azure-cli.md)
 
 無論每部 MySQL 伺服器內裝載的資料庫數目如何，您的資料庫都保證會有一組資源，且您伺服器的預期效能特性不會受到影響。
 
-基本服務層：
+### <a name="basic-service-tier"></a>基本服務層：
 
 | **效能等級** | **50** | **100** |
 | :-------------------- | :----- | :------ |
 | 計算單位數目上限 | 50 | 100 |
 | 內含的儲存體大小 | 50 GB | 50 GB |
-| 伺服器儲存體大小上限\* | 1050 GB | 1050 GB |
-| 並行登入數上限 | &nbsp; | &nbsp; |
-| 連接數目上限 | &nbsp; | &nbsp; |
-| &nbsp; | &nbsp; | &nbsp; |
+| 伺服器儲存體大小上限\* | 1,050 GB | 1,050 GB |
 
-標準服務層：
+\* 伺服器儲存體大小上限是指針對您伺服器佈建的儲存體大小上限。
+
+
+### <a name="standard-service-tier"></a>標準服務層：
 
 | **效能等級** | **100** | **200** | **400** | **800** |
 | :-------------------- | :------ | :------ | :------ | :------ |
 | 計算單位數目上限 | 100 | 200 | 400 | 800 |
-| 內含的儲存體大小和已佈建的 IOPS | 125 GB，375 IOPS | &nbsp; | &nbsp; | &nbsp; |
-| 伺服器儲存體大小上限\* | 1 TB | &nbsp; | &nbsp; | &nbsp; |
-| 伺服器佈建的 IOPS 上限 | 3000 IOPS | &nbsp; | &nbsp; | &nbsp; |
-| 每個 GB 中伺服器佈建的 IOPS 上限 | 每個 GB 中固定 3 IOPS | &nbsp; | &nbsp; | &nbsp; |
-| 並行登入數上限 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |
-| 連接數目上限 | &nbsp; | &nbsp; | &nbsp; | &nbsp; |
-| &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; |
+| 內含的儲存體大小和已佈建的 IOPS | 125 GB、<br/> 375 IOPS | 125 GB、<br/> 375 IOPS | 125 GB、<br/> 375 IOPS | 125 GB、<br/> 375 IOPS |
+| 伺服器儲存體大小上限\* | 1 TB | 1 TB | 1 TB | 1 TB |
+| 伺服器佈建的 IOPS 上限 | 3,000 IOPS | 3,000 IOPS | 3,000 IOPS | 3,000 IOPS |
+| 每個 GB 中伺服器佈建的 IOPS 上限 | 每個 GB 中固定 3 IOPS | 每個 GB 中固定 3 IOPS | 每個 GB 中固定 3 IOPS | 每個 GB 中固定 3 IOPS |
 
 \* 伺服器儲存體大小上限是指針對您伺服器佈建的儲存體大小上限。
 
@@ -109,12 +102,15 @@ ms.lasthandoff: 05/10/2017
 整個相應增加程序的期間取決於伺服器變更前後的大小和服務層。 例如，在標準服務層內變更計算單位的伺服器應在幾分鐘內完成。 完成變更之前，不會將新屬性套用至伺服器。
 
 ### <a name="documentation-about-the-steps-for-scaling-up-or-down"></a>進行相應增加或減少之步驟的相關文件
+[使用 Azure CLI 監視和調整適用於 MySQL 的 Azure 資料庫伺服器](scripts/sample-scale-server.md)
 
-- [使用 Azure 入口網站管理單一伺服器](quickstart-create-mysql-server-database-using-azure-portal.md)
-- [使用 Azure CLI 管理單一伺服器](quickstart-create-mysql-server-database-using-azure-cli.md)
 
 ### <a name="details-about-scaling-up-or-down"></a>相應增加或減少的相關詳細資料
 
 - 若要將資料庫降級，伺服器儲存體單位應該小於目標服務層允許的大小上限。
-- 還原服務會針對各種服務層提供不同的選項。 降級後您可能會無法還原至某個時間點，或具有較短的備份保留期限。 如需詳細資訊，請參閱[如何使用 Azure 入口網站來備份和還原適用於 MySQL 的 Azure 資料庫伺服器](./howto-restore-server-portal.md)
+- 還原服務會針對各種服務層提供不同的選項。 降級後您可能會無法還原至某個時間點，或具有較短的備份保留期限。 如需詳細資訊，請參閱[如何使用 Azure 入口網站來備份和還原適用於 MySQL 的 Azure 資料庫伺服器](howto-restore-server-portal.md)
 - 完成變更之前，不會將新屬性套用至伺服器。
+
+## <a name="next-steps"></a>後續步驟
+[說明計算單位與儲存體單位](concepts-compute-unit-and-storage.md)
+

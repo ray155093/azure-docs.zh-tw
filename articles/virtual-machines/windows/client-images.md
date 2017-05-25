@@ -14,10 +14,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 03/14/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: b53bd4d9db9c1ca030a770e56427f35204b90ab3
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: fbc5cc4a332877451867ca434db40d67ee623a0f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -44,15 +45,17 @@ ms.lasthandoff: 03/31/2017
 | [Enterprise 開發/測試](https://azure.microsoft.com/ofers/ms-azr-0148p/) |0148P |Windows 10 |
 
 ## <a name="check-your-azure-subscription"></a>檢查您的 Azure 訂用帳戶
-如果您不知道您的優惠識別碼，您可以透過 Azure 入口網站或帳戶入口網站取得。
+如果您不知道您的優惠識別碼，您可以透過 Azure 入口網站以下列兩種方式取得：  
 
-訂用帳戶優惠識別碼顯示在 Azure 入口網站的 [訂用帳戶] 刀鋒視窗︰
+- 在 [訂用帳戶] 刀鋒視窗上︰
 
-![Azure 入口網站中的優惠識別碼詳細資料](./media/client-images/offer_id_azure_portal.png) 
+  ![Azure 入口網站中的優惠識別碼詳細資料](./media/client-images/offer-id-azure-portal.png) 
+
+- 或者，按一下 [計費]，然後按一下訂用帳戶識別碼。 優惠識別碼隨即會出現在 [計費] 刀鋒視窗中。
 
 您也可以從 Azure 帳戶入口網站的 [[訂用帳戶] 索引標籤](http://account.windowsazure.com/Subscriptions) 檢視優惠識別碼︰
 
-![Azure 帳戶入口網站中的優惠識別碼詳細資料](./media/client-images/offer_id_azure_account_portal.png) 
+![Azure 帳戶入口網站中的優惠識別碼詳細資料](./media/client-images/offer-id-azure-account-portal.png) 
 
 ## <a name="next-steps"></a>後續步驟
 您現在可以使用 [PowerShell](../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)、[Resource Manager templates](ps-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 或 [Visual Studio](../../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md) 來部署您的 VM。

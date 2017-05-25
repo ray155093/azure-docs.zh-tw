@@ -17,16 +17,16 @@ ms.workload: data-management
 ms.date: 04/21/2017
 ms.author: sashan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 364038c11f13bcb72b259618b1d7d433f48a33c1
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: b1b67a83a25159414a80382030903d300aad71f7
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
 # <a name="designing-highly-available-services-using-azure-sql-database"></a>使用 Azure SQL Database 設計高可用性服務
 
-在 Azure SQL Database 上建置和部署高可用性服務時，必須使用[容錯移轉群組和主動式異地複寫](sql-database-geo-replication-overview.md)。 它可以從區域性故障和嚴重中斷恢復，並使用容錯移轉至次要資料庫來快速復原。 本文著重於常見的應用程式模式，以及根據應用程式部署需求、您的目標服務等級協定、流量延遲和成本探討每個選項的優缺點。 如需主動式異地複寫與彈性集區的相關資訊，請參閱 [彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
+在 Azure SQL Database 上建置和部署高可用性服務時，您可以使用[容錯移轉群組和主動式異地複寫](sql-database-geo-replication-overview.md)來為區域性故障和嚴重的服務中斷提供恢復能力，並啟用快速復原至次要資料庫的功能。 本文著重於常見的應用程式模式，以及根據應用程式部署需求、您的目標服務等級協定、流量延遲和成本探討每個選項的優缺點。 如需主動式異地複寫與彈性集區的相關資訊，請參閱[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
 
 ## <a name="design-pattern-1-active-passive-deployment-for-cloud-disaster-recovery-with-a-co-located-database"></a>設計模式 1：雲端災害復原的主動-被動部署，使用共置資料庫
 這個選項最適合具有下列特性的應用程式：
@@ -43,9 +43,9 @@ ms.lasthandoff: 05/10/2017
 
 下圖顯示此組態在運作中斷之前的情形。
 
-![SQL Database「異地複寫」組態。 雲端災害復原。](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern1-1.png)
+![SQL Database 異地複寫組態。 雲端災害復原。](./media/sql-database-designing-cloud-solutions-for-disaster-recovery/pattern1-1.png)
 
-在主要區域中斷之後，SQL Database 服務會偵測到主要資料庫無法存取，並根據自動容錯移轉原則的參數觸發容錯移轉至次要資料庫。 根據您的應用程式 SLA，您可以決定在中斷偵測和容錯移轉本身之間設定寬限期。 設定寬限期可減少在重大中斷且區域可用性無法快速還原的情況下減少資料遺失的風險。 如果流量管理員在容錯移轉群組觸發資料庫的容錯移轉之前就啟動端點容錯移轉，Web 應用程式將無法重新連線到資料庫。 資料庫容錯移轉一旦完成，應用程式的重新連線嘗試就會自動成功。 
+在主要區域中斷之後，SQL Database 服務會偵測到主要資料庫無法存取，並根據自動容錯移轉原則的參數觸發容錯移轉至次要資料庫。 根據您的應用程式 SLA，您可以決定在中斷偵測和容錯移轉本身之間設定寬限期。 設定寬限期可減少在重大中斷且區域可用性無法快速還原的情況下減少資料遺失的風險。 如果流量管理員在容錯移轉群組觸發資料庫的容錯移轉之前就啟動端點容錯移轉，Web 應用程式會無法重新連線到資料庫。 資料庫容錯移轉一旦完成，應用程式的重新連線嘗試就會自動成功。 
 
 > [!NOTE]
 > 若要完全協調應用程式和資料庫的容錯移轉，您應該設計您自己的監視方法，並以手動方式容錯移轉 Web 應用程式端點和資料庫。
@@ -58,7 +58,7 @@ ms.lasthandoff: 05/10/2017
 如果次要地區發生運作中斷，主要與次要資料庫之間的複寫連結會暫停，但是不會觸發容錯移轉，因為主要資料庫未受到影響。 在此案例中，應用程式的可用性不會改變，但應用程式會在曝露的情況下運作，因此，萬一這兩個區域連續失敗，將帶來較高的風險。
 
 > [!NOTE]
->我們只建議使用具有單一 DR 區域的部署組態。 這是因為大部分 Azure 地理位置有兩個區域。 這些組態無法保護應用程式免於遭受兩個區域同時發生的重大失敗。 在這種罕見的失敗情況下，您可以使用[異地復原作業](sql-database-disaster-recovery.md#recover-using-geo-restore)，在第三個區域復原資料庫。
+> 我們只建議使用具有單一 DR 區域的部署組態。 這是因為大部分 Azure 地理位置有兩個區域。 這些組態無法保護應用程式免於遭受兩個區域同時發生的重大失敗。 在這種罕見的失敗情況下，您可以使用[異地復原作業](sql-database-disaster-recovery.md#recover-using-geo-restore)，在第三個區域復原資料庫。
 >
 
 一旦運作中斷情況趨緩，次要資料庫將會自動與主要資料庫重新同步處理。 在同步處理期間，視需要同步處理的資料量而定，主要資料庫的效能可能會稍微受到影響。 下圖說明次要地區發生運作中斷的情形。
@@ -163,7 +163,7 @@ ms.lasthandoff: 05/10/2017
 * 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
 * 如需商務持續性概觀和案例，請參閱 [商務持續性概觀](sql-database-business-continuity.md)
 * 若要了解如何使用自動備份進行復原，請參閱 [從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
-* 若要了解更快速的復原選項，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)  
+* 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)  
 * 若要了解如何使用自動備份進行封存，請參閱 [資料庫複製](sql-database-copy.md)
-* 如需主動式異地複寫與彈性集區的相關資訊，請參閱 [彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
+* 如需主動式異地複寫與彈性集區的相關資訊，請參閱[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
 

@@ -12,12 +12,12 @@ ms.custom: connection security
 ms.tgt_pltfrm: portal
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 05/15/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 079e4234c7969b267e7e3a3a518cae570da77dfe
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: dd8b3d5b26f4a903f403e5c7e9dba645a14b3231
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/16/2017
 
 ---
 # <a name="configure-ssl-connectivity-in-azure-database-for-postgresql"></a>在適用於 PostgreSQL 的 Azure 資料庫中設定 SSL 連線能力
@@ -33,14 +33,14 @@ ms.lasthandoff: 05/10/2017
 ## <a name="configure-enforcement-of-ssl"></a>設定強制執行 SSL
 您可以選擇性地停用強制執行 SSL 連線能力。 Microsoft Azure 建議您一律啟用 [強制執行 SSL 連接] 設定，以取得增強的安全性。
 
-#### <a name="using-the-azure-portal"></a>使用 Azure 入口網站
+### <a name="using-the-azure-portal"></a>使用 Azure 入口網站
 瀏覽您適用於 PostgreSQL 的 Azure 資料庫伺服器，然後按一下 [連接安全性]。 使用切換按鈕來啟用或停用 [強制執行 SSL 連接] 設定。 然後按一下 [儲存] 。 
 
 ![連接安全性：停用強制執行 SSL](./media/concepts-ssl-connection-security/1-disable-ssl.png)
 
 您可以檢視 [概觀] 頁面來查看 [SSL 強制執行狀態] 指標，藉以確認設定。
 
-#### <a name="using-azure-cli"></a>使用 Azure CLI
+### <a name="using-azure-cli"></a>使用 Azure CLI
 您可以在 Azure CLI 中分別使用 `Enabled` 或 `Disabled` 值，來啟用或停用 **sssl-enforcement** 參數。
 
 ```azurecli
@@ -67,11 +67,11 @@ az postgres server update --resource-group myresourcegroup --name mypgserver-201
 ```bash
 wget http://www.openssl.org/source/openssl-1.1.0e.tar.gz
 ``` 
-從下載的封裝中將檔案解壓縮
+從下載套件中將檔案解壓縮
 ```bash
 tar -xvzf openssl-1.1.0e.tar.gz
 ```
-輸入要在其中將檔案解壓縮的目錄。 它預設應該如下。
+進入已解壓縮檔案的目錄。 它預設應該如下。
 
 ```bash
 cd openssl-1.1.0e
@@ -86,7 +86,7 @@ cd openssl-1.1.0e
 ```bash
 make
 ```
-編譯完成之後，您就能藉由執行下列命令，準備好以可執行檔形式來安裝 OpenSSL：
+編譯完成之後，您就可以執行下列命令，以可執行檔形式安裝 OpenSSL：
 ```bash
 make install
 ```
@@ -102,7 +102,7 @@ OpenSSL 1.1.0e 7 Apr 2014
 
 #### <a name="for-windows"></a>若為 Windows
 在 Windows 電腦上安裝 OpenSSL，可使用下列方式來完成：
-1. **(建議)** 在 Window 10 和更新版本上針對 Windows 功能使用內建的 Bash，預設會安裝 OpenSSL。 如需如何在 Window 10 上針對 Windows 功能啟用 Bash 的指示，請參閱[這裡 (英文)](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)。
+1. **(建議)** 在 Window 10 和更新版本中使用內建的 Bash for Windows 功能，預設會安裝 OpenSSL。 您可以在[這裡](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)找到如何在 Window 10 啟用 Bash for Windows 功能的指示。
 2. 透過下載社群所提供的 Win32/64 應用程式。 雖然 OpenSSL Software Foundation 不會提供任何特定的 Windows 安裝程式或為其背書，但會在[這裡 (英文)](https://wiki.openssl.org/index.php/Binaries) 提供一份可用的安裝程式
 
 ### <a name="decode-your-certificate-file"></a>將憑證檔案解碼
@@ -115,8 +115,12 @@ OpenSSL>x509 -inform DER -in BaltimoreCyberTrustRoot.cer -text -out root.crt
 ### <a name="connecting-to-azure-database-for-postgresql-with-ssl-certificate-authentication"></a>使用 SSL 憑證驗證連接至適用於 PostgreSQL 的 Azure 資料庫
 既然您已成功將憑證解碼，您現在可以透過 SSL 安全地連接到資料庫伺服器。 若要允許伺服器憑證驗證，憑證必須放置於使用者主目錄上的 ~/.postgresql/root.crt 檔案中 (在 Microsoft Windows 上，此檔案會命名為 %APPDATA%\postgresql\root.crt)。 以下提供連接到適用於 PostgreSQL 之 Azure 資料庫的指示。
 
+> [!NOTE]
+> 目前有個已知問題，如果您在對服務的連線中使用「sslmode=verify-full」，連線會失敗，並出現下列錯誤：_"&lt;區域&gt;.control.database.windows.net" (和其他 7 個名稱) 的伺服器憑證，不符合主機名稱 "&lt;伺服器名稱&gt;.postgres.database.azure.com"。_
+> 如果一定要使用「sslmode=verify-full」，請使用伺服器名稱慣例 **&lt;伺服器名稱&gt;.database.windows.net** 來作為連接字串的主機名稱。 我們計劃在未來移除這項限制。 使用其他 [SSL 模式](https://www.postgresql.org/docs/9.6/static/libpq-ssl.html#LIBPQ-SSL-SSLMODE-STATEMENTS)的連線請繼續使用常用的主機命名慣例 **&lt;伺服器名稱&gt;.postgres.database.azure.com**。
+
 #### <a name="using-psql-command-line-utility"></a>使用 psql 命令列公用程式
-下列範例將示範如何透過 pgsql 命令列介面，以及透過使用 psql 命令列公用程式、使用所建立的 `root.crt` 檔案及 `sslmode=verify-ca` 選項，成功連接到您的 PostgreSQL 伺服器。
+下列範例會示範如何使用 psql 命令列公用程式，來成功地連線到 PostgreSQL 伺服器。 使用所建立的 `root.crt` 檔案和 `sslmode=verify-ca` 或 `sslmode=verify-full` 選項。
 
 使用 PostgreSQL 命令列介面，執行下列命令：
 ```bash
@@ -136,9 +140,10 @@ postgres=>
 ```
 
 #### <a name="using-pgadmin-gui-tool"></a>使用 pgAdmin GUI 工具
-設定 pgAdmin 4 以透過 SSL 安全地連接，需要您設定 `SSL mode = Verify-CA`，如下所示：
+若要將 pgAdmin 4 設定為透過 SSL 進行安全連線，您必須如下所示地設定 `SSL mode = Verify-CA` 或 `SSL mode = Verify-Full`：
 
 ![pgAdmin - 連接 - 需要 SSL 模式的螢幕擷取畫面](./media/concepts-ssl-connection-security/2-pgadmin-ssl.png)
 
 ## <a name="next-steps"></a>後續步驟
 檢閱[適用於 PostgreSQL 之 Azure 資料庫的連線庫](concepts-connection-libraries.md)後面的各種應用程式連線能力選項
+

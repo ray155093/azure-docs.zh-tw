@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/19/2017
 ms.author: robinsh
-translationtype: Human Translation
-ms.sourcegitcommit: 1cc1ee946d8eb2214fd05701b495bbce6d471a49
-ms.openlocfilehash: 284b239860481cf76f647d78f6a7b5e2b7cf9a3b
-ms.lasthandoff: 04/26/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: af7d5b03e1490ed8d90021980f14c47281e8a655
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -79,6 +80,7 @@ ms.lasthandoff: 04/26/2017
 
 目前不是，但未來會變成預設值。
 
+
 **我可以建立空的受控磁碟嗎？**
 
 是，您可以建立空的磁碟。 受控磁碟可在 VM 外獨立建立，亦即不附加至 VM。
@@ -126,6 +128,10 @@ Azure 受控磁碟目前僅支援本地備援儲存體 (LRS)。
 
 **使用特殊化 (未執行過 Sysprep 或一般化) 的 OS 磁碟來佈建 VM 時，我可以變更電腦名稱屬性嗎？**否。 您無法更新電腦名稱屬性。 新的 VM 將繼承其父 VM 的電腦名稱屬性，該屬性是用來建立 OS 磁碟。 
 
+**哪裡可以找到 Azure Resource Manager 範本範例以使用受控磁碟來建立 VM**
+* https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md
+* https://github.com/chagarw/MDPP
+
 ## <a name="managed-disks-and-port-8443"></a>受控磁碟和通訊埠 8443
 
 **為什麼對於使用 Azure 受控磁碟的 VM 客戶必須解鎖通訊埠 8443 上的輸出流量？**
@@ -144,7 +150,7 @@ Azure VM 代理程式會使用通訊埠 8443 向 Azure 平台報告每個 VM 擴
 
 擴充功能將無法成功部署。 擴充功能會狀態不明。 
 
-**若使用 ARM 範本來佈建多個 VM 且通訊埠 8443 為封鎖 (一部 VM 具有擴充功能且第二部 VM 相依於第一部 VM)，會發生什麼事？**
+**若使用 Azure Resource Manager 範本來佈建多個 VM 且通訊埠 8443 為封鎖 (一部 VM 具有擴充功能且第二部 VM 相依於第一部 VM)，會發生什麼事？**
 
 第一部 VM 會顯示為部署失敗，因為擴充功能並未成功部署。 第二部 VM 將不會部署。 
 

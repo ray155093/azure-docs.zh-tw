@@ -15,10 +15,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/10/2017
 ms.author: carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: 187954f3ddafdbc17e341ce41f5b109cb95f8a24
-ms.openlocfilehash: 774d5ac6f3d5d9d97120ab895157677e4a92bb05
-ms.lasthandoff: 01/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: c22cb3a5436daf0296451f1f05a52d315ebc0416
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -69,11 +70,11 @@ UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能�
    Umbraco 使用 Azure 入口網站中的儀表板以及自訂的電子郵件警示來監視資料庫活動。
 4. 災害復原
    
-   Azure 提供兩種災害復原 (DR) 選項：「作用中異地複寫」和「異地還原」。 公司應該選取的 DR 選項取決於其 [商務持續性目標](sql-database-business-continuity.md)。
+   Azure 提供兩種災害復原 (DR) 選項：作用中異地複寫和異地還原。 公司應該選取的 DR 選項取決於其 [商務持續性目標](sql-database-business-continuity.md)。
    
-   「作用中異地複寫」可在發生停機狀況時，提供最快層級的回應。 透過「作用中異地複寫」，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫，然後可以在發生失敗時起始容錯移轉，來移轉至其中任何一個次要資料庫。
+   作用中異地複寫可在發生停機狀況時，提供最快層級的回應。 透過作用中異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫，然後可以在發生失敗時起始容錯移轉，來移轉至其中任何一個次要資料庫。
    
-   Umbraco 不需要使用「異地複寫」，但是它的確運用了「Azure 異地還原」來協助確保在發生中斷時將停機時間縮到最短。 「異地還原」需倚賴異地備援 Azure 儲存體中的資料庫備份。 這可讓使用者在主要區域中發生中斷時，從備份複本還原。
+   Umbraco 不需要使用異地複寫，但是它的確運用了 Azure 異地還原來協助確保在發生中斷時將停機時間縮到最短。 異地還原需倚賴異地備援 Azure 儲存體中的資料庫備份。 這可讓使用者在主要區域中發生中斷時，從備份複本還原。
 5. 取消佈建
    
    刪除專案環境時，於「Azure 服務匯流排」佇列清除期間，將會移除所有關聯的資料庫 (開發、預備或即時)。 此自動化程序會將未使用的資料庫還原至 Umbraco 的彈性資料庫可用性集區，如此既可充分利用這些資料庫，又可將這些資料庫用於未來的佈建。

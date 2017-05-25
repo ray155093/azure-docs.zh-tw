@@ -1,6 +1,6 @@
 ---
-title: "搭配 Kafka 使用 Azure HDInsight 上的 Apache Spark | Microsoft Docs"
-description: "了解如何使用 Spark on HDInsight 來讀取資料並寫入至 Kafka on HDInsight 叢集。 此範例使用 Jupyter Notebook 中的 Scala，將隨機資料寫入 Kafka on HDInsight，然後使用 Spark 串流加以讀回。"
+title: "透過 Kafka 串流的 Apache Spark - Azure HDInsight | Microsoft Docs"
+description: "了解如何使用 HDInsight 上的 Apache Spark 來讀取資料，並將資料寫入 HDInsight 上的 Apache Kafka。 此範例使用 Jupyter Notebook 中的 Scala，將資料寫入 HDInsight 上的 Kafka，然後使用 Spark 串流加以讀回。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -13,32 +13,23 @@ ms.devlang:
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/13/2017
+ms.date: 05/15/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 4f2230ea0cc5b3e258a1a26a39e99433b04ffe18
-ms.openlocfilehash: c56decc1f7603795e027ce20363c387c593999ae
-ms.lasthandoff: 03/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: ceff0df193b3356ed2a23f381ea65369063957b1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 ---
 # <a name="use-apache-spark-with-kafka-preview-on-hdinsight"></a>使用 Apache Spark 搭配 Kafka (預覽) on HDInsight
 
-Apache Spark 可用於以串流方式將資料送入或送出 Apache Kafka。 在本文件中，了解如何使用 Jupyter Notebook 從 Spark on HDInsight，以串流方式將資料送入和送出 Kafka。
+了解如何使用 Spark Apache Spark 串流方式將資料送入或送出 Apache Kafka。 在本文件中，了解如何使用 Jupyter Notebook 從 Spark on HDInsight，以串流方式將資料送入和送出 Kafka。
 
 > [!NOTE]
 > 本文件中的步驟建立 Azure 資源群組，其中包含 Spark on HDInsight 和 Kafka on HDInsight cluster 叢集。 這兩個叢集都位於 Azure 虛擬網路中，可讓 Spark 叢集直接與 Kafka 叢集通訊。
-> 
+>
 > 當您完成本文件中的步驟時，請記得刪除叢集，以避免產生過多的費用。
-
-## <a name="prerequisites"></a>必要條件
-
-* Azure 訂用帳戶
-
-* SSH 用戶端 (您需要 `ssh` 和 `scp` 命令) - 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
-
-* [cURL](https://curl.haxx.se/) - 跨平台公用程式，用於提出 HTTP 要求。
-
-* [jq](https://stedolan.github.io/jq/) - 跨平台公用程式，用於剖析 JSON 文件。
 
 ## <a name="create-the-clusters"></a>建立叢集
 
@@ -53,9 +44,9 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
 
 1. 使用以下按鈕，在 Azure 入口網站中登入 Azure 並開啟範本。
     
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-spark-cluster-in-vnet.json" target="_blank"><img src="./media/hdinsight-apache-spark-with-kafka/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-spark-cluster-in-vnet-v2.json" target="_blank"><img src="./media/hdinsight-apache-spark-with-kafka/deploy-to-azure.png" alt="Deploy to Azure"></a>
     
-    Azure Resource Manager 範本位於 **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-spark-cluster-in-vnet.json**。
+    Azure Resource Manager 範本位於 **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-spark-cluster-in-vnet-v2.json**。
 
 2. 使用下列資訊來填入 [自訂部署] 刀鋒視窗上的項目︰
    
@@ -63,7 +54,7 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
    
     * **資源群組**：建立群組或選取現有的群組。 此群組包含 HDInsight 叢集。
 
-    * **位置**：選取在地理上靠近您的位置。 此位置必須符合 [設定] 區段中的位置。
+    * **位置**：選取在地理上靠近您的位置。
 
     * **基底叢集名稱**︰此值會做為 Spark 和 Kafka 叢集的基底名稱。 例如，輸入 **hdi** 可建立名為 spark-hdi__ 的 Spark 叢集以及名為 **kafka-hdi** 的 Kafka 叢集。
 
@@ -74,8 +65,6 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 訊息�
     * **SSH 使用者名稱**︰建立 Spark 和 Kafka 叢集的 SSH 使用者。
 
     * **SSH 密碼**：Spark 和 Kafka 叢集的 SSH 使用者密碼。
-
-    * **位置**︰叢集建立所在的區域。
 
 3. 讀取**條款及條件**，然後選取 [我同意上方所述的條款及條件]。
 
@@ -114,28 +103,50 @@ Notebook 中的程式碼會執行下列工作：
 
 專案中的每個資料格都包含註解或文字區段，以說明程式碼的作用。
 
-##<a id="kafkahosts"></a>Kafka 主機資訊
+## <a id="kafkahosts"></a>Kafka 主機資訊
 
 建立可搭配 Kafka on HDInsight 運作的應用程式時，您應該進行的第一件事是取得 Kafka 叢集的 Kafka 訊息代理程式和 Zookeeper 主機資訊。 用戶端應用程式可使用此資訊來與 Kafka 通訊。
 
 > [!NOTE]
 > 無法透過網際網路直接存取 Kafka 訊息代理程式和 Zookeeper 主機。 任何使用 Kafka 的應用程式必須在 Kafka 叢集上或在與 Kafka 叢集相同的 Azure 虛擬網路內執行。 在此情況下，範例會在相同虛擬網路中的 Spark on HDInsight 叢集上執行。
 
-從開發環境，使用下列命令來擷取訊息代理程式和 Zookeeper 資訊。 將 __PASSWORD__ 替換為您在建立叢集時使用的登入 (admin) 密碼。 將 __BASENAME__ 替換為您在建立叢集時使用的基底名稱。
+從開發環境，使用下列命令來擷取訊息代理程式和 Zookeeper 資訊：
 
 * 若要取得 __Kafka 訊息代理程式__資訊︰
 
-        curl -u admin:PASSWORD -G "https://kafka-BASENAME.azurehdinsight.net/api/v1/clusters/kafka-BASENAME/services/KAFKA/components/KAFKA_BROKER" | jq -r '["\(.host_components[].HostRoles.host_name):9092"] | join(",")'
+    ```bash
+    curl -u admin:$PASSWORD -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/KAFKA/components/KAFKA_BROKER" | jq -r '["\(.host_components[].HostRoles.host_name):9092"] | join(",")'
+    ```
 
-    > [!IMPORTANT]
-    > 從 Windows PowerShell 使用此命令時，您可能會收到有關殼層引用的錯誤。 若是如此，請使用下列命令：`curl -u admin:PASSWORD -G "https://kafka-BASENAME.azurehdinsight.net/api/v1/clusters/kafka-BASENAME/services/KAFKA/components/KAFKA_BROKER" | jq -r '["""\(.host_components[].HostRoles.host_name):9092"""] | join(""",""")'`
+    > [!NOTE]
+    > 將 `$PASSWORD` 設定為您在建立叢集時使用的登入 (admin) 密碼。 將 `$CLUSTERNAME` 設定為您在建立叢集時使用的登入 (admin) 密碼。
+
+    ```powershell
+    $creds = Get-Credential -UserName "admin" -Message "Enter the cluster login credentials"
+    $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName/services/KAFKA/components/KAFKA_BROKER" `
+        -Credential $creds
+    $respObj = ConvertFrom-Json $resp.Content
+    $brokerHosts = $respObj.host_components.HostRoles.host_name
+    ($brokerHosts -join ":9092,") + ":9092"
+    ```
+
+    > [!NOTE]
+    > 將 `$cluterName` 設定為 HDInsight 叢集的名稱。 出現提示時，輸入叢集登入 (admin) 帳戶的密碼。
 
 * 若要取得 __Zookeeper 主機__資訊：
 
-        curl -u admin:PASSWORD -G "https://kafka-BASENAME.azurehdinsight.net/api/v1/clusters/kafka-BASENAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER" | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")'
-    
-    > [!IMPORTANT]
-    > 從 Windows PowerShell 使用此命令時，您可能會收到有關殼層引用的錯誤。 若是如此，請使用下列命令：`curl -u admin:PASSWORD -G "https://kafka-BASENAME.azurehdinsight.net/api/v1/clusters/kafka-BASENAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER" | jq -r '["""\(.host_components[].HostRoles.host_name):2181"""] | join(""",""")'`
+    ```bash
+    curl -u admin:$PASSWORD -G "https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER" | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")'
+    ```
+
+    ```powershell
+    $creds = Get-Credential -UserName "admin" -Message "Enter the cluster login credentials"
+    $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName/services/ZOOKEEPER/components/ZOOKEEPER_SERVER" `
+        -Credential $creds
+    $respObj = ConvertFrom-Json $resp.Content
+    $zookeeperHosts = $respObj.host_components.HostRoles.host_name
+    ($zookeeperHosts -join ":2181,") + ":2181"
+    ```
 
 兩個命令都會傳回類似下列文字的資訊：
 
@@ -150,13 +161,13 @@ Notebook 中的程式碼會執行下列工作：
 
 若要使用範例 Jupyter Notebook，您必須將它上傳至 Spark 叢集上的 Jupyter Notebook 伺服器。 使用下列步驟來上船 Notebook：
 
-1. 在網頁瀏覽器中，使用下列 URL 連接到 Spark 叢集上的 Jupyter Notebook 伺服器。 將 __BASENAME__ 替換為您在建立叢集時使用的基底名稱。
+1. 在網頁瀏覽器中，使用下列 URL 連接到 Spark 叢集上的 Jupyter Notebook 伺服器。 將 `CLUSTERNAME` 取代為您 Spark 叢集的名稱。
 
-        https://spark-BASENAME.azurehdinsight.net/jupyter
+        https://CLUSTERNAME.azurehdinsight.net/jupyter
 
     出現提示時，輸入您在建立叢集時所使用的叢集登入 (admin) 和密碼。
 
-2. 從頁面的右上方，使用 [上載] 按鈕來上傳 `KafkaStreaming.ipynb` 檔案。 在檔案瀏覽器對話方塊中選取此檔案，然後選取 [開啟]。 
+2. 從頁面的右上方，使用 [上載] 按鈕來上傳 `KafkaStreaming.ipynb` 檔案。 在檔案瀏覽器對話方塊中選取此檔案，然後選取 [開啟]。
 
     ![使用上傳按鈕來選取和上傳 Notebook](./media/hdinsight-apache-spark-with-kafka/upload-button.png)
 
