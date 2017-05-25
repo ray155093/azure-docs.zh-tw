@@ -11,12 +11,12 @@ ms.service: mysql-database
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: portal
-ms.date: 05/10/2017
+ms.date: 05/17/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: c09a6fa947d235189ab0137b074b6d7d9c925827
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: c0029e025cf6d0af478d1f21dc6acc7860905a81
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/18/2017
 
 ---
 
@@ -29,7 +29,7 @@ ms.lasthandoff: 05/10/2017
 若要逐步執行本作法指南，您需要具備：
 - [建立適用於 MySQL 的 Azure 資料庫伺服器 - Azure 入口網站](quickstart-create-mysql-server-database-using-azure-portal.md)
 - 已安裝於電腦上的 [mysqldump (英文)](https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html) 命令列公用程式
-- MySQL Workbench [MySQL Workbench 下載 (英文)](https://dev.mysql.com/downloads/workbench/)、Toad、Navicat 或任何協力廠商的 MySQL 工具
+- MySQL Workbench [MySQL Workbench 下載 (英文)](https://dev.mysql.com/downloads/workbench/)、Toad、Navicat 或任何第三方的 MySQL 工具
 
 ## <a name="use-common-tools"></a>使用一般工具
 使用一般工具 (例如 MySQL Workbench、mysqldump、Toad 或 Navicat) 從遠端連接，然後將資料還原至適用於 MySQL 的 Azure 資料庫。 在具有網際網路連接的用戶端電腦上使用這類工具，來連接到適用於 MySQL 的 Azure 資料庫。 如需使用 SSL 加密連接的最佳安全性作法，請參閱[在適用於 MySQL 的 Azure 資料庫中設定 SSL 連線能力](concepts-ssl-connection-security.md)。 在移轉到適用於 MySQL 的 Azure 資料庫時，您不需要將傾印檔案移至任何特定的雲端位置。 
@@ -66,11 +66,8 @@ $ mysqldump -u root -p --databases testdb1 testdb3 testdb5 > testdb135_backup.sq
 $ mysqldump -u root -p --all-databases > alldb_backup.sql 
 ```
 
-## <a name="upload-files"></a>上傳檔案
-利用 WinSCP，您可以基於匯出目的，在本機透過 SFTP 通訊協定或 FTPS 通訊協定，輕鬆地上傳並管理現有 MySQL 環境 (Azure 或非 Azure) 檔案的匯入或傾印。
-
 ## <a name="create-a-database-on-the-target-azure-mysql-server"></a>在目標 Azure MySQL 服務上建立資料庫
-您必須在目標適用於 MySQL 的 Azure 資料庫伺服器上建立空的資料庫，您想要在該伺服器上使用 MySQL Workbench、Toad、Navicat 或任何適用於 MySQL 的協力廠商工具來移轉資料。 資料庫名稱可以與包含傾印資料的資料庫名稱相同，或者您可以建立名稱不同的資料庫。
+您必須在目標適用於 MySQL 的 Azure 資料庫伺服器上建立空的資料庫，您想要在該伺服器上使用 MySQL Workbench、Toad、Navicat 或任何適用於 MySQL 的第三方工具來移轉資料。 資料庫名稱可以與包含傾印資料的資料庫名稱相同，或者您可以建立名稱不同的資料庫。
 
 ![適用於 MySQL 的 Azure 資料庫的連接字串](./media/concepts-migrate-import-export/p5.png)
 

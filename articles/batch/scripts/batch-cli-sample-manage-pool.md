@@ -12,12 +12,13 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 03/20/2017
+ms.date: 05/02/2017
 ms.author: antisch
-translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 7cec2a8c66868c601c38dc2dea61dda38d3cd3b2
-ms.lasthandoff: 03/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 2556b02459886390b803407c5cb828687229a44e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 ---
 
@@ -25,14 +26,16 @@ ms.lasthandoff: 03/24/2017
 
 這些指令碼示範 Azure CLI 中一些可用的工具，用於建立和管理 Azure Batch 服務中的計算節點集區。
 
-執行這些指令碼的前提是您已設定 Batch 帳戶，並已設定應用程式。 如需詳細資訊，請參閱涵蓋各主題的[範例指令碼](../batch-cli-samples.md)。
-
 > [!NOTE]
 > 此範例中的命令會建立 Azure 虛擬機器。 執行中的 VM 會累計費用至您的帳戶。 若要將這些費用降至最低，請在範例執行完成後隨即刪除 VM。 請參閱[清除集區](#clean-up-pools)。
 
-您可以視需要使用 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)中的指示來安裝 Azure CLI，然後執行 `az login` 以登入 Azure。
+有兩種方式可以設定 Batch 集區，即使用雲端服務組態 (僅限 Windows) 或虛擬機器組態 (Windows 和 Linux)。 下列指令碼範例會示範如何使用這兩個組態來建立集區。
 
-有兩種方式可以設定 Batch 集區，即使用雲端服務組態 (僅限 Windows) 或虛擬機器組態 (Windows 和 Linux)。
+## <a name="prerequisites"></a>必要條件
+
+- 如果您尚未安裝 Azure CLI，請使用 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)中所提供的指示來安裝 Azure CLI。
+- 建立 Batch 帳戶 (如果您還沒有帳戶的話)。 如需用以建立帳戶的指令碼範例，請參閱[使用 Azure CLI 建立 Batch 帳戶](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-create-account)。
+- 將應用程式設定為從啟動工作來執行 (如果您尚未設定)。 如需指令碼範例以建立應用程式並將應用程式套件上傳至 Azure，請參閱[使用 Azure CLI 將應用程式新增至 Azure Batch](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-add-application)。
 
 ## <a name="pool-with-cloud-service-configuration-sample-script"></a>使用雲端服務組態範例指令碼的集區
 

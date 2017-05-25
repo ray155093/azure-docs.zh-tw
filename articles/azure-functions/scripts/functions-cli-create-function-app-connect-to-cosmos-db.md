@@ -1,6 +1,6 @@
 ---
-title: "建立連線至 Azure DocumentDB 的 Azure 函式 | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 建立連線至 Azure DocumentDB 的 Azure 函式"
+title: "建立連線至 Azure Cosmos DB 的 Azure 函式 | Microsoft Docs"
+description: "Azure CLI 指令碼範例 - 建立連線至 Azure Cosmos DB 的 Azure 函式"
 services: functions
 documentationcenter: functions
 author: rachelappel
@@ -10,19 +10,18 @@ tags: functions
 ms.assetid: 
 ms.service: functions
 ms.devlang: azurecli
-ms.topic: article
+ms.topic: sample
 ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 04/20/2017
 ms.author: rachelap
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 46e0fe827b7b34010d14a31ff377d4854ec62f6e
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: dbe02fbc71f04c67ab03a84845bf8666333ce621
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/15/2017
 
 ---
-
 # <a name="create-an-azure-function-that-connects-to-an-azure-cosmos-db"></a>建立連線至 Azure Cosmos DB 的 Azure 函式
 
 此範例指令碼建立連線至 Azure Cosmos DB 資料庫的 Azure 函式應用程式。
@@ -31,9 +30,9 @@ ms.lasthandoff: 05/10/2017
 
 ## <a name="sample-script"></a>範例指令碼
 
-建立應用程式範例
+這個範例會建立 Azure 函數應用程式，並在應用程式設定中新增 Cosmos DB 端點和存取金鑰。
 
-[!code-azurecli[主要](../../../cli_scripts/azure-functions/create-function-app-connect-to-cosmos-db/create-function-app-connect-to-cosmos-db.sh "建立連線至 Azure Cosmos DB 的 Azure 函式")]
+[!code-azurecli-interactive[主要](../../../cli_scripts/azure-functions/create-function-app-connect-to-cosmos-db/create-function-app-connect-to-cosmos-db.sh "建立連線至 Azure Cosmos DB 的 Azure 函式")]
 
 ## <a name="clean-up-deployment"></a>清除部署
 

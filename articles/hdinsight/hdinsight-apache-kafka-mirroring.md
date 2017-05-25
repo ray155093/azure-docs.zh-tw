@@ -1,6 +1,6 @@
 ---
-title: "鏡像處理 Apache Kafka on HDInsight 叢集 | Microsoft Docs"
-description: "了解如何使用 Kafka 的鏡像功能，藉由將主題鏡像處理至次要叢集來維護 Kafka on HDInsight 的複本。"
+title: "鏡像 Apache Kafka 主題 - Azure HDInsight | Microsoft Docs"
+description: "了解如何使用 Apache Kafka 的鏡像功能，藉由將主題鏡像處理至次要叢集來維護 HDInsight 叢集上的 Kafka 複本。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -13,32 +13,27 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/13/2017
+ms.date: 05/15/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: c7517f61944b9fdb02a3589d7c9cd83355dae6d8
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 0b8de346d8209dcfd665baf18ce054e5556a883b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 ---
-# <a name="use-mirrormaker-to-create-a-replica-of-a-kafka-on-hdinsight-cluster-preview"></a>使用 MirrorMaker 建立 Kafka on HDInsight 叢集的複本 (預覽)
+# <a name="use-mirrormaker-to-replicate-apache-kafka-topics-with-kafka-on-hdinsight-preview"></a>使用 MirrorMaker，透過 HDInsight 上的 Kafka 來複寫 Apache Kafka 主題 (預覽)
 
-Apache Kafka 包含鏡像功能，可讓您將主題從一個 Kafka 叢集複寫至另一個叢集。 例如，在不同 Azure 區域中的 Kafka 叢集間複寫記錄。
+了解如何使用 Apache Kafka 的鏡像功能，將主題複寫至次要叢集。 鏡像功能可以當作連續程序執行，或間歇地做為在叢集間移轉資料的方法。
 
-鏡像功能可以當作連續程序執行，或間歇地做為在叢集間移轉資料的方法。
+在此範例中，會使用鏡像來複寫兩個 HDInsight 叢集之間的主題。 這兩個叢集是位於相同區域中的 Azure 虛擬網路。
 
 > [!WARNING]
 > 但不能將鏡像功能視為達成容錯的方法。 主題中的項目位移在來源與目的地叢集之間有所不同，所以用戶端無法交替使用這兩者。
-> 
+>
 > 如果您很擔心容錯，您應該為叢集內的主題設定複寫。 如需詳細資訊，請參閱[開始使用 Kafka on HDInsight](hdinsight-apache-kafka-get-started.md)。
 
-## <a name="prerequisites"></a>必要條件
-
-* Azure 虛擬網路︰來源和目的地 Kafka 叢集必須能夠直接彼此通訊。 HDInsight 不會在網際網路上公開 Kafka API，所以來源和目的地叢集必須位於相同的 Azure 虛擬網路中。
-
-* 兩個 Kafka 叢集︰本文件使用 Azure Resource Manager 範本，在 Azure 虛擬網路內建立兩個 Kafka on HDInsight 叢集。
-
-## <a name="how-does-mirroring-work"></a>鏡像功能的運作方式
+## <a name="how-kafka-mirroring-works"></a>Kafka 鏡像的運作方式
 
 鏡像功能的運作方式是使用 MirrorMaker 工具 (Apache Kafka 的一部分)，取用來源叢集上主題中的記錄，然後在目的地叢集上建立本機複本。 MirrorMaker 會使用一個 (或多個) *取用者*從來源叢集讀取資料，以及使用一個*產生者*來將資料寫入本機 (目的地) 叢集。
 
@@ -46,18 +41,22 @@ Apache Kafka 包含鏡像功能，可讓您將主題從一個 Kafka 叢集複寫
 
 ![鏡像程序圖表](./media/hdinsight-apache-kafka-mirroring/kafka-mirroring.png)
 
+Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 服務。 Kafka 產生者和取用者必須與 Kafka 叢集中之節點位於相同的 Azure 虛擬網路。 例如，Kafka 來源和目的地叢集均位於 Azure 虛擬網路中。 下圖顯示叢集之間的通訊流動方式︰
+
+![Azure 虛擬網路中的來源和目的地 Kafka 叢集圖表](./media/hdinsight-apache-kafka-mirroring/spark-kafka-vnet.png)
+
 來源與目的地叢集的節點與磁碟分割數目可能有所不同，且主題中的位移也會不同。 鏡像功能會維護用於資料分割的金鑰值，因此會根據每個金鑰保留記錄順序。
 
-### <a name="mirroring-between-networks"></a>網路之間的鏡像功能
+### <a name="mirroring-across-network-boundaries"></a>跨網路界限鏡像
 
 如果您需要在不同網路中的 Kafka 叢集之間進行鏡像處理，有下列額外考量︰
 
 * **閘道**：網路必須能夠在 TCPIP 層級進行通訊。
 
-* **名稱解析**︰每個網路中的 Kafka 叢集必須能夠使用主機名稱彼此連接。 這可能會要求每個網路中的網域名稱系統 (DNS) 伺服器設定成將要求轉送到其他網路。 
-  
+* **名稱解析**︰每個網路中的 Kafka 叢集必須能夠使用主機名稱彼此連接。 這可能會要求每個網路中的網域名稱系統 (DNS) 伺服器設定成將要求轉送到其他網路。
+
     建立 Azure 虛擬網路 (而不是使用網路提供的自動 DNS) 時，您必須指定自訂 DNS 伺服器和伺服器的 IP 位址。 建立虛擬網路之後，您就必須建立使用該 IP 位址的 Azure 虛擬機器，然後在其上安裝和設定 DNS 軟體。
-  
+
     > [!WARNING]
     > 先建立和設定自訂 DNS 伺服器，然後再將 HDInsight 安裝到虛擬網路中。 HDInsight 不需要進行其他設定，即可使用針對虛擬網路設定的 DNS 伺服器。
 
@@ -65,20 +64,13 @@ Apache Kafka 包含鏡像功能，可讓您將主題從一個 Kafka 叢集複寫
 
 ## <a name="create-kafka-clusters"></a>建立 Kafka 叢集
 
-Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 服務。 任何 Kafka 相關項目必須位於與 Kafka 叢集中節點相同的 Azure 虛擬網路。 例如，Kafka 來源和目的地叢集均位於 Azure 虛擬網路中。 下圖顯示叢集之間的通訊流動方式︰
-
-![Azure 虛擬網路中的來源和目的地 Kafka 叢集圖表](./media/hdinsight-apache-kafka-mirroring/spark-kafka-vnet.png)
-
-> [!NOTE]
-> Kafka 本身受限於虛擬網路內的通訊，但叢集上的 SSH 和 Ambari 等其他服務可以透過網際網路存取。 如需有關適用於 HDInsight 的公用連接埠詳細資訊，請參閱 [HDInsight 所使用的連接埠和 URI](hdinsight-hadoop-port-settings-for-services.md)。
-
 雖然您可以手動建立 Azure 虛擬網路和 Kafka 叢集，但使用 Azure Resource Manager 範本更輕鬆。 使用下列步驟將 Azure 虛擬網路和兩個 Kafka 叢集部署到 Azure 訂用帳戶。
 
 1. 使用以下按鈕，在 Azure 入口網站中登入 Azure 並開啟範本。
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-mirror-cluster-in-vnet.json" target="_blank"><img src="./media/hdinsight-apache-kafka-mirroring/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-mirror-cluster-in-vnet-v2.json" target="_blank"><img src="./media/hdinsight-apache-kafka-mirroring/deploy-to-azure.png" alt="Deploy to Azure"></a>
    
-    Azure Resource Manager 範本位於 **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-mirror-cluster-in-vnet.json**。
+    Azure Resource Manager 範本位於 **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-mirror-cluster-in-vnet-v2.json**。
 
 2. 使用下列資訊來填入 [自訂部署] 刀鋒視窗上的項目︰
     
@@ -86,7 +78,7 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 服務�
     
     * **資源群組**：建立群組或選取現有的群組。 此群組包含 HDInsight 叢集。
 
-    * **位置**：選取在地理上靠近您的位置。 此位置必須符合 [設定] 區段中的位置。
+    * **位置**：選取在地理上靠近您的位置。
      
     * **基底叢集名稱**︰此值會做為 Kafka 叢集的基底名稱。 例如，輸入 **hdi** 可建立名為 **source-hdi** 和 **dest-hdi** 的叢集。
 
@@ -97,8 +89,6 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 服務�
     * **SSH 使用者名稱**：建立來源和目的地 Kafka 叢集的 SSH 使用者。
 
     * **SSH 密碼**：來源和目的地 Kafka 叢集的 SSH 使用者密碼。
-
-    * **位置**︰叢集建立所在的區域。
 
 3. 讀取**條款及條件**，然後選取 [我同意上方所述的條款及條件]。
 
@@ -141,12 +131,12 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 服務�
     ```bash
     echo $SOURCE_ZKHOSTS
     ```
-   
- 此命令會傳回類似以下文字的資訊：
-   
-       zk0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181,zk1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181,zk6-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181
-   
- 請儲存此資訊。 此資訊使用於下一節。
+
+    此命令會傳回類似以下文字的資訊：
+
+    `zk0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181,zk1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181,zk6-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181`
+
+    請儲存此資訊。 此資訊使用於下一節。
 
 ## <a name="configure-mirroring"></a>設定鏡像功能
 
@@ -173,7 +163,7 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 服務�
    
     此檔案描述從來源 Kafka 叢集讀取資料時所要使用的取用者資訊。 如需取用者組態詳細資訊，請參閱 kafka.apache.org 上的[取用者組態](https://kafka.apache.org/documentation#consumerconfigs)。
    
-    使用 **Ctrl + X**、**Y** 和 Enter 鍵來儲存檔案。
+    若要儲存檔案，請使用 **Ctrl + X**、**Y** 和 **Enter** 鍵。
 
 3. 在設定可與目的地叢集通訊的產生者之前，您必須尋找**目的地**叢集的訊息代理程式主機。 請使用下列命令來擷取此資訊：
    

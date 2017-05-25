@@ -1,6 +1,7 @@
 ---
 title: "Hadoop 元件和版本 - Azure HDInsight | Microsoft Docs"
 description: "了解 HDInsight 中的 Hadoop 元件和版本，以及此 HortonWorks Data Platform 雲端發佈點的可用服務層級。"
+keywords: "hadoop 版本, hadoop 生態系統元件, hadoop 元件, 如何檢查 hadoop 版本"
 services: hdinsight
 editor: cgronlun
 manager: asadk
@@ -9,66 +10,35 @@ tags: azure-portal
 documentationcenter: 
 ms.assetid: 367b3f4a-f7d3-4e59-abd0-5dc59576f1ff
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: bprakash
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 990ac507c0d0f26483dc0db7ec4bce793100cb60
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: f6f50906766408226ad3ab9fdfd67b4707961b9b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
+ 
 
 ---
-# <a name="what-are-the-different-hadoop-components-and-versions-available-with-hdinsight"></a>可以搭配 HDInsight 使用的不同 Hadoop 元件和版本有哪些？
+# <a name="what-are-the-hadoop-components-and-versions-available-with-hdinsight"></a>可以搭配 HDInsight 使用的 Hadoop 元件和版本有哪些？
 
-了解 Azure HDInsight 所提供的服務層級以及內含的 Hadoop 生態系統元件和版本。 每個 HDInsight 版本都是 HortonWorks Data Platform (HDP) 版本的雲端發佈點。
+了解 Azure HDInsight 中的 Hadoop 生態系統元件和版本，以及標準和進階服務層級。 此外，了解如何檢查 HDInsight 中的 Hadoop 元件版本。 
 
-## <a name="hdinsight-standard-and-hdinsight-premium"></a>HDInsight Standard 和 HDInsight Premium
-
-Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：**標準**和**進階**。 區段下的資料表列出**只有在進階部分**可用的功能。 資料表中未明確標註的功能都是「標準」的部分。
-
-> [!NOTE]
-> HDInsight Premium 提供項目目前為預覽版，僅適用於 Linux 叢集。
->
->
-
-| HDInsight Premium 功能 | 說明 |
-| --- | --- |
-| 已加入網域的 HDInsight 叢集 |將 HDInsight 叢集加入 Azure Active Directory (AAD) 網域，以獲得企業級安全性。 您現在可以設定企業員工清單，指出可透過 Azure Active Directory 進行驗證以登入 HDInsight 叢集的員工。 企業系統管理員也可以使用 [Apache Ranger](http://hortonworks.com/apache/ranger/)，針對 Hive 安全性設定角色型存取控制，進而將資料存取限制為僅限有需要時。 最後，系統管理員可以依照員工稽核資料存取，以及對存取控制原則所做的任何變更，因而達到高度的公司資源控管。 如需詳細資訊，請參閱[設定已加入網域的 HDInsight 叢集](hdinsight-domain-joined-configure.md)。 |
-
-### <a name="cluster-types-supported-for-hdinsight-premium"></a>HDInsight Premium 支援的叢集類型
-下表列出 HDInsight 叢集類型和進階支援矩陣。
-
-| 叢集類型 | 標準 | 高階 (預覽) |
-| --- | --- | --- |
-| Hadoop |是 |是 (僅限 HDInsight 3.5 和 3.6) |
-| Spark |是 |否 |
-| HBase |是 |否 |
-| Storm |是 |否 |
-| R 伺服器  |是 |否 |
-| 互動式 Hive (預覽) |是 |否 |
-| Kafka (預覽)|是|否| 
-
-因為 HDInsight Premium 中包含更多的叢集類型，所以此資料表將會更新。
-
-### <a name="features-not-supported-for-hdinsight-premium"></a>HDInsight Premium 不支援的功能
-
-HDInsight Premium 叢集目前不支援下列功能。
-
-* **不支援 Azure Data Lake Store 做為主要儲存體**。 您仍然可以使用 Azure Data Lake Store 做為含有 HDInsight Premium 叢集的附加元件儲存體。
-
-### <a name="pricing-and-sla"></a>價格和 SLA
-如需 HDInsight Premium 的價格和 SLA 的詳細資訊，請參閱 [HDInsight 價格](https://azure.microsoft.com/pricing/details/hdinsight/)。
+每個 HDInsight 版本都是 HortonWorks Data Platform (HDP) 版本的雲端發佈點。
 
 ## <a name="hadoop-components-available-with-different-hdinsight-versions"></a>可以搭配不同 HDInsight 版本使用的 Hadoop 元件
-Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個版本選擇都會建立特定版本的 Hortonworks Data Platform (HDP) 散發，以及該散發內包含的一組元件。 下表列舉了與 HDInsight 叢集版本相關聯的元件版本。 請注意，Azure HDInsight 目前所使用的預設叢集版本為 3.5 版，採用 HDP 2.5 (截至 02/17/2017 為止)。
+Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個版本選擇都會建立特定版本的 Hortonworks Data Platform (HDP) 散發，以及該散發內包含的一組元件。 Azure HDInsight 目前所使用的預設叢集版本為 3.5 版，採用 HDP 2.5 (截至 2017 年 2 月 17 日為止)。
+
+下表列舉了與 HDInsight 叢集版本相關聯的元件版本： 
 
 > [!NOTE]
-> 服務的預設版本可能會變更，恕不另行通知。 如果您有版本相依性，我們建議您在使用 .NET SDK/Azure PowerShell 和 Azure CLI 建立叢集時指定版本。
+> 服務的預設版本可能會變更，恕不另行通知。 如果您有版本相依性，我們建議您在使用 .NET SDK/Azure PowerShell 和 Azure CLI 建立叢集時指定版本。 
 >
 >
 
@@ -96,16 +66,22 @@ Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個�
 | Apache Zeppelin | 0.7.0 |-|-|-|-|-|-|
 | Mono |4.2.1 |4.2.1 |3.2.8 |-|-|-|
 
-**取得目前的元件版本資訊**
 
-在 HDInsight 的未來更新中，可能會變更 HDInsight 叢集版本相關的元件版本。 若要判斷可用的元件和驗證叢集所使用的版本，有一個辦法就是使用 Ambari REST API。 **GetComponentInformation** 命令可用來擷取服務元件的相關資訊。 如需詳細資訊，請參閱 [Ambari 文件][ambari-docs] (英文)。 另一種取得此資訊的作法就是使用遠端桌面登入叢集，然後直接檢查 C:\apps\dist\" 目錄的內容。
+## <a name="how-to-check-current-hadoop-component-version-information"></a>如何檢查目前的 Hadoop 元件版本資訊
 
-**版本資訊**
+在 HDInsight 的更新中，可能會變更與 HDInsight 叢集版本相關聯的 Hadoop 生態系統元件版本。 若要檢查 Hadoop 元件和驗證叢集所使用的版本，請使用 Ambari REST API。 **GetComponentInformation** 命令會擷取服務元件的相關資訊。 如需詳細資訊，請參閱 [Ambari 文件][ambari-docs] (英文)。
+
+僅適用於以 Windows 為基礎的叢集：另一種取得元件版本的作法就是使用遠端桌面登入叢集，然後直接檢查 C:\apps\dist\" 目錄的內容。
+
+> [!IMPORTANT]
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.3 取代](#hdi-version-33-nearing-deprecation-date)。 
+
+### <a name="release-notes"></a>版本資訊
 
 請參閱 [HDInsight 版本資訊](hdinsight-release-notes.md) ，以取得 HDInsight 最新版本的其他版本資訊。
 
 ## <a name="supported-hdinsight-versions"></a>支援的 HDInsight 辦本
-下表列出目前可用的 HDInsight 版本、它們使用的相對應 Hortonworks Data Platform 版本及其發行日期。 另外也會提供其支援到期日和淘汰日期 (已知道的話)。 請注意：
+下表列出目前可用的 HDInsight 版本、它們使用的相對應 Hortonworks Data Platform 版本及其發行日期。 另外也會提供其支援到期日和淘汰日期 (已知道的話)。 請注意下列版本資訊︰
 
 * 依預設，系統會為 HDInsight 2.1 和更新版本部署搭配兩個前端節點的高可用性叢集。 HDInsight 1.6 叢集並不適用。
 * 在特定版本的支援到期後，您可能無法透過 Azure 入口網站取得。 下表指出可在 Azure 傳統入口網站上取得的版本。 您可透過 Windows PowerShell [New-AzureRmHDInsightCluster](https://msdn.microsoft.com/library/mt619331.aspx) 命令中的 `Version` 參數和 .NET SDK 持續取得叢集版本，直到其淘汰日期為止。
@@ -122,8 +98,8 @@ Azure HDInsight 支援多個可隨時部署的 Hadoop 叢集版本。 每一個�
 | HDI 2.1 |HDP 1.3 |Windows Server 2012R2 |是 |10/28/2013 |否 |05/12/2014 |05/31/2015 |
 | HDI 1.6 |HDP 1.1 | |否 |10/28/2013 |否 |04/26/2014 |05/31/2015 |
 
-##<a name="hdi-version-33-nearing-deprecation-date"></a>HDI 3.3 版已接近淘汰日期
-HDI 3.3 叢集的支援已於 2016/06/27 過期，並將於2017/07/31 遭到取代。 如果您有 HDI 3.3 叢集，請盡快將叢集升級至 HDI 3.5 或 3.6。 HDI 3.3 Windows 的淘汰時間表可能因地區而異。 如果客戶所在地區計畫的淘汰日期與此通訊中找到的不同，他們將會收到不同的通訊。
+## <a name="hdi-version-33-nearing-deprecation-date"></a>HDI 3.3 版已接近淘汰日期
+HDI 3.3 叢集的支援已於 2016/06/27 過期，並將於2017/07/31 遭到取代。 如果您有 HDI 3.3 叢集，請盡快將叢集升級至 HDI 3.5 或 3.6。 HDI 3.3 Windows 的淘汰時間表可能因地區而異。 如果您區域的計劃淘汰日期不同，就會個別通知您。
 
 ### <a name="the-service-level-agreement-for-hdinsight-cluster-versions"></a>HDInsight 叢集版本的服務等級協定
 SLA 是根據「支援期間」來定義。 「支援期間」是指 Microsoft 客戶服務與支援中心支援 HDInsight 叢集版本的一段時間。 如果 HDInsight 叢集版本的 [支援到期日]  超過目前日期，則表示該叢集不在「支援期間」。 上表中可找到支援的 HDInsight 叢集版本清單。 特定 HDInsight X (在較新的 X+1 版本推出後) 版本的支援到期日計算方式會以下列較晚的時間為準：  
@@ -134,12 +110,14 @@ SLA 是根據「支援期間」來定義。 「支援期間」是指 Microsoft �
 [ **淘汰日期** ] 是指在此日期之後便無法在 HDInsight 上建立叢集版本。 從 2017年 7 月 31 日起，您無法在此淘汰日期後調整叢集大小。 
 
 > [!NOTE]
-> Windows 型 HDInsight 叢集 (包括 2.1、3.0、3.1、3.2 和 3.3 版) 可在 Azure 客體 OS 系列 4 上執行，此系列使用 64 位元版的 Windows Server 2012 R2 並支援 .NET Framework 4.0、4.5、4.5.1 和 4.5.2。
+> 以 Windows 為基礎的 HDInsight 叢集 (包括 2.1、3.0、3.1、3.2 和 3.3 版) 可在 Azure 客體 OS 系列 4 上執行，此系列使用 64 位元版的 Windows Server 2012 R2 並支援 .NET Framework 4.0、4.5、4.5.1 和 4.5.2。
 >
 >
 
 ## <a name="hortonworks-release-notes-associated-with-hdinsight-versions"></a>與 HDInsight 版本相關聯的 Hortonworks 版本資訊
-* HDInsight 叢集 3.4 版採用以 [Hortonworks Data Platform 2.4](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html)為基礎的 Hadoop 散發套件。 這是使用入口網站時所建立的 **預設** Hadoop 叢集。
+* HDInsight 叢集 3.6 版採用以 [Hortonworks Data Platform 2.6](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.6.0/bk_release-notes/content/ch_relnotes.html) 為基礎的 Hadoop 散發套件。 
+* HDInsight 叢集 3.5 版採用以 [Hortonworks Data Platform 2.5](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.5.0/bk_release-notes/content/ch_relnotes_v250.html) 為基礎的 Hadoop 散發套件。 這是使用入口網站時所建立的 **預設** Hadoop 叢集。
+* HDInsight 叢集 3.4 版採用以 [Hortonworks Data Platform 2.4](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html)為基礎的 Hadoop 散發套件。 
 * HDInsight 叢集 3.3 版採用以 [Hortonworks Data Platform 2.3](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.0/bk_HDP_RelNotes/content/ch_relnotes_v230.html)為基礎的 Hadoop 散發。
 
   * Apache Storm 版本資訊可從 [這裡](https://storm.apache.org/2015/11/05/storm0100-released.html)取得。
@@ -151,6 +129,44 @@ SLA 是根據「支援期間」來定義。 「支援期間」是指 Microsoft �
 * HDInsight 叢集 3.0 版採用以 [Hortonworks Data Platform 2.0][hdp-2-0-8] 為基礎的 Hadoop 散發套件。
 * HDInsight 叢集 2.1 版採用以 [Hortonworks Data Platform 1.3][hdp-1-3-0] 為基礎的 Hadoop 散發套件。
 * HDInsight 叢集 1.6 版採用以 [Hortonworks Data Platform 1.1][hdp-1-1-0] 為基礎的 Hadoop 散發套件。
+
+## <a name="hdinsight-standard-and-hdinsight-premium"></a>HDInsight Standard 和 HDInsight Premium
+
+Azure HDInsight 提供兩種類型的巨量資料雲端提供項目：**標準**和**進階**。 區段下的資料表列出**只有在進階部分**可用的功能。 資料表中未明確標註的功能都是「標準」的部分。
+
+> [!NOTE]
+> HDInsight Premium 提供項目目前為預覽版，僅適用於 Linux 叢集。
+>
+>
+
+| HDInsight Premium 功能 | 說明 |
+| --- | --- |
+| 已加入網域的 HDInsight 叢集 |將 HDInsight 叢集加入 Azure Active Directory (AAD) 網域，以獲得企業級安全性。 您現在可以設定企業員工清單，指出可透過 Azure Active Directory 進行驗證以登入 HDInsight 叢集的員工。 企業系統管理員也可以使用 [Apache Ranger](http://hortonworks.com/apache/ranger/)，針對 Hive 安全性設定角色型存取控制，從而將資料存取限制為僅限有需要時。 最後，系統管理員可以依照員工稽核資料存取，以及對存取控制原則所做的任何變更，因而達到高度的公司資源控管。 如需詳細資訊，請參閱[設定已加入網域的 HDInsight 叢集](hdinsight-domain-joined-configure.md)。 |
+
+### <a name="cluster-types-supported-for-hdinsight-premium"></a>HDInsight Premium 支援的叢集類型
+下表列出 HDInsight 叢集類型和進階支援矩陣。
+
+| 叢集類型 | 標準 | 高階 (預覽) |
+| --- | --- | --- |
+| Hadoop |是 |是 (僅限 HDInsight 3.5 和 3.6) |
+| Spark |是 |否 |
+| HBase |是 |否 |
+| Storm |是 |否 |
+| R 伺服器  |是 |否 |
+| 互動式 Hive (預覽) |是 |否 |
+| Kafka (預覽)|是|否| 
+
+HDInsight Premium 中包含更多的叢集類型，因此本資料表將會加以更新。
+
+### <a name="features-not-supported-for-hdinsight-premium"></a>HDInsight Premium 不支援的功能
+
+HDInsight Premium 叢集目前不支援下列功能。
+
+* **不支援 Azure Data Lake Store 做為主要儲存體**。 您仍然可以使用 Azure Data Lake Store 做為含有 HDInsight Premium 叢集的附加元件儲存體。
+
+### <a name="pricing-and-sla"></a>價格和 SLA
+如需 HDInsight Premium 的價格和 SLA 的詳細資訊，請參閱 [HDInsight 價格](https://azure.microsoft.com/pricing/details/hdinsight/)。
+
 
 [image-hdi-versioning-versionscreen]: ./media/hdinsight-component-versioning/hdi-versioning-version-screen.png
 

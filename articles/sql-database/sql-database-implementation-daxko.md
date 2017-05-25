@@ -15,10 +15,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/10/2017
 ms.author: carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: b759e9936a45f989088de5e89a59371c5ea64e1c
-ms.openlocfilehash: 079a05d16ccebb705f410e25f0ed5762db20ae22
-ms.lasthandoff: 02/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 61d62cde5311c8e447acf8890e0a32339585bb42
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -68,7 +69,7 @@ Azure 的數個功能協助了 CSI Software 從以基礎結構和作業為焦點
 CSI Software 目前為客戶提供大約 550 個資料庫。 在使用彈性集區之前，很難在一層結構內管理這麼多資料庫。 作業管理員必須根據客戶的高載需求指派效能層，而這會造成嚴重的 IT 資源額外負荷。 透過彈性集區，管理員則可以視情況為租用戶指派高階或標準集區，然後再根據大小和需求來移動客戶。 客戶幾乎是立即感受到彈性集區的效果；在使用彈性集區之前，客戶在高載使用量期間遇到了逾時和其他問題，但在使用彈性集區之後，客戶可以視需要體驗活動高載情況，而且繼續使用 SpectrumNG 也沒有任何問題。
 
 ## <a name="azure-active-geo-replication-accelerates-reporting"></a>Azure 作用中異地複寫加速報表處理速度
-有數個 CSI Software 客戶也利用「Azure 作用中異地複寫」功能。 使用「作用中異地複寫」時，可在相同或不同的資料中心區域中，最多設定&4; 個可讀取的次要資料庫。 CSI Software 以兩種方式利用「作用中異地複寫」︰首先是在資料中心中斷服務或在無法連線至主要資料庫時，可以使用次要資料庫；其次是可以讀取次要資料庫並用來卸載唯讀工作負載，例如報告工作。 有些 CSI Software 客戶會利用這個優點來加速報告處理工作流程。
+有數個 CSI Software 客戶也利用 Azure 作用中異地複寫功能。 使用作用中異地複寫時，可在相同或不同的資料中心區域中，最多設定 4 個可讀取的次要資料庫。 CSI Software 以兩種方式利用作用中異地複寫︰首先是在資料中心中斷服務或在無法連線至主要資料庫時，可以使用次要資料庫；其次是可以讀取次要資料庫並用來卸載唯讀工作負載，例如報告工作。 有些 CSI Software 客戶會利用這個優點來加速報告處理工作流程。
 
 ## <a name="csi-software-application-logic-and-architecture"></a>CSI Software 應用程式邏輯與架構
 SpectrumNG 使用 Web 角色。 由於應用程式是多租用戶應用程式，因此會使用 WCF 服務來處理來自客戶的初始連線要求。 如 Molina 所述：「要求會識別每一個客戶，然後這會讓我們建置出一個可連至其資料庫的連接字串，以執行我們所需執行的任何動作。」
@@ -91,7 +92,7 @@ Azure SQL Database 不僅為 SpectrumNG 客戶帶來好處，讓他們享有快�
 * 若要深入了解 Azure 彈性集區，請參閱[彈性集區](sql-database-elastic-pool.md)。
 * 若要深入了解資料庫工具和彈性調整，請參閱 [彈性資料庫工具和彈性調整](sql-database-elastic-scale-get-started.md)。
 * 若要深入了解如何移轉 SQL Server 資料庫，請參閱[將 SQL Server 資料庫移轉至 Azure](sql-database-cloud-migrate.md)。
-* 若要深入了解主動式異地複寫，請參閱 [主動式異地複寫](sql-database-geo-replication-overview.md)。
+* 若要深入了解作用中異地複寫，請參閱[作用中異地複寫](sql-database-geo-replication-overview.md)。
 * 若要深入了解 Web 角色和背景工作角色，請參閱 [背景工作角色](../fundamentals-introduction-to-azure.md#compute)。    
 * 若要深入了解「Azure 服務匯流排」，請參閱 [Azure 服務匯流排](https://azure.microsoft.com/services/service-bus/)。
 * 若要深入了解自動調整，請參閱 [調整雲端服務](../cloud-services/cloud-services-how-to-scale.md)。

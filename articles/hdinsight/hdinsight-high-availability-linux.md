@@ -1,25 +1,27 @@
 ---
-title: "HDInsight (Hadoop) 高可用性功能 |Microsoft Docs"
-description: "了解如何使用額外的前端節點，讓以 Linux 為基礎的 HDInsight 叢集可以提高可靠性和可用性。 了解這會如何影響例如 Ambari 和 Hive 等 Hadoop 服務，以及如何使用 SSH 分別連線到每個前端節點。"
+title: "Hadoop 高可用性 - Azure HDInsight | Microsoft Docs"
+description: "了解如何使用額外的前端節點，讓 HDInsight 叢集可以提高可靠性和可用性。 了解這會如何影響例如 Ambari 和 Hive 等 Hadoop 服務，以及如何使用 SSH 分別連線到每個前端節點。"
 services: hdinsight
 editor: cgronlun
 manager: jhubbard
 author: Blackmist
 documentationcenter: 
 tags: azure-portal
+keywords: "hadoop 高可用性"
 ms.assetid: 99c9f59c-cf6b-4529-99d1-bf060435e8d4
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: multiple
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 6e001d497dba1e3cc0a987fd0950854fe2564d2c
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 8e2c1ccb003adafeaf315b23171f49d5b3f50cdb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -27,12 +29,12 @@ ms.lasthandoff: 04/27/2017
 
 HDInsight 叢集提供兩個前端節點，以提升執行中 Hadoop 服務和作業的可用性和可靠性。
 
-Hadoop 藉由在叢集中的多個節點上保有服務和資料的副本，達到高可用性和可靠性。 不過 Hadoop 的標準散佈功能通常只能有一個前端節點。 任何單一前端節點的中斷情況都可能導致叢集停止運作。 這不是 HDInsight 的問題。
+Hadoop 藉由在叢集中的多個節點間複寫服務和資料，以達到高可用性和可靠性。 不過 Hadoop 的標準散佈功能通常只能有一個前端節點。 任何單一前端節點的中斷情況都可能導致叢集停止運作。 HDInsight 提供兩個前端節點，以改善 Hadoop 的可用性和可靠性。
 
 > [!IMPORTANT]
 > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
-## <a name="understanding-the-nodes"></a>了解節點
+## <a name="availability-and-reliability-of-nodes"></a>節點的可用性和可靠性
 
 使用 Azure 虛擬機器在 HDInsight 叢集中的節點實作。 如果節點失敗，該節點會離線，並且會建立一個新的節點，來取代失敗的節點。 當節點離線時，在新節點上線之前，將會使用相同類型的另一個節點。
 
@@ -43,7 +45,7 @@ Hadoop 藉由在叢集中的多個節點上保有服務和資料的副本，達�
 
 ### <a name="head-nodes"></a>前端節點
 
-這兩個前端節點會同時為作用中和在 HDInsight 叢集中執行。 某些服務，例如 HDFS 或 YARN，在任何給定的時間僅能在其中一個前端節點上為「作用中」。 HiveServer2 或 Hive MetaStore 等其他服務可同時在這兩個前端節點上作用。
+為了確保 Hadoop 服務的高可用性，HDInsight 提供兩個前端節點。 這兩個前端節點會同時為作用中和在 HDInsight 叢集中執行。 某些服務，例如 HDFS 或 YARN，在任何給定的時間僅能在其中一個前端節點上為「作用中」。 HiveServer2 或 Hive MetaStore 等其他服務可同時在這兩個前端節點上作用。
 
 前端節點 (和 HDInsight 中的其他節點) 以數值作為節點主機名稱的一部分。 例如，`hn0-CLUSTERNAME` 或 `hn4-CLUSTERNAME`。
 
@@ -52,11 +54,11 @@ Hadoop 藉由在叢集中的多個節點上保有服務和資料的副本，達�
 
 ### <a name="nimbus-nodes"></a>Nimbus 節點
 
-對於 Storm 叢集，Nimbus 節點會透過在背景工作節點之間散佈並監視處理，來提供 Hadoop jobtracker 類似的功能。 HDInsight 提供 2 個 Nimbus 節點給 Storm 叢集類型。
+Nimbus 節點可用於 Storm 叢集。 Nimbus 節點會透過在背景工作節點之間散佈並監視處理，來提供 Hadoop jobtracker 類似的功能。 HDInsight 為 Storm 叢集提供兩個 Nimbus 節點
 
 ### <a name="zookeeper-nodes"></a>Zookeeper 節點
 
-[ZooKeeper](http://zookeeper.apache.org/) 節點用於前端節點上主要服務的前置選擇，並可確保服務、資料 (背景工作角色) 節點和閘道知道主要服務在哪一個前端節點上為作用中。 根據預設，HDInsight 會提供三個 ZooKeeper 節點。
+[ZooKeeper](http://zookeeper.apache.org/) 節點用於前端節點上主要服務的前置選擇。 也可以用來確保服務、資料 (背景工作角色) 節點和閘道知道主要服務在哪一個前端節點上為作用中。 根據預設，HDInsight 會提供三個 ZooKeeper 節點。
 
 ### <a name="worker-nodes"></a>背景工作節點
 
@@ -64,7 +66,7 @@ Hadoop 藉由在叢集中的多個節點上保有服務和資料的副本，達�
 
 ### <a name="edge-node"></a>邊緣節點
 
-邊緣節點並不積極地參與叢集內的資料分析，而是開發人員或資料科學家在使用 Hadoop 時搭配使用。 邊緣節點和叢集中的其他節點一樣，存在於相同的 Azure 虛擬網路中，也可直接存取其他所有節點。 由於邊緣節點不涉及叢集資料的分析，因此其可以從關鍵 Hadoop 服務或分析作業中取走資源，而不會產生任何問題。
+邊緣節點並不積極地參與叢集內的資料分析， 而是由開發人員或資料科學家在使用 Hadoop 時搭配使用。 邊緣節點和叢集中的其他節點一樣，存在於相同的 Azure 虛擬網路中，也可直接存取其他所有節點。 使用邊緣節點時，不需從關鍵 Hadoop 服務或分析作業取走資源。
 
 目前，HDInsight 上的 R 伺服器是唯一可依預設提供邊緣節點的叢集類型。 對於 HDInsight 上的 R 伺服器來說，邊緣節點是用來在提交至叢集進行分散式處理之前，在本機節點上測試 R 程式碼之用。
 
@@ -134,15 +136,15 @@ Ambari Web UI 可在 https://CLUSTERNAME.azurehdinsight.net 檢視。 將 **CLUS
 
 ### <a name="ambari-rest-api"></a>Ambari REST API
 
-Ambari REST API 可透過網際網路提供，而且公用閘道器會處理路由要求，將其傳送到目前裝載 REST API 的前端節點。
+Ambari REST API 可透過網際網路提供。 HDInsight 公用閘道器會處理路由要求，將其傳送到目前裝載 REST API 的前端節點。
 
 您可以使用下列命令透過 Ambari REST API 來檢查服務的狀態：
 
     curl -u admin:PASSWORD https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/services/SERVICENAME?fields=ServiceInfo/state
 
-* 將 **PASSWORD** 取代為 HTTP 使用者 (系統管理員) 帳戶密碼
+* 將 **PASSWORD** 取代為 HTTP 使用者 (系統管理員) 帳戶密碼。
 * 將 **CLUSTERNAME** 取代為叢集的名稱。
-* 將 **SERVICENAME** 取代為要檢查其狀態的服務名稱
+* 將 **SERVICENAME** 取代為您要檢查其狀態的服務名稱。
 
 例如，若要檢查在名為 **mycluster** 的叢集上的 **HDFS** 服務狀態，其中密碼是 **password**，您可使用下列命令：
 
@@ -191,7 +193,7 @@ Ambari REST API 可透過網際網路提供，而且公用閘道器會處理路�
 
 您也可以使用 SSH 檔案傳輸通訊協定或安全檔案傳輸通訊協定 (SFTP)，來連線至前端節點，並直接下載記錄檔。
 
-類似於使用 SSH 用戶端，當連接到叢集時，您必須提供 SSH 的使用者帳戶名稱和叢集的 SSH 位址。 例如， `sftp username@mycluster-ssh.azurehdinsight.net`。 您必須在出現提示時，提供帳戶密碼或使用 `-i` 參數提供公用金鑰。
+類似於使用 SSH 用戶端，當連接到叢集時，您必須提供 SSH 的使用者帳戶名稱和叢集的 SSH 位址。 例如： `sftp username@mycluster-ssh.azurehdinsight.net`。 出現提示時，請提供帳戶密碼或使用 `-i` 參數提供公開金鑰。
 
 連線之後，您會看到 `sftp>` 提示。 您可以從該提示變更目錄、上傳和下載檔案。 例如：下列命令會將目錄變更至 **/var/log/hadoop/hdfs** 目錄，然後在目錄中下載所有檔案。
 
@@ -206,7 +208,7 @@ Ambari REST API 可透過網際網路提供，而且公用閘道器會處理路�
 ### <a name="ambari"></a>Ambari
 
 > [!NOTE]
-> 若要使用 Ambari 存取記錄檔，您必須使用 SSH 通道。 個別服務的 Web 介面不會在網際網路上公開。 如需使用 SSH 通道的相關資訊，請參閱[使用 SSH 通道來存取 Ambari Web UI、ResourceManager、JobHistory、NameNode、Oozie 及其他 Web UI](hdinsight-linux-ambari-ssh-tunnel.md)。
+> 若要使用 Ambari 存取記錄檔，您必須使用 SSH 通道。 個別服務的 Web 介面不會在網際網路上公開。 如需使用 SSH 通道的詳細資訊，請參閱[使用 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md)文件。
 
 從 Ambari Web UI 中，選取您想要檢視記錄的服務 (例如，YARN)。 然後使用 [快速連結] 來選取要檢視記錄的前端節點。
 
@@ -214,9 +216,9 @@ Ambari REST API 可透過網際網路提供，而且公用閘道器會處理路�
 
 ## <a name="how-to-configure-the-node-size"></a>如何設定節點大小
 
-只能在叢集建立期間選取節點的大小。 您可以在 [HDInsight 定價頁面](https://azure.microsoft.com/pricing/details/hdinsight/)找到 HDInsight 可用之不同 VM 大小的清單，包括個別的核心、記憶體和本機儲存體。
+只能在叢集建立期間選取節點的大小。 您可以在 [HDInsight 價格頁面](https://azure.microsoft.com/pricing/details/hdinsight/)找到 HDInsight 可用之不同 VM 大小的清單。
 
-建立新的叢集時，您可以指定該節點的大小。 以下資訊提供如何使用 [Azure 入口網站][preview-portal]、[Azure PowerShell][azure-powershell] 和 [Azure CLI][azure-cli] 指定大小的指引：
+建立叢集時，您可以指定節點的大小。 以下資訊提供如何使用 [Azure 入口網站][preview-portal]、[Azure PowerShell][azure-powershell] 和 [Azure CLI][azure-cli] 指定大小的指引：
 
 * **Azure 入口網站**：建立叢集時，您可以設定叢集所使用的節點大小：
 

@@ -12,12 +12,13 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 03/20/2017
+ms.date: 05/02/2017
 ms.author: antisch
-translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 4d37dfc6c7110aa32788bbd3c3f81cd84a1426d2
-ms.lasthandoff: 03/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 698978fd717091c49a1375e222f46f4325431223
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 ---
 
@@ -25,7 +26,9 @@ ms.lasthandoff: 03/24/2017
 
 此指令碼會建立 Azure Batch 帳戶，並顯示各種可以查詢和更新的帳戶屬性。
 
-您可以視需要使用 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)中的指示來安裝 Azure CLI，然後執行 `az login` 以登入 Azure。
+## <a name="prerequisites"></a>必要條件
+
+如果您尚未安裝 Azure CLI，請使用 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)中所提供的指示來安裝 Azure CLI。
 
 ## <a name="batch-account-sample-script"></a>Batch 帳戶範例指令碼
 

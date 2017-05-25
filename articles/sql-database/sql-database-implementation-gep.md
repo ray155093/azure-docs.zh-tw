@@ -15,10 +15,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/10/2017
 ms.author: carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: 10b40214ad4c7d7bb7999a5abce1c22100b617d8
-ms.openlocfilehash: 5730556f4d5af04481c771c8a70f003d6cd2917c
-ms.lasthandoff: 01/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 2d77e95a4e99679686839959bf6330f1e29f870b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -64,7 +65,7 @@ SMART by GEP 應用程式的核心是為企業採購管理解決方案提供技�
 > 
 > 
 
-使用 Azure SQL Database 與將同樣的花費用在內部部署環境中進行工程相比，GEP 可自動擁有更強大的災害復原能力，因為 Azure SQL Database 內建容錯功能。 GEP 使用 Azure SQL Database 中的「作用中異地複寫」功能，結合了不同地理區域中的多個作用中、可讀取且在線上的次要複本 (Always On 可用性群組)，來形成高可用性組。 在各個區域複寫 SMART by GEP 資料意謂著如果發生全區域災害，GEP 只要使用最低限度的復原點目標 (RPO) 和復原時間目標 (RTO)，即可輕鬆復原客戶資料。
+使用 Azure SQL Database 與將同樣的花費用在內部部署環境中進行工程相比，GEP 可自動擁有更強大的災害復原能力，因為 Azure SQL Database 內建容錯功能。 GEP 使用 Azure SQL Database 中的作用中異地複寫功能，結合了不同地理區域中的多個作用中、可讀取且在線上的次要複本 (Always On 可用性群組)，來形成高可用性組。 在各個區域複寫 SMART by GEP 資料意謂著如果發生全區域災害，GEP 只要使用最低限度的復原點目標 (RPO) 和復原時間目標 (RTO)，即可輕鬆復原客戶資料。
 
 每個 SMART by GEP 客戶都有兩個 Azure SQL Database 執行個體︰一個用於線上交易處理 (OLTP)，一個用於分析 (例如客戶開支和報表分析)。 Azure SQL Database 彈性集區可讓 GEP 輕鬆管理全球數千個資料庫，以處理無法預測的資料庫資源需求。 彈性集區為 GEP 提供一個方法，既能確保客戶資料庫可依需要調整，而不會有過度佈建或佈建不足的情況，同時也讓 GEP 能夠控制成本。 此外，由於這是一項 PaaS 服務，因此 GEP 會隨著自動升級取得所有新的 Azure SQL Database 功能。
 

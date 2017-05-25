@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: juluk
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 47627bc6df93db1d92aa29350fe6e48039dc6f1b
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: 63f1c468b5f8f4b0bb298cb67adea8c01b065427
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/16/2017
 
 ---
 # <a name="overview-of-azure-cloud-shell-preview"></a>Azure Cloud Shell 的功能概觀 (預覽)
@@ -39,19 +39,22 @@ Cloud Shell 預先安裝受歡迎的命令列工具和語言支援，能加快�
 Cloud Shell 可在每個工作階段安全地自動驗證，讓您可透過 Azure CLI 2.0 立即存取您的資源。
 
 ### <a name="connect-your-azure-file-storage"></a>連接您的 Azure 檔案儲存體
-Cloud Shell 機器是暫存的，因此需要掛接 Azure 檔案共用才能保存 $Home 目錄。
+Cloud Shell 機器是暫存的，因此需要將 Azure 檔案共用掛接為 `clouddrive` 才能保存 $Home 目錄。
 第一次啟動時，Cloud Shell 會提示要代替您建立資源群組、儲存體帳戶及檔案共用。 這是一次性的步驟，而且會針對所有工作階段自動連接。 
 
 ![](media/storage-prompt.png)
 
-代替您建立的 LRS 儲存體帳戶有一個 Azure 檔案共用，其中包含預設是 5 GB 的磁碟映像。
-這個磁碟映像可用來同步處理並保存 $Home 目錄。 所需成本和一般儲存體相同。
+代替您建立的 LRS 儲存體帳戶有一個 Azure 檔案共用，其中包含預設是 5 GB 的磁碟映像。 檔案共用會掛接為 `clouddrive`，以便檔案共用與用來同步處理並保存 $Home 目錄的磁碟映像互動。 所需成本和一般儲存體相同。
+
 將代替您建立下列三個資源：
 1. 名稱如下的資源群組：`cloud-shell-storage-<region>`
 2. 名稱如下的儲存體帳戶：`cs-uniqueGuid`
 3. 名稱如下的檔案共用：`cs-<user>-<domain>-com-uniqueGuid`
 
-[探索更多 Cloud Shell 如何保存檔案的資訊](persisting-shell-storage.md)。
+> [!Note]
+> $Home 目錄中的所有檔案 (例如 SSH 金鑰) 會都保存於已掛接檔案共用中儲存的使用者磁碟映像中。 在 $Home 目錄和已掛接的檔案共用中儲存檔案時，請套用最佳作法。
+
+[了解 Cloud Shell 儲存體，更新檔案共用，以及上傳/下載檔案。](persisting-shell-storage.md)。
 
 ## <a name="concepts"></a>概念
 * Cloud Shell 會在以每一工作階段、每位使用者為基礎所提供的暫存機器上執行

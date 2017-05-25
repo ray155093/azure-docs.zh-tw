@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/07/2017
 ms.author: davidmu
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: b011f51e7b5aa921c43c906fb36fa3020a2dc7e6
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 907e5b80aeeee4ab2eb0466490ba9ef9b0348144
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -460,5 +461,5 @@ Start.ps1 指令碼可以完成許多組態工作。 例如，範例中新增至
 
 - 使用[編寫 Azure Resource Manager 範本](../../resource-group-authoring-templates.md)來建立專屬範本。
 - 部署您使用[利用 Resource Manager 範本搭配 Azure PowerShell 建立 Windows 虛擬機器](ps-template.md)建立的範本。
-- 檢閱[使用 Azure Resource Manager 和 PowerShell 管理虛擬機器](ps-manage.md)，以了解如何管理您建立的 VM。
+- 檢閱[使用 Azure PowerShell 模組來建立和管理 Windows VM](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以了解如何管理您建立的 VM。
 

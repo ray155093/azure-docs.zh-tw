@@ -3,7 +3,7 @@ title: "Azure 虛擬網路和 Linux 虛擬機器 | Microsoft Docs"
 description: "教學課程 - 使用 Azure CLI 來管理 Azure 虛擬網路和 Linux 虛擬機器"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: davidmu1
+author: neilpeterson
 manager: timlt
 editor: tysonn
 tags: azure-resource-manager
@@ -13,200 +13,299 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 04/18/2017
-ms.author: davidmu
+ms.date: 05/10/2017
+ms.author: nepeters
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 1ac628b606a198bb437c02d00467d48462c34334
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: e843e444d2fe32f578c5a887b606db982920a9e0
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/17/2017
 
 ---
 
 # <a name="manage-azure-virtual-networks-and-linux-virtual-machines-with-the-azure-cli"></a>使用 Azure CLI 來管理 Azure 虛擬網路和 Linux 虛擬機器
 
-在本教學課程中，您將了解如何在虛擬網路中建立多部虛擬機器 (VM)，並設定這些機器間的網路連線。 完成時，即可從網際網路透過連接埠 22 (適用於 SSH 連線) 或連接埠 80 (適用於 HTTP 連線) 存取「前端」VM。 具有 MySQL 資料庫的「後端」VM 會被隔離，而只有從前端 VM 透過連接埠 3306 才能存取它。
+Azure 虛擬機器會使用 Azure 網路進行內部和外部的網路通訊。 本教學課程會逐步部署兩部虛擬機器 (VM)，並設定這兩部 VM 的 Azure 網路功能。 本教學課程中的範例假設 VM 已裝載 Web 應用程式與資料庫後端，不過應用程式的部署不在本教學課程範圍中。 在本教學課程中，您將了解如何：
 
-您可以使用最新的 [Azure CLI 2.0](/cli/azure/install-azure-cli) 來完成本教學課程中的步驟。
+> [!div class="checklist"]
+> * 部署虛擬網路
+> * 在虛擬網路中建立子網路
+> * 將虛擬機器連結至子網路
+> * 管理虛擬機器的公用 IP 位址
+> * 保護傳入的網際網路流量
+> * 保護 VM 至 VM 的流量
 
-## <a name="create-vm-and-vnet"></a>建立 VM 和 VNet
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 若要知道 CLI 版本，執行 `az --version`。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 您也可以在瀏覽器中使用 [Cloud Shell](/azure/cloud-shell/quickstart)。
 
-Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 VNet 是專屬於您訂用帳戶的 Azure 雲端邏輯隔離。 在 VNet 內，您可以找到子網路、可供連線到這些子網路的規則，以及從 VM 到子網路的連線。 Azure CLI 可讓您輕鬆建立所需的一切網路相關資源來支援對 VM 的存取。 
+## <a name="vm-networking-overview"></a>VM 網路概觀
 
-您必須先使用 az group create 來建立資源群組，才能建立任何其他 Azure 資源。 下列範例會在 westus 位置建立名為 myRGNetwork 的資源群組：
+Azure 虛擬網路可以讓虛擬機器、網際網路與其他 Azure 服務 (例如 Azure SQL database) 之間的網路連線更安全。 虛擬網路會被分割成邏輯區段，稱為子網路。 子網路是用來控制網路流量，並作為安全性界限。 在部署 VM 時，通常會包含連結至子網路的虛擬網路介面。
+
+## <a name="deploy-virtual-network"></a>部署虛擬網路
+
+在本教學課程中，會建立一個具有兩個子網路的虛擬網路。 一個是裝載 Web 應用程式的前端子網路，一個是裝載資料庫伺服器的後端子網路。
+
+建立虛擬網路前，請先使用 [az group create](/cli/azure/group#create) 建立資源群組。 下列範例會在 eastus 建立名為 myRGNetwork 的資源群組。
 
 ```azurecli
-az group create --name myRGNetwork --location westus
+az group create --name myRGNetwork --location eastus
 ```
 
-當您使用 Azure CLI 來建立虛擬機器時，也會同時建立它所需的網路資源。 請使用 [az vm create](https://docs.microsoft.com/cli/azure/vm#create) 來建立 myFrontendVM 及支援它的網路資源：
+### <a name="create-virtual-network"></a>建立虛擬網路
+
+使用 [az network vnet create](/cli/azure/network/vnet#create) 命令建立虛擬網路。 在此範例中，將虛擬網路命名為mvVnet，並指定位址首碼 10.0.0.0/16 給它。 也會建立名為 mySubnetFrontEnd 且首碼為 10.0.1.0/24 的子網路。 本教學課程稍後，會將前端 VM 連線到此子網路。 
+
+```azurecli
+az network vnet create \
+  --resource-group myRGNetwork \
+  --name myVnet \
+  --address-prefix 10.0.0.0/16 \
+  --subnet-name mySubnetFrontEnd \
+  --subnet-prefix 10.0.1.0/24
+```
+
+### <a name="create-subnet"></a>建立子網路
+
+使用 [az network vnet subnet create](/cli/azure/network/vnet/subnet#create) 命令將新的子網路新增至虛擬網路。 在此範例中，將子網路命名為mySubnetBackEnd，並指定位址首碼 10.0.2.0/24 給它。 所有的後端服務都會使用此子網路。
+
+```azurecli
+az network vnet subnet create \
+  --resource-group myRGNetwork \
+  --vnet-name myVnet \
+  --name mySubnetBackEnd \
+  --address-prefix 10.0.2.0/24
+```
+
+此時，已建立一個網路並分割成兩個子網路，一個用於前端的服務，另一個用於後端服務。 在下一節會建立虛擬機器，並將其連線到這些子網路。
+
+## <a name="understand-public-ip-address"></a>認識公用 IP 位址
+
+公用 IP 位址讓您能夠存取網際網路上的 Azure 資源。 本節的教學課程會建立 VM 來示範如何使用公用 IP 位址。
+
+### <a name="allocation-method"></a>配置方法
+
+公用 IP 位址可以動態或靜態配置。 預設是以動態方式配置公用 IP 位址。 VM 解除配置時，就會釋放動態 IP 位址。 在任何包括 VM 解除配置的作業期間，這個行為會導致 IP 位址變更。
+
+可將配置方法設定為靜態，這可確保即使在已取消配置狀態下，IP 位址仍指派給 VM。 使用靜態配置的 IP 位址，則無法指定 IP 位址本身， 而是從可用位址集區配置一個給它。
+
+### <a name="dynamic-allocation"></a>動態配置
+
+使用 [az vm create](/cli/azure/vm#create) 命令建立 VM 時，預設的公用 IP 位址配置方法為動態。 在下列範例中，會建立具有動態 IP 位址的 VM。 
 
 ```azurecli
 az vm create \
   --resource-group myRGNetwork \
-  --name myFrontendVM \
+  --name myFrontEndVM \
+  --vnet-name myVnet \
+  --subnet mySubnetFrontEnd \
+  --nsg myNSGFrontEnd \
+  --public-ip-address myFrontEndIP \
   --image UbuntuLTS \
   --generate-ssh-keys
 ```
 
-建立 VM 之後，請記下公用 IP 位址。 在本教學課程稍後的步驟中，將會用到此位址：
+### <a name="static-allocation"></a>靜態配置
 
-```bash
-{
-  "fqdns": "",
-  "id": "/subscriptions/{id}/resourceGroups/myRGNetwork/providers/Microsoft.Compute/virtualMachines/myFrontendVM",
-  "location": "westus",
-  "macAddress": "00-0D-3A-23-9A-49",
-  "powerState": "VM running",
-  "privateIpAddress": "10.0.0.4",
-  "publicIpAddress": "40.68.254.142",
-  "resourceGroup": "myRGNetwork"
-}
-```
+使用 [az vm create](/cli/azure/vm#create)命令建立虛擬機器時，需包括 `--public-ip-address-allocation static` 引數來指派靜態公用 IP 位址。 這項作業不會示範在本教學課程中，不過在下一節會將動態配置的 IP 位址變更為靜態配置的位址。 
 
-以下是所建立的網路資源：
+### <a name="change-allocation-method"></a>變更配置方法
 
-- **myFrontendVMNSG** – 可保護 myFrontendVM 之連入流量的網路安全性群組。
-- **myVMPublicIP** –可啟用對 myFrontendVM 網際網路存取的公用 IP 位址。
-- **myVMVMNic** – 為 myFrontendVM 提供網路連線能力的虛擬網路介面。
-- **myVMVNET** – myFrontendVM 所連接的虛擬網路。
+使用 [az network public-ip update](/cli/azure/network/public-ip#update) 命令可以變更 IP 位址的配置方法。 在此範例中，會將前端 VM 的 IP 位址配置方法變更為靜態。
 
-## <a name="install-web-server"></a>安裝 Web 伺服器
-
-建立與 myFrontendVM 的 SSH 連線。 以 VM 的公用 IP 位址取代範例 IP 位址：
-
-```bash
-ssh 40.68.254.142
-```
-
-執行下列命令以安裝 NGINX：
-
-```bash
-sudo apt-get -y update && sudo apt-get -y install nginx
-```
-
-關閉 SSH 工作階段：
-
-```bash
-exit
-```
-
-## <a name="manage-internet-traffic"></a>管理網際網路流量
-
-網路安全性群組 (NSG) 包含安全性規則清單，這些規則可允許或拒絕傳送到已連線至 VNet 之資源的網路流量。 NSG 可與子網路或連接到 VM 的個別 NIC 建立關聯。 您可以使用 NSG 規則來透過連接埠開啟或關閉對 VM 的存取。 建立 myFrontendVM 時，會自動開啟輸入連接埠 22 以供 SSH 連線使用。
-
-使用 [az vm open-port](https://docs.microsoft.com/cli/azure/vm#open-port)在 myFrontendVM 上開啟連接埠 80：
+首先，解除配置 VM。
 
 ```azurecli
-az vm open-port --resource-group myRGNetwork --name myFrontendVM --port 80
+az vm deallocate --resource-group myRGNetwork --name myFrontEndVM
 ```
 
-現在您可以瀏覽至 VM 的公用 IP 位址，以查看 NGINX 網站。
-
-![預設 NGINX 網站](./media/quick-create-cli/nginx.png)
-
-## <a name="manage-internal-traffic"></a>管理內部網路流量
-
-您也可以使用 NSG 來設定 VM 的內部通訊。 在本節中，您將了解如何在網路中建立額外的子網路並將 NSG 指派給子網路，以允許透過連接埠 3306 從 myFrontendVM 連線到 myBackendVM。 此子網路會接著在 VM 建立後會指派給 VM。
-
-使用 [az network nsg create](https://docs.microsoft.com/cli/azure/network/nsg#create)來新增一個名為 myBackendNSG 的網路安全性群組。 
+使用 [az network public-ip update](/azure/network/public-ip#update) 命令更新配置方式。 在此，將 `--allocaion-metod` 設為 static。
 
 ```azurecli
-az network nsg create \
- --resource-group myRGNetwork \
- --name myBackendNSG
+az network public-ip update --resource-group myRGNetwork --name myFrontEndIP --allocation-method static
 ```
 
-設定連接埠來讓 myFrontendVM 和 myBackendVM 在 VNet 中彼此互相通訊。 使用 [az network rule create](/cli/azure/network/rule#create) 新增 NSG 規則，僅允許流量從 myVMSubnet 傳送至 myBackendSubnet：
+啟動 VM。
 
 ```azurecli
-az network nsg rule create \
- --resource-group myRGNetwork \
- --nsg-name myBackendNSG \
- --name com-rule \
- --access Allow \
- --protocol Tcp \
- --direction Inbound \
- --priority 100 \
- --source-address-prefix 10.0.0.0/24 \
- --source-port-range "*" \
- --destination-address-prefix "*" \
- --destination-port-range 3306
+az vm start --resource-group myRGNetwork --name myFrontEndVM --no-wait
 ```
 
-## <a name="add-back-end-subnet"></a>新增後端子網路
+### <a name="no-public-ip-address"></a>無公用 IP 位址
 
-子網路是 VNET 的子資源，而且有助於使用 IP 位址首碼來定義 CIDR 區塊內位址空間的區段。 NIC 可以加入子網路和連接到 VM，提供各種工作負載的連線。
+通常，VM 不需要透過網際網路存取。 若要建立無公用 IP 位址的 VM，請使用 `--public-ip-address ""` 引數加上以雙引號括住的空集合。 此組態稍後會在本教學課程中示範。
 
-使用 [az network vnet subnet create](https://docs.microsoft.com/cli/azure/network/vnet/subnet#create) 將 myBackEndSubnet 新增至 myFrontendVMVNet：
+## <a name="secure-network-traffic"></a>保護網路流量
+
+網路安全性群組 (NSG) 包含安全性規則的清單，可允許或拒絕已連線至 Azure 虛擬網路 (VNet) 之資源的網路流量。 NSG 可與子網路或個別網路介面建立關聯。 當 NSG 與網路介面相關聯時，只會套用相關聯的 VM。 當 NSG 與子網路相關聯時，系統會將規則套用至已連線至子網路的所有資源。 
+
+### <a name="network-security-group-rules"></a>網路安全性群組規則
+
+NSG 規則定義允許或拒絕流量的網路連接埠。 規則可以包含來源和目的地 IP 位址範圍，以便控制特定系統或子網路之間的流量。 NSG 規則也包含優先順序 (介於 1 和 4096)。 系統會依照優先順序評估規則。 優先順序 100 的規則會比優先順序 200 的規則優先評估。
+
+所有 NSG 都包含一組預設規則。 預設規則無法刪除，但因為其會指派為最低優先權，因此可以由您所建立的規則覆寫預設規則。
+
+- **虛擬網路** - 虛擬網路中的流量起始和結束同時允許輸入和輸出方向。
+- **網際網路** - 允許輸出流量，但會封鎖輸入流量。
+- **負載平衡器** - 允許 Azure 的負載平衡器探查 VM 和角色執行個體的健康狀態。 如果您不使用負載平衡的集合，則可以覆寫此規則。
+
+### <a name="create-network-security-groups"></a>建立網路安全性群組
+
+使用 [az vm create](/cli/azure/vm#create) 命令建立 VM 時，可以同時建立網路安全性群組。 這麼做時，NSG 是與 VM 網路介面相關聯，並會自動建立 NSG 規則以允許從任何目的地到連接埠 22 的流量。 稍早在本教學課程中，前端 NSG 已自動和前端 VM 一起建立。 也會自動建立連接埠 22 的 NSG 規則。 
+
+在某些情況下，預先建立 NSG 可能較有幫助，例如不應建立預設 SSH 規則時，或當 NSG 應該連結至子網路時。 
+
+使用 [az network nsg create](/cli/azure/network/nsg#create) 命令建立網路安全性群組。
 
 ```azurecli
-az network vnet subnet create \
- --address-prefix 10.0.1.0/24 \
- --name myBackendSubnet \
- --resource-group myRGNetwork \
- --vnet-name myFrontendVMVNET \
- --network-security-group myBackendNSG
+az network nsg create --resource-group myRGNetwork --name myNSGBackEnd
 ```
 
-## <a name="create-back-end-vm"></a>建立後端 VM
+它不會將 NSG 關聯至網路介面，而是關聯至子網路。 在此組態中，任何連結至子網路的 VM 都會繼承此 NSG 規則。
 
-藉由 [az vm create](/cli/azure/vm#create) 使用 myBackendSubnet 來建立 myBackendVM：
+以新的 NSG 更新名為mySubnetBackEnd 的現有子網路。
+
+```azurecli
+az network vnet subnet update \
+  --resource-group myRGNetwork \
+  --vnet-name myVnet \
+  --name mySubnetBackEnd \
+  --network-security-group myNSGBackEnd
+```
+
+現在，建立連結至mySubnetBackEnd 的虛擬機器。 請注意，`--nsg` 引數的值為一對空的雙引號。 NSG 不需要和 VM 一起建立。 VM 連結到後端子網路，後者以預先建立的後端 NSG 的保護。 這個 NSG 會套用至 VM。 也請注意，`--public-ip-address` 引數的值為一對空的雙引號。 此組態會建立無公用 IP 位址的 VM。 
 
 ```azurecli
 az vm create \
   --resource-group myRGNetwork \
-  --name myBackendVM \
+  --name myBackEndVM \
+  --vnet-name myVnet \
+  --subnet mySubnetBackEnd \
+  --public-ip-address "" \
+  --nsg "" \
   --image UbuntuLTS \
-  --generate-ssh-keys \
-  --subnet myBackendSubnet \
-  --vnet-name myFrontendVMVNET \
-  --public-ip-address ""
-
+  --generate-ssh-keys
 ```
 
-## <a name="install-database"></a>安裝資料庫
+### <a name="secure-incoming-traffic"></a>保護傳入的流量
 
-針對本教學課程，您需從開發 VM 將私密金鑰複製到 myFrontendVM。 在生產環境中，建議您建立要在 VM 上使用的特定金鑰，而不要在建立 VM 時使用 --generate-ssh-keys。 
+建立前端 VM 時，已建立 NSG 規則以允許連接埠 22 上的傳入流量。 此規則允許連到 VM 的 SSH 連線。 在此範例中，應該也允許連接埠 80 上的流量。 此組態讓 VM 上的 Web 應用程式可被存取。
 
-後端 VM 不應該可供公開存取。 在本節中，您將了解如何使用 SSH 來登入 myFrontendVM，然後使用 SSH 從 myFrontendVM登入 myBackendVM。
+使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 命令建立連接埠 80 的規則。
 
-以 myFrontendVM 的公用 IP 位址取代範例 IP 位址：
-
-```bash
-scp ~/.ssh/id_rsa 40.68.254.142:~/.ssh/id_rsa
+```azurecli
+az network nsg rule create \
+  --resource-group myRGNetwork \
+  --nsg-name myNSGFrontEnd \
+  --name http \
+  --access allow \
+  --protocol Tcp \
+  --direction Inbound \
+  --priority 200 \
+  --source-address-prefix "*" \
+  --source-port-range "*" \
+  --destination-address-prefix "*" \
+  --destination-port-range 80
 ```
 
-建立與 myFrontendVM 的 SSH 連線。 以 myFrontendVM 的公用 IP 位址取代範例 IP 位址：
+現在，只可以在連接埠 22和連接埠 80 上存取前端 VM。 所有其他的傳入流量會在網路安全性群組遭到封鎖。 以視覺化方式檢視 NSG 規則組態可能有幫助。 以 [az network rule list](/cli/azure/network/nsg/rule#list) 命令傳回 NSG 規則組態。 
 
-```bash
-ssh 40.68.254.142
+```azurecli
+az network nsg rule list --resource-group myRGNetwork --nsg-name myNSGFrontEnd --output table
 ```
 
-從 myFrontendVM 與 myBackendVM 連線：
+輸出：
 
-```bash
-ssh myBackendVM
+```azurecli
+Access    DestinationAddressPrefix      DestinationPortRange  Direction    Name                 Priority  Protocol    ProvisioningState    ResourceGroup    SourceAddressPrefix    SourcePortRange
+--------  --------------------------  ----------------------  -----------  -----------------  ----------  ----------  -------------------  ---------------  ---------------------  -----------------
+Allow     *                                               22  Inbound      default-allow-ssh        1000  Tcp         Succeeded            myRGNetwork      *                      *
+Allow     *                                               80  Inbound      http                      200  Tcp         Succeeded            myRGNetwork      *                      *
 ```
 
-執行下列命令來安裝 MySQL：
+### <a name="secure-vm-to-vm-traffic"></a>保護 VM 至 VM 的流量
 
-```bash
-sudo apt-get -y install mysql-server
+網路安全性群組規則也可以套用在 VM 之間。 在此範例中，前端 VM 需要與連接埠 22 和 3306上的後端 VM 通訊。 此組態允許來自前端 VM 的 SSH 連線，也允許前端 VM 上的 應用程式與後端 MySQL 資料庫通訊。 前端和後端虛擬機器之間的所有其他流量應該會被封鎖。
+
+使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 命令建立連接埠 22 的規則。 請注意，`--source-address-prefix` 引數指定 10.0.1.0/24 值。 此組態可確保透過 NSG 只允許來自前端子網路的流量。
+
+```azurecli
+az network nsg rule create \
+  --resource-group myRGNetwork \
+  --nsg-name myNSGBackEnd \
+  --name SSH \
+  --access Allow \
+  --protocol Tcp \
+  --direction Inbound \
+  --priority 100 \
+  --source-address-prefix 10.0.1.0/24 \
+  --source-port-range "*" \
+  --destination-address-prefix "*" \
+  --destination-port-range "22"
 ```
 
-依照指示來設定 MySQL。
+現在新增連接埠 3306 上 MySQL 流量的規則。
 
-關閉 SSH 工作階段：
-
-```bash
-exit
+```azurecli
+az network nsg rule create \
+  --resource-group myRGNetwork \
+  --nsg-name myNSGBackEnd \
+  --name MySQL \
+  --access Allow \
+  --protocol Tcp \
+  --direction Inbound \
+  --priority 200 \
+  --source-address-prefix 10.0.1.0/24 \
+  --source-port-range "*" \
+  --destination-address-prefix "*" \
+  --destination-port-range "3306"
 ```
 
-安裝 MySQL 是為了示範如何將應用程式安裝在 myBackendVM上，在本教學課程中並未使用它。
+最後，由於 NSG 的預設規則允許相同 VNet 中 VM 之間的所有流量，可以建立一條後端 NSG 規則來封鎖所有流量。 請注意，指定的 `--priority` 值為 300，會降低 NSG 和 MySQL 規則的優先順序。 此組態可確保透過 NSG 會允許 SSH 和 MySQL 流量。
+
+```azurecli
+az network nsg rule create \
+  --resource-group myRGNetwork \
+  --nsg-name myNSGBackEnd \
+  --name denyAll \
+  --access Deny \
+  --protocol Tcp \
+  --direction Inbound \
+  --priority 300 \
+  --source-address-prefix "*" \
+  --source-port-range "*" \
+  --destination-address-prefix "*" \
+  --destination-port-range "*"
+```
+
+現在，只可以從前端子網路在連接埠 22 和連接埠 3306 上存取後端 VM。 所有其他的傳入流量會在網路安全性群組遭到封鎖。 以視覺化方式檢視 NSG 規則組態可能有幫助。 以 [az network rule list](/cli/azure/network/nsg/rule#list) 命令傳回 NSG 規則組態。 
+
+```azurecli
+az network nsg rule list --resource-group myRGNetwork --nsg-name myNSGBackEnd --output table
+```
+
+輸出：
+
+```azurecli
+Access    DestinationAddressPrefix    DestinationPortRange    Direction    Name       Priority  Protocol    ProvisioningState    ResourceGroup    SourceAddressPrefix    SourcePortRange
+--------  --------------------------  ----------------------  -----------  -------  ----------  ----------  -------------------  ---------------  ---------------------  -----------------
+Allow     *                           22                      Inbound      SSH             100  Tcp         Succeeded            myRGNetwork      10.0.1.0/24            *
+Allow     *                           3306                    Inbound      MySQL           200  Tcp         Succeeded            myRGNetwork      10.0.1.0/24            *
+Deny      *                           *                       Inbound      denyAll         300  Tcp         Succeeded            myRGNetwork      *                      *
+```
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已了解如何建立和保護虛擬機器相關的 Azure 網路。 接著前進到下一個教學課程，了解使用 Azure 資訊安全中心監視 VM 安全性。
+在本教學課程中，您已建立並保護與虛擬機器相關的 Azure 網路。 您已了解如何︰
 
-[管理虛擬機器安全性](./tutorial-azure-security.md)
+> [!div class="checklist"]
+> * 部署虛擬網路
+> * 在虛擬網路中建立子網路
+> * 將虛擬機器連結至子網路
+> * 管理虛擬機器的公用 IP 位址
+> * 保護傳入的網際網路流量
+> * 保護 VM 至 VM 的流量
+
+請前進到下一個教學課程，了解如何使用 Azure 備份保護虛擬機器上的資料。 
+
+> [!div class="nextstepaction"]
+> [備份 Azure 中的 Linux 虛擬機器](./tutorial-backup-vms.md)

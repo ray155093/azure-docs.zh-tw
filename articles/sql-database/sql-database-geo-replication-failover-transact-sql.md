@@ -15,26 +15,28 @@ ms.tgt_pltfrm: NA
 ms.workload: data-management
 ms.date: 01/10/2017
 ms.author: carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: 8d988aa55d053d28adcf29aeca749a7b18d56ed4
-ms.openlocfilehash: 6d5ee44b57ce3e60b72ff2a2d182f2b8a39ecf81
-ms.lasthandoff: 02/16/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 6ea2cfcf41900ecbf4d254cc4a195848144a0fa0
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
 # <a name="initiate-a-planned-or-unplanned-failover-for-azure-sql-database-with-transact-sql"></a>使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉
 
-本文說明如何使用 Transact-SQL 起始容錯移轉至次要 SQL Database。 若要設定「異地複寫」，請參閱 [為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-transact-sql.md)。
+本文說明如何使用 Transact-SQL 起始容錯移轉至次要 SQL Database。 若要設定異地複寫，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-transact-sql.md)。
 
 若要起始容錯移轉，您需要下列各項︰
 
-* 一個主要複本上的 DBManager 登入身分、具備您將進行異地複寫之本機資料庫的 db_ownership，以及成為您將設定「異地複寫」之夥伴伺服器上的 DBManager。
-* SQL Server Management Studio (SSMS)
+* 主要資料庫上的 DBManager 登入
+* 擁有您要異地複寫之本機資料庫的 db_ownership
+* 成為您為異地複寫所設定之夥伴伺服器上的 DBManager
+* 最新版的 SQL Server Management Studio (SSMS)
 
 > [!IMPORTANT]
 > 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。 [更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
-> 
-> 
+>  
 
 ## <a name="initiate-a-planned-failover-promoting-a-secondary-database-to-become-the-new-primary"></a>起始規劃的容錯移轉，將次要資料庫升級成為新主要複本
 您可以使用 **ALTER DATABASE** 陳述式，來升級次要資料庫，使它成為規劃的方式中的新主要資料庫，將現有主要降級成為次要資料庫。 此陳述式是在要升級的異地複寫次要資料庫所在的 Azure SQL Database 邏輯伺服器上的 master 資料庫上執行。 這項功能是為了規劃的容錯移轉 (例如 DR 鑽研期間) 設計，並且需要主要資料庫可供使用。
@@ -42,7 +44,7 @@ ms.lasthandoff: 02/16/2017
 此命令會執行下列工作流程：
 
 1. 暫時切換複寫為同步模式，造成所有未完成的交易被排清至次要複本並封鎖所有新交易；
-2. 切換「異地複寫」合作關係中兩個資料庫的角色。  
+2. 切換異地複寫合作關係中兩個資料庫的角色。  
 
 此順序可保證在角色切換之前兩個資料庫經過同步處理，因此不會發生資料遺失。 切換角色時，會有一小段時間無法使用這兩個資料庫 (大約為 0 到 25 秒)。 如果主要資料庫有多個次要資料庫，此命令會自動重新設定其他次要複本以連接至新的主要複本。  在正常情況下，完成整個作業所需的時間應該少於一分鐘。 如需詳細資訊，請參閱 [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) 和[服務層](sql-database-service-tiers.md)。
 
@@ -85,10 +87,10 @@ ms.lasthandoff: 02/16/2017
 
 ## <a name="next-steps"></a>後續步驟
 * 容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。 如需詳細資訊，請參閱 [災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
-* 若要了解如何使用主動式異地複寫在災害之後進行復原，包括復原前和復原後步驟，以及執行災害復原演練，請參閱 [災害復原](sql-database-disaster-recovery.md)
-* 如需 Sasha Nosov 有關主動式異地複寫的部落格文章，請參閱 [新異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
-* 如需如何設計雲端應用程式使用主動式異地複寫的相關資訊，請參閱 [使用異地複寫設計商務持續性的雲端應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+* 若要了解如何使用主動式異地複寫在災害之後進行復原，包括復原前和復原後步驟，以及執行災害復原演練，請參閱[災害復原](sql-database-disaster-recovery.md)
+* 如需 Sasha Nosov 有關主動式異地複寫的部落格文章，請參閱[新異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
+* 如需如何設計雲端應用程式使用主動式異地複寫的相關資訊，請參閱[使用異地複寫設計商務持續性的雲端應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 * 如需使用主動式異地複寫與彈性集區的相關資訊，請參閱[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
-* 如需商務持續性的概觀，請參閱 [商務持續性概觀](sql-database-business-continuity.md)
+* 如需商務持續性的概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 
 

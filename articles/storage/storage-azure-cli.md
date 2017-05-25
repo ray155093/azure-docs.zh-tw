@@ -12,12 +12,13 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: azurecli
 ms.topic: article
-ms.date: 02/18/2017
+ms.date: 05/15/2017
 ms.author: marsma
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 5b77598e76de3508d90b35ce5a1f2ee338aca0c8
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 90b67cf3d136882d59ed7fe4210f93fb694e96a6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -48,7 +49,7 @@ ms.lasthandoff: 04/25/2017
 
 ## <a name="working-with-the-cli"></a>使用 CLI
 
-安裝 CLI 之後，您即可在命令列介面 (Bash、終端機、命令提示字元) 中使用 `az` 命令，存取 Azure CLI 命令。 輸入 `az` 命令，應該會得到類似如下的輸出：
+安裝 CLI 之後，您即可在命令列介面 (Bash、終端機、命令提示字元) 中使用 `az` 命令，存取 Azure CLI 命令。 輸入 `az` 命令，以查看基底命令的完整清單 (下列輸出範例已截斷)︰
 
 ```
      /\
@@ -62,38 +63,15 @@ Welcome to the cool new Azure CLI!
 
 Here are the base commands:
 
-    account   : Commands to manage subscriptions.
-    acr       : Commands to manage Azure container registries.
-    acs       : Commands to manage Azure container services.
-    ad        : Synchronize on-premises directories and manage Azure Active Directory (AAD)
-                resources.
-    appservice: Commands to manage your Azure web apps and App Service plans.
-    cloud     : Manage the Azure clouds registered.
-    component : Commands to manage and update Azure CLI 2.0 components.
-    configure : Configure Azure CLI 2.0 or view your configuration. The command is
-                interactive, so just type `az configure` and respond to the prompts.
-    container : Set up automated builds and deployments for multi-container Docker applications.
-    disk      : Commands to manage 'Managed Disks'.
-    feature   : Commands to manage resource provider features, such as previews.
-    feedback  : Loving or hating the CLI?  Let us know!
-    group     : Commands to manage resource groups.
-    image     : Commands to manage custom virtual machine images based on managed disks/snapshots.
-    lock
-    login     : Log in to access Azure subscriptions.
-    logout    : Log out to remove access to Azure subscriptions.
-    network   : Manages Network resources.
-    policy    : Commands to manage resource policies.
-    provider  : Manage resource providers.
-    resource  : Generic commands to manage Azure resources.
-    role      : Use role assignments to manage access to your Azure resources.
-    snapshot  : Commands to manage snapshots.
-    storage   : Durable, highly available, and massively scalable cloud storage.
-    tag       : Manage resource tags.
-    vm        : Provision Linux and Windows virtual machines in minutes.
-    vmss      : Create highly available, auto-scalable Linux or Windows virtual machines.
+    account          : Manage subscriptions.
+    acr              : Manage Azure container registries.
+    acs              : Manage Azure Container Services.
+    ad               : Synchronize on-premises directories and manage Azure Active Directory
+                       resources.
+    ...
 ```
 
-在命令列介面中，執行 `az storage -h` 命令以列出 `storage` 群組命令與其子群組。 子群組的描述提供 Azure CLI 針對使用儲存體資源所提供的功能概觀。
+在命令列介面中，執行 `az storage --help` 命令以列出 `storage` 命令子群組。 子群組的描述提供 Azure CLI 針對使用儲存體資源所提供的功能概觀。
 
 ```
 Group
@@ -103,14 +81,14 @@ Subgroups:
     account  : Manage storage accounts.
     blob     : Object storage for unstructured data.
     container: Manage blob storage containers.
-    cors     : Manage Storage service Cross-Orgin Resource Sharing (CORS).
+    cors     : Manage Storage service Cross-Origin Resource Sharing (CORS).
     directory: Manage file storage directories.
     entity   : Manage table storage entities.
     file     : File shares that use the standard SMB 3.0 protocol.
     logging  : Manage Storage service logging information.
     message  : Manage queue storage messages.
     metrics  : Manage Storage service metrics.
-    queue    : Effectively scale apps according to traffic using queues.
+    queue    : Use queues to effectively scale applications according to traffic.
     share    : Manage file shares.
     table    : NoSQL key-value storage using semi-structured datasets.
 ```
@@ -141,16 +119,16 @@ export file_to_upload=<file_to_upload>
 export destination_file=<destination_file>
 
 echo "Creating the container..."
-az storage container create -n $container_name
+az storage container create --name $container_name
 
 echo "Uploading the file..."
-az storage blob upload -f $file_to_upload -c $container_name -n $blob_name
+az storage blob upload --container-name $container_name --file $file_to_upload --name $blob_name
 
 echo "Listing the blobs..."
-az storage blob list -c $container_name
+az storage blob list --container-name $container_name --output table
 
 echo "Downloading the file..."
-az storage blob download -c $container_name -n $blob_name -f $destination_file
+az storage blob download --container-name $container_name --name $blob_name --file $destination_file --output table
 
 echo "Done"
 ```
@@ -178,18 +156,19 @@ echo "Done"
 
 ```
 Creating the container...
-Success
----------
-True
-Uploading the file...                                           Percent complete: %100.0
+{
+  "created": true
+}
+Uploading the file...
+Percent complete: %100.0
 Listing the blobs...
-Name           Blob Type      Length  Content Type              Last Modified
--------------  -----------  --------  ------------------------  -------------------------
-test_blob.txt  BlockBlob         771  application/octet-stream  2016-12-21T15:35:30+00:00
+Name       Blob Type      Length  Content Type              Last Modified
+---------  -----------  --------  ------------------------  -------------------------
+README.md  BlockBlob        6700  application/octet-stream  2017-05-12T20:54:59+00:00
 Downloading the file...
 Name
--------------
-test_blob.txt
+---------
+README.md
 Done
 ```
 
@@ -203,12 +182,16 @@ Done
 若要使用 Azure 儲存體，您需要儲存體帳戶。 設定電腦以[連接至您的訂用帳戶](#connect-to-your-azure-subscription)之後，您可以建立新的 Azure 儲存體帳戶。
 
 ```azurecli
-az storage account create -l <location> -n <account_name> -g <resource_group> --sku <account_sku>
+az storage account create \
+    --location <location> \
+    --name <account_name> \
+    --resource-group <resource_group> \
+    --sku <account_sku>
 ```
 
-* `-l` [必要]：位置。 例如，「美國西部」。
-* `-n` [必要]：儲存體帳戶名稱。 名稱長度必須為 3-24 個字元，而且僅使用小寫英數字元。
-* `-g` [必要]：資源群組的名稱。
+* `--location` [必要]：位置。 例如，「美國西部」。
+* `--name` [必要]：儲存體帳戶名稱。 名稱長度必須為 3-24 個字元，而且僅使用小寫英數字元。
+* `--resource-group` [必要]：資源群組的名稱。
 * `--sku` [必要]：儲存體帳戶 SKU。 允許的值：
   * `Premium_LRS`
   * `Standard_GRS`
@@ -227,13 +210,15 @@ export AZURE_STORAGE_ACCESS_KEY=<key>
 另一種設定預設儲存體帳戶的方法是使用連接字串。 首先，透過 `show-connection-string` 命令取得連接字串︰
 
 ```azurecli
-az storage account show-connection-string -n <account_name> -g <resource_group>
+az storage account show-connection-string \
+    --name <account_name> \
+    --resource-group <resource_group>
 ```
 
 然後複製輸出連接字串，並將它設定為 `AZURE_STORAGE_CONNECTION_STRING` 環境變數 (您可能需要用引號括住連接字串)：
 
 ```azurecli
-export AZURE_STORAGE_CONNECTION_STRING=<connection_string>
+export AZURE_STORAGE_CONNECTION_STRING="<connection_string>"
 ```
 
 > [!NOTE]
@@ -247,7 +232,7 @@ Azure Blob 儲存體是一項儲存大量非結構化資料的服務 (例如文�
 Azure 儲存體中的每個 Blob 必須位於一個容器中。 您可以使用 `az storage container create` 命令來建立容器：
 
 ```azurecli
-az storage container create -n <container_name>
+az storage container create --name <container_name>
 ```
 
 您可以指定選擇性 `--public-access` 引數，以針對新容器設定讀取權限的三個層級之一︰
@@ -262,7 +247,10 @@ az storage container create -n <container_name>
 Azure Blob 儲存體支援區塊、附加和分頁 Blob。 使用 `blob upload` 命令將 blob 上傳至容器：
 
 ```azurecli
-az storage blob upload -f <local_file_path> -c <container_name> -n <blob_name>
+az storage blob upload \
+    --file <local_file_path> \
+    --container-name <container_name> \
+    --name <blob_name>
 ```
 
  根據預設，`blob upload` 命令會將 *.vhd 檔案上傳至分頁 blob 或者區塊 blob。 若要在上傳 blob 時指定另一種類型，您可以使用 `--type` 引數 - 允許的值為 `append`、`block` 和 `page`。
@@ -273,7 +261,10 @@ az storage blob upload -f <local_file_path> -c <container_name> -n <blob_name>
 此範例示範如何從容器下載 Blob：
 
 ```azurecli
-az storage blob download -c mycontainer -n myblob.png -f ~/mydownloadedblob.png
+az storage blob download \
+    --container-name mycontainer \
+    --name myblob.png \
+    --file ~/mydownloadedblob.png
 ```
 
 ### <a name="copy-blobs"></a>複製 Blob
@@ -282,20 +273,35 @@ az storage blob download -c mycontainer -n myblob.png -f ~/mydownloadedblob.png
 下列範例示範如何從一個儲存體帳戶複製 Blob 到另一個儲存體帳戶。 我們會先在另一個帳戶中建立容器，並將其 blob 指定為公開、可匿名存取。 接下來，我們會將檔案上傳至容器，最後，將 blob 從該容器複製到目前帳戶中的 **mycontainer** 容器。
 
 ```azurecli
-az storage container create -n mycontainer2 --account-name <accountName2> --account-key <accountKey2> --public-access blob
+# Create container in second account
+az storage container create \
+    --account-name <accountName2> \
+    --account-key <accountKey2> \
+    --name mycontainer2 \
+    --public-access blob
 
-az storage blob upload -f ~/Images/HelloWorld.png -c mycontainer2 -n myBlockBlob2 --account-name <accountName2> --account-key <accountKey2>
+# Upload blob to container in second account
+az storage blob upload \
+    --account-name <accountName2> \
+    --account-key <accountKey2> \
+    --file ~/Images/HelloWorld.png \
+    --container-name mycontainer2 \
+    --name myBlockBlob2
 
-az storage blob copy start -u https://<accountname2>.blob.core.windows.net/mycontainer2/myBlockBlob2 -b myBlobBlob -c mycontainer
+# Copy blob from second account to current account
+az storage blob copy start \
+    --source-uri https://<accountname2>.blob.core.windows.net/mycontainer2/myBlockBlob2 \
+    --destination-blob myBlobBlob \
+    --destination-container mycontainer
 ```
 
-來源 blob URL (由 `-u` 指定) 必須是可公開存取，或包含共用存取簽章 (SAS) 權杖。
+來源 blob URL (由 `--source-uri` 指定) 必須是可公開存取，或包含共用存取簽章 (SAS) 權杖。
 
 ### <a name="delete-a-blob"></a>刪除 Blob
 若要刪除 Blob，請使用 `blob delete` 命令：
 
 ```azurecli
-az storage blob delete -c <container_name> -n <blob_name>
+az storage blob delete --container-name <container_name> --name <blob_name>
 ```
 
 ## <a name="create-and-manage-file-shares"></a>建立和管理檔案共用
@@ -305,17 +311,17 @@ Azure 檔案儲存體為使用伺服器訊息區 (SMB) 通訊協定的應用程�
 Azure 檔案共用是 Azure 中的 SMB 檔案共用。 所有目錄和檔案都必須在檔案共用中建立。 帳戶可包含無限制數目的共用，而共用可儲存無限制數目的檔案，最多可達儲存體帳戶的容量限制。 下列範例會建立名為 **myshare** 的檔案共用。
 
 ```azurecli
-az storage share create -n myshare
+az storage share create --name myshare
 ```
 
 ### <a name="create-a-directory"></a>建立目錄
-目錄會提供 Azure 檔案共用選擇性的階層式結構。 下列範例會在檔案共用中建立名為 **myDir** 的目錄。
+目錄會提供 Azure 檔案共用的階層式結構。 下列範例會在檔案共用中建立名為 **myDir** 的目錄。
 
 ```azurecli
-az storage directory create -n myDir -s myshare
+az storage directory create --name myDir --share-name myshare
 ```
 
-請注意，目錄路徑可包含多個層級，例如 **a/b**。 不過，您必須確定所有父目錄都存在。 例如，如果路徑是 **a/b**，您必須先建立目錄 **a**，然後再建立目錄 **b**。
+目錄路徑可包含多個層級，例如 **dir1/dir2**。 不過，您必須先確定所有父目錄都存在，才能建立子目錄。 例如，如果路徑是 **dir1/dir2**，您必須先建立目錄 **dir1**，然後再建立目錄 **dir2**。
 
 ### <a name="upload-a-local-file-to-a-share"></a>將本機檔案上傳至共用
 下列範例會將檔案從 **~/temp/samplefile.txt** 上傳至 **myshare** 檔案共用的根目錄。 `--source` 引數會指定要上傳的現有本機檔案。
@@ -337,13 +343,13 @@ az storage file upload --share-name myshare/myDir --source ~/temp/samplefile.txt
 
 ```azurecli
 # List the files in the root of a share
-az storage file list -s myshare
+az storage file list --share-name myshare --output table
 
 # List the files in a directory within a share
-az storage file list -s myshare/myDir
+az storage file list --share-name myshare/myDir --output table
 
 # List the files in a path within a share
-az storage file list -s myshare -p myDir/mySubDir/MySubDir2
+az storage file list --share-name myshare --path myDir/mySubDir/MySubDir2 --output table
 ```
 
 ### <a name="copy-files"></a>複製檔案        

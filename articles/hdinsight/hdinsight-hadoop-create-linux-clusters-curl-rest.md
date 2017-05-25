@@ -1,6 +1,6 @@
 ---
-title: "使用 cURL 和 REST 建立 Azure HDInsight (Hadoop) | Microsoft Docs"
-description: "了解如何使用 cURL、Azure Resource Manager 範本以及 Azure REST API 來建立 HDInsight 叢集。 您可以指定叢集類型 (Hadoop、HBase、或 Storm) 或使用指令碼來安裝自訂元件。"
+title: "使用 Azure REST API 建立 HDInsight (Hadoop) | Microsoft Docs"
+description: "了解如何將 Azure Resource Manager 範本提交至 Azure REST API 來建立 HDInsight 叢集。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/17/2017
+ms.date: 05/17/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 05f2ce6d6f170e16985c3ed3523d4e41173e21e0
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 997c8623b9bc99074723f77237fbbbdba031d577
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
-# <a name="create-hdinsight-clusters-using-curl-and-the-azure-rest-api"></a>使用 cURL 和 Azure REST API 建立 HDInsight 叢集
+# <a name="create-hadoop-clusters-using-the-azure-rest-api"></a>使用 Azure REST API 建立 Hadoop 叢集
 
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
@@ -33,32 +33,16 @@ ms.lasthandoff: 05/03/2017
 Azure REST API 可讓您對裝載於 Azure 平台的服務執行管理作業，包括建立新的資源，例如 HDInsight 叢集。
 
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.3 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
-## <a name="prerequisites"></a>必要條件
-
-[!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
-
-* **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-
-* **Azure CLI 2.0** (預覽)。 Azure CLI 用來建立服務主體，此主體再用於為 Azure REST API 的要求產生驗證權杖。 如需有關 Azure CLI 2.0 預覽的詳細資訊，請參閱[開始使用 Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
-
-* **cURL**。 此公用程式由封裝管理系統提供，也可以從 [http://curl.haxx.se/](http://curl.haxx.se/)下載。
-
-  > [!NOTE]
-  > 如果您使用 PowerShell 執行本文件中的命令，您必須先移除依預設建立的 `curl` 別名。 此別名會使用 Invoke-WebRequest，而不是 cURL。 如果您未移除此別名，可能就會收到本文件中所使用之部分命令的錯誤。
-  >
-  > 若要移除此別名，請從 PowerShell 提示字元執行下列命令：
-  >
-  > `Remove-item alias:curl`
-  >
-  > 移除別名後，就應該能夠使用已安裝在您系統上的 cURL 版本。
+> [!NOTE]
+> 本文件的步驟是使用 [curl (https://curl.haxx.se/)](https://curl.haxx.se/) 公用程式來與 Azure REST API 進行通訊。
 
 ## <a name="create-a-template"></a>建立範本
 
 Azure Resource Manager 範本是描述**資源群組**與其中所有資源 (例如 HDInsight) 的 JSON 文件。此範本型方法可讓您在一個範本中定義 HDInsight 所需的資源。
 
-以下是 [https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password) 提供的範本和參數檔合併工具，它會使用密碼來建立以 Linux 為基礎的叢集，以保護 SSH 使用者帳戶。
+以下 JSON 文件是 [https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password) 提供的範本和參數檔合併工具，它會使用密碼來建立以 Linux 為基礎的叢集，以保護 SSH 使用者帳戶。
 
    ```json
    {
@@ -67,22 +51,6 @@ Azure Resource Manager 範本是描述**資源群組**與其中所有資源 (例
                "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
                "contentVersion": "1.0.0.0",
                "parameters": {
-                   "location": {
-                       "type": "string",
-                       "allowedValues": ["Central US",
-                       "East Asia",
-                       "East US",
-                       "Japan East",
-                       "Japan West",
-                       "North Europe",
-                       "South Central US",
-                       "Southeast Asia",
-                       "West Europe",
-                       "West US"],
-                       "metadata": {
-                           "description": "The location where all azure resources are deployed."
-                       }
-                   },
                    "clusterType": {
                        "type": "string",
                        "allowedValues": ["hadoop",
@@ -144,7 +112,7 @@ Azure Resource Manager 範本是描述**資源群組**與其中所有資源 (例
                "resources": [{
                    "name": "[parameters('clusterStorageAccountName')]",
                    "type": "Microsoft.Storage/storageAccounts",
-                   "location": "[parameters('location')]",
+                   "location": "[resourceGroup().location]",
                    "apiVersion": "[variables('defaultApiVersion')]",
                    "dependsOn": [],
                    "tags": {
@@ -157,7 +125,7 @@ Azure Resource Manager 範本是描述**資源群組**與其中所有資源 (例
                {
                    "name": "[parameters('clusterName')]",
                    "type": "Microsoft.HDInsight/clusters",
-                   "location": "[parameters('location')]",
+                   "location": "[resourceGroup().location]",
                    "apiVersion": "[variables('clusterApiVersion')]",
                    "dependsOn": ["[concat('Microsoft.Storage/storageAccounts/',parameters('clusterStorageAccountName'))]"],
                    "tags": {
@@ -223,9 +191,6 @@ Azure Resource Manager 範本是描述**資源群組**與其中所有資源 (例
            },
            "mode": "incremental",
            "Parameters": {
-               "location": {
-                   "value": "North Europe"
-               },
                "clusterName": {
                    "value": "newclustername"
                },
@@ -307,45 +272,47 @@ Azure Resource Manager 範本是描述**資源群組**與其中所有資源 (例
 
 使用下列命令來擷取驗證權杖︰
 
-    curl -X "POST" "https://login.microsoftonline.com/TenantID/oauth2/token" \
-    -H "Cookie: flight-uxoptin=true; stsservicecookie=ests; x-ms-gateway-slice=productionb; stsservicecookie=ests" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    --data-urlencode "client_id=AppID" \
-    --data-urlencode "grant_type=client_credentials" \
-    --data-urlencode "client_secret=password" \
-    --data-urlencode "resource=https://management.azure.com/"
+```bash
+curl -X "POST" "https://login.microsoftonline.com/$TENANTID/oauth2/token" \
+-H "Cookie: flight-uxoptin=true; stsservicecookie=ests; x-ms-gateway-slice=productionb; stsservicecookie=ests" \
+-H "Content-Type: application/x-www-form-urlencoded" \
+--data-urlencode "client_id=$APPID" \
+--data-urlencode "grant_type=client_credentials" \
+--data-urlencode "client_secret=$PASSWORD" \
+--data-urlencode "resource=https://management.azure.com/"
+```
 
-    Replace **TenantID**, **AppID**, and **password** with the values obtained or used previously.
+將 `$TENANTID`、`$APPID` 和 `$PASSWORD` 設定為先前取得或使用的值。
 
-    If this request is successful, you receive a 200 series response and the response body contains a JSON document.
+如果這個要求成功，您會收到 200 系列的回應，且回應本文會包含 JSON 文件。
 
-    The JSON document returned by this request contains an element named **access_token**. The value of **access_token** is used to authentication requests to the REST API.
+這項要求所傳回的 JSON 文件包含名為 **access_token** 的元素。 **access_token** 的值是用來驗證對 REST API 的要求。
 
-   ```json
-   {
-       "token_type":"Bearer",
-       "expires_in":"3599",
-       "expires_on":"1463409994",
-       "not_before":"1463406094",
-       "resource":"https://management.azure.com/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWoNBVGZNNXBPWWlKSE1iYTlnb0VLWSIsImtpZCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI2Ny8iLCJpYXQiOjE0NjM0MDYwOTQsIm5iZiI6MTQ2MzQwNjA5NCwiZXhwIjoxNDYzNDA5OTk5LCJhcHBpZCI6IjBlYzcyMzM0LTZkMDMtNDhmYi04OWU1LTU2NTJiODBiZDliYiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0Ny8iLCJvaWQiOiJlNjgxZTZiMi1mZThkLTRkZGUtYjZiMS0xNjAyZDQyNWQzOWYiLCJzdWIiOiJlNjgxZTZiMi1mZThkLTRkZGUtYjZiMS0xNjAyZDQyNWQzOWYiLCJ0aWQiOiI3MmY5ODhiZi04NmYxLTQxYWYtOTFhYi0yZDdjZDAxMWRiNDciLCJ2ZXIiOiIxLjAifQ.nJVERbeDHLGHn7ZsbVGBJyHOu2PYhG5dji6F63gu8XN2Cvol3J1HO1uB4H3nCSt9DTu_jMHqAur_NNyobgNM21GojbEZAvd0I9NY0UDumBEvDZfMKneqp7a_cgAU7IYRcTPneSxbD6wo-8gIgfN9KDql98b0uEzixIVIWra2Q1bUUYETYqyaJNdS4RUmlJKNNpENllAyHQLv7hXnap1IuzP-f5CNIbbj9UgXxLiOtW5JhUAwWLZ3-WMhNRpUO2SIB7W7tQ0AbjXw3aUYr7el066J51z5tC1AK9UC-mD_fO_HUP6ZmPzu5gLA6DxkIIYP3grPnRVoUDltHQvwgONDOw"
-   }
-   ```
+```json
+{
+    "token_type":"Bearer",
+    "expires_in":"3599",
+    "expires_on":"1463409994",
+    "not_before":"1463406094",
+    "resource":"https://management.azure.com/","access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWoNBVGZNNXBPWWlKSE1iYTlnb0VLWSIsImtpZCI6Ik1uQ19WWmNBVGZNNXBPWWlKSE1iYTlnb0VLWSJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI2Ny8iLCJpYXQiOjE0NjM0MDYwOTQsIm5iZiI6MTQ2MzQwNjA5NCwiZXhwIjoxNDYzNDA5OTk5LCJhcHBpZCI6IjBlYzcyMzM0LTZkMDMtNDhmYi04OWU1LTU2NTJiODBiZDliYiIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0Ny8iLCJvaWQiOiJlNjgxZTZiMi1mZThkLTRkZGUtYjZiMS0xNjAyZDQyNWQzOWYiLCJzdWIiOiJlNjgxZTZiMi1mZThkLTRkZGUtYjZiMS0xNjAyZDQyNWQzOWYiLCJ0aWQiOiI3MmY5ODhiZi04NmYxLTQxYWYtOTFhYi0yZDdjZDAxMWRiNDciLCJ2ZXIiOiIxLjAifQ.nJVERbeDHLGHn7ZsbVGBJyHOu2PYhG5dji6F63gu8XN2Cvol3J1HO1uB4H3nCSt9DTu_jMHqAur_NNyobgNM21GojbEZAvd0I9NY0UDumBEvDZfMKneqp7a_cgAU7IYRcTPneSxbD6wo-8gIgfN9KDql98b0uEzixIVIWra2Q1bUUYETYqyaJNdS4RUmlJKNNpENllAyHQLv7hXnap1IuzP-f5CNIbbj9UgXxLiOtW5JhUAwWLZ3-WMhNRpUO2SIB7W7tQ0AbjXw3aUYr7el066J51z5tC1AK9UC-mD_fO_HUP6ZmPzu5gLA6DxkIIYP3grPnRVoUDltHQvwgONDOw"
+}
+```
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 
 使用下列命令來建立資源群組。
 
-* 以建立服務主體時所收到的訂用帳戶 ID 取代 **SubscriptionID** 。
-* 以上一步收到的存取權杖取代 **AccessToken** 。
-* 以您要在其中建立資源群組和資源的資料中心取代 **DataCenterLocation** 。 例如 'South Central US'。
-* 以您要用於此群組的名稱取代 **ResourceGroupName** 。
+* 將 `$SUBSCRIPTIONID` 設定為建立服務主體時所收到的訂用帳戶識別碼。
+* 將 `$ACCESSTOKEN` 設定為上一個步驟中所收到的存取權杖。
+* 將 `DATACENTERLOCATION` 取代為您要在其中建立資源群組和資源的資料中心。 例如 'South Central US'。
+* 將 `$RESOURCEGROUPNAME` 設定為您想要用於此群組的名稱︰
 
 ```bash
-curl -X "PUT" "https://management.azure.com/subscriptions/SubscriptionID/resourcegroups/ResourceGroupName?api-version=2015-01-01" \
-    -H "Authorization: Bearer AccessToken" \
+curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME?api-version=2015-01-01" \
+    -H "Authorization: Bearer $ACCESSTOKEN" \
     -H "Content-Type: application/json" \
     -d $'{
-"location": "DataCenterLocation"
+"location": "DATACENTERLOCATION"
 }'
 ```
 
@@ -355,13 +322,11 @@ curl -X "PUT" "https://management.azure.com/subscriptions/SubscriptionID/resourc
 
 使用下列命令，將範本部署到資源群組。
 
-* 以先前使用的值取代 **SubscriptionID** 和 **AccessToken**。
-* 以您在上一節建立的資源群組名稱取代 **ResourceGroupName** 。
-* 以您要用於此部署的名稱取代 **DeploymentName** 。
+* 將 `$DEPLOYMENTNAME` 設定為您想要用於此部署的名稱。
 
 ```bash
-curl -X "PUT" "https://management.azure.com/subscriptions/SubscriptionID/resourcegroups/ResourceGroupName/providers/microsoft.resources/deployments/DeploymentName?api-version=2015-01-01" \
--H "Authorization: Bearer AccessToken" \
+curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME/providers/microsoft.resources/deployments/$DEPLOYMENTNAME?api-version=2015-01-01" \
+-H "Authorization: Bearer $ACCESSTOKEN" \
 -H "Content-Type: application/json" \
 -d "{set your body string to the template and parameters}"
 ```
@@ -374,22 +339,19 @@ curl -X "PUT" "https://management.azure.com/subscriptions/SubscriptionID/resourc
 如果這個要求成功，您會收到 200 系列的回應，且回應主體會包含 JSON 文件，內含部署作業的相關資訊。
 
 > [!IMPORTANT]
-> 部署已送出，但目前尚未完成。 部署通常需要大約 15 分鐘才會完成。
+> 部署已送出，但尚未完成。 部署通常需要大約 15 分鐘才會完成。
 
 ## <a name="check-the-status-of-a-deployment"></a>檢查部署的狀態
 
 若要檢查部署的狀態，請使用下列命令：
 
-* 以先前使用的值取代 **SubscriptionID** 和 **AccessToken**。
-* 以您在上一節建立的資源群組名稱取代 **ResourceGroupName** 。
-
 ```bash
-curl -X "GET" "https://management.azure.com/subscriptions/SubscriptionID/resourcegroups/ResourceGroupName/providers/microsoft.resources/deployments/DeploymentName?api-version=2015-01-01" \
--H "Authorization: Bearer AccessToken" \
+curl -X "GET" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME/providers/microsoft.resources/deployments/$DEPLOYMENTNAME?api-version=2015-01-01" \
+-H "Authorization: Bearer $ACCESSTOKEN" \
 -H "Content-Type: application/json"
 ```
 
-這個命令會傳回包含部署作業相關資訊的 JSON 文件。 `"provisioningState"` 項目包含部署的狀態。 如果這包含 `"Succeeded"` 的值，則部署已順利完成。
+這個命令會傳回包含部署作業相關資訊的 JSON 文件。 `"provisioningState"` 項目包含部署的狀態。 如果此元素包含 `"Succeeded"` 的值，則部署已順利完成。
 
 ## <a name="troubleshoot"></a>疑難排解
 

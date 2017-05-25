@@ -13,14 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: powershell
 ms.workload: data-management
-ms.date: 04/10/2017
+wms.date: 05/14/2017
 ms.author: srinia
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
-ms.openlocfilehash: b84185d0f224352e7cf5449068bee359914bd4ed
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 907e15da90bcd82358a462f7d8a7d2ba4a34f371
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/04/2017
-
+ms.lasthandoff: 05/16/2017
 
 ---
 
@@ -88,7 +87,7 @@ Set-AzureRmSqlElasticPool -ResourceGroupName “resourcegroup1” -ServerName �
 使用 [Set-AzureRmSqlElasticPool](https://docs.microsoft.com/powershell/module/azurerm.sql/set-azurermsqlelasticpool) Cmdlet 來設定 _-StorageMB_ 參數。 提供以 MB 為單位的儲存體限制 (例如，2097152 會將儲存體限制設定為 2 TB)。 請參閱 [eDTU 和儲存體限制](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools)以了解有哪些可能的值。
 
 > [!IMPORTANT]
-> 對於具有 1500 或更多 eDTU 的進階集區而言，每個集區的預設最大資料儲存體為 750 GB。 若要取得較大的_每一集區之資料儲存體大小上限_，您必須明確設定儲存體限制。 記憶體超過 750 GB 的進階集區目前在下列區域為公開預覽狀態：美國東部 2、美國西部、西歐、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。
+> 對於具有 1500 或更多 eDTU 的進階集區而言，每個集區的預設最大資料儲存體為 750 GB。 若要取得較大的_每一集區之資料儲存體大小上限_，您必須明確設定儲存體限制。 儲存體超過 750 GB 的進階集區目前在下列區域為公開預覽狀態：美國東部 2、美國西部、美國維吉尼亞州政府、西歐、德國中部、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。
 
 ```PowerShell
 Set-AzureRmSqlElasticPool -ServerName "server1" -ElasticPoolName “elasticpool1” -StorageMB 2097152

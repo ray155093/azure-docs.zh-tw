@@ -16,9 +16,11 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 11/02/2016
 ms.author: wesmc
-translationtype: Human Translation
-ms.sourcegitcommit: c8e9f9709d13295c9414e525f1f60abf0d0accb7
-ms.openlocfilehash: 0bfbfd3828aacdee0b6630ced034f2c1e0451abd
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 04a8563a0035992cfa4b7d25a4edc14e1db80e44
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -50,7 +52,7 @@ Azure Functions 支援事件中樞的觸發程序和輸出繫結。
 }
 ```
 
-`consumerGroup` 是選擇性屬性，可設定用來訂閱中樞內事件的[取用者群組](../event-hubs/event-hubs-what-is-event-hubs.md#event-consumers)。 如果省略，則會使用 `$Default` 取用者群組。  
+`consumerGroup` 是選擇性屬性，可設定用來訂閱中樞內事件的[取用者群組](../event-hubs/event-hubs-features.md#event-consumers)。 如果省略，則會使用 `$Default` 取用者群組。  
 `connection` 必須是應用程式設定的名稱，包含事件中樞命名空間的連接字串。
 按一下*命名空間*的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。 此連接字串至少必須具備讀取權限，才能啟動觸發程序。
 
@@ -84,7 +86,7 @@ Azure Functions 支援事件中樞的觸發程序和輸出繫結。
 
 <a name="triggercsharp"></a>
 
-### <a name="trigger-sample-in-c"></a>C 中的觸發程序範例# #
+### <a name="trigger-sample-in-c"></a>C# 中的觸發程序範例 #
 
 ```cs
 using System;
@@ -97,7 +99,7 @@ public static void Run(string myEventHubMessage, TraceWriter log)
 
 <a name="triggerfsharp"></a>
 
-### <a name="trigger-sample-in-f"></a>F 中的觸發程序範例# #
+### <a name="trigger-sample-in-f"></a>F# 中的觸發程序範例 #
 
 ```fsharp
 let Run(myEventHubMessage: string, log: TraceWriter) =
@@ -167,7 +169,7 @@ module.exports = function (context, myEventHubMessage) {
 
 <a name="outcsharp"></a>
 
-### <a name="output-sample-in-c"></a>C 中的輸出範例# #
+### <a name="output-sample-in-c"></a>C# 中的輸出範例 #
 
 ```cs
 using System;
@@ -194,7 +196,7 @@ public static void Run(TimerInfo myTimer, ICollector<string> outputEventHubMessa
 
 <a name="outfsharp"></a>
 
-### <a name="output-sample-in-f"></a>F 中的輸出範例# #
+### <a name="output-sample-in-f"></a>F# 中的輸出範例 #
 
 ```fsharp
 let Run(myTimer: TimerInfo, outputEventHubMessage: byref<string>, log: TraceWriter) =
@@ -233,9 +235,4 @@ module.exports = function(context) {
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

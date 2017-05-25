@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/22/2017
 ms.author: cynthn
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 6530da96cd6e6ccd90714a9d3c9f00f88afe853e
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: b3a2bf688f1837a17312ec4bb5ca6b87209076cd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -27,7 +28,7 @@ ms.lasthandoff: 04/03/2017
 如果現有的 Azure VM 使用儲存體帳戶中的非受控磁碟，而且您希望能夠利用[受控磁碟](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，您可以轉換 VM。 此程序會將 OS 磁碟和任何附加的資料磁碟，從使用儲存體帳戶中的非受控磁碟轉換為使用受控磁碟。 VM 會關閉並解除配置，然後您可使用 Powershell 將 VM 轉換為使用受控磁碟。 轉換之後，您會重新啟動 VM，而 VM 現在將使用受控磁碟。
 
 開始之前，請務必先檢閱[規劃移轉至受控磁碟](on-prem-to-azure.md#plan-for-the-migration-to-managed-disks)。
-因為移轉程序無法反轉，所以請在生產環境中執行移轉之前，藉由移轉測試虛擬機器來測試移轉程序。
+因為移轉程序無法反轉，所以請在生產環境中執行移轉之前，藉由移轉測試虛擬機器來測試移轉程序。 在移轉期間會鎖定 VM 管理，使您無法啟動、停止或刪除 VM，直到完成為止。
 
 
 > [!IMPORTANT] 

@@ -1,6 +1,6 @@
 ---
-title: "在本機安裝 Jupyter 筆記本並連線到 Azure HDInsight Spark 叢集 | Microsoft Docs"
-description: "了解如何在電腦本機安裝 Jupyter Notebook 並連接到 Azure HDInsight 上的 Apache Spark 叢集"
+title: "在本機安裝 Jupyter 並連線到 Azure HDInsight Spark 叢集 | Microsoft Docs"
+description: "了解如何在電腦本機安裝 Jupyter Notebook，並連線到 Azure HDInsight 上的 Apache Spark 叢集。"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -17,14 +17,14 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
 ms.translationtype: Human Translation
-ms.sourcegitcommit: a3ca1527eee068e952f81f6629d7160803b3f45a
-ms.openlocfilehash: 689bcb86a5eb4476cb62516f623cd23702cd6bc9
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: c2949fbda0503c779b117aebb14d4d7b76bae426
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/17/2017
 
 
 ---
-# <a name="install-jupyter-notebook-on-your-computer-and-connect-to-apache-spark-cluster-on-hdinsight"></a>在電腦上安裝 Jupyter Notebook 並連接到 HDInsight 上的 Apache Spark 叢集
+# <a name="install-jupyter-notebook-on-your-computer-and-connect-to-apache-spark-on-hdinsight"></a>在電腦上安裝 Jupyter Notebook，並連線到 HDInsight 上的 Apache Spark
 
 在這篇文章中，您會了解如何搭配含有 Spark magic 的自訂 PySpark (適用於 Python) 和 Spark (適用於 Scala) 核心來安裝 Jupyter 筆記本，然後將筆記本連接到 HDInsight 叢集。 在您的本機電腦上安裝 Jupyter 可以有數種原因，而且也會面臨數種挑戰。 如需詳細資訊，請參閱本文章結尾的[為什麼我應該在我的電腦上安裝 Jupyter](#why-should-i-install-jupyter-on-my-computer) 一節。
 
@@ -61,7 +61,7 @@ ms.lasthandoff: 04/27/2017
 
 * 若為叢集 3.5 版和 3.6 版，請執行 `pip install sparkmagic==0.11.2` 來安裝 sparkmagic 0.11.2
 
-## <a name="configure-spark-magic-to-access-the-hdinsight-spark-cluster"></a>設定 Spark magic 以存取 HDInsight Spark 叢集
+## <a name="configure-spark-magic-to-connect-to-hdinsight-spark-cluster"></a>設定 Spark magic 以連線到 HDInsight Spark 叢集
 
 在本節中，您會設定稍早安裝的 Spark magic，以連線到您必須已在 Azure HDInsight 中建立的 Apache Spark 叢集。
 
@@ -119,9 +119,9 @@ ms.lasthandoff: 04/27/2017
 
     a. 建立新的 Notebook。 從右下角，按一下 [新增]。 您應該會看到預設核心 **Python2**，以及您安裝的兩個新核心 **PySpark** 和 **Spark**。 按一下 [PySpark] 。
 
-    ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-install-locally/jupyter-kernels.png "建立新的 Jupyter Notebook")
+    ![Jupyter Notebook 中的核心](./media/hdinsight-apache-spark-jupyter-notebook-install-locally/jupyter-kernels.png "Jupyter Notebook 中的核心")
 
-    b. 執行下列程式碼片段。
+    b.這是另一個 C# 主控台應用程式。 執行下列程式碼片段。
 
         %%sql
         SELECT * FROM hivesampletable LIMIT 5

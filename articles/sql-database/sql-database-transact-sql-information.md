@@ -16,10 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 03/17/2017
 ms.author: rickbyh
-translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 9716975994d1ab3b7cf63efc6480efcd48eb67bb
-ms.lasthandoff: 03/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 105255696c59346f3a8f0013d98602c9f17b7661
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -31,7 +32,7 @@ Microsoft SQL Server 和 Azure SQL Database 都支援應用程式使用的大部
 
 此外，還有一些功能和語法完全不受支援，因為 Azure SQL Database 的設計目的是要將功能隔離，讓它們不與 master 資料庫和作業系統相依。 因此，大多數伺服器層級活動都不適用於 SQL Database。 如果它們設定伺服器層級選項、作業系統元件或指定檔案系統組態，便無法使用 T-SQL 陳述式和選項。 當需要這類功能時，通常會從 SQL Database 或從另一個 Azure 功能或服務以其他方式提供適合的替代方案。 
 
-例如，Azure 已內建高可用性，所以沒有必要設定「永遠開啟」(不過您可以設定「作用中異地複寫」以在發生災害時更快獲得復原)。 因此，SQL Database 不支援與可用性群組相關的 T-SQL 陳述式，也不支援與「永遠開啟」相關的動態管理檢視。
+例如，Azure 已內建高可用性，所以沒有必要設定「永遠開啟」(不過您可以設定作用中異地複寫以在發生災害時更快獲得復原)。 因此，SQL Database 不支援與可用性群組相關的 T-SQL 陳述式，也不支援與「永遠開啟」相關的動態管理檢視。
 
 如需 SQL Database 所支援和不支援的功能清單，請參閱 [Azure SQL Database 功能比較](sql-database-features.md)。 此頁面上的清單可補充該指引和功能主題，並將焦點放在 Transact-SQL 陳述式。
 

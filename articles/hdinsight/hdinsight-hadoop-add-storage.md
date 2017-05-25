@@ -12,13 +12,14 @@ ms.devlang:
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/23/2017
+ms.date: 05/15/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 0bd6fce848c6d174eb519f8ef8a14f9ead5fa5ce
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 1199840da725afdae3ee69a26db9ceedb2ab37e3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 ---
 
@@ -79,15 +80,27 @@ __需求__：
 
 沒有顯示儲存體資訊是因為指令碼只修改叢集的 core-site.xml 組態。 使用 Azure 管理 API 擷取叢集資訊時，不會使用這項資訊。
 
-若要檢視使用此指令碼新增至叢集的儲存體帳戶資訊，請使用 Ambari REST API。 下列命令示範如何使用 [cURL (http://curl.haxx.se/)](http://curl.haxx.se/) 和 [jq (https://stedolan.github.io/jq/)](https://stedolan.github.io/jq/) 從 Ambari 擷取及剖析 JSON 資料：
+若要檢視使用此指令碼新增至叢集的儲存體帳戶資訊，請使用 Ambari REST API。 請使用下列命令，為您的叢集擷取此資訊：
 
-> [!div class="tabbedCodeSnippets" data-resources="OutlookServices.Calendar"]
-> ```PowerShell
-> curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["""fs.azure.account.key.STORAGEACCOUNT.blob.core.windows.net"""] | select(. != null)'
-> ```
-> ```Bash
-> curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["fs.azure.account.key.STORAGEACCOUNT.blob.core.windows.net"] | select(. != null)'
-> ```
+```PowerShell
+$creds = Get-Credential -UserName "admin" -Message "Enter the cluster login credentials"
+$resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName/configurations/service_config_versions?service_name=HDFS&service_config_version=1" `
+    -Credential $creds
+$respObj = ConvertFrom-Json $resp.Content
+$respObj.items.configurations.properties."fs.azure.account.key.$storageAccountName.blob.core.windows.net"
+```
+
+> [!NOTE]
+> 將 `$clusterName` 設定為 HDInsight 叢集的名稱。 將 `$storageAccountName` 設定為儲存體帳戶的名稱。 出現提示時，輸入叢集登入 (admin) 和密碼。
+
+```Bash
+curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["fs.azure.account.key.$STORAGEACCOUNTNAME.blob.core.windows.net"] | select(. != null)'
+```
+
+> [!NOTE]
+> 將 `$PASSWORD` 設定為叢集登入 (admin) 帳戶密碼。 將 `$CLUSTERNAME` 設定為 HDInsight 叢集的名稱。 將 `$STORAGEACCOUNTNAME` 設定為儲存體帳戶的名稱。
+>
+> 此範例會如何 [curl (http://curl.haxx.se/)](http://curl.haxx.se/) 和 [jq (https://stedolan.github.io/jq/)](https://stedolan.github.io/jq/)，來擷取及剖析 JSON 資料。
 
 使用此命令時，將 __CLUSTERNAME__ 替換為 HDInsight 叢集的名稱。 將 __PASSWORD__ 替換為叢集的 HTTP 登入密碼。 將 __STORAGEACCOUNT__ 替換為使用指令碼動作新增的儲存體帳戶名稱。 此命令傳回的資訊看起來類似下列文字：
 
@@ -124,9 +137,15 @@ __需求__：
 
 如果儲存體帳戶位於與 HDInsight 叢集不同的區域中，您可能會遇到效能不佳。 存取不同區域中的資料會傳送 Azure 資料中心外部和跨越公用網際網路的網路流量，這可能會造成延遲。
 
+> [!WARNING]
+> 不支援在 HDInsight 叢集以外的區域中使用儲存體帳戶。
+
 ### <a name="additional-charges"></a>額外費用
 
 如果儲存體帳戶位於與 HDInsight 叢集不同的區域中，您可能會發現 Azure 帳單上出現額外輸出費用。 當資料離開區域資料中心時適用輸出費用，即使流量的目的地是不同區域中的其他 Azure 資料中心亦然。
+
+> [!WARNING]
+> 不支援在 HDInsight 叢集以外的區域中使用儲存體帳戶。
 
 ## <a name="next-steps"></a>後續步驟
 

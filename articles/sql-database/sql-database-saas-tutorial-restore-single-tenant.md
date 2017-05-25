@@ -1,5 +1,5 @@
 ---
-title: "還原單一租用戶資料庫 (使用 Azure SQL Database 的範例 SaaS 應用程式) |Microsoft Docs"
+title: "在多租用戶應用程式中還原 Azure SQL Database | Microsoft Docs"
 description: "了解如何在不小心刪除資料之後還原單一租用戶 SQL Database"
 keywords: SQL Database Azure
 services: sql-database
@@ -17,10 +17,10 @@ ms.topic: tutorial
 ms.date: 05/10/2017
 ms.author: billgib;sstein
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: aa5759645713c5e5bc4c4f1d2b10f032efc7eae2
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 8567061a98ec5a0619a8e10cb44501dd88d8166c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -51,13 +51,13 @@ Wingtip Tickets SaaS 應用程式是使用每一租用戶一個資料庫的模�
 
 就租用戶還原模式而言，有兩個可還原個別租用戶資料的簡單模式。 由於租用戶資料庫彼此互相隔離，因此還原一個租用戶並不會影響到任何其他租用戶的資料。
 
-在第一個模式中，資料會還原到新的資料庫。 租用戶會接著獲得存取權來存取此資料庫及它們的生產環境資料。 此模式可讓租用戶系統管理員檢閱已還原的資料，並可能使用此資料來選擇性地覆寫目前的資料值。 資料復原選項應有的複雜程度是由 SaaS 應用程式設計人員決定。 在某些情況下，只要能夠檢閱資料在所指定時間點時的狀態，可能就已足以滿足需求。 如果資料庫使用[異地複寫](sql-database-geo-replication-overview.md)，建議您從已還原的複本將所需的資料複製到原始資料庫。 如果您以已還原的資料庫取代原始資料庫，則必須重新設定並重新同步處理「異地複寫」。
+在第一個模式中，資料會還原到新的資料庫。 租用戶會接著獲得存取權來存取此資料庫及它們的生產環境資料。 此模式可讓租用戶系統管理員檢閱已還原的資料，並可能使用此資料來選擇性地覆寫目前的資料值。 資料復原選項應有的複雜程度是由 SaaS 應用程式設計人員決定。 在某些情況下，只要能夠檢閱資料在所指定時間點時的狀態，可能就已足以滿足需求。 如果資料庫使用[異地複寫](sql-database-geo-replication-overview.md)，建議您從已還原的複本將所需的資料複製到原始資料庫。 如果您以已還原的資料庫取代原始資料庫，則必須重新設定並重新同步處理異地複寫。
 
 在第二個模式中 (其中假設租用戶的資料遺失或損毀)，租用戶的生產環境資料會還原到先前的時間點。 在就地還原模式中，租用戶會在資料庫還原時短暫離線，然後再重新上線。 此模式會將原始資料庫刪除，但如果您需要回到先前時間點中的某個事件，則仍可從此資料庫還原。 此模式的一個變通形式可將此資料庫重新命名，而不是刪除它，不過就資料安全性而言，將資料庫重新命名並不會提供任何額外的優點。
 
 ## <a name="get-the-wingtip-application-scripts"></a>取得 Wingtip 應用程式指令碼
 
-「Wingtip 票證」指令碼和應用程式原始程式碼可從 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 儲存機制取得。 指令檔位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 [Learning Modules] 資料夾下載到您的本機電腦，並維持其資料夾結構。
+在 [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) Github 存放庫可取得 Wingtip Tickets 指令碼和應用程式原始程式碼。 指令碼檔案位於 [[Learning Modules] 資料夾](https://github.com/Microsoft/WingtipSaaS/tree/master/Learning%20Modules)中。 請將 [Learning Modules] 資料夾下載到您的本機電腦，並維持其資料夾結構。
 
 ## <a name="simulate-a-tenant-accidentally-deleting-data"></a>模擬租用戶不小心刪除資料的情況
 

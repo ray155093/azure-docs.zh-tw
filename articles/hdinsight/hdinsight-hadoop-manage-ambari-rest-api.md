@@ -1,6 +1,6 @@
 ---
-title: "使用 Ambari REST API 監視和管理 Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 Ambari 來監視和管理以 Linux 為基礎的 HDInsight 叢集。 在本文件中，您將學習如何使用 HDInsight 叢集隨附的 Ambari REST API。"
+title: "使用 Ambari REST API 監視和管理 Hadoop - Azure HDInsight | Microsoft Docs"
+description: "了解如何使用 Ambari 來監視和管理 Azure HDInsight 中的 Hadoop 叢集。 在本文件中，您將學習如何使用 HDInsight 叢集隨附的 Ambari REST API。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -14,12 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/23/2017
+ms.date: 05/16/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: ce6d8301c9c9fc0b9ac6bc2e31023ebbbba8a67c
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 7ac80a8521b48f43538ca06a054f8302eb32eea6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -27,7 +28,9 @@ ms.lasthandoff: 04/27/2017
 
 [!INCLUDE [ambari-selector](../../includes/hdinsight-ambari-selector.md)]
 
-Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢集的管理和監視。 使用 Linux 作業系統的 HDInsight 叢集上有 Ambari，用來監視叢集並進行組態變更。 在本文件中，您會了解使用 Ambari REST API 的基本概念。
+了解如何使用 Ambari REST API 來管理和監視 Azure HDInsight 中的 Hadoop 叢集。
+
+Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢集的管理和監視。 使用 Linux 作業系統的 HDInsight 叢集上有 Ambari，用來監視叢集並進行組態變更。
 
 ## <a id="whatis"></a>什麼是 Ambari
 

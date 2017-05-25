@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 12/16/2016
 ms.author: cephalin
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 197e4c1873ecdc80c7eed3427449e2ea0d1605ba
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 62f674945745eb019c92173798b6eef43337c9f3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -47,7 +47,7 @@ ms.lasthandoff: 05/10/2017
 * [Node.js](https://nodejs.org/)
 * [Sails.js](http://sailsjs.org/get-started)
 * [Git](http://www.git-scm.com/downloads)
-* [Azure CLI 2.0 Preview](/cli/azure/install-az-cli2)
+* [Azure CLI 2.0](/cli/azure/install-az-cli2)
 * Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，或是[啟用自己的 Visual Studio 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。
 
 > [!NOTE]
@@ -118,13 +118,13 @@ ms.lasthandoff: 05/10/2017
    
         az appservice web deployment user set --user-name <username> --password <password>
 
-3. 使用名稱建立[資源群組](../azure-resource-manager/resource-group-overview.md)。 在此 PHP 教學課程中，您真的不需要知道它是什麼。
+3. 使用名稱建立[資源群組](../azure-resource-manager/resource-group-overview.md)。 在此 Node.js 教學課程中，您真的不需要知道它是什麼。
 
         az group create --location "<location>" --name my-sailsjs-app-group
 
     若要查看您可用於 `<location>` 的可能值，請使用 `az appservice list-locations`CLI 命令。
 
-3. 使用名稱建立「免費」[App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。 在此 PHP 教學課程中，只需知道，您可以免費使用本方案中 Web 應用程式。
+3. 使用名稱建立「免費」[App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。 在此 Node.js 教學課程中，只需知道，您可以免費使用本方案中 Web 應用程式。
 
         az appservice plan create --name my-sailsjs-appservice-plan --resource-group my-sailsjs-app-group --sku FREE
 

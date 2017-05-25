@@ -1,6 +1,6 @@
 ---
-title: "在虛擬機器擴展集上部署應用程式| Microsoft Docs"
-description: "在虛擬機器擴展集上部署應用程式"
+title: "升級 Azure 虛擬機器擴展集 | Microsoft Docs"
+description: "升級 Azure 虛擬機器擴展集"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gbowerman
@@ -13,12 +13,13 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/13/2016
+ms.date: 05/15/2017
 ms.author: guybo
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a5158c51149e75952eaf91af14f3fcf2dd1ed2af
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: bbc04cfb1145f3be2957d11f2ed6253428c4b9c3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---

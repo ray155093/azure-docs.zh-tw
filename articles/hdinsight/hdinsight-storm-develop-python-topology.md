@@ -1,33 +1,35 @@
 ---
-title: "在 HDinsight 上於 Storm 拓撲中使用 Python 元件 | Microsoft Docs"
-description: "了解如何搭配 Apache Storm on Azure HDInsight 使用 Python 元件。"
+title: "採用 Python 元件的 Apache Storm - Azure HDInsight | Microsoft Docs"
+description: "了解如何建立使用 Python 元件的 Apache Storm 拓撲。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
+keywords: apache storm python
 ms.assetid: edd0ec4f-664d-4266-910c-6ecc94172ad8
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.devlang: python
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/04/2017
+ms.date: 05/12/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 39a8eb9ce6a5363f541f02c33cd46d56fdabcae8
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 3fc4f193d72d578711285a5b4c2062be65cf354c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
 # <a name="develop-apache-storm-topologies-using-python-on-hdinsight"></a>在 HDInsight 上使用 Python 開發 Apache Storm 拓撲
 
-了解如何搭配 Storm on HDInsight 使用 Python 元件。 Apache Storm 支援多種語言，甚至可讓您將數種語言的元件結合成一個拓撲。 Flux 架構 (隨 Storm 0.10.0 一起引進) 可讓您輕鬆建立使用 Python 元件的解決方案。
+了解如何建立使用 Python 元件的 Apache Storm 拓撲。 Apache Storm 支援多種語言，甚至可讓您將數種語言的元件結合成一個拓撲。 Flux 架構 (隨 Storm 0.10.0 一起引進) 可讓您輕鬆建立使用 Python 元件的解決方案。
 
 > [!IMPORTANT]
-> 本文件中的資訊已使用 Storm on HDInsight 3.5 進行測試。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.3 和 3.4 版取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+> 本文件中的資訊已使用 Storm on HDInsight 3.5 進行測試。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 取代日期](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 此專案的程式碼可於 [https://github.com/Azure-Samples/hdinsight-python-storm-wordcount](https://github.com/Azure-Samples/hdinsight-python-storm-wordcount)取得。
 
@@ -43,13 +45,13 @@ ms.lasthandoff: 04/12/2017
 
 ## <a name="storm-multi-language-support"></a>Storm 多語言支援
 
-Storm 專門用來搭配以任何程式設計語言撰寫的元件。 這些元件必須了解如何使用 [Storm 的 Thrift 定義](https://github.com/apache/storm/blob/master/storm-core/src/storm.thrift)。 在 Python 中，Apache Storm 專案隨附一個模組，可讓您輕鬆地與 Strom 互動。 您可以在 [https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py](https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py)找到此模組。
+Apache Storm 專門用來搭配以任何程式設計語言撰寫的元件。 這些元件必須了解如何使用 [Storm 的 Thrift 定義](https://github.com/apache/storm/blob/master/storm-core/src/storm.thrift)。 在 Python 中，Apache Storm 專案隨附一個模組，可讓您輕鬆地與 Strom 互動。 您可以在 [https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py](https://github.com/apache/storm/blob/master/storm-multilang/python/src/main/resources/resources/storm.py)找到此模組。
 
-Apache Storm 是在 Java 虛擬機器 (JVM) 上執行的 Java 程序。 以其他語言撰寫的元件會以子流程執行。 Storm 會使用透過 stdin/stdout 傳送的 JSON 訊息，與這些子流程進行通訊。 如需各元件之間通訊的詳細資訊，請參閱 [多語言通訊協定](https://storm.apache.org/documentation/Multilang-protocol.html) 文件。
+Storm 是在 Java 虛擬機器 (JVM) 上執行的 Java 程序。 以其他語言撰寫的元件會以子流程執行。 Storm 會使用透過 stdin/stdout 傳送的 JSON 訊息，與這些子流程進行通訊。 如需各元件之間通訊的詳細資訊，請參閱 [多語言通訊協定](https://storm.apache.org/documentation/Multilang-protocol.html) 文件。
 
-## <a name="python-and-the-flux-framework"></a>Python 和 Flux 架構
+## <a name="python-with-the-flux-framework"></a>採用 Flux 架構的 Python
 
-Flux 架構可讓您獨立於元件之外定義 Storm 拓撲。 雖然此範例中的元件是使用 Python 撰寫，但拓撲是使用 YAML 來定義。 下列文字是 YAML 文件中如何參考 Python 元件的範例：
+Flux 架構可讓您獨立於元件之外定義 Storm 拓撲。 Flux 架構會使用 YAML 來定義 Storm 拓撲。 下列文字是如何在 YAML 文件中參考 Python 元件的範例：
 
 ```yaml
 # Spout definitions
@@ -77,7 +79,7 @@ Flux 要求 Python 指令碼位於拓撲所在之 jar 檔案內的 `/resources` 
 </resource>
 ```
 
-如先前所述，有一個 `storm.py` 檔案實作 Storm 的 Thrift 定義。 建置專案，Flux 架構會自動包含此檔案，因此您不必擔心要包含它。
+如先前所述，有一個 `storm.py` 檔案實作 Storm 的 Thrift 定義。 建置專案時，Flux 架構會自動包含 `storm.py`，因此您不必擔心要包含它。
 
 ## <a name="build-the-project"></a>建置專案
 
@@ -102,21 +104,21 @@ storm jar WordCount-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux -l -R /topology.
 
 拓撲啟動之後，就會將類似下列文字的資訊發出至本機主控台︰
 
-```
-24302 [Thread-25-sentence-spout-executor[4 4]] INFO  o.a.s.s.ShellSpout - ShellLog pid:2436, name:sentence-spout Emiting the cow jumped over the moon
-24302 [Thread-30] INFO  o.a.s.t.ShellBolt - ShellLog pid:2438, name:splitter-bolt Emitting the
-24302 [Thread-28] INFO  o.a.s.t.ShellBolt - ShellLog pid:2437, name:counter-bolt Emitting years:160
-24302 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=the, count=599}
-24303 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=seven, count=302}
-24303 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=dwarfs, count=143}
-24303 [Thread-25-sentence-spout-executor[4 4]] INFO  o.a.s.s.ShellSpout - ShellLog pid:2436, name:sentence-spout Emiting the cow jumped over the moon
-24303 [Thread-30] INFO  o.a.s.t.ShellBolt - ShellLog pid:2438, name:splitter-bolt Emitting cow
-^C24303 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=four, count=160}
-```
 
-使用 Ctrl+c 來停止拓撲。
+    24302 [Thread-25-sentence-spout-executor[4 4]] INFO  o.a.s.s.ShellSpout - ShellLog pid:2436, name:sentence-spout Emiting the cow jumped over the moon
+    24302 [Thread-30] INFO  o.a.s.t.ShellBolt - ShellLog pid:2438, name:splitter-bolt Emitting the
+    24302 [Thread-28] INFO  o.a.s.t.ShellBolt - ShellLog pid:2437, name:counter-bolt Emitting years:160
+    24302 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=the, count=599}
+    24303 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=seven, count=302}
+    24303 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=dwarfs, count=143}
+    24303 [Thread-25-sentence-spout-executor[4 4]] INFO  o.a.s.s.ShellSpout - ShellLog pid:2436, name:sentence-spout Emiting the cow jumped over the moon
+    24303 [Thread-30] INFO  o.a.s.t.ShellBolt - ShellLog pid:2438, name:splitter-bolt Emitting cow
+    24303 [Thread-17-log-executor[3 3]] INFO  o.a.s.f.w.b.LogInfoBolt - {word=four, count=160}
 
-## <a name="run-the-topology-on-hdinsight"></a>在 HDInsight 上執行拓撲
+
+若要停止拓撲，請使用 __Ctrl+C__。
+
+## <a name="run-the-storm-topology-on-hdinsight"></a>在 HDInsight 上執行 Storm 拓撲
 
 1. 使用下列命令將 `WordCount-1.0-SNAPSHOT.jar`檔案複製到 Storm on HDInsight 叢集：
 

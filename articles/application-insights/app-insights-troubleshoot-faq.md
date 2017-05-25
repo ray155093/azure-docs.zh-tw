@@ -3,7 +3,7 @@ title: "Azure Application Insights 常見問題集 | Microsoft Docs"
 description: "關於 Application Insights 的常見問題集。"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 0e3b103c-6e2a-4634-9e8c-8b85cf5e9c84
 ms.service: application-insights
@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 04/12/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 65c199064273930f66db580b6c01dabb4b906e7a
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 8a6a8027b93d0d5b353c41c103d2c9ad5faa70c1
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -172,6 +172,8 @@ ms.lasthandoff: 05/10/2017
 我們不會自動記錄 POST 資料，但您可以使用 TrackTrace 呼叫：將資料放置到訊息參數中。 相較於字串屬性的限制，此呼叫可容許較長的大小，不過您無法篩選。
 
 ## <a name="should-i-use-single-or-multiple-application-insights-resources"></a>我應該使用單一還是多個 Application Insights 資源？
+
+對於單一商務系統中的所有元件或角色，請使用單一資源。 對於開發、測試和發行版本以及獨立的應用程式，則請使用不同的資源。
 
 * [請參閱這裡的討論](app-insights-separate-resources.md)
 * [範例 - 具有背景工作角色和 Web 角色的雲端服務](app-insights-cloudservices.md)

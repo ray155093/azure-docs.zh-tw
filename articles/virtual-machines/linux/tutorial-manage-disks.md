@@ -13,21 +13,30 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 04/25/2017
+ms.date: 05/02/2017
 ms.author: nepeters
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 84ce4b288c23c7005ac92f18ee26af70479deb8d
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 4453876c126289f922d6d08d321707e1d10004e3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/17/2017
 
 ---
 
 # <a name="manage-azure-disks-with-the-azure-cli"></a>使用 Azure CLI 管理 Azure 磁碟
 
-本教學課程涵蓋不同類型的 VM 磁碟、如何選取磁碟組態，以及如何建立磁碟並將其連結至 Azure VM。 本教學課程也涵蓋製作磁碟快照集。 
+Azure 虛擬機器使用硬碟來儲存 VM 作業系統、應用程式和資料。 在建立 VM 時，務必選擇預期的工作負載適用的磁碟大小和組態。 本教學課程涵蓋部署和管理 VM 磁碟。 您將了解：
 
-您可以使用最新的 [Azure CLI 2.0](/cli/azure/install-azure-cli) 來完成本教學課程中的步驟。
+> [!div class="checklist"]
+> * OS 磁碟和暫存磁碟
+> * 資料磁碟
+> * 標準和進階磁碟
+> * 磁碟效能
+> * 連結及準備資料磁碟
+> * 調整磁碟的大小
+> * 磁碟快照集
+
+本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 您也可以在瀏覽器中使用 [Cloud Shell](/azure/cloud-shell/quickstart)。
 
 ## <a name="default-azure-disks"></a>預設 Azure 磁碟
 
@@ -39,7 +48,7 @@ ms.lasthandoff: 05/03/2017
 
 ### <a name="temporary-disk-sizes"></a>暫存磁碟大小
 
-| 類型 | VM 大小 | 暫存磁碟大小上限 |
+| 類型 | VM 大小 | 暫存磁碟大小上限 (GB) |
 |----|----|----|
 | [一般用途](sizes-general.md) | A 和 D 系列 | 800 |
 | [計算最佳化](sizes-compute.md) | F 系列 | 800 |
@@ -147,7 +156,7 @@ sudo mkfs -t ext4 /dev/sdc1
 sudo mkdir /datadrive && sudo mount /dev/sdc1 /datadrive
 ```
 
-現在可以透過 datadrive 掛接點存取磁碟，而執行 `df -h` 命令即可驗證此掛接點。 
+現在可以透過 datadrive 掛接點存取磁碟，而執行 `df -h` 命令可驗證此掛接點。 
 
 ```bash
 df -h
@@ -274,6 +283,19 @@ az vm disk attach –g myResourceGroupDisk –-vm-name myVM –-disk $datadisk
 
 ## <a name="next-steps"></a>後續步驟
 
-您已在本教學課程中了解 VM 磁碟。 請前進到下一個教學課程，以了解如何自動設定 VM。
+您已在本教學課程中了解 VM 磁碟相關主題，像是：
 
-[自動設定 VM](./tutorial-automate-vm-deployment.md)
+> [!div class="checklist"]
+> * OS 磁碟和暫存磁碟
+> * 資料磁碟
+> * 標準和進階磁碟
+> * 磁碟效能
+> * 連結及準備資料磁碟
+> * 調整磁碟的大小
+> * 磁碟快照集
+
+請前進到下一個教學課程，以了解如何自動設定 VM。
+
+> [!div class="nextstepaction"]
+> [自動設定 VM](./tutorial-automate-vm-deployment.md)
+

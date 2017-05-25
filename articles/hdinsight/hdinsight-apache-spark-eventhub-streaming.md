@@ -1,6 +1,7 @@
 ---
-title: "在 Azure HDInsight 中使用 Apache Spark 叢集串流處理來自事件中樞的資料 | Microsoft Docs"
-description: "說明如何將資料流傳送到 Azure 事件中樞，接著在 HDInsight Spark 中使用 Scala 應用程式來接收那些事件的逐步指示"
+title: "透過 Azure HDInsight 中的事件中樞使用 Apache Spark 串流 | Microsoft Docs"
+description: "建立 Apache Spark 串流範例，說明如何將資料串流傳送到 Azure 事件中樞，然後使用 Scala 應用程式在 HDInsight Spark 叢集中接收這些事件。"
+keywords: "apache spark 串流, spark 串流, spark 範例, apache spark 串流範例, 事件中樞 azure 範例, spark 範例"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -9,30 +10,30 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 68894e75-3ffa-47bd-8982-96cdad38b7d0
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 05/12/2017
 ms.author: nitinme
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 91c60e944dd3b72f5bf1137d93ba2ae70537b2f7
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 86ec34dccb4518c31d9762e68f272382ee544713
 ms.contentlocale: zh-tw
-ms.lasthandoff: 03/29/2017
+ms.lasthandoff: 05/15/2017
 
 
 ---
-# <a name="spark-streaming-process-events-from-azure-event-hubs-with-apache-spark-cluster-on-hdinsight"></a>Spark 串流：在 HDInsight 上使用 Apache Spark 叢集處理來自 Azure 事件中樞的事件
+# <a name="apache-spark-streaming-process-data-from-azure-event-hubs-with-spark-cluster-on-hdinsight"></a>Apache Spark 串流：在 HDInsight 上使用 Spark 叢集處理來自 Azure 事件中樞的資料
 
-在本文中，您會了解一些使用 Apache Spark 進行串流處理的相關概念，然後建立包含下列步驟的串流處理解決方案：
+在本文中，您可以建立 Apache Spark 串流範例，包含下列步驟︰
 
 1. 您可以使用獨立的應用程式，將訊息內嵌到 Azure 事件中樞。
 
-2. 您可以使用在 Azure HDInsight 上的 Spark 叢集中執行的應用程式，即時從事件中樞擷取訊息。
+2. 您可以使用在 HDInsight 上的 Spark 叢集中執行之應用程式，即時從事件中樞讀取訊息。
 
-3. 您可以將資料路由傳送至不同的輸出，例如 Azure 儲存體 Blob、Hive 資料表或 SQL 資料表。 
+3. 您可以將資料路由傳送至不同的輸出，例如 Azure 儲存體 Blob、Hive 資料表和 SQL 資料表。 
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -40,31 +41,31 @@ ms.lasthandoff: 03/29/2017
 
 * HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
-## <a name="spark-streaming-concepts"></a>Spark 串流處理概念
+## <a name="what-is-apache-spark-streaming"></a>什麼是 Apache Spark 串流？
 
-如需 Apache Spark 中如何進行串流處理的深入說明，請參閱 [Apache Spark 串流處理概觀 (英文)](http://spark.apache.org/docs/latest/streaming-programming-guide.html#overview)。 HDInsight 會將相同的串流處理功能帶入 Azure 上的 Spark 叢集。  
+如需 Spark 串流的詳細說明，請參閱 [Apache Spark 串流概觀](http://spark.apache.org/docs/latest/streaming-programming-guide.html#overview)。 HDInsight 會將相同的串流功能帶入 Azure 上的 Spark 叢集。  
 
 ## <a name="what-does-this-solution-do"></a>此解決方案有哪些功能？
 
-在本文中，若要建立串流處理解決方案，您需執行下列步驟：
+在本文中，若要建立 Spark 串流範例，請執行下列步驟：
 
 1. 建立會接收事件串流的 Azure 事件中樞。
 
 2. 執行會產生事件，並將其推送至 Azure 事件中樞的本機獨立應用程式。 會執行此作業的範例應用程式發佈於： [https://github.com/hdinsight/spark-streaming-data-persistence-examples](https://github.com/hdinsight/spark-streaming-data-persistence-examples)。
 
-3. 在 Spark 叢集上，從遠端執行會從 Azure 事件中樞讀取串流事件，並將其推送至不同位置 (Azure Blob、Hive 資料表和 SQL 資料庫資料表) 的串流應用程式。 
+3. 在 Spark 叢集上，執行會從 Azure 事件中樞讀取串流事件，並將其寫入不同位置 (例如 Azure Blob、Hive 資料表和 SQL Database 資料表) 的事件中樞 Azure 範例。
 
-## <a name="create-azure-event-hub"></a>建立 Azure 事件中樞
+## <a name="create-an-azure-event-hub"></a>建立 Azure 事件中樞
 
 1. 登入 [Azure 入口網站](https://manage.windowsazure.com)，然後按一下畫面左上方的 [新增]。
 
 2. 按一下 [物聯網]，然後按一下 [事件中樞]。
    
-    ![建立事件中樞](./media/hdinsight-apache-spark-eventhub-streaming/create-event-hub9.png)
+    ![建立 Spark 串流範例的事件中樞](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-create-event-hub-for-spark-streaming.png "建立 Spark 串流範例的事件中樞")
 
 3. 在 [建立命名空間]  刀鋒視窗中，輸入命名空間名稱。 選擇定價層 (基本或標準)。 此外，選擇要在其中建立資源的 Azure 訂用帳戶、資源群組和位置。 按一下 [建立]  來建立命名空間。
    
-    ![建立事件中樞](./media/hdinsight-apache-spark-eventhub-streaming/create-event-hub1.png)
+    ![提供 Spark 串流範例的事件中樞名稱](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-provide-event-hub-name-for-spark-streaming.png "提供 Spark 串流範例的事件中樞名稱")
 
     > [!NOTE]
        > 您應該選取與 HDInsight 中 Apache Spark 叢集相同的 **位置** ，以便降低延遲的情況和成本。
@@ -76,62 +77,54 @@ ms.lasthandoff: 03/29/2017
     
 5. 在 [命名空間] 刀鋒視窗中，按一下 [事件中樞]，然後按一下 [+ 事件中樞] 來建立新的事件中樞。
    
-    ![建立事件中樞](./media/hdinsight-apache-spark-eventhub-streaming/create-event-hub3.png)
+    ![建立 Spark 串流範例的事件中樞](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-open-event-hubs-blade-for-spark-streaming-example.png "建立 Spark 串流範例的事件中樞")
 
 6. 輸入事件中樞的名稱、將分割區計數設為 10，並將訊息保留期設為 1。 我們並未在此解決方案中保存訊息，因此您可以讓其餘項目保留為預設值，然後按一下 [建立]。
    
-    ![建立事件中樞](./media/hdinsight-apache-spark-eventhub-streaming/create-event-hub5.png)
+    ![提供 Spark 串流範例的事件中樞詳細資料](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-provide-event-hub-details-for-spark-streaming-example.png "提供 Spark 串流範例的事件中樞詳細資料")
 
 7. 新建立的事件中樞會列在 [事件中樞] 刀鋒視窗中。
     
-     ![](./media/hdinsight-apache-spark-eventhub-streaming/create-event-hub6.png)
+     ![檢視 Spark 串流範例的事件中樞](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-view-event-hub-for-spark-streaming-example.png "檢視 Spark 串流範例的事件中樞")
 
 8. 回到命名空間刀鋒視窗 (而不是特定事件中樞刀鋒視窗)，按一下 [共用存取原則]，然後按一下 [RootManageSharedAccessKey]。
     
-     ![](./media/hdinsight-apache-spark-eventhub-streaming/create-event-hub7.png)
+     ![設定 Spark 串流範例的事件中樞原則](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-set-event-hub-policies-for-spark-streaming-example.png "設定 Spark 串流範例的事件中樞原則")
 
 9. 按一下複製按鈕，將 **RootManageSharedAccessKey** 主要金鑰和連接字串複製到剪貼簿。 儲存這些項目，以便稍後在本教學課程中使用。
     
-     ![](./media/hdinsight-apache-spark-eventhub-streaming/create-event-hub8.png)
+     ![檢視 Spark 串流範例的事件中樞原則金鑰](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-view-event-hub-policy-keys.png "檢視 Spark 串流範例的事件中樞原則金鑰")
 
-## <a name="send-messages-to-an-azure-event-hub-using-a-scala-application"></a>使用 Scala 應用程式將訊息傳送至 Azure 事件中樞
+## <a name="send-messages-to-azure-event-hub-using-a-sample-scala-application"></a>使用範例 Scala 應用程式將訊息傳送至 Azure 事件中樞
 
-在本節中，您會使用獨立的本機 Scala 應用程式來產生事件的串流，並將它傳送至您在上一個步驟中建立的 Azure 事件中樞。 此應用程式可從 GitHub 取得，網址是： [https://github.com/hdinsight/eventhubs-sample-event-producer](https://github.com/hdinsight/eventhubs-sample-event-producer)。 以下步驟假設您已分接此 GitHub 儲存機制。
+在本節中，您會使用獨立的本機 Scala 應用程式來產生事件的串流，並將它傳送至您稍早所建立的 Azure 事件中樞。 此應用程式可從 GitHub 取得，網址是： [https://github.com/hdinsight/eventhubs-sample-event-producer](https://github.com/hdinsight/eventhubs-sample-event-producer)。 以下步驟假設您已分接此 GitHub 儲存機制。
 
 1. 請務必在您執行此應用程式的電腦上安裝下列項目。
 
     * Oracle Java Development Kit。 您可以從 [這裡](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)加以安裝。
     * Java IDE。 本文使用 IntelliJ IDEA 15.0.1。 您可以從 [這裡](https://www.jetbrains.com/idea/download/)加以安裝。
 
-
 2. 在 IntelliJ IDEA 中，開啟應用程式 **EventhubsSampleEventProducer**。
 
-3. 建置專案。 在 [建置] 功能表中，按一下 [建立專案]。 根據您的 IntelliJ IDEA 設定而定，輸出 jar 會建立在 **\classes\artifacts** 下。
+3. 建置專案。 在 [建置] 功能表中，按一下 [建立專案]。 輸出 jar 所建立的位置會依您的 IntelliJ IDEA 設定而定。 通常是在 **\classes\artifacts**。
 
-    > [!TIP]
-    > 您也可以使用 IntelliJ IDEA 提供的選項，直接從 GitHub 儲存機制建立專案。 若要了解如何使用該方法，請參考下一節中的指示。 請注意，下一節所說明的步驟，有許多並不適用於您在此步驟中建立的 Scala 應用程式。 例如：
-    > 
-    > * 您不需更新 POM 以包含 Spark 版本。 這是因為建立此應用程式時並不需要倚賴 Spark。
-    > * 您無須將某些相依性 jar 新增至專案程式庫。 此專案不需要那些 jar。
-    > 
-    > 
+## <a name="create-application-to-receive-messages-from-event-hub-into-a-spark-cluster"></a>建立應用程式以接收事件中樞傳入 Spark 叢集的訊息 
 
-## <a name="receive-messages-from-the-event-hub-using-a-streaming-application-running-on-spark-cluster"></a>使用 Spark 叢集上執行的串流處理應用程式以從事件中樞接收訊息
-
-會接收事件，並將其路由傳送至不同目的地的範例 Scala 應用程式，可在下列位置取得： [https://github.com/hdinsight/spark-streaming-data-persistence-examples](https://github.com/hdinsight/spark-streaming-data-persistence-examples)。 請遵循下列步驟來更新應用程式，並建立輸出 jar。
+以 Scala 撰寫的 Spark 串流範例應用程式，會接收事件並路由傳送至不同的目的地，可在下列位置取得：[https://github.com/hdinsight/spark-streaming-data-persistence-examples](https://github.com/hdinsight/spark-streaming-data-persistence-examples)。 請遵循下列步驟來更新事件中樞設定的應用程式，並建立輸出 jar。
 
 1. 啟動 IntelliJ IDEA，並在啟動畫面中選取 [從版本控制簽出]，然後按一下 [Git]。
    
-    ![從 Git 取得來源](./media/hdinsight-apache-spark-eventhub-streaming/get-source-from-git.png)
+    ![Apache Spark 串流範例 - 從 Git 取得來源](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-get-source-from-git.png "Apache Spark 串流範例 - 從 Git 取得來源")
+
 2. 在 [複製儲存機制] 對話方塊中，提供要從中複製之 Git 儲存機制的 URL、指定要複製到的目錄，然後按一下 [複製]。
    
-    ![從 Git 複製](./media/hdinsight-apache-spark-eventhub-streaming/clone-from-git.png)
+    ![Apache Spark 串流範例 - 從 Git 複製](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-clone-from-git.png "Apache Spark 串流範例 - 從 Git 複製")
 3. 依照提示操作，直到專案複製完成。 按 **Alt + 1** 以開啟 [專案檢視]。 其內容應如下所示。
    
-    ![專案檢視](./media/hdinsight-apache-spark-eventhub-streaming/project-view.png)
+    ![Apache Spark 串流範例 - 專案檢視](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-project-view.png "Apache Spark 串流範例 - 專案檢視")
 4. 請確定以 Java8 編譯應用程式程式碼。 若要這樣做，請按一下 [檔案]，按一下 [專案結構]，然後在 [專案] 索引標籤上，確定 [專案語言層級] 設定為 [8 - Lambda、類型註解等]。
    
-    ![專案結構](./media/hdinsight-apache-spark-eventhub-streaming/java-8-compiler.png)
+    ![Apache Spark 串流範例 - 設定編譯器](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-java-8-compiler.png "Apache Spark 串流範例 - 設定編譯器")
 5. 開啟 **pom.xml** ，並確定 Spark 版本是正確的。 在 `<properties>` 節點下尋找下列程式碼片段，並確認 Spark 版本。
    
         <scala.version>2.11.8</scala.version>
@@ -139,46 +132,47 @@ ms.lasthandoff: 03/29/2017
         <scala.binary.version>2.11</scala.binary.version>
         <spark.version>2.0.0</spark.version>
 
-6. 應用程式需要稱為 **JDBC 驅動程式 jar** 的相依性 jar。 必須要有此項目，才能將接收自事件中樞的訊息寫入至 Azure SQL 資料庫。 您可以從 [這裡](https://msdn.microsoft.com/sqlserver/aa937724.aspx)下載此 jar 檔案的 4.1 版或更新版本。 在專案程式庫中新增此 jar 的參考。 執行下列步驟：
+6. 應用程式需要稱為 **JDBC 驅動程式 jar** 的相依性 jar。 必須要有此項目，才能將接收自事件中樞的訊息寫入至 Azure SQL 資料庫。 您可以從[這裡](https://msdn.microsoft.com/sqlserver/aa937724.aspx)下載此 jar (4.1 或更新版本)。 在專案程式庫中新增此 jar 的參考。 執行下列步驟：
      
      1. 在已開啟應用程式的 [IntelliJ IDEA] 視窗中，依序按一下 [檔案]、[專案結構] 和 [程式庫]。 
      2. 按一下 [新增] 圖示 (![新增圖示](./media/hdinsight-apache-spark-eventhub-streaming/add-icon.png))、按一下 [Java]，然後導覽至您下載 JDBC 驅動程式 jar 的位置。 依照提示，將 jar 檔案新增至專案程式庫。
         
          ![新增遺失的相依性](./media/hdinsight-apache-spark-eventhub-streaming/add-missing-dependency-jars.png "新增遺失的相依性 jar")
      3. 按一下 [Apply (套用)] 。
+
 7. 建立輸出 jar 檔案。 請執行下列步驟：
    
    1. 在 [專案結構] 對話方塊中，按一下 [構件]，然後按一下加號。 在快顯對話方塊中按一下 [JAR]，然後按一下 [從具有相依性的模組]。
       
-       ![建立 JAR](./media/hdinsight-apache-spark-eventhub-streaming/create-jar-1.png)
+       ![Apache Spark 串流範例 - 建立 jar](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-create-jar.png "Apache Spark 串流範例 - 建立 jar")
    2. 在 [從模組建立 JAR] 對話方塊中，對 [主要類別] 按一下省略符號 (![ellipsis](./media/hdinsight-apache-spark-eventhub-streaming/ellipsis.png))。
    3. 在 [選取主要類別] 對話方塊中，選取任何可用的類別，然後按一下 [確定]。
       
-       ![建立 JAR](./media/hdinsight-apache-spark-eventhub-streaming/create-jar-2.png)
+       ![Apache Spark 串流範例 - 選取 jar 的類別](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-select-class-for-jar.png "Apache Spark 串流範例 - 選取 jar 的類別")
    4. 在 [從模組建立 JAR] 對話方塊中，確定已選取 [擷取至目標 JAR]選項，然後按一下 [確定]。 這會建立具有所有相依性的單一 JAR。
       
-       ![建立 JAR](./media/hdinsight-apache-spark-eventhub-streaming/create-jar-3.png)
+       ![Apache Spark 串流範例 - 從模組建立 jar](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-create-jar-from-modules.png "Apache Spark 串流範例 - 從模組建立 jar")
    5. [輸出配置] 索引標籤會列出所有納入 Maven 專案中的 jar。 您可以選取並刪除 Scala 應用程式未直接依存的 jar。 對於我們在此處建立的應用程式，您可以移除最後一個 (**microsoft-spark-streaming-examples 編譯輸出**) 以外的所有 jar。 選取要刪除的 jar，然後按一下 [刪除] 圖示 (![delete icon](./media/hdinsight-apache-spark-eventhub-streaming/delete-icon.png))。
       
-       ![建立 JAR](./media/hdinsight-apache-spark-eventhub-streaming/delete-output-jars.png)
+       ![Apache Spark 串流範例 - 將擷取的 jar 刪除](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-delete-output-jars.png "Apache Spark 串流範例 - 將擷取的 jar 刪除")
       
        請確實選取 [在建置時建立]  方塊，以確保在每次建置或更新專案時都會建立 jar。 按一下 [Apply (套用)] 。
    6. 在 [輸出配置] 索引標籤中的 [可用的項目] 方塊右下方，會有您先前新增至專案程式庫的 SQL JDBC jar。 您必須將此新增至 [輸出配置]  索引標籤。 以滑鼠右鍵按一下 jar 檔案，然後按一下 [解壓縮到輸出根目錄中] 。
       
-       ![擷取相依性 jar](./media/hdinsight-apache-spark-eventhub-streaming/extract-dependency-jar.png)  
+       ![Apache Spark 串流範例 - 擷取相依性 jar](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-extract-dependency-jar.png "Apache Spark 串流範例 - 擷取相依性 jar")  
       
        [輸出配置]  索引標籤此時應顯示如下。
       
-       ![最終輸出索引標籤](./media/hdinsight-apache-spark-eventhub-streaming/final-output-tab.png)        
+       ![Apache Spark 串流範例 - 最終輸出索引標籤](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-final-output-tab.png "Apache Spark 串流範例 - 最終輸出索引標籤")        
       
        在 [專案結構] 對話方塊中，按一下 [套用]，然後按一下 [確定]。    
    7. 在功能表列中按一下 [建置]，然後按一下 [建立專案]。 您也可以按一下 [建置構件]，以建立 jar。 輸出 jar 會建立在 **\classes\artifacts** 下。
       
-       ![建立 JAR](./media/hdinsight-apache-spark-eventhub-streaming/output.png)
+       ![Apache Spark 串流範例 - 輸出 jar](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-output-jar.png "Apache Spark 串流範例 - 輸出 jar")
 
-## <a name="run-the-applications-remotely-on-a-spark-cluster-using-livy"></a>使用 Livy 在 Spark 叢集上遠端執行應用程式
+## <a name="run-the-application-remotely-on-a-spark-cluster-using-livy"></a>使用 Livy 在 Spark 叢集上遠端執行應用程式
 
-我們會使用 Livy，在 Spark 叢集上從遠端執行串流處理應用程式。 如需如何搭配使用 Livy 與 HDInsight Spark 叢集的詳細討論，請參閱 [從遠端將作業提交到 Azure HDInsight 上的 Apache Spark 叢集](hdinsight-apache-spark-livy-rest-interface.md)。 您必須先完成若干作業，才能開始執行遠端作業，使用 Spark 進行事件串流：
+在本文中，您會使用 Livy，在 Apache Spark 叢集上從遠端執行串流應用程式。 如需如何搭配使用 Livy 與 HDInsight Spark 叢集的詳細討論，請參閱 [從遠端將作業提交到 Azure HDInsight 上的 Apache Spark 叢集](hdinsight-apache-spark-livy-rest-interface.md)。 您必須先完成若干作業後，才能開始執行 Spark 串流應用程式：
 
 1. 啟動本機獨立應用程式以產生事件，並將其傳送至事件中樞。 請使用下列命令來執行此動作：
    
@@ -187,7 +181,7 @@ ms.lasthandoff: 03/29/2017
 2. 將串流處理 jar (**spark-streaming-data-persistence-examples.jar**) 複製到與叢集相關聯的 Azure Blob 儲存體。 如此，jar 即可供 Livy 存取。 您可以使用命令列公用程式 [**AzCopy**](../storage/storage-use-azcopy.md) 來執行此動作。 此外也有很多用戶端可用來上傳資料。 您可以在 [在 HDInsight 上將 Hadoop 作業的資料上傳](hdinsight-upload-data.md)中找到其詳細資訊。
 3. 將 CURL 安裝在您用來執行這些應用程式的電腦上。 我們使用 CURL 來叫用 Livy 端點，以從遠端執行作業。
 
-### <a name="run-the-applications-to-receive-the-events-into-an-azure-storage-blob-as-text"></a>執行應用程式，以將事件以文字的形式接收到 Azure 儲存體 Blob 中
+### <a name="run-the-spark-streaming-application-to-receive-the-events-into-an-azure-storage-blob-as-text"></a>執行 Spark 串流應用程式，以文字形式將事件接收到 Azure 儲存體 Blob 中
 
 開啟命令提示字元，導覽至您安裝 CURL 的目錄，然後執行下列命令 (取代使用者名稱/密碼與叢集名稱)：
 
@@ -225,7 +219,7 @@ ms.lasthandoff: 03/29/2017
 
 請記下位於輸出中最後一行的批次識別碼 (在此範例中為 '1')。 若要確認應用程式已成功執行，您可以查看與叢集相關聯的 Azure 儲存體帳戶，您應該會看到該處已建立 **/EventCount/EventCount10** 資料夾。 此資料夾應包含相關 blob，其中擷取在為參數 **batch-interval-in-seconds**指定的時段內所處理的事件數目。
 
-應用程式會繼續執行，直到您加以刪除。 若要這麼做，請使用下列命令：
+Spark 串流應用程式會繼續執行，直到您終止為止。 若要這麼做，請使用下列命令：
 
     curl -k --user "admin:mypassword1!" -v -X DELETE "https://mysparkcluster.azurehdinsight.net/livy/batches/1"
 
@@ -243,7 +237,7 @@ ms.lasthandoff: 03/29/2017
  在執行命令之後，您可以查看與叢集相關聯的 Azure 儲存體帳戶，您應該會看到該處已建立 **/EventStore10** 資料夾。 開啟任何以 **part-** 開頭的檔案，您應該會看到以 JSON 格式處理的事件。
 
 ### <a name="run-the-applications-to-receive-the-events-into-a-hive-table"></a>執行應用程式，以將事件接收到 Hive 資料表中
-若要執行會將事件串流至 Hive 資料表中的應用程式，您需要一些其他元件。 它們是：
+若要執行會將事件串流至 Hive 資料表中的 Spark 串流應用程式，您需要一些其他元件。 它們是：
 
 * datanucleus-api-jdo-3.2.6.jar
 * datanucleus-rdbms-3.2.9.jar
@@ -294,7 +288,7 @@ ms.lasthandoff: 03/29/2017
 
 
 ### <a name="run-the-applications-to-receive-the-events-into-an-azure-sql-database-table"></a>執行應用程式，以將事件接收到 Azure SQL Database 資料表中
-執行此步驟之前，請先確定您已建立 Azure SQL Database。 如需指示，請參閱[快速建立 SQL 資料庫](../sql-database/sql-database-get-started.md)。 為了完成本節，您需要資料庫名稱、資料庫伺服器名稱和資料庫系統管理員認證的值做為參數。 但您不需要建立資料庫資料表。 串流應用程式會為您建立。
+執行此步驟之前，請先確定您已建立 Azure SQL Database。 如需指示，請參閱[快速建立 SQL 資料庫](../sql-database/sql-database-get-started.md)。 為了完成本節，您需要資料庫名稱、資料庫伺服器名稱和資料庫系統管理員認證的值做為參數。 但您不需要建立資料庫資料表。 Spark 串流應用程式會為您建立。
 
 開啟命令提示字元，導覽至您安裝 CURL 的目錄，然後執行下列命令：
 

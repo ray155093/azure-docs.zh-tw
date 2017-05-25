@@ -1,6 +1,7 @@
 ---
-title: "在 Azure HDInsight Spark 叢集上搭配 Jupyter Notebook 使用不同的核心 | Microsoft Docs"
-description: "了解您可以透過 HDInsight Linux 上 Spark 叢集提供 Jupyter Notebook 使用的 PySpark、PySpark3 和 Spark 核心。"
+title: "Azure HDInsight 中 Spark 叢集上的 Jupyter Notebook 核心 | Microsoft Docs"
+description: "了解可透過 Azure HDInsight 上 Spark 叢集提供 Jupyter Notebook 的 PySpark、PySpark3 和 Spark 核心。"
+keywords: "spark 上的 jupyter notebook, jupyter spark"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -9,24 +10,24 @@ editor: cgronlun
 tags: azure-portal
 ms.assetid: 0719e503-ee6d-41ac-b37e-3d77db8b121b
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 05/15/2017
 ms.author: nitinme
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
-ms.openlocfilehash: 096fbc1d30e8c9df0c9008525e0fac3fd6e449cf
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: c5813341f0d70a3c04e915d243d2a9717cad1fc9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/11/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
-# <a name="jupyter-notebooks-kernels-with-apache-spark-clusters-in-hdinsight"></a>HDInsight 中具備 Apache Spark 叢集的 Jupyter Notebook 核心 
+# <a name="kernels-for-jupyter-notebook-on-spark-clusters-in-azure-hdinsight"></a>Azure HDInsight 中 Spark 叢集上的 Jupyter Notebook 核心 
 
-HDInsight Spark 叢集提供核心，可讓您用於 Jupyter Notebook 以測試 Spark 應用程式。 核心是一個可執行並解譯程式碼的程式。 兩種核心為：
+HDInsight Spark 叢集提供的核心，可讓您用於 Spark 上的 Jupyter Notebook 以測試應用程式。 核心是一個可執行並解譯程式碼的程式。 三個核心為︰
 
 - **PySpark** - 適用於以 Python2 撰寫的應用程式
 - **PySpark3** - 適用於以 Python3 撰寫的應用程式
@@ -38,18 +39,18 @@ HDInsight Spark 叢集提供核心，可讓您用於 Jupyter Notebook 以測試 
 
 * HDInsight 中的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
-## <a name="create-a-jupyter-notebook"></a>建立 Jupyter Notebook
+## <a name="create-a-jupyter-notebook-on-spark-hdinsight"></a>在 Spark HDInsight 上建立 Jupyter Notebook
 
 1. 從 [Azure 入口網站](https://portal.azure.com/)，開啟您的叢集。  請參閱[列出和顯示叢集](hdinsight-administer-use-portal-linux.md#list-and-show-clusters)以取得指示。 叢集會在新的入口網站刀鋒視窗中開啟。
 
 2. 從 [快速連結] 區段，按一下 [叢集儀表板] 以開啟 [叢集儀表板] 刀鋒視窗。  如果您沒有看見 [快速連結]，請按一下刀鋒視窗上左側功能表中的 [概觀]。
 
-    ![叢集儀表板](./media/hdinsight-apache-spark-jupyter-notebook-kernels/hdinsight-azure-portal-cluster-dashboards.png "叢集儀表板") 
+    ![Spark 上的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-kernels/hdinsight-jupyter-notebook-on-spark.png "Spark 上的 Jupyter Notebook") 
 
 3. 按一下 [Jupyter Notebook]。 出現提示時，輸入叢集的系統管理員認證。
    
    > [!NOTE]
-   > 您也可以在瀏覽器中開啟下列 URL，來連接到您的叢集的 Jupyter Notebook。 使用您叢集的名稱取代 **CLUSTERNAME** ：
+   > 您也可以在瀏覽器中開啟下列 URL，來觸達 Spark 叢集上的 Jupyter Notebook。 使用您叢集的名稱取代 **CLUSTERNAME** ：
    >
    > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
    > 
@@ -57,13 +58,13 @@ HDInsight Spark 叢集提供核心，可讓您用於 Jupyter Notebook 以測試 
 
 3. 按一下 [新增]，然後按一下 [Pyspark]、[PySpark3] 或 [Spark] 建立 Notebook。 使用適用於 Scala 應用程式的 Spark 核心、適用於 Python2 應用程式的 PySpark 核心，以及適用於 Python3 應用程式的 PySpark3 核心。
    
-    ![建立 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-kernels/jupyter-kernels.png "建立 Jupyter Notebook") 
+    ![Spark 上的 Jupyter Notebook 核心](./media/hdinsight-apache-spark-jupyter-notebook-kernels/kernel-jupyter-notebook-on-spark.png "Spark 上的 Jupyter Notebook 核心") 
 
 4. 將以您選取的核心開啟 Notebook。
 
-## <a name="benefits-of-using-these-kernels"></a>使用這些核心的優點
+## <a name="benefits-of-using-the-kernels"></a>使用這些核心的優點
 
-以下是使用新核心的幾項好處。
+以下是在 Spark HDInsight 叢集上使用新的核心搭配 Jupyter Notebook 的幾個優點。
 
 - **預設內容**。 使用 **PySpark**、**Spark3** 或 **Spark**核心時，您不需要先明確地設定 Spark 或 Hive 內容，即可開始處理您的應用程式。 這些依預設都可用。 這些內容包括：
    
@@ -149,7 +150,7 @@ Jupyter 筆記本會儲存到 **/HdiNotebooks** 資料夾下，與叢集相關�
 
 ## <a name="supported-browser"></a>支援的瀏覽器
 
-Google Chrome 上只支援針對 HDInsight Spark 叢集執行的 Jupyter Notebook。
+Google Chrome 上只支援 Spark HDInsight 叢集上的 Jupyter Notebook。
 
 ## <a name="feedback"></a>意見反應
 新的核心已在發展階段，而且經過一段時間後將會成熟。 這或許也意味著，API 可能會隨著這些核心的成熟而改變。 您在使用這些新核心時如有任何意見，我們都非常樂於知道。 這對於這些核心最終版本的定調很有幫助。 您可以將您的評論/意見反應填寫在本文最後的 **評論** 一節底下。

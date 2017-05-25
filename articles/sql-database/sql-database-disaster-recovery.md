@@ -16,10 +16,10 @@ ms.workload: NA
 ms.date: 04/14/2017
 ms.author: sashan
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: dab476db32b2274049140144847fba24b55856b0
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 8f1f22d1609dc34369a131e79eb2a1c0be9fe552
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/15/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -34,7 +34,7 @@ Azure SQL Database 提供下列功能，以從中斷復原：
 ### <a name="prepare-for-the-event-of-an-outage"></a>準備中斷事件
 如果要使用主動式異地複寫或異地備援備份成功復原到另一個資料區域，您必須準備一台伺服器，以便在另一個資料中心中斷時成為新的主要伺服器，以及將定義好的步驟寫成文件並經過測試，以確保順利復原。 這些準備步驟包括︰
 
-* 識別在另一個區域中要成為新主要伺服器的邏輯伺服器。 至少要有一部或者每部次要伺服器都具有主動式異地複寫。 如果是異地還原，這通常會是在資料庫所在區域的 [配對區域](../best-practices-availability-paired-regions.md) 中的伺服器。
+* 識別在另一個區域中要成為新主要伺服器的邏輯伺服器。 至少要有一部或者每部次要伺服器都具有主動式異地複寫。 如果是異地還原，這通常會是在資料庫所在區域的[配對區域](../best-practices-availability-paired-regions.md)中的伺服器。
 * 識別並選擇性地定義所需的伺服器層級防火牆規則，讓使用者可以存取新的主要資料庫。
 * 決定要如何重新導向使用者至新的主要伺服器，例如變更連接字串或變更 DNS 項目。
 * 識別並選擇性地建立登入，新主要伺服器的 master 資料庫中必須有這些登入，並確保這些登入在 master 資料庫中有適當的權限 (如果有的話)。 如需詳細資訊，請參閱 [災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)
@@ -56,8 +56,8 @@ Azure SQL Database 提供下列功能，以從中斷復原：
 ## <a name="wait-for-service-recovery"></a>等候服務復原
 Azure 團隊會努力儘快還原服務可用性，但需視根本原因而言，有可能需要數小時或數天的時間。  如果您的應用程式可以容忍長時間停機，您可以等待復原完成。 在此情況下，您不需要採取任何動作。 您可以在 [Azure 服務健康狀態儀表板](https://azure.microsoft.com/status/)上看見目前的服務狀態。 在區域復原後，您應用程式的可用性將會還原。
 
-## <a name="failover-to-geo-replicated-secondary-database"></a>容錯移轉至異地複寫的次要資料庫
-如果您應用程式的停機可能會導致商務責任，您應該在應用程式中使用異地複寫的資料庫。 這可讓應用程式在發生中斷時，快速還原不同區域的可用性。 了解如何 [設定異地複寫](sql-database-geo-replication-portal.md)。
+## <a name="fail-over-to-geo-replicated-secondary-database"></a>容錯移轉至異地複寫的次要資料庫
+如果您應用程式的停機可能會導致商務責任，您應該在應用程式中使用異地複寫的資料庫。 這可讓應用程式在發生中斷時，快速還原不同區域的可用性。 了解如何[設定異地複寫](sql-database-geo-replication-portal.md)。
 
 若要還原資料庫的可用性，您必須使用其中一種支援的方法，開始容錯移轉到異地複寫的次要資料庫。
 
@@ -68,7 +68,7 @@ Azure 團隊會努力儘快還原服務可用性，但需視根本原因而言�
 * [使用 T-SQL 容錯移轉至異地複寫的次要資料庫](sql-database-geo-replication-transact-sql.md)
 
 ## <a name="recover-using-geo-restore"></a>使用異地還原進行復原
-如果您應用程式的停機不會導致任何商務責任，您可以使用[異地還原](sql-database-recovery-using-backups.md)做為復原應用程式資料庫的方法。 它會從其最新的異地備援備份建立資料庫的複本。
+如果您應用程式的停機不會導致任何商務責任，您可以使用[異地還原](sql-database-recovery-using-backups.md)來作為復原應用程式資料庫的方法。 它會從其最新的異地備援備份建立資料庫的複本。
 
 ## <a name="configure-your-database-after-recovery"></a>在復原之後設定資料庫
 如果您使用異地複寫容錯移轉或異地復原來從中斷復原，您必須確定已正確設定新資料庫的連接，才能繼續執行正常的應用程式功能。 以下工作檢查清單可協助您準備產生復原的資料庫。
@@ -82,7 +82,7 @@ Azure 團隊會努力儘快還原服務可用性，但需視根本原因而言�
 您需要確認伺服器和資料庫上設定的防火牆規則符合主要伺服器與主要資料庫上設定的防火牆規則。 如需詳細資訊，請參閱 [如何：進行防火牆設定 (Azure SQL Database)](sql-database-configure-firewall-settings.md)。
 
 ### <a name="configure-logins-and-database-users"></a>設定登入和資料庫使用者
-您需要確定應用程式使用的所有登入，都存在於主控已復原資料庫的伺服器上。 如需詳細資訊，請參閱 [異地複寫的安全性設定](sql-database-geo-replication-security-config.md)。
+您需要確定應用程式使用的所有登入，都存在於主控已復原資料庫的伺服器上。 如需詳細資訊，請參閱[異地複寫的安全性設定](sql-database-geo-replication-security-config.md)。
 
 > [!NOTE]
 > 您應該在災害復原演練期間設定和測試伺服器防火牆規則與登入 (及其權限)。 這些伺服器層級物件及其設定可能無法在中斷期間使用。

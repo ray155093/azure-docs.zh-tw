@@ -16,10 +16,10 @@ ms.workload: infrastructure-services
 ms.date: 12/10/2016
 ms.author: zivr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
-ms.openlocfilehash: 7f0613285bc548e1329be3c33c30939f5998f379
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 627aa117ded0aaa519052d4ea1a1995ba2e363ee
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -71,7 +71,7 @@ Azure 中繼資料服務會公開有關使用 VM 內的 REST 端點執行虛擬�
 ## <a name="using-the-api"></a>使用 API
 
 ### <a name="query-for-events"></a>查詢事件
-您只要進行下列呼叫，即可查詢排定的事件
+您只要進行下列呼叫，即可查詢排定的事件：
 
     curl -H Metadata:true http://169.254.169.254/metadata/scheduledevents?api-version=2017-03-01
 
@@ -92,13 +92,25 @@ Azure 中繼資料服務會公開有關使用 VM 內的 REST 端點執行虛擬�
          }
      ]
     }
+    
+### <a name="event-properties"></a>事件屬性
+|屬性  |  說明 |
+| - | - |
+| EventId |事件的全域唯一識別碼。 <br><br> 範例： <br><ul><li>602d9444-d2cd-49c7-8624-8643e7171297  |
+| EventType | 事件造成的影響。 <br><br> 值： <br><ul><li> <i>凍結</i>︰虛擬機器已排定會暫停幾秒鐘。 這不會影響記憶體、開啟的檔案或網路連線。 <li> <i>重新開機</i>︰虛擬機器已排定要重新開機 (已抹除記憶體)。<li> <i>重新部署</i>︰虛擬機器已排定要移至另一個節點 (暫時磁碟會遺失)。 |
+| ResourceType | 受事件影響的資源類型。 <br><br> 值： <ul><li>VirtualMachine|
+| 資源| 受事件影響的資源清單。 <br><br> 範例： <br><ul><li> ["FrontEnd_IN_0", "BackEnd_IN_0"] |
+| 事件狀態 | 事件的狀態。 <br><br> 值： <ul><li><i>已排程︰</i>事件已排定在 <i>NotBefore</i> 屬性中指定的時間之後啟動。<li><i>已啟動</i>︰已啟動事件。</i>
+| NotBefore| 之後可能會啟動事件的時間。 <br><br> 範例： <br><ul><li> 2016-09-19T18:29:47Z  |
 
-EventType 會擷取虛擬機器上預期的影響，其中︰
-- 凍結︰虛擬機器已排定會暫停幾秒鐘。 這不會影響記憶體、開啟的檔案或網路連線
-- 重新開機︰虛擬機器已排定要重新開機 (已抹除記憶體)。
-- 重新部署︰虛擬機器已排定要移至另一個節點 (暫時磁碟會遺失)。 
+### <a name="event-scheduling"></a>事件排程
+系統會根據事件類型，為每個事件在未來安排最少的時間量。 此時間會反映於事件的 <i>NotBefore</i> 屬性。 
 
-排定事件 (狀態 = 已排定) 後，Azure 會共用多久後可啟動事件的時間 (指定於 NotBefore 欄位中)。
+|EventType  | 最短時間通知 |
+| - | - |
+| 凍結| 15 分鐘 |
+| 重新啟動 | 15 分鐘 |
+| 重新部署 | 10 分鐘 |
 
 ### <a name="starting-an-event-expedite"></a>啟動事件 (加速)
 
@@ -120,11 +132,13 @@ function GetScheduledEvents($uri)
 }
 
 # How to approve a scheduled event
-function ApproveScheduledEvent($eventId, $uri)
+function ApproveScheduledEvent($eventId, $docIncarnation, $uri)
 {    
-    # Create the Scheduled Events Approval Json
+    # Create the Scheduled Events Approval Document
     $startRequests = [array]@{"EventId" = $eventId}
-    $scheduledEventsApproval = @{"StartRequests" = $startRequests} 
+    $scheduledEventsApproval = @{"StartRequests" = $startRequests; "DocumentIncarnation" = $docIncarnation} 
+    
+    # Convert to JSON string
     $approvalString = ConvertTo-Json $scheduledEventsApproval
 
     Write-Host "Approving with the following: `n" $approvalString
@@ -161,7 +175,7 @@ foreach($event in $scheduledEvents.Events)
     $entry = Read-Host "`nApprove event? Y/N"
     if($entry -eq "Y" -or $entry -eq "y")
     {
-    ApproveScheduledEvent $event.EventId $scheduledEventURI 
+    ApproveScheduledEvent $event.EventId $scheduledEvents.DocumentIncarnation $scheduledEventURI 
     }
 }
 ``` 
@@ -207,6 +221,7 @@ foreach($event in $scheduledEvents.Events)
 ```csharp
     public class ScheduledEventsDocument
     {
+        public string DocumentIncarnation;
         public List<CloudControlEvent> Events { get; set; }
     }
 
@@ -217,11 +232,12 @@ foreach($event in $scheduledEvents.Events)
         public string EventType { get; set; }
         public string ResourceType { get; set; }
         public List<string> Resources { get; set; }
-        public DateTime NoteBefore { get; set; }
+        public DateTime? NotBefore { get; set; }
     }
 
     public class ScheduledEventsApproval
     {
+        public string DocumentIncarnation;
         public List<StartRequest> StartRequests = new List<StartRequest>();
     }
 
@@ -259,7 +275,11 @@ public class Program
             Console.ReadLine();
 
             // Approve events
-            ScheduledEventsApproval scheduledEventsApprovalDocument = new ScheduledEventsApproval();
+            ScheduledEventsApproval scheduledEventsApprovalDocument = new ScheduledEventsApproval()
+        {
+            DocumentIncarnation = scheduledEventsDocument.DocumentIncarnation
+        };
+        
             foreach (CloudControlEvent ccevent in scheduledEventsDocument.Events)
             {
                 scheduledEventsApprovalDocument.StartRequests.Add(new StartRequest(ccevent.EventId));

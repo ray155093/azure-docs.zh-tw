@@ -13,13 +13,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-management
-ms.date: 04/19/2017
+wms.date: 05/14/2017
 ms.author: carlrab
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: a022e7fc34cac85cb26cc6ca86a6941b1ccbfb95
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 3663b9005c68fd95158a81b54767a234ad5f37c4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/20/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -59,7 +59,7 @@ Azure SQL Database 提供四個[服務層](sql-database-service-tiers.md)：基�
 [!INCLUDE [SQL DB service tiers table](../../includes/sql-database-service-tiers-table.md)]
 
 > [!IMPORTANT]
-> 使用 P11 和 P15 效能等級的客戶不需額外付費就能使用最多 4 TB 的內含儲存體。 這個 4 TB 選項目前已在下列區域提供：美國東部 2、美國西部、西歐、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。
+> 使用 P11 和 P15 效能等級的客戶不需額外付費就能使用最多 4 TB 的內含儲存體。 這個 4 TB 選項目前已在下列區域提供：美國東部 2、美國西部、美國維吉尼亞州政府、西歐、德國中部、東南亞、日本東部、澳大利亞東部、加拿大中部和加拿大東部。
 >
 
 ### <a name="maximum-in-memory-oltp-storage"></a>記憶體內部 OLTP 儲存體上限

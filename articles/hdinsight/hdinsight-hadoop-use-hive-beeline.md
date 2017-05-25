@@ -1,45 +1,45 @@
 ---
-title: "使用 Beeline 與 HDInsight (Hadoop) 上的 Hive 搭配作業 | Microsoft Docs"
-description: "學習如何使用 SSH 連線至 HDInsight 中的 Hadoop 叢集，然後使用 Beeline 以互動方式提交 Hive 查詢。 Beeline 是透過 JDBC 與 HiveServer2 搭配作業的公用程式。"
+title: "使用 Beeline 搭配 Apache Hive - Azure HDInsight | Microsoft Docs"
+description: "了解如何使用 Beeline 用戶端以 Hadoop on HDInsight 執行 Hive 查詢。 Beeline 是透過 JDBC 與 HiveServer2 搭配作業的公用程式。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
+keywords: beeline hive,hive beeline
 ms.assetid: 3adfb1ba-8924-4a13-98db-10a67ab24fca
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/05/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 7a1757a7ef2881b9e09389745a8e5aeaea2abf9d
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: b6c554a21e143e71dcc68e6c36fb25074dc95d5b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
-# <a name="use-hive-with-hadoop-in-hdinsight-with-beeline"></a>利用 Beeline 搭配使用 Hive 與 HDInsight 中的 Hadoop
-[!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
+# <a name="use-the-beeline-client-with-apache-hive"></a>使用 Beeline 用戶端搭配 Apache Hive
 
 了解如何使用 [Beeline](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline–NewCommandLineShell) 在 HDInsight 上執行 Hive 查詢。
 
-Beeline 是命令列工具，隨附於您的 HDInsight 叢集的前端節點。 它會使用 JDBC 連線至 HiveServer2，它是裝載在 HDInsight 叢集上的服務。 下表提供與 Beeline 搭配使用的連接字串：
+Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 Beeline 會使用 JDBC 連線至 HiveServer2，它是裝載在 HDInsight 叢集上的服務。 您也可以使用 Beeline 透過網際網路從遠端存取 HDInsight 上的 Hive。 下表提供與 Beeline 搭配使用的連接字串：
 
-| 您執行 Beeline 的來源 | Connection string | 其他參數 |
+| 您執行 Beeline 的來源 | 參數 |
 | --- | --- | --- |
-| 對前端節點的 SSH 連線 | `jdbc:hive2://localhost:10001/;transportMode=http` | `-n admin` |
-| 邊緣節點 | `jdbc:hive2://headnodehost:10001/;transportMode=http` | `-n admin` |
-| 叢集外部 | `jdbc:hive2://clustername.azurehdinsight.net:443/;ssl=true;transportMode=http;httpPath=/hive2` | `-n admin -p password` |
+| 對前端或邊緣節點的 SSH 連線 | `-u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -n admin` |
+| 叢集外部 | `-u 'jdbc:hive2://clustername.azurehdinsight.net:443/;ssl=true;transportMode=http;httpPath=/hive2' -n admin -p password` |
 
 > [!NOTE]
-> 將 'admin' 取代為叢集的叢集登入帳戶。
+> 將 `admin` 取代為叢集的叢集登入帳戶。
 >
-> 將 'password' 取代為叢集登入帳戶的密碼。
+> 將 `password` 取代為叢集登入帳戶的密碼。
 >
 > 將 `clustername` 替換為 HDInsight 叢集的名稱。
 
@@ -48,39 +48,30 @@ Beeline 是命令列工具，隨附於您的 HDInsight 叢集的前端節點。 
 * HDInsight 叢集上以 Linux 為基礎的 Hadoop。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.2 和 3.3 版取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 版本取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
-* SSH 用戶端。 如需使用 SSH 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+* SSH 用戶端或本機 Beeline 用戶端。 本文件中的大部分步驟都假設您從連往叢集的 SSH 工作階段使用 Beeline。 如需從叢集外部執行 Beeline 的相關資訊，請參閱[從遠端使用 Beeline](#remote) 一節。
 
-## <a id="ssh"></a>使用 SSH 連線
+    如需使用 SSH 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-使用下列命令透過 SSH 連線至您的叢集：
+## <a id="beeline"></a>使用 BeeLine
 
-```bash
-ssh sshuser@myhdinsight-ssh.azurehdinsight.net
-```
+1. 啟動 Beeline 時，您必須為 HDInsight 叢集上的 HiveServer2 提供連接字串。 您也必須提供叢集登入的帳戶名稱 (通常是 `admin`)。 如果您從叢集外部執行命令，您也必須提供叢集登入密碼。 使用下表來尋找要使用的連接字串格式和參數︰
 
-將 `sshuser` 取代為叢集的 SSH 帳戶。 將 `myhdinsight` 替換為 HDInsight 叢集的名稱。
+    | 您執行 Beeline 的來源 | 參數 |
+    | --- | --- | --- |
+    | 對前端或邊緣節點的 SSH 連線 | `-u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -n admin` |
+    | 叢集外部 | `-u 'jdbc:hive2://clustername.azurehdinsight.net:443/;ssl=true;transportMode=http;httpPath=/hive2' -n admin -p password` |
 
-**如果您提供密碼進行 SSH 驗證** (在建立 HDInsight 叢集時)，則必須在出現提示時提供密碼。
-
-**如果您提供憑證金鑰進行 SSH 驗證** (在建立 HDInsight 叢集時)，可能需要指定用戶端系統上私密金鑰的位置：
-
-    ssh -i ~/.ssh/mykey.key ssh@myhdinsight-ssh.azurehdinsight.net
-
-如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
-
-## <a id="beeline"></a>使用 Beeline 命令
-
-1. 在 SSH 工作階段中，使用以下命令啟動 Beeline：
+    例如，下列命令可用來啟動從連往叢集的 SSH 工作階段啟動 Beeline：
 
     ```bash
-    beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
+    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -n admin
     ```
 
-    此命令會啟動 Beeline 用戶端，並連線至叢集前端節點上的 HiveServer2。 `-n` 參數用來提供叢集登入帳戶。 預設登入是 `admin`。 如果您在叢集建立期間使用不同的名稱，請使用該名稱，而不是 `admin`。
+    此命令會啟動 Beeline 用戶端，然後連線至叢集前端節點上的 HiveServer2。 `-n` 參數用來提供叢集登入帳戶。 預設登入是 `admin`。 如果您在叢集建立期間使用不同的名稱，請使用該名稱，而不是 `admin`。
 
-    命令完成之後，您會看見 `jdbc:hive2://localhost:10001/>` 提示字元。
+    命令完成之後，您會看見 `jdbc:hive2://headnodehost:10001/>` 提示字元。
 
 2. Beeline 命令以 `!` 字元開頭，例如 `!help` 顯示說明。 不過，一些命令可以省略 `!`。 例如，`help` 也能運作。
 
@@ -131,17 +122,17 @@ ssh sshuser@myhdinsight-ssh.azurehdinsight.net
 
     這些陳述式會執行下列動作：
 
-    * **DROP TABLE** - 如果資料表存在，則會刪除它。
+    * `DROP TABLE` - 如果資料表存在，則會刪除它。
 
-    * **CREATE EXTERNAL TABLE** - 在 Hive 中建立「外部」資料表。 外部資料表只會將資料表定義儲存在 Hive 中。 資料會留在原來的位置。
+    * `CREATE EXTERNAL TABLE` - 在 Hive 中建立**外部**資料表。 外部資料表只會將資料表定義儲存在 Hive 中。 資料會留在原來的位置。
 
-    * **ROW FORMAT**：格式化資料的方式。 在此情況下，每個記錄中的欄位會以空格隔開。
+    * `ROW FORMAT` - 設定資料格式的方式。 在此情況下，每個記錄中的欄位會以空格隔開。
 
-    * **STORED AS TEXTFILE LOCATION** - 儲存資料的所在位置以及以何種檔案格式儲存。
+    * `STORED AS TEXTFILE LOCATION` - 儲存資料的所在位置以及以何種檔案格式儲存。
 
-    * **SELECT** - 選擇其資料欄 **t4** 包含值 **[ERROR]** 的所有資料列計數。 此查詢會傳回值 **3** ，因為有 3 個資料列包含此值。
+    * `SELECT` - 選取其資料行 **t4** 包含值 **[ERROR]** 的所有資料列計數。 此查詢會傳回值 **3** ，因為有 3 個資料列包含此值。
 
-    * **INPUT__FILE__NAME LIKE '%.log'** - 範例資料檔案會與其他檔案一起儲存。 此陳述式會將查詢限制在儲存在檔案結尾為 .log 中的資料。
+    * `INPUT__FILE__NAME LIKE '%.log'` - Hive 嘗試將結構描述套用至目錄中的所有檔案。 在此情況下，目錄包含不符合結構描述的檔案。 若要防止結果中出現亂碼資料，此陳述式會告訴 Hive 我們只應該從檔名以 log 結尾的檔案傳回資料。
 
   > [!NOTE]
   > 當您預期會由外部來源來更新基礎資料時，請使用外部資料表。 例如，自動化的資料上傳程序，或透過其他 MapReduce 作業。
@@ -174,7 +165,7 @@ ssh sshuser@myhdinsight-ssh.azurehdinsight.net
 
 5. 若要結束 Beeline，請使用 `!exit`。
 
-## <a id="file"></a>執行 HiveQL 檔案
+## <a id="file"></a>使用 Beeline 執行 HiveQL 檔案
 
 使用下列步驟建立檔案，然後利用執行該檔案。
 
@@ -205,11 +196,11 @@ ssh sshuser@myhdinsight-ssh.azurehdinsight.net
 4. 使用下列命令，以使用 Beeline 來執行檔案。 以稍早取得的前端節點名稱取代 **HOSTNAME**，並以系統管理員帳戶的密碼取代 **PASSWORD**：
 
     ```bash
-    beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin -i query.hql
+    beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -n admin -i query.hql
     ```
 
     > [!NOTE]
-    > `-i` 參數會啟動 Beeline、執行 query.hql 檔案中的陳述式。 當查詢完成時，您會看到 `jdbc:hive2://localhost:10001/>` 提示字元。 您也可以使用 `-f` 參數執行檔案，它會在查詢完成後結束 Beeline。
+    > `-i` 參數會啟動 Beeline、執行 query.hql 檔案中的陳述式。 當查詢完成時，您會看到 `jdbc:hive2://headnodehost:10001/>` 提示字元。 您也可以使用 `-f` 參數執行檔案，它會在查詢完成後結束 Beeline。
 
 5. 若要確認 **errorLogs** 資料表已建立，請使用下列陳述式傳回 **errorLogs** 的所有資料列：
 
@@ -228,15 +219,7 @@ ssh sshuser@myhdinsight-ssh.azurehdinsight.net
         +---------------+---------------+---------------+---------------+---------------+---------------+---------------+--+
         3 rows selected (1.538 seconds)
 
-## <a name="edge-nodes"></a>邊緣節點
-
-如果您的叢集有邊緣節點，使用 SSH 連線時，建議一律使用邊緣節點而非前端節點。 若要透過 SSH 連線對邊緣節點啟動 Beeline，請使用下列命令：
-
-```bash
-beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -n admin
-```
-
-## <a name="remote-clients"></a>遠端用戶端
+## <a id="remote"></a>從遠端使用 Beeline
 
 如果您已在本機安裝 Beeline，或是正透過 Docker 映像如 [sutoiku/beeline](https://hub.docker.com/r/sutoiku/beeline/) 使用它，您必須使用下列參數：
 

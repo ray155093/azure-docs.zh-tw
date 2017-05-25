@@ -11,12 +11,12 @@ ms.service: mysql-database
 ms.tgt_pltfrm: portal
 ms.devlang: na
 ms.topic: article
-ms.date: 05/10/2017
+ms.date: 05/18/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 96856fe2a9ce869eb63b7c857de614202ae43064
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 801806056b745be5663c0a10241795947d1dd036
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/17/2017
 
 ---
 
@@ -123,7 +123,7 @@ OpenSSL>x509 -inform DER -in BaltimoreCyberTrustRoot.cer -out MyServerCACert.pem
 使用 MySQL 命令列介面，執行下列命令：
 
 ```dos
-mysql.exe -h yourserver. -uUsername@Servername -pYourPassword --ssl-ca=c:\ssl\MyServerCACert.pem
+mysql.exe -h mysqlserver4demo.mysql.database.azure.com -uUsername@mysqlserver4demo -pYourPassword --ssl-ca=c:\ssl\MyServerCACert.pem
 ```
 執行 mysql **status** 命令，確認您已使用 SSL 連線至 MySQL 伺服器︰
 
@@ -151,9 +151,13 @@ Threads: 4  Questions: 26082  Slow queries: 0  Opens: 112  Flush tables: 1  Open
 --------------
 ```
 
+> [!NOTE]
+> 目前，您在對服務的 mysql.exe 連線中使用 "--ssl-mode=VERIFY_IDENTITY" 選項時發生已知的問題，連線將會失敗並出現下列錯誤︰_錯誤 2026 (HY000)：SSL 連線錯誤︰SSL 憑證驗證失敗_。請降級至 "--ssl-mode=VERIFY_CA" 或較低的 [SSL 模式](https://dev.mysql.com/doc/refman/5.7/en/secure-connection-options.html#option_general_ssl-mode)。 如果您需要使用 "--ssl-mode=VERIFY_IDENTITY"，則可以 ping 您的伺服器名稱來解析區域伺服器名稱 (例如 westeurope1-a.control.database.windows.net)，並且在連線中使用該區域伺服器名稱，直到此問題解決為止。 我們計劃在未來移除這項限制。 
+
 ### <a name="connecting-to-server-using-the-mysql-workbench-over-ssl"></a>使用 MySQL Workbench 透過 SSL 連線至伺服器
 若要將 MySQL Workbench 設定為透過 SSL 安全地連線，您需要瀏覽至 [MySQL Workbench 設定新連線] 對話方塊的 [SSL] 索引標籤，然後在 [SSL CA 檔案:] 欄位中輸入 **MyServerCACert.pem** 的檔案位置。
 ![儲存自訂的圖格](./media/concepts-ssl-connection-security/mysql-workbench-ssl.png)
 
 ## <a name="next-steps"></a>後續步驟
 - 檢閱[「適用於 MySQL 的 Azure 資料庫」的連線庫](concepts-connection-libraries.md)後面的各種應用程式連線能力選項
+

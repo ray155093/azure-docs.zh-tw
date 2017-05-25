@@ -15,10 +15,11 @@ ms.tgt_pltfrm: NA
 ms.workload: data-management
 ms.date: 02/07/2017
 ms.author: sashan;carlrab
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 0b53eb34293078ad2ce334583fee88a8c5ac5ccf
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 6ed02ead07c50b9a49e8868756b6f957d7b49b99
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -73,8 +74,8 @@ SQL Database 是以可預測的每小時費率收費，同時根據服務層 + �
 
 若要了解 eDTU 及服務層，請參閱 [SQL Database 選項和效能](sql-database-service-tiers.md)。
 
-## <a name="how-does-the-use-of-active-geo-replication-in-an-elastic-pool-show-up-on-my-bill"></a>在彈性集區中使用「作用中異地複寫」會在我的帳單上如何顯示？
-與單一資料庫不同，搭配彈性資料庫使用 [作用中異地複寫](sql-database-geo-replication-overview.md) 對計費並沒有直接的影響。  您只需支付對每個集區佈建的 eDTU (主要集區和次要集區)
+## <a name="how-does-the-use-of-active-geo-replication-in-an-elastic-pool-show-up-on-my-bill"></a>在彈性集區中使用作用中異地複寫會在我的帳單上如何顯示？
+與單一資料庫不同，搭配彈性資料庫使用[作用中異地複寫](sql-database-geo-replication-overview.md)對計費並沒有直接的影響。  您只需支付對每個集區佈建的 eDTU (主要集區和次要集區)
 
 ## <a name="how-does-the-use-of-the-auditing-feature-impact-my-bill"></a>使用稽核功能會如何影響帳單？
 稽核內建在 SQL Database 服務供免費使用，且基本、標準、進階和進階 RS 資料庫皆可使用。 但是，為了儲存稽核記錄檔，稽核功能會使用 Azure 儲存體帳戶，而 Azure 儲存體的費率資料表和佇列 會根據稽核記錄檔的大小套用。
@@ -110,7 +111,7 @@ Azure SQL Web 和 Business 資料庫現已淘汰。 基本、標準、進階、�
 ## <a name="what-is-an-expected-replication-lag-when-geo-secondary-is-created-in-the-same-region-as-the-primary-database"></a>若地區次要資料庫建立於主要資料庫相同的區域中，預期的複寫延遲是多少？
 根據實證資料，若使用 Azure 建議配對區域，區域內部和區域之間的複寫延遲不會有太大差異。 
 
-## <a name="if-there-is-a-network-failure-between-two-regions-how-does-the-retry-logic-work-when-geo-replication-is-set-up"></a>如果兩個區域之間網路故障，在已設定「異地複寫」的情況下，重試邏輯如何運作？
+## <a name="if-there-is-a-network-failure-between-two-regions-how-does-the-retry-logic-work-when-geo-replication-is-set-up"></a>如果兩個區域之間網路故障，在已設定異地複寫的情況下，重試邏輯如何運作？
 如果中斷連線，我們會每隔 10 秒重試，以便重新建立連線。
 
 ## <a name="what-can-i-do-to-guarantee-that-a-critical-change-on-the-primary-database-is-replicated"></a>我該如何保證主要資料庫上的重大變更能夠確實複寫？

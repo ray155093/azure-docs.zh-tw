@@ -1,6 +1,6 @@
 ---
-title: "在 Azure HDInsight 上使用 JDBC 查詢 Hive"
-description: "了解如何在 Azure HDInsight 上使用 JDBC 連接到 Hive 並對儲存於雲端中的資料從遠端執行查詢。"
+title: "透過 JDBC 查詢 Hive - Azure HDInsight | Microsoft Docs"
+description: "了解如何在 Azure HDInsight 中使用 JDBC 連線到 Hadoop 叢集上的 Hive。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -14,46 +14,44 @@ ms.devlang: java
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/13/2017
+ms.date: 05/16/2017
 ms.author: larryfr
-translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: e03cad1e221c94d55609c182756f5927796c6a80
-ms.lasthandoff: 04/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: dd76e2450be2b05d011de7ded49bfa9630190e71
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
-# <a name="connect-to-hive-on-azure-hdinsight-using-the-hive-jdbc-driver"></a>使用 Hive JDBC 驅動程式連接到 Azure HDInsight 上的 Hive
+# <a name="query-hive-through-jdbc"></a>透過 JDBC 查詢 Hive
 
 [!INCLUDE [ODBC-JDBC-selector](../../includes/hdinsight-selector-odbc-jdbc.md)]
 
-在本文件中，您將學習如何從 Java 應用程式使用 JDBC，從遠端提交 Hive 查詢至 HDInsight 叢集。 您將學習如何從 SQuirreL SQL 用戶端連線，以及如何從 Java 以程式設計方式連線。
+了解如何從 Java 應用程式使用 JDBC 將 Hive 查詢提交到 Azure HDInsight 中的 Hadoop。 本文件中的資訊會示範如何以程式設計方式以及如何從 SQuirrel SQL 用戶端連線。
 
 如需有關 Hive JDBC 介面的詳細資訊，請參閱 [HiveJDBCInterface](https://cwiki.apache.org/confluence/display/Hive/HiveJDBCInterface)。
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本文中的步驟，您需要下列項目。
-
-* HDInsight 叢集上的 Hadoop。 以 Linux 或 Windows 為基礎的叢集都會運作。
+* HDInsight 叢集上的 Hadoop。 以 Linux 或 Windows 為基礎的叢集都可運作。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [HDInsight 3.3 取代](hdinsight-component-versioning.md#hdi-version-33-nearing-deprecation-date)。
 
 * [SQuirreL SQL](http://squirrel-sql.sourceforge.net/)。 SQuirreL 是 JDBC 用戶端應用程式。
 
-若要建置和執行從這篇文章連結的範例 Java 應用程式，您需要下列項目。
-
 * [Java Developer Kit (JDK) 第 7 版](https://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 或更高版本。
+
 * [Apache Maven](https://maven.apache.org)。 Maven 是 Java 專案的專案建置系統，由與本文相關聯的專案所使用。
 
-## <a name="connection-string"></a>Connection string
+## <a name="jdbc-connection-string"></a>JDBC 連接字串
 
-透過 443 在 Azure 上建立 HDInsight 叢集的 JDBC 連接，並使用 SSL 保護流量。 背後有叢集的公用閘道器會將流量重新導向至 HiveServer2 實際接聽的連接埠。 因此一般連接字串如下所示：
+透過 443 在 Azure 上建立 HDInsight 叢集的 JDBC 連接，並使用 SSL 保護流量。 背後有叢集的公用閘道器會將流量重新導向至 HiveServer2 實際接聽的連接埠。 下列為範例連接字串：
 
     jdbc:hive2://CLUSTERNAME.azurehdinsight.net:443/default;ssl=true?hive.server2.transport.mode=http;hive.server2.thrift.http.path=/hive2
 
-將 **CLUSTERNAME** 取代為 HDInsight 叢集的名稱。
+將 `CLUSTERNAME` 替換為 HDInsight 叢集的名稱。
 
 ## <a name="authentication"></a>驗證
 
@@ -67,23 +65,23 @@ DriverManager.getConnection(connectionString,clusterAdmin,clusterPassword);
 
 ## <a name="connect-with-squirrel-sql-client"></a>使用 SQuirreL SQL 用戶端連接
 
-SQuirreL SQL 是可用來從遠端以 HDInsight 叢集執行 Hive 查詢的 JDBC 用戶端。 下列步驟假設您已安裝 SQuirreL SQL，而且將會引導您下載及設定 Hive 驅動程式。
+SQuirreL SQL 是可用來從遠端以 HDInsight 叢集執行 Hive 查詢的 JDBC 用戶端。 下列步驟假設您已安裝 SQuirreL SQL。
 
 1. 從 HDInsight 叢集複製 Hive JDBC 驅動程式。
 
     * 對於**以 Linux 為基礎的 HDInsight**，請使用下列步驟來下載必要的 jar 檔案。
 
-        1. 建立包含檔案的新目錄。 例如， `mkdir hivedriver`。
-        2. 從命令提示字元、Bash、PowerShell 或其他命令列提示字元，將目錄變更為新目錄，接著使用下列命令從 HDInsight 叢集複製檔案。
+        1. 建立包含檔案的目錄。 例如： `mkdir hivedriver`。
 
-                scp USERNAME@CLUSTERNAME:/usr/hdp/current/hive-client/lib/hive-jdbc*standalone.jar .
-                scp USERNAME@CLUSTERNAME:/usr/hdp/current/hadoop-client/hadoop-common.jar .
-                scp USERNAME@CLUSTERNAME:/usr/hdp/current/hadoop-client/hadoop-auth.jar .
+        2. 從命令列中，使用下列命令從 HDInsight 叢集將檔案進行複製：
 
-            將 **USERNAME** 取代為叢集的 SSH 使用者帳戶名稱。 將 **CLUSTERNAME** 取代為 HDInsight 叢集名稱。
+            ```bash
+            scp USERNAME@CLUSTERNAME:/usr/hdp/current/hive-client/lib/hive-jdbc*standalone.jar .
+            scp USERNAME@CLUSTERNAME:/usr/hdp/current/hadoop-client/hadoop-common.jar .
+            scp USERNAME@CLUSTERNAME:/usr/hdp/current/hadoop-client/hadoop-auth.jar .
+            ```
 
-        > [!NOTE]
-        > 在 Windows 環境中，您可能沒有 `scp` 命令。 若是如此，請改為使用 PSCP 公用程式。 您可以從 [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)下載。
+            將 `USERNAME` 取代為叢集的 SSH 使用者帳戶名稱。 將 `CLUSTERNAME` 取代為 HDInsight 叢集名稱。
 
     * 對於**以 Windows 為基礎的 HDInsight**，請使用下列步驟來下載 jar 檔案。
 
@@ -95,7 +93,7 @@ SQuirreL SQL 是可用來從遠端以 HDInsight 叢集執行 Hive 查詢的 JDBC
 
             ![遠端桌面刀鋒視窗](./media/hdinsight-connect-hive-jdbc-driver/remotedesktopblade.png)
 
-            選取 [連接] 後，系統會下載 .rdp 檔案。 請使用這個檔案來啟動遠端桌面用戶端。 出現提示時，請使用存取遠端桌面時輸入的使用者名稱和密碼。
+            選取 [連線] 後，系統會下載 .rdp 檔案。 請使用這個檔案來啟動遠端桌面用戶端。 出現提示時，請使用存取遠端桌面時輸入的使用者名稱和密碼。
 
         3. 連接後，請從遠端桌面工作階段將下列檔案複製到本機電腦。 把它們放在名為 `hivedriver` 的本機目錄中。
 
@@ -112,11 +110,11 @@ SQuirreL SQL 是可用來從遠端以 HDInsight 叢集執行 Hive 查詢的 JDBC
 
     ![視窗左側的 [驅動程式] 索引標籤](./media/hdinsight-connect-hive-jdbc-driver/squirreldrivers.png)
 
-3. 從 [驅動程式] 對話方塊上方的圖示，選取 [+] 圖示以建立新驅動程式。
+3. 從 [驅動程式] 對話方塊上方的圖示，選取 [+] 圖示以建立驅動程式。
 
     ![[驅動程式] 圖示](./media/hdinsight-connect-hive-jdbc-driver/driversicons.png)
 
-4. 在 [新增驅動程式] 對話方塊中，加入下列資訊。
+4. 在 [新增驅動程式] 對話方塊中，新增下列資訊：
 
     * **名稱**：Hive
     * **範例 URL**：`jdbc:hive2://localhost:443/default;ssl=true?hive.server2.transport.mode=http;hive.server2.thrift.http.path=/hive2`
@@ -127,7 +125,7 @@ SQuirreL SQL 是可用來從遠端以 HDInsight 叢集執行 Hive 查詢的 JDBC
 
    按一下 [確定] 儲存這些變更。
 
-5. 在 SQuirreL SQL 視窗的左側選取 [別名]。 然後按一下 [+] 圖示建立新的連接別名。
+5. 在 SQuirreL SQL 視窗的左側選取 [別名]。 然後按一下 [+] 圖示來建立連線別名。
 
     ![新增別名](./media/hdinsight-connect-hive-jdbc-driver/aliases.png)
 
@@ -143,13 +141,13 @@ SQuirreL SQL 是可用來從遠端以 HDInsight 叢集執行 Hive 查詢的 JDBC
 
     * **使用者名稱**︰HDInsight 叢集的叢集登入帳戶名稱。 預設值為 `admin`。
 
-    * **密碼**︰叢集登入帳戶的密碼。 這是在建立 HDInsight 叢集時提供的密碼。
+    * **密碼**︰叢集登入帳戶的密碼。
 
     ![[新增別名] 對話方塊](./media/hdinsight-connect-hive-jdbc-driver/addalias.png)
 
-    使用 [測試] 按鈕來確認連接能正常運作。 當 [連接到︰HDInsight 上的 Hive] 對話方塊出現時，請選取 [連接] 來執行測試。 如果測試成功，您會看到 [連接成功] 對話方塊。
+    使用 [測試] 按鈕來確認連接能正常運作。 當 [連接到︰HDInsight 上的 Hive] 對話方塊出現時，請選取 [連接] 來執行測試。 如果測試成功，您會看到 [連線成功] 對話方塊。
 
-    使用 [新增別名] 對話方塊底部的 [確定] 按鈕來儲存連接別名。
+    若要儲存連線別名，請使用 [新增別名] 對話方塊底部的 [確定] 按鈕。
 
 7. 從 SQuirreL SQL 頂端的 [連接到] 下拉式清單選取 [HDInsight 上的 Hive]。 出現提示時，請選取 [連接]。
 
@@ -169,7 +167,7 @@ SQuirreL SQL 是可用來從遠端以 HDInsight 叢集執行 Hive 查詢的 JDBC
 
 ### <a name="unexpected-error-occurred-attempting-to-open-an-sql-connection"></a>嘗試開啟 SQL 連接時，發生意外的錯誤
 
-**徵狀**︰連接到 HDInsight 叢集版本 3.3 或 3.4 時，您可能會收到發生非預期錯誤的錯誤。 此錯誤的堆疊追蹤開頭將是下列幾行︰
+**徵狀**︰連接到 HDInsight 叢集版本 3.3 或 3.4 時，您可能會收到發生非預期錯誤的錯誤。 此錯誤的堆疊追蹤開頭為下列幾行︰
 
 ```java
 java.util.concurrent.ExecutionException: java.lang.RuntimeException: java.lang.NoSuchMethodError: org.apache.commons.codec.binary.Base64.<init>(I)V
@@ -177,9 +175,9 @@ at java.util.concurrent.FutureTas...(FutureTask.java:122)
 at java.util.concurrent.FutureTask.get(FutureTask.java:206)
 ```
 
-**原因**︰這個錯誤起因於 SQuirreL 使用的 commons-codec.jar 檔案版本與從 HDInsight 叢集下載之 Hive JDBC 元件要求的不相符。
+**原因**︰這個錯誤起因於 SQuirreL 使用的 commons-codec.jar 檔案版本與 Hive JDBC 元件要求的不相符。
 
-**解決方案**︰若要修正此錯誤，請使用下列步驟。
+**解決方案**︰若要修正此錯誤，請使用下列步驟：
 
 1. 從您的 HDInsight 叢集下載 commons-codec jar 檔案。
 
