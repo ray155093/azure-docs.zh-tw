@@ -13,10 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
-ms.author: estfan
-translationtype: Human Translation
+ms.author: LADocs; padmavc
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 9369b90471ee775664b942b21ceb450b8852eafd
 ms.openlocfilehash: a8684769e73dd3f7a76cba9c78046abceb842918
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/07/2017
 
 
 ---
@@ -71,10 +73,5 @@ ms.openlocfilehash: a8684769e73dd3f7a76cba9c78046abceb842918
 ## <a name="learn-more"></a>詳細資訊
 * [深入了解企業整合套件](../logic-apps/logic-apps-enterprise-integration-overview.md "了解企業整合套件")  
 * [深入了解對應](../logic-apps/logic-apps-enterprise-integration-maps.md "了解企業整合對應")  
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

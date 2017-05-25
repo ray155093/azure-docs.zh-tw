@@ -14,10 +14,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2016
-ms.author: padmavc
-translationtype: Human Translation
+ms.author: LADocs; padmavc
+ms.translationtype: Human Translation
 ms.sourcegitcommit: c8cfe5fb933cf9056b971d3e524f3c9ebc910215
 ms.openlocfilehash: b494d5abfdd4045776b408cbb8ec99ee3905cf72
+ms.contentlocale: zh-tw
+ms.lasthandoff: 02/04/2017
 
 
 ---
@@ -97,10 +99,5 @@ B2B 通訊有時必須確保機密。 企業整合透過下列兩種方式，使
 
 * [建立 B2B 合約](logic-apps-enterprise-integration-agreements.md)  
 * [深入了解金鑰保存庫](../key-vault/key-vault-get-started.md "了解金鑰保存庫")  
-
-
-
-
-<!--HONumber=Feb17_HO1-->
 
 

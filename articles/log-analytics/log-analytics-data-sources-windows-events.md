@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 05/23/2017
 ms.author: bwren
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 653696779e612726ed5b75829a5c6ed2615553d7
 ms.openlocfilehash: b6627ed7e3b08e0a94dec229d735114b3ed1b9df
+ms.contentlocale: zh-tw
+ms.lasthandoff: 01/24/2017
 
 
 ---
@@ -74,10 +76,5 @@ Windows 事件記錄都具有 **Event** 類型以及下表中的屬性。
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。  
 * 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將事件記錄剖析至個別欄位。
 * 設定從您的 Windows 代理程式進行 [效能計數器收集](log-analytics-data-sources-performance-counters.md) 。
-
-
-
-
-<!--HONumber=Jan17_HO4-->
 
 

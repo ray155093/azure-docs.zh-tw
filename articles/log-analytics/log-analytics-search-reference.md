@@ -3,7 +3,7 @@ title: "Azure Log Analytics 搜尋參考 | Microsoft Docs"
 description: "Log Analytics 搜尋參考描述搜尋語言，並且提供一般查詢語法選項，您可以在搜尋資料及篩選運算式時用來幫助您縮小搜尋範圍。"
 services: log-analytics
 documentationcenter: 
-author: bandersmsft
+author: bwren
 manager: carmonm
 editor: 
 ms.assetid: 402615a2-bed0-4831-ba69-53be49059718
@@ -13,7 +13,7 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
-ms.author: banders
+ms.author: bwren
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
 ms.sourcegitcommit: db034a8151495fbb431f3f6969c08cb3677daa3e
@@ -613,7 +613,7 @@ Type= Perf CounterName="Disk Writes/sec" Computer="BaconDC01.BaconLand.com" | me
 
 ### <a name="join"></a>Join
 聯結兩個查詢的結果以形成單一結果集。  支援下表所述的多個聯結類型。
-  
+
 | 聯結類型 | 說明 |
 |:--|:--|
 | inner | 只傳回具有兩個查詢相符值的記錄。 |
