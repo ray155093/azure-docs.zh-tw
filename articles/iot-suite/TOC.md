@@ -30,7 +30,6 @@
 ### [Windows 上的 C](iot-suite-connecting-devices.md)
 ### [Linux 上的 C](iot-suite-connecting-devices-linux.md)
 ### [Node.js](iot-suite-connecting-devices-node.md)
-## [連接您的 mbed 裝置](iot-suite-connecting-devices-mbed.md)
 ## [將邏輯應用程式連接到遠端監視解決方案](iot-suite-logic-apps-tutorial.md)
 ## [自訂預先設定的方案](iot-suite-guidance-on-customizing-preconfigured-solutions.md)
 ## [搭配使用動態遙測與遠端監視解決方案](iot-suite-dynamic-telemetry.md)

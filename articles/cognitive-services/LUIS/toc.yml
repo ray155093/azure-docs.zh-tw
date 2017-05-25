@@ -21,6 +21,8 @@
     href: luis-concept-entity-types.md
   - name: 表達方式
     href: luis-concept-utterance.md
+  - name: 特性
+    href: luis-concept-feature.md
   - name: 支援多種語言
     href: luis-concept-language-support.md
 - name: 使用說明指南

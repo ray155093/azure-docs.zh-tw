@@ -1,9 +1,10 @@
 ### YamlMime:YamlDocument
 documentType: LandingData
-title: "Azure Functions 文件"
+title: Azure Functions 文件
 metadata:
-  title: "Azure Functions 文件 - 教學課程 | Microsoft Docs"
-  description: "了解如何以您所選的語言開發和部署函式，以在背景中或依照排程執行工作，而不需要特殊的基礎結構。"
+  document_id: 83ceabb5-fb4f-a709-3fd2-37d024409f31
+  title: Azure Functions 文件 - 教學課程 | Microsoft Docs
+  meta.description: Learn how to develop and deploy functions in the language of your choice to run tasks in the background or on a schedule without special infrastructure.
   services: functions
   author: apexprodleads
   manager: carolz
@@ -14,53 +15,68 @@ metadata:
   ms.date: 01-23-2017
   ms.author: carolz
 abstract:
-  description: "Azure Functions 是無伺服器計算服務，可讓您依需求執行程式碼，無需明確佈建或管理基礎結構。 使用 Azure Functions 執行指令碼或一段程式碼來回應各種事件。 了解如何透過我們的快速入門、教學課程和範例使用Azure Functions。"
+  description: Azure Functions 是無伺服器計算服務，可讓您依需求執行程式碼，無需明確佈建或管理基礎結構。 使用 Azure Functions 執行指令碼或一段程式碼來回應各種事件。 了解如何透過我們的快速入門、教學課程和範例使用Azure Functions。
   aside:
     image:
       alt: 
       height: 110
-      src: media/index/get-started-with-azure-functions.png
+      src: media/index/video-thumb-get-started.png
       width: 250  
-    title: "開始使用 Azure Functions。 (2:39)"
+    title: '開始使用 Azure Functions。 (2:39)'
     href: https://azure.microsoft.com/en-us/resources/videos/get-started-with-azure-functions/
     width: 250
 sections:
-- title: "5 分鐘快速入門"
+- title: 5 分鐘快速入門
   items:
   - type: paragraph
-    text: 'Learn how to create a Hello World function using:'
+    text: 'Learn how to create functions that execute based on events created via:'
   - type: list
     style: icon48
     items: 
     - image: 
-        src: https://docs.microsoft.com/en-us/azure/sql-database/media/index/portal.svg
-      text: Azure portal
+        src: media/index/http.svg
+      text: HTTP
       href: /azure/azure-functions/functions-create-first-azure-function
     - image: 
-        src: https://docs.microsoft.com/en-us/azure/sql-database/media/index/cli.svg
-      text: Azure CLI
-      href: /azure/azure-functions/functions-create-first-azure-function-azure-cli
-- title: "逐步教學課程"
+        src: media/index/stopwatch.svg
+      text: Timer
+      href: /azure/azure-functions/functions-create-scheduled-function
+    - image: 
+        src: media/index/octokitty.svg
+      text: GitHub webhook
+      href: /azure/azure-functions/functions-create-github-webhook-triggered-function
+    - image: 
+        src: media/index/blob.svg
+      text: Blob
+      href: /azure/azure-functions/functions-create-storage-blob-triggered-function
+    - image: 
+        src: media/index/storage.svg
+      text: Queue
+      href: /azure/azure-functions/functions-create-storage-queue-triggered-function
+- title: 逐步教學課程
   items:
   - type: paragraph
     text: 'Learn how to build and manage Azure Functions'
   - type: list
     style: ordered
     items:
-    - html: <a href="/azure/azure-functions/functions-twitter-email">Build a serverless social media dashboard</a>
+    - html: <a href="/azure/azure-functions/functions-twitter-email">Create a function that integrates with Azure Logic Apps</a>
     - html: <a href="/azure/azure-functions/functions-create-serverless-api">Create a serverless API using Azure Functions</a>
-- title: "範例"
+- title: 範例
   items:
   - type: list
     style: unordered
     className: spaced noBullet
     items:
     - html: <a href="/azure/azure-functions/functions-cli-samples">Azure CLI</a>
-- title: "參考"
+- title: 參考
   items:
   - type: list
     style: cards
     className: cardsD
     items:
-    - title: "命令列"
+    - title: 命令列
       html: <p><a href="/cli/azure">Azure CLI</a></p>
+    - title: 繫結
+ 
+      html: <p><a href="/azure/azure-functions/functions-bindings-timer">Cosmos DB bindings</p><p><a href="/azure/azure-functions/functions-bindings-twilio">Twilio output binding</p>
