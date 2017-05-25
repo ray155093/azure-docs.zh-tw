@@ -76,7 +76,6 @@
 ### 觸達
 #### [開始使用及管理推送](mobile-engagement-how-tos.md)
 #### [在通知中傳送 Emoji](mobile-engagement-use-emoji-with-push.md)
-#### [傳送個人化通知](mobile-engagement-send-personalized-notifications.md)
 
 ### 存取服務 API
 #### [REST](mobile-engagement-dotnet-rest-service-api.md)

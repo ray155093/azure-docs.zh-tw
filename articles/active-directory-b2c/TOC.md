@@ -47,7 +47,7 @@
 ## [自訂 UI](active-directory-b2c-reference-ui-customization.md)
 ### [可供自訂的協助程式工具](active-directory-b2c-reference-ui-customization-helper-tool.md)
 ## [自訂語言](active-directory-b2c-reference-language-customization.md)
-## [使用報告 API](active-directory-b2c-refererence-usage-reporting-api.md)
+## [使用報告 API](active-directory-b2c-reference-usage-reporting-api.md)
 ## [設定自助密碼重設](active-directory-b2c-reference-sspr.md)
 
 # 身分識別體驗架構
@@ -59,8 +59,8 @@
 ### 設定 SAML 提供者
 #### [Salesforce](active-directory-b2c-setup-sf-app-custom.md)
 ### 整合 RESTful API
-#### [取得額外宣告](active-directory-b2c-rest-api-step-custom.md)
 #### [驗證使用者輸入](active-directory-b2c-rest-api-validation-custom.md)
+#### [取得額外宣告](active-directory-b2c-rest-api-step-custom.md)
 ### 自訂登入
 #### [設定使用者輸入](active-directory-b2c-configure-signup-self-asserted-custom.md)
 #### [自訂 UI](active-directory-b2c-ui-customization-custom.md)
@@ -79,7 +79,6 @@
 ## [區域可用性與資料常駐](active-directory-b2c-reference-tenant-type.md)
 ## [啟用計費](active-directory-b2c-how-to-enable-billing.md)
 ## [威脅管理](active-directory-b2c-reference-threat-management.md)
-## [限制和約束](active-directory-b2c-limitations.md)
 ## [建立目錄時的問題](active-directory-b2c-support-create-directory.md)
 
 # 相關參考
