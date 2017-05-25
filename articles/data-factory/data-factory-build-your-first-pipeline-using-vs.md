@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 04/17/2017
 ms.author: spelluru
-translationtype: Human Translation
-ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
-ms.openlocfilehash: 0ceba4142fd7b0e6edc1b7a6c14470d21806004a
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 95691b6e59f5e21e7c6cff9f4222bcffade57973
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -101,7 +102,6 @@ Azure 儲存體連結服務會提供連線資訊，以將 Azure 儲存體帳戶�
         "properties": {
         "type": "HDInsightOnDemand",
             "typeProperties": {
-                "version": "3.2",
                 "clusterSize": 1,
                 "timeToLive": "00:30:00",
                 "linkedServiceName": "AzureStorageLinkedService1"
@@ -114,7 +114,6 @@ Azure 儲存體連結服務會提供連線資訊，以將 Azure 儲存體帳戶�
 
     屬性 | 說明
     -------- | ----------- 
-    版本 | 指定所要建立的 HDInsight Hadoop 叢集版本。
     ClusterSize | 指定 HDInsight Hadoop 叢集的大小。
     TimeToLive | 指定 HDInsight 叢集在被刪除之前的閒置時間。
     linkedServiceName | 指定用來儲存 HDInsight Hadoop 產生之記錄的儲存體帳戶。 

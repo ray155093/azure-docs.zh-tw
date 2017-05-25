@@ -13,17 +13,18 @@ ms.devlang: na
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/15/2017
+ms.date: 05/15/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: e68815c2dafc596c3560ad3fcb2a7bf96d29182b
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 2364ab79ec4091d41e4d340e13033181df05b507
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
-# <a name="tutorial-get-started-with-the-preconfigured-solutions"></a>教學課程：開始使用預先設定的解決方案
-## <a name="introduction"></a>簡介
+# <a name="get-started-with-the-preconfigured-solutions"></a>開始使用預先設定的解決方案
+
 Azure IoT 套件[預先設定的解決方案][lnk-preconfigured-solutions]結合了多項 Azure IoT 服務，以提供可實作常見 IoT 商務案例的端對端解決方案。 *遠端監視* 預先設定的解決方案會連接並監視您的裝置。 您可以使用此解決方案分析裝置的資料串流，並藉由讓處理程序自動回應該資料串流來提升業務績效。
 
 本教學課程示範如何佈建遠端監視預先設定的解決方案。 其中也逐步說明預先設定解決方案的基本功能。 您可以從隨預先設定解決方案一起部署的解決方案儀表板中，存取其中許多功能：
@@ -34,8 +35,6 @@ Azure IoT 套件[預先設定的解決方案][lnk-preconfigured-solutions]結合
 
 > [!NOTE]
 > 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk_free_trial]。
-> 
-> 
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
