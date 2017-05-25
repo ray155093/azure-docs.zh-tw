@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/26/2017
+ms.date: 05/12/2017
 ms.author: joflore
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 328537b2bfbe15a23a9199bbb3c07851eaa85390
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: 6cc1589f2ebad9267334f70926be369b32c8e075
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -28,15 +28,16 @@ ms.lasthandoff: 05/03/2017
 
 1. [在您的目錄中啟用密碼重設](active-directory-passwords-getting-started.md)
 2. [設定密碼回寫的內部部署 AD 權限](active-directory-passwords-how-it-works.md#active-directory-permissions)
-3. [指派和驗證所需的授權](active-directory-passwords-licensing.md)
-4. 如果您想要逐步推出，可以選擇性地將密碼重設限制於某個使用者群組，以漸進方式推出此功能。 若要這麼做，請將 [已啟用自助式密碼重設] 切換開關從 [每個人] 設定為 [群組]，然後選取要啟用密碼重設的安全性群組。 此群組的成員都必須有指派給他們的授權，而這是啟用[以群組為基礎的授權](active-directory-passwords-licensing.md#enable-group-or-user-based-licensing)的好方法。
-5. 根據您的原則，填入最小的[驗證資料](active-directory-passwords-data.md)集。
-6. 將如何註冊及如何重設的指示傳送給使用者，教導他們如何使用 SSPR。
+3. [設定密碼回寫](active-directory-passwords-writeback.md#configuring-password-writeback)以將密碼從 Azure AD 回寫到您的內部部署目錄
+4. [指派和驗證所需的授權](active-directory-passwords-licensing.md)
+5. 如果您想要逐步推出，可以選擇性地將密碼重設限制於某個使用者群組，以漸進方式推出此功能。 若要這麼做，請將 [已啟用自助式密碼重設] 切換開關從 [每個人] 設定為 [群組]，然後選取要啟用密碼重設的安全性群組。 此群組的成員都必須有指派給他們的授權，而這是啟用[以群組為基礎的授權](active-directory-passwords-licensing.md#enable-group-or-user-based-licensing)的好方法。
+6. 根據您的原則，填入最小的[驗證資料](active-directory-passwords-data.md)集。
+7. 將如何註冊及如何重設的指示傳送給使用者，教導他們如何使用 SSPR。
     > [!NOTE]
     > 以使用者並非系統管理員測試 SSPR，因為 Microsoft 會強制執行 Azure 系統管理員類型帳戶的強式驗證需求。 如需有關系統管理員密碼原則的詳細資訊，請參閱我們的[深入探討文章](active-directory-passwords-how-it-works.md)。
 
-7. 您可以選擇在任何時間點強制註冊，並要求使用者在一段時間後重新確認其驗證資訊。 如果您不希望使用者必須註冊，您可以[部署密碼重設而不要求使用者註冊](active-directory-passwords-data.md)。
-8. 經過一段時間，藉由檢視 [Azure AD 所提供的報告](active-directory-passwords-reporting.md)，來檢閱使用者的註冊和使用情形。
+8. 您可以選擇在任何時間點強制註冊，並要求使用者在一段時間後重新確認其驗證資訊。 如果您不希望使用者必須註冊，您可以[部署密碼重設而不要求使用者註冊](active-directory-passwords-data.md)。
+9. 經過一段時間，藉由檢視 [Azure AD 所提供的報告](active-directory-passwords-reporting.md)，來檢閱使用者的註冊和使用情形。
 
 ## <a name="email-based-rollout"></a>以電子郵件為基礎的啟用
 
@@ -74,7 +75,7 @@ ms.lasthandoff: 05/03/2017
 
 下列連結提供有關使用 Azure AD 重設密碼的其他資訊
 
-* [**快速入門**](active-directory-passwords-getting-started.md) - 啟動並執行 Azure AD 自助式密碼管理 
+* [**快速入門**](active-directory-passwords-getting-started.md) - 開始執行 Azure AD 自助式密碼管理 
 * [**授權**](active-directory-passwords-licensing.md) - 設定 Azure AD 授權
 * [**資料**](active-directory-passwords-data.md) -了解所需的資料以及如何將它使用於密碼管理
 * [**自訂**](active-directory-passwords-customize.md) - 為您的公司自訂 SSPR 體驗的外觀及操作方式。

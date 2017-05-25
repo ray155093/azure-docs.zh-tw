@@ -12,22 +12,24 @@ ms.devlang: tbd
 ms.topic: get-started-article
 ms.tgt_pltfrm: multiple
 ms.workload: na
-ms.date: 02/13/2017
+ms.date: 05/17/2017
 ms.author: jotaub;sethm
-translationtype: Human Translation
-ms.sourcegitcommit: 4a972b9b8b52a90f27afda98d8bdc661016d1fe1
-ms.openlocfilehash: 927c01ff4cfa7de6e1e9eb2917848a4450e9f597
-ms.lasthandoff: 02/28/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: dc2b69db669366a89b33751ca2b3a9f5af292da2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 ---
 
 # <a name="create-a-relay-namespace-using-the-azure-portal"></a>使用 Azure 入口網站建立轉送命名空間
-命名空間是所有轉送元件的共同容器。 多個轉送可以位於單一命名空間，而且命名空間通常會做為應用程式容器。 目前有&2; 個不同的方式可建立轉送命名空間。
+命名空間是所有 Azure 轉送元件的共同容器。 多個轉送可以位於單一命名空間，而且命名空間通常會作為應用程式容器。 目前有 2 個不同的方式可建立轉送命名空間。
 
 1. Azure 入口網站 (本文)
 2. [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 範本
 
 ## <a name="create-a-namespace-in-the-azure-portal"></a>在 Azure 入口網站中建立命名空間
+
 [!INCLUDE [relay-create-namespace-portal](../../includes/relay-create-namespace-portal.md)]
 
 恭喜！ 您現已建立轉送命名空間。

@@ -13,13 +13,13 @@ ms.devlang: azurecli
 ms.topic: hero-article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 05/02/2017
+ms.date: 05/11/2017
 ms.author: nepeters
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 83b72b046605f6076302d4347afa70707060929e
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 2f1f63d14468467c8cf3956324beb829adce296f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/17/2017
 
 ---
 
@@ -29,7 +29,7 @@ Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-本教學課程需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+本快速入門需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 您也可以從瀏覽器使用 [Cloud Shell](/azure/cloud-shell/quickstart)。
 
 ## <a name="log-in-to-azure"></a>登入 Azure 
 
@@ -76,7 +76,7 @@ az vm create --resource-group myResourceGroup --name myVM --image UbuntuLTS --ge
 
 ## <a name="open-port-80-for-web-traffic"></a>針對 Web 流量開啟連接埠 80 
 
-依預設只能透過 SSH 連線至 Azure 中部署的 Linux 虛擬機器。 如果此 VM 即將成為 Web 伺服器，您需要從網際網路開啟連接埠 80。 使用 [az vm open-port](/cli/azure/vm#open-port)] 命令來開啟所需的連接埠。  
+依預設只能透過 SSH 連線至 Azure 中部署的 Linux 虛擬機器。 如果此 VM 即將成為 Web 伺服器，您需要從網際網路開啟連接埠 80。 使用 [az vm open-port](/cli/azure/vm#open-port) 命令來開啟所需的連接埠。  
  
  ```azurecli 
 az vm open-port --port 80 --resource-group myResourceGroup --name myVM
@@ -104,7 +104,7 @@ apt-get -y update
 apt-get -y install nginx
 ```
 
-## <a name="view-the-ngix-welcome-page"></a>檢視 NGIX 歡迎使用頁面
+## <a name="view-the-nginx-welcome-page"></a>檢視 NGINX 歡迎使用頁面
 
 安裝 NGINX 後，現在經由網際網路在您的 VM 上開啟連接埠 80 - 您可以使用所選的網頁瀏覽器來檢視預設 NGINX 歡迎使用畫面。 請務必使用您上面記載的 publicIpAddress 來瀏覽預設網頁。 
 

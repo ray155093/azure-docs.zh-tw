@@ -1,18 +1,18 @@
 ### <a name="prerequisites"></a>必要條件
 Azure Toolkit for IntelliJ 需要下列軟體元件：
 
-* IntelliJ 概念旗艦版。 可以從 <https://www.jetbrains.com/idea/download/> 下載。
+* IntelliJ IDEA Ultimate Edition，可以從 <https://www.jetbrains.com/idea/download/> 下載。
 
 * Java Developer Kit (JDK) 1.8 版或更新版本。
 
-* 作業系統 - Azure Toolkit for IntelliJ 已在下列作業系統上測試：
+* 作業系統。 Azure Toolkit for IntelliJ 已在下列作業系統上測試：
   
   * Windows 10、Windows 8 和 8.1 和 Windows 7。
   * Windows Server 2012 與 2012 R2、Windows Server 2008 與 2008 R2
-  * [Mac OS X](http://www.apple.com/osx) Yosemite 版和更新版本
-  * [Ubuntu Linux](http://www.ubuntu.com) 14、15 及 16 版
+  * [Mac OS X](http://www.apple.com/osx) "Yosemite" 版或更新版本
+  * [Ubuntu Linux](http://www.ubuntu.com) 第 14、15 及 16 版
 
-詳細資訊請參閱 JetBrains 外掛程式儲存機制的 [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/plugin/8053) 頁面。
+如需詳細資訊，請參閱 JetBrains 外掛程式存放庫的 [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/plugin/8053) 頁面。
 
 <!--
 > [!IMPORTANT]

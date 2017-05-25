@@ -1,32 +1,35 @@
 ---
-title: "從 Windows、Linux、Unix 或 OS X 搭配使用 SSH 與 HDInsight (Hadoop) | Microsoft Docs"
-description: " 您可以使用安全殼層 (SSH) 存取 HDInsight。 本文件提供從 Windows、Linux、Unix 或 OS X 用戶端使用 SSH 來與 HDInsight 連線的資訊。"
+title: "使用 SSH 搭配 Hadoop - Azure HDInsight | Microsoft Docs"
+description: "您可以使用安全殼層 (SSH) 存取 HDInsight。 本文提供從 Windows、Linux、Unix 或 macOS 用戶端使用 ssh 和 scp 命令連線到 HDInsight 的資訊。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
+keywords: "linux 中的 hadoop 命令,hadoop linux 命令,hadoop macos,ssh hadoop,ssh hadoop 叢集"
 ms.assetid: a6a16405-a4a7-4151-9bbf-ab26972216c5
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 04/03/2017
+ms.date: 05/12/2017
 ms.author: larryfr
-ms.custom: H1Hack27Feb2017,hdinsightactive
-translationtype: Human Translation
-ms.sourcegitcommit: 303cb9950f46916fbdd58762acd1608c925c1328
-ms.openlocfilehash: 248e820ccd2c68a8500aab3233c5beea3c8cc868
-ms.lasthandoff: 04/04/2017
+ms.custom: H1Hack27Feb2017,hdinsightactive,hdiseo17may2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 3eb1d4df7ab87ec692716339eb0ecb9df4c58732
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
+
 
 ---
 # <a name="connect-to-hdinsight-hadoop-using-ssh"></a>使用 SSH 連線到 HDInsight (Hadoop)
 
-了解如何使用[安全殼層 (SSH)](https://en.wikipedia.org/wiki/Secure_Shell) 安全地連線到 HDInsight。 HDInsight 可以使用 Linux (Ubuntu) 作為叢集節點的作業系統。 SSH 可用來連線到以 Linux 為基礎之叢集的前端和邊緣節點，並直接在這些節點上執行命令。
+了解如何使用[安全殼層 (SSH)](https://en.wikipedia.org/wiki/Secure_Shell) 安全地連線到 Hadoop on Azure HDInsight。 
 
-下表包含使用 SSH 連線到 HDInsight 時所需的位址和連接埠資訊︰
+HDInsight 可以使用 Linux (Ubuntu) 作為 Hadoop 叢集節點的作業系統。 下表包含使用 SSH 用戶端連線到以 Linux 為基礎的 HDInsight 時所需的位址和連接埠資訊︰
 
 | 位址 | 連接埠 | 連線到... |
 | ----- | ----- | ----- |
@@ -38,40 +41,44 @@ ms.lasthandoff: 04/04/2017
 > [!NOTE]
 > 將 `<edgenodename>` 替換為邊緣節點的名稱。
 >
-> 將 `<clustername>` 替換為 HDInsight 叢集的名稱。
+> 使用您叢集的名稱取代 `<clustername>`。
 >
-> 如果您有邊緣節點，建議您__永遠連線到邊緣節點__。 前端節點會裝載對於叢集健康狀態至關重要的服務。 邊緣節點則只會執行您放在上面的服務。
+> 如果您的叢集包含邊緣節點，我們建議您__一律使用 SSH 連線到邊緣節點__。 前端節點會裝載對於 Hadoop 健康狀態至關重要的服務。 邊緣節點則只會執行您放在上面的服務。
 >
 > 如需使用邊緣節點的詳細資訊，請參閱[在 HDInsight 中使用邊緣節點](hdinsight-apps-use-edge-node.md#access-an-edge-node)。
 
 ## <a name="ssh-clients"></a>SSH 用戶端
 
-大部分作業系統都會提供 `ssh` 用戶端。 Microsoft Windows 則預設不會提供 SSH 用戶端。 適用於 Windows 的 SSH 用戶端可在下列各個套件取得︰
+Linux、Unix 和 macOS 系統提供 `ssh` 和 `scp` 命令。 `ssh` 用戶端通常用來建立以 Linux 或 Unix 為基礎之系統的遠端命令列工作階段。 `scp` 用戶端用來安全地複製用戶端與遠端系統之間的檔案。
 
-* [位於 Windows 10 之 Ubuntu 上的 Bash](https://msdn.microsoft.com/commandline/wsl/about)：`ssh` 命令可透過 Windows 命令列上的 Bash 來提供。
+Microsoft Windows 預設不會提供任何 SSH 用戶端。 `ssh` 和 `scp` 用戶端均可透過下列套件使用於 Windows︰
 
-* [Git (https://git-scm.com/)](https://git-scm.com/)：`ssh` 命令可透過 GitBash 命令列來提供。
+* [Azure Cloud Shell](../cloud-shell/quickstart.md)：Cloud Shell 在瀏覽器中提供 Bash 環境，並提供`ssh``scp` 和其他一般 Linux 命令。
 
-* [GitHub Desktop (https://desktop.github.com/)](https://desktop.github.com/)：`ssh` 命令可透過 Git Shell 命令列來提供。 GitHub Desktop 可設定為使用 Bash、Windows 命令提示字元或 PowerShell 來作為 Git Shell 的命令列。
+* [位於 Windows 10 之 Ubuntu 上的 Bash](https://msdn.microsoft.com/commandline/wsl/about)：`ssh` 和`scp` 命令可透過 Windows 命令列上的 Bash 來取得。
+
+* [Git (https://git-scm.com/)](https://git-scm.com/)：`ssh` 和 `scp` 命令可透過 GitBash 命令列來取得。
+
+* [GitHub Desktop (https://desktop.github.com/)](https://desktop.github.com/)：`ssh` 和 `scp` 命令可透過 GitHub Shell 命令列來取得。 GitHub Desktop 可設定為使用 Bash、Windows 命令提示字元或 PowerShell 來作為 Git Shell 的命令列。
 
 * [OpenSSH (https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH)](https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH)：PowerShell 小組將會把 OpenSSH 移植到 Windows，並提供測試版本。
 
     > [!WARNING]
     > OpenSSH 套件包含 SSH 伺服器元件 `sshd`。 此元件會在您的系統上啟動 SSH 伺服器，讓其他人可與它連線。 除非您想要在系統上裝載 SSH 伺服器，否則請勿設定此元件或開啟連接埠 22。 與 HDInsight 通訊並不需要這麼做。
 
-另外還有數個圖形化 SSH 用戶端，例如 [PuTTY (http://www.chiark.greenend.org.uk/~sgtatham/putty/)](http://www.chiark.greenend.org.uk/~sgtatham/putty/) 和 [MobaXterm (http://mobaxterm.mobatek.net/)](http://mobaxterm.mobatek.net/)。 雖然這些用戶端可用來連線到 HDInsight，但連線到伺服器的程序與使用 `ssh` 公用程式時不同。 如需詳細資訊，請參閱您使用之圖形化用戶端的文件。
+另外還有數個圖形化 SSH 用戶端，例如 [PuTTY (http://www.chiark.greenend.org.uk/~sgtatham/putty/)](http://www.chiark.greenend.org.uk/~sgtatham/putty/) 和 [MobaXterm (http://mobaxterm.mobatek.net/)](http://mobaxterm.mobatek.net/)。 雖然這些用戶端可用來連線到 HDInsight，但連線的程序與使用 `ssh` 公用程式時不同。 如需詳細資訊，請參閱您使用之圖形化用戶端的文件。
 
 ## <a id="sshkey"></a>驗證︰SSH 金鑰
 
-SSH 金鑰使用[公開金鑰加密](https://en.wikipedia.org/wiki/Public-key_cryptography)來保護叢集。 SSH 金鑰比密碼更安全，並提供簡單的方式來保護您的 HDInsight 叢集。
+SSH 金鑰會使用[公開金鑰加密](https://en.wikipedia.org/wiki/Public-key_cryptography)來驗證 SSH 工作階段。 SSH 金鑰比密碼更安全，並提供簡單的方式來保護 Hadoop 叢集的存取。
 
 如果您使用金鑰來保護 SSH 帳戶，當您連線時，用戶端必須提供對應的私密金鑰︰
 
 * 大部分用戶端均可設定為使用__預設金鑰__。 例如，`ssh` 用戶端會在 Linux 和 Unix 環境的 `~/.ssh/id_rsa` 中尋找私密金鑰。
 
-* 您可以指定__私密金鑰的路徑__。 使用 `ssh` 用戶端時，您可以使用 `-i` 參數來指定私密金鑰的路徑。 例如， `ssh -i ~/.ssh/hdinsight sshuser@myedge.mycluster-ssh.azurehdinsight.net`。
+* 您可以指定__私密金鑰的路徑__。 使用 `ssh` 用戶端時，您可以使用 `-i` 參數來指定私密金鑰的路徑。 例如： `ssh -i ~/.ssh/id_rsa sshuser@myedge.mycluster-ssh.azurehdinsight.net`。
 
-* 如果您有__多個私密金鑰__來搭配不同的伺服器，則可以使用 [ssh-agent (https://en.wikipedia.org/wiki/Ssh-agent)](https://en.wikipedia.org/wiki/Ssh-agent) 之類的公用程式來自動選取要使用的金鑰。
+* 如果您有__多個私密金鑰__可搭配不同的伺服器使用，請考慮使用 [ssh-agent (https://en.wikipedia.org/wiki/Ssh-agent)](https://en.wikipedia.org/wiki/Ssh-agent) 之類的公用程式。 `ssh-agent` 公用程式可用來自動選取在建立 SSH 工作階段時所要使用的金鑰。
 
 > [!IMPORTANT]
 >
@@ -90,7 +97,7 @@ SSH 金鑰使用[公開金鑰加密](https://en.wikipedia.org/wiki/Public-key_cr
 * __私密金鑰__可用來向 HDInsight 叢集驗證用戶端。
 
 > [!IMPORTANT]
-> 您可以使用複雜密碼來保護金鑰。 實際上這就是私密金鑰的密碼。 即使有人取得您的私密金鑰，他們必須有複雜密碼才能使用該金鑰。
+> 您可以使用複雜密碼來保護金鑰。 複雜密碼實際上就是私密金鑰的密碼。 即使有人取得您的私密金鑰，他們必須有複雜密碼才能使用該金鑰。
 
 ### <a name="create-hdinsight-using-the-public-key"></a>使用公開金鑰建立 HDInsight
 
@@ -129,7 +136,7 @@ SSH 金鑰使用[公開金鑰加密](https://en.wikipedia.org/wiki/Public-key_cr
 
 ## <a name="connect-to-worker-and-zookeeper-nodes"></a>連線至背景工作角色和 Zookeeper 節點
 
-背景工作角色節點和 Zookeeper 節點無法直接從網際網路存取，不過可以從叢集前端節點或邊緣節點存取。 以下是連接至其他節點的一般步驟：
+無法從網際網路直接存取背景工作角色節點和 Zookeeper 節點。 從叢集前端節點或邊緣節點即可加以存取。 以下是連接至其他節點的一般步驟：
 
 1. 使用 SSH 連接前端或邊緣節點：
 
@@ -139,11 +146,11 @@ SSH 金鑰使用[公開金鑰加密](https://en.wikipedia.org/wiki/Public-key_cr
 
         ssh sshuser@wn0-myhdi
 
-    若要擷取叢集節點的網域名稱清單，請參閱[使用 Ambari REST API 管理 HDInsight](hdinsight-hadoop-manage-ambari-rest-api.md#example-get-the-fqdn-of-cluster-nodes) 文件的範例。
+    若要擷取叢集節點的網域名稱清單，請參閱[使用 Ambari REST API 管理 HDInsight](hdinsight-hadoop-manage-ambari-rest-api.md#example-get-the-fqdn-of-cluster-nodes) 文件。
 
-如果您使用__密碼__來保護 SSH 帳戶，系統會要求您輸入密碼，隨後再建立連線。
+如果使用__密碼__來保護 SSH 帳戶，請在連線時輸入密碼。
 
-如果您使用 __SSH 金鑰__來保護 SSH帳戶，請務必確認本機環境已針對 SSH 代理程式轉送進行設定。
+如果使用 __SSH 金鑰__來保護 SSH 帳戶，請確定用戶端上的 SSH 轉送已啟用。
 
 > [!NOTE]
 > 若要直接存取叢集中的所有節點，另一種方式是將 HDInsight 安裝到 Azure 虛擬網路。 然後，您可以將遠端機器加入相同的虛擬網路，並直接存取叢集中的所有節點。
@@ -153,7 +160,7 @@ SSH 金鑰使用[公開金鑰加密](https://en.wikipedia.org/wiki/Public-key_cr
 ### <a name="configure-ssh-agent-forwarding"></a>設定 SSH 代理程式轉送
 
 > [!IMPORTANT]
-> 以下步驟假設您使用 Linux/UNIX 架構系統，並使用 Bash on Windows 10 進行操作。 如果這些步驟不適用於您的系統，您可能需要參閱 SSH 用戶端的文件。
+> 以下步驟假設您使用以 Linux 或 UNIX 為基礎的系統，並使用 Bash on Windows 10 進行操作。 如果這些步驟不適用於您的系統，您可能需要參閱 SSH 用戶端的文件。
 
 1. 使用文字編輯器開啟 `~/.ssh/config`。 如果該檔案不存在，您可以藉由在命令列中輸入 `touch ~/.ssh/config` 加以建立。
 
@@ -172,7 +179,7 @@ SSH 金鑰使用[公開金鑰加密](https://en.wikipedia.org/wiki/Public-key_cr
 
         /tmp/ssh-rfSUL1ldCldQ/agent.1792
 
-    如果未傳回任何資訊，表示 `ssh-agent` 未執行。 如需安裝及設定 `ssh-agent` 的步驟，請參閱[透過 ssh 使用 ssh-agent (http://mah.everybody.org/docs/ssh)](http://mah.everybody.org/docs/ssh) 的代理程式啟動指令碼資訊，或參閱 SSH 用戶端文件。
+    如果未傳回任何資訊，表示 `ssh-agent` 未執行。 如需詳細資訊，請參閱[透過 ssh 使用 ssh-agent (http://mah.everybody.org/docs/ssh)](http://mah.everybody.org/docs/ssh) 的代理程式啟動指令碼資訊，或參閱 SSH 用戶端文件。
 
 4. 一旦確認 **ssh-agent** 正在執行，請使用下列項目將您的 SSH 私密金鑰新增至代理程式：
 

@@ -15,10 +15,11 @@ ms.workload: na
 ms.date: 05/02/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 7adde91586f5fbbffd0aeaf0efb0810cc891ac0b
-ms.openlocfilehash: ed204c466c5cfb60e5ba250b9dacb2524ca384eb
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: c3c61b96df43f33f815d60f1c91d776526021349
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -66,12 +67,12 @@ ms.lasthandoff: 04/18/2017
 * **一組廣泛的裝置程式庫**。 [Azure IoT 裝置 SDK][lnk-device-sdks] 可供各種語言和平台使用並受其支援，例如許多 Linux 發行版本都支援的 C、Windows 和即時作業系統。 Azure IoT 裝置 SDK 也支援 C#、Java 和 JavaScript 等 Managed 語言。
 * **IoT 通訊協定和擴充性**。 如果您的解決方案不能使用裝置程式庫，Azure IoT 中樞會公開可讓裝置以原生方式使用 MQTT v3.1.1、HTTP 1.1 或 AMQP 1.0 通訊協定的公用通訊協定。 您也可以擴充 IoT 中樞以提供自訂通訊協定支援，方法如下：
   
-  * 使用 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 建立領域閘道，以將自訂通訊協定轉換成 IoT 中樞所理解的三種通訊協定之一。 
+  * 使用 [Azure IoT Edge][lnk-gateway-sdk] 建立領域閘道，以將自訂通訊協定轉換成 IoT 中樞所理解的三種通訊協定之一。
   * 自訂 [Azure IoT 通訊協定閘道][protocol-gateway]，這是在雲端執行的開放原始碼元件。
 * **規模**。 Azure IoT 中樞會調整為數百萬個同時連接的裝置，以及每秒數百萬個事件。
 
 ## <a name="gateways"></a>閘道
-IoT 解決方案中的閘道通常是部署於雲端中的[通訊協定閘道][lnk-gateway]或隨您的裝置部署在本機的[領域閘道][lnk-field-gateway]。 通訊協定閘道會執行通訊協定轉譯，例如 AMQP 到 MQTT。 領域閘道可以在邊緣上執行分析、進行可降低延遲的時效性決策、提供裝置管理服務、強制執行安全性和隱私權條件約束，也可以執行通訊協定轉譯。 這兩種閘道器可做為您的裝置與 IoT 中樞之間的媒介。
+IoT 解決方案中的閘道通常是部署於雲端中的[通訊協定閘道][lnk-iotedge]或隨您的裝置部署在本機的[領域閘道][lnk-field-gateway]。 通訊協定閘道會執行通訊協定轉譯，例如 AMQP 到 MQTT。 領域閘道可以在邊緣上執行分析、進行可降低延遲的時效性決策、提供裝置管理服務、強制執行安全性和隱私權條件約束，也可以執行通訊協定轉譯。 這兩種閘道器可做為您的裝置與 IoT 中樞之間的媒介。
 
 現場閘道器與簡單的流量路由裝置 (例如網路位址轉譯裝置或防火牆) 不同，因為它通常會在解決方案內管理存取和資訊流程中扮演主動的角色。
 
@@ -108,7 +109,7 @@ ExpressRoute 的公用對等互連路徑支援 IoT 中樞。
 [protocol-gateway]: https://github.com/Azure/azure-iot-protocol-gateway/blob/master/README.md
 [lnk-service-assisted-pattern]: http://blogs.msdn.com/b/clemensv/archive/2014/02/10/service-assisted-communication-for-connected-devices.aspx "服務輔助通訊 (由 Clemens Vasters 撰寫的部落格文章)"
 [lnk-compare]: iot-hub-compare-event-hubs.md
-[lnk-gateway]: iot-hub-protocol-gateway.md
+[lnk-iotedge]: iot-hub-protocol-gateway.md
 [lnk-field-gateway]: iot-hub-devguide-endpoints.md#field-gateways
 [lnk-devguide-identityregistry]: iot-hub-devguide-identity-registry.md
 [lnk-devguide-security]: iot-hub-devguide-security.md
@@ -117,7 +118,7 @@ ExpressRoute 的公用對等互連路徑支援 IoT 中樞。
 [lnk-apple-push]: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9
 [lnk-device-sdks]: https://github.com/Azure/azure-iot-sdks
 [lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
-[lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
+[lnk-gateway-sdk]: https://github.com/Azure/iot-edge
 [lnk-send-messages]: iot-hub-devguide-messaging.md
 [lnk-device-management]: iot-hub-device-management-overview.md
 

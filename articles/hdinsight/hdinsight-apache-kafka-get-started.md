@@ -1,6 +1,6 @@
 ---
-title: "開始使用 Apache Kafka on HDInsight | Microsoft Docs"
-description: "了解建立與使用 Kafka on HDInsight 的基本概念。"
+title: "開始使用 Apache Kafka - Azure HDInsight | Microsoft Docs"
+description: "了解如何在 Azure HDInsight 上建立 Apache Kafka 叢集。 了解如何建立主題、訂閱者和取用者。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -13,31 +13,25 @@ ms.devlang:
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 02/14/2017
+ms.date: 05/16/2017
 ms.author: larryfr
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 695c6bd0a08e88be2d8e28eb15d903f3ae1eccaf
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: f92d71542a2aa797b84f8742f74a02fea895e25a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/17/2017
 
 ---
-# <a name="get-started-with-apache-kafka-preview-on-hdinsight"></a>開始使用 Apache Kafka (預覽) on HDInsight
+# <a name="start-with-apache-kafka-preview-on-hdinsight"></a>開始在 HDInsight 上使用 Apache Kafka (預覽)
 
-[Apache Kafka](https://kafka.apache.org) 是 HDInsight 提供的開放原始碼分散式串流平台。 它通常作為訊息代理程式，因為它提供了類似於發佈-訂閱訊息佇列的功能。 在本文件中，您會了解如何建立 Kafka on HDInsight 叢集，然後從 Java 應用程式傳送和接收資料。
+了解如何在 Azure HDInsight 上建立和使用 [Apache Kafka](https://kafka.apache.org) 叢集。 Kafka 是 HDInsight 提供的開放原始碼分散式串流平台。 它通常作為訊息代理程式，因為它提供了類似於發佈-訂閱訊息佇列的功能。
 
 > [!NOTE]
 > HDInsight 目前提供兩個 Kafka 版本：0.9.0 (HDInsight 3.4) 和 0.10.0 (HDInsight 3.5)。 本文件中的步驟假設您使用 Kafka on HDInsight 3.5。
 
-## <a name="prerequisite"></a>先決條件
-
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-您必須具備下列項目才完成功完成此 Apache Kafka 教學課程：
-
-* **Azure 訂用帳戶**。 請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-
-* **熟悉 SSH 和 SCP**。 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+## <a name="prerequisites"></a>必要條件
 
 * [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 或同等功能版本，例如 OpenJDK。
 
@@ -94,7 +88,7 @@ ms.lasthandoff: 05/03/2017
 
 ## <a name="connect-to-the-cluster"></a>連接到叢集
 
-從您的用戶端，使用 SSH 連接到叢集。 如果您在 Windows 10 上使用 Linux、Unix、MacOS 或 Bash，請使用下列命令︰
+從您的用戶端，使用 SSH 連線到叢集：
 
 ```ssh SSHUSER@CLUSTERNAME-ssh.azurehdinsight.net```
 
@@ -104,7 +98,7 @@ ms.lasthandoff: 05/03/2017
 
 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-##<a id="getkafkainfo"></a>取得 Zookeeper 和訊息代理程式主機資訊
+## <a id="getkafkainfo"></a>取得 Zookeeper 和訊息代理程式主機資訊
 
 使用 Kafka 時，您必須知道兩個主機值；Zookeeper 主機和訊息代理程式主機。 這些主機可搭配 Kafka API 以及 Kafka 隨附的許多公用程式使用。
 
@@ -116,12 +110,12 @@ ms.lasthandoff: 05/03/2017
     sudo apt -y install jq
     ```
 
-2. 使用下列命令，以擷取自 Ambari 的資訊設定環境變數。 將 __KAFKANAME__ 取代為 Kafka 叢集的名稱。 將 __PASSWORD__ 取代為您在建立叢集時使用的登入 (admin) 密碼。
+2. 使用下列命令，以擷取自 Ambari 的資訊設定環境變數。 將 __CLUSTERNAME__ 取代為 Kafka 叢集的名稱。 將 __PASSWORD__ 取代為您在建立叢集時使用的登入 (admin) 密碼。
 
     ```bash
-    export KAFKAZKHOSTS=`curl --silent -u admin:'PASSWORD' -G http://headnodehost:8080/api/v1/clusters/KAFKANAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")'`
+    export KAFKAZKHOSTS=`curl --silent -u admin:'PASSWORD' -G http://headnodehost:8080/api/v1/clusters/CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")'`
 
-    export KAFKABROKERS=`curl --silent -u admin:'PASSWORD' -G http://headnodehost:8080/api/v1/clusters/KAFKANAME/services/HDFS/components/DATANODE | jq -r '["\(.host_components[].HostRoles.host_name):9092"] | join(",")'`
+    export KAFKABROKERS=`curl --silent -u admin:'PASSWORD' -G http://headnodehost:8080/api/v1/clusters/CLUSTERNAME/services/HDFS/components/DATANODE | jq -r '["\(.host_components[].HostRoles.host_name):9092"] | join(",")'`
 
     echo '$KAFKAZKHOSTS='$KAFKAZKHOSTS
     echo '$KAFKABROKERS='$KAFKABROKERS
@@ -136,8 +130,8 @@ ms.lasthandoff: 05/03/2017
     `wn1-kafka.eahjefxxp1netdbyklgqj5y1ud.cx.internal.cloudapp.net:9092,wn0-kafka.eahjefxxp1netdbyklgqj5y1ud.cx.internal.cloudapp.net:9092`
    
     > [!WARNING]
-    > 請勿認為從此工作階段傳回的資訊永遠都正確無誤。 如果您調整叢集，則會新增或移除新的訊息代理程式。 如果發生失敗且節點被更換，則節點的主機名稱可能會變更。 
-    > 
+    > 請勿認為從此工作階段傳回的資訊永遠都正確無誤。 如果您調整叢集，則會新增或移除新的訊息代理程式。 如果發生失敗且節點被更換，則節點的主機名稱可能會變更。
+    >
     > 您應在使用 Zookeeper 和訊息代理程式主機資訊不久前擷取該資訊，以確保您具備有效的資訊。
 
 ## <a name="create-a-topic"></a>建立主題
@@ -176,7 +170,7 @@ Kafka 會在主題中儲存「記錄」。 記錄是由「產生者」產生，�
     /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --zookeeper $KAFKAZKHOSTS --topic test --from-beginning
     ```
    
-    這將會擷取主題中的記錄並加以顯示。 使用 `--from-beginning` 告知取用者從串流的開頭開始，所以會擷取所有的記錄。
+    此命令會擷取主題中的記錄並加以顯示。 使用 `--from-beginning` 告知取用者從串流的開頭開始，所以會擷取所有的記錄。
 
 3. 使用 __Ctrl + C__ 來停止取用者。
 
@@ -192,12 +186,12 @@ Kafka 會在主題中儲存「記錄」。 記錄是由「產生者」產生，�
 
     * **取用者** - 讀取主題中的記錄。
 
-2. 從開發環境中的命令列，將目錄變更為範例的 `Producer-Consumer` 目錄位置，然後使用下列命令來建立 jar 套件︰
-   
+2. 將目錄變更為範例的 `Producer-Consumer` 目錄位置，然後使用下列命令來建立 jar 套件︰
+
     ```
     mvn clean package
     ```
-   
+
     此命令會建立名為 `target` 的目錄，其中包含名為 `kafka-producer-consumer-1.0-SNAPSHOT.jar` 的檔案。
 
 3. 使用下列命令將 `kafka-producer-consumer-1.0-SNAPSHOT.jar` 檔案複製到 HDInsight 叢集：
@@ -208,13 +202,13 @@ Kafka 會在主題中儲存「記錄」。 記錄是由「產生者」產生，�
    
     以叢集的 SSH 使用者取代 **USERNAME**，並以叢集的名稱取代 **CLUSTERNAME**。 出現提示時，請輸入 SSH 使用者的密碼。
 
-4. `scp` 命令完成檔案複製後，請使用 SSH 連接到叢集，然後使用下列命令將記錄寫入您稍早建立的 test 主題。
-   
+4. `scp` 命令完成檔案複製後，請使用 SSH 連線到叢集： 使用下列命令將記錄寫入測試主題：
+
     ```bash
     ./kafka-producer-consumer.jar producer $KAFKABROKERS
     ```
-   
-    此命令將會啟動產生者並寫入記錄。 您可以在顯示的計數器中查看已寫入多少筆記錄。
+
+    您可以在顯示的計數器中查看已寫入多少筆記錄。
 
     > [!NOTE]
     > 如果您收到權限遭拒錯誤，請使用下列命令讓檔案得以執行︰```chmod +x kafka-producer-consumer.jar```
@@ -240,7 +234,7 @@ Kafka 的重要概念是取用者會在讀取記錄時使用取用者群組 (依
     ```
 
     > [!NOTE]
-    > 由於這是新的 SSH 工作階段，您必須使用[取得 Zookeeper 和訊息代理程式主機資訊](#getkafkainfo)一節中的命令來設定 `$KAFKABROKERS`。
+    > 使用[取得 Zookeeper 和訊息代理程式主機資訊](#getkafkainfo)一節中的命令來設定此 SSH 工作階段的 `$KAFKABROKERS`。
 
 2. 觀看每個工作階段計算其從主題接收的記錄。 這兩個工作階段的總數應該與您先前從一個取用者收到的數量相同。
 
@@ -260,11 +254,11 @@ Kafka 中儲存的記錄會依照其在資料分割內接收的順序儲存。 �
     此專案只包含一個類別 (`Stream`)，該類別會從先前建立的 `test` 主題讀取記錄。 它會計算已讀取的字數，並發出每個單字並計入名為 `wordcounts` 的主題。 本節中稍後的步驟會建立 `wordcounts` 主題。
 
 2. 從開發環境中的命令列，將目錄變更至 `Streaming` 目錄的位置，然後使用下列命令來建立 jar 套件︰
-   
-    ```
+
+    ```bash
     mvn clean package
     ```
-   
+
     此命令會建立名為 `target` 的目錄，其中包含名為 `kafka-streaming-1.0-SNAPSHOT.jar` 的檔案。
 
 3. 使用下列命令將 `kafka-streaming-1.0-SNAPSHOT.jar` 檔案複製到 HDInsight 叢集：

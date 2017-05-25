@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 03/03/2017
+ms.date: 05/12/2017
 ms.author: osamam
-translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: e678062429605db34c1e6c835841aaf2508d81a3
-ms.lasthandoff: 04/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 0bb4999aa511e002d6088d69400ba4eececd8cf1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
@@ -72,7 +73,7 @@ a.b.c.d/29 會分割成 a.b.c.d/30 和 a.b.c.d+4/30 並透過佈建 API 向下�
 Azure 公用對等路徑可讓您連接到裝載於 Azure 中的所有服務的公用 IP 位址。 其中包括 [ExpessRoute 常見問題集](expressroute-faqs.md) 列出的服務，以及由 ISV 裝載於 Microsoft Azure 上的任何服務。 連線到公用對等的 Microsoft Azure 服務時，一律是從您的網路出發到 Microsoft 網路。 您必須將公用 IP 位址使用於目的地為 Microsoft 網路的流量。
 
 ### <a name="microsoft-peering"></a>Microsoft 對等互連
-Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑存取的 Microsoft 雲端服務。 服務清單包括 Office 365 服務，例如 Exchange Online、SharePoint Online、商務用 Skype 和 CRM Online。 Microsoft 支援在 Microsoft 對等上的雙向連線能力。 以 Microsoft 雲端服務為目的地的流量，必須使用有效的公用 IPv4 位址，才能進入 Microsoft 網路。
+Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑存取的 Microsoft 雲端服務。 服務清單包括 Office 365 服務，例如 Exchange Online、SharePoint Online、商務用 Skype 和 Dynamics 365。 Microsoft 支援在 Microsoft 對等上的雙向連線能力。 以 Microsoft 雲端服務為目的地的流量，必須使用有效的公用 IPv4 位址，才能進入 Microsoft 網路。
 
 確定您的 IP 位址和 AS 號碼已在下列其中一個登錄中註冊。
 
@@ -180,7 +181,7 @@ ExpressRoute 不能設定為傳輸路由器。 您必須依賴連線提供者的
 | Exchange Online |12076:5010 |
 | SharePoint Online |12076:5020 |
 | 商務用 Skype Online |12076:5030 |
-| CRM Online |12076:5040 |
+| Dynamics 365 |12076:5040 |
 | 其他 Office 365 Online 服務 |12076:5100 |
 
 > [!NOTE]
@@ -207,7 +208,7 @@ ExpressRoute 不能設定為傳輸路由器。 您必須依賴連線提供者的
 | Exchange Online |12076:5110 |
 | SharePoint Online |12076:5120 |
 | 商務用 Skype Online |12076:5130 |
-| CRM Online |12076:5140 |
+| Dynamics 365 |12076:5140 |
 | 其他 Office 365 Online 服務 |12076:5200 |
 
 ## <a name="next-steps"></a>後續步驟

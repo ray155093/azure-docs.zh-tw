@@ -16,10 +16,10 @@ ms.topic: hero-article
 ms.date: 05/10/2017
 ms.author: arramac
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 73b9448153ec520d77afd1bdb65b9694e7bf7b9e
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 9bbf188b0080b8b1cf71423023645f54f1f823e5
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -70,27 +70,33 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 ## <a name="review-the-code"></a>檢閱程式碼
 
-讓我們快速檢閱應用程式中所發生的事情。 請開啟 DocumentDBRepository.cs 檔案，您會發現這些程式碼行會建立 Azure Cosmos DB 資源。 
+讓我們快速檢閱應用程式中所發生的事情。 請開啟 Program.cs 檔案，您會發現這些程式碼行建立 Azure Cosmos DB 資源。 
 
-* 已初始化 DocumentClient。
+* 已初始化 CloudTableClient。
 
     ```csharp
-    client = new DocumentClient(new Uri(ConfigurationManager.AppSettings["endpoint"]), ConfigurationManager.AppSettings["authKey"]);`
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString); 
+    CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
     ```
 
-* 已建立新資料庫。
+* 如果資料表不存在，將會建立資料表。
 
     ```csharp
-    await client.CreateDatabaseAsync(new Database { Id = DatabaseId });
+    CloudTable table = tableClient.GetTableReference("people");
+    table.CreateIfNotExists();
     ```
 
-* 已建立新的圖形容器。
+* 已建立新的資料表容器。 您會注意到，這段程式碼非常類似於一般的 Azure 資料表儲存體 SDK 
 
     ```csharp
-    await client.CreateDocumentCollectionAsync(
-        UriFactory.CreateDatabaseUri(DatabaseId),
-        new DocumentCollection { Id = CollectionId },
-        new RequestOptions { OfferThroughput = 1000 });
+    CustomerEntity item = new CustomerEntity()
+                {
+                    PartitionKey = Guid.NewGuid().ToString(),
+                    RowKey = Guid.NewGuid().ToString(),
+                    Email = $"{GetRandomString(6)}@contoso.com",
+                    PhoneNumber = "425-555-0102",
+                    Bio = GetRandomString(1000)
+                };
     ```
 
 ## <a name="update-your-connection-string"></a>更新您的連接字串
@@ -106,7 +112,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 3. 從入口網站複製您的 Azure Cosmos DB 帳戶名稱，並使它成為 app.config 中 PremiumStorageConnection 字串值的 AccountName 值。 在上面的螢幕擷取畫面中，帳戶名稱是 cosmos-db-quickstart。 您的帳戶名稱會顯示在入口網站頂端。
 
     `<add key="PremiumStorageConnectionString" 
-        value="DefaultEndpointsProtocol=https;AccountName=MYSTORAGEACCOUNT;AccountKey=AUTHKEY;TableEndpoint=https://COSMODB.documents.azure.com" />`
+        value="DefaultEndpointsProtocol=https;AccountName=MYSTORAGEACCOUNT;AccountKey=AUTHKEY;TableEndpoint=https://COSMOSDB.documents.azure.com" />`
 
 4. 然後，從入口網站複製您的主要金鑰值，並使它成為 PremiumStorageConnectionString 中的 AccountKey 值。 
 
@@ -114,7 +120,7 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 
 5. 最後，從入口網站的 [金鑰] 頁面複製 URI 值 (使用 [複製] 按鈕)，並讓它成為 PremiumStorageConnectionString 的 TableEndpoint 值。
 
-    `TableEndpoint=https://COSMODB.documents.azure.com`
+    `TableEndpoint=https://COSMOSDB.documents.azure.com`
 
     您可以讓 StandardStorageConnectionString 保持原狀。
 

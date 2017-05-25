@@ -14,11 +14,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/31/2017
-ms.author: jehollan; estfan; LADocs
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 6634f0ee88e68f2fcb09fd7534a88677e8efa029
-ms.lasthandoff: 04/03/2017
+ms.author: LADocs; jehollan; estfan
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 204bf123509729b60b55c306050cef54aa7fecc5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 ---
 
@@ -39,7 +40,7 @@ ms.lasthandoff: 04/03/2017
     > [!TIP]
     > 如果您有個人 [Microsoft 帳戶](https://account.microsoft.com/account)，您便有 Outlook.com 帳戶。 否則，如果您有 Azure 工作或學校帳戶，您便有 **Office 365 Outlook** 帳戶。
 
-* 網站的 RSS 摘要連結。 這個範例會使用 [MSDN Channel 9 網站](https://channel9.msdn.com/)的 RSS 摘要：`https://s.ch9.ms/Feeds/RSS`
+* 網站的 RSS 摘要連結。 這個範例會使用 [CNN.com 網站的頭條報導 RSS 摘要](http://rss.cnn.com/rss/cnn_topstories.rss)：`http://rss.cnn.com/rss/cnn_topstories.rss`
 
 ## <a name="add-a-trigger-that-starts-your-workflow"></a>新增可啟動工作流程的觸發程序
 
@@ -74,7 +75,7 @@ ms.lasthandoff: 04/03/2017
      您也可以變更 [頻率] 和 [間隔]。 
      這些設定會決定邏輯應用程式檢查新項目並傳回該時間範圍內找到之所有項目的頻率。
 
-     例如，讓我們每天檢查張貼至 MSDN Channel 9 網站的新項目。
+     例如，讓我們每天檢查張貼至 CNN 網站的頭條報導。
 
      ![使用 RSS 摘要、頻率和間隔設定觸發程序](media/logic-apps-create-a-logic-app/rss-trigger-setup.png)
 

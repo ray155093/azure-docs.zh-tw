@@ -3,7 +3,7 @@ title: "使用 Azure Application Insights 設定 ASP.NET 的 Web 應用程式分
 description: "針對裝載在內部部署環境或 Azure 的 ASP.NET 網站設定效能、可用性及使用情況分析。"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: d0eee3c0-b328-448f-8123-f478052751db
 ms.service: application-insights
@@ -11,13 +11,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/04/2017
+ms.date: 05/15/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 04bac05363f0f7468e41ccfd96a85e4bd7bf761c
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: af932e111ebc60ee86c823e65000d39fa6ea81cb
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/06/2017
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -52,7 +52,12 @@ ms.lasthandoff: 04/06/2017
 
 **a.** 選取您用來存取 Azure 的帳戶和訂用帳戶。
 
-**b.** 在 Azure 中選取資源，以查看來自應用程式的資料。 通常您會為每個應用程式建立個別的資源。 如果您想要設定資源群組，或資料的儲存位置，請按一下 [進行設定]。 資源群組用來控制資料的存取。 例如，如果您有數個應用程式組成相同系統時，您可能會將其 Application Insights 資料放在相同的資源群組中。
+**b.** 在 Azure 中選取資源，以查看來自應用程式的資料。 通常︰
+
+* [將單一資源使用於單一應用程式的不同元件](app-insights-monitor-multi-role-apps.md)。 
+* 為不相關的應用程式建立個別的資源。
+ 
+如果您想要設定資源群組，或資料的儲存位置，請按一下 [進行設定]。 資源群組用來控制資料的存取。 例如，如果您有數個應用程式組成相同系統時，您可能會將其 Application Insights 資料放在相同的資源群組中。
 
 **c.** 設定可用資料磁碟區限制的上限，以避免產生費用。 在一定的遙測數量之內，Application Insights 免費。 建立資源之後，您可以在入口網站中開啟 [功能 + 定價] > [資料量管理] > [每日用量上限]，以變更您的選擇。
 

@@ -3,7 +3,7 @@ title: "適用於 Windows 伺服器和背景工作角色的 Azure Application In
 description: "將 Application Insights SDK 手動新增至您的 ASP.NET 應用程式，以分析使用情況、可用性和效能。"
 services: application-insights
 documentationcenter: .net
-author: alancameronwills
+author: CFreemanwa
 manager: carmonm
 ms.assetid: 106ba99b-b57a-43b8-8866-e02f626c8190
 ms.service: application-insights
@@ -11,66 +11,83 @@ ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 11/01/2016
+ms.date: 05/15/2017
 ms.author: cfreeman
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: 29598f052778759ed362e3aa4b997acb799717ef
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 274e8db8e35243dc4b7ef20c3e7085f47975bb1c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/13/2017
+ms.lasthandoff: 05/17/2017
 
 
 ---
-# <a name="manually-configure-application-insights-for-aspnet-applications"></a>為 ASP.NET 應用程式手動設定 Application Insights
-[Application Insights](app-insights-overview.md) 是一項可延伸的工具，可供 Web 開發人員監視即時應用程式的效能和使用情形。 您可以手動進行設定，以監視 Windows 伺服器、背景工作角色和其他 ASP.NET 應用程式。 對於 Web 應用程式，Visual Studio 提供手動設定作為 [自動設定](app-insights-asp-net.md) 的替代方法。
+# <a name="manually-configure-application-insights-for-net-applications"></a>為 .NET 應用程式手動設定 Application Insights
+
+您可以設定 [Application Insights](app-insights-overview.md) 以監視各種不同的應用程式或應用程式角色、元件或微服務。 對於 Web 應用程式和服務，Visual Studio 會提供[單步驟設定](app-insights-asp-net.md)。 對於其他類型的 .NET 應用程式 (例如後端伺服器角色或桌面應用程式)，您可以手動設定 Application Insights。
 
 ![範例效能監視圖表](./media/app-insights-windows-services/10-perf.png)
 
 #### <a name="before-you-start"></a>開始之前
+
 您需要：
 
 * [Microsoft Azure](http://azure.com)訂用帳戶。 如果您的小組或組織擁有 Azure 訂用帳戶，擁有者就可以使用您的 [Microsoft 帳戶](http://live.com)將您加入。
 * Visual Studio 2013 或更新版本。
 
-## <a name="add"></a>1.建立 Application Insights 資源
+## <a name="add"></a>1.選擇 Application Insights 資源
+
+「資源」是在 Azure 入口網站中收集和顯示您資料的位置。 您需要決定是否要建立新的資源，或共用現有資源。
+
+### <a name="part-of-a-larger-app-use-existing-resource"></a>屬於大型應用程式︰使用現有資源
+
+如果您的 Web 應用程式有多個元件 (例如，前端 Web 應用程式和一或多個後端服務)，您應該將來自所有元件的遙測傳送至相同的資源。 這會讓它們顯示在單一應用程式對應上，並可追蹤元件之間的要求。
+
+因此，如果您已監視此應用程式的其他元件，只要使用相同的資源即可。
+
+在 [Azure 入口網站](https://portal.azure.com/)中開啟資源。 
+
+### <a name="self-contained-app-create-a-new-resource"></a>獨立應用程式：建立新的資源
+
+如果新的應用程式與其他應用程式無關，則應該有自己的資源。
+
 登入 [Azure 入口網站](https://portal.azure.com/)，並建立新的 Application Insights 資源。 選擇 ASP.NET 做為應用程式類型。
 
 ![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-windows-services/01-new-asp.png)
 
-Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務的執行個體。 此資源是來自您應用程式的遙測將經過分析並呈現的地方。
+所選的應用程式類型會設定資源刀鋒視窗的預設內容。
 
-應用程式類型的選擇會設定 [計量瀏覽器](app-insights-metrics-explorer.md)中可見的資源刀鋒視窗和屬性的預設內容。
-
-#### <a name="copy-the-instrumentation-key"></a>複製檢測金鑰
-該金鑰識別資源，您很快就會將它安裝在 SDK 中，以將資源導向資料。
+## <a name="2-copy-the-instrumentation-key"></a>2.複製檢測金鑰
+可識別資源的金鑰。 您很快就會將它安裝在 SDK 中，以便將資料導向資源。
 
 ![按一下 [屬性]，選取金鑰，然後按下 CTRL+C](./media/app-insights-windows-services/02-props-asp.png)
 
-您剛才所完成用來建立新資源的步驟是開始監視任何應用程式的好方法。 現在您可以將資料傳送給它。
+## <a name="sdk"></a>3.在您的應用程式中安裝 Application Insights 套件
+安裝和設定 Application Insights 套件會因您所正在使用的平台而有所不同。 
 
-## <a name="sdk"></a>2.在您的應用程式中安裝 Application Insights 套件
-安裝和設定 Application Insights 套件會因您所正在使用的平台而有所不同。 對於 ASP.NET 應用程式而言，這非常輕鬆。
-
-1. 在 Visual Studio 中，編輯 Web 應用程式專案的 NuGet 套件。
+1. 在 Visual Studio 中，以滑鼠右鍵按一下專案，然後選擇 [管理 Nuget 套件]。
    
     ![以滑鼠右鍵按一下專案，然後選取 [管理 NuGet 套件]](./media/app-insights-windows-services/03-nuget.png)
-2. 針對 Windows Server 應用程式安裝 Application Insights 套件。
+2. 針對 Windows Server 應用程式安裝 Application Insights 套件 "Microsoft.ApplicationInsights.WindowsServer"。
    
     ![搜尋「Application Insights」](./media/app-insights-windows-services/04-ai-nuget.png)
    
+    *哪個版本？*
+
+    如果您想要嘗試最新的功能，請勾選 [包括搶鮮版]。 相關的文件或部落格會指明您是否需要搶鮮版。
+    
     *可以使用其他封裝嗎？*
    
-    是。 如果您只想要使用 API 來傳送您自己的遙測，請選擇核心 API (Microsoft.ApplicationInsights)。 Windows Server 封裝會自動包含核心 API 及其他封裝，例如效能計數器收集和相依性監視。 
+    是。 如果您只想要使用 API 來傳送自己的遙測，請選擇 "Microsoft.ApplicationInsights"。 Windows Server 套件會包含 API 及其他套件，例如效能計數器收集和相依性監視。 
 
-#### <a name="to-upgrade-to-future-package-versions"></a>升級至未來的套件版本
+### <a name="to-upgrade-to-future-package-versions"></a>升級至未來的套件版本
 我們隨時會發行新版的 SDK。
 
 若要升級至[新版的套件](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases/)，請再次開啟 NuGet 套件管理員，並篩選出已安裝的套件。 選取 **Microsoft.ApplicationInsights.WindowsServer**，然後選擇 [升級]。
 
 如果您已對 ApplicationInsights.config 進行任何的自訂，請在升級前儲存複本，並在升級後合併您的變更到新版本中。
 
-## <a name="3-send-telemetry"></a>3.傳送遙測
-**如果您只安裝核心 API 封裝︰**
+## <a name="4-send-telemetry"></a>4.傳送遙測
+**如果您只安裝 API 套件︰**
 
 * 在程式碼中設定檢測金鑰，例如在 `main()`中： 
   
@@ -102,7 +119,7 @@ Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務�
 
 按一下任何圖表以查看詳細度量。 [深入了解度量。](app-insights-web-monitor-performance.md)
 
-#### <a name="no-data"></a>沒有資料？
+### <a name="no-data"></a>沒有資料？
 * 使用應用程式、開啟不同頁面，以產生一些遙測。
 * 開啟 [ [搜尋](app-insights-diagnostic-search.md) ] 磚來查看個別事件。 有時候，事件通過計量管線所需的時間較長。
 * 請稍等片刻，然後按一下 [重新整理 ]。 圖表會定期自行重新整理，但是如果您在等待一些要顯示的資料，您可以手動重新整理。
@@ -115,14 +132,14 @@ Azure 中的 [資源](app-insights-resources-roles-access-control.md) 是服務�
 
 以偵錯模式執行時，系統會透過管線迅速傳送遙測資料，因此您應該可以在幾秒內看見資料。 以發行組態部署應用程式時，資料累積會較為緩慢。
 
-#### <a name="no-data-after-you-publish-to-your-server"></a>發佈資料到伺服器之後，卻沒有資料？
+### <a name="no-data-after-you-publish-to-your-server"></a>發佈資料到伺服器之後，卻沒有資料？
 請在您的伺服器防火牆中，開啟連出流量的連接埠。 請參閱[本頁](https://docs.microsoft.com/azure/application-insights/app-insights-ip-addresses)以取得必要位址清單 
 
-#### <a name="trouble-on-your-build-server"></a>組建伺服器發生問題？
+### <a name="trouble-on-your-build-server"></a>組建伺服器發生問題？
 請參閱 [此疑難排解項目](app-insights-asp-net-troubleshoot-no-data.md#NuGetBuild)。
 
 > [!NOTE]
-> 如果您的應用程式會產生大量遙測 (且您使用的是 ASP.NET SDK 版本 2.0.0-beta3 或較新)，調適性取樣模型會自動藉由僅傳送事件代表性片段，以減少傳送到入口網站的量。 不過，與同一個要求相關的事件會選取或取消選取為群組，讓您可以在相關事件之間瀏覽。 
+> 如果您的應用程式會產生大量遙測，調適性取樣模型會自動藉由僅傳送事件代表性片段，減少傳送到入口網站的量。 不過，與同一個要求相關的事件會選取或取消選取為群組，讓您可以在相關事件之間瀏覽。 
 > [了解取樣](app-insights-sampling.md)。
 > 
 > 

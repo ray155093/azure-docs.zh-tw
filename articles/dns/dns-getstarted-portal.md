@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/10/2017
 ms.author: jonatul
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 3aea60bc21bfb0650a336f6674005bbab47201fe
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 93b24e3d9fbb3fbb3ea995271fd63d1e82eb9c9e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 ---
 
@@ -47,7 +48,7 @@ DNS 區域用來裝載特定網域的 DNS 記錄。 若要開始將網域裝載�
    | **設定** | **值** | **詳細資料** |
    |---|---|---|
    |**名稱**|contoso.com|DNS 區域的名稱|
-   |**訂用帳戶**|[您的訂用帳戶]|選取要在其中建立應用程式閘道的訂用帳戶。|
+   |**訂用帳戶**|[您的訂用帳戶]|選取要建立 DNS 區域的訂用帳戶。|
    |**資源群組**|**建立新的︰**contosoDNSRG|建立資源群組。 資源群組名稱在您選取的訂用帳戶中必須是唯一的。 若要深入了解資源群組，請閱讀 [Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fdns%2ftoc.json#resource-groups) 概觀。|
    |**位置**|美國西部||
 
@@ -70,7 +71,7 @@ DNS 區域用來裝載特定網域的 DNS 記錄。 若要開始將網域裝載�
    |**類型**|具有使用 | 要建立的 DNS 記錄類型，可接受的值為 A、AAAA、CNAME、MX、NS、SRV、TXT 和 PTR。  如需記錄類型的詳細資訊，請參閱 [DNS 區域和記錄的概觀](dns-zones-records.md)。|
    |**TTL**|1|DNS 要求的存留時間。|
    |**TTL 單位**|小時|TTL 值的時間測量。|
-   |**IP 位址**|{ipAddressValue| 這個值是 DNS 記錄解析的 IP 位址。|
+   |**IP 位址**|ipAddressValue| 這個值是 DNS 記錄解析的 IP 位址。|
 
 ## <a name="view-records"></a>檢視記錄
 

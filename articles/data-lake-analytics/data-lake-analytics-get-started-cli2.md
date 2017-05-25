@@ -13,14 +13,15 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/06/2017
 ms.author: jgao
-translationtype: Human Translation
-ms.sourcegitcommit: 538f282b28e5f43f43bf6ef28af20a4d8daea369
-ms.openlocfilehash: 109460cecc4e11c729203af97c9bf1c22b90e61a
-ms.lasthandoff: 04/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 25278e621155e7c90b5bb870d08793d285f4edff
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
-# <a name="tutorial-get-started-with-azure-data-lake-analytics-using-azure-cli-20-preview"></a>教學課程：使用 Azure CLI 2.0 開始使用 Azure Data Lake Analytics (預覽)
+# <a name="tutorial-get-started-with-azure-data-lake-analytics-using-azure-cli-20"></a>教學課程：使用 Azure CLI 2.0 開始使用 Azure Data Lake Analytics
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
 了解如何透過 Azure CLI 2.0 建立 Azure Data Lake Analytics 帳戶、在 [U-SQL](data-lake-analytics-u-sql-get-started.md)中定義 Data Lake Analytics 作業，以及將作業提交至 Data Lake Analytics 帳戶。 如需有關 Data Lake Analytics 的詳細資訊，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
@@ -32,12 +33,6 @@ ms.lasthandoff: 04/07/2017
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **Azure CLI 2.0**. 請參閱 [安裝和設定 Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)。
-* **啟用 Data Lake Store/Analytics CLI 2.0 預覽**。 Data Lake Store 和 Data Lake Analytics CLI 2.0 仍為預覽狀態。 執行下列命令來同時啟用：
-
-    ```azurecli
-    az component update --add dls
-    az component update --add dla 
-    ```
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 

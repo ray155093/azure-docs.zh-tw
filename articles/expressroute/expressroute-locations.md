@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 05/02/2017
-ms.author: cherylmc
+ms.date: 05/15/2017
+ms.author: pareshmu
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 6f4e6629b6058eec292f13e236eba8a91679d5b4
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 4e18db124436b8e2ed429ea7977b047142f2dfc9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -69,7 +69,7 @@ ms.lasthandoff: 05/03/2017
 
 
 ### <a name="production-azure"></a>生產 Azure
-| **服務提供者** | **Microsoft Azure** | **Office 365 和 CRM Online** | **位置** |
+| **服務提供者** | **Microsoft Azure** | **Office 365 和 Dynamics 365** | **位置** |
 | --- | --- | --- | --- |
 | **[AARNet](https://www.aarnet.edu.au/network-and-services/cloud-services-applications/azure-expressroute/)** |支援 |支援 |墨爾本、雪梨 |
 | **Airtel** | 敬請期待 | 敬請期待 | 辰內，孟買 |
@@ -83,7 +83,7 @@ ms.lasthandoff: 05/03/2017
 | **[Colt](http://www.colt.net/uk/en/news/colt-announces-dedicated-cloud-access-for-microsoft-azure-services-en.htm)** |支援 |支援 |阿姆斯特丹、都柏林、倫敦、東京 |
 | **Comcast** |支援 |支援 |芝加哥、矽谷、華盛頓特區 |
 | **Console**| 支援 | 支援 |矽谷、多倫多 |
-| **[CoreSite](http://www.coresite.com/solutions/cloud-services/public-cloud-providers/microsoft-azure-expressroute)** |支援 |支援 |洛杉磯、紐約 |
+| **[CoreSite](http://www.coresite.com/solutions/cloud-services/public-cloud-providers/microsoft-azure-expressroute)** |支援 |支援 |丹佛+、洛杉磯、紐約 |
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |支援 |支援 |阿姆斯特丹、亞特蘭大、芝加哥、達拉斯、香港、倫敦、洛杉磯、墨爾本、紐約、大阪、巴黎+、聖保羅、西雅圖、矽谷、新加坡、雪梨、東京、多倫多、華盛頓特區 |
 | **euNetworks** |支援 |支援 |阿姆斯特丹 |
 | **GÉANT** |支援 |支援 |阿姆斯特丹 |
@@ -97,7 +97,7 @@ ms.lasthandoff: 05/03/2017
 | **[KPN](http://www.kpn.com/cloudconnect)** | 支援 | 支援 | 阿姆斯特丹 | 
 | **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** |支援 |支援 |阿姆斯特丹、芝加哥、達拉斯、拉斯維加斯+、倫敦、西雅圖、矽谷、新加坡、華盛頓特區 |
 | **LG CNS** |支援 |支援 |斧山 |
-| **[Megaport](https://www.megaport.com/services/microsoft-expressroute/)** |支援 |支援 |達拉斯、香港、拉斯維加斯、洛杉磯、墨爾本、紐約、魁北克市、西雅圖、新加坡、雪梨、多倫多、華盛頓特區 |
+| **[Megaport](https://www.megaport.com/services/microsoft-expressroute/)** |支援 |支援 |芝加哥、達拉斯、香港、拉斯維加斯、洛杉磯、墨爾本、邁阿密、紐約、魁北克市、西雅圖、新加坡、雪梨、多倫多、華盛頓特區 |
 | **MTN** |支援 |支援 |倫敦 |
 | **[新一代資料](http://www.nextgenerationdata.co.uk/ngd-cloud-gateway/)** |支援 |支援 |Newport(Wales) |
 | **NEXTDC** |支援 |支援 |墨爾本、雪梨 |
@@ -114,6 +114,7 @@ ms.lasthandoff: 05/03/2017
 | **[Telehouse - KDDI](http://www.telehouse.net/solutions/cloud-services/cloud-link)** |支援 |支援 |倫敦 |
 | **Telenor** |支援 |支援 |阿姆斯特丹、倫敦 |
 | **[Telstra Corporation](http://www.telstra.com.au/business-enterprise/network-services/networks/cloud-direct-connect/)** |支援 |支援 |墨爾本、雪梨 |
+| **[Telus](http://www.telus.com)** |支援 |支援 |多倫多 |
 | **[Verizon](http://www.verizonenterprise.com/products/networking/secure-cloud-interconnect/)** |支援 |支援 |阿姆斯特丹、芝加哥、達拉斯、香港、倫敦、矽谷、新加坡、雪梨、東京、華盛頓特區 |
 | **[Vodafone](http://www.vodafone.com/business/global-enterprise/global-connectivity/vodafone-ip-vpn-cloud-connect)** |支援 |不支援 |倫敦 |
 | **[Zayo Group](http://www.zayo.com/solutions/industries/cloud-connectivity/microsoft-expressroute)** |支援 |支援 |芝加哥、達拉斯+、倫敦+、洛杉磯、紐約、矽谷、多倫多、華盛頓特區 |
@@ -147,7 +148,10 @@ ms.lasthandoff: 05/03/2017
 | **Interxion** |支援 |不支援 |法蘭克福 |
 | **[Megaport](https://www.megaport.com/services/microsoft-expressroute/)** |支援  | 不支援 | 柏林 |
 
-## <a name="c1partners"></a>透過未列出的服務提供者連線
+## <a name="c1partners"></a>透過其他服務提供者連線
+
+## <a name="connectivity-through-exchange-providers"></a>透過 Exchange 提供者連線
+
 如果上一節中未列出您的連線提供者，您仍然可以建立連線。
 
 * 請洽詢您的連線提供者，以了解他們是否連線到上方表格中列出的任何 Exchange 提供者。 您可以檢查下列連結，以收集 Exchange 提供者所提供之服務的相關詳細資訊。 已有數個連線提供者連線到乙太網路 Exchange。
@@ -163,6 +167,8 @@ ms.lasthandoff: 05/03/2017
 * 排序一個 ExpressRoute 循環，將 Exchange 視為連線至 Microsoft 的連線提供者。
   * 依照 [建立 ExpressRoute 循環](expressroute-howto-circuit-classic.md) 中的步驟來設定連線。
 
+## <a name="connectivity-through-additional-service-providers"></a>透過額外服務提供者連線
+
 | **連線提供者** | **Exchange** | **位置** |
 | --- | --- | --- |
 | **[1CLOUDSTAR](http://www.1cloudstar.com/service/cloudconnect-azure-expressroute/)** |Equinix |新加坡 |
@@ -170,10 +176,11 @@ ms.lasthandoff: 05/03/2017
 | **[Alaska Communications](http://www.alaskacommunications.com/For-Your-Business/Direct-Cloud-Service)** |Equinix |Seattle |
 | **[Arteria Networks Corporation](https://arteria-net.com/business/service/cloud_access/sca/)** |Equinix |東京 |
 | **[Bezeq International Ltd.](https://www.bezeqint.net/english)** | euNetworks | 倫敦 |
-| **[C3ntro](http://www.c3ntro.com/data/cloud-conectivity/)** | Equinix、Megaport | 達拉斯 |
+| **[C3ntro Telecom](http://www.c3ntro.com/data/cloud-conectivity/)** | Equinix、Megaport | 達拉斯 |
 | **[Cogeco Peer 1](https://www.cogecopeer1.com/en/)**| Equinix | 蒙特婁、多倫多 |
+| **[Cox Business](https://www.cox.com/business/networking/cloud-connectivity.html)** | Equinix | 達拉斯、矽谷、華盛頓特區 | 
 | **[Data Foundry](https://www.datafoundry.com/services/cloud-connect)** | Megaport | 達拉斯 |
-| **[Epsilon Telecommunications Limited](http://www.epsilontel.com/data-connectivity/cloud-access/)** | Equinix | 新加坡 |
+| **[Epsilon Telecommunications Limited](http://www.epsilontel.com/data-connectivity/cloud-access/)** | Equinix | 倫敦、新加坡、華盛頓特區 |
 | **[Eurofiber](https://eurofiber.nl/microsoft-azure/)** | Equinix | 阿姆斯特丹 |
 | **[指數 E](http://www.exponential-e.com/services/connectivity-services/cloud-connect-exchange)** | Equinix | 倫敦 |
 | **[Fastweb S.p.A](http://www.fastweb.it/grandi-aziende/connessione-voce-e-wifi/scheda-prodotto/rete-privata-virtuale/)** | Equinix | 阿姆斯特丹 |
@@ -184,11 +191,33 @@ ms.lasthandoff: 05/03/2017
 | **[NexGen Networks](http://www.nexgen-net.com/nexgen-networks-direct-connect-microsoft-azure-expressroute.html)** | Interxion | 倫敦 |
 | **[Nianet](https://nianet.dk/produkter/internet/microsoft-expressroute)** |Telecity | 阿姆斯特丹、法蘭克福 |  
 | **[QSC AG](https://www.qsc.de/de/produkte-loesungen/cloud-services-und-it-outsourcing/pure-enterprise-cloud/multi-cloud-management/azure-expressroute/)** |Interxion | 法蘭克福 |  
-| **[Tamares Telecom](http://www.tamarestelecom.com/our-services/#Connectivity)** | Telecity | 倫敦
+| **Rogers** | Cologix、Equinix | 蒙特婁、多倫多 |
+| **[Tamares Telecom](http://www.tamarestelecom.com/our-services/#Connectivity)** | Telecity | 倫敦 | 
+| **[ThinkTel](http://www.thinktel.ca/services/agile-ix-data/expressroute/)** | Equinix | 多倫多 | 
 | **[Transtelco](http://www.transtelco.net/tcloud/microsoft)** |Equinix | 達拉斯、洛杉磯 |  
 | **[Windstream](http://www.windstreambusiness.com/solutions/cloud-services/cloud-and-managed-hosting-services)**| Equinix | 芝加哥、矽谷、華盛頓特區 |
 | **[Zertia](http://www.zertia.es/index.php/novedades)**| Level 3 | 馬德里 |
 
+## <a name="connectivity-through-datacenter-providers"></a>透過資料中心提供者連線
+| **提供者** | **Exchange** | **位置**|
+| --- | --- | --- |
+| **[Cyrus One](https://cyrusone.com/enterprise-data-center-services/connectivity-and-interconnection/)** | Megaport | 達拉斯 |
+| **[Digital Realty](https://www.digitalrealty.com/services/interconnection/service-exchange/)** | Megaport | - |
+| **[EdgeConnex](http://www.edgeconnex.com/services/edge-data-centers-proximity-matters/)** | Megaport | - |
+
+## <a name="connectivity-through-national-research-and-education-networks-nren"></a>透過 National Research and Education Networks (NREN) 連線
+
+| **提供者**|
+| --- |
+| **AARNET**| 
+| **GARR，透過 GÉANT**|
+| **GÉANT**|
+| **HEAnet，透過 GÉANT**|
+| **JISC**|
+| **RedIRIS，透過 GÉANT**|
+| **Surfnet，透過 GÉANT**|
+
+* 如果連線提供者未列於此處，請查看他們是否已連線到上列的任何 ExpressRoute Exchange 提供者。
 
 ## <a name="expressroute-system-integrators"></a>ExpressRoute 系統整合者
 根據您的網路規模，為符合您的需求而啟用私人連線可能有一定的難度。 您可以使用下表所列出的任何系統整合者來協助您開始使用 ExpressRoute。
@@ -199,6 +228,7 @@ ms.lasthandoff: 05/03/2017
 | **[Avanade Inc.](http://www.avanade.com/)** | 亞洲、歐洲、北美洲、南美洲 |
 | **[Bright Skies GmbH](http://bskies.io/expressroute)** | 歐洲
 | **[Dotnet Solutions](http://www.dotnetsolutions.co.uk/)** | 歐洲 |
+| **[Ensyst](http://www.ensyst.com.au)** | 亞洲
 | **[Equinix Professional Services](http://www.equinix.com/services/consulting/)** | 北美洲 |
 | **[The IT Consultancy Group](http://itconsult.com.au/microsoft-expressroute)** | 澳大利亞 |
 | **[MSG Services](https://www.msg-services.de/it-services/managed-services/cloud-outsourcing/)** | 歐洲 (德國) |
@@ -209,6 +239,7 @@ ms.lasthandoff: 05/03/2017
 | **[Presidio](http://info.presidio.com/microsoft-azure-expressroute)** | 北美洲 |
 | **[Project Leadership](http://www.projectleadership.net/azure)** | 北美洲 |
 | **[sol-tec](http://www.sol-tec.com/Technologies)** | 歐洲 |
+| **[Vigilant.IT](https://vigilant.it/expressroute)** | 澳大利亞 |
 
 
 ## <a name="next-steps"></a>後續步驟

@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/24/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 7c70129ebf4bacc28400cf68418bf898e4e646d2
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: 90ed1d5ca50bfb19a9d1c5d258e9588e05893270
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -43,7 +44,7 @@ Azure IoT 套件[預先設定的解決方案][lnk-preconfigured-solutions]結合
 
 1. 使用 Azure 帳戶認證登入 azureiotsuite.com，然後按一下 "**+**" 以建立解決方案。
 2. 按一下 [連線處理站] 圖格上的 [選取]。
-3. 輸入遠端監視預先設定的解決方案的 [解決方案名稱]  。
+3. 輸入連線處理站預先設定的解決方案的 [解決方案名稱]。
 4. 選取您要用來佈建解決方案的 [訂用帳戶] 和 [區域]。
 5. 按一下 [建立解決方案]  開始佈建程序。 此程序通常需要數分鐘的執行時間。
 
@@ -303,7 +304,7 @@ OEE 會使用重要生產相關作業參數來評比製造程序的效率。 OEE
 [lnk-azureiotsuite]: https://www.azureiotsuite.com
 [lnk-portal]: http://portal.azure.com/
 [lnk-cfgithub]: https://github.com/Azure/azure-iot-connected-factory
-[lnk-rm-walkthrough]: iot-suite-remote-monitoring-sample-walkthrough.md
+[lnk-rm-walkthrough]: iot-suite-connected-factory-sample-walkthrough.md
 [lnk-connect-cf]: iot-suite-connected-factory-gateway-deployment.md
 [lnk-permissions]: iot-suite-permissions.md
 [lnk-faq]: iot-suite-faq.md

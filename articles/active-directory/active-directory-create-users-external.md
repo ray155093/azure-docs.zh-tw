@@ -12,18 +12,19 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 04/26/2017
+ms.date: 05/14/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: 7b506668b3025774edec25b6a37b83a47d702cb0
-ms.openlocfilehash: b2eaddc631087d8b7b94e40f508bdd5da5229736
-ms.lasthandoff: 01/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 17c4dc6a72328b613f31407aff8b6c9eacd70d9a
+ms.openlocfilehash: 661470454775d43ce88410a6c995bbcc5e06264c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/16/2017
 
 
 ---
 # <a name="add-users-from-other-directories-or-partner-companies-in-azure-active-directory"></a>新增來自 Azure Active Directory 中其他目錄或合作夥伴公司的使用者
 > [!div class="op_single_selector"]
-> * [Azure 入口網站](active-directory-users-create-external-azure-portal.md)
+> * [Azure 入口網站](active-directory-users-create-external-azure-portal.md )
 > * [Azure 傳統入口網站](active-directory-create-users-external.md)
 >
 >
@@ -44,9 +45,8 @@ ms.lasthandoff: 01/31/2017
 > [!IMPORTANT]
 > 如果您的組織使用多個網域，當您新增使用者帳戶時，請注意下列問題：
 >
-> * 若要跨網域新增具有相同使用者主體名稱 (UPN) 的使用者帳戶，請**先**新增 geoffgrisso@contoso.onmicrosoft.com,，**再**新增 geoffgrisso@contoso.com。
-> * 請「勿」先新增 geoffgrisso@contoso.com，再新增 geoffgrisso@contoso.onmicrosoft.com。 此順序很重要，事後想要復原會很麻煩。
->
+> * 若要跨網域新增具有相同使用者主體名稱 (UPN) 的使用者帳戶，請**先**新增 geoffgrisso@contoso.onmicrosoft.com，**再**新增 geoffgrisso@contoso.com。
+> * 請「勿」先新增 geoffgrisso@contoso.com，再新增 geoffgrisso@contoso.onmicrosoft.com。
 >
 
 如果您變更其身分識別已與您的內部部署 Active Directory 服務同步處理之使用者的資訊，您就無法在 Azure 傳統入口網站中變更使用者資訊。 若要變更此使用者資訊，請使用您的內部部署 Active Directory 管理工具。
@@ -74,15 +74,7 @@ ms.lasthandoff: 01/31/2017
 * **Dynamics CRM**：如果使用者透過 PowerShell 獲得授權，允許外部使用者存取 Dynamics CRM 中的授權資源。
 * **Dynamics AX**：如果使用者透過 PowerShell 獲得授權，允許外部使用者存取 Dynamics AX 中的授權資源。 [Azure AD 外部使用者](#known-limitations-of-azure-ad-external-users) 的限制也適用於 Dynamics AX 中的外部使用者。
 
-### <a name="known-limitations-of-azure-ad-external-users"></a>Azure AD 外部使用者的已知限制
-* 身為管理員的外部使用者無法將來自合作夥伴公司的使用者加入至其主目錄以外的目錄 (B2B 共同作業)
-* 外部使用者無法同意在其主目錄以外的目錄中的多租用戶應用程式
-* PowerBI 目前不支援讓外部使用者存取
-* Office 入口網站不支援授權外部使用者
-* 對於 Azure AD PowerShell，外部使用者會登入其主目錄，因此無法管理其身分為外部使用者的目錄
-* 設定 Dynamics CRM Outlook 增益集時，外部使用者可能需要以手動方式輸入 Dynamics CRM Online 租用戶的 URL，而不是選取「CRM Online」
-
-## <a name="whats-next"></a>後續步驟
+## <a name="next-steps"></a>後續步驟
 * [將新的使用者加入 Azure Active Directory](active-directory-create-users.md)
 * [管理 Azure AD](active-directory-administer.md)
 * [在 Azure AD 中管理密碼](active-directory-manage-passwords.md)
