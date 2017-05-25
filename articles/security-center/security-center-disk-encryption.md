@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/15/2017
 ms.author: tomsh
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 859c0bf3afec46e07b8b8da73fffbc37f3f7959d
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 44eac1ae8676912bc0eb461e7e38569432ad3393
+ms.openlocfilehash: d3817d44bb21162afe799fd13368fbf902521416
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -53,7 +54,7 @@ Azure 資訊安全中心會在您有未加密的虛擬機器時對您發出警�
 ## <a name="obtain-and-run-the-azure-disk-encryption-prerequisites-configuration-script"></a>取得並執行 Azure 磁碟加密先決條件組態指令碼
 Azure 磁碟加密先決條件組態指令碼會設定用來加密 Azure 虛擬機器所需的所有先決條件。
 
-1. 移至有 [Azure 磁碟加密先決條件設定指令碼](https://github.com/Azure/azure-powershell/blob/dev/src/ResourceManager/Compute/Commands.Compute/Extension/AzureDiskEncryption/Scripts/AzureDiskEncryptionPreRequisiteSetup.ps1)的 GitHub 頁面。
+1. 移至有 [Azure 磁碟加密先決條件設定指令碼](https://github.com/Azure/azure-powershell/blob/master/src/ResourceManager/Compute/Commands.Compute/Extension/AzureDiskEncryption/Scripts/AzureDiskEncryptionPreRequisiteSetup.ps1)的 GitHub 頁面。
 2. 在 GibHub 頁面上，按一下 [RAW]  按鈕。
 3. 使用 **CTRL-A** 選取頁面上的所有文字，然後使用 **CTRL-C** 將頁面上的所有文字複製到剪貼簿。
 4. 開啟 [記事本]  並將複製的文字貼入 [記事本]。

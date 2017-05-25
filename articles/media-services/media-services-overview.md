@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 01/05/2017
 ms.author: juliako;anilmur
-translationtype: Human Translation
-ms.sourcegitcommit: e126076717eac275914cb438ffe14667aad6f7c8
-ms.openlocfilehash: f22b87fc5bdfe2db5de39adaafe9c71d8c32b26a
-ms.lasthandoff: 01/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 0a84e69f33ae30040c2365e6a5180e17e8df7539
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -74,7 +75,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
 
 如需介紹 Azure 媒體服務的所有主要元件的操作說明系列，請參閱 [Azure 媒體服務逐步教學課程](https://docs.com/fukushima-shigeyuki/3439/english-azure-media-services-step-by-step-series)。 這一系列有絕佳的概念概觀，並使用 AMSE 工具來示範 AMS 工作。 請注意，AMSE 工具是一種 Windows 工具。 這項工具支援大部分可以使用 [AMS SDK for .NET](https://github.com/Azure/azure-sdk-for-media-services)、[Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java) 或 [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php) 以程式設計方式完成的工作。
 
-## <a name="a-idvodscenariosadelivering-media-on-demand-with-azure-media-services-common-scenarios-and-tasks"></a><a id="vod_scenarios"></a>使用 Azure 媒體服務傳遞點播媒體：常見案例和工作
+## <a id="vod_scenarios"></a>使用 Azure 媒體服務傳遞點播媒體：常見案例和工作
 本節描述常見的案例並提供相關主題的連結。 下圖顯示在傳遞隨選內容中牽涉到的媒體服務平台的主要部分。
 
 ![VoD 工作流程](./media/media-services-video-on-demand-workflow/media-services-video-on-demand.png)
@@ -126,7 +127,7 @@ Microsoft Azure 媒體服務是一個可延伸的雲端型平台，供開發人�
     如果使用 SAS 定位器，內容是從 Azure blob 儲存體下載的。 在此情況下，您不需要有已啟動狀態的串流端點。
 4. 漸進式下載內容。
 
-## <a name="a-idlivescenariosadelivering-live-streaming-events-with-azure-media-services"></a><a id="live_scenarios"></a>使用 Azure 媒體服務傳遞即時串流事件
+## <a id="live_scenarios"></a>使用 Azure 媒體服務傳遞即時串流事件
 使用即時資料流時通常涉及下列元件：
 
 * 相機，用來廣播事件。
@@ -185,8 +186,7 @@ Azure 媒體服務提供一些工具，供您用來建立適用於大部分平�
 您可以指定要佈建給帳戶的**串流保留單元**和**編碼保留單元**，藉以調整**媒體服務**。
 
 您也可以透過新增儲存體帳戶，來調整媒體服務帳戶。 每個儲存體帳戶的限制為 500 TB。 若想將儲存空間擴大為超過預設限制，您可以選擇將多個儲存體帳戶附加至單一媒體服務帳戶。
-媒體服務客戶可根據其需求，選擇一個**標準**串流端點，或選擇一或多個**進階**串流端點。 大多數的串流工作負載都適合使用標準串流端點。 其所含的功能與進階串流單位相同。
-大多數的串流工作負載都適合使用標準串流端點。 如果您的進階工作負載或串流容量需求不符合標準串流端點輸送量目標，或您想要控制 StreamingEndpoint 服務的容量，藉由調整縮放單位 (也稱為進階串流單位) 來處理不斷成長的頻寬需求，則建議配置縮放單位。
+媒體服務客戶可根據其需求，選擇一個**標準**串流端點，或選擇一或多個**進階**串流端點。 大多數的串流工作負載都適合使用標準串流端點。 其所含的功能與進階串流單位相同。 如果您的進階工作負載或串流容量需求不符合標準串流端點輸送量目標，或您想要控制 StreamingEndpoint 服務的容量，藉由調整縮放單位 (也稱為進階串流單位) 來處理不斷成長的頻寬需求，則建議配置縮放單位。
 
 [本主題](media-services-portal-scale-streaming-endpoints.md) 會連結相關主題。
 
