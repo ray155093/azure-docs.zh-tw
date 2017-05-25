@@ -10,6 +10,7 @@
 | 資源管理員 API 讀取 |每小時 15000 |每小時 15000 |
 | 資源管理員 API 寫入 |每小時 1200 |每小時 1200 |
 | 資源管理員 API 要求的大小 |4194304 個位元組 |4194304 個位元組 |
+| 每個訂用帳戶的標籤 |10000 |10000 |
 | 每一訂用帳戶[雲端服務](../articles/cloud-services/cloud-services-choose-me.md) |不適用<sup>3</sup> |不適用<sup>3</sup> |
 | 每一訂用帳戶[同質群組](../articles/virtual-network/virtual-networks-migrate-to-regional-vnet.md) |不適用<sup>3</sup> |不適用<sup>3</sup> |
 
