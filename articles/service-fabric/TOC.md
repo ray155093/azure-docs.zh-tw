@@ -49,6 +49,7 @@
 #### [部署 Linux 容器](service-fabric-deploy-container-linux.md)
 #### [Docker Compose (預覽)](service-fabric-docker-compose.md)
 #### [容器和服務的資源管理](service-fabric-resource-governance.md)
+#### [磁碟區與記錄驅動程式](service-fabric-containers-volume-logging-drivers.md)
 
 ### 建置 Reliable Service 服務
 #### [概觀](service-fabric-reliable-services-introduction.md)
@@ -69,10 +70,9 @@
 ##### [Windows 上的 C# ](service-fabric-reliable-services-quick-start.md)
 ##### [在 Linux 上使用 Java](service-fabric-reliable-services-quick-start-java.md)
 
-#### Reliable Services 生命週期
-##### [設定](service-fabric-reliable-services-configuration.md)
-##### [傳送通知](service-fabric-reliable-services-notifications.md)
-##### [備份與還原](service-fabric-reliable-services-backup-restore.md)
+#### [設定](service-fabric-reliable-services-configuration.md)
+#### [傳送通知](service-fabric-reliable-services-notifications.md)
+#### [備份與還原](service-fabric-reliable-services-backup-restore.md)
 
 #### 與服務通訊
 ##### [與 Reliable Services 通訊](service-fabric-reliable-services-communication.md)
@@ -87,12 +87,12 @@
 ### 建置 Reliable Actor 服務
 #### [概觀](service-fabric-reliable-actors-introduction.md)
 #### 概念
-#### [架構](service-fabric-reliable-actors-platform.md)
-#### [生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
-#### [狀態管理](service-fabric-reliable-actors-state-management.md)
-#### [Polymorphism](service-fabric-reliable-actors-polymorphism.md)
-#### [重新進入](service-fabric-reliable-actors-reentrancy.md)
-#### [類型序列化](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)
+##### [架構](service-fabric-reliable-actors-platform.md)
+##### [生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
+##### [狀態管理](service-fabric-reliable-actors-state-management.md)
+##### [Polymorphism](service-fabric-reliable-actors-polymorphism.md)
+##### [重新進入](service-fabric-reliable-actors-reentrancy.md)
+##### [類型序列化](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)
 
 #### 開始使用
 ##### [Windows 上的 C# ](service-fabric-reliable-actors-get-started.md)
@@ -108,6 +108,7 @@
 #### [服務通訊](service-fabric-connect-and-communicate-with-services.md)
 #### [DNS 服務](service-fabric-dnsservice.md)
 #### [反向 Proxy](service-fabric-reverseproxy.md)
+#### [設定安全通訊的反向 proxy](service-fabric-reverseproxy-configure-secure-communication.md)
 
 ### [新增 Web 前端](service-fabric-add-a-web-frontend.md)
 

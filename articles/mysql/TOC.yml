@@ -39,9 +39,9 @@
       href: concepts-supported-versions.md
   - name: 資源
     items:
-    - name: 服務層
+    - name: 定價層
       href: concepts-service-tiers.md
-    - name: 計算單位和儲存體單位
+    - name: 計算單位
       href: concepts-compute-unit-and-storage.md
     - name: 限制
       href: concepts-limits.md
@@ -85,6 +85,8 @@
       href: howto-connection-string.md
     - name: 設定 SSL
       href: howto-configure-ssl.md
+    - name: Web 應用程式
+      href: howto-connect-webapp.md
 - name: 參考
   items:
   - name: Azure CLI

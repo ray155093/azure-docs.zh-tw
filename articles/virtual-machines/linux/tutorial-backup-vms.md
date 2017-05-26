@@ -32,6 +32,7 @@ ms.lasthandoff: 05/17/2017
 > * 從備份還原檔案
 
 
+
 ## <a name="backup-overview"></a>備份概觀
 
 Azure 備份服務開始備份時，會觸發備份擴充功能以建立時間點快照集。 Azure 備份服務在 Linux 中使用 _VMSnapshotLinux_ 擴充功能。 如果 VM 正在執行，會在第一次 VM 備份期間安裝此擴充功能。 如果 VM 未在執行中，則備份服務會擷取基礎儲存體的快照集 (因為 VM 停止時不會發生任何應用程式寫入)。

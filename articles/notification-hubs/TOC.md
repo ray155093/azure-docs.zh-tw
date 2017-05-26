@@ -44,6 +44,7 @@
 
 ## 管理
 ### [註冊](notification-hubs-push-notification-registration-management.md)
+### [APNS 權杖型驗證](notification-hubs-push-notification-http2-token-authentification.md)
 
 ## [安全](notification-hubs-push-notification-security.md)
 ### 安全推播
