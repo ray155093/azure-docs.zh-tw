@@ -12,9 +12,9 @@
 #### [Node.js](iot-hub-node-node-getstarted.md)
 #### [Python](iot-hub-python-getstarted.md)
 
-### 使用模擬閘道 
-#### [在 Linux 上模擬](iot-hub-linux-gateway-sdk-get-started.md)
-#### [在 Windows 上模擬](iot-hub-windows-gateway-sdk-get-started.md)
+### 使用模擬閘道
+#### [在 Linux 上模擬](iot-hub-linux-iot-edge-get-started.md)
+#### [在 Windows 上模擬](iot-hub-windows-iot-edge-get-started.md)
 
 ### 使用實體裝置
 #### [Raspberry Pi with Node.js](iot-hub-raspberry-pi-kit-node-get-started.md)
@@ -28,9 +28,9 @@
 #### [Adafruit Feather M0 with Arduino IDE](iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started.md)
 
 #### 使用 IoT 閘道入門套件
-##### [將 Intel NUC 設定為 IoT 閘道](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
-##### [將 IoT 閘道連線至 IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
-##### [使用 IoT 閘道進行資料轉換](iot-hub-gateway-kit-c-use-iot-gateway-for-data-conversion.md)
+##### [將 Intel NUC 設定為閘道](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
+##### [將閘道連線至 IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
+##### [使用閘道進行資料轉換](iot-hub-gateway-kit-c-use-iot-gateway-for-data-conversion.md)
 
 ## [透過 iothub-explorer 管理雲端裝置傳訊](iot-hub-explorer-cloud-device-messaging.md)
 ## [將 IoT 中樞IoT 中樞儲存至 Azure 資料儲存體](iot-hub-store-data-in-azure-table-storage.md)
@@ -78,6 +78,7 @@
 ### 開始使用攣生裝置
 #### [Node.js 後端/Node.js 裝置](iot-hub-node-node-twin-getstarted.md)
 #### [.NET 後端/Node.js 裝置](iot-hub-csharp-node-twin-getstarted.md)
+#### [.NET 後端/.NET 裝置](iot-hub-csharp-csharp-twin-getstarted.md)
 ### 使用直接方法
 #### [Node.js 後端/Node.js 裝置](iot-hub-node-node-direct-methods.md)
 #### [.NET 後端/Node.js 裝置](iot-hub-csharp-node-direct-methods.md)
@@ -85,6 +86,7 @@
 ### 開始使用裝置管理
 #### [Node.js 後端/Node.js 裝置](iot-hub-node-node-device-management-get-started.md)
 #### [.NET 後端/Node.js 裝置](iot-hub-csharp-node-device-management-get-started.md)
+#### [Java 後端/Java 裝置](iot-hub-java-java-device-management-getstarted.md)
 ### 使用攣生實體的方式
 #### [Node.js 後端/Node.js 裝置](iot-hub-node-node-twin-how-to-configure.md)
 #### [.NET 後端/Node.js 裝置](iot-hub-csharp-node-twin-how-to-configure.md)
@@ -118,9 +120,9 @@
 ### [保護您的 IoT 部署](iot-hub-security-deployment.md)
 ## IoT Edge
 ### 模擬裝置
-#### [Linux](iot-hub-linux-gateway-sdk-simulated-device.md)
-#### [Windows](iot-hub-windows-gateway-sdk-simulated-device.md)
-### [使用真實裝置](iot-hub-gateway-sdk-physical-device.md)
+#### [Linux](iot-hub-linux-iot-edge-simulated-device.md)
+#### [Windows](iot-hub-windows-iot-edge-simulated-device.md)
+### [使用真實裝置](iot-hub-iot-edge-physical-device.md)
 
 # 參考
 ## [Azure CLI 2.0 Preview](/cli/azure/iot)
@@ -154,3 +156,4 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/iot-hub/)
 ## [Azure IoT 開發人員中心](https://azure.microsoft.com/develop/iot/)
 ## [Azure IoT 認證裝置目錄](https://catalog.azureiotsuite.com/)
+## [技術案例研究](https://microsoft.github.io/techcasestudies/#technology=IoT)

@@ -16,9 +16,10 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 04/24/2017
 ms.author: janeng
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 432752c895fca3721e78fb6eb17b5a3e5c4ca495
 ms.openlocfilehash: f29da889f90968a82dccaeb1fa7e3c20e6b44458
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/30/2017
 
 ---
@@ -28,6 +29,10 @@ ms.lasthandoff: 03/30/2017
 此範例 CLI 指令碼會在查詢單一 Azure SQL Database 的大小資訊後，將其調整為不同的效能等級。 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
+
+[!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
+
+[!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="sample-script"></a>範例指令碼
 

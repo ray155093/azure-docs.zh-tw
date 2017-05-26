@@ -29,6 +29,8 @@ ms.lasthandoff: 05/15/2017
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
+[!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
+
 ## <a name="sample-script"></a>範例指令碼
 
 [!code-azurecli-interactive[主要](../../../cli_scripts/virtual-machine/create-scaleset-php-ansible/build-stack.sh "建立具有 LAMP 堆疊的虛擬機器擴展集")]

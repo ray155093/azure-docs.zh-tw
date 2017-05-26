@@ -19,7 +19,8 @@
 
 ## 作法
 ### [透過 Azure 入口網站管理](storsimple-virtual-array-manager-service-administration.md)
-#### [安裝最新的更新](storsimple-virtual-array-install-update-05.md)
+#### [安裝最新的更新](storsimple-virtual-array-install-update-06.md)
+##### [安裝 Update 0.5](storsimple-virtual-array-install-update-05.md)
 ##### [安裝 Update 0.4](storsimple-virtual-array-install-update-04.md)
 ##### [安裝 Update 0.3](storsimple-virtual-array-install-update.md)
 #### [建立和管理備份](storsimple-virtual-array-backup.md)
@@ -41,7 +42,8 @@
 ### [透過本機 Web UI 設定](storsimple-ova-web-ui-admin.md)
 
 ## 版本資訊
-### [Update 0.5 - 目前](storsimple-virtual-array-update-05-release-notes.md)
+### [Update 0.6 - 目前](storsimple-virtual-array-update-06-release-notes.md)
+### [Update 0.5](storsimple-virtual-array-update-05-release-notes.md)
 ### [更新 0.4](storsimple-virtual-array-update-04-release-notes.md)
 ### [Update 0.3](storsimple-ova-update-03-release-notes.md)
 ### [Update 0.2 和 0.1](storsimple-ova-update-01-release-notes.md)

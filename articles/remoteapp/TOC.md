@@ -24,6 +24,8 @@
 
 # 作法
 
+## [從 Azure RemoteApp 移轉使用者資料](remoteapp-migrate.md)
+## [移轉至 Citrix XenApp Essentials](remoteapp-migrate-citrix.md)
 ## 建立 RemoteApp 集合
 ### [您需要哪一種收藏？](remoteapp-collections.md)
 ### [建立雲端收藏](remoteapp-create-cloud-deployment.md)
@@ -69,8 +71,3 @@
 ## [價格](https://azure.microsoft.com/pricing/details/remoteapp/)
 ## [論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureRemoteApp)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=remoteapp)
-
-
-<!--HONumber=Nov16_HO4-->
-
-

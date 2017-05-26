@@ -117,6 +117,7 @@
 #### [Java](storage-client-side-encryption-java.md)
 #### [Python](storage-client-side-encryption-python.md)
 ## 監視及疑難排解
+### [針對儲存體總管進行疑難排解](storage-explorer-troubleshooting.md)
 ### 計量與記錄
 #### [Storage Analytics](storage-analytics.md)
 #### [啟用和檢視計量](storage-enable-and-view-metrics.md)

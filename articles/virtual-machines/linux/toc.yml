@@ -57,7 +57,8 @@
     href: azure-vm-network-overview.md
   - name: VM 擴展集
     href: ../../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md
-  - name: 執行個體中繼資料服務 
+  - name: 執行個體中繼資料服務
+ 
     href: ../virtual-machines-instancemetadataservice-overview.md
   - name: 容器
     href: containers.md
@@ -296,6 +297,8 @@
       href: extensions-customscript.md
     - name: OMS 代理程式延伸模組
       href: extensions-oms.md
+    - name: Linux 診斷擴充功能
+      href: diagnostic-extension.md
   - name: 執行應用程式
     items:
     - name: Cloud Foundry
@@ -353,19 +356,24 @@
       href: migration-classic-resource-manager-faq.md
   - name: 疑難排解
     items:
-    - name: 針對 SSH 連線進行疑難排解
+    - name: SSH 連線
       href: troubleshoot-ssh-connection.md
       items:
       - name: 詳細的疑難排解步驟
         href: detailed-troubleshoot-ssh-connection.md
-    - name: 針對應用程式存取問題進行疑難排解
+    - name: 開機診斷
+ 
+      href: boot-diagnostics.md
+    - name: 應用程式存取
       href: troubleshoot-app-connection.md
-    - name: 為配置失敗進行疑難排解
+    - name: 配置失敗
       href: allocation-failure.md
-    - name: 為部署問題進行疑難排解
+    - name: 部署問題
       href: troubleshoot-deployment-new-vm.md
     - name: 將 VM 重新部署至新的 Azure 節點
       href: redeploy-to-new-node.md
+    - name: 常見的錯誤訊息
+      href: error-messages.md
     - name: 連結虛擬硬碟以進行疑難排解
       items:
       - name: Azure CLI

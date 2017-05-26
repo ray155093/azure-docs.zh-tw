@@ -13,6 +13,7 @@
 ## 在實驗室中使用 VM
 ### [建立 VM](devtest-lab-add-vm.md)
 ### [建立可宣告 VM](devtest-lab-add-claimable-vm.md)
+### [使用 Azure CLI 來建立和管理 VM](devtest-lab-vmcli.md)
 
 ## 在實驗室環境中
 ### [建立一個環境](devtest-lab-create-environment-from-arm.md)

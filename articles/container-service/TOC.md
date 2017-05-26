@@ -10,7 +10,6 @@
 ## [部署叢集 - 入口網站](container-service-deployment.md)
 ## [部署叢集 Azure CLI](container-service-create-acs-cluster-cli.md)
 ## [搭配 Kubernetes 和 Jenkins 的 CI/CD](container-service-kubernetes-jenkins.md)
-## [搭配 DC/OS 和 VSTS 的 CI/CD](container-service-setup-ci-cd.md)
 ## [搭配 Docker Swarm 和 VSTS 的 CI/CD](container-service-docker-swarm-setup-ci-cd.md)
 
 # 概念
@@ -44,6 +43,7 @@
 #### [透過 OMS 進行監視](container-service-kubernetes-oms.md)
 #### [透過 Datadog 進行監視](container-service-kubernetes-datadog.md)
 #### [透過 Sysdig 進行監視](container-service-kubernetes-sysdig.md)
+#### [透過 CoScale 進行監視](container-service-kubernetes-coscale.md)
 ## 使用 Docker Swarm 管理
 ### [Docker 與 Docker Compose](container-service-docker-swarm.md)
 

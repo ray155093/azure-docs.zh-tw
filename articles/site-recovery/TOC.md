@@ -18,12 +18,13 @@
 
 # 作法
 ## 規劃
-### [部署必要條件](site-recovery-prereq.md)
+### [Azure 複寫的必要條件](site-recovery-prereq.md)
 ### [規劃網路基礎結構](site-recovery-network-design.md)
+### [規劃網路對應](site-recovery-network-mapping.md)
 ### [規劃容量並調整 Azure 中的 VMware 複寫](site-recovery-plan-capacity-vmware.md)
 ### [將 VMware 複寫至 Azure 的部署規劃工具](site-recovery-deployment-planner.md)
 ### [適用於 Hyper-V 複寫的 Capacity Planner](site-recovery-capacity-planner.md)
-### [角色型存取控制](site-recovery-role-based-linked-access-control.md)
+### [使用角色型存取控制 VM 複寫](site-recovery-role-based-linked-access-control.md)
 
 ## 設定
 ### [設定來源環境](site-recovery-set-up-vmware-to-azure.md)
@@ -53,6 +54,8 @@
 ### [RDS](site-recovery-workload.md#protect-rds)
 ### [Exchange](site-recovery-workload.md#protect-exchange)
 ### [SAP](site-recovery-workload.md#protect-sap)
+### [IIS 型 Web 應用程式](site-recovery-iis.md)
+### [Citrix XenApp 和 XenDesktop](site-recovery-citrix-xenapp-and-xendesktop.md)
 ### [其他工作負載](site-recovery-workload.md#workload-summary)
 ## 將複寫自動化
 ### [自動將 Hyper-V 複寫至 Azure (不使用 VMM)](site-recovery-deploy-with-powershell-resource-manager.md)

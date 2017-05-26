@@ -1,7 +1,7 @@
 # 概觀
 ## [什麼是 Azure Active Directory？](active-directory-whatis.md)
 ## [選擇版本](active-directory-editions.md)
-## [關於 Azure 身分識別管理](fundamentals-identity.md)
+## [關於 Azure 身分識別管理](identity-fundamentals.md)
 ## [了解 Azure 身分識別解決方案](understand-azure-identity-solutions.md)
 ## [預覽 Azure 入口網站體驗](active-directory-preview-explainer.md)
 
@@ -90,7 +90,7 @@
 ### 疑難排解
 #### [缺少稽核資料](active-directory-reporting-troubleshoot-missing-audit-data.md)
 #### [下載中缺少的資料](active-directory-reporting-troubleshoot-missing-data-download.md)
-###    程式設計存取
+###    [程式設計存取](active-directory-reporting-api-getting-started-azure-portal.md)
 #### [稽核參考](active-directory-reporting-api-audit-reference.md)
 #### [登入參考](active-directory-reporting-api-sign-in-activity-reference.md)
 #### [必要條件](active-directory-reporting-api-prerequisites-azure-portal.md)
@@ -115,7 +115,7 @@
 ##### [不明來源](active-directory-reporting-sign-ins-from-unknown-sources.md)
 ##### [異常登入](active-directory-reporting-users-with-anomalous-sign-in-activity.md)
 
-## [管理密碼](active-directory-passwords.md)
+## [管理密碼](active-directory-passwords-overview.md)
 ### 使用者文件
 #### [重設或變更您的密碼](active-directory-passwords-update-your-own-password.md)
 #### [密碼最佳做法](active-directory-secure-passwords.md)
@@ -298,6 +298,7 @@
 ##### [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 ##### [PowerShell](role-based-access-control-manage-access-powershell.md)
 ##### [REST](role-based-access-control-manage-access-rest.md)
+#### [提高租用戶系統管理員存取權](role-based-access-control-tenant-admin-access.md)
 #### [疑難排解](role-based-access-control-troubleshooting.md)
 #### [資源提供者作業](role-based-access-control-resource-provider-operations.md)
 ### [設定權杖存留期](active-directory-configurable-token-lifetimes.md)

@@ -17,17 +17,13 @@
 ### [網路安全性群組](virtual-networks-nsg.md)
 
 ## 部署
-### 虛擬網路 (VNet)
-#### [建立、變更或刪除 VNet](virtual-network-manage-network.md)
-#### [建立、變更或刪除子網路](virtual-network-manage-subnet.md)
-#### [建立 VNet - 多重子網路](virtual-networks-create-vnet-arm-pportal.md) 
-##### [PowerShell](virtual-networks-create-vnet-arm-ps.md)
-##### [CLI](virtual-networks-create-vnet-arm-cli.md)
-##### [範本](virtual-networks-create-vnet-arm-template-click.md)
-#### 建立 VNet - 多重子網路 (傳統)
-##### [入口網站](virtual-networks-create-vnet-classic-pportal.md)
-##### [PowerShell](virtual-networks-create-vnet-classic-netcfg-ps.md)
-##### [CLI](virtual-networks-create-vnet-classic-cli.md)
+### [虛擬網路](virtual-networks-create-vnet-arm-pportal.md)
+#### [PowerShell](virtual-networks-create-vnet-arm-ps.md)
+#### [CLI](virtual-networks-create-vnet-arm-cli.md)
+#### [範本](virtual-networks-create-vnet-arm-template-click.md)
+#### [入口網站 (傳統)](virtual-networks-create-vnet-classic-pportal.md)
+#### [PowerShell (傳統)](virtual-networks-create-vnet-classic-netcfg-ps.md)
+#### [CLI (傳統)](virtual-networks-create-vnet-classic-cli.md)
 
 ### 網路安全性群組
 #### [入口網站](virtual-networks-create-nsg-arm-pportal.md)
@@ -49,14 +45,9 @@
 #### [PowerShell](virtual-networks-create-vnetpeering-arm-ps.md)
 #### [範本](virtual-networks-create-vnetpeering-arm-template-click.md)
 
-### 網路介面 (NIC)
-#### [建立、變更或刪除 NIC](virtual-network-network-interface.md)
-#### [新增、變更或移除 IP 位址](virtual-network-network-interface-addresses.md)
-
 ### [公用 IP 位址](virtual-network-public-ip-address.md)
 
 ### 虛擬機器
-#### [新增或移除網路介面](virtual-network-network-interface-vm.md) 
 #### 建立具有靜態公用 IP 位址的 VM
 ##### [入口網站](virtual-network-deploy-static-pip-arm-portal.md)
 ##### [PowerShell](virtual-network-deploy-static-pip-arm-ps.md)
@@ -103,20 +94,29 @@
 ##### [範例應用程式](virtual-networks-sample-app.md)
 
 ## 設定
-### [最佳化 VM 網路輸送量](virtual-network-optimize-network-bandwidth.md)
+
 ### 存取控制清單
 #### [傳統入口網站](virtual-networks-acl.md)
 #### [PowerShell](virtual-networks-acl-powershell.md)
-### [VM 與雲端服務的名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)
+### 虛擬機器
+#### [新增或移除網路介面](virtual-network-network-interface-vm.md)
+#### [VM 與雲端服務的名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)
+#### [最佳化網路輸送量](virtual-network-optimize-network-bandwidth.md)
+#### [檢視及修改主機名稱](virtual-networks-viewing-and-modifying-hostnames.md)
 
 ## 管理
+### [虛擬網路](virtual-network-manage-network.md)
+#### [子網路](virtual-network-manage-subnet.md)
+#### [對等互連](virtual-network-manage-peering.md)
 ### 網路安全性群組
 #### [入口網站](virtual-network-manage-nsg-arm-portal.md)
 #### [PowerShell](virtual-network-manage-nsg-arm-ps.md)
 #### [CLI](virtual-network-manage-nsg-arm-cli.md)
 #### [記錄檔](virtual-network-nsg-manage-log.md)
+### 網路介面 (NIC)
+#### [建立、變更或刪除 NIC](virtual-network-network-interface.md)
+#### [新增、變更或移除 IP 位址](virtual-network-network-interface-addresses.md)
 ### 虛擬機器
-#### [檢視及修改主機名稱](virtual-networks-viewing-and-modifying-hostnames.md)
 #### [將 VM 移至不同的子網路](virtual-networks-move-vm-role-to-subnet.md)
 
 ## 疑難排解
