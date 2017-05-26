@@ -259,7 +259,7 @@ Value : https://myvault.vault.azure.net:443/secrets/mycert/4d087088df974e869f1c0
 
 最後一個步驟是使用金鑰保存庫和稍早建立的憑證資訊，提供憑證資訊來保護叢集。
 
-* 將使用 ** PowerShell 命令把**叢集憑證`Invoke-AddCertToKeyVault`上傳至金鑰保存庫時取得的輸出填入主要憑證欄位。
+* 將使用 PowerShell 命令把**叢集憑證**`Invoke-AddCertToKeyVault`上傳至金鑰保存庫時取得的輸出填入主要憑證欄位。
 
 ```powershell
 Name  : CertificateThumbprint
