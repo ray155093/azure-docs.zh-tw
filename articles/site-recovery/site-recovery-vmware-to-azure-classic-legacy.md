@@ -393,7 +393,7 @@ Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器�
    4. 將檔案從 Gzip 安裝程式解壓縮，方法是執行：**tar –xvzf Microsoft-ASR_UA_8.4.0.0_RHEL6-64***
       ![Linux 主要目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-tar.png)
    5. 請確認您在解壓縮 tar 檔案內容的目錄中。
-   6. 使用命令 **echo*`<passphrase>`* 將組態伺服器的複雜密碼複製到本機檔案
+   6. 使用命令 **echo* `<passphrase>`* 將組態伺服器的複雜密碼複製到本機檔案**
    7. 執行 “**sudo ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i* `<Configuration server internal IP address>`* -p 443 -s y -c https -P passphrase.txt**” 命令。
 
       ![註冊目標伺服器](./media/site-recovery-vmware-to-azure-classic-legacy/linux-mt-install.png)
