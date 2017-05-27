@@ -67,7 +67,7 @@ ms.lasthandoff: 03/01/2017
     ![](./media/web-sites-dotnet-lob-application-azure-ad/3-add-sql-database.png)
 7. 在 [設定 SQL Database] 中，按一下 [新增] 以建立 SQL Server 執行個體。
 8. 在 [設定 SQL Server] 中，設定 SQL Server 執行個體。 然後依序按一下 [確定]、[確定] 和 [建立]，開始在 Azure 中建立應用程式。
-9. 在 [Azure App Service 活動] 中，當應用程式建立完成時您便會看到。 按一下* *[立即將&lt;*應用程式名稱*> 發佈至此 Web 應用程式]**，然後按一下** [發佈]**。 
+9. 在 [Azure App Service 活動] 中，當應用程式建立完成時您便會看到。 按一下**[立即將&lt;*應用程式名稱*> 發佈至此 Web 應用程式]**，然後按一下**[發佈]**。 
    
     當 Visual Studio 完成後，它會在瀏覽器中開啟發佈應用程式。 
    
@@ -77,7 +77,7 @@ ms.lasthandoff: 03/01/2017
 
 ## <a name="configure-authentication-and-directory-access"></a>設定驗證和目錄存取
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 從左側功能表中，按一下 [應用程式服務] > 應用程式名稱**&lt;**>** > **[驗證/授權]**。
+2. 從左側功能表中，按一下 **[應用程式服務]** > **&lt;*應用程式名稱*>** > **[驗證/授權]**。
    
     ![](./media/web-sites-dotnet-lob-application-azure-ad/5-app-service-authentication.png)
 3. 按一下 [於] > [Azure Active Directory] > [Express] > [確定] 以開啟 Azure Active Directory 驗證。
@@ -114,7 +114,7 @@ ms.lasthandoff: 03/01/2017
 12. 在頁面頂端按一下 [讀取/寫入]  以在 Azure 資源總管中進行變更。
     
     ![](./media/web-sites-dotnet-lob-application-azure-ad/12-resource-manager-writable.png)
-13. 尋找應用程式的驗證設定，其位置在訂用帳戶 > **&lt;*subscriptionname*>** > [resourceGroups]**** > **&lt;resourcegroupname>** > [提供者]**** > **[Microsoft.Web]** > [網站]**** > **&lt;*appname*>** > [設定]**config** > [authsettings]****。
+13. 尋找應用程式的驗證設定，其位置在訂用帳戶 > **&lt;*subscriptionname*>** > **[resourceGroups]** > **&lt;*resourcegroupname*>** > **[提供者]** > **[Microsoft.Web]** > **[網站]** > **&lt;*appname*>** > **config** > **[authsettings]**。
 14. 按一下 [ **編輯**]。
     
     ![](./media/web-sites-dotnet-lob-application-azure-ad/13-edit-authsettings.png)
@@ -128,7 +128,7 @@ ms.lasthandoff: 03/01/2017
 16. 按一下頂端的 [PUT]  以提交變更。
     
     ![](./media/web-sites-dotnet-lob-application-azure-ad/14-edit-parameters.png)
-17. 現在，若要測試是否有可供存取 Azure Active Directory 圖形 API 的授權權杖，請直接在瀏覽器中瀏覽到 **https://&lt;appname**>.azurewebsites.net/.auth/me**。 如果一切設定皆正確，您應該會在 JSON 回應中看到 `access_token` 屬性。
+17. 現在，若要測試是否有可供存取 Azure Active Directory 圖形 API 的授權權杖，請直接在瀏覽器中瀏覽到 **https://&lt;*appname*>.azurewebsites.net/.auth/me**。 如果一切設定皆正確，您應該會在 JSON 回應中看到 `access_token` 屬性。
     
     `~/.auth/me` URL 路徑由 App Service 驗證/授權進行管理，以提供您與驗證的工作階段相關的所有資訊。 如需詳細資訊，請參閱 [Azure App Service 中的驗證與授權](../app-service/app-service-authentication-overview.md)。
     
