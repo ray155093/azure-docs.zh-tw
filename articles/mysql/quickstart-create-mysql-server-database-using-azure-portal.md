@@ -13,10 +13,10 @@ ms.topic: hero-article
 ms.tgt_pltfrm: portal
 ms.date: 05/10/2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 25bfd2c6c25ddb8747dec58fdc68f904f81127fa
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 85bb0396809297f0efb7323bef081055f17ede62
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/25/2017
 
 ---
 
@@ -29,8 +29,6 @@ ms.lasthandoff: 05/10/2017
 ## <a name="log-in-to-azure"></a>登入 Azure
 開啟 Web 瀏覽器並瀏覽至 [Microsoft Azure 入口網站](https://portal.azure.com/)。 輸入您的認證來登入入口網站。 預設檢視是您的服務儀表板。
 
-![Azure 入口網站 - 登入和儀表板](./media/quickstart-create-mysql-server-database-using-azure-portal/1_portal-login.png)
-
 ## <a name="create-azure-database-for-mysql-server"></a>建立 Azure Database for MySQL 伺服器
 
 1. 瀏覽至 [資料庫] > [MySQL]。 如果您在 [資料庫] 類別下找不到 Azure Database for MySQL 伺服器，請按一下 [查看全部] 以顯示所有可用的資料庫服務。 您也可以在搜尋方塊中輸入 **MySQL** 以快速找到此服務。
@@ -42,7 +40,7 @@ ms.lasthandoff: 05/10/2017
 | **表單欄位** | **欄位描述** |
 |----------------|-----------------------|
 | *伺服器名稱* | mysqlserver4demo (伺服器名稱是全域唯一的) |
-| *訂用帳戶* | MySQLaaS (從下拉式清單選取) |
+| *訂用帳戶* | MySQLaaS (從下拉式清單中選取) |
 | *資源群組* | myresource (建立資源群組，或使用現有的資源群組) |
 | *伺服器管理員登入* | myadmin (設定管理帳戶名稱) |
 | *密碼* | 設定管理帳戶密碼 |

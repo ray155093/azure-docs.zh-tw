@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 05/02/2017
 ms.author: glenga
 ms.translationtype: Human Translation
-ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
-ms.openlocfilehash: 7423ef26a4a1c49245a1f8df79bbcaabea222596
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: d79ce0e047e71d9f6af7ca55f55bea405c280b1d
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/12/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -28,8 +28,6 @@ ms.lasthandoff: 05/12/2017
 了解如何使用 GitHub 專屬的承載來建立由 HTTP Webhook 要求所觸發的函式。
 
 ![Azure 入口網站中由 GitHub Webhook 所觸發的函式](./media/functions-create-github-webhook-triggered-function/function-app-in-portal-editor.png)
-
-完成本主題中的所有步驟需要不到 5 分鐘的時間。
 
 ## <a name="prerequisites"></a>必要條件
 

@@ -15,10 +15,10 @@ ms.topic: hero-article
 ms.date: 03/17/2017
 ms.author: cfowler
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
-ms.openlocfilehash: 2916ee6ba4753efdb8823f93c951a4f678b08ae4
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: df34052acc401fb5bb1e3f808c649c0ea0bcf33c
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/09/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -110,15 +110,7 @@ az group create --name myResourceGroup --location westeurope
 
 使用 [az appservice plan create](/cli/azure/appservice/plan#create) 命令來建立 App Service 方案。
 
-> [!NOTE]
-> App Service 方案代表用來裝載應用程式的實體資源集合。 所有指派給 App Service 方案的所有應用程式都會共用它所定義的資源，而讓您節省裝載多個應用程式時的成本。
->
-> App Service 方案可定義：
-> * 區域 (北歐、美國東部、東南亞)
-> * 執行個體大小 (小型、中型、大型)
-> * 級別計數 (一、二或三個執行個體等)
-> * SKU (免費、共用、基本、標準、進階)
->
+[!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
 下列範例會使用**免費**定價層，建立名為 `quickStartPlan` 的 App Service 方案。
 

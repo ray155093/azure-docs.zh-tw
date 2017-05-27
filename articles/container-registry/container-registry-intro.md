@@ -17,10 +17,11 @@ ms.workload: na
 ms.date: 03/24/2017
 ms.author: stevelas
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: 25301f1bbacdf2f1e3d04ed3470eafd31098ea32
-ms.lasthandoff: 04/17/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 300958a69fc854cb8db02120a383a4cbbfcacd7b
+ms.openlocfilehash: 5a5085416bff96c37fcde8a25deffe7dbd8f70d6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/20/2017
 
 ---
 # <a name="introduction-to-private-docker-container-registries"></a>私人 Docker 容器登錄的簡介
@@ -69,6 +70,6 @@ Azure 容器登錄是可管理的 [Docker Registry](https://docs.docker.com/regi
 * [使用 Azure 入口網站建立容器登錄庫](container-registry-get-started-portal.md)
 * [使用 Azure CLI 建立容器登錄庫](container-registry-get-started-azure-cli.md)
 * [使用 Docker CLI 推送您的第一個映像](container-registry-get-started-docker-cli.md)
-* 若要使用 Visual Studio Team Services、Azure Container Service 和 Azure Container Registry 建置持續整合與部署工作流程，請參閱[此教學課程](../container-service/container-service-setup-ci-cd.md)。
+* 若要使用 Visual Studio Team Services、Azure Container Service 和 Azure Container Registry 建置持續整合與部署工作流程，請參閱[此教學課程](../container-service/container-service-docker-swarm-setup-ci-cd.md)。
 * 如果您想在 Azure 中設定自己的 Docker 私人登錄 (不含公用端點)，請參閱[在 Azure 上部署您自己的私用 Docker Registry](../virtual-machines/virtual-machines-linux-docker-registry-in-blob-storage.md)。
 

@@ -13,13 +13,13 @@ ms.workload:
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: hero-article
-ms.date: 05/10/2017
+ms.date: 05/21/2017
 ms.author: arramac
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 07a13c3e9e2baefe0be7ed417ba105dd23a3708d
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: 597b12b98edb07e453fc3cd5a0884c584a5bfd14
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -42,18 +42,6 @@ Azure Cosmos DB 是 Microsoft 的全域分散式多模型資料庫服務。 您�
 ## <a name="add-a-graph"></a>新增圖形
 
 [!INCLUDE [cosmosdb-create-graph](../../includes/cosmosdb-create-graph.md)]
-
-## <a name="add-sample-data"></a>新增範例資料
-
-您現在可以使用 [資料總管] 將資料新增至您的圖形。
-
-1. 在 [資料總管] 中，依序展開 [sample-database]、[sample-graph]，按一下 [圖形]，然後按一下 [新增頂點] 和 [新增邊緣] 將項目新增到您的圖形。 資料總管也可供您調整輸送量，以及在容器中新增預存程序、使用者定義函式和觸發程序。
-
-    ![在 [資料總管] 中將頂點和邊緣新增到圖形](./media/create-graph-dotnet/azure-cosmos-db-graph-sample-data.png)
-
-2. 新增一些項目後，請按一下 [套用篩選條件] 按鈕，或以滑鼠右鍵按一下 [圖形]，然後按一下 [新增圖形查詢] 以查看資料的視覺化圖形。 按一下 [樣式] 按鈕並且變更您的設定，即可變更資料的標記方式和樣式。 以下是 [資料總管] 中的範例圖形，所有顯示的標籤、色彩和資料均可修改。
-
-    ![Azure 入口網站的 [資料總管] 中的視覺化圖形總管](./media/create-graph-dotnet/azure-cosmos-db-graph-explorer.png)
 
 ## <a name="clone-the-sample-application"></a>複製範例應用程式
 
