@@ -12,10 +12,10 @@ ms.service: functions
 ms.devlang: azure-cli
 manager: erikre
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: ef9d65ae5ad0792230e1b8c0d7ed123c129f0f59
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 3dc0e1b26c95ac6583dd3b1068b36deb54f7ac5a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/18/2017
 
 ---
 
@@ -23,7 +23,7 @@ ms.lasthandoff: 05/10/2017
 
 本快速入門教學課程會逐步解說如何使用 Azure Functions 來建立您的第一個函式。 您會使用 Azure CLI 來建立函式應用程式，此應用程式是主控函式的無伺服器基礎結構。 函式程式碼本身是從 GitHub 的範例存放庫部署而來的。    
 
-您可以使用 Mac、Windows 或 Linux 電腦，依照下面步驟操作。 完成本主題中的所有步驟大約只需要 5 分鐘的時間。
+您可以使用 Mac、Windows 或 Linux 電腦，依照下面步驟操作。 
 
 ## <a name="prerequisites"></a>必要條件 
 

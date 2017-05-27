@@ -16,10 +16,10 @@ ms.workload: na
 ms.date: 05/10/2017
 ms.author: glenga
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
-ms.openlocfilehash: abd508631787ba5f839a4ae2ea82e76c4bfab425
+ms.sourcegitcommit: 8f987d079b8658d591994ce678f4a09239270181
+ms.openlocfilehash: 0c7ef7004618966ae8c2d32027c460b2b643923e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/18/2017
 
 
 ---
@@ -30,8 +30,6 @@ Azure Functions 可讓您在無伺服器環境中執行程式碼，而不需要�
 ![在 Azure 入口網站中建立函式應用程式](./media/functions-create-first-azure-function/function-app-in-portal-editor.png)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
-
-完成本主題中的所有步驟需要不到 5 分鐘的時間。
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 

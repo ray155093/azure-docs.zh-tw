@@ -12,14 +12,14 @@ ms.devlang: java
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/07/2017
+ms.date: 05/25/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
-ms.openlocfilehash: 51a4be879b053a3bdf0c9662f3bbd5e3ed7f6d4d
+ms.sourcegitcommit: d9ae8e8948d82b9695d7d144d458fe8180294084
+ms.openlocfilehash: 95f4e55ff89b77784f11be576d297e65f35a5779
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/10/2017
+ms.lasthandoff: 05/23/2017
 
 
 ---
@@ -63,10 +63,10 @@ ms.lasthandoff: 05/10/2017
 3. 使用文字編輯器，在 create-device-identity 資料夾中開啟 pom.xml 檔案，並對 [相依性]  節點新增下列相依性。 這個相依性可讓您在應用程式中使用 iot-service-client 套件：
    
     ```
-    </dependency>
+    <dependency>
       <groupId>com.microsoft.azure.sdk.iot</groupId>
       <artifactId>iot-service-client</artifactId>
-      <version>1.2.18</version>
+      <version>1.3.19</version>
     </dependency>
     ```
     
@@ -153,7 +153,7 @@ ms.lasthandoff: 05/10/2017
     <dependency> 
         <groupId>com.microsoft.azure</groupId> 
         <artifactId>azure-eventhubs</artifactId> 
-        <version>0.13.0</version> 
+        <version>0.14.0</version> 
     </dependency>
     ```
 
@@ -290,7 +290,7 @@ ms.lasthandoff: 05/10/2017
     <dependency>
       <groupId>com.microsoft.azure.sdk.iot</groupId>
       <artifactId>iot-device-client</artifactId>
-      <version>1.1.24</version>
+      <version>1.1.26</version>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
@@ -462,9 +462,10 @@ ms.lasthandoff: 05/10/2017
 
 * [連接您的裝置][lnk-connect-device]
 * [開始使用裝置管理][lnk-device-management]
-* [開始使用 Azure IoT Edge][lnk-gateway-SDK]
+* [開始使用 Azure IoT Edge][lnk-iot-edge]
 
 若要了解如何擴充您的 IoT 解決方案及大規模處理裝置到雲端訊息，請參閱[處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
+[!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 
 <!-- Images. -->
 [6]: ./media/iot-hub-java-java-getstarted/create-iot-hub6.png
@@ -487,7 +488,7 @@ ms.lasthandoff: 05/10/2017
 [lnk-portal]: https://portal.azure.com/
 
 [lnk-device-management]: iot-hub-node-node-device-management-get-started.md
-[lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
+[lnk-iot-edge]: iot-hub-linux-iot-edge-get-started.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 [lnk-maven]: https://maven.apache.org/what-is-maven.html
 [lnk-maven-service-search]: http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22

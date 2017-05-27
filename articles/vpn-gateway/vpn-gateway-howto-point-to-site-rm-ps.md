@@ -16,10 +16,10 @@ ms.workload: infrastructure-services
 ms.date: 05/15/2017
 ms.author: cherylmc
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
-ms.openlocfilehash: 2f0d321885781364de2bdf686264ea5952eafc5c
+ms.sourcegitcommit: a30a90682948b657fb31dd14101172282988cbf0
+ms.openlocfilehash: d28468adbfeb8af5b9c0a126c7cf337c428ad8ca
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/16/2017
+ms.lasthandoff: 05/25/2017
 
 
 ---
@@ -258,7 +258,7 @@ New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG `
 
 您可以從 Azure 新增和移除受信任的根憑證。 當您移除根憑證時，從該根憑證產生憑證的用戶端將無法進行驗證，因而無法進行連線。 若希望用戶端進行驗證和連線，您需要安裝從 Azure 信任 (已上傳至 Azure) 的根憑證產生的新用戶端憑證。
 
-### <a name="to-add-a-root-certificate"></a>若要新增根憑證：
+### <a name="to-add-a-trusted-root-certificate"></a>若要新增受信任的根憑證
 
 您最多可將 20 個根憑證 .cer 檔案新增至 Azure。 下列步驟可協助您新增根憑證︰
 
