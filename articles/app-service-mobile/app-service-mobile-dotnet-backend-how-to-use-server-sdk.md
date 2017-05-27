@@ -65,8 +65,8 @@ SDK 可於 [NuGet.org]取得。 此封裝包含開始使用 SDK 所需的基本�
 若要安裝 SDK，請以滑鼠右鍵按一下 Visual Studio 中的伺服器專案，選取 [管理 NuGet 套件]，搜尋 [Microsoft.Azure.Mobile.Server] 套件，然後按一下 [安裝]。
 
 ### <a name="server-project-setup"></a> 初始化伺服器專案
-初始化 .NET 後端伺服器專案的方式類似其他 ASP.NET 專案，可藉由包含 OWIN 啟動類別來完成。 請確定您已參考 NuGet 封裝 `Microsoft.Owin.Host.SystemWeb`。 若要在 Visual Studio 中新增這個類別，請在伺服器專案上按一下滑鼠右鍵，選取 [新增]**** >
-[新項目]****，然後依序選取 [Web]**** > [一般]**** > [OWIN 啟動類別]****。  隨即產生具有下列屬性的類別：
+初始化 .NET 後端伺服器專案的方式類似其他 ASP.NET 專案，可藉由包含 OWIN 啟動類別來完成。 請確定您已參考 NuGet 封裝 `Microsoft.Owin.Host.SystemWeb`。 若要在 Visual Studio 中新增這個類別，請在伺服器專案上按一下滑鼠右鍵，選取 **[新增]** >
+**[新項目]**，然後依序選取 **[Web]** > **[一般]** > **[OWIN 啟動類別]**。  隨即產生具有下列屬性的類別：
 
     [assembly: OwinStartup(typeof(YourServiceName.YourStartupClassName))]
 
@@ -119,7 +119,7 @@ Azure 入口網站的伺服器快速入門會呼叫 **UseDefaultConfiguration()*
 
 * [Microsoft.Azure.Mobile.Server.Quickstart] 支援基本的 Mobile Apps 設定。 在初始化期間，透過呼叫 **UseDefaultConfiguration** 擴充方法來新增到組態。 此擴充包含下列擴充功能：通知、驗證、實體、資料表、跨網域和首頁封裝。 此封裝由 Azure 入口網站上可取得的 Mobile Apps 快速入門使用。
 * [Microsoft.Azure.Mobile.Server.Home](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Home/)
-   實作網站根目錄的預設 [此行動應用程式已啟動並執行中]** 頁面。 透過呼叫   **AddMobileAppHomeController** 擴充方法來新增到組態。
+   實作網站根目錄的預設 *[此行動應用程式已啟動並執行中]* 頁面。 透過呼叫   **AddMobileAppHomeController** 擴充方法來新增到組態。
 * [Microsoft.Azure.Mobile.Server.Tables](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Tables/)
    包含適用於處理資料與設定資料管線的類別。 透過呼叫 **AddTables** 擴充方法來加入設定中。
 * [Microsoft.Azure.Mobile.Server.Entity](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Entity/)
