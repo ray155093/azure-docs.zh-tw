@@ -3,7 +3,7 @@ title: "將資料從 SQL Server 載入 Azure SQL 資料倉儲 (SSIS) | Microsoft
 description: "示範如何建立 SQL Server Integration Services (SSIS) 封裝，以將資料從各種資料來源移至 SQL 資料倉儲。"
 services: sql-data-warehouse
 documentationcenter: NA
-author: douglaslms
+author: ckarst
 manager: jhubbard
 editor: 
 ms.assetid: e2c252e9-0828-47c2-a808-e3bea46c134a
@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: loading
 ms.date: 03/30/2017
-ms.author: douglasl;barbkess
-translationtype: Human Translation
+ms.author: cakarst;douglasl;barbkess
+ms.translationtype: Human Translation
 ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
 ms.openlocfilehash: d208f783e5b4e7786350706d8025e6e13f45f0d2
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/03/2017
 
 
