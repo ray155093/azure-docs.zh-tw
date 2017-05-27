@@ -3,7 +3,7 @@ title: "適用於 Azure SQL 資料倉儲的驗證 | Microsoft Docs"
 description: "適用於 Azure SQL 資料倉儲的 Azure Active Directory (AAD) 與 SQL Server 驗證。"
 services: sql-data-warehouse
 documentationcenter: 
-author: byham
+author: ronortloff
 manager: jhubbard
 editor: 
 tags: 
@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.custom: security
 ms.date: 03/21/2017
-ms.author: rickbyh;barbkess
-translationtype: Human Translation
+ms.author: rortloff;barbkess
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
 ms.openlocfilehash: 9f38d57029e962d1bbe8adae68232baa8a4c575d
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/22/2017
 
 

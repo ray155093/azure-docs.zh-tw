@@ -3,7 +3,7 @@ title: "分散式資料如何在 Azure SQL 資料倉儲運作 | Microsoft Docs"
 description: "了解大量平行處理 (MPP) 如何分散資料，以及在 Azure SQL 資料倉儲和平行資料倉儲中分散資料表的選項。"
 services: sql-data-warehouse
 documentationcenter: NA
-author: barbkess
+author: jrowlandjones
 manager: jhubbard
 editor: 
 ms.assetid: bae494a6-7ac5-4c38-8ca3-ab2696c63a9f
@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: tables
 ms.date: 10/31/2016
-ms.author: barbkess
-translationtype: Human Translation
+ms.author: jrj;barbkess
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 2548f779767635865daf790d301d86feff573a29
 ms.openlocfilehash: 195b78a7f634d01f228c90efb34763e4175708ac
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/24/2017
 
 

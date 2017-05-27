@@ -218,6 +218,8 @@ ms.lasthandoff: 05/09/2017
 
 ![[DNS 記錄] 頁面](./media/app-service-web-tutorial-custom-domain/a-record.png)
 
+<a name="enable-a"></a>
+
 ### <a name="enable-the-a-record-mapping-in-your-app"></a>在應用程式中啟用 A 記錄對應
 
 您現在已準備好將已設定的 DNS 名稱新增至您的應用程式。

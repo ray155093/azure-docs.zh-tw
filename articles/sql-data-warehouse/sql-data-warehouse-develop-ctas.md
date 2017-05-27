@@ -3,7 +3,7 @@ title: "在 SQL 資料倉儲中的 Create table as select (CTAS) | Microsoft Doc
 description: "在 Azure SQL 資料倉儲中利用 create table as select (CTAS) 陳述式撰寫程式碼做為開發解決方案的提示。"
 services: sql-data-warehouse
 documentationcenter: NA
-author: jrowlandjones
+author: shivaniguptamsft
 manager: jhubbard
 editor: 
 ms.assetid: 68ac9a94-09f9-424b-b536-06a125a653bd
@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: queries
 ms.date: 01/30/2017
-ms.author: jrj;barbkess
-translationtype: Human Translation
+ms.author: shigu;barbkess
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 68655fff239bfd76f93ab9177d161d9534cbb901
 ms.openlocfilehash: 150113dda95ab021dd7ad8696b5886373ba982b8
+ms.contentlocale: zh-tw
 ms.lasthandoff: 01/31/2017
 
 

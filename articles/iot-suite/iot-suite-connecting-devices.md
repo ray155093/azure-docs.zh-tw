@@ -13,11 +13,12 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/08/2017
+ms.date: 05/25/2017
 ms.author: dobett
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
 ms.openlocfilehash: 3536777690a9b00ded7c7fdf4d5f39638dad71b0
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/10/2017
 
 
@@ -59,7 +60,7 @@ ms.lasthandoff: 03/10/2017
 
 1. 在 Visual Studio 中，開啟 RMDevice.c 檔案。 以下列程式碼取代現有 `#include` 陳述式：
    
-    ```
+    ```c
     #include "iothubtransportmqtt.h"
     #include "schemalib.h"
     #include "iothub_client.h"
@@ -81,7 +82,7 @@ ms.lasthandoff: 03/10/2017
 
 1. 將 **main** 函式取代為下列程式碼，以叫用 **remote\_monitoring\_run** 函式︰
    
-    ```
+    ```c
     int main()
     {
       remote_monitoring_run();

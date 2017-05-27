@@ -3,7 +3,7 @@ title: "在 Azure SQL 資料倉儲中暫停、繼續、使用 REST 調整 | Micr
 description: "管理計算能力的 PowerShell 工作。 透過調整 DWU 以調整計算資源。 或者，暫停和繼續計算資源以節省成本。"
 services: sql-data-warehouse
 documentationcenter: NA
-author: barbkess
+author: hirokib
 manager: barbkess
 editor: 
 ms.assetid: 21de7337-9356-49bb-a6eb-06c1beeba2c4
@@ -14,10 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.custom: manage
 ms.date: 10/31/2016
-ms.author: barbkess
-translationtype: Human Translation
+ms.author: elbutter;barbkess
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 07635b0eb4650f0c30898ea1600697dacb33477c
 ms.openlocfilehash: 548e61004bd95d9e785fea438eb8b81aa63f1739
+ms.contentlocale: zh-tw
 ms.lasthandoff: 03/28/2017
 
 

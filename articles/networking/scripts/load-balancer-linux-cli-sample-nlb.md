@@ -68,4 +68,3 @@ az group delete --name myResourceGroup
 如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
 您可以在 [Azure 網路文件](../cli-samples.md)中找到其他 Azure 網路 CLI 指令碼範例。
-

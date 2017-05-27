@@ -4,7 +4,7 @@ description: "了解在 Azure 中嘗試針對 Windows 虛擬機器使用遠端�
 keywords: "遠端桌面錯誤、遠端桌面連線錯誤、無法連接到 VM、遠端桌面疑難排解"
 services: virtual-machines-windows
 documentationcenter: 
-author: iainfoulds
+author: genlin
 manager: timlt
 editor: 
 tags: top-support-issue,azure-service-management,azure-resource-manager
@@ -14,11 +14,12 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: support-article
-ms.date: 01/10/2017
-ms.author: iainfou
-translationtype: Human Translation
+ms.date: 05/26/2017
+ms.author: genli
+ms.translationtype: Human Translation
 ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
 ms.openlocfilehash: 4f2b70b79e52df902e0f659fc97158d446efdf50
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/03/2017
 
 

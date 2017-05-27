@@ -3,7 +3,7 @@ title: "在 Azure 中重新部署 Windows 虛擬機器 | Microsoft Docs"
 description: "如何在 Azure 中重新部署 Windows 虛擬機器，以減輕 RDP 連線問題。"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: iainfoulds
+author: genlin
 manager: timlt
 tags: azure-resource-manager,top-support-issue
 ms.assetid: 0ee456ee-4595-4a14-8916-72c9110fc8bd
@@ -12,11 +12,12 @@ ms.devlang: na
 ms.topic: support-article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 12/16/2016
-ms.author: iainfou
-translationtype: Human Translation
+ms.date: 05/26/2017
+ms.author: genli
+ms.translationtype: Human Translation
 ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
 ms.openlocfilehash: 8682c7707f489aafd55a6673420bafa2ba5f4ade
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/27/2017
 
 
