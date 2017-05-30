@@ -38,7 +38,7 @@ Azure Active Directory (AD) Graph API 是透過 OData REST API 端點，以程�
 * **服務根目錄**：在 Azure AD Graph API 中，服務根目錄一律為 https://graph.windows.net。
 * **租用戶識別碼**：此區段可以是已驗證 (已註冊) 的網域名稱，在上述範例中為 contoso.com。 它也可以是租用戶物件識別碼，或是 “myorganization” 或 “me” 別名。 如需詳細資訊，請參閱 [在 Graph API 中將實體和作業定址](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-operations-overview))。
 * **資源路徑**：URL 的這個部分會識別要互動的資源 (使用者、群組、特定的使用者或特定的群組等)。在上述範例中，它是將該資源集定址的頂層「群組」。 您也可以為特定的實體定址，例如，“users/{objectId}” 或 “users/userPrincipalName”。
-* **查詢參數**：問號 (?) 可區隔資源路徑區段和查詢參數區段。 在 Graph API 中，所有要求上都需要 “api-version” 查詢參數。 Graph API 也支援下列 OData 查詢選項：**$filter**、**$orderby**、**$expand**、**$top**, 和 **$format**.。 目前不支援下列查詢選項：**$count**、**$inlinecount** 和 **$skip**。 如需詳細資訊，請參閱 [Azure AD Graph API 中支援的查詢、篩選和分頁選項](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options)。
+* **查詢參數**：問號 (?) 可區隔資源路徑區段和查詢參數區段。 在 Graph API 中，所有要求上都需要 “api-version” 查詢參數。 Graph API 也支援下列 OData 查詢選項：**$filter**、**$orderby**、**$expand**、**$top**, 和 **$format**。 目前不支援下列查詢選項：**$count**、**$inlinecount** 和 **$skip**。 如需詳細資訊，請參閱 [Azure AD Graph API 中支援的查詢、篩選和分頁選項](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options)。
 
 ## <a name="graph-api-versions"></a>Graph API 版本
 您可以在 “api-version” 查詢參數中指定 Graph API 要求的版本。 如果是 1.5 版和更新版本，您可以使用數字版本值；api-version=1.6。 如果是較早的版本，您可以使用遵守 YYYY-MM-DD 格式的日期字串；例如，api-version=2013-11-08。 如果是預覽功能，請使用字串 "beta"；例如，api-version=beta。 如需 Graph API 版本間差異的詳細資訊，請參閱 [Azure AD Graph API 版本設定](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-versioning)。
