@@ -11,17 +11,18 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 2/15/2017
+ms.date: 5/10/2017
 ms.author: chackdan;maburlik
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: a09ee1955717d7e042c1df3382c4cecd40069e3a
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 54fa2a5ea9bd54add6df68db6ce492299ca94207
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
 
-# <a name="package-contents-of-service-fabric-standalone-package-for-windows-server"></a>適用於 Windows Server 的 Service Fabric 獨立封裝的封裝內容
+# <a name="contents-of-service-fabric-standalone-package-for-windows-server"></a>適用於 Windows Server 的 Service Fabric 獨立封裝內容
 在[下載](http://go.microsoft.com/fwlink/?LinkId=730690)的 Service Fabric 獨立封裝中，您會找到下列檔案︰
 
 | **檔案名稱** | **簡短說明** |
@@ -37,6 +38,8 @@ ms.lasthandoff: 03/29/2017
 | EULA_ENU.txt |使用 Microsoft Azure Service Fabric 獨立 Windows Server 封裝的授權條款。 您可以立即[下載一份 EULA](http://go.microsoft.com/fwlink/?LinkID=733084)。 |
 | Readme.txt |指向版本資訊和基本安裝指示的連結。 這是您在此文件中找到的一部分指示。 |
 | ThirdPartyNotice.rtf |套件中協力廠商軟體的注意事項。 |
+| Tools\Microsoft.Azure.ServiceFabric.WindowsServer.SupportPackage.zip |依需求執行的 StandaloneLogCollector.exe，可收集追蹤記錄檔並上傳至 Microsoft 以供支援用途。 |
+| Tools\ServiceFabricUpdateService.zip |一種用於為沒有網際網路存取權的叢集，啟用自動程式碼升級的工具。 在 [這裡](service-fabric-cluster-upgrade-windows-server.md)|
 
 **範本** 
 | **檔案名稱** | **簡短說明** |
@@ -49,7 +52,7 @@ ms.lasthandoff: 03/29/2017
 | ClusterConfig.x509.MultiMachine.json |叢集組態範例檔案，其中包含適用於安全、多個電腦 (或虛擬機器) 叢集的所有設定，包括安全叢集中每個節點的相關資訊。 使用 x509 憑證保護叢集的安全。 |
 | ClusterConfig.gMSA.Windows.MultiMachine.json |叢集組態範例檔案，其中包含適用於安全、多個電腦 (或虛擬機器) 叢集的所有設定，包括安全叢集中每個節點的相關資訊。 使用[群組受管理服務帳戶](https://technet.microsoft.com/en-us/library/jj128431(v=ws.11).aspx)保護叢集的安全。 |
 
-# <a name="cluster-configuration-samples"></a>叢集組態範例
+## <a name="cluster-configuration-samples"></a>叢集組態範例
 最新版的叢集設定範本可在以下 GitHub 頁面找到︰[獨立叢集組態範例 (英文)](https://github.com/Azure-Samples/service-fabric-dotnet-standalone-cluster-configuration/tree/master/Samples)。
 
 ## <a name="related"></a>相關參考

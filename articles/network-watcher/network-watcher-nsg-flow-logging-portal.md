@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-translationtype: Human Translation
-ms.sourcegitcommit: 424d8654a047a28ef6e32b73952cf98d28547f4f
-ms.openlocfilehash: d716f11818bc0ad6dd9e5f93951b011dd6774c7b
-ms.lasthandoff: 03/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: b059cfdcf21d8b61589a5edf3bd1832070e564e3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -35,6 +36,12 @@ ms.lasthandoff: 03/22/2017
 ## <a name="before-you-begin"></a>開始之前
 
 此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。 此案例也假設已有具有有效虛擬機器的資源群組可供使用。
+
+## <a name="register-insights-provider"></a>註冊 Insights 提供者
+
+若要讓流量記錄成功運作，必須註冊 Microsoft.Insights 提供者。 若要註冊提供者，請瀏覽至 [訂用帳戶]，然後選取您要為其啟用流程記錄的訂用帳戶。 在 [訂用帳戶] 刀鋒視窗中，選取 [資源提供者]。 瀏覽提供者清單，並確認 microsoft.insights 提供者已註冊。 如果沒有，再按一下 [註冊]。
+
+![檢視提供者][providers]
 
 ## <a name="enable-flow-logs"></a>啟用流程記錄
 
@@ -93,4 +100,4 @@ ms.lasthandoff: 03/22/2017
 [4]: ./media/network-watcher-nsg-flow-logging-portal/figure4.png
 [5]: ./media/network-watcher-nsg-flow-logging-portal/figure5.png
 [6]: ./media/network-watcher-nsg-flow-logging-portal/figure6.png
-
+[providers]: ./media/network-watcher-nsg-flow-logging-portal/providers.png

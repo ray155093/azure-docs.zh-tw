@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/22/2016
 ms.author: daseidma;bwren;dairwin
-translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: aca6cd69647406d0140d8b0d0cba8e4690b04ae1
-ms.lasthandoff: 03/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: ce71f8cd842746e6e236f4a2034ba3ee3001586c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -47,16 +48,16 @@ ms.lasthandoff: 03/18/2017
 
 
 ## <a name="mapping-overview"></a>對應概觀
-服務對應代理程式會收集其安裝所在之伺服器上所有 TCP 連線處理程序的相關資訊，以及有關每個處理程序之輸入和輸出連線的詳細資料。  使用服務對應解決方案左邊的 [機器清單]，即可選取具有服務對應代理程式的機器，以便視覺化呈現這些機器在所選時間範圍內的相依性。  機器相依性對應的焦點會集中在特定機器，並顯示所有屬於該機器之直接 TCP 用戶端或伺服器的所有機器。
+服務對應代理程式會收集其安裝所在伺服器上所有 TCP 連線處理程序的相關資訊，以及有關每個處理程序之輸入和輸出連線的詳細資料。  使用服務對應解決方案左邊的 [機器清單]，即可選取具有服務對應代理程式的機器，以便視覺化呈現這些機器在所選時間範圍內的相依性。  機器相依性對應的焦點會集中在特定機器，並顯示所有屬於該機器之直接 TCP 用戶端或伺服器的所有機器。
 
 ![服務對應概觀](media/oms-service-map/service-map-overview.png)
 
 對應內的機器可以展開，以顯示所選時間範圍內具有作用中網路連線的執行中處理程序。  展開具有服務對應代理程式的遠端機器以顯示處理程序詳細資料時，只會顯示與焦點機器通訊的程序。  連線到焦點機器的無代理程式前端機器計數，會在這些前端機器所連線到的處理程序左邊指出。  如果焦點機器進行無代理程式的後端電腦連接，該後端伺服器連同其他連接至相同連接埠號碼的連線會被併入伺服器連接埠群組。
 
-根據預設，「服務對應」對應會顯示過去 10 分鐘的相依性資訊。  使用左上角的時間控制項，即可查詢對應的過往時間範圍 (最長可達一小時)，以顯示相依性的過往情形，例如在事件發生期間或變更發生之前。    付費工作區的服務對應資料會儲存 30 天，免費工作區的服務對應資料則會儲存 7 天。
+根據預設，「服務對應」對應會顯示過去 30 分鐘的相依性資訊。  使用左上角的時間控制項，即可查詢對應的過往時間範圍 (最長可達一小時)，以顯示相依性的過往情形，例如在事件發生期間或變更發生之前。    付費工作區的服務對應資料會儲存 30 天，免費工作區的服務對應資料則會儲存 7 天。
 
 ## <a name="status-badges-and-border-coloring"></a>狀態徽章和框線色彩
-在對應中每一部伺服器的底部，可以是一串狀態徽章，傳達伺服器的相關狀態資訊。  徽章表示在其中一個 OMS 解決方案整合中，有某些伺服器的相關資訊。  按一下徽章，會在右窗格中直接顯示狀態的詳細資料。  目前可使用的狀態徽章包括警示、變更、安全性和更新。
+在對應中每一部伺服器的底部，可以是一串狀態徽章，傳達伺服器的相關狀態資訊。  徽章表示在其中一個 OMS 解決方案整合中，有某些伺服器的相關資訊。  按一下徽章，即會在右面板中直接顯示狀態的詳細資料。  目前可使用的狀態徽章包括警示、變更、安全性和更新。
 
 根據狀態徽章的嚴重性，機器節點框線會呈現紅色 (重大)、黃色 (警告) 或藍色 (資訊)。  色彩可代表任何狀態徽章最嚴重的狀態。  灰色框線代表沒有目前狀態指標的節點。
 
@@ -88,7 +89,7 @@ ms.lasthandoff: 03/18/2017
 
 ![用戶端群組](media/oms-service-map/client-groups.png)
 
-若要查看用戶端群組中伺服器的 IP 位址，選取群組。  群組的內容將列在 [屬性] 面板中。
+若要查看用戶端群組中伺服器的 IP 位址，選取群組。  群組的內容列在 [屬性] 面板中。
 
 ![用戶端群組屬性](media/oms-service-map/client-group-properties.png)
 
@@ -109,7 +110,7 @@ ms.lasthandoff: 03/18/2017
 [顯示自我連結] 將會重繪包括任何自我連結的伺服器節點，即處理序在該伺服器上開始和結束的 TCP 連線。  如果沒有顯示自我連結，功能表會變為 [隱藏自我連結]，讓使用者可以開關自我連結的繪圖。
 
 ## <a name="computer-summary"></a>電腦摘要
-[機器摘要] 面板包含伺服器作業系統概觀、相依性計數及其他 OMS 解決方案中的各種資料，包括效能標準、變更追蹤、安全性及更新等。
+[機器摘要] 面板包含伺服器作業系統概觀、相依性計數及其他 OMS 解決方案中的資料，包括效能計量、變更追蹤、安全性及更新等。
 
 ![機器摘要](media/oms-service-map/machine-summary.png)
 
@@ -143,6 +144,17 @@ ms.lasthandoff: 03/18/2017
 
 ![記錄事件](media/oms-service-map/log-events.png)
 
+## <a name="oms-service-desk-integration"></a>OMS 服務台整合
+當「服務對應」和「IT 服務管理連接器」這兩個解決方案皆已在 OMS 工作區中啟用並設定，便會自動進行整合。  服務對應中的整合會標示為「服務台」。  [如需有關如何啟用及設定 ITSM 連接器的詳細資訊。](https://docs.microsoft.com/azure/log-analytics/log-analytics-itsmc-overview)
+
+[服務台面板] 會顯示所選時間範圍內所選伺服器的所有 IT 服務管理事件清單。  如果有目前項目且 [服務台面板] 列出這些項目，伺服器便會顯示圖示。
+![服務台面板](media/oms-service-map/service-desk.png)
+
+按一下 [檢視工作項目] 可在連接的 ITSM 解決方案中開啟該項目。
+
+按一下 [在記錄搜尋中顯示] 可在記錄搜尋中檢視項目的詳細資料。
+
+
 ## <a name="oms-change-tracking-integration"></a>OMS 變更追蹤整合
 當「服務對應」和「變更追蹤」這兩個解決方案皆已在 OMS 工作區中啟用並設定，便會自動進行整合。
 
@@ -161,7 +173,7 @@ ms.lasthandoff: 03/18/2017
 ## <a name="oms-security-integration"></a>OMS 安全性整合
 當「服務對應」和「安全性與稽核」這兩個解決方案皆已在 OMS 工作區中啟用並設定，便會自動進行整合。
 
-[機器安全性] 面板會顯示 OMS 安全性與稽核解決方案中針對所選伺服器的資料。  此面板會列出所選時間範圍內伺服器任何未處理之安全性問題的摘要。  按一下任一安全性問題會向下切入到記錄搜尋，顯示關於安全性問題的詳細資料。
+[機器安全性] 面板會顯示 OMS 安全性與稽核解決方案中針對所選伺服器的資料。  此面板會列出所選時間範圍內伺服器任何未處理之安全性問題的摘要。  按一下任一安全性問題會向下鑽研到記錄搜尋，顯示關於安全性問題的詳細資料。
 ![機器變更追蹤面板](media/oms-service-map/machine-security.png)
 
 
@@ -172,7 +184,7 @@ ms.lasthandoff: 03/18/2017
 ![機器變更追蹤面板](media/oms-service-map/machine-updates.png)
 
 ## <a name="log-analytics-records"></a>Log Analytics 記錄
-服務對應的電腦和處理程序清查資料可供在 Log Analytics 中進行[搜尋](../log-analytics/log-analytics-log-searches.md)。  這適用於包括移轉規劃、容量分析、探索和臨機操作效能疑難排解在內的案例。
+服務對應的電腦和處理程序清查資料可供在 Log Analytics 中進行[搜尋](../log-analytics/log-analytics-log-searches.md)。  此資料適用於包括移轉規劃、容量分析、探索和隨選效能疑難排解在內的案例。
 
 除了當處理序或電腦啟動時或是新增到服務對應時所產生的記錄外，每小時還會為每個唯一的電腦和處理序產生一個記錄。  這些記錄具有下表中的屬性。  ServiceMapComputer_CL 事件中的欄位和值對應到 ServiceMap ARM API 中的機器資源的欄位。  ServiceMapProcess_CL 事件中的欄位和值對應到 ServiceMap ARM API 中的處理序資源的欄位。  ResourceName_s 欄位符合相對應的 ARM 資源中的名稱欄位。 附註 - 隨著服務對應的功能增加，這些欄位可能會跟著變更。
 
@@ -182,7 +194,7 @@ ms.lasthandoff: 03/18/2017
 - 電腦 - 使用 ResourceId 或 ResourceName_s 來唯一識別 OMS 工作區中的電腦。
 - 處理序 - 使用 ResourceId 來唯一識別 OMS 工作區中的處理序。 ResourceName_s 在執行處理序的機器 (MachineResourceName_s) 的環境中是唯一的 
 
-因為在指定時間範圍內可以有多筆指定處理序和電腦的記錄，查詢可能會傳回相同電腦或處理序的多筆記錄。 若只要包含最新的記錄，請在查詢中加入加入 "| dedup ResourceId"。
+因為在指定時間範圍內可以有多筆指定處理序和電腦的記錄，查詢可能會傳回相同電腦或處理序的多筆記錄。 若只要包含最新的記錄，請在查詢中加入 "| dedup ResourceId"。
 
 ### <a name="servicemapcomputercl-records"></a>ServiceMapComputer_CL 記錄
 類型為 **ServiceMapComputer_CL** 的記錄會有伺服器 (具有服務對應代理程式) 的清查資料。  這些記錄具有下表中的屬性：
@@ -199,7 +211,7 @@ ms.lasthandoff: 03/18/2017
 | DnsNames_s | DNS 名稱的陣列 |
 | OperatingSystemFamily_s | windows 或 linux |
 | OperatingSystemFullName_s | 作業系統的完整名稱  |
-| Bitness_s | 機器的位元 (32 位元或 64 位元) |
+| Bitness_s | 電腦的位元 (32 位元) 或 (64 位元) |
 | PhysicalMemory_d | 實體記憶體 (MB) |
 | Cpus_d | CPU 數目 |
 | CpuSpeed_d | CPU 速度 (MHz)|

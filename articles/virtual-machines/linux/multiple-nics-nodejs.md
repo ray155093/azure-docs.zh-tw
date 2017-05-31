@@ -12,27 +12,28 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 02/09/2017
+ms.date: 05/11/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 40911f9e663361dfb3a474970c727736cc0225b8
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 814825cce61909167a1247a96c17a3ee9c5f2af4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
-# <a name="create-a-linux-vm-with-multiple-nics-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立連接多個 NIC 的 Linux VM
-您可以在 Azure 中，建立連接多個虛擬網路介面 (NIC) 的虛擬機器 (VM)。 常見案例是有不同的子網路可用於前端和後端連線，或者專門用來監視或備份解決方案的網路。 本文提供快速命令來建立連接多個 NIC 的 VM。 如需詳細資訊，包括如何在自己的 Bash 指令碼內建立多個 NIC，請深入了解 [部署多個 NIC 的 VM](../../virtual-network/virtual-network-deploy-multinic-arm-cli.md)。 不同的 [VM 大小](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 支援不同數量的 NIC，因此可據以調整您的 VM。
+# <a name="create-a-linux-virtual-machine-with-multiple-nics-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立連接多個 NIC 的 Linux 虛擬機器
+您可以在 Azure 中，建立連接多個虛擬網路介面 (NIC) 的虛擬機器 (VM)。 常見案例是有不同的子網路可用於前端和後端連線，或者專門用來監視或備份解決方案的網路。 本文提供快速命令來建立連接多個 NIC 的 VM。 如需詳細資訊，包括如何在自己的 Bash 指令碼內建立多個 NIC，請深入了解 [部署多個 NIC 的 VM](../../virtual-network/virtual-network-deploy-multinic-arm-cli.md)。 不同的 [VM 大小](sizes.md) 支援不同數量的 NIC，因此可據以調整您的 VM。
 
 > [!WARNING]
-> 當您建立 VM 時，必須連接多個 NIC - 您無法在現有的 VM 中新增 NIC。 您可以[根據原始虛擬磁碟建立 VM](copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，並且在部署 VM 時建立多個 NIC。
+> 當您建立 VM 時，必須連接多個 NIC - 您無法使用 Azure CLI 1.0 將 NIC 新增至現有的 VM。 您可以[使用 Azure CLI 2.0 將 NIC 新增至現有的 VM](multiple-nics.md)。 您也可以[根據原始虛擬磁碟建立 VM](copy-vm.md)，並且在部署 VM 時建立多個 NIC。
 
 
 ## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 - [Azure CLI 1.0](#create-supporting-resources) – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0](../windows/multiple-nics.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](multiple-nics.md) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="create-supporting-resources"></a>建立支援資源
@@ -42,73 +43,99 @@ ms.lasthandoff: 04/03/2017
 azure config mode arm
 ```
 
-在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`mystorageaccount` 和 `myVM`。
+在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 myResourceGroup、mystorageaccount 和 myVM。
 
-首先，建立資源群組。 下列範例會在 `WestUS` 位置建立名為 `myResourceGroup` 的資源群組：
+首先，建立資源群組。 下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組：
 
 ```azurecli
-azure group create myResourceGroup -l WestUS
+azure group create myResourceGroup --location eastus
 ```
 
-建立儲存體帳戶以放置您的 VM。 下列範例會建立名為 `mystorageaccount` 的儲存體帳戶：
+建立儲存體帳戶以放置您的 VM。 下列範例會建立名為 mystorageaccount 的儲存體帳戶：
 
 ```azurecli
-azure storage account create mystorageaccount -g myResourceGroup \
-    -l WestUS --kind Storage --sku-name PLRS
+azure storage account create mystorageaccount \
+    --resource-group myResourceGroup \
+    --location eastus \
+    --kind Storage \
+    --sku-name PLRS
 ```
 
-建立要與 VM 連線的虛擬網路。 下列範例會建立名為 `myVnet` 的虛擬網路，位址首碼為 `192.168.0.0/16`：
+建立要與 VM 連線的虛擬網路。 下列範例會建立名為 myVnet 的虛擬網路，位址首碼為 192.168.0.0/16：
 
 ```azurecli
-azure network vnet create -g myResourceGroup -l WestUS \
-    -n myVnet -a 192.168.0.0/16
+azure network vnet create \
+    --resource-group myResourceGroup \
+    --location eastus \
+    --name myVnet \
+    --address-prefixes 192.168.0.0/16
 ```
 
-建立兩個虛擬網路子網路 - 一個用於前端流量，另一個用於後端流量。 以下範例將建立兩個子網路，名為 `mySubnetFrontEnd` 和 `mySubnetBackEnd`：
+建立兩個虛擬網路子網路 - 一個用於前端流量，另一個用於後端流量。 下列範例會建立兩個子網路，名為 mySubnetFrontEnd 和 mySubnetBackEnd：
 
 ```azurecli
-azure network vnet subnet create -g myResourceGroup -e myVnet \
-    -n mySubnetFrontEnd -a 192.168.1.0/24
-azure network vnet subnet create -g myResourceGroup -e myVnet \
-    -n mySubnetBackEnd -a 192.168.2.0/24
+azure network vnet subnet create \
+    --resource-group myResourceGroup \
+    --location myVnet \
+    --name mySubnetFrontEnd \
+    --address-prefix 192.168.1.0/24
+azure network vnet subnet create \
+    --resource-group myResourceGroup \
+    --location myVnet \
+    --name mySubnetBackEnd \
+    --address-prefix 192.168.2.0/24
 ```
 
 ## <a name="create-and-configure-multiple-nics"></a>建立及設定多個 NIC
 您可以深入了解更多有關 [使用 Azure CLI 部署多個 NIC](../../virtual-network/virtual-network-deploy-multinic-arm-cli.md)的詳細資訊，包括撰寫可進行迴圈程序的指令碼來建立所有的 NIC。
 
-下列範例會建立兩個 NIC，名為 `myNic1` 和 `myNic2`，以及一個連線到各個子網路的 NIC：
+下列範例會建立兩個 NIC，名為 myNic1 與 myNic2，以及一個連線到各個子網路的 NIC：
 
 ```azurecli
-azure network nic create --resource-group myResourceGroup --location WestUS \
-    -n myNic1 --subnet-vnet-name myVnet --subnet-name mySubnetFrontEnd
-azure network nic create --resource-group myResourceGroup --location WestUS \
-    -n myNic2 --subnet-vnet-name myVnet --subnet-name mySubnetBackEnd
+azure network nic create \
+    --resource-group myResourceGroup \
+    --location eastus \
+    --name myNic1 \
+    --subnet-vnet-name myVnet \
+    --subnet-name mySubnetFrontEnd
+azure network nic create \
+    --resource-group myResourceGroup \
+    --location eastus \
+    --name myNic2 \
+    --subnet-vnet-name myVnet \
+    --subnet-name mySubnetBackEnd
 ```
 
-通常您也可以建立[網路安全性群組](../../virtual-network/virtual-networks-nsg.md)或[負載平衡器](../../load-balancer/load-balancer-overview.md)來協助管理，以及將流量分散到您的 VM。 下列範例會建立名為 `myNetworkSecurityGroup` 的網路安全性群組：
+通常您也可以建立[網路安全性群組](../../virtual-network/virtual-networks-nsg.md)或[負載平衡器](../../load-balancer/load-balancer-overview.md)來協助管理，以及將流量分散到您的 VM。 下列範例建立名為 myNetworkSecurityGroup 的網路安全性群組：
 
 ```azurecli
-azure network nsg create --resource-group myResourceGroup --location WestUS \
+azure network nsg create \
+    --resource-group myResourceGroup \
+    --location eastus \
     --name myNetworkSecurityGroup
 ```
 
-使用 `azure network nic set`將您的 NIC 繫結至網路安全性群組。 下列範例會將 `myNic1` 和 `myNic2` 與 `myNetworkSecurityGroup` 繫結：
+使用 `azure network nic set`將您的 NIC 繫結至網路安全性群組。 下列範例會將 myNic1 和 myNic2 與 myNetworkSecurityGroup 繫結：
 
 ```azurecli
-azure network nic set --resource-group myResourceGroup --name myNic1 \
+azure network nic set \
+    --resource-group myResourceGroup \
+    --name myNic1 \
     --network-security-group-name myNetworkSecurityGroup
-azure network nic set --resource-group myResourceGroup --name myNic2 \
+azure network nic set \
+    --resource-group myResourceGroup \
+    --name myNic2 \
     --network-security-group-name myNetworkSecurityGroup
 ```
 
 ## <a name="create-a-vm-and-attach-the-nics"></a>建立 VM 並附加 NIC
-建立 VM 時，您現在可以指定多個 NIC。 不使用 `--nic-name` 提供單一 NIC，而改用 `--nic-names`，並提供以逗號分隔的 NIC 清單。 當您選取 VM 大小時也需多加注意。 您可以新增至 VM 的 NIC 總數是有限制的。 深入了解 [Linux VM 大小](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 下列範例示範如何指定多個 NIC，然後是使用多個 NIC 支援的 VM 大小 (`Standard_DS2_v2`)：
+建立 VM 時，您現在可以指定多個 NIC。 不使用 `--nic-name` 提供單一 NIC，而改用 `--nic-names`，並提供以逗號分隔的 NIC 清單。 當您選取 VM 大小時也需多加注意。 您可以新增至 VM 的 NIC 總數是有限制的。 深入了解 [Linux VM 大小](sizes.md)。 下列範例示範如何指定多個 NIC，然後是使用多個 NIC 支援的 VM 大小 (Standard_DS2_v2)：
 
 ```azurecli
 azure vm create \
     --resource-group myResourceGroup \
     --name myVM \
-    --location WestUS \
+    --location eastus \
     --os-type linux \
     --nic-names myNic1,myNic2 \
     --vm-size Standard_DS2_v2 \
@@ -139,7 +166,7 @@ Azure Resource Manager 範本會使用宣告式 JSON 檔案來定義您的環境
 您可以閱讀 [使用 Resource Manager 範本建立多個 NIC](../../virtual-network/virtual-network-deploy-multinic-arm-template.md)的完整範例。
 
 ## <a name="next-steps"></a>後續步驟
-嘗試建立具有多個 NIC 的 VM 時，請務必檢閱 [Linux VM 大小](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 。 注意每個 VM 大小所支援的 NIC 數目上限。 
+嘗試建立具有多個 NIC 的 VM 時，請務必檢閱 [Linux VM 大小](sizes.md) 。 注意每個 VM 大小所支援的 NIC 數目上限。 
 
 請記住，您無法在現有 VM 中新增其他 NIC，您必須在部署 VM 時建立所有 NIC。 小心規劃您的部署，以確定您一開始就會有所有需要的網路連線。
 

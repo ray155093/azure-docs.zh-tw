@@ -12,12 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/08/2017
+ms.date: 05/10/2017
 ms.author: seanmck
-translationtype: Human Translation
-ms.sourcegitcommit: cfe4957191ad5716f1086a1a332faf6a52406770
-ms.openlocfilehash: 6c0c6b24f9d669e7ed45e6b2acf2e75390e5e1f4
-ms.lasthandoff: 03/09/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 2bfbb3b8f7282ec8ae8abe9597230a3485221ecf
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 ---
 
@@ -44,13 +45,13 @@ ms.lasthandoff: 03/09/2017
 
 在此過渡期間，我們已[提供一個指令碼](https://blogs.msdn.microsoft.com/azureservicefabric/2017/01/09/os-patching-for-vms-running-service-fabric/)，可供叢集系統管理員以安全的方式手動開始執行每個節點的修補作業。
 
-### <a name="can-i-use-large-virtual-scale-sets-in-my-sf-cluster"></a>我可以在 SF 叢集中使用大型虛擬擴展集嗎？ 
+### <a name="can-i-use-large-virtual-machine-scale-sets-in-my-sf-cluster"></a>我可以在 SF 叢集中使用大型虛擬機器擴展集嗎？ 
 
 **簡短回答** - 否。 
 
-**完整回答** - 雖然大型虛擬擴展集 (VMSS) 最多可讓您將 VMSS 調整到 1000 個 VM 執行個體，但它是藉由使用放置群組 (PG) 來達成。 容錯網域 (FD) 和升級網域 (UD) 只會在使用 FD 和 UD 以決定服務複本/服務執行個體放置位置的放置群組 Service Fabric 內保持一致。 由於 FD 和 UD 只能在放置群組內比較，所以 SF 無法使用它。 例如，如果 PG1 中的 VM1 具有 FD=0 的拓撲，且 PG2 中的 VM9 具有 FD=4 的拓撲，此情況並不代表 VM1 和 VM2 位於兩個不同的硬體機架上，因此在此情況下，SF 無法使用 FD 值來決定放置位置。
+**完整回答** - 雖然大型虛擬機器擴展集最多可讓您將虛擬機器擴展集調整到 1000 個 VM 執行個體，不過這是藉由使用放置群組 (PG) 來達成的。 容錯網域 (FD) 和升級網域 (UD) 只會在使用 FD 和 UD 以決定服務複本/服務執行個體放置位置的放置群組 Service Fabric 內保持一致。 由於 FD 和 UD 只能在放置群組內比較，所以 SF 無法使用它。 例如，如果 PG1 中的 VM1 具有 FD=0 的拓撲，且 PG2 中的 VM9 具有 FD=4 的拓撲，此情況並不代表 VM1 和 VM2 位於兩個不同的硬體機架上，因此在此情況下，SF 無法使用 FD 值來決定放置位置。
 
-大型 VMSS 目前有其他問題，像是缺乏層級 4 的負載平衡支援。 如需詳細資訊，請參閱[大型 VMSS](../virtual-machine-scale-sets/virtual-machine-scale-sets-placement-groups.md)
+大型虛擬機器擴展集目前有其他問題，像是缺乏層級 4 的負載平衡支援。 如需詳細資訊，請參閱[大型擴展集詳細資料](../virtual-machine-scale-sets/virtual-machine-scale-sets-placement-groups.md)
 
 
 
@@ -76,6 +77,17 @@ ms.lasthandoff: 03/09/2017
 
 如果您要建立叢集以在部署應用程式之前測試應用程式，建議您在[持續整合/持續部署管線](service-fabric-set-up-continuous-integration.md)中動態建立那些叢集。
 
+## <a name="container-support"></a>容器支援
+
+### <a name="why-are-my-containers-that-are-deployed-to-sf-are-unable-to-resolve-dns-addresses"></a>為何部署到 SF 的容器無法解析 DNS 位址？
+
+已有人針對 5.6.204.9494 版的叢集回報這個問題 
+
+**緩和**︰請遵循[這份文件](service-fabric-dnsservice.md)，以便在叢集中啟用 DNS Service Fabric 服務。
+
+**修正**：升級至 5.6.204.9494 以上的支援叢集版本 (當推出時)。 如果您的叢集設定為自動升級，則叢集將會自動升級為已修正此問題的版本。
+
+  
 ## <a name="application-design"></a>應用程式設計
 
 ### <a name="whats-the-best-way-to-query-data-across-partitions-of-a-reliable-collection"></a>在可靠集合的所有分割中查詢資料的最佳方式為何？
@@ -104,7 +116,7 @@ ms.lasthandoff: 03/09/2017
 
 請注意，這項計算也假設：
 
-- 資料在所有分割上的分佈大致上是平均的，或您會對叢集資源管理員報告負載度量。 根據預設，Service Fabric 會根據複本數量進行負載平衡。 在我們的上述範例中，會在叢集中的每個節點上放置 10 個主要複本以及 20 個次要複本。 這適用於平均分佈於所有分割的負載。 如果負載不平均，您必須報告負載，以便資源管理員可以將較小的複本封裝在一起，讓較大的複本可以使用個別節點上較多的記憶體。
+- 資料在所有分割上的分佈大致上是平均的，或您會對叢集資源管理員報告負載計量。 根據預設，Service Fabric 會根據複本數量進行負載平衡。 在我們的上述範例中，會在叢集中的每個節點上放置 10 個主要複本以及 20 個次要複本。 這適用於平均分佈於所有分割的負載。 如果負載不平均，您必須報告負載，以便資源管理員可以將較小的複本封裝在一起，讓較大的複本可以使用個別節點上較多的記憶體。
 
 - 發生問題的可靠服務為叢集中唯一的儲存狀態。 由於您可以部署多個服務到叢集因此您您必須留意每個服務在執行及管理其狀態時所需的資源。
 

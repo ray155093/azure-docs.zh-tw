@@ -16,10 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 03/14/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 9a8073baea9a6ff2ecf443b516665adb10de4815
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: a2307f7055966ec7146b5da0b4daf1ad469abe2b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 ---
 # <a name="about-h-series-and-compute-intensive-a-series-vms-for-linux"></a>關於 Linux 的 H 系列和計算密集型 A 系列 VM
@@ -32,7 +33,7 @@ ms.lasthandoff: 04/03/2017
 ## <a name="access-to-the-rdma-network"></a>存取 RDMA 網路
 您可以建立支援 RDMA 的 Linux VM 叢集來執行下列其中一個支援的 Linux HPC 散發套件及支援的 MPI 實作，以利用 Azure RDMA 網路。 如需部署選項和範例組態步驟，請參閱[設定 Linux RDMA 叢集以執行 MPI 應用程式](classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
-* **散發套件** - 您必須從 Azure Marketplace 中支援 RDMA 的 SUSE Linux Enterprise Server (SLES) 或 OpenLogic CentOS 型 HPC 映像部署 VM。 下列 Marketplace 映像支援 RDMA 連線能力：
+* **散發套件** - 您必須從 Azure Marketplace 中支援 RDMA 的 SUSE Linux Enterprise Server (SLES) 或 Rogue Wave Software (先前為 OpenLogic) CentOS 型 HPC 映像部署 VM。 下列 Marketplace 映像支援 RDMA 連線能力：
   
     * SLES 12 SP1 for HPC、SLES 12 SP1 for HPC (Premium)
     

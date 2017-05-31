@@ -1,7 +1,7 @@
 ---
-title: "將資料移入/移出 DocumentDB | Microsoft Docs"
-description: "了解如何使用 Azure Data Factory 從 Azure DocumentDB 集合來回移動資料。"
-services: data-factory, documentdb
+title: "從 Azure Cosmos DB 來回移動資料 | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory 從 Azure Cosmos DB 集合來回移動資料"
+services: data-factory, cosmosdb
 documentationcenter: 
 author: linda33wj
 manager: jhubbard
@@ -12,28 +12,28 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/19/2017
+ms.date: 05/11/2017
 ms.author: jingwang
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: d5e13e6a96828e7c303e4d870ee170b90a0c4308
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: f665ff5ca345d96bac9b51c3c798874e55738a62
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
-# <a name="move-data-to-and-from-documentdb-using-azure-data-factory"></a>使用 Azure Data Factory 從 DocumentDB 來回移動資料
-本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出 Azure DocumentDB。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。 
+# <a name="move-data-to-and-from-azure-cosmos-db-using-azure-data-factory"></a>使用 Azure Data Factory 從 Azure Cosmos DB 來回移動資料
+本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出 Azure Cosmos DB (DocumentDB API)。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。 
 
-您可以將資料從任何支援的來源資料存放區複製到 Azure DocumentDB，或從 Azure DocumentDB 複製到任何支援的接收資料存放區。 如需複製活動所支援作為來源或接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 
+您可以將資料從任何支援的來源資料存放區複製到 Azure Cosmos DB，或從 Azure Cosmos DB 複製到任何支援的接收資料存放區。 如需複製活動所支援作為來源或接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 
 
-> [!NOTE]
-> Data Management Gateway 2.1 版及更新版本支援從內部部署/Azure IaaS 資料存放區複製資料到 Azure DocumentDB (反之亦然)。
+> [!IMPORTANT]
+> Azure Cosmos DB 連接器只支援 DocumentDB API。
 
-## <a name="supported-versions"></a>支援的版本
-這個 DocumentDB 連接器支援將資料複製到 DocumentDB 單一分割集合和已分割的集合，或從中複製出來。 不支援[適用於 MongoDB 的 DocDB](../documentdb/documentdb-protocol-mongodb.md)。 若要將資料依原樣複製到 JSON 檔案或另一個 DocumentDB 集合，或從這些檔案或集合依原樣複製資料，請參閱[匯入/匯出 JSON 文件](#importexport-json-documents)。
+若要將資料依原樣複製到 JSON 檔案或另一個 Cosmos DB 集合，或從這些檔案或集合依原樣複製資料，請參閱[匯入/匯出 JSON 文件](#importexport-json-documents)。
 
 ## <a name="getting-started"></a>開始使用
-您可以藉由使用不同的工具/API，建立內含複製活動的管線，以將資料移進/移出 Azure DocumentDB。
+您可以藉由使用不同的工具/API，建立內含複製活動的管線，以將資料移進/移出 Azure Cosmos DB。
 
 建立管線的最簡單方式就是使用「複製精靈」。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
 
@@ -45,17 +45,17 @@ ms.lasthandoff: 04/20/2017
 2. 建立**資料集**，代表複製作業的輸入和輸出資料。 
 3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到 DocumentDB (或從 DocumentDB 複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples)一節。 
+使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到 Cosmos DB (或從 Cosmos DB 複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples)一節。 
 
-下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 DocumentDB 特定的 Data Factory 實體： 
+下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 Cosmos DB 特定的 Data Factory 實體： 
 
 ## <a name="linked-service-properties"></a>連結服務屬性
-下表提供 Azure DocumentDB 連結服務專屬 JSON 元素的描述。
+下表提供 Azure Cosmos DB 連結服務專屬 JSON 元素的描述。
 
 | **屬性** | **說明** | **必要** |
 | --- | --- | --- |
 | 類型 |類型屬性必須設為： **DocumentDb** |是 |
-| connectionString |指定連接到 DocumentDB 資料庫所需的資訊。 |是 |
+| connectionString |指定連接到 Azure Cosmos DB 資料庫所需的資訊。 |是 |
 
 ## <a name="dataset-properties"></a>資料集屬性
 如需可用來定義資料集的完整區段和屬性清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 資料集 JSON 的結構、可用性和原則等區段類似於所有的資料集類型 (SQL Azure、Azure Blob、Azure 資料表等)。
@@ -64,16 +64,16 @@ ms.lasthandoff: 04/20/2017
 
 | **屬性** | **說明** | **必要** |
 | --- | --- | --- |
-| collectionName |DocumentDB 文件集合的名稱。 |是 |
+| collectionName |Cosmos DB 文件集合的名稱。 |是 |
 
 範例：
 
 ```JSON
 {
-  "name": "PersonDocumentDbTable",
+  "name": "PersonCosmosDbTable",
   "properties": {
     "type": "DocumentDbCollection",
-    "linkedServiceName": "DocumentDbLinkedService",
+    "linkedServiceName": "CosmosDbLinkedService",
     "typeProperties": {
       "collectionName": "Person"
     },
@@ -86,7 +86,7 @@ ms.lasthandoff: 04/20/2017
 }
 ```
 ### <a name="schema-by-data-factory"></a>Data factory 的結構描述
-針對無結構描述的資料存放區 (如 DocumentDB)，Data Factory 服務會以下列其中一種方式推斷結構描述：  
+針對無結構描述的資料存放區 (如 Azure Cosmos DB)，Data Factory 服務會以下列一種方式推斷結構描述：  
 
 1. 如果您是使用資料集定義中的 **structure** 屬性來定義結構，Data Factory 服務會將此結構接受為結構描述。 在此情況下，如果資料列不包含資料行的值，則會使用 null 值。
 2. 如果您不是使用資料集定義中的 **structure** 屬性來指定結構，Data Factory 服務會使用資料的第一列來推斷結構描述。 在此情況下，如果第一個資料列不包含完整的結構描述，某些資料行會因複製作業而遺失。
@@ -105,32 +105,32 @@ ms.lasthandoff: 04/20/2017
 
 | **屬性** | **說明** | **允許的值** | **必要** |
 | --- | --- | --- | --- |
-| query |指定查詢來讀取資料。 |DocumentDB 所支援的查詢字串。 <br/><br/>範例：`SELECT c.BusinessEntityID, c.PersonType, c.NameStyle, c.Title, c.Name.First AS FirstName, c.Name.Last AS LastName, c.Suffix, c.EmailPromotion FROM c WHERE c.ModifiedDate > \"2009-01-01T00:00:00\"` |否 <br/><br/>如果未指定，執行的 SQL 陳述式：`select <columns defined in structure> from mycollection` |
-| nestingSeparator |用來表示文件為巢狀文件的特殊字元 |任何字元。 <br/><br/>DocumentDB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data Factory 可讓使用者透過 nestingSeparator (也就是上述範例中的 “.”) 表示階層 。 使用分隔符號，複製活動將會根據資料表定義中的 “Name.First”、“Name.Middle” 和 “Name.Last”，產生含有三個子元素 (First、Middle 和 Last) 的 "Name" 物件。 |否 |
+| query |指定查詢來讀取資料。 |Azure Cosmos DB 所支援的查詢字串。 <br/><br/>範例： `SELECT c.BusinessEntityID, c.PersonType, c.NameStyle, c.Title, c.Name.First AS FirstName, c.Name.Last AS LastName, c.Suffix, c.EmailPromotion FROM c WHERE c.ModifiedDate > \"2009-01-01T00:00:00\"` |否 <br/><br/>如果未指定，執行的 SQL 陳述式：`select <columns defined in structure> from mycollection` |
+| nestingSeparator |用來表示文件為巢狀文件的特殊字元 |任何字元。 <br/><br/>Azure Cosmos DB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data Factory 可讓使用者透過 nestingSeparator (也就是上述範例中的 “.”) 表示階層 。 使用分隔符號，複製活動將會根據資料表定義中的 “Name.First”、“Name.Middle” 和 “Name.Last”，產生含有三個子元素 (First、Middle 和 Last) 的 "Name" 物件。 |否 |
 
 **DocumentDbCollectionSink** 支援下列屬性：
 
 | **屬性** | **說明** | **允許的值** | **必要** |
 | --- | --- | --- | --- |
-| nestingSeparator |來源資料行名稱中用來表示需要巢狀文件的特殊字元。 <br/><br/>以上面範例為例：輸出資料表中的 `Name.First` 會在 DocumentDB 文件中產生下列 JSON 結構：<br/><br/>"Name": {<br/>    "First": "John"<br/>}, |用來分隔巢狀層級的字元。<br/><br/>預設值為 `.` (點)。 |用來分隔巢狀層級的字元。 <br/><br/>預設值為 `.` (點)。 |
-| writeBatchSize |為了建立文件而傳送到 DocumentDB 服務的平行要求數目。<br/><br/>使用這個屬性從 DocumentDB 來回複製資料時，可以微調效能。 增加 writeBatchSize 時，您可預期有更好的效能，因為對 DocumentDB 傳送了更多的平行要求。 不過，您必須避免可能擲回錯誤訊息的節流：「要求速率很高」。<br/><br/>節流是由許多因素所決定，包括文件大小、文件中的詞彙數目、目標集合的檢索原則等。對於複製作業，您可以使用更好的集合 (例如 S3) 以取得最多可用輸送量 (2,500 要求單位/秒)。 |Integer |否 (預設值：5) |
+| nestingSeparator |來源資料行名稱中用來表示需要巢狀文件的特殊字元。 <br/><br/>以上面範例為例：輸出資料表中的 `Name.First` 會在 Cosmos DB 文件中產生下列 JSON 結構：<br/><br/>"Name": {<br/>    "First": "John"<br/>}, |用來分隔巢狀層級的字元。<br/><br/>預設值為 `.` (點)。 |用來分隔巢狀層級的字元。 <br/><br/>預設值為 `.` (點)。 |
+| writeBatchSize |為了建立文件而傳送到 Azure Cosmos DB 服務的平行要求數目。<br/><br/>使用這個屬性從 Cosmos DB 來回複製資料時，可以微調效能。 增加 writeBatchSize 時，您可預期有更好的效能，因為對 Cosmos DB 傳送了更多的平行要求。 不過，您必須避免可能擲回錯誤訊息的節流：「要求速率很高」。<br/><br/>節流是由許多因素所決定，包括文件大小、文件中的詞彙數目、目標集合的檢索原則等。對於複製作業，您可以使用更好的集合 (例如 S3) 以取得最多可用輸送量 (2,500 要求單位/秒)。 |Integer |否 (預設值：5) |
 | writeBatchTimeout |在逾時前等待作業完成的時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
 
 ## <a name="importexport-json-documents"></a>匯入/匯出 JSON 文件
-使用此 DocumentDB 連接器，您可以輕鬆地
+使用此 Cosmos DB 連接器，您可以輕鬆地
 
-* 將 JSON 文件從各種來源匯入到 DocumentDB，包括 Azure Blob、Azure Data Lake、內部部署的檔案系統，或 Azure Data Factory 所支援的其他檔案型存放區。
-* 將 JSON 文件從 DocumentDB 集合匯出至各種檔案型存放區。
-* 在兩個 DocumentDB 集合之間依原樣移轉資料。
+* 將 JSON 文件從各種來源匯入到 Cosmos DB，包括 Azure Blob、Azure Data Lake、內部部署的檔案系統，或 Azure Data Factory 所支援的其他檔案型存放區。
+* 將 JSON 文件從 Cosmos DB 集合匯出至各種檔案型存放區。
+* 在兩個 Cosmos DB 集合之間依原樣移轉資料。
 
 達成這種無從驗證結構描述的複製 
-* 使用複製精靈時，核取 [依原樣匯出到 JSON 檔案或 DocumentDB 集合] 選項。
-* 使用 JSON 編輯時，請勿在 DocumentDB 資料集中指定 "structure" 區段，也不要在複製活動的 DocumentDB 來源/接收器上指定 "nestingSeparator" 屬性。 若要從 JSON 檔案匯入或匯出到這些檔案，請在檔案存放區資料集內，將格式類型指定為 "JsonFormat"、設定 "filePattern"，然後略過其餘格式設定，如需詳細資料，請參閱 [JSON 格式](data-factory-supported-file-and-compression-formats.md#json-format)一節。
+* 使用複製精靈時，核取 [依原樣匯出到 JSON 檔案或 Cosmos DB 集合] 選項。
+* 使用 JSON 編輯時，請勿在 Cosmos DB 資料集中指定 "structure" 區段，也不要在複製活動的 Cosmos DB 來源/接收器上指定 "nestingSeparator" 屬性。 若要從 JSON 檔案匯入或匯出到這些檔案，請在檔案存放區資料集內，將格式類型指定為 "JsonFormat"、設定 "filePattern"，然後略過其餘格式設定，如需詳細資料，請參閱 [JSON 格式](data-factory-supported-file-and-compression-formats.md#json-format)一節。
 
 ## <a name="json-examples"></a>JSON 範例
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們示範如何將資料複製到 Azure DocumentDB 和「Azure Blob 儲存體」，以及從中複製資料。 不過，您可以使用 Azure Data Factory 中的「複製活動」，將資料從任何來源「直接」複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats)所述的任何接收器。
+以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們示範如何將資料複製到 Azure Cosmos DB 和 Azure Blob 儲存體，以及從中複製資料。 不過，您可以使用 Azure Data Factory 中的「複製活動」，將資料從任何來源「直接」複製到[這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats)所述的任何接收器。
 
-## <a name="example-copy-data-from-documentdb-to-azure-blob"></a>範例：將資料從 DocumentDB 複製到 Azure Blob
+## <a name="example-copy-data-from-azure-cosmos-db-to-azure-blob"></a>範例：將資料從 Azure Cosmos DB 複製到 Azure Blob
 下列範例顯示：
 
 1. [DocumentDb](#linked-service-properties)類型的連結服務。
@@ -139,13 +139,13 @@ ms.lasthandoff: 04/20/2017
 4. [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 5. 具有使用 [DocumentDbCollectionSource](#copy-activity-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-此範例會將 Azure DocumentDB 中的資料複製到 Azure Blob。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
+此範例會將 Azure Cosmos DB 中的資料複製到 Azure Blob。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
-**Azure DocumentDB 連結服務：**
+**Azure Cosmos DB 連結服務︰**
 
 ```JSON
 {
-  "name": "DocumentDbLinkedService",
+  "name": "CosmosDbLinkedService",
   "properties": {
     "type": "DocumentDb",
     "typeProperties": {
@@ -169,16 +169,16 @@ ms.lasthandoff: 04/20/2017
 ```
 **Azure DocumentDB 輸入資料集：**
 
-此範例假設您在 Azure DocumentDB 資料庫中擁有名為 **Person** 的集合。
+此範例假設您在 Azure Cosmos DB 資料庫中擁有名為 Person 的集合。
 
 設定 “external”: ”true” 和指定 externalData 原則即可通知 Data Factory 服務：這是 Azure Data Factory 外部的資料表而且不是由 Data Factory 中的活動所產生。
 
 ```JSON
 {
-  "name": "PersonDocumentDbTable",
+  "name": "PersonCosmosDbTable",
   "properties": {
     "type": "DocumentDbCollection",
-    "linkedServiceName": "DocumentDbLinkedService",
+    "linkedServiceName": "CosmosDbLinkedService",
     "typeProperties": {
       "collectionName": "Person"
     },
@@ -216,7 +216,7 @@ ms.lasthandoff: 04/20/2017
   }
 }
 ```
-DocumentDB 資料庫中 Person 集合中的範例 JSON 文件：
+Cosmos DB 資料庫中 Person 集合中的範例 JSON 文件：
 
 ```JSON
 {
@@ -228,7 +228,7 @@ DocumentDB 資料庫中 Person 集合中的範例 JSON 文件：
   }
 }
 ```
-DocumentDB 支援在階層式 JSON 文件上使用類似 SQL 的語法來查詢文件。
+Cosmos DB 支援在階層式 JSON 文件上使用類似 SQL 的語法來查詢文件。
 
 範例： 
 
@@ -236,7 +236,7 @@ DocumentDB 支援在階層式 JSON 文件上使用類似 SQL 的語法來查詢�
 SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as MiddleName, Person.Name.Last AS LastName FROM Person
 ```
 
-下列管線會將資料從 DocumentDB 資料庫中的 Person 集合複製到 Azure Blob。 複製活動中已指定為輸入和輸出資料集。  
+下列管線會將資料從 Azure Cosmos DB 資料庫中的 Person 集合複製到 Azure Blob。 複製活動中已指定為輸入和輸出資料集。  
 
 ```JSON
 {
@@ -260,7 +260,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
         },
         "inputs": [
           {
-            "name": "PersonDocumentDbTable"
+            "name": "PersonCosmosDbTable"
           }
         ],
         "outputs": [
@@ -279,7 +279,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
   }
 }
 ```
-## <a name="example-copy-data-from-azure-blob-to-azure-documentdb"></a>範例：將資料從 Azure Blob 複製到 Azure DocumentDB
+## <a name="example-copy-data-from-azure-blob-to-azure-cosmos-db"></a>範例：將資料從 Azure Blob 複製到 Azure Cosmos DB 
 下列範例顯示：
 
 1. [DocumentDb](#azure-documentdb-linked-service-properties)類型的連結服務。
@@ -288,7 +288,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
 4. [DocumentDbCollection](#azure-documentdb-dataset-type-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 5. 具有使用 [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties) 和 [DocumentDbCollectionSink](#azure-documentdb-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-此範例會從 Azure Blob 複製資料到 Azure DocumentDB。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
+此範例將資料從 Azure Blob 複製到 Azure Cosmos DB。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
 
 **Azure Blob 儲存體連結服務：**
 
@@ -303,11 +303,11 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
   }
 }
 ```
-**Azure DocumentDB 連結服務：**
+**Azure Cosmos DB 連結服務︰**
 
 ```JSON
 {
-  "name": "DocumentDbLinkedService",
+  "name": "CosmosDbLinkedService",
   "properties": {
     "type": "DocumentDb",
     "typeProperties": {
@@ -359,13 +359,13 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
   }
 }
 ```
-**Azure DocumentDB 輸出資料集：**
+**Azure Cosmos DB 輸出資料集︰**
 
 此範例會將資料複製到名為 "Person" 的集合。
 
 ```JSON
 {
-  "name": "PersonDocumentDbTableOut",
+  "name": "PersonCosmosDbTableOut",
   "properties": {
     "structure": [
       {
@@ -386,7 +386,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
       }
     ],
     "type": "DocumentDbCollection",
-    "linkedServiceName": "DocumentDbLinkedService",
+    "linkedServiceName": "CosmosDbLinkedService",
     "typeProperties": {
       "collectionName": "Person"
     },
@@ -397,7 +397,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
   }
 }
 ```
-下列管線會將資料從 Azure Blob 複製到 DocumentDB 資料庫中的 Person 集合。 複製活動中已指定為輸入和輸出資料集。
+下列管線會將資料從 Azure Blob 複製到 Cosmos DB 資料庫中的 Person 集合。 複製活動中已指定為輸入和輸出資料集。
 
 ```JSON
 {
@@ -428,7 +428,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
         ],
         "outputs": [
           {
-            "name": "PersonDocumentDbTableOut"
+            "name": "PersonCosmosDbTableOut"
           }
         ],
         "policy": {
@@ -447,7 +447,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
 ```
 1,John,,Doe
 ```
-則 DocumentDB 中的輸出 JSON 會是：
+則 Cosmos DB 中的輸出 JSON 會是：
 
 ```JSON
 {
@@ -460,7 +460,7 @@ SELECT Person.PersonId, Person.Name.First AS FirstName, Person.Name.Middle as Mi
   "id": "a5e8595c-62ec-4554-a118-3940f4ff70b6"
 }
 ```
-DocumentDB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data Factory 可讓使用者透過 **nestingSeparator** (也就是此範例中的 “.”) 表示階層 。 使用分隔符號，複製活動將會根據資料表定義中的 “Name.First”、“Name.Middle” 和 “Name.Last”，產生含有三個子元素 (First、Middle 和 Last) 的 "Name" 物件。
+Azure Cosmos DB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data Factory 可讓使用者透過 **nestingSeparator** (也就是此範例中的 “.”) 表示階層 。 使用分隔符號，複製活動將會根據資料表定義中的 “Name.First”、“Name.Middle” 和 “Name.Last”，產生含有三個子元素 (First、Middle 和 Last) 的 "Name" 物件。
 
 ## <a name="appendix"></a>附錄
 1. **問：**
@@ -469,17 +469,17 @@ DocumentDB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data
     **答：**
    否。
 2. **問：**
-   重試複製 DocumentDB 時，系統如何處理已經複製的記錄？
+   重試複製 Azure Cosmos DB 時，系統如何處理已經複製的記錄？
 
     **回：**
    如果記錄有 [識別碼] 欄位，而複製作業嘗試插入具有相同識別碼的記錄，則複製作業會擲回錯誤。  
 3. **問：**
-   資料處理站支援[範圍或雜湊式資料分割](https://azure.microsoft.com/documentation/articles/documentdb-partition-data/)嗎？
+   資料處理站支援[範圍或雜湊式資料分割](../documentdb/documentdb-partition-data.md)嗎？
 
     **答：**
    否。
 4. **問：**
-   我可以指定多個資料表 DocumentDB 集合嗎？
+   我可以為資料表指定多個 Azure Cosmos DB 集合嗎？
 
     **答：**
    否。 目前只能指定一個集合。

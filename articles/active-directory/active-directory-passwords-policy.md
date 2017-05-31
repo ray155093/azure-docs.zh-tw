@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 04/26/2017
 ms.author: joflore
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: f318499ac18a9d03bb108675de199481ab52fd1c
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 0c586692720512d2822e67994e22e1f6d50fd921
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -28,20 +28,43 @@ ms.lasthandoff: 05/03/2017
 
 ## <a name="administrator-password-policy-differences"></a>系統管理員密碼原則差異
 
-Microsoft 會對任何系統管理員角色 (全域管理員、技術支援系統管理員、密碼管理員等) 強制執行強式預設密碼重設原則
+Microsoft 會對任何系統管理員角色 (全域管理員、技術支援系統管理員、密碼管理員等) 強制執行強式預設「雙閘道」密碼重設原則
 
 這會讓系統管理員無法使用安全性問題，並強制執行下列各項。
 
-在下列情況下套用一個閘道原則 (需要一組驗證資料)
+在下列狀況下適用需要兩種驗證資料 (電子郵件地址「和」電話號碼) 的雙關卡原則
+
+* 所有的 Azure 系統管理員角色
+  * 服務台系統管理員
+  * 服務支援管理員
+  * 計費管理員
+  * 合作夥伴第 1 層支援
+  * 合作夥伴第 2 層支援
+  * Exchange 服務管理員
+  * Lync 服務管理員
+  * 使用者帳戶管理員
+  * 目錄撰寫者
+  * 全域管理員/公司系統管理員
+  * SharePoint 服務管理員
+  * 規範管理員
+  * 應用程式系統管理員
+  * 安全性系統管理員
+  * 特殊權限角色管理員
+  * Intune 服務管理員
+  * 應用程式 Proxy 服務管理員
+  * CRM 服務管理員
+  * Power BI 服務管理員
+  
+* 試用已經過 30 天**或**
+* 虛名網域存在於 (contoso.com) **或**
+* Azure AD Connect 正在同步處理內部部署目錄中的身分識別
+
+### <a name="exceptions"></a>例外狀況
+在下列狀況下適用需要一種驗證資料 (電子郵件地址「或」電話號碼) 的單關卡原則
 
 * 試用的前 30 天**或**
 * 虛名網域不存在 (*.onmicrosoft.com) **且** Azure AD Connect 並未同步處理身分識別
 
-在下列情況下套用兩個閘道原則 (需要兩組驗證資料)
-
-* 試用已經過 30 天**或**
-* 虛名網域存在於 (contoso.com) **或**
-* Azure AD Connect 正在同步處理內部部署目錄中的身分識別
 
 ## <a name="userprincipalname-policies-that-apply-to-all-user-accounts"></a>適用於所有使用者帳戶的 UserPrincipalName 原則
 
@@ -118,3 +141,4 @@ Microsoft 雲端服務的全域管理員可以使用「適用於 Windows PowerSh
 * [**技術性深入探討**](active-directory-passwords-how-it-works.md) - 深入探索以了解其運作方式
 * [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ - 您一直想要詢問之問題的答案
 * [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何解決我們看到的 SSPR 常見問題
+
