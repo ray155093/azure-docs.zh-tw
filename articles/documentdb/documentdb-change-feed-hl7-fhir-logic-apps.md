@@ -1,33 +1,34 @@
 ---
-title: "變更 HL7 FHIR 資源的摘要 - Azure DocumentDB | Microsoft Docs"
-description: "了解如何使用 Azure Logic Apps、DocumentDB 和服務匯流排設定 HL7 FHIR 病患之醫療保健記錄的變更通知。"
+title: "變更 HL7 FHIR 資源的摘要 - Azure Cosmos DB | Microsoft Docs"
+description: "了解如何使用 Azure Logic Apps、Azure Cosmos DB 和服務匯流排，來設定 HL7 FHIR 病患之醫療保健記錄的變更通知。"
 keywords: hl7 fhir
-services: documentdb
+services: cosmosdb
 author: hedidin
 manager: jhubbard
 editor: mimig
 documentationcenter: 
 ms.assetid: 0d25c11f-9197-419a-aa19-4614c6ab2d06
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/08/2017
 ms.author: b-hoedid
-translationtype: Human Translation
-ms.sourcegitcommit: c25274ad48edb0c89e3f177277af1a4ae5fb3eec
-ms.openlocfilehash: dafd6aa1172661e82bccb35dc29fd59b2c04dd6e
-ms.lasthandoff: 02/10/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 634216e4653b26e27c3144c5002b8e66617461c9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 
-# <a name="notifying-patients-of-hl7-fhir-health-care-record-changes-using-logic-apps-and-documentdb"></a>使用 Logic Apps 與 DocumentDB 對 HL7 FHIR 病患的醫療保健記錄變更發出通知
+# <a name="notifying-patients-of-hl7-fhir-health-care-record-changes-using-logic-apps-and-azure-cosmos-db"></a>使用 Logic Apps 與 Azure Cosmos DB 對 HL7 FHIR 病患的醫療保健記錄變更發出通知
 
 某家醫療保健組織最近與 Howard Edidin 這位 Azure MVP 連絡，因為他們想要在其病患入口網站中新增功能。 他們需要在病患的健康記錄有所更新時對病患發出通知，並讓他們能夠訂閱這些更新。 
 
-本文會逐步引導您了解使用 DocumentDB、Logic Apps 和服務匯流排為此醫療保健組織所建立的變更摘要通知方案。 
+本文會逐步引導您了解使用 Azure Cosmos DB、Logic Apps 和服務匯流排，為此醫療保健組織所建立的變更摘要通知方案。 
 
 ## <a name="project-requirements"></a>專案需求
 - 提供者以 XML 格式傳送 HL7 綜合臨床文件架構 (Consolidated-Clinical Document Architecture, C-CDA) 文件。 C-CDA 文件幾乎包含所有類型的臨床文件，包括家族史和免疫記錄之類的臨床文件，以及系統管理、工作流程和財務方面的文件。 
@@ -39,15 +40,15 @@ ms.lasthandoff: 02/10/2017
 概括而言，此專案需要下列工作流程步驟︰ 
 1. 將 C-CDA 文件轉換成 FHIR 資源。
 2. 針對修改過的 FHIR 資源執行週期性觸發輪詢。 
-2. 呼叫自訂應用程式 FhirNotificationApi 來連線到 DocumentDB，並查詢是否有新的或修改過的文件。
+2. 呼叫自訂應用程式 FhirNotificationApi 來連線到 Azure Cosmos DB，並查詢是否有新的或修改過的文件。
 3. 將回應儲存到服務匯流排佇列。
 4. 輪詢服務匯流排佇列中的新訊息。
 5. 傳送電子郵件通知給病患。
 
 ## <a name="solution-architecture"></a>方案架構
 此方案需要三個 Logic Apps 才能符合上述需求，並完成方案工作流程。 這三個邏輯應用程式分別是︰
-1. **HL7-FHIR-Mapping 應用程式**︰接收 HL7 C-CDA 文件，將其轉換為 FHIR 資源，然後儲存至 DocumentDB。
-2. **EHR 應用程式**︰查詢 DocumentDB FHIR 儲存機制，並將回應儲存到服務匯流排佇列。 此邏輯應用程式使用 [API 應用程式](#api-app)來擷取新的和變更的文件。
+1. **HL7-FHIR-Mapping 應用程式**︰接收 HL7 C-CDA 文件、將其轉換為 FHIR 資源，然後儲存至 Azure Cosmos DB。
+2. **EHR 應用程式**︰查詢 Azure Cosmos DB FHIR 存放庫，並將回應儲存到服務匯流排佇列。 此邏輯應用程式使用 [API 應用程式](#api-app)來擷取新的和變更的文件。
 3. **處理通知應用程式**︰傳送內文中有 FHIR 資源文件的電子郵件通知。
 
 ![此 HL7 FHIR 醫療保健方案所使用的三個 Logic Apps](./media/documentdb-change-feed-hl7-fhir-logic-apps/documentdb-health-care-solution-hl7-fhir.png)
@@ -56,10 +57,10 @@ ms.lasthandoff: 02/10/2017
 
 ### <a name="azure-services-used-in-the-solution"></a>此方案所使用的 Azure 服務
 
-#### <a name="documentdb"></a>DocumentDB
-DocumentDB 是 FHIR 資源的儲存機制，如下圖所示。
+#### <a name="azure-cosmos-db-documentdb-api"></a>Azure Cosmos DB DocumentDB API
+Azure Cosmos DB 是 FHIR 資源的存放庫，如下圖所示。
 
-![此 HL7 FHIR 醫療保健教學課程所使用的 Azure DocumentDB 帳戶](./media/documentdb-change-feed-hl7-fhir-logic-apps/documentdb-account.png)
+![此 HL7 FHIR 醫療保健教學課程所使用的 Azure Cosmos DB 帳戶](./media/documentdb-change-feed-hl7-fhir-logic-apps/documentdb-account.png)
 
 #### <a name="logic-apps"></a>Logic Apps
 Logic Apps 會處理工作流程程序。 下列螢幕擷取畫面顯示為此方案所建立的邏輯應用程式。 
@@ -70,9 +71,9 @@ Logic Apps 會處理工作流程程序。 下列螢幕擷取畫面顯示為此�
     ![用來接收 HL7 FHIR 醫療保健記錄的邏輯應用程式](./media/documentdb-change-feed-hl7-fhir-logic-apps/documentdb-hl7-fhir-logic-apps-json-transform.png)
 
 
-2. **EHR 應用程式**︰查詢 DocumentDB FHIR 儲存機制，並將回應儲存到服務匯流排佇列。 GetNewOrModifiedFHIRDocuments 應用程式的程式碼在下面。
+2. **EHR 應用程式**︰查詢 Azure Cosmos DB FHIR 存放庫，並將回應儲存到服務匯流排佇列。 GetNewOrModifiedFHIRDocuments 應用程式的程式碼在下面。
 
-    ![用來查詢 Azure DocumentDB 的邏輯應用程式](./media/documentdb-change-feed-hl7-fhir-logic-apps/documentdb-hl7-fhir-logic-apps-api-app.png)
+    ![用來查詢 Azure Cosmos DB 的邏輯應用程式](./media/documentdb-change-feed-hl7-fhir-logic-apps/documentdb-hl7-fhir-logic-apps-api-app.png)
 
 3. **處理通知應用程式**︰傳送內文中有 FHIR 資源文件的電子郵件通知。
 
@@ -86,9 +87,9 @@ Logic Apps 會處理工作流程程序。 下列螢幕擷取畫面顯示為此�
 <a id="api-app"></a>
 
 #### <a name="api-app"></a>API 應用程式
-API 應用程式會連線到 DocumentDB，並依資源類型查詢新的或修改過的 FHIR 文件。 此應用程式有一個控制器 **FhirNotificationApi** 與一項作業 **GetNewOrModifiedFhirDocuments**，請參閱 [API 應用程式來源](#api-app-source)。
+API 應用程式會連線到 Azure Cosmos DB，並依資源類型查詢新的或修改過的 FHIR 文件。 此應用程式有一個控制器 **FhirNotificationApi** 與一項作業 **GetNewOrModifiedFhirDocuments**，請參閱 [API 應用程式來源](#api-app-source)。
 
-我們會使用來自 DocumentDB .NET API 的 [`CreateDocumentChangeFeedQuery`](https://msdn.microsoft.com/en-us/library/azure/microsoft.azure.documents.client.documentclient.createdocumentchangefeedquery.aspx) 類別。 如需詳細資訊，請參閱 [DocumentDB 變更摘要文章](https://docs.microsoft.com/en-us/azure/documentdb/documentdb-change-feed)。 
+我們會使用來自 Azure Cosmos DB .NET API 的 [`CreateDocumentChangeFeedQuery`](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentchangefeedquery.aspx) 類別。 如需詳細資訊，請參閱[變更摘要文章](https://docs.microsoft.com/azure/documentdb/documentdb-change-feed)。 
 
 ##### <a name="getnewormodifiedfhirdocuments-operation"></a>GetNewOrModifiedFhirDocuments 作業
 
@@ -226,12 +227,12 @@ API 應用程式會連線到 DocumentDB，並依資源類型查詢新的或修�
 
 ## <a name="summary"></a>摘要
 
-- 您已了解 DocumentDB 原生支援對新的或修改過的文件發出通知，以及其使用方式有多麼簡單。 
+- 您已了解 Azure Cosmos DB 原生支援對新的或修改過的文件發出通知，以及其使用方式有多麼簡單。 
 - 利用 Logic Apps，您可以建立工作流程，而不需要撰寫任何程式碼。
 - 使用 Azure 服務匯流排佇列來處理 HL7 FHIR 文件的散發。
 
 ## <a name="next-steps"></a>後續步驟
-如需 DocumentDB 的詳細資訊，請參閱 [DocumentDB 首頁](https://azure.microsoft.com/en-us/services/documentdb/)。 如需 Logic Apps 的詳細資訊，請參閱 [Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/)。
+如需 Azure Cosmos DB 的詳細資訊，請參閱 [Azure Cosmos DB 首頁](https://azure.microsoft.com/services/documentdb/)。 如需 Logic Apps 的詳細資訊，請參閱 [Logic Apps](https://azure.microsoft.com/services/logic-apps/)。
 
 
 

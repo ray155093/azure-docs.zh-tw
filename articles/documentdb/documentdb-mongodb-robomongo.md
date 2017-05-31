@@ -1,37 +1,38 @@
 ---
-title: "搭配 Azure DocumentDB 使用 Robomongo 與 MongoDB | Microsoft Docs"
-description: "了解如何使用 Robomongo 搭配 DocumentDB：適用於 MongoDB 的 API 帳戶"
+title: "使用 Robomongo 連絡 Azure Cosmos DB | Microsoft Docs"
+description: "了解如何使用 Robomongo 搭配 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶"
 keywords: robomongo
-services: documentdb
+services: cosmosdb
 author: AndrewHoh
 manager: jhubbard
 editor: 
 documentationcenter: 
 ms.assetid: 352c5fb9-8772-4c5f-87ac-74885e63ecac
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/06/2017
+ms.date: 04/28/2017
 ms.author: anhoh
-translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: a8db7fbde5d6cd01b558ec351719bae361710efd
-ms.lasthandoff: 03/08/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: bad2d57a6252bb30e4c8435c52da19c95304d8da
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="use-robomongo-with-a-documentdb-api-for-mongodb-account"></a>使用 Robomongo 搭配 DocumentDB：適用於 MongoDB 的 API 帳戶
-若要使用 Robomongo 連線到 Azure DocumentDB：適用於 MongoDB 的 API 帳戶，您必須︰
+# <a name="use-robomongo-with-an-azure-cosmos-db-api-for-mongodb-account"></a>使用 Robomongo 搭配 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶
+若要使用 Robomongo 連線到 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶，您必須︰
 
 * 下載並安裝 [Robomongo](https://robomongo.org/)
-* 具備您的 DocumentDB：適用於 MongoDB 的 API 帳戶的[連接字串](documentdb-connect-mongodb-account.md)資訊
+* 具備您的 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶[連接字串](documentdb-connect-mongodb-account.md)資訊
 
 ## <a name="connect-using-robomongo"></a>使用 Robomongo 來連接
-若要將 DocumentDB：適用於 MongoDB 的 API 帳戶新增至 Robomongo MongoDB 連線，請執行下列步驟。
+若要將 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶新增至 Robomongo MongoDB 連線，請執行下列步驟。
 
-1. 使用[這裡](documentdb-connect-mongodb-account.md)的指示來擷取 DocumentDB：適用於 MongoDB 的 API 帳戶的連線資訊。
+1. 使用[這裡](documentdb-connect-mongodb-account.md)的指示來擷取 Azure Cosmos DB：適用於 MongoDB 的 API 帳戶的連線資訊。
 
     ![[連接字串] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-mongodb-robomongo/connectionstringblade.png)
 2. 執行 *Robomongo.exe*
@@ -51,5 +52,5 @@ ms.lasthandoff: 03/08/2017
 7. 最後，按一下 [測試] 以確認您能夠連接，然後按一下 [儲存]。
 
 ## <a name="next-steps"></a>後續步驟
-* 瀏覽 DocumentDB：適用於 MongoDB 的 API [範例](documentdb-mongodb-samples.md)。
+* 瀏覽 Azure Cosmos DB：適用於 MongoDB 的 API [範例](documentdb-mongodb-samples.md)。
 

@@ -1,28 +1,30 @@
 ---
-title: "在 Azure DocumentDB 中模型化資料 | Microsoft Docs"
-description: "了解如何將 DocumentDB (NoSQL 文件資料庫) 的資料模型化。"
+title: "在 Azure Cosmos DB 中模型化資料 | Microsoft Docs"
+description: "了解 Azure Cosmos DB (一種全域散發的多模型資料庫) 的模型化資料。"
 keywords: "模型化資料"
-services: documentdb
+services: cosmosdb
 author: arramac
 manager: jhubbard
 editor: mimig1
 documentationcenter: 
 ms.assetid: 69521eb9-590b-403c-9b36-98253a4c88b5
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/03/2016
 ms.author: arramac
-translationtype: Human Translation
-ms.sourcegitcommit: 09f42bae67f794f12c7c37cd25c25f4c991fe893
-ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 6c7a921ca6eb3a1e840c3020b6016d2cf1915d14
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="modeling-data-in-documentdb"></a>在 DocumentDB 中模型化資料
-雖然無結構描述的資料庫 (像是 Azure DocumentDB)，讓您極容易運用您的資料模型變更，您仍然應該花一些時間思考您的資料。 
+# <a name="modeling-data-in-azure-cosmos-db"></a>在 Azure Cosmos DB 中模型化資料
+雖然無結構描述的資料庫 (像是 Azure Cosmos DB)，讓您極容易運用資料模型變更，但是您仍然應該花一些時間來思考資料。 
 
 要如何儲存資料？ 您的應用程式要如何擷取及查詢資料？ 您的應用程式是大量讀取或大量寫入？ 
 
@@ -35,7 +37,7 @@ ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
 * 何時內嵌資料，以及何時連結至資料？
 
 ## <a name="embedding-data"></a>內嵌資料
-當您開始在文件存放區 (例如 DocumentDB) 中將資料模型化時，請嘗試將您的實體視為 JSON 中呈現的 **獨立式文件** 。
+當您開始在文件存放區 (例如 Azure Cosmos DB) 中將資料模型化時，請嘗試將您的實體視為 JSON 中呈現的 **獨立式文件**。
 
 在我們更進一步深入探討之前，讓我們往回幾個步驟，看看我們在關聯式資料庫中如何建立某個項目的模型，這是許多人已熟悉的主題。 下列範例示範人員可能如何儲存在關聯式資料庫中。 
 
@@ -181,10 +183,10 @@ ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
 
 股票 *zaza* 可能在單一日交易數百次，而上千名使用者的組合上可能有 *zaza*。 有鑑於如上所示的資料模型，我們每天必須更新數千個組合文件許多次，導致系統無法妥善延展。 
 
-## <a name="a-idreferareferencing-data"></a><a id="Refer"></a>參考資料
+## <a id="Refer"></a>參考資料
 因此，內嵌資料於許多情況下可適用，但很明顯有時反正規化資料將會造成更多問題，使得適得其反。 那我們現在該怎麼辦？ 
 
-關聯式資料庫不是您可以建立實體之間的關聯性的唯一位置。 在文件資料庫中，您的文件中可以有實際上與其他文件中的資料相關的資訊。 現在，我不是要多用一分鐘來提倡我們建置的系統會更適合 DocumentDB 中的關聯式資料庫或任何其他文件資料庫，但是簡單的關聯性很好而且可以是非常有用。 
+關聯式資料庫不是您可以建立實體之間的關聯性的唯一位置。 在文件資料庫中，您的文件中可以有實際上與其他文件中的資料相關的資訊。 現在，我不是要多用一分鐘來提倡我們建置的系統會更適合 Azure Cosmos DB 中的關聯式資料庫或任何其他文件資料庫，但是簡單的關聯性很好而且可能非常有用。 
 
 在以下的 JSON 中，我們選擇使用先前的股票組合範例，但這次我們參考組合上的股票項目而不是加以內嵌。 如此一來，經常全天變更的股票項目，需要更新的唯一文件是單一股票文件。 
 
@@ -230,7 +232,7 @@ ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
 > 
 
 ### <a name="what-about-foreign-keys"></a>外部索引鍵呢？
-因為目前沒有條件約束、外部索引鍵之類的概念，您在文件中具有的任何文件間關聯性實際上是「弱式連結」，並且將不會由資料庫本身驗證。 如果您想要確定文件所參考的資料實際上存在，您就需要在您的應用程式中這麼做，或在 DocumentDB 上透過使用伺服器端觸發程序或預存程序。
+因為目前沒有條件約束、外部索引鍵之類的概念，您在文件中具有的任何文件間關聯性實際上是「弱式連結」，並且將不會由資料庫本身驗證。 如果您想要確定文件所參考的資料真的存在，您就需要在您的應用程式中這麼做，或在 Azure Cosmos DB 上透過使用伺服器端觸發程序或預存程序。
 
 ### <a name="when-to-reference"></a>參考時機
 一般而言，使用正規化資料模型的時機為：
@@ -258,13 +260,13 @@ ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
     }
 
     Book documents:
-    {"id": "1", "name": "DocumentDB 101" }
-    {"id": "2", "name": "DocumentDB for RDBMS Users" }
+    {"id": "1", "name": "Azure Cosmos DB 101" }
+    {"id": "2", "name": "Azure Cosmos DB for RDBMS Users" }
     {"id": "3", "name": "Taking over the world one JSON doc at a time" }
     ...
-    {"id": "100", "name": "Learn about Azure DocumentDB" }
+    {"id": "100", "name": "Learn about Azure Cosmos DB" }
     ...
-    {"id": "1000", "name": "Deep Dive in to DocumentDB" }
+    {"id": "1000", "name": "Deep Dive in to Azure Cosmos DB" }
 
 如果每個發行者書籍的數量很少而且成長有限，那麼，將書籍參考儲存在發行者文件內可能很有用。 不過，如果每個發行者的書籍數量無限，此資料模型會導致可變動、成長的陣列，如上述的範例發行者文件所示。 
 
@@ -277,13 +279,13 @@ ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
     }
 
     Book documents: 
-    {"id": "1","name": "DocumentDB 101", "pub-id": "mspress"}
-    {"id": "2","name": "DocumentDB for RDBMS Users", "pub-id": "mspress"}
+    {"id": "1","name": "Azure Cosmos DB 101", "pub-id": "mspress"}
+    {"id": "2","name": "Azure Cosmos DB for RDBMS Users", "pub-id": "mspress"}
     {"id": "3","name": "Taking over the world one JSON doc at a time"}
     ...
-    {"id": "100","name": "Learn about Azure DocumentDB", "pub-id": "mspress"}
+    {"id": "100","name": "Learn about Azure Cosmos DB", "pub-id": "mspress"}
     ...
-    {"id": "1000","name": "Deep Dive in to DocumentDB", "pub-id": "mspress"}
+    {"id": "1000","name": "Deep Dive in to Azure Cosmos DB", "pub-id": "mspress"}
 
 在上述範例中，我們在發行者文件上捨棄無限制的集合。 而我們在每個書籍文件上只有發行者的參考。
 
@@ -299,11 +301,11 @@ ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
     {"id": "a2", "name": "William Wakefield" }
 
     Book documents:
-    {"id": "b1", "name": "DocumentDB 101" }
-    {"id": "b2", "name": "DocumentDB for RDBMS Users" }
+    {"id": "b1", "name": "Azure Cosmos DB 101" }
+    {"id": "b2", "name": "Azure Cosmos DB for RDBMS Users" }
     {"id": "b3", "name": "Taking over the world one JSON doc at a time" }
-    {"id": "b4", "name": "Learn about Azure DocumentDB" }
-    {"id": "b5", "name": "Deep Dive in to DocumentDB" }
+    {"id": "b4", "name": "Learn about Azure Cosmos DB" }
+    {"id": "b5", "name": "Deep Dive in to Azure Cosmos DB" }
 
     Joining documents: 
     {"authorId": "a1", "bookId": "b1" }
@@ -321,14 +323,14 @@ ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
     {"id": "a2", "name": "William Wakefield", "books": ["b1", "b4"]}
 
     Book documents: 
-    {"id": "b1", "name": "DocumentDB 101", "authors": ["a1", "a2"]}
-    {"id": "b2", "name": "DocumentDB for RDBMS Users", "authors": ["a1"]}
-    {"id": "b3", "name": "Learn about Azure DocumentDB", "authors": ["a1"]}
-    {"id": "b4", "name": "Deep Dive in to DocumentDB", "authors": ["a2"]}
+    {"id": "b1", "name": "Azure Cosmos DB 101", "authors": ["a1", "a2"]}
+    {"id": "b2", "name": "Azure Cosmos DB for RDBMS Users", "authors": ["a1"]}
+    {"id": "b3", "name": "Learn about Azure Cosmos DB", "authors": ["a1"]}
+    {"id": "b4", "name": "Deep Dive in to Azure Cosmos DB", "authors": ["a2"]}
 
 現在，如果我有作者，我立即會知道他們的書籍，而反之，如果我載入書籍文件，我就知道作者的識別碼。 這樣可以省下對聯結資料表的中繼查詢，減少您的應用程式必須進行的伺服器來回行程數目。 
 
-## <a name="a-idwrapupahybrid-data-models"></a><a id="WrapUp"></a>混合式資料模型
+## <a id="WrapUp"></a>混合式資料模型
 我們現在已看過內嵌 (或反正規化) 和參考 (或正規化) 資料，如我們所見，各有其優缺點。 
 
 不必害怕採行不同的方式。 
@@ -364,7 +366,7 @@ ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
     Book documents:
     {
         "id": "b1",
-        "name": "DocumentDB 101",
+        "name": "Azure Cosmos DB 101",
         "authors": [
             {"id": "a1", "name": "Thomas Andersen", "thumbnailUrl": "http://....png"},
             {"id": "a2", "name": "William Wakefield", "thumbnailUrl": "http://....png"}
@@ -372,7 +374,7 @@ ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
     },
     {
         "id": "b2",
-        "name": "DocumentDB for RDBMS Users",
+        "name": "Azure Cosmos DB for RDBMS Users",
         "authors": [
             {"id": "a1", "name": "Thomas Andersen", "thumbnailUrl": "http://....png"},
         ]
@@ -386,24 +388,19 @@ ms.openlocfilehash: 93d0d7276e4ff426e87bdc3dadd736de8d6525fb
 
 在範例中，有 **預先計算彙總** 值可節省讀取作業費用高昂的處理。 在範例中，作者文件中內嵌的有些資料是在執行階段計算的資料。 每次發行新的書籍時，會建立書籍的文件 **並且** 將 countOfBooks 欄位設定為根據某位特定作者存在的書籍文件數目計算值。 在讀取繁重的系統中 (我們可以負擔執行寫入計算以最佳化讀取)，這項最佳化將很適合。
 
-有一個模型具有預先計算的欄位的能力的實現正仰賴於 DocumentDB 支援 **多文件交易**。 許多 NoSQL 存放區無法跨文件中執行交易，而因為這項限制而提倡「一律內嵌一切」的設計決策。 藉由 DocumentDB，您可以使用伺服器端觸發程序或預存程序，其會插入書籍並更新作者，全都在 ACID 交易內完成。 現在您不 **需** 在一份文件內嵌所有內容，只需要確保您的資料保持一致。
+由於 Azure Cosmos DB 支援**多文件交易**，因此模型現在能夠具有預先計算的欄位。 許多 NoSQL 存放區無法跨文件中執行交易，而因為這項限制而提倡「一律內嵌一切」的設計決策。 藉由 Azure Cosmos DB，您可以使用伺服器端觸發程序或預存程序，插入書籍並更新作者，全都在 ACID 交易內完成。 現在您不 **需** 在一份文件內嵌所有內容，只需要確保您的資料保持一致。
 
-## <a name="a-namenextstepsanext-steps"></a><a name="NextSteps"></a>後續步驟
+## <a name="NextSteps"></a>後續步驟
 從這篇文章獲得的最大的心得是了解在無結構描述的環境中的資料模型化與以往一樣重要。 
 
 正如同沒有單一方法可表示螢幕上的資料片段，沒有單一方法可為您的資料建立模型。 您需要了解您的應用程式，以及它將如何產生、取用及處理資料。 然後，藉由套用一些此處所提供的指導方針，您可以設定相關的建立模型，來處理您的應用程式的立即需求。 當您的應用程式需要進行變更時，您可以利用無結構描述之資料庫的彈性來納入變更，並輕鬆進化您的資料模型。 
 
-若要深入了解 Azure DocumentDB，請參閱服務的 [文件](https://azure.microsoft.com/documentation/services/documentdb/) 頁面。 
+若要深入了解 Azure Cosmos DB，請參閱服務的[文件 (英文)](https://azure.microsoft.com/documentation/services/documentdb/)頁面。 
 
-若要了解在 Azure DocumentDB 中微調索引，請參閱 [索引編製原則](documentdb-indexing-policies.md)上的文章。
+若要了解在 Azure Cosmos DB 中微調索引，請參閱[編製索引原則](documentdb-indexing-policies.md)上的文章。
 
-若要了解如何跨多個分割將您的資料分區，請參閱 [在 DocumentDB 中分割資料](documentdb-partition-data.md)。 
+若要了解如何跨多個分割將您的資料分區，請參閱[在 Azure Cosmos DB 中分割資料](documentdb-partition-data.md)。 
 
-最後，如需資料模型化和多租用戶應用程式分區化的指引，請參閱 [使用 Azure DocumentDB 調整多租用戶應用程式](http://blogs.msdn.com/b/documentdb/archive/2014/12/03/scaling-a-multi-tenant-application-with-azure-documentdb.aspx)。
-
-
-
-
-<!--HONumber=Jan17_HO2-->
+最後，如需模型化資料和將多租用戶應用程式分區的指引，請參閱[使用 Azure Cosmos DB 調整多租用戶應用程式 (英文)](http://blogs.msdn.com/b/documentdb/archive/2014/12/03/scaling-a-multi-tenant-application-with-azure-documentdb.aspx)。
 
 

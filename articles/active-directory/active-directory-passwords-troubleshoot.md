@@ -15,10 +15,10 @@ ms.topic: article
 ms.date: 04/26/2017
 ms.author: joflore
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: 4dae8b87904fff2f2f8665d235bf790fb1e073d0
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 6d1cfd588ad60cbdf69a432b4f4baa0b13fed0d3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -76,7 +76,6 @@ ms.lasthandoff: 05/08/2017
 | Azure AD Connect 電腦的事件記錄檔包含 PasswordResetService 所擲回的錯誤 32002。 <br> <br> 這個錯誤的內容是：「連線到 ServiceBus 時發生錯誤。權杖提供者無法提供安全性權杖...」 | 您的內部部署環境無法連線到雲端的服務匯流排端點。 這個錯誤是因為防火牆規則封鎖連往特定連接埠或網址的輸出連線所導致。 如需詳細資訊，請參閱[網路需求](active-directory-passwords-how-it-works.md#network-requirements)。 一旦您更新這些規則後，請重新啟動 Azure AD Connect 電腦，密碼回寫應該就會再次開始工作。 |
 | 在運作一段時間後，同盟或密碼雜湊同步使用者無法重設其密碼。 | 在某些罕見情況下，重新啟動 Azure AD Connect 時可能無法重新啟動密碼回寫服務。 在這些情況下，請先檢查內部部署是否已啟用密碼回寫。 若要執行此作業，請使用 Azure AD Connect 精靈或 PowerShell (請參閱上面的「作法」章節)。如果此功能已啟用，請嘗試透過 UI 或 PowerShell 再次啟用或停用功能。 如果這麼做沒有效，請嘗試完整解除安裝再重新安裝 Azure AD Connect。 |
 | 同盟或密碼雜湊同步使用者若嘗試重設其密碼，會在送出密碼後看到錯誤指出服務發生問題。 <br ><br> 此外，在密碼重設作業期間，您可能會在內部部署的事件記錄檔中看到關於管理代理程式存取遭拒的錯誤。 | 如果您在事件記錄中看到這些錯誤，請確認 AD MA 帳戶 (在設定時於精靈中所指定) 有密碼回寫的必要權限。 <br> <br> **一旦給予此權限，最多要 1 小時的時間，此權限才會透過 DC 上的 sdprop 背景工作往下傳遞。** <br> <br> 若要讓密碼重設正常運作，必須在要重設密碼的使用者物件安全性描述元上為權限加上戳記。 在使用者物件上出現此權限之前，密碼重設會繼續因存取遭拒而失敗。 |
-| 無法對特殊群組 (例如 Domain Admins 或 Enterprise Admins) 中的使用者重設密碼 | Active Directory 中的特殊權限使用者會透過 AdminSDHolder 受到保護。 如需詳細資料，請參閱 [http://technet.microsoft.com/magazine/2009.09.sdadminholder.aspx](http://technet.microsoft.com/magazine/2009.09.sdadminholder.aspx)。 <br> <br> 這表示會定期檢查這些物件上的安全性描述元來比對 AdminSDHolder 中指定的描述元，如有不同就會予以重設。 密碼回寫所需的額外權限因此不會傳遞給這類使用者。 這會導致這類使用者的密碼回寫沒有作用。 因此，**我們沒有對這些群組中的使用者支援密碼管理工作，因為它會破壞 AD 安全性模型。**
 | 同盟或密碼雜湊同步使用者若嘗試重設其密碼，會在送出密碼後看到錯誤指出服務發生問題。 <br> <br> 此外，在密碼重設作業期間，您可能會在 Azure AD Connect 服務的事件記錄檔中看到錯誤指出「找不到物件」錯誤。 | 這個錯誤通常表示同步處理引擎找不到 AAD 連接器空間中的使用者物件，或連結的 MV 或 AD 連接器空間物件。 <br> <br> 若要疑難排解這個問題，請確定使用者已確實透過 Azure AD Connect 的目前執行個體從內部部屬同步處理到 AAD，並檢查連接器空間和 MV 中物件的狀態。 確認 AD CS 物件透過 “Microsoft.InfromADUserAccountEnabled.xxx” 規則連線到 MV 物件。|
 | 同盟或密碼雜湊同步使用者若嘗試重設其密碼，會在送出密碼後看到錯誤指出服務發生問題。 <br> <br> 此外，在密碼重設作業期間，您可能會在 Azure AD Connect 服務的事件記錄中看到錯誤指出「找到多個相符項目」錯誤。 | 此錯誤指出同步處理引擎偵測到 MV 物件透過 “Microsoft.InfromADUserAccountEnabled.xxx” 連線到多個 AD CS 物件。 這表示使用者在多個樹系中啟用帳戶。 **密碼回寫不支援此案例。** |
 | 密碼作業因設定錯誤而失敗。 應用程式事件記錄包含 <br> <br> Azure AD Connect 錯誤 6329 和文字：0x8023061f (作業失敗，因為此管理代理程式上未啟用密碼同步處理。) | 如果在已經啟用「密碼回寫」功能之後，變更 Azure AD Connect 設定來新增 AD 樹系 (或移除現有樹系再重新新增)，就會發生此錯誤。 位於這類新增樹系中的使用者，其密碼作業會失敗。 若要修正此問題，請在完成樹系設定變更後，先停用再重新啟用密碼回寫功能。 |
@@ -211,10 +210,11 @@ ms.lasthandoff: 05/08/2017
 
 * **錯誤的一般描述** - 錯誤為何？ 注意到何種行為？ 我們如何才能重現錯誤？ 請提供盡可能詳細的資料。
 * **頁面** - 您注意到錯誤時的所在頁面。 如果您能夠，請包含 URL 和螢幕擷取畫面。
-* **日期、時間和時區** - 請包含發生錯誤的精確日期和時間 (**含時區**)。
 * **支援碼** – 使用者看到錯誤時所產生的支援碼。 
     * 若要找到支援碼，請重現錯誤，然後按一下畫面底部的 [支援碼] 連結，將所產生的 GUID 傳送給支援工程師。
+    ![尋找畫面底部的支援碼][Support Code]
     * 如果您所在的頁面底部沒有支援碼，請按 F12，搜尋 SID 和 CID，然後將這兩個結果傳送給支援工程師。
+* **日期、時間和時區** - 請包含發生錯誤的精確日期和時間 (**含時區**)。
 * **使用者識別碼** – 看到錯誤的使用者是誰？ (user@contoso.com)
     * 這是同盟使用者嗎？
     * 這是密碼雜湊同步使用者嗎？
@@ -222,7 +222,10 @@ ms.lasthandoff: 05/08/2017
 * **授權** - 使用者是否已獲得 Azure AD Premium 或 Basic 授權？
 * **應用程式事件記錄** - 如果您使用密碼回寫，而且錯誤位於您的內部部署基礎結構中，請在連絡支援人員時包含來自 Azure AD Connect 伺服器的應用程式事件記錄壓縮複本。
 
+    
+
 [Service Restart]: ./media/active-directory-passwords-troubleshoot/servicerestart.png "重新啟動 Azure AD Sync 服務"
+[Support Code]: ./media/active-directory-passwords-troubleshoot/supportcode.png "支援程式碼位於視窗右下角"
 
 ## <a name="next-steps"></a>後續步驟
 

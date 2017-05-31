@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: chackdan
-translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 6196cb7fa13cf664faa72b7f5f5e0645e4402739
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 0c62f84993c83619cd55f9081450deaf0b21c090
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -112,6 +113,10 @@ ms.lasthandoff: 03/29/2017
 > 如果您正在執行的叢集未連線至網際網路，您必須關注 Service Fabric 小組部落格，以便得知新版本的消息。 系統不會顯示叢集健康狀態警告來提醒您有新版本。  
 >
 >
+
+#### <a name="auto-provisioning-vs-manual-provisioning"></a>自動佈建與手動佈建
+若要啟用自動下載與註冊最新版程式碼的功能，請設定 Service Fabric 更新服務。 請參閱[獨立封裝](service-fabric-cluster-standalone-package-contents.md)中的 Tools\ServiceFabricUpdateService.zip\Readme_InstructionsAndHowTos.txt，以取得相關指示。
+如需進行手動程序，請遵循以下指示。
 
 請修改叢集組態以將下列屬性設定為 false，再開始進行組態升級。
 

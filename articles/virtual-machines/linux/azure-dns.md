@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/19/2016
 ms.author: rclaus
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: d6215d316cfd4979d63f8bdb81741e1d0291b681
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: b95a8c3067b9bfd0a9995b26608c117a29ed8b4c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -76,7 +77,7 @@ Azure 預設會提供單一虛擬網路內所含之所有 VM 的 DNS 名稱解�
   * 啟動 dnsmasq 服務 (“systemctl start dnsmasq.service”) 
   * 編輯 “/etc/sysconfig/network/config” 並將 NETCONFIG_DNS_FORWARDER="" 變更為 ”dnsmasq”
   * 更新 resolv.conf ("netconfig update") 來設定快取做為本機 DNS 解析程式
-* OpenLogic (使用 NetworkManager)：
+* **CentOS by Rogue Wave Software (先前稱為 OpenLogic；使用 NetworkManager)**:
   * 安裝 dnsmasq 封裝 (“sudo yum install dnsmasq”)
   * 啟用 dnsmasq 服務 (“systemctl enable dnsmasq.service”)
   * 啟動 dnsmasq 服務 (“systemctl start dnsmasq.service”)
@@ -107,7 +108,7 @@ resolv.conf 檔案會自動產生且不可編輯。  新增 [選項] 行的特�
 *  (使用 netconf)：
   * 將 'timeout:1 attempts:5' 新增至 '/etc/sysconfig/network/config' 中的 NETCONFIG_DNS_RESOLVER_OPTIONS="" 參數 
   * 執行 'netconfig update' 以進行更新
-*  (使用 NetworkManager)：
+* **CentOS by Rogue Wave Software (先前稱為 OpenLogic；使用 NetworkManager)**：
   * 將 'echo "options timeout:1 attempts:5"' 新增至 '/etc/NetworkManager/dispatcher.d/11-dhclient' 
   * 執行 'service network restart' 以進行更新
 

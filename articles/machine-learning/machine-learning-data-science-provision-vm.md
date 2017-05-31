@@ -9,15 +9,15 @@ editor: cgronlun
 ms.assetid: e1467c0f-497b-48f7-96a0-7f806a7bec0b
 ms.service: machine-learning
 ms.workload: data-services
-ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: 8df9fbf4b09cb63cafc9d43592edc68068a28f14
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 1469e7a2f5f41ef52c0ff77e6e70378951594135
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -159,7 +159,7 @@ VM 上提供含 R 服務的 SQL Server 2016 開發人員版本，以執行資料
 * **AzCopy**：用於將資料從 Microsoft Azure 儲存體帳戶移入和移出。 若要查看使用情況，在命令提示字元中輸入 **Azcopy** 即可查看使用情況。 
 * **Microsoft Azure 儲存體總管**：可用來瀏覽已儲存在 Azure 儲存體帳戶中的物件，並在 Azure 儲存體收發資料。 若要存取此工具，您可以在搜尋中輸入 **儲存體總管** 或在 Windows [開始] 功能表上尋找。 
 * **Adlcopy**︰用於將資料移至 Azure Data Lake。 若要查看使用情況，請在命令提示字元中輸入 **adlcopy** 。 
-* **dtui**︰用於在 Azure DocumentDB (雲端上的一種 NoSQL 資料庫) 上來回移動資料。 在命令提示字元中輸入 **dtui** 。 
+* **dtui**︰用於在 Azure Cosmos DB (雲端上的一種 NoSQL 資料庫) 上來回移動資料。 在命令提示字元中輸入 **dtui** 。 
 * **Microsoft 資料管理閘道**︰可在內部部署資料來源和雲端之間移動資料。 其使用於 Azure Data Factory 之類的工具。 
 * **Microsoft Azure Powershell**：利用 Powershell 指令碼語言來管理您的 Azure 資源的工具，也會安裝在您的 VM 上。 
 

@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/01/2017
 ms.author: davidmu
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 738ff9882cffc428f571ab6aea96c0927d2ce443
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 7bed1e96cec49e8b62d671952976025453da6787
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -35,14 +36,14 @@ ms.lasthandoff: 03/31/2017
 
 1. 如果您尚未安裝 [Visual Studio](https://www.visualstudio.com/)，請進行安裝。
 2. 在 Visual Studio 中，按一下 [檔案] > [新增] > [專案]。
-3. 在 [範本] > [Visual C#] 中，選取 [主控台應用程式]，輸入專案的名稱和位置，然後按一下 [確定]。
+3. 在 [範本] > [Visual C#] 中，選取 [主控台應用程式 (.NET Framework)]，輸入專案的名稱和位置，然後按一下 [確定]。
 
 ## <a name="step-2-install-libraries"></a>步驟 2：安裝程式庫
 
 NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 您必須要有「Azure Resource Manager 程式庫」和 Azure Active Directory Authentication Library，才能建立資源。 若要在 Visual Studio 中取得這些程式庫，請執行下列步驟：
 
-1. 在 [方案總管] 中，於專案名稱上按一下滑鼠右鍵、按一下 [管理 NuGet 套件]，然後按一下 [瀏覽]。
-2. 在搜尋方塊中輸入 *Microsoft.IdentityModel.Clients.ActiveDirectory*，按一下 [安裝]，然後依照指示操作來安裝套件。
+1. 在 [方案總管] 中，於專案名稱上按一下滑鼠右鍵、按一下 [管理解決方案的 NuGet 封裝...]，然後按一下 [瀏覽]。
+2. 在搜尋方塊中輸入「Microsoft.IdentityModel.Clients.ActiveDirectory」，選取您的專案，按一下 [安裝]，然後依照指示安裝封裝。
 3. 在頁面的頂端，選取 [包含發行前版本] 。 在搜尋方塊中輸入 *Microsoft.Azure.Management.ResourceManager*，按一下 [安裝]，然後依照指示操作來安裝套件。
 
 您現在已經準備就緒，可以開始使用程式庫建立您的應用程式。
@@ -51,7 +52,7 @@ NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 �
 
 在您開始此步驟之前，請確定您可以存取 [Active Directory 服務主體](../../resource-group-authenticate-service-principal.md)。 從服務主體中，您會取得向 Azure Resource Manager 驗證要求的權杖。
 
-1. 開啟您建立之專案的 Program.cs 檔案，然後將這些 using 陳述式新增至檔案頂端：
+1. 開啟您建立之專案的 Program.cs 檔案，然後將這些 using 陳述式新增至檔案頂端的現有陳述式：
 
     ```
     using Microsoft.Azure;
@@ -67,8 +68,8 @@ NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 �
     ```
     private static async Task<AuthenticationResult> GetAccessTokenAsync()
     {
-      var cc = new ClientCredential("{client-id}", "{client-secret}");
-      var context = new AuthenticationContext("https://login.windows.net/{tenant-id}");
+      var cc = new ClientCredential("client-id", "client-secret");
+      var context = new AuthenticationContext("https://login.windows.net/tenant-id");
       var token = await context.AcquireTokenAsync("https://management.azure.com/", cc);
       if (token == null)
       {
@@ -80,9 +81,9 @@ NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 �
 
     取代下列值：
     
-    - 將 *{client-id}* 取代成 Azure Active Directory 應用程式的識別碼。 您可以在 AD 應用程式的 [屬性] 刀鋒視窗上找到此識別碼。 若要在 Azure 入口網站中尋找您的 AD 應用程式，請按一下資源功能表中的 [Azure Active Directory]，然後按一下 [應用程式註冊]。
-    - 將 *{client-secret}* 取代成 AD 應用程式的存取金鑰。 您可以在 AD 應用程式的 [屬性] 刀鋒視窗上找到此識別碼。
-    - 將 *{tenant-id}* 取代成您訂用帳戶的租用戶識別碼。 您可以在 Azure 入口網站中 Azure Active Directory 的 [屬性] 刀鋒視窗上找到租用戶識別碼。 其標示為 [目錄識別碼]。
+    - 將 client-id 取代成 Azure Active Directory 應用程式的識別碼。 您可以在 AD 應用程式的 [屬性] 刀鋒視窗上找到此識別碼。 若要在 Azure 入口網站中尋找您的 AD 應用程式，請按一下資源功能表中的 [Azure Active Directory]，然後按一下 [應用程式註冊]。
+    - 將 client-secret 取代成 AD 應用程式的存取金鑰。 您可以在 AD 應用程式的 [屬性] 刀鋒視窗上找到此識別碼。
+    - 將 tenant-id 取代成您訂用帳戶的租用戶識別碼。 您可以在 Azure 入口網站中 Azure Active Directory 的 [屬性] 刀鋒視窗上找到租用戶識別碼。 其標示為 [目錄識別碼]。
 
 3. 若要呼叫您剛才新增的方法，請將下列程式碼新增至 Main 方法：
 
@@ -102,7 +103,7 @@ NuGet 套件是安裝完成這些步驟所需之程式庫的最簡單方式。 �
     ```
     var groupName = "myResourceGroup";
     var subscriptionId = "subsciptionId";
-    var deploymentName = "deploymentName;
+    var deploymentName = "deploymentName";
     var location = "location";
     ```
 

@@ -1,18 +1,15 @@
 ---
-redirect_url: https://azure.microsoft.com/services/documentdb/
+redirect_url: https://azure.microsoft.com/services/cosmos-db/
 ROBOTS: NOINDEX, NOFOLLOW
-translationtype: Human Translation
-ms.sourcegitcommit: d59ebef3cda36ba048b844f0cd2326fff66b4aa5
-ms.openlocfilehash: 9c5fc17927d719330926c8242008b61f6c88a298
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 46edcf8172daf3ea18ceaed5e35720f3caaccab9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="default-quotas-for-documentdb"></a>DocumentDB 的預設配額
+# <a name="default-quotas-for-azure-cosmos-db"></a>Azure Cosmos DB 的預設配額
 
-DocumentDB 是全域調整資料庫，可以調整輸送量和儲存體來因應您應用程式的需要。 如果您有關於「DocumentDB 調整」的問題，請傳送電子郵件給 askdocdb@microsoft.com。
-
-
-
-<!--HONumber=Jan17_HO3-->
-
+Azure Cosmos DB 是一個全域調整資料庫，可以調整輸送量和儲存體來因應您應用程式的需要。 如果您有關於 Azure Cosmos DB 調整的問題，請傳送電子郵件給 askdocdb@microsoft.com。
 

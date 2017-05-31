@@ -13,19 +13,20 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 05/10/2017
 ms.author: cynthn
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: a6549999003d4b1c8e2b8a8e2a2fafef942bce43
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: e940a5653d81852c6440829010ec86bcadeadca7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
 
 # <a name="migrate-from-amazon-web-services-aws-to-azure-managed-disks"></a>從 Amazon Web Services (AWS) 移轉至 Azure 受控磁碟
 
-您可藉由上傳 VHD 將 Amazon Web Services (AWS) EC2 執行個體移轉至 Azure。 如果您想要在 Azure 中從相同映像建立多個 VM，您必須先將 VM 一般化，然後將一般化 VHD 匯出至本機目錄。 上傳 VHD 後，您可以建立新的 Azure VM，其使用[受控磁碟](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)進行儲存。 使用 Azure 受控磁碟就不需要為 Azure IaaS VM 管理儲存體帳戶。 您只需要指定類型 (進階或標準)，還有您需要的磁碟大小，Azure 就會替您建立及管理磁碟。 
+您可藉由上傳虛擬硬碟 (VHD) 將 Amazon Web Services (AWS) EC2 執行個體移轉至 Azure。 如果您想要在 Azure 中從相同映像建立多個虛擬機器 (VM)，您必須先將 VM 一般化，然後將一般化 VHD 匯出至本機目錄。 上傳 VHD 後，您可以建立新的 Azure VM，其使用[受控磁碟](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)進行儲存。 使用 Azure 受控磁碟就不需要為 Azure IaaS VM 管理儲存體帳戶。 您只需要指定類型 (進階或標準)，還有您需要的磁碟大小，Azure 就會替您建立並管理磁碟。 
 
 開始此程序前，請務必先檢閱[規劃移轉至受控磁碟](on-prem-to-azure.md#plan-for-the-migration-to-managed-disks)。
 
@@ -40,7 +41,7 @@ Install-Module AzureRM.Compute -MinimumVersion 2.6.0
 如需詳細資訊，請參閱 [Azure PowerShell 版本控制](/powershell/azure/overview)。
 
 
-## <a name="generalize-the-windows-vm-using-sysprep"></a>使用 Sysprep 將 Windows VM 一般化
+## <a name="generalize-the-vm"></a>一般化 VM
 
 使用 Sysprep 將 VM 一般化，可從 VHD 中移除任何電腦特有資訊和個人帳戶資訊，並準備要作為映像的電腦。 如需 Sysprep 的詳細資訊，請參閱 [如何使用 Sysprep：簡介](http://technet.microsoft.com/library/bb457073.aspx)。
 
@@ -62,7 +63,7 @@ Install-Module AzureRM.Compute -MinimumVersion 2.6.0
 
 
 
-## <a name="export-the-vhd-from-an-ec2-instance"></a>從 EC2 執行個體匯出 VHD
+## <a name="export-the-vhd-from-aws"></a>從 AWS 匯出 VHD
 
 1.    如果您使用的是 Amazon Web Services (AWS)，請將 EC2 執行個體匯出至 Amazon S3 貯體中的 VHD。 請依照 Amazon 文件中所述的「匯出 Amazon EC2 執行個體」步驟，安裝 Amazon EC2 命令列介面 (CLI) 工具並執行 create-instance-export-task 命令，將 EC2 執行個體匯出到 VHD 檔案。 執行 create-instance-export-task 命令時，請務必讓 DISK_IMAGE_FORMAT 變數使用 VHD。 已匯出的 VHD 檔案會儲存在您在該程序期間所指定的 Amazon S3 貯體中。
 
@@ -75,7 +76,12 @@ Install-Module AzureRM.Compute -MinimumVersion 2.6.0
 
 
 
-## <a name="log-in-to-azure"></a>登入 Azure
+## <a name="upload-the-vhd"></a>上傳 VHD
+
+您必須登入 Azure、建立儲存體帳戶，然後將 VHD 上傳至儲存體帳戶後，才能建立映像。 
+
+### <a name="log-in-to-azure"></a>登入 Azure
+
 如果尚未安裝 Azure PowerShell 版本，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 1. 開啟 Azure PowerShell，並登入您的 Azure 帳戶。 這會開啟一個可供您輸入 Azure 帳戶認證的快顯視窗。
@@ -94,10 +100,10 @@ Install-Module AzureRM.Compute -MinimumVersion 2.6.0
     Select-AzureRmSubscription -SubscriptionId "<subscriptionID>"
     ```
 
-## <a name="get-the-storage-account"></a>取得儲存體帳戶
+### <a name="get-the-storage-account"></a>取得儲存體帳戶
 您需要一個 Azure 中的儲存體帳戶來裝載上傳的 VM 映像。 您可以使用現有的儲存體帳戶或建立新帳戶。 
 
-如果您要使用 VHD 為 VM 建立受控磁碟，儲存體帳戶位置與您將建立 VM 的位置必須相同。
+如果您正在使用 VHD 為 VM 建立受控磁碟，儲存體帳戶位置與您建立 VM 的位置必須相同。
 
 若要顯示可用的儲存體帳戶，請輸入︰
 
@@ -136,9 +142,9 @@ Get-AzureRmStorageAccount
    * **Standard_RAGRS** - 讀取權限異地備援儲存體。 
    * **Premium_LRS** - 進階本地備援儲存體。 
 
-## <a name="upload-the-vhd-to-your-storage-account"></a>將 VHD 上傳至儲存體帳戶
+### <a name="upload-the-vhd"></a>上傳 VHD 
 
-使用 [Add-AzureRmVhd](/powershell/module/azurerm.compute/add-azurermvhd) Cmdlet，將 VHD 上傳至儲存體帳戶中的容器。 這個範例會將檔案 **myVHD.vhd** 從 `"C:\Users\Public\Documents\Virtual hard disks\"` 上傳至 **myResourceGroup** 資源群組中名為 **mystorageaccount** 的儲存體帳戶。 檔案會放入名為 **mycontainer** 的容器，新的檔案名稱會是 **myUploadedVHD.vhd**。
+使用 [Add-AzureRmVhd](/powershell/module/azurerm.compute/add-azurermvhd) Cmdlet，將 VHD 上傳至儲存體帳戶中的容器。 這個範例會將檔案 **myVHD.vhd** 從 `"C:\Users\Public\Documents\Virtual hard disks\"` 上傳至 **myResourceGroup** 資源群組中名為 **mystorageaccount** 的儲存體帳戶。 檔案會放入名為 mycontainer 的容器，新的檔案名稱會是 myUploadedVHD.vhd。
 
 ```powershell
 $rgName = "myResourceGroup"
@@ -178,9 +184,9 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontain
 
     如果預估的上傳時間長度超過 7 天，我們建議使用匯入/匯出服務。 您可以使用 [DataTransferSpeedCalculator](https://github.com/Azure-Samples/storage-dotnet-import-export-job-management/blob/master/DataTransferSpeedCalculator.html) 從資料大小和傳輸單位來評估時間。 
 
-    匯入/匯出可用來複製到標準儲存體帳戶。 您必須使用 AzCopy 之類的工具，從 Standard 儲存體帳戶複製到進階儲存體帳戶。
+    匯入/匯出可用來複製到標準儲存體帳戶。 若要使用進階儲存體，您必須使用 AzCopy 之類的工具，從標準儲存體複製到進階儲存體帳戶。
 
-## <a name="create-a-managed-image-from-the-uploaded-vhd"></a>從上傳的 VHD 建立受控映像 
+## <a name="create-an-image"></a>建立映像 
 
 使用一般化 OS VHD 建立受控映像。
 
@@ -203,7 +209,7 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontain
     $image = New-AzureRmImage -ImageName $imageName -ResourceGroupName $rgName -Image $imageConfig
     ```
 
-## <a name="setup-some-variables-for-the-image"></a>設定映像的一些變數
+## <a name="create-vm-from-image"></a>從映像建立 VM
 
 首先，我們需要收集映像的基本資訊，並建立映像的變數。 這個範例使用名為 **myImage** 的受控 VM 映像，其位於**美國中西部**位置的 **myResourceGroup** 資源群組中。 
 
@@ -214,7 +220,7 @@ $imageName = "myImage"
 $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
 ```
 
-## <a name="create-a-virtual-network"></a>建立虛擬網路
+### <a name="create-a-virtual-network"></a>建立虛擬網路
 建立[虛擬網路](../../virtual-network/virtual-networks-overview.md)的 vNet 和子網路。
 
 1. 建立子網路。 這個範例會建立名為 **mySubnet** 且具有位址首碼 **10.0.0.0/24** 的子網路。  
@@ -231,7 +237,7 @@ $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
         -AddressPrefix 10.0.0.0/16 -Subnet $singleSubnet
     ```    
 
-## <a name="create-a-public-ip-address-and-network-interface"></a>建立公用 IP 位址和網路介面
+### <a name="create-a-public-ip-and-nic"></a>建立公用 IP 位址與 NIC
 
 若要能夠與虛擬網路中的虛擬機器進行通訊，您需要 [公用 IP 位址](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) 和網路介面。
 
@@ -250,7 +256,7 @@ $image = Get-AzureRMImage -ImageName $imageName -ResourceGroupName $rgName
         -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
     ```
 
-## <a name="create-the-network-security-group-and-an-rdp-rule"></a>建立網路安全性群組和 RDP 規則
+### <a name="create-nsg"></a>建立 NSG
 
 若要能夠使用 RDP 登入 VM，您必須有可在連接埠 3389 上允許 RDP 存取的網路安全性規則 (NSG)。 
 
@@ -269,7 +275,7 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $rgName -Location $loc
 ```
 
 
-## <a name="create-a-variable-for-the-virtual-network"></a>建立虛擬網路的變數
+### <a name="create-network-variables"></a>建立網路變數
 
 為已完成的虛擬網路建立變數。 
 
@@ -278,7 +284,7 @@ $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $rgName -Name $vnetName
 
 ```
 
-## <a name="get-the-credentials-for-the-vm"></a>取得 VM 的認證
+### <a name="get-the-credentials"></a>重設認證 
 
 下列 Cmdlet 會開啟視窗，讓您輸入新的使用者名稱和密碼，作為從遠端存取 VM 時使用的本機管理員帳戶。 
 
@@ -286,7 +292,7 @@ $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $rgName -Name $vnetName
 $cred = Get-Credential
 ```
 
-## <a name="set-variables-for-the-vm-name-computer-name-and-the-size-of-the-vm"></a>設定 VM 名稱、電腦名稱和 VM 大小的變數
+### <a name="set-vm-variables"></a>設定 VM 變數 
 
 1. 建立 VM 名稱和電腦名稱的變數。 此範例將 VM 名稱設定為 **myVM**，將電腦名稱設定為 **myComputer**。
 
@@ -306,7 +312,7 @@ $cred = Get-Credential
 $vm = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize
 ```
 
-## <a name="set-the-vm-image-as-source-image-for-the-new-vm"></a>將 VM 映像設定為新 VM 的來源映像
+### <a name="set-the-vm-image"></a>設定 VM 映像 
 
 使用受控 VM 映像的識別碼設定來源影像。
 
@@ -314,7 +320,7 @@ $vm = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize
 $vm = Set-AzureRmVMSourceImage -VM $vm -Id $image.Id
 ```
 
-## <a name="set-the-os-configuration-and-add-the-nic"></a>設定 OS 組態並新增 NIC。
+### <a name="set-the-os-configuration"></a>設定作業系統組態 
 
 輸入儲存體類型 (PremiumLRS 或 StandardLRS) 和 OS 磁碟的大小。 這個範例將帳戶類型設定為 **PremiumLRS**、將磁碟大小設定為 **128GB**，並將磁碟快取設定為 **ReadWrite**。
 
@@ -328,7 +334,7 @@ $vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $computerName 
 $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 ```
 
-## <a name="create-the-vm"></a>建立 VM
+### <a name="create-the-vm"></a>建立 VM
 
 使用我們已建立並儲存在 **$vm** 變數中的組態來建立新 VM。
 
@@ -336,7 +342,7 @@ $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 New-AzureRmVM -VM $vm -ResourceGroupName $rgName -Location $location
 ```
 
-## <a name="verify-that-the-vm-was-created"></a>確認已建立 VM
+## <a name="verify-the-vm"></a>驗證 VM
 完成時，在 [Azure 入口網站](https://portal.azure.com)的 [瀏覽] > [虛擬機器] 底下，或是使用下列 PowerShell 命令，應該就可以看到新建立的 VM：
 
 ```powershell

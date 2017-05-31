@@ -17,10 +17,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
-ms.openlocfilehash: dd14d137c23fbccb3616b60db8a63e668ae7ea80
-ms.lasthandoff: 01/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 624bdc7877d5048da08897f868272fd8e8f3f7b6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -38,16 +39,16 @@ ms.lasthandoff: 01/25/2017
 ***
 
 ## <a name="lesson-1-configure-your-nuc"></a>第 1 課：設定 NUC
-![第&1; 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-lesson1.png)
+![第 1 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-lesson1.png)
 
-在這一課，您要將套件中的 Intel NUC (Next Unit of Computing) 設定為 Azure IoT 閘道器、在 NUC 上安裝 Azure IoT 閘道器 SDK 套件，執行範例應用程式以確認閘道器的功能。
+在本課程中，您要將套件中的 Intel NUC (Next Unit of Computing) 設定為 Azure IoT 閘道、在 NUC 上安裝 Azure IoT Edge 套件，並執行範例應用程式以確認閘道的功能。
 
 *預估完成時間：15 分鐘*
 
 前往[將 Intel NUC 設定為 IoT 閘道器](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
 
 ## <a name="lesson-2-create-your-iot-hub"></a>第 2 課：建立 IoT 中樞
-![第&2; 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-lesson2.png)
+![第 2 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-lesson2.png)
 
 在這一課，您要在主機電腦上安裝工具和軟體。 然後會建立一個免費的 Azure 帳戶、佈建您的 Azure IoT 中樞，並在 IoT 中樞建立您的第一個裝置。
 
@@ -68,7 +69,7 @@ ms.lasthandoff: 01/25/2017
 前往[建立 IoT 中樞並登錄您的裝置](iot-hub-gateway-kit-c-lesson2-register-device.md)
 
 ## <a name="lesson-3-receive-messages-from-sensortag-and-read-messages-from-your-iot-hub"></a>第 3 課︰接收來自 SensorTag 的訊息，並從您的 IoT 中心讀取訊息
-在這一課，您將使用指令碼將閘道器中 BLE 範例應用程式的設定和執行自動化。 這類應用程式使用模組集合來彙總及轉換資料的、處理命令，或執行任意數目的相關工作。 模組之間透過訊息代理程式相互通訊。 範例應用程式有 BLE 模組和 IoT 中樞模組。 BLE 模組從 BLE SensorTag 接收資料。 IoT 中樞模組會封裝收到的資料，並透過 Azure IoT 閘道器 SDK 中提供的閘道器架構將資料傳送至 IoT 中樞。
+在這一課，您將使用指令碼將閘道器中 BLE 範例應用程式的設定和執行自動化。 這類應用程式使用模組集合來彙總及轉換資料的、處理命令，或執行任意數目的相關工作。 模組之間透過訊息代理程式相互通訊。 範例應用程式有 BLE 模組和 IoT 中樞模組。 BLE 模組從 BLE SensorTag 接收資料。 IoT 中樞模組會封裝收到的資料，並透過 Azure IoT Edge 中提供的閘道架構將資料傳送至 IoT 中樞。
 
 ![第 3 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-lesson3.png)
 

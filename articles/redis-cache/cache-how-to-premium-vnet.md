@@ -12,12 +12,13 @@ ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
+ms.date: 05/11/2017
 ms.author: sdanie
-translationtype: Human Translation
-ms.sourcegitcommit: c300ba45cd530e5a606786aa7b2b254c2ed32fcd
-ms.openlocfilehash: cf3c1a3c669e0da810c32939492cb262e76492c7
-ms.lasthandoff: 04/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 945da7ce2ab5f2d479d96a6ed2896a0ba7e0747e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -90,20 +91,51 @@ Azure Redis 快取有不同的快取供應項目，可讓您彈性選擇快取�
 * [將快取裝載於 VNET 時，所有快取功能都可以正常運作嗎？](#do-all-cache-features-work-when-hosting-a-cache-in-a-vnet)
 
 ## <a name="what-are-some-common-misconfiguration-issues-with-azure-redis-cache-and-vnets"></a>Azure Redis 快取和 VNet 的某些常見錯誤設定有哪些？
-Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。 如果封鎖這些連接埠，快取可能無法正常運作。 在 VNet 中使用 Azure Redis 快取時，將其中一或多個連接埠封鎖是最常見的錯誤組態問題。
+Azure Redis 快取裝載在 VNet 時，會使用下表中的連接埠。 
+
+>[!IMPORTANT]
+>如果封鎖下表中的連接埠，快取可能無法正常運作。 在 VNet 中使用 Azure Redis 快取時，將其中一或多個連接埠封鎖是最常見的錯誤組態問題。
+> 
+> 
+
+- [輸出連接埠需求](#outbound-port-requirements)
+- [輸入連接埠需求](#inbound-port-requirements)
+
+### <a name="outbound-port-requirements"></a>輸出連接埠需求
+
+有七項輸出連接埠需求。
+
+- 如有需要，可透過用戶端的內部部署稽核裝置對網際網路進行所有輸出連線。
+- 其中的三個連接埠會將流量路由至提供 Azure 儲存體與 Azure DNS 的 Azure 端點。
+- 剩餘的連接埠有數種範圍，且適用於內部 Redis 子網域通訊。 內部 Redis 子網域通訊不需要子網路 NSG 規則。
 
 | 連接埠 | 方向 | 傳輸通訊協定 | 目的 | 遠端 IP |
 | --- | --- | --- | --- | --- |
 | 80、443 |輸出 |TCP |Azure 儲存體/PKI 上 Redis 的相依項目 (網際網路) |* |
 | 53 |輸出 |TCP/UDP |DNS 上 Redis 的相依項目 (網際網路/VNet) |* |
-| 6379, 6380 |輸入 |TCP |對 Redis 的用戶端通訊，Azure 負載平衡 |VIRTUAL_NETWORK, AZURE_LOADBALANCER |
-| 8443 |輸入/輸出 |TCP |Redis 的實作詳細資料 |VIRTUAL_NETWORK |
-| 8500 |輸入 |TCP/UDP |Azure 負載平衡 |AZURE_LOADBALANCER |
-| 10221-10231 |輸入/輸出 |TCP |Redis 的實作詳細資料 (可以限制連至 VIRTUAL_NETWORK 的遠端端點) |VIRTUAL_NETWORK, AZURE_LOADBALANCER |
-| 13000-13999 |輸入 |TCP |對 Redis 叢集的用戶端通訊，Azure 負載平衡 |VIRTUAL_NETWORK, AZURE_LOADBALANCER |
-| 15000-15999 |輸入 |TCP |對 Redis 叢集的用戶端通訊，Azure 負載平衡 |VIRTUAL_NETWORK, AZURE_LOADBALANCER |
-| 16001 |輸入 |TCP/UDP |Azure 負載平衡 |AZURE_LOADBALANCER |
-| 20226 |輸入+輸出 |TCP |Redis 叢集的實作詳細資料 |VIRTUAL_NETWORK |
+| 8443 |輸出 |TCP |Redis 內部通訊 | (Redis 子網路) |
+| 10221-10231 |輸出 |TCP |Redis 內部通訊 | (Redis 子網路) |
+| 20226 |輸出 |TCP |Redis 內部通訊 |(Redis 子網路) |
+| 13000-13999 |輸出 |TCP |Redis 內部通訊 |(Redis 子網路) |
+| 15000-15999 |輸出 |TCP |Redis 內部通訊 |(Redis 子網路) |
+
+
+### <a name="inbound-port-requirements"></a>輸入連接埠需求
+
+有八項輸入連接埠範圍需求。 在這些範圍的輸入要求如下：從相同 VNET 中裝載的其他服務輸入，或是 Redis 子網路內部通訊。
+
+| 連接埠 | 方向 | 傳輸通訊協定 | 目的 | 遠端 IP |
+| --- | --- | --- | --- | --- |
+| 6379, 6380 |輸入 |TCP |對 Redis 進行的用戶端通訊，Azure 負載平衡 |虛擬網路，Azure Load Balancer |
+| 8443 |輸入 |TCP |Redis 內部通訊 |(Redis 子網路) |
+| 8500 |輸入 |TCP/UDP |Azure 負載平衡 |Azure Load Balancer |
+| 10221-10231 |輸入 |TCP |Redis 內部通訊 |(Redis 子網路)，Azure Load Balancer |
+| 13000-13999 |輸入 |TCP |對 Redis 叢集的用戶端通訊，Azure 負載平衡 |虛擬網路，Azure Load Balancer |
+| 15000-15999 |輸入 |TCP |對 Redis 叢集的用戶端通訊，Azure 負載平衡 |虛擬網路，Azure Load Balancer |
+| 16001 |輸入 |TCP/UDP |Azure 負載平衡 |Azure Load Balancer |
+| 20226 |輸入 |TCP |Redis 內部通訊 |(Redis 子網路) |
+
+### <a name="additional-vnet-network-connectivity-requirements"></a>其他 VNET 網路連線需求
 
 在虛擬網路中，可能一開始就不符合 Azure Redis 快取的一些網路連線需求。 Azure Redis Cache 需要符合下列項目，才能在虛擬網路內使用時正確運作。
 

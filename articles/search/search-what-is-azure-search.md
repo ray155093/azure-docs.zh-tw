@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.date: 04/24/2017
 ms.author: ashmaka
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
-ms.openlocfilehash: 25f4ef15390ed5b97bd2927126f5ecf250d2daf9
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: db227bfea10255322c090e68b197cfb2dd1cf15b
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/10/2017
 
 ---
 # <a name="what-is-azure-search"></a>何謂 Azure 搜尋服務？
-Azure 搜尋服務是一項雲端搜尋即服務解決方案，可將伺服器和基礎結構管理委託給 Microsoft，讓您利用立即可用的服務來填入搜尋資料，然後用來在 Web 或行動應用程式中新增搜尋。 Azure 搜尋服務可讓您使用簡單的 [REST API](https://msdn.microsoft.com/library/azure/dn798935.aspx) 或 [.NET SDK](search-howto-dotnet-sdk.md)，輕鬆地將強大的搜尋經驗新增至應用程式，而不需要管理搜尋基礎結構或成為搜尋專家。
+Azure 搜尋服務是一項雲端搜尋即服務解決方案，可將伺服器和基礎結構管理委託給 Microsoft，讓您利用立即可用的服務來填入搜尋資料，然後用來在 Web 或行動應用程式中新增搜尋。 Azure 搜尋服務可讓您使用簡單的 [REST API](/rest/api/searchservice/) 或 [.NET SDK](search-howto-dotnet-sdk.md)，輕鬆地將強大的搜尋經驗新增至應用程式，而不需要管理搜尋基礎結構或成為搜尋專家。
 
 <a name="feature-drilldown"></a>
 
@@ -39,7 +39,7 @@ Azure 搜尋服務支援 [56 種不同語言](https://docs.microsoft.com/rest/ap
 
 ### <a name="data-integration"></a>資料整合
 
-您可以推送 JSON 資料結構以填入 Azure 搜尋服務索引。 此外，對於支援的資料來源，您可以使用[索引子](search-indexer-overview.md)，自動耙梳 Azure SQL Database、Azure DocumentDB 或 [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)，以同步化搜尋索引的內容與主要資料存放區。
+您可以推送 JSON 資料結構以填入 Azure 搜尋服務索引。 此外，對於支援的資料來源，您可以使用[索引子](search-indexer-overview.md)，自動耙梳 [Azure SQL Database](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)、[Azure Cosmos DB](search-howto-index-documentdb.md) 或 [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)，讓搜尋索引的內容與主要資料存放區同步。
 
 *文件破解*支援[檢索主要檔案格式](search-howto-indexing-azure-blob-storage.md)，包括 Microsoft Office、PDF 和 HTML 文件。
 
@@ -53,7 +53,7 @@ Azure 搜尋服務支援 [56 種不同語言](https://docs.microsoft.com/rest/ap
 
 + **搜尋結果醒目提示**[會將視覺化格式套用至搜尋結果中的相符關鍵字](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)。 您可以選擇哪些欄位傳回醒目提示的文字片段。
 
-+ **簡單評分** 是 Azure 搜尋服務的主要優點。 [評分設定檔](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index)用於將相關性模型化為文件本身中的值函數。 例如，您可能想要新推出的產品或折扣的產品，出現在搜尋結果中較高的位置。 您也可以根據您所追蹤並個別儲存的客戶搜尋喜好設定，使用標記進行個人化計分來建置計分設定檔。
++ **簡單評分** 是 Azure 搜尋服務的主要優點。 [評分設定檔](/rest/api/searchservice/add-scoring-profiles-to-a-search-index)用於將相關性模型化為文件本身中的值函數。 例如，您可能想要新推出的產品或折扣的產品，出現在搜尋結果中較高的位置。 您也可以根據您所追蹤並個別儲存的客戶搜尋喜好設定，使用標記進行個人化計分來建置計分設定檔。
 
 + **排序** 是透過索引結構描述來對多個欄位提供，然後使用單一搜尋參數在查詢階段進行切換。
 
@@ -83,7 +83,7 @@ Azure 搜尋服務以智慧方式處理、篩選和顯示地理位置。 可讓�
 
 ## <a name="how-it-works"></a>運作方式
 ### <a name="step-1-provision-service"></a>步驟 1：佈建服務
-您可以在 [Azure 入口網站](https://portal.azure.com/)中或透過 [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn832684.aspx) 啟動 Azure 搜尋服務。 您可以選擇與其他訂閱者共用的免費服務，或選擇只為您的服務提供專用資源的[付費層](https://azure.microsoft.com/pricing/details/search/)。
+您可以在 [Azure 入口網站](https://portal.azure.com/)中或透過 [Azure 資源管理 API](/rest/api/searchmanagement/) 啟動 Azure 搜尋服務。 您可以選擇與其他訂閱者共用的免費服務，或選擇只為您的服務提供專用資源的[付費層](https://azure.microsoft.com/pricing/details/search/)。
 
 若選擇付費層，您可以從兩方面調整服務︰ 
 
@@ -95,14 +95,14 @@ Azure 搜尋服務以智慧方式處理、篩選和顯示地理位置。 可讓�
 ### <a name="step-2-create-index"></a>步驟 2：建立索引
 您必須先定義 Azure 搜尋服務索引，才能上傳可搜尋的內容。 索引就像是資料庫資料表，其中保存您的資料並可接受搜尋查詢。 您可定義索引結構描述，以反映您要搜尋的文件結構 (類似於資料庫中的欄位)。
 
-您可以在 Azure 入口網站中建立結構描述，或使用 [.NET SDK](search-howto-dotnet-sdk.md) 或 [REST API](https://msdn.microsoft.com/library/azure/dn798941.aspx) 以程式設計方式建立結構描述。
+您可以在 Azure 入口網站中建立結構描述，或使用 [.NET SDK](search-howto-dotnet-sdk.md) 或 [REST API](/rest/api/searchservice/) 以程式設計方式建立結構描述。
 
 ### <a name="step-3-index-data"></a>步驟 3︰索引資料
 定義索引之後，就可以上傳內容。 您可以使用推送或提取模型。
 
-提取模型會從外部資料來源擷取資料。 這可透過*索引子*而達成，索引子可簡化和自動化資料擷取的各層面，例如連線至、讀取和序列化資料。 [索引子](/rest/api/searchservice/Indexer-ope)適用於 Azure DocumentDB、Azure SQL Database、Azure Blob 儲存體和 Azure VM 中裝載的 SQL Server。 您可以重新整理隨需或排定的資料以設定索引子。
+提取模型會從外部資料來源擷取資料。 這可透過*索引子*而達成，索引子可簡化和自動化資料擷取的各層面，例如連線至、讀取和序列化資料。 [索引子](/rest/api/searchservice/Indexer-operations)適用於 Azure Cosmos DB、Azure SQL Database、Azure Blob 儲存體和 Azure VM 中裝載的 SQL Server。 您可以重新整理隨需或排定的資料以設定索引子。
 
-推送模式是透過 SDK 或 REST API 來提供，可用來將已更新的文件傳送到索引。 使用 JSON 格式，您幾乎可以從任何資料集發送資料。 如需載入資料的指引，請參閱[新增、更新或刪除文件](https://msdn.microsoft.com/library/azure/dn798930.aspx)或[如何使用 .NET SDK](search-howto-dotnet-sdk.md)。
+推送模式是透過 SDK 或 REST API 來提供，可用來將已更新的文件傳送到索引。 使用 JSON 格式，您幾乎可以從任何資料集發送資料。 如需載入資料的指引，請參閱[新增、更新或刪除文件](/rest/api/searchservice/addupdate-or-delete-documents)或[如何使用 .NET SDK](search-howto-dotnet-sdk.md)。
 
 ### <a name="step-4-search"></a>步驟 4︰搜尋
 填入索引後，您可以透過 REST API 或 .NET SDK，使用簡單的 HTTP 要求對服務端點[發出搜尋查詢](/rest/api/searchservice/Search-Documents)。
@@ -140,7 +140,7 @@ Azure 搜尋服務以智慧方式處理、篩選和顯示地理位置。 可讓�
 
 |平台 |說明 |
 |-----|------------|
-|[REST](https://docs.microsoft.com/rest/api/searchservice/) | 任何程式設計平台和語言 (包括 Xamarin、Java 和 JavaScript) 支援的 HTTP 指令|
+|[REST](/rest/api/searchservice/) | 任何程式設計平台和語言 (包括 Xamarin、Java 和 JavaScript) 支援的 HTTP 指令|
 |[.NET SDK](search-howto-dotnet-sdk.md) | REST API 的 .NET 包裝函式支援使用 C# 和以 .NET Framework 為目標的其他受管理程式碼語言，有效率地撰寫程式碼 |
 
 ## <a name="free-trial"></a>免費試用

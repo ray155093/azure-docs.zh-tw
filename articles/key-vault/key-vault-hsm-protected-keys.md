@@ -1,6 +1,6 @@
 ---
 title: "如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰 | Microsoft Docs"
-description: "使用這份文件協助您規劃、產生，並傳輸受 HSM 保護的金鑰，以搭配 Azure 金鑰保存庫使用。"
+description: "使用這份文件協助您規劃、產生，並傳輸受 HSM 保護的金鑰，以搭配 Azure 金鑰保存庫使用。 也稱為 BYOK 或「攜帶您自己的金鑰」。"
 services: key-vault
 documentationcenter: 
 author: cabailey
@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 11/30/2016
+ms.date: 05/09/2017
 ms.author: ambapat
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 7b499b46d4edbe4e33c568b7c50e0a44dd75a00f
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: f481de9d7eb23531b4be82c3b61e4f3850bed72e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -27,14 +28,14 @@ ms.lasthandoff: 04/27/2017
 
 使用本主題中的資訊，協助您規劃、產生然後傳送自己受 HSM 保護的金鑰，以搭配使用 Azure 金鑰保存庫。
 
-此功能不適用於 Azure China。 
+此功能不適用於 Azure China。
 
 > [!NOTE]
 > 如需 Azure 金鑰保存庫的詳細資訊，請參閱 [什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)  
-> 
+>
 > 如需入門教學課程，其中包括建立受 HSM 保護之金鑰的金鑰保存庫，請參閱 [開始使用 Azure 金鑰保存庫](key-vault-get-started.md)。
-> 
-> 
+>
+>
 
 有關產生及透過網際網路傳輸受 HSM 保護之金鑰的詳細資訊：
 
@@ -61,7 +62,7 @@ Microsoft 已與 thales 合作增強 HSM 的開發狀態。 這些增強內容�
 | Azure 訂用帳戶 |若要建立 Azure 金鑰保存庫，您需要 Azure 訂用帳戶： [註冊免費試用](https://azure.microsoft.com/pricing/free-trial/) |
 | 可支援受 HSM 保護之金鑰的 Azure 金鑰保存庫進階服務層 |如需 Azure 金鑰保存庫的服務層和功能的詳細資訊，請參閱 [Azure 金鑰保存庫價格](https://azure.microsoft.com/pricing/details/key-vault/) 網站。 |
 | Thales HSM、智慧卡和支援軟體 |您必須存取 Thales 硬體安全模組和 Thales HSM 的基本操作知識。 請參閱 [Thales 硬體安全模組](https://www.thales-esecurity.com/msrms/buy) 以取得相容模型的清單，或者如果您沒有 HSM，請購買 HSM。 |
-| 下列的硬體和軟體︰<ol><li>離線 x64 工作站、至少為 Windows 7 的 Windows 作業系統，以及至少為 11.50 版的 Thales nShield 軟體。<br/><br/>如果此工作站執行 Windows 7，您必須[安裝 Microsoft .NET Framework 4.5](http://download.microsoft.com/download/b/a/4/ba4a7e71-2906-4b2d-a0e1-80cf16844f5f/dotnetfx45_full_x86_x64.exe)。</li><li>連線至網際網路且 Windows 作業系統至少為 Windows 7 的工作站。</li><li>至少有 16 MB 可用空間的 USB 磁碟機或其他可攜式儲存裝置。</li></ol> |基於安全性理由，建議第一個工作站不要連線到網路。 不過，在程式設計方面並不強迫採取這項建議。<br/><br/>請注意，在接下來的指示中，此工作站稱為中斷連線的工作站。</p></blockquote><br/>此外，如果您的租用戶金鑰適用於生產網路，建議您使用第二個另外的工作站來下載工具組和上傳租用戶金鑰。 但如果只是測試，您可以直接使用第一個工作站。<br/><br/>請注意，在接下來的指示中，此第二個工作站稱為網際網路連線的工作站。</p></blockquote><br/> |
+| 下列的硬體和軟體︰<ol><li>離線 x64 工作站、至少為 Windows 7 的 Windows 作業系統，以及至少為 11.50 版的 Thales nShield 軟體。<br/><br/>如果此工作站執行 Windows 7，您必須[安裝 Microsoft .NET Framework 4.5](http://download.microsoft.com/download/b/a/4/ba4a7e71-2906-4b2d-a0e1-80cf16844f5f/dotnetfx45_full_x86_x64.exe)。</li><li>連線至網際網路且 Windows 作業系統至少為 Windows 7 的工作站，並已安裝至少為 [1.1.0 版的 Azure PowerShell](/powershell/azure/overview)。</li><li>至少有 16 MB 可用空間的 USB 磁碟機或其他可攜式儲存裝置。</li></ol> |基於安全性理由，建議第一個工作站不要連線到網路。 不過，在程式設計方面並不強迫採取這項建議。<br/><br/>請注意，在接下來的指示中，此工作站稱為中斷連線的工作站。</p></blockquote><br/>此外，如果您的租用戶金鑰適用於生產網路，建議您使用第二個另外的工作站來下載工具組和上傳租用戶金鑰。 但如果只是測試，您可以直接使用第一個工作站。<br/><br/>請注意，在接下來的指示中，此第二個工作站稱為網際網路連線的工作站。</p></blockquote><br/> |
 
 ## <a name="generate-and-transfer-your-key-to-azure-key-vault-hsm"></a>產生金鑰並將其傳輸至 Azure 金鑰保存庫 HSM
 您將使用下列五個步驟產生金鑰並將其傳輸至 Azure 金鑰保存庫 HSM：
@@ -130,6 +131,13 @@ KeyVault-BYOK-Tools-Japan.zip
 453FFEA2F8F410720B68B8BAC4CF79135A7F37F4E491FF840BE9E69E88A98C90
 
 - - -
+**韓國：**
+
+KeyVault-BYOK-Tools-Korea.zip
+
+C17B7E93224DA80F5668E09CF7DAE2F92527E8226179995BBE2E43DA4323595A
+
+- - -
 **澳大利亞：**
 
 KeyVault-BYOK-Tools-Australia.zip
@@ -142,6 +150,13 @@ KeyVault-BYOK-Tools-Australia.zip
 KeyVault-BYOK-Tools-USGovCloud.zip
 
 3AAE1A96B9D15B899B8126CFC0380719EB54FDF2EA94489B43FAD21ECC745F64
+
+- - -
+**美國政府國防部：**
+
+KeyVault-BYOK-Tools-USGovernmentDoD.zip
+
+A61E78297B0732DF2682FDE63D7B572CE4D23B0BC27CC48AFF620BD060BB9E9D
 
 - - -
 **加拿大：**
@@ -181,7 +196,7 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 
 * 具有以 **BYOK-KEK-pkg-**
 * 具有以 **BYOK-SecurityWorld-pkg-**
-* 名為 v**erifykeypackage.py** 的 python 指令碼。
+* 名為 **verifykeypackage.py** 的 python 指令碼。
 * 名為 **KeyTransferRemote.exe** 的命令列可執行檔和相關聯的 DLL。
 * Visual C++ 可轉散發套件，名為 **vcredist_x64.exe**。
 
@@ -193,9 +208,9 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 ### <a name="step-21-prepare-the-disconnected-workstation-with-thales-hsm"></a>步驟 2.1：準備使用 Thales HSM 的中斷連線工作站
 在 Windows 電腦上安裝 nCipher (Thales) 支援軟體，然後將 Thales HSM 附加至該電腦。
 
-確定 Thales 工具位於您的路徑 (**%nfast_home%\bin** 和 **%nfast_home%\python\bin**)。 例如，輸入下列內容：
+確定 Thales 工具位於您的路徑 (**%nfast_home%\bin**)。 例如，輸入下列內容：
 
-        set PATH=%PATH%;”%nfast_home%\bin”;”%nfast_home%\python\bin”
+        set PATH=%PATH%;"%nfast_home%\bin"
 
 如需詳細資訊，請參閱 Thales HSM 內附的使用者指南。
 
@@ -207,9 +222,13 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 3. 遵循指示以安裝 Visual Studio 2013 的 Visual C++ 執行階段元件。
 
 ## <a name="step-3-generate-your-key"></a>步驟 3：產生您的金鑰
-在第三個步驟中，請在中斷連線的工作站上執行下列程序。
+在第三個步驟中，請在中斷連線的工作站上執行下列程序。 若要完成此步驟，您的 HSM 必須是初始化模式。 
 
-### <a name="step-31-create-a-security-world"></a>步驟 3.1：建立安全世界
+
+### <a name="step-31-change-the-hsm-mode-to-i"></a>步驟 3.1︰將 HSM 模式變更為 I
+如果您使用 Thales nShield Edge，則變更模式︰1。 使用 [Mode (模式)] 按鈕來反白顯示必要的模式。 2. 在幾秒鐘之內，按住 [Clear (清除)] 按鈕幾秒鐘。 如果模式變更，新模式的 LED 會停止閃爍，並保持亮燈。 狀態 LED 可能會不規則閃爍幾秒鐘的時間，當裝置就緒後則規則地閃爍。 否則，裝置會維持目前的模式，適當的模式 LED 會亮起。
+
+### <a name="step-32-create-a-security-world"></a>步驟 3.2：建立安全世界
 啟動命令提示字元並執行 Thales new-world 程式。
 
     new-world.exe --initialize --cipher-suite=DLf1024s160mRijndael --module=1 --acs-quorum=2/3
@@ -220,7 +239,11 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 
 * 備份世界檔案。 保障和保護世界檔案、系統管理員卡及其 pin，並確定沒有一個人可存取多張卡。
 
-### <a name="step-32-validate-the-downloaded-package"></a>步驟 3.2：驗證下載的封裝
+### <a name="step-33-change-the-hsm-mode-to-o"></a>步驟 3.3︰將 HSM 模式變更為 O
+如果您使用 Thales nShield Edge，則變更模式︰1。 使用 [Mode (模式)] 按鈕來反白顯示必要的模式。 2. 在幾秒鐘之內，按住 [Clear (清除)] 按鈕幾秒鐘。 如果模式變更，新模式的 LED 會停止閃爍，並保持亮燈。 狀態 LED 可能會不規則閃爍幾秒鐘的時間，當裝置就緒後則規則地閃爍。 否則，裝置會維持目前的模式，適當的模式 LED 會亮起。
+
+
+### <a name="step-34-validate-the-downloaded-package"></a>步驟 3.4：驗證下載的封裝
 此步驟為選擇性但建議使用，以便您可以驗證下列項目：
 
 * 工具組中包含的金鑰交換金鑰已從正版 Thales HSM 中產生。
@@ -229,54 +252,60 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 
 > [!NOTE]
 > 若要驗證下載的封裝，HSM 必須連線、開啟電源，而且必須在其上具有安全世界 (如同您剛才所建立的那一個)。
-> 
-> 
+>
+>
 
 驗證下載的封裝：
 
 1. 根據您的地理區域或 Azure 的執行個體輸入下列其中一個區域，以執行 verifykeypackage.py 指令碼：
-   
+
    * 北美洲：
-     
-         python verifykeypackage.py -k BYOK-KEK-pkg-NA-1 -w BYOK-SecurityWorld-pkg-NA-1
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-NA-1 -w BYOK-SecurityWorld-pkg-NA-1
    * 歐洲：
-     
-         python verifykeypackage.py -k BYOK-KEK-pkg-EU-1 -w BYOK-SecurityWorld-pkg-EU-1
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-EU-1 -w BYOK-SecurityWorld-pkg-EU-1
    * 亞洲：
-     
-         python verifykeypackage.py -k BYOK-KEK-pkg-AP-1 -w BYOK-SecurityWorld-pkg-AP-1
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-AP-1 -w BYOK-SecurityWorld-pkg-AP-1
    * 拉丁美洲：
-     
-         python verifykeypackage.py -k BYOK-KEK-pkg-LATAM-1 -w BYOK-SecurityWorld-pkg-LATAM-1
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-LATAM-1 -w BYOK-SecurityWorld-pkg-LATAM-1
    * 日本：
-     
-         python verifykeypackage.py -k BYOK-KEK-pkg-JPN-1 -w BYOK-SecurityWorld-pkg-JPN-1
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-JPN-1 -w BYOK-SecurityWorld-pkg-JPN-1
+   * 韓國︰
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-KOREA-1 -w BYOK-SecurityWorld-pkg-KOREA-1
    * 澳大利亞：
-     
-         python verifykeypackage.py -k BYOK-KEK-pkg-AUS-1 -w BYOK-SecurityWorld-pkg-AUS-1
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-AUS-1 -w BYOK-SecurityWorld-pkg-AUS-1
    * 對於 [Azure Government](https://azure.microsoft.com/features/gov/)，它會使用美國政府的 Azure 執行個體：
-     
-         python verifykeypackage.py -k BYOK-KEK-pkg-USGOV-1 -w BYOK-SecurityWorld-pkg-USGOV-1
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-USGOV-1 -w BYOK-SecurityWorld-pkg-USGOV-1
+   * 美國政府國防部：
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-USDOD-1 -w BYOK-SecurityWorld-pkg-USDOD-1
    * 針對加拿大：
-     
-         python verifykeypackage.py -k BYOK-KEK-pkg-CANADA-1 -w BYOK-SecurityWorld-pkg-CANADA-1
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-CANADA-1 -w BYOK-SecurityWorld-pkg-CANADA-1
    * 針對德國：
-     
-         python verifykeypackage.py -k BYOK-KEK-pkg-GERMANY-1 -w BYOK-SecurityWorld-pkg-GERMANY-1
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-GERMANY-1 -w BYOK-SecurityWorld-pkg-GERMANY-1
    * 針對印度︰
-     
-         python verifykeypackage.py -k BYOK-KEK-pkg-INDIA-1 -w BYOK-SecurityWorld-pkg-INDIA-1
+
+         "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-INDIA-1 -w BYOK-SecurityWorld-pkg-INDIA-1
      > [!TIP]
      > Thales 軟體包含 %NFAST_HOME%\python\bin 中的 python
-     > 
-     > 
+     >
+     >
 2. 確認您看到下列訊息，表示驗證成功： **Result: SUCCESS**
 
 此指令碼會驗證簽章者鏈結到 Thales 根金鑰。 此根金鑰的雜湊內嵌於指令碼中，而且其值應為 **59178a47 de508c3f 291277ee 184f46c4 f1d9c639**。 您也可以造訪 [Thales 網站](http://www.thalesesec.com/)以另行確認此值。
 
 您現在可以開始建立新的金鑰。
 
-### <a name="step-33-create-a-new-key"></a>步驟 3.3：建立新的金鑰
+### <a name="step-35-create-a-new-key"></a>步驟 3.5：建立新的金鑰
 使用 Thales **generatekey** 程式產生金鑰。
 
 執行下列命令來產生金鑰：
@@ -295,8 +324,8 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 
 > [!IMPORTANT]
 > 當您稍後將您的金鑰傳輸至 Azure 金鑰保存庫時，Microsoft 就無法將此金鑰匯出給您，因此，請務必安全地備份您的金鑰和安全世界。 如需備份金鑰的指引及最佳作法，請連絡 Thales。
-> 
-> 
+>
+>
 
 您現在已準備好將金鑰傳輸至 Azure 金鑰保存庫。
 
@@ -304,109 +333,120 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 在第四個步驟中，請在中斷連線的工作站上執行下列程序。
 
 ### <a name="step-41-create-a-copy-of-your-key-with-reduced-permissions"></a>步驟 4.1：使用降低權限建立金鑰的複本
-若要減少金鑰的權限，請從命令提示字元，根據您的地理區域或 Azure 執行個體，執行下列其中一個區域：
+
+開啟新的命令提示字元，並將目前的目錄變更為解壓縮 BYOK ZIP 檔案的位置。 若要減少金鑰的權限，請從命令提示字元，根據您的地理區域或 Azure 執行個體，執行下列其中一個區域：
 
 * 北美洲：
-  
+
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-NA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-NA-1
 * 歐洲：
-  
+
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-EU-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-EU-1
 * 亞洲：
-  
+
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-AP-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-AP-1
 * 拉丁美洲：
-  
+
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-LATAM-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-LATAM-1
 * 日本：
-  
+
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-JPN-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-JPN-1
+* 韓國︰
+
+        KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-KOREA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-KOREA-1
 * 澳大利亞：
-  
+
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-AUS-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-AUS-1
 * 對於 [Azure Government](https://azure.microsoft.com/features/gov/)，它會使用美國政府的 Azure 執行個體：
-  
+
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-USGOV-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-USGOV-1
+* 美國政府國防部：
+
+        KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-USDOD-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-USDOD-1
 * 針對加拿大：
-  
+
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-CANADA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-CANADA-1
 * 針對德國：
-  
+
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-GERMANY-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-GERMANY-1
 * 針對印度︰
-  
+
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-INDIA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-INDIA-1
 
-當您執行此命令時，請以您從 *產生您的金鑰* 步驟的 **步驟 3.3：建立新的金鑰** 中指定的相同值取代 [contosokey](#step-3-generate-your-key) 。
+當您執行此命令時，請以您從[產生您的金鑰](#step-3-generate-your-key)步驟的**步驟 3.5：建立新的金鑰**中指定的相同值取代 *contosokey*。
 
 系統會要求您插入您的安全世界系統管理員卡。
 
 此命令完成時，您會看到 **Result: SUCCESS**，而降低權限的金鑰複本會在名為 key_xferacId_<contosokey> 的檔案中。
 
-### <a name="step-42-inspect-the-new-copy-of-the-key"></a>步驟 4.2：檢查金鑰的新複本
-(選擇性) 執行 Thales 公用程式來確認新金鑰的最低權限：
+您可使用 Thales 公用程式，以下列命令檢查 ACLS：
 
 * aclprint.py：
-  
+
         "%nfast_home%\bin\preload.exe" -m 1 -A xferacld -K contosokey "%nfast_home%\python\bin\python" "%nfast_home%\python\examples\aclprint.py"
 * kmfile-dump.exe：
-  
-        "%nfast_home%\bin\kmfile-dump.exe" "%NFAST_KMDATA%\local\key_xferacld_contosokey"
-  當您執行這些命令時，請以您從[產生您的金鑰](#step-3-generate-your-key)步驟的**步驟 3.3：建立新的金鑰**指定的相同值取代 contosokey。
 
-### <a name="step-43-encrypt-your-key-by-using-microsofts-key-exchange-key"></a>步驟 4.3：使用 Microsoft 的金鑰交換金鑰來加密您的金鑰
+        "%nfast_home%\bin\kmfile-dump.exe" "%NFAST_KMDATA%\local\key_xferacld_contosokey"
+  當您執行這些命令時，請以您從[產生您的金鑰](#step-3-generate-your-key)步驟的**步驟 3.5：建立新的金鑰**指定的相同值取代 contosokey。
+
+### <a name="step-42-encrypt-your-key-by-using-microsofts-key-exchange-key"></a>步驟 4.2：使用 Microsoft 的金鑰交換金鑰來加密您的金鑰
 根據您的地理區域或 Azure 執行個體，執行下列其中一個命令：
 
 * 北美洲：
-  
+
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-NA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-NA-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 * 歐洲：
-  
+
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-EU-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-EU-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 * 亞洲：
-  
+
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-AP-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-AP-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 * 拉丁美洲：
-  
+
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-LATAM-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-LATAM-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 * 日本：
-  
+
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-JPN-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-JPN-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
+* 韓國︰
+
+        KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-KOREA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-KOREA-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 * 澳大利亞：
-  
+
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-AUS-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-AUS-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 * 對於 [Azure Government](https://azure.microsoft.com/features/gov/)，它會使用美國政府的 Azure 執行個體：
-  
+
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-USGOV-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-USGOV-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
+* 美國政府國防部：
+
+        KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-USDOD-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-USDOD-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 * 針對加拿大：
-  
+
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-CANADA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-CANADA-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 * 針對德國：
-  
+
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-GERMANY-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-GERMANY-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 * 針對印度︰
-  
+
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-INDIA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-INDIA-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 
 當您執行此命令時，請使用下列指示：
 
-* 請以您在 *產生您的金鑰* 步驟的 **步驟 3.3：建立新的金鑰** 中用來產生金鑰的識別碼取代 [contosokey](#step-3-generate-your-key) 。
+* 請以您在*產生您的金鑰*步驟的**步驟 3.5：建立新的金鑰**中用來產生金鑰的識別碼取代 [contosokey](#step-3-generate-your-key) 。
 * 以包含金鑰保存庫的 Azure 訂用帳戶識別碼取代 *SubscriptionID* 。 您先前已在 **步驟 1.2：取得 Azure 訂用帳戶識別碼** 中從 [準備網際網路連線的工作站](#step-1-prepare-your-internet-connected-workstation) 步驟擷取過這個值。
 * 以用於輸出檔案名稱的標籤取代 *ContosoFirstHSMKey*。
 
-當此動作成功完成時，會顯示 **Result: SUCCESS** ，而且目前的資料夾中會有新的檔案，其名稱如下：TransferPackage-*ContosoFirstHSMkey*.byok
+當此動作成功完成時，會顯示 **Result: SUCCESS** ，而且目前的資料夾中會有新的檔案，其名稱如下：KeyTransferPackage-*ContosoFirstHSMkey*.byok
 
-### <a name="step-44-copy-your-key-transfer-package-to-the-internet-connected-workstation"></a>步驟 4.4：將金鑰傳輸封裝複製到網際網路連線的工作站
+### <a name="step-43-copy-your-key-transfer-package-to-the-internet-connected-workstation"></a>步驟 4.3：將金鑰傳輸封裝複製到網際網路連線的工作站
 使用 USB 磁碟機或其他可攜式儲存裝置，將上一個步驟的輸出檔案 (KeyTransferPackage-ContosoFirstHSMkey.byok) 複製到網際網路連線的工作站。
 
 ## <a name="step-5-transfer-your-key-to-azure-key-vault"></a>步驟 5：將金鑰傳輸至 Azure 金鑰保存庫
 針對這最後一個步驟，在連線到網際網路的工作站上，使用 [Add-AzureKeyVaultKey](/powershell/module/azurerm.keyvault/add-azurermkeyvaultkey) Cmdlet，將您從已中斷連線的工作站複製的金鑰傳輸套件上傳到「Azure 金鑰保存庫 HSM」：
 
-    Add-AzureKeyVaultKey -VaultName 'ContosoKeyVaultHSM' -Name 'ContosoFirstHSMkey' -KeyFilePath 'c:\TransferPackage-ContosoFirstHSMkey.byok' -Destination 'HSM'
+    Add-AzureKeyVaultKey -VaultName 'ContosoKeyVaultHSM' -Name 'ContosoFirstHSMkey' -KeyFilePath 'c:\KeyTransferPackage-ContosoFirstHSMkey.byok' -Destination 'HSM'
 
 如果上傳成功，就會顯示您剛才加入之金鑰的屬性。
 
 ## <a name="next-steps"></a>後續步驟
 您現在可以在您的金鑰保存庫中使用這個受 HSM 保護的金鑰。 如需詳細資訊，請參閱 **開始使用 Azure 金鑰保存庫** 教學課程中的 [如果您想要使用硬體安全模組 (HSM)](key-vault-get-started.md) 一節。
-
 

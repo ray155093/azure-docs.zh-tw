@@ -14,9 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-translationtype: Human Translation
-ms.sourcegitcommit: 06bd0112eab46f3347dfb039a99641a37c2b0197
-ms.openlocfilehash: 3a0db75612531ebf947c011e9e4545f7d9590e20
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 0ea23f4f59737123f4400dafc7506e121f24ae34
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -37,10 +39,11 @@ ms.openlocfilehash: 3a0db75612531ebf947c011e9e4545f7d9590e20
 
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在左下角，選取 [ **新增**]。 在 [新增] 對話方塊中，選取 [資料 + 儲存體]，然後按一下 [儲存體帳戶]。
-   
-   此時會顯示 [建立儲存體帳戶]  刀鋒視窗。
-   
-   ![建立儲存體帳戶][create-new-storage-account]
+    
+    此時會顯示 [建立儲存體帳戶]  刀鋒視窗。   
+
+       ![Create Storage Account][create-new-storage-account]  
+
 3. 在 [名稱]  欄位中，輸入子網域名稱。 此項目可以包含 3 至 24 個小寫字母與數字。
    
     此值會成為 URI 內用來將訂用帳戶的 Blob、「佇列」或「資料表」資源定址的主機名稱。 若要將 Blob 服務中的容器資源定址，您需要使用下列格式的 URI，其中 &lt;StorageAccountLabel&gt; 是指在 [輸入 URL] 中輸入的值：
@@ -56,49 +59,42 @@ ms.openlocfilehash: 3a0db75612531ebf947c011e9e4545f7d9590e20
 7. 選取儲存體帳戶的位置。
 8. 按一下 [建立] 。 建立儲存體帳戶的程序可能需要幾分鐘才能完成。
 
-## <a name="step-2-create-a-new-cdn-profile"></a>步驟 2：建立新的 CDN 設定檔
-CDN 設定檔為 CDN 端點的集合。  每個設定檔皆包含一或多個 CDN 端點。  您可能會想要使用多個設定檔，依網際網路網域、Web 應用程式或其他準則來組織您的 CDN 端點。
+## <a name="step-2-enable-cdn-for-the-storage-account"></a>步驟 2︰啟用儲存體帳戶的 CDN
 
-> [!TIP]
-> 若您已有您想要用於本教學課程的 CDN 設定檔，請繼續進行 [步驟 3](#step-3-create-a-new-cdn-endpoint)。
+您現在可以利用最新的整合啟用儲存體帳戶的 CDN，而不需要離開儲存體入口網站延伸模組。 
+
+1. 選取儲存體帳戶，搜尋 "CDN" 或從左側導覽功能表向下捲動，然後按一下 [Azure CDN]。
+    
+    [Azure CDN] 刀鋒視窗隨即顯示。
+
+    ![CDN 啟用導覽][cdn-enable-navigation]
+    
+2. 輸入所需的資訊建立新端點
+    - **CDN 設定檔**：您可以建立新的設定檔，或使用現有設定檔。
+    - **定價層**︰如果您建立新的 CDN 設定檔，則只需選取定價層。
+    - **CDN 端點名稱**︰依照您的選擇輸入端點名稱。
+
+    > [!TIP]
+       > 根據預設，建立的 CDN 端點會使用儲存體帳戶的主機名稱作為來源。
+
+    ![cdn new endpoint creation][cdn-new-endpoint-creation]
+
+3. 建立之後，新的端點會出現在上面的端點清單。
+
+    ![CDN 儲存體新端點][cdn-storage-new-endpoint]
+
+> [!NOTE]
+> 您也可以移至 Azure CDN 延伸模組以啟用 CDN，[教學課程](#Tutorial-cdn-create-profile)。
 > 
 > 
 
-[!INCLUDE [cdn-create-profile](../../includes/cdn-create-profile.md)]
+[!INCLUDE [cdn-create-profile](../../includes/cdn-create-profile.md)]  
 
-## <a name="step-3-create-a-new-cdn-endpoint"></a>步驟 3：建立新的 CDN 端點
-**為儲存體帳戶建立新的 CDN 端點**
+## <a name="step-3-enable-additional-cdn-features"></a>步驟 3︰ 啟用其他 CDN 功能
 
-1. 在 [Azure 管理入口網站](https://portal.azure.com)中，巡覽至您的 CDN 設定檔。  您可能已在先前步驟中將其釘選至儀表板。  若否，則您可依序按一下 [瀏覽]、[CDN 設定檔] 尋找該設定檔，然後再按一下您要在其中新增端點的設定檔。
-   
-    此時會顯示 [CDN 設定檔] 刀鋒視窗。
-   
-    ![CDN 設定檔][cdn-profile-settings]
-2. 按一下 [新增端點]  按鈕。
-   
-    ![[加入端點] 按鈕][cdn-new-endpoint-button]
-   
-    此時會顯示 [加入端點]  刀鋒視窗。
-   
-    ![[加入端點] 刀鋒視窗][cdn-add-endpoint]
-3. 輸入這個 CDN 端點的 [名稱]  。  此名稱會用於存取位於網域 `<endpointname>.azureedge.net`的快取資源。
-4. 在 [ **原始類型** ] 下拉式清單中，選取 [ *儲存體*]。  
-5. 在 [ **原始主機名稱** ] 下拉式清單中，選取您的儲存體帳戶。
-6. 針對以下項目保留預設值：[原始路徑]、[原始主機標頭] 和 [通訊協定/原始連接埠]。  您至少必須指定一個通訊協定 (HTTP 或 HTTPS)。
-   
-   > [!NOTE]
-   > 此組態可讓您在 CDN 快取儲存體帳戶中所有公開可見的容器。  若您想要將範圍限制為單一容器，請使用 [ **原始路徑**]。  請注意，容器可見度必須設為公開。
-   > 
-   > 
-7. 按一下 [ **新增** ] 按鈕，以建立新的端點。
-8. 端點建立完畢之後，即會出現在設定檔的端點清單中。 此清單檢視會顯示用來存取所快取內容的 URL 以及原始網域。
-   
-    ![CDN 端點][cdn-endpoint-success]
-   
-   > [!NOTE]
-   > 端點將無法立即可用。  註冊可能需要 90 分鐘的處理時間，以透過 CDN 網路傳播。 若使用者嘗試立即使用 CDN 網域名稱，則可能會顯示狀態碼 404，直到可透過 CDN 使用內容為止。
-   > 
-   > 
+從儲存體帳戶 [Azure CDN] 刀鋒視窗中，按一下清單中的 CDN 端點，以開啟 CDN 組態刀鋒視窗。 您可以為傳遞啟用其他的 CDN 功能，例如壓縮、查詢字串、地理篩選。 您也可以將自訂網域對應新增至 CDN 端點，並啟用自訂網域 HTTPS。
+    
+![CDN 儲存體 CDN 組態][cdn-storage-cdn-configuration]
 
 ## <a name="step-4-access-cdn-content"></a>步驟 4：存取 CDN 內容
 若要存取 CDN 上快取的內容，請使用入口網站中提供的 CDN URL。 所快取 Blob 的位址將類似如下：
@@ -106,7 +102,7 @@ CDN 設定檔為 CDN 端點的集合。  每個設定檔皆包含一或多個 CD
 http://<EndpointName*\>.azureedge.net/<**myPublicContainer\>/<**BlobName*\>
 
 > [!NOTE]
-> 啟用儲存體帳戶或裝載服務的 CDN 存取之後，所有公開可用的物件皆適用於 CDN 邊緣快取。 如果您修改的物件目前是 CDN 中的快取物件，在快取內容的有效存留期已滿，且 CDN 重新整理內容之前，都無法透過 CDN 取得新的內容。
+> 啟用 CDN 存取儲存體帳戶後，所有公開可用的物件皆適用於 CDN 邊緣快取。 如果您修改的物件目前是 CDN 中的快取物件，在快取內容的有效存留期已滿，且 CDN 重新整理內容之前，都無法透過 CDN 取得新的內容。
 > 
 > 
 
@@ -121,16 +117,9 @@ http://<EndpointName*\>.azureedge.net/<**myPublicContainer\>/<**BlobName*\>
 
 ## <a name="additional-resources"></a>其他資源
 * [如何將 CDN 內容對應至自訂網域](cdn-map-content-to-custom-domain.md)
+* [啟用自訂網域的 HTTPS](cdn-custom-ssl.md)
 
 [create-new-storage-account]: ./media/cdn-create-a-storage-account-with-cdn/CDN_CreateNewStorageAcct.png
-
-[cdn-profile-settings]: ./media/cdn-create-a-storage-account-with-cdn/cdn-profile-settings.png
-[cdn-new-endpoint-button]: ./media/cdn-create-a-storage-account-with-cdn/cdn-new-endpoint-button.png
-[cdn-add-endpoint]: ./media/cdn-create-a-storage-account-with-cdn/cdn-add-endpoint.png
-[cdn-endpoint-success]: ./media/cdn-create-a-storage-account-with-cdn/cdn-endpoint-success.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
-
+[cdn-enable-navigation]: ./media/cdn-create-a-storage-account-with-cdn/cdn-storage-new-endpoint-creation.png
+[cdn-storage-new-endpoint]: ./media/cdn-create-a-storage-account-with-cdn/cdn-storage-new-endpoint-list.png
+[cdn-storage-cdn-configuration]: ./media/cdn-create-a-storage-account-with-cdn/cdn-storage-endpoint-configuration.png 

@@ -1,28 +1,31 @@
 ---
-title: "DocumentDB 的設計模式：社交媒體應用程式 | Microsoft Docs"
-description: "了解具有 DocumentDB 與其他 Azure 服務之儲存體彈性的社交網路設計模式。"
+title: "Azure Cosmos DB 的設計模式：社交媒體應用程式 | Microsoft Docs"
+description: "了解具有 Azure Cosmos DB 與其他 Azure 服務之儲存體彈性的社交網路設計模式。"
 keywords: "社交媒體應用程式"
-services: documentdb
+services: cosmosdb
 author: ealsur
 manager: jhubbard
 editor: 
 documentationcenter: 
 ms.assetid: 2dbf83a7-512a-4993-bf1b-ea7d72e095d9
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/17/2017
+ms.date: 05/10/2017
 ms.author: mimig
-translationtype: Human Translation
-ms.sourcegitcommit: afe143848fae473d08dd33a3df4ab4ed92b731fa
-ms.openlocfilehash: a49021d7887ee91da902e5c3dea8cbc6cb3de29d
-ms.lasthandoff: 03/17/2017
+redirect_url: https://aka.ms/acdbusecases
+ROBOTS: NOINDEX, NOFOLLOW
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: cdafca45ef6230af4a8730f0e2b7e41b237fa830
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="going-social-with-documentdb"></a>使用 DocumentDB 進行社交活動
+# <a name="going-social-with-azure-cosmos-db"></a>使用 Azure Cosmos DB 跨足社交
 在當今大幅互連的社會當中，我們的生活或多或少都成為 **社交網路**的一部分。 我們會使用社交網路與朋友、同事、家人保持聯絡，有時候還可以跟擁有共同興趣的人交流這份愛好。
 
 身為工程師或開發人員的我們，可能會好奇這些網路如何儲存我們的資料以及與其互連，或可能已針對本身的特定利基市場，建立或建構新的社交網路。 這時候，最大的問題出現了︰該如何儲存這些所有資料？
@@ -44,7 +47,7 @@ ms.lasthandoff: 03/17/2017
 當然，我們還是可以使用一個龐大的 SQL 執行個體，來求解含有眾多聯結的數千個查詢並提供內容，但如果有一個比較簡單的解決方案，為什麼還要這麼大費周章？
 
 ## <a name="the-nosql-road"></a>NoSQL 的方法
-您可以 [在 Azure 上執行](http://neo4j.com/developer/guide-cloud-deployment/#_windows_azure) 一種特殊的圖表資料庫，但這種資料庫很昂貴，而且需要 IaaS 服務 (基礎結構即服務，主要是虛擬機器) 以及進行維護。 因此，我會將這篇文章的重點放在適用於大多數案例且成本低廉，同時可在 Azure 的 NoSQL 資料庫 [DocumentDB](https://azure.microsoft.com/services/documentdb/)上執行的解決方案。 如果使用 [NoSQL](https://en.wikipedia.org/wiki/NoSQL) 方法，將資料以 JSON 格式儲存，並套用[反正規化](https://en.wikipedia.org/wiki/Denormalization)，即可將之前複雜的貼文轉換成單一[文件](https://en.wikipedia.org/wiki/Document-oriented_database)：
+您可以 [在 Azure 上執行](http://neo4j.com/developer/guide-cloud-deployment/#_windows_azure) 一種特殊的圖表資料庫，但這種資料庫很昂貴，而且需要 IaaS 服務 (基礎結構即服務，主要是虛擬機器) 以及進行維護。 因此，我會將這篇文章的重點放在適用於大多數案例且成本低廉，同時可在 Azure 的 NoSQL 資料庫 [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/)上執行的解決方案。 如果使用 [NoSQL](https://en.wikipedia.org/wiki/NoSQL) 方法，將資料以 JSON 格式儲存，並套用[反正規化](https://en.wikipedia.org/wiki/Denormalization)，即可將之前複雜的貼文轉換成單一[文件](https://en.wikipedia.org/wiki/Document-oriented_database)：
 
     {
         "id":"ew12-res2-234e-544f",
@@ -103,13 +106,13 @@ Azure DocumentDB 可利用自己的自動索引編製作業，確保所有屬性
         {"relevance":7, "post":"w34r-qeg6-ref6-8565"}
     ]
 
-例如，我們可以設定依建立日期的「最新」貼文串流、過去 24 小時內獲得較多讚的「最熱門」貼文串流，甚至可以依據邏輯 (例如關注者與興趣) 為每位使用者實作自訂串流，而這仍屬於文章清單。 關鍵在於如何建立這些清單，而且讀取效能不會受到影響。 在取得其中一份清單之後，我們可以使用 [IN 運算子](documentdb-sql-query.md#WhereClause) 向 DocumentDB 發出單一查詢，一次取得貼文的頁面。
+例如，我們可以設定依建立日期的「最新」貼文串流、過去 24 小時內獲得較多讚的「最熱門」貼文串流，甚至可以依據邏輯 (例如關注者與興趣) 為每位使用者實作自訂串流，而這仍屬於文章清單。 關鍵在於如何建立這些清單，而且讀取效能不會受到影響。 在取得其中一份清單之後，我們可以使用 [IN 運算子](documentdb-sql-query.md#WhereClause)向 Cosmos DB 發出單一查詢，一次取得貼文的頁面。
 
 您可以使用 [Azure App Service](https://azure.microsoft.com/services/app-service/) 的背景處理序 [Webjobs](../app-service-web/web-sites-create-web-jobs.md) 來建置摘要串流。 建立貼文之後就會觸發背景處理，方法是使用 [Azure 儲存體](https://azure.microsoft.com/services/storage/)[佇列](../storage/storage-dotnet-how-to-use-queues.md)，以及使用 [Azure Webjobs SDK](../app-service-web/websites-dotnet-webjobs-sdk.md) 觸發的 Webjobs，根據我們的自訂邏輯，在串流內進行貼文的傳播。 
 
 您也可以使用相同的技術，以延後方式來處理貼文的點數和按讚數，建立最終一致的環境。
 
-至於粉絲，則需要有更多的技巧來處理。 DocumentDB 擁有最大的文件大小限制，在讀取/寫入大型文件時可能會影響應用程式的延展性。 因此，您可能會考慮使用下列結構，以文件形式儲存粉絲：
+至於粉絲，則需要有更多的技巧來處理。 Cosmos DB 擁有最大的文件大小限制，在讀取/寫入大型文件時可能會影響應用程式的延展性。 因此，您可能會考慮使用下列結構，以文件形式儲存粉絲：
 
     {
         "id":"234d-sd23-rrf2-552d",
@@ -134,7 +137,7 @@ Azure DocumentDB 可利用自己的自動索引編製作業，確保所有屬性
         "totalPoints":11342
     }
 
-接著使用 [擴充功能](https://github.com/richorama/AzureStorageExtensions#azuregraphstore) ，將實際的粉絲圖表儲存於 Azure 儲存體資料表，以允許進行簡單的「A-跟隨-B」儲存和擷取。 如此一來，我們就可將確切粉絲清單的擷取程序 (當我們需要它時) 委派給 Azure 儲存體資料表，但對於快速號碼查閱，我們仍會繼續使用 DocumentDB。
+接著使用 [擴充功能](https://github.com/richorama/AzureStorageExtensions#azuregraphstore) ，將實際的粉絲圖表儲存於 Azure 儲存體資料表，以允許進行簡單的「A-跟隨-B」儲存和擷取。 如此一來，我們就可將確切粉絲清單的擷取程序 (當我們需要它時) 委派給 Azure 儲存體資料表，但對於快速號碼查閱，我們仍會繼續使用 Cosmos DB。
 
 ## <a name="the-ladder-pattern-and-data-duplication"></a>「階梯」模式與資料複製
 您可能已經注意到，參考貼文的 JSON 文件中，有一位使用者出現多次。 您猜的沒錯，這意謂著在使用這種反正規化的情況下，代表使用者的資訊可能會出現在多個位置。
@@ -165,7 +168,7 @@ Azure DocumentDB 可利用自己的自動索引編製作業，確保所有屬性
 
 最小的一階稱為「使用者區塊」，其為可識別使用者並為資料重複使用的最基本部分。 只要將重複資料的大小縮減為僅限我們「顯示」的資訊，即可降低大量更新的可能性。
 
-中間的階梯稱為「使用者」，其為在 DocumentDB 中大多數與效能相依之查詢會用到的完整資料，也是最重要與最常存取的資料。 它包含「使用者區塊」所代表的資訊。
+中間的階梯稱為「使用者」，其為在 Cosmos DB 中大多數與效能相依之查詢會用到的完整資料，也是最重要與最常存取的資料。 它包含「使用者區塊」所代表的資訊。
 
 最大的一階為「擴充使用者」。 它包含所有重要的使用者資訊，加上其他並不需要快速讀取或最終使用情況的相關資料 (例如登入過程)。 這些資料可以儲存在 DocumentDB 外部、Azure SQL Database 中或 Azure 儲存體資料表中。
 
@@ -221,11 +224,11 @@ Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/
 另一個可行的做法是使用 [Microsoft 辨識服務](https://www.microsoft.com/cognitive-services)來分析使用者內容；我們不但可以更了解它們 (以[文字分析 API](https://www.microsoft.com/cognitive-services/en-us/text-analytics-api) 分析它們撰寫的東西)，也可以利用[電腦願景 API](https://www.microsoft.com/cognitive-services/en-us/computer-vision-api) 偵測到不想要或成熟的內容，並採取適當動作。 辨識服務中有許多現成的解決方案，不需要任何機器學習的知識也能使用。
 
 ## <a name="a-planet-scale-social-experience"></a>全球規模的社交體驗
-最後，我還有一項重要的主題必須和各位分享，那就是「延展性」。 設計架構時，讓每個元件都能各自延展是非常重要的，不論是因為需要處理更多資料，還是想要有更廣泛的地理涵蓋範圍 (或兩者皆是！)。 幸好，透過 DocumentDB，我們便能輕鬆完成如此複雜的工作。
+最後，我還有一項重要的主題必須和各位分享，那就是「延展性」。 設計架構時，讓每個元件都能各自延展是非常重要的，不論是因為需要處理更多資料，還是想要有更廣泛的地理涵蓋範圍 (或兩者皆是！)。 幸好，透過 Cosmos DB，我們便能輕鬆完成如此複雜的工作。
 
-DocumentDB 預設便支援[動態分割 (英文)](https://azure.microsoft.com/blog/10-things-to-know-about-documentdb-partitioned-collections/)，它會根據特定「分割區索引鍵」(定義為您文件中的其中一項屬性) 自動建立分割區。 定義正確的分割區索引鍵必須在設計時期完成，並留意可用的[最佳做法](documentdb-partition-data.md#designing-for-partitioning)。以社交體驗的案例而言，您的分割策略必須符合您進行查詢 (理想情況為在相同分割區內進行讀取) 及寫入 (將寫入分散在多個分割區以避免「熱點」) 的方式。 一些選項為：根據時態索引鍵 (日期/月份/週)、依內容分類、依地理區域、依使用者等等的分割區。這完全視您查詢資料及將它顯示於社交體驗的方式而定。 
+Cosmos DB 預設便支援[動態分割 (英文)](https://azure.microsoft.com/blog/10-things-to-know-about-documentdb-partitioned-collections/)，它會根據特定「資料分割索引鍵」(定義為您文件中的其中一項屬性) 自動建立資料分割。 定義正確的分割區索引鍵必須在設計時期完成，並留意可用的[最佳做法](../cosmos-db/partition-data.md#designing-for-partitioning)。以社交體驗的案例而言，您的分割策略必須符合您進行查詢 (理想情況為在相同分割區內進行讀取) 及寫入 (將寫入分散在多個分割區以避免「熱點」) 的方式。 一些選項為：根據時態索引鍵 (日期/月份/週)、依內容分類、依地理區域、依使用者等等的分割區。這完全視您查詢資料及將它顯示於社交體驗的方式而定。 
 
-其中值得注意的一點是，DocumentDB 會透明地在所有分割區上執行您的查詢 (包括[彙總 (英文)](https://azure.microsoft.com/blog/planet-scale-aggregates-with-azure-documentdb/))，您不需要隨資料增加而新增任何邏輯。
+其中值得注意的一點是，Cosmos DB 會透明地在所有資料分割上執行您的查詢 (包括[彙總 (英文)](https://azure.microsoft.com/blog/planet-scale-aggregates-with-azure-documentdb/))，您不需要隨資料增加而新增任何邏輯。
 
 流量最終會隨時間增長，而您的資源消耗 (以 [RU](documentdb-request-units.md) (要求單位) 為單位) 也會增加。 隨著使用者數量的增長，讀取及寫入也會變得更頻繁，使用者將會建立及讀取更多內容，因此「調整輸送量」的能力極為重要。 增加 RU 非常容易，只要在 Azure 入口網站按幾下，或是[透過 API 發出命令 (英文)](https://docs.microsoft.com/rest/api/documentdb/replace-an-offer) 即可。
 
@@ -235,7 +238,7 @@ DocumentDB 預設便支援[動態分割 (英文)](https://azure.microsoft.com/bl
 
 不過，您很快就發現他們無法從您的平台取得最佳的體驗，因為他們離您的作業區域太遠，使延遲變得非常嚴重。但您當然也不希望他們因此而放棄使用。 要是有方法能輕鬆「觸達全球使用者」就好了。當然有！
 
-DocumentDB 可讓您按幾下就能透明地[將資料複寫至全球](documentdb-portal-global-replication.md)，並且自動從您的[用戶端程式碼](documentdb-developing-with-multiple-regions.md)選取可用的區域。 這也表示您可以擁有[多個容錯移轉區域](documentdb-regional-failovers.md)。 
+Cosmos DB 可讓您按幾下就能透明地[將資料複寫至全球](../cosmos-db/tutorial-global-distribution-documentdb.md)，並且自動從您的[用戶端程式碼](../cosmos-db/tutorial-global-distribution-documentdb.md)選取可用的區域。 這也表示您可以擁有[多個容錯移轉區域](documentdb-regional-failovers.md)。 
 
 當您將資料複寫至全球時，您必須確保您的用戶端能充分利用它。 如果您是使用 Web 前端，或是從行動用戶端存取 API，您可以部署 [Azure 流量管理員](https://azure.microsoft.com/services/traffic-manager/)並將您的 Azure App Service 複製到所有需要的區域，並使用[效能設定](../app-service-web/web-sites-traffic-manager.md)來支援擴展的全球涵蓋範圍。 當您的用戶端存取您的前端或 API 時，系統會將它們路由至最接近的 App Service，這將會使它們連線到當地的 DocumentDB 複本。
 
@@ -246,11 +249,7 @@ DocumentDB 可讓您按幾下就能透明地[將資料複寫至全球](documentd
 
 ![Azure 服務之間社交網路互動的圖表](./media/documentdb-social-media-apps/social-media-apps-azure-solution.png)
 
-事實上，這類案例並沒有萬靈丹，而是靠下列強大服務組合所建立的綜效，它們可讓我們建立絕佳體驗：Azure DocumentDB 的高速和自由性，可提供強大的社交應用程式；Azure 搜尋服務這類頂級搜尋解決方案背後蘊藏的智慧；靈活的 Azure App Service，不只能主控不限語言的應用程式，還可主控功能強大的背景處理序；可儲存大量資料的可擴充 Azure 儲存體和 Azure SQL Database；具分析功能的 Azure Machine Learning，可建立知識與智慧，以提供處理序的意見反應並協助我們將正確的內容傳遞給適當的使用者。
+事實上，這類案例並沒有萬靈丹，而是靠下列強大服務組合所建立的綜效，它們可讓我們建立絕佳體驗：Azure Cosmos DB 的高速和自由性，可提供強大的社交應用程式；Azure 搜尋服務這類頂級搜尋解決方案背後蘊藏的智慧；靈活的 Azure App Service，不只能主控不限語言的應用程式，還可主控功能強大的背景處理序；可儲存大量資料的可擴充 Azure 儲存體和 Azure SQL Database；具分析功能的 Azure Machine Learning，可建立知識與智慧，以提供處理序的意見反應並協助我們將正確的內容傳遞給適當的使用者。
 
 ## <a name="next-steps"></a>後續步驟
-請閱讀 [在 DocumentDB 中模型化資料](documentdb-modeling-data.md) ，以深入了解資料模型化。 如果您想了解 DocumentDB 的其他使用案例，請參閱 [常見的 DocumentDB 使用案例](documentdb-use-cases.md)。
-
-或者，您可以遵循 [DocumentDB 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)以深入了解 DocumentDB。
-
-
+若要深入了解 Cosmos DB 的使用案例，請參閱[常見 Cosmos DB 使用案例](documentdb-use-cases.md)。

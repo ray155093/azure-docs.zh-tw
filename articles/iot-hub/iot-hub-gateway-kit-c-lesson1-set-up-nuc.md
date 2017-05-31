@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 4c6b70d793a7d734f5a29139e1f0b91f0d41e73a
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 475664845a9922c5225ea1fd8e008bcb5582bd67
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.lasthandoff: 04/12/2017
 ## <a name="what-you-will-do"></a>將執行的作業
 
 - 將 Intel NUC 設定為 IoT 閘道器。
-- 在 Intel NUC 上安裝 Azure IoT 閘道 SDK 封裝。
+- 在 Intel NUC 上安裝 Azure IoT Edge 套件。
 - 在 Intel NUC 上執行 "hello_world" 範例應用程式，以確認閘道功能。
 
   > 如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-troubleshooting.md)尋求解決方案。
@@ -89,9 +90,9 @@ ms.lasthandoff: 04/12/2017
    從主機電腦操作 Intel NUC 會更有效率且更有生產力。 您將需要 NUC 的 IP 位址、使用者名稱和密碼，才能透過 SSH 用戶端與它連線。 以下是在 macOS 上使用 SSH 用戶端的範例。
    ![在 macOS 上執行的 SSH 用戶端](media/iot-hub-gateway-kit-lessons/lesson1/ssh.png)
 
-## <a name="install-the-azure-iot-gateway-sdk-package"></a>安裝 Azure IoT 閘道器 SDK 套件
+## <a name="install-the-azure-iot-edge-package"></a>安裝 Azure IoT Edge 套件
 
-Azure IoT 閘道器 SDK 套件包含預先編譯的 SDK 二進位檔及其相依性。 這些二進位檔是 Azure IoT 閘道器 SDK、Azure IoT SDK 和對應的工具。 套件中也有 "hello_world" 範例應用程式，用以確認閘道器的功能。 此 SDK 是閘道器的核心部分。 
+Azure IoT Edge 套件包含預先編譯的 IoT Edge 二進位檔及其相依性。 這些二進位檔是 Azure IoT Edge、Azure IoT SDK 和對應的工具。 套件中也有 "hello_world" 範例應用程式，用以確認閘道器的功能。 IoT Edge 是閘道的核心部分。 
 
 請遵循下列步驟來安裝此封裝。
 
@@ -133,9 +134,9 @@ Azure IoT 閘道器 SDK 套件包含預先編譯的 SDK 二進位檔及其相依
 
    安裝封裝之後，Intel NUC 就已準備好當做閘道運作。
 
-## <a name="run-the-azure-iot-gateway-sdk-helloworld-sample-application"></a>執行 Azure IoT 閘道器 SDK "hello_world" 範例應用程式
+## <a name="run-the-azure-iot-edge-helloworld-sample-application"></a>執行 Azure IoT Edge "hello_world" 範例應用程式
 
-下列範例應用程式會從 `hello_world.json` 檔案建立閘道，並使用 Azure IoT 閘道 SDK 架構的基礎元件，每隔 5 秒將 hello world 訊息記錄到檔案 (log.txt) 中。
+下列範例應用程式會從 `hello_world.json` 檔案建立閘道，並使用 Azure IoT Edge 架構的基礎元件，每隔 5 秒將 hello world 訊息記錄到檔案 (log.txt) 中。
 
 您可以藉由執行下列命令來執行 Hello World 範例：
 

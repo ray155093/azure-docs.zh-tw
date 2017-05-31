@@ -17,15 +17,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: 027597c73d7282ef929363bab904e7d3d423d3d4
-ms.openlocfilehash: db2757015cf8e821cffcfe39bcbd1559c23fc7ed
-ms.lasthandoff: 02/23/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 5e28422158684c3aaf0ac3fdf5b19c80fbccfb02
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="lesson-5-create-your-first-azure-iot-gateway-module"></a>第 5 課：建立您的第一個 Azure IoT 閘道器模組
-雖然閘道 SDK 可讓您建置以 Java、.NET 或 Node.js 撰寫的模組，但本教學課程會逐步引導您完成以 C 建置模組的步驟。
+雖然 Azure IoT Edge 可讓您建置以 Java、.NET 或 Node.js 撰寫的模組，但本教學課程會逐步引導您完成以 C 建置模組的步驟。
 
 ## <a name="what-you-will-do"></a>將執行的作業
 
@@ -41,7 +42,7 @@ ms.lasthandoff: 02/23/2017
 
 ## <a name="what-you-need"></a>您需要什麼
 
-已安裝在主機電腦上的 Azure IoT 閘道器 SDK。
+已安裝在主機電腦上的 Azure IoT Edge。
 
 ## <a name="folder-structure"></a>資料夾結構
 
@@ -103,7 +104,7 @@ ms.lasthandoff: 02/23/2017
 
 下列步驟逐步引導您建立新的模組，並在 Intel NUC 上進行編譯。 此模組收到訊息時會印出這些訊息加上時間戳記。 本節中，您將建立您的第一個自訂閘道器模組。
 
-任何 Azure IoT 閘道器 SDK 模組必須實作下列介面︰
+所有 Azure IoT Edge 模組都必須實作下列介面︰
 
    ```C
    pfModule_ParseConfigurationFromJson Module_ParseConfigurationFromJson

@@ -13,24 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 05/02/2017
+ms.date: 05/11/2017
 ms.author: markvi
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 85a59eddf3c453ee112f279d439c94853b2f62b5
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 5a1ce66e02943caedd52976c5dcb3cf75c23bd49
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/11/2017
 
 
 ---
-# <a name="conditional-access-in-azure-active-directory---preview"></a>Azure Active Directory 中的條件式存取 - 預覽
+# <a name="conditional-access-in-azure-active-directory"></a>Azure Active Directory 中的條件式存取
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-conditional-access-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-conditional-access.md)
-
-
-本主題中概述的行為目前為[預覽](active-directory-preview-explainer.md)狀態。
 
 在行動第一、雲端第一的世界中，Azure Active Directory 可讓您從任何地方單一登入至裝置、應用程式和服務。 隨著裝置 (包括 BYOD)、在公司網路外部作業，以及協力廠商 SaaS 應用程式的激增，IT 專業人員面臨到兩個相對的目標︰
 
@@ -117,13 +114,17 @@ ms.lasthandoff: 05/03/2017
 
 - **如何** - 只要您的應用程式存取是在您可以控制的條件下執行，就可能不需要對使用者存取您雲端應用程式的方式強加其他控制項。 不過，如果從不受信任的網路或不符合規範的裝置執行您的雲端應用程式存取，情況可能會有所不同。 在條件陳述式中，您可以定義某些存取條件，其對應用程式存取的執行方式有額外需求。
 
-    ![條件](./media/active-directory-conditional-access-azure-portal/01.png)
+    ![條件](./media/active-directory-conditional-access-azure-portal/21.png)
 
 
 ## <a name="conditions"></a>條件
 
 在目前的 Azure Active Directory 實作中，您可以定義下列領域的條件︰
 
+- **登入風險** – 登入風險是一種物件，供 Azure Active Directory 用於追蹤非由使用者帳戶合法擁有者執行登入的可能性。 在此物件中，可能性 (高、中或低) 會以名為[登入風險層級](active-directory-reporting-risk-events.md#risk-level)屬性形式儲存。 如果 Azure Active Directory 偵測到登入風險，則會在使用者登入期間產生此物件。 如需詳細資訊，請參閱[有風險的登入](active-directory-identityprotection.md#risky-sign-ins)。  
+您可以使用計算出的登入風險層級作為條件式存取原則中的條件。 
+
+    ![條件](./media/active-directory-conditional-access-azure-portal/22.png)
 
 - **裝置平台** – 裝置平台的特點是您裝置執行的作業系統 (Android、iOS、Windows Phone、Windows)。 您可以定義包含的裝置平台以及從原則中豁免的裝置平台。  
 若要使用原則中的裝置平台，請先將 [設定] 切換為 [是]，然後選取原則套用至的所有或個別裝置平台。 如果您選取個別的裝置平台，原則就只會影響這些平台。 在此情況下，其他支援平台的登入不受此原則影響。
@@ -140,65 +141,6 @@ ms.lasthandoff: 05/03/2017
 舊式驗證是指使用基本驗證的用戶端，例如，未使用新式驗證的舊版 Office 用戶端。 舊式驗證目前不支援條件式存取。
 
     ![條件](./media/active-directory-conditional-access-azure-portal/04.png)
-
-
-## <a name="what-you-should-know"></a>您應該知道的事情
-
-### <a name="do-i-need-to-assign-a-user-to-my-policy"></a>我需要將使用者指派給我的原則嗎？
-
-在設定條件式存取原則時，您應該至少指派一個群組給它。 永遠不會觸發未指派使用者和群組的條件式存取原則。
-
-當您打算將數個使用者和群組指派給某個原則時，您一開始應該僅指派一個使用者或群組，然後測試您的組態。 如果您的原則如預期般運作，您可以接著新增其他指派。  
-
-
-### <a name="how-are-assignments-evaluated"></a>如何評估指派？
-
-所有指派邏輯上都會使用 **AND** 運算子。 如果您已設定多個指派，若要觸發原則，則必須滿足所有的指派。  
-
-如果您需要設定一個位置條件，以套用至從您的組織網路外部進行的所有連線，您可以藉由下列方式達成︰
-
-- 包含**所有位置**
-- 排除**所有信任的 IP**
-
-### <a name="what-happens-if-you-have-policies-in-the-azure-classic-portal-and-azure-portal-configured"></a>如果您已在 Azure 傳統入口網站和 Azure 入口網站中設定一些原則，則會發生什麼情況？  
-Azure Active Directory 會強制執行這兩個原則，而且只有在符合所有需求時，使用者才可取得存取權。
-
-### <a name="what-happens-if-you-have-policies-in-the-intune-silverlight-portal-and-the-azure-portal"></a>如果您已在 Intune Silverlight 入口網站和 Azure 入口網站中設定一些原則，則會發生什麼情況？
-Azure Active Directory 會強制執行這兩個原則，而且只有在符合所有需求時，使用者才可取得存取權。
-
-### <a name="what-happens-if-i-have-multiple-policies-for-the-same-user-configured"></a>如果我已針對同一個使用者設定多個原則，則會發生什麼情況？  
-針對每次登入，Azure Active Directory 會評估所有的原則，並確保在授與使用者存取權之前已符合所有的需求。
-
-
-### <a name="does-conditional-access-work-with-exchange-activesync"></a>條件式存取是否適用於 Exchange ActiveSync？
-
-是，您可以在條件式存取原則中使用 Exchange ActiveSync。
-
-
-### <a name="what-happens-if-i-require-multi-factor-authentication-or-a-compliant-device"></a>如果我要求多重要素驗證或符合規範裝置會發生什麼情況？
-
-目前，會提示使用者使用與裝置無關的多重要素驗證。
-
-
-## <a name="what-you-should-avoid-doing"></a>您應該避免做的事
-
-條件式存取架構可為您提供絕佳的組態彈性。 不過，絕佳的彈性也意謂著您應該先仔細地檢閱每個組態原則，然後才發行它，以避免產生不想要的結果。 在此情況下，您應該特別注意影響整個集合的指派，例如 **all users / groups / cloud apps**。
-
-在您的環境中，應該避免使用下列組態：
-
-
-**針對所有使用者、所有雲端應用程式：**
-
-- **封鎖存取** - 此組態會封鎖您整個組織，這絕對不是一個好方法。
-
-- **需要符合規範的裝置** - 針對尚未註冊其裝置的使用者，此原則會封鎖所有存取，包括對 Intune 入口網站的存取。 如果您是沒有已註冊裝置的系統管理員，此原則會阻擋您回到 Azure 入口網站來變更此原則。
-
-- **需要加入網域** - 如果您還沒有已加入網域的裝置，此原則也可能封鎖您組織中所有使用者的存取。
-
-
-**針對所有使用者、所有雲端應用程式、所有裝置平台：**
-
-- **封鎖存取** - 此組態會封鎖您整個組織，這絕對不是一個好方法。
 
 
 ## <a name="common-scenarios"></a>常見案例
@@ -228,3 +170,4 @@ Azure Active Directory 會強制執行這兩個原則，而且只有在符合所
 
 如果您想要知道如何設定條件式存取原則，請參閱[開始使用 Azure Active Directory 中的條件式存取](active-directory-conditional-access-azure-portal-get-started.md)。
 
+如需您在設定條件式存取原則時應該知道的事件及應避免的動作，請參閱 

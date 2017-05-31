@@ -12,19 +12,27 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/30/2017
+ms.date: 05/11/2017
 ms.author: jingwang
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 6c26bf3eda7ef15e7a580a31ab7b6624c8a7a826
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: bd38aa5e4dd50b11f52afdc9dfc0f22c8c072f67
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
 # <a name="move-data-to-and-from-an-on-premises-file-system-by-using-azure-data-factory"></a>使用 Azure Data Factory 將資料移進和移出內部部署檔案系統
-您可以將資料從 HDFS 複製到任何支援的接收資料存放區。 如需複製活動所支援作為接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 Data Factory 目前只支援將資料從內部部署 HDFS 移動到其他資料存放區，而不支援將資料從其他資料存放區移動到內部部署 HDFS。
+本文說明如何使用 Azure Data Factory 中的「複製活動」，從內部部署檔案系統來回複製資料。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。
 
-本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進和移出內部部署的檔案系統。 您可以將資料從內部部署的檔案系統複製到任何支援的接收資料存放區，或從任何支援的來源資料存放區複製資料。 如需複製活動所支援作為接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。 如需可做為內部部署檔案系統之來源或接收的資料存放區清單，請參閱 [支援的來源與接收](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 。
+## <a name="supported-scenarios"></a>支援的案例
+您可以從內部部署檔案系統將資料複製到下列資料存放區：
+
+[!INCLUDE [data-factory-supported-sink](../../includes/data-factory-supported-sinks.md)]
+
+您可以從下列資料存放區將資料複製到內部部署檔案系統：
+
+[!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
 > [!NOTE]
 > 來源檔案成功複製至目的地後，「複製活動」不會將它刪除。 如果您需要在成功複製後刪除來源檔案，請建立自訂活動來刪除檔案，並在管道中使用該活動。 
@@ -43,11 +51,12 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 
 不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線：
 
-1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
-2. 建立**資料集**，代表複製作業的輸入和輸出資料。
-3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。
+1. 建立 **Data Factory**。 資料處理站可包含一或多個管線。 
+2. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。 例如，如果您從 Azure Blob 儲存體將資料複製到內部部署檔案系統，您會建立兩個連結服務，將內部部署檔案系統和 Azure 儲存體帳戶連結至資料處理站。 有關內部部署檔案系統專屬的連結服務屬性，請參閱[連結服務屬性](#linked-service-properties)一節。
+3. 建立**資料集**，代表複製作業的輸入和輸出資料。 在上一個步驟所述的範例中，您可以建立資料集來指定包含輸入資料的 Blob 容器與資料夾。 同時，您會建立另一個資料集來指定檔案系統中的資料夾與檔案名稱 (選擇性)。 針對內部部署檔案系統專屬的資料集屬性，請參閱[資料集屬性](#dataset-properties)一節。
+4. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 在稍早所述的範例中，您使用 BlobSource 作為來源，以及使用 FileSystemSink 作為複製活動的接收器。 同樣地，如果您是從內部部署檔案系統複製到 Azure Blob 儲存體，則在複製活動中使用 FileSystemSource 和 BlobSink。 針對內部部署檔案系統專屬的複製活動屬性，請參閱[複製活動屬性](#copy-activity-properties)一節。 如需有關如何使用資料存放區作為來源或接收器的詳細資訊，請按一下上一節中資料存放區的連結。
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到檔案系統 (或從檔案系統複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples)一節。
+使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到檔案系統 (或從檔案系統複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples-for-copying-data-to-and-from-file-system)一節。
 
 下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義檔案系統特定的 Data Factory 實體：
 
@@ -112,11 +121,11 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
 | folderPath |指定資料夾的子路徑。 字串中的特殊字元需使用逸出字元 ‘ \ ’。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 |是 |
-| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，所產生檔案的名稱是下列格式︰ <br/><br/>`Data.<Guid>.txt` (例如： Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
+| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>當未指定輸出資料集的 fileName，且在活動接收中未指定 preserveHierarchy 時，所產生檔案的名稱格式如下： <br/><br/>`Data.<Guid>.txt` (例如： Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
 | fileFilter |指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。 <br/><br/>允許的值為︰`*` (多個字元) 和 `?` (單一字元)。<br/><br/>範例 1："fileFilter": "*.log"<br/>範例 2："fileFilter": 2014-1-?.txt"<br/><br/>請注意，fileFilter 適用於輸入 FileShare 資料集。 |否 |
 | partitionedBy |您可以使用 partitionedBy 來指定時間序列資料的動態 folderPath/fileName。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
 | format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
+| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
 
 > [!NOTE]
 > 無法同時使用 fileName 和 fileFilter。
@@ -186,10 +195,10 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 ## <a name="supported-file-and-compression-formats"></a>支援的檔案和壓縮格式
 請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md)文章以了解詳細資訊。
 
-## <a name="json-examples"></a>JSON 範例
+## <a name="json-examples-for-copying-data-to-and-from-file-system"></a>從檔案系統來回複製資料的 JSON 範例
 以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 它們會示範如何將資料複製到內部部署檔案系統和 Azure Blob 儲存體，以及複製其中的資料。 您可以使用 Azure Data Factory 中的複製活動，把資料「直接」複製到[支援的來源和接收器](data-factory-data-movement-activities.md#supported-data-stores-and-formats)一文中所述的任何接收器。
 
-## <a name="example-copy-data-from-an-on-premises-file-system-to-azure-blob-storage"></a>範例：將資料從內部部署檔案系統複製到 Azure Blob 儲存體
+### <a name="example-copy-data-from-an-on-premises-file-system-to-azure-blob-storage"></a>範例：將資料從內部部署檔案系統複製到 Azure Blob 儲存體
 此範例示範如何將資料從內部部署檔案系統複製到 Azure Blob 儲存體。 範例有下列 Data Factory 實體：
 
 * [OnPremisesFileServer](#linked-service-properties)類型的連結服務。
@@ -411,7 +420,7 @@ Data Factory 支援透過「資料管理閘道」連接到內部部署的檔案�
 }
 ```
 
-## <a name="example-copy-data-from-azure-sql-database-to-an-on-premises-file-system"></a>範例：將資料從 Azure SQL Database 複製到內部部署檔案系統
+### <a name="example-copy-data-from-azure-sql-database-to-an-on-premises-file-system"></a>範例：將資料從 Azure SQL Database 複製到內部部署檔案系統
 下列範例顯示︰
 
 * [AzureSqlDatabase](data-factory-azure-sql-connector.md#linked-service-properties) 類型的已連結服務。

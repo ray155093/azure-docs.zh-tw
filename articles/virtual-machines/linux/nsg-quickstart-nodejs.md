@@ -11,12 +11,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 02/09/2017
+ms.date: 05/11/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: f2640725660f5f5d5da0badafc55afc7079d5d24
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 847bc76c37ed929851712ba1c12463a01032e267
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 ---
 
@@ -28,7 +29,7 @@ ms.lasthandoff: 04/03/2017
 您可以使用下列其中一個 CLI 版本來完成工作︰
 
 - [Azure CLI 1.0](#quick-commands) – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0](nsg-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 2.0](nsg-quickstart.md) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="quick-commands"></a>快速命令
@@ -38,35 +39,45 @@ ms.lasthandoff: 04/03/2017
 azure config mode arm
 ```
 
-在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`myNetworkSecurityGroup` 和 `myVnet`。
+在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包括 myResourceGroup、myNetworkSecurityGroup 和 myVnet。
 
-適當地輸入您自己的名稱和位置來建立「網路安全性群組」。 下列範例會在 `WestUS` 位置建立名為 `myNetworkSecurityGroup` 的網路安全性群組：
+適當地輸入您自己的名稱和位置來建立「網路安全性群組」。 下列範例會在 eastus 位置中建立名為 myNetworkSecurityGroup 的網路安全性群組：
 
 ```azurecli
-azure network nsg create --resource-group myResourceGroup --location westus \
+azure network nsg create \
+    --resource-group myResourceGroup \
+    --location eastus \
     --name myNetworkSecurityGroup
 ```
 
-新增規則以允許流向您 Web 伺服器的 HTTP 流量 (或針對自己的案例 (例如 SSH 存取或資料庫連接) 進行調整)。 下列範例會建立名為 `myNetworkSecurityGroupRule` 的規則以允許連接埠 80 上的 TCP 流量︰
+新增規則以允許流向您 Web 伺服器的 HTTP 流量 (或針對自己的案例 (例如 SSH 存取或資料庫連接) 進行調整)。 下列範例會建立名為 myNetworkSecurityGroupRule 的規則以允許連接埠 80 上的 TCP 流量︰
 
 ```azurecli
-azure network nsg rule create --resource-group myResourceGroup \
-    --nsg-name myNetworkSecurityGroup --name myNetworkSecurityGroupRule \
-    --protocol tcp --direction inbound --priority 1000 \
-    --destination-port-range 80 --access allow
+azure network nsg rule create \
+    --resource-group myResourceGroup \
+    --nsg-name myNetworkSecurityGroup \
+    --name myNetworkSecurityGroupRule \
+    --protocol tcp \
+    --direction inbound \
+    --priority 1000 \
+    --destination-port-range 80 \
+    --access allow
 ```
 
-將「網路安全性群組」與 VM 的網路介面 (NIC) 建立關聯。 下列範例將名為 `myNic` 的現有 NIC 與名為 `myNetworkSecurityGroup` 的網路安全性群組建立關聯：
+將「網路安全性群組」與 VM 的網路介面 (NIC) 建立關聯。 下列範例將名為 myNic 的現有 NIC 與名為 myNetworkSecurityGroup 的網路安全性群組建立關聯：
 
 ```azurecli
-azure network nic set --resource-group myResourceGroup \
-    --network-security-group-name myNetworkSecurityGroup --name myNic
+azure network nic set \
+    --resource-group myResourceGroup \
+    --network-security-group-name myNetworkSecurityGroup \
+    --name myNic
 ```
 
-或者，您也可以將「網路安全性群組」與虛擬網路的子網路建立關聯，而不是只與單一 VM 上的網路介面建立關聯。 下列範例將 `myVnet`虛擬網路中名為 `mySubnet` 的現有子網路與名為 `myNetworkSecurityGroup` 的網路安全性群組建立關聯：
+或者，您也可以將「網路安全性群組」與虛擬網路的子網路建立關聯，而不是只與單一 VM 上的網路介面建立關聯。 下列範例將 myVnet 虛擬網路中名為 mySubnet 的現有子網路，與名為 myNetworkSecurityGroup 的網路安全性群組建立關聯：
 
 ```azurecli
-azure network vnet subnet set --resource-group myResourceGroup \
+azure network vnet subnet set \
+    --resource-group myResourceGroup \
     --network-security-group-name myNetworkSecurityGroup \
     --vnet-name myVnet --name mySubnet
 ```

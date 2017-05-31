@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/30/2016
 ms.author: juanpere
-translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: ecc6f4a1a8cbb07d9f610e8f6fb5ca66b7532513
-ms.lasthandoff: 03/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 198a325e02aac97d659d74b090414f7d6f074f14
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -147,7 +148,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 > 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
 
 ## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>使用直接方法在裝置上觸發遠端重新啟動
-在此節中，您會建立 .NET 主控台應用程式 (使用 C#)，此應用程式會使用直接方法起始遠端重新開機。 應用程式使用裝置對應項查詢來探索該裝置的上次重新開機時間。
+在本節中，您會建立 .NET 主控台應用程式 (使用 C#)，此應用程式會使用直接方法起始遠端重新開機。 應用程式使用裝置對應項查詢來探索該裝置的上次重新開機時間。
 
 1. 建立名為 **triggerrebootondevice** 的空白資料夾。  在命令提示字元中，於 **triggerrebootondevice** 資料夾中使用下列命令來建立 package.json 檔案。  接受所有預設值：
    
@@ -256,7 +257,7 @@ IoT 雲端應用程式可以使用 Azure IoT 中樞中的基本項目 (也就是
 
 若要了解如何擴充您的 IoT 解決方案以及在多個裝置上排程方法呼叫，請參閱[排程及廣播作業][lnk-tutorial-jobs]教學課程。
 
-若要繼續開始使用 IoT 中樞，請參閱[開始使用 IoT 閘道 SDK][lnk-gateway-SDK]。
+若要繼續開始使用 IoT 中樞，請參閱[開始使用 Azure IoT Edge][lnk-gateway-SDK]。
 
 <!-- images and links -->
 [img-output]: media/iot-hub-get-started-with-dm/image6.png

@@ -14,15 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ec6a021e087d9218856370e8bf067359de54bdb9
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 41d63ef88e9f0caf3d5f74841ec4670875fdaad1
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
 # <a name="analyze-azure-cdn-usage-patterns"></a>分析 Azure CDN 使用模式
-[!INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)]
+[!INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)] 下方指南示範透過 Verizon 設定檔適用的管理入口網站來檢視核心報告的步驟。 您也可以[透過 Azure 入口網站](cdn-log-analysis.md)將核心分析資料匯出到 Verizon 與 Akamai 設定檔皆適用的儲存體、事件中樞或 Log Analytics (OMS)。
 
 您可以使用下列報告檢視 CDN 的使用模式：
 
@@ -33,8 +34,8 @@ ms.lasthandoff: 11/17/2016
 * 快取點擊率
 * 已轉送的 IPV4/IPV6 資料
 
-## <a name="accessing-advanced-http-reports"></a>存取進階 HTTP 報告
-1. 在 CDN 設定檔刀鋒視窗中，按一下 [管理]  按鈕。
+## <a name="accessing-core-reports"></a>存取核心報告
+1. 在 [CDN 設定檔] 刀鋒視窗中，按一下 [管理]  按鈕。
    
     ![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-reports/cdn-manage-btn.png)
    

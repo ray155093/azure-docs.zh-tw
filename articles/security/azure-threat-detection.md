@@ -15,22 +15,22 @@ ms.workload: na
 ms.date: 04/27/2017
 ms.author: TomSh
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: c9b2ed2f480b0c100a3f838dac8d9652be3c0391
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 854ad17006b70dfbdaf680744320a87ffb654e13
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
 
 # <a name="azure-advanced-threat-detection"></a>Azure 進階威脅偵測
-## <a name="10-introduction"></a>1.0 簡介
+## <a name="introduction"></a>簡介
 
-### <a name="11-overview"></a>1.1 概觀
+### <a name="overview"></a>概觀
 
 Microsoft 開發了一系列的技術白皮書、安全性概觀、最佳作法及檢查清單，來協助 Azure 客戶了解可在 Azure 平台上和周圍取得的各種安全性相關功能。 主題範圍兼具廣度與深度，並會定期更新。 本文件是該系列的一部分，以下的＜摘要＞一節將會摘要說明。
 
-### <a name="12-azure-platform"></a>1.2 Azure 平台
+### <a name="azure-platform"></a>Azure 平台
 
 Azure 是一個公開且彈性的雲端服務平台，支援最廣泛的作業系統、程式設計語言、架構、工具、資料庫及裝置等選擇。
 它支援下列程式設計語言：
@@ -44,7 +44,7 @@ Azure 公用雲端服務支援數百萬名開發人員和 IT 專家早已仰賴�
 
 Azure 的基礎結構設計涵蓋設備與應用程式，可同時裝載數以百萬計的客戶，並提供可靠的基礎供企業符合其安全性需求。 Azure 提供各種選項來設定和自訂安全性，以符合您應用程式部署的需求。 本文件可協助您符合這些需求。
 
-### <a name="13-abstract"></a>1.3 摘要
+### <a name="abstract"></a>摘要
 
 Microsoft Azure 透過 Azure Active Directory、Azure Operations Management Suite (OMS) 及 Azure 資訊安全中心等服務，來提供內建的進階威脅偵測功能。 這個安全性服務和功能集合提供簡單且快速的方式，來了解您 Azure 部署內的一舉一動。
 
@@ -52,7 +52,7 @@ Microsoft Azure 透過 Azure Active Directory、Azure Operations Management Suit
 
 本技術白皮書著重於 Azure 平台和客戶面向之控制的技術，不會嘗試處理 SLA、計價模式和 DevOps 作法考量。
 
-## <a name="20-azure-active-directory-identity-protection"></a>2.0 Azure Active Directory Identity Protection
+## <a name="azure-active-directory-identity-protection"></a>Azure Active Directory Identity Protection
 
 ![Azure Active Directory Identity Protection](./media/azure-threat-detection/azure-threat-detection-fig1.png)
 
@@ -65,7 +65,7 @@ Identity Protection 會使用調適性機器學習服務演算法和啟發學習
 
 除了 Azure Active Directory 與 [EMS](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access) 所提供的其他[條件式存取控制](https://docs.microsoft.com/azure/active-directory/active-directory-conditional-access)以外，這些以風險為根據的原則可以自動封鎖或提供調適性補救動作，包括重設密碼，以及強制執行 Multi-Factor Authentication。
 
-### <a name="21-identity-protections-capabilities"></a>2.1 Identity Protection 的功能
+### <a name="identity-protections-capabilities"></a>Identity Protection 的功能
 
 Azure Active Directory Identity Protection 不只是監視和報告工具而已。 若要保護您組織的身分識別，您可以設定以風險為基礎的原則，當達到指定風險層級時自動回應偵測到的問題。 除了 Azure Active Directory 與 EMS 所提供的其他條件式存取控制以外，這些的原則可以自動封鎖或起始調適性補救動作，包括重設密碼以及強制 Multi-Factor Authentication。
 
@@ -87,7 +87,7 @@ Azure Identity Protection 可用以協助保護您的帳戶和身分識別的一
 -    此原則會封鎖或保護有風險的使用者帳戶
 -    此原則會要求使用者註冊以便進行 Multi-Factor Authentication
 
-### <a name="22-azure-ad-privileged-identity-management-pim"></a>2.2 Azure AD Privileged Identity Management (PIM)
+### <a name="azure-ad-privileged-identity-management-pim"></a>Azure AD Privileged Identity Management (PIM)
 
 利用 [Azure Active Directory (AD) Privileged Identity Management](https://docs.microsoft.com/azure/active-directory/active-directory-privileged-identity-management-configure)，
 
@@ -103,13 +103,13 @@ Azure AD Privileged Identity Management 可協助您：
 
 -    取得有關特殊權限角色存取的警示
 
-## <a name="30-microsoft-operations-management-suite-oms"></a>3.0 Microsoft Operations Management Suite (OMS)
+## <a name="microsoft-operations-management-suite-oms"></a>Microsoft Operations Management Suite (OMS)
 
 [Microsoft Operations Management Suite](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。 因為 OMS 實作為雲端型服務，所以您對基礎結構服務進行最小的投資就可以快速啟動並執行它。 新的安全性功能會自動提供，以節省持續維護和升級成本。
 
 除了自行提供重要服務之外，OMS 還可以整合 System Center 元件 (例如 [System Center Operations Manager](https://blogs.technet.microsoft.com/cbernier/2013/10/23/monitoring-windows-azure-with-system-center-operations-manager-2012-get-me-started/))，以將現有的安全性管理投資擴充到雲端。 System Center 和 OMS 可以搭配運作，來提供完整的混合式管理經驗。
 
-### <a name="31-holistic-security-and-compliance-posture"></a>3.1 整體安全性與合規性狀態
+### <a name="holistic-security-and-compliance-posture"></a>整體安全性與合規性狀態
 
 [OMS 安全性和稽核儀表板](https://docs.microsoft.com/azure/operations-management-suite/oms-security-getting-started)針對值得您注意的問題，使用內建的搜尋查詢，為您組織的 IT 安全性狀態提供全面檢視。 [安全性和稽核] 儀表板是 OMS 中所有安全性相關項目的主畫面。 它可讓您深入了解您的電腦的安全性狀態。 它還能夠檢視過去 24 小時、7 天或任何其他自訂時間範圍內的所有事件。
 
@@ -129,7 +129,7 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 
 -    **常見安全性查詢**︰此選項提供最常見的安全性查詢清單，可用來監視您的環境。 當您按一下上述其中一個查詢時，[搜尋] 刀鋒視窗即會開啟，其中包含該查詢的結果。
 
-### <a name="32-insight-and-analytics"></a>3.2 深入解析與分析
+### <a name="insight-and-analytics"></a>深入解析與分析
 [Log Analytics](https://docs.microsoft.com/azure/log-analytics/log-analytics-overview) 的中心是裝載在 Azure 雲端的 OMS 存放庫。
 
 ![深入解析與分析](./media/azure-threat-detection/azure-threat-detection-fig4.png)
@@ -150,7 +150,7 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 
 
 
-### <a name="33-automation--control-alert-on-security-configuration-drifts"></a>3.3 自動化與控制︰有關安全性設定漂移的警示
+### <a name="automation--control-alert-on-security-configuration-drifts"></a>自動化與控制︰有關安全性設定漂移的警示
 
 Azure 自動化會使用根據 PowerShell 在 Azure 雲端中執行的 Runbook，來自動化管理程序。 Runbook 也可以在本機資料中心的伺服器上執行，以管理本機資源。 Azure 自動化會使用 PowerShell DSC (Desired State Configuration) 來提供設定管理。
 
@@ -158,7 +158,7 @@ Azure 自動化會使用根據 PowerShell 在 Azure 雲端中執行的 Runbook�
 
 您可以建立和管理裝載於 Azure 的 DSC 資源，並將它們套用到雲端和內部部署系統，來定義和自動強制執行其設定，或者取得有關漂移的報告來協助確保原則內仍保有安全性設定。
 
-## <a name="40-azure-security-center"></a>4.0 Azure 資訊安全中心
+## <a name="azure-security-center"></a>Azure 資訊安全中心
 
 Azure 資訊安全中心可協助保護您的 Azure 資源。 它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理。 在服務中，您不只可針對 Azure 訂用帳戶定義原則，也能針對[資源群組](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-portal)加以定義，如此便能以更細微的方式進行。
 
@@ -175,7 +175,7 @@ Microsoft 資訊安全研究人員會持續監視威脅。 他們可以存取從
 
 資訊安全中心會運用進階安全性分析，其遠勝於以簽章為基礎的方法。 對於巨量資料和[機器學習服務 (英文)](https://azure.microsoft.com/blog/machine-learning-in-azure-security-center/) 技術的突破適用於評估整個雲端網狀架構的事件：使用手動方式來偵測無法識別的威脅，以及預測攻擊的演化。 這些安全性分析包括下列各項。
 
-### <a name="41-threat-intelligence"></a>4.1 威脅情報
+### <a name="threat-intelligence"></a>威脅情報
 
 Microsoft 有大量全域威脅情報。
 遙測會從多個來源流入，例如 Azure、Office 365、Microsoft CRM Online、Microsoft Dynamics AX、outlook.com、MSN.com、Microsoft 數位犯罪防治中心 (DCU) 和 Microsoft 安全性回應中心 (MSRC)。
@@ -194,7 +194,7 @@ Microsoft 有大量全域威脅情報。
 
 -    **Azure SQL Database 威脅偵測**：適用於 Azure SQL Database 的威脅偵測，它會識別異常的資料庫活動，指出發生不尋常且可能有害的嘗試存取或惡意探索資料庫。
 
-### <a name="42-behavioral-analytics"></a>4.2 行為分析
+### <a name="behavioral-analytics"></a>行為分析
 
 行為分析是一種可分析及比較資料與一組已知模式的技術。 不過，這些模式並非簡單的簽章。 它們會透過已套用至大型資料集的複雜機器學習演算法來決定。
 
@@ -216,13 +216,13 @@ Microsoft 有大量全域威脅情報。
 
 -    **傳出攻擊**︰攻擊者通常會以雲端資源為目標，目的在於使用這些資源來掛載其他攻擊。 例如，遭入侵的虛擬機器可用來對其他虛擬機器發動暴力密碼破解攻擊、傳送垃圾郵件，或掃描開啟的連接埠和網際網路上的其他裝置。 藉由將機器學習服務套用到網路流量，資訊安全中心可以偵測輸出網路通訊何時超出規範。 如果是垃圾郵件，資訊安全中心也會讓不尋常的電子郵件流量與 Office 365 提供的情報相互關聯，以判斷郵件是否可能有惡意或合法電子郵件行銷活動的結果。
 
-### <a name="43-anomaly-detection"></a>4.3 異常偵測
+### <a name="anomaly-detection"></a>異常偵測
 
 Azure 資訊安全中心也會使用異常偵測來識別威脅。 相較於行為分析 (這取決於衍生自大型資料集的已知模式)，異常偵測更加「個人化」，且著重於您的部署專用的基準。 機器學習服務適用於判斷您部署的正常活動，然後產生規則來定義可能代表安全性事件的極端狀況。 範例如下：
 
 -    **輸入 RDP/SSH 暴力密碼破解攻擊**︰您的部署中可能包含每天都有許多登入的繁忙虛擬機器，以及有少量或任何登入的其他虛擬機器。 Azure 資訊安全中心可以判斷這些虛擬機器的基準登入活動，並使用要定義於正常登入活動周圍的機器學習服務。 如果與針對登入相關特性所定義的基準有任何差異，則可能會產生警示。 同樣地，機器學習服務會判斷何者值得關注。
 
-### <a name="44-continuous-threat-intelligence-monitoring"></a>4.4 連續威脅情報監視
+### <a name="continuous-threat-intelligence-monitoring"></a>連續威脅情報監視
 
 Azure 資訊安全中心在世界各地設有資訊安全研究和資料科學小組，負責持續監視威脅態勢中的變化。 這包括下列計劃︰
 
@@ -236,15 +236,15 @@ Azure 資訊安全中心在世界各地設有資訊安全研究和資料科學�
 
 結合上述努力終於獲得全新及改善的偵測功能，您因而立即受惠 – 不需採取任何的動作。
 
-## <a name="50-advanced-threat-detection-features---other-azure-services"></a>5.0 進階威脅偵測功能：其他 Azure 服務
+## <a name="advanced-threat-detection-features---other-azure-services"></a>進階威脅偵測功能：其他 Azure 服務
 
-### <a name="51-virtual-machine-microsoft-antimalware"></a>5.1 虛擬機器︰Microsoft Antimalware
+### <a name="virtual-machine-microsoft-antimalware"></a>虛擬機器︰Microsoft Antimalware
 
 適用於 Azure 的 [Microsoft Antimalware](https://docs.microsoft.com/azure/security/azure-security-antimalware) 是針對應用程式和租用戶環境所提供的單一代理程式解決方案，其設計可於無人為介入的情況下在背景中執行。 您可依據應用程式工作負載需求，選擇預設的基本安全性或進階的自訂組態 (包括反惡意程式碼監視) 來部署保護。 Azure 的反惡意程式碼是適用於 Azure 虛擬機器的安全性選項，而且會自動安裝在所有的 Azure PaaS 虛擬機器上。
 
 **要部署的 Azure 功能以及為您的應用程式啟用 Microsoft Antimalware**
 
-#### <a name="511-microsoft-antimalware-core-features"></a>5.1.1 Microsoft Antimalware 核心功能
+#### <a name="microsoft-antimalware-core-features"></a>Microsoft Antimalware 核心功能
 
 -    **即時保護**：監視雲端服務和虛擬機器上的活動，以偵測和封鎖惡意程式碼執行。
 
@@ -266,7 +266,7 @@ Azure 資訊安全中心在世界各地設有資訊安全研究和資料科學�
 
 -    **Antimalware 事件收集**：在作業系統事件記錄中記錄反惡意程式碼服務的健康狀況、可疑的活動及所採取的補救動作，並將這些資料收集至客戶的 Azure 儲存體帳戶。
 
-### <a name="52-azure-sql-database-threat-detection"></a>5.2 Azure SQL Database 威脅偵測
+### <a name="azure-sql-database-threat-detection"></a>Azure SQL Database 威脅偵測
 
 [Azure SQL Database 威脅偵測](https://azure.microsoft.com/blog/azure-sql-database-threat-detection-your-built-in-security-expert/)是內建於 Azure SQL Database 服務的新安全性智慧型功能。 Azure SQL Database 威脅偵測可藉由全天候學習、分析及偵測異常資料庫活動，來識別資料庫的潛在威脅。
 
@@ -289,7 +289,7 @@ SQL Database 威脅偵測器會使用下列其中一種偵測方法：
 
 -    **偵測**：偵測異常活動，此為資料庫中未曾在過去 30 天內見到的異常行為。  SQL 用戶端異常活動的範例可以是失敗的登入和查詢數目突然增加、擷取了大量的資料、不尋常的標準查詢，以及用來存取資料庫的陌生 IP 位址。
 
-### <a name="53-application-gateway-web-application-firewall"></a>5.3 應用程式閘道 Web 應用程式防火牆
+### <a name="application-gateway-web-application-firewall"></a>應用程式閘道 Web 應用程式防火牆
 
 [Web 應用程式防火牆](https://docs.microsoft.com/azure/app-service-web/app-service-app-service-environment-web-application-firewall)是 [Azure 應用程式閘道](https://docs.microsoft.com/azure/application-gateway/application-gateway-webapplicationfirewall-overview)的一項功能，可保護使用應用程式閘道執行標準[應用程式傳遞控制 (英文)](https://kemptechnologies.com/in/application-delivery-controllers) 功能的 Web 應用程式。 Web 應用程式防火牆的做法是保護應用程式，以防範 [OWASP 前 10 個最常見的 Web 弱點 (英文)](https://www.owasp.org/index.php/Top_10_2010-Main)。
 
@@ -319,7 +319,7 @@ SQL Database 威脅偵測器會使用下列其中一種偵測方法：
 
 -    某些法務遵循控制需要由 WAF 方案保護所有網際網路對向端點。 使用已啟用 WAF 的應用程式閘道，您就可以符合這些法務遵循需求。
 
-### <a name="54-anomaly-detection--an-api-built-with-azure-machine-learning"></a>5.4 異常偵測：使用 Azure Machine Learning 建置的 API
+### <a name="anomaly-detection--an-api-built-with-azure-machine-learning"></a>異常偵測：使用 Azure Machine Learning 建置的 API
 
 異常偵測是使用 Azure Machine Learning 建置的 API，在時間序列資料中偵測不同類型的異常模式時非常有用。 API 會為時間序列中的每個資料點指派異常分數，可用來產生警示、透過儀表板監視或與您的票證系統連線。
 
@@ -354,7 +354,7 @@ SQL Database 威脅偵測器會使用下列其中一種偵測方法：
 
 -    商務分析群組想要即時監視商務 KPI (例如銷售量、客戶人氣、定價) 的異常移動。
 
-### <a name="55-cloud-app-security"></a>5.5 Cloud App Security
+### <a name="cloud-app-security"></a>Cloud App Security
 
 [Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security) 是 Microsoft Cloud 安全性堆疊的一個重要元件。 它是全方位的解決方案，可協助您的組織在您移動時能夠充分運用雲端應用程式的承諾，但仍能透過提高對活動的可見度來保留您的控制。 它也有助於跨雲端應用程式提高對重要資料的保護。
 
@@ -405,7 +405,7 @@ Cloud App Security 會透過下列方式來整合您雲端的可見性
 
 從這些來源收集資料時，Cloud App Security 會對資料執行複雜的分析。 它會在發生異常活動時立即警示您，並讓您能深入檢視您的雲端環境。 您可以在 Cloud App Security 中設定原則，並使用它來保護您雲端環境中的一切。
 
-## <a name="60-third-party-atd-capabilities-through-azure-marketplace"></a>6.0 透過 Azure Marketplace 提供的協力廠商 ATD 功能
+## <a name="third-party-atd-capabilities-through-azure-marketplace"></a>透過 Azure Marketplace 提供的協力廠商 ATD 功能
 
 ### <a name="web-application-firewall"></a>Web 應用程式防火牆
 

@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/22/2017
 ms.author: dobett
-translationtype: Human Translation
-ms.sourcegitcommit: 9553c9ed02fa198d210fcb64f4657f84ef3df801
-ms.openlocfilehash: cdc50ec4bf98d7924ad5bf97c9a757f0bac01173
-ms.lasthandoff: 03/23/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: b0b2e8f375fa0b80e4f933515e1e8a689478483e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -74,7 +75,7 @@ IoT 中樞需要這些服務端點的寫入權限，才能將訊息路由傳送�
 ## <a name="field-gateways"></a>現場閘道器
 在 IoT 解決方案中， *現場閘道*位於裝置和 IoT 中樞端點之間。 它通常位於接近您的裝置的位置。 您的裝置會使用裝置所支援的通訊協定，直接與現場閘道器通訊。 現場閘道會使用 IoT 中樞所支援的通訊協定來連線到 IoT 中樞端點。 現場閘道可以是高度特殊化硬體或低功率電腦，其執行完成閘道所想要之端對端案例的軟體。
 
-您可以使用 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 來實作現場閘道。 此 SDK 提供特定功能，例如可以對從多個裝置到相同 IoT 中樞連線的通訊進行多工處理。
+您可以使用 [Azure IoT Edge][lnk-gateway-sdk] 來實作現場閘道。 IoT Edge 提供特定功能，例如可以對從多個裝置到相同 IoT 中樞連線的通訊進行多工處理。
 
 ## <a name="next-steps"></a>後續步驟
 此 IoT 中樞開發人員指南中的其他參考主題包括︰
@@ -83,7 +84,7 @@ IoT 中樞需要這些服務端點的寫入權限，才能將訊息路由傳送�
 * [配額和節流][lnk-devguide-quotas]
 * [IoT 中樞的 MQTT 支援][lnk-devguide-mqtt]
 
-[lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
+[lnk-gateway-sdk]: https://github.com/Azure/iot-edge
 
 [img-endpoints]: ./media/iot-hub-devguide-endpoints/endpoints.png
 [lnk-amqp]: https://www.amqp.org/

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: markvi;andkjell
-translationtype: Human Translation
-ms.sourcegitcommit: 72b2d9142479f9ba0380c5bd2dd82734e370dee7
-ms.openlocfilehash: 9238141fc56abcb618d71e4bfd1eccb77f282c71
-ms.lasthandoff: 03/08/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 08df9939eb31c224d62d96a0d034d1cda10ba270
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -102,6 +103,7 @@ ms.lasthandoff: 03/08/2017
 | msExchAuditOwner |X | | | |
 | msExchBlockedSendersHash |X |X | | |
 | msExchBypassAudit |X | | | |
+| msExchBypassModerationLink | | |X |可用於 Azure AD Connect 1.1.524.0 版中 |
 | msExchCoManagedByLink | | |X | |
 | msExchDelegateListLink |X | | | |
 | msExchELCExpirySuspensionEnd |X | | | |
@@ -430,6 +432,18 @@ ms.lasthandoff: 03/08/2017
 | msExchUCVoiceMailSettings |X | | |啟用整合通訊 (UM) - 線上語音信箱：供 Microsoft Lync Server 整合用來向 Lync Server 內部部署表示使用者在線上服務中有語音信箱。 |
 | msExchUserHoldPolicies |X | | |訴訟資料暫留：啟用雲端服務來識別哪些使用者正處於訴訟資料暫留狀態。 |
 | proxyAddresses |X |X |X |只會插入 Exchange Online 的 x500 位址。 |
+
+## <a name="exchange-mail-public-folder"></a>Exchange 郵件公用資料夾
+當您選擇啟用 [Exchange 郵件公用資料夾] 時，系統會將內部部署 Active Directory 的這些屬性同步到 Azure AD。
+
+| 屬性名稱 | 公用資料夾 | 註解 |
+| --- | :---:| --- |
+| displayName | X |  |
+| mail | X |  |
+| msExchRecipientTypeDetails | X |  |
+| objectGUID | X |  |
+| proxyAddresses | X |  |
+| targetAddress | X |  |
 
 ## <a name="device-writeback"></a>裝置回寫
 裝置物件是在 Active Directory 中建立。 這些物件可以是加入 Azure AD 的裝置，或加入網域的 Windows 10 電腦。

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: b94b8b84ae2cf26a1680f816460cc86c4d79e885
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: d8ae05316b424af7d87c3c5ebdac575bcc04998d
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -252,9 +253,9 @@ VM 上安裝了下列 Azure 工具：
 * **Microsoft Azure 儲存體總管**：Microsoft Azure 儲存體總管是一個圖形化工具，可用來瀏覽您在 Azure 儲存體帳戶中所儲存的物件，也可以上傳和下載 Azure Blob 的資料。 您可以從桌面捷徑圖示存取儲存體總管。 從殼層命令提示字元叫用它則是輸入 **StorageExplorer**。 您需要從 X2Go 用戶端登入，或是已設定 X11 轉寄。
 * **Azure 程式庫**：以下是一些預先安裝的程式庫。
   
-  * **Python**：Python 中已安裝的 Azure 相關程式庫為 **azure**、**azureml**、**pydocumentdb** 和 **pyodbc**。 透過前三個程式庫，您可以存取 Azure 儲存體服務、Azure Machine Learning 和 Azure DocumentDB (Azure 上的 NoSQL 資料庫)。 第四個程式庫 pyodbc (以及 Microsoft ODBC Driver for SQL Server) 可讓您使用 ODBC 介面，從 Python 中存取 SQL Server、Azure SQL Database 和 Azure SQL 資料倉儲。 輸入 **pip list** 以查看所有列出的程式庫。 請務必在 Python 2.7 和 3.5 的環境中執行此命令。
+  * **Python**：Python 中已安裝的 Azure 相關程式庫為 **azure**、**azureml**、**pydocumentdb** 和 **pyodbc**。 透過前三個程式庫，您可以存取 Azure 儲存體服務、Azure Machine Learning 和 Azure Cosmos DB (Azure 上的 NoSQL 資料庫)。 第四個程式庫 pyodbc (以及 Microsoft ODBC Driver for SQL Server) 可讓您使用 ODBC 介面，從 Python 中存取 SQL Server、Azure SQL Database 和 Azure SQL 資料倉儲。 輸入 **pip list** 以查看所有列出的程式庫。 請務必在 Python 2.7 和 3.5 的環境中執行此命令。
   * **R**：R 中已安裝的 Azure 相關程式庫為 **AzureML** 和 **RODBC**。
-  * **Java**︰Azure Java 程式庫清單位於 VM 上的 **/dsvm/sdk/AzureSDKJava** 目錄中。 關鍵的程式庫為 Azure 儲存體和管理 API、DocumentDB 和 JDBC Driver for SQL Server。  
+  * **Java**︰Azure Java 程式庫清單位於 VM 上的 **/dsvm/sdk/AzureSDKJava** 目錄中。 關鍵的程式庫為 Azure 儲存體和管理 API、Azure Cosmos DB 和 JDBC Driver for SQL Server。  
 
 您可以從預先安裝的 Firefox 瀏覽器存取 [Azure 入口網站](https://portal.azure.com) 。 在 Azure 入口網站中，您可以建立、管理和監視 Azure 資源。
 

@@ -1,9 +1,11 @@
 ---
-redirect_url: https://azure.microsoft.com/services/documentdb/
+redirect_url: https://azure.microsoft.com/services/cosmos-db/
 ROBOTS: NOINDEX, NOFOLLOW
-translationtype: Human Translation
-ms.sourcegitcommit: d59ebef3cda36ba048b844f0cd2326fff66b4aa5
-ms.openlocfilehash: 48380d1fd5394cc32b4e868a82f456497bc4a915
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 28af0300f7027ccce8207d0f767490bddd4bf532
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 
@@ -18,13 +20,8 @@ ms.openlocfilehash: 48380d1fd5394cc32b4e868a82f456497bc4a915
   
   * 區分操作資料 (由應用程式讀取和寫入) 與分析資料 (用來提供商業智慧 (BI)) 間的不同，以協助您決定符合需求的理想技術。
   * 快速檢閱關聯式技術。
-  * 各種 Azure NoSQL 技術的簡介：DocumentDB、資料表儲存體、HBase 和 HDInsight。
+  * 各種 Azure NoSQL 技術的簡介：Azure Cosmos DB、資料表儲存體、HBase 和 HDInsight。
   * NoSQL 技術和 Azure SQL Database 的比較。 
-  * 何時使用 Azure DocumentDB、表格儲存體、HBase、HDInsight 和 提供認證 (登入和密碼)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
+  * 何時應使用 Azure Cosmos DB、表格儲存體、HBase、HDInsight 和 提供認證 (登入和密碼)。
 
 

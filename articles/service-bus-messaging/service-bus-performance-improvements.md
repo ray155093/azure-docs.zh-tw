@@ -12,17 +12,19 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 02/02/2017
+ms.date: 05/10/2017
 ms.author: sethm
-translationtype: Human Translation
-ms.sourcegitcommit: a9fd01e533f4ab76a68ec853a645941eff43dbfd
-ms.openlocfilehash: d077099a9fdc50cf78157bcb7f28d1d28583bea1
-ms.lasthandoff: 02/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
+ms.openlocfilehash: e6a0e480f7748f12f5e566cf4059b5b2c4242c09
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="best-practices-for-performance-improvements-using-service-bus-messaging"></a>使用服務匯流排傳訊的效能改進最佳作法
-本文描述如何使用 [Azure 服務匯流排傳訊](https://azure.microsoft.com/services/service-bus/)來在交換代理訊息時將效能最佳化。 本主題的第一個部分說明提供協助提高效能的不同機制。 第二個部分針對如何在特定案例中利用可提供最佳效能的方式來使用服務匯流排提供指引。
+
+本文描述如何使用 [Azure 服務匯流排傳訊](https://azure.microsoft.com/services/service-bus/)，以在交換代理訊息時將效能最佳化。 本主題的第一個部分說明提供協助提高效能的不同機制。 第二個部分針對如何在特定案例中利用可提供最佳效能的方式來使用服務匯流排提供指引。
 
 在本主題中，「用戶端」一詞是指任何存取服務匯流排的實體。 用戶端可以擔任傳送者或接收者的角色。 「傳送者」一詞用於將訊息傳送至服務匯流排佇列或主題的服務匯流排佇列或主題用戶端。 「接收者」一詞指的是從服務匯流排佇列或訂用帳戶接收訊息的服務匯流排佇列或訂用帳戶用戶端。
 
@@ -130,7 +132,8 @@ Queue q = namespaceManager.CreateQueue(qd);
 預先擷取並不會影響可計費的傳訊作業數目，而且僅適用於服務匯流排用戶端通訊協定。 HTTP 通訊協定不支援預先擷取。 同步和非同步接收作業皆可使用預先擷取。
 
 ## <a name="express-queues-and-topics"></a>快速佇列和主題
-快速實體會啟用高輸送量並減少延遲案例。 使用快速實體時，如果訊息傳送至佇列或主題，訊息不會立即儲存在訊息存放區。 相反地，它會快取在記憶體中。 如果訊息保留在佇列中超過幾秒鐘，它會自動寫入至穩定儲存體，藉此保護它免於因中斷而遺失。 將訊息寫入記憶體快取會增加輸送量並減少延遲，因為訊息傳送時沒有存取穩定儲存體。 在幾秒鐘內取用的訊息不會寫入至訊息存放區。 下列範例會建立快速主題。
+
+快速實體可提高輸送量並縮短延遲，而只有在「標準」傳訊層才支援這些實體。 在[進階命名空間](service-bus-premium-messaging.md)中建立的實體不支援快速選項。 使用快速實體時，如果訊息傳送至佇列或主題，訊息不會立即儲存在訊息存放區。 相反地，它會快取在記憶體中。 如果訊息保留在佇列中超過幾秒鐘，它會自動寫入至穩定儲存體，藉此保護它免於因中斷而遺失。 將訊息寫入記憶體快取會增加輸送量並減少延遲，因為訊息傳送時沒有存取穩定儲存體。 在幾秒鐘內取用的訊息不會寫入至訊息存放區。 下列範例會建立快速主題。
 
 ```csharp
 TopicDescription td = new TopicDescription(TopicName);
@@ -141,7 +144,7 @@ namespaceManager.CreateTopic(td);
 如果將包含不能遺失之重要資訊的訊息傳送至快速實體，傳送者可以強制服務匯流排立即藉由將 [ForcePersistence][ForcePersistence] 屬性設為 **true** 來將訊息儲存到穩定儲存體。
 
 > [!NOTE]
-> 請注意，快速實體不支援交易。
+> 快速實體並不支援交易。
 
 ## <a name="use-of-partitioned-queues-or-topics"></a>使用分割的佇列或主題
 服務匯流排會在內部使用相同的節點和訊息存放區來處理和儲存傳訊實體 (佇列或主題) 的所有訊息。 另一方面，分割的佇列或主題會在多個節點和訊息存放區中散佈。 分割的佇列和主題不僅會產生比一般佇列和主題更高的輸送量，也會展現較優異的可用性。 若要建立分割的實體，請將 [EnablePartitioning][EnablePartitioning] 屬性設為 **true**，如下列範例所示。 如需分割實體的詳細資訊，請參閱[分割的傳訊實體][Partitioned messaging entities]。
@@ -252,12 +255,12 @@ namespaceManager.CreateQueue(qd);
 [MessagingFactory]: /dotnet/api/microsoft.servicebus.messaging.messagingfactory
 [PeekLock]: /dotnet/api/microsoft.servicebus.messaging.receivemode
 [ReceiveAndDelete]: /dotnet/api/microsoft.servicebus.messaging.receivemode
-[BatchFlushInterval]: /dotnet/api/microsoft.servicebus.messaging.netmessagingtransportsettings#Microsoft_ServiceBus_Messaging_NetMessagingTransportSettings_BatchFlushInterval
-[EnableBatchedOperations]: /dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnableBatchedOperations
-[QueueClient.PrefetchCount]: /dotnet/api/microsoft.servicebus.messaging.queueclient#Microsoft_ServiceBus_Messaging_QueueClient_PrefetchCount
-[SubscriptionClient.PrefetchCount]: /dotnet/api/microsoft.servicebus.messaging.subscriptionclient#Microsoft_ServiceBus_Messaging_SubscriptionClient_PrefetchCount
-[ForcePersistence]: /dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ForcePersistence
-[EnablePartitioning]: /dotnet/api/microsoft.servicebus.messaging.queuedescription#Microsoft_ServiceBus_Messaging_QueueDescription_EnablePartitioning
+[BatchFlushInterval]: /dotnet/api/microsoft.servicebus.messaging.netmessagingtransportsettings.batchflushinterval#Microsoft_ServiceBus_Messaging_NetMessagingTransportSettings_BatchFlushInterval
+[EnableBatchedOperations]: /dotnet/api/microsoft.servicebus.messaging.queuedescription.enablebatchedoperations#Microsoft_ServiceBus_Messaging_QueueDescription_EnableBatchedOperations
+[QueueClient.PrefetchCount]: /dotnet/api/microsoft.servicebus.messaging.queueclient.prefetchcount#Microsoft_ServiceBus_Messaging_QueueClient_PrefetchCount
+[SubscriptionClient.PrefetchCount]: /dotnet/api/microsoft.servicebus.messaging.subscriptionclient.prefetchcount#Microsoft_ServiceBus_Messaging_SubscriptionClient_PrefetchCount
+[ForcePersistence]: /dotnet/api/microsoft.servicebus.messaging.brokeredmessage.forcepersistence#Microsoft_ServiceBus_Messaging_BrokeredMessage_ForcePersistence
+[EnablePartitioning]: /dotnet/api/microsoft.servicebus.messaging.queuedescription.enablepartitioning#Microsoft_ServiceBus_Messaging_QueueDescription_EnablePartitioning
 [Partitioned messaging entities]: service-bus-partitioning.md
-[TopicDescription.EnableFilteringMessagesBeforePublishing]: /dotnet/api/microsoft.servicebus.messaging.topicdescription#Microsoft_ServiceBus_Messaging_TopicDescription_EnableFilteringMessagesBeforePublishing
+[TopicDescription.EnableFilteringMessagesBeforePublishing]: /dotnet/api/microsoft.servicebus.messaging.topicdescription.enablefilteringmessagesbeforepublishing#Microsoft_ServiceBus_Messaging_TopicDescription_EnableFilteringMessagesBeforePublishing
 

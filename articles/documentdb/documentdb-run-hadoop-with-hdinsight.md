@@ -1,13 +1,13 @@
 ---
-title: "使用 Azure DocumentDB 和 HDInsight 執行 Hadoop 作業 | Microsoft Docs"
-description: "了解如何使用 DocumentDB 和 Azure HDInsight 來執行簡單的 Hive、Pig 和 MapReduce 工作。"
-services: documentdb
+title: "使用 Azure Cosmos DB 和 HDInsight 執行 Hadoop 作業 | Microsoft Docs"
+description: "了解如何使用 Azure Cosmos DB 和 Azure HDInsight 來執行簡單的 Hive、Pig 和 MapReduce 作業。"
+services: cosmosdb
 author: dennyglee
 manager: jhubbard
 editor: mimig
 documentationcenter: 
 ms.assetid: 06f0ea9d-07cb-4593-a9c5-ab912b62ac42
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: java
@@ -15,31 +15,32 @@ ms.topic: article
 ms.date: 09/20/2016
 ms.author: denlee
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 9304acd9f99b7f492a37bc4243ed8fb617998c6f
-ms.lasthandoff: 03/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: a4d5e13cb2851787abcaff0c1971f63af9bf75dd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="DocumentDB-HDInsight"></a>使用 DocumentDB 和 HDInsight 執行 Apache Hive、Pig 或 Hadoop 作業
-本教學課程示範如何在 Azure HDInsight 上，使用 DocumentDB 的 Hadoop 連接器來執行 [Apache Hive][apache-hive]、[Apache Pig][apache-pig] 和 [Apache Hadoop][apache-hadoop] MapReduce 作業。 DocumentDB 的 Hadoop 連接器可讓 DocumentDB 同時做為 Hive、Pig 和 MapReduce 工作的來源與接收。 本教學課程將使用 DocumentDB 同時作為 Hadoop 工作的資料來源和目的地。
+# <a name="Azure Cosmos DB-HDInsight"></a>使用 Azure Cosmos DB 和 HDInsight 執行 Apache Hive、Pig 或 Hadoop 作業
+本教學課程示範如何在 Azure HDInsight 上，使用 Cosmos DB 的 Hadoop 連接器來執行 [Apache Hive][apache-hive]、[Apache Pig][apache-pig] 和 [Apache Hadoop][apache-hadoop] MapReduce 作業。 Cosmos DB 的 Hadoop 連接器可讓 Cosmos DB 同時做為 Hive、Pig 和 MapReduce 作業的來源和接收。 本教學課程將使用 Cosmos DB 同時作為 Hadoop 作業的資料來源和目的地。
 
 完成本教學課程後，您將能夠回答下列問題：
 
-* 如何使用 Hive、Pig 或 MapReduce 工作從 DocumentDB 載入資料？
-* 如何使用 Hive、Pig 或 MapReduce 工作將資料儲存在 DocumentDB 中？
+* 如何使用 Hive、Pig 或 MapReduce 作業從 Cosmos DB 載入資料？
+* 如何使用 Hive、Pig 或 MapReduce 作業在 Cosmos DB 中儲存資料？
 
-我們建議使用者從觀看下列影片開始入門，在影片中我們會使用 DocumentDB 和 HDInsight 執行 Hive 工作。
+我們建議使用者從觀看下列影片開始入門，在影片中我們會使用 Cosmos DB 和 HDInsight 執行 Hive 作業。
 
-> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Use-Azure-DocumentDB-Hadoop-Connector-with-Azure-HDInsight/player]
+> [!VIDEO https://channel9.msdn.com/Blogs/Azure/Use-Azure-Cosmos DB-Hadoop-Connector-with-Azure-HDInsight/player]
 >
 >
 
-接著回到本文，您將在本文中找到有關如何在 DocumentDB 資料上執行分析工作的完整詳細資訊。
+接著回到本文，您將在本文中找到有關如何在 Cosmos DB 資料上執行分析工作的完整詳細資訊。
 
 > [!TIP]
-> 本教學課程假設您先前已有使用 Apache Hadoop、Hive 和/或 Pig 的經驗。 如果您不熟悉 Apache Hadoop、Hive 和 Pig，建議您瀏覽 [Apache Hadoop 文件][apache-hadoop-doc]。 本教學課程也假設您先前已有使用 DocumentDB 的經驗，且擁有 DocumentDB 帳戶。 如果您不熟悉 DocumentDB 或沒有 DocumentDB 帳戶，請造訪我們的[開始使用][getting-started]頁面。
+> 本教學課程假設您先前已有使用 Apache Hadoop、Hive 和/或 Pig 的經驗。 如果您不熟悉 Apache Hadoop、Hive 和 Pig，建議您瀏覽 [Apache Hadoop 文件][apache-hadoop-doc]。 本教學課程也假設您先前已有使用 Cosmos DB 的經驗，且擁有 Cosmos DB 帳戶。 如果您不熟悉 Cosmos DB 或沒有 Cosmos DB 帳戶，請造訪我們的[開始使用][getting-started]頁面。
 >
 >
 
@@ -52,7 +53,7 @@ ms.lasthandoff: 03/07/2017
     <tr><th>指令碼 URI</th>
         <td>https://portalcontent.blob.core.windows.net/scriptaction/documentdb-hadoop-installer-v04.ps1</td></tr>
     <tr><th>修改日期</th>
-        <td>2016 年&4; 月&26; 日</td></tr>
+        <td>2016 年 4 月 26 日</td></tr>
     <tr><th>支援的 HDInsight 版本</th>
         <td>3.1、3.2</td></tr>
     <tr><th>變更記錄檔</th>
@@ -64,7 +65,7 @@ ms.lasthandoff: 03/07/2017
 ## <a name="Prerequisites"></a>必要條件
 在依照本教學課程中的指示進行之前，請先確定您已備妥下列項目：
 
-* DocumentDB 帳戶、資料庫和包含文件的集合。 如需詳細資訊，請參閱[開始使用 DocumentDB][getting-started]。 使用 [DocumentDB 匯入工具][documentdb-import-data]將範例資料匯入至您的 DocumentDB 帳戶。
+* Cosmos DB 帳戶、資料庫和包含文件的集合。 如需詳細資訊，請參閱[開始使用 Azure Cosmos DB][getting-started]。 使用 [Cosmos DB 匯入工具][documentdb-import-data]將範例資料匯入至您的 Cosmos DB 帳戶。
 * 輸送量。 從 HDInsight 讀取和寫入將會計入您的集合的配置要求單位。
 * 每個輸出集合額內額外預存程序的容量。 預存程序可用來傳送產生的文件。
 * 由 Hive、Pig 或 MapReduce 工作產生的文件容量。
@@ -109,7 +110,7 @@ ms.lasthandoff: 03/07/2017
 8. 在相同的刀鋒視窗中，指定 [預設容器] 和 [位置]。 然後，按一下 [選取] 。
 
    > [!NOTE]
-   > 選取靠近您的 DocumentDB 帳戶區域的位置以提升效能
+   > 選取靠近您的 Cosmos DB 帳戶區域位置以提升效能
    >
    >
 9. 按一下 [價格]  以選取節點的數量和類型。 您可以保留預設組態，並在稍後調整背景工作節點的數量。
@@ -162,7 +163,7 @@ ms.lasthandoff: 03/07/2017
 
     ![Azure PowerShell 的圖表][azure-powershell-diagram]
 
-## <a name="RunHive"></a>步驟 3：使用 DocumentDB 和 HDInsight 執行 Hive 作業
+## <a name="RunHive"></a>步驟 3：使用 Cosmos DB 和 HDInsight 執行 Hive 作業
 > [!IMPORTANT]
 > 以 < > 表示的所有變數都必須使用組態設定進行填寫。
 >
@@ -263,7 +264,7 @@ ms.lasthandoff: 03/07/2017
 
    ![Hive 查詢結果][image-hive-query-results]
 
-## <a name="RunPig"></a>步驟 4：使用 DocumentDB 和 HDInsight 執行 Pig 作業
+## <a name="RunPig"></a>步驟 4：使用 Cosmos DB 和 HDInsight 執行 Pig 作業
 > [!IMPORTANT]
 > 以 < > 表示的所有變數都必須使用組態設定進行填寫。
 >
@@ -277,7 +278,7 @@ ms.lasthandoff: 03/07/2017
         # Provide HDInsight cluster name where you want to run the Pig job.
         $clusterName = "Azure HDInsight Cluster Name"
 2. <p>首先我們要建構查詢字串。 我們將撰寫執行下列動作的 Pig 查詢：接受所有文件從 DocumentDB 集合系統產生的時間戳記 (_ts) 和唯一識別碼 (_rid) ，並計算所有文件 (以分鐘為單位)，然後將結果存回新的 DocumentDB 集合。</p>
-    <p>首先，將文件從 DocumentDB 載入 HDInsight。 將下列程式碼片段加入 [PowerShell 指令碼] 窗格中 # 1 的程式碼片段<strong>後面</strong>。 請務必將 DocumentDB 查詢加入選擇性的 DocumentDB 查詢參數，以將文件整理成只有 _ts 和 _rid。</p>
+    <p>首先，將文件從 Cosmos DB 載入 HDInsight。 將下列程式碼片段加入 [PowerShell 指令碼] 窗格中 # 1 的程式碼片段<strong>後面</strong>。 請務必將 DocumentDB 查詢加入選擇性的 DocumentDB 查詢參數，以將文件整理成只有 _ts 和 _rid。</p>
 
    > [!NOTE]
    > 沒錯，我們允許在一筆輸入中加入多個集合： </br>
@@ -287,7 +288,7 @@ ms.lasthandoff: 03/07/2017
 
     文件將會是跨多個集合的分散式循環配置資源。 第一批文件會儲存在一個集合中，然後第二批文件會儲存在下一個集合中，以此類推。
 
-        # Load data from DocumentDB. Pass DocumentDB query to filter transferred data to _rid and _ts.
+        # Load data from Cosmos DB. Pass DocumentDB query to filter transferred data to _rid and _ts.
         $queryStringPart1 = "DocumentDB_timestamps = LOAD '<DocumentDB Endpoint>' USING com.microsoft.azure.documentdb.pig.DocumentDBLoader( " +
                                                         "'<DocumentDB Primary Key>', " +
                                                         "'<DocumentDB Database Name>', " +
@@ -308,7 +309,7 @@ ms.lasthandoff: 03/07/2017
    >
    >
 
-        # Store output data to DocumentDB.
+        # Store output data to Cosmos DB.
         $queryStringPart3 = "STORE by_minute_count INTO '<DocumentDB Endpoint>' " +
                             "USING com.microsoft.azure.documentdb.pig.DocumentDBStorage( " +
                                 "'<DocumentDB Primary Key>', " +
@@ -361,7 +362,7 @@ ms.lasthandoff: 03/07/2017
         $TallyPropertiesJobDefinition = New-AzureHDInsightMapReduceJobDefinition -JarFile "wasb:///example/jars/TallyProperties-v01.jar" -ClassName "TallyProperties" -Arguments "<DocumentDB Endpoint>","<DocumentDB Primary Key>", "<DocumentDB Database Name>","<DocumentDB Input Collection Name>","<DocumentDB Output Collection Name>","<[Optional] DocumentDB Query>"
 
    > [!NOTE]
-   > TallyProperties-v01.jar 隨附於 DocumentDB Hadoop 連接器的自訂安裝。
+   > TallyProperties-v01.jar 隨附於 Cosmos DB Hadoop 連接器的自訂安裝。
    >
    >
 3. 新增下列命令來提交 MapReduce 工作。
@@ -383,8 +384,8 @@ ms.lasthandoff: 03/07/2017
 
    1. 按一下左側面板上的 [<strong>瀏覽</strong>]。
    2. 按一下 [瀏覽] 面板右上方的 [<strong>所有項目</strong>]。
-   3. 尋找並按一下 [<strong>DocumentDB 帳戶</strong>]。
-   4. 接下來，依序尋找您的 [<strong>DocumentDB 帳戶</strong>]、[<strong>DocumentDB 資料庫</strong>] 和與 MapReduce 工作中指定輸出集合相關聯的 [<strong>DocumentDB 集合</strong>]。
+   3. 尋找並按一下 [Cosmos DB 帳戶]<strong></strong>。
+   4. 接下來，依序尋找您的 [Cosmos DB 帳戶]<strong></strong>、[Cosmos DB 資料庫]<strong></strong> 和與 MapReduce 作業中指定輸出集合相關聯的 [DocumentDB 集合]<strong></strong>。
    5. 最後，按一下 [<strong>開發人員工具</strong>] 底下的 <strong>Document Explorer</strong>。
 
       您將會看到 MapReduce 工作的結果。
@@ -392,7 +393,7 @@ ms.lasthandoff: 03/07/2017
       ![MapReduce 查詢結果][image-mapreduce-query-results]
 
 ## <a name="NextSteps"></a>後續步驟
-恭喜！ 您剛剛使用 Azure DocumentDB 和 HDInsight 執行您的第一個 Hive、Pig 和 MapReduce 工作。
+恭喜！ 您剛剛使用 Azure Cosmos DB 和 HDInsight 執行您的第一個 Hive、Pig 和 MapReduce 作業。
 
 我們已開放 Hadoop 連接器的原始碼。 如果您有興趣，您可以在 [GitHub][documentdb-github] 上發表意見。
 

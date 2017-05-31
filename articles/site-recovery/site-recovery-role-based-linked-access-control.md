@@ -1,0 +1,83 @@
+---
+title: "使用角色型存取控制來管理 Azure Site Recovery | Microsoft Docs"
+description: "本文說明如何套用與使用角色型存取控制 (RBAC) 來管理 Azure Site Recovery 部署"
+services: site-recovery
+documentationcenter: 
+author: mayanknayar
+manager: rochakm
+editor: 
+ms.assetid: 
+ms.service: site-recovery
+ms.workload: backup-recovery
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/11/2017
+ms.author: manayar
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 08a4d0fa673a37c61e57daed66ab6768e0276ca8
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
+
+
+---
+# <a name="use-role-based-access-control-to-manage-azure-site-recovery-deployments"></a>使用角色型存取控制管理 Azure Site Recovery 部署
+
+Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權管理。 您可以使用 RBAC 劃分小組責任，並只將特定存取權限授與需要執行特定工作的使用者。
+
+Azure 提供各種內建角色可控制資源管理作業。 深入了解 [Azure RBAC 內建角色](../active-directory/role-based-access-built-in-roles.md)
+
+如果您想要定義自己的角色以獲得更進一步控制，請參閱如何在 Azure 中[建立自訂角色](../active-directory/role-based-access-control-custom-roles.md)。
+
+## <a name="permissions-required-to-enable-replication-for-new-virtual-machines"></a>啟用新虛擬機器複寫所需的權限
+當使用 Azure Site Recovery 將新的虛擬機器複寫至 Azure 時，系統會驗證相關聯使用者的存取層級，以確定使用者擁有使用提供給 Site Recovery 的 Azure 資源所需的權限。
+
+若要啟用新虛擬機器的複寫，使用者必須擁有：
+* 在所選資源群組中建立虛擬機器的權限
+* 在所選虛擬網路中建立虛擬機器的權限
+* 寫入所選儲存體帳戶的權限
+
+使用者需要下列權限才能完成新虛擬機器的複寫。
+
+> [!IMPORTANT]
+>確定為每個用於部署資源的部署模型 (Resource Manager/傳統) 新增相關的權限。
+
+| **資源類型** | **部署模型** | **權限** |
+| --- | --- | --- |
+| 計算 | 資源管理員 | Microsoft.Compute/availabilitySets/read |
+|  |  | Microsoft.Compute/virtualMachines/read |
+|  |  | Microsoft.Compute/virtualMachines/write |
+|  |  | Microsoft.Compute/virtualMachines/delete |
+|  | 傳統 | Microsoft.ClassicCompute/domainNames/read |
+|  |  | Microsoft.ClassicCompute/domainNames/write |
+|  |  | Microsoft.ClassicCompute/domainNames/delete |
+|  |  | Microsoft.ClassicCompute/virtualMachines/read |
+|  |  | Microsoft.ClassicCompute/virtualMachines/write |
+|  |  | Microsoft.ClassicCompute/virtualMachines/delete |
+| 網路 | 資源管理員 | Microsoft.Network/networkInterfaces/read |
+|  |  | Microsoft.Network/networkInterfaces/write |
+|  |  | Microsoft.Network/networkInterfaces/delete |
+|  |  | Microsoft.Network/networkInterfaces/join/action |
+|  |  | Microsoft.Network/virtualNetworks/read |
+|  |  | Microsoft.Network/virtualNetworks/subnets/read |
+|  |  | Microsoft.Network/virtualNetworks/subnets/join/action |
+|  | 傳統 | Microsoft.ClassicNetwork/virtualNetworks/read |
+|  |  | Microsoft.ClassicNetwork/virtualNetworks/join/action |
+| 儲存體 | 資源管理員 | Microsoft.Storage/storageAccounts/read |
+|  |  | Microsoft.Storage/storageAccounts/listkeys/action |
+|  | 傳統 | Microsoft.ClassicStorage/storageAccounts/read |
+|  |  | Microsoft.ClassicStorage/storageAccounts/listKeys/action |
+| 資源群組 | 資源管理員 | Microsoft.Resources/deployments/* |
+|  |  | Microsoft.Resources/subscriptions/resourceGroups/read |
+
+請考慮分別為 Resource Manager 與傳統部署模型使用「虛擬機器參與者」與「傳統虛擬機器參與者」[內建角色](../active-directory/role-based-access-built-in-roles.md)。
+
+## <a name="next-steps"></a>後續步驟
+* [角色型存取控制](../active-directory/role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
+* 了解如何使用下列各項管理存取權：
+  * [PowerShell](../active-directory/role-based-access-control-manage-access-powershell.md)
+  * [Azure CLI](../active-directory/role-based-access-control-manage-access-azure-cli.md)
+  * [REST API](../active-directory/role-based-access-control-manage-access-rest.md)
+* [角色型存取控制疑難排解](../active-directory/role-based-access-control-troubleshooting.md)︰取得修正常見問題的建議。
+

@@ -1,28 +1,29 @@
 ---
 
-redirect_url: https://azure.microsoft.com/services/documentdb/
+redirect_url: https://azure.microsoft.com/services/cosmos-db/
 ROBOTS: NOINDEX, NOFOLLOW
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 7023e7e7f5857db345c47c9a3aa00a816e027a96
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 2bb9fa3c151b0e36f73ba0c1432529499ee7062b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 
 ---
-# <a name="how-to-partition-data-using-client-side-support-in-documentdb"></a>如何在 DocumentDB 中使用用戶端支援分割資料
-Azure DocumentDB 支援 [自動分割集合](documentdb-partition-data.md)。 不過，還有使用案例很有幫助，對於分割行為有細微的控制。 為了減少分割工作所需的樣板程式碼數量，我們已在 .NET、Node.js 和 Java SDK 中加入功能，讓您可以輕鬆地建立跨多個集合相應放大的應用程式。
+# <a name="how-to-partition-data-using-client-side-support-in-azure-cosmos-db"></a>如何在 Azure Cosmos DB 中使用用戶端支援分割資料
+Azure Cosmos DB 支援 [自動分割集合](documentdb-partition-data.md)。 不過，還有使用案例很有幫助，對於分割行為有細微的控制。 為了減少分割工作所需的樣板程式碼數量，我們已在 .NET、Node.js 和 Java SDK 中加入功能，讓您可以輕鬆地建立跨多個集合相應放大的應用程式。
 
 在本文中，我們將探討在 .NET SDK 中的類別和介面，以及如何使用它們來開發資料分割應用程式。 Java、Node.js 和 Python 等其他 SDK 可支援支援類似的用戶端資料分割方法和介面。
 
-## <a name="client-side-partitioning-with-the-documentdb-sdk"></a>使用 DocumentDB SDK 進行用戶端資料分割
-在深入探討資料分割之前，讓我們複習一下一些與資料分割相關的基本 DocumentDB 概念。 每個 Azure DocumentDB 資料庫帳戶是由一組資料庫所組成，每個資料庫都包含多個集合，而集合可包含預存程序、觸發程序、UDF、文件和相關附件。 集合可以是單一分割區或本身進行分割，並具有下列屬性：
+## <a name="client-side-partitioning-with-the-sdk"></a>使用 SDK 進行用戶端資料分割
+在深入探討資料分割之前，讓我們複習一下一些與資料分割相關的基本 Cosmos DB 概念。 每個 Azure Cosmos DB 資料庫帳戶是由一組資料庫所組成，每個資料庫都包含多個集合，而集合可包含預存程序、觸發程序、UDF、文件和相關附件。 集合可以是單一分割區或本身進行分割，並具有下列屬性：
 
 * 集合會提供效能隔離。 因此，在排序相同集合內的類似文件時具有效能優勢。 例如，對於時間序列資料，您可能想要將過去一個月經常查詢的資料，放在具有較高佈建輸送量的集合內，而將較舊的資料放在具有較低佈建輸送量的集合內。
 * ACID 交易，也就是預存程序和觸發無法跨越集合。 交易的範圍侷限在集合內的單一分割索引鍵值。
 * 集合不會強制執行結構描述，因此可以用於相同或不同類型的 JSON 文件。
 
-從 [Azure DocumentDB SDK 1.5.x](documentdb-sdk-dotnet.md) 版起，您可以直接在資料庫中執行文件作業。 在內部， [DocumentClient](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) 會使用您已為資料庫指定的 PartitionResolver，將要求路由至適當的集合。
+從 [Azure Cosmos DB SDK 1.5.x](documentdb-sdk-dotnet.md) 版起，您可以直接在資料庫中執行文件作業。 在內部， [DocumentClient](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) 會使用您已為資料庫指定的 PartitionResolver，將要求路由至適當的集合。
 
 > [!NOTE]
 > REST API 2015-12-16 和 SDK 1.6.0+ 中引進的[伺服器端資料分割](documentdb-partition-data.md)取代簡單使用案例的用戶端磁碟分割解析程式方法。 不過，用戶端資料分割更有彈性，可讓您控制跨分割區索引鍵的效能隔離、控制從多個分割區讀取結果時的平行處理程度，以及使用範圍/空間分割方法和雜湊分割方法。
@@ -89,7 +90,7 @@ foreach (UserProfile activeUser in query)
 ```
 
 ## <a name="hash-partition-resolver"></a>雜湊分割解析程式
-有了雜湊分割，分割是根據雜湊函式的值來指派，讓您在一些分割上平均分配要求和資料。 這個方法通常用於分割從大量不同用戶端產生或取用的資料，適合用來儲存使用者設定檔、類別目錄項目，以及 IoT ("Internet of Things") 遙測資料。 集合內的 DocumentDB 伺服器端資料分割支援也會使用雜湊分割。
+有了雜湊分割，分割是根據雜湊函式的值來指派，讓您在一些分割上平均分配要求和資料。 這個方法通常用於分割從大量不同用戶端產生或取用的資料，適合用來儲存使用者設定檔、類別目錄項目，以及 IoT ("Internet of Things") 遙測資料。 集合內的 Cosmos DB 伺服器端資料分割支援也會使用雜湊分割。
 
 **雜湊分割：**
 ![說明雜湊分割如何在資料分割中平均分配要求的圖表](media/documentdb-sharding/partition-hash.png)
@@ -122,17 +123,17 @@ foreach (UserProfile activeUser in query)
 * 如何將 PartitionResolver 狀態序列化和還原序列化為 JSON，這樣您便可以在處理之間及在關閉期間共用。 您可以在組態檔中 (或甚至在 DocumentDB 集合中) 加以保存。
 * [DocumentClientHashPartitioningManager](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Util/DocumentClientHashPartitioningManager.cs) 類別可用於將分割動態新增及移除至已根據一致的雜湊進行資料分割的資料庫。 在內部，它會使用 [TransitionHashPartitionResolver](https://github.com/Azure/azure-documentdb-dotnet/blob/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning/Partitioners/TransitionHashPartitionResolver.cs) ，使用下列四種的其中一種模式，在移轉期間路由讀取和寫入作業：從舊的分割配置中讀取 (ReadCurrent)、讀取新的項目 (ReadNext)、合併兩者的結果 (ReadBoth)，或移轉期間無法使用 (無)。
 
-這些範例是開放原始碼，我們鼓勵您提交提取要求，並附上可幫助其他 DocumentDB 開發人員的貢獻。 請參閱 [貢獻指導方針](https://github.com/Azure/azure-documentdb-net/blob/master/Contributing.md) ，以取得有關如何貢獻的指引。  
+這些範例是開放原始碼，我們鼓勵您提交提取要求，並附上可幫助其他 Cosmos DB 開發人員的貢獻。 請參閱 [貢獻指導方針](https://github.com/Azure/azure-documentdb-net/blob/master/Contributing.md) ，以取得有關如何貢獻的指引。  
 
 > [!NOTE]
-> DocumentDB 會限制建立集合的速率，因此此處顯示的部分範例方法可能需要幾分鐘才能完成。
+> Cosmos DB 會限制建立集合的速率，因此此處顯示的部分範例方法可能需要幾分鐘才能完成。
 > 
 > 
 
 ## <a name="faq"></a>常見問題集
-**DocumentDB 是否支援伺服器端分割？**
+**Cosmos DB 是否支援伺服器端資料分割？**
 
-是，DocumentDB 支援 [伺服器端分割](documentdb-partition-data.md)。 DocumentDB 也針對更進階的使用案例，透過用戶端分割解析程式支援用戶端分割。
+是，Cosmos DB 支援[伺服器端資料分割](documentdb-partition-data.md)。 Cosmos DB 也針對更進階的使用案例，透過用戶端資料分割解析程式支援用戶端資料分割。
 
 **何時應該使用伺服器端與用戶端分割？**
 對於大多數的使用案例而言，我們建議使用伺服器端分割，因為它會處理分割資料和路由傳送要求的系統管理工作。 不過，如果您需要範圍分割或特殊的使用案例來取得不同的分割索引鍵值之間的效能隔離，則用戶端分割可能是最好的方法。
@@ -150,8 +151,8 @@ foreach (UserProfile activeUser in query)
 您可以藉由實作自己的 IPartitionResolver，在內部使用一或多個現有的解析程式來鏈結 PartitionResolvers。 如需範例，請查看範例專案中的 TransitionHashPartitionResolver。
 
 ## <a name="references"></a>參考
-* [DocumentDB 中的伺服器端分割](documentdb-partition-data.md)
-* [DocumentDB 集合和效能等級](documentdb-performance-levels.md)
+* [Cosmos DB 中的伺服器端資料分割](documentdb-partition-data.md)
+* [Azure Cosmos DB 集合和效能等級](documentdb-performance-levels.md)
 * [GitHub 上的分割程式碼範例 (英文)](https://github.com/Azure/azure-documentdb-dotnet/tree/287acafef76ad223577759b0170c8f08adb45755/samples/code-samples/Partitioning)
 * [在 MSDN 的 DocumentDB .NET SDK 文件](https://msdn.microsoft.com/library/azure/dn948556.aspx)
 * [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net)

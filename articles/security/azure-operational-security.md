@@ -15,30 +15,30 @@ ms.workload: na
 ms.date: 04/27/2017
 ms.author: TomSh
 ms.translationtype: Human Translation
-ms.sourcegitcommit: f6006d5e83ad74f386ca23fe52879bfbc9394c0f
-ms.openlocfilehash: 6a0fa55e19c50ea2218949632d1bf941739f2a79
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 47e3c9f35cb8d58d77226f7efa2bbe70e0683afe
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
 
 # <a name="azure-operational-security"></a>Azure 作業安全性
-## <a name="10-introduction"></a>1.0 簡介
+## <a name="introduction"></a>簡介
 
-### <a name="11-overview"></a>1.1 概觀
+### <a name="overview"></a>概觀
 我們知道安全性是雲端中的首要工作和其重要性，因為您可在其中找到精確且及時的 Azure 安全性資訊。 針對您的應用程式和服務使用 Azure 的其中一個最佳原因是可以利用各種可用的安全性工具和功能。 這些工具和功能可協助您在安全的 Azure 平台上建立安全的解決方案。 Microsoft Azure 必須提供客戶資料的機密性、完整性和可用性，同時也能釐清責任。
 
 為了協助客戶從客戶和 Microsoft 作業的觀點深入了解如何在 Microsoft Azure 內實作一系列安全性控制，因而編寫了本技術白皮書＜Azure 作業安全性＞來提供可透過 Windows Azure 取得之作業安全性的完整介紹。
 
-### <a name="12-azure-platform"></a>1.2 Azure 平台
+### <a name="azure-platform"></a>Azure 平台
 Azure 是一個公用雲端服務平台，支援廣泛的作業系統、程式設計語言、架構、工具、資料庫及裝置等選擇。 它可以透過 Docker 整合執行 Linux 容器；使用 JavaScript、Python、.NET、PHP、Java 及 Node.js 建置應用程式；為 iOS、Android 及 Windows 裝置建置後端。 Azure 雲端服務支援數百萬名開發人員和 IT 專家早已仰賴和信任的相同技術。
 
 當您建置 IT 資產或將其移轉至公用雲端服務提供者時，您正是依賴該組織的能力，利用他們提供來管理您雲端式資產安全性的服務與控制機制，來保護您的應用程式和資料。
 
 Azure 的基礎結構設計涵蓋設備與應用程式，可同時裝載數以百萬計的客戶，並提供可靠的基礎供企業符合其安全性需求。 此外，Azure 也為您提供各式各樣可設定的安全性選項及控制它們的功能，讓您能夠自訂安全性以符合組織部署的特殊需求。 本文件有助於您了解 Azure 安全性功能如何協助您滿足這些需求。
 
-### <a name="13-abstract"></a>1.3 摘要
+### <a name="abstract"></a>摘要
 Azure 作業安全性是指使用者可在 Microsoft Azure 中用來保護其資料、應用程式和其他資產的服務、控制及功能。 Azure 作業安全性的基礎架構涵蓋透過 Microsoft 特有之各種功能獲得的知識，包括 Microsoft 安全性開發週期 (SDL)、Microsoft Security Response Center 方案，以及對網路安全性威脅型態的深層認知。
 
 本技術白皮書概述 Microsoft 在 Microsoft Azure 雲端平台內處理 Azure 作業安全性的方法，並涵蓋以下服務：
@@ -55,7 +55,7 @@ Azure 作業安全性是指使用者可在 Microsoft Azure 中用來保護其資
 6.    [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-whatis)
 
 
-## <a name="20-microsoft-operations-management-suite"></a>2.0 Microsoft Operations Management Suite
+## <a name="microsoft-operations-management-suite"></a>Microsoft Operations Management Suite
 
 
 Microsoft Operations Management Suite (OMS) 是適用於混合式雲端的 IT 管理解決方案。 透過單獨使用或擴充現有的 System Center 部署，OMS 可為您基礎結構的雲端式管理提供最大的彈性和控制。
@@ -64,7 +64,7 @@ Microsoft Operations Management Suite (OMS) 是適用於混合式雲端的 IT �
 
 透過 OMS，您就能以低於競爭解決方案的成本來管理任何雲端中的任何執行個體，包括內部部署、Azure、AWS、Windows Server、Linux、VMware 和 OpenStack。 由於 OMS 是針對雲端優先的世界建置的，因此，可提供一種新方法來管理您的企業，此為最快速且最符合成本效益的方式，可符合新的商業挑戰並適應新的工作負載、應用程式及雲端環境。
 
-### <a name="21-oms-services"></a>2.1 OMS 服務
+### <a name="oms-services"></a>OMS 服務
 
 OMS 的核心功能是由在 Azure 中執行的一組服務所提供。 每個服務會提供特定的管理功能，您可以合併服務以達成不同的管理案例。
 
@@ -75,7 +75,7 @@ OMS 的核心功能是由在 Azure 中執行的一組服務所提供。 每個�
 | 備份 | 備份及還原重要資料。 |
 | Site Recovery | 為重要應用程式提供高可用性。 |
 
-### <a name="22-log-analytics"></a>2.2 Log Analytics
+### <a name="log-analytics"></a>Log Analytics
 
 [Log Analytics](http://azure.microsoft.com/documentation/services/log-analytics) 藉由將受控資源中的資料收集到中央儲存機制，以提供 OMS 監視服務。 此資料可能包含事件、效能資料或透過 API 提供的自訂資料。 所收集的資料即可用於警示、分析和匯出。
 
@@ -94,7 +94,7 @@ Log Analytics 服務會使用下列方法安全地管理您以雲端為基礎的
 -    安全性標準認證
 
 
-### <a name="23-azure-backup"></a>2.3 Azure 備份
+### <a name="azure-backup"></a>Azure 備份
 
 [Azure 備份](http://azure.microsoft.com/documentation/services/backup)提供資料備份及還原服務，其為產品和服務之 OMS 套件的一部分。
 它可保護您的應用程式資料並保留數年，而您完全不必投入資本投資，並且只需要最少的營運成本。 它可以備份實體和虛擬 Windows 伺服器中的資料，以及應用程式工作負載 (例如 SQL Server 和 SharePoint)。 [System Center Data Protection Manager (DPM) (英文)](https://en.wikipedia.org/wiki/System_Center_Data_Protection_Manager) 也可以使用它，將受保護資料複寫到 Azure 以進行備援與長期儲存。
@@ -102,7 +102,7 @@ Log Analytics 服務會使用下列方法安全地管理您以雲端為基礎的
 
 Azure 備份中受保護的資料會儲存在位於特定地理區域的備份保存庫中。 資料是在相同的區域內進行複寫，而且根據保存庫類型，也可能會複寫到另一個區域，以供進一步復原。
 
-### <a name="24-management-solutions"></a>2.4 管理解決方案
+### <a name="management-solutions"></a>管理解決方案
 [Microsoft Operations Management Suite (OMS)](https://docs.microsoft.com/azure/operations-management-suite/oms-security-getting-started) 是 Microsoft 的雲端式 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。
 
 
@@ -115,11 +115,11 @@ Azure 備份中受保護的資料會儲存在位於特定地理區域的備份�
 
 當您建立部署時，可以使用 [Azure 自動化](https://docs.microsoft.com/azure/automation/automation-intro)中的 Runbook 來安裝必要的更新。 您可在入口網站中管理這整個程序，而不需擔心基礎詳細資料。
 
-## <a name="30-azure-security-center"></a>3.0 Azure 資訊安全中心
+## <a name="azure-security-center"></a>Azure 資訊安全中心
 
 Azure 資訊安全中心可協助保護您的 Azure 資源。 它提供您 Azure 訂用帳戶之間的整合式安全性監視和原則管理。 在服務中，您不只可針對 Azure 訂用帳戶定義原則，也能針對[資源群組](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)加以定義，如此便能以更細微的方式進行。
 
-### <a name="31-security-policies-and-recommendations"></a>3.1 安全性原則和建議
+### <a name="security-policies-and-recommendations"></a>安全性原則和建議
 
 安全性原則定義了針對指定之訂用帳戶或資源群組內的資源，所建議的一組控制項。
 
@@ -131,11 +131,11 @@ Azure 資訊安全中心可協助保護您的 Azure 資源。 它提供您 Azure
 在訂用帳戶層級啟用的原則將會自動傳播至訂用帳戶中的所有資源群組，如圖中的右側所示：
 
 
-### <a name="32-data-collection"></a>3.2 資料收集
+### <a name="data-collection"></a>資料收集
 
 資訊安全中心會收集虛擬機器 (VM) 的資料，以便評估其安全性狀態、提供安全性建議，並對您發出威脅警示。 當您第一次存取資訊安全中心時，訂用帳戶中的所有 VM 都會啟用資料收集。 建議啟用資料收集，但您可以在資訊安全中心原則中關閉資料收集來選擇退出。
 
-### <a name="33-data-sources"></a>3.3 資料來源
+### <a name="data-sources"></a>資料來源
 
 - Azure 資訊安全中心會分析來自下列來源的資料，以掌握您的安全性狀態、識別弱點並提供建議防護功能，並偵測作用中的威脅︰
 
@@ -147,7 +147,7 @@ Azure 資訊安全中心可協助保護您的 Azure 資源。 它提供您 Azure
 
 -    您的虛擬機器：使用組態資訊以及安全性事件的相關資訊，例如來自您虛擬機器的 Windows 事件和稽核記錄檔、IIS 記錄檔、syslog 訊息和損毀傾印檔。
 
-### <a name="34-data-protection"></a>3.4 資料保護
+### <a name="data-protection"></a>資料保護
 
 為了協助客戶防範、偵測和回應威脅，Azure 資訊安全中心會收集和處理安全性的相關資料，包括組態資訊、中繼資料、事件記錄檔、損毀傾印檔等等。 Microsoft 從撰寫程式碼到運作服務均遵守嚴格的規範與安全性指導方針。
 
@@ -157,7 +157,7 @@ Azure 資訊安全中心可協助保護您的 Azure 資源。 它提供您 Azure
 
 -    **資料使用**：Microsoft 使用可見於多個租用戶的模式和威脅智慧來加強我們的防護和偵測功能；我們會根據[隱私權聲明](https://www.microsoft.com/privacystatement/OnlineServices/Default.aspx)中所述的隱私權承諾進行。
 
-### <a name="35-data-location"></a>3.5 資料位置
+### <a name="data-location"></a>資料位置
 
 Azure 資訊安全中心會收集損毀傾印檔案的暫時複本並加以分析，以取得惡意探索嘗試和成功入侵的證明。 Azure 資訊安全中心會在與工作區相同的地理區域內執行這項分析，並且在分析完成時刪除暫複本。 機器構件會集中儲存在與 VM 相同的區域。
 
@@ -166,7 +166,7 @@ Azure 資訊安全中心會收集損毀傾印檔案的暫時複本並加以分�
 -    **Azure 資訊安全中心儲存體**：安全性警示的相關資訊 (包含合作夥伴警示、建議和安全性健康狀態) 會集中儲存 (目前位於美國)。 此資訊可能包括視需要從您的虛擬機器收集的相關組態資訊和安全性事件，以提供給您安全性警示、建議或安全性健康狀態。
 
 
-## <a name="40-azure-monitor"></a>4.0 Azure 監視器
+## <a name="azure-monitor"></a>Azure 監視器
 
 [OMS 安全性](https://docs.microsoft.com/azure/operations-management-suite/oms-security-monitoring-resources)和稽核解決方案可讓 IT 人員主動監視所有資源，此舉有助於將安全性事件的影響降至最低。 OMS 安全性和稽核具備可用來監視資源的安全性網域。 安全性網域提供特定選項的快速存取方式，並基於安全性監視目的，更詳盡地涵蓋下列網域：
 
@@ -183,7 +183,7 @@ Azure 監視器提供特定資源類型詳細資訊的指標。 它會針對來�
 
 除此之外，您還可以使用監視資料來取得應用程式的深入解析。 這些知識可協助您提升應用程式效能或維護性，或是將原本需要手動介入的動作自動化。
 
-### <a name="41-azure-activity-log"></a>4.1 Azure 活動記錄
+### <a name="azure-activity-log"></a>Azure 活動記錄檔
 
 
 它是一個記錄，能讓您了解訂用帳戶中的資源所執行之作業。 活動記錄檔之前叫做「稽核記錄」或「作業記錄」，因為它會報告訂用帳戶中控制層面的事件。
@@ -192,7 +192,7 @@ Azure 監視器提供特定資源類型詳細資訊的指標。 它會針對來�
 
 您可以使用活動記錄檔來判斷訂用帳戶中的資源上任何寫入作業 (PUT、POST、DELETE) 的「內容、對象和時間」。 您也可以了解作業的狀態和其他相關屬性。 活動記錄不包含讀取 (GET) 作業，或是使用傳統模型之資源的作業。
 
-### <a name="42-azure-diagnostic-logs"></a>4.2 Azure 診斷記錄
+### <a name="azure-diagnostic-logs"></a>Azure 診斷記錄
 
 這些記錄是由資源發出的，提供有關該資源之作業的豐富、經常性資料。 這些記錄的內容會依資源類型而有所不同。
 
@@ -200,7 +200,7 @@ Azure 監視器提供特定資源類型詳細資訊的指標。 它會針對來�
 
 診斷記錄不同於[活動記錄 (之前稱為稽核記錄或作業記錄)](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)。 活動記錄能讓您了解訂用帳戶中的資源所執行之作業。 診斷記錄能讓您了解資源自行執行的作業。
 
-### <a name="43-metrics"></a>4.3 計量
+### <a name="metrics"></a>度量
 
 Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與健全狀況。 Azure 遙測資料最重要的類型是由大多數 Azure 資源所發出的度量 (也稱為效能計數器)。 Azure 監視器提供數種方式，來設定及取用這些[計量](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-overview-metrics)以進行監視與疑難排解。 度量是遙測的寶貴來源，可讓您執行下列工作：
 
@@ -214,11 +214,11 @@ Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與�
 
 -    **封存**您資源的效能或健全狀況歷程記錄，以用於合規性或稽核用途。
 
-### <a name="44-azure-diagnostics"></a>4.4 Azure 診斷
+### <a name="azure-diagnostics"></a>Azure 診斷
 
 它是 Azure 中可對部署的應用程式啟用診斷資料收集的功能。 您可以使用來自各種不同來源的診斷延伸模組。 目前支援 [Azure 雲端服務 Web 和背景工作角色](https://docs.microsoft.com/azure/vs-azure-tools-configure-roles-for-cloud-service)、執行 Microsoft Windows 的 [Azure 虛擬機器](https://docs.microsoft.com/azure/virtual-machines/windows/overview)，以及 [Service Fabric](https://docs.microsoft.com/azure/monitoring-and-diagnostics/azure-diagnostics)。 其他 Azure 服務都有自己個別的診斷。
 
-## <a name="50-azure-network-watcher"></a>5.0 Azure 網路監看員
+## <a name="azure-network-watcher"></a>Azure 網路監看員
 
 在偵測網路漏洞，並確認您的 IT 安全性和法規治理模型的合規性時，稽核您的網路安全性非常重要。 透過 [安全性群組] 檢視，您可以擷取已設定的網路安全性群組和安全性規則，以及有效的安全性規則。 在套用的規則清單中，您可以決定已開啟的連接埠，並評估網路弱點。
 
@@ -239,7 +239,7 @@ Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與�
 
 -    **<a href="https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview">NSG 流量記錄</a>** - 網路安全性群組的流量記錄可讓您擷取群組中的安全性規則所允許或拒絕之流量的相關記錄。 流程是由 5個 Tuple 資訊定義的，這些資訊分別是來源 IP、目的地 IP、來源連接埠、目的地連接埠和通訊協定。
 
-##  <a name="60-azure-storage-analytics"></a>6.0 Azure 儲存體分析
+## <a name="azure-storage-analytics"></a>Azure 儲存體分析
 
 [儲存體分析](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics)可以儲存包含與儲存體服務要求相關之彙總的交易統計資料及容量資料的計量。 報告的交易是屬於 API 作業層級和儲存體服務層級，而報告的容量則是屬於儲存體服務層級。 度量資料可用來分析儲存體服務使用量、診斷針對儲存體服務提出之要求的問題，以及提升使用服務的應用程式效能。
 
@@ -275,7 +275,7 @@ Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與�
 | 使用共用存取簽章 (SAS) 的要求，包括失敗和成功的要求 |用戶端與伺服器的逾時錯誤 |
 |     分析資料的要求 |     失敗的 GET 要求，錯誤碼為 304 (未修改) |
 | 系統不會記錄儲存體分析本身所提出的要求 (例如，記錄檔的建立或刪除)。 記錄資料的完整清單記錄於[儲存體分析記錄作業和狀態訊息](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages)及[儲存體分析記錄檔格式](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format)主題中。 | 系統不會記錄所有其他失敗的匿名要求。 記錄資料的完整清單記錄於[儲存體分析記錄作業和狀態訊息](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-logged-operations-and-status-messages)及[儲存體分析記錄格式](https://docs.microsoft.com/rest/api/storageservices/fileservices/storage-analytics-log-format)中。 |
-## <a name="70-azure-active-directory"></a>7.0 Azure Active Directory
+## <a name="azure-active-directory"></a>Azure Active Directory
 
 Azure AD 也包含一組完整的身分識別管理功能，包括多重要素驗證、裝置註冊、自助式密碼管理、自助式群組管理、特殊權限的帳戶管理、角色型存取控制、應用程式使用量監視、豐富的稽核，以及安全性監視和警示。
 
@@ -310,7 +310,7 @@ Azure AD 稽核報告中的事件會保留 180 天。
 
 若是對於儲存其[稽核事件](https://docs.microsoft.com/azure/active-directory/active-directory-reporting-audit-events)較長的保留時間感興趣的客戶，報告 API 可用來定期將稽核事件提取至不同的資料存放區。
 
-## <a name="80-summary"></a>8.0 摘要
+## <a name="summary"></a>摘要
 
 本文摘要說明保護您的隱私權和保護資料安全，同時提供軟體和服務，幫助您管理組織的 IT 基礎結構。 Microsoft 了解當他們將資料委託給他人管理時，該信任需要嚴格的安全性。 Microsoft 從撰寫程式碼到運作服務均遵守嚴格的規範與安全性指導方針。 保全和保護資料在 Microsoft 是第一要務。
 

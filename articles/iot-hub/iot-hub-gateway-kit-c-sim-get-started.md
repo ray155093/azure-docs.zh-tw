@@ -17,10 +17,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: 61e9a9fc7876094c04238c61cfc38efdd97b05f7
-ms.openlocfilehash: 06161c2950fbe99d2e4f9c1b416695a5f9f18ca4
-ms.lasthandoff: 01/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 916fa40d9ac857dfa72197b40c232834593d3891
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -38,16 +39,16 @@ ms.lasthandoff: 01/25/2017
 ***
 
 ## <a name="lesson-1-configure-your-nuc"></a>第 1 課：設定 NUC
-![第&1; 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-sim-Lesson1.png)
+![第 1 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-sim-Lesson1.png)
 
-在這一課，您要將套件中的 Intel NUC (Next Unit of Computing) 設定為 Azure IoT 閘道器、在 NUC 上安裝 Azure IoT 閘道器 SDK 套件，執行範例應用程式以確認閘道器的功能。
+在本課程中，您要將套件中的 Intel NUC (Next Unit of Computing) 設定為 Azure IoT 閘道、在 NUC 上安裝 Azure IoT Edge 套件，並執行範例應用程式以確認閘道的功能。
 
 *預估完成時間：15 分鐘*
 
 前往[將 Intel NUC 設定為 IoT 閘道器](iot-hub-gateway-kit-c-sim-lesson1-set-up-nuc.md)
 
 ## <a name="lesson-2-create-your-iot-hub"></a>第 2 課：建立 IoT 中樞
-![第&2; 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-sim-Lesson2.png)
+![第 2 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-sim-Lesson2.png)
 
 在這一課，您要在主機電腦上安裝工具和軟體。 然後會建立一個免費的 Azure 帳戶、佈建您的 Azure IoT 中樞，並在 IoT 中樞建立您的第一個裝置。
 
@@ -68,7 +69,7 @@ ms.lasthandoff: 01/25/2017
 前往[建立 IoT 中樞並登錄您的裝置](iot-hub-gateway-kit-c-sim-lesson2-register-device.md)
 
 ## <a name="lesson-3-receive-messages-from-the-simulated-device-and-read-messages-from-your-iot-hub"></a>第 3 課︰接收來自模擬裝置的訊息，並讀取來自 IoT 中樞的傳入訊息
-在這一課，您將使用指令碼將閘道器中模擬裝置的設定和執行自動化。 模擬裝置應用程式會產生範例溫度資料，並將它傳送到 IoT 中樞模組。 IoT 中樞模組會封裝收到的資料，並透過 Azure IoT 閘道器 SDK 中提供的閘道器架構將資料傳送至 IoT 中樞。
+在這一課，您將使用指令碼將閘道器中模擬裝置的設定和執行自動化。 模擬裝置應用程式會產生範例溫度資料，並將它傳送到 IoT 中樞模組。 IoT 中樞模組會封裝收到的資料，並透過 Azure IoT Edge 中提供的閘道架構將資料傳送至 IoT 中樞。
 
 ![第 3 課端對端圖表](media/iot-hub-gateway-kit-lessons/e2e-sim-Lesson3.png)
 

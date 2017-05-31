@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/10/2017
+ms.date: 05/11/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: c1cd1450d5921cf51f720017b746ff9498e85537
-ms.openlocfilehash: 7185ab62ee0e4383a7128fe731bd68da0ae87e66
-ms.lasthandoff: 03/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: b7e99f8a4d7bc1cd30c71ce08ad38c13203f8b69
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -121,6 +122,7 @@ ms.lasthandoff: 03/14/2017
 * 不會列出多重值和布林值屬性。
 * DN 和錨點無法使用相同的屬性，除非已在 [連線能力] 頁面上選取 [DN 是錨點]  。
 * 如果已在 [連線能力] 頁面上選取 [DN 是錨點]  ，此頁面只需要 DN 屬性。 這個屬性也會做為錨點屬性。
+
   ![schema3b](./media/active-directory-aadconnectsync-connector-genericsql/schema3b.png)
 
 ### <a name="schema-4-define-attribute-type-reference-and-direction"></a>結構描述 4 (定義屬性類型、參考和方向)
@@ -130,7 +132,8 @@ ms.lasthandoff: 03/14/2017
 
 * **DataType**：用來將屬性類型對應至同步處理引擎所知的屬性類型。 預設會使用在 SQL 結構描述中偵測到的相同類型，但 DateTime 和 Reference 不容易偵測。 因此，您必須指定 **DateTime** 或 **Reference**。
 * **方向**：您可以設定 Import、Export 或 ImportExport 的屬性方向。 ImportExport 是預設值。
-  ![schema4b](./media/active-directory-aadconnectsync-connector-genericsql/schema4b.png)
+
+![schema4b](./media/active-directory-aadconnectsync-connector-genericsql/schema4b.png)
 
 注意：
 
@@ -150,6 +153,12 @@ ms.lasthandoff: 03/14/2017
 
 ![globalparameters3](./media/active-directory-aadconnectsync-connector-genericsql/any-option.png)
 
+>[!IMPORTANT]
+ 自 2017 年 5 月起，“*” (也稱為「任何選項」) 已變更，以支援匯入與匯出流程。 如果您想要使用此選項，您的多重值資料表/檢視應該有包含物件類型的屬性。
+
+![](./media/active-directory-aadconnectsync-connector-genericsql/any-02.png)
+
+ </br> 如果 "*" 已選取，則也必須指定含有物件類型的資料行名稱。</br> ![](./media/active-directory-aadconnectsync-connector-genericsql/any-03.png)
 
 在匯入後，您會看到類似下圖的情形︰
 
@@ -162,8 +171,7 @@ ms.lasthandoff: 03/14/2017
 
 ![globalparameters1](./media/active-directory-aadconnectsync-connector-genericsql/globalparameters1.png)
 
->[!IMPORTANT]
- “*” 也稱為**任何選項**，無法在匯出/刪除作業期間使用。
+
 
 一般 SQL 連接器支援使用下列差異匯入方法：
 
@@ -280,7 +288,7 @@ ms.lasthandoff: 03/14/2017
 **預存程序**  
 ![runstep8](./media/active-directory-aadconnectsync-connector-genericsql/runstep8.png)
 
-如果您選擇預存程序選項，則匯出需要&3; 個不同的預存程序才能執行插入/更新/刪除作業。
+如果您選擇預存程序選項，則匯出需要 3 個不同的預存程序才能執行插入/更新/刪除作業。
 
 * **新增 SP 名稱**：如有任何物件來到連接器以便在各自的資料表中插入，就會執行此 SP。
 * **更新 SP 名稱**：如有任何物件來到連接器以便在各自的資料表中更新，就會執行此 SP。
@@ -291,7 +299,7 @@ ms.lasthandoff: 03/14/2017
 **SQL query**  
 ![runstep9](./media/active-directory-aadconnectsync-connector-genericsql/runstep9.png)
 
-如果您選擇 SQL 查詢選項，則匯出需要&3; 個不同的查詢來執行插入/更新/刪除作業。
+如果您選擇 SQL 查詢選項，則匯出需要 3 個不同的查詢來執行插入/更新/刪除作業。
 
 * **插入查詢**：如有任何物件來到連接器以便在各自的資料表中插入，就會執行此查詢。
 * **更新查詢**：如有任何物件來到連接器以便在各自的資料表中更新，就會執行此查詢。

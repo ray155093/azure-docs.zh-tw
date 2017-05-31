@@ -14,15 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 02/28/2017
 ms.author: jahogg
-translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: 9da543dbebe8f35178233d91492b0aff21f10986
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 5ddb234cc97b3113ec865f97195c871b9f2f40d3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="azure-storage-table-design-guide-designing-scalable-and-performant-tables"></a>Azure 儲存體資料表設計指南：設計可調整且效用佳的資料表
-## <a name="overview"></a>概觀
+[!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
+
 若要設計可擴充且高效能的資料表，您必須考慮許多因素，例如效能、延展性和成本。 如果您先前曾設計關聯式資料庫的結構描述，您對這些考量會很熟悉，但在部分 Azure 資料表服務儲存體模型和關聯式模型之間相似時，將會有許多重大差異。 這些差異常會導致非常不同的設計，看起來可能違反直覺性，或讓熟悉關聯式資料庫的人覺得不對勁，但如果您設計的是 NoSQL 索引鍵/值存放區 (例如 Azure 資料表服務)，這就顯得合理了。 許多設計差異將會反映表格服務的設計目的是，專門用來支援雲端規模應用程式 (可能包含數十億個資料實體；該實體為關聯式資料庫詞彙中的資料列)，或是支援必須支援極高交易量之資料集的事實：因此，您需要從不同角度思考如何儲存資料，並了解表格服務的運作方式。 相較於使用關聯式資料庫的方案，設計良好的 NoSQL 資料存放區可以讓您更進一步 (並以較低的成本) 進行調整。 本指南針對這些主題為您提供協助。  
 
 ## <a name="about-the-azure-table-service"></a>關於 Azure 資料表服務
@@ -261,7 +263,7 @@ EGT 也可能讓您必須評估並取捨您的設計：使用多個資料分割�
 
 * [內部資料分割次要索引模式](#intra-partition-secondary-index-pattern) - 為每個實體儲存多個複本且使用不同 RowKey 值 (在相同的資料分割內)，透過使用不同的 RowKey 值，就能快速且有效率的查閱和替代排序次序。  
 * [間資料分割次要索引模式](#inter-partition-secondary-index-pattern) - 在個別資料分割或個別資料表中為每個實體儲存多個複本且使用不同 RowKey 值，透過使用不同的 RowKey 值，就能快速且有效率的查閱和替代排序次序。
-* [記錄結尾模式](#log-tail-pattern) - 使用以反向的日期和時間順序排序的 *RowKey* 值，擷取最近加入資料分割的 **n** 個實體。  
+* [記錄結尾模式](#log-tail-pattern) - 透過使用以反向的日期和時間順序排序的 **RowKey** 值，擷取最近新增到分割區的 *n* 個實體。  
 
 ## <a name="design-for-data-modification"></a>資料修改的設計
 本節著重於最佳化插入、更新和刪除的設計考量。 在某些情況下，您必須在查詢最佳化的設計與資料修改最佳化的設計之間評估取捨，如同您在設計關聯式資料庫時一般 (雖然在關聯式資料庫中用來管理設計取捨的方法有所不同)。 [資料表設計模式](#table-design-patterns) 一節會說明資料表服務的一些詳細設計模式，並強調說明一些相關取捨。 在實務上，您會發現許多針對查詢實體而最佳化的設計也適用於修改實體。  
@@ -296,7 +298,7 @@ EGT 也可能讓您必須評估並取捨您的設計：使用多個資料分割�
 [資料表設計模式](#table-design-patterns) 一節中的下列模式可因應如何在有效查詢的設計與有效資料修改的設計之間進行取捨：  
 
 * [複合索引鍵模式](#compound-key-pattern) - 使用複合 **RowKey** 值，讓用戶端可透過單點查詢來查閱相關資料。  
-* [記錄結尾模式](#log-tail-pattern) - 使用以反向的日期和時間順序排序的 *RowKey* 值，擷取最近加入資料分割的 **n** 個實體。  
+* [記錄結尾模式](#log-tail-pattern) - 透過使用以反向的日期和時間順序排序的 **RowKey** 值，擷取最近新增到分割區的 *n* 個實體。  
 
 ## <a name="encrypting-table-data"></a>加密資料表的資料
 .NET Azure 儲存體用戶端程式庫支援在插入和取代作業時進行字串實體屬性的加密。 加密的字串儲存在服務上作為二進位屬性，且解密後會轉換回字串。    
@@ -718,10 +720,10 @@ $filter=(PartitionKey eq 'Sales') and (RowKey ge 'empid_000123') and (RowKey lt 
 * [最終一致的交易模式](#eventually-consistent-transactions-pattern)  
 
 ### <a name="log-tail-pattern"></a>記錄結尾模式
-使用以反向的日期和時間順序排序的 *RowKey* 值，擷取最近加入資料分割的 **n** 個實體。  
+透過使用以反向的日期和時間順序排序的 **RowKey** 值，擷取最近加入分割區的 *n* 個實體。  
 
 #### <a name="context-and-problem"></a>內容和問題
-常見的需求是要能夠擷取最近建立的實體，例如員工最近提交的費用請款。 資料表查詢支援 **$top** 查詢作業，以從某個集合中傳回前 *n* 個實體：沒有對等的查詢作業可傳回某個集合中的最後 n 個實體。  
+常見的需求是要能夠擷取最近建立的實體，例如員工最近提交的費用請款。 資料表查詢支援 **$top** 查詢作業，可從集合中傳回前 *n* 個實體：並沒有對等的查詢作業可傳回集合中最後 n 個實體。  
 
 #### <a name="solution"></a>方案
 儲存使用可自然以反向的日期/時間順序排序的 **RowKey** 的實體，使最新的項目一律排在資料表中的首位。  

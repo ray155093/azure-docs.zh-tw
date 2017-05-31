@@ -1,14 +1,15 @@
 ---
 redirect_url: https://docs.microsoft.com/azure/documentdb/documentdb-change-feed-hl7-fhir-logic-apps
 ROBOTS: NOINDEX, NOFOLLOW
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 1b5ec3cb1c2aba86570c6f1753d9142c0d0349ce
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 58c0ea0bd8bda994c8314d2866304cb3ab367bfd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="notifications-for-new-or-changed-documentdb-resources-using-logic-apps"></a>使用 Logic Apps 的新增或已變更 DocumentDB 資源的通知
+# <a name="notifications-for-new-or-changed-azure-cosmos-db-resources-using-logic-apps"></a>使用 Logic Apps 的新增或已變更 Azure Cosmos DB 資源的通知
 這篇文章的靈感來自我在某一個 Azure DocumentDB 社群論壇上看到的一個問題。 這個問題是 **DocumentDB 是否支援已修改資源的通知？**
 
 我已使用 BizTalk Server 許多年，這是使用 [WCF LOB 配接器](https://msdn.microsoft.com/library/bb798128.aspx)時非常常見的案例。 因此我決定查看是否可以在新增和/或已修改過文件的 DocumentDB 中複製此功能。
@@ -18,7 +19,7 @@ ms.lasthandoff: 03/29/2017
 ## <a name="use-case"></a>使用案例
 下列案例是這篇文章的使用案例。
 
-DocumentDB 是 Health Level Seven International (HL7) Fast Healthcare Interoperability Resources (FHIR) 文件的儲存機制。 假設您的 DocumentDB 資料庫與您的 API 和邏輯應用程式一起構成 HL7 FHIR Server。  醫療保健機構會將病患的資料儲存在 DocumentDB 的 "Patients" 資料庫。 病患資料庫中有數個集合：Clinical、Identification 等。病患資訊位於識別之下。  您具有名為 "Patient" 的集合。
+Azure Cosmos DB 是適用於 Health Level Seven International (HL7) Fast Healthcare Interoperability Resources (FHIR) 文件的存放庫。 假設您的 Azure Cosmos DB 資料庫與 API 和邏輯應用程式一起構成 HL7 FHIR Server。  醫療保健機構會將病患的資料儲存在 Azure Cosmos DB 的 "Patients" 資料庫。 病患資料庫中有數個集合：Clinical、Identification 等。病患資訊位於識別之下。  您具有名為 "Patient" 的集合。
 
 Cardiology 部門會追蹤個人健康和練習資料。 搜尋新增或已修改的病患記錄相當耗時。 他們詢問 IT 部門是否有辦法讓他們收到新增或已修改病患記錄的通知。  
 
@@ -1113,7 +1114,4 @@ emailBody 會串連查詢所傳回的文件數目 (可能是 "0" 或更多) 與 
 
 ## <a name="next-steps"></a>後續步驟
 請下載並使用 [GitHub](https://github.com/HEDIDIN/DocDbNotifications) 上提供的邏輯應用程式程式碼。 竭誠邀請您建置應用程式，並將變更提交至儲存機制。 
-
-若要深入了解 DocumentDB，請瀏覽 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)。
-
 

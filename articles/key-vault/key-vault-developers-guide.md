@@ -8,13 +8,13 @@ manager: mbaldwin
 ms.service: key-vault
 ms.topic: article
 ms.workload: identity
-ms.date: 04/21/2017
+ms.date: 05/10/2017
 ms.author: bruceper
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: 0a319f25149c41fcdde0722ce232b3e229b95d0d
+ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
+ms.openlocfilehash: b046e95e2167009727f6ea8f3dd237619c61434f
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -28,6 +28,15 @@ Key Vault 可讓您從應用程式內安全地存取機密資訊︰
 - 自 2016 年 9 月起推出的 Key Vault，您的應用程式現在可以使用 Key Vault [憑證](https://docs.microsoft.com/rest/api/keyvault/certificate-operations)。 如需詳細資訊，請參閱[關於金鑰、祕密和憑證](https://docs.microsoft.com/rest/api/keyvault/about-keys--secrets-and-certificates)。
 
 如需 Azure 金鑰保存庫的一般詳細資訊，請參閱 [什麼是金鑰保存庫？](key-vault-whatis.md)。
+
+## <a name="public-preview---may-10-2017"></a>公開預覽 - 2017 年 5 月 10 日
+
+>[!NOTE]
+>Azure Key Vault 的這個預覽版本，只有「虛刪除」功能處於預覽狀態。 整體而言，Azure Key Vault 是一個完整的生產服務。
+
+這個預覽版本包含新的虛刪除功能、可復原的 Key Vault 和 Key Vault 物件刪除，和更新的開發人員介面：[.NET/C#](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault/)、[REST](https://docs.microsoft.com/rest/api/keyvault/) 和 [PowerShell](https://docs.microsoft.com/powershell/module/azurerm.keyvault/)。 
+
+如需有關新的虛刪除功能的詳細資訊，請參閱 [Azure Key Vault 虛刪除概觀](key-vault-ovw-soft-delete.md)。
 
 ## <a name="videos"></a>影片
 
@@ -108,6 +117,11 @@ Key Vault 可讓您從應用程式內安全地存取機密資訊︰
 - [Azure 磁碟加密](../security/azure-security-disk-encryption.md)利用 Windows 的業界標準 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) 功能和 Linux 的 [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) 功能，為 OS 和資料磁碟提供磁碟區加密。 此解決方案與 Azure 金鑰保存庫整合，可幫助您控制和管理您的金鑰保存庫訂用帳戶中的磁碟加密金鑰和密碼，同時確保虛擬機器磁碟中的所有資料會在您的 Azure 儲存體中輕鬆加密。
 - [Azure Data Lake Store](../data-lake-store/data-lake-store-get-started-portal.md) 會為帳戶中儲存的資料提供加密選項。 金鑰管理，如 Data Lake Store 會提供兩種模式用於管理您的主要加密金鑰 (MEK)，它是解密 Data Lake Store 中儲存任何資料所需。 您可以讓 Data Lake Store 管理 MEK，或使用 Azure 金鑰保存庫帳戶，選擇保留 MEK 的擁有權。 您會在建立 Data Lake Store 帳戶時指定金鑰管理的模式。 
 - [Azure 資訊保護](/information-protection/plan-design/plan-implement-tenant-key)可讓您管理自己的租用戶金鑰。 例如，您可以管理自己的租用戶金鑰，以符合適用於貴組織的特定規範，而不需 Microsoft 管理您的租用戶金鑰 (預設值)。 管理自己的租用戶金鑰也稱為「自備金鑰」或 BYOK。
+
+## <a name="key-vault-overviews-and-concepts"></a>Key Vault 的概觀和概念
+
+- [Key Vault 安全世界](key-vault-ovw-security-worlds.md)
+- [Key Vault 虛刪除](key-vault-ovw-soft-delete.md)
 
 ## <a name="social"></a>社交
 

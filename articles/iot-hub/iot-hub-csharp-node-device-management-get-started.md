@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/17/2016
 ms.author: juanpere
-translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: f03b8d192255a3c93284f3c5e898f68a1234644f
-ms.lasthandoff: 03/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: ef0e64cc7b52a67c8e9e735cb6aa4a378b9a8557
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -67,9 +68,9 @@ ms.lasthandoff: 03/07/2017
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
 
 2. 在 [方案總管] 中，以滑鼠右鍵按一下 **TriggerReboot** 專案，然後按一下 [管理 NuGet 套件]。
-3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
+3. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並新增對它的參考。
 
-    ![NuGet 封裝管理員視窗][img-servicenuget]
+    ![NuGet 套件管理員視窗][img-servicenuget]
 4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
@@ -231,7 +232,7 @@ ms.lasthandoff: 03/07/2017
 
 若要了解如何擴充您的 IoT 解決方案以及在多個裝置上排程方法呼叫，請參閱[排程及廣播作業][lnk-tutorial-jobs]教學課程。
 
-若要繼續開始使用 IoT 中樞，請參閱[開始使用 IoT 閘道 SDK][lnk-gateway-SDK]。
+若要繼續開始使用 IoT 中樞，請參閱[開始使用 IoT Edge][lnk-gateway-SDK]。
 
 <!-- images and links -->
 [img-output]: media/iot-hub-get-started-with-dm/image6.png

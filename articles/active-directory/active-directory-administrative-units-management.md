@@ -15,10 +15,10 @@ ms.workload: identity
 ms.date: 05/04/2017
 ms.author: curtand
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
-ms.openlocfilehash: d05b4a34c5271b636400ed90ead76fabf0d911bd
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 5bf0e7f631a86a9d413415ab73e03fa00a0e9325
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/05/2017
+ms.lasthandoff: 05/11/2017
 
 
 ---
@@ -30,12 +30,12 @@ ms.lasthandoff: 05/05/2017
 > [!IMPORTANT]
 > 您僅能在啟用 Azure Active Directory Premium 時才可以建立和使用管理單位。 如需詳細資訊，請參閱〈 [開始使用 Azure AD Premium](active-directory-get-started-premium.md)〉。
 >
->
+
 
 從管理中心的觀點來看，管理單位是可以建立並填入資源的目錄物件。 **在此預覽版本中，這些資源僅能是使用者。** 一旦建立並填入，管理單位可用作為範圍，以限制僅能針對管理單位中所包含的資源來授與權限。
 
 ## <a name="managing-administrative-units"></a>管理管理單位
-在此預覽版本中，您可以使用適用於 Windows PowerShell Cmdlet 的 Azure Active Directory 模組來建立和管理管理單位。
+在此預覽版本中，您可以使用適用於 Windows PowerShell Cmdlet 的 Azure Active Directory 模組來建立和管理管理單位。 若要深入了解做法，請參閱[使用系統管理單位](https://docs.microsoft.com/en-us/powershell/azure/working-with-administrative-units?view=azureadps-2.0)
 
 如需有關軟體需求和安裝 Azure AD 模組，以及使用 Azure AD 模組 Cmdlet 管理管理單位，包括語法、參數說明和範例的詳細資訊，請參閱〈 [使用 Windows PowerShell 管理 Azure AD](https://msdn.microsoft.com/library/azure/jj151815.aspx)〉。
 

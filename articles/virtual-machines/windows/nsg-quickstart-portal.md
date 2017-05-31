@@ -12,20 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
-ms.date: 02/09/2017
+ms.date: 05/11/2017
 ms.author: iainfou
-translationtype: Human Translation
-ms.sourcegitcommit: 197ebd6e37066cb4463d540284ec3f3b074d95e1
-ms.openlocfilehash: 7b7c0251c0b2616f82b03b7288cbfe3b3b22c9c4
-ms.lasthandoff: 03/31/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 97fa1d1d4dd81b055d5d3a10b6d812eaa9b86214
+ms.openlocfilehash: 20aa8247a16195310a8cb03c13c34186456fd7af
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/11/2017
 
 
 ---
-# <a name="opening-ports-to-a-vm-in-azure-using-the-azure-portal"></a>使用 Azure 入口網站對 Azure 中的 VM 開啟連接埠
+# <a name="how-to-open-ports-to-a-virtual-machine-with-the-azure-portal"></a>如何使用 Azure 入口網站開啟虛擬機器的連接埠
 [!INCLUDE [virtual-machines-common-nsg-quickstart](../../../includes/virtual-machines-common-nsg-quickstart.md)]
 
 ## <a name="quick-commands"></a>快速命令
-您也可以 [使用 Azure PowerShell 來執行這些步驟](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+您也可以 [使用 Azure PowerShell 來執行這些步驟](nsg-quickstart-powershell.md)。
 
 首先，建立您的「網路安全性群組」。 在入口網站中選取一個資源群組，按一下 [新增]，然後搜尋並選取 [網路安全性群組]：
 

@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/28/2017
+ms.date: 05/11/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: b4802009a8512cb4dcb49602545c7a31969e0a25
-ms.openlocfilehash: 244ca634cfd47ee37e3845380ac05dc68d406621
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: fc4172b27b93a49c613eb915252895e845b96892
+ms.openlocfilehash: 3c91cb00d6535a4bc01a3b95547ef940cbff7fcb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -38,11 +39,35 @@ ms.lasthandoff: 03/29/2017
 * [PowerShell 連接器](active-directory-aadconnectsync-connector-powershell.md) 參考文件
 * [Lotus Domino 連接器](active-directory-aadconnectsync-connector-domino.md) 參考文件
 
+## <a name="115220"></a>1.1.522.0
+
+### <a name="enhancements"></a>增強功能：
+
+* 一般 SQL：
+  * **案例：已重新實作：** "*" 功能
+  * **解決方案說明：**已變更[多重值參照屬性處理方法](active-directory-aadconnectsync-connector-genericsql.md)。
+
+
+### <a name="fixed-issues"></a>已修正的問題：
+
+* 一般 Web 服務︰
+  * 如果 WebService 連接器存在，則無法匯入伺服器組態
+  * WebService 連接器不使用多個 Web 服務
+
+* 一般 SQL：
+  * 不列出單一值所參照屬性的物件類型
+  * 移除多重值資料表中的值時，變更追蹤策略上的差異匯入會刪除物件
+  * GSQL 連線器中的 OverflowException 與 AS/400 上的 DB2
+
+Lotus：
+  * 已新增在開啟 GlobalParameters 頁面之前可啟用\停用搜尋 OU 的選項
+
 ## <a name="114430"></a>1.1.443.0
 
 發行日期：2017 年 3 月
 
 ### <a name="enhancements"></a>增強功能
+
 * 一般 SQL：</br>
   **案例徵兆︰**SQL 連接器的已知限制，一個物件類型只允許一個參考，且成員需要交互參考。 </br>
   **解決方案說明︰**在已選擇 "*" 選項之參考的處理步驟中，物件類型的所有組合會傳回給同步處理引擎。

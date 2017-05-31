@@ -14,15 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: gokuma;weig;bradsev
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 3b608f341278ceaef9dd112cea38f138be69ee44
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: c35d1548262f25e65c391c927919b8acf1411e10
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
 # <a name="ten-things-you-can-do-on-the-data-science-virtual-machine"></a>您可以在 Data Science Virtual Machine 上做的十件事
-Microsoft Data Science Virtual Machine (DSVM) 是強大的資料科學開發環境，可讓您執行各種資料探索和模型分析工作。 此環境已內建數個熱門的資料分析工具，以便您快速開始進行內部部署或混合式部署的分析。 DSVM 與多項 Azure 服務密切合作，並且能夠讀取及處理已儲存在 Azure SQL 資料倉儲、Azure 資料湖、Azure 儲存體或 DocumentDB 中的資料。 它也可以利用 Azure Machine Learning 和 Azure Data Factory 等其他分析工具。
+Microsoft Data Science Virtual Machine (DSVM) 是強大的資料科學開發環境，可讓您執行各種資料探索和模型分析工作。 此環境已內建數個熱門的資料分析工具，以便您快速開始進行內部部署或混合式部署的分析。 DSVM 與多項 Azure 服務密切合作，並且能夠讀取及處理已儲存在 Azure SQL 資料倉儲、Azure Data Lake、Azure 儲存體或 Azure Cosmos DB 中的資料。 它也可以利用 Azure Machine Learning 和 Azure Data Factory 等其他分析工具。
 
 在本文中，我們會逐步引導您使用 DSVM 來執行各種資料科學工作，並與其他 Azure 服務互動。 以下是您可以在 DSVM 上做的一些事：
 
@@ -32,7 +33,7 @@ Microsoft Data Science Virtual Machine (DSVM) 是強大的資料科學開發環�
 4. 使用 Azure 入口網站或 Powershell 管理您的 Azure 資源
 5. 建立 Azure 檔案儲存體做為 DSVM 上可掛接的磁碟機，以擴充您的儲存空間並與整個小組共用大型資料集 / 程式碼
 6. 使用 GitHub 來與您的小組共用程式碼，並使用預先安裝的 Git 用戶端 (Git Bash、Git GUI) 來存取您的存放庫。
-7. 存取各種 Azure 資料和分析服務，例如 Azure Blob 儲存體，Azure 資料湖、Azure HDInsight (Hadoop)、Azure DocumentDB、Azure SQL 資料倉儲和資料庫
+7. 存取各種 Azure 資料和分析服務，例如 Azure Blob 儲存體，Azure Data Lake、Azure HDInsight (Hadoop)、Azure Cosmos DB、Azure SQL 資料倉儲和資料庫
 8. 使用在 DSVM 上預先安裝的 Power BI Desktop 來建立報告和儀表板並雲端上加以部署
 9. 動態調整 DSVM 以符合您的專案需求
 10. 在虛擬機器上安裝其他工具   
@@ -798,22 +799,22 @@ Azure SQL 資料倉儲是彈性的資料倉儲即服務，具有企業層級的 
 
 您可以藉由遵循這篇 [文章](../sql-data-warehouse/sql-data-warehouse-get-started-provision.md)中提供的指示，佈建您的 Azure SQL 資料倉儲。 佈建 Azure SQL 資料倉儲之後，就可以使用這個 [逐步解說](machine-learning-data-science-process-sqldw-walkthrough.md) ，進行資料上傳、探索以及使用 SQL 資料倉儲中的資料建立模型。
 
-#### <a name="azure-documentdb"></a>Azure DocumentDB
-Azure DocumentDB 是雲端中的 NoSQL 資料庫。 它可讓您使用 JSON 等文件，並可讓您儲存和查詢文件。
+#### <a name="azure-cosmos-db"></a>Azure Cosmos DB
+Azure Cosmos DB 是雲端中的一種 NoSQL 資料庫。 它可讓您使用 JSON 等文件，並可讓您儲存和查詢文件。
 
-您必須執行下列必要步驟，才能從 DSVM 存取 DocumentDB。
+您必須執行下列必要步驟，才能從 DSVM 存取 Azure Cosmos DB。
 
 1. 安裝 DocumentDB Python SDK (從命令提示字元執行 ```pip install pydocumentdb``` )
-2. 從 [Azure 入口網站](https://portal.azure.com)
-3. 從 [這裡](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d) 下載「DocumentDB 移轉工具」並解壓縮至您所選的目錄
-4. 對移轉工具使用下列命令參數 (DocumentDB 移轉工具安裝目錄中的 dtui.exe)，將儲存在 [公用 Blob](https://cahandson.blob.core.windows.net/samples/volcano.json) 的 JSON 資料 (Volcano 資料) 匯入 DocumentDB。 輸入下面的來源和目標位置參數。
+2. 從 [Azure 入口網站](https://portal.azure.com)建立 Azure Cosmos DB 帳戶和 Document DB 資料庫
+3. 從[這裡](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d) 下載「Azure Cosmos DB 移轉工具」並解壓縮至您所選的目錄
+4. 對移轉工具使用下列命令參數 (Cosmos DB 移轉工具安裝目錄中的 dtui.exe)，將儲存在[公用 Blob](https://cahandson.blob.core.windows.net/samples/volcano.json) 的 JSON 資料 (Volcano 資料) 匯入 Cosmos DB。 輸入下面的來源和目標位置參數。
    
     /s:JsonFile /s.Files:https://cahandson.blob.core.windows.net/samples/volcano.json /t:DocumentDBBulk /t.ConnectionString:AccountEndpoint=https://[DocDBAccountName].documents.azure.com:443/;AccountKey=[[KEY];Database=volcano /t.Collection:volcano1
 
 一旦匯入資料之後，您即可移至 Jupyter 並開啟標題為 *DocumentDBSample* 且包含 python 程式碼的筆記本，以存取 DocumentDB 及進行一些基本查詢。 如需深入了解 DocumentDB，請參閱服務 [文件頁面](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 
 ## <a name="8-build-reports-and-dashboard-using-the-power-bi-desktop"></a>8.使用 Power BI Desktop 建立報表和儀表板
-讓我們將在 Power BI 的上述 DocumentDB 範例中看見的 Volcano JSON 檔案視覺化，以深入了解資料。 在 [Power BI 文章](../documentdb/documentdb-powerbi-visualize.md)中可找到詳細的步驟。 高階步驟如下：
+讓我們將在 Power BI 的上述 Cosmos DB 範例中看見的 Volcano JSON 檔案視覺化，以深入了解資料。 在 [Power BI 文章](../documentdb/documentdb-powerbi-visualize.md)中可找到詳細的步驟。 高階步驟如下：
 
 1. 開啟 Power BI Desktop 並執行「取得資料」。 將 URL 指定為︰https://cahandson.blob.core.windows.net/samples/volcano.json
 2. 您應該會看到匯入為清單的 JSON 記錄

@@ -1,24 +1,25 @@
 ---
-title: "Azure DocumentDB 入口網站工具︰文件總管 | Microsoft Docs"
-description: "深入了解 DocumentDB Document Explorer，它是一種 Azure 入口網站的工具，可用來檢視、編輯、建立和上傳使用 DocumentDB 的 JSON 文件、NoSQL 文件資料庫。"
+title: "Azure Cosmos DB 入口網站工具︰文件總管 | Microsoft Docs"
+description: "了解「Azure Cosmos DB 文件總管」，這是一個 Azure 入口網站工具，可用來檢視 JSON、編輯、建立及上傳文件。"
 keywords: "檢視 json"
-services: documentdb
+services: cosmosdb
 author: kirillg
 manager: jhubbard
 editor: monicar
 documentationcenter: 
 ms.assetid: 029d81b3-6382-4799-a1bd-0dcbccd9968d
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/18/2017
 ms.author: kirillg
-translationtype: Human Translation
-ms.sourcegitcommit: abdbb9a43f6f01303844677d900d11d984150df0
-ms.openlocfilehash: 4338fc03664175b7c27a48f1ab682179c1035313
-ms.lasthandoff: 04/21/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 77f8512d9fa47eee25596aa3c407fd6889edbe0e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -27,14 +28,14 @@ ms.lasthandoff: 04/21/2017
 本文提供您可在入口網站中建立、編輯及查詢文件之兩種方法的概觀：[文件總管](#launch-document-explorer)和[資料總管 (預覽)](#data-explorer)。
 
 > [!NOTE]
-> 具有 MongoDB 的通訊協定支援的 DocumentDB 帳戶不會啟用文件總管。 啟用此功能時，此頁面會加以更新。
+> 在具有 MongoDB 之通訊協定支援的 Azure Cosmos DB 帳戶上不會啟用「文件總管」。 啟用此功能時，此頁面會加以更新。
 
 <a id="launch-document-explorer"></a>
 
 ## <a name="launch-document-explorer-in-the-azure-portal"></a>在 Azure 入口網站中啟動文件總管
-1. 在 [Azure 入口網站](https://portal.azure.com)的左側導覽中，按一下 ![Azure DocumentDB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [NoSQL (DocumentDB)]。 
+1. 在 [Azure 入口網站](https://portal.azure.com)的左側導覽中，按一下 ![Azure Cosmos DB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [Azure Cosmos DB]。 
 
-    如果看不到 [NoSQL (DocumentDB)]，按一下底部的 [更多服務]，然後按一下 ![Azure DocumentDB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [NoSQL (DocumentDB)]。
+    如果看不到 [Azure Cosmos DB]，請按一下底部的 [更多服務]，然後按一下 ![Azure Cosmos DB 圖示](./media/documentdb-query-collections-query-explorer/nosql-documentdb-portal-icon.png) [Azure Cosmos DB]。
 2. 選取帳戶名稱。 
 3. 在資源功能表中，按一下 [文件總管] 。 
    
@@ -58,7 +59,7 @@ ms.lasthandoff: 04/21/2017
    > 
    > 
    
-    如果您已經有來自 JSON 檔案、MongoDB、SQL Server、CSV 檔案、Azure 資料表儲存體、Amazon DynamoDB、HBase，或其他 DocumentDB 集合的資料，即可使用 DocumentDB 的 [資料移轉工具](documentdb-import-data.md) 快速匯入資料。
+    如果您已經有來自 JSON 檔案、MongoDB、SQL Server、CSV 檔案、Azure 資料表儲存體、Amazon DynamoDB、HBase 或來自其他 DocumentDB API 集合的資料，便可以使用 DocumentDB API 的[資料移轉工具](documentdb-import-data.md)來快速匯入資料。
 
 ## <a name="edit-a-json-document"></a>編輯 JSON 文件
 1. [啟動文件總管](#launch-document-explorer)。
@@ -70,7 +71,7 @@ ms.lasthandoff: 04/21/2017
    
     ![[Document Explorer] 捨棄命令的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/discardedit.png)
 
-## <a name="delete-a-document-from-documentdb"></a>從 DocumentDB 刪除文件
+## <a name="delete-a-document-from-cosmos-db"></a>從 Cosmos DB 刪除文件
 1. [啟動文件總管](#launch-document-explorer)。
 2. 在 [文件總管] 中選取文件、按一下 [刪除]，然後確認刪除。 確認後，系統會立即將文件從 Document Explorer 清單中移除。
    
@@ -107,7 +108,7 @@ Document Explorer 會驗證任何新的或已編輯文件是否包含有效 JSON
    
    ![[Document Explorer 設定] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/documentexplorerfiltersettings2.png)
    
-   Document Explorer 會以符合篩選查詢的文件自動重新整理結果。 若要深入了解 DocumentDB SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印一份 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
+   Document Explorer 會以符合篩選查詢的文件自動重新整理結果。 若要深入了解 DocumentDB API SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印一份 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
    
    您可以使用 [資料庫] 和 [集合] 下拉式清單方塊輕鬆地變更目前從中檢視文件的集合，而無需關閉並重新啟動「文件總管」。  
    
@@ -157,18 +158,18 @@ Document Explorer 支援大量擷取一或多個現有 JSON 文件，每個上�
 ![顯示入口網站中 [新增集合] 按鈕的螢幕擷取畫面](./media/documentdb-view-JSON-document-explorer/azure-documentdb-data-explorer.png)
 
 ## <a name="work-with-json-documents-outside-the-portal"></a>在入口網站外部使用 JSON 文件
-Azure 入口網站中的 Document Explorer 只是一種處理 DocumentDB 中文件的方法。 您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/mt489082.aspx) 或[用戶端 SDK](documentdb-sdk-dotnet.md) 來處理文件。 如需範例程式碼，請參閱 [.NET SDK 文件範例](documentdb-dotnet-samples.md#document-examples)和 [Node.js SDK 文件範例](documentdb-nodejs-samples.md#document-examples)。
+Azure 入口網站中的「文件總管」只是一種使用 Cosmos DB 中文件的方法。 您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/mt489082.aspx) 或[用戶端 SDK](documentdb-sdk-dotnet.md) 來處理文件。 如需範例程式碼，請參閱 [.NET SDK 文件範例](documentdb-dotnet-samples.md#document-examples)和 [Node.js SDK 文件範例](documentdb-nodejs-samples.md#document-examples)。
 
-如果您需要從其他來源 (JSON 檔案、MongoDB、SQL Server、CSV 檔案、Azure 表格儲存體、Amazon DynamoDB 或 HBase) 匯入或移轉檔案，您可以使用 DocumentDB [資料移轉工具](documentdb-import-data.md) ，將您的資料快速匯入 DocumentDB。
+如果您需要從其他來源 (JSON 檔案、MongoDB、SQL Server、CSV 檔案、Azure 表格儲存體、Amazon DynamoDB 或 HBase) 匯入或移轉檔案，則可以使用 Cosmos DB [資料移轉工具](documentdb-import-data.md)將您的資料快速匯入到 Cosmos DB。
 
 ## <a name="troubleshoot"></a>疑難排解
 **徵兆**︰「文件總管」傳回 [找不到任何文件]。
 
 **解決方案**︰確定您已選取正確的訂用帳戶、資料庫，以及已插入文件的集合。 此外，檢查以確定您是在輸送量配額內運作。 如果您是在最大輸送量層級上運作並受到節流處理，請降低應用程式使用量，以便在集合的最大輸送量配額下運作。
 
-**說明**︰此入口網站是一個應用程式，就像所有其他應用程式一樣，可呼叫您的 DocumentDB 資料庫和集合。 如果您的要求目前因為個別應用程式所進行的呼叫而受到節流處理，入口網站也可能會受到節流處理，因而導致資源不會在入口網站中顯示。 若要解決此問題，請先解決導致出現高輸送使用量的原因，然後重新整理入口網站刀鋒視窗。 如需有關如何測量及降低輸送使用量的資訊，請參閱[效能祕訣](documentdb-performance-tips.md)一文的[輸送量](documentdb-performance-tips.md#throughput)一節。
+**說明**︰此入口網站是一個應用程式，就像所有其他應用程式一樣，可呼叫您的 Cosmos DB 資料庫和集合。 如果您的要求目前因為個別應用程式所進行的呼叫而受到節流處理，入口網站也可能會受到節流處理，因而導致資源不會在入口網站中顯示。 若要解決此問題，請先解決導致出現高輸送使用量的原因，然後重新整理入口網站刀鋒視窗。 如需有關如何測量及降低輸送使用量的資訊，請參閱[效能祕訣](documentdb-performance-tips.md)一文的[輸送量](documentdb-performance-tips.md#throughput)一節。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解「文件總管」中支援的 DocumentDB SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
+若要深入了解「文件總管」中支援的 DocumentDB API SQL 文法，請參閱 [SQL 查詢和 SQL 語法](documentdb-sql-query.md)一文，或列印 [SQL 查詢速查表](documentdb-sql-query-cheat-sheet.md)。
 
 

@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/07/2017
 ms.author: rodsan
-translationtype: Human Translation
-ms.sourcegitcommit: 8251f44200c11d3efcec04b7ac99857232b2f9ed
-ms.openlocfilehash: da8c5dc18fda8756bae26c37c12be8cefe99e29a
-ms.lasthandoff: 02/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 9743711805d8502b60ee91bac5c91035a3cda5fe
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.lasthandoff: 02/15/2017
 | Web 應用程式 | <ul><li>[確定瀏覽器上不會快取敏感性內容](#cache-browser)</li><li>[加密包含敏感性資料的 Web 應用程式組態檔區段](#encrypt-data)</li><li>[明確停用敏感性表單和輸入內的自動完成 HTML 屬性](#autocomplete-input)</li><li>[確定使用者畫面上顯示的敏感性資料已遮罩](#data-mask)</li></ul> | 
 | 資料庫 | <ul><li>[實作動態資料遮罩來限制敏感性資料暴露非特殊權限使用者](#dynamic-users)</li><li>[確定密碼是以 salted 雜湊格式儲存](#salted-hash)</li><li>[確定資料庫資料行中的敏感性資料已加密](#db-encrypted)</li><li>[確定已啟用資料庫層級加密 (TDE)](#tde-enabled)</li><li>[確定資料庫備份已加密](#backup)</li></ul> | 
 | Web API | <ul><li>[確定與 Web API 相關的敏感性資料未儲存在瀏覽器的儲存體中](#api-browser)</li></ul> | 
-| Azure Document DB | <ul><li>[將儲存在 DocumentDB 中的敏感性資料加密](#encrypt-docdb)</li></ul> | 
+| Azure Document DB | <ul><li>[將儲存在 Azure Cosmos DB 中的敏感性資料加密](#encrypt-docdb)</li></ul> | 
 | Azure IaaS VM 信任邊界 | <ul><li>[使用 Azure 磁碟加密來加密虛擬機器所使用的磁碟](#disk-vm)</li></ul> | 
 | Service Fabric 信任邊界 | <ul><li>[將 Service Fabric 應用程式中的密碼加密](#fabric-apps)</li></ul> | 
 | Dynamics CRM | <ul><li>[執行安全性模型化並視需要使用業務單位/團隊](#modeling-teams)</li><li>[將共用重要實體功能的存取權最小化](#entities)</li><li>[訓練使用者以讓其了解與 Dynamics CRM 共用功能相關聯的風險以及正確的安全性作法](#good-practices)</li><li>[包含開發標準規則來禁止在例外狀況管理中顯示組態詳細資料](#exception-mgmt)</li></ul> | 
@@ -37,7 +38,7 @@ ms.lasthandoff: 02/15/2017
 | 行動用戶端 | <ul><li>[將寫入電話本機儲存體的敏感性資料或 PII 資料加密](#pii-phones)</li><li>[先對進行模糊處理再散發給使用者](#binaries-end)</li></ul> | 
 | WCF | <ul><li>[將 clientCredentialType 設定為憑證或 Windows](#cert)</li><li>[未啟用 WCF 安全性模式](#security)</li></ul> | 
 
-## <a name="a-idbinaries-infoaensure-that-binaries-are-obfuscated-if-they-contain-sensitive-information"></a><a id="binaries-info"></a>確定包含敏感性資訊的二進位檔已經過模糊處理
+## <a id="binaries-info"></a>確定包含敏感性資訊的二進位檔已經過模糊處理
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -48,7 +49,7 @@ ms.lasthandoff: 02/15/2017
 | 參考              | N/A  |
 | 步驟 | 確定包含敏感性資訊的二進位檔已經過模糊處理，例如不應反轉的商業機密、敏感性商業邏輯。 這是為了阻止組件遭到進行反向工程。 CryptoObfuscator 之類的工具可用於此用途。 |
 
-## <a name="a-idefs-useraconsider-using-encrypted-file-system-efs-is-used-to-protect-confidential-user-specific-data"></a><a id="efs-user"></a>考慮使用加密檔案系統 (EFS) 來保護機密的使用者特定資料
+## <a id="efs-user"></a>考慮使用加密檔案系統 (EFS) 來保護機密的使用者特定資料
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -59,7 +60,7 @@ ms.lasthandoff: 02/15/2017
 | 參考              | N/A  |
 | 步驟 | 考慮使用加密檔案系統 (EFS) 來保護機密的使用者特定資料，避免遭到可實際存取電腦的攻擊者竊取。 |
 
-## <a name="a-idfilesystemaensure-that-sensitive-data-stored-by-the-application-on-the-file-system-is-encrypted"></a><a id="filesystem"></a>確定應用程式儲存在檔案系統上的敏感性資料已加密
+## <a id="filesystem"></a>確定應用程式儲存在檔案系統上的敏感性資料已加密
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -70,7 +71,7 @@ ms.lasthandoff: 02/15/2017
 | 參考              | N/A  |
 | 步驟 | 確定在無法強制執行 EFS 的狀況下，應用程式儲存在檔案系統上的敏感性資料已加密 (例如使用 DPAPI) |
 
-## <a name="a-idcache-browseraensure-that-sensitive-content-is-not-cached-on-the-browser"></a><a id="cache-browser"></a>確定瀏覽器上不會快取敏感性內容
+## <a id="cache-browser"></a>確定瀏覽器上不會快取敏感性內容
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -123,7 +124,7 @@ public override void OnActionExecuting(ActionExecutingContext filterContext)
         }
 ``` 
 
-## <a name="a-idencrypt-dataaencrypt-sections-of-web-apps-configuration-files-that-contain-sensitive-data"></a><a id="encrypt-data"></a>加密包含敏感性資料的 Web 應用程式組態檔區段
+## <a id="encrypt-data"></a>加密包含敏感性資料的 Web 應用程式組態檔區段
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -134,7 +135,7 @@ public override void OnActionExecuting(ActionExecutingContext filterContext)
 | 參考              | [作法：在 ASP.NET 2.0 中使用 DPAPI 加密組態區段](https://msdn.microsoft.com/library/ff647398.aspx)、[指定受保護的組態提供者](https://msdn.microsoft.com/library/68ze1hb2.aspx)、[使用 Azure Key Vault 來保護應用程式的機密資訊](https://azure.microsoft.com/documentation/articles/guidance-multitenant-identity-keyvault/) |
 | 步驟 | 組態檔 (例如 Web.config、appsettings.json) 常會用來敏感性資訊，包括使用者名稱、密碼、資料庫連接字串和加密金鑰。 如果您不保護這項資訊，您的應用程式會很容易受到攻擊者或惡意使用者攻擊，而被其取得敏感性資訊，例如帳戶使用者名稱和密碼、資料庫名稱和伺服器名稱。 請根據部署類型 (Azure/內部部署)，使用 DPAPI 或服務 (例如 Azure Key Vault) 加密組態檔的敏感性區段。 |
 
-## <a name="a-idautocomplete-inputaexplicitly-disable-the-autocomplete-html-attribute-in-sensitive-forms-and-inputs"></a><a id="autocomplete-input"></a>明確停用敏感性表單和輸入內的自動完成 HTML 屬性
+## <a id="autocomplete-input"></a>明確停用敏感性表單和輸入內的自動完成 HTML 屬性
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -153,7 +154,7 @@ public override void OnActionExecuting(ActionExecutingContext filterContext)
 </form>
 ```
 
-## <a name="a-iddata-maskaensure-that-sensitive-data-displayed-on-the-user-screen-is-masked"></a><a id="data-mask"></a>確定使用者畫面上顯示的敏感性資料已遮罩
+## <a id="data-mask"></a>確定使用者畫面上顯示的敏感性資料已遮罩
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -162,9 +163,9 @@ public override void OnActionExecuting(ActionExecutingContext filterContext)
 | 適用的技術 | 泛型 |
 | 屬性              | N/A  |
 | 參考              | N/A  |
-| 步驟 | 當敏感性資料 (例如密碼、信用卡號碼 SSN 等) 顯示在螢幕上時，應為其加上遮罩。 這是為了避免未經授權的人員存取資料 (例如背後偷窺密碼、支援人員看到使用者的 SSN 號碼)。 請確定這些資料元素不會以純文字顯示，並會適當地加上遮罩。 在接受這些輸入內容 (例如，輸入類型 = "password") 以及在螢幕上顯示 (例如，只顯示信用卡號碼最後&4; 位數) 時，必須謹慎處理。 input type="password") as well as displaying back on the screen (e.g., display only the last 4 digits of the credit card number). |
+| 步驟 | 當敏感性資料 (例如密碼、信用卡號碼 SSN 等) 顯示在螢幕上時，應為其加上遮罩。 這是為了避免未經授權的人員存取資料 (例如背後偷窺密碼、支援人員看到使用者的 SSN 號碼)。 請確定這些資料元素不會以純文字顯示，並會適當地加上遮罩。 這於下列情況必須謹慎處理：接受這些內容為輸入時 (例如， input type="password")，以及在螢幕上顯示時 (例如，只顯示信用卡號碼最後 4 位數)。 |
 
-## <a name="a-iddynamic-usersaimplement-dynamic-data-masking-to-limit-sensitive-data-exposure-non-privileged-users"></a><a id="dynamic-users"></a>實作動態資料遮罩來限制敏感性資料暴露非特殊權限使用者
+## <a id="dynamic-users"></a>實作動態資料遮罩來限制敏感性資料暴露非特殊權限使用者
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -175,7 +176,7 @@ public override void OnActionExecuting(ActionExecutingContext filterContext)
 | 參考              | [動態資料遮罩](https://msdn.microsoft.com/library/mt130841) |
 | 步驟 | 動態資料遮罩的目的是限制公開敏感性資料，防止不該存取資料的使用者檢視到資料。 動態資料遮罩並非為了避免資料庫使用者直接連線到資料庫並執行可公開敏感性資料片段的詳盡查詢。 動態資料遮罩是為了補充其他 SQL Server 安全性功能 (稽核、加密、資料列層級安全性...)，因此強烈建議您搭配使用這項功能以便加強保護資料庫中的敏感性資料。 請注意，SQL Server 2016 (含) 以上版本和 Azure SQL Database 才支援此功能。 |
 
-## <a name="a-idsalted-hashaensure-that-passwords-are-stored-in-salted-hash-format"></a><a id="salted-hash"></a>確定密碼是以 salted 雜湊格式儲存
+## <a id="salted-hash"></a>確定密碼是以 salted 雜湊格式儲存
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -186,7 +187,7 @@ public override void OnActionExecuting(ActionExecutingContext filterContext)
 | 參考              | [使用 .NET Crypto API 的密碼雜湊](http://docs.asp.net/en/latest/security/data-protection/consumer-apis/password-hashing.html) |
 | 步驟 | 密碼不應該儲存在自訂的使用者存放區資料庫中。 應改為使用 salt 值來儲存密碼雜湊。 請確定使用者的 salt 永遠是唯一的，並且先套用 bcrypt、scrypt 或 PBKDF2 再儲存密碼，最少以 150,000 個迴圈的工作因素反覆運算計數來排除暴力密碼破解的可能。| 
 
-## <a name="a-iddb-encryptedaensure-that-sensitive-data-in-database-columns-is-encrypted"></a><a id="db-encrypted"></a>確定資料庫資料行中的敏感性資料已加密
+## <a id="db-encrypted"></a>確定資料庫資料行中的敏感性資料已加密
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -197,7 +198,7 @@ public override void OnActionExecuting(ActionExecutingContext filterContext)
 | 參考              | [加密 SQL Server 中的敏感性資料](https://technet.microsoft.com/library/ff848751(v=sql.105).aspx)、[加密 SQL Server 中的一欄資料](https://msdn.microsoft.com/library/ms179331)、[以憑證加密](https://msdn.microsoft.com/library/ms188061) |
 | 步驟 | 資料庫中的敏感性資料 (例如信用卡號碼) 必須加密。 您可以使用資料行層級加密或透過使用加密功能的應用程式函式來加密資料。 |
 
-## <a name="a-idtde-enabledaensure-that-database-level-encryption-tde-is-enabled"></a><a id="tde-enabled"></a>確定已啟用資料庫層級加密 (TDE)
+## <a id="tde-enabled"></a>確定已啟用資料庫層級加密 (TDE)
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -208,7 +209,7 @@ public override void OnActionExecuting(ActionExecutingContext filterContext)
 | 參考              | [了解 SQL Server 的透明資料加密 (TDE)](https://technet.microsoft.com/library/bb934049(v=sql.105).aspx) |
 | 步驟 | SQL Server 的透明資料加密 (TDE) 功能有助於加密資料庫中的敏感性資料，並保護用來以憑證加密資料的金鑰。 這可防止沒有金鑰的人使用資料。 TDE 可以保護「待用」資料，亦即資料和記錄檔。 它提供遵守各種產業中所確立的眾多法律、規定及指導方針的功能。 |
 
-## <a name="a-idbackupaensure-that-database-backups-are-encrypted"></a><a id="backup"></a>確定資料庫備份已加密
+## <a id="backup"></a>確定資料庫備份已加密
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -219,7 +220,7 @@ public override void OnActionExecuting(ActionExecutingContext filterContext)
 | 參考              | [SQL Database 備份加密](https://msdn.microsoft.com/library/dn449489) |
 | 步驟 | SQL Server 可在建立備份時加密資料。 藉由在建立備份時指定加密演算法和加密程式 (憑證或非對稱金鑰)，使用者可建立加密的備份檔案。 |
 
-## <a name="a-idapi-browseraensure-that-sensitive-data-relevant-to-web-api-is-not-stored-in-browsers-storage"></a><a id="api-browser"></a>確定與 Web API 相關的敏感性資料未儲存在瀏覽器的儲存體中
+## <a id="api-browser"></a>確定與 Web API 相關的敏感性資料未儲存在瀏覽器的儲存體中
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -243,7 +244,7 @@ cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not
 };
 ```
 
-## <a name="a-idencrypt-docdbaencrypt-sensitive-data-stored-in-documentdb"></a><a id="encrypt-docdb"></a>將儲存在 DocumentDB 中的敏感性資料加密
+## <a id="encrypt-docdb"></a>將儲存在 Cosmos DB 中的敏感性資料加密
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -254,7 +255,7 @@ cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not
 | 參考              | N/A  |
 | 步驟 | 請先在應用程式層級加密敏感性資料再儲存於 DocumentDB，或將敏感性資料儲存在其他儲存體解決方案，例如 Azure 儲存體或 Azure SQL| 
 
-## <a name="a-iddisk-vmause-azure-disk-encryption-to-encrypt-disks-used-by-virtual-machines"></a><a id="disk-vm"></a>使用 Azure 磁碟加密來加密虛擬機器所使用的磁碟
+## <a id="disk-vm"></a>使用 Azure 磁碟加密來加密虛擬機器所使用的磁碟
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -265,7 +266,7 @@ cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not
 | 參考              | [使用 Azure 磁碟加密來加密虛擬機器所使用的磁碟](https://azure.microsoft.com/documentation/articles/storage-security-guide/#_using-azure-disk-encryption-to-encrypt-disks-used-by-your-virtual-machines) |
 | 步驟 | <p>Azure 磁碟加密是目前預覽版中的新功能。 此功能允許您加密 IaaS 虛擬機器所使用的作業系統磁碟和資料磁碟。 對於 Windows，磁碟機是使用業界標準的 BitLocker 加密技術來加密。 對於 Linux，磁碟是使用 DM-Crypt 技術來加密。 這會與 Azure 金鑰保存庫整合，可讓您控制和管理磁碟加密金鑰。 Azure 磁碟加密解決方案支援下列三個客戶加密案例：</p><ul><li>在透過客戶加密的 VHD 檔案和客戶提供的加密金鑰 (儲存於 Azure 金鑰保存庫中) 建立的新 IaaS VM 上啟用加密。</li><li>在透過 Azure Marketplace 建立的新 IaaS VM 上啟用加密。</li><li>在 Azure 中已執行的現有 IaaS VM 上啟用加密。</li></ul>| 
 
-## <a name="a-idfabric-appsaencrypt-secrets-in-service-fabric-applications"></a><a id="fabric-apps"></a>將 Service Fabric 應用程式中的密碼加密
+## <a id="fabric-apps"></a>將 Service Fabric 應用程式中的密碼加密
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -276,7 +277,7 @@ cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not
 | 參考              | [管理 Service Fabric 應用程式中的密碼](https://azure.microsoft.com/documentation/articles/service-fabric-application-secret-management/) |
 | 步驟 | 密碼可以是任何機密資訊，例如儲存體連接字串、密碼或其他不會以純文字處理的值。 使用 Azure Key Vault 來管理 Service Fabric 應用程式中的金鑰和密碼。 |
 
-## <a name="a-idmodeling-teamsaperform-security-modeling-and-use-business-unitsteams-where-required"></a><a id="modeling-teams"></a>執行安全性模型化並視需要使用業務單位/團隊
+## <a id="modeling-teams"></a>執行安全性模型化並視需要使用業務單位/團隊
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -287,7 +288,7 @@ cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not
 | 參考              | N/A  |
 | 步驟 | 執行安全性模型化並視需要使用業務單位/團隊 |
 
-## <a name="a-identitiesaminimize-access-to-share-feature-on-critical-entities"></a><a id="entities"></a>將共用重要實體功能的存取權最小化
+## <a id="entities"></a>將共用重要實體功能的存取權最小化
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -298,7 +299,7 @@ cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not
 | 參考              | N/A  |
 | 步驟 | 將共用重要實體功能的存取權最小化 |
 
-## <a name="a-idgood-practicesatrain-users-on-the-risks-associated-with-the-dynamics-crm-share-feature-and-good-security-practices"></a><a id="good-practices"></a>訓練使用者以讓其了解與 Dynamics CRM 共用功能相關聯的風險以及正確的安全性作法
+## <a id="good-practices"></a>訓練使用者以讓其了解與 Dynamics CRM 共用功能相關聯的風險以及正確的安全性作法
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -309,7 +310,7 @@ cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not
 | 參考              | N/A  |
 | 步驟 | 訓練使用者以讓其了解與 Dynamics CRM 共用功能相關聯的風險以及正確的安全性作法 |
 
-## <a name="a-idexception-mgmtainclude-a-development-standards-rule-proscribing-showing-config-details-in-exception-management"></a><a id="exception-mgmt"></a>包含開發標準規則來禁止在例外狀況管理中顯示組態詳細資料
+## <a id="exception-mgmt"></a>包含開發標準規則來禁止在例外狀況管理中顯示組態詳細資料
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -320,7 +321,7 @@ cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not
 | 參考              | N/A  |
 | 步驟 | 包含開發標準規則來禁止在開發外的例外狀況管理中顯示組態詳細資料。 請在檢閱程式碼或定期檢查時對此進行測試。|
 
-## <a name="a-idsse-previewause-azure-storage-service-encryption-sse-for-data-at-rest-preview"></a><a id="sse-preview"></a>針對待用資料使用 Azure 儲存體服務加密 (SSE) (預覽)
+## <a id="sse-preview"></a>針對待用資料使用 Azure 儲存體服務加密 (SSE) (預覽)
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -331,7 +332,7 @@ cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not
 | 參考              | [待用資料的 Azure 儲存體服務加密 (預覽)](https://azure.microsoft.com/documentation/articles/storage-service-encryption/) |
 | 步驟 | <p>待用資料的 Azure 儲存體服務加密 (SSE) 會協助您保護資料安全，以符合組織安全性和法規遵循承諾。 利用此功能，Azure 儲存體會自動加密資料，再保存到儲存體，以及在擷取之前解密。 以完全無感的方式處理所有加密、解密和金鑰管理。 SSE 只適用於區塊 Blob、分頁 Blob 及附加 Blob。 其他類型的資料 (包括表格、佇列和檔案) 將不會加密。</p><p>加密和解密工作流程：</p><ul><li>客戶會在儲存體帳戶上啟用加密</li><li>當客戶將新資料 (放置 Blob、放置區塊、放置頁面等等) 寫入至 Blob 儲存體，每個寫入是使用 256 位元 AES 加密 (可用的最強區塊加密方式之一) 進行加密</li><li>當客戶需要存取資料 (取得 Blob 等) 時，資料會在傳回給使用者之前自動解密</li><li>如果已停用加密，就不會再加密新的寫入，現有加密資料在使用者重新寫入之前會保持加密。 啟用加密時，寫入至 Blob 儲存體將會加密。 資料的狀態在使用者於啟用/停用儲存體帳戶的加密之間切換時不會變更</li><li>所有加密金鑰會由 Microsoft 儲存、加密及管理</li></ul><p>請注意，在此階段中，用來加密的金鑰是由 Microsoft 所管理。 Microsoft 一開始會產生金鑰，並管理金鑰的安全儲存體，以及如同內部 Microsoft 原則所定義的定期輪換。 客戶未來將會獲得管理自有加密金鑰的功能，並提供從 Microsoft 管理的金鑰到客戶管理的金鑰的移轉路徑。</p>| 
 
-## <a name="a-idclient-storageause-client-side-encryption-to-store-sensitive-data-in-azure-storage"></a><a id="client-storage"></a>使用用戶端加密在 Azure 儲存體中儲存敏感性資料
+## <a id="client-storage"></a>使用用戶端加密在 Azure 儲存體中儲存敏感性資料
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -342,7 +343,7 @@ cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not
 | 參考              | [Microsoft Azure 儲存體的用戶端加密和 Azure Key Vault 金鑰保存庫](https://azure.microsoft.com/documentation/articles/storage-client-side-encryption/)、[教學課程：在 Microsoft Azure 儲存體中使用 Azure 金鑰保存庫加密和解密 Blob](https://azure.microsoft.com/documentation/articles/storage-encrypt-decrypt-blobs-key-vault/)、[在 Azure Blob 儲存體中使用 Azure 加密擴充功能安全地存放資料](https://blogs.msdn.microsoft.com/partnercatalystteam/2015/06/17/storing-data-securely-in-azure-blob-storage-with-azure-encryption-extensions/) |
 | 步驟 | <p>適用於 .NET NuGet 套件的 Azure 儲存體用戶端程式庫支援在上傳至 Azure 儲存體之前將用戶端應用程式內的資料加密，並在下載至用戶端時解密資料。 程式庫也支援與 Azure 金鑰保存庫整合，以進行儲存體帳戶金鑰管理。 以下是用戶端加密運作方式的簡短描述：</p><ul><li>Azure 儲存體用戶端 SDK 會產生內容加密金鑰 (CEK)，這是使用一次的對稱金鑰</li><li>客戶資料是使用此 CEK 加密</li><li>然後使用金鑰加密金鑰 (KEK) 包裝 (加密) CEK。 KEK 由金鑰識別碼所識別，可以是非對稱金鑰組或對稱金鑰，且可以在本機管理或儲存在 Azure 金鑰保存庫中。 儲存體用戶端本身永遠沒有 KEK 的存取權。 它只是叫用金鑰保存庫所提供的金鑰包裝演算法。 如有需要，客戶可以選擇使用自訂提供者來包裝/取消包裝金鑰</li><li>然後，將加密的資料上傳至 Azure 儲存體服務。 請參閱 [參考] 區段中的連結，以取得低階實作詳細資料。</li></ul>|
 
-## <a name="a-idpii-phonesaencrypt-sensitive-or-pii-data-written-to-phones-local-storage"></a><a id="pii-phones"></a>將寫入電話本機儲存體的敏感性資料或 PII 資料加密
+## <a id="pii-phones"></a>將寫入電話本機儲存體的敏感性資料或 PII 資料加密
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -392,7 +393,7 @@ Allow screen capture
         }
 ```
 
-## <a name="a-idbinaries-endaobfuscate-generated-binaries-before-distributing-to-end-users"></a><a id="binaries-end"></a>先對進行模糊處理再散發給使用者
+## <a id="binaries-end"></a>先對進行模糊處理再散發給使用者
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -403,7 +404,7 @@ Allow screen capture
 | 參考              | [適用於 .Net 的 CryptoObfuscator](http://www.ssware.com/cryptoobfuscator/obfuscator-net.htm) |
 | 步驟 | 產生的二進位檔 (apk 內的組件) 應該進行模糊處理，以阻止組件遭到進行反向工程。CryptoObfuscator 之類的工具可用於此用途。 |
 
-## <a name="a-idcertaset-clientcredentialtype-to-certificate-or-windows"></a><a id="cert"></a>將 clientCredentialType 設定為憑證或 Windows
+## <a id="cert"></a>將 clientCredentialType 設定為憑證或 Windows
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -422,7 +423,7 @@ Allow screen capture
 ``` 
 將 clientCredentialType 設定為憑證或 Windows。 
 
-## <a name="a-idsecurityawcf-security-mode-is-not-enabled"></a><a id="security"></a>未啟用 WCF 安全性模式
+## <a id="security"></a>未啟用 WCF 安全性模式
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -465,3 +466,4 @@ Allow screen capture
   </bindings> 
 </system.serviceModel> 
 ```
+

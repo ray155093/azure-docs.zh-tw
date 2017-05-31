@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/06/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: 0c4554d6289fb0050998765485d965d1fbc6ab3e
-ms.openlocfilehash: e8efc3204512b7213c44a15c25b38287465975df
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 2b772afc946f1637cb8d61c198bc9cf18f42e1ba
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -41,8 +42,8 @@ ms.lasthandoff: 04/13/2017
 ## <a name="what-you-need"></a>您需要什麼
 
 - 在[將 Intel NUC 設定為 IoT 閘道器](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)教學課程中，您已將 Intel NUC 設定為 IoT 閘道器。
-- 在主機電腦上執行的 SSH 用戶端。 在 Windows 上建議使用 PuTTY。 Linux 和 macOS 均提供 SSH 用戶端。
-- 從 SSH 用戶端存取閘道器所用的 IP 位址和使用者名稱和密碼。
+- 在主機電腦上執行的 SSH 用戶端。 Windows 上建議使用 PuTTY。 Linux 和 macOS 已隨附 SSH 用戶端。
+- 從 SSH 用戶端存取閘道所用的 IP 位址和使用者名稱和密碼。
 - 網際網路連線。
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
@@ -122,7 +123,7 @@ ms.lasthandoff: 04/13/2017
 
 ## <a name="run-a-ble-sample-application-to-send-sensortag-data-to-your-iot-hub"></a>執行 BLE 應用程式，將 SensorTag 資料傳送至 IoT 中樞
 
-Bluetooth Low Energy (BLE) 範例應用程式是由 Azure IoT 閘道器 SDK 提供。 範例應用程式會收集 BLE 連線的資料，並將資料傳送至 IoT 中樞。 若要執行範例應用程式，需要：
+Bluetooth Low Energy (BLE) 範例應用程式是由 Azure IoT Edge 提供。 範例應用程式會收集 BLE 連線的資料，並將資料傳送至 IoT 中樞。 若要執行範例應用程式，需要：
 
 1. 設定範例應用程式。
 1. 在 IoT 閘道器上執行範例應用程式。
@@ -170,5 +171,5 @@ Bluetooth Low Energy (BLE) 範例應用程式是由 Azure IoT 閘道器 SDK 提�
 
 ## <a name="next-steps"></a>後續步驟
 
-[搭配 Azure IoT Gateway SDK 使用 IoT 閘道器進行感應器資料轉換](iot-hub-gateway-kit-c-use-iot-gateway-for-data-conversion.md)
+[搭配 Azure IoT Edge 使用 IoT 閘道進行感應器資料轉換](iot-hub-gateway-kit-c-use-iot-gateway-for-data-conversion.md)
 
