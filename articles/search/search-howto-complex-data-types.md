@@ -13,12 +13,13 @@ ms.devlang: na
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 09/07/2016
+ms.date: 05/01/2017
 ms.author: liamca
-translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: a90d7d90a6f3a75e230d32fb02b5ae69909d3c31
-ms.lasthandoff: 11/17/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: d576fd7bb267ae7a100589413185b595e3b2be42
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.lasthandoff: 11/17/2016
 Azure 搜尋服務中原先不支援複雜資料類型，但經過實證的因應措施包括結構扁平化的程序 (包含兩個步驟)，然後使用 **Collection** 資料類型來重新構成內部結構。 遵循本文所述的技巧，以便搜尋、Facet 處理、篩選和排序內容。
 
 ## <a name="example-of-a-complex-data-structure"></a>複雜資料結構的範例
-一般而言，有問題的資料會以一組 JSON 或 XML 文件的形式存在，或以項目形式存在於 NoSQL 存放區 (例如 DocumentDB)。 在結構上，挑戰源自於有多個需要搜尋和篩選的子項目。  在說明因應措施時，請首先採用下列 JSON 文件，其中列出一組連絡人做為範例︰
+一般而言，有問題的資料會以一組 JSON 或 XML 文件的形式存在，或以項目形式存在於 NoSQL 存放區 (例如 Azure Cosmos DB)。 在結構上，挑戰源自於有多個需要搜尋和篩選的子項目。  在說明因應措施時，請首先採用下列 JSON 文件，其中列出一組連絡人做為範例︰
 
 ~~~~~
 [
@@ -137,6 +138,6 @@ var index = new Index()
 您可以看到範例說明如何在 Azure 搜尋服務中編製複雜 JSON 資料集的索引，並且在 [GitHub 儲存機制](https://github.com/liamca/AzureSearchComplexTypes)對此資料集執行多項查詢。
 
 ## <a name="next-step"></a>後續步驟
-[票選複雜資料類型的原生支援](https://feedback.azure.com/forums/263029-azure-search) ，並提供您希望我們對於功能實作考量的任何其他輸入。 您也可以直接在 Twitter 上透過 @liamca. 聯繫我。
+[票選複雜資料類型的原生支援](https://feedback.azure.com/forums/263029-azure-search) ，並提供您希望我們對於功能實作考量的任何其他輸入。 您也可以直接在 Twitter 上透過 @liamca 聯繫我。
 
 

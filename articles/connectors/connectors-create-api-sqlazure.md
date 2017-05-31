@@ -14,11 +14,12 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/18/2016
-ms.author: mandia
-translationtype: Human Translation
-ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
-ms.openlocfilehash: ce3a622db8667df8b3f1d1391c2aa0d7e1e012a5
-ms.lasthandoff: 01/20/2017
+ms.author: mandia; ladocs
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 3c228be32539050123b01c5ccd74547b0d04ed28
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -72,152 +73,8 @@ ms.lasthandoff: 01/20/2017
    > 
 5. **儲存**您的變更 (工具列的左上角)。 邏輯應用程式將會儲存，而且可能會自動啟用。
 
-## <a name="technical-details"></a>技術詳細資料
-## <a name="sql-database-actions"></a>SQL Database 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 SQL Database 連接器包含下列動作。 
-
-| 動作 | 說明 |
-| --- | --- |
-| [ExecuteProcedure](connectors-create-api-sqlazure.md#execute-stored-procedure) |在 SQL 中執行預存程序 |
-| [GetRow](connectors-create-api-sqlazure.md#get-row) |擷取 SQL 資料表中的單一資料列 |
-| [GetRows](connectors-create-api-sqlazure.md#get-rows) |從 SQL 資料表擷取多個資料列 |
-| [InsertRow](connectors-create-api-sqlazure.md#insert-row) |在 SQL 資料表中插入新的資料列 |
-| [DeleteRow](connectors-create-api-sqlazure.md#delete-row) |刪除 SQL 資料表中的資料列 |
-| [GetTables](connectors-create-api-sqlazure.md#get-tables) |擷取 SQL 資料庫中的資料表 |
-| [UpdateRow](connectors-create-api-sqlazure.md#update-row) |更新 SQL 資料表中現有的資料列 |
-
-### <a name="action-details"></a>動作詳細資料
-在本節中，請查看每個動作的特定詳細資料，包括任何必要或選擇性的輸入屬性，以及任何與連接器相關聯的對應輸出。
-
-#### <a name="execute-stored-procedure"></a>執行預存程序
-在 SQL 中執行預存程序。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 程序 * |程序名稱 |您要執行的預存程序名稱 |
-| 參數 * |輸入參數 |參數是動態的，而且以您選擇的預存程序為基礎。 <br/><br/> 例如，如果要使用 Adventure Works 範例資料庫，請選擇「ufnGetCustomerInformation」預存程序。 系統會顯示**客戶識別碼**輸入參數。 請輸入「6」或其他客戶識別碼的其中一個。 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-ProcedureResult︰帶有預存程序執行的結果
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| OutputParameters |物件 |輸出參數值 |
-| ReturnCode |integer |傳回程序的代碼 |
-| ResultSets |物件 |結果集 |
-
-#### <a name="get-row"></a>取得單一資料列
-從 SQL 資料表擷取單一資料列。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料表 * |資料表名稱 |SQL 資料表名稱 |
-| 識別碼 * |資料列識別碼 |要擷取之資料列的唯一識別碼 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-項目
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| ItemInternalId |string |
-
-#### <a name="get-rows"></a>取得多個資料列
-從 SQL 資料表擷取多個資料列。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料表 * |資料表名稱 |SQL 資料表名稱 |
-| $skip |略過計數 |要略過的項目數目 (預設值 = 0) |
-| $top |最大取得計數 |要擷取的項目數目上限 (預設值 = 256) |
-| $filter |篩選查詢 |用來限制項目數目的 ODATA filter 查詢 |
-| $orderby |排序依據 |用來指定項目順序的 ODATA orderBy 查詢 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-ItemsList
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| value |array |
-
-#### <a name="insert-row"></a>插入資料列
-在 SQL 資料表中插入新的資料列。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料表 * |資料表名稱 |SQL 資料表名稱 |
-| 項目 * |資料列 |要在指定的 SQL 資料表中插入的資料列 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-項目
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| ItemInternalId |string |
-
-#### <a name="delete-row"></a>刪除資料列
-刪除 SQL 資料表中的資料列。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料表 * |資料表名稱 |SQL 資料表名稱 |
-| 識別碼* |資料列識別碼 |要刪除的資料列的唯一識別碼 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-無。
-
-#### <a name="get-tables"></a>取得資料表
-擷取 SQL 資料庫中的資料表。  
-
-這個呼叫沒有參數。 
-
-##### <a name="output-details"></a>輸出詳細資料
-TablesList
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| value |array |
-
-#### <a name="update-row"></a>更新資料列
-更新 SQL 資料表中現有的資料列。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料表 * |資料表名稱 |SQL 資料表名稱 |
-| 識別碼* |資料列識別碼 |要更新的資料列的唯一識別碼 |
-| 項目 * |資料列 |值已更新的資料列 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-項目
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| ItemInternalId |string |
-
-### <a name="http-responses"></a>HTTP 回應
-呼叫不同動作時，您可能會收到特定回應。 下表概述回應及其說明︰  
-
-| 名稱 | 說明 |
-| --- | --- |
-| 200 |OK |
-| 202 |已接受 |
-| 400 |不正確的要求 |
-| 401 |未經授權 |
-| 403 |禁止 |
-| 404 |找不到 |
-| 500 |內部伺服器錯誤。 發生未知錯誤 |
-| 預設值 |作業失敗。 |
+## <a name="view-the-swagger"></a>檢視 Swagger
+請參閱 [Swagger 詳細資料](/connectors/sql/)。 
 
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。

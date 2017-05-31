@@ -1,31 +1,32 @@
 ---
-title: "DocumentDB 中的效能等級 | Microsoft Docs"
-description: "了解 DocumentDB 中的效能等級如何可讓您依每個集合為基礎保留輸送量。"
-services: documentdb
+title: "DocumentDB API 效能等級 | Microsoft Docs"
+description: "了解 DocumentDB API 效能等級如何可讓您根據每個容器來保留輸送量。"
+services: cosmosdb
 author: mimig1
 manager: jhubbard
 editor: monicar
 documentationcenter: 
 ms.assetid: 7dc21c71-47e2-4e06-aa21-e84af52866f4
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 05/10/2017
 ms.author: mimig
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: 094729399070a64abc1aa05a9f585a0782142cbf
-ms.openlocfilehash: 659d6bd63ea996af7b7b172f998884354e5d5858
-ms.lasthandoff: 03/07/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 2f67166e95da9f47133f8856be4c7902da75b886
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="retiring-the-s1-s2-and-s3-performance-levels-in-documentdb"></a>在 DocumentDB 中淘汰 S1、S2 和 S3 效能層級
+# <a name="retiring-the-s1-s2-and-s3-performance-levels"></a>淘汰 S1、S2 和 S3 效能層級
 
 > [!IMPORTANT] 
-> 本文所討論的 S1、S2 和 S3 效能層級將會淘汰，而且也無法再供新的 DocumentDB 集合使用。
+> 本文所討論的 S1、S2 和 S3 效能層級將會淘汰，而且也無法再供新的 DocumentDB API 帳戶使用。
 >
 
 本文概述 S1、S2 和 S3 效能層級，並討論使用這些效能層級的集合在 2017 年 8 月 1 日將如何移轉至單一資料分割集合。 閱讀本文後，您將能夠回答下列問題：
@@ -45,7 +46,7 @@ ms.lasthandoff: 03/07/2017
 
 ## <a name="why-are-the-s1-s2-and-s3-performance-levels-being-retired"></a>為何 S1、S2 和 S3 效能層級將要淘汰？
 
-S1、S2 和 S3 效能層級不提供 DocumentDB 單一資料分割集合所提供的彈性。 使用 S1、S2、S3 效能層級，輸送量和儲存容量皆會預先設定。 DocumentDB 現在可讓您自訂輸送量和儲存體，提供您更大的彈性能夠隨您的需求進行變更。
+S1、S2 和 S3 效能層級不提供 DocumentDB API 集合所提供的彈性。 使用 S1、S2、S3 效能層級，輸送量和儲存容量皆會預先設定且不提供彈性。 Azure Cosmos DB 現在可讓您自訂輸送量和儲存體，提供您更大的彈性能夠隨您的需求進行變更。
 
 <a name="compare"></a>
 
@@ -66,7 +67,7 @@ S1、S2 和 S3 效能層級不提供 DocumentDB 單一資料分割集合所提�
 
 ## <a name="what-do-i-need-to-do-to-ensure-uninterrupted-access-to-my-data"></a>我該怎麼做才能確保不中斷地的存取我的資料？
 
-無須執行任何動作，DocumentDB 會處理您的移轉。 如果您有 S1、S2 或 S3 集合，您目前的集合將會在 2017 年 7 月 31 日移轉至單一磁碟分割集合。 
+無須執行任何動作，Cosmos DB 會處理您的移轉。 如果您有 S1、S2 或 S3 集合，您目前的集合將會在 2017 年 7 月 31 日移轉至單一磁碟分割集合。 
 
 <a name="collection-change"></a>
 
@@ -78,7 +79,7 @@ S1、S2 和 S3 效能層級不提供 DocumentDB 單一資料分割集合所提�
 
 如果您有一個 S3 集合，將會以 2.5 K RU/秒移轉至單一資料分割集合。 您不會看到您的輸送量層級有任何變更。
 
-在每一個情況下，在移轉您的集合之後，您將能夠自訂您的輸送量層級，或視需要將它相應增加及減少，為使用者提供低延遲存取。 若要在移轉您的集合之後變更輸送量層級，只要在 Azure 入口網站中開啟 DocumentDB 帳戶，按一下 [調整]、選擇您的集合，然後調整輸送量層級，如下列螢幕擷取畫面所示︰
+在每一個情況下，在移轉您的集合之後，您將能夠自訂您的輸送量層級，或視需要將它相應增加及減少，為使用者提供低延遲存取。 若要在移轉您的集合之後變更輸送量層級，只要在 Azure 入口網站中開啟 Cosmos DB 帳戶，按一下 [調整]、選擇您的集合，然後調整輸送量層級，如下列螢幕擷取畫面所示︰
 
 ![如何在 Azure 入口網站中調整輸送量](./media/documentdb-performance-levels/azure-documentdb-portal-scale-throughput.png)
 
@@ -94,7 +95,7 @@ S1、S2 和 S3 效能層級不提供 DocumentDB 單一資料分割集合所提�
 
 ## <a name="what-if-i-need-more-than-10-gb-of-storage"></a>如果我需要超過 10 GB 的儲存空間怎麼辦？
 
-無論您擁有具有 S1、S2 或 S3 效能層級的集合，或是擁有單一資料分割集合，全部都有 10 GB 的可用儲存空間，您可以利用幾乎不受限制的儲存空間使用 DocumentDB 資料移轉工具將您的資料移轉至分割的集合。 如需經過分割的集合相關詳細資訊，請參閱 [Azure DocumentDB 中的資料分割與規模調整](documentdb-partition-data.md)。 如需將 S1、S2、S3 或單一資料分割集合移轉到資料分割集合的詳細資訊，請參閱[從單一資料分割移轉至資料分割集合](documentdb-partition-data.md#migrating-from-single-partition)。 
+無論您擁有具有 S1、S2 或 S3 效能層級的集合，或是擁有單一資料分割集合，全部都有 10 GB 的可用儲存空間，您可以利用幾乎不受限制的儲存空間使用 Cosmos DB 資料移轉工具將您的資料移轉至資料分割的集合。 如需資料分割集合優點的相關詳細資訊，請參閱 [Azure Cosmos DB 中的資料分割與規模調整](documentdb-partition-data.md)。 如需將 S1、S2、S3 或單一資料分割集合移轉到資料分割集合的詳細資訊，請參閱[從單一資料分割移轉至資料分割集合](documentdb-partition-data.md#migrating-from-single-partition)。 
 
 <a name="change-before"></a>
 
@@ -106,7 +107,7 @@ S1、S2 和 S3 效能層級不提供 DocumentDB 單一資料分割集合所提�
 
 ## <a name="how-will-i-know-when-my-collection-has-migrated"></a>如何得知我的收藏何時已移轉？
 
-移轉會在 2017 年 7 月 31 日發生。 如果您擁有的集合是使用 S1、S2 或 S3 效能層級，DocumentDB 小組會在進行移轉之前，透過電子郵件與您連絡。 一旦完成移轉後，在 2017 年 8 月 1 日，Azure 入口網站會顯示您的集合是使用標準價格。
+移轉會在 2017 年 7 月 31 日發生。 如果您擁有的集合是使用 S1、S2 或 S3 效能層級，Cosmos DB 小組會在進行移轉之前，透過電子郵件與您連絡。 一旦完成移轉後，在 2017 年 8 月 1 日，Azure 入口網站會顯示您的集合是使用標準價格。
 
 ![如何確認您的集合已移轉至標準定價層](./media/documentdb-performance-levels/documentdb-portal-standard-pricing-applied.png)
 
@@ -118,11 +119,11 @@ S1、S2 和 S3 效能層級不提供 DocumentDB 單一資料分割集合所提�
 
 **若要使用 Azure 入口網站移轉至單一資料分割集合**
 
-1. 在 [**Azure 入口網站**](https://portal.azure.com)中，按一下 [NoSQL (DocumentDB)]，然後選取要修改的 DocumentDB 帳戶。 
+1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [Azure Cosmos DB]，然後選取要修改的 Cosmos DB 帳戶。 
  
-    如果 **NoSQL (DocumentDB)** 不在動態工具列中，按一下 >，捲動到 [資料庫]，選取 [NoSQL (DocumentDB)] ，然後選取 DocumentDB 帳戶。  
+    如果 [Azure Cosmos DB] 不在動態工具列中，按一下 >，捲動到 [資料庫]，選取 [Azure Cosmos DB]，然後選取 DocumentDB 帳戶。  
 
-2. 在 [資源] 功能表上，於 [集合] 下，按一下 [級別]，從下拉式清單選取要修改的集合，然後按一下 [定價層]。 使用預先定義的輸送量的帳戶具有 S1、S2 或 S3 定價層。  在 [選擇定價層] 刀鋒視窗中按一下 [標準] 來變更使用者定義的輸送量，然後按一下 [選取] 以儲存變更。
+2. 在 [資源] 功能表上，於 [容器] 下，按一下 [級別]，從下拉式清單選取要修改的集合，然後按一下 [定價層]。 使用預先定義的輸送量的帳戶具有 S1、S2 或 S3 定價層。  在 [選擇定價層] 刀鋒視窗中按一下 [標準] 來變更使用者定義的輸送量，然後按一下 [選取] 以儲存變更。
 
     ![[設定] 刀鋒視窗的螢幕擷取畫面，其中顯示可供變更輸送量值的位置](./media/documentdb-performance-levels/documentdb-change-performance-set-thoughput.png)
 
@@ -174,9 +175,9 @@ S1、S2 和 S3 效能層級不提供 DocumentDB 單一資料分割集合所提�
 EA 客戶將會受保護的價格，直到其目前合約結束。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解 Azure DocumentDB 的價格和管理資料，請探索這些資源：
+若要深入了解 Azure Cosmos DB 的價格和管理資料，請探索這些資源：
 
-1.    [在 DocumentDB 中分割資料](documentdb-partition-data.md)。 了解單一分割區集合和資料分割集合的差異，以及實作資料分割策略以順暢地調整的秘訣。
-2.    [DocumentDB 價格](https://azure.microsoft.com/pricing/details/documentdb/)。 深入了解佈建輸送量和使用儲存體的成本。
+1.    [在 Cosmos DB 中分割資料](documentdb-partition-data.md)。 了解單一資料分割容器和資料分割容器的差異，以及實作資料分割策略以順暢地調整的秘訣。
+2.    [Cosmos DB 定價](https://azure.microsoft.com/pricing/details/documentdb/)。 深入了解佈建輸送量和使用儲存體的成本。
 3.    [要求單位](documentdb-request-units.md)。 了解不同作業類型，例如讀取、寫入、查詢的輸送量耗用量。
-4.    [在 DocumentDB 中模型化資料](documentdb-modeling-data.md)。 了解如何建立您 DocumentDB 資料的模型。
+

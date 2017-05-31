@@ -1,6 +1,6 @@
 ---
 title: "在您的 Logic Apps 中新增 Azure Blob 儲存體連接器 | Microsoft Docs"
-description: "搭配 REST API 參數來使用 Azure Blob 儲存體連接器的概觀"
+description: "在邏輯應用程式中開始使用及設定 Azure Blob 儲存體連接器"
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -13,29 +13,27 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
-ms.date: 10/18/2016
-ms.author: mandia
-translationtype: Human Translation
-ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
-ms.openlocfilehash: 6b7c73576e09af3d1b3c886efa88044846e91494
-ms.lasthandoff: 01/20/2017
+ms.date: 05/02/2017
+ms.author: mandia; ladocs
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: a52cc8d5685fad849bf8ea2a4c4f8fde3f340bde
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="get-started-with-the-azure-blob-storage-connector"></a>開始使用 Azure Blob 儲存體連接器
-Azure Blob 儲存體是用來儲存大量非結構化資料的服務。 請在 Azure Blob 儲存體中執行上傳、更新、取得和刪除 Blob 等各種動作。 
+# <a name="use-the-azure-blob-storage-connector-in-a-logic-app"></a>在邏輯應用程式中使用 Azure Blob 儲存體連接器
+您可以使用 Azure Blob 儲存體連接器來上傳、更新、取得及刪除您儲存體帳戶中的 Blob，所有這些操作都在一個邏輯應用程式內完成。  
 
 您可以利用 Azure Blob 儲存體來：
 
 * 上傳新專案或取得最近更新的檔案以建置工作流程。
-* 使用動作來取得檔案中繼資料、刪除檔案、複製檔案和進行其他作業。 例如，當 Azure 網站中的工具更新時 (觸發程序)，則更新 Blob 儲存體中的檔案 (動作)。 
+* 使用動作來取得檔案中繼資料、刪除檔案、複製檔案和進行其他作業。 例如，當 Azure 網站中的工具更新時 (觸發程序)，便更新 Blob 儲存體中的檔案 (動作)。 
 
-本主題說明如何在邏輯應用程式中使用 Blob 儲存體連接器，並且也列出動作。
+本主題說明如何在邏輯應用程式中使用 Blob 儲存體連接器。
 
-> [!NOTE]
-> 這個版本的文章適用於 Logic Apps 公開上市版本 (GA)。 
-> 
-> 
+若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../logic-apps/logic-apps-what-are-logic-apps.md)以及[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../logic-apps/logic-apps-what-are-logic-apps.md)以及[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
@@ -44,8 +42,6 @@ Azure Blob 儲存體是用來儲存大量非結構化資料的服務。 請在 A
 
 #### <a name="create-the-connection"></a>建立連線
 > [!INCLUDE [Create a connection to Azure blob storage](../../includes/connectors-create-api-azureblobstorage.md)]
-> 
-> 
 
 ## <a name="use-a-trigger"></a>使用觸發程序
 此連接器並沒有任何觸發程序。 請使用其他觸發程序來啟動邏輯應用程式，例如循環觸發程序、HTTP Webhook 觸發程序、其他連接器適用的觸發程序等等。 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md) 可提供範例。
@@ -68,238 +64,16 @@ Azure Blob 儲存體是用來儲存大量非結構化資料的服務。 請在 A
    
    > [!NOTE]
    > 在此範例中，我們會取得檔案的中繼資料。 若要查看中繼資料，請新增另一個動作，以使用另一個連接器建立新檔案。 例如，新增 OneDrive 動作，以根據中繼資料建立新的「測試」檔案。 
-   > 
-   > 
+
+
 5. **儲存**您的變更 (工具列的左上角)。 邏輯應用程式將會儲存，而且可能會自動啟用。
 
 > [!TIP]
 > [儲存體總管](http://storageexplorer.com/)是很適合用來管理多個儲存體帳戶的工具。
-> 
-> 
 
-## <a name="technical-details"></a>技術詳細資料
-## <a name="storage-blob-actions"></a>儲存體 Blob 動作
-| 動作 | 說明 |
-| --- | --- |
-| [取得檔案中繼資料](connectors-create-api-azureblobstorage.md#get-file-metadata) |這項作業會使用檔案識別碼取得檔案中繼資料。 |
-| [更新檔案](connectors-create-api-azureblobstorage.md#update-file) |這項作業會更新檔案。 |
-| [刪除檔案](connectors-create-api-azureblobstorage.md#delete-file) |這項作業會刪除檔案。 |
-| [使用路徑來取得檔案中繼資料](connectors-create-api-azureblobstorage.md#get-file-metadata-using-path) |這項作業會使用路徑取得檔案中繼資料。 |
-| [使用路徑來取得檔案內容](connectors-create-api-azureblobstorage.md#get-file-content-using-path) |這項作業會使用路徑取得檔案內容。 |
-| [取得檔案內容](connectors-create-api-azureblobstorage.md#get-file-content) |這項作業會使用識別碼取得檔案內容。 |
-| [建立檔案](connectors-create-api-azureblobstorage.md#create-file) |這項作業會上傳檔案。 |
-| [複製檔案](connectors-create-api-azureblobstorage.md#copy-file) |這項作業會將檔案複製到 Azure Blob 儲存體。 |
-| [將封存檔案解壓縮到資料夾](connectors-create-api-azureblobstorage.md#extract-archive-to-folder) |這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。 |
+## <a name="view-the-swagger"></a>檢視 Swagger
 
-### <a name="action-details"></a>動作詳細資料
-在本節中，請查看每個動作的特定詳細資料，包括任何必要或選擇性的輸入屬性，以及任何與連接器相關聯的對應輸出。
-
-#### <a name="get-file-metadata"></a>取得檔案中繼資料
-這項作業會使用檔案識別碼取得檔案中繼資料。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 識別碼* |檔案 |選取檔案 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-BlobMetadata
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| id |字串 |
-| 名稱 |字串 |
-| displayName |字串 |
-| 路徑 |字串 |
-| LastModified |字串 |
-| 大小 |integer |
-| MediaType |字串 |
-| IsFolder |布林值 |
-| ETag |字串 |
-| FileLocator |字串 |
-
-#### <a name="update-file"></a>更新檔案
-這項作業會更新檔案。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 識別碼* |檔案 |選取檔案 |
-| body* |檔案內容 |要更新之檔案的內容 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-BlobMetadata
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| id |字串 |
-| 名稱 |字串 |
-| displayName |字串 |
-| 路徑 |字串 |
-| LastModified |字串 |
-| 大小 |integer |
-| MediaType |字串 |
-| IsFolder |布林值 |
-| ETag |字串 |
-| FileLocator |字串 |
-
-#### <a name="delete-file"></a>刪除檔案
-這項作業會刪除檔案。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 識別碼* |檔案 |選取檔案 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-無。
-
-#### <a name="get-file-metadata-using-path"></a>使用路徑來取得檔案中繼資料
-這項作業會使用路徑取得檔案中繼資料。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| path* |檔案路徑 |選取檔案 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-BlobMetadata
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| id |字串 |
-| 名稱 |字串 |
-| displayName |字串 |
-| 路徑 |字串 |
-| LastModified |字串 |
-| 大小 |integer |
-| MediaType |字串 |
-| IsFolder |布林值 |
-| ETag |字串 |
-| FileLocator |string |
-
-#### <a name="get-file-content-using-path"></a>使用路徑來取得檔案內容
-這項作業會使用路徑取得檔案內容。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| path* |檔案路徑 |選取檔案 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-無。
-
-#### <a name="get-file-content"></a>取得檔案內容
-這項作業會使用識別碼取得檔案內容。  
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| 識別碼* |字串 |選取檔案 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-無。
-
-#### <a name="create-file"></a>建立檔案
-這項作業會上傳檔案。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| folderPath* |資料夾路徑 |選取資料夾 |
-| name* |檔案名稱 |要上傳之檔案的名稱 |
-| body* |檔案內容 |要上傳之檔案的內容 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-BlobMetadata
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| id |字串 |
-| 名稱 |字串 |
-| displayName |字串 |
-| 路徑 |字串 |
-| LastModified |字串 |
-| 大小 |integer |
-| MediaType |字串 |
-| IsFolder |布林值 |
-| ETag |字串 |
-| FileLocator |字串 |
-
-#### <a name="copy-file"></a>複製檔案
-這項作業會將檔案複製到 Azure Blob 儲存體。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| source* |來源 URL |指定來源檔案的 URL |
-| destination* |目的地檔案路徑 |指定目的地檔案路徑，包括目標檔案名稱 |
-| overwrite |覆寫？ |是否應覆寫現有目的地檔案 (true/false)？ |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-BlobMetadata
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| id |字串 |
-| 名稱 |字串 |
-| displayName |字串 |
-| 路徑 |字串 |
-| LastModified |字串 |
-| 大小 |integer |
-| MediaType |字串 |
-| IsFolder |布林值 |
-| ETag |字串 |
-| FileLocator |字串 |
-
-#### <a name="extract-archive-to-folder"></a>將封存檔案解壓縮到資料夾
-這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。  
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| source* |來源封存檔案路徑 |選取封存檔案 |
-| destination* |目的地資料夾路徑 |選取要解壓縮的內容 |
-| overwrite |覆寫？ |是否應覆寫現有目的地檔案 (true/false)？ |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-BlobMetadata
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| id |字串 |
-| 名稱 |字串 |
-| displayName |字串 |
-| 路徑 |字串 |
-| LastModified |字串 |
-| 大小 |integer |
-| MediaType |字串 |
-| IsFolder |布林值 |
-| ETag |字串 |
-| FileLocator |字串 |
-
-## <a name="http-responses"></a>HTTP 回應
-呼叫不同動作時，您可能會收到特定回應。 下表概述回應及其說明︰  
-
-| 名稱 | 說明 |
-| --- | --- |
-| 200 |OK |
-| 202 |已接受 |
-| 400 |不正確的要求 |
-| 401 |未經授權 |
-| 403 |禁止 |
-| 404 |找不到 |
-| 500 |內部伺服器錯誤。 發生未知錯誤 |
-| 預設值 |作業失敗。 |
+請參閱 [Swagger 詳細資料](/connectors/azureblobconnector/)。 
 
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。

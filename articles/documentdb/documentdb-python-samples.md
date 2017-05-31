@@ -1,27 +1,29 @@
 ---
-title: "DocumentDB 的 NoSQL Python 範例 | Microsoft Docs"
-description: "在 Github 上尋找 DocumentDB 中的一般工作所適用的 NoSQL Python 範例，包括 NoSQL 資料庫中的 JSON 文件的 CRUD 作業。"
+title: "適用於 Azure Cosmos DB 的 DocumentDB API Python 範例 | Microsoft Docs"
+description: "在 GitHub 上找到適用於 Azure Cosmos DB 中一般工作 (包括 CRUD 作業) 的 Python 範例。"
 keywords: "Python 範例"
-services: documentdb
+services: cosmosdb
 author: moderakh
 manager: jhubbard
 editor: monicar
 documentationcenter: python
 ms.assetid: 7f4f8db3-e9db-4645-92ef-7819d486a349
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 04/18/2016
 ms.author: moderakh
-translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7b555732bad08c86c33ee78344ae9c4e6af7c7b8
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 06272744be5bd0b86dbbd1c94dcbd922d125118f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="documentdb-python-examples"></a>DocumentDB Python 範例
+# <a name="azure-cosmos-db-python-examples"></a>Azure Cosmos DB Python 範例
 > [!div class="op_single_selector"]
 > * [.NET 範例](documentdb-dotnet-samples.md)
 > * [Node.js 範例](documentdb-nodejs-samples.md)
@@ -30,7 +32,7 @@ ms.openlocfilehash: 7b555732bad08c86c33ee78344ae9c4e6af7c7b8
 > 
 > 
 
-[azure-documentdb-python](https://github.com/Azure/azure-documentdb-python/tree/master/samples) GitHub 儲存機制中包含可對 Azure DocumentDB 資源執行 CRUD 作業和其他常見作業的範例解決方案。 本文提供：
+[azure-documentdb-python](https://github.com/Azure/azure-documentdb-python/tree/master/samples) GitHub 存放庫中包含可對 Azure Cosmos DB 資源執行 CRUD 作業和其他常見作業的範例解決方案。 本文提供：
 
 * 每個 Python 範例專案檔中各項工作的連結。 
 * 相關 API 參考內容的連結。
@@ -69,10 +71,5 @@ ms.openlocfilehash: 7b555732bad08c86c33ee78344ae9c4e6af7c7b8
 | [取得集合的效能層](https://github.com/Azure/azure-documentdb-python/blob/d78170214467e3ab71ace1a7400f5a7fa5a7b5b0/samples/CollectionManagement/Program.py#L139-L161) |[DocumentQueryable.QueryOffers](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html#CreateCollection) |
 | [變更集合的效能層](https://github.com/Azure/azure-documentdb-python/blob/d78170214467e3ab71ace1a7400f5a7fa5a7b5b0/samples/CollectionManagement/Program.py#L163-L175) |[document_client.ReplaceOffer](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html#CreateCollection) |
 | [刪除集合](https://github.com/Azure/azure-documentdb-python/blob/d78170214467e3ab71ace1a7400f5a7fa5a7b5b0/samples/CollectionManagement/Program.py#L212-L225) |[document_client.DeleteCollection](http://azure.github.io/azure-documentdb-python/api/pydocumentdb.document_client.html#CreateCollection) |
-
-
-
-
-<!--HONumber=Nov16_HO3-->
 
 

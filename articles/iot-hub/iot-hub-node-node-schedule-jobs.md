@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/30/2016
 ms.author: juanpere
-translationtype: Human Translation
-ms.sourcegitcommit: 48c444bfebf46131503dfeefbcd7365b6979215d
-ms.openlocfilehash: 2f59157f47eb211bc7f7d6542f1a7f77ffb90b41
-ms.lasthandoff: 12/16/2016
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 7e2b111868b670444f474a8f6952a16eca680488
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -258,7 +259,7 @@ Azure IoT 中樞是一項完全受管理的服務，可讓後端應用程式建�
 
 [教學課程：如何進行韌體更新][lnk-fwupdate]
 
-若要繼續開始使用 IoT 中樞，請參閱[開始使用 IoT 閘道 SDK][lnk-gateway-SDK]。
+若要繼續開始使用 IoT 中樞，請參閱[開始使用 Azure IoT Edge][lnk-gateway-SDK]。
 
 [lnk-get-started-twin]: iot-hub-node-node-twin-getstarted.md
 [lnk-twin-props]: iot-hub-node-node-twin-how-to-configure.md

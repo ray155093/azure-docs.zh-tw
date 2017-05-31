@@ -15,10 +15,11 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 03/03/2017
 ms.author: maroche
-translationtype: Human Translation
-ms.sourcegitcommit: 1e6ae31b3ef2d9baf578b199233e61936aa3528e
-ms.openlocfilehash: ef4517191084148ff3810226c927ee45a61b2c49
-ms.lasthandoff: 03/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 9f9754aef4f1e933163cd80862c84ba8281def80
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -29,7 +30,7 @@ ms.lasthandoff: 03/03/2017
 自 2016 年 9 月 16 日當週起，Azure 資料目錄已新增下列功能：
 
 * 支援 IBM DB2 資料來源。 使用者現在可以註冊並探索 DB2 資料庫、資料表和檢視。
-* 支援 Azure DocumentDB 資料來源。 使用者現在可以註冊並探索 DocumentDB 資料庫和集合。
+* 支援 Azure Cosmos DB 資料來源。 使用者現在可以註冊並探索 Cosmos DB 資料庫和集合。
 * 支援在資料目錄入口網站中自訂目錄名稱。 目錄管理員現在可以提供顯示在入口網站標題的文字，例如組織名稱。
 
 ## <a name="whats-new-for-the-week-of-august-26-2016-release"></a>2016 年 8 月 26 日當週版本的新功能

@@ -15,10 +15,10 @@ ms.workload: na
 ms.date: 05/02/2017
 ms.author: sethm;jotaub
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 7f3ddc2d7036b9951d4796cf4664f870a0c5f4b6
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 612fb681ab0c8fe77652041f8a1fc23ad0d3428a
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -92,9 +92,16 @@ ms.lasthandoff: 05/03/2017
 
 ## <a name="subscription-and-namespace-management"></a>訂用帳戶和命名空間管理
 ### <a name="how-do-i-migrate-a-namespace-to-another-azure-subscription"></a>如何將命名空間移轉到另一個 Azure 訂用帳戶？
-使用 Azure 入口網站，您可以依下列指示[這裡](../azure-resource-manager/resource-group-move-resources.md#use-portal)，將服務匯流排命名空間移轉到另一個訂用帳戶。 如果您想要使用 PowerShell，請遵循下列指示︰ 
 
-下列的命令順序會從一個 Azure 訂用帳戶的命名空間移到另一個。 若要執行這項作業，命名空間必須已經是作用中，而且執行 PowerShell 命令的使用者必須是來源與目標訂用帳戶的系統管理員。
+您可以使用 [Azure 入口網站](https://portal.azure.com)或 PowerShell 命令，將命名空間從一個 Azure 訂用帳戶移到另一個訂用帳戶。 若要執行此作業，命名空間必須已是作用中。 執行命令的使用者必須同時是來源和目標訂用帳戶上的系統管理員。
+
+#### <a name="portal"></a>入口網站
+
+若要使用 Azure 入口網站將「服務匯流排」移到另一個訂用帳戶，請依照[這裡](../azure-resource-manager/resource-group-move-resources.md#use-portal)的指示操作。 
+
+#### <a name="powershell"></a>PowerShell
+
+下列 PowerShell 命令序列會將命名空間從一個 Azure 訂用帳戶移到另一個訂用帳戶。 若要執行這項作業，命名空間必須已經是作用中，而且執行 PowerShell 命令的使用者必須是來源與目標訂用帳戶的系統管理員。
 
 ```powershell
 # Create a new resource group in target subscription

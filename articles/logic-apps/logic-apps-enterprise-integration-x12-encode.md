@@ -13,11 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2017
-ms.author: padmavc
-translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: b319970e0fd744b21bd0362f1de500a0f182d52e
-ms.lasthandoff: 03/10/2017
+ms.author: LADocs; padmavc
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 1bafa072519cff1599a0cae1d361207ad0fa35d5
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -92,6 +93,9 @@ X12 編碼連接器會執行下列工作︰
 * 要求技術和/或功能確認 (若已設定)。
   * 標頭驗證後會產生技術確認。 技術確認會報告位址接收者處理交換標頭和結尾的狀態
   * 內文驗證後會產生功能確認。 功能確認會報告處理接收的文件時遇到的每個錯誤
+
+## <a name="view-the-swagger"></a>檢視 Swagger
+請參閱 [Swagger 詳細資料](/connectors/x12/)。 
 
 ## <a name="next-steps"></a>後續步驟
 [深入了解企業整合套件](logic-apps-enterprise-integration-overview.md "了解企業整合套件") 

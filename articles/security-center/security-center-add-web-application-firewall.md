@@ -1,6 +1,6 @@
 ---
 title: "在 Azure 資訊安全中心新增 Web 應用程式防火牆 | Microsoft Docs"
-description: "本文件說明如何實作 Azure 資訊安全中心建議的「新增 Web 應用程式防火牆」和「完成應用程式保護」。"
+description: "本文件說明如何實作「Azure 資訊安全中心」的「新增 Web 應用程式防火牆」和「完成應用程式保護」建議。"
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 12/01/2016
+ms.date: 05/09/2017
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: 2286437f4ab13384f895e906ccda48ac1b4c553d
-ms.openlocfilehash: b44a0373ceca84b423984e01eee1e57a67d97cdd
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: d04a07237029953d8a9b20704d85e852ce45d867
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -40,7 +42,9 @@ Azure 資訊安全中心可能會建議您從 Microsoft 合作夥伴新增 Web �
 3. 您可以選擇使用現有的 Web 應用程式防火牆 (如果有的話)，或者您可以建立一個新的 Web 應用程式防火牆。 此範例中沒有任何可用的現有 WAF，因此我們會建立一個 WAF。
 4. 若要建立 WAF，請從整合式合作夥伴的清單中選取一個解決方案。 在此範例中，我們會選取 [Barracuda Web 應用程式防火牆]。
 5. [Barracuda Web 應用程式防火牆]  刀鋒視窗隨即開啟，為您提供合作夥伴解決方案的相關資訊。 選取資訊刀鋒視窗中的 [建立]  。
+
    ![防火牆資訊刀鋒視窗][3]
+
 6. 即會開啟 [新增 Web 應用程式防火牆] 刀鋒視窗，您可以在此視窗中執行 [VM 組態] 步驟並提供 [WAF 資訊]。 選取 [VM 組態]。
 7. 在 [VM 組態] 刀鋒視窗中，輸入啟動要執行 WAF 之虛擬機器所需的資訊。
    ![VM configuration][4]
@@ -48,10 +52,13 @@ Azure 資訊安全中心可能會建議您從 Microsoft 合作夥伴新增 Web �
 
 ## <a name="finalize-application-protection"></a>完成應用程式保護
 1. 返回 [建議]  刀鋒視窗。 在您建立 WAF 之後會產生一個新項目，稱為 [完成應用程式保護] 。 此項目可讓您知道您需要完成實際串聯起 Azure 虛擬網路內 WAF 的程序，讓它可以保護應用程式。
+
    ![完成應用程式保護][5]
+
 2. 選取 [完成應用程式保護] 。 此時會開啟新的分頁。 您會看到有一個需要重新路由流量的 Web 應用程式。
 3. 選取 Web 應用程式。 將會開啟一個刀鋒視窗，其中提供完成 Web 應用程式防火牆設定的步驟。 完成這些步驟，然後選取 [限制流量] 。 接著，資訊安全中心會為您進行串聯。
-   ![][6]
+
+   ![限制流量][6]
 
 > [!NOTE]
 > 您可以將這些應用程式加入現有的 WAF 部署，以保護資訊安全中心的多個 Web 應用程式。
@@ -60,7 +67,7 @@ Azure 資訊安全中心可能會建議您從 Microsoft 合作夥伴新增 Web �
 
 現在已將來自該 WAF 的記錄完全整合。 「資訊安全中心」可以開始自動收集並分析記錄，以便對您顯示重要的安全性警示。
 
-## <a name="see-also"></a>另請參閱
+## <a name="next-steps"></a>後續步驟
 本文件說明如何實作資訊安全中心建議的「新增 Web 應用程式」。 若要深入了解如何設定 Web 應用程式防火牆，請參閱下列各項：
 
 * [設定 App Service 環境的 Web 應用程式防火牆 (WAF)](../app-service-web/app-service-app-service-environment-web-application-firewall.md)
@@ -81,9 +88,4 @@ Azure 資訊安全中心可能會建議您從 Microsoft 合作夥伴新增 Web �
 [4]: ./media/security-center-add-web-application-firewall/select-vm-config.png
 [5]: ./media/security-center-add-web-application-firewall/finalize-waf.png
 [6]: ./media/security-center-add-web-application-firewall/restrict-traffic.png
-
-
-
-<!--HONumber=Dec16_HO1-->
-
 

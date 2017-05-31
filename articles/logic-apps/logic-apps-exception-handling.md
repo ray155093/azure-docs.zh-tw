@@ -13,11 +13,12 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/18/2016
-ms.author: jehollan
-translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: be14485c9070d7dce5ecbaea778f31f30e13cfa9
-ms.lasthandoff: 03/10/2017
+ms.author: LADocs; jehollan
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: ddb7c2fd9437cb342e68b5a1ad47f9bd06ec476b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -208,7 +209,7 @@ Azure Logic Apps 提供了豐富的工具和模式，以協助確保您的整合
 ## <a name="azure-diagnostics-and-telemetry"></a>Azure 診斷和遙測
 
 上述模式非常適合處理執行內的錯誤和例外狀況，但您也可以識別和回應與執行本身無關的錯誤。 
-[Azure 診斷](../logic-apps/logic-apps-monitor-your-logic-apps.md) 提供了簡單的方法讓您將所有工作流程事件 (包括所有執行和動作狀態) 傳送至 Azure 儲存體帳戶或 Azure 事件中樞。 若要評估執行狀態，您可以監視記錄和度量，或將它們發佈至您偏好使用的任何監視工具。 其中一個可能的選項是透過 Azure 事件中樞將所有事件串流到 [串流分析](https://azure.microsoft.com/services/stream-analytics/)。 在串流分析中，您可以將診斷記錄中任何異常、平均或失敗的即時查詢取消。 串流分析可以輕鬆地輸出至其他資料來源，例如佇列、主題、SQL、DocumentDB 和 Power BI。
+[Azure 診斷](../logic-apps/logic-apps-monitor-your-logic-apps.md) 提供了簡單的方法讓您將所有工作流程事件 (包括所有執行和動作狀態) 傳送至 Azure 儲存體帳戶或 Azure 事件中樞。 若要評估執行狀態，您可以監視記錄和度量，或將它們發佈至您偏好使用的任何監視工具。 其中一個可能的選項是透過 Azure 事件中樞將所有事件串流到 [串流分析](https://azure.microsoft.com/services/stream-analytics/)。 在串流分析中，您可以將診斷記錄中任何異常、平均或失敗的即時查詢取消。 串流分析可以輕鬆地輸出至其他資料來源，例如佇列、主題、SQL、Azure Cosmos DB 和 Power BI。
 
 ## <a name="next-steps"></a>後續步驟
 

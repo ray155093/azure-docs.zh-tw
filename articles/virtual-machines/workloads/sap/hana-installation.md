@@ -15,10 +15,10 @@ ms.date: 12/01/2016
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 54b5b8d0040dc30651a98b3f0d02f5374bf2f873
-ms.openlocfilehash: b791be369016dd52d95ec727e46fd8b554c09047
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 89356670737ed7b9adc5df51466ce71eb73b3cd4
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/28/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -28,7 +28,7 @@ ms.lasthandoff: 04/28/2017
 
 ## <a name="first-steps-after-receiving-the-hana-large-instance-units"></a>收到 HANA 大型執行個體單位之後的前幾個步驟
 
-在收到「HANA 大型執行個體」並建立對執行個體的存取和連線之後，**第一步**是向您的 OS 提供者註冊執行個體的 OS。 這會包括在您必須已部署的 SUSE SMT 執行個體中註冊 SUSE Linux OS。 或是必須向您必須連接的 Red Hat Subscription Manager 註冊 RedHat OS。 另請參閱這份[文件](https://docs.microsoft.com/azure/virtual-machines/linux/sap-hana-overview-architecture?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)中的備註。 此步驟也是持續修補 OS 所需的步驟。 這是一項屬於客戶職責的工作。 
+在收到「HANA 大型執行個體」並建立對執行個體的存取和連線之後，**第一步**是向您的 OS 提供者註冊執行個體的 OS。 這包括在「HANA 大型執行個體」單位可連線的 Azure VM 中，於已部署之 SUSE SMT 的執行個體註冊 SUSE Linux OS。 或是必須向您必須連接的 Red Hat Subscription Manager 註冊 RedHat OS。 另請參閱這份[文件](https://docs.microsoft.com/azure/virtual-machines/linux/sap-hana-overview-architecture?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)中的備註。 此步驟也是持續修補 OS 所需的步驟。 這是一項屬於客戶職責的工作。 有關 SUSE，請在[這裡](https://www.suse.com/documentation/sles-12/book_smt/data/smt_installation.html)尋找安裝和設定 SMT 的文件。
 
 **第二步**是檢查是否有特定 OS 版次/版本的新修補程式和修正。 請檢查「HANA 大型執行個體」的修補程式等級是否為最新狀態。 根據 OS 修補程式/版次和 Microsoft 可部署對映像所做之變更的時機，可能會有未包含最新修補程式的情況。 因此，在接管「HANA 大型執行個體」單位並向 Linux 散發者註冊 OS 安裝之後，就必須檢查特定 Linux 廠商是否已在這期間發行與安全性、功能、可用性及效能相關的修補程式而需要套用。
 

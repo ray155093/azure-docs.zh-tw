@@ -94,7 +94,7 @@ Azure 入口網站在 Azure 搜尋服務儀表板上提供 [匯入資料] 精靈
 
 ## <a name="query-an-index-using-search-explorer"></a>使用搜尋總管查詢索引
 
-入口網站包含 [搜尋總管]，可供您查詢索引，而不需撰寫任何程式碼。 您可以將 [搜尋總管][](search-explorer.md) 使用於任何索引。
+入口網站包含 [搜尋總管]，可供您查詢索引，而不需撰寫任何程式碼。 您可以將 [搜尋總管](search-explorer.md) 使用於任何索引。
 
 搜尋體驗是以預設設定為基礎，例如[簡單語法](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search)和預設 searchMode 查詢參數 (https://docs.microsoft.com/rest/api/searchservice/search-documents)。 
 

@@ -3,8 +3,8 @@ title: "了解如何在邏輯應用程式中使用 Twitter 連接器 | Microsoft
 description: "搭配 REST API 參數來使用 Twitter 連接器的概觀"
 services: 
 documentationcenter: 
-author: msftman
-manager: erikre
+author: MandiOhlinger
+manager: anneta
 editor: 
 tags: connectors
 ms.assetid: 8bce2183-544d-4668-a2dc-9a62c152d9fa
@@ -14,10 +14,12 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
-ms.author: deonhe
-translationtype: Human Translation
-ms.sourcegitcommit: 66fc8f7e1da55dbe6bb1dd8b8d6a535c498c1cf7
-ms.openlocfilehash: 13ecb8936484b1c86938a16c7dd6da8000d4ffec
+ms.author: mandia; ladocs
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 7b4e14ff2e7e6575574e9da412d29cc2c228990f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -92,303 +94,17 @@ ms.openlocfilehash: 13ecb8936484b1c86938a16c7dd6da8000d4ffec
    ![Twitter 動作圖 1-5](../../includes/media/connectors-create-api-twitter/action-1-5.png)   
 3. 選取 [推文文字] 控制項。 前述動作和觸發程序的所有輸出現在可顯示在邏輯應用程式中。 您可以選取上述任何輸出，並使用它們做為新推文的部分推文文字。     
    ![Twitter 動作圖 2](../../includes/media/connectors-create-api-twitter/action-2.png)   
-4. 選取 [使用者名稱]   
+4. 選取 [使用者名稱]****   
 5. 在推文文字控制項中輸入「說：」。 在使用者名稱之後執行此動作。  
 6. 選取「推文文字」。       
    ![Twitter 動作圖 3](../../includes/media/connectors-create-api-twitter/action-3.png)   
 7. 儲存您的工作並傳送具有 #Seattle 雜湊標籤的推文，以啟動您的工作流程。  
 
-## <a name="technical-details"></a>技術詳細資料
-以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
 
-## <a name="twitter-triggers"></a>Twitter 觸發程序
-Twitter 連接器具有下列觸發程序︰  
-
-| 觸發程序 | 說明 |
-| --- | --- |
-| [當有新推文張貼時](connectors-create-api-twitter.md#when-a-new-tweet-is-posted) |當有符合指定搜尋查詢的新推文張貼時，此作業就會觸發流程。 |
-
-## <a name="twitter-actions"></a>Twitter 動作
-Twitter 連接器具有下列動作︰
-
-| 動作 | 說明 |
-| --- | --- |
-| [取得使用者的時間軸](connectors-create-api-twitter.md#get-user-timeline) |這項作業會取得指定使用者所張貼的最新推文清單。 |
-| [取得首頁時間軸](connectors-create-api-twitter.md#get-home-timeline) |這項作業會取得我和我的跟隨者最新的推文及轉推推文。 |
-| [搜尋推文](connectors-create-api-twitter.md#search-tweets) |這項作業會取得符合搜尋查詢的相關推文清單。 |
-| [取得粉絲](connectors-create-api-twitter.md#get-followers) |這項作業會取得關注指定使用者的使用者清單。 |
-| [取得我的粉絲](connectors-create-api-twitter.md#get-my-followers) |這項作業會取得正在關注我的使用者清單。 |
-| [取得正在關注的對象](connectors-create-api-twitter.md#get-following) |這項作業會取得指定使用者所關注的人員清單。 |
-| [取得我正在關注的對象](connectors-create-api-twitter.md#get-my-following) |這項作業會取得我正在關注的使用者清單。 |
-| [取得使用者](connectors-create-api-twitter.md#get-user) |這項作業會取得指定使用者的設定檔詳細資料，例如使用者名稱、描述、追隨者計數等等。 |
-| [張貼推文](connectors-create-api-twitter.md#post-a-tweet) |這項作業會張貼新推文。 |
-
-## <a name="action-details"></a>動作詳細資料
-以下是此連接器動作和觸發程序以及其回應的詳細資料︰
-
-### <a name="get-user-timeline"></a>取得使用者的時間軸
-這項作業會取得指定使用者所張貼的最新推文清單。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| userName* |使用者名稱 |使用者的 Twitter 控制代碼 |
-| maxResults |結果數目上限 |要傳回的推文數目上限 |
-
-* 表示這是必要屬性
-
-#### <a name="output-details"></a>輸出詳細資料
-TweetModel：推文物件的表示方式
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| tweetText |string |推文的文字內容 |
-| TweetId |string |推文的識別碼 |
-| CreatedAt |string |張貼推文的時間 |
-| RetweetCount |integer |推文的轉推總次數 |
-| TweetedBy |string |張貼推文的使用者名稱 |
-| MediaUrls |array |與推文一起張貼的媒體 Url |
-| TweetLanguageCode |string |推文的語言代碼 |
-| TweetInReplyToUserId |string |目前回覆推文的推文作者使用者識別碼 |
-| Favorited |布林值 |指出推文是否標示為喜歡 |
-| UserMentions |array |推文中提及的使用者清單 |
-| OriginalTweet |沒有定義 |從中轉推目前推文的原始推文 |
-| UserDetails |沒有定義 |推文的使用者詳細資料 |
-
-### <a name="get-home-timeline"></a>取得首頁時間軸
-這項作業會取得我和我的跟隨者最新的推文及轉推推文。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| maxResults |結果數目上限 |要傳回的推文數目上限 |
-
-* 表示這是必要屬性
-
-#### <a name="output-details"></a>輸出詳細資料
-TweetModel：推文物件的表示方式
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| tweetText |string |推文的文字內容 |
-| TweetId |string |推文的識別碼 |
-| CreatedAt |string |張貼推文的時間 |
-| RetweetCount |integer |推文的轉推總次數 |
-| TweetedBy |string |張貼推文的使用者名稱 |
-| MediaUrls |array |與推文一起張貼的媒體 Url |
-| TweetLanguageCode |string |推文的語言代碼 |
-| TweetInReplyToUserId |string |目前回覆推文的推文作者使用者識別碼 |
-| Favorited |布林值 |指出推文是否標示為喜歡 |
-| UserMentions |array |推文中提及的使用者清單 |
-| OriginalTweet |沒有定義 |從中轉推目前推文的原始推文 |
-| UserDetails |沒有定義 |推文的使用者詳細資料 |
-
-### <a name="search-tweets"></a>搜尋推文
-這項作業會取得符合搜尋查詢的相關推文清單。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| searchQuery* |搜尋文字 |搜尋「快樂時光」、#haiku、愛或恨等詞彙 |
-| maxResults |結果數目上限 |要傳回的推文數目上限 |
-
-* 表示這是必要屬性
-
-#### <a name="output-details"></a>輸出詳細資料
-TweetModel：推文物件的表示方式
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| tweetText |string |推文的文字內容 |
-| TweetId |string |推文的識別碼 |
-| CreatedAt |string |張貼推文的時間 |
-| RetweetCount |integer |推文的轉推總次數 |
-| TweetedBy |string |張貼推文的使用者名稱 |
-| MediaUrls |array |與推文一起張貼的媒體 Url |
-| TweetLanguageCode |string |推文的語言代碼 |
-| TweetInReplyToUserId |string |目前回覆推文的推文作者使用者識別碼 |
-| Favorited |布林值 |指出推文是否標示為喜歡 |
-| UserMentions |array |推文中提及的使用者清單 |
-| OriginalTweet |沒有定義 |從中轉推目前推文的原始推文 |
-| UserDetails |沒有定義 |推文的使用者詳細資料 |
-
-### <a name="get-followers"></a>取得跟隨者
-這項作業會取得關注指定使用者的使用者清單。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| userName* |使用者名稱 |使用者的 Twitter 控制代碼 |
-| maxResults |結果數目上限 |要傳回的使用者數目上限 |
-
-* 表示這是必要屬性
-
-#### <a name="output-details"></a>輸出詳細資料
-UserDetailsModel：Twitter 使用者詳細資料
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| FullName |string |使用者名稱 |
-| 位置 |string |使用者的位置 |
-| 識別碼 |integer |使用者的 Twitter 識別碼 |
-| UserName |string |使用者的畫面名稱 |
-| FollowersCount |integer |跟隨者數目 |
-| 說明 |string |使用者描述 |
-| StatusesCount |integer |使用者狀態計數 |
-| FriendsCount |integer |好友數目 |
-| FavouritesCount |integer |使用者喜歡的推文數目 |
-| ProfileImageUrl |string |設定檔影像的 Url |
-
-### <a name="get-my-followers"></a>取得我的跟隨者
-這項作業會取得正在關注我的使用者清單。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| maxResults |結果數目上限 |要取得的使用者數目上限 |
-
-* 表示這是必要屬性
-
-#### <a name="output-details"></a>輸出詳細資料
-UserDetailsModel：Twitter 使用者詳細資料
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| FullName |string |使用者名稱 |
-| 位置 |string |使用者的位置 |
-| 識別碼 |integer |使用者的 Twitter 識別碼 |
-| UserName |string |使用者的畫面名稱 |
-| FollowersCount |integer |跟隨者數目 |
-| 說明 |string |使用者描述 |
-| StatusesCount |integer |使用者狀態計數 |
-| FriendsCount |integer |好友數目 |
-| FavouritesCount |integer |使用者喜歡的推文數目 |
-| ProfileImageUrl |string |設定檔影像的 Url |
-
-### <a name="get-following"></a>取得正在關注的對象
-這項作業會取得指定使用者所關注的人員清單。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| userName* |使用者名稱 |使用者的 Twitter 控制代碼 |
-| maxResults |結果數目上限 |要傳回的使用者數目上限 |
-
-* 表示這是必要屬性
-
-#### <a name="output-details"></a>輸出詳細資料
-UserDetailsModel：Twitter 使用者詳細資料
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| FullName |string |使用者名稱 |
-| 位置 |string |使用者的位置 |
-| 識別碼 |integer |使用者的 Twitter 識別碼 |
-| UserName |string |使用者的畫面名稱 |
-| FollowersCount |integer |跟隨者數目 |
-| 說明 |string |使用者描述 |
-| StatusesCount |integer |使用者狀態計數 |
-| FriendsCount |integer |好友數目 |
-| FavouritesCount |integer |使用者喜歡的推文數目 |
-| ProfileImageUrl |string |設定檔影像的 Url |
-
-### <a name="get-my-following"></a>取得我正在關注的對象
-這項作業會取得我正在關注的使用者清單。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| maxResults |結果數目上限 |要傳回的使用者數目上限 |
-
-* 表示這是必要屬性
-
-#### <a name="output-details"></a>輸出詳細資料
-UserDetailsModel：Twitter 使用者詳細資料
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| FullName |string |使用者名稱 |
-| 位置 |string |使用者的位置 |
-| 識別碼 |integer |使用者的 Twitter 識別碼 |
-| UserName |string |使用者的畫面名稱 |
-| FollowersCount |integer |跟隨者數目 |
-| 說明 |string |使用者描述 |
-| StatusesCount |integer |使用者狀態計數 |
-| FriendsCount |integer |好友數目 |
-| FavouritesCount |integer |使用者喜歡的推文數目 |
-| ProfileImageUrl |string |設定檔影像的 Url |
-
-### <a name="get-user"></a>取得使用者
-這項作業會取得指定使用者的設定檔詳細資料，例如使用者名稱、描述、追隨者計數等等。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| userName* |使用者名稱 |使用者的 Twitter 控制代碼 |
-
-* 表示這是必要屬性
-
-#### <a name="output-details"></a>輸出詳細資料
-UserDetailsModel：Twitter 使用者詳細資料
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| FullName |string |使用者名稱 |
-| 位置 |string |使用者的位置 |
-| 識別碼 |integer |使用者的 Twitter 識別碼 |
-| UserName |string |使用者的畫面名稱 |
-| FollowersCount |integer |跟隨者數目 |
-| 說明 |string |使用者描述 |
-| StatusesCount |integer |使用者狀態計數 |
-| FriendsCount |integer |好友數目 |
-| FavouritesCount |integer |使用者喜歡的推文數目 |
-| ProfileImageUrl |string |設定檔影像的 Url |
-
-### <a name="post-a-tweet"></a>張貼推文
-這項作業會張貼新推文。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| tweetText |推文文字 |要張貼的文字 |
-| body |媒體 |要張貼的媒體 |
-
-* 表示這是必要屬性
-
-#### <a name="output-details"></a>輸出詳細資料
-TweetResponseModel：代表已張貼推文的模型
-
-| 屬性名稱 | 資料類型 | 說明 |
-| --- | --- | --- |
-| TweetId |string |所擷取推文的識別碼 |
-
-### <a name="when-a-new-tweet-is-posted"></a>當有新推文張貼時
-當有符合指定搜尋查詢的新推文張貼時，此作業就會觸發流程。 
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| searchQuery* |搜尋文字 |搜尋「快樂時光」、#haiku、愛或恨等詞彙 |
-
-* 表示這是必要屬性
-
-#### <a name="output-details"></a>輸出詳細資料
-TriggerBatchResponse[TweetModel]
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| value |array |
-
-## <a name="http-responses"></a>HTTP 回應
-上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰ 
-
-| 名稱 | 說明 |
-| --- | --- |
-| 200 |OK |
-| 202 |已接受 |
-| 400 |不正確的要求 |
-| 401 |未經授權 |
-| 403 |禁止 |
-| 404 |找不到 |
-| 500 |內部伺服器錯誤。 發生未知錯誤。 |
-| 預設值 |作業失敗。 |
+## <a name="view-the-swagger"></a>檢視 Swagger
+請參閱 [Swagger 詳細資料](/connectors/twitterconnector/)。 
 
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)
-
-
-
-
-<!--HONumber=Jan17_HO3-->
 
 

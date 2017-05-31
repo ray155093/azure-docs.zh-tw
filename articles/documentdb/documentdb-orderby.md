@@ -1,15 +1,16 @@
 ---
-redirect_url: https://azure.microsoft.com/services/documentdb/
+redirect_url: https://azure.microsoft.com/services/cosmos-db/
 ROBOTS: NOINDEX, NOFOLLOW
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 0ca716857733290fad4278e3be5059408bb75393
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 51bed95b47f08cb9ba6c0785d9ac8bb1c9f1ad4c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="sorting-documentdb-data-using-order-by"></a>使用 Order By 排序 DocumentDB 資料
-Microsoft Azure DocumentDB 支援在 JSON 文件上使用 SQL 來查詢文件。 您可以在 SQL 查詢陳述式中使用 ORDER BY 子句來排序查詢結果。
+# <a name="sorting-azure-cosmos-db-data-using-order-by"></a>使用 Order By 排序 Azure Cosmos DB 資料
+Microsoft Azure Cosmos DB 支援在 JSON 文件上使用 SQL 來查詢文件。 您可以在 SQL 查詢陳述式中使用 ORDER BY 子句來排序查詢結果。
 
 閱讀本文後，您將能夠回答下列問題： 
 
@@ -19,10 +20,10 @@ Microsoft Azure DocumentDB 支援在 JSON 文件上使用 SQL 來查詢文件。
 
 本文章另提供[範例](#samples)和[常見問題集](#faq)。
 
-如需 SQL 查詢的完整參考，請參閱 [DocumentDB 查詢教學課程](documentdb-sql-query.md)。
+如需 SQL 查詢的完整參考，請參閱 [Azure Cosmos DB 查詢教學課程](documentdb-sql-query.md)。
 
 ## <a name="how-to-query-with-order-by"></a>如何使用 Order By 來進行查詢
-您現在查詢 DocumentDB 時於 SQL 陳述式中加入選擇性的 Order By 子句，就像 ANSI SQL 一樣。 子句可以包含選擇性 ASC/DESC 引數，利用它來指定擷取結果時必須依循的順序。 
+您現在查詢 Cosmos DB 時可於 SQL 陳述式中加入選擇性的 Order By 子句，就像 ANSI SQL 一樣。 子句可以包含選擇性 ASC/DESC 引數，利用它來指定擷取結果時必須依循的順序。 
 
 ### <a name="ordering-using-sql"></a>使用 SQL 來進行排序
 例如，以下是依照其標題之遞減順序擷取前 10 名書籍的查詢。 
@@ -49,10 +50,10 @@ Microsoft Azure DocumentDB 支援在 JSON 文件上使用 SQL 來查詢文件。
         // Iterate through books
     }
 
-DocumentDB 支援對於每一個查詢使用單一數值、字串或布林值屬性的排序，即將推出其他查詢類型。 如需詳細資訊，請參閱 [未來將推出哪些新功能](#Whats_coming_next) 。
+Cosmos DB 支援對於每一個查詢使用單一數值、字串或布林值屬性的排序，即將推出其他查詢類型。 如需詳細資訊，請參閱 [未來將推出哪些新功能](#Whats_coming_next) 。
 
 ## <a name="configure-an-indexing-policy-for-order-by"></a>設定 Order by 的編製索引原則
-請回想支援兩種類型索引 (雜湊和範圍)的 DocumentDB，它可以針對特定路徑/屬性、資料類型 (字串/數字)，並且以不同的精確度值 (最大精確度或固定精確度值) 進行設定。 因為 DocumentDB 使用雜湊索引做為預設值，您必須以具有數字、字串或兩者之「範圍」的自訂索引編製原則建立新集合，才能使用 Order By。 
+請回想支援兩種類型索引 (雜湊和範圍) 的 Cosmos DB，它可以針對特定路徑/屬性、資料類型 (字串/數字)，並且以不同的精確度值 (最大精確度或固定精確度值) 進行設定。 因為 Cosmos DB 使用雜湊索引做為預設值，您必須以具有數字、字串或兩者之「範圍」的自訂索引編製原則建立新集合，才能使用 Order By。 
 
 > [!NOTE]
 > 字串範圍索引是在 2015 年 7 月 7 日的 REST API 2015-06-03 版本中引進。 若要針對字串建立 Order By 的原則，您必須使用 .NET SDK 的 SDK 1.2.0 版，或 Python、Node.js 或 Java SDK 的 1.1.0 版。
@@ -61,7 +62,7 @@ DocumentDB 支援對於每一個查詢使用單一數值、字串或布林值屬
 > 
 > 
 
-如需詳細資訊，請參閱 [DocumentDB 索引編制原則](documentdb-indexing-policies.md)。
+如需詳細資訊，請參閱 [Azure Cosmos DB 索引編製原則](documentdb-indexing-policies.md)。
 
 ### <a name="indexing-for-order-by-against-all-properties"></a>針對所有屬性編製 Order By 的索引
 以下是您如何針對出現在 JSON 文件內的任何/所有數字或字串屬性，以 Order By 的「所有範圍」索引建立集合。 這裡我們會將字串值的預設索引類型覆寫為範圍，並且使用最大精確度 (-1)。
@@ -96,13 +97,13 @@ DocumentDB 支援對於每一個查詢使用單一數值、字串或布林值屬
 ## <a name="faq"></a>常見問題集
 **Order By 查詢的預期要求單位 (RU) 耗用量有多高？**
 
-由於 Order By 利用 DocumentDB 索引來進行查閱，因此 Order By 查詢所耗用的要求單位數目將與不含 Order By 的同等查詢相似。 就像 DocumentDB 上的其他所有作業一樣，要求單位的數目取決於文件大小/圖形，以及查詢的複雜性。 
+由於 Order By 利用 Cosmos DB 索引來進行查閱，因此 Order By 查詢所耗用的要求單位數目將與不含 Order By 的同等查詢相似。 就像 Cosmos DB 上的其他所有作業一樣，要求單位的數目取決於文件大小/圖形，以及查詢的複雜性。 
 
 **Order By 的預期索引額外負荷有多高？**
 
 索引編製的儲存額外負荷將與屬性的數目成正比。 在最糟的情況下，索引額外負荷會是資料的 100%。 Range/Order By 索引編製和預設雜湊索引編製之間的輸送量 (要求單位) 額外負荷並無差別。
 
-**如何使用 Order By 查詢 DocumentDB 中的現有資料？**
+**如何使用 Order By 查詢 Cosmos DB 中的現有資料？**
 
 若要使用 Order By 排序查詢結果，您必須將集合的索引編製原則修改為使用範圍索引類型來排序，而不使用屬性來排序。 請參閱 [修改索引編製原則](documentdb-indexing-policies.md#modifying-the-indexing-policy-of-a-collection)。 
 
@@ -127,9 +128,9 @@ DocumentDB 支援對於每一個查詢使用單一數值、字串或布林值屬
 取用 [GitHub 範例專案](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/Queries)，並開始排序您的資料 ！ 
 
 ## <a name="references"></a>參考
-* [DocumentDB 查詢參考](documentdb-sql-query.md)
-* [DocumentDB 索引編製原則參考](documentdb-indexing-policies.md)
-* [DocumentDB SQL 參考](https://msdn.microsoft.com/library/azure/dn782250.aspx)
-* [DocumentDB Order By 範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/Queries)
+* [Azure Cosmos DB 查詢參考](documentdb-sql-query.md)
+* [Azure Cosmos DB 索引編製原則參考](documentdb-indexing-policies.md)
+* [Azure Cosmos DB SQL 參考](https://msdn.microsoft.com/library/azure/dn782250.aspx)
+* [Azure Cosmos DB Order By 範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/code-samples/Queries)
 
 

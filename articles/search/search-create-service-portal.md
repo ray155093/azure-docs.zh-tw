@@ -11,12 +11,13 @@ ms.devlang: NA
 ms.workload: search
 ms.topic: article
 ms.tgt_pltfrm: na
-ms.date: 03/05/2017
+ms.date: 05/01/2017
 ms.author: heidist
-translationtype: Human Translation
-ms.sourcegitcommit: d9dad6cff80c1f6ac206e7fa3184ce037900fc6b
-ms.openlocfilehash: 379bc2e80a89b6d46db3bd536737583d51029328
-ms.lasthandoff: 03/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 58f4eab190e40e16ed261c165ffdfc8155eeb434
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -48,7 +49,7 @@ ms.lasthandoff: 03/06/2017
    * 不能是連續的破折號 ("-")
 
 ## <a name="select-a-subscription"></a>選取一個訂用帳戶
-如果您有一個以上的訂用帳戶，請選擇一個同樣具有資料或檔案儲存體服務的訂用帳戶。 Azure 搜尋服務可以透過「索引子」自動偵測 Azure 資料表和 Blob 儲存體、SQL Database 和 DocumentDB 以進行索引編製，但只會針對相同訂用帳戶中的服務。
+如果您有一個以上的訂用帳戶，請選擇一個同樣具有資料或檔案儲存體服務的訂用帳戶。 Azure 搜尋服務可以透過「索引子」自動偵測 Azure 資料表和 Blob 儲存體、SQL Database 和 Azure Cosmos DB 以進行索引編製，但只會針對相同訂用帳戶中的服務。
 
 ## <a name="select-a-resource-group"></a>選取資源群組
 資源群組是一起使用之 Azure 服務和資源的集合。 例如，如果您使用 Azure 搜尋服務來編製 SQL 資料庫的索引，則這兩個服務應該屬於同一個資源群組。

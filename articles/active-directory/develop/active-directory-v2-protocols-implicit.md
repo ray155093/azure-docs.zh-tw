@@ -14,9 +14,12 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
-translationtype: Human Translation
-ms.sourcegitcommit: ba958d029e5bf1bc914a2dff4b6c09282d578c67
-ms.openlocfilehash: 1ea1f54832a13b57caf3d6783e482fad4ba00781
+ms.custom: aaddev
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 2ac6f92d027c893316b6e310e4c3103ab0e51785
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -219,29 +222,13 @@ error=user_authentication_required
 `id_token` 和 `access_token` 馬上就會到期，因此您的應用程式必須準備好定期重新整理這些權杖。  若要重新整理其中任何一個類型的權杖，您可以使用 `prompt=none` 參數來控制 Azure AD 的行為，執行上述的相同隱藏的 iframe 要求。  如果您想要收到新的 `id_token`，務必使用 `response_type=id_token` 和 `scope=openid`，以及 `nonce` 參數。
 
 ## <a name="send-a-sign-out-request"></a>傳送登出要求
-v2.0 端點目前不支援 OpenIdConnect `end_session_endpoint` 。 這表示應用程式無法向 v2.0 端點傳送要求，而無法結束使用者工作階段及清除 v2.0 端點設定的 Cookie。
-若要將使用者登出，應用程式只需結束自身的使用者工作階段，並完整地將使用者工作階段留給 v2.0 端點即可。  下次使用者嘗試登入時，就會看到列出其主動登入帳戶的 [選擇帳戶] 頁面。
-在該頁面上，使用者可以選擇登出任一帳戶，結束 v2.0 端點的工作階段。
-
-<!--
-
-When you wish to sign the user out of the  app, it is not sufficient to clear your app's cookies or otherwise end the session with the user.  You must also redirect the user to the v2.0 endpoint for sign out.  If you fail to do so, the user will be able to re-authenticate to your app without entering their credentials again, because they will have a valid single sign-on session with the v2.0 endpoint.
-
-You can simply redirect the user to the `end_session_endpoint` listed in the OpenID Connect metadata document:
+OpenIdConnect `end_session_endpoint` 允許您的應用程式向 v2.0 端點傳送要求，以結束使用者的工作階段及清除 v2.0 端點設定的 Cookie。  若要將使用者從 Web 應用程式完全登出，您的應用程式應結束自己和使用者之間的工作階段 (通常是透過清除權杖快取或卸除 Cookie)，然後將瀏覽器重新導向至
 
 ```
-GET https://login.microsoftonline.com/common/oauth2/v2.0/logout?
-post_logout_redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
+https://login.microsoftonline.com/{tenant}/oauth2/v2.0/logout?post_logout_redirect_uri=https://localhost/myapp/
 ```
 
-| Parameter | | Description |
-| ----------------------- | ------------------------------- | ------------ |
-| post_logout_redirect_uri | recommended | The URL which the user should be redirected to after successful logout.  If not included, the user will be shown a generic message by the v2.0 endpoint.  |
-
--->
-
-
-
-<!--HONumber=Jan17_HO4-->
-
-
+| 參數 |  | 說明 |
+| --- | --- | --- |
+| tenant |必要 |要求路徑中的 `{tenant}` 值可用來控制可登入應用程式的人員。  允許的值為 `common`、`organizations`、`consumers` 及租用戶識別碼。  如需更多詳細資訊，請參閱 [通訊協定基本概念](active-directory-v2-protocols.md#endpoints)。 |
+| post_logout_redirect_uri | 建議使用 | 使用者在完成登出之後應該要返回的 URL。 這個值必須符合為應用程式註冊的其中一個重新導向 URI。 如果未包含，v2.0 端點會向使用者顯示一般訊息。 |

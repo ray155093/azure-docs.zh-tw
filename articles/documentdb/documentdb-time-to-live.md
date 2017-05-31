@@ -1,33 +1,34 @@
 ---
-title: "利用存留時間讓 DocumentDB 集合中的資料過期 | Microsoft Docs"
-description: "利用 TTL，Microsoft Azure DocumentDB 提供了在一段時間後從系統自動清除文件的功能。"
-services: documentdb
+title: "利用存留時間讓 Azure Cosmos DB 中的資料過期 | Microsoft Docs"
+description: "Microsoft Azure Cosmos DB 可讓您利用 TTL 在一段時間後自動從系統清除文件。"
+services: cosmosdb
 documentationcenter: 
 keywords: "存留時間"
 author: arramac
 manager: jhubbard
 editor: 
 ms.assetid: 25fcbbda-71f7-414a-bf57-d8671358ca3f
-ms.service: documentdb
+ms.service: cosmosdb
 ms.devlang: multiple
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/13/2017
 ms.author: arramac
-translationtype: Human Translation
-ms.sourcegitcommit: 1ad5307054dbd860f9c65db4b82ea5f560a554c8
-ms.openlocfilehash: 14a06dd20547f2910b2321372b27d9f777e54cc7
-ms.lasthandoff: 01/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 7a1d4c722fdb926c43b23e333f9fa558ba163b65
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="expire-data-in-documentdb-collections-automatically-with-time-to-live"></a>利用存留時間讓 DocumentDB 集合中的資料自動過期
+# <a name="expire-data-in-azure-cosmos-db-collections-automatically-with-time-to-live"></a>利用存留時間讓 Azure Cosmos DB 集合中的資料自動過期
 應用程式可以產生並儲存大量資料。 其中有些資料，例如電腦產生的事件資料、記錄檔和使用者工作階段資訊只能在有限的期間內使用。 一旦資料超過應用程式的需求，即可放心清除此資料並減少應用程式的儲存體需求。
 
-Microsoft Azure DocumentDB 藉由「存留時間」(或稱 TTL) 提供了在一段時間後從資料庫自動清除文件的功能。 預設存留時間可以在集合層級設定，並且在每份文件上覆寫。 一旦設定 TTL (做為集合預設值或在文件層級)，DocumentDB 就會自動移除自上次修改後存在一段時間 (以秒為單位) 的文件。
+Microsoft Azure Cosmos DB 可讓您利用「存留時間」(或稱 TTL) 在一段時間後自動從資料庫清除文件。 預設存留時間可以在集合層級設定，並且在每份文件上覆寫。 設定 TTL (不論是作為集合預設值或是在文件層級設定) 之後，Cosmos DB 就會自動移除自上次修改後存在時間達該指定時間 (以秒為單位) 的文件。
 
-DocumentDB 中的存留時間會使用上次修改文件時的時間位移。 為了這麼做，它會使用每份文件上都有的 `_ts` 欄位。 _ts 欄位是 unix 樣式的 Epoch 時間戳記，表示日期和時間。 每次修改文件時都會更新 `_ts` 欄位。 
+Cosmos DB 中的存留時間會使用上次修改文件時的對照時間位移。 為了這麼做，它會使用每份文件上都有的 `_ts` 欄位。 _ts 欄位是 unix 樣式的 Epoch 時間戳記，表示日期和時間。 每次修改文件時都會更新 `_ts` 欄位。 
 
 ## <a name="ttl-behavior"></a>TTL 行為
 TTL 功能是由兩個層級 (集合層級和文件層級) 的 TTL 屬性所控制。 這些值會以秒為單位來設定，而且會視為與上次修改文件時的 `_ts` 的差異。
@@ -53,10 +54,10 @@ TTL 功能是由兩個層級 (集合層級和文件層級) 的 TTL 屬性所控�
 | 文件上的 TTL = n |文件層級沒有可覆寫的項目。 系統無法解譯文件上的 TTL。 |TTL = n 的文件將在間隔 n (以秒為單位) 之後到期。 其他文件會繼承間隔 -1 且永遠不會過期。 |TTL = n 的文件將在間隔 n (以秒為單位) 之後到期。 其他文件會繼承集合的間隔 "n"。 |
 
 ## <a name="configuring-ttl"></a>設定 TTL
-根據預設，所有 DocumentDB 集合中和所有文件上的存留時間都會停用。
+根據預設，在所有 Cosmos DB 集合中及所有文件上都會停用存留時間。
 
 ## <a name="enabling-ttl"></a>啟用 TTL
-若要在集合上或集合內的文件上啟用 TTL，您需要將集合的 DefaultTTL 屬性設定為 -1 或非零的正數。 將 DefaultTTL 設定為 -1，表示集合中的所有文件都預設為永遠存留，但 DocumentDB 服務應監視此集合中已覆寫這個預設值的文件。
+若要在集合上或集合內的文件上啟用 TTL，您需要將集合的 DefaultTTL 屬性設定為 -1 或非零的正數。 將 DefaultTTL 設定為 -1，表示集合中的所有文件都預設為永遠存留，但 Cosmos DB 服務應監視此集合中已覆寫這個預設值的文件。
 
     DocumentCollection collectionDefinition = new DocumentCollection();
     collectionDefinition.Id = "orders";
@@ -162,7 +163,7 @@ TTL 一旦到了，文件會立即到期，並將無法透過 CRUD 或查詢 API
 
 **文件上的 TTL 是否會對 RU 費用造成任何影響？**
 
-否，在 DocumentDB 中透過 TTL 刪除過期的文件將不會影響 RU 費用。
+否，在 Cosmos DB 中透過 TTL 刪除過期的文件將不會影響 RU 費用。
 
 **TTL 功能只會套用至整個文件，或者我可以讓個別的文件屬性值過期？**
 
@@ -173,6 +174,6 @@ TTL 會套用到整份文件。 如果您只想要讓文件的一部分過期，
 是。 集合的[編製索引原則](documentdb-indexing-policies.md)必須設定為 [延遲] 或 [一致]。 嘗試在編製索引設為 [無] 的集合上設定 DefaultTTL 會造成錯誤，而嘗試在已設定 DefaultTTL 的集合上關閉索引編製也會造成錯誤。
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解 Azure DocumentDB，請參閱服務的[*文件*](https://azure.microsoft.com/documentation/services/documentdb/)頁面。
+若要深入了解 Azure Cosmos DB，請參閱服務的[*文件 (英文)*](https://azure.microsoft.com/documentation/services/documentdb/) 頁面。
 
 

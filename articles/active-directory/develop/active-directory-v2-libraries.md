@@ -12,12 +12,14 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 11/29/2016
+ms.date: 05/01/2017
 ms.author: skwan;bryanla
-translationtype: Human Translation
-ms.sourcegitcommit: 9710381787cc1fe570443467b6980616879c503f
-ms.openlocfilehash: ab5576d09e5a51cd7ae602d57693558715e12d66
-ms.lasthandoff: 02/27/2017
+ms.custom: aaddev
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: f0dcb0a9a7c2c9fd362f0ed242471f6c4e495234
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -42,57 +44,48 @@ Azure AD v2.0 適用於兩種程式庫類型︰
 
 如需使用 V2.0 端點的程式庫清單，請參閱本文的後面幾節。
 
-## <a name="microsoft-supported-client-libraries"></a>Microsoft 支援的用戶端程式庫
-| 平台 | 程式庫名稱 | 下載 | 原始程式碼 | 範例 |
-|:---:|:---:|:---:|:---:|:---:|
-| .NET、Windows 市集、Xamarin |適用於 .NET 的 Microsoft Authentication Library (MSAL) |[Microsoft.Identity.Client (NuGet)][ClientLib-NET-Lib] |[適用於 .NET 的 MSAL (GitHub)][ClientLib-NET-Repo] |[Windows 桌面原生用戶端範例][ClientLib-NET-Sample] |
-| Node.js |Microsoft Azure Active Directory Passport.js 外掛程式 |[Passport-Azure-AD (npm)][ClientLib-Node-Lib] |[Passport-Azure-AD (GitHub)][ClientLib-Node-Repo] |敬請期待 |
 
-<!--- COMMENTING OUT UNTIL THEY ARE READY
-| iOS, Mac | Microsoft Authentication Library (MSAL) for ObjC | In development | In development | In development |
-| Android | Microsoft Authentication Library (MSAL) for Android | In development | In development | In development |
-| JavaScript | Microsoft Authentication Library (MSAL) for JavaScript | In development | In development | In development |
- -->
+## <a name="microsoft-supported-client-libraries"></a>Microsoft 支援的用戶端程式庫
+
+> [!IMPORTANT]
+> MSAL 預覽程式庫適合在生產環境中使用。 我們針對這些程式庫所提供的生產層級支援，和為目前的生產程式庫 (ADAL) 所提供的支援相同。 在預覽期間，我們可能會對 MSAL API、內部快取格式，以及這些程式庫的其他機制進行一些變更，且恕不另行通知。您必須連同錯誤修正或功能改善一起接受這些變更。 這可能會影響您的應用程式。 例如，快取格式變更可能會影響您的使用者，例如需要他們再次登入。 API 變更可能需要您更新程式碼。 當我們提供正式發行版本時，將會要求您在六個月內更新至正式發行版本，因為屆時使用程式庫預覽版本所撰寫的應用程式可能無法繼續運作。
+
+| 平台 | 程式庫 | 下載 | 原始程式碼 | 範例 | 參考
+| --- | --- | --- | --- | --- | --- |
+| .NET 用戶端、Windows 市集、UWP、Xamarin iOS 和 Android | MSAL .NET (預覽) |[NuGet](https://www.nuget.org/packages/Microsoft.Identity.Client) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) | [傳統型應用程式](guidedsetups/active-directory-mobileanddesktopapp-windowsdesktop-intro.md) |  |
+| JavaScript | MSAL.js (預覽) | [GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-js) | [GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-js) | [單一頁面應用程式](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi-v2) |  |
+| iOS、macOS | MSAL (預覽) | [GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-objc) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-objc) | [iOS 應用程式](https://github.com/Azure-Samples/active-directory-msal-ios-swift) |  |
+| Android | MSAL (預覽) | [中央儲存機制](https://repo1.maven.org/maven2/com/microsoft/identity/client/msal/) |[GitHub](https://github.com/AzureAD/microsoft-authentication-library-for-android) | [Android 應用程式](guidedsetups/active-directory-mobileanddesktopapp-android-intro.md) | [JavaDocs](http://javadoc.io/doc/com.microsoft.identity.client/msal) |
 
 ## <a name="microsoft-supported-server-middleware-libraries"></a>Microsoft 支援的伺服器中介軟體程式庫
-| 平台 | 程式庫名稱 | 下載 | 原始程式碼 | 範例 |
-|:---:|:---:|:---:|:---:|:---:|
-| .NET 4.x |適用於 ASP.NET 的 OWIN OpenID Connect 中介軟體 |[Microsoft.Owin.Security.OpenIdConnect (NuGet)][ServerLib-Net4-Owin-Oidc-Lib] |[Katana 專案 (CodePlex)][ServerLib-Net4-Owin-Oidc-Repo] |[Web 應用程式範例][ServerLib-Net4-Owin-Oidc-Sample] |
-| .NET 4.x |適用於 ASP.NET 的 OWIN OAuth Bearer 中介軟體 |[Microsoft.Owin.Security.OAuth (NuGet)][ServerLib-Net4-Owin-Oauth-Lib] |[Katana 專案 (CodePlex)][ServerLib-Net4-Owin-Oauth-Repo] |[Web API 範例][ServerLib-Net4-Owin-Oauth-Sample] |
-| .NET Core |適用於 .NET Core 的 OWIN OpenID Connect 中介軟體 |[Microsoft.AspNetCore.Authentication.OpenIdConnect (NuGet)][ServerLib-NetCore-Owin-Oidc-Lib] |[ASP.NET 安全性 (GitHub)][ServerLib-NetCore-Owin-Oidc-Repo] |[Web 應用程式範例][ServerLib-NetCore-Owin-Oidc-Sample] |
-| .NET Core |適用於 .NET Core 的 OWIN OAuth Bearer 中介軟體 |[Microsoft.AspNetCore.Authentication.OAuth (NuGet)][ServerLib-NetCore-Owin-Oauth-Lib] |[ASP.NET 安全性 (GitHub)][ServerLib-NetCore-Owin-Oauth-Repo] |敬請期待 |
-| Node.js |Microsoft Azure Active Directory Passport.js 外掛程式 |[Passport-Azure-AD (npm)][ServerLib-Node-Lib] |[Passport-Azure-AD (GitHub)][ServerLib-Node-Repo] |[Web 應用程式範例][ServerLib-Node-Sample] |
 
-<!--- COMMENTING UNTIL SAMPLE IS AVAILABLE
-| .NET 4.x, .NET Core | JSON Web Token Handler for .NET | [System.IdentityModel.Tokens.Jwt (NuGet)][ServerLib-Net-Jwt-Lib] | [Azure AD identity model extensions for .NET (GitHub)][ServerLib-Net-Jwt-Repo] | Coming soon |
---->
+| 平台 | 程式庫 | 下載 | 原始程式碼 | 範例 | 參考
+| --- | --- | --- | --- | --- | --- |
+| .NET 4.x | OWIN OpenID Connect 中介軟體 |[NuGet](https://www.nuget.org/packages/Microsoft.Owin.Security.OpenIdConnect) |[CodePlex](http://katanaproject.codeplex.com) |[MVC 應用程式](guidedsetups/active-directory-serversidewebapp-aspnetwebappowin-intro.md) | |
+| .NET 4.x | 適用於 AzureAD 的 OWIN OAuth Bearer 中介軟體 |[NuGet](https://www.nuget.org/packages/Microsoft.Owin.Security.ActiveDirectory/) |[CodePlex](http://katanaproject.codeplex.com) |  | |
+| .NET 4.x | 適用於 .NET 4.5 的 JWT 處理常式 | [NuGet](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/4.0.4.403061554) | [GitHub](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet) | | |
+| .NET Core | ASP.NET OpenID Connect 中介軟體 |[Microsoft.AspNetCore.Authentication.OpenIdConnect (NuGet)][ServerLib-NetCore-Owin-Oidc-Lib] |[ASP.NET 安全性 (GitHub)][ServerLib-NetCore-Owin-Oidc-Repo] |[MVC 應用程式 (英文)](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect-aspnetcore-v2) |
+| .NET Core | ASP.NET OAuth Bearer 中介軟體 |[Microsoft.AspNetCore.Authentication.OAuth (NuGet)][ServerLib-NetCore-Owin-Oauth-Lib] |[ASP.NET 安全性 (GitHub)][ServerLib-NetCore-Owin-Oauth-Repo] |  |
+| .NET Core | 適用於 .NET Core 的 JWT 處理常式  |[NuGet](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt) |[GitHub](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet) | | |
+| Node.js |Azure AD Passport |[npm](https://www.npmjs.com/package/passport-azure-ad) |[GitHub](https://github.com/AzureAD/passport-azure-ad) | [Web 應用程式](active-directory-v2-devquickstarts-node-web.md)| |
+
 ## <a name="compatible-client-libraries"></a>相容的用戶端程式庫
 | 平台 | 程式庫名稱 | 測試的版本 | 原始程式碼 | 範例 |
 |:---:|:---:|:---:|:---:|:---:|
 | Android |[OIDCAndroidLib](https://github.com/kalemontes/OIDCAndroidLib/wiki) |0.2.1 |[OIDCAndroidLib](https://github.com/kalemontes/OIDCAndroidLib) |[原生應用程式範例](active-directory-v2-devquickstarts-android.md) |
 | iOS |[NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) |1.2.8 |[NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) |[原生應用程式範例](active-directory-v2-devquickstarts-ios.md) |
-| Java | [Scribe Java scribejava](https://github.com/scribejava/scribejava) | [3.2.0 版](https://github.com/scribejava/scribejava/releases/tag/scribejava-3.2.0) | [ScribeJava](https://github.com/scribejava/scribejava/archive/scribejava-3.2.0.zip) | 敬請期待 |
 | JavaScript |[Hello.js](https://adodson.com/hello.js/) |1.13.5 |[Hello.js](https://github.com/MrSwitch/hello.js) |[SPA](https://github.com/Azure-Samples/active-directory-javascript-graphapi-web-v2) |
-| PHP | [PHP League oauth2-client](https://github.com/thephpleague/oauth2-client) | [1.4.2 版](https://github.com/thephpleague/oauth2-client/releases/tag/1.4.2) | [oauth2-client](https://github.com/thephpleague/oauth2-client/archive/1.4.2.zip) | 敬請期待 |
-| Python-Flask |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |0.9.3 |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |[Web 應用程式](https://github.com/Azure-Samples/active-directory-python-flask-graphapi-web-v2) |
-| Ruby |[OmniAuth](https://github.com/omniauth/omniauth/wiki) |omniauth:1.3.1</br>omniauth-oauth2:1.4.0 |[OmniAuth](https://github.com/omniauth/omniauth)</br>[OmniAuth OAuth2](https://github.com/intridea/omniauth-oauth2) |敬請期待 |
-
-<!--- REMOVING BRANDON'S FOR NOW
-|  |  |  |  |  |
-| Android | [OAuth2 Client](https://github.com/wuman/android-oauth-client) |   | [OAuth2 Client](https://github.com/wuman/android-oauth-client)  | Coming soon  |
-| Java | [WSO2 Identity Server](https://docs.wso2.com/display/IS500/Introducing+the+Identity+Server) | [Version 5.2.0](http://wso2.com/products/identity-server/) | [Source](https://docs.wso2.com/display/IS500/Building+from+Source) | [Samples index](https://docs.wso2.com/display/IS500/Samples)  |
-| Java | [Java Gluu Server](https://gluu.org/docs/) |   | [oxAuth](https://github.com/GluuFederation/oxAuth)  | Coming soon |
-| Node.js | [NPM passport-openidconnect](https://www.npmjs.com/package/passport-openidconnect) | 0.0.1  | [Passport-OpenID Connect](https://github.com/jaredhanson/passport-openidconnect) | Coming soon  |
-| PHP | [OpenID Connect Basic Client](https://github.com/jumbojett/OpenID-Connect-PHP) |   | [OpenID Connect Basic Client](https://github.com/jumbojett/OpenID-Connect-PHP)  | Coming soon  |
--->
 
 ## <a name="compatible-server-middleware-libraries"></a>相容的伺服器中介軟體程式庫
-敬請期待
+| 平台 | 程式庫名稱 | 測試的版本 | 原始程式碼 | 範例 |
+|:---:|:---:|:---:|:---:|:---:|
+| Java | [Scribe Java scribejava](https://github.com/scribejava/scribejava) | [3.2.0 版](https://github.com/scribejava/scribejava/releases/tag/scribejava-3.2.0) | [ScribeJava](https://github.com/scribejava/scribejava/archive/scribejava-3.2.0.zip) | |
+| PHP | [PHP League oauth2-client](https://github.com/thephpleague/oauth2-client) | [1.4.2 版](https://github.com/thephpleague/oauth2-client/releases/tag/1.4.2) | [oauth2-client](https://github.com/thephpleague/oauth2-client/archive/1.4.2.zip) | |
+| Python-Flask |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |0.9.3 |[Flask-OAuthlib](https://github.com/lepture/flask-oauthlib) |[Web 應用程式](https://github.com/Azure-Samples/active-directory-python-flask-graphapi-web-v2) |
+| Ruby |[OmniAuth](https://github.com/omniauth/omniauth/wiki) |omniauth:1.3.1</br>omniauth-oauth2:1.4.0 |[OmniAuth](https://github.com/omniauth/omniauth)</br>[OmniAuth OAuth2](https://github.com/intridea/omniauth-oauth2) |  |
 
 ## <a name="related-content"></a>相關內容
 如需 Azure AD v2.0 端點的詳細資訊，請參閱 [Azure AD 應用程式模型 v2.0 概觀][AAD-App-Model-V2-Overview]。
-
-為了協助我們改善及設計我們的內容，請使用本文結尾的 Disqus 註解功能來提供意見反應。
 
 <!--Image references-->
 

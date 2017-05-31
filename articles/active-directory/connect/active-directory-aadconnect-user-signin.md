@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/08/2017
+ms.date: 05/09/2017
 ms.author: billmath
-translationtype: Human Translation
-ms.sourcegitcommit: 1673e14285456307441c836ba2225556416d4a7b
-ms.openlocfilehash: 4c50968dd66ab351a5ef1b8e06557855870c5d4e
-ms.lasthandoff: 03/02/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 6bc564cc5121a6b7b7896f1d90177140bee15fbb
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -131,7 +132,7 @@ userPrincipalName 屬性是使用者登入 Azure AD 和 Office 365 時會使用�
 強烈建議您保留 userPrincipalName 預設屬性。 如果此屬性不可路由傳送且無法驗證，則可以選取另一個屬性 (例如電子郵件) 作為保存登入識別碼的屬性。 這稱為「替代識別碼」。 「替代識別碼」屬性值必須遵守 RFC 822 標準。 您可以使用「替代識別碼」搭配密碼 SSO 和同盟 SSO 作為登入解決方案。
 
 > [!NOTE]
-> 使用「替代識別碼」與所有 Office 365 工作負載和傳遞驗證都不相容。 如需詳細資訊，請參閱[設定替代登入識別碼](https://technet.microsoft.com/library/dn659436.aspx)。
+> 使用替代識別碼並無法與所有的 Office 365 工作負載相容。 如需詳細資訊，請參閱[設定替代登入識別碼](https://technet.microsoft.com/library/dn659436.aspx)。
 >
 >
 

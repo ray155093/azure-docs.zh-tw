@@ -1,6 +1,6 @@
 ---
-title: "在 IoT 閘道上使用 Azure IoT 閘道 SDK 進行資料轉換 | Microsoft Docs"
-description: "使用 IoT 閘道可從 Azure IoT 閘道 SDK 透過自訂模組轉換感應器資料的格式。"
+title: "在 IoT 閘道上使用 Azure IoT Edge 進行資料轉換 | Microsoft Docs"
+description: "使用 IoT 閘道可從 Azure IoT Edge 透過自訂模組轉換感應器資料的格式。"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,21 +15,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/07/2017
 ms.author: xshi
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: d7897f1a7eee5fbb04cf43da0d0156a6b8fb11f6
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 7bf9e64db91cb0fec37ff242bea94dbbd0833054
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="use-iot-gateway-for-sensor-data-transformation-with-azure-iot-gateway-sdk"></a>搭配 Azure IoT 閘道 SDK 使用 IoT 閘道進行感應器資料轉換
+# <a name="use-iot-gateway-for-sensor-data-transformation-with-azure-iot-edge"></a>搭配 Azure IoT Edge 使用 IoT 閘道進行感應器資料轉換
 
 > [!NOTE]
 > 開始本教學課程之前，請確定您循序完成下列課程：
 > * [將 Intel NUC 設定為 IoT 閘道](iot-hub-gateway-kit-c-lesson1-set-up-nuc.md)
 > * [使用 IoT 閘道將裝置連接到雲端 - SensorTag 至 Azure IoT 中樞](iot-hub-gateway-kit-c-iot-gateway-connect-device-to-cloud.md)
 
-IoT 閘道的其中一個用途是要在傳送資料至雲端之前處理所收集的資料。 Azure IoT 閘道 SDK 推出的模組可用來建立和組合以形成資料處理工作流程。 模組會接收訊息、對其執行某個動作，然後移動它，以供其他模組處理。
+IoT 閘道的其中一個用途是要在傳送資料至雲端之前處理所收集的資料。 Azure IoT Edge 推出的模組可用來建立和組合以形成資料處理工作流程。 模組會接收訊息、對其執行某個動作，然後移動它，以供其他模組處理。
 
 ## <a name="what-you-learn"></a>您學到什麼
 
@@ -39,7 +40,7 @@ IoT 閘道的其中一個用途是要在傳送資料至雲端之前處理所收�
 
 * 建立模組，將已接收的訊息轉換成 .json 格式。
 * 編譯模組。
-* 透過 Azure IoT 閘道 SDK 將模組新增至 BLE 範例應用程式。
+* 透過 Azure IoT Edge 將模組新增至 BLE 範例應用程式。
 * 執行範例應用程式。
 
 ## <a name="what-you-need"></a>您需要什麼
@@ -61,7 +62,7 @@ IoT 閘道的其中一個用途是要在傳送資料至雲端之前處理所收�
    git clone https://github.com/Azure-Samples/iot-hub-c-intel-nuc-gateway-customized-module.git
    ```
 
-   這是以 C 程式設計語言撰寫的原生 Azure 閘道 SDK 模組。 模組會將所接收訊息的格式轉換成下列其中一個：
+   這是以 C 程式設計語言撰寫的原生 Azure Edge 模組。 模組會將所接收訊息的格式轉換成下列其中一個：
 
    ```json
    {"deviceId": "Intel NUC Gateway", "messageId": 0, "temperature": 0.0}

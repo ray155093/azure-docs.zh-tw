@@ -14,9 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 02/06/2017
 ms.author: msfussell
-translationtype: Human Translation
-ms.sourcegitcommit: 7033955fa9c18b2fa1a28d488ad5268d598de287
-ms.openlocfilehash: a2a72da08ccff17407fcdd98783137b091651b47
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 77eb843f83bd2d246dd4943e52c1e8b2ac07a5ab
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -129,7 +131,7 @@ ms.openlocfilehash: a2a72da08ccff17407fcdd98783137b091651b47
 狀況與診斷不同。 健全狀況是指微服務報告其目前狀態，以便採取適當的行動。 使用升級和部署機制來維護可用性是一個很好例子。 雖然目前服務可能由於處理序損毀或重新開機而狀況不良，但服務可能仍會運作。 您不應該執行升級而讓情況惡化。 最好是先進行調查，或讓微服務有時間復原。 微服務的健全狀況事件可協助我們做出明智的決策，實際上有助於建立自我修復的服務。
 
 ## <a name="service-fabric-as-a-microservices-platform"></a>Service Fabric 做為微服務平台
-Azure Service Fabric 源自於 Microsoft 從提供盒裝產品 (通常是單體式) 的轉換到提供服務。 建置和操作大型服務的經驗，例如 Azure SQL Database、DocumentDB 和圖形化 Service Fabric。 此平台已隨著越來越多的服務採用它而演化。 重要的是，Service Fabric 必須不僅在 Azure 中執行，還有在獨立式 Windows Server 部署中。
+Azure Service Fabric 源自於 Microsoft 從提供盒裝產品 (通常是單體式) 的轉換到提供服務。 建置和操作大型服務 (例如 Azure SQL Database、Azure Cosmos DB、圖形化 Service Fabric) 的經驗。 此平台已隨著越來越多的服務採用它而演化。 重要的是，Service Fabric 必須不僅在 Azure 中執行，還有在獨立式 Windows Server 部署中。
 
 ***Service Fabric 的目標是解決建置和執行服務方面的艱難問題，以及有效率地利用基礎結構資源，讓團隊可以使用微服務方法來解決商務問題。***
 
@@ -153,9 +155,4 @@ Service Fabric 的目標是將使用微服務方法建置應用程式時的複�
 
 [Image1]: media/service-fabric-overview-microservices/monolithic-vs-micro.png
 [Image2]: media/service-fabric-overview-microservices/statemonolithic-vs-micro.png
-
-
-
-<!--HONumber=Jan17_HO4-->
-
 
