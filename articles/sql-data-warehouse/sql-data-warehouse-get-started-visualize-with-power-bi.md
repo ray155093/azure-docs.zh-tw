@@ -3,7 +3,7 @@ title: "使用 Power BI 來將 SQL 資料倉儲資料視覺化 | Microsoft Azure
 description: "使用 Power BI 視覺化 SQL 資料倉儲資料"
 services: sql-data-warehouse
 documentationcenter: NA
-author: barbkess
+author: mlee3gsd
 manager: jhubbard
 editor: 
 ms.assetid: d7fb89d1-da1d-4788-a111-68d0e3fda799

@@ -15,9 +15,10 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 02/08/2017
 ms.author: heidist
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 08682b7986cc2210ed21f254e2a9a63b5355e583
 ms.openlocfilehash: bfed40417d800e86de7ef437c42162b1e1a0d886
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/24/2017
 
 ---
@@ -75,7 +76,7 @@ ms.lasthandoff: 02/24/2017
 
 「Azure 搜尋服務」的「服務等級協定」(SLA) 是針對查詢作業和由新增、更新或刪除文件所組成的索引更新。
 
-### <a name="index-availability-during-a-rebuild"></a>索引在重建期間的可用性###
+### <a name="index-availability-during-a-rebuild"></a>索引在重建期間的可用性
 
 「Azure 搜尋服務」的高可用性與查詢和不涉及重建索引的索引更新相關。 如果您刪除欄位、變更資料類型，或是重新命名欄位，您必須重建索引。 若要重建索引，您必須刪除索引、重新建立索引，並重新載入資料。
 

@@ -3,7 +3,7 @@ title: "使用 SQL 資料倉儲建置整合式解決方案 | Microsoft Docs"
 description: "工具以及提供可與 SQL 資料倉儲整合之解決方案的合作夥伴。 "
 services: sql-data-warehouse
 documentationcenter: NA
-author: barbkess
+author: mlee3gsd
 manager: jhubbard
 editor: 
 ms.assetid: e2dc8f3f-10e3-4589-a4e2-50c67dfcf67f

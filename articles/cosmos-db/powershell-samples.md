@@ -1,13 +1,13 @@
 ---
 title: "適用於 Azure Cosmos DB 的 Azure PowerShell 範例 | Microsoft Docs"
 description: "Azure PowerShell 範例：協助您建立和管理 Azure Cosmos DB 帳戶的指令碼。"
-services: cosmosdb
+services: cosmos-db
 author: mimig1
 manager: jhubbard
 editor: 
 tags: azure-service-management
 ms.assetid: 
-ms.service: cosmosdb
+ms.service: cosmos-db
 ms.custom: sample
 ms.devlang: na
 ms.topic: article

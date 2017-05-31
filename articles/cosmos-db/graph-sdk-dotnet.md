@@ -1,13 +1,13 @@
 ---
 title: "Azure CosmosDB 圖形 API .NET SDK 和資源 | Microsoft Docs"
 description: "了解 Azure CosmosDB 圖形 API，包括發行日期、停用日期，以及每個版本之間的變更。"
-services: cosmosdb
+services: cosmos-db
 documentationcenter: .net
 author: rnagpal
 manager: jhubbard
 editor: cgronlun
 ms.assetid: 
-ms.service: cosmosdb
+ms.service: cosmos-db
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: dotnet

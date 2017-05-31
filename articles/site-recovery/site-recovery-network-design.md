@@ -14,14 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 03/27/2017
 ms.author: pratshar
-translationtype: Human Translation
+ms.translationtype: Human Translation
 ms.sourcegitcommit: 6e6d05d7a7595e17d026be6a448b2fa2cca9b816
 ms.openlocfilehash: a62fe406af18c9c7d9b58839bfa0d6e785b614ef
+ms.contentlocale: zh-tw
 ms.lasthandoff: 02/22/2017
 
 
 ---
 # <a name="designing-your-network-for-disaster-recovery"></a>設計用於災害復原的網路
+
 這篇文章的對象是 IT 專業人員，他們負責架構設計、實作和支援業務持續性和災害復原 (BCDR) 的基礎結構，而且想要利用 Microsoft Azure Site Recovery (ASR) 來支援並增強其 BCDR 服務。 本白皮書將討論 System Center Virtual Machine Manager 伺服器部署的實際考量、自動縮放子網路與子網路容錯移轉的優缺點比較，以及如何架構 Microsoft Azure 中虛擬網站的災害復原。
 
 ## <a name="overview"></a>Overview
