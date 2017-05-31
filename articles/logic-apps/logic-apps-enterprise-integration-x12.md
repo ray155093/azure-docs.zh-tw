@@ -5,7 +5,7 @@ services: logic-apps
 documentationcenter: .net,nodejs,java
 author: padmavc
 manager: anneta
-editor: cgronlun
+editor: 
 ms.assetid: 7422d2d5-b1c7-4a11-8c9b-0d8cfa463164
 ms.service: logic-apps
 ms.workload: integration
@@ -13,11 +13,12 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/31/2017
-ms.author: padmavc
-translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: 2c20d4c764129004b4e757854bcd1ecb106cecff
-ms.lasthandoff: 03/10/2017
+ms.author: LADocs; padmavc
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: d30cbc1cfd095ab9e8321a723335ebab593ee5fe
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -296,6 +297,9 @@ ms.lasthandoff: 03/10/2017
 2.    您也可以在整合帳戶概觀中檢視您的合約。 在整合帳戶刀鋒視窗上，選擇 [概觀]，然後選取 [合約] 圖格。
 
     ![選擇 [合約] 圖格來檢視所有合約](./media/logic-apps-enterprise-integration-x12/x12-1-5.png)   
+
+## <a name="view-the-swagger"></a>檢視 Swagger
+請參閱 [Swagger 詳細資料](/connectors/x12/)。 
 
 ## <a name="learn-more"></a>詳細資訊
 * [深入了解企業整合套件](../logic-apps/logic-apps-enterprise-integration-overview.md "了解企業整合套件")  

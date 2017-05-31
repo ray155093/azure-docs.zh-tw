@@ -1,5 +1,5 @@
 ---
-title: "建立點對站的自我簽署憑證：PowerShell: Azure | Microsoft Docs"
+title: "建立並匯出點對站的憑證：PowerShell：Azure | Microsoft Docs"
 description: "本文中的步驟用來建立自我簽署的根憑證、匯出公開金鑰，以及使用 PowerShell 在 Windows 10 上產生用戶端憑證。"
 services: vpn-gateway
 documentationcenter: na
@@ -13,33 +13,43 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 04/24/2017
+ms.date: 05/04/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: 72fc6eb93c77dd5a0a7ce55897f4c06fb98c0721
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
+ms.openlocfilehash: 1bfcb8683669770d6dd927cbde53a683bbc1d56e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="create-a-self-signed-root-certificate-for-point-to-site-connections-using-powershell"></a>使用 PowerShell 建立點對站連線的自我簽署根憑證
+# <a name="generate-and-export-certificates-for-point-to-site-connections-using-powershell"></a>使用 PowerShell 來產生並匯出點對站連線的憑證
 
-點對站連線使用憑證進行驗證。 當您設定點對站連線時時，您需要將根憑證的公開金鑰 (.cer 檔案) 上傳至 Azure。 用戶端憑證必須從根憑證產生，並安裝在與 VNet 連接的每部用戶端電腦上。 用戶端憑證可讓用戶端進行驗證。 本文說明如何建立自我簽署的根憑證、匯出公開金鑰，以及產生用戶端憑證。 本文不包含點對站組態指示或點對站常見問題集。 您可以從下列清單中選取其中一篇文章來尋找該資訊：
+本文說明如何建立自我簽署的根憑證和產生用戶端憑證。 本文不包含點對站組態指示或點對站常見問題集。 您可以從下列清單中選取其中一篇「設定點對站」文章來尋找該資訊：
 
 > [!div class="op_single_selector"]
-> * [建立自我簽署憑證](vpn-gateway-certificates-point-to-site.md)
+> * [建立自我簽署憑證 - PowerShell](vpn-gateway-certificates-point-to-site.md)
+> * [建立自我簽署憑證 - Makecert](vpn-gateway-certificates-point-to-site-makecert.md)
 > * [設定點對站 - Resource Manager - Azure 入口網站](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
 > * [設定點對站 - Resource Manager - PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
 > * [設定點對站 - 傳統 - Azure 入口網站](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
 > 
 > 
 
+點對站連線使用憑證進行驗證。 當您設定點對站連線時時，您需要將根憑證的公開金鑰 (.cer 檔案) 上傳至 Azure。 此外，用戶端憑證必須從根憑證產生，並安裝在與 VNet 連接的每部用戶端電腦上。 用戶端憑證可讓用戶端進行驗證。
+
+
+> [!NOTE]
+> 您必須在執行 Windows 10 的電腦上執行本文中的步驟。 產生憑證所需的 PowerShell Cmdlet 是 Windows 10 作業系統的一部分，在其他 Windows 版本上無法運作。 您只需要這些 Cmdlet 即可產生憑證。 產生憑證之後，您可以將憑證安裝在任何支援的用戶端作業系統上。 如果您無法存取 Windows 10 電腦，則可以使用 makecert 來產生憑證。 不過，使用 makecert 來建立的憑證雖然與點對站相容，但卻不是 SHA-2。 如需 makecert 的相關指示，請參閱[使用 makecert 來建立憑證](vpn-gateway-certificates-point-to-site-makecert.md)。 您使用 PowerShell 或 makecert 來建立的憑證可以安裝在任何[支援的用戶端作業系統](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq)上，而不僅僅是安裝在您用來建立這些憑證的作業系統上。
+> 
+>
+
 ## <a name="rootcert"></a>建立自我簽署根憑證
 
-下列步驟將逐步引導您在 Windows 10 上使用 PowerShell 來建立自我簽署根憑證。 這些步驟中所用的 Cmdlet 和參數屬於 Windows 10 作業系統，不屬於 PowerShell 版本。 這並不意謂著您建立的憑證只能安裝在 Windows 10 上。 如需有關所支援用戶端的資訊，請參閱[點對站常見問題集](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq)。
+下列步驟說明如何在 Windows 10 上使用 PowerShell 來建立自我簽署根憑證。 這些步驟中所用的 Cmdlet 和參數屬於 Windows 10 作業系統，不屬於 PowerShell 版本。 這並不意謂著您建立的憑證只能安裝在 Windows 10 上。 您可以將它們安裝在任何支援的用戶端上。 如需有關所支援用戶端的資訊，請參閱[點對站常見問題集](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq)。
 
 1. 從執行 Windows 10 的電腦，以提高的權限開啟 Windows PowerShell 主控台。
-2. 使用下列範例建立自我簽署的根憑證。 下列範例會建立名為 'P2SRootCert' 的自我簽署的根憑證，其自動安裝在 'Certificates-Current User\Personal\Certificates' 中。 開啟 *certmgr.msc* 即可檢視憑證。
+2. 使用下列範例建立自我簽署的根憑證。 下列範例會建立名為 'P2SRootCert' 的自我簽署的根憑證，其自動安裝在 'Certificates-Current User\Personal\Certificates' 中。 您可以開啟 *certmgr.msc* 或 [管理使用者憑證] 來檢視憑證。
 
   ```powershell
   $cert = New-SelfSignedCertificate -Type Custom -KeySpec Signature `
@@ -48,17 +58,13 @@ ms.lasthandoff: 04/25/2017
   -CertStoreLocation "Cert:\CurrentUser\My" -KeyUsageProperty Sign -KeyUsage CertSign
   ```
 
-### <a name="cer"></a>取得公開金鑰
+### <a name="cer"></a>匯出公開金鑰 (.cer)
 
-點對站連線需要公開金鑰 (.cer) 上傳至 Azure。 下列步驟可協助您匯出自我簽署根憑證的 .cer 檔案：
+[!INCLUDE [Export public key](../../includes/vpn-gateway-certificates-export-public-key-include.md)]
 
-1. 若要取得憑證的 .cer 檔案，請開啟 [管理使用者憑證]。 找出自我簽署的根憑證，通常位於 '[憑證 - 目前的使用者]\[個人]\[憑證]' 中，然後按一下滑鼠右鍵。 按一下 [所有工作]，然後按一下 [匯出]。 這會開啟 [憑證匯出精靈] 。
-2. 在精靈中，按 [下一步]。 選取 [否，不要匯出私密金鑰]，然後按 [下一步]。
-3. 在 [匯出檔案格式] 頁面上，選取 [Base-64 編碼 X.509 (.CER)]，然後按 [下一步]。 
-4. 在 [要匯出的檔案] 中，[瀏覽] 到您要匯出憑證的位置。 針對 [檔案名稱] ，請為憑證檔案命名。 然後按 [下一步] 。
-5. 按一下 [完成]  以匯出憑證。 您會看到 [匯出成功]。 按一下 [確定] 以關閉精靈。
+匯出的 .cer 檔案必須上傳到 Azure。 如需相關指示，請參閱[設定點對站連線](vpn-gateway-howto-point-to-site-rm-ps.md#upload)。
 
-### <a name="to-export-a-self-signed-root-certificate-optional"></a>匯出自我簽署根憑證 (選用)
+### <a name="export-the-self-signed-root-certificate-and-public-key-to-store-it-optional"></a>匯出自我簽署根憑證和公開金鑰來儲存它 (選擇性)
 
 您可能想要匯出自我簽署的根憑證，並將它安全地儲存。 如有需要，您可以稍後在另一部電腦上安裝這個自我簽署憑證，然後產生更多用戶端憑證，或匯出另一個 .cer 檔案。 若要將自我簽署的根憑證匯出為 .pfx，請選取根憑證，然後使用與[匯出用戶端憑證](#clientexport)所述的相同步驟來匯出。
 
@@ -125,24 +131,12 @@ New-SelfSignedCertificate -Type Custom -KeySpec Signature `
 
 ## <a name="clientexport"></a>匯出用戶端憑證   
 
-當您產生用戶端憑證時，它會自動安裝於您用來產生它的電腦上。 如果您想要在另一部用戶端電腦上安裝用戶端憑證，您必須匯出您所產生的用戶端憑證。                              
-
-1. 若要匯出用戶端憑證，請開啟 [管理使用者憑證]。 根據預設，您產生的用戶端憑證位於 'Certificates - Current User\Personal\Certificates'。 在您想要匯出的用戶端憑證上按一下滑鼠右鍵，然後依序按一下 [所有工作]、[匯出]，以開啟 [憑證匯出精靈]。
-2. 在精靈中，按一下 [下一步]，接著選取 [是，匯出私密金鑰]，然後按 [下一步]。
-3. 在 [匯出檔案格式] 頁面上，保留選取預設值。 務必選取 [如果可能的話，包含憑證路徑中的所有憑證]。 選取此項目也會匯出成功驗證所需的根憑證資訊。 然後按 [下一步] 。
-4. 在 [安全性]  頁面上，您必須保護私密金鑰。 如果您選取要使用密碼，請務必記錄或牢記您為此憑證設定的密碼。 然後按 [下一步] 。
-5. 在 [要匯出的檔案] 中，[瀏覽] 到您要匯出憑證的位置。 針對 [檔案名稱] ，請為憑證檔案命名。 然後按 [下一步] 。
-6. 按一下 [完成]  以匯出憑證。    
+[!INCLUDE [Export client certificate](../../includes/vpn-gateway-certificates-export-client-cert-include.md)]
+    
 
 ## <a name="install"></a>安裝匯出的用戶端憑證
 
-如果您想要從不同於用來產生用戶端憑證的用戶端電腦建立 P2S 連線，您需要安裝用戶端憑證。 安裝用戶端憑證時，您需要匯出用戶端憑證時所建立的密碼。
-
-1. 找出 *.pfx* 檔案並複製到用戶端電腦。 在用戶端電腦上，按兩下 *.pfx* 檔案以安裝。 將 [存放區位置] 保留為 [目前使用者]，然後按 [下一步]。
-2. 在 [要匯入的檔案]  頁面上，請勿進行任何變更。 按 [下一步] 。
-3. 在 [私密金鑰保護] 頁面上，請輸入憑證的密碼，或確認安全性主體是否正確，然後按 [下一步]。
-4. 在 [憑證存放區] 頁面上，保留預設的位置，然後按 [下一步]。
-5. 按一下 [完成] 。 在憑證安裝的 [安全性警告] 上，按一下 [是]。 您可以安心地按一下 [是]，因為您已經產生憑證。 現在已成功匯入憑證。
+[!INCLUDE [Install client certificate](../../includes/vpn-gateway-certificates-install-client-cert-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
 

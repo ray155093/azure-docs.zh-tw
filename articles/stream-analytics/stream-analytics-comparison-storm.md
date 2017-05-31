@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 01/24/2017
 ms.author: jeffstok
-translationtype: Human Translation
-ms.sourcegitcommit: 7f8b63c22a3f5a6916264acd22a80649ac7cd12f
-ms.openlocfilehash: 627f9dccb48712fced81f2c6dc694043f7162205
-ms.lasthandoff: 05/01/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 5b5aa75756d2a7061d531d50a59a2c52dfb75cbe
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -333,7 +334,7 @@ ms.lasthandoff: 05/01/2017
             </td>
             <td width="246" valign="top">
                 <p>
-支援在拓撲中納入多個輸出，每個輸出可包含必須進行下游處理所需的自訂邏輯。 現成可用的 Storm 包含 PowerBI、Azure 事件中樞、Azure Blob 存放區、Azure DocumentDB、SQL 和 HBase 的連接器。 可透過自訂程式碼實作不支援的連接器。
+支援在拓撲中納入多個輸出，每個輸出可包含必須進行下游處理所需的自訂邏輯。 現成可用的 Storm 包含適用於 PowerBI、「Azure 事件中樞」、「Azure Blob 存放區」、Azure Cosmos DB、SQL 及 HBase 的連接器。 可透過自訂程式碼實作不支援的連接器。
                 </p>
             </td>
         </tr>
@@ -569,7 +570,7 @@ Azure Blob 提供的參考資料的記憶體內部查閱快取大小上限為 10
             </td>
             <td width="246" valign="top">
                 <p>
-資料大小沒有限制。 為 HBase、DocumentDB、SQL Server 和 Azure 提供連接器。 可透過自訂程式碼實作不支援的連接器。
+資料大小沒有限制。 為 HBase、Azure Cosmos DB、SQL Server 及 Azure 提供連接器。 可透過自訂程式碼實作不支援的連接器。
                 </p>
                 <p>
 必須透過自訂程式碼重新整理參考資料。

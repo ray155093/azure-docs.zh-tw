@@ -13,10 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: jeedes
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: cb5c975d92b01e6fd40601b3607c0e472d893a16
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: c175d54fcc7e55bae5057adbb4b9dba0a8843fe2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -109,7 +110,7 @@ LinkedIn Elevate 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-linkedinElevate-tutorial/tutorial_linkedin_admin_01.png)
 
-5. 按一下 **，或按一下「這裡」以從表單**  載入和複製個別欄位，並且複製 [實體 ID] 和 [判斷提示取用者存取 (ACS) URL]
+5. 按一下 **，或按一下「這裡」以從表單**  載入和複製個別欄位，並且複製 [實體 ID] 和 [判斷提示取用者存取 (ACS) URL]****
 
     ![設定單一登入](./media/active-directory-saas-linkedinElevate-tutorial/tutorial_linkedin_admin_03.png)
 
@@ -117,9 +118,9 @@ LinkedIn Elevate 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-linkedinElevate-tutorial/tutorial_linkedin_signon_01.png)
 
-    a. 在 [識別碼] 文字方塊中，輸入從 LinkedIn 入口網站複製的 [實體 ID] 
+    a. 在 [識別碼] 文字方塊中，輸入從 LinkedIn 入口網站複製的 [實體 ID]**** 
 
-    b. 在 [回覆 URL] 文字方塊中，輸入從 LinkedIn 入口網站複製的 [判斷提示取用者存取 (ACS) URL]
+    b.這是另一個 C# 主控台應用程式。 在 [回覆 URL] 文字方塊中，輸入從 LinkedIn 入口網站複製的 [判斷提示取用者存取 (ACS) URL]****
 
 7. 如果您想要在 **SP 起始**中設定 SSO，則在組態區段中按一下 [顯示進階 URL] 設定，然後使用下列模式設定登入 URL：
 
@@ -139,11 +140,11 @@ LinkedIn Elevate 與 Azure AD 整合提供下列優點：
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinElevate-tutorial/userattribute.png)
 
-       a. Click on Add attribute to open the attribute details page add the department attribute as shown below-
+    a. 按一下 [新增屬性]，以開啟屬性的詳細資料頁面，如下所示新增部門屬性
+    
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-linkedinElevate-tutorial/adduserattribute.png)
 
-       ![Creating an Azure AD test user](./media/active-directory-saas-linkedinElevate-tutorial/adduserattribute.png)
-
-       b. Click on **Ok** to save the attribute.
+    b.這是另一個 C# 主控台應用程式。 按一下 [確定] 以儲存屬性。
 
 10. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將 XML 檔案儲存在您的電腦上。
 
@@ -157,7 +158,7 @@ LinkedIn Elevate 與 Azure AD 整合提供下列優點：
 
     ![設定單一登入](./media/active-directory-saas-linkedinElevate-tutorial/tutorial_linkedin_metadata_03.png)
 
-13. 按一下 [開啟] 以啟用 SSO。 SSO 狀態將會從 [未連線] 變更為 [已連線]
+13. 按一下 [開啟] 以啟用 SSO。 SSO 狀態將會從 [未連線] 變更為 [已連線]****
 
     ![設定單一登入](./media/active-directory-saas-linkedinElevate-tutorial/tutorial_linkedin_admin_05.png)
 
@@ -253,3 +254,4 @@ Linked Elevate 應用程式僅在使用者佈建時支援，驗證之後，會�
 [201]: ./media/active-directory-saas-linkedinElevate-tutorial/tutorial_general_201.png
 [202]: ./media/active-directory-saas-linkedinElevate-tutorial/tutorial_general_202.png
 [203]: ./media/active-directory-saas-linkedinElevate-tutorial/tutorial_general_203.png
+

@@ -1,55 +1,56 @@
 ---
-title: "DocumentDB 規模和效能測試 | Microsoft Docs"
-description: "了解如何執行 Azure DocumentDB 的相關規模和效能測試"
+title: "Azure Cosmos DB 規模和效能測試 | Microsoft Docs"
+description: "了解使用 Azure Cosmos DB 來執行規模和效能測試"
 keywords: "效能測試"
-services: documentdb
+services: cosmosdb
 author: arramac
 manager: jhubbard
 editor: 
 documentationcenter: 
 ms.assetid: f4c96ebd-f53c-427d-a500-3f28fe7b11d0
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/19/2017
 ms.author: arramac
-translationtype: Human Translation
-ms.sourcegitcommit: 503f5151047870aaf87e9bb7ebf2c7e4afa27b83
-ms.openlocfilehash: 86bd591c26a58200dab9872e07e6e8bdf2522df9
-ms.lasthandoff: 03/29/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: d662af5fcd78d88b02e7f21c4d2d2c6add1270bc
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="performance-and-scale-testing-with-azure-documentdb"></a>Azure DocumentDB 的效能和規模測試
-效能和規模測試是應用程式開發過程中的關鍵步驟。 對許多應用程式來說，資料庫層對整體效能和延展性具有相當重大的影響，因此是效能測試的重要元件。 [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 是為了能夠彈性延展及獲得可預測的效能而建置，因此非常適合需要高效能資料庫層的應用程式。 
+# <a name="performance-and-scale-testing-with-azure-cosmos-db"></a>Azure Cosmos DB 的效能和規模測試
+效能和規模測試是應用程式開發過程中的關鍵步驟。 對許多應用程式來說，資料庫層對整體效能和延展性具有相當重大的影響，因此是效能測試的重要元件。 [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/) 是為了能夠彈性延展及獲得可預測的效能而建置，因此非常適合需要高效能資料庫層的應用程式。 
 
-這篇文章適合做為針對其 DocumentDB 工作負載實作效能測試套件或針對高效能應用程式案例評估 DocumentDB 之開發人員的參考。 主要是著重在隔離的資料庫效能測試，但也包含適用於實際執行應用程式的最佳做法。
+這篇文章適合做為針對其 Cosmos DB 工作負載實作效能測試套件或針對高效能應用程式案例評估 Cosmos DB 之開發人員的參考。 主要是著重在隔離的資料庫效能測試，但也包含適用於實際執行應用程式的最佳做法。
 
 閱讀本文後，您將能夠回答下列問題：   
 
-* 哪裡可以找到可供進行 Azure DocumentDB 效能測試的範例 .NET 用戶端應用程式？ 
-* 如何藉由 Azure DocumentDB 從我的用戶端應用程式達到高輸送量層級？
+* 哪裡可以找到可供進行 Cosmos DB 效能測試的範例 .NET 用戶端應用程式？ 
+* 如何藉由 Cosmos DB 從我的用戶端應用程式達到高輸送量層級？
 
-若要開始使用程式碼，請從 [DocumentDB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)下載專案。 
+若要開始使用程式碼，請從 [Azure Cosmos DB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)下載專案。 
 
 > [!NOTE]
-> 此應用程式的目標，在於示範透過少數用戶端電腦發揮 DocumentDB 更好效能的最佳作法。 而不是要示範可以無限制調整的服務尖峰容量。
+> 此應用程式的目標，在於示範透過少數用戶端電腦發揮 Cosmos DB 更好效能的最佳作法。 而不是要示範可以無限制調整的服務尖峰容量。
 > 
 > 
 
-如果您要尋找用戶端設定選項，以改善 DocumentDB 效能，請參閱 [DocumentDB 效能祕訣](documentdb-performance-tips.md)。
+如果您要尋找用戶端設定選項，以改善 Cosmos DB 效能，請參閱 [Azure Cosmos DB 效能祕訣](documentdb-performance-tips.md)。
 
 ## <a name="run-the-performance-testing-application"></a>執行效能測試應用程式
 若要開始使用，最快的方法就是依以下步驟所述，編譯並執行下面的 .NET 範例。 您也可以檢閱原始程式碼，然後對自己的用戶端應用程式實作類似的組態。
 
-**步驟 1：**從 [DocumentDB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark) 或 GitHub 存放庫的分支下載專案。
+**步驟 1：**從 [Azure Cosmos DB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark) 或 GitHub 存放庫的分支下載專案。
 
 **步驟 2：** 修改 App.config 中 EndpointUrl、AuthorizationKey、CollectionThroughput 及 DocumentTemplate (選擇性) 的設定。
 
 > [!NOTE]
-> 以高輸送量佈建集合之前，請參閱 [價格頁面](https://azure.microsoft.com/pricing/details/documentdb/) 以估算每個集合的成本。 DocumentDB 對儲存體和輸送量是以小時為基礎獨立計費，因此您可以藉由在測試後刪除或降低 DocumentDB 集合的輸送量來節省成本。
+> 以高輸送量佈建集合之前，請參閱 [價格頁面](https://azure.microsoft.com/pricing/details/documentdb/) 以估算每個集合的成本。 Cosmos DB 對儲存體和輸送量是以小時為基礎獨立計費，因此您可以藉由在測試後刪除或降低 DocumentDB 集合的輸送量來節省成本。
 > 
 > 
 
@@ -104,14 +105,14 @@ ms.lasthandoff: 03/29/2017
 讓應用程式處於執行狀態之後，您便可以嘗試不同的[索引編製原則](documentdb-indexing-policies.md)和[一致性層級](documentdb-consistency-levels.md)，以了解它們對輸送量和延遲的影響。 您也可以檢閱原始程式碼，然後對自己的測試套件或實際執行應用程式實作類似的組態。
 
 ## <a name="next-steps"></a>後續步驟
-在這篇文章中，我們探討了如何使用 .NET 主控台應用程式來執行 DocumentDB 的相關效能和規模測試。 如需有關使用 DocumentDB 的其他資訊，請參閱下面的連結。
+在這篇文章中，我們探討了如何使用 .NET 主控台應用程式來執行 Cosmos DB 的相關效能和規模測試。 如需有關使用 Cosmos DB 的其他資訊，請參閱下面的連結。
 
-* [DocumentDB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)
-* [用以改善 DocumentDB 效能的用戶端設定選項](documentdb-performance-tips.md)
-* [DocumentDB 中的伺服器端資料分割](documentdb-partition-data.md)
+* [Azure Cosmos DB 效能測試範例](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/documentdb-benchmark)
+* [改善 Azure Cosmos DB 效能的用戶端設定選項](documentdb-performance-tips.md)
+* [Azure Cosmos DB 中的伺服器端資料分割](documentdb-partition-data.md)
 * [DocumentDB 集合和效能等級](documentdb-performance-levels.md)
 * [MSDN 上的 DocumentDB .NET SDK 文件](https://msdn.microsoft.com/library/azure/dn948556.aspx)
 * [DocumentDB .NET 範例](https://github.com/Azure/azure-documentdb-net)
-* [有關效能秘訣的 DocumentDB 部落格](https://azure.microsoft.com/blog/2015/01/20/performance-tips-for-azure-documentdb-part-1-2/)
+* [有關效能秘訣的 Azure Cosmos DB 部落格](https://azure.microsoft.com/blog/2015/01/20/performance-tips-for-azure-documentdb-part-1-2/)
 
 

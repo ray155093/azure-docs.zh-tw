@@ -14,10 +14,11 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 04/15/2017
 ms.author: eugenesh
-translationtype: Human Translation
-ms.sourcegitcommit: b0c27ca561567ff002bbb864846b7a3ea95d7fa3
-ms.openlocfilehash: e14da5fa10533d922a6263e8f52a53c0eaa23393
-ms.lasthandoff: 04/25/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: faa6d403aa130738ae0b58ba1ffc828a1e37e9f4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 ---
 
@@ -341,7 +342,7 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 ## <a name="indexing-documents-along-with-related-data"></a>為文件及相關資料編製索引
 
 您的文件可能具有相關聯的中繼資料 (例如建立文件的部門)，這類資料會在下列其中一個位置儲存為結構化資料。
--   在個別的資料存放區中，例如 SQL Database 或 DocumentDB。
+-   在個別的資料存放區中，例如 SQL Database 或 Azure Cosmos DB。
 -   直接附加至 Azure Blob 儲存體中的每份文件以做為自訂中繼資料 (如需詳細資訊，請參閱[設定和擷取 Blob 資源的屬性及中繼資料](https://docs.microsoft.com/rest/api/storageservices/setting-and-retrieving-properties-and-metadata-for-blob-resources))。
 
 您也可以藉由為每份文件和它的中繼資料指派相同的唯一值，以及為每個索引子指派 `mergeOrUpload` 動作，來為文件及其中繼資料編製索引。 如需此解決方案的詳細說明，請參閱這篇外部文章：[在 Azure 搜尋服務中將文件與其他資料組合在一起 (英文)](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html)。

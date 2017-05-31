@@ -13,16 +13,17 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: na
-ms.date: 04/17/2017
+ms.date: 05/16/2017
 ms.author: owend
-translationtype: Human Translation
-ms.sourcegitcommit: 0bec803e4b49f3ae53f2cc3be6b9cb2d256fe5ea
-ms.openlocfilehash: 466595773663d43ad8e25fa9ec0ec0163a3f5962
-ms.lasthandoff: 03/24/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 95b8c100246815f72570d898b4a5555e6196a1a0
+ms.openlocfilehash: 1782c7e5f7cd710d6e17a26197f9fcc84c967902
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/18/2017
 
 
 ---
-# <a name="create-an-analysis-services-server"></a>建立 Analysis Services 伺服器
+# <a name="create-an-azure-analysis-services-server-in-azure-portal"></a>在 Azure 入口網站中建立 Azure Analysis Services 伺服器
 本文將逐步引導您在 Azure 訂用帳戶中建立 Analysis Services 伺服器資源。
 
 ## <a name="before-you-begin"></a>開始之前
@@ -33,11 +34,11 @@ ms.lasthandoff: 03/24/2017
 * **資源群組**：使用現有資源群組，或[建立新的群組](../azure-resource-manager/resource-group-overview.md)。
 
 > [!NOTE]
-> 建立 Analysis Services 伺服器可能會產生新的計費服務。 若要深入了解，請參閱 [Analysis Services 價格](https://azure.microsoft.com/pricing/details/analysis-services/)。
+> 建立伺服器可能會導致新的可計費服務。 若要深入了解，請參閱 [Analysis Services 價格](https://azure.microsoft.com/pricing/details/analysis-services/)。
 > 
 > 
 
-## <a name="create-an-analysis-services-server"></a>建立 Analysis Services 伺服器
+## <a name="to-create-a-server-in-azure-portal"></a>若要在 Azure 入口網站中建立伺服器
 1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下 [+ 新增]  >  [智慧 + 分析]  >  [Analysis Services]。
 3. 在 [Analysis Services] 刀鋒視窗中，填寫必要的欄位，然後按 [建立]。
@@ -48,19 +49,12 @@ ms.lasthandoff: 03/24/2017
    * **訂用帳戶**：選取此伺服器向其收費的訂用帳戶。
    * **資源群組**：這些容器是為了協助您管理 Azure 資源集合而設計。 若要深入了解，請參閱[資源群組](../azure-resource-manager/resource-group-overview.md)。
    * **位置**︰此 Azure 資料中心位置裝載著伺服器。 請選擇最靠近最大使用者群體的位置。
-   * **定價層**：選取定價層。 表格式模型最多支援 100 GB。 若要深入了解，請參閱 [Azure Analysis Services 定價](https://azure.microsoft.com/pricing/details/analysis-services/)。
+   * **定價層**：選取定價層。 表格式模型最多支援 400 GB。 若要深入了解，請參閱 [Azure Analysis Services 定價](https://azure.microsoft.com/pricing/details/analysis-services/)。
 4. 按一下 [建立] 。
 
-建立程序通常不到一分鐘即可完成；往往在數秒內。 如果您選取 [新增到入口網站]，請瀏覽至您的入口網站來查看新的伺服器。 或者，瀏覽至 [更多服務]  > **Analysis Services** 以查看您的伺服器是否就緒。
+建立程序通常不到一分鐘即可完成；往往在數秒內。 如果您選取 [新增到入口網站]，請瀏覽至您的入口網站來查看新的伺服器。 或者，瀏覽至 [更多服務]  >  **Analysis Services** 以查看您的伺服器是否就緒。
 
  ![儀表板](./media/analysis-services-create-server/aas-create-server-dashboard.png)
-
-## <a name="automate-server-creation"></a>自動建立伺服器
-您可以使用 Azure Resource Manager 範本檔案，自動進行伺服器即時佈建。 若要深入了解，請觀賞此實用影片。
-
->[!VIDEO https://channel9.msdn.com/series/Azure-Analysis-Services/AzureAnalysisServicesAutomation/player]
->
->
 
 
 ## <a name="next-steps"></a>後續步驟

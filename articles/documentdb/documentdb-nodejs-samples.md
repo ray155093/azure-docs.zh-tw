@@ -1,27 +1,29 @@
 ---
-title: "DocumentDB 的 NoSQL Node.js 範例 | Microsoft Docs"
-description: "在 Github 上尋找 DocumentDB 中的一般工作所適用的 NoSQL Node.js 範例，包括 NoSQL 資料庫中的 JSON 文件的 CRUD 作業。"
+title: "適用於 Azure Cosmos DB 的 Node.js 範例 | Microsoft Docs"
+description: "在 GitHub 上找到適用於 Azure Cosmos DB 中一般工作 (包括 CRUD 作業) 的 Node.js 範例。"
 keywords: "Node.js 範例"
-services: documentdb
+services: cosmosdb
 author: moderakh
 manager: jhubbard
 editor: monicar
 documentationcenter: nodejs
 ms.assetid: d87d97be-47a5-4928-8d46-a541fbb33213
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/13/2017
 ms.author: moderakh
-translationtype: Human Translation
-ms.sourcegitcommit: 6d3872dfa5187ea4e0570fdfd0ed3804f461af3f
-ms.openlocfilehash: bc3350a094361817f68e31de6561d050a3295f61
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 5415bef7706f1a621429f76fb451ff459693b0e9
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="documentdb-nodejs-examples"></a>DocumentDB Node.js 範例
+# <a name="azure-cosmos-db-nodejs-examples"></a>Azure Cosmos DB Node.js 範例
 > [!div class="op_single_selector"]
 > * [.NET 範例](documentdb-dotnet-samples.md)
 > * [Node.js 範例](documentdb-nodejs-samples.md)
@@ -30,7 +32,7 @@ ms.openlocfilehash: bc3350a094361817f68e31de6561d050a3295f61
 > 
 > 
 
-[azure-documentdb-nodejs](https://github.com/Azure/azure-documentdb-node/tree/master/samples) GitHub 儲存機制中包含可對 Azure DocumentDB 資源執行 CRUD 作業和其他常見作業的範例解決方案。 本文提供：
+[azure-documentdb-nodejs](https://github.com/Azure/azure-documentdb-node/tree/master/samples) GitHub 存放庫中包含可對 Azure Cosmos DB 資源執行 CRUD 作業和其他常見作業的範例解決方案。 本文提供：
 
 * 每個 Node.js 範例專案檔中各項工作的連結。
 * 相關 API 參考內容的連結。
@@ -100,7 +102,7 @@ ms.openlocfilehash: bc3350a094361817f68e31de6561d050a3295f61
 | [建立字串路徑的範圍索引](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L349-L425) |[IndexKind.Range](http://azure.github.io/azure-documentdb-node/global.html#IndexKind)、[IndexingPolicy](http://azure.github.io/azure-documentdb-node/global.html#IndexingPolicy)、[DocumentClient.queryDocument](http://azure.github.io/azure-documentdb-node/DocumentClient.html#queryDocument) |
 | [使用預設 indexPolicy 建立集合，然後在線上加以更新](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.IndexManagement/app.js#L519-L614) |[DocumentClient.createCollection](http://azure.github.io/azure-documentdb-node/DocumentClient.html#createCollection)<br> [DocumentClient.replaceCollection#replaceCollection](http://azure.github.io/azure-documentdb-node/DocumentClient.html) |
 
-如需索引編製的詳細資訊，請參閱 [DocumentDB 索引編製原則](documentdb-indexing-policies.md)。
+如需索引編製的詳細資訊，請參閱 [Azure Cosmos DB 編製索引原則](documentdb-indexing-policies.md)。
 
 ## <a name="server-side-programming-examples"></a>伺服器端程式設計範例
 [ServerSideScripts](https://github.com/Azure/azure-documentdb-node/tree/master/samples/ServerSideScripts) 專案的 [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/ServerSideScripts/app.js) 檔案說明如何執行下列工作。
@@ -110,7 +112,7 @@ ms.openlocfilehash: bc3350a094361817f68e31de6561d050a3295f61
 | [建立預存程序](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.ServerSideScripts/app.js#L44-L71) |[DocumentClient.createStoredProcedure](http://azure.github.io/azure-documentdb-node/DocumentClient.html#createStoredProcedure) |
 | [執行預存程序](https://github.com/Azure/azure-documentdb-node/blob/ef53e5f6707a5dc45920fb6ad54d9c7e008a6c18/samples/DocumentDB.Samples.ServerSideScripts/app.js#L73-L90) |[DocumentClient.executeStoredProcedure](http://azure.github.io/azure-documentdb-node/DocumentClient.html#executeStoredProcedure) |
 
-如需伺服器端程式設計的詳細資訊，請參閱 [DocumentDB 伺服器端程式設計：預存程序、資料庫觸發程序和 UDF](documentdb-programming.md)。
+如需伺服器端程式設計的詳細資訊，請參閱 [Azure Cosmos DB 伺服器端程式設計：預存程序、資料庫觸發程序和 UDF](documentdb-programming.md)。
 
 ## <a name="partitioning-examples"></a>資料分割範例
 [Partitioning](https://github.com/Azure/azure-documentdb-node/tree/master/samples/Partitioning) 專案的 [app.js](https://github.com/Azure/azure-documentdb-node/blob/master/samples/Partitioning/app.js) 檔案說明如何執行下列工作。
@@ -119,11 +121,6 @@ ms.openlocfilehash: bc3350a094361817f68e31de6561d050a3295f61
 | --- | --- |
 | [使用 HashPartitionResolver](https://github.com/Azure/azure-documentdb-node/blob/ce0fc3c4e70b0279091a1e03620a668d93a14fc2/samples/Partitioning/app.js#L53-L103) |[HashPartitionResolver](http://azure.github.io/azure-documentdb-node/HashPartitionResolver.html) |
 
-如需在 DocumentDB 中分割資料的詳細資訊，請參閱 [DocumentDB 中的資料分割和級別資料](documentdb-partition-data.md)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
+如需在 Azure Cosmos DB 中分割資料的詳細資訊，請參閱[在 Azure Cosmos DB 中進行資料分割和調整資料](documentdb-partition-data.md)。
 
 

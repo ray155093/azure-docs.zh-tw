@@ -1,36 +1,37 @@
 ---
-title: "DocumentDB 連接器的 Power BI 教學課程 | Microsoft Docs"
-description: "使用本 Power BI 教學課程以匯入 JSON、建立具深入資訊的報告以及使用 DocumentDB 和 Power BI 連接器視覺化資料。"
+title: "Azure Cosmos DB 連接器的 Power BI 教學課程 | Microsoft Docs"
+description: "使用本 Power BI 教學課程以匯入 JSON、建立具深入資訊的報告以及使用 Azure Cosmos DB 和 Power BI 連接器將資料視覺化。"
 keywords: "power bi 教學課程，視覺化資料，power bi 連接器"
-services: documentdb
+services: cosmosdb
 author: mimig1
 manager: jhubbard
 editor: mimig
 documentationcenter: 
 ms.assetid: cd1b7f70-ef99-40b7-ab1c-f5f3e97641f7
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/14/2016
 ms.author: mimig
-translationtype: Human Translation
-ms.sourcegitcommit: 089b250e36eb3e091ad63d716acaf6259a958898
-ms.openlocfilehash: 3f2103a1d3838b73f10d567721693a9b813d0edb
-ms.lasthandoff: 02/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 25a33ea4266dd5b7874df1c642ca05fbaf6a50fa
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="power-bi-tutorial-for-documentdb-visualize-data-using-the-power-bi-connector"></a>DocumentDB 的 Power BI 教學課程：使用 Power BI 連接器將資料視覺化
-[PowerBI.com](https://powerbi.microsoft.com/) 是一項線上服務，您可以在其中建立及共用具有您和組織之重要資料的儀表板和報告。  Power BI Desktop 是一項專用的報告撰寫工具，可讓您從各種資料來源擷取資料、合併和轉換資料、建立功能強大的報告和視覺效果，以及將報告發佈至 Power BI。  透過最新版的 Power BI Desktop，您現在可以透過 Power BI 的 DocumentDB 連接器連接到您的 DocumentDB 帳戶。   
+# <a name="power-bi-tutorial-for-azure-cosmos-db-visualize-data-using-the-power-bi-connector"></a>Azure Cosmos DB 的 Power BI 教學課程：使用 Power BI 連接器將資料視覺化
+[PowerBI.com](https://powerbi.microsoft.com/) 是一項線上服務，您可以在其中建立及共用具有您和組織之重要資料的儀表板和報告。  Power BI Desktop 是一項專用的報告撰寫工具，可讓您從各種資料來源擷取資料、合併和轉換資料、建立功能強大的報告和視覺效果，以及將報告發佈至 Power BI。  有了最新版的 Power BI Desktop，您現在可以透過 Power BI 的 Cosmos DB 連接器連接到 Cosmos DB 帳戶。   
 
-在本 Power BI 教學課程中，我們將逐步解說在 Power BI Desktop 中連接到 DocumentDB 帳戶、瀏覽到我們要使用瀏覽器擷取資料的集合、使用 Power BI Desktop 查詢編輯器將 JSON 資料轉換成表格式格式，和建置報告並將其發佈至 PowerBI.com 等作業的步驟。
+在本 Power BI 教學課程中，我們將逐步解說在 Power BI Desktop 中連接到 Cosmos DB 帳戶、瀏覽到我們要使用瀏覽器擷取資料的集合、使用 Power BI Desktop 查詢編輯器將 JSON 資料轉換成表格式格式，和建置報告並將其發佈至 PowerBI.com 等作業的步驟。
 
 完成本教學課程後，您將能夠回答下列問題：  
 
-* 如何使用 Power BI Desktop 以 DocumentDB 中的資料建置報告？
-* 如何在 Power BI Desktop 中連接到 DocumentDB 帳戶？
+* 如何使用 Power BI Desktop 以 Cosmos DB 中的資料建置報告？
+* 如何在 Power BI Desktop 中連接到 Cosmos DB 帳戶？
 * 如何在 Power BI Desktop 中從集合擷取資料？
 * 如何在 Power BI Desktop 中轉換巢狀 JSON 資料？
 * 如何在 PowerBI.com 中發佈及共用我的報告？
@@ -39,16 +40,16 @@ ms.lasthandoff: 02/15/2017
 在依照本 Power BI 教學課程中的指示進行之前，請先確定您已備妥下列項目：
 
 * [最新版的 Power BI Desktop](https://powerbi.microsoft.com/desktop)
-* 我們的示範帳戶或您 Azure DocumentDB 帳戶中之資料的存取權。
+* 我們的示範帳戶或您的 Azure Cosmos DB 帳戶中資料的存取權。
   * 示範帳戶會填入此教學課程中所顯示的火山資料。 此示範帳戶未受限於任何 SLA，而是僅供示範之用。  我們保留對此示範帳戶隨時進行修改的權利，包括 (但不限於) 終止帳戶、變更金鑰、限制存取權、變更和刪除資料，不事先通知或告知原因。
     * URL：https://analytics.documents.azure.com
     * 唯讀金鑰：MSr6kt7Gn0YRQbjd6RbTnTt7VHc5ohaAFu7osF0HdyQmfR+YhwCH2D2jcczVIR1LNK3nMPNBD31losN7lQ/fkw==
-  * 或者，若要建立您自己的帳戶，請參閱 [使用 Azure 入口網站建立 DocumentDB 資料庫帳戶](https://azure.microsoft.com/documentation/articles/documentdb-create-account/)。 然後，若要取得類似於本教學課程所使用的範例火山資料 (但不包含 GeoJSON 區塊)，請參閱 [NOAA 網站](https://www.ngdc.noaa.gov/nndc/struts/form?t=102557&s=5&d=5)，然後使用 [DocumentDB 資料移轉工具](https://azure.microsoft.com/documentation/articles/documentdb-import-data/)匯入資料。
+  * 或者，若要建立您自己的帳戶，請參閱[使用 Azure 入口網站建立 Azure Cosmos DB 資料庫帳戶](https://azure.microsoft.com/documentation/articles/documentdb-create-account/)。 然後，若要取得類似於本教學課程所使用的範例火山資料 (但不包含 GeoJSON 區塊)，請參閱 [NOAA 網站](https://www.ngdc.noaa.gov/nndc/struts/form?t=102557&s=5&d=5)，然後使用 [Azure Cosmos DB 資料移轉工具](https://azure.microsoft.com/documentation/articles/documentdb-import-data/)匯入資料。
 
 若要在 PowerBI.com 上共用您的報告，您必須有 PowerBI.com 中的帳戶。  若要深入了解 Power BI for Free 和 Power BI Pro，請造訪 [https://powerbi.microsoft.com/pricing](https://powerbi.microsoft.com/pricing)。
 
 ## <a name="lets-get-started"></a>現在就開始吧
-在本教學課程中，我們假設您是研究世界各地火山的地質學家。  火山資料儲存在 DocumentDB 帳戶中，JSON 文件看起來如下。
+在本教學課程中，我們假設您是研究世界各地火山的地質學家。  火山資料儲存在 Cosmos DB 帳戶中，JSON 文件看起來如下。
 
     {
         "Volcano Name": "Rainier",
@@ -67,7 +68,7 @@ ms.lasthandoff: 02/15/2017
           "Last Known Eruption": "Last known eruption from 1800-1899, inclusive"
     }
 
-您想要從 DocumentDB 帳戶擷取火山資料，並在如下的互動式 Power BI 報告中視覺化資料。
+您想要從 Cosmos DB 帳戶擷取火山資料，並在互動式 Power BI 報告中將資料視覺化，如下所示。
 
 ![藉由使用 Power BI 連接器完成這個 Power BI 教學課程，您將可以使用 Power BI Desktop 火山報告將資料視覺化](./media/documentdb-powerbi-visualize/power_bi_connector_pbireportfinal.png)
 
@@ -81,26 +82,26 @@ ms.lasthandoff: 02/15/2017
    
     ![Power BI Desktop 報告檢視 - Power BI 連接器](./media/documentdb-powerbi-visualize/power_bi_connector_pbireportview.png)
 4. 選取 [首頁] 功能區，然後按一下 [取得資料]。  此時應會出現 [取得資料]  視窗。
-5. 按一下 [Azure]、選取 [Microsoft Azure DocumentDB (Beta)]，然後按一下 [連接]。  此時應會出現 [Microsoft Azure DocumentDB 連接]  視窗。
+5. 按一下 [Azure]、選取 [Microsoft Azure Cosmos DB (Beta)]，然後按一下 [連接]。  此時應會出現 [Microsoft Azure Cosmos DB 連接] 視窗。
    
     ![Power BI Desktop 取得資料 - Power BI 連接器](./media/documentdb-powerbi-visualize/power_bi_connector_pbigetdata.png)
-6. 依照下列方式指定您要從中擷取資料的 DocumentDB 帳戶端點 URL，然後按一下 [確定]。 您可以從 Azure 入口網站 [[金鑰](documentdb-manage-account.md#keys)] 刀鋒視窗的 [URI] 方塊中擷取 URL，示範中是 `https://analytics.documents.azure.com`。 
+6. 依照下列方式指定您要從中擷取資料的 Cosmos DB 帳戶端點 URL，然後按一下 [確定]。 您可以從 Azure 入口網站 [[金鑰](documentdb-manage-account.md#keys)] 刀鋒視窗的 [URI] 方塊中擷取 URL，示範中是 `https://analytics.documents.azure.com`。 
    
     資料庫名稱、集合名稱、SQL 陳述式皆保留空白，這些欄位是選用的。  我們將使用「瀏覽器」來選取資料庫和集合，以識別資料來自何處。
    
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 桌面連接視窗](./media/documentdb-powerbi-visualize/power_bi_connector_pbiconnectwindow.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 桌面連接視窗](./media/documentdb-powerbi-visualize/power_bi_connector_pbiconnectwindow.png)
 7. 如果您是第一次連接到此端點，系統會提示您提供帳戶金鑰。  您可以從 Azure 入口網站 [[唯讀金鑰](documentdb-manage-account.md#keys)] 刀鋒視窗的 [主要金鑰] 方塊中擷取金鑰，示範中是 `MSr6kt7Gn0YRQbjd6RbTnTt7VHc5ohaAFu7osF0HdyQmfR+YhwCH2D2jcczVIR1LNK3nMPNBD31losN7lQ/fkw==`。 輸入帳戶金鑰，然後按一下 [連接] 。
    
     建議您在建置報告時使用唯讀金鑰。  這樣可避免非必要地將主要金鑰暴露於潛在的安全性風險下。 唯讀金鑰可從 Azure 入口網站的 [[金鑰](documentdb-manage-account.md#keys)] 刀鋒視窗取得，或使用上面提供的示範帳戶資訊。
    
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 帳戶金鑰](./media/documentdb-powerbi-visualize/power_bi_connector_pbidocumentdbkey.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 帳戶金鑰](./media/documentdb-powerbi-visualize/power_bi_connector_pbidocumentdbkey.png)
 8. 順利連接帳戶後，會出現 [瀏覽器]  。  [瀏覽器]  會顯示帳戶下的資料庫清單。
 9. 按一下並展開作為報告資料來源的資料庫，如果您使用示範帳戶，請選取 [volcanodb] 。   
 10. 現在，選取您要從中擷取資料的集合。 如果您使用示範帳戶，請選取 **volcano1**。
     
     [預覽] 窗格會顯示 [記錄]  項目的清單。  一份文件會顯示為 Power BI 中的 [記錄]  類型。 同樣地，文件內的巢狀 JSON 區塊也是 [記錄] 。
     
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 瀏覽器視窗](./media/documentdb-powerbi-visualize/power_bi_connector_pbinavigator.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 瀏覽器視窗](./media/documentdb-powerbi-visualize/power_bi_connector_pbinavigator.png)
 11. 按一下 [編輯]  以啟動 [查詢編輯器]，以便轉換資料。
 
 ## <a name="flattening-and-transforming-json-documents"></a>簡維化和轉換 JSON 文件
@@ -108,40 +109,40 @@ ms.lasthandoff: 02/15/2017
    ![Power BI Desktop 查詢編輯器](./media/documentdb-powerbi-visualize/power_bi_connector_pbiqueryeditor.png)
 2. 按一下位於 [文件]  資料行標頭右側的展開器。  此時會出現含有欄位清單的內容功能表。  選取您的報告所需的欄位，例如火山名稱、國家、區域、位置、高度、類型、狀態和已知的上次爆發時間，然後按一下 [確定]。
    
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 展開文件](./media/documentdb-powerbi-visualize/power_bi_connector_pbiqueryeditorexpander.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 展開文件](./media/documentdb-powerbi-visualize/power_bi_connector_pbiqueryeditorexpander.png)
 3. 中央窗格會顯示所選欄位的結果預覽。
    
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 壓平合併結果](./media/documentdb-powerbi-visualize/power_bi_connector_pbiresultflatten.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 壓平合併結果](./media/documentdb-powerbi-visualize/power_bi_connector_pbiresultflatten.png)
 4. 在我們的範例中，[位置] 屬性是文件中的 GeoJSON 區塊。  如您所見，[位置] 顯示為 Power BI Desktop 中的 [記錄]  類型。  
 5. 按一下位於 [位置] 資料行標頭右側的展開器。  此時會出現含有類型和座標欄位的內容功能表。  我們選取座標欄位，然後按一下 [確定] 。
    
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 位置記錄](./media/documentdb-powerbi-visualize/power_bi_connector_pbilocationrecord.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 位置記錄](./media/documentdb-powerbi-visualize/power_bi_connector_pbilocationrecord.png)
 6. 中央窗格現在會顯示 [清單]  類型的座標資料行。  如本教學課程一開始所說明，本教學課程中的 GeoJSON 資料屬於 Point 類型，具有座標陣列中所記錄的緯度和經度值。
    
     coordinates[0] 項目代表經度，coordinates[1] 則代表緯度。
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 座標清單](./media/documentdb-powerbi-visualize/power_bi_connector_pbiresultflattenlist.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 座標清單](./media/documentdb-powerbi-visualize/power_bi_connector_pbiresultflattenlist.png)
 7. 為了將座標陣列簡維化，我們將建立名為 LatLong 的 [自訂資料行]  。  選取 [新增資料行] 功能區，然後按一下 [新增自訂資料行]。  此時應會出現 [新增自訂資料行]  視窗。
 8. 提供新資料行的名稱，例如 LatLong。
 9. 接下來，指定新資料行的自訂公式。  在我們的範例中，我們將依照下列方式使用以下公式，串連以逗號分隔的緯度和經度值： `Text.From([Document.Location.coordinates]{1})&","&Text.From([Document.Location.coordinates]{0})`。 按一下 [確定] 。
    
     如需資料分析運算式 (DAX) (包括 DAX 函數) 的詳細資訊，請瀏覽 [Power BI Desktop 中的 DAX 基礎](https://support.powerbi.com/knowledgebase/articles/554619-dax-basics-in-power-bi-desktop)。
    
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 新增自訂資料行](./media/documentdb-powerbi-visualize/power_bi_connector_pbicustomlatlong.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 新增自訂資料行](./media/documentdb-powerbi-visualize/power_bi_connector_pbicustomlatlong.png)
 10. 現在，中央窗格會顯示新的 LatLong 資料行，並且已填入以逗號分隔的緯度和經度值。
     
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 自訂 LatLong 資料行](./media/documentdb-powerbi-visualize/power_bi_connector_pbicolumnlatlong.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 自訂 LatLong 資料行](./media/documentdb-powerbi-visualize/power_bi_connector_pbicolumnlatlong.png)
     
     如果您在新的資料行中收到錯誤，請確定在 [查詢設定] 下套用的步驟與下圖相同︰
     
     ![套用的步驟應該是來源、瀏覽、展開的文件、展開的 Document.Location、新增的自訂](./media/documentdb-powerbi-visualize/azure-documentdb-power-bi-applied-steps.png)
     
     如果步驟不同，請刪除額外的步驟，然後再試一次新增自訂資料行。 
-11. 現在我們已將資料簡維化成表格式格式。  您可以利用查詢編輯器中所有可用的功能，將 DocumentDB 中的資料圖形化及進行轉換。  如果您使用範例，請在 [首頁] 功能區上變更 [資料類型]，以將 [高度] 的資料類型變更為 [整數]。
+11. 現在我們已將資料簡維化成表格式格式。  您可以利用查詢編輯器中所有可用的功能，將 Cosmos DB 中的資料圖形化及進行轉換。  如果您使用範例，請在 [首頁] 功能區上變更 [資料類型]，以將 [高度] 的資料類型變更為 [整數]。
     
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 變更資料行類型](./media/documentdb-powerbi-visualize/power_bi_connector_pbichangetype.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 變更資料行類型](./media/documentdb-powerbi-visualize/power_bi_connector_pbichangetype.png)
 12. 按一下 [關閉並套用]  以儲存資料模型。
     
-    ![DocumentDB Power BI 連接器的 Power BI 教學課程 - 關閉並套用](./media/documentdb-powerbi-visualize/power_bi_connector_pbicloseapply.png)
+    ![Azure Cosmos DB Power BI 連接器的 Power BI 教學課程 - 關閉並套用](./media/documentdb-powerbi-visualize/power_bi_connector_pbicloseapply.png)
 
 ## <a name="build-the-reports"></a>建置報告
 [Power BI Desktop 報告] 檢視可做為您開始建立報告以視覺化資料的起始點。  您可以將欄位拖放到 [報告]  畫布上，以建立報告。
@@ -164,7 +165,7 @@ ms.lasthandoff: 02/15/2017
 5. 您現在應該會看到地圖視覺化顯示一組表示每個火山所在位置的泡泡，且泡泡的大小會與火山的高度相關聯。
 6. 現在您已建立基本報告。  您可以新增更多視覺效果，以進一步自訂報告。  在本例中，我們新增 [火山類型] 交叉分析篩選器，讓報告更具互動性。  
    
-    ![完成 DocumentDB 的 Power BI 教學課程後的最終 Power BI Desktop 報告的螢幕擷取畫面](./media/documentdb-powerbi-visualize/power_bi_connector_pbireportfinal.png)
+    ![完成 Azure Cosmos DB 的 Power BI 教學課程後之最終 Power BI Desktop 報告的螢幕擷取畫面](./media/documentdb-powerbi-visualize/power_bi_connector_pbireportfinal.png)
 
 ## <a name="publish-and-share-your-report"></a>發佈和共用您的報告
 若要共用您的報告，您必須有 PowerBI.com 中的帳戶。
@@ -206,12 +207,12 @@ ms.lasthandoff: 02/15/2017
 3. 按一下 [編輯認證] 。 
    
     [設定] 快顯視窗隨即出現。 
-4. 輸入金鑰將資料集連接到 DocumentDB 帳戶，然後按一下 [登入] 。 
+4. 輸入金鑰以將該資料集連接到 Cosmos DB 帳戶，然後按一下 [登入]。 
 5. 展開 [排程重新整理]  ，並設定您想要重新整理資料集的排程。 
 6. 按一下 [套用]  即完成排程重新整理的設定。
 
 ## <a name="next-steps"></a>後續步驟
 * 若要深入了解 Power BI，請參閱 [開始使用 Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/)。
-* 若要深入了解 DocumentDB，請參閱 [DocumentDB 文件登陸頁面](https://azure.microsoft.com/documentation/services/documentdb/)。
+* 若要深入了解 Cosmos DB，請參閱 [Azure Cosmos DB 文件登錄頁面 (英文)](https://azure.microsoft.com/documentation/services/documentdb/)。
 
 

@@ -1,29 +1,30 @@
 ---
-title: "效能秘訣 - Azure DocumentDB NoSQL | Microsoft Docs"
-description: "了解用以改善 Azure DocumentDB 資料庫效能的用戶端設定選項"
+title: "效能秘訣 - Azure Cosmos DB NoSQL | Microsoft Docs"
+description: "了解用以改善 Azure Cosmos DB 資料庫效能的用戶端設定選項"
 keywords: "如何改善資料庫效能"
-services: documentdb
+services: cosmosdb
 author: mimig1
 manager: jhubbard
 editor: 
 documentationcenter: 
 ms.assetid: 94ff155e-f9bc-488f-8c7a-5e7037091bb9
-ms.service: documentdb
+ms.service: cosmosdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 02/23/2017
 ms.author: mimig
-translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: 3124185a486335d978634281b63d2475981e57f8
-ms.lasthandoff: 03/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: d37401d850e87e516e1fde7c9a4877792ed7858a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="performance-tips-for-documentdb"></a>DocumentDB 的效能秘訣
-Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得延遲與輸送量保證的情況下順暢地調整。 使用 DocumentDB 時，您不須進行主要的架構變更，或是撰寫複雜的程式碼來調整您的資料庫。 相應增加和減少就像進行單一 API 呼叫或 [SDK 方法呼叫](documentdb-set-throughput.md#set-throughput-sdk)一樣簡單。 不過，由於 DocumentDB 是透過網路呼叫存取，所以您可以進行用戶端最佳化以達到最高效能。
+# <a name="performance-tips-for-azure-cosmos-db"></a>Azure Cosmos DB 的效能秘訣
+Azure Cosmos DB 是一個既快速又彈性的分散式資料庫，可在獲得延遲與輸送量保證的情況下順暢地調整。 使用 Cosmos DB 時，您不須進行主要的架構變更，或是撰寫複雜的程式碼來調整您的資料庫。 相應增加和減少就像進行單一 API 呼叫或 [SDK 方法呼叫](documentdb-set-throughput.md#set-throughput-sdk)一樣簡單。 不過，由於 Cosmos DB 是透過網路呼叫存取，所以您可以進行用戶端最佳化以達到最高效能。
 
 如果您詢問「如何改善我的資料庫效能？ 」，請考慮下列選項：
 
@@ -32,12 +33,12 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 
 1. **原則︰使用直接連接模式**
 
-    用戶端連接到 Azure DocumentDB 的方式，對於效能有重大影響 (尤其對觀察到的用戶端延遲而言)。 有兩個重要組態設定可用來設定用戶端連接原則 - 連接模式和連接[*通訊協定*](#connection-protocol)。  兩個可用的模式︰
+    用戶端連接到 Azure Cosmos DB 的方式，對於效能有重大影響 (尤其對觀察到的用戶端延遲而言)。 有兩個重要組態設定可用來設定用戶端連接原則 - 連接模式和連接[*通訊協定*](#connection-protocol)。  兩個可用的模式︰
 
    1. 閘道模式 (預設值)
    2. 直接模式
 
-      所有 SDK 平台都支援閘道模式並設為預設值。  如果您的應用程式在有嚴格防火牆限制的公司網路中執行，則閘道模式會是最佳的選擇，因為它會使用標準 HTTPS 連接埠與單一端點。 不過，對於效能的影響是每次讀取或寫入 DocumentDB 資料時，閘道模式都會涉及額外的網路躍點。 因此，直接模式因為網路躍點較少，所以可提供較佳的效能。
+      所有 SDK 平台都支援閘道模式並設為預設值。  如果您的應用程式在有嚴格防火牆限制的公司網路中執行，則閘道模式會是最佳的選擇，因為它會使用標準 HTTPS 連接埠與單一端點。 不過，對於效能的影響是每次讀取或寫入 Cosmos DB 資料時，閘道模式都會涉及額外的網路躍點。 因此，直接模式因為網路躍點較少，所以可提供較佳的效能。
 <a id="use-tcp"></a>
 2. **連接原則︰使用 TCP 通訊協定**
 
@@ -46,9 +47,9 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
    * TCP
    * HTTPS
 
-     DocumentDB 提供透過 HTTPS 的簡單且開放 RESTful 程式設計模型。 此外，它可提供有效率的 TCP 通訊協定，此 TCP 通訊協定在通訊模型中也符合 REST 限制，並且可以透過 .NET 用戶端 SDK 取得。 直接 TCP 和 HTTPS 皆使用 SSL 來進行初始驗證和加密流量。 為了達到最佳效能，儘可能使用 TCP 通訊協定。
+     Cosmos DB 提供透過 HTTPS 的簡單且開放 RESTful 程式設計模型。 此外，它可提供有效率的 TCP 通訊協定，此 TCP 通訊協定在通訊模型中也符合 REST 限制，並且可以透過 .NET 用戶端 SDK 取得。 直接 TCP 和 HTTPS 皆使用 SSL 來進行初始驗證和加密流量。 為了達到最佳效能，儘可能使用 TCP 通訊協定。
 
-     在「閘道模式」下使用 TCP 時，TCP 連接埠 443 是 DocumentDB 連接埠，而 10250 則是 MongoDB API 連接埠。 在「直接存取模式」下使用 TCP 時，除了「閘道」連接埠之外，您還需要確保開啟 10000 到 20000 之間的連接埠範圍，因為 DocumentDB 使用動態 TCP 連接埠。 如果未開啟這些連接埠而您嘗試使用 TCP，您就會收到「503 服務無法使用」錯誤。
+     在「閘道模式」下使用 TCP 時，TCP 連接埠 443 是 Cosmos DB 連接埠，而 10250 則是 MongoDB API 連接埠。 在「直接存取模式」下使用 TCP 時，除了「閘道」連接埠之外，您還務必要開啟 10000 到 20000 之間的連接埠範圍，因為 Cosmos DB 使用動態 TCP 連接埠。 如果未開啟這些連接埠而您嘗試使用 TCP，您就會收到「503 服務無法使用」錯誤。
 
      連接模式設定於使用 ConnectionPolicy 參數建構 DocumentClient 執行個體期間。 如果使用直接模式，也可以在 ConnectionPolicy 參數內設定 Protocol。
 
@@ -65,7 +66,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 
     因為只有直接模式支援 TCP，所以如果使用閘道模式，則 HTTPS 通訊協定一律用來與閘道通訊，並忽略 ConnectionPolicy 中的 Protocol 值。
 
-    ![DocumentDB 連接原則的圖例](./media/documentdb-performance-tips/azure-documentdb-connection-policy.png)
+    ![Azure Cosmos DB 連接原則的圖例](./media/documentdb-performance-tips/azure-documentdb-connection-policy.png)
 
 3. **呼叫 OpenAsync 以避免第一次要求的啟動延遲**
 
@@ -75,26 +76,26 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
    <a id="same-region"></a>
 4. **為了效能在相同 Azure 區域中共置用戶端**
 
-    可能的話，請將任何呼叫 DocumentDB 的應用程式放在與 DocumentDB 資料庫相同的區域中。 以約略的比較來說，在相同區域內對 DocumentDB 進行的呼叫會在 1-2 毫秒內完成，但美國西岸和美國東岸之間的延遲則會大於 50 毫秒。 視要求所採用的路由而定，各項要求從用戶端傳遞至 Azure 資料中心界限時的這類延遲可能有所不同。 確保呼叫端應用程式位於與佈建的 DocumentDB 端點相同的 Azure 區域中，將可能達到最低的延遲。 如需可用區域的清單，請參閱 [Azure 區域](https://azure.microsoft.com/regions/#services)。
+    可能的話，請將任何呼叫 Cosmos DB 的應用程式放在與 Cosmos DB 資料庫相同的區域中。 以約略的比較來說，在相同區域內對 Cosmos DB 進行的呼叫會在 1-2 毫秒內完成，但美國西岸和美國東岸之間的延遲則會大於 50 毫秒。 視要求所採用的路由而定，各項要求從用戶端傳遞至 Azure 資料中心界限時的這類延遲可能有所不同。 確保呼叫端應用程式與佈建的 Cosmos DB 端點位於相同的 Azure 區域中，將可能達到最低的延遲。 如需可用區域的清單，請參閱 [Azure 區域](https://azure.microsoft.com/regions/#services)。
 
-    ![DocumentDB 連接原則的圖例](./media/documentdb-performance-tips/azure-documentdb-same-region.png)
+    ![Azure Cosmos DB 連接原則的圖例](./media/documentdb-performance-tips/azure-documentdb-same-region.png)
    <a id="increase-threads"></a>
 5. **增加執行緒/工作數目**
 
-    由於對 DocumentDB 的呼叫是透過網路進行，因此您可能需要改變要求的平行處理原則程度，以便讓用戶端應用程式在不同要求之間只需等待很短的時間。 例如，如果您使用 .NET 的 [工作平行程式庫](https://msdn.microsoft.com//library/dd460717.aspx)，請建立大約數百個讀取或寫入 DocumentDB 的工作。
+    由於對 Azure Cosmos DB 的呼叫要透過網路進行，因此您可能需要改變要求的平行處理原則程度，以便讓用戶端應用程式在不同要求之間只需等待很短的時間。 例如，如果您使用 .NET 的[工作平行程式庫](https://msdn.microsoft.com//library/dd460717.aspx)，請建立大約數百個讀取或寫入 Cosmos DB 的工作。
 
 ## <a name="sdk-usage"></a>SDK 的使用方式
 1. **安裝最新的 SDK**
 
-    DocumentDB SDK 會不斷改良，以提供最佳效能。 請參閱 [DocumentDB SDK](documentdb-sdk-dotnet.md) 頁面來判斷最新的 SDK 並檢閱改進項目。
-2. **在應用程式存留期內使用單一 DocumentDB 用戶端**
+    Cosmos DB SDK 會持續改進以提供最佳效能。 請參閱 [Cosmos DB SDK](documentdb-sdk-dotnet.md) 頁面來判斷最新的 SDK 並檢閱改進項目。
+2. **在應用程式存留期內使用單一 Cosmos DB 用戶端**
 
     請注意，每個 DocumentClient 執行個體都具備執行緒安全，並且在直接模式中運作時執行有效率的連接管理和位址快取。 若要藉由 DocumentClient 獲得有效率的連接管理和更佳的效能，建議在應用程式存留期內對每個 AppDomain 使用單一 DocumentClient 執行個體。
 
    <a id="max-connection"></a>
 3. **增加使用閘道模式時每部主機的 System.Net MaxConnections**
 
-    使用閘道模式時，DocumentDB 要求是透過 HTTPS/REST 發出，並受制於每個主機名稱或 IP 位址的預設連線限制。 您可能必須將 MaxConnections 設定成較高的值 (100-1000)，以便讓用戶端程式庫能夠利用多個連到 DocumentDB 的同時連線。 在 .NET SDK 1.8.0 和更新版本中，[ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/library/system.net.servicepointmanager.defaultconnectionlimit.aspx) 的預設值為 50，而若要變更此值，您可以將 [Documents.Client.ConnectionPolicy.MaxConnectionLimit](https://msdn.microsoft.com/en-us/library/azure/microsoft.azure.documents.client.connectionpolicy.maxconnectionlimit.aspx) 設定為更高的值。   
+    使用閘道模式時，Cosmos DB 要求是透過 HTTPS/REST 發出，並受制於每個主機名稱或 IP 位址的預設連線限制。 您可能必須將 MaxConnections 設定成較高的值 (100-1000)，以便讓用戶端程式庫能夠利用多個同時連接到 Cosmos DB 的連線。 在 .NET SDK 1.8.0 和更新版本中，[ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/library/system.net.servicepointmanager.defaultconnectionlimit.aspx) 的預設值為 50，而若要變更此值，您可以將 [Documents.Client.ConnectionPolicy.MaxConnectionLimit](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.connectionpolicy.maxconnectionlimit.aspx) 設定為更高的值。   
 4. **微調分割之集合的平行查詢**
 
      DocumentDB .NET SDK 1.9.0 版和更新版本支援平行查詢，可讓您平行查詢分割的集合 (詳細資訊請參閱[使用 SDK](documentdb-partition-data.md#working-with-the-documentdb-sdks) 和相關的[程式碼範例](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Queries/Program.cs))。 平行查詢的設計目的是要改善其連續對應項目的查詢延遲和輸送量。 平行查詢提供兩個可供使用者微調以符合其需求的參數：(a) MaxDegreeOfParallelism：用來控制可平行查詢的分割數目上限，以及 (b) MaxBufferedItemCount：用來控制預先擷取的結果數目。
@@ -116,7 +117,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
     在進行效能測試期間，您應該增加負載，直到系統對小部分要求進行節流處理為止。 如果進行節流處理，用戶端應用程式應該在節流時降速，且持續時間達伺服器指定的重試間隔。 採用降速可確保您在重試之間花費最少的等待時間。 重試原則支援包含於 DocumentDB [.NET](documentdb-sdk-dotnet.md) 和 [Java](documentdb-sdk-java.md) 的版本 1.8.0 和以上版本中，[Node.js](documentdb-sdk-node.md) 和 [Python](documentdb-sdk-python.md) 的版本 1.9.0 或以上版本中，以及 [.NET 核心](documentdb-sdk-dotnet-core.md) SDK 所有支援的版本。 如需詳細資訊，請參閱[超過保留的輸送量限制](documentdb-request-units.md#RequestRateTooLarge)和 [RetryAfter](https://msdn.microsoft.com/library/microsoft.azure.documents.documentclientexception.retryafter.aspx)。
 7. **相應放大用戶端工作負載**
 
-    如果您是以高輸送量層級 (> 50,000 RU/秒) 進行測試，用戶端應用程式可能會成為瓶頸，因為電腦對 CPU 或網路的使用率將達到上限。 如果您達到這個點，您可以將用戶端應用程式向外延展至多部伺服器，以繼續將 DocumentDB 帳戶再往前推進一步。
+    如果您是以高輸送量層級 (> 50,000 RU/秒) 進行測試，用戶端應用程式可能會成為瓶頸，因為電腦對 CPU 或網路的使用率將達到上限。 如果到了這一刻，您可以將用戶端應用程式向外延展至多部伺服器，以繼續將 Cosmos DB 帳戶再往前推進一步。
 8. **快取較低讀取延遲的文件 URI**
 
     盡可能快取文件 URI 以達到最佳讀取效能。
@@ -127,7 +128,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 
     若要減少擷取所有適用結果所需的網路來回行程次數，您可以使用 x-ms-max-item-count 要求標頭將頁面大小最多增加至 1000。 在您只需要顯示幾個結果的情況下 (例如，您的使用者介面或應用程式 API 一次只傳回 10 筆結果)，您也可以將頁面大小縮小為 10，以降低讀取和查詢所耗用的輸送量。
 
-    您也可以使用可用的 DocumentDB SDK 設定頁面大小。  例如：
+    您也可以使用可用的 Cosmos DB SDK 設定頁面大小。  例如：
 
         IQueryable<dynamic> authorResults = client.CreateDocumentQuery(documentCollection.SelfLink, "SELECT p.Author FROM Pages p WHERE p.Title = 'About Seattle'", new FeedOptions { MaxItemCount = 1000 });
 10. **增加執行緒/工作數目**
@@ -149,14 +150,14 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
 ## <a name="indexing-policy"></a>索引原則
 1. **使用延遲索引加快尖峰時間擷取速率**
 
-    DocumentDB 可讓您在集合層級指定索引編製原則，該原則可讓您選擇是否要對集合中的文件自動編製索引。  此外，您也可以選擇同步 (一致) 和非同步 (延遲) 索引更新。 每次在集合中插入、取代或刪除文件時，預設會同步更新索引。 同步模式可讓查詢遵守與文件讀取操作相同的 [一致性層級](documentdb-consistency-levels.md) ，而不會有任何需要索引趕上的延遲。
+    Cosmos DB 可讓您在集合層級指定索引編製原則，該原則可讓您選擇是否要對集合中的文件自動編製索引。  此外，您也可以選擇同步 (一致) 和非同步 (延遲) 索引更新。 每次在集合中插入、取代或刪除文件時，預設會同步更新索引。 同步模式可讓查詢遵守與文件讀取操作相同的 [一致性層級](documentdb-consistency-levels.md) ，而不會有任何需要索引趕上的延遲。
 
-    當發生資料寫入暴增，而您想要拉長時間來分攤編製內容索引所需的工作時，可以考慮延遲索引編製。 延遲索引編製也可讓您有效地使用您佈建的輸送量，並在尖峰時間，以最少的延遲為寫入要求提供服務。 不過，請特別注意，啟用延遲索引編製功能後，不論為 DocumentDB 帳戶設定的一致性層級為何，查詢結果最終仍是會保持一致。
+    當發生資料寫入暴增，而您想要拉長時間來分攤編製內容索引所需的工作時，可以考慮延遲索引編製。 延遲索引編製也可讓您有效地使用您佈建的輸送量，並在尖峰時間，以最少的延遲為寫入要求提供服務。 不過，請特別注意，啟用延遲索引編製功能後，不論為 Cosmos DB 帳戶設定的一致性層級為何，查詢結果最終仍是會保持一致。
 
     因此，一致索引編製模式 (IndexingPolicy.IndexingMode 設定為 [一致]) 會產生每次寫入的最高要求單位費用，而延遲索引編製模式 (IndexingPolicy.IndexingMode 設定為 [延遲]) 和不編製索引 (IndexingPolicy.Automatic 設定為 False) 在寫入時的編製索引成本為零。
 2. **從索引編製中排除未使用的路徑以加快寫入速度**
 
-    DocumentDB 的索引編製原則也可讓您利用檢索路徑 (IndexingPolicy.IncludedPaths 和 IndexingPolicy.ExcludedPaths)，指定要在索引編製中包含或排除的文件路徑。 在事先知道查詢模式的案例中，使用檢索路徑可改善寫入效能並降低索引儲存空間，因為檢索成本與檢索的唯一路徑數目直接相互關聯。  例如，以下程式碼示範如何將文件的整個區段 (也稱為 樹狀子目錄) 自索引編製作業中排除 (透過使用 "*" 萬用字元)。
+    Cosmos DB 的索引編製原則也可讓您利用檢索路徑 (IndexingPolicy.IncludedPaths 和 IndexingPolicy.ExcludedPaths)，指定要在索引編製中包含或排除的文件路徑。 在事先知道查詢模式的案例中，使用檢索路徑可改善寫入效能並降低索引儲存空間，因為檢索成本與檢索的唯一路徑數目直接相互關聯。  例如，以下程式碼示範如何將文件的整個區段 (也稱為 樹狀子目錄) 自索引編製作業中排除 (透過使用 "*" 萬用字元)。
 
     ```C#
     var collection = new DocumentCollection { Id = "excludedPathCollection" };
@@ -165,14 +166,14 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
     collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), excluded);
     ```
 
-    如需詳細資訊，請參閱 [DocumentDB 索引編製原則](documentdb-indexing-policies.md)。
+    如需詳細資訊，請參閱 [Azure Cosmos DB 索引編製原則](documentdb-indexing-policies.md)。
 
 ## <a name="throughput"></a>輸送量
 <a id="measure-rus"></a>
 
 1. **測量和調整較低的要求單位/秒使用量**
 
-    DocumentDB 提供許多的資料庫作業，包括使用 UDF、預存程序和觸發程序進行關聯式和階層式查詢，而這些作業全都是對資料庫集合內的文件來進行。 與上述各項作業相關聯的成本，會因為完成作業所需的 CPU、IO 和記憶體而不同。 您不需要考慮和管理硬體資源，您可以將要求單位 (RU) 想成是執行各種資料庫作業以及服務應用程式要求時所需的資源數量。
+    Cosmos DB 提供許多的資料庫作業，包括使用 UDF、預存程序和觸發程序進行關聯式和階層式查詢，而這些作業全都是對資料庫集合內的文件來進行。 與上述各項作業相關聯的成本，會因為完成作業所需的 CPU、IO 和記憶體而不同。 您不需要考慮和管理硬體資源，您可以將要求單位 (RU) 想成是執行各種資料庫作業以及服務應用程式要求時所需的資源數量。
 
     [要求單位](documentdb-request-units.md) 。 要求單位消耗量是以每秒的速率來計算。 如果應用程式的速率超過為其帳戶佈建的要求單位速率，便會受到限制，直到該速率降到帳戶的預留層級以下。 如果應用程式需要較高層級的輸送量，您可以另外購買容量單位。
 
@@ -213,7 +214,7 @@ Azure DocumentDB 是一個既快速又彈性的分散式資料庫，可在獲得
     指定之作業的要求費用 (也就是要求處理成本) 與文件大小直接相互關聯。 大型文件的作業成本高於小型文件的作業成本。
 
 ## <a name="next-steps"></a>後續步驟
-如需用來評估 DocumentDB 以利用少數用戶端電腦達到高效能的範例應用程式，請參閱 [Azure DocumentDB 的效能和規模測試](documentdb-performance-testing.md)。
+如需用來評估 Cosmos DB 在少數用戶端電腦上達到高效能的範例應用程式，請參閱 [Cosmos DB 的效能和規模測試](documentdb-performance-testing.md)。
 
-此外，若要深入了解如何針對規模和高效能設計您的應用程式，請參閱 [Azure DocumentDB 的資料分割與調整規模](documentdb-partition-data.md)。
+此外，若要深入了解如何針對規模和高效能設計您的應用程式，請參閱 [Azure Cosmos DB 的資料分割與調整規模](documentdb-partition-data.md)。
 

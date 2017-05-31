@@ -1,6 +1,6 @@
 ---
-title: "將資料磁碟連接到 Windows VM | Microsoft Docs"
-description: "如何在 Azure 入口網站中使用 Resource Manager 部署模型，將新的或現有的資料磁碟連接到 Windows VM。"
+title: "將未受管理的資料磁碟連結到 Windows VM - Azure | Microsoft Docs"
+description: "如何在 Azure 入口網站中使用 Resource Manager 部署模型，將新的或現有的未受管理資料磁碟連結到 Windows VM。"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -13,70 +13,72 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 11/28/2016
+ms.date: 05/09/2017
 ms.author: cynthn
-translationtype: Human Translation
-ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
-ms.openlocfilehash: 3a3dce590013187e4136a65a47a10c9532321b1e
-ms.lasthandoff: 04/03/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
+ms.openlocfilehash: d02f92a8809efd6f58312af8cb40739299ea28f6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="how-to-attach-a-data-disk-to-a-windows-vm-in-the-azure-portal"></a>如何在 Azure 入口網站中將資料磁碟連接到 Windows VM
-本文示範如何透過 Azure 入口網站將新的及現有的磁碟連接到 Windows 虛擬機器。 您也可以[在 Azure 入口網站中將資料磁碟連接到 Linux VM](../linux/attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 這麼做之前，請先檢閱下列提示：
+# <a name="how-to-attach-an-unmanaged-data-disk-to-a-windows-vm-in-the-azure-portal"></a>如何在 Azure 入口網站中將未受管理的資料磁碟連結到 Windows VM
 
-* 虛擬機器的大小會控制您可以連接的資料磁碟數目。 如需詳細資訊，請參閱 [虛擬機器的大小](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+本文示範如何透過 Azure 入口網站將新的及現有的未受管理磁碟連結到 Windows 虛擬機器。 您也可以[使用 PowerShell 連結資料磁碟](./attach-disk-ps.md)。 這麼做之前，請先檢閱下列提示：
+
+* 虛擬機器的大小會控制您可以連接的資料磁碟數目。 如需詳細資訊，請參閱 [虛擬機器的大小](sizes.md)。
 * 若要使用進階儲存體，您需要 DS 系列或 GS 系列的虛擬機器。 您可以使用進階或標準儲存體帳戶的磁碟搭配這些虛擬機器。 僅特定地區可用進階儲存體。 如需詳細資訊，請參閱[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../../storage/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 * 對於新的磁碟，當您連接的時候 Azure 會建立該磁碟，所以您不需要建立它。
-* 對於現有的磁碟，該 .vhd 檔案必須可在 Azure 儲存體帳戶中取得。 您可以使用現有的 .vhd 檔案 (若尚未連接至其他虛擬機器)，或上傳您自己的 .vhd 檔案至儲存體帳戶。
+
 
 您也可以[使用 Powershell 連接資料磁碟](attach-disk-ps.md)。
 
 
-
 ## <a name="find-the-virtual-machine"></a>尋找虛擬機器
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在 [中樞] 功能表上，按一下 [虛擬機器] 。
+2. 在左側功能表中，按一下 [虛擬機器]。
 3. 然後從清單中選取虛擬機器。
-4. 在 [虛擬機器] 刀鋒視窗上的 [程式集] 中，按一下 [磁碟]。
+4. 在 [虛擬機器] 刀鋒視窗中，按一下 [磁碟]。
    
-    ![開啟磁碟設定](./media/attach-disk-portal/find-disk-settings.png)
-
 接著，依照指示來連接[新的磁碟](#option-1-attach-a-new-disk)或[現有的磁碟](#option-2-attach-an-existing-disk)。
 
 ## <a name="option-1-attach-and-initialize-a-new-disk"></a>選項 1：連接新磁碟並進行初始化
-1. 在 [磁碟] 刀鋒視窗上，按一下 [連接新項目]。
-2. 檢閱預設設定，視需要進行更新，然後按一下 [確定] 。
+1. 在 [磁碟] 刀鋒視窗上，按一下 [+ 新增資料磁碟]。
+2. 在 [連結受管理的磁碟] 刀鋒視窗中，於 [名稱] 中輸入磁碟名稱，然後在 [來源類型] 中選取 [新增 (空磁碟)]。
+3. 在 [儲存體容器] 下，按一下 [瀏覽] 按鈕並瀏覽至您要用於儲存新 VHD 的儲存體帳戶與容器，然後按一下 [選取]。 
+  
+   ![檢閱磁碟設定](./media/attach-disk-portal/attach-empty-unmanaged.png)
    
-   ![檢閱磁碟設定](./media/attach-disk-portal/attach-new.png)
-3. 在 Azure 建立磁碟並將其連接至虛擬機器之後，該新磁碟就會列在虛擬機器之磁碟設定中的 [資料磁碟] 底下。
+3. 當您完成資料磁碟的設定之後，按一下 [確定]。
+4. 回到 [磁碟] 刀鋒視窗，按一下 [儲存] 以將磁碟新增到 VM 設定。
+
 
 ### <a name="initialize-a-new-data-disk"></a>初始化新的資料磁碟
 
-1. 連接至虛擬機器。 如需指示，請參閱[如何連接和登入執行 Windows 的 Azure 虛擬機器](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-2. 登入虛擬機器之後，開啟 [伺服器管理員]。 在左窗格中，選取 [File and Storage Services] 。
-   
-    ![開啟伺服器管理員](./media/attach-disk-portal/fileandstorageservices.png)
-3. 展開功能表，然後選取 [ **磁碟**]。
-4. [磁碟]  區段會列出磁碟。 在大部分情況下，會有磁碟 0、磁碟 1 和磁碟 2。 磁碟 0 是作業系統磁碟、磁碟 1 是暫存磁碟，磁碟 2 則是您剛連接至 VM 的資料磁碟。 新的資料磁碟會將磁碟分割列為 [未知] 。 在磁碟上按一下滑鼠右鍵，然後選取 [初始化] 。
-5. 初始化磁碟時，您會收到將清除所有資料的通知。 按一下 [是]，認可此警告並初始化磁碟。 完成之後，即會將磁碟分割列為 [GPT]。 再次於磁碟上按一下滑鼠右鍵，然後選取 新增磁碟區 。
-6. 使用預設值完成精靈。 當精靈完成時，[ **磁碟區** ] 區段會列出新的磁碟區。 磁碟此時將上線，可用來儲存資料。
-
-    ![成功初始化磁碟區](./media/attach-disk-portal/newvolumecreated.png)
+1. 連接至虛擬機器。 如需指示，請參閱 [如何連接和登入執行 Windows 的 Azure 虛擬機器](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+1. 按一下 VM 內部的 [開始] 功能表，然後輸入 **diskmgmt.msc** 並按下 **Enter** 鍵。 這會啟動磁碟管理嵌入式管理單元。
+2. 磁碟管理會辨識出您擁有新的、未初始化的磁碟，且會隨即顯示「初始化磁碟」視窗。
+3. 請確定已選取新磁碟，並按一下 [確定] 將磁碟初始化。
+4. 新的磁碟現在會顯示為 [未配置]。 以滑鼠右鍵按一下磁碟上的任何位置，並選取 [新增簡單磁碟區]。 [新增簡單磁碟區精靈] 會隨即啟動。
+5. 逐一執行精靈的所有步驟，保留所有預設值，並在完成後選取 [完成]。
+6. 關閉磁碟管理。
+7. 您會看到快顯視窗，說明您必須先將新的磁碟格式化之後才能使用。 按一下 [格式化磁碟]。
+8. 在 [格式化新磁碟] 對話方塊中，檢查設定，然後按一下 [開始]。
+9. 系統會向您顯示警告，說明格式化磁碟會清除所有資料，請按一下 [確定]。
+10. 格式化完成之後，按一下 [確定]。
 
 
 ## <a name="option-2-attach-an-existing-disk"></a>選項 2：連接現有磁碟
-1. 在 [磁碟] 刀鋒視窗上，按一下 [連接現有項目]。
-2. 在 [連結現有磁碟] 底下，按一下 [VHD 檔案]。
-   
-   ![連接現有磁碟](./media/attach-disk-portal/attach-existing.png)
-3. 在 [儲存體帳戶] 底下，選取持有該 .vhd 檔案的帳戶和容器。
-   
-   ![尋找 VHD 位置](./media/attach-disk-portal/find-storage-container.png)
-4. 選取 .vhd 檔案。
-5. 在 [連結現有磁碟] 底下，您剛才選取的檔案會列在 [VHD 檔案] 底下。 按一下 [確定] 。
-6. Azure 將磁碟連接至虛擬機器之後，該磁碟會列在虛擬機器磁碟設定中的 [資料磁碟] 下面。
+1. 在 [磁碟] 刀鋒視窗上，按一下 [+ 新增資料磁碟]。
+2. 在 [連結未受管理的磁碟] 刀鋒視窗中，於 [來源類型] 中選取 [現有 Blob]。
 
+    ![檢閱磁碟設定](./media/attach-disk-portal/attach-existing-unmanaged.png)
+
+    3. 按一下 [瀏覽] 以瀏覽至現有 VHD 所在的儲存體帳戶和容器。 按一下 VHD，然後按一下 [選取]。
+4. 在 [連結未受管理的磁碟] 刀鋒視窗中按一下 [確定]。
+5. 在 [磁碟] 刀鋒視窗中，按一下 [儲存] 以將磁碟新增到 VM 設定。
+   
 
 
 ## <a name="use-trim-with-standard-storage"></a>搭配使用 TRIM 與標準儲存體

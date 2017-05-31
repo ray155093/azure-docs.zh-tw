@@ -14,17 +14,18 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 02/15/2017
 ms.author: eugenesh
-translationtype: Human Translation
-ms.sourcegitcommit: 0841744b806f3dba38dddee21fb7fe881e07134f
-ms.openlocfilehash: 51c9d9afb6c2ed460abd4c47a6afbc404b97a85e
-ms.lasthandoff: 02/16/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 54b8e16504e1170058dd021f7f7e2fba7b99bba7
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 ---
 
 # <a name="connecting-azure-sql-database-to-azure-search-using-indexers"></a>使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務
 Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體驗變得更容易。 可以搜尋之前，您需要使用您的資料填入 Azure 搜尋服務索引。 如果 Azure SQL Database 中有您的資料，全新**適用於 Azure SQL Database 的 Azure 搜尋服務索引子** (或簡稱 **Azure SQL 索引子**) 可自動化編製索引的程序。 這表示您可以減少編寫程式碼的工作，並且減少需要處理的基礎結構。
 
-本文不僅介紹使用索引子的機制，也會說明只在 Azure SQL Database 上出現的功能 (例如，整合變更追蹤)。 Azure 搜尋服務也支援其他資料來源，例如 Azure DocumentDB、 Blob 儲存體和表格儲存體。 如果您想參閱其他資料來源的支援，請您在 [搜尋服務意見反應論壇](https://feedback.azure.com/forums/263029-azure-search/)上提供寶貴意見。
+本文不僅介紹使用索引子的機制，也會說明只在 Azure SQL Database 上出現的功能 (例如，整合變更追蹤)。 Azure 搜尋服務也支援其他資料來源，例如 Azure Cosmos DB、Blob 儲存體和表格儲存體。 如果您想參閱其他資料來源的支援，請您在 [搜尋服務意見反應論壇](https://feedback.azure.com/forums/263029-azure-search/)上提供寶貴意見。
 
 ## <a name="indexers-and-data-sources"></a>索引子和資料來源
 您可以使用下列方式安裝及設定 Azure SQL 索引子︰

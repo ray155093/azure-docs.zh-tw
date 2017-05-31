@@ -15,10 +15,10 @@ ms.workload: infrastructure-services
 ms.date: 01/18/2017
 ms.author: jdial
 ms.translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 58ee6e9cc14b01f10e20dfc3f289bfc6cc386e2a
+ms.sourcegitcommit: e7da3c6d4cfad588e8cc6850143112989ff3e481
+ms.openlocfilehash: d66489b43e983f313028a846d2b7da1534c86b53
 ms.contentlocale: zh-tw
-ms.lasthandoff: 04/27/2017
+ms.lasthandoff: 05/16/2017
 
 
 ---
@@ -148,7 +148,7 @@ Azure 提供的 DNS 是由 Microsoft 所提供的多租用戶 DNS 服務。 Azur
 是。 所有連接至透過 Resource Manager 部署模型部署的 VM 網路介面 (NIC) 必須連接到 VNet。 透過傳統部署模型部署的 VM 可以選擇連接至 VNet。
 
 ### <a name="what-are-the-different-types-of-ip-addresses-i-can-assign-to-vms"></a>我可以將哪些類型的 IP 位址指派至 VM？
-* **私人︰** 在每部 VM 內指派至每個 NIC。 您可使用靜態或動態配置方法來指派位址。 系統會根據您在 VNet 子網路設定中所指定的範圍來指派私人 IP 位址。 即使沒有連接至 VNet，透過傳統部署模型部署的資源也會收到私人 IP 位址。 動態私人 IP 位址仍然會指派至資源，直到重新分配 (VM) 或刪除 (VM 或雲端服務部署位置) 資源為止。 靜態私人 IP 位址仍然會指派至資源，直到刪除資源為止。
+* **私人︰** 在每部 VM 內指派至每個 NIC。 您可使用靜態或動態方法來指派位址。 系統會根據您在 VNet 子網路設定中所指定的範圍來指派私人 IP 位址。 即使沒有連線至 VNet，透過傳統部署模型所部署的資源也會獲派私人 IP 位址。 以動態方法所指派的私人 IP 位址仍會指派至資源，直到您刪除資源 (VM 或雲端服務部署位置) 為止。 如果 VM 在處於已停止 (已解除配置) 狀態之後又重新啟動，以動態方法所指派的私人 IP 位址可能會變更。 以靜態方法指派的私人 IP 位址仍會指派至資源，直到您刪除資源為止。 如果您需要確保資源刪除之前，資源的私人 IP 位址永遠不會變更，請使用靜態方法來指派私人 IP 位址。
 * **公用︰**選擇性地指派至與透過 Azure Resource Manager 部署模型部署的 VM 所連接的 NIC。 您可使用靜態或動態配置方法來指派位址。 所有透過傳統部署模型部署的 VM 與雲端服務角色執行個體，皆存在於受指派動態公用虛擬 IP (VIP) 位址的雲端服務內。 公用*靜態* IP 位址，稱為[保留的 IP 位址](virtual-networks-reserved-public-ip.md)，可選擇性地被指派為 VIP。 您可以將公用 IP 位址指派至透過傳統部署模型部署的個別 VM 或雲端服務角色執行個體。 這些位址稱為[執行個體層級公用 IP (ILPIP](virtual-networks-instance-level-public-ip.md)位址，並可動態指派。
 
 ### <a name="can-i-reserve-a-private-ip-address-for-a-vm-that-i-will-create-at-a-later-time"></a>我可以為稍後建立的 VM 保留私人 IP 位址嗎？

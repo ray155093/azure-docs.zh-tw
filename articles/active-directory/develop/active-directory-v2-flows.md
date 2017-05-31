@@ -12,11 +12,14 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/07/2017
+ms.date: 05/01/2017
 ms.author: dastrock
-translationtype: Human Translation
-ms.sourcegitcommit: 3e0bb32a6c60011d71606c896cc506f430bc3c27
-ms.openlocfilehash: 86055605be6fe264fcb53b26d87a36bcba568a53
+ms.custom: aaddev
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: ab08c126b746ad6f8a835585b7e9773a505e8317
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -31,8 +34,8 @@ Azure Active Directory (Azure AD) v2.0 端點支援各種新型應用程式架�
 ## <a name="the-basics"></a>基本概念
 您必須在 [Microsoft 應用程式註冊入口網站](https://apps.dev.microsoft.com)中註冊每個使用 v2.0 端點的應用程式。 應用程式註冊程序會為您的應用程式收集和指派下列值：
 
-* 可唯一識別應用程式的「應用程式識別碼」
-* 可用來將回應導回到應用程式的「重新導向 URI」
+* 可唯一識別應用程式的「應用程式識別碼」****
+* 可用來將回應導回到應用程式的「重新導向 URI」****
 * 一些其他案例特定值
 
 如需詳細資訊，請了解如何[註冊應用程式](active-directory-v2-app-registration.md)。
@@ -92,9 +95,9 @@ Web API 可以從所有類型的應用程式接收存取權杖，包括 Web 伺�
 
 ![Web API 驗證流程](../../media/active-directory-v2-flows/convergence_scenarios_webapi.png)
 
-若要深入了解授權碼、重新整理權杖及取得存取權杖的詳細步驟，請參閱 [OAuth 2.0 通訊協定](active-directory-v2-protocols-oauth-code.md)。
-
 若要了解如何使用 OAuth2 存取權杖來保護 Web API，請查看[開始使用](active-directory-appmodel-v2-overview.md#getting-started)一節中的 Web API 程式碼範例。
+
+在許多情況下，Web API 也需要對受 Azure Active Directory 保護的其他下游 Web API 發出傳出要求。  若要這樣做，Web API 可以利用 Azure AD 的「代理者」流程，它能允許 Web API 將傳入存取權杖交換為要在傳出要求中使用的另一個存取權杖。  v2.0 端點的「代理者」流程已[在此詳細說明](active-directory-v2-protocols-oauth-on-behalf-of.md)。
 
 ## <a name="mobile-and-native-apps"></a>行動和原生應用程式
 裝置安裝的應用程式 (例如行動應用程式和傳統型應用程式) 通常需要存取儲存資料及代表使用者執行功能的後端服務或 Web API。 這些應用程式可以使用 [OAuth 2.0 授權碼流程](active-directory-v2-protocols-oauth-code.md)，將登入和授權新增至後端服務。
@@ -112,7 +115,7 @@ Web API 可以從所有類型的應用程式接收存取權杖，包括 Web 伺�
 
 若要查看此案例的實際運作情形，請在[開始使用](active-directory-appmodel-v2-overview.md#getting-started)一節的單頁應用程式程式碼範例中擇一試用。
 
-### <a name="daemons-and-server-side-apps"></a>精靈和伺服器端應用程式
+## <a name="daemons-and-server-side-apps"></a>精靈和伺服器端應用程式
 應用程式如果含有長時間執行的程序，或其運作方式不需要與使用者互動，就也需要一個存取受保護資源 (例如 Web API) 的方法。 這些應用程式可以使用應用程式的身分識別 (而非使用者委派的身分識別) 搭配 OAuth 2.0 用戶端認證流程，來驗證及取得權杖。
 
 在此流程中，應用程式會直接與 `/token` 端點互動來取得端點：
@@ -120,18 +123,4 @@ Web API 可以從所有類型的應用程式接收存取權杖，包括 Web 伺�
 ![精靈應用程式驗證流程](../../media/active-directory-v2-flows/convergence_scenarios_daemon.png)
 
 若要建置精靈應用程式，請參閱[開始使用](active-directory-appmodel-v2-overview.md#getting-started)一節中的用戶端認證文件，或試試 [.NET 範例應用程式](https://github.com/Azure-Samples/active-directory-dotnet-daemon-v2)。
-
-## <a name="current-limitations"></a>目前的限制
-目前 v2.0 端點不支援本節中的應用程式類型，但這些已列入未來的開發藍圖中。 如需了解 v2.0 端點的其他限制，請參閱[我應該使用 v2.0 端點嗎？](active-directory-v2-limitations.md)。
-
-### <a name="chained-web-apis-on-behalf-of"></a>鏈結的 Web API (代理者)
-許多架構包含需要呼叫另一個下游 Web API 的 Web API，而這兩者都受到 v2.0 端點的保護。 這種案例在有 Web API 後端的原生用戶端中很常見，其中後端會接著呼叫 Microsoft Online Services (例如 Office 365 或 Graph API) 的執行個體。
-
-只要使用 OAuth 2.0 JSON Web 權杖 (JWT) 持有人認證授與 (亦稱為[代理者流程](active-directory-v2-protocols.md))，即可支援這種鏈結的 Web API 案例。 目前 v2.0 端點中尚未實作代理者流程。 若要了解此流程在正式運作的 Azure AD 服務中如何運作，請參閱 [GitHub 上的代理者程式碼範例](https://github.com/AzureADSamples/WebAPI-OnBehalfOf-DotNet)。
-
-
-
-
-<!--HONumber=Jan17_HO3-->
-
 

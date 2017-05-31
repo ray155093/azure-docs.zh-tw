@@ -12,11 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/26/2016
+ms.date: 05/16/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: c0e2324a2b2e6294df6e502f2e7a0ae36ff94158
-ms.openlocfilehash: 936e152304dc4a4a3bd95c7bfba071a02a20d0dd
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: c96a0bd6710d60629bc631fe7e1f642cdb2bada6
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 
 ---
@@ -27,20 +29,24 @@ ms.openlocfilehash: 936e152304dc4a4a3bd95c7bfba071a02a20d0dd
 
 Microsoft 建議您遵循 [Securing Privileged Access (保護特殊權限存取)](https://technet.microsoft.com/library/mt631194.aspx)的這份藍圖。
 
-這些原則是否適用使用 Azure Active Directory 管理 Azure、Office 365 或其他 Microsoft 服務和應用程式存取權的客戶，取決於使用者帳戶是由 Active Directory 管理驗證，或在 Azure Active Directory 中管理驗證。 下列章節提供支援保護特殊權限存取之 Azure AD 功能的詳細資訊。
+這些原則是否適用使用 Azure Active Directory、Office 365 或其他 Microsoft 服務和應用程式的客戶，取決於使用者帳戶是由 Active Directory 管理驗證，或在 Azure Active Directory 中管理驗證。 下列章節提供支援保護特殊權限存取之 Azure AD 功能的詳細資訊。
 
-## <a name="multi-factor-authentication"></a>Multi-Factor Authentication
-若要加強系統管理員驗證的安全性，您應先要求 Multi-Factor Authentication (MFA) 再授與權限。 MFA 是除了使用使用者名稱與密碼之外，需要再利用其他方法驗證您的身份的驗證方法。 它可以為使用者登入和交易提供第二層安全性。
+## <a name="azure-multi-factor-authentication"></a>Azure Multi-Factor Authentication
+若要加強系統管理員驗證的安全性，您應先要求雙步驟驗證再授與權限。 雙步驟驗證是除了使用使用者名稱與密碼之外，需要再利用其他方法驗證身分的驗證方法。 它可以為使用者登入和交易提供第二層安全性。
 
-Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存取，同時可以滿足使用者對簡單登入程序的需求。 它可以透過一些簡單的驗證選項，包括電話、文字訊息、行動應用程式通知，或驗證代碼和協力廠商 OATH 權杖，來提供強大的驗證功能。
+Azure Multi-Factor Authentication (MFA) 是 Microsoft 的雙步驟驗證解決方案，有助於保護對資料與應用程式的存取，同時可以滿足使用者對簡單登入程序的需求。 透過一系列簡單的驗證選項提供增強式驗證，選項包括：
 
-如需 Azure Multi-Factor Authentication 運作方式的概觀，請參閱以下影片。
+- 電話通話
+- 文字訊息
+- 行動應用程式通知
+- 行動應用程式驗證碼
+- 協力廠商 OATH 權杖
+
+如需 Azure Multi-Factor Authentication 運作方式的概觀，請參閱以下影片：
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Windows-Azure-Multi-Factor-Authentication/player]
-> 
-> 
 
-如需詳細資訊，請參閱 [MFA for Office 365 and MFA for Azure (MFA for Office 365 和 MFA for Azure)](https://blogs.technet.microsoft.com/ad/2014/02/11/mfa-for-office-365-and-mfa-for-azure/)。
+如需詳細資訊，請參閱 [MFA for Office 365 和 MFA for Azure](https://blogs.technet.microsoft.com/ad/2014/02/11/mfa-for-office-365-and-mfa-for-azure/)。
 
 ## <a name="time-bound-privileges"></a>時間界限權限
 某些組織可能會發現它們有太多擁有高權限角色的使用者。 使用者可能因為某個特定活動，像是登入服務，而加入角色中，但之後卻不經常使用這些權限。
@@ -65,16 +71,11 @@ Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存�
 * 啟用 [Azure AD Identity Protection](../active-directory-identityprotection.md)
 * 啟用[條件式存取控制](../active-directory-conditional-access.md)
 
-如需建置完整安全性藍圖的詳細資訊，請參閱 [Microsoft Cloud Security for Enterprise Architects (Microsoft 的企業架構雲端安全性)](http://aka.ms/securecustomer) 一文的＜Customer responsibilities and roadmap＞(客戶責任和藍圖) 一節。 如需吸引人的 Microsoft 服務詳細資訊，協助您使用任一這些主題，請連絡您的 Microsoft 代表或瀏覽我們的 [Cybersecurity solutions (網路安全性方案) 網頁](https://www.microsoft.com/microsoftservices/campaigns/cybersecurity-protection.aspx)。
+如需建置完整安全性藍圖的詳細資訊，請參閱 [Microsoft Cloud Security for Enterprise Architects (Microsoft 的企業架構雲端安全性)](http://aka.ms/securecustomer) 一文的＜Customer responsibilities and roadmap＞(客戶責任和藍圖) 一節。 如需吸引人的 Microsoft 服務詳細資訊，協助您使用任一這些主題，請連絡您的 Microsoft 代表或瀏覽我們的 [Cybersecurity solutions (網路安全性方案) 網頁](https://www.microsoft.com/en-us/microsoftservices/campaigns/cybersecurity-protection.aspx)。
 
 <!--Image references-->
 [1]: ../media/active-directory-privileged-identity-management-configure/Search_PIM.png
 [2]: ../media/active-directory-privileged-identity-management-configure/PIM_Dash.png
 [3]: ../media/active-directory-identityprotection/29.png
 [4]: ../media/active-directory-conditional-access/conditionalaccess-saas-apps.png
-
-
-
-<!--HONumber=Jan17_HO5-->
-
 

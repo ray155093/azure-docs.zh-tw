@@ -1,40 +1,44 @@
 ---
-title: "將 Azure 搜尋服務的 DocumentDB 資料來源編製索引 | Microsoft Docs"
-description: "本文說明如何以 DocumentDB 作為資料來源建立 Azure 搜尋服務索引子。"
+title: "將 Azure 搜尋服務的 Cosmos DB 資料來源編製索引 | Microsoft Docs"
+description: "本文說明如何以 Cosmos DB 作為資料來源建立 Azure 搜尋服務索引子。"
 services: search
 documentationcenter: 
 author: chaosrealm
 manager: pablocas
 editor: 
 ms.assetid: 
-ms.service: documentdb
+ms.service: cosmosdb
 ms.devlang: rest-api
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: search
-ms.date: 04/11/2017
+ms.date: 05/01/2017
 ms.author: eugenesh
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 5f657ed128103d4bf1304dfc5fae8d86ef950d87
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 333f8320820a1729a14ffc2e29446e7452aa768e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
-# <a name="connecting-documentdb-with-azure-search-using-indexers"></a>使用索引子連接 DocumentDB 與 Azure 搜尋
+# <a name="connecting-cosmos-db-with-azure-search-using-indexers"></a>使用索引子連接 Cosmos DB 與 Azure 搜尋服務
 
-如果您想在 DocumentDB 資料上實作絕佳的搜尋體驗，可以使用 Azure 搜尋服務索引子將資料提取到 Azure 搜尋服務索引子中。 在本文中，我們將說明如何整合 Azure DocumentDB 與 Azure 搜尋服務，但不需要撰寫任何程式碼來維護索引基礎結構。
+如果您想在 Cosmos DB 資料上實作絕佳的搜尋體驗，可以使用 Azure 搜尋服務索引子將資料提取到 Azure 搜尋服務索引子中。 在本文中，我們將說明如何整合 Azure Cosmos DB 與 Azure 搜尋服務，但不需要撰寫任何程式碼來維護索引基礎結構。
 
-若要設定 DocumentDB 索引子，您必須擁有 [Azure 搜尋服務](search-create-service-portal.md)，並建立索引、資料來源，最後再建立索引子。 您可以使用 [入口網站](search-import-data-portal.md)、[.NET SDK](/dotnet/api/microsoft.azure.search)、或適用於所有非 .NET 語言的 [REST API](/rest/api/searchservice/) 建立這些物件。 
+若要設定 Cosmos DB 索引子，您必須擁有 [Azure 搜尋服務](search-create-service-portal.md)，並建立索引、資料來源，最後再建立索引子。 您可以使用 [入口網站](search-import-data-portal.md)、[.NET SDK](/dotnet/api/microsoft.azure.search)、或適用於所有非 .NET 語言的 [REST API](/rest/api/searchservice/) 建立這些物件。 
 
 如果您選擇使用入口網站，[匯入資料精靈](search-import-data-portal.md)會引導您建立所有這些資源。
 
 > [!NOTE]
-> 您可以從 DocumentDB 儀表板啟動**匯入資料**精靈，以簡化該資料來源的索引建立作業。 在左側導覽中，移至 [集合] > [新增 Azure 搜尋服務] 以便開始使用。
+> Cosmos DB 是新一代的 DocumentDB。 雖然產品名稱變更，但語法都相同。 請依此篇索引子文章中的指示繼續指定 `documentdb`。 
+
+> [!TIP]
+> 您可以從 Cosmos DB 儀表板啟動「匯入資料」精靈，以簡化該資料來源的索引建立作業。 在左側導覽中，移至 [集合] > [新增 Azure 搜尋服務] 以便開始使用。
 
 <a name="Concepts"></a>
 ## <a name="azure-search-indexer-concepts"></a>Azure 搜尋服務索引子概念
-Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操作這些資料來源的索引子。
+Azure 搜尋服務支援建立與管理資料來源 (包括 Cosmos DB) 和操作這些資料來源的索引子。
 
 **資料來源**指定要編製索引的資料、認證，以及可識別資料是否變更 (例如修改或刪除集合內的文件) 的原則。 資料來源會被定義為獨立的資源，因此可供多個索引子使用。
 
@@ -67,20 +71,20 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
 要求的主體包含資料來源定義，其中應包含下列欄位：
 
-* **名稱**：選擇任何名稱，以代表您的 DocumentDB 資料庫。
+* **名稱**：選擇任何名稱，以代表您的 Cosmos DB 資料庫。
 * **type**：必須是 `documentdb`。
 * **認證**：
   
-  * **connectionString**：必要。 以下列格式指定 Azure DocumentDB 資料庫的連接資訊： `AccountEndpoint=<DocumentDB endpoint url>;AccountKey=<DocumentDB auth key>;Database=<DocumentDB database id>`
+  * **connectionString**：必要。 以下列格式指定 Azure Cosmos DB 資料庫的連接資訊：`AccountEndpoint=<Cosmos DB endpoint url>;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>`
 * **容器**：
   
-  * **名稱**：必要。 指定要編製索引的 DocumentDB 集合的識別碼。
+  * **名稱**：必要。 指定要編製索引的 Cosmos DB 集合的識別碼。
   * **查詢**：選擇性。 您可以指定查詢將任意 JSON 文件簡維成 Azure 搜尋服務可以編製索引的一般結構描述。
 * **dataChangeDetectionPolicy**：建議使用。 請參閱[索引變更的文件](#DataChangeDetectionPolicy)小節。
 * **dataDeletionDetectionPolicy**：選擇性。 請參閱[索引刪除的文件](#DataDeletionDetectionPolicy)小節。
 
 ### <a name="using-queries-to-shape-indexed-data"></a>使用查詢來形塑索引的資料
-您可以指定 DocumentDB 查詢來壓平合併巢狀屬性或陣列、投影 JSON 屬性，以及篩選要編製索引的資料。 
+您可以指定 Cosmos DB 查詢來壓平合併巢狀屬性或陣列、投影 JSON 屬性，以及篩選要編製索引的資料。 
 
 範例文件︰
 
@@ -142,7 +146,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 請確定目標索引的結構描述會與來源 JSON 文件的結構描述或自訂查詢投射的輸出相容。
 
 > [!NOTE]
-> 對於資料分割後的集合，預設文件索引鍵是 DocumentDB 的 `_rid` 屬性，它在 Azure 搜尋服務中重新命名為 `rid`。 此外，DocumentDB 的 `_rid` 值包含 Azure 搜尋服務索引鍵中無效的字元。 因此，`_rid` 值採用 Base64 編碼。
+> 對於資料分割後的集合，預設文件索引鍵是 Cosmos DB 的 `_rid` 屬性，它在 Azure 搜尋服務中重新命名為 `rid`。 此外，Cosmos DB 的 `_rid` 值包含 Azure 搜尋服務索引鍵中無效的字元。 因此，`_rid` 值採用 Base64 編碼。
 > 
 > 
 
@@ -229,7 +233,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
 
 <a name="DataChangeDetectionPolicy"></a>
 ## <a name="indexing-changed-documents"></a>索引已變更的文件
-資料變更偵測原則是用來有效識別已變更的資料項目。 目前，唯一支援的原則是使用 DocumentDB 所提供之 `_ts` (時間戳記) 屬性的 `High Water Mark` 原則，指定方式如下：
+資料變更偵測原則是用來有效識別已變更的資料項目。 目前，唯一支援的原則是使用 Cosmos DB 所提供之 `_ts` (時間戳記) 屬性的 `High Water Mark` 原則，指定方式如下：
 
     {
         "@odata.type" : "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
@@ -277,7 +281,7 @@ Azure 搜尋服務支援建立與管理資料來源 (包括 DocumentDB) 和操�
     }
 
 ## <a name="NextSteps"></a>接續步驟
-恭喜！ 您已了解如何使用 DocumentDB 的索引子來整合 Azure DocumentDB 與 Azure 搜尋服務。
+恭喜！ 您已了解如何使用 Cosmos DB 的索引子來整合 Azure Cosmos DB 與 Azure 搜尋服務。
 
-* 若要深入了解 Azure DocumentDB，請參閱 [DocumentDB 服務頁面](https://azure.microsoft.com/services/documentdb/)。
+* 若要深入了解 Azure Cosmos DB，請參閱 [Cosmos DB 服務頁面](https://azure.microsoft.com/services/documentdb/)。
 * 若要深入了解 Azure 搜尋服務，請參閱 [搜尋服務頁面](https://azure.microsoft.com/services/search/)。

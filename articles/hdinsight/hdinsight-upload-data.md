@@ -1,6 +1,7 @@
 ---
 title: "在 HDInsight 上將 Hadoop 工作的資料上傳 | Microsoft Docs"
 description: "了解如何使用 Azure CLI、Azure 儲存體總管、Azure PowerShell、Hadoop 命令列或 Sqoop 在 HDInsight 中上傳及存取 Hadoop 工作。"
+keywords: "etl hadoop、將資料上傳到 hadoop、hadoop 載入資料"
 services: hdinsight,storage
 documentationcenter: 
 tags: azure-portal
@@ -9,17 +10,18 @@ manager: jhubbard
 editor: cgronlun
 ms.assetid: 56b913ee-0f9a-4e9f-9eaf-c571f8603dd6
 ms.service: hdinsight
-ms.custom: hdinsightactive
+ms.custom: hdinsightactive,hdiseo17may2017
 ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/22/2017
+ms.date: 05/12/2017
 ms.author: jgao
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 0caac0c7ad76df7e7fa657227339d1df8b4a3c77
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 134afd3495c555f85e8838cbe0344a3a48534950
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -187,7 +189,7 @@ Hadoop 命令列僅適用於當資料已存在於叢集前端節點時，將資�
 
 1. 執行 Azure 儲存體總管。 如果這是您第一次執行 [儲存體總管]，系統將會提示您輸入 [儲存體帳戶名稱] 和 [儲存體帳戶金鑰]。 如果您之前曾執行過，請使用 [新增] 按鈕加入新的儲存體帳戶名稱和金鑰。
 
-    輸入 HDinsight 叢集所使用儲存體帳戶的名稱和金鑰，然後選取 [儲存並開啟]。
+    輸入 HDInsight 叢集所使用儲存體帳戶的名稱和金鑰，然後選取 [儲存並開啟]。
 
     ![HDI.AzureStorageExplorer][image-azure-storage-explorer]
 2. 在此介面左邊的 [容器] 清單中，按一下與 HDInsight 叢集相關聯的容器名稱。 根據預設，這是 HDInsight 叢集的名稱，但如果您在建立叢集時輸入了特定名稱，則有可能不同。

@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: yushwang
-translationtype: Human Translation
-ms.sourcegitcommit: aaf97d26c982c1592230096588e0b0c3ee516a73
-ms.openlocfilehash: 12df0d2afeb4abef4d22f7341c9b25ce504121c0
-ms.lasthandoff: 04/27/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: d1f1852d720ebf51df9ec3207b070510b08a6483
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/15/2017
 
 
 ---
@@ -112,7 +113,7 @@ $gwipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName1 -Subn
 ```
 
 #### <a name="2-create-the-vpn-gateway-with-the-as-number"></a>2.透過 AS 號碼建立 VPN 閘道
-建立 TestVNet1 的虛擬網路閘道。 請注意，BGP 需要路由式 VPN 閘道，以及額外參數 (-Asn) 才能設定 TestVNet1 的 ASN (AS 號碼)。 建立閘道可能需要花費一段時間 (30 分鐘或更久)。
+建立 TestVNet1 的虛擬網路閘道。 請注意，BGP 需要路由式 VPN 閘道，以及額外參數 (-Asn) 才能設定 TestVNet1 的 ASN (AS 號碼)。 如果您沒有設定 ASN 參數，系統會指派 ASN 65515。 建立閘道可能需要花費一段時間 (30 分鐘或更久)。
 
 ```powershell
 New-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1 -Location $Location1 -IpConfigurations $gwipconf1 -GatewayType Vpn -VpnType RouteBased -GatewaySku HighPerformance -Asn $VNet1ASN

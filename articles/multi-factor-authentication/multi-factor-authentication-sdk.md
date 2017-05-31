@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/03/2017
+ms.date: 05/03/2017
 ms.author: kgremban
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e793478028cee273a07e3665d409a669bdadc758
-ms.openlocfilehash: 4f9456c479b76588adf5f5aecbdd6379ec0e9704
+ms.sourcegitcommit: 9568210d4df6cfcf5b89ba8154a11ad9322fa9cc
+ms.openlocfilehash: 281f9c61a30a20027f69808600373aa272255ef6
 ms.contentlocale: zh-tw
-ms.lasthandoff: 02/14/2017
+ms.lasthandoff: 05/15/2017
 
 
 ---
@@ -36,20 +36,20 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
 > 若要下載 SDK，即使您有 Azure MFA、AAD Premium 或 EMS 授權，還是需要建立 Azure 多因素驗證提供者。 如果您針對此用途建立 Azure 多因素驗證提供者，且已有授權，請務必使用**每個啟用的使用者**模型建立提供者。 然後，將提供者連結至包含 Azure MFA、Azure AD Premium 或 EMS 授權的目錄。 這個組態可確保您只會在使用 SDK 的唯一使用者超過您所擁有的授權數目時收到帳單。
 
 
-## <a name="download-the-azure-multi-factor-authentication-sdk"></a>下載 Azure Multi-Factor Authentication SDK
+## <a name="download-the-sdk"></a>下載 SDK
 下載 Azure Multi-factor SDK 需要 [Azure Multi-Factor Auth Provider](multi-factor-authentication-get-started-auth-provider.md)。  即使您擁有 Azure MFA、Azure AD Premium 或 Enterprise Mobility Suite 授權，這還是需要完整的 Azure 訂用帳戶。  若要下載 SDK，請瀏覽至 Multi-Factor 管理入口網站。 連接入口網站的方式是直接管理多因素驗證提供者，或按一下 MFA 服務設定頁面上的 [移至入口網站] 連結。
 
-### <a name="to-download-the-azure-multi-factor-authentication-sdk-from-the-azure-classic-portal"></a>從 Azure 傳統入口網站下載 Azure Multi-Factor Authentication SDK
+### <a name="download-from-the-azure-classic-portal"></a>從 Azure 傳統入口網站下載
 1. 以系統管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 選取左邊的 [Active Directory] 。
-3. 在 [Active Directory] 頁面頂端，選取 [多因素驗證提供者]
+3. 在 [Active Directory] 頁面頂端，選取 [多因素驗證提供者]****
 4. 選取底部的 [管理]。 新的頁面隨即開啟。
 5. 在左下方按一下 [SDK]。
    <center>![下載](./media/multi-factor-authentication-sdk/download.png)</center>
 6. 選取您想要的語言，然後按一下其中一個相關聯的下載連結。
 7. 儲存下載內容。
 
-### <a name="to-download-the-azure-multi-factor-authentication-sdk-via-the-service-settings"></a>透過服務設定下載 Azure Multi-Factor Authentication SDK
+### <a name="download-from-the-service-settings"></a>從服務設定下載
 1. 以系統管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 選取左邊的 [Active Directory] 。
 3. 按兩下您的 Azure AD 執行個體。
@@ -62,11 +62,11 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
 8. 選取您想要的語言，然後按一下其中一個相關聯的下載連結。
 9. 儲存下載內容。
 
-## <a name="contents-of-the-azure-multi-factor-authentication-sdk"></a>Azure Multi-Factor Authentication Server SDK 的內容
-在 SDK 內，具有下列項目：
+## <a name="whats-in-the-sdk"></a>SDK 的內容
+SDK 包含下列各項：
 
 * **讀我檔案**。 說明如何在新的或現有的應用程式中使用 Multi-Factor Authentication API。
-* **原始程式檔** 
+* **原始程式檔**，用於 Multi-Factor Authentication
 * **用戶端憑證** 
 * **私密金鑰** 
 * **呼叫結果。** 呼叫結果碼的清單。 若要開啟此檔案，請使用可設定文字格式的應用程式，例如 WordPad。 使用呼叫結果碼來測試及疑難排解您在應用程式中的 Multi-Factor Authentication 實作。 它們不是驗證狀態碼。
@@ -75,7 +75,7 @@ Multi-Factor Authentication SDK 中的 API 結構十分簡單。 使用多因素
 > [!WARNING]
 > 用戶端憑證是特別為您產生的唯一私人憑證。 請勿分享或遺失此檔案。 它是您與 Multi-Factor Authentication 通訊時確保安全性的關鍵。
 
-## <a name="code-sample-standard-mode-phone-verification"></a>程式碼範例：標準模式電話驗證
+## <a name="code-sample"></a>程式碼範例
 此程式碼範例示範如何使用 Azure Multi-Factor Authentication SDK 中的 API，將標準模式語音通話驗證加入至您的應用程式。 標準模式是指使用者按下 # 鍵來回應通話。
 
 此範例在含有 C# 伺服器端邏輯的基本 ASP.NET 應用程式中使用 C# .NET 2.0 Multi-Factor Authentication SDK，但程序與其他語言類似。 因為 SDK 包含原始程式檔，而不是可執行檔，您可以建置檔案並參考它們，或直接將它們包含在您的應用程式中。

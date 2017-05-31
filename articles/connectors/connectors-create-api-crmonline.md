@@ -15,10 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/10/2017
 ms.author: matp; LADocs
-translationtype: Human Translation
-ms.sourcegitcommit: 73ee330c276263a21931a7b9a16cc33f86c58a26
-ms.openlocfilehash: f09dd58f17b228d6381af95c40c5391886bbb8f1
-ms.lasthandoff: 04/05/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 845dd16c703362e9e64f02832a35c90e7e77e264
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 ---
 
@@ -135,7 +136,7 @@ ms.lasthandoff: 04/05/2017
 
 ![流量記錄識別碼和類型帳戶](./media/connectors-create-api-crmonline/recordid-type-user.png)
 
-若要尋找記錄的識別碼，請參閱下一節：＜尋找記錄識別碼＞
+若要尋找記錄的識別碼，請參閱下一節：＜尋找記錄識別碼＞**
 
 ## <a name="find-the-record-id"></a>尋找記錄識別碼
 
@@ -167,164 +168,9 @@ ms.lasthandoff: 04/05/2017
 
 如需針對邏輯應用程式進行疑難排解的詳細資訊，請參閱[診斷邏輯應用程式失敗](../logic-apps/logic-apps-diagnosing-failures.md)。
 
-## <a name="technical-details"></a>技術詳細資料
-## <a name="triggers"></a>觸發程序
-| 觸發程序 | 說明 |
-| --- | --- |
-| 當檔案建立時 |當 Dynamics 365 中有物件建立時，就會觸發某個流程。 |
-| 當記錄更新時 |當 Dynamics 365 中有物件遭到修改時，就會觸發某個流程。 |
-| 當記錄刪除時 |當 Dynamics 365 中有物件刪除時，就會觸發某個流程。 |
+## <a name="view-the-swagger"></a>檢視 Swagger
 
-## <a name="actions"></a>動作
-| 動作 | 說明 |
-| --- | --- |
-| 列出記錄 |這項作業會取得實體的記錄。 |
-| 建立新的記錄 |這項作業會建立實體的新記錄。 |
-| 取得記錄 |這項作業會取得實體的指定記錄。 |
-| 刪除記錄 |這項作業會從實體集合中刪除記錄。 |
-| 更新記錄 |這項作業會更新實體的現有記錄。 |
-
-### <a name="trigger-and-action-details"></a>觸發程序和動作詳細資料
-在本節中，請查看每個觸發程序和動作的特定詳細資料，包括任何必要或選擇性的輸入屬性，以及任何與連接器相關聯的對應輸出。
-
-#### <a name="when-a-record-is-created"></a>當檔案建立時
-當 Dynamics 365 中有物件建立時，就會觸發某個流程。
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料集* |組織名稱 |Dynamics 365 組織的名稱 (例如 Contoso) |
-| 資料表 * |實體名稱 |實體的名稱 |
-| $filter |篩選查詢 |用來限制傳回項目的 ODATA 篩選查詢 |
-| $orderby |排序依據 |用來指定項目順序的 ODATA orderBy 查詢 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-ItemsList
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| value |array |
-
-#### <a name="when-a-record-is-updated"></a>當記錄更新時
-當 Dynamics 365 中有物件遭到修改時，就會觸發某個流程。
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料集* |組織名稱 |Dynamics 365 組織的名稱 (例如 Contoso) |
-| 資料表 * |實體名稱 |實體的名稱 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-ItemsList
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| value |array |
-
-#### <a name="when-a-record-is-deleted"></a>當記錄刪除時
-當 Dynamics 365 中有物件刪除時，就會觸發某個流程。
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料集* |組織名稱 |Dynamics 365 組織的名稱 (例如 Contoso) |
-| 資料表 * |實體名稱 |實體的名稱 |
-
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-ItemsList
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| value |array |
-
-#### <a name="list-records"></a>列出記錄
-這項作業會取得實體的記錄。
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料集* |組織名稱 |Dynamics 365 組織的名稱 (例如 Contoso) |
-| 資料表 * |實體名稱 |實體的名稱 |
-| $filter |篩選查詢 |用來限制傳回項目的 ODATA 篩選查詢 |
-| $orderby |排序依據 |用來指定項目順序的 ODATA orderBy 查詢 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-ItemsList
-
-| 屬性名稱 | 資料類型 |
-| --- | --- |
-| value |array |
-
-#### <a name="create-a-new-record"></a>建立新的記錄
-這項作業會建立實體的新記錄。
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料集* |組織名稱 |Dynamics 365 組織的名稱 (例如 Contoso) |
-| 資料表 * |實體名稱 |實體的名稱 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-無。
-
-#### <a name="get-record"></a>取得記錄
-這項作業會取得實體的指定記錄。
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料集* |組織名稱 |Dynamics 365 組織的名稱 (例如 Contoso) |
-| 資料表 * |實體名稱 |實體的名稱 |
-| 識別碼* |項目識別碼 |指定記錄的識別碼 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-無。
-
-#### <a name="delete-a-record"></a>刪除記錄
-這項作業會從實體集合中刪除記錄。
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料集* |組織名稱 |Dynamics 365 組織的名稱 (例如 Contoso) |
-| 資料表 * |實體名稱 |實體的名稱 |
-| 識別碼* |項目識別碼 |指定記錄的識別碼 |
-
-星號 (*) 代表必要屬性。
-
-#### <a name="update-a-record"></a>更新記錄
-這項作業會更新實體的現有記錄。
-
-| 屬性名稱 | 顯示名稱 | 說明 |
-| --- | --- | --- |
-| 資料集* |組織名稱 |Dynamics 365 組織的名稱 (例如 Contoso) |
-| 資料表 * |實體名稱 |實體的名稱 |
-| 識別碼* |記錄識別碼 |指定記錄的識別碼 |
-
-星號 (*) 代表必要屬性。
-
-##### <a name="output-details"></a>輸出詳細資料
-無。
-
-## <a name="http-responses"></a>HTTP 回應
-動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
-
-| 名稱 | 說明 |
-| --- | --- |
-| 200 |OK |
-| 202 |已接受 |
-| 400 |不正確的要求 |
-| 401 |未經授權 |
-| 403 |禁止 |
-| 404 |找不到 |
-| 500 |內部伺服器錯誤。 發生未知錯誤。 |
-| 預設值 |作業失敗。 |
+請參閱 [Swagger 詳細資料](/connectors/crm/)。 
 
 ## <a name="next-steps"></a>後續步驟
 請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。

@@ -15,10 +15,10 @@ ms.workload: data-services
 ms.date: 05/03/2017
 ms.author: jeffstok
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 05c5476cbfd616ce47d6d93627c6e7dd4d8a0d6f
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 6a5ec66172e7920a89ff8c0592224f01f19c9e41
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -85,7 +85,7 @@ ms.lasthandoff: 05/03/2017
 | --- | --- |
 | Azure IoT Suite 公用預覽 |Azure IoT Suite 公用預覽包含串流分析。 |
 | Azure 入口網站整合 |串流分析除了會繼續出現在 Azure 管理入口網站之外，它現在也已整合到 [Azure 入口網站](https://azure.microsoft.com/overview/preview-portal/)中。 請注意，Preview 入口網站中的「串流分析」功能目前是 Azure 管理入口網站所提供功能的子集，不支援瀏覽器中查詢測試、Power BI 輸出組態，以及在您可存取的訂用帳戶中瀏覽或建立新的輸入和輸出資源。 |
-| 支援 DocumentDB 輸出 |串流分析工作現在可以輸出到 [DocumentDB](https://azure.microsoft.com/services/documentdb/)。 |
+| 支援 Cosmos DB 輸出 |「串流分析」作業現在可以輸出到 [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/)。 |
 | 支援 IoT 中樞輸入 |串流分析作業現在可以內嵌來自 IoT 中樞的資料。 |
 | 異質事件的時間戳記格式 |當單一資料流包含數個在不同欄位有不同時間戳記的事件類型時，您現在已可以使用 [TIMESTAMP BY](http://msdn.microsoft.com/library/mt573293.aspx) 搭配運算式為每個案例指定不同的時間戳記欄位。 |
 

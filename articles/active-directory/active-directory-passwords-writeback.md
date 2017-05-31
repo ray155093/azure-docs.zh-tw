@@ -12,13 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/26/2017
+ms.date: 05/12/2017
 ms.author: joflore
 ms.translationtype: Human Translation
-ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
-ms.openlocfilehash: f9dc195040d0fa1321dff9ec97d9ca1e4770d325
+ms.sourcegitcommit: afa23b1395b8275e72048bd47fffcf38f9dcd334
+ms.openlocfilehash: fde08bfc3a73c54ee53b5d8efffd3001894416b3
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/08/2017
+ms.lasthandoff: 05/12/2017
 
 
 ---
@@ -74,11 +74,23 @@ ms.lasthandoff: 05/08/2017
 
     其中的許多原因會有特定的訊息，讓使用者知道該怎麼做來解決問題。
 
-## <a name="scenarios-supported-for-password-writeback"></a>密碼回寫的支援案例
+## <a name="configuring-password-writeback"></a>設定密碼回寫
 
 如果您想使用密碼回寫，我們建議您使用 [Azure AD Connect](./connect/active-directory-aadconnect-get-started-express.md) 的自動更新功能。
 
-有關 [DirSync 和 Azure AD Sync 支援週期](connect/active-directory-aadconnect-dirsync-deprecated.md)的其他資訊
+啟用密碼回寫功能已不再支援 DirSync 和 Azure AD 同步這兩種方法。[從 DirSync 和 Azure AD Sync 升級](connect/active-directory-aadconnect-dirsync-deprecated.md)一文有詳細資訊可協助您進行轉換。
+
+下列步驟假設您已使用[快速](./connect/active-directory-aadconnect-get-started-express.md)或[自訂](./connect/active-directory-aadconnect-get-started-custom.md)設定在您的環境中設定 Azure AD Connect。
+
+1. 若要設定和啟用密碼回寫，請登入 Azure AD Connect 伺服器並啟動 **Azure AD Connect** 設定精靈。
+2. 在 [歡迎使用] 畫面中，按一下 [設定]。
+3. 在 [其他工作] 畫面中，按一下 [自訂同步處理選項]，然後選擇 [下一步]。
+4. 在 [連線到 Azure AD] 畫面中，輸入全域管理員認證，然後選擇 [下一步]。
+5. 在 [連線您的目錄] 和 [網域與 OU 篩選] 畫面中，您可以選擇 [下一步]。
+6. 在 [選用功能] 畫面中，勾選 [密碼回寫] 旁邊的方塊，然後按 [下一步]。
+   ![在 Azure AD Connect 中啟用密碼回寫][Writeback]
+7. 在 [準備好設定] 畫面中，按一下 [設定]，然後等待設定程序完成。
+8. 當您看到「設定完成」時，您可以按一下 [結束]****
 
 ## <a name="licensing-requirements-for-password-writeback"></a>密碼回寫的授權需求
 
@@ -175,12 +187,12 @@ ms.lasthandoff: 05/08/2017
 * [**快速入門**](active-directory-passwords-getting-started.md) - 開始執行 Azure AD 自助式密碼管理 
 * [**授權**](active-directory-passwords-licensing.md) - 設定 Azure AD 授權
 * [**資料**](active-directory-passwords-data.md) -了解所需的資料以及如何將它使用於密碼管理
-* [**推出**](active-directory-passwords-best-practices.md) - 使用此處提供的指引來規劃 SSPR 並部署給使用者
-* [**自訂**](active-directory-passwords-customize.md) - 為您的公司自訂 SSPR 體驗的外觀與風格。
+* [**推出**](active-directory-passwords-best-practices.md) - 使用此處提供的指引來規劃 SSPR 並將它部署至使用者
+* [**自訂**](active-directory-passwords-customize.md) - 為您的公司自訂 SSPR 體驗的外觀及操作方式。
 * [**原則**](active-directory-passwords-policy.md) - 了解並設定 Azure AD 密碼原則
 * [**報告**](active-directory-passwords-reporting.md) - 探索您的使用者是否、何時、何地存取 SSPR 功能
 * [**技術性深入探討**](active-directory-passwords-how-it-works.md) - 深入探索以了解其運作方式
-* [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ - 您一直想要詢問之問題的答案
+* [**常見問題集**](active-directory-passwords-faq.md) - 如何？ 原因為何？ 何事？ 何地？ 何人？ 何時？ - -您一直想要詢問之問題的答案
 * [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何解決我們看到的 SSPR 常見問題
 
-
+[Writeback]: ./media/active-directory-passwords-writeback/enablepasswordwriteback.png "在 Azure AD Connect 中啟用密碼回寫"

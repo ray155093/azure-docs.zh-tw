@@ -12,12 +12,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 02/10/2017
+ms.date: 5/9/2017
 ms.author: vturecek
-translationtype: Human Translation
-ms.sourcegitcommit: 8c4e33a63f39d22c336efd9d77def098bd4fa0df
-ms.openlocfilehash: c78f07cb780d5e7cd758fb782fc6ba37946f9537
-ms.lasthandoff: 04/20/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 3e61ad19df34c6a57da43e26bd2ab9d7ecdbf98e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -50,8 +51,28 @@ Service Fabric 提供稱為「命名服務」的探索和解析服務。 「命�
 * **連接**︰透過在該端點上所使用的任何通訊協定連接至服務。
 * **重試**︰連接嘗試可能會因為各種原因而失敗，例如，如果服務自從上次端點位址解析之後已經移動。 在此情況下，則必須重試先前的解析和連接步驟，且此循環會重複執行直到連接成功為止。
 
+## <a name="connecting-to-other-services"></a>連接到其他服務
+叢集內彼此連接的服務通常可以直接存取其他服務的端點，因為叢集中的節點位於相同的本機網路上。 為了能夠更輕鬆在服務之間連接，Service Fabric 提供使用「命名服務」的額外服務。 DNS 服務和反向 proxy 服務。
+
+
+### <a name="dns-service"></a>DNS 服務
+由於許多服務 (特別是容器化服務) 都可以有現有的 URL 名稱，因此能夠使用標準 DNS 通訊協定 (而不是「命名服務」通訊協定) 來解析這些名稱就非常便利，特別是在應用程式的「隨即轉移」案例中。 這就是 DNS 服務的功能所在。 它可讓您將 DNS 服務對應到某個服務名稱，再由此解析端點 IP 位址。 
+
+如下圖所示，在 Service Fabric 叢集中執行的 DNS 服務會將 DNS 名稱對應到服務名稱，然後由「命名服務」解析後傳回要連接的端點位址。 服務的 DNS 名稱是在建立時提供的。 
+
+![服務端點][9]
+
+如需有關如何使用 DNS 服務的更多詳細資料，請參閱 [Azure Service Fabric 中的 DNS 服務](service-fabric-dnsservice.md)一文。
+
+### <a name="reverse-proxy-service"></a>反向 Proxy服務
+反向 Proxy 可處理叢集中公開 HTTP 端點 (包括 HTTPS) 的服務。 反向 Proxy 藉由採用特定的 URI 格式，以及處理一個服務使用「命名服務」與另一個服務進行通訊所需的解析、連接、重試步驟，將呼叫其他服務及其方法大幅簡化。 換句話說，它會在呼叫其他服務時，透過讓此呼叫就像呼叫 URL 一樣簡單，對您隱藏「命名服務」。
+
+![服務端點][10]
+
+如需有關如何使用反向 Proxy 服務的詳細資訊，請參閱 [Azure Service Fabric 中的反向 Proxy](service-fabric-reverseproxy.md) 一文。
+
 ## <a name="connections-from-external-clients"></a>從外部用戶端連接
-叢集內彼此連接的服務通常可以直接存取其他服務的端點，因為叢集中的節點通常是在相同的本機網路上。 但是，在相同的環境中，叢集可能會位於負載平衡器後方，該負載平衡器會透過有限制的一組連接埠路由傳送外部輸入流量。 在這些情況下，服務仍然可以使用「命名服務」，彼此進行通訊及解析位址，但是必須採取額外的步驟，讓外部用戶端連接至服務。
+叢集內彼此連接的服務通常可以直接存取其他服務的端點，因為叢集中的節點位於相同的本機網路上。 但是，在相同的環境中，叢集可能會位於負載平衡器後方，該負載平衡器會透過有限制的一組連接埠路由傳送外部輸入流量。 在這些情況下，服務仍然可以使用「命名服務」，彼此進行通訊及解析位址，但是必須採取額外的步驟，讓外部用戶端連接至服務。
 
 ## <a name="service-fabric-in-azure"></a>Azure 中的 Service Fabric
 Azure 中的 Service Fabric 叢集位於 Azure 負載平衡器後方。 到叢集的所有外部流量必須經過負載平衡器。 負載平衡器會自動將指定連接埠上的輸入流量轉送至具有相同的開啟連接埠的隨機「節點」  。 Azure Load Balancer 只會知道「節點」上開啟的連接埠，它不知道由個別「服務」開啟的連接埠。
@@ -152,7 +173,7 @@ Azure 中的 Service Fabric 叢集位於 Azure 負載平衡器後方。 到叢�
 
 請務必記住，Azure Load Balancer 和探查只知道「節點」，不知道在節點上執行的「服務」。 Azure 負載平衡器一律會將流量傳送到回應探查的節點，因此必須小心以確保可以在能夠回應探查的節點上使用服務。
 
-## <a name="built-in-communication-api-options"></a>內建通訊 API 選項
+## <a name="reliable-services-built-in-communication-api-options"></a>Reliable Services：內建的通訊 API 選項
 Reliable Services 架構隨附數個預先建置的通訊選項。 最適合您選項的決定取決於如何選擇程式設計模型、通訊架構以及用來撰寫您服務的程式語言。
 
 * **沒有特定通訊協定**：如果您沒有特定的通訊架構選擇，但您想要快速啟動並執行，則適合您的理想選項為[遠端服務](service-fabric-reliable-services-communication-remoting.md)，允許 Reliable Services 和 Reliable Actors 的強型別遠端程序呼叫。 若要開始使用服務通訊，這是最簡單且快速的方式。 遠端服務會處理服務位址、連接、重試和錯誤處理的解析。 這同時適用 C# 和 Java 應用程式。
@@ -172,4 +193,6 @@ Reliable Services 架構隨附數個預先建置的通訊選項。 最適合您�
 [5]: ./media/service-fabric-connect-and-communicate-with-services/loadbalancerport.png
 [7]: ./media/service-fabric-connect-and-communicate-with-services/distributedservices.png
 [8]: ./media/service-fabric-connect-and-communicate-with-services/loadbalancerprobe.png
+[9]: ./media/service-fabric-connect-and-communicate-with-services/dns.png
+[10]: ./media/service-fabric-reverseproxy/internal-communication.png
 

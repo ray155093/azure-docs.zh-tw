@@ -15,10 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/20/2017
 ms.author: cherylmc
-translationtype: Human Translation
-ms.sourcegitcommit: 9eafbc2ffc3319cbca9d8933235f87964a98f588
-ms.openlocfilehash: bbe76873c94aea0db7843af36d8a8d44d7565bbb
-ms.lasthandoff: 04/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 5e92b1b234e4ceea5e0dd5d09ab3203c4a86f633
+ms.openlocfilehash: 9550b0076105b018bd8ede50519ac96bfb773001
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -45,7 +46,7 @@ ms.lasthandoff: 04/22/2017
 
 * 您尚未建立 ExpressRoute/S2S 並存連線。
 * 您有使用具有現有連線之 Resource Manager 部署模型建立的虛擬網路。
-* 您的 VNet 的虛擬網路閘道是路由型。 如果您的 VPN 閘道為原則型，則必須刪除虛擬網路閘道，並建立新的路由型 VPN 閘道。
+* 您的 VNet 的虛擬網路閘道是路由型。 如果您的 VPN 閘道為原則型，您就必須刪除虛擬網路閘道，並建立新的路由型 VPN 閘道。
 * 此 VNet 連接的所有 VNet 的位址範圍沒有重疊。
 * 您有相容的 VPN 裝置以及能夠對其進行設定的人員。 請參閱 [關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。 如果不熟悉設定 VPN 裝置，或不熟悉位於內部部署網路組態的 IP 位址範圍，則您需要與能夠提供那些詳細資料的人協調。
 * 您的 VPN 裝置有對外開放的公用 IP 位址。 此 IP 位址不能位於 NAT 後方。
@@ -94,3 +95,4 @@ ms.lasthandoff: 04/22/2017
 ## <a name="next-steps"></a>後續步驟
 
 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱虛擬機器 [學習路徑](https://azure.microsoft.com/documentation/learning-paths/virtual-machines) 。
+

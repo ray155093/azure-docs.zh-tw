@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/12/2017
+ms.date: 05/09/2017
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: 7f469fb309f92b86dbf289d3a0462ba9042af48a
-ms.openlocfilehash: b942f934ecb25083d779096dc628e342870edc26
-ms.lasthandoff: 04/13/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 360073c0ed75552e62e69ce72b225ba35a2a3e09
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -30,19 +31,17 @@ ms.lasthandoff: 04/13/2017
 >
 
 ## <a name="implement-the-recommendation"></a>實作建議
-1. 選取 [資訊安全中心] 刀鋒視窗上的 [建議] 圖格。  這會開啟 [建議]  刀鋒視窗。
-   ![資訊安全中心刀鋒視窗][1]
-2. 在 [建議] 刀鋒視窗上，選取 [啟用訂用帳戶的資料收集]。  這會開啟 [開啟資料收集] 刀鋒視窗。
+1. 在 [建議] 刀鋒視窗中，選取 [啟用訂用帳戶的資料收集]。  這會開啟 [開啟資料收集] 刀鋒視窗。
    ![建議刀鋒視窗][2]
-3. 在 [開啟資料收集]  刀鋒視窗中，選取您的訂用帳戶。 該訂用帳戶的 [安全性原則]  刀鋒視窗隨即開啟。
-4. 在 [安全性原則] 刀鋒視窗上，選取 [資料收集] 底下的 [開啟] 以自動收集記錄檔。 開啟資料收集會將監視擴充功能佈建在訂用帳戶的所有目前支援和新支援的 VM 上。
+2. 在 [開啟資料收集]  刀鋒視窗中，選取您的訂用帳戶。 該訂用帳戶的 [安全性原則]  刀鋒視窗隨即開啟。
+3. 在 [安全性原則] 刀鋒視窗上，選取 [資料收集] 底下的 [開啟] 以自動收集記錄檔。 開啟資料收集會將監視擴充功能佈建在訂用帳戶的所有目前支援和新支援的 VM 上。
 
    ![安全性原則刀鋒視窗][3]
 
-5. 選取 [ **儲存**]。
-6. 選取 [選擇每個區域的儲存體帳戶] 。 針對每個有虛擬機器在其中執行的區域，您需選擇儲存體帳戶，以儲存從這些虛擬機器收集到的資料。 如果您沒有選擇每個區域的儲存體帳戶，則會為您建立儲存體帳戶，並置於 securitydata 資源群組。 在此範例中，我們會選擇 **newstoracct**。 稍後回到您訂用帳戶的安全性原則，並選擇不同的儲存體帳戶，就可以變更儲存體帳戶。
+4. 選取 [ **儲存**]。
+5. 選取 [選擇每個區域的儲存體帳戶] 。 針對每個有虛擬機器在其中執行的區域，您需選擇儲存體帳戶，以儲存從這些虛擬機器收集到的資料。 如果您沒有選擇每個區域的儲存體帳戶，則會為您建立儲存體帳戶，並置於 securitydata 資源群組。 在此範例中，我們會選擇 **newstoracct**。 稍後回到您訂用帳戶的安全性原則，並選擇不同的儲存體帳戶，就可以變更儲存體帳戶。
    ![選擇儲存體帳戶][4]
-7. 選取 [確定] 。
+6. 選取 [確定] 。
 
 > [!NOTE]
 > 建議您開啟資料收集，並先在訂用帳戶層級選擇儲存體帳戶。 安全性原則可以在 Azure 訂用帳戶層級和資源群組層級進行設定，但資料收集和儲存體帳戶只可在訂用帳戶層級進行設定。
@@ -80,7 +79,6 @@ ms.lasthandoff: 04/13/2017
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)-- 取得最新的 Azure 安全性新聞和資訊。
 
 <!--Image references-->
-[1]: ./media/security-center-enable-data-collection/security-center-blade.png
 [2]: ./media/security-center-enable-data-collection/recommendations.png
 [3]: ./media/security-center-enable-data-collection/data-collection.png
 [4]: ./media/security-center-enable-data-collection/storage-account.png

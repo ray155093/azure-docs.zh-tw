@@ -16,10 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/31/2017
 ms.author: estfan; LADocs
-translationtype: Human Translation
-ms.sourcegitcommit: 26d460a699e31f6c19e3b282fa589ed07ce4a068
-ms.openlocfilehash: e776d095356e10ef47ca49e2a8b9f97d63fb80be
-ms.lasthandoff: 04/04/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: fd691f898e26bea0a304bcf52e5df9ee7db8b818
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 ---
 
@@ -122,19 +123,8 @@ ms.lasthandoff: 04/04/2017
 
     您現在已設定可從邏輯應用程式傳送事件的動作。 
 
-## <a name="technical-details"></a>技術詳細資訊
-
-### <a name="triggers"></a>觸發程序
-
-| 觸發程序 | 說明 |
-| --- | --- |
-| 當事件可用於事件中樞時 | 當事件可用於指定的事件中樞時觸發工作流程。 |
-
-### <a name="actions"></a>動作
-
-| 動作 | 說明 |
-| --- | --- |
-| 傳送事件 | 將事件傳送至指定的事件中樞。 |
+## <a name="view-the-swagger"></a>檢視 Swagger
+請參閱 [Swagger 詳細資料](/connectors/eventhubs/)。 
 
 ## <a name="get-help"></a>取得說明
 

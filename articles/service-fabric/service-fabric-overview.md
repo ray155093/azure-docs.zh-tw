@@ -15,10 +15,10 @@ ms.workload: NA
 ms.date: 01/05/2017
 ms.author: mfussell
 ms.translationtype: Human Translation
-ms.sourcegitcommit: e155891ff8dc736e2f7de1b95f07ff7b2d5d4e1b
-ms.openlocfilehash: 0fb4cc7b3c071eeb0bff15f9a57fc7e2106d7ca7
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 81dae4c35fead96af8a8a2823952a0bd7f2e537e
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/02/2017
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -42,7 +42,7 @@ Service Fabric 可讓您建置並管理由微服務組成的應用程式，這�
 * 您可根據應用程式的需求，調整應用程式的不同部分。
 * 開發團隊能夠更敏捷地推出更動，進而更快速且更頻繁地為您的客戶提供新功能。
 
-Service Fabric 提供技術支援給目前許多的 Microsoft 服務，包括 Azure SQL Database、Azure DocumentDB、Cortana、Microsoft Power BI、Microsoft Intune、Azure 事件中樞、Azure IoT、商務用 Skype 以及許多核心 Azure 服務。
+Service Fabric 提供技術支援給現今許多 Microsoft 服務，包括 Azure SQL Database、Azure Cosmos DB、Cortana、Microsoft Power BI、Microsoft Intune、「Azure 事件中樞」、「Azure IoT 中樞」、「商務用 Skype」以及許多核心 Azure 服務。
 
 Service Fabric 是針對建立雲端原生服務量身打造而成，此類服務可視需要以小規模開始，接著擴充為包含成千上萬個機器的大規模服務。
 

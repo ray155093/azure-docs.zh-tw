@@ -1,6 +1,6 @@
 ---
 title: "使用 Azure 資訊安全中心建議增強安全性 | Microsoft Docs"
-description: " 了解如何使用 Azure 資訊安全中心的安全性原則和建議，以協助減少安全性攻擊. "
+description: " 了解如何使用「Azure 資訊安全中心」中的安全性原則和建議，來協助降低安全性攻擊的危害。 "
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -12,11 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 01/11/2017
+ms.date: 05/08/2017
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: 313801fc3b845cd30506b1a26918660e77d2a986
-ms.openlocfilehash: 67095e0d8752fb3a2bca692f65e77cde5fd1a966
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 71fea4a41b2e3a60f2f610609a14372e678b7ec4
+ms.openlocfilehash: 36dd149812a0e8c8ca8ef2bac09c1920ec15d3ba
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/10/2017
 
 
 ---
@@ -75,7 +77,7 @@ Jeff 登入 [Azure 入口網站](https://azure.microsoft.com/features/azure-port
 
 1. Jeff 選取 [建議] 圖格，以開啟 [建議] 刀鋒視窗。
    ![選取建議圖格][3]
-2. Jeff 檢閱建議清單。 他看到資訊安全中心已依優先順序提供建議清單 (優先順序由高至低)。 他決定採取清單上第一個「高」優先順序的建議。 在 [建議] 刀鋒視窗上，他選取 [安裝 Endpoint Protection]。
+2. Jeff 檢閱建議清單。 他看到資訊安全中心已依優先順序提供建議清單 (優先順序由高至低)。 他決定採用清單上的「高」優先順序建議。 在 [建議] 刀鋒視窗上，他選取 [安裝 Endpoint Protection]。
 3. [安裝端點保護]  刀鋒視窗隨即開啟，顯示未啟用反惡意程式碼的 VM 清單。 Jeff 檢閱 VM 清單，選取所有 VM，然後選取 [安裝在 3 個 VM 上]。
    ![安裝端點保護][4]
 4. [選取 Endpoint Protection] 刀鋒視窗隨時開啟，提供兩個反惡意程式碼解決方案給 Jeff。 Jeff 選取 [Microsoft Antimalware] 解決方案。
@@ -114,9 +116,4 @@ Jeff 了解 [Microsoft Security Response Center (MSRC)](../security/azure-securi
 [5]:./media/security-center-using-recommendations/microsoft-antimalware.png
 [6]: ./media/security-center-using-recommendations/provide-security-contact-details.png
 [7]: ./media/security-center-using-recommendations/dismiss-recommendation.png
-
-
-
-<!--HONumber=Jan17_HO2-->
-
 

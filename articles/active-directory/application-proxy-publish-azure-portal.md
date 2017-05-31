@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 02/13/2017
+ms.date: 05/13/2017
 ms.author: kgremban
-translationtype: Human Translation
-ms.sourcegitcommit: 5acfbfbe7327fc28fa909e6ef7e0f9b6ce8b0e54
-ms.openlocfilehash: e0be8f4617c2fdbe1cb6fe2f904bf9ea7056c55e
-ms.lasthandoff: 02/14/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: c308183ffe6a01f4d4bf6f5817945629cbcedc92
+ms.openlocfilehash: 8cb8aff4c3035ef8557e0ae0d254fcd750a9228a
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/17/2017
 
 ---
 
@@ -42,7 +43,7 @@ Azure Active Directory (AD) 應用程式 Proxy 可藉由發佈要透過網際網
 > 如果這是您第一次使用應用程式 Proxy 時，請選擇已設定為密碼型驗證的應用程式。 應用程式 Proxy 支援其他類型的驗證，但密碼型應用程式是開始使用並快速執行最簡單的方式。 
 
 1. 在 [Azure 入口網站](https://portal.azure.com/)中，以系統管理員身分登入。
-2. 選取 [Azure Active Directory]  >  [企業應用程式]  >  [新增]。
+2. 選取 [Azure Active Directory]  >  [企業應用程式]  >  [新增應用程式]。
 
   ![新增企業應用程式](./media/application-proxy-publish-azure-portal/add-app.png)
 
