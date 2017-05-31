@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Azure Active Directory 中的條件式存取 - 預覽 | Microsoft Docs"
+title: "開始使用 Azure Active Directory 中的條件式存取 | Microsoft Docs"
 description: "使用位置條件測試條件式存取。"
 services: active-directory
 keywords: "應用程式的條件式存取, Azure AD 條件式存取, 安全存取公司資源, 條件式存取原則"
@@ -12,18 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/23/2017
+ms.date: 05/04/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: ae60cd810b4beb26f714e2ea2566e5354c482fa8
-ms.openlocfilehash: 3022f5e27ddaf125161bbf7132b41a27024f40b6
-ms.lasthandoff: 01/19/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: 52b65b24867906d0c574a323904d980e126bcbd2
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
-# <a name="get-started-with-conditional-access-in-azure-active-directory---preview"></a>開始使用 Azure Active Directory 中的條件式存取 - 預覽
-
-本主題中概述的行為目前為[預覽](active-directory-preview-explainer.md)狀態。
+# <a name="get-started-with-conditional-access-in-azure-active-directory"></a>開始使用 Azure Active Directory 中的條件式存取
 
 條件式存取是 Azure Active Directory 的功能，可讓您定義獲得授權的使用者可以存取您的應用程式的條件。 
 

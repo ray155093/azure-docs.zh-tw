@@ -1,5 +1,5 @@
 ---
-title: "將自訂網域名稱新增到 Azure Active Directory 預覽版 | Microsoft Docs"
+title: "將您的自訂網域名稱新增至 Azure Active Directory | Microsoft Docs"
 description: "如何在 Azure Active Directory 中新增您公司的網域名稱，以及如何確認網域名稱。"
 services: active-directory
 documentationcenter: 
@@ -12,23 +12,23 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 10/17/2016
+ms.date: 05/04/2017
 ms.author: curtand
-translationtype: Human Translation
-ms.sourcegitcommit: f1f3d6fa1ba29b0d43d29c7d9cccfc430fdd6f1e
-ms.openlocfilehash: 5153926f34961a397ef9632ca1f8ac868ba1986e
-ms.lasthandoff: 02/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 8f61e947d9667f5047729ac19dc2bf1e03a48c6b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
-# <a name="add-a-custom-domain-name-to-azure-active-directory-preview"></a>將自訂網域名稱新增到 Azure Active Directory 預覽版
+# <a name="add-a-custom-domain-name-to-azure-active-directory"></a>將自訂網域名稱新增至 Azure Active Directory
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-domains-add-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-add-domain.md)
 > 
-> 
 
-您已有一或多個您的組織用來經營業務的網域名稱，而且您的使用者使用您公司的網域名稱來登入公司網路。 使用 Azure Active Directory (Azure AD) 預覽版，您可以將您的公司網域名稱新增到 Azure AD。 [預覽版有何功能？](active-directory-preview-explainer.md) 這可讓您在目錄中指派您的使用者熟悉的使用者名稱，例如 ‘alice@contoso.com’。 程序佷簡單：
+您已有一或多個您的組織用來經營業務的網域名稱，而且您的使用者使用您公司的網域名稱來登入公司網路。 使用 Azure Active Directory (Azure AD)，您可以將您的公司網域名稱新增到 Azure AD。 這可讓您在目錄中指派您的使用者熟悉的使用者名稱，例如 ‘alice@contoso.com’。 程序佷簡單：
 
 1. 在目錄中新增自訂網域名稱
 2. 在網域名稱註冊機構中新增網域名稱的 DNS 項目

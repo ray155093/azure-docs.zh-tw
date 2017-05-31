@@ -78,7 +78,7 @@ ms.lasthandoff: 05/09/2017
 
 ![檢查定價層](./media/app-service-web-tutorial-custom-domain/check-pricing-tier.png)
 
-**免費**層不支援自訂 DNS。 如果您需要相應增加，請遵循下一節進行。 否則，請關閉 [選擇定價層] 刀鋒視窗，然後跳至 [對應 CNAME 記錄][](#cname) 或 [對應 A 記錄][](#a)。
+**免費**層不支援自訂 DNS。 如果您需要相應增加，請遵循下一節進行。 否則，請關閉 [選擇定價層] 刀鋒視窗，然後跳至 [對應 CNAME 記錄](#cname) 或 [對應 A 記錄](#a)。
 
 ### <a name="scale-up-your-app-service-plan"></a>相應增加您的 App Service 方案
 

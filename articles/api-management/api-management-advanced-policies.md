@@ -3,7 +3,7 @@ title: "Azure API 管理進階原則 | Microsoft Docs"
 description: "了解可在 Azure API 管理中使用的進階原則。"
 services: api-management
 documentationcenter: 
-author: miaojiang
+author: vladvino
 manager: erikre
 editor: 
 ms.assetid: 8a13348b-7856-428f-8e35-9e4273d94323
@@ -14,10 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-translationtype: Human Translation
-ms.sourcegitcommit: bb1ca3189e6c39b46eaa5151bf0c74dbf4a35228
-ms.openlocfilehash: bfadac7b34eca2ef1f9bcabc6e267ca9572990b8
-ms.lasthandoff: 03/18/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: f9272946fe4a03a732aa686680bba054c8ef1688
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 ---
 # <a name="api-management-advanced-policies"></a>API 管理進階原則
@@ -35,18 +36,20 @@ ms.lasthandoff: 03/18/2017
   
 -   [重試](#Retry) - 重試已括住的原則陳述式執行，直到符合條件為止。 系統會在指定的時間間隔重複執行，直到指定的重試計數為止。  
   
--   [傳回回應](#ReturnResponse) - 中止管線執行，並將指定的回應直接傳回呼叫者。  
+-   [傳回回應](#ReturnResponse) - 中止管線執行，並將指定的回應直接傳回呼叫者。 
   
 -   [傳送單向要求](#SendOneWayRequest) - 將要求傳送到指定的 URL，無須等待回應。  
   
 -   [傳送要求](#SendRequest) - 將要求傳送到指定的 URL。  
-  
--   [設定變數](api-management-advanced-policies.md#set-variable) - 保存具名[內容](api-management-policy-expressions.md#ContextVariables)變數中的值，供日後存取使用。  
-  
+
+-   [設定 HTTP Proxy](#SetHttpProxy) - 可讓您透過 HTTP Proxy 路由轉送要求。  
+
 -   [設定要求方法](#SetRequestMethod) - 允許您變更要求的 HTTP 方法。  
   
 -   [設定狀態碼](#SetStatus) - 將 HTTP 狀態碼變更為指定的值。  
   
+-   [設定變數](api-management-advanced-policies.md#set-variable) - 保存具名[內容](api-management-policy-expressions.md#ContextVariables)變數中的值，供日後存取使用。  
+
 -   [追蹤](#Trace) - 將字串新增至 [API 檢查器](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/)輸出。  
   
 -   [等候](#Wait) - 等候括住的 [Send 要求](api-management-advanced-policies.md#SendRequest)、[取得快取的值](api-management-caching-policies.md#GetFromCacheByKey)或[控制流程](api-management-advanced-policies.md#choose)原則完成後再繼續。  
@@ -620,6 +623,144 @@ status code and media type. If no example or schema found, the content is empty.
   
 -   **原則範圍：**所有範圍  
   
+##  <a name="SetHttpProxy"></a> 設定 HTTP Proxy  
+ `proxy` 原則可讓您透過 HTTP Proxy 將要求路由轉送至後端。 在閘道與 Proxy 之間僅支援 HTTP (不是 HTTPS)。 僅限基本和 NTLM 驗證。
+  
+### <a name="policy-statement"></a>原則陳述式  
+  
+```xml  
+<proxy url="http://hostname-or-ip:port" username="username" password="password" />  
+  
+```  
+  
+### <a name="example"></a>範例  
+請注意，其中使用[屬性](api-management-howto-properties.md)作為 username 和 password 的值，以避免將機密資訊儲存在原則文件中。  
+  
+```xml  
+<proxy url="http://192.168.1.1:8080" username={{username}} password={{password}} />
+  
+```  
+  
+### <a name="elements"></a>元素  
+  
+|元素|說明|必要|  
+|-------------|-----------------|--------------|  
+|proxy|根元素|是|  
+
+### <a name="attributes"></a>屬性  
+  
+|屬性|說明|必要|預設值|  
+|---------------|-----------------|--------------|-------------|  
+|url="string"|http://host:port 形式的 Proxy URL。|是|N/A|  
+|username="string"|用於向 Proxy 驗證的使用者名稱。|否|N/A|  
+|password="string"|用於向 Proxy 驗證的密碼。|否|N/A|  
+
+### <a name="usage"></a>使用量  
+ 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+  
+-   **原則區段︰**輸入  
+  
+-   **原則範圍：**所有範圍  
+
+##  <a name="SetRequestMethod"></a>設定要求方法  
+ `set-method` 原則允許您變更要求的 HTTP 要求方法。  
+  
+### <a name="policy-statement"></a>原則陳述式  
+  
+```xml  
+<set-method>METHOD</set-method>  
+  
+```  
+  
+### <a name="example"></a>範例  
+ 這個使用 `set-method` 原則的相同原則會舉例說明如何在 HTTP 回應碼大於或等於 500 時，將訊息傳送至 Slack 聊天室。 如需此範例的詳細資訊，請參閱[使用來自 Azure API 管理服務的外部服務](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/)。  
+  
+```xml  
+<choose>  
+    <when condition="@(context.Response.StatusCode >= 500)">  
+      <send-one-way-request mode="new">  
+        <set-url>https://hooks.slack.com/services/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</set-url>  
+        <set-method>POST</set-method>  
+        <set-body>@{  
+                return new JObject(  
+                        new JProperty("username","APIM Alert"),  
+                        new JProperty("icon_emoji", ":ghost:"),  
+                        new JProperty("text", String.Format("{0} {1}\nHost: {2}\n{3} {4}\n User: {5}",  
+                                                context.Request.Method,  
+                                                context.Request.Url.Path + context.Request.Url.QueryString,  
+                                                context.Request.Url.Host,  
+                                                context.Response.StatusCode,  
+                                                context.Response.StatusReason,  
+                                                context.User.Email  
+                                                ))  
+                        ).ToString();  
+            }</set-body>  
+      </send-one-way-request>  
+    </when>  
+</choose>  
+  
+```  
+  
+### <a name="elements"></a>元素  
+  
+|元素|說明|必要|  
+|-------------|-----------------|--------------|  
+|set-method|根元素。 元素的值會指定 HTTP 方法。|是|  
+  
+### <a name="usage"></a>使用量  
+ 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+  
+-   **原則區段︰**輸入、錯誤  
+  
+-   **原則範圍：**所有範圍  
+  
+##  <a name="SetStatus"></a>設定狀態碼  
+ `set-status` 原則會將 HTTP 狀態碼設為指定值。  
+  
+### <a name="policy-statement"></a>原則陳述式  
+  
+```xml  
+<set-status code="" reason=""/>  
+  
+```  
+  
+### <a name="example"></a>範例  
+ 此範例會說明如何在授權權杖無效時傳回 401 回應。 如需詳細資訊，請參閱[使用來自 Azure API 管理服務的外部服務](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/)  
+  
+```xml  
+<choose>  
+  <when condition="@((bool)((IResponse)context.Variables["tokenstate"]).Body.As<JObject>()["active"] == false)">  
+    <return-response response-variable-name="existing response variable">  
+      <set-status code="401" reason="Unauthorized" />  
+      <set-header name="WWW-Authenticate" exists-action="override">  
+        <value>Bearer error="invalid_token"</value>  
+      </set-header>  
+    </return-response>  
+  </when>  
+</choose>  
+  
+```  
+  
+### <a name="elements"></a>元素  
+  
+|元素|說明|必要|  
+|-------------|-----------------|--------------|  
+|set-status|根元素。|是|  
+  
+### <a name="attributes"></a>屬性  
+  
+|屬性|說明|必要|預設值|  
+|---------------|-----------------|--------------|-------------|  
+|code="integer"|要傳回的 HTTP 狀態碼。|是|N/A|  
+|reason="string"|狀態碼傳回原因的描述。|是|N/A|  
+  
+### <a name="usage"></a>使用量  
+ 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
+  
+-   **原則區段︰**輸出、後端、錯誤  
+  
+-   **原則範圍：**所有範圍  
+
 ##  <a name="set-variable"></a>設定變數  
  `set-variable` 原則會宣告[內容](api-management-policy-expressions.md#ContextVariables)變數，並對其指派透過[運算式](api-management-policy-expressions.md)或字串常值指定的值。 包含常值的運算式會轉換成字串，且值的類型為 `System.String`。  
   
@@ -720,106 +861,7 @@ status code and media type. If no example or schema found, the content is empty.
 -   System.Char?  
   
 -   System.DateTime?  
-  
-##  <a name="SetRequestMethod"></a>設定要求方法  
- `set-method` 原則允許您變更要求的 HTTP 要求方法。  
-  
-### <a name="policy-statement"></a>原則陳述式  
-  
-```xml  
-<set-method>METHOD</set-method>  
-  
-```  
-  
-### <a name="example"></a>範例  
- 這個使用 `set-method` 原則的相同原則會舉例說明如何在 HTTP 回應碼大於或等於 500 時，將訊息傳送至 Slack 聊天室。 如需此範例的詳細資訊，請參閱[使用來自 Azure API 管理服務的外部服務](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/)。  
-  
-```xml  
-<choose>  
-    <when condition="@(context.Response.StatusCode >= 500)">  
-      <send-one-way-request mode="new">  
-        <set-url>https://hooks.slack.com/services/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</set-url>  
-        <set-method>POST</set-method>  
-        <set-body>@{  
-                return new JObject(  
-                        new JProperty("username","APIM Alert"),  
-                        new JProperty("icon_emoji", ":ghost:"),  
-                        new JProperty("text", String.Format("{0} {1}\nHost: {2}\n{3} {4}\n User: {5}",  
-                                                context.Request.Method,  
-                                                context.Request.Url.Path + context.Request.Url.QueryString,  
-                                                context.Request.Url.Host,  
-                                                context.Response.StatusCode,  
-                                                context.Response.StatusReason,  
-                                                context.User.Email  
-                                                ))  
-                        ).ToString();  
-            }</set-body>  
-      </send-one-way-request>  
-    </when>  
-</choose>  
-  
-```  
-  
-### <a name="elements"></a>元素  
-  
-|元素|說明|必要|  
-|-------------|-----------------|--------------|  
-|set-method|根元素。 元素的值會指定 HTTP 方法。|是|  
-  
-### <a name="usage"></a>使用量  
- 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
-  
--   **原則區段︰**輸入、錯誤  
-  
--   **原則範圍：**所有範圍  
-  
-##  <a name="SetStatus"></a>設定狀態碼  
- `set-status` 原則會將 HTTP 狀態碼設為指定值。  
-  
-### <a name="policy-statement"></a>原則陳述式  
-  
-```xml  
-<set-status code="" reason=""/>  
-  
-```  
-  
-### <a name="example"></a>範例  
- 此範例會說明如何在授權權杖無效時傳回 401 回應。 如需詳細資訊，請參閱[使用來自 Azure API 管理服務的外部服務](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/)  
-  
-```xml  
-<choose>  
-  <when condition="@((bool)((IResponse)context.Variables["tokenstate"]).Body.As<JObject>()["active"] == false)">  
-    <return-response response-variable-name="existing response variable">  
-      <set-status code="401" reason="Unauthorized" />  
-      <set-header name="WWW-Authenticate" exists-action="override">  
-        <value>Bearer error="invalid_token"</value>  
-      </set-header>  
-    </return-response>  
-  </when>  
-</choose>  
-  
-```  
-  
-### <a name="elements"></a>元素  
-  
-|元素|說明|必要|  
-|-------------|-----------------|--------------|  
-|set-status|根元素。|是|  
-  
-### <a name="attributes"></a>屬性  
-  
-|屬性|說明|必要|預設值|  
-|---------------|-----------------|--------------|-------------|  
-|code="integer"|要傳回的 HTTP 狀態碼。|是|N/A|  
-|reason="string"|狀態碼傳回原因的描述。|是|N/A|  
-  
-### <a name="usage"></a>使用量  
- 此原則可用於下列原則[區段](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections)和[範圍](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes)。  
-  
--   **原則區段︰**輸出、後端、錯誤  
-  
--   **原則範圍：**所有範圍  
-  
+
 ##  <a name="Trace"></a>追蹤  
  `trace` 原則會將字串新增至 [API 檢查器](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/)輸出。 此原則只會在觸發追蹤時執行，也就是 `Ocp-Apim-Trace` 要求標頭存在且設為 `true` 以及 `Ocp-Apim-Subscription-Key` 要求標頭存在且含有與管理帳戶相關聯的有效金鑰時。  
   

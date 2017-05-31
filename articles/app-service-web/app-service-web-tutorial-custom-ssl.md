@@ -88,7 +88,7 @@ ms.lasthandoff: 05/09/2017
 
 ![檢查定價層](./media/app-service-web-tutorial-custom-ssl/check-pricing-tier.png)
 
-不支援**免費**和**共用**層中的自訂 SSL。 如果您需要相應增加，請遵循下一節進行。 否則，請關閉 [選擇定價層] 刀鋒視窗，然後跳至 [將 SSL 憑證上傳並繫結][](#upload)。
+不支援**免費**和**共用**層中的自訂 SSL。 如果您需要相應增加，請遵循下一節進行。 否則，請關閉 [選擇定價層] 刀鋒視窗，然後跳至 [將 SSL 憑證上傳並繫結](#upload)。
 
 ### <a name="scale-up-your-app-service-plan"></a>相應增加您的 App Service 方案
 

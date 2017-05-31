@@ -14,10 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/20/2017
 ms.author: kumud
-translationtype: Human Translation
-ms.sourcegitcommit: 1429bf0d06843da4743bd299e65ed2e818be199d
-ms.openlocfilehash: dc2111a34fa0292a21510bbd84089979faf1cb71
-ms.lasthandoff: 03/22/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 7aa4c9120d44ff1b3e59a57090ea04e3f8021fc4
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 ---
 
@@ -34,7 +35,7 @@ ms.lasthandoff: 03/22/2017
 2. 在入口網站的搜尋列中，搜尋「流量管理員設定檔」，然後按一下您想要設定路由方法的設定檔名稱。
 3. 在 [流量管理員設定檔] 刀鋒視窗中，確認您想要納入組態的雲端服務和網站皆存在。
 4. 在 [設定] 區段中，按一下 [組態]，並在 [組態] 刀鋒視窗中，完成下列設定：
-    1. 在 [流量路由方法設定] 中，確認流量路由方法為 [容錯移轉]。 如果不是，請按一下下拉式清單中的 [容錯移轉]  。
+    1. 在 [流量路由方法設定] 中，確認流量路由方法為 [加權]。 如果不是，按一下下拉式清單中的 [加權]。
     2. 將此設定檔中的所有端點都設定為如下所示的相同「端點監視設定」：
         1. 選取適當的 [通訊協定]，並指定 [連接埠] 號碼。 
         2. 針對 [路徑]，輸入正斜線 */*。 若要監視端點，您必須指定路徑和檔案名稱。 正斜線 "/" 是相對路徑的有效項目，表示檔案位於根目錄 (預設值)。

@@ -15,10 +15,10 @@ ms.workload: na
 ms.date: 04/26/2017
 ms.author: dobett
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: 0235058d17a55562271c0a98c47b9b12f8d27be6
+ms.sourcegitcommit: 7c4d5e161c9f7af33609be53e7b82f156bb0e33f
+ms.openlocfilehash: 5efb78c2c514bd0b21be842ddee5465fe4e4dcf9
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/04/2017
 
 
 ---
@@ -30,9 +30,9 @@ ms.lasthandoff: 05/03/2017
 
 | 教學課程 | 注意事項 | 語言 |
 | -------- | ----- | --------- |
-| 模擬遙測 (基本)| 模擬感應器資料。 使用獨立 Raspberry Pi。 | [C][lnk-c-simulator] [Node.js][lnk-node-simulator] |
-| 真實感應器 (中級) | 使用連線到 Raspberry Pi 之 BME280 感應器的資料。 | [C][lnk-c-basic] [Node.js][lnk-node-basic] |
-| 實作韌體更新 (進階)| 使用連線到 Raspberry Pi 之 BME280 感應器的資料。 啟用 Raspberry Pi 上的遠端韌體更新。 | [C][lnk-c-advanced] [Node.js][lnk-node-advanced] |
+| 模擬遙測 (基本)| 模擬感應器資料。 使用獨立 Raspberry Pi。 | [C][lnk-c-simulator]、[Node.js][lnk-node-simulator] |
+| 真實感應器 (中級) | 使用連線到 Raspberry Pi 之 BME280 感應器的資料。 | [C][lnk-c-basic]、[Node.js][lnk-node-basic] |
+| 實作韌體更新 (進階)| 使用連線到 Raspberry Pi 之 BME280 感應器的資料。 啟用 Raspberry Pi 上的遠端韌體更新。 | [C][lnk-c-advanced]、[Node.js][lnk-node-advanced] |
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -12,12 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 04/05/2017
+ms.date: 05/08/2017
 ms.author: terrylan
-translationtype: Human Translation
-ms.sourcegitcommit: 6ea03adaabc1cd9e62aa91d4237481d8330704a1
-ms.openlocfilehash: 3155990d977d8b0849c9e0be92db11ad6567cd6e
-ms.lasthandoff: 04/06/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: fd52bd8e14ca9bdcd06fc820e5e03fb5feccc72f
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -112,10 +113,10 @@ ms.lasthandoff: 04/06/2017
 
 ![Azure 資訊安全中心的安全性建議][5]
 
-### <a name="resource-health"></a>資源健康情況
-[資源全性健康狀態] 圖格會依資源類型顯示環境的整體安全性狀態，包括 VM、Web 應用程式和其他資源。   
+### <a name="security-state-of-azure-resources"></a>Azure 資源的安全性狀態
+儀表板的 [保護] 區段會依資源類型顯示環境的整體安全性狀態，包括 VM、Web 應用程式和其他資源。   
 
-在 [資源安全性健康情況] 圖格上選取資源類型來檢視詳細資訊，包括一份任何已識別潛在安全性弱點的清單。 (下面的範例已選取 [計算])。
+選取 [保護] 之下的資源類型來檢視詳細資訊，包括一份任何已識別潛在安全性弱點的清單。 (下面的範例已選取 [計算])。
 
 ![資源健康狀態磚][6]
 

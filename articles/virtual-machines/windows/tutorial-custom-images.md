@@ -13,21 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-ms.date: 05/02/2017
+ms.date: 05/08/2017
 ms.author: cynthn
 ms.translationtype: Human Translation
-ms.sourcegitcommit: be3ac7755934bca00190db6e21b6527c91a77ec2
-ms.openlocfilehash: ab19073735816ebb32a9840ec03b31b358ccb565
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: 773b37ec8f775d68f1faca0d252f3064c7de0317
 ms.contentlocale: zh-tw
-ms.lasthandoff: 05/03/2017
+ms.lasthandoff: 05/09/2017
 
 ---
 
 # <a name="create-a-custom-image-of-an-azure-vm-using-powershell"></a>使用 PowerShell 建立 Azure VM 的自訂映像
 
-在本教學課程中，您將了解如何定義自己的 Azure 虛擬機器自訂映像。 自訂映像可讓您使用已設定好的映像建立 VM。 自訂映像可用於啟動預先載入的二進位檔和應用程式、應用程式組態、VM 資料磁碟定義和其他 OS 組態。 建立自訂映像時，您自訂的 VM 以及所有連結的磁碟均會包含於映像中。
+自訂映像類似 Marketplace 映像，但您要自行建立它們。 自訂映像可用於啟動程序設定，例如，預先載入應用程式、應用程式設定和其他 OS 設定。 在本教學課程中，您將建立自己的 Azure 虛擬機器自訂映像。 您會了解如何：
 
-您可以使用最新的 [Azure PowerShell](/powershell/azure/overview) 模組來完成本教學課程中的步驟。
+> [!div class="checklist"]
+> * 執行 sysprep 及一般化 VM
+> * 建立自訂映像
+> * 從自訂映像建立 VM
+> * 列出訂用帳戶中的所有映像
+> * 删除映像
+
+本教學課程需要 Azure PowerShell 模組 3.6 版或更新版本。 執行 ` Get-Module -ListAvailable AzureRM` 找出版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
 ## <a name="before-you-begin"></a>開始之前
 
@@ -169,11 +176,40 @@ New-AzureRmVM `
     -VM $vmConfig
 ```
 
+## <a name="image-management"></a>映像管理 
+
+以下範例是一些常見的映像管理作業，以及如何使用 PowerShell 完成這些作業。
+
+依名稱列出所有映像。
+
+```powershell
+$images = Find-AzureRMResource -ResourceType Microsoft.Compute/images 
+$images.name
+```
+
+删除映像。 此範例會刪除 myResourceGroup 中名為 myOldImage 的映像。
+
+```powershell
+Remove-AzureRmImage `
+    -ImageName myOldImage `
+    -ResourceGroupName myResourceGroup
+```
+
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已了解如何建立自訂的 VM 映像。 請前進到下一個教學課程，以了解如何使虛擬機器具備高可用性。
+您在本教學課程中建立了自訂 VM 映像。 您已了解如何︰
 
-[建立高可用性 VM](tutorial-availability-sets.md)
+> [!div class="checklist"]
+> * 執行 sysprep 及一般化 VM
+> * 建立自訂映像
+> * 從自訂映像建立 VM
+> * 列出訂用帳戶中的所有映像
+> * 删除映像
+
+請前進到下一個教學課程，以了解如何使虛擬機器具備高可用性。
+
+> [!div class="nextstepaction"]
+> [建立高可用性 VM](tutorial-availability-sets.md)
 
 
 

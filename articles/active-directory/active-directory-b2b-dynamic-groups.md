@@ -13,12 +13,13 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: identity
-ms.date: 04/12/2017
+ms.date: 05/04/2017
 ms.author: sasubram
-translationtype: Human Translation
-ms.sourcegitcommit: 785d3a8920d48e11e80048665e9866f16c514cf7
-ms.openlocfilehash: 9519719a63387cb8c341c72e262c2aeaacc3cd4a
-ms.lasthandoff: 04/12/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: a694d01281cfdc4559f779f18b92d0412d59cf45
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
@@ -28,7 +29,7 @@ ms.lasthandoff: 04/12/2017
 ## <a name="what-are-dynamic-groups"></a>什麼是動態群組？
 [Azure 入口網站](https://portal.azure.com)允許您動態設定 Azure Active Directory (Azure AD) 的安全性群組成員資格。 系統管理員可以設定規則以根據使用者屬性 (例如 userType、部門或國家/地區) 填入在 Azure Active Directory 中建立的群組。 這允許系統自動根據成員屬性變更在安全性群組中新增或移除成員。 這些群組可用於存取應用程式或雲端資源 (例如 SharePoint 網站和文件)，以及將授權指派給成員。 若要深入了解動態群組，請參閱 [Azure Active Directory 中的專用群組](active-directory-accessmanagement-dedicated-groups.md)。
 
-透過 AAD 進階 P1 或 P2 訂用帳戶，Azure 入口網站現在可讓您建立進階規則，來為 Azure Active Directory 群組啟用更複雜的屬性型動態成員資格。 若要深入了解如何建立進階規則，請參閱[在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則](active-directory-groups-dynamic-membership-azure-portal.md)。
+透過 AAD 進階 P1 或 P2 訂用帳戶，Azure 入口網站現在可讓您建立進階規則，來為 Azure Active Directory 群組啟用更複雜的屬性型動態成員資格。 若要深入了解如何建立進階規則，請參閱[在 Azure Active Directory 中使用屬性來建立群組成員資格的進階規則](active-directory-groups-dynamic-membership-azure-portal.md)。
 
 ## <a name="what-are-the-built-in-dynamic-groups"></a>什麼是內建動態群組？
 「所有使用者」動態群組讓租用戶系統管理員按一下滑鼠即可建立包含租用戶中所有使用者的群組。 根據預設值，「所有使用者」群組包括目錄中的所有使用者 (包括「成員」與「來賓」)。

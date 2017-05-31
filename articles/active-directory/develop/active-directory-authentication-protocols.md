@@ -14,10 +14,12 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 04/27/2017
 ms.author: priyamo
-translationtype: Human Translation
-ms.sourcegitcommit: 0d6f6fb24f1f01d703104f925dcd03ee1ff46062
-ms.openlocfilehash: 51c6a8ae17821d4eb00bf26612bc6e1e434ebbd9
-ms.lasthandoff: 04/17/2017
+ms.custom: aaddev
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: 27c582436bd57adfb5e8edb0f63c0f206db66c89
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -30,7 +32,8 @@ Azure Active Directory (Azure AD) 支援數個最常用的驗證和授權通訊�
 * [同盟中繼資料](active-directory-federation-metadata.md) - 了解如何尋找並解譯 Azure AD 所產生的中繼資料文件。
 * [Azure AD 中的 OAuth 2.0](active-directory-protocols-oauth-code.md) - 了解 Azure AD 中的 OAuth 2.0 實作。
 * [OpenID Connect 1.0](active-directory-protocols-openid-connect-code.md) - 了解如何使用 OAuth 2.0 (授權通訊協定) 進行驗證。
-* [服務對服務呼叫](active-directory-protocols-oauth-service-to-service.md) - 了解如何使用 OAuth 2.0 用戶端認證授與流程來進行服務對服務呼叫。
+* [使用用戶端認證的服務對服務呼叫](active-directory-protocols-oauth-service-to-service.md) - 了解如何使用 OAuth 2.0 用戶端認證授與流程來進行服務對服務呼叫。
+* [使用代理者流程的服務對服務呼叫](active-directory-protocols-oauth-on-behalf-of.md) - 了解如何使用 OAuth 2.0 代理者流程來進行服務對服務呼叫。
 * [SAML 通訊協定參照](active-directory-saml-protocol-reference.md) - 了解 Azure AD 的單一登入和單一登出 SAML 設定檔。
 
 ## <a name="see-also"></a>另請參閱
@@ -39,5 +42,4 @@ Azure Active Directory (Azure AD) 支援數個最常用的驗證和授權通訊�
 [使用 Azure AD 進行驗證](../../app-service-web/web-sites-authentication-authorization.md)
 
 [Active Directory 程式碼範例](active-directory-code-samples.md)
-
 

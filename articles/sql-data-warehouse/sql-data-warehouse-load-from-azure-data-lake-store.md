@@ -15,10 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 01/25/2017
 ms.author: cakarst;barbkess
-translationtype: Human Translation
-ms.sourcegitcommit: a087df444c5c88ee1dbcf8eb18abf883549a9024
-ms.openlocfilehash: aca0e4cfdcfb3e3ed2e69ad8153b4c965b299806
-ms.lasthandoff: 03/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 2db2ba16c06f49fd851581a1088df21f5a87a911
+ms.openlocfilehash: cb2d789a53ee2fa16db8d2553086a18043d4976e
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 
@@ -161,7 +162,7 @@ WITH
 使用 PolyBase 載入資料屬於強型別。 這表示內嵌的每個資料列都必須滿足資料表結構描述定義。
 如果指定的資料列不符合結構描述定義，載入時就會拒絕該列。
 
-[拒絕類型] 和 [拒絕值] 可讓您定義最終的資料表中必須出現多少資料列或多少百分比的資料。
+REJECT_TYPE 和 REJECT_VALUE 選項可讓您定義最終的資料表中必須出現多少資料列或多少百分比的資料。
 在載入期間，如果達到拒絕值，載入即失敗。 資料列遭拒最常見的原因是結構描述定義不相符。
 例如，如果檔案中的資料是字串，卻對資料行指定不正確的整數結構描述，則會無法載入每個資料列。
 

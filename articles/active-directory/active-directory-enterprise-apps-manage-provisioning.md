@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 預覽版中企業應用程式的使用者佈建管理 |Microsoft Docs"
-description: "了解如何使用 Azure Active Directory 預覽版管理企業應用程式的使用者帳戶佈建"
+title: "Azure Active Directory 中企業應用程式的使用者佈建管理 |Microsoft Docs"
+description: "了解如何使用 Azure Active Directory 管理企業應用程式的使用者帳戶佈建"
 services: active-directory
 documentationcenter: 
 author: asmalser
@@ -12,23 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 09/12/2016
+ms.date: 05/04/2017
 ms.author: asmalser
-translationtype: Human Translation
-ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
-ms.openlocfilehash: 103eade46452d979705e06dd77441f42d7a514b8
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 6cb0269e87f7ecffe7030b86237fb88fd58ef77b
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
-# <a name="preview-managing-user-account-provisioning-for-enterprise-apps-in-the-new-azure-portal"></a>預覽︰在新的 Azure 入口網站中管理企業應用程式的使用者帳戶佈建
-這篇文章說明如何使用 [Azure 入口網站](https://portal.azure.com)來自動化管理使用者帳戶的佈建和解除佈建，以用於支援它的應用程式，尤其是透過 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)的「精選」類別新增的應用程式。 這個 Azure 新入口網站中的管理體驗目前處於公開預覽狀態，本文章說明新功能以及一些在預覽期間的暫時性限制。 [預覽版有何功能？](active-directory-preview-explainer.md)
+# <a name="managing-user-account-provisioning-for-enterprise-apps-in-the-azure-portal"></a>在 Azure 入口網站中管理企業應用程式的使用者帳戶佈建
+這篇文章說明如何使用 [Azure 入口網站](https://portal.azure.com)來自動化管理使用者帳戶的佈建和解除佈建，以用於支援它的應用程式，尤其是透過 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)的「精選」類別新增的應用程式。 如需深入了解自動化使用者佈建，請參閱 [自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](active-directory-saas-app-provisioning.md)。
 
-如需深入了解自動化使用者佈建，請參閱 [自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建](active-directory-saas-app-provisioning.md)。
-
-## <a name="finding-your-apps-in-the-new-portal"></a>在新的入口網站中尋找您的應用程式
-自 2016 年 9 月起，目錄管理員在 [Azure 傳統入口網站](https://manage.windowsazure.com)中使用 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)為了目錄中單一登入設定的所有應用程式，可以在新的 Azure 入口網站中檢視和管理。
-
-這些應用程式可在新 Azure 入口網站的 [企業應用程式] 區段中找到，您可以透過左側的導覽區域中的 [更多服務] 功能表存取該區段。 企業應用程式是已部署並由您組織內的使用者所使用的應用程式。
+## <a name="finding-your-apps-in-the-portal"></a>在入口網站中尋找您的應用程式
+目錄管理員使用 [Azure Active Directory 應用程式庫](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery)為目錄中單一登入設定的所有應用程式，可以在 [Azure 入口網站](https://portal.azure.com)中檢視和管理。 這些應用程式可在入口網站的 [更多服務] &gt; [企業應用程式] 區段中找到。 企業應用程式是您組織內部署和使用的應用程式。
 
 ![企業應用程式刀鋒視窗][0]
 
@@ -59,11 +57,11 @@ ms.openlocfilehash: 103eade46452d979705e06dd77441f42d7a514b8
 
 ![應用程式資源刀鋒視窗][2]
 
-在第一次預覽期間支援的自訂包括︰
+支援的自訂項目包含：
 
 * 啟用和停用特定物件的對應，例如 Azure AD 使用者物件對應至 SaaS 應用程式的使用者物件。
 * 編輯哪些屬性會從 Azure AD 使用者物件流向應用程式的使用者物件。 如需有關屬性對應的詳細資訊，請參閱 [了解屬性對應類型](active-directory-saas-customizing-attribute-mappings.md#understanding-attribute-mapping-types)。
-* 篩選 Azure AD 應對目標應用程式執行哪些佈建動作，這是 Azure 入口網站的新功能。 您不需要讓 Azure AD 完全同步處理物件，可以限制執行的動作。 例如，只選取 **更新**，Azure AD 只會更新應用程式中的現有使用者帳戶，不會建立新的。 只有選取 **建立**，Azure 只會建立新的使用者帳戶，但不會更新現有的。 這項功能可讓管理員為帳戶建立和更新工作流程建立不同的對應。 可建立個別應用程式的多個對應的完整功能，計劃將在預覽版推出。
+* 篩選 Azure AD 在目標應用程式上執行的佈建動作。 您不需要讓 Azure AD 完全同步處理物件，可以限制執行的動作。 例如，只選取 **更新**，Azure AD 只會更新應用程式中的現有使用者帳戶，不會建立新的。 只有選取 **建立**，Azure 只會建立新的使用者帳戶，但不會更新現有的。 這項功能可讓管理員為帳戶建立和更新工作流程建立不同的對應。
 
 ### <a name="settings"></a>設定
 這個部分可讓管理員為所選的應用程式啟動和停止 Azure AD 佈建服務，以及選擇性地清除佈建快取並重新啟動服務。
@@ -79,12 +77,12 @@ ms.openlocfilehash: 103eade46452d979705e06dd77441f42d7a514b8
 
 這裡提供**佈建活動報表**的連結，以提供 Azure AD 和目標應用程式之間已建立、更新、移除的所有使用者和群組的記錄檔，以及提供**佈建錯誤報表**的連結，以針對無法讀取、建立、更新或移除的使用者和群組物件提供更詳細的錯誤訊息。 
 
+##<a name="feedback"></a>意見反應
+
+我們希望您喜歡您的 Azure AD 經驗。 請繼續提供意見反應！ 請將您的意見反應和改進想法張貼在我們的[意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal)的**管理員入口網站**區段中。  我們每天都很期待發展酷炫的新功能，並依照您的指導來塑造和定義我們接下來所要發展的項目。
+
+
 [0]: ./media/active-directory-enterprise-apps-manage-provisioning/enterprise-apps-blade.PNG
 [1]: ./media/active-directory-enterprise-apps-manage-provisioning/enterprise-apps-provisioning.PNG
 [2]: ./media/active-directory-enterprise-apps-manage-provisioning/enterprise-apps-provisioning-mapping.PNG
-
-
-
-<!--HONumber=Dec16_HO5-->
-
 

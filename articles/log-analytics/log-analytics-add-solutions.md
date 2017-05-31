@@ -12,13 +12,14 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 04/12/2017
+ms.date: 05/05/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
-translationtype: Human Translation
-ms.sourcegitcommit: e851a3e1b0598345dc8bfdd4341eb1dfb9f6fb5d
-ms.openlocfilehash: 7899df8a09b6f5c8bc916bb6ad872afa3844e425
-ms.lasthandoff: 04/15/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 00fb88afe9ee107543aa7557ff0953d066d05bfd
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -69,7 +70,7 @@ Azure Marketplace 包含 [Log Analytics 的管理解決方案](https://azuremark
 
 ## <a name="offers-and-pricing-tiers"></a>優惠和定價層
 
-下表列出適用於每個 Operations Management 和安全性優惠的管理解決方案。
+下表列出適用於每個 Operations Management Suite 供應項目的管理解決方案。
 此表格也會列出適用於每個管理解決方案的定價層。
 下表中的所有解決方案都可從 Azure 入口網站以及 Log Analytics 入口網站的解決方案庫中取得。
 

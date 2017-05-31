@@ -12,12 +12,13 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 03/07/2017
+ms.date: 05/04/2017
 ms.author: markvi
-translationtype: Human Translation
-ms.sourcegitcommit: 8a531f70f0d9e173d6ea9fb72b9c997f73c23244
-ms.openlocfilehash: fbc3807351a9d83e4bcc5ba0661001754621f430
-ms.lasthandoff: 03/10/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 9ae7e129b381d3034433e29ac1f74cb843cb5aa6
+ms.openlocfilehash: 7a9ec95348f4aa8a14a716a758fb362c1ede61b3
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/08/2017
 
 
 ---
@@ -112,10 +113,7 @@ ms.lasthandoff: 03/10/2017
    2. 安裝和執行 Azure AD Connect：使用[自訂 Azure AD Connect 安裝](connect/active-directory-aadconnect-get-started-custom.md)中的指示來安裝 Azure AD Connect。
    3. 驗證及管理目錄同步作業。 此步驟中可取得單一登入的指示。
    
-   > [!NOTE]
-   > 如上面連結的文件所述，設定與 AD FS 同盟。 您不需要設定任何預覽功能。
-   > 
-   > 
+   如[Azure AD Connect 的自訂安裝](connect/active-directory-aadconnect-get-started-custom.md)所述設定與 AD FS 同盟。
 
 ## <a name="upgrade-your-active-directory-domain-services-schema"></a>升級您的 Active Directory 網域服務結構描述
 > [!NOTE]
@@ -220,7 +218,7 @@ Azure Active Directory 裝置註冊使用 iOS 裝置的空中下載設定檔註�
 
 將這個 iOS 裝置加入至您的工作場所。
 
-**如果您使用 Windows 8.1 裝置**，您可以移至 [電腦設定] >  [網路]  >  [工作場所] 即可加入您的裝置。
+**如果您使用 Windows 8.1 裝置**，您可以移至 [電腦設定] > [網路] > [工作場所] 即可加入您的裝置。
 
 其中的「**信賴憑證者信任名稱**」是 AD FS 中應用程式信賴憑證者信任物件的名稱。
 其中的 **yourdomain.com** 是您利用 Azure Active Directory 設定的網域名稱。 例如 contoso.com。

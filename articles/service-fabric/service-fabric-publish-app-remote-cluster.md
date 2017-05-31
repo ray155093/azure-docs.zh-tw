@@ -14,14 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 07/29/2016
 ms.author: cawa
-translationtype: Human Translation
-ms.sourcegitcommit: cc9e81de9bf8a3312da834502fa6ca25e2b5834a
-ms.openlocfilehash: 4ee53679ca6f42f2181e6552fce89c18f289a116
-ms.lasthandoff: 04/11/2017
+ms.translationtype: Human Translation
+ms.sourcegitcommit: e72275ffc91559a30720a2b125fbd3d7703484f0
+ms.openlocfilehash: c440c520d84fc503ff9e705555449e92555d4721
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/05/2017
 
 
 ---
-# <a name="publish-an-application-to-a-remote-cluster-by-using-visual-studio"></a>使用 Visual Studio 將應用程式發佈至遠端叢集
+# <a name="deploy-and-remove-applications-using-visual-studio"></a>使用 Visual Studio 來部署和移除應用程式
 > [!div class="op_single_selector"]
 > * [PowerShell](service-fabric-deploy-remove-applications.md)
 > * [Visual Studio](service-fabric-publish-app-remote-cluster.md)
@@ -44,17 +45,15 @@ Azure Service Fabric extension for Visual Studio 提供簡單、可重複且可�
 * 應用程式參數檔案的路徑
 * 升級設定
 
-根據預設，您的應用程式會包含兩個發佈設定檔：Local.xml 和 Cloud.xml。 您可以藉由複製並貼上其中一個預設檔案，新增更多設定檔。
+根據預設，您的應用程式會包含三個發佈設定檔：Local.1Node.xml、Local.5Node.xml 和 Cloud.xml。 您可以藉由複製並貼上其中一個預設檔案，新增更多設定檔。
 
 ### <a name="application-parameter-files"></a>應用程式參數檔案
 名為 **ApplicationParameters** 的 Service Fabric 應用程式專案中的資料夾，包含使用者指定應用程式資訊清單參數值的 XML 檔案。 應用程式資訊清單檔案可以參數化，讓您可以針對部署設定使用不同的值。 若要深入了解參數化您的應用程式，請參閱 [在 Service Fabric 中管理多個環境](service-fabric-manage-multiple-environment-app-configuration.md)。
 
 > [!NOTE]
 > 對於動作項目服務，您應該在嘗試使用編輯器或透過 [發佈] 對話方塊編輯檔案之前，先建置專案。 這是因為在建置期間，將會產生部分資訊清單檔案。
-> 
-> 
 
-## <a name="to-publish-an-application-by-using-the-publish-service-fabric-application-dialog-box"></a>使用 [發佈 Service Fabric 應用程式] 對話方塊發佈應用程式
+## <a name="to-publish-an-application-using-the-publish-service-fabric-application-dialog-box"></a>使用 [發佈 Service Fabric 應用程式] 對話方塊發佈應用程式
 下列步驟示範如何使用 Visual Studio Service Fabric 工具提供的 [發佈 Service Fabric 應用程式]  對話方塊發佈應用程式。
 
 1. 在 Service Fabric 應用程式專案的捷徑功能表上，選擇 [發佈...] 以檢視 [發佈 Service Fabric 應用程式] 對話方塊。
@@ -91,9 +90,9 @@ Azure Service Fabric extension for Visual Studio 提供簡單、可重複且可�
 6. 當您完成指定所有必要的設定，選擇 [發佈]  按鈕以將應用程式發佈至所選的 Service Fabric 叢集。 您指定的設定會套用至發佈程序。
 
 ## <a name="publish-to-an-arbitrary-cluster-endpoint-including-party-clusters"></a>發佈至任意叢集端點 (包括合作對象叢集)
-Visual Studio 發佈體驗已針對發佈至遠端叢集 (與您的其中一個 Azure 訂用帳戶相關聯) 最佳化。 不過，可以發佈至任意端點 (例如 Service Fabric 合作對象叢集)，方法是直接編輯發行設定檔 XML。 如上所述，預設會提供兩個發佈設定檔 (**Local.xml** 和 **Cloud.xml**)，但是您可以針對不同的環境建立其他設定檔。 例如，您可能想要建立設定檔以發佈至合作對象叢集，也許命名為 **Party.xml**。
+Visual Studio 發佈體驗已針對發佈至遠端叢集 (與您的其中一個 Azure 訂用帳戶相關聯) 最佳化。 不過，可以發佈至任意端點 (例如 Service Fabric 合作對象叢集)，方法是直接編輯發行設定檔 XML。 如上所述，預設會提供三個發佈設定檔 (**Local.1Node.xml**、**Local.5Node.xml** 和 **Cloud.xml**)，但是您可以針對不同的環境建立其他設定檔。 例如，您可能想要建立設定檔以發佈至合作對象叢集，也許命名為 **Party.xml**。
 
-如果您要連接到不安全的叢集，只需要叢集連接端點，例如 `partycluster1.eastus.cloudapp.azure.com:19000`。 在該情況下，發行設定檔中的連接端點看起來會類似：
+如果您要連線到不安全的叢集，只需要叢集連線端點，例如 `partycluster1.eastus.cloudapp.azure.com:19000`。 在該情況下，發行設定檔中的連接端點看起來會類似：
 
 ```XML
 <ClusterConnectionParameters ConnectionEndpoint="partycluster1.eastus.cloudapp.azure.com:19000" />

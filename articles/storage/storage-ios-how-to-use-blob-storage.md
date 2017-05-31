@@ -3,8 +3,8 @@ title: "如何使用 iOS 中的 Azure Blob 儲存體 | Microsoft Docs"
 description: "使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
 services: storage
 documentationcenter: ios
-author: seguler
-manager: jahogg
+author: michaelhauss
+manager: vamshik
 editor: tysonn
 ms.assetid: df188021-86fc-4d31-a810-1b0e7bcd814b
 ms.service: storage
@@ -12,12 +12,13 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: objective-c
 ms.topic: article
-ms.date: 01/30/2017
-ms.author: seguler
-translationtype: Human Translation
-ms.sourcegitcommit: 988e7fe2ae9f837b661b0c11cf30a90644085e16
-ms.openlocfilehash: b6e5d2dce97c2f10d0e440a0bde05d50d8965833
-ms.lasthandoff: 04/06/2017
+ms.date: 05/11/2017
+ms.author: michaelhauss
+ms.translationtype: Human Translation
+ms.sourcegitcommit: 18d4994f303a11e9ce2d07bc1124aaedf570fc82
+ms.openlocfilehash: d5c004f3123c203a665fb421f81f4a14cfbeb26c
+ms.contentlocale: zh-tw
+ms.lasthandoff: 05/09/2017
 
 
 ---
@@ -34,49 +35,67 @@ ms.lasthandoff: 04/06/2017
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="import-the-azure-storage-ios-library-into-your-application"></a>將 Azure 儲存體 iOS 程式庫匯入您的應用程式中
-您可以透過使用 [Azure 儲存體 CocoaPod](https://cocoapods.org/pods/AZSClient) 或匯入 **Framework** 檔，將 Azure 儲存體 iOS 程式庫匯入至您的應用程式。
+您可以透過使用 [Azure 儲存體 CocoaPod](https://cocoapods.org/pods/AZSClient) 或匯入 **Framework** 檔，將 Azure 儲存體 iOS 程式庫匯入至您的應用程式。 CocoaPod 是建議的方式，因為它讓程式庫整合更容易，不過從架構匯入檔案較不干擾您的現有專案。
+
+若要使用此程式庫，您需要：
+- iOS 8+
+- Xcode 7+
 
 ## <a name="cocoapod"></a>CocoaPod
 1. 如果您還沒有這麼做，請開啟終端機視窗，並執行下列命令，在電腦上 [安裝 CocoaPods](https://guides.cocoapods.org/using/getting-started.html#toc_3)
-   
+    
+    ```shell   
     sudo gem install cocoapods
+    ```
 
 2. 接下來，在專案目錄 (包含您 .xcodeproj 檔案的目錄) 中建立稱為 _Podfile_ 的檔案 (無副檔名)。 將下列內容加入至 _Podfile_ 並儲存。
-   
-    pod 'AZSClient'
+
+    ```ruby
+    platform :ios, '8.0'
+
+    target 'TargetName' do
+      pod 'AZSClient'
+    end
+    ```
 
 3. 在終端機視窗中，巡覽至專案目錄並執行下列命令
-   
+
+    ```shell    
     pod install
+    ```
 
 4. 如果您已在 Xcode 中開啟 .xcodeproj，請將它關閉。 在您的專案目錄中開啟新建立的專案檔案 (副檔名為 .xcworkspace)。 這是您從現在開始會使用的檔案。
 
 ## <a name="framework"></a>Framework
-為了使用 Azure 儲存體 iOS 程式庫，您必須先建置架構檔案。
+程式庫的另一個用法，是手動建立架構︰
 
 1. 首先，請下載或複製 [azure-storage-ios repo](https://github.com/azure/azure-storage-ios)。
-2. 移至 *azure-storage-ios* -> *Lib* -> *Azure 儲存體用戶端程式庫*，然後在 Xcode 中開啟 AZSClient.xcodeproj。
+2. 移至 *azure-storage-ios* -> *Lib* -> *Azure 儲存體用戶端程式庫*，然後在 Xcode 中開啟 `AZSClient.xcodeproj`。
 3. 在 Xcode 左上方，將作用中配置從「Azure 儲存體用戶端程式庫」變更為「架構」。
-4. 建置專案 (⌘ + B)。 這會在您的 [桌面] 上建立 AZSClient.framework 檔案。
+4. 建置專案 (⌘ + B)。 這會在您的桌面上建立 `AZSClient.framework` 檔案。
 
 您可以透過下列方式，將 Framework 檔案匯入至您的應用程式：
 
 1. 建立新的專案，或在 Xcode 中開啟現有的專案。
-2. 按一下左側導覽列中的專案，然後按一下專案編輯器頂端的 [一般]  索引標籤。
-3. 在 [連結的架構和程式庫]  區段下，按一下 [新增] 按鈕 (+)。
-4. 按一下 [新增其他...] 。 導覽至您剛才建立的 `AZSClient.framework` 檔案，並加以新增。
-5. 在 [連結的架構和程式庫]  區段下，再按一下 [新增] 按鈕 (+)。
-6. 在已提供的程式庫清單中搜尋 `libxml2.2.dylib` ，並將它新增至您的專案。
-7. 按一下位於專案編輯器頂端的 [建置設定]  索引標籤。
-8. 在 [搜尋路徑] 區段中，按兩下 [Framework 搜尋路徑]，並將路徑新增至您的 `AZSClient.framework` 檔案。
+2. 將 `AZSClient.framework` 拖曳到您的 Xcode 專案導覽器。
+3. 選取 [必要時複製項目]，然後按一下 [完成]。
+4. 按一下左側導覽列中的專案，然後按一下專案編輯器頂端的 [一般]  索引標籤。
+5. 在 [連結的架構和程式庫]  區段下，按一下 [新增] 按鈕 (+)。
+6. 在已提供的程式庫清單中搜尋 `libxml2.2.tbd` ，並將它新增至您的專案。
 
-## <a name="import-statement"></a>匯入陳述式
-您必須在要叫用 Azure 儲存體 API 的檔案中納入下列匯入陳述式。
-
+## <a name="import-the-library"></a>匯入程式庫 
 ```objc
 // Include the following import statement to use blob APIs.
 #import <AZSClient/AZSClient.h>
 ```
+
+如果您使用 Swift，必須建立橋接標頭並在標頭匯入 <AZSClient/AZSClient.h>︰
+
+1. 建立標頭檔 `Bridging-Header.h`，並加入上述匯入陳述式。
+2. 移至 [建置設定] 索引標籤，搜尋[OBJECTIVE-C 橋接標頭]。
+3. 按兩下 [OBJECTIVE-C 橋接標頭] 欄位，並將此路徑加入標頭檔︰`ProjectName/Bridging-Header.h`
+4. 建立專案 (⌘ + B) 以確認 Xcode 已收取橋接標頭。
+5. 直接在任何 Swift 檔案中開始使用程式庫，就不需要匯入陳述式。
 
 [!INCLUDE [storage-mobile-authentication-guidance](../../includes/storage-mobile-authentication-guidance.md)]
 
@@ -153,7 +172,7 @@ ms.lasthandoff: 04/06/2017
 ```
 
 ## <a name="upload-a-blob-into-a-container"></a>將 Blob 上傳至容器
-如 [Blob 服務概念](#blob-service-concepts) 一節中所述，Blob 儲存體提供三種不同類型的 Blob：區塊 Blob、附加 Blob 和分頁 Blob。 目前，Azure 儲存體 iOS 程式庫僅支援區塊 Blob。 在大多數情況下，建議使用區塊 Blob 的類型。
+如 [Blob 服務概念](#blob-service-concepts) 一節中所述，Blob 儲存體提供三種不同類型的 Blob：區塊 Blob、附加 Blob 和分頁 Blob。 Azure 儲存體 iOS 程式庫支援三種類型的 Blob。 在大部分情況下，建議使用區塊 Blob 的類型。
 
 下列範例說明如何從 NSString 上傳區塊 Blob。 如果此容器中有相同名稱的 Blob 存在，此 Blob 的內容將會被覆寫。
 
@@ -194,7 +213,7 @@ ms.lasthandoff: 04/06/2017
 }
 ```
 
-您可以查看 [Microsoft Azure 儲存體總管](http://storageexplorer.com)，並驗證容器 *containerpublic* 包含 Blob *sampleblob*，以確認運作正常。 在此範例中我們使用公用容器，所以您也可以移至 Blob URI 來確認運作是否正常：
+您可以查看 [Microsoft Azure 儲存體總管](http://storageexplorer.com)，並驗證容器 *containerpublic* 包含 Blob *sampleblob*，以確認運作正常。 在此範例中我們使用公用容器，所以您也可以移至 Blob URI 來確認應用程式運作是否正常：
 
     https://nameofyourstorageaccount.blob.core.windows.net/containerpublic/sampleblob
 
@@ -205,7 +224,7 @@ ms.lasthandoff: 04/06/2017
 
 * **continuationToken** - 接續權杖表示列出作業應從哪裡開始。 如果未提供權杖，則會從頭列出 Blob。 可以列出任何數目的 Blob，從零到設定的最大值皆可。 即使此方法傳回零個結果，如果 `results.continuationToken` 不是 nil，則可能會有服務上的更多 Blob 未列出。
 * **prefix** -您可以指定要用於 Blob 列出作業的前置詞。 只有開頭為此前置詞的 Blob 才會列出。
-* **useFlatBlobListing** - 如 [命名與參考容器和 Blob](#naming-and-referencing-containers-and-blobs) 一節中所述，雖然 Blob 服務是一般儲存體配置，雖然您可以路徑資訊為 Blob 命名，以建立虛擬階層。 不過目前不支援非一般列出；不久後將可支援。 目前，此值應為 **YES**。
+* **useFlatBlobListing** - 如 [命名與參考容器和 Blob](#naming-and-referencing-containers-and-blobs) 一節中所述，雖然 Blob 服務是一般儲存體配置，雖然您可以路徑資訊為 Blob 命名，以建立虛擬階層。 不過目前不支援非一般列出。 不久後將有此功能。 目前，此值應為 **YES**。
 * **blobListingDetails** - 您可以指定列出 Blob 時所要包含的項目
   * _AZSBlobListingDetailsNone_：僅列出已認可的 Blob，且不傳回 Blob 中繼資料。
   * _AZSBlobListingDetailsSnapshots_︰列出已認可的 Blob 和 Blob 快照。
