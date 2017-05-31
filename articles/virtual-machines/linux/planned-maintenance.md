@@ -3,7 +3,7 @@ title: "Azure 中 Linux VM 的計劃性維護 | Microsoft Docs"
 description: "了解什麼是 Azure 計劃性維護，以及它對在 Azure 中執行的 Windows 虛擬機器的影響為何。"
 services: virtual-machines-linux
 documentationcenter: 
-author: 
+author: zivr
 manager: timlt
 editor: 
 tags: azure-resource-manager,azure-service-management
@@ -14,10 +14,11 @@ ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 03/27/2017
-ms.author: 
-translationtype: Human Translation
+ms.author: zivr
+ms.translationtype: Human Translation
 ms.sourcegitcommit: eeb56316b337c90cc83455be11917674eba898a3
 ms.openlocfilehash: 28c2fb5a67eca0c5ab2f0299bba7c11375e10558
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/03/2017
 
 

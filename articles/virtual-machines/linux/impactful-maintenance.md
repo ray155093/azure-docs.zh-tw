@@ -3,7 +3,7 @@ title: "對於 Azure 中的 Linux VM 進行的維護造成 VM 重新啟動 | Mic
 description: "Linux 虛擬機器的維護造成 VM 重新啟動"
 services: virtual-machines-linux
 documentationcenter: 
-author: 
+author: zivr
 manager: timlt
 editor: 
 tags: azure-service-management,azure-resource-manager
@@ -14,10 +14,11 @@ ms.tgt_pltfrm: vm-linux
 ms.devlang: na
 ms.topic: article
 ms.date: 03/27/2017
-ms.author: 
-translationtype: Human Translation
+ms.author: zivr
+ms.translationtype: Human Translation
 ms.sourcegitcommit: db7cb109a0131beee9beae4958232e1ec5a1d730
 ms.openlocfilehash: c02b2878462afb107c81317c9ea0a317cb9ce838
+ms.contentlocale: zh-tw
 ms.lasthandoff: 04/18/2017
 
 
